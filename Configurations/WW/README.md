@@ -10,3 +10,6 @@ e.g.
 
     mkShapes.py --pycfg=configuration.py  --inputDir=/media/data/amassiro/LatinoTrees/50ns/
     
+    mkPlot.py   --pycfg=configuration.py  --inputFile=plotWW/plots_WW.root
+    
+    

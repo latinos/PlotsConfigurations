@@ -1,17 +1,21 @@
 # example of configuration file
 
-tag = 'mytest'
+tag = 'WW'
 
 outputDir = 'plotWW'
 
 
-variablesFile = 'test/variables.py' # file with list of variables
+# file with list of variables
+variablesFile = 'variables.py'
 
-cutsFile = 'test/cuts.py' # file with list of cuts
+# file with list of cuts
+cutsFile = 'cuts.py' 
 
-samplesFile = 'test/samples.py' # file with list of samples
+# file with list of samples
+samplesFile = 'samples.py' 
 
-
+# file with list of samples
+plotFile = 'plot.py' 
 
 
 

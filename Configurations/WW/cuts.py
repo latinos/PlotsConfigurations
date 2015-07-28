@@ -2,6 +2,5 @@
 
 #cuts = {}
     
-cuts['first']  = 'mll<50'
-cuts['second'] = 'mll>=50'
+cuts['WWee']  = 'std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11'
 
