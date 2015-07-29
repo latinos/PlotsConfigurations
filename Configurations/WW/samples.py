@@ -4,7 +4,7 @@
     
 #                    
 samples['DY']  = {   'name': ['../25ns/latino_DYJetsToLL.root'],     #   file name    
-                      'weight' : 'baseW',                    #   weight/cut 
+                      'weight' : 'baseW*GEN_weight_SM',              #   weight/cut 
                       'weights': ['1']                       #   additional cuts file dependent
                   }
 

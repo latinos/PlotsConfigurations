@@ -20,5 +20,5 @@ plotFile = 'plot.py'
 
 
 # luminosity to normalize to
-lumi = 0.020
+lumi = 0.040
 
