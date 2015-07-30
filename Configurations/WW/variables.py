@@ -23,3 +23,16 @@ variables['csvv2ivf_1']  = {
                                'range' : (100,0,1),   
                                'xaxis' : 'csvv2ivf jet 1st'
                         }
+
+variables['jetpt1']  = {
+                        'name': 'std_vector_jet_pt[0]',     
+                        'range' : (100,0,200),   
+                        'xaxis' : 'p_{T} 1st jet'
+                        }
+
+variables['jetpt2']  = {
+                        'name': 'std_vector_jet_pt[1]',     
+                        'range' : (100,0,200),   
+                        'xaxis' : 'p_{T} 2nd jet',
+                        'fold' : 0   # 0 = not fold, 1 = fold underflowbin, 2 = fold overflow bin  #FIXME to be implemented!
+                        }

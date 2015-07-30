@@ -3,7 +3,7 @@
 #samples = {}
     
 #                    
-samples['DY']  = {   'name': ['../25ns/latino_DYJetsToLL.root', '../25ns/latino_DYJetsToLL1050.root'],     #   file name    
+samples['DY']  = {   'name': ['latino_DYJetsToLL.root', '../25ns/latino_DYJetsToLL1050.root'],     #   file name    
                       'weight' : 'baseW',              #   weight/cut 
                       #'weight' : 'baseW*GEN_weight_SM',              #   weight/cut 
                       'weights': ['-', '-']                       #   additional cuts file dependent
