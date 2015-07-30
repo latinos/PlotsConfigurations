@@ -18,6 +18,13 @@ plot['ttbar'] = {
                   }
 
 
+plot['WW']  = {
+                  'color': 851, # kAzure -9 
+                  'isSignal' : 0,
+                  'isData'   : 0    
+                  }
+
+
 plot['WZ']  = { 
                   'color': 858, # kAzure -2  
                   'isSignal' : 0,
@@ -26,10 +33,11 @@ plot['WZ']  = {
 
 
 plot['ZZ']  = {
-                  'color': 851, # kAzure -9 
+                  'color': 854, # kAzure -6 
                   'isSignal' : 0,
                   'isData'   : 0    
                   }
+
 
 
 # data

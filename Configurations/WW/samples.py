@@ -3,15 +3,21 @@
 #samples = {}
     
 #                    
-samples['DY']  = {   'name': ['../25ns/latino_DYJetsToLL.root'],     #   file name    
-                      'weight' : 'baseW*GEN_weight_SM',              #   weight/cut 
-                      'weights': ['1']                       #   additional cuts file dependent
+samples['DY']  = {   'name': ['../25ns/latino_DYJetsToLL.root', '../25ns/latino_DYJetsToLL1050.root'],     #   file name    
+                      'weight' : 'baseW',              #   weight/cut 
+                      #'weight' : 'baseW*GEN_weight_SM',              #   weight/cut 
+                      'weights': ['-', '-']                       #   additional cuts file dependent
                   }
 
 samples['ttbar'] = {   'name': ['latino_TTJets.root'],         #   file name    
                        'weight' : 'baseW',                     #   weight/cut 
                        'weights': ['1']                        #   additional cuts file dependent
                    }
+
+samples['WW']  = {   'name': ['latino_WWTo2L2Nu.root'],      
+                      'weight' : 'baseW',          
+                      'weights': ['1']            
+                  }
 
 samples['WZ']  = {   'name': ['latino_WZ.root'],      
                       'weight' : 'baseW',          
