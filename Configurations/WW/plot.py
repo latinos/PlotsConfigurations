@@ -50,3 +50,12 @@ plot['DATA']  = {
               }
 
 
+
+
+# additional options
+
+legend['lumi'] = 'L = 20/pb'
+legend['sqrt'] = '#sqrt{s} = 13 TeV'
+
+
+
