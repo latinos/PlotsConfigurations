@@ -6,12 +6,12 @@
 samples['DY']  = {   'name': ['latino_DYJetsToLL.root', '../25ns/latino_DYJetsToLL1050.root'],     #   file name    
                       'weight' : 'baseW',              #   weight/cut 
                       #'weight' : 'baseW*GEN_weight_SM',              #   weight/cut 
-                      'weights': ['-', '-']                       #   additional cuts file dependent
+                      'weights': ['GEN_weight_SM/abs(GEN_weight_SM) * 0.66998', 'GEN_weight_SM/abs(GEN_weight_SM) * 0.72760']                       #   additional cuts file dependent
                   }
 
 samples['ttbar'] = {   'name': ['latino_TTJets.root'],         #   file name    
                        'weight' : 'baseW',                     #   weight/cut 
-                       'weights': ['GEN_weight_SM/abs(GEN_weight_SM) * 3.291254e-01']             #   additional cuts file dependent --> e.g. from +/- weights in MC
+                       'weights': ['GEN_weight_SM/abs(GEN_weight_SM) * 0.33166']             #   additional cuts file dependent --> e.g. from +/- weights in MC
                    }
 
 samples['WW']  = {   'name': ['latino_WWTo2L2Nu.root'],      
