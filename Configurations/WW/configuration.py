@@ -22,3 +22,17 @@ plotFile = 'plot.py'
 # luminosity to normalize to
 lumi = 0.040
 
+
+# used by mkPlot to define output directory for plots
+# different from "outputDir" to do things more tidy
+outputDirPlots = 'plotWW'
+
+
+# used by mkDatacards to define output directory for datacards
+outputDirDatacard = 'datacards'
+
+
+# structure file for datacard
+structureFile = 'structure.py'
+
+
