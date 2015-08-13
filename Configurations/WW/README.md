@@ -14,3 +14,7 @@ e.g.
     
     mkDatacards.py   --pycfg=configuration.py  --inputFile=plotWW/plots_WW.root
     
+Run combine:
+
+    combine -M MaxLikelihoodFit -t -1 --expectSignal 1  -S 0  datacard.txt 
+
