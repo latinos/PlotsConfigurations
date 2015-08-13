@@ -36,3 +36,7 @@ outputDirDatacard = 'datacards'
 structureFile = 'structure.py'
 
 
+# structure file for datacard
+nuisancesFile = 'nuisances.py'
+
+
