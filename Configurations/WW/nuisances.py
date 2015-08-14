@@ -18,7 +18,6 @@ nuisances['lumi']  = {
 # on MC/data
 # "stat" is a special word to identify this nuisance
 nuisances['stat']  = {
-               'name'  : 'lumi', 
                 # apply to the following samples: name of samples here must match keys in samples.py
                'samples'  : {
                    
@@ -37,7 +36,7 @@ nuisances['stat']  = {
                          'listBins' : [1, 1, 1, 1, 1],  # depend on variable???
                          }
                  },
-               'type'  : 'lnN'
+               'type'  : 'shape'
               }
 
                #'samples'  : ['ttbar', 'DY' , 'WW' ] , # apply to the following samples: name of samples here must match keys in samples.py
