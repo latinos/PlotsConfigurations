@@ -4,8 +4,9 @@
     
 #                    
 variables['mll']  = {   'name': 'mll',            #   variable name    
-                        'range' : (100,0,200),    #   variable range
-                        'xaxis' : 'm_{ll} [GeV]'  #   x axis name
+                        'range' : (20,0,200),    #   variable range
+                        'xaxis' : 'm_{ll} [GeV]',  #   x axis name
+                         'fold' : 3
                         }
 
 #variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
@@ -32,7 +33,7 @@ variables['mll']  = {   'name': 'mll',            #   variable name
 
 variables['jetpt2']  = {
                         'name': 'std_vector_jet_pt[1]',     
-                        'range' : (100,0,200),   
+                        'range' : (20,0,200),   
                         'xaxis' : 'p_{T} 2nd jet',
-                        'fold' : 1   # 0 = not fold, 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow #FIXME to be implemented!
+                        'fold' : 1   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
