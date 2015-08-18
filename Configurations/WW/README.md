@@ -21,6 +21,7 @@ Run combine:
     git checkout 74x-root6
 
     combine -M MaxLikelihoodFit -t -1 --expectSignal 1  -S 0  datacard.txt 
+    combine -M MaxLikelihoodFit -t -1 --expectSignal 1        datacard.txt 
 
     combine -M Asymptotic datacard.txt
     combine -M Asymptotic -t -1 datacard.txt

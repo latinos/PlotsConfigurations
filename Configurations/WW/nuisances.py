@@ -31,7 +31,7 @@ nuisances['stat']  = {
                          'listBins' : '-',
                          },
                     
-                   'DY': {
+                   'WW': {
                          'typeStat' : 'uni',
                          'listBins' : [1, 1, 1, 1, 1],  # depend on variable???
                          }
