@@ -19,7 +19,7 @@ plotFile = 'plot.py'
 
 
 
-# luminosity to normalize to
+# luminosity to normalize to (in 1/fb)
 lumi = 0.040
 
 

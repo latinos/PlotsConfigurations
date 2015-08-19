@@ -17,7 +17,7 @@ structure['ttbar'] = {
 
 
 structure['WW']  = {
-                  'isSignal' : 1,  # just to test
+                  'isSignal' : 0,
                   'isData'   : 0    
                   }
 
@@ -33,6 +33,11 @@ structure['ZZ']  = {
                   'isData'   : 0    
                   }
 
+
+structure['ggH'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
 
 
 # data

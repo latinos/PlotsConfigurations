@@ -39,6 +39,13 @@ plot['ZZ']  = {
                   }
 
 
+plot['ggH'] = {
+                  'color': 632, # kRed 
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+
 
 # data
 
