@@ -2,9 +2,9 @@
 
 #cuts = {}
     
-#cuts['WWee']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
-                #&&  std_vector_lepton_pt[0]>30 && std_vector_lepton_pt[1]>20  \
-                #&& mll>50    '
+cuts['WWee']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
+                &&  std_vector_lepton_pt[0]>30 && std_vector_lepton_pt[1]>20  \
+                && mll>50    '
 
 cuts['WWem']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)   \
                &&  std_vector_lepton_pt[0]>30 && std_vector_lepton_pt[1]>20   \
