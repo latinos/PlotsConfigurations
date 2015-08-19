@@ -15,11 +15,11 @@ variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',
                         'fold'  : 3                         
                         }
 
-variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
-                        'range' : (100,0,200),   
-                        'xaxis' : 'p_{T} 2nd lep',
-                        'fold'  : 3                         
-                        }
+#variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
+                        #'range' : (100,0,200),   
+                        #'xaxis' : 'p_{T} 2nd lep',
+                        #'fold'  : 3                         
+                        #}
 
 #variables['csvv2ivf_1']  = { 
                                #'name': 'std_vector_jet_csvv2ivf[0]',     
@@ -33,9 +33,17 @@ variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',
                         #'xaxis' : 'p_{T} 1st jet'
                         #}
 
-variables['jetpt2']  = {
-                        'name': 'std_vector_jet_pt[1]',     
+
+variables['jetpt1']  = {
+                        'name': 'std_vector_jet_pt[0]',     
                         'range' : (20,0,200),   
-                        'xaxis' : 'p_{T} 2nd jet',
+                        'xaxis' : 'p_{T} 1st jet',
                         'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
+
+#variables['jetpt2']  = {
+                        #'name': 'std_vector_jet_pt[1]',     
+                        #'range' : (20,0,200),   
+                        #'xaxis' : 'p_{T} 2nd jet',
+                        #'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+                        #}

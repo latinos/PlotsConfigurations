@@ -11,6 +11,14 @@ plot['DY']  = {
               }
 
 
+               
+plot['Wjets']  = {  
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0 
+              }
+
+
 plot['ttbar'] = {   
                   'color': 400,   # kYellow 
                   'isSignal' : 0,

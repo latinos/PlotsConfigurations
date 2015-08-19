@@ -16,6 +16,12 @@ samples['DY']  = {    'name': ['../../50ns/latino_DYJetsToLL.root', 'latino_DYJe
                    #}
 
 
+samples['Wjets']  = {    'name': ['latino_WJetsToLNu.root'],     #   file name    
+                      'weight' : 'baseW',              #   weight/cut 
+                      'weights': ['GEN_weight_SM/abs(GEN_weight_SM) * 0.68394']                       #   additional cuts file dependent
+                  }
+
+
 samples['ttbar'] = {   'name': ['latino_TT.root'],         #   file name    
                        'weight' : 'baseW',                 #   weight/cut 
                        #'weights': ['0.33166']             #   additional cuts file dependent --> e.g. from +/- weights in MC
