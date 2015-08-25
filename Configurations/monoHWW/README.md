@@ -45,4 +45,14 @@ Add variables:
     gardener.py dmvarfiller \
                 /media/data/amassiro/LatinoTrees/50ns/latino_WWTo2L2Nu.root \
                 /media/data/amassiro/LatinoTrees/monoH/latino_WWTo2L2Nu.root
-                
+    
+    other 
+    
+    gardener.py wwvarfiller \
+                -r /media/data/amassiro/LatinoTrees/monoH/ \
+                /media/data/amassiro/LatinoTrees/monoH/
+    
+    
+    
+    
+    

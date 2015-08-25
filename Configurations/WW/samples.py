@@ -3,9 +3,9 @@
 #samples = {}
     
 #                    
-samples['DY']  = {    'name': ['../../50ns/latino_DYJetsToLL.root', 'latino_DYJetsToLL_M-10to50.root'],     #   file name    
+samples['DY']  = {    'name': ['../../50ns/05Aug2015/latino_DYJetsToLL_M-50.root', 'latino_DYJetsToLL_M-10to50.root'],     #   file name    
                       'weight' : 'baseW',              #   weight/cut 
-                      'weights': ['0.66998', 'GEN_weight_SM/abs(GEN_weight_SM) * 0.72760']                       #   additional cuts file dependent
+                      'weights': ['GEN_weight_SM/abs(GEN_weight_SM) / 0.66998', 'GEN_weight_SM/abs(GEN_weight_SM) / 0.72760']                       #   additional cuts file dependent
                       #'weights': ['0.66998', '0.72760'] ,                      #   additional cuts file dependent
                   }
 
@@ -18,7 +18,7 @@ samples['DY']  = {    'name': ['../../50ns/latino_DYJetsToLL.root', 'latino_DYJe
 
 samples['Wjets']  = {    'name': ['latino_WJetsToLNu.root'],     #   file name    
                       'weight' : 'baseW',              #   weight/cut 
-                      'weights': ['GEN_weight_SM/abs(GEN_weight_SM) * 0.68394']                       #   additional cuts file dependent
+                      'weights': ['GEN_weight_SM/abs(GEN_weight_SM) / 0.68394']                       #   additional cuts file dependent
                   }
 
 
@@ -64,7 +64,7 @@ samples['DATA']  = {   'name': ['../../data/latino_DoubleEG.root',
                                 '../../data/latino_SingleElectron.root',
                                 '../../data/latino_SingleMu.root',
                                 '../../data/latino_MuonEG.root'],      
-                       'weight' : 'trigger',          
+                       'weight' : 'trigger',
                   }
 
 #samples['DATA']  = {   'name': ['dataB/latino_DoubleEG.root', 'dataB/latino_MuonEG.root', 'dataB/latino_SingleElectron.root', 'dataB/latino_SingleMu.root'],      

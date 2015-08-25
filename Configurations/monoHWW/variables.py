@@ -29,17 +29,63 @@ variables['pfmet']  = { 'name': 'pfType1Met',
                         }
 
 
+
+variables['ptll']  = { 'name': 'ptll',     
+                        'range' : (100,0,1000),   
+                        'xaxis' : 'pt_{ll} [GeV]',
+                        'fold'  : 3                         
+                        }
+
+
 variables['mllStar']  = { 'name': 'mllStar',     
                         'range' : (100,0,200),   
                         'xaxis' : 'mll*',
                         'fold'  : 3                         
                         }
 
-variables['dphillStar']  = { 'name': 'dphillStar',     
+variables['dphillStar']  = { 'name': 'abs(dphillStar)',     
                         'range' : (100,0,3.14),   
                         'xaxis' : '#Delta#phi_{ll}*',
                         'fold'  : 3                         
                         }
+
+variables['dphill']  = { 'name': 'dphill',     
+                        'range' : (100,0,3.14),   
+                        'xaxis' : '#Delta#phi_{ll}',
+                        'fold'  : 3                         
+                        }
+
+# WW
+variables['pTWW']  = { 'name': 'pTWW',     
+                        'range' : (100,0,2000),   
+                        'xaxis' : 'p_{T}^{WW}',
+                        'fold'  : 3                         
+                        }
+
+variables['HT']  = { 'name': 'HT',     
+                        'range' : (100,0,3000),   
+                        'xaxis' : 'H_{T}',
+                        'fold'  : 3                         
+                        }
+
+variables['redHT']  = { 'name': 'redHT',     
+                        'range' : (100,0,1500),   
+                        'xaxis' : 'reduced H_{T}',
+                        'fold'  : 3                         
+                        }
+
+variables['mT2']  = { 'name': 'mT2',     
+                        'range' : (100,0,1000),   
+                        'xaxis' : 'm_{T2}',
+                        'fold'  : 3                         
+                        }
+
+variables['mT']   = {   'name': 'mth',     
+                        'range' : (100,0,3000),   
+                        'xaxis' : 'm_{T}',
+                        'fold'  : 3                         
+                        }
+
 
 
 #variables['csvv2ivf_1']  = { 
