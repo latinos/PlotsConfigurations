@@ -26,6 +26,13 @@ plot['ttbar'] = {
                   }
 
 
+plot['top'] = {   
+                  'color': 401,   # kYellow +1
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
+
+
 plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
