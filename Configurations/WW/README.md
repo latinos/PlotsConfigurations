@@ -13,9 +13,9 @@ e.g.
     mkShapes.py      --pycfg=configuration.py  --inputDir=/media/data/amassiro/LatinoTrees/WW/25ns/05Aug2015/
     
     
-    mkPlot.py        --pycfg=configuration.py  --inputFile=plotWW/plots_WW.root
+    mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_WW.root
     
-    mkDatacards.py   --pycfg=configuration.py  --inputFile=plotWW/plots_WW.root
+    mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_WW.root
 
     
 Run combine:
@@ -34,6 +34,23 @@ Run combine:
     
 Filter trees:
 
+
+    gardener.py  l2selfiller \
+                -r   /media/data/amassiro/LatinoTrees/25ns/05Aug2015/  \
+                     /media/data/amassiro/LatinoTrees/WW/25ns/05Aug2015/ 
+         
+    gardener.py  l2selfiller \
+                -r   /media/data/amassiro/LatinoTrees/50ns/05Aug2015/  \
+                     /media/data/amassiro/LatinoTrees/WW/50ns/05Aug2015/ 
+
+    gardener.py  l2selfiller \
+                -r   /media/data/amassiro/LatinoTrees/data/  \
+                     /media/data/amassiro/LatinoTrees/WW/data/ 
+                     
+
+           
+           
+           
 
     gardener.py  filter \
                 -f  "std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] < 0   \

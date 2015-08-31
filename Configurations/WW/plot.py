@@ -7,7 +7,8 @@
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
-                  'isData'   : 0 
+                  'isData'   : 0, 
+                  'scale'    : 0.9*0.9    # ele/mu trigger efficiency
               }
 
 
@@ -15,51 +16,58 @@ plot['DY']  = {
 plot['Wjets']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
-                  'isData'   : 0 
+                  'isData'   : 0,
+                  'scale'    : 0.9*0.9    # ele/mu trigger efficiency                  
               }
 
 
 plot['ttbar'] = {   
                   'color': 400,   # kYellow 
                   'isSignal' : 0,
-                  'isData'   : 0 
+                  'isData'   : 0 ,
+                  'scale'    : 0.9*0.9    # ele/mu trigger efficiency
                   }
 
 
 plot['top'] = {   
                   'color': 401,   # kYellow +1
                   'isSignal' : 0,
-                  'isData'   : 0 
+                  'isData'   : 0, 
+                  'scale'    : 0.9*0.9    # ele/mu trigger efficiency
                   }
 
 
 plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
-                  'isData'   : 0    
+                  'isData'   : 0,    
+                  'scale'    : 0.9*0.9    # ele/mu trigger efficiency
                   }
 
 
 plot['WZ']  = { 
                   'color': 858, # kAzure -2  
                   'isSignal' : 0,
-                  'isData'   : 0 
+                  'isData'   : 0,
+                  'scale'    : 0.9*0.9    # ele/mu trigger efficiency
                   }
 
 
 plot['ZZ']  = {
                   'color': 854, # kAzure -6 
                   'isSignal' : 0,
-                  'isData'   : 0    
+                  'isData'   : 0,    
+                  'scale'    : 0.9*0.9    # ele/mu trigger efficiency
                   }
 
 
 plot['ggH'] = {
+                  'nameHR' : 'ggH x 100',
                   'color': 632, # kRed 
                   'isSignal' : 1,
-                  'isData'   : 0    
+                  'isData'   : 0,    
+                  'scale'    : 0.9*0.9*100    # ele/mu trigger efficiency
                   }
-
 
 
 # data
