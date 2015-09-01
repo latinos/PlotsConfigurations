@@ -37,9 +37,15 @@ cuts['WZ']  = ' std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>10 && std_
               '
 
 
+cuts['WWtightmm']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)   \
+                &&  std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>10  \
+                && (abs(std_vector_lepton_flavour[0]) == 11 || std_vector_lepton_isTightMuon[0] == 1) \
+                && (abs(std_vector_lepton_flavour[1]) == 11 || std_vector_lepton_isTightMuon[1] == 1) \
+                && mll>12    '
 
-#cuts['tightmm']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)   \
-                #&&  std_vector_lepton_pt[0]>30 && std_vector_lepton_pt[1]>20  \
-                #&& (abs(std_vector_lepton_flavour[0]) == 11 || std_vector_lepton_isTightMuon[0] == 1) \
-                #&& (abs(std_vector_lepton_flavour[1]) == 11 || std_vector_lepton_isTightMuon[1] == 1) \
-                #&& mll>30    '
+
+cuts['SS']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] > 0)   \
+                &&  std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>10  \
+              '
+
+

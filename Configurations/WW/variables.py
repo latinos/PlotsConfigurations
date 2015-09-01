@@ -51,17 +51,26 @@ variables['pt3']  = {   'name': 'std_vector_lepton_pt[2]',
                         'fold'  : 3                         
                         }
 
-variables['eta1']  = {   'name': 'std_vector_lepton_eta[0]',     
+variables['eta1']  = {  'name': 'std_vector_lepton_eta[0]',     
                         'range' : (100,-3,3),   
                         'xaxis' : '#eta 1st lep',
                         'fold'  : 3                         
                         }
 
-variables['eta2']  = {   'name': 'std_vector_lepton_eta[1]',     
+variables['eta2']  = {  'name': 'std_vector_lepton_eta[1]',     
                         'range' : (100,-3,3),   
                         'xaxis' : '#eta 2nd lep',
                         'fold'  : 3                         
                         }
+
+variables['taupt1']  = {'name': 'std_vector_tau_pt[0]',     
+                        'range' : (100,0,200),   
+                        'xaxis' : 'p_{T} 1st tau',
+                        'fold'  : 3                         
+                        }
+
+
+
 
 #variables['csvv2ivf_1']  = { 
                         #'name': 'std_vector_jet_csvv2ivf[0]',     
@@ -76,6 +85,23 @@ variables['pfmet']  = {
                         'xaxis' : 'pfmet [GeV]',
                         'fold'  : 3                         
                         }
+
+
+variables['muId1']  = { 
+                        'name': 'std_vector_lepton_isTightMuon[0]',     
+                        'range' : (2,0,2),   
+                        'xaxis' : 'tight Muon Id 1st lep',
+                        'fold'  : 0                         
+                        }
+
+variables['muId2']  = { 
+                        'name': 'std_vector_lepton_isTightMuon[1]',     
+                        'range' : (2,0,2),   
+                        'xaxis' : 'tight Muon Id 2nd lep',
+                        'fold'  : 0                         
+                        }
+
+
 
 #variables['jetpt1']  = {
                         #'name': 'std_vector_jet_pt[0]',     
