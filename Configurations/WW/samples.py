@@ -16,10 +16,17 @@ samples['DY']  = {    'name': ['../../50ns/05Aug2015_puW/latino_DYJetsToLL_M-50.
                    #}
 
 
+
 samples['Wjets']  = {    'name': ['../../50ns/05Aug2015_puW/latino_WJetsToLNu.root'],     #   file name    
                       'weight' : 'baseW*puW',              #   weight/cut 
                       'weights': ['GEN_weight_SM/abs(GEN_weight_SM) / 0.683927 * 61526.7 / 20508.9']                       #   additional cuts file dependent
                   }
+
+
+#samples['FakeQCD']  = {    'name': ['latino_QCD_Pt-30to50_EMEnriched.root', 'latino_QCD_Pt-30toInf_DoubleEMEnriched.root', 'latino_QCD_Pt-50to80_EMEnriched.root', 'latino_QCD_Pt-15to20_MuEnrichedPt5.root'],     #   file name    
+                      #'weight' : 'baseW*puW',              #   weight/cut 
+                      #'weights': ['-', '-', '-', '-']                       #   additional cuts file dependent
+                  #}
 
 
 #samples['ttbar'] = {   'name': ['latino_TT.root'],         #   file name    

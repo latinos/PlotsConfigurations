@@ -37,6 +37,10 @@ cuts['WZ']  = ' std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>10 && std_
               '
 
 
+cuts['ZZ']  = ' std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>10 && std_vector_lepton_pt[2]>10 && std_vector_lepton_pt[3]>10 \
+              '
+
+
 cuts['WWtightmm']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)   \
                 &&  std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>10  \
                 && (abs(std_vector_lepton_flavour[0]) == 11 || std_vector_lepton_isTightMuon[0] == 1) \
