@@ -14,6 +14,19 @@ nuisances['lumi']  = {
 
 
 
+# nuisances handled by means of a weight in the tree
+
+nuisances['pileup']  = {
+                'name'  : 'pileup', 
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'ttbar' : ['puWup/puW', 'puWdown/puW'],
+                   'DY'    : ['puWup/puW', 'puWdown/puW']
+                }
+
+}
+
 # statistical fluctuation
 # on MC/data
 # "stat" is a special word to identify this nuisance
