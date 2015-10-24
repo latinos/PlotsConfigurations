@@ -13,6 +13,15 @@ nuisances['lumi']  = {
               }
 
 
+nuisances['mytest']  = {
+               'name'  : 'mylumi', 
+               'type'  : 'lnN',
+               'samples'  : {
+                   'ttbar' : 1.05,
+                   'DY'    : 1.10
+                }
+              }
+
 
 # nuisances handled by means of a weight in the tree
 
@@ -21,9 +30,12 @@ nuisances['pileup']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'ttbar' : ['puWup/puW', 'puWdown/puW'],
-                   'DY'    : ['puWup/puW', 'puWdown/puW']
+                   #'ttbar' : ['puWup/puW', 'puWdown/puW'],
+                   #'DY'    : ['puWup/puW', 'puWdown/puW']
+                   'ttbar' : ['3./puW', '0.3/puW'],
+                   'DY'    : ['3./puW', '0.3/puW']
                 }
+               #'all'   : 1 ,     # apply to all samples
 
 }
 
