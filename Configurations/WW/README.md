@@ -21,6 +21,7 @@ e.g.
     
     mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_WW.root
 
+    cscp amassiro@cmsneu.cern.ch:/media/data/amassiro/LatinoTrees/WW/25ns/05Aug2015_puW/* /tmp/amassiro/Tree/
     
 Run combine:
 

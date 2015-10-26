@@ -35,8 +35,21 @@ nuisances['pileup']  = {
                    'ttbar' : ['3./puW', '0.3/puW'],
                    'DY'    : ['3./puW', '0.3/puW']
                 }
-               #'all'   : 1 ,     # apply to all samples
+}
 
+
+# nuisances handled by means of a different set of trees
+
+nuisances['eleScale']  = {
+                'name'  : 'eleScale', 
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples'  : {
+                   'ttbar' : ['1', '1'],
+                   'Wjets' : ['1', '1']
+                },
+                'folderUp'   : '/tmp/amassiro/Tree_eleScaleUp/',
+                'folderDown' : '/tmp/amassiro/Tree_eleScaleDown/' 
 }
 
 # statistical fluctuation

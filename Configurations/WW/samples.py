@@ -89,6 +89,11 @@ samples['ggH']  = {    'name': ['latino_GluGluHToWWTo2L2Nu_M120.root'],
 ###########################################
 
 
+samples['DATA']  = {    'name': ['latino_GluGluHToWWTo2L2Nu_M120.root'],
+                      'weight' : '1',                              
+                      'weights': ['1']            
+                  }
+
 #samples['DATA']  = {   'name': ['../../data/latino_DoubleEG.root', 
                                 #'../../data/latino_DoubleMuon.root',
                                 #'../../data/latino_SingleElectron.root',
