@@ -59,10 +59,10 @@ samples['ttbar'] = {   'name': ['latino_TT_skim.root'],
 #                   }
 
 
-#samples['WW']  = {    'name': ['latino_WWTo2L2Nu.root'],      
-                      #'weight' : 'baseW*puW',          
-                      #'weights': ['1']            
-                  #}
+samples['WW']  = {    'name': ['latino_WWTo2L2Nu.root'],      
+                      'weight' : 'baseW', #*puW manca!          
+                  #    'weights': ['1']            
+                  }
 
 #samples['WZ']  = {    'name': ['latino_WZ.root'],      
 #                      'weight' : '0.06630*puW',          
@@ -76,10 +76,10 @@ samples['ttbar'] = {   'name': ['latino_TT_skim.root'],
 
 
 
-samples['ggH']  = {    'name': ['latino_GluGluHToWWTo2L2Nu_M125_skim.root'],      
-                      'weight' : 'baseW*puW',          
-                      'weights': ['1']            
-                  }
+#samples['ggH']  = {    'name': ['latino_GluGluHToWWTo2L2Nu_M125_skim.root'],      
+                  #    'weight' : 'baseW*puW',          
+                  #    'weights': ['1']            
+                 # }
 
 
 
@@ -89,18 +89,44 @@ samples['ggH']  = {    'name': ['latino_GluGluHToWWTo2L2Nu_M125_skim.root'],
 ###########################################
 
 
-samples['DATA']  = {    'name': ['latino_Run2015D_05Oct2015_MuonEG_0.root'],
-                      'weight' : 'trigger',                              
-                      'weights': ['1']            
-                   }
+#samples['DATA']  = {    'name': ['latino_Run2015D_05Oct2015_MuonEG_0.root'],
+                   #   'weight' : 'trigger',                              
+                   #   'weights': ['1']            
+                   #}
 
-#samples['DATA']  = {   'name': ['../../data/latino_DoubleEG.root', 
-                                #'../../data/latino_DoubleMuon.root',
-                                #'../../data/latino_SingleElectron.root',
-                                #'../../data/latino_SingleMuon.root',
-                                #'../../data/latino_MuonEG.root'],      
-                       #'weight' : 'trigger',
-                  #}
+samples['DATA']  = {   'name': ['../data/5535pb/latino_Run2015D_05Oct2015_MuonEG_1.root', 
+                                '../data/5535pb/latino_Run2015D_05Oct2015_DoubleEG_1.root',                                
+                                '../data/5535pb/latino_Run2015D_05Oct2015_DoubleMuon_1.root',
+                                '../data/5535pb/latino_Run2015D_05Oct2015_SingleElectron_1.root',
+                                '../data/5535pb/latino_Run2015D_05Oct2015_SingleMuon_1.root',
+                                '../data/5535pb/latino_Run2015D_05Oct2015_MuonEG_0.root', 
+                                '../data/5535pb/latino_Run2015D_05Oct2015_DoubleEG_0.root',                                
+                                '../data/5535pb/latino_Run2015D_05Oct2015_DoubleMuon_0.root',
+                                '../data/5535pb/latino_Run2015D_05Oct2015_SingleElectron_0.root',
+                                #'../data/5535pb/latino_Run2015D_05Oct2015_SingleMuon_0.root',
+                                '../data/715pb/latino_Run2015D_PromptReco_MuonEG_3.root',
+                                '../data/715pb/latino_Run2015D_PromptReco_MuonEG_2.root',
+                                '../data/715pb/latino_Run2015D_PromptReco_MuonEG_1.root',
+                                '../data/715pb/latino_Run2015D_PromptReco_MuonEG_0.root',
+                                '../data/715pb/latino_Run2015D_PromptReco_DoubleEG_3.root',
+                                '../data/715pb/latino_Run2015D_PromptReco_DoubleEG_2.root',
+                                '../data/715pb/latino_Run2015D_PromptReco_DoubleEG_1.root',
+                                '../data/715pb/latino_Run2015D_PromptReco_DoubleEG_0.root',
+                                '../data/715pb/latino_Run2015D_PromptReco_DoubleMuon_0.root',
+                                '../data/715pb/latino_Run2015D_PromptReco_DoubleMuon_1.root',
+                                '../data/715pb/latino_Run2015D_PromptReco_DoubleMuon_2.root',
+                                '../data/715pb/latino_Run2015D_PromptReco_DoubleMuon_3.root',
+                                '../data/715pb/latino_Run2015D_PromptReco_SingleElectron_0.root',
+                                '../data/715pb/latino_Run2015D_PromptReco_SingleElectron_1.root',
+                                '../data/715pb/latino_Run2015D_PromptReco_SingleElectron_2.root',
+                                '../data/715pb/latino_Run2015D_PromptReco_SingleElectron_3.root',
+                                '../data/715pb/latino_Run2015D_PromptReco_SingleMuon_0.root',
+                                '../data/715pb/latino_Run2015D_PromptReco_SingleMuon_1.root',
+                                '../data/715pb/latino_Run2015D_PromptReco_SingleMuon_2.root',
+                                '../data/715pb/latino_Run2015D_PromptReco_SingleMuon_3.root' ],      
+
+                       'weight' : 'trigger',
+                       }
 
 #samples['DATA']  = {   'name': ['dataB/latino_DoubleEG.root', 'dataB/latino_MuonEG.root', 'dataB/latino_SingleElectron.root', 'dataB/latino_SingleMu.root'],      
                        #'weight' : 'trigger',          
