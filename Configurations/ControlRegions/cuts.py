@@ -29,8 +29,13 @@ cuts['WWmm']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] ==
 cuts['WWem']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)   \
                   && njet == 0 \
                 '
-cuts['WWem-highmth']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)   \
-                  && njet == 0 \
-                  && mth>60 \
-                '
 
+#cuts['WWem-highmth']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)   \
+                  #&& njet == 0 \
+                  #&& mth>60 \
+                #'
+
+cuts['WWem-highmll']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)   \
+                  && njet == 0 \
+                  && mll>100 \
+                '

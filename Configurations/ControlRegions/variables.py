@@ -19,13 +19,19 @@ variables['nvtx']  = {   'name': 'nvtx',
 variables['mll']  = {   'name': 'mll',            #   variable name    
                         'range' : (20,50,200),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
-                         'fold' : 0
+                         'fold' : 3
                         }
                         
 variables['mth']  = {   'name': 'mth',            #   variable name    
                         'range' : (20,0,200),    #   variable range
                         'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
                         'fold' : 0
+                        }
+
+variables['met']  = {   'name': 'mll',            #   variable name    
+                        'range' : (20,0,200),    #   variable range
+                        'xaxis' : 'pfmet [GeV]',  #   x axis name
+                         'fold' : 0
                         }
 
 
