@@ -4,6 +4,7 @@
   
 supercut = 'mll>50 \
             && std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>20 \
+            && std_vector_lepton_pt[2]<10 \
             && pfType1Met > 20 \
             && ppfMet > 20 \
             && ( std_vector_jet_pt[0] < 15 || std_vector_jet_csvv2ivf[0] < 0.605 ) \

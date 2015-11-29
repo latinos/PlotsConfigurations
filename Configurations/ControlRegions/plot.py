@@ -8,7 +8,7 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 0.9*1.0    # ele/mu trigger efficiency
+                  'scale'    : 1.0*1.0    # ele/mu trigger efficiency
               }
 
 
@@ -17,7 +17,7 @@ plot['Wjets']  = {
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 0.9*1.0    # ele/mu trigger efficiency                  
+                  'scale'    : 1.0*1.0    # ele/mu trigger efficiency                  
               }
 
 
@@ -26,7 +26,7 @@ plot['FakeQCD']  = {
                   'color': 922,    # kGray + 2
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 0.9*1.0    # ele/mu trigger efficiency                  
+                  'scale'    : 1.0*1.0    # ele/mu trigger efficiency                  
               }
 
 
@@ -35,7 +35,7 @@ plot['ttbar'] = {
                   'color': 400,   # kYellow 
                   'isSignal' : 0,
                   'isData'   : 0 ,
-                  'scale'    : 0.9*1.0    # ele/mu trigger efficiency
+                  'scale'    : 1.0*1.0    # ele/mu trigger efficiency
                   }
 
 
@@ -43,7 +43,7 @@ plot['top'] = {
                   'color': 401,   # kYellow +1
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 0.9*1.0    # ele/mu trigger efficiency
+                  'scale'    : 1.0*1.0    # ele/mu trigger efficiency
                   }
 
 
@@ -51,7 +51,7 @@ plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,    
-                  'scale'    : 0.9*1.0    # ele/mu trigger efficiency
+                  'scale'    : 1.0*1.0    # ele/mu trigger efficiency
                   }
 
 
@@ -59,15 +59,22 @@ plot['WZ']  = {
                   'color': 858, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 0.9*1.0    # ele/mu trigger efficiency
+                  'scale'    : 1.0*1.0    # ele/mu trigger efficiency
                   }
 
+
+plot['VVV']  = { 
+                  'color': 857, # kAzure -3  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0*1.0    # ele/mu trigger efficiency
+                  }
 
 plot['ZZ']  = {
                   'color': 854, # kAzure -6 
                   'isSignal' : 0,
                   'isData'   : 0,    
-                  'scale'    : 0.9*1.0    # ele/mu trigger efficiency
+                  'scale'    : 1.0*1.0    # ele/mu trigger efficiency
                   }
 
 
@@ -76,7 +83,7 @@ plot['ggH'] = {
                   'color': 632, # kRed 
                   'isSignal' : 1,
                   'isData'   : 0,    
-                  'scale'    : 0.9*1.0*100    # ele/mu trigger efficiency
+                  'scale'    : 1.0*1.0*100    # ele/mu trigger efficiency
                   }
 
 

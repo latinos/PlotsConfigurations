@@ -40,6 +40,11 @@ structure['WZ']  = {
                   }
 
 
+structure['VVV']  = { 
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
+
 structure['ZZ']  = {
                   'isSignal' : 0,
                   'isData'   : 0    
