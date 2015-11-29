@@ -7,6 +7,7 @@ supercut = 'mll>50 \
             && std_vector_lepton_pt[2]<10 \
             && pfType1Met > 20 \
             && ppfMet > 20 \
+            && ptll > 30 \
             && ( std_vector_jet_pt[0] < 15 || std_vector_jet_csvv2ivf[0] < 0.605 ) \
             && ( std_vector_jet_pt[1] < 15 || std_vector_jet_csvv2ivf[1] < 0.605 ) \
             && ( std_vector_jet_pt[2] < 15 || std_vector_jet_csvv2ivf[2] < 0.605 ) \
@@ -27,5 +28,9 @@ cuts['WWmm']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] ==
 
 cuts['WWem']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)   \
                   && njet == 0 \
+                '
+cuts['WWem-highmth']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)   \
+                  && njet == 0 \
+                  && mth>60 \
                 '
 
