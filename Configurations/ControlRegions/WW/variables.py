@@ -28,7 +28,7 @@ variables['mth']  = {   'name': 'mth',            #   variable name
                         'fold' : 0
                         }
 
-variables['met']  = {   'name': 'mll',            #   variable name    
+variables['met']  = {   'name': 'pfType1Met',            #   variable name    
                         'range' : (20,0,200),    #   variable range
                         'xaxis' : 'pfmet [GeV]',  #   x axis name
                          'fold' : 0

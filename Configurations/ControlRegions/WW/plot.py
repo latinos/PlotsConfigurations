@@ -14,6 +14,7 @@ plot['DY']  = {
 
                
 plot['Wjets']  = {  
+                  'nameHR' : 'W+jets',
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -32,7 +33,7 @@ plot['FakeQCD']  = {
 
 
 plot['ttbar'] = {   
-                  'nameHR' : 't#bar t',
+                  'nameHR' : 't#bart',
                   'color': 400,   # kYellow 
                   'isSignal' : 0,
                   'isData'   : 0 ,

@@ -46,10 +46,17 @@ variables['pupMet']  = {   'name': 'pupMet',            #   variable name
                          'fold' : 0
                         }
 
-variables['mpmet']  = {   'name': 'mpmet',            #   variable name    
-                        'range' : (20,0,200),    #   variable range
-                        'xaxis' : 'min proj met [GeV]',  #   x axis name
-                         'fold' : 0
+#variables['mpmet']  = {   'name': 'mpmet',            #   variable name    
+                        #'range' : (20,0,200),    #   variable range
+                        #'xaxis' : 'min proj met [GeV]',  #   x axis name
+                         #'fold' : 0
+                        #}
+
+  
+variables['njet']  = {  'name': 'njet',      
+                        'range' : (5,0,5),  
+                        'xaxis' : 'njet', 
+                        'fold' : 0
                         }
 
 
