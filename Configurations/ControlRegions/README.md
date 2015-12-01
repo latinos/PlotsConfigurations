@@ -1,4 +1,4 @@
-WW plots
+Control regions plots
 ==============
 
 Common tools for analysis:
@@ -16,23 +16,6 @@ e.g.
 
     
     
-    
-    
-    'VVV': {'isData': ['0'], 'name': ['latino_WZZ.root', 'latino_ZZZ.root'], 'weight': 'baseW*puW*GEN_weight_SM/abs(GEN_weight_SM)'},
-    'top': {'isData': ['0', '0', '0'], 'weights': ['GEN_weight_SM/abs(GEN_weight_SM)', '1', '1'], 'name': ['latino_ST_t-channel.root', 'latino_ST_tW_antitop.root', 'latino_ST_tW_top.root'], 'weight': 'baseW*puW'}, 
-    'WW': {'isData': ['0'], 'weights': ['abs(nllW)'], 'name': ['latino_WWTo2L2Nu.root'], 'weight': 'baseW*puW/10.481*12.718'},
-    'Wjets': {'isData': ['0'], 'name': ['latino_WJetsToLNu.root'], 'weight': 'baseW*puW*GEN_weight_SM/abs(GEN_weight_SM)'}, 
-    'DY': {'isData': ['0', '0'], 'name': ['latino_DYJetsToLL_M-50.root', 'latino_DYJetsToLL_M-10to50.root'], 'weight': 'baseW*puW*GEN_weight_SM/abs(GEN_weight_SM)'}, 
-    'ttbar': {'isData': ['0'], 'weights': ['1'], 'name': ['latino_TTJets.root'], 'weight': 'baseW*puW*GEN_weight_SM/abs(GEN_weight_SM)'}, 
-    'DATA': {'isData': ['1'], 'name': ['../l2sel/DATA.root'], 'weight': 'trigger'}, 
-    'WZ': {'isData': ['0'], 'weights': ['1'], 'name': ['latino_WZTo3LNu.root'], 'weight': 'baseW*puW'}}
-
-    
-    
-    
-    
-    
-
 Run combine:
 
     git clone https://github.com/cms-analysis/HiggsAnalysis-CombinedLimit.git HiggsAnalysis/CombinedLimit
