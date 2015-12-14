@@ -3,10 +3,10 @@
 #cuts = {}
   
 #supercut = 'abs(mll-91.1876)<15 \
-upercut = ' mll>20 \
-            && std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>20 \
-            && std_vector_lepton_pt[2]<10 \
-           '
+supercut = ' mll>20 \
+             && std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>20 \
+             && std_vector_lepton_pt[2]<10 \
+            '
 
 cuts['DYee']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
                 '
