@@ -34,3 +34,7 @@ cuts['WWem-highmth']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavo
                  && njet == 0 \
                  && mth>60 \
                  '
+cuts['WWem-highmll']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)   \
+                  && njet == 0 \
+                  && mll>100 \
+                '

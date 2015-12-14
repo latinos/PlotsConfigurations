@@ -23,9 +23,15 @@ variables['mll']  = {   'name': 'mll',            #   variable name
                         }
                         
 variables['mth']  = {   'name': 'mth',            #   variable name    
-                        'range' : (20,0,200),    #   variable range
+                        'range' : (20,50,200),    #   variable range
                         'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
                         'fold' : 0
+                        }
+
+variables['met']  = {   'name': 'pfType1Met',            #   variable name    
+                        'range' : (20,0,200),    #   variable range
+                        'xaxis' : 'pfmet [GeV]',  #   x axis name
+                         'fold' : 0
                         }
 
 

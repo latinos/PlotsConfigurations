@@ -32,6 +32,7 @@ plot['FakeQCD']  = {
 
 
 plot['ttbar'] = {   
+                  'nameHR' : 't#bart',
                   'color': 400,   # kYellow 
                   'isSignal' : 0,
                   'isData'   : 0 ,
@@ -40,6 +41,7 @@ plot['ttbar'] = {
 
 
 plot['top'] = {   
+                  'nameHR' : 't and tW',
                   'color': 401,   # kYellow +1
                   'isSignal' : 0,
                   'isData'   : 0, 
@@ -51,7 +53,7 @@ plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,    
-                  'scale'    : 1.0*1.0    # ele/mu trigger efficiency
+                  'scale'    : 1.0*1.0*1.137809e+00    # ele/mu trigger efficiency   datadriven
                   }
 
 
@@ -91,6 +93,7 @@ plot['ggH'] = {
 
 
 plot['DATA']  = { 
+                  'nameHR' : 'Data',
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 
@@ -101,7 +104,7 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 1.27/fb'
+legend['lumi'] = 'L = 1.3/fb'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 
