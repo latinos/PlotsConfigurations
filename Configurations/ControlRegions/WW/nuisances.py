@@ -64,11 +64,13 @@ nuisances['stat']  = {
                          },
                     
                    'DY': {
-                         'typeStat' : 'uni',
+                         'typeStat' : 'bbb',
+                         'keepNormalization' : '0'
                          },
                     
                    'WW': {
-                         'typeStat' : 'uni',
+                         'typeStat' : 'bbb',
+                         'keepNormalization' : '1'
                          }
                  },
                'type'  : 'shape'
