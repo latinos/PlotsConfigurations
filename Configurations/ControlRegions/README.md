@@ -1,4 +1,4 @@
-WW plots
+Control regions plots
 ==============
 
 Common tools for analysis:
@@ -14,7 +14,8 @@ e.g.
     
     mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_WW.root
 
-
+    
+    
 Run combine:
 
     git clone https://github.com/cms-analysis/HiggsAnalysis-CombinedLimit.git HiggsAnalysis/CombinedLimit

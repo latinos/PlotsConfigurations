@@ -11,7 +11,7 @@ samples['DY']  = {    'name': ['latino_DYJetsToLL_M-50.root', 'latino_DYJetsToLL
 
 samples['Wjets']  = {    'name': ['latino_WJetsToLNu.root'],     #   file name    
                       'weight' : 'baseW*puW*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
-                      'isData': ['0'],                             
+                      #'isData': ['0'],                             
                   }
 
 
