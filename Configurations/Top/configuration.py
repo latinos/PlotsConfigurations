@@ -1,6 +1,6 @@
 # example of configuration file
 
-tag = 'Top'
+tag = 'TopNoSF'
 
 outputDir = 'rootFile'
 
@@ -12,7 +12,7 @@ variablesFile = 'variables.py'
 cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples.py' 
+samplesFile = 'samples_noSF.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
@@ -26,7 +26,7 @@ lumi = 1.27
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotTop'
+outputDirPlots = 'plotTopNoSF'
 
 
 # used by mkDatacards to define output directory for datacards
