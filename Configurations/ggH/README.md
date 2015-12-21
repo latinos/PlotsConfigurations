@@ -33,4 +33,8 @@ Run combine:
     combine -M Asymptotic -t -1 datacard.txt
     
     
+    combine -M MultiDimFit datacard.txt  --algo=grid --points 100  --setPhysicsModelParameterRanges r=0.01,10  -m 125   -t -1 --expectSignal=1 --saveToys
     
+    combine -M ProfileLikelihood --significance datacard.txt -t -1 --expectSignal=1
+
+    Significance: 1.63231

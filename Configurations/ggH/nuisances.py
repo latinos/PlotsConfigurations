@@ -13,6 +13,16 @@ nuisances['lumi']  = {
               }
 
 
+nuisances['WWnorm']  = {
+               'name'  : 'WWnorm', 
+               'samples'  : {
+                   'WW' : 2.00,
+                   },
+               'type'  : 'lnU',
+              }
+
+
+
 ## nuisances handled by means of a weight in the tree
 
 #nuisances['pileup']  = {
@@ -52,16 +62,32 @@ nuisances['stat']  = {
                    'ttbar': {
                          'typeStat' : 'bbb',
                          },
+
+                   'top': {
+                         'typeStat' : 'bbb',
+                         },
                     
                    'DY': {
                          'typeStat' : 'bbb',
-                         'keepNormalization' : '1'
+                         'keepNormalization' : '1'  # default = 0 -> 0=don't keep normalization
                          },
                     
                    'WW': {
                          'typeStat' : 'bbb',
-                         'keepNormalization' : '1'
-                         }
+                         },
+
+                   'WZ': {
+                         'typeStat' : 'bbb',
+                         },
+
+                   'VVV': {
+                         'typeStat' : 'bbb',
+                         },
+
+                   'ggH': {
+                         'typeStat' : 'bbb',
+                         },
+
                  },
                'type'  : 'shape'
               }

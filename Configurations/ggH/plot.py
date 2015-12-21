@@ -54,7 +54,8 @@ plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,    
-                  'scale'    : 1.0*1.0*1.137809e+00    # ele/mu trigger efficiency   datadriven
+                  'scale'    : 1.0*1.0    # ele/mu trigger efficiency   datadriven
+                  #'scale'    : 1.0*1.0*1.137809e+00    # ele/mu trigger efficiency   datadriven
                   }
 
 
