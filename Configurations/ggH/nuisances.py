@@ -13,13 +13,26 @@ nuisances['lumi']  = {
               }
 
 
+# old style "free floating", but still working!
+#nuisances['WWnorm']  = {
+               #'name'  : 'WWnorm', 
+               #'samples'  : {
+                   #'WW' : 2.00,
+                   #},
+               #'type'  : 'lnU',
+              #}
+
+# new style "free floating" background
+# e.g. " z_norm rateParam  htsearch zll 1 "
 nuisances['WWnorm']  = {
                'name'  : 'WWnorm', 
                'samples'  : {
-                   'WW' : 2.00,
+                   'WW' : '1.00',
                    },
-               'type'  : 'lnU',
+               'type'  : 'rateParam',
               }
+
+
 
 
 
