@@ -94,6 +94,22 @@ variables['csvv2ivf_2']  = {
                         'fold'  : 3                         
                         }
 
+variables['csvv2ivf_twobins_1']  = {
+                        'name': 'std_vector_jet_csvv2ivf[0]',
+                        'range' : (2,0,1.2),
+                        'xaxis' : 'csvv2ivf jet 1st',
+                        'fold'  : 3
+                        }
+
+
+
+variables['csvv2ivf_twobins_2']  = {
+                        'name': 'std_vector_jet_csvv2ivf[1]',
+                        'range' : (2,0,1.2),
+                        'xaxis' : 'csvv2ivf jet 2nd',
+                        'fold'  : 3
+                        }                        
+
 
 variables['pfmet']  = { 
                         'name': 'pfType1Met',     
@@ -131,16 +147,16 @@ variables['njet']  = {
 
 variables['jetpt1']  = {
                         'name': 'std_vector_jet_pt[0]',     
-#                        'range' : (20,0,200),   
-			'range' : (5,0,30),
+                        'range' : (20,0,200),   
+			#'range' : (5,0,30),
                         'xaxis' : 'p_{T} 1st jet',
                         'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
 
 variables['jetpt2']  = {
                         'name': 'std_vector_jet_pt[1]',     
-#                        'range' : (20,0,200),   
-			'range' : (5,0,30),
+                        'range' : (20,0,200),   
+#			'range' : (5,0,30),
                         'xaxis' : 'p_{T} 2nd jet',
                         'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }

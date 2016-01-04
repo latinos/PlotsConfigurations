@@ -27,6 +27,7 @@ nuisances['lumi']  = {
 
 
 
+
 ## nuisances handled by means of a weight in the tree
 
 #nuisances['pileup']  = {
@@ -59,4 +60,3 @@ nuisances['lumi']  = {
 # statistical fluctuation
 # on MC/data
 # "stat" is a special word to identify this nuisance
-
