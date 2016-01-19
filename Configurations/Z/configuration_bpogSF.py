@@ -26,7 +26,7 @@ lumi = 2.120
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotTopBpogSF'
+outputDirPlots = 'plotZBpogSF'
 
 
 # used by mkDatacards to define output directory for datacards
