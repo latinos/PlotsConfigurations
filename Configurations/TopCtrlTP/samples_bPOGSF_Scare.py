@@ -93,20 +93,23 @@ samples['ggH']  = {    'name': ['eos/cms/store/caf/user/lenzip/ww2016/21Oct_25ns
 ###########################################
 ###########################################
 ###########################################
-
 samples['DATA']  = {   'name': [
-	'eosuser/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel__hadd/latino_Run2015D_05Oct2015_DoubleEG.root',
-	'eosuser/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel__hadd/latino_Run2015D_05Oct2015_DoubleMuon.root',
-	'eosuser/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel__hadd/latino_Run2015D_05Oct2015_MuonEG.root',
-	'eosuser/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel__hadd/latino_Run2015D_05Oct2015_SingleElectron.root',
-	'eosuser/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel__hadd/latino_Run2015D_05Oct2015_SingleMuon.root',
-
-	'eosuser/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel__hadd/latino_Run2015D_PromptReco_25ns_DoubleEG.root',
-	'eosuser/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel__hadd/latino_Run2015D_PromptReco_25ns_DoubleMuon.root',
-	'eosuser/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel__hadd/latino_Run2015D_PromptReco_25ns_MuonEG.root',
-	'eosuser/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel__hadd/latino_Run2015D_PromptReco_25ns_SingleElectron.root',
-	'eosuser/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel__hadd/latino_Run2015D_PromptReco_25ns_SingleMuon.root',
-			],
+"eosuser/user/x/xjanssen/HWW2015/21OctBis_Run2015D_05Oct2015/l2sel__hadd/latino_Run2015D_05Oct2015_DoubleEG.root",
+"eosuser/user/x/xjanssen/HWW2015/21OctBis_Run2015D_05Oct2015/l2sel__hadd/latino_Run2015D_05Oct2015_DoubleMuon.root",
+"eosuser/user/x/xjanssen/HWW2015/21OctBis_Run2015D_05Oct2015/l2sel__hadd/latino_Run2015D_05Oct2015_MuonEG.root",
+"eosuser/user/x/xjanssen/HWW2015/21OctBis_Run2015D_05Oct2015/l2sel__hadd/latino_Run2015D_05Oct2015_SingleElectron.root",
+"eosuser/user/x/xjanssen/HWW2015/21OctBis_Run2015D_05Oct2015/l2sel__hadd/latino_Run2015D_05Oct2015_SingleMuon.root",
+"eosuser/user/x/xjanssen/HWW2015/21OctBis_Run2015D_PromptReco_0716pb/l2sel__hadd/latino_Run2915D_PromptReco_DoubleEG_0716pb.root",
+"eosuser/user/x/xjanssen/HWW2015/21OctBis_Run2015D_PromptReco_0716pb/l2sel__hadd/latino_Run2915D_PromptReco_DoubleMuon_0716pb.root",
+"eosuser/user/x/xjanssen/HWW2015/21OctBis_Run2015D_PromptReco_0716pb/l2sel__hadd/latino_Run2915D_PromptReco_MuonEG_0716pb.root",
+"eosuser/user/x/xjanssen/HWW2015/21OctBis_Run2015D_PromptReco_0716pb/l2sel__hadd/latino_Run2915D_PromptReco_SingleElectron_0716pb.root",
+"eosuser/user/x/xjanssen/HWW2015/21OctBis_Run2015D_PromptReco_0716pb/l2sel__hadd/latino_Run2915D_PromptReco_SingleMuon_0716pb.root",
+"eosuser/user/x/xjanssen/HWW2015/21OctBis_Run2015D_PromptReco_0851pb/l2sel__hadd/latino_Run2915D_PromptReco_DoubleEG_0851pb.root",
+"eosuser/user/x/xjanssen/HWW2015/21OctBis_Run2015D_PromptReco_0851pb/l2sel__hadd/latino_Run2915D_PromptReco_DoubleMuon_0851pb.root",
+"eosuser/user/x/xjanssen/HWW2015/21OctBis_Run2015D_PromptReco_0851pb/l2sel__hadd/latino_Run2915D_PromptReco_MuonEG_0851pb.root",
+"eosuser/user/x/xjanssen/HWW2015/21OctBis_Run2015D_PromptReco_0851pb/l2sel__hadd/latino_Run2915D_PromptReco_SingleElectron_0851pb.root",
+"eosuser/user/x/xjanssen/HWW2015/21OctBis_Run2015D_PromptReco_0851pb/l2sel__hadd/latino_Run2915D_PromptReco_SingleMuon_0851pb.root",
+                        ],
                        'weight' : 'trigger',
                        'isData' : ['1']
 
