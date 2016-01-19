@@ -3,14 +3,14 @@ nuisances['btag']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : ['bTPSF2JetUp/bTPSF2Jet', 'bTPSF2JetDown/bTPSF2Jet'],
-                   'Wjets'   : ['bTPSF2JetUp/bTPSF2Jet', 'bTPSF2JetDown/bTPSF2Jet'],
-                   'VVV'     : ['bTPSF2JetUp/bTPSF2Jet', 'bTPSF2JetDown/bTPSF2Jet'],
-                   'VV'      : ['bTPSF2JetUp/bTPSF2Jet', 'bTPSF2JetDown/bTPSF2Jet'],
-                   'FakeQCD' : ['bTPSF2JetUp/bTPSF2Jet', 'bTPSF2JetDown/bTPSF2Jet'],
-                   'WW'      : ['bTPSF2JetUp/bTPSF2Jet', 'bTPSF2JetDown/bTPSF2Jet'],
-                   'ST'      : ['bTPSF2JetUp/bTPSF2Jet', 'bTPSF2JetDown/bTPSF2Jet'],
-                   'ttbar'   : ['bTPSF2JetUp/bTPSF2Jet', 'bTPSF2JetDown/bTPSF2Jet'],
+                   'DY'      : ['(bPogSFUp*bTPSFUp)/(bTPSF*bPogSF)', '(bPogSFDown*bTPSFDown)/(bTPSF*bPogSF)'],
+                   'Wjets'   : ['(bPogSFUp*bTPSFUp)/(bTPSF*bPogSF)', '(bPogSFDown*bTPSFDown)/(bTPSF*bPogSF)'],
+                   'VVV'     : ['(bPogSFUp*bTPSFUp)/(bTPSF*bPogSF)', '(bPogSFDown*bTPSFDown)/(bTPSF*bPogSF)'],
+                   'VV'      : ['(bPogSFUp*bTPSFUp)/(bTPSF*bPogSF)', '(bPogSFDown*bTPSFDown)/(bTPSF*bPogSF)'],
+                   'FakeQCD' : ['(bPogSFUp*bTPSFUp)/(bTPSF*bPogSF)', '(bPogSFDown*bTPSFDown)/(bTPSF*bPogSF)'],
+                   'WW'      : ['(bPogSFUp*bTPSFUp)/(bTPSF*bPogSF)', '(bPogSFDown*bTPSFDown)/(bTPSF*bPogSF)'],
+                   'ST'      : ['(bPogSFUp*bTPSFUp)/(bTPSF*bPogSF)', '(bPogSFDown*bTPSFDown)/(bTPSF*bPogSF)'],
+                   'ttbar'   : ['(bPogSFUp*bTPSFUp)/(bTPSF*bPogSF)', '(bPogSFDown*bTPSFDown)/(bTPSF*bPogSF)'],
                 }
 }
 

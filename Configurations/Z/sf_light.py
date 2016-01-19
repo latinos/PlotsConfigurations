@@ -3,7 +3,7 @@
 from ROOT import *
 import math
 
-filein = TFile("rootFile/plots_Z.root")
+filein = TFile("rootFile/plots_TopBpogSF.root")
 
 def printSF(cutname):
   plotData = filein.Get(cutname+"/csvv2ivf_twobins_1/histo_DATA")
@@ -13,9 +13,12 @@ def printSF(cutname):
 
   plotDY = filein.Get(cutname+"/csvv2ivf_twobins_1/histo_DY")
   plotDY2 = filein.Get(cutname+"/csvv2ivf_twobins_2/histo_DY")
-
   plotDY.Add(plotDY2)
+  
 
+  plotData.Draw()
+  plotDY.Draw("samesHIST")
+  a=raw_input("ciao")
 
   effMC = plotDY.GetBinContent(2)/plotDY.Integral()
 
@@ -31,6 +34,4 @@ def printSF(cutname):
 
   print cutname, "SF      ", sf, "+/-", sferr
 
-printSF("Zjets")
-print "*"*50
-printSF("Z0jet")
+printSF("Z0jetsCutJPB")
