@@ -65,6 +65,21 @@ nuisances['WWnorm']  = {
                 #'folderDown' : '/tmp/amassiro/Tree_eleScaleDown/' 
 #}
 
+
+
+nuisances['jes']  = {
+                'name'  : 'jes', 
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples'  : {
+                   'WW' : ['1', '1'],
+                },
+                'folderUp'   : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2sel__hadd__JESup/',
+                'folderDown' : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2sel__hadd__JESdo/' 
+}
+
+
+
 # statistical fluctuation
 # on MC/data
 # "stat" is a special word to identify this nuisance

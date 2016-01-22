@@ -35,7 +35,8 @@ samples['top'] = {   'name': ['latino_ST_t-channel.root', 'latino_ST_tW_antitop.
 
 samples['WW']  = {    'name': ['latino_WWTo2L2Nu.root'],      
                       'weight' : 'baseW*puW',          
-                      'weights': ['abs(nllW)*1.137809'] ,           
+                      'weights': ['1.137809'] ,           
+                      #'weights': ['abs(nllW)*1.137809'] ,           
                       'isData': ['0'],                            
                   }
 
