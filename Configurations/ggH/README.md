@@ -10,6 +10,7 @@ Common tools for analysis:
 e.g.
 
     mkShapes.py      --pycfg=configuration.py  --inputDir=/media/data/amassiro/LatinoTrees/25ns/21Oct2015/mcwghtcount__MC__l2sel/
+    mkShapes.py      --pycfg=configuration.py  --inputDir=/media/data/amassiro/LatinoTrees/Moriond/nominal/
     
     mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_ggH.root
     
@@ -38,3 +39,10 @@ Run combine:
     combine -M ProfileLikelihood --significance datacard.txt -t -1 --expectSignal=1
 
     Significance: 1.63231
+
+Data:
+
+    /eos/user/x/xjanssen/HWW2015/21OctBis_Run2015D_PromptReco/l2sel__hadd
+    /eos/user/x/xjanssen/HWW2015/21OctBis_Run2015D_PromptReco_0716pb/l2sel__hadd
+    /eos/user/x/xjanssen/HWW2015/21OctBis_Run2015D_PromptReco_0851pb/l2sel__hadd
+

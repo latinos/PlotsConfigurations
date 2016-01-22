@@ -34,7 +34,7 @@ samples['top'] = {   'name': ['latino_ST_t-channel.root', 'latino_ST_tW_antitop.
 
 
 samples['WW']  = {    'name': ['latino_WWTo2L2Nu.root'],      
-                      'weight' : 'baseW*puW/10.481*12.718',          
+                      'weight' : 'baseW*puW',          
                       'weights': ['abs(nllW)*1.137809'] ,           
                       'isData': ['0'],                            
                   }
@@ -65,7 +65,13 @@ samples['ggH']  = {    'name': ['latino_GluGluHToWWTo2L2Nu_M125.root'],
 ###########################################
 
 
-samples['DATA']  = {   'name': ['../l2sel/DATA.root', 
+#samples['DATA']  = {   'name': ['../l2sel/DATA.root', 
+                               #],      
+                       #'weight' : 'trigger',
+                       #'isData': ['1'],                            
+                  #}
+
+samples['DATA']  = {   'name': ['DATA.root', 
                                ],      
                        'weight' : 'trigger',
                        'isData': ['1'],                            
