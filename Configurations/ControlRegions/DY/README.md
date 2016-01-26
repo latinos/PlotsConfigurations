@@ -9,7 +9,8 @@ Common tools for analysis:
 e.g.
 
     mkShapes.py      --pycfg=configuration.py  --inputDir=/media/data/amassiro/LatinoTrees/25ns/21Oct2015/mcwghtcount__MC__l2sel/
-    
+    mkShapes.py      --pycfg=configuration.py  --inputDir=/media/data/amassiro/LatinoTrees/Moriond/nominal/
+
     mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_DY.root
     
     mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_DY.root
