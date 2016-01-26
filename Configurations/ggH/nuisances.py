@@ -5,8 +5,8 @@
 # name of samples here must match keys in samples.py    
 #
 
-nuisances['lumi_13TeV']  = {
-               'name'  : 'lumi', 
+nuisances['lumi']  = {
+               'name'  : 'lumi_13TeV', 
                'all'   : 1 ,     # apply to all samples
                'type'  : 'lnN',
                'value' : 1.05 
