@@ -5,7 +5,7 @@
 # name of samples here must match keys in samples.py    
 #
 
-nuisances['lumi']  = {
+nuisances['lumi_13TeV']  = {
                'name'  : 'lumi', 
                'all'   : 1 ,     # apply to all samples
                'type'  : 'lnN',
@@ -68,7 +68,7 @@ nuisances['WWnorm']  = {
 
 
 nuisances['jes']  = {
-                'name'  : 'jes', 
+                'name'  : 'scale_j', 
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {

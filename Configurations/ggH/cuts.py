@@ -38,7 +38,11 @@ cuts['ee']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -
                  #&& (   (abs(std_vector_lepton_flavour[0]) == 13) * (abs(std_vector_lepton_flavour[1]) == 11)    )    \
                 #'
 
-cuts['df']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
+#cuts['df']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
+                #&& std_vector_lepton_pt[1]>13 \
+                #'
+               
+cuts['hww2l2v_13TeV_of0j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
                 && std_vector_lepton_pt[1]>13 \
                 '
 
