@@ -14,7 +14,7 @@ variablesFile = 'variables.py'
 cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples.py' 
+samplesFile = 'samples_NoSF.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
@@ -23,11 +23,11 @@ plotFile = 'plot.py'
 
 # luminosity to normalize to (in 1/fb)
 #lumi = 1.270
-lumi = 2.100
+lumi = 2.120
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotCR'
+outputDirPlots = '~/www/plotCR'
 
 
 # used by mkDatacards to define output directory for datacards
