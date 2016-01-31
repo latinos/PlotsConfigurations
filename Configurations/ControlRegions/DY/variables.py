@@ -76,11 +76,11 @@ variables['mll']  = {   'name': 'mll',            #   variable name
                         #'fold' : 0
                         #}
 
-#variables['met']  = {   'name': 'pfType1Met',            #   variable name    
-                        #'range' : (20,0,200),    #   variable range
-                        #'xaxis' : 'pfmet [GeV]',  #   x axis name
-                         #'fold' : 0
-                        #}
+variables['met']  = {   'name': 'pfType1Met',            #   variable name    
+                        'range' : (20,0,200),    #   variable range
+                        'xaxis' : 'pfmet [GeV]',  #   x axis name
+                         'fold' : 3
+                        }
 
 #variables['trkMet']  = {   'name': 'trkMet',            #   variable name    
                         #'range' : (20,0,200),    #   variable range
