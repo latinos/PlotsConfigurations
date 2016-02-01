@@ -3,78 +3,79 @@
 #samples = {}
     
 samples['DY'] =  { 'name': [
-	'eos/cms/store/user/lviliani/ww2016/bPogSF_fix/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__bPogSF__hadd/latino_DYJetsToLL_M-10to50.root',
-	'eos/cms/store/user/lviliani/ww2016/bPogSF_fix/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__bPogSF__hadd/latino_DYJetsToLL_M-50.root',
+	'eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_DYJetsToLL_M-10to50.root',
+	'eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_DYJetsToLL_M-50.root',
 
          ], 
-        'weight' : 'GEN_weight_SM/abs(GEN_weight_SM)*baseW*puW',
+        'weight' : 'GEN_weight_SM/abs(GEN_weight_SM)*baseW*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]',
         }
 
 samples['Wjets'] = {  'name':[
-	'eos/cms/store/user/lviliani/ww2016/bPogSF_fix/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__bPogSF__hadd/latino_WJetsToLNu.root',
+	'eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_WJetsToLNu.root',
 	],
-        'weight' : 'GEN_weight_SM/abs(GEN_weight_SM)*baseW*puW',
+        'weight' : 'GEN_weight_SM/abs(GEN_weight_SM)*baseW*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]',
         }
 
 
 samples['VVV'] = { 'name': [
-	'eos/cms/store/user/lviliani/ww2016/bPogSF_fix/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__bPogSF__hadd/latino_WWZ.root', 
-	'eos/cms/store/user/lviliani/ww2016/bPogSF_fix/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__bPogSF__hadd/latino_WZZ.root',
-	'eos/cms/store/user/lviliani/ww2016/bPogSF_fix/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__bPogSF__hadd/latino_ZZZ.root'],
-        'weight' : 'GEN_weight_SM/abs(GEN_weight_SM)*baseW*puW',                
+#	'eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_WWZ.root', 
+	'eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_WZZ.root',
+	'eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_ZZZ.root'],
+        'weight' : 'GEN_weight_SM/abs(GEN_weight_SM)*baseW*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]',                
         }
 
 
 samples['VV']  = {    'name': [
-	'eos/cms/store/user/lviliani/ww2016/bPogSF_fix/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__bPogSF__hadd/latino_ZZTo2L2Nu.root',
-	'eos/cms/store/user/lviliani/ww2016/bPogSF_fix/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__bPogSF__hadd/latino_ZZTo4L.root',
-	'eos/cms/store/user/lviliani/ww2016/bPogSF_fix/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__bPogSF__hadd/latino_WZTo3LNu.root',
-	'eos/cms/store/user/lviliani/ww2016/bPogSF_fix/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__bPogSF__hadd/latino_Wg.root'
+#	'eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_ZZTo2L2Nu.root',
+#	'eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_ZZTo4L.root',
+	'eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_WZTo3LNu.root',
+	'eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_Wg.root'
          ],
-         'weight' : 'GEN_weight_SM/abs(GEN_weight_SM)*baseW*puW',
+         'weight' : 'GEN_weight_SM/abs(GEN_weight_SM)*baseW*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]',
          }
 
-samples['FakeQCD'] = {   'name': [
-	'eos/cms/store/user/lviliani/ww2016/bPogSF_fix/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__bPogSF__hadd/latino_QCD_Pt-15to20_EMEnriched.root',
-	'eos/cms/store/user/lviliani/ww2016/bPogSF_fix/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__bPogSF__hadd/latino_QCD_Pt-15to20_MuEnrichedPt5.root',
-	'eos/cms/store/user/lviliani/ww2016/bPogSF_fix/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__bPogSF__hadd/latino_QCD_Pt-20to30_EMEnriched.root',
-	'eos/cms/store/user/lviliani/ww2016/bPogSF_fix/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__bPogSF__hadd/latino_QCD_Pt-30to50_EMEnriched.root',
-	'eos/cms/store/user/lviliani/ww2016/bPogSF_fix/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__bPogSF__hadd/latino_QCD_Pt-30toInf_DoubleEMEnriched.root',
-	'eos/cms/store/user/lviliani/ww2016/bPogSF_fix/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__bPogSF__hadd/latino_QCD_Pt-50to80_EMEnriched.root',
-                        ],
-                       'weight' : 'baseW*puW',
-                   }
+#samples['FakeQCD'] = {   'name': [
+#	'eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_QCD_Pt-15to20_EMEnriched.root',
+#	'eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_QCD_Pt-15to20_MuEnrichedPt5.root',
+#	'eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_QCD_Pt-20to30_EMEnriched.root',
+#	'eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_QCD_Pt-30to50_EMEnriched.root',
+#	'eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_QCD_Pt-30toInf_DoubleEMEnriched.root',
+#	'eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_QCD_Pt-50to80_EMEnriched.root',
+#                        ],
+#                       'weight' : 'baseW*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]',
+#                   }
 
 
-#samples['Wg']  = {    'name': ['eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/eos/cms/store/user/lviliani/ww2016/bPogSF_fix/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__bPogSF__hadd/latino_Wg.root'],
-#                      'weight' : 'GEN_weight_SM/abs(GEN_weight_SM)*baseW*puW',
+#samples['Wg']  = {    'name': ['eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_Wg.root'],
+#                      'weight' : 'GEN_weight_SM/abs(GEN_weight_SM)*baseW*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]',
 #                  }
 
 
-samples['WW']  = {    'name': ['eos/cms/store/user/lviliani/ww2016/bPogSF_fix/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__bPogSF__hadd/latino_WWTo2L2Nu.root'],      
-                      'weight' : 'baseW*puW',
+samples['WW']  = {    'name': ['eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_WWTo2L2Nu.root'],      
+                      'weight' : 'baseW*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]',
 
                   }
 
 samples['ST'] = {   'name': [
-	'eos/cms/store/user/lviliani/ww2016/bPogSF_fix/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__bPogSF__hadd/latino_ST_s-channel.root',
-	'eos/cms/store/user/lviliani/ww2016/bPogSF_fix/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__bPogSF__hadd/latino_ST_t-channel_top.root',
-	'eos/cms/store/user/lviliani/ww2016/bPogSF_fix/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__bPogSF__hadd/latino_ST_t-channel_antitop.root',
-	'eos/cms/store/user/lviliani/ww2016/bPogSF_fix/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__bPogSF__hadd/latino_ST_tW_antitop.root',
-	'eos/cms/store/user/lviliani/ww2016/bPogSF_fix/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__bPogSF__hadd/latino_ST_tW_top.root',
+#	'eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_ST_s-channel.root',
+#	'eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_ST_t-channel_top.root',
+#	'eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_ST_t-channel_antitop.root',
+        'eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_ST_t-channel.root',
+	'eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_ST_tW_antitop.root',
+	'eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_ST_tW_top.root',
 	], 
-       'weight' : 'GEN_weight_SM/abs(GEN_weight_SM)*baseW*puW',                
+       'weight' : 'GEN_weight_SM/abs(GEN_weight_SM)*baseW*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]',                
         }
 
 samples['ttbar'] = {   'name': [
-	'eos/cms/store/user/lviliani/ww2016/bPogSF_fix/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__bPogSF__hadd/latino_TTTo2L2Nu.root',
+	'eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_TTTo2L2Nu.root',
                       ],          
-                       'weight' : 'baseW*puW',                
+                       'weight' : 'baseW*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]',                
                    }
 
 
-samples['ggH']  = {    'name': ['eos/cms/store/user/lviliani/ww2016/bPogSF_fix/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__bPogSF__hadd/latino_GluGluHToWWTo2L2Nu_M125.root'],      
-                     'weight' : 'baseW*puW',          
+samples['ggH']  = {    'name': ['eosuser/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_GluGluHToWWTo2L2Nu_M125.root'],      
+                     'weight' : 'baseW*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]',          
                   }
 
 
