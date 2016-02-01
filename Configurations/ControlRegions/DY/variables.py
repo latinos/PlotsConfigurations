@@ -10,11 +10,11 @@ variables['events']  = {   'name': '1',
                          'fold' : 0
                         }
     
-variables['nvtx']  = {   'name': 'nvtx',      
-                        'range' : (40,0,40),  
-                        'xaxis' : 'nvtx', 
-                         'fold' : 0
-                        }
+#variables['nvtx']  = {   'name': 'nvtx',      
+                        #'range' : (40,0,40),  
+                        #'xaxis' : 'nvtx', 
+                         #'fold' : 3
+                        #}
 
 #variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
                         #'range' : (100,0,200),   
@@ -58,23 +58,23 @@ variables['nvtx']  = {   'name': 'nvtx',
                          #'fold' : 3
                         #}
 
-#variables['ptll']  = {   'name': 'ptll',     
-                        #'range' : (60,0,200),   
-                        #'xaxis' : 'p_{T}^{ll} [GeV]',
-                         #'fold' : 3
-                        #}
+variables['ptll']  = {   'name': 'ptll',     
+                        'range' : (60,0,200),   
+                        'xaxis' : 'p_{T}^{ll} [GeV]',
+                         'fold' : 3
+                        }
  
 variables['mll']  = {   'name': 'mll',            #   variable name    
                         'range' : (50, 0,200),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
-                         'fold' : 0
+                         'fold' : 3
                         }
                         
-#variables['mth']  = {   'name': 'mth',            #   variable name    
-                        #'range' : (50, 0,200),    #   variable range
-                        #'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
-                        #'fold' : 0
-                        #}
+variables['mth']  = {   'name': 'mth',            #   variable name    
+                        'range' : (50, 0,200),    #   variable range
+                        'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
+                        'fold' : 3
+                        }
 
 variables['met']  = {   'name': 'pfType1Met',            #   variable name    
                         'range' : (20,0,200),    #   variable range
@@ -104,14 +104,14 @@ variables['met']  = {   'name': 'pfType1Met',            #   variable name
 #variables['njet']  = {  'name': 'njet',      
                         #'range' : (5,0,5),  
                         #'xaxis' : 'njet', 
-                        #'fold' : 0
+                        #'fold' : 3
                         #}
 
 #variables['jetpt1']  = {
                         #'name': 'std_vector_jet_pt[0]',     
                         #'range' : (20,0,200),   
                         #'xaxis' : 'p_{T} 1st jet',
-                        #'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+                        #'fold' : 3   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         #}
 
 #variables['jetpt2']  = {
