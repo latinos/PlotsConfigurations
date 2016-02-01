@@ -10,35 +10,35 @@ variables['events']  = {   'name': '1',
                          'fold' : 0
                         }
     
-#variables['nvtx']  = {   'name': 'nvtx',      
-                        #'range' : (40,0,40),  
-                        #'xaxis' : 'nvtx', 
-                         #'fold' : 3
-                        #}
+variables['nvtx']  = {   'name': 'nvtx',      
+                        'range' : (40,0,40),  
+                        'xaxis' : 'nvtx', 
+                         'fold' : 3
+                        }
 
-#variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
-                        #'range' : (100,0,200),   
-                        #'xaxis' : 'p_{T} 1st lep',
-                        #'fold'  : 3                         
-                        #}
+variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
+                        'range' : (100,0,200),   
+                        'xaxis' : 'p_{T} 1st lep',
+                        'fold'  : 3                         
+                        }
 
-#variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
-                        #'range' : (50,0,200),   
-                        #'xaxis' : 'p_{T} 2nd lep',
-                        #'fold'  : 3                         
-                        #}
+variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
+                        'range' : (50,0,200),   
+                        'xaxis' : 'p_{T} 2nd lep',
+                        'fold'  : 3                         
+                        }
 
-#variables['eta1']  = {  'name': 'std_vector_lepton_eta[0]',     
-                        #'range' : (100,-3.2,3.2),   
-                        #'xaxis' : '#eta 1st lep',
-                        #'fold'  : 3                         
-                        #}
+variables['eta1']  = {  'name': 'std_vector_lepton_eta[0]',     
+                        'range' : (100,-3.2,3.2),   
+                        'xaxis' : '#eta 1st lep',
+                        'fold'  : 3                         
+                        }
 
-#variables['eta2']  = {  'name': 'std_vector_lepton_eta[1]',     
-                        #'range' : (100,-3.2,3.2),   
-                        #'xaxis' : '#eta 2nd lep',
-                        #'fold'  : 3                         
-                        #}
+variables['eta2']  = {  'name': 'std_vector_lepton_eta[1]',     
+                        'range' : (100,-3.2,3.2),   
+                        'xaxis' : '#eta 2nd lep',
+                        'fold'  : 3                         
+                        }
                        
 #variables['phi1']  = {  'name': 'std_vector_lepton_phi[0]',
                         #'range' : (100,-3.2,3.2),
@@ -101,11 +101,11 @@ variables['met']  = {   'name': 'pfType1Met',            #   variable name
                         ##}
 
   
-#variables['njet']  = {  'name': 'njet',      
-                        #'range' : (5,0,5),  
-                        #'xaxis' : 'njet', 
-                        #'fold' : 3
-                        #}
+variables['njet']  = {  'name': 'njet',      
+                        'range' : (5,0,5),  
+                        'xaxis' : 'njet', 
+                        'fold' : 3
+                        }
 
 #variables['jetpt1']  = {
                         #'name': 'std_vector_jet_pt[0]',     

@@ -80,8 +80,29 @@ plot['ggWW']  = {
                   'scale'    : 1.0
                   }
 
+plot['Wg']  = { 
+                  'color': 861, # kAzure +1  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+plot['VZ']  = { 
+                  'color': 858, # kAzure -2  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
 plot['WZ']  = { 
                   'color': 858, # kAzure -2  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+plot['ZZ']  = { 
+                  'color': 856, # kAzure -4  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0

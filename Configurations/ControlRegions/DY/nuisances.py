@@ -36,6 +36,14 @@ nuisances['WWnorm']  = {
 
 
 
+
+
+# FIXME: to be added and split
+# - lepton scale into muon and electron scale
+# - lepton resolution
+# - pileup
+
+
 ## nuisances handled by means of a weight in the tree
 
 #nuisances['pileup']  = {
@@ -49,86 +57,6 @@ nuisances['WWnorm']  = {
                    #'DY'    : ['3./puW', '0.3/puW']
                 #}
 #}
-
-
-# nuisances handled by means of a different set of trees
-
-#nuisances['eleScale']  = {
-                #'name'  : 'eleScale', 
-                #'kind'  : 'tree',
-                #'type'  : 'shape',
-                #'samples'  : {
-                   #'ttbar' : ['1', '1'],
-                   #'Wjets' : ['1', '1']
-                #},
-                #'folderUp'   : '/tmp/amassiro/Tree_eleScaleUp/',
-                #'folderDown' : '/tmp/amassiro/Tree_eleScaleDown/' 
-#}
-
-
-
-nuisances['jes']  = {
-                'name'  : 'scale_j', 
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : {
-                   'WW' :  ['1', '1'],
-                   'DY' :  ['1', '1'],
-                   'top' : ['1', '1'],
-                   'WZ' :  ['1', '1'],
-                   'VVV' : ['1', '1'],
-                   'H_hww' : ['1', '1'],
-                   'H_htt' : ['1', '1'],
-                },
-                'folderUp'   : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESup/',
-                'folderDown' : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESdo/' 
-}
-
-# scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESup/    /media/data/amassiro/LatinoTrees/Moriond/
-# scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESdo/    /media/data/amassiro/LatinoTrees/Moriond/
-
-
-nuisances['leptonpt']  = {
-                'name'  : 'scale_l', 
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : {
-                   'WW' :  ['1', '1'],
-                   #'DY' :  ['1', '1'],
-                   #'top' : ['1', '1'],
-                   'WZ' :  ['1', '1'],
-                   'VVV' : ['1', '1'],
-                   'H_hww' : ['1', '1'],
-                   'H_htt' : ['1', '1'],
-                },
-                'folderUp'   : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__LeppTup/',
-                'folderDown' : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__LeppTdo/' 
-}
-
-# scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__LeppTup/    /media/data/amassiro/LatinoTrees/Moriond/
-# scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__LeppTdo/    /media/data/amassiro/LatinoTrees/Moriond/
-
-
-nuisances['met']  = {
-                'name'  : 'scale_met', 
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : {
-                   'WW' :  ['1', '1'],
-                   'DY' :  ['1', '1'],
-                   'top' : ['1', '1'],
-                   'WZ' :  ['1', '1'],
-                   'VVV' : ['1', '1'],
-                   'H_hww' : ['1', '1'],
-                   'H_htt' : ['1', '1'],
-                },
-                'folderUp'   : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__METup/',
-                'folderDown' : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__METdo/' 
-}
-
-# scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__METup/    /media/data/amassiro/LatinoTrees/Moriond/
-# scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__METdo/    /media/data/amassiro/LatinoTrees/Moriond/
-
 
 
 nuisances['fake']  = {
@@ -161,7 +89,7 @@ nuisances['btag']  = {
                 'samples'  : {
                    'DY'      : ['(bTPSFUp)/(bTPSF)', '(bTPSFDown)/(bTPSF)'],
                    'VVV'     : ['(bTPSFUp)/(bTPSF)', '(bTPSFDown)/(bTPSF)'],
-                   'VV'      : ['(bTPSFUp)/(bTPSF)', '(bTPSFDown)/(bTPSF)'],
+                   'VZ'      : ['(bTPSFUp)/(bTPSF)', '(bTPSFDown)/(bTPSF)'],
                    'WW'      : ['(bTPSFUp)/(bTPSF)', '(bTPSFDown)/(bTPSF)'],
                    'top'     : ['(bTPSFUp)/(bTPSF)', '(bTPSFDown)/(bTPSF)'],
                 }
@@ -174,14 +102,99 @@ nuisances['tttwTh']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {  # up              down
-                   'top'     : ['(dataset==15 || dataset==16) * 1.17 + (dataset==17 || dataset==18 || dataset==19)',
-                                '(dataset==15 || dataset==16) * 0.83 + (dataset==17 || dataset==18 || dataset==19)'],
+                   'top'     : ['((dataset==15 || dataset==16) * 1.17 + (dataset==17 || dataset==18 || dataset==19))',
+                                '((dataset==15 || dataset==16) * 0.83 + (dataset==17 || dataset==18 || dataset==19))'],
                 }
                 # tt = 17/18/19 depending on the sample/generator
                 # tW = 15/16
                 
 }
   
+  
+  
+nuisances['trigg']  = {
+                'name'  : 'trigger',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'DY'      : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
+                   'VVV'     : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
+                   'VZ'      : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
+                   'WW'      : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
+                   'top'     : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
+                }
+}
+
+
+
+
+# nuisances handled by means of a different set of trees
+
+
+#nuisances['jes']  = {
+                #'name'  : 'scale_j', 
+                #'kind'  : 'tree',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'WW' :  ['1', '1'],
+                   #'DY' :  ['1', '1'],
+                   #'top' : ['1', '1'],
+                   ##'VZ' :  ['1', '1'],
+                   #'VVV' : ['1', '1'],
+                   #'H_hww' : ['1', '1'],
+                   #'H_htt' : ['1', '1'],
+                #},
+                #'folderUp'   : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESup/',
+                #'folderDown' : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESdo/' 
+#}
+
+# scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESup/    /media/data/amassiro/LatinoTrees/Moriond/
+# scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESdo/    /media/data/amassiro/LatinoTrees/Moriond/
+
+
+#nuisances['leptonpt']  = {
+                #'name'  : 'scale_l', 
+                #'kind'  : 'tree',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'WW' :  ['1', '1'],
+                   #'DY' :  ['1', '1'],
+                   #'top' : ['1', '1'],
+                   ##'VZ' :  ['1', '1'],
+                   #'VVV' : ['1', '1'],
+                   #'H_hww' : ['1', '1'],
+                   #'H_htt' : ['1', '1'],
+                #},
+                #'folderUp'   : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__LeppTup/',
+                #'folderDown' : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__LeppTdo/' 
+#}
+
+# scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__LeppTup/    /media/data/amassiro/LatinoTrees/Moriond/
+# scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__LeppTdo/    /media/data/amassiro/LatinoTrees/Moriond/
+
+
+#nuisances['met']  = {
+                #'name'  : 'scale_met', 
+                #'kind'  : 'tree',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'WW' :  ['1', '1'],
+                   #'DY' :  ['1', '1'],
+                   #'top' : ['1', '1'],
+                   #'VZ' :  ['1', '1'],
+                   #'VVV' : ['1', '1'],
+                   #'H_hww' : ['1', '1'],
+                   #'H_htt' : ['1', '1'],
+                #},
+                #'folderUp'   : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__METup/',
+                #'folderDown' : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__METdo/' 
+#}
+
+#scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__METup/    /media/data/amassiro/LatinoTrees/Moriond/
+#scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__METdo/    /media/data/amassiro/LatinoTrees/Moriond/
+
+
+
                 
                 
 # statistical fluctuation
