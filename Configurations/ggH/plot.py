@@ -81,7 +81,7 @@ plot['ggWW']  = {
                   }
 
 plot['Wg']  = { 
-                  'color': 861, # kAzure +1  
+                  'color': 859, # kAzure -1  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
