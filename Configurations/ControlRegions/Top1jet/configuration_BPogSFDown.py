@@ -1,6 +1,6 @@
 # example of configuration file
 
-tag = 'TopSF'
+tag = 'TopSFDown'
 
 outputDir = 'rootFile'
 
@@ -12,7 +12,7 @@ variablesFile = 'variables.py'
 cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples_TPSF.py' 
+samplesFile = 'samples_BPogSFDown.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
@@ -26,7 +26,7 @@ lumi = 2.120
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotTop1jetSF'
+outputDirPlots = 'plotTop1jetSFDown'
 
 
 # used by mkDatacards to define output directory for datacards
@@ -38,6 +38,6 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances_TPSF.py'
+nuisancesFile = 'nuisances.py'
 
 

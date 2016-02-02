@@ -8,82 +8,61 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  #'scale'    : 0.9*1.0    # ele/mu trigger efficiency
+                  'scale'    : 1.0
               }
 
 
                
 plot['Wjets']  = {  
-		  'nameHR': 'W+jets',
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
-                  #'scale'    : 0.9*1.0    # ele/mu trigger efficiency                  
+                  'scale'    : 1.0                  
               }
 
+
+
+               
+plot['Fake']  = {  
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0                  
+              }
 
               
 plot['FakeQCD']  = {  
                   'color': 922,    # kGray + 2
                   'isSignal' : 0,
                   'isData'   : 0,
-                  #'scale'    : 0.9*1.0    # ele/mu trigger efficiency                  
+                  'scale'    : 1.0                  
               }
 
 
-plot['VVV']  = {
-                  'color': 858, # kAzure -2  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  #'scale'    : 0.9*1.0    # ele/mu trigger efficiency
-                  }
 
-plot['VV']  = {
-                  'color': 854, # kAzure -6 
-                  'isSignal' : 0,
-                  'isData'   : 0,
-               #   'scale'    : 0.9*1.0    # ele/mu trigger efficiency
-                  }
-
-
-plot['WZ']  = {
-                  'color': 858, # kAzure -2  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                 # 'scale'    : 0.9*1.0    # ele/mu trigger efficiency
-                  }
-
-
-plot['ZZ']  = {
-                  'color': 854, # kAzure -6 
-                  'isSignal' : 0,
-                  'isData'   : 0,
-               #   'scale'    : 0.9*1.0    # ele/mu trigger efficiency
-                  }
-
-
-plot['Wg']  = {
-                  'color': 859, # kAzure -6 
-                  'isSignal' : 0,
-                  'isData'   : 0,
-               #   'scale'    : 0.9*1.0    # ele/mu trigger efficiency
-                  }
-
-plot['ttbar'] = { 
-		  'nameHR': 't#bar{t}', 
+plot['ttbar'] = {   
+                  'nameHR' : 't#bart',
                   'color': 400,   # kYellow 
                   'isSignal' : 0,
                   'isData'   : 0 ,
-                  #'scale'    : 0.9*1.0    # ele/mu trigger efficiency
+                  'scale'    : 1.0
                   }
 
 
-plot['ST'] = {   
+plot['singletop'] = {   
                   'nameHR' : 't and tW',
                   'color': 401,   # kYellow +1
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  #'scale'    : 0.9*1.0    # ele/mu trigger efficiency
+                  'scale'    : 1.0
+                  }
+
+plot['top'] = {   
+                  'nameHR' : 'tW and t#bart',
+                  'color': 400,   # kYellow
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0
                   }
 
 
@@ -91,56 +70,119 @@ plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,    
-                  'scale'    : 1.137809,    # ele/mu trigger efficiency
+                  'scale'    : 1.0*1.137809e+00    # ele/mu trigger efficiency   datadriven
                   }
 
+plot['ggWW']  = {
+                  'color': 850, # kAzure -10
+                  'isSignal' : 0,
+                  'isData'   : 0,    
+                  'scale'    : 1.0
+                  }
 
-plot['VV']  = {
-                  'color': 858, # kAzure -6 
+plot['Wg']  = { 
+                  'color': 859, # kAzure -1  
                   'isSignal' : 0,
                   'isData'   : 0,
-               #   'scale'    : 0.9*1.0    # ele/mu trigger efficiency
+                  'scale'    : 1.0
                   }
 
+plot['VZ']  = { 
+                  'color': 858, # kAzure -2  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
 
 plot['WZ']  = { 
                   'color': 858, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
-                 # 'scale'    : 0.9*1.0    # ele/mu trigger efficiency
+                  'scale'    : 1.0
                   }
 
+plot['ZZ']  = { 
+                  'color': 856, # kAzure -4  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+
+plot['VVV']  = { 
+                  'color': 857, # kAzure -3  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
 
 plot['ZZ']  = {
                   'color': 854, # kAzure -6 
                   'isSignal' : 0,
                   'isData'   : 0,    
-               #   'scale'    : 0.9*1.0    # ele/mu trigger efficiency
+                  'scale'    : 1.0
                   }
 
 
-plot['Wg']  = {
-                  'color': 859, # kAzure -6 
-                  'isSignal' : 0,
-                  'isData'   : 0,
-               #   'scale'    : 0.9*1.0    # ele/mu trigger efficiency
+# Htautau
+
+plot['H_htt'] = {
+                  'nameHR' : 'Htt',
+                  'color': 632+4, # kRed+4 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
                   }
 
+# HWW 
 
-plot['ggH'] = {
-                  'nameHR' : 'ggH x 100',
+plot['H_hww'] = {
+                  'nameHR' : 'Hww',
                   'color': 632, # kRed 
                   'isSignal' : 1,
                   'isData'   : 0,    
-                  'scale'    : 100    # ele/mu trigger efficiency
+                  'scale'    : 1    #
                   }
 
+plot['ZH_hww'] = {
+                  'nameHR' : 'ZH',
+                  'color': 632+3, # kRed+3 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+
+
+plot['WH_hww'] = {
+                  'nameHR' : 'WH',
+                  'color': 632+2, # kRed+2 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+
+
+plot['qqH_hww'] = {
+                  'nameHR' : 'qqH',
+                  'color': 632+1, # kRed+1 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+
+plot['ggH_hww'] = {
+                  'nameHR' : 'ggH',
+                  'color': 632, # kRed 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
 
 # data
 
 
-plot['DATA']  = {
-                  'nameHR' : 'Data', 
+plot['DATA']  = { 
+                  'nameHR' : 'Data',
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 
@@ -151,8 +193,6 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 2.12/fb'
+#legend['lumi'] = 'L = 1.3/fb'
+legend['lumi'] = 'L = 2.1/fb'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
-
-
-

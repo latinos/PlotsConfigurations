@@ -52,7 +52,7 @@ void yields(TString flavourChannel = "em",
 
   //  Int_t iSignal = iWW;
 
-  const int nCuts = 10;
+  const int nCuts = 14;
   
   //TGraphErrors *gSignificance = new TGraphErrors();
   gSignificance = new TH1F("Significance","Significance", nCuts, 0., nCuts);
@@ -93,17 +93,44 @@ void yields(TString flavourChannel = "em",
   TString cutHisto[nCuts];
 
   //  DYem0j/events/histo_VVV , WW, WJets, VV, DY, ttbar, Data, ggH
+  /*
+  cutHisto[0]  = "DYem0j/events/histo_DATA";
+  cutHisto[1]  = "DYem0j/events/histo_WW";
+  cutHisto[2]  = "DYem0j/events/histo_Fake";
+  cutHisto[3]  = "DYem0j/events/histo_VVV";
+  cutHisto[4]  = "DYem0j/events/histo_ggH_hww";
+  cutHisto[5]  = "DYem0j/events/histo_top";
+  //cutHisto[6]  = "DYem0j/events/histo_VV";
+  //cutHisto[7]  = "DYem0j/events/histo_ZH_hww";
+  cutHisto[9]  = "DYem0j/events/histo_Wg";
+  cutHisto[10] = "DYem0j/events/histo_ggWW";
+  cutHisto[11] = "DYem0j/events/histo_qqH_hww";
+  cutHisto[12] = "DYem0j/events/histo_WH_hww";
+  cutHisto[13] = "DYem0j/events/histo_H_htt";
+  cutHisto[14] = "DYem0j/events/histo_VZ";
+  cutHisto[15] = "DYem0j/events/histo_DY";
+*/
 
-  cutHisto[0] = "DYem1j/events/histo_DATA";
-  cutHisto[1] = "DYem1j/events/histo_WW";
-  cutHisto[2] = "DYem1j/events/histo_Wjets";
-  cutHisto[3] = "DYem1j/events/histo_VVV";
-  cutHisto[4] = "DYem1j/events/histo_ggH";
-  cutHisto[5] = "DYem1j/events/histo_ttbar";
-  cutHisto[6] = "DYem1j/events/histo_VV";
-  cutHisto[7] = "DYem1j/events/histo_DY";
-  cutHisto[8] = "DYem1j/events/histo_DY_statUp";
-  cutHisto[9] = "DYem1j/events/histo_DY_statDown";
+  TString njet = "0";
+
+  cutHisto[0]   = "DYem" + njet + "j/events/histo_DATA"; 
+  cutHisto[1]   = "DYem" + njet + "j/events/histo_Wg"; 
+  cutHisto[2]   = "DYem" + njet + "j/events/histo_ggWW"; 
+  cutHisto[3]   = "DYem" + njet + "j/events/histo_qqH_hww"; 
+  cutHisto[4]   = "DYem" + njet + "j/events/histo_VVV"; 
+  cutHisto[5]   = "DYem" + njet + "j/events/histo_top"; 
+  cutHisto[6]   = "DYem" + njet + "j/events/histo_ZH_hww"; 
+  cutHisto[7]   = "DYem" + njet + "j/events/histo_WW"; 
+  cutHisto[8]   = "DYem" + njet + "j/events/histo_WH_hww"; 
+  cutHisto[9]   = "DYem" + njet + "j/events/histo_ggH_hww"; 
+  cutHisto[10]  = "DYem" + njet + "j/events/histo_Fake"; 
+  cutHisto[11]  = "DYem" + njet + "j/events/histo_H_htt"; 
+  cutHisto[12]  = "DYem" + njet + "j/events/histo_VZ"; 
+  cutHisto[13]  = "DYem" + njet + "j/events/histo_DY";
+
+  //  cutHisto[8] = "DYem0j/events/histo_DY_statUp";
+  //  cutHisto[9] = "DYem0j/events/histo_DY_statDown";
+
 
   /*
   cutHisto[9] = "WW/09_Ht/" + jetChannel + "/h_nvtx_" + flavourChannel;
@@ -167,12 +194,19 @@ void yields(TString flavourChannel = "em",
     err[i] = sqrt(integ[i]);
   }
   
-  cout<<"alfa = ";
-  float diff = integ[0] - integ[1] - integ[2] - integ[3] - integ[4] - integ[5] - integ[6];
-  float alfa = diff / integ[7];
+  float sumOther = 0.;
+  for (int pp = 0; pp < nCuts; ++pp){
+    cout<<pp<<": "<<integ[pp]<<endl;
+    if(pp == 0 || pp == 13) continue;
+    sumOther = sumOther + integ[pp]; 
+  }
+  cout<<sumOther<<endl;
+  float diff = integ[0] - sumOther;
+  cout<<"diff = "<<diff<<endl;
+  float alfa = diff / integ[13];
   cout<<alfa;
 
   float errDiff = sqrt(integ[0]);// + integ[1] + integ[2] + integ[3] + integ[4] + integ[5] + integ[6]);  
-  float errDY = abs(integ[8] - integ[9]);
-  cout<<"+-"<<(errDiff/diff + errDY/integ[7]) * alfa<<endl;
+  float errDY   = sqrt(integ[13]);//abs(integ[8] - integ[9]);
+  cout<<"+-"<<(errDiff/diff + errDY/integ[13]) * alfa<<endl;
 }

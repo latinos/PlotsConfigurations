@@ -1,9 +1,7 @@
 # example of configuration file
 
-tag = 'DY'
+tag = 'TopSFUp'
 
-
-# used by mkShape to define output directory for root files
 outputDir = 'rootFile'
 
 
@@ -14,7 +12,7 @@ variablesFile = 'variables.py'
 cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples_SF.py' 
+samplesFile = 'samples_BPogSFUp.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
@@ -22,12 +20,13 @@ plotFile = 'plot.py'
 
 
 # luminosity to normalize to (in 1/fb)
-#lumi = 1.270
-lumi = 2.120
+lumi = 2.120 
+#lumi = 0.040
+# 40053803.220 /ub
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = '~/www/plotCR'
+outputDirPlots = 'plotTop1jetSFUp'
 
 
 # used by mkDatacards to define output directory for datacards

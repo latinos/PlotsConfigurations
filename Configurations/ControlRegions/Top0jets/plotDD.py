@@ -74,7 +74,7 @@ plot['ttbar'] = {
                   'color': 400,   # kYellow 
                   'isSignal' : 0,
                   'isData'   : 0 ,
-#                  'scale'    : 0.7427*1.0    # DD scale factor
+                  'scale'    : 0.7872    # DD scale factor
                   }
 
 
@@ -83,7 +83,7 @@ plot['ST'] = {
                   'color': 401,   # kYellow +1
                   'isSignal' : 0,
                   'isData'   : 0, 
-#                  'scale'    : 0.7427*1.0    # DD scale factor
+                  'scale'    : 0.7872    # DD scale factor
                   }
 
 
