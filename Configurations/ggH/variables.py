@@ -10,18 +10,6 @@ variables['events']  = {   'name': '1',
                          'fold' : 3
                         }
     
-variables['nvtx']  = {   'name': 'nvtx',      
-                        'range' : (40,0,40),  
-                        'xaxis' : 'nvtx', 
-                         'fold' : 3
-                        }
-                        
-variables['ptll']  = {   'name': 'ptll',            #   variable name    
-                        'range' : (20,0,200),    #   variable range
-                        'xaxis' : 'pt_{ll} [GeV]',  #   x axis name
-                         'fold' : 3
-                        }
-
 variables['mll']  = {   'name': 'mll',            #   variable name    
                         'range' : (20,10,200),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
@@ -34,11 +22,7 @@ variables['mth']  = {   'name': 'mth',            #   variable name
                         'fold' : 3
                         }
 
-variables['met']  = {   'name': 'pfType1Met',            #   variable name    
-                        'range' : (20,0,200),    #   variable range
-                        'xaxis' : 'pfmet [GeV]',  #   x axis name
-                         'fold' : 0
-                        }
+
 
 variables['mllVSmth'] = {   'name': 'mll:mth',            #   variable name    
                         'range' : (10,0,200, 5,10,110),            #   variable range
@@ -47,3 +31,22 @@ variables['mllVSmth'] = {   'name': 'mll:mth',            #   variable name
                         }
 
 
+## just for fun plots:
+
+#variables['nvtx']  = {   'name': 'nvtx',      
+                        #'range' : (40,0,40),  
+                        #'xaxis' : 'nvtx', 
+                         #'fold' : 3
+                        #}
+                        
+#variables['ptll']  = {   'name': 'ptll',            #   variable name    
+                        #'range' : (20,0,200),    #   variable range
+                        #'xaxis' : 'pt_{ll} [GeV]',  #   x axis name
+                         #'fold' : 3
+                        #}
+
+#variables['met']  = {   'name': 'pfType1Met',            #   variable name    
+                        #'range' : (20,0,200),    #   variable range
+                        #'xaxis' : 'pfmet [GeV]',  #   x axis name
+                         #'fold' : 0
+                        #}
