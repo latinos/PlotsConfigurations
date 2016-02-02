@@ -25,7 +25,7 @@ cuts['hww2l2v_13TeV_of0j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton
                 && ( std_vector_jet_pt[6] < 15 || std_vector_jet_csvv2ivf[6] < 0.605 ) \
                 && ( std_vector_jet_pt[7] < 15 || std_vector_jet_csvv2ivf[7] < 0.605 ) \
                 && ( std_vector_jet_pt[8] < 15 || std_vector_jet_csvv2ivf[8] < 0.605 ) \
-                && ( std_vector_jet_pt[9] < 15 || std_vector_jet_csvv2ivf[9] < 0.605 ) \                
+                && ( std_vector_jet_pt[9] < 15 || std_vector_jet_csvv2ivf[9] < 0.605 ) \
                 '
 
 cuts['hww2l2v_13TeV_of1j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
@@ -41,7 +41,7 @@ cuts['hww2l2v_13TeV_of1j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton
                 && ( std_vector_jet_pt[6] < 15 || std_vector_jet_csvv2ivf[6] < 0.605 ) \
                 && ( std_vector_jet_pt[7] < 15 || std_vector_jet_csvv2ivf[7] < 0.605 ) \
                 && ( std_vector_jet_pt[8] < 15 || std_vector_jet_csvv2ivf[8] < 0.605 ) \
-                && ( std_vector_jet_pt[9] < 15 || std_vector_jet_csvv2ivf[9] < 0.605 ) \                
+                && ( std_vector_jet_pt[9] < 15 || std_vector_jet_csvv2ivf[9] < 0.605 ) \
                 '
 
 cuts['hww2l2v_13TeV_top_of0j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
@@ -83,7 +83,7 @@ cuts['blind_hww2l2v_13TeV_of0j']  = '(std_vector_lepton_flavour[0] * std_vector_
                 && ( std_vector_jet_pt[6] < 15 || std_vector_jet_csvv2ivf[6] < 0.605 ) \
                 && ( std_vector_jet_pt[7] < 15 || std_vector_jet_csvv2ivf[7] < 0.605 ) \
                 && ( std_vector_jet_pt[8] < 15 || std_vector_jet_csvv2ivf[8] < 0.605 ) \
-                && ( std_vector_jet_pt[9] < 15 || std_vector_jet_csvv2ivf[9] < 0.605 ) \                
+                && ( std_vector_jet_pt[9] < 15 || std_vector_jet_csvv2ivf[9] < 0.605 ) \
                 '
 
 cuts['blind_hww2l2v_13TeV_of1j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
@@ -100,7 +100,7 @@ cuts['blind_hww2l2v_13TeV_of1j']  = '(std_vector_lepton_flavour[0] * std_vector_
                 && ( std_vector_jet_pt[6] < 15 || std_vector_jet_csvv2ivf[6] < 0.605 ) \
                 && ( std_vector_jet_pt[7] < 15 || std_vector_jet_csvv2ivf[7] < 0.605 ) \
                 && ( std_vector_jet_pt[8] < 15 || std_vector_jet_csvv2ivf[8] < 0.605 ) \
-                && ( std_vector_jet_pt[9] < 15 || std_vector_jet_csvv2ivf[9] < 0.605 ) \                
+                && ( std_vector_jet_pt[9] < 15 || std_vector_jet_csvv2ivf[9] < 0.605 ) \
                 '
 
 

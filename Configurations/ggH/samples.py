@@ -34,7 +34,7 @@ samples['Fake']  = {    'name': [
                        '../fake/21OctBis_Run2015D_PromptReco_0851pb/l2loose__hadd__fakeW/latino_DD_Run2915D_PromptReco_SingleMuon_0851pb.root',
                                  ],     
                       'weight' : 'fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2)',              #   weight/cut 
-                      'isData': ['1'],                             
+                      'isData': ['all'],                             
                   }
 
                        
@@ -97,7 +97,7 @@ samples['Wg']  = {    'name': ['latino_Wg.root'],
                   }
 
 
-samples['VZ']  = {    'name': ['latino_WZTo3LNu.root', 'latino_ZZTo4L.root'],      
+samples['VZ']  = {    'name': ['latino_WZTo3LNu.root', 'latino_ZZTo4L.root'],   # , 'latino_ZZTo2L2Nu.root'],      
                       'weight' : 'puW*baseW*bPogSF*bTPSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
                       #'weights': ['1'] ,           
                       #'isData': ['0'],                            
@@ -255,6 +255,10 @@ samples['DATA']  = {   'name': [
 
 
 
+
+# scp  amassiro@lxplus0083.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_ZZTo2L2Nu.root  /media/data/amassiro/LatinoTrees/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/
+# scp  amassiro@lxplus0083.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESdo/latino_ZZTo2L2Nu.root  /media/data/amassiro/LatinoTrees/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESdo/
+# scp  amassiro@lxplus0083.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESup/latino_ZZTo2L2Nu.root  /media/data/amassiro/LatinoTrees/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESup/
 
 
 
