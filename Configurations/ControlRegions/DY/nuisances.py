@@ -87,13 +87,15 @@ nuisances['btag']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : ['(bTPSFUp)/(bTPSF)', '(bTPSFDown)/(bTPSF)'],
-                   'VVV'     : ['(bTPSFUp)/(bTPSF)', '(bTPSFDown)/(bTPSF)'],
-                   'VZ'      : ['(bTPSFUp)/(bTPSF)', '(bTPSFDown)/(bTPSF)'],
-                   'WW'      : ['(bTPSFUp)/(bTPSF)', '(bTPSFDown)/(bTPSF)'],
-                   'top'     : ['(bTPSFUp)/(bTPSF)', '(bTPSFDown)/(bTPSF)'],
+                   'DY'      : ['(bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bTPSF)*(njet>0)', '(bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bTPSF)*(njet>0)'],
+                   'VVV'     : ['(bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bTPSF)*(njet>0)', '(bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bTPSF)*(njet>0)'],
+                   'VZ'      : ['(bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bTPSF)*(njet>0)', '(bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bTPSF)*(njet>0)'],
+                   'WW'      : ['(bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bTPSF)*(njet>0)', '(bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bTPSF)*(njet>0)'],
+                   'top'     : ['(bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bTPSF)*(njet>0)', '(bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bTPSF)*(njet>0)'],
                 }
 }
+ 
+ 
  
  
 
