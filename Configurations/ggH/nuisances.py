@@ -238,8 +238,8 @@ nuisances['tttwTh']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {  # up              down
-                   'top'     : ['((dataset==15 || dataset==16) * 1.17 + (dataset==17 || dataset==18 || dataset==19))',
-                                '((dataset==15 || dataset==16) * 0.83 + (dataset==17 || dataset==18 || dataset==19))'],
+                   'top'     : ['((dataset==15 || dataset==16) * 1.0816 + (dataset==17 || dataset==18 || dataset==19))',
+                                '((dataset==15 || dataset==16) * 0.9184 + (dataset==17 || dataset==18 || dataset==19))'],
                 }
                 # tt = 17/18/19 depending on the sample/generator
                 # tW = 15/16
