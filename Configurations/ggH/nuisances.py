@@ -119,7 +119,6 @@ nuisances['pdf_qqbar']  = {
 
 
 
-
 nuisances['kfactggww']  = {
                'name'  : 'kfactggww', 
                'type'  : 'lnN',
@@ -127,6 +126,27 @@ nuisances['kfactggww']  = {
                    'ggWW' : '1.30',
                    },
               }
+
+
+
+nuisances['WgStarScale']  = {
+                'name'  : 'WgStarScale',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'VZ'   : ['(dataset==6)*1.30+(dataset!=6)', '(dataset==6)*0.70+(dataset!=6)'],
+                   }
+                }
+
+
+nuisances['DYnormalization']  = {
+                'name'  : 'DYnormalization',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'DY'   : ['1.06*(njet==0)+1.13*(njet!=0)', '0.94*(njet==0)+0.87*(njet!=0)'],
+                   }
+                }
 
 
 # old style "free floating", but still working!
@@ -203,16 +223,15 @@ nuisances['btag']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : ['(bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bTPSF)*(njet>0)', '(bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bTPSF)*(njet>0)'],
-                   'VVV'     : ['(bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bTPSF)*(njet>0)', '(bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bTPSF)*(njet>0)'],
-                   'VZ'      : ['(bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bTPSF)*(njet>0)', '(bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bTPSF)*(njet>0)'],
-                   'WW'      : ['(bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bTPSF)*(njet>0)', '(bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bTPSF)*(njet>0)'],
-                   'top'     : ['(bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bTPSF)*(njet>0)', '(bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bTPSF)*(njet>0)'],
+                   'DY'      : ['(bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bPogSF)*(njet>0)', '(bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bPogSF)*(njet>0)'],
+                   'VVV'     : ['(bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bPogSF)*(njet>0)', '(bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bPogSF)*(njet>0)'],
+                   'VZ'      : ['(bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bPogSF)*(njet>0)', '(bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bPogSF)*(njet>0)'],
+                   'WW'      : ['(bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bPogSF)*(njet>0)', '(bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bPogSF)*(njet>0)'],
+                   'top'     : ['(bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bPogSF)*(njet>0)', '(bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bPogSF)*(njet>0)'],
                 }
 }
  
  
-
 
 nuisances['tttwTh']  = {
                 'name'  : 'tttwTh',   # Theory uncertainty
