@@ -119,7 +119,6 @@ nuisances['pdf_qqbar']  = {
 
 
 
-
 nuisances['kfactggww']  = {
                'name'  : 'kfactggww', 
                'type'  : 'lnN',
@@ -127,6 +126,27 @@ nuisances['kfactggww']  = {
                    'ggWW' : '1.30',
                    },
               }
+
+
+
+nuisances['WgStarScale']  = {
+                'name'  : 'WgStarScale',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'VZ'   : ['(dataset==6)*1.30+(dataset!=6)', '(dataset==6)*0.70+(dataset!=6)'],
+                   }
+                }
+
+
+nuisances['DYnormalization']  = {
+                'name'  : 'DYnormalization',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'DY'   : ['1.06*(njet==0)+1.13*(njet!=0)', '0.94*(njet==0)+0.87*(njet!=0)'],
+                   }
+                }
 
 
 # old style "free floating", but still working!
@@ -203,29 +223,28 @@ nuisances['btag']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : ['(bTPSFUp)/(bTPSF)', '(bTPSFDown)/(bTPSF)'],
-                   'VVV'     : ['(bTPSFUp)/(bTPSF)', '(bTPSFDown)/(bTPSF)'],
-                   'VZ'      : ['(bTPSFUp)/(bTPSF)', '(bTPSFDown)/(bTPSF)'],
-                   'WW'      : ['(bTPSFUp)/(bTPSF)', '(bTPSFDown)/(bTPSF)'],
-                   'top'     : ['(bTPSFUp)/(bTPSF)', '(bTPSFDown)/(bTPSF)'],
+                   'DY'      : ['(bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bPogSF)*(njet>0)', '(bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bPogSF)*(njet>0)'],
+                   'VVV'     : ['(bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bPogSF)*(njet>0)', '(bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bPogSF)*(njet>0)'],
+                   'VZ'      : ['(bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bPogSF)*(njet>0)', '(bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bPogSF)*(njet>0)'],
+                   'WW'      : ['(bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bPogSF)*(njet>0)', '(bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bPogSF)*(njet>0)'],
+                   'top'     : ['(bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bPogSF)*(njet>0)', '(bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bPogSF)*(njet>0)'],
                 }
 }
  
  
 
-
-#nuisances['tttwTh']  = {
-                #'name'  : 'tttwTh',   # Theory uncertainty
-                #'kind'  : 'weight',
-                #'type'  : 'shape',
-                #'samples'  : {  # up              down
-                   #'top'     : ['((dataset==15 || dataset==16) * 1.17 + (dataset==17 || dataset==18 || dataset==19))',
-                                #'((dataset==15 || dataset==16) * 0.83 + (dataset==17 || dataset==18 || dataset==19))'],
-                #}
-                ## tt = 17/18/19 depending on the sample/generator
-                ## tW = 15/16
+nuisances['tttwTh']  = {
+                'name'  : 'tttwTh',   # Theory uncertainty
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {  # up              down
+                   'top'     : ['((dataset==15 || dataset==16) * 1.0816 + (dataset==17 || dataset==18 || dataset==19))',
+                                '((dataset==15 || dataset==16) * 0.9184 + (dataset==17 || dataset==18 || dataset==19))'],
+                }
+                # tt = 17/18/19 depending on the sample/generator
+                # tW = 15/16
                 
-#}
+}
   
   
   

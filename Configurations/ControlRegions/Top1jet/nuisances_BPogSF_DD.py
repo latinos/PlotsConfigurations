@@ -18,8 +18,8 @@ nuisances['topDD'] = {
                 'name'  : 'topDD',
                 'type'  : 'lnN',
                 'samples'  :  {
-                        'ttbar' :  1.025,
-                        'ST'  :  1.025
+                        'ttbar' :  '1.025',
+                        'ST'  :  '1.025'
                 }
 }
 
