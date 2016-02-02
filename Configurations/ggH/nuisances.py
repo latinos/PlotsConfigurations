@@ -203,29 +203,29 @@ nuisances['btag']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : ['(bTPSFUp)/(bTPSF)', '(bTPSFDown)/(bTPSF)'],
-                   'VVV'     : ['(bTPSFUp)/(bTPSF)', '(bTPSFDown)/(bTPSF)'],
-                   'VZ'      : ['(bTPSFUp)/(bTPSF)', '(bTPSFDown)/(bTPSF)'],
-                   'WW'      : ['(bTPSFUp)/(bTPSF)', '(bTPSFDown)/(bTPSF)'],
-                   'top'     : ['(bTPSFUp)/(bTPSF)', '(bTPSFDown)/(bTPSF)'],
+                   'DY'      : ['(bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bTPSF)*(njet>0)', '(bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bTPSF)*(njet>0)'],
+                   'VVV'     : ['(bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bTPSF)*(njet>0)', '(bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bTPSF)*(njet>0)'],
+                   'VZ'      : ['(bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bTPSF)*(njet>0)', '(bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bTPSF)*(njet>0)'],
+                   'WW'      : ['(bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bTPSF)*(njet>0)', '(bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bTPSF)*(njet>0)'],
+                   'top'     : ['(bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bTPSF)*(njet>0)', '(bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bTPSF)*(njet>0)'],
                 }
 }
  
  
 
 
-#nuisances['tttwTh']  = {
-                #'name'  : 'tttwTh',   # Theory uncertainty
-                #'kind'  : 'weight',
-                #'type'  : 'shape',
-                #'samples'  : {  # up              down
-                   #'top'     : ['((dataset==15 || dataset==16) * 1.17 + (dataset==17 || dataset==18 || dataset==19))',
-                                #'((dataset==15 || dataset==16) * 0.83 + (dataset==17 || dataset==18 || dataset==19))'],
-                #}
-                ## tt = 17/18/19 depending on the sample/generator
-                ## tW = 15/16
+nuisances['tttwTh']  = {
+                'name'  : 'tttwTh',   # Theory uncertainty
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {  # up              down
+                   'top'     : ['((dataset==15 || dataset==16) * 1.17 + (dataset==17 || dataset==18 || dataset==19))',
+                                '((dataset==15 || dataset==16) * 0.83 + (dataset==17 || dataset==18 || dataset==19))'],
+                }
+                # tt = 17/18/19 depending on the sample/generator
+                # tW = 15/16
                 
-#}
+}
   
   
   
