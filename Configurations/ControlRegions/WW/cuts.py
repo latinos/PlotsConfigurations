@@ -2,7 +2,7 @@
 
 #cuts = {}
   
-supercut = 'mll>12  \
+supercut = 'mll>80  \
             && std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>20 \
             && std_vector_lepton_pt[2]<10 \
             && pfType1Met > 20 \

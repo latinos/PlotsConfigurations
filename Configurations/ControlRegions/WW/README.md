@@ -12,6 +12,7 @@ e.g.
     mkShapes.py      --pycfg=configuration.py  --inputDir=/media/data/amassiro/LatinoTrees/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/
     
     mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_WW.root
+    mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_WW.root &> tmp.txt
     
     mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_WW.root
 
