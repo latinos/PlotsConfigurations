@@ -160,22 +160,55 @@ nuisances['DYnormalization']  = {
 
 # new style "free floating" background
 # e.g. " z_norm rateParam  htsearch zll 1 "
-nuisances['WWnorm']  = {
-               'name'  : 'WWnorm', 
+nuisances['WWnorm0j']  = {
+               'name'  : 'WWnorm0j', 
                'samples'  : {
                    'WW' : '1.00',
                    },
                'type'  : 'rateParam',
+               'cuts'  : [
+                 'hww2l2v_13TeV_of0j',
+                 'hww2l2v_13TeV_top_of0j'
+                ]
+              }
+
+nuisances['WWnorm1j']  = {
+               'name'  : 'WWnorm1j', 
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_top_of1j'
+                ]
               }
 
 
-nuisances['Topnorm']  = {
-               'name'  : 'Topnorm', 
+nuisances['Topnorm0j']  = {
+               'name'  : 'Topnorm0j', 
                'samples'  : {
                    'top' : '1.00',
                    },
                'type'  : 'rateParam',
+               'cuts'  : [
+                 'hww2l2v_13TeV_of0j',
+                 'hww2l2v_13TeV_top_of0j'
+                ]
               }
+
+nuisances['Topnorm1j']  = {
+               'name'  : 'Topnorm1j', 
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_top_of1j'
+                ]
+              }
+
 
 
 
