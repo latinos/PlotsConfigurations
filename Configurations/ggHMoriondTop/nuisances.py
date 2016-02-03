@@ -292,12 +292,12 @@ nuisances['jes']  = {
                    'H_hww' :  ['1', '1'],
                    'H_htt' : ['1', '1'],
                 },
-                'folderUp'   : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESup/',
-                'folderDown' : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESdo/' 
+                'folderUp'   : '/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESup/',
+                'folderDown' : '/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESdo/' 
 }
 
-# scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESup/    /media/data/amassiro/LatinoTrees/Moriond/
-# scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESdo/    /media/data/amassiro/LatinoTrees/Moriond/
+# scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESup/    /tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/
+# scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESdo/    /tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/
 
 
 nuisances['leptonpt']  = {
@@ -317,12 +317,12 @@ nuisances['leptonpt']  = {
                    'H_hww' :  ['1', '1'],
                    'H_htt' : ['1', '1'],
                 },
-                'folderUp'   : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__LeppTup/',
-                'folderDown' : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__LeppTdo/' 
+                'folderUp'   : '/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__LeppTup/',
+                'folderDown' : '/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__LeppTdo/' 
 }
 
-# scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__LeppTup/    /media/data/amassiro/LatinoTrees/Moriond/
-# scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__LeppTdo/    /media/data/amassiro/LatinoTrees/Moriond/
+# scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__LeppTup/    /tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/
+# scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__LeppTdo/    /tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/
 
 
 nuisances['met']  = {
@@ -342,12 +342,12 @@ nuisances['met']  = {
                    'H_hww' :  ['1', '1'],
                    'H_htt' : ['1', '1'],
                 },
-                'folderUp'   : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__METup/',
-                'folderDown' : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__METdo/' 
+                'folderUp'   : '/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__METup/',
+                'folderDown' : '/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__METdo/' 
 }
 
-#scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__METup/    /media/data/amassiro/LatinoTrees/Moriond/
-#scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__METdo/    /media/data/amassiro/LatinoTrees/Moriond/
+#scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__METup/    /tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/
+#scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__METdo/    /tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/
 
 
 

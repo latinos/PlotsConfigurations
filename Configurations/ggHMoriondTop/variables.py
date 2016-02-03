@@ -4,11 +4,11 @@
     
 #'fold' : # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
    
-#variables['events']  = {   'name': '1',      
-                        #'range' : (1,0,2),  
-                        #'xaxis' : 'events', 
-                         #'fold' : 3
-                        #}
+variables['events']  = {   'name': '1',      
+                        'range' : (1,0,2),  
+                        'xaxis' : 'events', 
+                         'fold' : 3
+                        }
     
 #variables['mll']  = {   'name': 'mll',            #   variable name    
                         #'range' : (20,10,200),    #   variable range
@@ -24,11 +24,11 @@
 
 
 
-variables['mllVSmth'] = {   'name': 'mll:mth',            #   variable name    
-                        'range' : (10,0,200, 5,10,110),            #   variable range
-                        'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
-                        'fold' : 3
-                        }
+#variables['mllVSmth'] = {   'name': 'mll:mth',            #   variable name    
+                        #'range' : (4,0,200, 2,50,110),            #   variable range
+                        #'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
+                        #'fold' : 3
+                        #}
 
 
 ## just for fun plots:
