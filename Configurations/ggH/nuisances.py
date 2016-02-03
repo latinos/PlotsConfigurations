@@ -13,39 +13,48 @@ nuisances['lumi']  = {
               }
 
 
-#nuisances['QCDscale_ggH0j']  = {
-               #'name'  : 'QCDscale_ggH0j', 
-               #'samples'  : {
-                   #'ggH_hww' : '1.056',
-                   #},
-               #'type'  : 'lnN',
-              #}
-
-#nuisances['QCDscale_ggH1j']  = {
-               #'name'  : 'QCDscale_ggH1j', 
-               #'samples'  : {
-                   #'ggH_hww' : '1.13',
-                   #},
-               #'type'  : 'lnN',
-              #}
-
 nuisances['QCDscale_ggH0j']  = {
-                'name'  : 'QCDscale_ggH0j',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'ggH_hww'   : ['1.056*(njet==0)+1*(njet>0)', '0.944*(njet==0)+1*(njet>0)'],
-                   }
-                }
+               'name'  : 'QCDscale_ggH0j', 
+               'samples'  : {
+                   'ggH_hww' : '1.056',
+                   },
+               'type'  : 'lnN',
+               'cuts'  : [
+                 'hww2l2v_13TeV_of0j',
+                 'hww2l2v_13TeV_top_of0j'
+                ]               
+              }
+
 
 nuisances['QCDscale_ggH1j']  = {
-                'name'  : 'QCDscale_ggH1j',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'ggH_hww'   : ['1.056*(njet==1)+1*(njet!=1)', '0.944*(njet==1)+1*(njet!=1)'],
-                   }
-                }
+               'name'  : 'QCDscale_ggH1j', 
+               'samples'  : {
+                   'ggH_hww' : '1.13',
+                   },
+               'type'  : 'lnN',
+               'cuts'  : [
+                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_top_of1j'
+                ]
+              }
+
+#nuisances['QCDscale_ggH0j']  = {
+                #'name'  : 'QCDscale_ggH0j',
+                #'kind'  : 'weight',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'ggH_hww'   : ['1.056*(njet==0)+1*(njet>0)', '0.944*(njet==0)+1*(njet>0)'],
+                   #}
+                #}
+
+#nuisances['QCDscale_ggH1j']  = {
+                #'name'  : 'QCDscale_ggH1j',
+                #'kind'  : 'weight',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'ggH_hww'   : ['1.13*(njet==1)+1*(njet!=1)', '0.87*(njet==1)+1*(njet!=1)'],
+                   #}
+                #}
 
 
 
