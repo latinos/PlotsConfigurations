@@ -58,23 +58,23 @@ variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',
                         #'fold'  : 3                         
                         #}
 
-#variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
-#                        'range' : (50,0,200),   
-#                        'xaxis' : 'p_{T} 2nd lep',
-#                        'fold'  : 3                         
-#                        }
+variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
+                        'range' : (50,0,200),   
+                        'xaxis' : 'p_{T} 2nd lep',
+                        'fold'  : 3                         
+                        }
 
-#variables['eta1']  = {  'name': 'std_vector_lepton_eta[0]',     
-#                        'range' : (100,-3.2,3.2),   
-#                        'xaxis' : '#eta 1st lep',
-#                        'fold'  : 3                         
-#                        }
+variables['eta1']  = {  'name': 'std_vector_lepton_eta[0]',     
+                        'range' : (100,-3.2,3.2),   
+                        'xaxis' : '#eta 1st lep',
+                        'fold'  : 3                         
+                        }
 
-#variables['eta2']  = {  'name': 'std_vector_lepton_eta[1]',     
-#                        'range' : (100,-3.2,3.2),   
-#                        'xaxis' : '#eta 2nd lep',
-#                        'fold'  : 3                         
-#                        }
+variables['eta2']  = {  'name': 'std_vector_lepton_eta[1]',     
+                        'range' : (100,-3.2,3.2),   
+                        'xaxis' : '#eta 2nd lep',
+                        'fold'  : 3                         
+                        }
                        
 #variables['phi1']  = {  'name': 'std_vector_lepton_phi[0]',
                         #'range' : (100,-3.2,3.2),

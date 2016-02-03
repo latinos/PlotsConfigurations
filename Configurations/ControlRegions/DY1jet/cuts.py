@@ -12,9 +12,9 @@ supercut = ' mll>10 && std_vector_lepton_pt[0]>20 && (((abs(std_vector_lepton_fl
 #cuts['DYmm']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)   \
 #                '
 
-cuts['DYem0j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)   \
-                  && njet==0 \
-                  '
+#cuts['DYem0j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)   \
+#                  && njet==0 \
+#                  '
 
 cuts['DYem1j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)   \
                   && njet==1 \

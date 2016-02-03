@@ -1,14 +1,15 @@
+#0.86272*
 # plot configuration
 
 #plot = {}
 
 # keys here must match keys in samples.py    
-#                    
+                    
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 1.0
+                  'scale'    : 1
               }
 
 
@@ -17,7 +18,7 @@ plot['Wjets']  = {
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0                  
+                  'scale'    : 1                  
               }
 
 
@@ -27,7 +28,7 @@ plot['Fake']  = {
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0                  
+                  'scale'    : 1                  
               }
 
               
@@ -35,7 +36,7 @@ plot['FakeQCD']  = {
                   'color': 922,    # kGray + 2
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0                  
+                  'scale'    : 1                  
               }
 
 
@@ -45,7 +46,7 @@ plot['ttbar'] = {
                   'color': 400,   # kYellow 
                   'isSignal' : 0,
                   'isData'   : 0 ,
-                  'scale'    : 1.0
+                  'scale'    : 1
                   }
 
 
@@ -54,7 +55,7 @@ plot['singletop'] = {
                   'color': 401,   # kYellow +1
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 1.0
+                  'scale'    : 1
                   }
 
 plot['top'] = {   
@@ -62,7 +63,7 @@ plot['top'] = {
                   'color': 400,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 1.0
+                  'scale'    : 1
                   }
 
 
@@ -70,42 +71,42 @@ plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,    
-                  'scale'    : 1.0*1.137809e+00    # ele/mu trigger efficiency   datadriven
+                  'scale'    : 1*1.137809e+00    # ele/mu trigger efficiency   datadriven
                   }
 
 plot['ggWW']  = {
                   'color': 850, # kAzure -10
                   'isSignal' : 0,
                   'isData'   : 0,    
-                  'scale'    : 1.0
+                  'scale'    : 1
                   }
 
 plot['Wg']  = { 
                   'color': 859, # kAzure -1  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0
+                  'scale'    : 1
                   }
 
 plot['VZ']  = { 
                   'color': 858, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0
+                  'scale'    : 1
                   }
 
 plot['WZ']  = { 
                   'color': 858, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0
+                  'scale'    : 1
                   }
 
 plot['ZZ']  = { 
                   'color': 856, # kAzure -4  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0
+                  'scale'    : 1
                   }
 
 
@@ -113,14 +114,14 @@ plot['VVV']  = {
                   'color': 857, # kAzure -3  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0
+                  'scale'    : 1
                   }
 
 plot['ZZ']  = {
                   'color': 854, # kAzure -6 
                   'isSignal' : 0,
                   'isData'   : 0,    
-                  'scale'    : 1.0
+                  'scale'    : 1
                   }
 
 
