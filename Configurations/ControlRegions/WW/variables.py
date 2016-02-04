@@ -42,7 +42,7 @@ variables['met']  = {   'name': 'pfType1Met',            #   variable name
 
 
 variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
-                        'range' : (100,0,200),   
+                        'range' : (20,0,200),   
                         'xaxis' : 'p_{T} 1st lep',
                         'fold'  : 3                         
                         }
@@ -54,13 +54,13 @@ variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',
                         }
 
 variables['eta1']  = {  'name': 'std_vector_lepton_eta[0]',     
-                        'range' : (100,-3.2,3.2),   
+                        'range' : (20,-2.5,2.5),   
                         'xaxis' : '#eta 1st lep',
                         'fold'  : 3                         
                         }
 
 variables['eta2']  = {  'name': 'std_vector_lepton_eta[1]',     
-                        'range' : (100,-3.2,3.2),   
+                        'range' : (20,-2.5,2.5),   
                         'xaxis' : '#eta 2nd lep',
                         'fold'  : 3                         
                         }
@@ -68,5 +68,11 @@ variables['eta2']  = {  'name': 'std_vector_lepton_eta[1]',
 variables['ptll']  = {   'name': 'ptll',     
                         'range' : (60,0,200),   
                         'xaxis' : 'p_{T}^{ll} [GeV]',
+                         'fold' : 3
+                        }
+
+variables['dphill']  = {   'name': 'abs(dphill)',     
+                        'range' : (20,0,3.14),   
+                        'xaxis' : '#Delta#phi_{ll}',
                          'fold' : 3
                         }
