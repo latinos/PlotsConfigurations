@@ -148,3 +148,17 @@ variables['jetphi2']  = {
                         'xaxis' : '#phi 2nd jet',
                         'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
+
+variables['csvv2ivf_1']  = { 
+                        'name': 'std_vector_jet_csvv2ivf[0]',     
+                        'range' : (100,0,1),   
+                        'xaxis' : 'csvv2ivf 1st jet',
+                        'fold'  : 3                         
+                        }
+
+variables['csvv2ivf_2']  = {
+                        'name': 'std_vector_jet_csvv2ivf[1]',
+                        'range' : (100,0,1),
+                        'xaxis' : 'csvv2ivf 2nd jet',
+                        'fold'  : 3
+                        }
