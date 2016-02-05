@@ -1,27 +1,20 @@
-WW plots
+WW analysis
 ==============
 
-Common tools for analysis:
+WW analysis
 
-    plot distributions
-
+    Moriond 2016 version
 
 e.g.
 
-    mkShapes.py      --pycfg=configuration.py  --inputDir=/media/data/amassiro/LatinoTrees/50ns/
-    mkShapes.py      --pycfg=configuration.py  --inputDir=/media/data/amassiro/LatinoTrees/25ns/05Aug2015/
-    mkShapes.py      --pycfg=configuration.py  --inputDir=/media/data/amassiro/LatinoTrees/WW/25ns/05Aug2015/
-    mkShapes.py      --pycfg=configuration.py  --inputDir=/media/data/amassiro/LatinoTrees/WW/25ns/05Aug2015_puW/
-    mkShapes.py      --pycfg=configuration.py  --inputDir=/media/data/amassiro/LatinoTrees/50ns/17Sep2015/25ns/mc/
-    mkShapes.py      --pycfg=configuration.py  --inputDir=/tmp/amassiro/Tree/
-    
+    mkShapes.py      --pycfg=configuration.py  --inputDir=/media/data/amassiro/LatinoTrees/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/
+    mkShapes.py      --pycfg=configuration.py  --inputDir=/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/
     
     
     mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_WW.root
     
     mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_WW.root
 
-    cscp amassiro@cmsneu.cern.ch:/media/data/amassiro/LatinoTrees/WW/25ns/05Aug2015_puW/* /tmp/amassiro/Tree/
     
 Run combine:
 
