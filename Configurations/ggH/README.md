@@ -96,6 +96,12 @@ Perform a Likelihood scan:
     Scan of a nuisance freezing another one (eg. scan of Topnorm0j and freeze of WWnorm0j):
         combine -M MultiDimFit datacardCOMB.txt --algo=grid --points 100 --redefineSignalPOIs Topnorm0j --freezeNuisances=r,WWnorm0j --setPhysicsModelParameterRanges Topnorm0j=0.01,2 -t -1 --expectSignal=1 -n "LHScanTopnorm0j_WWnormFreeze" -m 125
     
+Combine secret options:
+
+    --robustFit=1
+    --X-rtd FITTER_NEW_CROSSING_ALGO
+    --X-rtd FITTER_NEVER_GIVE_UP
+    --X-rtd FITTER_BOUND
 
 Datacards checks
     
