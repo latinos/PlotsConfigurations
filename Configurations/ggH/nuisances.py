@@ -148,14 +148,32 @@ nuisances['kfactggww']  = {
                 #}
 
 
-nuisances['DYnormalization']  = {
-                'name'  : 'DYnormalization',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'DY'   : ['1.06*(njet==0)+1.13*(njet!=0)', '0.94*(njet==0)+0.87*(njet!=0)'],
-                   }
-                }
+nuisances['DYnormalization0j']  = {
+              'name'  : 'DYnormalization0j',
+              'samples'  : {
+                   'DY' : '1.06',
+                   },
+               'type'  : 'lnN',
+               'cuts'  : [
+                 'hww2l2v_13TeV_of0j',
+                 'hww2l2v_13TeV_top_of0j'
+                ]               
+             }
+
+nuisances['DYnormalization1j']  = {
+              'name'  : 'DYnormalization0j',
+              'samples'  : {
+                   'DY' : '1.13',
+                   },
+               'type'  : 'lnN',
+               'cuts'  : [
+                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_top_of1j'
+                ]               
+              }
+
+
+
 
 
 # old style "free floating", but still working!
