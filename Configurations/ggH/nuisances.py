@@ -132,7 +132,7 @@ nuisances['kfactggww']  = {
                'name'  : 'kfactggww', 
                'type'  : 'lnN',
                'samples'  : {
-                   'ggWW' : '1.30',
+                   'ggWW' : '1.15',
                    },
               }
 
