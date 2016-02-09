@@ -24,11 +24,19 @@ variables['events']  = {   'name': '1',
 
 
 
+#variables['mllVSmth'] = {   'name': 'mll:mth',            #   variable name    
+                        #'range' : (10,0,200, 5,10,110),            #   variable range
+                        #'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
+                        #'fold' : 3
+                        #}
+
+
 variables['mllVSmth'] = {   'name': 'mll:mth',            #   variable name    
-                        'range' : (10,0,200, 5,10,110),            #   variable range
+                        'range' : (7,60,200, 5,10,110),            #   variable range
                         'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
                         'fold' : 3
                         }
+
 
 
 ## just for fun plots:

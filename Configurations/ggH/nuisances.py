@@ -148,30 +148,57 @@ nuisances['kfactggww']  = {
                 #}
 
 
-nuisances['DYnormalization0j']  = {
-              'name'  : 'DYnormalization0j',
-              'samples'  : {
-                   'DY' : '1.06',
+#nuisances['DYnormalization0j']  = {
+              #'name'  : 'DYnormalization0j',
+              #'samples'  : {
+                   #'DY' : '1.06',
+                   #},
+               #'type'  : 'lnN',
+               #'cuts'  : [
+                 #'hww2l2v_13TeV_of0j',
+                 #'hww2l2v_13TeV_top_of0j'
+                #]               
+             #}
+
+#nuisances['DYnormalization1j']  = {
+              #'name'  : 'DYnormalization0j',
+              #'samples'  : {
+                   #'DY' : '1.13',
+                   #},
+               #'type'  : 'lnN',
+               #'cuts'  : [
+                 #'hww2l2v_13TeV_of1j',
+                 #'hww2l2v_13TeV_top_of1j'
+                #]               
+              #}
+
+
+
+nuisances['DYttnorm0j']  = {
+               'name'  : 'DYttnorm0j', 
+               'samples'  : {
+                   'top' : '1.00',
                    },
-               'type'  : 'lnN',
+               'type'  : 'rateParam',
                'cuts'  : [
                  'hww2l2v_13TeV_of0j',
-                 'hww2l2v_13TeV_top_of0j'
-                ]               
-             }
-
-nuisances['DYnormalization1j']  = {
-              'name'  : 'DYnormalization0j',
-              'samples'  : {
-                   'DY' : '1.13',
-                   },
-               'type'  : 'lnN',
-               'cuts'  : [
-                 'hww2l2v_13TeV_of1j',
-                 'hww2l2v_13TeV_top_of1j'
-                ]               
+                 'hww2l2v_13TeV_top_of0j',
+                 'hww2l2v_13TeV_dytt_of0j'
+                ]
               }
 
+nuisances['DYttnorm1j']  = {
+               'name'  : 'DYttnorm1j', 
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_top_of1j',
+                 'hww2l2v_13TeV_dytt_of1j'
+                ]
+              }
 
 
 
