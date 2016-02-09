@@ -9,7 +9,7 @@ nuisances['lumi']  = {
                'name'  : 'lumi_13TeV', 
                'all'   : 1 ,     # apply to all samples
                'type'  : 'lnN',
-               'value' : '1.05' 
+               'value' : '1.046' 
               }
 
 
@@ -177,7 +177,7 @@ nuisances['kfactggww']  = {
 nuisances['DYttnorm0j']  = {
                'name'  : 'DYttnorm0j', 
                'samples'  : {
-                   'top' : '1.00',
+                   'DY' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
@@ -190,7 +190,7 @@ nuisances['DYttnorm0j']  = {
 nuisances['DYttnorm1j']  = {
                'name'  : 'DYttnorm1j', 
                'samples'  : {
-                   'top' : '1.00',
+                   'DY' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
