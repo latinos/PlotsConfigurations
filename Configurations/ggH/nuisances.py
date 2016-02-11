@@ -137,6 +137,14 @@ nuisances['kfactggww']  = {
               }
 
 
+nuisances['kfactggwwInt']  = {
+               'name'  : 'kfactggwwInt', 
+               'type'  : 'lnN',
+               'samples'  : {
+                   'ggWW' : '1.25',
+                   },
+              }
+
 
 #nuisances['WgStarScale']  = {
                 #'name'  : 'WgStarScale',
