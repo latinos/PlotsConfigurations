@@ -77,6 +77,7 @@ samples['top'] = {   'name': ['latino_TTTo2L2Nu.root',  'latino_ST_tW_antitop.ro
 
 samples['WW']  = {    'name': ['latino_WWTo2L2Nu.root'],      
                       'weight' : 'puW*baseW*bPogSF*bTPSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
+                      'weight' : 'puW*12.178/1965200.*1000.*bPogSF*bTPSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
                       #'weights': ['abs(nllW)'] ,           
                       #'weights': ['1.000'] ,           
                       #'isData': ['0'],                            
@@ -97,7 +98,7 @@ samples['Wg']  = {    'name': ['latino_Wg.root'],
                   }
 
 
-samples['VZ']  = {    'name': ['latino_WZTo3LNu.root', 'latino_ZZTo4L.root', 'latino_ZZTo2L2Nu.root'],      
+samples['VZ']  = {    'name': ['latino_WZTo3LNu.root', 'latino_ZZTo4L.root'],   # , 'latino_ZZTo2L2Nu.root'],      
                       'weight' : 'puW*baseW*bPogSF*bTPSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
                       #'weights': ['1'] ,           
                       #'isData': ['0'],                            
@@ -151,29 +152,29 @@ samples['H_htt']  = {      'name': ['latino_GluGluHToTauTau_M125.root', 'latino_
 
 
 # HWW 
-samples['H_hww']  = {    'name': ['latino_GluGluHToWWTo2L2Nu_M125.root', 'latino_VBFHToWWTo2L2Nu_M125.root', 'latino_HWminusJ_HToWW_M125.root', 'latino_HWplusJ_HToWW_M125.root', 'latino_HZJ_HToWW_M125.root'],      
+#samples['H_hww']  = {    'name': ['latino_GluGluHToWWTo2L2Nu_M125.root', 'latino_VBFHToWWTo2L2Nu_M125.root', 'latino_HWminusJ_HToWW_M125.root', 'latino_HWplusJ_HToWW_M125.root', 'latino_HZJ_HToWW_M125.root'],      
+                           #'weight' : 'puW*baseW*bPogSF*bTPSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
+                           #'weights': ['1', '1', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)']            
+                  #}
+
+
+samples['ggH_hww']  = {    'name': ['latino_GluGluHToWWTo2L2Nu_M125.root'],      
                            'weight' : 'puW*baseW*bPogSF*bTPSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
-                           'weights': ['1', '1', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)']            
+                           'weights': ['1']            
                   }
 
+samples['qqH_hww']  = {    'name': ['latino_VBFHToWWTo2L2Nu_M125.root'],      
+                           'weight' : 'puW*baseW*bPogSF*bTPSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
+                           'weights': ['1']            
+                  }
 
-#samples['ggH_hww']  = {    'name': ['latino_GluGluHToWWTo2L2Nu_M125.root'],      
-                           #'weight' : 'puW*baseW*bPogSF*bTPSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
-                           #'weights': ['1']            
-                  #}
+samples['WH_hww']  = {    'name': ['latino_HWminusJ_HToWW_M125.root', 'latino_HWplusJ_HToWW_M125.root'],      
+                           'weight' : 'puW*baseW*bPogSF*bTPSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+                  }
 
-#samples['qqH_hww']  = {    'name': ['latino_VBFHToWWTo2L2Nu_M125.root'],      
-                           #'weight' : 'puW*baseW*bPogSF*bTPSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
-                           #'weights': ['1']            
-                  #}
-
-#samples['WH_hww']  = {    'name': ['latino_HWminusJ_HToWW_M125.root', 'latino_HWplusJ_HToWW_M125.root'],      
-                           #'weight' : 'puW*baseW*bPogSF*bTPSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
-                  #}
-
-#samples['ZH_hww']  = {    'name': ['latino_HZJ_HToWW_M125.root'],      
-                           #'weight' : 'puW*baseW*bPogSF*bTPSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
-                  #}
+samples['ZH_hww']  = {    'name': ['latino_HZJ_HToWW_M125.root'],      
+                           'weight' : 'puW*baseW*bPogSF*bTPSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+                  }
 
 
 
@@ -255,6 +256,10 @@ samples['DATA']  = {   'name': [
 
 
 
+
+# scp  amassiro@lxplus0083.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/latino_ZZTo2L2Nu.root  /media/data/amassiro/LatinoTrees/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff/
+# scp  amassiro@lxplus0083.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESdo/latino_ZZTo2L2Nu.root  /media/data/amassiro/LatinoTrees/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESdo/
+# scp  amassiro@lxplus0083.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESup/latino_ZZTo2L2Nu.root  /media/data/amassiro/LatinoTrees/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESup/
 
 
 

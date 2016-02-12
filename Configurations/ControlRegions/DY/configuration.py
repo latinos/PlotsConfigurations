@@ -14,7 +14,7 @@ variablesFile = 'variables.py'
 cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples_SF.py' 
+samplesFile = 'samples.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
@@ -27,7 +27,8 @@ lumi = 2.120
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = '~/www/plotCR'
+# outputDirPlots = '~/www/plotCR'
+outputDirPlots = 'plotCR'
 
 
 # used by mkDatacards to define output directory for datacards

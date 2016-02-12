@@ -9,7 +9,7 @@ nuisances['lumi']  = {
                'name'  : 'lumi_13TeV', 
                'all'   : 1 ,     # apply to all samples
                'type'  : 'lnN',
-               'value' : '1.05' 
+               'value' : '1.046' 
               }
 
 
@@ -132,10 +132,18 @@ nuisances['kfactggww']  = {
                'name'  : 'kfactggww', 
                'type'  : 'lnN',
                'samples'  : {
-                   'ggWW' : '1.30',
+                   'ggWW' : '1.15',
                    },
               }
 
+
+nuisances['kfactggwwInt']  = {
+               'name'  : 'kfactggwwInt', 
+               'type'  : 'lnN',
+               'samples'  : {
+                   'ggWW' : '1.25',
+                   },
+              }
 
 
 #nuisances['WgStarScale']  = {
@@ -148,14 +156,59 @@ nuisances['kfactggww']  = {
                 #}
 
 
-nuisances['DYnormalization']  = {
-                'name'  : 'DYnormalization',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'DY'   : ['1.06*(njet==0)+1.13*(njet!=0)', '0.94*(njet==0)+0.87*(njet!=0)'],
-                   }
-                }
+#nuisances['DYnormalization0j']  = {
+              #'name'  : 'DYnormalization0j',
+              #'samples'  : {
+                   #'DY' : '1.06',
+                   #},
+               #'type'  : 'lnN',
+               #'cuts'  : [
+                 #'hww2l2v_13TeV_of0j',
+                 #'hww2l2v_13TeV_top_of0j'
+                #]               
+             #}
+
+#nuisances['DYnormalization1j']  = {
+              #'name'  : 'DYnormalization0j',
+              #'samples'  : {
+                   #'DY' : '1.13',
+                   #},
+               #'type'  : 'lnN',
+               #'cuts'  : [
+                 #'hww2l2v_13TeV_of1j',
+                 #'hww2l2v_13TeV_top_of1j'
+                #]               
+              #}
+
+
+
+nuisances['DYttnorm0j']  = {
+               'name'  : 'DYttnorm0j', 
+               'samples'  : {
+                   'DY' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                 'hww2l2v_13TeV_of0j',
+                 'hww2l2v_13TeV_top_of0j',
+                 'hww2l2v_13TeV_dytt_of0j'
+                ]
+              }
+
+nuisances['DYttnorm1j']  = {
+               'name'  : 'DYttnorm1j', 
+               'samples'  : {
+                   'DY' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_top_of1j',
+                 'hww2l2v_13TeV_dytt_of1j'
+                ]
+              }
+
+
 
 
 # old style "free floating", but still working!
