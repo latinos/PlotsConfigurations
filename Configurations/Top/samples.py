@@ -2,84 +2,305 @@
 
 #samples = {}
     
-#                    
-#samples['DY']  = {    'name': ['latino_DYJetsToLL_M-50.root', 'latino_DYJetsToLL_M-10to50.root'],     #   file name    
-                      #'weight' : 'baseW*puW',              #   weight/cut 
-                      #'weights': ['GEN_weight_SM/abs(GEN_weight_SM) / 0.670032', 'GEN_weight_SM/abs(GEN_weight_SM) / 0.72760']                       #   additional cuts file dependent
-                      ##'weights': ['0.66998', '0.72760'] ,                      #   additional cuts file dependent
-                  #}
-
-#samples['DY']  = {    'name': ['latino_DYJetsToLL_M-10to50.root'],     #   file name    
-#                      'weight' : 'baseW*puW',              #   weight/cut 
-                      #'weights': ['GEN_weight_SM/abs(GEN_weight_SM) / 0.670032', 'GEN_weight_SM/abs(GEN_weight_SM) / 0.72760']                       #   additional cuts file dependent
-                      #'weights': ['0.66998', '0.72760'] ,                      #   additional cuts file dependent
-#                  }
-
-#samples['ttbar'] = {   'name': ['latino_TTJets.root'],         #   file name    
-                       #'weight' : 'baseW',                     #   weight/cut 
-                       ##'weights': ['0.33166']             #   additional cuts file dependent --> e.g. from +/- weights in MC
-                       #'weights': ['GEN_weight_SM/abs(GEN_weight_SM) * 0.33166']             #   additional cuts file dependent --> e.g. from +/- weights in MC
-                   #}
-
-
-
-#samples['Wjets']  = {    'name': ['latino_WJetsToLNu.root'],     #   file name    
-#                      'weight' : 'baseW*puW',              #   weight/cut 
-#                      'weights': ['GEN_weight_SM/abs(GEN_weight_SM) / 0.683927 * 61526.7 / 20508.9']                       #   additional cuts file dependent
-#                  }
-
-
-#samples['FakeQCD']  = {    'name': ['latino_QCD_Pt-30to50_EMEnriched.root', 'latino_QCD_Pt-30toInf_DoubleEMEnriched.root', 'latino_QCD_Pt-50to80_EMEnriched.root', 'latino_QCD_Pt-15to20_MuEnrichedPt5.root'],     #   file name    
-                      #'weight' : 'baseW*puW',              #   weight/cut 
-                      #'weights': ['-', '-', '-', '-']                       #   additional cuts file dependent
-                  #}
-
-
-#samples['ttbar'] = {   'name': ['latino_TT.root'],         #   file name    
-                       #'weight' : 'baseW',                 #   weight/cut 
-                       ##'weights': ['0.33166']             #   additional cuts file dependent --> e.g. from +/- weights in MC
-                       #'weights': ['1']                    #   additional cuts file dependent --> e.g. from +/- weights in MC
-                   #}
-
-samples['ttbar'] = {   'name': ['latino_TT_skim.root'],          
-                       'weight' : 'baseW*puW',                
-                       #'weights': ['GEN_weight_SM/abs(GEN_weight_SM) / 0.331907'],           
-                       'weights': ['1']                   
-                   }
-
-#samples['top'] = {   'name': ['latino_ST_tW_top.root', 'latino_ST_tW_antitop.root', 'latino_ST_t-channel.root'],   
-                       #'weight' : 'baseW*puW',                
-                       #'weights': ['1', '1', 'GEN_weight_SM/abs(GEN_weight_SM) / 0.215131' ]            
-                   #}
-
-
-#samples['top'] = {   'name': ['latino_ST_t-channel.root'],   
+#samples['ttbar'] = {   'name': [
+#	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTTo2L2Nu__part1.root',
+#	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTTo2L2Nu__part2.root'
+#			],          
 #                       'weight' : 'baseW*puW',                
-#                       'weights': ['GEN_weight_SM/abs(GEN_weight_SM) / 0.215131' ]            
+#                   }
+samples['DY'] =  { 'name': [
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_00.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_01.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_02.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_03.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_04.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_05.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_06.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_07.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_08.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_09.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_10.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_11.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_12.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_13.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_14.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_15.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_16.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_17.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_18.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_19.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_20.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_21.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_22.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_23.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_24.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_25.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_26.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_27.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_28.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_29.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_30.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_31.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_32.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_33.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_34.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_35.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-10to50_0000_36.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_00.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_01.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_02.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_03.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_04.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_05.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_06.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_07.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_08.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_09.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_10.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_11.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_12.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_13.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_14.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_15.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_16.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_17.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_18.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_19.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_20.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_21.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_22.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_23.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_24.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_25.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_26.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_27.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_28.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_29.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_30.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_31.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_32.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_33.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_34.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_35.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_36.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_37.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_38.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_39.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_40.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_41.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_42.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_43.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_44.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_45.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_46.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_47.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_48.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0000_49.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0001_00.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0001_01.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0001_02.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0001_03.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0001_04.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0001_05.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0001_06.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0001_07.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0001_08.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0001_09.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_DYJetsToLL_M-50_0001_10.root',
+
+			   ], 
+                   'weight' : 'GEN_weight_SM/abs(GEN_weight_SM)*baseW*puW',
+		   'isData' : ['0']
+                 }
+
+samples['Wjets'] = {  'name':[
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_WJetsToLNu__part0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_WJetsToLNu__part1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_WJetsToLNu__part2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_WJetsToLNu__part3.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_WJetsToLNu__part4.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_WJetsToLNu__part5.root',
+			],
+                       'weight' : 'GEN_weight_SM/abs(GEN_weight_SM)*baseW*puW',
+                   'isData' : ['0']
+		}
+
+
+samples['VVV'] = { 'name': [
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_WWZ.root', 
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_WZZ.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ZZZ.root'],
+                   'weight' : 'GEN_weight_SM/abs(GEN_weight_SM)*baseW*puW',                
+                   'isData' : ['0']
+
+                 }
+
+
+samples['VV']  = {    'name': [
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ZZTo2L2Nu__part0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ZZTo2L2Nu__part10.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ZZTo2L2Nu__part11.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ZZTo2L2Nu__part12.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ZZTo2L2Nu__part1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ZZTo2L2Nu__part2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ZZTo2L2Nu__part3.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ZZTo2L2Nu__part4.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ZZTo2L2Nu__part5.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ZZTo2L2Nu__part6.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ZZTo2L2Nu__part7.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ZZTo2L2Nu__part8.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ZZTo2L2Nu__part9.root',
+
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ZZTo4L__part0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ZZTo4L__part1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ZZTo4L__part2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ZZTo4L__part3.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ZZTo4L__part4.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ZZTo4L__part5.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ZZTo4L__part6.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ZZTo4L__part7.root',
+
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_WZTo3LNu.root',
+
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_Wg.root'
+
+         ],
+                     'weight' : 'GEN_weight_SM/abs(GEN_weight_SM)*baseW*puW',
+                   'isData' : ['0']
+
+                  }
+
+#samples['FakeQCD'] = {   'name': [
+#	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_QCD_Pt-15to20_EMEnriched.root',
+#	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_QCD_Pt-15to20_MuEnrichedPt5.root',
+#	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_QCD_Pt-20to30_EMEnriched.root',
+#	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_QCD_Pt-30to50_EMEnriched.root',
+#	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_QCD_Pt-30toInf_DoubleEMEnriched.root',
+#	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_QCD_Pt-50to80_EMEnriched.root',
+#                        ],
+#                       'weight' : 'baseW*puW',
 #                   }
 
 
-samples['WW']  = {    'name': ['latino_WWTo2L2Nu.root'],      
-                      'weight' : 'baseW', #*puW manca!          
-                  #    'weights': ['1']            
-                  }
-
-#samples['WZ']  = {    'name': ['latino_WZ.root'],      
-#                      'weight' : '0.06630*puW',          
-#                      'weights': ['1']            
+#samples['Wg']  = {    'name': ['eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_Wg.root'],
+#                      'weight' : 'GEN_weight_SM/abs(GEN_weight_SM)*baseW*puW',
 #                  }
 
-#samples['ZZ']  = {    'name': ['latino_ZZ.root'],      
-                      #'weight' : '0.03184*puW',          
-                      #'weights': ['1']            
-                  #}
+
+samples['WW']  = {    'name': ['eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_WWTo2L2Nu.root'],      
+                      'weight' : 'baseW*puW',
+                   'isData' : ['0']
+
+                  }
+
+samples['ST'] = {   'name': [
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ST_s-channel.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ST_t-channel__part0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ST_t-channel__part1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ST_t-channel__part10.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ST_t-channel__part11.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ST_t-channel__part12.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ST_t-channel__part13.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ST_t-channel__part14.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ST_t-channel__part15.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ST_t-channel__part16.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ST_t-channel__part17.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ST_t-channel__part18.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ST_t-channel__part19.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ST_t-channel__part2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ST_t-channel__part3.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ST_t-channel__part4.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ST_t-channel__part5.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ST_t-channel__part6.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ST_t-channel__part7.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ST_t-channel__part8.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ST_t-channel__part9.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ST_tW_antitop.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_ST_tW_top.root',
+		], 
+                      'weight' : 'GEN_weight_SM/abs(GEN_weight_SM)*baseW*puW',                
+                   'isData' : ['0']
+
+                }
+
+samples['ttbar'] = {   'name': [
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TT__part0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TT__part16.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TT__part18.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TT__part1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TT__part20.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TT__part22.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TT__part2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TT__part3.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TT__part4.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TT__part9.root',
+                      ],          
+                       'weight' : 'baseW*puW',                
+                   'isData' : ['0']
+
+                   }
+
+
+#samples['ttbar'] = {   'name': [
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part0.root',
+        #'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part1.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part10.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part11.root',
+      	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part12.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part13.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part14.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part15.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part16.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part17.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part18.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part19.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part2.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part20.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part21.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part22.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part23.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part24.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part25.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part26.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part27.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part28.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part3.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part30.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part31.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part32.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part33.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part34.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part35.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part36.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part37.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part38.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part39.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part4.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part40.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part41.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part42.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part43.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part44.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part45.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part46.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part5.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part6.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part7.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part8.root',
+	#'eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_TTJets__part9.root',
+        #                ],
+        #               'weight' : 'GEN_weight_SM/abs(GEN_weight_SM)*baseW*puW',
+        #           }
 
 
 
-#samples['ggH']  = {    'name': ['latino_GluGluHToWWTo2L2Nu_M125_skim.root'],      
-                  #    'weight' : 'baseW*puW',          
-                  #    'weights': ['1']            
-                 # }
+
+
+#samples['ggH']  = {    'name': ['eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2sel/latino_GluGluHToWWTo2L2Nu_M125.root'],      
+#                     'weight' : 'baseW*puW',          
+#                   'isData' : ['0']
+#
+#                  }
 
 
 
@@ -88,54 +309,129 @@ samples['WW']  = {    'name': ['latino_WWTo2L2Nu.root'],
 ###########################################
 ###########################################
 
+samples['DATA']  = {   'name': [
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_DoubleEG_0000__part0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_DoubleEG_0000__part1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_DoubleEG_0000__part2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_DoubleEG_0000__part3.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_DoubleEG_0001__part0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_DoubleMuon_0000__part0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_DoubleMuon_0000__part1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_DoubleMuon_0000__part2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_DoubleMuon_0000__part3.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_DoubleMuon_0000__part4.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_DoubleMuon_0001__part0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_MuonEG_0000__part0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_MuonEG_0000__part1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_MuonEG_0000__part2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_MuonEG_0000__part3.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_MuonEG_0001__part0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_SingleElectron_0000__part0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_SingleElectron_0000__part1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_SingleElectron_0000__part2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_SingleElectron_0000__part3.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_SingleElectron_0000__part4.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_SingleElectron_0001__part0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_SingleMuon_0000__part0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_SingleMuon_0000__part1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_SingleMuon_0000__part2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_SingleMuon_0000__part3.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_SingleMuon_0000__part4.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_05Oct2015/l2sel/latino_Run2015D_05Oct2015_SingleMuon_0001__part0.root',
 
-#samples['DATA']  = {    'name': ['latino_Run2015D_05Oct2015_MuonEG_0.root'],
-                   #   'weight' : 'trigger',                              
-                   #   'weights': ['1']            
-                   #}
-
-samples['DATA']  = {   'name': ['../data/5535pb/latino_Run2015D_05Oct2015_MuonEG_1.root', 
-                                '../data/5535pb/latino_Run2015D_05Oct2015_DoubleEG_1.root',                                
-                                '../data/5535pb/latino_Run2015D_05Oct2015_DoubleMuon_1.root',
-                                '../data/5535pb/latino_Run2015D_05Oct2015_SingleElectron_1.root',
-                                '../data/5535pb/latino_Run2015D_05Oct2015_SingleMuon_1.root',
-                                '../data/5535pb/latino_Run2015D_05Oct2015_MuonEG_0.root', 
-                                '../data/5535pb/latino_Run2015D_05Oct2015_DoubleEG_0.root',                                
-                                '../data/5535pb/latino_Run2015D_05Oct2015_DoubleMuon_0.root',
-                                '../data/5535pb/latino_Run2015D_05Oct2015_SingleElectron_0.root',
-                                #'../data/5535pb/latino_Run2015D_05Oct2015_SingleMuon_0.root',
-                                '../data/715pb/latino_Run2015D_PromptReco_MuonEG_3.root',
-                                '../data/715pb/latino_Run2015D_PromptReco_MuonEG_2.root',
-                                '../data/715pb/latino_Run2015D_PromptReco_MuonEG_1.root',
-                                '../data/715pb/latino_Run2015D_PromptReco_MuonEG_0.root',
-                                '../data/715pb/latino_Run2015D_PromptReco_DoubleEG_3.root',
-                                '../data/715pb/latino_Run2015D_PromptReco_DoubleEG_2.root',
-                                '../data/715pb/latino_Run2015D_PromptReco_DoubleEG_1.root',
-                                '../data/715pb/latino_Run2015D_PromptReco_DoubleEG_0.root',
-                                '../data/715pb/latino_Run2015D_PromptReco_DoubleMuon_0.root',
-                                '../data/715pb/latino_Run2015D_PromptReco_DoubleMuon_1.root',
-                                '../data/715pb/latino_Run2015D_PromptReco_DoubleMuon_2.root',
-                                '../data/715pb/latino_Run2015D_PromptReco_DoubleMuon_3.root',
-                                '../data/715pb/latino_Run2015D_PromptReco_SingleElectron_0.root',
-                                '../data/715pb/latino_Run2015D_PromptReco_SingleElectron_1.root',
-                                '../data/715pb/latino_Run2015D_PromptReco_SingleElectron_2.root',
-                                '../data/715pb/latino_Run2015D_PromptReco_SingleElectron_3.root',
-                                '../data/715pb/latino_Run2015D_PromptReco_SingleMuon_0.root',
-                                '../data/715pb/latino_Run2015D_PromptReco_SingleMuon_1.root',
-                                '../data/715pb/latino_Run2015D_PromptReco_SingleMuon_2.root',
-                                '../data/715pb/latino_Run2015D_PromptReco_SingleMuon_3.root' ],      
-
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleEG_0_0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleEG_0_1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleEG_0_2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleEG_0_3.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleEG_0_4.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleEG_1_0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleEG_1_1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleEG_1_2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleEG_1_3.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleEG_1_4.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleEG_2_0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleEG_2_1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleEG_2_2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleEG_2_3.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleEG_2_4.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleEG_3_0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleEG_3_1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleEG_3_2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleMuon_0_0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleMuon_0_1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleMuon_0_2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleMuon_0_3.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleMuon_0_4.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleMuon_1_0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleMuon_1_1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleMuon_1_2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleMuon_1_3.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleMuon_1_4.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleMuon_2_0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleMuon_2_1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleMuon_2_2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleMuon_2_3.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleMuon_2_4.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleMuon_3_0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleMuon_3_1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_DoubleMuon_3_2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_MuonEG_0_0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_MuonEG_0_1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_MuonEG_0_2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_MuonEG_0_3.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_MuonEG_0_4.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_MuonEG_1_0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_MuonEG_1_1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_MuonEG_1_2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_MuonEG_1_3.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_MuonEG_1_4.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_MuonEG_2_0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_MuonEG_2_1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_MuonEG_2_2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_MuonEG_2_3.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_MuonEG_2_4.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_MuonEG_3_0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_MuonEG_3_1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_MuonEG_3_2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleElectron_0_0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleElectron_0_1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleElectron_0_2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleElectron_0_3.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleElectron_0_4.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleElectron_1_0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleElectron_1_1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleElectron_1_2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleElectron_1_3.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleElectron_1_4.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleElectron_2_0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleElectron_2_1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleElectron_2_2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleElectron_2_3.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleElectron_2_4.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleElectron_3_0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleElectron_3_1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleElectron_3_2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleMuon_0_0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleMuon_0_1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleMuon_0_2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleMuon_0_3.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleMuon_0_4.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleMuon_1_0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleMuon_1_1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleMuon_1_2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleMuon_1_3.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleMuon_1_4.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleMuon_2_0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleMuon_2_1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleMuon_2_2.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleMuon_2_3.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleMuon_2_4.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleMuon_3_0.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleMuon_3_1.root',
+	'eos/user/x/xjanssen/HWW2015/21Oct_Run2015D_PromptReco/l2sel/latino_Run2015D_PromptReco_SingleMuon_3_2.root',
+			],
                        'weight' : 'trigger',
+                       'isData' : ['1']
+
                        }
-
-#samples['DATA']  = {   'name': ['dataB/latino_DoubleEG.root', 'dataB/latino_MuonEG.root', 'dataB/latino_SingleElectron.root', 'dataB/latino_SingleMu.root'],      
-                       #'weight' : 'trigger',          
-                  #}
-
-
-
-# --inputDir=/media/data/amassiro/LatinoTrees/50ns/
-
-
-
 
