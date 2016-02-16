@@ -218,18 +218,18 @@ nuisances['fakestat']  = {
  
  
   
-nuisances['btag']  = {
-                'name'  : 'btag',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'DY'      : ['((bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bPogSF)*(njet>0))', '((bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bPogSF)*(njet>0))'],
-                   'VVV'     : ['((bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bPogSF)*(njet>0))', '((bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bPogSF)*(njet>0))'],
-                   'VZ'      : ['((bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bPogSF)*(njet>0))', '((bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bPogSF)*(njet>0))'],
-                   'WW'      : ['((bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bPogSF)*(njet>0))', '((bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bPogSF)*(njet>0))'],
-                   'top'     : ['((bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bPogSF)*(njet>0))', '((bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bPogSF)*(njet>0))'],
-                }
-}
+#nuisances['btag']  = {
+                #'name'  : 'btag',
+                #'kind'  : 'weight',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'DY'      : ['((bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bPogSF)*(njet>0))', '((bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bPogSF)*(njet>0))'],
+                   #'VVV'     : ['((bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bPogSF)*(njet>0))', '((bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bPogSF)*(njet>0))'],
+                   #'VZ'      : ['((bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bPogSF)*(njet>0))', '((bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bPogSF)*(njet>0))'],
+                   #'WW'      : ['((bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bPogSF)*(njet>0))', '((bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bPogSF)*(njet>0))'],
+                   #'top'     : ['((bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bPogSF)*(njet>0))', '((bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bPogSF)*(njet>0))'],
+                #}
+#}
  
 
 
