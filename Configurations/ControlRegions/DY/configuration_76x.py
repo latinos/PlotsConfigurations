@@ -27,7 +27,7 @@ lumi = 2.264
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = '~/www/protected/HWW2015/plotDY76x'
+outputDirPlots = '~/www/protected/HWW2015/plotDY76x_newWP'
 
 
 # used by mkDatacards to define output directory for datacards

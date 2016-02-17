@@ -5,10 +5,22 @@
 #   puW*baseW*bPogSF*bTPSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)
 
 samples['DY']  = {    'name': [
-                                '22Jan_25ns_mAODv2_MC/MCl2loose__hadd__l2tight/latino_DYJetsToLL_M-50.root', 
+                                #'22Jan_25ns_mAODv2_MC/MCl2loose__hadd__l2tight/latino_DYJetsToLL_M-50.root', 
+                                '22Jan_25ns_mAODv2_MC/MCl2loose__hadd__l2tight/latino_DYJetsToLL_M-50_0000__part0.root',
+                                '22Jan_25ns_mAODv2_MC/MCl2loose__hadd__l2tight/latino_DYJetsToLL_M-50_0000__part1.root',
+                                '22Jan_25ns_mAODv2_MC/MCl2loose__hadd__l2tight/latino_DYJetsToLL_M-50_0000__part2.root',
+                                '22Jan_25ns_mAODv2_MC/MCl2loose__hadd__l2tight/latino_DYJetsToLL_M-50_0000__part3.root',
+                                '22Jan_25ns_mAODv2_MC/MCl2loose__hadd__l2tight/latino_DYJetsToLL_M-50_0000__part4.root',
+                                '22Jan_25ns_mAODv2_MC/MCl2loose__hadd__l2tight/latino_DYJetsToLL_M-50_0001__part0.root',
+                                '22Jan_25ns_mAODv2_MC/MCl2loose__hadd__l2tight/latino_DYJetsToLL_M-50_0001__part1.root',
+                                '22Jan_25ns_mAODv2_MC/MCl2loose__hadd__l2tight/latino_DYJetsToLL_M-50_0001__part2.root',
+                                '22Jan_25ns_mAODv2_MC/MCl2loose__hadd__l2tight/latino_DYJetsToLL_M-50_0001__part3.root',
+                                '22Jan_25ns_mAODv2_MC/MCl2loose__hadd__l2tight/latino_DYJetsToLL_M-50_0001__part4.root',
+                                '22Jan_25ns_mAODv2_MC/MCl2loose__hadd__l2tight/latino_DYJetsToLL_M-50_0002__part0.root',
                                 '22Jan_25ns_mAODv2_MC/MCl2loose__hadd__l2tight/latino_DYJetsToLL_M-10to50.root'
                               ],     #   file name    
                       'weight' : 'puW*baseW*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
+                      #'weight' : 'puW*baseW*GEN_weight_SM/abs(GEN_weight_SM)*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',              #   weight/cut 
                       #'weight' : 'puW*baseW*bPogSF*bTPSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
                       #'isData': ['0', '0'],                                  
                   }
