@@ -34,7 +34,12 @@ variables['events']  = {   'name': '1',
 variables['mllVSmth'] = {   'name': 'mll:mth',            #   variable name    
                         'range' : (7,60,200, 5,10,110),            #   variable range
                         'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
-                        'fold' : 3
+                        'fold' : 3 , 
+                        # do weighted plot too
+                        'doWeight' : 1,
+                        'binX'     : 7,
+                        'binY'     : 5
+                        #
                         }
 
 
