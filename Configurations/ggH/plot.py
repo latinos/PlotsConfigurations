@@ -182,7 +182,6 @@ plot['ggH_hww'] = {
 
 # data
 
-
 plot['DATA']  = { 
                   'nameHR' : 'Data',
                   'color': 1 ,  
@@ -199,6 +198,7 @@ plot['DATA']  = {
 #legend['lumi'] = 'L = 1.3/fb'
 legend['lumi'] = 'L = 2.1/fb'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
+
 
 
 
