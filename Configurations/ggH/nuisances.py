@@ -296,26 +296,26 @@ nuisances['Topnorm1j']  = {
 #}
 
 
-nuisances['fake']  = {
-                'name'  : 'fakehww',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'Fake'      : ['(fakeW2l0jUp*(njet==0)+fakeW2l1jUp*(njet==1)+fakeW2l2jUp*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',
-                                  '(fakeW2l0jDown*(njet==0)+fakeW2l1jDown*(njet==1)+fakeW2l2jDown*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))'],
-                }
-}
+#nuisances['fake']  = {
+                #'name'  : 'fakehww',
+                #'kind'  : 'weight',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'Fake'      : ['(fakeW2l0jUp*(njet==0)+fakeW2l1jUp*(njet==1)+fakeW2l2jUp*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',
+                                  #'(fakeW2l0jDown*(njet==0)+fakeW2l1jDown*(njet==1)+fakeW2l2jDown*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))'],
+                #}
+#}
  
 
-nuisances['fakestat']  = {
-                'name'  : 'fakestathww',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'Fake'      : ['(fakeW2l0jstatUp*(njet==0)+fakeW2l1jstatUp*(njet==1)+fakeW2l2jstatUp*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',
-                                  '(fakeW2l0jstatDown*(njet==0)+fakeW2l1jstatDown*(njet==1)+fakeW2l2jstatDown*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))'],
-                }
-}
+#nuisances['fakestat']  = {
+                #'name'  : 'fakestathww',
+                #'kind'  : 'weight',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'Fake'      : ['(fakeW2l0jstatUp*(njet==0)+fakeW2l1jstatUp*(njet==1)+fakeW2l2jstatUp*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',
+                                  #'(fakeW2l0jstatDown*(njet==0)+fakeW2l1jstatDown*(njet==1)+fakeW2l2jstatDown*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))'],
+                #}
+#}
  
  
   
@@ -324,11 +324,11 @@ nuisances['btag']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : ['((bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bPogSF)*(njet>0))', '((bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bPogSF)*(njet>0))'],
-                   'VVV'     : ['((bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bPogSF)*(njet>0))', '((bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bPogSF)*(njet>0))'],
-                   'VZ'      : ['((bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bPogSF)*(njet>0))', '((bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bPogSF)*(njet>0))'],
-                   'WW'      : ['((bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bPogSF)*(njet>0))', '((bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bPogSF)*(njet>0))'],
-                   'top'     : ['((bTPSFUp)/(bTPSF)*(njet==0)+(bPogSFUp)/(bPogSF)*(njet>0))', '((bTPSFDown)/(bTPSF)*(njet==0)+(bPogSFDown)/(bPogSF)*(njet>0))'],
+                   'DY'      : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   'VVV'     : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   'VZ'      : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   'WW'      : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   'top'     : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
                 }
 }
  
@@ -370,76 +370,76 @@ nuisances['trigg']  = {
 # nuisances handled by means of a different set of trees
 
 
-nuisances['jes']  = {
-                'name'  : 'scale_j', 
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : {
-                   'WW' :  ['1', '1'],
-                   'DY' :  ['1', '1'],
-                   'top' : ['1', '1'],
-                   'VZ' :  ['1', '1'],
-                   'VVV' : ['1', '1'],
-                   'ggH_hww' : ['1', '1'],
-                   'qqH_hww' : ['1', '1'],
-                   'WH_hww' :  ['1', '1'],
-                   'ZH_hww' :  ['1', '1'],
-                   'H_hww' :  ['1', '1'],
-                   'H_htt' : ['1', '1'],
-                },
-                'folderUp'   : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESup/',
-                'folderDown' : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESdo/' 
-}
+#nuisances['jes']  = {
+                #'name'  : 'scale_j', 
+                #'kind'  : 'tree',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'WW' :  ['1', '1'],
+                   #'DY' :  ['1', '1'],
+                   #'top' : ['1', '1'],
+                   #'VZ' :  ['1', '1'],
+                   #'VVV' : ['1', '1'],
+                   #'ggH_hww' : ['1', '1'],
+                   #'qqH_hww' : ['1', '1'],
+                   #'WH_hww' :  ['1', '1'],
+                   #'ZH_hww' :  ['1', '1'],
+                   #'H_hww' :  ['1', '1'],
+                   #'H_htt' : ['1', '1'],
+                #},
+                #'folderUp'   : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESup/',
+                #'folderDown' : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESdo/' 
+#}
 
 # scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESup/    /media/data/amassiro/LatinoTrees/Moriond/
 # scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__JESdo/    /media/data/amassiro/LatinoTrees/Moriond/
 
 
-nuisances['leptonpt']  = {
-                'name'  : 'scale_l', 
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : {
-                   'WW' :  ['1', '1'],
-                   'DY' :  ['1', '1'],
-                   'top' : ['1', '1'],
-                   'VZ' :  ['1', '1'],
-                   'VVV' : ['1', '1'],
-                   'ggH_hww' : ['1', '1'],
-                   'qqH_hww' : ['1', '1'],
-                   'WH_hww' :  ['1', '1'],
-                   'ZH_hww' :  ['1', '1'],
-                   'H_hww' :  ['1', '1'],
-                   'H_htt' : ['1', '1'],
-                },
-                'folderUp'   : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__LeppTup/',
-                'folderDown' : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__LeppTdo/' 
-}
+#nuisances['leptonpt']  = {
+                #'name'  : 'scale_l', 
+                #'kind'  : 'tree',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'WW' :  ['1', '1'],
+                   #'DY' :  ['1', '1'],
+                   #'top' : ['1', '1'],
+                   #'VZ' :  ['1', '1'],
+                   #'VVV' : ['1', '1'],
+                   #'ggH_hww' : ['1', '1'],
+                   #'qqH_hww' : ['1', '1'],
+                   #'WH_hww' :  ['1', '1'],
+                   #'ZH_hww' :  ['1', '1'],
+                   #'H_hww' :  ['1', '1'],
+                   #'H_htt' : ['1', '1'],
+                #},
+                #'folderUp'   : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__LeppTup/',
+                #'folderDown' : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__LeppTdo/' 
+#}
 
 # scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__LeppTup/    /media/data/amassiro/LatinoTrees/Moriond/
 # scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__LeppTdo/    /media/data/amassiro/LatinoTrees/Moriond/
 
 
-nuisances['met']  = {
-                'name'  : 'scale_met', 
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : {
-                   'WW' :  ['1', '1'],
-                   'DY' :  ['1', '1'],
-                   'top' : ['1', '1'],
-                   'VZ' :  ['1', '1'],
-                   'VVV' : ['1', '1'],
-                   'ggH_hww' : ['1', '1'],
-                   'qqH_hww' : ['1', '1'],
-                   'WH_hww' :  ['1', '1'],
-                   'ZH_hww' :  ['1', '1'],
-                   'H_hww' :  ['1', '1'],
-                   'H_htt' : ['1', '1'],
-                },
-                'folderUp'   : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__METup/',
-                'folderDown' : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__METdo/' 
-}
+#nuisances['met']  = {
+                #'name'  : 'scale_met', 
+                #'kind'  : 'tree',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'WW' :  ['1', '1'],
+                   #'DY' :  ['1', '1'],
+                   #'top' : ['1', '1'],
+                   #'VZ' :  ['1', '1'],
+                   #'VVV' : ['1', '1'],
+                   #'ggH_hww' : ['1', '1'],
+                   #'qqH_hww' : ['1', '1'],
+                   #'WH_hww' :  ['1', '1'],
+                   #'ZH_hww' :  ['1', '1'],
+                   #'H_hww' :  ['1', '1'],
+                   #'H_htt' : ['1', '1'],
+                #},
+                #'folderUp'   : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__METup/',
+                #'folderDown' : '/media/data/amassiro/LatinoTrees/Moriond/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__METdo/' 
+#}
 
 #scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__METup/    /media/data/amassiro/LatinoTrees/Moriond/
 #scp -r amassiro@lxplus003.cern.ch:/tmp/amassiro/eos/user/x/xjanssen/HWW2015/21Oct_25ns_MC/mcwghtcount__MC__l2selFix__hadd__bSFL2Eff__METdo/    /media/data/amassiro/LatinoTrees/Moriond/
