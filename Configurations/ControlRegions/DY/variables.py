@@ -17,7 +17,7 @@ variables['nvtx']  = {   'name': 'nvtx',
                         }
 
 variables['mll']  = {   'name': 'mll',            #   variable name    
-                        'range' : (10,0,100),    #   variable range
+                        'range' : (10,0,200),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
                          'fold' : 0
                         }
@@ -100,11 +100,11 @@ variables['met']  = {   'name': 'pfType1Met',            #   variable name
                          'fold' : 3
                         }
 
-#variables['trkMet']  = {   'name': 'trkMet',            #   variable name    
-                        #'range' : (20,0,200),    #   variable range
-                        #'xaxis' : 'trk met [GeV]',  #   x axis name
-                         #'fold' : 0
-                        #}
+variables['trkMet']  = {   'name': 'trkMet',            #   variable name    
+                        'range' : (20,0,200),    #   variable range
+                        'xaxis' : 'trk met [GeV]',  #   x axis name
+                         'fold' : 0
+                        }
 
 #variables['pupMet']  = {   'name': 'pupMet',            #   variable name    
                         #'range' : (20,0,200),    #   variable range
@@ -161,23 +161,23 @@ variables['jetpt2']  = {
                         #}
 
 
-variables['jetphi2']  = {
-                        'name': 'std_vector_jet_phi[1]',
-                        'range' : (100,-3.2,3.2),
-                        'xaxis' : '#phi 2nd jet',
-                        'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
-                        }
+#variables['jetphi2']  = {
+                        #'name': 'std_vector_jet_phi[1]',
+                        #'range' : (100,-3.2,3.2),
+                        #'xaxis' : '#phi 2nd jet',
+                        #'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+                        #}
 
-variables['csvv2ivf_1']  = { 
-                        'name': 'std_vector_jet_csvv2ivf[0]',     
-                        'range' : (100,0,1),   
+variables['cmvav2_1']  = { 
+                        'name': 'std_vector_jet_cmvav2[0]',     
+                        'range' : (100,-1,1),   
                         'xaxis' : 'csvv2ivf 1st jet',
                         'fold'  : 3                         
                         }
 
-variables['csvv2ivf_2']  = {
-                        'name': 'std_vector_jet_csvv2ivf[1]',
-                        'range' : (100,0,1),
+variables['cmvav2_2']  = {
+                        'name': 'std_vector_jet_cmvav2[1]',
+                        'range' : (100,-1,1),
                         'xaxis' : 'csvv2ivf 2nd jet',
                         'fold'  : 3
                         }

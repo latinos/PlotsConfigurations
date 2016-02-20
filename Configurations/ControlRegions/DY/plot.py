@@ -70,11 +70,18 @@ plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,    
-                  'scale'    : 1.0*1.137809e+00    # ele/mu trigger efficiency   datadriven
+                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
 
 plot['ggWW']  = {
                   'color': 850, # kAzure -10
+                  'isSignal' : 0,
+                  'isData'   : 0,    
+                  'scale'    : 1.0
+                  }
+
+plot['ggWW_Int']  = {
+                  'color': 616, # kMagenta
                   'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1.0
@@ -124,6 +131,7 @@ plot['ZZ']  = {
                   }
 
 
+
 # Htautau
 
 plot['H_htt'] = {
@@ -152,6 +160,13 @@ plot['ZH_hww'] = {
                   'scale'    : 1    #
                   }
 
+plot['ggZH_hww'] = {
+                  'nameHR' : 'ggZH',
+                  'color': 632+4, # kRed+4
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
 
 plot['WH_hww'] = {
                   'nameHR' : 'WH',
@@ -170,6 +185,7 @@ plot['qqH_hww'] = {
                   'scale'    : 1    #
                   }
 
+
 plot['ggH_hww'] = {
                   'nameHR' : 'ggH',
                   'color': 632, # kRed 
@@ -180,12 +196,12 @@ plot['ggH_hww'] = {
 
 # data
 
-
 plot['DATA']  = { 
                   'nameHR' : 'Data',
                   'color': 1 ,  
                   'isSignal' : 0,
-                  'isData'   : 1 
+                  'isData'   : 1 ,
+                  #'isBlind'  : 1
               }
 
 
@@ -193,6 +209,9 @@ plot['DATA']  = {
 
 # additional options
 
-#legend['lumi'] = 'L = 1.3/fb'
-legend['lumi'] = 'L = 2.1/fb'
+legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
+
+
+
+

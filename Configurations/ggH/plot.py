@@ -80,6 +80,13 @@ plot['ggWW']  = {
                   'scale'    : 1.0
                   }
 
+plot['ggWW_Int']  = {
+                  'color': 616, # kMagenta
+                  'isSignal' : 0,
+                  'isData'   : 0,    
+                  'scale'    : 1.0
+                  }
+
 plot['Wg']  = { 
                   'color': 859, # kAzure -1  
                   'isSignal' : 0,
@@ -153,6 +160,13 @@ plot['ZH_hww'] = {
                   'scale'    : 1    #
                   }
 
+plot['ggZH_hww'] = {
+                  'nameHR' : 'ggZH',
+                  'color': 632+4, # kRed+4
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
 
 plot['WH_hww'] = {
                   'nameHR' : 'WH',

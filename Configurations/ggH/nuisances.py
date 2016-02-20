@@ -143,7 +143,7 @@ nuisances['kfactggwwInt']  = {
                'name'  : 'kfactggwwInt', 
                'type'  : 'lnN',
                'samples'  : {
-                   'ggWW' : '1.25',
+                   'ggWW_Interference' : '1.25',
                    },
               }
 
@@ -476,6 +476,14 @@ nuisances['stat']  = {
                    'DY': {
                          'typeStat' : 'bbb',
                          'keepNormalization' : '1'  # default = 0 -> 0=don't keep normalization
+                         },
+                    
+                   'ggWW': {
+                         'typeStat' : 'bbb',
+                         },
+                    
+                   'ggWW_Interference': {
+                         'typeStat' : 'bbb',
                          },
                     
                    'WW': {
