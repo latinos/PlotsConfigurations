@@ -17,7 +17,7 @@ variables['nvtx']  = {   'name': 'nvtx',
                         }
 
 variables['mll']  = {   'name': 'mll',            #   variable name    
-                        'range' : (10,0,200),    #   variable range
+                        'range' : (100,0,200),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
                          'fold' : 0
                         }
@@ -64,17 +64,17 @@ variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',
 #                        'fold'  : 3                         
 #                        }
 
-#variables['eta1']  = {  'name': 'std_vector_lepton_eta[0]',     
-#                        'range' : (100,-3.2,3.2),   
-#                        'xaxis' : '#eta 1st lep',
-#                        'fold'  : 3                         
-#                        }
+variables['eta1']  = {  'name': 'std_vector_lepton_eta[0]',     
+                       'range' : (100,-3.2,3.2),   
+                       'xaxis' : '#eta 1st lep',
+                       'fold'  : 3                         
+                       }
 
-#variables['eta2']  = {  'name': 'std_vector_lepton_eta[1]',     
-#                        'range' : (100,-3.2,3.2),   
-#                        'xaxis' : '#eta 2nd lep',
-#                        'fold'  : 3                         
-#                        }
+variables['eta2']  = {  'name': 'std_vector_lepton_eta[1]',     
+                       'range' : (100,-3.2,3.2),   
+                       'xaxis' : '#eta 2nd lep',
+                       'fold'  : 3                         
+                       }
                        
 #variables['phi1']  = {  'name': 'std_vector_lepton_phi[0]',
                         #'range' : (100,-3.2,3.2),
@@ -100,11 +100,11 @@ variables['met']  = {   'name': 'pfType1Met',            #   variable name
                          'fold' : 3
                         }
 
-variables['trkMet']  = {   'name': 'trkMet',            #   variable name    
-                        'range' : (20,0,200),    #   variable range
-                        'xaxis' : 'trk met [GeV]',  #   x axis name
-                         'fold' : 0
-                        }
+#variables['trkMet']  = {   'name': 'trkMet',            #   variable name    
+                        #'range' : (20,0,200),    #   variable range
+                        #'xaxis' : 'trk met [GeV]',  #   x axis name
+                         #'fold' : 0
+                        #}
 
 #variables['pupMet']  = {   'name': 'pupMet',            #   variable name    
                         #'range' : (20,0,200),    #   variable range
