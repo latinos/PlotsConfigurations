@@ -117,17 +117,39 @@ nuisances['pdf_gg']  = {
               }
 
 
+nuisances['pdf_gg_accept']  = {
+               'name'  : 'pdf_gg_accept', 
+               'samples'  : {
+                   'ggH_hww' : '1.03',
+                   'ggH_htt' : '1.03',
+                   'H_htt'   : '1.03',
+                   'ggZH_hww': '1.03',                   
+                   },
+               'type'  : 'lnN',
+              }
+
+
 nuisances['pdf_qqbar']  = {
                'name'  : 'pdf_qqbar', 
                'type'  : 'lnN',
                'samples'  : {
                    'qqH_hww' : '0.97/1.03',
                    'qqH_htt' : '0.97/1.03',
-                   'WH_hww' : '0.978/1.022',
-                   'ZH_hww' : '0.978/1.022',
+                   'WH_hww'  : '0.978/1.022',
+                   'ZH_hww'  : '0.978/1.022',
                    },
               }
 
+nuisances['pdf_qqbar_accept']  = {
+               'name'  : 'pdf_qqbar', 
+               'type'  : 'lnN',
+               'samples'  : {
+                   'qqH_hww' : '1.03',
+                   'qqH_htt' : '1.03',
+                   'WH_hww'  : '1.03',
+                   'ZH_hww'  : '1.03',
+                   },
+              }
 
 
 nuisances['kfactggww']  = {
