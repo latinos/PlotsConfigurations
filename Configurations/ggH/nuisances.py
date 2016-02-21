@@ -129,6 +129,19 @@ nuisances['pdf_gg_accept']  = {
               }
 
 
+nuisances['QCDscale_gg_accept']  = {
+               'name'  : 'QCDscale_gg_accept', 
+               'samples'  : {
+                   'ggH_hww' : '1.03',
+                   'ggH_htt' : '1.03',
+                   'H_htt'   : '1.03',
+                   'ggZH_hww': '1.03',                   
+                   },
+               'type'  : 'lnN',
+              }
+
+
+
 nuisances['pdf_qqbar']  = {
                'name'  : 'pdf_qqbar', 
                'type'  : 'lnN',
@@ -137,11 +150,12 @@ nuisances['pdf_qqbar']  = {
                    'qqH_htt' : '0.97/1.03',
                    'WH_hww'  : '0.978/1.022',
                    'ZH_hww'  : '0.978/1.022',
+                   #'VZ'      : '',
                    },
               }
 
 nuisances['pdf_qqbar_accept']  = {
-               'name'  : 'pdf_qqbar', 
+               'name'  : 'pdf_qqbar_accept', 
                'type'  : 'lnN',
                'samples'  : {
                    'qqH_hww' : '1.03',
@@ -150,6 +164,18 @@ nuisances['pdf_qqbar_accept']  = {
                    'ZH_hww'  : '1.03',
                    },
               }
+
+nuisances['QCDscale_qqbar_accept']  = {
+               'name'  : 'QCDscale_qqbar_accept', 
+               'type'  : 'lnN',
+               'samples'  : {
+                   'qqH_hww' : '1.02',
+                   'qqH_htt' : '1.02',
+                   'WH_hww'  : '1.02',
+                   'ZH_hww'  : '1.02',
+                   },
+              }
+
 
 
 nuisances['kfactggww']  = {
