@@ -13,6 +13,8 @@ nuisances['lumi']  = {
               }
 
 
+# theory uncertainties
+
 nuisances['QCDscale_ggH0j']  = {
                'name'  : 'QCDscale_ggH0j', 
                'samples'  : {
@@ -195,6 +197,50 @@ nuisances['kfactggwwInt']  = {
                    },
               }
 
+#  - WW shaping
+nuisances['WWresum0j']  = {
+                'name'  : 'WWresum0j',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+                   }
+                }
+
+
+nuisances['WWresum1j']  = {
+                'name'  : 'WWresum1j',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+                   }
+                }
+
+nuisances['WWqscale0j']  = {
+                'name'  : 'WWqscale0j',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+                   }
+                }
+
+
+nuisances['WWqscale1j']  = {
+                'name'  : 'WWqscale1j',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+                   }
+                }
+
+
+
+
+# experimental uncertainties
+
 
 #nuisances['WgStarScale']  = {
                 #'name'  : 'WgStarScale',
@@ -205,30 +251,6 @@ nuisances['kfactggwwInt']  = {
                    #}
                 #}
 
-
-#nuisances['DYnormalization0j']  = {
-              #'name'  : 'DYnormalization0j',
-              #'samples'  : {
-                   #'DY' : '1.06',
-                   #},
-               #'type'  : 'lnN',
-               #'cuts'  : [
-                 #'hww2l2v_13TeV_of0j',
-                 #'hww2l2v_13TeV_top_of0j'
-                #]               
-             #}
-
-#nuisances['DYnormalization1j']  = {
-              #'name'  : 'DYnormalization0j',
-              #'samples'  : {
-                   #'DY' : '1.13',
-                   #},
-               #'type'  : 'lnN',
-               #'cuts'  : [
-                 #'hww2l2v_13TeV_of1j',
-                 #'hww2l2v_13TeV_top_of1j'
-                #]               
-              #}
 
 
 

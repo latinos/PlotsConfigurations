@@ -71,8 +71,8 @@ samples['top'] = {   'name': [
 
 
 samples['WW']  = {    'name': ['latino_WWTo2L2Nu.root'],      
-                      #'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
-                      'weight' : 'puW*12.178/1965200.*1000.*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
+                      'weight' : 'nllW*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
+                      #'weight' : 'puW*12.178/1965200.*1000.*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
                       #'weights': ['abs(nllW)'] ,           
                       #'weights': ['1.000'] ,           
                   }
