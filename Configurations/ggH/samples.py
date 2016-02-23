@@ -70,12 +70,18 @@ samples['top'] = {   'name': [
                    }
 
 
-samples['WW']  = {    'name': ['latino_WWTo2L2Nu.root'],      
+samples['WW']  = {    'name': ['latino_WWTo2L2Nu.root', 'latino_WWTo2L2NuHerwigPS.root'],      
                       'weight' : 'nllW*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
                       #'weight' : 'puW*12.178/1965200.*1000.*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
                       #'weights': ['abs(nllW)'] ,           
-                      #'weights': ['1.000'] ,           
+                      'weights': ['1.000', '0.000'] ,           
                   }
+
+#samples['WW_Herwig']  = {    'name': ['latino_WWTo2L2NuHerwigPS.root'],      
+                      #'weight' : 'nllW*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
+                  #}
+
+
 
 samples['ggWW']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root'],      
                       'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
@@ -143,11 +149,11 @@ samples['H_htt']  = {      'name': ['latino_GluGluHToTauTau_M125.root',
 # HWW 
 
 samples['ggH_hww']  = {    'name': [
-                               'latino_GluGluHToWWTo2L2NuPowheg_M125.root',
+                               'latino_GluGluHToWWTo2L2NuPowheg_M125.root', 'latino_GluGluHToWWTo2L2NuHerwigPS_M125.root'
                                #'latino_GluGluHToWWTo2L2Nu_M125.root'
                                ],      
                            'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
-                           #'weights': ['1']            
+                           'weights': ['1', '0']            
                   }
 
 samples['qqH_hww']  = {    'name': ['latino_VBFHToWWTo2L2Nu_M125.root'],      

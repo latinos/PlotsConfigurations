@@ -237,7 +237,19 @@ nuisances['WWqscale1j']  = {
                 }
 
 
+# PS/UE
 
+# PS
+
+#nuisances['PS']  = {
+                #'name'  : 'PS', 
+                #'kind'  : 'weight',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'WW'      :  ['(dataset==4)*1.0+(dataset!=42)*0.0',    '(dataset==4)*0.0+(dataset!=42)*1.0'],
+                   #'ggH_hww' :  ['(dataset==1125)*1.0+(dataset!=42)*0.0', '(dataset==1125)*0.0+(dataset!=42)*1.0'],
+                #},
+#}
 
 # experimental uncertainties
 
