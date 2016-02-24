@@ -42,14 +42,24 @@ samples['DY']  = {    'name': [
 # baseW for DY-50
 
 
-samples['Wjets']  = {    'name': ['latino_WJetsToLNu.root'],     #   file name    
-                      'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
-                      #'isData': ['0'],                             
-                  }
+#samples['Wjets']  = {    'name': ['latino_WJetsToLNu.root'],     #   file name    
+                      #'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
+                      ##'isData': ['0'],                             
+                  #}
 
 
 # data driven
-#samples['Fake']  = {    'name': [
+samples['Fake']  = {    'name': [
+                       '../../../../../../../eos/user/a/amassiro/HWW2015/latino_DD_Run2015C_16Dec2015_DoubleEG.root',
+                       '../../../../../../../eos/user/a/amassiro/HWW2015/latino_DD_Run2015C_16Dec2015_DoubleMuon.root',
+                       '../../../../../../../eos/user/a/amassiro/HWW2015/latino_DD_Run2015C_16Dec2015_MuonEG.root',
+                       '../../../../../../../eos/user/a/amassiro/HWW2015/latino_DD_Run2015C_16Dec2015_SingleElectron.root',
+                       '../../../../../../../eos/user/a/amassiro/HWW2015/latino_DD_Run2015C_16Dec2015_SingleMuon.root',
+                       '../../../../../../../eos/user/a/amassiro/HWW2015/latino_DD_Run2015D_16Dec2015_DoubleEG.root',
+                       '../../../../../../../eos/user/a/amassiro/HWW2015/latino_DD_Run2015D_16Dec2015_DoubleMuon.root',
+                       '../../../../../../../eos/user/a/amassiro/HWW2015/latino_DD_Run2015D_16Dec2015_MuonEG.root',
+                       '../../../../../../../eos/user/a/amassiro/HWW2015/latino_DD_Run2015D_16Dec2015_SingleElectron.root',
+                       '../../../../../../../eos/user/a/amassiro/HWW2015/latino_DD_Run2015D_16Dec2015_SingleMuon.root'
                        #'../fake/21OctBis_Run2015D_05Oct2015/l2loose__hadd__fakeW/latino_DD_Run2015D_05Oct2015_DoubleEG.root',
                        #'../fake/21OctBis_Run2015D_05Oct2015/l2loose__hadd__fakeW/latino_DD_Run2015D_05Oct2015_DoubleMuon.root',
                        #'../fake/21OctBis_Run2015D_05Oct2015/l2loose__hadd__fakeW/latino_DD_Run2015D_05Oct2015_MuonEG.root',
@@ -65,10 +75,10 @@ samples['Wjets']  = {    'name': ['latino_WJetsToLNu.root'],     #   file name
                        #'../fake/21OctBis_Run2015D_PromptReco_0851pb/l2loose__hadd__fakeW/latino_DD_Run2915D_PromptReco_MuonEG_0851pb.root',
                        #'../fake/21OctBis_Run2015D_PromptReco_0851pb/l2loose__hadd__fakeW/latino_DD_Run2915D_PromptReco_SingleElectron_0851pb.root',
                        #'../fake/21OctBis_Run2015D_PromptReco_0851pb/l2loose__hadd__fakeW/latino_DD_Run2915D_PromptReco_SingleMuon_0851pb.root',
-                                 #],     
-                      #'weight' : 'fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2)',              #   weight/cut 
-                      #'isData': ['all'],                             
-                  #}
+                                 ],     
+                      'weight' : 'fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2)',              #   weight/cut 
+                      'isData': ['all'],                             
+                  }
 
                        
 

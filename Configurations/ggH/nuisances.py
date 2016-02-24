@@ -251,6 +251,23 @@ nuisances['WWqscale1j']  = {
                 #},
 #}
 
+nuisances['PS']  = {
+                'name'  : 'PS', 
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples'  : {
+                   #'WW' :  ['1', '1'], latino_WWTo2L2NuHerwigPS.root missing
+                   'ggH_hww' : ['1', '1'],
+                   'qqH_hww' : ['1', '1'],
+                },
+                'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight/../MCl2loose__hadd__bSFL2pTEff__l2tight__PS/',
+                'folderDown' : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight/' 
+
+                }
+
+
+
+
 # experimental uncertainties
 
 
