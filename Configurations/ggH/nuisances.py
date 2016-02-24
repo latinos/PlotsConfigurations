@@ -263,8 +263,14 @@ nuisances['WWqscale1j']  = {
                    #}
                 #}
 
-
-
+nuisances['WgStarScale']  = {
+               'name'  : 'pdf_qqbar_accept', 
+               'type'  : 'lnN',
+               'samples'  : {
+                   'Wg' : '1.025',  # 0.3 / 1.2  --> k_factor = 1.2 +/- 0.3
+                   },
+                }
+ 
 
 nuisances['DYttnorm0j']  = {
                'name'  : 'DYttnorm0j', 

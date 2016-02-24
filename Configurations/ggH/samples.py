@@ -3,13 +3,9 @@
 #samples = {}
 
 samples['DY']  = {    'name': [
-                            'latino_DY2JetsToLL__part0.root',
-                            'latino_DY2JetsToLL__part1.root',
-                            'latino_DY2JetsToLL__part2.root',
-                            'latino_DY2JetsToLL__part3.root',
-                            'latino_DY2JetsToLL__part4.root',
-                            'latino_DY2JetsToLL__part5.root',
                             'latino_DYJetsToLL_M-10to50.root',
+                            'latino_DYJetsToLL_M-10to50ext3.root',
+                            #
                             'latino_DYJetsToLL_M-50_0000__part0.root',
                             'latino_DYJetsToLL_M-50_0000__part1.root',
                             'latino_DYJetsToLL_M-50_0000__part2.root',
@@ -20,15 +16,30 @@ samples['DY']  = {    'name': [
                             'latino_DYJetsToLL_M-50_0001__part2.root',
                             'latino_DYJetsToLL_M-50_0001__part3.root',
                             'latino_DYJetsToLL_M-50_0001__part4.root',
-                            'latino_DYJetsToLL_M-50_0002__part0.root',
+                            'latino_DYJetsToLL_M-50_0002__part0.root'
                             #
-                            'latino_DYJetsToLL_M-10to50.root'
                             ],    
-                      'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
-                      #'isData': ['0', '0'],                                  
+                      'weight' : 'puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
+                      #'isData': ['0', '0'],      
+                      'weights': [  '0.238112'
+                                  , '0.238112'
+                                  , 'baseW'
+                                  , 'baseW'
+                                  , 'baseW'
+                                  , 'baseW'
+                                  , 'baseW'
+                                  , 'baseW'
+                                  , 'baseW'
+                                  , 'baseW'
+                                  , 'baseW'
+                                  , 'baseW'
+                                  , 'baseW'
+                                  ] ,           
                   }
 
 
+# 0.238112 for DY-10-50
+# baseW for DY-50
 
 
 samples['Wjets']  = {    'name': ['latino_WJetsToLNu.root'],     #   file name    
@@ -105,7 +116,7 @@ samples['ggWW_Int']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root', 'latino
 
 
 samples['Wg']  = {    'name': ['latino_Wg_AMCNLOFXFX.root'],      
-                      'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+                      'weight' : '1.2*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
                       #'weights': ['1'] ,           
                       #'isData': ['0'],                            
                   }
