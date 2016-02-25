@@ -9,7 +9,7 @@ nuisances['lumi']  = {
                'name'  : 'lumi_13TeV', 
                'all'   : 1 ,     # apply to all samples
                'type'  : 'lnN',
-               'value' : '1.046' 
+               'value' : '1.027' 
               }
 
 
