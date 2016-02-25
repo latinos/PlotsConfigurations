@@ -29,5 +29,14 @@ Run combine:
     combine -M Asymptotic datacard.txt
     combine -M Asymptotic -t -1 datacard.txt
     
+
+    
+Backup:
+
+    mkShapes.py      --pycfg=configuration.py  --inputDir=/tmp/amassiro/eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight/
+    
+    mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_WW.root
+    
+
     
     
