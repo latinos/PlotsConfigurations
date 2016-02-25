@@ -40,6 +40,12 @@ samples['DY']  = {    'name': [
 
 # 0.238112 for DY-10-50
 # baseW for DY-50
+# 
+#  22Jan_25ns_mAODv2_MC DYJetsToLL_M-10to50 : {'nEvt': '22460679.0', 'nTot': '30868739.0', 'nPos': '26664709.0', 'baseW': '0.828559100996', 'nNeg': '4204030.0', 'xs': '18610.0'}
+#  22Jan_25ns_mAODv2_MC DYJetsToLL_M-10to50ext3 : {'nEvt': '55695668.0', 'nTot': '76530604.0', 'nPos': '66113136.0', 'baseW': '0.334137297716', 'nNeg': '10417468.0', 'xs': '18610.0'}
+#  18610 / (26664709.0 - 4204030.0) * 1000  = 0.828559
+#  18610 / (26664709.0 - 4204030.0 + 66113136.0 - 10417468.0) * 1000 = 0.238112
+#
 
 
 #samples['Wjets']  = {    'name': ['latino_WJetsToLNu.root'],     #   file name    
@@ -60,21 +66,6 @@ samples['Fake']  = {    'name': [
                        '../../../../../../../eos/user/a/amassiro/HWW2015/latino_DD_Run2015D_16Dec2015_MuonEG.root',
                        '../../../../../../../eos/user/a/amassiro/HWW2015/latino_DD_Run2015D_16Dec2015_SingleElectron.root',
                        '../../../../../../../eos/user/a/amassiro/HWW2015/latino_DD_Run2015D_16Dec2015_SingleMuon.root'
-                       #'../fake/21OctBis_Run2015D_05Oct2015/l2loose__hadd__fakeW/latino_DD_Run2015D_05Oct2015_DoubleEG.root',
-                       #'../fake/21OctBis_Run2015D_05Oct2015/l2loose__hadd__fakeW/latino_DD_Run2015D_05Oct2015_DoubleMuon.root',
-                       #'../fake/21OctBis_Run2015D_05Oct2015/l2loose__hadd__fakeW/latino_DD_Run2015D_05Oct2015_MuonEG.root',
-                       #'../fake/21OctBis_Run2015D_05Oct2015/l2loose__hadd__fakeW/latino_DD_Run2015D_05Oct2015_SingleElectron.root',
-                       #'../fake/21OctBis_Run2015D_05Oct2015/l2loose__hadd__fakeW/latino_DD_Run2015D_05Oct2015_SingleMuon.root',
-                       #'../fake/21OctBis_Run2015D_PromptReco_0716pb/l2loose__hadd__fakeW/latino_DD_Run2915D_PromptReco_DoubleEG_0716pb.root',
-                       #'../fake/21OctBis_Run2015D_PromptReco_0716pb/l2loose__hadd__fakeW/latino_DD_Run2915D_PromptReco_DoubleMuon_0716pb.root',
-                       #'../fake/21OctBis_Run2015D_PromptReco_0716pb/l2loose__hadd__fakeW/latino_DD_Run2915D_PromptReco_MuonEG_0716pb.root',
-                       #'../fake/21OctBis_Run2015D_PromptReco_0716pb/l2loose__hadd__fakeW/latino_DD_Run2915D_PromptReco_SingleElectron_0716pb.root',
-                       #'../fake/21OctBis_Run2015D_PromptReco_0716pb/l2loose__hadd__fakeW/latino_DD_Run2915D_PromptReco_SingleMuon_0716pb.root',
-                       #'../fake/21OctBis_Run2015D_PromptReco_0851pb/l2loose__hadd__fakeW/latino_DD_Run2915D_PromptReco_DoubleEG_0851pb.root',
-                       #'../fake/21OctBis_Run2015D_PromptReco_0851pb/l2loose__hadd__fakeW/latino_DD_Run2915D_PromptReco_DoubleMuon_0851pb.root',
-                       #'../fake/21OctBis_Run2015D_PromptReco_0851pb/l2loose__hadd__fakeW/latino_DD_Run2915D_PromptReco_MuonEG_0851pb.root',
-                       #'../fake/21OctBis_Run2015D_PromptReco_0851pb/l2loose__hadd__fakeW/latino_DD_Run2915D_PromptReco_SingleElectron_0851pb.root',
-                       #'../fake/21OctBis_Run2015D_PromptReco_0851pb/l2loose__hadd__fakeW/latino_DD_Run2915D_PromptReco_SingleMuon_0851pb.root',
                                  ],     
                       'weight' : 'fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2)',              #   weight/cut 
                       'isData': ['all'],                             
@@ -85,7 +76,7 @@ samples['Fake']  = {    'name': [
 samples['top'] = {   'name': [
                           'latino_TTTo2L2Nu.root', 
                           'latino_ST_tW_antitop.root',
-                          #'latino_ST_tW_top.root'
+                          'latino_ST_tW_top.root'
                           ],          
                        'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',                
                    }
@@ -93,18 +84,10 @@ samples['top'] = {   'name': [
 
 samples['WW']  = {    'name': [
                                   'latino_WWTo2L2Nu.root'
-                                #, 'latino_WWTo2L2NuHerwigPS.root'
                                 ],      
                       'weight' : 'nllW*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
-                      #'weight' : 'puW*12.178/1965200.*1000.*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
                       #'weights': ['abs(nllW)'] ,           
-                      #'weights': ['1.000', '0.000'] ,           
                   }
-
-#samples['WW_Herwig']  = {    'name': ['latino_WWTo2L2NuHerwigPS.root'],      
-                      #'weight' : 'nllW*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
-                  #}
-
 
 
 samples['ggWW']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root'],      
@@ -134,10 +117,10 @@ samples['Wg']  = {    'name': ['latino_Wg_AMCNLOFXFX.root'],
 
 samples['VZ']  = {    'name': [
                           'latino_WZTo3LNu.root', 
-                          'latino_ZZ.root',
-                          #'latino_ZZTo2L2Nu.root'
+                          #'latino_ZZ.root',  ---> replaced by inclusive samples
+                          'latino_ZZTo2L2Nu.root'
                           #'latino_ZZTo2L2Q.root'
-                          #'latino_ZZTo4L.root'
+                          'latino_ZZTo4L.root'
                          ], 
                       'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
                       #'weights': ['1'] ,           
@@ -161,11 +144,10 @@ samples['H_htt']  = {      'name': ['latino_GluGluHToTauTau_M125.root',
                                     'latino_VBFHToTauTau_M125.root',
                                     'latino_HWminusJ_HToTauTau_M125.root',
                                     'latino_HWplusJ_HToTauTau_M125.root',
-                                    #'latino_HZJ_HToTauTau_M125.root'
+                                    'latino_HZJ_HToTauTau_M125.root'
                                     ],      
                            'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
-                           'weights': ['1', '1', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)' ]            
-                           #'weights': ['1', '1', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)' ]            
+                           'weights': ['1', '1', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)' ]            
                   }
 
 
@@ -174,24 +156,20 @@ samples['H_htt']  = {      'name': ['latino_GluGluHToTauTau_M125.root',
 
 samples['ggH_hww']  = {    'name': [
                                'latino_GluGluHToWWTo2L2NuPowheg_M125.root'
-                               #, 'latino_GluGluHToWWTo2L2NuHerwigPS_M125.root'
                                #'latino_GluGluHToWWTo2L2Nu_M125.root'
+                               #'latino_GluGluHToWWTo2L2Nu_alternative_M125.root'  --> 500k events
                                ],      
                            'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
-                           #'weights': ['1', '0']            
                   }
 
 samples['qqH_hww']  = {    'name': ['latino_VBFHToWWTo2L2Nu_M125.root'],      
                            'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
-                           'weights': ['1']            
                   }
 
 samples['ggZH_hww']  = {    'name': [
-                               #'latino_ggZH_HToWW_M125.root',
-                               'latino_ggZH_HToWW_M130.root'
+                               'latino_ggZH_HToWW_M125.root',
                                ],      
                            'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
-                           ##'weights': ['1']            
                   }
 
 
@@ -224,14 +202,6 @@ samples['DATA']  = {   'name': [
                        'weight' : 'trigger',
                        'isData': ['all'],                            
                   }
-
-
-
-# scp -r amassiro@lxplus062.cern.ch:/tmp/amassiro/eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight /media/data/amassiro/LatinoTrees/Moriond/
-# scp -r amassiro@lxplus062.cern.ch:/tmp/amassiro/eos/user/j/jlauwers/HWW2015/22Jan_Run2015C_16Dec2015/l2loose__hadd__bSFL2pTEff__l2tight /media/data/amassiro/LatinoTrees/Moriond/22Jan_Run2015C_16Dec2015/
-# scp -r amassiro@lxplus062.cern.ch:/tmp/amassiro/eos/user/j/jlauwers/HWW2015/22Jan_Run2015D_16Dec2015/l2loose__hadd__bSFL2pTEff__l2tight /media/data/amassiro/LatinoTrees/Moriond/22Jan_Run2015D_16Dec2015/
-
-
 
 
 
