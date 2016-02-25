@@ -66,6 +66,8 @@ Combine datacards:
                       of0j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt \
                       of1j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt \
                       >   Moriond2016.txt
+
+                         
                       
     combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.txt
     
@@ -177,5 +179,21 @@ Backup:
     mkShapes.py      --pycfg=configuration.py  --inputDir=/media/data/amassiro/LatinoTrees/Moriond/MCl2loose__hadd__bSFL2pTEff__l2tight/
     mkShapes.py      --pycfg=configuration.py  --inputDir=/tmp/amassiro/eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight/
     
+    cat ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt  | grep -v "CMS_fakehww" | grep -v "fakestathww" | grep -v "ggWW_Int_ibin_" | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.test.txt
+    mv ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt
     
+    cat ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt  | grep -v "CMS_fakehww" | grep -v "fakestathww" | grep -v "ggWW_Int_ibin_" | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.test.txt
+    mv ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt
+    
+    cat ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt  | grep -v "CMS_fakehww" | grep -v "fakestathww" | grep -v "ggWW_Int_ibin_" | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt
+    mv ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt
+    
+    cat ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt  | grep -v "CMS_fakehww" | grep -v "fakestathww" | grep -v "ggWW_Int_ibin_" | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt
+    mv ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt
+    
+    cat ggH/datacards/hww2l2v_13TeV_of0j/events/datacard.txt  | grep -v "CMS_fakehww" | grep -v "fakestathww" | grep -v "ggWW_Int_ibin_" | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_of0j/events/datacard.test.txt
+    mv ggH/datacards/hww2l2v_13TeV_of0j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_of0j/events/datacard.txt
+    
+    cat ggH/datacards/hww2l2v_13TeV_of1j/events/datacard.txt  | grep -v "CMS_fakehww" | grep -v "fakestathww" | grep -v "ggWW_Int_ibin_" | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_of1j/events/datacard.test.txt
+    mv ggH/datacards/hww2l2v_13TeV_of1j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_of1j/events/datacard.txt
     
