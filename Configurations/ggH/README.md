@@ -7,6 +7,12 @@ Common tools for analysis:
     limit and significance results
 
 
+
+Some useful aliases:
+    
+    alias eosusermount='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine.user/bin/eos.select -b fuse mount'
+    alias eosuserumount='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine.user/bin/eos.select -b fuse umount'
+
 Steps to get datacards and plots:
 
     
@@ -24,7 +30,7 @@ Run combine:
 
     git clone https://github.com/cms-analysis/HiggsAnalysis-CombinedLimit.git HiggsAnalysis/CombinedLimit
     cd HiggsAnalysis/CombinedLimit
-    git checkout 74x-root6
+    #   ---->  git checkout 74x-root6  //---- don't do it anymore
 
     cd ~/Framework/CMSSW_7_1_15/src/
     cmsenv
