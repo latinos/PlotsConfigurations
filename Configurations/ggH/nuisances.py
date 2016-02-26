@@ -15,6 +15,22 @@ nuisances['lumi']  = {
 
 # theory uncertainties
 
+# WZ from 
+# https://twiki.cern.ch/twiki/bin/view/CMS/StandardModelCrossSectionsat13TeV
+#
+nuisances['QCDscale_VW']  = {
+               'name'  : 'QCDscale_VW', 
+               'samples'  : {
+                   'VW' : '1.03',
+                   },
+               'type'  : 'lnN'
+              }
+
+# PDF: 0.0064 / 0.1427 = 0.0448493
+# QCD: 0.0046 / 0.1427 = 0.0322355
+
+
+
 nuisances['QCDscale_ggH0j']  = {
                'name'  : 'QCDscale_ggH0j', 
                'samples'  : {
@@ -88,17 +104,6 @@ nuisances['QCDscale_ggZH']  = {
               }
 
 
-nuisances['pdf_gg']  = {
-               'name'  : 'pdf_gg', 
-               'samples'  : {
-                   'ggH_hww' : '0.929/1.060',
-                   'ggH_htt' : '0.929/1.060',
-                   'H_htt'   : '0.929/1.060',
-                   'ggZH_hww': '0.949/1.051',                   
-                   },
-               'type'  : 'lnN',
-              }
-
 nuisances['QCDscale_gg_accept']  = {
                'name'  : 'QCDscale_gg_accept', 
                'samples'  : {
@@ -112,6 +117,20 @@ nuisances['QCDscale_gg_accept']  = {
 
 
 
+# pdf uncertainty
+
+nuisances['pdf_gg']  = {
+               'name'  : 'pdf_gg', 
+               'samples'  : {
+                   'ggH_hww' : '0.929/1.060',
+                   'ggH_htt' : '0.929/1.060',
+                   'H_htt'   : '0.929/1.060',
+                   'ggZH_hww': '0.949/1.051',                   
+                   },
+               'type'  : 'lnN',
+              }
+
+
 nuisances['pdf_qqbar']  = {
                'name'  : 'pdf_qqbar', 
                'type'  : 'lnN',
@@ -120,7 +139,7 @@ nuisances['pdf_qqbar']  = {
                    'qqH_htt' : '0.97/1.03',
                    'WH_hww'  : '0.978/1.022',
                    'ZH_hww'  : '0.978/1.022',
-                   #'VZ'      : '',
+                   'VZ'      : '1.04',  # PDF: 0.0064 / 0.1427 = 0.0448493
                    },
               }
 
