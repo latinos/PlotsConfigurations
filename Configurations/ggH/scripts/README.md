@@ -9,7 +9,7 @@ NB: to be used on top of the combined datacard after the unblinding!
 
 
 
-doTop.sh
+doDY.sh
 ==============
 
 Compute DYtt SFs and perform the Likelihood scan:
