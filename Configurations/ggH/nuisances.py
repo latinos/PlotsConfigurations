@@ -99,19 +99,6 @@ nuisances['pdf_gg']  = {
                'type'  : 'lnN',
               }
 
-
-nuisances['pdf_gg_accept']  = {
-               'name'  : 'pdf_gg_accept', 
-               'samples'  : {
-                   'ggH_hww' : '1.03',
-                   'ggH_htt' : '1.03',
-                   'H_htt'   : '1.03',
-                   'ggZH_hww': '1.03',                   
-                   },
-               'type'  : 'lnN',
-              }
-
-
 nuisances['QCDscale_gg_accept']  = {
                'name'  : 'QCDscale_gg_accept', 
                'samples'  : {
@@ -137,14 +124,39 @@ nuisances['pdf_qqbar']  = {
                    },
               }
 
+
+#  sample: GluGluHToTauTau_M125              PDF unc = 2.17926 %     renorm/fact-up unc = 16.1205 %     renorm/fact-down unc = 12.6629 %
+#  sample: GluGluHToTauTau_M130              PDF unc = 2.22151 %     renorm/fact-up unc = 17.6231 %     renorm/fact-down unc = 13.3184 %
+#  sample: GluGluHToWWTo2L2NuPowheg_M125     PDF unc = 2.14268 %     renorm/fact-up unc = 15.403  %     renorm/fact-down unc = 12.2896 %
+#  sample: TTTo2L2Nu                         PDF unc = 1.4951  %     renorm/fact-up unc = 10.4983 %     renorm/fact-down unc = 10.8503 %
+#  sample: VBFHToTauTau_M125                 PDF unc = 1.78633 %     renorm/fact-up unc = 1.55808 %     renorm/fact-down unc = 1.65156 %
+#  sample: WWTo2L2Nu                         PDF unc = 1.53441 %     renorm/fact-up unc = 0.605996%     renorm/fact-down unc = 0.200891%
+#  sample: WZTo3LNu                          PDF unc = 1.48919 %     renorm/fact-up unc = 1.04377 %     renorm/fact-down unc = 0.681094%
+
+
+nuisances['pdf_gg_accept']  = {
+               'name'  : 'pdf_gg_accept', 
+               'samples'  : {
+                   'ggH_hww' : '1.022',
+                   'ggH_htt' : '1.022',
+                   'H_htt'   : '1.022',
+                   'ggZH_hww': '1.022', 
+                   #'top'     : '1.015',    # ---> not needed                
+                   },
+               'type'  : 'lnN',
+              }
+
+
 nuisances['pdf_qqbar_accept']  = {
                'name'  : 'pdf_qqbar_accept', 
                'type'  : 'lnN',
                'samples'  : {
-                   'qqH_hww' : '1.03',
-                   'qqH_htt' : '1.03',
-                   'WH_hww'  : '1.03',
-                   'ZH_hww'  : '1.03',
+                   'qqH_hww' : '1.018',
+                   'qqH_htt' : '1.018',
+                   'WH_hww'  : '1.018',
+                   'ZH_hww'  : '1.018',
+                   #'WW'      : '1.015',    # ---> not needed
+                   'VW'      : '1.015',
                    },
               }
 
@@ -160,6 +172,7 @@ nuisances['QCDscale_qqbar_accept']  = {
               }
 
 
+# ggww and interference
 
 nuisances['kfactggww']  = {
                'name'  : 'kfactggww', 
@@ -457,11 +470,11 @@ nuisances['jes']  = {
                 'type'  : 'shape',
                 'samples'  : {
                    'WW' :  ['1', '1'],
-                   #'DY' :  ['1', '1'],
+                   'DY' :  ['1', '1'],
                    'top' : ['1', '1'],
                    'VZ' :  ['1', '1'],
                    'VVV' : ['1', '1'],
-                   #'ggH_hww' : ['1', '1'],
+                   'ggH_hww' : ['1', '1'],
                    'qqH_hww' : ['1', '1'],
                    'WH_hww' :  ['1', '1'],
                    'ZH_hww' :  ['1', '1'],
@@ -479,11 +492,11 @@ nuisances['electronpt']  = {
                 'samples'  : {
                    'ggWW' :['1', '1'],
                    'WW' :  ['1', '1'],
-                   #'DY' :  ['1', '1'],
+                   'DY' :  ['1', '1'],
                    'top' : ['1', '1'],
-                   #'VZ' :  ['1', '1'],
+                   'VZ' :  ['1', '1'],
                    'VVV' : ['1', '1'],
-                   #'ggH_hww' : ['1', '1'],
+                   'ggH_hww' : ['1', '1'],
                    'qqH_hww' : ['1', '1'],
                    'WH_hww' :  ['1', '1'],
                    'ZH_hww' :  ['1', '1'],
@@ -502,11 +515,11 @@ nuisances['muonpt']  = {
                 'samples'  : {
                    'ggWW' :['1', '1'],
                    'WW' :  ['1', '1'],
-                   #'DY' :  ['1', '1'],
+                   'DY' :  ['1', '1'],
                    'top' : ['1', '1'],
-                   #'VZ' :  ['1', '1'],
+                   'VZ' :  ['1', '1'],
                    'VVV' : ['1', '1'],
-                   #'ggH_hww' : ['1', '1'],
+                   'ggH_hww' : ['1', '1'],
                    'qqH_hww' : ['1', '1'],
                    'WH_hww' :  ['1', '1'],
                    'ZH_hww' :  ['1', '1'],
@@ -526,11 +539,11 @@ nuisances['met']  = {
                 'samples'  : {
                    'ggWW' :['1', '1'],
                    'WW' :  ['1', '1'],
-                   #'DY' :  ['1', '1'],
+                   'DY' :  ['1', '1'],
                    'top' : ['1', '1'],
                    'VZ' :  ['1', '1'],
                    'VVV' : ['1', '1'],
-                   #'ggH_hww' : ['1', '1'],
+                   'ggH_hww' : ['1', '1'],
                    'qqH_hww' : ['1', '1'],
                    'WH_hww' :  ['1', '1'],
                    'ZH_hww' :  ['1', '1'],
