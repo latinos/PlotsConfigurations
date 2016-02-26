@@ -268,7 +268,7 @@ nuisances['WgStarScale']  = {
                'name'  : 'pdf_qqbar_accept', 
                'type'  : 'lnN',
                'samples'  : {
-                   'Wg' : '1.025',  # 0.3 / 1.2  --> k_factor = 1.2 +/- 0.3
+                   'Wg' : '1.25',  # 0.3 / 1.2  --> k_factor = 1.2 +/- 0.3
                    },
                 }
  
