@@ -9,10 +9,13 @@ NB: to be used on top of the combined datacard after the unblinding!
 
 
 
+doTop.sh
+==============
+
 Compute DYtt SFs and perform the Likelihood scan:
   
-  bash dodytt0jet.sh  outputFileSF.txt outputFileLH.txt
+    bash dodytt0jet.sh  outputFileSF.txt outputFileLH.txt
 
-  bash dodytt1jet.sh  outputFileSF.txt outputFileLH.txt
+    bash dodytt1jet.sh  outputFileSF.txt outputFileLH.txt
 
 
