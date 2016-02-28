@@ -203,3 +203,25 @@ Backup:
     cat ggH/datacards/hww2l2v_13TeV_of1j/events/datacard.txt  | grep -v "CMS_fakehww" | grep -v "fakestathww" | grep -v "ggWW_Int_ibin_" | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_of1j/events/datacard.test.txt
     mv ggH/datacards/hww2l2v_13TeV_of1j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_of1j/events/datacard.txt
     
+    
+    
+    
+    
+    cat datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt  | grep -v "shape               -"  &> datacards/hww2l2v_13TeV_top_of0j/events/datacard.test.txt
+    mv datacards/hww2l2v_13TeV_top_of0j/events/datacard.test.txt datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt
+    
+    cat datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt  | grep -v "shape               -"  &> datacards/hww2l2v_13TeV_top_of1j/events/datacard.test.txt
+    mv datacards/hww2l2v_13TeV_top_of1j/events/datacard.test.txt datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt
+    
+    cat datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt  | grep -v "shape               -"  &> datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt
+    mv datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt
+    
+    cat datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt  | grep -v "shape               -"  &> datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt
+    mv datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt
+    
+    cat datacards/hww2l2v_13TeV_of0j/mllVSmth/datacard.txt  | grep -v "shape               -"  &> datacards/hww2l2v_13TeV_of0j/mllVSmth/datacard.test.txt
+    mv datacards/hww2l2v_13TeV_of0j/mllVSmth/datacard.test.txt datacards/hww2l2v_13TeV_of0j/mllVSmth/datacard.txt
+    
+    cat datacards/hww2l2v_13TeV_of1j/mllVSmth/datacard.txt  | grep -v "shape               -"  &> datacards/hww2l2v_13TeV_of1j/mllVSmth/datacard.test.txt
+    mv datacards/hww2l2v_13TeV_of1j/mllVSmth/datacard.test.txt datacards/hww2l2v_13TeV_of1j/mllVSmth/datacard.txt
+    
