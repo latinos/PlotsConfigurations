@@ -1,6 +1,6 @@
 # example of configuration file
 
-tag = 'TopDD'
+tag = 'Top1jet'
 
 outputDir = 'rootFile'
 
@@ -12,21 +12,21 @@ variablesFile = 'variables.py'
 cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples_TPSF.py' 
+samplesFile = 'samples.py' 
 
 # file with list of samples
-plotFile = 'plotDD.py' 
+plotFile = 'plot.py' 
 
 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 2.120 
+lumi = 2.318
 #lumi = 0.040
 # 40053803.220 /ub
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotTop0jetDD'
+outputDirPlots = 'plotTop1jet'
 
 
 # used by mkDatacards to define output directory for datacards
@@ -38,6 +38,6 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances_TPSF_DD.py'
+nuisancesFile = 'nuisances.py'
 
 
