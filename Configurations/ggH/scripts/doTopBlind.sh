@@ -19,11 +19,11 @@ echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" >> ${outputFileSF}
 
 # perform the Likelihood scan for Top 0 jets
 echo "~~~~~~~~~~ Top 0 jets Likelihood SCan ~~~~~~~~~~~~~" >> ${outputFileLH}
-echo `combine -M MultiDimFit ${inputCard0j} --algo=grid --points 50 --redefineSignalPOIs Topnorm0j --freezeNuisances=r,WWnorm0j,DYttnorm0j --setPhysicsModelParameterRanges Topnorm0j=0.01,2 -n "LHScanTopnorm0j"` >> ${outputFileLH}
+echo `combine -M MultiDimFit ${inputCard0j} -m 125 --algo=grid --points 50 --redefineSignalPOIs Topnorm0j --freezeNuisances=r,WWnorm0j,DYttnorm0j --setPhysicsModelParameterRanges Topnorm0j=0.01,2 -n "LHScanTopnorm0j"` >> ${outputFileLH}
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" >> ${outputFileLH}
 
 # perform the Likelihood scan for Top 1 jet
 echo "~~~~~~~~~~ Top 1 jet Likelihood Scan ~~~~~~~~~~~~~" >> ${outputFileLH}
-echo `combine -M MultiDimFit ${inputCard1j} --algo=grid --points 50 --redefineSignalPOIs Topnorm1j --freezeNuisances=r,WWnorm1j,DYttnorm1j --setPhysicsModelParameterRanges Topnorm1j=0.1,2 -n "LHScanTopnorm1j"` >> ${outputFileLH}
+echo `combine -M MultiDimFit ${inputCard1j} -m 125 --algo=grid --points 50 --redefineSignalPOIs Topnorm1j --freezeNuisances=r,WWnorm1j,DYttnorm1j --setPhysicsModelParameterRanges Topnorm1j=0.1,2 -n "LHScanTopnorm1j"` >> ${outputFileLH}
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" >> ${outputFileLH}
 
