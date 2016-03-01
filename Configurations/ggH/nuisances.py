@@ -736,8 +736,11 @@ nuisances['stat']  = {
                    'ZH_htt': {
                          'typeStat' : 'bbb',
                          },
-
-
+                   
+                   'Fake': {  # needed?
+                         'typeStat' : 'bbb',
+                         },
+                   
                  },
                'type'  : 'shape'
               }
