@@ -67,7 +67,7 @@ samples['Fake']  = {    'name': [
                        '../../../../../../../eos/user/a/amassiro/HWW2015/25FebNewFa/latino_DD_Run2015D_16Dec2015_SingleElectron.root',
                        '../../../../../../../eos/user/a/amassiro/HWW2015/25FebNewFa/latino_DD_Run2015D_16Dec2015_SingleMuon.root'
                                  ],     
-                      'weight' : 'fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2)',              #   weight/cut 
+                      'weight' : 'trigger*(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',              #   weight/cut 
                       'isData': ['all'],                             
                   }
 
@@ -97,10 +97,10 @@ samples['ggWW']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root'],
                       'isData': ['0'],                            
                   }
 
-samples['ggWW_Int']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root', 'latino_GluGluWWTo2L2NuHiggs_MCFM.root'],      
-                      'weight' : '1.87*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
-                      'weights': ['-1./1.4', '1/1.4'] ,           
-                  }
+#samples['ggWW_Int']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root', 'latino_GluGluWWTo2L2NuHiggs_MCFM.root'],      
+                      #'weight' : '1.87*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
+                      #'weights': ['-1./1.4', '1/1.4'] ,           
+                  #}
 
 # during tree production: 1.4 k-factor has been applied to both samples
 # ggWW sample: k = 1.4 +/- 15%
