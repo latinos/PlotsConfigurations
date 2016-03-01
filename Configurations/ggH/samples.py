@@ -67,7 +67,7 @@ samples['Fake']  = {    'name': [
                        '../../../../../../../eos/user/a/amassiro/HWW2015/25FebNewFa/latino_DD_Run2015D_16Dec2015_SingleElectron.root',
                        '../../../../../../../eos/user/a/amassiro/HWW2015/25FebNewFa/latino_DD_Run2015D_16Dec2015_SingleMuon.root'
                                  ],     
-                      'weight' : 'fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2)',              #   weight/cut 
+                      'weight' : 'trigger*(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',              #   weight/cut 
                       'isData': ['all'],                             
                   }
 
