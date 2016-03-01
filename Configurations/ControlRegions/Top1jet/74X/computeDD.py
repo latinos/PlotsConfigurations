@@ -2,7 +2,7 @@
 
 from ROOT import *
 
-inFile = TFile("rootFile/plots_Top1jet.root")
+inFile = TFile("rootFile/plots_TopSF.root")
 #inFile = TFile("rootFile/plots_TopNoSF.root")
 
 #inFile.cd("TopCtrl1jet/events")
@@ -19,7 +19,7 @@ for key in gDirectory.GetListOfKeys():
   h = gDirectory.Get(name)
   print name," : ",h.Integral() 
 
-  if name=="histo_ttbar" or name=="histo_ST" or name=="histo_top":
+  if name=="histo_ttbar" or name=="histo_ST":
     top+=h.Integral()
   elif name=="histo_DATA":
     data+=h.Integral()

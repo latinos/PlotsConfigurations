@@ -54,10 +54,6 @@ structure['ZZ']  = {
                   'isData'   : 0    
                   }
 
-structure['VV']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
 
 structure['ggH'] = {
                   'isSignal' : 1,
