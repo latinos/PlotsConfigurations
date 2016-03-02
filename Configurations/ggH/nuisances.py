@@ -524,7 +524,7 @@ nuisances['tttwTh']  = {
   
 nuisances['trigg']  = {
                 'name'  : 'trigger',
-                'kind'  : 'weight',
+                'kind'  : 'tree', #'weight',
                 'type'  : 'shape',
                 'samples'  : {
                    'ggH_hww' : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
@@ -540,7 +540,11 @@ nuisances['trigg']  = {
                    'WW'      : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
                    'top'     : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
                 }
+                'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/',
+                'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/' 
 }
+
+
 
 
 
@@ -556,7 +560,7 @@ nuisances['jes']  = {
                    'WW' :  ['1', '1'],
                    'DY' :  ['1', '1'],
                    'top' : ['1', '1'],
-                   #'VZ' :  ['1', '1'],
+                   'VZ' :  ['1', '1'],
                    'VVV' : ['1', '1'],
                    'ggH_hww' : ['1', '1'],
                    'qqH_hww' : ['1', '1'],
@@ -634,7 +638,7 @@ nuisances['met']  = {
                    'DY' :  ['1', '1'],
                    'top' : ['1', '1'],
                    'VZ' :  ['1', '1'],
-                   'VVV' : ['1', '1'],
+                   #'VVV' : ['1', '1'],
                    'ggH_hww' : ['1', '1'],
                    'qqH_hww' : ['1', '1'],
                    'WH_hww' :  ['1', '1'],
