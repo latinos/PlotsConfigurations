@@ -412,6 +412,17 @@ nuisances['Topnorm1j']  = {
 
 # fakes 
 
+
+nuisances['fake_syst']  = {
+               'name'  : 'fake_syst', 
+               'type'  : 'lnN',
+               'samples'  : {
+                   'Fake' : '1.30',
+                   },
+}
+ 
+
+
 nuisances['fake_ele']  = {
                 'name'  : 'fake_ele_hww',
                 'kind'  : 'weight',
