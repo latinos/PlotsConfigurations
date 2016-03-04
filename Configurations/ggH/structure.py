@@ -57,6 +57,11 @@ structure['Wg']  = {
                   'isData'   : 0 
                   }
 
+structure['Zg']  = { 
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
+
 structure['VZ']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
