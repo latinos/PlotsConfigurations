@@ -41,6 +41,8 @@ combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.txt
     
 combine -M ProfileLikelihood --significance Moriond2016.txt -t -1 --expectSignal=1
 
+combine -M MultiDimFit Moriond2016.txt -m 125 --algo=grid --points 50 --setPhysicsModelParameterRanges r=0.01,3 -n "LHScanH"   -t -1 --expectSignal=1
+
 
 
      

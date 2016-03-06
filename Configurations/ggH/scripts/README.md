@@ -2,9 +2,9 @@ doTop.sh
 ==============
 
 Compute Top SFs and perform the Likelihood scan using the combined datacard:
-  
+
     bash doTop.sh outputFileSF.txt outputFileLH.txt
-  
+
 NB: to be used on top of the combined datacard after the unblinding!
 
 doTopBlind.sh
@@ -20,18 +20,29 @@ How to plot the Likelihood scan:
 
     root -l higgsCombineLHScanTopnorm0j.MultiDimFit.mH125.root 
     limit->Draw("2*deltaNLL:Topnorm0j","deltaNLL<10 && deltaNLL>0","l")
-  
+
     root -l higgsCombineLHScanTopnorm1j.MultiDimFit.mH125.root 
     limit->Draw("2*deltaNLL:Topnorm1j","deltaNLL<10 && deltaNLL>0","l")
-  
 
+    
+    
 doDY.sh
 ==============
 
 Compute DYtt SFs and perform the Likelihood scan:
-  
+
     bash dodytt0jet.sh  outputFileSF.txt outputFileLH.txt
 
     bash dodytt1jet.sh  outputFileSF.txt outputFileLH.txt
 
 
+
+doGGH.sh
+==============
+    
+    root -l higgsCombineLHScanH.MultiDimFit.mH125.root
+    limit->Draw("2*deltaNLL:r","deltaNLL<10 && deltaNLL>0","l")
+
+    
+    root -l higgsCombineLHScanH.MultiDimFit.mH125.root   ggH/scripts/draw.C
+    
