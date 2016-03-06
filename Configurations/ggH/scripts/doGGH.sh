@@ -18,12 +18,6 @@ mv ggHMoriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt ggHMori
 cat ggHMoriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt   | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggHMoriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt
 mv ggHMoriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt ggHMoriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt
 
-cat ggHMoriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt   | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggHMoriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt
-mv ggHMoriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt ggHMoriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt
-
-cat ggHMoriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt   | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggHMoriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt
-mv ggHMoriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt ggHMoriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt
- 
  
 # combine
  
