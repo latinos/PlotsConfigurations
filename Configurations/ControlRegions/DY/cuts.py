@@ -10,9 +10,11 @@ supercut = ' mll>20 \
             '
 
 cuts['DYee']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
+                 && mll>60 \
                '
 
 cuts['DYmm']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)   \
+                 && mll>60 \
                '
 
 
