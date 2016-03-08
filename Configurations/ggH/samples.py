@@ -158,12 +158,15 @@ samples['H_htt']  = {      'name': ['latino_GluGluHToTauTau_M125.root',
 samples['ggH_hww']  = {    'name': [
                                'latino_GluGluHToWWTo2L2NuPowheg_M125.root'
                                #'latino_GluGluHToWWTo2L2Nu_M125.root'
-                               #'latino_GluGluHToWWTo2L2Nu_alternative_M125.root'  --> 500k events
+                               #'latino_GluGluHToWWTo2L2Nu_alternative_M125.root' # --> 500k events
                                ],      
                            'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
                   }
 
-samples['qqH_hww']  = {    'name': ['latino_VBFHToWWTo2L2Nu_M125.root'],      
+samples['qqH_hww']  = {    'name': [
+                               'latino_VBFHToWWTo2L2Nu_M125.root'
+                               #'latino_VBFHToWWTo2L2Nu_alternative_M125.root'
+                               ],      
                            'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
                   }
 
