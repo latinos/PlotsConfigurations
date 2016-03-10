@@ -1,6 +1,6 @@
 # example of configuration file
 
-tag = 'TopNoSF'
+tag = 'TopNoSF_MCNLO'
 
 outputDir = 'rootFile'
 
@@ -26,7 +26,7 @@ lumi = 2.120
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotTop0jetsNoSF'
+outputDirPlots = 'plotTop0jetsNoSF_MCNLO'
 
 
 # used by mkDatacards to define output directory for datacards

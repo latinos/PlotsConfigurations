@@ -74,7 +74,7 @@ plot['ttbar'] = {
                   'color': 400,   # kYellow 
                   'isSignal' : 0,
                   'isData'   : 0 ,
-                  'scale'    : 0.7015    # DD scale factor
+                  #'scale'    : 0.9*1.0    # ele/mu trigger efficiency
                   }
 
 
@@ -83,7 +83,7 @@ plot['ST'] = {
                   'color': 401,   # kYellow +1
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 0.7015    # DD scale factor
+                  #'scale'    : 0.9*1.0    # ele/mu trigger efficiency
                   }
 
 
@@ -128,11 +128,11 @@ plot['Wg']  = {
 
 
 plot['ggH'] = {
-                  'nameHR' : 'ggH x 100',
+                  'nameHR' : 'ggH',
                   'color': 632, # kRed 
                   'isSignal' : 1,
                   'isData'   : 0,    
-                  'scale'    : 100    # ele/mu trigger efficiency
+                  'scale'    : 1    # ele/mu trigger efficiency
                   }
 
 
