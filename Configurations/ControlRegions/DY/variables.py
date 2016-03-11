@@ -40,17 +40,30 @@ variables['mll']  = {   'name': 'mll',            #   variable name
                         #'fold' : 3
                         #}
 
-variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]*(1 - (abs(std_vector_lepton_flavour[0])==11)*0.01*(dataset != 0))',     
+#variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]*(1 - (abs(std_vector_lepton_flavour[0])==11)*0.01*(dataset != 0))',     
+                        #'range' : (40,0,100),   
+                        #'xaxis' : 'p_{T} 1st lep',
+                        #'fold'  : 3                         
+                        #}
+
+#variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]*(1 - (abs(std_vector_lepton_flavour[1])==11)*0.01*(dataset != 0))',     
+                        #'range' : (40,0,100),   
+                        #'xaxis' : 'p_{T} 2nd lep',
+                        #'fold'  : 3                         
+                        #}
+
+variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
                         'range' : (40,0,100),   
                         'xaxis' : 'p_{T} 1st lep',
                         'fold'  : 3                         
                         }
 
-variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]*(1 - (abs(std_vector_lepton_flavour[1])==11)*0.01*(dataset != 0))',     
+variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
                         'range' : (40,0,100),   
                         'xaxis' : 'p_{T} 2nd lep',
                         'fold'  : 3                         
                         }
+
 
 #variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
                         #'range' : (100,0,200),   
