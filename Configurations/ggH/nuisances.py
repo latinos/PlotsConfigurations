@@ -54,7 +54,13 @@ nuisances['QCDscale_ggH0j']  = {
                'cuts'  : [
                  'hww2l2v_13TeV_of0j',
                  'hww2l2v_13TeV_top_of0j',
-                 'hww2l2v_13TeV_dytt_of0j'
+                 'hww2l2v_13TeV_dytt_of0j',
+#                 
+                 'hww2l2v_13TeV_me_mp_0j',
+                 'hww2l2v_13TeV_me_pm_0j',
+                 'hww2l2v_13TeV_em_mp_0j',
+                 'hww2l2v_13TeV_em_pm_0j',
+#                 
                 ]               
               }
 
@@ -69,6 +75,12 @@ nuisances['QCDscale_ggH1j']  = {
                  'hww2l2v_13TeV_of1j',
                  'hww2l2v_13TeV_top_of1j',
                  'hww2l2v_13TeV_dytt_of1j'              
+#                 
+                 'hww2l2v_13TeV_me_mp_1j',
+                 'hww2l2v_13TeV_me_pm_1j',
+                 'hww2l2v_13TeV_em_mp_1j',
+                 'hww2l2v_13TeV_em_pm_1j',
+#                 
                 ]
               }
 
@@ -342,6 +354,12 @@ nuisances['DYttnorm0j']  = {
                  'hww2l2v_13TeV_of0j',
                  'hww2l2v_13TeV_top_of0j',
                  'hww2l2v_13TeV_dytt_of0j'
+#                 
+                 'hww2l2v_13TeV_me_mp_0j',
+                 'hww2l2v_13TeV_me_pm_0j',
+                 'hww2l2v_13TeV_em_mp_0j',
+                 'hww2l2v_13TeV_em_pm_0j',
+#                 
                 ]
               }
 
@@ -355,6 +373,12 @@ nuisances['DYttnorm1j']  = {
                  'hww2l2v_13TeV_of1j',
                  'hww2l2v_13TeV_top_of1j',
                  'hww2l2v_13TeV_dytt_of1j'
+#                 
+                 'hww2l2v_13TeV_me_mp_1j',
+                 'hww2l2v_13TeV_me_pm_1j',
+                 'hww2l2v_13TeV_em_mp_1j',
+                 'hww2l2v_13TeV_em_pm_1j',
+#                 
                 ]
               }
 
@@ -382,6 +406,12 @@ nuisances['WWnorm0j']  = {
                  'hww2l2v_13TeV_of0j',
                  'hww2l2v_13TeV_top_of0j',
                  'hww2l2v_13TeV_dytt_of0j'              
+#                 
+                 'hww2l2v_13TeV_me_mp_0j',
+                 'hww2l2v_13TeV_me_pm_0j',
+                 'hww2l2v_13TeV_em_mp_0j',
+                 'hww2l2v_13TeV_em_pm_0j',
+#                 
                 ]
               }
 
@@ -395,6 +425,12 @@ nuisances['WWnorm1j']  = {
                  'hww2l2v_13TeV_of1j',
                  'hww2l2v_13TeV_top_of1j',
                  'hww2l2v_13TeV_dytt_of1j'              
+#                 
+                 'hww2l2v_13TeV_me_mp_1j',
+                 'hww2l2v_13TeV_me_pm_1j',
+                 'hww2l2v_13TeV_em_mp_1j',
+                 'hww2l2v_13TeV_em_pm_1j',
+#                 
                 ]
               }
 
@@ -409,6 +445,12 @@ nuisances['Topnorm0j']  = {
                  'hww2l2v_13TeV_of0j',
                  'hww2l2v_13TeV_top_of0j',
                  'hww2l2v_13TeV_dytt_of0j'              
+#                 
+                 'hww2l2v_13TeV_me_mp_0j',
+                 'hww2l2v_13TeV_me_pm_0j',
+                 'hww2l2v_13TeV_em_mp_0j',
+                 'hww2l2v_13TeV_em_pm_0j',
+#                 
                 ]
               }
 
@@ -422,6 +464,12 @@ nuisances['Topnorm1j']  = {
                  'hww2l2v_13TeV_of1j',
                  'hww2l2v_13TeV_top_of1j',
                  'hww2l2v_13TeV_dytt_of1j'              
+#                 
+                 'hww2l2v_13TeV_me_mp_1j',
+                 'hww2l2v_13TeV_me_pm_1j',
+                 'hww2l2v_13TeV_em_mp_1j',
+                 'hww2l2v_13TeV_em_pm_1j',
+#                 
                 ]
               }
 
