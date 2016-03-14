@@ -82,8 +82,30 @@ Combine datacards:
                       of0j13DYtt=ggHMoriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt \
                       of1j13DYtt=ggHMoriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt \
                       >   Moriond2016.txt
-                      
-                      
+         
+         
+    Upgrade:
+    
+    combineCards.py   empm1j13=ggH/datacards/hww2l2v_13TeV_em_pm__of1j/mllVSmth/datacard.txt \
+                      emmp1j13=ggH/datacards/hww2l2v_13TeV_em_mp__of1j/mllVSmth/datacard.txt \
+                      mepm1j13=ggH/datacards/hww2l2v_13TeV_me_pm__of1j/mllVSmth/datacard.txt \
+                      memp1j13=ggH/datacards/hww2l2v_13TeV_me_mp__of1j/mllVSmth/datacard.txt \
+                      empm0j13=ggH/datacards/hww2l2v_13TeV_em_pm_0j/mllVSmth/datacard.txt \
+                      emmp0j13=ggH/datacards/hww2l2v_13TeV_em_mp_0j/mllVSmth/datacard.txt \
+                      mepm0j13=ggH/datacards/hww2l2v_13TeV_me_pm_0j/mllVSmth/datacard.txt \
+                      memp0j13=ggH/datacards/hww2l2v_13TeV_me_mp_0j/mllVSmth/datacard.txt \
+                      of0j13Top=ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt \
+                      of1j13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt \
+                      of0j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt \
+                      of1j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt \
+                      >   Moriond2016.txt
+     
+     
+
+
+
+         
+         
     combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.txt
     
     combine -M ProfileLikelihood --significance Moriond2016.txt -t -1 --expectSignal=1
@@ -211,6 +233,25 @@ Backup:
     mkShapes.py      --pycfg=configuration.py  --inputDir=/tmp/amassiro/eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight/
     mkShapes.py      --pycfg=configuration.py  --inputDir=/tmp/amassiro/eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
     
+
+    
+    cat ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt  | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1" &> ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.test.txt
+    mv ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt
+    
+    cat ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt  | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1" &> ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.test.txt
+    mv ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt
+    
+    cat ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt   | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt
+    mv ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt
+    
+    cat ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt   | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt
+    mv ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt
+ 
+    cat ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt   | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt
+    mv ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt
+    
+    cat ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt   | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt
+    mv ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt
 
     
     
