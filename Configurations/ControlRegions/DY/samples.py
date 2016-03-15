@@ -94,7 +94,7 @@ samples['DY']  = {    'name': [
                       #'weight' : 'puW*bPogSF*effTrigW_SnglEle*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
                       #'weight' : 'puW*bPogSF*effTrigW_SnglEle*std_vector_lepton_idisoW[0]*std_vector_lepton_recoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)  \
                       'weight' : 'puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)  \
-                                  *((std_vector_lepton_flavour[0] == 11)* (0.882026*(std_vector_lepton_pt[0]<20)+0.947397*(std_vector_lepton_pt[0]<40 && std_vector_lepton_pt[0]>=20)+0.971082*(std_vector_lepton_pt[0]>=40))+(std_vector_lepton_flavour[0] == 13))*((std_vector_lepton_flavour[1] == 11)* (0.882026*(std_vector_lepton_pt[1]<20)+0.947397*(std_vector_lepton_pt[1]<40 && std_vector_lepton_pt[1]>=20)+0.971082*(std_vector_lepton_pt[1]>=40))+(std_vector_lepton_flavour[1] == 13))',              #   weight/cut 
+                                  *((abs(std_vector_lepton_flavour[0]) == 11)* (0.882026*(std_vector_lepton_pt[0]<20)+0.947397*(std_vector_lepton_pt[0]<40 && std_vector_lepton_pt[0]>=20)+0.971082*(std_vector_lepton_pt[0]>=40))+(abs(std_vector_lepton_flavour[0]) == 13))*((abs(std_vector_lepton_flavour[1]) == 11)* (0.882026*(std_vector_lepton_pt[1]<20)+0.947397*(std_vector_lepton_pt[1]<40 && std_vector_lepton_pt[1]>=20)+0.971082*(std_vector_lepton_pt[1]>=40))+(abs(std_vector_lepton_flavour[1]) == 13))',              #   weight/cut 
 
                      
                      #'isData': ['0', '0'],      
@@ -161,7 +161,7 @@ samples['top'] = {   'name': [
                           'latino_ST_tW_top.root'
                           ],          
                        'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1] \
-                                  *((std_vector_lepton_flavour[0] == 11)* (0.882026*(std_vector_lepton_pt[0]<20)+0.947397*(std_vector_lepton_pt[0]<40 && std_vector_lepton_pt[0]>=20)+0.971082*(std_vector_lepton_pt[0]>=40))+(std_vector_lepton_flavour[0] == 13))*((std_vector_lepton_flavour[1] == 11)* (0.882026*(std_vector_lepton_pt[1]<20)+0.947397*(std_vector_lepton_pt[1]<40 && std_vector_lepton_pt[1]>=20)+0.971082*(std_vector_lepton_pt[1]>=40))+(std_vector_lepton_flavour[1] == 13))',              #   weight/cut 
+                                  *((abs(std_vector_lepton_flavour[0]) == 11)* (0.882026*(std_vector_lepton_pt[0]<20)+0.947397*(std_vector_lepton_pt[0]<40 && std_vector_lepton_pt[0]>=20)+0.971082*(std_vector_lepton_pt[0]>=40))+(abs(std_vector_lepton_flavour[0]) == 13))*((abs(std_vector_lepton_flavour[1]) == 11)* (0.882026*(std_vector_lepton_pt[1]<20)+0.947397*(std_vector_lepton_pt[1]<40 && std_vector_lepton_pt[1]>=20)+0.971082*(std_vector_lepton_pt[1]>=40))+(abs(std_vector_lepton_flavour[1]) == 13))',              #   weight/cut 
                    }
 
 
@@ -169,7 +169,7 @@ samples['WW']  = {    'name': [
                                   'latino_WWTo2L2Nu.root'
                                 ],      
                       'weight' : 'nllW*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1] \
-                                  *((std_vector_lepton_flavour[0] == 11)* (0.882026*(std_vector_lepton_pt[0]<20)+0.947397*(std_vector_lepton_pt[0]<40 && std_vector_lepton_pt[0]>=20)+0.971082*(std_vector_lepton_pt[0]>=40))+(std_vector_lepton_flavour[0] == 13))*((std_vector_lepton_flavour[1] == 11)* (0.882026*(std_vector_lepton_pt[1]<20)+0.947397*(std_vector_lepton_pt[1]<40 && std_vector_lepton_pt[1]>=20)+0.971082*(std_vector_lepton_pt[1]>=40))+(std_vector_lepton_flavour[1] == 13))',              #   weight/cut 
+                                  *((abs(std_vector_lepton_flavour[0]) == 11)* (0.882026*(std_vector_lepton_pt[0]<20)+0.947397*(std_vector_lepton_pt[0]<40 && std_vector_lepton_pt[0]>=20)+0.971082*(std_vector_lepton_pt[0]>=40))+(abs(std_vector_lepton_flavour[0]) == 13))*((abs(std_vector_lepton_flavour[1]) == 11)* (0.882026*(std_vector_lepton_pt[1]<20)+0.947397*(std_vector_lepton_pt[1]<40 && std_vector_lepton_pt[1]>=20)+0.971082*(std_vector_lepton_pt[1]>=40))+(abs(std_vector_lepton_flavour[1]) == 13))',              #   weight/cut 
                       #'weights': ['abs(nllW)'] ,           
                   }
 
@@ -317,9 +317,9 @@ samples['DATA']  = {   'name': [
                                 #'../eos/user/j/jlauwers/HWW2015/22Jan_Run2015D_16Dec2015/l2loose__hadd__bSFL2pTEff__l2tight/latino_Run2015D_16Dec2015_SingleElectron.root',
                                 #'../eos/user/j/jlauwers/HWW2015/22Jan_Run2015D_16Dec2015/l2loose__hadd__bSFL2pTEff__l2tight/latino_Run2015D_16Dec2015_SingleMuon.root',
                                 ] ,     
-                       #'weight' : 'trigger',
+                       'weight' : 'trigger',
                        #'weight' : '1',
-                       'weight' : 'std_vector_trigger[1]',
+                       #'weight' : 'std_vector_trigger[1]',
                        'isData': ['all'],                            
                   }
 
