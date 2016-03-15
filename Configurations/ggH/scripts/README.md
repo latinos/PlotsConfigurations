@@ -31,9 +31,9 @@ doDY.sh
 
 Compute DYtt SFs and perform the Likelihood scan:
 
-    bash dodytt0jet.sh  outputFileSF.txt outputFileLH.txt
+    bash dodytt0jet.sh  outputFileSFdy0jet.txt outputFileLHdy0jet.txt
 
-    bash dodytt1jet.sh  outputFileSF.txt outputFileLH.txt
+    bash dodytt1jet.sh  outputFileSFdy1jet.txt outputFileLHdy1jet.txt
 
 
 
