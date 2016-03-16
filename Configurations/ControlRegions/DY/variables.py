@@ -16,11 +16,18 @@ variables['nvtx']  = {   'name': 'nvtx',
                          'fold' : 3
                         }
 
+#variables['mll']  = {   'name': 'mll',            #   variable name    
+                        #'range' : (300,0,200),    #   variable range
+                        #'xaxis' : 'm_{ll} [GeV]',  #   x axis name
+                         #'fold' : 0
+                        #}
+
 variables['mll']  = {   'name': 'mll',            #   variable name    
-                        'range' : (300,0,200),    #   variable range
+                        'range' : (300,50,150),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
                          'fold' : 0
                         }
+
 
 #variables['mth']  = {   'name': 'mth',            #   variable name    
                         #'range' : (10,0,100),    #   variable range
@@ -35,7 +42,7 @@ variables['mll']  = {   'name': 'mll',            #   variable name
                         #}
 
 variables['ptll']  = {   'name': 'ptll',     
-                        'range' : (100,0,200),   
+                        'range' : (200,0,100),   
                         'xaxis' : 'p_{T}^{ll} [GeV]',
                         'fold' : 3
                         }

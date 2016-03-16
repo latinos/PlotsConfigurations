@@ -243,7 +243,19 @@ nuisances['WWresum0j']  = {
                 'type'  : 'shape',
                 'samples'  : {
                    'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
-                   }
+                   },
+               'cuts'  : [
+                 'hww2l2v_13TeV_of0j',
+                 'hww2l2v_13TeV_top_of0j',
+                 'hww2l2v_13TeV_dytt_of0j',
+#                 
+                 'hww2l2v_13TeV_me_mp_0j',
+                 'hww2l2v_13TeV_me_pm_0j',
+                 'hww2l2v_13TeV_em_mp_0j',
+                 'hww2l2v_13TeV_em_pm_0j',
+#                 
+                ]               
+                
                 }
 
 
@@ -253,7 +265,18 @@ nuisances['WWresum1j']  = {
                 'type'  : 'shape',
                 'samples'  : {
                    'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
-                   }
+                   },
+               'cuts'  : [
+                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_top_of1j',
+                 'hww2l2v_13TeV_dytt_of1j',
+#                 
+                 'hww2l2v_13TeV_me_mp_1j',
+                 'hww2l2v_13TeV_me_pm_1j',
+                 'hww2l2v_13TeV_em_mp_1j',
+                 'hww2l2v_13TeV_em_pm_1j',
+#                 
+                ]               
                 }
 
 nuisances['WWqscale0j']  = {
@@ -262,7 +285,18 @@ nuisances['WWqscale0j']  = {
                 'type'  : 'shape',
                 'samples'  : {
                    'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
-                   }
+                   },
+               'cuts'  : [
+                 'hww2l2v_13TeV_of0j',
+                 'hww2l2v_13TeV_top_of0j',
+                 'hww2l2v_13TeV_dytt_of0j',
+#                 
+                 'hww2l2v_13TeV_me_mp_0j',
+                 'hww2l2v_13TeV_me_pm_0j',
+                 'hww2l2v_13TeV_em_mp_0j',
+                 'hww2l2v_13TeV_em_pm_0j',
+#                 
+                ] 
                 }
 
 
@@ -272,7 +306,18 @@ nuisances['WWqscale1j']  = {
                 'type'  : 'shape',
                 'samples'  : {
                    'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
-                   }
+                   },
+               'cuts'  : [
+                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_top_of1j',
+                 'hww2l2v_13TeV_dytt_of1j',
+#                 
+                 'hww2l2v_13TeV_me_mp_1j',
+                 'hww2l2v_13TeV_me_pm_1j',
+                 'hww2l2v_13TeV_em_mp_1j',
+                 'hww2l2v_13TeV_em_pm_1j',
+#                 
+                ] 
                 }
 
 
