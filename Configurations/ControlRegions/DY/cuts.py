@@ -17,6 +17,16 @@ cuts['DYmm']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] ==
                  && mll>60 \
                '
 
+cuts['DYee0j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
+                 && mll>60 \
+                 && njet==0 \
+               '
+
+cuts['DYmm0j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)   \
+                 && mll>60 \
+                 && njet==0 \
+               '
+
 cuts['DYeept150']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
                  && mll>60 \
                  && std_vector_lepton_pt[0]>50 && abs(std_vector_lepton_eta[0])<1.46  \
