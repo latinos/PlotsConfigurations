@@ -25,15 +25,15 @@ variables['nvtx']  = {   'name': 'nvtx',
 variables['mll']  = {   'name': 'mll',            #   variable name    
                         'range' : (300,50,150),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
-                         'fold' : 0
+                         'fold' : 3
                         }
 
 
-#variables['mth']  = {   'name': 'mth',            #   variable name    
-                        #'range' : (10,0,100),    #   variable range
-                        #'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
-                         #'fold' : 0
-                        #}
+variables['mth']  = {   'name': 'mth',            #   variable name    
+                        'range' : (100,0,200),    #   variable range
+                        'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
+                         'fold' : 3
+                        }
 
 #variables['dphill']  = {   'name': 'abs(dphill)',     
                         #'range' : (10,0,3.14),   

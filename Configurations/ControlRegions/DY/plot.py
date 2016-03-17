@@ -8,9 +8,18 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 1.0
+                  #'scale'    : 1.0,
+                  'scale'    : 11.0*0.87,
+                  #'isSignal' : 2                    
               }
 
+plot['DYpow']  = {  
+                  'color': 632,    # kRed
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 6025.20,
+                  'isSignal' : 2     # draw together
+              }
 
                
 plot['Wjets']  = {  

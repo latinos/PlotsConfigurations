@@ -71,5 +71,24 @@ Backup:
     mkShapes.py      --pycfg=configuration.py  --inputDir=eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight/
 
     
+Test:
+
+    TF1* f4 = new TF1 ("f4","[2]*(0.95 - 0.1*TMath::Erf((x-[0])/[1]))",0,20);
+    f4->SetParameter(0,10);
+    f4->SetParameter(1,1);
+    f4->SetParameter(2,1);
+    f4->Draw();
+
+    
+       1  p0           1.42199e+01   2.00614e-01   7.49397e-04  -3.24175e-03
+       2  p1           8.78770e+00   2.36675e-01   1.47925e-03  -1.11709e-03
+       3  p2           9.94280e-01   1.57245e-03   5.72159e-06  -2.93479e-01
+
+    (0.95 - 0.1*TMath::Erf((x-14)/8.8))
+    TF1* f4 = new TF1 ("f4","(0.95 - 0.1*TMath::Erf((x-14)/8.8))",0,20);
+    
+    
+    
+    
     
     
