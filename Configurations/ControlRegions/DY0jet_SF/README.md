@@ -3,8 +3,9 @@ DY plots
 
 To produce Control Region Plots in the present configuration, start mounting cernbox::
 
-   source /afs/cern.ch/project/eos/installation/user/etc/setup.sh
-   eosmount eosuser
+      source /afs/cern.ch/project/eos/installation/user/etc/setup.sh
+   
+      eosmount eosuser
 
 Then launch mkShapes to produce the rootfile with the histograms::
 
