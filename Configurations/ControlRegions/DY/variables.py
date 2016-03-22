@@ -16,17 +16,24 @@ variables['nvtx']  = {   'name': 'nvtx',
                          'fold' : 3
                         }
 
-variables['mll']  = {   'name': 'mll',            #   variable name    
-                        'range' : (300,0,200),    #   variable range
-                        'xaxis' : 'm_{ll} [GeV]',  #   x axis name
-                         'fold' : 0
-                        }
-
-#variables['mth']  = {   'name': 'mth',            #   variable name    
-                        #'range' : (10,0,100),    #   variable range
-                        #'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
+#variables['mll']  = {   'name': 'mll',            #   variable name    
+                        #'range' : (300,0,200),    #   variable range
+                        #'xaxis' : 'm_{ll} [GeV]',  #   x axis name
                          #'fold' : 0
                         #}
+
+variables['mll']  = {   'name': 'mll',            #   variable name    
+                        'range' : (300,50,150),    #   variable range
+                        'xaxis' : 'm_{ll} [GeV]',  #   x axis name
+                         'fold' : 3
+                        }
+
+
+variables['mth']  = {   'name': 'mth',            #   variable name    
+                        'range' : (100,0,200),    #   variable range
+                        'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
+                         'fold' : 3
+                        }
 
 #variables['dphill']  = {   'name': 'abs(dphill)',     
                         #'range' : (10,0,3.14),   
@@ -34,11 +41,11 @@ variables['mll']  = {   'name': 'mll',            #   variable name
                         #'fold' : 3
                         #}
 
-#variables['ptll']  = {   'name': 'ptll',     
-                        #'range' : (10,0,100),   
-                        #'xaxis' : 'p_{T}^{ll} [GeV]',
-                        #'fold' : 3
-                        #}
+variables['ptll']  = {   'name': 'ptll',     
+                        'range' : (200,0,100),   
+                        'xaxis' : 'p_{T}^{ll} [GeV]',
+                        'fold' : 3
+                        }
 
 #variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]*(1 - (abs(std_vector_lepton_flavour[0])==11)*0.01*(dataset != 0))',     
                         #'range' : (40,0,100),   

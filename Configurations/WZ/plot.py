@@ -8,18 +8,9 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  #'scale'    : 1.0,
-                  'scale'    : 11.0*0.87,
-                  #'isSignal' : 2                    
+                  'scale'    : 1.0
               }
 
-plot['DYpow']  = {  
-                  'color': 632,    # kRed
-                  'isSignal' : 0,
-                  'isData'   : 0, 
-                  'scale'    : 6025.20,
-                  'isSignal' : 2     # draw together
-              }
 
                
 plot['Wjets']  = {  
@@ -97,6 +88,13 @@ plot['ggWW_Int']  = {
                   }
 
 plot['Wg']  = { 
+                  'color': 859, # kAzure -1  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+plot['Vg']  = { 
                   'color': 859, # kAzure -1  
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -210,7 +208,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  #'isBlind'  : 1
+                  'isBlind'  : 1
               }
 
 

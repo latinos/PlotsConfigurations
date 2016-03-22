@@ -8,18 +8,9 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  #'scale'    : 1.0,
-                  'scale'    : 11.0*0.87,
-                  #'isSignal' : 2                    
+                  'scale'    : 1.0
               }
 
-plot['DYpow']  = {  
-                  'color': 632,    # kRed
-                  'isSignal' : 0,
-                  'isData'   : 0, 
-                  'scale'    : 6025.20,
-                  'isSignal' : 2     # draw together
-              }
 
                
 plot['Wjets']  = {  
@@ -84,13 +75,6 @@ plot['WW']  = {
 
 plot['ggWW']  = {
                   'color': 850, # kAzure -10
-                  'isSignal' : 0,
-                  'isData'   : 0,    
-                  'scale'    : 1.0
-                  }
-
-plot['ggWW_Int']  = {
-                  'color': 616, # kMagenta
                   'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1.0
@@ -169,13 +153,6 @@ plot['ZH_hww'] = {
                   'scale'    : 1    #
                   }
 
-plot['ggZH_hww'] = {
-                  'nameHR' : 'ggZH',
-                  'color': 632+4, # kRed+4
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
 
 plot['WH_hww'] = {
                   'nameHR' : 'WH',
@@ -210,7 +187,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  #'isBlind'  : 1
+                  'isBlind'  : 1
               }
 
 
@@ -218,8 +195,8 @@ plot['DATA']  = {
 
 # additional options
 
-# legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
-legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
+#legend['lumi'] = 'L = 1.3/fb'
+legend['lumi'] = 'L = 2.1/fb'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 

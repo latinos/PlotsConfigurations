@@ -232,24 +232,8 @@ Backup:
     mkShapes.py      --pycfg=configuration.py  --inputDir=/media/data/amassiro/LatinoTrees/Moriond/MCl2loose__hadd__bSFL2pTEff__l2tight/
     mkShapes.py      --pycfg=configuration.py  --inputDir=/tmp/amassiro/eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight/
     mkShapes.py      --pycfg=configuration.py  --inputDir=/tmp/amassiro/eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
-    mkShapes.py      --pycfg=configuration.py  --inputDir=eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
     
 
-
-    
-    cp MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel__genVariables/*  MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/
-    cp MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel__genVariables/*     MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/
-    cp MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel__genVariables/*    MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/
-    cp MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel__genVariables/*    MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/
-    cp MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel__genVariables/*     MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/
-    cp MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel__genVariables/*         MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel/
-    cp MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel__genVariables/*         MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel/
-    cp MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__genVariables/*                MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
-    
-    
-
-
-    
     
     cat ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt  | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1" &> ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.test.txt
     mv ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt

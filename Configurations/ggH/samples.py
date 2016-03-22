@@ -19,7 +19,7 @@ samples['DY']  = {    'name': [
                             'latino_DYJetsToLL_M-50_0002__part0.root'
                             #
                             ],    
-                      'weight' : 'puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
+                      'weight' : '(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))*puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
                       #'isData': ['0', '0'],      
                       'weights': [  '0.238112'
                                   , '0.238112'
@@ -192,16 +192,16 @@ samples['ZH_hww']  = {    'name': ['latino_HZJ_HToWW_M125.root'],
 ###########################################
 
 samples['DATA']  = {   'name': [
-                                '../../22Jan_Run2015C_16Dec2015/l2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_Run2015C_16Dec2015_DoubleEG.root',
-                                '../../22Jan_Run2015C_16Dec2015/l2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_Run2015C_16Dec2015_DoubleMuon.root',
-                                '../../22Jan_Run2015C_16Dec2015/l2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_Run2015C_16Dec2015_MuonEG.root',
-                                '../../22Jan_Run2015C_16Dec2015/l2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_Run2015C_16Dec2015_SingleElectron.root',
-                                '../../22Jan_Run2015C_16Dec2015/l2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_Run2015C_16Dec2015_SingleMuon.root',
-                                '../../22Jan_Run2015D_16Dec2015/l2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_Run2015D_16Dec2015_DoubleEG.root',
-                                '../../22Jan_Run2015D_16Dec2015/l2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_Run2015D_16Dec2015_DoubleMuon.root',
-                                '../../22Jan_Run2015D_16Dec2015/l2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_Run2015D_16Dec2015_MuonEG.root',
-                                '../../22Jan_Run2015D_16Dec2015/l2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_Run2015D_16Dec2015_SingleElectron.root',
-                                '../../22Jan_Run2015D_16Dec2015/l2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_Run2015D_16Dec2015_SingleMuon.root',
+                                '../../03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2015C_16Dec2015_DoubleEG.root',
+                                '../../03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2015C_16Dec2015_DoubleMuon.root',
+                                '../../03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2015C_16Dec2015_MuonEG.root',
+                                '../../03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2015C_16Dec2015_SingleElectron.root',
+                                '../../03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2015C_16Dec2015_SingleMuon.root',
+                                '../../03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2015D_16Dec2015_DoubleEG.root',
+                                '../../03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2015D_16Dec2015_DoubleMuon.root',
+                                '../../03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2015D_16Dec2015_MuonEG.root',
+                                '../../03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2015D_16Dec2015_SingleElectron.root',
+                                '../../03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2015D_16Dec2015_SingleMuon.root',
                                 ] ,     
                        'weight' : 'trigger',
                        'isData': ['all'],                            
