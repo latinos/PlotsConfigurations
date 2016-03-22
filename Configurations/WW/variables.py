@@ -1,3 +1,4 @@
+
 # variables
 
 #variables = {}
@@ -41,7 +42,7 @@ variables['pt2']  = {   'name': 'pt2',            #   variable name
                         'fold' : 3
                         }
 
-variables['met']  = {   'name': 'pfType1Met',            #   variable name    
+variables['met']  = {   'name': 'metPfType1',            #   variable name    
                         'range' : (20,0,200),    #   variable range
                         'xaxis' : 'pfmet [GeV]',  #   x axis name
                         'fold' : 0

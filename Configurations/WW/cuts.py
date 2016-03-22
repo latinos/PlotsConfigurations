@@ -85,6 +85,7 @@ cuts['ww_metvar_em'] = 'mll>12  \
                          && metPfType1 > 20 \
                          && abs(mll - 91.1876) > 15 \
                          && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
+                         && mpmet > 20 \
 '
 
 cuts['ww_metvar_mm'] = 'mll>12  \
@@ -92,6 +93,7 @@ cuts['ww_metvar_mm'] = 'mll>12  \
                          && metPfType1 > 20 \
                          && abs(mll - 91.1876) > 15 \
                          && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
+                         && mpmet > 45 \
 '
 
 cuts['ww_metvar_ee'] = 'mll>12  \
@@ -99,6 +101,7 @@ cuts['ww_metvar_ee'] = 'mll>12  \
                          && metPfType1 > 20 \
                          && abs(mll - 91.1876) > 15 \
                          && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
+                         && mpmet > 45 \
 '
 
 
@@ -108,6 +111,7 @@ cuts['ww_BVeto_em'] = 'mll>12  \
                          && metPfType1 > 20 \
                          && abs(mll - 91.1876) > 15 \
                          && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
+                         && mpmet > 20 \
                          && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
                          && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
                          && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
@@ -125,6 +129,7 @@ cuts['ww_BVeto_mm'] = 'mll>12  \
                          && metPfType1 > 20 \
                          && abs(mll - 91.1876) > 15 \
                          && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
+                         && mpmet > 45 \
                          && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
                          && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
                          && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
@@ -142,6 +147,7 @@ cuts['ww_BVeto_ee'] = 'mll>12  \
                          && metPfType1 > 20 \
                          && abs(mll - 91.1876) > 15 \
                          && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
+                         && mpmet > 45 \
                          && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
                          && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
                          && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
@@ -160,6 +166,7 @@ cuts['ww_BVeto0j_em'] = 'mll>12  \
                          && metPfType1 > 20 \
                          && abs(mll - 91.1876) > 15 \
                          && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
+                         && mpmet > 20 \
                          && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
                          && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
                          && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
@@ -178,6 +185,7 @@ cuts['ww_BVeto0j_mm'] = 'mll>12  \
                          && metPfType1 > 20 \
                          && abs(mll - 91.1876) > 15 \
                          && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
+                         && mpmet > 45 \
                          && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
                          && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
                          && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
@@ -196,6 +204,7 @@ cuts['ww_BVeto0j_ee'] = 'mll>12  \
                          && metPfType1 > 20 \
                          && abs(mll - 91.1876) > 15 \
                          && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
+                         && mpmet > 45 \
                          && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
                          && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
                          && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
@@ -215,6 +224,7 @@ cuts['ww_BVeto1j_em'] = 'mll>12  \
                          && metPfType1 > 20 \
                          && abs(mll - 91.1876) > 15 \
                          && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
+                         && mpmet > 20 \
                          && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
                          && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
                          && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
@@ -233,6 +243,7 @@ cuts['ww_BVeto1j_mm'] = 'mll>12  \
                          && metPfType1 > 20 \
                          && abs(mll - 91.1876) > 15 \
                          && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
+                         && mpmet > 45 \
                          && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
                          && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
                          && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
@@ -251,6 +262,7 @@ cuts['ww_BVeto1j_ee'] = 'mll>12  \
                          && metPfType1 > 20 \
                          && abs(mll - 91.1876) > 15 \
                          && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
+                         && mpmet > 45 \
                          && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
                          && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
                          && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
