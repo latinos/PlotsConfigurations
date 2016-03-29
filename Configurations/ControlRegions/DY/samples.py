@@ -97,7 +97,9 @@ samples['DY']  = {    'name': [
                       #'weight' : 'puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',
                                   #*((abs(std_vector_lepton_flavour[0]) == 11)* (0.882026*(std_vector_lepton_pt[0]<20)+0.947397*(std_vector_lepton_pt[0]<40 && std_vector_lepton_pt[0]>=20)+0.971082*(std_vector_lepton_pt[0]>=40))+(abs(std_vector_lepton_flavour[0]) == 13))*((abs(std_vector_lepton_flavour[1]) == 11)* (0.882026*(std_vector_lepton_pt[1]<20)+0.947397*(std_vector_lepton_pt[1]<40 && std_vector_lepton_pt[1]>=20)+0.971082*(std_vector_lepton_pt[1]>=40))+(abs(std_vector_lepton_flavour[1]) == 13))',              #   weight/cut 
                       #'weight' : '(0.95 - 0.1*TMath::Erf((ptll-14)/8.8))*puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',                    
-                      'weight' : '(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))*puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',                    
+                      #'weight' : '(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))*puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
+                      
+                      'weight' : '(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) - 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
                      #'isData': ['0', '0'],      
                       'weights': [ 
                                     #'0.238112'
