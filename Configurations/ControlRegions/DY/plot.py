@@ -9,7 +9,7 @@ plot['DY']  = {
                   'isSignal' : 0,
                   'isData'   : 0, 
                   #'scale'    : 1.0,
-                  'scale'    : 10.0*0.7/1.2,
+                  'scale'    : 10.0*0.7*1.2,
                   #'scale'    : 11.0*0.87,
                   #'isSignal' : 2                    
               }
