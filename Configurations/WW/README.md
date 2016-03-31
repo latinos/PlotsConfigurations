@@ -51,7 +51,7 @@ Setup combine:
       cd (your path)/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/WW/
 
 
-Extract signal strenght from datacard using combine:
+Extract signal strength from datacard using combine:
 
 	combine -M MultiDimFit datacards/ww_BVeto0j_em/events/datacard.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1 -n "LHScan" -m 125
 
