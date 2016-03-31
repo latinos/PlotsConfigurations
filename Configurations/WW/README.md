@@ -1,4 +1,4 @@
-ggH analysis
+WW analysis
 ==============
 
 Common tools for analysis:
@@ -64,6 +64,8 @@ Extract signal strenght from datacard using combine:
 
 
 
+BACKUP
+==============
 
 Run combine:
 
