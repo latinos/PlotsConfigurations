@@ -105,6 +105,35 @@ supercut = 'std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>20 \
 # '
 
 
+#MetVar > 20/45 GeV
+# cuts['ww_metvar_em'] = 'mll>12  \
+#                          && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13) \
+#                          && metPfType1 > 20 \
+#                          && abs(mll - 91.1876) > 15 \
+#                          && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
+#                          && mpmet > 20 \
+#                          && ptll > 30 \
+# '
+
+# cuts['ww_metvar_mm'] = 'mll>12  \
+#                          && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13) \
+#                          && metPfType1 > 20 \
+#                          && abs(mll - 91.1876) > 15 \
+#                          && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
+#                          && mpmet > 45 \
+#                          && ptll > 45 \
+# '
+
+# cuts['ww_metvar_ee'] = 'mll>12  \
+#                          && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11) \
+#                          && metPfType1 > 20 \
+#                          && abs(mll - 91.1876) > 15 \
+#                          && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
+#                          && mpmet > 45 \
+#                          && ptll > 45 \
+# '
+
+
 #BVeto
 # cuts['ww_BVeto_em'] = 'mll>12  \
 #                          && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13) \
@@ -112,6 +141,7 @@ supercut = 'std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>20 \
 #                          && abs(mll - 91.1876) > 15 \
 #                          && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
 #                          && mpmet > 20 \
+#                          && ptll > 30 \
 #                          && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
 #                          && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
 #                          && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
@@ -130,6 +160,7 @@ supercut = 'std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>20 \
 #                          && abs(mll - 91.1876) > 15 \
 #                          && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
 #                          && mpmet > 45 \
+#                          && ptll > 45 \
 #                          && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
 #                          && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
 #                          && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
@@ -148,6 +179,7 @@ supercut = 'std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>20 \
 #                          && abs(mll - 91.1876) > 15 \
 #                          && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
 #                          && mpmet > 45 \
+#                          && ptll > 45 \
 #                          && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
 #                          && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
 #                          && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
@@ -166,6 +198,7 @@ cuts['ww_BVeto0j_em'] = 'mll>12  \
                          && metPfType1 > 20 \
                          && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
                          && mpmet > 20 \
+                         && ptll > 30 \
                          && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
                          && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
                          && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
@@ -179,43 +212,45 @@ cuts['ww_BVeto0j_em'] = 'mll>12  \
                          && njet == 0 \
 '
 
-cuts['ww_BVeto0j_mm'] = 'mll>12  \
-                         && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13) \
-                         && metPfType1 > 20 \
-                         && abs(mll - 91.1876) > 15 \
-                         && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
-                         && mpmet > 45 \
-                         && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
-                         && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
-                         && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
-                         && ( std_vector_jet_pt[3] < 20 || std_vector_jet_cmvav2[3] < -0.715 ) \
-                         && ( std_vector_jet_pt[4] < 20 || std_vector_jet_cmvav2[4] < -0.715 ) \
-                         && ( std_vector_jet_pt[5] < 20 || std_vector_jet_cmvav2[5] < -0.715 ) \
-                         && ( std_vector_jet_pt[6] < 20 || std_vector_jet_cmvav2[6] < -0.715 ) \
-                         && ( std_vector_jet_pt[7] < 20 || std_vector_jet_cmvav2[7] < -0.715 ) \
-                         && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.715 ) \
-                         && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.715 ) \
-                         && njet == 0 \
-'
+# cuts['ww_BVeto0j_mm'] = 'mll>12  \
+#                          && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13) \
+#                          && metPfType1 > 20 \
+#                          && abs(mll - 91.1876) > 15 \
+#                          && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
+#                          && mpmet > 45 \
+#                          && ptll > 45 \
+#                          && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
+#                          && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
+#                          && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
+#                          && ( std_vector_jet_pt[3] < 20 || std_vector_jet_cmvav2[3] < -0.715 ) \
+#                          && ( std_vector_jet_pt[4] < 20 || std_vector_jet_cmvav2[4] < -0.715 ) \
+#                          && ( std_vector_jet_pt[5] < 20 || std_vector_jet_cmvav2[5] < -0.715 ) \
+#                          && ( std_vector_jet_pt[6] < 20 || std_vector_jet_cmvav2[6] < -0.715 ) \
+#                          && ( std_vector_jet_pt[7] < 20 || std_vector_jet_cmvav2[7] < -0.715 ) \
+#                          && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.715 ) \
+#                          && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.715 ) \
+#                          && njet == 0 \
+# '
 
-cuts['ww_BVeto0j_ee'] = 'mll>12  \
-                         && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11) \
-                         && metPfType1 > 20 \
-                         && abs(mll - 91.1876) > 15 \
-                         && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
-                         && mpmet > 45 \
-                         && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
-                         && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
-                         && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
-                         && ( std_vector_jet_pt[3] < 20 || std_vector_jet_cmvav2[3] < -0.715 ) \
-                         && ( std_vector_jet_pt[4] < 20 || std_vector_jet_cmvav2[4] < -0.715 ) \
-                         && ( std_vector_jet_pt[5] < 20 || std_vector_jet_cmvav2[5] < -0.715 ) \
-                         && ( std_vector_jet_pt[6] < 20 || std_vector_jet_cmvav2[6] < -0.715 ) \
-                         && ( std_vector_jet_pt[7] < 20 || std_vector_jet_cmvav2[7] < -0.715 ) \
-                         && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.715 ) \
-                         && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.715 ) \
-                         && njet == 0 \
-'
+# cuts['ww_BVeto0j_ee'] = 'mll>12  \
+#                          && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11) \
+#                          && metPfType1 > 20 \
+#                          && abs(mll - 91.1876) > 15 \
+#                          && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
+#                          && mpmet > 45 \
+#                          && ptll > 45 \
+#                          && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
+#                          && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
+#                          && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
+#                          && ( std_vector_jet_pt[3] < 20 || std_vector_jet_cmvav2[3] < -0.715 ) \
+#                          && ( std_vector_jet_pt[4] < 20 || std_vector_jet_cmvav2[4] < -0.715 ) \
+#                          && ( std_vector_jet_pt[5] < 20 || std_vector_jet_cmvav2[5] < -0.715 ) \
+#                          && ( std_vector_jet_pt[6] < 20 || std_vector_jet_cmvav2[6] < -0.715 ) \
+#                          && ( std_vector_jet_pt[7] < 20 || std_vector_jet_cmvav2[7] < -0.715 ) \
+#                          && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.715 ) \
+#                          && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.715 ) \
+#                          && njet == 0 \
+# '
 
 # BVeto in 1 Jet Bin
 cuts['ww_BVeto1j_em'] = 'mll>12  \
@@ -223,6 +258,7 @@ cuts['ww_BVeto1j_em'] = 'mll>12  \
                          && metPfType1 > 20 \
                          && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
                          && mpmet > 20 \
+                         && ptll > 30 \
                          && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
                          && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
                          && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
@@ -236,43 +272,45 @@ cuts['ww_BVeto1j_em'] = 'mll>12  \
                          && njet == 1 \
 '
 
-cuts['ww_BVeto1j_mm'] = 'mll>12  \
-                         && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13) \
-                         && metPfType1 > 20 \
-                         && abs(mll - 91.1876) > 15 \
-                         && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
-                         && mpmet > 45 \
-                         && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
-                         && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
-                         && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
-                         && ( std_vector_jet_pt[3] < 20 || std_vector_jet_cmvav2[3] < -0.715 ) \
-                         && ( std_vector_jet_pt[4] < 20 || std_vector_jet_cmvav2[4] < -0.715 ) \
-                         && ( std_vector_jet_pt[5] < 20 || std_vector_jet_cmvav2[5] < -0.715 ) \
-                         && ( std_vector_jet_pt[6] < 20 || std_vector_jet_cmvav2[6] < -0.715 ) \
-                         && ( std_vector_jet_pt[7] < 20 || std_vector_jet_cmvav2[7] < -0.715 ) \
-                         && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.715 ) \
-                         && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.715 ) \
-                         && njet == 1 \
-'
+# cuts['ww_BVeto1j_mm'] = 'mll>12  \
+#                          && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13) \
+#                          && metPfType1 > 20 \
+#                          && abs(mll - 91.1876) > 15 \
+#                          && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
+#                          && mpmet > 45 \
+#                          && ptll > 45 \
+#                          && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
+#                          && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
+#                          && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
+#                          && ( std_vector_jet_pt[3] < 20 || std_vector_jet_cmvav2[3] < -0.715 ) \
+#                          && ( std_vector_jet_pt[4] < 20 || std_vector_jet_cmvav2[4] < -0.715 ) \
+#                          && ( std_vector_jet_pt[5] < 20 || std_vector_jet_cmvav2[5] < -0.715 ) \
+#                          && ( std_vector_jet_pt[6] < 20 || std_vector_jet_cmvav2[6] < -0.715 ) \
+#                          && ( std_vector_jet_pt[7] < 20 || std_vector_jet_cmvav2[7] < -0.715 ) \
+#                          && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.715 ) \
+#                          && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.715 ) \
+#                          && njet == 1 \
+# '
 
-cuts['ww_BVeto1j_ee'] = 'mll>12  \
-                         && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11) \
-                         && metPfType1 > 20 \
-                         && abs(mll - 91.1876) > 15 \
-                         && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
-                         && mpmet > 45 \
-                         && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
-                         && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
-                         && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
-                         && ( std_vector_jet_pt[3] < 20 || std_vector_jet_cmvav2[3] < -0.715 ) \
-                         && ( std_vector_jet_pt[4] < 20 || std_vector_jet_cmvav2[4] < -0.715 ) \
-                         && ( std_vector_jet_pt[5] < 20 || std_vector_jet_cmvav2[5] < -0.715 ) \
-                         && ( std_vector_jet_pt[6] < 20 || std_vector_jet_cmvav2[6] < -0.715 ) \
-                         && ( std_vector_jet_pt[7] < 20 || std_vector_jet_cmvav2[7] < -0.715 ) \
-                         && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.715 ) \
-                         && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.715 ) \
-                         && njet == 1 \
-'
+# cuts['ww_BVeto1j_ee'] = 'mll>12  \
+#                          && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11) \
+#                          && metPfType1 > 20 \
+#                          && abs(mll - 91.1876) > 15 \
+#                          && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
+#                          && mpmet > 45 \
+#                          && ptll > 45 \
+#                          && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
+#                          && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
+#                          && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
+#                          && ( std_vector_jet_pt[3] < 20 || std_vector_jet_cmvav2[3] < -0.715 ) \
+#                          && ( std_vector_jet_pt[4] < 20 || std_vector_jet_cmvav2[4] < -0.715 ) \
+#                          && ( std_vector_jet_pt[5] < 20 || std_vector_jet_cmvav2[5] < -0.715 ) \
+#                          && ( std_vector_jet_pt[6] < 20 || std_vector_jet_cmvav2[6] < -0.715 ) \
+#                          && ( std_vector_jet_pt[7] < 20 || std_vector_jet_cmvav2[7] < -0.715 ) \
+#                          && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.715 ) \
+#                          && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.715 ) \
+#                          && njet == 1 \
+# '
 
 
 #Soft Muon Veto
@@ -545,7 +583,7 @@ cuts['ww_BVeto1j_ee'] = 'mll>12  \
 # Top CR - 0 jet
 cuts['ww_TopCR0j_em'] = 'mll > 50 \
                           && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13) \
-                          && metPfType1 > 20 \
+                          && mpmet > 20 \
                           && ( std_vector_jet_pt[0] > 20 && std_vector_jet_cmvav2[0] > -0.715 ) \
                           && ( std_vector_jet_pt[1] > 20 && std_vector_jet_cmvav2[1] > -0.715 ) \
                           && ( std_vector_jet_pt[2] > 20 && std_vector_jet_cmvav2[2] > -0.715 ) \
@@ -563,7 +601,7 @@ cuts['ww_TopCR0j_em'] = 'mll > 50 \
 # cuts['ww_TopCR0j_mm'] = 'mll > 50 \
 #                           && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13) \
 #                           && abs(mll - 91.1876) > 15 \ 
-#                           && metPfType1 > 20 \
+#                           && mpmet > 45 \
 #                           && ( std_vector_jet_pt[0] > 20 && std_vector_jet_cmvav2[0] > -0.715 ) \
 #                           && ( std_vector_jet_pt[1] > 20 && std_vector_jet_cmvav2[1] > -0.715 ) \
 #                           && ( std_vector_jet_pt[2] > 20 && std_vector_jet_cmvav2[2] > -0.715 ) \
@@ -581,7 +619,7 @@ cuts['ww_TopCR0j_em'] = 'mll > 50 \
 # cuts['ww_TopCR0j_ee'] = 'mll > 50 \
 #                           && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11) \
 #                           && abs(mll - 91.1876) > 15 \ 
-#                           && metPfType1 > 20 \
+#                           && mpmet > 45 \
 #                           && ( std_vector_jet_pt[0] > 20 && std_vector_jet_cmvav2[0] > -0.715 ) \
 #                           && ( std_vector_jet_pt[1] > 20 && std_vector_jet_cmvav2[1] > -0.715 ) \
 #                           && ( std_vector_jet_pt[2] > 20 && std_vector_jet_cmvav2[2] > -0.715 ) \
@@ -599,7 +637,7 @@ cuts['ww_TopCR0j_em'] = 'mll > 50 \
 # Top CR - 1 jet
 cuts['ww_TopCR1j_em'] = 'mll > 50 \
                           && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13) \
-                          && metPfType1 > 20 \
+                          && mpmet > 20 \
                           && ( std_vector_jet_pt[0] > 20 && std_vector_jet_cmvav2[0] > -0.715 ) \
                           && ( std_vector_jet_pt[1] > 20 && std_vector_jet_cmvav2[1] > -0.715 ) \
                           && ( std_vector_jet_pt[2] > 20 && std_vector_jet_cmvav2[2] > -0.715 ) \
@@ -617,7 +655,7 @@ cuts['ww_TopCR1j_em'] = 'mll > 50 \
 # cuts['ww_TopCR1j_mm'] = 'mll > 50 \
 #                           && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13) \
 #                           && abs(mll - 91.1876) > 15 \ 
-#                           && metPfType1 > 20 \
+#                           && mpmet > 45 \
 #                           && ( std_vector_jet_pt[0] > 20 && std_vector_jet_cmvav2[0] > -0.715 ) \
 #                           && ( std_vector_jet_pt[1] > 20 && std_vector_jet_cmvav2[1] > -0.715 ) \
 #                           && ( std_vector_jet_pt[2] > 20 && std_vector_jet_cmvav2[2] > -0.715 ) \
@@ -635,7 +673,7 @@ cuts['ww_TopCR1j_em'] = 'mll > 50 \
 # cuts['ww_TopCR1j_ee'] = 'mll > 50 \
 #                           && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11) \
 #                           && abs(mll - 91.1876) > 15 \ 
-#                           && metPfType1 > 20 \
+#                           && mpmet > 45 \
 #                           && ( std_vector_jet_pt[0] > 20 && std_vector_jet_cmvav2[0] > -0.715 ) \
 #                           && ( std_vector_jet_pt[1] > 20 && std_vector_jet_cmvav2[1] > -0.715 ) \
 #                           && ( std_vector_jet_pt[2] > 20 && std_vector_jet_cmvav2[2] > -0.715 ) \
