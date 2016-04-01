@@ -86,10 +86,10 @@ Combine datacards:
          
     Upgrade:
     
-    combineCards.py   empm1j13=ggH/datacards/hww2l2v_13TeV_em_pm__of1j/mllVSmth/datacard.txt \
-                      emmp1j13=ggH/datacards/hww2l2v_13TeV_em_mp__of1j/mllVSmth/datacard.txt \
-                      mepm1j13=ggH/datacards/hww2l2v_13TeV_me_pm__of1j/mllVSmth/datacard.txt \
-                      memp1j13=ggH/datacards/hww2l2v_13TeV_me_mp__of1j/mllVSmth/datacard.txt \
+    combineCards.py   empm1j13=ggH/datacards/hww2l2v_13TeV_em_pm_1j/mllVSmth/datacard.txt \
+                      emmp1j13=ggH/datacards/hww2l2v_13TeV_em_mp_1j/mllVSmth/datacard.txt \
+                      mepm1j13=ggH/datacards/hww2l2v_13TeV_me_pm_1j/mllVSmth/datacard.txt \
+                      memp1j13=ggH/datacards/hww2l2v_13TeV_me_mp_1j/mllVSmth/datacard.txt \
                       empm0j13=ggH/datacards/hww2l2v_13TeV_em_pm_0j/mllVSmth/datacard.txt \
                       emmp0j13=ggH/datacards/hww2l2v_13TeV_em_mp_0j/mllVSmth/datacard.txt \
                       mepm0j13=ggH/datacards/hww2l2v_13TeV_me_pm_0j/mllVSmth/datacard.txt \
@@ -101,7 +101,23 @@ Combine datacards:
                       >   Moriond2016.txt
      
      
+    combineCards.py   em1j13=ggH/datacards/hww2l2v_13TeV_em_1j/mllVSmth/datacard.txt \
+                      me1j13=ggH/datacards/hww2l2v_13TeV_me_1j/mllVSmth/datacard.txt \
+                      em0j13=ggH/datacards/hww2l2v_13TeV_em_0j/mllVSmth/datacard.txt \
+                      me0j13=ggH/datacards/hww2l2v_13TeV_me_0j/mllVSmth/datacard.txt \
+                      of0j13Top=ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt \
+                      of1j13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt \
+                      of0j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt \
+                      of1j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt \
+                      >   Moriond2016.v1.txt
 
+    combineCards.py   of1j13=ggH/datacards/hww2l2v_13TeV_of1j/mllVSmth/datacard.txt \
+                      of0j13=ggH/datacards/hww2l2v_13TeV_of0j/mllVSmth/datacard.txt \
+                      of0j13Top=ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt \
+                      of1j13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt \
+                      of0j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt \
+                      of1j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt \
+                      >   Moriond2016.v0.txt
 
 
          

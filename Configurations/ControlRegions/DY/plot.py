@@ -132,7 +132,7 @@ plot['DYLO']  = {
                   'isSignal' : 0,
                   'isData'   : 0, 
                   #'scale'    : 6025.20,
-                  'scale'    : 1/0.969828926366,
+                  'scale'    : 1*0.969828926366,
                   #'isSignal' : 2     # draw together
                   'isSignal' : 3     # draw together and do ratio plot w.r.t. data
               }
