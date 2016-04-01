@@ -46,7 +46,7 @@ plot['DYnoFixVar2']  = {
               }
 
 plot['DYnoFixVar3']  = {  
-                  'color': 428,    # kGreen+12
+                  'color': 856, # kAzure -4  
                   'isSignal' : 0,
                   'isData'   : 0, 
                   #'scale'    : 1.0,
@@ -56,7 +56,7 @@ plot['DYnoFixVar3']  = {
               }
 
 plot['DYnoFixVar4']  = {  
-                  'color': 429,    # kGreen+13
+                  'color': 855, # kAzure -3
                   'isSignal' : 0,
                   'isData'   : 0, 
                   #'scale'    : 1.0,
