@@ -14,12 +14,127 @@ plot['DY']  = {
                   #'isSignal' : 2                    
               }
 
+
+plot['DYnoFix']  = {  
+                  'color': 417,    # kGreen+1
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  #'scale'    : 1.0,
+                  'scale'    : 10.0*0.7*1.2*1.12531366997,
+                  #'scale'    : 11.0*0.87,
+                  'isSignal' : 3                    
+              }
+
+plot['DYnoFixVar1']  = {  
+                  'color': 419,    # kGreen+3
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  #'scale'    : 1.0,
+                  'scale'    : 10.0*0.7*1.2*1.09908811089,
+                  #'scale'    : 11.0*0.87,
+                  'isSignal' : 3                   
+              }
+
+plot['DYnoFixVar2']  = {  
+                  'color': 420,    # kGreen+4
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  #'scale'    : 1.0,
+                  'scale'    : 10.0*0.7*1.2*1.17460108196,
+                  #'scale'    : 11.0*0.87,
+                  'isSignal' : 3                   
+              }
+
+plot['DYnoFixVar3']  = {  
+                  'color': 428,    # kGreen+12
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  #'scale'    : 1.0,
+                  'scale'    : 10.0*0.7*1.2*1.14516381304,
+                  #'scale'    : 11.0*0.87,
+                  'isSignal' : 3                   
+              }
+
+plot['DYnoFixVar4']  = {  
+                  'color': 429,    # kGreen+13
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  #'scale'    : 1.0,
+                  'scale'    : 10.0*0.7*1.2*1.10819059615,
+                  #'scale'    : 11.0*0.87,
+                  'isSignal' : 3                   
+              }
+
+plot['DYnoFixVar5']  = {  
+                  'color': 423,    # kGreen+7
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  #'scale'    : 1.0,
+                  'scale'    : 10.0*0.7*1.2*1.20689393207,
+                  #'scale'    : 11.0*0.87,
+                  'isSignal' : 3                   
+              }
+
+plot['DYnoFixVar6']  = {  
+                  'color': 424,    # kGreen+8
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  #'scale'    : 1.0,
+                  'scale'    : 10.0*0.7*1.2*1.10595098881,
+                  #'scale'    : 11.0*0.87,
+                  'isSignal' : 3                   
+              }
+
+plot['DYnoFixVar7']  = {  
+                  'color': 425,    # kGreen+9
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  #'scale'    : 1.0,
+                  'scale'    : 10.0*0.7*1.2*1.09292849814,
+                  #'scale'    : 11.0*0.87,
+                  'isSignal' : 3                   
+              }
+
+plot['DYnoFixVar8']  = {  
+                  'color': 426,    # kGreen+10
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  #'scale'    : 1.0,
+                  'scale'    : 10.0*0.7*1.2*1.14043681113,
+                  #'scale'    : 11.0*0.87,
+                  'isSignal' : 3                   
+              }
+
+plot['DYnoFixVar9']  = {  
+                  'color': 427,    # kGreen+11
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  #'scale'    : 1.0,
+                  'scale'    : 10.0*0.7*1.2,
+                  #'scale'    : 11.0*0.87,
+                  'isSignal' : 3                   
+              }
+
+
+
 plot['DYpow']  = {  
                   'color': 632,    # kRed
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 6025.20,
-                  'isSignal' : 2     # draw together
+                  #'scale'    : 6025.20,
+                  'scale'    : 1,
+                  #'isSignal' : 2     # draw together
+                  'isSignal' : 3     # draw together and do ratio plot w.r.t. data
+              }
+
+plot['DYLO']  = {  
+                  'color': 632,    # kRed
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  #'scale'    : 6025.20,
+                  'scale'    : 1/0.969828926366,
+                  #'isSignal' : 2     # draw together
+                  'isSignal' : 3     # draw together and do ratio plot w.r.t. data
               }
 
                

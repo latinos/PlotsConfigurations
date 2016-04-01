@@ -8,6 +8,8 @@ supercut = 'mll>12  \
             && metPfType1 > 20 \
             && ptll > 30 \
             && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13) \
+            && (abs(std_vector_lepton_flavour[1]) == 11 || abs(std_vector_lepton_eta[1])<2.4) \
+            && (abs(std_vector_lepton_flavour[0]) == 11 || abs(std_vector_lepton_eta[0])<2.4) \
 '
 
 

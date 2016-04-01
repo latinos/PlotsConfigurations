@@ -408,12 +408,13 @@ nuisances['UE']  = {
                    #}
                 #}
 
+# K factor (Data/Wg*) = 1.23 + 0.33
 nuisances['WgStarScale']  = {
                'name'  : 'pdf_qqbar_accept', 
                'type'  : 'lnN',
                'samples'  : {
-                   'Wg' : '1.25',  # 0.3 / 1.2  --> k_factor = 1.2 +/- 0.3
-                   'Vg' : '1.25',  # 0.3 / 1.2  --> k_factor = 1.2 +/- 0.3
+                   'Wg' : '1.27',  # 0.3 / 1.23  --> k_factor = 1.23 +/- 0.33
+                   'Vg' : '1.27',  # 0.3 / 1.23  --> k_factor = 1.23 +/- 0.33
                    },
                 }
  
