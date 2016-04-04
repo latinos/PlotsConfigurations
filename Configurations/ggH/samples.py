@@ -105,7 +105,6 @@ samples['WW']  = {    'name': [
 
 samples['ggWW']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root'],      
                       'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
-                      'weights': ['abs(nllW)'] ,           
                       'weights': ['1.000'] ,           
                       'isData': ['0'],                            
                   }

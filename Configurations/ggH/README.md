@@ -120,12 +120,76 @@ Combine datacards:
                       >   Moriond2016.v0.txt
 
 
-         
-         
-    combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.txt
-    
-    combine -M ProfileLikelihood --significance Moriond2016.txt -t -1 --expectSignal=1
+Pruning:
 
+    cd /afs/cern.ch/user/a/amassiro/Limit/ModificationDatacards
+    sh examples/doPruneNuisanceHWW.sh 
+    cd -
+    
+    cd ~/Framework/CMSSW_7_1_15/src/
+    cmsenv
+    cd -
+    
+    
+    
+    combineCards.py   empm1j13=ggH/datacards/hww2l2v_13TeV_em_pm_1j/mllVSmth/datacard.txt \
+                      emmp1j13=ggH/datacards/hww2l2v_13TeV_em_mp_1j/mllVSmth/datacard.txt.pruned.txt \
+                      mepm1j13=ggH/datacards/hww2l2v_13TeV_me_pm_1j/mllVSmth/datacard.txt.pruned.txt \
+                      memp1j13=ggH/datacards/hww2l2v_13TeV_me_mp_1j/mllVSmth/datacard.txt.pruned.txt \
+                      empm0j13=ggH/datacards/hww2l2v_13TeV_em_pm_0j/mllVSmth/datacard.txt.pruned.txt \
+                      emmp0j13=ggH/datacards/hww2l2v_13TeV_em_mp_0j/mllVSmth/datacard.txt.pruned.txt \
+                      mepm0j13=ggH/datacards/hww2l2v_13TeV_me_pm_0j/mllVSmth/datacard.txt.pruned.txt \
+                      memp0j13=ggH/datacards/hww2l2v_13TeV_me_mp_0j/mllVSmth/datacard.txt.pruned.txt \
+                      of0j13Top=ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
+                      of1j13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
+                      of0j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+                      of1j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
+                      >   Moriond2016.txt.pruned.txt
+     
+     
+    combineCards.py   em1j13=ggH/datacards/hww2l2v_13TeV_em_1j/mllVSmth/datacard.txt.pruned.txt \
+                      me1j13=ggH/datacards/hww2l2v_13TeV_me_1j/mllVSmth/datacard.txt.pruned.txt \
+                      em0j13=ggH/datacards/hww2l2v_13TeV_em_0j/mllVSmth/datacard.txt.pruned.txt \
+                      me0j13=ggH/datacards/hww2l2v_13TeV_me_0j/mllVSmth/datacard.txt.pruned.txt \
+                      of0j13Top=ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
+                      of1j13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
+                      of0j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+                      of1j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
+                      >   Moriond2016.v1.txt.pruned.txt
+
+    combineCards.py   of1j13=ggH/datacards/hww2l2v_13TeV_of1j/mllVSmth/datacard.txt.pruned.txt \
+                      of0j13=ggH/datacards/hww2l2v_13TeV_of0j/mllVSmth/datacard.txt.pruned.txt \
+                      of0j13Top=ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
+                      of1j13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
+                      of0j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+                      of1j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
+                      >   Moriond2016.v0.txt.pruned.txt
+                      
+                      
+         
+         
+    combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.txt       &> result.txt
+    combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.v0.txt    &> result.v0.txt
+    combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.v1.txt    &> result.v1.txt
+    
+    combine -M ProfileLikelihood --significance Moriond2016.txt     -t -1 --expectSignal=1     &> result.sig.txt
+    combine -M ProfileLikelihood --significance Moriond2016.v0.txt  -t -1 --expectSignal=1     &> result.sig.v0.txt
+    combine -M ProfileLikelihood --significance Moriond2016.v1.txt  -t -1 --expectSignal=1     &> result.sig.v1.txt
+
+    
+    
+    
+    combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.txt.pruned.txt       &> result.txt.pruned.txt
+    combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.v0.txt.pruned.txt    &> result.v0.txt.pruned.txt
+    combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.v1.txt.pruned.txt    &> result.v1.txt.pruned.txt
+    
+    combine -M ProfileLikelihood --significance Moriond2016.txt.pruned.txt     -t -1 --expectSignal=1     &> result.sig.txt.pruned.txt
+    combine -M ProfileLikelihood --significance Moriond2016.v0.txt.pruned.txt  -t -1 --expectSignal=1     &> result.sig.v0.txt.pruned.txt
+    combine -M ProfileLikelihood --significance Moriond2016.v1.txt.pruned.txt  -t -1 --expectSignal=1     &> result.sig.v1.txt.pruned.txt
+
+    
+    
+    
     
     text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose --PO 'map=.*/ggH:1' --PO 'map=.*/ggWW_Int:r_ggWW_Int_r[-1,0,-2]' Moriond2016.txt -o Moriond2016.root
     text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose --PO 'map=.*/ggWW_Int:-1' Moriond2016.txt -o Moriond2016.root
