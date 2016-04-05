@@ -9,7 +9,8 @@ plot['DY']  = {
                   'isSignal' : 0,
                   'isData'   : 0, 
                   #'scale'    : 1.0,
-                  'scale'    : 10.0*0.7*1.2,
+                  'scale'    : 0.87,
+                  #'scale'    : 10.0*0.7*1.2*1.1,
                   #'scale'    : 11.0*0.87,
                   #'isSignal' : 2                    
               }
@@ -20,7 +21,8 @@ plot['DYnoFix']  = {
                   'isSignal' : 0,
                   'isData'   : 0, 
                   #'scale'    : 1.0,
-                  'scale'    : 10.0*0.7*1.2*1.12531366997,
+                  'scale'    : 0.87,
+                  #'scale'    : 10.0*0.7*1.2*1.12531366997*0.957448585511,
                   #'scale'    : 11.0*0.87,
                   'isSignal' : 3                    
               }
@@ -127,12 +129,26 @@ plot['DYpow']  = {
                   'isSignal' : 3     # draw together and do ratio plot w.r.t. data
               }
 
+
+plot['DYfixData']  = {  
+                  'color': 851, # kAzure -9 
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  #'scale'    : 1,
+                  'scale'    : 0.92,
+                  #'scale'    : 9.76004256888*1.02849886636,
+                  'isSignal' : 3     # draw together and do ratio plot w.r.t. data
+              }
+
+
 plot['DYLO']  = {  
                   'color': 632,    # kRed
                   'isSignal' : 0,
                   'isData'   : 0, 
                   #'scale'    : 6025.20,
-                  'scale'    : 1*0.969828926366,
+                  #'scale'    : 1,
+                  'scale'    : 0.95,
+                  #'scale'    : 1*0.969828926366*1.03932766586*0.96216047436,
                   #'isSignal' : 2     # draw together
                   'isSignal' : 3     # draw together and do ratio plot w.r.t. data
               }
