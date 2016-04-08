@@ -125,7 +125,9 @@ Pruning:
     cd /afs/cern.ch/user/a/amassiro/Limit/ModificationDatacards
     sh examples/doPruneNuisanceHWW.sh 
     cd -
-    
+
+Combine:
+
     cd ~/Framework/CMSSW_7_1_15/src/
     cmsenv
     cd -
