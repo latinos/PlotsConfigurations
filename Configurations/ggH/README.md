@@ -297,7 +297,12 @@ Datacards checks
     python diffNuisances.py -a  mlfit.root -g plots.root  &> result.1j.txt
     
     
-                    
+
+Auto tests:
+
+    cd ..
+    sh ggH/scripts/doGGH.sh
+    cd -
     
 
 Data:
@@ -313,7 +318,10 @@ Backup:
     mkShapes.py      --pycfg=configuration.py  --inputDir=/tmp/amassiro/eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight/
     mkShapes.py      --pycfg=configuration.py  --inputDir=/tmp/amassiro/eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
     mkShapes.py      --pycfg=configuration.py  --inputDir=eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
+    mkShapes.py      --doThreads=True   --pycfg=configuration.py  --inputDir=eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
     
+
+
 
 
     

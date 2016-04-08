@@ -20,6 +20,7 @@ nuisances['lumi']  = {
                    'VVV'      : '1.027',
                    'VZ'       : '1.027',
                    #'WW'       : '1.027',
+                   'ggWW'     : '1.027',
                    #'top'      : '1.027',
                    'Vg'       : '1.027',
                    },
@@ -56,6 +57,9 @@ nuisances['QCDscale_ggH0j']  = {
                  'hww2l2v_13TeV_top_of0j',
                  'hww2l2v_13TeV_dytt_of0j',
 #                 
+                 'hww2l2v_13TeV_me_0j',
+                 'hww2l2v_13TeV_em_0j',
+#
                  'hww2l2v_13TeV_me_mp_0j',
                  'hww2l2v_13TeV_me_pm_0j',
                  'hww2l2v_13TeV_em_mp_0j',
@@ -76,6 +80,9 @@ nuisances['QCDscale_ggH1j']  = {
                  'hww2l2v_13TeV_top_of1j',
                  'hww2l2v_13TeV_dytt_of1j'              
 #                 
+                 'hww2l2v_13TeV_me_1j',
+                 'hww2l2v_13TeV_em_1j',
+#
                  'hww2l2v_13TeV_me_mp_1j',
                  'hww2l2v_13TeV_me_pm_1j',
                  'hww2l2v_13TeV_em_mp_1j',
@@ -130,9 +137,24 @@ nuisances['QCDscale_ggZH']  = {
               }
 
 
+
+nuisances['QCDscale_qqbar_accept']  = {
+               'name'  : 'QCDscale_qqbar_accept', 
+               'type'  : 'lnN',
+               'samples'  : {
+                   'qqH_hww' : '1.02',
+                   'qqH_htt' : '1.02',
+                   'WH_hww'  : '1.02',
+                   'ZH_hww'  : '1.02',
+                   },
+              }
+
+
+
 nuisances['QCDscale_gg_accept']  = {
                'name'  : 'QCDscale_gg_accept', 
                'samples'  : {
+                   'ggWW'    : '1.03',
                    'ggH_hww' : '1.03',
                    'ggH_htt' : '1.03',
                    'H_htt'   : '1.03',
@@ -148,6 +170,7 @@ nuisances['QCDscale_gg_accept']  = {
 nuisances['pdf_gg']  = {
                'name'  : 'pdf_gg', 
                'samples'  : {
+                   #'ggWW'    : '1.05',    # --> no, since absorbed into k-scale factor
                    'ggH_hww' : '0.929/1.060',
                    'ggH_htt' : '0.929/1.060',
                    'H_htt'   : '0.929/1.060',
@@ -182,6 +205,7 @@ nuisances['pdf_qqbar']  = {
 nuisances['pdf_gg_accept']  = {
                'name'  : 'pdf_gg_accept', 
                'samples'  : {
+                   'ggWW'    : '1.022',     # 
                    'ggH_hww' : '1.022',
                    'ggH_htt' : '1.022',
                    'H_htt'   : '1.022',
@@ -202,17 +226,6 @@ nuisances['pdf_qqbar_accept']  = {
                    'ZH_hww'  : '1.018',
                    #'WW'      : '1.015',    # ---> not needed
                    'VW'      : '1.015',
-                   },
-              }
-
-nuisances['QCDscale_qqbar_accept']  = {
-               'name'  : 'QCDscale_qqbar_accept', 
-               'type'  : 'lnN',
-               'samples'  : {
-                   'qqH_hww' : '1.02',
-                   'qqH_htt' : '1.02',
-                   'WH_hww'  : '1.02',
-                   'ZH_hww'  : '1.02',
                    },
               }
 
@@ -249,6 +262,9 @@ nuisances['WWresum0j']  = {
                  'hww2l2v_13TeV_top_of0j',
                  'hww2l2v_13TeV_dytt_of0j',
 #                 
+                 'hww2l2v_13TeV_me_0j',
+                 'hww2l2v_13TeV_em_0j',
+#
                  'hww2l2v_13TeV_me_mp_0j',
                  'hww2l2v_13TeV_me_pm_0j',
                  'hww2l2v_13TeV_em_mp_0j',
@@ -271,6 +287,9 @@ nuisances['WWresum1j']  = {
                  'hww2l2v_13TeV_top_of1j',
                  'hww2l2v_13TeV_dytt_of1j',
 #                 
+                 'hww2l2v_13TeV_me_1j',
+                 'hww2l2v_13TeV_em_1j',
+#
                  'hww2l2v_13TeV_me_mp_1j',
                  'hww2l2v_13TeV_me_pm_1j',
                  'hww2l2v_13TeV_em_mp_1j',
@@ -291,6 +310,9 @@ nuisances['WWqscale0j']  = {
                  'hww2l2v_13TeV_top_of0j',
                  'hww2l2v_13TeV_dytt_of0j',
 #                 
+                 'hww2l2v_13TeV_me_0j',
+                 'hww2l2v_13TeV_em_0j',
+#
                  'hww2l2v_13TeV_me_mp_0j',
                  'hww2l2v_13TeV_me_pm_0j',
                  'hww2l2v_13TeV_em_mp_0j',
@@ -312,6 +334,9 @@ nuisances['WWqscale1j']  = {
                  'hww2l2v_13TeV_top_of1j',
                  'hww2l2v_13TeV_dytt_of1j',
 #                 
+                 'hww2l2v_13TeV_me_1j',
+                 'hww2l2v_13TeV_em_1j',
+#
                  'hww2l2v_13TeV_me_mp_1j',
                  'hww2l2v_13TeV_me_pm_1j',
                  'hww2l2v_13TeV_em_mp_1j',
@@ -430,6 +455,9 @@ nuisances['DYttnorm0j']  = {
                  'hww2l2v_13TeV_top_of0j',
                  'hww2l2v_13TeV_dytt_of0j'
 #                 
+                 'hww2l2v_13TeV_me_0j',
+                 'hww2l2v_13TeV_em_0j',
+#
                  'hww2l2v_13TeV_me_mp_0j',
                  'hww2l2v_13TeV_me_pm_0j',
                  'hww2l2v_13TeV_em_mp_0j',
@@ -449,6 +477,9 @@ nuisances['DYttnorm1j']  = {
                  'hww2l2v_13TeV_top_of1j',
                  'hww2l2v_13TeV_dytt_of1j'
 #                 
+                 'hww2l2v_13TeV_me_1j',
+                 'hww2l2v_13TeV_em_1j',
+#
                  'hww2l2v_13TeV_me_mp_1j',
                  'hww2l2v_13TeV_me_pm_1j',
                  'hww2l2v_13TeV_em_mp_1j',
@@ -482,6 +513,9 @@ nuisances['WWnorm0j']  = {
                  'hww2l2v_13TeV_top_of0j',
                  'hww2l2v_13TeV_dytt_of0j'              
 #                 
+                 'hww2l2v_13TeV_me_0j',
+                 'hww2l2v_13TeV_em_0j',
+#
                  'hww2l2v_13TeV_me_mp_0j',
                  'hww2l2v_13TeV_me_pm_0j',
                  'hww2l2v_13TeV_em_mp_0j',
@@ -501,6 +535,9 @@ nuisances['WWnorm1j']  = {
                  'hww2l2v_13TeV_top_of1j',
                  'hww2l2v_13TeV_dytt_of1j'              
 #                 
+                 'hww2l2v_13TeV_me_1j',
+                 'hww2l2v_13TeV_em_1j',
+#
                  'hww2l2v_13TeV_me_mp_1j',
                  'hww2l2v_13TeV_me_pm_1j',
                  'hww2l2v_13TeV_em_mp_1j',
@@ -521,6 +558,9 @@ nuisances['Topnorm0j']  = {
                  'hww2l2v_13TeV_top_of0j',
                  'hww2l2v_13TeV_dytt_of0j'              
 #                 
+                 'hww2l2v_13TeV_me_0j',
+                 'hww2l2v_13TeV_em_0j',
+#
                  'hww2l2v_13TeV_me_mp_0j',
                  'hww2l2v_13TeV_me_pm_0j',
                  'hww2l2v_13TeV_em_mp_0j',
@@ -540,6 +580,9 @@ nuisances['Topnorm1j']  = {
                  'hww2l2v_13TeV_top_of1j',
                  'hww2l2v_13TeV_dytt_of1j'              
 #                 
+                 'hww2l2v_13TeV_me_1j',
+                 'hww2l2v_13TeV_em_1j',
+#
                  'hww2l2v_13TeV_me_mp_1j',
                  'hww2l2v_13TeV_me_pm_1j',
                  'hww2l2v_13TeV_em_mp_1j',
@@ -673,6 +716,7 @@ nuisances['btag']  = {
                    'VVV'     : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
                    'VZ'      : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
                    'WW'      : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   'ggWW'    : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
                    'top'     : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
                    'Vg'      : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
                 }
@@ -707,12 +751,14 @@ nuisances['trigg']  = {
                    'qqH_hww' : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
                    'WH_hww'  : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
                    'ZH_hww'  : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
+                   'ggZH_hww': ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
                    'H_htt'   : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
                    'H_hww'   : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
                    'WH_hww'  : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
                    'DY'      : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
                    'VVV'     : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
                    'VZ'      : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
+                   'ggWW'    : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
                    'WW'      : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
                    'top'     : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
                    'Vg'      : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
@@ -733,12 +779,14 @@ nuisances['idiso']  = {
                    'qqH_hww' : ['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])'],
                    'WH_hww'  : ['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])'],
                    'ZH_hww'  : ['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])'],
+                   'ggZH_hww': ['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])'],
                    'H_htt'   : ['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])'],
                    'H_hww'   : ['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])'],
                    'WH_hww'  : ['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])'],
                    'DY'      : ['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])'],
                    'VVV'     : ['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])'],
                    'VZ'      : ['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])'],
+                   'ggWW'    : ['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])'],
                    'WW'      : ['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])'],
                    'top'     : ['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])'],
                    'Vg'      : ['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])'],
@@ -756,6 +804,7 @@ nuisances['jes']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
+                   'ggWW' :['1', '1'],
                    'WW' :  ['1', '1'],
                    'DY' :  ['1', '1'],
                    'top' : ['1', '1'],
@@ -765,6 +814,7 @@ nuisances['jes']  = {
                    'qqH_hww' : ['1', '1'],
                    'WH_hww' :  ['1', '1'],
                    'ZH_hww' :  ['1', '1'],
+                   'ggZH_hww' :  ['1', '1'],
                    'H_hww'  :  ['1', '1'],
                    'H_htt'  : ['1', '1'],
                    'Vg' : ['1', '1'],
@@ -798,6 +848,7 @@ nuisances['electronpt']  = {
                    'qqH_hww' : ['1', '1'],
                    'WH_hww'  :  ['1', '1'],
                    'ZH_hww'  :  ['1', '1'],
+                   'ggZH_hww':  ['1', '1'],
                    'H_hww'   :  ['1', '1'],
                    'H_htt'   : ['1', '1'],
                    'Vg' : ['1', '1'],
@@ -826,6 +877,7 @@ nuisances['muonpt']  = {
                    'qqH_hww' : ['1', '1'],
                    'WH_hww' :  ['1', '1'],
                    'ZH_hww' :  ['1', '1'],
+                   'ggZH_hww':  ['1', '1'],
                    'H_hww' :  ['1', '1'],
                    'H_htt' : ['1', '1'],
                    'Vg' : ['1', '1'],
@@ -855,6 +907,7 @@ nuisances['met']  = {
                    'qqH_hww' : ['1', '1'],
                    'WH_hww' :  ['1', '1'],
                    'ZH_hww' :  ['1', '1'],
+                   'ggZH_hww':  ['1', '1'],
                    'H_hww' :  ['1', '1'],
                    'H_htt' : ['1', '1'],
                    'Vg' : ['1', '1'],
@@ -906,6 +959,10 @@ nuisances['stat']  = {
                          'typeStat' : 'bbb',
                          },
 
+                   'VZ': {
+                         'typeStat' : 'bbb',
+                         },
+
                    'WZ': {
                          'typeStat' : 'bbb',
                          },
@@ -951,6 +1008,10 @@ nuisances['stat']  = {
                          },
 
                    'ZH_htt': {
+                         'typeStat' : 'bbb',
+                         },
+
+                   'ggZH_hww': {
                          'typeStat' : 'bbb',
                          },
                    
