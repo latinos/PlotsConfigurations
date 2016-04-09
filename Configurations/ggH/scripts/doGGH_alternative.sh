@@ -52,8 +52,8 @@ combineCards.py   of0j13=ggH/datacards/hww2l2v_13TeV_of0j/mllVSmth/datacard.txt.
 combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.charge.pruned.txt             >   result.MaxLikelihoodFit.Moriond2016.charge.pruned.txt
 combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.preapproval.pruned.txt        >   result.MaxLikelihoodFit.Moriond2016.preapproval.pruned.txt
 
-combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Moriond2016.Moriond2016.charge.pruned.txt      >   result.Significance.Moriond2016.charge.pruned.txt
-combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Moriond2016.preapproval.pruned.txt             >   result.Significance.Moriond2016.preapproval.pruned.txt
+combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Moriond2016.charge.pruned.txt         >   result.Significance.Moriond2016.charge.pruned.txt
+combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Moriond2016.preapproval.pruned.txt    >   result.Significance.Moriond2016.preapproval.pruned.txt
 
 
 
