@@ -126,6 +126,18 @@ Pruning:
     sh examples/doPruneNuisanceHWW.sh 
     cd -
 
+
+Auto tests:
+
+    cd /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH
+    cmsenv
+    cd ..
+    sh ggH/scripts/doGGH.sh
+    cd -
+    
+
+    
+    
 Combine:
 
     cd ~/Framework/CMSSW_7_1_15/src/
@@ -298,13 +310,6 @@ Datacards checks
     combine    -M MaxLikelihoodFit -t -1 --expectSignal 1    test.root
     python diffNuisances.py -a  mlfit.root -g plots.root  &> result.1j.txt
     
-    
-
-Auto tests:
-
-    cd ..
-    sh ggH/scripts/doGGH.sh
-    cd -
     
 
 Data:
