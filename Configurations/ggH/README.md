@@ -86,10 +86,10 @@ Combine datacards:
          
     Upgrade:
     
-    combineCards.py   empm1j13=ggH/datacards/hww2l2v_13TeV_em_pm__of1j/mllVSmth/datacard.txt \
-                      emmp1j13=ggH/datacards/hww2l2v_13TeV_em_mp__of1j/mllVSmth/datacard.txt \
-                      mepm1j13=ggH/datacards/hww2l2v_13TeV_me_pm__of1j/mllVSmth/datacard.txt \
-                      memp1j13=ggH/datacards/hww2l2v_13TeV_me_mp__of1j/mllVSmth/datacard.txt \
+    combineCards.py   empm1j13=ggH/datacards/hww2l2v_13TeV_em_pm_1j/mllVSmth/datacard.txt \
+                      emmp1j13=ggH/datacards/hww2l2v_13TeV_em_mp_1j/mllVSmth/datacard.txt \
+                      mepm1j13=ggH/datacards/hww2l2v_13TeV_me_pm_1j/mllVSmth/datacard.txt \
+                      memp1j13=ggH/datacards/hww2l2v_13TeV_me_mp_1j/mllVSmth/datacard.txt \
                       empm0j13=ggH/datacards/hww2l2v_13TeV_em_pm_0j/mllVSmth/datacard.txt \
                       emmp0j13=ggH/datacards/hww2l2v_13TeV_em_mp_0j/mllVSmth/datacard.txt \
                       mepm0j13=ggH/datacards/hww2l2v_13TeV_me_pm_0j/mllVSmth/datacard.txt \
@@ -101,15 +101,109 @@ Combine datacards:
                       >   Moriond2016.txt
      
      
+    combineCards.py   em1j13=ggH/datacards/hww2l2v_13TeV_em_1j/mllVSmth/datacard.txt \
+                      me1j13=ggH/datacards/hww2l2v_13TeV_me_1j/mllVSmth/datacard.txt \
+                      em0j13=ggH/datacards/hww2l2v_13TeV_em_0j/mllVSmth/datacard.txt \
+                      me0j13=ggH/datacards/hww2l2v_13TeV_me_0j/mllVSmth/datacard.txt \
+                      of0j13Top=ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt \
+                      of1j13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt \
+                      of0j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt \
+                      of1j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt \
+                      >   Moriond2016.v1.txt
+
+    combineCards.py   of1j13=ggH/datacards/hww2l2v_13TeV_of1j/mllVSmth/datacard.txt \
+                      of0j13=ggH/datacards/hww2l2v_13TeV_of0j/mllVSmth/datacard.txt \
+                      of0j13Top=ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt \
+                      of1j13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt \
+                      of0j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt \
+                      of1j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt \
+                      >   Moriond2016.v0.txt
 
 
+Pruning:
 
-         
-         
-    combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.txt
+    cd /afs/cern.ch/user/a/amassiro/Limit/ModificationDatacards
+    sh examples/doPruneNuisanceHWW.sh 
+    cd -
+
+
+Auto tests:
+
+    cd /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH
+    cmsenv
+    cd ..
+    sh ggH/scripts/doGGH.sh
+    cd -
     
-    combine -M ProfileLikelihood --significance Moriond2016.txt -t -1 --expectSignal=1
 
+    
+    
+Combine:
+
+    cd ~/Framework/CMSSW_7_1_15/src/
+    cmsenv
+    cd -
+    
+    
+    
+    combineCards.py   empm1j13=ggH/datacards/hww2l2v_13TeV_em_pm_1j/mllVSmth/datacard.txt \
+                      emmp1j13=ggH/datacards/hww2l2v_13TeV_em_mp_1j/mllVSmth/datacard.txt.pruned.txt \
+                      mepm1j13=ggH/datacards/hww2l2v_13TeV_me_pm_1j/mllVSmth/datacard.txt.pruned.txt \
+                      memp1j13=ggH/datacards/hww2l2v_13TeV_me_mp_1j/mllVSmth/datacard.txt.pruned.txt \
+                      empm0j13=ggH/datacards/hww2l2v_13TeV_em_pm_0j/mllVSmth/datacard.txt.pruned.txt \
+                      emmp0j13=ggH/datacards/hww2l2v_13TeV_em_mp_0j/mllVSmth/datacard.txt.pruned.txt \
+                      mepm0j13=ggH/datacards/hww2l2v_13TeV_me_pm_0j/mllVSmth/datacard.txt.pruned.txt \
+                      memp0j13=ggH/datacards/hww2l2v_13TeV_me_mp_0j/mllVSmth/datacard.txt.pruned.txt \
+                      of0j13Top=ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
+                      of1j13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
+                      of0j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+                      of1j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
+                      >   Moriond2016.txt.pruned.txt
+     
+     
+    combineCards.py   em1j13=ggH/datacards/hww2l2v_13TeV_em_1j/mllVSmth/datacard.txt.pruned.txt \
+                      me1j13=ggH/datacards/hww2l2v_13TeV_me_1j/mllVSmth/datacard.txt.pruned.txt \
+                      em0j13=ggH/datacards/hww2l2v_13TeV_em_0j/mllVSmth/datacard.txt.pruned.txt \
+                      me0j13=ggH/datacards/hww2l2v_13TeV_me_0j/mllVSmth/datacard.txt.pruned.txt \
+                      of0j13Top=ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
+                      of1j13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
+                      of0j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+                      of1j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
+                      >   Moriond2016.v1.txt.pruned.txt
+
+    combineCards.py   of1j13=ggH/datacards/hww2l2v_13TeV_of1j/mllVSmth/datacard.txt.pruned.txt \
+                      of0j13=ggH/datacards/hww2l2v_13TeV_of0j/mllVSmth/datacard.txt.pruned.txt \
+                      of0j13Top=ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
+                      of1j13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
+                      of0j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+                      of1j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
+                      >   Moriond2016.v0.txt.pruned.txt
+                      
+                      
+         
+         
+    combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.txt       &> result.txt
+    combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.v0.txt    &> result.v0.txt
+    combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.v1.txt    &> result.v1.txt
+    
+    combine -M ProfileLikelihood --significance Moriond2016.txt     -t -1 --expectSignal=1     &> result.sig.txt
+    combine -M ProfileLikelihood --significance Moriond2016.v0.txt  -t -1 --expectSignal=1     &> result.sig.v0.txt
+    combine -M ProfileLikelihood --significance Moriond2016.v1.txt  -t -1 --expectSignal=1     &> result.sig.v1.txt
+
+    
+    
+    
+    combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.txt.pruned.txt       &> result.txt.pruned.txt
+    combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.v0.txt.pruned.txt    &> result.v0.txt.pruned.txt
+    combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.v1.txt.pruned.txt    &> result.v1.txt.pruned.txt
+    
+    combine -M ProfileLikelihood --significance Moriond2016.txt.pruned.txt     -t -1 --expectSignal=1     &> result.sig.txt.pruned.txt
+    combine -M ProfileLikelihood --significance Moriond2016.v0.txt.pruned.txt  -t -1 --expectSignal=1     &> result.sig.v0.txt.pruned.txt
+    combine -M ProfileLikelihood --significance Moriond2016.v1.txt.pruned.txt  -t -1 --expectSignal=1     &> result.sig.v1.txt.pruned.txt
+
+    
+    
+    
     
     text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose --PO 'map=.*/ggH:1' --PO 'map=.*/ggWW_Int:r_ggWW_Int_r[-1,0,-2]' Moriond2016.txt -o Moriond2016.root
     text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose --PO 'map=.*/ggWW_Int:-1' Moriond2016.txt -o Moriond2016.root
@@ -217,8 +311,6 @@ Datacards checks
     python diffNuisances.py -a  mlfit.root -g plots.root  &> result.1j.txt
     
     
-                    
-    
 
 Data:
 
@@ -233,7 +325,10 @@ Backup:
     mkShapes.py      --pycfg=configuration.py  --inputDir=/tmp/amassiro/eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight/
     mkShapes.py      --pycfg=configuration.py  --inputDir=/tmp/amassiro/eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
     mkShapes.py      --pycfg=configuration.py  --inputDir=eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
+    mkShapes.py      --doThreads=True   --pycfg=configuration.py  --inputDir=eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
     
+
+
 
 
     
@@ -356,4 +451,27 @@ Backup:
     
     cat datacards/hww2l2v_13TeV_of1j/mllVSmth/datacard.txt  | grep -v "shape               -"  &> datacards/hww2l2v_13TeV_of1j/mllVSmth/datacard.test.txt
     mv datacards/hww2l2v_13TeV_of1j/mllVSmth/datacard.test.txt datacards/hww2l2v_13TeV_of1j/mllVSmth/datacard.txt
+ 
+ 
+Plots:
+
+    TH2F histo("histo","", 1000,20,100,   2000,0,1.1);
+    latino->Draw("effTrigW:std_vector_lepton_pt[0] >> histo","std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[0]<100 && std_vector_lepton_pt[1]>10 && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13) && abs(std_vector_lepton_flavour[0]) == 11 ", "colz");
+    latino->Draw("effTrigW:std_vector_lepton_pt[0] >> histo","std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[0]<100 && std_vector_lepton_pt[1]>10 && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13) && abs(std_vector_lepton_flavour[0]) == 13 ", "colz");
+    
+    TH2F histo("histo","", 1000,10,100,   2000,0,1.1);
+    latino->Draw("effTrigW:std_vector_lepton_pt[1] >> histo","std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]<100 && std_vector_lepton_pt[1]>10 && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13) && abs(std_vector_lepton_flavour[1]) == 11 ", "colz");
+    latino->Draw("effTrigW:std_vector_lepton_pt[1] >> histo","std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]<100 && std_vector_lepton_pt[1]>10 && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13) && abs(std_vector_lepton_flavour[1]) == 13 ", "colz");
+    
+    histo.GetXaxis()->SetTitle("p_{T} 1st [GeV]")
+    histo.GetYaxis()->SetTitle("Trigger Efficiency")
+    gPad->SetGrid();
+    histo.GetXaxis()->SetTitle("p_{T} 2nd [GeV]")
+    
+    
+    latino->Draw("effTrigW","std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]<100 && std_vector_lepton_pt[1]>10 && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13)");
+    
+    
+    
+    
     
