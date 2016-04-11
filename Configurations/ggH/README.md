@@ -478,6 +478,10 @@ Plots:
 
 Copy datacards to repository:
 
+    https://svnweb.cern.ch/cern/wsvn/cmshcg/trunk/moriond2016/
+    https://svnweb.cern.ch/cern/wsvn/cmshcg/trunk/cadi/HIG-15-003/125/
+    
+    
     svn co -N svn+ssh://svn.cern.ch/reps/cmshcg/trunk/moriond2016
     cd moriond2016
     svn up -N couplings
@@ -540,6 +544,8 @@ Copy datacards to repository:
     
     cd /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH
     
- 
+
+
+
  
  
