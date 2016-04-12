@@ -488,16 +488,10 @@ Copy datacards to repository:
     svn up couplings/hww2l2v
     
     cd /afs/cern.ch/user/a/amassiro/work/Latinos/Limit/datacards/moriond2016 
-    cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_1j/mllVSmth/datacard.txt.pruned.txt       couplings/hww2l2v/125/hww2l2v_13TeV_em_1j.txt
-    cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_1j/mllVSmth/datacard.txt.pruned.txt       couplings/hww2l2v/125/hww2l2v_13TeV_me_1j.txt
-    cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_0j/mllVSmth/datacard.txt.pruned.txt       couplings/hww2l2v/125/hww2l2v_13TeV_em_0j.txt
-    cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_0j/mllVSmth/datacard.txt.pruned.txt       couplings/hww2l2v/125/hww2l2v_13TeV_me_0j.txt
-    cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt      couplings/hww2l2v/125/hww2l2v_13TeV_top_of0j.txt
-    cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt      couplings/hww2l2v/125/hww2l2v_13TeV_top_of1j.txt
-    cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt     couplings/hww2l2v/125/hww2l2v_13TeV_dytt_of0j.txt 
-    cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt     couplings/hww2l2v/125/hww2l2v_13TeV_dytt_of1j.txt 
+    cd /afs/cern.ch/user/a/amassiro/work/Latinos/Limit/datacards/moriond2016/couplings/hww2l2v/125/
       
-    
+
+
     svn co -N svn+ssh://svn.cern.ch/reps/cmshcg/trunk/cadi
     cd cadi
     svn up HIG-15-003
