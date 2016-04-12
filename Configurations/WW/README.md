@@ -53,6 +53,13 @@ Setup combine:
 
 Extract signal strength from datacard using combine:
 
+	combine -M MultiDimFit datacards/ww_BVeto0j_em/events/datacard.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -n "LHScan" -m 125
+
+	combine -M MultiDimFit datacards/ww_BVeto1j_em/events/datacard.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -n "LHScan" -m 125
+
+
+To perform a blind (MC only) estimate of the uncertainty of the signal strength:
+
 	combine -M MultiDimFit datacards/ww_BVeto0j_em/events/datacard.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1 -n "LHScan" -m 125
 
 	combine -M MultiDimFit datacards/ww_BVeto1j_em/events/datacard.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1 -n "LHScan" -m 125
