@@ -453,7 +453,7 @@ nuisances['DYttnorm0j']  = {
                'cuts'  : [
                  'hww2l2v_13TeV_of0j',
                  'hww2l2v_13TeV_top_of0j',
-                 'hww2l2v_13TeV_dytt_of0j'
+                 'hww2l2v_13TeV_dytt_of0j',
 #                 
                  'hww2l2v_13TeV_me_0j',
                  'hww2l2v_13TeV_em_0j',
@@ -475,7 +475,7 @@ nuisances['DYttnorm1j']  = {
                'cuts'  : [
                  'hww2l2v_13TeV_of1j',
                  'hww2l2v_13TeV_top_of1j',
-                 'hww2l2v_13TeV_dytt_of1j'
+                 'hww2l2v_13TeV_dytt_of1j',
 #                 
                  'hww2l2v_13TeV_me_1j',
                  'hww2l2v_13TeV_em_1j',
@@ -511,7 +511,7 @@ nuisances['WWnorm0j']  = {
                'cuts'  : [
                  'hww2l2v_13TeV_of0j',
                  'hww2l2v_13TeV_top_of0j',
-                 'hww2l2v_13TeV_dytt_of0j'              
+                 'hww2l2v_13TeV_dytt_of0j',              
 #                 
                  'hww2l2v_13TeV_me_0j',
                  'hww2l2v_13TeV_em_0j',
@@ -533,7 +533,7 @@ nuisances['WWnorm1j']  = {
                'cuts'  : [
                  'hww2l2v_13TeV_of1j',
                  'hww2l2v_13TeV_top_of1j',
-                 'hww2l2v_13TeV_dytt_of1j'              
+                 'hww2l2v_13TeV_dytt_of1j',              
 #                 
                  'hww2l2v_13TeV_me_1j',
                  'hww2l2v_13TeV_em_1j',
@@ -556,7 +556,7 @@ nuisances['Topnorm0j']  = {
                'cuts'  : [
                  'hww2l2v_13TeV_of0j',
                  'hww2l2v_13TeV_top_of0j',
-                 'hww2l2v_13TeV_dytt_of0j'              
+                 'hww2l2v_13TeV_dytt_of0j',              
 #                 
                  'hww2l2v_13TeV_me_0j',
                  'hww2l2v_13TeV_em_0j',
@@ -578,7 +578,7 @@ nuisances['Topnorm1j']  = {
                'cuts'  : [
                  'hww2l2v_13TeV_of1j',
                  'hww2l2v_13TeV_top_of1j',
-                 'hww2l2v_13TeV_dytt_of1j'              
+                 'hww2l2v_13TeV_dytt_of1j',              
 #                 
                  'hww2l2v_13TeV_me_1j',
                  'hww2l2v_13TeV_em_1j',
