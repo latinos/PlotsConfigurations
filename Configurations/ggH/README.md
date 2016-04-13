@@ -331,130 +331,6 @@ Backup:
     mkShapes.py      --doThreads=True   --pycfg=configuration.py  --inputDir=eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
     
 
-
-
-
-    
-    cp MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel__genVariables/*  MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/
-    cp MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel__genVariables/*     MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/
-    cp MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel__genVariables/*    MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/
-    cp MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel__genVariables/*    MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/
-    cp MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel__genVariables/*     MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/
-    cp MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel__genVariables/*         MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel/
-    cp MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel__genVariables/*         MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel/
-    cp MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__genVariables/*                MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
-    
-    
-
-
-    
-    
-    cat ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt  | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1" &> ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.test.txt
-    mv ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt
-    
-    cat ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt  | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1" &> ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.test.txt
-    mv ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt
-    
-    cat ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt   | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt
-    mv ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt
-    
-    cat ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt   | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt
-    mv ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt
- 
-    cat ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt   | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt
-    mv ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt
-    
-    cat ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt   | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt
-    mv ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt
-
-    
-    
-    
-    
-    cat ggHMoriondTop/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt  | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1" &> ggHMoriondTop/datacards/hww2l2v_13TeV_top_of0j/events/datacard.test.txt
-    mv ggHMoriondTop/datacards/hww2l2v_13TeV_top_of0j/events/datacard.test.txt ggHMoriondTop/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt
-    
-    cat ggHMoriondTop/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt  | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1" &> ggHMoriondTop/datacards/hww2l2v_13TeV_top_of1j/events/datacard.test.txt
-    mv ggHMoriondTop/datacards/hww2l2v_13TeV_top_of1j/events/datacard.test.txt ggHMoriondTop/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt
-    
-    cat ggHMoriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt   | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggHMoriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt
-    mv ggHMoriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt ggHMoriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt
-    
-    cat ggHMoriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt   | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggHMoriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt
-    mv ggHMoriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt ggHMoriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt
- 
-    cat ggHMoriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt   | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggHMoriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt
-    mv ggHMoriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt ggHMoriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt
-    
-    cat ggHMoriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt   | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggHMoriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt
-    mv ggHMoriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt ggHMoriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt
- 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    cat ggHMoriondTop/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt  | grep -v "ggWW_Int_ibin_" | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1" &> ggHMoriondTop/datacards/hww2l2v_13TeV_top_of0j/events/datacard.test.txt
-    mv ggHMoriondTop/datacards/hww2l2v_13TeV_top_of0j/events/datacard.test.txt ggHMoriondTop/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt
-    
-    cat ggHMoriondTop/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt  | grep -v "ggWW_Int_ibin_" | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1" &> ggHMoriondTop/datacards/hww2l2v_13TeV_top_of1j/events/datacard.test.txt
-    mv ggHMoriondTop/datacards/hww2l2v_13TeV_top_of1j/events/datacard.test.txt ggHMoriondTop/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt
-    
-    cat ggHMoriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt   | grep -v "ggWW_Int_ibin_" | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggHMoriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt
-    mv ggHMoriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt ggHMoriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt
-    
-    cat ggHMoriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt   | grep -v "ggWW_Int_ibin_" | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggHMoriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt
-    mv ggHMoriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt ggHMoriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt
-    
-    
-    
-    
-    
-    cat ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt  | grep -v "CMS_fakehww" | grep -v "fakestathww" | grep -v "ggWW_Int_ibin_" | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.test.txt
-    mv ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt
-    
-    cat ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt  | grep -v "CMS_fakehww" | grep -v "fakestathww" | grep -v "ggWW_Int_ibin_" | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.test.txt
-    mv ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt
-    
-    cat ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt  | grep -v "CMS_fakehww" | grep -v "fakestathww" | grep -v "ggWW_Int_ibin_" | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt
-    mv ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt
-    
-    cat ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt  | grep -v "CMS_fakehww" | grep -v "fakestathww" | grep -v "ggWW_Int_ibin_" | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt
-    mv ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt
-    
-    cat ggH/datacards/hww2l2v_13TeV_of0j/events/datacard.txt  | grep -v "CMS_fakehww" | grep -v "fakestathww" | grep -v "ggWW_Int_ibin_" | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_of0j/events/datacard.test.txt
-    mv ggH/datacards/hww2l2v_13TeV_of0j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_of0j/events/datacard.txt
-    
-    cat ggH/datacards/hww2l2v_13TeV_of1j/events/datacard.txt  | grep -v "CMS_fakehww" | grep -v "fakestathww" | grep -v "ggWW_Int_ibin_" | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_of1j/events/datacard.test.txt
-    mv ggH/datacards/hww2l2v_13TeV_of1j/events/datacard.test.txt ggH/datacards/hww2l2v_13TeV_of1j/events/datacard.txt
-    
-    
-    
-    
-    
-    cat datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt  | grep -v "shape               -"  &> datacards/hww2l2v_13TeV_top_of0j/events/datacard.test.txt
-    mv datacards/hww2l2v_13TeV_top_of0j/events/datacard.test.txt datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt
-    
-    cat datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt  | grep -v "shape               -"  &> datacards/hww2l2v_13TeV_top_of1j/events/datacard.test.txt
-    mv datacards/hww2l2v_13TeV_top_of1j/events/datacard.test.txt datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt
-    
-    cat datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt  | grep -v "shape               -"  &> datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt
-    mv datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt
-    
-    cat datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt  | grep -v "shape               -"  &> datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt
-    mv datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt
-    
-    cat datacards/hww2l2v_13TeV_of0j/mllVSmth/datacard.txt  | grep -v "shape               -"  &> datacards/hww2l2v_13TeV_of0j/mllVSmth/datacard.test.txt
-    mv datacards/hww2l2v_13TeV_of0j/mllVSmth/datacard.test.txt datacards/hww2l2v_13TeV_of0j/mllVSmth/datacard.txt
-    
-    cat datacards/hww2l2v_13TeV_of1j/mllVSmth/datacard.txt  | grep -v "shape               -"  &> datacards/hww2l2v_13TeV_of1j/mllVSmth/datacard.test.txt
-    mv datacards/hww2l2v_13TeV_of1j/mllVSmth/datacard.test.txt datacards/hww2l2v_13TeV_of1j/mllVSmth/datacard.txt
- 
  
 Plots:
 
@@ -474,6 +350,11 @@ Plots:
     
     latino->Draw("effTrigW","std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]<100 && std_vector_lepton_pt[1]>10 && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13)");
     
+    latino->Draw("bPogSF>>h(100,0.8,1.5)","njet==1 && std_vector_jet_pt[0]>120 &&  std_vector_jet_pt[0]<320 && abs(std_vector_jet_HadronFlavour[0])==5 && std_vector_jet_cmvav2[0]>-0.715 && abs(std_vector_jet_eta[0])<2.4 ")
+    latino->Draw("bPogSF>>h(100,0.8,1.5)","std_vector_jet_pt[1]<20 && std_vector_jet_pt[0]>120 &&  std_vector_jet_pt[0]<320 && abs(std_vector_jet_HadronFlavour[0])==5 && std_vector_jet_cmvav2[0]>-0.715 && abs(std_vector_jet_eta[0])<2.4 ")
+    latino->Draw("bPogSF","std_vector_jet_pt[2]<20 ")
+    latino->Draw("bPogSFUp","std_vector_jet_pt[2]<20 ")
+    latino->Draw("bPogSFDown","std_vector_jet_pt[2]<20 ")
     
 
 Copy datacards to repository:
