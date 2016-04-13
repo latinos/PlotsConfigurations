@@ -137,15 +137,37 @@ nuisances['QCDscale_ggZH']  = {
               }
 
 
+#
+#    QCD// first row (2,2), 2nd row (0.5, 0.5)
+#    =====================================================================
+#    WWTo2L2Nu                       -- xs = 1.01233     -- acc = 0.99381
+#                                    -- xs = 0.992596    -- acc = 1.00544
+#    
+#    WZTo3LNu                        -- xs = 1.01781     -- acc = 0.99276
+#                                    -- xs = 0.986751    -- acc = 1.00652
+#    
+#    GluGluHToWWTo2L2Nu_M126         -- xs = 1.18068     -- acc = 0.972935
+#                                    -- xs = 0.861719    -- acc = 1.02189
+#    
+#    VBFHToWWTo2L2Nu_M126            -- xs = 0.993296    -- acc = 1.01637
+#                                    -- xs = 1.00686     -- acc = 0.989379
+#    
+
 
 nuisances['QCDscale_qqbar_accept']  = {
                'name'  : 'QCDscale_qqbar_accept', 
                'type'  : 'lnN',
                'samples'  : {
-                   'qqH_hww' : '1.02',
-                   'qqH_htt' : '1.02',
-                   'WH_hww'  : '1.02',
-                   'ZH_hww'  : '1.02',
+                   #'qqH_hww' : '1.02',
+                   #'qqH_htt' : '1.02',
+                   #'WH_hww'  : '1.02',
+                   #'ZH_hww'  : '1.02',
+                   #
+                   'qqH_hww' : '1.015',
+                   'qqH_htt' : '1.015',
+                   'WH_hww'  : '1.015',
+                   'ZH_hww'  : '1.015',
+                   'VZ'      : '1.005',
                    },
               }
 
@@ -154,11 +176,18 @@ nuisances['QCDscale_qqbar_accept']  = {
 nuisances['QCDscale_gg_accept']  = {
                'name'  : 'QCDscale_gg_accept', 
                'samples'  : {
+                   #'ggWW'    : '1.03',
+                   #'ggH_hww' : '1.03',
+                   #'ggH_htt' : '1.03',
+                   #'H_htt'   : '1.03',
+                   #'ggZH_hww': '1.03',                   
+                   #
                    'ggWW'    : '1.03',
                    'ggH_hww' : '1.03',
                    'ggH_htt' : '1.03',
                    'H_htt'   : '1.03',
                    'ggZH_hww': '1.03',                   
+
                    },
                'type'  : 'lnN',
               }
@@ -220,14 +249,37 @@ nuisances['pdf_qqbar_accept']  = {
                'name'  : 'pdf_qqbar_accept', 
                'type'  : 'lnN',
                'samples'  : {
-                   'qqH_hww' : '1.018',
-                   'qqH_htt' : '1.018',
-                   'WH_hww'  : '1.018',
-                   'ZH_hww'  : '1.018',
+                   #'qqH_hww' : '1.018',
+                   #'qqH_htt' : '1.018',
+                   #'WH_hww'  : '1.018',
+                   #'ZH_hww'  : '1.018',
+                   ##'WW'      : '1.015',    # ---> not needed
+                   #'VW'      : '1.015',
+                   #
+                   'qqH_hww' : '1.001',
+                   'qqH_htt' : '1.001',
+                   'WH_hww'  : '1.001',
+                   'ZH_hww'  : '1.001',
                    #'WW'      : '1.015',    # ---> not needed
-                   'VW'      : '1.015',
+                   'VZ'      : '1.001',                   
                    },
               }
+
+
+#    PDF// pretty symmetric up & down variations
+#    =====================================================================
+#    WWTo2L2Nu                         -- xs = 1.0148     -- acc = 1.00054
+#    WZTo3LNu                          -- xs = 1.01442    -- acc = 1.00047
+#    GluGluHToWWTo2L2Nu_M126           -- xs = 1.02063    -- acc = 1.00124
+#    VBFHToWWTo2L2Nu_M126              -- xs = 1.01409    -- acc = 1.00122
+
+
+
+
+
+
+
+
 
 
 # ggww and interference
