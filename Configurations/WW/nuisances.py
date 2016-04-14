@@ -134,6 +134,7 @@ nuisances['QCDscale_ggH']  = {
 nuisances['QCDscale_qqH']  = {
                'name'  : 'QCDscale_qqH', 
                'samples'  : {
+                   'WW'      : '0.992596/1.01233',
                    'qqH_hww' : '0.993/1.007',
                    'qqH_htt' : '0.993/1.007',
                    },
@@ -192,6 +193,7 @@ nuisances['QCDscale_qqbar_accept']  = {
                    #'WH_hww'  : '1.02',
                    #'ZH_hww'  : '1.02',
                    #
+                   'WW'      : '0.99381/1.00544',
                    'qqH_hww' : '1.015',
                    'qqH_htt' : '1.015',
                    'WH_hww'  : '1.015',
@@ -243,6 +245,7 @@ nuisances['pdf_qqbar']  = {
                'name'  : 'pdf_qqbar', 
                'type'  : 'lnN',
                'samples'  : {
+                   'WW'      : '1.0148',
                    'qqH_hww' : '0.97/1.03',
                    'qqH_htt' : '0.97/1.03',
                    'WH_hww'  : '0.978/1.022',
@@ -286,11 +289,11 @@ nuisances['pdf_qqbar_accept']  = {
                    ##'WW'      : '1.015',    # ---> not needed
                    #'VW'      : '1.015',
                    #
+                   'WW'      : '1.00054',
                    'qqH_hww' : '1.001',
                    'qqH_htt' : '1.001',
                    'WH_hww'  : '1.001',
                    'ZH_hww'  : '1.001',
-                   #'WW'      : '1.001',    # ---> not needed ?
                    'VZ'      : '1.001',                   
                    },
               }
