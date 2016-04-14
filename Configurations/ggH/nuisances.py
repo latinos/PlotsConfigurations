@@ -137,23 +137,6 @@ nuisances['QCDscale_ggZH']  = {
               }
 
 
-#
-#    QCD// first row (2,2), 2nd row (0.5, 0.5)
-#    =====================================================================
-#    WWTo2L2Nu                       -- xs = 1.01233     -- acc = 0.99381
-#                                    -- xs = 0.992596    -- acc = 1.00544
-#    
-#    WZTo3LNu                        -- xs = 1.01781     -- acc = 0.99276
-#                                    -- xs = 0.986751    -- acc = 1.00652
-#    
-#    GluGluHToWWTo2L2Nu_M126         -- xs = 1.18068     -- acc = 0.972935
-#                                    -- xs = 0.861719    -- acc = 1.02189
-#    
-#    VBFHToWWTo2L2Nu_M126            -- xs = 0.993296    -- acc = 1.01637
-#                                    -- xs = 1.00686     -- acc = 0.989379
-#    
-
-
 nuisances['QCDscale_qqbar_accept']  = {
                'name'  : 'QCDscale_qqbar_accept', 
                'type'  : 'lnN',
@@ -163,6 +146,7 @@ nuisances['QCDscale_qqbar_accept']  = {
                    #'WH_hww'  : '1.02',
                    #'ZH_hww'  : '1.02',
                    #
+                   #'WW'      : '1.015', -> not included since part of weights from WWqscale0j and WWqscale1j
                    'qqH_hww' : '1.015',
                    'qqH_htt' : '1.015',
                    'WH_hww'  : '1.015',
@@ -191,6 +175,54 @@ nuisances['QCDscale_gg_accept']  = {
                    },
                'type'  : 'lnN',
               }
+
+
+
+#    
+#    
+#    
+#    =====
+#    0 jet
+#    =====
+#    =====================================================================
+#     QCD// first row (2,2), 2nd row (0.5, 0.5)
+#    =====================================================================
+#    WWTo2L2Nu                       -- xs = 1.01233     -- acc = 0.99381
+#                                    -- xs = 0.992596    -- acc = 1.00544
+#    
+#    WZTo3LNu                        -- xs = 1.01781     -- acc = 0.99276
+#                                    -- xs = 0.986751    -- acc = 1.00652
+#    
+#    GluGluHToWWTo2L2Nu_M126         -- xs = 1.18068     -- acc = 0.972935
+#                                    -- xs = 0.861719    -- acc = 1.02189
+#    
+#    VBFHToWWTo2L2Nu_M126            -- xs = 0.993296    -- acc = 1.01637
+#                                    -- xs = 1.00686     -- acc = 0.989379
+#    =====================================================================
+#    
+#    
+#    
+#    =====
+#    1 jet
+#    =====
+#    =====================================================================
+#     QCD// first row (2,2), 2nd row (0.5, 0.5)
+#    =====================================================================
+#    WWTo2L2Nu                        -- xs = 1.01274    -- acc = 1.01662
+#                                     -- xs = 0.992221   -- acc = 0.984641
+#    
+#    WZTo3LNu                         -- xs = 1.01775    -- acc = 1.00981
+#                                     -- xs = 0.986676   -- acc = 0.990711
+#    
+#    GluGluHToWWTo2L2Nu_M126          -- xs = 1.18068    -- acc = 1.01736
+#                                     -- xs = 0.861719   -- acc = 0.985408
+#    
+#    VBFHToWWTo2L2Nu_M126             -- xs = 0.993296   -- acc = 1.00332
+#                                     -- xs = 1.00686    -- acc = 0.997308
+#    =====================================================================
+#    
+#    
+
 
 
 
@@ -234,11 +266,11 @@ nuisances['pdf_qqbar']  = {
 nuisances['pdf_gg_accept']  = {
                'name'  : 'pdf_gg_accept', 
                'samples'  : {
-                   'ggWW'    : '1.022',     # 
-                   'ggH_hww' : '1.022',
-                   'ggH_htt' : '1.022',
-                   'H_htt'   : '1.022',
-                   'ggZH_hww': '1.022', 
+                   'ggWW'    : '1.001',     # 
+                   'ggH_hww' : '1.001',
+                   'ggH_htt' : '1.001',
+                   'H_htt'   : '1.001',
+                   'ggZH_hww': '1.001', 
                    #'top'     : '1.015',    # ---> not needed                
                    },
                'type'  : 'lnN',
@@ -266,17 +298,30 @@ nuisances['pdf_qqbar_accept']  = {
               }
 
 
-#    PDF// pretty symmetric up & down variations
+#    
+#    =====
+#    0 jet
+#    =====
+#    PDF 
 #    =====================================================================
 #    WWTo2L2Nu                         -- xs = 1.0148     -- acc = 1.00054
 #    WZTo3LNu                          -- xs = 1.01442    -- acc = 1.00047
 #    GluGluHToWWTo2L2Nu_M126           -- xs = 1.02063    -- acc = 1.00124
 #    VBFHToWWTo2L2Nu_M126              -- xs = 1.01409    -- acc = 1.00122
-
-
-
-
-
+#    
+#    =====
+#    1 jet
+#    =====
+#    PDF 
+#    =====================================================================
+#    WWTo2L2Nu                        -- xs = 1.01482    -- acc = 0.999089
+#    WZTo3LNu                         -- xs = 1.01441    -- acc = 0.999825
+#    GluGluHToWWTo2L2Nu_M126          -- xs = 1.02063    -- acc = 0.999853
+#    VBFHToWWTo2L2Nu_M126             -- xs = 1.01409    -- acc = 1.0007
+#    
+#    
+#    
+#    
 
 
 
@@ -460,17 +505,6 @@ nuisances['UE']  = {
 
 
 
-#cp eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_GluGluHToWWTo2L2Nu_M125_CUETDown.root  eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEdo/latino_GluGluHToWWTo2L2NuPowheg_M125.root
-#cp eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_GluGluHToWWTo2L2Nu_M125_CUETDown.root  eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEdo/latino_GluGluHToWWTo2L2Nu_M125.root
-#cp eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_VBFHToWWTo2L2Nu_M125_CUETDown.root     eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEdo/latino_VBFHToWWTo2L2Nu_M125.root
-#cp eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_WWTo2L2Nu_CUETDown.root                eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEdo/latino_WWTo2L2Nu.root
-
-#cp eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_GluGluHToWWTo2L2Nu_M125_CUETUp.root  eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEup/latino_GluGluHToWWTo2L2Nu_M125.root
-#cp eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_GluGluHToWWTo2L2Nu_M125_CUETUp.root  eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEup/latino_GluGluHToWWTo2L2NuPowheg_M125.root
-#cp eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_VBFHToWWTo2L2Nu_M125_CUETUp.root     eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEup/latino_VBFHToWWTo2L2Nu_M125.root
-#cp eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_WWTo2L2Nu_CUETUp.root                eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEup/latino_WWTo2L2Nu.root
-
-
 
 
 # experimental uncertainties
@@ -487,7 +521,7 @@ nuisances['UE']  = {
 
 # K factor (Data/Wg*) = 1.23 + 0.33
 nuisances['WgStarScale']  = {
-               'name'  : 'pdf_qqbar_accept', 
+               'name'  : 'WgStarScale', 
                'type'  : 'lnN',
                'samples'  : {
                    'Wg' : '1.27',  # 0.3 / 1.23  --> k_factor = 1.23 +/- 0.33
