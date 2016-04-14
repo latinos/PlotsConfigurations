@@ -9,28 +9,69 @@ Common tools for analysis:
 
 Some useful aliases:
     
-    alias eosusermount='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine.user/bin/eos.select -b fuse mount'
-    alias eosuserumount='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine.user/bin/eos.select -b fuse umount'
+      alias eosusermount='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine.user/bin/eos.select -b fuse mount'
+
+      alias eosuserumount='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine.user/bin/eos.select -b fuse umount'
 
 
 Steps to get datacards and plots:
 
       source /afs/cern.ch/project/eos/installation/user/etc/setup.sh
 
-      eosmount eosuser
+      cd /tmp/ntrevisa/    
 
-      mkShapes.py      --pycfg=configuration.py  --inputDir=eosuser/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel 
+      eosmount eos
+
+      cd -
+
+      mkShapes.py      --pycfg=configuration.py  --inputDir=/tmp/ntrevisa/eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel --doThread=True
     
       mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_WW.root
+
+      cd ../../../ModificationDatacards/		 
+
+      python TransformShapeToCutBased.py  -d ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto0j_em/events/datacard.txt
+
+      python TransformShapeToCutBased.py  -d ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto1j_em/events/datacard.txt
+
+      cd -
 
       mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_WW.root
     
 
-Or, if you want to exploit the lxplus queues:
+Print tables starting from datacards:
 
-    bsub -q 1nd script.sh
+      cd ../../../PlayWithDatacards/
+      
+      python tableFromCards.py ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto0j_em/events/datacard.txt
+      python tableFromCards.py ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto1j_em/events/datacard.txt
 
-    mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_WW.root
+      python bigTableFromCards.py ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto0j_em/events/datacard.txt
+      python bigTableFromCards.py ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto1j_em/events/datacard.txt
+
+      only if you are very brave:
+      python superBigTableFromCards.py ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto0j_em/events/datacard.txt
+      python superBigTableFromCards.py ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto1j_em/events/datacard.txt
+
+      cd -
+
+
+Install ModificationDatacards (first time only):	
+
+      cd CMSSW_7_6_3/src
+
+      git clone https://github.com/amassiro/ModificationDatacards.git	
+
+      scram b -j 10	
+
+
+Install PlayWithDatacards (first time only):
+
+      cd CMSSW_7_6_3/src
+
+      git clone https://github.com/latinos/PlayWithDatacards.git
+
+      scram b -j 10	
 
 
 Install combine (first time only):
@@ -53,16 +94,16 @@ Setup combine:
 
 Extract signal strength from datacard using combine:
 
-	combine -M MultiDimFit datacards/ww_BVeto0j_em/events/datacard.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -n "LHScan" -m 125
+	combine -M MultiDimFit datacards/ww_BVeto0j_em/events/datacard.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -n "LHScan" -m 125 >> signalStrength0jet.txt
 
-	combine -M MultiDimFit datacards/ww_BVeto1j_em/events/datacard.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -n "LHScan" -m 125
+	combine -M MultiDimFit datacards/ww_BVeto1j_em/events/datacard.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -n "LHScan" -m 125 >> signalStrength1jet.txt
 
 
 To perform a blind (MC only) estimate of the uncertainty of the signal strength:
 
-	combine -M MultiDimFit datacards/ww_BVeto0j_em/events/datacard.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1 -n "LHScan" -m 125
+	combine -M MultiDimFit datacards/ww_BVeto0j_em/events/datacard.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1 -n "LHScan" -m 125 >> signalStrength0jet.txt
 
-	combine -M MultiDimFit datacards/ww_BVeto1j_em/events/datacard.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1 -n "LHScan" -m 125
+	combine -M MultiDimFit datacards/ww_BVeto1j_em/events/datacard.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1 -n "LHScan" -m 125 >> signalStrength1jet.txt
 
 
 
@@ -73,6 +114,15 @@ To perform a blind (MC only) estimate of the uncertainty of the signal strength:
 
 BACKUP
 ==============
+
+
+Or, if you want to exploit the lxplus queues:
+
+    bsub -q 1nd script.sh
+
+    mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_WW.root
+
+
 
 Run combine:
 

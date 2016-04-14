@@ -184,17 +184,17 @@ plot['ZZ']  = {
 #                   }
 
 
-# plot['qqH_hww'] = {
-#                   'nameHR' : 'qqH',
-#                   'color': 632+1, # kRed+1 
-#                   'isSignal' : 0,
-#                   'isData'   : 0,    
-#                   'scale'    : 1    #
-#                   }
+plot['qqH_hww'] = {
+                  'nameHR' : 'qqH',
+                  'color': 632+1, # kRed+1 
+                  'isSignal' : 0,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
 
 
 plot['ggH_hww'] = {
-                  'nameHR' : 'HWW',
+                  'nameHR' : 'ggH',
                   'color': 632, # kRed 
                   'isSignal' : 0,
                   'isData'   : 0,    

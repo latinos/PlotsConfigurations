@@ -49,6 +49,12 @@ variables['met']  = {   'name': 'metPfType1',            #   variable name
                         }
 
 
+variables['dphill'] = {   'name': 'dphill',            #   variable name    
+                          'range' : (20,0,3.2),    #   variable range
+                          'xaxis' : '#Delta #Phi_{ll} [rad]',  #   x axis name
+                          'fold' : 0
+                          }
+
 variables['nvtx']  = {   'name': 'nvtx',      
                          'range' : (40,0,40),  
                          'xaxis' : 'nvtx', 
