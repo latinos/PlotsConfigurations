@@ -15,7 +15,7 @@ nuisances['lumi']  = {
                    'H_htt'    : '1.027',
                    'H_hww'    : '1.027',
                    'WH_hww'   : '1.027',
-                   'ggZH_hww'   : '1.027',
+                   'ggZH_hww' : '1.027',
                    'DY'       : '1.027',
                    'VVV'      : '1.027',
                    'VZ'       : '1.027',
@@ -34,7 +34,7 @@ nuisances['lumi']  = {
 nuisances['TopSF0j']  = {
                'name'  : 'TopSF0j',
                'samples'  : {
-                   'top' : '0.989/1.016',
+                   'top' : '0.90/1.16',
                    },
                'type'  : 'lnN',
                'cuts'  : [
@@ -46,7 +46,7 @@ nuisances['TopSF0j']  = {
 nuisances['TopSF1j']  = {
                'name'  : 'TopSF1j',
                'samples'  : {
-                   'top' : '0.992/1.006',
+                   'top' : '0.94/1.06',
                    },
                'type'  : 'lnN',
                'cuts'  : [
@@ -59,16 +59,16 @@ nuisances['TopSF1j']  = {
 
 # WZ from 
 # https://twiki.cern.ch/twiki/bin/view/CMS/StandardModelCrossSectionsat13TeV
-#
-nuisances['TopSF0j']  = {
-    'name'  : 'TopSF0j', 
-    'samples'  : {
-        'Top' : '1.03',
-        },
-    'type'  : 'lnN'
-    }
 
-# PDF: 0.0064 / 0.1427 = 0.0448493
+# nuisances['QCDscale_VW']  = {
+#     'name'  : 'QCDscale_VW', 
+#     'samples'  : {
+#         'VW' : '1.03',
+#         },
+#     'type'  : 'lnN'
+#     }
+
+# Pdf: 0.0064 / 0.1427 = 0.0448493
 # QCD: 0.0046 / 0.1427 = 0.0322355
 
 
@@ -121,25 +121,26 @@ nuisances['QCDscale_ggH1j']  = {
               }
 
 
-nuisances['QCDscale_ggH']  = {
-               'name'  : 'QCDscale_ggH', 
-               'samples'  : {
-                   'ggH_hww' : '0.921/1.074',
-                   'ggH_htt' : '0.921/1.074',
-                   'H_htt'   : '0.921/1.074',
-                   },
-               'type'  : 'lnN',
-              }
+# nuisances['QCDscale_gg']  = {
+#                'name'  : 'QCDscale_gg', 
+#                'samples'  : {
+#                    'ggH_hww' : '0.921/1.074',
+#                    'ggH_htt' : '0.921/1.074',
+#                    'H_htt'   : '0.921/1.074',
+#                    },
+#                'type'  : 'lnN',
+#               }
 
-nuisances['QCDscale_qqH']  = {
-               'name'  : 'QCDscale_qqH', 
+nuisances['QCDscale_qq']  = {
+               'name'  : 'QCDscale_qq', 
                'samples'  : {
-                   'WW'      : '0.992596/1.01233',
+                   'WW'      : '0.978/1.025',#'0.992596/1.01233',
                    'qqH_hww' : '0.993/1.007',
                    'qqH_htt' : '0.993/1.007',
                    },
                'type'  : 'lnN',
               }
+
 
 # nuisances['QCDscale_WH']  = {
 #                'name'  : 'QCDscale_WH', 
@@ -184,8 +185,8 @@ nuisances['QCDscale_qqH']  = {
 #    
 
 
-nuisances['QCDscale_qqbar_accept']  = {
-               'name'  : 'QCDscale_qqbar_accept', 
+nuisances['QCDscale_qqbar_accept_0j']  = {
+               'name'  : 'QCDscale_qqbar_accept_0j', 
                'type'  : 'lnN',
                'samples'  : {
                    #'qqH_hww' : '1.02',
@@ -193,17 +194,37 @@ nuisances['QCDscale_qqbar_accept']  = {
                    #'WH_hww'  : '1.02',
                    #'ZH_hww'  : '1.02',
                    #
-                   'WW'      : '0.99381/1.00544',
+                   'WW'      : '0.99/1.01',
                    'qqH_hww' : '1.015',
                    'qqH_htt' : '1.015',
                    'WH_hww'  : '1.015',
                    'ZH_hww'  : '1.015',
                    'VZ'      : '1.005',
-                   'WW'      : '1.02',
+                   #'WW'      : '1.02',
                    },
+               'cuts'  : ['ww_BVeto0j_em', ]
               }
 
 
+nuisances['QCDscale_qqbar_accept_1j']  = {
+               'name'  : 'QCDscale_qqbar_accept_1j', 
+               'type'  : 'lnN',
+               'samples'  : {
+                   #'qqH_hww' : '1.02',
+                   #'qqH_htt' : '1.02',
+                   #'WH_hww'  : '1.02',
+                   #'ZH_hww'  : '1.02',
+                   #
+                   'WW'      : '0.98/1.016',
+                   'qqH_hww' : '1.015',
+                   'qqH_htt' : '1.015',
+                   'WH_hww'  : '1.015',
+                   'ZH_hww'  : '1.015',
+                   'VZ'      : '1.01',
+                   #'WW'      : '1.02',
+                   },
+               'cuts'  : ['ww_BVeto1j_em',]
+              }
 
 nuisances['QCDscale_gg_accept']  = {
                'name'  : 'QCDscale_gg_accept', 
@@ -245,7 +266,7 @@ nuisances['pdf_qqbar']  = {
                'name'  : 'pdf_qqbar', 
                'type'  : 'lnN',
                'samples'  : {
-                   'WW'      : '1.0148',
+                   #'WW'      : '1.0148',
                    'qqH_hww' : '0.97/1.03',
                    'qqH_htt' : '0.97/1.03',
                    'WH_hww'  : '0.978/1.022',
@@ -289,7 +310,7 @@ nuisances['pdf_qqbar_accept']  = {
                    ##'WW'      : '1.015',    # ---> not needed
                    #'VW'      : '1.015',
                    #
-                   'WW'      : '1.00054',
+                   'WW'      : '1.001',
                    'qqH_hww' : '1.001',
                    'qqH_htt' : '1.001',
                    'WH_hww'  : '1.001',
@@ -445,7 +466,7 @@ nuisances['PS']  = {
                 'type'  : 'shape',
                 'samples'  : {
                    'WW' :  ['1', '1'],  # latino_WWTo2L2NuHerwigPS.root moved with different name in __PS folder
-                   'ggWW' :  ['1', '1'],  # latino_WWTo2L2NuHerwigPS.root moved with different name in __PS folder
+                   #'ggWW' :  ['1', '1'],  # latino_WWTo2L2NuHerwigPS.root moved with different name in __PS folder
                    'ggH_hww' : ['1', '1'],
                    'qqH_hww' : ['1', '1'],
                 },
@@ -474,7 +495,7 @@ nuisances['UE']  = {
                 'type'  : 'shape',
                 'samples'  : {
                    'WW'      : ['1', '1'], 
-                   'ggWW'    : ['1', '1'], 
+                   #'ggWW'    : ['1', '1'], 
                    'ggH_hww' : ['1', '1'],
                    'qqH_hww' : ['1', '1'],
                 },
@@ -1037,7 +1058,7 @@ nuisances['stat']  = {
                     
                    'DY': {
                          'typeStat' : 'bbb',
-                         'keepNormalization' : '1'  # default = 0 -> 0=don't keep normalization
+                         #'keepNormalization' : '1'  # default = 0 -> 0=don't keep normalization
                          },
                     
                    'ggWW': {
@@ -1108,9 +1129,9 @@ nuisances['stat']  = {
                          'typeStat' : 'bbb',
                          },
                    
-                   'Fake': {  # needed?
-                         'typeStat' : 'bbb',
-                         },
+                   # 'Fake': {  # needed? NO!!
+                   #       'typeStat' : 'bbb',
+                   #       },
                    
                    'Vg': {  
                          'typeStat' : 'bbb',
