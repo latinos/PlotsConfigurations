@@ -95,7 +95,78 @@ variables['eta2']  = {  'name': 'std_vector_lepton_eta[1]',
                        'xaxis' : '#eta 2nd lep',
                        'fold'  : 3                         
                        }
-                       
+
+#variables['r91']   = {  'name': 'std_vector_electron_full5x5R9[0]',     
+                       #'range' : (100,0.8,1.05),   
+                       #'xaxis' : 'R9 1st lep',
+                       #'fold'  : 2                         
+                       #}
+
+
+#variables['r92']   = {  'name': 'std_vector_electron_full5x5R9[1]',     
+                       #'range' : (100,0.8,1.05),   
+                       #'xaxis' : 'R9 2nd lep',
+                       #'fold'  : 2                         
+                       #}
+
+variables['sietaieta1']   = {  'name': 'std_vector_electron_full5x5_sigmaIetaIeta[0]',     
+                       'range' : (100,0.0,0.04),   
+                       'xaxis' : '#sigma ietaieta 1st lep',
+                       'fold'  : 0                         
+                       }
+
+
+variables['sietaieta2']   = {  'name': 'std_vector_electron_full5x5_sigmaIetaIeta[1]',     
+                       'range' : (100,0.0,0.04),   
+                       'xaxis' : '#sigma ietaieta 2nd lep',
+                       'fold'  : 0                         
+                       }
+
+
+variables['deta1']   = {  'name': 'std_vector_electron_dEtaIn[0]',     
+                       'range' : (100,-0.01,0.01),   
+                       'xaxis' : '#Delta #eta 1st lep',
+                       'fold'  : 0                         
+                       }
+
+
+variables['deta2']   = {  'name': 'std_vector_electron_dEtaIn[1]',     
+                       'range' : (100,-0.01,0.01),   
+                       'xaxis' : '#Delta #eta 2nd lep',
+                       'fold'  : 0                         
+                       }
+
+
+variables['deta1phip']   = {  'name': 'std_vector_electron_dEtaIn[0]*(std_vector_lepton_phi[0]>0)+5*(std_vector_lepton_phi[0]<0)',     
+                       'range' : (100,-0.01,0.01),   
+                       'xaxis' : '#Delta #eta 1st lep',
+                       'fold'  : 0                         
+                       }
+
+
+variables['deta1phim']   = {  'name': 'std_vector_electron_dEtaIn[1]*(std_vector_lepton_phi[0]<0)+5*(std_vector_lepton_phi[0]>0)',     
+                       'range' : (100,-0.01,0.01),   
+                       'xaxis' : '#Delta #eta 1st lep',
+                       'fold'  : 0                         
+                       }
+
+
+
+variables['deta2phip']   = {  'name': 'std_vector_electron_dEtaIn[0]*(std_vector_lepton_phi[1]>0)+5*(std_vector_lepton_phi[1]<0)',     
+                       'range' : (100,-0.01,0.01),   
+                       'xaxis' : '#Delta #eta 2nd lep',
+                       'fold'  : 0                         
+                       }
+
+
+variables['deta2phim']   = {  'name': 'std_vector_electron_dEtaIn[1]*(std_vector_lepton_phi[1]<0)+5*(std_vector_lepton_phi[1]>0)',     
+                       'range' : (100,-0.01,0.01),   
+                       'xaxis' : '#Delta #eta 2nd lep',
+                       'fold'  : 0                         
+                       }
+
+
+
 ##variables['phi1']  = {  'name': 'std_vector_lepton_phi[0]',
                         ##'range' : (100,-3.2,3.2),
                         ##'xaxis' : '#phi 1st lep',
