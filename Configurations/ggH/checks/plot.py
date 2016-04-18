@@ -198,7 +198,7 @@ plot['WH_hww'] = {
 plot['qqH_hww'] = {
                   'nameHR' : 'qqH',
                   'color': 632+1, # kRed+1 
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
@@ -207,10 +207,34 @@ plot['qqH_hww'] = {
 plot['ggH_hww'] = {
                   'nameHR' : 'ggH',
                   'color': 632, # kRed 
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
+
+
+plot['ggH_hww_herwig'] = {
+                  'nameHR' : 'ggH Herwig',
+                  'color': 1, 
+                  'isSignal' : 3,
+                  'isData'   : 1,    
+                  'scale'    : 1./1.00080,
+                  #'scale'    : 1*1./1.07080,                  
+                  }
+
+
+
+
+plot['qqH_hww_herwig'] = {
+                  'nameHR' : 'qqH Herwig',
+                  'color': 1, 
+                  'isSignal' : 3,
+                  'isData'   : 1,    
+                  'scale'    : 1./1.05702,
+                  #'scale'    : 1*1./1.07080,                  
+                  }
+
+
 
 # data
 
