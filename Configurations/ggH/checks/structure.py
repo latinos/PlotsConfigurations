@@ -42,7 +42,7 @@ structure['WW']  = {
                   'isData'   : 0    
                   }
 
-structure['WWHerwig']  = {
+structure['WWherwig']  = {
                   'isSignal' : 0,
                   'isData'   : 1,
                   #'isSignal' : 3
@@ -111,10 +111,18 @@ structure['qqH_hww'] = {
                   'isData'   : 0    
                   }
 
-structure['qqH_hww'] = {
+
+structure['ggH_hww_herwig'] = {
                   'isSignal' : 1,
-                  'isData'   : 0    
+                  'isData'   : 1    
                   }
+
+structure['qqH_hww_herwig'] = {
+                  'isSignal' : 1,
+                  'isData'   : 1    
+                  }
+
+
 
 structure['WH_hww'] = {
                   'isSignal' : 1,
