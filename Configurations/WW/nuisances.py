@@ -34,7 +34,7 @@ nuisances['lumi']  = {
 nuisances['TopSF0j']  = {
                'name'  : 'TopSF0j',
                'samples'  : {
-                   'top' : '0.90/1.16',
+                   'top' : '0.885/1.18',
                    },
                'type'  : 'lnN',
                'cuts'  : [
@@ -46,7 +46,7 @@ nuisances['TopSF0j']  = {
 nuisances['TopSF1j']  = {
                'name'  : 'TopSF1j',
                'samples'  : {
-                   'top' : '0.94/1.06',
+                   'top' : '0.935/1.08',
                    },
                'type'  : 'lnN',
                'cuts'  : [
@@ -465,10 +465,9 @@ nuisances['PS']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                   'WW' :  ['1', '1'],  # latino_WWTo2L2NuHerwigPS.root moved with different name in __PS folder
-                   #'ggWW' :  ['1', '1'],  # latino_WWTo2L2NuHerwigPS.root moved with different name in __PS folder
-                   'ggH_hww' : ['1', '1'],
-                   'qqH_hww' : ['1', '1'],
+                   'WW' :  ['1./1.07080', '1./1.07080'],  # latino_WWTo2L2NuHerwigPS.root moved with different name in __PS folder
+                   'ggH_hww' : ['1./1.00080', '1./1.00080'],
+                   'qqH_hww' : ['1./1.05702', '1./1.05702'],
                 },
                 'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS/',
                 'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/' 
