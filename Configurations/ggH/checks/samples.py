@@ -51,3 +51,31 @@ samples['ggH_hww_herwig']  = {    'name': [
                            #'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
                       ##'weights': ['abs(nllW)'] ,           
                   #}
+
+
+#    
+#    Xsec
+#    
+#    qqH   0.0849621    0.0849621
+#    ggH   0.9915990    0.9915990
+#    WW    12.178000   12.178000
+#    
+#    
+#    12.7485 / (0.0849621 * 2.318 * 1000)
+#    (double) 0.0647322
+#    
+#    
+#    129.050649241 / (0.9915990 * 2.318 * 1000)
+#    (double) 0.0561449
+#    
+#    
+#    2186.82 / (12.178000 * 2.318 * 1000)
+#    (double) 0.0774682
+#    
+#    
+
+
+
+
+
+
