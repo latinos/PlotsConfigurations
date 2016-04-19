@@ -19,36 +19,7 @@ samples['DY']  = {    'name': [
                             'latino_DYJetsToLL_M-50_0002__part0.root'
                             #
                             ],    
-                      'weight' : 'metFilter*(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))*puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*(1 - ((mll > 50 \
-                          && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13) \
-                          && mpmet > 20 \
-                          && mth > 40 \
-                          && (( std_vector_jet_pt[0] > 20 && std_vector_jet_cmvav2[0] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[1] > 20 && std_vector_jet_cmvav2[1] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[2] > 20 && std_vector_jet_cmvav2[2] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[3] > 20 && std_vector_jet_cmvav2[3] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[4] > 20 && std_vector_jet_cmvav2[4] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[5] > 20 && std_vector_jet_cmvav2[5] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[6] > 20 && std_vector_jet_cmvav2[6] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[7] > 20 && std_vector_jet_cmvav2[7] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[8] > 20 && std_vector_jet_cmvav2[8] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[9] > 20 && std_vector_jet_cmvav2[9] > -0.715 )) \
-                          && njet == 0) \
-|| (mll > 50 \
-                          && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13) \
-                          && mpmet > 20 \
-                          && mth > 40 \
-                          && (( std_vector_jet_pt[0] > 20 && std_vector_jet_cmvav2[0] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[1] > 20 && std_vector_jet_cmvav2[1] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[2] > 20 && std_vector_jet_cmvav2[2] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[3] > 20 && std_vector_jet_cmvav2[3] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[4] > 20 && std_vector_jet_cmvav2[4] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[5] > 20 && std_vector_jet_cmvav2[5] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[6] > 20 && std_vector_jet_cmvav2[6] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[7] > 20 && std_vector_jet_cmvav2[7] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[8] > 20 && std_vector_jet_cmvav2[8] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[9] > 20 && std_vector_jet_cmvav2[9] > -0.715 )) \
-                          && njet == 1)))',
+                      'weight' : 'metFilter*(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))*puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',
                       #   weight/cut 
                       #'isData': ['0', '0'],      
                       'weights': [  '0.238112'
@@ -121,7 +92,7 @@ samples['top'] = {   'name': [
                           'latino_ST_tW_antitop.root',
                           'latino_ST_tW_top.root'
                           ],          
-                       'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*(0.92*(njet==0)+0.85*(njet==1))',                
+                       'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*(0.89*(njet==0)+0.88*(njet==1))',                
                    }
 
 
@@ -151,36 +122,7 @@ samples['ggWW']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root'],
 
 
 samples['Vg']  = {    'name': ['latino_Wg_AMCNLOFXFX.root'],      
-                      'weight' : 'metFilter*1.23*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*(1 - ((mll > 50 \
-                          && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13) \
-                          && mpmet > 20 \
-                          && mth > 40 \
-                          && (( std_vector_jet_pt[0] > 20 && std_vector_jet_cmvav2[0] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[1] > 20 && std_vector_jet_cmvav2[1] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[2] > 20 && std_vector_jet_cmvav2[2] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[3] > 20 && std_vector_jet_cmvav2[3] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[4] > 20 && std_vector_jet_cmvav2[4] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[5] > 20 && std_vector_jet_cmvav2[5] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[6] > 20 && std_vector_jet_cmvav2[6] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[7] > 20 && std_vector_jet_cmvav2[7] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[8] > 20 && std_vector_jet_cmvav2[8] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[9] > 20 && std_vector_jet_cmvav2[9] > -0.715 )) \
-                          && njet == 0) \
-|| (mll > 50 \
-                          && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13) \
-                          && mpmet > 20 \
-                          && mth > 40 \
-                          && (( std_vector_jet_pt[0] > 20 && std_vector_jet_cmvav2[0] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[1] > 20 && std_vector_jet_cmvav2[1] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[2] > 20 && std_vector_jet_cmvav2[2] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[3] > 20 && std_vector_jet_cmvav2[3] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[4] > 20 && std_vector_jet_cmvav2[4] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[5] > 20 && std_vector_jet_cmvav2[5] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[6] > 20 && std_vector_jet_cmvav2[6] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[7] > 20 && std_vector_jet_cmvav2[7] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[8] > 20 && std_vector_jet_cmvav2[8] > -0.715 )  \
-                          ||  ( std_vector_jet_pt[9] > 20 && std_vector_jet_cmvav2[9] > -0.715 )) \
-                          && njet == 1)))',                   
+                      'weight' : 'metFilter*1.23*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',
                       'weights': ['1'] ,           
                       #'isData': ['0'],                            
                   }
@@ -211,15 +153,15 @@ samples['VVV'] = {    'name': [
 
 
 # Htautau
-samples['H_htt']  = {      'name': ['latino_GluGluHToTauTau_M125.root',
-                                    'latino_VBFHToTauTau_M125.root',
-                                    'latino_HWminusJ_HToTauTau_M125.root',
-                                    'latino_HWplusJ_HToTauTau_M125.root',
-                                    'latino_HZJ_HToTauTau_M125.root'
-                                    ],      
-                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',
-                           'weights': ['1', '1', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)' ]            
-                  }
+# samples['H_htt']  = {      'name': ['latino_GluGluHToTauTau_M125.root',
+#                                     'latino_VBFHToTauTau_M125.root',
+#                                     'latino_HWminusJ_HToTauTau_M125.root',
+#                                     'latino_HWplusJ_HToTauTau_M125.root',
+#                                     'latino_HZJ_HToTauTau_M125.root'
+#                                     ],      
+#                            'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',
+#                            'weights': ['1', '1', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)' ]            
+#                   }
 
 
 
@@ -240,20 +182,20 @@ samples['qqH_hww']  = {    'name': [
                            'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
                   }
 
-samples['ggZH_hww']  = {    'name': [
-                               'latino_ggZH_HToWW_M125.root',
-                               ],      
-                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
-                  }
+# samples['ggZH_hww']  = {    'name': [
+#                                'latino_ggZH_HToWW_M125.root',
+#                                ],      
+#                            'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
+#                   }
 
 
-samples['WH_hww']  = {    'name': ['latino_HWminusJ_HToWW_M125.root', 'latino_HWplusJ_HToWW_M125.root'],      
-                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
-                  }
+# samples['WH_hww']  = {    'name': ['latino_HWminusJ_HToWW_M125.root', 'latino_HWplusJ_HToWW_M125.root'],      
+#                            'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+#                   }
 
-samples['ZH_hww']  = {    'name': ['latino_HZJ_HToWW_M125.root'],      
-                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
-                  }
+# samples['ZH_hww']  = {    'name': ['latino_HZJ_HToWW_M125.root'],      
+#                            'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+#                   }
 
 
 
