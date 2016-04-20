@@ -92,7 +92,7 @@ samples['top'] = {   'name': [
                           'latino_ST_tW_antitop.root',
                           'latino_ST_tW_top.root'
                           ],          
-                       'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*(0.89*(njet==0)+0.88*(njet==1))',                
+                       'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',                
                    }
 
 
