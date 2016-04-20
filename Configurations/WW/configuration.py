@@ -1,7 +1,7 @@
 
 # example of configuration file
 
-tag = 'WW'
+tag = 'WW2l'
 
 
 # used by mkShape to define output directory for root files
