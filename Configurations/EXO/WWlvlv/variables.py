@@ -22,4 +22,14 @@ variables['mth']  = {   'name': 'mth',            #   variable name
                         'fold' : 3
                         }
 
+variables['mllVSmti'] = { 'name' : 'mll:mTi',
+                          'range' : (12,0,2000, 7,12,800),
+                          'xaxis' : 'm_{ll} : m_{T}^{i}', #   x axis name
+                          'fold' : 3
+                        }
 
+variables['mTi']  = {   'name': 'mTi',            #   variable name    
+                        'range' : (25,0,2000),    #   variable range
+                        'xaxis' : 'm_{T,i}^{H} [GeV]',  #   x axis name
+                        'fold' : 3
+                        }
