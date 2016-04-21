@@ -20,6 +20,24 @@ Steps to get datacards and plots:
     
     mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_HWWhighMass.root
 
+    
+
+Pruning:
+
+    cd /afs/cern.ch/user/a/amassiro/Limit/ModificationDatacards
+    sh examples/doPruneNuisanceXWW.sh 
+    cd -
+
+
+Auto tests:
+
+    cd /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/EXO/WWlvlv
+    cmsenv
+    cd ..
+    sh WWlvlv/scripts/doWW.sh
+    cd -
+    
+
 
     
     

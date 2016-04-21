@@ -144,7 +144,7 @@ plot['ZZ']  = {
 plot['H_htt'] = {
                   'nameHR' : 'Htt',
                   'color': 632+4, # kRed+4 
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
@@ -154,7 +154,7 @@ plot['H_htt'] = {
 plot['H_hww'] = {
                   'nameHR' : 'Hww',
                   'color': 632, # kRed 
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
@@ -162,7 +162,7 @@ plot['H_hww'] = {
 plot['ZH_hww'] = {
                   'nameHR' : 'ZH',
                   'color': 632+3, # kRed+3 
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
@@ -170,7 +170,7 @@ plot['ZH_hww'] = {
 plot['ggZH_hww'] = {
                   'nameHR' : 'ggZH',
                   'color': 632+4, # kRed+4
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
@@ -178,7 +178,7 @@ plot['ggZH_hww'] = {
 plot['WH_hww'] = {
                   'nameHR' : 'WH',
                   'color': 632+2, # kRed+2 
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
@@ -187,7 +187,7 @@ plot['WH_hww'] = {
 plot['qqH_hww'] = {
                   'nameHR' : 'qqH',
                   'color': 632+1, # kRed+1 
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
@@ -196,10 +196,22 @@ plot['qqH_hww'] = {
 plot['ggH_hww'] = {
                   'nameHR' : 'ggH',
                   'color': 632, # kRed 
+                  'isSignal' : 0,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+
+
+plot['ggH_hww_NWA'] = {
+                  'nameHR' : 'ggH-NWA',
+                  'color': 632, # kRed 
                   'isSignal' : 1,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
+
+
+
 
 # data
 

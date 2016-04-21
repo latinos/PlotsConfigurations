@@ -15,22 +15,6 @@ variables['mll']  = {   'name': 'mll',            #   variable name
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
                          'fold' : 3
                         }
-                        
-
-variables['mjj']  = {   'name': 'mjj',            #   variable name    
-                        'range' : (200,0,2000),    #   variable range
-                        'xaxis' : 'm_{jj} [GeV]',  #   x axis name
-                         'fold' : 3
-                        }
-
-
-variables['mjjCoarse']  = {   
-                        'name': 'mjj',            #   variable name    
-                        'range' : (20,0,2000),    #   variable range
-                        'xaxis' : 'm_{jj} [GeV]',  #   x axis name
-                         'fold' : 3
-                        }
-
                      
 variables['mth']  = {   'name': 'mth',            #   variable name    
                         'range' : (20,0,2000),    #   variable range

@@ -826,6 +826,29 @@ nuisances['tttwTh']  = {
   
   
   
+# DY pt corrections
+nuisances['DYptRew']  = {
+                'name'  : 'DYptRew',   # Theory uncertainty
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {  # up              down
+                   'DY'     : ['(0.95 - 0.1*TMath::Erf((gen_ptll-14.4)/9.0))/(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))',
+                               '(0.95 - 0.1*TMath::Erf((gen_ptll-13.6)/8.6))/(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))'],
+                }
+                # tt = 17/18/19 depending on the sample/generator
+                # tW = 15/16
+                
+}
+
+#
+#         1  p0           1.42199e+01   2.00614e-01   7.49397e-04  -3.24175e-03
+#         2  p1           8.78770e+00   2.36675e-01   1.47925e-03  -1.11709e-03
+#  
+#      (0.95 - 0.1*TMath::Erf((x-14)/8.8))
+#
+
+
+  
 
 nuisances['trigg']  = {
                 'name'  : 'trigger',
