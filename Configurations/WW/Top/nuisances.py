@@ -293,7 +293,7 @@ nuisances['pdf_gg_accept']  = {
                    'ggH_htt' : '1.022',
                    'H_htt'   : '1.022',
                    'ggZH_hww': '1.022', 
-                   'top'     : '1.015',    # ---> not needed                
+                   #'top'     : '1.015',    # ---> not needed                
                    },
                'type'  : 'lnN',
               }
@@ -465,9 +465,9 @@ nuisances['PS']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                   'WW' :  ['1./1.07080', '1./1.07080'],  # latino_WWTo2L2NuHerwigPS.root moved with different name in __PS folder
-                   'ggH_hww' : ['1./1.00080', '1./1.00080'],
-                   'qqH_hww' : ['1./1.05702', '1./1.05702'],
+                   'WW'      : ['1./1.067604', '1.'],  # latino_WWTo2L2NuHerwigPS.root moved with different name in __PS folder
+                   'ggH_hww' : ['1./0.9863', '1.'],
+                   'qqH_hww' : ['1./1.0613', '1.'],
                 },
                 'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS/',
                 'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/' 
@@ -550,7 +550,7 @@ nuisances['WgStarScale']  = {
                'type'  : 'lnN',
                'samples'  : {
                    'Wg' : '1.27',  # 0.3 / 1.23  --> k_factor = 1.23 +/- 0.33
-                   'Vg' : '1.27',  # 0.3 / 1.23  --> k_factor = 1.23 +/- 0.33
+                   #'Vg' : '1.27',  # 0.3 / 1.23  --> k_factor = 1.23 +/- 0.33
                    },
                 }
  

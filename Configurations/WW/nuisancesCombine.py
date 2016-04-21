@@ -31,28 +31,28 @@ nuisances['lumi']  = {
 # Top scale factors lnN uncertainties
 #
 
-nuisances['TopSF0j']  = {
-               'name'  : 'TopSF0j',
-               'samples'  : {
-                   'top' : '0.883/1.18',
-                   },
-               'type'  : 'lnN',
-               'cuts'  : [
-                 'ww_BVeto0j_em',
-                 ]
-               }
+# nuisances['TopSF0j']  = {
+#                'name'  : 'TopSF0j',
+#                'samples'  : {
+#                    'top' : '0.883/1.18',
+#                    },
+#                'type'  : 'lnN',
+#                'cuts'  : [
+#                  'ww_BVeto0j_em',
+#                  ]
+#                }
 
 
-nuisances['TopSF1j']  = {
-               'name'  : 'TopSF1j',
-               'samples'  : {
-                   'top' : '0.934/1.086',
-                   },
-               'type'  : 'lnN',
-               'cuts'  : [
-                 'ww_BVeto1j_em',
-                 ]
-               }
+# nuisances['TopSF1j']  = {
+#                'name'  : 'TopSF1j',
+#                'samples'  : {
+#                    'top' : '0.934/1.086',
+#                    },
+#                'type'  : 'lnN',
+#                'cuts'  : [
+#                  'ww_BVeto1j_em',
+#                  ]
+#                }
 
 
 # theory uncertainties
@@ -833,7 +833,7 @@ nuisances['btag']  = {
                    'VZ'      : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
                    'WW'      : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
                    'ggWW'    : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
-                   #'top'     : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   'top'     : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
                    'Vg'      : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
                 }
 }
@@ -846,8 +846,8 @@ nuisances['tttwTh']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {  # up              down
-                   #'top'     : ['((dataset==15 || dataset==16) * 1.0816 + (dataset==17 || dataset==18 || dataset==19))',
-                   #'((dataset==15 || dataset==16) * 0.9184 + (dataset==17 || dataset==18 || dataset==19))'],
+                   'top'     : ['((dataset==15 || dataset==16) * 1.0816 + (dataset==17 || dataset==18 || dataset==19))',
+                   '((dataset==15 || dataset==16) * 0.9184 + (dataset==17 || dataset==18 || dataset==19))'],
                 }
                 # tt = 17/18/19 depending on the sample/generator
                 # tW = 15/16
@@ -876,7 +876,7 @@ nuisances['trigg']  = {
                    'VZ'      : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
                    'ggWW'    : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
                    'WW'      : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
-                   #'top'     : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
+                   'top'     : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
                    'Vg'      : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
                 },
                 #'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/',    # uncertainties fixed!
@@ -904,7 +904,7 @@ nuisances['idiso']  = {
                    'VZ'      : ['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])'],
                    'ggWW'    : ['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])'],
                    'WW'      : ['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])'],
-                   #'top'     : ['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])'],
+                   'top'     : ['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])'],
                    'Vg'      : ['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])'],
                 },
                 #'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/',    # uncertainties fixed!
@@ -923,7 +923,7 @@ nuisances['jes']  = {
                    'ggWW' :['1', '1'],
                    'WW' :  ['1', '1'],
                    'DY' :  ['1', '1'],
-                   #'top' : ['1', '1'],
+                   'top' : ['1', '1'],
                    'VZ' :  ['1', '1'],
                    'VVV' : ['1', '1'],
                    'ggH_hww' : ['1', '1'],
@@ -957,7 +957,7 @@ nuisances['electronpt']  = {
                    'ggWW' :['1', '1'],
                    'WW' :  ['1', '1'],
                    'DY' :  ['1', '1'],
-                   #'top' : ['1', '1'],
+                   'top' : ['1', '1'],
                    'VZ' :  ['1', '1'],
                    'VVV' : ['1', '1'],
                    'ggH_hww' : ['1', '1'],
@@ -986,7 +986,7 @@ nuisances['muonpt']  = {
                    'ggWW' :['1', '1'],
                    'WW' :  ['1', '1'],
                    'DY' :  ['1', '1'],
-                   #'top' : ['1', '1'],
+                   'top' : ['1', '1'],
                    'VZ' :  ['1', '1'],
                    'VVV' : ['1', '1'],
                    'ggH_hww' : ['1', '1'],
@@ -1016,7 +1016,7 @@ nuisances['met']  = {
                    'ggWW' :['1', '1'],
                    'WW' :  ['1', '1'],
                    'DY' :  ['1', '1'],
-                   #'top' : ['1', '1'],
+                   'top' : ['1', '1'],
                    'VZ' :  ['1', '1'],
                    'VVV' : ['1', '1'],
                    'ggH_hww' : ['1', '1'],
