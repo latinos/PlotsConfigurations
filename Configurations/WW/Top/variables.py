@@ -32,13 +32,13 @@ variables['ptll']  = {   'name': 'ptll',            #   variable name
 
 variables['pt1']  = {   'name': 'pt1',            #   variable name    
                         'range' : (20,0,200),    #   variable range
-                        'xaxis' : 'pt_{ll} [GeV]',  #   x axis name
+                        'xaxis' : 'pt_{lep1} [GeV]',  #   x axis name
                         'fold' : 3
                         }
 
 variables['pt2']  = {   'name': 'pt2',            #   variable name    
                         'range' : (20,0,200),    #   variable range
-                        'xaxis' : 'pt_{ll} [GeV]',  #   x axis name
+                        'xaxis' : 'pt_{lep2} [GeV]',  #   x axis name
                         'fold' : 3
                         }
 

@@ -681,6 +681,7 @@ nuisances['Topnorm0j']  = {
                  'hww2l2v_13TeV_em_pm_0j',
 #                 
                  'ww_TopCR0j_em',
+                 'ww_BVeto0j_em',
                 ]
               }
 
@@ -704,6 +705,7 @@ nuisances['Topnorm1j']  = {
                  'hww2l2v_13TeV_em_pm_1j',
 #                 
                  'ww_TopCR1j_em',
+                 'ww_BVeto1j_em',
                 ]
               }
 
