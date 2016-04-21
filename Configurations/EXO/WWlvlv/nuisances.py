@@ -537,6 +537,10 @@ nuisances['DYttnorm0j']  = {
                    },
                'type'  : 'rateParam',
                'cuts'  : [
+#
+                 'hwwhighmass_13TeV_em_0j',
+                 'hwwhighmass_13TeV_me_0j',
+#                
                  'hww2l2v_13TeV_of0j',
                  'hww2l2v_13TeV_top_of0j',
                  'hww2l2v_13TeV_dytt_of0j',
@@ -559,6 +563,10 @@ nuisances['DYttnorm1j']  = {
                    },
                'type'  : 'rateParam',
                'cuts'  : [
+#
+                 'hwwhighmass_13TeV_em_1j',
+                 'hwwhighmass_13TeV_me_1j',
+#                
                  'hww2l2v_13TeV_of1j',
                  'hww2l2v_13TeV_top_of1j',
                  'hww2l2v_13TeV_dytt_of1j',
@@ -595,6 +603,10 @@ nuisances['WWnorm0j']  = {
                    },
                'type'  : 'rateParam',
                'cuts'  : [
+#
+                 'hwwhighmass_13TeV_em_0j',
+                 'hwwhighmass_13TeV_me_0j',
+#                
                  'hww2l2v_13TeV_of0j',
                  'hww2l2v_13TeV_top_of0j',
                  'hww2l2v_13TeV_dytt_of0j',              
@@ -617,6 +629,10 @@ nuisances['WWnorm1j']  = {
                    },
                'type'  : 'rateParam',
                'cuts'  : [
+#
+                 'hwwhighmass_13TeV_em_1j',
+                 'hwwhighmass_13TeV_me_1j',
+#                
                  'hww2l2v_13TeV_of1j',
                  'hww2l2v_13TeV_top_of1j',
                  'hww2l2v_13TeV_dytt_of1j',              
@@ -640,6 +656,10 @@ nuisances['Topnorm0j']  = {
                    },
                'type'  : 'rateParam',
                'cuts'  : [
+#
+                 'hwwhighmass_13TeV_em_0j',
+                 'hwwhighmass_13TeV_me_0j',
+#                
                  'hww2l2v_13TeV_of0j',
                  'hww2l2v_13TeV_top_of0j',
                  'hww2l2v_13TeV_dytt_of0j',              
@@ -662,6 +682,10 @@ nuisances['Topnorm1j']  = {
                    },
                'type'  : 'rateParam',
                'cuts'  : [
+#
+                 'hwwhighmass_13TeV_em_1j',
+                 'hwwhighmass_13TeV_me_1j',
+#                
                  'hww2l2v_13TeV_of1j',
                  'hww2l2v_13TeV_top_of1j',
                  'hww2l2v_13TeV_dytt_of1j',              
@@ -1108,7 +1132,11 @@ nuisances['stat']  = {
                    'Vg': {  
                          'typeStat' : 'bbb',
                          },
-                            
+                   
+                   'ggH_hww_NWA': {  
+                         'typeStat' : 'bbb',
+                         },
+                                               
                  },
                'type'  : 'shape'
               }

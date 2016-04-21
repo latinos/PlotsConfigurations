@@ -151,6 +151,15 @@ samples['VVV'] = {    'name': [
                   }
 
 
+# NWA 
+
+samples['ggH_hww_NWA']  = {    'name': [
+                               'latino_GluGluHToWWTo2L2Nu_M750_NWA.root'
+                               ],      
+                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
+                  }
+
+
 # Htautau
 samples['H_htt']  = {      'name': ['latino_GluGluHToTauTau_M125.root',
                                     'latino_VBFHToTauTau_M125.root',
