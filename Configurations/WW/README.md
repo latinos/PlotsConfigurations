@@ -28,30 +28,74 @@ Steps to get datacards and plots:
     
       mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_WW.root
 
-      cd ../../../ModificationDatacards/		 
-
-      python TransformShapeToCutBased.py  -d ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto0j_em/events/datacard.txt
-
-      python TransformShapeToCutBased.py  -d ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto1j_em/events/datacard.txt
-
-      cd -
 
       mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_WW.root
     
+
+Combine the Top CR and the WW SR datacards:
+
+	 combineCards.py datacards/ww_BVeto0j_em/events/datacard.txt Top/datacards/ww_TopCR0j_em/events/datacard.txt > combination/wwCombCard0.txt
+
+	 combineCards.py datacards/ww_BVeto1j_em/events/datacard.txt Top/datacards/ww_TopCR1j_em/events/datacard.txt > combination/wwCombCard1.txt	
+
+
+Extract signal strength from datacard using combine:
+
+	combine -M MultiDimFit combination/wwCombCard0.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -n "LHScan" -m 125 >> combination/signalStrength0jet.txt
+
+	combine -M MultiDimFit combination/wwCombCard0.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -n "LHScan" -m 125 >> combination/signalStrength1jet.txt
+
+
+To calculate the Top SF from the combined datacards:
+
+	combine -M MaxLikelihoodFit combination/wwCombCard0.txt --redefineSignalPOIs Topnorm0j --freezeNuisances=r >> combination/TopSF0jet.txt
+
+	combine -M MaxLikelihoodFit combination/wwCombCard1.txt --redefineSignalPOIs Topnorm1j --freezeNuisances=r >> combination/TopSF1jet.txt
+
+	combine -M MultiDimFit combination/wwCombCard0.txt --algo=grid --points 100 --redefineSignalPOIs Topnorm0j --freezeNuisances=r --setPhysicsModelParameterRanges Topnorm0j=0.01,2 -n "LHScanTopnorm0j" >> combination/TopLH0jet.txt
+
+	combine -M MultiDimFit combination/wwCombCard1.txt --algo=grid --points 100 --redefineSignalPOIs Topnorm1j --freezeNuisances=r --setPhysicsModelParameterRanges Topnorm1j=0.01,2 -n "LHScanTopnorm1j" >> combination/TopLH1jet.txt
+
+
+To perform a blind (MC only) estimate of the uncertainty of the signal strength:
+
+	combine -M MultiDimFit combination/wwCombCard0.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1 -n "LHScan" -m 125 >> combination/signalStrengthBlind0jet.txt
+
+	combine -M MultiDimFit combination/wwCombCard1.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1 -n "LHScan" -m 125 >> combination/signalStrengthBlind1jet.txt
+
+
+
+Transform shape datacards into lnN - human readable - datacards:
+
+      cd ../../../ModificationDatacards/		 
+
+      python TransformShapeToCutBased.py  -d ../PlotsConfigurations/Configurations/WW/combination/wwCombCard0.txt > ../PlotsConfigurations/Configurations/WW/combination/wwCombCard0lnN.txt
+
+      python TransformShapeToCutBased.py  -d ../PlotsConfigurations/Configurations/WW/combination/wwCombCard1.txt > ../PlotsConfigurations/Configurations/WW/combination/wwCombCard1lnN.txt
+
+      cd -
+
+
+Make the datacards look better (easier to be read):
+
+     combineCards.py combination/wwCombCard0.txt > combination/wwCombCardReadable0.txt
+
+     combineCards.py combination/wwCombCard1.txt > combination/wwCombCardReadable1.txt
+     
 
 Print tables starting from datacards:
 
       cd ../../../PlayWithDatacards/
       
-      python tableFromCards.py ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto0j_em/events/datacard.txt
-      python tableFromCards.py ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto1j_em/events/datacard.txt
+      python tableFromCards.py ../PlotsConfigurations/Configurations/WW/wwCombCard1.txt
+      python tableFromCards.py ../PlotsConfigurations/Configurations/WW/wwCombCard1.txt
 
-      python bigTableFromCards.py ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto0j_em/events/datacard.txt
-      python bigTableFromCards.py ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto1j_em/events/datacard.txt
+      python bigTableFromCards.py ../PlotsConfigurations/Configurations/WW/wwCombCard0.txt
+      python bigTableFromCards.py ../PlotsConfigurations/Configurations/WW/wwCombCard1.txt
 
       only if you are very brave:
-      python superBigTableFromCards.py ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto0j_em/events/datacard.txt
-      python superBigTableFromCards.py ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto1j_em/events/datacard.txt
+      python superBigTableFromCards.py ../PlotsConfigurations/Configurations/WW/wwCombCard0.txt
+      python superBigTableFromCards.py ../PlotsConfigurations/Configurations/WW/wwCombCard1.txt
 
       cd -
 
@@ -92,18 +136,6 @@ Setup combine:
       cd (your path)/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/WW/
 
 
-Extract signal strength from datacard using combine:
-
-	combine -M MultiDimFit datacards/ww_BVeto0j_em/events/datacard.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -n "LHScan" -m 125 >> signalStrength0jet.txt
-
-	combine -M MultiDimFit datacards/ww_BVeto1j_em/events/datacard.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -n "LHScan" -m 125 >> signalStrength1jet.txt
-
-
-To perform a blind (MC only) estimate of the uncertainty of the signal strength:
-
-	combine -M MultiDimFit datacards/ww_BVeto0j_em/events/datacard.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1 -n "LHScan" -m 125 >> signalStrength0jet.txt
-
-	combine -M MultiDimFit datacards/ww_BVeto1j_em/events/datacard.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1 -n "LHScan" -m 125 >> signalStrength1jet.txt
 
 
 

@@ -1,7 +1,6 @@
-
 # example of configuration file
 
-tag = 'WW2l'
+tag = 'WW'
 
 
 # used by mkShape to define output directory for root files
@@ -28,7 +27,7 @@ lumi = 2.318
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = '/afs/cern.ch/user/n/ntrevisa/www/figuresLxplus/20Apr2016/WithSF'
+outputDirPlots = '/afs/cern.ch/user/n/ntrevisa/www/figuresLxplus/21Apr2016/Blind'
 
 
 # used by mkDatacards to define output directory for datacards
