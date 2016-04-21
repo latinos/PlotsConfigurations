@@ -293,7 +293,7 @@ nuisances['pdf_gg_accept']  = {
                    'ggH_htt' : '1.022',
                    'H_htt'   : '1.022',
                    'ggZH_hww': '1.022', 
-                   'top'     : '1.015',    # ---> not needed                
+                   #'top'     : '1.015',    # ---> not needed                
                    },
                'type'  : 'lnN',
               }
