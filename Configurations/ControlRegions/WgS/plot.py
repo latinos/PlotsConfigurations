@@ -88,7 +88,8 @@ plot['ggWW_Int']  = {
                   }
 
 plot['Wg']  = { 
-                  'color': 859, # kAzure -1  
+                  'color': 400,   # kYellow 
+                  #'color': 859, # kAzure -1  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
@@ -102,8 +103,32 @@ plot['WgS']  = {
                   'scale'    : 1.0
                   }
 
+
+
+plot['WgSee']  = { 
+                  'color': 616-1, # kMagenta-1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+
+
+
+
+plot['WgSmm']  = { 
+                  'color': 616+1, # kMagenta+1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+
+
+
 plot['Vg']  = { 
-                  'color': 859, # kAzure -1  
+                  'color': 400,   # kYellow 
+                  #'color': 859+4, # kAzure +3  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
@@ -216,7 +241,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  'isBlind'  : 0
               }
 
 

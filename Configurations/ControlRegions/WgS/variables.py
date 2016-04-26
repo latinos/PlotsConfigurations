@@ -11,16 +11,132 @@ variables['events']  = {   'name': '1',
                         }
     
 variables['mll']  = {   'name': 'mll',            #   variable name    
-                        'range' : (20,10,200),    #   variable range
+                        'range' : (80,0,120),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
+                         'fold' : 1
+                        }
+                        
+
+variables['drll']  = {   'name': 'drll',            #   variable name    
+                        'range' : (20,0,2),    #   variable range
+                        'xaxis' : 'DR_{ll}',  #   x axis name
                          'fold' : 3
                         }
                         
-variables['mth']  = {   'name': 'mth',            #   variable name    
-                        'range' : (20,0,400),    #   variable range
-                        'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
-                        'fold' : 3
+
+#variables['mth']  = {   'name': 'mth',            #   variable name    
+                        #'range' : (20,0,400),    #   variable range
+                        #'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
+                        #'fold' : 3
+                        #}
+
+
+ 
+ 
+variables['mllThird']  = {   'name': 'mllThird',            #   variable name    
+                        'range' : (80,0,120),    #   variable range
+                        'xaxis' : 'm_{ll} 3rd [GeV]',  #   x axis name
+                         'fold' : 1
                         }
+
+
+variables['mllOneThree']  = {   'name': 'mllOneThree',            #   variable name    
+                        'range' : (80,0,120),    #   variable range
+                        'xaxis' : 'm_{ll} 1st3rd [GeV]',  #   x axis name
+                         'fold' : 1
+                        }
+
+variables['mllTwoThree']  = {   'name': 'mllTwoThree',            #   variable name    
+                        'range' : (80,0,120),    #   variable range
+                        'xaxis' : 'm_{ll} 2nd3rd [GeV]',  #   x axis name
+                         'fold' : 1
+                        }
+
+
+
+variables['mllTwoThreeLowMass']  = {   'name': 'mllTwoThree',            #   variable name    
+                        'range' : (10,0,10),    #   variable range
+                        'xaxis' : 'm_{ll} 2nd3rd [GeV]',  #   x axis name
+                         'fold' : 1
+                        }
+
+
+variables['mllSpecialLowMass']  = {   'name': '\
+                          mllTwoThree * (std_vector_lepton_isTightLepton[0]==1 && std_vector_lepton_isTightLepton[1]!=1  && std_vector_lepton_isTightLepton[2]!=1  && std_vector_lepton_pt[0]>30 && std_vector_lepton_flavour[1]*std_vector_lepton_flavour[2]<0) \
+                        + mllOneThree * (std_vector_lepton_isTightLepton[1]==1 && std_vector_lepton_isTightLepton[2]!=1  && std_vector_lepton_isTightLepton[0]!=1  && std_vector_lepton_pt[1]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[2]<0) \
+                        + mll         * (std_vector_lepton_isTightLepton[2]==1 && std_vector_lepton_isTightLepton[0]!=1  && std_vector_lepton_isTightLepton[1]!=1  && std_vector_lepton_pt[2]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]<0) \
+                        ',
+                        'range' : (10,0,10),    #   variable range
+                        'xaxis' : 'm_{ll} from #gamma [GeV]',  #   x axis name
+                         'fold' : 2
+                        }
+
+
+
+
+variables['mllSpecial']  = {   'name': '\
+                          mllTwoThree * (std_vector_lepton_isTightLepton[0]==1 && std_vector_lepton_isTightLepton[1]!=1  && std_vector_lepton_isTightLepton[2]!=1  && std_vector_lepton_pt[0]>30 && std_vector_lepton_flavour[1]*std_vector_lepton_flavour[2]<0) \
+                        + mllOneThree * (std_vector_lepton_isTightLepton[1]==1 && std_vector_lepton_isTightLepton[2]!=1  && std_vector_lepton_isTightLepton[0]!=1  && std_vector_lepton_pt[1]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[2]<0) \
+                        + mll         * (std_vector_lepton_isTightLepton[2]==1 && std_vector_lepton_isTightLepton[0]!=1  && std_vector_lepton_isTightLepton[1]!=1  && std_vector_lepton_pt[2]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]<0) \
+                        ',
+                        'range' : (40,0,100),    #   variable range
+                        'xaxis' : 'm_{ll} from #gamma [GeV]',  #   x axis name
+                         'fold' : 2
+                        }
+
+
+variables['drllSpecialLow']  = {   'name': '\
+                          drllTwoThree * (std_vector_lepton_isTightLepton[0]==1 && std_vector_lepton_isTightLepton[1]!=1  && std_vector_lepton_isTightLepton[2]!=1  && std_vector_lepton_pt[0]>30 && std_vector_lepton_flavour[1]*std_vector_lepton_flavour[2]<0) \
+                        + drllOneThree * (std_vector_lepton_isTightLepton[1]==1 && std_vector_lepton_isTightLepton[2]!=1  && std_vector_lepton_isTightLepton[0]!=1  && std_vector_lepton_pt[1]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[2]<0) \
+                        + drll         * (std_vector_lepton_isTightLepton[2]==1 && std_vector_lepton_isTightLepton[0]!=1  && std_vector_lepton_isTightLepton[1]!=1  && std_vector_lepton_pt[2]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]<0) \
+                        ',
+                        'range' : (10,0,1),    #   variable range
+                        'xaxis' : '#Delta r_{ll} from #gamma',  #   x axis name
+                         'fold' : 2
+                        }
+
+
+
+
+variables['drllSpecial']  = {   'name': '\
+                          drllTwoThree * (std_vector_lepton_isTightLepton[0]==1 && std_vector_lepton_isTightLepton[1]!=1  && std_vector_lepton_isTightLepton[2]!=1  && std_vector_lepton_pt[0]>30 && std_vector_lepton_flavour[1]*std_vector_lepton_flavour[2]<0) \
+                        + drllOneThree * (std_vector_lepton_isTightLepton[1]==1 && std_vector_lepton_isTightLepton[2]!=1  && std_vector_lepton_isTightLepton[0]!=1  && std_vector_lepton_pt[1]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[2]<0) \
+                        + drll         * (std_vector_lepton_isTightLepton[2]==1 && std_vector_lepton_isTightLepton[0]!=1  && std_vector_lepton_isTightLepton[1]!=1  && std_vector_lepton_pt[2]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]<0) \
+                        ',
+                        'range' : (100,0,10),    #   variable range
+                        'xaxis' : '#Delta r_{ll} from #gamma',  #   x axis name
+                         'fold' : 2
+                        }
+
+
+
+
+
+variables['drllSpecialNoIdLow']  = {   'name': '\
+                          drllTwoThree * (std_vector_lepton_isTightLepton[0]==1   && std_vector_lepton_pt[0]>30 && std_vector_lepton_flavour[1]*std_vector_lepton_flavour[2]<0) \
+                        + drllOneThree * (std_vector_lepton_isTightLepton[1]==1   && std_vector_lepton_pt[1]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[2]<0) \
+                        + drll         * (std_vector_lepton_isTightLepton[2]==1   && std_vector_lepton_pt[2]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]<0) \
+                        ',
+                        'range' : (10,0,1),    #   variable range
+                        'xaxis' : '#Delta r_{ll} from #gamma',  #   x axis name
+                         'fold' : 2
+                        }
+
+
+
+
+variables['drllSpecialNoId']  = {   'name': '\
+                          drllTwoThree * (std_vector_lepton_isTightLepton[0]==1   && std_vector_lepton_pt[0]>30 && std_vector_lepton_flavour[1]*std_vector_lepton_flavour[2]<0) \
+                        + drllOneThree * (std_vector_lepton_isTightLepton[1]==1   && std_vector_lepton_pt[1]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[2]<0) \
+                        + drll         * (std_vector_lepton_isTightLepton[2]==1   && std_vector_lepton_pt[2]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]<0) \
+                        ',
+                        'range' : (100,0,10),    #   variable range
+                        'xaxis' : '#Delta r_{ll} from #gamma',  #   x axis name
+                         'fold' : 2
+                        }
+
+
+
 
 
 
@@ -43,23 +159,42 @@ variables['mth']  = {   'name': 'mth',            #   variable name
                         #}
 
 
-
-## just for fun plots:
-
-#variables['nvtx']  = {   'name': 'nvtx',      
-                        #'range' : (40,0,40),  
-                        #'xaxis' : 'nvtx', 
-                         #'fold' : 3
-                        #}
                         
-#variables['ptll']  = {   'name': 'ptll',            #   variable name    
-                        #'range' : (20,0,200),    #   variable range
-                        #'xaxis' : 'pt_{ll} [GeV]',  #   x axis name
-                         #'fold' : 3
-                        #}
+variables['njet']  = {   'name': 'njet',      
+                        'range' : (4,0,4),  
+                        'xaxis' : 'njet',   
+                         'fold' : 3
+                        }
 
-#variables['met']  = {   'name': 'pfType1Met',            #   variable name    
-                        #'range' : (20,0,200),    #   variable range
-                        #'xaxis' : 'pfmet [GeV]',  #   x axis name
-                         #'fold' : 0
-                        #}
+                        
+variables['ptll']  = {   'name': 'ptll',            #   variable name    
+                        'range' : (10,0,100),    #   variable range
+                        'xaxis' : 'pt_{ll} [GeV]',  #   x axis name
+                         'fold' : 3
+                        }
+
+variables['met']  = {   'name': 'metPfType1',            #   variable name    
+                        'range' : (20,0,200),    #   variable range
+                        'xaxis' : 'pfmet [GeV]',  #   x axis name
+                         'fold' : 0
+                        }
+
+
+
+variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
+                        'range' : (10,0,100),   
+                        'xaxis' : 'p_{T} 1st lep',
+                        'fold'  : 3                         
+                        }
+
+variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
+                        'range' : (10,0,100),   
+                        'xaxis' : 'p_{T} 2nd lep',
+                        'fold'  : 3                         
+                        }
+
+variables['pt3']  = {   'name': 'std_vector_lepton_pt[2]',     
+                        'range' : (10,0,20),   
+                        'xaxis' : 'p_{T} 3rd lep',
+                        'fold'  : 3                         
+                        }
