@@ -71,6 +71,13 @@ To calculate the Top SF from the combined datacards:
 
 To perform a blind (MC only) estimate of the uncertainty of the signal strength:
 
+   	combine -M MaxLikelihoodFit wwCombCard0.txt  --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1  -m 125 >> combination/signalStrengthBlind0jet.txt
+
+   	combine -M MaxLikelihoodFit wwCombCard1.txt  --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1  -m 125 >> combination/signalStrengthBlind1jet.txt
+
+   	combine -M MaxLikelihoodFit wwCombCardIncl.txt  --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1  -m 125 >> combination/signalStrengthBlindIncljet.txt
+
+
 	combine -M MultiDimFit wwCombCard0.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1 -n "LHScan" -m 125 >> combination/signalStrengthBlind0jet.txt
 
 	combine -M MultiDimFit wwCombCard1.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1 -n "LHScan" -m 125 >> combination/signalStrengthBlind1jet.txt
@@ -81,13 +88,21 @@ To perform a blind (MC only) estimate of the uncertainty of the signal strength:
 
 Transform shape datacards into lnN - human readable - datacards:
 
-      cd ../../../ModificationDatacards/		 
+     	  cp wwCombCard0.txt wwCombCard0lnN.txt
 
-      python TransformShapeToCutBased.py  -d ../PlotsConfigurations/Configurations/WW/wwCombCard0.txt
+     	  cp wwCombCard1.txt wwCombCard1lnN.txt
 
-      python TransformShapeToCutBased.py  -d ../PlotsConfigurations/Configurations/WW/wwCombCard1.txt
+     	  cp wwCombCardIncl.txt wwCombCardIncllnN.txt
+	  
+	  cd ../../../ModificationDatacards/		 
 
-      cd -
+	  python TransformShapeToCutBased.py  -d ../PlotsConfigurations/Configurations/WW/wwCombCard0lnN.txt
+
+      	  python TransformShapeToCutBased.py  -d ../PlotsConfigurations/Configurations/WW/wwCombCard1lnN.txt
+
+      	  python TransformShapeToCutBased.py  -d ../PlotsConfigurations/Configurations/WW/wwCombCardIncllnN.txt
+
+      	  cd -
 
 
 Make the datacards look better (easier to be read):
@@ -118,9 +133,9 @@ Official tables from datacards (use with combine):
 
 	  cd ../../../PlayWithDatacards/
 
-	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/wwCombCard0.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_BVeto0j_em.tex
+	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto0j_em/events/datacard.txt.pruned.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_BVeto0j_em.tex
 
-	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/wwCombCard1.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_BVeto1j_em.tex
+	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto0j_em/events/datacard.txt.pruned.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_BVeto1j_em.tex
 
 	 cd -
 
