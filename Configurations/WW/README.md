@@ -34,8 +34,12 @@ Steps to get datacards and plots:
 
 Prune all datacards:
 
-      ls /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/*/*/*.txt  | grep -v "pruned"  |   \
+      cd ../../../ModificationDatacards/
+
+      ls /afs/cern.ch/user/n/ntrevisa/work/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/WW/datacards/*/*/*.txt  | grep -v "pruned"  |   \
       awk '{print "python PruneDatacard.py  -d "$1" -o "$1".pruned.txt    -i examples/input_nuisances_to_prune.py"}' | /bin/sh
+
+      cd -
 
 
 Combine the Top CR and the WW SR datacards:
@@ -79,9 +83,9 @@ Transform shape datacards into lnN - human readable - datacards:
 
       cd ../../../ModificationDatacards/		 
 
-      python TransformShapeToCutBased.py  -d ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto0j_em/events/datacard.txt
+      python TransformShapeToCutBased.py  -d ../PlotsConfigurations/Configurations/WW/wwCombCard0.txt
 
-      python TransformShapeToCutBased.py  -d ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto1j_em/events/datacard.txt
+      python TransformShapeToCutBased.py  -d ../PlotsConfigurations/Configurations/WW/wwCombCard1.txt
 
       cd -
 
@@ -97,15 +101,15 @@ Print tables starting from datacards:
 
       cd ../../../PlayWithDatacards/
       
-      python tableFromCards.py ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto0j_em/events/datacard.txt
-      python tableFromCards.py ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto1j_em/events/datacard.txt
+      python tableFromCards.py ../PlotsConfigurations/Configurations/WW/wwCombCard0lnN.txt
+      python tableFromCards.py ../PlotsConfigurations/Configurations/WW/wwCombCard1lnN.txt
 
-      python bigTableFromCards.py ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto0j_em/events/datacard.txt
-      python bigTableFromCards.py ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto1j_em/events/datacard.txt
+      python bigTableFromCards.py ../PlotsConfigurations/Configurations/WW/wwCombCard0lnN.txt
+      python bigTableFromCards.py ../PlotsConfigurations/Configurations/WW/wwCombCard1lnN.txt
 
       only if you are very brave:
-      python superBigTableFromCards.py ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto1j_em/events/datacard.txt
-      python superBigTableFromCards.py ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto1j_em/events/datacard.txt
+      python superBigTableFromCards.py ../PlotsConfigurations/Configurations/WW/wwCombCard0lnN.txt
+      python superBigTableFromCards.py ../PlotsConfigurations/Configurations/WW/wwCombCard1lnN.txt
 
       cd -
 
@@ -114,9 +118,9 @@ Official tables from datacards (use with combine):
 
 	  cd ../../../PlayWithDatacards/
 
-	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto0j_em/events/datacard.txt.pruned.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_BVeto0j_em.tex
+	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/wwCombCard0.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_BVeto0j_em.tex
 
-	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto1j_em/events/datacard.txt.pruned.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_BVeto1j_em.tex
+	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/wwCombCard1.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_BVeto1j_em.tex
 
 	 cd -
 

@@ -1,4 +1,4 @@
-nuisances
+#nuisances
 
 #nuisances = {}
 
@@ -92,6 +92,7 @@ nuisances['QCDscale_ggH0j']  = {
                  'hww2l2v_13TeV_em_mp_0j',
                  'hww2l2v_13TeV_em_pm_0j',
 #                 
+                 'ww_TopCR0j_em',
                  'ww_BVeto0j_em',
                 ]               
               }
@@ -116,6 +117,7 @@ nuisances['QCDscale_ggH1j']  = {
                  'hww2l2v_13TeV_em_mp_1j',
                  'hww2l2v_13TeV_em_pm_1j',
 #                 
+                 'ww_TopCR1j_em',
                  'ww_BVeto1j_em',
                 ]
               }
@@ -202,7 +204,7 @@ nuisances['QCDscale_qqbar_accept_0j']  = {
                    'VZ'      : '1.005',
                    #'WW'      : '1.02',
                    },
-               'cuts'  : ['ww_BVeto0j_em', ]
+               'cuts'  : ['ww_BVeto0j_em', 'ww_TopCR0j_em', ]
               }
 
 
@@ -223,7 +225,7 @@ nuisances['QCDscale_qqbar_accept_1j']  = {
                    'VZ'      : '1.01',
                    #'WW'      : '1.02',
                    },
-               'cuts'  : ['ww_BVeto1j_em',]
+               'cuts'  : ['ww_BVeto1j_em', 'ww_TopCR0j_em',]
               }
 
 nuisances['QCDscale_gg_accept']  = {
@@ -376,6 +378,7 @@ nuisances['WWresum0j']  = {
                  'hww2l2v_13TeV_em_mp_0j',
                  'hww2l2v_13TeV_em_pm_0j',
 #                 
+                 'ww_TopCR0j_em',
                  'ww_BVeto0j_em',
                 ]               
                 
@@ -402,6 +405,7 @@ nuisances['WWresum1j']  = {
                  'hww2l2v_13TeV_em_mp_1j',
                  'hww2l2v_13TeV_em_pm_1j',
 #                 
+                 'ww_TopCR1j_em',
                  'ww_BVeto1j_em',
                  ]               
                 }
@@ -427,6 +431,7 @@ nuisances['WWqscale0j']  = {
                  'hww2l2v_13TeV_em_pm_0j',
 #                 
                  'ww_BVeto0j_em',
+                 'ww_TopCR0j_em',
                 ] 
                 }
 
@@ -451,6 +456,7 @@ nuisances['WWqscale1j']  = {
                  'hww2l2v_13TeV_em_mp_1j',
                  'hww2l2v_13TeV_em_pm_1j',
 #                 
+                 'ww_TopCR1j_em',
                  'ww_BVeto1j_em',
                 ] 
                 }
@@ -548,14 +554,14 @@ nuisances['UE']  = {
                 #}
 
 # K factor (Data/Wg*) = 1.23 + 0.33
-nuisances['WgStarScale']  = {
-               'name'  : 'WgStarScale', 
-               'type'  : 'lnN',
-               'samples'  : {
-                   'Wg' : '1.27',  # 0.3 / 1.23  --> k_factor = 1.23 +/- 0.33
-                   #'Vg' : '1.27',  # 0.3 / 1.23  --> k_factor = 1.23 +/- 0.33
-                   },
-                }
+# nuisances['WgStarScale']  = {
+#                'name'  : 'WgStarScale', 
+#                'type'  : 'lnN',
+#                'samples'  : {
+#                    'Wg' : '1.27',  # 0.3 / 1.23  --> k_factor = 1.23 +/- 0.33
+#                    'Vg' : '1.27',  # 0.3 / 1.23  --> k_factor = 1.23 +/- 0.33
+#                    },
+#                 }
  
 
 nuisances['DYttnorm0j']  = {

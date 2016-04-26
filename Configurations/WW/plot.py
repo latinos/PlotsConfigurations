@@ -62,7 +62,7 @@ plot['top'] = {
                   'color': 400,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 0.86 #0jet:0.96, 1jet:0.86
+                  'scale'    : 1.0 #0jet:0.96, 1jet:0.86
                   }
 
 
