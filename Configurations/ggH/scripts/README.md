@@ -46,3 +46,14 @@ doGGH.sh
     
     root -l higgsCombineLHScanH.MultiDimFit.mH125.root   ggH/scripts/draw.C
     
+
+    
+Calculate UE/PS nuisance normalization
+==============
+
+    r99t scripts/drawUEPS.C\(\"WWTo2L2Nu\"\)
+    r99t scripts/drawUEPS.C\(\"GluGluHToWWTo2L2NuPowheg_M125\"\)
+    r99t scripts/drawUEPS.C\(\"VBFHToWWTo2L2Nu_M125\"\)  
+
+    
+    

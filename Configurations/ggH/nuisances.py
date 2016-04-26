@@ -452,9 +452,9 @@ nuisances['PS']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                   'WW' :  ['1./1.07080', '1.'],  # latino_WWTo2L2NuHerwigPS.root moved with different name in __PS folder
-                   'ggH_hww' : ['1./1.00080', '1.'],
-                   'qqH_hww' : ['1./1.05702', '1.'],
+                   'WW' :  ['1./1.03295', '1.'],  # latino_WWTo2L2NuHerwigPS.root moved with different name in __PS folder
+                   'ggH_hww' : ['1./1.00702', '1.'],
+                   'qqH_hww' : ['1./1.06362', '1.'],
                 },
                 'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS/',
                 'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/' 
@@ -480,13 +480,19 @@ nuisances['UE']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                   'WW' :  ['1', '1'], 
-                   'ggH_hww' : ['1', '1'],
-                   'qqH_hww' : ['1', '1'],
+                   'WW' :  ['1/0.978817', '1/1.0192'], 
+                   'ggH_hww' : ['1/0.9262', '1/0.984785'],
+                   'qqH_hww' : ['1/0.951846', '1/1.00099'],
                 },
                 'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEup/',
                 'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEdo/' 
                 }
+
+#
+# ue up/nom = 0.978817           ue up/nom = 0.9262                ue up/nom = 0.951846
+# ue do/nom = 1.0192             ue do/nom = 0.984785              ue do/nom = 1.00099
+# PS   /nom = 1.03295            PS   /nom = 1.00702               PS   /nom = 1.06362
+#
 
 
 
