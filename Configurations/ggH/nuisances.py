@@ -151,7 +151,7 @@ nuisances['QCDscale_qqbar_accept']  = {
                    'qqH_htt' : '1.007',
                    'WH_hww'  : '1.007',
                    'ZH_hww'  : '1.007',
-                   'VZ'      : '1.007',
+                   'VZ'      : '1.029',
                    },
               }
 
@@ -227,6 +227,22 @@ nuisances['QCDscale_gg_accept']  = {
 #     PDF+alpha_s                   0.48%
 #     
 #
+#
+#     WZTo3LNu 0jet acceptance uncertainties
+#    -----------------------------------------
+#     QCD         mu=0.5 / mu=2.0   1.70% / 1.47%
+#     alpha_s     265000 / 266000   0.15% / 0.26%
+#     PDF                           0.48%
+#     PDF+alpha_s                   0.52%
+#    
+#    
+#     WZTo3LNu 1jet acceptance uncertainties
+#    -----------------------------------------
+#     QCD         mu=0.5 / mu=2.0   2.94% / 2.57%
+#     alpha_s     265000 / 266000   0.21% / 0.27%
+#     PDF                           0.48%
+#     PDF+alpha_s                   0.54%
+#    
 
 
 
@@ -287,7 +303,7 @@ nuisances['pdf_qqbar_accept']  = {
                    'qqH_htt' : '1.011',
                    'WH_hww'  : '1.011',
                    'ZH_hww'  : '1.011',
-                   'VZ'      : '1.011',                   
+                   'VZ'      : '1.005',                   
                    },
               }
 
@@ -342,6 +358,20 @@ nuisances['pdf_qqbar_accept']  = {
 #     PDF+alpha_s                   0.48%
 #     
 #
+#     WZTo3LNu 0jet acceptance uncertainties
+#    -----------------------------------------
+#     QCD         mu=0.5 / mu=2.0   1.70% / 1.47%
+#     alpha_s     265000 / 266000   0.15% / 0.26%
+#     PDF                           0.48%
+#     PDF+alpha_s                   0.52%
+#    
+#    
+#     WZTo3LNu 1jet acceptance uncertainties
+#    -----------------------------------------
+#     QCD         mu=0.5 / mu=2.0   2.94% / 2.57%
+#     alpha_s     265000 / 266000   0.21% / 0.27%
+#     PDF                           0.48%
+#     PDF+alpha_s                   0.54%
 #    
 #    
 #    
