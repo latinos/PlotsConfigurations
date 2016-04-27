@@ -147,11 +147,11 @@ nuisances['QCDscale_qqbar_accept']  = {
                    #'ZH_hww'  : '1.02',
                    #
                    #'WW'      : '1.015', -> not included since part of weights from WWqscale0j and WWqscale1j
-                   'qqH_hww' : '1.015',
-                   'qqH_htt' : '1.015',
-                   'WH_hww'  : '1.015',
-                   'ZH_hww'  : '1.015',
-                   'VZ'      : '1.005',
+                   'qqH_hww' : '1.007',
+                   'qqH_htt' : '1.007',
+                   'WH_hww'  : '1.007',
+                   'ZH_hww'  : '1.007',
+                   'VZ'      : '1.007',
                    },
               }
 
@@ -166,11 +166,11 @@ nuisances['QCDscale_gg_accept']  = {
                    #'H_htt'   : '1.03',
                    #'ggZH_hww': '1.03',                   
                    #
-                   'ggWW'    : '1.03',
-                   'ggH_hww' : '1.03',
-                   'ggH_htt' : '1.03',
-                   'H_htt'   : '1.03',
-                   'ggZH_hww': '1.03',                   
+                   'ggWW'    : '1.027',
+                   'ggH_hww' : '1.027',
+                   'ggH_htt' : '1.027',
+                   'H_htt'   : '1.027',
+                   'ggZH_hww': '1.027',                   
 
                    },
                'type'  : 'lnN',
@@ -178,51 +178,55 @@ nuisances['QCDscale_gg_accept']  = {
 
 
 
+#
+#     WWTo2L2Nu 0jet acceptance uncertainties
+#    -----------------------------------------
+#     QCD         mu=0.5 / mu=2.0   0.53% / 0.52%
+#     alpha_s     265000 / 266000   0.02% / 0.02%
+#     PDF                           0.25%
+#     PDF+alpha_s                   0.25%
 #    
 #    
-#    
-#    =====
-#    0 jet
-#    =====
-#    =====================================================================
-#     QCD// first row (2,2), 2nd row (0.5, 0.5)
-#    =====================================================================
-#    WWTo2L2Nu                       -- xs = 1.01233     -- acc = 0.99381
-#                                    -- xs = 0.992596    -- acc = 1.00544
-#    
-#    WZTo3LNu                        -- xs = 1.01781     -- acc = 0.99276
-#                                    -- xs = 0.986751    -- acc = 1.00652
-#    
-#    GluGluHToWWTo2L2Nu_M126         -- xs = 1.18068     -- acc = 0.972935
-#                                    -- xs = 0.861719    -- acc = 1.02189
-#    
-#    VBFHToWWTo2L2Nu_M126            -- xs = 0.993296    -- acc = 1.01637
-#                                    -- xs = 1.00686     -- acc = 0.989379
-#    =====================================================================
+#     WWTo2L2Nu 1jet acceptance uncertainties
+#    -----------------------------------------
+#     QCD         mu=0.5 / mu=2.0   1.54% / 1.38%
+#     alpha_s     265000 / 266000   0.01% / 0.01%
+#     PDF                           0.27%
+#     PDF+alpha_s                   0.27%
 #    
 #    
-#    
-#    =====
-#    1 jet
-#    =====
-#    =====================================================================
-#     QCD// first row (2,2), 2nd row (0.5, 0.5)
-#    =====================================================================
-#    WWTo2L2Nu                        -- xs = 1.01274    -- acc = 1.01662
-#                                     -- xs = 0.992221   -- acc = 0.984641
-#    
-#    WZTo3LNu                         -- xs = 1.01775    -- acc = 1.00981
-#                                     -- xs = 0.986676   -- acc = 0.990711
-#    
-#    GluGluHToWWTo2L2Nu_M126          -- xs = 1.18068    -- acc = 1.01736
-#                                     -- xs = 0.861719   -- acc = 0.985408
-#    
-#    VBFHToWWTo2L2Nu_M126             -- xs = 0.993296   -- acc = 1.00332
-#                                     -- xs = 1.00686    -- acc = 0.997308
-#    =====================================================================
+#     VBFHToWWTo2L2Nu_M125 0jet acceptance uncertainties
+#    -----------------------------------------
+#     QCD         mu=0.5 / mu=2.0   0.68% / 0.60%
+#     alpha_s     265000 / 266000   1.14% / 0.82%
+#     PDF                           0.51%
+#     PDF+alpha_s                   1.12%
 #    
 #    
-
+#     VBFHToWWTo2L2Nu_M125 1jet acceptance uncertainties
+#    -----------------------------------------
+#     QCD         mu=0.5 / mu=2.0   0.11% / 0.01%
+#     alpha_s     265000 / 266000   0.22% / 0.29%
+#     PDF                           0.31%
+#     PDF+alpha_s                   0.40%
+#    
+#    
+#     GluGluHToWWTo2L2Nu_M125 0jet acceptance uncertainties
+#    -----------------------------------------
+#     QCD         mu=0.5 / mu=2.0   2.71% / 2.26%
+#     alpha_s     265000 / 266000   0.11% / 0.04%
+#     PDF                           0.56%
+#     PDF+alpha_s                   0.57%
+#    
+#    
+#     GluGluHToWWTo2L2Nu_M125 1jet acceptance uncertainties
+#    -----------------------------------------
+#     QCD         mu=0.5 / mu=2.0   2.00% / 1.66%
+#     alpha_s     265000 / 266000   0.29% / 0.31%
+#     PDF                           0.37%
+#     PDF+alpha_s                   0.48%
+#     
+#
 
 
 
@@ -254,24 +258,21 @@ nuisances['pdf_qqbar']  = {
               }
 
 
-#  sample: GluGluHToTauTau_M125              PDF unc = 2.17926 %     renorm/fact-up unc = 16.1205 %     renorm/fact-down unc = 12.6629 %
-#  sample: GluGluHToTauTau_M130              PDF unc = 2.22151 %     renorm/fact-up unc = 17.6231 %     renorm/fact-down unc = 13.3184 %
-#  sample: GluGluHToWWTo2L2NuPowheg_M125     PDF unc = 2.14268 %     renorm/fact-up unc = 15.403  %     renorm/fact-down unc = 12.2896 %
-#  sample: TTTo2L2Nu                         PDF unc = 1.4951  %     renorm/fact-up unc = 10.4983 %     renorm/fact-down unc = 10.8503 %
-#  sample: VBFHToTauTau_M125                 PDF unc = 1.78633 %     renorm/fact-up unc = 1.55808 %     renorm/fact-down unc = 1.65156 %
-#  sample: WWTo2L2Nu                         PDF unc = 1.53441 %     renorm/fact-up unc = 0.605996%     renorm/fact-down unc = 0.200891%
-#  sample: WZTo3LNu                          PDF unc = 1.48919 %     renorm/fact-up unc = 1.04377 %     renorm/fact-down unc = 0.681094%
+
+#    
+#    
+#    
+#    
 
 
 nuisances['pdf_gg_accept']  = {
                'name'  : 'pdf_gg_accept', 
                'samples'  : {
-                   'ggWW'    : '1.001',     # 
-                   'ggH_hww' : '1.001',
-                   'ggH_htt' : '1.001',
-                   'H_htt'   : '1.001',
-                   'ggZH_hww': '1.001', 
-                   #'top'     : '1.015',    # ---> not needed                
+                   'ggWW'    : '1.005',     # 
+                   'ggH_hww' : '1.005',
+                   'ggH_htt' : '1.005',
+                   'H_htt'   : '1.005',
+                   'ggZH_hww': '1.005', 
                    },
                'type'  : 'lnN',
               }
@@ -281,44 +282,66 @@ nuisances['pdf_qqbar_accept']  = {
                'name'  : 'pdf_qqbar_accept', 
                'type'  : 'lnN',
                'samples'  : {
-                   #'qqH_hww' : '1.018',
-                   #'qqH_htt' : '1.018',
-                   #'WH_hww'  : '1.018',
-                   #'ZH_hww'  : '1.018',
-                   ##'WW'      : '1.015',    # ---> not needed
-                   #'VW'      : '1.015',
                    #
-                   'qqH_hww' : '1.001',
-                   'qqH_htt' : '1.001',
-                   'WH_hww'  : '1.001',
-                   'ZH_hww'  : '1.001',
-                   #'WW'      : '1.015',    # ---> not needed
-                   'VZ'      : '1.001',                   
+                   'qqH_hww' : '1.011',
+                   'qqH_htt' : '1.011',
+                   'WH_hww'  : '1.011',
+                   'ZH_hww'  : '1.011',
+                   'VZ'      : '1.011',                   
                    },
               }
 
 
+
+#
+#     WWTo2L2Nu 0jet acceptance uncertainties
+#    -----------------------------------------
+#     QCD         mu=0.5 / mu=2.0   0.53% / 0.52%
+#     alpha_s     265000 / 266000   0.02% / 0.02%
+#     PDF                           0.25%
+#     PDF+alpha_s                   0.25%
 #    
-#    =====
-#    0 jet
-#    =====
-#    PDF 
-#    =====================================================================
-#    WWTo2L2Nu                         -- xs = 1.0148     -- acc = 1.00054
-#    WZTo3LNu                          -- xs = 1.01442    -- acc = 1.00047
-#    GluGluHToWWTo2L2Nu_M126           -- xs = 1.02063    -- acc = 1.00124
-#    VBFHToWWTo2L2Nu_M126              -- xs = 1.01409    -- acc = 1.00122
 #    
-#    =====
-#    1 jet
-#    =====
-#    PDF 
-#    =====================================================================
-#    WWTo2L2Nu                        -- xs = 1.01482    -- acc = 0.999089
-#    WZTo3LNu                         -- xs = 1.01441    -- acc = 0.999825
-#    GluGluHToWWTo2L2Nu_M126          -- xs = 1.02063    -- acc = 0.999853
-#    VBFHToWWTo2L2Nu_M126             -- xs = 1.01409    -- acc = 1.0007
+#     WWTo2L2Nu 1jet acceptance uncertainties
+#    -----------------------------------------
+#     QCD         mu=0.5 / mu=2.0   1.54% / 1.38%
+#     alpha_s     265000 / 266000   0.01% / 0.01%
+#     PDF                           0.27%
+#     PDF+alpha_s                   0.27%
 #    
+#    
+#     VBFHToWWTo2L2Nu_M125 0jet acceptance uncertainties
+#    -----------------------------------------
+#     QCD         mu=0.5 / mu=2.0   0.68% / 0.60%
+#     alpha_s     265000 / 266000   1.14% / 0.82%
+#     PDF                           0.51%
+#     PDF+alpha_s                   1.12%
+#    
+#    
+#     VBFHToWWTo2L2Nu_M125 1jet acceptance uncertainties
+#    -----------------------------------------
+#     QCD         mu=0.5 / mu=2.0   0.11% / 0.01%
+#     alpha_s     265000 / 266000   0.22% / 0.29%
+#     PDF                           0.31%
+#     PDF+alpha_s                   0.40%
+#    
+#    
+#     GluGluHToWWTo2L2Nu_M125 0jet acceptance uncertainties
+#    -----------------------------------------
+#     QCD         mu=0.5 / mu=2.0   2.71% / 2.26%
+#     alpha_s     265000 / 266000   0.11% / 0.04%
+#     PDF                           0.56%
+#     PDF+alpha_s                   0.57%
+#    
+#    
+#     GluGluHToWWTo2L2Nu_M125 1jet acceptance uncertainties
+#    -----------------------------------------
+#     QCD         mu=0.5 / mu=2.0   2.00% / 1.66%
+#     alpha_s     265000 / 266000   0.29% / 0.31%
+#     PDF                           0.37%
+#     PDF+alpha_s                   0.48%
+#     
+#
 #    
 #    
 #    
