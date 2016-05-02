@@ -4,8 +4,9 @@
   
 supercut = 'std_vector_lepton_pt[0]>30 && std_vector_lepton_pt[1]>5 \
          && std_vector_lepton_pt[2]>5 \
-         && metPfType1 < 50 \
 '
+
+         #&& metPfType1 < 50 \
 
          #&& std_vector_lepton_isTightLepton[0]==1 \
 

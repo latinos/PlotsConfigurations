@@ -7,7 +7,9 @@ samples['Wg']  = {    'name': [
                               'latino_Wg_AMCNLOFXFX.root'
                               ],      
                       'weight' : 'puW*baseW*GEN_weight_SM/abs(GEN_weight_SM)   \
-                                  *(std_vector_leptonGen_pt[2]<10)',          
+                                  * !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
+                                  #*(!(Gen_ZGstar_MomStatus==44 && Gen_ZGstar_MomId==22))',
+                                  #*(std_vector_leptonGen_pt[2]<10)',          
                                   #',          
                       'weights': ['1'] ,           
                       #'isData': ['0'],                            
@@ -44,6 +46,46 @@ samples['VZ']  = {    'name': [
                       #'weights': ['1'] ,           
                       #'isData': ['0'],                            
                   }
+
+
+
+samples['DY']  = {    'name': [
+                            'latino_DYJetsToLL_M-10to50.root',
+                            'latino_DYJetsToLL_M-10to50ext3.root',
+                            #
+                            'latino_DYJetsToLL_M-50_0000__part0.root',
+                            'latino_DYJetsToLL_M-50_0000__part1.root',
+                            'latino_DYJetsToLL_M-50_0000__part2.root',
+                            #'latino_DYJetsToLL_M-50_0000__part3.root',
+                            'latino_DYJetsToLL_M-50_0000__part4.root',
+                            'latino_DYJetsToLL_M-50_0001__part0.root',
+                            'latino_DYJetsToLL_M-50_0001__part1.root',
+                            'latino_DYJetsToLL_M-50_0001__part2.root',
+                            #'latino_DYJetsToLL_M-50_0001__part3.root',
+                            #'latino_DYJetsToLL_M-50_0001__part4.root',
+                            'latino_DYJetsToLL_M-50_0002__part0.root'
+                            #
+                            ],    
+                      'weight' : 'metFilter*(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))*puW*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
+                      #'isData': ['0', '0'],      
+                      'weights': [  '0.238112'
+                                  , '0.238112'
+                                  , '0.317273040011*11/8'
+                                  , '0.317273040011*11/8'
+                                  , '0.317273040011*11/8'
+                                  #, '0.317273040011'
+                                  , '0.317273040011*11/8'
+                                  , '0.317273040011*11/8'
+                                  , '0.317273040011*11/8'
+                                  , '0.317273040011*11/8'
+                                  #, '0.317273040011'
+                                  #, '0.317273040011'
+                                  , '0.317273040011*11/8'
+                                  ] ,           
+                  }
+
+
+
 
 
 ###########################################
