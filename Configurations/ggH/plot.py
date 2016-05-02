@@ -101,6 +101,13 @@ plot['Vg']  = {
                   'scale'    : 1.0
                   }
 
+plot['VgS'] = { 
+                  'color': 858, # kAzure  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
 plot['VZ']  = { 
                   'color': 858, # kAzure -2  
                   'isSignal' : 0,
