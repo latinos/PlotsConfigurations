@@ -21,6 +21,31 @@ supercut = 'std_vector_lepton_pt[0]>30 && std_vector_lepton_pt[1]>5 \
                 #'
 
               
+cuts['hww2l2v_13TeV_WgS_mmm_complex_JPsi']  = ' \
+                   abs(std_vector_lepton_flavour[0]) == 13 \
+                && abs(std_vector_lepton_flavour[1]) == 13 \
+                && abs(std_vector_lepton_flavour[2]) == 13 \
+                && (  \
+                    (std_vector_lepton_isTightLepton[0]==1  && std_vector_lepton_isTightLepton[1]!=1  && std_vector_lepton_isTightLepton[2]!=1   && std_vector_lepton_pt[0]>30 && std_vector_lepton_flavour[1]*std_vector_lepton_flavour[2]<0)   \
+                 || (std_vector_lepton_isTightLepton[1]==1  && std_vector_lepton_isTightLepton[2]!=1  && std_vector_lepton_isTightLepton[0]!=1   && std_vector_lepton_pt[1]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[2]<0)   \
+                 || (std_vector_lepton_isTightLepton[2]==1  && std_vector_lepton_isTightLepton[0]!=1  && std_vector_lepton_isTightLepton[1]!=1   && std_vector_lepton_pt[2]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]<0)   \
+                   )  \
+                && (min( min(  mllTwoThree * (std_vector_lepton_isTightLepton[0]==1 && std_vector_lepton_pt[0]>30 && std_vector_lepton_flavour[1]*std_vector_lepton_flavour[2]<0) +  + 1000 * !(std_vector_lepton_isTightLepton[0]==1 && std_vector_lepton_pt[0]>30 && std_vector_lepton_flavour[1]*std_vector_lepton_flavour[2]<0) \
+                               , mllOneThree * (std_vector_lepton_isTightLepton[1]==1 && std_vector_lepton_pt[1]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[2]<0) +  + 1000 * !(std_vector_lepton_isTightLepton[1]==1 && std_vector_lepton_pt[1]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[2]<0) \
+                             ) , mll         * (std_vector_lepton_isTightLepton[2]==1 && std_vector_lepton_pt[2]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]<0) +  + 1000 * !(std_vector_lepton_isTightLepton[2]==1 && std_vector_lepton_pt[2]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]<0) \
+                             )) <3.3 && \
+                             min( min(  mllTwoThree * (std_vector_lepton_isTightLepton[0]==1 && std_vector_lepton_pt[0]>30 && std_vector_lepton_flavour[1]*std_vector_lepton_flavour[2]<0) +  + 1000 * !(std_vector_lepton_isTightLepton[0]==1 && std_vector_lepton_pt[0]>30 && std_vector_lepton_flavour[1]*std_vector_lepton_flavour[2]<0) \
+                               , mllOneThree * (std_vector_lepton_isTightLepton[1]==1 && std_vector_lepton_pt[1]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[2]<0) +  + 1000 * !(std_vector_lepton_isTightLepton[1]==1 && std_vector_lepton_pt[1]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[2]<0) \
+                             ) , mll         * (std_vector_lepton_isTightLepton[2]==1 && std_vector_lepton_pt[2]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]<0) +  + 1000 * !(std_vector_lepton_isTightLepton[2]==1 && std_vector_lepton_pt[2]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]<0) ) > 2.9\
+                '
+
+            
+
+                               
+
+
+
+              
 cuts['hww2l2v_13TeV_WgS_mmm_complex']  = ' \
                    abs(std_vector_lepton_flavour[0]) == 13 \
                 && abs(std_vector_lepton_flavour[1]) == 13 \
@@ -99,6 +124,9 @@ cuts['hww2l2v_13TeV_WgS_mmm_tt']  = ' \
                 && std_vector_lepton_flavour[1]*std_vector_lepton_flavour[2]<0   \
                 && std_vector_lepton_isTightLepton[1]==1 \
                 '
+
+
+
 
 
 

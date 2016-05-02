@@ -102,7 +102,7 @@ plot['Vg']  = {
                   }
 
 plot['VgS'] = { 
-                  'color': 858, # kAzure  
+                  'color'    : 617,   # kViolet + 1  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0

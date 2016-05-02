@@ -144,7 +144,7 @@ variables['deta1phip']   = {  'name': 'std_vector_electron_dEtaIn[0]*(std_vector
                        }
 
 
-variables['deta1phim']   = {  'name': 'std_vector_electron_dEtaIn[1]*(std_vector_lepton_phi[0]<0)+5*(std_vector_lepton_phi[0]>0)',     
+variables['deta1phim']   = {  'name': 'std_vector_electron_dEtaIn[0]*(std_vector_lepton_phi[0]<0)+5*(std_vector_lepton_phi[0]>0)',     
                        'range' : (100,-0.01,0.01),   
                        'xaxis' : '#Delta #eta 1st lep',
                        'fold'  : 0                         
@@ -152,7 +152,7 @@ variables['deta1phim']   = {  'name': 'std_vector_electron_dEtaIn[1]*(std_vector
 
 
 
-variables['deta2phip']   = {  'name': 'std_vector_electron_dEtaIn[0]*(std_vector_lepton_phi[1]>0)+5*(std_vector_lepton_phi[1]<0)',     
+variables['deta2phip']   = {  'name': 'std_vector_electron_dEtaIn[1]*(std_vector_lepton_phi[1]>0)+5*(std_vector_lepton_phi[1]<0)',     
                        'range' : (100,-0.01,0.01),   
                        'xaxis' : '#Delta #eta 2nd lep',
                        'fold'  : 0                         
