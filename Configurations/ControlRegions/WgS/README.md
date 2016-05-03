@@ -48,4 +48,13 @@ Backup:
     gardener.py l2kinfiller --cmssw=763  -r    /media/data/amassiro/LatinoTrees/WgS/    /media/data/amassiro/LatinoTrees/WgS_new/
     
     
+    gardener.py l2kinfiller --cmssw=763    /media/data/amassiro/LatinoTrees/WgS/latino_Run2015C_16Dec2015_SingleElectron.root    /media/data/amassiro/LatinoTrees/WgS_new/latino_Run2015C_16Dec2015_SingleElectron.root
+    gardener.py l2kinfiller --cmssw=763    /media/data/amassiro/LatinoTrees/WgS/latino_Run2015D_16Dec2015_SingleElectron.root    /media/data/amassiro/LatinoTrees/WgS_new/latino_Run2015D_16Dec2015_SingleElectron.root
+    
+    
+    scp amassiro@lxplus065.cern.ch:/tmp/amassiro/eos/user/r/rebeca/HWW2015/03Mar_Run2015C_16Dec2015/WgStarsel__hadd__EpTCorr/latino_Run2015C_16Dec2015_SingleElectron.root   /media/data/amassiro/LatinoTrees/WgS/
+    
+    
+    
+    
     

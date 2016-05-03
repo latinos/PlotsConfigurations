@@ -188,6 +188,13 @@ variables['drllSpecialNoId']  = {   'name': '\
                         #}
 
 
+variables['mtw1']  = {   'name': 'mtw1',      
+                        'range' : (10,0,100),  
+                        'xaxis' : 'mtw1 [GeV]',   
+                         'fold' : 3
+                        }
+
+
                         
 variables['njet']  = {   'name': 'njet',      
                         'range' : (4,0,4),  
@@ -207,6 +214,15 @@ variables['met']  = {   'name': 'metPfType1',            #   variable name
                         'xaxis' : 'pfmet [GeV]',  #   x axis name
                          'fold' : 0
                         }
+
+
+
+variables['mpmet']  = {   'name': 'mpmet',            #   variable name    
+                        'range' : (20,0,200),    #   variable range
+                        'xaxis' : 'mpmet [GeV]',  #   x axis name
+                         'fold' : 0
+                        }
+
 
 
 
