@@ -359,6 +359,62 @@ Plots:
     latino->Draw("bPogSFUp","std_vector_jet_pt[2]<20 ")
     latino->Draw("bPogSFDown","std_vector_jet_pt[2]<20 ")
     
+    
+    
+    
+    r99t eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCWgStarsel__hadd__EpTCorr/latino_WZTo3LNu.root    \
+    eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCWgStarsel__hadd__EpTCorr/latino_WgStarLNuMuMu.root
+    
+    
+    latinoWZ  = (TTree*) _file0->Get("latino");
+    latinoWgS = (TTree*) _file1->Get("latino");
+    
+    latinoWZ -> Draw("Gen_ZGstar_mass >> hWZ(100,0,10)", "Gen_ZGstar_mu1_pt > 10 &&  Gen_ZGstar_mu2_pt > 10 &&  (abs(std_vector_lepton_flavour[0]) == 13 && abs(std_vector_lepton_flavour[1]) == 13 && abs(std_vector_lepton_flavour[2]) == 13) * puW*baseW*GEN_weight_SM/abs(GEN_weight_SM)");
+    
+    latinoWgS -> Draw("Gen_ZGstar_mass >> hWgS(100,0,10)", "Gen_ZGstar_mu1_pt > 10 &&  Gen_ZGstar_mu2_pt > 10 &&  (abs(std_vector_lepton_flavour[0]) == 13 && abs(std_vector_lepton_flavour[1]) == 13 && abs(std_vector_lepton_flavour[2]) == 13) * puW*GEN_weight_SM/abs(GEN_weight_SM)");
+    
+
+    
+    
+    latinoWZ -> Draw("Gen_ZGstar_mass >> hWZ(100,0,10)", "Gen_ZGstar_mu1_pt > 10 &&  Gen_ZGstar_mu2_pt > 10 &&  (abs(std_vector_lepton_flavour[0]) == 11 && abs(std_vector_lepton_flavour[1]) == 13 && abs(std_vector_lepton_flavour[2]) == 13) * puW*baseW*GEN_weight_SM/abs(GEN_weight_SM)");
+    
+    latinoWgS -> Draw("Gen_ZGstar_mass >> hWgS(100,0,10)", "Gen_ZGstar_mu1_pt > 10 &&  Gen_ZGstar_mu2_pt > 10 &&  (abs(std_vector_lepton_flavour[0]) == 11 && abs(std_vector_lepton_flavour[1]) == 13 && abs(std_vector_lepton_flavour[2]) == 13) * puW*GEN_weight_SM/abs(GEN_weight_SM)");
+    
+    hWZ -> SetLineColor(kBlue);
+    hWgS-> SetLineColor(kRed);
+    
+    hWgS->Draw("histo");
+    hWZ->Draw("histo same");
+    
+    
+     
+    
+    latinoWZ -> Draw("Gen_ZGstar_mass >> hWZ(100,0,100)", "Gen_ZGstar_mu1_pt > 10 &&  Gen_ZGstar_mu2_pt > 10 &&  (abs(std_vector_lepton_flavour[0]) == 11 && abs(std_vector_lepton_flavour[1]) == 13 && abs(std_vector_lepton_flavour[2]) == 13) * puW*baseW*GEN_weight_SM/abs(GEN_weight_SM)");
+    
+    latinoWgS -> Draw("Gen_ZGstar_mass >> hWgS(100,0,100)", "Gen_ZGstar_mu1_pt > 10 &&  Gen_ZGstar_mu2_pt > 10 &&  (abs(std_vector_lepton_flavour[0]) == 11 && abs(std_vector_lepton_flavour[1]) == 13 && abs(std_vector_lepton_flavour[2]) == 13) * puW*GEN_weight_SM/abs(GEN_weight_SM)");
+    
+    hWZ -> SetLineColor(kBlue);
+    hWgS-> SetLineColor(kRed);
+    
+    hWgS->Draw("histo");
+    hWZ->Draw("histo same");
+
+    
+    
+    
+    
+    
+    
+    latinoWgS -> Draw("Gen_ZGstar_mass", "")
+    
+    
+    
+    latinoWgS -> Draw("sqrt((Gen_ZGstar_mu1_pt * cos(Gen_ZGstar_mu1_phi) + Gen_ZGstar_mu2_pt * cos(Gen_ZGstar_mu2_phi)) *(Gen_ZGstar_mu1_pt * cos(Gen_ZGstar_mu1_phi) + Gen_ZGstar_mu2_pt * cos(Gen_ZGstar_mu2_phi))    +(Gen_ZGstar_mu1_pt * sin(Gen_ZGstar_mu1_phi) + Gen_ZGstar_mu2_pt * sin(Gen_ZGstar_mu2_phi))  *(Gen_ZGstar_mu1_pt * sin(Gen_ZGstar_mu1_phi) + Gen_ZGstar_mu2_pt * sin(Gen_ZGstar_mu2_phi)))")
+
+    
+    
+    
+
 
 Copy datacards to repository:
 

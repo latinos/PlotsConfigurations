@@ -30,7 +30,7 @@ variables['mth']  = {   'name': 'mth',            #   variable name
                         }
 
 variables['met']  = {   'name': 'metPfType1',            #   variable name    
-                        'range' : (20,0,200),    #   variable range
+                        'range' : (20,20,150),    #   variable range
                         'xaxis' : 'pfmet [GeV]',  #   x axis name
                          'fold' : 0
                         }
@@ -52,33 +52,33 @@ variables['met']  = {   'name': 'metPfType1',            #   variable name
 
 
 variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
-                        'range' : (20,20,200),   
+                        'range' : (25,20,200),   
                         'xaxis' : 'p_{T} 1st lep',
-                        'fold'  : 3                         
+                        'fold'  : 0                         
                         }
 
 variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
-                        'range' : (20,10,100),   
+                        'range' : (25,10,100),   
                         'xaxis' : 'p_{T} 2nd lep',
-                        'fold'  : 3                         
+                        'fold'  : 0                         
                         }
 
 variables['eta1']  = {  'name': 'std_vector_lepton_eta[0]',     
                         'range' : (20,-2.5,2.5),   
                         'xaxis' : '#eta 1st lep',
-                        'fold'  : 3                         
+                        'fold'  : 0                         
                         }
 
 variables['eta2']  = {  'name': 'std_vector_lepton_eta[1]',     
                         'range' : (20,-2.5,2.5),   
                         'xaxis' : '#eta 2nd lep',
-                        'fold'  : 3                         
+                        'fold'  : 0                         
                         }
 
 variables['ptll']  = {   'name': 'ptll',     
-                        'range' : (60,30,200),   
+                        'range' : (30,30,150),   
                         'xaxis' : 'p_{T}^{ll} [GeV]',
-                         'fold' : 3
+                         'fold' : 0
                         }
 
 #variables['dphill']  = {   'name': 'abs(dphill)',     
