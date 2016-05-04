@@ -109,7 +109,7 @@ plot['WgSee']  = {
                   'color': 616-1, # kMagenta-1
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0
+                  'scale'    : 2.0
                   }
 
 
@@ -120,7 +120,7 @@ plot['WgSmm']  = {
                   'color': 616+1, # kMagenta+1
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0
+                  'scale'    : 2.0
                   }
 
 

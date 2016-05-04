@@ -53,6 +53,14 @@ variables['mllTwoThree']  = {   'name': 'mllTwoThree',            #   variable n
                         }
 
 
+variables['drllTwoThree']  = {   'name': 'drllTwoThree',            #   variable name    
+                        'range' : (10,0,1),    #   variable range
+                        'xaxis' : '#Delta R_{ll} 2nd3rd',  #   x axis name
+                         'fold' : 3
+                        }
+
+
+
 
 variables['mllTwoThreeLowMass']  = {   'name': 'mllTwoThree',            #   variable name    
                         'range' : (10,0,10),    #   variable range
@@ -239,7 +247,7 @@ variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',
                         }
 
 variables['pt3']  = {   'name': 'std_vector_lepton_pt[2]',     
-                        'range' : (10,0,20),   
+                        'range' : (20,0,40),   
                         'xaxis' : 'p_{T} 3rd lep',
                         'fold'  : 3                         
                         }

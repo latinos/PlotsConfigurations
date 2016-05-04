@@ -157,6 +157,42 @@ cuts['hww2l2v_13TeV_WgS_emm_tll_cutmtw1']  = ' \
                 '
 
 
+cuts['hww2l2v_13TeV_WgS_emm_tll_cutmtw1_cutpt23_cutandcount']  = ' \
+                   abs(std_vector_lepton_flavour[0]) == 11 \
+                && abs(std_vector_lepton_flavour[1]) == 13   \
+                && abs(std_vector_lepton_flavour[2]) == 13   \
+                && std_vector_lepton_flavour[1]*std_vector_lepton_flavour[2]<0   \
+                && std_vector_lepton_pt[3] < 0   \
+                && std_vector_lepton_pt[1] < 50   \
+                && std_vector_lepton_pt[2] < 20   \
+                && std_vector_lepton_isTightLepton[0]==1 \
+                && std_vector_lepton_isWgsLepton[1]==1 \
+                && std_vector_lepton_isWgsLepton[2]==1 \
+                && (mllTwoThree < 2.5 || mllTwoThree > 3.5) \
+                && mtw1 > 45 \
+                && metPfType1 > 25 \
+                && mllTwoThree<2  \
+                '
+
+
+
+cuts['hww2l2v_13TeV_WgS_emm_tll_cutmtw1_cutpt23']  = ' \
+                   abs(std_vector_lepton_flavour[0]) == 11 \
+                && abs(std_vector_lepton_flavour[1]) == 13   \
+                && abs(std_vector_lepton_flavour[2]) == 13   \
+                && std_vector_lepton_flavour[1]*std_vector_lepton_flavour[2]<0   \
+                && std_vector_lepton_pt[3] < 0   \
+                && std_vector_lepton_pt[1] < 50   \
+                && std_vector_lepton_pt[2] < 20   \
+                && std_vector_lepton_isTightLepton[0]==1 \
+                && std_vector_lepton_isWgsLepton[1]==1 \
+                && std_vector_lepton_isWgsLepton[2]==1 \
+                && (mllTwoThree < 2.5 || mllTwoThree > 3.5) \
+                && mtw1 > 45 \
+                && metPfType1 > 25 \
+                '
+
+
 cuts['hww2l2v_13TeV_WgS_emm_cutmet']  = ' \
                    abs(std_vector_lepton_flavour[0]) == 11 \
                 && abs(std_vector_lepton_flavour[1]) == 13   \
