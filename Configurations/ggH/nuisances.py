@@ -16,13 +16,14 @@ nuisances['lumi']  = {
                    'H_hww'    : '1.027',
                    'WH_hww'   : '1.027',
                    'ggZH_hww'   : '1.027',
-                   #'DY'       : '1.027',
                    'VVV'      : '1.027',
                    'VZ'       : '1.027',
-                   #'WW'       : '1.027',
                    'ggWW'     : '1.027',
-                   #'top'      : '1.027',
                    'Vg'       : '1.027',
+                   'VgS'      : '1.027',
+                   #'DY'       : '1.027',    # --> datadriven
+                   #'WW'       : '1.027',    # --> datadriven
+                   #'top'      : '1.027',    # --> datadriven
                    },
                'type'  : 'lnN',
               }
@@ -677,24 +678,13 @@ nuisances['UE']  = {
 
 # experimental uncertainties
 
-
-#nuisances['WgStarScale']  = {
-                #'name'  : 'WgStarScale',
-                #'kind'  : 'weight',
-                #'type'  : 'shape',
-                #'samples'  : {
-                   #'VZ'   : ['(dataset==6)*1.30+(dataset!=6)', '(dataset==6)*0.70+(dataset!=6)'],
-                   #}
-                #}
-
-# K factor (Data/Wg*) = 1.23 + 0.33
+# K factor (Data/Wg*) = 2.0 +/- 0.5
 nuisances['WgStarScale']  = {
                'name'  : 'WgStarScale', 
                'type'  : 'lnN',
                'samples'  : {
-                   'WgS' : '1.27',  # 0.3 / 1.23  --> k_factor = 1.23 +/- 0.33
-                   'VgS' : '1.27',  # 0.3 / 1.23  --> k_factor = 1.23 +/- 0.33
-                   #'Vg' : '1.27',  # 0.3 / 1.23  --> k_factor = 1.23 +/- 0.33
+                   'WgS' : '1.25',  # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
+                   'VgS' : '1.25',  # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
                    },
                 }
  
