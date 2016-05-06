@@ -14,18 +14,19 @@ bkg=0
 
 for key in gDirectory.GetListOfKeys():
   name = key.GetTitle()
-  if "Up" in name or "Down" in name: continue
+  print name
+  if "Up" in name or "Down" in name or "stat" in name or "ibin" in name: continue
 
   h = gDirectory.Get(name)
   print name," : ",h.Integral() 
 
   if name=="histo_ttbar" or name=="histo_ST" or name=="histo_top":
-    top+=h.Integral()
+    top+=h.Integral()/3.
   elif name=="histo_DATA":
     data+=h.Integral()
     D_data = h.GetBinError(1) 
   else:
-    bkg+=h.Integral()
+    bkg+=h.Integral()/3.
   
 k = (data - bkg)/top
 D_k = D_data/top
