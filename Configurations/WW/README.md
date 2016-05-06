@@ -60,13 +60,13 @@ Extract signal strength from datacard using combine:
 
 To calculate the Top SF from the combined datacards:
 
-	combine -M MaxLikelihoodFit wwCombCard0.txt --redefineSignalPOIs Topnorm0j --freezeNuisances=r >> combination/TopSF0jet.txt
+	combine -M MaxLikelihoodFit wwCombCard0.txt --redefineSignalPOIs Topnorm0j --freezeNuisances=r,CMS_scale_e,CMS_scale_j,CMS_scale_m,CMS_scale_met,CMS_scale_trigger,CMS_btag,CMS_idiso,CMS_tttwTh,,CMS_ww_BVeto0j_em_top_ibin_1_stat >> combination/TopSF0jet.txt
 
-	combine -M MaxLikelihoodFit wwCombCard1.txt --redefineSignalPOIs Topnorm1j --freezeNuisances=r >> combination/TopSF1jet.txt
+	combine -M MaxLikelihoodFit wwCombCard1.txt --redefineSignalPOIs Topnorm1j --freezeNuisances=r,CMS_scale_e,CMS_scale_j,CMS_scale_m,CMS_scale_met,CMS_scale_trigger,CMS_btag,CMS_idiso,CMS_tttwTh,,CMS_ww_BVeto1j_em_top_ibin_1_stat >> combination/TopSF1jet.txt
 
-	combine -M MultiDimFit wwCombCard0.txt --algo=grid --points 100 --redefineSignalPOIs Topnorm0j --freezeNuisances=r --setPhysicsModelParameterRanges Topnorm0j=0.01,2 -n "LHScanTopnorm0j" >> combination/TopLH0jet.txt
+	combine -M MultiDimFit wwCombCard0.txt --algo=grid --points 100 --redefineSignalPOIs Topnorm0j --freezeNuisances=r,CMS_scale_e,CMS_scale_j,CMS_scale_m,CMS_scale_met,CMS_scale_trigger,CMS_btag,CMS_idiso,CMS_tttwTh,,CMS_ww_BVeto0j_em_top_ibin_1_stat --setPhysicsModelParameterRanges Topnorm0j=0.01,2 -n "LHScanTopnorm0j" >> combination/TopLH0jet.txt
 
-	combine -M MultiDimFit wwCombCard1.txt --algo=grid --points 100 --redefineSignalPOIs Topnorm1j --freezeNuisances=r --setPhysicsModelParameterRanges Topnorm1j=0.01,2 -n "LHScanTopnorm1j" >> combination/TopLH1jet.txt
+	combine -M MultiDimFit wwCombCard1.txt --algo=grid --points 100 --redefineSignalPOIs Topnorm1j --freezeNuisances=r,CMS_scale_e,CMS_scale_j,CMS_scale_m,CMS_scale_met,CMS_scale_trigger,CMS_btag,CMS_idiso,CMS_tttwTh,,CMS_ww_BVeto1j_em_top_ibin_1_stat --setPhysicsModelParameterRanges Topnorm1j=0.01,2 -n "LHScanTopnorm1j" >> combination/TopLH1jet.txt
 
 
 To perform a blind (MC only) estimate of the uncertainty of the signal strength:
@@ -133,9 +133,15 @@ Official tables from datacards (use with combine):
 
 	  cd ../../../PlayWithDatacards/
 
-	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto0j_em/events/datacard.txt.pruned.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_BVeto0j_em.tex
+	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto0j_em/events/datacard.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_BVeto0j_em.tex
 
-	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto1j_em/events/datacard.txt.pruned.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_BVeto1j_em.tex
+	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto1j_em/events/datacard.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_BVeto1j_em.tex
+
+	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_TopCR0j_em/events/datacard.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_TopCR0j_em.tex
+
+	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_TopCR1j_em/events/datacard.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_TopCR1j_em.tex
+
+	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_TopCR1j_em_alt/events/datacard.txt  --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_TopCR1j_em_alt.tex
 
 	 cd -
 

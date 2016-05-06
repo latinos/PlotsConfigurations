@@ -24,6 +24,8 @@ How to plot the Likelihood scan:
     root -l higgsCombineLHScanTopnorm1j.MultiDimFit.mH125.root 
     limit->Draw("2*deltaNLL:Topnorm1j","deltaNLL<10 && deltaNLL>0","l")
 
+    root -l ../higgsCombineLHScanH.MultiDimFit.mH125.root
+    limit->Draw("2*deltaNLL:r","deltaNLL<10 && deltaNLL>0","l")
     
     
 doDY.sh
