@@ -202,6 +202,12 @@ Make plots:
 
        
 
+Draw likelihood scan:
+
+    root -l ../higgsCombineLHScanH.MultiDimFit.mH125.root  \
+    scripts/drawNLL.C
+    
+    
     
 Combine:
 
