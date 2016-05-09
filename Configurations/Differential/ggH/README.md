@@ -35,7 +35,11 @@ Auto tests:
     sh ggH/scripts/doGGH.sh
     cd -
     
+    cd ..
+    sh ggH/scripts/doGGH_doMultisignal.sh
+    cd -
 
+    
 Make tables:
 
     cd /afs/cern.ch/user/a/amassiro/Limit/PlayWithDatacards
