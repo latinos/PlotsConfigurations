@@ -202,11 +202,30 @@ plot['ggH_hww'] = {
                   }
 
 
-plot['ggH_hww_NWA'] = {
-                  'nameHR' : 'ggH-NWA',
+plot['ggH_hww_750_NWA'] = {
+                  'nameHR' : 'ggH 750 NWA',
                   'color': 632, # kRed 
                   'isSignal' : 1,
-                  'isData'   : 0,    
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
+import os.path
+
+if os.path.exists(massesAndModelsFile) :
+  handle = open(massesAndModelsFile,'r')
+  exec(handle)
+  handle.close()
+else:
+  print "!!! ERROR file ", massesAndModelsFile, " does not exist."
+
+for m in masses:
+  for model in models:
+    plot['ggH_hww_'+m+'_'+model] = {
+                  'nameHR' : 'ggH '+m+' '+model,
+                  'color': 632, # kRed 
+                  'isSignal' : 1,
+                  'isData'   : 0,
                   'scale'    : 1    #
                   }
 

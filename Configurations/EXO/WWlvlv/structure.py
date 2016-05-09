@@ -3,7 +3,31 @@
 #structure = {}
 
 # keys here must match keys in samples.py    
-#                    
+#                 
+
+import os.path
+
+massesAndModelsFile = "massesAndModels.py"
+
+if os.path.exists(massesAndModelsFile) :
+  handle = open(massesAndModelsFile,'r')
+  exec(handle)
+  handle.close()
+else:
+  print "!!! ERROR file ", massesAndModelsFile, " does not exist."
+
+for m in masses:
+  for model in models:
+    structure['ggH_hww_'+m+'_'+model]  = {
+                    'isSignal' : 1,
+                    'isData'   : 0
+                    }
+
+structure['ggH_hww_750_NWA']  = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+              }
+   
 structure['DY']  = {  
                   'isSignal' : 0,
                   'isData'   : 0 
@@ -133,15 +157,6 @@ structure['H_hww'] = {
                   'isSignal' : 0,
                   'isData'   : 0    
                   }
-
-
-
-structure['ggH_hww_NWA'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
-
-
 
 
 # data
