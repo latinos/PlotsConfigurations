@@ -563,9 +563,9 @@ nuisances['PS']  = {
                 'samples'  : {
                    'WW' :  ['1./1.03295', '1.'],  # latino_WWTo2L2NuHerwigPS.root moved with different name in __PS folder
                    'ggH_hww' : ['1./1.00702', '1.'],
-                   'ggH_hww_pt1' : ['1./1.00702', '1.'],
-                   'ggH_hww_pt2' : ['1./1.00702', '1.'],
-                   'ggH_hww_pt3' : ['1./1.00702', '1.'],
+                   #'ggH_hww_pt1' : ['1./1.00702', '1.'],    # temporarily removed because the herwig sample is missing the gen higgs pt variable
+                   #'ggH_hww_pt2' : ['1./1.00702', '1.'],    # temporarily removed because the herwig sample is missing the gen higgs pt variable
+                   #'ggH_hww_pt3' : ['1./1.00702', '1.'],    # temporarily removed because the herwig sample is missing the gen higgs pt variable
                    'qqH_hww' : ['1./1.06362', '1.'],
                 },
                 'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS/',
@@ -831,20 +831,20 @@ nuisances['tttwTh']  = {
   
   
 # DY pt corrections
-nuisances['DYptRew']  = {
-                'name'  : 'DYptRew',   # Theory uncertainty
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {  # up              down
-                   'DY0jet' : ['(0.95 - 0.1*TMath::Erf((gen_ptll-14.4)/9.0))/(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))',
-                               '(0.95 - 0.1*TMath::Erf((gen_ptll-13.6)/8.6))/(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))'],
-                   'DY1jet' : ['(0.95 - 0.1*TMath::Erf((gen_ptll-14.4)/9.0))/(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))',
-                               '(0.95 - 0.1*TMath::Erf((gen_ptll-13.6)/8.6))/(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))'],
-                }
-                # tt = 17/18/19 depending on the sample/generator
-                # tW = 15/16
+#nuisances['DYptRew']  = {
+                #'name'  : 'DYptRew',   # Theory uncertainty
+                #'kind'  : 'weight',
+                #'type'  : 'shape',
+                #'samples'  : {  # up              down
+                   #'DY0jet' : ['(0.95 - 0.1*TMath::Erf((gen_ptll-14.4)/9.0))/(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))',
+                               #'(0.95 - 0.1*TMath::Erf((gen_ptll-13.6)/8.6))/(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))'],
+                   #'DY1jet' : ['(0.95 - 0.1*TMath::Erf((gen_ptll-14.4)/9.0))/(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))',
+                               #'(0.95 - 0.1*TMath::Erf((gen_ptll-13.6)/8.6))/(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))'],
+                #}
+                ## tt = 17/18/19 depending on the sample/generator
+                ## tW = 15/16
                 
-}
+#}
 
 #
 #         1  p0           1.42199e+01   2.00614e-01   7.49397e-04  -3.24175e-03
