@@ -37,6 +37,10 @@ Compute DYtt SFs and perform the Likelihood scan:
 
     bash dodytt1jet.sh  outputFileSFdy1jet.txt outputFileLHdy1jet.txt
 
+    cd ~/Framework/Combine/CMSSW_7_4_7/src/
+    eval `scramv1 runtime -sh`
+    cd -
+    bash doDYBlind.sh   outputFileSFDY.txt outputFileLHDY.txt
 
 
 doGGH.sh
