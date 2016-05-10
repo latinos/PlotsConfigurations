@@ -31,16 +31,39 @@ variables['mth']  = {   'name': 'mth',            #   variable name
                         #}
 
 
-variables['mllVSmth'] = {   'name': 'mll:mth',            #   variable name    
-                        'range' : (7,60,200, 5,10,110),            #   variable range
+
+variables['mllVSmthGenPtll'] = {   'name': 'mll:mth',            #   variable name    
+                        'range' : (4,60,200, 4,10,110),            #   variable range
                         'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
                         'fold' : 3 , 
                         # do weighted plot too
                         'doWeight' : 1,
-                        'binX'     : 7,
-                        'binY'     : 5
+                        'binX'     : 4,
+                        'binY'     : 4
                         #
                         }
+
+variables['mllVSmth'] = {   'name': 'mll:mth',            #   variable name    
+                        'range' : (4,60,200, 4,10,110),            #   variable range
+                        'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
+                        'fold' : 3 , 
+                        # do weighted plot too
+                        'doWeight' : 1,
+                        'binX'     : 4,
+                        'binY'     : 4
+                        #
+                        }
+
+#variables['mllVSmth'] = {   'name': 'mll:mth',            #   variable name    
+                        #'range' : (7,60,200, 5,10,110),            #   variable range
+                        #'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
+                        #'fold' : 3 , 
+                        ## do weighted plot too
+                        #'doWeight' : 1,
+                        #'binX'     : 7,
+                        #'binY'     : 5
+                        ##
+                        #}
 
 
 
