@@ -36,7 +36,7 @@ combineCards.py   em01j13=ggH/datacards/hww2l2v_13TeV_em_01j/mllVSmth/datacard.t
 
 
 text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
-                   --PO 'map=.*/ggH_hww_pt1:r1[1,0,10]' --PO 'map=.*/ggH_hww_pt2:r2[1,0,10]' --PO 'map=.*/ggH_hww_pt3:r3[1,0,10]' \
+                   --PO 'map=.*/ggH_hww_pt1:r1[1,-10,10]' --PO 'map=.*/ggH_hww_pt2:r2[1,-10,10]' --PO 'map=.*/ggH_hww_pt3:r3[1,-10,10]' \
                    Moriond2016.v1.txt.pruned.txt  -o  workspace.Moriond2016.v1.txt.pruned.root
 
 
