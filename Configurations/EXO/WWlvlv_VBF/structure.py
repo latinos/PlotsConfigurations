@@ -35,7 +35,7 @@ structure['ggH_hww_750_NWA']  = {
 structure['qqH_hww_750_NWA']  = {
                   'isSignal' : 1,
                   'isData'   : 0
-             
+              }             
    
 structure['DY']  = {  
                   'isSignal' : 0,

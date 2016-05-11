@@ -381,7 +381,7 @@ nuisances['pdf_qqbar']  = {
                    'VZ'      : '1.04',  # PDF: 0.0064 / 0.1427 = 0.0448493
                    },
               }
-n masses:
+for m in masses:
   for model in models:
     nuisances['pdf_qqbar']['samples'].update({'qqH_hww_'+m+'_'+model:HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH',m,'pdf','bsm')})
 
