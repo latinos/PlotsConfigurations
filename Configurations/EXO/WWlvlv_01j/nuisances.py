@@ -79,8 +79,9 @@ nuisances['QCDscale_ggH0j']  = {
                  'hww2l2v_13TeV_me_0j',
                  'hww2l2v_13TeV_em_0j',
 #
-                 'hwwhighmass_13TeV_me_0j',
-                 'hwwhighmass_13TeV_em_0j',
+#                 'hwwhighmass_13TeV_of01j',
+#                 'hwwhighmass_13TeV_me_01j',
+#                 'hwwhighmass_13TeV_em_01j',
 #
                  'hww2l2v_13TeV_me_mp_0j',
                  'hww2l2v_13TeV_me_pm_0j',
@@ -97,8 +98,8 @@ for m in masses:
 nuisances['QCDscale_ggH1j']  = {
                'name'  : 'QCDscale_ggH1j', 
                'samples'  : {
-                   'ggH_hww' : '1.13',
-                   'ggH_hww_750_NWA' : '1.13',
+                   'ggH_hww' : '1.09',
+                   'ggH_hww_750_NWA' : '1.09',
                    },
                'type'  : 'lnN',
                'cuts'  : [
@@ -106,11 +107,9 @@ nuisances['QCDscale_ggH1j']  = {
                  'hww2l2v_13TeV_top_of1j',
                  'hww2l2v_13TeV_dytt_of1j'              
 #                 
-                 'hww2l2v_13TeV_me_1j',
-                 'hww2l2v_13TeV_em_1j',
-#
-                 'hwwhighmass_13TeV_me_1j',
-                 'hwwhighmass_13TeV_em_1j',
+                 'hwwhighmass_13TeV_of01j',
+                 'hwwhighmass_13TeV_me_01j',
+                 'hwwhighmass_13TeV_em_01j',
 #
                  'hww2l2v_13TeV_me_mp_1j',
                  'hww2l2v_13TeV_me_pm_1j',
@@ -131,15 +130,16 @@ HiggsXS = HiggsXSection()
 nuisances['QCDscale_ggH']  = {
                'name'  : 'QCDscale_ggH', 
                'samples'  : {
-                   #'ggH_hww' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.0','scale','sm'),     ----> already included in jet bin migration QCD uncertainty?
+                   'ggH_hww' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.0','scale','sm'),     #----> already included in jet bin migration QCD uncertainty?
+                   'ggH_hww_750_NWA' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','750','scale','bsm'),
                    'ggH_htt' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.0','scale','sm'),
                    'H_htt'   : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.0','scale','sm'),
                    },
                'type'  : 'lnN',
               }
-#for m in masses:
-#  for model in models:
-#    nuisances['QCDscale_ggH']['samples'].update({'ggH_hww_'+m+'_'+model:HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH',m,'scale','bsm')}
+for m in masses:
+  for model in models:
+    nuisances['QCDscale_ggH']['samples'].update({'ggH_hww_'+m+'_'+model:HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH',m,'scale','bsm')})
 
 
 
@@ -215,13 +215,13 @@ nuisances['QCDscale_gg_accept']  = {
                    'ggH_htt' : '1.027',
                    'H_htt'   : '1.027',
                    'ggZH_hww': '1.027',                   
-                   'ggH_hww_750_NWA' : '1.027',
+                   'ggH_hww_750_NWA' : '1.05', ## CHECK THIS ONE
                    },
                'type'  : 'lnN',
               }
 for m in masses:
   for model in models:
-    nuisances['QCDscale_gg_accept']['samples'].update({'ggH_hww_'+m+'_'+model:'1.027'})
+    nuisances['QCDscale_gg_accept']['samples'].update({'ggH_hww_'+m+'_'+model:'1.05'})  ## CHECK THIS ONE
 
 
 #
@@ -351,13 +351,15 @@ nuisances['pdf_gg']  = {
                    'ggH_htt' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,'125.0','pdf','sm'),
                    'H_htt'   : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,'125.0','pdf','sm'),
                    'ggZH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggZH','125.0','pdf','sm'),                   
-                   'ggH_hww_750_NWA' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggZH','750','pdf','bsm'),
+                   'ggH_hww_750_NWA' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','750','pdf','bsm'),
                    },
                'type'  : 'lnN',
               }
 for m in masses:
   for model in models:
     nuisances['pdf_gg']['samples'].update({'ggH_hww_'+m+'_'+model: HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,m,'pdf','bsm')})
+    print 'ggH_hww_'+m+'_'+model," :", HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,m,'pdf','bsm')
+print "ggH_hww_750_NWA pdg_gg: ", HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','750','pdf','bsm')
 
 
 nuisances['pdf_qqbar']  = {
@@ -388,13 +390,13 @@ nuisances['pdf_gg_accept']  = {
                    'ggH_htt' : '1.005',
                    'H_htt'   : '1.005',
                    'ggZH_hww': '1.005', 
-                   'ggH_hww_750_NWA' :  '1.005',
+                   'ggH_hww_750_NWA' :  '1.005', ## CHECK THIS ONE
                    },
                'type'  : 'lnN',
               }
 for m in masses:
   for model in models:
-    nuisances['pdf_gg_accept']['samples'].update({'ggH_hww_'+m+'_'+model:'1.005'})
+    nuisances['pdf_gg_accept']['samples'].update({'ggH_hww_'+m+'_'+model:'1.005'})  ## CHECK THIS ONE
 
 
 nuisances['pdf_qqbar_accept']  = {
@@ -552,114 +554,23 @@ nuisances['kfactggww']  = {
               #}
 
 #  - WW shaping
-nuisances['WWresum0j']  = {
-                'name'  : 'WWresum0j',
+nuisances['WWresum']  = {
+                'name'  : 'WWresum',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
                    'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
                    },
-               'cuts'  : [
-                 'hww2l2v_13TeV_of0j',
-                 'hww2l2v_13TeV_top_of0j',
-                 'hww2l2v_13TeV_dytt_of0j',
-#                 
-                 'hww2l2v_13TeV_me_0j',
-                 'hww2l2v_13TeV_em_0j',
-#
-                 'hwwhighmass_13TeV_me_0j',
-                 'hwwhighmass_13TeV_em_0j',
-#
-
-                 'hww2l2v_13TeV_me_mp_0j',
-                 'hww2l2v_13TeV_me_pm_0j',
-                 'hww2l2v_13TeV_em_mp_0j',
-                 'hww2l2v_13TeV_em_pm_0j',
-#                 
-                ]               
-                
                 }
 
-
-nuisances['WWresum1j']  = {
-                'name'  : 'WWresum1j',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
-                   },
-               'cuts'  : [
-                 'hww2l2v_13TeV_of1j',
-                 'hww2l2v_13TeV_top_of1j',
-                 'hww2l2v_13TeV_dytt_of1j',
-#                 
-                 'hww2l2v_13TeV_me_1j',
-                 'hww2l2v_13TeV_em_1j',
-#
-                 'hwwhighmass_13TeV_me_1j',
-                 'hwwhighmass_13TeV_em_1j',
-#
-                 'hww2l2v_13TeV_me_mp_1j',
-                 'hww2l2v_13TeV_me_pm_1j',
-                 'hww2l2v_13TeV_em_mp_1j',
-                 'hww2l2v_13TeV_em_pm_1j',
-#                 
-                ]               
-                }
-
-nuisances['WWqscale0j']  = {
-                'name'  : 'WWqscale0j',
+nuisances['WWqscale']  = {
+                'name'  : 'WWqscale',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
                    'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
                    },
-               'cuts'  : [
-                 'hww2l2v_13TeV_of0j',
-                 'hww2l2v_13TeV_top_of0j',
-                 'hww2l2v_13TeV_dytt_of0j',
-#                 
-                 'hww2l2v_13TeV_me_0j',
-                 'hww2l2v_13TeV_em_0j',
-#
-                 'hwwhighmass_13TeV_me_0j',
-                 'hwwhighmass_13TeV_em_0j',
-#
-                 'hww2l2v_13TeV_me_mp_0j',
-                 'hww2l2v_13TeV_me_pm_0j',
-                 'hww2l2v_13TeV_em_mp_0j',
-                 'hww2l2v_13TeV_em_pm_0j',
-#                 
-                ] 
-                }
-
-
-nuisances['WWqscale1j']  = {
-                'name'  : 'WWqscale1j',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
-                   },
-               'cuts'  : [
-                 'hww2l2v_13TeV_of1j',
-                 'hww2l2v_13TeV_top_of1j',
-                 'hww2l2v_13TeV_dytt_of1j',
-#                 
-                 'hww2l2v_13TeV_me_1j',
-                 'hww2l2v_13TeV_em_1j',
-#
-                 'hwwhighmass_13TeV_me_1j',
-                 'hwwhighmass_13TeV_em_1j',
-#
-                 'hww2l2v_13TeV_me_mp_1j',
-                 'hww2l2v_13TeV_me_pm_1j',
-                 'hww2l2v_13TeV_em_mp_1j',
-                 'hww2l2v_13TeV_em_pm_1j',
-#                 
-                ] 
-                }
-
+                 }
 
 # PS/UE
 
@@ -746,7 +657,7 @@ nuisances['WgStarScale']  = {
 nuisances['DYttnorm0j']  = {
                'name'  : 'DYttnorm0j', 
                'samples'  : {
-                   'DY' : '1.00',
+                   'DY0jet' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
@@ -757,8 +668,9 @@ nuisances['DYttnorm0j']  = {
                  'hww2l2v_13TeV_me_0j',
                  'hww2l2v_13TeV_em_0j',
 #
-                 'hwwhighmass_13TeV_me_0j',
-                 'hwwhighmass_13TeV_em_0j',
+                 'hwwhighmass_13TeV_of01j',
+                 'hwwhighmass_13TeV_me_01j',
+                 'hwwhighmass_13TeV_em_01j',
 #
                  'hww2l2v_13TeV_me_mp_0j',
                  'hww2l2v_13TeV_me_pm_0j',
@@ -771,7 +683,7 @@ nuisances['DYttnorm0j']  = {
 nuisances['DYttnorm1j']  = {
                'name'  : 'DYttnorm1j', 
                'samples'  : {
-                   'DY' : '1.00',
+                   'DY1jet' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
@@ -782,8 +694,9 @@ nuisances['DYttnorm1j']  = {
                  'hww2l2v_13TeV_me_1j',
                  'hww2l2v_13TeV_em_1j',
 #
-                 'hwwhighmass_13TeV_me_1j',
-                 'hwwhighmass_13TeV_em_1j',
+                 'hwwhighmass_13TeV_of01j',
+                 'hwwhighmass_13TeV_me_01j',
+                 'hwwhighmass_13TeV_em_01j',
 #
                  'hww2l2v_13TeV_me_mp_1j',
                  'hww2l2v_13TeV_me_pm_1j',
@@ -807,63 +720,23 @@ nuisances['DYttnorm1j']  = {
 
 # new style "free floating" background
 # e.g. " z_norm rateParam  htsearch zll 1 "
-nuisances['WWnorm0j']  = {
-               'name'  : 'WWnorm0j', 
+nuisances['WWnorm']  = {
+               'name'  : 'WWnorm', 
                'samples'  : {
                    'WW' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                 'hww2l2v_13TeV_of0j',
-                 'hww2l2v_13TeV_top_of0j',
-                 'hww2l2v_13TeV_dytt_of0j',              
-#                 
-                 'hww2l2v_13TeV_me_0j',
-                 'hww2l2v_13TeV_em_0j',
-#
-                 'hwwhighmass_13TeV_me_0j',
-                 'hwwhighmass_13TeV_em_0j',
-#
-
-                 'hww2l2v_13TeV_me_mp_0j',
-                 'hww2l2v_13TeV_me_pm_0j',
-                 'hww2l2v_13TeV_em_mp_0j',
-                 'hww2l2v_13TeV_em_pm_0j',
-#                 
+                 'hwwhighmass_13TeV_of01j',
+                 'hwwhighmass_13TeV_me_01j',
+                 'hwwhighmass_13TeV_em_01j',
                 ]
               }
-
-nuisances['WWnorm1j']  = {
-               'name'  : 'WWnorm1j', 
-               'samples'  : {
-                   'WW' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [
-                 'hww2l2v_13TeV_of1j',
-                 'hww2l2v_13TeV_top_of1j',
-                 'hww2l2v_13TeV_dytt_of1j',              
-#                 
-                 'hww2l2v_13TeV_me_1j',
-                 'hww2l2v_13TeV_em_1j',
-#
-                 'hwwhighmass_13TeV_me_1j',
-                 'hwwhighmass_13TeV_em_1j',
-#
-
-                 'hww2l2v_13TeV_me_mp_1j',
-                 'hww2l2v_13TeV_me_pm_1j',
-                 'hww2l2v_13TeV_em_mp_1j',
-                 'hww2l2v_13TeV_em_pm_1j',
-#                 
-                ]
-              }
-
 
 nuisances['Topnorm0j']  = {
                'name'  : 'Topnorm0j', 
                'samples'  : {
-                   'top' : '1.00',
+                   'top0jet' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
@@ -874,8 +747,9 @@ nuisances['Topnorm0j']  = {
                  'hww2l2v_13TeV_me_0j',
                  'hww2l2v_13TeV_em_0j',
 #
-                 'hwwhighmass_13TeV_me_0j',
-                 'hwwhighmass_13TeV_em_0j',
+                 'hwwhighmass_13TeV_of01j',
+                 'hwwhighmass_13TeV_me_01j',
+                 'hwwhighmass_13TeV_em_01j',
 #
                  'hww2l2v_13TeV_me_mp_0j',
                  'hww2l2v_13TeV_me_pm_0j',
@@ -888,7 +762,7 @@ nuisances['Topnorm0j']  = {
 nuisances['Topnorm1j']  = {
                'name'  : 'Topnorm1j', 
                'samples'  : {
-                   'top' : '1.00',
+                   'top1jet' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
@@ -899,8 +773,9 @@ nuisances['Topnorm1j']  = {
                  'hww2l2v_13TeV_me_1j',
                  'hww2l2v_13TeV_em_1j',
 #
-                 'hwwhighmass_13TeV_me_1j',
-                 'hwwhighmass_13TeV_em_1j',
+                 'hwwhighmass_13TeV_of01j',
+                 'hwwhighmass_13TeV_me_01j',
+                 'hwwhighmass_13TeV_em_01j',
 #
                  'hww2l2v_13TeV_me_mp_1j',
                  'hww2l2v_13TeV_me_pm_1j',

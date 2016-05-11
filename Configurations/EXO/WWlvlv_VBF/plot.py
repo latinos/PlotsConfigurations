@@ -238,6 +238,14 @@ plot['ggH_hww_750_NWA'] = {
                   'scale'    : 1    #
                   }
 
+plot['qqH_hww_750_NWA'] = {
+                  'nameHR' : 'qqH 750 NWA',
+                  'color': 432,
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
 import os.path
 
 if os.path.exists(massesAndModelsFile) :
@@ -256,7 +264,13 @@ for m in masses:
                   'isData'   : 0,
                   'scale'    : 1    #
                   }
-
+    plot['qqH_hww_'+m+'_'+model] = {
+                  'nameHR' : 'qqH '+m+' '+model,
+                  'color': 400+int(int(m)/100+0.5), # kRed 
+                  'isSignal' : 2,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
 
 
 

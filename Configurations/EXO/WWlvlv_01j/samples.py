@@ -30,7 +30,7 @@ samples['ggH_hww_750_NWA'] = { 'name': [
                          }
 
 
-samples['DY']  = {    'name': [
+samples['DY0jet']  = {    'name': [
                             'latino_DYJetsToLL_M-10to50.root',
                             'latino_DYJetsToLL_M-10to50ext3.root',
                             #
@@ -47,8 +47,7 @@ samples['DY']  = {    'name': [
                             'latino_DYJetsToLL_M-50_0002__part0.root'
                             #
                             ],    
-                      'weight' : 'metFilter*(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))*puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
-                      #'isData': ['0', '0'],      
+                      'weight' : 'metFilter*(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))*puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*(njet==0)', 
                       'weights': [  '0.238112'
                                   , '0.238112'
                                   , '0.317273040011'
@@ -64,7 +63,41 @@ samples['DY']  = {    'name': [
                                   , '0.317273040011'
                                   ] ,           
                   }
-
+                      
+                      
+samples['DY1jet']  = {    'name': [
+                            'latino_DYJetsToLL_M-10to50.root',
+                            'latino_DYJetsToLL_M-10to50ext3.root',
+                            #
+                            'latino_DYJetsToLL_M-50_0000__part0.root',
+                            'latino_DYJetsToLL_M-50_0000__part1.root',
+                            'latino_DYJetsToLL_M-50_0000__part2.root',
+                            'latino_DYJetsToLL_M-50_0000__part3.root',
+                            'latino_DYJetsToLL_M-50_0000__part4.root',
+                            'latino_DYJetsToLL_M-50_0001__part0.root',
+                            'latino_DYJetsToLL_M-50_0001__part1.root',
+                            'latino_DYJetsToLL_M-50_0001__part2.root',
+                            'latino_DYJetsToLL_M-50_0001__part3.root',
+                            'latino_DYJetsToLL_M-50_0001__part4.root',
+                            'latino_DYJetsToLL_M-50_0002__part0.root'
+                            #
+                            ],    
+                      'weight' : 'metFilter*(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))*puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*(njet>=1)',
+                      'weights': [  '0.238112'
+                                  , '0.238112'
+                                  , '0.317273040011'
+                                  , '0.317273040011'
+                                  , '0.317273040011'
+                                  , '0.317273040011'
+                                  , '0.317273040011'
+                                  , '0.317273040011'
+                                  , '0.317273040011'
+                                  , '0.317273040011'
+                                  , '0.317273040011'
+                                  , '0.317273040011'
+                                  , '0.317273040011'
+                                  ] ,           
+                  }
 
 # 0.238112 for DY-10-50
 # baseW for DY-50
@@ -112,15 +145,24 @@ samples['Fake']  = {    'name': [
                       'isData': ['all'],                             
                   }
 
-             
 
-samples['top'] = {   'name': [
+samples['top0jet'] = {   'name': [
                           'latino_TTTo2L2Nu.root', 
                           'latino_ST_tW_antitop.root',
                           'latino_ST_tW_top.root'
                           ],          
-                       'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',                
+                       'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*(njet==0)',                
                    }
+
+
+samples['top1jet'] = {   'name': [
+                          'latino_TTTo2L2Nu.root', 
+                          'latino_ST_tW_antitop.root',
+                          'latino_ST_tW_top.root'
+                          ],          
+                       'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*(njet>=1)',                
+                   }             
+
 
 
 samples['WW']  = {    'name': [

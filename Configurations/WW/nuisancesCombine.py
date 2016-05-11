@@ -553,15 +553,16 @@ nuisances['UE']  = {
                    #}
                 #}
 
-# K factor (Data/Wg*) = 1.23 + 0.33
-# nuisances['WgStarScale']  = {
-#                'name'  : 'WgStarScale', 
-#                'type'  : 'lnN',
-#                'samples'  : {
-#                    'Wg' : '1.27',  # 0.3 / 1.23  --> k_factor = 1.23 +/- 0.33
-#                    'Vg' : '1.27',  # 0.3 / 1.23  --> k_factor = 1.23 +/- 0.33
-#                    },
-#                 }
+#K factor (Data/Wg*) = 1.23 + 0.33
+nuisances['WgStarScale']  = {
+               'name'  : 'WgStarScale', 
+               'type'  : 'lnN',
+               'samples'  : {
+                   'WgS' : '1.27',  # 0.3 / 1.23  --> k_factor = 1.23 +/- 0.33
+                   'VgS' : '1.27',  # 0.54 / 1.98  --> k_factor = 1.23 +/- 0.33
+                   #'Vg' : '1.27',  # 0.3 / 1.23  --> k_factor = 1.23 +/- 0.33
+                   },
+                }
  
 # nuisances['DYtt0j'] = {
 #     'name'    : 'DYtt0j',
@@ -868,6 +869,7 @@ nuisances['btag']  = {
                    'ggWW'    : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
                    'top'     : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
                    'Vg'      : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   'VgS'     : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
                 }
 }
  
@@ -911,6 +913,7 @@ nuisances['trigg']  = {
                    'WW'      : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
                    'top'     : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
                    'Vg'      : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
+                   'VgS'     : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
                 },
                 #'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/',    # uncertainties fixed!
                 #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/' 
@@ -939,6 +942,7 @@ nuisances['idiso']  = {
                    'WW'      : ['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])'],
                    'top'     : ['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])'],
                    'Vg'      : ['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])'],
+                   'VgS'     : ['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])'],
                 },
                 #'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/',    # uncertainties fixed!
                 #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/' 
@@ -967,6 +971,7 @@ nuisances['jes']  = {
                    'H_hww'  :  ['1', '1'],
                    'H_htt'  : ['1', '1'],
                    'Vg' : ['1', '1'],
+                   'VgS': ['1', '1'],
                 },
                 'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/',
                 'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/' 
@@ -1001,6 +1006,7 @@ nuisances['electronpt']  = {
                    'H_hww'   :  ['1', '1'],
                    'H_htt'   : ['1', '1'],
                    'Vg' : ['1', '1'],
+                   'VgS': ['1', '1'],
                 },
                 'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/',
                 'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/' 
@@ -1030,6 +1036,7 @@ nuisances['muonpt']  = {
                    'H_hww' :  ['1', '1'],
                    'H_htt' : ['1', '1'],
                    'Vg' : ['1', '1'],
+                   'VgS': ['1', '1'],
                 },
                 'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/',
                 'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/' 
@@ -1060,7 +1067,8 @@ nuisances['met']  = {
                    'H_hww' :  ['1', '1'],
                    'H_htt' : ['1', '1'],
                    'Vg' : ['1', '1'],
-                },
+                   'VgS': ['1', '1'],
+                   },
                 'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel/',
                 'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel/' 
                 #'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METup/',
@@ -1169,6 +1177,10 @@ nuisances['stat']  = {
                           },
                    
                    'Vg': {  
+                         'typeStat' : 'bbb',
+                         },
+                            
+                   'VgS': {  
                          'typeStat' : 'bbb',
                          },
                             

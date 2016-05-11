@@ -1,6 +1,6 @@
 # example of configuration file
 
-tag = 'WW'
+tag = 'HWWhighMass'
 
 
 # used by mkShape to define output directory for root files
@@ -27,7 +27,7 @@ lumi = 2.318
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = '/afs/cern.ch/user/n/ntrevisa/www/figuresLxplus/10May2016/PAS/Blind0jet'
+outputDirPlots = 'plotHWWhighMass'
 
 
 # used by mkDatacards to define output directory for datacards
@@ -39,7 +39,5 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-#nuisancesFile = 'nuisances_light.py'
-nuisancesFile = 'nuisancesCombine.py'
-
+nuisancesFile = 'nuisances.py'
 

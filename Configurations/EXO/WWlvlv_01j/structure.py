@@ -3,12 +3,40 @@
 #structure = {}
 
 # keys here must match keys in samples.py    
-#                    
-structure['DY']  = {  
+#                 
+
+import os.path
+
+massesAndModelsFile = "massesAndModels.py"
+
+if os.path.exists(massesAndModelsFile) :
+  handle = open(massesAndModelsFile,'r')
+  exec(handle)
+  handle.close()
+else:
+  print "!!! ERROR file ", massesAndModelsFile, " does not exist."
+
+for m in masses:
+  for model in models:
+    structure['ggH_hww_'+m+'_'+model]  = {
+                    'isSignal' : 1,
+                    'isData'   : 0
+                    }
+
+structure['ggH_hww_750_NWA']  = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+              }
+   
+structure['DY0jet']  = {  
                   'isSignal' : 0,
                   'isData'   : 0 
               }
 
+structure['DY1jet']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0 
+              }
 
 structure['Wjets']  = {  
                   'isSignal' : 0,
@@ -31,19 +59,23 @@ structure['singletop'] = {
                   'isData'   : 0 
                   }
 
-structure['top'] = {   
+structure['top0jet'] = {   
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
 
+structure['top1jet'] = {   
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
 
 structure['WW']  = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0    
                   }
 
 structure['ggWW']  = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0    
                   }
 
@@ -58,11 +90,6 @@ structure['Wg']  = {
                   }
 
 structure['Vg']  = { 
-                  'isSignal' : 0,
-                  'isData'   : 0 
-                  }
-
-structure['VgS'] = { 
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
@@ -138,7 +165,6 @@ structure['H_hww'] = {
                   'isSignal' : 0,
                   'isData'   : 0    
                   }
-
 
 
 # data

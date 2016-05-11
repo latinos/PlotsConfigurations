@@ -1,7 +1,7 @@
 
-workdir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv/combine
-datacardDir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv/datacards
-modDatacardDir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv/ModificationDatacards
+workdir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combine
+datacardDir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/datacards
+modDatacardDir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/ModificationDatacards
 
 variable=mllVSmti
 
@@ -24,12 +24,17 @@ mv ${datacardDir}/hww2l2v_13TeV_top_of0j/events/datacard.test.txt.pruned.txt ${d
 cat ${datacardDir}/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt  | grep -v "_DY_ibin_1" | grep -v "_Vg_ibin_1" | grep -v "_VVV_ibin_1" &> ${datacardDir}/hww2l2v_13TeV_top_of1j/events/datacard.test.txt.pruned.txt
 mv ${datacardDir}/hww2l2v_13TeV_top_of1j/events/datacard.test.txt.pruned.txt ${datacardDir}/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt
 
+cat ${datacardDir}/hww2l2v_13TeV_top_of2j/events/datacard.txt.pruned.txt  | grep -v "_DY_ibin_1" | grep -v "_Vg_ibin_1" | grep -v "_VVV_ibin_1" &> ${datacardDir}/hww2l2v_13TeV_top_of2j/events/datacard.test.txt.pruned.txt
+mv ${datacardDir}/hww2l2v_13TeV_top_of2j/events/datacard.test.txt.pruned.txt ${datacardDir}/hww2l2v_13TeV_top_of2j/events/datacard.txt.pruned.txt
+
 cat ${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt   | grep -v "_VVV_ibin_1"  &> ${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt.pruned.txt
 mv ${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt.pruned.txt ${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt
 
 cat ${datacardDir}/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt   | grep -v "_VVV_ibin_1"  &> ${datacardDir}/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt.pruned.txt
 mv ${datacardDir}/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt.pruned.txt ${datacardDir}/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt
 
+cat ${datacardDir}/hww2l2v_13TeV_dytt_of2j/events/datacard.txt.pruned.txt   | grep -v "_VVV_ibin_1"  &> ${datacardDir}/hww2l2v_13TeV_dytt_of2j/events/datacard.test.txt.pruned.txt
+mv ${datacardDir}/hww2l2v_13TeV_dytt_of2j/events/datacard.test.txt.pruned.txt ${datacardDir}/hww2l2v_13TeV_dytt_of2j/events/datacard.txt.pruned.txt
 
 # combine datacards
  
@@ -37,10 +42,13 @@ combineCards.py   em1j13=${datacardDir}/hwwhighmass_13TeV_em_1j/${variable}/data
                   me1j13=${datacardDir}/hwwhighmass_13TeV_me_1j/${variable}/datacard.txt.pruned.txt \
                   em0j13=${datacardDir}/hwwhighmass_13TeV_em_0j/${variable}/datacard.txt.pruned.txt \
                   me0j13=${datacardDir}/hwwhighmass_13TeV_me_0j/${variable}/datacard.txt.pruned.txt \
+                  ofVBF13=${datacardDir}/hwwhighmass_13TeV_of_VBF/${variable}/datacard.txt.pruned.txt \
                   of0j13Top=${datacardDir}/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
                   of1j13Top=${datacardDir}/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
+                  of2j13Top=${datacardDir}/hww2l2v_13TeV_top_of2j/events/datacard.txt.pruned.txt \
                   of0j13DYtt=${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
                   of1j13DYtt=${datacardDir}/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
+                  of2j13DYtt=${datacardDir}/hww2l2v_13TeV_dytt_of2j/events/datacard.txt.pruned.txt \
                   >   Moriond2016.v1.txt.pruned.txt
 
 combineCards.py   em1j13=${datacardDir}/hwwhighmass_13TeV_em_1j/${variable}/datacard.txt.pruned.txt \
@@ -75,6 +83,11 @@ combineCards.py   me1j13=${datacardDir}/hwwhighmass_13TeV_me_1j/${variable}/data
                   of1j13Top=${datacardDir}/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
                   of1j13DYtt=${datacardDir}/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
                   >   Moriond2016.1jet.me.txt
+
+combineCards.py   ofVBF13=${datacardDir}/hwwhighmass_13TeV_of_VBF/${variable}/datacard.txt.pruned.txt \
+                  of2j13Top=${datacardDir}/hww2l2v_13TeV_top_of2j/events/datacard.txt.pruned.txt \
+                  of2j13DYtt=${datacardDir}/hww2l2v_13TeV_dytt_of2j/events/datacard.txt.pruned.txt \
+                  >   Moriond2016.2jet.of.txt
 
 # results
 #combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.1jet.txt             >   result.MaxLikelihoodFit.Moriond2016.1jet.txt
