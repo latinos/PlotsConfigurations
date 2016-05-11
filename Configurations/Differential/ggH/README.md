@@ -35,7 +35,15 @@ Auto tests:
     sh ggH/scripts/doGGH.sh
     cd -
     
+    cd ..
+    sh ggH/scripts/doGGH_doMultisignal.sh
+    cd -
 
+See description of the model and details in:
+
+    https://twiki.cern.ch/twiki/bin/viewauth/CMS/SWGuideHiggsAnalysisCombinedLimit#MultiSignalModel_ready_made_mode
+    
+    
 Make tables:
 
     cd /afs/cern.ch/user/a/amassiro/Limit/PlayWithDatacards

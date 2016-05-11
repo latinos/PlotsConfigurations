@@ -208,7 +208,15 @@ Draw likelihood scan:
     scripts/drawNLL.C
     
     
-    
+Make pie plot:
+
+    cd /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH
+    cmsenv
+    sh scripts/doGGH_plot.sh 
+    cd -
+
+ 
+ 
 Combine:
 
     cd ~/Framework/CMSSW_7_1_15/src/

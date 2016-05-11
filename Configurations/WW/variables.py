@@ -19,32 +19,32 @@ variables['mll']  = {   'name': 'mll',            #   variable name
                         
 variables['mth']  = {   'name': 'mth',            #   variable name    
                         'range' : (20,0,400),    #   variable range
-                        'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
+                        'xaxis' : 'm_{T}^{ll} [GeV]',  #   x axis name
                         'fold' : 3
                         }
 
 
 variables['ptll']  = {   'name': 'ptll',            #   variable name    
                          'range' : (20,0,200),    #   variable range
-                         'xaxis' : 'pt_{ll} [GeV]',  #   x axis name
+                         'xaxis' : 'p_{T}^{ll} [GeV]',  #   x axis name
                          'fold' : 3
                          }
 
 variables['pt1']  = {   'name': 'pt1',            #   variable name    
                         'range' : (20,0,200),    #   variable range
-                        'xaxis' : 'pt_{1st lep} [GeV]',  #   x axis name
+                        'xaxis' : 'p_{T}^{1st lep} [GeV]',  #   x axis name
                         'fold' : 3
                         }
 
 variables['pt2']  = {   'name': 'pt2',            #   variable name    
                         'range' : (20,0,200),    #   variable range
-                        'xaxis' : 'pt_{2nd lep} [GeV]',  #   x axis name
+                        'xaxis' : 'p_{T}^{2nd lep} [GeV]',  #   x axis name
                         'fold' : 3
                         }
 
 variables['met']  = {   'name': 'metPfType1',            #   variable name    
                         'range' : (20,0,200),    #   variable range
-                        'xaxis' : 'pfmet [GeV]',  #   x axis name
+                        'xaxis' : 'E_{T}^{miss} [GeV]',  #   x axis name
                         'fold' : 0
                         }
 
