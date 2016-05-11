@@ -1,7 +1,7 @@
 
-workdir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv/combine
-datacardDir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv/datacards
-modDatacardDir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv/ModificationDatacards
+workdir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_01j/combine
+datacardDir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_01j/datacards
+modDatacardDir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_01j/ModificationDatacards
 
 variable=mllVSmti
 
@@ -33,48 +33,22 @@ mv ${datacardDir}/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt.pruned.txt ${
 
 # combine datacards
  
-combineCards.py   em1j13=${datacardDir}/hwwhighmass_13TeV_em_1j/${variable}/datacard.txt.pruned.txt \
-                  me1j13=${datacardDir}/hwwhighmass_13TeV_me_1j/${variable}/datacard.txt.pruned.txt \
-                  em0j13=${datacardDir}/hwwhighmass_13TeV_em_0j/${variable}/datacard.txt.pruned.txt \
-                  me0j13=${datacardDir}/hwwhighmass_13TeV_me_0j/${variable}/datacard.txt.pruned.txt \
-                  of0j13Top=${datacardDir}/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
-                  of1j13Top=${datacardDir}/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
-                  of0j13DYtt=${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
-                  of1j13DYtt=${datacardDir}/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
-                  >   Moriond2016.v1.txt.pruned.txt
+combineCards.py   em01j=${datacardDir}/hwwhighmass_13TeV_em_01j/${variable}/datacard.txt.pruned.txt \
+                  me01j=${datacardDir}/hwwhighmass_13TeV_me_01j/${variable}/datacard.txt.pruned.txt \
+                  of0jTop=${datacardDir}/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
+                  of1jTop=${datacardDir}/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
+                  of0jDYtt=${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+                  of1jDYtt=${datacardDir}/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
+                  >   Moriond2016.v1.txt.pruned.meem01j.txt
 
-combineCards.py   em1j13=${datacardDir}/hwwhighmass_13TeV_em_1j/${variable}/datacard.txt.pruned.txt \
-                  me1j13=${datacardDir}/hwwhighmass_13TeV_me_1j/${variable}/datacard.txt.pruned.txt \
-                  of1j13Top=${datacardDir}/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
-                  of1j13DYtt=${datacardDir}/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
-                  >   Moriond2016.1jet.txt
+combineCards.py   of01j=${datacardDir}/hwwhighmass_13TeV_of01j/${variable}/datacard.txt.pruned.txt \
+                  of0jTop=${datacardDir}/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
+                  of1jTop=${datacardDir}/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
+                  of0jDYtt=${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+                  of1jDYtt=${datacardDir}/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
+                  >   Moriond2016.v1.txt.pruned.of01j.txt
 
-combineCards.py   em0j13=${datacardDir}/hwwhighmass_13TeV_em_0j/${variable}/datacard.txt.pruned.txt \
-                  me0j13=${datacardDir}/hwwhighmass_13TeV_me_0j/${variable}/datacard.txt.pruned.txt \
-                  of0j13Top=${datacardDir}/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
-                  of0j13DYtt=${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
-                  >   Moriond2016.0jet.txt
 
-combineCards.py   em0j13=${datacardDir}/hwwhighmass_13TeV_em_0j/${variable}/datacard.txt.pruned.txt \
-                  of0j13Top=${datacardDir}/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
-                  of0j13DYtt=${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
-                  >   Moriond2016.0jet.em.txt
-
-combineCards.py   me0j13=${datacardDir}/hwwhighmass_13TeV_me_0j/${variable}/datacard.txt.pruned.txt \
-                  of0j13Top=${datacardDir}/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
-                  of0j13DYtt=${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
-                  >   Moriond2016.0jet.me.txt
-
-                  
-combineCards.py   em1j13=${datacardDir}/hwwhighmass_13TeV_em_1j/${variable}/datacard.txt.pruned.txt \
-                  of1j13Top=${datacardDir}/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
-                  of1j13DYtt=${datacardDir}/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
-                  >   Moriond2016.1jet.em.txt
-
-combineCards.py   me1j13=${datacardDir}/hwwhighmass_13TeV_me_1j/${variable}/datacard.txt.pruned.txt \
-                  of1j13Top=${datacardDir}/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
-                  of1j13DYtt=${datacardDir}/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
-                  >   Moriond2016.1jet.me.txt
 
 # results
 #combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.1jet.txt             >   result.MaxLikelihoodFit.Moriond2016.1jet.txt
