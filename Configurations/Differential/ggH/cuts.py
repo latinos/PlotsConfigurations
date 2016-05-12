@@ -19,6 +19,7 @@ cuts['hww2l2v_13TeV_of01j']  = '(std_vector_lepton_flavour[0] * std_vector_lepto
                 && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13) \
                 && ptll > 40 \
                 && ( mth>=60) \
+                && ( mth<=300) \
                 && ( std_vector_jet_pt[1] < 30 ) \
                 && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
                 && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \

@@ -166,6 +166,18 @@ Make tables:
         /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_1j/mllVSmth/datacard.txt.pruned.txt   \
        --all    -m      125     -f      tex    >     hww2l2v_13TeV_me_1j.tex
 
+       
+       
+       
+    python      systematicsAnalyzer.py    \
+        /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ControlRegions/WW/datacards/ww2l2v_13TeV_ww_of0j/mll/datacard.txt   \
+       --all    -m      125     -f      tex    >     hww2l2v_13TeV_ww_0j.tex
+    
+    python      systematicsAnalyzer.py    \
+        /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ControlRegions/WW/datacards/ww2l2v_13TeV_ww_of1j/mll/datacard.txt   \
+       --all    -m      125     -f      tex    >     hww2l2v_13TeV_ww_1j.tex
+    
+        
 
 Make plots:
 
