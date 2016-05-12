@@ -77,3 +77,18 @@ variables['njet']  = {
                         'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
 
+variables['mjj']  = {
+                        'name': 'mjj',
+                        'range' : (40,0,1500),
+                        'xaxis' : 'M_{jj} [GeV]',
+                        'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+                        }
+
+variables['detajj']  = {
+                        'name': 'detajj',
+                        'range' : (20,0,10),
+                        'xaxis' : '#Delta(#eta_{jj})',
+                        'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+                        }
+
+

@@ -233,17 +233,17 @@ plot['ggH_hww'] = {
 plot['ggH_hww_750_NWA'] = {
                   'nameHR' : 'ggH 750 NWA',
                   'color': 632, # kRed 
-                  'isSignal' : 1,
+                  'isSignal' : 2,
                   'isData'   : 0,
                   'scale'    : 1    #
                   }
 
 plot['qqH_hww_750_NWA'] = {
-                  'nameHR' : 'qqH 750 NWA',
-                  'color': 432,
-                  'isSignal' : 1,
+                  'nameHR' : 'qqH 750 NWA (x100)',
+                  'color': 654,
+                  'isSignal' : 2,
                   'isData'   : 0,
-                  'scale'    : 1    #
+                  'scale'    : 100    #
                   }
 
 import os.path
@@ -265,11 +265,11 @@ for m in masses:
                   'scale'    : 1    #
                   }
     plot['qqH_hww_'+m+'_'+model] = {
-                  'nameHR' : 'qqH '+m+' '+model,
-                  'color': 400+int(int(m)/100+0.5), # kRed 
+                  'nameHR' : 'qqH '+m+' '+model+' (x100)',
+                  'color': 600+20+int(int(m)/100+0.5), # kRed 
                   'isSignal' : 2,
                   'isData'   : 0,
-                  'scale'    : 1    #
+                  'scale'    : 100    #
                   }
 
 

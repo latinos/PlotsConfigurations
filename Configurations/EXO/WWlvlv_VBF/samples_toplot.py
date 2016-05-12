@@ -39,6 +39,7 @@ samples['qqH_hww_750_NWA'] = { 'name': [
                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',
                          }
 
+
 samples['DY']  = {    'name': [
                             'latino_DYJetsToLL_M-10to50.root',
                             'latino_DYJetsToLL_M-10to50ext3.root',
@@ -56,7 +57,7 @@ samples['DY']  = {    'name': [
                             'latino_DYJetsToLL_M-50_0002__part0.root'
                             #
                             ],    
-                      'weight' : '(njet<2)*metFilter*(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))*puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
+                      'weight' : 'metFilter*(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))*puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
                       #'isData': ['0', '0'],      
                       'weights': [  '0.238112'
                                   , '0.238112'
@@ -158,7 +159,7 @@ samples['ggWW']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root'],
 
 
 samples['Vg']  = {    'name': ['latino_Wg_AMCNLOFXFX.root'],      
-                      'weight' : '(njet<2)*metFilter*1.23*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+                      'weight' : 'metFilter*1.23*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
                       'weights': ['1'] ,           
                       #'isData': ['0'],                            
                   }
