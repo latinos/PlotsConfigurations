@@ -81,7 +81,7 @@ plot['top'] = {
 
 
 plot['top0jet'] = {   
-                  'nameHR' : 'tW and t#bart 0 jet',
+                  'nameHR' : 'tW and t#bart  0 jet',
                   'color': 400,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
@@ -90,7 +90,7 @@ plot['top0jet'] = {
 
 
 plot['top1jet'] = {   
-                  'nameHR' : 'tW and t#bart 1 jet',
+                  'nameHR' : 'tW and t#bart  1 jet',
                   'color': 401,   # kYellow+1
                   'isSignal' : 0,
                   'isData'   : 0, 

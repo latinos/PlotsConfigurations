@@ -249,7 +249,7 @@ samples['ggH_hww_pt2']  = {    'name': [
                                #'latino_GluGluHToWWTo2L2Nu_M125.root'
                                #'latino_GluGluHToWWTo2L2Nu_alternative_M125.root' # --> 500k events
                                ],      
-                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*(higgsGenpt>=15 || higgsGenpt<30)',          
+                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*(higgsGenpt>=15 && higgsGenpt<30)',          
                   }
 
 
