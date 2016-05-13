@@ -23,8 +23,8 @@ cuts['hww2l2v_13TeV_of2j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton
         || !(std_vector_jet_pt[2]>30 \
            && ( ((std_vector_jet_eta[0] - std_vector_jet_eta[2])>0 && (std_vector_jet_eta[1] - std_vector_jet_eta[2])<0) \
            || ((std_vector_jet_eta[1] - std_vector_jet_eta[2])>0 && (std_vector_jet_eta[0] - std_vector_jet_eta[2])<0) ))) \
-    && ( abs(std_vector_lepton_eta[0] - (jeteta1+jeteta2)/2)/detajj) < 0.5) \
-    && ( abs(std_vector_lepton_eta[1] - (jeteta1+jeteta2)/2)/detajj) < 0.5) \
+    && ( abs((std_vector_lepton_eta[0] - (jeteta1+jeteta2)/2)/detajj) < 0.5) \
+    && ( abs((std_vector_lepton_eta[1] - (jeteta1+jeteta2)/2)/detajj) < 0.5) \
     && (detajj>2.5 && mjj>500) \
     && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
     && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
