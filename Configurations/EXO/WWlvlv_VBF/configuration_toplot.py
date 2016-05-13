@@ -11,10 +11,10 @@ outputDir = 'rootFile'
 variablesFile = 'variables_toplot.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
+cutsFile = 'cuts_toplot.py' 
 
 # file with list of samples
-samplesFile = 'samples.py' 
+samplesFile = 'samples_toplot.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
