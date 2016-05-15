@@ -132,9 +132,12 @@ Auto tests:
     cd /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH
     cmsenv
     cd ..
-    sh ggH/scripts/doGGH.sh
+    sh ggH/scripts/doGGH_blind.sh
     cd -
     
+    cd ..
+    sh ggH/scripts/doGGH.sh
+    cd -
 
     cd ..
     sh ggH/scripts/doGGH_alternative.sh
@@ -217,7 +220,11 @@ Make plots:
 Draw likelihood scan:
 
     root -l ../higgsCombineLHScanH.MultiDimFit.mH125.root  \
-    scripts/drawNLL.C
+            scripts/drawNLL.C
+    
+    root -l ../higgsCombineLHScanH.MultiDimFit.mH125.root  \
+            ../higgsCombineLHScanHdata.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
     
     
 Make pie plot:

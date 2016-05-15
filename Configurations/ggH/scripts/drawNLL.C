@@ -64,13 +64,13 @@ void drawNLL() {
   //  2deltaLogL = 1.00
   //  2deltaLogL = 3.84
   
-  TLine *line1 = new TLine(0.0,1.0,(limit->GetV2())[n-1],1.0);
+  TLine *line1 = new TLine((limit->GetV2())[0],1.0,(limit->GetV2())[n-1],1.0);
   line1->SetLineWidth(2);
   line1->SetLineStyle(2);
   line1->SetLineColor(kRed);
   line1->Draw(); 
   
-  TLine *line2 = new TLine(0.0,3.84,(limit->GetV2())[n-1],3.84);
+  TLine *line2 = new TLine((limit->GetV2())[0],3.84,(limit->GetV2())[n-1],3.84);
   line2->SetLineWidth(2);
   line2->SetLineStyle(2);
   line2->SetLineColor(kRed);
