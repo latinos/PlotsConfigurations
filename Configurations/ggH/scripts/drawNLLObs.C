@@ -94,6 +94,16 @@ void drawNLLObs() {
   line2->SetLineColor(kRed);
   line2->Draw();
   
+  TLegend* leg = new TLegend(0.1,0.7,0.48,0.9);
+  leg->AddEntry(graphScan,"Expected","l");
+  if (graphScanData) {
+    leg->AddEntry(graphScanData,"Observed","l");
+  }
+  leg->SetFillColor(0);
+  leg->Draw();
+  
+  
+  
   cc->SaveAs("ll.png");
   
 }
