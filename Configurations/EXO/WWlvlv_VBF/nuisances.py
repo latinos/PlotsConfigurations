@@ -125,6 +125,28 @@ for m in masses:
     nuisances['QCDscale_ggH1j']['samples'].update({'ggH_hww_'+m+'_'+model:'1.13'})
 
 
+nuisances['QCDscale_ggH2j']  = {
+               'name'  : 'QCDscale_ggH2j',
+               'samples'  : {
+                   'ggH_hww' : '1.2',
+                   'ggH_hww_750_NWA' : '1.2',
+                   },
+               'type'  : 'lnN',
+               'cuts'  : [
+                 'hww2l2v_13TeV_top_of2j',
+                 'hww2l2v_13TeV_dytt_of2j'
+#                 
+                 'hwwhighmass_13TeV_of_VBF',
+                 'hwwhighmass_13TeV_of_VBF',
+#                 
+                ]
+              }
+for m in masses:
+  for model in models:
+    nuisances['QCDscale_ggH2j']['samples'].update({'ggH_hww_'+m+'_'+model:'1.2'})
+
+
+
 from LatinoAnalysis.Tools.HiggsXSection  import *
 HiggsXS = HiggsXSection()
 
@@ -156,7 +178,7 @@ nuisances['QCDscale_qqH']  = {
 for m in masses:
   for model in models:
     nuisances['QCDscale_qqH']['samples'].update({'qqH_hww_'+m+'_'+model:HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH',m,'scale','bsm')})
-
+    print "QCDscale_qqH ", m, " = ", HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH',m,'scale','bsm')
 
 
 nuisances['QCDscale_WH']  = {
@@ -231,123 +253,6 @@ nuisances['QCDscale_gg_accept']  = {
 for m in masses:
   for model in models:
     nuisances['QCDscale_gg_accept']['samples'].update({'ggH_hww_'+m+'_'+model:'1.027'})
-
-
-#
-#     WWTo2L2Nu 0jet acceptance uncertainties
-#    -----------------------------------------
-#     QCD         mu=0.5 / mu=2.0   0.53% / 0.52%
-#     alpha_s     265000 / 266000   0.02% / 0.02%
-#     PDF                           0.25%
-#     PDF+alpha_s                   0.25%
-#    
-#    
-#     WWTo2L2Nu 1jet acceptance uncertainties
-#    -----------------------------------------
-#     QCD         mu=0.5 / mu=2.0   1.54% / 1.38%
-#     alpha_s     265000 / 266000   0.01% / 0.01%
-#     PDF                           0.27%
-#     PDF+alpha_s                   0.27%
-#    
-#    
-#     VBFHToWWTo2L2Nu_M125 0jet acceptance uncertainties
-#    -----------------------------------------
-#     QCD         mu=0.5 / mu=2.0   0.68% / 0.60%
-#     alpha_s     265000 / 266000   1.14% / 0.82%
-#     PDF                           0.51%
-#     PDF+alpha_s                   1.12%
-#    
-#    
-#     VBFHToWWTo2L2Nu_M125 1jet acceptance uncertainties
-#    -----------------------------------------
-#     QCD         mu=0.5 / mu=2.0   0.11% / 0.01%
-#     alpha_s     265000 / 266000   0.22% / 0.29%
-#     PDF                           0.31%
-#     PDF+alpha_s                   0.40%
-#    
-#    
-#     GluGluHToWWTo2L2Nu_M125 0jet acceptance uncertainties
-#    -----------------------------------------
-#     QCD         mu=0.5 / mu=2.0   2.71% / 2.26%
-#     alpha_s     265000 / 266000   0.11% / 0.04%
-#     PDF                           0.56%
-#     PDF+alpha_s                   0.57%
-#    
-#    
-#     GluGluHToWWTo2L2Nu_M125 1jet acceptance uncertainties
-#    -----------------------------------------
-#     QCD         mu=0.5 / mu=2.0   2.00% / 1.66%
-#     alpha_s     265000 / 266000   0.29% / 0.31%
-#     PDF                           0.37%
-#     PDF+alpha_s                   0.48%
-#     
-#
-#
-#     WZTo3LNu 0jet acceptance uncertainties
-#    -----------------------------------------
-#     QCD         mu=0.5 / mu=2.0   1.70% / 1.47%
-#     alpha_s     265000 / 266000   0.15% / 0.26%
-#     PDF                           0.48%
-#     PDF+alpha_s                   0.52%
-#    
-#    
-#     WZTo3LNu 1jet acceptance uncertainties
-#    -----------------------------------------
-#     QCD         mu=0.5 / mu=2.0   2.94% / 2.57%
-#     alpha_s     265000 / 266000   0.21% / 0.27%
-#     PDF                           0.48%
-#     PDF+alpha_s                   0.54%
-#    
-#     
-#     
-#     HWminusJ_HToWW_M125 0jet acceptance uncertainties
-#     -----------------------------------------
-#      QCD         mu=0.5 / mu=2.0   5.99% / 4.42%
-#      alpha_s     265000 / 266000   0.29% / 0.28%
-#      PDF                           0.55%
-#      PDF+alpha_s                   0.62%
-#     
-#     
-#      HWminusJ_HToWW_M125 1jet acceptance uncertainties
-#     -----------------------------------------
-#      QCD         mu=0.5 / mu=2.0   0.99% / 1.36%
-#      alpha_s     265000 / 266000   0.05% / 0.02%
-#      PDF                           0.47%
-#      PDF+alpha_s                   0.48%
-#     
-#     
-#      HWplusJ_HToWW_M125 0jet acceptance uncertainties
-#     -----------------------------------------
-#      QCD         mu=0.5 / mu=2.0   2.17% / 3.38%
-#      alpha_s     265000 / 266000   0.20% / 0.13%
-#      PDF                           0.47%
-#      PDF+alpha_s                   0.50%
-#     
-#     
-#      HWplusJ_HToWW_M125 1jet acceptance uncertainties
-#     -----------------------------------------
-#      QCD         mu=0.5 / mu=2.0   4.71% / 3.58%
-#      alpha_s     265000 / 266000   0.10% / 0.03%
-#      PDF                           0.36%
-#      PDF+alpha_s                   0.36%
-#     
-#     
-#      HZJ_HToWW_M125 0jet acceptance uncertainties
-#     -----------------------------------------
-#      QCD         mu=0.5 / mu=2.0   2.16% / 3.30%
-#      alpha_s     265000 / 266000   0.06% / 0.30%
-#      PDF                           1.20%
-#      PDF+alpha_s                   1.22%
-#     
-#     
-#      HZJ_HToWW_M125 1jet acceptance uncertainties
-#     -----------------------------------------
-#      QCD         mu=0.5 / mu=2.0   3.74% / 1.18%
-#      alpha_s     265000 / 266000   0.12% / 0.03%
-#      PDF                           0.88%
-#      PDF+alpha_s                   0.89%
-#      
-#
 
 
 # pdf uncertainty
