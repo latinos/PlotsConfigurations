@@ -1,12 +1,26 @@
-void drawNLL() {
+void drawNLLObs() {
   
   TCanvas* cc = new TCanvas("cc","", 800, 600);
   int n = 0;
+  int n_data = 0;
   
+  TTree* limit = (TTree*) _file0->Get("limit");  
   n = limit->Draw("2*deltaNLL:r","deltaNLL<10 && deltaNLL>0","l");
   TGraph *graphScan = new TGraph(n,limit->GetV2(),limit->GetV1());
   graphScan->RemovePoint(0);
-  
+
+  TGraph *graphScanData = 0;
+  if (_file1) {
+   TTree* limitData = (TTree*) _file1->Get("limit");  
+   n_data = limitData->Draw("2*deltaNLL:r","deltaNLL<10 && deltaNLL>0","l");
+   graphScanData = new TGraph(n_data,limitData->GetV2(),limitData->GetV1());
+   graphScanData->RemovePoint(0);
+   graphScanData->SetTitle("");
+   graphScanData->SetMarkerStyle(21);
+   graphScanData->SetLineWidth(2);
+   graphScanData->SetMarkerColor(kRed);
+   graphScanData->SetLineColor(kRed);
+  }
   
   cc->SetGrid();
   
@@ -56,6 +70,10 @@ void drawNLL() {
   
   graphScan  ->Draw("al");
   
+  if (graphScanData) {
+    graphScanData->Draw("l");
+  }
+  
   tex->Draw("same");
   tex2->Draw("same");
   tex3->Draw("same");
@@ -75,6 +93,16 @@ void drawNLL() {
   line2->SetLineStyle(2);
   line2->SetLineColor(kRed);
   line2->Draw();
+  
+  TLegend* leg = new TLegend(0.1,0.7,0.48,0.9);
+  leg->AddEntry(graphScan,"Expected","l");
+  if (graphScanData) {
+    leg->AddEntry(graphScanData,"Observed","l");
+  }
+  leg->SetFillColor(0);
+  leg->Draw();
+  
+  
   
   cc->SaveAs("ll.png");
   
