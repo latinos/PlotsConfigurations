@@ -81,12 +81,12 @@ combineCards.py   me1j13=ggH/datacards/hww2l2v_13TeV_me_1j/mllVSmth/datacard.txt
 
 # results
 
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.1jet.txt             >   result.MaxLikelihoodFit.Moriond2016.1jet.txt
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.0jet.txt             >   result.MaxLikelihoodFit.Moriond2016.0jet.txt
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.0jet.em.txt          >   result.MaxLikelihoodFit.Moriond2016.0jet.em.txt
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.0jet.me.txt          >   result.MaxLikelihoodFit.Moriond2016.0jet.me.txt
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.1jet.em.txt          >   result.MaxLikelihoodFit.Moriond2016.1jet.em.txt
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.1jet.me.txt          >   result.MaxLikelihoodFit.Moriond2016.1jet.me.txt
+combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Moriond2016.1jet.txt             >   result.MaxLikelihoodFit.Moriond2016.1jet.txt
+combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Moriond2016.0jet.txt             >   result.MaxLikelihoodFit.Moriond2016.0jet.txt
+combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Moriond2016.0jet.em.txt          >   result.MaxLikelihoodFit.Moriond2016.0jet.em.txt
+combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Moriond2016.0jet.me.txt          >   result.MaxLikelihoodFit.Moriond2016.0jet.me.txt
+combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Moriond2016.1jet.em.txt          >   result.MaxLikelihoodFit.Moriond2016.1jet.em.txt
+combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Moriond2016.1jet.me.txt          >   result.MaxLikelihoodFit.Moriond2016.1jet.me.txt
 
 
 combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Moriond2016.1jet.txt             >   result.Significance.Moriond2016.1jet.txt
@@ -99,7 +99,7 @@ combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Morion
 
 
 
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1        Moriond2016.v1.txt.pruned.txt             >   result.MaxLikelihoodFit.Moriond2016.v1.txt.pruned.txt
+combine -M MaxLikelihoodFit -t -1 --expectSignal 1    --rMin=-2 --rMax=4     Moriond2016.v1.txt.pruned.txt             >   result.MaxLikelihoodFit.Moriond2016.v1.txt.pruned.txt
     
 combine -M ProfileLikelihood --significance Moriond2016.v1.txt.pruned.txt -t -1 --expectSignal=1       >   result.Significance.Moriond2016.v1.txt.pruned.txt
 
