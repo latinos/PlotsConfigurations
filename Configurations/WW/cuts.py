@@ -69,10 +69,10 @@ cuts['ww_TopCR1j_em'] = 'njet == 1 \
             ||  ( std_vector_jet_pt[9] > 20 && std_vector_jet_cmvav2[9] > -0.715 )) \
 '
 
-cuts['ww_TopCR1j_em_alt'] = 'njet == 1 \
-            && mth > 40 \
-            && std_vector_jet_cmvav2[0] > -0.715 \
-'
+# cuts['ww_TopCR1j_em_alt'] = 'njet == 1 \
+#             && mth > 40 \
+#             && std_vector_jet_cmvav2[0] > -0.715 \
+# '
 
 #mll > 12GeV
 # cuts['ww_mll_em'] = 'mll>12  \
