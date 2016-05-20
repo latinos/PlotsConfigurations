@@ -63,7 +63,7 @@ plot['top'] = {
                   'color': 400,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 0.91 #0jet:0.90, 1jet:0.87 #0jet blind: 0.91, 1jet blind: 0.95
+                  'scale'    : 0.87 #0jet:0.90, 1jet:0.87 #0jet blind: 0.91, 1jet blind: 0.95
                   }
 
 
@@ -93,8 +93,8 @@ plot['Vg']  = {
 # VVV + VZ + Vgs
 
 plot['VgS']  = { 
-                  'nameHR' : '',
                   #'color': 603, # kBlue + 3
+                  'nameHR' : '',
                   'color'    : 797,
                   'isSignal' : 0,
                   'isData'   : 0,

@@ -53,6 +53,13 @@ Combine the Top CR and the WW SR datacards:
 
 Extract signal strength from datacard using combine:
 
+   	combine -M MaxLikelihoodFit wwCombCard0.txt  --setPhysicsModelParameterRanges r=0.01,2  -m 125 >> combination/signalStrength0jet.txt
+
+   	combine -M MaxLikelihoodFit wwCombCard1.txt  --setPhysicsModelParameterRanges r=0.01,2  -m 125 >> combination/signalStrength1jet.txt
+
+   	combine -M MaxLikelihoodFit wwCombCardIncl.txt  --setPhysicsModelParameterRanges r=0.01,2  -m 125 >> combination/signalStrengthIncl.txt
+
+
 	combine -M MultiDimFit wwCombCard0.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -n "LHScan" -m 125 >> combination/signalStrength0jet.txt
 
 	combine -M MultiDimFit wwCombCard0.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -n "LHScan" -m 125 >> combination/signalStrength1jet.txt
@@ -75,7 +82,7 @@ To perform a blind (MC only) estimate of the uncertainty of the signal strength:
 
    	combine -M MaxLikelihoodFit wwCombCard1.txt  --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1  -m 125 >> combination/signalStrengthBlind1jet.txt
 
-   	combine -M MaxLikelihoodFit wwCombCardIncl.txt  --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1  -m 125 >> combination/signalStrengthBlindIncljet.txt
+   	combine -M MaxLikelihoodFit wwCombCardIncl.txt  --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1  -m 125 >> combination/signalStrengthBlindIncl.txt
 
 
 	combine -M MultiDimFit wwCombCard0.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1 -n "LHScan" -m 125 >> combination/signalStrengthBlind0jet.txt
@@ -141,9 +148,7 @@ Official tables from datacards (use with combine):
 
 	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_TopCR1j_em/events/datacard.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_TopCR1j_em.tex
 
-	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_TopCR1j_em_alt/events/datacard.txt  --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_TopCR1j_em_alt.tex
-
-	 cd -
+	 cd -	 
 
 
 Install ModificationDatacards (first time only):	

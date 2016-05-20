@@ -205,7 +205,7 @@ nuisances['QCDscale_qqbar_accept_0j']  = {
                    #'WW'      : '1.02',
                    },
                'cuts'  : ['ww_BVeto0j_em', 'ww_TopCR0j_em', ]
-              }
+               }
 
 
 nuisances['QCDscale_qqbar_accept_1j']  = {
@@ -309,7 +309,7 @@ nuisances['pdf_qqbar_accept']  = {
                    #'qqH_htt' : '1.018',
                    #'WH_hww'  : '1.018',
                    #'ZH_hww'  : '1.018',
-                   ##'WW'      : '1.015',    # ---> not needed
+                   #'WW'      : '1.015',    # ---> not needed
                    #'VW'      : '1.015',
                    #
                    'WW'      : '1.003',
@@ -503,7 +503,7 @@ nuisances['PS0j'] = {
     'name'    : 'PS0j',
     'type'    : 'lnN',
     'samples' : {
-        'WW'      : '1.032',
+        'WW'      : '1.043',
         'qqH_hww' : '1.101',
         'ggH_hww' : '1.045',
         },
@@ -517,7 +517,7 @@ nuisances['PS1j'] = {
     'name'    : 'PS1j',
     'type'    : 'lnN',
     'samples' : {
-        'WW'      : '1.012',
+        'WW'      : '1.018',
         'qqH_hww' : '1.048',
         'ggH_hww' : '1.059',
         },
@@ -529,19 +529,19 @@ nuisances['PS1j'] = {
 
 #################################
 
-nuisances['UE']  = {
-                'name'  : 'UE', 
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : {
-                   'WW'      : ['1', '1'], 
-                   #'ggWW'    : ['1', '1'], 
-                   'ggH_hww' : ['1', '1'],
-                   'qqH_hww' : ['1', '1'],
-                },
-                'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEup/',
-                'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEdo/' 
-                }
+# nuisances['UE']  = {
+#                 'name'  : 'UE', 
+#                 'kind'  : 'tree',
+#                 'type'  : 'shape',
+#                 'samples'  : {
+#                    'WW'      : ['1', '1'], 
+#                    #'ggWW'    : ['1', '1'], 
+#                    'ggH_hww' : ['1', '1'],
+#                    'qqH_hww' : ['1', '1'],
+#                 },
+#                 'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEup/',
+#                 'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEdo/' 
+#                 }
 
 
 
