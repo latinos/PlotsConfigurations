@@ -1,10 +1,10 @@
 # example of configuration file
 
-# used in the root file also
-# e.g. plot_WW.root
-tag = 'WW'
+tag = 'monoHWW'
 
-outputDir = 'rootFileHWW'
+
+# used by mkShape to define output directory for root files
+outputDir = 'rootFile'
 
 
 # file with list of variables
@@ -22,12 +22,12 @@ plotFile = 'plot.py'
 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 10.000
-
+# lumi = 2.264
+lumi = 2.318
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotHWW'
+outputDirPlots = '/afs/cern.ch/user/n/ntrevisa/www/figuresLxplus/20May2016/monoH'
 
 
 # used by mkDatacards to define output directory for datacards
@@ -38,7 +38,8 @@ outputDirDatacard = 'datacards'
 structureFile = 'structure.py'
 
 
-# structure file for mkDatacards and for mkShape
+# nuisances file for mkDatacards and for mkShape
+#nuisancesFile = 'nuisances_light.py'
 nuisancesFile = 'nuisances.py'
 
 
