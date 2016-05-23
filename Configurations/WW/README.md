@@ -76,7 +76,7 @@ To calculate the Top SF from the combined datacards:
 	combine -M MultiDimFit wwCombCard1.txt --algo=grid --points 100 --redefineSignalPOIs Topnorm1j --freezeNuisances=r,CMS_scale_e,CMS_scale_j,CMS_scale_m,CMS_scale_met,CMS_scale_trigger,CMS_btag,CMS_idiso,CMS_tttwTh,,CMS_ww_BVeto1j_em_top_ibin_1_stat --setPhysicsModelParameterRanges Topnorm1j=0.01,2 -n "LHScanTopnorm1j" >> combination/TopLH1jet.txt
 
 
-To perform a blind (MC only) estimate of the uncertainty of the signal strength:
+To perform a blind (MC only) estimation of the uncertainty on the signal strength:
 
    	combine -M MaxLikelihoodFit wwCombCard0.txt  --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1  -m 125 >> combination/signalStrengthBlind0jet.txt
 
@@ -91,6 +91,33 @@ To perform a blind (MC only) estimate of the uncertainty of the signal strength:
 
 	combine -M MultiDimFit wwCombCardIncl.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1 -n "LHScan" -m 125 >> combination/signalStrengthBlindIncl.txt
 
+
+To draw the plots of the impact of the individual nuisances on the final result (here blindly):
+
+   text2workspace.py wwCombCard0.txt -m 125
+
+   combineTool.py -M Impacts -d wwCombCard0.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit 1
+
+   combineTool.py -M Impacts -d wwCombCard0.root -m 125 -t -1 --expectSignal=1 --robustFit 1 --doFits
+
+   combineTool.py -M Impacts -d wwCombCard0.root -m 125 -o impacts0.json
+
+   plotImpacts.py -i impacts0.json -o impacts0
+
+
+Official tables from datacards (use with combine):
+
+	  cd ../../../PlayWithDatacards/
+
+	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto0j_em/events/datacard.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_BVeto0j_em.tex
+
+	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto1j_em/events/datacard.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_BVeto1j_em.tex
+
+	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_TopCR0j_em/events/datacard.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_TopCR0j_em.tex
+
+	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_TopCR1j_em/events/datacard.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_TopCR1j_em.tex
+
+	 cd -	 
 
 
 Transform shape datacards into lnN - human readable - datacards:
@@ -136,21 +163,6 @@ Print tables starting from datacards:
       cd -
 
 
-Official tables from datacards (use with combine):
-
-	  cd ../../../PlayWithDatacards/
-
-	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto0j_em/events/datacard.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_BVeto0j_em.tex
-
-	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto1j_em/events/datacard.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_BVeto1j_em.tex
-
-	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_TopCR0j_em/events/datacard.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_TopCR0j_em.tex
-
-	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_TopCR1j_em/events/datacard.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_TopCR1j_em.tex
-
-	 cd -	 
-
-
 Install ModificationDatacards (first time only):	
 
       cd CMSSW_7_6_3/src
@@ -171,16 +183,42 @@ Install PlayWithDatacards (first time only):
 
 Install combine (first time only):
 
-      cmsrel CMSSW_7_1_5
+	export SCRAM_ARCH=slc6_amd64_gcc491
+	
+	cmsrel CMSSW_7_4_7
 
-      cd CMSSW_7_1_5/src
-
-      git clone https://github.com/cms-analysis/HiggsAnalysis-CombinedLimit.git HiggsAnalysis/CombinedLimit
-
+	cd CMSSW_7_4_7/src 
+	
+	cmsenv
+	
+	git clone https://github.com/cms-analysis/HiggsAnalysis-CombinedLimit.git HiggsAnalysis/CombinedLimit
+	
+	cd HiggsAnalysis/CombinedLimit
       
+      	git fetch origin
+
+      	git checkout v6.2.1
+
+      	scramv1 b clean 
+
+      	scramv1 b
+
+	ref: https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHiggsAnalysisCombinedLimit#For_end_users_that_don_t_need_to	
+
+
+To install combine to perform non-standard datacard studies (e.g. impact plots):
+
+   cd $CMSSW_BASE/src
+  
+   git clone https://github.com/cms-analysis/CombineHarvester.git CombineHarvester
+ 
+ cd CombineHarvester
+ 
+ scram b -j 6
+
 Setup combine:
       
-      cd (your_path)/CMSSW_7_1_5/src/HiggsAnalysis/CombinedLimit
+      cd (your_path)/CMSSW_7_4_7/src/HiggsAnalysis/CombinedLimit
 
       cmsenv
 
