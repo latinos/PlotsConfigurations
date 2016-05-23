@@ -94,15 +94,15 @@ To perform a blind (MC only) estimation of the uncertainty on the signal strengt
 
 To draw the plots of the impact of the individual nuisances on the final result (here blindly):
 
-   text2workspace.py wwCombCard0.txt -m 125
-
-   combineTool.py -M Impacts -d wwCombCard0.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit 1
-
-   combineTool.py -M Impacts -d wwCombCard0.root -m 125 -t -1 --expectSignal=1 --robustFit 1 --doFits
-
-   combineTool.py -M Impacts -d wwCombCard0.root -m 125 -o impacts0.json
-
-   plotImpacts.py -i impacts0.json -o impacts0
+      text2workspace.py wwCombCard0.txt -m 125
+      
+      combineTool.py -M Impacts -d wwCombCard0.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit 1
+      
+      combineTool.py -M Impacts -d wwCombCard0.root -m 125 -t -1 --expectSignal=1 --robustFit 1 --doFits
+      
+      combineTool.py -M Impacts -d wwCombCard0.root -m 125 -o impacts0.json
+      
+      plotImpacts.py -i impacts0.json -o impacts0
 
 
 Official tables from datacards (use with combine):
