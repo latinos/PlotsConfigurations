@@ -36,20 +36,25 @@ def getXsec(mass,process):
 def plotLimit(mass,option="mu"):
 
 	xcentral = array("d") # masses
-	ycentral = array("d") # limits
+        ycentral_mu = array("d") # limits
+        ycentral_xs = array("d") # limits
         ycentral_ggH = array("d")
         ycentral_VBF = array("d")
 	xerr = array("d")
-	up1s = array("d")
+	up1s_mu = array("d")
+        up1s_xs = array("d")
         up1s_ggH = array("d")
         up1s_VBF = array("d")
-	down1s = array("d")
+	down1s_mu = array("d")
+        down1s_xs = array("d")
         down1s_ggH = array("d")
         down1s_VBF = array("d")
-	up2s = array("d")
+	up2s_mu = array("d")
+        up2s_xs = array("d")
         up2s_ggH = array("d")
         up2s_VBF = array("d")
-	down2s = array("d")
+	down2s_mu = array("d")
+        down2s_xs = array("d")
         down2s_ggH = array("d")
         down2s_VBF = array("d")
 
@@ -58,40 +63,86 @@ def plotLimit(mass,option="mu"):
 
   	  for m in masses:
 
-	    fitFile = open("/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combine/Limit.Moriond2016.v1.txt.pruned.mH"+m+".txt")
+            xsec_ggH = getXsec(m,"ggH")
+            xsec_VBF = getXsec(m,"VBF")
+
+	    #fitFile = open("/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combine/Limit.Moriond2016.v1.txt.pruned.mH"+m+".txt")
+            fitFile = open("/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combine/Limit.Moriond2016.2jet.mH"+m+".txt")
 	    expLimit = extract(fitFile)
 
             xcentral.append(float(m))
   	    xerr.append(0)
-	    ycentral.append( float(expLimit['50.0']) )
-            down1s.append( float(expLimit['50.0'])-float(expLimit['16.0']) )
-	    up1s.append( float(expLimit['84.0'])-float(expLimit['50.0']) )
-	    down2s.append( float(expLimit['50.0'])-float(expLimit['2.5']) )
-	    up2s.append( float(expLimit['97.5'])-float(expLimit['50.0']) )
+	    ycentral_mu.append( float(expLimit['50.0']) )
+            down1s_mu.append( float(expLimit['50.0'])-float(expLimit['16.0']) )
+	    up1s_mu.append( float(expLimit['84.0'])-float(expLimit['50.0']) )
+	    down2s_mu.append( float(expLimit['50.0'])-float(expLimit['2.5']) )
+	    up2s_mu.append( float(expLimit['97.5'])-float(expLimit['50.0']) )
 
-  	  c = TCanvas()
-	  c.cd()
-	  c.SetTicky()
-	  c.SetTickx()
+            ycentral_xs.append( float(expLimit['50.0'])*(xsec_ggH+xsec_VBF) )
+            down1s_xs.append( (float(expLimit['50.0'])-float(expLimit['16.0']))*(xsec_ggH+xsec_VBF) )
+            up1s_xs.append( (float(expLimit['84.0'])-float(expLimit['50.0']))*(xsec_ggH+xsec_VBF) )
+            down2s_xs.append( (float(expLimit['50.0'])-float(expLimit['2.5']))*(xsec_ggH+xsec_VBF) )
+            up2s_xs.append( (float(expLimit['97.5'])-float(expLimit['50.0']))*(xsec_ggH+xsec_VBF) )
 
-	  graphcentral = TGraph(len(xcentral),xcentral,ycentral)
-	  graphcentral.SetLineStyle(2)
 
-	  graph2s = TGraphAsymmErrors(len(xcentral),xcentral,ycentral,xerr,xerr,down2s,up2s)
-	  graph2s.SetFillColor(kYellow)
-	  graph2s.SetTitle("")
-	  graph2s.GetYaxis().SetTitle("95% CL limit on #sigma/#sigma_{SM}")
-	  graph2s.GetXaxis().SetTitle("M_{X} [GeV]")
-	  graph2s.GetXaxis().SetRangeUser(300,1000)
+  	  c1 = TCanvas()
+	  c1.cd()
+	  c1.SetTicky()
+	  c1.SetTickx()
 
-	  graph1s = TGraphAsymmErrors(len(xcentral),xcentral,ycentral,xerr,xerr,down1s,up1s)
-	  graph1s.SetFillColor(kGreen)
+	  graphcentral_mu = TGraph(len(xcentral),xcentral,ycentral_mu)
+	  graphcentral_mu.SetLineStyle(2)
 
-	  graph2s.Draw("A3")
-	  graph1s.Draw("3 same")
-	  graphcentral.Draw("L same")
+	  graph2s_mu = TGraphAsymmErrors(len(xcentral),xcentral,ycentral_mu,xerr,xerr,down2s_mu,up2s_mu)
+	  graph2s_mu.SetFillColor(kYellow)
+	  graph2s_mu.SetTitle("")
+	  graph2s_mu.GetYaxis().SetTitle("95% CL limit on #sigma/#sigma_{SM}")
+	  graph2s_mu.GetXaxis().SetTitle("M_{X} [GeV]")
+	  graph2s_mu.GetXaxis().SetRangeUser(300,1000)
+
+	  graph1s_mu = TGraphAsymmErrors(len(xcentral),xcentral,ycentral_mu,xerr,xerr,down1s_mu,up1s_mu)
+	  graph1s_mu.SetFillColor(kGreen)
+
+	  graph2s_mu.Draw("A3")
+	  graph1s_mu.Draw("3 same")
+	  graphcentral_mu.Draw("L same")
+
+          c2 = TCanvas()
+          c2.cd()
+          c2.SetTicky()
+          c2.SetTickx()
+
+          graphcentral_xs = TGraph(len(xcentral),xcentral,ycentral_xs)
+          graphcentral_xs.SetLineStyle(2)
+
+          graph2s_xs = TGraphAsymmErrors(len(xcentral),xcentral,ycentral_xs,xerr,xerr,down2s_xs,up2s_xs)
+          graph2s_xs.SetFillColor(kYellow)
+          graph2s_xs.SetTitle("")
+          graph2s_xs.GetYaxis().SetTitle("95% CL limit on #sigma_{ggH}+#sigma_{VBF} [pb]")
+          graph2s_xs.GetXaxis().SetTitle("M_{X} [GeV]")
+          graph2s_xs.GetXaxis().SetRangeUser(300,1000)
+
+          graph1s_xs = TGraphAsymmErrors(len(xcentral),xcentral,ycentral_xs,xerr,xerr,down1s_xs,up1s_xs)
+          graph1s_xs.SetFillColor(kGreen)
+
+          graph2s_xs.Draw("A3")
+          graph1s_xs.Draw("3 same")
+          graphcentral_xs.Draw("L same")
 
 	  gPad.RedrawAxis()
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	elif option=="xsec":
@@ -160,7 +211,7 @@ def plotLimit(mass,option="mu"):
           graph2s_VBF = TGraphAsymmErrors(len(xcentral),xcentral,ycentral_VBF,xerr,xerr,down2s_VBF,up2s_VBF)
           graph2s_VBF.SetFillColor(kYellow)
           graph2s_VBF.SetTitle("")
-          graph2s_VBF.GetYaxis().SetTitle("95% CL limit on #sigma(gg #rightarrow X) [pb]")
+          graph2s_VBF.GetYaxis().SetTitle("95% CL limit on #sigma(qq #rightarrow X) [pb]")
           graph2s_VBF.GetXaxis().SetTitle("M_{X} [GeV]")
           graph2s_VBF.GetXaxis().SetRangeUser(300,1000)
 

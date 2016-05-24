@@ -76,6 +76,32 @@ samples['DY']  = {    'name': [
                   }
 
 
+samples['DYLO']  = {    'name': [
+                                'latino_DYJetsToLL_M-50-LO__part0.root',
+                                'latino_DYJetsToLL_M-50-LO__part1.root',                            #
+                            ],
+                      'weight' : 'metFilter*puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
+                  }
+
+
+samples['DY2jet']  = {    'name': [
+				'latino_DY2JetsToLL__part0.root',
+				'latino_DY2JetsToLL__part1.root',
+				'latino_DY2JetsToLL__part2.root',
+				'latino_DY2JetsToLL__part3.root',
+				'latino_DY2JetsToLL__part4.root',
+				'latino_DY2JetsToLL__part5.root',                            #
+                            ],
+                      'weight' : 'metFilter*puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
+                  }
+
+samples['EWKZ2jet']  = {    'name': [
+                                'latino_EWKZ2Jets.root',
+                            ], 
+                      'weight' : 'metFilter*puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
+                  }
+
+
 # 0.238112 for DY-10-50
 # baseW for DY-50
 # 

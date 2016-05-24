@@ -1,4 +1,3 @@
-masses = ['300','750','1000']
-#masses = ['300','400','650','750','800','900','1000']
-#models = ['cp0.05brn0.0','cp0.1brn0.0']
-models = ['1']
+#masses = ['300','750','1000']
+masses = ['300','400','650','750','800','900','1000']
+models = ['cprime0.1BRnew0.0','cprime0.3BRnew0.0','cprime0.5BRnew0.0','cprime0.7BRnew0.0']

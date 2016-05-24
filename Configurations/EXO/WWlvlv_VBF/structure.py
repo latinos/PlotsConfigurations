@@ -42,6 +42,21 @@ structure['DY']  = {
                   'isData'   : 0 
               }
 
+structure['DYLO']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+              }
+
+
+structure['DY2jet']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+              }
+
+structure['EWKZ2jet']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+              }
 
 structure['Wjets']  = {  
                   'isSignal' : 0,

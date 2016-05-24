@@ -53,6 +53,17 @@ combineCards.py   em1j13=${datacardDir}/hwwhighmass_13TeV_em_1j/${variable}/data
 
 combineCards.py   em1j13=${datacardDir}/hwwhighmass_13TeV_em_1j/${variable}/datacard.txt.pruned.txt \
                   me1j13=${datacardDir}/hwwhighmass_13TeV_me_1j/${variable}/datacard.txt.pruned.txt \
+                  em0j13=${datacardDir}/hwwhighmass_13TeV_em_0j/${variable}/datacard.txt.pruned.txt \
+                  me0j13=${datacardDir}/hwwhighmass_13TeV_me_0j/${variable}/datacard.txt.pruned.txt \
+                  of0j13Top=${datacardDir}/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
+                  of1j13Top=${datacardDir}/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
+                  of0j13DYtt=${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+                  of1j13DYtt=${datacardDir}/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
+                  >   Moriond2016.01jet.txt
+
+
+combineCards.py   em1j13=${datacardDir}/hwwhighmass_13TeV_em_1j/${variable}/datacard.txt.pruned.txt \
+                  me1j13=${datacardDir}/hwwhighmass_13TeV_me_1j/${variable}/datacard.txt.pruned.txt \
                   of1j13Top=${datacardDir}/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
                   of1j13DYtt=${datacardDir}/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
                   >   Moriond2016.1jet.txt
