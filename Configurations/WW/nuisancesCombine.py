@@ -205,7 +205,7 @@ nuisances['QCDscale_qqbar_accept_0j']  = {
                    #'WW'      : '1.02',
                    },
                'cuts'  : ['ww_BVeto0j_em', 'ww_TopCR0j_em', ]
-              }
+               }
 
 
 nuisances['QCDscale_qqbar_accept_1j']  = {
@@ -309,7 +309,7 @@ nuisances['pdf_qqbar_accept']  = {
                    #'qqH_htt' : '1.018',
                    #'WH_hww'  : '1.018',
                    #'ZH_hww'  : '1.018',
-                   ##'WW'      : '1.015',    # ---> not needed
+                   #'WW'      : '1.015',    # ---> not needed
                    #'VW'      : '1.015',
                    #
                    'WW'      : '1.003',
@@ -360,10 +360,10 @@ nuisances['kfactggww']  = {
 #  - WW shaping
 nuisances['WWresum0j']  = {
                 'name'  : 'WWresum0j',
-                'kind'  : 'weight',
-                'type'  : 'shape',
+                #'kind'  : 'weight',
+                'type'  : 'lnN', #'shape',
                 'samples'  : {
-                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+                   'WW'   : '1.021',#['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
                    },
                'cuts'  : [
                  'hww2l2v_13TeV_of0j',
@@ -387,10 +387,10 @@ nuisances['WWresum0j']  = {
 
 nuisances['WWresum1j']  = {
                 'name'  : 'WWresum1j',
-                'kind'  : 'weight',
-                'type'  : 'shape',
+                #'kind'  : 'weight',
+                'type'  : 'lnN', #'shape',
                 'samples'  : {
-                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+                   'WW'   : '1.052', #['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
                    },
                'cuts'  : [
                  'hww2l2v_13TeV_of1j',
@@ -466,25 +466,27 @@ nuisances['WWqscale1j']  = {
 
 # PS
 
-nuisances['PS']  = {
-                'name'  : 'PS', 
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : {
-                   'WW' :  ['1./1.067604', '1.'],  # latino_WWTo2L2NuHerwigPS.root moved with different name in __PS folder
-                   'ggH_hww' : ['1./0.9863', '1.'],
-                   'qqH_hww' : ['1./1.0613', '1.'],
-                   # 'WW'      : ['1.', '1'],  # latino_WWTo2L2NuHerwigPS.root moved with different name in __PS folder
-                   # 'ggH_hww' : ['1.', '1'],
-                   # 'qqH_hww' : ['1.', '1'],
-                },
-                'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS/',
-                'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/' 
-                #'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__PS/',
-                #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/' 
-                #'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight/../MCl2loose__hadd__bSFL2pTEff__l2tight__PS/',
-                #'folderDown' : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight/' 
-                }
+#I'll put by hand looking at the tables in the AN: let's comment this for now
+
+# nuisances['PS']  = {
+#                 'name'  : 'PS', 
+#                 'kind'  : 'tree',
+#                 'type'  : 'shape',
+#                 'samples'  : {
+#                    'WW' :  ['1./1.067604', '1.'],  # latino_WWTo2L2NuHerwigPS.root moved with different name in __PS folder
+#                    'ggH_hww' : ['1./0.9863', '1.'],
+#                    'qqH_hww' : ['1./1.0613', '1.'],
+#                    # 'WW'      : ['1.', '1'],  # latino_WWTo2L2NuHerwigPS.root moved with different name in __PS folder
+#                    # 'ggH_hww' : ['1.', '1'],
+#                    # 'qqH_hww' : ['1.', '1'],
+#                 },
+#                 'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS/',
+#                 'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/' 
+#                 #'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__PS/',
+#                 #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/' 
+#                 #'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight/../MCl2loose__hadd__bSFL2pTEff__l2tight__PS/',
+#                 #'folderDown' : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight/' 
+#                 }
 
 
 #mkdir eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS
@@ -492,24 +494,54 @@ nuisances['PS']  = {
 #cp eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_GluGluHToWWTo2L2NuHerwigPS_M125.root   eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS/latino_GluGluHToWWTo2L2NuPowheg_M125.root
 #cp eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_GluGluHToWWTo2L2NuHerwigPS_M125.root   eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS/latino_GluGluHToWWTo2L2Nu_M125.root
 #cp eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_VBFHToWWTo2L2NuHerwigPS_M125.root      eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS/latino_VBFHToWWTo2L2Nu_M125.root
-#cp eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_WWTo2L2NuHerwigPS.root                 eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS/latino_WWTo2L2Nu.root
+#cp eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_WWTo2L2NuHerwigPS.root                 eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS/latino_WWTo2L2Nu.#######root
 
+#################################
+# Values put by hand!
 
+nuisances['PS0j'] = {
+    'name'    : 'PS0j',
+    'type'    : 'lnN',
+    'samples' : {
+        'WW'      : '1.043',
+        'qqH_hww' : '1.101',
+        'ggH_hww' : '1.045',
+        },
+    'cuts'    : [                                                                                                                                                                
+        'ww_BVeto0j_em',                                                                                                                                                         
+        'ww_TopCR0j_em',                                                                                                                                                         
+        ]   
+    }
 
+nuisances['PS1j'] = {
+    'name'    : 'PS1j',
+    'type'    : 'lnN',
+    'samples' : {
+        'WW'      : '1.018',
+        'qqH_hww' : '1.048',
+        'ggH_hww' : '1.059',
+        },
+    'cuts'    : [                                                                                                                                                                
+        'ww_BVeto1j_em',                                                                                                                                                         
+        'ww_TopCR1j_em',                                                                                                                                                         
+        ]   
+    }
 
-nuisances['UE']  = {
-                'name'  : 'UE', 
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : {
-                   'WW'      : ['1', '1'], 
-                   #'ggWW'    : ['1', '1'], 
-                   'ggH_hww' : ['1', '1'],
-                   'qqH_hww' : ['1', '1'],
-                },
-                'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEup/',
-                'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEdo/' 
-                }
+#################################
+
+# nuisances['UE']  = {
+#                 'name'  : 'UE', 
+#                 'kind'  : 'tree',
+#                 'type'  : 'shape',
+#                 'samples'  : {
+#                    'WW'      : ['1', '1'], 
+#                    #'ggWW'    : ['1', '1'], 
+#                    'ggH_hww' : ['1', '1'],
+#                    'qqH_hww' : ['1', '1'],
+#                 },
+#                 'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEup/',
+#                 'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEdo/' 
+#                 }
 
 
 
@@ -558,9 +590,8 @@ nuisances['WgStarScale']  = {
                'name'  : 'WgStarScale', 
                'type'  : 'lnN',
                'samples'  : {
-                   'WgS' : '1.27',  # 0.3 / 1.23  --> k_factor = 1.23 +/- 0.33
-                   'VgS' : '1.27',  # 0.54 / 1.98  --> k_factor = 1.23 +/- 0.33
-                   #'Vg' : '1.27',  # 0.3 / 1.23  --> k_factor = 1.23 +/- 0.33
+                   'WgS' : '1.25',  # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
+                   'VgS' : '1.25',  # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
                    },
                 }
  
