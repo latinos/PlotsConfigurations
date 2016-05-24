@@ -27,7 +27,7 @@ lumi = 2.318
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = '/afs/cern.ch/user/n/ntrevisa/www/figuresLxplus/20May2016/PAS/WithSF1jet'
+outputDirPlots = '/afs/cern.ch/user/n/ntrevisa/www/figuresLxplus/23May2016/NoSF'
 
 
 # used by mkDatacards to define output directory for datacards
@@ -39,7 +39,7 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-#nuisancesFile = 'nuisances_light.py'
-nuisancesFile = 'nuisancesCombine.py'
+nuisancesFile = 'nuisances_light.py'
+#nuisancesFile = 'nuisancesCombine.py'
 
 

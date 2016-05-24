@@ -105,6 +105,28 @@ To draw the plots of the impact of the individual nuisances on the final result 
       plotImpacts.py -i impacts0.json -o impacts0
 
 
+      text2workspace.py wwCombCard1.txt -m 125
+      
+      combineTool.py -M Impacts -d wwCombCard1.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit 1
+      
+      combineTool.py -M Impacts -d wwCombCard1.root -m 125 -t -1 --expectSignal=1 --robustFit 1 --doFits
+      
+      combineTool.py -M Impacts -d wwCombCard1.root -m 125 -o impacts1.json
+      
+      plotImpacts.py -i impacts1.json -o impacts1
+
+
+      text2workspace.py wwCombCardIncl.txt -m 125
+      
+      combineTool.py -M Impacts -d wwCombCardIncl.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit 1
+      
+      combineTool.py -M Impacts -d wwCombCardIncl.root -m 125 -t -1 --expectSignal=1 --robustFit 1 --doFits
+      
+      combineTool.py -M Impacts -d wwCombCardIncl.root -m 125 -o impactsIncl.json
+      
+      plotImpacts.py -i impactsIncl.json -o impactsIncl
+
+
 Official tables from datacards (use with combine):
 
 	  cd ../../../PlayWithDatacards/
