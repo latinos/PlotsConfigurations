@@ -59,18 +59,31 @@ samples['DY']  = {    'name': [
 
 # data driven
 samples['Fake']  = {    'name': [
-                       '../../../../../../../eos/user/a/amassiro/HWW2015/25FebNewFa/latino_DD_Run2015C_16Dec2015_DoubleEG.root',
-                       '../../../../../../../eos/user/a/amassiro/HWW2015/25FebNewFa/latino_DD_Run2015C_16Dec2015_DoubleMuon.root',
-                       '../../../../../../../eos/user/a/amassiro/HWW2015/25FebNewFa/latino_DD_Run2015C_16Dec2015_MuonEG.root',
-                       '../../../../../../../eos/user/a/amassiro/HWW2015/25FebNewFa/latino_DD_Run2015C_16Dec2015_SingleElectron.root',
-                       '../../../../../../../eos/user/a/amassiro/HWW2015/25FebNewFa/latino_DD_Run2015C_16Dec2015_SingleMuon.root',
-                       '../../../../../../../eos/user/a/amassiro/HWW2015/25FebNewFa/latino_DD_Run2015D_16Dec2015_DoubleEG.root',
-                       '../../../../../../../eos/user/a/amassiro/HWW2015/25FebNewFa/latino_DD_Run2015D_16Dec2015_DoubleMuon.root',
-                       '../../../../../../../eos/user/a/amassiro/HWW2015/25FebNewFa/latino_DD_Run2015D_16Dec2015_MuonEG.root',
-                       '../../../../../../../eos/user/a/amassiro/HWW2015/25FebNewFa/latino_DD_Run2015D_16Dec2015_SingleElectron.root',
-                       '../../../../../../../eos/user/a/amassiro/HWW2015/25FebNewFa/latino_DD_Run2015D_16Dec2015_SingleMuon.root'
+                       #'../../../../../../../eos/user/a/amassiro/HWW2015/25FebNewFa/latino_DD_Run2015C_16Dec2015_DoubleEG.root',
+                       #'../../../../../../../eos/user/a/amassiro/HWW2015/25FebNewFa/latino_DD_Run2015C_16Dec2015_DoubleMuon.root',
+                       #'../../../../../../../eos/user/a/amassiro/HWW2015/25FebNewFa/latino_DD_Run2015C_16Dec2015_MuonEG.root',
+                       #'../../../../../../../eos/user/a/amassiro/HWW2015/25FebNewFa/latino_DD_Run2015C_16Dec2015_SingleElectron.root',
+                       #'../../../../../../../eos/user/a/amassiro/HWW2015/25FebNewFa/latino_DD_Run2015C_16Dec2015_SingleMuon.root',
+                       #'../../../../../../../eos/user/a/amassiro/HWW2015/25FebNewFa/latino_DD_Run2015D_16Dec2015_DoubleEG.root',
+                       #'../../../../../../../eos/user/a/amassiro/HWW2015/25FebNewFa/latino_DD_Run2015D_16Dec2015_DoubleMuon.root',
+                       #'../../../../../../../eos/user/a/amassiro/HWW2015/25FebNewFa/latino_DD_Run2015D_16Dec2015_MuonEG.root',
+                       #'../../../../../../../eos/user/a/amassiro/HWW2015/25FebNewFa/latino_DD_Run2015D_16Dec2015_SingleElectron.root',
+                       #'../../../../../../../eos/user/a/amassiro/HWW2015/25FebNewFa/latino_DD_Run2015D_16Dec2015_SingleMuon.root'
+                       #
+                       '../../../../../../user/r/rebeca/HWW2015/03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__fakeW/latino_DD_Run2015C_16Dec2015_DoubleEG.root',
+                       '../../../../../../user/r/rebeca/HWW2015/03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__fakeW/latino_DD_Run2015C_16Dec2015_DoubleMuon.root',
+                       '../../../../../../user/r/rebeca/HWW2015/03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__fakeW/latino_DD_Run2015C_16Dec2015_MuonEG.root',
+                       '../../../../../../user/r/rebeca/HWW2015/03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__fakeW/latino_DD_Run2015C_16Dec2015_SingleElectron.root',
+                       '../../../../../../user/r/rebeca/HWW2015/03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__fakeW/latino_DD_Run2015C_16Dec2015_SingleMuon.root',
+                       '../../../../../../user/r/rebeca/HWW2015/03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__fakeW/latino_DD_Run2015D_16Dec2015_DoubleEG.root',
+                       '../../../../../../user/r/rebeca/HWW2015/03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__fakeW/latino_DD_Run2015D_16Dec2015_DoubleMuon.root',
+                       '../../../../../../user/r/rebeca/HWW2015/03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__fakeW/latino_DD_Run2015D_16Dec2015_MuonEG.root',
+                       '../../../../../../user/r/rebeca/HWW2015/03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__fakeW/latino_DD_Run2015D_16Dec2015_SingleElectron.root',
+                       '../../../../../../user/r/rebeca/HWW2015/03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__fakeW/latino_DD_Run2015D_16Dec2015_SingleMuon.root'
+
+
                                  ],     
-                      'weight' : 'trigger*(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',              #   weight/cut 
+                      'weight' : '0.8*trigger*(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',              #   weight/cut 
                       'isData': ['all'],                             
                   }
 
@@ -227,16 +240,16 @@ samples['ZH_hww']  = {    'name': ['latino_HZJ_HToWW_M125.root'],
 ###########################################
 
 samples['DATA']  = {   'name': [
-                                '../../22Jan_Run2015C_16Dec2015/l2loose__hadd__bSFL2pTEff__l2tight/latino_Run2015C_16Dec2015_DoubleEG.root',
-                                '../../22Jan_Run2015C_16Dec2015/l2loose__hadd__bSFL2pTEff__l2tight/latino_Run2015C_16Dec2015_DoubleMuon.root',
-                                '../../22Jan_Run2015C_16Dec2015/l2loose__hadd__bSFL2pTEff__l2tight/latino_Run2015C_16Dec2015_MuonEG.root',
-                                '../../22Jan_Run2015C_16Dec2015/l2loose__hadd__bSFL2pTEff__l2tight/latino_Run2015C_16Dec2015_SingleElectron.root',
-                                '../../22Jan_Run2015C_16Dec2015/l2loose__hadd__bSFL2pTEff__l2tight/latino_Run2015C_16Dec2015_SingleMuon.root',
-                                '../../22Jan_Run2015D_16Dec2015/l2loose__hadd__bSFL2pTEff__l2tight/latino_Run2015D_16Dec2015_DoubleEG.root',
-                                '../../22Jan_Run2015D_16Dec2015/l2loose__hadd__bSFL2pTEff__l2tight/latino_Run2015D_16Dec2015_DoubleMuon.root',
-                                '../../22Jan_Run2015D_16Dec2015/l2loose__hadd__bSFL2pTEff__l2tight/latino_Run2015D_16Dec2015_MuonEG.root',
-                                '../../22Jan_Run2015D_16Dec2015/l2loose__hadd__bSFL2pTEff__l2tight/latino_Run2015D_16Dec2015_SingleElectron.root',
-                                '../../22Jan_Run2015D_16Dec2015/l2loose__hadd__bSFL2pTEff__l2tight/latino_Run2015D_16Dec2015_SingleMuon.root',
+                                '../../../../../r/rebeca/HWW2015/03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__l2tight/latino_Run2015C_16Dec2015_DoubleEG.root',
+                                '../../../../../r/rebeca/HWW2015/03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__l2tight/latino_Run2015C_16Dec2015_DoubleMuon.root',
+                                '../../../../../r/rebeca/HWW2015/03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__l2tight/latino_Run2015C_16Dec2015_MuonEG.root',
+                                '../../../../../r/rebeca/HWW2015/03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__l2tight/latino_Run2015C_16Dec2015_SingleElectron.root',
+                                '../../../../../r/rebeca/HWW2015/03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__l2tight/latino_Run2015C_16Dec2015_SingleMuon.root',
+                                '../../../../../r/rebeca/HWW2015/03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__l2tight/latino_Run2015D_16Dec2015_DoubleEG.root',
+                                '../../../../../r/rebeca/HWW2015/03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__l2tight/latino_Run2015D_16Dec2015_DoubleMuon.root',
+                                '../../../../../r/rebeca/HWW2015/03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__l2tight/latino_Run2015D_16Dec2015_MuonEG.root',
+                                '../../../../../r/rebeca/HWW2015/03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__l2tight/latino_Run2015D_16Dec2015_SingleElectron.root',
+                                '../../../../../r/rebeca/HWW2015/03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__l2tight/latino_Run2015D_16Dec2015_SingleMuon.root',
                                 ] ,     
                        'weight' : 'trigger',
                        'isData': ['all'],                            
