@@ -15,15 +15,21 @@ else:
 
 for m in masses:
   for model in models:
-    samples['ggH_hww_'+m+'_'+model] = { 'name': [
+    kp = float(model[6:9])*float(model[6:9])
+    brn = float(model[-3:])
+    sf = kp*(1-brn)
+    print "k' = ", kp," BRnew = ",brn," SF = ",sf
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    print model_name
+    samples['ggH_hww_'+m+'_'+model_name] = { 'name': [
                                              'latino_GluGluHToWWTo2L2Nu_M'+m+'.root'
                                                   ],
-                                          'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*'+model,
+                                          'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*'+model+"*"+str(sf),
                                         }
-    samples['qqH_hww_'+m+'_'+model] = { 'name': [
+    samples['qqH_hww_'+m+'_'+model_name] = { 'name': [
                                              'latino_VBFHToWWTo2L2Nu_M'+m+'.root'
                                                   ],
-                                          'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*'+model,
+                                          'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*'+model+"*"+str(sf),
                                         }
 
 
@@ -73,7 +79,6 @@ samples['DY']  = {    'name': [
                                   , '0.317273040011'
                                   ] ,           
                   }
-
 
 # 0.238112 for DY-10-50
 # baseW for DY-50
@@ -156,9 +161,14 @@ samples['ggWW']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root'],
 # ggWW interference: k = 1.87 +/- 25%
 
 
+#samples['Vg']  = {    'name': ['latino_Wg_AMCNLOFXFX.root'],      
+#                      'weight' : '(njet<2)*metFilter*1.23*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+#                      'weights': ['1'] ,           
+#                      #'isData': ['0'],                            
+#                  }
 
-samples['Vg']  = {    'name': ['latino_Wg_AMCNLOFXFX.root'],      
-                      'weight' : '(njet<2)*metFilter*1.23*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+samples['Vg']  = {    'name': ['latino_Wg_MADGRAPHMLM.root'],
+                      'weight' : 'metFilter*1.23*1.45*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          # 1.45 -> NLO/LO k-factor	1.23 -> ask Sangeun
                       'weights': ['1'] ,           
                       #'isData': ['0'],                            
                   }

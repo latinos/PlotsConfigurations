@@ -1,6 +1,6 @@
 # example of configuration file
 
-tag = 'HWWhighMass_newcuts'
+tag = 'HWWhighMass_plots'
 
 
 # used by mkShape to define output directory for root files
@@ -27,11 +27,11 @@ lumi = 2.318
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotHWWhighMass_newcuts'
+outputDirPlots = 'plotHWWhighMass_plots'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards_newcuts'
+outputDirDatacard = 'datacards_plots'
 
 
 # structure file for datacard

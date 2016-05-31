@@ -18,11 +18,12 @@ else:
 
 for m in masses:
   for model in models:
-    structure['ggH_hww_'+m+'_'+model]  = {
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    structure['ggH_hww_'+m+'_'+model_name]  = {
                     'isSignal' : 1,
                     'isData'   : 0
                     }
-    structure['qqH_hww_'+m+'_'+model]  = {
+    structure['qqH_hww_'+m+'_'+model_name]  = {
                     'isSignal' : 1,
                     'isData'   : 0
                     }
