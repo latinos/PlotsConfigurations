@@ -1193,9 +1193,9 @@ nuisances['stat']  = {
                          'typeStat' : 'bbb',
                          },
                    
-                   'Vg': {  
-                         'typeStat' : 'bbb',
-                         },
+                   #'Vg': {  
+                         #'typeStat' : 'bbb',
+                         #},
 
                    'VgS':{  
                          'typeStat' : 'bbb',
