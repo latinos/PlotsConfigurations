@@ -257,14 +257,15 @@ else:
 
 for m in masses:
   for model in models:
-    plot['ggH_hww_'+m+'_'+model] = {
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    plot['ggH_hww_'+m+'_'+model_name] = {
                   'nameHR' : 'ggH '+m+' '+model,
                   'color': 600+int(int(m)/100+0.5), # kRed 
                   'isSignal' : 2,
                   'isData'   : 0,
                   'scale'    : 1    #
                   }
-    plot['qqH_hww_'+m+'_'+model] = {
+    plot['qqH_hww_'+m+'_'+model_name] = {
                   'nameHR' : 'qqH '+m+' '+model+' (x100)',
                   'color': 600+20+int(int(m)/100+0.5), # kRed 
                   'isSignal' : 2,

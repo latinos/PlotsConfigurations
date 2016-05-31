@@ -9,7 +9,8 @@ supercut = 'mll>50  \
             && ptll > 30 \
             && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13) \
            '
-cuts['hwwhighmass_13TeV_of_0j'] = '( mth>=60) \
+
+cuts['hwwhm_13TeV_of_0j'] = '( mth>=60) \
                 && ( std_vector_jet_pt[0] < 30 ) \
                 && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
                 && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
@@ -23,7 +24,7 @@ cuts['hwwhighmass_13TeV_of_0j'] = '( mth>=60) \
                 && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.715 ) \
                 '
 
-cuts['hwwhighmass_13TeV_of_1j']  = '( mth>=60) \
+cuts['hwwhm_13TeV_of_1j']  = '( mth>=60) \
                 && ( std_vector_jet_pt[0] >= 30 ) \
                 && ( std_vector_jet_pt[1] < 30 ) \
                 && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
@@ -38,10 +39,10 @@ cuts['hwwhighmass_13TeV_of_1j']  = '( mth>=60) \
                 && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.715 ) \
                 '
 
-cuts['hwwhighmass_13TeV_of_VBF']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
+cuts['hwwhm_13TeV_of_VBF']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
                 && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13) \
                 && ( mth>=60) \
-                && ( mjj>500  ) \
+                && ( mjj>500 ) \
                 && ( detajj>3.5  ) \
                 && ( std_vector_jet_pt[1] >= 30 ) \
                 && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
@@ -55,7 +56,6 @@ cuts['hwwhighmass_13TeV_of_VBF']  = '(std_vector_lepton_flavour[0] * std_vector_
                 && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.715 ) \
                 && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.715 ) \
                 '
-
 
 # 11 = e
 # 13 = mu

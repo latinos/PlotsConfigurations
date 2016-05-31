@@ -44,8 +44,9 @@ nuisances['lumi']  = {
               }
 for m in masses:
   for model in models:
-    nuisances['lumi']['samples'].update({'ggH_hww_'+m+'_'+model+'_'+model:'1.027'})
-    nuisances['lumi']['samples'].update({'qqH_hww_'+m+'_'+model+'_'+model:'1.027'})
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    nuisances['lumi']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.027'})
+    nuisances['lumi']['samples'].update({'qqH_hww_'+m+'_'+model_name:'1.027'})
 
 # theory uncertainties
 
@@ -80,9 +81,9 @@ nuisances['QCDscale_ggH0j']  = {
                  'hww2l2v_13TeV_me_0j',
                  'hww2l2v_13TeV_em_0j',
 #
-                 'hwwhighmass_13TeV_of_0j',
-                 'hwwhighmass_13TeV_me_0j',
-                 'hwwhighmass_13TeV_em_0j',
+                 'hwwhm_13TeV_of_0j',
+                 'hwwhm_13TeV_me_0j',
+                 'hwwhm_13TeV_em_0j',
 #
                  'hww2l2v_13TeV_me_mp_0j',
                  'hww2l2v_13TeV_me_pm_0j',
@@ -93,7 +94,8 @@ nuisances['QCDscale_ggH0j']  = {
               }
 for m in masses:
   for model in models:
-    nuisances['QCDscale_ggH0j']['samples'].update({'ggH_hww_'+m+'_'+model:'1.056'})
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    nuisances['QCDscale_ggH0j']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.056'})
 
 
 nuisances['QCDscale_ggH1j']  = {
@@ -111,9 +113,9 @@ nuisances['QCDscale_ggH1j']  = {
                  'hww2l2v_13TeV_me_1j',
                  'hww2l2v_13TeV_em_1j',
 #
-                 'hwwhighmass_13TeV_of_1j',
-                 'hwwhighmass_13TeV_me_1j',
-                 'hwwhighmass_13TeV_em_1j',
+                 'hwwhm_13TeV_of_1j',
+                 'hwwhm_13TeV_me_1j',
+                 'hwwhm_13TeV_em_1j',
 #
                  'hww2l2v_13TeV_me_mp_1j',
                  'hww2l2v_13TeV_me_pm_1j',
@@ -124,7 +126,8 @@ nuisances['QCDscale_ggH1j']  = {
               }
 for m in masses:
   for model in models:
-    nuisances['QCDscale_ggH1j']['samples'].update({'ggH_hww_'+m+'_'+model:'1.13'})
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    nuisances['QCDscale_ggH1j']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.13'})
 
 
 nuisances['QCDscale_ggH2j']  = {
@@ -138,14 +141,15 @@ nuisances['QCDscale_ggH2j']  = {
                  'hww2l2v_13TeV_top_of2j',
                  'hww2l2v_13TeV_dytt_of2j'
 #                 
-                 'hwwhighmass_13TeV_of_VBF',
-                 'hwwhighmass_13TeV_of_VBF',
+                 'hwwhm_13TeV_of_VBF',
+                 'hwwhm_13TeV_of_VBF',
 #                 
                 ]
               }
 for m in masses:
   for model in models:
-    nuisances['QCDscale_ggH2j']['samples'].update({'ggH_hww_'+m+'_'+model:'1.2'})
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    nuisances['QCDscale_ggH2j']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.2'})
 
 
 
@@ -179,8 +183,9 @@ nuisances['QCDscale_qqH']  = {
               }
 for m in masses:
   for model in models:
-    nuisances['QCDscale_qqH']['samples'].update({'qqH_hww_'+m+'_'+model:HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH',m,'scale','bsm')})
-    print "QCDscale_qqH ", m, " = ", HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH',m,'scale','bsm')
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    nuisances['QCDscale_qqH']['samples'].update({'qqH_hww_'+m+'_'+model_name:HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH',m,'scale','bsm')})
+    #print "QCDscale_qqH ", m, " = ", HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH',m,'scale','bsm')
 
 
 nuisances['QCDscale_WH']  = {
@@ -232,7 +237,8 @@ nuisances['QCDscale_qqbar_accept']  = {
               }
 for m in masses:
   for model in models:
-    nuisances['QCDscale_qqbar_accept']['samples'].update({'qqH_hww_'+m+'_'+model:'1.02'})
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    nuisances['QCDscale_qqbar_accept']['samples'].update({'qqH_hww_'+m+'_'+model_name:'1.02'})
 
 nuisances['QCDscale_gg_accept']  = {
                'name'  : 'QCDscale_gg_accept', 
@@ -254,7 +260,8 @@ nuisances['QCDscale_gg_accept']  = {
               }
 for m in masses:
   for model in models:
-    nuisances['QCDscale_gg_accept']['samples'].update({'ggH_hww_'+m+'_'+model:'1.027'})
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    nuisances['QCDscale_gg_accept']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.027'})
 
 
 # pdf uncertainty
@@ -273,7 +280,8 @@ nuisances['pdf_gg']  = {
               }
 for m in masses:
   for model in models:
-    nuisances['pdf_gg']['samples'].update({'ggH_hww_'+m+'_'+model: HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,m,'pdf','bsm')})
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    nuisances['pdf_gg']['samples'].update({'ggH_hww_'+m+'_'+model_name: HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,m,'pdf','bsm')})
 
 
 nuisances['pdf_qqbar']  = {
@@ -290,7 +298,8 @@ nuisances['pdf_qqbar']  = {
               }
 for m in masses:
   for model in models:
-    nuisances['pdf_qqbar']['samples'].update({'qqH_hww_'+m+'_'+model:HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH',m,'pdf','bsm')})
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    nuisances['pdf_qqbar']['samples'].update({'qqH_hww_'+m+'_'+model_name:HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH',m,'pdf','bsm')})
 
 
 
@@ -314,7 +323,8 @@ nuisances['pdf_gg_accept']  = {
               }
 for m in masses:
   for model in models:
-    nuisances['pdf_gg_accept']['samples'].update({'ggH_hww_'+m+'_'+model:'1.005'})
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    nuisances['pdf_gg_accept']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.005'})
 
 
 nuisances['pdf_qqbar_accept']  = {
@@ -332,7 +342,8 @@ nuisances['pdf_qqbar_accept']  = {
               }
 for m in masses:
   for model in models:
-    nuisances['pdf_qqbar_accept']['samples'].update({'qqH_hww_'+m+'_'+model:'1.011'})
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    nuisances['pdf_qqbar_accept']['samples'].update({'qqH_hww_'+m+'_'+model_name:'1.011'})
 
 
 #
@@ -490,9 +501,9 @@ nuisances['WWresum0j']  = {
                  'hww2l2v_13TeV_me_0j',
                  'hww2l2v_13TeV_em_0j',
 #
-                 'hwwhighmass_13TeV_of_0j',
-                 'hwwhighmass_13TeV_me_0j',
-                 'hwwhighmass_13TeV_em_0j',
+                 'hwwhm_13TeV_of_0j',
+                 'hwwhm_13TeV_me_0j',
+                 'hwwhm_13TeV_em_0j',
 #
 
                  'hww2l2v_13TeV_me_mp_0j',
@@ -520,9 +531,9 @@ nuisances['WWresum1j']  = {
                  'hww2l2v_13TeV_me_1j',
                  'hww2l2v_13TeV_em_1j',
 #
-                 'hwwhighmass_13TeV_of_1j',
-                 'hwwhighmass_13TeV_me_1j',
-                 'hwwhighmass_13TeV_em_1j',
+                 'hwwhm_13TeV_of_1j',
+                 'hwwhm_13TeV_me_1j',
+                 'hwwhm_13TeV_em_1j',
 #
                  'hww2l2v_13TeV_me_mp_1j',
                  'hww2l2v_13TeV_me_pm_1j',
@@ -543,7 +554,7 @@ nuisances['WWresum2j']  = {
                  'hww2l2v_13TeV_top_of2j',
                  'hww2l2v_13TeV_dytt_of2j',
 #                 
-                 'hwwhighmass_13TeV_of_VBF',
+                 'hwwhm_13TeV_of_VBF',
 #                 
                 ]
                 }
@@ -563,9 +574,9 @@ nuisances['WWqscale0j']  = {
                  'hww2l2v_13TeV_me_0j',
                  'hww2l2v_13TeV_em_0j',
 #
-                 'hwwhighmass_13TeV_of_0j',
-                 'hwwhighmass_13TeV_me_0j',
-                 'hwwhighmass_13TeV_em_0j',
+                 'hwwhm_13TeV_of_0j',
+                 'hwwhm_13TeV_me_0j',
+                 'hwwhm_13TeV_em_0j',
 #
                  'hww2l2v_13TeV_me_mp_0j',
                  'hww2l2v_13TeV_me_pm_0j',
@@ -591,9 +602,9 @@ nuisances['WWqscale1j']  = {
                  'hww2l2v_13TeV_me_1j',
                  'hww2l2v_13TeV_em_1j',
 #
-                 'hwwhighmass_13TeV_of_1j',
-                 'hwwhighmass_13TeV_me_1j',
-                 'hwwhighmass_13TeV_em_1j',
+                 'hwwhm_13TeV_of_1j',
+                 'hwwhm_13TeV_me_1j',
+                 'hwwhm_13TeV_em_1j',
 #
                  'hww2l2v_13TeV_me_mp_1j',
                  'hww2l2v_13TeV_me_pm_1j',
@@ -614,7 +625,7 @@ nuisances['WWqscale2j']  = {
                  'hww2l2v_13TeV_top_of2j',
                  'hww2l2v_13TeV_dytt_of2j',
 #               
-                 'hwwhighmass_13TeV_of_VBF',
+                 'hwwhm_13TeV_of_VBF',
 #                   
                 ]
                 }
@@ -716,9 +727,9 @@ nuisances['DYttnorm0j']  = {
                  'hww2l2v_13TeV_me_0j',
                  'hww2l2v_13TeV_em_0j',
 #
-                 'hwwhighmass_13TeV_of_0j',
-                 'hwwhighmass_13TeV_me_0j',
-                 'hwwhighmass_13TeV_em_0j',
+                 'hwwhm_13TeV_of_0j',
+                 'hwwhm_13TeV_me_0j',
+                 'hwwhm_13TeV_em_0j',
 #
                  'hww2l2v_13TeV_me_mp_0j',
                  'hww2l2v_13TeV_me_pm_0j',
@@ -742,9 +753,9 @@ nuisances['DYttnorm1j']  = {
                  'hww2l2v_13TeV_me_1j',
                  'hww2l2v_13TeV_em_1j',
 #
-                 'hwwhighmass_13TeV_of_1j',
-                 'hwwhighmass_13TeV_me_1j',
-                 'hwwhighmass_13TeV_em_1j',
+                 'hwwhm_13TeV_of_1j',
+                 'hwwhm_13TeV_me_1j',
+                 'hwwhm_13TeV_em_1j',
 #
                  'hww2l2v_13TeV_me_mp_1j',
                  'hww2l2v_13TeV_me_pm_1j',
@@ -764,7 +775,7 @@ nuisances['DYttnorm2j']  = {
                  'hww2l2v_13TeV_top_of2j',
                  'hww2l2v_13TeV_dytt_of2j',
 #                 
-                 'hwwhighmass_13TeV_of_VBF',
+                 'hwwhm_13TeV_of_VBF',
 #                 
                 ]
               }
@@ -796,9 +807,9 @@ nuisances['WWnorm0j']  = {
                  'hww2l2v_13TeV_me_0j',
                  'hww2l2v_13TeV_em_0j',
 #
-                 'hwwhighmass_13TeV_of_0j',
-                 'hwwhighmass_13TeV_me_0j',
-                 'hwwhighmass_13TeV_em_0j',
+                 'hwwhm_13TeV_of_0j',
+                 'hwwhm_13TeV_me_0j',
+                 'hwwhm_13TeV_em_0j',
 #
 
                  'hww2l2v_13TeV_me_mp_0j',
@@ -823,9 +834,9 @@ nuisances['WWnorm1j']  = {
                  'hww2l2v_13TeV_me_1j',
                  'hww2l2v_13TeV_em_1j',
 #
-                 'hwwhighmass_13TeV_of_1j',
-                 'hwwhighmass_13TeV_me_1j',
-                 'hwwhighmass_13TeV_em_1j',
+                 'hwwhm_13TeV_of_1j',
+                 'hwwhm_13TeV_me_1j',
+                 'hwwhm_13TeV_em_1j',
 #
                  'hww2l2v_13TeV_me_mp_1j',
                  'hww2l2v_13TeV_me_pm_1j',
@@ -845,7 +856,7 @@ nuisances['WWnorm2j']  = {
                  'hww2l2v_13TeV_top_of2j',
                  'hww2l2v_13TeV_dytt_of2j',
 #                 
-                 'hwwhighmass_13TeV_of_VBF',
+                 'hwwhm_13TeV_of_VBF',
 #                 
                 ]
               }
@@ -864,9 +875,9 @@ nuisances['Topnorm0j']  = {
                  'hww2l2v_13TeV_me_0j',
                  'hww2l2v_13TeV_em_0j',
 #
-                 'hwwhighmass_13TeV_of_0j',
-                 'hwwhighmass_13TeV_me_0j',
-                 'hwwhighmass_13TeV_em_0j',
+                 'hwwhm_13TeV_of_0j',
+                 'hwwhm_13TeV_me_0j',
+                 'hwwhm_13TeV_em_0j',
 #
                  'hww2l2v_13TeV_me_mp_0j',
                  'hww2l2v_13TeV_me_pm_0j',
@@ -890,9 +901,9 @@ nuisances['Topnorm1j']  = {
                  'hww2l2v_13TeV_me_1j',
                  'hww2l2v_13TeV_em_1j',
 #
-                 'hwwhighmass_13TeV_of_1j',
-                 'hwwhighmass_13TeV_me_1j',
-                 'hwwhighmass_13TeV_em_1j',
+                 'hwwhm_13TeV_of_1j',
+                 'hwwhm_13TeV_me_1j',
+                 'hwwhm_13TeV_em_1j',
 #
                  'hww2l2v_13TeV_me_mp_1j',
                  'hww2l2v_13TeV_me_pm_1j',
@@ -912,7 +923,7 @@ nuisances['Topnorm2j']  = {
                  'hww2l2v_13TeV_top_of2j',
                  'hww2l2v_13TeV_dytt_of2j',
 #                 
-                 'hwwhighmass_13TeV_of_VBF',
+                 'hwwhm_13TeV_of_VBF',
 #
                 ]
               }
@@ -1028,8 +1039,9 @@ nuisances['btag']  = {
 }
 for m in masses:
   for model in models:
-    nuisances['btag']['samples'].update({'ggH_hww_'+m+'_'+model:['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)']})
-    nuisances['btag']['samples'].update({'qqH_hww_'+m+'_'+model:['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)']}) 
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    nuisances['btag']['samples'].update({'ggH_hww_'+m+'_'+model_name:['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)']})
+    nuisances['btag']['samples'].update({'qqH_hww_'+m+'_'+model_name:['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)']}) 
  
  
 
@@ -1102,8 +1114,9 @@ nuisances['trigg']  = {
 }
 for m in masses:
   for model in models:
-    nuisances['trigg']['samples'].update({'ggH_hww_'+m+'_'+model:['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)']})
-    nuisances['trigg']['samples'].update({'qqH_hww_'+m+'_'+model:['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)']})
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    nuisances['trigg']['samples'].update({'ggH_hww_'+m+'_'+model_name:['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)']})
+    nuisances['trigg']['samples'].update({'qqH_hww_'+m+'_'+model_name:['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)']})
 
 
 nuisances['idiso']  = {
@@ -1136,8 +1149,9 @@ nuisances['idiso']  = {
 }
 for m in masses:
   for model in models:
-    nuisances['idiso']['samples'].update({'ggH_hww_'+m+'_'+model:['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])']})
-    nuisances['idiso']['samples'].update({'qqH_hww_'+m+'_'+model:['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])']})
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    nuisances['idiso']['samples'].update({'ggH_hww_'+m+'_'+model_name:['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])']})
+    nuisances['idiso']['samples'].update({'qqH_hww_'+m+'_'+model_name:['(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])', '(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])']})
 
 # nuisances handled by means of a different set of trees
 
@@ -1176,8 +1190,9 @@ nuisances['jes']  = {
 }
 for m in masses:
   for model in models:
-    nuisances['jes']['samples'].update({'ggH_hww_'+m+'_'+model:['1', '1']})
-    nuisances['jes']['samples'].update({'qqH_hww_'+m+'_'+model:['1', '1']})
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    nuisances['jes']['samples'].update({'ggH_hww_'+m+'_'+model_name:['1', '1']})
+    nuisances['jes']['samples'].update({'qqH_hww_'+m+'_'+model_name:['1', '1']})
 
 
 
@@ -1214,8 +1229,9 @@ nuisances['electronpt']  = {
 }
 for m in masses:
   for model in models:
-    nuisances['electronpt']['samples'].update({'ggH_hww_'+m+'_'+model:['1', '1']})
-    nuisances['electronpt']['samples'].update({'qqH_hww_'+m+'_'+model:['1', '1']})
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    nuisances['electronpt']['samples'].update({'ggH_hww_'+m+'_'+model_name:['1', '1']})
+    nuisances['electronpt']['samples'].update({'qqH_hww_'+m+'_'+model_name:['1', '1']})
                 
      
 nuisances['muonpt']  = {
@@ -1251,8 +1267,9 @@ nuisances['muonpt']  = {
 }
 for m in masses:
   for model in models:
-    nuisances['muonpt']['samples'].update({'ggH_hww_'+m+'_'+model:['1', '1']})
-    nuisances['muonpt']['samples'].update({'qqH_hww_'+m+'_'+model:['1', '1']})
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    nuisances['muonpt']['samples'].update({'ggH_hww_'+m+'_'+model_name:['1', '1']})
+    nuisances['muonpt']['samples'].update({'qqH_hww_'+m+'_'+model_name:['1', '1']})
 
 nuisances['met']  = {
                 'name'  : 'scale_met', 
@@ -1286,8 +1303,9 @@ nuisances['met']  = {
 }
 for m in masses:
   for model in models:
-    nuisances['met']['samples'].update({'ggH_hww_'+m+'_'+model:['1', '1']})
-    nuisances['met']['samples'].update({'qqH_hww_'+m+'_'+model:['1', '1']})
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    nuisances['met']['samples'].update({'ggH_hww_'+m+'_'+model_name:['1', '1']})
+    nuisances['met']['samples'].update({'qqH_hww_'+m+'_'+model_name:['1', '1']})
 
                 
                 
@@ -1312,7 +1330,6 @@ nuisances['stat']  = {
                     
                    'DY': {
                          'typeStat' : 'bbb',
-                         'keepNormalization' : '1'  # default = 0 -> 0=don't keep normalization
                          },
                     
                    'ggWW': {
@@ -1394,17 +1411,18 @@ nuisances['stat']  = {
                    'VgS':{  
                          'typeStat' : 'bbb',
                          },
-                   'ggH_hww_750_NWA' : {
-                         'typeStat' : 'bbb',
-                         },
-                   'qqH_hww_750_NWA' : {
-                         'typeStat' : 'bbb',
-                         },
+#                   'ggH_hww_750_NWA' : {
+#                         'typeStat' : 'bbb',
+#                         },
+#                   'qqH_hww_750_NWA' : {
+#                         'typeStat' : 'bbb',
+#                         },
                  },
                'type'  : 'shape'
               }
-for m in masses:
-  for model in models:
-    nuisances['stat']['samples'].update({'ggH_hww_'+m+'_'+model:{'typeStat' : 'bbb'}})
-    nuisances['stat']['samples'].update({'qqH_hww_'+m+'_'+model:{'typeStat' : 'bbb'}})
+#for m in masses:
+#  for model in models:
+#    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+#    nuisances['stat']['samples'].update({'ggH_hww_'+m+'_'+model_name:{'typeStat' : 'bbb'}})
+#    nuisances['stat']['samples'].update({'qqH_hww_'+m+'_'+model_name:{'typeStat' : 'bbb'}})
 
