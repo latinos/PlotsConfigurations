@@ -23,14 +23,14 @@ variables['nvtx']  = {   'name': 'nvtx',
                         #}
 
 variables['mll']  = {   'name': 'mll',            #   variable name    
-                        'range' : (20,30,80),    #   variable range
+                        'range' : (10,30,80),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
                          'fold' : 3
                         }
 
 
 variables['mth']  = {   'name': 'mth',            #   variable name    
-                        'range' : (24,0,60),    #   variable range
+                        'range' : (12,0,60),    #   variable range
                         'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
                          'fold' : 3
                         }
@@ -42,7 +42,7 @@ variables['mth']  = {   'name': 'mth',            #   variable name
                         #}
 
 variables['ptll']  = {   'name': 'ptll',     
-                        'range' : (24,30,90),   
+                        'range' : (12,30,90),   
                         'xaxis' : 'p_{T}^{ll} [GeV]',
                         'fold' : 3
                         }
@@ -60,13 +60,13 @@ variables['ptll']  = {   'name': 'ptll',
                         #}
 
 variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
-                        'range' : (24,20,80),   
+                        'range' : (12,20,80),   
                         'xaxis' : 'p_{T} 1st lep',
                         'fold'  : 3                         
                         }
 
 variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
-                        'range' : (16,10,50),   
+                        'range' : (8,10,50),   
                         'xaxis' : 'p_{T} 2nd lep',
                         'fold'  : 3                         
                         }
@@ -85,13 +85,13 @@ variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',
 #                        }
 
 variables['eta1']  = {  'name': 'std_vector_lepton_eta[0]',     
-                       'range' : (100,-3.2,3.2),   
+                       'range' : (16,-3.2,3.2),   
                        'xaxis' : '#eta 1st lep',
                        'fold'  : 3                         
                        }
 
 variables['eta2']  = {  'name': 'std_vector_lepton_eta[1]',     
-                       'range' : (100,-3.2,3.2),   
+                       'range' : (16,-3.2,3.2),   
                        'xaxis' : '#eta 2nd lep',
                        'fold'  : 3                         
                        }
