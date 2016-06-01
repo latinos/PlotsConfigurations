@@ -47,13 +47,10 @@ samples['DY']  = {    'name': [
 #  18610 / (26664709.0 - 4204030.0 + 66113136.0 - 10417468.0) * 1000 = 0.238112
 #
 
-
 #samples['Wjets']  = {    'name': ['latino_WJetsToLNu.root'],     #   file name    
                       #'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
                       ##'isData': ['0'],                             
                   #}
-
-
 
 # data driven
 samples['Fake']  = {    'name': [
@@ -84,8 +81,6 @@ samples['Fake']  = {    'name': [
                       'isData': ['all'],                             
                   }
 
-             
-
 samples['top'] = {   'name': [
                           'latino_TTTo2L2Nu.root', 
                           'latino_ST_tW_antitop.root',
@@ -94,14 +89,12 @@ samples['top'] = {   'name': [
                        'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',                
                    }
 
-
 samples['WW']  = {    'name': [
                                   'latino_WWTo2L2Nu.root'
                                 ],      
                       'weight' : 'metFilter*nllW*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
                       #'weights': ['abs(nllW)'] ,           
                   }
-
 
 samples['ggWW']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root'],      
                       'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
@@ -118,14 +111,11 @@ samples['ggWW']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root'],
 # ggWW sample: k = 1.4 +/- 15%
 # ggWW interference: k = 1.87 +/- 25%
 
-
-
 samples['Vg']  = {    'name': ['latino_Wg_AMCNLOFXFX.root'],      
                       'weight' : 'metFilter*1.23*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
                       'weights': ['1'] ,           
                       #'isData': ['0'],                            
                   }
-
 
 samples['VZ']  = {    'name': [
                           'latino_WZTo3LNu.root', 
@@ -139,7 +129,6 @@ samples['VZ']  = {    'name': [
                       #'isData': ['0'],                            
                   }
 
-
 samples['VVV'] = {    'name': [
                           'latino_WZZ.root', 
                           #'latino_ZZZ.root'
@@ -149,7 +138,6 @@ samples['VVV'] = {    'name': [
                       'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
                       #'isData': ['0'],                            
                   }
-
 
 # Htautau
 samples['H_htt']  = {      'name': ['latino_GluGluHToTauTau_M125.root',
@@ -162,10 +150,7 @@ samples['H_htt']  = {      'name': ['latino_GluGluHToTauTau_M125.root',
                            'weights': ['1', '1', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)' ]            
                   }
 
-
-
 # HWW 
-
 samples['ggH_hww']  = {    'name': [
                                'latino_GluGluHToWWTo2L2NuPowheg_M125.root'
                                #'latino_GluGluHToWWTo2L2Nu_M125.root'
@@ -187,7 +172,6 @@ samples['ggZH_hww']  = {    'name': [
                            'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
                   }
 
-
 samples['WH_hww']  = {    'name': ['latino_HWminusJ_HToWW_M125.root', 'latino_HWplusJ_HToWW_M125.root'],      
                            'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
                   }
@@ -195,8 +179,6 @@ samples['WH_hww']  = {    'name': ['latino_HWminusJ_HToWW_M125.root', 'latino_HW
 samples['ZH_hww']  = {    'name': ['latino_HZJ_HToWW_M125.root'],      
                            'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
                   }
-
-
 
 ###########################################
 ###########################################
@@ -217,7 +199,4 @@ samples['DATA']  = {   'name': [
                        'weight' : 'trigger*metFilter',
                        'isData': ['all'],                            
                   }
-
-
-
-
+                  
