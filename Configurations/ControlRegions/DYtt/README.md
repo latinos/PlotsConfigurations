@@ -75,6 +75,10 @@ Backup:
     
     mkShapes.py      --pycfg=configuration.py  --inputDir=eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight/
     
+    mkShapes.py      --doThreads=True   --pycfg=configuration.py  --inputDir=eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
+    mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_DY.root
+
+
     
 Test:
 

@@ -28,8 +28,8 @@ lumi = 2.318
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = '~/www/figuresLxplus/30May2016/DYtt/NoSF'
-#outputDirPlots = 'plotCR'
+#outputDirPlots = '~/www/figuresLxplus/30May2016/DYtt/NoSF'
+outputDirPlots = 'plotCR'
 
 
 # used by mkDatacards to define output directory for datacards
