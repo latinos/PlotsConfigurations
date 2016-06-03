@@ -68,8 +68,6 @@ nuisances['QCDscale_ggH0j']  = {
                  'hww2l2v_13TeV_em_mp_0j',
                  'hww2l2v_13TeV_em_pm_0j',
 #                 
-                 'monoH_BVeto0j_em',
-                 'monoH_TopCR0j_em',
                 ]               
               }
 
@@ -93,8 +91,6 @@ nuisances['QCDscale_ggH1j']  = {
                  'hww2l2v_13TeV_em_mp_1j',
                  'hww2l2v_13TeV_em_pm_1j',
 #                 
-                 'monoH_BVeto1j_em',
-                 'monoH_TopCR1j_em',
                 ]
               }
 
@@ -536,8 +532,6 @@ nuisances['WWresum0j']  = {
                  'hww2l2v_13TeV_em_mp_0j',
                  'hww2l2v_13TeV_em_pm_0j',
 #                 
-
-                 'monoH_TopCR0j_em',
                 ]               
                 
                 }
@@ -563,8 +557,6 @@ nuisances['WWresum1j']  = {
                  'hww2l2v_13TeV_em_mp_1j',
                  'hww2l2v_13TeV_em_pm_1j',
 #                 
-                 'monoH_BVeto1j_em',
-                 'monoH_TopCR1j_em',
                 ]               
                 }
 
@@ -588,8 +580,6 @@ nuisances['WWqscale0j']  = {
                  'hww2l2v_13TeV_em_mp_0j',
                  'hww2l2v_13TeV_em_pm_0j',
 #                 
-
-                 'monoH_TopCR0j_em',
                 ] 
                 }
 
@@ -614,8 +604,6 @@ nuisances['WWqscale1j']  = {
                  'hww2l2v_13TeV_em_mp_1j',
                  'hww2l2v_13TeV_em_pm_1j',
 #                 
-                 'monoH_BVeto1j_em',
-                 'monoH_TopCR1j_em',
                 ] 
                 }
 
@@ -747,8 +735,6 @@ nuisances['DYttnorm0j']  = {
                  'hww2l2v_13TeV_em_mp_0j',
                  'hww2l2v_13TeV_em_pm_0j',
 #                 
-
-                 'monoH_TopCR0j_em',
                 ]
               }
 
@@ -771,8 +757,6 @@ nuisances['DYttnorm1j']  = {
                  'hww2l2v_13TeV_em_mp_1j',
                  'hww2l2v_13TeV_em_pm_1j',
 #                 
-                 'monoH_BVeto1j_em',
-                 'monoH_TopCR1j_em',
                 ]
               }
 
@@ -809,9 +793,7 @@ nuisances['WWnorm0j']  = {
                  'hww2l2v_13TeV_em_mp_0j',
                  'hww2l2v_13TeV_em_pm_0j',
 #                 
-
-                 'monoH_TopCR0j_em',
-                ]
+                 ]
               }
 
 nuisances['WWnorm1j']  = {
@@ -833,8 +815,6 @@ nuisances['WWnorm1j']  = {
                  'hww2l2v_13TeV_em_mp_1j',
                  'hww2l2v_13TeV_em_pm_1j',
 #                 
-                 'monoH_BVeto1j_em',
-                 'monoH_TopCR1j_em',
                 ]
               }
 
@@ -880,7 +860,6 @@ nuisances['Topnorm1j']  = {
                  'hww2l2v_13TeV_em_mp_1j',
                  'hww2l2v_13TeV_em_pm_1j',
 #                 
-
                 ]
               }
 
