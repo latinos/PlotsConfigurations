@@ -44,11 +44,24 @@ Prune all datacards:
 
 Combine the Top CR and the WW SR datacards:
 
-	 combineCards.py datacards/ww_BVeto0j_em/events/datacard.txt.pruned.txt datacards/ww_TopCR0j_em/events/datacard.txt.pruned.txt > wwCombCard0.txt
+	 combineCards.py datacards/ww_BVeto0j_em/events/datacard.txt datacards/ww_TopCR0j_em/events/datacard.txt > wwCombCard0.txt
 
-	 combineCards.py datacards/ww_BVeto1j_em/events/datacard.txt.pruned.txt datacards/ww_TopCR1j_em/events/datacard.txt.pruned.txt > wwCombCard1.txt	
+	 combineCards.py datacards/ww_BVeto1j_em/events/datacard.txt datacards/ww_TopCR1j_em/events/datacard.txt > wwCombCard1.txt	
 
-	 combineCards.py wwCombCard0.txt wwCombCard1.txt > wwCombCardIncl.txt
+	 combineCards.py wwCombCard0.txt wwCombCard1.txt > wwCombCard01.txt
+
+	 combineCards.py datacards/ww_BVetoIncl_em/events/datacard.txt datacards/ww_TopCRIncl_em/events/datacard.txt > wwCombCardIncl.txt	
+
+
+	 combineCards.py datacards/ww_BVeto0j_em/events/datacard.txt datacards/ww_TopCR0j_em/events/datacard.txt > wwCombCard0.txt
+
+	 combineCards.py datacards/ww_BVeto1j_em/events/datacard.txt datacards/ww_TopCR1j_em/events/datacard.txt > wwCombCard1.txt	
+
+	 combineCards.py wwCombCard0.txt wwCombCard1.txt > wwCombCard01.txt
+
+	 combineCards.py datacards/ww_BVetoIncl_em/events/datacard.txt datacards/ww_TopCRIncl_em/events/datacard.txt > wwCombCardIncl.txt	
+
+	 combineCards.py datacards/ww_BVetoIncl_csv2_em/events/datacard.txt datacards/ww_TopCRIncl_csv2_em/events/datacard.txt > wwCombCardInclCsv2.txt	
 
 
 Extract signal strength from datacard using combine:
@@ -57,7 +70,11 @@ Extract signal strength from datacard using combine:
 
    	combine -M MaxLikelihoodFit wwCombCard1.txt  --setPhysicsModelParameterRanges r=0.01,2  -m 125 >> combination/signalStrength1jet.txt
 
+   	combine -M MaxLikelihoodFit wwCombCard01.txt --setPhysicsModelParameterRanges r=0.01,2  -m 125 >> combination/signalStrength01jet.txt
+
    	combine -M MaxLikelihoodFit wwCombCardIncl.txt  --setPhysicsModelParameterRanges r=0.01,2  -m 125 >> combination/signalStrengthIncl.txt
+
+   	combine -M MaxLikelihoodFit wwCombCardInclCsv2.txt  --setPhysicsModelParameterRanges r=0.01,2  -m 125 >> combination/signalStrengthInclCsv2.txt
 
 
 	combine -M MultiDimFit wwCombCard0.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -n "LHScan" -m 125 >> combination/signalStrength0jet.txt
@@ -71,6 +88,8 @@ To calculate the Top SF from the combined datacards:
 
 	combine -M MaxLikelihoodFit wwCombCard1.txt --redefineSignalPOIs Topnorm1j --freezeNuisances=r,CMS_scale_e,CMS_scale_j,CMS_scale_m,CMS_scale_met,CMS_scale_trigger,CMS_btag,CMS_idiso,CMS_tttwTh,,CMS_ww_BVeto1j_em_top_ibin_1_stat >> combination/TopSF1jet.txt
 
+	combine -M MaxLikelihoodFit wwCombCardIncl.txt --redefineSignalPOIs TopnormIncl --freezeNuisances=r,CMS_scale_e,CMS_scale_j,CMS_scale_m,CMS_scale_met,CMS_scale_trigger,CMS_btag,CMS_idiso,CMS_tttwTh,CMS_ww_BVetoIncl_em_top_ibin_1_stat >> combination/TopSFIncl.txt
+
 	combine -M MultiDimFit wwCombCard0.txt --algo=grid --points 100 --redefineSignalPOIs Topnorm0j --freezeNuisances=r,CMS_scale_e,CMS_scale_j,CMS_scale_m,CMS_scale_met,CMS_scale_trigger,CMS_btag,CMS_idiso,CMS_tttwTh,,CMS_ww_BVeto0j_em_top_ibin_1_stat --setPhysicsModelParameterRanges Topnorm0j=0.01,2 -n "LHScanTopnorm0j" >> combination/TopLH0jet.txt
 
 	combine -M MultiDimFit wwCombCard1.txt --algo=grid --points 100 --redefineSignalPOIs Topnorm1j --freezeNuisances=r,CMS_scale_e,CMS_scale_j,CMS_scale_m,CMS_scale_met,CMS_scale_trigger,CMS_btag,CMS_idiso,CMS_tttwTh,,CMS_ww_BVeto1j_em_top_ibin_1_stat --setPhysicsModelParameterRanges Topnorm1j=0.01,2 -n "LHScanTopnorm1j" >> combination/TopLH1jet.txt
@@ -82,7 +101,11 @@ To perform a blind (MC only) estimation of the uncertainty on the signal strengt
 
    	combine -M MaxLikelihoodFit wwCombCard1.txt  --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1  -m 125 >> combination/signalStrengthBlind1jet.txt
 
+   	combine -M MaxLikelihoodFit wwCombCard01.txt  --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1  -m 125 >> combination/signalStrengthBlind01jet.txt
+
    	combine -M MaxLikelihoodFit wwCombCardIncl.txt  --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1  -m 125 >> combination/signalStrengthBlindIncl.txt
+
+   	combine -M MaxLikelihoodFit wwCombCardInclCsv2.txt  --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1  -m 125 >> combination/signalStrengthBlindInclCsv2.txt
 
 
 	combine -M MultiDimFit wwCombCard0.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1 -n "LHScan" -m 125 >> combination/signalStrengthBlind0jet.txt
@@ -90,6 +113,8 @@ To perform a blind (MC only) estimation of the uncertainty on the signal strengt
 	combine -M MultiDimFit wwCombCard1.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1 -n "LHScan" -m 125 >> combination/signalStrengthBlind1jet.txt
 
 	combine -M MultiDimFit wwCombCardIncl.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1 -n "LHScan" -m 125 >> combination/signalStrengthBlindIncl.txt
+
+	combine -M MultiDimFit wwCombCardInclCsv2.txt --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.01,2 -t -1 --expectSignal=1 -n "LHScan" -m 125 >> combination/signalStrengthBlindInclCsv2.txt
 
 
 To draw the plots of the impact of the individual nuisances on the final result (here blindly):
@@ -116,11 +141,113 @@ To draw the plots of the impact of the individual nuisances on the final result 
       plotImpacts.py -i impacts1.json -o impacts1
 
 
+      text2workspace.py wwCombCard01.txt -m 125
+      
+      combineTool.py -M Impacts -d wwCombCard01.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit 1
+      
+      combineTool.py -M Impacts -d wwCombCard01.root -m 125 -t -1 --expectSignal=1 --robustFit 1 --doFits
+      
+      combineTool.py -M Impacts -d wwCombCard01.root -m 125 -o impacts01.json
+      
+      plotImpacts.py -i impacts01.json -o impacts01
+
+
       text2workspace.py wwCombCardIncl.txt -m 125
       
       combineTool.py -M Impacts -d wwCombCardIncl.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit 1
       
       combineTool.py -M Impacts -d wwCombCardIncl.root -m 125 -t -1 --expectSignal=1 --robustFit 1 --doFits
+      
+      combineTool.py -M Impacts -d wwCombCardIncl.root -m 125 -o impactsIncl.json
+      
+      plotImpacts.py -i impactsIncl.json -o impactsIncl
+
+
+      text2workspace.py wwCombCard0Csv2.txt -m 125
+
+      combineTool.py -M Impacts -d wwCombCard0Csv2.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit 1
+
+      combineTool.py -M Impacts -d wwCombCard0Csv2.root -m 125 -t -1 --expectSignal=1 --robustFit 1 --doFits
+
+      combineTool.py -M Impacts -d wwCombCard0Csv2.root -m 125 -o impacts0Csv2.json
+
+      plotImpacts.py -i impacts0Csv2.json -o impacts0Csv2
+
+
+      text2workspace.py wwCombCard1Csv2.txt -m 125
+
+      combineTool.py -M Impacts -d wwCombCard1Csv2.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit 1
+
+      combineTool.py -M Impacts -d wwCombCard1Csv2.root -m 125 -t -1 --expectSignal=1 --robustFit 1 --doFits
+
+      combineTool.py -M Impacts -d wwCombCard1Csv2.root -m 125 -o impacts1Csv2.json
+
+      plotImpacts.py -i impacts1Csv2.json -o impacts1Csv2
+
+
+      text2workspace.py wwCombCard01Csv2.txt -m 125
+
+      combineTool.py -M Impacts -d wwCombCard01Csv2.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit 1
+
+      combineTool.py -M Impacts -d wwCombCard01Csv2.root -m 125 -t -1 --expectSignal=1 --robustFit 1 --doFits
+
+      combineTool.py -M Impacts -d wwCombCard01Csv2.root -m 125 -o impacts01Csv2.json
+
+      plotImpacts.py -i impacts01Csv2.json -o impacts01Csv2
+
+
+      text2workspace.py wwCombCardInclCsv2.txt -m 125
+      
+      combineTool.py -M Impacts -d wwCombCardInclCsv2.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit 1
+      
+      combineTool.py -M Impacts -d wwCombCardInclCsv2.root -m 125 -t -1 --expectSignal=1 --robustFit 1 --doFits
+      
+      combineTool.py -M Impacts -d wwCombCardInclCsv2.root -m 125 -o impactsInclCsv2.json
+      
+      plotImpacts.py -i impactsInclCsv2.json -o impactsInclCsv2
+
+
+
+To draw the plots of the impact of the individual nuisances on the final result (here without blinding!!!):
+
+      text2workspace.py wwCombCard0.txt -m 125
+      
+      combineTool.py -M Impacts -d wwCombCard0.root -m 125 --doInitialFit  --robustFit 1
+      
+      combineTool.py -M Impacts -d wwCombCard0.root -m 125  --robustFit 1 --doFits
+      
+      combineTool.py -M Impacts -d wwCombCard0.root -m 125 -o impacts0.json
+      
+      plotImpacts.py -i impacts0.json -o impacts0
+
+
+      text2workspace.py wwCombCard1.txt -m 125
+      
+      combineTool.py -M Impacts -d wwCombCard1.root -m 125 --doInitialFit  --robustFit 1
+      
+      combineTool.py -M Impacts -d wwCombCard1.root -m 125  --robustFit 1 --doFits
+      
+      combineTool.py -M Impacts -d wwCombCard1.root -m 125 -o impacts1.json
+      
+      plotImpacts.py -i impacts1.json -o impacts1
+
+
+      text2workspace.py wwCombCard01.txt -m 125
+      
+      combineTool.py -M Impacts -d wwCombCard01.root -m 125 --doInitialFit  --robustFit 1
+      
+      combineTool.py -M Impacts -d wwCombCard01.root -m 125  --robustFit 1 --doFits
+      
+      combineTool.py -M Impacts -d wwCombCard01.root -m 125 -o impacts01.json
+      
+      plotImpacts.py -i impacts01.json -o impacts01
+
+
+      text2workspace.py wwCombCardIncl.txt -m 125
+      
+      combineTool.py -M Impacts -d wwCombCardIncl.root -m 125 --doInitialFit  --robustFit 1
+      
+      combineTool.py -M Impacts -d wwCombCardIncl.root -m 125  --robustFit 1 --doFits
       
       combineTool.py -M Impacts -d wwCombCardIncl.root -m 125 -o impactsIncl.json
       
@@ -135,9 +262,13 @@ Official tables from datacards (use with combine):
 
 	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_BVeto1j_em/events/datacard.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_BVeto1j_em.tex
 
+	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_BVetoIncl_em/events/datacard.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_BVetoIncl_em.tex
+
 	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_TopCR0j_em/events/datacard.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_TopCR0j_em.tex
 
 	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_TopCR1j_em/events/datacard.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_TopCR1j_em.tex
+
+	 python      systematicsAnalyzer.py        ../PlotsConfigurations/Configurations/WW/datacards/ww_TopCRIncl_em/events/datacard.txt      --all    -f      tex    >     ../PlotsConfigurations/Configurations/WW/ww_TopCRIncl_em.tex
 
 	 cd -	 
 
