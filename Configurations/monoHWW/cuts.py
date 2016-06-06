@@ -12,6 +12,7 @@ supercut = 'std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>20 \
             && metPfType1 > 20 \
             && mpmet > 20 \
             && ptll > 30 \
+            && mll < 100 \
 '
 
 #cuts['ww_BVetoIn_em'] = 'njet >= 0'
@@ -28,7 +29,7 @@ cuts['monoH_BVeto_em'] = ' njet >= 0 \
             && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.715 ) \
 '
 
-cuts['monoH_TopCR0j_em'] = 'njet >= 0 \
+cuts['monoH_TopCR_em'] = 'njet >= 0 \
             && mth > 40 \
             && (( std_vector_jet_pt[0] > 20 && std_vector_jet_cmvav2[0] > -0.715 )  \
             ||  ( std_vector_jet_pt[1] > 20 && std_vector_jet_cmvav2[1] > -0.715 )  \

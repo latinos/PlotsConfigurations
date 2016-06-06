@@ -11,22 +11,22 @@ variables['events']  = {   'name': '1',
                          'fold' : 3
                         }
     
-variables['mll']  = {   'name': 'mll',            #   variable name    
-                        'range' : (20,10,200),    #   variable range
-                        'xaxis' : 'm_{ll} [GeV]',  #   x axis name
+variables['mll']  = {   'name': 'mll',             #   variable name    
+                        'range' : (40,0,400),      #   variable range
+                        'xaxis' : 'm_{\ell\ell} [GeV]',  #   x axis name
                         'fold' : 3
                         }
                         
 variables['mth']  = {   'name': 'mth',            #   variable name    
-                        'range' : (20,0,400),    #   variable range
-                        'xaxis' : 'm_{T}^{ll} [GeV]',  #   x axis name
+                        'range' : (20,0,400),     #   variable range
+                        'xaxis' : 'm_{T}^{\ell\ell} [GeV]',  #   x axis name
                         'fold' : 3
                         }
 
 
 variables['ptll']  = {   'name': 'ptll',            #   variable name    
-                         'range' : (20,0,200),    #   variable range
-                         'xaxis' : 'p_{T}^{ll} [GeV]',  #   x axis name
+                         'range' : (40,0,400),    #   variable range
+                         'xaxis' : 'p_{T}^{\ell\ell} [GeV]',  #   x axis name
                          'fold' : 3
                          }
 
@@ -43,7 +43,7 @@ variables['pt2']  = {   'name': 'pt2',            #   variable name
                         }
 
 variables['met']  = {   'name': 'metPfType1',            #   variable name    
-                        'range' : (20,0,200),    #   variable range
+                        'range' : (30,0,300),    #   variable range
                         'xaxis' : 'E_{T}^{miss} [GeV]',  #   x axis name
                         'fold' : 0
                         }
@@ -51,7 +51,7 @@ variables['met']  = {   'name': 'metPfType1',            #   variable name
 
 variables['dphill'] = {   'name': 'dphill',            #   variable name    
                           'range' : (20,0,3.2),    #   variable range
-                          'xaxis' : '#Delta #Phi_{ll} [rad]',  #   x axis name
+                          'xaxis' : '\Delta\Phi_{\ell\ell} [rad]',  #   x axis name
                           'fold' : 0
                           }
 
