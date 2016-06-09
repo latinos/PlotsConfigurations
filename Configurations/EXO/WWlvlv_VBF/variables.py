@@ -11,19 +11,25 @@ variables['events']  = {   'name': '1',
                         }
 
 variables['mll']  = {   'name': 'mll',            #   variable name    
-                        'range' : (7,50,1000),    #   variable range
+                        'range' : ([50,100,150,200,250,300,400,1000],),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
                          'fold' : 3
                         }
 
 variables['mllVSmti'] = { 'name' : 'mll:mTi',
-                          'range' : (7,50,1000, 13,0,2000),
+                          'range' : ([50,100,150,200,250,300,400,1000],[100,150,200,250,300,400,500,600,1000]),
                           'xaxis' : 'm_{ll} : m_{T}^{i}', #   x axis name
                           'fold' : 3
                         }
 
+variables['mllVSmtiVBF'] = { 'name' : 'mll:mTi',
+			     'range' : ([50,150,250,400,1000],[100,200,300,400,600,1000]),
+                             'xaxis' : 'm_{ll} : m_{T}^{i}', #   x axis name
+                             'fold' : 3
+                           }
+
 variables['mTi']  = {   'name': 'mTi',            #   variable name    
-                        'range' : (13,0,2000),    #   variable range
+                        'range' : ([100,150,200,250,300,400,500,600,1000],),    #   variable range
                         'xaxis' : 'm_{T,i}^{H} [GeV]',  #   x axis name
                         'fold' : 3
                         }

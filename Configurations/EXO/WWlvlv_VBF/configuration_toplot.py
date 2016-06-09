@@ -8,10 +8,10 @@ outputDir = 'rootFile'
 
 
 # file with list of variables
-variablesFile = 'variables_toplot.py'
+variablesFile = 'variables_CR.py'
 
 # file with list of cuts
-cutsFile = 'cuts_toplot.py' 
+cutsFile = 'cuts_CR.py' 
 
 # file with list of samples
 samplesFile = 'samples_toplot.py' 

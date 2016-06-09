@@ -11,7 +11,7 @@ variables['events']  = {   'name': '1',
                         }
 
 variables['mll']  = {   'name': 'mll',            #   variable name    
-                        'range' : (7,50,1000),    #   variable range
+                        'range' : ([50,100,150,200,250,300,400,1000],),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
                          'fold' : 3
                         }
@@ -23,13 +23,21 @@ variables['mth']  = {   'name': 'mth',            #   variable name
                         }
 
 variables['mllVSmti'] = { 'name' : 'mll:mTi',
-                          'range' : (7,50,1000, 13,0,2000),
+                          'range' : ([50,100,150,200,250,300,400,1000],[100,150,200,250,300,400,500,600,1000]),
                           'xaxis' : 'm_{ll} : m_{T}^{i}', #   x axis name
                           'fold' : 3
                         }
 
+variables['mllVSmti_VBF'] = { 'name' : 'mll:mTi',
+                          'range' : ([50,150,250,400,1000],[100,200,300,400,600,1000]),
+                          'xaxis' : 'm_{ll} : m_{T}^{i}', #   x axis name
+                          'fold' : 3
+                        }
+
+
 variables['mTi']  = {   'name': 'mTi',            #   variable name    
-                        'range' : (13,0,2000),    #   variable range
+                        #'range' : (13,0,2000),    #   variable range
+                        'range' : ([100,150,200,250,300,400,500,600,1000],),
                         'xaxis' : 'm_{T,i}^{H} [GeV]',  #   x axis name
                         'fold' : 3
                         }
@@ -53,13 +61,13 @@ variables['ptll']  = {   'name': 'ptll',
                         }
 
 variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',
-                        'range' : (20,0,400),
+                        'range' : (30,0,400),
                         'xaxis' : 'p_{T} 1st lep',
                         'fold'  : 3
                         }
 
 variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',
-                        'range' : (20,0,400),
+                        'range' : (30,0,400),
                         'xaxis' : 'p_{T} 2nd lep',
                         'fold'  : 3
                         }
