@@ -1,5 +1,4 @@
 # plot configuration
-
 #plot = {}
 
 # keys here must match keys in samples.py    
@@ -11,8 +10,6 @@ plot['DY']  = {
                   'scale'    : 1.0
               }
 
-
-               
 plot['Wjets']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
@@ -20,9 +17,6 @@ plot['Wjets']  = {
                   'scale'    : 1.0                  
               }
 
-
-
-               
 plot['Fake']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
@@ -30,15 +24,12 @@ plot['Fake']  = {
                   'scale'    : 1.0                  
               }
 
-              
 plot['FakeQCD']  = {  
                   'color': 922,    # kGray + 2
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0                  
               }
-
-
 
 plot['ttbar'] = {   
                   'nameHR' : 't#bart',
@@ -47,7 +38,6 @@ plot['ttbar'] = {
                   'isData'   : 0 ,
                   'scale'    : 1.0
                   }
-
 
 plot['singletop'] = {   
                   'nameHR' : 't and tW',
@@ -64,7 +54,6 @@ plot['top'] = {
                   'isData'   : 0, 
                   'scale'    : 1.0
                   }
-
 
 plot['WW']  = {
                   'color': 851, # kAzure -9 
@@ -137,8 +126,6 @@ plot['ZZ']  = {
                   'scale'    : 1.0
                   }
 
-
-
 # Htautau
 
 plot['H_htt'] = {
@@ -150,7 +137,6 @@ plot['H_htt'] = {
                   }
 
 # HWW 
-
 plot['H_hww'] = {
                   'nameHR' : 'Hww',
                   'color': 632, # kRed 
@@ -183,7 +169,6 @@ plot['WH_hww'] = {
                   'scale'    : 1    #
                   }
 
-
 plot['qqH_hww'] = {
                   'nameHR' : 'qqH',
                   'color': 632+1, # kRed+1 
@@ -191,7 +176,6 @@ plot['qqH_hww'] = {
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
-
 
 plot['ggH_hww'] = {
                   'nameHR' : 'ggH',
@@ -202,7 +186,6 @@ plot['ggH_hww'] = {
                   }
 
 # data
-
 plot['DATA']  = { 
                   'nameHR' : 'Data',
                   'color': 1 ,  
@@ -211,13 +194,9 @@ plot['DATA']  = {
                   'isBlind'  : 1
               }
 
-
-
-
-# additional options
-
-# legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
-legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
+# additional options...
+legend['lumi'] = 'L = 3/fb' # 2 fb-1
+# legend['lumi'] = 'L = 5/fb' # 5 fb-1
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 

@@ -35,22 +35,58 @@ combineCards.py   em01j13=ggH/datacards/hww2l2v_13TeV_em_01j/mllVSmth/datacard.t
 # results
 
 
+# text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
+#                    --PO 'map=.*/ggH_hww_pt1:r1[1,-20,20]' --PO 'map=.*/ggH_hww_pt2:r2[1,-20,20]' --PO 'map=.*/ggH_hww_pt3:r3[1,-20,20]' \
+#                    Moriond2016.v1.txt.pruned.txt  -o  workspace.Moriond2016.v1.txt.pruned.root
+
 text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
-                   --PO 'map=.*/ggH_hww_pt1:r1[1,-20,20]' --PO 'map=.*/ggH_hww_pt2:r2[1,-20,20]' --PO 'map=.*/ggH_hww_pt3:r3[1,-20,20]' \
+                   --PO 'map=.*/ggH_hww_pt1:r1[1,-20,20]' --PO 'map=.*/ggH_hww_pt2:r1[1,-20,20]' --PO 'map=.*/ggH_hww_pt3:r3[1,-20,20]' \
                    Moriond2016.v1.txt.pruned.txt  -o  workspace.Moriond2016.v1.txt.pruned.root
-
-
+                   
+                   
 combine -M MultiDimFit -t -1 \
-     --setPhysicsModelParameters    r1=1,r2=1,r3=1 \
-     --algo=singles   \
-     workspace.Moriond2016.v1.txt.pruned.root            >   result.MultiDimFit.singles.Moriond2016.v1.txt.pruned.txt
+     --setPhysicsModelParameters    r1=1,r3=1 \
+     --algo=grid --points=100  \
+     workspace.Moriond2016.v1.txt.pruned.root            >   result.MultiDimFit.singles.Moriond2016.v1.txt.pruned.grid.txt
 
      
+     
+combine -M MultiDimFit -t -1 \
+     --setPhysicsModelParameters    r1=1,r2=1,r3=1 \
+     --algo=grid --points=10000  \
+     workspace.Moriond2016.v1.txt.pruned.root            >   result.MultiDimFit.singles.Moriond2016.v1.txt.pruned.grid.txt
+
+
+#      
+# 
+# combine -M MultiDimFit -t -1 \
+#      --setPhysicsModelParameters    r1=1,r2=1,r3=1 \
+#      --algo=singles   \
+#      workspace.Moriond2016.v1.txt.pruned.root            >   result.MultiDimFit.singles.Moriond2016.v1.txt.pruned.txt
+
+
+     
+     
+# combine -M MultiDimFit -t -1 \
+#      --expectSignal 1  \
+#      --algo=singles   \
+#      workspace.Moriond2016.v1.txt.pruned.root            >   result.MultiDimFit.singles.Moriond2016.v1.txt.pruned.test.txt
+
+     
+# combine -M MultiDimFit -t 1 \
+#      --expectSignal 1  \
+#      --algo=singles   \
+#      workspace.Moriond2016.v1.txt.pruned.root            >   result.MultiDimFit.singles.Moriond2016.v1.txt.pruned.test.toy.txt
+# 
+     
+#      
 # combine -M MultiDimFit -t -1 \
 #      --setPhysicsModelParameters    r1=1,r2=1,r3=1 \
 #      --algo=cross   \
-#      workspace.Moriond2016.v1.txt.pruned.root            >   result.MultiDimFit.cross.Moriond2016.v1.txt.pruned.txt
+#      workspace.Moriond2016.v1.txt.pruned.root            >   result.MultiDimFit.cross.Moriond2016.v1.txt.pruned.cross.txt
 
+     
+     
 # combine -M MultiDimFit -t -1 \
 #      --expectSignal 1 \
 #      workspace.Moriond2016.v1.txt.pruned.root            >   result.MultiDimFit.Moriond2016.v1.txt.pruned.txt

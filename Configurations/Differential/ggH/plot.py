@@ -2,6 +2,58 @@
 
 #plot = {}
 
+
+# groupPlot = {}
+# 
+# Groups of samples to improve the plots.
+# If not defined, normal plots is used
+#
+
+groupPlot['DY']  = {  
+                  'nameHR' : "DY"
+                  'color': 418,    # kGreen+2
+                  'samples'  : ['DY']
+              }
+
+groupPlot['VZ']  = {  
+                  'nameHR' : "VZ/#gamma*/#gamma"
+                  'color': 859, # kAzure -1  
+                  'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ']
+              }
+
+groupPlot['top']  = {  
+                  'nameHR' : 'tW and t#bart',
+                  'color': 400,   # kYellow
+                  'samples'  : ['top']
+              }
+
+
+groupPlot['Fake']  = {  
+                  'nameHR' : 'Fake',
+                  'color': 921,    # kGray + 1
+                  'samples'  : ['Fake']
+              }
+
+
+groupPlot['WW']  = {  
+                  'nameHR' : 'WW',
+                  'color': 851, # kAzure -9 
+                  'samples'  : ['WW']
+              }
+
+
+groupPlot['Higgs']  = {  
+                  'nameHR' : 'Higgs',
+                  'color': 632, # kRed 
+                  'samples'  : ['ggH_hww_pt1', 'ggH_hww_pt2', 'H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww']
+              }
+
+
+
+
+
+
+
 # keys here must match keys in samples.py    
 #                    
 plot['DY']  = {  
