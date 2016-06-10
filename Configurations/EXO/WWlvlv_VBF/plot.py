@@ -129,6 +129,13 @@ plot['Vg']  = {
                   'scale'    : 1.0
                   }
 
+plot['VgS'] = { 
+                  'color'    : 617,   # kViolet + 1  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
 plot['VZ']  = { 
                   'color': 858, # kAzure -2  
                   'isSignal' : 0,
@@ -257,10 +264,17 @@ else:
 
 for m in masses:
   for model in models:
+    if m=="200":
+      col=632
+    elif m=="300":
+      col=600
+    elif m=="400":
+      col=418
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     plot['ggH_hww_'+m+'_'+model_name] = {
                   'nameHR' : 'ggH '+m+' '+model,
-                  'color': 600+int(int(m)/100+0.5), # kRed 
+                  #'color': 600+int(int(m)/100+0.5), # kRed 
+                  'color':   col,
                   'isSignal' : 2,
                   'isData'   : 0,
                   'scale'    : 1    #

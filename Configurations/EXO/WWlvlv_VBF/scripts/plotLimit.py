@@ -1,7 +1,7 @@
 from ROOT import *
 from array import *
 import CMS_lumi, tdrstyle
-
+import sys
 
 tdrstyle.setTDRStyle()
 CMS_lumi.lumi_13TeV = "2.3 fb^{-1}"
@@ -50,16 +50,22 @@ def extract(file):
   return expLimit
 
 
-def getXsec(mass,process):
+def getXsec(mass,process,model):
   
+  kp = float(model[1]+"."+model[2])*float(model[1]+"."+model[2])
+  brn = float((model[6]+"."+model[7]))
+
+  sf = kp*(1-brn)
+  print "ewk singlet SF = ",sf
+
   if process=="ggH":
 
-    rootFile = TFile("eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_GluGluHToWWTo2L2Nu_M"+mass+".root")
+    rootFile = TFile("eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_GluGluHToWWTo2L2Nu_M"+mass+".root")
     latino = rootFile.Get("latino")
     htemp = TH1F("htemp","htemp",1,0,1)
     latino.Draw("Xsec>>htemp")
 
-    return htemp.GetMean()
+    return htemp.GetMean()*sf
 
   elif process=="VBF":
 
@@ -68,7 +74,7 @@ def getXsec(mass,process):
     htemp = TH1F("htemp","htemp",1,0,1)
     latino.Draw("Xsec>>htemp")
     
-    return htemp.GetMean()
+    return htemp.GetMean()*sf
     
 
 def plotLimit(mass,model,option="mu",cat="all"):
@@ -102,16 +108,19 @@ def plotLimit(mass,model,option="mu",cat="all"):
 
   	  for m in masses:
 
-            xsec_ggH = getXsec(m,"ggH")
-            xsec_VBF = getXsec(m,"VBF")
+            xsec_ggH = getXsec(m,"ggH",model)
+            xsec_VBF = getXsec(m,"VBF",model)
 
             if cat=="all":
-              fitfile = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combine/Limit.Moriond2016.v1.txt.pruned.mH"+m+"_"+model+".txt"
-              CMS_lumi.extraText2 = "0+1+2 jets "+model.replace("c","\nc'= ").replace("0","0.").replace("brn"," BR_{new} = ").replace("0.0.","0.0")
+              #fitfile = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combine/Limit.Moriond2016.v1.txt.pruned.mH"+m+"_"+model+".txt"
+              fitfile = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combineLSF/Limit.ICHEP2016.mH"+m+"_"+model+".txt"
 
+              CMS_lumi.extraText2 = "0+1+2 jets "
             else:
-              fitfile = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combine/Limit.Moriond2016."+cat+".mH"+m+"_"+model+".txt"
-              CMS_lumi.extraText2 = cat.replace("j"," jets ")+model
+              #fitfile = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combine/Limit.Moriond2016."+cat+".mH"+m+"_"+model+".txt"
+              fitfile = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combineLSF/Limit.ICHEP2016."+cat+".mH"+m+"_"+model+".txt"
+
+              CMS_lumi.extraText2 = cat.replace("jet"," jet ")
 
             fitFile = open(fitfile)#"/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combine/Limit.Moriond2016.2jet.mH"+m+".txt")
 	    expLimit = extract(fitFile)
@@ -132,7 +141,10 @@ def plotLimit(mass,model,option="mu",cat="all"):
 
 
   	  c1 = makeCanvas("c1")
-        
+       
+          CMS_lumi.extraText2 += model.replace("c","\nc'= ").replace("0","0.").replace("brn"," BR_{new} = ").replace("0.0.","0.0").replace("10.","1.0")
+
+  
 	  graphcentral_mu = TGraph(len(xcentral),xcentral,ycentral_mu)
 	  graphcentral_mu.SetLineStyle(2)
 
@@ -141,7 +153,7 @@ def plotLimit(mass,model,option="mu",cat="all"):
 	  graph2s_mu.SetTitle("")
 	  graph2s_mu.GetYaxis().SetTitle("95% CL limit on #sigma/#sigma_{SM}")
 	  graph2s_mu.GetXaxis().SetTitle("M_{X} [GeV]")
-	  graph2s_mu.GetXaxis().SetRangeUser(300,1000)
+	  graph2s_mu.GetXaxis().SetRangeUser(200,1000)
           graph2s_mu.GetYaxis().SetRangeUser(0,15)
 
 	  graph1s_mu = TGraphAsymmErrors(len(xcentral),xcentral,ycentral_mu,xerr,xerr,down1s_mu,up1s_mu)
@@ -164,6 +176,11 @@ def plotLimit(mass,model,option="mu",cat="all"):
 
           c2 = makeCanvas("c2")
 
+          if cat=="all":
+            CMS_lumi.extraText2 = "0+1+2 jets "
+          else:
+            CMS_lumi.extraText2 = cat.replace("jet"," jet ")
+ 
           graphcentral_xs = TGraph(len(xcentral),xcentral,ycentral_xs)
           graphcentral_xs.SetLineStyle(2)
 
@@ -172,8 +189,8 @@ def plotLimit(mass,model,option="mu",cat="all"):
           graph2s_xs.SetTitle("")
           graph2s_xs.GetYaxis().SetTitle("95% CL limit on #sigma_{ggH}+#sigma_{VBF} [pb]")
           graph2s_xs.GetXaxis().SetTitle("M_{X} [GeV]")
-          graph2s_xs.GetXaxis().SetRangeUser(300,1000)
-          graph2s_xs.GetYaxis().SetRangeUser(0,10)          
+          graph2s_xs.GetXaxis().SetRangeUser(200,1000)
+          graph2s_xs.GetYaxis().SetRangeUser(0,5)          
 
           graph1s_xs = TGraphAsymmErrors(len(xcentral),xcentral,ycentral_xs,xerr,xerr,down1s_xs,up1s_xs)
           graph1s_xs.SetFillColor(kGreen)
@@ -251,7 +268,7 @@ def plotLimit(mass,model,option="mu",cat="all"):
           graph2s_ggH.SetTitle("")
           graph2s_ggH.GetYaxis().SetTitle("95% CL limit on #sigma(gg #rightarrow X) [pb]")
           graph2s_ggH.GetXaxis().SetTitle("M_{X} [GeV]")
-          graph2s_ggH.GetXaxis().SetRangeUser(300,1000)
+          graph2s_ggH.GetXaxis().SetRangeUser(200,1000)
 
           graph1s_ggH = TGraphAsymmErrors(len(xcentral),xcentral,ycentral_ggH,xerr,xerr,down1s_ggH,up1s_ggH)
           graph1s_ggH.SetFillColor(kGreen)
@@ -281,7 +298,7 @@ def plotLimit(mass,model,option="mu",cat="all"):
           graph2s_VBF.SetTitle("")
           graph2s_VBF.GetYaxis().SetTitle("95% CL limit on #sigma(qq #rightarrow X) [pb]")
           graph2s_VBF.GetXaxis().SetTitle("M_{X} [GeV]")
-          graph2s_VBF.GetXaxis().SetRangeUser(300,1000)
+          graph2s_VBF.GetXaxis().SetRangeUser(200,1000)
 
           graph1s_VBF = TGraphAsymmErrors(len(xcentral),xcentral,ycentral_VBF,xerr,xerr,down1s_VBF,up1s_VBF)
           graph1s_VBF.SetFillColor(kGreen)
@@ -302,8 +319,8 @@ def plotLimit(mass,model,option="mu",cat="all"):
 	a=raw_input()
 
 
-masses = ["300","400","650","750","800","1000"]
-model = "c07brn00"
-cat = "all"  ## "0j" or "1j" or "2j" or "01j" or "all"
+masses = ["200","250","300","350","400","450","500","550","600","650","750","800","1000"]
+model = "c10brn00"
+cat = sys.argv[1]
 
 plotLimit(masses,model,"mu",cat)

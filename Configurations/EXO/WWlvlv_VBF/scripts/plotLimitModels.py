@@ -49,9 +49,14 @@ def extract(file):
 
   return expLimit
 
+def getXsec(mass,process,model):
 
-def getXsec(mass,process):
-  
+  kp = float(model[1]+"."+model[2])*float(model[1]+"."+model[2])
+  brn = float((model[6]+"."+model[7]))
+
+  sf = kp*(1-brn)
+  print "ewk singlet SF = ",sf
+
   if process=="ggH":
 
     rootFile = TFile("eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_GluGluHToWWTo2L2Nu_M"+mass+".root")
@@ -59,7 +64,7 @@ def getXsec(mass,process):
     htemp = TH1F("htemp","htemp",1,0,1)
     latino.Draw("Xsec>>htemp")
 
-    return htemp.GetMean()
+    return htemp.GetMean()*sf
 
   elif process=="VBF":
 
@@ -67,9 +72,9 @@ def getXsec(mass,process):
     latino = rootFile.Get("latino")
     htemp = TH1F("htemp","htemp",1,0,1)
     latino.Draw("Xsec>>htemp")
-    
-    return htemp.GetMean()
-    
+
+    return htemp.GetMean()*sf
+
 
 def plotLimitModels(mass,models,cats):
 
@@ -96,8 +101,8 @@ def plotLimitModels(mass,models,cats):
             modelName = model.replace("c","c'= ").replace("0","0.").replace("brn"," BR_{new} = ").replace("0.0.","0.0")
 	    for m in masses:
 
-	          xsec_ggH = getXsec(m,"ggH")
-	          xsec_VBF = getXsec(m,"VBF")
+	          xsec_ggH = getXsec(m,"ggH",model)
+	          xsec_VBF = getXsec(m,"VBF",model)
 
 	          if cat=="all":
 	            fitfile = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combine/Limit.Moriond2016.v1.txt.pruned.mH"+m+"_"+model+".txt"
@@ -122,15 +127,17 @@ def plotLimitModels(mass,models,cats):
           mg.Draw("A") 
           mg.GetYaxis().SetTitle("95% CL limit on #sigma/#sigma_{SM}")
           mg.GetXaxis().SetTitle("M_{X} [GeV]")
+          mg.GetYaxis().SetRangeUser(0,120)
           leg1.Draw()
    	  CMS_lumi.CMS_lumi(c1, 4, iPos)
 	  gPad.RedrawAxis()
 
         a=raw_input()
 
-masses = ["300","400","650","750","800","1000"]
-models = ["c01brn00","c03brn00","c05brn00","c07brn00"]
-cats= ["0jet","1jet","2jet","01jet","all"]  ## "0j" or "1j" or "2j" or "01j" or "all"
+masses = ["200","250","300","350","400","450","500","550","600","650","750","800","1000"]
+models = ["c03brn00","c05brn00","c07brn00","c10brn00"]
+cats = ["2jet"]
+#cats= ["0jet","1jet","2jet","01jet","all"]  ## "0j" or "1j" or "2j" or "01j" or "all"
 #cats = ["all"]
 
 plotLimitModels(masses,models,cats)
