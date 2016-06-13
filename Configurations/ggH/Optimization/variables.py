@@ -23,18 +23,23 @@ variables['mth']  = {   'name': 'mth',            #   variable name
                         }
 
 variables['mtw1']  = {   'name': 'mtw1',            #   variable name    
-                        'range' : (10,0,200),    #   variable range
+                        'range' : (20,0,200),    #   variable range
                         'xaxis' : 'm_{T}^{W1} [GeV]',  #   x axis name
                         'fold' : 3
                         }
 
 variables['mtw2']  = {   'name': 'mtw2',            #   variable name    
-                        'range' : (10,0,200),    #   variable range
+                        'range' : (20,0,200),    #   variable range
                         'xaxis' : 'm_{T}^{W2} [GeV]',  #   x axis name
                         'fold' : 3
                         }
 
 
+variables['ptll']  = {   'name': 'ptll',            #   variable name    
+                        'range' : (40,0,80),    #   variable range
+                        'xaxis' : 'pt_{ll} [GeV]',  #   x axis name
+                         'fold' : 3
+                        }
 
 
 
@@ -59,6 +64,12 @@ variables['mtw2']  = {   'name': 'mtw2',            #   variable name
                         #}
 
 
+variables['lepFlavour_1']  = {   'name': 'abs(std_vector_lepton_flavour[0])',            #   variable name    
+                        'range' : (4,11,14),    #   variable range
+                        'xaxis' : 'flavour lep 1',  #   x axis name
+                        'fold' : 0
+                        }
+
 
 variables['eleExpMisHits_1']  = {   'name': 'std_vector_electron_expectedMissingInnerHits[0]',            #   variable name    
                         'range' : (3,0,3),    #   variable range
@@ -73,18 +84,33 @@ variables['eleDeta_1']  = {   'name': 'std_vector_electron_dEtaIn[0]',          
                         }
 
 variables['d0_1']  = {   'name': 'abs(std_vector_lepton_d0[0])',            #   variable name    
-                        'range' : (20,0,0.5),    #   variable range
+                        'range' : (100,0,0.2),    #   variable range
                         'xaxis' : 'd0 lep 1',  #   x axis name
                         'fold' : 0
                         }
 
 variables['dz_1']  = {   'name': 'abs(std_vector_lepton_dz[0])',            #   variable name    
-                        'range' : (20,0,0.5),    #   variable range
+                        'range' : (20,0,0.2),    #   variable range
                         'xaxis' : 'dz lep 1',  #   x axis name
                         'fold' : 0
                         }
 
+variables['ooEmooP_1']  = {   'name': 'abs(std_vector_electron_ooEmooP[0])',            #   variable name    
+                        'range' : (20,0,0.02),    #   variable range
+                        'xaxis' : 'ooEmooP lep 1',  #   x axis name
+                        'fold' : 0
+                        }
 
+
+
+
+
+
+variables['lepFlavour_2']  = {   'name': 'abs(std_vector_lepton_flavour[1])',            #   variable name    
+                        'range' : (4,11,14),    #   variable range
+                        'xaxis' : 'flavour lep 2',  #   x axis name
+                        'fold' : 0
+                        }
 
 variables['eleExpMisHits_2']  = {   'name': 'std_vector_electron_expectedMissingInnerHits[1]',            #   variable name    
                         'range' : (3,0,3),    #   variable range
@@ -99,16 +125,23 @@ variables['eleDeta_2']  = {   'name': 'std_vector_electron_dEtaIn[1]',          
                         }
 
 variables['d0_2']  = {   'name': 'abs(std_vector_lepton_d0[1])',            #   variable name    
-                        'range' : (20,0,0.5),    #   variable range
+                        'range' : (100,0,0.2),    #   variable range
                         'xaxis' : 'd0 lep 2',  #   x axis name
                         'fold' : 0
                         }
 
 variables['dz_2']  = {   'name': 'abs(std_vector_lepton_dz[1])',            #   variable name    
-                        'range' : (20,0,0.5),    #   variable range
+                        'range' : (20,0,0.2),    #   variable range
                         'xaxis' : 'dz lep 2',  #   x axis name
                         'fold' : 0
                         }
+
+variables['ooEmooP_2']  = {   'name': 'abs(std_vector_electron_ooEmooP[1])',            #   variable name    
+                        'range' : (20,0,0.02),    #   variable range
+                        'xaxis' : 'ooEmooP lep 2',  #   x axis name
+                        'fold' : 0
+                        }
+
 
 
 
