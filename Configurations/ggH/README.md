@@ -130,6 +130,8 @@ Pruning:
 Auto tests:
 
     cd /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH
+
+    cd /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH    
     cmsenv
     cd ..
     sh ggH/scripts/doGGH_blind.sh
