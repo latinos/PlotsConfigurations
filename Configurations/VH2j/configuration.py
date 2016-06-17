@@ -1,6 +1,6 @@
 # example of configuration file
 
-tag = 'VBF'
+tag = 'VH2j'
 
 
 # used by mkShape to define output directory for root files
