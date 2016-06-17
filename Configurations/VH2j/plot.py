@@ -55,20 +55,22 @@ groupPlot['VZ']  = {
               }
 
 
-groupPlot['HiggsVH']  = {  
-                  'nameHR' : 'Higgs',
+
+groupPlot['HiggsOther']  = {  
+                  'nameHR' : 'ggH+VBF',
                   'isSignal' : 1,
-                  'color': 632, # kRed 
-                  'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww']
+                  'color': 633, # kRed+1 
+                  'samples'  : ['H_htt', 'H_hww', 'qqH_hww', 'ggH_hww']
               }
 
 
 
-groupPlot['HiggsOther']  = {  
-                  'nameHR' : 'Higgs',
+
+groupPlot['HiggsVH']  = {  
+                  'nameHR' : 'VH',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  'samples'  : ['H_htt', 'H_hww', 'qqH_hww', 'ggH_hww']
+                  'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww']
               }
 
 
