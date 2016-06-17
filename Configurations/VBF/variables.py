@@ -44,10 +44,11 @@ variables['detajj']  = {  'name': 'detajj',
                        }
 
 variables['ptll']  = {  'name': 'ptll',            #   variable name
-                        'range' : (20,0,200),    #   variable range
+                        'range' : (20,30,200),    #   variable range
                         'xaxis' : 'ptll [GeV]',  #   x axis name
                         'fold' : 3
                         }
+
 
 #variables['dphill']  = {  'name': 'dphill',  
 #                        'range' : (14,0,3.5), 
