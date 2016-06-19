@@ -29,7 +29,9 @@ Steps to get datacards and plots:
     cd /tmp/<your nice login>
     eosusermount eos
     cd -
-    mkShapes.py      --pycfg=configuration.py  --inputDir=/tmp/<nice-login>/eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight/
+    ln -s /tmp/<your nice login>
+    
+    mkShapes.py      --pycfg=configuration.py  --doThreads=True   --inputDir=eos/user/j/jlauwers/HWW2015/07Jun2016_spring16__mAODv2/MCl2loose16__hadd__LepEff__l2tight
     
     mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_DY.root
     
