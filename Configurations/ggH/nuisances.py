@@ -1070,7 +1070,7 @@ nuisances['trigg']  = {
 
 
 nuisances['idiso_ele']  = {
-                'name'  : 'idiso',
+                'name'  : 'idiso_ele',
                 'kind'  : 'weight',
                 #'kind'  : 'tree', #'weight',
                 'type'  : 'shape',
@@ -1098,7 +1098,7 @@ nuisances['idiso_ele']  = {
                 
 
 nuisances['idiso_mu']  = {
-                'name'  : 'idiso',
+                'name'  : 'idiso_mu',
                 'kind'  : 'weight',
                 #'kind'  : 'tree', #'weight',
                 'type'  : 'shape',
