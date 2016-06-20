@@ -30,11 +30,20 @@ variables['mjj']  = {  'name': 'mjj',
                        }
 
 variables['mll']  = {   'name': 'mll',            #   variable name
-                        'range' : (12,10,250),    #   variable range
+                        'range' : (4, 0,200),    #   variable range
+                        #'range' : (7,10,210),    #   variable range
                       # 'range' : (12,90,300),    #   control region: mll > 90
                         'xaxis' : 'mll [GeV]',  #   x axis name
                         'fold' : 3
                         }
+
+
+variables['mth']  = {   'name': 'mth',            #   variable name
+                        'range' : (10,30,200),    #   variable range
+                        'xaxis' : 'mth [GeV]',  #   x axis name
+                        'fold' : 3
+                        }
+
 
 variables['detajj']  = {  'name': 'detajj',
                        'range': (12,2.5,8.5),

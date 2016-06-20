@@ -21,3 +21,21 @@ Steps to get datacards and plots:
     
     mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_VBF.root
 
+
+Pruning:
+
+    cd /afs/cern.ch/user/a/amassiro/Limit/ModificationDatacards
+    sh examples/doPruneNuisanceVBFHWW.sh 
+    cd -
+
+
+Auto tests:
+
+
+    cd ..
+    sh VBF/scripts/doVBF.sh
+    cd -
+
+
+    
+    
