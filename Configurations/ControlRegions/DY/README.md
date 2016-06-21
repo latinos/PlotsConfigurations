@@ -72,25 +72,32 @@ Backup:
     mkShapes.py      --pycfg=configuration.py  --inputDir=eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight/
     mkShapes.py      --doThreads=True    --pycfg=configuration.py  --inputDir=eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight/
     
+    mkShapes.py      --pycfg=configuration.py  --doThreads=True   --inputDir=eos/user/j/jlauwers/HWW2015/07Jun2016_spring16__mAODv2/MCl2loose16__hadd__LepEff__l2tight
+    
     
     
 Test:
 
-    TF1* f4 = new TF1 ("f4","[2]*(0.95 - 0.1*TMath::Erf((x-[0])/[1]))",0,20);
+    TF1* f4 = new TF1 ("f4","[2]*(0.95 - [3]*TMath::Erf((x-[0])/[1]))",0,20);
     f4->SetParameter(0,10);
     f4->SetParameter(1,1);
     f4->SetParameter(2,1);
+    f4->SetParameter(3,0.1);
     f4->Draw();
 
     
-       1  p0           1.42199e+01   2.00614e-01   7.49397e-04  -3.24175e-03
-       2  p1           8.78770e+00   2.36675e-01   1.47925e-03  -1.11709e-03
-       3  p2           9.94280e-01   1.57245e-03   5.72159e-06  -2.93479e-01
+      1  p0           1.25151e+01   2.78047e-01   2.35850e-03  -1.46487e-04
+      2  p1           5.51582e+00   4.99190e-01   4.44581e-03   7.74559e-05
+      3  p2           1.08683e+00   2.00564e-03   1.61409e-05   1.68214e-02
+      4  p3           6.57370e-02   1.84326e-03   1.61061e-05   4.17076e-04
 
-    (0.95 - 0.1*TMath::Erf((x-14)/8.8))
-    TF1* f4 = new TF1 ("f4","(0.95 - 0.1*TMath::Erf((x-14)/8.8))",0,20);
+      
+      (1.08683 * (0.95 - 0.0657370*TMath::Erf((x-12.5151)/5.51582)))
+      
     
-    
+    TF1* f4 = new TF1 ("f4","(1.08683 * (0.95 - 0.0657370*TMath::Erf((x-12.5151)/5.51582)))",0,100);
+    f4->Draw();
+
     
     
     
