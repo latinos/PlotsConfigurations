@@ -15,6 +15,13 @@ cuts['Topem']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] =
                  && mll>60 \
                '
 
+   
+
+cuts['Topem2j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)   \
+                 && mll>60 \
+                 && njet>=2 \
+               '
+
 
 
 

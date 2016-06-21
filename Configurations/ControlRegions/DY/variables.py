@@ -84,6 +84,23 @@ variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',
 #                        'fold'  : 3                         
 #                        }
 
+
+variables['expectedMissingInnerHits_1']  = {  'name': 'std_vector_electron_expectedMissingInnerHits[0]',     
+                       'range' : (3,0,3),   
+                       'xaxis' : 'std_vector_electron_expectedMissingInnerHits 1st lep',
+                       'fold'  : 3                         
+                       }
+
+
+variables['expectedMissingInnerHits_2']  = {  'name': 'std_vector_electron_expectedMissingInnerHits[1]',     
+                       'range' : (3,0,3),   
+                       'xaxis' : 'expectedMissingInnerHits 2nd lep',
+                       'fold'  : 3                         
+                       }
+
+
+
+
 variables['eta1']  = {  'name': 'std_vector_lepton_eta[0]',     
                        'range' : (100,-3.2,3.2),   
                        'xaxis' : '#eta 1st lep',
@@ -96,18 +113,18 @@ variables['eta2']  = {  'name': 'std_vector_lepton_eta[1]',
                        'fold'  : 3                         
                        }
 
-#variables['r91']   = {  'name': 'std_vector_electron_full5x5R9[0]',     
-                       #'range' : (100,0.8,1.05),   
-                       #'xaxis' : 'R9 1st lep',
-                       #'fold'  : 2                         
-                       #}
+variables['r91']   = {  'name': 'std_vector_electron_full5x5R9[0]',     
+                       'range' : (100,0.8,1.05),   
+                       'xaxis' : 'R9 1st lep',
+                       'fold'  : 2                         
+                       }
 
 
-#variables['r92']   = {  'name': 'std_vector_electron_full5x5R9[1]',     
-                       #'range' : (100,0.8,1.05),   
-                       #'xaxis' : 'R9 2nd lep',
-                       #'fold'  : 2                         
-                       #}
+variables['r92']   = {  'name': 'std_vector_electron_full5x5R9[1]',     
+                       'range' : (100,0.8,1.05),   
+                       'xaxis' : 'R9 2nd lep',
+                       'fold'  : 2                         
+                       }
 
 variables['sietaieta1']   = {  'name': 'std_vector_electron_full5x5_sigmaIetaIeta[0]',     
                        'range' : (100,0.0,0.04),   
@@ -185,11 +202,11 @@ variables['deta2phim']   = {  'name': 'std_vector_electron_dEtaIn[1]*(std_vector
                          ##'fold' : 3
                         ##}
 
-#variables['met']  = {   'name': 'metPfType1',            #   variable name    
-                        #'range' : (20,0,200),    #   variable range
-                        #'xaxis' : 'pfmet [GeV]',  #   x axis name
-                         #'fold' : 3
-                        #}
+variables['met']  = {   'name': 'metPfType1',            #   variable name    
+                        'range' : (20,0,200),    #   variable range
+                        'xaxis' : 'pfmet [GeV]',  #   x axis name
+                         'fold' : 3
+                        }
 
 #variables['trkMet']  = {   'name': 'trkMet',            #   variable name    
                         #'range' : (20,0,200),    #   variable range
@@ -210,11 +227,12 @@ variables['deta2phim']   = {  'name': 'std_vector_electron_dEtaIn[1]*(std_vector
                         ###}
 
   
-##variables['njet']  = {  'name': 'njet',      
-                        ##'range' : (5,0,5),  
-                        ##'xaxis' : 'njet', 
-                        ##'fold' : 3
-                        ##}
+variables['njet']  = {  'name': 'njet',      
+                        'range' : (5,0,5),  
+                        'xaxis' : 'njet', 
+                        'fold' : 3
+                        }
+
 
 #variables['jetpt1']  = {
                         #'name': 'std_vector_jet_pt[0]',     
