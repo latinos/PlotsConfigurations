@@ -144,10 +144,6 @@ samples['ggWW']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root'],
                       ##'isData': ['0'],                            
                   #}
 
-# samples['VgS']  = {    'name': ['latino_WgStarLNuEE.root', 'latino_WgStarLNuMuMu.root'],      
-#                       'weight' : '2.0*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',
-#                       'weights': ['1','1'] ,           
-#                   }
 
 
 samples['VZ']  = {    'name': [
@@ -164,40 +160,39 @@ samples['VZ']  = {    'name': [
                   }
 
 
-samples['VVV'] = {    'name': [
-                          'latino_WZZ.root', 
-                          # 'latino_ZZZ.root',
-                          # 'latino_WWW.root',
-                          # 'latino_WWZ.root',
-                          ],      
-                      'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
-                      'isData': ['0'],                            
-                  }
+#samples['VVV'] = {    'name': [
+                          #'latino_WZZ.root', 
+                          ##'latino_ZZZ.root'
+                          ##'latino_WWW.root'
+                          ##'latino_WWZ.root'
+                          #],      
+                      #'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+                      ##'isData': ['0'],                            
+                  #}
 
 
 ## Htautau
-samples['H_htt']  = {      'name': ['latino_GluGluHToTauTau_M125.root',
-                                    'latino_VBFHToTauTau_M125.root',
+#samples['H_htt']  = {      'name': ['latino_GluGluHToTauTau_M125.root',
+                                    #'latino_VBFHToTauTau_M125.root',
                                     #'latino_HWminusJ_HToTauTau_M125.root',
                                     #'latino_HWplusJ_HToTauTau_M125.root',
                                     #'latino_HZJ_HToTauTau_M125.root'
-                                    ],      
-                           'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
-                           'weights': ['1', '1']
-                           #'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)' ]            
-                  }
+                                    #],      
+                           #'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
+                           #'weights': ['1', '1', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)' ]            
+                  #}
 
 
 
 ## HWW 
 
-samples['ggH_hww']  = {    'name': [
-        'latino_GluGluHToWWTo2L2NuPowheg_M125.root'
-        #'latino_GluGluHToWWTo2L2Nu_M125.root'
-        #'latino_GluGluHToWWTo2L2Nu_alternative_M125.root'  --> 500k events
-                               ],      
-                           'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
-                  }
+#samples['ggH_hww']  = {    'name': [
+                               #'latino_GluGluHToWWTo2L2NuPowheg_M125.root'
+                               ##'latino_GluGluHToWWTo2L2Nu_M125.root'
+                               ##'latino_GluGluHToWWTo2L2Nu_alternative_M125.root'  --> 500k events
+                               #],      
+                           #'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
+                  #}
 
 #samples['qqH_hww']  = {    'name': ['latino_VBFHToWWTo2L2Nu_M125.root'],      
                            #'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
@@ -226,11 +221,11 @@ samples['ggH_hww']  = {    'name': [
 
 samples['DATA']  = {   'name': [
 
-                                '../../../../../j/jlauwers/HWW2015/07Jun2016_Run2016B_PromptReco/l2loose16bis__hadd__l2tight/latino_Run2016B_PromptReco_DoubleEG.root',
-                                '../../../../../j/jlauwers/HWW2015/07Jun2016_Run2016B_PromptReco/l2loose16bis__hadd__l2tight/latino_Run2016B_PromptReco_DoubleMuon.root',
-                                '../../../../../j/jlauwers/HWW2015/07Jun2016_Run2016B_PromptReco/l2loose16bis__hadd__l2tight/latino_Run2016B_PromptReco_MuonEG.root',
-                                '../../../../../j/jlauwers/HWW2015/07Jun2016_Run2016B_PromptReco/l2loose16bis__hadd__l2tight/latino_Run2016B_PromptReco_SingleElectron.root',
-                                '../../../../../j/jlauwers/HWW2015/07Jun2016_Run2016B_PromptReco/l2loose16bis__hadd__l2tight/latino_Run2016B_PromptReco_SingleMuon.root',
+                                '../../07Jun2016_Run2016B_PromptReco/l2loose16bis__hadd__l2tight/latino_Run2016B_PromptReco_DoubleEG.root',
+                                '../../07Jun2016_Run2016B_PromptReco/l2loose16bis__hadd__l2tight/latino_Run2016B_PromptReco_DoubleMuon.root',
+                                '../../07Jun2016_Run2016B_PromptReco/l2loose16bis__hadd__l2tight/latino_Run2016B_PromptReco_MuonEG.root',
+                                '../../07Jun2016_Run2016B_PromptReco/l2loose16bis__hadd__l2tight/latino_Run2016B_PromptReco_SingleElectron.root',
+                                '../../07Jun2016_Run2016B_PromptReco/l2loose16bis__hadd__l2tight/latino_Run2016B_PromptReco_SingleMuon.root',
 
                                 #'../../../../../j/jlauwers/HWW2015/07Jun2016_Run2016B_PromptReco/l2loose16__hadd__l2tight/latino_Run2016B_PromptReco_DoubleEG.root',
                                 #'../../../../../j/jlauwers/HWW2015/07Jun2016_Run2016B_PromptReco/l2loose16__hadd__l2tight/latino_Run2016B_PromptReco_DoubleMuon.root',
