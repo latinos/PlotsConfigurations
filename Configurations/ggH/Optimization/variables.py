@@ -42,6 +42,12 @@ variables['ptll']  = {   'name': 'ptll',            #   variable name
                         }
 
 
+variables['mpmet']  = {   'name': 'mpmet',            #   variable name    
+                        'range' : (20,0,200),    #   variable range
+                        'xaxis' : 'mpmet [GeV]',  #   x axis name
+                         'fold' : 0
+                        }
+
 
 
 
