@@ -61,3 +61,27 @@ variables['drll']  = {   'name': 'drll',
 
 
 
+
+
+variables['mllVSmth'] = {   'name': 'mll:mth',            #   variable name    
+                        'range' : (7,60,200, 5,10,110),            #   variable range
+                        'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
+                        'fold' : 3 , 
+                        # do weighted plot too
+                        #'doWeight' : 1,
+                        #'binX'     : 7,
+                        #'binY'     : 5
+                        #
+                        }
+
+
+                      
+variables['mth']  = {   'name': 'mth',            #   variable name    
+                        'range' : (10,60,200),    #   variable range
+                        'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
+                        'fold' : 0
+                        }
+
+
+
+

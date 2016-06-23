@@ -55,32 +55,24 @@ groupPlot['VZ']  = {
               }
 
 
-#groupPlot['Higgs']  = {  
-                  #'nameHR' : 'Higgs',
-                  #'isSignal' : 1,
-                  #'color': 632, # kRed 
-                  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww']
-              #}
-
-
-
 
 groupPlot['HiggsOther']  = {  
-                  'nameHR' : 'ggH+VH',
+                  'nameHR' : 'ggH+VBF',
                   'isSignal' : 1,
                   'color': 633, # kRed+1 
-                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww']
+                  'samples'  : ['H_htt', 'H_hww', 'qqH_hww', 'ggH_hww']
               }
 
 
 
 
 groupPlot['HiggsVH']  = {  
-                  'nameHR' : 'VBF',
+                  'nameHR' : 'VH',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  'samples'  : ['qqH_hww']
+                  'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww']
               }
+
 
 
 
@@ -327,7 +319,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  #'isBlind'  : 1
               }
 
 
