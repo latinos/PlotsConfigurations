@@ -59,7 +59,20 @@ variables['drll']  = {   'name': 'drll',
                         'fold'  : 3                         
                         }
 
+                        
+variables['met']  = {   'name': 'pfType1Met',            #   variable name    
+                        'range' : (20,0,200),    #   variable range
+                        'xaxis' : 'pfmet [GeV]',  #   x axis name
+                         'fold' : 0
+                        }
 
+
+                        
+variables['mpmet']  = {   'name': 'mpmet',            #   variable name    
+                        'range' : (20,0,200),    #   variable range
+                        'xaxis' : 'mpmet [GeV]',  #   x axis name
+                         'fold' : 0
+                        }
 
 
 

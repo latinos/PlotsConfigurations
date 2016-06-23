@@ -136,7 +136,8 @@ supercut = 'std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>20 \
 ######################################################################################
 
 cuts['ww_BVetoIncl_em'] = 'njet >= 0 \
-            && ht < 235 \
+            && ht < 189 \
+            && mth > 40 \
             && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
             && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
             && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
@@ -150,7 +151,8 @@ cuts['ww_BVetoIncl_em'] = 'njet >= 0 \
 '
 
 cuts['ww_BVetoIncl_csv2_em'] = 'njet >= 0 \
-            && ht < 235 \
+            && ht < 189 \
+            && mth > 40 \
             && ( std_vector_jet_pt[0] < 20 || std_vector_jet_csvv2ivf[0] < 0.460 ) \
             && ( std_vector_jet_pt[1] < 20 || std_vector_jet_csvv2ivf[1] < 0.460 ) \
             && ( std_vector_jet_pt[2] < 20 || std_vector_jet_csvv2ivf[2] < 0.460 ) \
@@ -164,7 +166,7 @@ cuts['ww_BVetoIncl_csv2_em'] = 'njet >= 0 \
 '
 
 cuts['ww_TopCRIncl_em'] = 'njet >= 0 \
-            && ht < 250 \
+            && ht < 189 \
             && mth > 40 \
             && (( std_vector_jet_pt[0] > 20 && std_vector_jet_cmvav2[0] > -0.715 )  \
             ||  ( std_vector_jet_pt[1] > 20 && std_vector_jet_cmvav2[1] > -0.715 )  \
@@ -180,7 +182,7 @@ cuts['ww_TopCRIncl_em'] = 'njet >= 0 \
 
 
 cuts['ww_TopCRIncl_csv2_em'] = 'njet >= 0 \
-            && ht < 250 \
+            && ht < 189 \
             && mth > 40 \
             && (( std_vector_jet_pt[0] > 20 && std_vector_jet_csvv2ivf[0] > 0.460 )  \
             ||  ( std_vector_jet_pt[1] > 20 && std_vector_jet_csvv2ivf[1] > 0.460 )  \
