@@ -4,10 +4,10 @@ MET analysis
 
 Some useful aliases:
     
-#    alias eosusermount='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine.user/bin/eos.select -b fuse mount'
-#    alias eosuserumount='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine.user/bin/eos.select -b fuse umount'
+    alias eosusermount='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine.user/bin/eos.select -b fuse mount'
+    alias eosuserumount='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine.user/bin/eos.select -b fuse umount'
     
-Mounting cernbox::
+Mounting cernbox:
 
    source /afs/cern.ch/project/eos/installation/user/etc/setup.sh
    eosmount eosuser
