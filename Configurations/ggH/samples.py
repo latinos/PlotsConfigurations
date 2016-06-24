@@ -51,13 +51,13 @@ samples['top'] = {   'name': [
                    }
 
              
-
-#samples['WW']  = {    'name': [
-                                  #'latino_WWTo2L2Nu.root'
-                                #],      
-                      #'weight' : 'nllW*puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
-                      ##'weights': ['abs(nllW)'] ,           
-                  #}
+# FIXME UPDATE WITH 2016 80x SAMPLE!!!
+samples['WW']  = {    'name': [
+                                  '../../../../../../../eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_WWTo2L2Nu.root'
+                                ],      
+                      'weight' : 'nllW*puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+                      #'weights': ['abs(nllW)'] ,           
+                  }
 
 
 samples['ggWW']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root'],      

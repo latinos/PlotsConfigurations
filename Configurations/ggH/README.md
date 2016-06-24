@@ -19,8 +19,8 @@ Steps to get datacards and plots:
     cd /tmp/<your nice login>
     eosusermount eos
     cd -
-    mkShapes.py      --pycfg=configuration.py  --inputDir=/tmp/<nice-login>/eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight/
-    
+    mkShapes.py      --pycfg=configuration.py  --inputDir=/tmp/<nice-login>/eos/user/j/jlauwers/HWW2015/07Jun2016_spring16__mAODv2/MCl2loose16__hadd__LepEff__l2tight__wwSel/
+        
     mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_ggH.root
     
     mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_ggH.root
@@ -35,8 +35,6 @@ Pruning:
 
 
 Auto tests:
-
-    cd /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH
 
     cd /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH    
     cmsenv
@@ -221,7 +219,7 @@ Datacards checks
  
 Backup:
 
-    mkShapes.py      --pycfg=configuration.py  --doThreads=True   --inputDir=eos/user/j/jlauwers/HWW2015/07Jun2016_spring16__mAODv2/MCl2loose16__hadd__LepEff__l2tight
+    mkShapes.py      --pycfg=configuration.py  --doThreads=True   --inputDir=eos/user/j/jlauwers/HWW2015/07Jun2016_spring16__mAODv2/MCl2loose16__hadd__LepEff__l2tight__wwSel/
       
 
 Copy datacards to repository:
