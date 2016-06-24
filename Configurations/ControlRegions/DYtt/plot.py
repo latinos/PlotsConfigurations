@@ -8,14 +8,22 @@
 # If not defined, normal plots is used
 #
 
+groupPlot['DY']  = {  
+                  'nameHR' : "DY",
+                  'isSignal' : 0,
+                  'color': 418,    # kGreen+2
+                  'samples'  : ['DY']
+              }
+
+
 
 groupPlot['Fake']  = {  
                   'nameHR' : 'Fake',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fake']
+                  'samples'  : ['Fake','Wjets']
               }
-
+ 
 
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bart',
@@ -47,21 +55,12 @@ groupPlot['VZ']  = {
               }
 
 
-groupPlot['DY']  = {  
-                  'nameHR' : "DY",
-                  'isSignal' : 0,
-                  'color': 418,    # kGreen+2
-                  'samples'  : ['DY']
+groupPlot['Higgs']  = {  
+                  'nameHR' : 'Higgs',
+                  'isSignal' : 1,
+                  'color': 632, # kRed 
+                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww']
               }
-
-
-
-#groupPlot['Higgs']  = {  
-                  #'nameHR' : 'Higgs',
-                  #'isSignal' : 1,
-                  #'color': 632, # kRed 
-                  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww']
-              #}
 
 
 
@@ -79,15 +78,21 @@ plot['DY']  = {
                   'cuts'  : {
                        'hww2l2v_13TeV_of0j'      : 0.95 ,
                        'hww2l2v_13TeV_top_of0j'  : 0.95 , 
-                       'hww2l2v_13TeV_dytt_of0j' : 0.95 ,
+                       'hww2l2v_13TeV_dytt_of0j' : 1.63 ,
                        'hww2l2v_13TeV_em_0j'     : 0.95 , 
                        'hww2l2v_13TeV_me_0j'     : 0.95 , 
                        #
                        'hww2l2v_13TeV_of1j'      : 1.08 ,
                        'hww2l2v_13TeV_top_of1j'  : 1.08 , 
-                       'hww2l2v_13TeV_dytt_of1j' : 1.08 ,
+                       'hww2l2v_13TeV_dytt_of1j' : 0.98 ,
                        'hww2l2v_13TeV_em_1j'     : 1.08 , 
                        'hww2l2v_13TeV_me_1j'     : 1.08 , 
+                       #
+                       'hww2l2v_13TeV_of2j'      : 1.00 ,
+                       'hww2l2v_13TeV_top_of2j'  : 1.00 , 
+                       'hww2l2v_13TeV_dytt_of2j' : 1.00 ,
+                       'hww2l2v_13TeV_em_2j'     : 1.00 , 
+                       'hww2l2v_13TeV_me_2j'     : 1.00 , 
                         },
 
               }
