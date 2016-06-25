@@ -36,6 +36,7 @@ Auto tests:
     sh VBF/scripts/doVBF.sh
     cd -
 
+    cat ../result.MaxLikelihoodFit.Data2015.vbf.pruned.txt
 
     
     
