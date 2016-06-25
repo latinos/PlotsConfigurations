@@ -6,7 +6,7 @@
 #
 
 nuisances['lumi']  = {
-               'name'  : 'lumi_13TeV', 
+               'name'  : 'lumi_13TeV_2016', 
                'samples'  : {
                    'ggH_hww'  : '1.027',
                    'qqH_hww'  : '1.027',
