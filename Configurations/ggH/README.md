@@ -46,11 +46,18 @@ Auto tests:
     sh ggH/scripts/doGGH.sh
     cd -
 
+    
+    
     cd ..
-    sh ggH/scripts/doGGH_alternative.sh
+    sh ggH/scripts/doBigCombination_blind.sh
     cd -
- 
- 
+    
+    cat ../result.Significance.ggHcombined.v1.txt.pruned.txt
+    cat ../result.MaxLikelihoodFit.ggHcombined.v1.txt.pruned.txt
+    
+    cat ../result.Significance.superCombination.v1.txt.pruned.txt    
+
+    
 Make tables:
 
     cd /afs/cern.ch/user/a/amassiro/Limit/PlayWithDatacards
