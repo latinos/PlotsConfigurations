@@ -31,8 +31,8 @@ Steps to get datacards and plots:
     cd -
     ln -s /tmp/<your nice login>
     
-    mkShapes.py      --pycfg=configuration.py  --doThreads=True   --inputDir=eos/user/j/jlauwers/HWW2015/07Jun2016_spring16__mAODv2/MCl2loose16__hadd__LepEff__l2tight__wwSel
-    
+    mkShapes.py      --pycfg=configuration.py  --doThreads=True   --inputDir=eos/user/j/jlauwers/HWW2015/07Jun2016_spring16__mAODv2/MCl2loose__hadd__bSFLepEff__l2tight__wwSel
+                                                                             
     mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_BTag.root
     
     mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_BTag.root
