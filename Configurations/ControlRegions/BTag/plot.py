@@ -8,6 +8,24 @@
 
 
 
+groupPlot['DY']  = {  
+                  'nameHR' : "DY",
+                  'isSignal' : 0,
+                  'color': 418,    # kGreen+2
+                  'samples'  : ['DY']
+              }
+
+
+
+groupPlot['Wjets']  = {  
+                  'nameHR' : 'Wjets',
+                  'isSignal' : 0,
+                  'color': 921,    # kGray + 1
+                  'samples'  : ['Wjets']
+              }
+
+
+
 
 #groupPlot['topWeight_right_1']  = {  
                   #'nameHR' : 'top tagged 1',
@@ -35,11 +53,13 @@
 
 
 
-etaRange = [-5.0, -2.5, -2.0, -1.0, 0, 1.0, 2.0, 2.5, 5.0]
+#etaRange = [-5.0, -2.5, -2.0, -1.0, 0, 1.0, 2.0, 2.5, 5.0]
+#etaRange = [-5.0, 5.0, 10.0, 15.0]
 #etaRange = [-5.0, -2.5, 0, 2.5, 5.0]
-#etaRange = [-5.0, 5.0]
-ptRange = [20,30,50,70,100, 10000000]
-#ptRange = [20,70,100]
+#etaRange = [-5.0, 5.0]  # here without the eta symmetrization!
+etaRange = [-5.0, -2.5, 0, 2.5, 5.0]  # here without the eta symmetrization!
+#ptRange = [20,30,50,70,100, 10000000]
+ptRange = [20, 30, 50, 100, 200]
 
 
 
@@ -50,14 +70,14 @@ for eta in range(len(etaRange)-1):
     groupPlot['topWeight_left_' + str(eta) + '_' + str(pt)]  = {  
                   'nameHR' : 'top veto #eta ' + str(etaRange[eta]) + ' p_{T}' + str(ptRange[pt]),
                   'isSignal' : 0,
-                  'color': 400+eta+pt*len(etaRange), 
+                  'color': 400+2*(eta+pt*len(etaRange)), 
                   'samples'  : ['topWeight_left_' + str(eta) + '_' + str(pt)]
                   }
 
     groupPlot['topWeight_right_' + str(eta) + '_' + str(pt)]  = {  
                   'nameHR' : 'top tag #eta ' + str(etaRange[eta]) + ' p_{T}' + str(ptRange[pt]),
                   'isSignal' : 0,
-                  'color': 418+eta+pt*len(etaRange), 
+                  'color': 418+2*(eta+pt*len(etaRange))+1, 
                   'samples'  : ['topWeight_right_' + str(eta) + '_' + str(pt)]
                   }
 
@@ -87,6 +107,7 @@ for eta in range(len(etaRange)-1):
                       'isData'   : 0, 
                       'scale'    : 1.0,
                   }
+
 
 
 
