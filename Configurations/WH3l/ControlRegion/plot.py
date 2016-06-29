@@ -39,12 +39,12 @@ groupPlot['WW']  = {
                   'samples'  : ['WW']
               }
 
-groupPlot['VVV']  = {  
-                  'nameHR' : 'VVV',
-                  'isSignal' : 0,
-                  'color': 857, # kAzure -3  
-                  'samples'  : ['VVV']
-              }
+#groupPlot['VVV']  = {  
+#                  'nameHR' : 'VVV',
+#                  'isSignal' : 0,
+#                  'color': 857, # kAzure -3  
+#                  'samples'  : ['VVV']
+#              }
 
 
 groupPlot['Vg']  = {
@@ -75,15 +75,15 @@ groupPlot['WZ']  = {
                   'nameHR' : "WZ",
                   'isSignal' : 0,
                   'color'    : 400,   # Yellow
-                  'samples'  : ['ZZ']
+                  'samples'  : ['WZ']
               }
 
-groupPlot['Higgs']  = {  
-                  'nameHR' : 'Higgs',
-                  'isSignal' : 1,
-                  'color': 632, # kRed 
-                  'samples'  : ['H_htt', 'WH_hww', 'ZH_hww', 'ggZH_hww']
-              }
+#groupPlot['Higgs']  = {  
+#                  'nameHR' : 'Higgs',
+#                  'isSignal' : 1,
+#                  'color': 632, # kRed 
+#                  'samples'  : ['H_htt', 'WH_hww', 'ZH_hww', 'ggZH_hww']
+#              }
 
 
 
@@ -243,12 +243,12 @@ plot['ZZ']  = {
                   }
 
 
-plot['VVV']  = { 
-                  'color': 857, # kAzure -3  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
+#plot['VVV']  = { 
+#                  'color': 857, # kAzure -3  
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1.0
+#                  }
 
 #plot['ZZ']  = {
 #                  'color': 854, # kAzure -6 
@@ -261,39 +261,32 @@ plot['VVV']  = {
 
 # Htautau
 
-plot['H_htt'] = {
-                  'nameHR' : 'Htt',
-                  'color': 632+4, # kRed+4 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-
-# HWW 
-
-#plot['H_hww'] = {
-#                  'nameHR' : 'Hww',
-#                  'color': 632, # kRed 
-##                  'isSignal' : 1,
+#plot['H_htt'] = {
+#                  'nameHR' : 'Htt',
+#                  'color': 632+4, # kRed+4 
+#                  'isSignal' : 1,
 #                  'isData'   : 0,    
 #                  'scale'    : 1    #
 #                  }
 
-plot['ZH_hww'] = {
-                  'nameHR' : 'ZH',
-                  'color': 632+3, # kRed+3 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
+# HWW 
 
-plot['ggZH_hww'] = {
-                  'nameHR' : 'ggZH',
-                  'color': 632+4, # kRed+4
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
+
+#plot['ZH_hww'] = {
+#                  'nameHR' : 'ZH',
+#                  'color': 632+3, # kRed+3 
+#                  'isSignal' : 1,
+#                  'isData'   : 0,    
+#                  'scale'    : 1    #
+#                  }
+
+#plot['ggZH_hww'] = {
+#                  'nameHR' : 'ggZH',
+#                  'color': 632+4, # kRed+4
+#                  'isSignal' : 1,
+#                  'isData'   : 0,    
+#                  'scale'    : 1    #
+#                  }
 
 plot['WH_hww'] = {
                   'nameHR' : 'WH',
@@ -302,25 +295,6 @@ plot['WH_hww'] = {
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
-
-
-#plot['qqH_hww'] = {
-#                  'nameHR' : 'qqH',
-#                  'color': 632+1, # kRed+1 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,    
-#                  'scale'    : 1    #
-#                  }
-
-
-#plot['ggH_hww'] = {
-#                  'nameHR' : 'ggH',
-#                  'color': 632, # kRed 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,    
-#                  'scale'    : 1    #
-#                  }
-
 # data
 
 plot['DATA']  = { 

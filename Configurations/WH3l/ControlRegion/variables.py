@@ -11,19 +11,19 @@
 #                        }
 
 variables['pt1']  = {   'name': 'pt1',            #   variable name    
-                        'range' : (50,10,500),    #   variable range
+                        'range' : (25,10,200),    #   variable range
                         'xaxis' : 'lept1_p_{T} [GeV]',  #   x axis name
                          'fold' : 0
                         }
     
 variables['pt2']  = {   'name': 'pt2',            #   variable name    
-                        'range' : (50,10,500),    #   variable range
+                        'range' : (25,10,200),    #   variable range
                         'xaxis' : 'lept2_p_{T} [GeV]',  #   x axis name
                          'fold' : 0
                         }
 
 variables['pt3']  = {   'name': 'pt3',            #   variable name    
-                        'range' : (50,10,500),    #   variable range
+                        'range' : (25,10,200),    #   variable range
                         'xaxis' : 'lept3_p_{T} [GeV]',  #   x axis name
                          'fold' : 0
                         }
@@ -41,7 +41,7 @@ variables['zveto_3l']  = {   'name': 'zveto_3l',            #   variable name
                         }
 
 variables['drllmin3l']  = {   'name': 'drllmin3l',            #   variable name    
-                        'range' : (3,0,4),    #   variable range
+                        'range' : (5,0,6),    #   variable range
                         'xaxis' : 'min #Delta Rm_{ll} [GeV]',  #   x axis name
                          'fold' : 0
                         }
@@ -77,7 +77,7 @@ variables['nvtx']  = {   'name': 'nvtx',
                         #}
 
 variables['met']  = {   'name': 'metPfType1',            #   variable name    
-                        'range' : (20,0,200),    #   variable range
+                        'range' : (40,0,200),    #   variable range
                         'xaxis' : 'pfmet [GeV]',  #   x axis name
                         'fold' : 0
                         }

@@ -1,7 +1,7 @@
 void c_wh3l_13TeV_sssf_nvtx()
 {
 //=========Macro generated from canvas: ccwh3l_13TeV_sssf_nvtx/cc
-//=========  (Tue Jun 28 13:56:18 2016) by ROOT version6.02/13
+//=========  (Tue Jun 28 15:27:31 2016) by ROOT version6.02/13
    TCanvas *ccwh3l_13TeV_sssf_nvtx = new TCanvas("ccwh3l_13TeV_sssf_nvtx", "cc",0,0,800,600);
    gStyle->SetOptFit(1);
    gStyle->SetOptStat(0);
@@ -1021,7 +1021,7 @@ void c_wh3l_13TeV_sssf_nvtx()
    
    grae->Draw("p0");
    
-   TLegend *leg = new TLegend(0.2,0.55,0.8,0.88,NULL,"brNDC");
+   TLegend *leg = new TLegend(0.2,0.7,0.8,0.9,NULL,"brNDC");
    leg->SetTextFont(62);
    leg->SetLineColor(0);
    leg->SetLineStyle(1);
@@ -1161,7 +1161,7 @@ tex->SetNDC();
    tex->SetLineWidth(2);
    tex->Draw();
    
-   leg = new TLegend(0.2,0.55,0.8,0.88,NULL,"brNDC");
+   leg = new TLegend(0.2,0.7,0.8,0.9,NULL,"brNDC");
    leg->SetTextFont(62);
    leg->SetLineColor(0);
    leg->SetLineStyle(1);

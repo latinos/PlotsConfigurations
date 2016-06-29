@@ -8,33 +8,44 @@ supercut = 'mllmin3l>12  \
             && abs(chlll) == 1 \
            '
 
-cuts['wh3l_13TeV_ossf']  = 'njet_3l == 0 \
+#cuts['wh3l_13TeV_ossf']  = 'njet_3l == 0 \
+#                       && nbjet_3l == 0\
+#                       && metPfType1 > 40\
+#                       && zveto_3l > 25\
+#                       && mllmin3l < 100\
+#                       && flagOSSF == 1\
+#                       '
+
+#cuts['wh3l_13TeV_sssf']  = 'njet_3l == 0 \
+#                       && nbjet_3l == 0\
+#                       && metPfType1 > 30\
+#                       && zveto_3l > 25\
+#                       && mllmin3l < 100\
+#                       && flagOSSF == 0\
+#                       '
+cuts['wh3l_13TeV']  = 'njet_3l == 0\
                        && nbjet_3l == 0\
                        && metPfType1 > 40\
                        && zveto_3l > 25\
                        && mllmin3l < 100\
-                       && flagOSSF == 1\
                        '
 
-cuts['wh3l_13TeV_sssf']  = 'njet_3l == 0 \
-                       && nbjet_3l == 0\
-                       && metPfType1 > 30\
-                       && zveto_3l > 25\
-                       && mllmin3l < 100\
-                       && flagOSSF == 0\
-                       '
-cuts['wh3l_13TeV']  = 'njet_3l == 0 \
+cuts['wh3l_plot_13TeV']  = 'njet_3l == 0\
                        && nbjet_3l == 0\
                        && metPfType1 > 40\
                        && zveto_3l > 25\
-                       && mllmin3l < 100\
                        '
-
-cuts['wh3l_plot_13TeV']  = 'njet_3l == 0 \
+cuts['wh3l_noMET_13TeV']  = 'njet_3l == 0\
                        && nbjet_3l == 0\
-                       && metPfType1 > 40\
+                       && zveto_3l > 25\
                        '
 
+cuts['wh3l_nobTag_13TeV'] = 'metPfType1 > 40\
+                       && zveto_3l > 25\
+                       '
+#cuts['wh3l_nojetVeto_13TeV'] = 'metPfType1 > 40\
+#                       && zveto_3l > 25\
+#                       '
 
 #cuts['wh3l_top_13TeV']  = '(njet_3l > 0 || nbjet_3l > 0)\
 #                       && metPfType1 > 35\

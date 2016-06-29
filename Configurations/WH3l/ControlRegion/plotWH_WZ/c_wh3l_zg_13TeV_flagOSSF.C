@@ -1,13 +1,13 @@
 void c_wh3l_zg_13TeV_flagOSSF()
 {
 //=========Macro generated from canvas: ccwh3l_zg_13TeV_flagOSSF/cc
-//=========  (Tue Jun 28 02:22:55 2016) by ROOT version6.02/13
+//=========  (Tue Jun 28 16:49:12 2016) by ROOT version6.02/13
    TCanvas *ccwh3l_zg_13TeV_flagOSSF = new TCanvas("ccwh3l_zg_13TeV_flagOSSF", "cc",0,0,800,600);
    gStyle->SetOptFit(1);
    gStyle->SetOptStat(0);
    gStyle->SetOptTitle(0);
    ccwh3l_zg_13TeV_flagOSSF->SetHighLightColor(2);
-   ccwh3l_zg_13TeV_flagOSSF->Range(-0.4,-54.38794,2.1,363.9809);
+   ccwh3l_zg_13TeV_flagOSSF->Range(-0.4,-56.45707,2.1,377.8281);
    ccwh3l_zg_13TeV_flagOSSF->SetFillColor(0);
    ccwh3l_zg_13TeV_flagOSSF->SetBorderMode(0);
    ccwh3l_zg_13TeV_flagOSSF->SetBorderSize(2);
@@ -22,328 +22,246 @@ void c_wh3l_zg_13TeV_flagOSSF()
    ccwh3l_zg_13TeV_flagOSSF->SetFrameFillStyle(0);
    ccwh3l_zg_13TeV_flagOSSF->SetFrameBorderMode(0);
    
-   TH1F *hframe181 = new TH1F("hframe181","",1000,0,2);
-   hframe181->SetMinimum(0);
-   hframe181->SetMaximum(343.0624);
-   hframe181->SetDirectory(0);
-   hframe181->SetStats(0);
-   hframe181->SetLineStyle(0);
-   hframe181->SetMarkerStyle(20);
-   hframe181->GetXaxis()->SetTitle("flag OSSF");
-   hframe181->GetXaxis()->SetNdivisions(506);
-   hframe181->GetXaxis()->SetLabelFont(42);
-   hframe181->GetXaxis()->SetLabelOffset(0.007);
-   hframe181->GetXaxis()->SetLabelSize(0.05);
-   hframe181->GetXaxis()->SetTitleSize(0.06);
-   hframe181->GetXaxis()->SetTitleOffset(0.9);
-   hframe181->GetXaxis()->SetTitleFont(42);
-   hframe181->GetYaxis()->SetTitle("Events");
-   hframe181->GetYaxis()->SetLabelFont(42);
-   hframe181->GetYaxis()->SetLabelOffset(0.007);
-   hframe181->GetYaxis()->SetLabelSize(0.05);
-   hframe181->GetYaxis()->SetTitleSize(0.06);
-   hframe181->GetYaxis()->SetTitleOffset(1.25);
-   hframe181->GetYaxis()->SetTitleFont(42);
-   hframe181->GetZaxis()->SetLabelFont(42);
-   hframe181->GetZaxis()->SetLabelOffset(0.007);
-   hframe181->GetZaxis()->SetLabelSize(0.05);
-   hframe181->GetZaxis()->SetTitleSize(0.06);
-   hframe181->GetZaxis()->SetTitleFont(42);
-   hframe181->Draw(" ");
+   TH1F *hframe217 = new TH1F("hframe217","",1000,0,2);
+   hframe217->SetMinimum(0);
+   hframe217->SetMaximum(356.1138);
+   hframe217->SetDirectory(0);
+   hframe217->SetStats(0);
+   hframe217->SetLineStyle(0);
+   hframe217->SetMarkerStyle(20);
+   hframe217->GetXaxis()->SetTitle("flag OSSF");
+   hframe217->GetXaxis()->SetNdivisions(506);
+   hframe217->GetXaxis()->SetLabelFont(42);
+   hframe217->GetXaxis()->SetLabelOffset(0.007);
+   hframe217->GetXaxis()->SetLabelSize(0.05);
+   hframe217->GetXaxis()->SetTitleSize(0.06);
+   hframe217->GetXaxis()->SetTitleOffset(0.9);
+   hframe217->GetXaxis()->SetTitleFont(42);
+   hframe217->GetYaxis()->SetTitle("Events");
+   hframe217->GetYaxis()->SetLabelFont(42);
+   hframe217->GetYaxis()->SetLabelOffset(0.007);
+   hframe217->GetYaxis()->SetLabelSize(0.05);
+   hframe217->GetYaxis()->SetTitleSize(0.06);
+   hframe217->GetYaxis()->SetTitleOffset(1.25);
+   hframe217->GetYaxis()->SetTitleFont(42);
+   hframe217->GetZaxis()->SetLabelFont(42);
+   hframe217->GetZaxis()->SetLabelOffset(0.007);
+   hframe217->GetZaxis()->SetLabelSize(0.05);
+   hframe217->GetZaxis()->SetTitleSize(0.06);
+   hframe217->GetZaxis()->SetTitleFont(42);
+   hframe217->Draw(" ");
    
    THStack *thsBackground_grouped_wh3l_zg_13TeV_flagOSSF = new THStack();
    thsBackground_grouped_wh3l_zg_13TeV_flagOSSF->SetName("thsBackground_grouped_wh3l_zg_13TeV_flagOSSF");
    thsBackground_grouped_wh3l_zg_13TeV_flagOSSF->SetTitle("thsBackground_grouped_wh3l_zg_13TeV_flagOSSF");
    
-   TH1F *thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37 = new TH1F("thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37","thsBackground_grouped_wh3l_zg_13TeV_flagOSSF",2,0,2);
-   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37->SetMinimum(-0.3196247);
-   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37->SetMaximum(132.1675);
-   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37->SetDirectory(0);
-   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37->SetStats(0);
-   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37->SetLineStyle(0);
-   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37->SetMarkerStyle(20);
-   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37->GetXaxis()->SetLabelFont(42);
-   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37->GetXaxis()->SetLabelOffset(0.007);
-   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37->GetXaxis()->SetLabelSize(0.05);
-   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37->GetXaxis()->SetTitleSize(0.06);
-   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37->GetXaxis()->SetTitleOffset(0.9);
-   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37->GetXaxis()->SetTitleFont(42);
-   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37->GetYaxis()->SetLabelFont(42);
-   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37->GetYaxis()->SetLabelOffset(0.007);
-   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37->GetYaxis()->SetLabelSize(0.05);
-   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37->GetYaxis()->SetTitleSize(0.06);
-   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37->GetYaxis()->SetTitleOffset(1.25);
-   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37->GetYaxis()->SetTitleFont(42);
-   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37->GetZaxis()->SetLabelFont(42);
-   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37->GetZaxis()->SetLabelOffset(0.007);
-   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37->GetZaxis()->SetLabelSize(0.05);
-   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37->GetZaxis()->SetTitleSize(0.06);
-   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37->GetZaxis()->SetTitleFont(42);
-   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF->SetHistogram(thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_37);
+   TH1F *thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28 = new TH1F("thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28","thsBackground_grouped_wh3l_zg_13TeV_flagOSSF",2,0,2);
+   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28->SetMinimum(-0.3196247);
+   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28->SetMaximum(137.4888);
+   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28->SetDirectory(0);
+   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28->SetStats(0);
+   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28->SetLineStyle(0);
+   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28->SetMarkerStyle(20);
+   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28->GetXaxis()->SetLabelFont(42);
+   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28->GetXaxis()->SetLabelOffset(0.007);
+   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28->GetXaxis()->SetLabelSize(0.05);
+   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28->GetXaxis()->SetTitleSize(0.06);
+   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28->GetXaxis()->SetTitleOffset(0.9);
+   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28->GetXaxis()->SetTitleFont(42);
+   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28->GetYaxis()->SetLabelFont(42);
+   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28->GetYaxis()->SetLabelOffset(0.007);
+   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28->GetYaxis()->SetLabelSize(0.05);
+   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28->GetYaxis()->SetTitleSize(0.06);
+   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28->GetYaxis()->SetTitleOffset(1.25);
+   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28->GetYaxis()->SetTitleFont(42);
+   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28->GetZaxis()->SetLabelFont(42);
+   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28->GetZaxis()->SetLabelOffset(0.007);
+   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28->GetZaxis()->SetLabelSize(0.05);
+   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28->GetZaxis()->SetTitleSize(0.06);
+   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28->GetZaxis()->SetTitleFont(42);
+   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF->SetHistogram(thsBackground_grouped_wh3l_zg_13TeV_flagOSSF_stack_28);
    
    
-   TH1D *new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF182 = new TH1D("new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF182","histo_Fake",2,0,2);
-   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF182->SetBinContent(1,-0.1790202);
-   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF182->SetBinContent(2,24.30597);
-   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF182->SetBinError(1,0.1406046);
-   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF182->SetBinError(2,4.309458);
-   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF182->SetEntries(442);
+   TH1D *new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF218 = new TH1D("new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF218","histo_Fake",2,0,2);
+   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF218->SetBinContent(1,-0.1790202);
+   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF218->SetBinContent(2,24.327);
+   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF218->SetBinError(1,0.1406046);
+   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF218->SetBinError(2,4.336077);
+   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF218->SetEntries(461);
 
    Int_t ci;      // for color index setting
    TColor *color; // for color definition with alpha
    ci = TColor::GetColor("#999999");
-   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF182->SetFillColor(ci);
-   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF182->SetFillStyle(3001);
+   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF218->SetFillColor(ci);
+   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF218->SetFillStyle(3001);
 
    ci = TColor::GetColor("#999999");
-   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF182->SetLineColor(ci);
-   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF182->GetXaxis()->SetLabelFont(42);
-   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF182->GetXaxis()->SetLabelSize(0.035);
-   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF182->GetXaxis()->SetTitleSize(0.035);
-   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF182->GetXaxis()->SetTitleFont(42);
-   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF182->GetYaxis()->SetLabelFont(42);
-   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF182->GetYaxis()->SetLabelSize(0.035);
-   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF182->GetYaxis()->SetTitleSize(0.035);
-   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF182->GetYaxis()->SetTitleFont(42);
-   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF182->GetZaxis()->SetLabelFont(42);
-   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF182->GetZaxis()->SetLabelSize(0.035);
-   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF182->GetZaxis()->SetTitleSize(0.035);
-   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF182->GetZaxis()->SetTitleFont(42);
+   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF218->SetLineColor(ci);
+   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF218->GetXaxis()->SetLabelFont(42);
+   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF218->GetXaxis()->SetLabelSize(0.035);
+   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF218->GetXaxis()->SetTitleSize(0.035);
+   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF218->GetXaxis()->SetTitleFont(42);
+   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF218->GetYaxis()->SetLabelFont(42);
+   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF218->GetYaxis()->SetLabelSize(0.035);
+   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF218->GetYaxis()->SetTitleSize(0.035);
+   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF218->GetYaxis()->SetTitleFont(42);
+   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF218->GetZaxis()->SetLabelFont(42);
+   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF218->GetZaxis()->SetLabelSize(0.035);
+   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF218->GetZaxis()->SetTitleSize(0.035);
+   new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF218->GetZaxis()->SetTitleFont(42);
    thsBackground_grouped_wh3l_zg_13TeV_flagOSSF->Add(new_histo_group_Fake_wh3l_zg_13TeV_flagOSSF,"");
    
-   TH1D *new_histo_group_WW_wh3l_zg_13TeV_flagOSSF183 = new TH1D("new_histo_group_WW_wh3l_zg_13TeV_flagOSSF183","histo_WW",2,0,2);
-   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF183->SetBinContent(2,0.009961222);
-   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF183->SetBinError(2,0.009961222);
-   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF183->SetEntries(1);
+   TH1D *new_histo_group_WW_wh3l_zg_13TeV_flagOSSF219 = new TH1D("new_histo_group_WW_wh3l_zg_13TeV_flagOSSF219","histo_WW",2,0,2);
+   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF219->SetBinContent(2,0.009961222);
+   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF219->SetBinError(2,0.009961222);
+   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF219->SetEntries(1);
 
    ci = TColor::GetColor("#99ccff");
-   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF183->SetFillColor(ci);
-   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF183->SetFillStyle(3001);
+   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF219->SetFillColor(ci);
+   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF219->SetFillStyle(3001);
 
    ci = TColor::GetColor("#99ccff");
-   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF183->SetLineColor(ci);
-   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF183->GetXaxis()->SetLabelFont(42);
-   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF183->GetXaxis()->SetLabelSize(0.035);
-   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF183->GetXaxis()->SetTitleSize(0.035);
-   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF183->GetXaxis()->SetTitleFont(42);
-   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF183->GetYaxis()->SetLabelFont(42);
-   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF183->GetYaxis()->SetLabelSize(0.035);
-   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF183->GetYaxis()->SetTitleSize(0.035);
-   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF183->GetYaxis()->SetTitleFont(42);
-   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF183->GetZaxis()->SetLabelFont(42);
-   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF183->GetZaxis()->SetLabelSize(0.035);
-   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF183->GetZaxis()->SetTitleSize(0.035);
-   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF183->GetZaxis()->SetTitleFont(42);
+   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF219->SetLineColor(ci);
+   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF219->GetXaxis()->SetLabelFont(42);
+   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF219->GetXaxis()->SetLabelSize(0.035);
+   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF219->GetXaxis()->SetTitleSize(0.035);
+   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF219->GetXaxis()->SetTitleFont(42);
+   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF219->GetYaxis()->SetLabelFont(42);
+   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF219->GetYaxis()->SetLabelSize(0.035);
+   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF219->GetYaxis()->SetTitleSize(0.035);
+   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF219->GetYaxis()->SetTitleFont(42);
+   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF219->GetZaxis()->SetLabelFont(42);
+   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF219->GetZaxis()->SetLabelSize(0.035);
+   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF219->GetZaxis()->SetTitleSize(0.035);
+   new_histo_group_WW_wh3l_zg_13TeV_flagOSSF219->GetZaxis()->SetTitleFont(42);
    thsBackground_grouped_wh3l_zg_13TeV_flagOSSF->Add(new_histo_group_WW_wh3l_zg_13TeV_flagOSSF,"");
    
-   TH1D *new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF184 = new TH1D("new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF184","histo_VVV",2,0,2);
-   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF184->SetBinContent(2,-0.0006863608);
-   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF184->SetBinError(2,0.0006863608);
-   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF184->SetEntries(1);
+   TH1D *new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF220 = new TH1D("new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF220","histo_VVV",2,0,2);
+   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF220->SetBinContent(2,-0.0006863608);
+   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF220->SetBinError(2,0.0006863608);
+   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF220->SetEntries(1);
 
    ci = TColor::GetColor("#0066ff");
-   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF184->SetFillColor(ci);
-   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF184->SetFillStyle(3001);
+   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF220->SetFillColor(ci);
+   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF220->SetFillStyle(3001);
 
    ci = TColor::GetColor("#0066ff");
-   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF184->SetLineColor(ci);
-   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF184->GetXaxis()->SetLabelFont(42);
-   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF184->GetXaxis()->SetLabelSize(0.035);
-   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF184->GetXaxis()->SetTitleSize(0.035);
-   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF184->GetXaxis()->SetTitleFont(42);
-   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF184->GetYaxis()->SetLabelFont(42);
-   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF184->GetYaxis()->SetLabelSize(0.035);
-   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF184->GetYaxis()->SetTitleSize(0.035);
-   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF184->GetYaxis()->SetTitleFont(42);
-   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF184->GetZaxis()->SetLabelFont(42);
-   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF184->GetZaxis()->SetLabelSize(0.035);
-   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF184->GetZaxis()->SetTitleSize(0.035);
-   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF184->GetZaxis()->SetTitleFont(42);
+   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF220->SetLineColor(ci);
+   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF220->GetXaxis()->SetLabelFont(42);
+   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF220->GetXaxis()->SetLabelSize(0.035);
+   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF220->GetXaxis()->SetTitleSize(0.035);
+   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF220->GetXaxis()->SetTitleFont(42);
+   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF220->GetYaxis()->SetLabelFont(42);
+   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF220->GetYaxis()->SetLabelSize(0.035);
+   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF220->GetYaxis()->SetTitleSize(0.035);
+   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF220->GetYaxis()->SetTitleFont(42);
+   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF220->GetZaxis()->SetLabelFont(42);
+   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF220->GetZaxis()->SetLabelSize(0.035);
+   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF220->GetZaxis()->SetTitleSize(0.035);
+   new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF220->GetZaxis()->SetTitleFont(42);
    thsBackground_grouped_wh3l_zg_13TeV_flagOSSF->Add(new_histo_group_VVV_wh3l_zg_13TeV_flagOSSF,"");
    
-   TH1D *new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF185 = new TH1D("new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF185","histo_Vg",2,0,2);
-   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF185->SetBinContent(1,0.07413695);
-   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF185->SetBinContent(2,100.1194);
-   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF185->SetBinError(1,0.07413695);
-   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF185->SetBinError(2,3.797456);
-   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF185->SetEntries(1327);
+   TH1D *new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF221 = new TH1D("new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF221","histo_Vg",2,0,2);
+   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF221->SetBinContent(1,0.07413695);
+   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF221->SetBinContent(2,104.0902);
+   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF221->SetBinError(1,0.07413695);
+   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF221->SetBinError(2,3.861654);
+   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF221->SetEntries(1378);
 
    ci = TColor::GetColor("#0033cc");
-   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF185->SetFillColor(ci);
-   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF185->SetFillStyle(3001);
+   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF221->SetFillColor(ci);
+   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF221->SetFillStyle(3001);
 
    ci = TColor::GetColor("#0033cc");
-   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF185->SetLineColor(ci);
-   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF185->GetXaxis()->SetLabelFont(42);
-   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF185->GetXaxis()->SetLabelSize(0.035);
-   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF185->GetXaxis()->SetTitleSize(0.035);
-   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF185->GetXaxis()->SetTitleFont(42);
-   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF185->GetYaxis()->SetLabelFont(42);
-   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF185->GetYaxis()->SetLabelSize(0.035);
-   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF185->GetYaxis()->SetTitleSize(0.035);
-   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF185->GetYaxis()->SetTitleFont(42);
-   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF185->GetZaxis()->SetLabelFont(42);
-   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF185->GetZaxis()->SetLabelSize(0.035);
-   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF185->GetZaxis()->SetTitleSize(0.035);
-   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF185->GetZaxis()->SetTitleFont(42);
+   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF221->SetLineColor(ci);
+   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF221->GetXaxis()->SetLabelFont(42);
+   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF221->GetXaxis()->SetLabelSize(0.035);
+   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF221->GetXaxis()->SetTitleSize(0.035);
+   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF221->GetXaxis()->SetTitleFont(42);
+   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF221->GetYaxis()->SetLabelFont(42);
+   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF221->GetYaxis()->SetLabelSize(0.035);
+   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF221->GetYaxis()->SetTitleSize(0.035);
+   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF221->GetYaxis()->SetTitleFont(42);
+   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF221->GetZaxis()->SetLabelFont(42);
+   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF221->GetZaxis()->SetLabelSize(0.035);
+   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF221->GetZaxis()->SetTitleSize(0.035);
+   new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF221->GetZaxis()->SetTitleFont(42);
    thsBackground_grouped_wh3l_zg_13TeV_flagOSSF->Add(new_histo_group_Vg_wh3l_zg_13TeV_flagOSSF,"");
    
-   TH1D *new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF186 = new TH1D("new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF186","histo_ZZ",2,0,2);
-   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF186->SetBinContent(1,0.03984332);
-   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF186->SetBinContent(2,0.6964979);
-   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF186->SetBinError(1,0.03984332);
-   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF186->SetBinError(2,0.1668938);
-   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF186->SetEntries(20);
+   TH1D *new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF222 = new TH1D("new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF222","histo_ZZ",2,0,2);
+   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF222->SetBinContent(1,0.03984332);
+   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF222->SetBinContent(2,0.6964979);
+   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF222->SetBinError(1,0.03984332);
+   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF222->SetBinError(2,0.1668938);
+   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF222->SetEntries(20);
 
    ci = TColor::GetColor("#cc00cc");
-   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF186->SetFillColor(ci);
-   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF186->SetFillStyle(3001);
+   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF222->SetFillColor(ci);
+   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF222->SetFillStyle(3001);
 
    ci = TColor::GetColor("#cc00cc");
-   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF186->SetLineColor(ci);
-   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF186->GetXaxis()->SetLabelFont(42);
-   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF186->GetXaxis()->SetLabelSize(0.035);
-   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF186->GetXaxis()->SetTitleSize(0.035);
-   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF186->GetXaxis()->SetTitleFont(42);
-   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF186->GetYaxis()->SetLabelFont(42);
-   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF186->GetYaxis()->SetLabelSize(0.035);
-   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF186->GetYaxis()->SetTitleSize(0.035);
-   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF186->GetYaxis()->SetTitleFont(42);
-   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF186->GetZaxis()->SetLabelFont(42);
-   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF186->GetZaxis()->SetLabelSize(0.035);
-   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF186->GetZaxis()->SetTitleSize(0.035);
-   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF186->GetZaxis()->SetTitleFont(42);
+   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF222->SetLineColor(ci);
+   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF222->GetXaxis()->SetLabelFont(42);
+   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF222->GetXaxis()->SetLabelSize(0.035);
+   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF222->GetXaxis()->SetTitleSize(0.035);
+   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF222->GetXaxis()->SetTitleFont(42);
+   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF222->GetYaxis()->SetLabelFont(42);
+   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF222->GetYaxis()->SetLabelSize(0.035);
+   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF222->GetYaxis()->SetTitleSize(0.035);
+   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF222->GetYaxis()->SetTitleFont(42);
+   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF222->GetZaxis()->SetLabelFont(42);
+   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF222->GetZaxis()->SetLabelSize(0.035);
+   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF222->GetZaxis()->SetTitleSize(0.035);
+   new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF222->GetZaxis()->SetTitleFont(42);
    thsBackground_grouped_wh3l_zg_13TeV_flagOSSF->Add(new_histo_group_ZZ_wh3l_zg_13TeV_flagOSSF,"");
    
-   TH1D *new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF187 = new TH1D("new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF187","histo_ZZ",2,0,2);
-   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF187->SetBinContent(1,0.03984332);
-   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF187->SetBinContent(2,0.6964979);
-   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF187->SetBinError(1,0.03984332);
-   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF187->SetBinError(2,0.1668938);
-   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF187->SetEntries(20);
+   TH1D *new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF223 = new TH1D("new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF223","histo_WZ",2,0,2);
+   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF223->SetBinContent(1,0.05976575);
+   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF223->SetBinContent(2,1.818758);
+   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF223->SetBinError(1,0.01698012);
+   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF223->SetBinError(2,0.09968216);
+   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF223->SetEntries(376);
 
    ci = TColor::GetColor("#ffff00");
-   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF187->SetFillColor(ci);
-   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF187->SetFillStyle(3001);
+   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF223->SetFillColor(ci);
+   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF223->SetFillStyle(3001);
 
    ci = TColor::GetColor("#ffff00");
-   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF187->SetLineColor(ci);
-   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF187->GetXaxis()->SetLabelFont(42);
-   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF187->GetXaxis()->SetLabelSize(0.035);
-   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF187->GetXaxis()->SetTitleSize(0.035);
-   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF187->GetXaxis()->SetTitleFont(42);
-   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF187->GetYaxis()->SetLabelFont(42);
-   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF187->GetYaxis()->SetLabelSize(0.035);
-   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF187->GetYaxis()->SetTitleSize(0.035);
-   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF187->GetYaxis()->SetTitleFont(42);
-   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF187->GetZaxis()->SetLabelFont(42);
-   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF187->GetZaxis()->SetLabelSize(0.035);
-   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF187->GetZaxis()->SetTitleSize(0.035);
-   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF187->GetZaxis()->SetTitleFont(42);
+   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF223->SetLineColor(ci);
+   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF223->GetXaxis()->SetLabelFont(42);
+   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF223->GetXaxis()->SetLabelSize(0.035);
+   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF223->GetXaxis()->SetTitleSize(0.035);
+   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF223->GetXaxis()->SetTitleFont(42);
+   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF223->GetYaxis()->SetLabelFont(42);
+   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF223->GetYaxis()->SetLabelSize(0.035);
+   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF223->GetYaxis()->SetTitleSize(0.035);
+   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF223->GetYaxis()->SetTitleFont(42);
+   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF223->GetZaxis()->SetLabelFont(42);
+   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF223->GetZaxis()->SetLabelSize(0.035);
+   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF223->GetZaxis()->SetTitleSize(0.035);
+   new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF223->GetZaxis()->SetTitleFont(42);
    thsBackground_grouped_wh3l_zg_13TeV_flagOSSF->Add(new_histo_group_WZ_wh3l_zg_13TeV_flagOSSF,"");
-   
-   TH1D *new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF188 = new TH1D("new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF188","histo_H_htt",2,0,2);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF188->SetBinContent(1,0.01463839);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF188->SetBinContent(2,0.04616565);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF188->SetBinError(1,0.003586166);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF188->SetBinError(2,0.007285976);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF188->SetEntries(136);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF188->SetFillStyle(0);
-
-   ci = TColor::GetColor("#ff0000");
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF188->SetLineColor(ci);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF188->SetLineWidth(2);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF188->GetXaxis()->SetLabelFont(42);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF188->GetXaxis()->SetLabelSize(0.035);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF188->GetXaxis()->SetTitleSize(0.035);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF188->GetXaxis()->SetTitleFont(42);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF188->GetYaxis()->SetLabelFont(42);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF188->GetYaxis()->SetLabelSize(0.035);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF188->GetYaxis()->SetTitleSize(0.035);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF188->GetYaxis()->SetTitleFont(42);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF188->GetZaxis()->SetLabelFont(42);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF188->GetZaxis()->SetLabelSize(0.035);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF188->GetZaxis()->SetTitleSize(0.035);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF188->GetZaxis()->SetTitleFont(42);
-   thsBackground_grouped_wh3l_zg_13TeV_flagOSSF->Add(new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF,"");
    thsBackground_grouped_wh3l_zg_13TeV_flagOSSF->Draw("hist same");
    
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF = new THStack();
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF->SetName("thsSignal_grouped_wh3l_zg_13TeV_flagOSSF");
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF->SetTitle("thsSignal_grouped_wh3l_zg_13TeV_flagOSSF");
-   
-   TH1F *thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38 = new TH1F("thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38","thsSignal_grouped_wh3l_zg_13TeV_flagOSSF",2,0,2);
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38->SetMinimum(0);
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38->SetMaximum(0.0561242);
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38->SetDirectory(0);
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38->SetStats(0);
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38->SetLineStyle(0);
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38->SetMarkerStyle(20);
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38->GetXaxis()->SetLabelFont(42);
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38->GetXaxis()->SetLabelOffset(0.007);
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38->GetXaxis()->SetLabelSize(0.05);
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38->GetXaxis()->SetTitleSize(0.06);
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38->GetXaxis()->SetTitleOffset(0.9);
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38->GetXaxis()->SetTitleFont(42);
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38->GetYaxis()->SetLabelFont(42);
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38->GetYaxis()->SetLabelOffset(0.007);
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38->GetYaxis()->SetLabelSize(0.05);
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38->GetYaxis()->SetTitleSize(0.06);
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38->GetYaxis()->SetTitleOffset(1.25);
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38->GetYaxis()->SetTitleFont(42);
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38->GetZaxis()->SetLabelFont(42);
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38->GetZaxis()->SetLabelOffset(0.007);
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38->GetZaxis()->SetLabelSize(0.05);
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38->GetZaxis()->SetTitleSize(0.06);
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38->GetZaxis()->SetTitleFont(42);
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF->SetHistogram(thsSignal_grouped_wh3l_zg_13TeV_flagOSSF_stack_38);
-   
-   
-   TH1D *new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF189 = new TH1D("new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF189","histo_H_htt",2,0,2);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF189->SetBinContent(1,0.01463839);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF189->SetBinContent(2,0.04616565);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF189->SetBinError(1,0.003586166);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF189->SetBinError(2,0.007285976);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF189->SetEntries(136);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF189->SetFillStyle(0);
-
-   ci = TColor::GetColor("#ff0000");
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF189->SetLineColor(ci);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF189->SetLineWidth(2);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF189->GetXaxis()->SetLabelFont(42);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF189->GetXaxis()->SetLabelSize(0.035);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF189->GetXaxis()->SetTitleSize(0.035);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF189->GetXaxis()->SetTitleFont(42);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF189->GetYaxis()->SetLabelFont(42);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF189->GetYaxis()->SetLabelSize(0.035);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF189->GetYaxis()->SetTitleSize(0.035);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF189->GetYaxis()->SetTitleFont(42);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF189->GetZaxis()->SetLabelFont(42);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF189->GetZaxis()->SetLabelSize(0.035);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF189->GetZaxis()->SetTitleSize(0.035);
-   new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF189->GetZaxis()->SetTitleFont(42);
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF->Add(new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF,"");
-   thsSignal_grouped_wh3l_zg_13TeV_flagOSSF->Draw("hist same noclear");
-   
-   Double_t _fx3037[2] = {
+   Double_t _fx3055[2] = {
    0.5,
    1.5};
-   Double_t _fy3037[2] = {
-   -0.0203665,
-   126.5335};
-   Double_t _felx3037[2] = {
+   Double_t _fy3055[2] = {
+   -0.005274147,
+   130.9417};
+   Double_t _felx3055[2] = {
    0.5,
    0.5};
-   Double_t _fely3037[2] = {
-   0.2743715,
-   11.43109};
-   Double_t _fehx3037[2] = {
+   Double_t _fely3055[2] = {
+   0.2768418,
+   11.53661};
+   Double_t _fehx3055[2] = {
    0.5,
    0.5};
-   Double_t _fehy3037[2] = {
-   0.2743716,
-   11.4311};
-   TGraphAsymmErrors *grae = new TGraphAsymmErrors(2,_fx3037,_fy3037,_felx3037,_fehx3037,_fely3037,_fehy3037);
+   Double_t _fehy3055[2] = {
+   0.2768418,
+   11.53662};
+   TGraphAsymmErrors *grae = new TGraphAsymmErrors(2,_fx3055,_fy3055,_felx3055,_fehx3055,_fely3055,_fehy3055);
    grae->SetName("");
    grae->SetTitle("");
    grae->SetFillColor(12);
@@ -351,87 +269,87 @@ void c_wh3l_zg_13TeV_flagOSSF()
    grae->SetLineColor(12);
    grae->SetMarkerStyle(20);
    
-   TH1F *Graph_Graph3037 = new TH1F("Graph_Graph3037","",100,0,2.2);
-   Graph_Graph3037->SetMinimum(-14.12067);
-   Graph_Graph3037->SetMaximum(151.7905);
-   Graph_Graph3037->SetDirectory(0);
-   Graph_Graph3037->SetStats(0);
-   Graph_Graph3037->SetLineStyle(0);
-   Graph_Graph3037->SetMarkerStyle(20);
-   Graph_Graph3037->GetXaxis()->SetLabelFont(42);
-   Graph_Graph3037->GetXaxis()->SetLabelOffset(0.007);
-   Graph_Graph3037->GetXaxis()->SetLabelSize(0.05);
-   Graph_Graph3037->GetXaxis()->SetTitleSize(0.06);
-   Graph_Graph3037->GetXaxis()->SetTitleOffset(0.9);
-   Graph_Graph3037->GetXaxis()->SetTitleFont(42);
-   Graph_Graph3037->GetYaxis()->SetLabelFont(42);
-   Graph_Graph3037->GetYaxis()->SetLabelOffset(0.007);
-   Graph_Graph3037->GetYaxis()->SetLabelSize(0.05);
-   Graph_Graph3037->GetYaxis()->SetTitleSize(0.06);
-   Graph_Graph3037->GetYaxis()->SetTitleOffset(1.25);
-   Graph_Graph3037->GetYaxis()->SetTitleFont(42);
-   Graph_Graph3037->GetZaxis()->SetLabelFont(42);
-   Graph_Graph3037->GetZaxis()->SetLabelOffset(0.007);
-   Graph_Graph3037->GetZaxis()->SetLabelSize(0.05);
-   Graph_Graph3037->GetZaxis()->SetTitleSize(0.06);
-   Graph_Graph3037->GetZaxis()->SetTitleFont(42);
-   grae->SetHistogram(Graph_Graph3037);
+   TH1F *Graph_Graph3055 = new TH1F("Graph_Graph3055","",100,0,2.2);
+   Graph_Graph3055->SetMinimum(-14.55816);
+   Graph_Graph3055->SetMaximum(156.7544);
+   Graph_Graph3055->SetDirectory(0);
+   Graph_Graph3055->SetStats(0);
+   Graph_Graph3055->SetLineStyle(0);
+   Graph_Graph3055->SetMarkerStyle(20);
+   Graph_Graph3055->GetXaxis()->SetLabelFont(42);
+   Graph_Graph3055->GetXaxis()->SetLabelOffset(0.007);
+   Graph_Graph3055->GetXaxis()->SetLabelSize(0.05);
+   Graph_Graph3055->GetXaxis()->SetTitleSize(0.06);
+   Graph_Graph3055->GetXaxis()->SetTitleOffset(0.9);
+   Graph_Graph3055->GetXaxis()->SetTitleFont(42);
+   Graph_Graph3055->GetYaxis()->SetLabelFont(42);
+   Graph_Graph3055->GetYaxis()->SetLabelOffset(0.007);
+   Graph_Graph3055->GetYaxis()->SetLabelSize(0.05);
+   Graph_Graph3055->GetYaxis()->SetTitleSize(0.06);
+   Graph_Graph3055->GetYaxis()->SetTitleOffset(1.25);
+   Graph_Graph3055->GetYaxis()->SetTitleFont(42);
+   Graph_Graph3055->GetZaxis()->SetLabelFont(42);
+   Graph_Graph3055->GetZaxis()->SetLabelOffset(0.007);
+   Graph_Graph3055->GetZaxis()->SetLabelSize(0.05);
+   Graph_Graph3055->GetZaxis()->SetTitleSize(0.06);
+   Graph_Graph3055->GetZaxis()->SetTitleFont(42);
+   grae->SetHistogram(Graph_Graph3055);
    
    grae->Draw("2");
    
-   Double_t _fx3038[2] = {
+   Double_t _fx3056[2] = {
    0.5,
    1.5};
-   Double_t _fy3038[2] = {
+   Double_t _fy3056[2] = {
    2,
-   126};
-   Double_t _felx3038[2] = {
+   131};
+   Double_t _felx3056[2] = {
    0.5,
    0.5};
-   Double_t _fely3038[2] = {
+   Double_t _fely3056[2] = {
    1.29183,
-   11.21029};
-   Double_t _fehx3038[2] = {
+   11.43114};
+   Double_t _fehx3056[2] = {
    0.5,
    0.5};
-   Double_t _fehy3038[2] = {
+   Double_t _fehy3056[2] = {
    2.63791,
-   12.25495};
-   grae = new TGraphAsymmErrors(2,_fx3038,_fy3038,_felx3038,_fehx3038,_fely3038,_fehy3038);
+   12.47494};
+   grae = new TGraphAsymmErrors(2,_fx3056,_fy3056,_felx3056,_fehx3056,_fely3056,_fehy3056);
    grae->SetName("");
    grae->SetTitle("");
    grae->SetFillColor(1);
    grae->SetMarkerStyle(20);
    
-   TH1F *Graph_Graph3038 = new TH1F("Graph_Graph3038","",100,0,2.2);
-   Graph_Graph3038->SetMinimum(0);
-   Graph_Graph3038->SetMaximum(152.0096);
-   Graph_Graph3038->SetDirectory(0);
-   Graph_Graph3038->SetStats(0);
-   Graph_Graph3038->SetLineStyle(0);
-   Graph_Graph3038->SetMarkerStyle(20);
-   Graph_Graph3038->GetXaxis()->SetLabelFont(42);
-   Graph_Graph3038->GetXaxis()->SetLabelOffset(0.007);
-   Graph_Graph3038->GetXaxis()->SetLabelSize(0.05);
-   Graph_Graph3038->GetXaxis()->SetTitleSize(0.06);
-   Graph_Graph3038->GetXaxis()->SetTitleOffset(0.9);
-   Graph_Graph3038->GetXaxis()->SetTitleFont(42);
-   Graph_Graph3038->GetYaxis()->SetLabelFont(42);
-   Graph_Graph3038->GetYaxis()->SetLabelOffset(0.007);
-   Graph_Graph3038->GetYaxis()->SetLabelSize(0.05);
-   Graph_Graph3038->GetYaxis()->SetTitleSize(0.06);
-   Graph_Graph3038->GetYaxis()->SetTitleOffset(1.25);
-   Graph_Graph3038->GetYaxis()->SetTitleFont(42);
-   Graph_Graph3038->GetZaxis()->SetLabelFont(42);
-   Graph_Graph3038->GetZaxis()->SetLabelOffset(0.007);
-   Graph_Graph3038->GetZaxis()->SetLabelSize(0.05);
-   Graph_Graph3038->GetZaxis()->SetTitleSize(0.06);
-   Graph_Graph3038->GetZaxis()->SetTitleFont(42);
-   grae->SetHistogram(Graph_Graph3038);
+   TH1F *Graph_Graph3056 = new TH1F("Graph_Graph3056","",100,0,2.2);
+   Graph_Graph3056->SetMinimum(0);
+   Graph_Graph3056->SetMaximum(157.7516);
+   Graph_Graph3056->SetDirectory(0);
+   Graph_Graph3056->SetStats(0);
+   Graph_Graph3056->SetLineStyle(0);
+   Graph_Graph3056->SetMarkerStyle(20);
+   Graph_Graph3056->GetXaxis()->SetLabelFont(42);
+   Graph_Graph3056->GetXaxis()->SetLabelOffset(0.007);
+   Graph_Graph3056->GetXaxis()->SetLabelSize(0.05);
+   Graph_Graph3056->GetXaxis()->SetTitleSize(0.06);
+   Graph_Graph3056->GetXaxis()->SetTitleOffset(0.9);
+   Graph_Graph3056->GetXaxis()->SetTitleFont(42);
+   Graph_Graph3056->GetYaxis()->SetLabelFont(42);
+   Graph_Graph3056->GetYaxis()->SetLabelOffset(0.007);
+   Graph_Graph3056->GetYaxis()->SetLabelSize(0.05);
+   Graph_Graph3056->GetYaxis()->SetTitleSize(0.06);
+   Graph_Graph3056->GetYaxis()->SetTitleOffset(1.25);
+   Graph_Graph3056->GetYaxis()->SetTitleFont(42);
+   Graph_Graph3056->GetZaxis()->SetLabelFont(42);
+   Graph_Graph3056->GetZaxis()->SetLabelOffset(0.007);
+   Graph_Graph3056->GetZaxis()->SetLabelSize(0.05);
+   Graph_Graph3056->GetZaxis()->SetTitleSize(0.06);
+   Graph_Graph3056->GetZaxis()->SetTitleFont(42);
+   grae->SetHistogram(Graph_Graph3056);
    
    grae->Draw("p0");
    
-   TLegend *leg = new TLegend(0.2,0.55,0.8,0.88,NULL,"brNDC");
+   TLegend *leg = new TLegend(0.2,0.7,0.8,0.9,NULL,"brNDC");
    leg->SetTextFont(62);
    leg->SetLineColor(0);
    leg->SetLineStyle(1);
@@ -522,16 +440,6 @@ void c_wh3l_zg_13TeV_flagOSSF()
    entry->SetMarkerStyle(21);
    entry->SetMarkerSize(1);
    entry->SetTextFont(62);
-   entry=leg->AddEntry("new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF","Higgs","F");
-
-   ci = TColor::GetColor("#ff0000");
-   entry->SetLineColor(ci);
-   entry->SetLineStyle(1);
-   entry->SetLineWidth(2);
-   entry->SetMarkerColor(1);
-   entry->SetMarkerStyle(21);
-   entry->SetMarkerSize(1);
-   entry->SetTextFont(62);
    entry=leg->AddEntry("new_histo_DATA_wh3l_zg_13TeV_flagOSSF","Data","EPL");
    entry->SetLineColor(1);
    entry->SetLineStyle(1);
@@ -571,7 +479,7 @@ tex->SetNDC();
    tex->SetLineWidth(2);
    tex->Draw();
    
-   leg = new TLegend(0.2,0.55,0.8,0.88,NULL,"brNDC");
+   leg = new TLegend(0.2,0.7,0.8,0.9,NULL,"brNDC");
    leg->SetTextFont(62);
    leg->SetLineColor(0);
    leg->SetLineStyle(1);
@@ -662,16 +570,6 @@ tex->SetNDC();
    entry->SetMarkerStyle(21);
    entry->SetMarkerSize(1);
    entry->SetTextFont(62);
-   entry=leg->AddEntry("new_histo_group_Higgs_wh3l_zg_13TeV_flagOSSF","Higgs","F");
-
-   ci = TColor::GetColor("#ff0000");
-   entry->SetLineColor(ci);
-   entry->SetLineStyle(1);
-   entry->SetLineWidth(2);
-   entry->SetMarkerColor(1);
-   entry->SetMarkerStyle(21);
-   entry->SetMarkerSize(1);
-   entry->SetTextFont(62);
    entry=leg->AddEntry("new_histo_DATA_wh3l_zg_13TeV_flagOSSF","Data","EPL");
    entry->SetLineColor(1);
    entry->SetLineStyle(1);
@@ -692,34 +590,34 @@ tex->SetNDC();
    entry->SetTextFont(62);
    leg->Draw();
    
-   TH1F *hframe_copy190 = new TH1F("hframe_copy190","",1000,0,2);
-   hframe_copy190->SetMinimum(0);
-   hframe_copy190->SetMaximum(343.0624);
-   hframe_copy190->SetDirectory(0);
-   hframe_copy190->SetStats(0);
-   hframe_copy190->SetLineStyle(0);
-   hframe_copy190->SetMarkerStyle(20);
-   hframe_copy190->GetXaxis()->SetTitle("flag OSSF");
-   hframe_copy190->GetXaxis()->SetNdivisions(506);
-   hframe_copy190->GetXaxis()->SetLabelFont(42);
-   hframe_copy190->GetXaxis()->SetLabelOffset(0.007);
-   hframe_copy190->GetXaxis()->SetLabelSize(0.05);
-   hframe_copy190->GetXaxis()->SetTitleSize(0.06);
-   hframe_copy190->GetXaxis()->SetTitleOffset(0.9);
-   hframe_copy190->GetXaxis()->SetTitleFont(42);
-   hframe_copy190->GetYaxis()->SetTitle("Events");
-   hframe_copy190->GetYaxis()->SetLabelFont(42);
-   hframe_copy190->GetYaxis()->SetLabelOffset(0.007);
-   hframe_copy190->GetYaxis()->SetLabelSize(0.05);
-   hframe_copy190->GetYaxis()->SetTitleSize(0.06);
-   hframe_copy190->GetYaxis()->SetTitleOffset(1.25);
-   hframe_copy190->GetYaxis()->SetTitleFont(42);
-   hframe_copy190->GetZaxis()->SetLabelFont(42);
-   hframe_copy190->GetZaxis()->SetLabelOffset(0.007);
-   hframe_copy190->GetZaxis()->SetLabelSize(0.05);
-   hframe_copy190->GetZaxis()->SetTitleSize(0.06);
-   hframe_copy190->GetZaxis()->SetTitleFont(42);
-   hframe_copy190->Draw("sameaxis");
+   TH1F *hframe_copy224 = new TH1F("hframe_copy224","",1000,0,2);
+   hframe_copy224->SetMinimum(0);
+   hframe_copy224->SetMaximum(356.1138);
+   hframe_copy224->SetDirectory(0);
+   hframe_copy224->SetStats(0);
+   hframe_copy224->SetLineStyle(0);
+   hframe_copy224->SetMarkerStyle(20);
+   hframe_copy224->GetXaxis()->SetTitle("flag OSSF");
+   hframe_copy224->GetXaxis()->SetNdivisions(506);
+   hframe_copy224->GetXaxis()->SetLabelFont(42);
+   hframe_copy224->GetXaxis()->SetLabelOffset(0.007);
+   hframe_copy224->GetXaxis()->SetLabelSize(0.05);
+   hframe_copy224->GetXaxis()->SetTitleSize(0.06);
+   hframe_copy224->GetXaxis()->SetTitleOffset(0.9);
+   hframe_copy224->GetXaxis()->SetTitleFont(42);
+   hframe_copy224->GetYaxis()->SetTitle("Events");
+   hframe_copy224->GetYaxis()->SetLabelFont(42);
+   hframe_copy224->GetYaxis()->SetLabelOffset(0.007);
+   hframe_copy224->GetYaxis()->SetLabelSize(0.05);
+   hframe_copy224->GetYaxis()->SetTitleSize(0.06);
+   hframe_copy224->GetYaxis()->SetTitleOffset(1.25);
+   hframe_copy224->GetYaxis()->SetTitleFont(42);
+   hframe_copy224->GetZaxis()->SetLabelFont(42);
+   hframe_copy224->GetZaxis()->SetLabelOffset(0.007);
+   hframe_copy224->GetZaxis()->SetLabelSize(0.05);
+   hframe_copy224->GetZaxis()->SetTitleSize(0.06);
+   hframe_copy224->GetZaxis()->SetTitleFont(42);
+   hframe_copy224->Draw("sameaxis");
    ccwh3l_zg_13TeV_flagOSSF->Modified();
    ccwh3l_zg_13TeV_flagOSSF->cd();
    ccwh3l_zg_13TeV_flagOSSF->SetSelected(ccwh3l_zg_13TeV_flagOSSF);

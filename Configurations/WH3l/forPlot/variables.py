@@ -64,12 +64,24 @@ variables['mllmin3l']  = {   'name': 'mllmin3l',            #   variable name
 
 ## just for fun plots:
 
-variables['nvtx']  = {   'name': 'nvtx',      
-                        'range' : (40,0,40),  
-                        'xaxis' : 'nvtx', 
-                         'fold' : 3
+#variables['nvtx']  = {   'name': 'nvtx',      
+#                        'range' : (40,0,40),  
+#3                        'xaxis' : 'nvtx', 
+#                         'fold' : 3
+#                        }
+ 
+variables['njet_3l'] = { 'name': 'njet_3l',      
+                        'range' : (8,0,8),  
+                        'xaxis' : 'N_Jets', 
+                        'fold' : 3
                         }
-                        
+
+variables['nbjet_3l'] = { 'name': 'nbjet_3l',
+                        'range' : (5,0,5),    
+                        'xaxis' : 'N_bJets',
+                        'fold' : 3
+                        }
+                       
 #variables['ptll']  = {   'name': 'ptll',            #   variable name    
                         #'range' : (20,0,200),    #   variable range
                         #'xaxis' : 'pt_{ll} [GeV]',  #   x axis name

@@ -82,8 +82,10 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
+                  #'color': 1, # kRed 
            #       'scale': 10.0,
                   'samples'  : ['H_htt', 'WH_hww', 'ZH_hww', 'ggZH_hww']
+         #         'samples'  : ['H_htt', 'WH_hww']
               }
 
 
