@@ -23,7 +23,7 @@ variables['nvtx']  = {   'name': 'nvtx',
                         #}
 
 variables['mll']  = {   'name': 'mll',            #   variable name    
-                        'range' : (300,50,150),    #   variable range
+                        'range' : (20,50,150),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
                          'fold' : 3
                         }
@@ -60,13 +60,13 @@ variables['ptll']  = {   'name': 'ptll',
                         #}
 
 variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
-                        'range' : (40,0,100),   
+                        'range' : (20,0,200),   
                         'xaxis' : 'p_{T} 1st lep',
                         'fold'  : 3                         
                         }
 
 variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
-                        'range' : (40,0,100),   
+                        'range' : (20,0,100),   
                         'xaxis' : 'p_{T} 2nd lep',
                         'fold'  : 3                         
                         }

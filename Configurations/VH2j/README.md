@@ -21,3 +21,24 @@ Steps to get datacards and plots:
     
     mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_VH2j.root
 
+
+
+Pruning:
+
+    cd /afs/cern.ch/user/a/amassiro/Limit/ModificationDatacards
+    sh examples/doPruneNuisanceVHWW.sh 
+    cd -
+
+
+Auto tests:
+
+
+    cd ..
+    sh VH2j/scripts/doVH2j.sh
+    cd -
+
+    cat ../result.MaxLikelihoodFit.Data2015.vh2j.pruned.txt
+    
+    
+    
+    

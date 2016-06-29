@@ -30,10 +30,16 @@ cuts['hww2l2v_13TeV_dytt_of0j']  = 'njet == 0 \
 cuts['hww2l2v_13TeV_dytt_of1j']  = 'njet == 1 \
                 '
 
+cuts['hww2l2v_13TeV_dytt_of2j']  = 'njet == 2 \
+                '
+
 cuts['hww2l2v_13TeV_dytt_of0j_noSF']  = 'njet == 0 \
                 '
 
 cuts['hww2l2v_13TeV_dytt_of1j_noSF']  = 'njet == 1 \
+                '
+
+cuts['hww2l2v_13TeV_dytt_of2j_noSF']  = 'njet == 2 \
                 '
   
   

@@ -1,0 +1,44 @@
+## Shape input card
+imax 1 number of channels
+jmax * number of background
+kmax * number of nuisance parameters
+----------------------------------------------------------------------------------------------------
+bin         wh3l_zg_13TeV
+observation 133
+shapes  *           * shapes/histos_wh3l_zg_13TeV.root     histo_$PROCESS histo_$PROCESS_$SYSTEMATIC
+shapes  data_obs           * shapes/histos_wh3l_zg_13TeV.root     histo_Data
+bin                                                                             wh3l_zg_13TeV                 wh3l_zg_13TeV                 wh3l_zg_13TeV                 wh3l_zg_13TeV                 wh3l_zg_13TeV                 
+process                                                                         Vg                            WW                            ZZ                            Fake                          WZ                            
+process                                                                         1                             2                             3                             4                             5                             
+rate                                                                            104.1643                      0.0100                        0.7363                        24.1480                       1.8785                        
+----------------------------------------------------------------------------------------------------
+CMS_wh3l_zg_13TeV_Vg_ibin_1_stat                            shape               1.000                         -                             -                             -                             -                             
+CMS_wh3l_zg_13TeV_Vg_ibin_2_stat                            shape               1.000                         -                             -                             -                             -                             
+CMS_wh3l_zg_13TeV_WW_ibin_1_stat                            shape               -                             1.000                         -                             -                             -                             
+CMS_wh3l_zg_13TeV_WW_ibin_2_stat                            shape               -                             1.000                         -                             -                             -                             
+CMS_wh3l_zg_13TeV_ZZ_ibin_1_stat                            shape               -                             -                             1.000                         -                             -                             
+CMS_wh3l_zg_13TeV_ZZ_ibin_2_stat                            shape               -                             -                             1.000                         -                             -                             
+CMS_wh3l_zg_13TeV_Fake_ibin_1_stat                          shape               -                             -                             -                             1.000                         -                             
+CMS_wh3l_zg_13TeV_Fake_ibin_2_stat                          shape               -                             -                             -                             1.000                         -                             
+CMS_wh3l_zg_13TeV_WZ_ibin_1_stat                            shape               -                             -                             -                             -                             1.000                         
+CMS_wh3l_zg_13TeV_WZ_ibin_2_stat                            shape               -                             -                             -                             -                             1.000                         
+CMS_scale_j                                                 shape               1.000                         1.000                         1.000                         -                             1.000                         
+CMS_btag_TightWP                                            shape               1.000                         1.000                         1.000                         -                             1.000                         
+QCDscale_ggH                                                lnN                 -                             -                             -                             -                             -                             
+pdf_qqbar                                                   lnN                 -                             -                             -                             -                             -                             
+CMS_idiso_ele_wh3l                                          shape               1.000                         1.000                         1.000                         -                             1.000                         
+fake_syst                                                   lnN                 -                             -                             -                             1.35                          -                             
+lumi_13TeV                                                  lnN                 1.027                         1.027                         1.027                         -                             -                             
+CMS_trigger                                                 shape               1.000                         1.000                         1.000                         -                             1.000                         
+
+Zg3lnorm                                                    rateParam           wh3l_zg_13TeV                 Vg                  1.0000                        
+CMS_scale_m                                                 shape               1.000                         1.000                         1.000                         -                             1.000                         
+QCDscale_ZH                                                 lnN                 -                             -                             -                             -                             -                             
+CMS_scale_met                                               shape               1.000                         1.000                         1.000                         -                             1.000                         
+QCDscale_WH                                                 lnN                 -                             -                             -                             -                             -                             
+CMS_scale_e                                                 shape               1.000                         1.000                         1.000                         -                             1.000                         
+QCDscale_ggZH                                               lnN                 -                             -                             -                             -                             -                             
+pdf_gg                                                      lnN                 -                             -                             -                             -                             -                             
+CMS_idiso_mu_wh3l                                           shape               1.000                         1.000                         1.000                         -                             1.000                         
+----------------------------------------------------------------------------------------------------
+

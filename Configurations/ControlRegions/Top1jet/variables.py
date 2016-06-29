@@ -18,13 +18,13 @@
 variables['mll']  = {   'name': 'mll',            #   variable name    
                         'range' : (15,50,200),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
-                         'fold' : 2
+                         'fold' : 0
                         }
 
 variables['mth']  = {   'name': 'mth',            #   variable name    
                         'range' : (15,50,200),    #   variable range
                         'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
-                         'fold' : 2
+                         'fold' : 0
                         }
 
 #variables['dphill']  = {   'name': 'abs(dphill)',     

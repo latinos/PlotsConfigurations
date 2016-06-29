@@ -10,17 +10,17 @@ variables['events']  = {   'name': '1',
                          'fold' : 0
                         }
     
-variables['nvtx']  = {   'name': 'nvtx',      
-                        'range' : (40,0,40),  
-                        'xaxis' : 'nvtx', 
-                         'fold' : 3
-                        }
+# variables['nvtx']  = {   'name': 'nvtx',      
+#                         'range' : (40,0,40),  
+#                         'xaxis' : 'nvtx', 
+#                          'fold' : 3
+#                         }
 
-#variables['mll']  = {   'name': 'mll',            #   variable name    
-                        #'range' : (300,0,200),    #   variable range
-                        #'xaxis' : 'm_{ll} [GeV]',  #   x axis name
-                         #'fold' : 0
-                        #}
+# #variables['mll']  = {   'name': 'mll',            #   variable name    
+#                         #'range' : (300,0,200),    #   variable range
+#                         #'xaxis' : 'm_{ll} [GeV]',  #   x axis name
+#                          #'fold' : 0
+#                         #}
 
 variables['mll']  = {   'name': 'mll',            #   variable name    
                         'range' : (10,30,80),    #   variable range
@@ -29,17 +29,17 @@ variables['mll']  = {   'name': 'mll',            #   variable name
                         }
 
 
-variables['mth']  = {   'name': 'mth',            #   variable name    
-                        'range' : (12,0,60),    #   variable range
-                        'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
-                         'fold' : 3
-                        }
+# variables['mth']  = {   'name': 'mth',            #   variable name    
+#                         'range' : (12,0,60),    #   variable range
+#                         'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
+#                          'fold' : 3
+#                         }
 
-#variables['dphill']  = {   'name': 'abs(dphill)',     
-                        #'range' : (10,0,3.14),   
-                        #'xaxis' : '#Delta#phi_{ll}',
-                        #'fold' : 3
-                        #}
+# #variables['dphill']  = {   'name': 'abs(dphill)',     
+#                         #'range' : (10,0,3.14),   
+#                         #'xaxis' : '#Delta#phi_{ll}',
+#                         #'fold' : 3
+#                         #}
 
 variables['ptll']  = {   'name': 'ptll',     
                         'range' : (12,30,90),   
@@ -47,17 +47,17 @@ variables['ptll']  = {   'name': 'ptll',
                         'fold' : 3
                         }
 
-#variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]*(1 - (abs(std_vector_lepton_flavour[0])==11)*0.01*(dataset != 0))',     
-                        #'range' : (40,0,100),   
-                        #'xaxis' : 'p_{T} 1st lep',
-                        #'fold'  : 3                         
-                        #}
+# #variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]*(1 - (abs(std_vector_lepton_flavour[0])==11)*0.01*(dataset != 0))',     
+#                         #'range' : (40,0,100),   
+#                         #'xaxis' : 'p_{T} 1st lep',
+#                         #'fold'  : 3                         
+#                         #}
 
-#variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]*(1 - (abs(std_vector_lepton_flavour[1])==11)*0.01*(dataset != 0))',     
-                        #'range' : (40,0,100),   
-                        #'xaxis' : 'p_{T} 2nd lep',
-                        #'fold'  : 3                         
-                        #}
+# #variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]*(1 - (abs(std_vector_lepton_flavour[1])==11)*0.01*(dataset != 0))',     
+#                         #'range' : (40,0,100),   
+#                         #'xaxis' : 'p_{T} 2nd lep',
+#                         #'fold'  : 3                         
+#                         #}
 
 variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
                         'range' : (12,20,80),   
@@ -72,59 +72,59 @@ variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',
                         }
 
 
-#variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
-                        #'range' : (100,0,200),   
-                        #'xaxis' : 'p_{T} 1st lep',
-                        #'fold'  : 3                         
-                        #}
+# #variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
+#                         #'range' : (100,0,200),   
+#                         #'xaxis' : 'p_{T} 1st lep',
+#                         #'fold'  : 3                         
+#                         #}
 
-#variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
-#                        'range' : (50,0,200),   
-#                        'xaxis' : 'p_{T} 2nd lep',
+# #variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
+# #                        'range' : (50,0,200),   
+# #                        'xaxis' : 'p_{T} 2nd lep',
+# #                        'fold'  : 3                         
+# #                        }
+
+# variables['eta1']  = {  'name': 'std_vector_lepton_eta[0]',     
+#                        'range' : (16,-3.2,3.2),   
+#                        'xaxis' : '#eta 1st lep',
 #                        'fold'  : 3                         
 #                        }
 
-variables['eta1']  = {  'name': 'std_vector_lepton_eta[0]',     
-                       'range' : (16,-3.2,3.2),   
-                       'xaxis' : '#eta 1st lep',
-                       'fold'  : 3                         
-                       }
-
-variables['eta2']  = {  'name': 'std_vector_lepton_eta[1]',     
-                       'range' : (16,-3.2,3.2),   
-                       'xaxis' : '#eta 2nd lep',
-                       'fold'  : 3                         
-                       }
+# variables['eta2']  = {  'name': 'std_vector_lepton_eta[1]',     
+#                        'range' : (16,-3.2,3.2),   
+#                        'xaxis' : '#eta 2nd lep',
+#                        'fold'  : 3                         
+#                        }
                        
-##variables['phi1']  = {  'name': 'std_vector_lepton_phi[0]',
-                        ##'range' : (100,-3.2,3.2),
-                        ##'xaxis' : '#phi 1st lep',
-                        ##'fold'  : 3
-                        ##}
+# ##variables['phi1']  = {  'name': 'std_vector_lepton_phi[0]',
+#                         ##'range' : (100,-3.2,3.2),
+#                         ##'xaxis' : '#phi 1st lep',
+#                         ##'fold'  : 3
+#                         ##}
 
-##variables['phi2']  = {  'name': 'std_vector_lepton_phi[1]',
-                        ##'range' : (100,-3.2,3.2),
-                        ##'xaxis' : '#phi 2nd lep',
-                        ##'fold'  : 3
-                        ##}
+# ##variables['phi2']  = {  'name': 'std_vector_lepton_phi[1]',
+#                         ##'range' : (100,-3.2,3.2),
+#                         ##'xaxis' : '#phi 2nd lep',
+#                         ##'fold'  : 3
+#                         ##}
 
-##variables['dphill']  = {   'name': 'abs(dphill)',     
-                        ##'range' : (20,0,3.14),   
-                        ##'xaxis' : '#Delta#phi_{ll}',
-                         ##'fold' : 3
-                        ##}
+# ##variables['dphill']  = {   'name': 'abs(dphill)',     
+#                         ##'range' : (20,0,3.14),   
+#                         ##'xaxis' : '#Delta#phi_{ll}',
+#                          ##'fold' : 3
+#                         ##}
 
-#variables['met']  = {   'name': 'metPfType1',            #   variable name    
-                        #'range' : (20,0,200),    #   variable range
-                        #'xaxis' : 'pfmet [GeV]',  #   x axis name
-                         #'fold' : 3
-                        #}
+# #variables['met']  = {   'name': 'metPfType1',            #   variable name    
+#                         #'range' : (20,0,200),    #   variable range
+#                         #'xaxis' : 'pfmet [GeV]',  #   x axis name
+#                          #'fold' : 3
+#                         #}
 
-#variables['trkMet']  = {   'name': 'trkMet',            #   variable name    
-                        #'range' : (20,0,200),    #   variable range
-                        #'xaxis' : 'trk met [GeV]',  #   x axis name
-                         #'fold' : 0
-                        #}
+# #variables['trkMet']  = {   'name': 'trkMet',            #   variable name    
+#                         #'range' : (20,0,200),    #   variable range
+#                         #'xaxis' : 'trk met [GeV]',  #   x axis name
+#                          #'fold' : 0
+#                         #}
 
 ##variables['pupMet']  = {   'name': 'pupMet',            #   variable name    
                         ##'range' : (20,0,200),    #   variable range

@@ -18,7 +18,7 @@ plot['DY']  = {
 
 plot['DYnoFix']  = {  
                   'color': 417,    # kGreen+1
-                  'isSignal' : 0,
+                  #'isSignal' : 0,
                   'isData'   : 0, 
                   #'scale'    : 1.0,
                   'scale'    : 0.87,
