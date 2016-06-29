@@ -35,8 +35,8 @@ nuisances['lumi']  = {
 from LatinoAnalysis.Tools.HiggsXSection  import *
 HiggsXS = HiggsXSection()
 
-nuisances['QCDscale_WH']  = {
-               'name'  : 'QCDscale_WH',
+nuisances['QCDscale_WH_wh3l']  = {
+               'name'  : 'QCDscale_WH_wh3l',
                'samples'  : {
                    'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
                    },
@@ -45,8 +45,8 @@ nuisances['QCDscale_WH']  = {
 
 
 
-nuisances['QCDscale_ZH']  = {
-               'name'  : 'QCDscale_ZH',
+nuisances['QCDscale_ZH_wh3l']  = {
+               'name'  : 'QCDscale_ZH_wh3l',
                'samples'  : {
                    'ZH_hww' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH','125.0','scale','sm'),
                    },
@@ -55,16 +55,16 @@ nuisances['QCDscale_ZH']  = {
 
 
 
-nuisances['QCDscale_ggZH']  = {
-               'name'  : 'QCDscale_ggZH',
+nuisances['QCDscale_ggZH_wh3l']  = {
+               'name'  : 'QCDscale_ggZH_wh3l',
                'samples'  : {
                    'ggZH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggZH','125.0','scale','sm'),
                    },
                'type'  : 'lnN',
               }
 
-nuisances['QCDscale_H_htt']  = {
-               'name'  : 'QCDscale_ggH',
+nuisances['QCDscale_H_htt_wh3l']  = {
+               'name'  : 'QCDscale_ggH_wh3l',
                'samples'  : {
                    'H_htt'   : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.0','scale','sm'),
                    },
@@ -73,8 +73,8 @@ nuisances['QCDscale_H_htt']  = {
 
 # pdf uncertainty
 
-nuisances['pdf_gg']  = {
-               'name'  : 'pdf_gg',
+nuisances['pdf_gg_wh3l']  = {
+               'name'  : 'pdf_gg_wh3l',
                'samples'  : {
                    #'ggWW'    : '1.05',    # --> no, since absorbed into k-scale factor
                    'ggH_hww' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,'125.0','pdf','sm'),
@@ -86,8 +86,8 @@ nuisances['pdf_gg']  = {
               }
 
 
-nuisances['pdf_qqbar']  = {
-               'name'  : 'pdf_qqbar',
+nuisances['pdf_qqbar_wh3l']  = {
+               'name'  : 'pdf_qqbar_wh3l',
                'type'  : 'lnN',
                'samples'  : {
                    'qqH_hww' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.0','pdf','sm'),
@@ -103,18 +103,19 @@ nuisances['pdf_qqbar']  = {
 
 # PS
 
-#nuisances['PS_wh3l']  = {
-#                'name'  : 'PS',
-#                'kind'  : 'tree',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'WW' :  ['1./1.03295', '1.'],  # latino_WWTo2L2NuHerwigPS.root moved with different name in __PS folder
-#                   'ggH_hww' : ['1./1.00702', '1.'],
-#                   'qqH_hww' : ['1./1.06362', '1.'],
-#                },
-#                'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS/',
-#                'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/',
-#                }
+nuisances['PS_wh3l']  = {
+                'name'  : 'PS_wh3l',
+                'kind'  : 'tree',
+                'type'  : 'lnN',
+                'samples'  : {
+                   'WH_hww'   : '1.037',
+                   'ZH_hww'   : '1.037',
+                   'H_htt'    : '1.037',
+                   'ggZH_hww'   : '1.037',
+                },
+  #              'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS/',
+  #              'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/',
+                }
 
 #nuisances['UE_wh3l']  = {
 #                'name'  : 'UE',
@@ -157,8 +158,8 @@ nuisances['WZ3lnorm']  = {
 # fakes 
 
 
-nuisances['fake_syst']  = {
-               'name'  : 'fake_syst',
+nuisances['fake_syst_wh3l']  = {
+               'name'  : 'fake_syst_wh3l',
                'type'  : 'lnN',
                'samples'  : {
                    'Fake' : '1.35',
@@ -186,7 +187,7 @@ nuisances['btag_TightWP']  = {
 
 
 nuisances['trigg_wh3l']  = {
-                'name'  : 'trigger',
+                'name'  : 'trigger_wh3l',
                 'kind'  : 'weight',
                 #'kind'  : 'tree', #'weight',
                 'type'  : 'shape',
@@ -253,8 +254,8 @@ nuisances['idiso_mu_wh3l']  = {
 # nuisances handled by means of a different set of trees
 
 
-nuisances['jes']  = {
-                'name'  : 'scale_j',
+nuisances['jes_wh3l']  = {
+                'name'  : 'scale_j_wh3l',
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
@@ -272,8 +273,8 @@ nuisances['jes']  = {
                 'folderDown' : '/tmp/arun/eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__vh3lSel__l3kin/'
 }
 
-nuisances['electronpt']  = {
-                'name'  : 'scale_e',
+nuisances['electronpt_wh3l']  = {
+                'name'  : 'scale_e_wh3l',
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
@@ -291,8 +292,8 @@ nuisances['electronpt']  = {
                 'folderDown' : '/tmp/arun/eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__vh3lSel__l3kin/'
 }
 
-nuisances['muonpt']  = {
-                'name'  : 'scale_m',
+nuisances['muonpt_wh3l']  = {
+                'name'  : 'scale_m_wh3l',
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
@@ -310,8 +311,8 @@ nuisances['muonpt']  = {
                 'folderDown' : '/tmp/arun/eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__vh3lSel__l3kin/'
 }
 
-nuisances['met']  = {
-                'name'  : 'scale_met',
+nuisances['met_wh3l']  = {
+                'name'  : 'scale_met_wh3l',
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {

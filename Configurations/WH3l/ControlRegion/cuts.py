@@ -5,6 +5,7 @@
 supercut = 'mllmin3l>12  \
             && pt1>20 && pt2>15 \
             && pt3>10 \
+            && std_vector_lepton_pt[3]<10 \
            '
 
 #cuts['wh3l_13TeV']  = 'njet_3l == 0 \

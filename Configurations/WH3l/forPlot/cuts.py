@@ -5,6 +5,7 @@
 supercut = 'mllmin3l>12  \
             && std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>15 \
             && std_vector_lepton_pt[2]>10 \
+            && std_vector_lepton_pt[3]<10 \
             && abs(chlll) == 1 \
            '
 
