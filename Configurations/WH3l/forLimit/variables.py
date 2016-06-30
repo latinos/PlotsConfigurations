@@ -42,7 +42,7 @@ variables['zveto_3l']  = {   'name': 'zveto_3l',            #   variable name
 
 variables['drllmin3l']  = {   'name': 'drllmin3l',            #   variable name    
                         'range' : (3,0,4),    #   variable range
-                        'xaxis' : 'min #Delta Rm_{ll} [GeV]',  #   x axis name
+                        'xaxis' : 'min #Delta R_{ll} [GeV]',  #   x axis name
                          'fold' : 0
                         }
 
