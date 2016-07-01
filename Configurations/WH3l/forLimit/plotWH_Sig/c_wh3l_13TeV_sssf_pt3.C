@@ -1,13 +1,13 @@
 void c_wh3l_13TeV_sssf_pt3()
 {
 //=========Macro generated from canvas: ccwh3l_13TeV_sssf_pt3/cc
-//=========  (Wed Jun 29 22:36:15 2016) by ROOT version6.02/13
+//=========  (Thu Jun 30 22:29:48 2016) by ROOT version6.02/13
    TCanvas *ccwh3l_13TeV_sssf_pt3 = new TCanvas("ccwh3l_13TeV_sssf_pt3", "cc",0,0,800,600);
    gStyle->SetOptFit(1);
    gStyle->SetOptStat(0);
    gStyle->SetOptTitle(0);
    ccwh3l_13TeV_sssf_pt3->SetHighLightColor(2);
-   ccwh3l_13TeV_sssf_pt3->Range(-88,-1.2447,524.5,8.329915);
+   ccwh3l_13TeV_sssf_pt3->Range(-88,-1.257249,524.5,8.413896);
    ccwh3l_13TeV_sssf_pt3->SetFillColor(0);
    ccwh3l_13TeV_sssf_pt3->SetBorderMode(0);
    ccwh3l_13TeV_sssf_pt3->SetBorderSize(2);
@@ -24,7 +24,7 @@ void c_wh3l_13TeV_sssf_pt3()
    
    TH1F *hframe151 = new TH1F("hframe151","",1000,10,500);
    hframe151->SetMinimum(0);
-   hframe151->SetMaximum(7.851184);
+   hframe151->SetMaximum(7.930339);
    hframe151->SetDirectory(0);
    hframe151->SetStats(0);
    hframe151->SetLineStyle(0);
@@ -141,9 +141,19 @@ void c_wh3l_13TeV_sssf_pt3()
    thsBackground_grouped_wh3l_13TeV_sssf_pt3->Add(new_histo_group_WW_wh3l_13TeV_sssf_pt3,"");
    
    TH1D *new_histo_group_VVV_wh3l_13TeV_sssf_pt3154 = new TH1D("new_histo_group_VVV_wh3l_13TeV_sssf_pt3154","histo_VVV",50,10,500);
-   new_histo_group_VVV_wh3l_13TeV_sssf_pt3154->SetBinContent(1,0.0007784473);
-   new_histo_group_VVV_wh3l_13TeV_sssf_pt3154->SetBinError(1,0.0007784473);
-   new_histo_group_VVV_wh3l_13TeV_sssf_pt3154->SetEntries(1);
+   new_histo_group_VVV_wh3l_13TeV_sssf_pt3154->SetBinContent(1,0.03244024);
+   new_histo_group_VVV_wh3l_13TeV_sssf_pt3154->SetBinContent(2,0.02921756);
+   new_histo_group_VVV_wh3l_13TeV_sssf_pt3154->SetBinContent(3,0.02219744);
+   new_histo_group_VVV_wh3l_13TeV_sssf_pt3154->SetBinContent(4,0.01530787);
+   new_histo_group_VVV_wh3l_13TeV_sssf_pt3154->SetBinContent(5,0.001623122);
+   new_histo_group_VVV_wh3l_13TeV_sssf_pt3154->SetBinContent(6,0.002006893);
+   new_histo_group_VVV_wh3l_13TeV_sssf_pt3154->SetBinError(1,0.009237902);
+   new_histo_group_VVV_wh3l_13TeV_sssf_pt3154->SetBinError(2,0.009690356);
+   new_histo_group_VVV_wh3l_13TeV_sssf_pt3154->SetBinError(3,0.006725736);
+   new_histo_group_VVV_wh3l_13TeV_sssf_pt3154->SetBinError(4,0.006282134);
+   new_histo_group_VVV_wh3l_13TeV_sssf_pt3154->SetBinError(5,0.004336817);
+   new_histo_group_VVV_wh3l_13TeV_sssf_pt3154->SetBinError(6,0.002006893);
+   new_histo_group_VVV_wh3l_13TeV_sssf_pt3154->SetEntries(62);
 
    ci = TColor::GetColor("#0066ff");
    new_histo_group_VVV_wh3l_13TeV_sssf_pt3154->SetFillColor(ci);
@@ -417,12 +427,12 @@ void c_wh3l_13TeV_sssf_pt3()
    485.3,
    495.1};
    Double_t _fy3031[50] = {
-   3.006668,
-   0.498411,
-   -0.1473652,
-   0.322117,
-   0.002874793,
-   0,
+   3.03833,
+   0.5276286,
+   -0.1251678,
+   0.3374249,
+   0.004497915,
+   0.002006893,
    0,
    0,
    0,
@@ -519,12 +529,12 @@ void c_wh3l_13TeV_sssf_pt3()
    4.9,
    4.9};
    Double_t _fely3031[50] = {
-   1.710925,
-   0.2877568,
-   0.1784327,
-   0.3332614,
-   0.002874892,
-   0,
+   1.718463,
+   0.298261,
+   0.1858387,
+   0.339626,
+   0.004782244,
+   0.002838821,
    0,
    0,
    0,
@@ -621,12 +631,12 @@ void c_wh3l_13TeV_sssf_pt3()
    4.9,
    4.9};
    Double_t _fehy3031[50] = {
-   1.710894,
-   0.2877563,
-   0.1784328,
-   0.3332615,
-   0.002874892,
-   0,
+   1.718427,
+   0.2982549,
+   0.185837,
+   0.3396253,
+   0.007392292,
+   0.002838823,
    0,
    0,
    0,
@@ -680,8 +690,8 @@ void c_wh3l_13TeV_sssf_pt3()
    grae->SetMarkerStyle(20);
    
    TH1F *Graph_Graph3031 = new TH1F("Graph_Graph3031","",100,0,549);
-   Graph_Graph3031->SetMinimum(-0.830134);
-   Graph_Graph3031->SetMaximum(5.221898);
+   Graph_Graph3031->SetMinimum(-0.8177829);
+   Graph_Graph3031->SetMaximum(5.263534);
    Graph_Graph3031->SetDirectory(0);
    Graph_Graph3031->SetStats(0);
    Graph_Graph3031->SetLineStyle(0);
@@ -1310,7 +1320,7 @@ tex->SetNDC();
    
    TH1F *hframe_copy160 = new TH1F("hframe_copy160","",1000,10,500);
    hframe_copy160->SetMinimum(0);
-   hframe_copy160->SetMaximum(7.851184);
+   hframe_copy160->SetMaximum(7.930339);
    hframe_copy160->SetDirectory(0);
    hframe_copy160->SetStats(0);
    hframe_copy160->SetLineStyle(0);

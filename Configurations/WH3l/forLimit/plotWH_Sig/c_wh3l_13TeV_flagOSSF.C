@@ -1,13 +1,13 @@
 void c_wh3l_13TeV_flagOSSF()
 {
 //=========Macro generated from canvas: ccwh3l_13TeV_flagOSSF/cc
-//=========  (Wed Jun 29 22:36:17 2016) by ROOT version6.02/13
+//=========  (Thu Jun 30 22:29:50 2016) by ROOT version6.02/13
    TCanvas *ccwh3l_13TeV_flagOSSF = new TCanvas("ccwh3l_13TeV_flagOSSF", "cc",0,0,800,600);
    gStyle->SetOptFit(1);
    gStyle->SetOptStat(0);
    gStyle->SetOptTitle(0);
    ccwh3l_13TeV_flagOSSF->SetHighLightColor(2);
-   ccwh3l_13TeV_flagOSSF->Range(-0.4,-6.932378,2.1,46.3936);
+   ccwh3l_13TeV_flagOSSF->Range(-0.4,-7.019356,2.1,46.97569);
    ccwh3l_13TeV_flagOSSF->SetFillColor(0);
    ccwh3l_13TeV_flagOSSF->SetBorderMode(0);
    ccwh3l_13TeV_flagOSSF->SetBorderSize(2);
@@ -24,7 +24,7 @@ void c_wh3l_13TeV_flagOSSF()
    
    TH1F *hframe181 = new TH1F("hframe181","",1000,0,2);
    hframe181->SetMinimum(0);
-   hframe181->SetMaximum(43.72731);
+   hframe181->SetMaximum(44.27594);
    hframe181->SetDirectory(0);
    hframe181->SetStats(0);
    hframe181->SetLineStyle(0);
@@ -57,7 +57,7 @@ void c_wh3l_13TeV_flagOSSF()
    
    TH1F *thsBackground_grouped_wh3l_13TeV_flagOSSF_stack_37 = new TH1F("thsBackground_grouped_wh3l_13TeV_flagOSSF_stack_37","thsBackground_grouped_wh3l_13TeV_flagOSSF",2,0,2);
    thsBackground_grouped_wh3l_13TeV_flagOSSF_stack_37->SetMinimum(0);
-   thsBackground_grouped_wh3l_13TeV_flagOSSF_stack_37->SetMaximum(18.36547);
+   thsBackground_grouped_wh3l_13TeV_flagOSSF_stack_37->SetMaximum(18.59589);
    thsBackground_grouped_wh3l_13TeV_flagOSSF_stack_37->SetDirectory(0);
    thsBackground_grouped_wh3l_13TeV_flagOSSF_stack_37->SetStats(0);
    thsBackground_grouped_wh3l_13TeV_flagOSSF_stack_37->SetLineStyle(0);
@@ -139,11 +139,11 @@ void c_wh3l_13TeV_flagOSSF()
    thsBackground_grouped_wh3l_13TeV_flagOSSF->Add(new_histo_group_WW_wh3l_13TeV_flagOSSF,"");
    
    TH1D *new_histo_group_VVV_wh3l_13TeV_flagOSSF184 = new TH1D("new_histo_group_VVV_wh3l_13TeV_flagOSSF184","histo_VVV",2,0,2);
-   new_histo_group_VVV_wh3l_13TeV_flagOSSF184->SetBinContent(1,0.0007784473);
-   new_histo_group_VVV_wh3l_13TeV_flagOSSF184->SetBinContent(2,0.003680259);
-   new_histo_group_VVV_wh3l_13TeV_flagOSSF184->SetBinError(1,0.0007784473);
-   new_histo_group_VVV_wh3l_13TeV_flagOSSF184->SetBinError(2,0.001467684);
-   new_histo_group_VVV_wh3l_13TeV_flagOSSF184->SetEntries(8);
+   new_histo_group_VVV_wh3l_13TeV_flagOSSF184->SetBinContent(1,0.09172999);
+   new_histo_group_VVV_wh3l_13TeV_flagOSSF184->SetBinContent(2,0.2231326);
+   new_histo_group_VVV_wh3l_13TeV_flagOSSF184->SetBinError(1,0.01577554);
+   new_histo_group_VVV_wh3l_13TeV_flagOSSF184->SetBinError(2,0.02383086);
+   new_histo_group_VVV_wh3l_13TeV_flagOSSF184->SetEntries(180);
 
    ci = TColor::GetColor("#0066ff");
    new_histo_group_VVV_wh3l_13TeV_flagOSSF184->SetFillColor(ci);
@@ -331,20 +331,20 @@ void c_wh3l_13TeV_flagOSSF()
    0.5,
    1.5};
    Double_t _fy3037[2] = {
-   3.57357,
-   16.91152};
+   3.664522,
+   17.13097};
    Double_t _felx3037[2] = {
    0.5,
    0.5};
    Double_t _fely3037[2] = {
-   1.792599,
-   3.950643};
+   1.807084,
+   3.975475};
    Double_t _fehx3037[2] = {
    0.5,
    0.5};
    Double_t _fehy3037[2] = {
-   1.79259,
-   3.949192};
+   1.807066,
+   3.97383};
    TGraphAsymmErrors *grae = new TGraphAsymmErrors(2,_fx3037,_fy3037,_felx3037,_fehx3037,_fely3037,_fehy3037);
    grae->SetName("");
    grae->SetTitle("");
@@ -355,7 +355,7 @@ void c_wh3l_13TeV_flagOSSF()
    
    TH1F *Graph_Graph3037 = new TH1F("Graph_Graph3037","",100,0,2.2);
    Graph_Graph3037->SetMinimum(0);
-   Graph_Graph3037->SetMaximum(22.76868);
+   Graph_Graph3037->SetMaximum(23.02953);
    Graph_Graph3037->SetDirectory(0);
    Graph_Graph3037->SetStats(0);
    Graph_Graph3037->SetLineStyle(0);
@@ -696,7 +696,7 @@ tex->SetNDC();
    
    TH1F *hframe_copy190 = new TH1F("hframe_copy190","",1000,0,2);
    hframe_copy190->SetMinimum(0);
-   hframe_copy190->SetMaximum(43.72731);
+   hframe_copy190->SetMaximum(44.27594);
    hframe_copy190->SetDirectory(0);
    hframe_copy190->SetStats(0);
    hframe_copy190->SetLineStyle(0);

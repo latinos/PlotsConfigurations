@@ -1,5 +1,8 @@
 void drawNLL() {
-  
+ 
+TFile *f = new TFile("/afs/cern.ch/work/a/arun/Latinos/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/WH3l/higgsCombineLHScan.MultiDimFit.mH125.root","read");
+TTree *limit = (TTree*)f->Get("limit");
+
   TCanvas* cc = new TCanvas("cc","", 800, 600);
   int n = 0;
   
@@ -33,26 +36,25 @@ void drawNLL() {
   cc->SetFrameBorderMode(0);
   
   TLatex * tex;
-  tex = new TLatex(0.94,0.92,"13 TeV");
+  tex = new TLatex(0.94,0.92,"#sqrt{s} = 13 TeV");
   tex->SetNDC();
   tex->SetTextAlign(31);
   tex->SetTextFont(42);
   tex->SetTextSize(0.04);
   tex->SetLineWidth(2);
   
-  TLatex * tex2 = new TLatex(0.14,0.92,"CMS");
+  TLatex * tex2 = new TLatex(0.14,0.92,"CMS Preliminary");
   tex2->SetNDC();
   tex2->SetTextFont(61);
   tex2->SetTextSize(0.04);
   tex2->SetLineWidth(2);
   
   TLatex * tex3;
-  tex3 = new TLatex(0.236,0.92,"L = 2.3 fb^{-1}  Preliminary");
+  tex3 = new TLatex(0.55,0.92,"L = 2.3 fb^{-1}");
   tex3->SetNDC();
   tex3->SetTextFont(52);
   tex3->SetTextSize(0.035);
   tex3->SetLineWidth(2);
-  
   
   graphScan  ->Draw("al");
   

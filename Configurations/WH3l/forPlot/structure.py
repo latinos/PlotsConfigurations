@@ -93,7 +93,6 @@ structure['ZZ']  = {
                   'isData'   : 0    
                   }
 
-
 #structure['ggH'] = {
 #                  'isSignal' : 1,
 #                  'isData'   : 0    

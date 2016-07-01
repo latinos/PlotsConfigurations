@@ -1,13 +1,13 @@
 void c_wh3l_13TeV_ossf_drllmin3l()
 {
 //=========Macro generated from canvas: ccwh3l_13TeV_ossf_drllmin3l/cc
-//=========  (Wed Jun 29 22:36:09 2016) by ROOT version6.02/13
+//=========  (Thu Jun 30 22:29:43 2016) by ROOT version6.02/13
    TCanvas *ccwh3l_13TeV_ossf_drllmin3l = new TCanvas("ccwh3l_13TeV_ossf_drllmin3l", "cc",0,0,800,600);
    gStyle->SetOptFit(1);
    gStyle->SetOptStat(0);
    gStyle->SetOptTitle(0);
    ccwh3l_13TeV_ossf_drllmin3l->SetHighLightColor(2);
-   ccwh3l_13TeV_ossf_drllmin3l->Range(-0.8,-3.293041,4.2,22.03805);
+   ccwh3l_13TeV_ossf_drllmin3l->Range(-0.8,-3.335239,4.2,22.32044);
    ccwh3l_13TeV_ossf_drllmin3l->SetFillColor(0);
    ccwh3l_13TeV_ossf_drllmin3l->SetBorderMode(0);
    ccwh3l_13TeV_ossf_drllmin3l->SetBorderSize(2);
@@ -24,7 +24,7 @@ void c_wh3l_13TeV_ossf_drllmin3l()
    
    TH1F *hframe51 = new TH1F("hframe51","",1000,0,4);
    hframe51->SetMinimum(0);
-   hframe51->SetMaximum(20.77149);
+   hframe51->SetMaximum(21.03766);
    hframe51->SetDirectory(0);
    hframe51->SetStats(0);
    hframe51->SetLineStyle(0);
@@ -57,7 +57,7 @@ void c_wh3l_13TeV_ossf_drllmin3l()
    
    TH1F *thsBackground_grouped_wh3l_13TeV_ossf_drllmin3l_stack_11 = new TH1F("thsBackground_grouped_wh3l_13TeV_ossf_drllmin3l_stack_11","thsBackground_grouped_wh3l_13TeV_ossf_drllmin3l",3,0,4);
    thsBackground_grouped_wh3l_13TeV_ossf_drllmin3l_stack_11->SetMinimum(0);
-   thsBackground_grouped_wh3l_13TeV_ossf_drllmin3l_stack_11->SetMaximum(8.724026);
+   thsBackground_grouped_wh3l_13TeV_ossf_drllmin3l_stack_11->SetMaximum(8.835817);
    thsBackground_grouped_wh3l_13TeV_ossf_drllmin3l_stack_11->SetDirectory(0);
    thsBackground_grouped_wh3l_13TeV_ossf_drllmin3l_stack_11->SetStats(0);
    thsBackground_grouped_wh3l_13TeV_ossf_drllmin3l_stack_11->SetLineStyle(0);
@@ -143,13 +143,13 @@ void c_wh3l_13TeV_ossf_drllmin3l()
    thsBackground_grouped_wh3l_13TeV_ossf_drllmin3l->Add(new_histo_group_WW_wh3l_13TeV_ossf_drllmin3l,"");
    
    TH1D *new_histo_group_VVV_wh3l_13TeV_ossf_drllmin3l54 = new TH1D("new_histo_group_VVV_wh3l_13TeV_ossf_drllmin3l54","histo_VVV",3,0,4);
-   new_histo_group_VVV_wh3l_13TeV_ossf_drllmin3l54->SetBinContent(1,0.0006504452);
-   new_histo_group_VVV_wh3l_13TeV_ossf_drllmin3l54->SetBinContent(2,0.002389253);
-   new_histo_group_VVV_wh3l_13TeV_ossf_drllmin3l54->SetBinContent(3,0.0006405607);
-   new_histo_group_VVV_wh3l_13TeV_ossf_drllmin3l54->SetBinError(1,0.0006504452);
-   new_histo_group_VVV_wh3l_13TeV_ossf_drllmin3l54->SetBinError(2,0.001149217);
-   new_histo_group_VVV_wh3l_13TeV_ossf_drllmin3l54->SetBinError(3,0.0006405607);
-   new_histo_group_VVV_wh3l_13TeV_ossf_drllmin3l54->SetEntries(7);
+   new_histo_group_VVV_wh3l_13TeV_ossf_drllmin3l54->SetBinContent(1,0.1026819);
+   new_histo_group_VVV_wh3l_13TeV_ossf_drllmin3l54->SetBinContent(2,0.1088562);
+   new_histo_group_VVV_wh3l_13TeV_ossf_drllmin3l54->SetBinContent(3,0.01159448);
+   new_histo_group_VVV_wh3l_13TeV_ossf_drllmin3l54->SetBinError(1,0.01589871);
+   new_histo_group_VVV_wh3l_13TeV_ossf_drllmin3l54->SetBinError(2,0.01703322);
+   new_histo_group_VVV_wh3l_13TeV_ossf_drllmin3l54->SetBinError(3,0.005001033);
+   new_histo_group_VVV_wh3l_13TeV_ossf_drllmin3l54->SetEntries(127);
 
    ci = TColor::GetColor("#0066ff");
    new_histo_group_VVV_wh3l_13TeV_ossf_drllmin3l54->SetFillColor(ci);
@@ -350,25 +350,25 @@ void c_wh3l_13TeV_ossf_drllmin3l()
    2,
    3.333333};
    Double_t _fy3011[3] = {
-   5.985886,
-   8.135045,
-   2.790585};
+   6.087918,
+   8.241511,
+   2.801539};
    Double_t _felx3011[3] = {
    0.6666667,
    0.6666667,
    0.6666667};
    Double_t _fely3011[3] = {
-   1.917864,
-   2.428632,
-   1.533461};
+   1.935267,
+   2.445121,
+   1.537593};
    Double_t _fehx3011[3] = {
    0.6666667,
    0.6666667,
    0.6666667};
    Double_t _fehy3011[3] = {
-   1.917089,
-   2.428324,
-   1.533415};
+   1.934392,
+   2.444752,
+   1.537545};
    TGraphAsymmErrors *grae = new TGraphAsymmErrors(3,_fx3011,_fy3011,_felx3011,_fehx3011,_fely3011,_fehy3011);
    grae->SetName("");
    grae->SetTitle("");
@@ -378,8 +378,8 @@ void c_wh3l_13TeV_ossf_drllmin3l()
    grae->SetMarkerStyle(20);
    
    TH1F *Graph_Graph3011 = new TH1F("Graph_Graph3011","",100,0,4.4);
-   Graph_Graph3011->SetMinimum(0.3264994);
-   Graph_Graph3011->SetMaximum(11.49399);
+   Graph_Graph3011->SetMinimum(0.3217146);
+   Graph_Graph3011->SetMaximum(11.62849);
    Graph_Graph3011->SetDirectory(0);
    Graph_Graph3011->SetStats(0);
    Graph_Graph3011->SetLineStyle(0);
@@ -726,7 +726,7 @@ tex->SetNDC();
    
    TH1F *hframe_copy60 = new TH1F("hframe_copy60","",1000,0,4);
    hframe_copy60->SetMinimum(0);
-   hframe_copy60->SetMaximum(20.77149);
+   hframe_copy60->SetMaximum(21.03766);
    hframe_copy60->SetDirectory(0);
    hframe_copy60->SetStats(0);
    hframe_copy60->SetLineStyle(0);
