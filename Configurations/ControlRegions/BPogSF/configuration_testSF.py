@@ -6,7 +6,7 @@ outputDir = 'rootFile'
 
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = 'variables_testSF.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
