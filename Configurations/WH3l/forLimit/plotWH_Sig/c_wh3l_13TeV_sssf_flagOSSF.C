@@ -1,13 +1,13 @@
 void c_wh3l_13TeV_sssf_flagOSSF()
 {
 //=========Macro generated from canvas: ccwh3l_13TeV_sssf_flagOSSF/cc
-//=========  (Wed Jun 29 22:36:12 2016) by ROOT version6.02/13
+//=========  (Thu Jun 30 22:29:45 2016) by ROOT version6.02/13
    TCanvas *ccwh3l_13TeV_sssf_flagOSSF = new TCanvas("ccwh3l_13TeV_sssf_flagOSSF", "cc",0,0,800,600);
    gStyle->SetOptFit(1);
    gStyle->SetOptStat(0);
    gStyle->SetOptTitle(0);
    ccwh3l_13TeV_sssf_flagOSSF->SetHighLightColor(2);
-   ccwh3l_13TeV_sssf_flagOSSF->Range(-0.4,-1.571992,2.1,10.52026);
+   ccwh3l_13TeV_sssf_flagOSSF->Range(-0.4,-1.612425,2.1,10.79084);
    ccwh3l_13TeV_sssf_flagOSSF->SetFillColor(0);
    ccwh3l_13TeV_sssf_flagOSSF->SetBorderMode(0);
    ccwh3l_13TeV_sssf_flagOSSF->SetBorderSize(2);
@@ -24,7 +24,7 @@ void c_wh3l_13TeV_sssf_flagOSSF()
    
    TH1F *hframe91 = new TH1F("hframe91","",1000,0,2);
    hframe91->SetMinimum(0);
-   hframe91->SetMaximum(9.915644);
+   hframe91->SetMaximum(10.17068);
    hframe91->SetDirectory(0);
    hframe91->SetStats(0);
    hframe91->SetLineStyle(0);
@@ -135,9 +135,9 @@ void c_wh3l_13TeV_sssf_flagOSSF()
    thsBackground_grouped_wh3l_13TeV_sssf_flagOSSF->Add(new_histo_group_WW_wh3l_13TeV_sssf_flagOSSF,"");
    
    TH1D *new_histo_group_VVV_wh3l_13TeV_sssf_flagOSSF94 = new TH1D("new_histo_group_VVV_wh3l_13TeV_sssf_flagOSSF94","histo_VVV",2,0,2);
-   new_histo_group_VVV_wh3l_13TeV_sssf_flagOSSF94->SetBinContent(1,0.0007784473);
-   new_histo_group_VVV_wh3l_13TeV_sssf_flagOSSF94->SetBinError(1,0.0007784473);
-   new_histo_group_VVV_wh3l_13TeV_sssf_flagOSSF94->SetEntries(1);
+   new_histo_group_VVV_wh3l_13TeV_sssf_flagOSSF94->SetBinContent(1,0.1027931);
+   new_histo_group_VVV_wh3l_13TeV_sssf_flagOSSF94->SetBinError(1,0.01693453);
+   new_histo_group_VVV_wh3l_13TeV_sssf_flagOSSF94->SetEntries(62);
 
    ci = TColor::GetColor("#0066ff");
    new_histo_group_VVV_wh3l_13TeV_sssf_flagOSSF94->SetFillColor(ci);
@@ -317,19 +317,19 @@ void c_wh3l_13TeV_sssf_flagOSSF()
    0.5,
    1.5};
    Double_t _fy3019[2] = {
-   3.682706,
+   3.78472,
    0};
    Double_t _felx3019[2] = {
    0.5,
    0.5};
    Double_t _fely3019[2] = {
-   1.847999,
+   1.864364,
    0};
    Double_t _fehx3019[2] = {
    0.5,
    0.5};
    Double_t _fehy3019[2] = {
-   1.847965,
+   1.864316,
    0};
    TGraphAsymmErrors *grae = new TGraphAsymmErrors(2,_fx3019,_fy3019,_felx3019,_fehx3019,_fely3019,_fehy3019);
    grae->SetName("");
@@ -341,7 +341,7 @@ void c_wh3l_13TeV_sssf_flagOSSF()
    
    TH1F *Graph_Graph3019 = new TH1F("Graph_Graph3019","",100,0,2.2);
    Graph_Graph3019->SetMinimum(0);
-   Graph_Graph3019->SetMaximum(6.083738);
+   Graph_Graph3019->SetMaximum(6.21394);
    Graph_Graph3019->SetDirectory(0);
    Graph_Graph3019->SetStats(0);
    Graph_Graph3019->SetLineStyle(0);
@@ -682,7 +682,7 @@ tex->SetNDC();
    
    TH1F *hframe_copy100 = new TH1F("hframe_copy100","",1000,0,2);
    hframe_copy100->SetMinimum(0);
-   hframe_copy100->SetMaximum(9.915644);
+   hframe_copy100->SetMaximum(10.17068);
    hframe_copy100->SetDirectory(0);
    hframe_copy100->SetStats(0);
    hframe_copy100->SetLineStyle(0);

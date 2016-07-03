@@ -174,8 +174,8 @@ samples['WZ']  = {    'name': [
 samples['VVV'] = {    'name': [
                           'latino_WZZ.root', 
                           #'latino_ZZZ.root'
-                          #'latino_WWW.root'
-                          #'latino_WWZ.root'
+                          'latino_WWW.root',
+                          'latino_WWZ.root'
                           ],      
                       'weight' : 'metFilter*puW*baseW*bPogSF_CMVAT*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]*GEN_weight_SM/abs(GEN_weight_SM)',          
                       #'isData': ['0'],                            

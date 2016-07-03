@@ -93,7 +93,6 @@ structure['ZZ']  = {
                   'isData'   : 0    
                   }
 
-
 #structure['ggH'] = {
 #                  'isSignal' : 1,
 #                  'isData'   : 0    
@@ -119,20 +118,20 @@ structure['WH_hww'] = {
                   'isData'   : 0    
                   }
 
-#structure['ZH_hww'] = {
-#                  'isSignal' : 1,
-#                  'isData'   : 0    
-#                  }
+structure['ZH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
 
-#structure['ggZH_hww'] = {
-#                  'isSignal' : 1,
-#                  'isData'   : 0    
-#                  }
+structure['ggZH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
 
-#structure['H_htt'] = {
-#                  'isSignal' : 1,
-#                  'isData'   : 0    
-#                  }
+structure['H_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
 
 #structure['H_hww'] = {
 #                  'isSignal' : 1,

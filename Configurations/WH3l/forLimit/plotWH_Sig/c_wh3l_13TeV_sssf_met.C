@@ -1,13 +1,13 @@
 void c_wh3l_13TeV_sssf_met()
 {
 //=========Macro generated from canvas: ccwh3l_13TeV_sssf_met/cc
-//=========  (Wed Jun 29 22:36:14 2016) by ROOT version6.02/13
+//=========  (Thu Jun 30 22:29:47 2016) by ROOT version6.02/13
    TCanvas *ccwh3l_13TeV_sssf_met = new TCanvas("ccwh3l_13TeV_sssf_met", "cc",0,0,800,600);
    gStyle->SetOptFit(1);
    gStyle->SetOptStat(0);
    gStyle->SetOptTitle(0);
    ccwh3l_13TeV_sssf_met->SetHighLightColor(2);
-   ccwh3l_13TeV_sssf_met->Range(-40,-0.719557,210,4.815497);
+   ccwh3l_13TeV_sssf_met->Range(-40,-0.7237058,210,4.843262);
    ccwh3l_13TeV_sssf_met->SetFillColor(0);
    ccwh3l_13TeV_sssf_met->SetBorderMode(0);
    ccwh3l_13TeV_sssf_met->SetBorderSize(2);
@@ -24,7 +24,7 @@ void c_wh3l_13TeV_sssf_met()
    
    TH1F *hframe131 = new TH1F("hframe131","",1000,0,200);
    hframe131->SetMinimum(0);
-   hframe131->SetMaximum(4.538744);
+   hframe131->SetMaximum(4.564913);
    hframe131->SetDirectory(0);
    hframe131->SetStats(0);
    hframe131->SetLineStyle(0);
@@ -157,9 +157,33 @@ void c_wh3l_13TeV_sssf_met()
    thsBackground_grouped_wh3l_13TeV_sssf_met->Add(new_histo_group_WW_wh3l_13TeV_sssf_met,"");
    
    TH1D *new_histo_group_VVV_wh3l_13TeV_sssf_met134 = new TH1D("new_histo_group_VVV_wh3l_13TeV_sssf_met134","histo_VVV",20,0,200);
-   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinContent(14,0.0007784473);
-   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinError(14,0.0007784473);
-   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetEntries(1);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinContent(4,0.01106312);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinContent(5,0.008648558);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinContent(6,0.01046759);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinContent(7,0.01203038);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinContent(8,0.01329449);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinContent(9,0.01842845);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinContent(10,0.003538713);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinContent(11,0.002546006);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinContent(12,0.003992955);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinContent(13,0.004575787);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinContent(14,0.01015126);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinContent(15,0.002038841);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinContent(16,0.002016974);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinError(4,0.006157163);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinError(5,0.00581601);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinError(6,0.004915715);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinError(7,0.005417037);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinError(8,0.006476356);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinError(9,0.006638545);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinError(10,0.004315634);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinError(11,0.002546006);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinError(12,0.002881353);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinError(13,0.003224652);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinError(14,0.004846344);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinError(15,0.002038841);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetBinError(16,0.002016974);
+   new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetEntries(62);
 
    ci = TColor::GetColor("#0066ff");
    new_histo_group_VVV_wh3l_13TeV_sssf_met134->SetFillColor(ci);
@@ -438,19 +462,19 @@ void c_wh3l_13TeV_sssf_met()
    0,
    0,
    0,
-   0.1091354,
-   0.05576834,
-   1.769928,
-   1.055654,
-   0.0493015,
-   0.3725426,
-   -0.0100849,
-   0.1857992,
-   0.1345139,
-   -0.08443467,
-   -0.005895718,
-   0.001838737,
-   0,
+   0.1201986,
+   0.0644169,
+   1.780396,
+   1.067685,
+   0.06259599,
+   0.3909711,
+   -0.00654619,
+   0.1883452,
+   0.1385068,
+   -0.07985889,
+   0.003477095,
+   0.003877577,
+   0.002016973,
    0.03513683,
    0,
    0,
@@ -480,19 +504,19 @@ void c_wh3l_13TeV_sssf_met()
    0,
    0,
    0,
-   0.3778716,
-   0.1308846,
-   1.262384,
-   0.7541608,
-   0.03158394,
-   0.3913433,
-   0.1357102,
-   0.1496892,
-   0.1425149,
-   0.1548344,
-   0.007810194,
-   0.001839675,
-   0,
+   0.3841617,
+   0.1367287,
+   1.266824,
+   0.7591015,
+   0.04020493,
+   0.3980513,
+   0.1392802,
+   0.1520266,
+   0.1452928,
+   0.1580673,
+   0.01503991,
+   0.004382112,
+   0.002858217,
    0.03516259,
    0,
    0,
@@ -522,19 +546,19 @@ void c_wh3l_13TeV_sssf_met()
    0,
    0,
    0,
-   0.2026276,
-   0.1308722,
-   1.262384,
-   0.7541607,
-   0.03158261,
-   0.3913433,
-   0.04938461,
-   0.1496892,
-   0.1425149,
-   0.08945693,
-   0.007810195,
-   0.001839739,
-   0,
+   0.2089768,
+   0.1367142,
+   1.266823,
+   0.7591015,
+   0.04019366,
+   0.3980513,
+   0.05368756,
+   0.1520263,
+   0.1452928,
+   0.09261988,
+   0.01504054,
+   0.004382155,
+   0.002860817,
    0.03516361,
    0,
    0,
@@ -548,8 +572,8 @@ void c_wh3l_13TeV_sssf_met()
    grae->SetMarkerStyle(20);
    
    TH1F *Graph_Graph3027 = new TH1F("Graph_Graph3027","",100,0,220);
-   Graph_Graph3027->SetMinimum(-0.598841);
-   Graph_Graph3027->SetMaximum(3.362417);
+   Graph_Graph3027->SetMinimum(-0.5950814);
+   Graph_Graph3027->SetMaximum(3.378337);
    Graph_Graph3027->SetDirectory(0);
    Graph_Graph3027->SetStats(0);
    Graph_Graph3027->SetLineStyle(0);
@@ -998,7 +1022,7 @@ tex->SetNDC();
    
    TH1F *hframe_copy140 = new TH1F("hframe_copy140","",1000,0,200);
    hframe_copy140->SetMinimum(0);
-   hframe_copy140->SetMaximum(4.538744);
+   hframe_copy140->SetMaximum(4.564913);
    hframe_copy140->SetDirectory(0);
    hframe_copy140->SetStats(0);
    hframe_copy140->SetLineStyle(0);

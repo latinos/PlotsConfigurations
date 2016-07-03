@@ -21,6 +21,40 @@ supercut = 'std_vector_lepton_pt[0]>30 && std_vector_lepton_pt[1]>6 \
          #&& std_vector_lepton_isTightLepton[0]==1 \
 
 
+               
+              
+cuts['hww2l2v_13TeV_WgS_mmm_JPsi']  = ' \
+                   abs(std_vector_lepton_flavour[0]) == 13 \
+                && abs(std_vector_lepton_flavour[1]) == 13 \
+                && abs(std_vector_lepton_flavour[2]) == 13 \
+                && (std_vector_lepton_isWgsLepton[0]==1  && std_vector_lepton_isWgsLepton[1]=1  && std_vector_lepton_isWgsLepton[2]=1   && std_vector_lepton_pt[0]>30 && std_vector_lepton_pt[1] > 7 && std_vector_lepton_pt[2] > 5 )   \
+                && ( \
+		     (std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1] < 0) || \
+		     (std_vector_lepton_flavour[0]*std_vector_lepton_flavour[2] < 0) || \
+		     (std_vector_lepton_flavour[1]*std_vector_lepton_flavour[2] < 0)  ) \
+                && (  mim( mll + (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] > 0 )*1000, \
+		          mllOneThree + (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[2] > 0 )*1000, \
+		          mllTwoThree + (std_vector_lepton_flavour[1] * std_vector_lepton_flavour[2] > 0 )*1000) \
+	             - 3.09691 > 0.1) \
+                '
+
+cuts['hww2l2v_13TeV_WgS_mmm_JPsi_WgammaDoubleCnt']  = ' \
+                   abs(std_vector_lepton_flavour[0]) == 13 \
+                && abs(std_vector_lepton_flavour[1]) == 13 \
+                && abs(std_vector_lepton_flavour[2]) == 13 \
+                && (std_vector_lepton_isWgsLepton[0]==1  && std_vector_lepton_isWgsLepton[1]=1  && std_vector_lepton_isWgsLepton[2]=1   && std_vector_lepton_pt[0]>30 && std_vector_lepton_pt[1] > 7 && std_vector_lepton_pt[2] > 5 )   \
+                && ( \
+		     (std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1] < 0) || \
+		     (std_vector_lepton_flavour[0]*std_vector_lepton_flavour[2] < 0) || \
+		     (std_vector_lepton_flavour[1]*std_vector_lepton_flavour[2] < 0)  ) \
+                && (  mim( mll + (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] > 0 )*1000, \
+		          mllOneThree + (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[2] > 0 )*1000, \
+		          mllTwoThree + (std_vector_lepton_flavour[1] * std_vector_lepton_flavour[2] > 0 )*1000) \
+	             - 3.09691 > 0.1) \
+		&& !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22)\
+                '
+
+            
 
                
               

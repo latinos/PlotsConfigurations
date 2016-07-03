@@ -98,6 +98,57 @@ nuisances['pdf_qqbar_wh3l']  = {
                    },
               }
 
+#pdf and qcd acceptnace
+
+nuisances['pdf_gg_accept_wh3l']  = {
+               'name'  : 'pdf_gg_accept_wh3l',
+               'samples'  : {
+                   'ggH_hww' : '1.005',
+                   'ggH_htt' : '1.005',
+                   'H_htt'   : '1.005',
+                   'ggZH_hww': '1.005',
+                   },
+               'type'  : 'lnN',
+              }
+
+
+nuisances['pdf_qqbar_accept_wh3l']  = {
+               'name'  : 'pdf_qqbar_accept_wh3l',
+               'type'  : 'lnN',
+               'samples'  : {
+                   #
+                   'qqH_hww' : '1.011',
+                   'qqH_htt' : '1.011',
+                   'WH_hww'  : '1.007',
+                   'ZH_hww'  : '1.012',
+                   },
+              }
+
+nuisances['QCDscale_qqbar_accept']  = {
+               'name'  : 'QCDscale_qqbar_accept', 
+               'type'  : 'lnN',
+               'samples'  : {
+                   'qqH_hww' : '1.007',
+                   'qqH_htt' : '1.007',
+                   'WH_hww'  : '1.05',
+                   'ZH_hww'  : '1.04',
+                   },
+              }
+
+
+
+nuisances['QCDscale_gg_accept']  = {
+               'name'  : 'QCDscale_gg_accept', 
+               'samples'  : {
+                   'ggH_hww' : '1.027',
+                   'ggH_htt' : '1.027',
+                   'H_htt'   : '1.04',
+                   'ggZH_hww': '1.003',                   
+
+                   },
+               'type'  : 'lnN',
+              }
+
 
 # PS/UE
 
@@ -105,7 +156,7 @@ nuisances['pdf_qqbar_wh3l']  = {
 
 nuisances['PS_wh3l']  = {
                 'name'  : 'PS_wh3l',
-  #              'kind'  : 'tree',
+ #               'kind'  : 'tree',
                 'type'  : 'lnN',
                 'samples'  : {
                    'WH_hww'   : '1.037',
@@ -115,7 +166,7 @@ nuisances['PS_wh3l']  = {
                 },
   #              'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS/',
   #              'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/',
-                }
+}
 
 #nuisances['UE_wh3l']  = {
 #                'name'  : 'UE',
@@ -269,8 +320,10 @@ nuisances['jes_wh3l']  = {
                    'H_htt'  : ['1', '1'],
                    'Vg' : ['1', '1'],
                 },
-                'folderUp'   : '/tmp/arun/eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__vh3lSel__l3kin/',
-                'folderDown' : '/tmp/arun/eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__vh3lSel__l3kin/'
+#                'folderUp'   : '/tmp/arun/eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__vh3lSel__l3kin/',
+ #               'folderDown' : '/tmp/arun/eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__vh3lSel__l3kin/'
+                'folderUp'   : '/tmp/arun/eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__vh3lSel__l3kin/',
+                'folderDown' : '/tmp/arun/eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__vh3lSel__l3kin/'
 }
 
 nuisances['electronpt_wh3l']  = {
@@ -288,8 +341,10 @@ nuisances['electronpt_wh3l']  = {
                    'H_htt'   : ['1', '1'],
                    'Vg' : ['1', '1'],
                 },
-                'folderUp'   : '/tmp/arun/eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__vh3lSel__l3kin/',
-                'folderDown' : '/tmp/arun/eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__vh3lSel__l3kin/'
+ #               'folderUp'   : '/tmp/arun/eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__vh3lSel__l3kin/',
+ #               'folderDown' : '/tmp/arun/eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__vh3lSel__l3kin/'
+                'folderUp'   : '/tmp/arun/eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__vh3lSel__l3kin/',
+                'folderDown' : '/tmp/arun/eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__vh3lSel__l3kin/'
 }
 
 nuisances['muonpt_wh3l']  = {
@@ -307,8 +362,10 @@ nuisances['muonpt_wh3l']  = {
                    'H_htt' : ['1', '1'],
                    'Vg' : ['1', '1'],
                 },
-                'folderUp'   : '/tmp/arun/eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__vh3lSel__l3kin/',
-                'folderDown' : '/tmp/arun/eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__vh3lSel__l3kin/'
+ #               'folderUp'   : '/tmp/arun/eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__vh3lSel__l3kin/',
+  #              'folderDown' : '/tmp/arun/eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__vh3lSel__l3kin/'
+                'folderUp'   : '/tmp/arun/eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__vh3lSel__l3kin/',
+                'folderDown' : '/tmp/arun/eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__vh3lSel__l3kin/'
 }
 
 nuisances['met_wh3l']  = {
@@ -326,8 +383,10 @@ nuisances['met_wh3l']  = {
                    'H_htt' : ['1', '1'],
                    'Vg' : ['1', '1'],
                 },
-                'folderUp'   : '/tmp/arun/eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__vh3lSel__l3kin/',
-                'folderDown' : '/tmp/arun/eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__vh3lSel__l3kin/'
+ #               'folderUp'   : '/tmp/arun/eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__vh3lSel__l3kin/',
+ #               'folderDown' : '/tmp/arun/eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__vh3lSel__l3kin/'
+                'folderUp'   : '/tmp/arun/eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__vh3lSel__l3kin/',
+                'folderDown' : '/tmp/arun/eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__vh3lSel__l3kin/'
 }
 
 # statistical fluctuation

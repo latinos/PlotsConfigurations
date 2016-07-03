@@ -82,10 +82,7 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  #'color': 1, # kRed 
-           #       'scale': 10.0,
                   'samples'  : ['H_htt', 'WH_hww', 'ZH_hww', 'ggZH_hww']
-         #         'samples'  : ['H_htt', 'WH_hww']
               }
 
 
@@ -130,7 +127,7 @@ groupPlot['Higgs']  = {
 
                
 plot['Fake']  = {  
-                  'color': 401,    # kYellow + 1
+                  'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0                  
@@ -252,6 +249,7 @@ plot['VVV']  = {
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
+
 
 #plot['ZZ']  = {
 #                  'color': 854, # kAzure -6 
