@@ -44,10 +44,10 @@ def compute(frac_b_TopCr, eff_b_TopCr, eff_l_TopCr,
 
 
 def getBFractionZ(histo):
-  #from SMP-13-004 Table 5 aMC@NLO 5f vs 4f -> 36%
+  #from SMP-13-004 Table 5 Madgraph 5f vs 4f -> 15%
   central = histo.GetBinContent(2)/histo.Integral()
-  up   = histo.GetBinContent(2)*(1.+0.36)/histo.Integral()
-  down = histo.GetBinContent(2)*(1.-0.36)/histo.Integral()
+  up   = histo.GetBinContent(2)*(1.+0.15)/histo.Integral()
+  down = histo.GetBinContent(2)*(1.-0.15)/histo.Integral()
   return central, up, down
 
 def getBFractionTop(histo, histo_tWUp,  histo_tWDown):
@@ -68,8 +68,8 @@ def getMC(samples, rootfile, cut, plotName):
       outputSTUp   = rootfile.Get(cut+"/"+plotName+"/histo_"+sample).Clone()
       outputSTDown = rootfile.Get(cut+"/"+plotName+"/histo_"+sample).Clone()
       if sample == "singletop":
-        outputSTUp.Scale(1.+0.17)
-        outputSTDown.Scale(1.-0.17)
+        outputSTUp.Scale(1.+0.08)
+        outputSTDown.Scale(1.-0.08)
     else:
       #print cut+"/"+plotName+"/histo_"+sample
       histo = rootfile.Get(cut+"/"+plotName+"/histo_"+sample)
@@ -105,7 +105,7 @@ def computeSF(binSuffix, nickname, wpname, mcsamples, datasamples, rootfile):
   eff_TopCr    = getFraction(dataTopCr)
   err2_eff_TopCr = eff_TopCr*(1.-eff_TopCr)/dataTopCr.Integral()
   frac_b_TopCr, frac_b_TopCrUp, frac_b_TopCrDown = getBFractionTop(compositionTopCr, compositionTopCr_tWUp, compositionTopCr_tWDown)
-  #print "eff_b_TopCr", eff_b_TopCr, "eff_l_TopCr", eff_l_TopCr, "eff_TopCr", eff_TopCr, "frac_b_TopCr", frac_b_TopCr, "eff_TopCrMC", eff_TopCrMC
+  print "eff_b_TopCr", eff_b_TopCr, "eff_l_TopCr", eff_l_TopCr, "eff_TopCr", eff_TopCr, "frac_b_TopCr", frac_b_TopCr
 
   #for Z Cr use the first jet (_1 suffix below)
   totalmcZCrH, notNeeded3, notNeeded4      = getMC(mcsamples, rootfile, "Z"+binSuffix+"_Heavy", nickname+wpname+"_1")
@@ -120,7 +120,7 @@ def computeSF(binSuffix, nickname, wpname, mcsamples, datasamples, rootfile):
   eff_ZCr      = getFraction(dataZCr)
   err2_eff_ZCr = eff_ZCr*(1.-eff_ZCr)/dataZCr.Integral()
   frac_b_ZCr, frac_b_ZCrUp, frac_b_ZCrDown = getBFractionZ(compositionZCr)
-  #print "eff_b_ZCr", eff_b_ZCr, "eff_l_ZCr", eff_l_ZCr, "eff_ZCr", eff_ZCr, "frac_b_ZCr", frac_b_ZCr,  "eff_ZCrMC", eff_ZCrMC
+  print "eff_b_ZCr", eff_b_ZCr, "eff_l_ZCr", eff_l_ZCr, "eff_ZCr", eff_ZCr, "frac_b_ZCr", frac_b_ZCr
 
   output = {}
   sf_central = compute(frac_b_TopCr, eff_b_TopCr, eff_l_TopCr, 
