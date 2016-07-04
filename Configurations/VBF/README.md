@@ -37,7 +37,8 @@ Auto tests:
     cd -
 
     cat ../result.MaxLikelihoodFit.Data2015.vbf.pruned.txt
-
+    cat ../result.Significance.Data2015.vbf.pruned.txt
+    
     
 
 plot:
