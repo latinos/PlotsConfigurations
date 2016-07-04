@@ -28,7 +28,7 @@ groupPlot['Fake']  = {
 #groupPlot['top']  = {  
 #                  'nameHR' : 'tW and t#bart',
 #                  'isSignal' : 0,
-#                  'color': 400,   # kYellow
+#                  'color': 430,   # kYellow
 #                  'samples'  : ['top']
 #              }
 
@@ -98,7 +98,7 @@ groupPlot['Higgs']  = {
 #                  'isSignal' : 0,
 #                  'isData'   : 0, 
 #                  'scale'    : 1.0,
- #                 'cuts'  : {
+#                 'cuts'  : {
 #                       'hww2l2v_13TeV_of0j'      : 0.95 ,
 #                       'hww2l2v_13TeV_top_of0j'  : 0.95 , 
 #                       'hww2l2v_13TeV_dytt_of0j' : 0.95 ,
@@ -111,8 +111,8 @@ groupPlot['Higgs']  = {
  #                      'hww2l2v_13TeV_em_1j'     : 1.08 , 
  #                      'hww2l2v_13TeV_me_1j'     : 1.08 , 
   #                      },
-#
- #             }
+
+ #            }
 
 
                
@@ -166,7 +166,7 @@ plot['Fake']  = {
 #                  'isSignal' : 0,
 #                  'isData'   : 0, 
 #                  'scale'    : 1.0,
-            #      'cuts'  : {
+           #      'cuts'  : {
 #                       'hww2l2v_13TeV_of0j'      : 0.94 ,
 #                       'hww2l2v_13TeV_top_of0j'  : 0.94 , 
 #                       'hww2l2v_13TeV_dytt_of0j' : 0.94 ,
