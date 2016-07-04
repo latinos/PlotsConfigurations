@@ -39,4 +39,8 @@ Auto tests:
     cat ../result.MaxLikelihoodFit.Data2015.vbf.pruned.txt
 
     
-    
+
+plot:
+
+    root -l ../higgsCombineLHScanHVBF.MultiDimFit.mH125.root  \
+            ../ggH/scripts/drawNLL.C
