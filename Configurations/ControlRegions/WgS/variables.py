@@ -60,6 +60,16 @@ variables['drllTwoThree']  = {   'name': 'drllTwoThree',            #   variable
                         }
 
 
+variables['mllMinimi']  = {   'name': '\
+                     mim( mll +         (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] > 0 )*1000, \
+		          mllOneThree + (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[2] > 0 )*1000, \
+		          mllTwoThree + (std_vector_lepton_flavour[1] * std_vector_lepton_flavour[2] > 0 )*1000) \
+                        ',
+                        'range' : (40,0,110),    #   variable range
+                        'xaxis' : 'm_{ll} from #gamma^{*} [GeV]',  #   x axis name
+                         'fold' : 0
+                        }
+
 
 
 variables['mllTwoThreeLowMass']  = {   'name': 'mllTwoThree',            #   variable name    

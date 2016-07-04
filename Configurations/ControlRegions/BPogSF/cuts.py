@@ -1,6 +1,6 @@
 # cuts
 
-#cuts = {}
+cuts = {}
 
 import os.path
 
@@ -47,6 +47,6 @@ for ipt in range(len(ptranges)-1):
     cuts['Topem'+binSuffix+"_Heavy"] = cuts['Topem'+binSuffix] + " && (std_vector_jet_HadronFlavour[1]==4 || std_vector_jet_HadronFlavour[1]==5)"
     cuts['Topem'+binSuffix+"_Light"] = cuts['Topem'+binSuffix] + " && (std_vector_jet_HadronFlavour[1]!=4 && std_vector_jet_HadronFlavour[1]!=5)"
 
-    cuts['Z'+binSuffix+"_Heavy"] = cuts['Z'+binSuffix] + " && (std_vector_jet_HadronFlavour[1]==4 || std_vector_jet_HadronFlavour[1]==5)"
-    cuts['Z'+binSuffix+"_Light"] = cuts['Z'+binSuffix] + " && (std_vector_jet_HadronFlavour[1]!=4 && std_vector_jet_HadronFlavour[1]!=5)"
+    cuts['Z'+binSuffix+"_Heavy"] = cuts['Z'+binSuffix] + " && (std_vector_jet_HadronFlavour[0]==4 || std_vector_jet_HadronFlavour[0]==5)"
+    cuts['Z'+binSuffix+"_Light"] = cuts['Z'+binSuffix] + " && (std_vector_jet_HadronFlavour[0]!=4 && std_vector_jet_HadronFlavour[0]!=5)"
 

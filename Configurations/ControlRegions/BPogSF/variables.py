@@ -13,7 +13,7 @@ if os.path.exists(wpsFile) :
   handle.close()
 else:
   print "!!! ERROR file ", wpsFile, " does not exist."
-
+'''
 variables['events']  = {   'name': '1',      
                         'range' : (1,0,2),  
                         'xaxis' : 'events', 
@@ -31,6 +31,7 @@ variables['mth']  = {   'name': 'mth',            #   variable name
                         'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
                          'fold' : 0
                         }
+'''                        
 variables['flavor_1'] = {'name': '(std_vector_jet_HadronFlavour[0]==4 || std_vector_jet_HadronFlavour[0]==5)',
                         'range' : (2,0,2),
                         'xaxis' : 'flavor_j1',
@@ -45,13 +46,13 @@ for ialgo, algo in enumerate(algos):
                                       'name': 'std_vector_jet_'+algo+'[0]',
                                       'range' : (20,-1,1),
                                       'xaxis' : nicknames[ialgo]+" jet 1st",
-                                      'fold'  : 3
+                                      'fold'  : 0
                                       }
   variables[nicknames[ialgo]+'_2'] = {
                                       'name': 'std_vector_jet_'+algo+'[1]',
                                       'range' : (20,-1,1),
                                       'xaxis' : nicknames[ialgo]+" jet 2nd",
-                                      'fold'  : 3
+                                      'fold'  : 0
                                       } 
   wp = wps[nicknames[ialgo]]
   for wpname in wp.keys():
@@ -59,16 +60,16 @@ for ialgo, algo in enumerate(algos):
                                               'name': 'std_vector_jet_'+algo+'[0]',
                                               'range' : ([-1, wp[wpname], 1],),
                                               'xaxis' : nicknames[ialgo]+' jet 1st',
-                                              'fold'  : 3
+                                              'fold'  : 0
                                               }
     variables[nicknames[ialgo]+wpname+'_2']  = {
                                               'name': 'std_vector_jet_'+algo+'[1]',
                                               'range' : ([-1, wp[wpname], 1],),
                                               'xaxis' : nicknames[ialgo]+' jet 2nd',
-                                              'fold'  : 3
+                                              'fold'  : 0
                                               }  
 
-
+'''
 
 variables['njet']  = {
                         'name': 'njet',     
@@ -95,3 +96,4 @@ variables['jetpt2']  = {
                         'xaxis' : 'p_{T} 2nd jet',
                         'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
+'''                        

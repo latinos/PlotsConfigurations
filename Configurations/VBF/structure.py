@@ -36,8 +36,13 @@ structure['top'] = {
                   'isData'   : 0 
                   }
 
-
 structure['WW']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0    
+                  }
+
+
+structure['WWewk']  = {
                   'isSignal' : 0,
                   'isData'   : 0    
                   }
