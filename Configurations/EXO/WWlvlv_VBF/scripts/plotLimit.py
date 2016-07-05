@@ -113,12 +113,12 @@ def plotLimit(mass,model,option="mu",cat="all"):
 
             if cat=="all":
               #fitfile = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combine/Limit.Moriond2016.v1.txt.pruned.mH"+m+"_"+model+".txt"
-              fitfile = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combineLSF/Limit.ICHEP2016.mH"+m+"_"+model+".txt"
+              fitfile = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combineFrozen_r-10+10/Limit.ICHEP2016.mH"+m+"_"+model+".txt"
 
               CMS_lumi.extraText2 = "0+1+2 jets "
             else:
               #fitfile = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combine/Limit.Moriond2016."+cat+".mH"+m+"_"+model+".txt"
-              fitfile = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combineLSF/Limit.ICHEP2016."+cat+".mH"+m+"_"+model+".txt"
+              fitfile = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combineFrozen_r-10+10/Limit."+cat+".ICHEP2016.mH"+m+"_"+model+".txt"
 
               CMS_lumi.extraText2 = cat.replace("jet"," jet ")
 
@@ -319,7 +319,9 @@ def plotLimit(mass,model,option="mu",cat="all"):
 	a=raw_input()
 
 
-masses = ["200","250","300","350","400","450","500","550","600","650","750","800","1000"]
+masses = ["200","250","300","350","400","450","500","550","600","650","700","750","800","900","1000"]
+#masses = ["350","400","450","500","550","600","650","700","750","800","900","1000"]
+#masses = ["200","250","300","450","550","600","650","750","800","1000"]
 model = "c10brn00"
 cat = sys.argv[1]
 

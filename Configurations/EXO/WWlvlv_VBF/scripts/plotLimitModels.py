@@ -1,7 +1,7 @@
 from ROOT import *
 from array import *
 import CMS_lumi, tdrstyle
-
+import sys
 
 tdrstyle.setTDRStyle()
 CMS_lumi.lumi_13TeV = "2.3 fb^{-1}"
@@ -59,7 +59,7 @@ def getXsec(mass,process,model):
 
   if process=="ggH":
 
-    rootFile = TFile("eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_GluGluHToWWTo2L2Nu_M"+mass+".root")
+    rootFile = TFile("eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_GluGluHToWWTo2L2Nu_M"+mass+".root")
     latino = rootFile.Get("latino")
     htemp = TH1F("htemp","htemp",1,0,1)
     latino.Draw("Xsec>>htemp")
@@ -77,6 +77,9 @@ def getXsec(mass,process,model):
 
 
 def plotLimitModels(mass,models,cats):
+
+
+        directory = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combineFrozen_r-10+10/"
 
         for cat in cats:
 
@@ -98,20 +101,20 @@ def plotLimitModels(mass,models,cats):
             xerr = array("d")
 
             count+=1
-            modelName = model.replace("c","c'= ").replace("0","0.").replace("brn"," BR_{new} = ").replace("0.0.","0.0")
+            modelName = model.replace("c","c'= ").replace("0","0.").replace("brn"," BR_{new} = ").replace("0.0.","0.0").replace("10.","1.0")
 	    for m in masses:
 
 	          xsec_ggH = getXsec(m,"ggH",model)
 	          xsec_VBF = getXsec(m,"VBF",model)
 
 	          if cat=="all":
-	            fitfile = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combine/Limit.Moriond2016.v1.txt.pruned.mH"+m+"_"+model+".txt"
+	            fitfile = directory+"Limit.ICHEP2016.mH"+m+"_"+model+".txt"
 	            CMS_lumi.extraText2 = "0+1+2 jets"
 	          else:
-	            fitfile = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combine/Limit.Moriond2016."+cat+".mH"+m+"_"+model+".txt"
+	            fitfile = directory+"Limit."+cat+".ICHEP2016.mH"+m+"_"+model+".txt"
 	            CMS_lumi.extraText2 = cat.replace("jet"," jets ")
 
-	          fitFile = open(fitfile)#"/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combine/Limit.Moriond2016.2jet.mH"+m+".txt")
+	          fitFile = open(fitfile)
 	          expLimit = extract(fitFile)
 	          xcentral.append(float(m))
 	          xerr.append(0)
@@ -134,10 +137,10 @@ def plotLimitModels(mass,models,cats):
 
         a=raw_input()
 
-masses = ["200","250","300","350","400","450","500","550","600","650","750","800","1000"]
+masses = ["200","250","300","350","400","450","500","550","600","650","700","750","800","900","1000"]
 models = ["c03brn00","c05brn00","c07brn00","c10brn00"]
-cats = ["2jet"]
+#cats = ["2jet"]
 #cats= ["0jet","1jet","2jet","01jet","all"]  ## "0j" or "1j" or "2j" or "01j" or "all"
-#cats = ["all"]
+cats = [sys.argv[1]]
 
 plotLimitModels(masses,models,cats)
