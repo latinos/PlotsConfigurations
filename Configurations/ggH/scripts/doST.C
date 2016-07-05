@@ -47,7 +47,7 @@ void doST() {
   float QCDscale_ggH = pow ( exp( err_sigma_ge0 ) , 1./f0 );
   
   float QCDscale_ggH1in_0jet = pow ( exp( err_sigma_ge1 ) , - (f1+f2)/f0 );
-  float QCDscale_ggH1in_1jet = pow ( exp( err_sigma_ge1 ) , - (f1+f2)/f1 );
+  float QCDscale_ggH1in_1jet = pow ( exp( err_sigma_ge1 ) ,   (f1+f2)/f1 );
   
   float QCDscale_ggH2in_1jet = pow ( exp( err_sigma_ge2 ) , - f2/f1 );
   float QCDscale_ggH2in_2jet = exp( err_sigma_ge2 );
