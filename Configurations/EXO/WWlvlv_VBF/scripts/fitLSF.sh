@@ -47,11 +47,11 @@ combine -M ProfileLikelihood --significance -t -1 --expectSignal 1 ICHEP2016.wor
 combine -M ProfileLikelihood --significance -t -1 --expectSignal 1 ICHEP2016.workspace.01jet.mH${massmodel}.root > Significance.ICHEP2016.01jet.mH${massmodel}.txt
 combine -M ProfileLikelihood --significance -t -1 --expectSignal 1 ICHEP2016.workspace.2jet.mH${massmodel}.root  > Significance.ICHEP2016.2jet.mH${massmodel}.txt
 
-combine -M Asymptotic -t -1 --expectSignal 1 --run expected ICHEP2016.workspace.mH${massmodel}.root      > Limit.ICHEP2016.mH${massmodel}.txt
-combine -M Asymptotic -t -1 --expectSignal 1 --run expected ICHEP2016.workspace.0jet.mH${massmodel}.root > Limit.ICHEP2016.0jet.mH${massmodel}.txt
-combine -M Asymptotic -t -1 --expectSignal 1 --run expected ICHEP2016.workspace.1jet.mH${massmodel}.root > Limit.ICHEP2016.1jet.mH${massmodel}.txt
-combine -M Asymptotic -t -1 --expectSignal 1 --run expected ICHEP2016.workspace.1jet.mH${massmodel}.root > Limit.ICHEP2016.01jet.mH${massmodel}.txt
-combine -M Asymptotic -t -1 --expectSignal 1 --run expected ICHEP2016.workspace.2jet.mH${massmodel}.root > Limit.ICHEP2016.2jet.mH${massmodel}.txt
+#combine -M Asymptotic -t -1 --expectSignal 1 --run expected ICHEP2016.workspace.mH${massmodel}.root      > Limit.ICHEP2016.mH${massmodel}.txt
+#combine -M Asymptotic -t -1 --expectSignal 1 --run expected ICHEP2016.workspace.0jet.mH${massmodel}.root > Limit.ICHEP2016.0jet.mH${massmodel}.txt
+#combine -M Asymptotic -t -1 --expectSignal 1 --run expected ICHEP2016.workspace.1jet.mH${massmodel}.root > Limit.ICHEP2016.1jet.mH${massmodel}.txt
+#combine -M Asymptotic -t -1 --expectSignal 1 --run expected ICHEP2016.workspace.1jet.mH${massmodel}.root > Limit.ICHEP2016.01jet.mH${massmodel}.txt
+#combine -M Asymptotic -t -1 --expectSignal 1 --run expected ICHEP2016.workspace.2jet.mH${massmodel}.root > Limit.ICHEP2016.2jet.mH${massmodel}.txt
 
 cp Significance* ${workdir}
-cp Limit* ${workdir}
+#cp Limit* ${workdir}
