@@ -41,10 +41,12 @@ nuisances['QCDscale_VW']  = {
 # PDF: 0.0064 / 0.1427 = 0.0448493
 # QCD: 0.0046 / 0.1427 = 0.0322355
 
+
+
 nuisances['QCDscale_ggH2j']  = {
                'name'  : 'QCDscale_ggH2j', 
                'samples'  : { 
-               'ggH_hww' : '1.3', # 0j: 1.056 , 1j: 1.13
+               'ggH_hww' : '1.19244',
                    },
                'type'  : 'lnN',
                'cuts'  : [

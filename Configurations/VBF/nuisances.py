@@ -45,7 +45,7 @@ nuisances['QCDscale_VW']  = {
 nuisances['QCDscale_ggH2jvbf']  = {
                'name'  : 'QCDscale_ggH2jvbf', 
                'samples'  : { 
-               'ggH_hww' : '1.3', # 0j: 1.056 , 1j: 1.13
+               'ggH_hww' : '1.2', 
                    },
                'type'  : 'lnN',
                'cuts'  : [

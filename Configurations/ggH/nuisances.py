@@ -46,11 +46,20 @@ nuisances['QCDscale_VW']  = {
 # QCD: 0.0046 / 0.1427 = 0.0322355
 
 
+#  from YR4 ggF
+#
+#    QCDscale_ggH         =      1.08539
+#    QCDscale_ggH1in_0jet =      0.938296
+#    QCDscale_ggH1in_1jet =      0.854352
+#    QCDscale_ggH2in_1jet =      0.915896
+#    QCDscale_ggH2in_2jet =      1.19244
+#
+
 
 nuisances['QCDscale_ggH0j']  = {
                'name'  : 'QCDscale_ggH0j', 
                'samples'  : {
-                   'ggH_hww' : '1.056',
+                   'ggH_hww' : '1.08539',
                    },
                'type'  : 'lnN',
                'cuts'  : [
@@ -70,10 +79,34 @@ nuisances['QCDscale_ggH0j']  = {
               }
 
 
-nuisances['QCDscale_ggH1j']  = {
+nuisances['QCDscale_ggH1j_in0jet']  = {
                'name'  : 'QCDscale_ggH1j', 
                'samples'  : {
-                   'ggH_hww' : '1.13',
+                   'ggH_hww' : '0.938296',
+                   },
+               'type'  : 'lnN',
+               'cuts'  : [
+                 'hww2l2v_ICHEP_13TeV_of0j',
+                 'hww2l2v_ICHEP_13TeV_top_of0j',
+                 'hww2l2v_ICHEP_13TeV_dytt_of0j'              
+#                 
+                 'hww2l2v_ICHEP_13TeV_me_0j',
+                 'hww2l2v_ICHEP_13TeV_em_0j',
+#
+                 'hww2l2v_ICHEP_13TeV_me_mp_0j',
+                 'hww2l2v_ICHEP_13TeV_me_pm_0j',
+                 'hww2l2v_ICHEP_13TeV_em_mp_0j',
+                 'hww2l2v_ICHEP_13TeV_em_pm_0j',
+#                 
+                ]
+              }
+
+
+
+nuisances['QCDscale_ggH1j_in1jet']  = {
+               'name'  : 'QCDscale_ggH1j', 
+               'samples'  : {
+                   'ggH_hww' : '0.854352',
                    },
                'type'  : 'lnN',
                'cuts'  : [
@@ -91,6 +124,56 @@ nuisances['QCDscale_ggH1j']  = {
 #                 
                 ]
               }
+
+
+
+nuisances['QCDscale_ggH2j_in1jet']  = {
+               'name'  : 'QCDscale_ggH1j', 
+               'samples'  : {
+                   'ggH_hww' : '0.915896',
+                   },
+               'type'  : 'lnN',
+               'cuts'  : [
+                 'hww2l2v_ICHEP_13TeV_of1j',
+                 'hww2l2v_ICHEP_13TeV_top_of1j',
+                 'hww2l2v_ICHEP_13TeV_dytt_of1j'              
+#                 
+                 'hww2l2v_ICHEP_13TeV_me_1j',
+                 'hww2l2v_ICHEP_13TeV_em_1j',
+#
+                 'hww2l2v_ICHEP_13TeV_me_mp_1j',
+                 'hww2l2v_ICHEP_13TeV_me_pm_1j',
+                 'hww2l2v_ICHEP_13TeV_em_mp_1j',
+                 'hww2l2v_ICHEP_13TeV_em_pm_1j',
+#                 
+                ]
+              }
+
+
+
+nuisances['QCDscale_ggH2j_in2jet']  = {
+               'name'  : 'QCDscale_ggH2j', 
+               'samples'  : {
+                   'ggH_hww' : '1.19244',
+                   },
+               'type'  : 'lnN',
+               'cuts'  : [
+                 'hww2l2v_ICHEP_13TeV_of2j',
+                 'hww2l2v_ICHEP_13TeV_top_of2j',
+                 'hww2l2v_ICHEP_13TeV_dytt_of2j'              
+#                 
+                 'hww2l2v_ICHEP_13TeV_me_2j',
+                 'hww2l2v_ICHEP_13TeV_em_2j',
+#
+                 'hww2l2v_ICHEP_13TeV_me_mp_2j',
+                 'hww2l2v_ICHEP_13TeV_me_pm_2j',
+                 'hww2l2v_ICHEP_13TeV_em_mp_2j',
+                 'hww2l2v_ICHEP_13TeV_em_pm_2j',
+#                 
+                ]
+              }
+
+
 
 
 from LatinoAnalysis.Tools.HiggsXSection  import *
