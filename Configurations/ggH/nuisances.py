@@ -50,7 +50,7 @@ nuisances['QCDscale_VW']  = {
 #
 #    QCDscale_ggH         =      1.08539
 #    QCDscale_ggH1in_0jet =      0.938296
-#    QCDscale_ggH1in_1jet =      0.854352
+#    QCDscale_ggH1in_1jet =      1.17048
 #    QCDscale_ggH2in_1jet =      0.915896
 #    QCDscale_ggH2in_2jet =      1.19244
 #
@@ -106,7 +106,7 @@ nuisances['QCDscale_ggH1j_in0jet']  = {
 nuisances['QCDscale_ggH1j_in1jet']  = {
                'name'  : 'QCDscale_ggH1j', 
                'samples'  : {
-                   'ggH_hww' : '0.854352',
+                   'ggH_hww' : '1.17048',
                    },
                'type'  : 'lnN',
                'cuts'  : [
