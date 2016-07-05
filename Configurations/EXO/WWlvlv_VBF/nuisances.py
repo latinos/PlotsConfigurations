@@ -70,7 +70,6 @@ nuisances['QCDscale_ggH0j']  = {
                'name'  : 'QCDscale_ggH0j', 
                'samples'  : {
                    'ggH_hww' : '1.056',
-                   'ggH_hww_750_NWA' : '1.056',
                    },
                'type'  : 'lnN',
                'cuts'  : [
@@ -82,17 +81,31 @@ nuisances['QCDscale_ggH0j']  = {
 #                 
                 ]               
               }
+
+nuisances['QCDscale_hm_ggH0j']  = {
+               'name'  : 'QCDscale_hm_ggH0j',
+               'samples'  : {
+                   },
+               'type'  : 'lnN',
+               'cuts'  : [
+                 'hww2l2v_13TeV_of0j',
+                 'hww2l2v_13TeV_top_of0j',
+                 'hww2l2v_13TeV_dytt_of0j',
+#                 
+                 'hwwhm_13TeV_of_0j',
+#                 
+                ]
+              }
 for m in masses:
   for model in models:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
-    nuisances['QCDscale_ggH0j']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.056'})
+    nuisances['QCDscale_hm_ggH0j']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.056'})
 
 
 nuisances['QCDscale_ggH1j']  = {
                'name'  : 'QCDscale_ggH1j', 
                'samples'  : {
                    'ggH_hww' : '1.13',
-                   'ggH_hww_750_NWA' : '1.13',
                    },
                'type'  : 'lnN',
                'cuts'  : [
@@ -104,17 +117,45 @@ nuisances['QCDscale_ggH1j']  = {
 #
                 ]
               }
+
+nuisances['QCDscale_hm_ggH1j']  = {
+               'name'  : 'QCDscale_hm_ggH1j',
+               'samples'  : {
+                   },
+               'type'  : 'lnN',
+               'cuts'  : [
+                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_top_of1j',
+                 'hww2l2v_13TeV_dytt_of1j'
+#                 
+                 'hwwhm_13TeV_of_1j',
+#
+                ]
+              }
 for m in masses:
   for model in models:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
-    nuisances['QCDscale_ggH1j']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.13'})
+    nuisances['QCDscale_hm_ggH1j']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.13'})
 
 
 nuisances['QCDscale_ggH2j']  = {
                'name'  : 'QCDscale_ggH2j',
                'samples'  : {
                    'ggH_hww' : '1.2',
-                   'ggH_hww_750_NWA' : '1.2',
+                   },
+               'type'  : 'lnN',
+               'cuts'  : [
+                 'hww2l2v_13TeV_top_of2j',
+#                 'hww2l2v_13TeV_dytt_of2j'
+#                 
+                 'hwwhm_13TeV_of_VBF',
+#                 
+                ]
+              }
+
+nuisances['QCDscale_hm_ggH2j']  = {
+               'name'  : 'QCDscale_hm_ggH2j',
+               'samples'  : {
                    },
                'type'  : 'lnN',
                'cuts'  : [
@@ -128,7 +169,7 @@ nuisances['QCDscale_ggH2j']  = {
 for m in masses:
   for model in models:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
-    nuisances['QCDscale_ggH2j']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.2'})
+    nuisances['QCDscale_hm_ggH2j']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.2'})
 
 
 
