@@ -41,16 +41,26 @@ Auto tests:
     cd ..
     sh ggH/scripts/doGGH_blind.sh
     cd -
+
+    cat ../result.Significance.ICHEP2016.v1.txt.pruned.txt
+    
     
     cd ..
     sh ggH/scripts/doGGH.sh
     cd -
 
+    
+    
     cd ..
-    sh ggH/scripts/doGGH_alternative.sh
+    sh ggH/scripts/doBigCombination_blind.sh
     cd -
- 
- 
+    
+    cat ../result.Significance.ggHcombined.v1.txt.pruned.txt
+    cat ../result.MaxLikelihoodFit.ggHcombined.v1.txt.pruned.txt
+    
+    cat ../result.Significance.superCombination.v1.txt.pruned.txt    
+
+    
 Make tables:
 
     cd /afs/cern.ch/user/a/amassiro/Limit/PlayWithDatacards
@@ -220,6 +230,8 @@ Datacards checks
 Backup:
 
     mkShapes.py      --pycfg=configuration.py  --doThreads=True   --inputDir=eos/user/j/jlauwers/HWW2015/07Jun2016_spring16__mAODv2/MCl2loose16__hadd__LepEff__l2tight__wwSel/
+    mkShapes.py      --pycfg=configuration.py  --doThreads=True   --inputDir=eos/user/j/jlauwers/HWW2015/07Jun2016_spring16__mAODv2/MCl2loose__hadd__bSFLepEff__l2tight__wwSel/
+    mkShapes.py      --pycfg=configuration.py  --doThreads=True   --inputDir=eos/user/j/jlauwers/HWW2015/07Jun2016_spring16_mAODv2/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
       
 
 Copy datacards to repository:

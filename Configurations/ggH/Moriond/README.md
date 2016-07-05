@@ -129,17 +129,17 @@ Pruning:
 
 Auto tests:
 
-    cd /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH
+    cd /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/Moriond/
     cmsenv
-    cd ..
+    cd ../../
     sh ggH/scripts/doGGH_blind.sh
     cd -
     
-    cd ..
+    cd ../../
     sh ggH/scripts/doGGH.sh
     cd -
 
-    cd ..
+    cd ../../
     sh ggH/scripts/doGGH_alternative.sh
     cd -
  
@@ -429,6 +429,7 @@ Backup:
     
 
     mkShapes.py      --doThreads=True   --pycfg=configuration.py  --inputDir=eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight/
+    mkShapes.py      --doThreads=True  --pycfg=configuration.py  --inputDir=eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/    
     
  
 Plots:

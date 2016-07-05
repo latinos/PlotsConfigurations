@@ -36,6 +36,12 @@ Auto tests:
     sh VBF/scripts/doVBF.sh
     cd -
 
+    cat ../result.MaxLikelihoodFit.Data2015.vbf.pruned.txt
+    cat ../result.Significance.Data2015.vbf.pruned.txt
+    
+    
 
-    
-    
+plot:
+
+    root -l ../higgsCombineLHScanHVBF.MultiDimFit.mH125.root  \
+            ../ggH/scripts/drawNLL.C

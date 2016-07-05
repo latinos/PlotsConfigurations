@@ -21,3 +21,27 @@ Steps to get datacards and plots:
     
     mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_ggH2j.root
 
+
+
+Pruning (same as ggH):
+
+    cd /afs/cern.ch/user/a/amassiro/Limit/ModificationDatacards
+    sh examples/doPruneNuisanceHWW.sh 
+    cd -
+
+
+
+Auto tests:
+
+
+    cd ..
+    sh ggH2j/scripts/doGGH2j.sh
+    cd -
+
+    cat ../result.MaxLikelihoodFit.Data2015.2j.pruned.txt
+    cat ../result.Significance.Data2015.2j.pruned.txt
+    
+    
+    
+
+    

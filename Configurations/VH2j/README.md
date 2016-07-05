@@ -34,9 +34,12 @@ Auto tests:
 
 
     cd ..
-    sh VBF/scripts/doVBF.sh
+    sh VH2j/scripts/doVH2j.sh
     cd -
 
-
+    cat ../result.MaxLikelihoodFit.Data2015.vh2j.pruned.txt
+    cat ../result.Significance.Data2015.vh2j.pruned.txt
+    
+    
     
     

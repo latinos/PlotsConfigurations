@@ -1,0 +1,191 @@
+
+Processing getPdfQcd.C...
+
+ HWminusJ_HToTauTau_M125 wh3l acceptance uncertainties
+-----------------------------------------
+ nominal acceptance * eff      0.08%
+ QCD         mu=0.5 / mu=2.0   1.71% / 0.19%
+ alpha_s     265000 / 266000   0.28% / 0.12%
+ PDF                           0.61%
+ PDF+alpha_s                   0.65%
+
+
+ HWminusJ_HToWW_M125 wh3l acceptance uncertainties
+-----------------------------------------
+ nominal acceptance * eff      0.09%
+ QCD         mu=0.5 / mu=2.0   5.01% / 2.70%
+ alpha_s     265000 / 266000   0.32% / 0.22%
+ PDF                           0.67%
+ PDF+alpha_s                   0.72%
+
+
+ HWplusJ_HToTauTau_M125 wh3l acceptance uncertainties
+-----------------------------------------
+ nominal acceptance * eff      0.08%
+ QCD         mu=0.5 / mu=2.0   0.23% / 1.29%
+ alpha_s     265000 / 266000   0.12% / 0.15%
+ PDF                           0.68%
+ PDF+alpha_s                   0.69%
+
+
+ HWplusJ_HToWW_M125 wh3l acceptance uncertainties
+-----------------------------------------
+ nominal acceptance * eff      0.09%
+ QCD         mu=0.5 / mu=2.0   4.18% / 0.05%
+ alpha_s     265000 / 266000   0.24% / 0.10%
+ PDF                           0.65%
+ PDF+alpha_s                   0.68%
+
+
+ HZJ_HToWW_M125 wh3l acceptance uncertainties
+-----------------------------------------
+ nominal acceptance * eff      0.01%
+ QCD         mu=0.5 / mu=2.0   3.85% / 0.01%
+ alpha_s     265000 / 266000   0.19% / 0.30%
+ PDF                           0.86%
+ PDF+alpha_s                   0.90%
+
+
+ WZZ wh3l acceptance uncertainties
+-----------------------------------------
+ nominal acceptance * eff      0.00%
+ QCD         mu=0.5 / mu=2.0   0.41% / 0.30%
+ alpha_s     265000 / 266000   0.30% / 0.06%
+ PDF                           1.44%
+ PDF+alpha_s                   1.46%
+
+
+ ggZH_HToWW_M125 wh3l acceptance uncertainties
+-----------------------------------------
+ nominal acceptance * eff      0.03%
+ QCD         mu=0.5 / mu=2.0   0.35% / 0.29%
+ alpha_s     265000 / 266000   1.23% / 1.34%
+ PDF                           0.23%
+ PDF+alpha_s                   1.31%
+
+
+ HWminusJ_HToTauTau_M125 wh3l_ossf acceptance uncertainties
+-----------------------------------------
+ nominal acceptance * eff      0.05%
+ QCD         mu=0.5 / mu=2.0   4.00% / 0.18%
+ alpha_s     265000 / 266000   0.35% / 0.14%
+ PDF                           0.65%
+ PDF+alpha_s                   0.70%
+
+
+ HWminusJ_HToWW_M125 wh3l_ossf acceptance uncertainties
+-----------------------------------------
+ nominal acceptance * eff      0.06%
+ QCD         mu=0.5 / mu=2.0   5.78% / 3.81%
+ alpha_s     265000 / 266000   0.39% / 0.25%
+ PDF                           0.70%
+ PDF+alpha_s                   0.77%
+
+
+ HWplusJ_HToTauTau_M125 wh3l_ossf acceptance uncertainties
+-----------------------------------------
+ nominal acceptance * eff      0.05%
+ QCD         mu=0.5 / mu=2.0   0.32% / 1.28%
+ alpha_s     265000 / 266000   0.13% / 0.20%
+ PDF                           0.61%
+ PDF+alpha_s                   0.63%
+
+
+ HWplusJ_HToWW_M125 wh3l_ossf acceptance uncertainties
+-----------------------------------------
+ nominal acceptance * eff      0.07%
+ QCD         mu=0.5 / mu=2.0   4.64% / 0.47%
+ alpha_s     265000 / 266000   0.27% / 0.12%
+ PDF                           0.72%
+ PDF+alpha_s                   0.74%
+
+
+ HZJ_HToWW_M125 wh3l_ossf acceptance uncertainties
+-----------------------------------------
+ nominal acceptance * eff      0.01%
+ QCD         mu=0.5 / mu=2.0   1.55% / 1.13%
+ alpha_s     265000 / 266000   0.15% / 0.25%
+ PDF                           0.89%
+ PDF+alpha_s                   0.91%
+
+
+ WZZ wh3l_ossf acceptance uncertainties
+-----------------------------------------
+ nominal acceptance * eff      0.00%
+ QCD         mu=0.5 / mu=2.0   1.27% / 0.95%
+ alpha_s     265000 / 266000   0.04% / 0.17%
+ PDF                           1.10%
+ PDF+alpha_s                   1.10%
+
+
+ ggZH_HToWW_M125 wh3l_ossf acceptance uncertainties
+-----------------------------------------
+ nominal acceptance * eff      0.02%
+ QCD         mu=0.5 / mu=2.0   0.48% / 0.41%
+ alpha_s     265000 / 266000   0.95% / 1.09%
+ PDF                           0.31%
+ PDF+alpha_s                   1.07%
+
+
+ HWminusJ_HToTauTau_M125 wh3l_sssf acceptance uncertainties
+-----------------------------------------
+ nominal acceptance * eff      0.04%
+ QCD         mu=0.5 / mu=2.0   4.22% / 1.76%
+ alpha_s     265000 / 266000   0.26% / 0.10%
+ PDF                           0.79%
+ PDF+alpha_s                   0.81%
+
+
+ HWminusJ_HToWW_M125 wh3l_sssf acceptance uncertainties
+-----------------------------------------
+ nominal acceptance * eff      0.03%
+ QCD         mu=0.5 / mu=2.0   2.33% / 0.52%
+ alpha_s     265000 / 266000   0.28% / 0.23%
+ PDF                           0.81%
+ PDF+alpha_s                   0.85%
+
+
+ HWplusJ_HToTauTau_M125 wh3l_sssf acceptance uncertainties
+-----------------------------------------
+ nominal acceptance * eff      0.04%
+ QCD         mu=0.5 / mu=2.0   3.38% / 0.34%
+ alpha_s     265000 / 266000   0.07% / 0.04%
+ PDF                           0.74%
+ PDF+alpha_s                   0.74%
+
+
+ HWplusJ_HToWW_M125 wh3l_sssf acceptance uncertainties
+-----------------------------------------
+ nominal acceptance * eff      0.03%
+ QCD         mu=0.5 / mu=2.0   0.03% / 2.36%
+ alpha_s     265000 / 266000   0.22% / 0.15%
+ PDF                           0.56%
+ PDF+alpha_s                   0.59%
+
+
+ HZJ_HToWW_M125 wh3l_sssf acceptance uncertainties
+-----------------------------------------
+ nominal acceptance * eff      0.00%
+ QCD         mu=0.5 / mu=2.0   7.44% / 1.87%
+ alpha_s     265000 / 266000   0.06% / 0.11%
+ PDF                           1.43%
+ PDF+alpha_s                   1.43%
+
+
+ WZZ wh3l_sssf acceptance uncertainties
+-----------------------------------------
+ nominal acceptance * eff      0.00%
+ QCD         mu=0.5 / mu=2.0   5.59% / 4.27%
+ alpha_s     265000 / 266000   2.66% / 1.67%
+ PDF                           2.23%
+ PDF+alpha_s                   3.15%
+
+
+ ggZH_HToWW_M125 wh3l_sssf acceptance uncertainties
+-----------------------------------------
+ nominal acceptance * eff      0.01%
+ QCD         mu=0.5 / mu=2.0   0.01% / 0.01%
+ alpha_s     265000 / 266000   1.99% / 1.99%
+ PDF                           0.45%
+ PDF+alpha_s                   2.04%
+
