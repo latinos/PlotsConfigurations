@@ -9,7 +9,7 @@ outputDir = 'rootFile'
 variablesFile = 'variables_testSF.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
+cutsFile = 'cuts_testSF.py' 
 
 # file with list of samples
 samplesFile = 'samples_testSF.py' 
