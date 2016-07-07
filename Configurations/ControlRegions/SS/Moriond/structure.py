@@ -36,13 +36,8 @@ structure['top'] = {
                   'isData'   : 0 
                   }
 
+
 structure['WW']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0    
-                  }
-
-
-structure['WWewk']  = {
                   'isSignal' : 0,
                   'isData'   : 0    
                   }
@@ -58,21 +53,6 @@ structure['ggWW_Int']  = {
                   }
 
 structure['Wg']  = { 
-                  'isSignal' : 0,
-                  'isData'   : 0 
-                  }
-
-structure['Vg']  = { 
-                  'isSignal' : 0,
-                  'isData'   : 0 
-                  }
-
-structure['VgS'] = { 
-                  'isSignal' : 0,
-                  'isData'   : 0 
-                  }
-
-structure['Zg']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
                   }

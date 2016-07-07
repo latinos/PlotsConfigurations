@@ -39,6 +39,13 @@ groupPlot['WW']  = {
                   'samples'  : ['WW', 'ggWW']
               }
 
+groupPlot['WWewk']  = {  
+                  'nameHR' : 'WW ewk',
+                  'isSignal' : 0,
+                  'color': 850, # kAzure -10
+                  'samples'  : ['WWewk']
+              }
+
 groupPlot['VVV']  = {  
                   'nameHR' : 'VVV',
                   'isSignal' : 0,
@@ -180,6 +187,15 @@ plot['top'] = {
 
 plot['WW']  = {
                   'color': 851, # kAzure -9 
+                  'isSignal' : 0,
+                  'isData'   : 0,    
+                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+                  }
+
+
+
+plot['WWewk']  = {
+                  'color': 850, # kAzure -10 
                   'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven

@@ -17,13 +17,6 @@ groupPlot['DY']  = {
 
 
 
-groupPlot['Fake']  = {  
-                  'nameHR' : 'Fake',
-                  'isSignal' : 0,
-                  'color': 921,    # kGray + 1
-                  'samples'  : ['Fake']
-              }
-
 
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bart',
@@ -55,12 +48,21 @@ groupPlot['VZ']  = {
               }
 
 
-groupPlot['Higgs']  = {  
-                  'nameHR' : 'Higgs',
-                  'isSignal' : 1,
-                  'color': 632, # kRed 
-                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww']
+groupPlot['Fake']  = {  
+                  'nameHR' : 'Fake',
+                  'isSignal' : 0,
+                  'color': 921,    # kGray + 1
+                  'samples'  : ['Fake']
               }
+
+
+#groupPlot['Higgs']  = {  
+                  #'nameHR' : 'Higgs',
+                  #'isSignal' : 1,
+                  #'color': 632, # kRed 
+                  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww']
+              #}
+
 
 
 
@@ -74,21 +76,7 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 1.0,
-                  'cuts'  : {
-                       'hww2l2v_13TeV_of0j'      : 0.95 ,
-                       'hww2l2v_13TeV_top_of0j'  : 0.95 , 
-                       'hww2l2v_13TeV_dytt_of0j' : 0.95 ,
-                       'hww2l2v_13TeV_em_0j'     : 0.95 , 
-                       'hww2l2v_13TeV_me_0j'     : 0.95 , 
-                       #
-                       'hww2l2v_13TeV_of1j'      : 1.08 ,
-                       'hww2l2v_13TeV_top_of1j'  : 1.08 , 
-                       'hww2l2v_13TeV_dytt_of1j' : 1.08 ,
-                       'hww2l2v_13TeV_em_1j'     : 1.08 , 
-                       'hww2l2v_13TeV_me_1j'     : 1.08 , 
-                        },
-
+                  'scale'    : 1.0
               }
 
 
@@ -142,20 +130,7 @@ plot['top'] = {
                   'color': 400,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 1.0,
-                  'cuts'  : {
-                       'hww2l2v_13TeV_of0j'      : 0.94 ,
-                       'hww2l2v_13TeV_top_of0j'  : 0.94 , 
-                       'hww2l2v_13TeV_dytt_of0j' : 0.94 ,
-                       'hww2l2v_13TeV_em_0j'     : 0.94 , 
-                       'hww2l2v_13TeV_me_0j'     : 0.94 , 
-                       #
-                       'hww2l2v_13TeV_of1j'      : 0.86 ,
-                       'hww2l2v_13TeV_top_of1j'  : 0.86 , 
-                       'hww2l2v_13TeV_dytt_of1j' : 0.86 ,
-                       'hww2l2v_13TeV_em_1j'     : 0.86 , 
-                       'hww2l2v_13TeV_me_1j'     : 0.86 , 
-                        },
+                  'scale'    : 1.0
                   }
 
 
@@ -184,21 +159,7 @@ plot['Wg']  = {
                   'color': 859, # kAzure -1  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0
-                  }
-
-plot['Vg']  = { 
-                  'color': 859, # kAzure -1  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
-
-plot['VgS'] = { 
-                  'color'    : 617,   # kViolet + 1  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
+                  'scale'    : 0.833     # 1/1.2
                   }
 
 plot['VZ']  = { 
@@ -308,7 +269,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  #'isBlind'  : 1
               }
 
 
@@ -317,9 +278,7 @@ plot['DATA']  = {
 # additional options
 
 # legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
-#legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
-#legend['lumi'] = 'L = 0.8/fb' # 2.318 fb-1
-legend['lumi'] = 'L = 2.6/fb'
+legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 

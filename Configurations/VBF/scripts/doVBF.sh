@@ -47,21 +47,21 @@ combineCards.py   of2jvbf13=VBF/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mll/data
 
 # results
 
-combine -M MaxLikelihoodFit    --rMin=-2 --rMax=4   -t -1 --expectSignal 1   Data2015.vbf.pruned.txt             >   result.MaxLikelihoodFit.Data2015.vbf.pruned.txt
+combine -M MaxLikelihoodFit    --rMin=-4 --rMax=6   -t -1 --expectSignal 1   Data2015.vbf.pruned.txt             >   result.MaxLikelihoodFit.Data2015.vbf.pruned.txt
 
 combine -M ProfileLikelihood --significance         -t -1 --expectSignal 1   Data2015.vbf.pruned.txt             >   result.Significance.Data2015.vbf.pruned.txt
 
 
-combine -M MultiDimFit Data2015.vbf.pruned.txt -m 125 -t -1 --expectSignal 1 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanHVBF"     >   result.LikelihoodScan.Data2015.vbf.pruned.txt
+combine -M MultiDimFit Data2015.vbf.pruned.txt -m 125 -t -1 --expectSignal 1 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-4,6 -n "LHScanHVBF"     >   result.LikelihoodScan.Data2015.vbf.pruned.txt
 
 
 # data
 
-combine -M MaxLikelihoodFit    --rMin=-2 --rMax=4      Data2015.vbf.pruned.txt             >   result.data.MaxLikelihoodFit.Data2015.vbf.pruned.txt
+combine -M MaxLikelihoodFit    --rMin=-4 --rMax=6      Data2015.vbf.pruned.txt             >   result.data.MaxLikelihoodFit.Data2015.vbf.pruned.txt
 
 combine -M ProfileLikelihood --significance            Data2015.vbf.pruned.txt             >   result.data.Significance.Data2015.vbf.pruned.txt
 
-combine -M MultiDimFit Data2015.vbf.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanHdataVBF"     >   result.data.LikelihoodScan.Data2015.vbf.pruned.txt
+combine -M MultiDimFit Data2015.vbf.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-4,6 -n "LHScanHdataVBF"     >   result.data.LikelihoodScan.Data2015.vbf.pruned.txt
 
 
 

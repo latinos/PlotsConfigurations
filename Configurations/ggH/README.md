@@ -41,6 +41,9 @@ Auto tests:
     cd ..
     sh ggH/scripts/doGGH_blind.sh
     cd -
+
+    cat ../result.Significance.ICHEP2016.v1.txt.pruned.txt
+    
     
     cd ..
     sh ggH/scripts/doGGH.sh

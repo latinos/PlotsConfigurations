@@ -38,6 +38,7 @@ Auto tests:
     cd -
 
     cat ../result.MaxLikelihoodFit.Data2015.vh2j.pruned.txt
+    cat ../result.Significance.Data2015.vh2j.pruned.txt
     
     
     
