@@ -1,6 +1,6 @@
 void drawNLL() {
  
-TFile *f = new TFile("/afs/cern.ch/work/a/arun/Latinos/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/WH3l/higgsCombineLHScan.MultiDimFit.mH125.root","read");
+TFile *f = new TFile("/afs/cern.ch/work/a/arun/Latinos/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/WH3l/forLimit/higgsCombineLHScan.MultiDimFit.mH125.root","read");
 TTree *limit = (TTree*)f->Get("limit");
 
   TCanvas* cc = new TCanvas("cc","", 800, 600);

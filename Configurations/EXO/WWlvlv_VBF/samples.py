@@ -44,37 +44,7 @@ samples['qqH_hww_750_NWA'] = { 'name': [
                                    ],
                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',
                          }
-'''
-samples['DY']  = {    'name': [
-                            'latino_DYJetsToLL_M-50_0000__part0.root',
-                            'latino_DYJetsToLL_M-50_0000__part1.root',
-                            'latino_DYJetsToLL_M-50_0000__part2.root',
-                            'latino_DYJetsToLL_M-50_0000__part3.root',
-                            'latino_DYJetsToLL_M-50_0000__part4.root',
-                            'latino_DYJetsToLL_M-50_0001__part0.root',
-                            'latino_DYJetsToLL_M-50_0001__part1.root',
-                            'latino_DYJetsToLL_M-50_0001__part2.root',
-                            'latino_DYJetsToLL_M-50_0001__part3.root',
-                            'latino_DYJetsToLL_M-50_0001__part4.root',
-                            'latino_DYJetsToLL_M-50_0002__part0.root'
-                            #
-                            ],    
-                      'weight' : '(njet<2)*metFilter*(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))*puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
-                      #'isData': ['0', '0'],      
-                      'weights': [  '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  ] ,           
-                  }
-'''
+
 samples['DY'] = { 'name' : [
                             'latino_DYJetsToLL_M-50-LO__part0.root',
                             'latino_DYJetsToLL_M-50-LO__part1.root',
@@ -84,7 +54,7 @@ samples['DY'] = { 'name' : [
                             'latino_DYJetsToLL_M-50_HT-400to600_MLM.root',
                             'latino_DYJetsToLL_M-50_HT-600toInf_MLM.root',
                             ],
-                   'weight' : 'baseW*metFilter*puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',              #   weight/cut 
+                   'weight' : 'baseW*metFilter*puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*((8.61313e-01+ptll*4.46807e-03-1.52324e-05*ptll*ptll)*(1.08683 * (0.95 - 0.0657370*TMath::Erf((ptll-11.)/5.51582)))*(ptll<140)+1.141996*(ptll>=140))',              #   weight/cut 
                    'weights': [  'std_vector_LHEparton_pt[0]*(std_vector_LHEparton_pt[0]>0)+std_vector_LHEparton_pt[1]*(std_vector_LHEparton_pt[1]>0)+std_vector_LHEparton_pt[2]*(std_vector_LHEparton_pt[2]>0) < 100'
                                , 'std_vector_LHEparton_pt[0]*(std_vector_LHEparton_pt[0]>0)+std_vector_LHEparton_pt[1]*(std_vector_LHEparton_pt[1]>0)+std_vector_LHEparton_pt[2]*(std_vector_LHEparton_pt[2]>0) < 100'
                                #

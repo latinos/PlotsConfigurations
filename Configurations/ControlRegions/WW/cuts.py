@@ -30,6 +30,11 @@ cuts['ww2l2v_13TeV_ww_of1j']  = '(std_vector_lepton_flavour[0] * std_vector_lept
                 '
 
 
+cuts['ww2l2v_13TeV_ww_of2j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
+                && njet == 2 \
+                '
+
+
 #supercut = 'mll>80  \
             #&& std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>20 \
             #&& std_vector_lepton_pt[2]<10 \

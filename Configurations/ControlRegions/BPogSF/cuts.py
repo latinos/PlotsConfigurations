@@ -1,6 +1,6 @@
 # cuts
 
-#cuts = {}
+cuts = {}
 
 import os.path
 
@@ -35,18 +35,30 @@ for ipt in range(len(ptranges)-1):
                 && abs(std_vector_jet_eta[1]) > '+etamin+ \
               ' && abs(std_vector_jet_eta[1]) < '+etamax
     
+    # two jets, ont b-tagged, the second one is under study for SF for SF heavy
     cuts['Topem'+binSuffix] = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)   \
                               && mll>60 && std_vector_jet_cmvav2[0] > -0.715 \
                               && metPfType1 > 20 && ptll > 30 \
                               && std_vector_jet_pt[0] > 30 && '+jetcut
-    
-    cuts['Z'+binSuffix]     = 'abs(std_vector_lepton_flavour[0])== abs(std_vector_lepton_flavour[1]) &&\
-                               mll > 80 && mll < 120 && \
-                              '+jetcut.replace("[1]", "[0]")
-    
+
     cuts['Topem'+binSuffix+"_Heavy"] = cuts['Topem'+binSuffix] + " && (std_vector_jet_HadronFlavour[1]==4 || std_vector_jet_HadronFlavour[1]==5)"
     cuts['Topem'+binSuffix+"_Light"] = cuts['Topem'+binSuffix] + " && (std_vector_jet_HadronFlavour[1]!=4 && std_vector_jet_HadronFlavour[1]!=5)"
 
-    cuts['Z'+binSuffix+"_Heavy"] = cuts['Z'+binSuffix] + " && (std_vector_jet_HadronFlavour[1]==4 || std_vector_jet_HadronFlavour[1]==5)"
-    cuts['Z'+binSuffix+"_Light"] = cuts['Z'+binSuffix] + " && (std_vector_jet_HadronFlavour[1]!=4 && std_vector_jet_HadronFlavour[1]!=5)"
+    # one jets no b-tag. the first jet is under study for SF light
+    cuts['Z'+binSuffix]     = 'abs(std_vector_lepton_flavour[0])== abs(std_vector_lepton_flavour[1]) &&\
+                               mll > 80 && mll < 120 && \
+                              '+jetcut.replace("[1]", "[0]")
+    cuts['Z'+binSuffix+"_Heavy"] = cuts['Z'+binSuffix] + " && (std_vector_jet_HadronFlavour[0]==4 || std_vector_jet_HadronFlavour[0]==5)"
+    cuts['Z'+binSuffix+"_Light"] = cuts['Z'+binSuffix] + " && (std_vector_jet_HadronFlavour[0]!=4 && std_vector_jet_HadronFlavour[0]!=5)"
 
+    '''
+    # two jets, two b-tags the third one is under study for SF light
+    cuts['Topem3Jets2Btags'+binSuffix] = '((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13) || \
+                                           (abs(std_vector_lepton_flavour[0])== abs(std_vector_lepton_flavour[1]) && (mll < 70 || mll > 110)))  \
+                                     && mll>60 && std_vector_jet_cmvav2[0] > 0.875 && std_vector_jet_cmvav2[1] > 0.875\
+                                     && metPfType1 > 20 && ptll > 30 \
+                                     && std_vector_jet_pt[0] > 30 && std_vector_jet_pt[1] > 30 && '+jetcut.replace("[1]", "[2]")
+    
+    cuts['Topem3Jets2Btags'+binSuffix+"_Heavy"] = cuts['Topem3Jets2Btags'+binSuffix] + " && (std_vector_jet_HadronFlavour[2]==4 || std_vector_jet_HadronFlavour[2]==5)"
+    cuts['Topem3Jets2Btags'+binSuffix+"_Light"] = cuts['Topem3Jets2Btags'+binSuffix] + " && (std_vector_jet_HadronFlavour[2]!=4 && std_vector_jet_HadronFlavour[2]!=5)"
+    '''

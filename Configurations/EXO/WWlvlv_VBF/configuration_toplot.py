@@ -1,10 +1,10 @@
 # example of configuration file
 
-tag = 'HWWhighMass_plots'
+tag = 'HWWhighMass_CR'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = 'rootFile_CR'
 
 
 # file with list of variables
@@ -14,10 +14,10 @@ variablesFile = 'variables_CR.py'
 cutsFile = 'cuts_CR.py' 
 
 # file with list of samples
-samplesFile = 'samples_toplot.py' 
+samplesFile = 'samples.py' 
 
 # file with list of samples
-plotFile = 'plot_toplot.py' 
+plotFile = 'plot.py' 
 
 
 
@@ -27,11 +27,11 @@ lumi = 2.318
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotHWWhighMass_plots'
+outputDirPlots = 'plotHWWhighMass_CR'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards_plots'
+outputDirDatacard = 'datacards_CR'
 
 
 # structure file for datacard
@@ -39,5 +39,5 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances_toplot.py'
+nuisancesFile = 'nuisances.py'
 

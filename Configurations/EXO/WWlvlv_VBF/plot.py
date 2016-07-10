@@ -4,6 +4,75 @@
 
 # keys here must match keys in samples.py    
 #                    
+
+groupPlot['DY']  = {  
+                  'nameHR' : "DY",
+                  'isSignal' : 0,
+                  'color': 418,    # kGreen+2
+                  'samples'  : ['DY']
+              }
+
+
+
+groupPlot['Fake']  = {  
+                  'nameHR' : 'Fake',
+                  'isSignal' : 0,
+                  'color': 921,    # kGray + 1
+                  'samples'  : ['Fake']
+              }
+
+
+groupPlot['top']  = {  
+                  'nameHR' : 'tW and t#bart',
+                  'isSignal' : 0,
+                  'color': 400,   # kYellow
+                  'samples'  : ['top']
+              }
+
+groupPlot['WW']  = {  
+                  'nameHR' : 'WW',
+                  'isSignal' : 0,
+                  'color': 851, # kAzure -9 
+                  'samples'  : ['WW', 'ggWW']
+              }
+
+groupPlot['VVV']  = {  
+                  'nameHR' : 'VVV',
+                  'isSignal' : 0,
+                  'color': 857, # kAzure -3  
+                  'samples'  : ['VVV']
+              }
+
+
+groupPlot['VZ']  = {  
+                  'nameHR' : "VZ/#gamma*/#gamma",
+                  'isSignal' : 0,
+                  'color'    : 617,   # kViolet + 1  
+                  'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ']
+              }
+
+
+#groupPlot['Higgs']  = {  
+#                  'nameHR' : 'Higgs',
+#                  'isSignal' : 0,
+#                  'color': 632, # kRed 
+#                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww']
+#              }
+
+#groupPlot['300']  = {
+#                  'nameHR' : 'mH = 300 GeV X 10',
+#                  'isSignal' : 2,
+#                  'color': 633, # kRed 
+#                  'samples'  : ['ggH_hww_300_c10brn00','qqH_hww_300_c10brn00']
+#               }
+
+#groupPlot['800']  = {
+#                  'nameHR' : 'mH = 800 GeV X 10',
+#                  'isSignal' : 2,
+#                  'color': 635, # kRed 
+#                  'samples'  : ['ggH_hww_800_c10brn00','qqH_hww_800_c10brn00']
+#               }
+
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
@@ -237,55 +306,51 @@ plot['ggH_hww'] = {
                   }
 
 
-plot['ggH_hww_750_NWA'] = {
-                  'nameHR' : 'ggH 750 NWA',
-                  'color': 632, # kRed 
-                  'isSignal' : 2,
-                  'isData'   : 0,
-                  'scale'    : 1    #
-                  }
-
-plot['qqH_hww_750_NWA'] = {
-                  'nameHR' : 'qqH 750 NWA (x100)',
-                  'color': 654,
-                  'isSignal' : 2,
-                  'isData'   : 0,
-                  'scale'    : 100    #
-                  }
-
-import os.path
-
-if os.path.exists(massesAndModelsFile) :
-  handle = open(massesAndModelsFile,'r')
-  exec(handle)
-  handle.close()
-else:
-  print "!!! ERROR file ", massesAndModelsFile, " does not exist."
-
-for m in masses:
-  for model in models:
-    if m=="200":
-      col=632
-    elif m=="300":
-      col=600
-    elif m=="400":
-      col=418
-    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
-    plot['ggH_hww_'+m+'_'+model_name] = {
-                  'nameHR' : 'ggH '+m+' '+model,
-                  #'color': 600+int(int(m)/100+0.5), # kRed 
-                  'color':   col,
-                  'isSignal' : 2,
-                  'isData'   : 0,
-                  'scale'    : 1    #
-                  }
-    plot['qqH_hww_'+m+'_'+model_name] = {
-                  'nameHR' : 'qqH '+m+' '+model+' (x100)',
-                  'color': 600+20+int(int(m)/100+0.5), # kRed 
-                  'isSignal' : 2,
-                  'isData'   : 0,
-                  'scale'    : 100    #
-                  }
+#plot['ggH_hww_750_NWA'] = {
+#                 'nameHR' : 'ggH 750 NWA',
+#                  'color': 632, # kRed 
+#                  'isSignal' : 2,
+#                  'isData'   : 0,
+#                  'scale'    : 0    #
+#                  }
+#
+#plot['qqH_hww_750_NWA'] = {
+#                  'nameHR' : 'qqH 750 NWA (x100)',
+#                  'color': 654,
+#                  'isSignal' : 2,
+#                  'isData'   : 0,
+#                  'scale'    : 0    #
+#                  }
+#
+#import os.path
+#
+#massesAndModelsFile = "massesAndModels.py"
+#
+#if os.path.exists(massesAndModelsFile) :
+#  handle = open(massesAndModelsFile,'r')
+#  exec(handle)
+#  handle.close()
+#else:
+#  print "!!! ERROR file ", massesAndModelsFile, " does not exist."
+#
+#for m in masses:
+#  for model in models:
+#    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+#    plot['ggH_hww_'+m+'_'+model_name] = {
+#                  'nameHR' : 'ggH '+m+' '+model,
+#                  'color': 600+int(int(m)/100+0.5), # kRed 
+#                  #'color':   col,
+#                  'isSignal' : 2,
+#                  'isData'   : 0,
+#                  'scale'    : 10    #
+#                  }
+#    plot['qqH_hww_'+m+'_'+model_name] = {
+#                  'nameHR' : 'qqH '+m+' '+model+' (x100)',
+#                  'color': 600+20+int(int(m)/100+0.5), # kRed 
+#                  'isSignal' : 2,
+#                  'isData'   : 0,
+#                  'scale'    : 10    #
+#                  }
 
 
 
@@ -296,7 +361,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  'isBlind'  : 0
               }
 
 

@@ -3,130 +3,62 @@ WH3l analysis
 
 Needs to be updated.
 
-Common tools for analysis:
-
-    plot distributions
-    limit and significance results
-
-
-
 Some useful aliases:
     
     alias eosusermount='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine.user/bin/eos.select -b fuse mount'
     alias eosuserumount='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine.user/bin/eos.select -b fuse umount'
 
-Steps to get datacards and plots:
-
-    
     cd /tmp/<your nice login>
     eosusermount eos
-    cd -
-    mkShapes.py      --pycfg=configuration.py  --inputDir=/tmp/<nice-login>/eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight/
-    
-    mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_ggH.root
-    
-    mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_ggH.root
 
-    
+Running the confiuguration.
+
+   	mkShapes.py --pycfg=configuration.py --inputDir=/tmp/arun/eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__vh3lSel__l3kin/
+
+        mkDatacards.py --pycfg=configuration.py --inputFile=rootFiles_WH_Zg/plots_WH3l.root
+
+   	mkPlot.py --pycfg=configuration.py --inputFile=rootFiles_WH_WZ_v1/plots_WH3l.root
+
+1. Before running it, have a careful look at configuration.py for all the names of files etc.
+2. Check that every process is defined in samples.py, plot.py and structure.py.
+3. cuts.py is for defining phase spaces
+4. Don't forget to blind the analysis if running for signal region ;)
+
+
 Run combine:
+Follow the recipe here to get the latest combine package:
+Right now the latest one to run is in CMSSW_7_4_7.
 
-    git clone https://github.com/cms-analysis/HiggsAnalysis-CombinedLimit.git HiggsAnalysis/CombinedLimit
-    cd HiggsAnalysis/CombinedLimit
-    #   ---->  git checkout 74x-root6  //---- don't do it anymore
+https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHiggsAnalysisCombinedLimit#For_end_users_that_don_t_need_to
 
-    cd ~/Framework/CMSSW_7_1_15/src/
-    cmsenv
-    cd -
-    
-    combine -M MaxLikelihoodFit -t -1 --expectSignal 1  -S 0  datacard.txt 
-    combine -M MaxLikelihoodFit -t -1 --expectSignal 1        datacard.txt 
-
+Twiki to get info for Impact Tool
+https://twiki.cern.ch/twiki/bin/viewauth/CMS/HiggsWG/SWGuideNonStandardCombineUses#Nuisance_parameter_impacts
+   
+1. To Run the limits:
+ 
     combine -M Asymptotic datacard.txt
     combine -M Asymptotic -t -1 datacard.txt
     
-    
-    combine -M MultiDimFit datacard.txt  --algo=grid --points 100  --setPhysicsModelParameterRanges r=0.01,10  -m 125   -t -1 --expectSignal=1 --saveToys
-    
+2. To Run for significance and p-value
+
     combine -M ProfileLikelihood --significance datacard.txt -t -1 --expectSignal=1
 
-    Significance: 1.63231
+3. To Run the Likelihood Scan for getting the plot for signal strength
+
+combine -M MultiDimFit datacard_WH3l_4July_divided.txt --algo=grid --point 100 --setPhysicsModelParameterRanges r=-10,10 -t -1 --expectSignal=1 -n "LHScan" -m 125
+
+
+
+
+For pruning of datacard:
+
+cd /afs/cern.ch/work/a/arun/Latinos/CMSSW_7_6_3/src/ModificationDatacards/examples
+./doPruneNuisanceVHWW3l.sh
+    
+
+
 
 Combine datacards:
-
-    combineCards.py   of0j13=ggHMoriond/datacards/hww2l2v_13TeV_of0j/mllVSmth/datacard.txt \
-                      of1j13=ggHMoriond/datacards/hww2l2v_13TeV_of1j/mllVSmth/datacard.txt \
-                      of0j13Top=ggHMoriondTop/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt \
-                      of1j13Top=ggHMoriondTop/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt \
-                      >   Moriond2016.txt
-
-                      
-    combineCards.py   of0j13=ggH/datacards/hww2l2v_13TeV_of0j/mllVSmth/datacard.txt \
-                      of1j13=ggH/datacards/hww2l2v_13TeV_of1j/mllVSmth/datacard.txt \
-                      of0j13Top=ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt \
-                      of1j13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt \
-                      >   Moriond2016.txt
-
-                      
-    combineCards.py   of0j13=ggH/datacards/hww2l2v_13TeV_of0j/mllVSmth/datacard.txt \
-                      of1j13=ggH/datacards/hww2l2v_13TeV_of1j/mllVSmth/datacard.txt \
-                      of0j13Top=ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt \
-                      of1j13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt \
-                      of0j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt \
-                      of1j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt \
-                      >   Moriond2016.txt
-
-
-                      
-    combineCards.py   of0j13=ggHMoriond/datacards/hww2l2v_13TeV_of0j/mllVSmth/datacard.txt \
-                      of1j13=ggHMoriond/datacards/hww2l2v_13TeV_of1j/mllVSmth/datacard.txt \
-                      of0j13Top=ggHMoriondTop/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt \
-                      of1j13Top=ggHMoriondTop/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt \
-                      of0j13DYtt=ggHMoriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt \
-                      of1j13DYtt=ggHMoriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt \
-                      >   Moriond2016.txt
-         
-         
-    Upgrade:
-    
-    combineCards.py   empm1j13=ggH/datacards/hww2l2v_13TeV_em_pm_1j/mllVSmth/datacard.txt \
-                      emmp1j13=ggH/datacards/hww2l2v_13TeV_em_mp_1j/mllVSmth/datacard.txt \
-                      mepm1j13=ggH/datacards/hww2l2v_13TeV_me_pm_1j/mllVSmth/datacard.txt \
-                      memp1j13=ggH/datacards/hww2l2v_13TeV_me_mp_1j/mllVSmth/datacard.txt \
-                      empm0j13=ggH/datacards/hww2l2v_13TeV_em_pm_0j/mllVSmth/datacard.txt \
-                      emmp0j13=ggH/datacards/hww2l2v_13TeV_em_mp_0j/mllVSmth/datacard.txt \
-                      mepm0j13=ggH/datacards/hww2l2v_13TeV_me_pm_0j/mllVSmth/datacard.txt \
-                      memp0j13=ggH/datacards/hww2l2v_13TeV_me_mp_0j/mllVSmth/datacard.txt \
-                      of0j13Top=ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt \
-                      of1j13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt \
-                      of0j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt \
-                      of1j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt \
-                      >   Moriond2016.txt
-     
-     
-    combineCards.py   em1j13=ggH/datacards/hww2l2v_13TeV_em_1j/mllVSmth/datacard.txt \
-                      me1j13=ggH/datacards/hww2l2v_13TeV_me_1j/mllVSmth/datacard.txt \
-                      em0j13=ggH/datacards/hww2l2v_13TeV_em_0j/mllVSmth/datacard.txt \
-                      me0j13=ggH/datacards/hww2l2v_13TeV_me_0j/mllVSmth/datacard.txt \
-                      of0j13Top=ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt \
-                      of1j13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt \
-                      of0j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt \
-                      of1j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt \
-                      >   Moriond2016.v1.txt
-
-    combineCards.py   of1j13=ggH/datacards/hww2l2v_13TeV_of1j/mllVSmth/datacard.txt \
-                      of0j13=ggH/datacards/hww2l2v_13TeV_of0j/mllVSmth/datacard.txt \
-                      of0j13Top=ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt \
-                      of1j13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt \
-                      of0j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt \
-                      of1j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt \
-                      >   Moriond2016.v0.txt
-
-
-Pruning:
-
-    cd /afs/cern.ch/user/a/amassiro/Limit/ModificationDatacards
-    sh examples/doPruneNuisanceHWW.sh 
-    cd -
 
 
 Auto tests:
