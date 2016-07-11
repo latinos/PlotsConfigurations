@@ -54,7 +54,12 @@ samples['top'] = {   'name': [
                            'latino_TTTo2L2Nu_ext1__part2.root',
                            'latino_TTTo2L2Nu_ext1__part3.root',
                            'latino_TTTo2L2Nu_ext1__part4.root',
-                          #'latino_TTTo2L2Nu.root', 
+                           'latino_TTTo2L2Nu_ext1__part5.root',
+                           'latino_TTTo2L2Nu_ext1__part6.root',
+                           'latino_TTTo2L2Nu_ext1__part7.root',
+                           'latino_TTTo2L2Nu_ext1__part8.root',
+                           'latino_TTTo2L2Nu_ext1__part9.root',
+                           #
                            'latino_ST_tW_antitop.root',
                            'latino_ST_tW_top.root'
                           ],          
