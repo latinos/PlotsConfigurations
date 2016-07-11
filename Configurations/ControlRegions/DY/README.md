@@ -33,6 +33,10 @@ Steps to get datacards and plots:
     
     mkShapes.py      --pycfg=configuration.py  --doThreads=True   --inputDir=eos/user/p/piedra/HWW2016/07Jun2016_spring16_mAODv2/MCl2loose__hadd__bSFL2pTEff__l2tight/  
     
+    mkShapes.py      --pycfg=configuration.py  --doThreads=True   --inputDir=eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight/
+      
+    
+    
     mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_DY.root
     
     mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_DY.root
