@@ -81,6 +81,15 @@ plot['DY']  = {
                   #'scale'    : 10.0*0.7*1.2*1.1,
                   #'scale'    : 11.0*0.87,
                   #'isSignal' : 2                    
+                  'cuts'  : {
+                       'DYee'      : 0.85 ,
+                       'DYee2lepEB'      : 0.85 ,
+                       'DYee2lepEE'      : 0.85 ,
+                       'DYee0j'      : 0.85 ,
+                       'DYee1j'      : 0.85 ,
+                       'DYee2j'      : 0.85 ,
+                       #
+                       }
               }
 
 
