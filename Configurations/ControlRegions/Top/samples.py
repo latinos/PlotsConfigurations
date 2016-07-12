@@ -21,8 +21,23 @@ samples['DY']  = {    'name': [
                             'latino_DYJetsToLL_M-50_0002__part0.root',
                             ],    
                       #'weight' : '(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
-                      'weight' : 'baseW*puW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
-                   }
+                      'weight' : 'puW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
+                      'weights' :  [
+                        '0.829752445221',
+                        #
+                        '0.318902641535',
+                        '0.318902641535',
+                        '0.318902641535',
+                        '0.318902641535',
+                        '0.318902641535',
+                        '0.318902641535',
+                        '0.318902641535',
+                        '0.318902641535',
+                        '0.318902641535',
+                        '0.318902641535',
+                        '0.318902641535',                        
+                        ]
+                      }
 
 
 # data driven
@@ -72,7 +87,25 @@ samples['top'] = {   'name': [
                            'latino_ST_tW_antitop.root',
                            'latino_ST_tW_top.root'
                           ],          
-                       'weight' : 'baseW*puW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',    #   weight/cut 
+                       'weight' : 'puW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',    #   weight/cut 
+
+                       'weights' :  [
+                          '0.0043711992912',
+                          '0.0043711992912',
+                          '0.0043711992912',
+                          '0.0043711992912',
+                          '0.0043711992912',
+                          '0.0043711992912',
+                          '0.0043711992912',
+                          '0.0043711992912',
+                          '0.0043711992912',
+                          '0.0043711992912',
+#
+                          'baseW',
+                          'baseW',
+#                   
+                       ]
+
                    }
 
 
