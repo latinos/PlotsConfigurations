@@ -71,6 +71,8 @@ nuisances['QCDscale_H_htt_wh3l']  = {
                'type'  : 'lnN',
               }
 
+
+
 # pdf uncertainty
 
 nuisances['pdf_gg_wh3l']  = {
@@ -163,6 +165,7 @@ nuisances['PS_wh3l']  = {
                    'ZH_hww'   : '1.037',
                    'H_htt'    : '1.037',
                    'ggZH_hww'   : '1.037',
+                   'ZH_htt'   : '1.037',
                 },
   #              'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS/',
   #              'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/',
@@ -219,20 +222,44 @@ nuisances['fake_syst_wh3l']  = {
 
 
 
-nuisances['btag_TightWP']  = {
-                'name'  : 'btag_TightWP',
+#nuisances['btag_TightWP']  = {
+#                'name'  : 'btag_TightWP',
+#                'kind'  : 'weight',
+#                'type'  : 'shape',
+#                'samples'  : {
+#                   'WH_hww'  : ['(bPogSF_CMVAM_Up)/(bPogSF_CMVAM)', '(bPogSF_CMVAM_Down)/(bPogSF_CMVAM)'],
+#                   'ZH_hww'  : ['(bPogSF_CMVAM_Up)/(bPogSF_CMVAM)', '(bPogSF_CMVAM_Down)/(bPogSF_CMVAM)'],
+#                   'ggZH_hww'  : ['(bPogSF_CMVAM_Up)/(bPogSF_CMVAM)', '(bPogSF_CMVAM_Down)/(bPogSF_CMVAM)'],
+#                   'H_htt'   : ['(bPogSF_CMVAM_Up)/(bPogSF_CMVAM)', '(bPogSF_CMVAM_Down)/(bPogSF_CMVAM)'],
+#                   'VVV'     : ['(bPogSF_CMVAM_Up)/(bPogSF_CMVAM)', '(bPogSF_CMVAM_Down)/(bPogSF_CMVAM)'],
+#                   'WZ'      : ['(bPogSF_CMVAM_Up)/(bPogSF_CMVAM)', '(bPogSF_CMVAM_Down)/(bPogSF_CMVAM)'],
+#                   'ZZ'      : ['(bPogSF_CMVAM_Up)/(bPogSF_CMVAM)', '(bPogSF_CMVAM_Down)/(bPogSF_CMVAM)'],
+#                   'WW'      : ['(bPogSF_CMVAM_Up)/(bPogSF_CMVAM)', '(bPogSF_CMVAM_Down)/(bPogSF_CMVAM)'],
+#                   'Vg'      : ['(bPogSF_CMVAM_Up)/(bPogSF_CMVAM)', '(bPogSF_CMVAM_Down)/(bPogSF_CMVAM)'],
+#                }
+#}
+
+
+nuisances['btag']  = {
+                'name'  : 'btag',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'WH_hww'  : ['(bPogSF_CMVAT_Up)/(bPogSF_CMVAT)', '(bPogSF_CMVAT_Down)/(bPogSF_CMVAT)'],
-                   'ZH_hww'  : ['(bPogSF_CMVAT_Up)/(bPogSF_CMVAT)', '(bPogSF_CMVAT_Down)/(bPogSF_CMVAT)'],
-                   'ggZH_hww'  : ['(bPogSF_CMVAT_Up)/(bPogSF_CMVAT)', '(bPogSF_CMVAT_Down)/(bPogSF_CMVAT)'],
-                   'H_htt'   : ['(bPogSF_CMVAT_Up)/(bPogSF_CMVAT)', '(bPogSF_CMVAT_Down)/(bPogSF_CMVAT)'],
-                   'VVV'     : ['(bPogSF_CMVAT_Up)/(bPogSF_CMVAT)', '(bPogSF_CMVAT_Down)/(bPogSF_CMVAT)'],
-                   'WZ'      : ['(bPogSF_CMVAT_Up)/(bPogSF_CMVAT)', '(bPogSF_CMVAT_Down)/(bPogSF_CMVAT)'],
-                   'ZZ'      : ['(bPogSF_CMVAT_Up)/(bPogSF_CMVAT)', '(bPogSF_CMVAT_Down)/(bPogSF_CMVAT)'],
-                   'WW'      : ['(bPogSF_CMVAT_Up)/(bPogSF_CMVAT)', '(bPogSF_CMVAT_Down)/(bPogSF_CMVAT)'],
-                   'Vg'      : ['(bPogSF_CMVAT_Up)/(bPogSF_CMVAT)', '(bPogSF_CMVAT_Down)/(bPogSF_CMVAT)'],
+                   'ggH_hww' : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   'qqH_hww' : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   'WH_hww'  : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   'ZH_hww'  : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   'H_htt'   : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   'H_hww'   : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   'WH_hww'  : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   'DY'      : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   'VVV'     : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   'VZ'      : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   'WW'      : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   'ggWW'    : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   'top'     : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   'Vg'      : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   'VgS'     : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
                 }
 }
 

@@ -4,7 +4,7 @@ tag = 'WH3l'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFiles_WH_Signal'
+outputDir = 'rootFiles_WH_Signal_LooseBTag_ZHtt'
 
 
 # file with list of variables
@@ -27,12 +27,12 @@ lumi = 2.318
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotWH_Sig'
+outputDirPlots = 'plotWH_Sig_LooseBTag_ZHtt'
 #outputDirPlots = 'plotWH_Top'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards_Signal'
+outputDirDatacard = 'datacards_Signal_LooseBTag_ZHtt'
 
 
 # structure file for datacard

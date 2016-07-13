@@ -19,7 +19,7 @@
  #                           'latino_DYJetsToLL_M-50_0002__part0.root'
                            
   #                          ],    
-  #                    'weight' : 'metFilter*(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))*puW*bPogSF_CMVAT*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
+  #                    'weight' : 'metFilter*(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))*puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
                       #'isData': ['0', '0'],      
    #                   'weights': [  '0.238112'
    ##                               , '0.238112'
@@ -49,7 +49,7 @@
 
 
 #samples['Wjets']  = {    'name': ['latino_WJetsToLNu.root'],     #   file name    
-                      #'weight' : 'puW*baseW*bPogSF_CMVAT*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
+                      #'weight' : 'puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
                       ##'isData': ['0'],                             
                   #}
 
@@ -92,12 +92,16 @@ samples['Fake']  = {    'name': [
 #                          'latino_ST_tW_antitop.root',
 #                          'latino_ST_tW_top.root'
 #                          ],          
-#                       'weight' : 'metFilter*puW*baseW*bPogSF_CMVAT*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',                
+#                       'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',                
  #                  }
 
 
-samples['Vg']  = {    'name': ['latino_Zg.root'],      
-                      'weight' : 'metFilter*puW*baseW*bPogSF_CMVAT*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*GEN_weight_SM/abs(GEN_weight_SM)',
+samples['Vg']  = {    'name': ['latino_Zg.root'
+#                               'latino_Wg_AMCNLOFXFX.root',
+#			       'latino_WgStarLNuEE.root',
+#                               'latino_WgStarLNuMuMu.root'      
+                              ],      
+                      'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*GEN_weight_SM/abs(GEN_weight_SM)',
  #                     'weights': ['1'] ,           
                       'isData': ['0'],                            
                   }
@@ -106,19 +110,19 @@ samples['Vg']  = {    'name': ['latino_Zg.root'],
 samples['WW']  = {    'name': [
                                   'latino_WWTo2L2Nu.root'
                                 ],      
-                      'weight' : 'metFilter*nllW*puW*baseW*bPogSF_CMVAT*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+                      'weight' : 'metFilter*nllW*puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
                       #'weights': ['abs(nllW)'] ,           
                   }
 
 
 #samples['ggWW']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root'],      
-#                      'weight' : 'metFilter*puW*baseW*bPogSF_CMVAT*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+#                      'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
 #                      'weights': ['1.000'] ,           
 #                      'isData': ['0'],                            
 #                  }
 
 #samples['Vg']  = {    'name': ['latino_Wg_AMCNLOFXFX.root'],      
-#                      'weight' : 'metFilter*puW*baseW*bPogSF_CMVAT*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*GEN_weight_SM/abs(GEN_weight_SM)\
+#                      'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*GEN_weight_SM/abs(GEN_weight_SM)\
  #                                 * !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
  #                                #*(!(Gen_ZGstar_MomStatus==44 && Gen_ZGstar_MomId==22))',
  #                     'weights': ['1'] ,           
@@ -128,7 +132,7 @@ samples['WW']  = {    'name': [
 
 
 #samples['VgS']  = {    'name': ['latino_WgStarLNuEE.root', 'latino_WgStarLNuMuMu.root'],      
-#                      'weight' : 'metFilter*2.0*puW*baseW*bPogSF_CMVAT*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]*GEN_weight_SM/abs(GEN_weight_SM)',
+#                      'weight' : 'metFilter*2.0*puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]*GEN_weight_SM/abs(GEN_weight_SM)',
 #                      'weights': ['1','1'] ,           
 #                  }
 
@@ -144,7 +148,7 @@ samples['WW']  = {    'name': [
 samples['ZZ']  = {    'name': [
                           'latino_ZZ.root'
                          ],
-                      'weight' : 'metFilter*puW*baseW*bPogSF_CMVAT*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',
+                      'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',
                       #'weights': ['1'] ,           
                       #'isData': ['0'],                            
                   }
@@ -152,7 +156,7 @@ samples['ZZ']  = {    'name': [
 samples['WZ']  = {    'name': [
                           'latino_WZTo3LNu.root'
                          ],
-                      'weight' : 'metFilter*puW*baseW*bPogSF_CMVAT*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',
+                      'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',
                       #'weights': ['1'] ,           
                       #'isData': ['0'],                            
                   }
@@ -165,31 +169,31 @@ samples['WZ']  = {    'name': [
                           #'latino_ZZTo2L2Q.root'
              #             'latino_ZZTo4L.root'
                        #  ], 
-   #                   'weight' : 'metFilter*puW*baseW*bPogSF_CMVAT*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+   #                   'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
                       #'weights': ['1'] ,           
                       #'isData': ['0'],                            
     #              }
 
 
-samples['VVV'] = {    'name': [
-                          'latino_WZZ.root', 
+#samples['VVV'] = {    'name': [
+#                          'latino_WZZ.root', 
                           #'latino_ZZZ.root'
-                          'latino_WWW.root',
-                          'latino_WWZ.root'
-                          ],      
-                      'weight' : 'metFilter*puW*baseW*bPogSF_CMVAT*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]*GEN_weight_SM/abs(GEN_weight_SM)',          
+#                          'latino_WWW.root',
+#                          'latino_WWZ.root'
+#                          ],      
+#                      'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]*GEN_weight_SM/abs(GEN_weight_SM)',          
                       #'isData': ['0'],                            
-                  }
+#                  }
 
 
 # Htautau
 samples['H_htt']  = {      'name': [#'latino_GluGluHToTauTau_M125.root',
 #                                    'latino_VBFHToTauTau_M125.root',
                                     'latino_HWminusJ_HToTauTau_M125.root',
-                                    'latino_HWplusJ_HToTauTau_M125.root'
-#                                    'latino_HZJ_HToTauTau_M125.root'
+                                    'latino_HWplusJ_HToTauTau_M125.root',
+                                    'latino_HZJ_HToTauTau_M125.root'
                                     ],      
-                           'weight' : 'metFilter*puW*baseW*bPogSF_CMVAT*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]',         
+                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]',         
                            'weights': ['1', '1', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)' ]            
                   }
 
@@ -202,31 +206,30 @@ samples['H_htt']  = {      'name': [#'latino_GluGluHToTauTau_M125.root',
                                #'latino_GluGluHToWWTo2L2Nu_M125.root'
                                #'latino_GluGluHToWWTo2L2Nu_alternative_M125.root' # --> 500k events
  #                              ],      
- #                          'weight' : 'metFilter*puW*baseW*bPogSF_CMVAT*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]',          
+ #                          'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]',          
  #                 }
 
 #samples['qqH_hww']  = {    'name': [
 #                               'latino_VBFHToWWTo2L2Nu_M125.root'
                                #'latino_VBFHToWWTo2L2Nu_alternative_M125.root'
  #                              ],      
- #                          'weight' : 'metFilter*puW*baseW*bPogSF_CMVAT*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]',          
+ #                          'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]',          
   #                }
 
 samples['ggZH_hww']  = {    'name': [
                                'latino_ggZH_HToWW_M125.root',
                                ],      
-                           'weight' : 'metFilter*puW*baseW*bPogSF_CMVAT*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]',          
+                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]',          
                   }
 
 
 samples['WH_hww']  = {    'name': ['latino_HWminusJ_HToWW_M125.root', 'latino_HWplusJ_HToWW_M125.root'],      
-                           'weight' : 'metFilter*puW*baseW*bPogSF_CMVAT*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]*GEN_weight_SM/abs(GEN_weight_SM)',          
+                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]*GEN_weight_SM/abs(GEN_weight_SM)',          
                   }
 
 samples['ZH_hww']  = {    'name': ['latino_HZJ_HToWW_M125.root'],      
-                           'weight' : 'metFilter*puW*baseW*bPogSF_CMVAT*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]*GEN_weight_SM/abs(GEN_weight_SM)',          
+                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]*GEN_weight_SM/abs(GEN_weight_SM)',          
                   }
-
 
 
 ###########################################
