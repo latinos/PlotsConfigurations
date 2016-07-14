@@ -45,3 +45,120 @@ plot:
 
     root -l ../higgsCombineLHScanHVBF.MultiDimFit.mH125.root  \
             ../ggH/scripts/drawNLL.C
+
+            
+            
+            
+            
+    eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/   
+    
+    eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/ 
+    eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/
+    eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel/
+    eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel/
+    eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/ 
+    eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/
+    eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/
+    eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/
+
+
+
+
+    
+    
+    gardener.py  genvariablesfiller  \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_WpWmJJ_EWK_QCD_noTop.root \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_WpWmJJ_EWK_QCD_noTop_genVar.root 
+        
+    gardener.py  genvariablesfiller  \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_WpWmJJ_QCD_noTop.root \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_WpWmJJ_QCD_noTop_genVar.root 
+    
+
+    
+    gardener.py  genvariablesfiller  \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/latino_WpWmJJ_EWK_QCD_noTop.root \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/latino_WpWmJJ_EWK_QCD_noTop_genVar.root 
+        
+    gardener.py  genvariablesfiller  \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/latino_WpWmJJ_QCD_noTop.root \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/latino_WpWmJJ_QCD_noTop_genVar.root 
+    
+
+    
+    gardener.py  genvariablesfiller  \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/latino_WpWmJJ_EWK_QCD_noTop.root \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/latino_WpWmJJ_EWK_QCD_noTop_genVar.root 
+        
+    gardener.py  genvariablesfiller  \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/latino_WpWmJJ_QCD_noTop.root \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/latino_WpWmJJ_QCD_noTop_genVar.root 
+    
+    
+    
+    gardener.py  genvariablesfiller  \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel/latino_WpWmJJ_EWK_QCD_noTop.root \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel/latino_WpWmJJ_EWK_QCD_noTop_genVar.root 
+        
+    gardener.py  genvariablesfiller  \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel/latino_WpWmJJ_QCD_noTop.root \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel/latino_WpWmJJ_QCD_noTop_genVar.root 
+    
+
+    
+    gardener.py  genvariablesfiller  \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel/latino_WpWmJJ_EWK_QCD_noTop.root \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel/latino_WpWmJJ_EWK_QCD_noTop_genVar.root 
+        
+    gardener.py  genvariablesfiller  \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel/latino_WpWmJJ_QCD_noTop.root \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel/latino_WpWmJJ_QCD_noTop_genVar.root 
+    
+
+    
+    gardener.py  genvariablesfiller  \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/latino_WpWmJJ_EWK_QCD_noTop.root \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/latino_WpWmJJ_EWK_QCD_noTop_genVar.root 
+        
+    gardener.py  genvariablesfiller  \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/latino_WpWmJJ_QCD_noTop.root \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/latino_WpWmJJ_QCD_noTop_genVar.root 
+    
+
+    
+    gardener.py  genvariablesfiller  \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/latino_WpWmJJ_EWK_QCD_noTop.root \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/latino_WpWmJJ_EWK_QCD_noTop_genVar.root 
+        
+    gardener.py  genvariablesfiller  \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/latino_WpWmJJ_QCD_noTop.root \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/latino_WpWmJJ_QCD_noTop_genVar.root 
+    
+    
+    
+    
+
+    
+    gardener.py  genvariablesfiller  \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/latino_WpWmJJ_EWK_QCD_noTop.root \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/latino_WpWmJJ_EWK_QCD_noTop_genVar.root 
+        
+    gardener.py  genvariablesfiller  \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/latino_WpWmJJ_QCD_noTop.root \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/latino_WpWmJJ_QCD_noTop_genVar.root 
+    
+
+    
+    gardener.py  genvariablesfiller  \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/latino_WpWmJJ_EWK_QCD_noTop.root \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/latino_WpWmJJ_EWK_QCD_noTop_genVar.root 
+        
+    gardener.py  genvariablesfiller  \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/latino_WpWmJJ_QCD_noTop.root \
+        eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/latino_WpWmJJ_QCD_noTop_genVar.root 
+    
+    
+    
+    
+    
+    
