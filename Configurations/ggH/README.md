@@ -61,6 +61,11 @@ Auto tests:
     cat ../result.Significance.superCombination.v1.txt.pruned.txt    
 
     
+    cd ..
+    sh ggH/scripts/doGGH_doMultisignal.sh
+    cd -
+    
+    
 Make tables:
 
     cd /afs/cern.ch/user/a/amassiro/Limit/PlayWithDatacards

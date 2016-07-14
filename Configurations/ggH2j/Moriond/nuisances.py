@@ -353,20 +353,6 @@ nuisances['WgStarScale']  = {
                 }
  
 
-nuisances['DYttnorm2j']  = {
-               'name'  : 'DYttnorm2j', 
-               'samples'  : {
-                   'DY' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [
-                 'hww2l2v_13TeV_of2j',
-                 'hww2l2v_13TeV_top_of2j',
-                 'hww2l2v_13TeV_dytt_of2j',
-                ]
-              }
-
-
 
 # experimental uncertainties
 
