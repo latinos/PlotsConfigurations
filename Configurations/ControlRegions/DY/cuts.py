@@ -35,3 +35,37 @@ cuts['DYee2lepEE']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour
 
 
 
+cuts['DYee0j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
+                 && std_vector_lepton_pt[0]>30 && std_vector_lepton_pt[1]>20 \
+                 && mll>60 \
+                 && njet == 0 \
+               '
+
+cuts['DYmm0j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)   \
+                 && mll>60 \
+                 && njet == 0 \
+               '
+
+
+cuts['DYee1j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
+                 && std_vector_lepton_pt[0]>30 && std_vector_lepton_pt[1]>20 \
+                 && mll>60 \
+                 && njet == 1 \
+               '
+
+cuts['DYmm1j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)   \
+                 && mll>60 \
+                 && njet == 1 \
+               '
+
+
+cuts['DYee2j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
+                 && std_vector_lepton_pt[0]>30 && std_vector_lepton_pt[1]>20 \
+                 && mll>60 \
+                 && njet >= 2 \
+               '
+
+cuts['DYmm2j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)   \
+                 && mll>60 \
+                 && njet >= 2 \
+               '

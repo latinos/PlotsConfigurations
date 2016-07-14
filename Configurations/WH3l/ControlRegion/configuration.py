@@ -4,11 +4,11 @@ tag = 'WH3l'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFiles_WH_WZ_v1'
-#outputDir = 'rootFiles_WH_Zg'
+outputDir = 'rootFiles_WH_Zg'
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = 'variables_checks.py'
+
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
@@ -27,14 +27,11 @@ lumi = 2.318
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotWH_WZ_v1'
-#outputDirPlots = 'plotWH_Top'
-#outputDirPlots = 'plotWH_Zg'
+outputDirPlots = 'plotWH_Zg_top'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards_WZ_v1'
-#outputDirDatacard = 'datacards_WZ_Zg'
+outputDirDatacard = 'datacards_Zg_top'
 
 
 # structure file for datacard
@@ -43,5 +40,3 @@ structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
 nuisancesFile = 'nuisances.py'
-
-

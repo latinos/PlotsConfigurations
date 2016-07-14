@@ -15,18 +15,72 @@ supercut = 'mllmin3l>12  \
 #                       && mllmin3l < 100\
 #                       '
 
-#cuts['wh3l_top_13TeV']  = '(njet_3l > 0 || nbjet_3l > 0)\
-#                       && metPfType1 > 40\
-#                       && zveto_3l > 25\
-#                       && abs(chlll) == 1\
- #                     '
+cuts['wh3l_top_13TeV']  = '(njet_3l > 0 || nbjet_3l > 0)\
+                       && metPfType1 > 40\
+                       && zveto_3l > 25\
+                       && abs(chlll) == 1\
+                      '
 
-cuts['wh3l_wz_13TeV'] = 'njet_3l == 0\
-                        && nbjet_3l == 0\
-                        && metPfType1 > 40\
-                        && zveto_3l < 25\
-                        && abs(chlll) == 1\
-                       '
+#cuts['wh3l_wz_13TeV'] = 'njet_3l == 0\
+#                        && nbjet_3l == 0\
+#                        && metPfType1 > 40\
+#                        && zveto_3l < 25\
+#                        && abs(chlll) == 1\
+#                       '
+
+#cuts['wh3l_wz_13TeV'] = 'njet_3l == 0\
+#                        && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
+#                        && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
+#                        && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
+#                        && ( std_vector_jet_pt[3] < 20 || std_vector_jet_cmvav2[3] < -0.715 ) \
+#                        && ( std_vector_jet_pt[4] < 20 || std_vector_jet_cmvav2[4] < -0.715 ) \
+#                        && ( std_vector_jet_pt[5] < 20 || std_vector_jet_cmvav2[5] < -0.715 ) \
+#                        && ( std_vector_jet_pt[6] < 20 || std_vector_jet_cmvav2[6] < -0.715 ) \
+#                        && ( std_vector_jet_pt[7] < 20 || std_vector_jet_cmvav2[7] < -0.715 ) \
+#                        && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.715 ) \
+#                        && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.715 ) \
+#                        && metPfType1 > 40\
+#                        && zveto_3l < 25\
+#                        && abs(chlll) == 1\
+#                       '
+
+
+#changed WZ
+
+#cuts['wh3l_wz_13TeV'] = 'njet_3l == 0\
+#                        && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
+#                        && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
+#                        && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
+#                        && ( std_vector_jet_pt[3] < 20 || std_vector_jet_cmvav2[3] < -0.715 ) \
+#                        && ( std_vector_jet_pt[4] < 20 || std_vector_jet_cmvav2[4] < -0.715 ) \
+#                        && ( std_vector_jet_pt[5] < 20 || std_vector_jet_cmvav2[5] < -0.715 ) \
+#                        && ( std_vector_jet_pt[6] < 20 || std_vector_jet_cmvav2[6] < -0.715 ) \
+#                        && ( std_vector_jet_pt[7] < 20 || std_vector_jet_cmvav2[7] < -0.715 ) \
+#                        && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.715 ) \
+#                        && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.715 ) \
+#                        && metPfType1 > 30\
+#                        && zveto_3l < 20\
+#                        && abs(chlll) == 1\
+#                        && mlll > 100\
+#                       '
+
+#cuts['wh3l_wz_13TeV'] = 'njet_3l == 0\
+#                        && nbjet_3l == 0\
+#                        && metPfType1 > 30\
+#                        && zveto_3l < 25\
+#                        && abs(chlll) == 1\
+#                        && mlll > 100\
+#                       '
+
+#from Jonatan
+
+#cuts['wz_13TeV'] =      'nbjet_3l == 0\
+#                        && metPfType1 > 30\
+#                        && mlll > 100\
+#                        && mll < 106\
+#                        && mll > 76\
+#                       '
+
 #cuts['wh3l_zg_13TeV'] = 'njet_3l == 0\
 #                        && nbjet_3l == 0\
 #                        && metPfType1 < 40\
@@ -34,6 +88,24 @@ cuts['wh3l_wz_13TeV'] = 'njet_3l == 0\
 #                        && mlll < 100\
 #                        && abs(chlll) == 1\
 #                       '
+
+cuts['wh3l_zg_13TeV'] = 'njet_3l == 0\
+                        && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
+                        && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
+                        && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
+                        && ( std_vector_jet_pt[3] < 20 || std_vector_jet_cmvav2[3] < -0.715 ) \
+                        && ( std_vector_jet_pt[4] < 20 || std_vector_jet_cmvav2[4] < -0.715 ) \
+                        && ( std_vector_jet_pt[5] < 20 || std_vector_jet_cmvav2[5] < -0.715 ) \
+                        && ( std_vector_jet_pt[6] < 20 || std_vector_jet_cmvav2[6] < -0.715 ) \
+                        && ( std_vector_jet_pt[7] < 20 || std_vector_jet_cmvav2[7] < -0.715 ) \
+                        && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.715 ) \
+                        && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.715 ) \
+                        && metPfType1 < 40\
+                        && mlll > 80\
+                        && mlll < 100\
+                        && abs(chlll) == 1\
+                       '
+
 
 #cuts['wh3l_13TeV']  = '1'
 

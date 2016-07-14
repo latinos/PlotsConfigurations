@@ -1,10 +1,10 @@
 # example of configuration file
 
-tag = 'DY'
+tag = 'WH3l'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = 'rootFiles_WH_Signal'
 
 
 # file with list of variables
@@ -22,21 +22,15 @@ plotFile = 'plot.py'
 
 
 # luminosity to normalize to (in 1/fb)
-# luminosity to normalize to (in 1/fb)
-# lumi = 2.264
-#lumi = 2.318
-#lumi = 0.8
-#lumi = 2.6
-lumi = 4.3
+lumi = 2.318
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-# outputDirPlots = '~/www/plotCR'
-outputDirPlots = 'plotCR'
+outputDirPlots = 'plotWH'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'
+outputDirDatacard = 'datacards_Signal'
 
 
 # structure file for datacard
