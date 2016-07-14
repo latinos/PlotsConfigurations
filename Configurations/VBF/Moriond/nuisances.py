@@ -167,7 +167,7 @@ nuisances['QCDscale_gg_accept']  = {
 nuisances['QCDscale_WWewk']  = {
                'name'  : 'QCDscale_WWewk', 
                'samples'  : {
-                   'WWewk' : 1.20,   # as in Run I
+                   'WWewk' : '1.20',   # as in Run I
                    },
                'type'  : 'lnN',
               }
