@@ -30,11 +30,11 @@ Pruning:
 
 
 Auto tests:
-
-
-    cd ..
-    sh VBF/scripts/doVBF.sh
+ 
+    cd ../../
+    sh VBF/Moriond/scripts/doVBF.sh
     cd -
+
 
     cat ../result.MaxLikelihoodFit.Data2015.vbf.pruned.txt
     cat ../result.Significance.Data2015.vbf.pruned.txt
