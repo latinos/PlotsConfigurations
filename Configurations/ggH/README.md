@@ -60,6 +60,9 @@ Auto tests:
     
     cat ../result.Significance.superCombination.v1.txt.pruned.txt    
 
+    cat ../result.MaxLikelihoodFit.superCombination.2015.txt.pruned.txt
+    cat ../result.Significance.superCombination.2015.txt.pruned.txt
+    
     
     cd ..
     sh ggH/scripts/doGGH_doMultisignal.sh
@@ -316,5 +319,123 @@ Copy datacards to repository:
 
 
 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    cd /afs/cern.ch/user/a/amassiro/work/Latinos/Limit/datacards/cadi/HIG-16-021/125
+    cd /afs/cern.ch/user/a/amassiro/work/Latinos/Limit/datacards/cadi/HIG-16-021/125/2015
+    cd /afs/cern.ch/user/a/amassiro/work/Latinos/Limit/datacards/cadi/HIG-16-021/125/2016
+    
+
+    
+
+    mkdir   hww2l2v_13TeV_em_1j/
+    mkdir   hww2l2v_13TeV_me_1j/
+    mkdir   hww2l2v_13TeV_em_0j/
+    mkdir   hww2l2v_13TeV_me_0j/
+    mkdir   hww2l2v_13TeV_top_of0j/
+    mkdir   hww2l2v_13TeV_top_of1j/
+    mkdir   hww2l2v_13TeV_dytt_of0j/
+    mkdir   hww2l2v_13TeV_dytt_of1j/
+        
+    mkdir   hww2l2v_13TeV_em_1j/shapes/
+    mkdir   hww2l2v_13TeV_me_1j/shapes/
+    mkdir   hww2l2v_13TeV_em_0j/shapes/
+    mkdir   hww2l2v_13TeV_me_0j/shapes/
+    mkdir   hww2l2v_13TeV_top_of0j/shapes/
+    mkdir   hww2l2v_13TeV_top_of1j/shapes/
+    mkdir   hww2l2v_13TeV_dytt_of0j/shapes/
+    mkdir   hww2l2v_13TeV_dytt_of1j/shapes/
+    
+    
+    
+    mkdir  hww2l2v_13TeV_dytt_of0j/ 
+    mkdir  hww2l2v_13TeV_dytt_of1j/ 
+    mkdir  hww2l2v_13TeV_top_of0j/    
+    mkdir  hww2l2v_13TeV_top_of1j/ 
+    mkdir  hww2l2v_13TeV_em_mp_0j/   
+    mkdir  hww2l2v_13TeV_me_mp_0j/  
+    mkdir  hww2l2v_13TeV_em_pm_0j/ 
+    mkdir  hww2l2v_13TeV_me_pm_0j/ 
+    mkdir  hww2l2v_13TeV_em_pm_1j/ 
+    mkdir  hww2l2v_13TeV_me_pm_1j/ 
+    mkdir  hww2l2v_13TeV_em_mp_1j/ 
+    mkdir  hww2l2v_13TeV_me_mp_1j/  
+
+    mkdir  hww2l2v_13TeV_dytt_of2j/   
+    mkdir  hww2l2v_13TeV_top_of2j/   
+    mkdir  hww2l2v_13TeV_of2j/   
+
+    mkdir  hww2l2v_13TeV_of2j_vbf_lowmjj/
+    mkdir  hww2l2v_13TeV_top_of2j_vbf/
+    mkdir  hww2l2v_13TeV_dytt_of2j_vbf/
+
+    mkdir  hww2l2v_13TeV_of2j_vh2j/
+    mkdir  hww2l2v_13TeV_top_of2j_vh2j/
+    mkdir  hww2l2v_13TeV_dytt_of2j_vh2j/
+    
+
+    
+    mkdir  hww2l2v_13TeV_dytt_of0j/shapes/ 
+    mkdir  hww2l2v_13TeV_dytt_of1j/shapes/ 
+    mkdir  hww2l2v_13TeV_top_of0j/shapes/    
+    mkdir  hww2l2v_13TeV_top_of1j/shapes/ 
+    mkdir  hww2l2v_13TeV_em_mp_0j/shapes/   
+    mkdir  hww2l2v_13TeV_me_mp_0j/shapes/  
+    mkdir  hww2l2v_13TeV_em_pm_0j/shapes/ 
+    mkdir  hww2l2v_13TeV_me_pm_0j/shapes/ 
+    mkdir  hww2l2v_13TeV_em_pm_1j/shapes/ 
+    mkdir  hww2l2v_13TeV_me_pm_1j/shapes/ 
+    mkdir  hww2l2v_13TeV_em_mp_1j/shapes/ 
+    mkdir  hww2l2v_13TeV_me_mp_1j/shapes/  
+
+    mkdir  hww2l2v_13TeV_dytt_of2j/shapes/   
+    mkdir  hww2l2v_13TeV_top_of2j/shapes/   
+    mkdir  hww2l2v_13TeV_of2j/shapes/   
+
+    mkdir  hww2l2v_13TeV_of2j_vbf_lowmjj/shapes/
+    mkdir  hww2l2v_13TeV_top_of2j_vbf/shapes/
+    mkdir  hww2l2v_13TeV_dytt_of2j_vbf/shapes/
+
+    mkdir  hww2l2v_13TeV_of2j_vh2j/shapes/
+    mkdir  hww2l2v_13TeV_top_of2j_vh2j/shapes/
+    mkdir  hww2l2v_13TeV_dytt_of2j_vh2j/shapes/
+
+    
+    
+    
+
+    cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_1j/mllVSmth/datacard.txt.pruned.txt       hww2l2v_13TeV_em_1j/hww2l2v_13TeV_em_1j.txt
+    cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_1j/mllVSmth/datacard.txt.pruned.txt       hww2l2v_13TeV_me_1j/hww2l2v_13TeV_me_1j.txt
+    cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_0j/mllVSmth/datacard.txt.pruned.txt       hww2l2v_13TeV_em_0j/hww2l2v_13TeV_em_0j.txt
+    cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_0j/mllVSmth/datacard.txt.pruned.txt       hww2l2v_13TeV_me_0j/hww2l2v_13TeV_me_0j.txt
+    cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt      hww2l2v_13TeV_top_of0j/hww2l2v_13TeV_top_of0j.txt
+    cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt      hww2l2v_13TeV_top_of1j/hww2l2v_13TeV_top_of1j.txt
+    cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt     hww2l2v_13TeV_dytt_of0j/hww2l2v_13TeV_dytt_of0j.txt 
+    cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt     hww2l2v_13TeV_dytt_of1j/hww2l2v_13TeV_dytt_of1j.txt 
+    
+    cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_1j/mllVSmth/shapes/*.root            hww2l2v_13TeV_em_1j/shapes/
+    cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_1j/mllVSmth/shapes/*.root            hww2l2v_13TeV_me_1j/shapes/
+    cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_0j/mllVSmth/shapes/*.root            hww2l2v_13TeV_em_0j/shapes/
+    cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_0j/mllVSmth/shapes/*.root            hww2l2v_13TeV_me_0j/shapes/
+    cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_top_of0j/events/shapes/*.root           hww2l2v_13TeV_top_of0j/shapes/
+    cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_top_of1j/events/shapes/*.root           hww2l2v_13TeV_top_of1j/shapes/
+    cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/shapes/*.root          hww2l2v_13TeV_dytt_of0j/shapes/
+    cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/shapes/*.root          hww2l2v_13TeV_dytt_of1j/shapes/
+    
+ 
+ 
  
  

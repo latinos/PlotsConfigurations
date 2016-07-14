@@ -989,40 +989,40 @@ nuisances['idiso_mu']  = {
 
 # FIXME : restore it once we have the niusance ready                                 
 
-nuisances['jes']  = {
-                'name'  : 'scale_j', 
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : {
-                   'ggWW' :['1', '1'],
-                   'WW' :  ['1', '1'],
-                   'DY' :  ['1', '1'],
-                   'top' : ['1', '1'],
-                   'VZ' :  ['1', '1'],
-                   'VVV' : ['1', '1'],
-                   'ggH_hww' : ['1', '1'],
-                   'qqH_hww' : ['1', '1'],
-                   'WH_hww' :  ['1', '1'],
-                   'ZH_hww' :  ['1', '1'],
-                   'ggZH_hww' :  ['1', '1'],
-                   'H_hww'  :  ['1', '1'],
-                   'H_htt'  : ['1', '1'],
-                   'Vg' : ['1', '1'],
-                   'VgS': ['1', '1'],
-                },
+#nuisances['jes']  = {
+                #'name'  : 'scale_j', 
+                #'kind'  : 'tree',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'ggWW' :['1', '1'],
+                   #'WW' :  ['1', '1'],
+                   #'DY' :  ['1', '1'],
+                   #'top' : ['1', '1'],
+                   #'VZ' :  ['1', '1'],
+                   #'VVV' : ['1', '1'],
+                   #'ggH_hww' : ['1', '1'],
+                   #'qqH_hww' : ['1', '1'],
+                   #'WH_hww' :  ['1', '1'],
+                   #'ZH_hww' :  ['1', '1'],
+                   #'ggZH_hww' :  ['1', '1'],
+                   #'H_hww'  :  ['1', '1'],
+                   #'H_htt'  : ['1', '1'],
+                   #'Vg' : ['1', '1'],
+                   #'VgS': ['1', '1'],
+                #},
 
-                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/',
-                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/' 
+                #'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/',
+                #'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/' 
 
-                #'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/',
-                #'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/' 
-                #'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup/',
-                #'folderDown' : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo/' 
-                #'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESup/',
-                #'folderDown' : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESdo/' 
-                #'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESup__wwSel/',
-                #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESdo__wwSel/' 
-}
+                ##'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/',
+                ##'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/' 
+                ##'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup/',
+                ##'folderDown' : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo/' 
+                ##'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESup/',
+                ##'folderDown' : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESdo/' 
+                ##'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESup__wwSel/',
+                ##'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESdo__wwSel/' 
+#}
 
 
 
