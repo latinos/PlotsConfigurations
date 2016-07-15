@@ -4,95 +4,20 @@
 
 # keys here must match keys in samples.py    
 #                    
-
-groupPlot['DY']  = {  
-                  'nameHR' : "DY",
-                  'isSignal' : 0,
-                  'color': 418,    # kGreen+2
-                  'samples'  : ['DY']
-              }
-
-
-
-groupPlot['Fake']  = {  
-                  'nameHR' : 'Fake',
-                  'isSignal' : 0,
-                  'color': 921,    # kGray + 1
-                  'samples'  : ['Fake']
-              }
-
-
-groupPlot['top']  = {  
-                  'nameHR' : 'tW and t#bart',
-                  'isSignal' : 0,
-                  'color': 400,   # kYellow
-                  'samples'  : ['top']
-              }
-
-groupPlot['WW']  = {  
-                  'nameHR' : 'WW',
-                  'isSignal' : 0,
-                  'color': 851, # kAzure -9 
-                  'samples'  : ['WW', 'ggWW']
-              }
-
-groupPlot['VVV']  = {  
-                  'nameHR' : 'VVV',
-                  'isSignal' : 0,
-                  'color': 857, # kAzure -3  
-                  'samples'  : ['VVV']
-              }
-
-
-groupPlot['VV']  = {  
-                  'nameHR' : "VZ/#gamma*/#gamma",
-                  'isSignal' : 0,
-                  'color'    : 617,   # kViolet + 1  
-                  'samples'  : ['VZ', 'WZ', 'ZZ']
-              }
-
-groupPlot['Vg']  = {
-                  'nameHR' : "V#gamma^{(*)}",
-                  'isSignal' : 0,
-                  'color'    : 620,   # kViolet + 1  
-                  'samples'  : ['Vg', 'Wg', 'VgS']
-              }
-
-
-groupPlot['Higgs']  = {  
-                  'nameHR' : 'Higgs',
-                  'isSignal' : 0,
-                  'color': 632, # kRed 
-                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww']
-              }
-
-#groupPlot['250']  = {
-#                  'nameHR' : 'mH = 250 GeV X 10',
-#                  'isSignal' : 1,
-#                  'color': 633, # kRed 
-#                  'samples'  : ['ggH_hww_250_c10brn00','ggH_hww_INT250_c10brn00','qqH_hww_250_c10brn00']
-#               }
-
-groupPlot['400']  = {
-                  'nameHR' : 'mH = 400 GeV X 10',
-                  'isSignal' : 2,
-                  'color': 633, # kRed 
-                  'samples'  : ['ggH_hww_400_c10brn00','ggH_hww_INT400_c10brn00','qqH_hww_400_c10brn00']
-               }
-
-groupPlot['800']  = {
-                  'nameHR' : 'mH = 800 GeV X 10',
-                  'isSignal' : 2,
-                  'color': 635, # kRed 
-                  'samples'  : ['ggH_hww_800_c10brn00','ggH_hwwINT_800_c10brn00','qqH_hww_800_c10brn00']
-               }
-
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
                   'scale'    : 1.0
               }
+
+plot['DYLO']  = {
+                  'color': 417,    # kGreen+2
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+              }
+
 
 plot['DY0jet']  = {  
                   'color': 418,    # kGreen+2
@@ -107,7 +32,22 @@ plot['DY1jet']  = {
                   'isData'   : 0, 
                   'scale'    : 1.0
               }
-               
+              
+plot['DY2jet']  = {  
+                  'color': 421,    # kGreen+3
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0
+              }
+
+plot['EWKZ2jet']  = { 
+                  'color': 423,    # kGreen+3
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+              }
+
+ 
 plot['Wjets']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
@@ -212,7 +152,7 @@ plot['Vg']  = {
                   'scale'    : 1.0
                   }
 
-plot['VgS'] = { 
+plot['VgS'] = {
                   'color'    : 617,   # kViolet + 1  
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -321,24 +261,22 @@ plot['ggH_hww'] = {
 
 
 #plot['ggH_hww_750_NWA'] = {
-#                 'nameHR' : 'ggH 750 NWA',
+#                  'nameHR' : 'ggH 750 NWA',
 #                  'color': 632, # kRed 
 #                  'isSignal' : 2,
 #                  'isData'   : 0,
-#                  'scale'    : 0    #
+#                  'scale'    : 1    #
 #                  }
-#
+
 #plot['qqH_hww_750_NWA'] = {
-#                  'nameHR' : 'qqH 750 NWA (x100)',
+#                  'nameHR' : 'qqH 750 NWA (x10)',
 #                  'color': 654,
 #                  'isSignal' : 2,
 #                  'isData'   : 0,
-#                  'scale'    : 0    #
+#                  'scale'    : 10    #
 #                  }
-#
-import os.path
 
-massesAndModelsFile = "massesAndModels.py"
+import os.path
 
 if os.path.exists(massesAndModelsFile) :
   handle = open(massesAndModelsFile,'r')
@@ -351,27 +289,18 @@ for m in masses:
   for model in models:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     plot['ggH_hww_'+m+'_'+model_name] = {
-                  'nameHR' : 'ggH '+m+' '+model,
+                  'nameHR' : 'ggH '+m+' '+model_name,
                   'color': 600+int(int(m)/100+0.5), # kRed 
-                  #'color':   col,
                   'isSignal' : 2,
                   'isData'   : 0,
-                  'scale'    : 10    #
-                  }
-    plot['ggH_hww_INT'+m+'_'+model_name] = {
-                  'nameHR' : 'ggH '+m+' '+model,
-                  'color': 600+int(int(m)/100+0.5), # kRed 
-                  #'color':   col,
-                  'isSignal' : 2,
-                  'isData'   : 0,
-                  'scale'    : 10    #
+                  'scale'    : 1    #
                   }
     plot['qqH_hww_'+m+'_'+model_name] = {
-                  'nameHR' : 'qqH '+m+' '+model+' (x100)',
+                  'nameHR' : 'qqH '+m+' '+model_name+' (x10)',
                   'color': 600+20+int(int(m)/100+0.5), # kRed 
                   'isSignal' : 2,
                   'isData'   : 0,
-                  'scale'    : 10    #
+                  'scale'    : 10   #
                   }
 
 
