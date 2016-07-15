@@ -6,7 +6,7 @@
 #
 
 nuisances['lumi']  = {
-               'name'  : 'lumi_13TeV', 
+               'name'  : 'lumi_ICHEP_13TeV', 
                'samples'  : {
                    'ggH_hww'  : '1.027',
                    'qqH_hww'  : '1.027',
@@ -46,11 +46,20 @@ nuisances['QCDscale_VW']  = {
 # QCD: 0.0046 / 0.1427 = 0.0322355
 
 
+#  from YR4 ggF
+#
+#    QCDscale_ggH         =      1.08539
+#    QCDscale_ggH1in_0jet =      0.938296
+#    QCDscale_ggH1in_1jet =      1.17048
+#    QCDscale_ggH2in_1jet =      0.915896
+#    QCDscale_ggH2in_2jet =      1.19244
+#
+
 
 nuisances['QCDscale_ggH0j']  = {
                'name'  : 'QCDscale_ggH0j', 
                'samples'  : {
-                   'ggH_hww' : '1.056',
+                   'ggH_hww' : '1.08539',
                    },
                'type'  : 'lnN',
                'cuts'  : [
@@ -70,10 +79,34 @@ nuisances['QCDscale_ggH0j']  = {
               }
 
 
-nuisances['QCDscale_ggH1j']  = {
+nuisances['QCDscale_ggH1j_in0jet']  = {
                'name'  : 'QCDscale_ggH1j', 
                'samples'  : {
-                   'ggH_hww' : '1.13',
+                   'ggH_hww' : '0.938296',
+                   },
+               'type'  : 'lnN',
+               'cuts'  : [
+                 'hww2l2v_13TeV_of0j',
+                 'hww2l2v_13TeV_top_of0j',
+                 'hww2l2v_13TeV_dytt_of0j'              
+#                 
+                 'hww2l2v_13TeV_me_0j',
+                 'hww2l2v_13TeV_em_0j',
+#
+                 'hww2l2v_13TeV_me_mp_0j',
+                 'hww2l2v_13TeV_me_pm_0j',
+                 'hww2l2v_13TeV_em_mp_0j',
+                 'hww2l2v_13TeV_em_pm_0j',
+#                 
+                ]
+              }
+
+
+
+nuisances['QCDscale_ggH1j_in1jet']  = {
+               'name'  : 'QCDscale_ggH1j', 
+               'samples'  : {
+                   'ggH_hww' : '1.17048',
                    },
                'type'  : 'lnN',
                'cuts'  : [
@@ -91,6 +124,56 @@ nuisances['QCDscale_ggH1j']  = {
 #                 
                 ]
               }
+
+
+
+nuisances['QCDscale_ggH2j_in1jet']  = {
+               'name'  : 'QCDscale_ggH1j', 
+               'samples'  : {
+                   'ggH_hww' : '0.915896',
+                   },
+               'type'  : 'lnN',
+               'cuts'  : [
+                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_top_of1j',
+                 'hww2l2v_13TeV_dytt_of1j'              
+#                 
+                 'hww2l2v_13TeV_me_1j',
+                 'hww2l2v_13TeV_em_1j',
+#
+                 'hww2l2v_13TeV_me_mp_1j',
+                 'hww2l2v_13TeV_me_pm_1j',
+                 'hww2l2v_13TeV_em_mp_1j',
+                 'hww2l2v_13TeV_em_pm_1j',
+#                 
+                ]
+              }
+
+
+
+nuisances['QCDscale_ggH2j_in2jet']  = {
+               'name'  : 'QCDscale_ggH2j', 
+               'samples'  : {
+                   'ggH_hww' : '1.19244',
+                   },
+               'type'  : 'lnN',
+               'cuts'  : [
+                 'hww2l2v_13TeV_of2j',
+                 'hww2l2v_13TeV_top_of2j',
+                 'hww2l2v_13TeV_dytt_of2j'              
+#                 
+                 'hww2l2v_13TeV_me_2j',
+                 'hww2l2v_13TeV_em_2j',
+#
+                 'hww2l2v_13TeV_me_mp_2j',
+                 'hww2l2v_13TeV_me_pm_2j',
+                 'hww2l2v_13TeV_em_mp_2j',
+                 'hww2l2v_13TeV_em_pm_2j',
+#                 
+                ]
+              }
+
+
 
 
 from LatinoAnalysis.Tools.HiggsXSection  import *
@@ -190,123 +273,6 @@ nuisances['QCDscale_gg_accept']  = {
 
 
 
-#
-#     WWTo2L2Nu 0jet acceptance uncertainties
-#    -----------------------------------------
-#     QCD         mu=0.5 / mu=2.0   0.53% / 0.52%
-#     alpha_s     265000 / 266000   0.02% / 0.02%
-#     PDF                           0.25%
-#     PDF+alpha_s                   0.25%
-#    
-#    
-#     WWTo2L2Nu 1jet acceptance uncertainties
-#    -----------------------------------------
-#     QCD         mu=0.5 / mu=2.0   1.54% / 1.38%
-#     alpha_s     265000 / 266000   0.01% / 0.01%
-#     PDF                           0.27%
-#     PDF+alpha_s                   0.27%
-#    
-#    
-#     VBFHToWWTo2L2Nu_M125 0jet acceptance uncertainties
-#    -----------------------------------------
-#     QCD         mu=0.5 / mu=2.0   0.68% / 0.60%
-#     alpha_s     265000 / 266000   1.14% / 0.82%
-#     PDF                           0.51%
-#     PDF+alpha_s                   1.12%
-#    
-#    
-#     VBFHToWWTo2L2Nu_M125 1jet acceptance uncertainties
-#    -----------------------------------------
-#     QCD         mu=0.5 / mu=2.0   0.11% / 0.01%
-#     alpha_s     265000 / 266000   0.22% / 0.29%
-#     PDF                           0.31%
-#     PDF+alpha_s                   0.40%
-#    
-#    
-#     GluGluHToWWTo2L2Nu_M125 0jet acceptance uncertainties
-#    -----------------------------------------
-#     QCD         mu=0.5 / mu=2.0   2.71% / 2.26%
-#     alpha_s     265000 / 266000   0.11% / 0.04%
-#     PDF                           0.56%
-#     PDF+alpha_s                   0.57%
-#    
-#    
-#     GluGluHToWWTo2L2Nu_M125 1jet acceptance uncertainties
-#    -----------------------------------------
-#     QCD         mu=0.5 / mu=2.0   2.00% / 1.66%
-#     alpha_s     265000 / 266000   0.29% / 0.31%
-#     PDF                           0.37%
-#     PDF+alpha_s                   0.48%
-#     
-#
-#
-#     WZTo3LNu 0jet acceptance uncertainties
-#    -----------------------------------------
-#     QCD         mu=0.5 / mu=2.0   1.70% / 1.47%
-#     alpha_s     265000 / 266000   0.15% / 0.26%
-#     PDF                           0.48%
-#     PDF+alpha_s                   0.52%
-#    
-#    
-#     WZTo3LNu 1jet acceptance uncertainties
-#    -----------------------------------------
-#     QCD         mu=0.5 / mu=2.0   2.94% / 2.57%
-#     alpha_s     265000 / 266000   0.21% / 0.27%
-#     PDF                           0.48%
-#     PDF+alpha_s                   0.54%
-#    
-#     
-#     
-#     HWminusJ_HToWW_M125 0jet acceptance uncertainties
-#     -----------------------------------------
-#      QCD         mu=0.5 / mu=2.0   5.99% / 4.42%
-#      alpha_s     265000 / 266000   0.29% / 0.28%
-#      PDF                           0.55%
-#      PDF+alpha_s                   0.62%
-#     
-#     
-#      HWminusJ_HToWW_M125 1jet acceptance uncertainties
-#     -----------------------------------------
-#      QCD         mu=0.5 / mu=2.0   0.99% / 1.36%
-#      alpha_s     265000 / 266000   0.05% / 0.02%
-#      PDF                           0.47%
-#      PDF+alpha_s                   0.48%
-#     
-#     
-#      HWplusJ_HToWW_M125 0jet acceptance uncertainties
-#     -----------------------------------------
-#      QCD         mu=0.5 / mu=2.0   2.17% / 3.38%
-#      alpha_s     265000 / 266000   0.20% / 0.13%
-#      PDF                           0.47%
-#      PDF+alpha_s                   0.50%
-#     
-#     
-#      HWplusJ_HToWW_M125 1jet acceptance uncertainties
-#     -----------------------------------------
-#      QCD         mu=0.5 / mu=2.0   4.71% / 3.58%
-#      alpha_s     265000 / 266000   0.10% / 0.03%
-#      PDF                           0.36%
-#      PDF+alpha_s                   0.36%
-#     
-#     
-#      HZJ_HToWW_M125 0jet acceptance uncertainties
-#     -----------------------------------------
-#      QCD         mu=0.5 / mu=2.0   2.16% / 3.30%
-#      alpha_s     265000 / 266000   0.06% / 0.30%
-#      PDF                           1.20%
-#      PDF+alpha_s                   1.22%
-#     
-#     
-#      HZJ_HToWW_M125 1jet acceptance uncertainties
-#     -----------------------------------------
-#      QCD         mu=0.5 / mu=2.0   3.74% / 1.18%
-#      alpha_s     265000 / 266000   0.12% / 0.03%
-#      PDF                           0.88%
-#      PDF+alpha_s                   0.89%
-#      
-#
-
-
 # pdf uncertainty
 
 nuisances['pdf_gg']  = {
@@ -367,124 +333,6 @@ nuisances['pdf_qqbar_accept']  = {
                    'VZ'      : '1.005',                   
                    },
               }
-
-
-
-#
-#     WWTo2L2Nu 0jet acceptance uncertainties
-#    -----------------------------------------
-#     QCD         mu=0.5 / mu=2.0   0.53% / 0.52%
-#     alpha_s     265000 / 266000   0.02% / 0.02%
-#     PDF                           0.25%
-#     PDF+alpha_s                   0.25%
-#    
-#    
-#     WWTo2L2Nu 1jet acceptance uncertainties
-#    -----------------------------------------
-#     QCD         mu=0.5 / mu=2.0   1.54% / 1.38%
-#     alpha_s     265000 / 266000   0.01% / 0.01%
-#     PDF                           0.27%
-#     PDF+alpha_s                   0.27%
-#    
-#    
-#     VBFHToWWTo2L2Nu_M125 0jet acceptance uncertainties
-#    -----------------------------------------
-#     QCD         mu=0.5 / mu=2.0   0.68% / 0.60%
-#     alpha_s     265000 / 266000   1.14% / 0.82%
-#     PDF                           0.51%
-#     PDF+alpha_s                   1.12%
-#    
-#    
-#     VBFHToWWTo2L2Nu_M125 1jet acceptance uncertainties
-#    -----------------------------------------
-#     QCD         mu=0.5 / mu=2.0   0.11% / 0.01%
-#     alpha_s     265000 / 266000   0.22% / 0.29%
-#     PDF                           0.31%
-#     PDF+alpha_s                   0.40%
-#    
-#    
-#     GluGluHToWWTo2L2Nu_M125 0jet acceptance uncertainties
-#    -----------------------------------------
-#     QCD         mu=0.5 / mu=2.0   2.71% / 2.26%
-#     alpha_s     265000 / 266000   0.11% / 0.04%
-#     PDF                           0.56%
-#     PDF+alpha_s                   0.57%
-#    
-#    
-#     GluGluHToWWTo2L2Nu_M125 1jet acceptance uncertainties
-#    -----------------------------------------
-#     QCD         mu=0.5 / mu=2.0   2.00% / 1.66%
-#     alpha_s     265000 / 266000   0.29% / 0.31%
-#     PDF                           0.37%
-#     PDF+alpha_s                   0.48%
-#     
-#
-#     WZTo3LNu 0jet acceptance uncertainties
-#    -----------------------------------------
-#     QCD         mu=0.5 / mu=2.0   1.70% / 1.47%
-#     alpha_s     265000 / 266000   0.15% / 0.26%
-#     PDF                           0.48%
-#     PDF+alpha_s                   0.52%
-#    
-#    
-#     WZTo3LNu 1jet acceptance uncertainties
-#    -----------------------------------------
-#     QCD         mu=0.5 / mu=2.0   2.94% / 2.57%
-#     alpha_s     265000 / 266000   0.21% / 0.27%
-#     PDF                           0.48%
-#     PDF+alpha_s                   0.54%
-#    
-#    
-#    
-#     
-#     HWminusJ_HToWW_M125 0jet acceptance uncertainties
-#     -----------------------------------------
-#      QCD         mu=0.5 / mu=2.0   5.99% / 4.42%
-#      alpha_s     265000 / 266000   0.29% / 0.28%
-#      PDF                           0.55%
-#      PDF+alpha_s                   0.62%
-#     
-#     
-#      HWminusJ_HToWW_M125 1jet acceptance uncertainties
-#     -----------------------------------------
-#      QCD         mu=0.5 / mu=2.0   0.99% / 1.36%
-#      alpha_s     265000 / 266000   0.05% / 0.02%
-#      PDF                           0.47%
-#      PDF+alpha_s                   0.48%
-#     
-#     
-#      HWplusJ_HToWW_M125 0jet acceptance uncertainties
-#     -----------------------------------------
-#      QCD         mu=0.5 / mu=2.0   2.17% / 3.38%
-#      alpha_s     265000 / 266000   0.20% / 0.13%
-#      PDF                           0.47%
-#      PDF+alpha_s                   0.50%
-#     
-#     
-#      HWplusJ_HToWW_M125 1jet acceptance uncertainties
-#     -----------------------------------------
-#      QCD         mu=0.5 / mu=2.0   4.71% / 3.58%
-#      alpha_s     265000 / 266000   0.10% / 0.03%
-#      PDF                           0.36%
-#      PDF+alpha_s                   0.36%
-#     
-#     
-#      HZJ_HToWW_M125 0jet acceptance uncertainties
-#     -----------------------------------------
-#      QCD         mu=0.5 / mu=2.0   2.16% / 3.30%
-#      alpha_s     265000 / 266000   0.06% / 0.30%
-#      PDF                           1.20%
-#      PDF+alpha_s                   1.22%
-#     
-#     
-#      HZJ_HToWW_M125 1jet acceptance uncertainties
-#     -----------------------------------------
-#      QCD         mu=0.5 / mu=2.0   3.74% / 1.18%
-#      alpha_s     265000 / 266000   0.12% / 0.03%
-#      PDF                           0.88%
-#      PDF+alpha_s                   0.89%
-#      
-#
 
 
 
@@ -610,25 +458,27 @@ nuisances['WWqscale1j']  = {
 
 # PS
 
-nuisances['PS']  = {
-                'name'  : 'PS', 
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : {
-                   'WW' :  ['1./1.03295', '1.'],  # latino_WWTo2L2NuHerwigPS.root moved with different name in __PS folder
-                   'ggH_hww' : ['1./1.00702', '1.'],
-                   'qqH_hww' : ['1./1.06362', '1.'],
-                },
-                'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS/',
-                'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/',
-                #'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__PS/',
-                #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/' 
-                #'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight/../MCl2loose__hadd__bSFL2pTEff__l2tight__PS/',
-                #'folderDown' : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight/' 
-                #
-                #'symmetrize' : True   # default is False
-                #
-                }
+# FIXME restore these once sample available
+
+#nuisances['PS']  = {
+                #'name'  : 'PS', 
+                #'kind'  : 'tree',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'WW' :  ['1./1.03295', '1.'],  # latino_WWTo2L2NuHerwigPS.root moved with different name in __PS folder
+                   #'ggH_hww' : ['1./1.00702', '1.'],
+                   #'qqH_hww' : ['1./1.06362', '1.'],
+                #},
+                #'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS/',
+                #'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/',
+                ##'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__PS/',
+                ##'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/' 
+                ##'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight/../MCl2loose__hadd__bSFL2pTEff__l2tight__PS/',
+                ##'folderDown' : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight/' 
+                ##
+                ##'symmetrize' : True   # default is False
+                ##
+                #}
 
 
 #mkdir eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS
@@ -647,19 +497,20 @@ nuisances['PS']  = {
 #cp eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_WWTo2L2NuHerwigPS.root                 eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS/latino_WWTo2L2Nu.root
 
 
+# FIXME restore these once sample available
 
-nuisances['UE']  = {
-                'name'  : 'UE', 
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : {
-                   'WW' :  ['1/0.978817', '1/1.0192'], 
-                   'ggH_hww' : ['1/0.9262', '1/0.984785'],
-                   'qqH_hww' : ['1/0.951846', '1/1.00099'],
-                },
-                'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEup/',
-                'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEdo/' 
-                }
+#nuisances['UE']  = {
+                #'name'  : 'UE', 
+                #'kind'  : 'tree',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'WW' :  ['1/0.978817', '1/1.0192'], 
+                   #'ggH_hww' : ['1/0.9262', '1/0.984785'],
+                   #'qqH_hww' : ['1/0.951846', '1/1.00099'],
+                #},
+                #'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEup/',
+                #'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEdo/' 
+                #}
 
 #
 # ue up/nom = 0.978817           ue up/nom = 0.9262                ue up/nom = 0.951846
@@ -715,7 +566,7 @@ nuisances['WgStarScale']  = {
  
 
 nuisances['DYttnorm0j']  = {
-               'name'  : 'DYttnorm0j', 
+               'name'  : 'ICHEP_DYttnorm0j', 
                'samples'  : {
                    'DY' : '1.00',
                    },
@@ -737,7 +588,7 @@ nuisances['DYttnorm0j']  = {
               }
 
 nuisances['DYttnorm1j']  = {
-               'name'  : 'DYttnorm1j', 
+               'name'  : 'ICHEP_DYttnorm1j', 
                'samples'  : {
                    'DY' : '1.00',
                    },
@@ -773,7 +624,7 @@ nuisances['DYttnorm1j']  = {
 # new style "free floating" background
 # e.g. " z_norm rateParam  htsearch zll 1 "
 nuisances['WWnorm0j']  = {
-               'name'  : 'WWnorm0j', 
+               'name'  : 'ICHEP_WWnorm0j', 
                'samples'  : {
                    'WW' : '1.00',
                    },
@@ -795,7 +646,7 @@ nuisances['WWnorm0j']  = {
               }
 
 nuisances['WWnorm1j']  = {
-               'name'  : 'WWnorm1j', 
+               'name'  : 'ICHEP_WWnorm1j', 
                'samples'  : {
                    'WW' : '1.00',
                    },
@@ -818,7 +669,7 @@ nuisances['WWnorm1j']  = {
 
 
 nuisances['Topnorm0j']  = {
-               'name'  : 'Topnorm0j', 
+               'name'  : 'ICHEP_Topnorm0j', 
                'samples'  : {
                    'top' : '1.00',
                    },
@@ -840,7 +691,7 @@ nuisances['Topnorm0j']  = {
               }
 
 nuisances['Topnorm1j']  = {
-               'name'  : 'Topnorm1j', 
+               'name'  : 'ICHEP_Topnorm1j', 
                'samples'  : {
                    'top' : '1.00',
                    },
@@ -897,58 +748,59 @@ nuisances['fake_syst']  = {
 }
  
 
+# FIXME : restore it once we have the niusance ready                                 
 
-nuisances['fake_ele']  = {
-                'name'  : 'fake_ele_hww',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'Fake'      : ['(fakeW2l0jElUp*(njet==0)+fakeW2l1jElUp*(njet==1)+fakeW2l2jElUp*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',
-                                  '(fakeW2l0jElDown*(njet==0)+fakeW2l1jElDown*(njet==1)+fakeW2l2jElDown*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))'],
-                }
-}
+#nuisances['fake_ele']  = {
+                #'name'  : 'fake_ele_hww',
+                #'kind'  : 'weight',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'Fake'      : ['(fakeW2l0jElUp*(njet==0)+fakeW2l1jElUp*(njet==1)+fakeW2l2jElUp*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',
+                                  #'(fakeW2l0jElDown*(njet==0)+fakeW2l1jElDown*(njet==1)+fakeW2l2jElDown*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))'],
+                #}
+#}
  
 
-nuisances['fake_ele_stat']  = {
-                'name'  : 'fake_ele_stat_hww',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'Fake'      : ['(fakeW2l0jstatElUp*(njet==0)+fakeW2l1jstatElUp*(njet==1)+fakeW2l2jstatElUp*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',
-                                  '(fakeW2l0jstatElDown*(njet==0)+fakeW2l1jstatElDown*(njet==1)+fakeW2l2jstatElDown*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))'],
-                }
-}
+#nuisances['fake_ele_stat']  = {
+                #'name'  : 'fake_ele_stat_hww',
+                #'kind'  : 'weight',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'Fake'      : ['(fakeW2l0jstatElUp*(njet==0)+fakeW2l1jstatElUp*(njet==1)+fakeW2l2jstatElUp*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',
+                                  #'(fakeW2l0jstatElDown*(njet==0)+fakeW2l1jstatElDown*(njet==1)+fakeW2l2jstatElDown*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))'],
+                #}
+#}
 
 
-nuisances['fake_mu']  = {
-                'name'  : 'fake_mu_hww',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'Fake'      : ['(fakeW2l0jMuUp*(njet==0)+fakeW2l1jMuUp*(njet==1)+fakeW2l2jMuUp*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',
-                                  '(fakeW2l0jMuDown*(njet==0)+fakeW2l1jMuDown*(njet==1)+fakeW2l2jMuDown*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))'],
-                }
-}
+#nuisances['fake_mu']  = {
+                #'name'  : 'fake_mu_hww',
+                #'kind'  : 'weight',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'Fake'      : ['(fakeW2l0jMuUp*(njet==0)+fakeW2l1jMuUp*(njet==1)+fakeW2l2jMuUp*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',
+                                  #'(fakeW2l0jMuDown*(njet==0)+fakeW2l1jMuDown*(njet==1)+fakeW2l2jMuDown*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))'],
+                #}
+#}
  
 
-nuisances['fake_mu_stat']  = {
-                'name'  : 'fake_mu_stat_hww',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'Fake'      : ['(fakeW2l0jstatMuUp*(njet==0)+fakeW2l1jstatMuUp*(njet==1)+fakeW2l2jstatMuUp*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',
-                                  '(fakeW2l0jstatMuDown*(njet==0)+fakeW2l1jstatMuDown*(njet==1)+fakeW2l2jstatMuDown*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))'],
-                }
-}
+#nuisances['fake_mu_stat']  = {
+                #'name'  : 'fake_mu_stat_hww',
+                #'kind'  : 'weight',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'Fake'      : ['(fakeW2l0jstatMuUp*(njet==0)+fakeW2l1jstatMuUp*(njet==1)+fakeW2l2jstatMuUp*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',
+                                  #'(fakeW2l0jstatMuDown*(njet==0)+fakeW2l1jstatMuDown*(njet==1)+fakeW2l2jstatMuDown*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))'],
+                #}
+#}
 
 
 # others ... 
   
                                  
-                                 
+# FIXME : restore it once we have the niusance ready                                 
   
 nuisances['btag']  = {
-                'name'  : 'btag',
+                'name'  : 'ICHEP_btag',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -986,28 +838,30 @@ nuisances['tttwTh']  = {
                 
 }
   
+ 
+# FIXME : restore it once we have the niusance ready                                 
+#         but it is still a negligible nuisance
   
-  
-# DY pt corrections
-nuisances['DYptRew']  = {
-                'name'  : 'DYptRew',   # Theory uncertainty
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {  # up              down
-                   'DY'     : ['(0.95 - 0.1*TMath::Erf((gen_ptll-14.4)/9.0))/(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))',
-                               '(0.95 - 0.1*TMath::Erf((gen_ptll-13.6)/8.6))/(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))'],
-                }
-                # tt = 17/18/19 depending on the sample/generator
-                # tW = 15/16
+## DY pt corrections
+#nuisances['DYptRew']  = {
+                #'name'  : 'DYptRew',   # Theory uncertainty
+                #'kind'  : 'weight',
+                #'type'  : 'shape',
+                #'samples'  : {  # up              down
+                   #'DY'     : ['(0.95 - 0.1*TMath::Erf((gen_ptll-14.4)/9.0))/(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))',
+                               #'(0.95 - 0.1*TMath::Erf((gen_ptll-13.6)/8.6))/(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))'],
+                #}
+                ## tt = 17/18/19 depending on the sample/generator
+                ## tW = 15/16
                 
-}
+#}
 
-#
-#         1  p0           1.42199e+01   2.00614e-01   7.49397e-04  -3.24175e-03
-#         2  p1           8.78770e+00   2.36675e-01   1.47925e-03  -1.11709e-03
-#  
-#      (0.95 - 0.1*TMath::Erf((x-14)/8.8))
-#
+##
+##         1  p0           1.42199e+01   2.00614e-01   7.49397e-04  -3.24175e-03
+##         2  p1           8.78770e+00   2.36675e-01   1.47925e-03  -1.11709e-03
+##  
+##      (0.95 - 0.1*TMath::Erf((x-14)/8.8))
+##
 
 
   
@@ -1069,43 +923,111 @@ nuisances['idiso']  = {
 }
 
 
-# nuisances handled by means of a different set of trees
+# FIXME : restore it once we have the niusance ready                                 
 
-
-nuisances['jes']  = {
-                'name'  : 'scale_j', 
-                'kind'  : 'tree',
+nuisances['idiso_ele']  = {
+                'name'  : 'idiso_ele',
+                'kind'  : 'weight',
+                #'kind'  : 'tree', #'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'ggWW' :['1', '1'],
-                   'WW' :  ['1', '1'],
-                   'DY' :  ['1', '1'],
-                   'top' : ['1', '1'],
-                   'VZ' :  ['1', '1'],
-                   'VVV' : ['1', '1'],
-                   'ggH_hww' : ['1', '1'],
-                   'qqH_hww' : ['1', '1'],
-                   'WH_hww' :  ['1', '1'],
-                   'ZH_hww' :  ['1', '1'],
-                   'ggZH_hww' :  ['1', '1'],
-                   'H_hww'  :  ['1', '1'],
-                   'H_htt'  : ['1', '1'],
-                   'Vg' : ['1', '1'],
-                   'VgS': ['1', '1'],
+                   'ggH_hww' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))'],
+                  'qqH_hww' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))'],
+                  'WH_hww' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))'],
+                  'ZH_hww' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))'],
+                  'ggZH_hww' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))'],
+                  'H_hww' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))'],
+                  'WH_hww' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))'],
+                  'DY' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))'],
+                  'VVV' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))'],
+                  'VZ' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))'],
+                  'ggWW' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))'],
+                  'WW' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))'],
+                  'top' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))'],
+                  'Vg' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))'],
+                  'VgS' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))'],
+                 
+                 },
+                #'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/',    # uncertainties fixed!
+                #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/' 
+}
+                
+
+nuisances['idiso_mu']  = {
+                'name'  : 'idiso_mu',
+                'kind'  : 'weight',
+                #'kind'  : 'tree', #'weight',
+                'type'  : 'shape',
+                'samples'  : {
+
+                   'ggH_hww' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))'],
+                  'qqH_hww' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))'],
+                  'WH_hww' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))'],
+                  'ZH_hww' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))'],
+                  'ggZH_hww' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))'],
+                  'H_hww' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))'],
+                  'WH_hww' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))'],
+                  'DY' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))'],
+                  'VVV' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))'],
+                  'VZ' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))'],
+                  'ggWW' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))'],
+                  'WW' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))'],
+                  'top' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))'],
+                  'Vg' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))'],
+                  'VgS' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))'],
+                 
+
                 },
-                'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/',
-                'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/' 
-                #'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup/',
-                #'folderDown' : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo/' 
-                #'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESup/',
-                #'folderDown' : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESdo/' 
-                #'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESup__wwSel/',
-                #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESdo__wwSel/' 
+                #'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/',    # uncertainties fixed!
+                #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/' 
 }
 
 
+                
+
+# nuisances handled by means of a different set of trees
+
+# FIXME : restore it once we have the niusance ready                                 
+
+#nuisances['jes']  = {
+                #'name'  : 'scale_j', 
+                #'kind'  : 'tree',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'ggWW' :['1', '1'],
+                   #'WW' :  ['1', '1'],
+                   #'DY' :  ['1', '1'],
+                   #'top' : ['1', '1'],
+                   #'VZ' :  ['1', '1'],
+                   #'VVV' : ['1', '1'],
+                   #'ggH_hww' : ['1', '1'],
+                   #'qqH_hww' : ['1', '1'],
+                   #'WH_hww' :  ['1', '1'],
+                   #'ZH_hww' :  ['1', '1'],
+                   #'ggZH_hww' :  ['1', '1'],
+                   #'H_hww'  :  ['1', '1'],
+                   #'H_htt'  : ['1', '1'],
+                   #'Vg' : ['1', '1'],
+                   #'VgS': ['1', '1'],
+                #},
+
+                #'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/',
+                #'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/' 
+
+                ##'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/',
+                ##'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/' 
+                ##'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup/',
+                ##'folderDown' : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo/' 
+                ##'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESup/',
+                ##'folderDown' : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESdo/' 
+                ##'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESup__wwSel/',
+                ##'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESdo__wwSel/' 
+#}
 
 
+
+
+# FIXME : restore it once we have the niusance ready                                 
 
 nuisances['electronpt']  = {
                 'name'  : 'scale_e', 
@@ -1128,15 +1050,18 @@ nuisances['electronpt']  = {
                    'Vg' : ['1', '1'],
                    'VgS': ['1', '1'],
                 },
-                'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/',
-                'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/' 
+                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/',
+                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/' 
+                #'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/',
+                #'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/' 
                 #'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup/',
                 #'folderDown' : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo/' 
                 #'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/',
                 #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/' 
 }
                 
-     
+# FIXME : restore it once we have the niusance ready                                 
+   
 nuisances['muonpt']  = {
                 'name'  : 'scale_m', 
                 'kind'  : 'tree',
@@ -1158,8 +1083,10 @@ nuisances['muonpt']  = {
                    'Vg' : ['1', '1'],
                    'VgS': ['1', '1'],
                 },
-                'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/',
-                'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/' 
+                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/',
+                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/' 
+                #'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/',
+                #'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/' 
                 #'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup/',
                 #'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup/',
                 #'folderDown' : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo/' 
@@ -1167,6 +1094,8 @@ nuisances['muonpt']  = {
                 #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/' 
 }
 
+
+# FIXME : restore it once we have the niusance ready                                 
 
 nuisances['met']  = {
                 'name'  : 'scale_met', 
@@ -1189,8 +1118,10 @@ nuisances['met']  = {
                    'Vg' : ['1', '1'],
                    'VgS': ['1', '1'],
                 },
-                'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel/',
-                'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel/' 
+                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel/',
+                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel/' 
+                #'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel/',
+                #'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel/' 
                 #'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METup/',
                 #'folderDown' : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo/' 
                 #'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel/',
