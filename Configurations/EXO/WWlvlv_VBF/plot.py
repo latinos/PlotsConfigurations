@@ -44,34 +44,48 @@ groupPlot['VVV']  = {
               }
 
 
-groupPlot['VZ']  = {  
+groupPlot['VV']  = {  
                   'nameHR' : "VZ/#gamma*/#gamma",
                   'isSignal' : 0,
                   'color'    : 617,   # kViolet + 1  
-                  'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ']
+                  'samples'  : ['VZ', 'WZ', 'ZZ']
+              }
+
+groupPlot['Vg']  = {
+                  'nameHR' : "V#gamma^{(*)}",
+                  'isSignal' : 0,
+                  'color'    : 620,   # kViolet + 1  
+                  'samples'  : ['Vg', 'Wg', 'VgS']
               }
 
 
-#groupPlot['Higgs']  = {  
-#                  'nameHR' : 'Higgs',
-#                  'isSignal' : 0,
-#                  'color': 632, # kRed 
-#                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww']
-#              }
+groupPlot['Higgs']  = {  
+                  'nameHR' : 'Higgs',
+                  'isSignal' : 0,
+                  'color': 632, # kRed 
+                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww']
+              }
 
-#groupPlot['300']  = {
-#                  'nameHR' : 'mH = 300 GeV X 10',
-#                  'isSignal' : 2,
+#groupPlot['250']  = {
+#                  'nameHR' : 'mH = 250 GeV X 10',
+#                  'isSignal' : 1,
 #                  'color': 633, # kRed 
-#                  'samples'  : ['ggH_hww_300_c10brn00','qqH_hww_300_c10brn00']
+#                  'samples'  : ['ggH_hww_250_c10brn00','ggH_hww_INT250_c10brn00','qqH_hww_250_c10brn00']
 #               }
 
-#groupPlot['800']  = {
-#                  'nameHR' : 'mH = 800 GeV X 10',
-#                  'isSignal' : 2,
-#                  'color': 635, # kRed 
-#                  'samples'  : ['ggH_hww_800_c10brn00','qqH_hww_800_c10brn00']
-#               }
+groupPlot['400']  = {
+                  'nameHR' : 'mH = 400 GeV X 10',
+                  'isSignal' : 2,
+                  'color': 633, # kRed 
+                  'samples'  : ['ggH_hww_400_c10brn00','ggH_hww_INT400_c10brn00','qqH_hww_400_c10brn00']
+               }
+
+groupPlot['800']  = {
+                  'nameHR' : 'mH = 800 GeV X 10',
+                  'isSignal' : 2,
+                  'color': 635, # kRed 
+                  'samples'  : ['ggH_hww_800_c10brn00','ggH_hwwINT_800_c10brn00','qqH_hww_800_c10brn00']
+               }
 
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
@@ -322,35 +336,43 @@ plot['ggH_hww'] = {
 #                  'scale'    : 0    #
 #                  }
 #
-#import os.path
-#
-#massesAndModelsFile = "massesAndModels.py"
-#
-#if os.path.exists(massesAndModelsFile) :
-#  handle = open(massesAndModelsFile,'r')
-#  exec(handle)
-#  handle.close()
-#else:
-#  print "!!! ERROR file ", massesAndModelsFile, " does not exist."
-#
-#for m in masses:
-#  for model in models:
-#    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
-#    plot['ggH_hww_'+m+'_'+model_name] = {
-#                  'nameHR' : 'ggH '+m+' '+model,
-#                  'color': 600+int(int(m)/100+0.5), # kRed 
-#                  #'color':   col,
-#                  'isSignal' : 2,
-#                  'isData'   : 0,
-#                  'scale'    : 10    #
-#                  }
-#    plot['qqH_hww_'+m+'_'+model_name] = {
-#                  'nameHR' : 'qqH '+m+' '+model+' (x100)',
-#                  'color': 600+20+int(int(m)/100+0.5), # kRed 
-#                  'isSignal' : 2,
-#                  'isData'   : 0,
-#                  'scale'    : 10    #
-#                  }
+import os.path
+
+massesAndModelsFile = "massesAndModels.py"
+
+if os.path.exists(massesAndModelsFile) :
+  handle = open(massesAndModelsFile,'r')
+  exec(handle)
+  handle.close()
+else:
+  print "!!! ERROR file ", massesAndModelsFile, " does not exist."
+
+for m in masses:
+  for model in models:
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    plot['ggH_hww_'+m+'_'+model_name] = {
+                  'nameHR' : 'ggH '+m+' '+model,
+                  'color': 600+int(int(m)/100+0.5), # kRed 
+                  #'color':   col,
+                  'isSignal' : 2,
+                  'isData'   : 0,
+                  'scale'    : 10    #
+                  }
+    plot['ggH_hww_INT'+m+'_'+model_name] = {
+                  'nameHR' : 'ggH '+m+' '+model,
+                  'color': 600+int(int(m)/100+0.5), # kRed 
+                  #'color':   col,
+                  'isSignal' : 2,
+                  'isData'   : 0,
+                  'scale'    : 10    #
+                  }
+    plot['qqH_hww_'+m+'_'+model_name] = {
+                  'nameHR' : 'qqH '+m+' '+model+' (x100)',
+                  'color': 600+20+int(int(m)/100+0.5), # kRed 
+                  'isSignal' : 2,
+                  'isData'   : 0,
+                  'scale'    : 10    #
+                  }
 
 
 
