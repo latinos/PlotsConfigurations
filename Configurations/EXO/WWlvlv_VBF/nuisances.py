@@ -47,6 +47,7 @@ for m in masses:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['lumi']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.027'})
     nuisances['lumi']['samples'].update({'qqH_hww_'+m+'_'+model_name:'1.027'})
+    nuisances['lumi']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:'1.027'})
 
 # theory uncertainties
 
@@ -69,7 +70,7 @@ nuisances['QCDscale_VW']  = {
 nuisances['QCDscale_ggH0j']  = {
                'name'  : 'QCDscale_ggH0j', 
                'samples'  : {
-                   'ggH_hww' : '1.056',
+                   'ggH_hww' : '1.08539',
                    },
                'type'  : 'lnN',
                'cuts'  : [
@@ -99,34 +100,69 @@ nuisances['QCDscale_hm_ggH0j']  = {
 for m in masses:
   for model in models:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
-    nuisances['QCDscale_hm_ggH0j']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.056'})
+    nuisances['QCDscale_hm_ggH0j']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.09'})
 
 
-nuisances['QCDscale_ggH1j']  = {
-               'name'  : 'QCDscale_ggH1j', 
+
+nuisances['QCDscale_ggH1j_in0jet']  = {
+               'name'  : 'QCDscale_ggH1j_in0jet', 
                'samples'  : {
-                   'ggH_hww' : '1.13',
+                   'ggH_hww' : '0.938296',
+                   },
+               'type'  : 'lnN',
+               'cuts'  : [
+                 'hww2l2v_13TeV_of0j',
+                 'hww2l2v_13TeV_top_of0j',
+                 'hww2l2v_13TeV_dytt_of0j',
+#                 
+                 'hwwhm_13TeV_of_0j',
+                ]
+              }
+
+nuisances['QCDscale_hm_ggH1j_in0jet']  = {
+               'name'  : 'QCDscale_hm_ggH1j_in0jet',
+               'samples'  : {
+                   },
+               'type'  : 'lnN',
+               'cuts'  : [
+                 'hww2l2v_13TeV_of0j',
+                 'hww2l2v_13TeV_top_of0j',
+                 'hww2l2v_13TeV_dytt_of0j',
+#                 
+                 'hwwhm_13TeV_of_0j',
+                ]
+              }
+for m in masses:
+  for model in models:
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    nuisances['QCDscale_hm_ggH1j_in0jet']['samples'].update({'ggH_hww_'+m+'_'+model_name:'0.95'})
+
+
+nuisances['QCDscale_ggH1j_in1jet']  = {
+               'name'  : 'QCDscale_ggH1j_in1jet', 
+               'samples'  : {
+                   'ggH_hww' : '1.17048',
                    },
                'type'  : 'lnN',
                'cuts'  : [
                  'hww2l2v_13TeV_of1j',
                  'hww2l2v_13TeV_top_of1j',
-                 'hww2l2v_13TeV_dytt_of1j'              
+                 'hww2l2v_13TeV_dytt_of1j',             
 #                 
                  'hwwhm_13TeV_of_1j',
 #
                 ]
               }
 
-nuisances['QCDscale_hm_ggH1j']  = {
-               'name'  : 'QCDscale_hm_ggH1j',
+nuisances['QCDscale_hm_ggH1j_in1jet']  = {
+               'name'  : 'QCDscale_hm_ggH1j_in1jet',
                'samples'  : {
                    },
                'type'  : 'lnN',
                'cuts'  : [
                  'hww2l2v_13TeV_of1j',
                  'hww2l2v_13TeV_top_of1j',
-                 'hww2l2v_13TeV_dytt_of1j'
+                 'hww2l2v_13TeV_dytt_of1j',
 #                 
                  'hwwhm_13TeV_of_1j',
 #
@@ -135,33 +171,70 @@ nuisances['QCDscale_hm_ggH1j']  = {
 for m in masses:
   for model in models:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
-    nuisances['QCDscale_hm_ggH1j']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.13'})
+    nuisances['QCDscale_hm_ggH1j_in1jet']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.12'})
 
 
-nuisances['QCDscale_ggH2j']  = {
-               'name'  : 'QCDscale_ggH2j',
+nuisances['QCDscale_ggH2j_in1jet']  = {
+               'name'  : 'QCDscale_ggH2j_in1jet',
                'samples'  : {
-                   'ggH_hww' : '1.2',
+                   'ggH_hww' : '0.915896',
+                   },
+               'type'  : 'lnN',
+               'cuts'  : [
+                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_top_of1j',
+                 'hww2l2v_13TeV_dytt_of1j',
+#                 
+                 'hwwhm_13TeV_of_1j',
+#
+                ]
+              }
+
+nuisances['QCDscale_hm_ggH2j_in1jet']  = {
+               'name'  : 'QCDscale_hm_ggH2j_in1jet',
+               'samples'  : {
+                   },
+               'type'  : 'lnN',
+               'cuts'  : [
+                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_top_of1j',
+                 'hww2l2v_13TeV_dytt_of1j',
+#                 
+                 'hwwhm_13TeV_of_1j',
+#
+                ]
+              }
+for m in masses:
+  for model in models:
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    nuisances['QCDscale_hm_ggH2j_in1jet']['samples'].update({'ggH_hww_'+m+'_'+model_name:'0.97'})
+
+
+nuisances['QCDscale_ggH2j_in2jet']  = {
+               'name'  : 'QCDscale_ggH2j_in2jet',
+               'samples'  : {
+                   'ggH_hww' : '1.19244',
                    },
                'type'  : 'lnN',
                'cuts'  : [
                  'hww2l2v_13TeV_top_of2j',
-#                 'hww2l2v_13TeV_dytt_of2j'
+                 'hww2l2v_13TeV_dytt_of2j',
 #                 
                  'hwwhm_13TeV_of_VBF',
 #                 
                 ]
               }
 
-nuisances['QCDscale_hm_ggH2j']  = {
-               'name'  : 'QCDscale_hm_ggH2j',
+
+nuisances['QCDscale_hm_ggH2j_in2jet']  = {
+               'name'  : 'QCDscale_hm_ggH2j_in2jet',
                'samples'  : {
                    },
                'type'  : 'lnN',
                'cuts'  : [
                  'hww2l2v_13TeV_top_of2j',
-#                 'hww2l2v_13TeV_dytt_of2j'
-#                 
+                 'hww2l2v_13TeV_dytt_of2j',
+#                
                  'hwwhm_13TeV_of_VBF',
 #                 
                 ]
@@ -169,7 +242,7 @@ nuisances['QCDscale_hm_ggH2j']  = {
 for m in masses:
   for model in models:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
-    nuisances['QCDscale_hm_ggH2j']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.2'})
+    nuisances['QCDscale_hm_ggH2j_in2jet']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.40'})
 
 
 
@@ -282,6 +355,7 @@ for m in masses:
   for model in models:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['QCDscale_gg_accept']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.027'})
+    nuisances['QCDscale_gg_accept']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:'1.027'})
 
 
 # pdf uncertainty
@@ -302,6 +376,7 @@ for m in masses:
   for model in models:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['pdf_gg']['samples'].update({'ggH_hww_'+m+'_'+model_name: HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,m,'pdf','bsm')})
+    nuisances['pdf_gg']['samples'].update({'ggH_hww_INT'+m+'_'+model_name: HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,m,'pdf','bsm')})
 
 
 nuisances['pdf_qqbar']  = {
@@ -345,6 +420,7 @@ for m in masses:
   for model in models:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['pdf_gg_accept']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.005'})
+    nuisances['pdf_gg_accept']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:'1.005'})
 
 
 nuisances['pdf_qqbar_accept']  = {
@@ -949,7 +1025,7 @@ for m in masses:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['btag']['samples'].update({'ggH_hww_'+m+'_'+model_name:['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)']})
     nuisances['btag']['samples'].update({'qqH_hww_'+m+'_'+model_name:['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)']}) 
- 
+#    nuisances['btag']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)']}) 
  
 
 nuisances['tttwTh']  = {
@@ -965,7 +1041,15 @@ nuisances['tttwTh']  = {
                 
 }
   
-  
+nuisances['TopPS']  = {
+                'name'  : 'TopPS',   # Theory uncertainty
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples' : {
+                     'top'  : ['(1+0.000067*mTi*0.5)','1/(1+0.000067*mTi*0.5)']
+                }
+
+} 
   
 # DY pt corrections
 #nuisances['DYptRew']  = {
@@ -1024,7 +1108,7 @@ for m in masses:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['trigg']['samples'].update({'ggH_hww_'+m+'_'+model_name:['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)']})
     nuisances['trigg']['samples'].update({'qqH_hww_'+m+'_'+model_name:['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)']})
-
+#    nuisances['trigg']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)']})
 
 #nuisances['idiso']  = {
 #                'name'  : 'idiso',
@@ -1085,6 +1169,7 @@ for m in masses:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['idiso_ele']['samples'].update({'ggH_hww_'+m+'_'+model_name:['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))']})
     nuisances['idiso_ele']['samples'].update({'qqH_hww_'+m+'_'+model_name:['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))']})
+#    nuisances['idiso_ele']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))']})
                
 
 nuisances['idiso_mu']  = {
@@ -1120,7 +1205,7 @@ for m in masses:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['idiso_mu']['samples'].update({'ggH_hww_'+m+'_'+model_name:['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))']})
     nuisances['idiso_mu']['samples'].update({'qqH_hww_'+m+'_'+model_name:['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))']})
-
+#    nuisances['idiso_mu']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))']})
 # nuisances handled by means of a different set of trees
 
 
@@ -1161,7 +1246,7 @@ for m in masses:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['jes']['samples'].update({'ggH_hww_'+m+'_'+model_name:['1', '1']})
     nuisances['jes']['samples'].update({'qqH_hww_'+m+'_'+model_name:['1', '1']})
-
+#    nuisances['jes']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:['1', '1']})
 
 
 
@@ -1200,7 +1285,7 @@ for m in masses:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['electronpt']['samples'].update({'ggH_hww_'+m+'_'+model_name:['1', '1']})
     nuisances['electronpt']['samples'].update({'qqH_hww_'+m+'_'+model_name:['1', '1']})
-                
+#    nuisances['electronpt']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:['1', '1']})                
      
 nuisances['muonpt']  = {
                 'name'  : 'scale_m', 
@@ -1238,6 +1323,7 @@ for m in masses:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['muonpt']['samples'].update({'ggH_hww_'+m+'_'+model_name:['1', '1']})
     nuisances['muonpt']['samples'].update({'qqH_hww_'+m+'_'+model_name:['1', '1']})
+#    nuisances['muonpt']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:['1', '1']})
 
 nuisances['met']  = {
                 'name'  : 'scale_met', 
@@ -1274,7 +1360,7 @@ for m in masses:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['met']['samples'].update({'ggH_hww_'+m+'_'+model_name:['1', '1']})
     nuisances['met']['samples'].update({'qqH_hww_'+m+'_'+model_name:['1', '1']})
-
+#    nuisances['met']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:['1', '1']})
                 
                 
 # statistical fluctuation
