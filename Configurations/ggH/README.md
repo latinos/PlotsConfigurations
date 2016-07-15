@@ -63,10 +63,19 @@ Auto tests:
     cat ../result.MaxLikelihoodFit.superCombination.2015.txt.pruned.txt
     cat ../result.Significance.superCombination.2015.txt.pruned.txt
     
+    root -l ../higgsCombineLHScanHICHEP2015combined.MultiDimFit.mH125.root  \
+            scripts/drawNLL.C
+    
+
     
     cd ..
     sh ggH/scripts/doGGH_doMultisignal.sh
     cd -
+    
+    
+    r99t ../higgsCombineTest.MultiDimFit.mH120.root \
+        scripts/Draw2D.cxx
+    
     
     
 Make tables:
