@@ -10,11 +10,11 @@ variables['events']  = {   'name': '1',
                          'fold' : 3
                         }
 
-variables['met']  = {   'name': 'metPfType1',            #   variable name    
-                        'range' : (20,0,200),    #   variable range
-                        'xaxis' : 'pfmet [GeV]',  #   x axis name
-                        'fold' : 0
-                        }
+#variables['met']  = {   'name': 'metPfType1',            #   variable name    
+#                        'range' : (20,0,200),    #   variable range
+#                        'xaxis' : 'pfmet [GeV]',  #   x axis name
+#                        'fold' : 0
+#                        }
 
 #variables['drllmin3l']  = {   'name': 'drllmin3l',            #   variable name    
 #                        'range' : (3,0,4),    #   variable range

@@ -7,7 +7,7 @@ tag = 'WH3l'
 outputDir = 'rootFiles_WH_CR'
 
 # file with list of variables
-variablesFile = 'variables_checks.py'
+variablesFile = 'variables.py'
 
 
 # file with list of cuts
