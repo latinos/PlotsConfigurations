@@ -79,7 +79,7 @@ def getXsec(mass,process,model):
 def plotLimitModels(mass,models,cats):
 
 
-        directory = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combineFrozen_r-10+10/"
+        directory = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combineFrozen_INT/"
 
         for cat in cats:
 
@@ -101,7 +101,10 @@ def plotLimitModels(mass,models,cats):
             xerr = array("d")
 
             count+=1
-            modelName = model.replace("c","c'= ").replace("0","0.").replace("brn"," BR_{new} = ").replace("0.0.","0.0").replace("10.","1.0")
+#            modelName = model.replace("c","c'= ").replace("0","0.").replace("brn"," BR_{new} = ").replace("0.0.","0.0").replace("10.","1.0")
+            modelName = model.replace("brn00","").replace("c","c'= ").replace("0","0.").replace("10.","1.0")
+
+
 	    for m in masses:
 
 	          xsec_ggH = getXsec(m,"ggH",model)
@@ -137,7 +140,7 @@ def plotLimitModels(mass,models,cats):
 
         a=raw_input()
 
-masses = ["200","250","300","350","400","450","500","550","600","650","700","750","800","900","1000"]
+masses = ["200","210","230","250","300","350","400","450","500","550","600","650","700","750","800","900","1000"]
 models = ["c03brn00","c05brn00","c07brn00","c10brn00"]
 #cats = ["2jet"]
 #cats= ["0jet","1jet","2jet","01jet","all"]  ## "0j" or "1j" or "2j" or "01j" or "all"

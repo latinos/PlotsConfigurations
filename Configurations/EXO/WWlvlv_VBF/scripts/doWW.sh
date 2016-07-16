@@ -1,10 +1,10 @@
 
-workdir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combineFrozen_r-10+10
-datacardDir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/datacards_27-06-16
+workdir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combineUNBLIND
+datacardDir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/datacards_UNBLIND
 
-variable=mTi
-variableVBF=mTi
-#variableVBF=mllVSmtiVBF
+variable0j=mTi
+variable1j=mTi
+variableVBF=mTi_VBF
 
 cd $workdir
 
@@ -23,11 +23,15 @@ cat ${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.txt | grep -v "_ZH
 cp ${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.txt ${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.orig.txt
 mv ${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.pruned.txt ${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.txt
 
+#cat ${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.txt | grep -v "ggH_hww_INT" &> ${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.pruned.txt
+#cp ${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.txt ${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.orig.txt
+#mv ${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.pruned.txt ${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.txt
+
 
 # combine datacards
  
-combineCards.py   of1j=${datacardDir}/hwwhm_13TeV_of_1j/${variable}/datacard.txt \
-                  of0j=${datacardDir}/hwwhm_13TeV_of_0j/${variable}/datacard.txt \
+combineCards.py   of1j=${datacardDir}/hwwhm_13TeV_of_1j/${variable1j}/datacard.txt \
+                  of0j=${datacardDir}/hwwhm_13TeV_of_0j/${variable0j}/datacard.txt \
                   ofVBF=${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.txt \
                   of0jTop=${datacardDir}/hww2l2v_13TeV_top_of0j/events/datacard.txt \
                   of1jTop=${datacardDir}/hww2l2v_13TeV_top_of1j/events/datacard.txt \
@@ -37,8 +41,8 @@ combineCards.py   of1j=${datacardDir}/hwwhm_13TeV_of_1j/${variable}/datacard.txt
                   of2jDYtt=${datacardDir}/hww2l2v_13TeV_dytt_of2j/events/datacard.txt \
                   >   ICHEP2016.txt
 
-combineCards.py   of1j=${datacardDir}/hwwhm_13TeV_of_1j/${variable}/datacard.txt \
-                  of0j=${datacardDir}/hwwhm_13TeV_of_0j/${variable}/datacard.txt \
+combineCards.py   of1j=${datacardDir}/hwwhm_13TeV_of_1j/${variable1j}/datacard.txt \
+                  of0j=${datacardDir}/hwwhm_13TeV_of_0j/${variable0j}/datacard.txt \
                   of0jTop=${datacardDir}/hww2l2v_13TeV_top_of0j/events/datacard.txt \
                   of1jTop=${datacardDir}/hww2l2v_13TeV_top_of1j/events/datacard.txt \
                   of0jDYtt=${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.txt \
@@ -46,12 +50,12 @@ combineCards.py   of1j=${datacardDir}/hwwhm_13TeV_of_1j/${variable}/datacard.txt
                   >   ICHEP2016.01jet.txt
 
 
-combineCards.py   of1j=${datacardDir}/hwwhm_13TeV_of_1j/${variable}/datacard.txt \
+combineCards.py   of1j=${datacardDir}/hwwhm_13TeV_of_1j/${variable1j}/datacard.txt \
                   of1jTop=${datacardDir}/hww2l2v_13TeV_top_of1j/events/datacard.txt \
                   of1jDYtt=${datacardDir}/hww2l2v_13TeV_dytt_of1j/events/datacard.txt \
                   >   ICHEP2016.1jet.txt
 
-combineCards.py   of0j=${datacardDir}/hwwhm_13TeV_of_0j/${variable}/datacard.txt \
+combineCards.py   of0j=${datacardDir}/hwwhm_13TeV_of_0j/${variable0j}/datacard.txt \
                   of0jTop=${datacardDir}/hww2l2v_13TeV_top_of0j/events/datacard.txt \
                   of0jDYtt=${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.txt \
                   >   ICHEP2016.0jet.txt

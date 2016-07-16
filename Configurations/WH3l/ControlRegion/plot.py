@@ -39,16 +39,16 @@ groupPlot['WW']  = {
                   'samples'  : ['WW']
               }
 
-#groupPlot['VVV']  = {  
-#                  'nameHR' : 'VVV',
-#                  'isSignal' : 0,
-#                  'color': 857, # kAzure -3  
-#                  'samples'  : ['VVV']
-#              }
+groupPlot['VVV']  = {  
+                  'nameHR' : 'VVV',
+                  'isSignal' : 0,
+                  'color': 857, # kAzure -3  
+                  'samples'  : ['VVV']
+              }
 
 
 groupPlot['Vg']  = {
-                  'nameHR' : 'Vg',
+                  'nameHR' : 'Zg',
                   'color': 859, # kAzure -1  
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -82,7 +82,8 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  'samples'  : ['H_htt', 'WH_hww', 'ZH_hww', 'ggZH_hww']
+#                  'samples'  : ['WH_htt', 'WH_hww', 'ZH_hww', 'ggZH_hww']
+                  'samples'  : ['WH_hww', 'ZH_hww', 'ggZH_hww']
               }
 
 
@@ -243,12 +244,12 @@ plot['ZZ']  = {
                   }
 
 
-#plot['VVV']  = { 
-#                  'color': 857, # kAzure -3  
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.0
-#                  }
+plot['VVV']  = { 
+                  'color': 857, # kAzure -3  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
 
 
 #plot['ZZ']  = {
@@ -262,13 +263,13 @@ plot['ZZ']  = {
 
 # Htautau
 
-plot['H_htt'] = {
-                  'nameHR' : 'Htt',
-                  'color': 632+4, # kRed+4 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
+#plot['WH_htt'] = {
+#                  'nameHR' : 'WHtt',
+#                  'color': 632+4, # kRed+4 
+#                  'isSignal' : 1,
+#                  'isData'   : 0,    
+#                  'scale'    : 1    #
+#                  }
 
 # HWW 
 
@@ -328,8 +329,8 @@ plot['DATA']  = {
                   'nameHR' : 'Data',
                   'color': 1 ,  
                   'isSignal' : 0,
-                  'isData'   : 1 ,
-  #                'isBlind'  : 1
+                  'isData'   : 1 
+#                  'isBlind'  : 1
               }
 
 
@@ -338,7 +339,7 @@ plot['DATA']  = {
 # additional options
 
 # legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
-legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
+legend['lumi'] = 'L = 4.3/fb' # 4.337 fb-1
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 

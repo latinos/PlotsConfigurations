@@ -78,19 +78,19 @@ plot['DY']  = {
                   'cuts'  : {
                        'hww2l2v_13TeV_of0j'      : 0.95 ,
                        'hww2l2v_13TeV_top_of0j'  : 0.95 , 
-                       'hww2l2v_13TeV_dytt_of0j' : 1.63 ,
+                       'hww2l2v_13TeV_dytt_of0j' : 0.99 ,
                        'hww2l2v_13TeV_em_0j'     : 0.95 , 
                        'hww2l2v_13TeV_me_0j'     : 0.95 , 
                        #
                        'hww2l2v_13TeV_of1j'      : 1.08 ,
                        'hww2l2v_13TeV_top_of1j'  : 1.08 , 
-                       'hww2l2v_13TeV_dytt_of1j' : 0.98 ,
+                       'hww2l2v_13TeV_dytt_of1j' : 0.90 ,
                        'hww2l2v_13TeV_em_1j'     : 1.08 , 
                        'hww2l2v_13TeV_me_1j'     : 1.08 , 
                        #
                        'hww2l2v_13TeV_of2j'      : 1.00 ,
                        'hww2l2v_13TeV_top_of2j'  : 1.00 , 
-                       'hww2l2v_13TeV_dytt_of2j' : 1.00 ,
+                       'hww2l2v_13TeV_dytt_of2j' : 1.10 ,
                        'hww2l2v_13TeV_em_2j'     : 1.00 , 
                        'hww2l2v_13TeV_me_2j'     : 1.00 , 
                         },
@@ -323,7 +323,7 @@ plot['DATA']  = {
 # additional options
 
 # legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
-legend['lumi'] = 'L = 0.8/fb' # 2.318 fb-1
+legend['lumi'] = 'L = 4.3/fb' # 2.318 fb-1
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 
