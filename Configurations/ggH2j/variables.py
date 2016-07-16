@@ -18,61 +18,69 @@ variables['mjj']  = {  'name': 'mjj',
                        'fold': 3
                        }
 
-variables['mll']  = {   'name': 'mll',            #   variable name
-                        'range' : (4, 0,200),    #   variable range
-                        #'range' : (7,10,210),    #   variable range
-                      # 'range' : (12,90,300),    #   control region: mll > 90
-                        'xaxis' : 'mll [GeV]',  #   x axis name
-                        'fold' : 3
-                        }
+#variables['mll']  = {   'name': 'mll',            #   variable name
+                        #'range' : (4, 0,200),    #   variable range
+                        ##'range' : (7,10,210),    #   variable range
+                      ## 'range' : (12,90,300),    #   control region: mll > 90
+                        #'xaxis' : 'mll [GeV]',  #   x axis name
+                        #'fold' : 3
+                        #}
 
-variables['detajj']  = {  'name': 'detajj',
-                       'range': (7,0.0,3.5),
-                     # 'range': (10,3.5,8.5),
-                       'xaxis': 'detajj',
-                       'fold': 3
-                       }
-
-variables['ptll']  = {  'name': 'ptll',            #   variable name
-                        'range' : (20,30,200),    #   variable range
-                        'xaxis' : 'ptll [GeV]',  #   x axis name
-                        'fold' : 3
-                        }
-
-
-variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
-                        'range' : (40,0,100),   
-                        'xaxis' : 'p_{T} 1st lep',
-                        'fold'  : 3                         
-                        }
-
-variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
-                        'range' : (40,0,100),   
-                        'xaxis' : 'p_{T} 2nd lep',
-                        'fold'  : 3                         
-                        }
-
-
-variables['drll']  = {   'name': 'drll',     
-                        'range' : (40,0,3.15),   
-                        'xaxis' : '#Delta R_{ll}',
-                        'fold'  : 3                         
-                        }
-
-                        
-variables['met']  = {   'name': 'pfType1Met',            #   variable name    
-                        'range' : (20,0,200),    #   variable range
-                        'xaxis' : 'pfmet [GeV]',  #   x axis name
+  
+variables['mll']  = {   'name': 'mll',            #   variable name    
+                        'range' : (20,10,200),    #   variable range
+                        'xaxis' : 'm_{ll} [GeV]',  #   x axis name
                          'fold' : 0
                         }
 
 
+#variables['detajj']  = {  'name': 'detajj',
+                       #'range': (7,0.0,3.5),
+                     ## 'range': (10,3.5,8.5),
+                       #'xaxis': 'detajj',
+                       #'fold': 3
+                       #}
+
+#variables['ptll']  = {  'name': 'ptll',            #   variable name
+                        #'range' : (20,30,200),    #   variable range
+                        #'xaxis' : 'ptll [GeV]',  #   x axis name
+                        #'fold' : 3
+                        #}
+
+
+#variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
+                        #'range' : (40,0,100),   
+                        #'xaxis' : 'p_{T} 1st lep',
+                        #'fold'  : 3                         
+                        #}
+
+#variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
+                        #'range' : (40,0,100),   
+                        #'xaxis' : 'p_{T} 2nd lep',
+                        #'fold'  : 3                         
+                        #}
+
+
+#variables['drll']  = {   'name': 'drll',     
+                        #'range' : (40,0,3.15),   
+                        #'xaxis' : '#Delta R_{ll}',
+                        #'fold'  : 3                         
+                        #}
+
                         
-variables['mpmet']  = {   'name': 'mpmet',            #   variable name    
-                        'range' : (20,0,200),    #   variable range
-                        'xaxis' : 'mpmet [GeV]',  #   x axis name
-                         'fold' : 0
-                        }
+#variables['met']  = {   'name': 'pfType1Met',            #   variable name    
+                        #'range' : (20,0,200),    #   variable range
+                        #'xaxis' : 'pfmet [GeV]',  #   x axis name
+                         #'fold' : 0
+                        #}
+
+
+                        
+#variables['mpmet']  = {   'name': 'mpmet',            #   variable name    
+                        #'range' : (20,0,200),    #   variable range
+                        #'xaxis' : 'mpmet [GeV]',  #   x axis name
+                         #'fold' : 0
+                        #}
 
 
 
