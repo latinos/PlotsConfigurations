@@ -1,6 +1,6 @@
 # mkShapes.py      --pycfg=configuration.py  --inputDir=/u/user/sangilpark/Latino_CernBox/80Xv2/07Jun2016_spring16__mAODv2/MCl2loose16__hadd__LepEff__l2tight/
- mkShapes.py      --pycfg=myConfiguration.py  --inputDir=XYshift/
-
+# mkShapes.py      --pycfg=myConfiguration.py  --inputDir=XYshift/
+mkShapes.py --pycfg=configuration.py --inputDir=eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/
 
 
 #mkdir rootFile

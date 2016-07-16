@@ -11,13 +11,13 @@ plot['DY']  = {
                   'scale'    : 1.0
               }
 
-plot['DY10to50']  = {  
-                  'color': 418,    # kGreen+2
-                  'isSignal' : 0,
-                  'isData'   : 0, 
-                  'scale'    : 1.0
-              }
-
+#plot['DY10to50']  = {  
+#                  'color': 418,    # kGreen+2
+#                  'isSignal' : 0,
+#                  'isData'   : 0, 
+#                  'scale'    : 1.0
+#              }
+#
                
 plot['Wjets']  = {  
                   'color': 921,    # kGray + 1
@@ -33,7 +33,7 @@ plot['Fake']  = {
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 5.41   # 4.3/0.8               
+                  'scale'    : 1.0   # 4.3/0.8               
               }
                
 plot['WJetsLNu']  = {  
@@ -122,7 +122,7 @@ plot['WgSEE']  = {
                   'color': 616-1, # kMagenta-1
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 2.0
+                  'scale'    : 12.0
                   }
 
 
@@ -133,7 +133,7 @@ plot['WgSMuMu']  = {
                   'color': 600, # kBlue 
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 2.0
+                  'scale'    : 12.0
                   }
 
 
@@ -273,7 +273,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1,
+                  'isBlind'  : 0,
               }
 
 
