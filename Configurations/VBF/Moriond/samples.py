@@ -120,7 +120,7 @@ samples['WWewk']  = {    'name': [
                                 ],      
                       'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
                       'weights': [
-                          '1',
+                          '(lhe_mlvlv > 130)',
                           '-1'
                           ] ,           
                   }

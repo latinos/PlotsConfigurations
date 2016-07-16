@@ -5,16 +5,17 @@ eval `scramv1 runtime -sh`
 cd -
 
 
+# all 2015 data
 
 text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
-                   --PO 'map=.*/ggH_hww:muGGH[1,-3,3]' --PO 'map=.*/qqH_hww,WH_hww,ZH_hww:muVBF[1,-3,3]'  \
-                   superCombination.v1.txt.pruned.txt  -o  workspace.superCombination.v1.txt.pruned.txt.root
+                   --PO 'map=.*/ggH_hww,ggZH_hww,H_htt:muGGH[1,-3,3]' --PO 'map=.*/qqH_hww,WH_hww,ZH_hww:muVBF[1,-4,5]'  \
+                   superCombination.2015.txt.pruned.txt  -o  workspace.superCombination.2015.txt.pruned.txt.root
                    
                    
 combine -M MultiDimFit -t -1 \
      --setPhysicsModelParameters    muGGH=1,muVBF=1 \
-     --algo=grid --points=100  \
-     workspace.superCombination.v1.txt.pruned.txt.root            >   result.MultiDimFit.grid.workspace.superCombination.v1.txt.pruned.txt
+     --algo=grid --points=300  \
+     workspace.superCombination.2015.txt.pruned.txt.root            >   result.MultiDimFit.grid.workspace.superCombination.2015.txt.pruned.txt
 
      
 # plot

@@ -63,17 +63,17 @@ nuisances['QCDscale_ggH0j']  = {
                    },
                'type'  : 'lnN',
                'cuts'  : [
-                 'hww2l2v_ICHEP_13TeV_of0j',
-                 'hww2l2v_ICHEP_13TeV_top_of0j',
-                 'hww2l2v_ICHEP_13TeV_dytt_of0j',
+                 'hww2l2v_13TeV_of0j',
+                 'hww2l2v_13TeV_top_of0j',
+                 'hww2l2v_13TeV_dytt_of0j',
 #                 
-                 'hww2l2v_ICHEP_13TeV_me_0j',
-                 'hww2l2v_ICHEP_13TeV_em_0j',
+                 'hww2l2v_13TeV_me_0j',
+                 'hww2l2v_13TeV_em_0j',
 #
-                 'hww2l2v_ICHEP_13TeV_me_mp_0j',
-                 'hww2l2v_ICHEP_13TeV_me_pm_0j',
-                 'hww2l2v_ICHEP_13TeV_em_mp_0j',
-                 'hww2l2v_ICHEP_13TeV_em_pm_0j',
+                 'hww2l2v_13TeV_me_mp_0j',
+                 'hww2l2v_13TeV_me_pm_0j',
+                 'hww2l2v_13TeV_em_mp_0j',
+                 'hww2l2v_13TeV_em_pm_0j',
 #                 
                 ]               
               }
@@ -86,17 +86,17 @@ nuisances['QCDscale_ggH1j_in0jet']  = {
                    },
                'type'  : 'lnN',
                'cuts'  : [
-                 'hww2l2v_ICHEP_13TeV_of0j',
-                 'hww2l2v_ICHEP_13TeV_top_of0j',
-                 'hww2l2v_ICHEP_13TeV_dytt_of0j'              
+                 'hww2l2v_13TeV_of0j',
+                 'hww2l2v_13TeV_top_of0j',
+                 'hww2l2v_13TeV_dytt_of0j'              
 #                 
-                 'hww2l2v_ICHEP_13TeV_me_0j',
-                 'hww2l2v_ICHEP_13TeV_em_0j',
+                 'hww2l2v_13TeV_me_0j',
+                 'hww2l2v_13TeV_em_0j',
 #
-                 'hww2l2v_ICHEP_13TeV_me_mp_0j',
-                 'hww2l2v_ICHEP_13TeV_me_pm_0j',
-                 'hww2l2v_ICHEP_13TeV_em_mp_0j',
-                 'hww2l2v_ICHEP_13TeV_em_pm_0j',
+                 'hww2l2v_13TeV_me_mp_0j',
+                 'hww2l2v_13TeV_me_pm_0j',
+                 'hww2l2v_13TeV_em_mp_0j',
+                 'hww2l2v_13TeV_em_pm_0j',
 #                 
                 ]
               }
@@ -110,17 +110,17 @@ nuisances['QCDscale_ggH1j_in1jet']  = {
                    },
                'type'  : 'lnN',
                'cuts'  : [
-                 'hww2l2v_ICHEP_13TeV_of1j',
-                 'hww2l2v_ICHEP_13TeV_top_of1j',
-                 'hww2l2v_ICHEP_13TeV_dytt_of1j'              
+                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_top_of1j',
+                 'hww2l2v_13TeV_dytt_of1j'              
 #                 
-                 'hww2l2v_ICHEP_13TeV_me_1j',
-                 'hww2l2v_ICHEP_13TeV_em_1j',
+                 'hww2l2v_13TeV_me_1j',
+                 'hww2l2v_13TeV_em_1j',
 #
-                 'hww2l2v_ICHEP_13TeV_me_mp_1j',
-                 'hww2l2v_ICHEP_13TeV_me_pm_1j',
-                 'hww2l2v_ICHEP_13TeV_em_mp_1j',
-                 'hww2l2v_ICHEP_13TeV_em_pm_1j',
+                 'hww2l2v_13TeV_me_mp_1j',
+                 'hww2l2v_13TeV_me_pm_1j',
+                 'hww2l2v_13TeV_em_mp_1j',
+                 'hww2l2v_13TeV_em_pm_1j',
 #                 
                 ]
               }
@@ -134,17 +134,17 @@ nuisances['QCDscale_ggH2j_in1jet']  = {
                    },
                'type'  : 'lnN',
                'cuts'  : [
-                 'hww2l2v_ICHEP_13TeV_of1j',
-                 'hww2l2v_ICHEP_13TeV_top_of1j',
-                 'hww2l2v_ICHEP_13TeV_dytt_of1j'              
+                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_top_of1j',
+                 'hww2l2v_13TeV_dytt_of1j'              
 #                 
-                 'hww2l2v_ICHEP_13TeV_me_1j',
-                 'hww2l2v_ICHEP_13TeV_em_1j',
+                 'hww2l2v_13TeV_me_1j',
+                 'hww2l2v_13TeV_em_1j',
 #
-                 'hww2l2v_ICHEP_13TeV_me_mp_1j',
-                 'hww2l2v_ICHEP_13TeV_me_pm_1j',
-                 'hww2l2v_ICHEP_13TeV_em_mp_1j',
-                 'hww2l2v_ICHEP_13TeV_em_pm_1j',
+                 'hww2l2v_13TeV_me_mp_1j',
+                 'hww2l2v_13TeV_me_pm_1j',
+                 'hww2l2v_13TeV_em_mp_1j',
+                 'hww2l2v_13TeV_em_pm_1j',
 #                 
                 ]
               }
@@ -158,17 +158,17 @@ nuisances['QCDscale_ggH2j_in2jet']  = {
                    },
                'type'  : 'lnN',
                'cuts'  : [
-                 'hww2l2v_ICHEP_13TeV_of2j',
-                 'hww2l2v_ICHEP_13TeV_top_of2j',
-                 'hww2l2v_ICHEP_13TeV_dytt_of2j'              
+                 'hww2l2v_13TeV_of2j',
+                 'hww2l2v_13TeV_top_of2j',
+                 'hww2l2v_13TeV_dytt_of2j'              
 #                 
-                 'hww2l2v_ICHEP_13TeV_me_2j',
-                 'hww2l2v_ICHEP_13TeV_em_2j',
+                 'hww2l2v_13TeV_me_2j',
+                 'hww2l2v_13TeV_em_2j',
 #
-                 'hww2l2v_ICHEP_13TeV_me_mp_2j',
-                 'hww2l2v_ICHEP_13TeV_me_pm_2j',
-                 'hww2l2v_ICHEP_13TeV_em_mp_2j',
-                 'hww2l2v_ICHEP_13TeV_em_pm_2j',
+                 'hww2l2v_13TeV_me_mp_2j',
+                 'hww2l2v_13TeV_me_pm_2j',
+                 'hww2l2v_13TeV_em_mp_2j',
+                 'hww2l2v_13TeV_em_pm_2j',
 #                 
                 ]
               }
@@ -366,17 +366,17 @@ nuisances['WWresum0j']  = {
                    'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
                    },
                'cuts'  : [
-                 'hww2l2v_ICHEP_13TeV_of0j',
-                 'hww2l2v_ICHEP_13TeV_top_of0j',
-                 'hww2l2v_ICHEP_13TeV_dytt_of0j',
+                 'hww2l2v_13TeV_of0j',
+                 'hww2l2v_13TeV_top_of0j',
+                 'hww2l2v_13TeV_dytt_of0j',
 #                 
-                 'hww2l2v_ICHEP_13TeV_me_0j',
-                 'hww2l2v_ICHEP_13TeV_em_0j',
+                 'hww2l2v_13TeV_me_0j',
+                 'hww2l2v_13TeV_em_0j',
 #
-                 'hww2l2v_ICHEP_13TeV_me_mp_0j',
-                 'hww2l2v_ICHEP_13TeV_me_pm_0j',
-                 'hww2l2v_ICHEP_13TeV_em_mp_0j',
-                 'hww2l2v_ICHEP_13TeV_em_pm_0j',
+                 'hww2l2v_13TeV_me_mp_0j',
+                 'hww2l2v_13TeV_me_pm_0j',
+                 'hww2l2v_13TeV_em_mp_0j',
+                 'hww2l2v_13TeV_em_pm_0j',
 #                 
                 ]               
                 
@@ -391,17 +391,17 @@ nuisances['WWresum1j']  = {
                    'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
                    },
                'cuts'  : [
-                 'hww2l2v_ICHEP_13TeV_of1j',
-                 'hww2l2v_ICHEP_13TeV_top_of1j',
-                 'hww2l2v_ICHEP_13TeV_dytt_of1j',
+                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_top_of1j',
+                 'hww2l2v_13TeV_dytt_of1j',
 #                 
-                 'hww2l2v_ICHEP_13TeV_me_1j',
-                 'hww2l2v_ICHEP_13TeV_em_1j',
+                 'hww2l2v_13TeV_me_1j',
+                 'hww2l2v_13TeV_em_1j',
 #
-                 'hww2l2v_ICHEP_13TeV_me_mp_1j',
-                 'hww2l2v_ICHEP_13TeV_me_pm_1j',
-                 'hww2l2v_ICHEP_13TeV_em_mp_1j',
-                 'hww2l2v_ICHEP_13TeV_em_pm_1j',
+                 'hww2l2v_13TeV_me_mp_1j',
+                 'hww2l2v_13TeV_me_pm_1j',
+                 'hww2l2v_13TeV_em_mp_1j',
+                 'hww2l2v_13TeV_em_pm_1j',
 #                 
                 ]               
                 }
@@ -414,17 +414,17 @@ nuisances['WWqscale0j']  = {
                    'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
                    },
                'cuts'  : [
-                 'hww2l2v_ICHEP_13TeV_of0j',
-                 'hww2l2v_ICHEP_13TeV_top_of0j',
-                 'hww2l2v_ICHEP_13TeV_dytt_of0j',
+                 'hww2l2v_13TeV_of0j',
+                 'hww2l2v_13TeV_top_of0j',
+                 'hww2l2v_13TeV_dytt_of0j',
 #                 
-                 'hww2l2v_ICHEP_13TeV_me_0j',
-                 'hww2l2v_ICHEP_13TeV_em_0j',
+                 'hww2l2v_13TeV_me_0j',
+                 'hww2l2v_13TeV_em_0j',
 #
-                 'hww2l2v_ICHEP_13TeV_me_mp_0j',
-                 'hww2l2v_ICHEP_13TeV_me_pm_0j',
-                 'hww2l2v_ICHEP_13TeV_em_mp_0j',
-                 'hww2l2v_ICHEP_13TeV_em_pm_0j',
+                 'hww2l2v_13TeV_me_mp_0j',
+                 'hww2l2v_13TeV_me_pm_0j',
+                 'hww2l2v_13TeV_em_mp_0j',
+                 'hww2l2v_13TeV_em_pm_0j',
 #                 
                 ] 
                 }
@@ -438,17 +438,17 @@ nuisances['WWqscale1j']  = {
                    'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
                    },
                'cuts'  : [
-                 'hww2l2v_ICHEP_13TeV_of1j',
-                 'hww2l2v_ICHEP_13TeV_top_of1j',
-                 'hww2l2v_ICHEP_13TeV_dytt_of1j',
+                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_top_of1j',
+                 'hww2l2v_13TeV_dytt_of1j',
 #                 
-                 'hww2l2v_ICHEP_13TeV_me_1j',
-                 'hww2l2v_ICHEP_13TeV_em_1j',
+                 'hww2l2v_13TeV_me_1j',
+                 'hww2l2v_13TeV_em_1j',
 #
-                 'hww2l2v_ICHEP_13TeV_me_mp_1j',
-                 'hww2l2v_ICHEP_13TeV_me_pm_1j',
-                 'hww2l2v_ICHEP_13TeV_em_mp_1j',
-                 'hww2l2v_ICHEP_13TeV_em_pm_1j',
+                 'hww2l2v_13TeV_me_mp_1j',
+                 'hww2l2v_13TeV_me_pm_1j',
+                 'hww2l2v_13TeV_em_mp_1j',
+                 'hww2l2v_13TeV_em_pm_1j',
 #                 
                 ] 
                 }
@@ -566,45 +566,45 @@ nuisances['WgStarScale']  = {
  
 
 nuisances['DYttnorm0j']  = {
-               'name'  : 'DYttnorm0j', 
+               'name'  : 'ICHEP_DYttnorm0j', 
                'samples'  : {
                    'DY' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                 'hww2l2v_ICHEP_13TeV_of0j',
-                 'hww2l2v_ICHEP_13TeV_top_of0j',
-                 'hww2l2v_ICHEP_13TeV_dytt_of0j',
+                 'hww2l2v_13TeV_of0j',
+                 'hww2l2v_13TeV_top_of0j',
+                 'hww2l2v_13TeV_dytt_of0j',
 #                 
-                 'hww2l2v_ICHEP_13TeV_me_0j',
-                 'hww2l2v_ICHEP_13TeV_em_0j',
+                 'hww2l2v_13TeV_me_0j',
+                 'hww2l2v_13TeV_em_0j',
 #
-                 'hww2l2v_ICHEP_13TeV_me_mp_0j',
-                 'hww2l2v_ICHEP_13TeV_me_pm_0j',
-                 'hww2l2v_ICHEP_13TeV_em_mp_0j',
-                 'hww2l2v_ICHEP_13TeV_em_pm_0j',
+                 'hww2l2v_13TeV_me_mp_0j',
+                 'hww2l2v_13TeV_me_pm_0j',
+                 'hww2l2v_13TeV_em_mp_0j',
+                 'hww2l2v_13TeV_em_pm_0j',
 #                 
                 ]
               }
 
 nuisances['DYttnorm1j']  = {
-               'name'  : 'DYttnorm1j', 
+               'name'  : 'ICHEP_DYttnorm1j', 
                'samples'  : {
                    'DY' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                 'hww2l2v_ICHEP_13TeV_of1j',
-                 'hww2l2v_ICHEP_13TeV_top_of1j',
-                 'hww2l2v_ICHEP_13TeV_dytt_of1j',
+                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_top_of1j',
+                 'hww2l2v_13TeV_dytt_of1j',
 #                 
-                 'hww2l2v_ICHEP_13TeV_me_1j',
-                 'hww2l2v_ICHEP_13TeV_em_1j',
+                 'hww2l2v_13TeV_me_1j',
+                 'hww2l2v_13TeV_em_1j',
 #
-                 'hww2l2v_ICHEP_13TeV_me_mp_1j',
-                 'hww2l2v_ICHEP_13TeV_me_pm_1j',
-                 'hww2l2v_ICHEP_13TeV_em_mp_1j',
-                 'hww2l2v_ICHEP_13TeV_em_pm_1j',
+                 'hww2l2v_13TeV_me_mp_1j',
+                 'hww2l2v_13TeV_me_pm_1j',
+                 'hww2l2v_13TeV_em_mp_1j',
+                 'hww2l2v_13TeV_em_pm_1j',
 #                 
                 ]
               }
@@ -624,90 +624,90 @@ nuisances['DYttnorm1j']  = {
 # new style "free floating" background
 # e.g. " z_norm rateParam  htsearch zll 1 "
 nuisances['WWnorm0j']  = {
-               'name'  : 'WWnorm0j', 
+               'name'  : 'ICHEP_WWnorm0j', 
                'samples'  : {
                    'WW' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                 'hww2l2v_ICHEP_13TeV_of0j',
-                 'hww2l2v_ICHEP_13TeV_top_of0j',
-                 'hww2l2v_ICHEP_13TeV_dytt_of0j',              
+                 'hww2l2v_13TeV_of0j',
+                 'hww2l2v_13TeV_top_of0j',
+                 'hww2l2v_13TeV_dytt_of0j',              
 #                 
-                 'hww2l2v_ICHEP_13TeV_me_0j',
-                 'hww2l2v_ICHEP_13TeV_em_0j',
+                 'hww2l2v_13TeV_me_0j',
+                 'hww2l2v_13TeV_em_0j',
 #
-                 'hww2l2v_ICHEP_13TeV_me_mp_0j',
-                 'hww2l2v_ICHEP_13TeV_me_pm_0j',
-                 'hww2l2v_ICHEP_13TeV_em_mp_0j',
-                 'hww2l2v_ICHEP_13TeV_em_pm_0j',
+                 'hww2l2v_13TeV_me_mp_0j',
+                 'hww2l2v_13TeV_me_pm_0j',
+                 'hww2l2v_13TeV_em_mp_0j',
+                 'hww2l2v_13TeV_em_pm_0j',
 #                 
                 ]
               }
 
 nuisances['WWnorm1j']  = {
-               'name'  : 'WWnorm1j', 
+               'name'  : 'ICHEP_WWnorm1j', 
                'samples'  : {
                    'WW' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                 'hww2l2v_ICHEP_13TeV_of1j',
-                 'hww2l2v_ICHEP_13TeV_top_of1j',
-                 'hww2l2v_ICHEP_13TeV_dytt_of1j',              
+                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_top_of1j',
+                 'hww2l2v_13TeV_dytt_of1j',              
 #                 
-                 'hww2l2v_ICHEP_13TeV_me_1j',
-                 'hww2l2v_ICHEP_13TeV_em_1j',
+                 'hww2l2v_13TeV_me_1j',
+                 'hww2l2v_13TeV_em_1j',
 #
-                 'hww2l2v_ICHEP_13TeV_me_mp_1j',
-                 'hww2l2v_ICHEP_13TeV_me_pm_1j',
-                 'hww2l2v_ICHEP_13TeV_em_mp_1j',
-                 'hww2l2v_ICHEP_13TeV_em_pm_1j',
+                 'hww2l2v_13TeV_me_mp_1j',
+                 'hww2l2v_13TeV_me_pm_1j',
+                 'hww2l2v_13TeV_em_mp_1j',
+                 'hww2l2v_13TeV_em_pm_1j',
 #                 
                 ]
               }
 
 
 nuisances['Topnorm0j']  = {
-               'name'  : 'Topnorm0j', 
+               'name'  : 'ICHEP_Topnorm0j', 
                'samples'  : {
                    'top' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                 'hww2l2v_ICHEP_13TeV_of0j',
-                 'hww2l2v_ICHEP_13TeV_top_of0j',
-                 'hww2l2v_ICHEP_13TeV_dytt_of0j',              
+                 'hww2l2v_13TeV_of0j',
+                 'hww2l2v_13TeV_top_of0j',
+                 'hww2l2v_13TeV_dytt_of0j',              
 #                 
-                 'hww2l2v_ICHEP_13TeV_me_0j',
-                 'hww2l2v_ICHEP_13TeV_em_0j',
+                 'hww2l2v_13TeV_me_0j',
+                 'hww2l2v_13TeV_em_0j',
 #
-                 'hww2l2v_ICHEP_13TeV_me_mp_0j',
-                 'hww2l2v_ICHEP_13TeV_me_pm_0j',
-                 'hww2l2v_ICHEP_13TeV_em_mp_0j',
-                 'hww2l2v_ICHEP_13TeV_em_pm_0j',
+                 'hww2l2v_13TeV_me_mp_0j',
+                 'hww2l2v_13TeV_me_pm_0j',
+                 'hww2l2v_13TeV_em_mp_0j',
+                 'hww2l2v_13TeV_em_pm_0j',
 #                 
                 ]
               }
 
 nuisances['Topnorm1j']  = {
-               'name'  : 'Topnorm1j', 
+               'name'  : 'ICHEP_Topnorm1j', 
                'samples'  : {
                    'top' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                 'hww2l2v_ICHEP_13TeV_of1j',
-                 'hww2l2v_ICHEP_13TeV_top_of1j',
-                 'hww2l2v_ICHEP_13TeV_dytt_of1j',              
+                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_top_of1j',
+                 'hww2l2v_13TeV_dytt_of1j',              
 #                 
-                 'hww2l2v_ICHEP_13TeV_me_1j',
-                 'hww2l2v_ICHEP_13TeV_em_1j',
+                 'hww2l2v_13TeV_me_1j',
+                 'hww2l2v_13TeV_em_1j',
 #
-                 'hww2l2v_ICHEP_13TeV_me_mp_1j',
-                 'hww2l2v_ICHEP_13TeV_me_pm_1j',
-                 'hww2l2v_ICHEP_13TeV_em_mp_1j',
-                 'hww2l2v_ICHEP_13TeV_em_pm_1j',
+                 'hww2l2v_13TeV_me_mp_1j',
+                 'hww2l2v_13TeV_me_pm_1j',
+                 'hww2l2v_13TeV_em_mp_1j',
+                 'hww2l2v_13TeV_em_pm_1j',
 #                 
                 ]
               }
@@ -800,7 +800,7 @@ nuisances['fake_syst']  = {
 # FIXME : restore it once we have the niusance ready                                 
   
 nuisances['btag']  = {
-                'name'  : 'btag',
+                'name'  : 'ICHEP_btag',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -989,110 +989,110 @@ nuisances['idiso_mu']  = {
 
 # FIXME : restore it once we have the niusance ready                                 
 
-nuisances['jes']  = {
-                'name'  : 'scale_j', 
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : {
-                   'ggWW' :['1', '1'],
-                   'WW' :  ['1', '1'],
-                   'DY' :  ['1', '1'],
-                   'top' : ['1', '1'],
-                   'VZ' :  ['1', '1'],
-                   'VVV' : ['1', '1'],
-                   'ggH_hww' : ['1', '1'],
-                   'qqH_hww' : ['1', '1'],
-                   'WH_hww' :  ['1', '1'],
-                   'ZH_hww' :  ['1', '1'],
-                   'ggZH_hww' :  ['1', '1'],
-                   'H_hww'  :  ['1', '1'],
-                   'H_htt'  : ['1', '1'],
-                   'Vg' : ['1', '1'],
-                   'VgS': ['1', '1'],
-                },
+#nuisances['jes']  = {
+                #'name'  : 'scale_j', 
+                #'kind'  : 'tree',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'ggWW' :['1', '1'],
+                   #'WW' :  ['1', '1'],
+                   #'DY' :  ['1', '1'],
+                   #'top' : ['1', '1'],
+                   #'VZ' :  ['1', '1'],
+                   #'VVV' : ['1', '1'],
+                   #'ggH_hww' : ['1', '1'],
+                   #'qqH_hww' : ['1', '1'],
+                   #'WH_hww' :  ['1', '1'],
+                   #'ZH_hww' :  ['1', '1'],
+                   #'ggZH_hww' :  ['1', '1'],
+                   #'H_hww'  :  ['1', '1'],
+                   #'H_htt'  : ['1', '1'],
+                   #'Vg' : ['1', '1'],
+                   #'VgS': ['1', '1'],
+                #},
 
-                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/',
-                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/' 
+                #'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/',
+                #'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/' 
 
-                #'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/',
-                #'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/' 
-                #'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup/',
-                #'folderDown' : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo/' 
-                #'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESup/',
-                #'folderDown' : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESdo/' 
-                #'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESup__wwSel/',
-                #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESdo__wwSel/' 
-}
+                ##'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/',
+                ##'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/' 
+                ##'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup/',
+                ##'folderDown' : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo/' 
+                ##'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESup/',
+                ##'folderDown' : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESdo/' 
+                ##'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESup__wwSel/',
+                ##'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESdo__wwSel/' 
+#}
 
 
 
 
 # FIXME : restore it once we have the niusance ready                                 
 
-nuisances['electronpt']  = {
-                'name'  : 'scale_e', 
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : {
-                   'ggWW' :['1', '1'],
-                   'WW' :  ['1', '1'],
-                   'DY' :  ['1', '1'],
-                   'top' : ['1', '1'],
-                   'VZ' :  ['1', '1'],
-                   'VVV' : ['1', '1'],
-                   'ggH_hww' : ['1', '1'],
-                   'qqH_hww' : ['1', '1'],
-                   'WH_hww'  :  ['1', '1'],
-                   'ZH_hww'  :  ['1', '1'],
-                   'ggZH_hww':  ['1', '1'],
-                   'H_hww'   :  ['1', '1'],
-                   'H_htt'   : ['1', '1'],
-                   'Vg' : ['1', '1'],
-                   'VgS': ['1', '1'],
-                },
-                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/',
-                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/' 
-                #'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/',
-                #'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/' 
-                #'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup/',
-                #'folderDown' : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo/' 
-                #'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/',
-                #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/' 
-}
+#nuisances['electronpt']  = {
+                #'name'  : 'scale_e', 
+                #'kind'  : 'tree',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'ggWW' :['1', '1'],
+                   #'WW' :  ['1', '1'],
+                   #'DY' :  ['1', '1'],
+                   #'top' : ['1', '1'],
+                   #'VZ' :  ['1', '1'],
+                   #'VVV' : ['1', '1'],
+                   #'ggH_hww' : ['1', '1'],
+                   #'qqH_hww' : ['1', '1'],
+                   #'WH_hww'  :  ['1', '1'],
+                   #'ZH_hww'  :  ['1', '1'],
+                   #'ggZH_hww':  ['1', '1'],
+                   #'H_hww'   :  ['1', '1'],
+                   #'H_htt'   : ['1', '1'],
+                   #'Vg' : ['1', '1'],
+                   #'VgS': ['1', '1'],
+                #},
+                #'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/',
+                #'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/' 
+                ##'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/',
+                ##'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/' 
+                ##'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup/',
+                ##'folderDown' : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo/' 
+                ##'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/',
+                ##'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/' 
+#}
                 
-# FIXME : restore it once we have the niusance ready                                 
+## FIXME : restore it once we have the niusance ready                                 
    
-nuisances['muonpt']  = {
-                'name'  : 'scale_m', 
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : {
-                   'ggWW' :['1', '1'],
-                   'WW' :  ['1', '1'],
-                   'DY' :  ['1', '1'],
-                   'top' : ['1', '1'],
-                   'VZ' :  ['1', '1'],
-                   'VVV' : ['1', '1'],
-                   'ggH_hww' : ['1', '1'],
-                   'qqH_hww' : ['1', '1'],
-                   'WH_hww' :  ['1', '1'],
-                   'ZH_hww' :  ['1', '1'],
-                   'ggZH_hww':  ['1', '1'],
-                   'H_hww' :  ['1', '1'],
-                   'H_htt' : ['1', '1'],
-                   'Vg' : ['1', '1'],
-                   'VgS': ['1', '1'],
-                },
-                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/',
-                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/' 
-                #'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/',
-                #'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/' 
-                #'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup/',
-                #'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup/',
-                #'folderDown' : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo/' 
-                #'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/',
-                #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/' 
-}
+#nuisances['muonpt']  = {
+                #'name'  : 'scale_m', 
+                #'kind'  : 'tree',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'ggWW' :['1', '1'],
+                   #'WW' :  ['1', '1'],
+                   #'DY' :  ['1', '1'],
+                   #'top' : ['1', '1'],
+                   #'VZ' :  ['1', '1'],
+                   #'VVV' : ['1', '1'],
+                   #'ggH_hww' : ['1', '1'],
+                   #'qqH_hww' : ['1', '1'],
+                   #'WH_hww' :  ['1', '1'],
+                   #'ZH_hww' :  ['1', '1'],
+                   #'ggZH_hww':  ['1', '1'],
+                   #'H_hww' :  ['1', '1'],
+                   #'H_htt' : ['1', '1'],
+                   #'Vg' : ['1', '1'],
+                   #'VgS': ['1', '1'],
+                #},
+                #'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/',
+                #'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/' 
+                ##'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/',
+                ##'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/' 
+                ##'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup/',
+                ##'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup/',
+                ##'folderDown' : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo/' 
+                ##'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/',
+                ##'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/' 
+#}
 
 
 # FIXME : restore it once we have the niusance ready                                 

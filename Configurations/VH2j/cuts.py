@@ -8,8 +8,6 @@ supercut = 'mll>12  \
             && metPfType1 > 20 \
             && ptll > 30 \
             && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13) \
-            && (abs(std_vector_lepton_flavour[1]) == 11 || abs(std_vector_lepton_eta[1])<2.4) \
-            && (abs(std_vector_lepton_flavour[0]) == 11 || abs(std_vector_lepton_eta[0])<2.4) \
             '
 
 
@@ -29,8 +27,8 @@ cuts['hww2l2v_13TeV_dytt_of2j_vh2j']  = '(std_vector_lepton_flavour[0] * std_vec
                 && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13) \
                 && ( mth<60) \
                 && mll>30 && mll<80 \
+                && ( std_vector_jet_pt[0] >= 30 ) \
                 && ( std_vector_jet_pt[1] >= 30 ) \
-                && ( std_vector_jet_pt[2] >= 30 ) \
                 && (detajj<3.5 && mjj<105 && mjj>65) \
                 && (abs(std_vector_jet_eta[0])<2.5) && (abs(std_vector_jet_eta[1])<2.5) \
                 && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
