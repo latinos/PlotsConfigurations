@@ -23,16 +23,16 @@ variables['nvtx']  = {   'name': 'nvtx',
                         #}
 
 variables['mll']  = {   'name': 'mll',            #   variable name    
-                        'range' : (20,50,150),    #   variable range
+                        'range' : (20,50,250),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
-                         'fold' : 3
+                         'fold' : 0
                         }
 
 
 variables['mth']  = {   'name': 'mth',            #   variable name    
                         'range' : (20,0,200),    #   variable range
                         'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
-                         'fold' : 3
+                         'fold' : 0
                         }
 
 #variables['dphill']  = {   'name': 'abs(dphill)',     
@@ -62,13 +62,13 @@ variables['ptll']  = {   'name': 'ptll',
 variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
                         'range' : (20,0,200),   
                         'xaxis' : 'p_{T} 1st lep',
-                        'fold'  : 3                         
+                        'fold'  : 0                         
                         }
 
 variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
                         'range' : (20,0,100),   
                         'xaxis' : 'p_{T} 2nd lep',
-                        'fold'  : 3                         
+                        'fold'  : 0                         
                         }
 
 
@@ -203,9 +203,9 @@ variables['deta2phim']   = {  'name': 'std_vector_electron_dEtaIn[1]*(std_vector
                         ##}
 
 variables['met']  = {   'name': 'metPfType1',            #   variable name    
-                        'range' : (20,0,200),    #   variable range
+                        'range' : (20,20,200),    #   variable range
                         'xaxis' : 'pfmet [GeV]',  #   x axis name
-                         'fold' : 3
+                         'fold' : 0
                         }
 
 #variables['trkMet']  = {   'name': 'trkMet',            #   variable name    

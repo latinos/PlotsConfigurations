@@ -205,35 +205,6 @@ combineCards.py   of2jvh2j13=VH2j/datacards/hww2l2v_13TeV_of2j_vh2j/mll/datacard
  
  
  
- 
- 
-# results
-
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.1jet.txt             >   result.MaxLikelihoodFit.ICHEP2016.1jet.txt
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.0jet.txt             >   result.MaxLikelihoodFit.ICHEP2016.0jet.txt
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.0jet.em.txt          >   result.MaxLikelihoodFit.ICHEP2016.0jet.em.txt
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.0jet.me.txt          >   result.MaxLikelihoodFit.ICHEP2016.0jet.me.txt
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.1jet.em.txt          >   result.MaxLikelihoodFit.ICHEP2016.1jet.em.txt
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.1jet.me.txt          >   result.MaxLikelihoodFit.ICHEP2016.1jet.me.txt
-
-
-combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.1jet.txt             >   result.Significance.ICHEP2016.1jet.txt
-combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.0jet.txt             >   result.Significance.ICHEP2016.0jet.txt
-combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.0jet.em.txt          >   result.Significance.ICHEP2016.0jet.em.txt
-combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.0jet.me.txt          >   result.Significance.ICHEP2016.0jet.me.txt
-combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.1jet.em.txt          >   result.Significance.ICHEP2016.1jet.em.txt
-combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.1jet.me.txt          >   result.Significance.ICHEP2016.1jet.me.txt
-
-
-
-
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1    --rMin=-2 --rMax=4     ICHEP2016.v1.txt.pruned.txt             >   result.MaxLikelihoodFit.ICHEP2016.v1.txt.pruned.txt
-    
-combine -M ProfileLikelihood --significance ICHEP2016.v1.txt.pruned.txt -t -1 --expectSignal=1       >   result.Significance.ICHEP2016.v1.txt.pruned.txt
-
-combine -M MultiDimFit ICHEP2016.v1.txt.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanHICHEP"   -t -1 --expectSignal=1        >   result.LikelihoodScan.ICHEP2016.v1.txt.pruned.txt
-
-
 
 
 
@@ -340,41 +311,119 @@ combineCards.py   em_mp_1j_ICHEP_13=ggH/datacards/hww2l2v_ICHEP_13TeV_em_mp_1j/m
  
         
  
+
+                  
+
+combineCards.py   em1j13=ggH/Moriond/datacards/hww2l2v_13TeV_em_1j/mllVSmth/datacard.txt.pruned.txt \
+                  me1j13=ggH/Moriond/datacards/hww2l2v_13TeV_me_1j/mllVSmth/datacard.txt.pruned.txt \
+                  em0j13=ggH/Moriond/datacards/hww2l2v_13TeV_em_0j/mllVSmth/datacard.txt.pruned.txt \
+                  me0j13=ggH/Moriond/datacards/hww2l2v_13TeV_me_0j/mllVSmth/datacard.txt.pruned.txt \
+                  of0j13Top=ggH/Moriond/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
+                  of1j13Top=ggH/Moriond/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
+                  of0j13DYtt=ggH/Moriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+                  of1j13DYtt=ggH/Moriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
+                  of2j2j13=ggH2j/Moriond/datacards/hww2l2v_13TeV_of2j/mllVSmth/datacard.txt.pruned.txt \
+                  of2j2j13Top=ggH2j/Moriond/datacards/hww2l2v_13TeV_top_of2j/events/datacard.txt.pruned.txt \
+                  of2j2j13DYtt=ggH2j/Moriond/datacards/hww2l2v_13TeV_dytt_of2j/events/datacard.txt.pruned.txt \
+                  of2jvbf13=VBF/Moriond/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mll/datacard.txt.pruned.txt \
+                  of2jvbf13Top=VBF/Moriond/datacards/hww2l2v_13TeV_top_of2j_vbf/events/datacard.txt.pruned.txt \
+                  of2jvbf13DYtt=VBF/Moriond/datacards/hww2l2v_13TeV_dytt_of2j_vbf/events/datacard.txt.pruned.txt \
+                  of2jvh2j13=VH2j/Moriond/datacards/hww2l2v_13TeV_of2j_vh2j/mll/datacard.txt.pruned.txt \
+                  of2jvh2j13Top=VH2j/Moriond/datacards/hww2l2v_13TeV_top_of2j_vh2j/events/datacard.txt.pruned.txt \
+                  of2jvh2j13DYtt=VH2j/Moriond/datacards/hww2l2v_13TeV_dytt_of2j_vh2j/events/datacard.txt.pruned.txt \
+                  wh3lossf=WH3l/Moriond/datacards/wh3l_13TeV_ossf/drllmin3l/datacard.txt                  \
+                  wh3lsssf=WH3l/Moriond/datacards/wh3l_13TeV_sssf/drllmin3l/datacard.txt.pruned.txt       \
+                  wh3lwz=WH3l/Moriond/datacards/wh3l_wz_13TeV/events/datacard.txt                       \
+                  wh3lzg=WH3l/Moriond/datacards/wh3l_zg_13TeV/events/datacard.txt.pruned.txt            \
+                 >   superCombination.2015.txt.pruned.txt
  
  
  
+   
+  
+ 
+# 2015 combination
+
+combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      superCombination.2015.txt.pruned.txt    >   result.MaxLikelihoodFit.superCombination.2015.txt.pruned.txt
+
+combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1                         superCombination.2015.txt.pruned.txt    >   result.Significance.superCombination.2015.txt.pruned.txt
+
+
+combine -M MultiDimFit superCombination.2015.txt.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanHICHEPggHcombined"   -t -1 --expectSignal=1        >   result.LikelihoodScan.ICHEP2016.superCombination.2015.txt.pruned.txt
+
+
+
+
+
+
+
  
  
- 
- 
- 
-# results
-
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ggHcombined.1jet.txt             >   result.MaxLikelihoodFit.ggHcombined.1jet.txt
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ggHcombined.0jet.txt             >   result.MaxLikelihoodFit.ggHcombined.0jet.txt
-
-combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1                         ggHcombined.0jet.txt             >   result.Significance.ggHcombined.0jet.txt
-combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1                         ggHcombined.1jet.txt             >   result.Significance.ggHcombined.1jet.txt
-combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1                         Combined2j.v1.txt.pruned.txt     >   result.Significance.Combined.2jet.txt
- 
- 
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ggHcombined.v1.txt.pruned.txt    >   result.MaxLikelihoodFit.ggHcombined.v1.txt.pruned.txt
-
-combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1                         ggHcombined.v1.txt.pruned.txt    >   result.Significance.ggHcombined.v1.txt.pruned.txt
-
-
-combine -M MultiDimFit ggHcombined.v1.txt.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanHICHEPggHcombined"   -t -1 --expectSignal=1        >   result.LikelihoodScan.ICHEP2016.ggHcombined.txt.pruned.txt
-
-
-
-
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      superCombination.v1.txt.pruned.txt    >   result.MaxLikelihoodFit.superCombination.v1.txt.pruned.txt
-
-combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1                         superCombination.v1.txt.pruned.txt    >   result.Significance.superCombination.v1.txt.pruned.txt
-
-
-combine -M MultiDimFit superCombination.v1.txt.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanHICHEPggHcombined"   -t -1 --expectSignal=1        >   result.LikelihoodScan.ICHEP2016.superCombination.v1.txt.pruned.txt
-
+#  
+#  
+# # 2016 separate
+# 
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.1jet.txt             >   result.MaxLikelihoodFit.ICHEP2016.1jet.txt
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.0jet.txt             >   result.MaxLikelihoodFit.ICHEP2016.0jet.txt
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.0jet.em.txt          >   result.MaxLikelihoodFit.ICHEP2016.0jet.em.txt
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.0jet.me.txt          >   result.MaxLikelihoodFit.ICHEP2016.0jet.me.txt
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.1jet.em.txt          >   result.MaxLikelihoodFit.ICHEP2016.1jet.em.txt
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.1jet.me.txt          >   result.MaxLikelihoodFit.ICHEP2016.1jet.me.txt
+# 
+# 
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.1jet.txt             >   result.Significance.ICHEP2016.1jet.txt
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.0jet.txt             >   result.Significance.ICHEP2016.0jet.txt
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.0jet.em.txt          >   result.Significance.ICHEP2016.0jet.em.txt
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.0jet.me.txt          >   result.Significance.ICHEP2016.0jet.me.txt
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.1jet.em.txt          >   result.Significance.ICHEP2016.1jet.em.txt
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.1jet.me.txt          >   result.Significance.ICHEP2016.1jet.me.txt
+# 
+# 
+# 
+# 
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1    --rMin=-2 --rMax=4     ICHEP2016.v1.txt.pruned.txt             >   result.MaxLikelihoodFit.ICHEP2016.v1.txt.pruned.txt
+#     
+# combine -M ProfileLikelihood --significance ICHEP2016.v1.txt.pruned.txt -t -1 --expectSignal=1       >   result.Significance.ICHEP2016.v1.txt.pruned.txt
+# 
+# combine -M MultiDimFit ICHEP2016.v1.txt.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanHICHEP"   -t -1 --expectSignal=1        >   result.LikelihoodScan.ICHEP2016.v1.txt.pruned.txt
+# 
+# 
+# 
+#  
+#  
+#  
+# # mix 2015 and 2016
+# 
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ggHcombined.1jet.txt             >   result.MaxLikelihoodFit.ggHcombined.1jet.txt
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ggHcombined.0jet.txt             >   result.MaxLikelihoodFit.ggHcombined.0jet.txt
+# 
+# combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1                         ggHcombined.0jet.txt             >   result.Significance.ggHcombined.0jet.txt
+# combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1                         ggHcombined.1jet.txt             >   result.Significance.ggHcombined.1jet.txt
+# combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1                         Combined2j.v1.txt.pruned.txt     >   result.Significance.Combined.2jet.txt
+#  
+#  
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ggHcombined.v1.txt.pruned.txt    >   result.MaxLikelihoodFit.ggHcombined.v1.txt.pruned.txt
+# 
+# combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1                         ggHcombined.v1.txt.pruned.txt    >   result.Significance.ggHcombined.v1.txt.pruned.txt
+# 
+# 
+# combine -M MultiDimFit ggHcombined.v1.txt.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanHICHEPggHcombined"   -t -1 --expectSignal=1        >   result.LikelihoodScan.ICHEP2016.ggHcombined.txt.pruned.txt
+# 
+# 
+# 
+# # super-combination 2015 and 2016
+# 
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      superCombination.v1.txt.pruned.txt    >   result.MaxLikelihoodFit.superCombination.v1.txt.pruned.txt
+# 
+# combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1                         superCombination.v1.txt.pruned.txt    >   result.Significance.superCombination.v1.txt.pruned.txt
+# 
+# 
+# combine -M MultiDimFit superCombination.v1.txt.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanHICHEPggHcombined"   -t -1 --expectSignal=1        >   result.LikelihoodScan.ICHEP2016.superCombination.v1.txt.pruned.txt
+# 
+# 
+# 
+# 
+# 
 
 
 

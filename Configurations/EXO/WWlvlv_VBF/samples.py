@@ -18,6 +18,9 @@ for m in masses:
     kp = float(model[6:9])*float(model[6:9])
     brn = float(model[-3:])
     sf = kp*(1-brn)
+    #sf125 = 1-kp
+    #sf125int = sqrt(1-kp)
+    model_int = model+"_I"
     print "k' = ", kp," BRnew = ",brn," SF = ",sf
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     print model_name
@@ -26,6 +29,38 @@ for m in masses:
                                                   ],
                                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*'+model+"*"+str(sf),
                                         }
+    samples['ggH_hww_INT'+m+'_'+model_name] = { 'name': [
+                                             'latino_GluGluHToWWTo2L2Nu_M'+m+'.root'
+                                                  ],
+                                          ###(1-(mth<60 || (mll>50 && mll<80))) is used to put the interference = 0 in DY CR, otherwise we have a negative number of events
+                                          'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*'+model_int+'*(abs('+model_int+')<10)*(1-(mth<60 || (mll>50 && mll<80)))*(1-(std_vector_jet_cmvav2[0]>-0.715 && std_vector_jet_pt[0]>20))*'+str(sf),
+                                        }
+#    
+#    samples['ggH_hww125'+model_name]  = {    'name': [
+#                               'latino_GluGluHToWWTo2L2NuPowheg_M125.root',
+#                                'MIX OF SAMPLES FOR OFF-SHELL PART'
+#                               ],
+#                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*'+str(sf125),
+#                  }
+#
+#    samples['qqH_hww125'+model_name]  = {    'name': [
+#                               'latino_GluGluHToWWTo2L2NuPowheg_M125.root',
+#                               ],
+#                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*'+str(sf125),
+#                  }
+#
+#    samples['ggH_hww125_INT'+model_name]  = {    'name': [
+#                                'MIX OF SAMPLES FOR INTERFERENCE'
+#                               ],
+#                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*'+str(sf125int),
+#                  }
+
+#    samples['qqH_hww125'+model_name]  = {    'name': [
+#                               'latino_VBFHToWWTo2L2Nu_M125.root'
+#                               ],
+#                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*'+str(sf125),
+#                  }
+
     samples['qqH_hww_'+m+'_'+model_name] = { 'name': [
                                              'latino_VBFHToWWTo2L2Nu_M'+m+'.root'
                                                   ],
@@ -33,17 +68,17 @@ for m in masses:
                                         }
 
 
-samples['ggH_hww_750_NWA'] = { 'name': [
-                                  'latino_GluGluHToWWTo2L2Nu_M750_NWA.root'
-                                   ],
-                          'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',
-                         }
+#samples['ggH_hww_750_NWA'] = { 'name': [
+#                                  'latino_GluGluHToWWTo2L2Nu_M750_NWA.root'
+#                                   ],
+#                          'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',
+#                         }
 
-samples['qqH_hww_750_NWA'] = { 'name': [
-                                  'latino_VBFHToWWTo2L2Nu_M750_NWA.root'
-                                   ],
-                          'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',
-                         }
+#samples['qqH_hww_750_NWA'] = { 'name': [
+#                                  'latino_VBFHToWWTo2L2Nu_M750_NWA.root'
+#                                   ],
+#                          'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',
+#                         }
 
 samples['DY'] = { 'name' : [
                             'latino_DYJetsToLL_M-50-LO__part0.root',
@@ -137,21 +172,10 @@ samples['ggWW']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root'],
                       'isData': ['0'],                            
                   }
 
-#samples['ggWW_Int']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root', 'latino_GluGluWWTo2L2NuHiggs_MCFM.root'],      
-                      #'weight' : '1.87*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
-                      #'weights': ['-1./1.4', '1/1.4'] ,           
-                  #}
-
 # during tree production: 1.4 k-factor has been applied to both samples
 # ggWW sample: k = 1.4 +/- 15%
 # ggWW interference: k = 1.87 +/- 25%
 
-
-#samples['Vg']  = {    'name': ['latino_Wg_AMCNLOFXFX.root'],      
-#                      'weight' : '(njet<2)*metFilter*1.23*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
-#                      'weights': ['1'] ,           
-#                      #'isData': ['0'],                            
-#                  }
 
 samples['Vg']  = {    'name': ['latino_Wg_MADGRAPHMLM.root'],
                       'weight' : 'metFilter*1.23*1.45*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          # 1.45 -> NLO/LO k-factor	1.23 -> ask Sangeun

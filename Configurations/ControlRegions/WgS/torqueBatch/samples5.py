@@ -1,6 +1,6 @@
 
-samples['ggWW']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root'],      
-                      'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
+samples['ggWW']  = {    'name': ['07Jun2016_spring16_mAODv2/MCl2loose__hadd__bSFL2pTEff__l2tight/latino_GluGluWWTo2L2Nu_MCFM.root'],      
+                      'weight' : 'puW*baseW',          
                       #'weights': ['abs(nllW)'] ,           
                       #'weights': ['1.000'] ,           
                       'isData': ['0'],                            

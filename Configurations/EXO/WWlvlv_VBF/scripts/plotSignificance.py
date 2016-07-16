@@ -61,11 +61,11 @@ def plotSignificance(mass,model,cat="all"):
 
             if cat=="all":
               #fitfile = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combineLSF/Significance.ICHEP2016.mH"+m+"_"+model+".txt"
-              fitfile = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/test_mTi_newbin/Significance.ICHEP2016.mH"+m+"_"+model+".txt"
+              fitfile = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combineFrozen_newbins/Significance.ICHEP2016.mH"+m+"_"+model+".txt"
               CMS_lumi.extraText2 = "0+1+2 jets "
             else:
               #fitfile = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combineLSF/Significance."+cat+".ICHEP2016.mH"+m+"_"+model+".txt"
-              fitfile = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/test_mTi_newbin/Significance."+cat+".ICHEP2016.mH"+m+"_"+model+".txt"
+              fitfile = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combineFrozen_newbins/Significance."+cat+".ICHEP2016.mH"+m+"_"+model+".txt"
 
               CMS_lumi.extraText2 = cat.replace("jet"," jet ")
 
@@ -99,7 +99,7 @@ def plotSignificance(mass,model,cat="all"):
 
         a=raw_input()
 
-masses = ["200","250","300","350","400","450","500","550","600","650","700","750","800","900","1000"]
+masses = ["200","210","230","250","300","350","400","450","500","550","600","650","700","750","800","900","1000"]
 #masses = ["200","250","300","450","550","600","650","750","800","1000"]
 model = "c10brn00"
 cat = sys.argv[1]  ## "0j" or "1j" or "2j" or "01j" or "all"

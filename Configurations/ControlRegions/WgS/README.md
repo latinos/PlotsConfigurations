@@ -1,14 +1,19 @@
-Wg* analysis
+WgStar analysis
 ==============
 
 
 Some useful aliases:
     
+               cf. usual eos mount         /afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select -b fuse mount
     alias eosusermount='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine.user/bin/eos.select -b fuse mount'
     alias eosuserumount='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine.user/bin/eos.select -b fuse umount'
 
+Mounting cernbox:
+   source /afs/cern.ch/project/eos/installation/user/etc/setup.sh
+   eosmount eos
+
     
-To separate Wg from Wg*:
+To separate Wg from WgStar:
 
     std_vector_leptonGen_pt[2]","std_vector_leptonGen_status[2] == 1 && (abs(std_vector_leptonGen_pid[2]) == 11 || abs(std_vector_leptonGen_pid[2]) == 13)
     

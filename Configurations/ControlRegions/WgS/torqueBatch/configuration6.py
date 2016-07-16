@@ -1,6 +1,6 @@
 # example of configuration file
 
-tag = 'Met'
+tag = 'WgS'
 
 
 # used by mkShape to define output directory for root files
@@ -23,11 +23,12 @@ plotFile = 'plot.py'
 
 # luminosity to normalize to (in 1/fb)
 # lumi = 2.264
-lumi = 0.8
+#lumi = 2.318
+lumi = 2.6
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotMet'
+outputDirPlots = 'plotWgS'
 
 
 # used by mkDatacards to define output directory for datacards
