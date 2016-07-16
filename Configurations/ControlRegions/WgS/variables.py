@@ -122,7 +122,7 @@ variables['mllMinimi']  = {   'name': '\
 variables['mllMinimiLowM']  = {   'name': '\
     TMath::Min (TMath::Min( mll+ (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] > 0 )*1000 , mllOneThree + (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[2] > 0 )*1000 ), mllTwoThree + (std_vector_lepton_flavour[1] * std_vector_lepton_flavour[2] > 0 )*1000) \
                         ',
-                        'range' : (20,0,10),    #   variable range
+                        'range' : (40,0,10),    #   variable range
                         'xaxis' : 'm_{ll} from #gamma^{*} [GeV]',  #   x axis name
                          'fold' : 0
                         }
