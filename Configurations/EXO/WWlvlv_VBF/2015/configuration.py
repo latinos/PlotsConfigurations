@@ -4,11 +4,11 @@ tag = 'HWWhighMass'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = 'rootFile_INT'
 
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = 'variables_newbins.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
@@ -23,15 +23,15 @@ plotFile = 'plot.py'
 
 # luminosity to normalize to (in 1/fb)
 # lumi = 2.264
-lumi = 4.3
+lumi = 2.318
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotHWWhighMass'
+outputDirPlots = 'plotHWWhighMass_UNBLIND'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'
+outputDirDatacard = 'datacards_UNBLIND'
 
 
 # structure file for datacard
