@@ -425,80 +425,105 @@ Copy datacards to repository:
     
 
     
+      mkdir  2015/hww2l2v_13TeV_em_1j/
+      mkdir  2015/hww2l2v_13TeV_me_1j/
+      mkdir  2015/hww2l2v_13TeV_em_0j/
+      mkdir  2015/hww2l2v_13TeV_me_0j/
+      mkdir  2015/hww2l2v_13TeV_top_of0j/
+      mkdir  2015/hww2l2v_13TeV_top_of1j/
+      mkdir  2015/hww2l2v_13TeV_dytt_of0j/
+      mkdir  2015/hww2l2v_13TeV_dytt_of1j/
+      mkdir  2015/hww2l2v_13TeV_of2j/
+      mkdir  2015/hww2l2v_13TeV_top_of2j/
+      mkdir  2015/hww2l2v_13TeV_dytt_of2j/
+      mkdir  2015/hww2l2v_13TeV_of2j_vbf_lowmjj/
+      mkdir  2015/hww2l2v_13TeV_top_of2j_vbf/
+      mkdir  2015/hww2l2v_13TeV_dytt_of2j_vbf/
+      mkdir  2015/hww2l2v_13TeV_of2j_vh2j/
+      mkdir  2015/hww2l2v_13TeV_top_of2j_vh2j/
+      mkdir  2015/hww2l2v_13TeV_dytt_of2j_vh2j/
+      mkdir  2015/wh3l_13TeV_ossf/
+      mkdir  2015/wh3l_13TeV_sssf/
+      mkdir  2015/wh3l_wz_13TeV/
+      mkdir  2015/wh3l_zg_13TeV/
+      mkdir  2016/hww2l2v_13TeV_em_mp_1j/
+      mkdir  2016/hww2l2v_13TeV_me_mp_1j/
+      mkdir  2016/hww2l2v_13TeV_em_mp_0j/
+      mkdir  2016/hww2l2v_13TeV_me_mp_0j/
+      mkdir  2016/hww2l2v_13TeV_em_pm_1j/
+      mkdir  2016/hww2l2v_13TeV_me_pm_1j/
+      mkdir  2016/hww2l2v_13TeV_em_pm_0j/
+      mkdir  2016/hww2l2v_13TeV_me_pm_0j/
+      mkdir  2016/hww2l2v_13TeV_top_of0j/
+      mkdir  2016/hww2l2v_13TeV_top_of1j/
+      mkdir  2016/hww2l2v_13TeV_dytt_of0j/
+      mkdir  2016/hww2l2v_13TeV_dytt_of1j/
+      mkdir  2016/hww2l2v_13TeV_of2j/
+      mkdir  2016/hww2l2v_13TeV_top_of2j/
+      mkdir  2016/hww2l2v_13TeV_dytt_of2j/
+      mkdir  2016/hww2l2v_13TeV_of2j_vbf_lowmjj/
+      mkdir  2016/hww2l2v_13TeV_top_of2j_vbf/
+      mkdir  2016/hww2l2v_13TeV_dytt_of2j_vbf/
+      mkdir  2016/hww2l2v_13TeV_of2j_vh2j/
+      mkdir  2016/hww2l2v_13TeV_top_of2j_vh2j/
+      mkdir  2016/hww2l2v_13TeV_dytt_of2j_vh2j/
+      mkdir  2016/wh3l_13TeV_ossf/
+      mkdir  2016/wh3l_13TeV_sssf/
+      mkdir  2016/wh3l_wz_13TeV/
+      mkdir  2016/wh3l_zg_13TeV/
 
-    mkdir   hww2l2v_13TeV_em_1j/
-    mkdir   hww2l2v_13TeV_me_1j/
-    mkdir   hww2l2v_13TeV_em_0j/
-    mkdir   hww2l2v_13TeV_me_0j/
-    mkdir   hww2l2v_13TeV_top_of0j/
-    mkdir   hww2l2v_13TeV_top_of1j/
-    mkdir   hww2l2v_13TeV_dytt_of0j/
-    mkdir   hww2l2v_13TeV_dytt_of1j/
-        
-    mkdir   hww2l2v_13TeV_em_1j/shapes/
-    mkdir   hww2l2v_13TeV_me_1j/shapes/
-    mkdir   hww2l2v_13TeV_em_0j/shapes/
-    mkdir   hww2l2v_13TeV_me_0j/shapes/
-    mkdir   hww2l2v_13TeV_top_of0j/shapes/
-    mkdir   hww2l2v_13TeV_top_of1j/shapes/
-    mkdir   hww2l2v_13TeV_dytt_of0j/shapes/
-    mkdir   hww2l2v_13TeV_dytt_of1j/shapes/
-    
-    
-    
-    mkdir  hww2l2v_13TeV_dytt_of0j/ 
-    mkdir  hww2l2v_13TeV_dytt_of1j/ 
-    mkdir  hww2l2v_13TeV_top_of0j/    
-    mkdir  hww2l2v_13TeV_top_of1j/ 
-    mkdir  hww2l2v_13TeV_em_mp_0j/   
-    mkdir  hww2l2v_13TeV_me_mp_0j/  
-    mkdir  hww2l2v_13TeV_em_pm_0j/ 
-    mkdir  hww2l2v_13TeV_me_pm_0j/ 
-    mkdir  hww2l2v_13TeV_em_pm_1j/ 
-    mkdir  hww2l2v_13TeV_me_pm_1j/ 
-    mkdir  hww2l2v_13TeV_em_mp_1j/ 
-    mkdir  hww2l2v_13TeV_me_mp_1j/  
-
-    mkdir  hww2l2v_13TeV_dytt_of2j/   
-    mkdir  hww2l2v_13TeV_top_of2j/   
-    mkdir  hww2l2v_13TeV_of2j/   
-
-    mkdir  hww2l2v_13TeV_of2j_vbf_lowmjj/
-    mkdir  hww2l2v_13TeV_top_of2j_vbf/
-    mkdir  hww2l2v_13TeV_dytt_of2j_vbf/
-
-    mkdir  hww2l2v_13TeV_of2j_vh2j/
-    mkdir  hww2l2v_13TeV_top_of2j_vh2j/
-    mkdir  hww2l2v_13TeV_dytt_of2j_vh2j/
-    
-
-    
-    mkdir  hww2l2v_13TeV_dytt_of0j/shapes/ 
-    mkdir  hww2l2v_13TeV_dytt_of1j/shapes/ 
-    mkdir  hww2l2v_13TeV_top_of0j/shapes/    
-    mkdir  hww2l2v_13TeV_top_of1j/shapes/ 
-    mkdir  hww2l2v_13TeV_em_mp_0j/shapes/   
-    mkdir  hww2l2v_13TeV_me_mp_0j/shapes/  
-    mkdir  hww2l2v_13TeV_em_pm_0j/shapes/ 
-    mkdir  hww2l2v_13TeV_me_pm_0j/shapes/ 
-    mkdir  hww2l2v_13TeV_em_pm_1j/shapes/ 
-    mkdir  hww2l2v_13TeV_me_pm_1j/shapes/ 
-    mkdir  hww2l2v_13TeV_em_mp_1j/shapes/ 
-    mkdir  hww2l2v_13TeV_me_mp_1j/shapes/  
-
-    mkdir  hww2l2v_13TeV_dytt_of2j/shapes/   
-    mkdir  hww2l2v_13TeV_top_of2j/shapes/   
-    mkdir  hww2l2v_13TeV_of2j/shapes/   
-
-    mkdir  hww2l2v_13TeV_of2j_vbf_lowmjj/shapes/
-    mkdir  hww2l2v_13TeV_top_of2j_vbf/shapes/
-    mkdir  hww2l2v_13TeV_dytt_of2j_vbf/shapes/
-
-    mkdir  hww2l2v_13TeV_of2j_vh2j/shapes/
-    mkdir  hww2l2v_13TeV_top_of2j_vh2j/shapes/
-    mkdir  hww2l2v_13TeV_dytt_of2j_vh2j/shapes/
 
     
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/Moriond/datacards/hww2l2v_13TeV_em_1j/mllVSmth/datacard.txt.pruned.txt             2015/hww2l2v_13TeV_em_1j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/Moriond/datacards/hww2l2v_13TeV_me_1j/mllVSmth/datacard.txt.pruned.txt             2015/hww2l2v_13TeV_me_1j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/Moriond/datacards/hww2l2v_13TeV_em_0j/mllVSmth/datacard.txt.pruned.txt             2015/hww2l2v_13TeV_em_0j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/Moriond/datacards/hww2l2v_13TeV_me_0j/mllVSmth/datacard.txt.pruned.txt             2015/hww2l2v_13TeV_me_0j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/Moriond/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt            2015/hww2l2v_13TeV_top_of0j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/Moriond/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt            2015/hww2l2v_13TeV_top_of1j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/Moriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt           2015/hww2l2v_13TeV_dytt_of0j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/Moriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt           2015/hww2l2v_13TeV_dytt_of1j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH2j/Moriond/datacards/hww2l2v_13TeV_of2j/mllVSmth/datacard.txt.pruned.txt            2015/hww2l2v_13TeV_of2j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH2j/Moriond/datacards/hww2l2v_13TeV_top_of2j/events/datacard.txt.pruned.txt          2015/hww2l2v_13TeV_top_of2j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH2j/Moriond/datacards/hww2l2v_13TeV_dytt_of2j/events/datacard.txt.pruned.txt         2015/hww2l2v_13TeV_dytt_of2j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VBF/Moriond/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mll/datacard.txt.pruned.txt        2015/hww2l2v_13TeV_of2j_vbf_lowmjj/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VBF/Moriond/datacards/hww2l2v_13TeV_top_of2j_vbf/events/datacard.txt.pruned.txt        2015/hww2l2v_13TeV_top_of2j_vbf/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VBF/Moriond/datacards/hww2l2v_13TeV_dytt_of2j_vbf/events/datacard.txt.pruned.txt       2015/hww2l2v_13TeV_dytt_of2j_vbf/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/Moriond/datacards/hww2l2v_13TeV_of2j_vh2j/mll/datacard.txt.pruned.txt             2015/hww2l2v_13TeV_of2j_vh2j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/Moriond/datacards/hww2l2v_13TeV_top_of2j_vh2j/events/datacard.txt.pruned.txt      2015/hww2l2v_13TeV_top_of2j_vh2j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/Moriond/datacards/hww2l2v_13TeV_dytt_of2j_vh2j/events/datacard.txt.pruned.txt     2015/hww2l2v_13TeV_dytt_of2j_vh2j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/Moriond/datacards/wh3l_13TeV_ossf/drllmin3l/datacard.txt                          2015/wh3l_13TeV_ossf/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/Moriond/datacards/wh3l_13TeV_sssf/drllmin3l/datacard.txt.pruned.txt               2015/wh3l_13TeV_sssf/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/Moriond/datacards/wh3l_wz_13TeV/events/datacard.txt                               2015/wh3l_wz_13TeV/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/Moriond/datacards/wh3l_zg_13TeV/events/datacard.txt.pruned.txt                    2015/wh3l_zg_13TeV/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_mp_1j/mllVSmth/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_em_mp_1j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_mp_1j/mllVSmth/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_me_mp_1j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_mp_0j/mllVSmth/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_em_mp_0j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_mp_0j/mllVSmth/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_me_mp_0j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_pm_1j/mllVSmth/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_em_pm_1j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_pm_1j/mllVSmth/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_me_pm_1j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_pm_0j/mllVSmth/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_em_pm_0j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_pm_0j/mllVSmth/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_me_pm_0j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt                    2016/hww2l2v_13TeV_top_of0j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt                    2016/hww2l2v_13TeV_top_of1j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt                   2016/hww2l2v_13TeV_dytt_of0j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt                   2016/hww2l2v_13TeV_dytt_of1j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH2j/datacards/hww2l2v_13TeV_of2j/mllVSmth/datacard.txt.pruned.txt                    2016/hww2l2v_13TeV_of2j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH2j/datacards/hww2l2v_13TeV_top_of2j/events/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_top_of2j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH2j/datacards/hww2l2v_13TeV_dytt_of2j/events/datacard.txt.pruned.txt                 2016/hww2l2v_13TeV_dytt_of2j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VBF/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mll/datacard.txt.pruned.txt                2016/hww2l2v_13TeV_of2j_vbf_lowmjj/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VBF/datacards/hww2l2v_13TeV_top_of2j_vbf/events/datacard.txt.pruned.txt                2016/hww2l2v_13TeV_top_of2j_vbf/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VBF/datacards/hww2l2v_13TeV_dytt_of2j_vbf/events/datacard.txt.pruned.txt               2016/hww2l2v_13TeV_dytt_of2j_vbf/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/datacards/hww2l2v_13TeV_of2j_vh2j/mll/datacard.txt.pruned.txt                     2016/hww2l2v_13TeV_of2j_vh2j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/datacards/hww2l2v_13TeV_top_of2j_vh2j/events/datacard.txt.pruned.txt              2016/hww2l2v_13TeV_top_of2j_vh2j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/datacards/hww2l2v_13TeV_dytt_of2j_vh2j/events/datacard.txt.pruned.txt             2016/hww2l2v_13TeV_dytt_of2j_vh2j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_13TeV_ossf/drllmin3l/datacard.txt.pruned.txt                       2016/wh3l_13TeV_ossf/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_13TeV_sssf/drllmin3l/datacard.txt.pruned.txt                       2016/wh3l_13TeV_sssf/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_wz_13TeV/events/datacard.txt.pruned.txt                            2016/wh3l_wz_13TeV/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_zg_13TeV/events/datacard.txt.pruned.txt                            2016/wh3l_zg_13TeV/datacard.txt
+                  
+                  
+                  
+                  
     
     
 
