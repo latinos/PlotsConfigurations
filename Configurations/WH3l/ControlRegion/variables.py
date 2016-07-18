@@ -45,3 +45,21 @@ variables['drllmin3l']  = {   'name': 'drllmin3l',            #   variable name
                         'xaxis' : 'min #Delta Rm_{ll} [GeV]',  #   x axis name
                          'fold' : 0
                         }
+
+variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',            #   variable name    
+                        'range' : (25,10,200),    #   variable range
+                        'xaxis' : 'lept1_p_{T} [GeV]',  #   x axis name
+                         'fold' : 0
+                        }
+
+variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',            #   variable name    
+                        'range' : (25,10,200),    #   variable range
+                        'xaxis' : 'lept2_p_{T} [GeV]',  #   x axis name
+                         'fold' : 0
+                        }
+
+variables['pt3']  = {   'name': 'std_vector_lepton_pt[2]',            #   variable name    
+                        'range' : (25,10,200),    #   variable range
+                        'xaxis' : 'lept3_p_{T} [GeV]',  #   x axis name
+                         'fold' : 0
+                        }
