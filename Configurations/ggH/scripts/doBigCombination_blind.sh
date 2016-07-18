@@ -257,16 +257,31 @@ combineCards.py   of2j2j13=ggH2j/datacards/hww2l2v_13TeV_of2j/mllVSmth/datacard.
                   of2j2j13DYtt=ggH2j/datacards/hww2l2v_13TeV_dytt_of2j/events/datacard.txt.pruned.txt \
                   >   ICHEP2016.2j.pruned.txt
 
+                  
+combineCards.py   of2j2j13=ggH2j/Moriond/datacards/hww2l2v_13TeV_of2j/mllVSmth/datacard.txt.pruned.txt \
+                  of2j2j13Top=ggH2j/Moriond/datacards/hww2l2v_13TeV_top_of2j/events/datacard.txt.pruned.txt \
+                  of2j2j13DYtt=ggH2j/Moriond/datacards/hww2l2v_13TeV_dytt_of2j/events/datacard.txt.pruned.txt \
+                  ICHEP_of2j2j13=ggH2j/datacards/hww2l2v_13TeV_of2j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_of2j2j13Top=ggH2j/datacards/hww2l2v_13TeV_top_of2j/events/datacard.txt.pruned.txt \
+                  ICHEP_of2j2j13DYtt=ggH2j/datacards/hww2l2v_13TeV_dytt_of2j/events/datacard.txt.pruned.txt \
+                  >   Combined.2j.pruned.txt
+
+
+
 
                   
 
 # fix
 # 
-cat VBF/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mll/datacard.txt.pruned.txt  | grep -v "DY_ibin_2" | grep -v "DY_ibin_4"  &> VBF/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mll/datacard.test.txt.pruned.txt
+cat VBF/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mll/datacard.txt.pruned.txt | grep -v "CMS_idiso" | grep -v "CMS_ICHEP_btag" | grep -v "CMS_scale_e" | grep -v "CMS_scale_m"  | grep -v "CMS_scale_j"  | grep -v "trigger" | grep -v "DY_ibin_2"  | grep -v "DY_ibin_4"  &> VBF/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mll/datacard.test.txt.pruned.txt
 mv VBF/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mll/datacard.test.txt.pruned.txt    VBF/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mll/datacard.txt.pruned.txt
 #
-cat VBF/datacards/hww2l2v_13TeV_top_of2j_vbf/events/datacard.txt.pruned.txt  | grep -v "DY_ibin_1"   &> VBF/datacards/hww2l2v_13TeV_top_of2j_vbf/events/datacard.test.txt.pruned.txt
+cat VBF/datacards/hww2l2v_13TeV_top_of2j_vbf/events/datacard.txt.pruned.txt | grep -v "CMS_idiso" | grep -v "CMS_ICHEP_btag" | grep -v "CMS_scale_e" | grep -v "CMS_scale_m"  | grep -v "trigger"  | grep -v "CMS_scale_j" | grep -v "DY_ibin_1"   &> VBF/datacards/hww2l2v_13TeV_top_of2j_vbf/events/datacard.test.txt.pruned.txt
 mv VBF/datacards/hww2l2v_13TeV_top_of2j_vbf/events/datacard.test.txt.pruned.txt    VBF/datacards/hww2l2v_13TeV_top_of2j_vbf/events/datacard.txt.pruned.txt
+#
+cat VBF/datacards/hww2l2v_13TeV_dytt_of2j_vbf/events/datacard.txt.pruned.txt | grep -v "Vg_ibin_1" | grep -v "CMS_idiso" | grep -v "CMS_ICHEP_btag" | grep -v "CMS_scale_e" | grep -v "CMS_scale_m"  | grep -v "trigger"  | grep -v "CMS_scale_j" | grep -v "DY_ibin_1"   &> VBF/datacards/hww2l2v_13TeV_dytt_of2j_vbf/events/datacard.test.txt.pruned.txt
+mv VBF/datacards/hww2l2v_13TeV_dytt_of2j_vbf/events/datacard.test.txt.pruned.txt    VBF/datacards/hww2l2v_13TeV_dytt_of2j_vbf/events/datacard.txt.pruned.txt
+
 # 
 cat VBF/Moriond/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mll/datacard.txt.pruned.txt  | grep -v "DY_ibin_2" | grep -v "DY_ibin_4"  &> VBF/Moriond/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mll/datacard.test.txt.pruned.txt
 mv VBF/Moriond/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mll/datacard.test.txt.pruned.txt    VBF/Moriond/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mll/datacard.txt.pruned.txt
@@ -292,17 +307,28 @@ combineCards.py   of2jvbf13=VBF/Moriond/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/
                   >   Moriond2016.vbf.pruned.txt
                   
                   
+
+combineCards.py   of2jvbf13=VBF/Moriond/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mll/datacard.txt.pruned.txt \
+                  of2jvbf13Top=VBF/Moriond/datacards/hww2l2v_13TeV_top_of2j_vbf/events/datacard.txt.pruned.txt \
+                  of2jvbf13DYtt=VBF/Moriond/datacards/hww2l2v_13TeV_dytt_of2j_vbf/events/datacard.txt.pruned.txt \
+                  ICHEP_of2jvbf13=VBF/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mll/datacard.txt.pruned.txt \
+                  ICHEP_of2jvbf13Top=VBF/datacards/hww2l2v_13TeV_top_of2j_vbf/events/datacard.txt.pruned.txt \
+                  ICHEP_of2jvbf13DYtt=VBF/datacards/hww2l2v_13TeV_dytt_of2j_vbf/events/datacard.txt.pruned.txt \
+                  >   Combined.vbf.pruned.txt
+                  
+                  
+                  
                   
 
 # fix
 # 
-cat VH2j/datacards/hww2l2v_13TeV_of2j_vh2j/mll/datacard.txt.pruned.txt  | grep -v "DY_ibin_2" | grep -v "DY_ibin_4"  &> VH2j/datacards/hww2l2v_13TeV_of2j_vh2j/mll/datacard.test.txt.pruned.txt
+cat VH2j/datacards/hww2l2v_13TeV_of2j_vh2j/mll/datacard.txt.pruned.txt  | grep -v "CMS_idiso" | grep -v "CMS_ICHEP_btag" | grep -v "CMS_scale_e" | grep -v "CMS_scale_m"  | grep -v "CMS_scale_j"  | grep -v "trigger" | grep -v "CMS_scale_e" | grep -v "DY_ibin_2" | grep -v "DY_ibin_4"  &> VH2j/datacards/hww2l2v_13TeV_of2j_vh2j/mll/datacard.test.txt.pruned.txt
 mv VH2j/datacards/hww2l2v_13TeV_of2j_vh2j/mll/datacard.test.txt.pruned.txt    VH2j/datacards/hww2l2v_13TeV_of2j_vh2j/mll/datacard.txt.pruned.txt
 #
-cat VH2j/datacards/hww2l2v_13TeV_top_of2j_vh2j/events/datacard.txt.pruned.txt  | grep -v "DY_ibin_1" | grep -v "Vg_ibin"  &> VH2j/datacards/hww2l2v_13TeV_top_of2j_vh2j/events/datacard.test.txt.pruned.txt
+cat VH2j/datacards/hww2l2v_13TeV_top_of2j_vh2j/events/datacard.txt.pruned.txt  | grep -v "CMS_idiso" | grep -v "CMS_ICHEP_btag" | grep -v "CMS_scale_e" | grep -v "CMS_scale_m"  | grep -v "CMS_scale_j"  | grep -v "trigger" | grep -v "DY_ibin_1" | grep -v "Vg_ibin"  &> VH2j/datacards/hww2l2v_13TeV_top_of2j_vh2j/events/datacard.test.txt.pruned.txt
 mv VH2j/datacards/hww2l2v_13TeV_top_of2j_vh2j/events/datacard.test.txt.pruned.txt    VH2j/datacards/hww2l2v_13TeV_top_of2j_vh2j/events/datacard.txt.pruned.txt
 #
-cat VH2j/datacards/hww2l2v_13TeV_dytt_of2j_vh2j/events/datacard.txt.pruned.txt  | grep -v "Fake_ibin_1"   &> VH2j/datacards/hww2l2v_13TeV_dytt_of2j_vh2j/events/datacard.test.txt.pruned.txt
+cat VH2j/datacards/hww2l2v_13TeV_dytt_of2j_vh2j/events/datacard.txt.pruned.txt  | grep -v "Vg_ibin_1" | grep -v "CMS_idiso" | grep -v "CMS_ICHEP_btag" | grep -v "CMS_scale_e" | grep -v "CMS_scale_m"  | grep -v "CMS_scale_j"  | grep -v "trigger" | grep -v "Fake_ibin_1"   &> VH2j/datacards/hww2l2v_13TeV_dytt_of2j_vh2j/events/datacard.test.txt.pruned.txt
 mv VH2j/datacards/hww2l2v_13TeV_dytt_of2j_vh2j/events/datacard.test.txt.pruned.txt    VH2j/datacards/hww2l2v_13TeV_dytt_of2j_vh2j/events/datacard.txt.pruned.txt
 # 
 cat VH2j/Moriond/datacards/hww2l2v_13TeV_of2j_vh2j/mll/datacard.txt.pruned.txt  | grep -v "DY_ibin_2" | grep -v "DY_ibin_4"  &> VH2j/Moriond/datacards/hww2l2v_13TeV_of2j_vh2j/mll/datacard.test.txt.pruned.txt
@@ -325,9 +351,49 @@ combineCards.py   of2jvh2j13=VH2j/Moriond/datacards/hww2l2v_13TeV_of2j_vh2j/mll/
                   of2jvh2j13DYtt=VH2j/Moriond/datacards/hww2l2v_13TeV_dytt_of2j_vh2j/events/datacard.txt.pruned.txt \
                   >   Moriond2016.vh2j.pruned.txt
  
+
+combineCards.py   of2jvh2j13=VH2j/Moriond/datacards/hww2l2v_13TeV_of2j_vh2j/mll/datacard.txt.pruned.txt \
+                  of2jvh2j13Top=VH2j/Moriond/datacards/hww2l2v_13TeV_top_of2j_vh2j/events/datacard.txt.pruned.txt \
+                  of2jvh2j13DYtt=VH2j/Moriond/datacards/hww2l2v_13TeV_dytt_of2j_vh2j/events/datacard.txt.pruned.txt \
+                  ICHEP_of2jvh2j13=VH2j/datacards/hww2l2v_13TeV_of2j_vh2j/mll/datacard.txt.pruned.txt \
+                  ICHEP_of2jvh2j13Top=VH2j/datacards/hww2l2v_13TeV_top_of2j_vh2j/events/datacard.txt.pruned.txt \
+                  ICHEP_of2jvh2j13DYtt=VH2j/datacards/hww2l2v_13TeV_dytt_of2j_vh2j/events/datacard.txt.pruned.txt \
+                  >   Combined.vh2j.pruned.txt
  
  
 
+ # wh3l
+
+combineCards.py   wh3lossf=WH3l/datacards/wh3l_13TeV_ossf/drllmin3l/datacard.txt.pruned.txt                  \
+                  wh3lsssf=WH3l/datacards/wh3l_13TeV_sssf/drllmin3l/datacard.txt.pruned.txt       \
+                  wh3lwz=WH3l/datacards/wh3l_wz_13TeV/events/datacard.txt.pruned.txt                       \
+                  wh3lzg=WH3l/datacards/wh3l_zg_13TeV/events/datacard.txt.pruned.txt            \
+                  >   ICHEP2016.wh3l.pruned.txt
+                  
+
+combineCards.py   wh3lossf=WH3l/Moriond/datacards/wh3l_13TeV_ossf/drllmin3l/datacard.txt                  \
+                  wh3lsssf=WH3l/Moriond/datacards/wh3l_13TeV_sssf/drllmin3l/datacard.txt.pruned.txt       \
+                  wh3lwz=WH3l/Moriond/datacards/wh3l_wz_13TeV/events/datacard.txt                       \
+                  wh3lzg=WH3l/Moriond/datacards/wh3l_zg_13TeV/events/datacard.txt.pruned.txt            \
+                  >   Moriond2016.wh3l.pruned.txt
+
+                  
+
+combineCards.py   wh3lossf=WH3l/Moriond/datacards/wh3l_13TeV_ossf/drllmin3l/datacard.txt                  \
+                  wh3lsssf=WH3l/Moriond/datacards/wh3l_13TeV_sssf/drllmin3l/datacard.txt.pruned.txt       \
+                  wh3lwz=WH3l/Moriond/datacards/wh3l_wz_13TeV/events/datacard.txt                       \
+                  wh3lzg=WH3l/Moriond/datacards/wh3l_zg_13TeV/events/datacard.txt.pruned.txt            \
+                  ICHEP_wh3lossf=WH3l/datacards/wh3l_13TeV_ossf/drllmin3l/datacard.txt.pruned.txt                  \
+                  ICHEP_wh3lsssf=WH3l/datacards/wh3l_13TeV_sssf/drllmin3l/datacard.txt.pruned.txt       \
+                  ICHEP_wh3lwz=WH3l/datacards/wh3l_wz_13TeV/events/datacard.txt.pruned.txt                       \
+                  ICHEP_wh3lzg=WH3l/datacards/wh3l_zg_13TeV/events/datacard.txt.pruned.txt            \
+                  >   Combined.wh3l.pruned.txt
+
+                                
+                  
+
+                  
+                  
 
 
  
@@ -547,6 +613,98 @@ combineCards.py   em1j13=ggH/Moriond/datacards/hww2l2v_13TeV_em_1j/mllVSmth/data
  
  
  
+ 
+
+combineCards.py   em1j13=ggH/Moriond/datacards/hww2l2v_13TeV_em_1j/mllVSmth/datacard.txt.pruned.txt \
+                  me1j13=ggH/Moriond/datacards/hww2l2v_13TeV_me_1j/mllVSmth/datacard.txt.pruned.txt \
+                  em0j13=ggH/Moriond/datacards/hww2l2v_13TeV_em_0j/mllVSmth/datacard.txt.pruned.txt \
+                  me0j13=ggH/Moriond/datacards/hww2l2v_13TeV_me_0j/mllVSmth/datacard.txt.pruned.txt \
+                  of0j13Top=ggH/Moriond/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
+                  of1j13Top=ggH/Moriond/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
+                  of0j13DYtt=ggH/Moriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+                  of1j13DYtt=ggH/Moriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
+                  ICHEP_em_mp_1j_13=ggH/datacards/hww2l2v_13TeV_em_mp_1j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_me_mp_1j_13=ggH/datacards/hww2l2v_13TeV_me_mp_1j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_em_mp_0j_13=ggH/datacards/hww2l2v_13TeV_em_mp_0j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_me_mp_0j_13=ggH/datacards/hww2l2v_13TeV_me_mp_0j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_em_pm_1j_13=ggH/datacards/hww2l2v_13TeV_em_pm_1j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_me_pm_1j_13=ggH/datacards/hww2l2v_13TeV_me_pm_1j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_em_pm_0j_13=ggH/datacards/hww2l2v_13TeV_em_pm_0j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_me_pm_0j_13=ggH/datacards/hww2l2v_13TeV_me_pm_0j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_of0j13Top=ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
+                  ICHEP_of1j13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
+                  ICHEP_of0j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+                  ICHEP_of1j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
+                  >   Combined.v1.txt.pruned.txt
+
+combineCards.py   em1j13=ggH/Moriond/datacards/hww2l2v_13TeV_em_1j/mllVSmth/datacard.txt.pruned.txt \
+                  me1j13=ggH/Moriond/datacards/hww2l2v_13TeV_me_1j/mllVSmth/datacard.txt.pruned.txt \
+                  of1j13Top=ggH/Moriond/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
+                  of1j13DYtt=ggH/Moriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
+                  ICHEP_em_mp_1j_13=ggH/datacards/hww2l2v_13TeV_em_mp_1j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_me_mp_1j_13=ggH/datacards/hww2l2v_13TeV_me_mp_1j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_em_pm_1j_13=ggH/datacards/hww2l2v_13TeV_em_pm_1j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_me_pm_1j_13=ggH/datacards/hww2l2v_13TeV_me_pm_1j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_of1j13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
+                  ICHEP_of1j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
+                  >  Combined.1jet.txt
+
+combineCards.py   em0j13=ggH/Moriond/datacards/hww2l2v_13TeV_em_0j/mllVSmth/datacard.txt.pruned.txt \
+                  me0j13=ggH/Moriond/datacards/hww2l2v_13TeV_me_0j/mllVSmth/datacard.txt.pruned.txt \
+                  of0j13Top=ggH/Moriond/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
+                  of0j13DYtt=ggH/Moriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+                  ICHEP_em_mp_0j_13=ggH/datacards/hww2l2v_13TeV_em_mp_0j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_me_mp_0j_13=ggH/datacards/hww2l2v_13TeV_me_mp_0j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_em_pm_0j_13=ggH/datacards/hww2l2v_13TeV_em_pm_0j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_me_pm_0j_13=ggH/datacards/hww2l2v_13TeV_me_pm_0j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_of0j13Top=ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
+                  ICHEP_of0j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+                  >  Combined.0jet.txt
+
+combineCards.py   em0j13=ggH/Moriond/datacards/hww2l2v_13TeV_em_0j/mllVSmth/datacard.txt.pruned.txt \
+                  of0j13Top=ggH/Moriond/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
+                  of0j13DYtt=ggH/Moriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+                  ICHEP_em_mp_0j_13=ggH/datacards/hww2l2v_13TeV_em_mp_0j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_em_pm_0j_13=ggH/datacards/hww2l2v_13TeV_em_pm_0j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_of0j13Top=ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
+                  ICHEP_of0j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+                  >  Combined.0jet.em.txt
+
+combineCards.py   me0j13=ggH/Moriond/datacards/hww2l2v_13TeV_me_0j/mllVSmth/datacard.txt.pruned.txt \
+                  of0j13Top=ggH/Moriond/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
+                  of0j13DYtt=ggH/Moriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+                  ICHEP_me_mp_0j_13=ggH/datacards/hww2l2v_13TeV_me_mp_0j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_me_pm_0j_13=ggH/datacards/hww2l2v_13TeV_me_pm_0j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_of0j13Top=ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
+                  ICHEP_of0j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+                  >  Combined.0jet.me.txt
+
+                  
+combineCards.py   em1j13=ggH/Moriond/datacards/hww2l2v_13TeV_em_1j/mllVSmth/datacard.txt.pruned.txt \
+                  of1j13Top=ggH/Moriond/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
+                  of1j13DYtt=ggH/Moriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
+                  ICHEP_em_mp_1j_13=ggH/datacards/hww2l2v_13TeV_em_mp_1j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_em_pm_1j_13=ggH/datacards/hww2l2v_13TeV_em_pm_1j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_of1j13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
+                  ICHEP_of1j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
+                  >  Combined.1jet.em.txt
+
+combineCards.py   me1j13=ggH/Moriond/datacards/hww2l2v_13TeV_me_1j/mllVSmth/datacard.txt.pruned.txt \
+                  of1j13Top=ggH/Moriond/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
+                  of1j13DYtt=ggH/Moriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
+                  ICHEP_me_mp_1j_13=ggH/datacards/hww2l2v_13TeV_me_mp_1j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_me_pm_1j_13=ggH/datacards/hww2l2v_13TeV_me_pm_1j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_of1j13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
+                  ICHEP_of1j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
+                  >  Combined.1jet.me.txt
+
+                  
+                  
+                  
+ 
+ 
+ 
+ 
 # 2015 combination
 
 # combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      superCombination.2015.txt.pruned.txt    >   result.MaxLikelihoodFit.superCombination.2015.txt.pruned.txt
@@ -556,86 +714,131 @@ combineCards.py   em1j13=ggH/Moriond/datacards/hww2l2v_13TeV_em_1j/mllVSmth/data
 # 
 # combine -M MultiDimFit superCombination.2015.txt.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanHICHEP2015combined"   -t -1 --expectSignal=1        >   result.LikelihoodScan.ICHEP2016.superCombination.2015.txt.pruned.txt
 # 
-
-
-
-
-
-# 2016 combination
-
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      superCombination.2016.txt.pruned.txt    >   result.MaxLikelihoodFit.superCombination.2016.txt.pruned.txt
-
-combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1                         superCombination.2016.txt.pruned.txt    >   result.Significance.superCombination.2016.txt.pruned.txt
+# 
+# 
+# 
+# 
+# 
+# # 2016 combination
+# 
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      superCombination.2016.txt.pruned.txt    >   result.MaxLikelihoodFit.superCombination.2016.txt.pruned.txt
+# 
+# combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1                         superCombination.2016.txt.pruned.txt    >   result.Significance.superCombination.2016.txt.pruned.txt
 # 
 # 
 # combine -M MultiDimFit superCombination.2016.txt.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanHICHEP2016combined"   -t -1 --expectSignal=1        >   /tmp/amassiro/result.LikelihoodScan.ICHEP2016.superCombination.2016.txt.pruned.txt
 # 
 # 
-
-# 2015+2016 combination
+# 
+# # 2015+2016 combination
 # 
 # combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      superCombination.Total.txt.pruned.txt    >   result.MaxLikelihoodFit.superCombination.Total.txt.pruned.txt
 # 
 # combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1                         superCombination.Total.txt.pruned.txt    >   result.Significance.superCombination.Total.txt.pruned.txt
 # 
 # 
-# combine -M MultiDimFit superCombination.Total.txt.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanHICHEPTotalcombined"   -t -1 --expectSignal=1        >   /tmp/amassiro/result.LikelihoodScan.ICHEPTotal.superCombination.Total.txt.pruned.txt
+# combine -M MultiDimFit superCombination.Total.txt.pruned.txt -m 125 --algo=grid --points 20 --setPhysicsModelParameterRanges r=0,2 -n "LHScanHICHEPTotalcombined"   -t -1 --expectSignal=1        >   /tmp/amassiro/result.LikelihoodScan.ICHEPTotal.superCombination.Total.txt.pruned.txt
 # 
-
-
-
-
-
-#######################
-#### for the table ####
-
-
-#
-# 2015 separate
-#
-
-
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Moriond2016.vbf.pruned.txt             >   result.MaxLikelihoodFit.Moriond2016.vbf.txt
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Moriond2016.vh2j.pruned.txt            >   result.MaxLikelihoodFit.Moriond2016.vh2j.txt
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Moriond2016.2j.pruned.txt              >   result.MaxLikelihoodFit.Moriond2016.2j.txt
-
-
-
- 
+# 
+# 
+# 
+# 
+# 
+# #######################
+# #### for the table ####
+# 
+# 
+# # combined
+# 
+# 
+# 
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-4 --rMax=6      Combined.vbf.pruned.txt             >   result.MaxLikelihoodFit.Combined.vbf.txt
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-6 --rMax=8      Combined.vh2j.pruned.txt            >   result.MaxLikelihoodFit.Combined.vh2j.txt
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-4 --rMax=6      Combined.2j.pruned.txt              >   result.MaxLikelihoodFit.Combined.2j.txt
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=6      Combined.wh3l.pruned.txt            >   result.MaxLikelihoodFit.Combined.wh3l.txt
+# 
+# 
+# 
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Combined.1jet.txt             >   result.MaxLikelihoodFit.Combined.1jet.txt
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Combined.0jet.txt             >   result.MaxLikelihoodFit.Combined.0jet.txt
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Combined.0jet.em.txt          >   result.MaxLikelihoodFit.Combined.0jet.em.txt
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Combined.0jet.me.txt          >   result.MaxLikelihoodFit.Combined.0jet.me.txt
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Combined.1jet.em.txt          >   result.MaxLikelihoodFit.Combined.1jet.em.txt
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Combined.1jet.me.txt          >   result.MaxLikelihoodFit.Combined.1jet.me.txt
+# 
+# 
+# 
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.vbf.pruned.txt             >   result.Significance.Combined.vbf.txt
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.vh2j.pruned.txt            >   result.Significance.Combined.vh2j.txt
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.2j.pruned.txt              >   result.Significance.Combined.2j.txt
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.wh3l.pruned.txt              >   result.Significance.Combined.wh3l.txt
+# 
+# 
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.1jet.txt             >   result.Significance.Combined.1jet.txt
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.0jet.txt             >   result.Significance.Combined.0jet.txt
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.0jet.em.txt          >   result.Significance.Combined.0jet.em.txt
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.0jet.me.txt          >   result.Significance.Combined.0jet.me.txt
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.1jet.em.txt          >   result.Significance.Combined.1jet.em.txt
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.1jet.me.txt          >   result.Significance.Combined.1jet.me.txt
+# 
+# 
+# 
+# 
+# 
+# #
+# # 2015 separate
+# #
+# 
+# 
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Moriond2016.vbf.pruned.txt             >   result.MaxLikelihoodFit.Moriond2016.vbf.txt
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Moriond2016.vh2j.pruned.txt            >   result.MaxLikelihoodFit.Moriond2016.vh2j.txt
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Moriond2016.2j.pruned.txt              >   result.MaxLikelihoodFit.Moriond2016.2j.txt
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Moriond2016.wh3l.pruned.txt            >   result.MaxLikelihoodFit.Moriond2016.wh3l.txt
+# 
+# 
+# 
 #  
-#  
-# # 2016 separate
-# 
-
-
-
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.vbf.pruned.txt             >   result.MaxLikelihoodFit.ICHEP2016.vbf.txt
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.vh2j.pruned.txt            >   result.MaxLikelihoodFit.ICHEP2016.vh2j.txt
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.2j.pruned.txt              >   result.MaxLikelihoodFit.ICHEP2016.2j.txt
-
-
-
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.1jet.txt             >   result.MaxLikelihoodFit.ICHEP2016.1jet.txt
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.0jet.txt             >   result.MaxLikelihoodFit.ICHEP2016.0jet.txt
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.0jet.em.txt          >   result.MaxLikelihoodFit.ICHEP2016.0jet.em.txt
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.0jet.me.txt          >   result.MaxLikelihoodFit.ICHEP2016.0jet.me.txt
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.1jet.em.txt          >   result.MaxLikelihoodFit.ICHEP2016.1jet.em.txt
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.1jet.me.txt          >   result.MaxLikelihoodFit.ICHEP2016.1jet.me.txt
-
-
-combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.1jet.txt             >   result.Significance.ICHEP2016.1jet.txt
-combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.0jet.txt             >   result.Significance.ICHEP2016.0jet.txt
-combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.0jet.em.txt          >   result.Significance.ICHEP2016.0jet.em.txt
-combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.0jet.me.txt          >   result.Significance.ICHEP2016.0jet.me.txt
-combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.1jet.em.txt          >   result.Significance.ICHEP2016.1jet.em.txt
-combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.1jet.me.txt          >   result.Significance.ICHEP2016.1jet.me.txt
+# #  
+# #  
+# # # 2016 separate
+# # 
 # 
 # 
 # 
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-4 --rMax=6      ICHEP2016.vbf.pruned.txt             >   result.MaxLikelihoodFit.ICHEP2016.vbf.txt
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-6 --rMax=8      ICHEP2016.vh2j.pruned.txt            >   result.MaxLikelihoodFit.ICHEP2016.vh2j.txt
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-4 --rMax=6      ICHEP2016.2j.pruned.txt              >   result.MaxLikelihoodFit.ICHEP2016.2j.txt
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=6      ICHEP2016.wh3l.pruned.txt            >   result.MaxLikelihoodFit.ICHEP2016.wh3l.txt
 # 
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1    --rMin=-2 --rMax=4     ICHEP2016.v1.txt.pruned.txt             >   result.MaxLikelihoodFit.ICHEP2016.v1.txt.pruned.txt
-#     
-combine -M ProfileLikelihood --significance ICHEP2016.v1.txt.pruned.txt -t -1 --expectSignal=1       >   result.Significance.ICHEP2016.v1.txt.pruned.txt
+# 
+# 
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.1jet.txt             >   result.MaxLikelihoodFit.ICHEP2016.1jet.txt
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.0jet.txt             >   result.MaxLikelihoodFit.ICHEP2016.0jet.txt
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.0jet.em.txt          >   result.MaxLikelihoodFit.ICHEP2016.0jet.em.txt
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.0jet.me.txt          >   result.MaxLikelihoodFit.ICHEP2016.0jet.me.txt
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.1jet.em.txt          >   result.MaxLikelihoodFit.ICHEP2016.1jet.em.txt
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.1jet.me.txt          >   result.MaxLikelihoodFit.ICHEP2016.1jet.me.txt
+# 
+# 
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.vbf.pruned.txt             >   result.Significance.ICHEP2016.vbf.txt
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.vh2j.pruned.txt            >   result.Significance.ICHEP2016.vh2j.txt
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.2j.pruned.txt              >   result.Significance.ICHEP2016.2j.txt
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.wh3l.pruned.txt              >   result.Significance.ICHEP2016.wh3l.txt
+# 
+# 
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.1jet.txt             >   result.Significance.ICHEP2016.1jet.txt
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.0jet.txt             >   result.Significance.ICHEP2016.0jet.txt
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.0jet.em.txt          >   result.Significance.ICHEP2016.0jet.em.txt
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.0jet.me.txt          >   result.Significance.ICHEP2016.0jet.me.txt
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.1jet.em.txt          >   result.Significance.ICHEP2016.1jet.em.txt
+# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.1jet.me.txt          >   result.Significance.ICHEP2016.1jet.me.txt
+# # 
+# # 
+# # 
+# # 
+# combine -M MaxLikelihoodFit -t -1 --expectSignal 1    --rMin=-2 --rMax=4     ICHEP2016.v1.txt.pruned.txt             >   result.MaxLikelihoodFit.ICHEP2016.v1.txt.pruned.txt
+# #     
+# combine -M ProfileLikelihood --significance ICHEP2016.v1.txt.pruned.txt -t -1 --expectSignal=1       >   result.Significance.ICHEP2016.v1.txt.pruned.txt
 # 
 # combine -M MultiDimFit ICHEP2016.v1.txt.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanHICHEP"   -t -1 --expectSignal=1        >   result.LikelihoodScan.ICHEP2016.v1.txt.pruned.txt
 # 
