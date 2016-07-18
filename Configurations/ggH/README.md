@@ -20,7 +20,8 @@ Steps to get datacards and plots:
     eosusermount eos
     cd -
     mkShapes.py      --pycfg=configuration.py  --inputDir=/tmp/<nice-login>/eos/user/j/jlauwers/HWW2015/07Jun2016_spring16__mAODv2/MCl2loose16__hadd__LepEff__l2tight__wwSel/
-        
+    mkShapes.py      --pycfg=configuration.py  --doThreads=True   --inputDir=eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
+    
     mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_ggH.root
     
     mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_ggH.root
@@ -60,6 +61,8 @@ Auto tests:
     
     cat ../result.Significance.superCombination.v1.txt.pruned.txt    
 
+    
+    
     cat ../result.MaxLikelihoodFit.superCombination.2015.txt.pruned.txt
     cat ../result.Significance.superCombination.2015.txt.pruned.txt
     
@@ -68,6 +71,24 @@ Auto tests:
     
 
     
+    
+    cat ../result.MaxLikelihoodFit.superCombination.2016.txt.pruned.txt
+    cat ../result.Significance.superCombination.2016.txt.pruned.txt
+    
+    root -l ../higgsCombineLHScanHICHEP2016combined.MultiDimFit.mH125.root  \
+            scripts/drawNLL.C
+    
+
+    
+    
+    cat ../result.MaxLikelihoodFit.superCombination.Total.txt.pruned.txt
+    cat ../result.Significance.superCombination.Total.txt.pruned.txt
+    
+    root -l ../higgsCombineLHScanHICHEPTotalcombined.MultiDimFit.mH125.root  \
+            scripts/drawNLL.C
+
+          
+          
     cd ..
     sh ggH/scripts/doGGH_doMultisignal.sh
     cd -

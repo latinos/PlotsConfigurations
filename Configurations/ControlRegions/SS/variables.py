@@ -23,7 +23,7 @@ variables['mll']  = {   'name': 'mll',            #   variable name
                         }
 
 variables['mth']  = {   'name': 'mth',            #   variable name    
-                        'range' : (10,0,100),    #   variable range
+                        'range' : (10,60,200),    #   variable range
                         'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
                          'fold' : 0
                         }
@@ -51,6 +51,16 @@ variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',
                         'xaxis' : 'p_{T} 2nd lep',
                         'fold'  : 3                         
                         }
+
+
+
+variables['mtw2']  = {   'name': 'mtw2',     
+                        'range' : (10,0,200),   
+                        'xaxis' : 'm_{T}^{W2}',
+                        'fold' : 3
+                        }
+
+
 
 #variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
                         #'range' : (100,0,200),   

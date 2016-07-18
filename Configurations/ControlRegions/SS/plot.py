@@ -134,6 +134,21 @@ plot['top'] = {
                   }
 
 
+plot['Vg']  = { 
+                  'color': 859, # kAzure -1  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+plot['VgS'] = { 
+                  'color'    : 617,   # kViolet + 1  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+
 plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
@@ -277,8 +292,7 @@ plot['DATA']  = {
 
 # additional options
 
-# legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
-legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
+legend['lumi'] = 'L = 4.3/fb' 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 

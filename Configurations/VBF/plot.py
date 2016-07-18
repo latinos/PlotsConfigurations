@@ -39,12 +39,12 @@ groupPlot['WW']  = {
                   'samples'  : ['WW', 'ggWW']
               }
 
-groupPlot['WWewk']  = {  
-                  'nameHR' : 'WW ewk',
-                  'isSignal' : 0,
-                  'color': 850, # kAzure -10
-                  'samples'  : ['WWewk']
-              }
+#groupPlot['WWewk']  = {  
+                  #'nameHR' : 'WW ewk',
+                  #'isSignal' : 0,
+                  #'color': 850, # kAzure -10
+                  #'samples'  : ['WWewk']
+              #}
 
 groupPlot['VVV']  = {  
                   'nameHR' : 'VVV',

@@ -38,7 +38,7 @@ nuisances['WWewk_cont']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                'WW'   : ['1', '(2.06 - 0.0018 * mll + 2.41e-5 * mll * mll)'],
+                'WW'   : ['1', '(1.085 - 0.002361 * mll + 2.07e-5 * mll * mll)'],
                 },
                'cuts'  : [
                  'hww2l2v_13TeV_of2jvbf',

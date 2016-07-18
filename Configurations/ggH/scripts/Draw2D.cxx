@@ -17,7 +17,7 @@ void Draw2D() {
   
 //   graphScan->Draw("surf1");
 
-  
+  //---- 2D likelihood thresholds
   Double_t contours[2];
   contours[0] = 1;
   contours[1] = 3.84;
@@ -26,7 +26,7 @@ void Draw2D() {
 //   graphScan->Draw("cont4z");
   graphScan->Draw("colz");
   graphScan->GetHistogram()->GetXaxis()->SetTitle("#mu_{ggH}");
-  graphScan->GetHistogram()->GetYaxis()->SetTitle("#mu_{VBF}");
+  graphScan->GetHistogram()->GetYaxis()->SetTitle("#mu_{VBF/VH}");
   graphScan->GetHistogram()->GetZaxis()->SetTitle("- 2#Delta logL");
 //   graphScan->Draw("cont4z");
   graphScan->Draw("colz");
