@@ -99,6 +99,61 @@ Auto tests:
     
     
     
+    cat  ../result.MaxLikelihoodFit.superCombination.2016.txt.pruned.txt
+    cat  ../result.Significance.superCombination.2016.txt.pruned.txt
+    cat  ../result.MaxLikelihoodFit.Moriond2016.vbf.txt
+    cat  ../result.MaxLikelihoodFit.Moriond2016.vh2j.txt
+    cat  ../result.MaxLikelihoodFit.Moriond2016.2j.txt
+
+    cat  ../result.MaxLikelihoodFit.ICHEP2016.vbf.txt
+    cat  ../result.MaxLikelihoodFit.ICHEP2016.vh2j.txt
+    cat  ../result.MaxLikelihoodFit.ICHEP2016.wh3l.txt
+    cat  ../result.MaxLikelihoodFit.ICHEP2016.2j.txt
+    cat  ../result.MaxLikelihoodFit.ICHEP2016.1jet.txt
+    cat  ../result.MaxLikelihoodFit.ICHEP2016.0jet.txt
+    cat  ../result.MaxLikelihoodFit.ICHEP2016.0jet.em.txt
+    cat  ../result.MaxLikelihoodFit.ICHEP2016.0jet.me.txt
+    cat  ../result.MaxLikelihoodFit.ICHEP2016.1jet.em.txt
+    cat  ../result.MaxLikelihoodFit.ICHEP2016.1jet.me.txt
+    cat  ../result.Significance.ICHEP2016.vbf.txt
+    cat  ../result.Significance.ICHEP2016.vh2j.txt
+    cat  ../result.Significance.ICHEP2016.2j.txt
+    cat  ../result.Significance.ICHEP2016.wh3l.txt
+    cat  ../result.Significance.ICHEP2016.1jet.txt
+    cat  ../result.Significance.ICHEP2016.0jet.txt
+    cat  ../result.Significance.ICHEP2016.0jet.em.txt
+    cat  ../result.Significance.ICHEP2016.0jet.me.txt
+    cat  ../result.Significance.ICHEP2016.1jet.em.txt
+    cat  ../result.Significance.ICHEP2016.1jet.me.txt
+    cat  ../result.MaxLikelihoodFit.ICHEP2016.v1.txt.pruned.txt
+    cat  ../result.Significance.ICHEP2016.v1.txt.pruned.txt
+
+    cat  ../result.MaxLikelihoodFit.Combined.vbf.txt
+    cat  ../result.MaxLikelihoodFit.Combined.vh2j.txt
+    cat  ../result.MaxLikelihoodFit.Combined.wh3l.txt
+    cat  ../result.MaxLikelihoodFit.Combined.2j.txt
+    cat  ../result.MaxLikelihoodFit.Combined.1jet.txt
+    cat  ../result.MaxLikelihoodFit.Combined.0jet.txt
+    cat  ../result.MaxLikelihoodFit.Combined.0jet.em.txt
+    cat  ../result.MaxLikelihoodFit.Combined.0jet.me.txt
+    cat  ../result.MaxLikelihoodFit.Combined.1jet.em.txt
+    cat  ../result.MaxLikelihoodFit.Combined.1jet.me.txt
+    cat  ../result.Significance.Combined.vbf.txt
+    cat  ../result.Significance.Combined.vh2j.txt
+    cat  ../result.Significance.Combined.2j.txt
+    cat  ../result.Significance.Combined.wh3l.txt
+    cat  ../result.Significance.Combined.1jet.txt
+    cat  ../result.Significance.Combined.0jet.txt
+    cat  ../result.Significance.Combined.0jet.em.txt
+    cat  ../result.Significance.Combined.0jet.me.txt
+    cat  ../result.Significance.Combined.1jet.em.txt
+    cat  ../result.Significance.Combined.1jet.me.txt
+    cat  ../result.MaxLikelihoodFit.superCombination.Total.txt.pruned.txt
+    cat  ../result.Significance.superCombination.Total.txt.pruned.txt
+    
+
+
+    
 Make tables:
 
     cd /afs/cern.ch/user/a/amassiro/Limit/PlayWithDatacards

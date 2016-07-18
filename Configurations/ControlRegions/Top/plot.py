@@ -143,19 +143,25 @@ plot['top'] = {
                   'isSignal' : 0,
                   'isData'   : 0, 
                   'scale'    : 1.0,
-                  #'cuts'  : {
-                       #'hww2l2v_13TeV_of0j'      : 0.94 ,
-                       #'hww2l2v_13TeV_top_of0j'  : 0.94 , 
-                       #'hww2l2v_13TeV_dytt_of0j' : 0.94 ,
-                       #'hww2l2v_13TeV_em_0j'     : 0.94 , 
-                       #'hww2l2v_13TeV_me_0j'     : 0.94 , 
-                       ##
-                       #'hww2l2v_13TeV_of1j'      : 0.86 ,
-                       #'hww2l2v_13TeV_top_of1j'  : 0.86 , 
-                       #'hww2l2v_13TeV_dytt_of1j' : 0.86 ,
-                       #'hww2l2v_13TeV_em_1j'     : 0.86 , 
-                       #'hww2l2v_13TeV_me_1j'     : 0.86 , 
-                        #},
+                  'cuts'  : {
+                       'hww2l2v_13TeV_of0j'      : 0.98 ,
+                       'hww2l2v_13TeV_top_of0j'  : 0.98 , 
+                       'hww2l2v_13TeV_dytt_of0j' : 0.98 ,
+                       'hww2l2v_13TeV_em_0j'     : 0.98 , 
+                       'hww2l2v_13TeV_me_0j'     : 0.98 , 
+                       #
+                       'hww2l2v_13TeV_of1j'      : 0.92 ,
+                       'hww2l2v_13TeV_top_of1j'  : 0.92 , 
+                       'hww2l2v_13TeV_dytt_of1j' : 0.92 ,
+                       'hww2l2v_13TeV_em_1j'     : 0.92 , 
+                       'hww2l2v_13TeV_me_1j'     : 0.92 , 
+                        #
+                       'hww2l2v_13TeV_of2j'      : 0.94 ,
+                       'hww2l2v_13TeV_top_of2j'  : 0.94 , 
+                       'hww2l2v_13TeV_dytt_of2j' : 0.94 ,
+                       'hww2l2v_13TeV_em_2j'     : 0.94 , 
+                       'hww2l2v_13TeV_me_2j'     : 0.94 ,                       
+                        },
                   }
 
 
