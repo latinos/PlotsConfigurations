@@ -102,7 +102,7 @@ samples['WW']  = {    'name': [
                                   'latino_WWTo2L2Nu.root',
                                   'latino_GluGluWWTo2L2Nu_MCFM.root'
                                 ],      
-                      'weight' : 'puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+                      'weight' : 'puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]*GEN_weight_SM/abs(GEN_weight_SM)',          
                       #'weights': ['abs(nllW)'] ,           
                   }
 
@@ -140,16 +140,16 @@ samples['WW']  = {    'name': [
 samples['ZZ']  = {    'name': [
                           'latino_ZZ.root'
                          ],
-                      'weight' : 'puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]',
+                      'weight' : 'puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]*GEN_weight_SM/abs(GEN_weight_SM)',
                       #'weights': ['1'] ,           
                       #'isData': ['0'],                            
                   }
 
 samples['WZ']  = {    'name': [
                           'latino_WZTo3LNu.root'
-#                          'latino_WZ.root'
+        #                  'latino_WZ.root'
                          ],
-                      'weight' : 'puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]',
+                      'weight' : 'puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]*GEN_weight_SM/abs(GEN_weight_SM)',
 #                      'weights': ['0.002214825'] ,           
                       #'isData': ['0'],                            
                   }
@@ -200,19 +200,20 @@ samples['ZH_hww']  = {    'name': ['latino_HZJ_HToWW_M125.root'],
 ###########################################
 
 samples['DATA']  = {   'name': [
-#                                '../../../../../../../../../../../eos/user/j/jlauwers/HWW2015/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__vh3lSel/latino_Run2016B_PromptReco_DoubleEG.root',
-#                                '../../../../../../../../../../../eos/user/j/jlauwers/HWW2015/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__vh3lSel/latino_Run2016B_PromptReco_DoubleMuon.root',
-#                                '../../../../../../../../../../../eos/user/j/jlauwers/HWW2015/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__vh3lSel/latino_Run2016B_PromptReco_MuonEG.root',
-#                                '../../../../../../../../../../../eos/user/j/jlauwers/HWW2015/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__vh3lSel/latino_Run2016B_PromptReco_SingleElectron.root',
+                                '../../../../../../../../../../../eos/user/j/jlauwers/HWW2015/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__vh3lSel/latino_Run2016B_PromptReco_DoubleEG.root',
+                                '../../../../../../../../../../../eos/user/j/jlauwers/HWW2015/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__vh3lSel/latino_Run2016B_PromptReco_DoubleMuon.root',
+                                '../../../../../../../../../../../eos/user/j/jlauwers/HWW2015/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__vh3lSel/latino_Run2016B_PromptReco_MuonEG.root',
+                                '../../../../../../../../../../../eos/user/j/jlauwers/HWW2015/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__vh3lSel/latino_Run2016B_PromptReco_SingleElectron.root',
                                 '../../../../../../../../../../../eos/user/j/jlauwers/HWW2015/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__vh3lSel/latino_Run2016B_PromptReco_SingleMuon.root',
-                                '../../../../../../../../../../../eos/user/j/jlauwers/HWW2015/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__vh3lSel/latino_Run2016B_PromptReco_SingleMuon.root'
-#                                '../../../../../../../../../../../eos/user/j/jlauwers/HWW2015/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__vh3lSel/latino_Run2016B_PromptReco_DoubleEG.root',
-#                                '../../../../../../../../../../../eos/user/j/jlauwers/HWW2015/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__vh3lSel/latino_Run2016B_PromptReco_MuonEG.root',
-#                                '../../../../../../../../../../../eos/user/j/jlauwers/HWW2015/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__vh3lSel/latino_Run2016B_PromptReco_SingleElectron.root',
-#                                '../../../../../../../../../../../eos/user/j/jlauwers/HWW2015/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__vh3lSel/latino_Run2016B_PromptReco_DoubleMuon.root'
+                                '../../../../../../../../../../../eos/user/j/jlauwers/HWW2015/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__vh3lSel/latino_Run2016B_PromptReco_SingleMuon.root',
+                                '../../../../../../../../../../../eos/user/j/jlauwers/HWW2015/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__vh3lSel/latino_Run2016B_PromptReco_DoubleEG.root',
+                                '../../../../../../../../../../../eos/user/j/jlauwers/HWW2015/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__vh3lSel/latino_Run2016B_PromptReco_MuonEG.root',
+                                '../../../../../../../../../../../eos/user/j/jlauwers/HWW2015/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__vh3lSel/latino_Run2016B_PromptReco_SingleElectron.root',
+                                '../../../../../../../../../../../eos/user/j/jlauwers/HWW2015/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__vh3lSel/latino_Run2016B_PromptReco_DoubleMuon.root'
                                 ] ,     
-#                       'weight' : 'trigger',
-                       'weight' : 'std_vector_trigger[43]',
+                       'weight' : 'trigger',
+              #         'weight' : 'std_vector_trigger[43]', #single mu PD
+ #                      'weight' : 'std_vector_trigger[0]', #single ele PD
                        'isData': ['all'],                            
                   }
 
