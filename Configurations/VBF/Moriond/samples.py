@@ -115,7 +115,7 @@ samples['WW']  = {    'name': [
 
 
 samples['WWewk']  = {    'name': [
-                                  'latino_WpWmJJ_EWK_QCD_noTop.root',
+                                  'latino_WpWmJJ_EWK_QCD_noTop_genVar.root',
                                   'latino_WpWmJJ_QCD_noTop.root'
                                 ],      
                       'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
