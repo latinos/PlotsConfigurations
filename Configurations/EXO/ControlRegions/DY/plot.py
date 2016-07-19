@@ -5,14 +5,6 @@
 # keys here must match keys in samples.py    
 #                    
 
-groupPlot['DY']  = {  
-                  'nameHR' : "DY",
-                  'isSignal' : 0,
-                  'color': 418,    # kGreen+2
-                  'samples'  : ['DY']
-              }
-
-
 
 #groupPlot['Fake']  = {  
 #                  'nameHR' : 'Fake',
@@ -22,19 +14,28 @@ groupPlot['DY']  = {
 #              }
 
 
-#groupPlot['top']  = {  
-#                  'nameHR' : 'tW and t#bart',
-#                  'isSignal' : 0,
-#                  'color': 400,   # kYellow
-#                  'samples'  : ['top']
-#              }
-#
+groupPlot['DY']  = {  
+                  'nameHR' : "DY",
+                  'isSignal' : 0,
+                  'color': 418,    # kGreen+2
+                  'samples'  : ['DY']
+              }
+
+groupPlot['top']  = {  
+                  'nameHR' : 'tW and t#bart',
+                  'isSignal' : 0,
+                  'color': 400,   # kYellow
+                  'samples'  : ['top']
+              }
+
 #groupPlot['WW']  = {  
 #                  'nameHR' : 'WW',
 #                  'isSignal' : 0,
 #                  'color': 851, # kAzure -9 
 #                  'samples'  : ['WW', 'ggWW']
 #              }
+
+
 
 #groupPlot['VVV']  = {  
 #                  'nameHR' : 'VVV',

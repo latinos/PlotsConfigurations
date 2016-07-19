@@ -27,4 +27,27 @@ variables['mTi_VBF']  = {   'name': 'mTi',            #   variable name
                         'xaxis' : 'm_{T,i}^{H} [GeV]',  #   x axis name
                         'fold' : 3
                         }
+variables['mll']  = {   'name': 'mll',            #   variable name    
+                        'range' : (15,50,200),    #   variable range
+                        'xaxis' : 'm_{ll} [GeV]',  #   x axis name
+                         'fold' : 0
+                        }
+
+variables['ptll']  = {   'name': 'ptll',
+                        'range' : (20,0,300),
+                        'xaxis' : 'p_{T}^{ll} [GeV]',
+                        'fold' : 3
+                        }
+
+variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',
+                        'range' : (20,0,300),
+                        'xaxis' : 'p_{T} 1st lep',
+                        'fold'  : 3
+                        }
+
+variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',
+                        'range' : (15,0,200),
+                        'xaxis' : 'p_{T} 2nd lep',
+                        'fold'  : 3
+                        }
  

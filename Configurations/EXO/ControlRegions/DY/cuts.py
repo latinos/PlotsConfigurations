@@ -3,7 +3,7 @@
 #cuts = {}
   
 supercut = 'mll>50  \
-            && std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>20 \
+            && std_vector_lepton_pt[0]>30 && std_vector_lepton_pt[1]>30 \
             && std_vector_lepton_pt[2]<10 \
             && (abs(std_vector_lepton_flavour[0])==abs(std_vector_lepton_flavour[1])) \
            '
