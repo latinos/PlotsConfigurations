@@ -33,16 +33,17 @@ outputFileLH=${2}
 inputCardCOMB="/afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VBF/datacards/hww2l2v_13TeV_top_of2j_vbf/events/datacard.txt.pruned.txt"
  
 echo "~~~~~~~~~~ Top 2 jet VBF SF ~~~~~~~~~~~~~" >> ${outputFileSF}
-echo `combine -M MaxLikelihoodFit ${inputCardCOMB} --redefineSignalPOIs ICHEP_Topnorm2jvbf --freezeNuisances=r` >> ${outputFileSF}
+echo `combine -M MaxLikelihoodFit ${inputCardCOMB} --redefineSignalPOIs Topnorm2jvbf --freezeNuisances=r` >> ${outputFileSF}
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" >> ${outputFileSF}
 
 
-# inputCardCOMB="/afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/datacards/hww2l2v_13TeV_top_of2j_vh2j/events/datacard.txt.pruned.txt"
-#  
-# echo "~~~~~~~~~~ Top 2 jet VH2j SF ~~~~~~~~~~~~~" >> ${outputFileSF}
-# echo `combine -M MaxLikelihoodFit ${inputCardCOMB} --redefineSignalPOIs ICHEP_Topnorm2jvh --freezeNuisances=r` >> ${outputFileSF}
-# echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" >> ${outputFileSF}
-# 
+inputCardCOMB="/afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/datacards/hww2l2v_13TeV_top_of2j_vh2j/events/datacard.txt.pruned.txt"
+ 
+echo "~~~~~~~~~~ Top 2 jet VH2j SF ~~~~~~~~~~~~~" >> ${outputFileSF}
+echo `combine -M MaxLikelihoodFit ${inputCardCOMB} --redefineSignalPOIs ICHEP_Topnorm2jvh --freezeNuisances=r` >> ${outputFileSF}
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" >> ${outputFileSF}
+
+
 
 
 
