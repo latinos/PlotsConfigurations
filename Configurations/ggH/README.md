@@ -66,9 +66,15 @@ Auto tests:
     cat ../result.MaxLikelihoodFit.superCombination.2015.txt.pruned.txt
     cat ../result.Significance.superCombination.2015.txt.pruned.txt
     
+    cat ../result.Data.MaxLikelihoodFit.superCombination.2015.txt.pruned.txt
+    cat ../result.Data.Significance.superCombination.2015.txt.pruned.txt
+    
     root -l ../higgsCombineLHScanHICHEP2015combined.MultiDimFit.mH125.root  \
             scripts/drawNLL.C
     
+    root -l ../higgsCombineLHScanHICHEP2015combined.MultiDimFit.mH125.root  \
+            ../higgsCombineDATALHScanHICHEP2015combined.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
 
     
     
@@ -94,9 +100,11 @@ Auto tests:
     cd -
     
     
-    r99t ../higgsCombineTest.MultiDimFit.mH120.root \
+    r99t ../higgsCombineLH2DICHEP2015combined.MultiDimFit.mH120.root \
         scripts/Draw2D.cxx
     
+    r99t ../higgsCombineDataLH2DICHEP2015combined.MultiDimFit.mH120.root  \
+        scripts/Draw2D.cxx
     
     
     cat  ../result.MaxLikelihoodFit.superCombination.2016.txt.pruned.txt
@@ -152,6 +160,27 @@ Auto tests:
     cat  ../result.Significance.superCombination.Total.txt.pruned.txt
     
 
+    
+    cat   ../result.Data.MaxLikelihoodFit.Moriond2016.vbf.txt
+    cat   ../result.Data.MaxLikelihoodFit.Moriond2016.vh2j.txt
+    cat   ../result.Data.MaxLikelihoodFit.Moriond2016.2j.txt
+    cat   ../result.Data.MaxLikelihoodFit.Moriond2016.wh3l.txt
+
+    cat   ../result.Data.Significance.Moriond2016.vbf.txt
+    cat   ../result.Data.Significance.Moriond2016.vh2j.txt
+    cat   ../result.Data.Significance.Moriond2016.2j.txt
+    cat   ../result.Data.Significance.Moriond2016.wh3l.txt
+
+
+    cat   ../result.MaxLikelihoodFit.Moriond2016.vbf.txt
+    cat   ../result.MaxLikelihoodFit.Moriond2016.vh2j.txt
+    cat   ../result.MaxLikelihoodFit.Moriond2016.2j.txt
+    cat   ../result.MaxLikelihoodFit.Moriond2016.wh3l.txt
+
+    cat   ../result.Significance.Moriond2016.vbf.txt
+    cat   ../result.Significance.Moriond2016.vh2j.txt
+    cat   ../result.Significance.Moriond2016.2j.txt
+    cat   ../result.Significance.Moriond2016.wh3l.txt
 
     
 Make tables:

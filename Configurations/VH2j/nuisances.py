@@ -976,7 +976,7 @@ nuisances['met']  = {
                    #'ggZH_hww':  ['1', '1'],
                    'H_hww' :  ['1', '1'],
                    'H_htt' : ['1', '1'],
-                   'Vg' : ['1', '1'],
+                   #'Vg' : ['1', '1'],
                    'VgS': ['1', '1'],
                 },
                 'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel/',
