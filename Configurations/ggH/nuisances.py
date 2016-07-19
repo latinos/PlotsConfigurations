@@ -8,19 +8,19 @@
 nuisances['lumi']  = {
                'name'  : 'lumi_ICHEP_13TeV', 
                'samples'  : {
-                   'ggH_hww'  : '1.027',
-                   'qqH_hww'  : '1.027',
-                   'WH_hww'   : '1.027',
-                   'ZH_hww'   : '1.027',
-                   'H_htt'    : '1.027',
-                   'H_hww'    : '1.027',
-                   'WH_hww'   : '1.027',
-                   'ggZH_hww'   : '1.027',
-                   'VVV'      : '1.027',
-                   'VZ'       : '1.027',
-                   'ggWW'     : '1.027',
-                   'Vg'       : '1.027',
-                   'VgS'      : '1.027',
+                   'ggH_hww'  : '1.050',
+                   'qqH_hww'  : '1.050',
+                   'WH_hww'   : '1.050',
+                   'ZH_hww'   : '1.050',
+                   'H_htt'    : '1.050',
+                   'H_hww'    : '1.050',
+                   'WH_hww'   : '1.050',
+                   'ggZH_hww'   : '1.050',
+                   'VVV'      : '1.050',
+                   'VZ'       : '1.050',
+                   'ggWW'     : '1.050',
+                   'Vg'       : '1.050',
+                   'VgS'      : '1.050',
                    #'DY'       : '1.027',    # --> datadriven
                    #'WW'       : '1.027',    # --> datadriven
                    #'top'      : '1.027',    # --> datadriven
