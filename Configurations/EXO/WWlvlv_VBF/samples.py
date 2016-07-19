@@ -70,30 +70,30 @@ samples['DY']  = {    'name': [
                             ],
                       'weight' : 'metFilter*puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*((8.61313e-01+gen_ptll*4.46807e-03-1.52324e-05*gen_ptll*gen_ptll)*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-11.)/5.51582)))*(gen_ptll<140)+1.141996*(gen_ptll>=140))',
                       'weights' :  [
-                                    '0.142146348953',
-                                    '0.142146348953',
-                                    '0.142146348953',
-                                    '0.142146348953',
-                                    '0.142146348953',
-                                    '0.142146348953',
-                                    '0.142146348953',
-                                    '0.142146348953',
-                                    '0.142146348953',
-                                    '0.142146348953',
-                                    '0.142146348953',
-                                    '0.142146348953',
-                                    '0.142146348953',
-                                    '0.142146348953',
-                                    '0.142146348953',
-                                    '0.142146348953',
-                                    '0.142146348953',
-                                    '0.142146348953',
-                                    '0.142146348953',
-                                    '0.142146348953',
-                                    '0.142146348953',
-                                    '0.142146348953',
-                                    '0.142146348953',
-                                    '0.142146348953',
+                                    '0.124397720812',
+                                    '0.124397720812',
+                                    '0.124397720812',
+                                    '0.124397720812',
+                                    '0.124397720812',
+                                    '0.124397720812',
+                                    '0.124397720812',
+                                    '0.124397720812',
+                                    '0.124397720812',
+                                    '0.124397720812',
+                                    '0.124397720812',
+                                    '0.124397720812',
+                                    '0.124397720812',
+                                    '0.124397720812',
+                                    '0.124397720812',
+                                    '0.124397720812',
+                                    '0.124397720812',
+                                    '0.124397720812',
+                                    '0.124397720812',
+                                    '0.124397720812',
+                                    '0.124397720812',
+                                    '0.124397720812',
+                                    '0.124397720812',
+                                    '0.124397720812',
                                     ]
 
                    }
@@ -156,16 +156,16 @@ samples['top'] = {   'name': [
                           ],          
                        'weight' : 'puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',    #   weight/cut 
                        'weights' :  [
-                          '0.0043711992912',
-                          '0.0043711992912',
-                          '0.0043711992912',
-                          '0.0043711992912',
-                          '0.0043711992912',
-                          '0.0043711992912',
-                          '0.0043711992912',
-                          '0.0043711992912',
-                          '0.0043711992912',
-                          '0.0043711992912',
+                          '0.00437119916948',
+                          '0.00437119916948',
+                          '0.00437119916948',
+                          '0.00437119916948',
+                          '0.00437119916948',
+                          '0.00437119916948',
+                          '0.00437119916948',
+                          '0.00437119916948',
+                          '0.00437119916948',
+                          '0.00437119916948',
 #
                           'baseW',
                           'baseW',
@@ -201,20 +201,20 @@ samples['ggWW']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root'],
 
 
 
-#samples['Vg']  = {    'name': ['latino_Wg_MADGRAPHMLM.root'],      
-#                      'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)\
-#                                  * !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
-#                                 #*(!(Gen_ZGstar_MomStatus==44 && Gen_ZGstar_MomId==22))',
-#                      'weights': ['1'] ,           
-#                      #'isData': ['0'],                            
-#                  }
+samples['Vg']  = {    'name': ['latino_Wg_MADGRAPHMLM.root'],      
+                      'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)\
+                                  * !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
+                                 #*(!(Gen_ZGstar_MomStatus==44 && Gen_ZGstar_MomId==22))',
+                      'weights': ['1'] ,           
+                      #'isData': ['0'],                            
+                  }
 
 
 samples['VgS']  = {    'name': [
                              'latino_WgStarLNuEE.root', 
                              'latino_WgStarLNuMuMu.root'
                              ],      
-                      'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',
+                      'weight' : '1.4*puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',
                       'weights': ['1','1'] ,           
                   }
 
