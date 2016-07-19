@@ -24,3 +24,18 @@ Steps to get datacards and plots:
 
 
     
+    alias eosusermount='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine.user/bin/eos.select -b fuse mount'
+    
+    alias eosuserumount='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine.user/bin/eos.select -b fuse umount'
+    
+    cd /tmp/ntrevisa
+    
+    eosusermount eosuser
+
+    eosmount eos
+    
+    cd -
+    
+    mkShapes.py      --pycfg=configuration.py  --inputDir=eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/ --doThreads=True
+
+    mkPDF.py    --pycfg=configuration.py  --inputDir=eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/    --inputFile=rootFile/plots_ggH.root    --outputDirPDF=testPDF/
