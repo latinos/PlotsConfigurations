@@ -61,9 +61,10 @@ def getFraction(histo):
   return central
 
 def getMC(samples, rootfile, cut, plotName):
+
   for isample,sample in enumerate(samples.keys()):
     if isample == 0:
-      #print cut+"/"+plotName+"/histo_"+sample
+      print cut+"/"+plotName+"/histo_"+sample
       output       = rootfile.Get(cut+"/"+plotName+"/histo_"+sample).Clone()
       outputSTUp   = rootfile.Get(cut+"/"+plotName+"/histo_"+sample).Clone()
       outputSTDown = rootfile.Get(cut+"/"+plotName+"/histo_"+sample).Clone()
@@ -71,7 +72,7 @@ def getMC(samples, rootfile, cut, plotName):
         outputSTUp.Scale(1.+0.08)
         outputSTDown.Scale(1.-0.08)
     else:
-      #print cut+"/"+plotName+"/histo_"+sample
+      print cut+"/"+plotName+"/histo_"+sample
       histo = rootfile.Get(cut+"/"+plotName+"/histo_"+sample)
       histoUp = histo.Clone()
       histoDown = histo.Clone()
@@ -117,6 +118,7 @@ def computeSF(binSuffix, nickname, wpname, mcsamples, datasamples, rootfile):
   # eff_ZCr = frac_b_TopCr*eff_b_TopCr*SFb + (1-frac_b_TopCr)*eff_l_TopCr*SFl
   eff_b_ZCr    = getFraction(totalmcZCrH)
   eff_l_ZCr    = getFraction(totalmcZCrL)
+  print dataZCr
   eff_ZCr      = getFraction(dataZCr)
   err2_eff_ZCr = eff_ZCr*(1.-eff_ZCr)/dataZCr.Integral()
   frac_b_ZCr, frac_b_ZCrUp, frac_b_ZCrDown = getBFractionZ(compositionZCr)
@@ -184,6 +186,8 @@ if __name__ == '__main__':
     if key != "DATA":
       del datasamples[key]
 
+
+  print datasamples
   lines = {}
 
   

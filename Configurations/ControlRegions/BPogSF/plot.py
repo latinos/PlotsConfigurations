@@ -181,7 +181,7 @@ plot['FakeQCD']  = {
 
 
 
-plot['ttbar'] = {   
+plot['tttbar'] = {   
                   'nameHR' : 't#bart',
                   'color': 400,   # kYellow 
                   'isSignal' : 0,
@@ -271,6 +271,13 @@ plot['ZZ']  = {
                   'scale'    : 1.0
                   }
 
+plot['VgS']  = {
+                  'color': 854, # kAzure -6 
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
 
 
 # Htautau
@@ -352,7 +359,7 @@ plot['DATA']  = {
 
 # legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
 #legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
-legend['lumi'] = 'L = 0.8/fb' # XXX fb-1
+legend['lumi'] = 'L = 4.3/fb' # XXX fb-1
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 
