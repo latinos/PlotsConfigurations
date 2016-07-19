@@ -1,7 +1,102 @@
 # samples
 
 #samples = {}
+import os.path
 
+massesAndModelsFile = "massesAndModels.py"
+
+if os.path.exists(massesAndModelsFile) :
+  handle = open(massesAndModelsFile,'r')
+  exec(handle)
+  handle.close()
+else:
+  print "!!! ERROR file ", massesAndModelsFile, " does not exist."
+
+for m in masses:
+  for model in models:
+    kp = float(model[6:9])*float(model[6:9])
+    brn = float(model[-3:])
+    sf = kp*(1-brn)
+    #sf125 = 1-kp
+    #sf125int = sqrt(1-kp)
+    model_int = model+"_I"
+    print "k' = ", kp," BRnew = ",brn," SF = ",sf
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    print model_name
+    samples['ggH_hww_'+m+'_'+model_name] = { 'name': [
+                                             'latino_GluGluHToWWTo2L2Nu_M'+m+'.root'
+                                                  ],
+                                          'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*'+model+"*"+str(sf),
+                                        }
+    samples['ggH_hww_INT'+m+'_'+model_name] = { 'name': [
+                                             'latino_GluGluHToWWTo2L2Nu_M'+m+'.root'
+                                                  ],
+                                          'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*'+model_int+'*(abs('+model_int+')<10)*'+str(sf),
+                                        }
+
+    samples['qqH_hww_'+m+'_'+model_name] = { 'name': [
+                                             'latino_VBFHToWWTo2L2Nu_M'+m+'.root'
+                                                  ],
+                                          'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*'+model+"*"+str(sf),
+                                        }
+
+
+samples['DY']  = {    'name': [
+
+        'latino_DYJetsToLL_M-50-LO-ext1_0000__part0.root',
+        'latino_DYJetsToLL_M-50-LO-ext1_0000__part1.root',
+        'latino_DYJetsToLL_M-50-LO-ext1_0000__part2.root',
+        'latino_DYJetsToLL_M-50-LO-ext1_0000__part3.root',
+        'latino_DYJetsToLL_M-50-LO-ext1_0000__part4.root',
+        'latino_DYJetsToLL_M-50-LO-ext1_0001__part0.root',
+        'latino_DYJetsToLL_M-50-LO-ext1_0001__part1.root',
+        'latino_DYJetsToLL_M-50-LO-ext1_0001__part2.root',
+        'latino_DYJetsToLL_M-50-LO-ext1_0001__part3.root',
+        'latino_DYJetsToLL_M-50-LO-ext1_0001__part4.root',
+        'latino_DYJetsToLL_M-50-LO-ext1_0002__part0.root',
+        'latino_DYJetsToLL_M-50-LO-ext1_0002__part1.root',
+        'latino_DYJetsToLL_M-50-LO-ext1_0002__part2.root',
+        'latino_DYJetsToLL_M-50-LO-ext1_0002__part3.root',
+        'latino_DYJetsToLL_M-50-LO-ext1_0002__part4.root',
+        'latino_DYJetsToLL_M-50-LO-ext1_0003__part0.root',
+        'latino_DYJetsToLL_M-50-LO-ext1_0003__part1.root',
+        'latino_DYJetsToLL_M-50-LO-ext1_0003__part2.root',
+        'latino_DYJetsToLL_M-50-LO-ext1_0003__part3.root',
+        'latino_DYJetsToLL_M-50-LO-ext1_0003__part4.root',
+        'latino_DYJetsToLL_M-50-LO-ext1_0004__part0.root',
+        'latino_DYJetsToLL_M-50-LO-ext1_0004__part1.root',
+        'latino_DYJetsToLL_M-50-LO-ext1_0004__part2.root',
+        'latino_DYJetsToLL_M-50-LO-ext1_0004__part3.root',
+                            ],
+                      'weight' : 'metFilter*puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*((8.61313e-01+gen_ptll*4.46807e-03-1.52324e-05*gen_ptll*gen_ptll)*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-11.)/5.51582)))*(gen_ptll<140)+1.141996*(gen_ptll>=140))',
+                      'weights' :  [
+                                    '0.142146348953',
+                                    '0.142146348953',
+                                    '0.142146348953',
+                                    '0.142146348953',
+                                    '0.142146348953',
+                                    '0.142146348953',
+                                    '0.142146348953',
+                                    '0.142146348953',
+                                    '0.142146348953',
+                                    '0.142146348953',
+                                    '0.142146348953',
+                                    '0.142146348953',
+                                    '0.142146348953',
+                                    '0.142146348953',
+                                    '0.142146348953',
+                                    '0.142146348953',
+                                    '0.142146348953',
+                                    '0.142146348953',
+                                    '0.142146348953',
+                                    '0.142146348953',
+                                    '0.142146348953',
+                                    '0.142146348953',
+                                    '0.142146348953',
+                                    '0.142146348953',
+                                    ]
+
+                   }
 
 
 # data driven
@@ -106,14 +201,13 @@ samples['ggWW']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root'],
 
 
 
-#samples['Vg']  = {    'name': ['latino_Wg_AMCNLOFXFX.root'],      
-                      #'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)\
-                                  #* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
-                                 ##*(!(Gen_ZGstar_MomStatus==44 && Gen_ZGstar_MomId==22))',
-                      #'weights': ['1'] ,           
-                      ##'isData': ['0'],                            
-                  #}
-
+#samples['Vg']  = {    'name': ['latino_Wg_MADGRAPHMLM.root'],      
+#                      'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)\
+#                                  * !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
+#                                 #*(!(Gen_ZGstar_MomStatus==44 && Gen_ZGstar_MomId==22))',
+#                      'weights': ['1'] ,           
+#                      #'isData': ['0'],                            
+#                  }
 
 
 samples['VgS']  = {    'name': [

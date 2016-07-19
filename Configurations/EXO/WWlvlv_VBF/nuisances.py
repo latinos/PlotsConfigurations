@@ -54,6 +54,27 @@ for m in masses:
 # WZ from 
 # https://twiki.cern.ch/twiki/bin/view/CMS/StandardModelCrossSectionsat13TeV
 #
+
+# missing WW-ewk in 2016 MC 80X production
+nuisances['WWewk_cont']  = {
+               'name'  : 'WWewk_cont', 
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                'WW'   : ['1', '(1.085 - 0.002361 * mll + 2.07e-5 * mll * mll)'],
+                },
+               'cuts'  : [
+                 'hww2l2v_13TeV_top_of2j',
+                 'hww2l2v_13TeV_dytt_of2j',
+#                 
+                 'hwwhm_13TeV_of_VBF',
+
+                ]
+                }
+
+
+
+
 nuisances['QCDscale_VW']  = {
                'name'  : 'QCDscale_VW', 
                'samples'  : {

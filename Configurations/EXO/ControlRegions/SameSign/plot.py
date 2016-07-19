@@ -13,15 +13,6 @@ groupPlot['DY']  = {
               }
 
 
-
-groupPlot['Fake']  = {  
-                  'nameHR' : 'Fake',
-                  'isSignal' : 0,
-                  'color': 921,    # kGray + 1
-                  'samples'  : ['Fake']
-              }
-
-
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bart',
                   'isSignal' : 0,
@@ -49,6 +40,13 @@ groupPlot['VZ']  = {
                   'isSignal' : 0,
                   'color'    : 617,   # kViolet + 1  
                   'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ']
+              }
+
+groupPlot['Fake']  = {  
+                  'nameHR' : 'Fake',
+                  'isSignal' : 0,
+                  'color': 921,    # kGray + 1
+                  'samples'  : ['Fake']
               }
 
 
