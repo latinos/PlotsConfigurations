@@ -143,10 +143,10 @@ samples['ggWW']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root'],
 
 
 samples['Vg']  = {    'name': ['latino_Wg_MADGRAPHMLM.root'],      
-                      'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)\
+                      'weight' : 'puW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)\
                                   * !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
                                  #*(!(Gen_ZGstar_MomStatus==44 && Gen_ZGstar_MomId==22))',
-                      'weights': ['1'] ,           
+                      'weights': ['0.0684952181745'] ,           
                       #'isData': ['0'],                            
                   }
 
