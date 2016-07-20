@@ -731,13 +731,13 @@ nuisances['PS']  = {
 
 nuisances['UE']  = {
                 'name'  : 'UE', 
-                'kind'  : 'tree',
+                'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
                    'WW' :  ['1/0.978817', '1/1.0192'], 
                 },
-                'folderUp'   : 'eos2/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEup',
-                'folderDown' : 'eos2/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEdo/' 
+#                'folderUp'   : 'eos2/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEup',
+#                'folderDown' : 'eos2/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEdo/' 
                 }
 
 #
