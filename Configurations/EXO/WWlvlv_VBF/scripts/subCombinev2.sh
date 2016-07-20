@@ -19,7 +19,7 @@ massmodel=${m}_${model}
 echo $massmodel
 
 #source fitLSF.sh ${massmodel}
-bsub -q 8nh "fitLSFv2.sh ${massmodel} ${what} ${cat} ${directory}" -n job${massmodel}.txt
+bsub -q 1nh "fitLSFv2.sh ${massmodel} ${what} ${cat} ${directory}" -n job${massmodel}.txt
 
 done
 done

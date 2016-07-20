@@ -11,8 +11,8 @@ do
 #for cat in '2jet'
 for cat in '0jet' '1jet' '2jet' 'all'
 do
-for what in 'limit'
-#for what in 'sig' 'limit'
+#for what in 'limit'
+for what in 'sig' 'limit'
 do
 massmodel=${m}_${model}
 

@@ -10,8 +10,7 @@ cat=${3}  ## 0jet or 1jet or 01jet or 2jet or all
 
 directory=${4}
 
-#workdir=/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combineLSF
-workdir=/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/${directory}
+workdir=/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_highmass/CMSSW_8_0_5/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/${directory}
 combinedir=/afs/cern.ch/user/l/lviliani/Combine/CMSSW_7_4_7/src
 
 cd $combinedir

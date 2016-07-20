@@ -13,15 +13,6 @@ groupPlot['DY']  = {
               }
 
 
-
-groupPlot['Fake']  = {  
-                  'nameHR' : 'Fake',
-                  'isSignal' : 0,
-                  'color': 921,    # kGray + 1
-                  'samples'  : ['Fake']
-              }
-
-
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bart',
                   'isSignal' : 0,
@@ -49,6 +40,13 @@ groupPlot['VZ']  = {
                   'isSignal' : 0,
                   'color'    : 617,   # kViolet + 1  
                   'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ']
+              }
+
+groupPlot['Fake']  = {  
+                  'nameHR' : 'Fake',
+                  'isSignal' : 0,
+                  'color': 921,    # kGray + 1
+                  'samples'  : ['Fake']
               }
 
 
@@ -202,7 +200,7 @@ plot['VgS'] = {
                   'color'    : 617,   # kViolet + 1  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0
+                  'scale'    : 1.4
                   }
 
 plot['VZ']  = { 
@@ -370,7 +368,7 @@ plot['DATA']  = {
 # additional options
 
 # legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
-legend['lumi'] = 'L = 4.3/fb' # 2.318 fb-1
+legend['lumi'] = 'L = 6.3/fb' # 2.318 fb-1
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 

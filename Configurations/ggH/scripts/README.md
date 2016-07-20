@@ -1,3 +1,12 @@
+Setup combine
+==============
+
+    cd ~/Framework/Combine/CMSSW_7_4_7/src/
+    eval `scramv1 runtime -sh`
+    cd -
+
+
+
 doTop.sh
 ==============
 

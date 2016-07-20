@@ -49,15 +49,65 @@
 #
 
              
-
 samples['top'] = {   'name': [
-                          'latino_TTTo2L2Nu.root', 
-                          #'latino_ST_tW_antitop.root',
-                          #'latino_ST_tW_top.root'
+                           #'latino_TTJets.root',
+                           'latino_TTTo2L2Nu_ext1__part0.root',
+                           'latino_TTTo2L2Nu_ext1__part1.root',
+                           'latino_TTTo2L2Nu_ext1__part2.root',
+                           'latino_TTTo2L2Nu_ext1__part3.root',
+                           'latino_TTTo2L2Nu_ext1__part4.root',
+                           'latino_TTTo2L2Nu_ext1__part5.root',
+                           'latino_TTTo2L2Nu_ext1__part6.root',
+                           'latino_TTTo2L2Nu_ext1__part7.root',
+                           'latino_TTTo2L2Nu_ext1__part8.root',
+                           'latino_TTTo2L2Nu_ext1__part9.root',
+                           #
+                           'latino_ST_tW_antitop.root',
+                           'latino_ST_tW_top.root'
                           ],          
-                       'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',                
-                   }
+                       'weight' : 'puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',    #   weight/cut 
+                       'weights' :  [
+                          '0.0043711992912',
+                          '0.0043711992912',
+                          '0.0043711992912',
+                          '0.0043711992912',
+                          '0.0043711992912',
+                          '0.0043711992912',
+                          '0.0043711992912',
+                          '0.0043711992912',
+                          '0.0043711992912',
+                          '0.0043711992912',
+#
+                          'baseW',
+                          'baseW',
+#                   
+                       ]
+                      }
 
+
+# samples['top'] = {   'name': [
+#                           'latino_TTTo2L2Nu.root', 
+#                           #'latino_ST_tW_antitop.root',
+#                           #'latino_ST_tW_top.root'
+#                           ],          
+#                        'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',                
+#                    }
+
+
+samples['WW']  = {    'name': [
+                                  'latino_WWTo2L2Nu.root'
+                                ],      
+                      'weight' : 'nllW*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+                      'weights': ['0.00619058124769'] ,           
+                  }
+
+
+# samples['ggWW']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root'],      
+#                       'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+#                       #'weights': ['abs(nllW)'] ,           
+#                       #'weights': ['1.000'] ,           
+#                       'isData': ['0'],                            
+#                   }
 
 #samples['WW']  = {    'name': [
                                   #'latino_WWTo2L2Nu.root'
@@ -107,6 +157,123 @@ samples['top'] = {   'name': [
 ##
 ##
 
+
+samples['VZ']  = {    'name': [
+                          #'latino_WZ.root', 
+                          'latino_WZTo3LNu.root', 
+                          #'latino_ZZ.root', # ---> replaced by exclusive samples
+                          'latino_ZZTo2L2Nu.root',   # 
+                          #'latino_ZZTo2L2Q.root'
+                          'latino_WZTo2L2Q__part0.root',
+                          'latino_WZTo2L2Q__part1.root',
+                          'latino_WZTo2L2Q__part10.root',
+                          'latino_WZTo2L2Q__part11.root',
+                          'latino_WZTo2L2Q__part12.root',
+                          'latino_WZTo2L2Q__part13.root',
+                          'latino_WZTo2L2Q__part14.root',
+                          'latino_WZTo2L2Q__part15.root',
+                          'latino_WZTo2L2Q__part16.root',
+                          'latino_WZTo2L2Q__part17.root',
+                          'latino_WZTo2L2Q__part18.root',
+                          'latino_WZTo2L2Q__part19.root',
+                          'latino_WZTo2L2Q__part2.root',
+                          'latino_WZTo2L2Q__part20.root',
+                          'latino_WZTo2L2Q__part21.root',
+                          'latino_WZTo2L2Q__part22.root',
+                          'latino_WZTo2L2Q__part23.root',
+                          'latino_WZTo2L2Q__part24.root',
+                          'latino_WZTo2L2Q__part25.root',
+                          'latino_WZTo2L2Q__part26.root',
+                          'latino_WZTo2L2Q__part27.root',
+                          'latino_WZTo2L2Q__part28.root',
+                          'latino_WZTo2L2Q__part29.root',
+                          'latino_WZTo2L2Q__part3.root',
+                          'latino_WZTo2L2Q__part30.root',
+                          'latino_WZTo2L2Q__part31.root',
+                          'latino_WZTo2L2Q__part32.root',
+                          'latino_WZTo2L2Q__part33.root',
+                          'latino_WZTo2L2Q__part34.root',
+                          'latino_WZTo2L2Q__part35.root',
+                          'latino_WZTo2L2Q__part36.root',
+                          'latino_WZTo2L2Q__part37.root',
+                          'latino_WZTo2L2Q__part38.root',
+                          'latino_WZTo2L2Q__part39.root',
+                          'latino_WZTo2L2Q__part4.root',
+                          'latino_WZTo2L2Q__part40.root',
+                          'latino_WZTo2L2Q__part41.root',
+                          'latino_WZTo2L2Q__part42.root',
+                          'latino_WZTo2L2Q__part5.root',
+                          'latino_WZTo2L2Q__part6.root',
+                          'latino_WZTo2L2Q__part7.root',
+                          'latino_WZTo2L2Q__part8.root',
+                          'latino_WZTo2L2Q__part9.root',                          
+                          #
+                          'latino_ZZTo2L2Q__part0.root',
+                          'latino_ZZTo2L2Q__part1.root',
+                          'latino_ZZTo2L2Q__part2.root',
+                          'latino_ZZTo2L2Q__part3.root',
+                          #
+                          #'latino_ZZTo4L.root'
+                         ], 
+                      'weight' : 'puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+                      'weights': [
+                          '0.002214825',
+                          #
+                          '6.28902765388e-05',
+                          #
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',
+                          '0.000359426036128',                          
+                          #
+                          '0.000329080664109',
+                          '0.000329080664109',
+                          '0.000329080664109',
+                          '0.000329080664109',
+                          #
+                        '',
+                        ] ,           
+                      #'isData': ['0'],                            
+                  }
 
 #samples['VZ']  = {    'name': [
                           #'latino_WZTo3LNu.root', 

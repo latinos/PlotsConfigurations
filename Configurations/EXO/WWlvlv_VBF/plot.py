@@ -87,6 +87,14 @@ groupPlot['800']  = {
                   'samples'  : ['ggH_hww_800_c10brn00','ggH_hwwINT_800_c10brn00','qqH_hww_800_c10brn00']
                }
 
+#groupPlot['900']  = {
+#                  'nameHR' : 'mH = 900 GeV X 10',
+#                  'isSignal' : 2,
+#                  'color': 635, # kRed 
+#                  'samples'  : ['ggH_hww_900_c10brn00','ggH_hww_INT900_c10brn00','qqH_hww_900_c10brn00']
+#               }
+
+
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
@@ -383,7 +391,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0
+                  'isBlind'  : 1
               }
 
 
@@ -392,7 +400,7 @@ plot['DATA']  = {
 # additional options
 
 # legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
-legend['lumi'] = 'L = 4.3/fb' # 2.318 fb-1
+legend['lumi'] = 'L = 6.3/fb' # 2.318 fb-1
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 
