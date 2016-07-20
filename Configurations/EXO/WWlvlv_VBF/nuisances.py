@@ -764,7 +764,7 @@ nuisances['UE']  = {
 
 nuisances['UE125']  = {
                 'name'  : 'UE_125', 
-                'kind'  : 'tree',
+                'kind'  : 'weight',
                 'type'  : 'lnN',
                 'samples'  : {
                    'ggH_hww' : '1.03',
@@ -774,7 +774,7 @@ nuisances['UE125']  = {
 
 nuisances['PS125']  = {
                 'name'  : 'PS_125', 
-                'kind'  : 'tree',
+                'kind'  : 'weight',
                 'type'  : 'lnN',
                 'samples'  : {
                    'ggH_hww' : '1.02',
