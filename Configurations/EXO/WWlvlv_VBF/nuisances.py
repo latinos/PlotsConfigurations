@@ -19,35 +19,32 @@ else:
 
 
 nuisances['lumi']  = {
-               'name'  : 'lumi_13TeV', 
+               'name'  : 'lumi_ICHEP_13TeV', 
                'samples'  : {
-                   'ggH_hww_750_NWA'  : '1.027',
-                   'qqH_hww_750_NWA'  : '1.027',
-                   'ggH_hww'  : '1.027',
-                   'qqH_hww'  : '1.027',
-                   'WH_hww'   : '1.027',
-                   'ZH_hww'   : '1.027',
-                   'H_htt'    : '1.027',
-                   'H_hww'    : '1.027',
-                   'WH_hww'   : '1.027',
-                   'ggZH_hww'   : '1.027',
-                   'VVV'      : '1.027',
-                   'VZ'       : '1.027',
-                   'ggWW'     : '1.027',
-                   'Vg'       : '1.027',
-                   'VgS'      : '1.027',
-                   #'DY'       : '1.027',    # --> datadriven
-                   #'WW'       : '1.027',    # --> datadriven
-                   #'top'      : '1.027',    # --> datadriven
+                   'ggH_hww_750_NWA'  : '1.050',
+                   'qqH_hww_750_NWA'  : '1.050',
+                   'ggH_hww'  : '1.050',
+                   'qqH_hww'  : '1.050',
+                   'WH_hww'   : '1.050',
+                   'ZH_hww'   : '1.050',
+                   'H_htt'    : '1.050',
+                   'H_hww'    : '1.050',
+                   'WH_hww'   : '1.050',
+                   'ggZH_hww' : '1.050',
+                   'VVV'      : '1.050',
+                   'VZ'       : '1.050',
+                   'ggWW'     : '1.050',
+                   'Vg'       : '1.050',
+                   'VgS'      : '1.050',
                    },
                'type'  : 'lnN',
               }
 for m in masses:
   for model in models:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
-    nuisances['lumi']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.027'})
-    nuisances['lumi']['samples'].update({'qqH_hww_'+m+'_'+model_name:'1.027'})
-    nuisances['lumi']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:'1.027'})
+    nuisances['lumi']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.050'})
+    nuisances['lumi']['samples'].update({'qqH_hww_'+m+'_'+model_name:'1.050'})
+    nuisances['lumi']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:'1.050'})
 
 # theory uncertainties
 
@@ -56,21 +53,21 @@ for m in masses:
 #
 
 # missing WW-ewk in 2016 MC 80X production
-nuisances['WWewk_cont']  = {
-               'name'  : 'WWewk_cont', 
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                'WW'   : ['1', '(1.085 - 0.002361 * mll + 2.07e-5 * mll * mll)'],
-                },
-               'cuts'  : [
-                 'hww2l2v_13TeV_top_of2j',
-                 'hww2l2v_13TeV_dytt_of2j',
-#                 
-                 'hwwhm_13TeV_of_VBF',
-
-                ]
-                }
+#nuisances['WWewk_cont']  = {
+#               'name'  : 'WWewk_cont', 
+#                'kind'  : 'weight',
+#                'type'  : 'shape',
+#                'samples'  : {
+#                'WW'   : ['1', '(1.085 - 0.002361 * mll + 2.07e-5 * mll * mll)'],
+#                },
+#               'cuts'  : [
+#                 'hww2l2v_13TeV_top_of2j',
+#                 'hww2l2v_13TeV_dytt_of2j',
+##                 
+#                 'hwwhm_13TeV_of_VBF',
+#
+#                ]
+#                }
 
 
 
@@ -786,7 +783,7 @@ nuisances['WgStarScale']  = {
  
 
 nuisances['DYttnorm0j']  = {
-               'name'  : 'DYttnorm0j', 
+               'name'  : 'ICHEP_DYttnorm0j', 
                'samples'  : {
                    'DY' : '1.00',
                    },
@@ -800,7 +797,7 @@ nuisances['DYttnorm0j']  = {
               }
 
 nuisances['DYttnorm1j']  = {
-               'name'  : 'DYttnorm1j', 
+               'name'  : 'ICHEP_DYttnorm1j', 
                'samples'  : {
                    'DY' : '1.00',
                    },
@@ -815,7 +812,7 @@ nuisances['DYttnorm1j']  = {
               }
 
 nuisances['DYttnorm2j']  = {
-               'name'  : 'DYttnorm2j',
+               'name'  : 'ICHEP_DYttnorm2j',
                'samples'  : {
                    'DY' : '1.00',
                    },
@@ -843,7 +840,7 @@ nuisances['DYttnorm2j']  = {
 # new style "free floating" background
 # e.g. " z_norm rateParam  htsearch zll 1 "
 nuisances['WWnorm0j']  = {
-               'name'  : 'WWnorm0j', 
+               'name'  : 'ICHEP_WWnorm0j', 
                'samples'  : {
                    'WW' : '1.00',
                    },
@@ -858,7 +855,7 @@ nuisances['WWnorm0j']  = {
               }
 
 nuisances['WWnorm1j']  = {
-               'name'  : 'WWnorm1j', 
+               'name'  : 'ICHEP_WWnorm1j', 
                'samples'  : {
                    'WW' : '1.00',
                    },
@@ -873,14 +870,14 @@ nuisances['WWnorm1j']  = {
               }
 
 nuisances['WWnorm2j']  = {
-               'name'  : 'WWnorm2j',
+               'name'  : 'ICHEP_WWnorm2j',
                'samples'  : {
                    'WW' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
                  'hww2l2v_13TeV_top_of2j',
-#                 'hww2l2v_13TeV_dytt_of2j',
+                 'hww2l2v_13TeV_dytt_of2j',
 #                 
                  'hwwhm_13TeV_of_VBF',
 #                 
@@ -888,7 +885,7 @@ nuisances['WWnorm2j']  = {
               }
 
 nuisances['Topnorm0j']  = {
-               'name'  : 'Topnorm0j', 
+               'name'  : 'ICHEP_Topnorm0j', 
                'samples'  : {
                    'top' : '1.00',
                    },
@@ -903,7 +900,7 @@ nuisances['Topnorm0j']  = {
               }
 
 nuisances['Topnorm1j']  = {
-               'name'  : 'Topnorm1j', 
+               'name'  : 'ICHEP_Topnorm1j', 
                'samples'  : {
                    'top' : '1.00',
                    },
@@ -918,14 +915,14 @@ nuisances['Topnorm1j']  = {
               }
 
 nuisances['Topnorm2j']  = {
-               'name'  : 'Topnorm2j',
+               'name'  : 'ICHEP_Topnorm2j',
                'samples'  : {
                    'top' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
                  'hww2l2v_13TeV_top_of2j',
-#                 'hww2l2v_13TeV_dytt_of2j',
+                 'hww2l2v_13TeV_dytt_of2j',
 #                 
                  'hwwhm_13TeV_of_VBF',
 #
@@ -1018,7 +1015,7 @@ nuisances['fake_mu_stat']  = {
                                  
   
 nuisances['btag']  = {
-                'name'  : 'btag',
+                'name'  : 'ICHEP_btag',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {

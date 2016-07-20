@@ -323,51 +323,51 @@ samples['VVV'] = {    'name': [
 
 
 # Htautau
-#samples['H_htt']  = {      'name': ['latino_GluGluHToTauTau_M125.root',
-#                                    'latino_VBFHToTauTau_M125.root'
-#                                    #'latino_HWminusJ_HToTauTau_M125.root',
-#                                    #'latino_HWplusJ_HToTauTau_M125.root',
-#                                    #'latino_HZJ_HToTauTau_M125.root'
-#                                    ],      
-#                           'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',         
-#                           'weights': ['1', '1']
-#                                       #, 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)' ]            
-#                  }
-#
-#
-#
-## HWW 
-#
-#samples['ggH_hww']  = {    'name': [
-#                               'latino_GluGluHToWWTo2L2NuPowheg_M125.root'
-#                               ],      
-#                           'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
-#                  }
-#
-#samples['qqH_hww']  = {    'name': [
-#                               #'latino_VBFHToWWTo2L2Nu_M125.root'
-#                               'latino_VBFHToWWTo2L2Nu_alternative_M125.root'
-#                               ],      
-#                           'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
-#                  }
-#
-#samples['ggZH_hww']  = {    'name': [
-#                               'latino_ggZH_HToWW_M120.root',   # ---> FIXME: to be replaced with 125!
-#                               ],      
-#                           'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
-#                  }
-#
-#
-#samples['WH_hww']  = {    'name': [
-#                             'latino_HWminusJ_HToWW_M125.root',
-#                             'latino_HWplusJ_HToWW_M125.root'
-#                             ],      
-#                           'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
-#                  }
-#
-#samples['ZH_hww']  = {    'name': ['latino_HZJ_HToWW_M125.root'],      
-#                           'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
-#                  }
+samples['H_htt']  = {      'name': ['latino_GluGluHToTauTau_M125.root',
+                                    'latino_VBFHToTauTau_M125.root'
+                                    #'latino_HWminusJ_HToTauTau_M125.root',
+                                    #'latino_HWplusJ_HToTauTau_M125.root',
+                                    #'latino_HZJ_HToTauTau_M125.root'
+                                    ],      
+                           'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',         
+                           'weights': ['1', '1']
+                                       #, 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)' ]            
+                  }
+
+
+
+# HWW 
+
+samples['ggH_hww']  = {    'name': [
+                               'latino_GluGluHToWWTo2L2NuPowheg_M125.root'
+                               ],      
+                           'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+                  }
+
+samples['qqH_hww']  = {    'name': [
+                               #'latino_VBFHToWWTo2L2Nu_M125.root'
+                               'latino_VBFHToWWTo2L2Nu_alternative_M125.root'
+                               ],      
+                           'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+                  }
+
+samples['ggZH_hww']  = {    'name': [
+                               'latino_ggZH_HToWW_M120.root',   # ---> FIXME: to be replaced with 125!
+                               ],      
+                           'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+                  }
+
+
+samples['WH_hww']  = {    'name': [
+                             'latino_HWminusJ_HToWW_M125.root',
+                             'latino_HWplusJ_HToWW_M125.root'
+                             ],      
+                           'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+                  }
+
+samples['ZH_hww']  = {    'name': ['latino_HZJ_HToWW_M125.root'],      
+                           'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+                  }
 
 
 
@@ -413,6 +413,20 @@ samples['DATA']  = {   'name': [
                                 '../../../../../../../../../../eos/user/j/jlauwers/HWW2015/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_MuonEG.root',
                                 '../../../../../../../../../../eos/user/j/jlauwers/HWW2015/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleElectron.root',
                                 '../../../../../../../../../../eos/user/j/jlauwers/HWW2015/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleMuon.root',
+                                #                           
+                                '../../../../../../../../../../eos/user/j/jlauwers/HWW2015/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleEG.root',
+                                '../../../../../../../../../../eos/user/j/jlauwers/HWW2015/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleMuon.root',
+                                '../../../../../../../../../../eos/user/j/jlauwers/HWW2015/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_MuonEG.root',
+                                '../../../../../../../../../../eos/user/j/jlauwers/HWW2015/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleElectron.root',
+                                '../../../../../../../../../../eos/user/j/jlauwers/HWW2015/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleMuon.root',
+                                #                           
+                                '../../../../../../../../../../eos/user/j/jlauwers/HWW2015/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016C_PromptReco_DoubleEG.root',
+                                '../../../../../../../../../../eos/user/j/jlauwers/HWW2015/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016C_PromptReco_DoubleMuon.root',
+                                '../../../../../../../../../../eos/user/j/jlauwers/HWW2015/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016C_PromptReco_MuonEG.root',
+                                '../../../../../../../../../../eos/user/j/jlauwers/HWW2015/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016C_PromptReco_SingleElectron.root',
+                                '../../../../../../../../../../eos/user/j/jlauwers/HWW2015/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016C_PromptReco_SingleMuon.root',
+
+
                                 ] ,     
                        'weight' : 'trigger',
                        #'weight' : '1',
