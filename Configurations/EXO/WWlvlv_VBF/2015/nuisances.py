@@ -51,6 +51,23 @@ for m in masses:
 
 # theory uncertainties
 
+#nuisances['WWewk_cont']  = {
+#               'name'  : 'WWewk_cont',
+#                'kind'  : 'weight',
+#                'type'  : 'shape',
+#                'samples'  : {
+#                'WW'   : ['1', '(1.085 - 0.002361 * mll + 2.07e-5 * mll * mll)'],
+#                },
+#               'cuts'  : [
+#                 'hww2l2v_13TeV_top_of2j',
+#                 'hww2l2v_13TeV_dytt_of2j',
+##                 
+#                 'hwwhm_13TeV_of_VBF',
+#
+#                ]
+#                }
+
+
 # WZ from 
 # https://twiki.cern.ch/twiki/bin/view/CMS/StandardModelCrossSectionsat13TeV
 #
@@ -625,7 +642,7 @@ nuisances['WWresum2j']  = {
                    },
                'cuts'  : [
                  'hww2l2v_13TeV_top_of2j',
-#                 'hww2l2v_13TeV_dytt_of2j',
+                 'hww2l2v_13TeV_dytt_of2j',
 #                 
                  'hwwhm_13TeV_of_VBF',
 #                 
@@ -674,7 +691,7 @@ nuisances['WWqscale2j']  = {
                    },
                'cuts'  : [
                  'hww2l2v_13TeV_top_of2j',
-#                 'hww2l2v_13TeV_dytt_of2j',
+                 'hww2l2v_13TeV_dytt_of2j',
 #               
                  'hwwhm_13TeV_of_VBF',
 #                   
@@ -859,7 +876,7 @@ nuisances['WWnorm2j']  = {
                'type'  : 'rateParam',
                'cuts'  : [
                  'hww2l2v_13TeV_top_of2j',
-#                 'hww2l2v_13TeV_dytt_of2j',
+                 'hww2l2v_13TeV_dytt_of2j',
 #                 
                  'hwwhm_13TeV_of_VBF',
 #                 
@@ -904,7 +921,7 @@ nuisances['Topnorm2j']  = {
                'type'  : 'rateParam',
                'cuts'  : [
                  'hww2l2v_13TeV_top_of2j',
-#                 'hww2l2v_13TeV_dytt_of2j',
+                 'hww2l2v_13TeV_dytt_of2j',
 #                 
                  'hwwhm_13TeV_of_VBF',
 #
