@@ -356,11 +356,11 @@ samples['qqH_hww']  = {    'name': [
                            'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
                   }
 
-#samples['ggZH_hww']  = {    'name': [
-                               #'latino_ggZH_HToWW_M125.root',
-                               #],      
-                           #'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
-                  #}
+samples['ggZH_hww']  = {    'name': [
+                               'latino_ggZH_HToWW_M125.root',
+                               ],      
+                           'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+                  }
 
 
 samples['WH_hww']  = {    'name': [
