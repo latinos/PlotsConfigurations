@@ -1487,9 +1487,9 @@ nuisances['stat']  = {
                          'zeroMCError' : '0',
                          },
                    
-                   'Fake': {  # needed?
-                         'typeStat' : 'bbb',
-                         },
+#                   'Fake': {  # needed?
+#                         'typeStat' : 'bbb',
+#                         },
                    
                    'Vg': {  
                          'typeStat' : 'bbb',

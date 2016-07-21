@@ -17,7 +17,8 @@ for m in masses:
   for model in models:
     kp = float(model[6:9])*float(model[6:9])
     brn = float(model[-3:])
-    sf = kp*(1-brn)
+    #sf = kp*(1-brn)
+    sf = 1.0
     #sf125 = 1-kp
     #sf125int = sqrt(1-kp)
     model_int = model+"_I"
