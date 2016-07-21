@@ -25,7 +25,8 @@ plotNormalizedDistributions = True   # default is False
 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 4.3
+lumi = 6.264
+#lumi = 4.3
 # lumi = 5
 
 # used by mkPlot to define output directory for plots
