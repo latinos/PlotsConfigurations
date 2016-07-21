@@ -45,7 +45,7 @@ groupPlot['VVV']  = {
 
 
 groupPlot['VV']  = {  
-                  'nameHR' : "VZ/#gamma*/#gamma",
+                  'nameHR' : "VZ",
                   'isSignal' : 0,
                   'color'    : 617,   # kViolet + 1  
                   'samples'  : ['VZ', 'WZ', 'ZZ']
