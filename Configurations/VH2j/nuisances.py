@@ -53,7 +53,7 @@ nuisances['WWqscale2j']  = {
 
 
 nuisances['DYttnorm2jvh']  = {
-               'name'  : 'ICHEP_DYttnorm2jvh', 
+               'name'  : 'DYttnorm2jvh', 
                'samples'  : {
                    'DY' : '1.00',
                    },
@@ -68,7 +68,7 @@ nuisances['DYttnorm2jvh']  = {
 
 
 nuisances['WWnorm2jvh']  = {
-               'name'  : 'ICHEP_WWnorm2jvh', 
+               'name'  : 'WWnorm2jvh', 
                'samples'  : {
                    'WW' : '1.00',
                    },
@@ -82,7 +82,7 @@ nuisances['WWnorm2jvh']  = {
 
 
 nuisances['Topnorm2jvh']  = {
-               'name'  : 'ICHEP_Topnorm2jvh', 
+               'name'  : 'Topnorm2jvh', 
                'samples'  : {
                    'top' : '1.00',
                    },
