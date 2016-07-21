@@ -567,7 +567,7 @@ nuisances['DYttnorm0j']  = {
               }
 
 nuisances['DYttnorm1j']  = {
-               'name'  : 'ICHEP_DYttnorm1j', 
+               'name'  : 'DYttnorm1j', 
                'samples'  : {
                    'DY' : '1.00',
                    },
@@ -603,7 +603,7 @@ nuisances['DYttnorm1j']  = {
 # new style "free floating" background
 # e.g. " z_norm rateParam  htsearch zll 1 "
 nuisances['WWnorm0j']  = {
-               'name'  : 'ICHEP_WWnorm0j', 
+               'name'  : 'WWnorm0j', 
                'samples'  : {
                    'WW' : '1.00',
                    },
@@ -625,7 +625,7 @@ nuisances['WWnorm0j']  = {
               }
 
 nuisances['WWnorm1j']  = {
-               'name'  : 'ICHEP_WWnorm1j', 
+               'name'  : 'WWnorm1j', 
                'samples'  : {
                    'WW' : '1.00',
                    },
@@ -648,7 +648,7 @@ nuisances['WWnorm1j']  = {
 
 
 nuisances['Topnorm0j']  = {
-               'name'  : 'ICHEP_Topnorm0j', 
+               'name'  : 'Topnorm0j', 
                'samples'  : {
                    'top' : '1.00',
                    },
@@ -670,7 +670,7 @@ nuisances['Topnorm0j']  = {
               }
 
 nuisances['Topnorm1j']  = {
-               'name'  : 'ICHEP_Topnorm1j', 
+               'name'  : 'Topnorm1j', 
                'samples'  : {
                    'top' : '1.00',
                    },
