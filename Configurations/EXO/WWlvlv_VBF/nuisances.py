@@ -1247,7 +1247,7 @@ nuisances['jes']  = {
                 'samples'  : {
                    'ggWW' :['1', '1'],
                    'WW' :  ['1', '1'],
-                   'DY' :  ['1', '1'],
+#                   'DY' :  ['1', '1'], # missing systematics 
                    'top' : ['1', '1'],
                    'VZ' :  ['1', '1'],
                    'VVV' : ['1', '1'],
@@ -1282,7 +1282,7 @@ nuisances['electronpt']  = {
                 'samples'  : {
                    'ggWW' :['1', '1'],
                    'WW' :  ['1', '1'],
-                   'DY' :  ['1', '1'],
+#                   'DY' :  ['1', '1'], # missing systematics
                    'top' : ['1', '1'],
                    'VZ' :  ['1', '1'],
                    'VVV' : ['1', '1'],
@@ -1315,7 +1315,7 @@ nuisances['muonpt']  = {
                 'samples'  : {
                    'ggWW' :['1', '1'],
                    'WW' :  ['1', '1'],
-                   'DY' :  ['1', '1'],
+#                   'DY' :  ['1', '1'], # missing systematics
                    'top' : ['1', '1'],
                    'VZ' :  ['1', '1'],
                    'VVV' : ['1', '1'],
@@ -1348,7 +1348,7 @@ nuisances['met']  = {
                 'samples'  : {
                    'ggWW' :['1', '1'],
                    'WW' :  ['1', '1'],
-                   'DY' :  ['1', '1'],
+#                   'DY' :  ['1', '1'], # missing systematics
                    'top' : ['1', '1'],
                    'VZ' :  ['1', '1'],
                    'VVV' : ['1', '1'],
