@@ -16,6 +16,24 @@ variables['nvtx']  = {   'name': 'nvtx',
                          'fold' : 3
                         }
 
+
+variables['mjj']  = {  'name': 'mjj',
+                       'range': (20,0,1000),  #for 500 < mjj < 1000
+                     # 'range': (15,1000,2000),  #for  mjj > 1000
+                       'xaxis': 'mjj [GeV]',
+                       'fold': 0
+                       }
+
+
+
+variables['detajj']  = {  'name': 'detajj',
+                       'range': (10,0,6),  #for 500 < mjj < 1000
+                       'xaxis': '#Delta #eta_{jj}',
+                       'fold': 0
+                       }
+  
+
+
 variables['mll']  = {   'name': 'mll',            #   variable name    
                         'range' : (10,0,200),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name

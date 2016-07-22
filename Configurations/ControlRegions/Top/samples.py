@@ -70,29 +70,29 @@ samples['Fake']  = {    'name': [
                        #'../../../../../../../../../../eos/user/a/amassiro/HWW2015/Fakes4fb2016/21Jun2016_Run2016B_PromptReco/latino_DD_Run2016B_PromptReco_SingleElectron.root',
                        #
                        #
-                       '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_MuonEG.root', 
-                       '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_SingleElectron.root', 
-                       '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_DoubleEG.root', 
-                       '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_DoubleMuon.root', 
-                       '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_SingleMuon.root', 
-                       #                         
-                       '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_MuonEG.root', 
-                       '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_SingleElectron.root', 
-                       '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_DoubleEG.root', 
-                       '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_DoubleMuon.root', 
-                       '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_SingleMuon.root', 
-                       #                       
-                       '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_MuonEG.root', 
-                       '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_SingleElectron.root', 
-                       '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_DoubleEG.root', 
-                       '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_DoubleMuon.root', 
-                       '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_SingleMuon.root', 
-                       #                         
-                       '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016C_PromptReco_MuonEG.root', 
-                       '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016C_PromptReco_SingleElectron.root', 
-                       '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016C_PromptReco_DoubleEG.root', 
-                       '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016C_PromptReco_DoubleMuon.root', 
-                       '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016C_PromptReco_SingleMuon.root', 
+                       '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_MuonEG.root', 
+                       '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_SingleElectron.root', 
+                       '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_DoubleEG.root', 
+                       '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_DoubleMuon.root', 
+                       '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_SingleMuon.root', 
+                       #                   
+                       '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_MuonEG.root', 
+                       '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_SingleElectron.root', 
+                       '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_DoubleEG.root', 
+                       '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_DoubleMuon.root', 
+                       '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_SingleMuon.root', 
+                       #                 
+                       '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_MuonEG.root', 
+                       '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_SingleElectron.root', 
+                       '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_DoubleEG.root', 
+                       '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_DoubleMuon.root', 
+                       '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016B_PromptReco_SingleMuon.root', 
+                       #                   
+                       '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016C_PromptReco_MuonEG.root', 
+                       '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016C_PromptReco_SingleElectron.root', 
+                       '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016C_PromptReco_DoubleEG.root', 
+                       '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016C_PromptReco_DoubleMuon.root', 
+                       '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW/latino_Run2016C_PromptReco_SingleMuon.root', 
                        #
                        #               
                        ],     
@@ -421,29 +421,29 @@ samples['DATA']  = {   'name': [
                                 #
                                 #
                                 #
-                                '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_MuonEG.root', 
-                                '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleElectron.root', 
-                                '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleEG.root', 
-                                '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleMuon.root', 
-                                '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleMuon.root', 
-                                #                           
-                                '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_MuonEG.root', 
-                                '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleElectron.root', 
-                                '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleEG.root', 
-                                '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleMuon.root', 
-                                '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleMuon.root', 
-                                #                          
-                                '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_MuonEG.root', 
-                                '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleElectron.root', 
-                                '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleEG.root', 
-                                '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleMuon.root', 
-                                '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleMuon.root', 
-                                #                       
-                                '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_MuonEG.root', 
-                                '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_SingleElectron.root', 
-                                '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_DoubleEG.root', 
-                                '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_DoubleMuon.root', 
-                                '../../../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_MuonEG.root', 
+                                '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleElectron.root', 
+                                '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleMuon.root', 
+                                #                     
+                                '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_MuonEG.root', 
+                                '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleElectron.root', 
+                                '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleMuon.root', 
+                                #                    
+                                '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_MuonEG.root', 
+                                '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleElectron.root', 
+                                '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleMuon.root', 
+                                #                  
+                                '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_MuonEG.root', 
+                                '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_SingleElectron.root', 
+                                '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../eos/user/a/amassiro/HWW2015/ICHEP/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_SingleMuon.root', 
                                 #
                                 #
                                 #
