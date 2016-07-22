@@ -4,11 +4,11 @@
     
 #'fold' : # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
    
-variables['events']  = {   'name': '1',      
-                        'range' : (1,0,2),  
-                        'xaxis' : 'events', 
-                         'fold' : 0
-                        }
+# variables['events']  = {   'name': '1',      
+#                         'range' : (1,0,2),  
+#                         'xaxis' : 'events', 
+#                          'fold' : 0
+#                         }
     
 # variables['nvtx']  = {   'name': 'nvtx',      
 #                         'range' : (40,0,40),  
@@ -23,9 +23,28 @@ variables['events']  = {   'name': '1',
 #                         #}
 
 variables['mll']  = {   'name': 'mll',            #   variable name    
-                        'range' : (10,30,80),    #   variable range
+                        'range' : (6,30,80),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
                          'fold' : 3
+                        }
+
+
+variables['ptll']  = {   'name': 'ptll',     
+                        'range' : (6,30,90),   
+                        'xaxis' : 'p_{T}^{ll} [GeV]',
+                        'fold' : 3
+                        }
+
+variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
+                        'range' : (6,20,80),   
+                        'xaxis' : 'p_{T} 1st lep',
+                        'fold'  : 3                         
+                        }
+
+variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
+                        'range' : (6,10,50),   
+                        'xaxis' : 'p_{T} 2nd lep',
+                        'fold'  : 3                         
                         }
 
 
@@ -41,12 +60,6 @@ variables['mll']  = {   'name': 'mll',            #   variable name
 #                         #'fold' : 3
 #                         #}
 
-variables['ptll']  = {   'name': 'ptll',     
-                        'range' : (12,30,90),   
-                        'xaxis' : 'p_{T}^{ll} [GeV]',
-                        'fold' : 3
-                        }
-
 # #variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]*(1 - (abs(std_vector_lepton_flavour[0])==11)*0.01*(dataset != 0))',     
 #                         #'range' : (40,0,100),   
 #                         #'xaxis' : 'p_{T} 1st lep',
@@ -58,19 +71,6 @@ variables['ptll']  = {   'name': 'ptll',
 #                         #'xaxis' : 'p_{T} 2nd lep',
 #                         #'fold'  : 3                         
 #                         #}
-
-variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
-                        'range' : (12,20,80),   
-                        'xaxis' : 'p_{T} 1st lep',
-                        'fold'  : 3                         
-                        }
-
-variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
-                        'range' : (8,10,50),   
-                        'xaxis' : 'p_{T} 2nd lep',
-                        'fold'  : 3                         
-                        }
-
 
 # #variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
 #                         #'range' : (100,0,200),   
