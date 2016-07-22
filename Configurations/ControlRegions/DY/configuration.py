@@ -27,13 +27,17 @@ plotFile = 'plot.py'
 #lumi = 2.318
 #lumi = 0.8
 #lumi = 2.6
+<<<<<<< HEAD
 #lumi = 4.3
 lumi = 6.264
+=======
+lumi = 6.3
+>>>>>>> e4aa2ac98dad3f7d13d5271a0daf24f8f84cb72e
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
 # outputDirPlots = '~/www/plotCR'
-outputDirPlots = 'plotCR'
+outputDirPlots = '~/www/figuresLxplus/21Jul2016/DY'
 
 
 # used by mkDatacards to define output directory for datacards
