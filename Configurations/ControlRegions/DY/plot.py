@@ -8,59 +8,69 @@
 # If not defined, normal plots is used
 #
 
-groupPlot['Fake']  = {  
-                  'nameHR' : 'Fake',
-                  'isSignal' : 0,
-                  'color': 921,    # kGray + 1
-                  'samples'  : ['Fake']
-              }
+#groupPlot['Fake']  = {  
+                  #'nameHR' : 'Fake',
+                  #'isSignal' : 0,
+                  #'color': 921,    # kGray + 1
+                  #'samples'  : ['Fake']
+              #}
 
 
-groupPlot['top']  = {  
-                  'nameHR' : 'tW and t#bart',
-                  'isSignal' : 0,
-                  'color': 400, #  kYellow
-                  'samples'  : ['top']
-              }
+#groupPlot['top']  = {  
+                  #'nameHR' : 'tW and t#bart',
+                  #'isSignal' : 0,
+                  #'color': 400, #  kYellow
+                  #'samples'  : ['top']
+              #}
 
-groupPlot['WW']  = {  
-                  'nameHR' : 'WW',
-                  'isSignal' : 0,
-                  'color': 851, # kAzure -9 
-                  'samples'  : ['WW', 'ggWW']
-              }
+#groupPlot['WW']  = {  
+                  #'nameHR' : 'WW',
+                  #'isSignal' : 0,
+                  #'color': 851, # kAzure -9 
+                  #'samples'  : ['WW', 'ggWW']
+              #}
 
-groupPlot['VVV']  = {  
-                  'nameHR' : 'VVV',
-                  'isSignal' : 0,
-                  'color': 857, # kAzure -3  
-                  'samples'  : ['VVV']
-              }
+#groupPlot['VVV']  = {  
+                  #'nameHR' : 'VVV',
+                  #'isSignal' : 0,
+                  #'color': 857, # kAzure -3  
+                  #'samples'  : ['VVV']
+              #}
 
 
-groupPlot['VZ']  = {  
-                  'nameHR' : "VZ/#gamma*/#gamma",
-                  'isSignal' : 0,
-                  'color'    : 617,   # kViolet + 1  
-                  'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ']
-              }
+#groupPlot['VZ']  = {  
+                  #'nameHR' : "VZ/#gamma*/#gamma",
+                  #'isSignal' : 0,
+                  #'color'    : 617,   # kViolet + 1  
+                  #'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ']
+              #}
 
 
 groupPlot['DY']  = {  
                   'nameHR' : "DY",
                   'isSignal' : 0,
                   'color': 418,  #  kGreen+2
-                  'samples'  : ['DY']
+                  'samples'  : ['DY1', 'DY2']
+                  #'samples'  : ['DY']
               }
 
 
 
-groupPlot['Higgs']  = {  
-                  'nameHR' : 'Higgs',
-                  'isSignal' : 1,
-                  'color': 632, # kRed 
-                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww']
+
+groupPlot['DYpow']  = {  
+                  'nameHR' : "DYpow",
+                  'isSignal' : 3,
+                  'color': 418,  #  kGreen+2
+                  'samples'  : ['DYpow']
+                  #'samples'  : ['DY']
               }
+
+#groupPlot['Higgs']  = {  
+                  #'nameHR' : 'Higgs',
+                  #'isSignal' : 1,
+                  #'color': 632, # kRed 
+                  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww']
+              #}
 
 
 
@@ -92,6 +102,57 @@ plot['DY']  = {
                        }
               }
 
+
+plot['DYpow']  = {  
+                  'color': 632,    # kRed
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  #'scale'    : 6025.20,
+                  'scale'    : 0.8,
+                  #'isSignal' : 2     # draw together
+                  'isSignal' : 3     # draw together and do ratio plot w.r.t. data
+              }
+
+
+plot['DY1']  = {  
+                  'color': 418,    # kGreen+2
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0,
+                  #'scale'    : 0.87,
+                  #'scale'    : 10.0*0.7*1.2*1.1,
+                  #'scale'    : 11.0*0.87,
+                  #'isSignal' : 2                    
+                  'cuts'  : {
+                       'DYee'      : 0.85 ,
+                       'DYee2lepEB'      : 0.85 ,
+                       'DYee2lepEE'      : 0.85 ,
+                       'DYee0j'      : 0.85 ,
+                       'DYee1j'      : 0.85 ,
+                       'DYee2j'      : 0.85 ,
+                       #
+                       }
+              }
+
+plot['DY2']  = {  
+                  'color': 418,    # kGreen+2
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0,
+                  #'scale'    : 0.87,
+                  #'scale'    : 10.0*0.7*1.2*1.1,
+                  #'scale'    : 11.0*0.87,
+                  #'isSignal' : 2                    
+                  'cuts'  : {
+                       'DYee'      : 0.85 ,
+                       'DYee2lepEB'      : 0.85 ,
+                       'DYee2lepEE'      : 0.85 ,
+                       'DYee0j'      : 0.85 ,
+                       'DYee1j'      : 0.85 ,
+                       'DYee2j'      : 0.85 ,
+                       #
+                       }
+              }                  
 
 plot['DYnoFix']  = {  
                   'color': 417,    # kGreen+1
@@ -195,16 +256,6 @@ plot['DYnoFixVar9']  = {
               }
 
 
-
-plot['DYpow']  = {  
-                  'color': 632,    # kRed
-                  'isSignal' : 0,
-                  'isData'   : 0, 
-                  #'scale'    : 6025.20,
-                  'scale'    : 1,
-                  #'isSignal' : 2     # draw together
-                  'isSignal' : 3     # draw together and do ratio plot w.r.t. data
-              }
 
 
 plot['DYfixData']  = {  
@@ -444,17 +495,7 @@ plot['DATA']  = {
 
 # additional options
 
-# legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
-#legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
-#legend['lumi'] = 'L = 0.8/fb' # XXX fb-1
-#legend['lumi'] = 'L = 2.6/fb' # XXX fb-1
-<<<<<<< HEAD
-#legend['lumi'] = 'L = 4.3/fb' # XXX fb-1
 legend['lumi'] = 'L = 6.3/fb'
-
-=======
-legend['lumi'] = 'L = 6.3/fb' # XXX fb-1
->>>>>>> e4aa2ac98dad3f7d13d5271a0daf24f8f84cb72e
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 
