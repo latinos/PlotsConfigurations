@@ -37,13 +37,7 @@ Steps to get datacards and plots:
     
     cd -
     
-<<<<<<< HEAD
-    mkShapes.py      --pycfg=configuration.py  --inputDir=eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/ --doThreads=True
-    mkShapes.py      --pycfg=configuration.py  --doThreads=True   --inputDir=eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
-    
-=======
     mkShapes.py      --pycfg=configuration.py  --inputDir=eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel --doThreads=True
->>>>>>> e4aa2ac98dad3f7d13d5271a0daf24f8f84cb72e
     
     mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_DY.root
     
