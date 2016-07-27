@@ -145,9 +145,9 @@ plot['top'] = {
                   'isData'   : 0, 
                   'scale'    : 1.0,
                   'cuts'  : {
-                       'hww2l2v_13TeV_top_of0j'      : 0.88 ,
-                       'hww2l2v_13TeV_top_of1j'      : 0.80 ,
-                       'hww2l2v_13TeV_top_of2j'      : 0.85 ,
+                       'hww2l2v_13TeV_top_of0j'      : 0.98 ,
+                       'hww2l2v_13TeV_top_of1j'      : 0.88 ,
+                       'hww2l2v_13TeV_top_of2j'      : 0.9 ,
                        #
                        }
                   }
