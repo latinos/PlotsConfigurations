@@ -20,8 +20,8 @@
                             #'latino_DYJetsToLL_M-50_0001__part4.root',
                             #'latino_DYJetsToLL_M-50_0002__part0.root',
                             #],    
-                      ##'weight' : '(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
-                      #'weight' : 'puW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',  
+                      ##'weight' : '(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW63mb*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
+                      #'weight' : 'puW63mb*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',  
                       #'weights' :  [
                         ##'0.829752445221',
                         ##
@@ -49,6 +49,81 @@
     # TF1 f("f", "(9.90333e-01+x*1.37945e-02+x*x*(-7.49473e-04)+x*x*x*(-6.22583e-05)+x*x*x*x*(2.13429e-06))", 0, 50)
     
             
+#samples['DY1vtxFix']  = {    'name': [
+                            ##'latino_DYJetsToLL_M-10to50.root',
+                            ##'latino_DYJetsToLL_M-10to50ext3.root',
+                            ##
+                            ##'latino_DYJetsToLL_M-50_0000__part0_genVar.root'
+                            ##'latino_DYJetsToLL_M-10to50.root',
+                            #'latino_DYJetsToLL_M-50_0000__part0.root',
+                            #'latino_DYJetsToLL_M-50_0000__part1.root',
+                            #'latino_DYJetsToLL_M-50_0000__part2.root',
+                            #'latino_DYJetsToLL_M-50_0000__part3.root',
+                            #'latino_DYJetsToLL_M-50_0000__part4.root',
+                            ##'latino_DYJetsToLL_M-50_0001__part0.root',
+                            ##'latino_DYJetsToLL_M-50_0001__part1.root',
+                            ##'latino_DYJetsToLL_M-50_0001__part2.root',
+                            ##'latino_DYJetsToLL_M-50_0001__part3.root',
+                            ##'latino_DYJetsToLL_M-50_0001__part4.root',
+                            ##'latino_DYJetsToLL_M-50_0002__part0.root',
+                            #],    
+                      #'weight' : 'baseW*(9.90333e-01+nvtx*1.37945e-02+nvtx*nvtx*(-7.49473e-04)+nvtx*nvtx*nvtx*(-6.22583e-05)+nvtx*nvtx*nvtx*nvtx*(2.13429e-06)) * (1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW63mb*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
+                      ##'weights' :  [
+                        ###'0.829752445221',
+                        ###
+                        ##'0.318902641535',
+                        ##'0.318902641535',
+                        ##'0.318902641535',
+                        ##'0.318902641535',
+                        ##'0.318902641535',
+                        ###'0.318902641535',
+                        ###'0.318902641535',
+                        ###'0.318902641535',
+                        ###'0.318902641535',
+                        ###'0.318902641535',
+                        ###'0.318902641535',                        
+                        ##]
+                   #}
+
+
+
+#samples['DY2vtxFix']  = {    'name': [
+                            ##'latino_DYJetsToLL_M-10to50.root',
+                            ##'latino_DYJetsToLL_M-10to50ext3.root',
+                            ##
+                            ##'latino_DYJetsToLL_M-50_0000__part0_genVar.root'
+                            ##'latino_DYJetsToLL_M-10to50.root',
+                            ##'latino_DYJetsToLL_M-50_0000__part0.root',
+                            ##'latino_DYJetsToLL_M-50_0000__part1.root',
+                            ##'latino_DYJetsToLL_M-50_0000__part2.root',
+                            ##'latino_DYJetsToLL_M-50_0000__part3.root',
+                            ##'latino_DYJetsToLL_M-50_0000__part4.root',
+                            #'latino_DYJetsToLL_M-50_0001__part0.root',
+                            #'latino_DYJetsToLL_M-50_0001__part1.root',
+                            #'latino_DYJetsToLL_M-50_0001__part2.root',
+                            #'latino_DYJetsToLL_M-50_0001__part3.root',
+                            #'latino_DYJetsToLL_M-50_0001__part4.root',
+                            ##'latino_DYJetsToLL_M-50_0002__part0.root',
+                            #],    
+                      #'weight' : 'baseW*(9.90333e-01+nvtx*1.37945e-02+nvtx*nvtx*(-7.49473e-04)+nvtx*nvtx*nvtx*(-6.22583e-05)+nvtx*nvtx*nvtx*nvtx*(2.13429e-06)) * (1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW63mb*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
+                      ##'weights' :  [
+                        ###'0.829752445221',
+                        ###
+                        ###'0.318902641535',
+                        ###'0.318902641535',
+                        ###'0.318902641535',
+                        ###'0.318902641535',
+                        ##'0.318902641535',
+                        ##'0.318902641535',
+                        ##'0.318902641535',
+                        ##'0.318902641535',
+                        ##'0.318902641535',
+                        ##'0.318902641535',
+                        ##'0.318902641535',                        
+                        ##]
+                   #}
+
+
 samples['DY1']  = {    'name': [
                             #'latino_DYJetsToLL_M-10to50.root',
                             #'latino_DYJetsToLL_M-10to50ext3.root',
@@ -67,22 +142,22 @@ samples['DY1']  = {    'name': [
                             #'latino_DYJetsToLL_M-50_0001__part4.root',
                             #'latino_DYJetsToLL_M-50_0002__part0.root',
                             ],    
-                      'weight' : '(9.90333e-01+nvtx*1.37945e-02+nvtx*nvtx*(-7.49473e-04)+nvtx*nvtx*nvtx*(-6.22583e-05)+nvtx*nvtx*nvtx*nvtx*(2.13429e-06)) * (1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
-                      'weights' :  [
-                        #'0.829752445221',
-                        #
-                        '0.318902641535',
-                        '0.318902641535',
-                        '0.318902641535',
-                        '0.318902641535',
-                        '0.318902641535',
+                      'weight' : 'baseW*(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW63mb*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
+                      #'weights' :  [
+                        ##'0.829752445221',
+                        ##
                         #'0.318902641535',
                         #'0.318902641535',
                         #'0.318902641535',
                         #'0.318902641535',
                         #'0.318902641535',
-                        #'0.318902641535',                        
-                        ]
+                        ##'0.318902641535',
+                        ##'0.318902641535',
+                        ##'0.318902641535',
+                        ##'0.318902641535',
+                        ##'0.318902641535',
+                        ##'0.318902641535',                        
+                        #]
                    }
 
 
@@ -103,26 +178,101 @@ samples['DY2']  = {    'name': [
                             'latino_DYJetsToLL_M-50_0001__part2.root',
                             'latino_DYJetsToLL_M-50_0001__part3.root',
                             'latino_DYJetsToLL_M-50_0001__part4.root',
-                            'latino_DYJetsToLL_M-50_0002__part0.root',
+                            #'latino_DYJetsToLL_M-50_0002__part0.root',
                             ],    
-                      'weight' : '(9.90333e-01+nvtx*1.37945e-02+nvtx*nvtx*(-7.49473e-04)+nvtx*nvtx*nvtx*(-6.22583e-05)+nvtx*nvtx*nvtx*nvtx*(2.13429e-06)) * (1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
-                      'weights' :  [
-                        #'0.829752445221',
-                        #
+                      'weight' : 'baseW*(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW63mb*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
+                      #'weights' :  [
+                        ##'0.829752445221',
+                        ##
+                        ##'0.318902641535',
+                        ##'0.318902641535',
+                        ##'0.318902641535',
+                        ##'0.318902641535',
                         #'0.318902641535',
                         #'0.318902641535',
                         #'0.318902641535',
                         #'0.318902641535',
-                        '0.318902641535',
-                        '0.318902641535',
-                        '0.318902641535',
-                        '0.318902641535',
-                        '0.318902641535',
-                        '0.318902641535',
-                        '0.318902641535',                        
-                        ]
+                        #'0.318902641535',
+                        #'0.318902641535',
+                        #'0.318902641535',                        
+                        #]
                    }
 
+
+
+samples['DY1reco']  = {    'name': [
+                            #'latino_DYJetsToLL_M-10to50.root',
+                            #'latino_DYJetsToLL_M-10to50ext3.root',
+                            #
+                            #'latino_DYJetsToLL_M-50_0000__part0_genVar.root'
+                            #'latino_DYJetsToLL_M-10to50.root',
+                            'latino_DYJetsToLL_M-50_0000__part0.root',
+                            'latino_DYJetsToLL_M-50_0000__part1.root',
+                            'latino_DYJetsToLL_M-50_0000__part2.root',
+                            'latino_DYJetsToLL_M-50_0000__part3.root',
+                            'latino_DYJetsToLL_M-50_0000__part4.root',
+                            #'latino_DYJetsToLL_M-50_0001__part0.root',
+                            #'latino_DYJetsToLL_M-50_0001__part1.root',
+                            #'latino_DYJetsToLL_M-50_0001__part2.root',
+                            #'latino_DYJetsToLL_M-50_0001__part3.root',
+                            #'latino_DYJetsToLL_M-50_0001__part4.root',
+                            #'latino_DYJetsToLL_M-50_0002__part0.root',
+                            ],    
+                      'weight' : 'baseW*(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW63mb*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
+                      #'weights' :  [
+                        ##'0.829752445221',
+                        ##
+                        #'0.318902641535',
+                        #'0.318902641535',
+                        #'0.318902641535',
+                        #'0.318902641535',
+                        #'0.318902641535',
+                        ##'0.318902641535',
+                        ##'0.318902641535',
+                        ##'0.318902641535',
+                        ##'0.318902641535',
+                        ##'0.318902641535',
+                        ##'0.318902641535',                        
+                        #]
+                   }
+
+
+
+samples['DY2reco']  = {    'name': [
+                            #'latino_DYJetsToLL_M-10to50.root',
+                            #'latino_DYJetsToLL_M-10to50ext3.root',
+                            #
+                            #'latino_DYJetsToLL_M-50_0000__part0_genVar.root'
+                            #'latino_DYJetsToLL_M-10to50.root',
+                            #'latino_DYJetsToLL_M-50_0000__part0.root',
+                            #'latino_DYJetsToLL_M-50_0000__part1.root',
+                            #'latino_DYJetsToLL_M-50_0000__part2.root',
+                            #'latino_DYJetsToLL_M-50_0000__part3.root',
+                            #'latino_DYJetsToLL_M-50_0000__part4.root',
+                            'latino_DYJetsToLL_M-50_0001__part0.root',
+                            'latino_DYJetsToLL_M-50_0001__part1.root',
+                            'latino_DYJetsToLL_M-50_0001__part2.root',
+                            'latino_DYJetsToLL_M-50_0001__part3.root',
+                            'latino_DYJetsToLL_M-50_0001__part4.root',
+                            #'latino_DYJetsToLL_M-50_0002__part0.root',
+                            ],    
+                      'weight' : 'baseW*(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW63mb*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
+                      #'weights' :  [
+                        ##'0.829752445221',
+                        ##
+                        ##'0.318902641535',
+                        ##'0.318902641535',
+                        ##'0.318902641535',
+                        ##'0.318902641535',
+                        #'0.318902641535',
+                        #'0.318902641535',
+                        #'0.318902641535',
+                        #'0.318902641535',
+                        #'0.318902641535',
+                        #'0.318902641535',
+                        #'0.318902641535',                        
+                        #]
+                   }
             
                       
                       
@@ -144,7 +294,7 @@ samples['DY2']  = {    'name': [
                             ##'latino_DYJetsToLL_M-50_0001__part4.root',
                             ##'latino_DYJetsToLL_M-50_0002__part0.root',
                             #],    
-                      #'weight' : '(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
+                      #'weight' : '(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW63mb*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
                       #'weights' :  [
                         ##'0.829752445221',
                         ##
@@ -182,7 +332,7 @@ samples['DY2']  = {    'name': [
                             #'latino_DYJetsToLL_M-50_0001__part4.root',
                             #'latino_DYJetsToLL_M-50_0002__part0.root',
                             #],    
-                      #'weight' : '(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
+                      #'weight' : '(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW63mb*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
                       #'weights' :  [
                         ##'0.829752445221',
                         ##
@@ -219,8 +369,8 @@ samples['DY2']  = {    'name': [
                             ##'latino_DYJetsToLL_M-50_0001__part4.root',
                             ##'latino_DYJetsToLL_M-50_0002__part0.root',
                             #],    
-                      ##'weight' : '(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
-                      #'weight' : 'puW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*effTrigW*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]\
+                      ##'weight' : '(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW63mb*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
+                      #'weight' : 'puW63mb*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*effTrigW*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]\
                         #* ((abs(std_vector_lepton_flavour[0]) == 13) * std_vector_lepton_idisoW[0] + (   \
                            #(abs(std_vector_lepton_flavour[0]) == 11)   *    \
                            #(  std_vector_lepton_eta[0]>   -2.500    &&     std_vector_lepton_eta[0]<      -2.000   &&      std_vector_lepton_pt[0]>    10.000    &&     std_vector_lepton_pt[0]<      20.000     )   *  0.935    +      \
@@ -325,8 +475,8 @@ samples['DY2']  = {    'name': [
                             #'latino_DYJetsToLL_M-50_0001__part4.root',
                             #'latino_DYJetsToLL_M-50_0002__part0.root',
                             #],    
-                      ##'weight' : '(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
-                      #'weight' : 'puW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*effTrigW*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]\
+                      ##'weight' : '(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW63mb*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
+                      #'weight' : 'puW63mb*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*effTrigW*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]\
                         #* ((abs(std_vector_lepton_flavour[0]) == 13) * std_vector_lepton_idisoW[0] + (   \
                            #(abs(std_vector_lepton_flavour[0]) == 11)   *    \
                            #(  std_vector_lepton_eta[0]>   -2.500    &&     std_vector_lepton_eta[0]<      -2.000   &&      std_vector_lepton_pt[0]>    10.000    &&     std_vector_lepton_pt[0]<      20.000     )   *  0.935    +      \
@@ -431,8 +581,8 @@ samples['DY2']  = {    'name': [
                             ##'latino_DYJetsToLL_M-50_0001__part4.root',
                             ##'latino_DYJetsToLL_M-50_0002__part0.root',
                             #],    
-                      ##'weight' : '(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
-                      #'weight' : 'puW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*effTrigW*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]\
+                      ##'weight' : '(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW63mb*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
+                      #'weight' : 'puW63mb*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*effTrigW*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]\
                         #* ((abs(std_vector_lepton_flavour[0]) == 13) * std_vector_lepton_idisoW[0] + (   \
                            #(abs(std_vector_lepton_flavour[0]) == 11)   *    \
                            #(  std_vector_lepton_eta[0]>   -2.500    &&     std_vector_lepton_eta[0]<      -2.000   &&      std_vector_lepton_pt[0]>    10.000    &&     std_vector_lepton_pt[0]<      20.000     )   *  0.935    +      \
@@ -579,8 +729,8 @@ samples['DY2']  = {    'name': [
                             #'latino_DYJetsToLL_M-50_0001__part4.root',
                             #'latino_DYJetsToLL_M-50_0002__part0.root',
                             #],    
-                      ##'weight' : '(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
-                      #'weight' : 'puW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*effTrigW*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]\
+                      ##'weight' : '(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW63mb*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
+                      #'weight' : 'puW63mb*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*effTrigW*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]\
                         #* ((abs(std_vector_lepton_flavour[0]) == 13) * std_vector_lepton_idisoW[0] + (   \
                            #(abs(std_vector_lepton_flavour[0]) == 11)   *    \
                            #(  std_vector_lepton_eta[0]>   -2.500    &&     std_vector_lepton_eta[0]<      -2.000   &&      std_vector_lepton_pt[0]>    10.000    &&     std_vector_lepton_pt[0]<      20.000     )   *  0.935    +      \
@@ -727,8 +877,8 @@ samples['DY2']  = {    'name': [
                             ##'latino_DYJetsToLL_M-50_0001__part4.root',
                             ##'latino_DYJetsToLL_M-50_0002__part0.root',
                             #],    
-                      ##'weight' : '(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
-                      #'weight' : 'puW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]\
+                      ##'weight' : '(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW63mb*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
+                      #'weight' : 'puW63mb*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]\
                         #*((abs(std_vector_lepton_flavour[0]) == 13) + (   \
                         #(abs(std_vector_lepton_flavour[0]) == 11)   *    \
                         #(  std_vector_lepton_eta[0]>   -2.500     &&     std_vector_lepton_eta[0]<       -2.450        )   *  1.29369       +      \
@@ -833,8 +983,8 @@ samples['DY2']  = {    'name': [
                             #'latino_DYJetsToLL_M-50_0001__part4.root',
                             #'latino_DYJetsToLL_M-50_0002__part0.root',
                             #],    
-                      ##'weight' : '(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
-                      #'weight' : 'puW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]\
+                      ##'weight' : '(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW63mb*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
+                      #'weight' : 'puW63mb*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]\
                                                 #*((abs(std_vector_lepton_flavour[0]) == 13) + (   \
                         #(abs(std_vector_lepton_flavour[0]) == 11)   *    \
                         #(  std_vector_lepton_eta[0]>   -2.500     &&     std_vector_lepton_eta[0]<       -2.450        )   *  1.29369       +      \
@@ -919,23 +1069,23 @@ samples['DY2']  = {    'name': [
                         #]
                    #}
 
-samples['DYpow']  = {    'name': [
-                            #'latino_DYJetsToLL_M-10to50.root',
-                            #'latino_DYJetsToLL_M-10to50ext3.root',
-                            #
-                            #'latino_DYJetsToLL_M-50_0000__part0_genVar.root'
-                            #'latino_DYJetsToLL_M-10to50.root',
-                            'latino_DYJetsToEE_Pow_0000__part0.root',
-                            'latino_DYJetsToEE_Pow_0000__part1.root',
-                            'latino_DYJetsToEE_Pow_0000__part2.root',
-                            'latino_DYJetsToEE_Pow_0000__part3.root',
-                            'latino_DYJetsToEE_Pow_0001__part0.root',
-                            'latino_DYJetsToEE_Pow_0001__part1.root',
-                            'latino_DYJetsToEE_Pow_0001__part2.root',
-                            ],    
-                      #'weight' : '(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
-                      'weight' : 'baseW*puW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',  
-                   }
+#samples['DYpow']  = {    'name': [
+                            ##'latino_DYJetsToLL_M-10to50.root',
+                            ##'latino_DYJetsToLL_M-10to50ext3.root',
+                            ##
+                            ##'latino_DYJetsToLL_M-50_0000__part0_genVar.root'
+                            ##'latino_DYJetsToLL_M-10to50.root',
+                            #'latino_DYJetsToEE_Pow_0000__part0.root',
+                            #'latino_DYJetsToEE_Pow_0000__part1.root',
+                            #'latino_DYJetsToEE_Pow_0000__part2.root',
+                            #'latino_DYJetsToEE_Pow_0000__part3.root',
+                            #'latino_DYJetsToEE_Pow_0001__part0.root',
+                            #'latino_DYJetsToEE_Pow_0001__part1.root',
+                            #'latino_DYJetsToEE_Pow_0001__part2.root',
+                            #],    
+                      ##'weight' : '(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW63mb*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
+                      #'weight' : 'baseW*puW63mb*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',  
+                   #}
 
 
 
@@ -1022,7 +1172,7 @@ samples['DYpow']  = {    'name': [
                            #'latino_ST_tW_antitop.root',
                            #'latino_ST_tW_top.root'
                           #],          
-                       #'weight' : 'puW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',    #   weight/cut 
+                       #'weight' : 'puW63mb*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',    #   weight/cut 
                        #'weights' :  [
                           #'0.0043711992912',
                           #'0.0043711992912',
@@ -1049,13 +1199,13 @@ samples['DYpow']  = {    'name': [
 #samples['WW']  = {    'name': [
                                   #'latino_WWTo2L2Nu.root'
                                 #],      
-                      #'weight' : 'nllW*puW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+                      #'weight' : 'nllW*puW63mb*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
                       #'weights': ['0.00619058124769'] ,           
                   #}
 
 
 #samples['ggWW']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root'],      
-                      #'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+                      #'weight' : 'puW63mb*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
                       ##'weights': ['abs(nllW)'] ,           
                       ##'weights': ['1.000'] ,           
                       #'isData': ['0'],                            
@@ -1070,7 +1220,7 @@ samples['DYpow']  = {    'name': [
 
 
 #samples['Vg']  = {    'name': ['latino_Wg_MADGRAPHMLM.root'],      
-                      #'weight' : 'puW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)\
+                      #'weight' : 'puW63mb*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)\
                                   #* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
                                  ##*(!(Gen_ZGstar_MomStatus==44 && Gen_ZGstar_MomId==22))',
                       #'weights': ['0.0684952181745'] ,           
@@ -1083,7 +1233,7 @@ samples['DYpow']  = {    'name': [
                              #'latino_WgStarLNuEE.root', 
                              #'latino_WgStarLNuMuMu.root'
                              #],      
-                      #'weight' : '1.4*puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',
+                      #'weight' : '1.4*puW63mb*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',
                       #'weights': ['1','1'] ,           
                   #}
 
@@ -1156,7 +1306,7 @@ samples['DYpow']  = {    'name': [
                           ##
                           ##'latino_ZZTo4L.root'
                          #], 
-                      #'weight' : 'puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+                      #'weight' : 'puW63mb*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
                       #'weights': [
                           #'0.002214825',
                           ##
@@ -1224,7 +1374,7 @@ samples['DYpow']  = {    'name': [
                           #'latino_WWW.root',
                           #'latino_WWZ.root',
                           #],      
-                      #'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+                      #'weight' : 'puW63mb*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
                       ##'isData': ['0'],                            
                   #}
 
@@ -1236,7 +1386,7 @@ samples['DYpow']  = {    'name': [
                                     ##'latino_HWplusJ_HToTauTau_M125.root',
                                     ##'latino_HZJ_HToTauTau_M125.root'
                                     #],      
-                           #'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',         
+                           #'weight' : 'puW63mb*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',         
                            #'weights': ['1', '1']
                                        ##, 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)' ]            
                   #}
@@ -1248,20 +1398,20 @@ samples['DYpow']  = {    'name': [
 #samples['ggH_hww']  = {    'name': [
                                #'latino_GluGluHToWWTo2L2NuPowheg_M125.root'
                                #],      
-                           #'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+                           #'weight' : 'puW63mb*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
                   #}
 
 #samples['qqH_hww']  = {    'name': [
                                ##'latino_VBFHToWWTo2L2Nu_M125.root'
                                #'latino_VBFHToWWTo2L2Nu_alternative_M125.root'
                                #],      
-                           #'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+                           #'weight' : 'puW63mb*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
                   #}
 
 #samples['ggZH_hww']  = {    'name': [
                                #'latino_ggZH_HToWW_M125.root',
                                #],      
-                           #'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+                           #'weight' : 'puW63mb*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
                   #}
 
 
@@ -1269,11 +1419,11 @@ samples['DYpow']  = {    'name': [
                              #'latino_HWminusJ_HToWW_M125.root',
                              #'latino_HWplusJ_HToWW_M125.root'
                              #],      
-                           #'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+                           #'weight' : 'puW63mb*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
                   #}
 
 #samples['ZH_hww']  = {    'name': ['latino_HZJ_HToWW_M125.root'],      
-                           #'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+                           #'weight' : 'puW63mb*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
                   #}
 
 
@@ -1285,29 +1435,29 @@ samples['DYpow']  = {    'name': [
 
 samples['DATA']  = {   'name': [
                                 #
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_MuonEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleElectron.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleElectron.root', 
+                                '../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleMuon.root', 
                                 #              
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_MuonEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleElectron.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleElectron.root', 
+                                '../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleMuon.root', 
                                 #            
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_MuonEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleElectron.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleElectron.root', 
+                                '../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleMuon.root', 
                                 #            
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016C_PromptReco_MuonEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016C_PromptReco_SingleElectron.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016C_PromptReco_DoubleEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016C_PromptReco_DoubleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016C_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016C_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016C_PromptReco_SingleElectron.root', 
+                                '../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016C_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016C_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016C_PromptReco_SingleMuon.root', 
 
                                 #
                                 ] ,     

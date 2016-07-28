@@ -46,24 +46,45 @@
               #}
 
 
-groupPlot['DY']  = {  
-                  'nameHR' : "DY",
+#groupPlot['DY']  = {  
+                  #'nameHR' : "DY",
+                  #'isSignal' : 0,
+                  #'color': 418,  #  kGreen+2
+                  #'samples'  : ['DY1', 'DY2']
+                  ##'samples'  : ['DY']
+              #}
+
+
+
+#groupPlot['DYvtx']  = {  
+                  #'nameHR' : "DY vtx fix",
+                  #'isSignal' : 3,
+                  #'color': 418,  #  kGreen+2
+                  #'samples'  : ['DY1vtxFix', 'DY2vtxFix']
+                  ##'samples'  : ['DY']
+              #}
+
+
+
+
+groupPlot['DYreco']  = {  
+                  'nameHR' : "DY reco eff fix",
                   'isSignal' : 0,
                   'color': 418,  #  kGreen+2
-                  'samples'  : ['DY1', 'DY2']
+                  'samples'  : ['DY1reco', 'DY2reco']
                   #'samples'  : ['DY']
               }
 
 
 
 
-groupPlot['DYpow']  = {  
-                  'nameHR' : "DYpow",
-                  'isSignal' : 3,
-                  'color': 418,  #  kGreen+2
-                  'samples'  : ['DYpow']
-                  #'samples'  : ['DY']
-              }
+#groupPlot['DYpow']  = {  
+                  #'nameHR' : "DYpow",
+                  #'isSignal' : 3,
+                  #'color': 418,  #  kGreen+2
+                  #'samples'  : ['DYpow']
+                  ##'samples'  : ['DY']
+              #}
 
 #groupPlot['Higgs']  = {  
                   #'nameHR' : 'Higgs',
@@ -155,6 +176,42 @@ plot['DY2']  = {
                        ##
                        #}
               }                  
+
+
+plot['DY1vtxFix']  = {  
+                  'color': 418,    # kGreen+2
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0,
+              }
+
+plot['DY2vtxFix']  = {  
+                  'color': 418,    # kGreen+2
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0,
+              }                  
+
+
+
+
+plot['DY1reco']  = {  
+                  'color': 418,    # kGreen+2
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0,
+              }
+
+plot['DY2reco']  = {  
+                  'color': 418,    # kGreen+2
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0,
+              }                  
+
+
+
+
 
 plot['DYnoFix']  = {  
                   'color': 417,    # kGreen+1
