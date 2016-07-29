@@ -2,9 +2,11 @@ from ROOT import *
 from array import *
 import CMS_lumi, tdrstyle
 import sys
+import math
 
 tdrstyle.setTDRStyle()
-CMS_lumi.lumi_13TeV = "2.3 fb^{-1}"
+#CMS_lumi.lumi_13TeV = "2.3 fb^{-1}"
+CMS_lumi.lumi_13TeV = "6.3 fb^{-1}"
 CMS_lumi.writeExtraText = 1
 CMS_lumi.writeExtraText2 = 1
 CMS_lumi.extraText = "Preliminary"
@@ -42,7 +44,6 @@ def makeCanvas(name="c"):
 
 def extract(file, what="exp"):
 
-  print what
   limit = {}
   if what=="exp":
     for line in file:
@@ -51,13 +52,10 @@ def extract(file, what="exp"):
         limit[res[1].replace('%:','')] = res[4]
 
   if what=="obs":
-    print "deh"
     for line in file:
-      print line
       if "Observed" in line:
         res = line.split()
         limit['Limit'] = res[4]
-        print res[4]
 
   return limit
 
@@ -68,30 +66,41 @@ def getXsec(mass,process,model):
   brn = float((model[6]+"."+model[7]))
 
   sf = kp*(1-brn)
-  print "ewk singlet SF = ",sf
+#  print "ewk singlet SF = ",sf
 
   if process=="ggH":
 
     rootFile = TFile("eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_GluGluHToWWTo2L2Nu_M"+mass+".root")
     latino = rootFile.Get("latino")
-    htemp = TH1F("htemp","htemp",1,0,1)
-    latino.Draw("Xsec>>htemp")
+    latino.GetEntry(0)
+    xsec = latino.Xsec
 
-    return htemp.GetMean()*sf
+    print "M = ", mass, " ggH xsec = ", xsec
+#    print "xsec*sf = ", xsec*sf
+
+#    return xsec*sf ############################ FIXME
+    return xsec
 
   elif process=="VBF":
 
     rootFile = TFile("eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_VBFHToWWTo2L2Nu_M"+mass+".root")
     latino = rootFile.Get("latino")
-    htemp = TH1F("htemp","htemp",1,0,1)
-    latino.Draw("Xsec>>htemp")
-    
-    return htemp.GetMean()*sf
-    
+    latino.GetEntry(0)
+    xsec = latino.Xsec
+
+    print "M = ", mass, " VBF xsec = ", xsec
+#    print "xsec*sf = ", xsec*sf
+   
+#    return xsec*sf
+    return xsec
+     
 
 def plotLimit(mass,model,option="mu",cat="all",doUnblind=False):
 
+        Dir="/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_highmass/CMSSW_8_0_5/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/2015/combine2015_nocprime/"
+#        Dir="/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_highmass/CMSSW_8_0_5/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combine2016_UNBLIND/"
 
+        xsec = array("d")
 	xcentral = array("d") # masses
         ycentral_mu = array("d") # limits
         ycentral_xs = array("d") # limits
@@ -124,36 +133,40 @@ def plotLimit(mass,model,option="mu",cat="all",doUnblind=False):
 
             xsec_ggH = getXsec(m,"ggH",model)
             xsec_VBF = getXsec(m,"VBF",model)
-
+#            print xsec_ggH
+ 
             if cat=="all":
-              #fitfile = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combine/Limit.Moriond2016.v1.txt.pruned.mH"+m+"_"+model+".txt"
-              fitfile = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combineUNBLIND/Limit.ICHEP2016.unblind.mH"+m+"_"+model+".txt"
+              if doUnblind: fitfile = Dir+"Limit.ICHEP2016.unblind.mH"+m+"_"+model+".txt"
+              else: fitfile = Dir+"Limit.ICHEP2016.mH"+m+"_"+model+".txt"
 
               CMS_lumi.extraText2 = "0+1+2 jets "
             else:
               #fitfile = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combine/Limit.Moriond2016."+cat+".mH"+m+"_"+model+".txt"
-              fitfile = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combineUNBLIND/Limit."+cat+".ICHEP2016.unblind.mH"+m+"_"+model+".txt"
+              if doUnblind: fitfile = Dir+"Limit."+cat+".ICHEP2016.unblind.mH"+m+"_"+model+".txt"
+              else: fitfile = Dir+"Limit."+cat+".ICHEP2016.mH"+m+"_"+model+".txt"
 
               CMS_lumi.extraText2 = cat.replace("jet"," jet ")
 
             fitFile = open(fitfile)#"/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combine/Limit.Moriond2016.2jet.mH"+m+".txt")
 	    expLimit = extract(fitFile,"exp")
             fitFile.close()
-            fitFile = open(fitfile)
-            obsLimit = extract(fitFile,"obs")
-            fitFile.close()
+            if doUnblind:
+              fitFile = open(fitfile)
+              obsLimit = extract(fitFile,"obs")
+              fitFile.close()
  
             xcentral.append(float(m))
   	    xerr.append(0)
 
-            observed_mu.append( float(obsLimit['Limit']) )
+            if doUnblind: observed_mu.append( float(obsLimit['Limit']) )
+            xsec.append(xsec_ggH+xsec_VBF)
 	    ycentral_mu.append( float(expLimit['50.0']) )
             down1s_mu.append( float(expLimit['50.0'])-float(expLimit['16.0']) )
 	    up1s_mu.append( float(expLimit['84.0'])-float(expLimit['50.0']) )
 	    down2s_mu.append( float(expLimit['50.0'])-float(expLimit['2.5']) )
 	    up2s_mu.append( float(expLimit['97.5'])-float(expLimit['50.0']) )
 
-            observed_xs.append( float(obsLimit['Limit'])*(xsec_ggH+xsec_VBF) )
+            if doUnblind: observed_xs.append( float(obsLimit['Limit'])*(xsec_ggH+xsec_VBF) )
             ycentral_xs.append( float(expLimit['50.0'])*(xsec_ggH+xsec_VBF) )
             down1s_xs.append( (float(expLimit['50.0'])-float(expLimit['16.0']))*(xsec_ggH+xsec_VBF) )
             up1s_xs.append( (float(expLimit['84.0'])-float(expLimit['50.0']))*(xsec_ggH+xsec_VBF) )
@@ -163,12 +176,14 @@ def plotLimit(mass,model,option="mu",cat="all",doUnblind=False):
 
   	  c1 = makeCanvas("c1")
        
+          cp2 = float(model[1]+"."+model[2])
+          gamma = str(cp2*cp2)
+
 #          CMS_lumi.extraText2 += model.replace("c","\nc'= ").replace("0","0.").replace("brn"," BR_{new} = ").replace("0.0.","0.0").replace("10.","1.0")
           CMS_lumi.extraText2 += model.replace("brn00","").replace("c","\nc'= ").replace("0","0.").replace("10.","1.0")
-
-
+          
   
-          graphobs_mu     = TGraph(len(xcentral),xcentral,observed_mu)
+          if doUnblind: graphobs_mu     = TGraph(len(xcentral),xcentral,observed_mu)
 
 	  graphcentral_mu = TGraph(len(xcentral),xcentral,ycentral_mu)
 	  graphcentral_mu.SetLineStyle(2)
@@ -184,10 +199,10 @@ def plotLimit(mass,model,option="mu",cat="all",doUnblind=False):
 	  graph1s_mu = TGraphAsymmErrors(len(xcentral),xcentral,ycentral_mu,xerr,xerr,down1s_mu,up1s_mu)
 	  graph1s_mu.SetFillColor(kGreen)
 
-          leg1 = TLegend(0.65, 0.7, 0.95, 0.9)
+          leg1 = TLegend(0.60, 0.65, 0.90, 0.90)
           leg1.SetBorderSize(0)
           leg1.SetFillStyle(0)
-          leg1.AddEntry(graphobs_mu,"Observed","lp")
+          if doUnblind: leg1.AddEntry(graphobs_mu,"Observed","lp")
           leg1.AddEntry(graphcentral_mu,"Expected","l")
           leg1.AddEntry(graph1s_mu,"#pm 1 #sigma Expected","f")
           leg1.AddEntry(graph2s_mu,"#pm 2 #sigma Expected","f")
@@ -205,22 +220,36 @@ def plotLimit(mass,model,option="mu",cat="all",doUnblind=False):
 
           if cat=="all":
             CMS_lumi.extraText2 = "0+1+2 jets "
-            CMS_lumi.extraText2 += model.replace("brn00","").replace("c","\nc'= ").replace("0","0.").replace("10.","1.0")
+            if gamma == "1.0":
+              CMS_lumi.extraText2 += "#Gamma = #Gamma_{SM}"
+            else:
+              CMS_lumi.extraText2 += "#Gamma = "+gamma+" * #Gamma_{SM}"
           else:
             CMS_lumi.extraText2 = cat.replace("jet"," jet ")
-            CMS_lumi.extraText2 += model.replace("brn00","").replace("c","\nc'= ").replace("0","0.").replace("10.","1.0")
- 
-          graphobs_xs     = TGraph(len(xcentral),xcentral,observed_xs)
+            if gamma == "1.0":
+              CMS_lumi.extraText2 += "#Gamma = #Gamma_{SM}"
+            else:
+              CMS_lumi.extraText2 += "#Gamma = "+gamma+" * #Gamma_{SM}"
+
+          if doUnblind: graphobs_xs     = TGraph(len(xcentral),xcentral,observed_xs)
           graphcentral_xs = TGraph(len(xcentral),xcentral,ycentral_xs)
           graphcentral_xs.SetLineStyle(2)
+
+          graph_xsec = TGraph(len(xcentral),xcentral,xsec)
+          graph_xsec.SetLineWidth(2)
+          graph_xsec.SetLineColor(kRed)
 
           graph2s_xs = TGraphAsymmErrors(len(xcentral),xcentral,ycentral_xs,xerr,xerr,down2s_xs,up2s_xs)
           graph2s_xs.SetFillColor(kYellow)
           graph2s_xs.SetTitle("")
-          graph2s_xs.GetYaxis().SetTitle("95% CL limit on #sigma_{ggH}+#sigma_{VBF} [pb]")
+          graph2s_xs.GetYaxis().SetTitle("95% CL limit on #sigma(X #rightarrow WW #rightarrow 2l2#nu) [pb]")
+          graph2s_xs.GetYaxis().SetTitleOffset(1.35)
+          graph2s_xs.GetYaxis().SetTitleSize(0.05)
+          graph2s_xs.GetXaxis().SetTitleOffset(1.0)
+          graph2s_xs.GetXaxis().SetTitleSize(0.05)
           graph2s_xs.GetXaxis().SetTitle("M_{X} [GeV]")
           graph2s_xs.GetXaxis().SetRangeUser(200,1000)
-          graph2s_xs.GetYaxis().SetRangeUser(0.08,20)          
+          graph2s_xs.GetYaxis().SetRangeUser(0.02,60)          
 
           graph1s_xs = TGraphAsymmErrors(len(xcentral),xcentral,ycentral_xs,xerr,xerr,down1s_xs,up1s_xs)
           graph1s_xs.SetFillColor(kGreen)
@@ -230,14 +259,16 @@ def plotLimit(mass,model,option="mu",cat="all",doUnblind=False):
           leg2 = TLegend(0.65, 0.7, 0.95, 0.9)
           leg2.SetBorderSize(0)
           leg2.SetFillStyle(0)
-          leg2.AddEntry(graphobs_xs,"Observed","lp")
+          if doUnblind: leg2.AddEntry(graphobs_xs,"Observed","lp")
           leg2.AddEntry(graphcentral_xs,"Expected","l")
           leg2.AddEntry(graph1s_xs,"#pm 1 #sigma Expected","f")
           leg2.AddEntry(graph2s_xs,"#pm 2 #sigma Expected","f")
+          leg2.AddEntry(graph_xsec,"Predicted #sigma","l")
 
           graph2s_xs.Draw("A3")
           graph1s_xs.Draw("3 same")
           graphcentral_xs.Draw("L same")
+          graph_xsec.Draw("L same")
           if doUnblind: graphobs_xs.Draw("LP same")
           leg2.Draw()
 
@@ -356,7 +387,9 @@ def plotLimit(mass,model,option="mu",cat="all",doUnblind=False):
 masses = ["200","210","230","250","300","350","400","450","500","550","600","650","700","750","800","900","1000"]
 #masses = ["350","400","450","500","550","600","650","700","750","800","900","1000"]
 #masses = ["200","250","300","450","550","600","650","750","800","1000"]
-model = "c05brn00"
+#model = "c10brn00"
 cat = sys.argv[1]
+model = sys.argv[2]
+unblind = True  ## True for unblinding
 
-plotLimit(masses,model,"mu",cat,True) ## True for unblinding
+plotLimit(masses,model,"mu",cat,unblind)

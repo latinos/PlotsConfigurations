@@ -1,6 +1,6 @@
 # example of configuration file
 
-tag = 'HWWhighMass'
+tag = 'HWWhighMass_WWewk'
 
 
 # used by mkShape to define output directory for root files
@@ -31,7 +31,7 @@ outputDirPlots = 'plotHWWhighMass'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'
+outputDirDatacard = 'datacards_WWewk'
 
 
 # structure file for datacard

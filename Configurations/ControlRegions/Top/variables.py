@@ -100,6 +100,21 @@ variables['expectedMissingInnerHits_2']  = {  'name': 'std_vector_electron_expec
 
 
 
+variables['etaEle']  = {  'name': 'std_vector_lepton_eta[0]*(abs(std_vector_lepton_flavour[0]) == 11) + std_vector_lepton_eta[1]*(abs(std_vector_lepton_flavour[1]) == 11)',     
+                       'range' : (100,-3.2,3.2),   
+                       'xaxis' : '#eta electron',
+                       'fold'  : 3                         
+                       }
+
+
+
+variables['etaMu']  = {  'name': 'std_vector_lepton_eta[0]*(abs(std_vector_lepton_flavour[0]) == 13) + std_vector_lepton_eta[1]*(abs(std_vector_lepton_flavour[1]) == 13)',     
+                       'range' : (100,-3.2,3.2),   
+                       'xaxis' : '#eta muon',
+                       'fold'  : 3                         
+                       }
+
+
 
 variables['eta1']  = {  'name': 'std_vector_lepton_eta[0]',     
                        'range' : (100,-3.2,3.2),   

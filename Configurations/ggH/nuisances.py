@@ -8,19 +8,19 @@
 nuisances['lumi']  = {
                'name'  : 'lumi_ICHEP_13TeV', 
                'samples'  : {
-                   'ggH_hww'  : '1.050',
-                   'qqH_hww'  : '1.050',
-                   'WH_hww'   : '1.050',
-                   'ZH_hww'   : '1.050',
-                   'H_htt'    : '1.050',
-                   'H_hww'    : '1.050',
-                   'WH_hww'   : '1.050',
-                   'ggZH_hww'   : '1.050',
-                   'VVV'      : '1.050',
-                   'VZ'       : '1.050',
-                   'ggWW'     : '1.050',
-                   'Vg'       : '1.050',
-                   'VgS'      : '1.050',
+                   'ggH_hww'  : '1.062',
+                   'qqH_hww'  : '1.062',
+                   'WH_hww'   : '1.062',
+                   'ZH_hww'   : '1.062',
+                   'H_htt'    : '1.062',
+                   'H_hww'    : '1.062',
+                   'WH_hww'   : '1.062',
+                   'ggZH_hww'   : '1.062',
+                   'VVV'      : '1.062',
+                   'VZ'       : '1.062',
+                   'ggWW'     : '1.062',
+                   'Vg'       : '1.062',
+                   'VgS'      : '1.062',
                    #'DY'       : '1.027',    # --> datadriven
                    #'WW'       : '1.027',    # --> datadriven
                    #'top'      : '1.027',    # --> datadriven
@@ -505,8 +505,8 @@ nuisances['PS']  = {
                 'samples'  : {
                    'WW' :  ['1./1.03295', '1.'],  # latino_WWTo2L2NuHerwigPS.root moved with different name in __PS folder
                 },
-                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS/',
-                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/' 
+                'folderUp'   : 'eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS/',
+                'folderDown' : 'eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/' 
                 }
 
 
@@ -965,8 +965,8 @@ nuisances['jes']  = {
                 },
 
 
-                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/',
-                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/' 
+                'folderUp'   : 'eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/',
+                'folderDown' : 'eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/' 
 
                 #'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/',
                 #'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/' 
@@ -1008,8 +1008,8 @@ nuisances['electronpt']  = {
                    'VgS': ['1', '1'],
                 },
 
-                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/',
-                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/' 
+                'folderUp'   : 'eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/',
+                'folderDown' : 'eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/' 
 
 
                 #'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/',
@@ -1047,8 +1047,8 @@ nuisances['muonpt']  = {
                    'VgS': ['1', '1'],
                 },
 
-                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/',
-                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/' 
+                'folderUp'   : 'eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/',
+                'folderDown' : 'eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/' 
 
                 #'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/',
                 #'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/' 
@@ -1087,8 +1087,8 @@ nuisances['met']  = {
                    'VgS': ['1', '1'],
                 },
 
-                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel/',
-                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel/' 
+                'folderUp'   : 'eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel/',
+                'folderDown' : 'eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel/' 
 
                 #'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel/',
                 #'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel/' 

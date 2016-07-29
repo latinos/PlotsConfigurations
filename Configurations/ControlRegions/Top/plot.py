@@ -150,17 +150,17 @@ plot['top'] = {
                        'hww2l2v_13TeV_em_0j'     : 0.98 , 
                        'hww2l2v_13TeV_me_0j'     : 0.98 , 
                        #
-                       'hww2l2v_13TeV_of1j'      : 0.92 ,
-                       'hww2l2v_13TeV_top_of1j'  : 0.92 , 
-                       'hww2l2v_13TeV_dytt_of1j' : 0.92 ,
-                       'hww2l2v_13TeV_em_1j'     : 0.92 , 
-                       'hww2l2v_13TeV_me_1j'     : 0.92 , 
+                       'hww2l2v_13TeV_of1j'      : 0.87 ,
+                       'hww2l2v_13TeV_top_of1j'  : 0.87 , 
+                       'hww2l2v_13TeV_dytt_of1j' : 0.87 ,
+                       'hww2l2v_13TeV_em_1j'     : 0.87 , 
+                       'hww2l2v_13TeV_me_1j'     : 0.87 , 
                         #
-                       'hww2l2v_13TeV_of2j'      : 0.94 ,
-                       'hww2l2v_13TeV_top_of2j'  : 0.94 , 
-                       'hww2l2v_13TeV_dytt_of2j' : 0.94 ,
-                       'hww2l2v_13TeV_em_2j'     : 0.94 , 
-                       'hww2l2v_13TeV_me_2j'     : 0.94 ,                       
+                       'hww2l2v_13TeV_of2j'      : 0.90 ,
+                       'hww2l2v_13TeV_top_of2j'  : 0.90 , 
+                       'hww2l2v_13TeV_dytt_of2j' : 0.90 ,
+                       'hww2l2v_13TeV_em_2j'     : 0.90 , 
+                       'hww2l2v_13TeV_me_2j'     : 0.90 ,                       
                         },
                   }
 
@@ -326,7 +326,9 @@ plot['DATA']  = {
 #legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
 #legend['lumi'] = 'L = 0.8/fb' # 2.318 fb-1
 #legend['lumi'] = 'L = 2.6/fb'
-legend['lumi'] = 'L = 4.3/fb'
+#legend['lumi'] = 'L = 4.3/fb'
+legend['lumi'] = 'L = 6.3/fb'
+
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 

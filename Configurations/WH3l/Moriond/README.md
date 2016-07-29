@@ -11,7 +11,9 @@ The commands given here will be such that, one can produce datacards for signal 
 cd PlotsConfigurations/Configurations/WH3l/2015/forLimit
 
 mkShapes.py --pycfg=configuration.py --inputDir=/tmp/arun/eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__vh3lSel__l3kin/
+
 mkDatacards.py --pycfg=configuration.py --inputFile=rootFiles_WH_Signal/plots_WH3l.root
+
 mkPlot.py --pycfg=configuration.py --inputFile=rootFiles_WH_Signal/plots_WH3l.root
 
 SSSF datacard needs to be pruned for stat uncertainties because it gives problem.
@@ -21,7 +23,9 @@ SSSF datacard needs to be pruned for stat uncertainties because it gives problem
 cd PlotsConfigurations/Configurations/WH3l/2015/ControlRegion
 
 mkShapes.py --pycfg=configuration.py --inputDir=/tmp/arun/eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__vh3lSel__l3kin/
+
 mkDatacards.py --pycfg=configuration.py --inputFile=rootFiles_CR/plots_WH3l.root
+
 mkPlot.py --pycfg=configuration.py --inputFile=rootFiles_CR/plots_WH3l.root
 
 One thing here is : For some nuisances, some of samples in one of the phase spaces can give problems. So, either that nuisance has to be pruned out so remove that sample from that control region. Right now this setup include every sample for every nuisance.
