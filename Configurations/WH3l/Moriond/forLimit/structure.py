@@ -128,7 +128,7 @@ structure['ggZH_hww'] = {
                   'isData'   : 0    
                   }
 
-structure['H_htt'] = {
+structure['WH_htt'] = {
                   'isSignal' : 1,
                   'isData'   : 0    
                   }
