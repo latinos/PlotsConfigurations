@@ -4,10 +4,10 @@ tag = 'WH3l'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFiles_CR'
+outputDir = 'rootFiles_CR_forUnblind_v1'
 
 # file with list of variables
-variablesFile = 'variables_checks.py'
+variablesFile = 'variables.py'
 
 
 # file with list of cuts
@@ -27,11 +27,11 @@ lumi = 2.318
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotWH_CR'
+outputDirPlots = 'plotWH_CR_forUnblind_v1'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards_CR'
+outputDirDatacard = 'datacards_CR_forUnblind_v1'
 
 
 # structure file for datacard
