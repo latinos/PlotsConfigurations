@@ -8,15 +8,6 @@
 # If not defined, normal plots is used
 #
 
-#groupPlot['DY']  = {  
-#                  'nameHR' : "DY",
-#                  'isSignal' : 0,
-#                  'color': 418,    # kGreen+2
-#                  'samples'  : ['DY']
-#              }
-
-
-
 groupPlot['Fake']  = {  
                   'nameHR' : 'Fake',
                   'isSignal' : 0,
@@ -24,13 +15,6 @@ groupPlot['Fake']  = {
                   'samples'  : ['Fake']
               }
 
-
-#groupPlot['top']  = {  
-#                  'nameHR' : 'tW and t#bart',
-#                  'isSignal' : 0,
-#                  'color': 400,   # kYellow
-#                  'samples'  : ['top']
-#              }
 
 groupPlot['WW']  = {  
                   'nameHR' : 'WW',
@@ -56,13 +40,6 @@ groupPlot['Vg']  = {
                   'samples'  : ['Vg']
                   }
 
-#groupPlot['VZ']  = {  
-#                  'nameHR' : "VZ/#gamma*/#gamma",
-#                  'isSignal' : 0,
-#                  'color'    : 617,   # kViolet + 1  
-#                  'samples'  : ['VZ', 'WZ', 'ZZ']
-#              }
-
 
 groupPlot['ZZ']  = {
                   'nameHR' : "ZZ",
@@ -82,7 +59,7 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  'samples'  : ['H_htt', 'WH_hww', 'ZH_hww', 'ggZH_hww']
+                  'samples'  : ['WH_htt', 'WH_hww', 'ZH_hww', 'ggZH_hww']
               }
 
 
@@ -92,38 +69,6 @@ groupPlot['Higgs']  = {
 #plot = {}
 
 # keys here must match keys in samples.py    
-#                    
-#plot['DY']  = {  
-#                  'color': 418,    # kGreen+2
-#                  'isSignal' : 0,
-#                  'isData'   : 0, 
-#                  'scale'    : 1.0,
- #                 'cuts'  : {
-#                       'hww2l2v_13TeV_of0j'      : 0.95 ,
-#                       'hww2l2v_13TeV_top_of0j'  : 0.95 , 
-#                       'hww2l2v_13TeV_dytt_of0j' : 0.95 ,
-#                       'hww2l2v_13TeV_em_0j'     : 0.95 , 
-#                       'hww2l2v_13TeV_me_0j'     : 0.95 , 
-                       #
- #                      'hww2l2v_13TeV_of1j'      : 1.08 ,
- #                      'hww2l2v_13TeV_top_of1j'  : 1.08 , 
- #                      'hww2l2v_13TeV_dytt_of1j' : 1.08 ,
- #                      'hww2l2v_13TeV_em_1j'     : 1.08 , 
- #                      'hww2l2v_13TeV_me_1j'     : 1.08 , 
-  #                      },
-#
- #             }
-
-
-               
-#plot['Wjets']  = {  
-#                  'color': 921,    # kGray + 1
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.0                  
-#              }
-
-
 
                
 plot['Fake']  = {  
@@ -134,54 +79,6 @@ plot['Fake']  = {
               }
 
               
-#plot['FakeQCD']  = {  
-#                  'color': 922,    # kGray + 2
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.0                  
-#              }
-
-
-
-#plot['ttbar'] = {   
-#                  'nameHR' : 't#bart',
-#                  'color': 400,   # kYellow 
-#                  'isSignal' : 0,
-#                  'isData'   : 0 ,
-#                  'scale'    : 1.0
-#                  }
-
-
-#plot['singletop'] = {   
-#                  'nameHR' : 't and tW',
-#                  'color': 401,   # kYellow +1
-#                  'isSignal' : 0,
-#                  'isData'   : 0, 
-#                  'scale'    : 1.0
-#                  }
-
-#plot['top'] = {   
-#                  'nameHR' : 'tW and t#bart',
-#                  'color': 400,   # kYellow
-#                  'isSignal' : 0,
-#                  'isData'   : 0, 
-#                  'scale'    : 1.0,
-            #      'cuts'  : {
-#                       'hww2l2v_13TeV_of0j'      : 0.94 ,
-#                       'hww2l2v_13TeV_top_of0j'  : 0.94 , 
-#                       'hww2l2v_13TeV_dytt_of0j' : 0.94 ,
-#                       'hww2l2v_13TeV_em_0j'     : 0.94 , 
-#                       'hww2l2v_13TeV_me_0j'     : 0.94 , 
-#                       #
-#                       'hww2l2v_13TeV_of1j'      : 0.86 ,
-#                       'hww2l2v_13TeV_top_of1j'  : 0.86 , 
-#                       'hww2l2v_13TeV_dytt_of1j' : 0.86 ,
-#                       'hww2l2v_13TeV_em_1j'     : 0.86 , 
-#                       'hww2l2v_13TeV_me_1j'     : 0.86 , 
-             #           },
- #                 }
-
-
 plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
@@ -212,20 +109,6 @@ plot['Vg']  = {
                   'scale'    : 1.0
                   }
 
-#plot['VgS'] = { 
-#                  'color'    : 617,   # kViolet + 1  
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.0
-#                  }
-
-#plot['VZ']  = { 
-#                  'color': 858, # kAzure -2  
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.0
-#                  }
-
 plot['WZ']  = { 
                   'nameHR' : 'WZ',
                   'color': 858, # kAzure -2  
@@ -251,19 +134,10 @@ plot['VVV']  = {
                   }
 
 
-#plot['ZZ']  = {
-#                  'color': 854, # kAzure -6 
-#                  'isSignal' : 0,
-#                  'isData'   : 0,    
-#                  'scale'    : 1.0
-#                  }
-
-
-
 # Htautau
 
-plot['H_htt'] = {
-                  'nameHR' : 'Htt',
+plot['WH_htt'] = {
+                  'nameHR' : 'WHtt',
                   'color': 632+4, # kRed+4 
                   'isSignal' : 1,
                   'isData'   : 0,    
@@ -271,14 +145,6 @@ plot['H_htt'] = {
                   }
 
 # HWW 
-
-#plot['H_hww'] = {
-#                  'nameHR' : 'Hww',
-#                  'color': 632, # kRed 
-##                  'isSignal' : 1,
-#                  'isData'   : 0,    
-#                  'scale'    : 1    #
-#                  }
 
 plot['ZH_hww'] = {
                   'nameHR' : 'ZH',
@@ -305,23 +171,6 @@ plot['WH_hww'] = {
                   }
 
 
-#plot['qqH_hww'] = {
-#                  'nameHR' : 'qqH',
-#                  'color': 632+1, # kRed+1 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,    
-#                  'scale'    : 1    #
-#                  }
-
-
-#plot['ggH_hww'] = {
-#                  'nameHR' : 'ggH',
-#                  'color': 632, # kRed 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,    
-#                  'scale'    : 1    #
-#                  }
-
 # data
 
 plot['DATA']  = { 
@@ -329,7 +178,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+#                  'isBlind'  : 1
               }
 
 

@@ -96,11 +96,7 @@ samples['Fake']  = {    'name': [
  #                  }
 
 
-samples['Vg']  = {    'name': ['latino_Zg.root'
-#                               'latino_Wg_AMCNLOFXFX.root',
-#			       'latino_WgStarLNuEE.root',
-#                               'latino_WgStarLNuMuMu.root'      
-                              ],      
+samples['Vg']  = {    'name': ['latino_Zg.root'],      
                       'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*GEN_weight_SM/abs(GEN_weight_SM)',
  #                     'weights': ['1'] ,           
                       'isData': ['0'],                            
@@ -187,7 +183,7 @@ samples['WZ']  = {    'name': [
 
 
 # Htautau
-samples['H_htt']  = {      'name': [#'latino_GluGluHToTauTau_M125.root',
+samples['WH_htt']  = {      'name': [#'latino_GluGluHToTauTau_M125.root',
 #                                    'latino_VBFHToTauTau_M125.root',
                                     'latino_HWminusJ_HToTauTau_M125.root',
                                     'latino_HWplusJ_HToTauTau_M125.root',
@@ -242,13 +238,16 @@ samples['DATA']  = {   'name': [
                                 '../../../../../r/rebeca/HWW2015/03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__l2tight__vh3lSel__l3kin/latino_Run2015C_16Dec2015_MuonEG.root',
                                 '../../../../../r/rebeca/HWW2015/03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__l2tight__vh3lSel__l3kin/latino_Run2015C_16Dec2015_SingleElectron.root',
                                 '../../../../../r/rebeca/HWW2015/03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__l2tight__vh3lSel__l3kin/latino_Run2015C_16Dec2015_SingleMuon.root',
-                                '../../../../../r/rebeca/HWW2015/03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__l2tight__vh3lSel__l3kin/latino_Run2015D_16Dec2015_DoubleEG.root',
+                               '../../../../../r/rebeca/HWW2015/03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__l2tight__vh3lSel__l3kin/latino_Run2015D_16Dec2015_DoubleEG.root',
                                 '../../../../../r/rebeca/HWW2015/03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__l2tight__vh3lSel__l3kin/latino_Run2015D_16Dec2015_DoubleMuon.root',
                                 '../../../../../r/rebeca/HWW2015/03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__l2tight__vh3lSel__l3kin/latino_Run2015D_16Dec2015_MuonEG.root',
                                 '../../../../../r/rebeca/HWW2015/03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__l2tight__vh3lSel__l3kin/latino_Run2015D_16Dec2015_SingleElectron.root',
-                                '../../../../../r/rebeca/HWW2015/03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__l2tight__vh3lSel__l3kin/latino_Run2015D_16Dec2015_SingleMuon.root',
+                                '../../../../../r/rebeca/HWW2015/03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__l2tight__vh3lSel__l3kin/latino_Run2015D_16Dec2015_SingleMuon.root'
                                 ] ,     
                        'weight' : 'trigger*metFilter',
+#                       'weight' : 'std_vector_trigger[16]*metFilter',# HLT_IsoMu20
+#                       'weight' : 'std_vector_trigger[1]*metFilter',# HLT_Ele23_WPLoose_Gsf
+
                        'isData': ['all'],                            
                   }
 

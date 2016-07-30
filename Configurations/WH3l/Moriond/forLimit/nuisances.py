@@ -146,8 +146,6 @@ nuisances['QCDscale_gg_accept']  = {
 
 # PS/UE
 
-# PS
-
 nuisances['PS_wh3l']  = {
                 'name'  : 'PS_wh3l',
  #               'kind'  : 'tree',
@@ -163,18 +161,17 @@ nuisances['PS_wh3l']  = {
   #              'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/',
 }
 
-#nuisances['UE_wh3l']  = {
-#                'name'  : 'UE',
-#                'kind'  : 'tree',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'WW' :  ['1/0.978817', '1/1.0192'],
-#                   'ggH_hww' : ['1/0.9262', '1/0.984785'],
-#                   'qqH_hww' : ['1/0.951846', '1/1.00099'],
-#                },
-#                'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEup/',
-#                'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__UEdo/'
-#                }
+nuisances['UE_wh3l']  = {
+                'name'  : 'UE_wh3l',
+                'type'  : 'lnN',
+                'samples'  : {
+                   'WH_hww'   : '1.010',
+                   'ZH_hww'   : '1.010',
+                   'WH_htt'    : '1.010',
+                   'ggZH_hww'   : '1.010',
+                   'ZH_htt'   : '1.010',
+                },
+                }
 
 
 nuisances['Zg3lnorm']  = {
@@ -218,7 +215,7 @@ nuisances['fake_ele_wh3l']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'Fake'      : ['fakeW3lElUp','fakeW3lElDown'],
+                   'Fake'      : ['fakeW3lElUp/fakeW3l','fakeW3lElDown/fakeW3l'],
                 }
 }
 
@@ -228,7 +225,7 @@ nuisances['fake_ele_stat']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'Fake'      : ['fakeW3lstatElUp','fakeW3lstatElDown'],
+                   'Fake'      : ['fakeW3lstatElUp/fakeW3l','fakeW3lstatElDown/fakeW3l'],
                 }
 
 }
@@ -238,7 +235,7 @@ nuisances['fake_mu_wh3l']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'Fake'      : ['fakeW3lMuUp','fakeW3lMuDown'],
+                   'Fake'      : ['fakeW3lMuUp/fakeW3l','fakeW3lMuDown/fakeW3l'],
                 }
 }
 
@@ -248,7 +245,7 @@ nuisances['fake_mu_stat']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'Fake'      : ['fakeW3lstatMuUp','fakeW3lstatMuDown'],
+                   'Fake'      : ['fakeW3lstatMuUp/fakeW3l','fakeW3lstatMuDown/fakeW3l'],
                 }
 }
 
