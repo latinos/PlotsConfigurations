@@ -67,14 +67,24 @@
 
 
 
+#groupPlot['DYreco']  = {  
+                  #'nameHR' : "DY reco eff fix",
+                  #'isSignal' : 0,
+                  #'color': 418,  #  kGreen+2
+                  #'samples'  : ['DY1reco', 'DY2reco']
+                  ##'samples'  : ['DY']
+              #}
+
+
+
+
 groupPlot['DYreco']  = {  
-                  'nameHR' : "DY reco eff fix",
+                  'nameHR' : "DY",
                   'isSignal' : 0,
                   'color': 418,  #  kGreen+2
-                  'samples'  : ['DY1reco', 'DY2reco']
+                  'samples'  : ['DYlocal']
                   #'samples'  : ['DY']
               }
-
 
 
 
@@ -133,6 +143,16 @@ plot['DYpow']  = {
                   #'isSignal' : 2     # draw together
                   'isSignal' : 3     # draw together and do ratio plot w.r.t. data
               }
+
+
+
+plot['DYlocal']  = {  
+                  'color': 418,    # kGreen+2
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 11.0*0.75,
+              }
+
 
 
 plot['DY1']  = {  
