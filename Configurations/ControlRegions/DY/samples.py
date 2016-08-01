@@ -459,9 +459,24 @@
    
 samples['DYlocal']  = {    'name': [
                             '../../../../../../../../../latino_DYJetsToLL_M-50_0000__part0_newidiso.root',
+                            #'../../../../../../../../../latino_DYJetsToLL_M-50_0000__part0_newidiso_CUTMZ.root',
                             ],    
-                      'weight' : 'baseW*(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW63mb*effTrigW*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]', 
+                      'weight' : 'baseW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*puW63mb*effTrigW*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]', 
                       }
+
+
+
+      
+   
+#samples['DYlocalNoPTZ']  = {    'name': [
+                            #'../../../../../../../../../latino_DYJetsToLL_M-50_0000__part0_newidiso.root',
+                            ##'../../../../../../../../../latino_DYJetsToLL_M-50_0000__part0_newidiso_CUTMZ.root',
+                            #],    
+                      #'weight' : 'baseW*puW63mb*effTrigW*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]', 
+                      #}
+
+
+
 
 
 #samples['DYlocal']  = {    'name': [

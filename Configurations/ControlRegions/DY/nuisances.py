@@ -13,6 +13,25 @@ nuisances['lumi']  = {
               }
 
 
+
+
+
+
+
+nuisances['idiso_ele_syst']  = {
+                'name'  : 'idiso_ele_syst',
+                'kind'  : 'weight',
+                #'kind'  : 'tree', #'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'DYlocal' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoLooseW_Syst[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoLooseW_Syst[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW[0])/(std_vector_lepton_idisoLooseW_Syst[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW[1])/(std_vector_lepton_idisoLooseW_Syst[1])+(abs(std_vector_lepton_flavour[1]) == 13))'],
+                 },
+                #'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/',    # uncertainties fixed!
+                #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/' 
+}
+       
+
+
 # theory uncertainties
 
 #nuisances['QCDscale_ggH0j']  = {

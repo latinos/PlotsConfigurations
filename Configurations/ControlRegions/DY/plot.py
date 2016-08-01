@@ -86,6 +86,16 @@ groupPlot['DYreco']  = {
                   #'samples'  : ['DY']
               }
 
+#groupPlot['DYreco']  = {  
+                  #'nameHR' : "DY",
+                  #'isSignal' : 0,
+                  #'color': 418,  #  kGreen+2
+                  #'samples'  : ['DYlocalNoPTZ']
+                  ##'samples'  : ['DY']
+              #}
+
+
+
 
 
 #groupPlot['DYpow']  = {  
@@ -150,8 +160,17 @@ plot['DYlocal']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
+                  'scale'    : 11.0*0.85,
+                  #'scale'    : 11.0*0.75,
+              }
+
+plot['DYlocalNoPTZ']  = {  
+                  'color': 419,    # kGreen+3
+                  'isSignal' : 0,
+                  'isData'   : 0, 
                   'scale'    : 11.0*0.75,
               }
+
 
 
 
