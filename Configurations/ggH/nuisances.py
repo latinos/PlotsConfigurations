@@ -5,28 +5,86 @@
 # name of samples here must match keys in samples.py    
 #
 
+#nuisances['lumi']  = {
+               #'name'  : 'lumi_ICHEP_13TeV', 
+               #'samples'  : {
+                   #'ggH_hww'  : '1.062',
+                   #'qqH_hww'  : '1.062',
+                   #'WH_hww'   : '1.062',
+                   #'ZH_hww'   : '1.062',
+                   #'H_htt'    : '1.062',
+                   #'H_hww'    : '1.062',
+                   #'WH_hww'   : '1.062',
+                   #'ggZH_hww'   : '1.062',
+                   #'VVV'      : '1.062',
+                   #'VZ'       : '1.062',
+                   #'ggWW'     : '1.062',
+                   #'Vg'       : '1.062',
+                   #'VgS'      : '1.062',
+                   ##'DY'       : '1.027',    # --> datadriven
+                   ##'WW'       : '1.027',    # --> datadriven
+                   ##'top'      : '1.027',    # --> datadriven
+                   #},
+               #'type'  : 'lnN',
+              #}
+
+
 nuisances['lumi']  = {
-               'name'  : 'lumi_ICHEP_13TeV', 
+               'name'  : 'lumi_13TeV_norm', 
                'samples'  : {
-                   'ggH_hww'  : '1.062',
-                   'qqH_hww'  : '1.062',
-                   'WH_hww'   : '1.062',
-                   'ZH_hww'   : '1.062',
-                   'H_htt'    : '1.062',
-                   'H_hww'    : '1.062',
-                   'WH_hww'   : '1.062',
-                   'ggZH_hww'   : '1.062',
-                   'VVV'      : '1.062',
-                   'VZ'       : '1.062',
-                   'ggWW'     : '1.062',
-                   'Vg'       : '1.062',
-                   'VgS'      : '1.062',
-                   #'DY'       : '1.027',    # --> datadriven
-                   #'WW'       : '1.027',    # --> datadriven
-                   #'top'      : '1.027',    # --> datadriven
+                   'ggH_hww'  : '1.023',
+                   'qqH_hww'  : '1.023',
+                   'WH_hww'   : '1.023',
+                   'ZH_hww'   : '1.023',
+                   'H_htt'    : '1.023',
+                   'H_hww'    : '1.023',
+                   'WH_hww'   : '1.023',
+                   'ggZH_hww'   : '1.023',
+                   'VVV'      : '1.023',
+                   'VZ'       : '1.023',
+                   'ggWW'     : '1.023',
+                   'Vg'       : '1.023',
+                   'VgS'      : '1.023',
+                   #'DY'       : '1.023',    # --> datadriven
+                   #'WW'       : '1.023',    # --> datadriven
+                   #'top'      : '1.023',    # --> datadriven
                    },
                'type'  : 'lnN',
               }
+
+
+
+nuisances['lumi2016']  = {
+               'name'  : 'lumi_13TeV_2016', 
+               'samples'  : {
+                   'ggH_hww'  : '1.058',
+                   'qqH_hww'  : '1.058',
+                   'WH_hww'   : '1.058',
+                   'ZH_hww'   : '1.058',
+                   'H_htt'    : '1.058',
+                   'H_hww'    : '1.058',
+                   'WH_hww'   : '1.058',
+                   'ggZH_hww'   : '1.058',
+                   'VVV'      : '1.058',
+                   'VZ'       : '1.058',
+                   'ggWW'     : '1.058',
+                   'Vg'       : '1.058',
+                   'VgS'      : '1.058',
+                   #'DY'       : '1.058',    # --> datadriven
+                   #'WW'       : '1.058',    # --> datadriven
+                   #'top'      : '1.058',    # --> datadriven
+                   },
+               'type'  : 'lnN',
+              }
+
+
+
+# lumi_13TeV_norm lnN 1.023
+# lumi_13TeV_2015 lnN 1.015
+# lumi_13TeV_2016 lnN 1.058
+
+
+
 
 
 # theory uncertainties

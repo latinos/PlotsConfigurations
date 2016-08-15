@@ -20,6 +20,34 @@ nuisances['QCDscale_ggH2jvbf']  = {
 
 
 
+nuisances['QCDscale_ggH2jvbfmedium']  = {
+               'name'  : 'QCDscale_ggH2jvbf', 
+               'samples'  : { 
+               'ggH_hww' : '1.2', 
+                   },
+               'type'  : 'lnN',
+               'cuts'  : [
+                 'hww2l2v_13TeV_top_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_of2j_vbf_mediummjj',
+                ]
+              }
+
+
+
+nuisances['QCDscale_ggH2jvbfhigh']  = {
+               'name'  : 'QCDscale_ggH2jvbf', 
+               'samples'  : { 
+               'ggH_hww' : '1.2', 
+                   },
+               'type'  : 'lnN',
+               'cuts'  : [
+                 'hww2l2v_13TeV_top_of2j_vbf_highmjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_highmjj',
+                 'hww2l2v_13TeV_of2j_vbf_highmjj',
+                ]
+              }
+
 
 
 
@@ -43,6 +71,10 @@ nuisances['WWewk_cont']  = {
                'cuts'  : [
                  'hww2l2v_13TeV_of2jvbf',
                  'hww2l2v_13TeV_of2jvbf',
+                 'hww2l2v_13TeV_top_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_top_of2j_vbf_highmjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_highmjj',
                  'hww2l2v_13TeV_top_of2j_vbf',
                  'hww2l2v_13TeV_dytt_of2j_vbf',
                  'hww2l2v_13TeV_of2j_vbf_highmjj',
@@ -65,6 +97,10 @@ nuisances['WWresum2jvbf']  = {
                  'hww2l2v_13TeV_of2jvbf',
                  'hww2l2v_13TeV_top_of2j_vbf',
                  'hww2l2v_13TeV_dytt_of2j_vbf',
+                 'hww2l2v_13TeV_top_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_top_of2j_vbf_highmjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_highmjj',
                  'hww2l2v_13TeV_of2j_vbf_highmjj',
                  'hww2l2v_13TeV_of2j_vbf_mediummjj',
                  'hww2l2v_13TeV_of2j_vbf_lowmjj',
@@ -84,6 +120,10 @@ nuisances['WWqscale2jvbf']  = {
                  'hww2l2v_13TeV_of2jvbf',
                  'hww2l2v_13TeV_top_of2j_vbf',
                  'hww2l2v_13TeV_dytt_of2j_vbf',
+                 'hww2l2v_13TeV_top_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_top_of2j_vbf_highmjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_highmjj',
                  'hww2l2v_13TeV_of2j_vbf_highmjj',
                  'hww2l2v_13TeV_of2j_vbf_mediummjj',
                  'hww2l2v_13TeV_of2j_vbf_lowmjj',
@@ -106,12 +146,44 @@ nuisances['DYttnorm2jvbf']  = {
                  'hww2l2v_13TeV_of2jvbf',
                  'hww2l2v_13TeV_top_of2j_vbf',
                  'hww2l2v_13TeV_dytt_of2j_vbf',
-                 'hww2l2v_13TeV_of2j_vbf_highmjj',
-                 'hww2l2v_13TeV_of2j_vbf_mediummjj',
+                 #'hww2l2v_13TeV_top_of2j_vbf_mediummjj',
+                 #'hww2l2v_13TeV_dytt_of2j_vbf_mediummjj',
+                 #'hww2l2v_13TeV_top_of2j_vbf_highmjj',
+                 #'hww2l2v_13TeV_dytt_of2j_vbf_highmjj',
+                 #'hww2l2v_13TeV_of2j_vbf_highmjj',
+                 #'hww2l2v_13TeV_of2j_vbf_mediummjj',
                  'hww2l2v_13TeV_of2j_vbf_lowmjj',
 #              'hww2l2v_13TeV_top_of2jvbf',
                 ]
               }
+
+nuisances['DYttnorm2jvbfmediummjj']  = {
+               'name'  : 'DYttnorm2jvbfmediummjj',
+               'samples'  : {
+               'DY' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                 'hww2l2v_13TeV_top_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_of2j_vbf_mediummjj',
+                ]
+              }
+
+
+nuisances['DYttnorm2jvbfhighmjj']  = {
+               'name'  : 'DYttnorm2jvbfhighmjj',
+               'samples'  : {
+               'DY' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                 'hww2l2v_13TeV_top_of2j_vbf_highmjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_highmjj',
+                 'hww2l2v_13TeV_of2j_vbf_highmjj',
+                ]
+              }
+
 
 
 
@@ -126,13 +198,45 @@ nuisances['WWnorm2jvbf']  = {
                  'hww2l2v_13TeV_of2jvbf',
                  'hww2l2v_13TeV_top_of2j_vbf',
                  'hww2l2v_13TeV_dytt_of2j_vbf',
-                 'hww2l2v_13TeV_of2j_vbf_highmjj',
-                 'hww2l2v_13TeV_of2j_vbf_mediummjj',
+                 #'hww2l2v_13TeV_top_of2j_vbf_mediummjj',
+                 #'hww2l2v_13TeV_dytt_of2j_vbf_mediummjj',
+                 #'hww2l2v_13TeV_top_of2j_vbf_highmjj',
+                 #'hww2l2v_13TeV_dytt_of2j_vbf_highmjj',
+                 #'hww2l2v_13TeV_of2j_vbf_highmjj',
+                 #'hww2l2v_13TeV_of2j_vbf_mediummjj',
                  'hww2l2v_13TeV_of2j_vbf_lowmjj',
 #                 
                 ]
               }
 
+
+nuisances['WWnorm2jvbfmedium']  = {
+               'name'  : 'ICHEP_WWnorm2jvbfmedium', 
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                 'hww2l2v_13TeV_top_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_of2j_vbf_mediummjj',
+                ]
+              }
+
+
+
+nuisances['WWnorm2jvbfhigh']  = {
+               'name'  : 'ICHEP_WWnorm2jvbfhigh', 
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                 'hww2l2v_13TeV_top_of2j_vbf_highmjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_highmjj',
+                 'hww2l2v_13TeV_of2j_vbf_highmjj',
+                ]
+              }
 
 
 #nuisances['WWewknorm2jvbf']  = {
@@ -166,8 +270,12 @@ nuisances['Topnorm2jvbf']  = {
                  'hww2l2v_13TeV_of2jvbf',
                  'hww2l2v_13TeV_top_of2j_vbf',
                  'hww2l2v_13TeV_dytt_of2j_vbf',
-                 'hww2l2v_13TeV_of2j_vbf_highmjj',
-                 'hww2l2v_13TeV_of2j_vbf_mediummjj',
+                 #'hww2l2v_13TeV_top_of2j_vbf_mediummjj',
+                 #'hww2l2v_13TeV_dytt_of2j_vbf_mediummjj',
+                 #'hww2l2v_13TeV_top_of2j_vbf_highmjj',
+                 #'hww2l2v_13TeV_dytt_of2j_vbf_highmjj',
+                 #'hww2l2v_13TeV_of2j_vbf_highmjj',
+                 #'hww2l2v_13TeV_of2j_vbf_mediummjj',
                  'hww2l2v_13TeV_of2j_vbf_lowmjj',
 #                 
                 ]
@@ -175,6 +283,37 @@ nuisances['Topnorm2jvbf']  = {
 
 
 
+       
+
+nuisances['Topnorm2jvbfmediummjj']  = {
+               'name'  : 'Topnorm2jvbfmediummjj', 
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                 'hww2l2v_13TeV_top_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_of2j_vbf_mediummjj',
+#                 
+                ]
+              }
+
+
+
+nuisances['Topnorm2jvbfhighmjj']  = {
+               'name'  : 'Topnorm2jvbfhighmjj', 
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                 'hww2l2v_13TeV_top_of2j_vbf_highmjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_highmjj',
+                 'hww2l2v_13TeV_of2j_vbf_highmjj',
+#                 
+                ]
+              }
 
 
 
@@ -197,27 +336,59 @@ nuisances['Topnorm2jvbf']  = {
 #
 
 nuisances['lumi']  = {
-               'name'  : 'lumi_ICHEP_13TeV', 
+               'name'  : 'lumi_13TeV_norm', 
                'samples'  : {
-                   'ggH_hww'  : '1.050',
-                   'qqH_hww'  : '1.050',
-                   'WH_hww'   : '1.050',
-                   'ZH_hww'   : '1.050',
-                   'H_htt'    : '1.050',
-                   'H_hww'    : '1.050',
-                   'WH_hww'   : '1.050',
-                   'ggZH_hww'   : '1.050',
-                   'VVV'      : '1.050',
-                   'VZ'       : '1.050',
-                   'ggWW'     : '1.050',
-                   'Vg'       : '1.050',
-                   'VgS'      : '1.050',
-                   #'DY'       : '1.050',    # --> datadriven
-                   #'WW'       : '1.050',    # --> datadriven
-                   #'top'      : '1.050',    # --> datadriven
+                   'ggH_hww'  : '1.023',
+                   'qqH_hww'  : '1.023',
+                   'WH_hww'   : '1.023',
+                   'ZH_hww'   : '1.023',
+                   'H_htt'    : '1.023',
+                   'H_hww'    : '1.023',
+                   'WH_hww'   : '1.023',
+                   'ggZH_hww'   : '1.023',
+                   'VVV'      : '1.023',
+                   'VZ'       : '1.023',
+                   'ggWW'     : '1.023',
+                   'Vg'       : '1.023',
+                   'VgS'      : '1.023',
+                   #'DY'       : '1.023',    # --> datadriven
+                   #'WW'       : '1.023',    # --> datadriven
+                   #'top'      : '1.023',    # --> datadriven
                    },
                'type'  : 'lnN',
               }
+
+
+
+nuisances['lumi2016']  = {
+               'name'  : 'lumi_13TeV_2016', 
+               'samples'  : {
+                   'ggH_hww'  : '1.058',
+                   'qqH_hww'  : '1.058',
+                   'WH_hww'   : '1.058',
+                   'ZH_hww'   : '1.058',
+                   'H_htt'    : '1.058',
+                   'H_hww'    : '1.058',
+                   'WH_hww'   : '1.058',
+                   'ggZH_hww'   : '1.058',
+                   'VVV'      : '1.058',
+                   'VZ'       : '1.058',
+                   'ggWW'     : '1.058',
+                   'Vg'       : '1.058',
+                   'VgS'      : '1.058',
+                   #'DY'       : '1.058',    # --> datadriven
+                   #'WW'       : '1.058',    # --> datadriven
+                   #'top'      : '1.058',    # --> datadriven
+                   },
+               'type'  : 'lnN',
+              }
+
+
+
+# lumi_13TeV_norm lnN 1.023
+# lumi_13TeV_2015 lnN 1.015
+# lumi_13TeV_2016 lnN 1.058
+
 
 
 # theory uncertainties
