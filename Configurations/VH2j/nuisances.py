@@ -853,7 +853,6 @@ nuisances['btagudsg']  = {
 }
  
  
- 
 #'bPogSF_'+'CMVA'+'L'+'_bc'+'_down'            bPogSF_CMVAL_bc_down        bPogSF_CMVAL_udsg_down
 #'bPogSF_'+'CMVA'+'L'+'_bc'+'_up'              bPogSF_CMVAL_bc_up          bPogSF_CMVAL_udsg_up
 #'bPogSF_'+'CMVA'+'L'+'_udsg'+'_up'
