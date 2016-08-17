@@ -4,7 +4,7 @@ tag = 'WH3l'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFiles_WH_Signal_LooseBTag_ZHtt'
+outputDir = 'rootFiles_WH_Signal_ICHEP_v1'
 
 
 # file with list of variables
@@ -22,17 +22,16 @@ plotFile = 'plot.py'
 
 
 # luminosity to normalize to (in 1/fb)
-# lumi = 2.264
-lumi = 2.318
+lumi = 6.264
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotWH_Sig_LooseBTag_ZHtt'
+outputDirPlots = 'plotWH_Sig_ICHEP_v1'
 #outputDirPlots = 'plotWH_Top'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards_Signal_LooseBTag_ZHtt'
+outputDirDatacard = 'datacards_Signal_ICHEP_v1_v1'
 
 
 # structure file for datacard

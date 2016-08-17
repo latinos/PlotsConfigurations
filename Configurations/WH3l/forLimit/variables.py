@@ -41,8 +41,9 @@
 #                        }
 
 variables['drllmin3l']  = {   'name': 'drllmin3l',            #   variable name    
-                        'range' : (3,0,4),    #   variable range
-                        'xaxis' : 'min #Delta R_{ll} [GeV]',  #   x axis name
+                       # 'range' : (3,0,3.5),    #   variable range
+                         'range' : ([0.,1.0,1.7,2.5,4.0],),    #   variable range
+                        'xaxis' : 'min #Delta R_{ll}',  #   x axis name
                          'fold' : 0
                         }
 
