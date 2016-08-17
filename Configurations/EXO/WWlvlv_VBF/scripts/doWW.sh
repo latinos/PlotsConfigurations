@@ -1,6 +1,9 @@
 
-workdir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combineUNBLIND
-datacardDir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/datacards_UNBLIND
+workdir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/2015/combine2015_WWewk
+datacardDir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/2015/datacards_WWewk
+#workdir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combine2016
+#datacardDir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/datacards
+
 
 variable0j=mTi
 variable1j=mTi
@@ -18,10 +21,26 @@ cat ${datacardDir}/hww2l2v_13TeV_top_of0j/events/datacard.txt | grep -v "_Vg_ibi
 cp ${datacardDir}/hww2l2v_13TeV_top_of0j/events/datacard.txt ${datacardDir}/hww2l2v_13TeV_top_of0j/events/datacard.orig.txt
 mv ${datacardDir}/hww2l2v_13TeV_top_of0j/events/datacard.pruned.txt ${datacardDir}/hww2l2v_13TeV_top_of0j/events/datacard.txt
 
-#cat ${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.txt | grep -v "_ZH_hww_ibin_1" | grep -v "ZH_hww_ibin_7" &> ${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.pruned.txt
+cat ${datacardDir}/hww2l2v_13TeV_dytt_of1j/events/datacard.txt | grep -v "CMS_hww2l2v_13TeV_dytt_of1j_Vg_ibin_1_stat" &> ${datacardDir}/hww2l2v_13TeV_dytt_of1j/events/datacard.pruned.txt
+cp ${datacardDir}/hww2l2v_13TeV_dytt_of1j/events/datacard.txt ${datacardDir}/hww2l2v_13TeV_dytt_of1j/events/datacard.orig.txt
+mv ${datacardDir}/hww2l2v_13TeV_dytt_of1j/events/datacard.pruned.txt ${datacardDir}/hww2l2v_13TeV_dytt_of1j/events/datacard.txt
+
 cat ${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.txt | grep -v "_ZH_hww_ibin_1_"  &> ${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.pruned.txt
 cp ${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.txt ${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.orig.txt
 mv ${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.pruned.txt ${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.txt
+
+cat ${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.txt | grep -v "CMS_hwwhm_13TeV_of_VBF_Vg_ibin_1_stat" &> ${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.pruned.txt
+cp ${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.txt ${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.orig.txt
+mv ${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.pruned.txt ${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.txt
+
+#cat ${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.txt | grep -v "CMS_hww2l2v_13TeV_dytt_of0j_VVV_ibin_1_stat" &> ${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.pruned.txt
+#cp ${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.txt ${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.orig.txt
+#mv ${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.pruned.txt ${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.txt
+
+cat ${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.txt | grep -v "CMS_hww2l2v_13TeV_dytt_of0j_VVV_ibin_1_stat" &> ${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.pruned.txt
+cp ${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.txt ${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.orig.txt
+mv ${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.pruned.txt ${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.txt
+
 
 #cat ${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.txt | grep -v "ggH_hww_INT" &> ${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.pruned.txt
 #cp ${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.txt ${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.orig.txt

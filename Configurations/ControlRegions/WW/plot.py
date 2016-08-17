@@ -129,7 +129,14 @@ plot['top'] = {
                   'color': 400,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 1.0
+                  'scale'    : 1.0,
+                  
+                  'cuts'  : {
+                       'ww2l2v_13TeV_ww_of0j'   : 0.98 ,
+                       'ww2l2v_13TeV_ww_of1j'   : 0.87 , 
+                       'ww2l2v_13TeV_ww_of2j'   : 0.90 ,                
+                        },
+                  
                   }
 
 
@@ -137,8 +144,16 @@ plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,    
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+                  'scale'    : 1.0,   # ele/mu trigger efficiency   datadriven
+                  
+                  'cuts'  : {
+                       'ww2l2v_13TeV_ww_of0j'   : 0.90 ,
+                       'ww2l2v_13TeV_ww_of1j'   : 1.00 , 
+                       'ww2l2v_13TeV_ww_of2j'   : 1.00 ,                
+                  
                   }
+                 }
+                  
 
 plot['ggWW']  = {
                   'color': 850, # kAzure -10
@@ -293,7 +308,8 @@ plot['DATA']  = {
 # legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
 #legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
 #legend['lumi'] = 'L = 2.6/fb' # 2.318 fb-1
-legend['lumi'] = 'L = 4.3/fb' # 2.318 fb-1
+#legend['lumi'] = 'L = 4.3/fb' # 2.318 fb-1
+legend['lumi'] = 'L = 6.3/fb' # 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 

@@ -20,6 +20,34 @@ nuisances['QCDscale_ggH2jvbf']  = {
 
 
 
+nuisances['QCDscale_ggH2jvbfmedium']  = {
+               'name'  : 'QCDscale_ggH2jvbf', 
+               'samples'  : { 
+               'ggH_hww' : '1.2', 
+                   },
+               'type'  : 'lnN',
+               'cuts'  : [
+                 'hww2l2v_13TeV_top_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_of2j_vbf_mediummjj',
+                ]
+              }
+
+
+
+nuisances['QCDscale_ggH2jvbfhigh']  = {
+               'name'  : 'QCDscale_ggH2jvbf', 
+               'samples'  : { 
+               'ggH_hww' : '1.2', 
+                   },
+               'type'  : 'lnN',
+               'cuts'  : [
+                 'hww2l2v_13TeV_top_of2j_vbf_highmjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_highmjj',
+                 'hww2l2v_13TeV_of2j_vbf_highmjj',
+                ]
+              }
+
 
 
 
@@ -43,6 +71,10 @@ nuisances['WWewk_cont']  = {
                'cuts'  : [
                  'hww2l2v_13TeV_of2jvbf',
                  'hww2l2v_13TeV_of2jvbf',
+                 'hww2l2v_13TeV_top_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_top_of2j_vbf_highmjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_highmjj',
                  'hww2l2v_13TeV_top_of2j_vbf',
                  'hww2l2v_13TeV_dytt_of2j_vbf',
                  'hww2l2v_13TeV_of2j_vbf_highmjj',
@@ -65,6 +97,10 @@ nuisances['WWresum2jvbf']  = {
                  'hww2l2v_13TeV_of2jvbf',
                  'hww2l2v_13TeV_top_of2j_vbf',
                  'hww2l2v_13TeV_dytt_of2j_vbf',
+                 'hww2l2v_13TeV_top_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_top_of2j_vbf_highmjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_highmjj',
                  'hww2l2v_13TeV_of2j_vbf_highmjj',
                  'hww2l2v_13TeV_of2j_vbf_mediummjj',
                  'hww2l2v_13TeV_of2j_vbf_lowmjj',
@@ -84,6 +120,10 @@ nuisances['WWqscale2jvbf']  = {
                  'hww2l2v_13TeV_of2jvbf',
                  'hww2l2v_13TeV_top_of2j_vbf',
                  'hww2l2v_13TeV_dytt_of2j_vbf',
+                 'hww2l2v_13TeV_top_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_top_of2j_vbf_highmjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_highmjj',
                  'hww2l2v_13TeV_of2j_vbf_highmjj',
                  'hww2l2v_13TeV_of2j_vbf_mediummjj',
                  'hww2l2v_13TeV_of2j_vbf_lowmjj',
@@ -106,17 +146,49 @@ nuisances['DYttnorm2jvbf']  = {
                  'hww2l2v_13TeV_of2jvbf',
                  'hww2l2v_13TeV_top_of2j_vbf',
                  'hww2l2v_13TeV_dytt_of2j_vbf',
-                 'hww2l2v_13TeV_of2j_vbf_highmjj',
-                 'hww2l2v_13TeV_of2j_vbf_mediummjj',
+                 #'hww2l2v_13TeV_top_of2j_vbf_mediummjj',
+                 #'hww2l2v_13TeV_dytt_of2j_vbf_mediummjj',
+                 #'hww2l2v_13TeV_top_of2j_vbf_highmjj',
+                 #'hww2l2v_13TeV_dytt_of2j_vbf_highmjj',
+                 #'hww2l2v_13TeV_of2j_vbf_highmjj',
+                 #'hww2l2v_13TeV_of2j_vbf_mediummjj',
                  'hww2l2v_13TeV_of2j_vbf_lowmjj',
 #              'hww2l2v_13TeV_top_of2jvbf',
                 ]
               }
 
+nuisances['DYttnorm2jvbfmediummjj']  = {
+               'name'  : 'DYttnorm2jvbfmediummjj',
+               'samples'  : {
+               'DY' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                 'hww2l2v_13TeV_top_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_of2j_vbf_mediummjj',
+                ]
+              }
+
+
+nuisances['DYttnorm2jvbfhighmjj']  = {
+               'name'  : 'DYttnorm2jvbfhighmjj',
+               'samples'  : {
+               'DY' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                 'hww2l2v_13TeV_top_of2j_vbf_highmjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_highmjj',
+                 'hww2l2v_13TeV_of2j_vbf_highmjj',
+                ]
+              }
+
+
 
 
 nuisances['WWnorm2jvbf']  = {
-               'name'  : 'WWnorm2jvbf', 
+               'name'  : 'ICHEP_WWnorm2jvbf', 
                'samples'  : {
                    'WW' : '1.00',
                    },
@@ -126,13 +198,45 @@ nuisances['WWnorm2jvbf']  = {
                  'hww2l2v_13TeV_of2jvbf',
                  'hww2l2v_13TeV_top_of2j_vbf',
                  'hww2l2v_13TeV_dytt_of2j_vbf',
-                 'hww2l2v_13TeV_of2j_vbf_highmjj',
-                 'hww2l2v_13TeV_of2j_vbf_mediummjj',
+                 #'hww2l2v_13TeV_top_of2j_vbf_mediummjj',
+                 #'hww2l2v_13TeV_dytt_of2j_vbf_mediummjj',
+                 #'hww2l2v_13TeV_top_of2j_vbf_highmjj',
+                 #'hww2l2v_13TeV_dytt_of2j_vbf_highmjj',
+                 #'hww2l2v_13TeV_of2j_vbf_highmjj',
+                 #'hww2l2v_13TeV_of2j_vbf_mediummjj',
                  'hww2l2v_13TeV_of2j_vbf_lowmjj',
 #                 
                 ]
               }
 
+
+nuisances['WWnorm2jvbfmedium']  = {
+               'name'  : 'ICHEP_WWnorm2jvbfmedium', 
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                 'hww2l2v_13TeV_top_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_of2j_vbf_mediummjj',
+                ]
+              }
+
+
+
+nuisances['WWnorm2jvbfhigh']  = {
+               'name'  : 'ICHEP_WWnorm2jvbfhigh', 
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                 'hww2l2v_13TeV_top_of2j_vbf_highmjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_highmjj',
+                 'hww2l2v_13TeV_of2j_vbf_highmjj',
+                ]
+              }
 
 
 #nuisances['WWewknorm2jvbf']  = {
@@ -166,8 +270,12 @@ nuisances['Topnorm2jvbf']  = {
                  'hww2l2v_13TeV_of2jvbf',
                  'hww2l2v_13TeV_top_of2j_vbf',
                  'hww2l2v_13TeV_dytt_of2j_vbf',
-                 'hww2l2v_13TeV_of2j_vbf_highmjj',
-                 'hww2l2v_13TeV_of2j_vbf_mediummjj',
+                 #'hww2l2v_13TeV_top_of2j_vbf_mediummjj',
+                 #'hww2l2v_13TeV_dytt_of2j_vbf_mediummjj',
+                 #'hww2l2v_13TeV_top_of2j_vbf_highmjj',
+                 #'hww2l2v_13TeV_dytt_of2j_vbf_highmjj',
+                 #'hww2l2v_13TeV_of2j_vbf_highmjj',
+                 #'hww2l2v_13TeV_of2j_vbf_mediummjj',
                  'hww2l2v_13TeV_of2j_vbf_lowmjj',
 #                 
                 ]
@@ -175,6 +283,37 @@ nuisances['Topnorm2jvbf']  = {
 
 
 
+       
+
+nuisances['Topnorm2jvbfmediummjj']  = {
+               'name'  : 'Topnorm2jvbfmediummjj', 
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                 'hww2l2v_13TeV_top_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_mediummjj',
+                 'hww2l2v_13TeV_of2j_vbf_mediummjj',
+#                 
+                ]
+              }
+
+
+
+nuisances['Topnorm2jvbfhighmjj']  = {
+               'name'  : 'Topnorm2jvbfhighmjj', 
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                 'hww2l2v_13TeV_top_of2j_vbf_highmjj',
+                 'hww2l2v_13TeV_dytt_of2j_vbf_highmjj',
+                 'hww2l2v_13TeV_of2j_vbf_highmjj',
+#                 
+                ]
+              }
 
 
 
@@ -197,27 +336,59 @@ nuisances['Topnorm2jvbf']  = {
 #
 
 nuisances['lumi']  = {
-               'name'  : 'lumi_ICHEP_13TeV', 
+               'name'  : 'lumi_13TeV_norm', 
                'samples'  : {
-                   'ggH_hww'  : '1.027',
-                   'qqH_hww'  : '1.027',
-                   'WH_hww'   : '1.027',
-                   'ZH_hww'   : '1.027',
-                   'H_htt'    : '1.027',
-                   'H_hww'    : '1.027',
-                   'WH_hww'   : '1.027',
-                   'ggZH_hww'   : '1.027',
-                   'VVV'      : '1.027',
-                   'VZ'       : '1.027',
-                   'ggWW'     : '1.027',
-                   'Vg'       : '1.027',
-                   'VgS'      : '1.027',
-                   #'DY'       : '1.027',    # --> datadriven
-                   #'WW'       : '1.027',    # --> datadriven
-                   #'top'      : '1.027',    # --> datadriven
+                   'ggH_hww'  : '1.023',
+                   'qqH_hww'  : '1.023',
+                   'WH_hww'   : '1.023',
+                   'ZH_hww'   : '1.023',
+                   'H_htt'    : '1.023',
+                   'H_hww'    : '1.023',
+                   'WH_hww'   : '1.023',
+                   'ggZH_hww'   : '1.023',
+                   'VVV'      : '1.023',
+                   'VZ'       : '1.023',
+                   'ggWW'     : '1.023',
+                   'Vg'       : '1.023',
+                   'VgS'      : '1.023',
+                   #'DY'       : '1.023',    # --> datadriven
+                   #'WW'       : '1.023',    # --> datadriven
+                   #'top'      : '1.023',    # --> datadriven
                    },
                'type'  : 'lnN',
               }
+
+
+
+nuisances['lumi2016']  = {
+               'name'  : 'lumi_13TeV_2016', 
+               'samples'  : {
+                   'ggH_hww'  : '1.058',
+                   'qqH_hww'  : '1.058',
+                   'WH_hww'   : '1.058',
+                   'ZH_hww'   : '1.058',
+                   'H_htt'    : '1.058',
+                   'H_hww'    : '1.058',
+                   'WH_hww'   : '1.058',
+                   'ggZH_hww'   : '1.058',
+                   'VVV'      : '1.058',
+                   'VZ'       : '1.058',
+                   'ggWW'     : '1.058',
+                   'Vg'       : '1.058',
+                   'VgS'      : '1.058',
+                   #'DY'       : '1.058',    # --> datadriven
+                   #'WW'       : '1.058',    # --> datadriven
+                   #'top'      : '1.058',    # --> datadriven
+                   },
+               'type'  : 'lnN',
+              }
+
+
+
+# lumi_13TeV_norm lnN 1.023
+# lumi_13TeV_2015 lnN 1.015
+# lumi_13TeV_2016 lnN 1.058
+
 
 
 # theory uncertainties
@@ -423,44 +594,73 @@ nuisances['QCDscale_ggZH']  = {
               }
 
 
-nuisances['QCDscale_qqbar_accept']  = {
-               'name'  : 'QCDscale_qqbar_accept', 
-               'type'  : 'lnN',
-               'samples'  : {
-                   #'qqH_hww' : '1.02',
-                   #'qqH_htt' : '1.02',
-                   #'WH_hww'  : '1.02',
-                   #'ZH_hww'  : '1.02',
-                   #
-                   #'WW'      : '1.015', -> not included since part of weights from WWqscale0j and WWqscale1j
-                   'qqH_hww' : '1.007',
-                   'qqH_htt' : '1.007',
-                   'WH_hww'  : '1.05',
-                   'ZH_hww'  : '1.04',
-                   'VZ'      : '1.029',
-                   },
-              }
 
 
 
-nuisances['QCDscale_gg_accept']  = {
-               'name'  : 'QCDscale_gg_accept', 
-               'samples'  : {
-                   #'ggWW'    : '1.03',
-                   #'ggH_hww' : '1.03',
-                   #'ggH_htt' : '1.03',
-                   #'H_htt'   : '1.03',
-                   #'ggZH_hww': '1.03',                   
-                   #
-                   'ggWW'    : '1.027',
-                   'ggH_hww' : '1.027',
-                   'ggH_htt' : '1.027',
-                   'H_htt'   : '1.027',
-                   'ggZH_hww': '1.027',                   
+nuisances['QCDscale_gg_accept']  = { 
+    'name'  : 'QCDscale_gg_accept', 
+    'type'  : 'lnN', 
+    'samples'  : { 
+         'ggH_hww': '0.976/1.012' ,
+         'ggZH_hww': '0.994/0.981' ,
+    }, 
+ } 
 
-                   },
-               'type'  : 'lnN',
-              }
+
+nuisances['QCDscale_qqbar_accept']  = { 
+    'name'  : 'QCDscale_qqbar_accept', 
+    'type'  : 'lnN', 
+    'samples'  : { 
+         'top': '0.983/1.007' ,
+         'WW': '0.980/1.003' ,
+         'VZ': '1.013/0.966' ,
+         'qqH_hww': '0.974/1.005' ,
+         'WH_hww': '0.949/1.008' ,
+         'ZH_hww': '0.968/0.968' ,
+    }, 
+ } 
+
+
+
+
+#nuisances['QCDscale_qqbar_accept']  = {
+               #'name'  : 'QCDscale_qqbar_accept', 
+               #'type'  : 'lnN',
+               #'samples'  : {
+                   ##'qqH_hww' : '1.02',
+                   ##'qqH_htt' : '1.02',
+                   ##'WH_hww'  : '1.02',
+                   ##'ZH_hww'  : '1.02',
+                   ##
+                   ##'WW'      : '1.015', -> not included since part of weights from WWqscale0j and WWqscale1j
+                   #'qqH_hww' : '1.007',
+                   #'qqH_htt' : '1.007',
+                   #'WH_hww'  : '1.05',
+                   #'ZH_hww'  : '1.04',
+                   #'VZ'      : '1.029',
+                   #},
+              #}
+
+
+
+#nuisances['QCDscale_gg_accept']  = {
+               #'name'  : 'QCDscale_gg_accept', 
+               #'samples'  : {
+                   ##'ggWW'    : '1.03',
+                   ##'ggH_hww' : '1.03',
+                   ##'ggH_htt' : '1.03',
+                   ##'H_htt'   : '1.03',
+                   ##'ggZH_hww': '1.03',                   
+                   ##
+                   #'ggWW'    : '1.027',
+                   #'ggH_hww' : '1.027',
+                   #'ggH_htt' : '1.027',
+                   #'H_htt'   : '1.027',
+                   #'ggZH_hww': '1.027',                   
+
+                   #},
+               #'type'  : 'lnN',
+              #}
 
 
 
@@ -498,32 +698,57 @@ nuisances['pdf_qqbar']  = {
 #    
 #    
 
-
-nuisances['pdf_gg_accept']  = {
-               'name'  : 'pdf_gg_accept', 
-               'samples'  : {
-                   'ggWW'    : '1.005',    
-                   'ggH_hww' : '1.005',
-                   'ggH_htt' : '1.005',
-                   'H_htt'   : '1.005',
-                   'ggZH_hww': '1.005', 
-                   },
-               'type'  : 'lnN',
-              }
+nuisances['pdf_gg_accept']  = { 
+    'name'  : 'pdf_gg_accept', 
+    'type'  : 'lnN', 
+    'samples'  : { 
+         'ggH_hww': '0.994/1.011' ,
+         'ggZH_hww': '0.974/1.027' ,
+    }, 
+ } 
 
 
-nuisances['pdf_qqbar_accept']  = {
-               'name'  : 'pdf_qqbar_accept', 
-               'type'  : 'lnN',
-               'samples'  : {
-                   #
-                   'qqH_hww' : '1.011',
-                   'qqH_htt' : '1.011',
-                   'WH_hww'  : '1.007',
-                   'ZH_hww'  : '1.012',
-                   'VZ'      : '1.005',                   
-                   },
-              }
+nuisances['pdf_qqbar_accept']  = { 
+    'name'  : 'pdf_qqbar_accept', 
+    'type'  : 'lnN', 
+    'samples'  : { 
+         'top': '0.988/1.012' ,
+         'WW': '0.986/1.008' ,
+         'VZ': '0.992/1.013' ,
+         'qqH_hww': '0.970/1.029' ,
+         'WH_hww': '0.984/1.009' ,
+         'ZH_hww': '0.976/1.016' ,
+    }, 
+ } 
+
+
+
+
+#nuisances['pdf_gg_accept']  = {
+               #'name'  : 'pdf_gg_accept', 
+               #'samples'  : {
+                   #'ggWW'    : '1.005',    
+                   #'ggH_hww' : '1.005',
+                   #'ggH_htt' : '1.005',
+                   #'H_htt'   : '1.005',
+                   #'ggZH_hww': '1.005', 
+                   #},
+               #'type'  : 'lnN',
+              #}
+
+
+#nuisances['pdf_qqbar_accept']  = {
+               #'name'  : 'pdf_qqbar_accept', 
+               #'type'  : 'lnN',
+               #'samples'  : {
+                   ##
+                   #'qqH_hww' : '1.011',
+                   #'qqH_htt' : '1.011',
+                   #'WH_hww'  : '1.007',
+                   #'ZH_hww'  : '1.012',
+                   #'VZ'      : '1.005',                   
+                   #},
+              #}
 
 
 
@@ -555,6 +780,19 @@ nuisances['kfactggww']  = {
 # PS
 
 # FIXME restore these once sample available
+
+
+nuisances['PS']  = {
+                'name'  : 'PS', 
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples'  : {
+                   'WW' :  ['1./1.03295', '1.'],  # latino_WWTo2L2NuHerwigPS.root moved with different name in __PS folder
+                },
+                'folderUp'   : 'eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS/',
+                'folderDown' : 'eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/' 
+                }
+
 
 #nuisances['PS']  = {
                 #'name'  : 'PS', 
@@ -698,48 +936,48 @@ nuisances['fake_syst']  = {
 
 # FIXME : restore it once we have the niusance ready                                 
 
-#nuisances['fake_ele']  = {
-                #'name'  : 'fake_ele_hww',
-                #'kind'  : 'weight',
-                #'type'  : 'shape',
-                #'samples'  : {
-                   #'Fake'      : ['(fakeW2l0jElUp*(njet==0)+fakeW2l1jElUp*(njet==1)+fakeW2l2jElUp*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',
-                                  #'(fakeW2l0jElDown*(njet==0)+fakeW2l1jElDown*(njet==1)+fakeW2l2jElDown*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))'],
-                #}
-#}
+nuisances['fake_ele']  = {
+                'name'  : 'fake_ele_hww',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'Fake'      : ['(fakeW2l0jElUp*(njet==0)+fakeW2l1jElUp*(njet==1)+fakeW2l2jElUp*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',
+                                  '(fakeW2l0jElDown*(njet==0)+fakeW2l1jElDown*(njet==1)+fakeW2l2jElDown*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))'],
+                }
+}
  
 
-#nuisances['fake_ele_stat']  = {
-                #'name'  : 'fake_ele_stat_hww',
-                #'kind'  : 'weight',
-                #'type'  : 'shape',
-                #'samples'  : {
-                   #'Fake'      : ['(fakeW2l0jstatElUp*(njet==0)+fakeW2l1jstatElUp*(njet==1)+fakeW2l2jstatElUp*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',
-                                  #'(fakeW2l0jstatElDown*(njet==0)+fakeW2l1jstatElDown*(njet==1)+fakeW2l2jstatElDown*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))'],
-                #}
-#}
+nuisances['fake_ele_stat']  = {
+                'name'  : 'fake_ele_stat_hww',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'Fake'      : ['(fakeW2l0jstatElUp*(njet==0)+fakeW2l1jstatElUp*(njet==1)+fakeW2l2jstatElUp*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',
+                                  '(fakeW2l0jstatElDown*(njet==0)+fakeW2l1jstatElDown*(njet==1)+fakeW2l2jstatElDown*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))'],
+                }
+}
 
 
-#nuisances['fake_mu']  = {
-                #'name'  : 'fake_mu_hww',
-                #'kind'  : 'weight',
-                #'type'  : 'shape',
-                #'samples'  : {
-                   #'Fake'      : ['(fakeW2l0jMuUp*(njet==0)+fakeW2l1jMuUp*(njet==1)+fakeW2l2jMuUp*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',
-                                  #'(fakeW2l0jMuDown*(njet==0)+fakeW2l1jMuDown*(njet==1)+fakeW2l2jMuDown*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))'],
-                #}
-#}
+nuisances['fake_mu']  = {
+                'name'  : 'fake_mu_hww',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'Fake'      : ['(fakeW2l0jMuUp*(njet==0)+fakeW2l1jMuUp*(njet==1)+fakeW2l2jMuUp*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',
+                                  '(fakeW2l0jMuDown*(njet==0)+fakeW2l1jMuDown*(njet==1)+fakeW2l2jMuDown*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))'],
+                }
+}
  
 
-#nuisances['fake_mu_stat']  = {
-                #'name'  : 'fake_mu_stat_hww',
-                #'kind'  : 'weight',
-                #'type'  : 'shape',
-                #'samples'  : {
-                   #'Fake'      : ['(fakeW2l0jstatMuUp*(njet==0)+fakeW2l1jstatMuUp*(njet==1)+fakeW2l2jstatMuUp*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',
-                                  #'(fakeW2l0jstatMuDown*(njet==0)+fakeW2l1jstatMuDown*(njet==1)+fakeW2l2jstatMuDown*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))'],
-                #}
-#}
+nuisances['fake_mu_stat']  = {
+                'name'  : 'fake_mu_stat_hww',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'Fake'      : ['(fakeW2l0jstatMuUp*(njet==0)+fakeW2l1jstatMuUp*(njet==1)+fakeW2l2jstatMuUp*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',
+                                  '(fakeW2l0jstatMuDown*(njet==0)+fakeW2l1jstatMuDown*(njet==1)+fakeW2l2jstatMuDown*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))'],
+                }
+}
 
 
 # others ... 
@@ -747,31 +985,76 @@ nuisances['fake_syst']  = {
                                  
 # FIXME : restore it once we have the niusance ready                                 
   
-nuisances['btag']  = {
-                'name'  : 'ICHEP_btag',
+#nuisances['btag']  = {
+                #'name'  : 'ICHEP_btag',
+                #'kind'  : 'weight',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'ggH_hww' : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   #'qqH_hww' : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   #'WH_hww'  : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   #'ZH_hww'  : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   #'H_htt'   : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   #'H_hww'   : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   #'WH_hww'  : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   #'DY'      : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   #'VVV'     : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   #'VZ'      : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   #'WW'      : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   #'ggWW'    : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   #'top'     : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   #'Vg'      : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   #'VgS'     : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                #}
+#}
+ 
+ 
+nuisances['btagbc']  = {
+                'name'  : 'ICHEP_btag_bc',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'ggH_hww' : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
-                   'qqH_hww' : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
-                   'WH_hww'  : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
-                   'ZH_hww'  : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
-                   'H_htt'   : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
-                   'H_hww'   : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
-                   'WH_hww'  : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
-                   'DY'      : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
-                   'VVV'     : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
-                   'VZ'      : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
-                   'WW'      : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
-                   'ggWW'    : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
-                   'top'     : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
-                   'Vg'      : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
-                   'VgS'     : ['(bPogSFUp)/(bPogSF)', '(bPogSFDown)/(bPogSF)'],
+                   'ggH_hww' : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
+                   'qqH_hww' : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
+                   'WH_hww'  : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
+                   'ZH_hww'  : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
+                   'H_htt'   : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
+                   'H_hww'   : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
+                   'WH_hww'  : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
+                   'DY'      : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
+                   'VVV'     : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
+                   'VZ'      : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
+                   'WW'      : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
+                   'ggWW'    : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
+                   'top'     : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
+                   'Vg'      : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
+                   'VgS'     : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
                 }
 }
  
- 
- 
+
+nuisances['btagudsg']  = {
+                'name'  : 'ICHEP_btag_udsg',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'ggH_hww' : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
+                   'qqH_hww' : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
+                   'WH_hww'  : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
+                   'ZH_hww'  : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
+                   'H_htt'   : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
+                   'H_hww'   : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
+                   'WH_hww'  : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
+                   'DY'      : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
+                   'VVV'     : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
+                   'VZ'      : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
+                   'WW'      : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
+                   'ggWW'    : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
+                   'top'     : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
+                   'Vg'      : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
+                   'VgS'     : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
+                }
+} 
 
 nuisances['tttwTh']  = {
                 'name'  : 'tttwTh',   # Theory uncertainty
@@ -959,8 +1242,13 @@ nuisances['jes']  = {
                    'VgS': ['1', '1'],
                 },
 
-                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/',
-                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/' 
+
+                'folderUp'   : 'eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/',
+                'folderDown' : 'eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/' 
+
+
+                #'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/',
+                #'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/' 
 
                 #'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/',
                 #'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/' 
@@ -998,8 +1286,13 @@ nuisances['electronpt']  = {
                    'Vg' : ['1', '1'],
                    'VgS': ['1', '1'],
                 },
-                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/',
-                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/' 
+                                
+                'folderUp'   : 'eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/',
+                'folderDown' : 'eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/' 
+
+
+                #'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/',
+                #'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/' 
                 #'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/',
                 #'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/' 
                 #'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup/',
@@ -1031,8 +1324,12 @@ nuisances['muonpt']  = {
                    'Vg' : ['1', '1'],
                    'VgS': ['1', '1'],
                 },
-                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/',
-                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/' 
+                
+                'folderUp'   : 'eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/',
+                'folderDown' : 'eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/' 
+                
+                #'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/',
+                #'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/' 
                 #'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/',
                 #'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/' 
                 #'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup/',
@@ -1066,8 +1363,13 @@ nuisances['met']  = {
                    'Vg' : ['1', '1'],
                    'VgS': ['1', '1'],
                 },
-                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel/',
-                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel/' 
+
+                'folderUp'   : 'eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel/',
+                'folderDown' : 'eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel/' 
+
+
+                #'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel/',
+                #'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel/' 
                 #'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel/',
                 #'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel/' 
                 #'folderUp'   : 'eos/user/j/jlauwers/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METup/',

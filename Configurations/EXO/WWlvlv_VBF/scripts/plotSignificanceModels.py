@@ -57,7 +57,7 @@ def extract(file,doPValue):
 
 def plotSignificance(masses,models,cat="all",doUnblind=False,doPValue=True):
 
-        directory = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combineUNBLIND/"
+        directory = "/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_highmass/CMSSW_8_0_5/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/2015/combine2015_nocprime/"
 
         leg1 = TLegend(0.6, 0.65, 0.9, 0.9)
         leg1.SetBorderSize(0)
@@ -81,19 +81,30 @@ def plotSignificance(masses,models,cat="all",doUnblind=False,doPValue=True):
             xerr = array("d")
 
 #            modelName = model.replace("c","c'= ").replace("0","0.").replace("brn"," BR_{new} = ").replace("0.0.","0.0").replace("10.","1.0")
-            modelName = model.replace("brn00","").replace("c","c'= ").replace("0","0.").replace("10.","1.0")
+#            modelName = model.replace("brn00","").replace("c","c'= ").replace("0","0.").replace("10.","1.0")
+
+            cp2 = float(model[1]+"."+model[2])
+            gamma = str(cp2*cp2)
+
+            if gamma == "1.0":
+              modelName = "#Gamma = #Gamma_{SM}"
+            else:
+              modelName = "#Gamma = "+gamma+" * #Gamma_{SM}" 
 
 
+            if cat=="all":
+              CMS_lumi.extraText2 = "0+1+2 jets "
+            else:
+              CMS_lumi.extraText2 = cat.replace("jet"," jet ")
+ 
             for m in masses:
 
 		    if cat=="all":
 		      fitfile = directory+"Significance.ICHEP2016.mH"+m+"_"+model+".txt"
                       fitfileObs = directory+"Significance.ICHEP2016.unblind.mH"+m+"_"+model+".txt"
-		      CMS_lumi.extraText2 = "0+1+2 jets "
 		    else:
 		      fitfile = directory+"Significance."+cat+".ICHEP2016.mH"+m+"_"+model+".txt"
                       fitfileObs = directory+"Significance."+cat+".ICHEP2016.unblind.mH"+m+"_"+model+".txt"
-		      CMS_lumi.extraText2 = cat.replace("jet"," jet ")
 
 		    fitFile = open(fitfile)#"/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_clean/CMSSW_7_6_3/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/combine/Limit.Moriond2016.2jet.mH"+m+".txt")
 		    sig = extract(fitFile,doPValue)
@@ -118,11 +129,11 @@ def plotSignificance(masses,models,cat="all",doUnblind=False,doPValue=True):
             graph.SetLineWidth(2)
             graphObs.SetLineWidth(2)
             graph.SetLineColor(kBlue-2*count)
-            graphObs.SetLineColor(kGreen -2*count)
+            graphObs.SetLineColor(kBlue -2*count)
 
-            leg1.AddEntry(graph,modelName+" Expected","l")
-            leg1.AddEntry(graphObs,modelName+" Observed","l")
-            mg.Add(graph,"l")
+#            leg1.AddEntry(graph,modelName+" Expected","l")
+            leg1.AddEntry(graphObs,modelName,"l")
+#            mg.Add(graph,"l")
             if doUnblind: mg.Add(graphObs,"l")
 
 
@@ -132,7 +143,8 @@ def plotSignificance(masses,models,cat="all",doUnblind=False,doPValue=True):
         mg.GetXaxis().SetRangeUser(200,1000)
         if doPValue:
           gPad.SetLogy()
-          mg.GetYaxis().SetRangeUser(0.001,3)
+          mg.GetYaxis().SetTitle("p-value")
+          mg.GetYaxis().SetRangeUser(0.001,2)
         else:
           mg.GetYaxis().SetRangeUser(0,4)
         leg1.Draw()
@@ -141,8 +153,8 @@ def plotSignificance(masses,models,cat="all",doUnblind=False,doPValue=True):
 
         a=raw_input()
 
-models = ["c07brn00"]
-#models = ["c01brn00","c03brn00","c05brn00","c07brn00","c10brn00"]
+#models = ["c07brn00"]
+models = ["c01brn00","c03brn00","c05brn00","c07brn00","c10brn00"]
 masses = ["200","210","230","250","300","350","400","450","500","550","600","650","700","750","800","900","1000"]
 #masses = ["200","250","300","450","550","600","650","750","800","1000"]
 cat = sys.argv[1]  ## "0j" or "1j" or "2j" or "01j" or "all"

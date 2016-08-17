@@ -143,7 +143,13 @@ plot['top'] = {
                   'color': 400,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 1.0
+                  'scale'    : 1.0,
+                  'cuts'  : {
+                       'hww2l2v_13TeV_top_of0j'      : 0.98 ,
+                       'hww2l2v_13TeV_top_of1j'      : 0.88 ,
+                       'hww2l2v_13TeV_top_of2j'      : 0.9 ,
+                       #
+                       }
                   }
 
 plot['top0jet'] = {   
@@ -370,7 +376,7 @@ plot['DATA']  = {
 # additional options
 
 # legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
-legend['lumi'] = 'L = 4.3/fb' # 2.318 fb-1
+legend['lumi'] = 'L = 6.3/fb' # 2.318 fb-1
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 

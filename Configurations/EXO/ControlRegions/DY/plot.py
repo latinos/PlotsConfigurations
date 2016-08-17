@@ -5,14 +5,6 @@
 # keys here must match keys in samples.py    
 #                    
 
-groupPlot['DY']  = {  
-                  'nameHR' : "DY",
-                  'isSignal' : 0,
-                  'color': 418,    # kGreen+2
-                  'samples'  : ['DY']
-              }
-
-
 
 #groupPlot['Fake']  = {  
 #                  'nameHR' : 'Fake',
@@ -22,19 +14,28 @@ groupPlot['DY']  = {
 #              }
 
 
-#groupPlot['top']  = {  
-#                  'nameHR' : 'tW and t#bart',
-#                  'isSignal' : 0,
-#                  'color': 400,   # kYellow
-#                  'samples'  : ['top']
-#              }
-#
+groupPlot['DY']  = {  
+                  'nameHR' : "DY",
+                  'isSignal' : 0,
+                  'color': 418,    # kGreen+2
+                  'samples'  : ['DY'],
+              }
+
+groupPlot['top']  = {  
+                  'nameHR' : 'tW and t#bart',
+                  'isSignal' : 0,
+                  'color': 400,   # kYellow
+                  'samples'  : ['top']
+              }
+
 #groupPlot['WW']  = {  
 #                  'nameHR' : 'WW',
 #                  'isSignal' : 0,
 #                  'color': 851, # kAzure -9 
 #                  'samples'  : ['WW', 'ggWW']
 #              }
+
+
 
 #groupPlot['VVV']  = {  
 #                  'nameHR' : 'VVV',
@@ -77,7 +78,13 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 1.0
+                  'scale'    : 1.0,
+                  'cuts'  : {
+                       'dyee_13TeV'      : 0.85 ,
+                       'dymm_13TeV'      : 0.98 ,
+                       #
+                       }
+
               }
 
 plot['DY0jet']  = {  
@@ -370,7 +377,7 @@ plot['DATA']  = {
 # additional options
 
 # legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
-legend['lumi'] = 'L = 4.3/fb' # 2.318 fb-1
+legend['lumi'] = 'L = 6.3/fb' # 2.318 fb-1
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 

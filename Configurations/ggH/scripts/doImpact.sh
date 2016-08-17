@@ -14,44 +14,45 @@ cd -
 cd ..
 
 
+text2workspace.py superCombination.Total.txt.pruned.txt -m 125
+
 
 
 #####################################
 # Impacts on data
 
-text2workspace.py Moriond2016.v1.txt.pruned.txt -m 125
 
-combineTool.py -M Impacts -d Moriond2016.v1.txt.pruned.root -m 125 --doInitialFit --robustFit 1 
+combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125 --doInitialFit --robustFit 1 
 
 # the next one may takes ... hours!
-combineTool.py -M Impacts -d Moriond2016.v1.txt.pruned.root -m 125 --robustFit 1 --doFits --parallel 20
+combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125 --robustFit 1 --doFits --parallel 20
 
-combineTool.py -M Impacts -d Moriond2016.v1.txt.pruned.root -m 125 -o Moriond2016.v1.txt.pruned.root_impacts_datacard_data.json
+combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125 -o superCombination.Total.txt.pruned.root_impacts_datacard_data.json
 
-plotImpacts.py -i Moriond2016.v1.txt.pruned.root_impacts_datacard_data.json -o impacts_datacard_data
-
-
+plotImpacts.py -i superCombination.Total.txt.pruned.root_impacts_datacard_data.json -o impacts_datacard_data
 
 
 
 
 
 
-combineTool.py -M Impacts -d Moriond2016.v1.txt.pruned.root -m 125 --doInitialFit --robustFit 1  \
+
+
+combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125 --doInitialFit --robustFit 1  \
                --named WWnorm0j,Topnorm0j,DYttnorm0j,WWnorm1j,Topnorm1j,DYttnorm1j  \
                --setPhysicsModelParameterRanges WWnorm0j=-3,4:Topnorm0j=-3,4:DYttnorm0j=-3,4:WWnorm1j=-3,4:Topnorm1j=-3,4:DYttnorm1j=-3,4
 
 # the next one may takes ... hours!
-combineTool.py -M Impacts -d Moriond2016.v1.txt.pruned.root -m 125 --robustFit 1 --doFits --parallel 20   \
+combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125 --robustFit 1 --doFits --parallel 20   \
                --named WWnorm0j,Topnorm0j,DYttnorm0j,WWnorm1j,Topnorm1j,DYttnorm1j  \
                --setPhysicsModelParameterRanges WWnorm0j=-3,4:Topnorm0j=-3,4:DYttnorm0j=-3,4:WWnorm1j=-3,4:Topnorm1j=-3,4:DYttnorm1j=-3,4
 
-combineTool.py -M Impacts -d Moriond2016.v1.txt.pruned.root -m 125    \
+combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125    \
                --named WWnorm0j,Topnorm0j,DYttnorm0j,WWnorm1j,Topnorm1j,DYttnorm1j  \
                --setPhysicsModelParameterRanges WWnorm0j=-3,4:Topnorm0j=-3,4:DYttnorm0j=-3,4:WWnorm1j=-3,4:Topnorm1j=-3,4:DYttnorm1j=-3,4  \
-               -o Moriond2016.v1.txt.pruned.root_impacts_datacard.data_rateParam.json
+               -o superCombination.Total.txt.pruned.root_impacts_datacard.data_rateParam.json
 
-plotImpacts.py -i Moriond2016.v1.txt.pruned.root_impacts_datacard.data_rateParam.json  -o impacts_datacard_data_rateParam
+plotImpacts.py -i superCombination.Total.txt.pruned.root_impacts_datacard.data_rateParam.json  -o impacts_datacard_data_rateParam
 
 
 
@@ -68,35 +69,35 @@ plotImpacts.py -i Moriond2016.v1.txt.pruned.root_impacts_datacard.data_rateParam
 # Impacts on Asimov data
 
 
-combineTool.py -M Impacts -d Moriond2016.v1.txt.pruned.root -m 125 --doInitialFit --robustFit 1  --expectSignal=1 -t -1 --toysFreq 
+combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125 --doInitialFit --robustFit 1  --expectSignal=1 -t -1 --toysFreq 
 
 # the next one may takes ... hours!
-combineTool.py -M Impacts -d Moriond2016.v1.txt.pruned.root -m 125 --robustFit 1 --doFits --parallel 20  --expectSignal=1  -t -1 --toysFreq 
+combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125 --robustFit 1 --doFits --parallel 20  --expectSignal=1  -t -1 --toysFreq 
 
-combineTool.py -M Impacts -d Moriond2016.v1.txt.pruned.root -m 125  --expectSignal=1  -t -1 --toysFreq     -o Moriond2016.v1.txt.pruned.root_impacts_datacard.dataAsimov.json
+combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125  --expectSignal=1  -t -1 --toysFreq     -o superCombination.Total.txt.pruned.root_impacts_datacard.dataAsimov.json
 
-plotImpacts.py -i Moriond2016.v1.txt.pruned.root_impacts_datacard.dataAsimov.json  -o impacts_datacard_dataAsimov
-
-
+plotImpacts.py -i superCombination.Total.txt.pruned.root_impacts_datacard.dataAsimov.json  -o impacts_datacard_dataAsimov
 
 
 
-combineTool.py -M Impacts -d Moriond2016.v1.txt.pruned.root -m 125 --doInitialFit --robustFit 1  --expectSignal=1 -t -1 --toysFreq \
+
+
+combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125 --doInitialFit --robustFit 1  --expectSignal=1 -t -1 --toysFreq \
                --named WWnorm0j,Topnorm0j,DYttnorm0j,WWnorm1j,Topnorm1j,DYttnorm1j  \
                --setPhysicsModelParameterRanges WWnorm0j=-3,4:Topnorm0j=-3,4:DYttnorm0j=-3,4:WWnorm1j=-3,4:Topnorm1j=-3,4:DYttnorm1j=-3,4
 
 
 # the next one may takes ... hours!
-combineTool.py -M Impacts -d Moriond2016.v1.txt.pruned.root -m 125 --robustFit 1 --doFits --parallel 20  --expectSignal=1  -t -1 --toysFreq  \
+combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125 --robustFit 1 --doFits --parallel 20  --expectSignal=1  -t -1 --toysFreq  \
                --named WWnorm0j,Topnorm0j,DYttnorm0j,WWnorm1j,Topnorm1j,DYttnorm1j  \
                --setPhysicsModelParameterRanges WWnorm0j=-3,4:Topnorm0j=-3,4:DYttnorm0j=-3,4:WWnorm1j=-3,4:Topnorm1j=-3,4:DYttnorm1j=-3,4
 
-combineTool.py -M Impacts -d Moriond2016.v1.txt.pruned.root -m 125  --expectSignal=1  -t -1 --toysFreq  \
+combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125  --expectSignal=1  -t -1 --toysFreq  \
                --named WWnorm0j,Topnorm0j,DYttnorm0j,WWnorm1j,Topnorm1j,DYttnorm1j  \
                --setPhysicsModelParameterRanges WWnorm0j=-3,4:Topnorm0j=-3,4:DYttnorm0j=-3,4:WWnorm1j=-3,4:Topnorm1j=-3,4:DYttnorm1j=-3,4  \
-               -o Moriond2016.v1.txt.pruned.root_impacts_datacard.dataAsimov_rateParam.json
+               -o superCombination.Total.txt.pruned.root_impacts_datacard.dataAsimov_rateParam.json
 
-plotImpacts.py -i Moriond2016.v1.txt.pruned.root_impacts_datacard.dataAsimov_rateParam.json  -o impacts_datacard_dataAsimov_rateParam
+plotImpacts.py -i superCombination.Total.txt.pruned.root_impacts_datacard.dataAsimov_rateParam.json  -o impacts_datacard_dataAsimov_rateParam
 
 
 
@@ -107,36 +108,37 @@ plotImpacts.py -i Moriond2016.v1.txt.pruned.root_impacts_datacard.dataAsimov_rat
 # Impacts on Asimov MC
 
 
-combineTool.py -M Impacts -d Moriond2016.v1.txt.pruned.root -m 125 --doInitialFit --robustFit 1  --expectSignal=1 -t -1
+combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125 --doInitialFit --robustFit 1  --expectSignal=1 -t -1
 
 # the next one may takes ... hours!
-combineTool.py -M Impacts -d Moriond2016.v1.txt.pruned.root -m 125 --robustFit 1 --doFits --parallel 20  --expectSignal=1  -t -1
+combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125 --robustFit 1 --doFits --parallel 20  --expectSignal=1  -t -1    --job-mode lxbatch --task-name lxbatch-test --sub-opts='-q 1nd'    --dry-run
+combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125 --robustFit 1 --doFits --parallel 20  --expectSignal=1  -t -1    --job-mode lxbatch --task-name lxbatch-test --sub-opts='-q 1nd'  
 
-combineTool.py -M Impacts -d Moriond2016.v1.txt.pruned.root -m 125  --expectSignal=1  -t -1   -o Moriond2016.v1.txt.pruned.root_impacts_datacard.MCAsimov.json
+combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125  --expectSignal=1  -t -1   -o superCombination.Total.txt.pruned.root_impacts_datacard.MCAsimov.json
 
-plotImpacts.py -i Moriond2016.v1.txt.pruned.root_impacts_datacard.MCAsimov.json  -o impacts_datacard_MCAsimov
-
-
-
+plotImpacts.py -i superCombination.Total.txt.pruned.root_impacts_datacard.MCAsimov.json  -o impacts_datacard_MCAsimov
 
 
 
-combineTool.py -M Impacts -d Moriond2016.v1.txt.pruned.root -m 125 --doInitialFit --robustFit 1  --expectSignal=1 -t -1 --toysFreq \
+
+
+
+combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125 --doInitialFit --robustFit 1  --expectSignal=1 -t -1 --toysFreq \
                --named WWnorm0j,Topnorm0j,DYttnorm0j,WWnorm1j,Topnorm1j,DYttnorm1j  \
                --setPhysicsModelParameterRanges WWnorm0j=-3,4:Topnorm0j=-3,4:DYttnorm0j=-3,4:WWnorm1j=-3,4:Topnorm1j=-3,4:DYttnorm1j=-3,4
 
 
 # the next one may takes ... hours!
-combineTool.py -M Impacts -d Moriond2016.v1.txt.pruned.root -m 125 --robustFit 1 --doFits --parallel 20  --expectSignal=1  -t -1 --toysFreq  \
+combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125 --robustFit 1 --doFits --parallel 20  --expectSignal=1  -t -1 --toysFreq  \
                --named WWnorm0j,Topnorm0j,DYttnorm0j,WWnorm1j,Topnorm1j,DYttnorm1j  \
                --setPhysicsModelParameterRanges WWnorm0j=-3,4:Topnorm0j=-3,4:DYttnorm0j=-3,4:WWnorm1j=-3,4:Topnorm1j=-3,4:DYttnorm1j=-3,4
 
-combineTool.py -M Impacts -d Moriond2016.v1.txt.pruned.root -m 125  --expectSignal=1  -t -1 --toysFreq  \
+combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125  --expectSignal=1  -t -1 --toysFreq  \
                --named WWnorm0j,Topnorm0j,DYttnorm0j,WWnorm1j,Topnorm1j,DYttnorm1j  \
                --setPhysicsModelParameterRanges WWnorm0j=-3,4:Topnorm0j=-3,4:DYttnorm0j=-3,4:WWnorm1j=-3,4:Topnorm1j=-3,4:DYttnorm1j=-3,4  \
-               -o Moriond2016.v1.txt.pruned.root_impacts_datacard.MCAsimov_rateParam.json
+               -o superCombination.Total.txt.pruned.root_impacts_datacard.MCAsimov_rateParam.json
 
-plotImpacts.py -i Moriond2016.v1.txt.pruned.root_impacts_datacard.MCAsimov_rateParam.json  -o impacts_datacard_MCAsimov_rateParam
+plotImpacts.py -i superCombination.Total.txt.pruned.root_impacts_datacard.MCAsimov_rateParam.json  -o impacts_datacard_MCAsimov_rateParam
 
 
 

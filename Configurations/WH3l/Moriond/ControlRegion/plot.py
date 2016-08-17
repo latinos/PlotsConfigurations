@@ -48,7 +48,7 @@ groupPlot['WW']  = {
 
 
 groupPlot['Vg']  = {
-                  'nameHR' : 'Vg',
+                  'nameHR' : 'Zg',
                   'color': 859, # kAzure -1  
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -82,7 +82,7 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  'samples'  : ['H_htt', 'WH_hww', 'ZH_hww', 'ggZH_hww']
+                  'samples'  : ['WH_htt', 'WH_hww', 'ZH_hww', 'ggZH_hww']
               }
 
 
@@ -262,8 +262,8 @@ plot['ZZ']  = {
 
 # Htautau
 
-plot['H_htt'] = {
-                  'nameHR' : 'Htt',
+plot['WH_htt'] = {
+                  'nameHR' : 'WHtt',
                   'color': 632+4, # kRed+4 
                   'isSignal' : 1,
                   'isData'   : 0,    
@@ -328,8 +328,8 @@ plot['DATA']  = {
                   'nameHR' : 'Data',
                   'color': 1 ,  
                   'isSignal' : 0,
-                  'isData'   : 1 ,
-  #                'isBlind'  : 1
+                  'isData'   : 1
+#                  'isBlind'  : 1
               }
 
 

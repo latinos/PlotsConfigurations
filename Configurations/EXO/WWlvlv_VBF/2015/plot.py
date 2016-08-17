@@ -1,25 +1,9 @@
-# plot configuration
+# ploes what I found: configuration
 
 #plot = {}
 
 # keys here must match keys in samples.py    
 #                    
-
-groupPlot['DY']  = {  
-                  'nameHR' : "DY",
-                  'isSignal' : 0,
-                  'color': 418,    # kGreen+2
-                  'samples'  : ['DY']
-              }
-
-
-
-groupPlot['Fake']  = {  
-                  'nameHR' : 'Fake',
-                  'isSignal' : 0,
-                  'color': 921,    # kGray + 1
-                  'samples'  : ['Fake']
-              }
 
 
 groupPlot['top']  = {  
@@ -36,6 +20,7 @@ groupPlot['WW']  = {
                   'samples'  : ['WW', 'ggWW']
               }
 
+
 groupPlot['VVV']  = {  
                   'nameHR' : 'VVV',
                   'isSignal' : 0,
@@ -45,17 +30,32 @@ groupPlot['VVV']  = {
 
 
 groupPlot['VV']  = {  
-                  'nameHR' : "VZ/#gamma*/#gamma",
+                  'nameHR' : "VZ",
                   'isSignal' : 0,
-                  'color'    : 617,   # kViolet + 1  
+                  'color'    : 616,   # kViolet + 1  
                   'samples'  : ['VZ', 'WZ', 'ZZ']
               }
 
 groupPlot['Vg']  = {
                   'nameHR' : "V#gamma^{(*)}",
                   'isSignal' : 0,
-                  'color'    : 620,   # kViolet + 1  
+                  'color'    : 874,   # kOrange
                   'samples'  : ['Vg', 'Wg', 'VgS']
+              }
+
+groupPlot['DY']  = {  
+                  'nameHR' : "DY",
+                  'isSignal' : 0,
+                  'color': 418,    # kGreen+2
+                  'samples'  : ['DY']
+              }
+
+
+groupPlot['Fake']  = {  
+                  'nameHR' : 'Fake',
+                  'isSignal' : 0,
+                  'color': 921,    # kGray + 1
+                  'samples'  : ['Fake']
               }
 
 
@@ -74,16 +74,16 @@ groupPlot['Higgs']  = {
 #               }
 
 groupPlot['400']  = {
-                  'nameHR' : 'mH = 400 GeV X 10',
+                  'nameHR' : 'M_{X} = 400 GeV (X10)',
                   'isSignal' : 2,
-                  'color': 633, # kRed 
+                  'color': 600, # kRed 
                   'samples'  : ['ggH_hww_400_c10brn00','ggH_hww_INT400_c10brn00','qqH_hww_400_c10brn00']
                }
 
 groupPlot['800']  = {
-                  'nameHR' : 'mH = 800 GeV X 10',
+                  'nameHR' : 'M_{X} = 800 GeV (X10)',
                   'isSignal' : 2,
-                  'color': 635, # kRed 
+                  'color': 881, # kRed 
                   'samples'  : ['ggH_hww_800_c10brn00','ggH_hwwINT_800_c10brn00','qqH_hww_800_c10brn00']
                }
 
@@ -336,43 +336,124 @@ plot['ggH_hww'] = {
 #                  'scale'    : 0    #
 #                  }
 #
-import os.path
 
-massesAndModelsFile = "massesAndModels.py"
+plot['ggH_hww_400_c10brn00'] = {
+               'nameHR' : 'ggH 400',
+               'color': 600, # kRed 
+               #'color':   col,
+               'isSignal' : 2,
+               'isData'   : 0,
+               'scale'    : 1,    #
+               'cuts'     : {
+                        'hwwhm_13TeV_of_0j'  : 10,
+                        'hwwhm_13TeV_of_1j'  : 10,
+                        'hwwhm_13TeV_of_VBF' : 10,
+                }
+               }
+plot['ggH_hww_INT400_c10brn00'] = {
+              'nameHR' : 'ggH 400',
+              'color': 600, # kRed 
+              #'color':   col,
+              'isSignal' : 2,
+              'isData'   : 0,
+              'scale'    : 1,    #
+               'cuts'     : {
+                        'hwwhm_13TeV_of_0j'  : 10,
+                        'hwwhm_13TeV_of_1j'  : 10,
+                        'hwwhm_13TeV_of_VBF' : 10,
+                }
+              }
+plot['qqH_hww_400_c10brn00'] = {
+              'nameHR' : 'qqH 400',
+              'color': 600, # kRed 
+              'isSignal' : 2,
+              'isData'   : 0,
+              'scale'    : 1,    #
+               'cuts'     : {
+                        'hwwhm_13TeV_of_0j'  : 10,
+                        'hwwhm_13TeV_of_1j'  : 10,
+                        'hwwhm_13TeV_of_VBF' : 10,
+                }
+              }
 
-if os.path.exists(massesAndModelsFile) :
-  handle = open(massesAndModelsFile,'r')
-  exec(handle)
-  handle.close()
-else:
-  print "!!! ERROR file ", massesAndModelsFile, " does not exist."
 
-for m in masses:
-  for model in models:
-    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
-    plot['ggH_hww_'+m+'_'+model_name] = {
-                  'nameHR' : 'ggH '+m+' '+model,
-                  'color': 600+int(int(m)/100+0.5), # kRed 
-                  #'color':   col,
-                  'isSignal' : 2,
-                  'isData'   : 0,
-                  'scale'    : 10    #
-                  }
-    plot['ggH_hww_INT'+m+'_'+model_name] = {
-                  'nameHR' : 'ggH '+m+' '+model,
-                  'color': 600+int(int(m)/100+0.5), # kRed 
-                  #'color':   col,
-                  'isSignal' : 2,
-                  'isData'   : 0,
-                  'scale'    : 10    #
-                  }
-    plot['qqH_hww_'+m+'_'+model_name] = {
-                  'nameHR' : 'qqH '+m+' '+model+' (x100)',
-                  'color': 600+20+int(int(m)/100+0.5), # kRed 
-                  'isSignal' : 2,
-                  'isData'   : 0,
-                  'scale'    : 10    #
-                  }
+plot['ggH_hww_800_c10brn00'] = {
+               'nameHR' : 'ggH 800',
+               'color': 600, # kRed 
+               #'color':   col,
+               'isSignal' : 2,
+               'isData'   : 0,
+               'scale'    : 1,    #
+               'cuts'     : {
+                        'hwwhm_13TeV_of_0j'  : 100,
+                        'hwwhm_13TeV_of_1j'  : 100,
+                        'hwwhm_13TeV_of_VBF' : 10,
+                }
+               }
+plot['ggH_hww_INT800_c10brn00'] = {
+              'nameHR' : 'ggH 800',
+              'color': 600, # kRed 
+              #'color':   col,
+              'isSignal' : 2,
+              'isData'   : 0,
+              'scale'    : 1,    #
+               'cuts'     : {
+                        'hwwhm_13TeV_of_0j'  : 100,
+                        'hwwhm_13TeV_of_1j'  : 100,
+                        'hwwhm_13TeV_of_VBF' : 10,
+                }
+              }
+plot['qqH_hww_800_c10brn00'] = {
+              'nameHR' : 'qqH 800',
+              'color': 600, # kRed 
+              'isSignal' : 2,
+              'isData'   : 0,
+              'scale'    : 1,    #
+               'cuts'     : {
+                        'hwwhm_13TeV_of_0j'  : 100,
+                        'hwwhm_13TeV_of_1j'  : 100,
+                        'hwwhm_13TeV_of_VBF' : 10,
+                }
+              }
+
+
+#import os.path
+#
+#massesAndModelsFile = "massesAndModels.py"
+#
+#if os.path.exists(massesAndModelsFile) :
+#  handle = open(massesAndModelsFile,'r')
+#  exec(handle)
+#  handle.close()
+#else:
+#  print "!!! ERROR file ", massesAndModelsFile, " does not exist."
+#
+#for m in masses:
+#  for model in models:
+#    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+#    plot['ggH_hww_'+m+'_'+model_name] = {
+#                  'nameHR' : 'ggH '+m+' '+model,
+#                  'color': 600+int(int(m)/100+0.5), # kRed 
+#                  #'color':   col,
+#                  'isSignal' : 2,
+#                  'isData'   : 0,
+#                  'scale'    : 10    #
+#                  }
+#    plot['ggH_hww_INT'+m+'_'+model_name] = {
+#                  'nameHR' : 'ggH '+m+' '+model,
+#                  'color': 600+int(int(m)/100+0.5), # kRed 
+#                  #'color':   col,
+#                  'isSignal' : 2,
+#                  'isData'   : 0,
+#                  'scale'    : 10    #
+#                  }
+#    plot['qqH_hww_'+m+'_'+model_name] = {
+#                  'nameHR' : 'qqH '+m+' '+model+' (x100)',
+#                  'color': 600+20+int(int(m)/100+0.5), # kRed 
+#                  'isSignal' : 2,
+#                  'isData'   : 0,
+#                  'scale'    : 10    #
+#                  }
 
 
 

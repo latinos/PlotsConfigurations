@@ -8,34 +8,34 @@
 # If not defined, normal plots is used
 #
 
-##groupPlot['Fake']  = {  
-                  ##'nameHR' : 'Fake',
-                  ##'isSignal' : 0,
-                  ##'color': 921,    # kGray + 1
-                  ##'samples'  : ['Fake']
-              ##}
+#groupPlot['Fake']  = {  
+                  #'nameHR' : 'Fake',
+                  #'isSignal' : 0,
+                  #'color': 921,    # kGray + 1
+                  #'samples'  : ['Fake']
+              #}
 
 
-##groupPlot['top']  = {  
-                  ##'nameHR' : 'tW and t#bart',
-                  ##'isSignal' : 0,
-                  ##'color': 400,   # kYellow
-                  ##'samples'  : ['top']
-              ##}
+#groupPlot['top']  = {  
+                  #'nameHR' : 'tW and t#bart',
+                  #'isSignal' : 0,
+                  #'color': 400, #  kYellow
+                  #'samples'  : ['top']
+              #}
 
-##groupPlot['WW']  = {  
-                  ##'nameHR' : 'WW',
-                  ##'isSignal' : 0,
-                  ##'color': 851, # kAzure -9 
-                  ##'samples'  : ['WW', 'ggWW']
-              ##}
+#groupPlot['WW']  = {  
+                  #'nameHR' : 'WW',
+                  #'isSignal' : 0,
+                  #'color': 851, # kAzure -9 
+                  #'samples'  : ['WW', 'ggWW']
+              #}
 
-##groupPlot['VVV']  = {  
-                  ##'nameHR' : 'VVV',
-                  ##'isSignal' : 0,
-                  ##'color': 857, # kAzure -3  
-                  ##'samples'  : ['VVV']
-              ##}
+#groupPlot['VVV']  = {  
+                  #'nameHR' : 'VVV',
+                  #'isSignal' : 0,
+                  #'color': 857, # kAzure -3  
+                  #'samples'  : ['VVV']
+              #}
 
 
 #groupPlot['VZ']  = {  
@@ -46,14 +46,65 @@
               #}
 
 
-groupPlot['DY']  = {  
+#groupPlot['DY']  = {  
+                  #'nameHR' : "DY",
+                  #'isSignal' : 0,
+                  #'color': 418,  #  kGreen+2
+                  #'samples'  : ['DY1', 'DY2']
+                  ##'samples'  : ['DY']
+              #}
+
+
+
+#groupPlot['DYvtx']  = {  
+                  #'nameHR' : "DY vtx fix",
+                  #'isSignal' : 3,
+                  #'color': 418,  #  kGreen+2
+                  #'samples'  : ['DY1vtxFix', 'DY2vtxFix']
+                  ##'samples'  : ['DY']
+              #}
+
+
+
+
+#groupPlot['DYreco']  = {  
+                  #'nameHR' : "DY reco eff fix",
+                  #'isSignal' : 0,
+                  #'color': 418,  #  kGreen+2
+                  #'samples'  : ['DY1reco', 'DY2reco']
+                  ##'samples'  : ['DY']
+              #}
+
+
+
+
+groupPlot['DYreco']  = {  
                   'nameHR' : "DY",
                   'isSignal' : 0,
-                  'color': 418,    # kGreen+2
-                  'samples'  : ['DY']
+                  'color': 418,  #  kGreen+2
+                  'samples'  : ['DYlocal']
+                  #'samples'  : ['DY']
               }
 
+#groupPlot['DYreco']  = {  
+                  #'nameHR' : "DY",
+                  #'isSignal' : 0,
+                  #'color': 418,  #  kGreen+2
+                  #'samples'  : ['DYlocalNoPTZ']
+                  ##'samples'  : ['DY']
+              #}
 
+
+
+
+
+#groupPlot['DYpow']  = {  
+                  #'nameHR' : "DYpow",
+                  #'isSignal' : 3,
+                  #'color': 418,  #  kGreen+2
+                  #'samples'  : ['DYpow']
+                  ##'samples'  : ['DY']
+              #}
 
 #groupPlot['Higgs']  = {  
                   #'nameHR' : 'Higgs',
@@ -91,6 +142,114 @@ plot['DY']  = {
                        #
                        }
               }
+
+
+plot['DYpow']  = {  
+                  'color': 632,    # kRed
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  #'scale'    : 6025.20,
+                  'scale'    : 0.8,
+                  #'isSignal' : 2     # draw together
+                  'isSignal' : 3     # draw together and do ratio plot w.r.t. data
+              }
+
+
+
+plot['DYlocal']  = {  
+                  'color': 418,    # kGreen+2
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 11.0*0.85,
+                  #'scale'    : 11.0*0.75,
+              }
+
+plot['DYlocalNoPTZ']  = {  
+                  'color': 419,    # kGreen+3
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 11.0*0.75,
+              }
+
+
+
+
+plot['DY1']  = {  
+                  'color': 418,    # kGreen+2
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0,
+                  #'scale'    : 0.87,
+                  #'scale'    : 10.0*0.7*1.2*1.1,
+                  #'scale'    : 11.0*0.87,
+                  #'isSignal' : 2                    
+                  #'cuts'  : {
+                       #'DYee'      : 0.85 ,
+                       #'DYee2lepEB'      : 0.85 ,
+                       #'DYee2lepEE'      : 0.85 ,
+                       #'DYee2lepEBEE'      : 0.85 ,
+                       #'DYee0j'      : 0.85 ,
+                       #'DYee1j'      : 0.85 ,
+                       #'DYee2j'      : 0.85 ,
+                       ##
+                       #}
+              }
+
+plot['DY2']  = {  
+                  'color': 418,    # kGreen+2
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0,
+                  #'scale'    : 0.87,
+                  #'scale'    : 10.0*0.7*1.2*1.1,
+                  #'scale'    : 11.0*0.87,
+                  #'isSignal' : 2                    
+                  #'cuts'  : {
+                       #'DYee'      : 0.85 ,
+                       #'DYee2lepEB'      : 0.85 ,
+                       #'DYee2lepEE'      : 0.85 ,
+                       #'DYee2lepEBEE'      : 0.85 ,
+                       #'DYee0j'      : 0.85 ,
+                       #'DYee1j'      : 0.85 ,
+                       #'DYee2j'      : 0.85 ,
+                       ##
+                       #}
+              }                  
+
+
+plot['DY1vtxFix']  = {  
+                  'color': 418,    # kGreen+2
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0,
+              }
+
+plot['DY2vtxFix']  = {  
+                  'color': 418,    # kGreen+2
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0,
+              }                  
+
+
+
+
+plot['DY1reco']  = {  
+                  'color': 418,    # kGreen+2
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0,
+              }
+
+plot['DY2reco']  = {  
+                  'color': 418,    # kGreen+2
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0,
+              }                  
+
+
+
 
 
 plot['DYnoFix']  = {  
@@ -196,16 +355,6 @@ plot['DYnoFixVar9']  = {
 
 
 
-plot['DYpow']  = {  
-                  'color': 632,    # kRed
-                  'isSignal' : 0,
-                  'isData'   : 0, 
-                  #'scale'    : 6025.20,
-                  'scale'    : 1,
-                  #'isSignal' : 2     # draw together
-                  'isSignal' : 3     # draw together and do ratio plot w.r.t. data
-              }
-
 
 plot['DYfixData']  = {  
                   'color': 851, # kAzure -9 
@@ -240,6 +389,14 @@ plot['VgS'] = {
                   }
 
  
+plot['Vg'] = { 
+                  'color'    : 617,   # kViolet + 1  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+
 plot['Wjets']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
@@ -436,11 +593,7 @@ plot['DATA']  = {
 
 # additional options
 
-# legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
-#legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
-#legend['lumi'] = 'L = 0.8/fb' # XXX fb-1
-#legend['lumi'] = 'L = 2.6/fb' # XXX fb-1
-legend['lumi'] = 'L = 4.3/fb' # XXX fb-1
+legend['lumi'] = 'L = 6.3/fb'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 

@@ -1,25 +1,9 @@
-# plot configuration
+# ploes what I found: configuration
 
 #plot = {}
 
 # keys here must match keys in samples.py    
 #                    
-
-groupPlot['DY']  = {  
-                  'nameHR' : "DY",
-                  'isSignal' : 0,
-                  'color': 418,    # kGreen+2
-                  'samples'  : ['DY']
-              }
-
-
-
-groupPlot['Fake']  = {  
-                  'nameHR' : 'Fake',
-                  'isSignal' : 0,
-                  'color': 921,    # kGray + 1
-                  'samples'  : ['Fake']
-              }
 
 
 groupPlot['top']  = {  
@@ -36,6 +20,7 @@ groupPlot['WW']  = {
                   'samples'  : ['WW', 'ggWW']
               }
 
+
 groupPlot['VVV']  = {  
                   'nameHR' : 'VVV',
                   'isSignal' : 0,
@@ -44,34 +29,35 @@ groupPlot['VVV']  = {
               }
 
 
-groupPlot['VZ']  = {  
-                  'nameHR' : "VZ/#gamma*/#gamma",
+groupPlot['VV']  = {  
+                  'nameHR' : "VZ",
                   'isSignal' : 0,
-                  'color'    : 617,   # kViolet + 1  
-                  'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ']
+                  'color'    : 616,   # kViolet + 1  
+                  'samples'  : ['VZ', 'WZ', 'ZZ']
+              }
+
+groupPlot['Vg']  = {
+                  'nameHR' : "V#gamma^{(*)}",
+                  'isSignal' : 0,
+                  'color'    : 874,   # kOrange
+                  'samples'  : ['Vg', 'Wg', 'VgS']
+              }
+
+groupPlot['DY']  = {  
+                  'nameHR' : "DY",
+                  'isSignal' : 0,
+                  'color': 418,    # kGreen+2
+                  'samples'  : ['DY']
               }
 
 
-#groupPlot['Higgs']  = {  
-#                  'nameHR' : 'Higgs',
-#                  'isSignal' : 0,
-#                  'color': 632, # kRed 
-#                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww']
-#              }
+groupPlot['Fake']  = {  
+                  'nameHR' : 'Fake',
+                  'isSignal' : 0,
+                  'color': 921,    # kGray + 1
+                  'samples'  : ['Fake']
+              }
 
-#groupPlot['300']  = {
-#                  'nameHR' : 'mH = 300 GeV X 10',
-#                  'isSignal' : 2,
-#                  'color': 633, # kRed 
-#                  'samples'  : ['ggH_hww_300_c10brn00','qqH_hww_300_c10brn00']
-#               }
-
-#groupPlot['800']  = {
-#                  'nameHR' : 'mH = 800 GeV X 10',
-#                  'isSignal' : 2,
-#                  'color': 635, # kRed 
-#                  'samples'  : ['ggH_hww_800_c10brn00','qqH_hww_800_c10brn00']
-#               }
 
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
@@ -143,9 +129,14 @@ plot['top'] = {
                   'color': 400,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 1.0
+                  'scale'    : 1.0,
+                  'cuts'  : {
+                       'hww2l2v_13TeV_top_of0j'      : 0.92 ,
+                       'hww2l2v_13TeV_top_of1j'      : 0.86 ,
+                       'hww2l2v_13TeV_top_of2j'      : 0.95 ,
+                       #
+                       }
                   }
-
 plot['top0jet'] = {   
                   'nameHR' : 'tW and t#bart 0 jet',
                   'color': 400,   # kYellow
@@ -322,6 +313,87 @@ plot['ggH_hww'] = {
 #                  'scale'    : 0    #
 #                  }
 #
+
+plot['ggH_hww_400_c10brn00'] = {
+               'nameHR' : 'ggH 400',
+               'color': 600, # kRed 
+               #'color':   col,
+               'isSignal' : 2,
+               'isData'   : 0,
+               'scale'    : 1,    #
+               'cuts'     : {
+                        'hwwhm_13TeV_of_0j'  : 10,
+                        'hwwhm_13TeV_of_1j'  : 10,
+                        'hwwhm_13TeV_of_VBF' : 10,
+                }
+               }
+plot['ggH_hww_INT400_c10brn00'] = {
+              'nameHR' : 'ggH 400',
+              'color': 600, # kRed 
+              #'color':   col,
+              'isSignal' : 2,
+              'isData'   : 0,
+              'scale'    : 1,    #
+               'cuts'     : {
+                        'hwwhm_13TeV_of_0j'  : 10,
+                        'hwwhm_13TeV_of_1j'  : 10,
+                        'hwwhm_13TeV_of_VBF' : 10,
+                }
+              }
+plot['qqH_hww_400_c10brn00'] = {
+              'nameHR' : 'qqH 400',
+              'color': 600, # kRed 
+              'isSignal' : 2,
+              'isData'   : 0,
+              'scale'    : 1,    #
+               'cuts'     : {
+                        'hwwhm_13TeV_of_0j'  : 10,
+                        'hwwhm_13TeV_of_1j'  : 10,
+                        'hwwhm_13TeV_of_VBF' : 10,
+                }
+              }
+
+
+plot['ggH_hww_800_c10brn00'] = {
+               'nameHR' : 'ggH 800',
+               'color': 600, # kRed 
+               #'color':   col,
+               'isSignal' : 2,
+               'isData'   : 0,
+               'scale'    : 1,    #
+               'cuts'     : {
+                        'hwwhm_13TeV_of_0j'  : 100,
+                        'hwwhm_13TeV_of_1j'  : 100,
+                        'hwwhm_13TeV_of_VBF' : 10,
+                }
+               }
+plot['ggH_hww_INT800_c10brn00'] = {
+              'nameHR' : 'ggH 800',
+              'color': 600, # kRed 
+              #'color':   col,
+              'isSignal' : 2,
+              'isData'   : 0,
+              'scale'    : 1,    #
+               'cuts'     : {
+                        'hwwhm_13TeV_of_0j'  : 100,
+                        'hwwhm_13TeV_of_1j'  : 100,
+                        'hwwhm_13TeV_of_VBF' : 10,
+                }
+              }
+plot['qqH_hww_800_c10brn00'] = {
+              'nameHR' : 'qqH 800',
+              'color': 600, # kRed 
+              'isSignal' : 2,
+              'isData'   : 0,
+              'scale'    : 1,    #
+               'cuts'     : {
+                        'hwwhm_13TeV_of_0j'  : 100,
+                        'hwwhm_13TeV_of_1j'  : 100,
+                        'hwwhm_13TeV_of_VBF' : 10,
+                }
+              }
+
+
 #import os.path
 #
 #massesAndModelsFile = "massesAndModels.py"
@@ -337,6 +409,14 @@ plot['ggH_hww'] = {
 #  for model in models:
 #    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
 #    plot['ggH_hww_'+m+'_'+model_name] = {
+#                  'nameHR' : 'ggH '+m+' '+model,
+#                  'color': 600+int(int(m)/100+0.5), # kRed 
+#                  #'color':   col,
+#                  'isSignal' : 2,
+#                  'isData'   : 0,
+#                  'scale'    : 10    #
+#                  }
+#    plot['ggH_hww_INT'+m+'_'+model_name] = {
 #                  'nameHR' : 'ggH '+m+' '+model,
 #                  'color': 600+int(int(m)/100+0.5), # kRed 
 #                  #'color':   col,

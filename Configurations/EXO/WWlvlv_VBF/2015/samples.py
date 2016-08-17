@@ -17,7 +17,8 @@ for m in masses:
   for model in models:
     kp = float(model[6:9])*float(model[6:9])
     brn = float(model[-3:])
-    sf = kp*(1-brn)
+    #sf = kp*(1-brn)
+    sf = 1.0
     #sf125 = 1-kp
     #sf125int = sqrt(1-kp)
     model_int = model+"_I"
@@ -33,7 +34,7 @@ for m in masses:
                                              'latino_GluGluHToWWTo2L2Nu_M'+m+'.root'
                                                   ],
                                           ###(1-(mth<60 || (mll>50 && mll<80))) is used to put the interference = 0 in DY CR, otherwise we have a negative number of events
-                                          'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*'+model_int+'*(abs('+model_int+')<10)*(1-(mth<60 || (mll>50 && mll<80)))*(1-(std_vector_jet_cmvav2[0]>-0.715 && std_vector_jet_pt[0]>20))*'+str(sf),
+                                          'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*'+model_int+'*(abs('+model_int+')<10)*'+str(sf),
                                         }
 #    
 #    samples['ggH_hww125'+model_name]  = {    'name': [
@@ -157,6 +158,16 @@ samples['top'] = {   'name': [
                        'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',                
                    }
 
+#samples['WWewk']  = {    'name': [
+#                                  'latino_WpWmJJ_EWK_QCD_noTop_genVar.root',
+#                                  'latino_WpWmJJ_QCD_noTop.root'
+#                                ],      
+#                      'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*(njet>=2 && mjj>500)',          
+#                      'weights': [
+#                          '(lhe_mlvlv > 130)',
+#                          '-1'
+#                          ] ,           
+#                  }
 
 samples['WW']  = {    'name': [
                                   'latino_WWTo2L2Nu.root'

@@ -12,6 +12,7 @@ text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel -
                    --PO 'map=.*/ggZH_hww:muGGH[1,-1,3]' \
                    --PO 'map=.*/H_htt:muGGH[1,-1,3]' \
                    --PO 'map=.*/qqH_hww:muVBF[1,-3,6]'  \
+                   --PO 'map=.*/WH_htt:muVBF[1,-3,6]'  \
                    --PO 'map=.*/WH_hww:muVBF[1,-3,6]'  \
                    --PO 'map=.*/ZH_hww:muVBF[1,-3,6]'  \
                    superCombination.2015.txt.pruned.txt  -o  workspace.superCombination.2015.txt.pruned.txt.root
@@ -23,6 +24,14 @@ combine -M MultiDimFit -t -1 \
      workspace.superCombination.2015.txt.pruned.txt.root    \
      -n "LH2DICHEP2015combined"     >   result.MultiDimFit.grid.workspace.superCombination.2015.txt.pruned.txt
 
+                  
+                   
+combine -M MultiDimFit \
+     --algo=grid --points=200  \
+     workspace.superCombination.2015.txt.pruned.txt.root    \
+     -n "DataLH2DICHEP2015combined"     >   result.Data.MultiDimFit.grid.workspace.superCombination.2015.txt.pruned.txt
+
+     
      
 # plot
 # r00t ../higgsCombineTest.MultiDimFit.mH120.root  scripts/Draw2D.cxx
@@ -36,6 +45,7 @@ text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel -
                    --PO 'map=.*/ggZH_hww:muGGH[1,-1,3]' \
                    --PO 'map=.*/H_htt:muGGH[1,-1,3]' \
                    --PO 'map=.*/qqH_hww:muVBF[1,-3,6]'  \
+                   --PO 'map=.*/WH_htt:muVBF[1,-3,6]'  \
                    --PO 'map=.*/WH_hww:muVBF[1,-3,6]'  \
                    --PO 'map=.*/ZH_hww:muVBF[1,-3,6]'  \
                    superCombination.2016.txt.pruned.txt  -o  workspace.superCombination.2016.txt.pruned.txt.root
@@ -57,6 +67,7 @@ text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel -
                    --PO 'map=.*/ggZH_hww:muGGH[1,-1,3]' \
                    --PO 'map=.*/H_htt:muGGH[1,-1,3]' \
                    --PO 'map=.*/qqH_hww:muVBF[1,-3,6]'  \
+                   --PO 'map=.*/WH_htt:muVBF[1,-3,6]'  \
                    --PO 'map=.*/WH_hww:muVBF[1,-3,6]'  \
                    --PO 'map=.*/ZH_hww:muVBF[1,-3,6]'  \
                    superCombination.Total.txt.pruned.txt  -o  workspace.superCombination.Total.txt.pruned.txt.root
