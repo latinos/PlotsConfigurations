@@ -46,13 +46,13 @@
               #}
 
 
-#groupPlot['DY']  = {  
-                  #'nameHR' : "DY",
-                  #'isSignal' : 0,
-                  #'color': 418,  #  kGreen+2
+groupPlot['DY']  = {  
+                  'nameHR' : "DY",
+                  'isSignal' : 0,
+                  'color': 418,  #  kGreen+2
                   #'samples'  : ['DY1', 'DY2']
-                  ##'samples'  : ['DY']
-              #}
+                  'samples'  : ['DY']
+              }
 
 
 
@@ -78,21 +78,21 @@
 
 
 
-groupPlot['DYreco']  = {  
-                  'nameHR' : "DY",
-                  'isSignal' : 0,
-                  'color': 418,  #  kGreen+2
-                  'samples'  : ['DYlocal']
-                  #'samples'  : ['DY']
-              }
-
 #groupPlot['DYreco']  = {  
                   #'nameHR' : "DY",
                   #'isSignal' : 0,
                   #'color': 418,  #  kGreen+2
-                  #'samples'  : ['DYlocalNoPTZ']
+                  #'samples'  : ['DYlocal']
                   ##'samples'  : ['DY']
               #}
+
+##groupPlot['DYreco']  = {  
+                  ##'nameHR' : "DY",
+                  ##'isSignal' : 0,
+                  ##'color': 418,  #  kGreen+2
+                  ##'samples'  : ['DYlocalNoPTZ']
+                  ###'samples'  : ['DY']
+              ##}
 
 
 
@@ -127,7 +127,8 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 1.0,
+                  'scale'    : 0.0036,
+                  #'scale'    : 1.0,
                   #'scale'    : 0.87,
                   #'scale'    : 10.0*0.7*1.2*1.1,
                   #'scale'    : 11.0*0.87,
@@ -593,7 +594,8 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 6.3/fb'
+#legend['lumi'] = 'L = 6.3/fb'
+legend['lumi'] = 'L = 12.3/fb'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 
