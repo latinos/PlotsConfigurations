@@ -127,19 +127,21 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 0.0036,
-                  #'scale'    : 1.0,
+                  #'scale'    : 0.0036,
+                  'scale'    : 1.0,
                   #'scale'    : 0.87,
                   #'scale'    : 10.0*0.7*1.2*1.1,
                   #'scale'    : 11.0*0.87,
                   #'isSignal' : 2                    
                   'cuts'  : {
-                       'DYee'      : 0.85 ,
+                       'DYee'      : 0.80 ,
                        'DYee2lepEB'      : 0.85 ,
                        'DYee2lepEE'      : 0.85 ,
                        'DYee0j'      : 0.85 ,
                        'DYee1j'      : 0.85 ,
                        'DYee2j'      : 0.85 ,
+                       'DYeeLowVtx'      : 0.86 ,
+                       'DYeeHighVtx'      : 0.80 ,
                        #
                        }
               }
