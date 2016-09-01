@@ -21,30 +21,31 @@ samples['DY']  = {    'name': [
                             'latino_DYJetsToLL_M-50_0002__part0.root',
                             ],    
                       #'weight' : '(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
-                      'weight' : 'puW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
-                      'weights' :  [
-                        '0.829752445221',
-                        #
-                        '0.318902641535',
-                        '0.318902641535',
-                        '0.318902641535',
-                        '0.318902641535',
-                        '0.318902641535',
-                        '0.318902641535',
-                        '0.318902641535',
-                        '0.318902641535',
-                        '0.318902641535',
-                        '0.318902641535',
-                        '0.318902641535',                        
-                        ]
+                      #'weight' : 'puW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
+                      'weight' : 'baseW*puW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',  
+                      #'weights' :  [
+                        #'0.829752445221',
+                        ##
+                        #'0.318902641535',
+                        #'0.318902641535',
+                        #'0.318902641535',
+                        #'0.318902641535',
+                        #'0.318902641535',
+                        #'0.318902641535',
+                        #'0.318902641535',
+                        #'0.318902641535',
+                        #'0.318902641535',
+                        #'0.318902641535',
+                        #'0.318902641535',                        
+                        #]
                    }
 
 
 
-samples['Wjets']  = {    'name': ['latino_WJetsToLNu.root'],     #   file name    
-                      'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
-                      #'isData': ['0'],                             
-                  }
+#samples['Wjets']  = {    'name': ['latino_WJetsToLNu.root'],     #   file name    
+                      #'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
+                      ##'isData': ['0'],                             
+                  #}
              
 samples['tttbar'] = {   'name': [
                            #'latino_TTJets.root',
@@ -59,26 +60,14 @@ samples['tttbar'] = {   'name': [
                            'latino_TTTo2L2Nu_ext1__part8.root',
                            'latino_TTTo2L2Nu_ext1__part9.root',
                           ],          
-                       'weight' : 'puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',    #   weight/cut 
-                       'weights' :  [
-                          '0.0043711992912',
-                          '0.0043711992912',
-                          '0.0043711992912',
-                          '0.0043711992912',
-                          '0.0043711992912',
-                          '0.0043711992912',
-                          '0.0043711992912',
-                          '0.0043711992912',
-                          '0.0043711992912',
-                          '0.0043711992912',
-                       ]
+                       'weight' : 'baseW*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',    #   weight/cut 
                       }
 
 samples['singletop'] = {   'name': [
                           'latino_ST_tW_antitop.root',
                           'latino_ST_tW_top.root'
                           ],
-                       'weight' : 'baseW*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',    #   weight/cut 
+                       'weight' : 'baseW*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',    #   weight/cut 
                    } 
 
 
@@ -88,16 +77,15 @@ samples['singletop'] = {   'name': [
 samples['WW']  = {    'name': [
                                   'latino_WWTo2L2Nu.root'
                                 ],      
-                      'weight' : 'nllW*puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
-                      #'weights': ['abs(nllW)'] ,           
+                      'weight' : 'nllW*puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
                   }
 
 
 samples['ggWW']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root'],      
-                      'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
+                      'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]',          
                       #'weights': ['abs(nllW)'] ,           
                       #'weights': ['1.000'] ,           
-                      'isData': ['0'],                            
+                      #'isData': ['0'],                            
                   }
 
 
@@ -122,7 +110,7 @@ samples['VgS']  = {    'name': [
                              'latino_WgStarLNuEE.root', 
                              'latino_WgStarLNuMuMu.root'
                              ],      
-                      'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',
+                      'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',
                       'weights': ['1','1'] ,           
                   }
 
@@ -138,79 +126,79 @@ samples['VgS']  = {    'name': [
 
 
 
-samples['VZ']  = {    'name': [
-                          #'latino_WZ.root', 
-                          'latino_WZTo3LNu.root', 
-                          #'latino_ZZ.root', # ---> replaced by inclusive samples
-                          #'latino_ZZTo2L2Nu.root',   # ----> FIXME to be restored
-                          #'latino_ZZTo2L2Q.root'
-                          'latino_WZTo2L2Q__part0.root',
-                          'latino_WZTo2L2Q__part1.root',
-                          'latino_WZTo2L2Q__part10.root',
-                          'latino_WZTo2L2Q__part11.root',
-                          'latino_WZTo2L2Q__part12.root',
-                          'latino_WZTo2L2Q__part13.root',
-                          'latino_WZTo2L2Q__part14.root',
-                          'latino_WZTo2L2Q__part15.root',
-                          'latino_WZTo2L2Q__part16.root',
-                          'latino_WZTo2L2Q__part17.root',
-                          'latino_WZTo2L2Q__part18.root',
-                          'latino_WZTo2L2Q__part19.root',
-                          'latino_WZTo2L2Q__part2.root',
-                          'latino_WZTo2L2Q__part20.root',
-                          'latino_WZTo2L2Q__part21.root',
-                          'latino_WZTo2L2Q__part22.root',
-                          'latino_WZTo2L2Q__part23.root',
-                          'latino_WZTo2L2Q__part24.root',
-                          'latino_WZTo2L2Q__part25.root',
-                          'latino_WZTo2L2Q__part26.root',
-                          'latino_WZTo2L2Q__part27.root',
-                          'latino_WZTo2L2Q__part28.root',
-                          'latino_WZTo2L2Q__part29.root',
-                          'latino_WZTo2L2Q__part3.root',
-                          'latino_WZTo2L2Q__part30.root',
-                          'latino_WZTo2L2Q__part31.root',
-                          'latino_WZTo2L2Q__part32.root',
-                          'latino_WZTo2L2Q__part33.root',
-                          'latino_WZTo2L2Q__part34.root',
-                          'latino_WZTo2L2Q__part35.root',
-                          'latino_WZTo2L2Q__part36.root',
-                          'latino_WZTo2L2Q__part37.root',
-                          'latino_WZTo2L2Q__part38.root',
-                          'latino_WZTo2L2Q__part39.root',
-                          'latino_WZTo2L2Q__part4.root',
-                          'latino_WZTo2L2Q__part40.root',
-                          'latino_WZTo2L2Q__part41.root',
-                          'latino_WZTo2L2Q__part42.root',
-                          'latino_WZTo2L2Q__part5.root',
-                          'latino_WZTo2L2Q__part6.root',
-                          'latino_WZTo2L2Q__part7.root',
-                          'latino_WZTo2L2Q__part8.root',
-                          'latino_WZTo2L2Q__part9.root',                          
-                          #
-                          'latino_ZZTo2L2Q__part0.root',
-                          'latino_ZZTo2L2Q__part1.root',
-                          'latino_ZZTo2L2Q__part2.root',
-                          'latino_ZZTo2L2Q__part3.root',
-                          #
-                          #'latino_ZZTo4L.root'
-                         ], 
-                      'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
-                      #'weights': ['1'] ,           
-                      #'isData': ['0'],                            
-                  }
+#samples['VZ']  = {    'name': [
+                          ##'latino_WZ.root', 
+                          #'latino_WZTo3LNu.root', 
+                          ##'latino_ZZ.root', # ---> replaced by inclusive samples
+                          ##'latino_ZZTo2L2Nu.root',   # ----> FIXME to be restored
+                          ##'latino_ZZTo2L2Q.root'
+                          #'latino_WZTo2L2Q__part0.root',
+                          #'latino_WZTo2L2Q__part1.root',
+                          #'latino_WZTo2L2Q__part10.root',
+                          #'latino_WZTo2L2Q__part11.root',
+                          #'latino_WZTo2L2Q__part12.root',
+                          #'latino_WZTo2L2Q__part13.root',
+                          #'latino_WZTo2L2Q__part14.root',
+                          #'latino_WZTo2L2Q__part15.root',
+                          #'latino_WZTo2L2Q__part16.root',
+                          #'latino_WZTo2L2Q__part17.root',
+                          #'latino_WZTo2L2Q__part18.root',
+                          #'latino_WZTo2L2Q__part19.root',
+                          #'latino_WZTo2L2Q__part2.root',
+                          #'latino_WZTo2L2Q__part20.root',
+                          #'latino_WZTo2L2Q__part21.root',
+                          #'latino_WZTo2L2Q__part22.root',
+                          #'latino_WZTo2L2Q__part23.root',
+                          #'latino_WZTo2L2Q__part24.root',
+                          #'latino_WZTo2L2Q__part25.root',
+                          #'latino_WZTo2L2Q__part26.root',
+                          #'latino_WZTo2L2Q__part27.root',
+                          #'latino_WZTo2L2Q__part28.root',
+                          #'latino_WZTo2L2Q__part29.root',
+                          #'latino_WZTo2L2Q__part3.root',
+                          #'latino_WZTo2L2Q__part30.root',
+                          #'latino_WZTo2L2Q__part31.root',
+                          #'latino_WZTo2L2Q__part32.root',
+                          #'latino_WZTo2L2Q__part33.root',
+                          #'latino_WZTo2L2Q__part34.root',
+                          #'latino_WZTo2L2Q__part35.root',
+                          #'latino_WZTo2L2Q__part36.root',
+                          #'latino_WZTo2L2Q__part37.root',
+                          #'latino_WZTo2L2Q__part38.root',
+                          #'latino_WZTo2L2Q__part39.root',
+                          #'latino_WZTo2L2Q__part4.root',
+                          #'latino_WZTo2L2Q__part40.root',
+                          #'latino_WZTo2L2Q__part41.root',
+                          #'latino_WZTo2L2Q__part42.root',
+                          #'latino_WZTo2L2Q__part5.root',
+                          #'latino_WZTo2L2Q__part6.root',
+                          #'latino_WZTo2L2Q__part7.root',
+                          #'latino_WZTo2L2Q__part8.root',
+                          #'latino_WZTo2L2Q__part9.root',                          
+                          ##
+                          #'latino_ZZTo2L2Q__part0.root',
+                          #'latino_ZZTo2L2Q__part1.root',
+                          #'latino_ZZTo2L2Q__part2.root',
+                          #'latino_ZZTo2L2Q__part3.root',
+                          ##
+                          ##'latino_ZZTo4L.root'
+                         #], 
+                      #'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
+                      ##'weights': ['1'] ,           
+                      ##'isData': ['0'],                            
+                  #}
 
 
 
-samples['VVV'] = {    'name': [
-                          'latino_WZZ.root', 
-                          'latino_ZZZ.root',
-                          'latino_WWW.root',
-                          'latino_WWZ.root',
-                          ],      
-                      'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
-                      #'isData': ['0'],                            
-                  }
+#samples['VVV'] = {    'name': [
+                          #'latino_WZZ.root', 
+                          #'latino_ZZZ.root',
+                          #'latino_WWW.root',
+                          #'latino_WWZ.root',
+                          #],      
+                      #'weight' : 'puW*baseW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+                      ##'isData': ['0'],                            
+                  #}
 
 
 # Htautau
@@ -268,35 +256,140 @@ samples['VVV'] = {    'name': [
 
 samples['DATA']  = {   'name': [
                                 #
-                                #'../../../../../j/jlauwers/HWW2015/07Jun2016_Run2016B_PromptReco/l2loose16bis__hadd__l2tight/latino_Run2016B_PromptReco_DoubleEG.root',
-                                #'../../../../../j/jlauwers/HWW2015/07Jun2016_Run2016B_PromptReco/l2loose16bis__hadd__l2tight/latino_Run2016B_PromptReco_DoubleMuon.root',
-                                #'../../../../../j/jlauwers/HWW2015/07Jun2016_Run2016B_PromptReco/l2loose16bis__hadd__l2tight/latino_Run2016B_PromptReco_MuonEG.root',
-                                #'../../../../../j/jlauwers/HWW2015/07Jun2016_Run2016B_PromptReco/l2loose16bis__hadd__l2tight/latino_Run2016B_PromptReco_SingleElectron.root',
-                                #'../../../../../j/jlauwers/HWW2015/07Jun2016_Run2016B_PromptReco/l2loose16bis__hadd__l2tight/latino_Run2016B_PromptReco_SingleMuon.root',
-                                #     
-                                #'../../../../../j/jlauwers/HWW2015/07Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleEG.root',
-                                #'../../../../../j/jlauwers/HWW2015/07Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleMuon.root',
-                                #'../../../../../j/jlauwers/HWW2015/07Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_MuonEG.root',
-                                #'../../../../../j/jlauwers/HWW2015/07Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleElectron.root',
-                                #'../../../../../j/jlauwers/HWW2015/07Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleMuon.root',
                                 #
-                                '../../../../../../../../../cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleEG.root',
-                                '../../../../../../../../../cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleMuon.root',
-                                '../../../../../../../../../cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_MuonEG.root',
-                                '../../../../../../../../../cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleElectron.root',
-                                '../../../../../../../../../cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleMuon.root',
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../../           
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../../         
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../../         
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016C_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016C_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016C_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016C_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016C_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../../
+                                #../../../../../../../../../../            
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight/latino_Run2016C_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight/latino_Run2016C_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight/latino_Run2016C_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight/latino_Run2016C_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight/latino_Run2016C_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../../            
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight/latino_Run2016C_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight/latino_Run2016C_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight/latino_Run2016C_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight/latino_Run2016C_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight/latino_Run2016C_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../../            
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight/latino_Run2016D_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight/latino_Run2016D_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight/latino_Run2016D_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight/latino_Run2016D_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight/latino_Run2016D_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../../            
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight/latino_Run2016D_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight/latino_Run2016D_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight/latino_Run2016D_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight/latino_Run2016D_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../../eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight/latino_Run2016D_PromptReco_SingleElectron.root', 
                                 #
-                                '../../../../../../../../../cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleEG.root',
-                                '../../../../../../../../../cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleMuon.root',
-                                '../../../../../../../../../cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_MuonEG.root',
-                                '../../../../../../../../../cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleElectron.root',
-                                '../../../../../../../../../cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleMuon.root',
                                 #
                                 ] ,     
-                       'weight' : 'trigger',
-                       #'weight' : '1',
-                       #'weight' : 'std_vector_trigger[1]',
-                       'isData': ['all'],                            
+                      'weight' : '1',
+                      'weights' : [
+                                   #
+                                   #'',                          "HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_v*",                 # 8
+                                   #'',                          "HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_v*",                  # 6
+                                   #'',                          "HLT_Ele27_WPLoose_Gsf_v*",                                           # 47
+                                   #'',                          "HLT_Ele45_WPLoose_Gsf_v*",                                           # 56
+                                   #'',                          "HLT_IsoTkMu22_v*",                                                   # 42
+                                   #'',                          "HLT_IsoMu22_v*",                                                     # 43
+                                   #'',                          "HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ_v*",                       # 46
+                                   #'',                          "HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_v*",                              # 13
+                                   #'',                          "HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_v*",                                # 11
+                                   #'',
+                                   #'std_vector_trigger[8]  || std_vector_trigger[6]',           MuEG
+                                   #'std_vector_trigger[13] || std_vector_trigger[11]',          DoubleMu
+                                   #'std_vector_trigger[42] || std_vector_trigger[43]',          SingleMu
+                                   #'std_vector_trigger[46]',                                    DoubleEle
+                                   #'std_vector_trigger[47] || std_vector_trigger[56]',          SingleEle
+                                   #'',
+                                   #  if(pdType == MuEG) { return ( passesMuEGData_ );
+                                   #  } else if(pdType == DoubleMuon) { return ( !passesMuEGData_ && passesDoubleMuData_ );
+                                   #  } else if(pdType == SingleMuon) { return ( !passesMuEGData_ && !passesDoubleMuData_ && passesSingleMuData_ );
+                                   #  } else if(pdType == DoubleEG  ) { return ( !passesMuEGData_ && !passesDoubleMuData_ && !passesSingleMuData_ && passesDoubleElData_ );
+                                   #  } else if(pdType == SingleElectron) { return ( !passesMuEGData_ && !passesDoubleMuData_ && !passesSingleMuData_ && !passesDoubleElData_ && passesSingleElData_ );
+                                   #  } else if(pdType == AllEmbed) { return ( passesMuEGData_ || passesDoubleMuData_ || passesSingleMuData_ || passesDoubleElData_ || passesSingleElData_ );
+                                   #
+                                   #'std_vector_trigger[8]  || std_vector_trigger[6]',
+                                   #'!(std_vector_trigger[8]  || std_vector_trigger[6]) &&  (std_vector_trigger[13] || std_vector_trigger[11])',
+                                   #'!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) &&  (std_vector_trigger[42] || std_vector_trigger[43])',
+                                   #'!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) &&  (std_vector_trigger[46])',
+                                   #'!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) && !(std_vector_trigger[46])  && (std_vector_trigger[47] || std_vector_trigger[56])',
+                                   #
+                                   'std_vector_trigger[8]  || std_vector_trigger[6]',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) &&  (std_vector_trigger[13] || std_vector_trigger[11])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) &&  (std_vector_trigger[42] || std_vector_trigger[43])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) &&  (std_vector_trigger[46])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) && !(std_vector_trigger[46])  && (std_vector_trigger[47] || std_vector_trigger[56])',
+                                   #
+                                   'std_vector_trigger[8]  || std_vector_trigger[6]',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) &&  (std_vector_trigger[13] || std_vector_trigger[11])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) &&  (std_vector_trigger[42] || std_vector_trigger[43])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) &&  (std_vector_trigger[46])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) && !(std_vector_trigger[46])  && (std_vector_trigger[47] || std_vector_trigger[56])',
+                                   #
+                                   'std_vector_trigger[8]  || std_vector_trigger[6]',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) &&  (std_vector_trigger[13] || std_vector_trigger[11])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) &&  (std_vector_trigger[42] || std_vector_trigger[43])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) &&  (std_vector_trigger[46])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) && !(std_vector_trigger[46])  && (std_vector_trigger[47] || std_vector_trigger[56])',
+                                   #
+                                   'std_vector_trigger[8]  || std_vector_trigger[6]',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) &&  (std_vector_trigger[13] || std_vector_trigger[11])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) &&  (std_vector_trigger[42] || std_vector_trigger[43])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) &&  (std_vector_trigger[46])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) && !(std_vector_trigger[46])  && (std_vector_trigger[47] || std_vector_trigger[56])',
+                                   #
+                                   'std_vector_trigger[8]  || std_vector_trigger[6]',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) &&  (std_vector_trigger[13] || std_vector_trigger[11])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) &&  (std_vector_trigger[42] || std_vector_trigger[43])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) &&  (std_vector_trigger[46])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) && !(std_vector_trigger[46])  && (std_vector_trigger[47] || std_vector_trigger[56])',
+                                   #
+                                   'std_vector_trigger[8]  || std_vector_trigger[6]',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) &&  (std_vector_trigger[13] || std_vector_trigger[11])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) &&  (std_vector_trigger[42] || std_vector_trigger[43])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) &&  (std_vector_trigger[46])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) && !(std_vector_trigger[46])  && (std_vector_trigger[47] || std_vector_trigger[56])',
+                                   #
+                                   'std_vector_trigger[8]  || std_vector_trigger[6]',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) &&  (std_vector_trigger[13] || std_vector_trigger[11])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) &&  (std_vector_trigger[42] || std_vector_trigger[43])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) &&  (std_vector_trigger[46])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) && !(std_vector_trigger[46])  && (std_vector_trigger[47] || std_vector_trigger[56])',
+                                   #
+                                   'std_vector_trigger[8]  || std_vector_trigger[6]',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) &&  (std_vector_trigger[13] || std_vector_trigger[11])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) &&  (std_vector_trigger[42] || std_vector_trigger[43])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) &&  (std_vector_trigger[46])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) && !(std_vector_trigger[46])  && (std_vector_trigger[47] || std_vector_trigger[56])',
+                                   
+                                    ],
+                      'isData': ['all'],                            
                   }
 
 
