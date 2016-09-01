@@ -135,6 +135,8 @@ plot['DY']  = {
                   #'isSignal' : 2                    
                   'cuts'  : {
                        'DYee'      : 0.80 ,
+                       'Zee'       : 0.80 ,
+                       'Zmm'       : 0.95 ,
                        'DYee2lepEB'      : 0.85 ,
                        'DYee2lepEE'      : 0.85 ,
                        'DYee0j'      : 0.85 ,

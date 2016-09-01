@@ -3,11 +3,20 @@
 #cuts = {}
   
 #supercut = 'abs(mll-91.1876)<15 \
-supercut = ' mll>20 \
+supercut = ' mll>60 \
              && std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>10 \
              && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13) \
              && std_vector_lepton_pt[2]<10 \
             '
+
+cuts['Zee']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
+                 && std_vector_lepton_pt[0]>30 && std_vector_lepton_pt[1]>20 \
+                 && mll>80 && mll<100 \
+               '
+
+cuts['Zmm']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)   \
+                 && mll>80 && mll<100 \
+               '
 
 cuts['DYee']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
                  && std_vector_lepton_pt[0]>30 && std_vector_lepton_pt[1]>20 \
