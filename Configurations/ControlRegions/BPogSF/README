@@ -1,6 +1,7 @@
 Module to compute private SF:
 
 This requires two steps:
+
 1) generation of plots to be used for SF derivation
 2) computation of the scale factor .csv tables
 
