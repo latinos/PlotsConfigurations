@@ -88,6 +88,9 @@ Backup:
 
     mkShapes.py      --pycfg=configuration.py  --doThreads=True   --inputDir=eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__puadder__hadd__bSFL2pTEff__l2tight/
     
+    mkShapes.py      --pycfg=configuration.py  --doThreads=True   --inputDir=eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight
+    
+    
 Test:
 
     TF1* f4 = new TF1 ("f4","[2]*(0.95 - [3]*TMath::Erf((x-[0])/[1]))",0,20);
