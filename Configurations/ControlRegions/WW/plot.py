@@ -19,12 +19,12 @@ groupPlot['DY']  = {
 
 
 
-#groupPlot['Fake']  = {  
-                  #'nameHR' : 'Fake',
-                  #'isSignal' : 0,
-                  #'color': 921,    # kGray + 1
-                  #'samples'  : ['Fake']
-              #}
+groupPlot['Fake']  = {  
+                  'nameHR' : 'Fake',
+                  'isSignal' : 0,
+                  'color': 921,    # kGray + 1
+                  'samples'  : ['Fake']
+              }
 
 
 groupPlot['top']  = {  
@@ -147,9 +147,10 @@ plot['WW']  = {
                   'scale'    : 1.0,   # ele/mu trigger efficiency   datadriven
                   
                   'cuts'  : {
-                       'ww2l2v_13TeV_ww_of0j'   : 0.90 ,
-                       'ww2l2v_13TeV_ww_of1j'   : 1.00 , 
-                       'ww2l2v_13TeV_ww_of2j'   : 1.00 ,                
+                       'ww2l2v_13TeV_ww_of'     : 1.05 ,
+                       'ww2l2v_13TeV_ww_of0j'   : 1.05 ,
+                       'ww2l2v_13TeV_ww_of1j'   : 1.20 , 
+                       'ww2l2v_13TeV_ww_of2j'   : 1.20 ,                
                   
                   }
                  }
