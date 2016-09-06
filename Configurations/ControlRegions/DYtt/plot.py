@@ -2,28 +2,21 @@
 
 
 
+
+
 # groupPlot = {}
 # 
 # Groups of samples to improve the plots.
 # If not defined, normal plots is used
 #
 
-groupPlot['DY']  = {  
-                  'nameHR' : "DY",
-                  'isSignal' : 0,
-                  'color': 418,    # kGreen+2
-                  'samples'  : ['DY']
-              }
-
-
-
 groupPlot['Fake']  = {  
                   'nameHR' : 'Fake',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fake','Wjets']
+                  'samples'  : ['Fake']
               }
- 
+
 
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bart',
@@ -55,11 +48,19 @@ groupPlot['VZ']  = {
               }
 
 
-groupPlot['Higgs']  = {  
-                  'nameHR' : 'Higgs',
-                  'isSignal' : 1,
-                  'color': 632, # kRed 
-                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww']
+#groupPlot['Higgs']  = {  
+                  #'nameHR' : 'Higgs',
+                  #'isSignal' : 1,
+                  #'color': 632, # kRed 
+                  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww']
+              #}
+
+
+groupPlot['DY']  = {  
+                  'nameHR' : "DY",
+                  'isSignal' : 0,
+                  'color': 418,    # kGreen+2
+                  'samples'  : ['DY']
               }
 
 
@@ -74,27 +75,7 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 1.0,
-                  'cuts'  : {
-                       'hww2l2v_13TeV_of0j'      : 0.95 ,
-                       'hww2l2v_13TeV_top_of0j'  : 0.95 , 
-                       'hww2l2v_13TeV_dytt_of0j' : 0.91 ,
-                       'hww2l2v_13TeV_em_0j'     : 0.95 , 
-                       'hww2l2v_13TeV_me_0j'     : 0.95 , 
-                       #
-                       'hww2l2v_13TeV_of1j'      : 1.08 ,
-                       'hww2l2v_13TeV_top_of1j'  : 1.08 , 
-                       'hww2l2v_13TeV_dytt_of1j' : 0.75 ,
-                       'hww2l2v_13TeV_em_1j'     : 1.08 , 
-                       'hww2l2v_13TeV_me_1j'     : 1.08 , 
-                       #
-                       'hww2l2v_13TeV_of2j'      : 1.00 ,
-                       'hww2l2v_13TeV_top_of2j'  : 1.00 , 
-                       'hww2l2v_13TeV_dytt_of2j' : 0.68 ,
-                       'hww2l2v_13TeV_em_2j'     : 1.00 , 
-                       'hww2l2v_13TeV_me_2j'     : 1.00 , 
-                        },
-
+                  'scale'    : 1.0
               }
 
 
@@ -149,19 +130,13 @@ plot['top'] = {
                   'isSignal' : 0,
                   'isData'   : 0, 
                   'scale'    : 1.0,
+                  
                   'cuts'  : {
-                       'hww2l2v_13TeV_of0j'      : 0.94 ,
-                       'hww2l2v_13TeV_top_of0j'  : 0.94 , 
-                       'hww2l2v_13TeV_dytt_of0j' : 1.00 ,
-                       'hww2l2v_13TeV_em_0j'     : 0.94 , 
-                       'hww2l2v_13TeV_me_0j'     : 0.94 , 
-                       #
-                       'hww2l2v_13TeV_of1j'      : 0.86 ,
-                       'hww2l2v_13TeV_top_of1j'  : 0.86 , 
-                       'hww2l2v_13TeV_dytt_of1j' : 1.00 ,
-                       'hww2l2v_13TeV_em_1j'     : 0.86 , 
-                       'hww2l2v_13TeV_me_1j'     : 0.86 , 
+                       'ww2l2v_13TeV_ww_of0j'   : 0.98 ,
+                       'ww2l2v_13TeV_ww_of1j'   : 0.87 , 
+                       'ww2l2v_13TeV_ww_of2j'   : 0.90 ,                
                         },
+                  
                   }
 
 
@@ -169,8 +144,17 @@ plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,    
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+                  'scale'    : 1.0,   # ele/mu trigger efficiency   datadriven
+                  
+                  'cuts'  : {
+                       'ww2l2v_13TeV_ww_of'     : 1.05 ,
+                       'ww2l2v_13TeV_ww_of0j'   : 1.05 ,
+                       'ww2l2v_13TeV_ww_of1j'   : 1.20 , 
+                       'ww2l2v_13TeV_ww_of2j'   : 1.20 ,                
+                  
                   }
+                 }
+                  
 
 plot['ggWW']  = {
                   'color': 850, # kAzure -10
@@ -314,7 +298,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  #'isBlind'  : 1
+                  'isBlind'  : 0
               }
 
 
@@ -323,7 +307,11 @@ plot['DATA']  = {
 # additional options
 
 # legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
-legend['lumi'] = 'L = 6.4/fb' # 2.318 fb-1
+#legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
+#legend['lumi'] = 'L = 2.6/fb' # 
+#legend['lumi'] = 'L = 4.3/fb' # 
+#legend['lumi'] = 'L = 6.3/fb' # 
+legend['lumi'] = 'L = 12.3/fb' # 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 
