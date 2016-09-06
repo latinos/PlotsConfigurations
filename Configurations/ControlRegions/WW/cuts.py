@@ -3,7 +3,7 @@
 #cuts = {}
   
 supercut = 'mll>80  \
-            && std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>13 \
+            && std_vector_lepton_pt[0]>25 && std_vector_lepton_pt[1]>13 \
             && std_vector_lepton_pt[2]<10 \
             && metPfType1 > 20 \
             && ptll > 30 \
@@ -21,6 +21,9 @@ supercut = 'mll>80  \
       '
 
                
+cuts['ww2l2v_13TeV_ww_of']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
+                '
+               
 cuts['ww2l2v_13TeV_ww_of0j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
                 && njet == 0 \
                 '
@@ -31,7 +34,7 @@ cuts['ww2l2v_13TeV_ww_of1j']  = '(std_vector_lepton_flavour[0] * std_vector_lept
 
 
 cuts['ww2l2v_13TeV_ww_of2j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
-                && njet == 2 \
+                && njet >= 2 \
                 '
 
 
