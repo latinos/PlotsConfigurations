@@ -113,6 +113,73 @@ variables['eta2']  = {  'name': 'std_vector_lepton_eta[1]',
                        'fold'  : 3                         
                        }
 
+
+variables['eta1large']  = {  'name': 'std_vector_lepton_eta[0]',     
+                       'range' : ([-2.4, -2.1, -1.6, -1.2, -0.8, -0.3, -0.2, 0.2, 0.3, 0.8, 1.2, 1.6, 2.1, 2.4,],),
+                       'xaxis' : '#eta 1st lep',
+                       'fold'  : 3                         
+                       }
+
+variables['eta2large']  = {  'name': 'std_vector_lepton_eta[1]',     
+                       'range' : ([-2.4, -2.1, -1.6, -1.2, -0.8, -0.3, -0.2, 0.2, 0.3, 0.8, 1.2, 1.6, 2.1, 2.4,],),
+                       'xaxis' : '#eta 2nd lep',
+                       'fold'  : 3                         
+                       }
+
+
+
+
+
+
+# jets
+
+
+
+
+variables['mjj']  = {  'name': 'mjj',
+                       'range': (30,200,1000),  #for 500 < mjj < 1000
+                     # 'range': (15,1000,2000),  #for  mjj > 1000
+                       'xaxis': 'm_{jj} [GeV]',
+                       'fold': 0
+                       }
+
+
+variables['detajj']  = {  'name': 'detajj',
+                       'range': (24,0.0,6.0),
+                       'xaxis': '#Delta#eta_{jj}',
+                       'fold': 0
+                       }
+
+
+variables['jetpt1']  = {   'name': 'std_vector_jet_pt[0]',     
+                        'range' : (25,30,200),   
+                        'xaxis' : 'p_{T} 1st jet',
+                        'fold'  : 0                         
+                        }
+
+variables['jetpt2']  = {   'name': 'std_vector_jet_pt[1]',     
+                        'range' : (25,30,100),   
+                        'xaxis' : 'p_{T} 2nd jet',
+                        'fold'  : 0                         
+                        }
+
+variables['jeteta1']  = {  'name': 'std_vector_jet_eta[0]',     
+                        'range' : (80,-4.5,4.5),   
+                        'xaxis' : '#eta 1st jet',
+                        'fold'  : 0                         
+                        }
+
+variables['jeteta2']  = {  'name': 'std_vector_jet_eta[1]',     
+                        'range' : (80,-4.5,4.5),   
+                        'xaxis' : '#eta 2nd jet',
+                        'fold'  : 0                         
+                        }
+
+
+
+
+
+
 # variables['r91']   = {  'name': 'std_vector_electron_full5x5R9[0]',     
 #                        'range' : (100,0.8,1.05),   
 #                        'xaxis' : 'R9 1st lep',
