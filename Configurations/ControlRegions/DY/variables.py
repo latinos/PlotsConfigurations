@@ -145,7 +145,7 @@ variables['mjj']  = {  'name': 'mjj',
 
 
 variables['detajj']  = {  'name': 'detajj',
-                       'range': (24,0.0,6.0),
+                       'range': (48,0.0,5.0),
                        'xaxis': '#Delta#eta_{jj}',
                        'fold': 0
                        }

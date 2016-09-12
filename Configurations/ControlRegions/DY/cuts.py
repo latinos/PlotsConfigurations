@@ -4,7 +4,7 @@
   
 #supercut = 'abs(mll-91.1876)<15 \
 supercut = ' mll>60 \
-             && std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>10 \
+             && std_vector_lepton_pt[0]>25 && std_vector_lepton_pt[1]>10 \
              && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13) \
              && std_vector_lepton_pt[2]<10 \
             '
@@ -18,27 +18,49 @@ cuts['Zmm']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 
                  && mll>80 && mll<100 \
                '
 
-cuts['DYee']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
+#cuts['DYee']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
+                 #&& std_vector_lepton_pt[0]>30 && std_vector_lepton_pt[1]>20 \
+                 #&& mll>60 \
+               #'
+
+#cuts['DYmm']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)   \
+                 #&& mll>60 \
+               #'
+
+#cuts['DYeeLowVtx']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
+                 #&& std_vector_lepton_pt[0]>30 && std_vector_lepton_pt[1]>20 \
+                 #&& mll>60 \
+                 #&& nvtx<10  \
+               #'
+
+
+#cuts['DYeeHighVtx']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
+                 #&& std_vector_lepton_pt[0]>30 && std_vector_lepton_pt[1]>20 \
+                 #&& mll>60 \
+                 #&& nvtx>=10  \
+              #'
+
+
+
+
+
+cuts['Zee2j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
                  && std_vector_lepton_pt[0]>30 && std_vector_lepton_pt[1]>20 \
-                 && mll>60 \
+                 && mll>80 && mll<100 \
+                 && njet >= 2 \
                '
 
-cuts['DYmm']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)   \
-                 && mll>60 \
-               '
-
-cuts['DYeeLowVtx']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
-                 && std_vector_lepton_pt[0]>30 && std_vector_lepton_pt[1]>20 \
-                 && mll>60 \
-                 && nvtx<10  \
+cuts['Zmm2j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)   \
+                 && mll>80 && mll<100 \
+                 && njet >= 2 \
                '
 
 
-cuts['DYeeHighVtx']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
-                 && std_vector_lepton_pt[0]>30 && std_vector_lepton_pt[1]>20 \
-                 && mll>60 \
-                 && nvtx>=10  \
-              '
+
+
+
+
+
 
 
 #cuts['DYee2lepEB']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \

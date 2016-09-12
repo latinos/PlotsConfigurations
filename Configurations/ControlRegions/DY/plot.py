@@ -142,6 +142,9 @@ plot['DY']  = {
                        'DYee0j'      : 0.85 ,
                        'DYee1j'      : 0.85 ,
                        'DYee2j'      : 0.85 ,
+                       #
+                       'Zmm2j'      : 0.97 ,
+                       'Zee2j'      : 1.00 ,
                        #'DYeeLowVtx'      : 0.86 ,
                        #'DYeeHighVtx'      : 0.80 ,
                        #
