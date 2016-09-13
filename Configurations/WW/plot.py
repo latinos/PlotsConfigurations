@@ -49,7 +49,7 @@ groupPlot['Higgs']  = {
 
 
 groupPlot['top']  = {  
-                  'nameHR' : 'tW and t#bart',
+                  'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
                   'color': 400,   # kYellow
                   'samples'  : ['top']
@@ -69,7 +69,7 @@ groupPlot['WW']  = {
 # keys here must match keys in samples.py    
 #                    
 plot['top'] = {   
-                  'nameHR' : 'tW and t#bart',
+                  'nameHR' : 'tW and t#bar{t}',
                   'color': 400,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
@@ -121,7 +121,7 @@ plot['FakeQCD']  = {
 
 
 plot['ttbar'] = {   
-                  'nameHR' : 't#bart',
+                  'nameHR' : 't#bar{t}',
                   'color': 400,   # kYellow 
                   'isSignal' : 0,
                   'isData'   : 0 ,
