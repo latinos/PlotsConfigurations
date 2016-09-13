@@ -48,19 +48,18 @@ variables['met']  = {   'name': 'metPfType1',            #   variable name
                         #}
 
 
-
 variables['mjj']  = {  'name': 'mjj',
-                       'range': (15,200,1000),  #for 500 < mjj < 1000
+                       'range': (30,200,1000),  #for 500 < mjj < 1000
                      # 'range': (15,1000,2000),  #for  mjj > 1000
                        'xaxis': 'm_{jj} [GeV]',
-                       'fold': 3
+                       'fold': 0
                        }
 
 
 variables['detajj']  = {  'name': 'detajj',
-                       'range': (12,0.0,6.0),
+                       'range': (48,0.0,5.0),
                        'xaxis': '#Delta#eta_{jj}',
-                       'fold': 3
+                       'fold': 0
                        }
 
 
@@ -77,13 +76,13 @@ variables['jetpt2']  = {   'name': 'std_vector_jet_pt[1]',
                         }
 
 variables['jeteta1']  = {  'name': 'std_vector_jet_eta[0]',     
-                        'range' : (20,-4.5,4.5),   
+                        'range' : (80,-4.5,4.5),   
                         'xaxis' : '#eta 1st jet',
                         'fold'  : 0                         
                         }
 
 variables['jeteta2']  = {  'name': 'std_vector_jet_eta[1]',     
-                        'range' : (20,-4.5,4.5),   
+                        'range' : (80,-4.5,4.5),   
                         'xaxis' : '#eta 2nd jet',
                         'fold'  : 0                         
                         }
