@@ -6,6 +6,7 @@ Common tools for analysis:
     plot distributions
     limit and significance results
 
+    source /afs/cern.ch/project/eos/installation/user/etc/setup.sh
 
 Some useful aliases:
     
@@ -16,18 +17,19 @@ Some useful aliases:
 
 Steps to get datacards and plots:
 
-      source /afs/cern.ch/project/eos/installation/user/etc/setup.sh
-
       cd /tmp/ntrevisa/    
 
-      eosmount eos
+      eosmount eosBig
+
+      alias eosusermount='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine.user/bin/eos.select -b fuse mount'
+
+      eosusermount eos										      
 
       cd -
 
-      mkShapes.py      --pycfg=configuration.py  --inputDir=/tmp/ntrevisa/eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel --doThread=True
+      mkShapes.py      --pycfg=configuration.py  --inputDir=/tmp/ntrevisa/eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/ --doThread=True
     
       mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_monoHWW.root
-
 
       mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_monoHWW.root
     
