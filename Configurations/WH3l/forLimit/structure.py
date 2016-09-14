@@ -10,10 +10,10 @@ structure['Fake']  = {
               }
 
 
-#structure['WW']  = {
-#                  'isSignal' : 0,
-#                  'isData'   : 0    
-#                  }
+structure['WW']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0    
+                  }
 
 #structure['ggWW']  = {
 #                  'isSignal' : 0,
