@@ -35,22 +35,22 @@ variables['detajj']  = {  'name': 'detajj',
 
 
 variables['mll']  = {   'name': 'mll',            #   variable name    
-                        'range' : (10,0,200),    #   variable range
+                        'range' : (20,0,200),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
                         'fold' : 0
                         }
 
-# variables['mth']  = {   'name': 'mth',            #   variable name    
-#                         'range' : (10,60,200),    #   variable range
-#                         'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
-#                          'fold' : 0
-#                         }
+variables['mth']  = {   'name': 'mth',            #   variable name    
+                        'range' : (10,60,200),    #   variable range
+                        'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
+                         'fold' : 0
+                        }
 
-# variables['mtw2']  = {   'name': 'mtw2',     
-#                         'range' : (10,0,200),   
-#                         'xaxis' : 'm_{T}^{W2}',
-#                         'fold' : 3
-#                         }
+variables['mtw2']  = {   'name': 'mtw2',     
+                        'range' : (10,0,200),   
+                        'xaxis' : 'm_{T}^{W2}',
+                        'fold' : 3
+                        }
 
 # variables['dphill']  = {   'name': 'abs(dphill)',     
 #                         'range' : (10,0,3.14),   

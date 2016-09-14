@@ -82,7 +82,7 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  'samples'  : ['H_htt', 'WH_hww', 'ZH_hww', 'ggZH_hww']
+                  'samples'  : ['WH_htt', 'WH_hww', 'ZH_hww', 'ggZH_hww']
               }
 
 
@@ -262,7 +262,7 @@ plot['VVV']  = {
 
 # Htautau
 
-plot['H_htt'] = {
+plot['WH_htt'] = {
                   'nameHR' : 'Htt',
                   'color': 632+4, # kRed+4 
                   'isSignal' : 1,
@@ -337,8 +337,7 @@ plot['DATA']  = {
 
 # additional options
 
-# legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
-legend['lumi'] = 'L = 6.3/fb' # 6.264 fb-1
+legend['lumi'] = 'L = 12.3/fb' # 12.2950 fb-1
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 

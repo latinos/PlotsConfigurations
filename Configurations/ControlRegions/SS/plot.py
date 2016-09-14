@@ -96,10 +96,10 @@ plot['Fake']  = {
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0,
-                  'cuts'  : {
-                       'hww2l2v_13TeV_ss_of0j'      : 0.8 ,
-                       'hww2l2v_13TeV_ss_of1j'      : 0.8 , 
-                            },
+                  #'cuts'  : {
+                       #'hww2l2v_13TeV_ss_of0j'      : 0.8 ,
+                       #'hww2l2v_13TeV_ss_of1j'      : 0.8 , 
+                            #},
 
 
               }
@@ -299,7 +299,8 @@ plot['DATA']  = {
 # additional options
 
 #legend['lumi'] = 'L = 4.3/fb' 
-legend['lumi'] = 'L = 6.3/fb'
+#legend['lumi'] = 'L = 6.3/fb'
+legend['lumi'] = 'L = 12.3/fb' # 
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
