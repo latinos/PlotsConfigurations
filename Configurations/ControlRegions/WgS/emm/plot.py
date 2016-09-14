@@ -109,7 +109,7 @@ plot['WgSee']  = {
                   'color': 616-1, # kMagenta-1
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.4
+                  'scale'    : 1.
                   }
 
 
@@ -120,7 +120,7 @@ plot['WgSmm']  = {
                   'color': 616+1, # kMagenta+1
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.4
+                  'scale'    : 1.
                   }
 
 
@@ -249,7 +249,8 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 4.3/fb'
+#legend['lumi'] = 'L = 4.3/fb'
+legend['lumi'] = 'L = 11.4/fb'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 
