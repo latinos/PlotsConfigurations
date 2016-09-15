@@ -57,14 +57,69 @@ groupPlot['VZ']  = {
               }
 
 
-#groupPlot['Higgs']  = {  
-                  #'nameHR' : 'Higgs',
-                  #'isSignal' : 1,
-                  #'color': 632, # kRed 
-                  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww']
-              #}
+groupPlot['Higgs']  = {  
+                  'nameHR' : 'Higgs',
+                  'isSignal' : 0,
+                  'color': 632, # kRed 
+                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww']
+              }
 
 
+groupPlot['600']  = {  
+                  'nameHR' : 'mZ=600 GeV',
+                  'isSignal' : 2,
+                  'color': 800, # kOrange 
+                  'samples'  : ['monoH_600']
+              }
+
+groupPlot['800']  = {  
+                  'nameHR' : 'mZ=800 GeV',
+                  'isSignal' : 2,
+                  'color': 801, # kOrange + 1 
+                  'samples'  : ['monoH_800']
+              }
+
+# groupPlot['1000']  = {  
+#                   'nameHR' : 'mZ=1000 GeV',
+#                   'isSignal' : 2,
+#                   'color': 802, # kOrange + 2 
+#                   'samples'  : ['monoH_1000']
+#               }
+
+groupPlot['1200']  = {  
+                  'nameHR' : 'mZ=1200 GeV',
+                  'isSignal' : 2,
+                  'color': 803, # kOrange + 3 
+                  'samples'  : ['monoH_1200']
+              }
+
+# groupPlot['1400']  = {   
+#                   'nameHR' : 'mZ=1400 GeV',
+#                   'isSignal' : 2,
+#                   'color': 804, # kOrange + 4 
+#                   'samples'  : ['monoH_1400']
+#               }
+
+groupPlot['1700']  = {  
+                  'nameHR' : 'mZ=1700 GeV',
+                  'isSignal' : 2,
+                  'color': 805, # kOrange + 5 
+                  'samples'  : ['monoH_1700']
+              }
+
+groupPlot['2000']  = {  
+                  'nameHR' : 'mZ=2000 GeV',
+                  'isSignal' : 2,
+                  'color': 806, # kOrange + 6 
+                  'samples'  : ['monoH_2000']
+              }
+
+groupPlot['2500']  = {  
+                  'nameHR' : 'mZ=2500 GeV',
+                  'isSignal' : 2,
+                  'color': 807, # kOrange + 7 
+                  'samples'  : ['monoH_2500']
+              }
 
 
 #plot = {}
@@ -244,7 +299,7 @@ plot['H_htt'] = {
 plot['H_hww'] = {
                   'nameHR' : 'Hww',
                   'color': 632, # kRed 
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
@@ -252,7 +307,7 @@ plot['H_hww'] = {
 plot['ZH_hww'] = {
                   'nameHR' : 'ZH',
                   'color': 632+3, # kRed+3 
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
@@ -260,7 +315,7 @@ plot['ZH_hww'] = {
 plot['ggZH_hww'] = {
                   'nameHR' : 'ggZH',
                   'color': 632+4, # kRed+4
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
@@ -268,7 +323,7 @@ plot['ggZH_hww'] = {
 plot['WH_hww'] = {
                   'nameHR' : 'WH',
                   'color': 632+2, # kRed+2 
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
@@ -277,7 +332,7 @@ plot['WH_hww'] = {
 plot['qqH_hww'] = {
                   'nameHR' : 'qqH',
                   'color': 632+1, # kRed+1 
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
@@ -286,7 +341,73 @@ plot['qqH_hww'] = {
 plot['ggH_hww'] = {
                   'nameHR' : 'ggH',
                   'color': 632, # kRed 
-                  'isSignal' : 1,
+                  'isSignal' : 0,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+
+#monoH
+
+plot['monoH_600'] = {
+                  'nameHR' : 'mZ600',
+                  'color': 800, # kOrange 
+                  'isSignal' : 2,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+
+plot['monoH_800'] = {
+                  'nameHR' : 'mZ800',
+                  'color': 801, # kOrange + 1
+                  'isSignal' : 2,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+
+plot['monoH_1000'] = {
+                  'nameHR' : 'mZ1000',
+                  'color': 802, # kOrange + 2
+                  'isSignal' : 2,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+
+plot['monoH_1200'] = {
+                  'nameHR' : 'mZ1200',
+                  'color': 803, # kOrange + 3
+                  'isSignal' : 2,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+
+plot['monoH_1400'] = {
+                  'nameHR' : 'mZ1400',
+                  'color': 804, # kOrange + 4
+                  'isSignal' : 2,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+
+plot['monoH_1700'] = {
+                  'nameHR' : 'mZ1700',
+                  'color': 805, # kOrange + 5 
+                  'isSignal' : 2,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+
+plot['monoH_2000'] = {
+                  'nameHR' : 'mZ2000',
+                  'color': 806, # kOrange + 6
+                  'isSignal' : 2,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+
+plot['monoH_2500'] = {
+                  'nameHR' : 'mZ2500',
+                  'color': 807, # kOrange + 7 
+                  'isSignal' : 2,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }

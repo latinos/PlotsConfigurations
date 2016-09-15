@@ -27,7 +27,7 @@ lumi = 12.3
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = '/afs/cern.ch/user/n/ntrevisa/www/figuresLxplus/07Sep2016/monoH'
+outputDirPlots = '/afs/cern.ch/user/n/ntrevisa/www/figuresLxplus/15Sep2016/monoH'
 
 
 # used by mkDatacards to define output directory for datacards

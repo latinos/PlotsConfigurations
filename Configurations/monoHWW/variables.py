@@ -30,13 +30,13 @@ variables['ptll']  = {   'name': 'ptll',            #   variable name
                          'fold' : 3
                          }
 
-variables['pt1']  = {   'name': 'pt1',            #   variable name    
+variables['pt1']  = {   'name': 'std_vector_lepton_pt[1]',            #   variable name    
                         'range' : (20,0,200),    #   variable range
                         'xaxis' : 'p_{T}^{1st lep} [GeV]',  #   x axis name
                         'fold' : 3
                         }
 
-variables['pt2']  = {   'name': 'pt2',            #   variable name    
+variables['pt2']  = {   'name': 'std_vector_lepton_pt[2]',            #   variable name    
                         'range' : (20,0,200),    #   variable range
                         'xaxis' : 'p_{T}^{2nd lep} [GeV]',  #   x axis name
                         'fold' : 3
@@ -55,6 +55,12 @@ variables['dphill'] = {   'name': 'dphill',            #   variable name
                           'fold' : 0
                           }
 
+variables['njet']  = {   'name': 'njet',      
+                         'range' : (10,0,10),  
+                         'xaxis' : 'njet', 
+                         'fold' : 0
+                         }
+                        
 variables['nvtx']  = {   'name': 'nvtx',      
                          'range' : (40,0,40),  
                          'xaxis' : 'nvtx', 

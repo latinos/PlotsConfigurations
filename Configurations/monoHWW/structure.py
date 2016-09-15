@@ -139,7 +139,44 @@ structure['H_hww'] = {
                   'isData'   : 0    
                   }
 
+# Signals
+
 structure['monoH_600'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['monoH_800'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['monoH_1000'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['monoH_1200'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['monoH_1400'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['monoH_1700'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['monoH_2000'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['monoH_2500'] = {
                   'isSignal' : 1,
                   'isData'   : 0    
                   }
