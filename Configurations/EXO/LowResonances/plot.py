@@ -8,14 +8,6 @@
 # If not defined, normal plots is used
 #
 
-groupPlot['DY']  = {  
-                  'nameHR' : "DY",
-                  'isSignal' : 0,
-                  'color': 418,    # kGreen+2
-                  'samples'  : ['DY']
-              }
-
-
 
 groupPlot['Fake']  = {  
                   'nameHR' : 'Fake',
@@ -46,20 +38,20 @@ groupPlot['WW']  = {
                   #'samples'  : ['WWewk']
               #}
 
-groupPlot['VVV']  = {  
-                  'nameHR' : 'VVV',
-                  'isSignal' : 0,
-                  'color': 857, # kAzure -3  
-                  'samples'  : ['VVV']
-              }
+#groupPlot['VVV']  = {  
+                  #'nameHR' : 'VVV',
+                  #'isSignal' : 0,
+                  #'color': 857, # kAzure -3  
+                  #'samples'  : ['VVV']
+              #}
 
 
-groupPlot['VZ']  = {  
-                  'nameHR' : "VZ/#gamma*/#gamma",
-                  'isSignal' : 0,
-                  'color'    : 617,   # kViolet + 1  
-                  'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ']
-              }
+#groupPlot['VZ']  = {  
+                  #'nameHR' : "VZ/#gamma*/#gamma",
+                  #'isSignal' : 0,
+                  #'color'    : 617,   # kViolet + 1  
+                  #'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ']
+              #}
 
 
 #groupPlot['Higgs']  = {  
@@ -71,23 +63,31 @@ groupPlot['VZ']  = {
 
 
 
-
-groupPlot['HiggsOther']  = {  
-                  'nameHR' : 'ggH+VH',
-                  'isSignal' : 1,
-                  'color': 633, # kRed+1 
-                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww']
+groupPlot['DY']  = {  
+                  'nameHR' : "DY",
+                  'isSignal' : 0,
+                  'color': 418,    # kGreen+2
+                  'samples'  : ['DY']
               }
 
 
 
+#groupPlot['HiggsOther']  = {  
+                  #'nameHR' : 'ggH+VH',
+                  #'isSignal' : 1,
+                  #'color': 633, # kRed+1 
+                  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww']
+              #}
 
-groupPlot['HiggsVH']  = {  
-                  'nameHR' : 'VBF',
-                  'isSignal' : 1,
-                  'color': 632, # kRed 
-                  'samples'  : ['qqH_hww']
-              }
+
+
+
+#groupPlot['HiggsVH']  = {  
+                  #'nameHR' : 'VBF',
+                  #'isSignal' : 1,
+                  #'color': 632, # kRed 
+                  #'samples'  : ['qqH_hww']
+              #}
 
 
 

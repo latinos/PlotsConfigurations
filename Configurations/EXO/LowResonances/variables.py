@@ -4,11 +4,11 @@
     
 #'fold' : # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
    
-variables['events']  = {   'name': '1',      
-                        'range' : (1,0,2),  
-                        'xaxis' : 'events', 
-                         'fold' : 3
-                        }
+#variables['events']  = {   'name': '1',      
+                        #'range' : (1,0,2),  
+                        #'xaxis' : 'events', 
+                         #'fold' : 3
+                        #}
 
 #variables['mjj']  = {  'name': 'mjj',
                        #'range': (15,500,1000),  #for 500 < mjj < 1000
@@ -26,11 +26,28 @@ variables['mll']  = {   'name': 'mll',            #   variable name
                         }
 
 
-variables['mth']  = {   'name': 'mth',            #   variable name
-                        'range' : (10,30,200),    #   variable range
-                        'xaxis' : 'mth [GeV]',  #   x axis name
-                        'fold' : 3
+
+
+variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
+                        'range' : (50,25,200),   
+                        'xaxis' : 'p_{T} 1st lep',
+                        'fold'  : 0                         
                         }
+
+variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
+                        'range' : (50,25,100),   
+                        'xaxis' : 'p_{T} 2nd lep',
+                        'fold'  : 0                         
+                        }
+
+
+
+
+#variables['mth']  = {   'name': 'mth',            #   variable name
+                        #'range' : (10,30,200),    #   variable range
+                        #'xaxis' : 'mth [GeV]',  #   x axis name
+                        #'fold' : 3
+                        #}
 
 
 #variables['detajj']  = {  'name': 'detajj',
