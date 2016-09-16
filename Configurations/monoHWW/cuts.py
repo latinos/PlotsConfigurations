@@ -25,7 +25,7 @@ cuts['monoH_TwoLep_em'] = 'njet >= 0 \
 
 # BVeto level 
 
-cuts['monoH_BVeto_em'] = ' njet >= 0 \
+cuts['monoH_BVeto_em'] = 'njet >= 0 \
             && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13) \
             && mll>12  \
             && metPfType1 > 20 \
