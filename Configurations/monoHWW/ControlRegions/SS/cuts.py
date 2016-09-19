@@ -5,7 +5,7 @@
 
 #&& (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
 
-supercut = 'std_vector_lepton_pt[0]>25 && std_vector_lepton_pt[1]>10 \
+supercut = 'std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>20 \
             && std_vector_lepton_pt[2]<10 \
 '
 
@@ -18,7 +18,6 @@ cuts['monoH_SSCR_em']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flav
                 && metPfType1 > 20 \
                 && ptll > 30 \
                 && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] > 0) \
-                && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13) \
                 && ( mth>=60) \
                 && ( std_vector_jet_pt[0] < 30 ) \
                 && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
