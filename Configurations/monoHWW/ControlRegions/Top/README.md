@@ -31,7 +31,8 @@ Steps to get datacards and plots:
     
       mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_monoHWW.root
 
-      mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_monoHWW.root
+      
+      mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_monoHWW.root --minLogC=0.0001 --minLogCratio=0.0001 --maxLogC=1000 --maxLogCratio=1000
     
 
 Prune all datacards:
