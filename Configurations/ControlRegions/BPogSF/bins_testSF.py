@@ -3,4 +3,4 @@
 ptranges = [20, 30, -1]
 #ptranges = [30, -1]
 #ptranges = [30, -1]
-etaranges = [0., 1., 2.5]
+etaranges = [0., 2.5]
