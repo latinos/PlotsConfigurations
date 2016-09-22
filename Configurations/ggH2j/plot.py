@@ -26,7 +26,7 @@ groupPlot['Fake']  = {
 
 
 groupPlot['top']  = {  
-                  'nameHR' : 'tW and t#bart',
+                  'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
                   'color': 400,   # kYellow
                   'samples'  : ['top']
