@@ -182,7 +182,7 @@ plot['FakeQCD']  = {
 
 
 plot['tttbar'] = {   
-                  'nameHR' : 't#bart',
+                  'nameHR' : 't#bar{t}',
                   'color': 400,   # kYellow 
                   'isSignal' : 0,
                   'isData'   : 0 ,
@@ -199,7 +199,7 @@ plot['singletop'] = {
                   }
 
 plot['top'] = {   
-                  'nameHR' : 'tW and t#bart',
+                  'nameHR' : 't#bart and tW',
                   'color': 400,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
@@ -349,7 +349,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  #'isBlind'  : 1
+                  'isBlind'  : 0
               }
 
 
@@ -359,7 +359,7 @@ plot['DATA']  = {
 
 # legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
 #legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
-legend['lumi'] = 'L = 4.3/fb' # XXX fb-1
+legend['lumi'] = 'L = 12.3/fb' # XXX fb-1
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 
