@@ -10,29 +10,21 @@
 # If not defined, normal plots is used
 #
 
-groupPlot['DY']  = {  
-                  'nameHR' : "DY",
+groupPlot['ZH']  = {  
+                  'nameHR' : 'ZH',
                   'isSignal' : 0,
-                  'color': 418,    # kGreen+2
-                  'samples'  : ['DY']
+                  'color': 635, # kRed + 3
+                  'samples'  : ['ZH_hww', 'ggZH_hww']
               }
 
 
-
-groupPlot['Fake']  = {  
-                  'nameHR' : 'Fake',
+groupPlot['Higgs']  = {  
+                  'nameHR' : 'Higgs',
                   'isSignal' : 0,
-                  'color': 921,    # kGray + 1
-                  'samples'  : ['Fake']
+                  'color': 632, # kRed 
+                  'samples'  : ['H_htt', 'H_hww', 'WH_hww', 'qqH_hww', 'ggH_hww']
               }
 
-
-groupPlot['top']  = {  
-                  'nameHR' : 'tW and t#bart',
-                  'isSignal' : 0,
-                  'color': 400,   # kYellow
-                  'samples'  : ['top']
-              }
 
 groupPlot['WW']  = {  
                   'nameHR' : 'WW',
@@ -57,11 +49,26 @@ groupPlot['VZ']  = {
               }
 
 
-groupPlot['Higgs']  = {  
-                  'nameHR' : 'Higgs',
+groupPlot['Fake']  = {  
+                  'nameHR' : 'Fake',
                   'isSignal' : 0,
-                  'color': 632, # kRed 
-                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww']
+                  'color': 921,    # kGray + 1
+                  'samples'  : ['Fake']
+              }
+
+
+groupPlot['top']  = {  
+                  'nameHR' : 'tW and t#bart',
+                  'isSignal' : 0,
+                  'color': 400,   # kYellow
+                  'samples'  : ['top']
+              }
+
+groupPlot['DY']  = {  
+                  'nameHR' : "DY",
+                  'isSignal' : 0,
+                  'color': 418,    # kGreen+2
+                  'samples'  : ['DY']
               }
 
 
@@ -289,7 +296,7 @@ plot['ZZ']  = {
 plot['H_htt'] = {
                   'nameHR' : 'Htt',
                   'color': 632+4, # kRed+4 
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
@@ -419,13 +426,13 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0
+                  'isBlind'  : 1
               }
 
 
 
 
-# additional options
+# Additional options
 
 # legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
 #legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
