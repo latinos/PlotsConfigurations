@@ -2,6 +2,12 @@
 
 #samples = {}
 
+samples['WW']  = {    'name': [
+                                  'latino_WWTo2L2Nu.root'
+                                ],      
+                      'weight' : 'nllW*puW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+                      'weights': ['0.00619058124769'] ,           
+                  }
 
 
 #samples['WW']  = {    'name': [

@@ -4,14 +4,18 @@
     
 #'fold' : # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
    
+variables['mll']  = {   'name': 'mll',            #   variable name  
+                        'range' : (120,0,120),    #   variable range
+			'xaxis' : 'm_{ll} [GeV]',  #   x axis name
+			'fold' : 0
+			}
 
-
-variables['mT2']  = {   'name': 'mT2',            #   variable name    
-                        'range' : (20,0,200),    #   variable range
-                        'xaxis' : 'mT2 [GeV]',  #   x axis name
-                         'fold' : 3
-                        }
-
+#variables['mT2']  = {   'name': 'mT2',            #   variable name    
+#                        'range' : (20,0,200),    #   variable range
+#                        'xaxis' : 'mT2 [GeV]',  #   x axis name
+#                         'fold' : 3
+#                        }
+#
 variables['mtw1']  = {   'name': 'mtw1',            #   variable name    
                         'range' : (20,0,200),    #   variable range
                         'xaxis' : 'mtw1 [GeV]',  #   x axis name
