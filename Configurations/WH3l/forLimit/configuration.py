@@ -4,14 +4,15 @@ tag = 'WH3l'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFiles_NEW'
-
+outputDir = 'rootFiles_dRcheck'
+#outputDir = 'rootFiles_detailed'
 
 # file with list of variables
 variablesFile = 'variables.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
+#cutsFile = 'cuts_detailed.py'
 
 # file with list of samples
 samplesFile = 'samples.py' 
@@ -19,19 +20,18 @@ samplesFile = 'samples.py'
 # file with list of samples
 plotFile = 'plot.py' 
 
-
-
 # luminosity to normalize to (in 1/fb)
 lumi = 12.2950
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot_NEW'
-#outputDirPlots = 'plotWH_Top'
+#outputDirPlots = 'plot_detailed'
+outputDirPlots = 'plot_dRcheck'
 
 
 # used by mkDatacards to define output directory for datacards
 outputDirDatacard = 'datacards_NEW'
+#outputDirDatacard = 'datacards_detailed'
 
 
 # structure file for datacard
