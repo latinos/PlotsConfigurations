@@ -38,6 +38,16 @@ variables['mll']  = {   'name': 'mll',            #   variable name
                         }
 
 
+
+variables['mllfine']  = {   'name': 'mll',            #   variable name
+                        'range' : (8, 0,200),    #   variable range
+                        #'range' : (7,10,210),    #   variable range
+                      # 'range' : (12,90,300),    #   control region: mll > 90
+                        'xaxis' : 'mll [GeV]',  #   x axis name
+                        'fold' : 3
+                        }
+
+
 variables['mth']  = {   'name': 'mth',            #   variable name
                         'range' : (10,30,200),    #   variable range
                         'xaxis' : 'mth [GeV]',  #   x axis name
@@ -60,6 +70,14 @@ variables['ptll']  = {  'name': 'ptll',            #   variable name
 
 
 
+  
+variables['njet']  = {  'name': 'njet',      
+                        'range' : (5,0,5),  
+                        'xaxis' : 'njet', 
+                        'fold' : 3
+                        }
+
+
 #variables['mtw2']  = {   'name': 'mtw2',            #   variable name    
                         #'range' : (20,0,200),    #   variable range
                         #'xaxis' : 'm_{T}^{W2} [GeV]',  #   x axis name
@@ -75,17 +93,17 @@ variables['ptll']  = {  'name': 'ptll',            #   variable name
                        #}
 
 
-#variables['pt1']  = {  'name': 'std_vector_lepton_pt[0]',            #   variable name
-                       #'range' : (10,0,200),    #   variable range
-                              #'xaxis' : 'p_{T} 1st lep [GeV]',  #   x axis name
-                       #'fold' : 3
-                       #}
+variables['pt1']  = {  'name': 'std_vector_lepton_pt[0]',            #   variable name
+                       'range' : (20,0,200),    #   variable range
+                              'xaxis' : 'p_{T} 1st lep [GeV]',  #   x axis name
+                       'fold' : 3
+                       }
 
-#variables['pt2']  = {  'name': 'std_vector_lepton_pt[1]',            #   variable name
-                       #'range' : (10,0,200),    #   variable range
-                              #'xaxis' : 'p_{T} 2nd lep [GeV]',  #   x axis name
-                       #'fold' : 3
-                       #}
+variables['pt2']  = {  'name': 'std_vector_lepton_pt[1]',            #   variable name
+                       'range' : (20,0,200),    #   variable range
+                              'xaxis' : 'p_{T} 2nd lep [GeV]',  #   x axis name
+                       'fold' : 3
+                       }
 
 
 

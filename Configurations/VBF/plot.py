@@ -26,7 +26,7 @@ groupPlot['Fake']  = {
 
 
 groupPlot['top']  = {  
-                  'nameHR' : 'tW and t#bart',
+                  'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
                   'color': 400,   # kYellow
                   'samples'  : ['top']
@@ -113,6 +113,17 @@ plot['DY']  = {
                        'hww2l2v_13TeV_dytt_of1j' : 1.08 ,
                        'hww2l2v_13TeV_em_1j'     : 1.08 , 
                        'hww2l2v_13TeV_me_1j'     : 1.08 , 
+                       #
+                       'hww2l2v_13TeV_of2j_vbf_lowmjj'        :    0.931  ,
+                       'hww2l2v_13TeV_of2j_vbf_mediummjj'     :    0.931  ,
+                       'hww2l2v_13TeV_of2j_vbf_highmjj'       :    0.931  ,
+                       'hww2l2v_13TeV_top_of2j_vbf_highmjj'   :    0.931  ,
+                       'hww2l2v_13TeV_dytt_of2j_vbf_highmjj'  :    0.931  ,
+                       'hww2l2v_13TeV_top_of2j_vbf_lowmjj'    :    0.931  ,
+                       'hww2l2v_13TeV_dytt_of2j_vbf_lowmjj'   :    0.931  ,
+                       'hww2l2v_13TeV_top_of2j_vbf'           :    0.931  ,
+                       'hww2l2v_13TeV_dytt_of2j_vbf'          :    0.931  ,
+                       #    
                         },
 
               }
@@ -181,6 +192,16 @@ plot['top'] = {
                        'hww2l2v_13TeV_dytt_of1j' : 0.86 ,
                        'hww2l2v_13TeV_em_1j'     : 0.86 , 
                        'hww2l2v_13TeV_me_1j'     : 0.86 , 
+                       # 
+                       'hww2l2v_13TeV_of2j_vbf_lowmjj'        :    0.9544  ,
+                       'hww2l2v_13TeV_of2j_vbf_mediummjj'     :    0.9544  ,
+                       'hww2l2v_13TeV_of2j_vbf_highmjj'       :    0.797708  ,
+                       'hww2l2v_13TeV_top_of2j_vbf_highmjj'   :    0.797708  ,
+                       'hww2l2v_13TeV_dytt_of2j_vbf_highmjj'  :    0.797708  ,
+                       'hww2l2v_13TeV_top_of2j_vbf_lowmjj'    :    0.9544  ,
+                       'hww2l2v_13TeV_dytt_of2j_vbf_lowmjj'   :    0.9544  ,
+                       'hww2l2v_13TeV_top_of2j_vbf'           :    0.9544  ,
+                       'hww2l2v_13TeV_dytt_of2j_vbf'          :    0.9544  ,
                         },
                   }
 
@@ -343,7 +364,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  #'isBlind'  : 1
               }
 
 
