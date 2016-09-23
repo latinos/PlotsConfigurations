@@ -1,31 +1,19 @@
-###########################################
-###########################################
-###########################################
+# samples
+
+#samples = {}
 
 
-samples['DATA']  = {   'name': [
-                                #
-                                #'../../../../../j/jlauwers/HWW2015/07Jun2016_Run2016B_PromptReco/l2loose16bis__hadd__l2tight/latino_Run2016B_PromptReco_DoubleEG.root',
-                                #'../../../../../j/jlauwers/HWW2015/07Jun2016_Run2016B_PromptReco/l2loose16bis__hadd__l2tight/latino_Run2016B_PromptReco_DoubleMuon.root',
-                                #'../../../../../j/jlauwers/HWW2015/07Jun2016_Run2016B_PromptReco/l2loose16bis__hadd__l2tight/latino_Run2016B_PromptReco_MuonEG.root',
-                                #'../../../../../j/jlauwers/HWW2015/07Jun2016_Run2016B_PromptReco/l2loose16bis__hadd__l2tight/latino_Run2016B_PromptReco_SingleElectron.root',
-                                #'../../../../../j/jlauwers/HWW2015/07Jun2016_Run2016B_PromptReco/l2loose16bis__hadd__l2tight/latino_Run2016B_PromptReco_SingleMuon.root',
-
-                                #'../07Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleEG.root',
-                                #'../07Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_DoubleMuon.root',
-                                #'../07Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_MuonEG.root',
-                                #'../07Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight/latino_Run2016B_PromptReco_SingleElectron.root',
-                                '21Jun2016_Run2016B_PromptReco/WgStarsel__hadd__EpTCorr/latino_Run2016B_PromptReco_SingleMuon.root', # 2.6/fb
-                                #
-                                ] ,     
-                       'weight' : 'trigger',
-                       #'weight' : '1',
-                       #'weight' : 'std_vector_trigger[1]',
-                       'isData': ['all'],                            
+## Htautau
+samples['H_htt']  = {      'name': ['latino_GluGluHToTauTau_M125.root',
+                                    'latino_VBFHToTauTau_M125.root',
+                                    #'latino_HWminusJ_HToTauTau_M125.root',
+                                    #'latino_HWplusJ_HToTauTau_M125.root',
+                                    #'latino_HZJ_HToTauTau_M125.root'
+                                    ],      
+                           'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',         
+                           'weights': ['1', '1']
+                           #'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
+                           #'weights': ['1', '1', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)' ]            
                   }
-
-
-
-
 
 
