@@ -193,7 +193,7 @@ cuts['hww2l2v_13TeV_dytt_of2j_vbf_highmjj']  = '(std_vector_lepton_flavour[0] * 
                 && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13) \
                 && (njet==2) \
                 && ( mth<60) \
-                && mll>30 && mll<80 \
+                && mll>40 && mll<80 \
                 && ( std_vector_jet_pt[0] >= 30 ) \
                 && ( std_vector_jet_pt[1] >= 30 ) \
                 && (detajj>3.5 && mjj>1000) \
@@ -228,7 +228,7 @@ cuts['hww2l2v_13TeV_top_of2j_vbf_mediummjj']  = '(std_vector_lepton_flavour[0] *
 cuts['hww2l2v_13TeV_dytt_of2j_vbf_mediummjj']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
                 && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13) \
                 && ( mth<60) \
-                && mll>30 && mll<80 \
+                && mll>40 && mll<80 \
                 && ( std_vector_jet_pt[0] >= 30 ) \
                 && ( std_vector_jet_pt[1] >= 30 ) \
                 && (njet==2) \
@@ -266,7 +266,7 @@ cuts['hww2l2v_13TeV_top_of2j_vbf']  = '(std_vector_lepton_flavour[0] * std_vecto
 cuts['hww2l2v_13TeV_dytt_of2j_vbf']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
                 && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13) \
                 && ( mth<60) \
-                && mll>30 && mll<80 \
+                && mll>40 && mll<80 \
                 && ( std_vector_jet_pt[0] >= 30 ) \
                 && ( std_vector_jet_pt[1] >= 30 ) \
                 && (njet==2) \

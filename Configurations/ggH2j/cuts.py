@@ -27,7 +27,7 @@ cuts['hww2l2v_13TeV_top_of2j']  = '(std_vector_lepton_flavour[0] * std_vector_le
 cuts['hww2l2v_13TeV_dytt_of2j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
                 && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13) \
                 && ( mth<60) \
-                && mll>30 && mll<80 \
+                && mll>40 && mll<80 \
                 && ( std_vector_jet_pt[0] >= 30 ) \
                 && ( std_vector_jet_pt[1] >= 30 ) \
                 && (mjj<65 || (mjj > 105 && mjj<400)) \

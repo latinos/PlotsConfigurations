@@ -12,10 +12,11 @@ variables['events']  = {   'name': '1',
 
 
 variables['mjj']  = {  'name': 'mjj',
-                       'range': (20,0,200),  #for 500 < mjj < 1000
+                       'range': (10,20,200),  #for 500 < mjj < 1000
+                       #'range': (20,0,200),  #for 500 < mjj < 1000
                      # 'range': (15,1000,2000),  #for  mjj > 1000
                        'xaxis': 'mjj [GeV]',
-                       'fold': 3
+                       'fold': 0
                        }
 
 variables['mll']  = {   'name': 'mll',            #   variable name
