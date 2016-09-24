@@ -34,6 +34,7 @@ variables['metPftype1']  = {   'name': 'metPfType1',            #   variable nam
                          'fold' : 3
                         }
 
+# this variable is not used
 variables['pfmet']  = {   'name': 'pfmet',            #   variable name    
                         'range' : (20,0,200),    #   variable range
                         'xaxis' : 'pfmet [GeV]',  #   x axis name

@@ -1,5 +1,80 @@
 # plot configuration
 
+
+
+# groupPlot = {}
+# 
+# Groups of samples to improve the plots.
+# If not defined, normal plots is used
+#
+
+groupPlot['DY']  = {  
+                  'nameHR' : "DY",
+                  'isSignal' : 0,
+                  'color': 418,    # kGreen+2
+                  'samples'  : ['DY']
+              }
+
+
+
+groupPlot['Fake']  = {  
+                  'nameHR' : 'Fake',
+                  'isSignal' : 0,
+                  'color': 921,    # kGray + 1
+                  'samples'  : ['Fake']
+              }
+
+
+groupPlot['top']  = {  
+                  'nameHR' : 'tW and t#bart',
+                  'isSignal' : 0,
+                  'color': 400,   # kYellow
+                  'samples'  : ['top']
+              }
+
+groupPlot['WW']  = {  
+                  'nameHR' : 'WW',
+                  'isSignal' : 0,
+                  'color': 851, # kAzure -9 
+                  'samples'  : ['WW', 'ggWW']
+              }
+
+groupPlot['VVV']  = {  
+                  'nameHR' : 'VVV',
+                  'isSignal' : 0,
+                  'color': 857, # kAzure -3  
+                  'samples'  : ['VVV']
+              }
+
+
+groupPlot['VZ']  = {  
+                  'nameHR' : "V#gamma",
+                  'isSignal' : 0,
+                  'color'    : 700,   # kViolet + 1  
+                  'samples'  : [ 'Vg', 'WZ2L2Q', 'ZZ']
+                  #'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ','WZ3L','WZ2L2Q', 'ZZ']
+              }
+
+groupPlot['WZmllmin01']  = {  
+                  'nameHR' : "VZ/#gamma*/#gamma",
+                  'isSignal' : 0,
+                  'color'    : 617,   # kViolet + 1  
+                  'samples'  : ['WZ3Lmllmin01']
+                  #'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ','WZ3L','WZ2L2Q', 'ZZ']
+              }
+
+
+groupPlot['Higgs']  = {  
+                  'nameHR' : 'Higgs',
+                  'isSignal' : 1,
+                  'color': 632, # kRed 
+                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww']
+              }
+
+
+
+
+
 #plot = {}
 
 # keys here must match keys in samples.py    
@@ -8,24 +83,32 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 1.0
+                  'scale'    : 1.0,
+                  #'cuts'  : {
+                       #'hww2l2v_13TeV_of0j'      : 0.95 ,
+                       #'hww2l2v_13TeV_top_of0j'  : 0.95 , 
+                       #'hww2l2v_13TeV_dytt_of0j' : 0.95 ,
+                       #'hww2l2v_13TeV_em_0j'     : 0.95 , 
+                       #'hww2l2v_13TeV_me_0j'     : 0.95 , 
+                       ##
+                       #'hww2l2v_13TeV_of1j'      : 1.08 ,
+                       #'hww2l2v_13TeV_top_of1j'  : 1.08 , 
+                       #'hww2l2v_13TeV_dytt_of1j' : 1.08 ,
+                       #'hww2l2v_13TeV_em_1j'     : 1.08 , 
+                       #'hww2l2v_13TeV_me_1j'     : 1.08 , 
+                        #},
+
               }
 
-#plot['DY10to50']  = {  
-#                  'color': 418,    # kGreen+2
+
+               
+#plot['Wjets']  = {  
+#                  'color': 921,    # kGray + 1
 #                  'isSignal' : 0,
-#                  'isData'   : 0, 
-#                  'scale'    : 1.0
+#                  'isData'   : 0,
+#                  'scale'    : 1.0                  
 #              }
 #
-               
-plot['Wjets']  = {  
-                  'color': 921,    # kGray + 1
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0                  
-              }
-
 
 
                
@@ -33,14 +116,7 @@ plot['Fake']  = {
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0   # 4.3/0.8               
-              }
-               
-plot['WJetsLNu']  = {  
-                  'color': 900,    # kGray + 1
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
+                  'scale'    : 1.0                  
               }
 
               
@@ -75,7 +151,20 @@ plot['top'] = {
                   'color': 400,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 1.0
+                  'scale'    : 1.0,
+                  #'cuts'  : {
+                       #'hww2l2v_13TeV_of0j'      : 0.94 ,
+                       #'hww2l2v_13TeV_top_of0j'  : 0.94 , 
+                       #'hww2l2v_13TeV_dytt_of0j' : 0.94 ,
+                       #'hww2l2v_13TeV_em_0j'     : 0.94 , 
+                       #'hww2l2v_13TeV_me_0j'     : 0.94 , 
+                       ##
+                       #'hww2l2v_13TeV_of1j'      : 0.86 ,
+                       #'hww2l2v_13TeV_top_of1j'  : 0.86 , 
+                       #'hww2l2v_13TeV_dytt_of1j' : 0.86 ,
+                       #'hww2l2v_13TeV_em_1j'     : 0.86 , 
+                       #'hww2l2v_13TeV_me_1j'     : 0.86 , 
+                        #},
                   }
 
 
@@ -101,55 +190,25 @@ plot['ggWW_Int']  = {
                   }
 
 plot['Wg']  = { 
-                  'color': 400,   # kYellow 
-                  #'color': 859, # kAzure -1  
+                  'color': 859, # kAzure -1  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-
-
-plot['WgS']  = { 
-                  'color': 616, # kMagenta
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
-
-
-
-plot['WgSEE']  = { 
-                  'color': 616-1, # kMagenta-1
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 12.0
-                  }
-
-
-
-
-
-plot['WgSMuMu']  = { 
-                  'color': 600, # kBlue 
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 12.0
-                  }
-
-
-
 
 plot['Vg']  = { 
-                  #'color': 450,   # kYellow 
-                  'color': 616+1, # kMagenta+1
-                  #'color': 859+4, # kAzure +3  
+                  'color': 859, # kAzure -1  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
 
-
-
+plot['VgS'] = { 
+                  'color'    : 617,   # kViolet + 1  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
 
 plot['VZ']  = { 
                   'color': 858, # kAzure -2  
@@ -159,26 +218,29 @@ plot['VZ']  = {
                   }
 
 plot['WZ']  = { 
-                  'color': 858+10, # kAzure -2  
+                  'color': 858, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-
-plot['WZ3LNu']  = { 
-                  'color': 858+30, # kAzure -2  
+plot['WZ3L']  = { 
+                  'color': 858, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-
-plot['WZ2Q']  = { 
-                  'color': 858+40, # kAzure -2  
+plot['WZ3Lmllmin01']  = { 
+                  'color': 858, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-
+plot['WZ2L2Q']  = { 
+                  'color': 858, # kAzure -2  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
 
 plot['ZZ']  = { 
                   'color': 856, # kAzure -4  
@@ -273,7 +335,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0,
+                  'isBlind'  : 0
               }
 
 
@@ -282,7 +344,14 @@ plot['DATA']  = {
 # additional options
 
 # legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
-legend['lumi'] = 'L = 4.33/fb' # 2.318 fb-1
+#legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
+#legend['lumi'] = 'L = 0.8/fb' # 2.318 fb-1
+#legend['lumi'] = 'L = 2.6/fb'
+#legend['lumi'] = 'L = 4.3/fb'
+#legend['lumi'] = 'L = 6.3/fb'
+#legend['lumi'] = 'L = 12.3/fb'
+legend['lumi'] = 'L = 12.95/fb' # XXX fb-1
+
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 

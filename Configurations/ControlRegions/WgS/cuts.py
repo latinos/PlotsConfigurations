@@ -2,24 +2,49 @@
 
 #cuts = {}
   
-#supercut = 'std_vector_lepton_pt[0]>30 && std_vector_lepton_pt[1]>6 \
-#         && std_vector_lepton_pt[2]>6 \
-#         && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
-#         && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
-#         && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
-#         && ( std_vector_jet_pt[3] < 20 || std_vector_jet_cmvav2[3] < -0.715 ) \
-#         && ( std_vector_jet_pt[4] < 20 || std_vector_jet_cmvav2[4] < -0.715 ) \
-#         && ( std_vector_jet_pt[5] < 20 || std_vector_jet_cmvav2[5] < -0.715 ) \
-#         && ( std_vector_jet_pt[6] < 20 || std_vector_jet_cmvav2[6] < -0.715 ) \
-#         && ( std_vector_jet_pt[7] < 20 || std_vector_jet_cmvav2[7] < -0.715 ) \
-#         && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.715 ) \
-#         && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.715 ) \
-#'
+#supercut = 'mpmet >25'
+supercut = 'std_vector_lepton_pt[0]>30 && std_vector_lepton_pt[1]>8 \
+         && std_vector_lepton_pt[2]>8 \
+         && abs(std_vector_lepton_eta[0])<2.1    \
+         && ( std_vector_jet_pt[0] < 30 ) \
+         && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
+         && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
+         && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
+         && ( std_vector_jet_pt[3] < 20 || std_vector_jet_cmvav2[3] < -0.715 ) \
+         && ( std_vector_jet_pt[4] < 20 || std_vector_jet_cmvav2[4] < -0.715 ) \
+         && ( std_vector_jet_pt[5] < 20 || std_vector_jet_cmvav2[5] < -0.715 ) \
+         && ( std_vector_jet_pt[6] < 20 || std_vector_jet_cmvav2[6] < -0.715 ) \
+         && ( std_vector_jet_pt[7] < 20 || std_vector_jet_cmvav2[7] < -0.715 ) \
+         && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.715 ) \
+         && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.715 ) \
+'
+
+#supercut = 'std_vector_lepton_pt[0]>1 && std_vector_lepton_pt[1]>1 \
+#         && std_vector_lepton_pt[2]>1 \
+#	 && mpmet >25 \
+#	 '
 
          #&& metPfType1 < 50 \
 
          #&& std_vector_lepton_isTightLepton[0]==1 \
 
+
+cuts['hww2l2v_13TeV_of0j_noMpmet']  = ' std_vector_lepton_isTightMuon[0] == 1 && std_vector_lepton_isWgsLepton[1]==1 && std_vector_lepton_isWgsLepton[2]==1  && abs(std_vector_lepton_flavour[0]) == 13 && abs(std_vector_lepton_flavour[1]) == 13  && abs(std_vector_lepton_flavour[2]) == 13  && abs(  TMath::Min( mll+ (mll<0)*100000 + (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] > 0 )*100000 , mllThird + (mllThird < 0)*100000) -3.1) > 0.1 &&   TMath::Min( mll+ (mll<0)*100000 + (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] > 0 )*100000 , mllThird + (mllThird < 0)*100000)  < 0.5 '
+
+cuts['hww2l2v_13TeV_of0j_mpmet']  = ' std_vector_lepton_isTightMuon[0] == 1 && std_vector_lepton_isWgsLepton[1]==1 && std_vector_lepton_isWgsLepton[2]==1 && mpmet > 25 && abs(std_vector_lepton_flavour[0]) == 13 && abs(std_vector_lepton_flavour[1]) == 13  && abs(std_vector_lepton_flavour[2]) == 13  && abs(  TMath::Min( mll+ (mll<0)*100000 + (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] > 0 )*100000 , mllThird + (mllThird < 0)*100000) -3.1) > 0.1 &&   TMath::Min( mll+ (mll<0)*100000 + (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] > 0 )*100000 , mllThird + (mllThird < 0)*100000)  < 0.5 '
+# Norminal Cut
+#cuts['hww2l2v_13TeV_of0j_Test']  = ' std_vector_lepton_isTightMuon[0] == 1 && std_vector_lepton_isWgsLepton[1]==1 && std_vector_lepton_isWgsLepton[2]==1 && mpmet > 25 && abs(std_vector_lepton_flavour[0]) == 13 && abs(std_vector_lepton_flavour[1]) == 13  && abs(std_vector_lepton_flavour[2]) == 13  && abs(  TMath::Min( mll+ (mll<0)*100000 + (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] > 0 )*100000 , mllThird + (mllThird < 0)*100000) -3.1) > 0.1 &&   TMath::Min( mll+ (mll<0)*100000 + (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] > 0 )*100000 , mllThird + (mllThird < 0)*100000)  > 0.3 '
+                
+                #&& std_vector_lepton_pt[3] < 0  \ 
+                #&& std_vector_lepton_flavour[1]*std_vector_lepton_flavour[2]<0 
+              
+#cuts['hww2l2v_13TeV_WgS_mmm_JPsi_tightPt1']  = 'abs(std_vector_lepton_flavour[0]) == 13  && abs(std_vector_lepton_flavour[1]) == 13 && abs(std_vector_lepton_flavour[2]) == 13 \
+#    && std_vector_lepton_isTightMuon[0]==1  && std_vector_lepton_isWgsLepton[1]==1  && std_vector_lepton_isWgsLepton[2]==1   && std_vector_lepton_pt[0]>25 && std_vector_lepton_pt[1] > 8 && std_vector_lepton_pt[2] > 8 &&  ( std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1] < 0 ||  std_vector_lepton_flavour[0]*std_vector_lepton_flavour[2] < 0 || std_vector_lepton_flavour[1]*std_vector_lepton_flavour[2] < 0 ) &&  abs(TMath::Min (TMath::Min( mll+ (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] > 0 )*1000 , mllOneThree + (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[2] > 0 )*1000 ), mllTwoThree + (std_vector_lepton_flavour[1] * std_vector_lepton_flavour[2] > 0 )*1000)  -3.1) > 0.1 && TMath::Min (TMath::Min( mll+ (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] > 0 )*1000 , mllOneThree + (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[2] > 0 )*1000 ), mllTwoThree + (std_vector_lepton_flavour[1] * std_vector_lepton_flavour[2] > 0 )*1000)   < 1000 && mpmet >25 ' 
+
+
+#cuts['hww2l2v_13TeV_WgS_mmm_JPsi_WgsPt1']  = 'abs(std_vector_lepton_flavour[0]) == 13  && abs(std_vector_lepton_flavour[1]) == 13 && abs(std_vector_lepton_flavour[2]) == 13 \
+#    && std_vector_lepton_isWgsLepton[0]==1  && std_vector_lepton_isWgsLepton[1]==1  && std_vector_lepton_isWgsLepton[2]==1   && std_vector_lepton_pt[0]>25 && std_vector_lepton_pt[1] > 8 && std_vector_lepton_pt[2] > 8 &&  ( std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1] < 0 ||  std_vector_lepton_flavour[0]*std_vector_lepton_flavour[2] < 0 || std_vector_lepton_flavour[1]*std_vector_lepton_flavour[2] < 0 ) &&  abs(TMath::Min (TMath::Min( mll+ (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] > 0 )*1000 , mllOneThree + (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[2] > 0 )*1000 ), mllTwoThree + (std_vector_lepton_flavour[1] * std_vector_lepton_flavour[2] > 0 )*1000)  -3.1) > 0.1 && TMath::Min (TMath::Min( mll+ (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] > 0 )*1000 , mllOneThree + (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[2] > 0 )*1000 ), mllTwoThree + (std_vector_lepton_flavour[1] * std_vector_lepton_flavour[2] > 0 )*1000)   < 1000 && mpmet >25 ' 
+#		
 
 #cuts['hww2l2v_13TeV_WgS_mmm_noCut']  = 'abs(std_vector_lepton_flavour[0]) == 13  && abs(std_vector_lepton_flavour[1]) == 13 && abs(std_vector_lepton_flavour[2]) == 13 \
 #    &&  ( std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1] < 0 ||  std_vector_lepton_flavour[0]*std_vector_lepton_flavour[2] < 0 || std_vector_lepton_flavour[1]*std_vector_lepton_flavour[2] < 0 ) ' 
@@ -31,12 +56,6 @@
               
 #cuts['hww2l2v_13TeV_WgS_mmm_JPsi']  = 'abs(std_vector_lepton_flavour[0]) == 13  && abs(std_vector_lepton_flavour[1]) == 13 && abs(std_vector_lepton_flavour[2]) == 13 \
 #    && std_vector_lepton_isWgsLepton[0]==1  && std_vector_lepton_isWgsLepton[1]==1  && std_vector_lepton_isWgsLepton[2]==1   && std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1] > 10 && std_vector_lepton_pt[2] > 8 &&  ( std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1] < 0 ||  std_vector_lepton_flavour[0]*std_vector_lepton_flavour[2] < 0 || std_vector_lepton_flavour[1]*std_vector_lepton_flavour[2] < 0 ) &&  abs(TMath::Min (TMath::Min( mll+ (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] > 0 )*1000 , mllOneThree + (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[2] > 0 )*1000 ), mllTwoThree + (std_vector_lepton_flavour[1] * std_vector_lepton_flavour[2] > 0 )*1000)  -3.1) > 0.1 && TMath::Min (TMath::Min( mll+ (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] > 0 )*1000 , mllOneThree + (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[2] > 0 )*1000 ), mllTwoThree + (std_vector_lepton_flavour[1] * std_vector_lepton_flavour[2] > 0 )*1000)   < 1000 && mpmet >25 ' 
-#		
-              
-cuts['hww2l2v_13TeV_WgS_mmm_JPsi_tightpt1']  = 'abs(std_vector_lepton_flavour[0]) == 13  && abs(std_vector_lepton_flavour[1]) == 13 && abs(std_vector_lepton_flavour[2]) == 13 \
-    && std_vector_lepton_isTightMuon[0]==1  && std_vector_lepton_isWgsLepton[1]==1  && std_vector_lepton_isWgsLepton[2]==1   && std_vector_lepton_pt[0]>25 && std_vector_lepton_pt[1] > 15 && std_vector_lepton_pt[2] > 8 &&  ( std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1] < 0 ||  std_vector_lepton_flavour[0]*std_vector_lepton_flavour[2] < 0 || std_vector_lepton_flavour[1]*std_vector_lepton_flavour[2] < 0 ) &&  abs(TMath::Min (TMath::Min( mll+ (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] > 0 )*1000 , mllOneThree + (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[2] > 0 )*1000 ), mllTwoThree + (std_vector_lepton_flavour[1] * std_vector_lepton_flavour[2] > 0 )*1000)  -3.1) > 0.1 && TMath::Min (TMath::Min( mll+ (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] > 0 )*1000 , mllOneThree + (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[2] > 0 )*1000 ), mllTwoThree + (std_vector_lepton_flavour[1] * std_vector_lepton_flavour[2] > 0 )*1000)   < 1000 && mpmet >25 ' 
-
-
 #		
 ##
 #cuts['hww2l2v_13TeV_WgS_mmm_JPsi_WgSveto']  = 'abs(std_vector_lepton_flavour[0]) == 13  && abs(std_vector_lepton_flavour[1]) == 13 && abs(std_vector_lepton_flavour[2]) == 13 \

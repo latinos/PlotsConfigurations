@@ -5,7 +5,7 @@
 
 
 #mkdir rootFile
-#hadd rootFile/plots_Met.root torqueBatch/rootFile1/plots_Met.root torqueBatch/rootFile2/plots_Met.root torqueBatch/rootFile3/plots_Met.root torqueBatch/rootFile4/plots_Met.root torqueBatch/rootFile5/plots_Met.root torqueBatch/rootFile6/plots_Met.root torqueBatch/rootFile7/plots_Met.root torqueBatch/rootFile8/plots_Met.root torqueBatch/rootFile9/plots_Met.root torqueBatch/rootFile10/plots_Met.root torqueBatch/rootFile11/plots_Met.root torqueBatch/rootFile12/plots_Met.root torqueBatch/rootFile13/plots_Met.root
+hadd rootFile/plots_Met.root torqueBatch/rootFile1/plots_Met.root torqueBatch/rootFile2/plots_Met.root torqueBatch/rootFile3/plots_Met.root torqueBatch/rootFile4/plots_Met.root torqueBatch/rootFile5/plots_Met.root torqueBatch/rootFile6/plots_Met.root torqueBatch/rootFile7/plots_Met.root torqueBatch/rootFile8/plots_Met.root torqueBatch/rootFile9/plots_Met.root torqueBatch/rootFile10/plots_Met.root torqueBatch/rootFile11/plots_Met.root torqueBatch/rootFile12/plots_Met.root torqueBatch/rootFile13/plots_Met.root
 
-mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_Met.root
+#mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_Met.root
 

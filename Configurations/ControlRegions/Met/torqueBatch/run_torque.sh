@@ -1,6 +1,9 @@
 #!/bin/sh
 
 # 1.DY, 2.Wjets, 3., 4.Fake, 5. , 8.VgS
+
+rm -f run_torqueBatch_*.sh.*
+
 #Loop
 for Idx in 1 2 3 4 5 6 7 8 9 10 11 12 13; do
   cp ../configuration.py configuration${Idx}_AAA.py
