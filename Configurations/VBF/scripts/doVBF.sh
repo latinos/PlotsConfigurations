@@ -59,24 +59,24 @@ mv VBF/Moriond/datacards/hww2l2v_13TeV_dytt_of2j_vbf/events/datacard.test.txt.pr
 # combine
  
 combineCards.py   of2jvbf13=VBF/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mll/datacard.txt.pruned.txt \
-                  of2jvbf13Top=VBF/datacards/hww2l2v_13TeV_top_of2j_vbf/events/datacard.txt.pruned.txt \
-                  of2jvbf13DYtt=VBF/datacards/hww2l2v_13TeV_dytt_of2j_vbf/events/datacard.txt.pruned.txt \
+                  of2jvbf13Top=VBF/datacards/hww2l2v_13TeV_top_of2j_vbf/events/datacard.txt.pruned.txt.filtered.txt \
+                  of2jvbf13DYtt=VBF/datacards/hww2l2v_13TeV_dytt_of2j_vbf/events/datacard.txt.pruned.txt.filtered.txt \
                   >   Data2016.vbf.pruned.txt
 
-                  
-combineCards.py   of2jvbf13=VBF/Moriond/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mll/datacard.txt.pruned.txt \
-                  of2jvbf13Top=VBF/Moriond/datacards/hww2l2v_13TeV_top_of2j_vbf/events/datacard.txt.pruned.txt \
-                  of2jvbf13DYtt=VBF/Moriond/datacards/hww2l2v_13TeV_dytt_of2j_vbf/events/datacard.txt.pruned.txt \
-                  >   Data2015.vbf.pruned.txt
+#                   
+# combineCards.py   of2jvbf13=VBF/Moriond/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mll/datacard.txt.pruned.txt \
+#                   of2jvbf13Top=VBF/Moriond/datacards/hww2l2v_13TeV_top_of2j_vbf/events/datacard.txt.pruned.txt \
+#                   of2jvbf13DYtt=VBF/Moriond/datacards/hww2l2v_13TeV_dytt_of2j_vbf/events/datacard.txt.pruned.txt \
+#                   >   Data2015.vbf.pruned.txt
 
                   
 
 combineCards.py   of2jvbf13mediummass=VBF/datacards/hww2l2v_13TeV_of2j_vbf_mediummjj/mll/datacard.txt.pruned.txt \
-                  of2jvbf13mediummassTop=VBF/datacards/hww2l2v_13TeV_top_of2j_vbf_mediummjj/events/datacard.txt.pruned.txt \
-                  of2jvbf13mediummassDYtt=VBF/datacards/hww2l2v_13TeV_dytt_of2j_vbf_mediummjj/events/datacard.txt.pruned.txt \
+                  of2jvbf13mediummassTop=VBF/datacards/hww2l2v_13TeV_top_of2j_vbf_mediummjj/events/datacard.txt.pruned.txt.filtered.txt \
+                  of2jvbf13mediummassDYtt=VBF/datacards/hww2l2v_13TeV_dytt_of2j_vbf_mediummjj/events/datacard.txt.pruned.txt.filtered.txt \
                   of2jvbf13highmass=VBF/datacards/hww2l2v_13TeV_of2j_vbf_highmjj/mll/datacard.txt.pruned.txt \
-                  of2jvbf13highmassTop=VBF/datacards/hww2l2v_13TeV_top_of2j_vbf_highmjj/events/datacard.txt.pruned.txt \
-                  of2jvbf13highmassDYtt=VBF/datacards/hww2l2v_13TeV_dytt_of2j_vbf_highmjj/events/datacard.txt.pruned.txt \
+                  of2jvbf13highmassTop=VBF/datacards/hww2l2v_13TeV_top_of2j_vbf_highmjj/events/datacard.txt.pruned.txt.filtered.txt \
+                  of2jvbf13highmassDYtt=VBF/datacards/hww2l2v_13TeV_dytt_of2j_vbf_highmjj/events/datacard.txt.pruned.txt.filtered.txt \
                   >   Data2016.vbf.improved.pruned.txt
 
 
