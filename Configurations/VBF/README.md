@@ -47,6 +47,9 @@ Auto tests:
     cat ../result.MaxLikelihoodFit.Data2016.vbf.pruned.txt
     cat ../result.Significance.Data2016.vbf.pruned.txt
     
+    cat ../result.MaxLikelihoodFit.Data2016.vbf.mllfine.pruned.txt
+    cat ../result.Significance.Data2016.vbf.mllfine.pruned.txt
+    
     cat ../result.MaxLikelihoodFit.Data2016.vbf.improved.pruned.txt
     cat ../result.Significance.Data2016.vbf.improved.pruned.txt
     

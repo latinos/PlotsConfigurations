@@ -1,6 +1,7 @@
 # example of configuration file
 
-tag = 'ggH'
+#tag = 'ggH'
+tag = 'ggHtestplot'
 
 
 # used by mkShape to define output directory for root files

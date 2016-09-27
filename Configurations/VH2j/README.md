@@ -44,6 +44,8 @@ Auto tests:
     cat ../result.MaxLikelihoodFit.Data2015.vh2j.pruned.txt
     cat ../result.Significance.Data2015.vh2j.pruned.txt
     
+    cat ../result.MaxLikelihoodFit.Data2016.vh2j.pruned.txt
+    cat ../result.Significance.Data2016.vh2j.pruned.txt
     
     
     
