@@ -36,4 +36,6 @@ Backup:
     
     mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_ggH.root
     
+    mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_SS.root
+    
     
