@@ -48,11 +48,11 @@ variables['mllVSmth'] = {   'name': 'mll:mth',            #   variable name
 
 
                      
-variables['drll']  = {   'name': 'drll',        #   variable name    
-                        'range' : (100,0,2),    #   variable range
-                        'xaxis' : 'DR_{ll}',    #   x axis name
-                         'fold' : 3
-                        }
+#variables['drll']  = {   'name': 'drll',        #   variable name    
+                        #'range' : (100,0,2),    #   variable range
+                        #'xaxis' : 'DR_{ll}',    #   x axis name
+                         #'fold' : 3
+                        #}
 
 
 #variables['nvtx']  = {   'name': 'nvtx',      
