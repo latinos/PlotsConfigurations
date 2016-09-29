@@ -26,6 +26,7 @@ Steps to get datacards and plots:
     mkShapes.py      --pycfg=configuration_iteos.py  --doThreads=True    --inputDir=eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
 
     mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_ggH.root
+    mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_ggHJustPlot.root
     
     mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_ggH.root
 

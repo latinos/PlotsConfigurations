@@ -2,6 +2,7 @@
 
 #tag = 'ggH'
 tag = 'ggHtestplot'
+#tag = 'ggHJustPlot'
 
 
 # used by mkShape to define output directory for root files
