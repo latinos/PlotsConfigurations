@@ -227,6 +227,69 @@ Auto tests:
     cat   ../result.Significance.Moriond2016.2j.txt
     cat   ../result.Significance.Moriond2016.wh3l.txt
 
+
+    
+    
+    
+    
+    
+    
+    
+    cat  ../result.data.MaxLikelihoodFit.superCombination.2016.txt.pruned.txt
+    cat  ../result.data.Significance.superCombination.2016.txt.pruned.txt
+    cat  ../result.data.MaxLikelihoodFit.Moriond2016.vbf.txt
+    cat  ../result.data.MaxLikelihoodFit.Moriond2016.vh2j.txt
+    cat  ../result.data.MaxLikelihoodFit.Moriond2016.2j.txt
+
+    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.vbf.txt
+    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.vh2j.txt
+    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.wh3l.txt
+    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.2j.txt
+    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.1jet.txt
+    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.0jet.txt
+    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.0jet.em.txt
+    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.0jet.me.txt
+    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.1jet.em.txt
+    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.1jet.me.txt
+    cat  ../result.data.Significance.ICHEP2016.vbf.txt
+    cat  ../result.data.Significance.ICHEP2016.vh2j.txt
+    cat  ../result.data.Significance.ICHEP2016.2j.txt
+    cat  ../result.data.Significance.ICHEP2016.wh3l.txt
+    cat  ../result.data.Significance.ICHEP2016.1jet.txt
+    cat  ../result.data.Significance.ICHEP2016.0jet.txt
+    cat  ../result.data.Significance.ICHEP2016.0jet.em.txt
+    cat  ../result.data.Significance.ICHEP2016.0jet.me.txt
+    cat  ../result.data.Significance.ICHEP2016.1jet.em.txt
+    cat  ../result.data.Significance.ICHEP2016.1jet.me.txt
+    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.v1.txt.pruned.txt
+    cat  ../result.data.Significance.ICHEP2016.v1.txt.pruned.txt
+
+    cat  ../result.data.MaxLikelihoodFit.Combined.vbf.txt
+    cat  ../result.data.MaxLikelihoodFit.Combined.vh2j.txt
+    cat  ../result.data.MaxLikelihoodFit.Combined.wh3l.txt
+    cat  ../result.data.MaxLikelihoodFit.Combined.2j.txt
+    cat  ../result.data.MaxLikelihoodFit.Combined.1jet.txt
+    cat  ../result.data.MaxLikelihoodFit.Combined.0jet.txt
+    cat  ../result.data.MaxLikelihoodFit.Combined.0jet.em.txt
+    cat  ../result.data.MaxLikelihoodFit.Combined.0jet.me.txt
+    cat  ../result.data.MaxLikelihoodFit.Combined.1jet.em.txt
+    cat  ../result.data.MaxLikelihoodFit.Combined.1jet.me.txt
+    cat  ../result.data.Significance.Combined.vbf.txt
+    cat  ../result.data.Significance.Combined.vh2j.txt
+    cat  ../result.data.Significance.Combined.2j.txt
+    cat  ../result.data.Significance.Combined.wh3l.txt
+    cat  ../result.data.Significance.Combined.1jet.txt
+    cat  ../result.data.Significance.Combined.0jet.txt
+    cat  ../result.data.Significance.Combined.0jet.em.txt
+    cat  ../result.data.Significance.Combined.0jet.me.txt
+    cat  ../result.data.Significance.Combined.1jet.em.txt
+    cat  ../result.data.Significance.Combined.1jet.me.txt
+    cat  ../result.data.MaxLikelihoodFit.superCombination.Total.txt.pruned.txt
+    cat  ../result.data.Significance.superCombination.Total.txt.pruned.txt
+
+    
+    
+    
     
 Make tables:
 

@@ -8,87 +8,87 @@ cd -
 
 # fix
 # 
-# cat ggH/datacards/hww2l2v_ICHEP_13TeV_top_of0j/events/datacard.txt.pruned.txt  | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1" &> ggH/datacards/hww2l2v_ICHEP_13TeV_top_of0j/events/datacard.test.txt.pruned.txt
-# mv ggH/datacards/hww2l2v_ICHEP_13TeV_top_of0j/events/datacard.test.txt.pruned.txt ggH/datacards/hww2l2v_ICHEP_13TeV_top_of0j/events/datacard.txt.pruned.txt
+# cat ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt  | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1" &> ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.test.txt.pruned.txt
+# mv ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.test.txt.pruned.txt ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt
 # 
-# cat ggH/datacards/hww2l2v_ICHEP_13TeV_top_of1j/events/datacard.txt.pruned.txt  | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1" &> ggH/datacards/hww2l2v_ICHEP_13TeV_top_of1j/events/datacard.test.txt.pruned.txt
-# mv ggH/datacards/hww2l2v_ICHEP_13TeV_top_of1j/events/datacard.test.txt.pruned.txt ggH/datacards/hww2l2v_ICHEP_13TeV_top_of1j/events/datacard.txt.pruned.txt
+# cat ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt  | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1" &> ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.test.txt.pruned.txt
+# mv ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.test.txt.pruned.txt ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt
 # 
-# cat ggH/datacards/hww2l2v_ICHEP_13TeV_dytt_of0j/events/datacard.txt.pruned.txt   | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_ICHEP_13TeV_dytt_of0j/events/datacard.test.txt.pruned.txt
-# mv ggH/datacards/hww2l2v_ICHEP_13TeV_dytt_of0j/events/datacard.test.txt.pruned.txt ggH/datacards/hww2l2v_ICHEP_13TeV_dytt_of0j/events/datacard.txt.pruned.txt
+# cat ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt   | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt.pruned.txt
+# mv ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt.pruned.txt ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt
 # 
-# cat ggH/datacards/hww2l2v_ICHEP_13TeV_dytt_of1j/events/datacard.txt.pruned.txt   | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_ICHEP_13TeV_dytt_of1j/events/datacard.test.txt.pruned.txt
-# mv ggH/datacards/hww2l2v_ICHEP_13TeV_dytt_of1j/events/datacard.test.txt.pruned.txt ggH/datacards/hww2l2v_ICHEP_13TeV_dytt_of1j/events/datacard.txt.pruned.txt
+# cat ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt   | grep -v "_DY_ibin_1" | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt.pruned.txt
+# mv ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt.pruned.txt ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt
 
 
-cat ggH/datacards/hww2l2v_ICHEP_13TeV_top_of0j/events/datacard.txt.pruned.txt  | grep -v "_DY_ibin_1" | grep -v "_Vg_ibin_1" | grep -v "_VVV_ibin_1" &> ggH/datacards/hww2l2v_ICHEP_13TeV_top_of0j/events/datacard.test.txt.pruned.txt
-mv ggH/datacards/hww2l2v_ICHEP_13TeV_top_of0j/events/datacard.test.txt.pruned.txt ggH/datacards/hww2l2v_ICHEP_13TeV_top_of0j/events/datacard.txt.pruned.txt
+cat ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt  | grep -v "_DY_ibin_1" | grep -v "_Vg_ibin_1" | grep -v "_VVV_ibin_1" &> ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.test.txt.pruned.txt
+mv ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.test.txt.pruned.txt ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt
 
-cat ggH/datacards/hww2l2v_ICHEP_13TeV_top_of1j/events/datacard.txt.pruned.txt  | grep -v "_DY_ibin_1" | grep -v "_Vg_ibin_1" | grep -v "_VVV_ibin_1" &> ggH/datacards/hww2l2v_ICHEP_13TeV_top_of1j/events/datacard.test.txt.pruned.txt
-mv ggH/datacards/hww2l2v_ICHEP_13TeV_top_of1j/events/datacard.test.txt.pruned.txt ggH/datacards/hww2l2v_ICHEP_13TeV_top_of1j/events/datacard.txt.pruned.txt
+cat ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt  | grep -v "_DY_ibin_1" | grep -v "_Vg_ibin_1" | grep -v "_VVV_ibin_1" &> ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.test.txt.pruned.txt
+mv ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.test.txt.pruned.txt ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt
 
-cat ggH/datacards/hww2l2v_ICHEP_13TeV_dytt_of0j/events/datacard.txt.pruned.txt   | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_ICHEP_13TeV_dytt_of0j/events/datacard.test.txt.pruned.txt
-mv ggH/datacards/hww2l2v_ICHEP_13TeV_dytt_of0j/events/datacard.test.txt.pruned.txt ggH/datacards/hww2l2v_ICHEP_13TeV_dytt_of0j/events/datacard.txt.pruned.txt
+cat ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt   | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt.pruned.txt
+mv ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt.pruned.txt ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt
 
-cat ggH/datacards/hww2l2v_ICHEP_13TeV_dytt_of1j/events/datacard.txt.pruned.txt   | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_ICHEP_13TeV_dytt_of1j/events/datacard.test.txt.pruned.txt
-mv ggH/datacards/hww2l2v_ICHEP_13TeV_dytt_of1j/events/datacard.test.txt.pruned.txt ggH/datacards/hww2l2v_ICHEP_13TeV_dytt_of1j/events/datacard.txt.pruned.txt
+cat ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt   | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt.pruned.txt
+mv ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt.pruned.txt ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt
 
 
 # combine
  
-combineCards.py   em_mp_1j_ICHEP_13=ggH/datacards/hww2l2v_ICHEP_13TeV_em_mp_1j/mllVSmth/datacard.txt.pruned.txt \
-                  me_mp_1j_ICHEP_13=ggH/datacards/hww2l2v_ICHEP_13TeV_me_mp_1j/mllVSmth/datacard.txt.pruned.txt \
-                  em_mp_0j_ICHEP_13=ggH/datacards/hww2l2v_ICHEP_13TeV_em_mp_0j/mllVSmth/datacard.txt.pruned.txt \
-                  me_mp_0j_ICHEP_13=ggH/datacards/hww2l2v_ICHEP_13TeV_me_mp_0j/mllVSmth/datacard.txt.pruned.txt \
-                  em_pm_1j_ICHEP_13=ggH/datacards/hww2l2v_ICHEP_13TeV_em_pm_1j/mllVSmth/datacard.txt.pruned.txt \
-                  me_pm_1j_ICHEP_13=ggH/datacards/hww2l2v_ICHEP_13TeV_me_pm_1j/mllVSmth/datacard.txt.pruned.txt \
-                  em_pm_0j_ICHEP_13=ggH/datacards/hww2l2v_ICHEP_13TeV_em_pm_0j/mllVSmth/datacard.txt.pruned.txt \
-                  me_pm_0j_ICHEP_13=ggH/datacards/hww2l2v_ICHEP_13TeV_me_pm_0j/mllVSmth/datacard.txt.pruned.txt \
-                  of0j_ICHEP_13Top=ggH/datacards/hww2l2v_ICHEP_13TeV_top_of0j/events/datacard.txt.pruned.txt \
-                  of1j_ICHEP_13Top=ggH/datacards/hww2l2v_ICHEP_13TeV_top_of1j/events/datacard.txt.pruned.txt \
-                  of0j_ICHEP_13DYtt=ggH/datacards/hww2l2v_ICHEP_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
-                  of1j_ICHEP_13DYtt=ggH/datacards/hww2l2v_ICHEP_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
+combineCards.py   em_mp_1j_ICHEP_13=ggH/datacards/hww2l2v_13TeV_em_mp_1j/mllVSmth/datacard.txt.pruned.txt \
+                  me_mp_1j_ICHEP_13=ggH/datacards/hww2l2v_13TeV_me_mp_1j/mllVSmth/datacard.txt.pruned.txt \
+                  em_mp_0j_ICHEP_13=ggH/datacards/hww2l2v_13TeV_em_mp_0j/mllVSmth/datacard.txt.pruned.txt \
+                  me_mp_0j_ICHEP_13=ggH/datacards/hww2l2v_13TeV_me_mp_0j/mllVSmth/datacard.txt.pruned.txt \
+                  em_pm_1j_ICHEP_13=ggH/datacards/hww2l2v_13TeV_em_pm_1j/mllVSmth/datacard.txt.pruned.txt \
+                  me_pm_1j_ICHEP_13=ggH/datacards/hww2l2v_13TeV_me_pm_1j/mllVSmth/datacard.txt.pruned.txt \
+                  em_pm_0j_ICHEP_13=ggH/datacards/hww2l2v_13TeV_em_pm_0j/mllVSmth/datacard.txt.pruned.txt \
+                  me_pm_0j_ICHEP_13=ggH/datacards/hww2l2v_13TeV_me_pm_0j/mllVSmth/datacard.txt.pruned.txt \
+                  of0j_ICHEP_13Top=ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
+                  of1j_ICHEP_13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
+                  of0j_ICHEP_13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+                  of1j_ICHEP_13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
                   >   ICHEP2016.v1.txt.pruned.txt
 
-combineCards.py   em_mp_1j_ICHEP_13=ggH/datacards/hww2l2v_ICHEP_13TeV_em_mp_1j/mllVSmth/datacard.txt.pruned.txt \
-                  me_mp_1j_ICHEP_13=ggH/datacards/hww2l2v_ICHEP_13TeV_me_mp_1j/mllVSmth/datacard.txt.pruned.txt \
-                  em_pm_1j_ICHEP_13=ggH/datacards/hww2l2v_ICHEP_13TeV_em_pm_1j/mllVSmth/datacard.txt.pruned.txt \
-                  me_pm_1j_ICHEP_13=ggH/datacards/hww2l2v_ICHEP_13TeV_me_pm_1j/mllVSmth/datacard.txt.pruned.txt \
-                  of1j_ICHEP_13Top=ggH/datacards/hww2l2v_ICHEP_13TeV_top_of1j/events/datacard.txt.pruned.txt \
-                  of1j_ICHEP_13DYtt=ggH/datacards/hww2l2v_ICHEP_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
+combineCards.py   em_mp_1j_ICHEP_13=ggH/datacards/hww2l2v_13TeV_em_mp_1j/mllVSmth/datacard.txt.pruned.txt \
+                  me_mp_1j_ICHEP_13=ggH/datacards/hww2l2v_13TeV_me_mp_1j/mllVSmth/datacard.txt.pruned.txt \
+                  em_pm_1j_ICHEP_13=ggH/datacards/hww2l2v_13TeV_em_pm_1j/mllVSmth/datacard.txt.pruned.txt \
+                  me_pm_1j_ICHEP_13=ggH/datacards/hww2l2v_13TeV_me_pm_1j/mllVSmth/datacard.txt.pruned.txt \
+                  of1j_ICHEP_13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
+                  of1j_ICHEP_13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
                   >   ICHEP2016.1jet.txt
 
-combineCards.py   em_mp_0j_ICHEP_13=ggH/datacards/hww2l2v_ICHEP_13TeV_em_mp_0j/mllVSmth/datacard.txt.pruned.txt \
-                  me_mp_0j_ICHEP_13=ggH/datacards/hww2l2v_ICHEP_13TeV_me_mp_0j/mllVSmth/datacard.txt.pruned.txt \
-                  em_pm_0j_ICHEP_13=ggH/datacards/hww2l2v_ICHEP_13TeV_em_pm_0j/mllVSmth/datacard.txt.pruned.txt \
-                  me_pm_0j_ICHEP_13=ggH/datacards/hww2l2v_ICHEP_13TeV_me_pm_0j/mllVSmth/datacard.txt.pruned.txt \
-                  of0j_ICHEP_13Top=ggH/datacards/hww2l2v_ICHEP_13TeV_top_of0j/events/datacard.txt.pruned.txt \
-                  of0j_ICHEP_13DYtt=ggH/datacards/hww2l2v_ICHEP_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+combineCards.py   em_mp_0j_ICHEP_13=ggH/datacards/hww2l2v_13TeV_em_mp_0j/mllVSmth/datacard.txt.pruned.txt \
+                  me_mp_0j_ICHEP_13=ggH/datacards/hww2l2v_13TeV_me_mp_0j/mllVSmth/datacard.txt.pruned.txt \
+                  em_pm_0j_ICHEP_13=ggH/datacards/hww2l2v_13TeV_em_pm_0j/mllVSmth/datacard.txt.pruned.txt \
+                  me_pm_0j_ICHEP_13=ggH/datacards/hww2l2v_13TeV_me_pm_0j/mllVSmth/datacard.txt.pruned.txt \
+                  of0j_ICHEP_13Top=ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
+                  of0j_ICHEP_13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
                   >   ICHEP2016.0jet.txt
 
-combineCards.py   em_mp_0j_ICHEP_13=ggH/datacards/hww2l2v_ICHEP_13TeV_em_mp_0j/mllVSmth/datacard.txt.pruned.txt \
-                  em_pm_0j_ICHEP_13=ggH/datacards/hww2l2v_ICHEP_13TeV_em_pm_0j/mllVSmth/datacard.txt.pruned.txt \
-                  of0j_ICHEP_13Top=ggH/datacards/hww2l2v_ICHEP_13TeV_top_of0j/events/datacard.txt.pruned.txt \
-                  of0j_ICHEP_13DYtt=ggH/datacards/hww2l2v_ICHEP_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+combineCards.py   em_mp_0j_ICHEP_13=ggH/datacards/hww2l2v_13TeV_em_mp_0j/mllVSmth/datacard.txt.pruned.txt \
+                  em_pm_0j_ICHEP_13=ggH/datacards/hww2l2v_13TeV_em_pm_0j/mllVSmth/datacard.txt.pruned.txt \
+                  of0j_ICHEP_13Top=ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
+                  of0j_ICHEP_13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
                   >   ICHEP2016.0jet.em.txt
 
-combineCards.py   me_mp_0j_ICHEP_13=ggH/datacards/hww2l2v_ICHEP_13TeV_me_mp_0j/mllVSmth/datacard.txt.pruned.txt \
-                  me_pm_0j_ICHEP_13=ggH/datacards/hww2l2v_ICHEP_13TeV_me_pm_0j/mllVSmth/datacard.txt.pruned.txt \
-                  of0j_ICHEP_13Top=ggH/datacards/hww2l2v_ICHEP_13TeV_top_of0j/events/datacard.txt.pruned.txt \
-                  of0j_ICHEP_13DYtt=ggH/datacards/hww2l2v_ICHEP_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+combineCards.py   me_mp_0j_ICHEP_13=ggH/datacards/hww2l2v_13TeV_me_mp_0j/mllVSmth/datacard.txt.pruned.txt \
+                  me_pm_0j_ICHEP_13=ggH/datacards/hww2l2v_13TeV_me_pm_0j/mllVSmth/datacard.txt.pruned.txt \
+                  of0j_ICHEP_13Top=ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
+                  of0j_ICHEP_13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
                   >   ICHEP2016.0jet.me.txt
 
 
-combineCards.py   em_mp_1j_ICHEP_13=ggH/datacards/hww2l2v_ICHEP_13TeV_em_mp_1j/mllVSmth/datacard.txt.pruned.txt \
-                  em_pm_1j_ICHEP_13=ggH/datacards/hww2l2v_ICHEP_13TeV_em_pm_1j/mllVSmth/datacard.txt.pruned.txt \
-                  of1j_ICHEP_13Top=ggH/datacards/hww2l2v_ICHEP_13TeV_top_of1j/events/datacard.txt.pruned.txt \
-                  of1j_ICHEP_13DYtt=ggH/datacards/hww2l2v_ICHEP_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
+combineCards.py   em_mp_1j_ICHEP_13=ggH/datacards/hww2l2v_13TeV_em_mp_1j/mllVSmth/datacard.txt.pruned.txt \
+                  em_pm_1j_ICHEP_13=ggH/datacards/hww2l2v_13TeV_em_pm_1j/mllVSmth/datacard.txt.pruned.txt \
+                  of1j_ICHEP_13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
+                  of1j_ICHEP_13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
                   >   ICHEP2016.1jet.em.txt
 
-combineCards.py   me_mp_1j_ICHEP_13=ggH/datacards/hww2l2v_ICHEP_13TeV_me_mp_1j/mllVSmth/datacard.txt.pruned.txt \
-                  me_pm_1j_ICHEP_13=ggH/datacards/hww2l2v_ICHEP_13TeV_me_pm_1j/mllVSmth/datacard.txt.pruned.txt \
-                  of1j_ICHEP_13Top=ggH/datacards/hww2l2v_ICHEP_13TeV_top_of1j/events/datacard.txt.pruned.txt \
-                  of1j_ICHEP_13DYtt=ggH/datacards/hww2l2v_ICHEP_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
+combineCards.py   me_mp_1j_ICHEP_13=ggH/datacards/hww2l2v_13TeV_me_mp_1j/mllVSmth/datacard.txt.pruned.txt \
+                  me_pm_1j_ICHEP_13=ggH/datacards/hww2l2v_13TeV_me_pm_1j/mllVSmth/datacard.txt.pruned.txt \
+                  of1j_ICHEP_13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
+                  of1j_ICHEP_13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
                   >   ICHEP2016.1jet.me.txt
 
          

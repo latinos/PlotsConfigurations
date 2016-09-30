@@ -688,19 +688,19 @@ combineCards.py   me1j13=ggH/Moriond/datacards/hww2l2v_13TeV_me_1j/mllVSmth/data
  
 # 2015 combination
 # 
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      superCombination.2015.txt.pruned.txt    >   result.MaxLikelihoodFit.superCombination.2015.txt.pruned.txt
+# combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      superCombination.2015.txt.pruned.txt    >   result.data.MaxLikelihoodFit.superCombination.2015.txt.pruned.txt
 # 
-# combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1                         superCombination.2015.txt.pruned.txt    >   result.Significance.superCombination.2015.txt.pruned.txt
-# 
-# 
-# combine -M MultiDimFit superCombination.2015.txt.pruned.txt -m 125 --algo=grid --points 100 --setPhysicsModelParameterRanges r=-1,3 -n "LHScanHICHEP2015combined"   -t -1 --expectSignal=1        >   /tmp/amassiro/result.LikelihoodScan.ICHEP2016.superCombination.2015.txt.pruned.txt
-# 
-# combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      superCombination.2015.txt.pruned.txt    >   result.Data.MaxLikelihoodFit.superCombination.2015.txt.pruned.txt
-# 
-# combine -M ProfileLikelihood  --significance                        superCombination.2015.txt.pruned.txt    >   result.Data.Significance.superCombination.2015.txt.pruned.txt
+# combine -M ProfileLikelihood --significance                           superCombination.2015.txt.pruned.txt    >   result.data.Significance.superCombination.2015.txt.pruned.txt
 # 
 # 
-# combine -M MultiDimFit superCombination.2015.txt.pruned.txt -m 125 --algo=grid --points 100 --setPhysicsModelParameterRanges r=-1,3 -n "DATALHScanHICHEP2015combined"      >   /tmp/amassiro/result.Data.LikelihoodScan.ICHEP2016.superCombination.2015.txt.pruned.txt
+# combine -M MultiDimFit superCombination.2015.txt.pruned.txt -m 125 --algo=grid --points 100 --setPhysicsModelParameterRanges r=-1,3 -n "LHScanDATAHICHEP2015combined"           >   /tmp/amassiro/result.data.LikelihoodScan.ICHEP2016.superCombination.2015.txt.pruned.txt
+# 
+# combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      superCombination.2015.txt.pruned.txt    >   result.data.Data.MaxLikelihoodFit.superCombination.2015.txt.pruned.txt
+# 
+# combine -M ProfileLikelihood  --significance                        superCombination.2015.txt.pruned.txt    >   result.data.Data.Significance.superCombination.2015.txt.pruned.txt
+# 
+# 
+# combine -M MultiDimFit superCombination.2015.txt.pruned.txt -m 125 --algo=grid --points 100 --setPhysicsModelParameterRanges r=-1,3 -n "DATALHScanHICHEP2015combined"      >   /tmp/amassiro/result.data.Data.LikelihoodScan.ICHEP2016.superCombination.2015.txt.pruned.txt
 
 
 # 
@@ -709,25 +709,25 @@ combineCards.py   me1j13=ggH/Moriond/datacards/hww2l2v_13TeV_me_1j/mllVSmth/data
 # 
 # 
 # # 2016 combination
+# 
+combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      superCombination.2016.txt.pruned.txt    >   result.data.MaxLikelihoodFit.superCombination.2016.txt.pruned.txt
 
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      superCombination.2016.txt.pruned.txt    >   result.MaxLikelihoodFit.superCombination.2016.txt.pruned.txt
-
-combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1                         superCombination.2016.txt.pruned.txt    >   result.Significance.superCombination.2016.txt.pruned.txt
+combine -M ProfileLikelihood --significance                           superCombination.2016.txt.pruned.txt    >   result.data.Significance.superCombination.2016.txt.pruned.txt
 
 
-combine -M MultiDimFit superCombination.2016.txt.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanHICHEP2016combined"   -t -1 --expectSignal=1        >   /tmp/amassiro/result.LikelihoodScan.ICHEP2016.superCombination.2016.txt.pruned.txt
-
+combine -M MultiDimFit superCombination.2016.txt.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanDATAHICHEP2016combined"           >   /tmp/amassiro/result.data.LikelihoodScan.ICHEP2016.superCombination.2016.txt.pruned.txt
+# 
 # 
 # 
 # 2015+2016 combination
 
-combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      superCombination.Total.txt.pruned.txt    >   result.MaxLikelihoodFit.superCombination.Total.txt.pruned.txt
+combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      superCombination.Total.txt.pruned.txt    >   result.data.MaxLikelihoodFit.superCombination.Total.txt.pruned.txt
 
-combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1                         superCombination.Total.txt.pruned.txt    >   result.Significance.superCombination.Total.txt.pruned.txt
+combine -M ProfileLikelihood --significance                           superCombination.Total.txt.pruned.txt    >   result.data.Significance.superCombination.Total.txt.pruned.txt
 
 
-combine -M MultiDimFit superCombination.Total.txt.pruned.txt -m 125 --algo=grid --points 40 --setPhysicsModelParameterRanges r=0,2 -n "LHScanHICHEPTotalcombined"   -t -1 --expectSignal=1        >   /tmp/amassiro/result.LikelihoodScan.ICHEPTotal.superCombination.Total.txt.pruned.txt
-# 
+combine -M MultiDimFit superCombination.Total.txt.pruned.txt -m 125 --algo=grid --points 40 --setPhysicsModelParameterRanges r=0,2 -n "LHScanDATAHICHEPTotalcombined"           >   /tmp/amassiro/result.data.LikelihoodScan.ICHEPTotal.superCombination.Total.txt.pruned.txt
+
 # 
 # 
 # 
@@ -739,39 +739,39 @@ combine -M MultiDimFit superCombination.Total.txt.pruned.txt -m 125 --algo=grid 
 # 
 # # combined
 # 
-# # 
 # 
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-4 --rMax=6      Combined.vbf.pruned.txt             >   result.MaxLikelihoodFit.Combined.vbf.txt
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-6 --rMax=8      Combined.vh2j.pruned.txt            >   result.MaxLikelihoodFit.Combined.vh2j.txt
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-4 --rMax=6      Combined.2j.pruned.txt              >   result.MaxLikelihoodFit.Combined.2j.txt
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=6      Combined.wh3l.pruned.txt            >   result.MaxLikelihoodFit.Combined.wh3l.txt
-# 
-# 
-# 
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Combined.1jet.txt             >   result.MaxLikelihoodFit.Combined.1jet.txt
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Combined.0jet.txt             >   result.MaxLikelihoodFit.Combined.0jet.txt
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Combined.0jet.em.txt          >   result.MaxLikelihoodFit.Combined.0jet.em.txt
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Combined.0jet.me.txt          >   result.MaxLikelihoodFit.Combined.0jet.me.txt
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Combined.1jet.em.txt          >   result.MaxLikelihoodFit.Combined.1jet.em.txt
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Combined.1jet.me.txt          >   result.MaxLikelihoodFit.Combined.1jet.me.txt
-# 
-# 
-# # 
-# # combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.vbf.pruned.txt             >   result.Significance.Combined.vbf.txt
-# # combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.vh2j.pruned.txt            >   result.Significance.Combined.vh2j.txt
-# # combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.2j.pruned.txt              >   result.Significance.Combined.2j.txt
-# # combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.wh3l.pruned.txt              >   result.Significance.Combined.wh3l.txt
-# # 
-# 
-# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.1jet.txt             >   result.Significance.Combined.1jet.txt
-# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.0jet.txt             >   result.Significance.Combined.0jet.txt
-# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.0jet.em.txt          >   result.Significance.Combined.0jet.em.txt
-# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.0jet.me.txt          >   result.Significance.Combined.0jet.me.txt
-# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.1jet.em.txt          >   result.Significance.Combined.1jet.em.txt
-# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.1jet.me.txt          >   result.Significance.Combined.1jet.me.txt
-# # 
-# # 
-# 
+
+combine -M MaxLikelihoodFit   --rMin=-4 --rMax=6      Combined.vbf.pruned.txt             >   result.data.MaxLikelihoodFit.Combined.vbf.txt
+combine -M MaxLikelihoodFit   --rMin=-6 --rMax=8      Combined.vh2j.pruned.txt            >   result.data.MaxLikelihoodFit.Combined.vh2j.txt
+combine -M MaxLikelihoodFit   --rMin=-4 --rMax=6      Combined.2j.pruned.txt              >   result.data.MaxLikelihoodFit.Combined.2j.txt
+combine -M MaxLikelihoodFit   --rMin=-2 --rMax=6      Combined.wh3l.pruned.txt            >   result.data.MaxLikelihoodFit.Combined.wh3l.txt
+
+
+
+combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      Combined.1jet.txt             >   result.data.MaxLikelihoodFit.Combined.1jet.txt
+combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      Combined.0jet.txt             >   result.data.MaxLikelihoodFit.Combined.0jet.txt
+combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      Combined.0jet.em.txt          >   result.data.MaxLikelihoodFit.Combined.0jet.em.txt
+combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      Combined.0jet.me.txt          >   result.data.MaxLikelihoodFit.Combined.0jet.me.txt
+combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      Combined.1jet.em.txt          >   result.data.MaxLikelihoodFit.Combined.1jet.em.txt
+combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      Combined.1jet.me.txt          >   result.data.MaxLikelihoodFit.Combined.1jet.me.txt
+
+
+
+combine -M ProfileLikelihood --significance         Combined.vbf.pruned.txt             >   result.data.Significance.Combined.vbf.txt
+combine -M ProfileLikelihood --significance         Combined.vh2j.pruned.txt            >   result.data.Significance.Combined.vh2j.txt
+combine -M ProfileLikelihood --significance         Combined.2j.pruned.txt              >   result.data.Significance.Combined.2j.txt
+combine -M ProfileLikelihood --significance         Combined.wh3l.pruned.txt              >   result.data.Significance.Combined.wh3l.txt
+
+
+combine -M ProfileLikelihood --significance         Combined.1jet.txt             >   result.data.Significance.Combined.1jet.txt
+combine -M ProfileLikelihood --significance         Combined.0jet.txt             >   result.data.Significance.Combined.0jet.txt
+combine -M ProfileLikelihood --significance         Combined.0jet.em.txt          >   result.data.Significance.Combined.0jet.em.txt
+combine -M ProfileLikelihood --significance         Combined.0jet.me.txt          >   result.data.Significance.Combined.0jet.me.txt
+combine -M ProfileLikelihood --significance         Combined.1jet.em.txt          >   result.data.Significance.Combined.1jet.em.txt
+combine -M ProfileLikelihood --significance         Combined.1jet.me.txt          >   result.data.Significance.Combined.1jet.me.txt
+
+
+
 # 
 # 
 # #
@@ -779,26 +779,26 @@ combine -M MultiDimFit superCombination.Total.txt.pruned.txt -m 125 --algo=grid 
 # #
 # 
 # # 
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Moriond2016.vbf.pruned.txt             >   result.MaxLikelihoodFit.Moriond2016.vbf.txt
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-6 --rMax=7      Moriond2016.vh2j.pruned.txt            >   result.MaxLikelihoodFit.Moriond2016.vh2j.txt
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-6 --rMax=7      Moriond2016.2j.pruned.txt              >   result.MaxLikelihoodFit.Moriond2016.2j.txt
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-6 --rMax=7      Moriond2016.wh3l.pruned.txt            >   result.MaxLikelihoodFit.Moriond2016.wh3l.txt
+# combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      Moriond2016.vbf.pruned.txt             >   result.data.MaxLikelihoodFit.Moriond2016.vbf.txt
+# combine -M MaxLikelihoodFit   --rMin=-6 --rMax=7      Moriond2016.vh2j.pruned.txt            >   result.data.MaxLikelihoodFit.Moriond2016.vh2j.txt
+# combine -M MaxLikelihoodFit   --rMin=-6 --rMax=7      Moriond2016.2j.pruned.txt              >   result.data.MaxLikelihoodFit.Moriond2016.2j.txt
+# combine -M MaxLikelihoodFit   --rMin=-6 --rMax=7      Moriond2016.wh3l.pruned.txt            >   result.data.MaxLikelihoodFit.Moriond2016.wh3l.txt
 # # 
 # # 
-# combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      Moriond2016.vbf.pruned.txt             >   result.Data.MaxLikelihoodFit.Moriond2016.vbf.txt
-# combine -M MaxLikelihoodFit   --rMin=-6 --rMax=7      Moriond2016.vh2j.pruned.txt            >   result.Data.MaxLikelihoodFit.Moriond2016.vh2j.txt
-# combine -M MaxLikelihoodFit   --rMin=-6 --rMax=7      Moriond2016.2j.pruned.txt              >   result.Data.MaxLikelihoodFit.Moriond2016.2j.txt
-# combine -M MaxLikelihoodFit   --rMin=-13 --rMax=14    Moriond2016.wh3l.pruned.txt            >   result.Data.MaxLikelihoodFit.Moriond2016.wh3l.txt
+# combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      Moriond2016.vbf.pruned.txt             >   result.data.Data.MaxLikelihoodFit.Moriond2016.vbf.txt
+# combine -M MaxLikelihoodFit   --rMin=-6 --rMax=7      Moriond2016.vh2j.pruned.txt            >   result.data.Data.MaxLikelihoodFit.Moriond2016.vh2j.txt
+# combine -M MaxLikelihoodFit   --rMin=-6 --rMax=7      Moriond2016.2j.pruned.txt              >   result.data.Data.MaxLikelihoodFit.Moriond2016.2j.txt
+# combine -M MaxLikelihoodFit   --rMin=-13 --rMax=14    Moriond2016.wh3l.pruned.txt            >   result.data.Data.MaxLikelihoodFit.Moriond2016.wh3l.txt
 # 
-# combine -M ProfileLikelihood --significance     Moriond2016.vbf.pruned.txt             >   result.Data.Significance.Moriond2016.vbf.txt
-# combine -M ProfileLikelihood --significance     Moriond2016.vh2j.pruned.txt            >   result.Data.Significance.Moriond2016.vh2j.txt
-# combine -M ProfileLikelihood --significance     Moriond2016.2j.pruned.txt              >   result.Data.Significance.Moriond2016.2j.txt
-# combine -M ProfileLikelihood --significance     Moriond2016.wh3l.pruned.txt            >   result.Data.Significance.Moriond2016.wh3l.txt
+# combine -M ProfileLikelihood --significance     Moriond2016.vbf.pruned.txt             >   result.data.Data.Significance.Moriond2016.vbf.txt
+# combine -M ProfileLikelihood --significance     Moriond2016.vh2j.pruned.txt            >   result.data.Data.Significance.Moriond2016.vh2j.txt
+# combine -M ProfileLikelihood --significance     Moriond2016.2j.pruned.txt              >   result.data.Data.Significance.Moriond2016.2j.txt
+# combine -M ProfileLikelihood --significance     Moriond2016.wh3l.pruned.txt            >   result.data.Data.Significance.Moriond2016.wh3l.txt
 # 
-# combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1      Moriond2016.vbf.pruned.txt             >   result.Significance.Moriond2016.vbf.txt
-# combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1      Moriond2016.vh2j.pruned.txt            >   result.Significance.Moriond2016.vh2j.txt
-# combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1      Moriond2016.2j.pruned.txt              >   result.Significance.Moriond2016.2j.txt
-# combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1      Moriond2016.wh3l.pruned.txt            >   result.Significance.Moriond2016.wh3l.txt
+# combine -M ProfileLikelihood --significance        Moriond2016.vbf.pruned.txt             >   result.data.Significance.Moriond2016.vbf.txt
+# combine -M ProfileLikelihood --significance        Moriond2016.vh2j.pruned.txt            >   result.data.Significance.Moriond2016.vh2j.txt
+# combine -M ProfileLikelihood --significance        Moriond2016.2j.pruned.txt              >   result.data.Significance.Moriond2016.2j.txt
+# combine -M ProfileLikelihood --significance        Moriond2016.wh3l.pruned.txt            >   result.data.Significance.Moriond2016.wh3l.txt
 #                                             
 #                                             
 
@@ -810,43 +810,43 @@ combine -M MultiDimFit superCombination.Total.txt.pruned.txt -m 125 --algo=grid 
 # # 
 # 
 # 
-# 
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-4 --rMax=6      ICHEP2016.vbf.pruned.txt             >   result.MaxLikelihoodFit.ICHEP2016.vbf.txt
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-6 --rMax=8      ICHEP2016.vh2j.pruned.txt            >   result.MaxLikelihoodFit.ICHEP2016.vh2j.txt
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-4 --rMax=6      ICHEP2016.2j.pruned.txt              >   result.MaxLikelihoodFit.ICHEP2016.2j.txt
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=6      ICHEP2016.wh3l.pruned.txt            >   result.MaxLikelihoodFit.ICHEP2016.wh3l.txt
-# 
-# 
-# 
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.1jet.txt             >   result.MaxLikelihoodFit.ICHEP2016.1jet.txt
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.0jet.txt             >   result.MaxLikelihoodFit.ICHEP2016.0jet.txt
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.0jet.em.txt          >   result.MaxLikelihoodFit.ICHEP2016.0jet.em.txt
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.0jet.me.txt          >   result.MaxLikelihoodFit.ICHEP2016.0jet.me.txt
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.1jet.em.txt          >   result.MaxLikelihoodFit.ICHEP2016.1jet.em.txt
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ICHEP2016.1jet.me.txt          >   result.MaxLikelihoodFit.ICHEP2016.1jet.me.txt
+
+combine -M MaxLikelihoodFit   --rMin=-4 --rMax=6      ICHEP2016.vbf.pruned.txt             >   result.data.MaxLikelihoodFit.ICHEP2016.vbf.txt
+combine -M MaxLikelihoodFit   --rMin=-6 --rMax=8      ICHEP2016.vh2j.pruned.txt            >   result.data.MaxLikelihoodFit.ICHEP2016.vh2j.txt
+combine -M MaxLikelihoodFit   --rMin=-4 --rMax=6      ICHEP2016.2j.pruned.txt              >   result.data.MaxLikelihoodFit.ICHEP2016.2j.txt
+combine -M MaxLikelihoodFit   --rMin=-2 --rMax=6      ICHEP2016.wh3l.pruned.txt            >   result.data.MaxLikelihoodFit.ICHEP2016.wh3l.txt
+
+
+
+combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      ICHEP2016.1jet.txt             >   result.data.MaxLikelihoodFit.ICHEP2016.1jet.txt
+combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      ICHEP2016.0jet.txt             >   result.data.MaxLikelihoodFit.ICHEP2016.0jet.txt
+combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      ICHEP2016.0jet.em.txt          >   result.data.MaxLikelihoodFit.ICHEP2016.0jet.em.txt
+combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      ICHEP2016.0jet.me.txt          >   result.data.MaxLikelihoodFit.ICHEP2016.0jet.me.txt
+combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      ICHEP2016.1jet.em.txt          >   result.data.MaxLikelihoodFit.ICHEP2016.1jet.em.txt
+combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      ICHEP2016.1jet.me.txt          >   result.data.MaxLikelihoodFit.ICHEP2016.1jet.me.txt
+
+
+combine -M ProfileLikelihood --significance         ICHEP2016.vbf.pruned.txt             >   result.data.Significance.ICHEP2016.vbf.txt
+combine -M ProfileLikelihood --significance         ICHEP2016.vh2j.pruned.txt            >   result.data.Significance.ICHEP2016.vh2j.txt
+combine -M ProfileLikelihood --significance         ICHEP2016.2j.pruned.txt              >   result.data.Significance.ICHEP2016.2j.txt
+combine -M ProfileLikelihood --significance         ICHEP2016.wh3l.pruned.txt              >   result.data.Significance.ICHEP2016.wh3l.txt
+
+
+combine -M ProfileLikelihood --significance         ICHEP2016.1jet.txt             >   result.data.Significance.ICHEP2016.1jet.txt
+combine -M ProfileLikelihood --significance         ICHEP2016.0jet.txt             >   result.data.Significance.ICHEP2016.0jet.txt
+combine -M ProfileLikelihood --significance         ICHEP2016.0jet.em.txt          >   result.data.Significance.ICHEP2016.0jet.em.txt
+combine -M ProfileLikelihood --significance         ICHEP2016.0jet.me.txt          >   result.data.Significance.ICHEP2016.0jet.me.txt
+combine -M ProfileLikelihood --significance         ICHEP2016.1jet.em.txt          >   result.data.Significance.ICHEP2016.1jet.em.txt
+combine -M ProfileLikelihood --significance         ICHEP2016.1jet.me.txt          >   result.data.Significance.ICHEP2016.1jet.me.txt
 # 
 # # 
-# # combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.vbf.pruned.txt             >   result.Significance.ICHEP2016.vbf.txt
-# # combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.vh2j.pruned.txt            >   result.Significance.ICHEP2016.vh2j.txt
-# # combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.2j.pruned.txt              >   result.Significance.ICHEP2016.2j.txt
-# # combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.wh3l.pruned.txt              >   result.Significance.ICHEP2016.wh3l.txt
-# 
-# 
-# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.1jet.txt             >   result.Significance.ICHEP2016.1jet.txt
-# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.0jet.txt             >   result.Significance.ICHEP2016.0jet.txt
-# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.0jet.em.txt          >   result.Significance.ICHEP2016.0jet.em.txt
-# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.0jet.me.txt          >   result.Significance.ICHEP2016.0jet.me.txt
-# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.1jet.em.txt          >   result.Significance.ICHEP2016.1jet.em.txt
-# combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        ICHEP2016.1jet.me.txt          >   result.Significance.ICHEP2016.1jet.me.txt
-# # # 
-# # # 
 # # 
 # # 
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1    --rMin=-2 --rMax=4     ICHEP2016.v1.txt.pruned.txt             >   result.MaxLikelihoodFit.ICHEP2016.v1.txt.pruned.txt
+# combine -M MaxLikelihoodFit     --rMin=-2 --rMax=4     ICHEP2016.v1.txt.pruned.txt             >   result.data.MaxLikelihoodFit.ICHEP2016.v1.txt.pruned.txt
 # #     
-# combine -M ProfileLikelihood --significance ICHEP2016.v1.txt.pruned.txt -t -1 --expectSignal=1       >   result.Significance.ICHEP2016.v1.txt.pruned.txt
+# combine -M ProfileLikelihood --significance ICHEP2016.v1.txt.pruned.txt        >   result.data.Significance.ICHEP2016.v1.txt.pruned.txt
 # 
-# combine -M MultiDimFit ICHEP2016.v1.txt.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanHICHEP"   -t -1 --expectSignal=1        >   result.LikelihoodScan.ICHEP2016.v1.txt.pruned.txt
+# combine -M MultiDimFit ICHEP2016.v1.txt.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanDATAHICHEP"           >   result.data.LikelihoodScan.ICHEP2016.v1.txt.pruned.txt
 # 
 # 
 # 
@@ -855,31 +855,31 @@ combine -M MultiDimFit superCombination.Total.txt.pruned.txt -m 125 --algo=grid 
 #  
 # # mix 2015 and 2016
 # 
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ggHcombined.1jet.txt             >   result.MaxLikelihoodFit.ggHcombined.1jet.txt
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ggHcombined.0jet.txt             >   result.MaxLikelihoodFit.ggHcombined.0jet.txt
+# combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      ggHcombined.1jet.txt             >   result.data.MaxLikelihoodFit.ggHcombined.1jet.txt
+# combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      ggHcombined.0jet.txt             >   result.data.MaxLikelihoodFit.ggHcombined.0jet.txt
 # 
-# combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1                         ggHcombined.0jet.txt             >   result.Significance.ggHcombined.0jet.txt
-# combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1                         ggHcombined.1jet.txt             >   result.Significance.ggHcombined.1jet.txt
-# combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1                         Combined2j.v1.txt.pruned.txt     >   result.Significance.Combined.2jet.txt
+# combine -M ProfileLikelihood --significance                           ggHcombined.0jet.txt             >   result.data.Significance.ggHcombined.0jet.txt
+# combine -M ProfileLikelihood --significance                           ggHcombined.1jet.txt             >   result.data.Significance.ggHcombined.1jet.txt
+# combine -M ProfileLikelihood --significance                           Combined2j.v1.txt.pruned.txt     >   result.data.Significance.Combined.2jet.txt
 #  
 #  
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      ggHcombined.v1.txt.pruned.txt    >   result.MaxLikelihoodFit.ggHcombined.v1.txt.pruned.txt
+# combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      ggHcombined.v1.txt.pruned.txt    >   result.data.MaxLikelihoodFit.ggHcombined.v1.txt.pruned.txt
 # 
-# combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1                         ggHcombined.v1.txt.pruned.txt    >   result.Significance.ggHcombined.v1.txt.pruned.txt
+# combine -M ProfileLikelihood --significance                           ggHcombined.v1.txt.pruned.txt    >   result.data.Significance.ggHcombined.v1.txt.pruned.txt
 # 
 # 
-# combine -M MultiDimFit ggHcombined.v1.txt.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanHICHEPggHcombined"   -t -1 --expectSignal=1        >   result.LikelihoodScan.ICHEP2016.ggHcombined.txt.pruned.txt
+# combine -M MultiDimFit ggHcombined.v1.txt.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanDATAHICHEPggHcombined"           >   result.data.LikelihoodScan.ICHEP2016.ggHcombined.txt.pruned.txt
 # 
 # 
 # 
 # # super-combination 2015 and 2016
 # 
-# combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      superCombination.v1.txt.pruned.txt    >   result.MaxLikelihoodFit.superCombination.v1.txt.pruned.txt
+# combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      superCombination.v1.txt.pruned.txt    >   result.data.MaxLikelihoodFit.superCombination.v1.txt.pruned.txt
 # 
-# combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1                         superCombination.v1.txt.pruned.txt    >   result.Significance.superCombination.v1.txt.pruned.txt
+# combine -M ProfileLikelihood --significance                           superCombination.v1.txt.pruned.txt    >   result.data.Significance.superCombination.v1.txt.pruned.txt
 # 
 # 
-# combine -M MultiDimFit superCombination.v1.txt.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanHICHEPggHcombined"   -t -1 --expectSignal=1        >   /tmp/amassiro/result.LikelihoodScan.ICHEP2016.superCombination.v1.txt.pruned.txt
+# combine -M MultiDimFit superCombination.v1.txt.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanDATAHICHEPggHcombined"           >   /tmp/amassiro/result.data.LikelihoodScan.ICHEP2016.superCombination.v1.txt.pruned.txt
 # 
 # 
 # 
