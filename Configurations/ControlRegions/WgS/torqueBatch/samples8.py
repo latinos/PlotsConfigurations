@@ -19,12 +19,26 @@ samples['Vg']  = {    'name': ['../MCWgStarsel__hadd__EpTCorr/latino_Wg_MADGRAPH
 
 
 
-samples['VgS']  = {    'name': [
+#samples['VgS']  = {    'name': [
+#                             '../MCWgStarsel__hadd__EpTCorr/latino_WgStarLNuEE.root', 
+#                             '../MCWgStarsel__hadd__EpTCorr/latino_WgStarLNuMuMu.root'
+#                             ],      
+#                      'weight' : 'puW*baseW*GEN_weight_SM/abs(GEN_weight_SM)',
+#                      #'weight' : '1.4*puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',
+#                      'weights': ['1','1'] ,           
+#                  }
+#
+samples['WgSee']  = {    'name': [
                              '../MCWgStarsel__hadd__EpTCorr/latino_WgStarLNuEE.root', 
+                             ],      
+                      'weight' : 'puW*baseW*GEN_weight_SM/abs(GEN_weight_SM)',
+                      #'weight' : '1.4*puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',
+                      'weights': ['1'] ,           
+                  }
+samples['WgSmm']  = {    'name': [
                              '../MCWgStarsel__hadd__EpTCorr/latino_WgStarLNuMuMu.root'
                              ],      
                       'weight' : 'puW*baseW*GEN_weight_SM/abs(GEN_weight_SM)',
                       #'weight' : '1.4*puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',
-                      'weights': ['1','1'] ,           
+                      'weights': ['1'] ,           
                   }
-

@@ -74,7 +74,7 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 1.0,
+                  'scale'    : 0.7,
                   #'cuts'  : {
                        #'hww2l2v_13TeV_of0j'      : 0.95 ,
                        #'hww2l2v_13TeV_top_of0j'  : 0.95 , 
@@ -163,7 +163,7 @@ plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,    
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+                  'scale'    : 0.9   # ele/mu trigger efficiency   datadriven
                   }
 
 plot['ggWW']  = {

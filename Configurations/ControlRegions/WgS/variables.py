@@ -46,9 +46,19 @@ variables['pfMet']  = {   'name': 'metPfType1',            #   variable name
 #                        }
 ##
 variables['drll']  = {   'name': 'drll',            #   variable name    
-                        'range' : (20,0,2),    #   variable range
+                        'range' : (40,0,4),    #   variable range
                         'xaxis' : 'DR_{ll}',  #   x axis name
                          'fold' : 3
+                        }
+variables['drllOneThree']  = {   'name': 'drllOneThree',            #   variable name    
+                        'range' : (10,0,1),    #   variable range
+                        'xaxis' : '#Delta R_{ll} 2nd3rd',  #   x axis name
+                         'fold' : 0
+                        }
+variables['drllTwoThree']  = {   'name': 'drllTwoThree',            #   variable name    
+                        'range' : (10,0,1),    #   variable range
+                        'xaxis' : '#Delta R_{ll} 2nd3rd',  #   x axis name
+                         'fold' : 0
                         }
 #variables['drllVSmllMinimi']  = {   'name': '\
 #    drll:TMath::Min (TMath::Min( mll+ (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] > 0 )*1000 , mllOneThree + (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[2] > 0 )*1000 ), mllTwoThree + (std_vector_lepton_flavour[1] * std_vector_lepton_flavour[2] > 0 )*1000) \
@@ -96,11 +106,6 @@ variables['mllTwoThree']  = {   'name': 'mllTwoThree',            #   variable n
                         }
 
 #
-variables['drllTwoThree']  = {   'name': 'drllTwoThree',            #   variable name    
-                        'range' : (10,0,1),    #   variable range
-                        'xaxis' : '#Delta R_{ll} 2nd3rd',  #   x axis name
-                         'fold' : 0
-                        }
 #variables['drllTwoThreeVSmllMinimi']  = {   'name': '\
 #    drllTwoThree:TMath::Min (TMath::Min( mll+ (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] > 0 )*1000 , mllOneThree + (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[2] > 0 )*1000 ), mllTwoThree + (std_vector_lepton_flavour[1] * std_vector_lepton_flavour[2] > 0 )*1000) \
 #                        ',
@@ -118,6 +123,8 @@ variables['drllTwoThree']  = {   'name': 'drllTwoThree',            #   variable
 #                        'xaxis' : 'm_{ll} from #gamma^{*} [GeV]',  #   x axis name
 #                         'fold' : 0
 #                        }
+
+
 variables['mllMinimi']  = {   'name': '\
     TMath::Min( mll+ (mll<0)*100000 + (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] > 0 )*100000 , mllThird + (mllThird < 0)*100000) \
                         ',
@@ -125,6 +132,7 @@ variables['mllMinimi']  = {   'name': '\
                         'xaxis' : 'm_{ll} from #gamma^{*} [GeV]',  #   x axis name
                          'fold' : 0
                         }
+
 
 variables['mllMinimiLowM']  = {   'name': '\
     TMath::Min( mll+ (mll<0)*100000 + (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] > 0 )*100000 , mllThird + (mllThird < 0)*100000) \
@@ -152,12 +160,22 @@ variables['mllMinimiLLowM']  = {   'name': '\
 ##
 ##
 ##
-##variables['mllTwoThreeLowMass']  = {   'name': 'mllTwoThree',            #   variable name    
-##                        'range' : (10,0,10),    #   variable range
-##                        'xaxis' : 'm_{ll} 2nd3rd [GeV]',  #   x axis name
-##                         'fold' : 1
-##                        }
+variables['mllTwoThreeLowMass']  = {   'name': 'mllTwoThree',            #   variable name    
+                        'range' : (20,0,10),    #   variable range
+                        'xaxis' : 'm_{ll} 2nd3rd [GeV]',  #   x axis name
+                         'fold' : 0
+                        }
+
 ##
+#variables['mllSpecialMin']  = {   'name': '\
+#                      min( min(  mllTwoThree * (std_vector_lepton_isTightLepton[0]==1 && std_vector_lepton_pt[0]>30 && std_vector_lepton_flavour[1]*std_vector_lepton_flavour[2]<0) +  + 1000 * !(std_vector_lepton_isTightLepton[0]==1 && std_vector_lepton_pt[0]>30 && std_vector_lepton_flavour[1]*std_vector_lepton_flavour[2]<0) \
+#                               , mllOneThree * (std_vector_lepton_isTightLepton[1]==1 && std_vector_lepton_pt[1]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[2]<0) +  + 1000 * !(std_vector_lepton_isTightLepton[1]==1 && std_vector_lepton_pt[1]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[2]<0) \
+#                             ) , mll         * (std_vector_lepton_isTightLepton[2]==1 && std_vector_lepton_pt[2]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]<0) +  + 1000 * !(std_vector_lepton_isTightLepton[2]==1 && std_vector_lepton_pt[2]>30 && std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]<0) \
+#                        )',
+#                        'range' : (40,0,10),    #   variable range
+#                        'xaxis' : 'min m_{ll} from #gamma [GeV]',  #   x axis name
+#                         'fold' : 2
+#                        }
 ##
 ##variables['mllSpecialLowMass']  = {   'name': '\
 ##                          mllTwoThree * (std_vector_lepton_isTightLepton[0]==1 && std_vector_lepton_isTightLepton[1]!=1  && std_vector_lepton_isTightLepton[2]!=1  && std_vector_lepton_pt[0]>30 && std_vector_lepton_flavour[1]*std_vector_lepton_flavour[2]<0) \
@@ -333,7 +351,7 @@ variables['mpmet']  = {   'name': 'mpmet',            #   variable name
 ##
 ##
 variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
-                        'range' : (30,30,90),   
+                        'range' : (45,0,90),   
                         'xaxis' : 'p_{T} 1st lep',
                         'fold'  : 0                         
                         }

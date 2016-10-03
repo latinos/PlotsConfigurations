@@ -6,8 +6,13 @@
 
 #mkdir rootFile
 rm -f rootFile/plots_WgS.root
+
+#hadd rootFile/plots_WgS.root torqueBatch/rootFile8/plots_WgS.root torqueBatch/rootFile9/plots_WgS.root
+
 hadd rootFile/plots_WgS.root torqueBatch/rootFile1/plots_WgS.root torqueBatch/rootFile2/plots_WgS.root torqueBatch/rootFile3/plots_WgS.root torqueBatch/rootFile4/plots_WgS.root torqueBatch/rootFile5/plots_WgS.root torqueBatch/rootFile6/plots_WgS.root torqueBatch/rootFile7/plots_WgS.root torqueBatch/rootFile8/plots_WgS.root torqueBatch/rootFile9/plots_WgS.root torqueBatch/rootFile10/plots_WgS.root torqueBatch/rootFile11/plots_WgS.root torqueBatch/rootFile12/plots_WgS.root torqueBatch/rootFile13/plots_WgS.root
 
+rm -f rootFile_SingleEle
+cp -r rootFile rootFile_SingleEle
 
 # Ploting
 rm -rf plotWgS.old
@@ -15,9 +20,21 @@ mv plotWgS plotWgS.old
 mkdir plotWgS
 mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile/plots_WgS.root
 
+#rm -rf plotWgSsingleMu
+#mv plotWgS plotWgSsingleMu
+rm -rf plotWgSsingleEle
+mv plotWgS plotWgSsingleEle
+
 # mv plot somewhere
-tar cvf plotWgS.tar plotWgS
-scp plotWgS.tar lxplus.cern.ch:www/WgS/
+#tar cvf plotWZ.tar plotWgS
+#scp plotWZ.tar lxplus.cern.ch:www/WgS/
+#tar cvf plotWgS.tar plotWgS
+#scp plotWgS.tar lxplus.cern.ch:www/WgS/
+#tar cvf plotWgSsingleMu.tar plotWgSsingleMu
+#scp plotWgSsingleMu.tar lxplus.cern.ch:www/WgS/
+tar cvf plotWgSsingleEle.tar plotWgSsingleEle
+scp plotWgSsingleEle.tar lxplus.cern.ch:www/WgS/
+
 #mkdir ~/www/WgS/NoCut
 #rm -f ~/www/WgS/NoCut/*.png
 #rm -f ~/www/WgS/NoCut/*.root

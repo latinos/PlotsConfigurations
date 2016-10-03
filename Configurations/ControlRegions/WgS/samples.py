@@ -201,6 +201,8 @@ samples['DATA']  = {   'name': [
 #                      #'isData': ['0'],                             
 #                  }
 
+
+
 samples['Fake']  = {    'name': [
       '../../../HWW6p3/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb/latino_Run2016B_PromptReco_MuonEG.root', 
       '../../../HWW6p3/21Jun2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb/latino_Run2016B_PromptReco_DoubleMuon.root', 
@@ -379,13 +381,19 @@ samples['Vg']  = {    'name': ['../MCWgStarsel__hadd__EpTCorr/latino_Wg_MADGRAPH
 
 
 
-samples['VgS']  = {    'name': [
+samples['WgSee']  = {    'name': [
                              '../MCWgStarsel__hadd__EpTCorr/latino_WgStarLNuEE.root', 
+                             ],      
+                      'weight' : 'puW*baseW*GEN_weight_SM/abs(GEN_weight_SM)',
+                      #'weight' : '1.4*puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',
+                      'weights': ['1'] ,           
+                  }
+samples['WgSmm']  = {    'name': [
                              '../MCWgStarsel__hadd__EpTCorr/latino_WgStarLNuMuMu.root'
                              ],      
                       'weight' : 'puW*baseW*GEN_weight_SM/abs(GEN_weight_SM)',
                       #'weight' : '1.4*puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',
-                      'weights': ['1','1'] ,           
+                      'weights': ['1'] ,           
                   }
 
 
