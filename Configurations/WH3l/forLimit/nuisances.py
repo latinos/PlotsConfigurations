@@ -185,6 +185,9 @@ nuisances['Zg3lnorm']  = {
                'type'  : 'rateParam',
                'cuts'  : [
                  'wh3l_zg_13TeV',
+                 'wh3l_13TeV_sssf',
+                 'wh3l_13TeV_ossf',
+                 'wh3l_wz_13TeV',
                 ]
               }
 
@@ -196,6 +199,9 @@ nuisances['WZ3lnorm']  = {
                'type'  : 'rateParam',
                'cuts'  : [
                  'wh3l_wz_13TeV',
+                 'wh3l_13TeV_sssf',
+                 'wh3l_13TeV_ossf',
+                 'wh3l_zg_13TeV',
                 ]
               }
 
