@@ -116,6 +116,7 @@ nuisances['pdf_qqbar_accept_wh3l']  = {
                    'qqH_htt' : '1.011',
                    'WH_hww'  : '1.007',
                    'ZH_hww'  : '1.012',
+                   'WZ'      : '1.006',
                    },
               }
 
@@ -127,6 +128,7 @@ nuisances['QCDscale_qqbar_accept']  = {
                    'qqH_htt' : '1.007',
                    'WH_hww'  : '1.05',
                    'ZH_hww'  : '1.04',
+                   'WZ'      : '1.001'
                    },
               }
 
