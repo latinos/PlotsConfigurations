@@ -24,14 +24,16 @@ plotFile = 'plot.py'
 # luminosity to normalize to (in 1/fb)
 # lumi = 2.264
 lumi = 12.3
+#lumi = 100.0
+
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-# outputDirPlots = '/afs/cern.ch/user/n/ntrevisa/www/figuresLxplus/16Sep2016/monoH/BVeto'
 outputDirPlots = 'plot'
 
 # used by mkDatacards to define output directory for datacards
 outputDirDatacard = 'datacards'
+#outputDirDatacard = '100datacards'
 
 
 # structure file for datacard
@@ -39,7 +41,7 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances_light.py'
-#nuisancesFile = 'nuisances.py'
+#nuisancesFile = 'nuisances_light.py'
+nuisancesFile = 'nuisances.py'
 
 

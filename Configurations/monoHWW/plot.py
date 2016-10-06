@@ -72,19 +72,26 @@ groupPlot['DY']  = {
               }
 
 
-groupPlot['600']  = {  
-                  'nameHR' : 'mZ=600 GeV',
-                  'isSignal' : 2,
-                  'color': 800, # kOrange 
-                  'samples'  : ['monoH_600']
-              }
+ZpMasses={"600","800","1000","1200","1700","2000","2500"}
+i=0
 
-groupPlot['800']  = {  
-                  'nameHR' : 'mZ=800 GeV',
-                  'isSignal' : 2,
-                  'color': 801, # kOrange + 1 
-                  'samples'  : ['monoH_800']
-              }
+for mZp in ZpMasses:
+
+    groupPlot[mZp]  = {  
+        'nameHR' : 'mZ=' + mZp + ' GeV',
+        'isSignal' : 2,
+        'color': 800 + i, # kOrange + i
+        'samples'  : ['monoH_' + mZp]
+        }
+    
+    i = i + 1
+
+# groupPlot['800']  = {  
+#                   'nameHR' : 'mZ=800 GeV',
+#                   'isSignal' : 2,
+#                   'color': 801, #kOrange + 1 
+#                   'samples'  : ['monoH_800']
+#               }
 
 # groupPlot['1000']  = {  
 #                   'nameHR' : 'mZ=1000 GeV',
@@ -93,40 +100,40 @@ groupPlot['800']  = {
 #                   'samples'  : ['monoH_1000']
 #               }
 
-groupPlot['1200']  = {  
-                  'nameHR' : 'mZ=1200 GeV',
-                  'isSignal' : 2,
-                  'color': 803, # kOrange + 3 
-                  'samples'  : ['monoH_1200']
-              }
-
-# groupPlot['1400']  = {   
-#                   'nameHR' : 'mZ=1400 GeV',
+# groupPlot['1200']  = {  
+#                   'nameHR' : 'mZ=1200 GeV',
 #                   'isSignal' : 2,
-#                   'color': 804, # kOrange + 4 
-#                   'samples'  : ['monoH_1400']
+#                   'color': 803, #kOrange + 3 
+#                   'samples'  : ['monoH_1200']
 #               }
 
-groupPlot['1700']  = {  
-                  'nameHR' : 'mZ=1700 GeV',
-                  'isSignal' : 2,
-                  'color': 805, # kOrange + 5 
-                  'samples'  : ['monoH_1700']
-              }
+# # groupPlot['1400']  = {   
+# #                   'nameHR' : 'mZ=1400 GeV',
+# #                   'isSignal' : 2,
+# #                   'color': 804, # kOrange + 4 
+# #                   'samples'  : ['monoH_1400']
+# #               }
 
-groupPlot['2000']  = {  
-                  'nameHR' : 'mZ=2000 GeV',
-                  'isSignal' : 2,
-                  'color': 806, # kOrange + 6 
-                  'samples'  : ['monoH_2000']
-              }
+# groupPlot['1700']  = {  
+#                   'nameHR' : 'mZ=1700 GeV',
+#                   'isSignal' : 2,
+#                   'color': 805, #kOrange + 5 
+#                   'samples'  : ['monoH_1700']
+#               }
 
-groupPlot['2500']  = {  
-                  'nameHR' : 'mZ=2500 GeV',
-                  'isSignal' : 2,
-                  'color': 807, # kOrange + 7 
-                  'samples'  : ['monoH_2500']
-              }
+# groupPlot['2000']  = {  
+#                   'nameHR' : 'mZ=2000 GeV',
+#                   'isSignal' : 2,
+#                   'color': 806, #kOrange + 6 
+#                   'samples'  : ['monoH_2000']
+#               }
+
+# groupPlot['2500']  = {  
+#                   'nameHR' : 'mZ=2500 GeV',
+#                   'isSignal' : 2,
+#                   'color': 807, #kOrange + 7 
+#                   'samples'  : ['monoH_2500']
+#               }
 
 
 #plot = {}
