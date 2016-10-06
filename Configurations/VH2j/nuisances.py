@@ -173,7 +173,7 @@ nuisances['Topnorm2jvh']  = {
 
 
 nuisances['lumi']  = {
-               'name'  : 'lumi_13TeV_norm', 
+               'name'  : 'lumi_13TeV', 
                'samples'  : {
                    'ggH_hww'  : '1.023',
                    'qqH_hww'  : '1.023',
