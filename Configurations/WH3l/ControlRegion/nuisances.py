@@ -5,9 +5,9 @@
 # name of samples here must match keys in samples.py    
 #
 
-nuisances['lumi']  = {
+nuisances['lumi2016']  = {
              #  'name'  : 'lumi_13TeV', 
-               'name'  : 'lumi_ICHEP_13TeV', 
+               'name'  : 'lumi_13TeV_2016', 
                'samples'  : {
                    'WH_hww'   : '1.058',
                    'ZH_hww'   : '1.058',
