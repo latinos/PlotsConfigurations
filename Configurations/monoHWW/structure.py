@@ -140,46 +140,49 @@ structure['H_hww'] = {
                   }
 
 # Signals
+ZpMasses={"600","800","1000","1200","1700","2000","2500"}
 
-structure['monoH_600'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
+for mZp in ZpMasses:
 
-structure['monoH_800'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
+    structure['monoH_' + mZp] = {
+        'isSignal' : 1,
+        'isData'   : 0    
+        }
 
-structure['monoH_1000'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
+# structure['monoH_800'] = {
+#                   'isSignal' : 1,
+#                   'isData'   : 0    
+#                   }
 
-structure['monoH_1200'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
+# structure['monoH_1000'] = {
+#                   'isSignal' : 1,
+#                   'isData'   : 0    
+#                   }
 
-structure['monoH_1400'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
+# structure['monoH_1200'] = {
+#                   'isSignal' : 1,
+#                   'isData'   : 0    
+#                   }
 
-structure['monoH_1700'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
+# structure['monoH_1400'] = {
+#                   'isSignal' : 1,
+#                   'isData'   : 0    
+#                   }
 
-structure['monoH_2000'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
+# structure['monoH_1700'] = {
+#                   'isSignal' : 1,
+#                   'isData'   : 0    
+#                   }
 
-structure['monoH_2500'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
+# structure['monoH_2000'] = {
+#                   'isSignal' : 1,
+#                   'isData'   : 0    
+#                   }
+
+# structure['monoH_2500'] = {
+#                   'isSignal' : 1,
+#                   'isData'   : 0    
+#                   }
 
 
 # data
