@@ -1,6 +1,14 @@
-void Draw2D() {
+//
+//---- generic 2D plot
+//
+
+void Draw2DImproved(std::string xName = "#mu_{ggH}", std::string yName = "#mu_{VBF/VH}", std::string xNameVar = "muGGH", std::string yNameVar = "muVBF"  ) {
   
-  int n =  limit->Draw("2*deltaNLL:muGGH:muVBF","deltaNLL<10","goff");
+  TCanvas* cc = new TCanvas ("cc","",800,600); 
+  
+  TString whatToDraw = Form ("2*deltaNLL:%s:%s", xNameVar.c_str(), yNameVar.c_str());
+
+  int n =  limit->Draw(whatToDraw.Data(),"deltaNLL<10","goff");
   
   TGraph2D *graphScan = new TGraph2D(n,limit->GetV2(),limit->GetV3(),limit->GetV1());
   graphScan->SetTitle("");
@@ -10,8 +18,8 @@ void Draw2D() {
 
   graphScan->Draw("colz");
 
-  graphScan->GetXaxis()->SetTitle("#mu_{ggH}");
-  graphScan->GetYaxis()->SetTitle("#mu_{VBF}");
+  graphScan->GetXaxis()->SetTitle(xName.c_str());
+  graphScan->GetYaxis()->SetTitle(yName.c_str());
   graphScan->GetZaxis()->SetTitle("- 2#Delta logL");
   graphScan->GetZaxis()->SetRangeUser(0,10);
   
@@ -22,11 +30,10 @@ void Draw2D() {
   contours[0] = 1;
   contours[1] = 3.84;
     
-  TCanvas* cc = new TCanvas ("cc","",800,600); 
 //   graphScan->Draw("cont4z");
   graphScan->Draw("colz");
-  graphScan->GetHistogram()->GetXaxis()->SetTitle("#mu_{ggH}");
-  graphScan->GetHistogram()->GetYaxis()->SetTitle("#mu_{VBF/VH}");
+  graphScan->GetHistogram()->GetXaxis()->SetTitle(xName.c_str());
+  graphScan->GetHistogram()->GetYaxis()->SetTitle(yName.c_str());
   graphScan->GetHistogram()->GetZaxis()->SetTitle("- 2#Delta logL");
 // //   graphScan->Draw("cont4z");
   graphScan->Draw("colz");
@@ -49,3 +56,5 @@ void Draw2D() {
   
   
 }
+
+
