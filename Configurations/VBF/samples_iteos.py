@@ -180,6 +180,17 @@ samples['WW']  = {    'name': [
                   }
 
 
+samples['WWewk']  = {    'name': [
+                                  'latino_WpWmJJ_EWK_QCD_noTop.root',
+                                  'latino_WpWmJJ_QCD_noTop.root'
+                                ],      
+                      'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+                      'weights': [
+                          '(lhe_mlvlv > 130)',
+                          '-1'
+                          ] ,           
+                  }
+
 samples['ggWW']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root'],      
                       'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
                       #'weights': ['abs(nllW)'] ,           
