@@ -1,23 +1,20 @@
-
-# cuts
+#cuts
 
 #cuts = {}
 
-#&& (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
-
-supercut = 'std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>20 \
+supercut = 'std_vector_lepton_pt[0]>25 && std_vector_lepton_pt[1]>20 \
             && std_vector_lepton_pt[2]<10 \
-'
-
-cuts['monoH_Signal_em'] = 'njet >= 0 \
-            && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13) \
+            && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] < 0) \
             && mll>12  \
             && metPfType1 > 20 \
             && mpmet > 20 \
             && ptll > 30 \
             && mth > 60 \
             && mll < 100 \
-            && drll < 2.8 \
+            && drll < 1.5 \
+            && mtw2 > 100 \
+            && mth > 200 \
+            && ((abs(std_vector_lepton_flavour[0])!=abs(std_vector_lepton_flavour[0])) || (abs(mll-91)>15)) \
             && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
             && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
             && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
@@ -28,6 +25,15 @@ cuts['monoH_Signal_em'] = 'njet >= 0 \
             && ( std_vector_jet_pt[7] < 20 || std_vector_jet_cmvav2[7] < -0.715 ) \
             && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.715 ) \
             && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.715 ) \
+'
+
+cuts['monoH_Alberto_ll'] = 'njet >= 0 \
+            && mpmet > 100 \
+            && dphilmet1 > 2.6 \
+            && dphilmet2 > 2.6 \
+            && drll < 0.8 \
+            && mtw1 > 160 \
+            && metTtrk > 100 \
 '
 
 

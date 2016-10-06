@@ -17,6 +17,12 @@ Some useful aliases:
 
 Steps to get datacards and plots:
 
+      cd ~/work/CMSSW_8_0_5/src
+
+      cmsenv
+
+      cd -  
+
       cd /tmp/ntrevisa/    
 
       eosmount eosBig
@@ -33,16 +39,33 @@ Steps to get datacards and plots:
 
       
       mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_monoHWW.root --minLogC=0.0001 --minLogCratio=0.0001 --maxLogC=1000 --maxLogCratio=1000
-    
+
+
 
 Prune all datacards:
 
       cd ../../../ModificationDatacards/
 
-      ls /afs/cern.ch/user/n/ntrevisa/work/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/WW/datacards/*/*/*.txt  | grep -v "pruned"  |   \
+      ls /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/monoHWW/datacards/*/*/*.txt  | grep -v "pruned"  |   \
       awk '{print "python PruneDatacard.py  -d "$1" -o "$1".pruned.txt    -i examples/input_nuisances_to_prune.py"}' | /bin/sh
 
       cd -
+
+Use multiSignalModel:
+
+      cd ~/work/CMSSW_7_4_7/src/HiggsAnalysis/CombinedLimit/
+
+      cmsenv	 
+
+      cd -
+
+      awk '{ print $21 }' datacards/monoH_Alberto_em/events/datacard.txt.pruned.txt
+
+      awk '!($11=$21="")' datacards/monoH_Alberto_em/events/datacard.txt.pruned.txt >> datacards/monoH_Alberto_em/events/datacard.txt.pruned.txt.safe.txt
+
+      text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose --PO 'map=.*/monoH_600:r[1,0,10]' --PO 'map=.*/monoH_800:0' --PO 'map=.*/monoH_1000:0' --PO 'map=.*/monoH_1200:0' --PO 'map=.*/monoH_1400:0' --PO 'map=.*/monoH_1700:0' --PO 'map=.*/monoH_2000:0' --PO 'map=.*/monoH_2500:0' datacards/monoH_Signal_em/events/datacard.txt.pruned.txt -o monoH600.root
+
+      combine -M Asymptotic -t -1 --expectSignal 1 --run expected monoH600.root &> Limit_monoH600.txt
 
 
 Combine the Top CR and the WW SR datacards:
