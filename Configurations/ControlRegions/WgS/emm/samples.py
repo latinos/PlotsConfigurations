@@ -46,27 +46,27 @@ samples['Wg']  = {    'name': ['latino_Wg_MADGRAPHMLM.root'],
 
 
 
-samples['WgS']  = {    'name': [
-                             'latino_WZTo3LNu_mllmin01.root', 
+#samples['WgS']  = {    'name': [
+                             #'latino_WZTo3LNu_mllmin01.root', 
+                             #],      
+                      #'weight' : '(Gen_ZGstar_mass<4 && Gen_ZGstar_mass>0)*puW*baseW*GEN_weight_SM/abs(GEN_weight_SM)',
+                  #}
+
+
+
+samples['WgSee']  = {    'name': [
+                             'latino_WgStarLNuEE.root', 
                              ],      
-                      'weight' : '(Gen_ZGstar_mass<4 && Gen_ZGstar_mass>0)*puW*baseW*GEN_weight_SM/abs(GEN_weight_SM)',
+                      'weight' : '1.4*puW*baseW*GEN_weight_SM/abs(GEN_weight_SM)',
                   }
 
 
 
-#samples['WgSee']  = {    'name': [
-                             #'latino_WgStarLNuEE.root', 
-                             #],      
-                      #'weight' : '1.4*puW*baseW*GEN_weight_SM/abs(GEN_weight_SM)',
-                  #}
-
-
-
-#samples['WgSmm']  = {    'name': [
-                             #'latino_WgStarLNuMuMu.root'
-                             #],      
-                      #'weight' : '1.4*puW*baseW*GEN_weight_SM/abs(GEN_weight_SM)',
-                  #}
+samples['WgSmm']  = {    'name': [
+                             'latino_WgStarLNuMuMu.root'
+                             ],      
+                      'weight' : '1.4*puW*baseW*GEN_weight_SM/abs(GEN_weight_SM)',
+                  }
 
 
 
