@@ -381,7 +381,7 @@ nuisances['electronpt_wh3l']  = {
                    'VVV' : ['1', '1'],
                    'WH_hww'  :  ['1', '1'],
                    'ZH_hww'  :  ['1', '1'],
-                   'ggZH_hww'  :  ['1', '1'],
+                #   'ggZH_hww'  :  ['1', '1'],
                    'WH_htt'   : ['1', '1'],
                    'Vg' : ['1', '1'],
                 },
