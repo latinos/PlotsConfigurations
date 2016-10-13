@@ -22,6 +22,8 @@ Steps to get datacards and plots:
                 --outputDirPDF=testPDF/
                 
 
+                
+                
 
     
     alias eosusermount='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine.user/bin/eos.select -b fuse mount'
@@ -39,3 +41,18 @@ Steps to get datacards and plots:
     mkShapes.py      --pycfg=configuration.py  --inputDir=eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/ --doThreads=True
 
     mkPDF.py    --pycfg=configuration.py  --inputDir=eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/    --inputFile=rootFile/plots_ggH.root    --outputDirPDF=testPDF/
+
+    
+    
+    
+For ICHEP complete:
+    
+    mkShapes.py      --pycfg=configuration.py  --doThreads=True    --inputDir=eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
+
+    mkPDF.py    --pycfg=configuration.py  --inputDir=eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/   \
+         --inputFile=rootFile/plots_ggH.root    --outputDirPDF=testPDF/
+
+         
+         
+         
+         

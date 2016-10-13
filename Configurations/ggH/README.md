@@ -27,9 +27,10 @@ Steps to get datacards and plots:
 
     mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_ggH.root
     mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_ggHJustPlot.root
+    mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_ggHtestplot.root
     
     mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_ggH.root
-
+    mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_ggHtestplot.root
     
 
 Pruning:
@@ -228,7 +229,8 @@ Auto tests:
     cat   ../result.Significance.Moriond2016.wh3l.txt
 
 
-    
+    cat ../result.data.Significance.superCombination.2015.txt.pruned.txt
+    cat ../result.data.MaxLikelihoodFit.superCombination.2015.txt.pruned.txt
     
     
     
