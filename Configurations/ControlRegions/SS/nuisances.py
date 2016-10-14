@@ -5,14 +5,136 @@
 # name of samples here must match keys in samples.py    
 #
 
+
 nuisances['lumi']  = {
-               'name'  : 'lumi_13TeV', 
-               'all'   : 1 ,     # apply to all samples
+               'name'  : 'lumi_13TeV_norm', 
+               'samples'  : {
+                   'ggH_hww'  : '1.023',
+                   'qqH_hww'  : '1.023',
+                   'WH_hww'   : '1.023',
+                   'ZH_hww'   : '1.023',
+                   'H_htt'    : '1.023',
+                   'H_hww'    : '1.023',
+                   'WH_hww'   : '1.023',
+                   'ggZH_hww'   : '1.023',
+                   'VVV'      : '1.023',
+                   'VZ'       : '1.023',
+                   'ggWW'     : '1.023',
+                   'Vg'       : '1.023',
+                   'VgS'      : '1.023',
+                   #'DY'       : '1.023',    # --> datadriven
+                   #'WW'       : '1.023',    # --> datadriven
+                   #'top'      : '1.023',    # --> datadriven
+                   },
                'type'  : 'lnN',
-               'value' : '1.027' 
               }
 
 
+
+nuisances['lumi2016']  = {
+               'name'  : 'lumi_13TeV_2016', 
+               'samples'  : {
+                   'ggH_hww'  : '1.058',
+                   'qqH_hww'  : '1.058',
+                   'WH_hww'   : '1.058',
+                   'ZH_hww'   : '1.058',
+                   'H_htt'    : '1.058',
+                   'H_hww'    : '1.058',
+                   'WH_hww'   : '1.058',
+                   'ggZH_hww'   : '1.058',
+                   'VVV'      : '1.058',
+                   'VZ'       : '1.058',
+                   'ggWW'     : '1.058',
+                   'Vg'       : '1.058',
+                   'VgS'      : '1.058',
+                   #'DY'       : '1.058',    # --> datadriven
+                   #'WW'       : '1.058',    # --> datadriven
+                   #'top'      : '1.058',    # --> datadriven
+                   },
+               'type'  : 'lnN',
+              }
+
+
+
+# lumi_13TeV_norm lnN 1.023
+# lumi_13TeV_2015 lnN 1.015
+# lumi_13TeV_2016 lnN 1.058
+
+
+
+
+
+nuisances['WgStarScale']  = {
+               'name'  : 'WgStarScale', 
+               'type'  : 'lnN',
+               'samples'  : {
+                   'WgS' : '1.25',  # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
+                   'VgS' : '1.25',  # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
+                   },
+                }
+ 
+ 
+ 
+ 
+nuisances['fake_syst']  = {
+               'name'  : 'fake_syst', 
+               'type'  : 'lnN',
+               'samples'  : {
+                   'Fake' : '1.30',
+                   },
+}
+ 
+ 
+ 
+
+nuisances['fake_ele']  = {
+                'name'  : 'fake_ele_hww',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'Fake'      : ['(fakeW2l0jElUp*(njet==0)+fakeW2l1jElUp*(njet==1)+fakeW2l2jElUp*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',
+                                  '(fakeW2l0jElDown*(njet==0)+fakeW2l1jElDown*(njet==1)+fakeW2l2jElDown*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))'],
+                }
+}
+ 
+
+nuisances['fake_ele_stat']  = {
+                'name'  : 'fake_ele_stat_hww',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'Fake'      : ['(fakeW2l0jstatElUp*(njet==0)+fakeW2l1jstatElUp*(njet==1)+fakeW2l2jstatElUp*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',
+                                  '(fakeW2l0jstatElDown*(njet==0)+fakeW2l1jstatElDown*(njet==1)+fakeW2l2jstatElDown*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))'],
+                }
+}
+
+
+nuisances['fake_mu']  = {
+                'name'  : 'fake_mu_hww',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'Fake'      : ['(fakeW2l0jMuUp*(njet==0)+fakeW2l1jMuUp*(njet==1)+fakeW2l2jMuUp*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',
+                                  '(fakeW2l0jMuDown*(njet==0)+fakeW2l1jMuDown*(njet==1)+fakeW2l2jMuDown*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))'],
+                }
+}
+ 
+
+nuisances['fake_mu_stat']  = {
+                'name'  : 'fake_mu_stat_hww',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'Fake'      : ['(fakeW2l0jstatMuUp*(njet==0)+fakeW2l1jstatMuUp*(njet==1)+fakeW2l2jstatMuUp*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',
+                                  '(fakeW2l0jstatMuDown*(njet==0)+fakeW2l1jstatMuDown*(njet==1)+fakeW2l2jstatMuDown*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))'],
+                }
+}
+
+
+
+
+ 
+ 
 # theory uncertainties
 
 # WZ from 

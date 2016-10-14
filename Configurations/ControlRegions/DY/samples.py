@@ -2088,9 +2088,9 @@ samples['DATA']  = {   'name': [
                        #'weight' : 'std_vector_trigger[1]',
                        'weights' : [
                                    #
+                                   #                             "HLT_Ele27_eta2p1_WPLoose_Gsf_v*",                                    # 0
                                    #'',                          "HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_v*",                 # 8
                                    #'',                          "HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_v*",                  # 6
-                                   #'',                          "HLT_Ele27_WPLoose_Gsf_v*",                                           # 47
                                    #'',                          "HLT_Ele45_WPLoose_Gsf_v*",                                           # 56
                                    #'',                          "HLT_IsoTkMu22_v*",                                                   # 42
                                    #'',                          "HLT_IsoMu22_v*",                                                     # 43
