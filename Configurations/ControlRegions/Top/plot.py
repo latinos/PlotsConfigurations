@@ -18,7 +18,7 @@ groupPlot['DY']  = {
 
 
 groupPlot['Fake']  = {  
-                  'nameHR' : 'Fake',
+                  'nameHR' : 'Non-prompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
                   'samples'  : ['Fake']
@@ -57,7 +57,7 @@ groupPlot['Higgs']  = {
 
 
 groupPlot['top']  = {  
-                  'nameHR' : 'tW and t#bart',
+                  'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
                   'color': 400,   # kYellow
                   'samples'  : ['top']
@@ -327,7 +327,8 @@ plot['DATA']  = {
 #legend['lumi'] = 'L = 0.8/fb' # 2.318 fb-1
 #legend['lumi'] = 'L = 2.6/fb'
 #legend['lumi'] = 'L = 4.3/fb'
-legend['lumi'] = 'L = 6.3/fb'
+#legend['lumi'] = 'L = 6.3/fb'
+legend['lumi'] = 'L = 12.3/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
