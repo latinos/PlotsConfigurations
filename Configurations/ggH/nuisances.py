@@ -642,7 +642,7 @@ nuisances['WgStarScale']  = {
  
 
 nuisances['DYttnorm0j']  = {
-               'name'  : 'ICHEP_DYttnorm0j', 
+               'name'  : 'DYttnorm0j', 
                'samples'  : {
                    'DY' : '1.00',
                    },

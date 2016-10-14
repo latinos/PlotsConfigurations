@@ -741,6 +741,10 @@ Copy datacards to repository:
                   
       ICHEP final
 
+      cd /afs/cern.ch/user/a/amassiro/work/Latinos/Limit/datacards/cadi/HIG-16-021/125
+      cd /afs/cern.ch/user/a/amassiro/work/Latinos/Limit/datacards/cadi/HIG-16-021/125/2015
+      cd /afs/cern.ch/user/a/amassiro/work/Latinos/Limit/datacards/cadi/HIG-16-021/125/2016
+      
       cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/Moriond/datacards/hww2l2v_13TeV_em_1j/mllVSmth/datacard.txt.pruned.txt             2015/hww2l2v_13TeV_em_1j/datacard.txt
       cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/Moriond/datacards/hww2l2v_13TeV_me_1j/mllVSmth/datacard.txt.pruned.txt             2015/hww2l2v_13TeV_me_1j/datacard.txt
       cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/Moriond/datacards/hww2l2v_13TeV_em_0j/mllVSmth/datacard.txt.pruned.txt             2015/hww2l2v_13TeV_em_0j/datacard.txt

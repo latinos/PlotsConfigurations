@@ -188,7 +188,8 @@ nuisances['DYttnorm2jvbfhighmjj']  = {
 
 
 nuisances['WWnorm2jvbf']  = {
-               'name'  : 'ICHEP_WWnorm2jvbf', 
+               'name'  : 'WWnorm2jvbf', 
+               #'name'  : 'ICHEP_WWnorm2jvbf', 
                'samples'  : {
                    'WW' : '1.00',
                    },
