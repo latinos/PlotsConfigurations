@@ -75,7 +75,14 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 1.0
+                  'scale'    : 1.0,
+                  'cuts'  : {
+                       'hww2l2v_13TeV_dytt_of0j'   : 0.99 ,
+                       'hww2l2v_13TeV_dytt_of1j'   : 0.90 , 
+                       'hww2l2v_13TeV_dytt_of2j'   : 0.90 ,                
+                        },
+                  
+
               }
 
 
@@ -131,11 +138,11 @@ plot['top'] = {
                   'isData'   : 0, 
                   'scale'    : 1.0,
                   
-                  'cuts'  : {
-                       'ww2l2v_13TeV_ww_of0j'   : 0.98 ,
-                       'ww2l2v_13TeV_ww_of1j'   : 0.87 , 
-                       'ww2l2v_13TeV_ww_of2j'   : 0.90 ,                
-                        },
+                  #'cuts'  : {
+                       #'ww2l2v_13TeV_ww_of0j'   : 0.98 ,
+                       #'ww2l2v_13TeV_ww_of1j'   : 0.87 , 
+                       #'ww2l2v_13TeV_ww_of2j'   : 0.90 ,                
+                        #},
                   
                   }
 
