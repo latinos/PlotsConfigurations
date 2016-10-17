@@ -10,26 +10,30 @@
 #
 
 groupPlot['DY']  = {  
-                  'nameHR' : "DY"
+                  'nameHR' : "DY",
+                  'isSignal' : 0,
                   'color': 418,    # kGreen+2
-                  'samples'  : ['DY']
+                  'samples'  : ['DY0jet', 'DY1jet']
               }
 
 groupPlot['VZ']  = {  
-                  'nameHR' : "VZ/#gamma*/#gamma"
+                  'nameHR' : "VZ/#gamma*/#gamma",
+                  'isSignal' : 0,
                   'color': 859, # kAzure -1  
                   'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ']
               }
 
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bart',
+                  'isSignal' : 0,
                   'color': 400,   # kYellow
-                  'samples'  : ['top']
+                  'samples'  : ['top0jet', 'top1jet']
               }
 
 
 groupPlot['Fake']  = {  
                   'nameHR' : 'Fake',
+                  'isSignal' : 0,
                   'color': 921,    # kGray + 1
                   'samples'  : ['Fake']
               }
@@ -37,6 +41,7 @@ groupPlot['Fake']  = {
 
 groupPlot['WW']  = {  
                   'nameHR' : 'WW',
+                  'isSignal' : 0,
                   'color': 851, # kAzure -9 
                   'samples'  : ['WW']
               }
@@ -44,6 +49,7 @@ groupPlot['WW']  = {
 
 groupPlot['Higgs']  = {  
                   'nameHR' : 'Higgs',
+                  'isSignal' : 1,
                   'color': 632, # kRed 
                   'samples'  : ['ggH_hww_pt1', 'ggH_hww_pt2', 'H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww']
               }

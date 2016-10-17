@@ -2,168 +2,212 @@
 
 #samples = {}
 
+
+# samples
+
+#samples = {}
+
+
 samples['DY0jet']  = {    'name': [
                             'latino_DYJetsToLL_M-10to50.root',
-                            'latino_DYJetsToLL_M-10to50ext3.root',
-                            #
-                            'latino_DYJetsToLL_M-50_0000__part0.root',
-                            'latino_DYJetsToLL_M-50_0000__part1.root',
-                            'latino_DYJetsToLL_M-50_0000__part2.root',
-                            'latino_DYJetsToLL_M-50_0000__part3.root',
-                            'latino_DYJetsToLL_M-50_0000__part4.root',
-                            'latino_DYJetsToLL_M-50_0001__part0.root',
-                            'latino_DYJetsToLL_M-50_0001__part1.root',
-                            'latino_DYJetsToLL_M-50_0001__part2.root',
-                            'latino_DYJetsToLL_M-50_0001__part3.root',
-                            'latino_DYJetsToLL_M-50_0001__part4.root',
-                            'latino_DYJetsToLL_M-50_0002__part0.root'
-                            #
+                            'latino_DYJetsToTT_MuEle_M-50.root',
                             ],    
-                      'weight' : 'metFilter*(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))*puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*(njet==0)', 
-                      'weights': [  '0.238112'
-                                  , '0.238112'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  ] ,           
-                  }
-                      
-                      
+                      'weight' : 'puW*baseW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*(njet==0)',  
+                       'weights' :  [
+                                     '1', 
+                                     '1.26645',
+                                     ],
+                    }
+
+
 samples['DY1jet']  = {    'name': [
                             'latino_DYJetsToLL_M-10to50.root',
-                            'latino_DYJetsToLL_M-10to50ext3.root',
-                            #
-                            'latino_DYJetsToLL_M-50_0000__part0.root',
-                            'latino_DYJetsToLL_M-50_0000__part1.root',
-                            'latino_DYJetsToLL_M-50_0000__part2.root',
-                            'latino_DYJetsToLL_M-50_0000__part3.root',
-                            'latino_DYJetsToLL_M-50_0000__part4.root',
-                            'latino_DYJetsToLL_M-50_0001__part0.root',
-                            'latino_DYJetsToLL_M-50_0001__part1.root',
-                            'latino_DYJetsToLL_M-50_0001__part2.root',
-                            'latino_DYJetsToLL_M-50_0001__part3.root',
-                            'latino_DYJetsToLL_M-50_0001__part4.root',
-                            'latino_DYJetsToLL_M-50_0002__part0.root'
-                            #
+                            'latino_DYJetsToTT_MuEle_M-50.root',
                             ],    
-                      'weight' : 'metFilter*(0.95 - 0.1*TMath::Erf((gen_ptll-14)/8.8))*puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*(njet>=1)',
-                      'weights': [  '0.238112'
-                                  , '0.238112'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  , '0.317273040011'
-                                  ] ,           
-                  }
-
-# 0.238112 for DY-10-50
-# baseW for DY-50
-# 
-#  22Jan_25ns_mAODv2_MC DYJetsToLL_M-10to50 : {'nEvt': '22460679.0', 'nTot': '30868739.0', 'nPos': '26664709.0', 'baseW': '0.828559100996', 'nNeg': '4204030.0', 'xs': '18610.0'}
-#  22Jan_25ns_mAODv2_MC DYJetsToLL_M-10to50ext3 : {'nEvt': '55695668.0', 'nTot': '76530604.0', 'nPos': '66113136.0', 'baseW': '0.334137297716', 'nNeg': '10417468.0', 'xs': '18610.0'}
-#  18610 / (26664709.0 - 4204030.0) * 1000  = 0.828559
-#  18610 / (26664709.0 - 4204030.0 + 66113136.0 - 10417468.0) * 1000 = 0.238112
-#
-
-
-#samples['Wjets']  = {    'name': ['latino_WJetsToLNu.root'],     #   file name    
-                      #'weight' : 'puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',              #   weight/cut 
-                      ##'isData': ['0'],                             
-                  #}
-
+                      'weight' : 'puW*baseW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*(njet>=1)',  
+                       'weights' :  [
+                                     '1', 
+                                     '1.26645',
+                                     ],
+                    }
 
 
 # data driven
 samples['Fake']  = {    'name': [
-                       #'../../../../../../../eos/user/a/amassiro/HWW2015/04MarchFake/22Jan_Run2015C_16Dec2015/latino_DD_Run2015C_16Dec2015_DoubleEG.root',
-                       #'../../../../../../../eos/user/a/amassiro/HWW2015/04MarchFake/22Jan_Run2015C_16Dec2015/latino_DD_Run2015C_16Dec2015_DoubleMuon.root',
-                       #'../../../../../../../eos/user/a/amassiro/HWW2015/04MarchFake/22Jan_Run2015C_16Dec2015/latino_DD_Run2015C_16Dec2015_MuonEG.root',
-                       #'../../../../../../../eos/user/a/amassiro/HWW2015/04MarchFake/22Jan_Run2015C_16Dec2015/latino_DD_Run2015C_16Dec2015_SingleElectron.root',
-                       #'../../../../../../../eos/user/a/amassiro/HWW2015/04MarchFake/22Jan_Run2015C_16Dec2015/latino_DD_Run2015C_16Dec2015_SingleMuon.root',
-                       #'../../../../../../../eos/user/a/amassiro/HWW2015/04MarchFake/22Jan_Run2015D_16Dec2015/latino_DD_Run2015D_16Dec2015_DoubleEG.root',
-                       #'../../../../../../../eos/user/a/amassiro/HWW2015/04MarchFake/22Jan_Run2015D_16Dec2015/latino_DD_Run2015D_16Dec2015_DoubleMuon.root',
-                       #'../../../../../../../eos/user/a/amassiro/HWW2015/04MarchFake/22Jan_Run2015D_16Dec2015/latino_DD_Run2015D_16Dec2015_MuonEG.root',
-                       #'../../../../../../../eos/user/a/amassiro/HWW2015/04MarchFake/22Jan_Run2015D_16Dec2015/latino_DD_Run2015D_16Dec2015_SingleElectron.root',
-                       #'../../../../../../../eos/user/a/amassiro/HWW2015/04MarchFake/22Jan_Run2015D_16Dec2015/latino_DD_Run2015D_16Dec2015_SingleMuon.root'
-                       # 
-                       '../../../../../../user/r/rebeca/HWW2015/03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__fakeW/latino_DD_Run2015C_16Dec2015_DoubleEG.root',
-                       '../../../../../../user/r/rebeca/HWW2015/03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__fakeW/latino_DD_Run2015C_16Dec2015_DoubleMuon.root',
-                       '../../../../../../user/r/rebeca/HWW2015/03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__fakeW/latino_DD_Run2015C_16Dec2015_MuonEG.root',
-                       '../../../../../../user/r/rebeca/HWW2015/03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__fakeW/latino_DD_Run2015C_16Dec2015_SingleElectron.root',
-                       '../../../../../../user/r/rebeca/HWW2015/03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__fakeW/latino_DD_Run2015C_16Dec2015_SingleMuon.root',
-                       '../../../../../../user/r/rebeca/HWW2015/03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__fakeW/latino_DD_Run2015D_16Dec2015_DoubleEG.root',
-                       '../../../../../../user/r/rebeca/HWW2015/03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__fakeW/latino_DD_Run2015D_16Dec2015_DoubleMuon.root',
-                       '../../../../../../user/r/rebeca/HWW2015/03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__fakeW/latino_DD_Run2015D_16Dec2015_MuonEG.root',
-                       '../../../../../../user/r/rebeca/HWW2015/03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__fakeW/latino_DD_Run2015D_16Dec2015_SingleElectron.root',
-                       '../../../../../../user/r/rebeca/HWW2015/03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__fakeW/latino_DD_Run2015D_16Dec2015_SingleMuon.root'
-                       #
-                                 ],     
-                      'weight' : 'metFilter*trigger*(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',              #   weight/cut 
-                      'isData': ['all'],                             
+                      #
+                                '../../../../../../../../eos/user/n/ntrevisa/HWW2015/ICHEP/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_MuonEG.root', 
+                                '../../../../../../../../eos/user/n/ntrevisa/HWW2015/ICHEP/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../eos/user/n/ntrevisa/HWW2015/ICHEP/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../eos/user/n/ntrevisa/HWW2015/ICHEP/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../eos/user/n/ntrevisa/HWW2015/ICHEP/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../../           
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_MuonEG.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../../         
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_MuonEG.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../../         
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_MuonEG.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../../
+                                #../../../../../../../../../../            
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_MuonEG.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../../            
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_MuonEG.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../../            
+                                '../../../../../../../../eos/user/n/ntrevisa/HWW2015/ICHEP/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_MuonEG.root', 
+                                '../../../../../../../../eos/user/n/ntrevisa/HWW2015/ICHEP/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../eos/user/n/ntrevisa/HWW2015/ICHEP/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../eos/user/n/ntrevisa/HWW2015/ICHEP/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../eos/user/n/ntrevisa/HWW2015/ICHEP/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../../            
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_MuonEG.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_SingleElectron.root', 
+                                #
+                       #               
+                       ],     
+                      #'weight' : 'trigger*(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',              #   weight/cut 
+                      #'weight' : '2.6/0.8*trigger*(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',              #   weight/cut 
+                      #'weight' : '4.0/0.8*trigger*(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',              #   weight/cut 
+                      'weight' : '(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',              #   weight/cut 
+                      'isData': ['all'],
+                       'weights' : [
+                                   #
+                                   #
+                                   'std_vector_trigger[8]  || std_vector_trigger[6]',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) &&  (std_vector_trigger[13] || std_vector_trigger[11])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) &&  (std_vector_trigger[42] || std_vector_trigger[43])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) &&  (std_vector_trigger[46])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) && !(std_vector_trigger[46])  && (std_vector_trigger[0] || std_vector_trigger[56])',
+                                   #
+                                   'std_vector_trigger[8]  || std_vector_trigger[6]',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) &&  (std_vector_trigger[13] || std_vector_trigger[11])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) &&  (std_vector_trigger[42] || std_vector_trigger[43])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) &&  (std_vector_trigger[46])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) && !(std_vector_trigger[46])  && (std_vector_trigger[0] || std_vector_trigger[56])',
+                                   #
+                                   'std_vector_trigger[8]  || std_vector_trigger[6]',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) &&  (std_vector_trigger[13] || std_vector_trigger[11])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) &&  (std_vector_trigger[42] || std_vector_trigger[43])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) &&  (std_vector_trigger[46])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) && !(std_vector_trigger[46])  && (std_vector_trigger[0] || std_vector_trigger[56])',
+                                   #
+                                   'std_vector_trigger[8]  || std_vector_trigger[6]',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) &&  (std_vector_trigger[13] || std_vector_trigger[11])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) &&  (std_vector_trigger[42] || std_vector_trigger[43])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) &&  (std_vector_trigger[46])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) && !(std_vector_trigger[46])  && (std_vector_trigger[0] || std_vector_trigger[56])',
+                                   #
+                                   'std_vector_trigger[8]  || std_vector_trigger[6]',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) &&  (std_vector_trigger[13] || std_vector_trigger[11])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) &&  (std_vector_trigger[42] || std_vector_trigger[43])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) &&  (std_vector_trigger[46])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) && !(std_vector_trigger[46])  && (std_vector_trigger[0] || std_vector_trigger[56])',
+                                   #
+                                   'std_vector_trigger[8]  || std_vector_trigger[6]',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) &&  (std_vector_trigger[13] || std_vector_trigger[11])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) &&  (std_vector_trigger[42] || std_vector_trigger[43])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) &&  (std_vector_trigger[46])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) && !(std_vector_trigger[46])  && (std_vector_trigger[0] || std_vector_trigger[56])',
+                                   #
+                                   'std_vector_trigger[8]  || std_vector_trigger[6]',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) &&  (std_vector_trigger[13] || std_vector_trigger[11])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) &&  (std_vector_trigger[42] || std_vector_trigger[43])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) &&  (std_vector_trigger[46])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) && !(std_vector_trigger[46])  && (std_vector_trigger[0] || std_vector_trigger[56])',
+                                   #
+                                   'std_vector_trigger[8]  || std_vector_trigger[6]',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) &&  (std_vector_trigger[13] || std_vector_trigger[11])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) &&  (std_vector_trigger[42] || std_vector_trigger[43])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) &&  (std_vector_trigger[46])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) && !(std_vector_trigger[46])  && (std_vector_trigger[0] || std_vector_trigger[56])',
+                                   #
+                                   #
+                                   ],
+                      
                   }
 
              
-
 samples['top0jet'] = {   'name': [
-                          'latino_TTTo2L2Nu.root', 
-                          'latino_ST_tW_antitop.root',
-                          'latino_ST_tW_top.root'
+                           #'latino_TTJets.root',
+                           'latino_TTTo2L2Nu_ext1__part0.root',
+                           'latino_TTTo2L2Nu_ext1__part1.root',
+                           'latino_TTTo2L2Nu_ext1__part2.root',
+                           'latino_TTTo2L2Nu_ext1__part3.root',
+                           'latino_TTTo2L2Nu_ext1__part4.root',
+                           'latino_TTTo2L2Nu_ext1__part5.root',
+                           'latino_TTTo2L2Nu_ext1__part6.root',
+                           'latino_TTTo2L2Nu_ext1__part7.root',
+                           'latino_TTTo2L2Nu_ext1__part8.root',
+                           'latino_TTTo2L2Nu_ext1__part9.root',
+                           #
+                           'latino_ST_tW_antitop.root',
+                           'latino_ST_tW_top.root'
                           ],          
-                       'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*(njet==0)',                
-                   }
+                       'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*(njet==0)',    #   weight/cut 
+                      }
 
-
+      
 samples['top1jet'] = {   'name': [
-                          'latino_TTTo2L2Nu.root', 
-                          'latino_ST_tW_antitop.root',
-                          'latino_ST_tW_top.root'
+                           #'latino_TTJets.root',
+                           'latino_TTTo2L2Nu_ext1__part0.root',
+                           'latino_TTTo2L2Nu_ext1__part1.root',
+                           'latino_TTTo2L2Nu_ext1__part2.root',
+                           'latino_TTTo2L2Nu_ext1__part3.root',
+                           'latino_TTTo2L2Nu_ext1__part4.root',
+                           'latino_TTTo2L2Nu_ext1__part5.root',
+                           'latino_TTTo2L2Nu_ext1__part6.root',
+                           'latino_TTTo2L2Nu_ext1__part7.root',
+                           'latino_TTTo2L2Nu_ext1__part8.root',
+                           'latino_TTTo2L2Nu_ext1__part9.root',
+                           #
+                           'latino_ST_tW_antitop.root',
+                           'latino_ST_tW_top.root'
                           ],          
-                       'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*(njet>=1)',                
-                   }
+                       'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*(njet>=1)',    #   weight/cut 
+                      }
 
 
-#samples['top'] = {   'name': [
-                          #'latino_TTTo2L2Nu.root', 
-                          #'latino_ST_tW_antitop.root',
-                          #'latino_ST_tW_top.root'
-                          #],          
-                       #'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',                
-                   #}
 
 
+
+             
 samples['WW']  = {    'name': [
                                   'latino_WWTo2L2Nu.root'
                                 ],      
-                      'weight' : 'metFilter*nllW*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
-                      #'weights': ['abs(nllW)'] ,           
+                      'weight' : 'nllW*puW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+                      'weights': ['0.00619058124769'] ,           
                   }
 
 
 samples['ggWW']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root'],      
-                      'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
-                      'weights': ['1.000'] ,           
+                      'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+                      #'weights': ['abs(nllW)'] ,           
+                      #'weights': ['1.000'] ,           
                       'isData': ['0'],                            
                   }
 
-#samples['ggWW_Int']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root', 'latino_GluGluWWTo2L2NuHiggs_MCFM.root'],      
-                      #'weight' : '1.87*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
-                      #'weights': ['-1./1.4', '1/1.4'] ,           
-                  #}
+
 
 # during tree production: 1.4 k-factor has been applied to both samples
 # ggWW sample: k = 1.4 +/- 15%
@@ -171,63 +215,176 @@ samples['ggWW']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root'],
 
 
 
-samples['Vg']  = {    'name': ['latino_Wg_AMCNLOFXFX.root'],      
-                      'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)\
+samples['Vg']  = {    'name': ['latino_Wg_MADGRAPHMLM.root'],      
+                      'weight' : 'puW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)\
                                   * !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
                                  #*(!(Gen_ZGstar_MomStatus==44 && Gen_ZGstar_MomId==22))',
-                      'weights': ['1'] ,           
+                      'weights': ['0.0684952181745'] ,           
                       #'isData': ['0'],                            
                   }
 
 
 
-samples['VgS']  = {    'name': ['latino_WgStarLNuEE.root', 'latino_WgStarLNuMuMu.root'],      
-                      'weight' : 'metFilter*2.0*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',
+samples['VgS']  = {    'name': [
+                             'latino_WgStarLNuEE.root', 
+                             'latino_WgStarLNuMuMu.root'
+                             ],      
+                      'weight' : '1.2*puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',
                       'weights': ['1','1'] ,           
                   }
 
 # 
 # Wg* scale factor is
 #
-# 1.98 +/- 0.54    in mumumu
-# 2.0  +/- 0.5     in emumu
+# X.X  +/- X.X     in mumumu
+# 1.4  +/- 0.4     in emumu
 #
 #
+
+
+
 
 
 samples['VZ']  = {    'name': [
+                          #'latino_WZ.root', 
                           'latino_WZTo3LNu.root', 
-                          #'latino_ZZ.root',  ---> replaced by inclusive samples
-                          'latino_ZZTo2L2Nu.root', #  ---->  NEEDED FIXME
+                          #'latino_ZZ.root', # ---> replaced by exclusive samples
+                          'latino_ZZTo2L2Nu.root',   # 
                           #'latino_ZZTo2L2Q.root'
-                          'latino_ZZTo4L.root'
+                          'latino_WZTo2L2Q__part0.root',
+                          'latino_WZTo2L2Q__part1.root',
+                          'latino_WZTo2L2Q__part10.root',
+                          'latino_WZTo2L2Q__part11.root',
+                          'latino_WZTo2L2Q__part12.root',
+                          'latino_WZTo2L2Q__part13.root',
+                          'latino_WZTo2L2Q__part14.root',
+                          'latino_WZTo2L2Q__part15.root',
+                          'latino_WZTo2L2Q__part16.root',
+                          'latino_WZTo2L2Q__part17.root',
+                          'latino_WZTo2L2Q__part18.root',
+                          'latino_WZTo2L2Q__part19.root',
+                          'latino_WZTo2L2Q__part2.root',
+                          'latino_WZTo2L2Q__part20.root',
+                          'latino_WZTo2L2Q__part21.root',
+                          'latino_WZTo2L2Q__part22.root',
+                          'latino_WZTo2L2Q__part23.root',
+                          'latino_WZTo2L2Q__part24.root',
+                          'latino_WZTo2L2Q__part25.root',
+                          'latino_WZTo2L2Q__part26.root',
+                          'latino_WZTo2L2Q__part27.root',
+                          'latino_WZTo2L2Q__part28.root',
+                          'latino_WZTo2L2Q__part29.root',
+                          'latino_WZTo2L2Q__part3.root',
+                          'latino_WZTo2L2Q__part30.root',
+                          'latino_WZTo2L2Q__part31.root',
+                          'latino_WZTo2L2Q__part32.root',
+                          'latino_WZTo2L2Q__part33.root',
+                          'latino_WZTo2L2Q__part34.root',
+                          'latino_WZTo2L2Q__part35.root',
+                          'latino_WZTo2L2Q__part36.root',
+                          'latino_WZTo2L2Q__part37.root',
+                          'latino_WZTo2L2Q__part38.root',
+                          'latino_WZTo2L2Q__part39.root',
+                          'latino_WZTo2L2Q__part4.root',
+                          'latino_WZTo2L2Q__part40.root',
+                          'latino_WZTo2L2Q__part41.root',
+                          'latino_WZTo2L2Q__part42.root',
+                          'latino_WZTo2L2Q__part5.root',
+                          'latino_WZTo2L2Q__part6.root',
+                          'latino_WZTo2L2Q__part7.root',
+                          'latino_WZTo2L2Q__part8.root',
+                          'latino_WZTo2L2Q__part9.root',                          
+                          #
+                          'latino_ZZTo2L2Q__part0.root',
+                          'latino_ZZTo2L2Q__part1.root',
+                          'latino_ZZTo2L2Q__part2.root',
+                          'latino_ZZTo2L2Q__part3.root',
+                          #
+                          #'latino_ZZTo4L.root'
                          ], 
-                      'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
-                      #'weights': ['1'] ,           
+                      'weight' : '1.11*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+                      #'weights': [
+                          #'0.002214825',
+                          ##
+                          #'6.28902765388e-05',
+                          ##
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',
+                          #'0.000359426036128',                          
+                          ##
+                          #'0.000329080664109',
+                          #'0.000329080664109',
+                          #'0.000329080664109',
+                          #'0.000329080664109',
+                          ##
+                        #'',
+                        #] ,           
                       #'isData': ['0'],                            
                   }
 
 
+
 samples['VVV'] = {    'name': [
                           'latino_WZZ.root', 
-                          #'latino_ZZZ.root'
-                          #'latino_WWW.root'
-                          #'latino_WWZ.root'
+                          'latino_ZZZ.root',
+                          'latino_WWW.root',
+                          'latino_WWZ.root',
                           ],      
-                      'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+                      'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
                       #'isData': ['0'],                            
                   }
 
 
 # Htautau
 samples['H_htt']  = {      'name': ['latino_GluGluHToTauTau_M125.root',
-                                    'latino_VBFHToTauTau_M125.root',
-                                    'latino_HWminusJ_HToTauTau_M125.root',
-                                    'latino_HWplusJ_HToTauTau_M125.root',
-                                    'latino_HZJ_HToTauTau_M125.root'
+                                    'latino_VBFHToTauTau_M125.root'
+                                    #'latino_HWminusJ_HToTauTau_M125.root',
+                                    #'latino_HWplusJ_HToTauTau_M125.root',
+                                    #'latino_HZJ_HToTauTau_M125.root'
                                     ],      
-                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',         
-                           'weights': ['1', '1', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)' ]            
+                           'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',         
+                           'weights': ['1', '1']
+                                       #, 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)' ]            
                   }
 
 
@@ -239,25 +396,17 @@ samples['ggH_hww_pt1']  = {    'name': [
                                #'latino_GluGluHToWWTo2L2Nu_M125.root'
                                #'latino_GluGluHToWWTo2L2Nu_alternative_M125.root' # --> 500k events
                                ],      
-                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*(higgsGenpt<15)',          
-# cheating
-                           #'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*(higgsGenpt<15)*(sqrt((metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))*(metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))+(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1]))*(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1])))<15)',          
-
+                           'weight' : '(higgsGenpt<15)*puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
                   }
-
 
 
 samples['ggH_hww_pt2']  = {    'name': [
                                'latino_GluGluHToWWTo2L2NuPowheg_M125.root'
                                #'latino_GluGluHToWWTo2L2Nu_M125.root'
                                #'latino_GluGluHToWWTo2L2Nu_alternative_M125.root' # --> 500k events
-                               ], 
-                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*(higgsGenpt>=15 && higgsGenpt<30)',          
-# cheating
-                           #'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*(higgsGenpt>=15 && higgsGenpt<30)*(sqrt((metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))*(metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))+(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1]))*(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1])))<30  || sqrt((metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))*(metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))+(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1]))*(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1])))>=15)',          
-
+                               ],      
+                           'weight' : '(higgsGenpt>=15 && higgsGenpt<30)*puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
                   }
-
 
 
 samples['ggH_hww_pt3']  = {    'name': [
@@ -265,39 +414,36 @@ samples['ggH_hww_pt3']  = {    'name': [
                                #'latino_GluGluHToWWTo2L2Nu_M125.root'
                                #'latino_GluGluHToWWTo2L2Nu_alternative_M125.root' # --> 500k events
                                ],      
-                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*(higgsGenpt>30)',          
-# cheating
-                           #'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*(higgsGenpt>30)*(sqrt((metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))*(metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))+(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1]))*(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1])))>30)',          
-
-
-
-
-
+                           'weight' : '(higgsGenpt>30)*puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
                   }
+
 
 
 
 
 samples['qqH_hww']  = {    'name': [
-                               'latino_VBFHToWWTo2L2Nu_M125.root'
-                               #'latino_VBFHToWWTo2L2Nu_alternative_M125.root'
+                               #'latino_VBFHToWWTo2L2Nu_M125.root'
+                               'latino_VBFHToWWTo2L2Nu_alternative_M125.root'
                                ],      
-                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
+                           'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
                   }
 
 samples['ggZH_hww']  = {    'name': [
                                'latino_ggZH_HToWW_M125.root',
                                ],      
-                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]',          
+                           'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
                   }
 
 
-samples['WH_hww']  = {    'name': ['latino_HWminusJ_HToWW_M125.root', 'latino_HWplusJ_HToWW_M125.root'],      
-                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+samples['WH_hww']  = {    'name': [
+                             'latino_HWminusJ_HToWW_M125.root',
+                             'latino_HWplusJ_HToWW_M125.root'
+                             ],      
+                           'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
                   }
 
 samples['ZH_hww']  = {    'name': ['latino_HZJ_HToWW_M125.root'],      
-                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+                           'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
                   }
 
 
@@ -305,22 +451,125 @@ samples['ZH_hww']  = {    'name': ['latino_HZJ_HToWW_M125.root'],
 ###########################################
 ###########################################
 ###########################################
+
 
 samples['DATA']  = {   'name': [
-                                '../../03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2015C_16Dec2015_DoubleEG.root',
-                                '../../03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2015C_16Dec2015_DoubleMuon.root',
-                                '../../03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2015C_16Dec2015_MuonEG.root',
-                                '../../03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2015C_16Dec2015_SingleElectron.root',
-                                '../../03Mar_Run2015C_16Dec2015/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2015C_16Dec2015_SingleMuon.root',
-                                '../../03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2015D_16Dec2015_DoubleEG.root',
-                                '../../03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2015D_16Dec2015_DoubleMuon.root',
-                                '../../03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2015D_16Dec2015_MuonEG.root',
-                                '../../03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2015D_16Dec2015_SingleElectron.root',
-                                '../../03Mar_Run2015D_16Dec2015/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2015D_16Dec2015_SingleMuon.root',
+                                #
+                                ##
+                                '../../../../../../../../eos/user/n/ntrevisa/HWW2015/ICHEP/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_MuonEG.root', 
+                                '../../../../../../../../eos/user/n/ntrevisa/HWW2015/ICHEP/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../eos/user/n/ntrevisa/HWW2015/ICHEP/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../eos/user/n/ntrevisa/HWW2015/ICHEP/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../eos/user/n/ntrevisa/HWW2015/ICHEP/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../../           
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_MuonEG.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../../         
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_MuonEG.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../../         
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_MuonEG.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../../
+                                #../../../../../../../../../../            
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_MuonEG.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../../            
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_MuonEG.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../../            
+                                '../../../../../../../../eos/user/n/ntrevisa/HWW2015/ICHEP/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_MuonEG.root', 
+                                '../../../../../../../../eos/user/n/ntrevisa/HWW2015/ICHEP/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../eos/user/n/ntrevisa/HWW2015/ICHEP/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../eos/user/n/ntrevisa/HWW2015/ICHEP/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../eos/user/n/ntrevisa/HWW2015/ICHEP/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../../            
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_MuonEG.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../eos/user/k/kfjack/HWW2015//26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_SingleElectron.root', 
+                                #
+                                #
                                 ] ,     
-                       'weight' : 'trigger*metFilter',
+                       #'weight' : 'trigger',
+                       'weight' : '1',
+                       #'weight' : 'std_vector_trigger[1]',
+                       'weights' : [
+                                   #
+                                   'std_vector_trigger[8]  || std_vector_trigger[6]',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) &&  (std_vector_trigger[13] || std_vector_trigger[11])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) &&  (std_vector_trigger[42] || std_vector_trigger[43])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) &&  (std_vector_trigger[46])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) && !(std_vector_trigger[46])  && (std_vector_trigger[0] || std_vector_trigger[56])',
+                                   #
+                                   'std_vector_trigger[8]  || std_vector_trigger[6]',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) &&  (std_vector_trigger[13] || std_vector_trigger[11])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) &&  (std_vector_trigger[42] || std_vector_trigger[43])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) &&  (std_vector_trigger[46])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) && !(std_vector_trigger[46])  && (std_vector_trigger[0] || std_vector_trigger[56])',
+                                   #
+                                   'std_vector_trigger[8]  || std_vector_trigger[6]',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) &&  (std_vector_trigger[13] || std_vector_trigger[11])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) &&  (std_vector_trigger[42] || std_vector_trigger[43])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) &&  (std_vector_trigger[46])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) && !(std_vector_trigger[46])  && (std_vector_trigger[0] || std_vector_trigger[56])',
+                                   #
+                                   'std_vector_trigger[8]  || std_vector_trigger[6]',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) &&  (std_vector_trigger[13] || std_vector_trigger[11])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) &&  (std_vector_trigger[42] || std_vector_trigger[43])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) &&  (std_vector_trigger[46])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) && !(std_vector_trigger[46])  && (std_vector_trigger[0] || std_vector_trigger[56])',
+                                   #
+                                   'std_vector_trigger[8]  || std_vector_trigger[6]',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) &&  (std_vector_trigger[13] || std_vector_trigger[11])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) &&  (std_vector_trigger[42] || std_vector_trigger[43])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) &&  (std_vector_trigger[46])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) && !(std_vector_trigger[46])  && (std_vector_trigger[0] || std_vector_trigger[56])',
+                                   #
+                                   'std_vector_trigger[8]  || std_vector_trigger[6]',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) &&  (std_vector_trigger[13] || std_vector_trigger[11])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) &&  (std_vector_trigger[42] || std_vector_trigger[43])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) &&  (std_vector_trigger[46])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) && !(std_vector_trigger[46])  && (std_vector_trigger[0] || std_vector_trigger[56])',
+                                   #
+                                   'std_vector_trigger[8]  || std_vector_trigger[6]',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) &&  (std_vector_trigger[13] || std_vector_trigger[11])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) &&  (std_vector_trigger[42] || std_vector_trigger[43])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) &&  (std_vector_trigger[46])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) && !(std_vector_trigger[46])  && (std_vector_trigger[0] || std_vector_trigger[56])',
+                                   #
+                                   'std_vector_trigger[8]  || std_vector_trigger[6]',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) &&  (std_vector_trigger[13] || std_vector_trigger[11])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) &&  (std_vector_trigger[42] || std_vector_trigger[43])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) &&  (std_vector_trigger[46])',
+                                   '!(std_vector_trigger[8]  || std_vector_trigger[6]) && !(std_vector_trigger[13] || std_vector_trigger[11]) && !(std_vector_trigger[42] || std_vector_trigger[43]) && !(std_vector_trigger[46])  && (std_vector_trigger[0] || std_vector_trigger[56])',
+                                   #                         
+                         ],
+
                        'isData': ['all'],                            
                   }
+
+
+
+
+
+
 
 
 
