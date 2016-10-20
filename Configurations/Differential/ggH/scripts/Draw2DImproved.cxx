@@ -2,13 +2,19 @@
 //---- generic 2D plot
 //
 
-void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", std::string xNameVar = "r1", std::string yNameVar = "r3" , int dimension = 2 ) {
+void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", std::string xNameVar = "r1", std::string yNameVar = "r3" , int dimension = 2 , std::string cut = "1") {
   
   TCanvas* cc = new TCanvas ("cc","",800,600); 
   
   TString whatToDraw = Form ("2*deltaNLL:%s:%s", xNameVar.c_str(), yNameVar.c_str());
 
-  int n =  limit->Draw(whatToDraw.Data(),"deltaNLL<10","goff");
+  TString cutToDraw = Form ("(deltaNLL<10) && (%s)", cut.c_str());
+  
+  std::cout << " whatToDraw = " << whatToDraw.Data() << std::endl;
+  std::cout << " cutToDraw  = " << cutToDraw.Data() << std::endl;
+  
+  
+  int n =  limit->Draw(whatToDraw.Data(),cutToDraw.Data(),"goff");
   
   TGraph2D *graphScan = new TGraph2D(n,limit->GetV2(),limit->GetV3(),limit->GetV1());
   graphScan->SetTitle("");

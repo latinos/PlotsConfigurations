@@ -51,7 +51,33 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  'samples'  : ['ggH_hww_pt1', 'ggH_hww_pt2', 'H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww']
+                  'samples'  : [ 'H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww']
+              }
+
+
+
+
+groupPlot['Higgspt1']  = {  
+                  'nameHR' : 'ggH pt1',
+                  'isSignal' : 1,
+                  'color': 632+1, # kRed +1
+                  'samples'  : ['ggH_hww_pt1']
+              }
+
+
+groupPlot['Higgspt2']  = {  
+                  'nameHR' : 'ggH pt2',
+                  'isSignal' : 1,
+                  'color': 632+2, # kRed +2
+                  'samples'  : ['ggH_hww_pt2']
+              }
+
+
+groupPlot['Higgspt3']  = {  
+                  'nameHR' : 'ggH pt3',
+                  'isSignal' : 1,
+                  'color': 632+3, # kRed +3
+                  'samples'  : ['ggH_hww_pt3']
               }
 
 
@@ -344,7 +370,9 @@ plot['DATA']  = {
 # additional options
 
 # legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
-legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
+#legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
+legend['lumi'] = 'L = 12.3/fb'
+
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 
