@@ -2,55 +2,19 @@
 
 #samples = {}
 
-ZpMasses={"600","800","1000","1200","1700","2000","2500"}
-a0mass="400"
+ZpMasses={"600","800","1000","1200","1400","1700","2000","2500"}
+A0Masses={"400","500","600","700","800"}
 
 for mZp in ZpMasses:
-
-    samples['monoH_' + mZp] = { 'name': ['latino_monoH_2HDM_MZp-' + mZp + '_MA0-' + a0mass + '.root'],
-                                'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',
-                                }
-
-
-# samples['monoH_600'] = { 'name': ['latino_monoH_2HDM_MZp-600_MA0-400.root'],
-#                          'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
-#     }
-
-# samples['monoH_800'] = { 'name': ['latino_monoH_2HDM_MZp-800_MA0-400.root'],
-#                          'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
-#     }
-
-# samples['monoH_1000'] = { 'name': ['latino_monoH_2HDM_MZp-1000_MA0-400.root'],
-#                          'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
-#     }
-
-# samples['monoH_1200'] = { 'name': ['latino_monoH_2HDM_MZp-1200_MA0-400.root'],
-#                          'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
-#     }
-
-# # samples['monoH_1400'] = { 'name': ['latino_monoH_2HDM_MZp-1400_MA0-400.root'],
-# #                          'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
-# #     }
-
-# samples['monoH_1700'] = { 'name': ['latino_monoH_2HDM_MZp-1700_MA0-400.root'],
-#                          'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
-#     }
-
-# samples['monoH_2000'] = { 'name': ['latino_monoH_2HDM_MZp-2000_MA0-400.root'],
-#                          'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
-#     }
-
-# samples['monoH_2500'] = { 'name': ['latino_monoH_2HDM_MZp-2500_MA0-400.root'],
-#                          'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
-#     }
+    for mA0 in A0Masses :
+        if ((mZp == "600" and mA0 == "400") or ((mZp == "800" and (mA0 == "400" or mA0 == "500" or mA0 == "600"))) or (mZp != "600" and mZp != "800")) :
+            samples['monoH_' + mZp + '_' + mA0] = { 'name': ['latino_monoH_2HDM_MZp-' + mZp + '_MA0-' + mA0 + '.root'],
+                                        'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',
+                                            }
 
 
 samples['DY']  = {    'name': [
-                            #'latino_DYJetsToLL_M-10to50.root',
-                            #'latino_DYJetsToLL_M-10to50ext3.root',
                             #
-                            #'latino_DYJetsToLL_M-50_0000__part0_genVar.root'
-                            #'latino_DYJetsToLL_M-10to50.root',
                             'latino_DYJetsToLL_M-50_0000__part0.root',
                             'latino_DYJetsToLL_M-50_0000__part1.root',
                             'latino_DYJetsToLL_M-50_0000__part2.root',
@@ -62,10 +26,11 @@ samples['DY']  = {    'name': [
                             'latino_DYJetsToLL_M-50_0001__part3.root',
                             'latino_DYJetsToLL_M-50_0001__part4.root',
                             'latino_DYJetsToLL_M-50_0002__part0.root',
+                            #
                             'latino_DYJetsToLL_M-10to50.root',
-                            #'latino_DYJetsToTT_MuEle_M-50.root',
+                            #
+                            # 'latino_DYJetsToTT_MuEle_M-50.root',
                             ],    
-                      #'weight' : '(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
                       'weight' : 'puW*baseW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',  
                        # 'weights' :  [
                        #               '1', 

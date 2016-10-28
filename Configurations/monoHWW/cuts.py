@@ -28,13 +28,23 @@ supercut = 'std_vector_lepton_pt[0]>25 && std_vector_lepton_pt[1]>20 \
 '
 
 cuts['monoH_Alberto_ll'] = 'njet >= 0 \
-            && mpmet > 100 \
+            && metTtrk > 100 \
             && dphilmet1 > 2.6 \
             && dphilmet2 > 2.6 \
             && drll < 0.8 \
             && mtw1 > 160 \
             && metTtrk > 100 \
 '
+
+# cuts['monoH_Alberto_em'] = 'njet >= 0 \
+#             && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13) \
+#             && mpmet > 100 \
+#             && dphilmet1 > 2.6 \
+#             && dphilmet2 > 2.6 \
+#             && drll < 0.8 \
+#             && mtw1 > 160 \
+#             && metTtrk > 100 \
+# '
 
 
 # 11 = e

@@ -54,29 +54,35 @@
 
 
 
+ZpMasses={"600","800","1000","1200","1700","2000","2500"}
+A0Masses={"400","500","600","700","800"}
+        
 nuisances['lumi2016']  = {
-               'name'  : 'lumi_13TeV_2016', 
-               'samples'  : {
-                   'ggH_hww'  : '1.2',
-                   'qqH_hww'  : '1.2',
-                   'WH_hww'   : '1.2',
-                   'ZH_hww'   : '1.2',
-                   'H_htt'    : '1.2',
-                   'H_hww'    : '1.2',
-                   'WH_hww'   : '1.2',
-                   'ggZH_hww' : '1.2',
-                   'VVV'      : '1.2',
-                   'VZ'       : '1.2',
-                   'ggWW'     : '1.2',
-                   'Vg'       : '1.2',
-                   'VgS'      : '1.2',
-                   'DY'       : '1.2',    # --> datadriven
-                   'WW'       : '1.2',    # --> datadriven
-                   'top'      : '1.2',    # --> datadriven
-                   },
-               'type'  : 'lnN',
-              }
+    'name'  : 'lumi_13TeV_2016', 
+    'samples'  : {
+        'qqH_hww'  : '1.2',
+        'WH_hww'   : '1.2',
+        'ZH_hww'   : '1.2',
+        'H_htt'    : '1.2',
+        'H_hww'    : '1.2',
+        'WH_hww'   : '1.2',
+        'ggZH_hww' : '1.2',
+        'VVV'      : '1.2',
+        'VZ'       : '1.2',
+        'ggWW'     : '1.2',
+        'Vg'       : '1.2',
+        'VgS'      : '1.2',
+        'DY'       : '1.2',    # --> datadriven
+        'WW'       : '1.2',    # --> datadriven
+        'top'      : '1.2',    # --> datadriven
+        },
+    'type'  : 'lnN',
+    }
 
+for mZp in ZpMasses:
+    for mA0 in A0Masses :
+        if ((mZp == "600" and mA0 == "400") or ((mZp == "800" and (mA0 == "400" or mA0 == "500" or mA0 == "600"))) or (mZp != "600" and mZp != "800")) :
+            nuisances['lumi2016']['samples'].update({'monoH_' + mZp + '_' + mA0:'1.2'})
 
 
 # lumi_13TeV_norm lnN 1.023
@@ -426,6 +432,19 @@ nuisances['kfactggww']  = {
               #}
 
 #  - WW shaping
+nuisances['WWresumMonoH']  = {
+    'name'  : 'WWresumMonoH',
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+        'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+        },
+    'cuts'  : [
+        'monoH_Alberto_em',
+        'monoH_Alberto_ll',
+        ]
+    }
+
 nuisances['WWresum0j']  = {
                 'name'  : 'WWresum0j',
                 'kind'  : 'weight',
@@ -473,6 +492,19 @@ nuisances['WWresum1j']  = {
 #                 
                 ]               
                 }
+
+nuisances['WWqscaleMonoH']  = {
+    'name'  : 'WWqscaleMonoH',
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+        'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+        },
+    'cuts'  : [
+        'monoH_Alberto_em',
+        'monoH_Alberto_ll',
+        ]
+    }
 
 nuisances['WWqscale0j']  = {
                 'name'  : 'WWqscale0j',
@@ -573,8 +605,8 @@ nuisances['PS']  = {
                 'samples'  : {
                    'WW' :  ['1./1.03295', '1.'],  # latino_WWTo2L2NuHerwigPS.root moved with different name in __PS folder
                 },
-                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS/',
-                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/' 
+                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__PS/',
+                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight/' 
                 }
 
 
@@ -893,7 +925,11 @@ nuisances['btagbc']  = {
                    'VgS'     : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
                 }
 }
- 
+for mZp in ZpMasses:
+    for mA0 in A0Masses :
+        if ((mZp == "600" and mA0 == "400") or ((mZp == "800" and (mA0 == "400" or mA0 == "500" or mA0 == "600"))) or (mZp != "600" and mZp != "800")) :
+            nuisances['btagbc']['samples'].update({'monoH_' + mZp + '_' + mA0: ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)']})
+
 
 nuisances['btagudsg']  = {
                 'name'  : 'ICHEP_btag_udsg',
@@ -917,6 +953,12 @@ nuisances['btagudsg']  = {
                    'VgS'     : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
                 }
 }
+
+for mZp in ZpMasses:
+    for mA0 in A0Masses :
+        if ((mZp == "600" and mA0 == "400") or ((mZp == "800" and (mA0 == "400" or mA0 == "500" or mA0 == "600"))) or (mZp != "600" and mZp != "800")) :
+            nuisances['btagudsg']['samples'].update({'monoH_' + mZp + '_' + mA0: ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)']})
+
 
 nuisances['tttwTh']  = {
                 'name'  : 'tttwTh',   # Theory uncertainty
@@ -986,6 +1028,11 @@ nuisances['trigg']  = {
                 #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/' 
 }
 
+for mZp in ZpMasses:
+    for mA0 in A0Masses :
+        if ((mZp == "600" and mA0 == "400") or ((mZp == "800" and (mA0 == "400" or mA0 == "500" or mA0 == "600"))) or (mZp != "600" and mZp != "800")) :
+            nuisances['trigg']['samples'].update({'monoH_' + mZp + '_' + mA0: ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)']})
+
 
 
 
@@ -1017,8 +1064,12 @@ nuisances['idiso_ele']  = {
                 #'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/',    # uncertainties fixed!
                 #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/' 
 }
-                
+for mZp in ZpMasses:
+    for mA0 in A0Masses :
+        if ((mZp == "600" and mA0 == "400") or ((mZp == "800" and (mA0 == "400" or mA0 == "500" or mA0 == "600"))) or (mZp != "600" and mZp != "800")) :
+            nuisances['idiso_ele']['samples'].update({'monoH_' + mZp + '_' + mA0: ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))']})
 
+            
 nuisances['idiso_mu']  = {
                 'name'  : 'idiso_mu',
                 'kind'  : 'weight',
@@ -1047,6 +1098,10 @@ nuisances['idiso_mu']  = {
                 #'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/',    # uncertainties fixed!
                 #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/' 
 }
+for mZp in ZpMasses:
+    for mA0 in A0Masses :
+        if ((mZp == "600" and mA0 == "400") or ((mZp == "800" and (mA0 == "400" or mA0 == "500" or mA0 == "600"))) or (mZp != "600" and mZp != "800")) :
+            nuisances['idiso_mu']['samples'].update({'monoH_' + mZp + '_' + mA0: ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))']})
 
 
                 
@@ -1093,7 +1148,10 @@ nuisances['jes']  = {
                 #'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESup__wwSel/',
                 #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__JESdo__wwSel/' 
 }
-
+for mZp in ZpMasses:
+    for mA0 in A0Masses :
+        if ((mZp == "600" and mA0 == "400") or ((mZp == "800" and (mA0 == "400" or mA0 == "500" or mA0 == "600"))) or (mZp != "600" and mZp != "800")) :
+            nuisances['jes']['samples'].update({'monoH_' + mZp + '_' + mA0: ['1','1']})
 
 
 
@@ -1135,6 +1193,10 @@ nuisances['electronpt']  = {
                 #'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/',
                 #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/' 
 }
+for mZp in ZpMasses:
+    for mA0 in A0Masses :
+        if ((mZp == "600" and mA0 == "400") or ((mZp == "800" and (mA0 == "400" or mA0 == "500" or mA0 == "600"))) or (mZp != "600" and mZp != "800")) :
+            nuisances['electronpt']['samples'].update({'monoH_' + mZp + '_' + mA0: ['1','1']})
                 
 ## FIXME : restore it once we have the niusance ready                                 
    
@@ -1175,6 +1237,10 @@ nuisances['muonpt']  = {
                 #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/' 
 }
 
+for mZp in ZpMasses:
+    for mA0 in A0Masses :
+        if ((mZp == "600" and mA0 == "400") or ((mZp == "800" and (mA0 == "400" or mA0 == "500" or mA0 == "600"))) or (mZp != "600" and mZp != "800")) :
+            nuisances['muonpt']['samples'].update({'monoH_' + mZp + '_' + mA0: ['1','1']})
 
 # FIXME : restore it once we have the niusance ready                                 
 
@@ -1213,6 +1279,10 @@ nuisances['met']  = {
                 #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel/' 
 }
 
+for mZp in ZpMasses:
+    for mA0 in A0Masses :
+        if ((mZp == "600" and mA0 == "400") or ((mZp == "800" and (mA0 == "400" or mA0 == "500" or mA0 == "600"))) or (mZp != "600" and mZp != "800")) :
+            nuisances['met']['samples'].update({'monoH_' + mZp + '_' + mA0: ['1','1']})
 
                 
                 
@@ -1355,5 +1425,9 @@ nuisances['stat']  = {
                  },
                'type'  : 'shape'
               }
+for mZp in ZpMasses:
+    for mA0 in A0Masses :
+        if ((mZp == "600" and mA0 == "400") or ((mZp == "800" and (mA0 == "400" or mA0 == "500" or mA0 == "600"))) or (mZp != "600" and mZp != "800")) :
+            nuisances['stat']['samples'].update({'monoH_' + mZp + '_' + mA0: {'typeStat' : 'bbb',}})
 
 

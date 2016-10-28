@@ -63,7 +63,7 @@ Use multiSignalModel:
 
       awk '!($11=$21="")' datacards/monoH_Alberto_em/events/datacard.txt.pruned.txt >> datacards/monoH_Alberto_em/events/datacard.txt.pruned.txt.safe.txt
 
-      text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose --PO 'map=.*/monoH_600:r[1,0,10]' --PO 'map=.*/monoH_800:0' --PO 'map=.*/monoH_1000:0' --PO 'map=.*/monoH_1200:0' --PO 'map=.*/monoH_1400:0' --PO 'map=.*/monoH_1700:0' --PO 'map=.*/monoH_2000:0' --PO 'map=.*/monoH_2500:0' datacards/monoH_Signal_em/events/datacard.txt.pruned.txt -o monoH600.root
+      text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose --PO 'map=.*/monoH_600:r[1,0,10]' --PO 'map=.*/monoH_800:0' --PO 'map=.*/monoH_1000:0' --PO 'map=.*/monoH_1200:0' --PO 'map=.*/monoH_1400:0' --PO 'map=.*/monoH_1700:0' --PO 'map=.*/monoH_2000:0' --PO 'map=.*/monoH_2500:0' datacards/monoH_Alberto_em/events/datacard.txt.pruned.txt -o monoH600.root
 
       combine -M Asymptotic -t -1 --expectSignal 1 --run expected monoH600.root &> Limit_monoH600.txt
 
