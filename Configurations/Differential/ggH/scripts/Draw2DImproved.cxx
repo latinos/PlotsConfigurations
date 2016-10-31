@@ -34,12 +34,12 @@ void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", st
   //---- 2D likelihood thresholds
   Double_t contours[2];
   if (dimension == 2) {
-    contours[0] = 1;
-    contours[1] = 3.84;
+    contours[0] = 2.41;
+    contours[1] = 5.99;
   }
   if (dimension == 3) {
-    contours[0] = 3.67 / 2;
-    contours[1] = 11.36 / 2;
+    contours[0] = 3.67;
+    contours[1] = 7.82;
   }
   
 //   graphScan->Draw("cont4z");
@@ -63,6 +63,15 @@ void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", st
   HistStreamFn_ph2->Draw("CONT1 LIST SAME");
   
 //   gStyle->SetPadRightMargin(0.2);
+  
+  TGraph* cross11 = new TGraph();
+  cross11->SetPoint(0,1,1);
+  cross11->SetMarkerStyle(22);
+  cross11->SetMarkerSize(2);
+  cross11->SetMarkerColor(kBlack);
+  cross11->SetLineColor(kBlack);
+  
+  cross11->Draw("P");
   
   cc2->SetGrid();
   

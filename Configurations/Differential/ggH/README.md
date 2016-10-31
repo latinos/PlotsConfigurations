@@ -49,6 +49,15 @@ Auto tests:
     r99t ../higgsCombineTest.MultiDimFit.mH120.root scripts/Draw3DImproved.cxx
     
     
+    r99t ../higgsCombineTest.MultiDimFit.mH120_3bins_new.root scripts/Draw2DImproved.cxx\(\"r1\",\"r2\",\"r1\",\"r2\",2,\"r3\>0.5\&\&r3\<1.5\"\)
+    r99t ../higgsCombineTest.MultiDimFit.mH120_3bins_new.root scripts/Draw2DImproved.cxx\(\"r1\",\"r3\",\"r1\",\"r3\",2,\"r2\>0.5\&\&r2\<1.5\"\)
+    r99t ../higgsCombineTest.MultiDimFit.mH120_3bins_new.root scripts/Draw2DImproved.cxx\(\"r2\",\"r3\",\"r2\",\"r3\",2,\"r1\>0.5\&\&r1\<1.5\"\)
+
+    r99t ../higgsCombineTest.MultiDimFit.mH120_3bins_new.root scripts/Draw3DImproved.cxx
+    
+    
+    
+    
     
 See description of the model and details in:
 
