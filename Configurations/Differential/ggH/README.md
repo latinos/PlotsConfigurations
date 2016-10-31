@@ -249,6 +249,22 @@ Tests:
        latino -> Draw("mll", "higgsGenpt>40", "same")
 
        latino->SetLineColor(kRed)
+       latino -> Draw("mll", "higgsGenpt<30")
+       latino->SetLineColor(kGreen)
+       latino -> Draw("mll", "higgsGenpt>30 && higgsGenpt<60", "same")
+       latino->SetLineColor(kBlue)
+       latino -> Draw("mll", "higgsGenpt>60", "same")
+
+       latino->SetLineColor(kRed)
+       latino -> Draw("mth", "higgsGenpt<30")
+       latino->SetLineColor(kGreen)
+       latino -> Draw("mth", "higgsGenpt>30 && higgsGenpt<60", "same")
+       latino->SetLineColor(kBlue)
+       latino -> Draw("mth", "higgsGenpt>60", "same")
+
+       
+       
+       latino->SetLineColor(kRed)
        latino -> Draw("mth", "higgsGenpt<20")
        latino->SetLineColor(kGreen)
        latino -> Draw("mth", "higgsGenpt>20 && higgsGenpt<40", "same")
@@ -415,6 +431,24 @@ Tests:
  
  
  
+ 
+ 
+ 
+       latino->SetLineColor(kRed)
+       latino->SetFillColor(kRed)
+       latino -> Draw("higgsGenpt:sqrt((metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))*(metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))+(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1]))*(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1])))   >> h(10,0,300,10,0,200)", "  higgsGenpt<20     &&  vht_pt>30 &&   ( mtw1>=40  )  && mpmet >20  && ( mtw2>=40  ) && ptll>30  && ( mth>=60)  && ( mth<300) ", "box")
+       latino->SetLineColor(kGreen)
+       latino->SetFillColor(kGreen)
+       latino -> Draw("higgsGenpt:sqrt((metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))*(metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))+(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1]))*(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1])))   >> h1(10,0,300,10,0,200)", "higgsGenpt>20 && higgsGenpt<40    && vht_pt>30 &&   ( mtw1>=40  )    && mpmet >20  && ( mtw2>=40  )   && ptll>30  && ( mth>=60)  && ( mth<300)   ", "box same")
+       latino->SetLineColor(kBlue)
+       latino->SetFillColor(kBlue)
+       latino -> Draw("higgsGenpt:sqrt((metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))*(metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))+(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1]))*(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1])))   >> h2(10,0,300,10,0,200)", "  higgsGenpt>40   &&    ( mtw1>=0 ) && ( mtw2>=0  ) && ( dphilmet<2)  && ptll>40  && ptll>30 && ( mth>=60)  && ( mth<300) ", "box same")
+
+       h->GetXaxis()->SetTitle("reco p_{T} [GeV]")
+       h->GetYaxis()->SetTitle("gen p_{T} [GeV]")
+       
+       gPad->SetGrid()
+       
  
  
  
