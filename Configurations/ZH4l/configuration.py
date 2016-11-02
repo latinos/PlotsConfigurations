@@ -1,6 +1,6 @@
 # example of configuration file
 
-tag = 'WH3l'
+tag = 'ZH4l'
 
 
 # used by mkShape to define output directory for root files
@@ -10,7 +10,7 @@ outputDir = 'rootFiles'
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts_detailed.py' 
+cutsFile = 'cuts.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 
