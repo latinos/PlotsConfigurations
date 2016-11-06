@@ -69,7 +69,7 @@ variables['mllmanybins']  = {   'name': 'mll',            #   variable name
                         #'range' : (7,10,210),    #   variable range
                       # 'range' : (12,90,300),    #   control region: mll > 90
                         'xaxis' : 'mll [GeV]',  #   x axis name
-                        'fold' : 3
+                        'fold' : 0
                         }
 
 
