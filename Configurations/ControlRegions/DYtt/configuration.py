@@ -26,7 +26,8 @@ plotFile = 'plot.py'
 #lumi = 0.805
 #lumi = 4.3
 #lumi = 6.264
-lumi = 12.2950
+#lumi = 12.2950
+lumi = 12.8890
 
 
 # used by mkPlot to define output directory for plots
