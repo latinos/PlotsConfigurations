@@ -49,11 +49,19 @@ Auto tests:
     r99t ../higgsCombineTest.MultiDimFit.mH120.root scripts/Draw3DImproved.cxx
     
     
-    r99t ../higgsCombineTest.MultiDimFit.mH120_3bins_new.root scripts/Draw2DImproved.cxx\(\"r1\",\"r2\",\"r1\",\"r2\",2,\"r3\>0.5\&\&r3\<1.5\"\)
-    r99t ../higgsCombineTest.MultiDimFit.mH120_3bins_new.root scripts/Draw2DImproved.cxx\(\"r1\",\"r3\",\"r1\",\"r3\",2,\"r2\>0.5\&\&r2\<1.5\"\)
-    r99t ../higgsCombineTest.MultiDimFit.mH120_3bins_new.root scripts/Draw2DImproved.cxx\(\"r2\",\"r3\",\"r2\",\"r3\",2,\"r1\>0.5\&\&r1\<1.5\"\)
+    r99t ../higgsCombineTest.MultiDimFit.mH120_3bins_new.root scripts/Draw2DImproved.cxx\(\"r1\",\"r2\",\"r1\",\"r2\",2,\"r3\>0.9\&\&r3\<1.1\"\)
+    r99t ../higgsCombineTest.MultiDimFit.mH120_3bins_new.root scripts/Draw2DImproved.cxx\(\"r1\",\"r3\",\"r1\",\"r3\",2,\"r2\>0.9\&\&r2\<1.1\"\)
+    r99t ../higgsCombineTest.MultiDimFit.mH120_3bins_new.root scripts/Draw2DImproved.cxx\(\"r2\",\"r3\",\"r2\",\"r3\",2,\"r1\>0.9\&\&r1\<1.1\"\)
 
     r99t ../higgsCombineTest.MultiDimFit.mH120_3bins_new.root scripts/Draw3DImproved.cxx
+    
+    
+    
+    r99t ../higgsCombineTest.MultiDimFit.mH120_ICHEP.root scripts/Draw2DImproved.cxx\(\"r1\",\"r2\",\"r1\",\"r2\",2,\"r3\>0.5\&\&r3\<1.5\"\)
+    r99t ../higgsCombineTest.MultiDimFit.mH120_ICHEP.root scripts/Draw2DImproved.cxx\(\"r1\",\"r3\",\"r1\",\"r3\",2,\"r2\>0.5\&\&r2\<1.5\"\)
+    r99t ../higgsCombineTest.MultiDimFit.mH120_ICHEP.root scripts/Draw2DImproved.cxx\(\"r2\",\"r3\",\"r2\",\"r3\",2,\"r1\>0.5\&\&r1\<1.5\"\)
+
+    r99t ../higgsCombineTest.MultiDimFit.mH120_ICHEP.root scripts/Draw3DImproved.cxx
     
     
     
@@ -422,7 +430,7 @@ Tests:
        r99t eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_GluGluHToWWTo2L2NuPowheg_M125.root
        
        latino->SetLineColor(kRed)
-       latino -> Draw("sqrt((metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))*(metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))+(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1]))*(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1])))", "  higgsGenpt<20     &&  vht_pt>30 &&   ( mtw1>=40  )  && mpmet >20  && ( mtw2>=40  ) ")
+       latino -> Draw("sqrt((metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))*(metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))+(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1]))*(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1])))", "  higgsGenpt<20     &&  vht_pt>30 &&   ( mtw1>=40  )  && mpmet >20  && ( mtw2>=40  ) && mth>70 ")
        latino->SetLineColor(kGreen)
        latino -> Draw("sqrt((metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))*(metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))+(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1]))*(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1])))", "higgsGenpt>20 && higgsGenpt<50    && vht_pt>30 &&   ( mtw1>=40  )    && mpmet >20  && ( mtw2>=40  )    ", "same")
        latino->SetLineColor(kBlue)
@@ -431,12 +439,28 @@ Tests:
  
  
  
+       latino->SetLineColor(kRed)
+       latino->SetFillColor(kRed)
+       latino -> Draw("higgsGenpt:sqrt((metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))*(metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))+(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1]))*(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1])))   >> h(10,0,300,10,0,200)", "  higgsGenpt<20    && ptll>30  && ( mth>=60)  && ( mth<300) ", "box")
+       latino->SetLineColor(kGreen)
+       latino->SetFillColor(kGreen)
+       latino -> Draw("higgsGenpt:sqrt((metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))*(metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))+(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1]))*(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1])))   >> h1(10,0,300,10,0,200)", "higgsGenpt>20 && higgsGenpt<40    && ptll>30  && ( mth>=60)  && ( mth<300)   ", "box same")
+       latino->SetLineColor(kBlue)
+       latino->SetFillColor(kBlue)
+       latino -> Draw("higgsGenpt:sqrt((metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))*(metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))+(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1]))*(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1])))   >> h2(10,0,300,10,0,200)", "  higgsGenpt>40      && ptll>30 && ( mth>=60)  && ( mth<300) ", "box same")
+
+       h->GetXaxis()->SetTitle("reco p_{T} [GeV]")
+       h->GetYaxis()->SetTitle("gen p_{T} [GeV]")
+       
+       gPad->SetGrid()
+       
+
  
- 
+
  
        latino->SetLineColor(kRed)
        latino->SetFillColor(kRed)
-       latino -> Draw("higgsGenpt:sqrt((metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))*(metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))+(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1]))*(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1])))   >> h(10,0,300,10,0,200)", "  higgsGenpt<20     &&  vht_pt>30 &&   ( mtw1>=40  )  && mpmet >20  && ( mtw2>=40  ) && ptll>30  && ( mth>=60)  && ( mth<300) ", "box")
+       latino -> Draw("higgsGenpt:sqrt((metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))*(metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))+(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1]))*(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1])))   >> h(10,0,300,10,0,200)", "  higgsGenpt<20     &&  vht_pt>30 &&   ( mtw1>=40  )  && mpmet >20  && ( mtw2>=40  ) && mth>70   && ptll>30  && ( mth>=60)  && ( mth<300) ", "box")
        latino->SetLineColor(kGreen)
        latino->SetFillColor(kGreen)
        latino -> Draw("higgsGenpt:sqrt((metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))*(metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))+(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1]))*(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1])))   >> h1(10,0,300,10,0,200)", "higgsGenpt>20 && higgsGenpt<40    && vht_pt>30 &&   ( mtw1>=40  )    && mpmet >20  && ( mtw2>=40  )   && ptll>30  && ( mth>=60)  && ( mth<300)   ", "box same")
@@ -455,4 +479,64 @@ Tests:
  
  
  
+ jetpt1
+ 
+ std_vector_partonGen_pt
+ 
+ 
+    r99t eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_GluGluHToWWTo2L2NuPowheg_M125.root
+       
+    latino->Draw("std_vector_partonGen_pt[0]:std_vector_jet_pt[0]", "std_vector_jet_pt[0]>0", "box")
+    TF1 f("f", "x", 0, 200);
+    f.SetLineColor(kRed)
+    f.Draw("same")
+       
+ 
+ leptons
+ 
+    latino->Draw("std_vector_dressedLeptonGen_pt[0]:std_vector_lepton_pt[0]", "std_vector_lepton_pt[0]>0", "box")
+    latino->Draw("std_vector_dressedLeptonGen_pt[1]:std_vector_lepton_pt[1]", "std_vector_lepton_pt[1]>0", "box")
+    
+    latino->Draw("std_vector_dressedLeptonGen_pt[0]:std_vector_leptonGen_pt[0]", "std_vector_lepton_pt[0]>0", "box")
+    latino->Draw("std_vector_leptonGen_pt[0]:std_vector_lepton_pt[0]", "std_vector_lepton_pt[0]>0", "box")
+    
+    
+    
+       latino->SetLineColor(kRed)
+       latino->SetFillColor(kRed)
+       latino->SetFillStyle(3001)
+    latino->Draw("std_vector_dressedLeptonGen_pt[0]:std_vector_lepton_pt[0] >> h1(20,0,300,20,0,300) ", "std_vector_lepton_pt[0]>0", "box")
+
+       
+       latino->SetLineColor(kBlue)
+       latino->SetFillColor(kBlue)
+       latino->SetFillStyle(3004)
+
+    latino->Draw("std_vector_leptonGen_pt[0]:std_vector_lepton_pt[0] >> h2(20,0,300,20,0,300)", "std_vector_lepton_pt[0]>0", "box same")
+
+       h1->GetXaxis()->SetTitle("reco p_{T} [GeV]")
+       h1->GetYaxis()->SetTitle("gen p_{T} [GeV]")
+       
+       gPad->SetGrid()
+    
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
  
