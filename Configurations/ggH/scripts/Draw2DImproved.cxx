@@ -55,6 +55,7 @@ void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", st
   cc2->SetRightMargin(0.15);
   
   graphScan->Draw("colz");
+//   graphScan->GetZaxis()->SetLabelOffset(0.2);
   
   TH2F* HistStreamFn_ph2 = (TH2F*) (graphScan->GetHistogram())->Clone("testhisto_ph2");
   HistStreamFn_ph2->SetContour(2, contours);
@@ -62,7 +63,7 @@ void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", st
   HistStreamFn_ph2->SetLineStyle(2);
   HistStreamFn_ph2->Draw("CONT1 LIST SAME");
   
-  //   gStyle->SetPadRightMargin(0.2);
+//   gStyle->SetPadRightMargin(0.2);
   
   TGraph* cross11 = new TGraph();
   cross11->SetPoint(0,1,1);
@@ -75,13 +76,22 @@ void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", st
 
 
   
-  int ix,iy,iz;
-  graphScan->GetHistogram()->GetMinimumBin(ix,iy,iz);
-  double xmin = graphScan->GetHistogram()->GetXaxis()->GetBinCenter(ix);
-  double ymin = graphScan->GetHistogram()->GetYaxis()->GetBinCenter(iy);
+//   int ix,iy,iz;
+//   graphScan->GetHistogram()->GetMinimumBin(ix,iy,iz);
+//   double xmin = graphScan->GetHistogram()->GetXaxis()->GetBinCenter(ix);
+//   double ymin = graphScan->GetHistogram()->GetYaxis()->GetBinCenter(iy);
 
-  std::cout << "xmin = " << xmin << std::endl;
-  std::cout << "ymin = " << ymin << std::endl;
+//   std::cout << "xmin = " << xmin << std::endl;
+//   std::cout << "ymin = " << ymin << std::endl;
+  
+  
+  float xmin;
+  float ymin;
+  
+  limit->SetBranchAddress(xNameVar.c_str(), &xmin );
+  limit->SetBranchAddress(yNameVar.c_str(), &ymin );
+  
+  limit->GetEntry(0);
   
   TGraph* crossMin = new TGraph();
   crossMin->SetPoint(0, xmin, ymin);
