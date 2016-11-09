@@ -36,6 +36,11 @@ structure['WZ']  = {
                   'isData'   : 0 
                   }
 
+structure['ggH_hzz'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
 
 structure['VVV']  = { 
                   'isSignal' : 0,
