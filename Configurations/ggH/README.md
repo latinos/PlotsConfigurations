@@ -151,13 +151,13 @@ Auto tests:
     
     
     
+
+    
     
     
     cat  ../result.MaxLikelihoodFit.superCombination.2016.txt.pruned.txt
     cat  ../result.Significance.superCombination.2016.txt.pruned.txt
-    cat  ../result.MaxLikelihoodFit.Moriond2016.vbf.txt
-    cat  ../result.MaxLikelihoodFit.Moriond2016.vh2j.txt
-    cat  ../result.MaxLikelihoodFit.Moriond2016.2j.txt
+
 
     cat  ../result.MaxLikelihoodFit.ICHEP2016.vbf.txt
     cat  ../result.MaxLikelihoodFit.ICHEP2016.vh2j.txt
@@ -290,6 +290,26 @@ Auto tests:
     cat  ../result.data.Significance.superCombination.Total.txt.pruned.txt
 
     
+    
+2D plots for Top and DYtt:
+
+    cd ..
+    sh ggH/scripts/doGGH_doMultisignal_topdytt.sh
+    cd -
+    
+
+    r99t ../higgsCombineLH2DICHEP2015combined.MultiDimFit.mH120.root \
+        scripts/Draw2D.cxx
+    
+    
+    r99t ../higgsCombineTest.MultiDimFit.mH120_3bins_new.root scripts/Draw2DImproved.cxx\(\"Top\",\"DYtautau\",\"Topnorm0j\",\"DYttnorm0j\",2,\"r3\>0.9\&\&r3\<1.1\"\)
+    
+    r99t ../higgsCombinedytop0j.MultiDimFit.mH125.root     scripts/Draw2DImproved.cxx\(\"Top\",\"DYtautau\",\"Topnorm0j\",\"DYttnorm0j\",2\)
+    r99t ../higgsCombinedytop1j.MultiDimFit.mH125.root     scripts/Draw2DImproved.cxx\(\"Top\",\"DYtautau\",\"Topnorm1j\",\"DYttnorm1j\",2\)
+    r99t ../higgsCombinedytop2j.MultiDimFit.mH125.root     scripts/Draw2DImproved.cxx\(\"Top\",\"DYtautau\",\"Topnorm2j\",\"DYttnorm2j\",2\)
+    r99t ../higgsCombinedytop2jvh.MultiDimFit.mH125.root   scripts/Draw2DImproved.cxx\(\"Top\",\"DYtautau\",\"Topnorm2jvh\",\"DYttnorm2jvh\",2\)
+    r99t ../higgsCombinedytop2jvbf.MultiDimFit.mH125.root  scripts/Draw2DImproved.cxx\(\"Top\",\"DYtautau\",\"Topnorm2jvbf\",\"DYttnorm2jvbf\",2\)
+ 
     
     
     
