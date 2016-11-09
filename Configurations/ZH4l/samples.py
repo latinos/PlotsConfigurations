@@ -223,6 +223,16 @@ samples['ZH_hww']  = {  #  'name': ['latino_HZJ_HToWW_M125.root','latino_ggZH_HT
                   }
 
 
+samples['ZH_hww']  = {  #  'name': ['latino_HZJ_HToWW_M125.root','latino_ggZH_HToWW_M125.root'],    
+                           'name': ['latino_HZJ_HToWW_M125.root','latino_ggZH_HToWW_M125.root'],
+                           'weight' : 'puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_idisoW[3]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_recoW[2]*std_vector_lepton_recoW[3]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]*std_vector_lepton_genmatched[3]*GEN_weight_SM/abs(GEN_weight_SM)',
+                  }
+
+
+samples['ggH_hzz']  = {    'name': ['latino_GluGluHToZZTo4L_M125.root'],
+                           'weight' : 'puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_idisoW[3]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_recoW[2]*std_vector_lepton_recoW[3]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]*std_vector_lepton_genmatched[3]*GEN_weight_SM/abs(GEN_weight_SM)',
+                  }
+
 ###########################################
 ###########################################
 ###########################################
