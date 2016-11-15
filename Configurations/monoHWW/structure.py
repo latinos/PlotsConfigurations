@@ -141,11 +141,11 @@ structure['H_hww'] = {
 
 # Signals
 ZpMasses={"600","800","1000","1200","1400","1700","2000","2500"}
-A0Masses={"400","500","600","700","800"}
+A0Masses={"300","400","500","600","700","800"}
 
 for mZp in ZpMasses:
     for mA0 in A0Masses :
-        if ((mZp == "600" and mA0 == "400") or ((mZp == "800" and (mA0 == "400" or mA0 == "500" or mA0 == "600"))) or (mZp != "600" and mZp != "800")) :
+        if ((mZp == "600" and (mA0 == "300" or mA0 == "400")) or ((mZp == "800" and (mA0 == "300" or mA0 == "400" or mA0 == "500" or mA0 == "600"))) or (mZp != "600" and mZp != "800")) :
             structure['monoH_' + mZp + '_' + mA0] = {
                 'isSignal' : 1,
                 'isData'   : 0    
