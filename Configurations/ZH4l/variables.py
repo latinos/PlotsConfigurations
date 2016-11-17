@@ -11,19 +11,19 @@ variables['events']  = {   'name': '1',
                         }
 
 variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',            #   variable name    
-                        'range' : (20,0.,200),    #   variable range
+                        'range' : (50,0.,500),    #   variable range
                         'xaxis' : 'lept1_p_{T} [GeV]',  #   x axis name
                          'fold' : 0
                         }
     
 variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',            #   variable name    
-                        'range' : (20,0.,200),    #   variable range
+                        'range' : (50,0.,500),    #   variable range
                         'xaxis' : 'lept2_p_{T} [GeV]',  #   x axis name
                          'fold' : 0
                         }
 
 variables['pt3']  = {   'name': 'std_vector_lepton_pt[2]',            #   variable name    
-                        'range' : (20,0.,200),    #   variable range
+                        'range' : (30,0.,300),    #   variable range
                         'xaxis' : 'lept3_p_{T} [GeV]',  #   x axis name
                          'fold' : 0
                         }
@@ -34,40 +34,101 @@ variables['pt4']  = {   'name': 'std_vector_lepton_pt[3]',            #   variab
                          'fold' : 0
                         }
 
-
+#
+#variables['nvtx']  = {   'name': 'nvtx',      
+#                        'range' : (40,0,40),  
+#                        'xaxis' : 'nvtx', 
+#                         'fold' : 3
+#                        }
+#                        
 variables['met']  = {   'name': 'metPfType1',            #   variable name    
-                        'range' : (10,0,200),    #   variable range
+                        'range' : (50,0,250),    #   variable range
                         'xaxis' : 'pfmet [GeV]',  #   x axis name
                        'fold' : 0
                      }
 
-variables['z0Mass_zh4l'] = { 'name': 'z0Mass_zh4l',  # variable name
-                        'range' : (20,60,120),    #   variable range
-                        'xaxis' : 'Z0_Mass [GeV]',  #   x axis name
-                       'fold' : 0
-                     }
-
-variables['z1Mass_zh4l'] = { 'name': 'z1Mass_zh4l',  # variable name
-                        'range' : (20,0.,100.),    #   variable range
-                        'xaxis' : 'Z1_Mass [GeV]',  #   x axis name
-                       'fold' : 0
-                     }
-
-
-variables['mllll_zh4l'] = { 'name': 'mllll_zh4l',  # variable name
-                        'range' : (20,0.,300.),    #   variable range
-                        'xaxis' : 'm_{4l} [GeV]',  #   x axis name
-                       'fold' : 0
-                     }
-
-variables['z1Mt_zh4l'] = { 'name': 'z1Mt_zh4l',  # variable name
-                        'range' : (20,0.,300.),    #   variable range
-                        'xaxis' : 'm_T{z1} [GeV]',  #   x axis name
+variables['mllll_zh4l']  = {   'name': 'mllll_zh4l',            #   variable name    
+                        'range' : (60,0,600),    #   variable range
+                        'xaxis' : 'mllll [GeV]',  #   x axis name
                        'fold' : 0
                      }
 
 variables['leadjetPT'] = { 'name': 'std_vector_jet_pt[0]',
-                        'range' : (20,0,300),    #   variable range
-                        'xaxis' : 'Lead Jet pT [GeV]',  #   x axis name
+                        'range' : (30,0,300),    #   variable range
+                        'xaxis' : 'leadingjet_Pt [GeV]',  #   x axis name
                        'fold' : 0
                      }
+
+
+variables['z0Mass_zh4l']  = {   'name': 'z0Mass_zh4l',            #   variable name    
+                        'range' : (30,50,140),    #   variable range
+                        'xaxis' : 'z0Mass [GeV]',  #   x axis name
+                       'fold' : 0
+                     }
+
+variables['z1Mass_zh4l']  = {   'name': 'z1Mass_zh4l',            #   variable name    
+                        'range' : (25,0,250),    #   variable range
+                        'xaxis' : 'z1Mass [GeV]',  #   x axis name
+                       'fold' : 0
+                     }
+
+variables['zaMass_zh4l']  = {   'name': 'zaMass_zh4l',            #   variable name    
+                        'range' : (40,0,200),    #   variable range
+                        'xaxis' : 'zaMass [GeV]',  #   x axis name
+                       'fold' : 0
+                     }
+
+variables['zbMass_zh4l']  = {   'name': 'zbMass_zh4l',            #   variable name    
+                        'range' : (40,0,200),    #   variable range
+                        'xaxis' : 'zbMass [GeV]',  #   x axis name
+                       'fold' : 0
+                     }
+
+variables['z0DeltaR_zh4l']  = {   'name': 'z0DeltaR_zh4l',            #   variable name    
+                        'range' : (12,0,6),    #   variable range
+                        'xaxis' : 'z0DeltaR [GeV]',  #   x axis name
+                       'fold' : 0
+                     }
+
+variables['z1DeltaR_zh4l']  = {   'name': 'z1DeltaR_zh4l',            #   variable name    
+                        'range' : (12,0,6),    #   variable range
+                        'xaxis' : 'z1DeltaR [GeV]',  #   x axis name
+                       'fold' : 0
+                     }
+
+variables['zaDeltaR_zh4l']  = {   'name': 'zaDeltaR_zh4l',            #   variable name    
+                        'range' : (12,0,6),    #   variable range
+                        'xaxis' : 'zaDeltaR [GeV]',  #   x axis name
+                       'fold' : 0
+                     }
+
+variables['zbDeltaR_zh4l']  = {   'name': 'zbDeltaR_zh4l',            #   variable name    
+                        'range' : (12,0,6),    #   variable range
+                        'xaxis' : 'zbDeltaR [GeV]',  #   x axis name
+                       'fold' : 0
+                     }
+
+variables['z0DeltaPhi_zh4l']  = {   'name': 'z0DeltaPhi_zh4l',            #   variable name    
+                        'range' : (14,-3.5,3.5),    #   variable range
+                        'xaxis' : 'z0DeltaPhi [GeV]',  #   x axis name
+                       'fold' : 0
+                     }
+
+variables['z1DeltaPhi_zh4l']  = {   'name': 'z1DeltaPhi_zh4l',            #   variable name    
+                        'range' : (14,-3.5,3.5),    #   variable range
+                        'xaxis' : 'z1DeltaPhi [GeV]',  #   x axis name
+                       'fold' : 0
+                     }
+
+variables['zaDeltaPhi_zh4l']  = {   'name': 'zaDeltaPhi_zh4l',            #   variable name    
+                        'range' : (14,-3.5,3.5),    #   variable range
+                        'xaxis' : 'zaDeltaPhi [GeV]',  #   x axis name
+                       'fold' : 0
+                     }
+
+variables['zbDeltaPhi_zh4l']  = {   'name': 'zbDeltaPhi_zh4l',            #   variable name    
+                        'range' : (14,-3.5,3.5),    #   variable range
+                        'xaxis' : 'zbDeltaPhi [GeV]',  #   x axis name
+                       'fold' : 0
+                     }
+
