@@ -9,14 +9,15 @@ nuisances['lumi2016']  = {
              #  'name'  : 'lumi_13TeV', 
                'name'  : 'lumi_13TeV_2016', 
                'samples'  : {
-                   'WH_hww'   : '1.058',
+#                   'WH_hww'   : '1.058',
                    'ZH_hww'   : '1.058',
-                   'WH_htt'    : '1.058',
+                   'ggZH_hww'   : '1.058',
+#                   'WH_htt'    : '1.058',
                    'ZH_htt'   : '1.058',
                    'ggH_hzz'  : '1.058',
                    'VVV'      : '1.058',
                    'ZZ'       : '1.058',
-    #               'WZ'       : '1.050',
+                   'WZ'       : '1.058',
                    'WW'       : '1.058',
                #    'ggWW'     : '1.050',
                    'Vg'       : '1.058',
@@ -39,7 +40,7 @@ nuisances['QCDscale_ZH_zh4l']  = {
 
 
 
-nuisances['QCDscale_ggZH_wh3l']  = {
+nuisances['QCDscale_ggZH_zh4l']  = {
                'name'  : 'QCDscale_ggZH',
                'samples'  : {
                    'ggZH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggZH','125.0','scale','sm'),
@@ -50,83 +51,85 @@ nuisances['QCDscale_ggZH_wh3l']  = {
 
 # pdf uncertainty
 
-nuisances['pdf_gg_wh3l']  = {
+nuisances['pdf_gg_zh4l']  = {
                'name'  : 'pdf_gg',
                'samples'  : {
                    #'ggWW'    : '1.05',    # --> no, since absorbed into k-scale factor
-                   'ggH_hww' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,'125.0','pdf','sm'),
-                   'ggH_htt' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,'125.0','pdf','sm'),
-                   'WH_htt'   : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,'125.0','pdf','sm'),
+                  # 'ggH_hww' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,'125.0','pdf','sm'),
+                  # 'ggH_htt' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,'125.0','pdf','sm'),
+                  # 'WH_htt'   : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,'125.0','pdf','sm'),
                    'ggZH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggZH','125.0','pdf','sm'),
                    },
                'type'  : 'lnN',
               }
 
 
-nuisances['pdf_qqbar_wh3l']  = {
+nuisances['pdf_qqbar_zh4l']  = {
                'name'  : 'pdf_qqbar',
                'type'  : 'lnN',
                'samples'  : {
-                   'qqH_hww' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.0','pdf','sm'),
-                   'qqH_htt' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.0','pdf','sm'),
-                   'WH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),
+                   #'qqH_hww' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.0','pdf','sm'),
+                   #'qqH_htt' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.0','pdf','sm'),
+                   #'WH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),
                    'ZH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH' ,'125.0','pdf','sm'),
                    },
               }
 
 #pdf and qcd acceptnace
 #
-#nuisances['pdf_gg_accept_wh3l']  = {
-#               'name'  : 'pdf_gg_accept',
-#               'samples'  : {
-#                   'ggH_hww' : '1.005',
-#                   'ggH_htt' : '1.005',
-#                   'WH_htt'   : '1.005',
-#                   'ggZH_hww': '1.005',
-#                   },
-#               'type'  : 'lnN',
-#              }
-#
-#
-#nuisances['pdf_qqbar_accept_wh3l']  = {
-#               'name'  : 'pdf_qqbar_accept',
-#               'type'  : 'lnN',
-#               'samples'  : {
-#                   #
-#                   'qqH_hww' : '1.011',
-#                   'qqH_htt' : '1.011',
-#                   'WH_hww'  : '1.007',
-#                   'ZH_hww'  : '1.012',
-#                   'WZ'      : '1.006',
-#                   },
-#              }
-#
-#nuisances['QCDscale_qqbar_accept']  = {
-#               'name'  : 'QCDscale_qqbar_accept', 
-#               'type'  : 'lnN',
-#               'samples'  : {
-#                   'qqH_hww' : '1.007',
-#                   'qqH_htt' : '1.007',
-#                   'WH_hww'  : '1.05',
-#                   'ZH_hww'  : '1.04',
-#                   'WZ'      : '1.001'
-#                   },
-#              }
-#
-#
-#
-#nuisances['QCDscale_gg_accept']  = {
-#               'name'  : 'QCDscale_gg_accept', 
-#               'samples'  : {
-#                   'ggH_hww' : '1.027',
-#                   'ggH_htt' : '1.027',
-#                   'WH_htt'   : '1.04',
-#                   'ggZH_hww': '1.003',                   
-#
-#                   },
-#               'type'  : 'lnN',
-#              }
-#
+nuisances['pdf_gg_accept_wh3l']  = {
+               'name'  : 'pdf_gg_accept',
+               'samples'  : {
+                  # 'ggH_hww' : '1.005',
+                  # 'ggH_htt' : '1.005',
+                  # 'WH_htt'   : '1.005',
+                   'ggZH_hww': '1.008',
+                   },
+               'type'  : 'lnN',
+              }
+
+
+nuisances['pdf_qqbar_accept_wh3l']  = {
+               'name'  : 'pdf_qqbar_accept',
+               'type'  : 'lnN',
+               'samples'  : {
+                   #
+                  # 'qqH_hww' : '1.011',
+                  # 'qqH_htt' : '1.011',
+                  # 'WH_hww'  : '1.007',
+                   'ZH_hww'  : '1.015',
+                   'ZH_htt'  : '1.008',
+                   'ZZ'      : '1.011',
+                   },
+              }
+
+nuisances['QCDscale_qqbar_accept']  = {
+               'name'  : 'QCDscale_qqbar_accept', 
+               'type'  : 'lnN',
+               'samples'  : {
+                   #'qqH_hww' : '1.007',
+                   #'qqH_htt' : '1.007',
+                   #'WH_hww'  : '1.05',
+                   'ZH_hww'  : '1.057',
+                   'ZH_htt'  : '1.054',
+                   'ZZ'      : '1.046',
+                   },
+              }
+
+
+
+nuisances['QCDscale_gg_accept']  = {
+               'name'  : 'QCDscale_gg_accept', 
+               'samples'  : {
+                   #'ggH_hww' : '1.027',
+                   #'ggH_htt' : '1.027',
+                   #'WH_htt'   : '1.04',
+                   'ggZH_hww': '1.011',                   
+
+                   },
+               'type'  : 'lnN',
+              }
+
 #
 ## PS/UE
 #
@@ -137,9 +140,9 @@ nuisances['PS_zh4l']  = {
  #               'kind'  : 'tree',
                 'type'  : 'lnN',
                 'samples'  : {
-                   'WH_hww'   : '1.037',
+                   #'WH_hww'   : '1.037',
                    'ZH_hww'   : '1.037',
-                   'WH_htt'    : '1.037',
+                   #'WH_htt'    : '1.037',
                    'ZH_htt'   : '1.037',
                    'ggH_hzz'  : '1.037',
                 },
@@ -151,9 +154,9 @@ nuisances['UE_zh4l']  = {
                 'name'  : 'UE_zh4l',
                 'type'  : 'lnN',
                 'samples'  : {
-                   'WH_hww'   : '1.010',
+                   #'WH_hww'   : '1.010',
                    'ZH_hww'   : '1.010',
-                   'WH_htt'    : '1.010',
+                   #'WH_htt'    : '1.010',
                    'ZH_htt'   : '1.010',
                    'ggH_hzz'  : '1.010',
                 },
@@ -188,6 +191,18 @@ nuisances['UE_zh4l']  = {
 #                ]
 #              }
 #
+nuisances['ZZ4lnorm']  = {
+               'name'  : 'ZZ4lnorm',
+               'samples'  : {
+                   'ZZ' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                 'zh4l_ZZ_13TeV',
+                 'zh4l_Z1SF_13TeV',
+                 'zh4l_Z1MF_13TeV',
+                 ]
+               }
 # Other Systematics
 
 # fakes 
@@ -275,12 +290,15 @@ nuisances['btagbc']  = {
                    'qqH_hww' : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
                    'WH_hww'  : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
                    'ZH_hww'  : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
+                   'ZH_htt'  : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
+                   'ggZH_hww' : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
                    'H_htt'   : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
                    'H_hww'   : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
                    'ggH_hzz' : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
                    'DY'      : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
                    'VVV'     : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
                    'VZ'      : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
+                   'ZZ'      : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
                    'WW'      : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
                    'ggWW'    : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
                    'top'     : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
@@ -298,6 +316,8 @@ nuisances['btagudsg']  = {
                    'qqH_hww' : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
                    'WH_hww'  : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
                    'ZH_hww'  : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
+                   'ZH_htt'  : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
+                   'ggZH_hww'  : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
                    'H_htt'   : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
                    'H_hww'   : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
                    'WH_hww'  : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
@@ -305,6 +325,7 @@ nuisances['btagudsg']  = {
                    'DY'      : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
                    'VVV'     : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
                    'VZ'      : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
+                   'ZZ'      : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
                    'WW'      : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
                    'ggWW'    : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
                    'top'     : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
@@ -320,61 +341,72 @@ nuisances['trigg_zh4l']  = {
                 #'kind'  : 'tree', #'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'WH_hww'  : ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)'],
-                   'ZH_hww'  : ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)'],
-                   'ggZH_hww'  : ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)'],
+                   'WH_hww'   : ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)'],
+                   'ZH_hww'   : ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)'],
+                   'ZH_htt'   : ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)'],
+                   'ggZH_hww' : ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)'],
                    'WH_htt'   : ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)'],
-                   'ggH_hzz' : ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)'],
-                   'VVV'     : ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)'],
-                   'WZ'      : ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)'],
-                   'ZZ'      : ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)'],
-                   'WW'      : ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)'],
-                   'Vg'      : ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)'],
+                   'ggH_hzz'  : ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)'],
+                   'VVV'      : ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)'],
+                   'WZ'       : ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)'],
+                   'ZZ'       : ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)'],
+                   'WW'       : ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)'],
+                   'Vg'       : ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)'],
+                   'top'      : ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)'],
                 },
 }
-#
-#
-#
-#nuisances['idiso_ele_wh3l']  = {
-#                'name'  : 'idiso_ele',
-#                'kind'  : 'weight',
-#                #'kind'  : 'tree', #'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                  'WH_hww' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13)) * ((abs(std_vector_lepton_flavour[2]) == 11)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13)) * ((abs(std_vector_lepton_flavour[2]) == 11)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 13))'],
-#                  'ZH_hww' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13)) * ((abs(std_vector_lepton_flavour[2]) == 11)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13)) * ((abs(std_vector_lepton_flavour[2]) == 11)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 13))'],
-#                  'ggZH_hww' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13)) * ((abs(std_vector_lepton_flavour[2]) == 11)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13)) * ((abs(std_vector_lepton_flavour[2]) == 11)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 13))'],
-#                  'WH_htt' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13)) * ((abs(std_vector_lepton_flavour[2]) == 11)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13)) * ((abs(std_vector_lepton_flavour[2]) == 11)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 13))'],
-#                  'WW' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13)) * ((abs(std_vector_lepton_flavour[2]) == 11)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13)) * ((abs(std_vector_lepton_flavour[2]) == 11)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 13))'],
-#                  'Vg' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13)) * ((abs(std_vector_lepton_flavour[2]) == 11)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13)) * ((abs(std_vector_lepton_flavour[2]) == 11)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 13))'],
-#                  'WZ' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13)) * ((abs(std_vector_lepton_flavour[2]) == 11)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13)) * ((abs(std_vector_lepton_flavour[2]) == 11)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 13))'],
-#                  'ZZ' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13)) * ((abs(std_vector_lepton_flavour[2]) == 11)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13)) * ((abs(std_vector_lepton_flavour[2]) == 11)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 13))'],
-#                  'ggWW' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13)) * ((abs(std_vector_lepton_flavour[2]) == 11)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13)) * ((abs(std_vector_lepton_flavour[2]) == 11)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 13))'],
-#                  'VVV' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13)) * ((abs(std_vector_lepton_flavour[2]) == 11)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13)) * ((abs(std_vector_lepton_flavour[2]) == 11)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 13))'],
-#                 },
-#                #'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/',    # uncertainties fixed!
-#                #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/' 
-#}
-#
-#
-#nuisances['idiso_mu_wh3l']  = {
-#                'name'  : 'idiso_mu',
-#                'kind'  : 'weight',
-#                #'kind'  : 'tree', #'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                  'WH_hww' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11)) * ((abs(std_vector_lepton_flavour[2]) == 13)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11)) * ((abs(std_vector_lepton_flavour[2]) == 13)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 11))'],
-#                  'ZH_hww' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11)) * ((abs(std_vector_lepton_flavour[2]) == 13)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11)) * ((abs(std_vector_lepton_flavour[2]) == 13)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 11))'],
-#                  'ggZH_hww' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11)) * ((abs(std_vector_lepton_flavour[2]) == 13)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11)) * ((abs(std_vector_lepton_flavour[2]) == 13)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 11))'],
-#                  'WH_htt' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11))*((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))*((abs(std_vector_lepton_flavour[2]) == 13)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11)) * ((abs(std_vector_lepton_flavour[2]) == 13)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 11))'],
-#                  'WW' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11))*((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))*((abs(std_vector_lepton_flavour[2]) == 13)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11)) * ((abs(std_vector_lepton_flavour[2]) == 13)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 11))'],
-#                  'Vg' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11))*((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))*((abs(std_vector_lepton_flavour[2]) == 13)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11)) * ((abs(std_vector_lepton_flavour[2]) == 13)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 11))'],
-#                  'WZ' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11))*((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))*((abs(std_vector_lepton_flavour[2]) == 13)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11)) * ((abs(std_vector_lepton_flavour[2]) == 13)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 11))'],
-#                  'ZZ' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11))*((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))*((abs(std_vector_lepton_flavour[2]) == 13)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 11))','((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11))*((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))*((abs(std_vector_lepton_flavour[2]) == 13)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 11))'],
-#                  'ggWW' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11))*((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))*((abs(std_vector_lepton_flavour[2]) == 13)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11)) * ((abs(std_vector_lepton_flavour[2]) == 13)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 11))'],
-#                  'VVV' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11))*((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))*((abs(std_vector_lepton_flavour[2]) == 13)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11)) * ((abs(std_vector_lepton_flavour[2]) == 13)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2])+(abs(std_vector_lepton_flavour[2]) == 11))'],
-#                 },
-#}
+
+
+#'(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_lepton_idisoW_Up[3])/(std_vector_lepton_idisoW[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_lepton_idisoW_Down[3])/(std_vector_lepton_idisoW[3]-1))'
+
+#(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0]-1))*
+#(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1]-1))*
+#(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2]-1))*
+#(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_lepton_idisoW_Up[3])/(std_vector_lepton_idisoW[3]-1))
+
+
+
+
+nuisances['idiso_ele_wh3l']  = {
+                'name'  : 'idiso_ele',
+                'kind'  : 'weight',
+                #'kind'  : 'tree', #'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'WH_hww' : ['(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_lepton_idisoW_Up[3])/(std_vector_lepton_idisoW[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_lepton_idisoW_Down[3])/(std_vector_lepton_idisoW[3]-1))'],
+                   'ZH_hww' : ['(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_lepton_idisoW_Up[3])/(std_vector_lepton_idisoW[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_lepton_idisoW_Down[3])/(std_vector_lepton_idisoW[3]-1))'],
+                   'ggZH_hww' : ['(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_lepton_idisoW_Up[3])/(std_vector_lepton_idisoW[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_lepton_idisoW_Down[3])/(std_vector_lepton_idisoW[3]-1))'],
+                   'WH_htt' : ['(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_lepton_idisoW_Up[3])/(std_vector_lepton_idisoW[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_lepton_idisoW_Down[3])/(std_vector_lepton_idisoW[3]-1))'],
+                   'WW' : ['(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_lepton_idisoW_Up[3])/(std_vector_lepton_idisoW[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_lepton_idisoW_Down[3])/(std_vector_lepton_idisoW[3]-1))'],
+                   'Vg' : ['(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_lepton_idisoW_Up[3])/(std_vector_lepton_idisoW[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_lepton_idisoW_Down[3])/(std_vector_lepton_idisoW[3]-1))'],
+                   'WZ' : ['(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_lepton_idisoW_Up[3])/(std_vector_lepton_idisoW[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_lepton_idisoW_Down[3])/(std_vector_lepton_idisoW[3]-1))'],
+                   'ZZ' : ['(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_lepton_idisoW_Up[3])/(std_vector_lepton_idisoW[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_lepton_idisoW_Down[3])/(std_vector_lepton_idisoW[3]-1))'],
+                   'ggWW' : ['(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_lepton_idisoW_Up[3])/(std_vector_lepton_idisoW[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_lepton_idisoW_Down[3])/(std_vector_lepton_idisoW[3]-1))'],
+                   'VVV' : ['(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_lepton_idisoW_Up[3])/(std_vector_lepton_idisoW[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_lepton_idisoW_Down[3])/(std_vector_lepton_idisoW[3]-1))'],
+                 },
+                #'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/',    # uncertainties fixed!
+                #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/' 
+}
+
+
+nuisances['idiso_mu_wh3l']  = {
+                'name'  : 'idiso_mu',
+                'kind'  : 'weight',
+                #'kind'  : 'tree', #'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'WH_hww' : ['(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_lepton_idisoW_Up[3])/(std_vector_lepton_idisoW[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_lepton_idisoW_Down[3])/(std_vector_lepton_idisoW[3]-1))'],
+                   'ZH_hww' : ['(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_lepton_idisoW_Up[3])/(std_vector_lepton_idisoW[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_lepton_idisoW_Down[3])/(std_vector_lepton_idisoW[3]-1))'],
+                   'ggZH_hww' : ['(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_lepton_idisoW_Up[3])/(std_vector_lepton_idisoW[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_lepton_idisoW_Down[3])/(std_vector_lepton_idisoW[3]-1))'],
+                   'WH_htt' : ['(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_lepton_idisoW_Up[3])/(std_vector_lepton_idisoW[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_lepton_idisoW_Down[3])/(std_vector_lepton_idisoW[3]-1))'],
+                   'WW' : ['(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_lepton_idisoW_Up[3])/(std_vector_lepton_idisoW[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_lepton_idisoW_Down[3])/(std_vector_lepton_idisoW[3]-1))'],
+                   'Vg' : ['(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_lepton_idisoW_Up[3])/(std_vector_lepton_idisoW[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_lepton_idisoW_Down[3])/(std_vector_lepton_idisoW[3]-1))'],
+                   'WZ' : ['(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_lepton_idisoW_Up[3])/(std_vector_lepton_idisoW[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_lepton_idisoW_Down[3])/(std_vector_lepton_idisoW[3]-1))'],
+                   'ZZ' : ['(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_lepton_idisoW_Up[3])/(std_vector_lepton_idisoW[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_lepton_idisoW_Down[3])/(std_vector_lepton_idisoW[3]-1))'],
+                   'ggWW' : ['(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_lepton_idisoW_Up[3])/(std_vector_lepton_idisoW[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_lepton_idisoW_Down[3])/(std_vector_lepton_idisoW[3]-1))'],
+                   'VVV' : ['(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_lepton_idisoW_Up[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_lepton_idisoW_Up[3])/(std_vector_lepton_idisoW[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_lepton_idisoW_Down[2])/(std_vector_lepton_idisoW[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_lepton_idisoW_Down[3])/(std_vector_lepton_idisoW[3]-1))'],
+                 },
+}
 
 # nuisances handled by means of a different set of trees
 
@@ -390,13 +422,14 @@ nuisances['jes_zh4l']  = {
                   'VVV' : ['1', '1'],
                    'WH_hww' :  ['1', '1'],
                    'ZH_hww' :  ['1', '1'],
+                   'ggZH_hww' :  ['1', '1'],
                    'ZH_htt' :  ['1', '1'],
                    'ggH_hzz' : ['1', '1'],
                   'WH_htt'  : ['1', '1'],
                    'Vg' : ['1', '1'],
                 },
-                'folderUp'   : '/tmp/arun/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__vh3lSel__l3kin__l4kin/',
-                'folderDown' : '/tmp/arun/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__vh3lSel__l3kin__l4kin/'
+                'folderUp'   : '/wk_cms/pchen/work/HWAnalysis/data/eoscms/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__vh3lSel__l3kin__l4kin/',
+                'folderDown' : '/wk_cms/pchen/work/HWAnalysis/data/eoscms/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__vh3lSel__l3kin__l4kin/'
 
 }
 
@@ -411,13 +444,14 @@ nuisances['electronpt_zh4l']  = {
                    'VVV' : ['1', '1'],
                    'WH_hww'  :  ['1', '1'],
                    'ZH_hww'  :  ['1', '1'],
+                   'ggZH_hww'  :  ['1', '1'],
                    'ggH_hzz' : ['1', '1'],
                    'ZH_htt'  :  ['1', '1'],
                    'WH_htt'   : ['1', '1'],
                    'Vg' : ['1', '1'],
                 },
-               'folderUp'   : '/tmp/arun/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__vh3lSel__l3kin__l4kin/',
-               'folderDown' : '/tmp/arun/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__vh3lSel__l3kin__l4kin/'
+                'folderUp'   : '/wk_cms/pchen/work/HWAnalysis/data/eoscms/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__vh3lSel__l3kin__l4kin/',
+                'folderDown' : '/wk_cms/pchen/work/HWAnalysis/data/eoscms/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__vh3lSel__l3kin__l4kin/'
 }
 
 nuisances['muonpt_zh4l']  = {
@@ -431,13 +465,14 @@ nuisances['muonpt_zh4l']  = {
                    'VVV' : ['1', '1'],
                    'WH_hww' :  ['1', '1'],
                    'ZH_hww' :  ['1', '1'],
+                   'ggZH_hww' :  ['1', '1'],
                    'ZH_htt' :  ['1', '1'],
                    'ggH_hzz' : ['1', '1'],
                    'WH_htt' : ['1', '1'],
                    'Vg' : ['1', '1'],
                 },
-              'folderUp'   : '/tmp/arun/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__vh3lSel__l3kin__l4kin/',
-              'folderDown' : '/tmp/arun/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__vh3lSel__l3kin__l4kin/'
+                'folderUp'   : '/wk_cms/pchen/work/HWAnalysis/data/eoscms/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__vh3lSel__l3kin__l4kin/',
+                'folderDown' : '/wk_cms/pchen/work/HWAnalysis/data/eoscms/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__vh3lSel__l3kin__l4kin/'
 }
 
 nuisances['met_zh4l']  = {
@@ -451,13 +486,14 @@ nuisances['met_zh4l']  = {
                    'VVV' : ['1', '1'],
                    'WH_hww' :  ['1', '1'],
                    'ZH_hww' :  ['1', '1'],
+                   'ggZH_hww' :  ['1', '1'],
                    'ZH_htt' :  ['1', '1'],
                    'ggH_hzz' : ['1', '1'],
                    'WH_htt' : ['1', '1'],
                    'Vg' : ['1', '1'],
                 },
-               'folderUp'   : '/tmp/arun/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__vh3lSel__l3kin__l4kin/',
-               'folderDown' : '/tmp/arun/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__vh3lSel__l3kin__l4kin/'
+               'folderUp'   : '/wk_cms/pchen/work/HWAnalysis/data/eoscms/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__vh3lSel__l3kin__l4kin/',
+               'folderDown' : '/wk_cms/pchen/work/HWAnalysis/data/eoscms/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__vh3lSel__l3kin__l4kin/'
 }
 
 # statistical fluctuation
@@ -491,10 +527,13 @@ nuisances['stat']  = {
                          'typeStat' : 'bbb',
                          },
 
-                   'WH_htt': {
+                   'ggZH_hww': {
                          'typeStat' : 'bbb',
                          },
 
+                   'WH_htt': {
+                         'typeStat' : 'bbb',
+                         },
 
                    'ZH_htt': {
                          'typeStat' : 'bbb',
@@ -502,17 +541,12 @@ nuisances['stat']  = {
                    'ggH_hzz': {
                          'typeStat' : 'bbb',
                          },
-                   
                    'Fake': { 
                          'typeStat' : 'bbb',
                          },
-                   
                    'Vg': {  
                          'typeStat' : 'bbb',
                          },
-
-                 },
+                    },
                'type'  : 'shape'
-              }
-
-
+                 }
