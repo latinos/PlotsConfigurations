@@ -82,6 +82,9 @@ Time to run combine tool now!
    # Significance
    combine -M ProfileLikelihood --significance datacard.txt.comb.txt -t -1 -m 125 --expectSignal=1
 
+   # To estimate the scale factor ZZ4lnorm
+   combine -M MaxLikelihoodFit datacard.txt.comb.txt --redefineSignalPOIs ZZ4lnorm --freezeNuisances=r --setPhysicsModelParameterRanges ZZ4lnorm=0.01,2 -n "MLfitZZ4lnorm" -m 125
+
    # To Run the Likelihood Scan for getting the plot for signal strength
    combine -M MultiDimFit datacard_ZH4l_4July_divided.txt --algo=grid --point 100 --setPhysicsModelParameterRanges r=-10,10 -t -1 --expectSignal=1 -n "LHScan" -m 125
 
