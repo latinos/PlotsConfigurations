@@ -10,8 +10,8 @@ supercut = 'std_vector_lepton_pt[0]>25 && std_vector_lepton_pt[1]>20 \
             && metPfType1 > 20 \
             && mpmet > 20 \
             && ptll > 30 \
-            && mth < 40 \
-            && mll < 100 \
+            && mth > 40 \
+            && mll > 100 \
             && ((abs(std_vector_lepton_flavour[0])!=abs(std_vector_lepton_flavour[0])) || (abs(mll-91)>15)) \
             && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
             && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
@@ -26,8 +26,9 @@ supercut = 'std_vector_lepton_pt[0]>25 && std_vector_lepton_pt[1]>20 \
 '
 
 # Different flavour only: Use exclusive DY sample!!!
-cuts['monoH_DYtt_em'] = 'njet >= 0 \
+cuts['monoH_WW_em'] = 'njet >= 0 \
             && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13) \
+            && mtw1 < 100 \
 '
 
 

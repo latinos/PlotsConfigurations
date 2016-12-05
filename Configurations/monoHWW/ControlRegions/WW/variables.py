@@ -44,7 +44,7 @@ variables['drll'] = {     'name': 'drll',            #   variable name
 
 
 variables['mtw1'] = {     'name'  : 'mtw1',            #   variable name    
-                          'range' : (100,0,1000),    #   variable range
+                          'range' : (30,0,300),    #   variable range
                           'xaxis' : 'm_{T}^{W1}',  #   x axis name
                           'fold'  : 0
                           }
@@ -64,33 +64,33 @@ variables['njet']  = {   'name': 'njet',
                          }
                         
 variables['mth']  = {   'name': 'mth',            #   variable name    
-                        'range' : (80,0,1600),     #   variable range
+                        'range' : (30,0,300),     #   variable range
                         'xaxis' : 'm_{T}^{\ell\ell} [GeV]',  #   x axis name
                         'fold' : 3
                         }
 
 
 variables['ptll']  = {   'name': 'ptll',            #   variable name    
-                         'range' : (80,0,800),    #   variable range
+                         'range' : (20,0,200),    #   variable range
                          'xaxis' : 'p_{T}^{\ell\ell} [GeV]',  #   x axis name
                          'fold' : 3
                          }
 
 variables['met']  = {   'name': 'metPfType1',            #   variable name    
-                        'range' : (50,0,500),    #   variable range
+                        'range' : (20,0,200),    #   variable range
                         'xaxis' : 'E_{T}^{miss} [GeV]',  #   x axis name
                         'fold' : 0
                         }
 
 
 variables['mll']  = {   'name': 'mll',             #   variable name    
-                        'range' : (40,0,400),      #   variable range
+                        'range' : (30,0,300),      #   variable range
                         'xaxis' : 'm_{\ell\ell} [GeV]',  #   x axis name
                         'fold' : 3
                         }
                         
 variables['metTtrk'] = {'name': 'metTtrk',            #   variable name    
-                        'range' : (50,0,500),    #   variable range
+                        'range' : (20,0,200),    #   variable range
                         'xaxis' : 'tracker E_{T}^{miss} [GeV]',  #   x axis name
                         'fold' : 0
                         }
