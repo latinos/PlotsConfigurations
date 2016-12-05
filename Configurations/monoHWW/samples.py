@@ -2,6 +2,12 @@
 
 #samples = {}
 
+# If you want to normalize the signal to 1pb*BR:
+# 9*0.108*0.108*0.2137*baseW/Xsec
+
+# If you want to use nominal xs:
+# 0.2137*baseW
+
 ZpMasses={"600","800","1000","1200","1400","1700","2000","2500"}
 A0Masses={"300","400","500","600","700","800"}
 
@@ -9,7 +15,7 @@ for mZp in ZpMasses:
     for mA0 in A0Masses :
         if ((mZp == "600" and (mA0 == "300" or mA0 == "400")) or ((mZp == "800" and (mA0 == "300" or mA0 == "400" or mA0 == "500" or mA0 == "600"))) or (mZp != "600" and mZp != "800")) :
             samples['monoH_' + mZp + '_' + mA0] = { 'name': ['latino_monoH_2HDM_MZp-' + mZp + '_MA0-' + mA0 + '.root'],
-                                        'weight' : 'puW*(baseW)*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',
+                                        'weight' : 'puW*(0.2137*baseW)*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',
                                             }
 
 
@@ -423,7 +429,7 @@ samples['WH_hww']  = {    'name': [
                   }
 
 samples['ZH_hww']  = {    'name': ['latino_HZJ_HToWWTo2L2Nu_M125_noHLT.root'],      
-                           'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+                           'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
                   }
 
 
