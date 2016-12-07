@@ -1021,5 +1021,27 @@ Prepare fakes:
 
       
       
+    eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/05Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/05Jul2016_Run2016B_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/08Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016B_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/11Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/11Jul2016_Run2016C_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/15Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016D_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/26Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/26Jul2016_Run2016D_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/08Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016C_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/15Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016C_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/21Jun2016_v2_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/      eos/user/r/rodrigo/HWW2016/21Jun2016_v2_Run2016B_PromptReco_repro/
+
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/05Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/05Jul2016_Run2016B_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/08Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016B_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/11Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/11Jul2016_Run2016C_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/15Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016D_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/26Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/26Jul2016_Run2016D_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/08Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016C_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/15Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016C_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/21Jun2016_v2_Run2016B_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/      eos/user/r/rodrigo/HWW2016/21Jun2016_v2_Run2016B_PromptReco_repro/
+
       
+
+
+
       
