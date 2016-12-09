@@ -2,27 +2,6 @@
 
 #samples = {}
 
-#samples['DY']  = {    'name': [
-                            ##'latino_DYJetsToLL_M-10to50.root',
-                            ##'latino_DYJetsToLL_M-10to50ext3.root',
-                            ##
-                            ##'latino_DYJetsToLL_M-50_0000__part0_genVar.root'
-                            #'latino_DYJetsToLL_M-10to50.root',
-                            #'latino_DYJetsToLL_M-50_0000__part0.root',
-                            #'latino_DYJetsToLL_M-50_0000__part1.root',
-                            #'latino_DYJetsToLL_M-50_0000__part2.root',
-                            #'latino_DYJetsToLL_M-50_0000__part3.root',
-                            #'latino_DYJetsToLL_M-50_0000__part4.root',
-                            #'latino_DYJetsToLL_M-50_0001__part0.root',
-                            #'latino_DYJetsToLL_M-50_0001__part1.root',
-                            #'latino_DYJetsToLL_M-50_0001__part2.root',
-                            #'latino_DYJetsToLL_M-50_0001__part3.root',
-                            #'latino_DYJetsToLL_M-50_0001__part4.root',
-                            #'latino_DYJetsToLL_M-50_0002__part0.root',
-                            #],    
-                      ##'weight' : '(1.02852 - 0.0949640*TMath::Erf((gen_ptll-19.0422)/10.4487) + 0.0758834*TMath::Erf((gen_ptll-56.1146)/41.1653))*puW*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)',  
-                      #'weight' : 'puW*baseW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',  
-                    #}
 
 samples['DY']  = {    'name': [
                             'latino_DYJetsToLL_M-10to50.root',
@@ -35,57 +14,59 @@ samples['DY']  = {    'name': [
                                      ],
                     }
 
+
+
 # data driven
 samples['Fake']  = {    'name': [
                       #
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_MuonEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_DoubleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_SingleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_DoubleEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_SingleElectron.root', 
-                                #../../../../../../../../../../           
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_MuonEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_DoubleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_SingleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_DoubleEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_SingleElectron.root', 
-                                #../../../../../../../../../../         
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_MuonEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_DoubleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_SingleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_DoubleEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_SingleElectron.root', 
-                                #../../../../../../../../../../         
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_MuonEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_DoubleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_SingleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_DoubleEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_SingleElectron.root', 
-                                #../../../../../../../../../../
-                                #../../../../../../../../../../            
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_MuonEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_DoubleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_SingleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_DoubleEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_SingleElectron.root', 
-                                #../../../../../../../../../../            
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_MuonEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_DoubleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_SingleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_DoubleEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_SingleElectron.root', 
-                                #../../../../../../../../../../            
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_MuonEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_DoubleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_SingleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_DoubleEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_SingleElectron.root', 
-                                #../../../../../../../../../../            
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_MuonEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_DoubleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_SingleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_DoubleEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_SingleElectron.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/21Jun2016_v2_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/21Jun2016_v2_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/21Jun2016_v2_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/21Jun2016_v2_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/21Jun2016_v2_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../           
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/05Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/05Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/05Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/05Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/05Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../         
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016B_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../         
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../
+                                #../../../../../../../../../            
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//11Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//11Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//11Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//11Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//11Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../            
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//15Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//15Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//15Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//15Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//15Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016C_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../            
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../            
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//26Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//26Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//26Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//26Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//26Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/latino_Run2016D_PromptReco_SingleElectron.root', 
                                 #
                        #               
                        ],     
@@ -431,57 +412,57 @@ samples['ZH_hww']  = {    'name': ['latino_HZJ_HToWW_M125.root'],
 samples['DATA']  = {   'name': [
                                 #
                                 ##
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_MuonEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleElectron.root', 
-                                #../../../../../../../../../../           
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_MuonEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleElectron.root', 
-                                #../../../../../../../../../../         
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_MuonEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleElectron.root', 
-                                #../../../../../../../../../../         
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_MuonEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_DoubleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_SingleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_DoubleEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_SingleElectron.root', 
-                                #../../../../../../../../../../
-                                #../../../../../../../../../../            
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_MuonEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_DoubleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_SingleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_DoubleEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_SingleElectron.root', 
-                                #../../../../../../../../../../            
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_MuonEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_DoubleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_SingleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_DoubleEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_SingleElectron.root', 
-                                #../../../../../../../../../../            
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_MuonEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_DoubleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_SingleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_DoubleEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_SingleElectron.root', 
-                                #../../../../../../../../../../            
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_MuonEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_DoubleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_SingleMuon.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_DoubleEG.root', 
-                                '../../../../../../../../../../eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_SingleElectron.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/21Jun2016_v2_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/21Jun2016_v2_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/21Jun2016_v2_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/21Jun2016_v2_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/21Jun2016_v2_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../           
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/05Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/05Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/05Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/05Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/05Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../         
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016B_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../         
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../
+                                #../../../../../../../../../            
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//11Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//11Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//11Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//11Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//11Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../            
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//15Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//15Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//15Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//15Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//15Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016C_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../            
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_SingleElectron.root', 
+                                #../../../../../../../../../            
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//26Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_MuonEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//26Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_DoubleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//26Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_SingleMuon.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//26Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_DoubleEG.root', 
+                                '../../../../../../../../../../eos/user/r/rodrigo/HWW2016//26Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__l2tight__wwSel/latino_Run2016D_PromptReco_SingleElectron.root', 
                                 #
                                 #
-                                ] ,     
+                                ] ,      
                        #'weight' : 'trigger',
                        'weight' : '1',
                        #'weight' : 'std_vector_trigger[1]',
