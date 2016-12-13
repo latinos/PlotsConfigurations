@@ -6,7 +6,7 @@ rm -f run_torqueBatch_*.sh.*
 
 #Loop
 #for Idx in 8; do
-for Idx in 1 2 3 4 5 6 7 8 9 10 11 12 13; do
+for Idx in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15; do
 #for Idx in 12 13; do
   cp ../configuration.py configuration${Idx}_AAA.py
   sed "s/rootFile/rootFile${Idx}/"  configuration${Idx}_AAA.py > configuration${Idx}_BBB.py 
