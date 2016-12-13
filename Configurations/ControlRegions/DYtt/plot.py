@@ -11,7 +11,7 @@
 #
 
 groupPlot['Fake']  = {  
-                  'nameHR' : 'Fake',
+                  'nameHR' : 'Non-prompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
                   'samples'  : ['Fake']
@@ -19,7 +19,7 @@ groupPlot['Fake']  = {
 
 
 groupPlot['top']  = {  
-                  'nameHR' : 'tW and t#bart',
+                  'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
                   'color': 400,   # kYellow
                   'samples'  : ['top']
@@ -75,7 +75,14 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 1.0
+                  'scale'    : 1.0,
+                  'cuts'  : {
+                       'hww2l2v_13TeV_dytt_of0j'   : 0.99 ,
+                       'hww2l2v_13TeV_dytt_of1j'   : 0.90*0.95 , 
+                       'hww2l2v_13TeV_dytt_of2j'   : 0.90 ,                
+                        },
+                  
+
               }
 
 
@@ -131,11 +138,11 @@ plot['top'] = {
                   'isData'   : 0, 
                   'scale'    : 1.0,
                   
-                  'cuts'  : {
-                       'ww2l2v_13TeV_ww_of0j'   : 0.98 ,
-                       'ww2l2v_13TeV_ww_of1j'   : 0.87 , 
-                       'ww2l2v_13TeV_ww_of2j'   : 0.90 ,                
-                        },
+                  #'cuts'  : {
+                       #'ww2l2v_13TeV_ww_of0j'   : 0.98 ,
+                       #'ww2l2v_13TeV_ww_of1j'   : 0.87 , 
+                       #'ww2l2v_13TeV_ww_of2j'   : 0.90 ,                
+                        #},
                   
                   }
 
@@ -311,7 +318,7 @@ plot['DATA']  = {
 #legend['lumi'] = 'L = 2.6/fb' # 
 #legend['lumi'] = 'L = 4.3/fb' # 
 #legend['lumi'] = 'L = 6.3/fb' # 
-legend['lumi'] = 'L = 12.3/fb' # 
+legend['lumi'] = 'L = 12.9/fb' # 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 

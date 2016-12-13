@@ -18,7 +18,7 @@ groupPlot['DY']  = {
 
 
 groupPlot['Fake']  = {  
-                  'nameHR' : 'Fake',
+                  'nameHR' : 'Non-prompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
                   'samples'  : ['Fake']
@@ -36,7 +36,7 @@ groupPlot['WW']  = {
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  'samples'  : ['WW', 'ggWW']
+                  'samples'  : ['WW', 'ggWW','WWewk']
               }
 
 #groupPlot['WWewk']  = {  
@@ -364,7 +364,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  #'isBlind'  : 1
               }
 
 
@@ -376,7 +376,7 @@ plot['DATA']  = {
 #legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
 #legend['lumi'] = 'L = 4.3/fb' # 2.318 fb-1
 #legend['lumi'] = 'L = 6.3/fb'
-legend['lumi'] = 'L = 12.3/fb'
+legend['lumi'] = 'L = 12.9/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

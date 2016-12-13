@@ -25,11 +25,20 @@ Steps to get datacards and plots:
     mkShapes.py      --pycfg=configuration.py  --doThreads=True   --inputDir=eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
     mkShapes.py      --pycfg=configuration_iteos.py  --doThreads=True    --inputDir=eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
 
+    mkShapes.py      --pycfg=configuration_iteos.py  --doThreads=True   --inputDir=eos/user/r/rodrigo/HWW2016/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/  
+    mkShapes.py      --pycfg=configuration.py  --doThreads=True   --inputDir=eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
+    
+    
+    
     mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_ggH.root
     mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_ggHJustPlot.root
+    mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_ggHtestplot.root
     
     mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_ggH.root
-
+    mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_ggHtestplot.root
+    
+    mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_ggH_all.root
+    
     
 
 Pruning:
@@ -150,13 +159,13 @@ Auto tests:
     
     
     
+
+    
     
     
     cat  ../result.MaxLikelihoodFit.superCombination.2016.txt.pruned.txt
     cat  ../result.Significance.superCombination.2016.txt.pruned.txt
-    cat  ../result.MaxLikelihoodFit.Moriond2016.vbf.txt
-    cat  ../result.MaxLikelihoodFit.Moriond2016.vh2j.txt
-    cat  ../result.MaxLikelihoodFit.Moriond2016.2j.txt
+
 
     cat  ../result.MaxLikelihoodFit.ICHEP2016.vbf.txt
     cat  ../result.MaxLikelihoodFit.ICHEP2016.vh2j.txt
@@ -228,7 +237,8 @@ Auto tests:
     cat   ../result.Significance.Moriond2016.wh3l.txt
 
 
-    
+    cat ../result.data.Significance.superCombination.2015.txt.pruned.txt
+    cat ../result.data.MaxLikelihoodFit.superCombination.2015.txt.pruned.txt
     
     
     
@@ -288,6 +298,26 @@ Auto tests:
     cat  ../result.data.Significance.superCombination.Total.txt.pruned.txt
 
     
+    
+2D plots for Top and DYtt:
+
+    cd ..
+    sh ggH/scripts/doGGH_doMultisignal_topdytt.sh
+    cd -
+    
+
+    r99t ../higgsCombineLH2DICHEP2015combined.MultiDimFit.mH120.root \
+        scripts/Draw2D.cxx
+    
+    
+    r99t ../higgsCombineTest.MultiDimFit.mH120_3bins_new.root scripts/Draw2DImproved.cxx\(\"Top\",\"DYtautau\",\"Topnorm0j\",\"DYttnorm0j\",2,\"r3\>0.9\&\&r3\<1.1\"\)
+    
+    r99t ../higgsCombinedytop0j.MultiDimFit.mH125.root     scripts/Draw2DImproved.cxx\(\"Top\",\"DYtautau\",\"Topnorm0j\",\"DYttnorm0j\",2\)
+    r99t ../higgsCombinedytop1j.MultiDimFit.mH125.root     scripts/Draw2DImproved.cxx\(\"Top\",\"DYtautau\",\"Topnorm1j\",\"DYttnorm1j\",2\)
+    r99t ../higgsCombinedytop2j.MultiDimFit.mH125.root     scripts/Draw2DImproved.cxx\(\"Top\",\"DYtautau\",\"Topnorm2j\",\"DYttnorm2j\",2\)
+    r99t ../higgsCombinedytop2jvh.MultiDimFit.mH125.root   scripts/Draw2DImproved.cxx\(\"Top\",\"DYtautau\",\"Topnorm2jvh\",\"DYttnorm2jvh\",2\)
+    r99t ../higgsCombinedytop2jvbf.MultiDimFit.mH125.root  scripts/Draw2DImproved.cxx\(\"Top\",\"DYtautau\",\"Topnorm2jvbf\",\"DYttnorm2jvbf\",2\)
+ 
     
     
     
@@ -474,8 +504,9 @@ Backup:
     
     mkShapes.py      --pycfg=configuration.py  --doThreads=True   --inputDir=eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
     
-      
-      
+    mkShapes.py      --pycfg=configuration_iteos.py  --doThreads=True    --inputDir=eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
+
+    
       
       
 
@@ -739,6 +770,10 @@ Copy datacards to repository:
                   
       ICHEP final
 
+      cd /afs/cern.ch/user/a/amassiro/work/Latinos/Limit/datacards/cadi/HIG-16-021/125
+      cd /afs/cern.ch/user/a/amassiro/work/Latinos/Limit/datacards/cadi/HIG-16-021/125/2015
+      cd /afs/cern.ch/user/a/amassiro/work/Latinos/Limit/datacards/cadi/HIG-16-021/125/2016
+      
       cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/Moriond/datacards/hww2l2v_13TeV_em_1j/mllVSmth/datacard.txt.pruned.txt             2015/hww2l2v_13TeV_em_1j/datacard.txt
       cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/Moriond/datacards/hww2l2v_13TeV_me_1j/mllVSmth/datacard.txt.pruned.txt             2015/hww2l2v_13TeV_me_1j/datacard.txt
       cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/Moriond/datacards/hww2l2v_13TeV_em_0j/mllVSmth/datacard.txt.pruned.txt             2015/hww2l2v_13TeV_em_0j/datacard.txt
@@ -873,3 +908,148 @@ Copy datacards to repository:
  
  
  
+
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_mp_1j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_em_mp_1j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_mp_1j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_me_mp_1j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_mp_0j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_em_mp_0j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_mp_0j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_me_mp_0j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_pm_1j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_em_pm_1j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_pm_1j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_me_pm_1j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_pm_0j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_em_pm_0j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_pm_0j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_me_pm_0j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_top_of0j/events/shapes/*.root                    2016/hww2l2v_13TeV_top_of0j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_top_of1j/events/shapes/*.root                    2016/hww2l2v_13TeV_top_of1j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/shapes/*.root                   2016/hww2l2v_13TeV_dytt_of0j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/shapes/*.root                   2016/hww2l2v_13TeV_dytt_of1j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH2j/datacards/hww2l2v_13TeV_of2j/mllVSmth/shapes/*.root                    2016/hww2l2v_13TeV_of2j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH2j/datacards/hww2l2v_13TeV_top_of2j/events/shapes/*.root                  2016/hww2l2v_13TeV_top_of2j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH2j/datacards/hww2l2v_13TeV_dytt_of2j/events/shapes/*.root                 2016/hww2l2v_13TeV_dytt_of2j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VBF/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mllfine/shapes/*.root                2016/hww2l2v_13TeV_of2j_vbf_lowmjj/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VBF/datacards/hww2l2v_13TeV_top_of2j_vbf/events/shapes/*.root                2016/hww2l2v_13TeV_top_of2j_vbf/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VBF/datacards/hww2l2v_13TeV_dytt_of2j_vbf/events/shapes/*.root               2016/hww2l2v_13TeV_dytt_of2j_vbf/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/datacards/hww2l2v_13TeV_of2j_vh2j/mll/shapes/*.root                     2016/hww2l2v_13TeV_of2j_vh2j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/datacards/hww2l2v_13TeV_top_of2j_vh2j/events/shapes/*.root              2016/hww2l2v_13TeV_top_of2j_vh2j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/datacards/hww2l2v_13TeV_dytt_of2j_vh2j/events/shapes/*.root             2016/hww2l2v_13TeV_dytt_of2j_vh2j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_13TeV_ossf/drllmin3l/shapes/*.root                       2016/wh3l_13TeV_ossf/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_13TeV_sssf/drllmin3l_sssf/shapes/*.root                       2016/wh3l_13TeV_sssf/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_wz_13TeV/events/shapes/*.root                            2016/wh3l_wz_13TeV/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_zg_13TeV/events/shapes/*.root                            2016/wh3l_zg_13TeV/shapes/
+    
+    
+     
+Test new fakes
+
+
+      
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_mp_1j/mllVSmth/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_em_mp_1j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_mp_1j/mllVSmth/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_me_mp_1j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_mp_0j/mllVSmth/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_em_mp_0j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_mp_0j/mllVSmth/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_me_mp_0j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_pm_1j/mllVSmth/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_em_pm_1j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_pm_1j/mllVSmth/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_me_pm_1j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_pm_0j/mllVSmth/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_em_pm_0j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_pm_0j/mllVSmth/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_me_pm_0j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt                    2016/hww2l2v_13TeV_top_of0j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt                    2016/hww2l2v_13TeV_top_of1j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt                   2016/hww2l2v_13TeV_dytt_of0j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt                   2016/hww2l2v_13TeV_dytt_of1j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH2j/datacards/hww2l2v_13TeV_of2j/mllVSmth/datacard.txt.pruned.txt                    2016/hww2l2v_13TeV_of2j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH2j/datacards/hww2l2v_13TeV_top_of2j/events/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_top_of2j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH2j/datacards/hww2l2v_13TeV_dytt_of2j/events/datacard.txt.pruned.txt                 2016/hww2l2v_13TeV_dytt_of2j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VBF/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mllfine/datacard.txt.pruned.txt                2016/hww2l2v_13TeV_of2j_vbf_lowmjj/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VBF/datacards/hww2l2v_13TeV_top_of2j_vbf/events/datacard.txt.pruned.txt.filtered.txt                 2016/hww2l2v_13TeV_top_of2j_vbf/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VBF/datacards/hww2l2v_13TeV_dytt_of2j_vbf/events/datacard.txt.pruned.txt.filtered.txt                2016/hww2l2v_13TeV_dytt_of2j_vbf/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/datacards/hww2l2v_13TeV_of2j_vh2j/mll/datacard.txt.pruned.txt                     2016/hww2l2v_13TeV_of2j_vh2j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/datacards/hww2l2v_13TeV_top_of2j_vh2j/events/datacard.txt.pruned.txt              2016/hww2l2v_13TeV_top_of2j_vh2j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/datacards/hww2l2v_13TeV_dytt_of2j_vh2j/events/datacard.txt.pruned.txt             2016/hww2l2v_13TeV_dytt_of2j_vh2j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_13TeV_ossf/drllmin3l/datacard.txt.pruned.txt                       2016/wh3l_13TeV_ossf/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_13TeV_sssf/drllmin3l_sssf/datacard.txt.pruned.txt                       2016/wh3l_13TeV_sssf/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_wz_13TeV/events/datacard.txt.pruned.txt                            2016/wh3l_wz_13TeV/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_zg_13TeV/events/datacard.txt.pruned.txt                            2016/wh3l_zg_13TeV/datacard.txt
+                  
+                  
+                  
+    
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_mp_1j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_em_mp_1j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_mp_1j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_me_mp_1j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_mp_0j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_em_mp_0j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_mp_0j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_me_mp_0j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_pm_1j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_em_pm_1j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_pm_1j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_me_pm_1j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_pm_0j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_em_pm_0j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_pm_0j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_me_pm_0j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_top_of0j/events/shapes/*.root                    2016/hww2l2v_13TeV_top_of0j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_top_of1j/events/shapes/*.root                    2016/hww2l2v_13TeV_top_of1j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/shapes/*.root                   2016/hww2l2v_13TeV_dytt_of0j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/shapes/*.root                   2016/hww2l2v_13TeV_dytt_of1j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH2j/datacards/hww2l2v_13TeV_of2j/mllVSmth/shapes/*.root                    2016/hww2l2v_13TeV_of2j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH2j/datacards/hww2l2v_13TeV_top_of2j/events/shapes/*.root                  2016/hww2l2v_13TeV_top_of2j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH2j/datacards/hww2l2v_13TeV_dytt_of2j/events/shapes/*.root                 2016/hww2l2v_13TeV_dytt_of2j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VBF/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mllfine/shapes/*.root                2016/hww2l2v_13TeV_of2j_vbf_lowmjj/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VBF/datacards/hww2l2v_13TeV_top_of2j_vbf/events/shapes/*.root                2016/hww2l2v_13TeV_top_of2j_vbf/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VBF/datacards/hww2l2v_13TeV_dytt_of2j_vbf/events/shapes/*.root               2016/hww2l2v_13TeV_dytt_of2j_vbf/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/datacards/hww2l2v_13TeV_of2j_vh2j/mll/shapes/*.root                     2016/hww2l2v_13TeV_of2j_vh2j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/datacards/hww2l2v_13TeV_top_of2j_vh2j/events/shapes/*.root              2016/hww2l2v_13TeV_top_of2j_vh2j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/datacards/hww2l2v_13TeV_dytt_of2j_vh2j/events/shapes/*.root             2016/hww2l2v_13TeV_dytt_of2j_vh2j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_13TeV_ossf/drllmin3l/shapes/*.root                       2016/wh3l_13TeV_ossf/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_13TeV_sssf/drllmin3l_sssf/shapes/*.root                       2016/wh3l_13TeV_sssf/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_wz_13TeV/events/shapes/*.root                            2016/wh3l_wz_13TeV/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_zg_13TeV/events/shapes/*.root                            2016/wh3l_zg_13TeV/shapes/
+    
+    
+      in
+      ~/public/xLatinos/ICHEP2016_25Nov2016/
+ 
+ 
+Prepare fakes: 
+ 
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb_v2__wwSel    eos/user/n/ntrevisa/HWW2015/ICHEPv2/
+    
+    
+    
+     /cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb_v2/
+     /cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb_v2/
+     /cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb_v2/
+     /cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb_v2/
+     /cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb_v2/
+     /cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb_v2/
+     /cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb_v2/
+     /cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb_v2/
+ 
+    
+    
+    cp -r   eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb_v2__wwSel                  eos/user/n/ntrevisa/HWW2015/ICHEPv2/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/ 
+    cp -r   eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb_v2__wwSel                     eos/user/k/kfjack/HWW2015/05Jul2016_Run2016B_PromptReco_v2/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/ 
+    cp -r   eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb_v2__wwSel                     eos/user/k/kfjack/HWW2015/08Jul2016_Run2016B_PromptReco_v2/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/ 
+    cp -r   eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb_v2__wwSel                     eos/user/k/kfjack/HWW2015/08Jul2016_Run2016C_PromptReco_v2/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/ 
+    cp -r   eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb_v2__wwSel/        eos/user/k/kfjack/HWW2015//11Jul2016_Run2016C_PromptReco_v2/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/
+    cp -r   eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb_v2__wwSel/        eos/user/k/kfjack/HWW2015//15Jul2016_Run2016C_PromptReco_v2/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/
+    cp -r   eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb_v2__wwSel/        eos/user/n/ntrevisa/HWW2015/ICHEPv2/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/
+    cp -r   eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb_v2__wwSel/        eos/user/k/kfjack/HWW2015//26Jul2016_Run2016D_PromptReco_v2/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/
+
+      
+      
+    eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/05Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/05Jul2016_Run2016B_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/08Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016B_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/11Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/11Jul2016_Run2016C_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/15Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016D_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/26Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/26Jul2016_Run2016D_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/08Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016C_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/15Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016C_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/21Jun2016_v2_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/      eos/user/r/rodrigo/HWW2016/21Jun2016_v2_Run2016B_PromptReco_repro/
+
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/05Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/05Jul2016_Run2016B_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/08Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016B_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/11Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/11Jul2016_Run2016C_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/15Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016D_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/26Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/26Jul2016_Run2016D_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/08Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016C_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/15Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016C_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/21Jun2016_v2_Run2016B_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/      eos/user/r/rodrigo/HWW2016/21Jun2016_v2_Run2016B_PromptReco_repro/
+
+      
+
+
+
+      

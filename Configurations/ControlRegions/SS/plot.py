@@ -49,7 +49,7 @@ groupPlot['VZ']  = {
 
 
 groupPlot['Fake']  = {  
-                  'nameHR' : 'Fake',
+                  'nameHR' : 'Non-prompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
                   'samples'  : ['Fake']
@@ -96,6 +96,11 @@ plot['Fake']  = {
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0,
+                  'cuts'  : {
+                       'hww2l2v_13TeV_ss_of0j'      : 1.2 ,
+                       'hww2l2v_13TeV_ss_of1j'      : 1.2 , 
+                       'hww2l2v_13TeV_ss_of2j'      : 1.2 , 
+                            },
                   #'cuts'  : {
                        #'hww2l2v_13TeV_ss_of0j'      : 0.8 ,
                        #'hww2l2v_13TeV_ss_of1j'      : 0.8 , 
@@ -151,7 +156,12 @@ plot['VgS'] = {
                   'color'    : 617,   # kViolet + 1  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0
+                  'scale'    : 1.0,
+                  'cuts'  : {
+                       'hww2l2v_13TeV_ss_of0j'      : 1.2 ,
+                       'hww2l2v_13TeV_ss_of1j'      : 1.2 , 
+                       'hww2l2v_13TeV_ss_of2j'      : 1.2 , 
+                            },
                   }
 
 
@@ -300,7 +310,7 @@ plot['DATA']  = {
 
 #legend['lumi'] = 'L = 4.3/fb' 
 #legend['lumi'] = 'L = 6.3/fb'
-legend['lumi'] = 'L = 12.3/fb' # 
+legend['lumi'] = 'L = 12.9/fb' # 
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

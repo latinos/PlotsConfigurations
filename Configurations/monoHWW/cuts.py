@@ -1,23 +1,19 @@
 
-# cuts
+#cuts
 
 #cuts = {}
 
-#&& (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
-
-supercut = 'std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>20 \
-            && std_vector_lepton_pt[2]<10 \
-'
-
-cuts['monoH_Signal_em'] = 'njet >= 0 \
+supercut = 'std_vector_lepton_pt[0]>25 && std_vector_lepton_pt[1]>20 \
             && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13) \
+            && std_vector_lepton_pt[2]<10 \
+            && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] < 0) \
             && mll>12  \
             && metPfType1 > 20 \
             && mpmet > 20 \
             && ptll > 30 \
-            && mth > 60 \
+            && mth > 40 \
             && mll < 100 \
-            && drll < 2.8 \
+            && ((abs(std_vector_lepton_flavour[0])!=abs(std_vector_lepton_flavour[0])) || (abs(mll-91)>15)) \
             && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
             && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
             && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
@@ -30,6 +26,34 @@ cuts['monoH_Signal_em'] = 'njet >= 0 \
             && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.715 ) \
 '
 
+# Different flavour only: Use exclusive DY sample!!!
+# cuts['monoH_MVA_em'] = 'njet >= 0 \
+#             && metTtrk > 100 \
+#             && dphilmet1 > 2.4 \
+#             && dphilmet2 > 2.4 \
+# '
+
+cuts['monoH_Alberto_em'] = 'njet >= 0 \
+            && drll < 1.5 \
+            && mth > 200 \
+            && drll < 0.8 \
+            && mtw1 > 160 \
+            && mpmet > 100 \
+            && metTtrk > 100 \
+            && mtw2 > 100 \
+            && dphilmet1 > 2.6 \
+            && dphilmet2 > 2.6 \
+'
+
+# cuts['monoH_test_em'] = 'njet >= 0 \
+# && drll < 1.0 \
+# && metTtrk > 140 \
+# && metPfType1 > 100 \
+# && mtw2 > 100 \
+# && dphilmet1 > 2.0 \
+# && dphilmet2 > 2.0 \
+# && mth > 240 \
+# '
 
 # 11 = e
 # 13 = mu

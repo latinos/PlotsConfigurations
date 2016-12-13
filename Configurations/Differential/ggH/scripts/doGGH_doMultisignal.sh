@@ -29,32 +29,32 @@ combineCards.py   em01j13=ggH/datacards/hww2l2v_13TeV_em_01j/mllVSmth/datacard.t
                   of1j13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
                   of0j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
                   of1j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
-                  >   Moriond2016.v1.txt.pruned.txt
+                  >   ICHEP2016.v1.txt.pruned.txt
 
 
 # results
 
 
-# text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
-#                    --PO 'map=.*/ggH_hww_pt1:r1[1,-20,20]' --PO 'map=.*/ggH_hww_pt2:r2[1,-20,20]' --PO 'map=.*/ggH_hww_pt3:r3[1,-20,20]' \
-#                    Moriond2016.v1.txt.pruned.txt  -o  workspace.Moriond2016.v1.txt.pruned.root
-
 text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
-                   --PO 'map=.*/ggH_hww_pt1:r1[1,-20,20]' --PO 'map=.*/ggH_hww_pt2:r1[1,-20,20]' --PO 'map=.*/ggH_hww_pt3:r3[1,-20,20]' \
-                   Moriond2016.v1.txt.pruned.txt  -o  workspace.Moriond2016.v1.txt.pruned.root
-                   
-                   
-combine -M MultiDimFit -t -1 \
-     --setPhysicsModelParameters    r1=1,r3=1 \
-     --algo=grid --points=100  \
-     workspace.Moriond2016.v1.txt.pruned.root            >   result.MultiDimFit.singles.Moriond2016.v1.txt.pruned.grid.txt
+                   --PO 'map=.*/ggH_hww_pt1:r1[1,-20,20]' --PO 'map=.*/ggH_hww_pt2:r2[1,-20,20]' --PO 'map=.*/ggH_hww_pt3:r3[1,-20,20]' \
+                   ICHEP2016.v1.txt.pruned.txt  -o  workspace.ICHEP2016.v1.txt.pruned.root
+# 
+# text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
+#                    --PO 'map=.*/ggH_hww_pt1:r1[1,-20,20]' --PO 'map=.*/ggH_hww_pt2:r1[1,-20,20]' --PO 'map=.*/ggH_hww_pt3:r3[1,-20,20]' \
+#                    ICHEP2016.v1.txt.pruned.txt  -o  workspace.ICHEP2016.v1.txt.pruned.root
+#                    
+#                    
+# combine -M MultiDimFit -t -1 \
+#      --setPhysicsModelParameters    r1=1,r3=1 \
+#      --algo=grid --points=100  \
+#      workspace.ICHEP2016.v1.txt.pruned.root            >   result.MultiDimFit.singles.ICHEP2016.v1.txt.pruned.grid.txt
 
      
      
 combine -M MultiDimFit -t -1 \
      --setPhysicsModelParameters    r1=1,r2=1,r3=1 \
-     --algo=grid --points=10000  \
-     workspace.Moriond2016.v1.txt.pruned.root            >   result.MultiDimFit.singles.Moriond2016.v1.txt.pruned.grid.txt
+     --algo=grid --points=1000  \
+     workspace.ICHEP2016.v1.txt.pruned.root            >   result.MultiDimFit.singles.ICHEP2016.v1.txt.pruned.grid.txt
 
 
 #      
@@ -62,7 +62,7 @@ combine -M MultiDimFit -t -1 \
 # combine -M MultiDimFit -t -1 \
 #      --setPhysicsModelParameters    r1=1,r2=1,r3=1 \
 #      --algo=singles   \
-#      workspace.Moriond2016.v1.txt.pruned.root            >   result.MultiDimFit.singles.Moriond2016.v1.txt.pruned.txt
+#      workspace.ICHEP2016.v1.txt.pruned.root            >   result.MultiDimFit.singles.ICHEP2016.v1.txt.pruned.txt
 
 
      
@@ -70,26 +70,26 @@ combine -M MultiDimFit -t -1 \
 # combine -M MultiDimFit -t -1 \
 #      --expectSignal 1  \
 #      --algo=singles   \
-#      workspace.Moriond2016.v1.txt.pruned.root            >   result.MultiDimFit.singles.Moriond2016.v1.txt.pruned.test.txt
+#      workspace.ICHEP2016.v1.txt.pruned.root            >   result.MultiDimFit.singles.ICHEP2016.v1.txt.pruned.test.txt
 
      
 # combine -M MultiDimFit -t 1 \
 #      --expectSignal 1  \
 #      --algo=singles   \
-#      workspace.Moriond2016.v1.txt.pruned.root            >   result.MultiDimFit.singles.Moriond2016.v1.txt.pruned.test.toy.txt
+#      workspace.ICHEP2016.v1.txt.pruned.root            >   result.MultiDimFit.singles.ICHEP2016.v1.txt.pruned.test.toy.txt
 # 
      
 #      
 # combine -M MultiDimFit -t -1 \
 #      --setPhysicsModelParameters    r1=1,r2=1,r3=1 \
 #      --algo=cross   \
-#      workspace.Moriond2016.v1.txt.pruned.root            >   result.MultiDimFit.cross.Moriond2016.v1.txt.pruned.cross.txt
+#      workspace.ICHEP2016.v1.txt.pruned.root            >   result.MultiDimFit.cross.ICHEP2016.v1.txt.pruned.cross.txt
 
      
      
 # combine -M MultiDimFit -t -1 \
 #      --expectSignal 1 \
-#      workspace.Moriond2016.v1.txt.pruned.root            >   result.MultiDimFit.Moriond2016.v1.txt.pruned.txt
+#      workspace.ICHEP2016.v1.txt.pruned.root            >   result.MultiDimFit.ICHEP2016.v1.txt.pruned.txt
 
      
      

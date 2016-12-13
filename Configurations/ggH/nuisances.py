@@ -5,6 +5,46 @@
 # name of samples here must match keys in samples.py    
 #
 
+
+###
+
+nuisances['QCDscale_CRSR_accept_dytt']  = {
+               'name'  : 'QCDscale_CRSR_accept_dytt', 
+               'type'  : 'lnN',
+               'samples'  : {
+                   'DY' : '1.02',
+                   },
+               'cuts'  : [
+#
+                 'hww2l2v_13TeV_dytt_of0j',
+                 'hww2l2v_13TeV_dytt_of1j',
+                 'hww2l2v_13TeV_dytt_of2j',
+                 'hww2l2v_13TeV_dytt_of2j_vbf',
+                 'hww2l2v_13TeV_dytt_of2j_vh2j'
+#                 
+                ]               
+              }
+
+nuisances['QCDscale_CRSR_accept_top']  = {
+               'name'  : 'QCDscale_CRSR_accept_top', 
+               'type'  : 'lnN',
+               'samples'  : {
+                   'top' : '1.01',
+                   },
+               'cuts'  : [
+#
+                 'hww2l2v_13TeV_top_of0j',
+                 'hww2l2v_13TeV_top_of1j',
+                 'hww2l2v_13TeV_top_of2j',
+                 'hww2l2v_13TeV_top_of2j_vbf',
+                 'hww2l2v_13TeV_top_of2j_vh2j'
+#                 
+                ]               
+              }
+
+###
+
+
 #nuisances['lumi']  = {
                #'name'  : 'lumi_ICHEP_13TeV', 
                #'samples'  : {
@@ -30,7 +70,7 @@
 
 
 nuisances['lumi']  = {
-               'name'  : 'lumi_13TeV_norm', 
+               'name'  : 'lumi_13TeV', 
                'samples'  : {
                    'ggH_hww'  : '1.023',
                    'qqH_hww'  : '1.023',
@@ -563,8 +603,8 @@ nuisances['PS']  = {
                 'samples'  : {
                    'WW' :  ['1./1.03295', '1.'],  # latino_WWTo2L2NuHerwigPS.root moved with different name in __PS folder
                 },
-                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS/',
-                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/' 
+                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/07Jun2016_spring16_mAODv2_12pXfbm1_repro//MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS/',
+                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/07Jun2016_spring16_mAODv2_12pXfbm1_repro//MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/' 
                 }
 
 
@@ -603,7 +643,7 @@ nuisances['WgStarScale']  = {
  
 
 nuisances['DYttnorm0j']  = {
-               'name'  : 'ICHEP_DYttnorm0j', 
+               'name'  : 'DYttnorm0j', 
                'samples'  : {
                    'DY' : '1.00',
                    },
@@ -1068,8 +1108,8 @@ nuisances['jes']  = {
                 },
 
 
-                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/',
-                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/' 
+                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/07Jun2016_spring16_mAODv2_12pXfbm1_repro//MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/',
+                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/07Jun2016_spring16_mAODv2_12pXfbm1_repro//MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/' 
 
                 #'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/',
                 #'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/' 
@@ -1111,8 +1151,8 @@ nuisances['electronpt']  = {
                    'VgS': ['1', '1'],
                 },
 
-                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/',
-                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/' 
+                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/07Jun2016_spring16_mAODv2_12pXfbm1_repro//MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/',
+                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/07Jun2016_spring16_mAODv2_12pXfbm1_repro//MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/' 
 
 
                 #'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/',
@@ -1150,8 +1190,8 @@ nuisances['muonpt']  = {
                    'VgS': ['1', '1'],
                 },
 
-                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/',
-                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/' 
+                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/07Jun2016_spring16_mAODv2_12pXfbm1_repro//MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/',
+                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/07Jun2016_spring16_mAODv2_12pXfbm1_repro//MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/' 
 
                 #'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/',
                 #'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/' 
@@ -1190,8 +1230,8 @@ nuisances['met']  = {
                    'VgS': ['1', '1'],
                 },
 
-                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel/',
-                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel/' 
+                'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/07Jun2016_spring16_mAODv2_12pXfbm1_repro//MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel/',
+                'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/07Jun2016_spring16_mAODv2_12pXfbm1_repro//MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel/' 
 
                 #'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel/',
                 #'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel/' 
