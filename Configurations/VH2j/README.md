@@ -26,6 +26,7 @@ Steps to get datacards and plots:
     mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_VH2j.root
     
     mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_VH2j.root
+    mkDatacards.py   --pycfg=configuration_iteos.py  --inputFile=rootFile/plots_VH2j.root
 
 
 
