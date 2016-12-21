@@ -43,7 +43,7 @@ groupPlot['VVV']  = {
                   'nameHR' : 'VVV',
                   'isSignal' : 0,
                   'color': 618, # kViolet +2   
-                  'samples'  : ['VVV']
+                  'samples'  : ['VVZ','WWW']
               }
 
 
@@ -68,7 +68,7 @@ groupPlot['ZZ']  = {
                   'nameHR' : "ZZ",
                   'isSignal' : 0,
                   'color'    : 857,   # kAzure -3
-                  'samples'  : ['ZZ']
+                  'samples'  : ['ZZ','ggZZ']
               }
 
 groupPlot['ggH_hzz']  = {
@@ -250,6 +250,13 @@ plot['ZZ']  = {
                   'scale'    : 1.0
                   }
 
+plot['ggZZ']  = { 
+                  'nameHR' : 'ggZZ',
+                  'color'    : 857,   # kAzure -3
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
 plot['ggH_hzz']  = { 
                   'nameHR' : 'ggH_hzz',
                   'color'    : 626,   # kRed -6  
@@ -258,13 +265,19 @@ plot['ggH_hzz']  = {
                   'scale'    : 1.0
                   }
 
-plot['VVV']  = { 
+plot['VVZ']  = { 
                   'color': 618, # kViolet +2   
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
 
+plot['WWW']  = { 
+                  'color': 618, # kViolet +2   
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
 
 #plot['ZZ']  = {
 #                  'color': 854, # kAzure -6 
@@ -332,15 +345,15 @@ plot['ggZH_hww'] = {
 
 # data
 #
-####plot['DATA']  = { 
-####                  'nameHR' : 'Data',
-####                  'color': 1 ,  
-####                  'isSignal' : 0,
-####                  'isData'   : 1 ,
-####                  'isBlind'  : 1
-####              }
-####
-####
+plot['DATA']  = { 
+                  'nameHR' : 'Data',
+                  'color': 1 ,  
+                  'isSignal' : 0,
+                  'isData'   : 1 ,
+                  'isBlind'  : 0
+              }
+
+
 
 
 # additional options

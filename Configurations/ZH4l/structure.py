@@ -42,12 +42,21 @@ structure['ggH_hzz'] = {
                   }
 
 
-structure['VVV']  = { 
+structure['VVZ']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
 
+structure['WWW']  = { 
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
 structure['ZZ']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0    
+                  }
+
+structure['ggZZ']  = {
                   'isSignal' : 0,
                   'isData'   : 0    
                   }
@@ -80,7 +89,7 @@ structure['ZH_htt'] = {
 # data
 
 
-#structure['DATA']  = { 
-#                  'isSignal' : 0,
-#                  'isData'   : 1 
-#              }
+structure['DATA']  = { 
+                  'isSignal' : 0,
+                  'isData'   : 1 
+              }
