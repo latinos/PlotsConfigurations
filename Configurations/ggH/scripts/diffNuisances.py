@@ -400,7 +400,8 @@ if options.plotfile:
         boxes.append(box)
    
       # Crate and style the pads
-      pads = plot.TwoPadSplitColumns(0.7, 0., 0.)
+      #pads = plot.TwoPadSplitColumns(0.7, 0., 0.)
+      pads = plot.TwoPadSplitColumns(0.67, 0., 0.)
       pads[0].SetGrid(1, 0)
       pads[0].SetTickx(1)
       pads[1].SetGrid(1, 0)
@@ -409,29 +410,52 @@ if options.plotfile:
   
       h_pulls = ROOT.TH2F("pulls", "pulls", 6, -2.9, 2.9, n_params, 0, n_params)
       g_pulls = ROOT.TGraphAsymmErrors(n_params)
+      g_pulls_b = ROOT.TGraphAsymmErrors(n_params)
    
       text_entries = []
       for p in xrange(n_params):
           i = n_params - (p + 1)
           
+          # s+b fit
           g_pulls.SetPoint(i, gr_fit_s.GetY()[i + page * show], float(i) + 0.5)
           g_pulls.SetPointError( i, gr_fit_s.GetErrorYlow(i + page * show), gr_fit_s.GetErrorYhigh(i + page * show), 0., 0.)
+          
+          # b fit
+          g_pulls_b.SetPoint(i, gr_fit_b.GetY()[i + page * show], float(i) + 0.5)
+          g_pulls_b.SetPointError( i, gr_fit_b.GetErrorYlow(i + page * show), gr_fit_s.GetErrorYhigh(i + page * show), 0., 0.)
           
           col = 1
           h_pulls.GetYaxis().SetBinLabel( i + 1, ('#color[%i]{%s}'% (col, hist_fit_e_s.GetXaxis().GetBinLabel(i + page * show + 1)    )))
    
              
       # Style and draw the pulls histo
-      plot.Set(h_pulls.GetXaxis(), TitleSize=0.04, LabelSize=0.03, Title='(#hat{#theta}-#theta_{0})/#Delta#theta')
+      plot.Set(h_pulls.GetXaxis(), TitleSize=0.04, LabelSize=0.03, Title='S+B hyp (#hat{#theta}-#theta_{0})/#Delta#theta')
       plot.Set(h_pulls.GetYaxis(), LabelSize=0.022, TickLength=0.0)
       h_pulls.GetYaxis().LabelsOption('v')
       h_pulls.Draw()
   
+      pads[1].cd()
+      h_impacts = ROOT.TH2F("pullsb", "pullsb", 6, -2.9, 2.9, n_params, 0, n_params)
+      #plot.Set(h_impacts.GetXaxis(), LabelSize=0.03, TitleSize=0.04, Ndivisions=505, Title='B hyp (#hat{#theta}-#theta_{0})/#Delta#theta')
+      plot.Set(h_impacts.GetXaxis(), TitleSize=0.04, LabelSize=0.03, Title='B hyp (#hat{#theta}-#theta_{0})/#Delta#theta')
+      plot.Set(h_impacts.GetYaxis(), LabelSize=0.022, TickLength=0.0)
+      
+      h_impacts.GetYaxis().SetLabelOffset(999);
+      h_impacts.GetYaxis().SetLabelSize(0);
+      h_impacts.Draw()
+
   
-      # Back to the first pad to draw the pulls graph
+      # the first pad to draw the pulls graph in the signal + background hypothesis
       pads[0].cd()
       plot.Set(g_pulls, MarkerSize=0.8, LineWidth=2)
       g_pulls.Draw('PSAME')
+
+      # the second pad to draw the pulls graph in the background hypothesis
+      pads[1].cd()
+      plot.Set(g_pulls_b, MarkerSize=0.8, LineWidth=2)
+      g_pulls_b.Draw('PSAME')
+      pads[1].RedrawAxis()
+
   
       plot.DrawCMSLogo(pads[0], 'CMS', 'Internal', 0, 0.25, 0.00, 0.00)
 

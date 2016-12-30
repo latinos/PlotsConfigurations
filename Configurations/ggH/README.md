@@ -376,7 +376,12 @@ Make plots:
          --samplesFile    /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/samples.py \
          --cutName hww2l2v_13TeV_em_1j
 
-       
+
+Impact plots and pulls:
+
+    combine Combined.vbf.pruned.txt       -M MaxLikelihoodFit   -n   Combined.vbf.pruned.txt.MaxLikelihoodFit.root
+    python ggH/scripts/diffNuisances.py -a mlfitCombined.vbf.pruned.txt.MaxLikelihoodFit.root.root -g plots.root
+    
 
 Draw likelihood scan:
 
@@ -452,8 +457,10 @@ Datacards checks
     cd ~/Framework/Combine/CMSSW_7_4_7/src/LatinoCombineTools/Tools/
     cmsenv
     text2workspace.py superCombination.Total.txt.pruned.txt   -o    superCombination.Total.txt.pruned.txt.workspace.root 
+    combine    -M MaxLikelihoodFit -t -1 --expectSignal 1   superCombination.Total.txt.pruned.txt.workspace.root      -n    superCombination.Total.txt.pruned.txt.workspace.MaxLikelihoodFit.root
      
-    python diffNuisances.py -a  /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/superCombination.Total.txt.pruned.txt.workspace.root \
+    python diffNuisances.py  \
+           -a  /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/higgsCombinesuperCombination.Total.txt.pruned.txt.workspace.MaxLikelihoodFit.root.MaxLikelihoodFit.mH120.root \
            -g plots.root  &> result.txt    
 
            
