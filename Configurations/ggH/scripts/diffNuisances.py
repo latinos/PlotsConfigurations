@@ -36,6 +36,9 @@ parser.add_option("-A", "--absolute", dest="abs",    default=False,  action="sto
 parser.add_option("-p", "--poi",      dest="poi",    default="r",    type="string",  help="Name of signal strength parameter (default is 'r' as per text2workspace.py)")
 parser.add_option("-f", "--format",   dest="format", default="text", type="string",  help="Output format ('text', 'latex', 'twiki'")
 parser.add_option("-g", "--histogram", dest="plotfile", default=None, type="string", help="If true, plot the pulls of the nuisances to the given file.")
+parser.add_option("-o", "--output", dest="output", default="test.root", type="string", help="If true, plot the pulls of the nuisances to the given file (pdf).")
+
+
 
 (options, args) = parser.parse_args()
 if len(args) == 0:
@@ -362,7 +365,8 @@ if options.plotfile:
     import math
     
     # number of nuisances
-    n_params_total = fpf_s.getSize()
+    #n_params_total = fpf_s.getSize()
+    n_params_total = gr_fit_s.GetN()
     
     
     
@@ -371,13 +375,13 @@ if options.plotfile:
     
     # Set the number of parameters per page (show) and the number of pages (n)
     show = 30 # hardcoded -> but it could be passed by user command line
-    n = int(math.ceil(float(fpf_s.getSize()) / float(show)))
-    print " n = ", n, " fpf_s.getSize() = ", fpf_s.getSize()
+    n = int(math.ceil(float(n_params_total) / float(show)))
+    #print " n = ", n, " fpf_s.getSize() = ", fpf_s.getSize()
     
     # loop over the pages
     for page in xrange(n):
 
-      canv = ROOT.TCanvas("test.root", "test.root")    
+      canv = ROOT.TCanvas( options.output , options.output )    
       
       # parameters in this page: check not to exceed the maximum number of parameters available
       n_params = show
