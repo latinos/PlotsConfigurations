@@ -36,7 +36,9 @@ parser.add_option("-A", "--absolute", dest="abs",    default=False,  action="sto
 parser.add_option("-p", "--poi",      dest="poi",    default="r",    type="string",  help="Name of signal strength parameter (default is 'r' as per text2workspace.py)")
 parser.add_option("-f", "--format",   dest="format", default="text", type="string",  help="Output format ('text', 'latex', 'twiki'")
 parser.add_option("-g", "--histogram", dest="plotfile", default=None, type="string", help="If true, plot the pulls of the nuisances to the given file.")
+
 parser.add_option("-o", "--output", dest="output", default="test.root", type="string", help="If true, plot the pulls of the nuisances to the given file (pdf).")
+parser.add_option("-i", "--inputNuisances", dest="inputNuisances", default=None, type="string", help="If set, read the list of nuisances to be plotted in the pdf file")
 
 
 
@@ -273,6 +275,17 @@ def getGraph(hist,shift):
      gr.SetPointError(i,float(abs(shift))*0.8,e)
    return gr
 
+
+
+list_nuisances = []
+if options.inputNuisances :
+  import json
+  print " inputNuisances = ", options.inputNuisances
+  with open(options.inputNuisances, "r") as data_file:    
+    data = json.load(data_file)
+    list_nuisances =  data['nuisances']
+    
+
 if options.plotfile:
     import ROOT
     fout = ROOT.TFile(options.plotfile,"RECREATE")
@@ -368,7 +381,10 @@ if options.plotfile:
     #n_params_total = fpf_s.getSize()
     n_params_total = gr_fit_s.GetN()
     
+    if len(list_nuisances) != 0 :
+      n_params_total = len(list_nuisances)
     
+    print " n_params_total = ", n_params_total
     
     # Set the global plotting style
     plot.ModTDRStyle(l=0.4, b=0.10, width=700)
@@ -420,16 +436,37 @@ if options.plotfile:
       for p in xrange(n_params):
           i = n_params - (p + 1)
           
-          # s+b fit
-          g_pulls.SetPoint(i, gr_fit_s.GetY()[i + page * show], float(i) + 0.5)
-          g_pulls.SetPointError( i, gr_fit_s.GetErrorYlow(i + page * show), gr_fit_s.GetErrorYhigh(i + page * show), 0., 0.)
+          if len(list_nuisances) == 0 :
+            
+              # s+b fit
+              g_pulls.SetPoint(i, gr_fit_s.GetY()[i + page * show], float(i) + 0.5)
+              g_pulls.SetPointError( i, gr_fit_s.GetErrorYlow(i + page * show), gr_fit_s.GetErrorYhigh(i + page * show), 0., 0.)
+              
+              # b fit
+              g_pulls_b.SetPoint(i, gr_fit_b.GetY()[i + page * show], float(i) + 0.5)
+              g_pulls_b.SetPointError( i, gr_fit_b.GetErrorYlow(i + page * show), gr_fit_s.GetErrorYhigh(i + page * show), 0., 0.)
+              
+              col = 1
+              h_pulls.GetYaxis().SetBinLabel( i + 1, ('#color[%i]{%s}'% (col, hist_fit_e_s.GetXaxis().GetBinLabel(i + page * show + 1)    )))
+   
           
-          # b fit
-          g_pulls_b.SetPoint(i, gr_fit_b.GetY()[i + page * show], float(i) + 0.5)
-          g_pulls_b.SetPointError( i, gr_fit_b.GetErrorYlow(i + page * show), gr_fit_s.GetErrorYhigh(i + page * show), 0., 0.)
+          else :
+            
+              for ibin in xrange(gr_fit_s.GetN()) :                
+                if hist_fit_e_s.GetXaxis().GetBinLabel(ibin+1) == list_nuisances[i + page * show] :
+                               
+                  # s+b fit
+                  g_pulls.SetPoint(i, gr_fit_s.GetY()[ibin], float(i) + 0.5)
+                  g_pulls.SetPointError( i, gr_fit_s.GetErrorYlow(ibin), gr_fit_s.GetErrorYhigh(ibin), 0., 0.)
+                  
+                  # b fit
+                  g_pulls_b.SetPoint(i, gr_fit_b.GetY()[ibin], float(i) + 0.5)
+                  g_pulls_b.SetPointError( i, gr_fit_b.GetErrorYlow(ibin), gr_fit_s.GetErrorYhigh(ibin), 0., 0.)
+                  
+                  col = 1
+                  h_pulls.GetYaxis().SetBinLabel( i + 1, ('#color[%i]{%s}'% (col, hist_fit_e_s.GetXaxis().GetBinLabel(ibin + 1)    )))
+            
           
-          col = 1
-          h_pulls.GetYaxis().SetBinLabel( i + 1, ('#color[%i]{%s}'% (col, hist_fit_e_s.GetXaxis().GetBinLabel(i + page * show + 1)    )))
    
              
       # Style and draw the pulls histo
