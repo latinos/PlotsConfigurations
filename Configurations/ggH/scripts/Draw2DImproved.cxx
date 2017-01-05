@@ -53,9 +53,12 @@ void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", st
   
   TCanvas* cc2 = new TCanvas ("cc2","",800,600); 
   cc2->SetRightMargin(0.15);
-  
+ 
+  graphScan->Draw("contz");
   graphScan->Draw("colz");
-//   graphScan->GetZaxis()->SetLabelOffset(0.2);
+  
+  //   graphScan->GetZaxis()->SetLabelOffset(0.2);
+  
   
   TH2F* HistStreamFn_ph2 = (TH2F*) (graphScan->GetHistogram())->Clone("testhisto_ph2");
   HistStreamFn_ph2->SetContour(2, contours);
@@ -74,6 +77,9 @@ void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", st
   
   cross11->Draw("P");
 
+  
+  
+   
 
   
 //   int ix,iy,iz;
@@ -104,6 +110,28 @@ void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", st
   crossMin->Draw("P");
   
   cc2->SetGrid();
+  
+  
+  
+  
+  //---- fix Z-axis (begin)
+  cc2->Update();
+//   TPaletteAxis *palette = (TPaletteAxis*) graphScan->GetListOfFunctions()->FindObject("palette");
+  
+  // the following lines move the paletter. Choose the values you need for the position.
+  
+//   std::cout << " palette = " << palette << std::endl;
+  
+//   palette->SetX1NDC(0.9);
+//   palette->SetX2NDC(0.95);
+//   palette->SetY1NDC(0.2);
+//   palette->SetY2NDC(0.8);
+//   cc2->Modified();
+//   cc2->Update();
+  //---- fix Z-axis (end)
+  
+  
+  
   
   
 }
