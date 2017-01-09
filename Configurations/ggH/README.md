@@ -39,8 +39,23 @@ Steps to get datacards and plots:
     
     mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_ggH_all.root
     
-    
 
+lxbatch submission:
+
+    mkShapes.py --pycfg=configuration_lxbatch.py  --inputDir=root://eosuser.cern.ch//eos/user/r/rodrigo/HWW2016/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/ \
+                --doBatch=True --batchSplit=Cuts,Samples   \
+                --batchQueue=8nm
+    
+    mkBatch.py -s
+    
+    (when jobs are done)
+    
+    mkShapes.py --pycfg=configuration_lxbatch.py  --inputDir=root://eosuser.cern.ch//eos/user/r/rodrigo/HWW2016/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/   \
+                --doHadd=True --batchSplit=Cuts,Samples
+
+    
+    
+    
 Pruning:
 
     cd /afs/cern.ch/user/a/amassiro/Limit/ModificationDatacards
