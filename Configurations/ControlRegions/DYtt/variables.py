@@ -23,6 +23,15 @@ variables['mll']  = {   'name': 'mll',            #   variable name
                          'fold' : 0
                         }
 
+variables['mth']  = {   'name': 'mth',            #   variable name    
+                        'range' : (12,0,60),    #   variable range
+                        'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
+                         'fold' : 3
+                        }
+
+
+
+
 
 variables['ptll']  = {   'name': 'ptll',     
                         'range' : (16,30,90),   
@@ -49,11 +58,44 @@ variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',
                         #}
 
 
-# variables['mth']  = {   'name': 'mth',            #   variable name    
-#                         'range' : (20,0,200),    #   variable range
-#                         'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
-#                          'fold' : 0
-#                         }
+
+
+
+variables['mjj']  = {  'name': 'mjj',
+                       'range': (15,200,1000),  #for 500 < mjj < 1000
+                     # 'range': (15,1000,2000),  #for  mjj > 1000
+                       'xaxis': 'm_{jj} [GeV]',
+                       'fold': 0
+                       }
+
+
+variables['detajj']  = {  'name': 'detajj',
+                       'range': (12,0.0,6.0),
+                       'xaxis': '#Delta#eta_{jj}',
+                       'fold': 3
+                       }
+
+
+variables['jetpt1']  = {   'name': 'std_vector_jet_pt[0]',     
+                        'range' : (25,30,200),   
+                        'xaxis' : 'p_{T} 1st jet',
+                        'fold'  : 0                         
+                        }
+
+variables['jetpt2']  = {   'name': 'std_vector_jet_pt[1]',     
+                        'range' : (25,30,100),   
+                        'xaxis' : 'p_{T} 2nd jet',
+                        'fold'  : 0                         
+                        }
+
+
+
+
+#variables['mth']  = {   'name': 'mth',            #   variable name    
+                        #'range' : (20,0,200),    #   variable range
+                        #'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
+                         #'fold' : 0
+                        #}
 
 #variables['dphill']  = {   'name': 'abs(dphill)',     
                         #'range' : (10,0,3.14),   
@@ -204,11 +246,11 @@ variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',
 #                          ##'fold' : 3
 #                         ##}
 
-# variables['met']  = {   'name': 'metPfType1',            #   variable name    
-#                         'range' : (20,20,200),    #   variable range
-#                         'xaxis' : 'pfmet [GeV]',  #   x axis name
-#                          'fold' : 0
-#                         }
+variables['met']  = {   'name': 'metPfType1',            #   variable name    
+                        'range' : (6,20,100),    #   variable range
+                        'xaxis' : 'E_{T}^{miss} [GeV]',  #   x axis name
+                         'fold' : 0
+                        }
 
 # #variables['trkMet']  = {   'name': 'trkMet',            #   variable name    
 #                         #'range' : (20,0,200),    #   variable range

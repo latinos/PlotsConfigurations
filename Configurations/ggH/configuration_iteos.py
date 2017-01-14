@@ -1,8 +1,7 @@
 # example of configuration file
 
-#tag = 'ggH'
-tag = 'ggHtestplot'
-#tag = 'ggHJustPlot'
+tag = 'ggH'
+#tag = 'ggHonlyTop'
 
 
 # used by mkShape to define output directory for root files
@@ -17,6 +16,7 @@ cutsFile = 'cuts.py'
 
 # file with list of samples
 samplesFile = 'samples_iteos.py' 
+#samplesFile = 'samples_iteos_onlyTop.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 

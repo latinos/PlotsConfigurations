@@ -8,6 +8,7 @@ cd -
 
 
 
+
 # 
 # fix ggH
 
@@ -21,7 +22,7 @@ mv ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.test.txt.pruned.txt ggH/
 cat ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt   | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt.pruned.txt
 mv ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.test.txt.pruned.txt ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt
 
-cat ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt   | grep -v "_VVV_ibin_1"  &> ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt.pruned.txt
+cat ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt   | grep -v "_VVV_ibin_1" | grep -v "CMS_fake_ele_stat_hww"  &> ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt.pruned.txt
 mv ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.test.txt.pruned.txt ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt
 
 
@@ -73,6 +74,7 @@ mv ggH2j/datacards/hww2l2v_13TeV_top_of2j/events/datacard.test.txt.pruned.txt   
 # 
 cat ggH2j/datacards/hww2l2v_13TeV_dytt_of2j/events/datacard.txt.pruned.txt  | grep -v "Vg_ibin_1"   &> ggH2j/datacards/hww2l2v_13TeV_dytt_of2j/events/datacard.test.txt.pruned.txt
 mv ggH2j/datacards/hww2l2v_13TeV_dytt_of2j/events/datacard.test.txt.pruned.txt    ggH2j/datacards/hww2l2v_13TeV_dytt_of2j/events/datacard.txt.pruned.txt
+
 
 
 
@@ -689,19 +691,11 @@ combineCards.py   me1j13=ggH/Moriond/datacards/hww2l2v_13TeV_me_1j/mllVSmth/data
 # 2015 combination
 # 
 # combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      superCombination.2015.txt.pruned.txt    >   result.data.MaxLikelihoodFit.superCombination.2015.txt.pruned.txt
-# 
-# combine -M ProfileLikelihood --significance                           superCombination.2015.txt.pruned.txt    >   result.data.Significance.superCombination.2015.txt.pruned.txt
-# 
-# 
-# combine -M MultiDimFit superCombination.2015.txt.pruned.txt -m 125 --algo=grid --points 100 --setPhysicsModelParameterRanges r=-1,3 -n "LHScanDATAHICHEP2015combined"           >   /tmp/amassiro/result.data.LikelihoodScan.ICHEP2016.superCombination.2015.txt.pruned.txt
-# 
-# combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      superCombination.2015.txt.pruned.txt    >   result.data.Data.MaxLikelihoodFit.superCombination.2015.txt.pruned.txt
-# 
-# combine -M ProfileLikelihood  --significance                        superCombination.2015.txt.pruned.txt    >   result.data.Data.Significance.superCombination.2015.txt.pruned.txt
-# 
-# 
-# combine -M MultiDimFit superCombination.2015.txt.pruned.txt -m 125 --algo=grid --points 100 --setPhysicsModelParameterRanges r=-1,3 -n "DATALHScanHICHEP2015combined"      >   /tmp/amassiro/result.data.Data.LikelihoodScan.ICHEP2016.superCombination.2015.txt.pruned.txt
 
+# combine -M ProfileLikelihood --significance                           superCombination.2015.txt.pruned.txt    >   result.data.Significance.superCombination.2015.txt.pruned.txt
+
+
+# combine -M MultiDimFit superCombination.2015.txt.pruned.txt -m 125 --algo=grid --points 100 --setPhysicsModelParameterRanges r=-1,3 -n "LHScanDATAHICHEP2015combined"           >   /tmp/amassiro/result.data.LikelihoodScan.ICHEP2016.superCombination.2015.txt.pruned.txt
 
 # 
 # 
@@ -709,24 +703,24 @@ combineCards.py   me1j13=ggH/Moriond/datacards/hww2l2v_13TeV_me_1j/mllVSmth/data
 # 
 # 
 # # 2016 combination
-# 
+# # 
 combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      superCombination.2016.txt.pruned.txt    >   result.data.MaxLikelihoodFit.superCombination.2016.txt.pruned.txt
 
 combine -M ProfileLikelihood --significance                           superCombination.2016.txt.pruned.txt    >   result.data.Significance.superCombination.2016.txt.pruned.txt
 
-
-combine -M MultiDimFit superCombination.2016.txt.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanDATAHICHEP2016combined"           >   /tmp/amassiro/result.data.LikelihoodScan.ICHEP2016.superCombination.2016.txt.pruned.txt
 # 
+# combine -M MultiDimFit superCombination.2016.txt.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanDATAHICHEP2016combined"           >   /tmp/amassiro/result.data.LikelihoodScan.ICHEP2016.superCombination.2016.txt.pruned.txt
+# # 
+# # 
+# # 
+# # 2015+2016 combination
 # 
-# 
-# 2015+2016 combination
-
 combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      superCombination.Total.txt.pruned.txt    >   result.data.MaxLikelihoodFit.superCombination.Total.txt.pruned.txt
 
 combine -M ProfileLikelihood --significance                           superCombination.Total.txt.pruned.txt    >   result.data.Significance.superCombination.Total.txt.pruned.txt
-
-
-combine -M MultiDimFit superCombination.Total.txt.pruned.txt -m 125 --algo=grid --points 40 --setPhysicsModelParameterRanges r=0,2 -n "LHScanDATAHICHEPTotalcombined"           >   /tmp/amassiro/result.data.LikelihoodScan.ICHEPTotal.superCombination.Total.txt.pruned.txt
+# 
+# 
+# combine -M MultiDimFit superCombination.Total.txt.pruned.txt -m 125 --algo=grid --points 40 --setPhysicsModelParameterRanges r=0,2 -n "LHScanDATAHICHEPTotalcombined"           >   /tmp/amassiro/result.data.LikelihoodScan.ICHEPTotal.superCombination.Total.txt.pruned.txt
 
 # 
 # 
@@ -771,14 +765,14 @@ combine -M ProfileLikelihood --significance         Combined.1jet.em.txt        
 combine -M ProfileLikelihood --significance         Combined.1jet.me.txt          >   result.data.Significance.Combined.1jet.me.txt
 
 
-
-# 
-# 
-# #
-# # 2015 separate
-# #
 # 
 # # 
+# # 
+# # #
+# # # 2015 separate
+# # #
+# # 
+# # # 
 # combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      Moriond2016.vbf.pruned.txt             >   result.data.MaxLikelihoodFit.Moriond2016.vbf.txt
 # combine -M MaxLikelihoodFit   --rMin=-6 --rMax=7      Moriond2016.vh2j.pruned.txt            >   result.data.MaxLikelihoodFit.Moriond2016.vh2j.txt
 # combine -M MaxLikelihoodFit   --rMin=-6 --rMax=7      Moriond2016.2j.pruned.txt              >   result.data.MaxLikelihoodFit.Moriond2016.2j.txt
@@ -799,18 +793,18 @@ combine -M ProfileLikelihood --significance         Combined.1jet.me.txt        
 # combine -M ProfileLikelihood --significance        Moriond2016.vh2j.pruned.txt            >   result.data.Significance.Moriond2016.vh2j.txt
 # combine -M ProfileLikelihood --significance        Moriond2016.2j.pruned.txt              >   result.data.Significance.Moriond2016.2j.txt
 # combine -M ProfileLikelihood --significance        Moriond2016.wh3l.pruned.txt            >   result.data.Significance.Moriond2016.wh3l.txt
-#                                             
-#                                             
-
+# #                                             
+# #                                             
 # 
-#  
+# # 
 # #  
-# #  
-# # # 2016 separate
+# # #  
+# # #  
+# # # # 2016 separate
+# # # 
+# # 
 # # 
 # 
-# 
-
 combine -M MaxLikelihoodFit   --rMin=-4 --rMax=6      ICHEP2016.vbf.pruned.txt             >   result.data.MaxLikelihoodFit.ICHEP2016.vbf.txt
 combine -M MaxLikelihoodFit   --rMin=-6 --rMax=8      ICHEP2016.vh2j.pruned.txt            >   result.data.MaxLikelihoodFit.ICHEP2016.vh2j.txt
 combine -M MaxLikelihoodFit   --rMin=-4 --rMax=6      ICHEP2016.2j.pruned.txt              >   result.data.MaxLikelihoodFit.ICHEP2016.2j.txt
@@ -838,8 +832,33 @@ combine -M ProfileLikelihood --significance         ICHEP2016.0jet.em.txt       
 combine -M ProfileLikelihood --significance         ICHEP2016.0jet.me.txt          >   result.data.Significance.ICHEP2016.0jet.me.txt
 combine -M ProfileLikelihood --significance         ICHEP2016.1jet.em.txt          >   result.data.Significance.ICHEP2016.1jet.em.txt
 combine -M ProfileLikelihood --significance         ICHEP2016.1jet.me.txt          >   result.data.Significance.ICHEP2016.1jet.me.txt
+
+# # # 
 # 
-# # 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+
+
+
+
+
+#### OLD, do not use 
+
+
+
+
+
 # # 
 # # 
 # combine -M MaxLikelihoodFit     --rMin=-2 --rMax=4     ICHEP2016.v1.txt.pruned.txt             >   result.data.MaxLikelihoodFit.ICHEP2016.v1.txt.pruned.txt

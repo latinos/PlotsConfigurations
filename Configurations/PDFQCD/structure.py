@@ -30,3 +30,26 @@ structure['ZH_hww']  = {
                   'isFromGluons'   : 0 
               }
 
+structure['H_htt']  = {  
+                  'isFromGluons'   : 1 
+              }
+
+
+
+
+
+structure['DY']  = {  
+                  'isFromGluons'   : 0 
+              }
+
+structure['Vg']  = {  
+                  'isFromGluons'   : 0 
+              }
+
+structure['VgS']  = {  
+                  'isFromGluons'   : 0 
+              }
+
+structure['VVV']  = {  
+                  'isFromGluons'   : 0 
+              }

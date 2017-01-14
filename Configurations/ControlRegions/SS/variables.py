@@ -35,13 +35,28 @@ variables['detajj']  = {  'name': 'detajj',
 
 
 variables['mll']  = {   'name': 'mll',            #   variable name    
-                        'range' : (20,0,200),    #   variable range
+                        'range' : (20,10,150),    #   variable range
+                        #'range' : (15,0,200),    #   variable range
+                        #'range' : (20,0,200),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
                         'fold' : 0
                         }
 
+
+
+variables['mllold']  = {   'name': 'mll',            #   variable name    
+                        'range' : (10,10,200),    #   variable range
+                        #'range' : (15,0,200),    #   variable range
+                        #'range' : (20,0,200),    #   variable range
+                        'xaxis' : 'm_{ll} [GeV]',  #   x axis name
+                        'fold' : 0
+                        }
+
+
+
 variables['mth']  = {   'name': 'mth',            #   variable name    
-                        'range' : (10,60,200),    #   variable range
+                        'range' : (8,60,200),    #   variable range
+                        #'range' : (10,60,200),    #   variable range
                         'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
                          'fold' : 0
                         }

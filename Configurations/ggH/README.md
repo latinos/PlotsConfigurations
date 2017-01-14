@@ -44,9 +44,9 @@ lxbatch submission:
 
     mkShapes.py --pycfg=configuration_lxbatch.py  --inputDir=root://eosuser.cern.ch//eos/user/r/rodrigo/HWW2016/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/ \
                 --doBatch=True --batchSplit=Cuts,Samples   \
-                --batchQueue=8nm
+                --batchQueue=8nh
     
-    mkBatch.py -s
+    mkBatch.py --status
     
     (when jobs are done)
     

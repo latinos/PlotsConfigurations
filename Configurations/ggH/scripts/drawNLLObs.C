@@ -61,7 +61,7 @@ void drawNLLObs() {
   tex2->SetLineWidth(2);
   
   TLatex * tex3;
-  tex3 = new TLatex(0.236,0.92,"L = 2.3 fb^{-1}  Preliminary");
+  tex3 = new TLatex(0.236,0.92,"L = 12.3 fb^{-1}  Preliminary");
   tex3->SetNDC();
   tex3->SetTextFont(52);
   tex3->SetTextSize(0.035);
