@@ -615,13 +615,13 @@ cd -
                  
 
 combineTool.py -d superCombination.Total.txt.pruned.txt.workspace.root -M MultiDimFit    \
-               --algo=grid -t -1 --expectSignal 1   --setPhysicsModelParameterRanges  -n "LHScanHICHEPTotalcombinedLXBATCH"   \
+               --algo=grid -t -1 --expectSignal 1     -n "LHScanHICHEPTotalcombinedLXBATCH"   \
                --singlePoint 0.0:2.5:0.05     --job-mode lxbatch --task-name lxbatch-superCombination --sub-opts='-q 1nd'
                
                
 
 combineTool.py -d superCombination.Total.txt.pruned.txt.workspace.root -M MultiDimFit    \
-               --algo=grid -t -1 --expectSignal 1   --setPhysicsModelParameterRanges  -n "LHScanHICHEP2016combinedLXBATCH"   \
+               --algo=grid -t -1 --expectSignal 1     -n "LHScanHICHEP2016combinedLXBATCH"   \
                --singlePoint 0.0:2.5:0.05     --job-mode lxbatch --task-name lxbatch-superCombination2016 --sub-opts='-q 1nd'
                
 
