@@ -709,7 +709,10 @@ combineCards.py   me1j13=ggH/Moriond/datacards/hww2l2v_13TeV_me_1j/mllVSmth/data
 # combine -M ProfileLikelihood --significance                           superCombination.2016.txt.pruned.txt    >   result.data.Significance.superCombination.2016.txt.pruned.txt
 
 # 
-combine -M MultiDimFit superCombination.2016.txt.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanDATAHICHEP2016combined"           >   /tmp/amassiro/result.data.LikelihoodScan.ICHEP2016.superCombination.2016.txt.pruned.txt
+# combine -M MultiDimFit superCombination.2016.txt.pruned.txt -m 125 --algo=grid --points 40 --setPhysicsModelParameterRanges r=0,2 -n "LHScanDATAHICHEP2016combined"           >   /tmp/amassiro/result.data.LikelihoodScan.ICHEP2016.superCombination.2016.txt.pruned.txt
+
+
+
 # # 
 # # 
 # # 
@@ -720,7 +723,39 @@ combine -M MultiDimFit superCombination.2016.txt.pruned.txt -m 125 --algo=grid -
 # combine -M ProfileLikelihood --significance                           superCombination.Total.txt.pruned.txt    >   result.data.Significance.superCombination.Total.txt.pruned.txt
 # 
 # 
-combine -M MultiDimFit superCombination.Total.txt.pruned.txt -m 125 --algo=grid --points 40 --setPhysicsModelParameterRanges r=0,2 -n "LHScanDATAHICHEPTotalcombined"           >   /tmp/amassiro/result.data.LikelihoodScan.ICHEPTotal.superCombination.Total.txt.pruned.txt
+# combine -M MultiDimFit superCombination.Total.txt.pruned.txt -m 125 --algo=grid --points 40 --setPhysicsModelParameterRanges r=0,2 -n "LHScanDATAHICHEPTotalcombined"           >   /tmp/amassiro/result.data.LikelihoodScan.ICHEPTotal.superCombination.Total.txt.pruned.txt
+# combine -M MultiDimFit superCombination.Total.txt.pruned.txt -m 125 --algo=grid --points 40 --setPhysicsModelParameterRanges r=0,2 -n "LHScanDATAHICHEPTotalcombined"           >   /tmp/amassiro/result.data.LikelihoodScan.ICHEPTotal.superCombination.Total.txt.pruned.txt
+
+
+
+
+
+#
+# to run on grid
+# 
+# cd ~/Framework/Combine/CMSSW_7_4_7/src/
+# cmsenv
+# eval `scramv1 runtime -sh`
+# git clone https://github.com/cms-analysis/CombineHarvester.git CombineHarvester
+# scramv1 b -j 20
+# cd -
+
+# text2workspace.py superCombination.Total.txt.pruned.txt   -o    superCombination.Total.txt.pruned.txt.workspace.root
+
+
+combineTool.py -d superCombination.Total.txt.pruned.txt.workspace.root -M MultiDimFit    \
+               --algo=grid --points 40 --setPhysicsModelParameterRanges  -n "LHScanDATAHICHEPTotalcombinedLXBATCH"   \
+               --singlePoint 0.0:2.5:0.05     --job-mode lxbatch --task-name lxbatch-superCombination --sub-opts='-q 1nd'
+               
+               
+
+combineTool.py -d superCombination.Total.txt.pruned.txt.workspace.root -M MultiDimFit    \
+               --algo=grid --points 40 --setPhysicsModelParameterRanges  -n "LHScanDATAHICHEP2016combinedLXBATCH"   \
+               --singlePoint 0.0:2.5:0.05     --job-mode lxbatch --task-name lxbatch-superCombination2016 --sub-opts='-q 1nd'
+               
+
+
+
 
 # 
 # 
