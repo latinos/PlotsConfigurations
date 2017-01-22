@@ -745,14 +745,12 @@ combineCards.py   me1j13=ggH/Moriond/datacards/hww2l2v_13TeV_me_1j/mllVSmth/data
 
 combineTool.py -d superCombination.Total.txt.pruned.txt.workspace.root -M MultiDimFit    \
                --algo=grid  --setPhysicsModelParameterRanges  r=0,2.5    -n "LHScanDATAHICHEPTotalcombinedLXBATCH"   \
-               --singlePoint 0.0:2.5:0.05     --job-mode lxbatch --task-name lxbatch-superCombination --sub-opts='-q 1nd'
-               
-               
+               --points 100    --job-mode lxbatch --task-name lxbatch-superCombination --sub-opts='-q 1nd' --split-points 1  
+
 
 combineTool.py -d superCombination.Total.txt.pruned.txt.workspace.root -M MultiDimFit    \
                --algo=grid  --setPhysicsModelParameterRanges  r=0,2.5    -n "LHScanDATAHICHEP2016combinedLXBATCH"   \
-               --singlePoint 0.0:2.5:0.05     --job-mode lxbatch --task-name lxbatch-superCombination2016 --sub-opts='-q 1nd'
-               
+               --points 100    --job-mode lxbatch --task-name lxbatch-superCombination2016 --sub-opts='-q 1nd' --split-points 1 
 
 
 

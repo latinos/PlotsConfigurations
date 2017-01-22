@@ -615,17 +615,18 @@ cd -
                  
 
 combineTool.py -d superCombination.Total.txt.pruned.txt.workspace.root -M MultiDimFit    \
-               --algo=grid -t -1 --expectSignal 1     -n "LHScanHICHEPTotalcombinedLXBATCH"   \
-               --singlePoint 0.0:2.5:0.05     --job-mode lxbatch --task-name lxbatch-superCombination --sub-opts='-q 1nd'
-               
-               
+               --algo=grid -t -1 --expectSignal 1     --setPhysicsModelParameterRanges  r=0,2.5    -n "LHScanHICHEPTotalcombinedLXBATCH"   \
+               --points 100    --job-mode lxbatch --task-name lxbatch-superCombination --sub-opts='-q 1nd' --split-points 1  
+
 
 combineTool.py -d superCombination.Total.txt.pruned.txt.workspace.root -M MultiDimFit    \
-               --algo=grid -t -1 --expectSignal 1     -n "LHScanHICHEP2016combinedLXBATCH"   \
-               --singlePoint 0.0:2.5:0.05     --job-mode lxbatch --task-name lxbatch-superCombination2016 --sub-opts='-q 1nd'
+               --algo=grid -t -1 --expectSignal 1     --setPhysicsModelParameterRanges  r=0,2.5    -n "LHScanHICHEP2016combinedLXBATCH"   \
+               --points 100    --job-mode lxbatch --task-name lxbatch-superCombination2016 --sub-opts='-q 1nd' --split-points 1 
+
+
                
-
-
+               
+               
 
 # combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1                         superCombination.Total.txt.pruned.txt    >   result.Significance.superCombination.Total.txt.pruned.txt
 
