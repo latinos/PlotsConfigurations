@@ -1623,8 +1623,8 @@ for m in masses:
     unc2jet=str(unc["QCDscale"]["2jet"])
     unc3jet=str(unc["QCDscale"]["VBF"])
     nuisances['QCDscale']['samples'].update({'ggH_hww_'+m+'_'+model_name:[
-         "("+unc0jet+"*(njet==0)+"+unc1jet+"*(njet==1)+"+unc2jet+"*(njet==2)+"+unc3jet+"*(mjj>500 && detajj>3.5))",
-         "(1./("+unc0jet+"*(njet==0)+"+unc1jet+"*(njet==1)+"+unc2jet+"*(njet==2)+"+unc3jet+"*(mjj>500 && detajj>3.5)))"
+         "("+unc0jet+"*(std_vector_jet_pt[0] < 30)+"+unc1jet+"*(std_vector_jet_pt[0] > 30 && std_vector_jet_pt[1] < 30)+"+unc2jet+"*((std_vector_jet_pt[1]> 30 ) && (mjj<500 || detajj<3.5))+"+unc3jet+"*(std_vector_jet_pt[1]> 30)*(mjj>500 && detajj>3.5))",
+         "(1./("+unc0jet+"*(std_vector_jet_pt[0] < 30)+"+unc1jet+"*(std_vector_jet_pt[0] > 30 && std_vector_jet_pt[1] < 30)+"+unc2jet+"*((std_vector_jet_pt[1]> 30 ) && (mjj<500 || detajj<3.5))+"+unc3jet+"*(std_vector_jet_pt[1]> 30)*(mjj>500 && detajj>3.5)))"
                                                                          ]
                                             })
     
@@ -1634,8 +1634,8 @@ for m in masses:
     unc2jet=str(unc["QCDscale1in"]["2jet"])
     unc3jet=str(unc["QCDscale1in"]["VBF"])
     nuisances['QCDscale1in']['samples'].update({'ggH_hww_'+m+'_'+model_name:[
-         "("+unc0jet+"*(njet==0)+"+unc1jet+"*(njet==1)+"+unc2jet+"*(njet==2)+"+unc3jet+"*(mjj>500 && detajj>3.5))",
-         "(1./("+unc0jet+"*(njet==0)+"+unc1jet+"*(njet==1)+"+unc2jet+"*(njet==2)+"+unc3jet+"*(mjj>500 && detajj>3.5)))"
+         "("+unc0jet+"*(std_vector_jet_pt[0] < 30)+"+unc1jet+"*(std_vector_jet_pt[0] > 30 && std_vector_jet_pt[1] < 30)+"+unc2jet+"*((std_vector_jet_pt[1]> 30) && (mjj<500 || detajj<3.5))+"+unc3jet+"*(std_vector_jet_pt[1]> 30 )*(mjj>500 && detajj>3.5))",
+         "(1./("+unc0jet+"*(std_vector_jet_pt[0] < 30)+"+unc1jet+"*(std_vector_jet_pt[0] > 30 && std_vector_jet_pt[1] < 30)+"+unc2jet+"*((std_vector_jet_pt[1]> 30) && (mjj<500 || detajj<3.5))+"+unc3jet+"*(std_vector_jet_pt[1]> 30 )*(mjj>500 && detajj>3.5)))"
                                                                          ]
                                             })
     
@@ -1644,8 +1644,8 @@ for m in masses:
     unc2jet=str(unc["QCDscale2in"]["2jet"])
     unc3jet=str(unc["QCDscale2in"]["VBF"])
     nuisances['QCDscale2in']['samples'].update({'ggH_hww_'+m+'_'+model_name:[
-         "("+unc0jet+"*(njet==0)+"+unc1jet+"*(njet==1)+"+unc2jet+"*(njet==2)+"+unc3jet+"*(mjj>500 && detajj>3.5))",
-         "(1./("+unc0jet+"*(njet==0)+"+unc1jet+"*(njet==1)+"+unc2jet+"*(njet==2)+"+unc3jet+"*(mjj>500 && detajj>3.5)))"
+         "("+unc0jet+"*(std_vector_jet_pt[0] < 30)+"+unc1jet+"*(std_vector_jet_pt[0] > 30 && std_vector_jet_pt[1] < 30)+"+unc2jet+"*((std_vector_jet_pt[1]> 30) && (mjj<500 || detajj<3.5))+"+unc3jet+"*(std_vector_jet_pt[1]> 30 )*(mjj>500 && detajj>3.5))",
+         "(1./("+unc0jet+"*(std_vector_jet_pt[0] < 30)+"+unc1jet+"*(std_vector_jet_pt[0] > 30 && std_vector_jet_pt[1] < 30)+"+unc2jet+"*((std_vector_jet_pt[1]> 30) && (mjj<500 || detajj<3.5))+"+unc3jet+"*(std_vector_jet_pt[1]> 30 )*(mjj>500 && detajj>3.5)))"
                                                                          ]
                                             })
 
@@ -1654,9 +1654,9 @@ for m in masses:
     unc2jet=str(unc["QCDscale3in"]["2jet"])
     unc3jet=str(unc["QCDscale3in"]["VBF"])
     nuisances['QCDscale3in']['samples'].update({'ggH_hww_'+m+'_'+model_name:[
-         "("+unc0jet+"*(njet==0)+"+unc1jet+"*(njet==1)+"+unc2jet+"*(njet==2)+"+unc3jet+"*(mjj>500 && detajj>3.5))",
-         "(1./("+unc0jet+"*(njet==0)+"+unc1jet+"*(njet==1)+"+unc2jet+"*(njet==2)+"+unc3jet+"*(mjj>500 && detajj>3.5))"
+         "("+unc0jet+"*(std_vector_jet_pt[0] < 30)+"+unc1jet+"*(std_vector_jet_pt[0] > 30 && std_vector_jet_pt[1] < 30)+"+unc2jet+"*((std_vector_jet_pt[1]> 30) && (mjj<500 || detajj<3.5))+"+unc3jet+"*(std_vector_jet_pt[1]> 30 )*(mjj>500 && detajj>3.5))",
+         "(1./("+unc0jet+"*(std_vector_jet_pt[0] < 30)+"+unc1jet+"*(std_vector_jet_pt[0] > 30 && std_vector_jet_pt[1] < 30)+"+unc2jet+"*((std_vector_jet_pt[1]> 30) && (mjj<500 || detajj<3.5))+"+unc3jet+"*(std_vector_jet_pt[1]> 30 )*(mjj>500 && detajj>3.5)))"
                                                                          ]
                                             })
   
-#print nuisances['QCDscale3in']
+#print nuisances['QCDscale2in']
