@@ -1538,7 +1538,7 @@ else:
   print "!!! ERROR file STUnc.py does not exist."
 
 nuisances['QCDscale']  = {
-                'name'  : 'jetbinning',
+                'name'  : 'QCDscale',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -1555,7 +1555,7 @@ nuisances['QCDscale']  = {
 }                                       
 
 nuisances['QCDscale1in']  = {
-                'name'  : 'jetbinning',
+                'name'  : 'QCDscale1in',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -1572,7 +1572,7 @@ nuisances['QCDscale1in']  = {
 }
 
 nuisances['QCDscale2in']  = {
-                'name'  : 'jetbinning',
+                'name'  : 'QCDscale2in',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -1589,7 +1589,7 @@ nuisances['QCDscale2in']  = {
 }
 
 nuisances['QCDscale3in']  = {
-                'name'  : 'jetbinning',
+                'name'  : 'QCDscale3in',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
