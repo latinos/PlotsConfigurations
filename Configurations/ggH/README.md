@@ -111,6 +111,11 @@ Auto tests:
             scripts/drawNLL.C
 
     
+    root -l ../higgsCombineLHScanHICHEP2016combined.MultiDimFit.mH125.root  \
+           ../higgsCombineLHScanDATAHICHEP2016combined.MultiDimFit.mH125.root   \
+            scripts/drawNLLObs.C
+ 
+ 
     
     
     cat ../result.Significance.ggHcombined.v1.txt.pruned.txt
@@ -266,8 +271,9 @@ Auto tests:
     cat  ../result.data.Significance.ICHEP2016.vh2j.txt
     cat  ../result.data.Significance.ICHEP2016.wh3l.txt
     
-    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.v1.txt.pruned.txt
-    cat  ../result.data.Significance.ICHEP2016.v1.txt.pruned.txt
+     
+    cat  ../result.data.MaxLikelihoodFit.superCombination.2016.txt.pruned.txt
+    cat  ../result.data.Significance.superCombination.2016.txt.pruned.txt
 
     
     
