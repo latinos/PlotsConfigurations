@@ -374,8 +374,6 @@ combineCards.py   wh3lossf=WH3l/Moriond/datacards/wh3l_13TeV_ossf/drllmin3l/data
 
                                 
                   
-
-                  
                   
 
 
@@ -721,6 +719,17 @@ combineCards.py   me1j13=ggH/Moriond/datacards/hww2l2v_13TeV_me_1j/mllVSmth/data
 # combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      superCombination.Total.txt.pruned.txt    >   result.data.MaxLikelihoodFit.superCombination.Total.txt.pruned.txt
 
 # combine -M ProfileLikelihood --significance                           superCombination.Total.txt.pruned.txt    >   result.data.Significance.superCombination.Total.txt.pruned.txt
+
+
+combine -M ProfileLikelihood --significance           \
+--bruteForce   \
+                superCombination.Total.txt.pruned.txt    >   result.data.Significance.superCombination.Total.txt.pruned.bis.txt
+
+
+#                 --cminOldRobustMinimize=0  --minimizerStrategy 1 --minimizerTolerance 0.2  --cminFallback "Minuit2,Migrad,0:0.2"
+                
+
+
 # 
 # 
 # combine -M MultiDimFit superCombination.Total.txt.pruned.txt -m 125 --algo=grid --points 40 --setPhysicsModelParameterRanges r=0,2 -n "LHScanDATAHICHEPTotalcombined"           >   /tmp/amassiro/result.data.LikelihoodScan.ICHEPTotal.superCombination.Total.txt.pruned.txt
@@ -741,19 +750,40 @@ combineCards.py   me1j13=ggH/Moriond/datacards/hww2l2v_13TeV_me_1j/mllVSmth/data
 # cd -
 
 # text2workspace.py superCombination.Total.txt.pruned.txt   -o    superCombination.Total.txt.pruned.txt.workspace.root
+# text2workspace.py superCombination.2016.txt.pruned.txt   -o    superCombination.2016.txt.pruned.txt.workspace.root
 
 
-combineTool.py -d superCombination.Total.txt.pruned.txt.workspace.root -M MultiDimFit    \
-               --algo=grid  --setPhysicsModelParameterRanges  r=0,2.5    -n "LHScanDATAHICHEPTotalcombinedLXBATCH"   \
-               --points 100    --job-mode lxbatch --task-name lxbatch-superCombination --sub-opts='-q 1nd' --split-points 1  
+# combineTool.py -d superCombination.Total.txt.pruned.txt.workspace.root -M MultiDimFit    \
+#                --algo=grid  --setPhysicsModelParameterRanges  r=0,2.5    -n "LHScanDATAHICHEPTotalcombinedLXBATCH"   \
+#                --points 100    --job-mode lxbatch --task-name lxbatch-superCombination --sub-opts='-q 1nd' --split-points 1  
 
 
-combineTool.py -d superCombination.Total.txt.pruned.txt.workspace.root -M MultiDimFit    \
+combineTool.py -d superCombination.2016.txt.pruned.txt.workspace.root -M MultiDimFit    \
                --algo=grid  --setPhysicsModelParameterRanges  r=0,2.5    -n "LHScanDATAHICHEP2016combinedLXBATCH"   \
                --points 100    --job-mode lxbatch --task-name lxbatch-superCombination2016 --sub-opts='-q 1nd' --split-points 1 
 
 
+# hadd higgsCombineLHScanDATAHICHEP2016combinedLXBATCH.POINTS.root    higgsCombineLHScanDATAHICHEP2016combinedLXBATCH.POINTS.*.MultiDimFit.mH120.root
+# hadd higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCH.POINTS.root   higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCH.POINTS.*.MultiDimFit.mH120.root
+               
+               
 
+#                
+# text2workspace.py Combined.wh3l.pruned.txt   -o     Combined.wh3l.pruned.txt.workspace.root
+# 
+combineTool.py -d Combined.wh3l.pruned.txt.workspace.root -M MultiDimFit    \
+               --algo=grid  --setPhysicsModelParameterRanges  r=-3,2.0    -n "LHScanDATAWH3lLXBATCH"   \
+               --points 100    --job-mode lxbatch --task-name lxbatch-wh3l --sub-opts='-q 1nd' --split-points 1 
+# 
+#                
+               
+#  hadd higgsCombineLHScanDATAWH3lLXBATCH.POINTS.root   higgsCombineLHScanDATAWH3lLXBATCH.POINTS.*.MultiDimFit.mH120.root
+#  hadd higgsCombineLHScanWH3lLXBATCH.POINTS.root   higgsCombineLHScanWH3lLXBATCH.POINTS.*.MultiDimFit.mH120.root
+#             
+
+           
+           
+           
 
 # 
 # 

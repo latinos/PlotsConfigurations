@@ -614,19 +614,26 @@ cd -
                  
                  
 
-combineTool.py -d superCombination.Total.txt.pruned.txt.workspace.root -M MultiDimFit    \
-               --algo=grid -t -1 --expectSignal 1     --setPhysicsModelParameterRanges  r=0,2.5    -n "LHScanHICHEPTotalcombinedLXBATCH"   \
-               --points 100    --job-mode lxbatch --task-name lxbatch-superCombination --sub-opts='-q 1nd' --split-points 1  
+# combineTool.py -d superCombination.Total.txt.pruned.txt.workspace.root -M MultiDimFit    \
+#                --algo=grid -t -1 --expectSignal 1     --setPhysicsModelParameterRanges  r=0,2.5    -n "LHScanHICHEPTotalcombinedLXBATCH"   \
+#                --points 100    --job-mode lxbatch --task-name lxbatch-superCombination --sub-opts='-q 1nd' --split-points 1  
 
 
-combineTool.py -d superCombination.Total.txt.pruned.txt.workspace.root -M MultiDimFit    \
+combineTool.py -d superCombination.2016.txt.pruned.txt.workspace.root -M MultiDimFit    \
                --algo=grid -t -1 --expectSignal 1     --setPhysicsModelParameterRanges  r=0,2.5    -n "LHScanHICHEP2016combinedLXBATCH"   \
                --points 100    --job-mode lxbatch --task-name lxbatch-superCombination2016 --sub-opts='-q 1nd' --split-points 1 
 
+               
 
-               
-               
-               
+# hadd higgsCombineLHScanHICHEP2016combinedLXBATCH.POINTS.root        higgsCombineLHScanHICHEP2016combinedLXBATCH.POINTS.*.MultiDimFit.mH120.root
+# hadd higgsCombineLHScanHICHEPTotalcombinedLXBATCH.POINTS.root       higgsCombineLHScanHICHEPTotalcombinedLXBATCH.POINTS.*.MultiDimFit.mH120.root
+
+
+combineTool.py -d Combined.wh3l.pruned.txt.workspace.root -M MultiDimFit    \
+               --algo=grid  -t -1 --expectSignal 1     --setPhysicsModelParameterRanges r=-3,2.0    -n "LHScanWH3lLXBATCH"   \
+               --points 100    --job-mode lxbatch --task-name lxbatch-wh3l --sub-opts='-q 1nd' --split-points 1 
+
+
 
 # combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1                         superCombination.Total.txt.pruned.txt    >   result.Significance.superCombination.Total.txt.pruned.txt
 
