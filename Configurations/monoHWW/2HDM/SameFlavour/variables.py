@@ -13,6 +13,20 @@ variables['events']  = {   'name': '1',
                         }
     
 
+variables['muccamva2HDMadaptTTbar'] = {'name': 'muccamva2HDMadaptTTbar',          #  variable name    
+                        'range' : (6,-1,1),           #  variable range
+                        'xaxis' : 'MVA discriminant',  #  x axis name
+                        'fold' : 3
+                        }
+
+
+variables['muccamva2HDMadaptTTbar_control'] = {'name': 'muccamva2HDMadaptTTbar',          #  variable name    
+                        'range' : (40,-1,1),           #  variable range
+                        'xaxis' : 'MVA discriminant',  #  x axis name
+                        'fold' : 3
+                        }
+
+
 # variables['muccamva2HDMgrad6'] = {'name': 'muccamva2HDMgrad',          #  variable name    
 #                         'range' : (6,-1,1),           #  variable range
 #                         'xaxis' : 'MVA discriminant',  #  x axis name
@@ -25,11 +39,11 @@ variables['events']  = {   'name': '1',
 #                         'fold' : 3
 #                         }
 
-variables['muccamva2HDMadapt6'] = {'name': 'muccamva2HDMadaptTTbar',          #  variable name    
-                        'range' : (6,-1,1),           #  variable range
-                        'xaxis' : 'MVA discriminant',  #  x axis name
-                        'fold' : 3
-                        }
+# variables['muccamva2HDMadapt6'] = {'name': 'muccamva2HDMadapt',          #  variable name    
+#                         'range' : (6,-1,1),           #  variable range
+#                         'xaxis' : 'MVA discriminant',  #  x axis name
+#                         'fold' : 3
+#                         }
 
 # variables['muccamva2HDMadaptFull6'] = {'name': 'muccamva2HDMadaptFull',          #  variable name    
 #                         'range' : (6,-1,1),           #  variable range
@@ -119,11 +133,11 @@ variables['muccamva2HDMadapt6'] = {'name': 'muccamva2HDMadaptTTbar',          # 
 #                         'fold' : 3
 #                         }
 
-variables['muccamva2HDMadapt_control'] = {'name': 'muccamva2HDMadaptTTbar',          #  variable name    
-                        'range' : (40,-1,1),           #  variable range
-                        'xaxis' : 'MVA discriminant',  #  x axis name
-                        'fold' : 3
-                        }
+# variables['muccamva2HDMadapt_control'] = {'name': 'muccamva2HDMadapt',          #  variable name    
+#                         'range' : (40,-1,1),           #  variable range
+#                         'xaxis' : 'MVA discriminant',  #  x axis name
+#                         'fold' : 3
+#                         }
 
 # variables['muccamva2HDMadaptFull_control'] = {'name': 'muccamva2HDMadaptFull',          #  variable name    
 #                         'range' : (40,-1,1),           #  variable range

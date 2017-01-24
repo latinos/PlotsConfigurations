@@ -16,7 +16,6 @@ cutsFile = 'cuts.py'
 # file with list of samples
 samplesFile = 'samplesMinitrees.py' 
 #samplesFile = 'samples.py' 
-#samplesFile = 'samples_bis.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
@@ -42,7 +41,7 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-#nuisancesFile = 'nuisances_light.py'
-nuisancesFile = 'nuisances.py'
+nuisancesFile = 'nuisances_light.py'
+#nuisancesFile = 'nuisances.py'
 
 

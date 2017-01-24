@@ -1,3 +1,5 @@
+# nuisances
+
 #nuisances = {}
 
 # name of samples here must match keys in samples.py    
@@ -687,6 +689,7 @@ for mZp in ZpMasses:
 #                    'Vg' : ['1', '1'],
 #                    'VgS': ['1', '1'],
 #                 },
+
 #                 'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/',
 #                 'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/' 
 # }
@@ -733,7 +736,7 @@ for mZp in ZpMasses:
 #             nuisances['muonpt']['samples'].update({'monoH_' + mZp + '_' + mA0: ['1','1']})
 
 
-# # Fixme : restore it once we have the niusance ready                                 
+# # # Fixme : restore it once we have the niusance ready                                 
 
 # nuisances['met']  = {
 #                 'name'  : 'scale_met', 

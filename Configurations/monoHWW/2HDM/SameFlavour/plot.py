@@ -75,6 +75,7 @@ groupPlot['DY']  = {
 ZpMasses={"600","800","1000","1200","1400","1700","2000","2500"}
 A0Masses={"300","400","500","600","700","800"}
 i=0
+#mA0="400"
 
 for mZp in ZpMasses:
     for mA0 in A0Masses :
@@ -87,26 +88,14 @@ for mZp in ZpMasses:
                      'samples'  : ['monoH_' + mZp + '_' + mA0]
                      }
                  i = i + 1
-
-# ZbarMasses={"500","1000"}
-# ChiMasses={"1","150","500","1000"}
-# i=0
-
-# for mZb in ZbarMasses :
-#     for Chi in ChiMasses :
-#         if mZb == "500" and Chi == "1000" :
-#             continue
-#         if mZb == "1000" and Chi == "500" :
-#             continue
-#         if mZb == "1000" and Chi == "150" :
-#             continue
-#         groupPlot['Zbar_' + mZb + '_' + Chi] = { 
-#             'nameHR' : 'mZp=' + mZb + ' GeV, mChi=' + Chi + ' GeV',
-#             'isSignal' : 2,
-#             'color': i, # kBlue + i
-#             'samples'  : ['Zbar_' + mZb + '_' + Chi]
-#             }
-#         i = i + 1
+             # else :
+             #     groupPlot[mZp + '_' + mA0]  = {  
+             #         'nameHR' : '',
+             #         'isSignal' : 2,
+             #         'color': 0, # kOrange + i
+             #         'samples'  : ['monoH_' + mZp + '_' + mA0]
+             #         }
+        
 
 #plot = {}
 
@@ -116,7 +105,10 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 0.63
+                  'scale'    : 1.1,
+                  'cuts'  : {
+                         'monoH_MVA_sf' : 0.57 ,
+                        },
               }
 
 
@@ -170,7 +162,7 @@ plot['top'] = {
                   'color': 400,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 0.89,
+                  'scale'    : 0.64,
                   
                   'cuts'  : {
                        'ww2l2v_13TeV_ww_of0j'   : 0.98 ,
@@ -185,7 +177,7 @@ plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,    
-                  'scale'    : 0.75,   # ele/mu trigger efficiency   datadriven
+                  'scale'    : 1.21,   # ele/mu trigger efficiency   datadriven
                   
                   'cuts'  : {
                        'ww2l2v_13TeV_ww_of'     : 1.05 ,
@@ -357,26 +349,6 @@ for mZp in ZpMasses :
                 i = i + 1
 
         
-# ZbarMasses={"500","1000"}
-# ChiMasses={"1","150","500","1000"}
-# i=0
-
-# for mZb in ZbarMasses :
-#     for Chi in ChiMasses :
-#         if mZb == "500" and Chi == "1000" :
-#             continue
-#         if mZb == "1000" and Chi == "500" :
-#             continue
-#         if mZb == "1000" and Chi == "150" :
-#             continue
-#         plot['Zbar_' + mZb + '_' + Chi] = { 
-#             'nameHR' : 'mZp=' + mZb + ' GeV, mChi=' + Chi + ' GeV',
-#             'color': i, # kBlue + i
-#             'isSignal' : 2,
-#             'isData'   : 0,
-#             'scale'    : 1
-#             }
-#         i = i + 1
 
 # data
 
@@ -393,11 +365,12 @@ plot['DATA']  = {
 
 # Additional options
 
-# legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
+#legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
 #legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
 #legend['lumi'] = 'L = 2.6/fb' # 
 #legend['lumi'] = 'L = 4.3/fb' # 
 #legend['lumi'] = 'L = 6.3/fb' # 
+#legend['lumi'] = 'L = 12.9/fb' # 
 legend['lumi'] = 'L = 2.58/fb' # 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
