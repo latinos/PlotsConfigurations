@@ -116,7 +116,7 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 0.552
+                  'scale'    : 0.69
               }
 
 
@@ -170,7 +170,7 @@ plot['top'] = {
                   'color': 400,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 0.87,
+                  'scale'    : 0.89,
                   
                   'cuts'  : {
                        'ww2l2v_13TeV_ww_of0j'   : 0.98 ,
@@ -185,7 +185,7 @@ plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,    
-                  'scale'    : 0.74,   # ele/mu trigger efficiency   datadriven
+                  'scale'    : 0.65,   # ele/mu trigger efficiency   datadriven
                   
                   'cuts'  : {
                        'ww2l2v_13TeV_ww_of'     : 1.05 ,
@@ -401,6 +401,7 @@ plot['DATA']  = {
 #legend['lumi'] = 'L = 12.9/fb' # 
 legend['lumi'] = 'L = 2.58/fb' # 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
+
 
 
 

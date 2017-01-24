@@ -16,7 +16,6 @@ cutsFile = 'cuts.py'
 # file with list of samples
 samplesFile = 'samplesMinitrees.py' 
 #samplesFile = 'samples.py' 
-#samplesFile = 'samples_bis.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 

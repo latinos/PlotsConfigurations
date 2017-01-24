@@ -120,7 +120,7 @@ samples['Fake']  = {    'name': [
         #
         #               
         ],     
-                        'weight' : '(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2)) / 5',              #   weight/cut ( / 5 -> MET+X blinding policy)
+                        'weight' : '(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2)) / 5',              #   weight/cut ( / 5 -> MET+X policy)
                         'isData': ['all'],
                         'weights' : [
         #
@@ -421,7 +421,7 @@ samples['DATA']  = {   'name': [
         'Run2016D_PromptReco_SingleElectron_26Jul2016.root', 
         
         ] ,     
-                       'weight' : 'event % 5 == 0', # MET+X blind policy
+                       'weight' : 'event % 5 == 0', # MET + X blind policy
                        'weights' : [
         #
         'std_vector_trigger[8]  || std_vector_trigger[6]',
