@@ -773,7 +773,7 @@ combineTool.py -d superCombination.2016.txt.pruned.txt.workspace.root -M MultiDi
 # 
 combineTool.py -d Combined.wh3l.pruned.txt.workspace.root -M MultiDimFit    \
                --algo=grid  --setPhysicsModelParameterRanges  r=-3,2.0    -n "LHScanDATAWH3lLXBATCH"   \
-               --points 100    --job-mode lxbatch --task-name lxbatch-wh3l --sub-opts='-q 1nd' --split-points 1 
+               --points 100    --job-mode lxbatch --task-name lxbatch-wh3l-data --sub-opts='-q 1nd' --split-points 1 
 # 
 #                
                
@@ -781,6 +781,32 @@ combineTool.py -d Combined.wh3l.pruned.txt.workspace.root -M MultiDimFit    \
 #  hadd higgsCombineLHScanWH3lLXBATCH.POINTS.root   higgsCombineLHScanWH3lLXBATCH.POINTS.*.MultiDimFit.mH120.root
 #             
 
+
+
+
+
+    
+
+#                
+# text2workspace.py Combined.vh2j.pruned.txt   -o     Combined.vh2j.pruned.txt.workspace.root
+# 
+combineTool.py -d Combined.vh2j.pruned.txt.workspace.root -M MultiDimFit    \
+               --algo=grid  --setPhysicsModelParameterRanges  r=0.0,7.0    -n "LHScanDATAVH2jLXBATCH"   \
+               --points 400    --job-mode lxbatch --task-name lxbatch-vh2j-data --sub-opts='-q 1nd' --split-points 1 
+
+combineTool.py -d Combined.vh2j.pruned.txt.workspace.root -M MultiDimFit    \
+               --algo=grid   -t -1 --expectSignal 1     --setPhysicsModelParameterRanges  r=0.0,7.0    -n "LHScanVH2jLXBATCH"   \
+               --points 400    --job-mode lxbatch --task-name lxbatch-vh2j-mc --sub-opts='-q 8nh' --split-points 1 
+               
+# 
+#                
+               
+#  hadd higgsCombineLHScanDATAWH3lLXBATCH.POINTS.root   higgsCombineLHScanDATAWH3lLXBATCH.POINTS.*.MultiDimFit.mH120.root
+#  hadd higgsCombineLHScanWH3lLXBATCH.POINTS.root   higgsCombineLHScanWH3lLXBATCH.POINTS.*.MultiDimFit.mH120.root
+#             
+
+           
+           
            
            
            
