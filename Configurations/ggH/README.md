@@ -104,6 +104,27 @@ Auto tests:
     root -l ../higgsCombineLHScanHICHEPTotalcombined.MultiDimFit.mH125.root  \
            ../higgsCombineLHScanDATAHICHEPTotalcombined.MultiDimFit.mH125.root   \
             scripts/drawNLLObs.C
+
+    root -l ../higgsCombineLHScanHICHEPTotalcombinedLXBATCH.POINTS.root  \
+           ../higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCH.POINTS.root   \
+            scripts/drawNLLObs.C
+        
+         
+
+    2015+2016 WH3l
+    
+    root -l ../higgsCombineLHScanWH3lLXBATCH.POINTS.root  \
+           ../higgsCombineLHScanDATAWH3lLXBATCH.POINTS.root   \
+            scripts/drawNLLObs.C
+
+            
+    2015+2016 VH2j
+    
+    root -l ../higgsCombineLHScanVH2jLXBATCH.POINTS.root  \
+           ../higgsCombineLHScanDATAVH2jLXBATCH.POINTS.root   \
+            scripts/drawNLLObs.C
+            
+ 
  
     
     2016 alone
@@ -114,9 +135,14 @@ Auto tests:
     root -l ../higgsCombineLHScanHICHEP2016combined.MultiDimFit.mH125.root  \
            ../higgsCombineLHScanDATAHICHEP2016combined.MultiDimFit.mH125.root   \
             scripts/drawNLLObs.C
- 
- 
+
+    root -l ../higgsCombineLHScanHICHEP2016combinedLXBATCH.POINTS.root  \
+           ../higgsCombineLHScanDATAHICHEP2016combinedLXBATCH.POINTS.root   \
+            scripts/drawNLLObs.C
     
+ 
+ 
+ 
     
     cat ../result.Significance.ggHcombined.v1.txt.pruned.txt
     cat ../result.MaxLikelihoodFit.ggHcombined.v1.txt.pruned.txt

@@ -801,8 +801,8 @@ combineTool.py -d Combined.vh2j.pruned.txt.workspace.root -M MultiDimFit    \
 # 
 #                
                
-#  hadd higgsCombineLHScanDATAWH3lLXBATCH.POINTS.root   higgsCombineLHScanDATAWH3lLXBATCH.POINTS.*.MultiDimFit.mH120.root
-#  hadd higgsCombineLHScanWH3lLXBATCH.POINTS.root   higgsCombineLHScanWH3lLXBATCH.POINTS.*.MultiDimFit.mH120.root
+#  hadd higgsCombineLHScanDATAVH2jLXBATCH.POINTS.root   higgsCombineLHScanDATAVH2jLXBATCH.POINTS.*.MultiDimFit.mH120.root
+#  hadd higgsCombineLHScanVH2jLXBATCH.POINTS.root   higgsCombineLHScanVH2jLXBATCH.POINTS.*.MultiDimFit.mH120.root
 #             
 
            
