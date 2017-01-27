@@ -204,10 +204,32 @@ Auto tests:
         scripts/Draw2D.cxx
     
     
+    r99t ../higgsCombineLH2DICHEP2016combinedKVKFlxbatch.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF}\",\"muGGH\",\"muVBF\"\)
+    r99t ../higgsCombineLH2DICHEP2016combinedKVKFDATAlxbatch.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF}\",\"muGGH\",\"muVBF\"\)
+    r99t ../higgsCombineLH2DICHEPTotalcombinedKVKFlxbatch.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF}\",\"muGGH\",\"muVBF\"\)
+    r99t ../higgsCombineLH2DICHEPTotalcombinedKVKFDATAlxbatch.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF}\",\"muGGH\",\"muVBF\"\)
+ 
     
+    
+    
+    
+    r99t ../higgsCombineLH2DICHEP2016combinedKVKFlxbatch.root \
+        scripts/Draw2D.cxx
+    r99t ../higgsCombineLH2DICHEP2016combinedDATAKVKFlxbatch.root \
+        scripts/Draw2D.cxx
 
-    
-    
+
+
+
+
+
+
+
+
     
     cat  ../result.MaxLikelihoodFit.superCombination.2016.txt.pruned.txt
     cat  ../result.Significance.superCombination.2016.txt.pruned.txt

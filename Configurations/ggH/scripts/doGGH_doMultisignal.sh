@@ -140,11 +140,13 @@ combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.kvkf.root -M M
           
 hadd higgsCombineLH2DICHEPTotalcombinedKVKFlxbatch.root             higgsCombineLH2DICHEPTotalcombinedKVKFlxbatch.POINTS.*.MultiDimFit.mH120.root
 hadd higgsCombineLH2DICHEPTotalcombinedKVKFDATAlxbatch.root         higgsCombineLH2DICHEPTotalcombinedKVKFDATAlxbatch.POINTS.*.MultiDimFit.mH120.root
-hadd higgsCombineLH2DICHEPTotalcombinedKVKFDATAlxbatch.root         higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWlxbatch.POINTS.*.MultiDimFit.mH120.root
+hadd higgsCombineLH2DICHEPTotalcombinedKVKFDATAlxbatch.root         higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch.POINTS.*.MultiDimFit.mH120.root
 
 # ls -alrth higgsCombineLH2DICHEPTotalcombinedKVKFDATAlxbatch.POINTS.*.MultiDimFit.mH120.root  | grep -v 6.6 | grep -v 6.7 | awk '{print "rm "$9}' | /bin/sh
         
 #    ls -alrth higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWlxbatch.POINTS.*.MultiDimFit.mH120.root  | grep -v 6.6K | grep -v 6.7K | awk '{print "rm "$9}' | /bin/sh
+   
+#    ls -alrth higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch.POINTS.*.MultiDimFit.mH120.root  | grep -v 6.6K | grep -v 6.7K | awk '{print "rm "$9}' | /bin/sh
         
      
      
