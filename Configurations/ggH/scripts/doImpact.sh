@@ -110,7 +110,7 @@ text2workspace.py superCombination.Total.txt.pruned.txt   -o  superCombination.T
 combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125 --doInitialFit --robustFit 1 
 
 # the next one may takes ... hours!
-combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125 --robustFit 1 --doFits --parallel 20
+combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125 --robustFit 1 --doFits --parallel 5    --job-mode lxbatch --task-name lxbatch-test-impact-data --sub-opts='-q 1nw'
 
 combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125 -o superCombination.Total.txt.pruned.root_impacts_datacard_data.json
 
