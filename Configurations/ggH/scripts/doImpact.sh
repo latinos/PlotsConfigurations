@@ -91,12 +91,7 @@ combine -M MultiDimFit \
      -n "LH2D_WWnorm0j_fake_syst_combined"     >   result.MultiDimFit.grid.workspace.Combined.0jet.txt.WWnorm0j_fake_syst.txt
      
      
-     
- 
- 
-     
-     
-     
+       
 
 
 text2workspace.py superCombination.Total.txt.pruned.txt   -o  superCombination.Total.txt.pruned.root  
@@ -111,7 +106,10 @@ combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125 --doI
 
 # the next one may takes ... hours!
 combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125 --robustFit 1 --doFits --parallel 5    --job-mode lxbatch --task-name lxbatch-test-impact-data --sub-opts='-q 1nw'
-
+ 
+#  --parallel PARALLEL   Number of jobs to run in parallel [only affects
+#                         interactive job-mode]
+                        
 combineTool.py -M Impacts -d superCombination.Total.txt.pruned.root -m 125 -o superCombination.Total.txt.pruned.root_impacts_datacard_data.json
 
 plotImpacts.py -i superCombination.Total.txt.pruned.root_impacts_datacard_data.json -o impacts_datacard_data
