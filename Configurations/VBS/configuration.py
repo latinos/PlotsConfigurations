@@ -3,7 +3,7 @@
 # Samples :
 # dcap://maite.iihe.ac.be//pnfs/iihe/cms/store/user/xjanssen/HWW2015/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__vbsSel/
 
-# mkShapes.py --pycfg=configuration.py --inputDir=pnfs/iihe/cms/store/user/xjanssen/HWW2015/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__vbsSel/ --doThreads --nThreads 4
+# mkShapes.py --pycfg=configuration_batch.py --inputDir=dcap://maite.iihe.ac.be//pnfs/iihe/cms/store/user/xjanssen/HWW2015/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__vbsSel/ --doHadd=True --batchSplit=Cuts,Samples
 tag = 'VBS'
 
 
@@ -32,7 +32,7 @@ plotFile = 'plot.py'
 #lumi = 6.264
 #lumi = 4.3
 # lumi = 5
-lumi = 12.8890
+lumi = 27.915
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy

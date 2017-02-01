@@ -1,199 +1,19 @@
 # nuisances
 
-###
-
-#nuisances['QCDscale_CRSR_accept_dytt']  = {
-               #'name'  : 'QCDscale_CRSR_accept_dytt', 
-               #'type'  : 'lnN',
-               #'samples'  : {
-                   #'DY' : '1.02',
-                   #},
-               #'cuts'  : [
-##
-                 #'hww2l2v_13TeV_dytt_of0j',
-                 #'hww2l2v_13TeV_dytt_of1j',
-                 #'hww2l2v_13TeV_dytt_of2j',
-                 #'hww2l2v_13TeV_dytt_of2j_vbf',
-                 #'hww2l2v_13TeV_dytt_of2j_vh2j'
-##                 
-                #]               
-              #}
-
-#nuisances['QCDscale_CRSR_accept_top']  = {
-               #'name'  : 'QCDscale_CRSR_accept_top', 
-               #'type'  : 'lnN',
-               #'samples'  : {
-                   #'top' : '1.01',
-                   #},
-               #'cuts'  : [
-##
-                 #'hww2l2v_13TeV_top_of0j',
-                 #'hww2l2v_13TeV_top_of1j',
-                 #'hww2l2v_13TeV_top_of2j',
-                 #'hww2l2v_13TeV_top_of2j_vbf',
-                 #'hww2l2v_13TeV_top_of2j_vh2j'
-##                 
-                #]               
-              #}
-
-####
-
-
-
-#nuisances['QCDscale_ggH2jvbf']  = {
-               #'name'  : 'QCDscale_ggH2jvbf', 
-               #'samples'  : { 
-               #'DY' : '1.2', 
-                   #},
-               #'type'  : 'lnN',
-               #'cuts'  : [
-                 #'hww2l2v_13TeV_of2jvbf',
-                 #'hww2l2v_13TeV_top_of2j_vbf',
-                 #'hww2l2v_13TeV_dytt_of2j_vbf',
-                 #'hww2l2v_13TeV_of2j_vbf_highmjj',
-                 #'hww2l2v_13TeV_of2j_vbf_mediummjj',
-                 #'hww2l2v_13TeV_of2j_vbf_lowmjj',
-##              'hww2l2v_13TeV_top_of2jvbf',
-                #]
-              #}
-
-
-
-
-# missing WW-ewk in 2016 MC 80X production
-#nuisances['WWewk_cont']  = {
-               #'name'  : 'WWewk_cont', 
-                #'kind'  : 'weight',
-                #'type'  : 'shape',
-                #'samples'  : {
-                #'WW'   : ['1', '(1.085 - 0.002361 * mll + 2.07e-5 * mll * mll)'],
-                #},
-               #'cuts'  : [
-                 #'hww2l2v_13TeV_of2jvbf',
-                 #'hww2l2v_13TeV_of2jvbf',
-                 #'hww2l2v_13TeV_top_of2j_vbf_mediummjj',
-                 #'hww2l2v_13TeV_dytt_of2j_vbf_mediummjj',
-                 #'hww2l2v_13TeV_top_of2j_vbf_highmjj',
-                 #'hww2l2v_13TeV_dytt_of2j_vbf_highmjj',
-                 #'hww2l2v_13TeV_top_of2j_vbf',
-                 #'hww2l2v_13TeV_dytt_of2j_vbf',
-                 #'hww2l2v_13TeV_of2j_vbf_highmjj',
-                 #'hww2l2v_13TeV_of2j_vbf_mediummjj',
-                 #'hww2l2v_13TeV_of2j_vbf_lowmjj',
-##              'hww2l2v_13TeV_top_of2jvbf',
-                #]
-                #}
-
-
-#nuisances['WWresum2jvbf']  = {
-                #'name'  : 'WWresum2jvbf',
-                #'kind'  : 'weight',
-                #'type'  : 'shape',
-                #'samples'  : {
-                #'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
-                #},
-               #'cuts'  : [
-                 #'hww2l2v_13TeV_of2jvbf',
-                 #'hww2l2v_13TeV_of2jvbf',
-                 #'hww2l2v_13TeV_top_of2j_vbf',
-                 #'hww2l2v_13TeV_dytt_of2j_vbf',
-                 #'hww2l2v_13TeV_top_of2j_vbf_mediummjj',
-                 #'hww2l2v_13TeV_dytt_of2j_vbf_mediummjj',
-                 #'hww2l2v_13TeV_top_of2j_vbf_highmjj',
-                 #'hww2l2v_13TeV_dytt_of2j_vbf_highmjj',
-                 #'hww2l2v_13TeV_of2j_vbf_highmjj',
-                 #'hww2l2v_13TeV_of2j_vbf_mediummjj',
-                 #'hww2l2v_13TeV_of2j_vbf_lowmjj',
-##              'hww2l2v_13TeV_top_of2jvbf',
-                #]
-                #}
-
-#nuisances['WWqscale2jvbf']  = {
-                #'name'  : 'WWqscale2jvbf',
-                #'kind'  : 'weight',
-                #'type'  : 'shape',
-                #'samples'  : {
-                #'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
-                #},
-                #'cuts'  : [
-                 #'hww2l2v_13TeV_of2jvbf',
-                 #'hww2l2v_13TeV_of2jvbf',
-                 #'hww2l2v_13TeV_top_of2j_vbf',
-                 #'hww2l2v_13TeV_dytt_of2j_vbf',
-                 #'hww2l2v_13TeV_top_of2j_vbf_mediummjj',
-                 #'hww2l2v_13TeV_dytt_of2j_vbf_mediummjj',
-                 #'hww2l2v_13TeV_top_of2j_vbf_highmjj',
-                 #'hww2l2v_13TeV_dytt_of2j_vbf_highmjj',
-                 #'hww2l2v_13TeV_of2j_vbf_highmjj',
-                 #'hww2l2v_13TeV_of2j_vbf_mediummjj',
-                 #'hww2l2v_13TeV_of2j_vbf_lowmjj',
-##               'hww2l2v_13TeV_top_of2jvbf',
-                #]
-                #}
-
-
-
-
-
-#nuisances['DYttnorm2jvbf']  = {
-               #'name'  : 'DYttnorm2jvbf',
-               #'samples'  : {
-               #'DY' : '1.00',
-                   #},
-               #'type'  : 'rateParam',
-               #'cuts'  : [
-                 #'hww2l2v_13TeV_of2jvbf',
-                 #'hww2l2v_13TeV_of2jvbf',
-                 #'hww2l2v_13TeV_top_of2j_vbf',
-                 #'hww2l2v_13TeV_dytt_of2j_vbf',
-                 ##'hww2l2v_13TeV_top_of2j_vbf_mediummjj',
-                 ##'hww2l2v_13TeV_dytt_of2j_vbf_mediummjj',
-                 ##'hww2l2v_13TeV_top_of2j_vbf_highmjj',
-                 ##'hww2l2v_13TeV_dytt_of2j_vbf_highmjj',
-                 ##'hww2l2v_13TeV_of2j_vbf_highmjj',
-                 ##'hww2l2v_13TeV_of2j_vbf_mediummjj',
-                 #'hww2l2v_13TeV_of2j_vbf_lowmjj',
-##              'hww2l2v_13TeV_top_of2jvbf',
-                #]
-              #}
-
-
-
-
-#####################################
-#####################################
-#####################################
-
-
-
-
-
 
 # name of samples here must match keys in samples.py    
 #
-
-nuisances['lumi']  = {
-               'name'  : 'lumi_13TeV', 
-               'samples'  : {
-                   'DY'  : '1.023',
-                   'lep_TT'  : '1.023',
-                   'Wg'   : '1.023',
-                   'WZ'   : '1.023',
-                   'WpWpJJ'    : '1.023',
-                   },
-               'type'  : 'lnN',
-              }
-
 
 
 nuisances['lumi2016']  = {
                'name'  : 'lumi_13TeV_2016', 
                'samples'  : {
-                   'DY'  : '1.058',
-                   'lep_TT'  : '1.058',
-                   'Wg'   : '1.058',
-                   'WZ'   : '1.058',
-                   'WpWpJJ'    : '1.058',
+                   #'DY'  : '1.058',
+                   #'lep_TT'  : '1.058',
+                   'Wg'   : '1.028',
+#                   'WZ'   : '1.058',
+                   'WpWpJJ'    : '1.028',
+                   'WpWpJJ_QCD'    : '1.028',
                    },
                'type'  : 'lnN',
               }
@@ -205,82 +25,33 @@ nuisances['lumi2016']  = {
 # lumi_13TeV_2016 lnN 1.058
 
 
+nuisances['WZ_norm']  = {
+               'name'  : 'WZ_norm', 
+               'samples'  : {
+                   'WZ'   : '1.3',
+               'type'  : 'lnN',
+              }
+}
+#nuisances['charge_flip']  = {
+               #'name'  : 'charge_flip', 
+               #'samples'  : {
+                   #'DY'   : '1.1',
+                   #'lep_TT':'1.1',
+               #'type'  : 'lnN',
+              #}
+
 
 # theory uncertainties
 
-# WZ from 
-# https://twiki.cern.ch/twiki/bin/view/CMS/StandardModelCrossSectionsat13TeV
-#
-#nuisances['QCDscale_VW']  = {
-               #'name'  : 'QCDscale_VW', 
-               #'samples'  : {
-                   #'VW' : '1.03',
-                   #},
-               #'type'  : 'lnN'
-              #}
-
-# PDF: 0.0064 / 0.1427 = 0.0448493
-# QCD: 0.0046 / 0.1427 = 0.0322355
-
-
-
-
-from LatinoAnalysis.Tools.HiggsXSection  import *
-HiggsXS = HiggsXSection()
-
-
-#nuisances['QCDscale_ggH']  = {
-               #'name'  : 'QCDscale_ggH', 
-               #'samples'  : {
-                   ##'DY' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.0','scale','sm'),     ----> already included in jet bin migration QCD uncertainty?
-                   #'ggWpWpJJ' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.0','scale','sm'),
-                   #'WpWpJJ'   : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.0','scale','sm'),
-                   #},
-               #'type'  : 'lnN',
-              #}
-
-
-
-#nuisances['QCDscale_qqH']  = {
-               #'name'  : 'QCDscale_qqH', 
-               #'samples'  : {
-                   #'lep_TT' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.0','scale','sm'),
-                   #'qqWpWpJJ' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.0','scale','sm'),
-                   #},
-               #'type'  : 'lnN',
-              #}
-
-
-
-#nuisances['QCDscale_WH']  = {
-               #'name'  : 'QCDscale_WH', 
-               #'samples'  : {
-                   #'Wg' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
-                   #},
-               #'type'  : 'lnN',
-              #}
-
-
-
-#nuisances['QCDscale_ZH']  = {
-               #'name'  : 'QCDscale_ZH', 
-               #'samples'  : {
-                   #'WZ' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH','125.0','scale','sm'),
-                   #},
-               #'type'  : 'lnN',
-              #}
-
-
-
-#nuisances['QCDscale_ggZH']  = {
-               #'name'  : 'QCDscale_ggZH', 
-               #'samples'  : {
-                   #'WpWpJJ': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggZH','125.0','scale','sm'),                  
-                   #},
-               #'type'  : 'lnN',
-              #}
-
-
+nuisances['QCDscale']  = {
+    'name'  : 'QCDscale', 
+    'type'  : 'lnN', 
+    'samples'  : { 
+         'Wg'    : '1.10' ,
+         'WpWpJJ': '1.10' ,
+         'WpWpJJ_QCD': '1.10' ,
+    }, 
+} 
 
 
 
@@ -298,12 +69,8 @@ HiggsXS = HiggsXSection()
     #'name'  : 'QCDscale_qqbar_accept', 
     #'type'  : 'lnN', 
     #'samples'  : { 
-         #'top': '0.983/1.007' ,
-         #'WW': '0.980/1.003' ,
-         #'VZ': '1.013/0.966' ,
          #'lep_TT': '0.974/1.005' ,
          #'Wg': '0.949/1.008' ,
-         #'WZ': '0.968/0.968' ,
     #}, 
  #} 
 
@@ -311,14 +78,22 @@ HiggsXS = HiggsXSection()
 
 # pdf uncertainty
 
+nuisances['pdf']  = {
+    'name'  : 'pdf',
+    'type'  : 'lnN',
+    'samples'  : {
+         'Wg'    : '1.01' ,
+         'WpWpJJ': '1.01' ,
+         'WpWpJJ_QCD': '1.01' ,
+    }, 
+} 
+
+
 #nuisances['pdf_gg']  = {
                #'name'  : 'pdf_gg', 
                #'samples'  : {
-                   ##'ggWW'    : '1.05',    # --> no, since absorbed into k-scale factor
-                   #'DY' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,'125.0','pdf','sm'),
-                   #'ggWpWpJJ' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,'125.0','pdf','sm'),
-                   #'WpWpJJ'   : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,'125.0','pdf','sm'),
-                   #'WpWpJJ': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggZH','125.0','pdf','sm'),                   
+                   #'DY' : '1.XX',
+                   #'WpWpJJ': '1.XX',                   
                    #},
                #'type'  : 'lnN',
               #}
@@ -328,98 +103,44 @@ HiggsXS = HiggsXSection()
                #'name'  : 'pdf_qqbar', 
                #'type'  : 'lnN',
                #'samples'  : {
-                   #'lep_TT' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.0','pdf','sm'),
-                   #'qqWpWpJJ' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.0','pdf','sm'),
-                   #'Wg'  : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),
-                   #'WZ'  : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH' ,'125.0','pdf','sm'),
-                   #'VZ'      : '1.04',  # PDF: 0.0064 / 0.1427 = 0.0448493
+                   #'lep_TT' : '1.XX',
+                   #'Wg': '1.XX' ,
                    #},
               #}
 
+#nuisances['pdf_gg_accept']  = {
+               #'name'  : 'pdf_gg_accept', 
+               #'samples'  : {
+                   #'DY' : '1.XX',
+                   #'WpWpJJ': '1.XX',                   
+                   #},
+               #'type'  : 'lnN',
+              #}
 
 
-#    
-#    
-#    
-#    
-
-#nuisances['pdf_gg_accept']  = { 
-    #'name'  : 'pdf_gg_accept', 
-    #'type'  : 'lnN', 
-    #'samples'  : { 
-         #'DY': '0.994/1.011' ,
-         #'WpWpJJ': '0.974/1.027' ,
-    #}, 
- #} 
-
-
-#nuisances['pdf_qqbar_accept']  = { 
-    #'name'  : 'pdf_qqbar_accept', 
-    #'type'  : 'lnN', 
-    #'samples'  : { 
-         #'top': '0.988/1.012' ,
-         #'WW': '0.986/1.008' ,
-         #'VZ': '0.992/1.013' ,
-         #'lep_TT': '0.970/1.029' ,
-         #'Wg': '0.984/1.009' ,
-         #'WZ': '0.976/1.016' ,
-    #}, 
- #} 
-
-
-
-
-
-
-
-# ggww and interference
-
-#nuisances['kfactggww']  = {
-               #'name'  : 'kfactggww', 
+#nuisances['pdf_qqbar_accept']  = {
+               #'name'  : 'pdf_qqbar_accept', 
                #'type'  : 'lnN',
                #'samples'  : {
-                   #'ggWW' : '1.15',
+                   #'lep_TT' : '1.XX',
+                   #'Wg': '1.XX' ,
                    #},
               #}
 
 
-
-
-# PS/UE
-
-# PS
-
-# FIXME restore these once sample available
-
-
-#nuisances['PS']  = {
-                #'name'  : 'PS', 
-                #'kind'  : 'tree',
-                #'type'  : 'shape',
-                #'samples'  : {
-                   #'WW' :  ['1./1.03295', '1.'],  # latino_WWTo2L2NuHerwigPS.root moved with different name in __PS folder
-                #},
-                #'folderUp'   : 'dcap://maite.iihe.ac.be//pnfs/iihe/cms/store/user/xjanssen/HWW2015/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__PS/',
-                #'folderDown' : 'dcap://maite.iihe.ac.be//pnfs/iihe/cms/store/user/xjanssen/HWW2015/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight/' 
-                #}
+#    
+#    
+#    
+#    
 
 
 
 
-# FIXME restore these once sample available
 
-#nuisances['UE']  = {
-                #'name'  : 'UE', 
-                #'kind'  : 'tree',
-                #'type'  : 'shape',
-                #'samples'  : {
-                   #'WW' :  ['1/0.978817', '1/1.0192'], 
-                   #'DY' : ['1/0.9262', '1/0.984785'],
-                   #'lep_TT' : ['1/0.951846', '1/1.00099'],
-                #},
-                #'folderUp'   : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__UEup/',
-                #'folderDown' : 'eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__UEdo/' 
-                #}
+
+
+
+
 
 
 
@@ -462,19 +183,19 @@ nuisances['fake_syst']  = {
 
 # FIXME : restore it once we have the niusance ready                                 
 
-nuisances['fake_ele']  = {
-                'name'  : 'fake_ele_hww',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'Fake'      : ['fakeW2l2jElUp/fakeW2l2j',
-                                  'fakeW2l2jElDown/fakeW2l2j'],
-                }
-}
+#nuisances['fake_ele']  = {
+                #'name'  : 'fake_ele_hww',
+                #'kind'  : 'weight',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'Fake'      : ['fakeW2l2jElUp/fakeW2l2j',
+                                  #'fakeW2l2jElDown/fakeW2l2j'],
+                #}
+#}
  
 
 nuisances['fake_ele_stat']  = {
-                'name'  : 'fake_ele_stat_hww',
+                'name'  : 'fake_ele_stat',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -484,19 +205,19 @@ nuisances['fake_ele_stat']  = {
 }
 
 
-nuisances['fake_mu']  = {
-                'name'  : 'fake_mu_hww',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'Fake'      : ['fakeW2l2jMuUp/fakeW2l2j',
-                                  'fakeW2l2jMuDown/fakeW2l2j'],
-                }
-}
+#nuisances['fake_mu']  = {
+                #'name'  : 'fake_mu_hww',
+                #'kind'  : 'weight',
+                #'type'  : 'shape',
+                #'samples'  : {
+                   #'Fake'      : ['fakeW2l2jMuUp/fakeW2l2j',
+                                  #'fakeW2l2jMuDown/fakeW2l2j'],
+                #}
+#}
  
 
 nuisances['fake_mu_stat']  = {
-                'name'  : 'fake_mu_stat_hww',
+                'name'  : 'fake_mu_stat',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -530,11 +251,12 @@ nuisances['btagbc']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY' : ['(bPogSF_CMVAT_bc_up)/(bPogSF)', '(bPogSF_CMVAT_bc_down)/(bPogSF)'],
-                   'lep_TT' : ['(bPogSF_CMVAT_bc_up)/(bPogSF)', '(bPogSF_CMVAT_bc_down)/(bPogSF)'],
+                   #'DY' : ['(bPogSF_CMVAT_bc_up)/(bPogSF)', '(bPogSF_CMVAT_bc_down)/(bPogSF)'],
+                   #'lep_TT' : ['(bPogSF_CMVAT_bc_up)/(bPogSF)', '(bPogSF_CMVAT_bc_down)/(bPogSF)'],
                    'Wg'  : ['(bPogSF_CMVAT_bc_up)/(bPogSF)', '(bPogSF_CMVAT_bc_down)/(bPogSF)'],
                    'WZ'  : ['(bPogSF_CMVAT_bc_up)/(bPogSF)', '(bPogSF_CMVAT_bc_down)/(bPogSF)'],
                    'WpWpJJ'   : ['(bPogSF_CMVAT_bc_up)/(bPogSF)', '(bPogSF_CMVAT_bc_down)/(bPogSF)'],
+                   'WpWpJJ_QCD'   : ['(bPogSF_CMVAT_bc_up)/(bPogSF)', '(bPogSF_CMVAT_bc_down)/(bPogSF)'],
                 }
 }
  
@@ -544,11 +266,12 @@ nuisances['btagudsg']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY' : ['(bPogSF_CMVAT_udsg_up)/(bPogSF)', '(bPogSF_CMVAT_udsg_down)/(bPogSF)'],
-                   'lep_TT' : ['(bPogSF_CMVAT_udsg_up)/(bPogSF)', '(bPogSF_CMVAT_udsg_down)/(bPogSF)'],
+                   #'DY' : ['(bPogSF_CMVAT_udsg_up)/(bPogSF)', '(bPogSF_CMVAT_udsg_down)/(bPogSF)'],
+                   #'lep_TT' : ['(bPogSF_CMVAT_udsg_up)/(bPogSF)', '(bPogSF_CMVAT_udsg_down)/(bPogSF)'],
                    'Wg'  : ['(bPogSF_CMVAT_udsg_up)/(bPogSF)', '(bPogSF_CMVAT_udsg_down)/(bPogSF)'],
                    'WZ'  : ['(bPogSF_CMVAT_udsg_up)/(bPogSF)', '(bPogSF_CMVAT_udsg_down)/(bPogSF)'],
                    'WpWpJJ'   : ['(bPogSF_CMVAT_udsg_up)/(bPogSF)', '(bPogSF_CMVAT_udsg_down)/(bPogSF)'],
+                   'WpWpJJ_QCD'   : ['(bPogSF_CMVAT_udsg_up)/(bPogSF)', '(bPogSF_CMVAT_udsg_down)/(bPogSF)'],
                 }
 } 
   
@@ -586,11 +309,12 @@ nuisances['trigg']  = {
                 #'kind'  : 'tree', #'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY' : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
-                   'lep_TT' : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
+                   #'DY' : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
+                   #'lep_TT' : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
                    'Wg'  : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
                    'WZ'  : ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
                    'WpWpJJ': ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
+                   'WpWpJJ_QCD': ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)'],
                 },
                 #'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__TrigEff/',    # uncertainties fixed!
                 #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__TrigEff/' 
@@ -607,11 +331,12 @@ nuisances['idiso_ele']  = {
                 #'kind'  : 'tree', #'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))'],
-                  'lep_TT' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))'],
+                   #'DY' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))'],
+                  #'lep_TT' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))'],
                   'Wg' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))'],
                   'WZ' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))'],
                   'WpWpJJ' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))'],
+                  'WpWpJJ_QCD' : ['((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))', '((abs(std_vector_lepton_flavour[0]) == 11)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 13)) * ((abs(std_vector_lepton_flavour[1]) == 11)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 13))'],
                  },
                 #'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__TrigEff/',    # uncertainties fixed!
                 #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__TrigEff/' 
@@ -625,11 +350,12 @@ nuisances['idiso_mu']  = {
                 'type'  : 'shape',
                 'samples'  : {
 
-                   'DY' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))'],
-                  'lep_TT' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))'],
+                   #'DY' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))'],
+                  #'lep_TT' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))'],
                   'Wg' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))'],
                   'WZ' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))'],
                   'WpWpJJ' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))'],
+                  'WpWpJJ_QCD' : ['((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Up[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Up[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))', '((abs(std_vector_lepton_flavour[0]) == 13)*(std_vector_lepton_idisoW_Down[0])/(std_vector_lepton_idisoW[0])+(abs(std_vector_lepton_flavour[0]) == 11)) * ((abs(std_vector_lepton_flavour[1]) == 13)*(std_vector_lepton_idisoW_Down[1])/(std_vector_lepton_idisoW[1])+(abs(std_vector_lepton_flavour[1]) == 11))'],
                 },
                 #'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__TrigEff/',    # uncertainties fixed!
                 #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__TrigEff/' 
@@ -647,16 +373,17 @@ nuisances['jes']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY' :['1', '1'],
-                   'lep_TT' :  ['1', '1'],
+                   #'DY' :['1', '1'],
+                   #'lep_TT' :  ['1', '1'],
                    'Wg' :  ['1', '1'],
                    'WZ' : ['1', '1'],
                    'WpWpJJ' :  ['1', '1'],
+                   'WpWpJJ_QCD' :  ['1', '1'],
                 },
 
 
-                'folderUp'   : 'dcap://maite.iihe.ac.be//pnfs/iihe/cms/store/user/xjanssen/HWW2015/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__vbsSel/',
-                'folderDown' : 'dcap://maite.iihe.ac.be//pnfs/iihe/cms/store/user/xjanssen/HWW2015/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__vbsSel/' 
+                'folderUp'   : '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/07Jun2016_spring16_mAODv2_12pXfbm1_repro_Rereco/MCl2vloose__hadd__l2tight__bLepTrigEff__JESMaxup__vbsSel/',
+                'folderDown' : '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/07Jun2016_spring16_mAODv2_12pXfbm1_repro_Rereco/MCl2vloose__hadd__l2tight__bLepTrigEff__JESMaxdo__vbsSel/' 
 
 
                 #'folderUp'   : 'eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup/',
@@ -682,15 +409,16 @@ nuisances['electronpt']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY' :['1', '1'],
-                   'lep_TT' :  ['1', '1'],
+                   #'DY' :['1', '1'],
+                   #'lep_TT' :  ['1', '1'],
                    'Wg' :  ['1', '1'],
                    'WZ' : ['1', '1'],
                    'WpWpJJ' :  ['1', '1'],
+                   'WpWpJJ_QCD' :  ['1', '1'],
                 },
                                 
-                'folderUp'   : 'dcap://maite.iihe.ac.be//pnfs/iihe/cms/store/user/xjanssen/HWW2015/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__vbsSel/',
-                'folderDown' : 'dcap://maite.iihe.ac.be//pnfs/iihe/cms/store/user/xjanssen/HWW2015/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__vbsSel/' 
+                'folderUp'   : '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/07Jun2016_spring16_mAODv2_12pXfbm1_repro_Rereco/MCl2vloose__hadd__l2tight__bLepTrigEff__LepElepTup__vbsSel/',
+                'folderDown' : '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/07Jun2016_spring16_mAODv2_12pXfbm1_repro_Rereco/MCl2vloose__hadd__l2tight__bLepTrigEff__LepElepTdo__vbsSel/' 
 
 
                 #'folderUp'   : 'eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup/',
@@ -710,15 +438,16 @@ nuisances['muonpt']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY' :['1', '1'],
-                   'lep_TT' :  ['1', '1'],
+                   #'DY' :['1', '1'],
+                   #'lep_TT' :  ['1', '1'],
                    'Wg' :  ['1', '1'],
                    'WZ' : ['1', '1'],
                    'WpWpJJ' :  ['1', '1'],
+                   'WpWpJJ_QCD' :  ['1', '1'],
                 },
                 
-                'folderUp'   : 'dcap://maite.iihe.ac.be//pnfs/iihe/cms/store/user/xjanssen/HWW2015/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__vbsSel/',
-                'folderDown' : 'dcap://maite.iihe.ac.be//pnfs/iihe/cms/store/user/xjanssen/HWW2015/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__vbsSel/' 
+                'folderUp'   : '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/07Jun2016_spring16_mAODv2_12pXfbm1_repro_Rereco/MCl2vloose__hadd__l2tight__bLepTrigEff__LepMupTup__vbsSel/',
+                'folderDown' : '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/07Jun2016_spring16_mAODv2_12pXfbm1_repro_Rereco/MCl2vloose__hadd__l2tight__bLepTrigEff__LepMupTdo__vbsSel/' 
                 
                 #'folderUp'   : 'eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup/',
                 #'folderDown' : 'eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo/' 
@@ -739,15 +468,16 @@ nuisances['met']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY' :['1', '1'],
-                   'lep_TT' :  ['1', '1'],
+                   #'DY' :['1', '1'],
+                   #'lep_TT' :  ['1', '1'],
                    'Wg' :  ['1', '1'],
                    'WZ' : ['1', '1'],
                    'WpWpJJ' :  ['1', '1'],
+                   'WpWpJJ_QCD' :  ['1', '1'],
                 },
 
-                'folderUp'   : 'dcap://maite.iihe.ac.be//pnfs/iihe/cms/store/user/xjanssen/HWW2015/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__vbsSel/',
-                'folderDown' : 'dcap://maite.iihe.ac.be//pnfs/iihe/cms/store/user/xjanssen/HWW2015/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__vbsSel/' 
+                'folderUp'   : '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/07Jun2016_spring16_mAODv2_12pXfbm1_repro_Rereco/MCl2vloose__hadd__l2tight__bLepTrigEff__METup__vbsSel/',
+                'folderDown' : '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/07Jun2016_spring16_mAODv2_12pXfbm1_repro_Rereco/MCl2vloose__hadd__l2tight__bLepTrigEff__METdo__vbsSel/' 
 
 
                 #'folderUp'   : 'eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWTightMu/07Jun2016_spring16_mAODv2_4p0fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METup/',
@@ -770,14 +500,14 @@ nuisances['stat']  = {
                 # apply to the following samples: name of samples here must match keys in samples.py
                'samples'  : {
                    
-                   'DY': {
-                         'typeStat' : 'bbb',
-                         #'keepNormalization' : '1'  # default = 0 -> 0=don't keep normalization
-                         },
+                   #'DY': {
+                         #'typeStat' : 'bbb',
+                         ##'keepNormalization' : '1'  # default = 0 -> 0=don't keep normalization
+                         #},
                     
-                   'lep_TT': {
-                         'typeStat' : 'bbb',
-                         },
+                   #'lep_TT': {
+                         #'typeStat' : 'bbb',
+                         #},
                     
                    'Wg': {
                          'typeStat' : 'bbb',
@@ -788,6 +518,10 @@ nuisances['stat']  = {
                          },
 
                    'WpWpJJ': {
+                         'typeStat' : 'bbb',
+                         },
+                   
+                   'WpWpJJ_QCD': {
                          'typeStat' : 'bbb',
                          },
 
