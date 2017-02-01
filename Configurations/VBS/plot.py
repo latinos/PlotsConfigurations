@@ -29,16 +29,9 @@ groupPlot['Fake']  = {
                   'samples'  : ['Fake']
               }
 
-groupPlot['WpWpJJ']  = {  
-                  'nameHR' : 'WpWpJJ',
-                  'isSignal' : 1,
-                  'color': 851, # kAzure -9 
-                  'samples'  : ['WpWpJJ']
-              }
-
 groupPlot['WpWpJJ_QCD']  = {  
                   'nameHR' : 'WpWpJJ_QCD',
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'color': 418,    # kGreen+2
                   'samples'  : ['WpWpJJ_QCD']
               }
@@ -65,6 +58,12 @@ groupPlot['Wg']  = {
               #}
 
 
+groupPlot['WpWpJJ']  = {
+                  'nameHR' : 'WpWpJJ',
+                  'isSignal' : 1,
+                  'color': 851, # kAzure -9 
+                  'samples'  : ['WpWpJJ']
+              }
 
 
 

@@ -32,36 +32,36 @@ BTag  = ' && ( std_vector_jet_cmvav2[0] > 0.875 || std_vector_jet_cmvav2[1] > 0.
 # Signal Regions
 #
 
-cuts['wwjj_13TeV_ee_mm']  = '(std_vector_lepton_flavour[0] ==  11 && std_vector_lepton_flavour[1] ==  11) \
+cuts['wwjj_13TeV_ee_pp']  = '(std_vector_lepton_flavour[0] ==  11 && std_vector_lepton_flavour[1] ==  11) \
                              && metPfType1 > 40 \
                              && abs(mll - 91) > 15' + BVeto
-cuts['wwjj_13TeV_ee_pp']  = '(std_vector_lepton_flavour[0] == -11 && std_vector_lepton_flavour[1] == -11) \
+cuts['wwjj_13TeV_ee_mm']  = '(std_vector_lepton_flavour[0] == -11 && std_vector_lepton_flavour[1] == -11) \
                              && metPfType1 > 40 \
                              && abs(mll - 91) > 15' + BVeto
 
-cuts['wwjj_13TeV_eu_mm']  = '((std_vector_lepton_flavour[0] ==  11 && std_vector_lepton_flavour[1] ==  13) || (std_vector_lepton_flavour[0] ==  13 && std_vector_lepton_flavour[1] ==  11))' + BVeto
-cuts['wwjj_13TeV_eu_pp']  = '((std_vector_lepton_flavour[0] == -11 && std_vector_lepton_flavour[1] == -13) || (std_vector_lepton_flavour[0] == -13 && std_vector_lepton_flavour[1] == -11))' + BVeto
+cuts['wwjj_13TeV_eu_pp']  = '((std_vector_lepton_flavour[0] ==  11 && std_vector_lepton_flavour[1] ==  13) || (std_vector_lepton_flavour[0] ==  13 && std_vector_lepton_flavour[1] ==  11))' + BVeto
+cuts['wwjj_13TeV_eu_mm']  = '((std_vector_lepton_flavour[0] == -11 && std_vector_lepton_flavour[1] == -13) || (std_vector_lepton_flavour[0] == -13 && std_vector_lepton_flavour[1] == -11))' + BVeto
 
-cuts['wwjj_13TeV_uu_mm']  = '(std_vector_lepton_flavour[0] ==  13 && std_vector_lepton_flavour[1] ==  13)' + BVeto
-cuts['wwjj_13TeV_uu_pp']  = '(std_vector_lepton_flavour[0] == -13 && std_vector_lepton_flavour[1] == -13)' + BVeto
+cuts['wwjj_13TeV_uu_pp']  = '(std_vector_lepton_flavour[0] ==  13 && std_vector_lepton_flavour[1] ==  13)' + BVeto
+cuts['wwjj_13TeV_uu_mm']  = '(std_vector_lepton_flavour[0] == -13 && std_vector_lepton_flavour[1] == -13)' + BVeto
 
 
 #
 # Fake control regions (Btag)
 #
 
-#cuts['btag_13TeV_ee_mm']  = '(std_vector_lepton_flavour[0] ==  11 && std_vector_lepton_flavour[1] ==  11) \
+#cuts['btag_13TeV_ee_pp']  = '(std_vector_lepton_flavour[0] ==  11 && std_vector_lepton_flavour[1] ==  11) \
 #                             && metPfType1 > 40 \
 #                             && abs(mll - 91) > 15' + BTag
-#cuts['btag_13TeV_ee_pp']  = '(std_vector_lepton_flavour[0] == -11 && std_vector_lepton_flavour[1] == -11) \
+#cuts['btag_13TeV_ee_mm']  = '(std_vector_lepton_flavour[0] == -11 && std_vector_lepton_flavour[1] == -11) \
 #                             && metPfType1 > 40 \
 #                             && abs(mll - 91) > 15' + BTag
 #
-#cuts['btag_13TeV_eu_mm']  = '((std_vector_lepton_flavour[0] ==  11 && std_vector_lepton_flavour[1] ==  13) || (std_vector_lepton_flavour[0] ==  13 && std_vector_lepton_flavour[1] ==  11))' + BTag
-#cuts['btag_13TeV_eu_pp']  = '((std_vector_lepton_flavour[0] == -11 && std_vector_lepton_flavour[1] == -13) || (std_vector_lepton_flavour[0] == -13 && std_vector_lepton_flavour[1] == -11))' + BTag
+#cuts['btag_13TeV_eu_pp']  = '((std_vector_lepton_flavour[0] ==  11 && std_vector_lepton_flavour[1] ==  13) || (std_vector_lepton_flavour[0] ==  13 && std_vector_lepton_flavour[1] ==  11))' + BTag
+#cuts['btag_13TeV_eu_mm']  = '((std_vector_lepton_flavour[0] == -11 && std_vector_lepton_flavour[1] == -13) || (std_vector_lepton_flavour[0] == -13 && std_vector_lepton_flavour[1] == -11))' + BTag
 #
-#cuts['btag_13TeV_uu_mm']  = '(std_vector_lepton_flavour[0] ==  13 && std_vector_lepton_flavour[1] ==  13)' + BTag
-#cuts['btag_13TeV_uu_pp']  = '(std_vector_lepton_flavour[0] == -13 && std_vector_lepton_flavour[1] == -13)' + BTag
+#cuts['btag_13TeV_uu_pp']  = '(std_vector_lepton_flavour[0] ==  13 && std_vector_lepton_flavour[1] ==  13)' + BTag
+#cuts['btag_13TeV_uu_mm']  = '(std_vector_lepton_flavour[0] == -13 && std_vector_lepton_flavour[1] == -13)' + BTag
 
 #
 # WZ control region
