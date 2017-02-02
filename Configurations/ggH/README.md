@@ -109,8 +109,71 @@ Auto tests:
            ../higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCH.POINTS.root   \
             scripts/drawNLLObs.C
         
-         
 
+    root -l higgsCombineLHScanHICHEPTotalcombined.MultiDimFit.mH125.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombined.MultiDimFit.mH125.root   \
+            higgsCombineLHScanHICHEPTotalcombinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanHICHEPTotalcombinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHExpNuisFrozen.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C
+    
+    root -l higgsCombineLHScanHICHEP2016combined.MultiDimFit.mH125.root  \
+            higgsCombineLHScanDATAHICHEP2016combined.MultiDimFit.mH125.root   \
+            higgsCombineLHScanHICHEP2016combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanHICHEP2016combinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHExpNuisFrozen.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C
+       
+    root -l higgsCombineLHScanHICHEP2015combined.MultiDimFit.mH125.root  \
+            higgsCombineLHScanDATAHICHEP2015combined.MultiDimFit.mH125.root   \
+            higgsCombineLHScanHICHEP2015combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2015combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanHICHEP2015combinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2015combinedLXBATCHExpNuisFrozen.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C
+            
+            
+            
+              
+    root -l higgsCombineLHScanHICHEPTotalcombinedLXBATCHNominal.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHNominal.root   \
+            higgsCombineLHScanHICHEPTotalcombinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanHICHEPTotalcombinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHExpNuisFrozen.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C
+    
+    root -l higgsCombineLHScanHICHEP2016combinedLXBATCHNominal.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHNominal.root   \
+            higgsCombineLHScanHICHEP2016combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanHICHEP2016combinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHExpNuisFrozen.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C
+       
+    root -l higgsCombineLHScanHICHEP2015combinedLXBATCHNominal.root  \
+            higgsCombineLHScanDATAHICHEP2015combinedLXBATCHNominal.root   \
+            higgsCombineLHScanHICHEP2015combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2015combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanHICHEP2015combinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2015combinedLXBATCHExpNuisFrozen.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C
+            
+            
+            
+              
+
+          
+          
+          
+          
+        
+    sh ggH/scripts/doLikelihoodScans.sh 
+        
+        
+        
     2015+2016 WH3l
     
     root -l ../higgsCombineLHScanWH3lLXBATCH.POINTS.root  \
