@@ -154,10 +154,23 @@ void drawNLLObs() {
   line2->Draw();
   
   TLegend* leg = new TLegend(0.1,0.7,0.48,0.9);
-  leg->AddEntry(graphScan,"Expected","l");
+//   leg->AddEntry(graphScan,"Expected","l");
+//   if (graphScanData) {
+//     leg->AddEntry(graphScanData,"Observed","l");
+//   }
+  
+//   leg->AddEntry(graphScan,"Obs 2015 alone","l");
+//   if (graphScanData) {
+//     leg->AddEntry(graphScanData,"Obs 2015 with CR 2016","l");
+//   }
+  
+  leg->AddEntry(graphScan,"Obs 2016 alone","l");
   if (graphScanData) {
-    leg->AddEntry(graphScanData,"Observed","l");
+    leg->AddEntry(graphScanData,"Obs 2016 with CR 2015","l");
   }
+  
+  
+  
   leg->SetFillColor(0);
   leg->Draw();
   

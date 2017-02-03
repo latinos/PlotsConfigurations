@@ -171,14 +171,6 @@ Auto tests:
       
       
             
-    root -l higgsCombineLHScanHICHEP2016combinedLXBATCHNominal.root  \
-            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHNominal.root   \
-            higgsCombineLHScanHICHEP2016combinedLXBATCHTheoryFrozen.root  \
-            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHTheoryFrozenPostFit.root  \
-            higgsCombineLHScanHICHEP2016combinedLXBATCHExpNuisFrozen.root  \
-            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHExpNuisFrozenPostFit.root  \
-            ggH/scripts/drawNLLObsNuisSplit.C
-              
        
     root -l higgsCombineLHScanHICHEP2015combinedLXBATCHNominal.root  \
             higgsCombineLHScanDATAHICHEP2015combinedLXBATCHNominal.root   \
@@ -187,7 +179,16 @@ Auto tests:
             higgsCombineLHScanHICHEP2015combinedLXBATCHExpNuisFrozen.root  \
             higgsCombineLHScanDATAHICHEP2015combinedLXBATCHExpNuisFrozenPostFit.root  \
             ggH/scripts/drawNLLObsNuisSplit.C\(1\)
-            
+    
+    
+    root -l higgsCombineLHScanHICHEP2016combinedLXBATCHNominal.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHNominal.root   \
+            higgsCombineLHScanHICHEP2016combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHTheoryFrozenPostFit.root  \
+            higgsCombineLHScanHICHEP2016combinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHExpNuisFrozenPostFit.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C
+              
             
     root -l higgsCombineLHScanHICHEPTotalcombinedLXBATCHNominal.root  \
             higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHNominal.root   \
@@ -201,9 +202,14 @@ Auto tests:
             
 
 
-          
-          
-          
+     root -l higgsCombineLHScanDATAHICHEP2015combinedLXBATCHNominal.root  \
+           higgsCombineLHScanDATAHICHEPTotal2015sigOnlycombinedLXBATCHNominal.root   \
+           ggH/scripts/drawNLLObs.C
+      
+     root -l higgsCombineLHScanDATAHICHEP2016combinedLXBATCHNominal.root  \
+           higgsCombineLHScanDATAHICHEPTotal2016sigOnlycombinedLXBATCHNominal.root   \
+           ggH/scripts/drawNLLObs.C
+      
           
         
     sh ggH/scripts/doLikelihoodScans.sh 
