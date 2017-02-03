@@ -4,7 +4,7 @@
 # dcap://maite.iihe.ac.be//pnfs/iihe/cms/store/user/xjanssen/HWW2015/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__vbsSel/
 
 # mkShapes.py --pycfg=configuration_batch.py --inputDir=dcap://maite.iihe.ac.be//pnfs/iihe/cms/store/user/xjanssen/HWW2015/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__vbsSel/ --doHadd=True --batchSplit=Cuts,Samples
-tag = 'VBS'
+tag = 'VBS_Zepp'
 
 
 # used by mkShape to define output directory for root files
@@ -15,7 +15,7 @@ outputDir = 'rootFile'
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
+cutsFile = 'cuts_Zepp.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 

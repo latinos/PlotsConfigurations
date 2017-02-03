@@ -522,9 +522,9 @@ nuisances['stat']  = {
                          'typeStat' : 'bbb',
                          },
                     
-                   'Wg': {
-                         'typeStat' : 'bbb',
-                         },
+#                  'Wg': {
+#                        'typeStat' : 'bbb',
+#                        },
                     
                    'WZ': {
                          'typeStat' : 'bbb',
