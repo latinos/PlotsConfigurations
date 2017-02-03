@@ -158,6 +158,19 @@ void drawNLLObs() {
   if (graphScanData) {
     leg->AddEntry(graphScanData,"Observed","l");
   }
+  
+//   leg->AddEntry(graphScan,"Obs 2015 alone","l");
+//   if (graphScanData) {
+//     leg->AddEntry(graphScanData,"Obs 2015 with CR 2016","l");
+//   }
+  
+//   leg->AddEntry(graphScan,"Obs 2016 alone","l");
+//   if (graphScanData) {
+//     leg->AddEntry(graphScanData,"Obs 2016 with CR 2015","l");
+//   }
+//   
+  
+  
   leg->SetFillColor(0);
   leg->Draw();
   
