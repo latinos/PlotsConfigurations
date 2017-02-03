@@ -48,11 +48,11 @@
  
 #  text2workspace.py superCombination.Total.only2016signal.txt.pruned.txt   -o    superCombination.Total.only2016signal.txt.pruned.txt.workspace.root
 
- 
- combineTool.py -d superCombination.Total.only2016signal.txt.pruned.txt.workspace.root -M MultiDimFit    \
-               --algo=grid  --setPhysicsModelParameterRanges  r=0,2.5    -n "LHScanDATAHICHEPTotal2016sigOnlycombinedLXBATCHNominal"   \
-               --points 100    --job-mode lxbatch --task-name lxbatch-superCombinationTotal-Nominal-2016sigOnly --sub-opts='-q 1nd' --split-points 1  
-               
+#  
+#  combineTool.py -d superCombination.Total.only2016signal.txt.pruned.txt.workspace.root -M MultiDimFit    \
+#                --algo=grid  --setPhysicsModelParameterRanges  r=0,2.5    -n "LHScanDATAHICHEPTotal2016sigOnlycombinedLXBATCHNominal"   \
+#                --points 100    --job-mode lxbatch --task-name lxbatch-superCombinationTotal-Nominal-2016sigOnly --sub-opts='-q 1nd' --split-points 1  
+#                
 
 
 # combineTool.py -d superCombination.Total.only2016signal.txt.pruned.txt.workspace.root -M MultiDimFit    \
@@ -70,7 +70,25 @@
 
 
  
+combine superCombination.Total.only2016signal.txt.pruned.txt.workspace.root       -M MaxLikelihoodFit   -n   superCombination.Total.only2016signal.txt.pruned.txt.workspace.root.MaxLikelihoodFit.root
+combine superCombination.Total.txt.pruned.txt.workspace.root                      -M MaxLikelihoodFit   -n   superCombination.Total.txt.pruned.txt.workspace.root.MaxLikelihoodFit.root
+
+python ggH/scripts/diffNuisances.py -a mlfitsuperCombination.Total.only2016signal.txt.pruned.txt.workspace.root.MaxLikelihoodFit.root.root -g plots.Total.only2016signal.root
+python ggH/scripts/diffNuisances.py -a mlfitsuperCombination.Total.txt.pruned.txt.workspace.root.MaxLikelihoodFit.root.root                -g plots.Total.root
  
+ 
+combine -M MaxLikelihoodFit ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt   --redefineSignalPOIs Topnorm0j --freezeNuisances=r,DYttnorm0j,WWnorm0j
+
+combine -M MaxLikelihoodFit ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt           --redefineSignalPOIs DYttnorm0j --freezeNuisances=r,Topnorm0j,WWnorm0j
+combine -M MaxLikelihoodFit ggH/Moriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt   --redefineSignalPOIs DYttnorm0j --freezeNuisances=r,Topnorm0j,WWnorm0j
+combine -M MaxLikelihoodFit DYtt.0jet.txt.pruned.txt                                                       --redefineSignalPOIs DYttnorm0j --freezeNuisances=r,Topnorm0j,WWnorm0j
+
+combineCards.py   of0j13DYtt=ggH/Moriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+                  ICHEP_of0j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+                 >   DYtt.0jet.txt.pruned.txt
+
+
+
  
 
 # 
