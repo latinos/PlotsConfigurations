@@ -163,8 +163,43 @@ Auto tests:
             
             
             
+            
+            
+            
+      
+      
+      
+      
+            
+    root -l higgsCombineLHScanHICHEP2016combinedLXBATCHNominal.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHNominal.root   \
+            higgsCombineLHScanHICHEP2016combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHTheoryFrozenPostFit.root  \
+            higgsCombineLHScanHICHEP2016combinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHExpNuisFrozenPostFit.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C
               
-              
+       
+    root -l higgsCombineLHScanHICHEP2015combinedLXBATCHNominal.root  \
+            higgsCombineLHScanDATAHICHEP2015combinedLXBATCHNominal.root   \
+            higgsCombineLHScanHICHEP2015combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2015combinedLXBATCHTheoryFrozenPostFit.root  \
+            higgsCombineLHScanHICHEP2015combinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2015combinedLXBATCHExpNuisFrozenPostFit.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C\(1\)
+            
+            
+    root -l higgsCombineLHScanHICHEPTotalcombinedLXBATCHNominal.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHNominal.root   \
+            higgsCombineLHScanHICHEPTotalcombinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHTheoryFrozenPostFit.root  \
+            higgsCombineLHScanHICHEPTotalcombinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHExpNuisFrozenPostFit.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C\(2\)
+          
+            
+            
+
 
           
           
