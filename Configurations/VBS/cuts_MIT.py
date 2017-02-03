@@ -2,12 +2,21 @@
 
 #cuts = {}
 
-VBSCut   = '&& mll>50 \
-            && metPfType1 > 40 \
+#VBSCut   = '&& (njet>=2) && (njet<=5) \
+VBSCut   = '&& (njet>=2) \
+            && (abs(std_vector_jet_eta[0])<4.7) && (abs(std_vector_jet_eta[1])<4.7) \
             && (detajj>2.5 && mjj>500) \
-            && (abs((std_vector_lepton_eta[0] - (jeteta1+jeteta2)/2)/detajj) < 0.75) \            
-            && (abs((std_vector_lepton_eta[1] - (jeteta1+jeteta2)/2)/detajj) < 0.75) \            
-           '
+            && metPfType1 >  20 \
+            && mll>50 \
+            && (abs((std_vector_lepton_eta[0] - (jeteta1+jeteta2)/2)/detajj) < 0.75) \
+            && (abs((std_vector_lepton_eta[1] - (jeteta1+jeteta2)/2)/detajj) < 0.75) '            
+
+#VBSCut   = '&& mll>50 \
+#           && metPfType1 > 20 \
+#           && (detajj>2.5 && mjj>500) \
+#           && (abs((std_vector_lepton_eta[0] - (jeteta1+jeteta2)/2)/detajj) < 0.75) \
+#           && (abs((std_vector_lepton_eta[1] - (jeteta1+jeteta2)/2)/detajj) < 0.75) '            
+#          
 
   
 supercut = 'mll>20  \
@@ -25,18 +34,32 @@ supercut = 'mll>20  \
             #&& (abs((std_vector_lepton_eta[0] - (jeteta1+jeteta2)/2)/detajj) < 0.5) \
             #&& metPfType1 > 20 \
 
-BVeto = ' && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < 0.875 ) \
-          && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < 0.875 ) \
-          && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < 0.875 ) \
-          && ( std_vector_jet_pt[3] < 20 || std_vector_jet_cmvav2[3] < 0.875 ) \
-          && ( std_vector_jet_pt[4] < 20 || std_vector_jet_cmvav2[4] < 0.875 ) \
-          && ( std_vector_jet_pt[5] < 20 || std_vector_jet_cmvav2[5] < 0.875 ) \
-          && ( std_vector_jet_pt[6] < 20 || std_vector_jet_cmvav2[6] < 0.875 ) \
-          && ( std_vector_jet_pt[7] < 20 || std_vector_jet_cmvav2[7] < 0.875 ) \
-          && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < 0.875 ) \
-          && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < 0.875 ) '
+BAlgo = 'cmvav2'
+#BWP   = '0.875'
+BWP   = '0.185'
 
-BTag  = ' && ( std_vector_jet_cmvav2[0] > 0.875 || std_vector_jet_cmvav2[1] > 0.875 ) '
+BVeto = ' && ( std_vector_jet_pt[0] < 20 || std_vector_jet_'+BAlgo+'[0] < '+BWP+' ) \
+          && ( std_vector_jet_pt[1] < 20 || std_vector_jet_'+BAlgo+'[1] < '+BWP+' ) \
+          && ( std_vector_jet_pt[2] < 20 || std_vector_jet_'+BAlgo+'[2] < '+BWP+' ) \
+          && ( std_vector_jet_pt[3] < 20 || std_vector_jet_'+BAlgo+'[3] < '+BWP+' ) \
+          && ( std_vector_jet_pt[4] < 20 || std_vector_jet_'+BAlgo+'[4] < '+BWP+' ) \
+          && ( std_vector_jet_pt[5] < 20 || std_vector_jet_'+BAlgo+'[5] < '+BWP+' ) \
+          && ( std_vector_jet_pt[6] < 20 || std_vector_jet_'+BAlgo+'[6] < '+BWP+' ) \
+          && ( std_vector_jet_pt[7] < 20 || std_vector_jet_'+BAlgo+'[7] < '+BWP+' ) \
+          && ( std_vector_jet_pt[8] < 20 || std_vector_jet_'+BAlgo+'[8] < '+BWP+' ) \
+          && ( std_vector_jet_pt[9] < 20 || std_vector_jet_'+BAlgo+'[9] < '+BWP+' ) '
+
+Btag  = ' && (    ( std_vector_jet_pt[0] > 20 && std_vector_jet_'+BAlgo+'[0] > '+BWP+' ) \
+               || ( std_vector_jet_pt[1] > 20 && std_vector_jet_'+BAlgo+'[1] > '+BWP+' ) \
+               || ( std_vector_jet_pt[2] > 20 && std_vector_jet_'+BAlgo+'[2] > '+BWP+' ) \
+               || ( std_vector_jet_pt[3] > 20 && std_vector_jet_'+BAlgo+'[3] > '+BWP+' ) \
+               || ( std_vector_jet_pt[4] > 20 && std_vector_jet_'+BAlgo+'[4] > '+BWP+' ) \
+               || ( std_vector_jet_pt[5] > 20 && std_vector_jet_'+BAlgo+'[5] > '+BWP+' ) \
+               || ( std_vector_jet_pt[6] > 20 && std_vector_jet_'+BAlgo+'[6] > '+BWP+' ) \
+               || ( std_vector_jet_pt[7] > 20 && std_vector_jet_'+BAlgo+'[7] > '+BWP+' ) \
+               || ( std_vector_jet_pt[8] > 20 && std_vector_jet_'+BAlgo+'[8] > '+BWP+' ) \
+               || ( std_vector_jet_pt[9] > 20 && std_vector_jet_'+BAlgo+'[9] > '+BWP+' ) \
+             ) '
 
 #
 # Signal Regions
@@ -54,6 +77,17 @@ cuts['wwjj_13TeV_eu_mm']  = '((std_vector_lepton_flavour[0] == -11 && std_vector
 
 cuts['wwjj_13TeV_uu_pp']  = '(std_vector_lepton_flavour[0] ==  13 && std_vector_lepton_flavour[1] ==  13)' + BVeto
 cuts['wwjj_13TeV_uu_mm']  = '(std_vector_lepton_flavour[0] == -13 && std_vector_lepton_flavour[1] == -13)' + BVeto
+
+#
+# No ++,-- split
+#
+
+cuts['wwjj_13TeV_ee']  = '(std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]) == 11*11 \
+                             && metPfType1 > 40 \
+                             && abs(mll - 91) > 15' + BVeto
+
+cuts['wwjj_13TeV_eu']  = '(std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]) == 11*13 ' + BVeto
+cuts['wwjj_13TeV_uu']  = '(std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]) == 13*13 ' + BVeto
 
 
 #
