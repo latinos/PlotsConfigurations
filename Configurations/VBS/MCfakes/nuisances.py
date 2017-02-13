@@ -176,7 +176,9 @@ nuisances['fake_syst']  = {
                'name'  : 'fake_syst', 
                'type'  : 'lnN',
                'samples'  : {
-                   'Fake' : '1.30',
+                   #'Fake' : '1.30',
+                   'lepTT': '1.30',
+                   'semilepTT': '1.30',
                    },
 }
  
@@ -199,7 +201,11 @@ nuisances['fake_ele_stat']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'Fake'      : ['fakeW2l2jstatElUp/fakeW2l2j',
+                   #'Fake'      : ['fakeW2l2jstatElUp/fakeW2l2j',
+                                  #'fakeW2l2jstatElDown/fakeW2l2j'],
+                   'lepTT'      : ['fakeW2l2jstatElUp/fakeW2l2j',
+                                  'fakeW2l2jstatElDown/fakeW2l2j'],
+                   'semilepTT'      : ['fakeW2l2jstatElUp/fakeW2l2j',
                                   'fakeW2l2jstatElDown/fakeW2l2j'],
                 }
 }
@@ -221,7 +227,11 @@ nuisances['fake_mu_stat']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'Fake'      : ['fakeW2l2jstatMuUp/fakeW2l2j',
+                   #'Fake'      : ['fakeW2l2jstatMuUp/fakeW2l2j',
+                                  #'fakeW2l2jstatMuDown/fakeW2l2j'],
+                   'lepTT'      : ['fakeW2l2jstatMuUp/fakeW2l2j',
+                                  'fakeW2l2jstatMuDown/fakeW2l2j'],
+                   'semilepTT'      : ['fakeW2l2jstatMuUp/fakeW2l2j',
                                   'fakeW2l2jstatMuDown/fakeW2l2j'],
                 }
 }
@@ -505,9 +515,12 @@ nuisances['stat']  = {
                          ##'keepNormalization' : '1'  # default = 0 -> 0=don't keep normalization
                          #},
                     
-                   #'lep_TT': {
-                         #'typeStat' : 'bbb',
-                         #},
+                   'lepTT': {
+                         'typeStat' : 'bbb',
+                         },
+                   'semilepTT': {
+                         'typeStat' : 'bbb',
+                         },
                     
                    'Wg': {
                          'typeStat' : 'bbb',
@@ -525,9 +538,9 @@ nuisances['stat']  = {
                          'typeStat' : 'bbb',
                          },
 
-                   'Fake': {  # needed?
-                         'typeStat' : 'bbb',
-                         },
+                   #'Fake': {  # needed?
+                         #'typeStat' : 'bbb',
+                         #},
 
                  },
                'type'  : 'shape'

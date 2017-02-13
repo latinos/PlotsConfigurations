@@ -10,15 +10,20 @@
               #}
 
 
-#structure['lep_TT']  = {  
-                  #'isSignal' : 0,
-                  #'isData'   : 0 
-              #}
-
-structure['Fake']  = {  
+structure['lepTT']  = {  
                   'isSignal' : 0,
                   'isData'   : 0 
               }
+
+structure['semilepTT']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0 
+              }
+
+#structure['Fake']  = {  
+                  #'isSignal' : 0,
+                  #'isData'   : 0 
+              #}
 
 structure['Wg'] = {   
                   'isSignal' : 0,

@@ -15,18 +15,25 @@
                   #'samples'  : ['DY']
               #}
 
-#groupPlot['lep_TT']  = {  
-                  #'nameHR' : 'leptonic t#bar{t}',
+groupPlot['MC_nonPrompt']  = {  
+                  'nameHR' : 't#bar{t}',
+                  'isSignal' : 0,
+                  'color': 400,   # kYellow
+                  'samples'  : ['lepTT','semilepTT']
+              }
+
+#groupPlot['Fake']  = {  
+                  #'nameHR' : 'Non-prompt',
                   #'isSignal' : 0,
-                  #'color': 400,   # kYellow
-                  #'samples'  : ['lep_TT']
+                  #'color': 921,    # kGray + 1
+                  #'samples'  : ['Fake']
               #}
 
-groupPlot['Fake']  = {  
-                  'nameHR' : 'Non-prompt',
-                  'isSignal' : 0,
-                  'color': 921,    # kGray + 1
-                  'samples'  : ['Fake']
+groupPlot['WpWpJJ']  = {  
+                  'nameHR' : 'WpWpJJ',
+                  'isSignal' : 1,
+                  'color': 851, # kAzure -9 
+                  'samples'  : ['WpWpJJ']
               }
 
 groupPlot['WpWpJJ_QCD']  = {  
@@ -58,12 +65,6 @@ groupPlot['Wg']  = {
               #}
 
 
-groupPlot['WpWpJJ']  = {
-                  'nameHR' : 'WpWpJJ',
-                  'isSignal' : 1,
-                  'color': 851, # kAzure -9 
-                  'samples'  : ['WpWpJJ']
-              }
 
 
 
@@ -79,20 +80,28 @@ groupPlot['WpWpJJ']  = {
                   #'scale'    : 1.0
               #}
                
-plot['Fake']  = {  
-                  'color': 921,    # kGray + 1
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0                  
-              }
-
-#plot['lep_TT'] = {   
-                  #'nameHR' : 'leptonic t#bar{t}',
-                  #'color': 400,   # kYellow
+#plot['Fake']  = {  
+                  #'color': 921,    # kGray + 1
                   #'isSignal' : 0,
-                  #'isData'   : 0, 
-                  #'scale'    : 1.0,
-                  #}
+                  #'isData'   : 0,
+                  #'scale'    : 1.0                  
+              #}
+
+plot['lepTT'] = {   
+                  'nameHR' : 'leptonic t#bar{t}',
+                  'color': 400,   # kYellow
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0,
+                  }
+
+plot['semilepTT'] = {   
+                  'nameHR' : 'semileptonic t#bar{t}',
+                  'color': 400,   # kYellow
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0,
+                  }
 
 plot['WpWpJJ']  = {  
                   'color': 851,    # kGreen+2
@@ -140,7 +149,8 @@ plot['DATA']  = {
 #legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
 #legend['lumi'] = 'L = 4.3/fb' # 2.318 fb-1
 #legend['lumi'] = 'L = 6.3/fb'
-legend['lumi'] = 'L = 27.9/fb'
+#legend['lumi'] = 'L = 27.9/fb'
+legend['lumi'] = 'L = 36.7/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

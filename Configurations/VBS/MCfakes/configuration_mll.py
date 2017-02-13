@@ -1,7 +1,10 @@
 # example of configuration file
 
-tag = 'ggH'
-#tag = 'ggHTESTPARTIALamassiro'
+# Samples :
+# dcap://maite.iihe.ac.be//pnfs/iihe/cms/store/user/xjanssen/HWW2015/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__vbsSel/
+
+# mkShapes.py --pycfg=configuration_batch.py --inputDir=dcap://maite.iihe.ac.be//pnfs/iihe/cms/store/user/xjanssen/HWW2015/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__vbsSel/ --doHadd=True --batchSplit=Cuts,Samples
+tag = 'VBS_mll'
 
 
 # used by mkShape to define output directory for root files
@@ -12,7 +15,7 @@ outputDir = 'rootFile'
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
+cutsFile = 'cuts_mll.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 
@@ -20,20 +23,21 @@ samplesFile = 'samples.py'
 # file with list of samples
 plotFile = 'plot.py' 
 
+# options of the plots
+#plotNormalizedDistributions = True   # default is False
+
 
 
 # luminosity to normalize to (in 1/fb)
-# lumi = 2.264
-#lumi = 2.318
-#lumi = 0.8
-#lumi = 2.6
-#lumi = 4.3
 #lumi = 6.264
-lumi = 12.8890
+#lumi = 4.3
+# lumi = 5
+#lumi = 27.915
+lumi = 36.7  
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotGGH'
+outputDirPlots = 'plotVBS'
 
 
 # used by mkDatacards to define output directory for datacards

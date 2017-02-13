@@ -109,8 +109,113 @@ Auto tests:
            ../higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCH.POINTS.root   \
             scripts/drawNLLObs.C
         
-         
 
+    root -l higgsCombineLHScanHICHEPTotalcombined.MultiDimFit.mH125.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombined.MultiDimFit.mH125.root   \
+            higgsCombineLHScanHICHEPTotalcombinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanHICHEPTotalcombinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHExpNuisFrozen.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C
+    
+    root -l higgsCombineLHScanHICHEP2016combined.MultiDimFit.mH125.root  \
+            higgsCombineLHScanDATAHICHEP2016combined.MultiDimFit.mH125.root   \
+            higgsCombineLHScanHICHEP2016combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanHICHEP2016combinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHExpNuisFrozen.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C
+       
+    root -l higgsCombineLHScanHICHEP2015combined.MultiDimFit.mH125.root  \
+            higgsCombineLHScanDATAHICHEP2015combined.MultiDimFit.mH125.root   \
+            higgsCombineLHScanHICHEP2015combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2015combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanHICHEP2015combinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2015combinedLXBATCHExpNuisFrozen.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C
+            
+            
+            
+              
+    root -l higgsCombineLHScanHICHEPTotalcombinedLXBATCHNominal.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHNominal.root   \
+            higgsCombineLHScanHICHEPTotalcombinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanHICHEPTotalcombinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHExpNuisFrozen.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C
+    
+    root -l higgsCombineLHScanHICHEP2016combinedLXBATCHNominal.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHNominal.root   \
+            higgsCombineLHScanHICHEP2016combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanHICHEP2016combinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHExpNuisFrozen.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C
+       
+    root -l higgsCombineLHScanHICHEP2015combinedLXBATCHNominal.root  \
+            higgsCombineLHScanDATAHICHEP2015combinedLXBATCHNominal.root   \
+            higgsCombineLHScanHICHEP2015combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2015combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanHICHEP2015combinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2015combinedLXBATCHExpNuisFrozen.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C
+            
+            
+            
+            
+            
+            
+      
+      
+      
+      
+            
+       
+    root -l higgsCombineLHScanHICHEP2015combinedLXBATCHNominal.root  \
+            higgsCombineLHScanDATAHICHEP2015combinedLXBATCHNominal.root   \
+            higgsCombineLHScanHICHEP2015combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2015combinedLXBATCHTheoryFrozenPostFit.root  \
+            higgsCombineLHScanHICHEP2015combinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2015combinedLXBATCHExpNuisFrozenPostFit.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C\(1\)
+    
+    
+    root -l higgsCombineLHScanHICHEP2016combinedLXBATCHNominal.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHNominal.root   \
+            higgsCombineLHScanHICHEP2016combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHTheoryFrozenPostFit.root  \
+            higgsCombineLHScanHICHEP2016combinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHExpNuisFrozenPostFit.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C
+              
+            
+    root -l higgsCombineLHScanHICHEPTotalcombinedLXBATCHNominal.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHNominal.root   \
+            higgsCombineLHScanHICHEPTotalcombinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHTheoryFrozenPostFit.root  \
+            higgsCombineLHScanHICHEPTotalcombinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHExpNuisFrozenPostFit.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C\(2\)
+          
+            
+            
+
+
+     root -l higgsCombineLHScanDATAHICHEP2015combinedLXBATCHNominal.root  \
+           higgsCombineLHScanDATAHICHEPTotal2015sigOnlycombinedLXBATCHNominal.root   \
+           ggH/scripts/drawNLLObs.C
+      
+     root -l higgsCombineLHScanDATAHICHEP2016combinedLXBATCHNominal.root  \
+           higgsCombineLHScanDATAHICHEPTotal2016sigOnlycombinedLXBATCHNominal.root   \
+           ggH/scripts/drawNLLObs.C
+      
+          
+        
+    sh ggH/scripts/doLikelihoodScans.sh 
+        
+        
+        
     2015+2016 WH3l
     
     root -l ../higgsCombineLHScanWH3lLXBATCH.POINTS.root  \
@@ -204,10 +309,32 @@ Auto tests:
         scripts/Draw2D.cxx
     
     
+    r99t ../higgsCombineLH2DICHEP2016combinedKVKFlxbatch.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF}\",\"muGGH\",\"muVBF\"\)
+    r99t ../higgsCombineLH2DICHEP2016combinedKVKFDATAlxbatch.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF}\",\"muGGH\",\"muVBF\"\)
+    r99t ../higgsCombineLH2DICHEPTotalcombinedKVKFlxbatch.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF}\",\"muGGH\",\"muVBF\"\)
+    r99t ../higgsCombineLH2DICHEPTotalcombinedKVKFDATAlxbatch.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF}\",\"muGGH\",\"muVBF\"\)
+ 
     
+    
+    
+    
+    r99t ../higgsCombineLH2DICHEP2016combinedKVKFlxbatch.root \
+        scripts/Draw2D.cxx
+    r99t ../higgsCombineLH2DICHEP2016combinedDATAKVKFlxbatch.root \
+        scripts/Draw2D.cxx
 
-    
-    
+
+
+
+
+
+
+
+
     
     cat  ../result.MaxLikelihoodFit.superCombination.2016.txt.pruned.txt
     cat  ../result.Significance.superCombination.2016.txt.pruned.txt

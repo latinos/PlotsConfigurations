@@ -694,7 +694,17 @@ combineCards.py   me1j13=ggH/Moriond/datacards/hww2l2v_13TeV_me_1j/mllVSmth/data
 
 
 # combine -M MultiDimFit superCombination.2015.txt.pruned.txt -m 125 --algo=grid --points 100 --setPhysicsModelParameterRanges r=-1,3 -n "LHScanDATAHICHEP2015combined"           >   /tmp/amassiro/result.data.LikelihoodScan.ICHEP2016.superCombination.2015.txt.pruned.txt
+  
+text2workspace.py superCombination.2015.txt.pruned.txt   -o  superCombination.2015.txt.pruned.txt.root  
+#      superCombination.2015.txt.pruned.txt.workspace.root
+     
+combineTool.py -d superCombination.2015.txt.pruned.txt.root -M MultiDimFit    \
+               --algo=grid  --setPhysicsModelParameterRanges  r=0,2.5    -n "LHScanDATAHICHEP2015combinedLXBATCH"   \
+               --points 100    --job-mode lxbatch --task-name lxbatch-superCombination2015 --sub-opts='-q 1nd' --split-points 1 
 
+   
+   
+   
 # 
 # 
 # 
@@ -762,11 +772,229 @@ combineTool.py -d superCombination.2016.txt.pruned.txt.workspace.root -M MultiDi
                --algo=grid  --setPhysicsModelParameterRanges  r=0,2.5    -n "LHScanDATAHICHEP2016combinedLXBATCH"   \
                --points 100    --job-mode lxbatch --task-name lxbatch-superCombination2016 --sub-opts='-q 1nd' --split-points 1 
 
+               
+                              
+               
 
 # hadd higgsCombineLHScanDATAHICHEP2016combinedLXBATCH.POINTS.root    higgsCombineLHScanDATAHICHEP2016combinedLXBATCH.POINTS.*.MultiDimFit.mH120.root
 # hadd higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCH.POINTS.root   higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCH.POINTS.*.MultiDimFit.mH120.root
                
                
+
+               
+
+combineTool.py -d superCombination.2016.txt.pruned.txt.workspace.root -M MultiDimFit    \
+               --algo=grid  --setPhysicsModelParameterRanges  r=0,2.5    -n "LHScanDATAHICHEP2016combinedLXBATCHTheoryFrozen"   \
+               --points 100    --job-mode lxbatch --task-name lxbatch-superCombination2016-TheoryFrozen --sub-opts='-q 1nd' --split-points 1  \
+               --freezeNuisances  \
+               CMS_tttwTh,\
+PS_ICHEP,\
+PS_wh3l,\
+QCDscale_CRSR_accept_dytt,\
+QCDscale_CRSR_accept_top,\
+QCDscale_CRSR_accept_wz,\
+QCDscale_WH,\
+QCDscale_WWewk,\
+QCDscale_ZH,\
+QCDscale_ggH,\
+QCDscale_ggH0j,\
+QCDscale_ggH1j,\
+QCDscale_ggH2j,\
+QCDscale_ggH2jvbf,\
+QCDscale_ggH2jvh,\
+QCDscale_ggZH,\
+QCDscale_gg_accept,\
+QCDscale_qqH,\
+QCDscale_qqbar_accept,\
+UE_ICHEP,\
+UE_wh3l,\
+pdf_gg,\
+pdf_gg_accept,\
+pdf_qqbar,\
+pdf_qqbar_accept,\
+CMS_PS,\
+CMS_UE,\
+CMS_WWqscale0j,\
+CMS_WWqscale1j,\
+CMS_WWqscale2j,\
+CMS_WWqscale2jvbf,\
+CMS_WWqscale2jvh,\
+CMS_WWresum0j,\
+CMS_WWresum1j,\
+CMS_WWresum2j,\
+CMS_WWresum2jvbf,\
+CMS_WWresum2jvh
+
+
+
+
+
+
+combineTool.py -d superCombination.2016.txt.pruned.txt.workspace.root -M MultiDimFit    \
+               --algo=grid    -t -1 --expectSignal 1   --setPhysicsModelParameterRanges  r=0,2.5    -n "LHScanHICHEP2016combinedLXBATCHTheoryFrozen"   \
+               --points 100    --job-mode lxbatch --task-name lxbatch-MC-superCombination2016-TheoryFrozen --sub-opts='-q 1nd' --split-points 1  \
+               --freezeNuisances  \
+               CMS_tttwTh,\
+PS_ICHEP,\
+PS_wh3l,\
+QCDscale_CRSR_accept_dytt,\
+QCDscale_CRSR_accept_top,\
+QCDscale_CRSR_accept_wz,\
+QCDscale_WH,\
+QCDscale_WWewk,\
+QCDscale_ZH,\
+QCDscale_ggH,\
+QCDscale_ggH0j,\
+QCDscale_ggH1j,\
+QCDscale_ggH2j,\
+QCDscale_ggH2jvbf,\
+QCDscale_ggH2jvh,\
+QCDscale_ggZH,\
+QCDscale_gg_accept,\
+QCDscale_qqH,\
+QCDscale_qqbar_accept,\
+UE_ICHEP,\
+UE_wh3l,\
+pdf_gg,\
+pdf_gg_accept,\
+pdf_qqbar,\
+pdf_qqbar_accept,\
+CMS_PS,\
+CMS_UE,\
+CMS_WWqscale0j,\
+CMS_WWqscale1j,\
+CMS_WWqscale2j,\
+CMS_WWqscale2jvbf,\
+CMS_WWqscale2jvh,\
+CMS_WWresum0j,\
+CMS_WWresum1j,\
+CMS_WWresum2j,\
+CMS_WWresum2jvbf,\
+CMS_WWresum2jvh
+
+
+
+hadd higgsCombineLHScanDATAHICHEP2016combinedLXBATCHTheoryFrozen.root     higgsCombineLHScanDATAHICHEP2016combinedLXBATCHTheoryFrozen.POINTS.*.MultiDimFit.mH120.root
+hadd higgsCombineLHScanHICHEP2016combinedLXBATCHTheoryFrozen.root         higgsCombineLHScanHICHEP2016combinedLXBATCHTheoryFrozen.POINTS.*.MultiDimFit.mH120.root
+
+
+
+               
+
+###############################               
+               
+
+combineTool.py -d superCombination.Total.txt.pruned.txt.workspace.root -M MultiDimFit    \
+               --algo=grid  --setPhysicsModelParameterRanges  r=0,2.5    -n "LHScanDATAHICHEPTotalcombinedLXBATCHTheoryFrozen"   \
+               --points 100    --job-mode lxbatch --task-name lxbatch-superCombinationTotal-TheoryFrozen --sub-opts='-q 1nd' --split-points 1  \
+               --freezeNuisances  \
+               CMS_tttwTh,\
+PS_ICHEP,\
+PS_wh3l,\
+QCDscale_CRSR_accept_dytt,\
+QCDscale_CRSR_accept_top,\
+QCDscale_CRSR_accept_wz,\
+QCDscale_WH,\
+QCDscale_WWewk,\
+QCDscale_ZH,\
+QCDscale_ggH,\
+QCDscale_ggH0j,\
+QCDscale_ggH1j,\
+QCDscale_ggH2j,\
+QCDscale_ggH2jvbf,\
+QCDscale_ggH2jvh,\
+QCDscale_ggZH,\
+QCDscale_gg_accept,\
+QCDscale_qqH,\
+QCDscale_qqbar_accept,\
+UE_ICHEP,\
+UE_wh3l,\
+pdf_gg,\
+pdf_gg_accept,\
+pdf_qqbar,\
+pdf_qqbar_accept,\
+CMS_PS,\
+CMS_UE,\
+CMS_WWqscale0j,\
+CMS_WWqscale1j,\
+CMS_WWqscale2j,\
+CMS_WWqscale2jvbf,\
+CMS_WWqscale2jvh,\
+CMS_WWresum0j,\
+CMS_WWresum1j,\
+CMS_WWresum2j,\
+CMS_WWresum2jvbf,\
+CMS_WWresum2jvh
+
+    
+
+
+combineTool.py -d superCombination.Total.txt.pruned.txt.workspace.root -M MultiDimFit    \
+               --algo=grid    -t -1 --expectSignal 1    --setPhysicsModelParameterRanges  r=0,2.5    -n "LHScanHICHEPTotalcombinedLXBATCHTheoryFrozen"   \
+               --points 100    --job-mode lxbatch --task-name lxbatch-MC-superCombinationTotal-TheoryFrozen --sub-opts='-q 1nd' --split-points 1  \
+               --freezeNuisances  \
+               CMS_tttwTh,\
+PS_ICHEP,\
+PS_wh3l,\
+QCDscale_CRSR_accept_dytt,\
+QCDscale_CRSR_accept_top,\
+QCDscale_CRSR_accept_wz,\
+QCDscale_WH,\
+QCDscale_WWewk,\
+QCDscale_ZH,\
+QCDscale_ggH,\
+QCDscale_ggH0j,\
+QCDscale_ggH1j,\
+QCDscale_ggH2j,\
+QCDscale_ggH2jvbf,\
+QCDscale_ggH2jvh,\
+QCDscale_ggZH,\
+QCDscale_gg_accept,\
+QCDscale_qqH,\
+QCDscale_qqbar_accept,\
+UE_ICHEP,\
+UE_wh3l,\
+pdf_gg,\
+pdf_gg_accept,\
+pdf_qqbar,\
+pdf_qqbar_accept,\
+CMS_PS,\
+CMS_UE,\
+CMS_WWqscale0j,\
+CMS_WWqscale1j,\
+CMS_WWqscale2j,\
+CMS_WWqscale2jvbf,\
+CMS_WWqscale2jvh,\
+CMS_WWresum0j,\
+CMS_WWresum1j,\
+CMS_WWresum2j,\
+CMS_WWresum2jvbf,\
+CMS_WWresum2jvh
+
+hadd higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHTheoryFrozen.root     higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHTheoryFrozen.POINTS.*.MultiDimFit.mH120.root
+hadd higgsCombineLHScanHICHEPTotalcombinedLXBATCHTheoryFrozen.root         higgsCombineLHScanHICHEPTotalcombinedLXBATCHTheoryFrozen.POINTS.*.MultiDimFit.mH120.root
+
+
+
+#    ls -alrth higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHTheoryFrozen.POINTS.*.MultiDimFit.mH120.root  | grep -v 6.6K | grep -v 6.7K | awk '{print "rm "$9}' | /bin/sh
+#     ls -alrth higgsCombineLHScanHICHEPTotalcombinedLXBATCHTheoryFrozen.POINTS.*.MultiDimFit.mH120.root  | grep -v 6.6K | grep -v 6.7K | awk '{print "rm "$9}' | /bin/sh
+       
+     
+  
+  
+
+  
+  
+  
+ 
+  
+  
+  
+  
+  
+  
+  
+  
 
 #                
 # text2workspace.py Combined.wh3l.pruned.txt   -o     Combined.wh3l.pruned.txt.workspace.root

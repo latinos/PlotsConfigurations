@@ -5,17 +5,45 @@
 #'fold' : # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
    
 #variables['events']  = {   'name': '1',      
-#                        'range' : (1,0,2),  
-#                        'xaxis' : 'events', 
-#                         'fold' : 3
-#                        }
+                       #'range' : (1,0,2),  
+                       #'xaxis' : 'events', 
+                        #'fold' : 3
+                       #}
 
-variables['mjj']  = {  'name': 'mjj',
+#bin 0: 500,700,1100,1600,2000
+#bin 1: 500,800,1100,1500,2000
+#bin 2: 500,800,1100,1600,2000
+#bin 3: 500,800,1200,1700,2100
+
+variables['mjj_Bin0']  = {  'name': 'mjj',
                        'range': ([500,700,1100,1600,2000],),  
                        #'range' : (4,500,2000), 
                        'xaxis': 'mjj [GeV]',
                        'fold': 3
                        }
+
+variables['mjj_Bin1']  = {  'name': 'mjj',
+                       'range': ([500,800,1100,1500,2000],),
+                       #'range' : (4,500,2000), 
+                       'xaxis': 'mjj [GeV]',
+                       'fold': 3
+                       }
+
+variables['mjj_Bin2']  = {  'name': 'mjj',
+                       'range': ([500,800,1100,1600,2000],),
+                       #'range' : (4,500,2000), 
+                       'xaxis': 'mjj [GeV]',
+                       'fold': 3
+                       }
+
+variables['mjj_Bin3']  = {  'name': 'mjj',
+                       'range': ([500,800,1200,1700,2100],),
+                       #'range' : (4,500,2000), 
+                       'xaxis': 'mjj [GeV]',
+                       'fold': 3
+                       }
+
+
 
 #variables['mll']  = {   'name': 'mll',            #   variable name
 #                        'range' : ([20,100,200,300,500],),    #   variable range
