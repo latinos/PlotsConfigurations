@@ -7,10 +7,10 @@ outputDir = 'rootFile'
 
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = 'variables_DYEST.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
+cutsFile = 'cuts_DYEST.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 
@@ -39,5 +39,5 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+#nuisancesFile = 'nuisances.py'
 
