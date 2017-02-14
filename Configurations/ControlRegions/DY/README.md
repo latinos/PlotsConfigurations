@@ -48,6 +48,9 @@ Steps to get datacards and plots:
     
     mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_DY.root
     
+    mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_DYtest.root
+    
+    
     mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_DY.root
 
     

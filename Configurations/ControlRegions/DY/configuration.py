@@ -1,6 +1,7 @@
 # example of configuration file
 
 tag = 'DY'
+#tag = 'DYtest'
 
 
 # used by mkShape to define output directory for root files

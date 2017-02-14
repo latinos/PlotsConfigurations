@@ -47,6 +47,12 @@ variables['ptll']  =   {   'name': 'ptll',
                            'fold' : 3
                         }
 
+variables['ptllhigh']  =   {   'name': 'ptll',     
+                           'range' : (200,0,600),   
+                           'xaxis' : 'p_{T}^{ll} [GeV]',
+                           'fold' : 3
+                        }
+
 #variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]*(1 - (abs(std_vector_lepton_flavour[0])==11)*0.01*(dataset != 0))',     
                         #'range' : (40,0,100),   
                         #'xaxis' : 'p_{T} 1st lep',
