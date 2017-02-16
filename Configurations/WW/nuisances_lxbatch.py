@@ -463,9 +463,6 @@ nuisances['WWresumIncl']  = {
     'samples'  : {
         'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
         },
-    'cuts'  : [
-        'ww_Incl_em',
-        ]
     }
 
 
@@ -524,9 +521,6 @@ nuisances['WWqscaleIncl']  = {
     'samples'  : {
         'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
         },
-    'cuts'  : [
-        'ww_Incl_em',
-        ]
     }
 
 nuisances['WWqscale0j']  = {
