@@ -2,8 +2,8 @@
 #RAndKff  = {}
 
 RAndKff['DYmva0p8'] = {
-                      'RFile'   : '' ,
-                      'KffFile' : '' ,             
+                      'RFile'   : 'rootFile/plots_BG_DY_NOHR_MVA060.root' ,
+                      'KffFile' : 'rootFile/plots_BG_DY_NOHR_MVA060.root' ,             
                      }
  
 
