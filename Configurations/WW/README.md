@@ -16,28 +16,61 @@ Some useful aliases:
 
 Steps to get datacards and plots:
 
-      source /afs/cern.ch/project/eos/installation/user/etc/setup.sh
+      cd ~/work/CMSSW_8_0_5/src
+
+      cmsenv
+
+      cd -  
 
       cd /tmp/ntrevisa/    
 
-      eosmount eos
+      eosmount eosBig
+
+      alias eosusermount='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine.user/bin/eos.select -b fuse mount'
+
+      eosusermount eos										      
 
       cd -
 
-      mkShapes.py      --pycfg=configuration.py  --inputDir=/tmp/ntrevisa/eos/user/r/rebeca/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel --doThread=True
+      mkShapes.py      --pycfg=configuration.py  --inputDir=/tmp/ntrevisa/eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel --doThread=True
     
       mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_WW.root
 
 
-      mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_WW.root
+      mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_WW.root  --minLogC=0.0001 --minLogCratio=0.0001 --maxLogC=1000 --maxLogCratio=1000  --showIntegralLegend=1
     
+
+
+Using lxbatch:
+
+    mkBatch.py --clean
+
+    mkShapes.py --pycfg=configuration_lxbatch.py  --inputDir=root://eosuser.cern.ch//eos/user/r/rodrigo/HWW2016/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/ \
+            --doBatch=True --batchSplit=Cuts,Samples   \
+            --batchQueue=8nh
+
+    mkBatch.py --status
+
+    mkShapes.py --pycfg=configuration_lxbatch.py  --inputDir=root://eosuser.cern.ch//eos/user/r/rodrigo/HWW2016/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/   \
+            --doHadd=True --batchSplit=Cuts,Samples
+
+      mkDatacards.py   --pycfg=configuration_lxbatch.py  --inputFile=rootFile/plots_WW.root
 
 Prune all datacards:
 
       cd ../../../ModificationDatacards/
 
-      ls /afs/cern.ch/user/n/ntrevisa/work/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/WW/datacards/*/*/*.txt  | grep -v "pruned"  |   \
+      ls /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WW/datacards/*/*/*.txt  | grep -v "pruned"  |\
       awk '{print "python PruneDatacard.py  -d "$1" -o "$1".pruned.txt    -i examples/input_nuisances_to_prune.py"}' | /bin/sh
+
+      cd -
+
+
+Configure Combine
+
+      cd ~/work/CMSSW_7_4_7/src/HiggsAnalysis/CombinedLimit/
+
+      cmsenv
 
       cd -
 
