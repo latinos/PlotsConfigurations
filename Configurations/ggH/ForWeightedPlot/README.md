@@ -5,3 +5,15 @@ Master code:
 
     mkCombinedPlot.py
     
+How to use:
+
+    mkCombinedPlot.py        --pycfg=configuration_lxbatch.py  --inputCutsList=cuts_to_merge.py   --outputDirPlots=plots/   --variable=mllVSmth
+    
+    
+    
+    
+    
+
+    
+    
+    
