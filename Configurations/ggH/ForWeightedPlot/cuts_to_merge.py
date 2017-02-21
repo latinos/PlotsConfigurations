@@ -42,9 +42,47 @@ cutsToMerge['hww2l2v_13TeV_em_pm_1j']  = {
 
 
 
-cutsToMerge['hww2l2v_13TeV_of2j']  = { 
-                   'rootFile': '../../ggH2j/plotggH2j/cratio_weight_X_hww2l2v_13TeV_of2j_mllVSmth.root',
+
+cutsToMerge['hww2l2v_13TeV_me_0j']  = { 
+                   'rootFile': '../Moriond/plotGGH/cratio_weight_X_hww2l2v_13TeV_me_0j_mllVSmth.root',
                     }
+
+cutsToMerge['hww2l2v_13TeV_em_0j']  = { 
+                   'rootFile': '../Moriond/plotGGH/cratio_weight_X_hww2l2v_13TeV_em_0j_mllVSmth.root',
+                    }
+
+
+
+
+cutsToMerge['hww2l2v_13TeV_me_1j']  = { 
+                   'rootFile': '../Moriond/plotGGH/cratio_weight_X_hww2l2v_13TeV_me_1j_mllVSmth.root',
+                    }
+
+cutsToMerge['hww2l2v_13TeV_em_1j']  = { 
+                   'rootFile': '../Moriond/plotGGH/cratio_weight_X_hww2l2v_13TeV_em_1j_mllVSmth.root',
+                    }
+
+
+
+
+
+
+
+#cutsToMerge['hww2l2v_13TeV_of2j_2016']  = { 
+                   #'rootFile': '../../ggH2j/plotggH2j/cratio_weight_X_hww2l2v_13TeV_of2j_mllVSmth.root',
+                   #'cutUsed' : 'hww2l2v_13TeV_of2j'
+                    #}
+
+
+
+
+#cutsToMerge['hww2l2v_13TeV_of2j_2015']  = { 
+                   #'rootFile': '../../ggH2j/Moriond/plotggH2j/cratio_weight_X_hww2l2v_13TeV_of2j_mllVSmth.root',
+                   #'cutUsed' : 'hww2l2v_13TeV_of2j'
+                    #}
+
+
+
 
 
 #
