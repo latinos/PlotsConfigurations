@@ -184,9 +184,9 @@ variables['mllVSmth'] = {   'name': 'mll:mth',            #   variable name
                         'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
                         'fold' : 3 , 
                         # do weighted plot too
-                        #'doWeight' : 1,
-                        #'binX'     : 7,
-                        #'binY'     : 5
+                        'doWeight' : 1,
+                        'binX'     : 7,
+                        'binY'     : 5
                         #
                         }
 

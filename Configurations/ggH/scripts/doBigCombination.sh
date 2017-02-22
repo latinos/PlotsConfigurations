@@ -684,11 +684,21 @@ combineCards.py   me1j13=ggH/Moriond/datacards/hww2l2v_13TeV_me_1j/mllVSmth/data
                   
  
  
+python ggH/scripts/diffNuisances.py -a mlfitsuperCombination.Total.txt.pruned.txt.root   -g plots.root  -o total.diffnuis.root   -i ggH/scripts/listNuisances.json
+
+python ggH/scripts/diffNuisances.py -a mlfitsuperCombination.Total.txt.pruned.txt.root   -g plots.total.root  -o total.diffnuis.root
+python ggH/scripts/diffNuisances.py -a mlfitsuperCombination.2016.txt.pruned.txt.root    -g plots.2016.root   -o 2016.diffnuis.root
+python ggH/scripts/diffNuisances.py -a mlfitsuperCombination.2015.txt.pruned.txt.root    -g plots.2015.root   -o 2015.diffnuis.root
+
+
+
+ 
+ 
  
  
 # 2015 combination
 # 
-# combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      superCombination.2015.txt.pruned.txt    >   result.data.MaxLikelihoodFit.superCombination.2015.txt.pruned.txt
+# combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      superCombination.2015.txt.pruned.txt   -n  superCombination.2015.txt.pruned.txt    >   result.data.MaxLikelihoodFit.superCombination.2015.txt.pruned.txt
 
 # combine -M ProfileLikelihood --significance                           superCombination.2015.txt.pruned.txt    >   result.data.Significance.superCombination.2015.txt.pruned.txt
 
@@ -712,7 +722,7 @@ combineTool.py -d superCombination.2015.txt.pruned.txt.root -M MultiDimFit    \
 # 
 # # 2016 combination
 # # 
-# combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      superCombination.2016.txt.pruned.txt    >   result.data.MaxLikelihoodFit.superCombination.2016.txt.pruned.txt
+# combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      superCombination.2016.txt.pruned.txt    -n  superCombination.2016.txt.pruned.txt  --robustFit 1  --minimizerStrategy 1 --minimizerTolerance 0.2  --cminFallback "Minuit2,Migrad,0:0.2"   >   result.data.MaxLikelihoodFit.superCombination.2016.txt.pruned.txt
 
 # combine -M ProfileLikelihood --significance                           superCombination.2016.txt.pruned.txt    >   result.data.Significance.superCombination.2016.txt.pruned.txt
 
@@ -726,7 +736,7 @@ combineTool.py -d superCombination.2015.txt.pruned.txt.root -M MultiDimFit    \
 # # 
 # # 2015+2016 combination
 # 
-# combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      superCombination.Total.txt.pruned.txt    >   result.data.MaxLikelihoodFit.superCombination.Total.txt.pruned.txt
+# combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      superCombination.Total.txt.pruned.txt    -n  superCombination.Total.txt.pruned.txt   --robustFit 1  --minimizerStrategy 1 --minimizerTolerance 0.2  --cminFallback "Minuit2,Migrad,0:0.2"  >   result.data.MaxLikelihoodFit.superCombination.Total.txt.pruned.txt
 
 # combine -M ProfileLikelihood --significance                           superCombination.Total.txt.pruned.txt    >   result.data.Significance.superCombination.Total.txt.pruned.txt
 

@@ -49,6 +49,18 @@ python ggH/scripts/diffNuisances.py -a mlfitCombined.vbf.pruned.txt.MaxLikelihoo
 
 
 
+
+combine -M MaxLikelihoodFit -n _2015_mytest   --robustFit=1 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND  --X-rtd ADDNLL_RECURSIVE=0  --stepSize=0.05 --minimizerAlgoForMinos=Minuit2    --minimizerToleranceForMinos=0.01 --minimizerTolerance=0.01 --cminFallbackAlgo Minuit,0.005 --minimizerStrategy=1 --cminFallbackAlgo Minuit,0.005  --rMin=0.5 --rMax=2   -d superCombination.2015.txt.pruned.txt.workspace.root
+combine -M MaxLikelihoodFit -n _2016_mytest   --robustFit=1 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND  --X-rtd ADDNLL_RECURSIVE=0  --stepSize=0.10  --minimizerAlgoForMinos=Minuit2    --minimizerToleranceForMinos=0.02 --minimizerTolerance=0.10 --cminFallbackAlgo Minuit,0.05 --minimizerStrategy=0 --cminFallbackAlgo Minuit,0.05  --rMin=0.5 --rMax=1.8   -d superCombination.2016.txt.pruned.txt.workspace.root     -v 7
+combine -M MaxLikelihoodFit -n _Total_mytest  --robustFit=1 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND  --X-rtd ADDNLL_RECURSIVE=0  --stepSize=0.05 --minimizerAlgoForMinos=Minuit2    --minimizerToleranceForMinos=0.01 --minimizerTolerance=0.01 --cminFallbackAlgo Minuit,0.005 --minimizerStrategy=1 --cminFallbackAlgo Minuit,0.005  --rMin=0.5 --rMax=2   -d superCombination.Total.txt.pruned.txt.workspace.root
+
+
+
+
+
+
+
+
  
 combine -M MultiDimFit \
      --redefineSignalPOIs fake_syst --freezeNuisances=r  \

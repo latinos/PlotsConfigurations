@@ -32,19 +32,26 @@ groupPlot['top']  = {
                   'samples'  : ['top']
               }
 
+#groupPlot['WW']  = {  
+                  #'nameHR' : 'WW',
+                  #'isSignal' : 0,
+                  #'color': 851, # kAzure -9 
+                  #'samples'  : ['WW', 'ggWW']
+              #}
+
 groupPlot['WW']  = {  
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  'samples'  : ['WW', 'ggWW']
+                  'samples'  : ['WW', 'ggWW', 'WWewk']
               }
 
-groupPlot['WWewk']  = {  
-                  'nameHR' : 'WW ewk',
-                  'isSignal' : 0,
-                  'color': 850, # kAzure -10
-                  'samples'  : ['WWewk']
-              }
+#groupPlot['WWewk']  = {  
+                  #'nameHR' : 'WW ewk',
+                  #'isSignal' : 0,
+                  #'color': 850, # kAzure -10
+                  #'samples'  : ['WWewk']
+              #}
 
 groupPlot['VVV']  = {  
                   'nameHR' : 'VVV',
@@ -75,7 +82,7 @@ groupPlot['VZ']  = {
 groupPlot['HiggsOther']  = {  
                   'nameHR' : 'ggH+VH',
                   'isSignal' : 1,
-                  'color': 633, # kRed+1 
+                  'color': 635, # kRed+3 
                   'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww']
               }
 
