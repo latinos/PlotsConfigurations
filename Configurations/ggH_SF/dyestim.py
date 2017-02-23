@@ -23,7 +23,25 @@ DYestim['hww2l2v_13TeV_0jee'] = {
                                  'DFinDa'  : 'DATA' ,
                                  'DFinMC'  : ['VZ','Vg','VgS'],
                                  'NPname'  : 'DYeenorm0j' , 
+                                 'AccNum'  : 'hww2l2v_13TeV_0jee_HAccNum/events/histo_DY',
+                                 'AccDen'  : 'hww2l2v_13TeV_0jee_AccDen/events/histo_DY',
                                 } 
+
+#DYestim['hww2l2v_13TeV_WW_0jee'] = {
+#                                 'rinout'  : 'DYmva0p8' ,
+#                                 'njet'    : '0j'    ,
+#                                 'flavour' : 'ee' ,
+#                                 'DYProc'  : 'DY' ,
+#                                 'SFin'    : 'hww2l2v_13TeV_DYin_0jee' ,
+#                                 'SFinDa'  : 'DATA',
+#                                 'SFinMC'  : ['VZ','Vg','VgS'],
+#                                 'DFin'    : 'hww2l2v_13TeV_DYin_0jdf' ,
+#                                 'DFinDa'  : 'DATA' ,
+#                                 'DFinMC'  : ['VZ','Vg','VgS'],
+#                                 'NPname'  : 'DYeenorm0j' ,
+#                                 'AccNum'  : 'hww2l2v_13TeV_0jee_WWAccNum/events/histo_DY',
+#                                 'AccDen'  : 'hww2l2v_13TeV_0jee_AccDen/events/histo_DY',
+#                                   }
 
 DYestim['hww2l2v_13TeV_0jmm'] = {
                                  'rinout'  : 'DYmva0p8' ,
@@ -37,6 +55,8 @@ DYestim['hww2l2v_13TeV_0jmm'] = {
                                  'DFinDa'  : 'DATA' ,
                                  'DFinMC'  : ['VZ','Vg','VgS'],
                                  'NPname'  : 'DYmmnorm0j' ,
+                                 'AccNum'  : 'hww2l2v_13TeV_0jmm_HAccNum/events/histo_DY',
+                                 'AccDen'  : 'hww2l2v_13TeV_0jmm_AccDen/events/histo_DY',
                                 } 
 
 DYestim['hww2l2v_13TeV_1jee'] = {
@@ -51,6 +71,8 @@ DYestim['hww2l2v_13TeV_1jee'] = {
                                  'DFinDa'  : 'DATA' ,
                                  'DFinMC'  : ['VZ','Vg','VgS'],
                                  'NPname'  : 'DYeenorm1j' ,
+                                 'AccNum'  : 'hww2l2v_13TeV_1jee_HAccNum/events/histo_DY',
+                                 'AccDen'  : 'hww2l2v_13TeV_1jee_AccDen/events/histo_DY',
                                 } 
 
 DYestim['hww2l2v_13TeV_1jmm'] = {
@@ -65,6 +87,8 @@ DYestim['hww2l2v_13TeV_1jmm'] = {
                                  'DFinDa'  : 'DATA' ,
                                  'DFinMC'  : ['VZ','Vg','VgS'],
                                  'NPname'  : 'DYmmnorm1j' ,
+                                 'AccNum'  : 'hww2l2v_13TeV_1jmm_HAccNum/events/histo_DY',
+                                 'AccDen'  : 'hww2l2v_13TeV_1jmm_AccDen/events/histo_DY',
                                 } 
 
 
