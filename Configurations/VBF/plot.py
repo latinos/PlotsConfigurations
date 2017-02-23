@@ -75,7 +75,7 @@ groupPlot['VZ']  = {
 groupPlot['HiggsOther']  = {  
                   'nameHR' : 'ggH+VH',
                   'isSignal' : 1,
-                  'color': 633, # kRed+1 
+                  'color': 635, # kRed+3 
                   'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww']
               }
 
