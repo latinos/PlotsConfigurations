@@ -15,13 +15,13 @@ DYestim['hww2l2v_13TeV_0jee'] = {
                                  'rinout'  : 'DYmva0p8' ,
                                  'njet'    : '0j'    , 
                                  'flavour' : 'ee' ,
+                                 'DYProc'  : 'DY' ,
                                  'SFin'    : 'hww2l2v_13TeV_DYin_0jee' ,
                                  'SFinDa'  : 'DATA',
                                  'SFinMC'  : ['VZ','Vg','VgS'],
                                  'DFin'    : 'hww2l2v_13TeV_DYin_0jdf' ,
                                  'DFinDa'  : 'DATA' ,
                                  'DFinMC'  : ['VZ','Vg','VgS'],
-                                 'Hist'    : 'DY' ,
                                  'NPname'  : 'DYeenorm0j' , 
                                 } 
 
@@ -29,13 +29,13 @@ DYestim['hww2l2v_13TeV_0jmm'] = {
                                  'rinout'  : 'DYmva0p8' ,
                                  'njet'    : '0j'    ,
                                  'flavour' : 'mm' ,
+                                 'DYProc'  : 'DY' ,
                                  'SFin'    : 'hww2l2v_13TeV_DYin_0jmm' ,
                                  'SFinDa'  : 'DATA' ,
                                  'SFinMC'  : ['VZ','Vg','VgS'],
                                  'DFin'    : 'hww2l2v_13TeV_DYin_0jdf' ,
                                  'DFinDa'  : 'DATA' ,
                                  'DFinMC'  : ['VZ','Vg','VgS'],
-                                 'Hist'    : 'DY' ,
                                  'NPname'  : 'DYmmnorm0j' ,
                                 } 
 
@@ -43,13 +43,13 @@ DYestim['hww2l2v_13TeV_1jee'] = {
                                  'rinout'  : 'DYmva0p8' ,
                                  'njet'    : '1j'    ,
                                  'flavour' : 'ee' ,
+                                 'DYProc'  : 'DY' ,
                                  'SFin'    : 'hww2l2v_13TeV_DYin_1jee' ,
                                  'SFinDa'  : 'DATA' ,
                                  'SFinMC'  : ['VZ','Vg','VgS'],
                                  'DFin'    : 'hww2l2v_13TeV_DYin_1jdf' ,
                                  'DFinDa'  : 'DATA' ,
                                  'DFinMC'  : ['VZ','Vg','VgS'],
-                                 'Hist'    : 'DY' ,
                                  'NPname'  : 'DYeenorm1j' ,
                                 } 
 
@@ -57,13 +57,13 @@ DYestim['hww2l2v_13TeV_1jmm'] = {
                                  'rinout'  : 'DYmva0p8' ,
                                  'njet'    : '1j'    ,
                                  'flavour' : 'mm' ,
+                                 'DYProc'  : 'DY' ,
                                  'SFin'    : 'hww2l2v_13TeV_DYin_1jmm' ,
                                  'SFinDa'  : 'DATA' ,
                                  'SFinMC'  : ['VZ','Vg','VgS'],
                                  'DFin'    : 'hww2l2v_13TeV_DYin_1jdf' ,
                                  'DFinDa'  : 'DATA' ,
                                  'DFinMC'  : ['VZ','Vg','VgS'],
-                                 'Hist'    : 'DY' ,
                                  'NPname'  : 'DYmmnorm1j' ,
                                 } 
 
