@@ -1,6 +1,6 @@
 # example of configuration file
 
-tag = 'BG_DY_NOHR_MVA060'
+tag = 'BG_DY_NOHR_MVA080'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -10,7 +10,7 @@ outputDir = 'rootFile'
 variablesFile = 'variables_DYEST.py'
 
 # file with list of cuts
-cutsFile = 'cuts_DYEST.py' 
+cutsFile = 'cuts_DYEST080.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 

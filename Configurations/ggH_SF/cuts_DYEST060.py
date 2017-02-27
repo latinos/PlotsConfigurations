@@ -3,6 +3,7 @@
 supercut = ' mll > 12 \
              && std_vector_lepton_pt[0]>25 && std_vector_lepton_pt[1]>10 && std_vector_lepton_pt[2]<10 \
              && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13)  \
+             && metTtrk > 20 \
              && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
              && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
              && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
@@ -13,7 +14,6 @@ supercut = ' mll > 12 \
              && ( std_vector_jet_pt[7] < 20 || std_vector_jet_cmvav2[7] < -0.715 ) \
              && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.715 ) \
              && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.715 ) \
-             && metTtrk > 20 \
              && dymvaggh > 0.6 \
                '               
 
@@ -82,38 +82,3 @@ cuts['1j_df_out'] = '( std_vector_jet_pt[0] >= 30 ) \
              && fabs(91.1876 - mll) > 15  \
              && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)   \
                '
-
-cuts['H_0j_ee_out'] = 'std_vector_jet_pt[0] < 30 \
-             && fabs(91.1876 - mll) > 15  \
-             && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
-             && std_vector_lepton_pt[0] < 52 \
-             && std_vector_lepton_pt[1] < 30 \
-             && mll < 60 \
-               '
-
-cuts['H_1j_ee_out'] = '( std_vector_jet_pt[0] >= 30 ) \
-             && ( std_vector_jet_pt[1] < 30 ) \
-             && fabs(91.1876 - mll) > 15  \
-             && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
-             && std_vector_lepton_pt[0] < 52 \
-             && std_vector_lepton_pt[1] < 40 \
-             && mll < 50 \
-               '
-
-cuts['H_0j_uu_out'] = 'std_vector_jet_pt[0] < 30 \
-             && fabs(91.1876 - mll) > 15  \
-             && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)   \
-             && std_vector_lepton_pt[0] < 52 \
-             && std_vector_lepton_pt[1] < 30 \
-             && mll < 60 \
-               '
-
-cuts['H_1j_uu_out'] = '( std_vector_jet_pt[0] >= 30 ) \
-             && ( std_vector_jet_pt[1] < 30 ) \
-             && fabs(91.1876 - mll) > 15  \
-             && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)   \
-             && std_vector_lepton_pt[0] < 52 \
-             && std_vector_lepton_pt[1] < 40 \
-             && mll < 50 \
-               '
-
