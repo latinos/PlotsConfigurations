@@ -503,7 +503,7 @@ cuts['hww2l2v_13TeV_0jmm_AccDen'] = 'std_vector_jet_pt[0] < 30 \
              && dymvaggh > 0.6 \
                '
 
-cuts['hww2l2v_13TeV_1jee_AccDen'] = '( std_vector_jet_pt[0] >= 30 ) \
+cuts['hww2l2v_13TeV_1jmm_AccDen'] = '( std_vector_jet_pt[0] >= 30 ) \
              && ( std_vector_jet_pt[1] < 30 ) \
              && fabs(91.1876 - mll) > 15  \
              && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)   \

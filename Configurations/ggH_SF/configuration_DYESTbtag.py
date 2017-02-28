@@ -13,7 +13,7 @@ variablesFile = 'variables_DYEST.py'
 cutsFile = 'cuts_DYESTbtag.py' 
 
 # file with list of samples
-samplesFile = 'samples.py' 
+samplesFile = 'samples_DYEST.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
