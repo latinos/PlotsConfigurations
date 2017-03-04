@@ -746,9 +746,16 @@ combine -M ProfileLikelihood --significance           \
                 superCombination.Total.txt.pruned.txt    >   result.data.Significance.superCombination.Total.txt.pruned.bis.txt
 
 
+                
+                
 #                 --cminOldRobustMinimize=0  --minimizerStrategy 1 --minimizerTolerance 0.2  --cminFallback "Minuit2,Migrad,0:0.2"
                 
 
+
+
+combine -M ProfileLikelihood --significance    -t -1 --expectSignal=1.05 --toysFreq  superCombination.Total.txt.pruned.txt    >   result.MC.1.05.Significance.superCombination.Total.txt.pruned.txt
+
+                
 
 # 
 # 
