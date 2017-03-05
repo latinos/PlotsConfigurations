@@ -195,8 +195,12 @@ combine -M MultiDimFit  \
      -n "multidimfit.categories"     >   result.MultiDimFit.singles.workspace.superCombination.Total.txt.pruned.txt.categories.mu.root.txt
 
      
-     
-     
+# hadd higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotal.root       higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotal.POINTS.*.MultiDimFit.mH120.root         
+# ls -alrth higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotal.POINTS.*.MultiDimFit.mH120.root  | grep -v 6.6K | grep -v 6.7K | awk '{print "rm "$9}' | /bin/sh
+#   
+
+
+
 #   
 # 
 # combineCards.py   em1j13=ggH/Moriond/datacards/hww2l2v_13TeV_em_1j/mllVSmth/datacard.txt.pruned.txt \

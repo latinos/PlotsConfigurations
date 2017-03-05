@@ -102,6 +102,12 @@ Auto tests:
 
      
     root -l ../higgsCombineLHScanHICHEPTotalcombined.MultiDimFit.mH125.root  \
+           ../higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotal.root   \
+            scripts/drawNLLObs.C
+
+            
+            
+    root -l ../higgsCombineLHScanHICHEPTotalcombined.MultiDimFit.mH125.root  \
            ../higgsCombineLHScanDATAHICHEPTotalcombined.MultiDimFit.mH125.root   \
             scripts/drawNLLObs.C
 
