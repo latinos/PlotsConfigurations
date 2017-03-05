@@ -189,6 +189,14 @@ combine -M MultiDimFit  \
      -n "multidimfit.categories"     >   result.MultiDimFit.singles.workspace.superCombination.Total.txt.pruned.txt.categories.mu.root.txt
 
      
+
+combine -M MultiDimFit  \
+     workspace.superCombination.Total.txt.pruned.txt.categories.mu.bis.root    \
+     -n "multidimfit.categories"     >   result.MultiDimFit.singles.workspace.superCombination.Total.txt.pruned.txt.categories.mu.root.txt
+
+     
+     
+     
 #   
 # 
 # combineCards.py   em1j13=ggH/Moriond/datacards/hww2l2v_13TeV_em_1j/mllVSmth/datacard.txt.pruned.txt \
