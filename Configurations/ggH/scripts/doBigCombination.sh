@@ -790,14 +790,27 @@ combineTool.py -d superCombination.2016.txt.pruned.txt.workspace.root -M MultiDi
                --points 100    --job-mode lxbatch --task-name lxbatch-superCombination2016 --sub-opts='-q 1nd' --split-points 1 
 
                
+               
+               
                               
                
 
 # hadd higgsCombineLHScanDATAHICHEP2016combinedLXBATCH.POINTS.root    higgsCombineLHScanDATAHICHEP2016combinedLXBATCH.POINTS.*.MultiDimFit.mH120.root
 # hadd higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCH.POINTS.root   higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCH.POINTS.*.MultiDimFit.mH120.root
                
-               
+      
 
+      
+
+combineTool.py -d superCombination.Total.txt.pruned.txt.workspace.root -M MultiDimFit    \
+               --algo=grid  --setPhysicsModelParameterRanges  r=-0.1,2.5    -n "LHScanDATAHICHEPcombinedLXBATCHtotal"   \
+               --points 200    --job-mode lxbatch --task-name lxbatch-superCombination-total --sub-opts='-q 1nd' --split-points 1 
+
+               
+  
+  
+  
+  
                
 
 combineTool.py -d superCombination.2016.txt.pruned.txt.workspace.root -M MultiDimFit    \
