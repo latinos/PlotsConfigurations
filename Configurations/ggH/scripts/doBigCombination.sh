@@ -751,6 +751,9 @@ combine -M ProfileLikelihood --significance           \
 #                 --cminOldRobustMinimize=0  --minimizerStrategy 1 --minimizerTolerance 0.2  --cminFallback "Minuit2,Migrad,0:0.2"
                 
 
+                
+                
+text2workspace.py superCombination.Total.txt.pruned.txt   -o    superCombination.Total.txt.pruned.txt.workspace.BIS.root                
 
 
 combine -M ProfileLikelihood --significance    -t -1 --expectSignal=1.05 --toysFreq  superCombination.Total.txt.pruned.txt    >   result.MC.1.05.Significance.superCombination.Total.txt.pruned.txt
@@ -760,6 +763,12 @@ combine -M ProfileLikelihood --significance    -t -1 --expectSignal=1.05 --toysF
                 
                 
 combine -M ProfileLikelihood --significance      superCombination.Total.txt.pruned.txt.workspace.root    >   result.data.Significance.superCombination.Total.txt.pruned.BIS.fromWorkspacetxt
+
+
+
+      
+                
+combine -M ProfileLikelihood --significance   --minimizerTolerance 0.1     superCombination.Total.txt.pruned.txt.workspace.BIS.root    >   result.data.Significance.superCombination.Total.txt.pruned.BIS.fromWorkspace.BIS.txt
 
 
 
@@ -814,6 +823,31 @@ combineTool.py -d superCombination.Total.txt.pruned.txt.workspace.root -M MultiD
                --points 200    --job-mode lxbatch --task-name lxbatch-superCombination-total --sub-opts='-q 1nd' --split-points 1 
 
                
+  
+  
+
+  
+  
+text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
+                   --PO 'map=.*/ggH_hww:muGGH[1,-1,3]' \
+                   --PO 'map=.*/ggZH_hww:muGGH[1,-1,3]' \
+                   --PO 'map=.*/H_htt:muGGH[1,-1,3]' \
+                   --PO 'map=.*/qqH_hww:muVBF[1,-3,6]'  \
+                   --PO 'map=.*/WH_htt:muVBF[1,-3,6]'  \
+                   --PO 'map=.*/WH_hww:muVBF[1,-3,6]'  \
+                   --PO 'map=.*/ZH_hww:muVBF[1,-3,6]'  \
+                   superCombination.Total.txt.pruned.txt  -o  workspace.superCombination.Total.txt.pruned.txt.kvkf.root
+                   
+                   
+  
+
+combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.kvkf.root -M MultiDimFit    \
+               --algo=grid  --setPhysicsModelParameterRanges  muVBF=-3,6    -n "LHScanDATAHICHEPcombinedLXBATCHtotalkvkfmugghfixed"   \
+               --freezeNuisances  muGGH --setPhysicsModelParameters muGGH=0.85  \ 
+               --points 200    --job-mode lxbatch --task-name lxbatch-superCombination-total-kvkfmugghfixed --sub-opts='-q 1nd' --split-points 1 
+
+               
+    
   
   
   
