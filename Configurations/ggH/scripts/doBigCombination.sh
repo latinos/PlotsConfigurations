@@ -738,7 +738,7 @@ combineTool.py -d superCombination.2015.txt.pruned.txt.root -M MultiDimFit    \
 # 
 # combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      superCombination.Total.txt.pruned.txt    -n  superCombination.Total.txt.pruned.txt   --robustFit 1  --minimizerStrategy 1 --minimizerTolerance 0.2  --cminFallback "Minuit2,Migrad,0:0.2"  >   result.data.MaxLikelihoodFit.superCombination.Total.txt.pruned.txt
 
-# combine -M ProfileLikelihood --significance                           superCombination.Total.txt.pruned.txt    >   result.data.Significance.superCombination.Total.txt.pruned.txt
+# combine -M ProfileLikelihood --significance      -m 125                     superCombination.Total.txt.pruned.txt    >   result.data.Significance.superCombination.Total.txt.pruned.txt
 
 
 combine -M ProfileLikelihood --significance           \
@@ -756,6 +756,13 @@ combine -M ProfileLikelihood --significance           \
 combine -M ProfileLikelihood --significance    -t -1 --expectSignal=1.05 --toysFreq  superCombination.Total.txt.pruned.txt    >   result.MC.1.05.Significance.superCombination.Total.txt.pruned.txt
 
                 
+
+                
+                
+combine -M ProfileLikelihood --significance      superCombination.Total.txt.pruned.txt.workspace.root    >   result.data.Significance.superCombination.Total.txt.pruned.BIS.fromWorkspacetxt
+
+
+
 
 # 
 # 
