@@ -296,7 +296,12 @@ Auto tests:
     root -l ../higgsCombineLHScanHICHEPTotalcombined.MultiDimFit.mH125.root  \
             scripts/drawNLL.C
 
-               
+      
+    root -l ../higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotalkvkfmugghfixed.POINTS.root \
+            scripts/drawNLL.C
+
+      
+      
     cd ..
     sh ggH/scripts/doGGH_doMultisignal.sh
     cd -

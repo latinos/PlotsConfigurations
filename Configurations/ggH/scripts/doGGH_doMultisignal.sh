@@ -134,8 +134,32 @@ combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.kvkf.root -M M
                --points 1000    --job-mode lxbatch --task-name lxbatch-kvkf-data-new-inclusive --sub-opts='-q 1nd' --split-points 1 
             
                     
-          
-          
+
+combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.kvkf.root -M MultiDimFit    \
+               --algo=grid      -n "LH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch10kpoints"   \
+               --points 10000    --job-mode lxbatch --task-name lxbatch-kvkf-data-new-inclusive --sub-opts='-q 1nd' --split-points 1 
+            
+                    
+#    ls -alrth higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch10kpoints.POINTS.*.MultiDimFit.mH120.root  | grep -v 6.6K | grep -v 6.7K | awk '{print "rm "$9}' | /bin/sh
+hadd higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch10kpoints.root         higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch10kpoints.POINTS.*.MultiDimFit.mH120.root
+
+
+r99t ../higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch10kpoints.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
+ 
+    
+    
+    
+
+combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.kvkf.root -M MultiDimFit    \
+               --algo=grid      -n "LH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch1kpoints"   \
+               --points 1000    --job-mode lxbatch --task-name lxbatch-kvkf-data-new-inclusive-1k --sub-opts='-q 1nd' --split-points 1 
+    
+    
+    
+    
+    
+    
   
           
 hadd higgsCombineLH2DICHEPTotalcombinedKVKFlxbatch.root             higgsCombineLH2DICHEPTotalcombinedKVKFlxbatch.POINTS.*.MultiDimFit.mH120.root
@@ -209,6 +233,13 @@ combine -M MultiDimFit  \
      workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root    \
      -n "multidimfit.categories.2015vs2016"     >   result.MultiDimFit.singles.workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root.txt
 
+     
+
+combine -M MultiDimFit  \
+     --algo=singles  \
+     workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root    \
+     -n "multidimfit.categories.2015vs2016.algo.singles"     >   /tmp/amassiro/result.MultiDimFit.singles.perdavvero.workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root.txt
+     
 
      
      
