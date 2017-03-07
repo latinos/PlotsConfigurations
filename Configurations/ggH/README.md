@@ -102,6 +102,12 @@ Auto tests:
 
      
     root -l ../higgsCombineLHScanHICHEPTotalcombined.MultiDimFit.mH125.root  \
+           ../higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotal.root   \
+            scripts/drawNLLObs.C
+
+            
+            
+    root -l ../higgsCombineLHScanHICHEPTotalcombined.MultiDimFit.mH125.root  \
            ../higgsCombineLHScanDATAHICHEPTotalcombined.MultiDimFit.mH125.root   \
             scripts/drawNLLObs.C
 
@@ -290,7 +296,12 @@ Auto tests:
     root -l ../higgsCombineLHScanHICHEPTotalcombined.MultiDimFit.mH125.root  \
             scripts/drawNLL.C
 
-               
+      
+    root -l ../higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotalkvkfmugghfixed.POINTS.root \
+            scripts/drawNLL.C
+
+      
+      
     cd ..
     sh ggH/scripts/doGGH_doMultisignal.sh
     cd -
@@ -310,14 +321,17 @@ Auto tests:
     
     
     r99t ../higgsCombineLH2DICHEP2016combinedKVKFlxbatch.root \
-        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF}\",\"muGGH\",\"muVBF\"\)
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
     r99t ../higgsCombineLH2DICHEP2016combinedKVKFDATAlxbatch.root \
-        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF}\",\"muGGH\",\"muVBF\"\)
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
     r99t ../higgsCombineLH2DICHEPTotalcombinedKVKFlxbatch.root \
-        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF}\",\"muGGH\",\"muVBF\"\)
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
     r99t ../higgsCombineLH2DICHEPTotalcombinedKVKFDATAlxbatch.root \
-        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF}\",\"muGGH\",\"muVBF\"\)
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
  
+    
+    r99t ../higgsCombineLH2DICHEPTotalcombinedKVKFDATAlxbatch_OLD.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
     
     
     
