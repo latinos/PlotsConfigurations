@@ -156,6 +156,22 @@ combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.kvkf.root -M M
                --points 1000    --job-mode lxbatch --task-name lxbatch-kvkf-data-new-inclusive-1k --sub-opts='-q 1nd' --split-points 1 
     
     
+ 
+## 2D scan with unique prefit 
+     
+combine -M MultiDimFit    \
+     --setPhysicsModelParameters    muGGH=1,muVBF=1 \
+     --algo none  \
+      --saveWorkspace  \
+     workspace.superCombination.Total.txt.pruned.txt.kvkf.root    \
+     -n "LH2DICHEPTotalcombinedKVKFDATAprefit"     >   result.MultiDimFit.DATA.grid.workspace.superCombination.Total.txt.pruned.kvkf.prefit.txt
+
+
+combineTool.py -d higgsCombineLH2DICHEPTotalcombinedKVKFDATAprefit.MultiDimFit.mH120.root -M MultiDimFit    \
+               --algo=grid      -n "LH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsWithPrefit"   \
+               --snapShotName MultiDimFit --skipInitialFit   \
+               --points 400    --job-mode lxbatch --task-name lxbatch-kvkf-data-new-inclusive-400 --sub-opts='-q 1nd' --split-points 1 
+    
     
     
     
