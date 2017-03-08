@@ -169,10 +169,25 @@ combine -M MultiDimFit    \
 
 combineTool.py -d higgsCombineLH2DICHEPTotalcombinedKVKFDATAprefit.MultiDimFit.mH120.root -M MultiDimFit    \
                --algo=grid      -n "LH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsWithPrefit"   \
-               --snapShotName MultiDimFit --skipInitialFit   \
+               --snapshotName=MultiDimFit --skipInitialFit   \
                --points 400    --job-mode lxbatch --task-name lxbatch-kvkf-data-new-inclusive-400 --sub-opts='-q 1nd' --split-points 1 
     
     
+    
+    
+  
+  
+  
+ls -alrth higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsWithPrefit.POINTS.*.MultiDimFit.mH120.root  | grep -v 6.6 | grep -v 6.7 | grep -v 6.8 | awk '{print "rm "$9}' | /bin/sh
+hadd   higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsWithPrefit.root         higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsWithPrefit.POINTS.*.MultiDimFit.mH120.root
+
+  
+  
+r99t ../higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsWithPrefit.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
+ 
+    
+
     
     
     
