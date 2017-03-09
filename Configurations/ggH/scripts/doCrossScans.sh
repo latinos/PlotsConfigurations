@@ -88,11 +88,11 @@ cd /afs/cern.ch/work/a/amassiro/Latinos/Framework/CMSSW_8_0_5/src/PlotsConfigura
 #      -n "multidimfit.categories.mu.unique.2015.with2016bkg.withbkg.singles"     >   result.singles.MultiDimFit.singles.workspace.superCombination.2015.with2016bkg.txt.pruned.txt.categories.mu.unique.withbkg.txt
 #                                                                                
 
-combine -M MultiDimFit  \
-      --algo=singles   \
-     workspace.superCombination.2016.with2015bkg.txt.pruned.txt.categories.mu.unique.withbkg.root    \
-     --redefineSignalPOIs r,DYttnorm0j,Topnorm0j,WWnorm0j,DYttnorm1j,Topnorm1j,WWnorm1j,DYttnorm2j,Topnorm2j,WWnorm2j,DYttnorm2jvbf,Topnorm2jvbf,WWnorm2jvbf,DYttnorm2jvh,Topnorm2jvh,WWnorm2jvh   \
-     -n "multidimfit.categories.mu.unique.2016.with2015bkg.withbkg.singles"     >   result.singles.MultiDimFit.singles.workspace.superCombination.2016.with2015bkg.txt.pruned.txt.categories.mu.unique.withbkg.txt
+# combine -M MultiDimFit  \
+#       --algo=singles   \
+#      workspace.superCombination.2016.with2015bkg.txt.pruned.txt.categories.mu.unique.withbkg.root    \
+#      --redefineSignalPOIs r,DYttnorm0j,Topnorm0j,WWnorm0j,DYttnorm1j,Topnorm1j,WWnorm1j,DYttnorm2j,Topnorm2j,WWnorm2j,DYttnorm2jvbf,Topnorm2jvbf,WWnorm2jvbf,DYttnorm2jvh,Topnorm2jvh,WWnorm2jvh   \
+#      -n "multidimfit.categories.mu.unique.2016.with2015bkg.withbkg.singles"     >   result.singles.MultiDimFit.singles.workspace.superCombination.2016.with2015bkg.txt.pruned.txt.categories.mu.unique.withbkg.txt
           
 #  
 # combine -M MultiDimFit  \
@@ -108,13 +108,21 @@ combine -M MultiDimFit  \
 #      --redefineSignalPOIs r,DYttnorm0j,Topnorm0j,WWnorm0j,DYttnorm1j,Topnorm1j,WWnorm1j,DYttnorm2j,Topnorm2j,WWnorm2j,DYttnorm2jvbf,Topnorm2jvbf,WWnorm2jvbf,DYttnorm2jvh,Topnorm2jvh,WWnorm2jvh   \
 #      -n "multidimfit.categories.mu.unique.2016.withbkg.singles"     >   result.singles.MultiDimFit.singles.workspace.superCombination.2016.txt.pruned.txt.categories.mu.unique.withbkg.txt
 #           
-     
- 
+#      
+#  
+# combine -M MultiDimFit  \
+#       --algo=singles   \
+#      workspace.superCombination.Total.txt.pruned.txt.categories.mu.unique.withbkg.root    \
+#      --redefineSignalPOIs r,DYttnorm0j,Topnorm0j,WWnorm0j,DYttnorm1j,Topnorm1j,WWnorm1j,DYttnorm2j,Topnorm2j,WWnorm2j,DYttnorm2jvbf,Topnorm2jvbf,WWnorm2jvbf,DYttnorm2jvh,Topnorm2jvh,WWnorm2jvh   \
+#      -n "multidimfit.categories.mu.unique.withbkg.singles"     >   result.singles.MultiDimFit.singles.workspace.superCombination.Total.txt.pruned.txt.categories.mu.unique.withbkg.txt
+      
+      
+
 combine -M MultiDimFit  \
       --algo=singles   \
      workspace.superCombination.Total.txt.pruned.txt.categories.mu.unique.withbkg.root    \
-     --redefineSignalPOIs r,DYttnorm0j,Topnorm0j,WWnorm0j,DYttnorm1j,Topnorm1j,WWnorm1j,DYttnorm2j,Topnorm2j,WWnorm2j,DYttnorm2jvbf,Topnorm2jvbf,WWnorm2jvbf,DYttnorm2jvh,Topnorm2jvh,WWnorm2jvh   \
-     -n "multidimfit.categories.mu.unique.withbkg.singles"     >   result.singles.MultiDimFit.singles.workspace.superCombination.Total.txt.pruned.txt.categories.mu.unique.withbkg.txt
+     --redefineSignalPOIs r,DYttnorm0j,Topnorm0j,WWnorm0j,DYttnorm1j,Topnorm1j,WWnorm1j   \
+     -n "multidimfit.categories.mu.unique.withbkg.singles"     >   result.singles.MultiDimFit.singles.workspace.superCombination.Total.txt.pruned.txt.categories.mu.unique.withbkg.lesspoi.txt
       
       
 

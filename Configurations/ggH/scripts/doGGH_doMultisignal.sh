@@ -239,6 +239,33 @@ text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel -
                    superCombination.Total.txt.pruned.txt  -o  workspace.superCombination.Total.txt.pruned.txt.categories.mu.bis.root
                    
   
+
+
+                   
+text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
+                   --PO 'map=.*0j.*/.*H_.*:r_0jet[1,-5,5]' \
+                   --PO 'map=.*1j.*/.*H_.*:r_1jet[1,-5,5]' \
+                   --PO 'map=.*2j2j.*/.*H_.*:r_2jet[1,-5,5]' \
+                   --PO 'map=.*2jvbf.*/.*H_.*:r_2jetvbf[1,-5,5]' \
+                   --PO 'map=.*2jvh2j.*/.*H_.*:r_2jetvh[1,-5,5]' \
+                   --PO 'map=.*wh3l.*/.*H_.*:r_3l[1,-9,9]' \
+                   superCombination.2015.txt.pruned.txt  -o  workspace.superCombination.2015.txt.pruned.txt.categories.mu.bis.root
+               
+               
+
+
+                   
+text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
+                   --PO 'map=.*0j.*/.*H_.*:r_0jet[1,-5,5]' \
+                   --PO 'map=.*1j.*/.*H_.*:r_1jet[1,-5,5]' \
+                   --PO 'map=.*2j2j.*/.*H_.*:r_2jet[1,-5,5]' \
+                   --PO 'map=.*2jvbf.*/.*H_.*:r_2jetvbf[1,-5,5]' \
+                   --PO 'map=.*2jvh2j.*/.*H_.*:r_2jetvh[1,-5,5]' \
+                   --PO 'map=.*wh3l.*/.*H_.*:r_3l[1,-5,5]' \
+                   superCombination.2016.txt.pruned.txt  -o  workspace.superCombination.2016.txt.pruned.txt.categories.mu.bis.root
+                              
+               
+  
 combine -M MultiDimFit  \
      workspace.superCombination.Total.txt.pruned.txt.categories.mu.root    \
      -n "multidimfit.categories"     >   result.MultiDimFit.singles.workspace.superCombination.Total.txt.pruned.txt.categories.mu.root.txt
@@ -249,6 +276,25 @@ combine -M MultiDimFit  \
      workspace.superCombination.Total.txt.pruned.txt.categories.mu.bis.root    \
      -n "multidimfit.categories"     >   result.MultiDimFit.singles.workspace.superCombination.Total.txt.pruned.txt.categories.mu.root.txt
 
+     
+
+combine -M MultiDimFit  \
+     --algo=singles  \
+     workspace.superCombination.Total.txt.pruned.txt.categories.mu.bis.root    \
+     -n "multidimfit.categories.single.supermegacombo"     >   result.MultiDimFit.singles.workspace.superCombination.Total.txt.pruned.txt.categories.mu.root.reallysingles.txt
+     
+     
+ 
+combine -M MultiDimFit  \
+     --algo=singles  \
+     workspace.superCombination.2015.txt.pruned.txt.categories.mu.bis.root    \
+     -n "multidimfit.categories.2015.single.supermegacombo"     >   result.MultiDimFit.singles.workspace.superCombination.2015.txt.pruned.txt.categories.mu.root.reallysingles.txt
+     
+ 
+combine -M MultiDimFit  \
+     --algo=singles  \
+     workspace.superCombination.2016.txt.pruned.txt.categories.mu.bis.root    \
+     -n "multidimfit.categories.2016.single.supermegacombo"     >   result.MultiDimFit.singles.workspace.superCombination.2016.txt.pruned.txt.categories.mu.root.reallysingles.txt
      
      
      
