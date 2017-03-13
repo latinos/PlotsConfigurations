@@ -822,7 +822,25 @@ combineTool.py -d superCombination.Total.txt.pruned.txt.workspace.root -M MultiD
                --algo=grid  --setPhysicsModelParameterRanges  r=-0.1,2.5    -n "LHScanDATAHICHEPcombinedLXBATCHtotal"   \
                --points 200    --job-mode lxbatch --task-name lxbatch-superCombination-total --sub-opts='-q 1nd' --split-points 1 
 
+
                
+combineTool.py -d superCombination.Total.txt.pruned.txt.workspace.BIS.root -M MultiDimFit    \
+               --algo=grid  --saveSpecifiedNuis all  --setPhysicsModelParameterRanges  r=-0.1,2.5    -n "LHScanDATAHICHEPcombinedLXBATCHtotalWithNewNuisancesScan"   \
+               --points 400    --job-mode lxbatch --task-name lxbatch-superCombination-total-newAGcode --sub-opts='-q 1nd' --split-points 1 
+
+               
+               
+               
+               
+   
+               
+#    ls -alrth higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotalWithNewNuisancesScan.POINTS.*.MultiDimFit.mH120.root  | grep -v 116K | grep -v 124K | grep -v 123K | awk '{print "rm "$9}' | /bin/sh
+#    hadd higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotalWithNewNuisancesScan.root   higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotalWithNewNuisancesScan.POINTS.*.MultiDimFit.mH120.root
+   
+              
+  
+  
+  
   
   
 
@@ -1301,6 +1319,54 @@ root -l ../higgsCombineLHScanMC.Combined.0jet.txt.MultiDimFit.mH125.root  \
         ../higgsCombineLHScanDATA.Combined.0jet.txt.MultiDimFit.mH125.root  \
             scripts/drawNLLObs.C
 
+
+root -l ../higgsCombineLHScanMC.Combined.0jet.em.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.Combined.0jet.em.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+
+
+root -l ../higgsCombineLHScanMC.Combined.0jet.me.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.Combined.0jet.me.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+
+
+            
+root -l ../higgsCombineLHScanMC.Combined.1jet.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.Combined.1jet.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+
+            
+root -l ../higgsCombineLHScanMC.Combined.1jet.em.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.Combined.1jet.em.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+
+
+root -l ../higgsCombineLHScanMC.Combined.1jet.me.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.Combined.1jet.me.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+
+
+root -l ../higgsCombineLHScanMC.Combined.2j.pruned.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.Combined.2j.pruned.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+            
+            
+root -l ../higgsCombineLHScanMC.Combined.vbf.pruned.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.Combined.vbf.pruned.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+            
+            
+root -l ../higgsCombineLHScanMC.Combined.vh2j.pruned.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.Combined.vh2j.pruned.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+            
+            
+root -l ../higgsCombineLHScanMC.Combined.wh3l.pruned.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.Combined.wh3l.pruned.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+            
+            
+            
             
             
             
