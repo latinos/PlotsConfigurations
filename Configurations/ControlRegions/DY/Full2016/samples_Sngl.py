@@ -9,7 +9,7 @@ import string
 ###### DY #######
 
 samples['DY']  = {    'name': [ ],    
-                      'weight' : 'puW*baseW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*effTrigW*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',  
+                      'weight' : 'puW*baseW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)*effTrigW_SnglEle+(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)*effTrigW_SnglMu)*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',  
                  }
 
 directory = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight/'
@@ -39,7 +39,7 @@ for DataSet in ['latino_DYJetsToLL_M-10to50','latino_DYJetsToLL_M-50__part']:
 # .... TrigW only
 
 samples['DY-trigW']  = {    'name': [ ],
-                      'weight' : 'puW*baseW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*effTrigW',
+                      'weight' : 'puW*baseW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)*effTrigW_SnglEle+(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)*effTrigW_SnglMu)',
                  }
 
 directory = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight/'
@@ -51,23 +51,10 @@ for DataSet in ['latino_DYJetsToLL_M-10to50','latino_DYJetsToLL_M-50__part']:
     for iFile in FileTarget:
       samples['DY-trigW']['name'].append(os.path.basename(iFile))
 
-samples['DY-trigW-EMTF']  = {    'name': [ ],
-                      'weight' : 'puW*baseW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*effTrigW*veto_EMTFBug',
-                 }
-
-directory = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight/'
-for DataSet in ['latino_DYJetsToLL_M-10to50','latino_DYJetsToLL_M-50__part']:
-    fileCmd='ls '+directory+DataSet+'*'
-    proc=subprocess.Popen(fileCmd, stderr = subprocess.PIPE,stdout = subprocess.PIPE, shell = True)
-    out, err = proc.communicate()
-    FileTarget=string.split(out)
-    for iFile in FileTarget:
-      samples['DY-trigW-EMTF']['name'].append(os.path.basename(iFile))
-
 # .... SF+TrigW
 
 samples['DY-trigW-SF']  = {    'name': [ ],
-                      'weight' : 'puW*baseW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*effTrigW*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*veto_EMTFBug',
+                      'weight' : 'puW*baseW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)*effTrigW_SnglEle+(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)*effTrigW_SnglMu)*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]',
                  }
 
 directory = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight/'
@@ -84,7 +71,7 @@ for DataSet in ['latino_DYJetsToLL_M-10to50','latino_DYJetsToLL_M-50__part']:
 samples['top'] = {   'name': [ ],          
                            #'latino_ST_tW_antitop.root',
                            #'latino_ST_tW_top.root'
-                       'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*veto_EMTFBug',    #   weight/cut 
+                       'weight' : 'puW*baseW*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)*effTrigW_SnglEle+(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)*effTrigW_SnglMu)*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',    #   weight/cut 
                       }
 
 directory = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight/'
@@ -101,13 +88,13 @@ for DataSet in ['latino_TTTo2L2Nu__part']:
 samples['WW']  = {    'name': [
                                   'latino_WWTo2L2Nu.root'
                                 ],      
-                      'weight' : 'nllW*baseW*puW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*veto_EMTFBug',          
+                      'weight' : 'nllW*baseW*puW*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)*effTrigW_SnglEle+(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)*effTrigW_SnglMu)*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
                   }
 
 
 
 #samples['ggWW']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root'],      
-                      #'weight' : 'puW63mb*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+                      #'weight' : 'puW63mb*baseW*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)*effTrigW_SnglEle+(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)*effTrigW_SnglMu)*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
                       ##'weights': ['abs(nllW)'] ,           
                       ##'weights': ['1.000'] ,           
                       #'isData': ['0'],                            
@@ -122,7 +109,7 @@ samples['WW']  = {    'name': [
 
 
 #samples['Vg']  = {    'name': ['latino_Wg_MADGRAPHMLM.root'],      
-                      #'weight' : 'puW63mb*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*GEN_weight_SM/abs(GEN_weight_SM)\
+                      #'weight' : 'puW63mb*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)*effTrigW_SnglEle+(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)*effTrigW_SnglMu)*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*GEN_weight_SM/abs(GEN_weight_SM)\
                                   #* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
                                  ##*(!(Gen_ZGstar_MomStatus==44 && Gen_ZGstar_MomId==22))',
                       #'weights': ['0.0684952181745'] ,           
@@ -135,7 +122,7 @@ samples['WW']  = {    'name': [
                              #'latino_WgStarLNuEE.root', 
                              #'latino_WgStarLNuMuMu.root'
                              #],      
-                      #'weight' : '1.4*puW63mb*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',
+                      #'weight' : '1.4*puW63mb*baseW*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)*effTrigW_SnglEle+(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)*effTrigW_SnglMu)*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',
                       #'weights': ['1','1'] ,           
                   #}
 
@@ -208,7 +195,7 @@ samples['WW']  = {    'name': [
                           ##
                           ##'latino_ZZTo4L.root'
                          #], 
-                      #'weight' : 'puW63mb*bPogSF*effTrigW*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+                      #'weight' : 'puW63mb*bPogSF*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)*effTrigW_SnglEle+(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)*effTrigW_SnglMu)*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
                       #'weights': [
                           #'0.002214825',
                           ##
@@ -276,7 +263,7 @@ samples['WW']  = {    'name': [
                           #'latino_WWW.root',
                           #'latino_WWZ.root',
                           #],      
-                      #'weight' : 'puW63mb*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+                      #'weight' : 'puW63mb*baseW*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)*effTrigW_SnglEle+(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)*effTrigW_SnglMu)*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
                       ##'isData': ['0'],                            
                   #}
 
@@ -288,7 +275,7 @@ samples['WW']  = {    'name': [
                                     ##'latino_HWplusJ_HToTauTau_M125.root',
                                     ##'latino_HZJ_HToTauTau_M125.root'
                                     #],      
-                           #'weight' : 'puW63mb*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',         
+                           #'weight' : 'puW63mb*baseW*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)*effTrigW_SnglEle+(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)*effTrigW_SnglMu)*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',         
                            #'weights': ['1', '1']
                                        ##, 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)', 'GEN_weight_SM/abs(GEN_weight_SM)' ]            
                   #}
@@ -300,20 +287,20 @@ samples['WW']  = {    'name': [
 #samples['ggH_hww']  = {    'name': [
                                #'latino_GluGluHToWWTo2L2NuPowheg_M125.root'
                                #],      
-                           #'weight' : 'puW63mb*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+                           #'weight' : 'puW63mb*baseW*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)*effTrigW_SnglEle+(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)*effTrigW_SnglMu)*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
                   #}
 
 #samples['qqH_hww']  = {    'name': [
                                ##'latino_VBFHToWWTo2L2Nu_M125.root'
                                #'latino_VBFHToWWTo2L2Nu_alternative_M125.root'
                                #],      
-                           #'weight' : 'puW63mb*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+                           #'weight' : 'puW63mb*baseW*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)*effTrigW_SnglEle+(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)*effTrigW_SnglMu)*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
                   #}
 
 #samples['ggZH_hww']  = {    'name': [
                                #'latino_ggZH_HToWW_M125.root',
                                #],      
-                           #'weight' : 'puW63mb*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+                           #'weight' : 'puW63mb*baseW*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)*effTrigW_SnglEle+(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)*effTrigW_SnglMu)*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
                   #}
 
 
@@ -321,11 +308,11 @@ samples['WW']  = {    'name': [
                              #'latino_HWminusJ_HToWW_M125.root',
                              #'latino_HWplusJ_HToWW_M125.root'
                              #],      
-                           #'weight' : 'puW63mb*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+                           #'weight' : 'puW63mb*baseW*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)*effTrigW_SnglEle+(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)*effTrigW_SnglMu)*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
                   #}
 
 #samples['ZH_hww']  = {    'name': ['latino_HZJ_HToWW_M125.root'],      
-                           #'weight' : 'puW63mb*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
+                           #'weight' : 'puW63mb*baseW*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)*effTrigW_SnglEle+(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)*effTrigW_SnglMu)*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)',          
                   #}
 
 
@@ -335,22 +322,19 @@ samples['WW']  = {    'name': [
 ###########################################
 
 samples['DATA']  = {   'name': [ ] ,     
-                       'weight' : 'veto_EMTFBug',
+                       'weight' : '1',
                        'weights' : [ ],
                        'isData': ['all'],                            
                   }
 
 MyWeights={
-           'MuonEG'         : ' trig_EleMu' ,
-           'DoubleMuon'     : '!trig_EleMu &&  trig_DbleMu' ,
-           'SingleMuon'     : '!trig_EleMu && !trig_DbleMu &&  trig_SnglMu' ,
-           'DoubleEG'       : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu &&  trig_DbleEle' ,
-           'SingleElectron' : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu && !trig_DbleEle &&  trig_SnglEle' ,
+           'SingleMuon'     : 'trig_SnglMu' ,
+           'SingleElectron' : 'trig_SnglEle' ,
           }
 
 for Run in ['B','C','D','E','F','G','H'] :
   directory = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/Feb2017_Run2016'+Run+'_RemAOD/l2looseCut__hadd__EpTCorr__TrigMakerData__l2tight/'
-  for DataSet in ['MuonEG','DoubleMuon','SingleMuon','DoubleEG','SingleElectron']:
+  for DataSet in ['SingleMuon','SingleElectron']:
     fileCmd='ls '+directory+'*'+DataSet+'*'
     proc=subprocess.Popen(fileCmd, stderr = subprocess.PIPE,stdout = subprocess.PIPE, shell = True)
     out, err = proc.communicate()

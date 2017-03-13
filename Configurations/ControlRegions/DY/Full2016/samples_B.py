@@ -348,7 +348,7 @@ MyWeights={
            'SingleElectron' : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu && !trig_DbleEle &&  trig_SnglEle' ,
           }
 
-for Run in ['B','C','D','E','F','G','H'] :
+for Run in ['B'] :
   directory = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/Feb2017_Run2016'+Run+'_RemAOD/l2looseCut__hadd__EpTCorr__TrigMakerData__l2tight/'
   for DataSet in ['MuonEG','DoubleMuon','SingleMuon','DoubleEG','SingleElectron']:
     fileCmd='ls '+directory+'*'+DataSet+'*'
