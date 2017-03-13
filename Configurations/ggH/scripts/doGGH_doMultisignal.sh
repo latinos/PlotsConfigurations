@@ -123,6 +123,8 @@ combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.kvkf.root -M M
             
 
 
+              
+            
 combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.kvkf.root -M MultiDimFit    \
                --algo=grid      -n "LH2DICHEPTotalcombinedKVKFDATAlxbatch"   \
                --points 400    --job-mode lxbatch --task-name lxbatch-kvkf-data-inclusive --sub-opts='-q 1nd' --split-points 1 
@@ -139,6 +141,24 @@ combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.kvkf.root -M M
                --algo=grid      -n "LH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch10kpoints"   \
                --points 10000    --job-mode lxbatch --task-name lxbatch-kvkf-data-new-inclusive --sub-opts='-q 1nd' --split-points 1 
             
+
+combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.kvkf.root -M MultiDimFit    \
+               --algo=grid   --X-rtd OPTIMIZE_BOUNDS=0   -n "LH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsFIXED"   \
+               --points 400    --job-mode lxbatch --task-name lxbatch-kvkf-data-new-inclusive-fixed --sub-opts='-q 1nd' --split-points 1 
+            
+            
+                 
+#    ls -alrth higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsFIXED.POINTS.*.MultiDimFit.mH120.root  | grep -v 6.6K | grep -v 6.7K | awk '{print "rm "$9}' | /bin/sh
+hadd higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsFIXED.root         higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsFIXED.POINTS.*.MultiDimFit.mH120.root
+
+
+r99t ../higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsFIXED.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
+ 
+     
+          
+          
+                    
                     
 #    ls -alrth higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch10kpoints.POINTS.*.MultiDimFit.mH120.root  | grep -v 6.6K | grep -v 6.7K | awk '{print "rm "$9}' | /bin/sh
 hadd higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch10kpoints.root         higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch10kpoints.POINTS.*.MultiDimFit.mH120.root
@@ -174,7 +194,14 @@ combineTool.py -d higgsCombineLH2DICHEPTotalcombinedKVKFDATAprefit.MultiDimFit.m
     
     
     
-    
+
+
+combineTool.py -d higgsCombineLH2DICHEPTotalcombinedKVKFDATAprefit.MultiDimFit.mH120.root -M MultiDimFit    \
+               --algo=grid   --X-rtd OPTIMIZE_BOUNDS=0   -n "LH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsWithPrefitFIXED"   \
+               --points 400    --job-mode lxbatch --task-name lxbatch-kvkf-data-new-inclusive-fixed-prefit --sub-opts='-q 1nd' --split-points 1 
+            
+            
+                
   
   
   
@@ -228,6 +255,17 @@ text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel -
                    superCombination.Total.txt.pruned.txt  -o  workspace.superCombination.Total.txt.pruned.txt.categories.mu.root
                    
 
+                
+text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
+                   --PO 'map=.*0j.*/.*H_.*:r_0jet_em[1,-5,5]' \
+                   --PO 'map=.*1j.*/.*H_.*:r_1jet[1,-5,5]' \
+                   --PO 'map=.*2j2j.*/.*H_.*:r_2jet[1,-5,5]' \
+                   --PO 'map=.*2jvbf.*/.*H_.*:r_2jetvbf[1,-5,5]' \
+                   --PO 'map=.*2jvh2j.*/.*H_.*:r_2jetvh[1,-5,5]' \
+                   --PO 'map=.*wh3l.*/.*H_.*:r_3l[1,-5,5]' \
+                   superCombination.Total.txt.pruned.txt  -o  workspace.superCombination.Total.txt.pruned.txt.categories.mu.manysplits.root
+                   
+                   
                    
 text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
                    --PO 'map=.*0j.*/.*H_.*:r_0jet[1,-5,5]' \
@@ -239,6 +277,33 @@ text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel -
                    superCombination.Total.txt.pruned.txt  -o  workspace.superCombination.Total.txt.pruned.txt.categories.mu.bis.root
                    
   
+
+
+                   
+text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
+                   --PO 'map=.*0j.*/.*H_.*:r_0jet[1,-5,5]' \
+                   --PO 'map=.*1j.*/.*H_.*:r_1jet[1,-5,5]' \
+                   --PO 'map=.*2j2j.*/.*H_.*:r_2jet[1,-5,5]' \
+                   --PO 'map=.*2jvbf.*/.*H_.*:r_2jetvbf[1,-5,5]' \
+                   --PO 'map=.*2jvh2j.*/.*H_.*:r_2jetvh[1,-5,5]' \
+                   --PO 'map=.*wh3l.*/.*H_.*:r_3l[1,-9,9]' \
+                   superCombination.2015.txt.pruned.txt  -o  workspace.superCombination.2015.txt.pruned.txt.categories.mu.bis.root
+               
+               
+
+
+                   
+text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
+                   --PO 'map=.*0j.*/.*H_.*:r_0jet[1,-5,5]' \
+                   --PO 'map=.*1j.*/.*H_.*:r_1jet[1,-5,5]' \
+                   --PO 'map=.*2j2j.*/.*H_.*:r_2jet[1,-5,5]' \
+                   --PO 'map=.*2jvbf.*/.*H_.*:r_2jetvbf[1,-5,5]' \
+                   --PO 'map=.*2jvh2j.*/.*H_.*:r_2jetvh[1,-5,5]' \
+                   --PO 'map=.*wh3l.*/.*H_.*:r_3l[1,-5,5]' \
+                   superCombination.2016.txt.pruned.txt  -o  workspace.superCombination.2016.txt.pruned.txt.categories.mu.bis.root
+                              
+               
+  
 combine -M MultiDimFit  \
      workspace.superCombination.Total.txt.pruned.txt.categories.mu.root    \
      -n "multidimfit.categories"     >   result.MultiDimFit.singles.workspace.superCombination.Total.txt.pruned.txt.categories.mu.root.txt
@@ -249,6 +314,25 @@ combine -M MultiDimFit  \
      workspace.superCombination.Total.txt.pruned.txt.categories.mu.bis.root    \
      -n "multidimfit.categories"     >   result.MultiDimFit.singles.workspace.superCombination.Total.txt.pruned.txt.categories.mu.root.txt
 
+     
+
+combine -M MultiDimFit  \
+     --algo=singles  \
+     workspace.superCombination.Total.txt.pruned.txt.categories.mu.bis.root    \
+     -n "multidimfit.categories.single.supermegacombo"     >   result.MultiDimFit.singles.workspace.superCombination.Total.txt.pruned.txt.categories.mu.root.reallysingles.txt
+     
+     
+ 
+combine -M MultiDimFit  \
+     --algo=singles  \
+     workspace.superCombination.2015.txt.pruned.txt.categories.mu.bis.root    \
+     -n "multidimfit.categories.2015.single.supermegacombo"     >   result.MultiDimFit.singles.workspace.superCombination.2015.txt.pruned.txt.categories.mu.root.reallysingles.txt
+     
+ 
+combine -M MultiDimFit  \
+     --algo=singles  \
+     workspace.superCombination.2016.txt.pruned.txt.categories.mu.bis.root    \
+     -n "multidimfit.categories.2016.single.supermegacombo"     >   result.MultiDimFit.singles.workspace.superCombination.2016.txt.pruned.txt.categories.mu.root.reallysingles.txt
      
      
      
@@ -498,6 +582,53 @@ combineCards.py   ICHEP_em_mp_1j_13=ggH/datacards/hww2l2v_13TeV_em_mp_1j/mllVSmt
 
 
 
+combineCards.py   OLD_em1j13=ggH/Moriond/datacards/hww2l2v_13TeV_em_1j/mllVSmth/datacard.txt.pruned.txt \
+                  OLD_me1j13=ggH/Moriond/datacards/hww2l2v_13TeV_me_1j/mllVSmth/datacard.txt.pruned.txt \
+                  OLD_em0j13=ggH/Moriond/datacards/hww2l2v_13TeV_em_0j/mllVSmth/datacard.txt.pruned.txt \
+                  OLD_me0j13=ggH/Moriond/datacards/hww2l2v_13TeV_me_0j/mllVSmth/datacard.txt.pruned.txt \
+                  OLD_of0j13Top=ggH/Moriond/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
+                  OLD_of1j13Top=ggH/Moriond/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
+                  OLD_of0j13DYtt=ggH/Moriond/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+                  OLD_of1j13DYtt=ggH/Moriond/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
+                  OLD_of2j2j13=ggH2j/Moriond/datacards/hww2l2v_13TeV_of2j/mllVSmth/datacard.txt.pruned.txt \
+                  OLD_of2j2j13Top=ggH2j/Moriond/datacards/hww2l2v_13TeV_top_of2j/events/datacard.txt.pruned.txt \
+                  OLD_of2j2j13DYtt=ggH2j/Moriond/datacards/hww2l2v_13TeV_dytt_of2j/events/datacard.txt.pruned.txt \
+                  OLD_of2jvbf13=VBF/Moriond/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mll/datacard.txt.pruned.txt \
+                  OLD_of2jvbf13Top=VBF/Moriond/datacards/hww2l2v_13TeV_top_of2j_vbf/events/datacard.txt.pruned.txt \
+                  OLD_of2jvbf13DYtt=VBF/Moriond/datacards/hww2l2v_13TeV_dytt_of2j_vbf/events/datacard.txt.pruned.txt \
+                  OLD_of2jvh2j13=VH2j/Moriond/datacards/hww2l2v_13TeV_of2j_vh2j/mll/datacard.txt.pruned.txt \
+                  OLD_of2jvh2j13Top=VH2j/Moriond/datacards/hww2l2v_13TeV_top_of2j_vh2j/events/datacard.txt.pruned.txt \
+                  OLD_of2jvh2j13DYtt=VH2j/Moriond/datacards/hww2l2v_13TeV_dytt_of2j_vh2j/events/datacard.txt.pruned.txt \
+                  OLD_wh3lossf=WH3l/Moriond/datacards/wh3l_13TeV_ossf/drllmin3l/datacard.txt.pruned.txt                  \
+                  OLD_wh3lsssf=WH3l/Moriond/datacards/wh3l_13TeV_sssf/drllmin3l/datacard.txt.pruned.txt       \
+                  OLD_wh3lwz=WH3l/Moriond/datacards/wh3l_wz_13TeV/events/datacard.txt.pruned.txt                       \
+                  OLD_wh3lzg=WH3l/Moriond/datacards/wh3l_zg_13TeV/events/datacard.txt.pruned.txt            \
+                  ICHEP_em_mp_1j_13=ggH/datacards/hww2l2v_13TeV_em_mp_1j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_me_mp_1j_13=ggH/datacards/hww2l2v_13TeV_me_mp_1j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_em_mp_0j_13=ggH/datacards/hww2l2v_13TeV_em_mp_0j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_me_mp_0j_13=ggH/datacards/hww2l2v_13TeV_me_mp_0j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_em_pm_1j_13=ggH/datacards/hww2l2v_13TeV_em_pm_1j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_me_pm_1j_13=ggH/datacards/hww2l2v_13TeV_me_pm_1j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_em_pm_0j_13=ggH/datacards/hww2l2v_13TeV_em_pm_0j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_me_pm_0j_13=ggH/datacards/hww2l2v_13TeV_me_pm_0j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_of0j13Top=ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt \
+                  ICHEP_of1j13Top=ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt \
+                  ICHEP_of0j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
+                  ICHEP_of1j13DYtt=ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
+                  ICHEP_of2j2j13=ggH2j/datacards/hww2l2v_13TeV_of2j/mllVSmth/datacard.txt.pruned.txt \
+                  ICHEP_of2j2j13Top=ggH2j/datacards/hww2l2v_13TeV_top_of2j/events/datacard.txt.pruned.txt \
+                  ICHEP_of2j2j13DYtt=ggH2j/datacards/hww2l2v_13TeV_dytt_of2j/events/datacard.txt.pruned.txt \
+                  ICHEP_of2jvbf13=VBF/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mllfine/datacard.txt.pruned.txt \
+                  ICHEP_of2jvbf13Top=VBF/datacards/hww2l2v_13TeV_top_of2j_vbf/events/datacard.txt.pruned.txt.filtered.txt \
+                  ICHEP_of2jvbf13DYtt=VBF/datacards/hww2l2v_13TeV_dytt_of2j_vbf/events/datacard.txt.pruned.txt.filtered.txt \
+                  ICHEP_of2jvh2j13=VH2j/datacards/hww2l2v_13TeV_of2j_vh2j/mll/datacard.txt.pruned.txt \
+                  ICHEP_of2jvh2j13Top=VH2j/datacards/hww2l2v_13TeV_top_of2j_vh2j/events/datacard.txt.pruned.txt \
+                  ICHEP_of2jvh2j13DYtt=VH2j/datacards/hww2l2v_13TeV_dytt_of2j_vh2j/events/datacard.txt.pruned.txt \
+                  ICHEP_wh3lossf=WH3l/datacards/wh3l_13TeV_ossf/drllmin3l/datacard.txt.pruned.txt                  \
+                  ICHEP_wh3lsssf=WH3l/datacards/wh3l_13TeV_sssf/drllmin3l_sssf/datacard.txt.pruned.txt       \
+                  ICHEP_wh3lwz=WH3l/datacards/wh3l_wz_13TeV/events/datacard.txt.pruned.txt                       \
+                  ICHEP_wh3lzg=WH3l/datacards/wh3l_zg_13TeV/events/datacard.txt.pruned.txt            \
+                 >   superCombination.Total.txt.pruned.txt.NEWNAME.txt
 
 
 

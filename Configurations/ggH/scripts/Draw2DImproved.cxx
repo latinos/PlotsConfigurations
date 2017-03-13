@@ -4,6 +4,38 @@
 
 void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", std::string xNameVar = "r1", std::string yNameVar = "r3" , int dimension = 2 , std::string cut = "1") {
   
+  
+  gStyle->SetOptStat(0);
+  
+  
+  
+  #include "TROOT.h"
+  #include "TStyle.h"
+  #include "TColor.h"
+  const Int_t __NRGBs = 2;
+  const Int_t __NCont = 255;
+  Double_t __stops[__NRGBs] = { 0.00, 1.00 };
+  Double_t __red[__NRGBs]   = { 1.00, 0.00 };
+  Double_t __green[__NRGBs] = { 1.00, 0.00 };
+  Double_t __blue[__NRGBs]  = { 1.00, 1.00 };
+  
+  TColor::CreateGradientColorTable(__NRGBs, __stops, __red, __green, __blue, __NCont);
+  gStyle->SetNumberContours(__NCont);
+  
+  
+  
+//   
+//   red    = numpy.array( [ 1.00, 0.00] )
+//   green  = numpy.array( [ 1.00, 0.00] )
+//   blue   = numpy.array( [ 1.00, 1.00] )
+//   length = numpy.array( [ 0.00, 1.00] )
+//   number = len(red)
+//   nb=255
+//   ROOT.TColor.CreateGradientColorTable(number,length,red,green,blue,nb)
+//   
+  
+  
+  
   TCanvas* cc = new TCanvas ("cc","",800,600); 
   
   TString whatToDraw = Form ("2*deltaNLL:%s:%s", xNameVar.c_str(), yNameVar.c_str());
@@ -98,6 +130,8 @@ void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", st
   limit->SetBranchAddress(yNameVar.c_str(), &ymin );
   
   limit->GetEntry(0);
+  
+  std::cout << " min x,y = " << xmin << "  ,  " << ymin << std::endl;
   
   TGraph* crossMin = new TGraph();
   crossMin->SetPoint(0, xmin, ymin);

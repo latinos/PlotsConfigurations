@@ -1279,17 +1279,17 @@ combine -M MultiDimFit    Combined.1jet.me.txt         -m 125 --algo=grid --poin
 
 
 
-combine -M MultiDimFit    Combined.vbf.pruned.txt      -m 125 --algo=grid --points 400 -t  -1    --setPhysicsModelParameterRanges r=-4,6 -n "LHScanMC.Combined.vbf.pruned.txt"
-combine -M MultiDimFit    Combined.vh2j.pruned.txt     -m 125 --algo=grid --points 400 -t  -1    --setPhysicsModelParameterRanges r=-6,8 -n "LHScanMC.Combined.vh2j.pruned.txt"
-combine -M MultiDimFit    Combined.2j.pruned.txt       -m 125 --algo=grid --points 400 -t  -1    --setPhysicsModelParameterRanges r=-4,6 -n "LHScanMC.Combined.2j.pruned.txt"
-combine -M MultiDimFit    Combined.wh3l.pruned.txt     -m 125 --algo=grid --points 400 -t  -1    --setPhysicsModelParameterRanges r=-2,6 -n "LHScanMC.Combined.wh3l.pruned.txt"
+combine -M MultiDimFit    Combined.vbf.pruned.txt      -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-4,6 -n "LHScanMC.Combined.vbf.pruned.txt"
+combine -M MultiDimFit    Combined.vh2j.pruned.txt     -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-6,8 -n "LHScanMC.Combined.vh2j.pruned.txt"
+combine -M MultiDimFit    Combined.2j.pruned.txt       -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-4,6 -n "LHScanMC.Combined.2j.pruned.txt"
+combine -M MultiDimFit    Combined.wh3l.pruned.txt     -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-2,6 -n "LHScanMC.Combined.wh3l.pruned.txt"
                                                                                                                                                   
-combine -M MultiDimFit    Combined.1jet.txt            -m 125 --algo=grid --points 400 -t  -1    --setPhysicsModelParameterRanges r=-2,4 -n "LHScanMC.Combined.1jet.txt"
-combine -M MultiDimFit    Combined.0jet.txt            -m 125 --algo=grid --points 400 -t  -1    --setPhysicsModelParameterRanges r=-2,4 -n "LHScanMC.Combined.0jet.txt"
-combine -M MultiDimFit    Combined.0jet.em.txt         -m 125 --algo=grid --points 400 -t  -1    --setPhysicsModelParameterRanges r=-2,4 -n "LHScanMC.Combined.0jet.em.txt"
-combine -M MultiDimFit    Combined.0jet.me.txt         -m 125 --algo=grid --points 400 -t  -1    --setPhysicsModelParameterRanges r=-2,4 -n "LHScanMC.Combined.0jet.me.txt"
-combine -M MultiDimFit    Combined.1jet.em.txt         -m 125 --algo=grid --points 400 -t  -1    --setPhysicsModelParameterRanges r=-2,4 -n "LHScanMC.Combined.1jet.em.txt"
-combine -M MultiDimFit    Combined.1jet.me.txt         -m 125 --algo=grid --points 400 -t  -1    --setPhysicsModelParameterRanges r=-2,4 -n "LHScanMC.Combined.1jet.me.txt"
+combine -M MultiDimFit    Combined.1jet.txt            -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-2,4 -n "LHScanMC.Combined.1jet.txt"
+combine -M MultiDimFit    Combined.0jet.txt            -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-2,4 -n "LHScanMC.Combined.0jet.txt"
+combine -M MultiDimFit    Combined.0jet.em.txt         -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-2,4 -n "LHScanMC.Combined.0jet.em.txt"
+combine -M MultiDimFit    Combined.0jet.me.txt         -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-2,4 -n "LHScanMC.Combined.0jet.me.txt"
+combine -M MultiDimFit    Combined.1jet.em.txt         -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-2,4 -n "LHScanMC.Combined.1jet.em.txt"
+combine -M MultiDimFit    Combined.1jet.me.txt         -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-2,4 -n "LHScanMC.Combined.1jet.me.txt"
                                                        
 
 
@@ -1297,7 +1297,7 @@ combine -M MultiDimFit    Combined.1jet.me.txt         -m 125 --algo=grid --poin
                                                        
 
 
-root -l ../higgsCombineLHScanDATA.Combined.0jet.txt.MultiDimFit.mH125.root  \
+root -l ../higgsCombineLHScanMC.Combined.0jet.txt.MultiDimFit.mH125.root  \
         ../higgsCombineLHScanDATA.Combined.0jet.txt.MultiDimFit.mH125.root  \
             scripts/drawNLLObs.C
 
