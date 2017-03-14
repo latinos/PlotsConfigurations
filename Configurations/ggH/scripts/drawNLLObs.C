@@ -5,14 +5,14 @@ void drawNLLObs() {
   int n_data = 0;
   
   TTree* limit = (TTree*) _file0->Get("limit");  
-  n = limit->Draw("2*deltaNLL:r","deltaNLL<10 && deltaNLL>0","l");
+  n = limit->Draw("2*deltaNLL:r","deltaNLL<10 && deltaNLL>-30","l");
   TGraph *graphScan = new TGraph(n,limit->GetV2(),limit->GetV1());
   graphScan->RemovePoint(0);
 
   TGraph *graphScanData = 0;
   if (_file1) {
    TTree* limitData = (TTree*) _file1->Get("limit");  
-   n_data = limitData->Draw("2*deltaNLL:r","deltaNLL<10 && deltaNLL>0","l");
+   n_data = limitData->Draw("2*deltaNLL:r","deltaNLL<40 && deltaNLL>-30","l");
    graphScanData = new TGraph(n_data,limitData->GetV2(),limitData->GetV1());
    graphScanData->RemovePoint(0);
    graphScanData->SetTitle("");
@@ -59,12 +59,16 @@ void drawNLLObs() {
   tex2->SetLineWidth(2);
   
   TLatex * tex3;
-  tex3 = new TLatex(0.236,0.92,"L = 12.9 fb^{-1}  Preliminary");
+//   tex3 = new TLatex(0.236,0.92,"L = 12.9 fb^{-1}  Preliminary");
+  tex3 = new TLatex(0.236,0.92,"L = 15.2 fb^{-1}  Preliminary");
   tex3->SetNDC();
   tex3->SetTextFont(52);
   tex3->SetTextSize(0.035);
   tex3->SetLineWidth(2);
   
+  
+  float minX = 999;
+  float maxX = -999;
   
   
   //---- clean duplicate (it happens during lxbatch scan)
@@ -89,11 +93,43 @@ void drawNLLObs() {
   
   graphScan->Set(0);
    
+  
+  float mc_min_x = -100;
+  //---- fix the 0 of the likelihood scan
+  float minimum = 1000;
+  for (std::map<double, double>::iterator it = x_y_map.begin(); it != x_y_map.end(); it++) {
+    if ( it->second < minimum ) {
+      minimum = it->second;
+      mc_min_x = it->first;
+    }
+  }
+  for (std::map<double, double>::iterator it = x_y_map.begin(); it != x_y_map.end(); it++) {
+    it->second =  it->second - minimum;
+  }
+  //---- (end) fix the 0 of the likelihood scan
+  
+  
   int ip = 0;
   for (std::map<double, double>::iterator it = x_y_map.begin(); it != x_y_map.end(); it++) {
     graphScan->SetPoint( ip, it->first , it->second);
     ip++;
   }
+  
+  
+  //---- just for horizonthal lines
+  for (std::map<double, double>::iterator it = x_y_map.begin(); it != x_y_map.end(); it++) {
+    if ( it->first < minX ) {
+      minX = it->first;
+    }
+    if ( it->first > maxX ) {
+      maxX = it->first;
+    }
+  }
+  //---- (end) just for horizonthal lines
+  
+  
+  
+  
   
   
   x_std.clear();
@@ -113,6 +149,21 @@ void drawNLLObs() {
   }
   
   graphScanData->Set(0);
+  
+  float data_min_x = -100;
+  //---- fix the 0 of the likelihood scan
+  minimum = 1000;
+  for (std::map<double, double>::iterator it = x_y_map.begin(); it != x_y_map.end(); it++) {
+    if ( it->second < minimum ) {
+      minimum = it->second;
+      data_min_x = it->first;
+    }
+  }
+  for (std::map<double, double>::iterator it = x_y_map.begin(); it != x_y_map.end(); it++) {
+    it->second =  it->second - minimum;
+  }
+  //---- (end) fix the 0 of the likelihood scan
+  
   
   ip = 0;
   for (std::map<double, double>::iterator it = x_y_map.begin(); it != x_y_map.end(); it++) {
@@ -141,13 +192,15 @@ void drawNLLObs() {
   //  2deltaLogL = 1.00
   //  2deltaLogL = 3.84
   
-  TLine *line1 = new TLine((limit->GetV2())[0],1.0,(limit->GetV2())[n-1],1.0);
+//   TLine *line1 = new TLine((limit->GetV2())[0],1.0,(limit->GetV2())[n-1],1.0);
+  TLine *line1 = new TLine(minX,1.0,maxX,1.0);
   line1->SetLineWidth(2);
   line1->SetLineStyle(2);
   line1->SetLineColor(kRed);
   line1->Draw(); 
   
-  TLine *line2 = new TLine((limit->GetV2())[0],3.84,(limit->GetV2())[n-1],3.84);
+//   TLine *line2 = new TLine((limit->GetV2())[0],3.84,(limit->GetV2())[n-1],3.84);
+  TLine *line2 = new TLine(minX,3.84,maxX,3.84);
   line2->SetLineWidth(2);
   line2->SetLineStyle(2);
   line2->SetLineColor(kRed);
@@ -175,7 +228,18 @@ void drawNLLObs() {
   leg->Draw();
   
   
+  std::cout << " data at minimum:   " << data_min_x << std::endl;
+  std::cout << " MC   at minimum:   " <<   mc_min_x << std::endl;
+  
+  
+  
+  std::cout << " data at 0:   " << graphScanData->Eval(0) << std::endl;
+  std::cout << " MC   at 0:   " << graphScan    ->Eval(0) << std::endl;
+
+  std::cout << " significance data at 0:   " << sqrt(graphScanData->Eval(0)) << std::endl;
+  std::cout << " significance MC   at 0:   " << sqrt(graphScan    ->Eval(0)) << std::endl;
   
   cc->SaveAs("ll.png");
   
 }
+
