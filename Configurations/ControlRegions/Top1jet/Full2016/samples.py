@@ -15,57 +15,37 @@ if    'iihe' in SITE :
   treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/'
 elif  'cern' in SITE :
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016/'
-print SITE, treeBaseDir
+
+directory = treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight/'
 
 ###### DY #######
 
-samples['DY']  = {    'name': [ ],    
+samples['DY']  = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-10to50')
+                                 + getSampleFiles(directory,'DYJetsToLL_M-50')     ,
                       'weight' : 'puW*baseW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*effTrigW*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',  
                  }
 
-directory = treeBaseDir+'MCl2looseCut__hadd__bSFL2pTEffCut__l2tight/'
-for DataSet in ['latino_DYJetsToLL_M-10to50','latino_DYJetsToLL_M-50__part']:
-    fileCmd='ls '+directory+DataSet+'*'
-    proc=subprocess.Popen(fileCmd, stderr = subprocess.PIPE,stdout = subprocess.PIPE, shell = True)
-    out, err = proc.communicate()
-    FileTarget=string.split(out)
-    getSampleFiles(directory,DataSet)
-    for iFile in FileTarget:
-      samples['DY']['name'].append(os.path.basename(iFile))
-
 ###### Top #######
 
-samples['top'] = {   'name': [ ],          
+samples['top'] = {   'name'     :  getSampleFiles(directory,'TTTo2L2Nu') 
                            #'latino_ST_tW_antitop.root',
                            #'latino_ST_tW_top.root'
-                       'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',    #   weight/cut 
+                             ,
+                       'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',    
                       }
-
-directory = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight/'
-for DataSet in ['latino_TTTo2L2Nu__part']:
-    fileCmd='ls '+directory+DataSet+'*'
-    proc=subprocess.Popen(fileCmd, stderr = subprocess.PIPE,stdout = subprocess.PIPE, shell = True)
-    out, err = proc.communicate()
-    FileTarget=string.split(out)
-    for iFile in FileTarget:
-      samples['top']['name'].append(os.path.basename(iFile))
 
 ###### WW ########
              
-samples['WW']  = {    'name': [
-                                  'latino_WWTo2L2Nu.root'
-                                ],      
+samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu'),
                       'weight' : 'nllW*baseW*puW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
                   }
 
 
 
-#samples['ggWW']  = {    'name': ['latino_GluGluWWTo2L2Nu_MCFM.root'],      
-                      #'weight' : 'puW63mb*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
-                      ##'weights': ['abs(nllW)'] ,           
-                      ##'weights': ['1.000'] ,           
-                      #'isData': ['0'],                            
-                  #}
+samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'),      
+                      'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',    
+                      'isData': ['0'],                            
+                   }
 
 
 
@@ -303,12 +283,11 @@ MyWeights={
           }
 
 for Run in ['B','C','D','E','F','G','H'] :
-  directory = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/Feb2017_Run2016'+Run+'_RemAOD/l2looseCut__hadd__EpTCorr__TrigMakerData__l2tight/'
+  directory = treeBaseDir+'Feb2017_Run2016'+Run+'_RemAOD/l2looseCut__hadd__EpTCorr__TrigMakerData__l2tight/'
   for DataSet in ['MuonEG','DoubleMuon','SingleMuon','DoubleEG','SingleElectron']:
-    fileCmd='ls '+directory+'*'+DataSet+'*'
-    proc=subprocess.Popen(fileCmd, stderr = subprocess.PIPE,stdout = subprocess.PIPE, shell = True)
-    out, err = proc.communicate()
-    FileTarget=string.split(out)
+    FileTarget = getSampleFiles(directory,'*'+DataSet+'*',True)
     for iFile in FileTarget:
-      samples['DATA']['name'].append('###'+iFile)
+      samples['DATA']['name'].append(iFile)
       samples['DATA']['weights'].append(MyWeights[DataSet]) 
+
+print samples['WW'] 
