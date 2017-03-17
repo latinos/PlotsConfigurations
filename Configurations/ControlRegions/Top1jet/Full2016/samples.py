@@ -1,10 +1,21 @@
 import os
 import subprocess
 import string
+from LatinoAnalysis.Tools.commonTools import *
 
 # samples
 
 #samples = {}
+
+
+###### Tree Directory according to site ######
+
+SITE=os.uname()[1]
+if    'iihe' in SITE :
+  treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/'
+elif  'cern' in SITE :
+  treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016/'
+print SITE, treeBaseDir
 
 ###### DY #######
 
@@ -12,12 +23,13 @@ samples['DY']  = {    'name': [ ],
                       'weight' : 'puW*baseW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*effTrigW*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',  
                  }
 
-directory = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight/'
+directory = treeBaseDir+'MCl2looseCut__hadd__bSFL2pTEffCut__l2tight/'
 for DataSet in ['latino_DYJetsToLL_M-10to50','latino_DYJetsToLL_M-50__part']:
     fileCmd='ls '+directory+DataSet+'*'
     proc=subprocess.Popen(fileCmd, stderr = subprocess.PIPE,stdout = subprocess.PIPE, shell = True)
     out, err = proc.communicate()
     FileTarget=string.split(out)
+    getSampleFiles(directory,DataSet)
     for iFile in FileTarget:
       samples['DY']['name'].append(os.path.basename(iFile))
 
