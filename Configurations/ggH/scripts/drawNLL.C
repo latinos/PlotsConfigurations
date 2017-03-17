@@ -3,7 +3,8 @@ void drawNLL() {
   TCanvas* cc = new TCanvas("cc","", 800, 600);
   int n = 0;
   
-  n = limit->Draw("2*deltaNLL:r","deltaNLL<10 && deltaNLL>0","l");
+//   n = limit->Draw("2*deltaNLL:r","deltaNLL<10 && deltaNLL>0","l");
+  n = limit->Draw("2*deltaNLL:muVBF","deltaNLL<10 && deltaNLL>0","l");
   TGraph *graphScan = new TGraph(n,limit->GetV2(),limit->GetV1());
   graphScan->RemovePoint(0);
   
@@ -47,7 +48,7 @@ void drawNLL() {
   tex2->SetLineWidth(2);
   
   TLatex * tex3;
-  tex3 = new TLatex(0.236,0.92,"L = 12.3 fb^{-1}  Preliminary");
+  tex3 = new TLatex(0.236,0.92,"L = 12.9 + 2.3 fb^{-1}  Preliminary");
   tex3->SetNDC();
   tex3->SetTextFont(52);
   tex3->SetTextSize(0.035);

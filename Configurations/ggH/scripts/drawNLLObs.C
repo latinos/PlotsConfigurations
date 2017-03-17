@@ -239,6 +239,7 @@ void drawNLLObs() {
   std::cout << " significance data at 0:   " << sqrt(graphScanData->Eval(0)) << std::endl;
   std::cout << " significance MC   at 0:   " << sqrt(graphScan    ->Eval(0)) << std::endl;
   
+  
   cc->SaveAs("ll.png");
   
 }

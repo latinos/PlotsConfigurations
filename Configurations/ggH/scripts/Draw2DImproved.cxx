@@ -2,11 +2,15 @@
 //---- generic 2D plot
 //
 
+#include "tdrstyle.C"
+
+
 void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", std::string xNameVar = "r1", std::string yNameVar = "r3" , int dimension = 2 , std::string cut = "1") {
   
   
   gStyle->SetOptStat(0);
   
+  setTDRStyle();
   
   
   #include "TROOT.h"
@@ -95,8 +99,9 @@ void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", st
 
   
   TCanvas* cc2 = new TCanvas ("cc2","",800,600); 
-  cc2->SetRightMargin(0.15);
- 
+//   cc2->SetRightMargin(0.15);
+  cc2->SetRightMargin(0.19);
+  
   graphScan->Draw("contz");
   graphScan->Draw("colz");
   
