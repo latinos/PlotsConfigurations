@@ -432,7 +432,55 @@ combine -M MultiDimFit  \
 
 
 
+# 
+# test mu vs nuisances
+# 
 
+
+
+
+combineTool.py -d superCombination.Total.txt.pruned.txt.workspace.BIS.root -M MultiDimFit    \
+               --algo=grid   --X-rtd OPTIMIZE_BOUNDS=0   -n "all.mu.vs.WWnorm0j"   \
+               --redefineSignalPOIs r,WWnorm0j \
+               --setPhysicsModelParameterRanges r=0,2:WWnorm0j=0,2  \
+               --points 400    --job-mode lxbatch --task-name lxbatch-data-scan-all-mu-vs-WWnorm0j --sub-opts='-q 1nd' --split-points 1 
+            
+            
+combineTool.py -d superCombination.Total.txt.pruned.txt.workspace.BIS.root -M MultiDimFit    \
+               --algo=grid   --X-rtd OPTIMIZE_BOUNDS=0   -n "all.mu.vs.Topnorm0j"   \
+               --redefineSignalPOIs r,Topnorm0j \
+               --setPhysicsModelParameterRanges r=0,Topnorm0j=0,2  \
+               --points 400    --job-mode lxbatch --task-name lxbatch-data-scan-all-mu-vs-Topnorm0j --sub-opts='-q 1nd' --split-points 1 
+            
+            
+                
+  
+  
+  
+ls -alrth higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsWithPrefit.POINTS.*.MultiDimFit.mH120.root  | grep -v 6.6 | grep -v 6.7 | grep -v 6.8 | awk '{print "rm "$9}' | /bin/sh
+hadd   higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsWithPrefit.root         higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsWithPrefit.POINTS.*.MultiDimFit.mH120.root
+
+  
+  
+r99t ../higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsWithPrefit.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
+ 
+
+ 
+ 
+
+combine -M MultiDimFit  \
+         \
+     --redefineSignalPOIs r,DYttnorm0j,Topnorm0j,WWnorm0j,DYttnorm1j,Topnorm1j,WWnorm1j,DYttnorm2j,Topnorm2j,WWnorm2j,DYttnorm2jvbf,Topnorm2jvbf,WWnorm2jvbf,DYttnorm2jvh,Topnorm2jvh,WWnorm2jvh   \
+     -n "multidimfit.categories.mu.allscan"     >   result.MultiDimFit.singles.workspace.superCombination.Total.txt.pruned.txt.categories.mu.unique.withbkg.txt
+                                                  
+
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
 
 
 
