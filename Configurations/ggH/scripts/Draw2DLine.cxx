@@ -103,15 +103,16 @@ void Draw2DLine(std::string xName = "r_{1}", std::string yName = "r_{3}", std::s
   cc->SaveAs(nameImage.Data());
   
   
-  /*
+  
   TCanvas* cc2 = new TCanvas ("cc2","",800,600); 
   cc2->SetRightMargin(0.19);
+  graphScan->Draw("P");
   
 //   graphScan->Draw("TRI1");
-//   graphScan->Draw("TRI");
-//   graphScan->Draw("TRI2");
-//   graphScan->Draw("CONT5");
-  graphScan->Draw("CONT4");*/
+// //   graphScan->Draw("TRI");
+// //   graphScan->Draw("TRI2");
+// //   graphScan->Draw("CONT5");
+//   graphScan->Draw("CONT4");
   
   
 }
