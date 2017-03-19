@@ -1631,6 +1631,27 @@ combine -M MultiDimFit    ICHEP2016.1jet.em.txt         -m 125 --algo=grid --poi
 combine -M MultiDimFit    ICHEP2016.1jet.me.txt         -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-4,4 -n "LHScanMC.ICHEP2016.1jet.me.txt"
                                                        
 
+     
+text2workspace.py ICHEP2016.1jet.txt   -o  ICHEP2016.1jet.txt.root  
+      
+
+combineTool.py -d ICHEP2016.1jet.txt.root -M MultiDimFit    \
+               --algo=grid   --X-rtd OPTIMIZE_BOUNDS=0   -n "lxbatch.ICHEP2016.1jet.mc"   \
+               --setPhysicsModelParameterRanges r=-2,4  -t  -1  --expectSignal 1    \
+               --points 400    --job-mode lxbatch --task-name lxbatch-ICHEP2016-1jet-mc   --sub-opts='-q 1nd' --split-points 1 
+
+               
+
+combineTool.py -d ICHEP2016.1jet.txt.root -M MultiDimFit    \
+               --algo=grid   --X-rtd OPTIMIZE_BOUNDS=0   -n "lxbatch.ICHEP2016.1jet.data"   \
+               --setPhysicsModelParameterRanges r=-2,4      \
+               --points 400    --job-mode lxbatch --task-name lxbatch-ICHEP2016-1jet-data   --sub-opts='-q 1nd' --split-points 1 
+
+# hadd higgsCombinelxbatch.ICHEP2016.1jet.data.POINTS.root   higgsCombinelxbatch.ICHEP2016.1jet.data.POINTS.*.MultiDimFit.mH120.root
+# hadd higgsCombinelxbatch.ICHEP2016.1jet.mc.POINTS.root   higgsCombinelxbatch.ICHEP2016.1jet.mc.POINTS.*.MultiDimFit.mH120.root
+
+# ls -alrth higgsCombinelxbatch.ICHEP2016.1jet.data.POINTS.*.MultiDimFit.mH120.root  | grep -v 6.6 | grep -v 6.7 | grep -v 6.8 | awk '{print "rm "$9}' | /bin/sh
+# ls -alrth higgsCombinelxbatch.ICHEP2016.1jet.mc.POINTS.*.MultiDimFit.mH120.root  | grep -v 6.6 | grep -v 6.7 | grep -v 6.8 | awk '{print "rm "$9}' | /bin/sh
 
 
 
@@ -1652,7 +1673,13 @@ root -l ../higgsCombineLHScanMC.ICHEP2016.0jet.me.txt.MultiDimFit.mH125.root  \
 mv ll.png plotLL_ICHEP2016//0jet.me.png
 
 
-            
+
+root -l ../higgsCombinelxbatch.ICHEP2016.1jet.mc.POINTS.root  \
+        ../higgsCombinelxbatch.ICHEP2016.1jet.data.POINTS.root  \
+            scripts/drawNLLObs.C
+mv ll.png plotLL_ICHEP2016//1jet.png
+
+
 root -l ../higgsCombineLHScanMC.ICHEP2016.1jet.txt.MultiDimFit.mH125.root  \
         ../higgsCombineLHScanDATA.ICHEP2016.1jet.txt.MultiDimFit.mH125.root  \
             scripts/drawNLLObs.C
