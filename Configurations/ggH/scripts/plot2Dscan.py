@@ -21,14 +21,14 @@ print "branches = ", list_branches
 for branches in list_branches:
   #print branches.GetName()
    
-  if branches.GetName() != "limit"  and branches.GetName() != "mH" \
+  if branches.GetName() != "limit"  and branches.GetName() != "mh" \
          and branches.GetName() != "limitErr"   and branches.GetName() != "syst"   and branches.GetName() != "iToy" \
          and branches.GetName() != "iSeed"      and branches.GetName() != "iChannel" \
          and branches.GetName() != "t_cpu" \
          and branches.GetName() != "t_real" \
              :
     toDo = "root -l -q -b " +  args.input + "  scripts/Draw2DLine.cxx\(\\\"#mu\\\",\\\""  +   branches.GetName()  + "\\\",\\\"r\\\",\\\"" +  branches.GetName()   + "\\\",\\\"" +   branches.GetName()   + "\\\"\) "
-    print toDo
-    #os.system (toDo)
+    #print toDo
+    os.system (toDo)
   
   
