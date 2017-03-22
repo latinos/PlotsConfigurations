@@ -35,7 +35,13 @@ samples['DY']  = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-10to50
 
 samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu') 
                                   + getSampleFiles(directory,'ST_tW_antitop')
-                                  + getSampleFiles(directory,'ST_tW_top')
+                                  + getSampleFiles(directory,'ST_tW_top')  
+                                  # We should use in principle: ST_tW_antitop_noHad + ST_tW_antitop_noHad_ext1 + ST_tW_top_noHad + ST_tW_top_noHad_ext1   
+                                  # but first need to compute x-section and correct baseW
+                                  + getSampleFiles(directory,'ST_t-channel_antitop')
+                                  + getSampleFiles(directory,'ST_t-channel_top')
+                                  # s-channel still missing but samll x-section
+                                # + getSampleFiles(directory,'ST_s-channel')   
                              ,
                        'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',    
                       }
