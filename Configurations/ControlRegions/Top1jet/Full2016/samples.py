@@ -40,8 +40,7 @@ samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu')
                                   # but first need to compute x-section and correct baseW
                                   + getSampleFiles(directory,'ST_t-channel_antitop')
                                   + getSampleFiles(directory,'ST_t-channel_top')
-                                  # s-channel still missing but samll x-section
-                                # + getSampleFiles(directory,'ST_s-channel')   
+                                  + getSampleFiles(directory,'ST_s-channel')   
                              ,
                        'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',    
                       }
