@@ -64,7 +64,9 @@ samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'
 
 ######## Vg ########
 
-samples['Vg']  =  {     'name'   : getSampleFiles(directory,'Wg_MADGRAPHMLM'),
+samples['Vg']  =  {     'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM')
+                                   + getSampleFiles(directory,'Zg')
+                                   ,
                         'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM) \
                                    * !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
                   }
@@ -90,6 +92,8 @@ samples['VZ']  = {    'name':   getSampleFiles(directory,'WZTo3LNu')
                               + getSampleFiles(directory,'ZZTo2L2Nu')
                               + getSampleFiles(directory,'WZTo2L2Q')
                               + getSampleFiles(directory,'ZZTo2L2Q')  
+                              # Should we include this as well here:
+                              # + getSampleFiles(directory,'tZq_ll')
                               ,   
                       'weight' : '1.11*puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',
                   }
@@ -102,6 +106,8 @@ samples['VVV'] = {    'name':   getSampleFiles(directory,'ZZZ')
                               + getSampleFiles(directory,'WZZ')
                               + getSampleFiles(directory,'WWZ')
                               + getSampleFiles(directory,'WWW')
+                           #  WWG: Might be added to WW by PYTHIA in tuning step, super small x-section anyway -> skipped for now 
+                           #  + getSampleFiles(directory,'WWG')
                               ,    
                       'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',
                   }
