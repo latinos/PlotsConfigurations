@@ -7,8 +7,9 @@ from LatinoAnalysis.Tools.commonTools import *
 
 #samples = {}
 
-
+##############################################
 ###### Tree Directory according to site ######
+##############################################
 
 SITE=os.uname()[1]
 if    'iihe' in SITE :
@@ -19,6 +20,14 @@ elif  'cern' in SITE :
 directory = treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight/'
 
 
+################################################
+############ BASIC MC WEIGHTS ##################
+################################################
+
+XSWeight      = 'baseW*GEN_weight_SM/abs(GEN_weight_SM)'
+SFweight      = 'puW*bPogSF*effTrigW*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]'
+GenLepMatch   = 'std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]'
+
 ###########################################
 #############  BACKGROUNDS  ###############
 ###########################################
@@ -28,7 +37,7 @@ directory = treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2t
 
 samples['DY']  = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-10to50')
                                  + getSampleFiles(directory,'DYJetsToLL_M-50')     ,
-                      'weight' : 'puW*baseW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*effTrigW*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',  
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch + '*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))' ,
                  }
 
 ###### Top #######
@@ -42,19 +51,19 @@ samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu')
                                   + getSampleFiles(directory,'ST_t-channel_top')
                                   + getSampleFiles(directory,'ST_s-channel')   
                              ,
-                       'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',    
-                      }
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch ,  
+                  
 
 ###### WW ########
              
 samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu'),
-                      'weight' : 'nllW*baseW*puW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch + '*nllW' ,  
                   }
 
 
 
 samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'),      
-                      'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',    
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch ,  
                       'isData': ['0'],                            
                    }
 
@@ -67,14 +76,13 @@ samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'
 samples['Vg']  =  {     'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM')
                                    + getSampleFiles(directory,'Zg')
                                    ,
-                        'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM) \
-                                   * !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
+                        'weight' : XSWeight+'*'+SFweight + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
                   }
 
 ######## VgS ########
 
 samples['VgS']  = {    'name':  getSampleFiles(directory,'WgStarLNuEE') + getSampleFiles(directory,'WgStarLNuMuMu') ,
-                       'weight' : '1.4*puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',
+                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch + '*1.4' ,  
                   }
 
 ## 
@@ -95,7 +103,7 @@ samples['VZ']  = {    'name':   getSampleFiles(directory,'WZTo3LNu')
                               # Should we include this as well here:
                               # + getSampleFiles(directory,'tZq_ll')
                               ,   
-                      'weight' : '1.11*puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch + '*1.11' ,  
                   }
 
 ### 1.11 normalisation was measured in 3-lepton
@@ -109,7 +117,7 @@ samples['VVV'] = {    'name':   getSampleFiles(directory,'ZZZ')
                            #  WWG: Might be added to WW by PYTHIA in tuning step, super small x-section anyway -> skipped for now 
                            #  + getSampleFiles(directory,'WWG')
                               ,    
-                      'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch ,  
                   }
 
 ###########################################
@@ -119,44 +127,44 @@ samples['VVV'] = {    'name':   getSampleFiles(directory,'ZZZ')
 
 #### ggH -> WW
 
-samples['ggH_hww']  = {  'name'   : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
-                         'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',
+samples['ggH_hww']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch ,  
                       }
 
 
 #### VBF H->WW
 
-samples['qqH_hww']  = {    'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_alternative_M125') ,
-                         'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',
+samples['qqH_hww']  = {   'name' : getSampleFiles(directory,'VBFHToWWTo2L2Nu_alternative_M125') ,
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch ,  
                       }
 
 ### ZH ; H->WW
 
-samples['ZH_hww']  = {    'name':  getSampleFiles(directory,'HZJ_HToWW_M125') ,
-                          'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',
+samples['ZH_hww']   = {   'name' :  getSampleFiles(directory,'HZJ_HToWW_M125') ,
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch ,  
                       }
 
-samples['ggZH_hww']  = {  'name': getSampleFiles(directory,'ggZH_HToWW_M125') ,
-                          'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',
+samples['ggZH_hww'] = {   'name' : getSampleFiles(directory,'ggZH_HToWW_M125') ,
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch ,  
                       }
 
 #### WH ; H->WW
 
-samples['WH_hww']  = {    'name':   getSampleFiles(directory,'HWminusJ_HToWW_M125')
-                                  + getSampleFiles(directory,'HWplusJ_HToWW_M125')
-                                  , 
-                          'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',
+samples['WH_hww']   = {   'name' :   getSampleFiles(directory,'HWminusJ_HToWW_M125')
+                                   + getSampleFiles(directory,'HWplusJ_HToWW_M125')
+                                   , 
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch ,  
                       }
 
 #### H -> TauTau
 
-samples['H_htt']  = {     'name':   getSampleFiles(directory,'GluGluHToTauTau_M125')
-                                  + getSampleFiles(directory,'VBFHToTauTau_M125')
-                                  + getSampleFiles(directory,'HZJ_HToTauTau_M125')
-                                  + getSampleFiles(directory,'HWplusJ_HToTauTau_M125')
-                                  + getSampleFiles(directory,'HWminusJ_HToTauTau_M125')
-                                  ,  
-                          'weight' : 'puW*baseW*effTrigW*bPogSF*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',
+samples['H_htt']    = {   'name' :   getSampleFiles(directory,'GluGluHToTauTau_M125')
+                                   + getSampleFiles(directory,'VBFHToTauTau_M125')
+                                   + getSampleFiles(directory,'HZJ_HToTauTau_M125')
+                                   + getSampleFiles(directory,'HWplusJ_HToTauTau_M125')
+                                   + getSampleFiles(directory,'HWminusJ_HToTauTau_M125')
+                                   ,  
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch ,  
                       }
 
 
