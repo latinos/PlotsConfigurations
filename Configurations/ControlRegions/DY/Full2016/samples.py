@@ -34,7 +34,16 @@ GenLepMatch   = 'std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]
 ############ DATA DECLARATION ##################
 ################################################
 
-DataRun = [ ['B','Run2016B-03Feb2017_ver2-v2'] , ['C','Run2016C-03Feb2017-v1'] , ['D','Run2016D-03Feb2017-v1'] , ['E','Run2016E-03Feb2017-v1'] , ['F','Run2016F-03Feb2017-v1'] , ['G','Run2016G-03Feb2017-v1'] , ['H','Run2016H-03Feb2017_ver2-v1'] , ['H','Run2016H-03Feb2017_ver3-v1'] ] 
+DataRun = [ 
+            ['B','Run2016B-03Feb2017_ver2-v2'] , 
+            ['C','Run2016C-03Feb2017-v1'] , 
+            ['D','Run2016D-03Feb2017-v1'] , 
+            ['E','Run2016E-03Feb2017-v1'] ,
+            ['F','Run2016F-03Feb2017-v1'] , 
+            ['G','Run2016G-03Feb2017-v1'] , 
+            ['H','Run2016H-03Feb2017_ver2-v1'] , 
+            ['H','Run2016H-03Feb2017_ver3-v1'] ,
+          ] 
 
 DataSets = ['MuonEG','DoubleMuon','SingleMuon','DoubleEG','SingleElectron']
 
