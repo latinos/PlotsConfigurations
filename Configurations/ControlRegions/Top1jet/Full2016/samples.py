@@ -52,13 +52,14 @@ samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu')
                                   + getSampleFiles(directory,'ST_s-channel')   
                              ,
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch ,  
+                  }
                   
 
 ###### WW ########
              
-samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu'),
+samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu') ,
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch + '*nllW' ,  
-                  }
+                 }
 
 
 
