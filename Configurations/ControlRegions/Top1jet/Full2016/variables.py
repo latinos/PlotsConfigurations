@@ -16,7 +16,7 @@ variables['nvtx']  = {   'name': 'nvtx',
                       }
                         
 variables['mll']  = {   'name': 'mll',            #   variable name    
-                        'range' : (15,50,200),    #   variable range
+                        'range' : (40, 0,200),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
                          'fold' : 0
                         }
@@ -27,14 +27,14 @@ variables['mth']  = {   'name': 'mth',            #   variable name
                          'fold' : 0
                         }
 
-#variables['dphill']  = {   'name': 'abs(dphill)',     
-#                        'range' : (10,0,3.14),   
-#                        'xaxis' : '#Delta#phi_{ll}',
-#                        'fold' : 3
-#                        }
+variables['dphill']  = {   'name': 'abs(dphill)',     
+                        'range' : (20,0,3.14),   
+                        'xaxis' : '#Delta#phi_{ll}',
+                        'fold' : 3
+                        }
 
 variables['ptll']  = {   'name': 'ptll',     
-                        'range' : (10,40,200),   
+                        'range' : (40, 0,200),   
                         'xaxis' : 'p_{T}^{ll} [GeV]',
                         'fold' : 3
                         }
@@ -172,3 +172,38 @@ variables['jetpt2']  = {
                         'xaxis' : 'p_{T} 2nd jet',
                         'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
+
+
+variables['mtw1']  = {  'name': 'mtw1',
+                        'range' : (40,0,200),
+                        'xaxis' : 'm_{T}^{W_{1}} [GeV]',
+                         'fold' : 3
+                        }
+
+variables['mtw2']  = {  'name': 'mtw2',
+                        'range' : (40,0,200),
+                        'xaxis' : 'm_{T}^{W_{2}} [GeV]',
+                         'fold' : 3
+                        }
+
+variables['trkMet']  = {   'name': 'metTtrk',
+                        'range' : (40,0,200),
+                        'xaxis' : 'trk met [GeV]',
+                         'fold' : 3
+                        }
+
+variables['mpmet']  = { 'name': 'mpmet',
+                        'range' : (40,0,200),
+                        'xaxis' : 'min proj met [GeV]',
+                        'fold' : 3
+                        }
+
+variables['dymvaggh']  = { 'name': 'dymvaggh',
+                        'range' : (40,-1,1),
+                        'xaxis' : 'DY MVA',
+                        'fold' : 3
+                        }
+
+
+                        
+
