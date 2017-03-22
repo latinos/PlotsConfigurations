@@ -25,7 +25,7 @@ directory = treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2t
 ################################################
 
 XSWeight      = 'baseW*GEN_weight_SM/abs(GEN_weight_SM)'
-SFweight      = 'puW*bPogSF*effTrigW*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]'
+SFweight      = 'puW*bPogSF*effTrigW*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*veto_EMTFBug'
 GenLepMatch   = 'std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]'
 
 ###########################################
@@ -173,7 +173,7 @@ samples['H_htt']    = {   'name' :   getSampleFiles(directory,'GluGluHToTauTau_M
 ###########################################
 
 samples['Fake']  = {   'name': [ ] ,
-                       'weight' : '(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',              #   weight/cut 
+                       'weight' : '(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))*veto_EMTFBug',              #   weight/cut 
                        'weights' : [ ] ,
                        'isData': ['all'],
                    }
@@ -199,7 +199,7 @@ for Run in ['B','C','D','E','F','G','H'] :
 ###########################################
 
 samples['DATA']  = {   'name': [ ] ,     
-                       'weight' : '1',
+                       'weight' : 'veto_EMTFBug',
                        'weights' : [ ],
                        'isData': ['all'],                            
                   }
