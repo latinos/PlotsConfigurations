@@ -15,10 +15,10 @@ structure['Wjets']  = {
                   'isData'   : 0 
               }
 
-#structure['Fake']  = {  
-#                  'isSignal' : 0,
-#                  'isData'   : 0 
-#              }
+structure['Fake']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0 
+              }
 
 structure['ttbar'] = {   
                   'isSignal' : 0,

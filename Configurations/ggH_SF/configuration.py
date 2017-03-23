@@ -27,7 +27,7 @@ lumi = 12.2950
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotGGH_SF'
+outputDirPlots = 'plotGGH_SF_onlyDataDrivenBackgroundUnc_HR'
 
 
 # used by mkDatacards to define output directory for datacards
