@@ -117,6 +117,34 @@ void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", st
 //   HistStreamFn_ph2->GetZaxis()->SetRangeUser(0,9.99);  
   HistStreamFn_ph2->Draw("CONT1 LIST SAME");
   
+  
+  cc->cd();  
+  HistStreamFn_ph2->Draw("CONT Z LIST");
+  cc->Update();
+  TObjArray *conts = (TObjArray*) gROOT->GetListOfSpecials()->FindObject("contours");
+  std::cout << " conts = " << conts << std::endl;
+  std::cout << " conts->GetSize() = " << conts->GetSize() << std::endl;
+  TGraph* gr_1sigma = (TGraph*) ( ((TList*) conts->At(0))->First());
+  TGraph* gr_2sigma = (TGraph*) ( ((TList*) conts->At(1))->First());
+  
+  
+  gr_1sigma->SetLineWidth(2);
+  gr_1sigma->SetLineStyle(1);
+  gr_1sigma->SetLineColor(1);
+  
+  
+  gr_2sigma->SetLineWidth(2);
+  gr_2sigma->SetLineStyle(7);
+  gr_2sigma->SetLineColor(1);
+  
+  
+   
+  
+  cc2->cd();
+  
+  gr_1sigma->Draw("L");
+  gr_2sigma->Draw("L");
+  
 //   gStyle->SetPadRightMargin(0.2);
   
   TGraph* cross11 = new TGraph();
@@ -163,6 +191,18 @@ void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", st
   crossMin->Draw("P");
   
 //   cc2->SetGrid();
+  
+  
+  
+  TLegend* leg = new TLegend (0.60,0.70,0.80,0.85);
+  leg->SetBorderSize(1);
+  leg->AddEntry(gr_1sigma,"1 #sigma","l");
+  leg->AddEntry(gr_2sigma,"2 #sigma","l");
+  leg->AddEntry(crossMin,"Best fit","P");
+  leg->AddEntry(cross11,"SM","P");
+  leg->Draw();
+  
+  
   
   
   
