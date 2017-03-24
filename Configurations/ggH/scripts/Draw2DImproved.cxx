@@ -229,16 +229,22 @@ void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", st
   tex->SetLineWidth(2);
   
 //   TLatex * tex2 = new TLatex(0.14,0.92,"CMS Preliminary");
-  TLatex * tex2 = new TLatex(0.16,0.92,"CMS Preliminary");
+  TLatex * tex2 = new TLatex(0.16,0.92,"CMS");
   tex2->SetNDC();
   tex2->SetTextFont(61);
   tex2->SetTextSize(0.04);
   tex2->SetLineWidth(2);
+
+  TLatex * texPre = new TLatex(0.23,0.92,"Preliminary");
+  texPre->SetNDC();
+  texPre->SetTextFont(52);
+  texPre->SetTextSize(0.035);
+  texPre->SetLineWidth(2);
   
   TLatex * tex3;
   //   tex3 = new TLatex(0.236,0.92,"L = 12.9 fb^{-1}  Preliminary");
 //   tex3 = new TLatex(0.236,0.92,"L = 15.2 fb^{-1}");
-  tex3 = new TLatex(0.55,0.92,"L = 15.2 fb^{-1}   13 TeV");
+  tex3 = new TLatex(0.55,0.92,"L = 15.2 fb^{-1}   (13 TeV)");
   tex3->SetNDC();
   tex3->SetTextFont(52);
   tex3->SetTextSize(0.035);
@@ -246,6 +252,7 @@ void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", st
   
 //   tex->Draw("same");
   tex2->Draw("same");
+  texPre->Draw("same");
   tex3->Draw("same");
   
   
