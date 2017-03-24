@@ -421,13 +421,54 @@ combine -M MultiDimFit  \
      --redefineSignalPOIs r,DYttnorm0j,Topnorm0j,WWnorm0j,DYttnorm1j,Topnorm1j,WWnorm1j,DYttnorm2j,Topnorm2j,WWnorm2j,DYttnorm2jvbf,Topnorm2jvbf,WWnorm2jvbf,DYttnorm2jvh,Topnorm2jvh,WWnorm2jvh   \
      -n "multidimfit.categories.mu.unique.2016.withbkg"     >   result.MultiDimFit.singles.workspace.superCombination.2016.txt.pruned.txt.categories.mu.unique.withbkg.txt
           
-     
+
+          
+          
+          
+#          
+# glorious likelihood scan
+#
+
+combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.categories.mu.unique.withbkg.root -M MultiDimFit    \
+               --algo=grid   --X-rtd OPTIMIZE_BOUNDS=0  --saveSpecifiedNuis all   -n "1Dfit.multidimfit.categories.mu.unique.withbkg"   \
+               --points 400    --job-mode lxbatch --task-name lxbatch-data-1Dfit-multidimfit-categories-mu-unique-withbkg --sub-opts='-q 1nd' --split-points 1 
+
+               
+combineTool.py -d workspace.superCombination.2015.with2016bkg.txt.pruned.txt.categories.mu.unique.withbkg.root -M MultiDimFit    \
+               --algo=grid   --X-rtd OPTIMIZE_BOUNDS=0  --saveSpecifiedNuis all   -n "1Dfit.multidimfit.categories.mu.unique.2015.with2016bkg.withbkg"   \
+               --points 400    --job-mode lxbatch --task-name lxbatch-data-1Dfit-multidimfit-categories-mu-unique-2015-with2016bkg-withbkg --sub-opts='-q 1nd' --split-points 1 
+
+
+               
+combineTool.py -d workspace.superCombination.2016.with2015bkg.txt.pruned.txt.categories.mu.unique.withbkg.root -M MultiDimFit    \
+               --algo=grid   --X-rtd OPTIMIZE_BOUNDS=0  --saveSpecifiedNuis all   -n "1Dfit.multidimfit.categories.mu.unique.2016.with2015bkg.withbkg"   \
+               --points 400    --job-mode lxbatch --task-name lxbatch-data-1Dfit-multidimfit-categories-mu-unique-2016-with2015bkg-withbkg --sub-opts='-q 1nd' --split-points 1 
+
+
+               
+combineTool.py -d workspace.superCombination.2015.txt.pruned.txt.categories.mu.unique.withbkg.root -M MultiDimFit    \
+               --algo=grid   --X-rtd OPTIMIZE_BOUNDS=0  --saveSpecifiedNuis all   -n "1Dfit.multidimfit.categories.mu.unique.2015.withbkg"   \
+               --points 400    --job-mode lxbatch --task-name lxbatch-data-1Dfit-multidimfit-categories-mu-unique-2015-withbkg --sub-opts='-q 1nd' --split-points 1 
+
+
+               
+combineTool.py -d workspace.superCombination.2016.txt.pruned.txt.categories.mu.unique.withbkg.root -M MultiDimFit    \
+               --algo=grid   --X-rtd OPTIMIZE_BOUNDS=0  --saveSpecifiedNuis all   -n "1Dfit.multidimfit.categories.mu.unique.2016.withbkg"   \
+               --points 400    --job-mode lxbatch --task-name lxbatch-data-1Dfit-multidimfit-categories-mu-unique-2016-withbkg --sub-opts='-q 1nd' --split-points 1 
+
+
           
      
      
 # hadd higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotal.root       higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotal.POINTS.*.MultiDimFit.mH120.root         
-# ls -alrth higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotal.POINTS.*.MultiDimFit.mH120.root  | grep -v 6.6K | grep -v 6.7K | awk '{print "rm "$9}' | /bin/sh
+# ls -alrth higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.POINTS.*.MultiDimFit.mH120.root                   | grep -v K |  awk '{print "rm "$9}' | /bin/sh
+# ls -alrth higgsCombine1Dfit.multidimfit.categories.mu.unique.2015.with2016bkg.withbkg.POINTS.*.MultiDimFit.mH120.root  | grep -v K |  awk '{print "rm "$9}' | /bin/sh
+# ls -alrth higgsCombine1Dfit.multidimfit.categories.mu.unique.2016.with2015bkg.withbkg.POINTS.*.MultiDimFit.mH120.root  | grep -v K |  awk '{print "rm "$9}' | /bin/sh
+# ls -alrth higgsCombine1Dfit.multidimfit.categories.mu.unique.2015.withbkg.POINTS.*.MultiDimFit.mH120.root              | grep -v K |  awk '{print "rm "$9}' | /bin/sh
+# ls -alrth higgsCombine1Dfit.multidimfit.categories.mu.unique.2016.withbkg.POINTS.*.MultiDimFit.mH120.root              | grep -v K |  awk '{print "rm "$9}' | /bin/sh
 #   
+
+
 
 
 
