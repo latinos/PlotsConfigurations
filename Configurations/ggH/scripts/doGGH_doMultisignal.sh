@@ -375,7 +375,7 @@ text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel -
 
             
 text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
-                   --PO 'map=.*/.*H_.*:r[1,-5,5]' \
+                   --PO 'map=.*/.*H_.*:r[1,0,2]' \
                    superCombination.2016.with2015bkg.txt.pruned.txt.NEWNAME.txt  -o  workspace.superCombination.2016.with2015bkg.txt.pruned.txt.categories.mu.unique.withbkg.root
                    
 
@@ -458,20 +458,59 @@ combineTool.py -d workspace.superCombination.2016.txt.pruned.txt.categories.mu.u
 
 
           
-     
-     
+#      
+#      
 # hadd higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.root                      higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.POINTS.*.MultiDimFit.mH120.root         
 # hadd higgsCombine1Dfit.multidimfit.categories.mu.unique.2015.with2016bkg.withbkg.root     higgsCombine1Dfit.multidimfit.categories.mu.unique.2015.with2016bkg.withbkg.POINTS.*.MultiDimFit.mH120.root         
 # hadd higgsCombine1Dfit.multidimfit.categories.mu.unique.2016.with2015bkg.withbkg.root     higgsCombine1Dfit.multidimfit.categories.mu.unique.2016.with2015bkg.withbkg.POINTS.*.MultiDimFit.mH120.root         
 # hadd higgsCombine1Dfit.multidimfit.categories.mu.unique.2015.withbkg.root                 higgsCombine1Dfit.multidimfit.categories.mu.unique.2015.withbkg.POINTS.*.MultiDimFit.mH120.root         
 # hadd higgsCombine1Dfit.multidimfit.categories.mu.unique.2016.withbkg.root                 higgsCombine1Dfit.multidimfit.categories.mu.unique.2016.withbkg.POINTS.*.MultiDimFit.mH120.root         
-
+# 
 # ls -alrth higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.POINTS.*.MultiDimFit.mH120.root                   | grep -v K |  awk '{print "rm "$9}' | /bin/sh
 # ls -alrth higgsCombine1Dfit.multidimfit.categories.mu.unique.2015.with2016bkg.withbkg.POINTS.*.MultiDimFit.mH120.root  | grep -v K |  awk '{print "rm "$9}' | /bin/sh
 # ls -alrth higgsCombine1Dfit.multidimfit.categories.mu.unique.2016.with2015bkg.withbkg.POINTS.*.MultiDimFit.mH120.root  | grep -v K |  awk '{print "rm "$9}' | /bin/sh
 # ls -alrth higgsCombine1Dfit.multidimfit.categories.mu.unique.2015.withbkg.POINTS.*.MultiDimFit.mH120.root              | grep -v K |  awk '{print "rm "$9}' | /bin/sh
 # ls -alrth higgsCombine1Dfit.multidimfit.categories.mu.unique.2016.withbkg.POINTS.*.MultiDimFit.mH120.root              | grep -v K |  awk '{print "rm "$9}' | /bin/sh
 #   
+
+
+python  scripts/plot2Dscan.py -i ../higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.root
+          
+
+
+               
+no
+
+root -l ../higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.root  \
+        ../higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.root  \
+            scripts/drawNLLObs.C
+
+
+ok
+
+root -l ../higgsCombine1Dfit.multidimfit.categories.mu.unique.2015.with2016bkg.withbkg.root  \
+        ../higgsCombine1Dfit.multidimfit.categories.mu.unique.2015.with2016bkg.withbkg.root  \
+            scripts/drawNLLObs.C
+
+ok
+
+root -l ../higgsCombine1Dfit.multidimfit.categories.mu.unique.2016.with2015bkg.withbkg.root  \
+        ../higgsCombine1Dfit.multidimfit.categories.mu.unique.2016.with2015bkg.withbkg.root  \
+            scripts/drawNLLObs.C
+
+ni
+
+root -l ../higgsCombine1Dfit.multidimfit.categories.mu.unique.2015.withbkg.root  \
+        ../higgsCombine1Dfit.multidimfit.categories.mu.unique.2015.withbkg.root  \
+            scripts/drawNLLObs.C
+
+ok
+
+root -l ../higgsCombine1Dfit.multidimfit.categories.mu.unique.2016.withbkg.root  \
+        ../higgsCombine1Dfit.multidimfit.categories.mu.unique.2016.withbkg.root  \
+            scripts/drawNLLObs.C
+
+
 
 
 
