@@ -5,7 +5,7 @@
 #include "tdrstyle.C"
 
 
-void Draw2DLine(std::string xName = "r_{1}", std::string yName = "r_{3}", std::string xNameVar = "r1", std::string yNameVar = "r3" , std::string nameFile = "test" , std::string cut = "1") {
+void Draw2DLine(std::string xName = "r_{1}", std::string yName = "r_{3}", std::string xNameVar = "r1", std::string yNameVar = "r3" , std::string nameFile = "test" , std::string cut = "1", std::string folderName = "plot2DLL") {
   
   
   gStyle->SetOptStat(0);
@@ -39,14 +39,16 @@ void Draw2DLine(std::string xName = "r_{1}", std::string yName = "r_{3}", std::s
 //   
   
   
+  float minimum2DeltaLL = limit->GetMinimum("deltaNLL");
+  std::cout << " shift = " << minimum2DeltaLL << std::endl;
   
   TCanvas* cc = new TCanvas ("cc","",800,600); 
   cc->SetRightMargin(0.19);
   
-  TString whatToDraw = Form ("2*deltaNLL:%s:%s", xNameVar.c_str(), yNameVar.c_str());
+  TString whatToDraw = Form ("2*(deltaNLL-%f):%s:%s", minimum2DeltaLL, xNameVar.c_str(), yNameVar.c_str());
   
 //   TString cutToDraw = Form ("((deltaNLL<10) *1 + (deltaNLL>=10)*10) && (%s)", cut.c_str());
-  TString cutToDraw = Form ("(deltaNLL<10) && (%s)", cut.c_str());
+  TString cutToDraw = Form ("((deltaNLL-%f)<10) && (%s)", minimum2DeltaLL, cut.c_str());
   
   std::cout << " whatToDraw = " << whatToDraw.Data() << std::endl;
   std::cout << " cutToDraw  = " << cutToDraw.Data() << std::endl;
@@ -90,7 +92,8 @@ void Draw2DLine(std::string xName = "r_{1}", std::string yName = "r_{3}", std::s
   }
   
   for (int i=0; i<graphScan->GetN(); i++) {
-    myHisto->Fill( graphScan->GetX()[i],  graphScan->GetY()[i],  graphScan->GetZ()[i]);
+//     myHisto->Fill( graphScan->GetX()[i],  graphScan->GetY()[i],  graphScan->GetZ()[i]);
+    myHisto->Fill( graphScan->GetX()[i],  graphScan->GetY()[i],  graphScan->GetZ()[i] + 0.001);
   }
   
   myHisto->Draw("colz");
@@ -98,8 +101,9 @@ void Draw2DLine(std::string xName = "r_{1}", std::string yName = "r_{3}", std::s
 
   cc->SetGrid();
   
+  TString nameImage = Form ("%s/%s.png", folderName.c_str(), nameFile.c_str());
   
-  TString nameImage = Form ("plot2DLL/%s.png", nameFile.c_str());
+//   TString nameImage = Form ("plot2DLL/%s.png", nameFile.c_str());
 //   TString nameImage = Form ("plot2DLL_1jme/%s.png", nameFile.c_str());
 //   TString nameImage = Form ("plot2DLL_1jem/%s.png", nameFile.c_str());
   cc->SaveAs(nameImage.Data());

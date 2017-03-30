@@ -442,6 +442,14 @@ combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.categories.mu.
                --algo=grid   --X-rtd OPTIMIZE_BOUNDS=0 --setPhysicsModelParameterRanges r=0.5,2 --saveSpecifiedNuis all   -n "1Dfit.multidimfit.categories.mu.unique.withbkg.third"   \
                --points 300    --job-mode lxbatch --task-name lxbatch-data-1Dfit-multidimfit-categories-mu-unique-withbkg-third --sub-opts='-q 1nd' --split-points 1 
                
+                   
+combine -M MultiDimFit workspace.superCombination.Total.txt.pruned.txt.categories.mu.unique.withbkg.root -m 125 --algo=grid --points 100  --saveSpecifiedNuis all   --X-rtd OPTIMIZE_BOUNDS=0 --setPhysicsModelParameterRanges r=0.5,1.5 -n "1Dfit.multidimfit.categories.mu.unique.withbkg.LOCAL"  
+
+
+combine -M MultiDimFit workspace.superCombination.Total.txt.pruned.txt.categories.mu.unique.withbkg.root -m 125 --algo=grid --points 100  --saveSpecifiedNuis all   --X-rtd OPTIMIZE_BOUNDS=0 --setPhysicsModelParameterRanges r=0.5,1.5 -n "1Dfit.multidimfit.categories.mu.unique.withbkg.bis.LOCAL"  
+
+
+
                
 combineTool.py -d workspace.superCombination.2015.with2016bkg.txt.pruned.txt.categories.mu.unique.withbkg.root -M MultiDimFit    \
                --algo=grid   --X-rtd OPTIMIZE_BOUNDS=0 --setPhysicsModelParameterRanges r=0,2 --saveSpecifiedNuis all   -n "1Dfit.multidimfit.categories.mu.unique.2015.with2016bkg.withbkg"   \
@@ -464,7 +472,8 @@ combineTool.py -d workspace.superCombination.2015.txt.pruned.txt.categories.mu.u
                --algo=grid   --X-rtd OPTIMIZE_BOUNDS=0 --setPhysicsModelParameterRanges r=0,2 --saveSpecifiedNuis all   -n "1Dfit.multidimfit.categories.mu.unique.2015.withbkg.second"   \
                --points 400    --job-mode lxbatch --task-name lxbatch-data-1Dfit-multidimfit-categories-mu-unique-2015-withbkg-second --sub-opts='-q 1nd' --split-points 1 
                
-combine -M MultiDimFit workspace.superCombination.2015.txt.pruned.txt.categories.mu.unique.withbkg.root -m 125 --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.5,1.5 -n "1Dfit.multidimfit.categories.mu.unique.2015.withbkg.LOCAL"  
+               
+combine -M MultiDimFit workspace.superCombination.2015.txt.pruned.txt.categories.mu.unique.withbkg.root -m 125 --algo=grid --points 100  --saveSpecifiedNuis all   --X-rtd OPTIMIZE_BOUNDS=0 --setPhysicsModelParameterRanges r=0.5,1.5 -n "1Dfit.multidimfit.categories.mu.unique.2015.withbkg.LOCAL"  
 
                
                
@@ -475,7 +484,7 @@ combineTool.py -d workspace.superCombination.2016.txt.pruned.txt.categories.mu.u
 
 
        
-combine -M MultiDimFit workspace.superCombination.2016.txt.pruned.txt.categories.mu.unique.withbkg.root -m 125 --algo=grid --points 100 --setPhysicsModelParameterRanges r=0.5,1.5 -n "1Dfit.multidimfit.categories.mu.unique.2016.withbkg.LOCAL"  
+combine -M MultiDimFit workspace.superCombination.2016.txt.pruned.txt.categories.mu.unique.withbkg.root -m 125 --algo=grid --points 100  --saveSpecifiedNuis all   --X-rtd OPTIMIZE_BOUNDS=0 --setPhysicsModelParameterRanges r=0.5,1.5 -n "1Dfit.multidimfit.categories.mu.unique.2016.withbkg.LOCAL"  
 
      
                
@@ -518,7 +527,9 @@ python  scripts/plot2Dscan.py -i ../higgsCombine1Dfit.multidimfit.categories.mu.
 python  scripts/plot2Dscan.py -i ../higgsCombine1Dfit.multidimfit.categories.mu.unique.2015.withbkg.root   -n     plotLL.2015.withbkg
 python  scripts/plot2Dscan.py -i ../higgsCombine1Dfit.multidimfit.categories.mu.unique.2016.withbkg.root   -n     plotLL.2016.withbkg
           
-
+python  scripts/plot2Dscan.py -i ../higgsCombine1Dfit.multidimfit.categories.mu.unique.2015.withbkg.LOCAL.MultiDimFit.mH125.root    -n     plotLL.2015.withbkg
+python  scripts/plot2Dscan.py -i ../higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.bis.LOCAL.MultiDimFit.mH125.root     -n     plotLL.withbkg
+python  scripts/plot2Dscan.py -i ../higgsCombine1Dfit.multidimfit.categories.mu.unique.2016.withbkg.LOCAL.MultiDimFit.mH125.root    -n     plotLL.2016.withbkg
 
                
 no
@@ -526,6 +537,12 @@ no
 root -l ../higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.root  \
         ../higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.root  \
             scripts/drawNLLObs.C
+
+
+root -l ../higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.bis.LOCAL.MultiDimFit.mH125.root  \
+        ../higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.bis.LOCAL.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+
 
 
 ok
@@ -540,12 +557,18 @@ root -l ../higgsCombine1Dfit.multidimfit.categories.mu.unique.2016.with2015bkg.w
         ../higgsCombine1Dfit.multidimfit.categories.mu.unique.2016.with2015bkg.withbkg.root  \
             scripts/drawNLLObs.C
 
-ni
+ok
 
 root -l ../higgsCombine1Dfit.multidimfit.categories.mu.unique.2015.withbkg.root  \
         ../higgsCombine1Dfit.multidimfit.categories.mu.unique.2015.withbkg.root  \
             scripts/drawNLLObs.C
 
+root -l ../higgsCombine1Dfit.multidimfit.categories.mu.unique.2015.withbkg.LOCAL.MultiDimFit.mH125.root  \
+        ../higgsCombine1Dfit.multidimfit.categories.mu.unique.2015.withbkg.LOCAL.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+
+            
+            
 ok
 
 root -l ../higgsCombine1Dfit.multidimfit.categories.mu.unique.2016.withbkg.root  \
@@ -553,6 +576,10 @@ root -l ../higgsCombine1Dfit.multidimfit.categories.mu.unique.2016.withbkg.root 
             scripts/drawNLLObs.C
 
 
+
+root -l ../higgsCombine1Dfit.multidimfit.categories.mu.unique.2016.withbkg.LOCAL.MultiDimFit.mH125.root  \
+        ../higgsCombine1Dfit.multidimfit.categories.mu.unique.2016.withbkg.LOCAL.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
 
 
 
