@@ -168,7 +168,7 @@ nuisances['QCDscale_ggH1j_in1jet']  = {
 
 
 nuisances['QCDscale_ggH2j_in1jet']  = {
-               'name'  : 'QCDscale_ggH1j', 
+               'name'  : 'QCDscale_ggH2j', 
                'samples'  : {
                    'ggH_hww' : '0.915896',
                    },

@@ -186,7 +186,7 @@ nuisances['QCDscale_ggH1j_in0jet']  = {
                'cuts'  : [
                  'hww2l2v_13TeV_of0j',
                  'hww2l2v_13TeV_top_of0j',
-                 'hww2l2v_13TeV_dytt_of0j'              
+                 'hww2l2v_13TeV_dytt_of0j',              
 #                 
                  'hww2l2v_13TeV_me_0j',
                  'hww2l2v_13TeV_em_0j',
@@ -210,7 +210,7 @@ nuisances['QCDscale_ggH1j_in1jet']  = {
                'cuts'  : [
                  'hww2l2v_13TeV_of1j',
                  'hww2l2v_13TeV_top_of1j',
-                 'hww2l2v_13TeV_dytt_of1j'              
+                 'hww2l2v_13TeV_dytt_of1j',              
 #                 
                  'hww2l2v_13TeV_me_1j',
                  'hww2l2v_13TeV_em_1j',
@@ -226,7 +226,7 @@ nuisances['QCDscale_ggH1j_in1jet']  = {
 
 
 nuisances['QCDscale_ggH2j_in1jet']  = {
-               'name'  : 'QCDscale_ggH1j', 
+               'name'  : 'QCDscale_ggH2j', 
                'samples'  : {
                    'ggH_hww' : '0.915896',
                    },
@@ -234,7 +234,7 @@ nuisances['QCDscale_ggH2j_in1jet']  = {
                'cuts'  : [
                  'hww2l2v_13TeV_of1j',
                  'hww2l2v_13TeV_top_of1j',
-                 'hww2l2v_13TeV_dytt_of1j'              
+                 'hww2l2v_13TeV_dytt_of1j',              
 #                 
                  'hww2l2v_13TeV_me_1j',
                  'hww2l2v_13TeV_em_1j',
@@ -258,7 +258,7 @@ nuisances['QCDscale_ggH2j_in2jet']  = {
                'cuts'  : [
                  'hww2l2v_13TeV_of2j',
                  'hww2l2v_13TeV_top_of2j',
-                 'hww2l2v_13TeV_dytt_of2j'              
+                 'hww2l2v_13TeV_dytt_of2j',              
 #                 
                  'hww2l2v_13TeV_me_2j',
                  'hww2l2v_13TeV_em_2j',
