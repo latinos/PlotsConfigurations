@@ -206,7 +206,7 @@ nuisances['QCDscale_ggH1j_in0jet']  = {
                'cuts'  : [
                  'hww2l2v_13TeV_of0j',
                  'hww2l2v_13TeV_top_of0j',
-                 'hww2l2v_13TeV_dytt_of0j'              
+                 'hww2l2v_13TeV_dytt_of0j',             
 #                 
                  'hww2l2v_13TeV_me_01j',
                  'hww2l2v_13TeV_em_01j',
