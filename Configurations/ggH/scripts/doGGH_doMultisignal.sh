@@ -532,7 +532,7 @@ python  scripts/plot2Dscan.py -i ../higgsCombine1Dfit.multidimfit.categories.mu.
 python  scripts/plot2Dscan.py -i ../higgsCombine1Dfit.multidimfit.categories.mu.unique.2016.withbkg.LOCAL.MultiDimFit.mH125.root    -n     plotLL.2016.withbkg
 
                
-no
+ok
 
 root -l ../higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.root  \
         ../higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.root  \
