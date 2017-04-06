@@ -73,3 +73,88 @@ text2workspace.py superCombination.2015.txt.pruned.txt   -o  superCombination.20
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-4 --rMax=6      Combined.vbf.pruned.txt             >   result.MaxLikelihoodFit.Combined.vbf.txt
+combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-6 --rMax=8      Combined.vh2j.pruned.txt            >   result.MaxLikelihoodFit.Combined.vh2j.txt
+combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-4 --rMax=6      Combined.2j.pruned.txt              >   result.MaxLikelihoodFit.Combined.2j.txt
+combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=6      Combined.wh3l.pruned.txt            >   result.MaxLikelihoodFit.Combined.wh3l.txt
+combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Combined.1jet.txt                   >   result.MaxLikelihoodFit.Combined.1jet.txt
+combine -M MaxLikelihoodFit -t -1 --expectSignal 1  --rMin=-2 --rMax=4      Combined.0jet.txt                   >   result.MaxLikelihoodFit.Combined.0jet.txt
+
+
+combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.vbf.pruned.txt             >   result.Significance.Combined.vbf.txt
+combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.vh2j.pruned.txt            >   result.Significance.Combined.vh2j.txt
+combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.2j.pruned.txt              >   result.Significance.Combined.2j.txt
+combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.wh3l.pruned.txt            >   result.Significance.Combined.wh3l.txt
+combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.1jet.txt                   >   result.Significance.Combined.1jet.txt
+combine -M ProfileLikelihood --significance -t -1 --expectSignal 1        Combined.0jet.txt                   >   result.Significance.Combined.0jet.txt
+
+
+
+
+
+                                               
+                                                       
+                   
+
+combine -M MaxLikelihoodFit   --rMin=-4 --rMax=6      Combined.vbf.pruned.txt             >   result.data.MaxLikelihoodFit.Combined.vbf.txt
+combine -M MaxLikelihoodFit   --rMin=-6 --rMax=8      Combined.vh2j.pruned.txt            >   result.data.MaxLikelihoodFit.Combined.vh2j.txt
+combine -M MaxLikelihoodFit   --rMin=-4 --rMax=6      Combined.2j.pruned.txt              >   result.data.MaxLikelihoodFit.Combined.2j.txt
+combine -M MaxLikelihoodFit   --rMin=-2 --rMax=6      Combined.wh3l.pruned.txt            >   result.data.MaxLikelihoodFit.Combined.wh3l.txt
+combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      Combined.1jet.txt                   >   result.data.MaxLikelihoodFit.Combined.1jet.txt
+combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      Combined.0jet.txt                   >   result.data.MaxLikelihoodFit.Combined.0jet.txt
+
+
+
+combine -M ProfileLikelihood --significance         Combined.vbf.pruned.txt             >   result.data.Significance.Combined.vbf.txt
+combine -M ProfileLikelihood --significance         Combined.vh2j.pruned.txt            >   result.data.Significance.Combined.vh2j.txt
+combine -M ProfileLikelihood --significance         Combined.2j.pruned.txt              >   result.data.Significance.Combined.2j.txt
+combine -M ProfileLikelihood --significance         Combined.wh3l.pruned.txt            >   result.data.Significance.Combined.wh3l.txt
+combine -M ProfileLikelihood --significance         Combined.1jet.txt                   >   result.data.Significance.Combined.1jet.txt
+combine -M ProfileLikelihood --significance         Combined.0jet.txt                   >   result.data.Significance.Combined.0jet.txt
+
+
+
+
+
+    cat  ../result.Significance.Combined.0jet.txt
+    cat  ../result.Significance.Combined.1jet.txt
+    cat  ../result.Significance.Combined.2j.txt
+    cat  ../result.Significance.Combined.vbf.txt
+    cat  ../result.Significance.Combined.vh2j.txt
+    cat  ../result.Significance.Combined.wh3l.txt
+
+    cat  ../result.data.Significance.Combined.0jet.txt
+    cat  ../result.data.Significance.Combined.1jet.txt
+    cat  ../result.data.Significance.Combined.2j.txt
+    cat  ../result.data.Significance.Combined.vbf.txt
+    cat  ../result.data.Significance.Combined.vh2j.txt
+    cat  ../result.data.Significance.Combined.wh3l.txt
+
+
+    
+    
+    
