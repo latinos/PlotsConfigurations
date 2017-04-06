@@ -8,16 +8,16 @@ outputDir = 'rootFile'
 
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = 'variables2.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples.py' 
+samplesFile = 'samples2.py' 
 
 # file with list of samples
-plotFile = 'plot.py' 
+plotFile = 'plot2.py' 
 
 # options of the plots
 plotNormalizedDistributions = True   # default is False
@@ -25,10 +25,10 @@ plotNormalizedDistributions = True   # default is False
 
 
 # luminosity to normalize to (in 1/fb)
-#lumi = 6.264
+lumi = 6.264
 #lumi = 4.3
 # lumi = 5
-lumi = 12.8890
+#lumi = 12.8890
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
@@ -40,10 +40,10 @@ outputDirDatacard = 'datacards'
 
 
 # structure file for datacard
-structureFile = 'structure.py'
+structureFile = 'structure2.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+nuisancesFile = 'nuisances2.py'
 
 
