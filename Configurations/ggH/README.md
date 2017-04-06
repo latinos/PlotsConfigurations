@@ -92,6 +92,13 @@ Auto tests:
     
     
     
+    cd ..
+    sh ggH/scripts/doCreateWorkspaces.sh
+    cd -
+
+    
+    
+    
     2015 + 2016 combination 
     
     cat ../result.Significance.superCombination.Total.txt.pruned.txt

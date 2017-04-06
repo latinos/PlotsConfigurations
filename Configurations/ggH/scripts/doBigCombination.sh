@@ -1297,7 +1297,9 @@ combine -M MultiDimFit    Combined.vbf.pruned.txt      -m 125 --algo=grid --poin
 combine -M MultiDimFit    Combined.vh2j.pruned.txt     -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-6,8 -n "LHScanDATA.Combined.vh2j.pruned.txt"
 combine -M MultiDimFit    Combined.2j.pruned.txt       -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-4,6 -n "LHScanDATA.Combined.2j.pruned.txt"
 combine -M MultiDimFit    Combined.wh3l.pruned.txt     -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-2,6 -n "LHScanDATA.Combined.wh3l.pruned.txt"
-                                                                                                                                               
+
+combine -M MultiDimFit    Combined.1jet.txt            -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanDATA.Combined.1jet.fix.txt"
+
 combine -M MultiDimFit    Combined.1jet.txt            -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanDATA.Combined.1jet.txt"
 combine -M MultiDimFit    Combined.0jet.txt            -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanDATA.Combined.0jet.txt"
 combine -M MultiDimFit    Combined.0jet.em.txt         -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanDATA.Combined.0jet.em.txt"
@@ -1489,7 +1491,9 @@ mv ll.png plotLL/0jet.png
             
             
             
-            
+combine -M ProfileLikelihood --significance  -t -1 --expectSignal 1                         superCombination.Total.txt.pruned.txt    >   result.Significance.superCombination.Total.txt.pruned.txt
+combine -M ProfileLikelihood --significance                                                 superCombination.Total.txt.pruned.txt    >   result.data.Significance.superCombination.Total.txt.pruned.txt
+           
                                                        
                                                        
                    
