@@ -8,16 +8,16 @@ outputDir = 'rootFile'
 
 
 # file with list of variables
-variablesFile = 'variables2.py'
+variablesFile = 'variables.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples2.py' 
+samplesFile = 'samples.py' 
 
 # file with list of samples
-plotFile = 'plot2.py' 
+plotFile = 'plot.py' 
 
 # options of the plots
 plotNormalizedDistributions = True   # default is False
@@ -40,10 +40,10 @@ outputDirDatacard = 'datacards'
 
 
 # structure file for datacard
-structureFile = 'structure2.py'
+structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances2.py'
+nuisancesFile = 'nuisances.py'
 
 
