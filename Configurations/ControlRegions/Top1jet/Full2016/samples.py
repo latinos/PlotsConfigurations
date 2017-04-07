@@ -36,11 +36,10 @@ METFilter_Common = '(std_vector_trigger_special[0]*std_vector_trigger_special[1]
 
 METFilter_DATA   =  METFilter_Common + '*' + '(std_vector_trigger_special[4]*!std_vector_trigger_special[6]*!std_vector_trigger_special[7]*std_vector_trigger_special[8]*std_vector_trigger_special[9])'
 
-METFilter_MCver  =  '(std_vector_trigger_special->at(8)==-2.)'
+METFilter_MCver  =  '(std_vector_trigger_special[8]==-2.)'
 METFilter_MCOld  =  '(std_vector_trigger_special[6]*std_vector_trigger_special[7])'
 METFilter_MCNew  =  '(std_vector_trigger_special[8]*std_vector_trigger_special[9])'
 METFilter_MC     =  METFilter_Common + '*' + '(('+METFilter_MCver+'*'+METFilter_MCOld+')||(!'+METFilter_MCver+'*'+METFilter_MCNew+'))' 
-
 
 ################################################
 ############ DATA DECLARATION ##################
