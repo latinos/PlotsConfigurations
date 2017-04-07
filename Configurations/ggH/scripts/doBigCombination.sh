@@ -738,6 +738,11 @@ combineTool.py -d superCombination.2015.txt.pruned.txt.root -M MultiDimFit    \
 # 
 # combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      superCombination.Total.txt.pruned.txt    -n  superCombination.Total.txt.pruned.txt   --robustFit 1  --minimizerStrategy 1 --minimizerTolerance 0.2  --cminFallback "Minuit2,Migrad,0:0.2"  >   result.data.MaxLikelihoodFit.superCombination.Total.txt.pruned.txt
 
+combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4      superCombination.Total.txt.pruned.txt    -n  superCombination.Total.txt.pruned.txt   --robustFit 1  --minimizerStrategy 1 --minimizerTolerance 0.2  --cminFallback "Minuit2,Migrad,0:0.2"  >   result.data.MaxLikelihoodFit.superCombination.Total.txt.pruned.txt
+
+# 
+
+
 # combine -M ProfileLikelihood --significance      -m 125                     superCombination.Total.txt.pruned.txt    >   result.data.Significance.superCombination.Total.txt.pruned.txt
 
 
@@ -883,9 +888,15 @@ combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.kvkf.root -M M
    
   
   
-  
-  
-  
+   
+ 
+
+r99t ../higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsWithPrefit.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
+ 
+
+ 
+ 
                
 
 combineTool.py -d superCombination.2016.txt.pruned.txt.workspace.root -M MultiDimFit    \
@@ -1414,7 +1425,14 @@ root -l ../higgsCombineLHScanMC.Combined.1jet.txt.MultiDimFit.mH125.root  \
 mv ll.png plotLL/1jet.png
 
          
-         
+        
+root -l ../higgsCombineLHScanMC.Combined.1jet.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.Combined.1jet.fix.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+        
+        
+        
+        
          
 root -l ../higgsCombinelxbatch.combined.1jet.em.mc.POINTS.root   \
         ../higgsCombinelxbatch.combined.1jet.em.data.POINTS.root  \
