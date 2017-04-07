@@ -153,7 +153,25 @@ combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.kvkf.root -M M
                --points 400    --job-mode lxbatch --task-name lxbatch-kvkf-data-new-inclusive-fixed-5Apr2017 --sub-opts='-q 1nd' --split-points 1 
             
       
-   
+combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.kvkf.root -M MultiDimFit    \
+               --algo=grid   --X-rtd OPTIMIZE_BOUNDS=0   -n "LH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsFIXED7Apr2017"   \
+               --points 1000    --job-mode lxbatch --task-name lxbatch-kvkf-data-new-inclusive-fixed-7Apr2017 --sub-opts='-q 1nd' --split-points 1 
+            
+      
+  
+  
+#    ls -alrth higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsFIXED5Apr2017.POINTS.*.MultiDimFit.mH120.root  | grep -v 6.8K | grep -v 6.7K   | grep -v 6.6K  | awk '{print "rm "$9}' | /bin/sh
+hadd higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsFIXED5Apr2017.root         higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsFIXED5Apr2017.POINTS.*.MultiDimFit.mH120.root
+
+
+
+r99t ../higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsFIXED5Apr2017.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
+ 
+
+ 
+
+ 
                  
 #    ls -alrth higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsFIXED.POINTS.*.MultiDimFit.mH120.root  | grep -v 6.6K | grep -v 6.7K | awk '{print "rm "$9}' | /bin/sh
 hadd higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsFIXED.root         higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsFIXED.POINTS.*.MultiDimFit.mH120.root
@@ -536,6 +554,10 @@ combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.categories.mu.
                --algo=grid   --X-rtd OPTIMIZE_BOUNDS=0 --setPhysicsModelParameterRanges r=0.5,2 --saveSpecifiedNuis all   -n "1DfitAfterFix.multidimfit.categories.mu.unique.withbkg.third"   \
                --points 300    --job-mode lxbatch --task-name lxbatch-data-1DfitAfterFix-multidimfit-categories-mu-unique-withbkg-third --sub-opts='-q 1nd' --split-points 1 
                
+               
+combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.categories.mu.unique.withbkg.root -M MultiDimFit    \
+               --algo=grid   --X-rtd OPTIMIZE_BOUNDS=0 --setPhysicsModelParameterRanges r=0.0,2 --saveSpecifiedNuis all   -n "1DfitAfterFix.multidimfit.categories.mu.unique.withbkg.fourth"   \
+               --points 400    --job-mode lxbatch --task-name lxbatch-data-1DfitAfterFix-multidimfit-categories-mu-unique-withbkg-fourth --sub-opts='-q 1nd' --split-points 1 
                    
 combine -M MultiDimFit workspace.superCombination.Total.txt.pruned.txt.categories.mu.unique.withbkg.root -m 125 --algo=grid --points 100  --saveSpecifiedNuis all   --X-rtd OPTIMIZE_BOUNDS=0 --setPhysicsModelParameterRanges r=0.5,1.5 -n "1DfitAfterFix.multidimfit.categories.mu.unique.withbkg.LOCAL"  
 
@@ -595,7 +617,11 @@ combineTool.py -d workspace.superCombination.2016.txt.pruned.txt.categories.mu.u
   
   
   
-          
+hadd higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.AFTERFIX.root                      higgsCombine1DfitAfterFix.multidimfit.categories.mu.unique.withbkg.fourth.POINTS.*.MultiDimFit.mH120.root         
+   
+ls -alrth higgsCombine1DfitAfterFix.multidimfit.categories.mu.unique.withbkg.fourth.POINTS.*.MultiDimFit.mH120.root              | grep -v K |  awk '{print "rm "$9}' | /bin/sh
+
+   
 #      
 #      
 # hadd higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.root                      higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.POINTS.*.MultiDimFit.mH120.root         
@@ -639,7 +665,14 @@ root -l ../higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.root  \
         ../higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.root  \
             scripts/drawNLLObs.C
 
-
+            
+root -l ../higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.bis.LOCAL.MultiDimFit.mH125.root  \
+        ../higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.AFTERFIX.root  \
+            scripts/drawNLLObs.C
+            
+            
+            
+            
 root -l ../higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.bis.LOCAL.MultiDimFit.mH125.root  \
         ../higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.bis.LOCAL.MultiDimFit.mH125.root  \
             scripts/drawNLLObs.C
@@ -648,6 +681,11 @@ root -l ../higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.bis.LOCAL.
             
 root -l ../higgsCombine1DfitAfterFix.multidimfit.categories.mu.unique.withbkg.LOCAL.MultiDimFit.mH125.root  \
         ../higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.bis.LOCAL.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+
+            
+root -l ../higgsCombine1DfitAfterFix.multidimfit.categories.mu.unique.withbkg.LOCAL.MultiDimFit.mH125.root  \
+        ../higgsCombine1DfitAfterFix.larger.range.multidimfit.categories.mu.unique.withbkg.LOCAL.MultiDimFit.mH125.root \
             scripts/drawNLLObs.C
 
 
@@ -728,6 +766,7 @@ r99t ../higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsWithPref
         scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
  
 
+ 
  
  
 
