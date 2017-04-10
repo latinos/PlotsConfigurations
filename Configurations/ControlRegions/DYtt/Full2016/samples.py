@@ -14,7 +14,7 @@ from LatinoAnalysis.Tools.commonTools import *
 SITE=os.uname()[1]
 if    'iihe' in SITE :
   treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/'
-elif  ('cern' in SITE) or ('lxplus' in SITE):
+elif  'cern' in SITE :
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016/'
 
 directory = treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight/'
@@ -28,7 +28,18 @@ XSWeight      = 'baseW*GEN_weight_SM/abs(GEN_weight_SM)'
 SFweight      = 'puW*bPogSF_CMVAL*effTrigW*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*veto_EMTFBug'
 GenLepMatch   = 'std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]'
 
+################################################
+############   MET  FILTERS  ###################
+################################################
 
+METFilter_Common = '(std_vector_trigger_special[0]*std_vector_trigger_special[1]*std_vector_trigger_special[2]*std_vector_trigger_special[3]*std_vector_trigger_special[5])'
+
+METFilter_DATA   =  METFilter_Common + '*' + '(std_vector_trigger_special[4]*!std_vector_trigger_special[6]*!std_vector_trigger_special[7]*std_vector_trigger_special[8]*std_vector_trigger_special[9])'
+
+METFilter_MCver  =  '(std_vector_trigger_special[8]==-2.)'
+METFilter_MCOld  =  '(std_vector_trigger_special[6]*std_vector_trigger_special[7])'
+METFilter_MCNew  =  '(std_vector_trigger_special[8]*std_vector_trigger_special[9])'
+METFilter_MC     =  METFilter_Common + '*' + '(('+METFilter_MCver+'*'+METFilter_MCOld+')||(!'+METFilter_MCver+'*'+METFilter_MCNew+'))' 
 
 ################################################
 ############ DATA DECLARATION ##################
@@ -62,15 +73,109 @@ DataTrig = {
 
 ###### DY #######
 
-samples['DY']  = {    'name'   :   
-                      getSampleFiles(directory,'DYJetsToLL_M-10to50')
-                      #Use DY->tau tau exclusive sample!
-                      + getSampleFiles(directory,'DYJetsToTT_MuEle_M-50')
-                      + getSampleFiles(directory,'DYJetsToTT_MuEle_M-50_ext1') ,
-                      #Use DY->ll inclusive sample!
-                      #+ getSampleFiles(directory,'DYJetsToLL_M-50')     ,
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch + '*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))' ,
-                      }
+useDYHT = False       # be carefull DY HT is LO 
+useDYtt = True     
+mixDYttandHT = False  # be carefull DY HT is LO (HT better stat for HT>450 GEV)
+
+### These weights were evaluated on ICHEP16 MC -> Update ?
+ptllDYW_NLO = '1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582))'
+ptllDYW_LO  = '(8.61313e-01+gen_ptll*4.46807e-03-1.52324e-05*gen_ptll*gen_ptll)*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-11.)/5.51582)))*(gen_ptll<140)+1.141996*(gen_ptll>=140)'
+
+samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-10to50')
+                                  + getSampleFiles(directory,'DYJetsToLL_M-50')     ,
+                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC 
+                 }
+
+# ... Add DY HT Samples
+if useDYHT :
+  samples['DY']['name'] +=   getSampleFiles(directory,'DYJetsToLL_M-5to50_HT-70to100') \
+                             + getSampleFiles(directory,'DYJetsToLL_M-5to50_HT-100to200')\
+                             + getSampleFiles(directory,'DYJetsToLL_M-5to50_HT-200to400') \
+                             + getSampleFiles(directory,'DYJetsToLL_M-5to50_HT-400to600') \
+                             + getSampleFiles(directory,'DYJetsToLL_M-5to50_HT-600toInf') \
+                             + getSampleFiles(directory,'DYJetsToLL_M-50_HT-70to100') \
+                             + getSampleFiles(directory,'DYJetsToLL_M-50_HT-100to200') \
+                             + getSampleFiles(directory,'DYJetsToLL_M-50_HT-100to200_ext1') \
+                             + getSampleFiles(directory,'DYJetsToLL_M-50_HT-200to400') \
+                             + getSampleFiles(directory,'DYJetsToLL_M-50_HT-200to400_ext1') \
+                             + getSampleFiles(directory,'DYJetsToLL_M-50_HT-400to600') \
+                             + getSampleFiles(directory,'DYJetsToLL_M-50_HT-600to800') \
+                             + getSampleFiles(directory,'DYJetsToLL_M-50_HT-800to1200') \
+                             + getSampleFiles(directory,'DYJetsToLL_M-50_HT-1200to2500') \
+                             + getSampleFiles(directory,'DYJetsToLL_M-50_HT-2500toInf') 
+
+if useDYtt :
+  samples['DY']['name'] +=   getSampleFiles(directory,'DYJetsToTT_MuEle_M-50') \
+                             + getSampleFiles(directory,'DYJetsToTT_MuEle_M-50_ext1')
+
+# ... Fix Weights (always after all samples are included !)
+
+# pt_ll weight
+addSampleWeight(samples,'DY','DYJetsToLL_M-10to50',ptllDYW_NLO)
+addSampleWeight(samples,'DY','DYJetsToLL_M50'     ,ptllDYW_NLO)
+
+if useDYHT :
+  # Remove high HT from inclusive sample
+  genHT = 'std_vector_LHEparton_pt[0]*(std_vector_LHEparton_pt[0]>0)+std_vector_LHEparton_pt[1]*(std_vector_LHEparton_pt[1]>0)+std_vector_LHEparton_pt[2]*(std_vector_LHEparton_pt[2]>0)'
+  addSampleWeight(samples,'DY','DYJetsToLL_M-10to50', genHT+'<70.0')  
+  addSampleWeight(samples,'DY','DYJetsToLL_M-50'    , genHT+'<70.0')  
+  # pt_ll weight
+  addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-70to100'    ,ptllDYW_LO)
+  addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-100to200'   ,ptllDYW_LO)
+  addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-200to400'   ,ptllDYW_LO)
+  addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-400to600'   ,ptllDYW_LO)
+  addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-600toInf'   ,ptllDYW_LO)
+  addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-70to100'       ,ptllDYW_LO)
+  addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200'      ,ptllDYW_LO)
+  addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200_ext1' ,ptllDYW_LO)
+  addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400'      ,ptllDYW_LO)
+  addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400_ext1' ,ptllDYW_LO)
+  addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-400to600'      ,ptllDYW_LO)
+  addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-600to800'      ,ptllDYW_LO)
+  addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-800to1200'     ,ptllDYW_LO)
+  addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-1200to2500'    ,ptllDYW_LO)
+  addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toInf'     ,ptllDYW_LO)
+  # Fix some x-sections
+  addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-70to100'    , getBaseW(directory,['DYJetsToLL_M-5to50_HT-70to100'])+'/baseW')   # x-section update
+  addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-70to100'       , getBaseW(directory,['DYJetsToLL_M-50_HT-70to100'])+'/baseW')      # x-section update
+  # set baseW across both samples
+  addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200'      , getBaseW(directory,['DYJetsToLL_M-50_HT-100to200','DYJetsToLL_M-50_HT-100to200_ext1'])+'/baseW')
+  addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200_ext1' , getBaseW(directory,['DYJetsToLL_M-50_HT-100to200','DYJetsToLL_M-50_HT-100to200_ext1'])+'/baseW')
+  addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400'      , getBaseW(directory,['DYJetsToLL_M-50_HT-200to400','DYJetsToLL_M-50_HT-200to400_ext1'])+'/baseW')
+  addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400_ext1' , getBaseW(directory,['DYJetsToLL_M-50_HT-200to400','DYJetsToLL_M-50_HT-200to400_ext1'])+'/baseW')
+
+if useDYtt :
+  # Remove OF from Inclusive sample
+  cutSF = '(abs(std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]) == 11*11)||(abs(std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]) == 13*13)'
+  addSampleWeight(samples,'DY','DYJetsToLL_M-50',cutSF)
+  # pt_ll weight
+  addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50'     ,ptllDYW_NLO)
+  addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50_ext1',ptllDYW_NLO)
+  # set baseW across both samples
+  addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50'       , getBaseW(directory,['DYJetsToTT_MuEle_M-50','DYJetsToTT_MuEle_M-50_ext1'])+'/baseW')
+  addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50_ext1'  , getBaseW(directory,['DYJetsToTT_MuEle_M-50','DYJetsToTT_MuEle_M-50_ext1'])+'/baseW')
+  if useDYHT :
+    # Remove OF from HT samples as well
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-70to100'       , cutSF)
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200'      , cutSF)
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200_ext1' , cutSF)
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400'      , cutSF)
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400_ext1' , cutSF)
+    # Well HT>400 samples have better stat than DY->MuEle , so might switch to them above 450 GeV (50 GeV margin for trnasition region)
+    if mixDYttandHT :
+      addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50'            , genHT+'<450')
+      addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50_ext1'       , genHT+'<450')
+      addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-400to600'      , '('+cutSF+')||('+genHT+'>=450)')
+      addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-600to800'      , '('+cutSF+')||('+genHT+'>=450)')
+      addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-800to1200'     , '('+cutSF+')||('+genHT+'>=450)')
+      addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-1200to2500'    , '('+cutSF+')||('+genHT+'>=450)')
+      addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toInf'     , '('+cutSF+')||('+genHT+'>=450)')
+    else:
+      addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-400to600'      , cutSF)
+      addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-600to800'      , cutSF)
+      addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-800to1200'     , cutSF)
+      addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-1200to2500'    , cutSF)
+      addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toInf'     , cutSF)
 
 ###### Top #######
 
@@ -83,20 +188,20 @@ samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu')
                                   + getSampleFiles(directory,'ST_t-channel_top')
                                   + getSampleFiles(directory,'ST_s-channel')   
                              ,
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch ,  
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                   }
                   
 
 ###### WW ########
              
 samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu') ,
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch + '*nllW' ,  
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*nllW' ,  
                  }
 
 
 
 samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'),      
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch ,  
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                       'isData': ['0'],                            
                    }
 
@@ -109,13 +214,13 @@ samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'
 samples['Vg']  =  {     'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM')
                                    + getSampleFiles(directory,'Zg')
                                    ,
-                        'weight' : XSWeight+'*'+SFweight + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
+                        'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
                   }
 
 ######## VgS ########
 
 samples['VgS']  = {    'name':  getSampleFiles(directory,'WgStarLNuEE') + getSampleFiles(directory,'WgStarLNuMuMu') ,
-                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch + '*1.4' ,  
+                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.4' ,  
                   }
 
 ## 
@@ -136,7 +241,7 @@ samples['VZ']  = {    'name':   getSampleFiles(directory,'WZTo3LNu')
                               # Should we include this as well here:
                               # + getSampleFiles(directory,'tZq_ll')
                               ,   
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch + '*1.11' ,  
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.11' ,  
                   }
 
 ### 1.11 normalisation was measured in 3-lepton
@@ -150,7 +255,7 @@ samples['VVV'] = {    'name':   getSampleFiles(directory,'ZZZ')
                            #  WWG: Might be added to WW by PYTHIA in tuning step, super small x-section anyway -> skipped for now 
                            #  + getSampleFiles(directory,'WWG')
                               ,    
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch ,  
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                   }
 
 ###########################################
@@ -161,24 +266,24 @@ samples['VVV'] = {    'name':   getSampleFiles(directory,'ZZZ')
 #### ggH -> WW
 
 samples['ggH_hww']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch ,  
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                       }
 
 
 #### VBF H->WW
 
 samples['qqH_hww']  = {   'name' : getSampleFiles(directory,'VBFHToWWTo2L2Nu_alternative_M125') ,
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch ,  
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                       }
 
 ### ZH ; H->WW
 
 samples['ZH_hww']   = {   'name' :  getSampleFiles(directory,'HZJ_HToWW_M125') ,
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch ,  
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                       }
 
 samples['ggZH_hww'] = {   'name' : getSampleFiles(directory,'ggZH_HToWW_M125') ,
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch ,  
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                       }
 
 #### WH ; H->WW
@@ -186,8 +291,17 @@ samples['ggZH_hww'] = {   'name' : getSampleFiles(directory,'ggZH_HToWW_M125') ,
 samples['WH_hww']   = {   'name' :   getSampleFiles(directory,'HWminusJ_HToWW_M125')
                                    + getSampleFiles(directory,'HWplusJ_HToWW_M125')
                                    , 
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch ,  
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                       }
+
+#### bbHY ; H->WW 
+
+samples['bbH_hww']  = {  'name' :   getSampleFiles(directory,'bbHToWWTo2L2Nu_M125_yb2') 
+                                  + getSampleFiles(directory,'bbHToWWTo2L2Nu_M125_ybyt')
+                                  ,
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                      }
+
 
 #### H -> TauTau
 
@@ -197,7 +311,7 @@ samples['H_htt']    = {   'name' :   getSampleFiles(directory,'GluGluHToTauTau_M
                                    + getSampleFiles(directory,'HWplusJ_HToTauTau_M125')
                                    + getSampleFiles(directory,'HWminusJ_HToTauTau_M125')
                                    ,  
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch ,  
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                       }
 
 
@@ -206,7 +320,7 @@ samples['H_htt']    = {   'name' :   getSampleFiles(directory,'GluGluHToTauTau_M
 ###########################################
 
 samples['Fake']  = {   'name': [ ] ,
-                       'weight' : '(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))*veto_EMTFBug',              #   weight/cut 
+                       'weight' : '(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))*veto_EMTFBug'+'*'+METFilter_DATA,              #   weight/cut 
                        'weights' : [ ] ,
                        'isData': ['all'],
                    }
@@ -224,7 +338,7 @@ for Run in DataRun :
 ###########################################
 
 samples['DATA']  = {   'name': [ ] ,     
-                       'weight' : 'veto_EMTFBug',
+                       'weight' : 'veto_EMTFBug'+'*'+METFilter_DATA,
                        'weights' : [ ],
                        'isData': ['all'],                            
                   }
