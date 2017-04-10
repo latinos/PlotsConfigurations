@@ -59,7 +59,7 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww']
+                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww']
               }
 
 
@@ -76,7 +76,7 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 1.0   ,
+                  'scale'    : 1.   ,
               }
 
 plot['VgS'] = { 
@@ -257,6 +257,15 @@ plot['ggH_hww'] = {
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
+
+plot['bbH_hww'] = {
+                  'nameHR' : 'bbH',
+                  'color': 632+5, # kRed 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
 
 # data
 
