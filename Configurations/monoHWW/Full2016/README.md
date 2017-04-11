@@ -3,11 +3,11 @@ MonoHWW analysis
 
 Steps to get datacards and plots:
 
-      cd ~/work/CMSSW_8_0_26/src
+    cd ~/work/CMSSW_8_0_26/src
 
-      cmsenv
+    cmsenv
 
-      cd -
+    cd -
 
 
 Produce Histograms Using lxbatch:
