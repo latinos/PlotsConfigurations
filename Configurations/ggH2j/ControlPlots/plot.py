@@ -85,7 +85,8 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 0.75,
+                  'scale'    : 1.0,
+                  #'scale'    : 0.75,
                   #'cuts'  : {
                        #'hww2l2v_13TeV_of0j'      : 0.95 ,
                        #'hww2l2v_13TeV_top_of0j'  : 0.95 , 
@@ -153,7 +154,8 @@ plot['top'] = {
                   'color': 400,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 0.9,
+                  'scale'    : 1.0,
+                  #'scale'    : 0.9,
                   #'cuts'  : {
                        #'hww2l2v_13TeV_of0j'      : 0.94 ,
                        #'hww2l2v_13TeV_top_of0j'  : 0.94 , 
@@ -330,7 +332,8 @@ plot['DATA']  = {
 # legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
 #legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
 #legend['lumi'] = 'L = 4.3/fb' # 2.318 fb-1
-legend['lumi'] = 'L = 6.3/fb' # 2.318 fb-1
+#legend['lumi'] = 'L = 6.3/fb' # 2.318 fb-1
+legend['lumi'] = 'L = 12.9/fb'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 

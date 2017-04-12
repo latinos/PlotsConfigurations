@@ -35,9 +35,17 @@ combineCards.py   em01j13=ggH/datacards/hww2l2v_13TeV_em_01j/mllVSmth/datacard.t
 # results
 
 
+# text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
+#                    --PO 'map=.*/ggH_hww_pt1:r1[1,-9,10]' --PO 'map=.*/ggH_hww_pt2:r2[1,-9,10]' --PO 'map=.*/ggH_hww_pt3:r3[1,-9,10]' \
+#                    ICHEP2016.v1.txt.pruned.txt  -o  workspace.ICHEP2016.v1.txt.pruned.root
+
+
 text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
-                   --PO 'map=.*/ggH_hww_pt1:r1[1,-20,20]' --PO 'map=.*/ggH_hww_pt2:r2[1,-20,20]' --PO 'map=.*/ggH_hww_pt3:r3[1,-20,20]' \
+                   --PO 'map=.*/ggH_hww_pt1:r1[1,-4,5]' --PO 'map=.*/ggH_hww_pt2:r2[1,-4,5]' --PO 'map=.*/ggH_hww_pt3:r3[1,-4,5]' \
                    ICHEP2016.v1.txt.pruned.txt  -o  workspace.ICHEP2016.v1.txt.pruned.root
+
+                   
+                   
 # 
 # text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
 #                    --PO 'map=.*/ggH_hww_pt1:r1[1,-20,20]' --PO 'map=.*/ggH_hww_pt2:r1[1,-20,20]' --PO 'map=.*/ggH_hww_pt3:r3[1,-20,20]' \

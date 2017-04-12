@@ -1,19 +1,119 @@
-
 # cuts
 
 #cuts = {}
 
-#&& (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
-
-supercut = 'std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>20 \
-            && std_vector_lepton_pt[2]<10 \
+supercut = 'std_vector_lepton_pt[0]>25 && std_vector_lepton_pt[1]>20 \
             && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13) \
-            && (njet < 2 || dphilljetjet < 165.*TMath::DegToRad()) \
+            && std_vector_lepton_pt[2]<10 \
             && mll>12  \
             && metPfType1 > 20 \
             && mpmet > 20 \
             && ptll > 30 \
 '
+
+# cuts['ww_twolep0j_em'] = 'njet == 0 && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)'
+# cuts['ww_twolep1j_em'] = 'njet == 1 && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)'
+
+# cuts['ww_twolep0j_ee'] = 'njet == 0 && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)'
+# cuts['ww_twolep1j_ee'] = 'njet == 1 && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)'
+
+# cuts['ww_twolep0j_mm'] = 'njet == 0 && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)'
+# cuts['ww_twolep1j_mm'] = 'njet == 1 && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)'
+
+######################################################################################
+# Inclusive Analysis - Selecting on HT-no-jets = pt1 + pt2 + MET
+######################################################################################
+cuts['ww_Incl_em'] = 'njet>=0 \
+            && std_vector_lepton_pt[0]>25 && std_vector_lepton_pt[1]>20 \
+            && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13) \
+            && std_vector_lepton_pt[2]<10 \
+            && mll>12  \
+            && metPfType1 > 20 \
+            && mpmet > 20 \
+            && ptll > 30 \
+            && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
+            && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
+            && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
+            && ( std_vector_jet_pt[3] < 20 || std_vector_jet_cmvav2[3] < -0.715 ) \
+            && ( std_vector_jet_pt[4] < 20 || std_vector_jet_cmvav2[4] < -0.715 ) \
+            && ( std_vector_jet_pt[5] < 20 || std_vector_jet_cmvav2[5] < -0.715 ) \
+            && ( std_vector_jet_pt[6] < 20 || std_vector_jet_cmvav2[6] < -0.715 ) \
+            && ( std_vector_jet_pt[7] < 20 || std_vector_jet_cmvav2[7] < -0.715 ) \
+            && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.715 ) \
+            && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.715 ) \
+'
+
+######################################################################################
+# Inclusive Analysis - Using Different HT Definitions
+######################################################################################
+# cuts['ww_HT0j_em'] = 'njet == 0'
+
+
+# cuts['ww_HT20_em'] = '(std_vector_lepton_pt[0] + std_vector_lepton_pt[1] + metPfType1    \
+#                     + ((std_vector_jet_pt[0] > 20) * std_vector_jet_pt[0])  \
+#                     + ((std_vector_jet_pt[1] > 20) * std_vector_jet_pt[1])  \
+#                     + ((std_vector_jet_pt[2] > 20) * std_vector_jet_pt[2])  \
+#                     + ((std_vector_jet_pt[3] > 20) * std_vector_jet_pt[3])  \
+#                     + ((std_vector_jet_pt[4] > 20) * std_vector_jet_pt[4])  \
+#                     + ((std_vector_jet_pt[5] > 20) * std_vector_jet_pt[5])  \
+#                     + ((std_vector_jet_pt[6] > 20) * std_vector_jet_pt[6])  \
+#                     + ((std_vector_jet_pt[7] > 20) * std_vector_jet_pt[7])  \
+#                     + ((std_vector_jet_pt[8] > 20) * std_vector_jet_pt[8])  \
+#                     + ((std_vector_jet_pt[9] > 20) * std_vector_jet_pt[9])) < 200 \
+# '
+ 
+# cuts['ww_HT25_em'] = '(std_vector_lepton_pt[0] + std_vector_lepton_pt[1] + metPfType1    \
+#                     + ((std_vector_jet_pt[0] > 25) * std_vector_jet_pt[0])  \
+#                     + ((std_vector_jet_pt[1] > 25) * std_vector_jet_pt[1])  \
+#                     + ((std_vector_jet_pt[2] > 25) * std_vector_jet_pt[2])  \
+#                     + ((std_vector_jet_pt[3] > 25) * std_vector_jet_pt[3])  \
+#                     + ((std_vector_jet_pt[4] > 25) * std_vector_jet_pt[4])  \
+#                     + ((std_vector_jet_pt[5] > 25) * std_vector_jet_pt[5])  \
+#                     + ((std_vector_jet_pt[6] > 25) * std_vector_jet_pt[6])  \
+#                     + ((std_vector_jet_pt[7] > 25) * std_vector_jet_pt[7])  \
+#                     + ((std_vector_jet_pt[8] > 25) * std_vector_jet_pt[8])  \
+#                     + ((std_vector_jet_pt[9] > 25) * std_vector_jet_pt[9])) < 200 \
+# '
+
+# cuts['ww_HT30_em'] = '(std_vector_lepton_pt[0] + std_vector_lepton_pt[1] + metPfType1    \
+#                     + ((std_vector_jet_pt[0] > 30) * std_vector_jet_pt[0])  \
+#                     + ((std_vector_jet_pt[1] > 30) * std_vector_jet_pt[1])  \
+#                     + ((std_vector_jet_pt[2] > 30) * std_vector_jet_pt[2])  \
+#                     + ((std_vector_jet_pt[3] > 30) * std_vector_jet_pt[3])  \
+#                     + ((std_vector_jet_pt[4] > 30) * std_vector_jet_pt[4])  \
+#                     + ((std_vector_jet_pt[5] > 30) * std_vector_jet_pt[5])  \
+#                     + ((std_vector_jet_pt[6] > 30) * std_vector_jet_pt[6])  \
+#                     + ((std_vector_jet_pt[7] > 30) * std_vector_jet_pt[7])  \
+#                     + ((std_vector_jet_pt[8] > 30) * std_vector_jet_pt[8])  \
+#                     + ((std_vector_jet_pt[9] > 30) * std_vector_jet_pt[9])) < 200 \
+# '
+
+# cuts['ww_HT35_em'] = '(std_vector_lepton_pt[0] + std_vector_lepton_pt[1] + metPfType1    \
+#                     + ((std_vector_jet_pt[0] > 35) * std_vector_jet_pt[0])  \
+#                     + ((std_vector_jet_pt[1] > 35) * std_vector_jet_pt[1])  \
+#                     + ((std_vector_jet_pt[2] > 35) * std_vector_jet_pt[2])  \
+#                     + ((std_vector_jet_pt[3] > 35) * std_vector_jet_pt[3])  \
+#                     + ((std_vector_jet_pt[4] > 35) * std_vector_jet_pt[4])  \
+#                     + ((std_vector_jet_pt[5] > 35) * std_vector_jet_pt[5])  \
+#                     + ((std_vector_jet_pt[6] > 35) * std_vector_jet_pt[6])  \
+#                     + ((std_vector_jet_pt[7] > 35) * std_vector_jet_pt[7])  \
+#                     + ((std_vector_jet_pt[8] > 35) * std_vector_jet_pt[8])  \
+#                     + ((std_vector_jet_pt[9] > 35) * std_vector_jet_pt[9])) < 200 \
+# '
+
+# cuts['ww_HT40_em'] = '(std_vector_lepton_pt[0] + std_vector_lepton_pt[1] + metPfType1    \
+#                     + ((std_vector_jet_pt[0] > 40) * std_vector_jet_pt[0])  \
+#                     + ((std_vector_jet_pt[1] > 40) * std_vector_jet_pt[1])  \
+#                     + ((std_vector_jet_pt[2] > 40) * std_vector_jet_pt[2])  \
+#                     + ((std_vector_jet_pt[3] > 40) * std_vector_jet_pt[3])  \
+#                     + ((std_vector_jet_pt[4] > 40) * std_vector_jet_pt[4])  \
+#                     + ((std_vector_jet_pt[5] > 40) * std_vector_jet_pt[5])  \
+#                     + ((std_vector_jet_pt[6] > 40) * std_vector_jet_pt[6])  \
+#                     + ((std_vector_jet_pt[7] > 40) * std_vector_jet_pt[7])  \
+#                     + ((std_vector_jet_pt[8] > 40) * std_vector_jet_pt[8])  \
+#                     + ((std_vector_jet_pt[9] > 40) * std_vector_jet_pt[9])) < 200 \
+# '
+
 
 ######################################################################################
 # Analysis per jet bins
@@ -135,66 +235,66 @@ supercut = 'std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>20 \
 # Inclusive Analyses
 ######################################################################################
 
-cuts['ww_BVetoIncl_em'] = 'njet >= 0 \
-            && ht < 189 \
-            && mth > 40 \
-            && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
-            && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
-            && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
-            && ( std_vector_jet_pt[3] < 20 || std_vector_jet_cmvav2[3] < -0.715 ) \
-            && ( std_vector_jet_pt[4] < 20 || std_vector_jet_cmvav2[4] < -0.715 ) \
-            && ( std_vector_jet_pt[5] < 20 || std_vector_jet_cmvav2[5] < -0.715 ) \
-            && ( std_vector_jet_pt[6] < 20 || std_vector_jet_cmvav2[6] < -0.715 ) \
-            && ( std_vector_jet_pt[7] < 20 || std_vector_jet_cmvav2[7] < -0.715 ) \
-            && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.715 ) \
-            && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.715 ) \
-'
+# cuts['ww_BVetoIncl_em'] = 'njet >= 0 \
+#             && ht < 189 \
+#             && mth > 40 \
+#             && ( std_vector_jet_pt[0] < 20 || std_vector_jet_cmvav2[0] < -0.715 ) \
+#             && ( std_vector_jet_pt[1] < 20 || std_vector_jet_cmvav2[1] < -0.715 ) \
+#             && ( std_vector_jet_pt[2] < 20 || std_vector_jet_cmvav2[2] < -0.715 ) \
+#             && ( std_vector_jet_pt[3] < 20 || std_vector_jet_cmvav2[3] < -0.715 ) \
+#             && ( std_vector_jet_pt[4] < 20 || std_vector_jet_cmvav2[4] < -0.715 ) \
+#             && ( std_vector_jet_pt[5] < 20 || std_vector_jet_cmvav2[5] < -0.715 ) \
+#             && ( std_vector_jet_pt[6] < 20 || std_vector_jet_cmvav2[6] < -0.715 ) \
+#             && ( std_vector_jet_pt[7] < 20 || std_vector_jet_cmvav2[7] < -0.715 ) \
+#             && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.715 ) \
+#             && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.715 ) \
+# '
 
-cuts['ww_BVetoIncl_csv2_em'] = 'njet >= 0 \
-            && ht < 189 \
-            && mth > 40 \
-            && ( std_vector_jet_pt[0] < 20 || std_vector_jet_csvv2ivf[0] < 0.460 ) \
-            && ( std_vector_jet_pt[1] < 20 || std_vector_jet_csvv2ivf[1] < 0.460 ) \
-            && ( std_vector_jet_pt[2] < 20 || std_vector_jet_csvv2ivf[2] < 0.460 ) \
-            && ( std_vector_jet_pt[3] < 20 || std_vector_jet_csvv2ivf[3] < 0.460 ) \
-            && ( std_vector_jet_pt[4] < 20 || std_vector_jet_csvv2ivf[4] < 0.460 ) \
-            && ( std_vector_jet_pt[5] < 20 || std_vector_jet_csvv2ivf[5] < 0.460 ) \
-            && ( std_vector_jet_pt[6] < 20 || std_vector_jet_csvv2ivf[6] < 0.460 ) \
-            && ( std_vector_jet_pt[7] < 20 || std_vector_jet_csvv2ivf[7] < 0.460 ) \
-            && ( std_vector_jet_pt[8] < 20 || std_vector_jet_csvv2ivf[8] < 0.460 ) \
-            && ( std_vector_jet_pt[9] < 20 || std_vector_jet_csvv2ivf[9] < 0.460 ) \
-'
+# cuts['ww_BVetoIncl_csv2_em'] = 'njet >= 0 \
+#             && ht < 189 \
+#             && mth > 40 \
+#             && ( std_vector_jet_pt[0] < 20 || std_vector_jet_csvv2ivf[0] < 0.460 ) \
+#             && ( std_vector_jet_pt[1] < 20 || std_vector_jet_csvv2ivf[1] < 0.460 ) \
+#             && ( std_vector_jet_pt[2] < 20 || std_vector_jet_csvv2ivf[2] < 0.460 ) \
+#             && ( std_vector_jet_pt[3] < 20 || std_vector_jet_csvv2ivf[3] < 0.460 ) \
+#             && ( std_vector_jet_pt[4] < 20 || std_vector_jet_csvv2ivf[4] < 0.460 ) \
+#             && ( std_vector_jet_pt[5] < 20 || std_vector_jet_csvv2ivf[5] < 0.460 ) \
+#             && ( std_vector_jet_pt[6] < 20 || std_vector_jet_csvv2ivf[6] < 0.460 ) \
+#             && ( std_vector_jet_pt[7] < 20 || std_vector_jet_csvv2ivf[7] < 0.460 ) \
+#             && ( std_vector_jet_pt[8] < 20 || std_vector_jet_csvv2ivf[8] < 0.460 ) \
+#             && ( std_vector_jet_pt[9] < 20 || std_vector_jet_csvv2ivf[9] < 0.460 ) \
+# '
 
-cuts['ww_TopCRIncl_em'] = 'njet >= 0 \
-            && ht < 189 \
-            && mth > 40 \
-            && (( std_vector_jet_pt[0] > 20 && std_vector_jet_cmvav2[0] > -0.715 )  \
-            ||  ( std_vector_jet_pt[1] > 20 && std_vector_jet_cmvav2[1] > -0.715 )  \
-            ||  ( std_vector_jet_pt[2] > 20 && std_vector_jet_cmvav2[2] > -0.715 )  \
-            ||  ( std_vector_jet_pt[3] > 20 && std_vector_jet_cmvav2[3] > -0.715 )  \
-            ||  ( std_vector_jet_pt[4] > 20 && std_vector_jet_cmvav2[4] > -0.715 )  \
-            ||  ( std_vector_jet_pt[5] > 20 && std_vector_jet_cmvav2[5] > -0.715 )  \
-            ||  ( std_vector_jet_pt[6] > 20 && std_vector_jet_cmvav2[6] > -0.715 )  \
-            ||  ( std_vector_jet_pt[7] > 20 && std_vector_jet_cmvav2[7] > -0.715 )  \
-            ||  ( std_vector_jet_pt[8] > 20 && std_vector_jet_cmvav2[8] > -0.715 )  \
-            ||  ( std_vector_jet_pt[9] > 20 && std_vector_jet_cmvav2[9] > -0.715 )) \
-'
+# cuts['ww_TopCRIncl_em'] = 'njet >= 0 \
+#             && ht < 189 \
+#             && mth > 40 \
+#             && (( std_vector_jet_pt[0] > 20 && std_vector_jet_cmvav2[0] > -0.715 )  \
+#             ||  ( std_vector_jet_pt[1] > 20 && std_vector_jet_cmvav2[1] > -0.715 )  \
+#             ||  ( std_vector_jet_pt[2] > 20 && std_vector_jet_cmvav2[2] > -0.715 )  \
+#             ||  ( std_vector_jet_pt[3] > 20 && std_vector_jet_cmvav2[3] > -0.715 )  \
+#             ||  ( std_vector_jet_pt[4] > 20 && std_vector_jet_cmvav2[4] > -0.715 )  \
+#             ||  ( std_vector_jet_pt[5] > 20 && std_vector_jet_cmvav2[5] > -0.715 )  \
+#             ||  ( std_vector_jet_pt[6] > 20 && std_vector_jet_cmvav2[6] > -0.715 )  \
+#             ||  ( std_vector_jet_pt[7] > 20 && std_vector_jet_cmvav2[7] > -0.715 )  \
+#             ||  ( std_vector_jet_pt[8] > 20 && std_vector_jet_cmvav2[8] > -0.715 )  \
+#             ||  ( std_vector_jet_pt[9] > 20 && std_vector_jet_cmvav2[9] > -0.715 )) \
+# '
 
 
-cuts['ww_TopCRIncl_csv2_em'] = 'njet >= 0 \
-            && ht < 189 \
-            && mth > 40 \
-            && (( std_vector_jet_pt[0] > 20 && std_vector_jet_csvv2ivf[0] > 0.460 )  \
-            ||  ( std_vector_jet_pt[1] > 20 && std_vector_jet_csvv2ivf[1] > 0.460 )  \
-            ||  ( std_vector_jet_pt[2] > 20 && std_vector_jet_csvv2ivf[2] > 0.460 )  \
-            ||  ( std_vector_jet_pt[3] > 20 && std_vector_jet_csvv2ivf[3] > 0.460 )  \
-            ||  ( std_vector_jet_pt[4] > 20 && std_vector_jet_csvv2ivf[4] > 0.460 )  \
-            ||  ( std_vector_jet_pt[5] > 20 && std_vector_jet_csvv2ivf[5] > 0.460 )  \
-            ||  ( std_vector_jet_pt[6] > 20 && std_vector_jet_csvv2ivf[6] > 0.460 )  \
-            ||  ( std_vector_jet_pt[7] > 20 && std_vector_jet_csvv2ivf[7] > 0.460 )  \
-            ||  ( std_vector_jet_pt[8] > 20 && std_vector_jet_csvv2ivf[8] > 0.460 )  \
-            ||  ( std_vector_jet_pt[9] > 20 && std_vector_jet_csvv2ivf[9] > 0.460 )) \
-'
+# cuts['ww_TopCRIncl_csv2_em'] = 'njet >= 0 \
+#             && ht < 189 \
+#             && mth > 40 \
+#             && (( std_vector_jet_pt[0] > 20 && std_vector_jet_csvv2ivf[0] > 0.460 )  \
+#             ||  ( std_vector_jet_pt[1] > 20 && std_vector_jet_csvv2ivf[1] > 0.460 )  \
+#             ||  ( std_vector_jet_pt[2] > 20 && std_vector_jet_csvv2ivf[2] > 0.460 )  \
+#             ||  ( std_vector_jet_pt[3] > 20 && std_vector_jet_csvv2ivf[3] > 0.460 )  \
+#             ||  ( std_vector_jet_pt[4] > 20 && std_vector_jet_csvv2ivf[4] > 0.460 )  \
+#             ||  ( std_vector_jet_pt[5] > 20 && std_vector_jet_csvv2ivf[5] > 0.460 )  \
+#             ||  ( std_vector_jet_pt[6] > 20 && std_vector_jet_csvv2ivf[6] > 0.460 )  \
+#             ||  ( std_vector_jet_pt[7] > 20 && std_vector_jet_csvv2ivf[7] > 0.460 )  \
+#             ||  ( std_vector_jet_pt[8] > 20 && std_vector_jet_csvv2ivf[8] > 0.460 )  \
+#             ||  ( std_vector_jet_pt[9] > 20 && std_vector_jet_csvv2ivf[9] > 0.460 )) \
+# '
 
 
 

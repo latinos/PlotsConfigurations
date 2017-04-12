@@ -25,6 +25,11 @@ Steps to get datacards and plots:
     mkShapes.py      --pycfg=configuration.py  --doThreads=True   --inputDir=eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
     mkShapes.py      --pycfg=configuration_iteos.py  --doThreads=True    --inputDir=eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
 
+    mkShapes.py      --pycfg=configuration_iteos.py  --doThreads=True   --inputDir=eos/user/r/rodrigo/HWW2016/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/  
+    mkShapes.py      --pycfg=configuration.py  --doThreads=True   --inputDir=eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
+    
+    
+    
     mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_ggH.root
     mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_ggHJustPlot.root
     mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_ggHtestplot.root
@@ -32,7 +37,25 @@ Steps to get datacards and plots:
     mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_ggH.root
     mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_ggHtestplot.root
     
+    mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_ggH_all.root
+    
 
+lxbatch submission:
+
+    mkShapes.py --pycfg=configuration_lxbatch.py  --inputDir=root://eosuser.cern.ch//eos/user/r/rodrigo/HWW2016/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/ \
+                --doBatch=True --batchSplit=Cuts,Samples   \
+                --batchQueue=8nh
+    
+    mkBatch.py --status
+    
+    (when jobs are done)
+    
+    mkShapes.py --pycfg=configuration_lxbatch.py  --inputDir=root://eosuser.cern.ch//eos/user/r/rodrigo/HWW2016/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/   \
+                --doHadd=True --batchSplit=Cuts,Samples
+
+    
+    
+    
 Pruning:
 
     cd /afs/cern.ch/user/a/amassiro/Limit/ModificationDatacards
@@ -69,6 +92,13 @@ Auto tests:
     
     
     
+    cd ..
+    sh ggH/scripts/doCreateWorkspaces.sh
+    cd -
+
+    
+    
+    
     2015 + 2016 combination 
     
     cat ../result.Significance.superCombination.Total.txt.pruned.txt
@@ -79,8 +109,140 @@ Auto tests:
 
      
     root -l ../higgsCombineLHScanHICHEPTotalcombined.MultiDimFit.mH125.root  \
+           ../higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotal.root   \
+            scripts/drawNLLObs.C
+
+            
+            
+    root -l ../higgsCombineLHScanHICHEPTotalcombined.MultiDimFit.mH125.root  \
            ../higgsCombineLHScanDATAHICHEPTotalcombined.MultiDimFit.mH125.root   \
             scripts/drawNLLObs.C
+
+    root -l ../higgsCombineLHScanHICHEPTotalcombinedLXBATCH.POINTS.root  \
+           ../higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCH.POINTS.root   \
+            scripts/drawNLLObs.C
+        
+
+    root -l higgsCombineLHScanHICHEPTotalcombined.MultiDimFit.mH125.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombined.MultiDimFit.mH125.root   \
+            higgsCombineLHScanHICHEPTotalcombinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanHICHEPTotalcombinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHExpNuisFrozen.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C
+    
+    root -l higgsCombineLHScanHICHEP2016combined.MultiDimFit.mH125.root  \
+            higgsCombineLHScanDATAHICHEP2016combined.MultiDimFit.mH125.root   \
+            higgsCombineLHScanHICHEP2016combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanHICHEP2016combinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHExpNuisFrozen.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C
+       
+    root -l higgsCombineLHScanHICHEP2015combined.MultiDimFit.mH125.root  \
+            higgsCombineLHScanDATAHICHEP2015combined.MultiDimFit.mH125.root   \
+            higgsCombineLHScanHICHEP2015combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2015combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanHICHEP2015combinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2015combinedLXBATCHExpNuisFrozen.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C
+            
+            
+            
+              
+    root -l higgsCombineLHScanHICHEPTotalcombinedLXBATCHNominal.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHNominal.root   \
+            higgsCombineLHScanHICHEPTotalcombinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanHICHEPTotalcombinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHExpNuisFrozen.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C
+    
+    root -l higgsCombineLHScanHICHEP2016combinedLXBATCHNominal.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHNominal.root   \
+            higgsCombineLHScanHICHEP2016combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanHICHEP2016combinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHExpNuisFrozen.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C
+       
+    root -l higgsCombineLHScanHICHEP2015combinedLXBATCHNominal.root  \
+            higgsCombineLHScanDATAHICHEP2015combinedLXBATCHNominal.root   \
+            higgsCombineLHScanHICHEP2015combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2015combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanHICHEP2015combinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2015combinedLXBATCHExpNuisFrozen.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C
+            
+            
+            
+            
+            
+            
+      
+      
+      
+      
+            
+       
+    root -l higgsCombineLHScanHICHEP2015combinedLXBATCHNominal.root  \
+            higgsCombineLHScanDATAHICHEP2015combinedLXBATCHNominal.root   \
+            higgsCombineLHScanHICHEP2015combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2015combinedLXBATCHTheoryFrozenPostFit.root  \
+            higgsCombineLHScanHICHEP2015combinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2015combinedLXBATCHExpNuisFrozenPostFit.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C\(1\)
+    
+    
+    root -l higgsCombineLHScanHICHEP2016combinedLXBATCHNominal.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHNominal.root   \
+            higgsCombineLHScanHICHEP2016combinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHTheoryFrozenPostFit.root  \
+            higgsCombineLHScanHICHEP2016combinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEP2016combinedLXBATCHExpNuisFrozenPostFit.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C
+              
+            
+    root -l higgsCombineLHScanHICHEPTotalcombinedLXBATCHNominal.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHNominal.root   \
+            higgsCombineLHScanHICHEPTotalcombinedLXBATCHTheoryFrozen.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHTheoryFrozenPostFit.root  \
+            higgsCombineLHScanHICHEPTotalcombinedLXBATCHExpNuisFrozen.root  \
+            higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCHExpNuisFrozenPostFit.root  \
+            ggH/scripts/drawNLLObsNuisSplit.C\(2\)
+          
+            
+            
+
+
+     root -l higgsCombineLHScanDATAHICHEP2015combinedLXBATCHNominal.root  \
+           higgsCombineLHScanDATAHICHEPTotal2015sigOnlycombinedLXBATCHNominal.root   \
+           ggH/scripts/drawNLLObs.C
+      
+     root -l higgsCombineLHScanDATAHICHEP2016combinedLXBATCHNominal.root  \
+           higgsCombineLHScanDATAHICHEPTotal2016sigOnlycombinedLXBATCHNominal.root   \
+           ggH/scripts/drawNLLObs.C
+      
+          
+        
+    sh ggH/scripts/doLikelihoodScans.sh 
+        
+        
+        
+    2015+2016 WH3l
+    
+    root -l ../higgsCombineLHScanWH3lLXBATCH.POINTS.root  \
+           ../higgsCombineLHScanDATAWH3lLXBATCH.POINTS.root   \
+            scripts/drawNLLObs.C
+
+            
+    2015+2016 VH2j
+    
+    root -l ../higgsCombineLHScanVH2jLXBATCH.POINTS.root  \
+           ../higgsCombineLHScanDATAVH2jLXBATCH.POINTS.root   \
+            scripts/drawNLLObs.C
+            
+ 
  
     
     2016 alone
@@ -88,7 +250,17 @@ Auto tests:
             scripts/drawNLL.C
 
     
+    root -l ../higgsCombineLHScanHICHEP2016combined.MultiDimFit.mH125.root  \
+           ../higgsCombineLHScanDATAHICHEP2016combined.MultiDimFit.mH125.root   \
+            scripts/drawNLLObs.C
+
+    root -l ../higgsCombineLHScanHICHEP2016combinedLXBATCH.POINTS.root  \
+           ../higgsCombineLHScanDATAHICHEP2016combinedLXBATCH.POINTS.root   \
+            scripts/drawNLLObs.C
     
+ 
+ 
+ 
     
     cat ../result.Significance.ggHcombined.v1.txt.pruned.txt
     cat ../result.MaxLikelihoodFit.ggHcombined.v1.txt.pruned.txt
@@ -131,7 +303,12 @@ Auto tests:
     root -l ../higgsCombineLHScanHICHEPTotalcombined.MultiDimFit.mH125.root  \
             scripts/drawNLL.C
 
-               
+      
+    root -l ../higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotalkvkfmugghfixed.POINTS.root \
+            scripts/drawNLL.C
+
+      
+      
     cd ..
     sh ggH/scripts/doGGH_doMultisignal.sh
     cd -
@@ -150,146 +327,181 @@ Auto tests:
         scripts/Draw2D.cxx
     
     
+    r99t ../higgsCombineLH2DICHEP2016combinedKVKFlxbatch.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
+    r99t ../higgsCombineLH2DICHEP2016combinedKVKFDATAlxbatch.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
+    r99t ../higgsCombineLH2DICHEPTotalcombinedKVKFlxbatch.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
+    r99t ../higgsCombineLH2DICHEPTotalcombinedKVKFDATAlxbatch.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
+ 
+    
+    r99t ../higgsCombineLH2DICHEPTotalcombinedKVKFDATAlxbatch_OLD.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
     
     
+    
+    
+    r99t ../higgsCombineLH2DICHEP2016combinedKVKFlxbatch.root \
+        scripts/Draw2D.cxx
+    r99t ../higgsCombineLH2DICHEP2016combinedDATAKVKFlxbatch.root \
+        scripts/Draw2D.cxx
+
+
+
+
+
+    r99t ../higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsFIXED.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
+ 
+     
+          
+
+
+
+
     
     cat  ../result.MaxLikelihoodFit.superCombination.2016.txt.pruned.txt
     cat  ../result.Significance.superCombination.2016.txt.pruned.txt
-    cat  ../result.MaxLikelihoodFit.Moriond2016.vbf.txt
-    cat  ../result.MaxLikelihoodFit.Moriond2016.vh2j.txt
-    cat  ../result.MaxLikelihoodFit.Moriond2016.2j.txt
 
+
+    cat  ../result.MaxLikelihoodFit.ICHEP2016.0jet.me.txt
+    cat  ../result.MaxLikelihoodFit.ICHEP2016.0jet.em.txt
+    cat  ../result.MaxLikelihoodFit.ICHEP2016.1jet.me.txt
+    cat  ../result.MaxLikelihoodFit.ICHEP2016.1jet.em.txt
+    cat  ../result.MaxLikelihoodFit.ICHEP2016.0jet.txt
+    cat  ../result.MaxLikelihoodFit.ICHEP2016.1jet.txt
+    cat  ../result.MaxLikelihoodFit.ICHEP2016.2j.txt
     cat  ../result.MaxLikelihoodFit.ICHEP2016.vbf.txt
     cat  ../result.MaxLikelihoodFit.ICHEP2016.vh2j.txt
     cat  ../result.MaxLikelihoodFit.ICHEP2016.wh3l.txt
-    cat  ../result.MaxLikelihoodFit.ICHEP2016.2j.txt
-    cat  ../result.MaxLikelihoodFit.ICHEP2016.1jet.txt
-    cat  ../result.MaxLikelihoodFit.ICHEP2016.0jet.txt
-    cat  ../result.MaxLikelihoodFit.ICHEP2016.0jet.em.txt
-    cat  ../result.MaxLikelihoodFit.ICHEP2016.0jet.me.txt
-    cat  ../result.MaxLikelihoodFit.ICHEP2016.1jet.em.txt
-    cat  ../result.MaxLikelihoodFit.ICHEP2016.1jet.me.txt
+    
+    cat  ../result.Significance.ICHEP2016.0jet.me.txt
+    cat  ../result.Significance.ICHEP2016.0jet.em.txt
+    cat  ../result.Significance.ICHEP2016.1jet.me.txt
+    cat  ../result.Significance.ICHEP2016.1jet.em.txt
+    cat  ../result.Significance.ICHEP2016.0jet.txt
+    cat  ../result.Significance.ICHEP2016.1jet.txt
+    cat  ../result.Significance.ICHEP2016.2j.txt
     cat  ../result.Significance.ICHEP2016.vbf.txt
     cat  ../result.Significance.ICHEP2016.vh2j.txt
-    cat  ../result.Significance.ICHEP2016.2j.txt
     cat  ../result.Significance.ICHEP2016.wh3l.txt
-    cat  ../result.Significance.ICHEP2016.1jet.txt
-    cat  ../result.Significance.ICHEP2016.0jet.txt
-    cat  ../result.Significance.ICHEP2016.0jet.em.txt
-    cat  ../result.Significance.ICHEP2016.0jet.me.txt
-    cat  ../result.Significance.ICHEP2016.1jet.em.txt
-    cat  ../result.Significance.ICHEP2016.1jet.me.txt
+    
     cat  ../result.MaxLikelihoodFit.ICHEP2016.v1.txt.pruned.txt
     cat  ../result.Significance.ICHEP2016.v1.txt.pruned.txt
 
+    
+    
+    cat  ../result.MaxLikelihoodFit.Combined.0jet.me.txt
+    cat  ../result.MaxLikelihoodFit.Combined.0jet.em.txt
+    cat  ../result.MaxLikelihoodFit.Combined.1jet.me.txt
+    cat  ../result.MaxLikelihoodFit.Combined.1jet.em.txt
+    cat  ../result.MaxLikelihoodFit.Combined.0jet.txt
+    cat  ../result.MaxLikelihoodFit.Combined.1jet.txt
+    cat  ../result.MaxLikelihoodFit.Combined.2j.txt
     cat  ../result.MaxLikelihoodFit.Combined.vbf.txt
     cat  ../result.MaxLikelihoodFit.Combined.vh2j.txt
     cat  ../result.MaxLikelihoodFit.Combined.wh3l.txt
-    cat  ../result.MaxLikelihoodFit.Combined.2j.txt
-    cat  ../result.MaxLikelihoodFit.Combined.1jet.txt
-    cat  ../result.MaxLikelihoodFit.Combined.0jet.txt
-    cat  ../result.MaxLikelihoodFit.Combined.0jet.em.txt
-    cat  ../result.MaxLikelihoodFit.Combined.0jet.me.txt
-    cat  ../result.MaxLikelihoodFit.Combined.1jet.em.txt
-    cat  ../result.MaxLikelihoodFit.Combined.1jet.me.txt
+    
+    cat  ../result.Significance.Combined.0jet.me.txt
+    cat  ../result.Significance.Combined.0jet.em.txt
+    cat  ../result.Significance.Combined.1jet.me.txt
+    cat  ../result.Significance.Combined.1jet.em.txt
+    cat  ../result.Significance.Combined.0jet.txt
+    cat  ../result.Significance.Combined.1jet.txt
+    cat  ../result.Significance.Combined.2j.txt
     cat  ../result.Significance.Combined.vbf.txt
     cat  ../result.Significance.Combined.vh2j.txt
-    cat  ../result.Significance.Combined.2j.txt
     cat  ../result.Significance.Combined.wh3l.txt
-    cat  ../result.Significance.Combined.1jet.txt
-    cat  ../result.Significance.Combined.0jet.txt
-    cat  ../result.Significance.Combined.0jet.em.txt
-    cat  ../result.Significance.Combined.0jet.me.txt
-    cat  ../result.Significance.Combined.1jet.em.txt
-    cat  ../result.Significance.Combined.1jet.me.txt
+    
     cat  ../result.MaxLikelihoodFit.superCombination.Total.txt.pruned.txt
     cat  ../result.Significance.superCombination.Total.txt.pruned.txt
     
 
     
-    cat   ../result.Data.MaxLikelihoodFit.Moriond2016.vbf.txt
-    cat   ../result.Data.MaxLikelihoodFit.Moriond2016.vh2j.txt
-    cat   ../result.Data.MaxLikelihoodFit.Moriond2016.2j.txt
-    cat   ../result.Data.MaxLikelihoodFit.Moriond2016.wh3l.txt
-
-    cat   ../result.Data.Significance.Moriond2016.vbf.txt
-    cat   ../result.Data.Significance.Moriond2016.vh2j.txt
-    cat   ../result.Data.Significance.Moriond2016.2j.txt
-    cat   ../result.Data.Significance.Moriond2016.wh3l.txt
+    
 
 
-    cat   ../result.MaxLikelihoodFit.Moriond2016.vbf.txt
-    cat   ../result.MaxLikelihoodFit.Moriond2016.vh2j.txt
-    cat   ../result.MaxLikelihoodFit.Moriond2016.2j.txt
-    cat   ../result.MaxLikelihoodFit.Moriond2016.wh3l.txt
 
-    cat   ../result.Significance.Moriond2016.vbf.txt
-    cat   ../result.Significance.Moriond2016.vh2j.txt
-    cat   ../result.Significance.Moriond2016.2j.txt
-    cat   ../result.Significance.Moriond2016.wh3l.txt
-
-
-    cat ../result.data.Significance.superCombination.2015.txt.pruned.txt
-    cat ../result.data.MaxLikelihoodFit.superCombination.2015.txt.pruned.txt
     
     
     
-    
-    
-    
-    cat  ../result.data.MaxLikelihoodFit.superCombination.2016.txt.pruned.txt
-    cat  ../result.data.Significance.superCombination.2016.txt.pruned.txt
-    cat  ../result.data.MaxLikelihoodFit.Moriond2016.vbf.txt
-    cat  ../result.data.MaxLikelihoodFit.Moriond2016.vh2j.txt
-    cat  ../result.data.MaxLikelihoodFit.Moriond2016.2j.txt
 
+    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.0jet.me.txt
+    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.0jet.em.txt
+    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.1jet.me.txt
+    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.1jet.em.txt
+    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.0jet.txt
+    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.1jet.txt
+    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.2j.txt
     cat  ../result.data.MaxLikelihoodFit.ICHEP2016.vbf.txt
     cat  ../result.data.MaxLikelihoodFit.ICHEP2016.vh2j.txt
     cat  ../result.data.MaxLikelihoodFit.ICHEP2016.wh3l.txt
-    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.2j.txt
-    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.1jet.txt
-    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.0jet.txt
-    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.0jet.em.txt
-    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.0jet.me.txt
-    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.1jet.em.txt
-    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.1jet.me.txt
+
+    cat  ../result.data.Significance.ICHEP2016.0jet.me.txt
+    cat  ../result.data.Significance.ICHEP2016.0jet.em.txt
+    cat  ../result.data.Significance.ICHEP2016.1jet.me.txt
+    cat  ../result.data.Significance.ICHEP2016.1jet.em.txt
+    cat  ../result.data.Significance.ICHEP2016.0jet.txt
+    cat  ../result.data.Significance.ICHEP2016.1jet.txt
+    cat  ../result.data.Significance.ICHEP2016.2j.txt
     cat  ../result.data.Significance.ICHEP2016.vbf.txt
     cat  ../result.data.Significance.ICHEP2016.vh2j.txt
-    cat  ../result.data.Significance.ICHEP2016.2j.txt
     cat  ../result.data.Significance.ICHEP2016.wh3l.txt
-    cat  ../result.data.Significance.ICHEP2016.1jet.txt
-    cat  ../result.data.Significance.ICHEP2016.0jet.txt
-    cat  ../result.data.Significance.ICHEP2016.0jet.em.txt
-    cat  ../result.data.Significance.ICHEP2016.0jet.me.txt
-    cat  ../result.data.Significance.ICHEP2016.1jet.em.txt
-    cat  ../result.data.Significance.ICHEP2016.1jet.me.txt
-    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.v1.txt.pruned.txt
-    cat  ../result.data.Significance.ICHEP2016.v1.txt.pruned.txt
+    
+     
+    cat  ../result.data.MaxLikelihoodFit.superCombination.2016.txt.pruned.txt
+    cat  ../result.data.Significance.superCombination.2016.txt.pruned.txt
 
+    
+    
+    cat  ../result.data.MaxLikelihoodFit.Combined.0jet.me.txt
+    cat  ../result.data.MaxLikelihoodFit.Combined.0jet.em.txt
+    cat  ../result.data.MaxLikelihoodFit.Combined.1jet.me.txt
+    cat  ../result.data.MaxLikelihoodFit.Combined.1jet.em.txt
+    cat  ../result.data.MaxLikelihoodFit.Combined.0jet.txt
+    cat  ../result.data.MaxLikelihoodFit.Combined.1jet.txt
+    cat  ../result.data.MaxLikelihoodFit.Combined.2j.txt
     cat  ../result.data.MaxLikelihoodFit.Combined.vbf.txt
     cat  ../result.data.MaxLikelihoodFit.Combined.vh2j.txt
     cat  ../result.data.MaxLikelihoodFit.Combined.wh3l.txt
-    cat  ../result.data.MaxLikelihoodFit.Combined.2j.txt
-    cat  ../result.data.MaxLikelihoodFit.Combined.1jet.txt
-    cat  ../result.data.MaxLikelihoodFit.Combined.0jet.txt
-    cat  ../result.data.MaxLikelihoodFit.Combined.0jet.em.txt
-    cat  ../result.data.MaxLikelihoodFit.Combined.0jet.me.txt
-    cat  ../result.data.MaxLikelihoodFit.Combined.1jet.em.txt
-    cat  ../result.data.MaxLikelihoodFit.Combined.1jet.me.txt
+    
+    cat  ../result.data.Significance.Combined.0jet.me.txt
+    cat  ../result.data.Significance.Combined.0jet.em.txt
+    cat  ../result.data.Significance.Combined.1jet.me.txt
+    cat  ../result.data.Significance.Combined.1jet.em.txt
+    cat  ../result.data.Significance.Combined.0jet.txt
+    cat  ../result.data.Significance.Combined.1jet.txt
+    cat  ../result.data.Significance.Combined.2j.txt
     cat  ../result.data.Significance.Combined.vbf.txt
     cat  ../result.data.Significance.Combined.vh2j.txt
-    cat  ../result.data.Significance.Combined.2j.txt
     cat  ../result.data.Significance.Combined.wh3l.txt
-    cat  ../result.data.Significance.Combined.1jet.txt
-    cat  ../result.data.Significance.Combined.0jet.txt
-    cat  ../result.data.Significance.Combined.0jet.em.txt
-    cat  ../result.data.Significance.Combined.0jet.me.txt
-    cat  ../result.data.Significance.Combined.1jet.em.txt
-    cat  ../result.data.Significance.Combined.1jet.me.txt
+    
     cat  ../result.data.MaxLikelihoodFit.superCombination.Total.txt.pruned.txt
     cat  ../result.data.Significance.superCombination.Total.txt.pruned.txt
 
     
+    
+2D plots for Top and DYtt:
+
+    cd ..
+    sh ggH/scripts/doGGH_doMultisignal_topdytt.sh
+    cd -
+    
+
+    r99t ../higgsCombineLH2DICHEP2015combined.MultiDimFit.mH120.root \
+        scripts/Draw2D.cxx
+    
+    
+    r99t ../higgsCombineTest.MultiDimFit.mH120_3bins_new.root scripts/Draw2DImproved.cxx\(\"Top\",\"DYtautau\",\"Topnorm0j\",\"DYttnorm0j\",2,\"r3\>0.9\&\&r3\<1.1\"\)
+    
+    r99t ../higgsCombinedytop0j.MultiDimFit.mH125.root     scripts/Draw2DImproved.cxx\(\"Top\",\"DYtautau\",\"Topnorm0j\",\"DYttnorm0j\",2\)
+    r99t ../higgsCombinedytop1j.MultiDimFit.mH125.root     scripts/Draw2DImproved.cxx\(\"Top\",\"DYtautau\",\"Topnorm1j\",\"DYttnorm1j\",2\)
+    r99t ../higgsCombinedytop2j.MultiDimFit.mH125.root     scripts/Draw2DImproved.cxx\(\"Top\",\"DYtautau\",\"Topnorm2j\",\"DYttnorm2j\",2\)
+    r99t ../higgsCombinedytop2jvh.MultiDimFit.mH125.root   scripts/Draw2DImproved.cxx\(\"Top\",\"DYtautau\",\"Topnorm2jvh\",\"DYttnorm2jvh\",2\)
+    r99t ../higgsCombinedytop2jvbf.MultiDimFit.mH125.root  scripts/Draw2DImproved.cxx\(\"Top\",\"DYtautau\",\"Topnorm2jvbf\",\"DYttnorm2jvbf\",2\)
+ 
     
     
     
@@ -364,7 +576,12 @@ Make plots:
          --samplesFile    /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/samples.py \
          --cutName hww2l2v_13TeV_em_1j
 
-       
+
+Impact plots and pulls:
+
+    combine Combined.vbf.pruned.txt       -M MaxLikelihoodFit   -n   Combined.vbf.pruned.txt.MaxLikelihoodFit.root
+    python ggH/scripts/diffNuisances.py -a mlfitCombined.vbf.pruned.txt.MaxLikelihoodFit.root.root -g plots.root
+    
 
 Draw likelihood scan:
 
@@ -436,11 +653,25 @@ Combine secret options:
     --X-rtd FITTER_BOUND
 
 Datacards checks
-    
+
+    cd ~/Framework/Combine/CMSSW_7_4_7/src/LatinoCombineTools/Tools/
+    cmsenv
+    text2workspace.py superCombination.Total.txt.pruned.txt   -o    superCombination.Total.txt.pruned.txt.workspace.root 
+    combine    -M MaxLikelihoodFit -t -1 --expectSignal 1   superCombination.Total.txt.pruned.txt.workspace.root      -n    superCombination.Total.txt.pruned.txt.workspace.MaxLikelihoodFit.root
+     
+    python diffNuisances.py  \
+           -a  /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/higgsCombinesuperCombination.Total.txt.pruned.txt.workspace.MaxLikelihoodFit.root.MaxLikelihoodFit.mH120.root \
+           -g plots.root  &> result.txt    
+
+           
+           
+           
+           
     text2workspace.py Moriond2016.txt    -o    test.root
     combine    -M MaxLikelihoodFit -t -1 --expectSignal 1    test.root
     python diffNuisances.py -a  mlfit.root -g plots.root  &> result.txt
     
+
     
     combineCards.py   of0j13=ggHMoriond/datacards/hww2l2v_13TeV_of0j/mllVSmth/datacard.txt \
                       of0j13Top=ggHMoriondTop/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt \
@@ -476,8 +707,9 @@ Backup:
     
     mkShapes.py      --pycfg=configuration.py  --doThreads=True   --inputDir=eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_6p3fbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
     
-      
-      
+    mkShapes.py      --pycfg=configuration_iteos.py  --doThreads=True    --inputDir=eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
+
+    
       
       
 
@@ -879,3 +1111,148 @@ Copy datacards to repository:
  
  
  
+
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_mp_1j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_em_mp_1j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_mp_1j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_me_mp_1j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_mp_0j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_em_mp_0j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_mp_0j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_me_mp_0j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_pm_1j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_em_pm_1j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_pm_1j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_me_pm_1j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_pm_0j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_em_pm_0j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_pm_0j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_me_pm_0j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_top_of0j/events/shapes/*.root                    2016/hww2l2v_13TeV_top_of0j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_top_of1j/events/shapes/*.root                    2016/hww2l2v_13TeV_top_of1j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/shapes/*.root                   2016/hww2l2v_13TeV_dytt_of0j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/shapes/*.root                   2016/hww2l2v_13TeV_dytt_of1j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH2j/datacards/hww2l2v_13TeV_of2j/mllVSmth/shapes/*.root                    2016/hww2l2v_13TeV_of2j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH2j/datacards/hww2l2v_13TeV_top_of2j/events/shapes/*.root                  2016/hww2l2v_13TeV_top_of2j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH2j/datacards/hww2l2v_13TeV_dytt_of2j/events/shapes/*.root                 2016/hww2l2v_13TeV_dytt_of2j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VBF/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mllfine/shapes/*.root                2016/hww2l2v_13TeV_of2j_vbf_lowmjj/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VBF/datacards/hww2l2v_13TeV_top_of2j_vbf/events/shapes/*.root                2016/hww2l2v_13TeV_top_of2j_vbf/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VBF/datacards/hww2l2v_13TeV_dytt_of2j_vbf/events/shapes/*.root               2016/hww2l2v_13TeV_dytt_of2j_vbf/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/datacards/hww2l2v_13TeV_of2j_vh2j/mll/shapes/*.root                     2016/hww2l2v_13TeV_of2j_vh2j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/datacards/hww2l2v_13TeV_top_of2j_vh2j/events/shapes/*.root              2016/hww2l2v_13TeV_top_of2j_vh2j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/datacards/hww2l2v_13TeV_dytt_of2j_vh2j/events/shapes/*.root             2016/hww2l2v_13TeV_dytt_of2j_vh2j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_13TeV_ossf/drllmin3l/shapes/*.root                       2016/wh3l_13TeV_ossf/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_13TeV_sssf/drllmin3l_sssf/shapes/*.root                       2016/wh3l_13TeV_sssf/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_wz_13TeV/events/shapes/*.root                            2016/wh3l_wz_13TeV/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_zg_13TeV/events/shapes/*.root                            2016/wh3l_zg_13TeV/shapes/
+    
+    
+     
+Test new fakes
+
+
+      
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_mp_1j/mllVSmth/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_em_mp_1j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_mp_1j/mllVSmth/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_me_mp_1j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_mp_0j/mllVSmth/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_em_mp_0j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_mp_0j/mllVSmth/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_me_mp_0j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_pm_1j/mllVSmth/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_em_pm_1j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_pm_1j/mllVSmth/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_me_pm_1j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_pm_0j/mllVSmth/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_em_pm_0j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_pm_0j/mllVSmth/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_me_pm_0j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt.pruned.txt                    2016/hww2l2v_13TeV_top_of0j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt.pruned.txt                    2016/hww2l2v_13TeV_top_of1j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt                   2016/hww2l2v_13TeV_dytt_of0j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt                   2016/hww2l2v_13TeV_dytt_of1j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH2j/datacards/hww2l2v_13TeV_of2j/mllVSmth/datacard.txt.pruned.txt                    2016/hww2l2v_13TeV_of2j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH2j/datacards/hww2l2v_13TeV_top_of2j/events/datacard.txt.pruned.txt                  2016/hww2l2v_13TeV_top_of2j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH2j/datacards/hww2l2v_13TeV_dytt_of2j/events/datacard.txt.pruned.txt                 2016/hww2l2v_13TeV_dytt_of2j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VBF/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mllfine/datacard.txt.pruned.txt                2016/hww2l2v_13TeV_of2j_vbf_lowmjj/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VBF/datacards/hww2l2v_13TeV_top_of2j_vbf/events/datacard.txt.pruned.txt.filtered.txt                 2016/hww2l2v_13TeV_top_of2j_vbf/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VBF/datacards/hww2l2v_13TeV_dytt_of2j_vbf/events/datacard.txt.pruned.txt.filtered.txt                2016/hww2l2v_13TeV_dytt_of2j_vbf/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/datacards/hww2l2v_13TeV_of2j_vh2j/mll/datacard.txt.pruned.txt                     2016/hww2l2v_13TeV_of2j_vh2j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/datacards/hww2l2v_13TeV_top_of2j_vh2j/events/datacard.txt.pruned.txt              2016/hww2l2v_13TeV_top_of2j_vh2j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/datacards/hww2l2v_13TeV_dytt_of2j_vh2j/events/datacard.txt.pruned.txt             2016/hww2l2v_13TeV_dytt_of2j_vh2j/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_13TeV_ossf/drllmin3l/datacard.txt.pruned.txt                       2016/wh3l_13TeV_ossf/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_13TeV_sssf/drllmin3l_sssf/datacard.txt.pruned.txt                       2016/wh3l_13TeV_sssf/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_wz_13TeV/events/datacard.txt.pruned.txt                            2016/wh3l_wz_13TeV/datacard.txt
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_zg_13TeV/events/datacard.txt.pruned.txt                            2016/wh3l_zg_13TeV/datacard.txt
+                  
+                  
+                  
+    
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_mp_1j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_em_mp_1j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_mp_1j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_me_mp_1j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_mp_0j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_em_mp_0j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_mp_0j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_me_mp_0j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_pm_1j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_em_pm_1j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_pm_1j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_me_pm_1j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_em_pm_0j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_em_pm_0j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_me_pm_0j/mllVSmth/shapes/*.root                  2016/hww2l2v_13TeV_me_pm_0j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_top_of0j/events/shapes/*.root                    2016/hww2l2v_13TeV_top_of0j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_top_of1j/events/shapes/*.root                    2016/hww2l2v_13TeV_top_of1j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_dytt_of0j/events/shapes/*.root                   2016/hww2l2v_13TeV_dytt_of0j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH/datacards/hww2l2v_13TeV_dytt_of1j/events/shapes/*.root                   2016/hww2l2v_13TeV_dytt_of1j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH2j/datacards/hww2l2v_13TeV_of2j/mllVSmth/shapes/*.root                    2016/hww2l2v_13TeV_of2j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH2j/datacards/hww2l2v_13TeV_top_of2j/events/shapes/*.root                  2016/hww2l2v_13TeV_top_of2j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/ggH2j/datacards/hww2l2v_13TeV_dytt_of2j/events/shapes/*.root                 2016/hww2l2v_13TeV_dytt_of2j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VBF/datacards/hww2l2v_13TeV_of2j_vbf_lowmjj/mllfine/shapes/*.root                2016/hww2l2v_13TeV_of2j_vbf_lowmjj/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VBF/datacards/hww2l2v_13TeV_top_of2j_vbf/events/shapes/*.root                2016/hww2l2v_13TeV_top_of2j_vbf/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VBF/datacards/hww2l2v_13TeV_dytt_of2j_vbf/events/shapes/*.root               2016/hww2l2v_13TeV_dytt_of2j_vbf/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/datacards/hww2l2v_13TeV_of2j_vh2j/mll/shapes/*.root                     2016/hww2l2v_13TeV_of2j_vh2j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/datacards/hww2l2v_13TeV_top_of2j_vh2j/events/shapes/*.root              2016/hww2l2v_13TeV_top_of2j_vh2j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/VH2j/datacards/hww2l2v_13TeV_dytt_of2j_vh2j/events/shapes/*.root             2016/hww2l2v_13TeV_dytt_of2j_vh2j/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_13TeV_ossf/drllmin3l/shapes/*.root                       2016/wh3l_13TeV_ossf/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_13TeV_sssf/drllmin3l_sssf/shapes/*.root                       2016/wh3l_13TeV_sssf/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_wz_13TeV/events/shapes/*.root                            2016/wh3l_wz_13TeV/shapes/
+      cp /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WH3l/datacards/wh3l_zg_13TeV/events/shapes/*.root                            2016/wh3l_zg_13TeV/shapes/
+    
+    
+      in
+      ~/public/xLatinos/ICHEP2016_25Nov2016/
+ 
+ 
+Prepare fakes: 
+ 
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb_v2__wwSel    eos/user/n/ntrevisa/HWW2015/ICHEPv2/
+    
+    
+    
+     /cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb_v2/
+     /cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb_v2/
+     /cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb_v2/
+     /cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb_v2/
+     /cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb_v2/
+     /cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb_v2/
+     /cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb_v2/
+     /cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb_v2/
+ 
+    
+    
+    cp -r   eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb_v2__wwSel                  eos/user/n/ntrevisa/HWW2015/ICHEPv2/21Jun2016_v2_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/ 
+    cp -r   eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/05Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb_v2__wwSel                     eos/user/k/kfjack/HWW2015/05Jul2016_Run2016B_PromptReco_v2/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/ 
+    cp -r   eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016B_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb_v2__wwSel                     eos/user/k/kfjack/HWW2015/08Jul2016_Run2016B_PromptReco_v2/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/ 
+    cp -r   eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW6p3/08Jul2016_Run2016C_PromptReco/l2loose__hadd__EpTCorr__fakeW12fb_v2__wwSel                     eos/user/k/kfjack/HWW2015/08Jul2016_Run2016C_PromptReco_v2/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/ 
+    cp -r   eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/11Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb_v2__wwSel/        eos/user/k/kfjack/HWW2015//11Jul2016_Run2016C_PromptReco_v2/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/
+    cp -r   eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016C_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb_v2__wwSel/        eos/user/k/kfjack/HWW2015//15Jul2016_Run2016C_PromptReco_v2/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/
+    cp -r   eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb_v2__wwSel/        eos/user/n/ntrevisa/HWW2015/ICHEPv2/15Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/
+    cp -r   eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb/26Jul2016_Run2016D_PromptReco/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb_v2__wwSel/        eos/user/k/kfjack/HWW2015//26Jul2016_Run2016D_PromptReco_v2/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/
+
+      
+      
+    eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/05Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/05Jul2016_Run2016B_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/08Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016B_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/11Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/11Jul2016_Run2016C_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/15Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016D_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/26Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/26Jul2016_Run2016D_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/08Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016C_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/15Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016C_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/21Jun2016_v2_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/      eos/user/r/rodrigo/HWW2016/21Jun2016_v2_Run2016B_PromptReco_repro/
+
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/05Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/05Jul2016_Run2016B_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/08Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016B_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/11Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/11Jul2016_Run2016C_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/15Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016D_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/26Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/26Jul2016_Run2016D_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/08Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016C_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/15Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016C_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/21Jun2016_v2_Run2016B_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/      eos/user/r/rodrigo/HWW2016/21Jun2016_v2_Run2016B_PromptReco_repro/
+
+      
+
+
+
+      

@@ -147,10 +147,10 @@ plot['WW']  = {
                   'scale'    : 1.0,   # ele/mu trigger efficiency   datadriven
                   
                   'cuts'  : {
-                       'ww2l2v_13TeV_ww_of'     : 1.05 ,
-                       'ww2l2v_13TeV_ww_of0j'   : 1.05 ,
-                       'ww2l2v_13TeV_ww_of1j'   : 1.20 , 
-                       'ww2l2v_13TeV_ww_of2j'   : 1.20 ,                
+                       'ww2l2v_13TeV_ww_of'     : 1.05*0.95 ,
+                       'ww2l2v_13TeV_ww_of0j'   : 1.05*0.95 ,
+                       'ww2l2v_13TeV_ww_of1j'   : 1.20*0.95 , 
+                       'ww2l2v_13TeV_ww_of2j'   : 1.20*0.95 ,                
                   
                   }
                  }
@@ -311,7 +311,7 @@ plot['DATA']  = {
 #legend['lumi'] = 'L = 2.6/fb' # 
 #legend['lumi'] = 'L = 4.3/fb' # 
 #legend['lumi'] = 'L = 6.3/fb' # 
-legend['lumi'] = 'L = 12.3/fb' # 
+legend['lumi'] = 'L = 12.9/fb' # 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 

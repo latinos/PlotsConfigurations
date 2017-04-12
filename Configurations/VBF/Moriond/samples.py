@@ -183,7 +183,7 @@ samples['VZ']  = {    'name': [
                           #'latino_ZZTo2L2Q.root'
                           'latino_ZZTo4L.root'
                          ], 
-                      'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
+                      'weight' : '1.11*metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',          
                       #'weights': ['1'] ,           
                       #'isData': ['0'],                            
                   }

@@ -1,0 +1,16 @@
+## Shape input card
+imax 1 number of channels
+jmax * number of background
+kmax * number of nuisance parameters
+---------------------------------------------------------------------------------------------------- 
+bin hww2l2v_0j 
+observation 3
+---------------------------------------------------------------------------------------------------- 
+bin              hww2l2v_0j    hww2l2v_0j       
+process           ggH_hww      background 
+process              0               1                    
+rate                 1.00               2.00 
+---------------------------------------------------------------------------------------------------- 
+signalMigration     lnN        0.90   - 
+lumi                lnN        1.03   1.03 
+only0               lnN        1.05   -

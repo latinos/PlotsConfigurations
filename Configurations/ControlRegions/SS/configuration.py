@@ -1,6 +1,7 @@
 # example of configuration file
 
 tag = 'SS'
+#tag = 'DATA'
 
 
 # used by mkShape to define output directory for root files
@@ -23,7 +24,7 @@ plotFile = 'plot.py'
 
 # luminosity to normalize to (in 1/fb)
 #lumi = 4.3
-lumi = 12.2950
+lumi = 12.8890
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy

@@ -59,7 +59,7 @@ groupPlot['VZ']  = {
 groupPlot['HiggsOther']  = {  
                   'nameHR' : 'ggH+VBF',
                   'isSignal' : 1,
-                  'color': 633, # kRed+1 
+                  'color': 635, # kRed+3 
                   'samples'  : ['H_htt', 'H_hww', 'qqH_hww', 'ggH_hww']
               }
 
@@ -319,7 +319,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  #'isBlind'  : 1
               }
 
 
@@ -331,7 +331,7 @@ plot['DATA']  = {
 #legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
 #legend['lumi'] = 'L = 4.3/fb' # 2.318 fb-1
 #legend['lumi'] = 'L = 6.3/fb'
-legend['lumi'] = 'L = 12.3/fb'
+legend['lumi'] = 'L = 12.9/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

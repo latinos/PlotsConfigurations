@@ -12,6 +12,9 @@ mv ggH2j/datacards/hww2l2v_13TeV_of2j/mllVSmth/datacard.test.txt.pruned.txt    g
 #
 cat ggH2j/datacards/hww2l2v_13TeV_top_of2j/events/datacard.txt.pruned.txt  | grep -v "DY_ibin_1"   &> ggH2j/datacards/hww2l2v_13TeV_top_of2j/events/datacard.test.txt.pruned.txt
 mv ggH2j/datacards/hww2l2v_13TeV_top_of2j/events/datacard.test.txt.pruned.txt    ggH2j/datacards/hww2l2v_13TeV_top_of2j/events/datacard.txt.pruned.txt
+# 
+cat ggH2j/datacards/hww2l2v_13TeV_dytt_of2j/events/datacard.txt.pruned.txt  | grep -v "Vg_ibin_1"   &> ggH2j/datacards/hww2l2v_13TeV_dytt_of2j/events/datacard.test.txt.pruned.txt
+mv ggH2j/datacards/hww2l2v_13TeV_dytt_of2j/events/datacard.test.txt.pruned.txt    ggH2j/datacards/hww2l2v_13TeV_dytt_of2j/events/datacard.txt.pruned.txt
 
 
 # 
@@ -43,25 +46,25 @@ mv ggH2j/datacards/hww2l2v_13TeV_top_of2j/events/datacard.test.txt.pruned.txt   
 combineCards.py   of2j2j13=ggH2j/datacards/hww2l2v_13TeV_of2j/mllVSmth/datacard.txt.pruned.txt \
                   of2j2j13Top=ggH2j/datacards/hww2l2v_13TeV_top_of2j/events/datacard.txt.pruned.txt \
                   of2j2j13DYtt=ggH2j/datacards/hww2l2v_13TeV_dytt_of2j/events/datacard.txt.pruned.txt \
-                  >   Data2015.2j.pruned.txt
+                  >   Data2016.2j.pruned.txt
 
 # results
 
-combine -M MaxLikelihoodFit    --rMin=-9 --rMax=10   -t -1 --expectSignal 1   Data2015.2j.pruned.txt             >   result.MaxLikelihoodFit.Data2015.2j.pruned.txt
+combine -M MaxLikelihoodFit    --rMin=-9 --rMax=10   -t -1 --expectSignal 1   Data2016.2j.pruned.txt             >   result.MaxLikelihoodFit.Data2016.2j.pruned.txt
 
-combine -M ProfileLikelihood --significance         -t -1 --expectSignal 1   Data2015.2j.pruned.txt             >   result.Significance.Data2015.2j.pruned.txt
+combine -M ProfileLikelihood --significance         -t -1 --expectSignal 1   Data2016.2j.pruned.txt             >   result.Significance.Data2016.2j.pruned.txt
 
 
-combine -M MultiDimFit Data2015.2j.pruned.txt -m 125 -t -1 --expectSignal 1 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-9,10 -n "LHScanHggH2j"     >   result.LikelihoodScan.Data2015.2j.pruned.txt
+combine -M MultiDimFit Data2016.2j.pruned.txt -m 125 -t -1 --expectSignal 1 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-9,10 -n "LHScanHggH2j"     >   result.LikelihoodScan.Data2016.2j.pruned.txt
 
 
 # data
 
-combine -M MaxLikelihoodFit    --rMin=-9 --rMax=10      Data2015.2j.pruned.txt             >   result.data.MaxLikelihoodFit.Data2015.2j.pruned.txt
+combine -M MaxLikelihoodFit    --rMin=-9 --rMax=10      Data2016.2j.pruned.txt             >   result.data.MaxLikelihoodFit.Data2016.2j.pruned.txt
 
-combine -M ProfileLikelihood --significance            Data2015.2j.pruned.txt             >   result.data.Significance.Data2015.2j.pruned.txt
+combine -M ProfileLikelihood --significance            Data2016.2j.pruned.txt             >   result.data.Significance.Data2016.2j.pruned.txt
 
-combine -M MultiDimFit Data2015.2j.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-9,10 -n "LHScanHdataggH2j"     >   result.data.LikelihoodScan.Data2015.2j.pruned.txt
+combine -M MultiDimFit Data2016.2j.pruned.txt -m 125 --algo=grid --points 200 --setPhysicsModelParameterRanges r=-9,10 -n "LHScanHdataggH2j"     >   result.data.LikelihoodScan.Data2016.2j.pruned.txt
 
 
 

@@ -1,0 +1,33 @@
+{
+    "nuisances": [
+        "CMS_hww2l2v_13TeV_top_of2j_vbf_WW_ibin_1_stat",
+        "CMS_fake_mu_stat_hww",
+        "CMS_fake_ele_hww",
+        "pdf_gg",
+        "lumi_13TeV_2016",
+        "lumi_13TeV",
+        "kfactggww",
+        "fake_syst",
+        "WgStarScale",
+        "QCDscale_qqbar_accept",
+        "QCDscale_qqH",
+        "QCDscale_gg_accept",
+        "QCDscale_ggZH",
+        "QCDscale_ZH",
+        "QCDscale_WH",
+        "QCDscale_CRSR_accept_top",
+        "QCDscale_CRSR_accept_dytt",
+        "CMS_tttwTh",
+        "CMS_trigger",
+        "CMS_scale_met",
+        "CMS_scale_m",
+        "CMS_scale_j",
+        "CMS_scale_e",
+        "CMS_idiso_mu",
+        "CMS_idiso_ele"
+       ]  
+}
+
+
+
+

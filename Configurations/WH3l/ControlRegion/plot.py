@@ -18,7 +18,7 @@
 
 
 groupPlot['Fake']  = {  
-                  'nameHR' : 'Non-Prompt',
+                  'nameHR' : 'Non-prompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
                   'samples'  : ['Fake']
@@ -337,7 +337,7 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 12.3/fb' # 12.2950 fb-1
+legend['lumi'] = 'L = 12.9/fb' # 12.8890 fb-1
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 

@@ -1,6 +1,6 @@
 void drawNLL() {
  
-TFile *f = new TFile("/afs/cern.ch/work/a/arun/Latinos/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/WH3l/BTagChecks/forLimit/higgsCombineLHScan.MultiDimFit.mH125.root","read");
+TFile *f = new TFile("/afs/cern.ch/work/a/arun/Latinos/CMSSW_7_4_7/src/HiggsAnalysis/CombinedLimit/test/WH_Limits/2016/15Sept/higgsCombineLHScan.MultiDimFit.mH125.root","read");
 TTree *limit = (TTree*)f->Get("limit");
 
   TCanvas* cc = new TCanvas("cc","", 800, 600);
@@ -50,7 +50,7 @@ TTree *limit = (TTree*)f->Get("limit");
   tex2->SetLineWidth(2);
   
   TLatex * tex3;
-  tex3 = new TLatex(0.55,0.92,"L = 2.3 fb^{-1}");
+  tex3 = new TLatex(0.55,0.92,"L = 12.3 fb^{-1}");
   tex3->SetNDC();
   tex3->SetTextFont(52);
   tex3->SetTextSize(0.035);
@@ -78,6 +78,6 @@ TTree *limit = (TTree*)f->Get("limit");
   line2->SetLineColor(kRed);
   line2->Draw();
   
-  cc->SaveAs("ll.png");
+  cc->SaveAs("ll_12p3fb.png");
   
 }

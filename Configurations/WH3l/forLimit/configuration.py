@@ -12,8 +12,7 @@ outputDir = 'rootFiles_repro'
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
-#cutsFile = 'cuts_detailed.py'
+cutsFile = 'cuts_detailed.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 
