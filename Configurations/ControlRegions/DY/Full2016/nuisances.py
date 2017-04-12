@@ -204,8 +204,8 @@ nuisances['electronpt']  = {
                    'bbH_hww' : ['1', '1'],
                    'H_htt'   : ['1', '1'],
                  },
-                'folderUp'   : treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__l2tight__LepElepTCutup',
-                'folderDown' : treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__l2tight__LepElepTCutdo',
+                'folderUp'   : treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepElepTCutup',
+                'folderDown' : treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepElepTCutdo',
 }
 
 
@@ -261,8 +261,8 @@ nuisances['muonpt']  = {
                    'bbH_hww' : ['1', '1'],
                    'H_htt' : ['1', '1'],
                 },
-                'folderUp'   : treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__l2tight__LepMupTCutup',
-                'folderDown' : treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__l2tight__LepMupTCutdo',
+                'folderUp'   : treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepMupTCutup',
+                'folderDown' : treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepMupTCutdo',
 }
 
 
@@ -289,8 +289,8 @@ nuisances['jes']  = {
                    'bbH_hww' : ['1', '1'],
                    'H_htt' : ['1', '1'],
                 },
-                'folderUp'   : treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__l2tight__JESup',
-                'folderDown' : treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__l2tight__JESdo',
+                'folderUp'   : treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__JESup',
+                'folderDown' : treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__JESdo',
 }
 
 ##### MET energy scale
@@ -316,7 +316,7 @@ nuisances['met']  = {
                    'bbH_hww' : ['1', '1'],
                    'H_htt' : ['1', '1'],
                 },
-                'folderUp'   : treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__l2tight__METup',
-                'folderDown' : treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__l2tight__METdo',
+                'folderUp'   : treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__METup',
+                'folderDown' : treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__METdo',
 }
 
