@@ -63,10 +63,22 @@ groupPlot['Higgs']  = {
               }
 
 
+ZpMasses={"600","800","1000","1200","1400","1700","2000","2500"}
+A0Masses={"300","400","500","600","700","800"}
+i=0
+#mA0="400"
 
-
-
-
+for mZp in ZpMasses:
+    for mA0 in A0Masses :
+         if ((mZp == "600" and (mA0 == "300" or mA0 == "400")) or ((mZp == "800" and (mA0 == "300" or mA0 == "400" or mA0 == "500" or mA0 == "600"))) or (mZp != "600" and mZp != "800")) :
+             if mA0 == "300" :
+                 groupPlot[mZp + '_' + mA0]  = {  
+                     'nameHR' : 'mZ=' + mZp + ' GeV, mA0=' + mA0 + ' GeV',
+                     'isSignal' : 2,
+                     'color': 800 + i, # kOrange + i
+                     'samples'  : ['monoH_' + mZp + '_' + mA0]
+                     }
+                 i = i + 1
 
 #plot = {}
 
@@ -265,6 +277,30 @@ plot['bbH_hww'] = {
                   'isData'   : 0,
                   'scale'    : 1    #
                   }
+
+
+i=0
+for mZp in ZpMasses :
+    for mA0 in A0Masses :
+        if ((mZp == "600" and (mA0 == "300" or mA0 == "400")) or ((mZp == "800" and (mA0 == "300" or mA0 == "400" or mA0 == "500" or mA0 == "600"))) or (mZp != "600" and mZp != "800")) :
+            if mA0 == "300" :
+                plot['monoH_' + mZp + '_' + mA0]  = {  
+                    'nameHR' : 'mZ=' + mZp + ' GeV, mA0=' + mA0 + ' GeV',
+                    'color': 800 + i, # kOrange + i
+                    'isSignal' : 2,
+                    'isData'   : 0,
+                    'scale'    : 1   #
+                    }
+                i = i + 1
+            else :
+                plot['monoH_' + mZp + '_' + mA0]  = {  
+                    'nameHR' : '',
+                    'color': 2, # kOrange + i
+                    'isSignal' : 0,
+                    'isData'   : 0,
+                    'scale'    : 0   #
+                    }
+                i = i + 1
 
 
 # data

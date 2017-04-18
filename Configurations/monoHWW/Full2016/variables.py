@@ -151,7 +151,7 @@ variables['mth_control']  = {   'name': 'mth',            #   variable name
 
 variables['lep_ht']  = {   'name': 'std_vector_lepton_pt[0] + std_vector_lepton_pt[1] + metPfType1',            #   variable name    
                         'range' : (50,0,500),     #   variable range
-                        'xaxis' : 'p_T^1 + p_T^2 + E_T^{miss} [GeV]',  #   x axis name
+                        'xaxis' : 'p_{T}^{1} + p_{T}^~2} + E_{T}^{miss} [GeV]',  #   x axis name
                         'fold' : 3
                         }
 
