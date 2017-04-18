@@ -1,27 +1,15 @@
-void drawNLLObs() {
+void drawNLLvar(std::string var = "r") {
   
   TCanvas* cc = new TCanvas("cc","", 800, 600);
   int n = 0;
   int n_data = 0;
   
   TTree* limit = (TTree*) _file0->Get("limit");  
-  n = limit->Draw("2*deltaNLL:r","deltaNLL<10 && deltaNLL>-30","l");
+  TString toDraw = Form ("2*deltaNLL:%s", var.c_str());
+  n = limit->Draw(toDraw.Data(),"deltaNLL<10 && deltaNLL>-30","l");
   TGraph *graphScan = new TGraph(n,limit->GetV2(),limit->GetV1());
   graphScan->RemovePoint(0);
 
-  TGraph *graphScanData = 0;
-  if (_file1) {
-   TTree* limitData = (TTree*) _file1->Get("limit");  
-   n_data = limitData->Draw("2*deltaNLL:r","deltaNLL<40 && deltaNLL>-30","l");
-   graphScanData = new TGraph(n_data,limitData->GetV2(),limitData->GetV1());
-   graphScanData->RemovePoint(0);
-   graphScanData->SetTitle("");
-   graphScanData->SetMarkerStyle(21);
-   graphScanData->SetLineWidth(2);
-   graphScanData->SetMarkerColor(kRed);
-   graphScanData->SetLineColor(kRed);
-  }
-  
   cc->SetGrid();
   
   
@@ -132,46 +120,6 @@ void drawNLLObs() {
   
   
   
-  x_std.clear();
-  x_y_map.clear();
-  for (int ip = 0; ip<graphScanData->GetN(); ip++) {
-    
-    graphScanData->GetPoint (ip, x_value, y_value);
-//     std::cout << " x_value = " << x_value << std::endl;
-    if (std::find(x_std.begin(), x_std.end(), x_value) != x_std.end()) {
-      graphScanData->RemovePoint(ip);
-      ip--;
-    }
-    else {
-      x_std.push_back(x_value);
-      x_y_map[x_value] = y_value;
-    }
-  }
-  
-  graphScanData->Set(0);
-  
-  float data_min_x = -100;
-  //---- fix the 0 of the likelihood scan
-  minimum = 1000;
-  for (std::map<double, double>::iterator it = x_y_map.begin(); it != x_y_map.end(); it++) {
-    if ( it->second < minimum ) {
-      minimum = it->second;
-      data_min_x = it->first;
-    }
-  }
-  for (std::map<double, double>::iterator it = x_y_map.begin(); it != x_y_map.end(); it++) {
-    it->second =  it->second - minimum;
-  }
-  //---- (end) fix the 0 of the likelihood scan
-  
-  
-  ip = 0;
-  for (std::map<double, double>::iterator it = x_y_map.begin(); it != x_y_map.end(); it++) {
-    graphScanData->SetPoint( ip, it->first , it->second);
-    ip++;
-  }
-  
-  
   
   //---- plot ----
   
@@ -180,10 +128,6 @@ void drawNLLObs() {
   
   graphScan  ->Draw("al");
 //   graphScan  ->Draw("aPl");
-  
-  if (graphScanData) {
-    graphScanData->Draw("l");
-  }
   
   tex->Draw("same");
   tex2->Draw("same");
@@ -207,42 +151,9 @@ void drawNLLObs() {
   line2->SetLineColor(kRed);
   line2->Draw();
   
-  TLegend* leg = new TLegend(0.1,0.7,0.48,0.9);
-  leg->AddEntry(graphScan,"Expected","l");
-  if (graphScanData) {
-    leg->AddEntry(graphScanData,"Observed","l");
-  }
-
-//   leg->AddEntry(graphScan,"Old","l");
-//   if (graphScanData) {
-//     leg->AddEntry(graphScanData,"New","l");
-//   }
   
-//   leg->AddEntry(graphScan,"Obs 2015 alone","l");
-//   if (graphScanData) {
-//     leg->AddEntry(graphScanData,"Obs 2015 with CR 2016","l");
-//   }
-  
-//   leg->AddEntry(graphScan,"Obs 2016 alone","l");
-//   if (graphScanData) {
-//     leg->AddEntry(graphScanData,"Obs 2016 with CR 2015","l");
-//   }
-//   
-  
-  
-  leg->SetFillColor(0);
-  leg->Draw();
-  
-  
-  std::cout << " data at minimum:   " << data_min_x << std::endl;
   std::cout << " MC   at minimum:   " <<   mc_min_x << std::endl;
-  
-  
-  
-  std::cout << " data at 0:   " << graphScanData->Eval(0) << std::endl;
   std::cout << " MC   at 0:   " << graphScan    ->Eval(0) << std::endl;
-
-  std::cout << " significance data at 0:   " << sqrt(graphScanData->Eval(0)) << std::endl;
   std::cout << " significance MC   at 0:   " << sqrt(graphScan    ->Eval(0)) << std::endl;
   
   
