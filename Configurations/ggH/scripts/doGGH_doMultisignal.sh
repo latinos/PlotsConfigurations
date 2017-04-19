@@ -403,7 +403,7 @@ text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel -
                    
   
   
-  
+## ok
 
 combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.categories.mu.tris.root -M MultiDimFit    \
                --algo=grid      -n "r0jetFINAL"   --redefineSignalPOIs  r_0jet    --setPhysicsModelParameterRanges r_0jet=-3,3     \
@@ -420,34 +420,111 @@ root -l higgsCombiner0jetFINAL.AFTERFIX.root  \
    
    
 
+## ok
+
 combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.categories.mu.tris.root -M MultiDimFit    \
-               --algo=grid      -n "r1jetFINAL"   --redefineSignalPOIs  r_1jet    --setPhysicsModelParameterRanges r_1jet=-3,3     \
+               --algo=grid      -n "r1jetFINAL"  --X-rtd OPTIMIZE_BOUNDS=0     --redefineSignalPOIs  r_1jet    --setPhysicsModelParameterRanges r_1jet=-3,3     \
                --points 400    --job-mode lxbatch --task-name lxbatch-r1jetFINAL --sub-opts='-q 1nd' --split-points 1 
  
  
 
-combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.categories.mu.tris.root -M MultiDimFit    \
-               --algo=grid      -n "r2jetFINAL"   --redefineSignalPOIs  r_2jet    --setPhysicsModelParameterRanges r_2jet=-3,3     \
-               --points 400    --job-mode lxbatch --task-name lxbatch-r2jetFINAL --sub-opts='-q 1nd' --split-points 1 
+hadd higgsCombiner1jetFINAL.AFTERFIX.root                      higgsCombiner1jetFINAL.POINTS.*.MultiDimFit.mH120.root         
+   
+ls -alrth higgsCombiner1jetFINAL.POINTS.*.MultiDimFit.mH120.root              | grep -v K |  awk '{print "rm "$9}' | /bin/sh
+
+root -l higgsCombiner1jetFINAL.AFTERFIX.root  \
+        ggH/scripts/drawNLLvar.C\(\"r_1jet\"\)
  
+   
+## NO
+   
+combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.categories.mu.tris.root -M MultiDimFit    \
+               --algo=grid      -n "r2jetFINAL"   --X-rtd OPTIMIZE_BOUNDS=0   --redefineSignalPOIs  r_2jet    --setPhysicsModelParameterRanges r_2jet=-3,3     \
+               --points 400    --job-mode lxbatch --task-name lxbatch-r2jetFINAL --sub-opts='-q 2nd' --split-points 1 
  
 
+ 
+hadd higgsCombiner2jetFINAL.AFTERFIX.root                      higgsCombiner2jetFINAL.POINTS.*.MultiDimFit.mH120.root         
+   
+ls -alrth higgsCombiner2jetFINAL.POINTS.*.MultiDimFit.mH120.root              | grep -v K |  awk '{print "rm "$9}' | /bin/sh
+
+root -l higgsCombiner2jetFINAL.AFTERFIX.root  \
+        ggH/scripts/drawNLLvar.C\(\"r_2jet\"\)
+ 
+   
+   
+   
+## NO
+
 combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.categories.mu.tris.root -M MultiDimFit    \
-               --algo=grid      -n "r2jetvbfFINAL"   --redefineSignalPOIs  r_2jetvbf    --setPhysicsModelParameterRanges r_2jetvbf=-3,3     \
+               --algo=grid      -n "r2jetvbfFINAL"  --X-rtd OPTIMIZE_BOUNDS=0    --redefineSignalPOIs  r_2jetvbf    --setPhysicsModelParameterRanges r_2jetvbf=-3,3     \
                --points 400    --job-mode lxbatch --task-name lxbatch-r2jetvbfFINAL --sub-opts='-q 1nd' --split-points 1 
   
-    
+
+ 
+hadd higgsCombiner2jetvbfFINAL.AFTERFIX.root                      higgsCombiner2jetvbfFINAL.POINTS.*.MultiDimFit.mH120.root         
+   
+ls -alrth higgsCombiner2jetvbfFINAL.POINTS.*.MultiDimFit.mH120.root              | grep -v K |  awk '{print "rm "$9}' | /bin/sh
+
+root -l higgsCombiner2jetvbfFINAL.AFTERFIX.root  \
+        ggH/scripts/drawNLLvar.C\(\"r_2jetvbf\"\)
+ 
+   
+
+   
+## NO
 
 combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.categories.mu.tris.root -M MultiDimFit    \
-               --algo=grid      -n "r2jetvhFINAL"   --redefineSignalPOIs  r_2jetvh    --setPhysicsModelParameterRanges r_2jetvh=-3,3     \
+               --algo=grid      -n "r2jetvhFINAL"   --X-rtd OPTIMIZE_BOUNDS=0   --redefineSignalPOIs  r_2jetvh    --setPhysicsModelParameterRanges r_2jetvh=-3,3     \
                --points 400    --job-mode lxbatch --task-name lxbatch-r2jetvhFINAL --sub-opts='-q 1nd' --split-points 1 
+
+               
+combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.categories.mu.tris.root -M MultiDimFit    \
+               --algo=grid      -n "r2jetvhFINALbis"   --X-rtd OPTIMIZE_BOUNDS=0   --redefineSignalPOIs  r_2jetvh    --setPhysicsModelParameterRanges r_2jetvh=-1,3     \
+               --points 200    --job-mode lxbatch --task-name lxbatch-r2jetvhFINAL --sub-opts='-q 1nd' --split-points 1 
+               
  
  
+ 
+hadd higgsCombiner2jetvhFINAL.AFTERFIX.root                      higgsCombiner2jetvhFINAL.POINTS.*.MultiDimFit.mH120.root         
+   
+ls -alrth higgsCombiner2jetvhFINAL.POINTS.*.MultiDimFit.mH120.root              | grep -v K |  awk '{print "rm "$9}' | /bin/sh
+
+root -l higgsCombiner2jetvhFINAL.AFTERFIX.root  \
+        ggH/scripts/drawNLLvar.C\(\"r_2jetvh\"\)
+ 
+   
+
+   
+## not so bad
  
 combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.categories.mu.tris.root -M MultiDimFit    \
-               --algo=grid      -n "r3lFINAL"   --redefineSignalPOIs  r_3l    --setPhysicsModelParameterRanges r_3l=-3,3     \
+               --algo=grid      -n "r3lFINAL"   --X-rtd OPTIMIZE_BOUNDS=0   --redefineSignalPOIs  r_3l    --setPhysicsModelParameterRanges r_3l=-3,3     \
                --points 400    --job-mode lxbatch --task-name lxbatch-r3lFINAL --sub-opts='-q 1nd' --split-points 1 
   
+     
+
+ 
+hadd higgsCombiner3lFINAL.AFTERFIX.root                      higgsCombiner3lFINAL.POINTS.*.MultiDimFit.mH120.root         
+   
+ls -alrth higgsCombiner3lFINAL.POINTS.*.MultiDimFit.mH120.root              | grep -v K |  awk '{print "rm "$9}' | /bin/sh
+
+root -l higgsCombiner3lFINAL.AFTERFIX.root  \
+        ggH/scripts/drawNLLvar.C\(\"r_3l\"\)
+ 
+   
+
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
      
      
          

@@ -75,14 +75,16 @@ text2workspace.py superCombination.2015.txt.pruned.txt   -o  superCombination.20
 
 
 
+combine -M MaxLikelihoodFit   workspace.superCombination.2015.txt.pruned.txt.categories.mu.unique.withbkg.root           >   result.MaxLikelihoodFit.Combined.2015.txt
+
+combine   -M MultiDimFit workspace.superCombination.2015.txt.pruned.txt.categories.mu.unique.withbkg.root    -n "r2015total"    --algo=grid --points 30  --setPhysicsModelParameterRanges r=0.5,1.0
 
 
 
 
-
-
-
-
+root -l higgsCombiner2015total.MultiDimFit.mH120.root  \
+        ggH/scripts/drawNLLvar.C\(\"r\"\)
+ 
 
 
 
