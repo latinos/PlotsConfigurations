@@ -18,6 +18,8 @@ void normalization() {
   cuts_1jet.push_back("c2015_em_1j_13");
   cuts_1jet.push_back("c2015_me_1j_13");
   
+  
+  
   std::cout << " --- 0 jet --- " << std::endl;
   
   for (int isample = 0; isample < samples.size(); isample++) {
@@ -47,6 +49,44 @@ void normalization() {
     }
     std::cout << " " <<  samples.at(isample) << " = " << norm << std::endl;
   }
+  
+  
+  
+  
+  
+  std::vector<std::string> nuisances;
+  nuisances.push_back("WWnorm0j");
+  nuisances.push_back("DYttnorm0j");
+  nuisances.push_back("Topnorm0j");
+  nuisances.push_back("WWnorm1j");
+  nuisances.push_back("DYttnorm1j");
+  nuisances.push_back("Topnorm1j");
+  
+  
+  RooFitResult* fit_s;
+  fit_s = (RooFitResult*) _file0->Get("fit_s");
+  
+  std::cout << " ---- nuisances ---- " << std::endl;
+  
+  for (int inuisance = 0; inuisance < nuisances.size(); inuisance++) {
+    RooRealVar* varnorm_nuisance = (RooRealVar*) ( (RooArgList)  fit_s->floatParsFinal()).find( nuisances.at(inuisance).c_str() );
+    std::cout << " [ " << nuisances.at(inuisance).c_str() << " ] = " << varnorm_nuisance->getVal() << std::endl;
+  }
+  
+  
+  
+  
+//   RooRealVar* varnorm_nuisance = (RooRealVar*) ( (RooArgList)  fit_s->floatParsFinal()).find("WWnorm0j");
+//   std::cout << " var = " << varnorm_nuisance->getVal() << std::endl;
+  
+    
+  
+  
+  
+  
+  
+  
+  
   
   
   
