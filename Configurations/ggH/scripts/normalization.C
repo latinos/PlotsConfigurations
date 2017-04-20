@@ -3,6 +3,55 @@ void normalization() {
   
   RooArgSet*     norm_fit_s = (RooArgSet*) _file0->Get("norm_fit_s");
   
+  std::vector<std::string> samples;
+  std::vector<std::string> cuts_0jet;
+  std::vector<std::string> cuts_1jet;
+  
+  samples.push_back("Fake");
+  samples.push_back("WW");
+  samples.push_back("DY");
+  samples.push_back("top");
+  
+  cuts_0jet.push_back("c2015_em_0j_13");
+  cuts_0jet.push_back("c2015_me_0j_13");
+
+  cuts_1jet.push_back("c2015_em_1j_13");
+  cuts_1jet.push_back("c2015_me_1j_13");
+  
+  std::cout << " --- 0 jet --- " << std::endl;
+  
+  for (int isample = 0; isample < samples.size(); isample++) {
+    float norm = 0;
+    for (int icut = 0; icut < cuts_0jet.size(); icut++) {   
+      RooRealVar*  norm_var;
+      
+      TString name = Form ("%s/%s", cuts_0jet.at(icut).c_str(), samples.at(isample).c_str());
+      
+      norm_var = (RooRealVar* ) norm_fit_s->find(name.Data());  
+      norm += norm_var->getVal();         
+    }
+    std::cout << " " <<  samples.at(isample) << " = " << norm << std::endl;
+  }
+  
+  std::cout << " --- 1 jet --- " << std::endl;
+  
+  for (int isample = 0; isample < samples.size(); isample++) {
+    float norm = 0;
+    for (int icut = 0; icut < cuts_1jet.size(); icut++) {   
+      RooRealVar*  norm_var;
+      
+      TString name = Form ("%s/%s", cuts_1jet.at(icut).c_str(), samples.at(isample).c_str());
+
+      norm_var = (RooRealVar* ) norm_fit_s->find(name.Data());  
+      norm += norm_var->getVal();         
+    }
+    std::cout << " " <<  samples.at(isample) << " = " << norm << std::endl;
+  }
+  
+  
+  
+  
+  /*
   //---- 0 jet
   
   std::cout << " --- 0 jet --- " << std::endl;
@@ -110,7 +159,7 @@ void normalization() {
   normtop_1jet += top_1jet->getVal();
   
   std::cout << " top = " << normtop_1jet << std::endl;
-  
+  */
   
 }
 
