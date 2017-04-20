@@ -87,9 +87,11 @@ combine -M MaxLikelihoodFit   superCombination.Total.txt.pruned.txt.workspace.ro
 
      
 combine -M MaxLikelihoodFit   superCombination.Total.txt.pruned.txt.workspace.root   --saveNormalizations   -n "saveall.TOTAL.nominos" \
-     --robustFit 1   --minimizerAlgoForMinos Minuit2,Migrad  --minimizerStrategy 0    >   result.MaxLikelihoodFit.Combined.FINAL.test2.txt
+     --robustFit 1   --minimizerAlgoForMinos Minuit2,Migrad  --minimizerStrategy 0      >   result.MaxLikelihoodFit.Combined.FINAL.test2.txt
 
-     
+      
+combine -M MaxLikelihoodFit   superCombination.Total.txt.pruned.txt.workspace.root   --saveNormalizations   -n "saveall.TOTAL.nominos.MCasimov" \
+     --robustFit 1   --minimizerAlgoForMinos Minuit2,Migrad  --minimizerStrategy 0    -t -1
      
 
      
