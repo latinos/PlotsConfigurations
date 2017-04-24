@@ -75,6 +75,42 @@ text2workspace.py superCombination.2015.txt.pruned.txt   -o  superCombination.20
 
 
 
+combine -M MaxLikelihoodFit   superCombination.Total.txt.pruned.txt.workspace.root   --saveShapes --saveNormalizations   -n "saveall.TOTAL" \
+     --robustFit 1  --minimizerStrategy 1 --minimizerTolerance 0.2  --cminFallback "Minuit2,Migrad,0:0.2"     >   result.MaxLikelihoodFit.Combined.FINAL.txt
+
+     
+combine -M MaxLikelihoodFit   superCombination.Total.txt.pruned.txt.workspace.root   --saveNormalizations   -n "saveall.TOTAL" \
+     --robustFit 1  --minimizerStrategy 1 --minimizerTolerance 0.2  --cminFallback "Minuit2,Migrad,0:0.2"     >   result.MaxLikelihoodFit.Combined.FINAL.txt
+
+combine -M MaxLikelihoodFit   superCombination.Total.txt.pruned.txt.workspace.root   --saveNormalizations   -n "saveall.TOTAL.nominos" \
+     --robustFit 1  --minimizerStrategy 1 --minimizerTolerance 0.2  --cminFallback "Minuit2,Migrad,0:0.2"   --minos none    >   result.MaxLikelihoodFit.Combined.FINAL.nominos.txt
+
+     
+combine -M MaxLikelihoodFit   superCombination.Total.txt.pruned.txt.workspace.root   --saveNormalizations   -n "saveall.TOTAL.nominos" \
+     --robustFit 1   --minimizerAlgoForMinos Minuit2,Migrad  --minimizerStrategy 0      >   result.MaxLikelihoodFit.Combined.FINAL.test2.txt
+
+      
+combine -M MaxLikelihoodFit   superCombination.Total.txt.pruned.txt.workspace.root   --saveNormalizations   -n "saveall.TOTAL.nominos.MCasimov" \
+     --robustFit 1   --minimizerAlgoForMinos Minuit2,Migrad  --minimizerStrategy 0    -t -1
+     
+
+     
+     
+     
+mv mlfit.root higgsCombineTest.MaxLikelihoodFit.mH120.saveall.TOTAL.mlfit.root
+
+
+RooArgSet*       norm_fit_s = (RooArgSet*) _file0->Get("norm_fit_s")
+RooRealVar wjet_0jet = (RooRealVar ) norm_fit_s->find("ICHEP_em_mp_0j_13/Fake");
+wjet_0jet->getVal();
+
+
+r99t mlfit2015.root    ggH/scripts/normalization.C
+
+
+
+
+
 combine -M MaxLikelihoodFit   workspace.superCombination.2015.txt.pruned.txt.categories.mu.unique.withbkg.root           >   result.MaxLikelihoodFit.Combined.2015.txt
 
 combine   -M MultiDimFit workspace.superCombination.2015.txt.pruned.txt.categories.mu.unique.withbkg.root    -n "r2015total"    --algo=grid --points 30  --setPhysicsModelParameterRanges r=0.5,1.0
