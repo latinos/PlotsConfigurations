@@ -15,12 +15,12 @@ groupPlot['DY']  = {
 
 
 
-#groupPlot['Fake']  = {  
-#                  'nameHR' : 'Fake',
-#                  'isSignal' : 0,
-#                  'color': 921,    # kGray + 1
-#                  'samples'  : ['Fake']
-#              }
+groupPlot['Fake']  = {  
+                  'nameHR' : 'Fake',
+                  'isSignal' : 0,
+                  'color': 921,    # kGray + 1
+                  'samples'  : ['Fake']
+              }
 
 
 groupPlot['top']  = {  
@@ -306,7 +306,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  #'isBlind'  : 1
+                  'isBlind'  : 1
               }
 
 

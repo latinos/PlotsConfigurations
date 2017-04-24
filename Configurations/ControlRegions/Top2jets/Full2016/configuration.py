@@ -1,6 +1,7 @@
 # example of configuration file
 
-tag = 'ggH_SF'
+tag = 'Top2j'
+
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -25,7 +26,8 @@ lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotGGH_SF_signal'
+# outputDirPlots = '~/www/plotCR'
+outputDirPlots = 'plotTop2j'
 
 
 # used by mkDatacards to define output directory for datacards
@@ -37,5 +39,6 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+#nuisancesFile = 'nuisances.py'
+
 
