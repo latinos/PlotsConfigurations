@@ -15,6 +15,54 @@ cd -
 # text2workspace.py superCombination.2015.txt.pruned.txt    -o    superCombination.2015.txt.pruned.txt.root
 
 
+# 
+# combine -M MaxLikelihoodFit   --rMin=-1 --rMax=3      superCombination.Total.txt.pruned.txt.workspace.root             >   result.data.MaxLikelihoodFit.superCombination.Total.txt
+# combine -M ProfileLikelihood  --significance          superCombination.Total.txt.pruned.txt.workspace.root             >   result.data.Significance.superCombination.Total.txt
+# 
+# combine -M MaxLikelihoodFit   --rMin=-1 --rMax=3      superCombination.2016.txt.pruned.txt.workspace.root             >   result.data.MaxLikelihoodFit.superCombination.2016.txt
+# combine -M ProfileLikelihood  --significance          superCombination.2016.txt.pruned.txt.workspace.root             >   result.data.Significance.superCombination.2016.txt
+# 
+# combine -M MaxLikelihoodFit   --rMin=-1 --rMax=3      superCombination.2015.txt.pruned.txt.root             >   result.data.MaxLikelihoodFit.superCombination.2015.txt
+# combine -M ProfileLikelihood  --significance          superCombination.2015.txt.pruned.txt.root             >   result.data.Significance.superCombination.2015.txt
+# 
+# 
+
+# 
+# combine -M MultiDimFit \
+#      --algo=grid --points=200  \
+#      superCombination.2015.txt.pruned.txt.root    \
+#      -n "DataLLS2015"     >   result.Data.MultiDimFit.grid.DataLLS2015.txt
+# 
+# 
+# 
+# 
+# root -l higgsCombineDataLLS2015.MultiDimFit.mH120.root  \
+#         ggH/scripts/drawNLLvar.C\(\"r\"\)
+#  
+# 
+#  
+#      
+# combine -M MultiDimFit \
+#      --algo=grid --points=200  \
+#      superCombination.2016.txt.pruned.txt.workspace.root    \
+#      -n "DataLLS2016"     >   result.Data.MultiDimFit.grid.DataLLS2016.txt
+# 
+# 
+#      
+#      
+# combine -M MultiDimFit \
+#      --algo=grid --points=200  \
+#      superCombination.Total.txt.pruned.txt.workspace.root    \
+#      -n "DataLLSTotal"     >   result.Data.MultiDimFit.grid.DataLLSTotal.txt
+# 
+# 
+     
+    root -l higgsCombineDataLLS2015.MultiDimFit.mH120.root  \
+            higgsCombineDataLLS2016.MultiDimFit.mH120.root  \
+            higgsCombine1Dfit.multidimfit.categories.mu.unique.withbkg.bis.LOCAL.MultiDimFit.mH125.root  \
+        ggH/scripts/drawNLLvarThree.C\(\"r\"\)
+ 
+ 
 
 
 # 
