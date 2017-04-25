@@ -23,6 +23,7 @@ supercut = 'mll>12  \
 #### OPPOSITE FLAVOUR
 
 cutsOF = ' && metPfType1 > 20 \
+           && ptll > 30 \
            && mth > 60 \
          '
 
