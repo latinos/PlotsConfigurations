@@ -16,7 +16,7 @@ Produce Histograms Using lxbatch:
 
 em Channel:
 
-    mkShapes.py --pycfg=configuration_em.py  --inputDir=/eos/user/n/ntrevisa/trees/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__wwSel__monohSel/  --doBatch=True --batchSplit=Cuts,Samples --batchQueue=1nd
+   mkShapes.py --pycfg=configuration_em.py  --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__wwSel/  --doBatch=True --batchSplit=Cuts,Samples --batchQueue=1nd
 
     mkBatch.py --status
 
