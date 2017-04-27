@@ -310,8 +310,14 @@ Auto tests:
       
       
     cd ..
+    sh ggH/scripts/doTable.sh
+    cd -
+
+    
+    cd ..
     sh ggH/scripts/doGGH_doMultisignal.sh
     cd -
+
     
     
     r99t ../higgsCombineLH2DICHEP2015combined.MultiDimFit.mH120.root \
@@ -423,6 +429,30 @@ Auto tests:
     
 
 
+    cat  ../result.data.MaxLikelihoodFit.Moriond2016.0jet.me.txt
+    cat  ../result.data.MaxLikelihoodFit.Moriond2016.0jet.em.txt
+    cat  ../result.data.MaxLikelihoodFit.Moriond2016.1jet.me.txt
+    cat  ../result.data.MaxLikelihoodFit.Moriond2016.1jet.em.txt
+    cat  ../result.data.MaxLikelihoodFit.Moriond2016.0jet.txt
+    cat  ../result.data.MaxLikelihoodFit.Moriond2016.1jet.txt
+    cat  ../result.data.MaxLikelihoodFit.Moriond2016.2j.txt
+    cat  ../result.data.MaxLikelihoodFit.Moriond2016.vbf.txt
+    cat  ../result.data.MaxLikelihoodFit.Moriond2016.vh2j.txt
+    cat  ../result.data.MaxLikelihoodFit.Moriond2016.wh3l.txt
+
+    cat  ../result.data.Significance.Moriond2016.0jet.me.txt
+    cat  ../result.data.Significance.Moriond2016.0jet.em.txt
+    cat  ../result.data.Significance.Moriond2016.1jet.me.txt
+    cat  ../result.data.Significance.Moriond2016.1jet.em.txt
+    cat  ../result.data.Significance.Moriond2016.0jet.txt
+    cat  ../result.data.Significance.Moriond2016.1jet.txt
+    cat  ../result.data.Significance.Moriond2016.2j.txt
+    cat  ../result.data.Significance.Moriond2016.vbf.txt
+    cat  ../result.data.Significance.Moriond2016.vh2j.txt
+    cat  ../result.data.Significance.Moriond2016.wh3l.txt
+    
+
+    
 
     
     

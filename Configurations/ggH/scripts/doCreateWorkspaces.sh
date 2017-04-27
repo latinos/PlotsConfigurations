@@ -75,6 +75,61 @@ text2workspace.py superCombination.2015.txt.pruned.txt   -o  superCombination.20
 
 
 
+
+
+
+
+
+
+
+                 
+text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
+                   --PO 'map=.*0j.*/.*H_.*:r_0jet[1,-5,5]' \
+                   --PO 'map=.*1j.*/.*H_.*:r_1jet[1,-5,5]' \
+                   --PO 'map=.*2j2j.*/.*H_.*:r_2jet[1,-5,5]' \
+                   --PO 'map=.*2jvbf.*/.*H_.*:r_2jetvbf[1,-5,5]' \
+                   --PO 'map=.*2jvh2j.*/.*H_.*:r_2jetvh[1,-5,5]' \
+                   --PO 'map=.*wh3l.*/.*H_.*:r_3l[1,-9,9]' \
+                   superCombination.2015.txt.pruned.txt  -o  workspace.superCombination.2015.txt.pruned.txt.categories.mu.bis.root
+    
+ 
+combine -M MultiDimFit  \
+     --algo=singles  \
+     workspace.superCombination.2015.txt.pruned.txt.categories.mu.bis.root    \
+     -n "multidimfit.categories.2015.single.supermegacombo"     >   result.MultiDimFit.singles.workspace.superCombination.2015.txt.pruned.txt.categories.mu.root.reallysingles.27Apr.txt
+
+
+
+
+
+
+
+text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
+                   --PO 'map=.*0j.*/.*H_.*:r_0jet[1,-5,5]' \
+                   --PO 'map=.*1j.*/.*H_.*:r_1jet[1,-5,5]' \
+                   --PO 'map=.*2j2j.*/.*H_.*:r_2jet[1,-5,5]' \
+                   --PO 'map=.*2jvbf.*/.*H_.*:r_2jetvbf[1,-5,5]' \
+                   --PO 'map=.*2jvh2j.*/.*H_.*:r_2jetvh[1,-5,5]' \
+                   --PO 'map=.*wh3l.*/.*H_.*:r_3l[1,-5,5]' \
+                   superCombination.2016.txt.pruned.txt  -o  workspace.superCombination.2016.txt.pruned.txt.categories.mu.bis.root
+                              
+               
+combine -M MultiDimFit  \
+     --algo=singles  \
+     workspace.superCombination.2016.txt.pruned.txt.categories.mu.bis.root    \
+     -n "multidimfit.categories.2016.single.supermegacombo"     >   result.MultiDimFit.singles.workspace.superCombination.2016.txt.pruned.txt.categories.mu.root.reallysingles.27Apr.txt
+     
+   
+
+
+
+
+
+
+
+
+
+
 combine -M MaxLikelihoodFit   superCombination.Total.txt.pruned.txt.workspace.root   --saveShapes --saveNormalizations   -n "saveall.TOTAL" \
      --robustFit 1  --minimizerStrategy 1 --minimizerTolerance 0.2  --cminFallback "Minuit2,Migrad,0:0.2"     >   result.MaxLikelihoodFit.Combined.FINAL.txt
 
