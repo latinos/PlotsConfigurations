@@ -33,6 +33,7 @@ em Channel:
 
     rm rootFile_em/plots_monoHWW_em_monoH_MVA_*
 
+    mkDatacards.py   --pycfg=configuration_em.py  --inputFile=rootFile_em/plots_monoHWW_em.root
 
 sf Channel:
 
@@ -49,6 +50,8 @@ sf Channel:
     mkPlot.py --pycfg=configuration_sf.py  --inputFile=rootFile_sf/plots_monoHWW_sf.root  --minLogC=0.0001 --minLogCratio=0.0001 --maxLogC=1000 --maxLogCratio=1000  --showIntegralLegend=1
 
     rm rootFile_sf/plots_monoHWW_sf_monoH_MVA_*
+
+    mkDatacards.py   --pycfg=configuration_sf.py  --inputFile=rootFile_sf/plots_monoHWW_sf.root
 
 
 OLD STYLE
