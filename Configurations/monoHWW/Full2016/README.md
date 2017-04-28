@@ -36,8 +36,7 @@ em Channel:
 
 sf Channel:
 
-    mkShapes.py --pycfg=configuration_sf.py  --inputDir=/eos/user/n/ntrevisa/trees/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut
-__l2tight__sfSel__monohSel/  --doBatch=True --batchSplit=Cuts,Samples --batchQueue=1nd
+    mkShapes.py --pycfg=configuration_sf.py  --inputDir=/eos/user/n/ntrevisa/trees/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__sfSel__monohSel/  --doBatch=True --batchSplit=Cuts,Samples --batchQueue=1nd
 
     mkBatch.py --status
 
