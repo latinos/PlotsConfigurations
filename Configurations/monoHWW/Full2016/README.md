@@ -1,8 +1,8 @@
 MonoHWW analysis
 ================
 
-1. SET UP THE ENVIRONMENT
--------------------------
+SET UP THE ENVIRONMENT
+----------------------
 
     cd ~/work/CMSSW_8_0_26/src
 
@@ -11,8 +11,8 @@ MonoHWW analysis
     cd -
 
 
-2. PRODUCE HISTOGRAMS
----------------------
+PRODUCE HISTOGRAMS
+------------------
 
 WITH LXBATCH
 
