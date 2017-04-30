@@ -1,7 +1,7 @@
 MonoHWW analysis
 ================
 
-# SET UP THE ENVIRONMENT
+# 1 SET UP THE ENVIRONMENT
 
     cd ~/work/CMSSW_8_0_26/src
 
@@ -10,7 +10,7 @@ MonoHWW analysis
     cd -
 
 
-# PRODUCE HISTOGRAMS
+# 2 PRODUCE HISTOGRAMS
 
 WITH LXBATCH
 ------------
@@ -54,7 +54,8 @@ sf Channel:
     mkDatacards.py   --pycfg=configuration_sf.py  --inputFile=rootFile_sf/plots_monoHWW_sf.root
 
 
-# INTERACTIVELY
+INTERACTIVELY
+-------------
 
 Produce Plots for em Channel:
 
@@ -69,7 +70,8 @@ Produce Plots for sf Channel:
 
     mkPlot.py        --pycfg=configuration_sf.py  --inputFile=rootFile_sf/plots_monoHWW_sf.root  --minLogC=0.0001 --minLogCratio=0.0001 --maxLogC=1000 --maxLogCratio=1000  --showIntegralLegend=1
 
-Produce Datacards:
+
+# 3 PRODUCE DATACARDS
 
     mkDatacards.py   --pycfg=configuration_lxbatch.py  --inputFile=rootFile/plots_WW.root
 
@@ -85,8 +87,7 @@ PRUNE DATACARDS
       cd -
 
 
-COMBINE DATACARDS
------------------
+# 4 COMBINE DATACARDS
 
 Setup combine:
 
