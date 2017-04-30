@@ -1,8 +1,7 @@
 MonoHWW analysis
 ================
 
-SET UP THE ENVIRONMENT
-----------------------
+# SET UP THE ENVIRONMENT
 
     cd ~/work/CMSSW_8_0_26/src
 
@@ -11,10 +10,10 @@ SET UP THE ENVIRONMENT
     cd -
 
 
-PRODUCE HISTOGRAMS
-------------------
+# PRODUCE HISTOGRAMS
 
-# WITH LXBATCH
+WITH LXBATCH
+------------
 
     mkBatch.py --clean
 
