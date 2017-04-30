@@ -1,7 +1,8 @@
 MonoHWW analysis
 ================
 
-Steps to get datacards and plots:
+1. SET UP THE ENVIRONMENT
+-------------------------
 
     cd ~/work/CMSSW_8_0_26/src
 
@@ -10,10 +11,10 @@ Steps to get datacards and plots:
     cd -
 
 
-LXBATCH
--------
+2. PRODUCE HISTOGRAMS
+---------------------
 
-Produce Histograms Using lxbatch:
+WITH LXBATCH
 
     mkBatch.py --clean
 
@@ -54,8 +55,7 @@ sf Channel:
     mkDatacards.py   --pycfg=configuration_sf.py  --inputFile=rootFile_sf/plots_monoHWW_sf.root
 
 
-OLD STYLE
----------
+INTERACTIVELY
 
 Produce Plots for em Channel:
 
@@ -73,3 +73,34 @@ Produce Plots for sf Channel:
 Produce Datacards:
 
     mkDatacards.py   --pycfg=configuration_lxbatch.py  --inputFile=rootFile/plots_WW.root
+
+
+PRUNE DATACARDS
+---------------
+
+      cd ../../../../ModificationDatacards/
+
+      ls ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Full2016/datacards/*/*/*.txt  | grep -v "pruned"  |   \
+      awk '{print "python PruneDatacard.py  -d "$1" -o "$1".pruned.txt    -i examples/input_nuisances_to_prune.py"}' | /bin/sh
+
+      cd -
+
+
+COMBINE DATACARDS
+-----------------
+
+Setup combine:
+
+      cd ~/work/CMSSW_7_4_7/src/HiggsAnalysis/CombinedLimit/
+
+      cmsenv     
+
+      cd -
+
+
+      combineCards.py datacards/monoH_MVA_em/mth_control/datacard.txt.pruned.txt datacards/monoH_MVA_WW_em/events/datacard.txt.pruned.txt datacards/monoH_MVA_Top_em/events/datacard.txt.pruned.txt datacards/monoH_MVA_DYtt_em/events/datacard.txt.pruned.txt > datacards/monoH_MVA_em/mth_control/datacard_combined.txt
+
+
+By hand:
+
+   text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose --PO 'map=.*/monoH_800:r[1,0,10]' --PO 'map=.*/monoH_1200:0' --PO 'map=.*/monoH_1400:0' --PO 'map=.*/monoH_1700:0' --PO 'map=.*/monoH_2000:0' datacards/monoH_MVA_em/mth_control/datacard_combined.txt -o monoH800.root
