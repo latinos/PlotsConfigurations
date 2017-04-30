@@ -14,7 +14,7 @@ SET UP THE ENVIRONMENT
 PRODUCE HISTOGRAMS
 ------------------
 
-WITH LXBATCH
+# WITH LXBATCH
 
     mkBatch.py --clean
 
@@ -55,7 +55,7 @@ sf Channel:
     mkDatacards.py   --pycfg=configuration_sf.py  --inputFile=rootFile_sf/plots_monoHWW_sf.root
 
 
-INTERACTIVELY
+# INTERACTIVELY
 
 Produce Plots for em Channel:
 
