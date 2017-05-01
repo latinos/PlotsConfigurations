@@ -71,9 +71,9 @@ Produce Plots for sf Channel:
 
 # 3 PRODUCE DATACARDS
 
-    mkDatacards.py   --pycfg=configuration_em.py  --inputFile=rootFile/plots_monoHWW_em.root
+    mkDatacards.py   --pycfg=configuration_em.py  --inputFile=rootFile_em/plots_monoHWW_em.root
 
-    mkDatacards.py   --pycfg=configuration_sf.py  --inputFile=rootFile/plots_monoHWW_sf.root
+    mkDatacards.py   --pycfg=configuration_sf.py  --inputFile=rootFile_sf/plots_monoHWW_sf.root
 
 
 PRUNE DATACARDS
