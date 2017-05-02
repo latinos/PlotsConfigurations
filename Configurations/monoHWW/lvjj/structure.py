@@ -120,6 +120,17 @@ structure['H_htt'] = {
                   'isData'   : 0    
                   }
 
+
+
+
+
+structure['monoHWW'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+
+
 # data
 
 
