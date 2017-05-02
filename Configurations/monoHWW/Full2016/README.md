@@ -107,3 +107,5 @@ Do the combination:
 By hand (for 2HDM model, mZ' = 800 GeV, mA0 = 300 GeV):
 
     text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose --PO 'map=.*/monoH_800:r[1,0,10]' --PO 'map=.*/monoH_1200:0' --PO 'map=.*/monoH_1400:0' --PO 'map=.*/monoH_1700:0' --PO 'map=.*/monoH_2000:0' datacards/monoH_MVA_em/mth_control/datacard_combined.txt -o monoH800.root
+    
+    combine -M Asymptotic monoH800.root
