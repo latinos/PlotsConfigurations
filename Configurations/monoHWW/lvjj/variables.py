@@ -121,12 +121,12 @@ variables['jetprunedmass1']  = {   'name': 'std_vector_fatjet_prunedmass[0]',
                         #'fold'  : 3                         
                         #}
 
-#variables['pfmet']  = { 
-                        #'name': 'metPfType1',     
-                        #'range' : (40,0,200),   
-                        #'xaxis' : 'pfmet [GeV]',
-                        #'fold'  : 3                         
-                        #}
+variables['pfmet']  = { 
+                        'name': 'metPfType1',     
+                        'range' : (40,0,1000),   
+                        'xaxis' : 'pfmet [GeV]',
+                        'fold'  : 3                         
+                        }
 
 
 #variables['njet']  = {

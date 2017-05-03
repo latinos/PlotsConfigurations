@@ -4,6 +4,7 @@ monoHWW > lvjj analysis
 Semileptonic final state: e/mu
 
     cd /afs/cern.ch/user/a/amassiro/work/Latinos/Framework/CMSSW_8_0_26_patch1/src/LatinoTrees/AnalysisStep/test/
+    cd /afs/cern.ch/user/a/amassiro/work/Latinos/Framework/CMSSW_8_0_26_patch1/src/LatinoAnalysis/
     cmsenv
     cd /afs/cern.ch/work/a/amassiro/Latinos/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/monoHWW/lvjj
     
