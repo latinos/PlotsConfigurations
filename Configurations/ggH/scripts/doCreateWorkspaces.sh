@@ -74,6 +74,12 @@ text2workspace.py superCombination.2015.txt.pruned.txt   -o  superCombination.20
 
 
 
+text2workspace.py superCombination.Total.txt.pruned.fakestatremoved.txt   -o    superCombination.Total.txt.pruned.fakestatremoved.txt.workspace.root
+
+
+combineTool.py -d superCombination.Total.txt.pruned.fakestatremoved.txt.workspace.root -M MultiDimFit    \
+               --algo=grid  --setPhysicsModelParameterRanges  r=-0.1,2.5    -n "LHScanDATAHICHEPcombinedLXBATCHtotalfakestatremoved"   \
+               --points 200    --job-mode lxbatch --task-name lxbatch-superCombination-total-fakestatremoved --sub-opts='-q 1nd' --split-points 1 
 
 
 
