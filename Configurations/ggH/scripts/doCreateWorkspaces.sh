@@ -82,10 +82,45 @@ combineTool.py -d superCombination.Total.txt.pruned.fakestatremoved.txt.workspac
                --points 200    --job-mode lxbatch --task-name lxbatch-superCombination-total-fakestatremoved --sub-opts='-q 1nd' --split-points 1 
 
 
+        
+                              
+   
+hadd higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotalfakestatremoved.root                      higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotalfakestatremoved.POINTS.*.MultiDimFit.mH120.root    
+   
+ls -alrth higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotalfakestatremoved.POINTS.*.MultiDimFit.mH120.root              | grep -v K |  awk '{print "rm "$9}' | /bin/sh
+
+root -l higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotalfakestatremoved.root  \
+        ggH/scripts/drawNLLvar.C\(\"r\"\)
+ 
+        
 
 
 
 
+
+text2workspace.py superCombination.Total.txt.pruned.fakestatchanged.txt   -o    superCombination.Total.txt.pruned.fakestatchanged.txt.workspace.root
+
+
+combineTool.py -d superCombination.Total.txt.pruned.fakestatchanged.txt.workspace.root -M MultiDimFit    \
+               --algo=grid  --setPhysicsModelParameterRanges  r=-0.1,2.5    -n "LHScanDATAHICHEPcombinedLXBATCHtotalfakestatchanged"   \
+               --points 200    --job-mode lxbatch --task-name lxbatch-superCombination-total-fakestatchanged --sub-opts='-q 1nd' --split-points 1 
+
+
+        
+                              
+   
+hadd higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotalfakestatchanged.root                      higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotalfakestatchanged.POINTS.*.MultiDimFit.mH120.root    
+   
+ls -alrth higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotalfakestatchanged.POINTS.*.MultiDimFit.mH120.root              | grep -v K |  awk '{print "rm "$9}' | /bin/sh
+
+root -l higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotalfakestatchanged.root  \
+        ggH/scripts/drawNLLvar.C\(\"r\"\)
+ 
+        
+
+
+        
+        
 
 
                  
