@@ -118,7 +118,45 @@ root -l higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotalfakestatchanged.root  \
  
         
 
+        
+        
+        
+        
+        
 
+
+text2workspace.py superCombination.Total.txt.pruned.variedFake.txt   -o    superCombination.Total.txt.pruned.variedFake.txt.workspace.root
+
+
+combineTool.py -d superCombination.Total.txt.pruned.variedFake.txt.workspace.root -M MultiDimFit    \
+               --algo=grid  --setPhysicsModelParameterRanges  r=-0.1,2.5    -n "LHScanDATAHICHEPcombinedLXBATCHtotalvariedFake"   \
+               --points 200    --job-mode lxbatch --task-name lxbatch-superCombination-total-variedFake --sub-opts='-q 1nd' --split-points 1 
+
+
+        
+                              
+   
+hadd higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotalvariedFake.root                      higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotalvariedFake.POINTS.*.MultiDimFit.mH120.root    
+   
+ls -alrth higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotalvariedFake.POINTS.*.MultiDimFit.mH120.root              | grep -v K |  awk '{print "rm "$9}' | /bin/sh
+
+root -l higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotalvariedFake.root  \
+        ggH/scripts/drawNLLvar.C\(\"r\"\)
+ 
+      
+      
+      
+      
+
+      (histo_Fake_CMS_fake_ele_hwwUp->Integral() - histo_Fake_CMS_fake_ele_hwwDown->Integral()) /2. /  histo_Fake->Integral()
+      (histo_Fake_CMS_fake_mu_hwwUp->Integral() - histo_Fake_CMS_fake_mu_hwwDown->Integral()) /2. /  histo_Fake->Integral()
+
+      
+      
+      1.02   1.03
+      
+      10%   10%
+      
         
         
 
