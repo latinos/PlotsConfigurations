@@ -84,16 +84,31 @@ combine -M MultiDimFit  \
 combine -M MultiDimFit  \
      --algo=singles  \
      workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root    \
-     -n "multidimfit.categories.2015vs2016.algo.singles"     >   /tmp/amassiro/result.MultiDimFit.singles.perdavvero.workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root.txt
+     -n "multidimfit.categories.2015vs2016.algo.singles"     >  result.MultiDimFit.singles.perdavvero.workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root.txt
      
    
 
 combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root -M MultiDimFit    \
                --algo=grid    -n "LHScanDATAHICHEPcombinedLXBATCHtotal2015vs2016"   --X-rtd OPTIMIZE_BOUNDS=0  --saveSpecifiedNuis all  --setPhysicsModelParameterRanges  r_2015=-0.1,2.5:r_2016=-0.1,2.5  \
-               --points 400    --job-mode lxbatch --task-name lxbatch-superCombination-total-2015vs2016 --sub-opts='-q 1nd' --split-points 1 
-
+               --points 200    --job-mode lxbatch --task-name lxbatch-superCombination-total-2015vs2016 --sub-opts='-q 1nd' --split-points 1 
 
                
+combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root -M MultiDimFit    \
+               --algo=grid    -n "LHScanDATAHICHEPcombinedLXBATCHtotal2015vs2016.bis"   --X-rtd OPTIMIZE_BOUNDS=0  --setPhysicsModelParameterRanges  r_2015=-0.1,2.5:r_2016=-0.1,2.5  \
+               --points 200    --job-mode lxbatch --task-name lxbatch-superCombination-total-2015vs2016-bis --sub-opts='-q 1nd' --split-points 1 
+
+
+    
+                              
+   
+hadd higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotal2015vs2016.bis.root                      higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotal2015vs2016.bis.POINTS.*.MultiDimFit.mH120.root    
+   
+ls -alrth higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotal2015vs2016.bis.POINTS.*.MultiDimFit.mH120.root              | grep -v K |  awk '{print "rm "$9}' | /bin/sh
+
+r99t higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotal2015vs2016.bis.root \
+        ggH/scripts/Draw2DImproved.cxx\(\"#mu_{2015}\",\"#mu_{2016}\",\"r_2015\",\"r_2016\"\)
+    
+           
                
           
           
