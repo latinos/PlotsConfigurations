@@ -64,6 +64,41 @@ text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel -
                    
                    
   
+  
+  
+  
+     
+         
+text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
+                   --PO 'map=ICHEP_.*/.*H_.*:r_2016[1,-5,5]' \
+                   --PO 'map=OLD_.*/.*H_.*:r_2015[1,-5,5]' \
+                   superCombination.Total.txt.pruned.txt.NEWNAME.txt  -o  workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root
+                  
+  
+combine -M MultiDimFit  \
+     workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root    \
+     -n "multidimfit.categories.2015vs2016"     >   result.MultiDimFit.singles.workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root.txt
+
+     
+
+combine -M MultiDimFit  \
+     --algo=singles  \
+     workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root    \
+     -n "multidimfit.categories.2015vs2016.algo.singles"     >   /tmp/amassiro/result.MultiDimFit.singles.perdavvero.workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root.txt
+     
+   
+
+combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root -M MultiDimFit    \
+               --algo=grid    -n "LHScanDATAHICHEPcombinedLXBATCHtotal2015vs2016"   --X-rtd OPTIMIZE_BOUNDS=0  --saveSpecifiedNuis all  --setPhysicsModelParameterRanges  r_2015=-0.1,2.5:r_2016=-0.1,2.5  \
+               --points 400    --job-mode lxbatch --task-name lxbatch-superCombination-total-2015vs2016 --sub-opts='-q 1nd' --split-points 1 
+
+
+               
+               
+          
+          
+          
+          
 
 text2workspace.py superCombination.Total.txt.pruned.txt   -o    superCombination.Total.txt.pruned.txt.workspace.root
 text2workspace.py superCombination.2016.txt.pruned.txt   -o    superCombination.2016.txt.pruned.txt.workspace.root
@@ -153,7 +188,7 @@ root -l higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotalvariedFake.root  \
 
       
       
-      1.02   1.03
+      1.01   1.03
       
       10%   10%
       
