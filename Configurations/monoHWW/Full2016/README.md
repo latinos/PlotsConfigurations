@@ -112,6 +112,11 @@ By hand (for 2HDM model, mZ' = 800 GeV, mA0 = 300 GeV):
 
 Using the script:
 
-      python scriptMonoH.py em
+      python scriptMonoH.py em mth
 
-      python scriptMonoH.py sf
+      python scriptMonoH.py sf mth
+
+
+# 6 DRAW THE BRAZILIAN PLOTS
+
+  root -l -b -q 'plot_Asymptotic_ForCombination.C("","em")'
