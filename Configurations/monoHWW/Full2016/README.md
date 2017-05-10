@@ -117,6 +117,6 @@ Using the script:
       python scriptMonoH.py sf mth
 
 
-# 6 DRAW THE BRAZILIAN PLOTS
+# 6 DRAW THE EXCLUSION PLOTS
 
     root -l -b -q 'plot_Asymptotic_ForCombination.C("","em")'
