@@ -3,7 +3,7 @@ MonoHWW analysis
 
 # 1 SET UP THE ENVIRONMENT
 
-    cd ~/work/CMSSW_8_0_26/src
+    cd ~/work/CMSSW_8_0_26_patch1/src
 
     cmsenv
 
