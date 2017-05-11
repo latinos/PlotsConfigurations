@@ -75,6 +75,26 @@ text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel -
                    superCombination.Total.txt.pruned.txt.NEWNAME.txt  -o  workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root
                   
   
+text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
+                   --PO 'map=ICHEP_.*/.*H_.*:r_2016[1,-5,5]' \
+                   --PO 'map=OLD_.*/.*H_.*:r_2015[1,-5,5]' \
+                   superCombination.Total.txt.pruned.txt.NEWNAME.txt  -o  workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.bis.root
+  
+text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
+                   --PO 'map=ICHEP_.*/.*H_.*:r_2016[1,-5,5]' \
+                   --PO 'map=OLD_.*/.*H_.*:r_2015[1,-5,5]' \
+                   --PO 'map=ICHEP_.*/.H_.*:r_2016[1,-5,5]' \
+                   --PO 'map=OLD_.*/.H_.*:r_2015[1,-5,5]' \
+                   superCombination.Total.txt.pruned.txt.NEWNAME.txt  -o  workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.bis.root  \
+                   > workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.bis.root.dumpcreation.txt
+                  
+  
+  
+         
+                  
+  
+  
+  
 combine -M MultiDimFit  \
      workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root    \
      -n "multidimfit.categories.2015vs2016"     >   result.MultiDimFit.singles.workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root.txt
@@ -86,7 +106,65 @@ combine -M MultiDimFit  \
      workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root    \
      -n "multidimfit.categories.2015vs2016.algo.singles"     >  result.MultiDimFit.singles.perdavvero.workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root.txt
      
+
+     
+     
+combine -M MultiDimFit  \
+     --algo=singles  \
+     workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root    \
+     --redefineSignalPOIs fake_syst,r_2015,r_2016   \
+     -n "multidimfit.categories.2015vs2016.algo.singles"     >  result.MultiDimFit.singles.perdavvero.workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root.fake_syst.txt
+     
+
+combine -M MultiDimFit  \
+     --algo=singles  \
+     superCombination.Total.txt.pruned.txt.workspace.root    \
+     --redefineSignalPOIs fake_syst,r   \
+     -n "multidimfit.categories.2015vs2016.algo.singles"     >  result.MultiDimFit.singles.perdavvero.superCombination.Total.txt.pruned.txt.workspace.root.fake_syst.txt
+
+     
+     
+     
+      
+combine -M MultiDimFit  \
+     --algo=singles  \
+     workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root    \
+     --redefineSignalPOIs CMS_scale_met,r_2015,r_2016   \
+     -n "multidimfit.categories.2015vs2016.algo.singles"     >  result.MultiDimFit.singles.perdavvero.workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root.met.txt
+     
+
+combine -M MultiDimFit  \
+     --algo=singles  \
+     superCombination.Total.txt.pruned.txt.workspace.root    \
+     --redefineSignalPOIs CMS_scale_met,r   \
+     -n "multidimfit.categories.2015vs2016.algo.singles"     >  result.MultiDimFit.singles.perdavvero.superCombination.Total.txt.pruned.txt.workspace.root.met.txt
+
+    
+    
+    
+ 
+     
+     
+combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root -M MultiDimFit    \
+               --algo=grid    -n "LHScanDATAHICHEPcombinedLXBATCHtotal2015vs2016.2D.restrict"   --X-rtd OPTIMIZE_BOUNDS=0  --saveSpecifiedNuis all  --setPhysicsModelParameterRanges  r_2015=1.15,1.17:r_2016=1.00,1.01  \
+               --points 50    --job-mode lxbatch --task-name lxbatch-superCombination-total-2015vs2016-2drestrict --sub-opts='-q 1nd' --split-points 1 
+
+               
+      r_2015 :    +1.162   -6.162/+0.046 (68%)
+      r_2016 :    +1.006   -6.006/+0.024 (68%)
+               
+     
+hadd higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotal2015vs2016.2dRestrict.root                      higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotal2015vs2016.2D.restrict.POINTS*.MultiDimFit.mH120.root    
    
+ls -alrth higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotal2015vs2016.2D.restrict.POINTS.*.MultiDimFit.mH120.root              | grep -v K |  awk '{print "rm "$9}' | /bin/sh
+
+r99t higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotal2015vs2016.bis.root \
+        ggH/scripts/Draw2DImproved.cxx\(\"#mu_{2015}\",\"#mu_{2016}\",\"r_2015\",\"r_2016\"\)
+
+python  scripts/plot2Dscan.py -i ../higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotal2015vs2016.2dRestrict.root   -n     plotLL.2mu2015vs2016
+
+        
+     
 
 combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.root -M MultiDimFit    \
                --algo=grid    -n "LHScanDATAHICHEPcombinedLXBATCHtotal2015vs2016"   --X-rtd OPTIMIZE_BOUNDS=0  --saveSpecifiedNuis all  --setPhysicsModelParameterRanges  r_2015=-0.1,2.5:r_2016=-0.1,2.5  \
@@ -97,16 +175,13 @@ combineTool.py -d workspace.superCombination.Total.txt.pruned.txt.categories.mu.
                --algo=grid    -n "LHScanDATAHICHEPcombinedLXBATCHtotal2015vs2016.bis"   --X-rtd OPTIMIZE_BOUNDS=0  --setPhysicsModelParameterRanges  r_2015=-0.1,2.5:r_2016=-0.1,2.5  \
                --points 200    --job-mode lxbatch --task-name lxbatch-superCombination-total-2015vs2016-bis --sub-opts='-q 1nd' --split-points 1 
 
-
-    
-                              
+            
    
 hadd higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotal2015vs2016.bis.root                      higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotal2015vs2016.bis.POINTS.*.MultiDimFit.mH120.root    
    
 ls -alrth higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotal2015vs2016.bis.POINTS.*.MultiDimFit.mH120.root              | grep -v K |  awk '{print "rm "$9}' | /bin/sh
 
-r99t higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotal2015vs2016.bis.root \
-        ggH/scripts/Draw2DImproved.cxx\(\"#mu_{2015}\",\"#mu_{2016}\",\"r_2015\",\"r_2016\"\)
+
     
            
                
