@@ -90,9 +90,65 @@ text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel -
                   
   
   
+        
+        
+        ---- test decorrelating ----
+        
          
+text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
+                   --PO 'map=ICHEP_.*/.*H_.*:r_2016[1,-5,5]' \
+                   --PO 'map=OLD_.*/.*H_.*:r_2015[1,-5,5]' \
+                   superCombination.Total.txt.pruned.txt.NEWNAME.Topdecorr.txt  -o  workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.Topdecorr.root
                   
   
+         
+text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
+                   --PO 'map=ICHEP_.*/.*H_.*:r_2016[1,-5,5]' \
+                   --PO 'map=OLD_.*/.*H_.*:r_2015[1,-5,5]' \
+                   superCombination.Total.txt.pruned.txt.NEWNAME.WWdecorr.txt  -o  workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.WWdecorr.root
+                  
+  
+                  
+text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
+                   --PO 'map=ICHEP_.*/.*H_.*:r_2016[1,-5,5]' \
+                   --PO 'map=OLD_.*/.*H_.*:r_2015[1,-5,5]' \
+                   superCombination.Total.txt.pruned.txt.NEWNAME.WWandTopdecorr.txt  -o  workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.WWandTopdecorr.root
+                  
+  
+                  
+  
+combine -M MultiDimFit  \
+     --algo=singles  \
+     workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.WWandTopdecorr.root    \
+     -n "multidimfit.categories.2015vs2016.algo.singles.WWandTop"     >  result.MultiDimFit.singles.perdavvero.workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.WWandTopdecorr.root.txt
+     
+
+     
+              
+  
+combine -M MultiDimFit  \
+     --algo=singles  \
+     workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.WWdecorr.root    \
+     -n "multidimfit.categories.2015vs2016.algo.singles.WW"     >  result.MultiDimFit.singles.perdavvero.workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.WWdecorr.root.txt
+     
+
+     
+              
+  
+combine -M MultiDimFit  \
+     --algo=singles  \
+     workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.Topdecorr.root    \
+     -n "multidimfit.categories.2015vs2016.algo.singles.Top"     >  result.MultiDimFit.singles.perdavvero.workspace.superCombination.Total.txt.pruned.txt.categories.mu.2015vs2016.Topdecorr.root.txt
+     
+
+     
+     
+        ---- (end) test decorrelating ----
+     
+     
+     
+     
+     
   
   
 combine -M MultiDimFit  \
