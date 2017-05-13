@@ -7,15 +7,15 @@ cd -
 
 # all 2015 data
 # 
-# text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
-#                    --PO 'map=.*/ggH_hww:muGGH[1,-1,3]' \
-#                    --PO 'map=.*/ggZH_hww:muGGH[1,-1,3]' \
-#                    --PO 'map=.*/H_htt:muGGH[1,-1,3]' \
-#                    --PO 'map=.*/qqH_hww:muVBF[1,-3,6]'  \
-#                    --PO 'map=.*/WH_htt:muVBF[1,-3,6]'  \
-#                    --PO 'map=.*/WH_hww:muVBF[1,-3,6]'  \
-#                    --PO 'map=.*/ZH_hww:muVBF[1,-3,6]'  \
-#                    superCombination.2015.txt.pruned.txt  -o  workspace.superCombination.2015.txt.pruned.txt.root
+text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
+                   --PO 'map=.*/ggH_hww:muGGH[1,-1,3]' \
+                   --PO 'map=.*/ggZH_hww:muGGH[1,-1,3]' \
+                   --PO 'map=.*/H_htt:muGGH[1,-1,3]' \
+                   --PO 'map=.*/qqH_hww:muVBF[1,-3,6]'  \
+                   --PO 'map=.*/WH_htt:muVBF[1,-3,6]'  \
+                   --PO 'map=.*/WH_hww:muVBF[1,-3,6]'  \
+                   --PO 'map=.*/ZH_hww:muVBF[1,-3,6]'  \
+                   superCombination.2015.txt.pruned.txt  -o  workspace.superCombination.2015.txt.pruned.txt.root
 #                    
 #                    
 # combine -M MultiDimFit -t -1 \
@@ -31,7 +31,25 @@ cd -
 #      workspace.superCombination.2015.txt.pruned.txt.root    \
 #      -n "DataLH2DICHEP2015combined"     >   result.Data.MultiDimFit.grid.workspace.superCombination.2015.txt.pruned.txt
 # 
-#      
+# 
+
+
+                   
+combine -M MultiDimFit \
+     --setPhysicsModelParameters    muGGH=1,muVBF=1 \
+     --algo=grid --points=200  \
+     workspace.superCombination.2015.txt.pruned.txt.root    \
+     -n "LH2DICHEP2015combinedKVKFDATA"     >   result.MultiDimFit.DATA.grid.workspace.superCombination.2015.txt.pruned.kvkf.txt
+
+
+     
+
+combineTool.py -d workspace.superCombination.2015.txt.pruned.txt.root -M MultiDimFit    \
+               --algo=grid     --X-rtd OPTIMIZE_BOUNDS=0      -n "LH2DICHEP2015combinedKVKFDATAlxbatch"   \
+               --points 400    --job-mode lxbatch --task-name lxbatch-kvkf-data-y2015 --sub-opts='-q 1nd' --split-points 1 
+            
+          
+     
 #      
 # plot
 # r00t ../higgsCombineTest.MultiDimFit.mH120.root  scripts/Draw2D.cxx

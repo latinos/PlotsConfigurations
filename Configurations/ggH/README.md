@@ -356,13 +356,38 @@ Auto tests:
 
 
 
+    ----
+    Figure 60 of AN-182
+    
+    r99t ../higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsFIXED.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
 
+    Expected
+    r99t ../higgsCombineLH2DICHEP2015combined.MultiDimFit.mH120.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
+        
+    r99t ../higgsCombineLH2DICHEP2016combined.MultiDimFit.mH120.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
+
+    r99t ../higgsCombineLH2DICHEPTotalcombined.MultiDimFit.mH120.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
+ 
+
+    Observed
+    
+    r99t ../higgsCombineLH2DICHEP2015combined.MultiDimFit.mH120.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
+        
+    r99t ../backup/higgsCombineLH2DICHEP2016combinedKVKFDATAlxbatch.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
 
     r99t ../higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsFIXED.root \
         scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
  
-     
-          
+
+ 
+ 
+    ----  
 
 
 
