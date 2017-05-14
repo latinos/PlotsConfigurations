@@ -49,6 +49,12 @@ combineTool.py -d workspace.superCombination.2015.txt.pruned.txt.root -M MultiDi
                --points 400    --job-mode lxbatch --task-name lxbatch-kvkf-data-y2015 --sub-opts='-q 1nd' --split-points 1 
             
           
+          
+ls -alrth higgsCombineLH2DICHEP2015combinedKVKFDATAlxbatch.POINTS.*.MultiDimFit.mH120.root  | grep -v 6.6K  | awk '{print "rm "$9}' | /bin/sh
+
+hadd higgsCombineLH2DICHEP2015combinedKVKFDATAlxbatch14May2017.root         higgsCombineLH2DICHEP2015combinedKVKFDATAlxbatch.POINTS.*.MultiDimFit.mH120.root
+
+
      
 #      
 # plot

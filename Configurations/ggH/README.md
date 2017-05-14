@@ -375,7 +375,7 @@ Auto tests:
 
     Observed
     
-    r99t ../higgsCombineLH2DICHEP2015combined.MultiDimFit.mH120.root \
+    r99t ../higgsCombineLH2DICHEP2015combinedKVKFDATAlxbatch14May2017.root \
         scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
         
     r99t ../backup/higgsCombineLH2DICHEP2016combinedKVKFDATAlxbatch.root \
