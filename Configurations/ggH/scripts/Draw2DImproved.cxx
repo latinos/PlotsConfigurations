@@ -40,9 +40,10 @@ void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", st
   
   
   
-  TCanvas* cc = new TCanvas ("cc","",800,600); 
+  TCanvas* cc3 = new TCanvas ("cc3","",800,600); 
   
-  TString whatToDraw = Form ("2*deltaNLL:%s:%s", xNameVar.c_str(), yNameVar.c_str());
+//   TString whatToDraw = Form ("2*deltaNLL:%s:%s", xNameVar.c_str(), yNameVar.c_str());
+  TString whatToDraw = Form ("%s:%s:2*deltaNLL", xNameVar.c_str(), yNameVar.c_str());
   
 //   TString cutToDraw = Form ("((deltaNLL<10) *1 + (deltaNLL>=10)*10) && (%s)", cut.c_str());
   TString cutToDraw = Form ("(deltaNLL<10) && (%s)", cut.c_str());
@@ -51,9 +52,14 @@ void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", st
   std::cout << " cutToDraw  = " << cutToDraw.Data() << std::endl;
   
   
-  int n =  limit->Draw(whatToDraw.Data(),cutToDraw.Data(),"goff");
+//   int n =  limit->Draw(whatToDraw.Data(),cutToDraw.Data(),"goff");
+  int n =  limit->Draw(whatToDraw.Data(),cutToDraw.Data(), "colz");
   
-  TGraph2D *graphScan = new TGraph2D(n,limit->GetV2(),limit->GetV3(),limit->GetV1());
+  TCanvas* cc = new TCanvas ("cc","",800,600); 
+  
+  
+  TGraph2D *graphScan = new TGraph2D(n,limit->GetV1(),limit->GetV2(),limit->GetV3());
+//   TGraph2D *graphScan = new TGraph2D(n,limit->GetV2(),limit->GetV3(),limit->GetV1());
   graphScan->SetTitle("");
   graphScan->SetMarkerStyle(21);
   graphScan->SetMarkerColor(kRed);
@@ -242,9 +248,11 @@ void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", st
   texPre->SetLineWidth(2);
   
   TLatex * tex3;
-  //   tex3 = new TLatex(0.236,0.92,"L = 12.9 fb^{-1}  Preliminary");
+//   tex3 = new TLatex(0.236,0.92,"L = 12.9 fb^{-1}  Preliminary");
 //   tex3 = new TLatex(0.236,0.92,"L = 15.2 fb^{-1}");
-  tex3 = new TLatex(0.55,0.92,"L = 15.2 fb^{-1}   (13 TeV)");
+    tex3 = new TLatex(0.55,0.92,"L = 15.2 fb^{-1}   (13 TeV)");
+  //   tex3 = new TLatex(0.55,0.92,"L = 2.3 fb^{-1}   (13 TeV)");
+//     tex3 = new TLatex(0.55,0.92,"L = 12.9 fb^{-1}   (13 TeV)");
   tex3->SetNDC();
   tex3->SetTextFont(52);
   tex3->SetTextSize(0.035);
@@ -276,7 +284,7 @@ void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", st
   //---- fix Z-axis (end)
   
   
-  
+  cc2->SaveAs("cc2.png");
   
   
 }
