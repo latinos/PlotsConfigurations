@@ -120,3 +120,18 @@ Using the script:
 # 6 DRAW THE EXCLUSION PLOTS
 
     root -l -b -q 'plot_Asymptotic_ForCombination.C("","em")'
+
+
+# 7 PERFORM A GOODNESS OF FIT TEST ON THE CONTROL REGIONS
+
+By hand for mth variable:
+
+    combine -M GoodnessOfFit datacards/monoH_MVA_Top_em/mth/datacard.txt.pruned.txt --algo=KS --fixedSignalStrength=1    
+    
+    combine -M GoodnessOfFit datacards/monoH_MVA_DYtt_em/mth/datacard.txt.pruned.txt --algo=KS --fixedSignalStrength=1    
+
+    combine -M GoodnessOfFit datacards/monoH_MVA_WW_em/mth/datacard.txt.pruned.txt --algo=KS --fixedSignalStrength=1
+
+Using the script for the three control regions:
+
+    python scriptGoodnessOfFit.py mth
