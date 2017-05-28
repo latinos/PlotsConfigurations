@@ -17,7 +17,7 @@
 #include "TPaveText.h"
 #define nXm 4
 
-const float intLumi = 2.58;
+const float intLumi = 35.9;
 const string dirXSect = "./";
 
 void plot_Asymptotic();
@@ -74,7 +74,9 @@ double linear_interp(double s2, double s1, double mass, double m2, double m1)
 
 
 void plot_Asymptotic_ForCombination(TString outputdir,
-				    TString channel)
+				    TString channel,
+				    std::string variable,
+				    TString cut)
 {
   bool obs=false;
   TString outfilename = outputdir + ".root";
@@ -93,7 +95,7 @@ void plot_Asymptotic_ForCombination(TString outputdir,
   {
     char limitfilename[100];
     if (Xmass[n] == 0) continue;
-    sprintf(limitfilename,"combine_" + channel + "/higgsCombineTest.Asymptotic.mH%d.3.root",Xmass[n]);
+    sprintf(limitfilename,"combine_" + channel + "_" + cut + "/higgsCombineTest.Asymptotic.mH%d_300_%s.root",Xmass[n],variable.c_str());
     TString limitfile = /*outputdir+"/"+*/limitfilename;
     fFREQ[n] = new TFile(limitfile, "READ");
     cout<<" Read limit file: "<<limitfile<<endl;
@@ -395,7 +397,8 @@ void plot_Asymptotic_ForCombination(TString outputdir,
   //string outputname="counting";
 
   gPad->SetLogy();
-  fnam = "MonoHCombined_12fbInv_" + outputdir + "_Asymptotic_log_" + channel + ".png";
+  TString varName = (TString)variable;
+  fnam = "MonoHCombined_12fbInv_" + outputdir + "_Asymptotic_log_" + channel + "_" + varName + "_" + cut + ".png";
   //  sprintf(fnam, "MonoHCombined_12fbInv_%s_Asymptotic_log.png", outputdir.data());
   cMCMC->SaveAs(fnam);
   /*
