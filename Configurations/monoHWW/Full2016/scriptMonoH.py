@@ -5,6 +5,11 @@ Channels = {"em"}#,"sf"}
 ZpMasses = {"600","800","1000","1200","1400","1700","2000","2500"}
 A0Masses = {"300"}#,"400","500","600","700","800"}
 
+if len(sys.argv) < 4 :
+    print "Please insert all the inputs I need: channel, variable, cut"
+    print "python scriptMonoH.py em mthBin MVA"
+    sys.exit()
+
 channel = sys.argv[1]
 print channel
 
