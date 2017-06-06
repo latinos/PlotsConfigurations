@@ -4,7 +4,6 @@
 #samples = {}
 
 import os.path
-
 massesAndModelsFile = "massesAndModels.py"
 
 if os.path.exists(massesAndModelsFile) :
@@ -45,23 +44,29 @@ for m in masses:
                                           'weight' : 'metFilter*puW*baseW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*'+model+"*"+str(sf),
                                         }                    #}
 
-
     
 
 #2016 ele mu
-samples['DY']  = {    'name': [
-                            'latino_DYJetsToLL_M-10to50.root',
-                            'latino_DYJetsToTT_MuEle_M-50.root',
-                            ],    
-                      'weight' : 'puW*baseW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]',  
-                       'weights' :  [
-                                     '1', 
-                                     '1.26645',
-                                     ],
-                    }
+samples['DY'] = { 'name' : [
+                            '###root://eosuser.cern.ch//eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_DYJetsToLL_M-50-LO__part0.root',
+                            '###root://eosuser.cern.ch//eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_DYJetsToLL_M-50-LO__part1.root',
+                            #
+                            '###root://eosuser.cern.ch//eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_DYJetsToLL_M-50_HT-100to200_MLM.root',
+                            '###root://eosuser.cern.ch//eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_DYJetsToLL_M-50_HT-200to400_MLM.root',
+                            '###root://eosuser.cern.ch//eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_DYJetsToLL_M-50_HT-400to600_MLM.root',
+                            '###root://eosuser.cern.ch//eos/user/x/xjanssen/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/latino_DYJetsToLL_M-50_HT-600toInf_MLM.root',
+                            ],
+                   'weight' : 'baseW*metFilter*puW*bPogSF*effTrigW*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*((8.61313e-01+ptll*4.46807e-03-1.52324e-05*ptll*ptll)*(1.08683 * (0.95 - 0.0657370*TMath::Erf((ptll-11.)/5.51582)))*(ptll<140)+1.141996*(ptll>=140))',              #   weight/cut 
+                   'weights': [  'std_vector_LHEparton_pt[0]*(std_vector_LHEparton_pt[0]>0)+std_vector_LHEparton_pt[1]*(std_vector_LHEparton_pt[1]>0)+std_vector_LHEparton_pt[2]*(std_vector_LHEparton_pt[2]>0) < 100'
+                               , 'std_vector_LHEparton_pt[0]*(std_vector_LHEparton_pt[0]>0)+std_vector_LHEparton_pt[1]*(std_vector_LHEparton_pt[1]>0)+std_vector_LHEparton_pt[2]*(std_vector_LHEparton_pt[2]>0) < 100'
+                               #
+                               , '1'
+                               , '1'
+                               , '1'
+                               , '1'
+                               ] ,
 
-
-
+                }
 
 
 
@@ -563,7 +568,6 @@ samples['DATA']  = {   'name': [
 
                        'isData': ['all'],                            
                   }
-
 
 
 
