@@ -17,7 +17,7 @@ print cut
 
 os.system('mkdir -p impacts_' + channel + '_' + cut + '/')
 
-os.system("text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose --PO 'map=.*/monoH_*:0' --PO 'map=.*/monoH_800_300:r[1,0,10]' datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_combined.txt -o datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_combined.root")
+os.system('text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose --PO \'map=.*/monoH_*:0\' --PO \'map=.*/monoH_800_300:r[1,0,10]\' datacards/monoH_' + cut + '_' + channel + '/' + variable + '/datacard_combined.txt -o datacards/monoH_' + cut + '_' + channel + '/' + variable + '/datacard_combined.root')
 
 os.system("combineTool.py -M Impacts -d datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_combined.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit 1")
 
@@ -25,4 +25,4 @@ os.system("combineTool.py -M Impacts -d datacards/monoH_" + cut + "_" + channel 
 
 os.system("combineTool.py -M Impacts -d datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_combined.root -m 125 -o impacts_" + channel + "_" + cut + "/" + variable + ".json")
 
-os.system("plotImpacts.py -i impacts_' + channel + '_' + cut + '/' + variable + '.json -o impactPlots_em/mthBin")
+os.system('plotImpacts.py -i impacts_' + channel + '_' + cut + '/' + variable + '.json -o impacts_' + channel + '_' + cut + '/' + variable)
