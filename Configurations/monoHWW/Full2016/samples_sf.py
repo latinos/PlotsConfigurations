@@ -16,8 +16,7 @@ if    'iihe' in SITE :
   treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/'
 elif  'cern' in SITE :
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016/'
-
-directory = treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight/'
+directory = treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__sfSel/'
 
 
 ################################################
@@ -317,16 +316,61 @@ samples['H_htt']    = {   'name' :   getSampleFiles(directory,'GluGluHToTauTau_M
 
 #### mono-Higgs Signal
 
-ZpMasses={"600","800","1000","1200","1400","1700","2000","2500"}
-A0Masses={"300","400","500","600","700","800"}
+#ZpMasses={"600","800","1000","1200","1400","1700","2000","2500"}
+ZpMasses={"800","1200","1400","1700","2000"}
+A0Masses={"300"}#,"400","500","600","700","800"}
 
 for mZp in ZpMasses:
   for mA0 in A0Masses :
     if ((mZp == "600" and (mA0 == "300" or mA0 == "400")) or ((mZp == "800" and (mA0 == "300" or mA0 == "400" or mA0 == "500" or mA0 == "600"))) or (mZp != "600" and mZp != "800")) :
       samples['monoH_' + mZp + '_' + mA0] = { 'name': ['latino_monoH_2HDM_MZp-' + mZp + '_MA0-' + mA0 + '.root'],
-                                              'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                                               }
 
+#### mono-Higgs Signal Z'B
+
+samples['monoH_ZB_10000_50'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10000_MChi-50.root'],
+                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_10000_500'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10000_MChi-500.root'],
+                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_1000_1'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-1000_MChi-1.root'],
+                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_1000_1000'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-1000_MChi-1000.root'],
+                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_1000_150'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-1000_MChi-150.root'],
+                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_995_500'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-995_MChi-500.root'],
+                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_100_1'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-100_MChi-1.root'],
+                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_100_10'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-100_MChi-10.root'],
+                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_10_1'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-1.root'],
+                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_10_1000'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-1000.root'],
+                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_10_50'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-50.root'],
+                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_10_500'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-500.root'],
+                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_15_10'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-15_MChi-10.root'],
+                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_200_150'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-200_MChi-150.root'],
+                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_300_1'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-300_MChi-1.root'],
+                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_300_50'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-300_MChi-50.root'],
+                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_500_150'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-500_MChi-150.root'],
+                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_500_500'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-500_MChi-500.root'],
+                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_50_1'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-50_MChi-1.root'],
+                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_50_10'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-50_MChi-10.root'],
+                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_50_50'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-50_MChi-50.root'],
+                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
       
 ###########################################
 ################## FAKE ###################
@@ -339,7 +383,7 @@ samples['Fake']  = {   'name': [ ] ,
                    }
 
 for Run in DataRun :
-  directory = treeBaseDir+'Feb2017_Run2016'+Run[0]+'_RemAOD/l2looseCut__hadd__EpTCorr__TrigMakerData__fakeWCut__sfSel__v2/'
+  directory = treeBaseDir+'Feb2017_Run2016'+Run[0]+'_RemAOD/l2looseCut__hadd__EpTCorr__TrigMakerData__fakeWCut__sfSel/'
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:

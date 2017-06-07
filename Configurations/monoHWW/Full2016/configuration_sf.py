@@ -17,7 +17,7 @@ cutsFile = 'cuts_sf.py'
 samplesFile = 'samples_sf.py' 
 
 # file with list of samples
-plotFile = 'plot.py' 
+plotFile = 'plot_sf.py' 
 
 
 # luminosity to normalize to (in 1/fb)

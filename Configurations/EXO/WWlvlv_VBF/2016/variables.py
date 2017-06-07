@@ -10,7 +10,7 @@ variables['events']  = {   'name': '1',
                          'fold' : 3
                         }
 
-
+'''
 variables['mTi']  = {   'name': 'mTi',            #   variable name    
                         'range' : ([100,150,200,250,300,350,400,450,500,600,700,1000],),    #   variable range
                         'xaxis' : 'm_{T,i} [GeV]',  #   x axis name
@@ -24,7 +24,7 @@ variables['mTi_VBF']  = {   'name': 'mTi',            #   variable name
                         'fold' : 3
                         }
 
-
+'''
 
 '''
 variables['mth_VBF']  = {   'name': 'mth',            #   variable name    
@@ -44,19 +44,20 @@ variables['ptll']  = {   'name': 'ptll',            #   variable name
                         'xaxis' : 'pT_{ll} [GeV]',  #   x axis name
                         'fold' :3
                         }
+'''                        
 variables['mll']  = {   'name': 'mll',            #   variable name    
                         'range' : (40,0,400),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
                         'fold' :3
                         }
 
-
+'''
 variables['mjj']  = {   'name': 'mjj',            #   variable name    
                         'range' : (40,0,400),    #   variable range
                         'xaxis' : 'm_{jj} [GeV]',  #   x axis name
                         'fold' :3
                         }
-
+'''
 variables['std_vector_lepton_pt[0]']  = {   'name': 'std_vector_lepton_pt[0]',            #   variable name    
                         'range' : (20,0,200),    #   variable range
                         'xaxis' : 'pT_{1l} [GeV]',  #   x axis name
@@ -68,7 +69,7 @@ variables['std_vector_lepton_pt[1]']  = {   'name': 'std_vector_lepton_pt[1]',  
                         'xaxis' : 'pT_{2l} [GeV]',  #   x axis name
                         'fold' :3
                         }
-
+'''
 variables['std_vector_lepton_eta[0]']  = {   'name': 'std_vector_lepton_eta[0]',            #   variable name    
                         'range' : (20,-5,5),    #   variable range
                         'xaxis' : 'eta_{1l} [GeV]',  #   x axis name

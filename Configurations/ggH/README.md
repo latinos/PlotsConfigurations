@@ -310,8 +310,14 @@ Auto tests:
       
       
     cd ..
+    sh ggH/scripts/doTable.sh
+    cd -
+
+    
+    cd ..
     sh ggH/scripts/doGGH_doMultisignal.sh
     cd -
+
     
     
     r99t ../higgsCombineLH2DICHEP2015combined.MultiDimFit.mH120.root \
@@ -350,13 +356,38 @@ Auto tests:
 
 
 
+    ----
+    Figure 60 of AN-182
+    
+    r99t ../higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsFIXED.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
 
+    Expected
+    r99t ../higgsCombineLH2DICHEP2015combined.MultiDimFit.mH120.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
+        
+    r99t ../higgsCombineLH2DICHEP2016combined.MultiDimFit.mH120.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
+
+    r99t ../higgsCombineLH2DICHEPTotalcombined.MultiDimFit.mH120.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
+ 
+
+    Observed
+    
+    r99t ../higgsCombineLH2DICHEP2015combinedKVKFDATAlxbatch14May2017.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
+        
+    r99t ../backup/higgsCombineLH2DICHEP2016combinedKVKFDATAlxbatch.root \
+        scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
 
     r99t ../higgsCombineLH2DICHEPTotalcombinedKVKFDATANEWBISlxbatch400pointsFIXED.root \
         scripts/Draw2DImproved.cxx\(\"#mu_{ggH}\",\"#mu_{VBF/VH}\",\"muGGH\",\"muVBF\"\)
  
-     
-          
+
+ 
+ 
+    ----  
 
 
 
@@ -423,6 +454,30 @@ Auto tests:
     
 
 
+    cat  ../result.data.MaxLikelihoodFit.Moriond2016.0jet.me.txt
+    cat  ../result.data.MaxLikelihoodFit.Moriond2016.0jet.em.txt
+    cat  ../result.data.MaxLikelihoodFit.Moriond2016.1jet.me.txt
+    cat  ../result.data.MaxLikelihoodFit.Moriond2016.1jet.em.txt
+    cat  ../result.data.MaxLikelihoodFit.Moriond2016.0jet.txt
+    cat  ../result.data.MaxLikelihoodFit.Moriond2016.1jet.txt
+    cat  ../result.data.MaxLikelihoodFit.Moriond2016.2j.txt
+    cat  ../result.data.MaxLikelihoodFit.Moriond2016.vbf.txt
+    cat  ../result.data.MaxLikelihoodFit.Moriond2016.vh2j.txt
+    cat  ../result.data.MaxLikelihoodFit.Moriond2016.wh3l.txt
+
+    cat  ../result.data.Significance.Moriond2016.0jet.me.txt
+    cat  ../result.data.Significance.Moriond2016.0jet.em.txt
+    cat  ../result.data.Significance.Moriond2016.1jet.me.txt
+    cat  ../result.data.Significance.Moriond2016.1jet.em.txt
+    cat  ../result.data.Significance.Moriond2016.0jet.txt
+    cat  ../result.data.Significance.Moriond2016.1jet.txt
+    cat  ../result.data.Significance.Moriond2016.2j.txt
+    cat  ../result.data.Significance.Moriond2016.vbf.txt
+    cat  ../result.data.Significance.Moriond2016.vh2j.txt
+    cat  ../result.data.Significance.Moriond2016.wh3l.txt
+    
+
+    
 
     
     

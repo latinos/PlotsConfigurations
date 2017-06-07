@@ -4,10 +4,16 @@
 
                            
 
+supercut = 'mll>50  \
+            && std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>20 \
+            && std_vector_lepton_pt[2]<10 \
+            && metPfType1 > 20 '
+
+cuts["Zee"] = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)'            
+cuts["Zmm"] = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)'            
 
 
-
-
+'''
 
 supercut = 'mll>50  \
             && std_vector_lepton_pt[0]>20 && std_vector_lepton_pt[1]>20 \
@@ -135,6 +141,9 @@ supercut = 'mll>50  \
 # 13 = mu
 # 15 = tau
 
+
+
+
 cuts['hwwhm_13TeV_of_0j'] = '( mth>=60) \
                 && ( mTi > 100 ) \
                 && ( std_vector_jet_pt[0] < 30 ) \
@@ -202,4 +211,4 @@ cuts['hwwhm_13TeV_of_INCL']  ='( mth>=60) \
                 && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.715 ) \
                 && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.715 ) \
                               '
-
+'''
