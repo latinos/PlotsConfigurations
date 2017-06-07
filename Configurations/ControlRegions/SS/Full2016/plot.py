@@ -38,11 +38,32 @@ groupPlot['VVV']  = {
               }
 
 
-groupPlot['VZ']  = {  
-                  'nameHR' : "VZ/#gamma*/#gamma",
+#groupPlot['VZ']  = {  
+#                  'nameHR' : "VZ/#gamma*/#gamma",
+#                  'isSignal' : 0,
+#                  'color'    : 617,   # kViolet + 1  
+#                  'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ','Zg']
+#              }
+
+groupPlot['VZ']  = {
+                  'nameHR' : "VZ",
                   'isSignal' : 0,
-                  'color'    : 617,   # kViolet + 1  
-                  'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ','Zg']
+                  'color'    : 1,   # kViolet + 1  
+                  'samples'  : ['VZ', 'WZ', 'ZZ',]
+              }
+
+groupPlot['Vg']  = {
+                  'nameHR' : "V#gamma",
+                  'isSignal' : 0,
+                  'color'    : 618,   # kViolet + 1  
+                  'samples'  : ['Vg', 'Wg','Zg']
+              }
+
+groupPlot['VgS']  = {
+                  'nameHR' : "V#gamma*",
+                  'isSignal' : 0,
+                  'color'    : 632 ,   # kViolet + 1  
+                  'samples'  : ['VgS']
               }
 
 
@@ -55,12 +76,12 @@ groupPlot['DY']  = {
               }
 
 
-groupPlot['Higgs']  = {  
-                  'nameHR' : 'Higgs',
-                  'isSignal' : 1,
-                  'color': 632, # kRed 
-                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww']
-              }
+#groupPlot['Higgs']  = {  
+#                  'nameHR' : 'Higgs',
+#                  'isSignal' : 1,
+#                  'color': 632, # kRed 
+#                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww']
+#              }
 
 
 

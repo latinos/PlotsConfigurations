@@ -8,13 +8,13 @@
 # If not defined, normal plots is used
 #
 
-groupPlot['Fake']  = {  
-                  'nameHR' : 'Fake',
-                  'isSignal' : 0,
-                  'color': 921,    # kGray + 1
-                  'samples'  : ['Fake']
-              }
-
+#groupPlot['Fake']  = {  
+#                  'nameHR' : 'Fake',
+#                  'isSignal' : 0,
+#                  'color': 921,    # kGray + 1
+#                  'samples'  : ['Fake']
+#              }
+#
 
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bart',
