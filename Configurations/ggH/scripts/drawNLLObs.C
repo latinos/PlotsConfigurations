@@ -179,6 +179,7 @@ void drawNLLObs() {
   graphScan->GetYaxis()->SetTitle("-2 #Delta LL");
   
   graphScan  ->Draw("al");
+//   graphScan  ->Draw("aPl");
   
   if (graphScanData) {
     graphScanData->Draw("l");
@@ -211,6 +212,11 @@ void drawNLLObs() {
   if (graphScanData) {
     leg->AddEntry(graphScanData,"Observed","l");
   }
+
+//   leg->AddEntry(graphScan,"Old","l");
+//   if (graphScanData) {
+//     leg->AddEntry(graphScanData,"New","l");
+//   }
   
 //   leg->AddEntry(graphScan,"Obs 2015 alone","l");
 //   if (graphScanData) {

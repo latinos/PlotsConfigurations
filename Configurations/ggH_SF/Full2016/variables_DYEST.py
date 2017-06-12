@@ -160,7 +160,13 @@ variables['mll']  = {   'name': 'mll',
 #
 variables['dymvaggh']  = { 'name': 'dymvaggh',
                         'range' : (40,-1,1),
-                        'xaxis' : 'DY MVA',
+                        'xaxis' : 'DY MVA (ggH)',
+                        'fold' : 3
+                        }
+
+variables['dymvavbf']  = { 'name': 'dymvaggh',
+                        'range' : (40,-1,1),
+                        'xaxis' : 'DY MVA (VBF)',
                         'fold' : 3
                         }
 

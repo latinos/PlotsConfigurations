@@ -187,6 +187,13 @@ variables['dymvaggh']  = { 'name': 'dymvaggh',
                         'fold' : 3
                         }
 
+variables['dymvavbf']  = { 'name': 'dymvavbf',
+                        'range' : (40,-1,1),
+                        'xaxis' : 'DY MVA',
+                        'fold' : 3
+                        }
+
+
 
                         
 

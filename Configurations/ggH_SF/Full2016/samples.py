@@ -25,8 +25,35 @@ directory = treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2t
 ################################################
 
 XSWeight      = 'baseW*GEN_weight_SM/abs(GEN_weight_SM)'
-SFweight      = 'puW*bPogSF*effTrigW*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*veto_EMTFBug'
+SFweight      = 'puW*bPogSF_CMVAL*effTrigW*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*veto_EMTFBug'
 GenLepMatch   = 'std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]'
+
+
+
+################################################
+############ DATA DECLARATION ##################
+################################################
+
+DataRun = [ 
+            ['B','Run2016B-03Feb2017_ver2-v2'] , 
+            ['C','Run2016C-03Feb2017-v1'] , 
+            ['D','Run2016D-03Feb2017-v1'] , 
+            ['E','Run2016E-03Feb2017-v1'] ,
+            ['F','Run2016F-03Feb2017-v1'] , 
+            ['G','Run2016G-03Feb2017-v1'] , 
+            ['H','Run2016H-03Feb2017_ver2-v1'] , 
+            ['H','Run2016H-03Feb2017_ver3-v1'] ,
+          ] 
+
+DataSets = ['MuonEG','DoubleMuon','SingleMuon','DoubleEG','SingleElectron']
+
+DataTrig = {
+            'MuonEG'         : ' trig_EleMu' ,
+            'DoubleMuon'     : '!trig_EleMu &&  trig_DbleMu' ,
+            'SingleMuon'     : '!trig_EleMu && !trig_DbleMu &&  trig_SnglMu' ,
+            'DoubleEG'       : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu &&  trig_DbleEle' ,
+            'SingleElectron' : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu && !trig_DbleEle &&  trig_SnglEle' ,
+           }
 
 ###########################################
 #############  BACKGROUNDS  ###############
@@ -179,21 +206,13 @@ samples['Fake']  = {   'name': [ ] ,
                        'isData': ['all'],
                    }
 
-MyWeights={
-           'MuonEG'         : ' trig_EleMu' ,
-           'DoubleMuon'     : '!trig_EleMu &&  trig_DbleMu' ,
-           'SingleMuon'     : '!trig_EleMu && !trig_DbleMu &&  trig_SnglMu' ,
-           'DoubleEG'       : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu &&  trig_DbleEle' ,
-           'SingleElectron' : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu && !trig_DbleEle &&  trig_SnglEle' ,
-          }
-
-for Run in ['B','C','D','E','F','G','H'] :
-  directory = treeBaseDir+'Feb2017_Run2016'+Run+'_RemAOD/l2looseCut__hadd__EpTCorr__TrigMakerData__fakeWCut' 
-  for DataSet in ['MuonEG','DoubleMuon','SingleMuon','DoubleEG','SingleElectron']:
-    FileTarget = getSampleFiles(directory,'*'+DataSet+'*',True)
+for Run in DataRun :
+  directory = treeBaseDir+'Feb2017_Run2016'+Run[0]+'_RemAOD/l2looseCut__hadd__EpTCorr__TrigMakerData__fakeWCut_OLD/'
+  for DataSet in DataSets :
+    FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:
       samples['Fake']['name'].append(iFile)
-      samples['Fake']['weights'].append(MyWeights[DataSet])
+      samples['Fake']['weights'].append(DataTrig[DataSet])
 
 ###########################################
 ################## DATA ###################
@@ -205,19 +224,11 @@ samples['DATA']  = {   'name': [ ] ,
                        'isData': ['all'],                            
                   }
 
-MyWeights={
-           'MuonEG'         : ' trig_EleMu' ,
-           'DoubleMuon'     : '!trig_EleMu &&  trig_DbleMu' ,
-           'SingleMuon'     : '!trig_EleMu && !trig_DbleMu &&  trig_SnglMu' ,
-           'DoubleEG'       : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu &&  trig_DbleEle' ,
-           'SingleElectron' : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu && !trig_DbleEle &&  trig_SnglEle' ,
-          }
-
-for Run in ['B','C','D','E','F','G','H'] :
-  directory = treeBaseDir+'Feb2017_Run2016'+Run+'_RemAOD/l2looseCut__hadd__EpTCorr__TrigMakerData__l2tight/'
-  for DataSet in ['MuonEG','DoubleMuon','SingleMuon','DoubleEG','SingleElectron']:
-    FileTarget = getSampleFiles(directory,'*'+DataSet+'*',True)
+for Run in DataRun :
+  directory = treeBaseDir+'Feb2017_Run2016'+Run[0]+'_RemAOD/l2looseCut__hadd__EpTCorr__TrigMakerData__l2tight/'
+  for DataSet in DataSets :
+    FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:
       samples['DATA']['name'].append(iFile)
-      samples['DATA']['weights'].append(MyWeights[DataSet]) 
+      samples['DATA']['weights'].append(DataTrig[DataSet]) 
 

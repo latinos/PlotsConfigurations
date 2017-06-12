@@ -1013,11 +1013,11 @@ nuisances['DYmmnorm1j'] = {
 #
 #
 #
-##for iNP in nuisances:
-#  #if 'cuts' in nuisances[iNP] :
-#    #newCuts = []
-#    #for iCut in nuisances[iNP]['cuts']:
-#      #for iOptim in optim:
-#         ##newCuts.append(iCut+'_'+iOptim)
-#    #nuisances[iNP]['cuts'] = newCuts
-#  
+#for iNP in nuisances:
+#  if 'cuts' in nuisances[iNP] :
+#    newCuts = []
+#    for iCut in nuisances[iNP]['cuts']:
+#      for iOptim in optim:
+#         newCuts.append(iCut+'_'+iOptim)
+#    nuisances[iNP]['cuts'] = newCuts
+  

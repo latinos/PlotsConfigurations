@@ -19,6 +19,12 @@ mkShapes.py --pycfg=configuration.py --inputDir=/pnfs/iihe/cms/store/user/xjanss
 #mkplots 
 mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_CR_
 
+#mkDYestim (0j+1j)
+mkDYestim.py --dycfg=dyestim.py --inputFile=rootFile/plots_ggH_SF.root
+
+#mkDYestim (2j)
+mkDYestim.py --dycfg=dyestim_2j.py --inputFile=rootFile/plots_ggH_SF_2j.root --tag=ggH_SF_2j
+
 #mkDatacards
 mkDatacards.py --inputFile=rootFile/plots_ggH_SF_DYEstim.root --cardList=hww2l2v_13TeV_0jee,hww2l2v_13TeV_WW_0jee,hww2l2v_13TeV_top_0jee,hww2l2v_13TeV_0jmm,hww2l2v_13TeV_WW_0jmm,hww2l2v_13TeV_top_0jmm,hww2l2v_13TeV_1jee,hww2l2v_13TeV_WW_1jee,hww2l2v_13TeV_1jmm,hww2l2v_13TeV_WW_1jmm,hww2l2v_13TeV_top_1jsf
 

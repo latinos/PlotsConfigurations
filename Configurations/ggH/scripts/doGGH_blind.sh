@@ -2,6 +2,7 @@
 
 # cd ~/Framework/CMSSW_7_1_15/src/
 cd ~/Framework/Combine/CMSSW_7_4_7/src/
+# cd ~/Framework/Combine/New/CMSSW_7_4_7/src/
 
 eval `scramv1 runtime -sh`
 cd -
