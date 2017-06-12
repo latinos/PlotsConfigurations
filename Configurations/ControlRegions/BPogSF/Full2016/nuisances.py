@@ -81,7 +81,7 @@ nuisances['fake_mu_stat']  = {
                 }
 }
 '''
-##### B-tagger
+###### B-tagger
 
 nuisances['btagbc']  = {
                 'name'  : 'ICHEP_btag_bc',
