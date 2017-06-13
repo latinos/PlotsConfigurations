@@ -88,9 +88,9 @@ nuisances['fake_mu_stat']  = {
 ##### B-tagger
 
 nuisances['btagbc']  = {
-                'name'  : 'ICHEP_btag_bc',
+                'name'  : 'btag_bc',
                 'kind'  : 'weight',
-               'type'  : 'shape',
+                'type'  : 'shape',
                 'samples'  : {
                    'DY'      : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
                    'WW'      : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
@@ -110,7 +110,7 @@ nuisances['btagbc']  = {
 }
 
 nuisances['btagudsg']  = {
-                'name'  : 'ICHEP_btag_udsg',
+                'name'  : 'btag_udsg',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -282,7 +282,7 @@ nuisances['jes']  = {
                    'top' : ['1', '1'],
                    'VZ' :  ['1', '1'],
                    'VVV' : ['1', '1'],
-                   'Vg' : ['1', '1'],
+                   'Vg' : ['1', '1'], #FIXME - bogus
                    'VgS': ['1', '1'],
                    'ggH_hww' : ['1', '1'],
                    'qqH_hww' : ['1', '1'],
