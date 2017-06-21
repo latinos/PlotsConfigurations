@@ -1,10 +1,11 @@
 # example of configuration file
 
-tag = 'Top1j'
+tag = 'WH3l'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = 'rootFiles'
+#outputDir = 'rootFiles_repro_forplots'
 
 
 # file with list of variables
@@ -19,15 +20,13 @@ samplesFile = 'samples.py'
 # file with list of samples
 plotFile = 'plot.py' 
 
-
-
 # luminosity to normalize to (in 1/fb)
-lumi = 35.867
+#lumi = 12.2950
+lumi = 35.9
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-# outputDirPlots = '~/www/plotCR'
-outputDirPlots = 'plotTop1j'
+outputDirPlots = 'plot'
 
 
 # used by mkDatacards to define output directory for datacards

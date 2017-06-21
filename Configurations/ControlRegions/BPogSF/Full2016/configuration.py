@@ -4,7 +4,7 @@ tag = 'Top1j'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = 'rootFile_CSVL'
 
 
 # file with list of variables
@@ -27,7 +27,7 @@ lumi = 35.867
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
 # outputDirPlots = '~/www/plotCR'
-outputDirPlots = 'plotTop1j'
+outputDirPlots = 'plotTop1j_CSVL'
 
 
 # used by mkDatacards to define output directory for datacards
@@ -39,6 +39,6 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-#nuisancesFile = 'nuisances.py'
+nuisancesFile = 'nuisances.py'
 
 

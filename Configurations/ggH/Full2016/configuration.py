@@ -1,6 +1,7 @@
 # example of configuration file
 
-tag = 'Top1j'
+tag = 'ggH'
+#tag = 'ggHTESTPARTIALamassiro'
 
 
 # used by mkShape to define output directory for root files
@@ -26,8 +27,7 @@ lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-# outputDirPlots = '~/www/plotCR'
-outputDirPlots = 'plotTop1j'
+outputDirPlots = 'plotGGH'
 
 
 # used by mkDatacards to define output directory for datacards
@@ -39,6 +39,6 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-#nuisancesFile = 'nuisances.py'
+nuisancesFile = 'nuisances.py'
 
 

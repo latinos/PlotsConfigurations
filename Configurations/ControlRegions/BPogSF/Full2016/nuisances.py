@@ -8,7 +8,7 @@
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
 #### Luminosity
-
+'''
 nuisances['lumi']  = {
                'name'  : 'lumi_13TeV',
                'samples'  : {
@@ -32,7 +32,6 @@ nuisances['lumi']  = {
               }
 
 #### FAKES
-
 nuisances['fake_syst']  = {
                'name'  : 'fake_syst',
                'type'  : 'lnN',
@@ -81,28 +80,28 @@ nuisances['fake_mu_stat']  = {
                                   '(fakeW2l0jstatMuDown*(njet==0)+fakeW2l1jstatMuDown*(njet==1)+fakeW2l2jstatMuDown*(njet>=2))/(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))'],
                 }
 }
-
-##### B-tagger
+'''
+###### B-tagger
 
 nuisances['btagbc']  = {
                 'name'  : 'ICHEP_btag_bc',
                 'kind'  : 'weight',
                'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
-                   'WW'      : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
-                   'ggWW'    : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
-                   'VVV'     : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
-                   'VZ'      : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
-                   'top'     : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
-                   'Vg'      : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
-                   'VgS'     : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
-                   'ggH_hww' : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
-                   'qqH_hww' : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
-                   'WH_hww'  : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
-                   'ZH_hww'  : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
-                   'H_htt'   : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
-                   'bbH_hww' : ['(bPogSF_CMVAL_bc_up)/(bPogSF)', '(bPogSF_CMVAL_bc_down)/(bPogSF)'],
+                   'DY'      : ['(bPogSF_CSVL_bc_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_bc_down)/(bPogSF_CSVL)'],
+                   'WW'      : ['(bPogSF_CSVL_bc_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_bc_down)/(bPogSF_CSVL)'],
+                   'ggWW'    : ['(bPogSF_CSVL_bc_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_bc_down)/(bPogSF_CSVL)'],
+                   'VVV'     : ['(bPogSF_CSVL_bc_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_bc_down)/(bPogSF_CSVL)'],
+                   'VZ'      : ['(bPogSF_CSVL_bc_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_bc_down)/(bPogSF_CSVL)'],
+                   'top'     : ['(bPogSF_CSVL_bc_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_bc_down)/(bPogSF_CSVL)'],
+                   'Vg'      : ['(bPogSF_CSVL_bc_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_bc_down)/(bPogSF_CSVL)'],
+                   'VgS'     : ['(bPogSF_CSVL_bc_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_bc_down)/(bPogSF_CSVL)'],
+                   'ggH_hww' : ['(bPogSF_CSVL_bc_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_bc_down)/(bPogSF_CSVL)'],
+                   'qqH_hww' : ['(bPogSF_CSVL_bc_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_bc_down)/(bPogSF_CSVL)'],
+                   'WH_hww'  : ['(bPogSF_CSVL_bc_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_bc_down)/(bPogSF_CSVL)'],
+                   'ZH_hww'  : ['(bPogSF_CSVL_bc_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_bc_down)/(bPogSF_CSVL)'],
+                   'H_htt'   : ['(bPogSF_CSVL_bc_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_bc_down)/(bPogSF_CSVL)'],
+                   'bbH_hww' : ['(bPogSF_CSVL_bc_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_bc_down)/(bPogSF_CSVL)'],
                 }
 }
 
@@ -111,25 +110,25 @@ nuisances['btagudsg']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
-                   'VVV'     : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
-                   'VZ'      : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
-                   'WW'      : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
-                   'ggWW'    : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
-                   'top'     : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
-                   'Vg'      : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
-                   'VgS'     : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
-                   'ggH_hww' : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
-                   'qqH_hww' : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
-                   'WH_hww'  : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
-                   'ZH_hww'  : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
-                   'bbH_hww' : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
-                   'H_htt'   : ['(bPogSF_CMVAL_udsg_up)/(bPogSF)', '(bPogSF_CMVAL_udsg_down)/(bPogSF)'],
+                   'DY'      : ['(bPogSF_CSVL_udsg_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_udsg_down)/(bPogSF_CSVL)'],
+                   'VVV'     : ['(bPogSF_CSVL_udsg_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_udsg_down)/(bPogSF_CSVL)'],
+                   'VZ'      : ['(bPogSF_CSVL_udsg_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_udsg_down)/(bPogSF_CSVL)'],
+                   'WW'      : ['(bPogSF_CSVL_udsg_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_udsg_down)/(bPogSF_CSVL)'],
+                   'ggWW'    : ['(bPogSF_CSVL_udsg_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_udsg_down)/(bPogSF_CSVL)'],
+                   'top'     : ['(bPogSF_CSVL_udsg_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_udsg_down)/(bPogSF_CSVL)'],
+                   'Vg'      : ['(bPogSF_CSVL_udsg_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_udsg_down)/(bPogSF_CSVL)'],
+                   'VgS'     : ['(bPogSF_CSVL_udsg_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_udsg_down)/(bPogSF_CSVL)'],
+                   'ggH_hww' : ['(bPogSF_CSVL_udsg_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_udsg_down)/(bPogSF_CSVL)'],
+                   'qqH_hww' : ['(bPogSF_CSVL_udsg_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_udsg_down)/(bPogSF_CSVL)'],
+                   'WH_hww'  : ['(bPogSF_CSVL_udsg_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_udsg_down)/(bPogSF_CSVL)'],
+                   'ZH_hww'  : ['(bPogSF_CSVL_udsg_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_udsg_down)/(bPogSF_CSVL)'],
+                   'bbH_hww' : ['(bPogSF_CSVL_udsg_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_udsg_down)/(bPogSF_CSVL)'],
+                   'H_htt'   : ['(bPogSF_CSVL_udsg_up)/(bPogSF_CSVL)', '(bPogSF_CSVL_udsg_down)/(bPogSF_CSVL)'],
                 }
 }
 
 ##### Trigger Efficiency
-
+'''
 nuisances['trigg']  = {
                 'name'  : 'trigger',
                 'kind'  : 'weight',
@@ -204,8 +203,8 @@ nuisances['electronpt']  = {
                    'bbH_hww' : ['1', '1'],
                    'H_htt'   : ['1', '1'],
                  },
-                'folderUp'   : xrootdPath+treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepElepTCutup',
-                'folderDown' : xrootdPath+treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepElepTCutdo',
+                'folderUp'   : treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepElepTCutup__wwSel',
+                'folderDown' : treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepElepTCutdo__wwSel',
 }
 
 
@@ -261,8 +260,8 @@ nuisances['muonpt']  = {
                    'bbH_hww' : ['1', '1'],
                    'H_htt' : ['1', '1'],
                 },
-                'folderUp'   : xrootdPath+treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepMupTCutup',
-                'folderDown' : xrootdPath+treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepMupTCutdo',
+                'folderUp'   : treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepMupTCutup__wwSel',
+                'folderDown' : treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepMupTCutdo__wwSel',
 }
 
 
@@ -289,8 +288,8 @@ nuisances['jes']  = {
                    'bbH_hww' : ['1', '1'],
                    'H_htt' : ['1', '1'],
                 },
-                'folderUp'   : xrootdPath+treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__JESup',
-                'folderDown' : xrootdPath+treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__JESdo',
+                'folderUp'   : treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__JESup__wwSel',
+                'folderDown' : treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__JESdo__wwSel',
 }
 
 ##### MET energy scale
@@ -316,7 +315,7 @@ nuisances['met']  = {
                    'bbH_hww' : ['1', '1'],
                    'H_htt' : ['1', '1'],
                 },
-                'folderUp'   : xrootdPath+treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__METup',
-                'folderDown' : xrootdPath+treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__METdo',
+                'folderUp'   : treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__METup__wwSel',
+                'folderDown' : treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__METdo__wwSel',
 }
-
+'''

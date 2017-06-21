@@ -76,10 +76,10 @@ cuts['ww2l2v_13TeV_ww_ue2j']  = '(abs(std_vector_lepton_flavour[0]) == 13 && abs
 
 cutsSF = '  && metTtrk > 20 \
             && fabs(91.1876 - mll ) > 15 \
-            && (     ( ( std_vector_jet_pt[0] <  30                              ) && dymvaggh < 0.96 )  \
-                 ||  ( ( std_vector_jet_pt[0] >= 30 && std_vector_jet_pt[1] < 30 ) && dymvaggh < 0.95 )  \
-                 ||  ( ( std_vector_jet_pt[0] >= 30 && std_vector_jet_pt[1] >= 30 && ( abs(detajj) <  3.5 || mjj <  400 ) ) && dymvaggh < 0.93 ) \
-                 ||  ( ( std_vector_jet_pt[0] >= 30 && std_vector_jet_pt[1] >= 30 && ( abs(detajj) >= 3.5 || mjj >= 400 ) ) && dymvavbf < 0.93 ) \
+            && (     ( ( std_vector_jet_pt[0] <  30                              ) && dymvaggh > 0.96 )  \
+                 ||  ( ( std_vector_jet_pt[0] >= 30 && std_vector_jet_pt[1] < 30 ) && dymvaggh > 0.95 )  \
+                 ||  ( ( std_vector_jet_pt[0] >= 30 && std_vector_jet_pt[1] >= 30 && ( abs(detajj) <  3.5 || mjj <  400 ) ) && dymvaggh > 0.93 ) \
+                 ||  ( ( std_vector_jet_pt[0] >= 30 && std_vector_jet_pt[1] >= 30 && ( abs(detajj) >= 3.5 || mjj >= 400 ) ) && dymvavbf > 0.93 ) \
                ) \
          ' 
 
