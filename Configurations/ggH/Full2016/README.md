@@ -67,11 +67,9 @@ Now we are ready to make data/MC comparison plots.
 
 # 4. Get the combine package
 
-This step is meant to be done the first time only, by following the instructions documented in the revision **r170** of the [combine twiki](https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHiggsAnalysisCombinedLimit#ROOT6_SLC6_release_CMSSW_7_4_X).
-
     cd $COMBINE_DIRECTORY
 
-    # Follow the combine twiki instructions
+This step is meant to be done the first time only, by following the instructions documented in the revision **r170** of the [combine twiki](https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHiggsAnalysisCombinedLimit#ROOT6_SLC6_release_CMSSW_7_4_X).
 
 
 # 5. Modify the datacards
