@@ -65,3 +65,24 @@ Now we are ready to make data/MC comparison plots,
 
 This step is meant to be done the first time only, by following the instructions documented in the revision **r170** of the [combine twiki](https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHiggsAnalysisCombinedLimit#ROOT6_SLC6_release_CMSSW_7_4_X).
 
+
+# 5. Combine the datacards
+
+    pushd CMSSW_7_4_7/src/
+    eval `scramv1 runtime -sh`
+    popd
+
+    combineCards.py em_mp_1j=datacards/hww2l2v_13TeV_em_mp_1j/mllVSmth/datacard.txt \
+                    me_mp_1j=datacards/hww2l2v_13TeV_me_mp_1j/mllVSmth/datacard.txt \
+                    em_mp_0j=datacards/hww2l2v_13TeV_em_mp_0j/mllVSmth/datacard.txt \
+                    me_mp_0j=datacards/hww2l2v_13TeV_me_mp_0j/mllVSmth/datacard.txt \
+                    em_pm_1j=datacards/hww2l2v_13TeV_em_pm_1j/mllVSmth/datacard.txt \
+                    me_pm_1j=datacards/hww2l2v_13TeV_me_pm_1j/mllVSmth/datacard.txt \
+                    em_pm_0j=datacards/hww2l2v_13TeV_em_pm_0j/mllVSmth/datacard.txt \
+                    me_pm_0j=datacards/hww2l2v_13TeV_me_pm_0j/mllVSmth/datacard.txt \
+                    of0j_Top=datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt \
+                    of1j_Top=datacards/hww2l2v_13TeV_top_of1j/events/datacard.txt \
+                    of0j_DYtt=datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt \
+                    of1j_DYtt=datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt \
+                    > Full2016.txt
+
