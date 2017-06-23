@@ -37,7 +37,7 @@ If a job takes too long / fails, one can kill it and resubmit manually.
     bsub -q 1nd ~/cms/HWW2016/jobs/mkShapes__ggH/mkShapes__ggH__hww2l2v_13TeV_em_mp_1j__top2.sh
 
 
-# Put all your apples in one basket
+# 2. Put all your apples in one basket
 
 Once the previous jobs have finished we _hadd_ the outputs,
 
@@ -47,7 +47,7 @@ Once the previous jobs have finished we _hadd_ the outputs,
                 --doHadd=True
 
 
-# 2. Take beautiful pictures
+# 3a. Take beautiful pictures
 
 Now we are ready to make data/MC comparison plots,
 
@@ -55,7 +55,7 @@ Now we are ready to make data/MC comparison plots,
               --showIntegralLegend=1
 
 
-# 3. It is time to get our datacards
+# 3b. Produce the datacards
 
     mkDatacards.py --pycfg=configuration.py \
                    --inputFile=rootFile/plots_ggH.root
@@ -73,7 +73,7 @@ This step is meant to be done the first time only, by following the instructions
     git clone https://github.com/amassiro/ModificationDatacards
     popd
 
-Now one can prune the datacards
+Now one can prune the datacards.
 
     pushd $HOME/work/Combine/ModificationDatacards
     ls /afs/cern.ch/user/p/piedra/work/CMSSW_Apr2017_HowToBeALatinLover/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/ggH/Full2016/datacards/*/*/*.txt | grep -v "pruned" | \
