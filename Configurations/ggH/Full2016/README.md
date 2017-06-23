@@ -1,12 +1,16 @@
 By following these instructions one should be able to read latino trees, produce histograms, make plots and datacards, combine the datacards, and extract the analysis significance.
 
 
-# 0. Get started
+# 0. Everything starts here
 
     ssh -Y lxplus.cern.ch -o ServerAliveInterval=240
     bash -l
 
-    cd CMSSW_8_0_26_patch1/src
+    export CMSSW_DIRECTORY=~/work/CMSSW_Apr2017_HowToBeALatinLover/CMSSW_8_0_26_patch1/src
+    export CONFIGURATION_DIRECTORY=$CMSSW_DIRECTORY/PlotsConfigurations/Configurations/ggH/Full2016
+    export COMBINE_DIRECTORY=~/work/Combine/
+
+    cd $CMSSW_DIRECTORY
     cmsenv
     scramv1 b
 
@@ -19,7 +23,7 @@ By following these instructions one should be able to read latino trees, produce
 
 This step reads the post-processed latino trees and produces histograms for several variables and phase spaces.
 
-    cd PlotsConfigurations/Configurations/ggH/Full2016
+    cd $CONFIGURATION_DIRECTORY
 
     mkShapes.py --pycfg=configuration.py \
                 --inputDir=/eos/cms/store/caf/user/lenzip/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__wwSel__genericFormulas \
@@ -69,20 +73,19 @@ This step is meant to be done the first time only, by following the instructions
 # 5. Modify the datacards
 
     # First time only
-    cd $HOME/work/Combine
+    cd $COMBINE_DIRECTORY
     git clone https://github.com/amassiro/ModificationDatacards
 
 Now one can prune the datacards.
 
-    pushd $HOME/work/Combine/ModificationDatacards
+    cd $COMBINE_DIRECTORY/ModificationDatacards
     ls /afs/cern.ch/user/p/piedra/work/CMSSW_Apr2017_HowToBeALatinLover/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/ggH/Full2016/datacards/*/*/*.txt | grep -v "pruned" | \
     awk '{print "python PruneDatacard.py -d "$1" -o "$1".pruned.txt --suppressNegative=True -i examples/input_nuisances_to_prune.py"}' | /bin/sh
-    popd
 
 
 # 6. Combine the datacards
 
-    pushd $HOME/work/Combine/CMSSW_7_4_7/src/
+    pushd $COMBINE_DIRECTORY/CMSSW_7_4_7/src/
     eval `scramv1 runtime -sh`
     popd
 
