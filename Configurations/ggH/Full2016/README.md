@@ -68,10 +68,10 @@ This step is meant to be done the first time only, by following the instructions
 
 # 5. Modify the datacards
 
-   # First time only
-   pushd $HOME/work/Combine
-   git clone https://github.com/amassiro/ModificationDatacards
-   popd
+    # First time only
+    pushd $HOME/work/Combine
+    git clone https://github.com/amassiro/ModificationDatacards
+    popd
 
 Now one can prune the datacards
 
@@ -81,7 +81,7 @@ Now one can prune the datacards
     popd
 
 
-# 5. Combine the datacards
+# 6. Combine the datacards
 
     pushd $HOME/work/Combine/CMSSW_7_4_7/src/
     eval `scramv1 runtime -sh`
