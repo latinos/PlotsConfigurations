@@ -5,11 +5,12 @@ By following these instructions one should be able to read latino trees, produce
 
     ssh -Y lxplus.cern.ch -o ServerAliveInterval=240
     bash -l
+
     cd CMSSW_8_0_26_patch1/src
     cmsenv
     scramv1 b
 
-    # First time only
+    # First time only copy and modify
     cd LatinoAnalysis/Tools/python
     cp userConfig_TEMPLATE.py userConfig.py
 
@@ -62,5 +63,5 @@ Now we are ready to make data/MC comparison plots,
 
 # 4. Get the combine package
 
-This step is meant to be done the first time only, by following the instructions documented in the revision **r170** of the [combine twiki][https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHiggsAnalysisCombinedLimit#ROOT6_SLC6_release_CMSSW_7_4_X].
+This step is meant to be done the first time only, by following the instructions documented in the revision **r170** of the [combine twiki](https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHiggsAnalysisCombinedLimit#ROOT6_SLC6_release_CMSSW_7_4_X).
 
