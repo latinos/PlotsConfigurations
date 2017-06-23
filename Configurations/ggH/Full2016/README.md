@@ -105,3 +105,15 @@ Now one can prune the datacards.
                     of1j_DYtt=datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
                     > Full2016.txt.pruned.txt
 
+
+# 7. Get the significance
+
+    pushd $COMBINE_DIRECTORY/CMSSW_7_4_7/src/
+    eval `scramv1 runtime -sh`
+    popd
+
+    combine -M MaxLikelihoodFit \
+            --rMin=-2 --rMax=4 \
+            Full2016.txt.pruned.txt -n Full2016.txt.pruned.txt \
+            > result.data.MaxLikelihoodFit.Full2016.txt.pruned.txt
+
