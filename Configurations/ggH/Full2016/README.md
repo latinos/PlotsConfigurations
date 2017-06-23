@@ -39,7 +39,7 @@ If a job takes too long / fails, one can kill it and resubmit manually.
 
 # 2. Put all your apples in one basket
 
-Once the previous jobs have finished we _hadd_ the outputs,
+Once the previous jobs have finished we _hadd_ the outputs.
 
     mkShapes.py --pycfg=configuration.py \
                 --inputDir=/eos/cms/store/caf/user/lenzip/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__wwSel__genericFormulas \
@@ -49,7 +49,7 @@ Once the previous jobs have finished we _hadd_ the outputs,
 
 # 3a. Take beautiful pictures
 
-Now we are ready to make data/MC comparison plots,
+Now we are ready to make data/MC comparison plots.
 
     mkPlot.py --inputFile=rootFile/plots_ggH.root \
               --showIntegralLegend=1
@@ -69,9 +69,8 @@ This step is meant to be done the first time only, by following the instructions
 # 5. Modify the datacards
 
     # First time only
-    pushd $HOME/work/Combine
+    cd $HOME/work/Combine
     git clone https://github.com/amassiro/ModificationDatacards
-    popd
 
 Now one can prune the datacards.
 
