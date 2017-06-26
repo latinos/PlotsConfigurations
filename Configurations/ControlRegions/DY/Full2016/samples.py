@@ -7,6 +7,22 @@ from LatinoAnalysis.Tools.commonTools import *
 
 #samples = {}
 
+################################################
+################# SKIMS ########################
+################################################
+
+skim=''
+#skim='__wwSel'
+#skim='__topSel'
+#skim='__topSel'
+#skim='__vh3lSel' 
+#skim='__sfSel' 
+#skim='__vbsSel'
+#skim='__ssSel'
+
+if skim =='__vh3lSel' :  skimFake='__vh3lFakeSel'
+else:                    skimFake=skim
+
 ##############################################
 ###### Tree Directory according to site ######
 ##############################################
@@ -17,20 +33,13 @@ if    'iihe' in SITE :
   xrootdPath  = 'dcap://maite.iihe.ac.be/' 
   treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/'
 elif  'cern' in SITE :
-  treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016/'
+  treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/'
 
-#directory = treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight/'
-directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC/'
-
+directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC'+skim+'/'
 
 ################################################
 ############ BASIC MC WEIGHTS ##################
 ################################################
-
-
-#XSWeight      = 'baseW*GEN_weight_SM/abs(GEN_weight_SM)'
-#SFweight      = 'puW*bPogSF_CMVAL*effTrigW*veto_EMTFBug*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]'
-#GenLepMatch   = 'std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]'
 
 XSWeight      = 'XSWeight'
 SFweight      = 'SFweight2l'
@@ -96,10 +105,8 @@ fakeW  = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP
 ############   MET  FILTERS  ###################
 ################################################
 
-
 METFilter_MC   = 'METFilter_MC'
 METFilter_DATA = 'METFilter_DATA'
-
 
 ################################################
 ############ DATA DECLARATION ##################
@@ -382,20 +389,20 @@ samples['H_htt']    = {   'name' :   getSampleFiles(directory,'GluGluHToTauTau_M
 ################## FAKE ###################
 ###########################################
 
-samples['Fake']  = {   'name': [ ] ,
-                       'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA,              #   weight/cut 
-                       'weights' : [ ] ,
-                       'isData': ['all'],
-                       'FilesPerJob' : 5 ,
-                   }
+#samples['Fake']  = {   'name': [ ] ,
+#                       'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA,              #   weight/cut 
+#                       'weights' : [ ] ,
+#                       'isData': ['all'],
+#                       'FilesPerJob' : 5 ,
+#                   }
 
-for Run in DataRun :
-  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__hadd__multiFakeW__formulasFAKE/'
-  fort DataSet in DataSets :
-    FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
-    for iFile in FileTarget:
-      samples['Fake']['name'].append(iFile)
-      samples['Fake']['weights'].append(DataTrig[DataSet])
+#for Run in DataRun :
+#  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__multiFakeW__formulasFAKE__hadd'+skimFake+'/'
+#  for DataSet in DataSets :
+#    FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
+#    for iFile in FileTarget:
+#      samples['Fake']['name'].append(iFile)
+#      samples['Fake']['weights'].append(DataTrig[DataSet])
 
 ###########################################
 ################## DATA ###################
@@ -409,7 +416,7 @@ samples['DATA']  = {   'name': [ ] ,
                   }
 
 for Run in DataRun :
-  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__hadd__l2tightOR__formulasDATA/'
+  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__hadd__l2tightOR__formulasDATA'+skim+'/'
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:
