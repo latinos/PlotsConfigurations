@@ -3,6 +3,7 @@ import subprocess
 import string
 from LatinoAnalysis.Tools.commonTools import *
 
+
 # samples
 
 #samples = {}
@@ -11,75 +12,39 @@ from LatinoAnalysis.Tools.commonTools import *
 ###### Tree Directory according to site ######
 ##############################################
 
-SITE=os.uname()[1]
-xrootdPath=''
+#SITE=os.uname()[1]
+SITE='cern'
 if    'iihe' in SITE :
-  xrootdPath  = 'dcap://maite.iihe.ac.be/' 
   treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/'
 elif  'cern' in SITE :
-  treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/'
+  treeBaseDir = '/eos/cms/store/caf/user/lenzip/Full2016/'
 
-#directory = treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight/'
-directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__l2loose__hadd__l2tightOR__formulasMC/'
+directory = treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__wwSel__genericFormulas/'
 
 
 ################################################
 ############ BASIC MC WEIGHTS ##################
 ################################################
 
-#XSWeight      = 'baseW*GEN_weight_SM/abs(GEN_weight_SM)'
-#SFweight      = 'puW*bPogSF_CMVAL*effTrigW*veto_EMTFBug*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]'
-#GenLepMatch   = 'std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]'
+XSWeight      = 'baseW*GEN_weight_SM/abs(GEN_weight_SM)'
+SFweight      = 'puW*bPogSF_CMVAL*effTrigW*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*veto_EMTFBug'
+GenLepMatch   = 'std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]'
 
-XSWeight      = 'XSWeight'
-SFweight      = 'SFweight2l'
-GenLepMatch   = 'GenLepMatch2l'
+Top_pTrw      = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topLHEpt) * TMath::Exp(0.0615-0.0005*antitopLHEpt) ) )'
 
-# Choose Lepton WP
-
-#... Electron:
-
-eleWP='cut_WP_Tight80X'
-#eleWP='cut_WP_Tight80X_SS'
-#eleWP='mva_80p_Iso2015'
-#eleWP='mva_80p_Iso2016'
-#eleWP='mva_90p_Iso2015'
-#eleWP='mva_90p_Iso2016'
-
-#... Muon:
-
-muWP='cut_Tight80x'
-
-#... Build formula
-
-
-LepWPCut        = 'LepCut2l__ele_'+eleWP+'__mu_'+muWP
-LepWPweight     = 'LepSF2l__ele_'+eleWP+'__mu_'+muWP
-
-#LepWPCut        = '((std_vector_electron_isTightLepton_'+eleWP+'[0]>0.5||std_vector_muon_isTightLepton_'+muWP+'[0]>0.5)&&(std_vector_electron_isTightLepton_'+eleWP+'[1]>0.5||std_vector_muon_isTightLepton_'+muWP+'[1]>0.5))'
-#LepWPweight     = 'std_vector_electron_idisoW_'+eleWP+'[0]*std_vector_electron_idisoW_'+eleWP+'[1]*std_vector_muon_idisoW_'+muWP+'[0]*std_vector_muon_idisoW_'+muWP+'[1]'
-
-
-
-
-SFweight += '*'+LepWPweight+'*'+LepWPCut
 
 ################################################
 ############   MET  FILTERS  ###################
 ################################################
 
-#METFilter_Common = '(std_vector_trigger_special[0]*std_vector_trigger_special[1]*std_vector_trigger_special[2]*std_vector_trigger_special[3]*std_vector_trigger_special[5])'
+METFilter_Common = '(std_vector_trigger_special[0]*std_vector_trigger_special[1]*std_vector_trigger_special[2]*std_vector_trigger_special[3]*std_vector_trigger_special[5])'
 
-#METFilter_DATA   =  METFilter_Common + '*' + '(std_vector_trigger_special[4]*!std_vector_trigger_special[6]*!std_vector_trigger_special[7]*std_vector_trigger_special[8]*std_vector_trigger_special[9])'
+METFilter_DATA   =  METFilter_Common + '*' + '(std_vector_trigger_special[4]*!std_vector_trigger_special[6]*!std_vector_trigger_special[7]*std_vector_trigger_special[8]*std_vector_trigger_special[9])'
 
-#METFilter_MCver  =  '(std_vector_trigger_special[8]==-2.)'
-#METFilter_MCOld  =  '(std_vector_trigger_special[6]*std_vector_trigger_special[7])'
-#METFilter_MCNew  =  '(std_vector_trigger_special[8]*std_vector_trigger_special[9])'
-#METFilter_MC     =  METFilter_Common + '*' + '(('+METFilter_MCver+'*'+METFilter_MCOld+')||(!'+METFilter_MCver+'*'+METFilter_MCNew+'))' 
-
-METFilter_MC   = 'METFilter_MC'
-METFilter_DATA = 'METFilter_DATA'
-
+METFilter_MCver  =  '(std_vector_trigger_special[8]==-2.)'
+METFilter_MCOld  =  '(std_vector_trigger_special[6]*std_vector_trigger_special[7])'
+METFilter_MCNew  =  '(std_vector_trigger_special[8]*std_vector_trigger_special[9])'
+METFilter_MC     =  METFilter_Common + '*' + '(('+METFilter_MCver+'*'+METFilter_MCOld+')||(!'+METFilter_MCver+'*'+METFilter_MCNew+'))' 
 
 ################################################
 ############ DATA DECLARATION ##################
@@ -114,7 +79,7 @@ DataTrig = {
 ###### DY #######
 
 useDYHT = False       # be carefull DY HT is LO 
-useDYtt = False     
+useDYtt = True     
 mixDYttandHT = False  # be carefull DY HT is LO (HT better stat for HT>450 GEV)
 
 ### These weights were evaluated on ICHEP16 MC -> Update ?
@@ -122,19 +87,20 @@ ptllDYW_NLO = '1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582
 ptllDYW_LO  = '(8.61313e-01+gen_ptll*4.46807e-03-1.52324e-05*gen_ptll*gen_ptll)*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-11.)/5.51582)))*(gen_ptll<140)+1.141996*(gen_ptll>=140)'
 
 samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-10to50')
-                                  + getSampleFiles(directory,'DYJetsToLL_M-50')     ,
-                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 1 ,
+                                  + getSampleFiles(directory,'DYJetsToLL_M-50'), 
+                     'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC', #XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC, 
+                     'FilesPerJob' : 3,
                  }
 
 # ... Add DY HT Samples
 if useDYHT :
-  samples['DY']['name'] +=   getSampleFiles(directory,'DYJetsToLL_M-5to50_HT-70to100') \
-                             + getSampleFiles(directory,'DYJetsToLL_M-5to50_HT-100to200')\
-                             + getSampleFiles(directory,'DYJetsToLL_M-5to50_HT-200to400') \
-                             + getSampleFiles(directory,'DYJetsToLL_M-5to50_HT-400to600') \
-                             + getSampleFiles(directory,'DYJetsToLL_M-5to50_HT-600toInf') \
-                             + getSampleFiles(directory,'DYJetsToLL_M-50_HT-70to100') \
+  #use the inclusive LO sample
+  samples['DY'] = {  'name'   :   #getSampleFiles(directory,'DYJetsToLL_M-10to50-LO')
+                                  getSampleFiles(directory,'DYJetsToLL_M-50-LO-ext1')     ,
+                     'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC', #XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+                     'FilesPerJob' : 3, 
+                 }  
+  samples['DY']['name'] +=    getSampleFiles(directory,'DYJetsToLL_M-50_HT-70to100') \
                              + getSampleFiles(directory,'DYJetsToLL_M-50_HT-100to200') \
                              + getSampleFiles(directory,'DYJetsToLL_M-50_HT-100to200_ext1') \
                              + getSampleFiles(directory,'DYJetsToLL_M-50_HT-200to400') \
@@ -157,15 +123,11 @@ addSampleWeight(samples,'DY','DYJetsToLL_M50'     ,ptllDYW_NLO)
 
 if useDYHT :
   # Remove high HT from inclusive sample
-  genHT = 'std_vector_LHEparton_pt[0]*(std_vector_LHEparton_pt[0]>0)+std_vector_LHEparton_pt[1]*(std_vector_LHEparton_pt[1]>0)+std_vector_LHEparton_pt[2]*(std_vector_LHEparton_pt[2]>0)'
-  addSampleWeight(samples,'DY','DYJetsToLL_M-10to50', genHT+'<70.0')  
-  addSampleWeight(samples,'DY','DYJetsToLL_M-50'    , genHT+'<70.0')  
+  genHT = 'std_vector_LHEparton_pt[0]*(std_vector_LHEparton_pt[0]>0)+std_vector_LHEparton_pt[1]*(std_vector_LHEparton_pt[1]>0)+std_vector_LHEparton_pt[2]*(std_vector_LHEparton_pt[2]>0)+std_vector_LHEparton_pt[3]*(std_vector_LHEparton_pt[3]>0)'
+  #addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO', genHT+'<70.0')  
+  addSampleWeight(samples,'DY','DYJetsToLL_M-50-LO-ext1'    , genHT+'<70.0')  
   # pt_ll weight
-  addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-70to100'    ,ptllDYW_LO)
-  addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-100to200'   ,ptllDYW_LO)
-  addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-200to400'   ,ptllDYW_LO)
-  addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-400to600'   ,ptllDYW_LO)
-  addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-600toInf'   ,ptllDYW_LO)
+  addSampleWeight(samples,'DY','DYJetsToLL_M-50-LO-ext1'          ,ptllDYW_LO)
   addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-70to100'       ,ptllDYW_LO)
   addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200'      ,ptllDYW_LO)
   addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200_ext1' ,ptllDYW_LO)
@@ -177,7 +139,7 @@ if useDYHT :
   addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-1200to2500'    ,ptllDYW_LO)
   addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toInf'     ,ptllDYW_LO)
   # Fix some x-sections
-  addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-70to100'    , getBaseW(directory,['DYJetsToLL_M-5to50_HT-70to100'])+'/baseW')   # x-section update
+  #addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-70to100'    , getBaseW(directory,['DYJetsToLL_M-5to50_HT-70to100'])+'/baseW')   # x-section update
   addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-70to100'       , getBaseW(directory,['DYJetsToLL_M-50_HT-70to100'])+'/baseW')      # x-section update
   # set baseW across both samples
   addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200'      , getBaseW(directory,['DYJetsToLL_M-50_HT-100to200','DYJetsToLL_M-50_HT-100to200_ext1'])+'/baseW')
@@ -229,21 +191,32 @@ samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu')
                                   + getSampleFiles(directory,'ST_t-channel_top')
                                   + getSampleFiles(directory,'ST_s-channel')   
                              ,
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-                      'FilesPerJob' : 3 ,
+                      'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC', #XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC, 
+                      'FilesPerJob' : 3 
                   }
-                  
+# add the top pt reweighting for ttbar                  
+addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
 
 ###### WW ########
-             
+# TO BE REPLACED WITH THE DEDICATED MG sample
+
 samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu') ,
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*nllW' ,  
+                      'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC*nllW' ,  
                  }
 
+#samples['WpWmJJ_EWK_noTop'] = { 'name': getSampleFiles(directory,'WpWmJJ_EWK_noTop'),
+#                                'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC',#*(mWp>60)*(mWp<100)*(mWm>60)*(mWm<100)',
+#                              }
 
 
-samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'),      
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+
+#samples['WpWmJJ_QCD_noTop'] = { 'name':  getSampleFiles(directory,'WpWmJJ_QCD_noTop'),
+#                                'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC',#*(mWp>60)*(mWp<100)*(mWm>60)*(mWm<100)',
+#                              }
+
+
+samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2NuHiggs_MCFM'),      
+                      'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC', #XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                       'isData': ['0'],                            
                    }
 
@@ -256,13 +229,13 @@ samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'
 samples['Vg']  =  {     'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM')
                                    + getSampleFiles(directory,'Zg')
                                    ,
-                        'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
+                        'weight' : 'XSWeight*SFweight*METFilter_MC * !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )', #XSWeight+'*'+SFweight+'*'+METFilter_MC + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
                   }
 
 ######## VgS ########
 
 samples['VgS']  = {    'name':  getSampleFiles(directory,'WgStarLNuEE') + getSampleFiles(directory,'WgStarLNuMuMu') ,
-                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.4' ,  
+                       'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC *1.4', #XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.4' ,  
                   }
 
 ## 
@@ -283,8 +256,8 @@ samples['VZ']  = {    'name':   getSampleFiles(directory,'WZTo3LNu')
                               # Should we include this as well here:
                               # + getSampleFiles(directory,'tZq_ll')
                               ,   
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.11' ,  
-                      'FilesPerJob' : 3 ,
+                      'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC *1.11', #XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.11' ,  
+                      'FilesPerJob' : 5 
                   }
 
 ### 1.11 normalisation was measured in 3-lepton
@@ -298,98 +271,79 @@ samples['VVV'] = {    'name':   getSampleFiles(directory,'ZZZ')
                            #  WWG: Might be added to WW by PYTHIA in tuning step, super small x-section anyway -> skipped for now 
                            #  + getSampleFiles(directory,'WWG')
                               ,    
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                      'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC' , #XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                   }
+
+## Htautau
+#samples['H_htt']  = {      'name':   getSampleFiles(directory,'GluGluHToWWToTauTau_M125')
+#                                   + getSampleFiles(directory,'VBFHToWWToTauTau_M125')
+#                                    ,      
+#                           'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC',         
+#                  }
 
 ###########################################
 #############   SIGNALS  ##################
 ###########################################
-
-
-#### ggH -> WW
-
-samples['ggH_hww']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+samples['ggH_hww']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2Nu_M125') ,
+                         'weight': 'XSWeight*SFweight*GenLepMatch*METFilter_MC' , #XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                       }
 
 
 #### VBF H->WW
 
-samples['qqH_hww']  = {   'name' : getSampleFiles(directory,'VBFHToWWTo2L2Nu_alternative_M125') ,
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+samples['qqH_hww']  = {   'name' : getSampleFiles(directory,'VBFHToWWTo2L2Nu_M125') ,
+                         'weight': 'XSWeight*SFweight*GenLepMatch*METFilter_MC' , #XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                       }
 
-### ZH ; H->WW
-
-samples['ZH_hww']   = {   'name' :  getSampleFiles(directory,'HZJ_HToWW_M125') ,
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-                      }
-
-samples['ggZH_hww'] = {   'name' : getSampleFiles(directory,'ggZH_HToWW_M125') ,
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-                      }
-
-#### WH ; H->WW
-
-samples['WH_hww']   = {   'name' :   getSampleFiles(directory,'HWminusJ_HToWW_M125')
-                                   + getSampleFiles(directory,'HWplusJ_HToWW_M125')
-                                   , 
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-                      }
-
-#### bbHY ; H->WW 
-
-samples['bbH_hww']  = {  'name' :   getSampleFiles(directory,'bbHToWWTo2L2Nu_M125_yb2') 
-                                  + getSampleFiles(directory,'bbHToWWTo2L2Nu_M125_ybyt')
-                                  ,
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                      }
+samples['ggZH_hww']  = {    'name': getSampleFiles(directory,'ggZH_HToWW_M125'),      
+                           'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC',          
+                  }
 
 
-#### H -> TauTau
+samples['WH_hww']  = {    'name':   getSampleFiles(directory,'HWminusJ_HToWW_M125')
+                                  + getSampleFiles(directory,'HWplusJ_HToWW_M125'),
+                           'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC', 
+                  }
 
-samples['H_htt']    = {   'name' :   getSampleFiles(directory,'GluGluHToTauTau_M125')
-                                   + getSampleFiles(directory,'VBFHToTauTau_M125')
-                                   + getSampleFiles(directory,'HZJ_HToTauTau_M125')
-                                   + getSampleFiles(directory,'HWplusJ_HToTauTau_M125')
-                                   + getSampleFiles(directory,'HWminusJ_HToTauTau_M125')
-                                   ,  
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-                      }
+samples['ZH_hww']  = {    'name': getSampleFiles(directory,'HZJ_HToWW_M125'),
+                          'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC', 
+                  }
 
 
 ###########################################
 ################## FAKE ###################
 ###########################################
 
-#samples['Fake']  = {   'name': [ ] ,
-#                       'weight' : '(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))*veto_EMTFBug'+'*'+METFilter_DATA,              #   weight/cut 
-#                       'weights' : [ ] ,
-#                       'isData': ['all'],
-#                       'FilesPerJob' : 5 ,
-#                   }
+samples['Fake']  = {   'name': [ ] ,
+                       'weight' : '(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))*veto_EMTFBug*METFilter_DATA', #'(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))*veto_EMTFBug'+'*'+METFilter_DATA,              #   weight/cut 
+                       'weights' : [ ] ,
+                       'isData': ['all'],
+                       'FilesPerJob' : 8 ,
+                   }
 
-#for Run in DataRun :
-#  directory = treeBaseDir+'Feb2017_Run2016'+Run[0]+'_RemAOD/l2looseCut__hadd__EpTCorr__TrigMakerData__fakeWCut/'
-#  for DataSet in DataSets :
-#    FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
-#    for iFile in FileTarget:
-#      samples['Fake']['name'].append(iFile)
-#      samples['Fake']['weights'].append(DataTrig[DataSet])
- 
+for Run in DataRun :
+  #directory = treeBaseDir+'Feb2017_Run2016'+Run[0]+'_RemAOD/l2looseCut__hadd__EpTCorr__TrigMakerData__fakeWCut/'
+  directory = treeBaseDir+'Feb2017_Run2016'+Run[0]+'_RemAOD/l2looseCut__hadd__EpTCorr__TrigMakerData__fakeWCut__wwSel__genericFormulas/'
+  for DataSet in DataSets :
+    FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
+    for iFile in FileTarget:
+      samples['Fake']['name'].append(iFile)
+      samples['Fake']['weights'].append(DataTrig[DataSet])
+
 ###########################################
 ################## DATA ###################
 ###########################################
 
 samples['DATA']  = {   'name': [ ] ,     
-                       'weight' : 'veto_EMTFBug'+'*'+METFilter_DATA+'*'+LepWPCut,
+                       'weight' : 'veto_EMTFBug*METFilter_DATA',#'veto_EMTFBug'+'*'+METFilter_DATA,
                        'weights' : [ ],
-                       'isData': ['all'],                            
-                       'FilesPerJob' : 5 ,
+                       'isData': ['all'], 
+                       'FilesPerJob' : 8 ,
                   }
 
 for Run in DataRun :
-  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__l2loose__hadd__l2tightOR__formulasDATA/'
+  #directory = treeBaseDir+'Feb2017_Run2016'+Run[0]+'_RemAOD/l2looseCut__hadd__EpTCorr__TrigMakerData__l2tight/'
+  directory = treeBaseDir+'Feb2017_Run2016'+Run[0]+'_RemAOD/l2looseCut__hadd__EpTCorr__TrigMakerData__l2tight__wwSel__genericFormulas/'
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:
