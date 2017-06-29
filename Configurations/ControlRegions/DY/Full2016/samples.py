@@ -7,39 +7,106 @@ from LatinoAnalysis.Tools.commonTools import *
 
 #samples = {}
 
+################################################
+################# SKIMS ########################
+################################################
+
+skim=''
+#skim='__wwSel'
+#skim='__topSel'
+#skim='__topSel'
+#skim='__vh3lSel' 
+#skim='__sfSel' 
+#skim='__vbsSel'
+#skim='__ssSel'
+
+if skim =='__vh3lSel' :  skimFake='__vh3lFakeSel'
+else:                    skimFake=skim
+
 ##############################################
 ###### Tree Directory according to site ######
 ##############################################
 
 SITE=os.uname()[1]
+xrootdPath=''
 if    'iihe' in SITE :
+  xrootdPath  = 'dcap://maite.iihe.ac.be/' 
   treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/'
 elif  'cern' in SITE :
-  treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016/'
+  treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/'
 
-directory = treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight/'
-
+directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC'+skim+'/'
 
 ################################################
 ############ BASIC MC WEIGHTS ##################
 ################################################
 
-XSWeight      = 'baseW*GEN_weight_SM/abs(GEN_weight_SM)'
-SFweight      = 'puW*bPogSF_CMVAL*effTrigW*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*veto_EMTFBug'
-GenLepMatch   = 'std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]'
+XSWeight      = 'XSWeight'
+SFweight      = 'SFweight2l'
+GenLepMatch   = 'GenLepMatch2l'
+
+################################################
+############### B-Tag  WP ######################
+################################################
+
+bAlgo='cmvav2'
+#bAlgo='csvv2ivf'
+#bAlgo='DeepCSVB'
+
+bWP='L'
+#bWP='M'
+#bWP='T'
+
+# ... bPog SF
+
+bSF='1.'
+if   bAlgo == 'cmvav2' :
+ bSF='bPogSF_CMVA'+bWP
+elif bAlgo == 'csvv2ivf' :
+ bSF='bPogSF_CSV'+bWP
+elif bAlgo == 'DeepCSVB' :
+ bSF='bPogSF_deepCSV'+bWP
+
+SFweight += '*'+bSF
+
+# ... b Veto
+
+bVeto='bveto_'+bAlgo+bWP
+
+################################################
+############### Lepton WP ######################
+################################################
+
+#... Electron:
+
+eleWP='cut_WP_Tight80X'
+#eleWP='cut_WP_Tight80X_SS'
+#eleWP='mva_80p_Iso2015'
+#eleWP='mva_80p_Iso2016'
+#eleWP='mva_90p_Iso2015'
+#eleWP='mva_90p_Iso2016'
+
+#... Muon:
+
+muWP='cut_Tight80x'
+
+#... Build formula
+
+LepWPCut        = 'LepCut2l__ele_'+eleWP+'__mu_'+muWP
+LepWPweight     = 'LepSF2l__ele_'+eleWP+'__mu_'+muWP
+
+SFweight += '*'+LepWPweight+'*'+LepWPCut
+
+#... And the fakeW
+
+fakeW  = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP
 
 ################################################
 ############   MET  FILTERS  ###################
 ################################################
 
-METFilter_Common = '(std_vector_trigger_special[0]*std_vector_trigger_special[1]*std_vector_trigger_special[2]*std_vector_trigger_special[3]*std_vector_trigger_special[5])'
-
-METFilter_DATA   =  METFilter_Common + '*' + '(std_vector_trigger_special[4]*!std_vector_trigger_special[6]*!std_vector_trigger_special[7]*std_vector_trigger_special[8]*std_vector_trigger_special[9])'
-
-METFilter_MCver  =  '(std_vector_trigger_special[8]==-2.)'
-METFilter_MCOld  =  '(std_vector_trigger_special[6]*std_vector_trigger_special[7])'
-METFilter_MCNew  =  '(std_vector_trigger_special[8]*std_vector_trigger_special[9])'
-METFilter_MC     =  METFilter_Common + '*' + '(('+METFilter_MCver+'*'+METFilter_MCOld+')||(!'+METFilter_MCver+'*'+METFilter_MCNew+'))' 
+METFilter_MC   = 'METFilter_MC'
+METFilter_DATA = 'METFilter_DATA'
 
 ################################################
 ############ DATA DECLARATION ##################
@@ -73,9 +140,9 @@ DataTrig = {
 
 ###### DY #######
 
-useDYHT = True       # be carefull DY HT is LO 
-useDYtt = True     
-mixDYttandHT = True  # be carefull DY HT is LO (HT better stat for HT>450 GEV)
+useDYHT = False       # be carefull DY HT is LO 
+useDYtt = False     
+mixDYttandHT = False  # be carefull DY HT is LO (HT better stat for HT>450 GEV)
 
 ### These weights were evaluated on ICHEP16 MC -> Update ?
 ptllDYW_NLO = '1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582))'
@@ -322,34 +389,34 @@ samples['H_htt']    = {   'name' :   getSampleFiles(directory,'GluGluHToTauTau_M
 ################## FAKE ###################
 ###########################################
 
-samples['Fake']  = {   'name': [ ] ,
-                       'weight' : '(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))*veto_EMTFBug'+'*'+METFilter_DATA,              #   weight/cut 
-                       'weights' : [ ] ,
-                       'isData': ['all'],
-                       'FilesPerJob' : 5 ,
-                   }
+#samples['Fake']  = {   'name': [ ] ,
+#                       'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA,              #   weight/cut 
+#                       'weights' : [ ] ,
+#                       'isData': ['all'],
+#                       'FilesPerJob' : 5 ,
+#                   }
 
-for Run in DataRun :
-  directory = treeBaseDir+'Feb2017_Run2016'+Run[0]+'_RemAOD/l2looseCut__hadd__EpTCorr__TrigMakerData__fakeWCut/'
-  for DataSet in DataSets :
-    FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
-    for iFile in FileTarget:
-      samples['Fake']['name'].append(iFile)
-      samples['Fake']['weights'].append(DataTrig[DataSet])
+#for Run in DataRun :
+#  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__multiFakeW__formulasFAKE__hadd'+skimFake+'/'
+#  for DataSet in DataSets :
+#    FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
+#    for iFile in FileTarget:
+#      samples['Fake']['name'].append(iFile)
+#      samples['Fake']['weights'].append(DataTrig[DataSet])
 
 ###########################################
 ################## DATA ###################
 ###########################################
 
 samples['DATA']  = {   'name': [ ] ,     
-                       'weight' : 'veto_EMTFBug'+'*'+METFilter_DATA,
+                       'weight' : 'veto_EMTFBug'+'*'+METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],                            
                        'FilesPerJob' : 5 ,
                   }
 
 for Run in DataRun :
-  directory = treeBaseDir+'Feb2017_Run2016'+Run[0]+'_RemAOD/l2looseCut__hadd__EpTCorr__TrigMakerData__l2tight/'
+  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__hadd__l2tightOR__formulasDATA'+skim+'/'
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:

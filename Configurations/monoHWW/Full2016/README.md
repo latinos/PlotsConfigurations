@@ -29,7 +29,7 @@ em Channel:
 
     cd ..
 
-    mkPlot.py        --pycfg=configuration_em.py  --inputFile=rootFile_em/plots_monoHWW_em.root  --minLogC=0.0001 --minLogCratio=0.0001 --maxLogC=1000 --maxLogCratio=1000  --showIntegralLegend=1
+    mkPlot.py        --pycfg=configuration_em.py  --inputFile=rootFile_em/plots_monoHWW_em.root  --minLogC=0.01 --minLogCratio=0.01 --maxLogC=1000 --maxLogCratio=1000  --showIntegralLegend=1
 
     rm rootFile_em/plots_monoHWW_em_monoH_MVA_*
 
@@ -46,7 +46,7 @@ sf Channel:
 
     cd ..
 
-    mkPlot.py --pycfg=configuration_sf.py  --inputFile=rootFile_sf/plots_monoHWW_sf.root  --minLogC=0.0001 --minLogCratio=0.0001 --maxLogC=1000 --maxLogCratio=1000  --showIntegralLegend=1
+    mkPlot.py --pycfg=configuration_sf.py  --inputFile=rootFile_sf/plots_monoHWW_sf.root  --minLogC=0.01 --minLogCratio=0.01 --maxLogC=1000 --maxLogCratio=1000  --showIntegralLegend=1
 
     rm rootFile_sf/plots_monoHWW_sf_monoH_MVA_*
 
@@ -59,14 +59,14 @@ Produce Plots for em Channel:
 
     mkShapes.py      --pycfg=configuration_em.py  --inputDir=/eos/user/n/ntrevisa/trees/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__wwSel__monohSel/  --doThread=True
 
-    mkPlot.py        --pycfg=configuration_em.py  --inputFile=rootFile_em/plots_monoHWW_em.root  --minLogC=0.0001 --minLogCratio=0.0001 --maxLogC=1000 --maxLogCratio=1000  --showIntegralLegend=1
+    mkPlot.py        --pycfg=configuration_em.py  --inputFile=rootFile_em/plots_monoHWW_em.root  --minLogC=0.01 --minLogCratio=0.01 --maxLogC=1000 --maxLogCratio=1000  --showIntegralLegend=1
 
 
 Produce Plots for sf Channel:
 
     mkShapes.py      --pycfg=configuration_sf.py  --inputDir=/eos/user/n/ntrevisa/trees/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__sfSel__monohSel/ --doThread=True
 
-    mkPlot.py        --pycfg=configuration_sf.py  --inputFile=rootFile_sf/plots_monoHWW_sf.root  --minLogC=0.0001 --minLogCratio=0.0001 --maxLogC=1000 --maxLogCratio=1000  --showIntegralLegend=1
+    mkPlot.py        --pycfg=configuration_sf.py  --inputFile=rootFile_sf/plots_monoHWW_sf.root  --minLogC=0.01 --minLogCratio=0.01 --maxLogC=1000 --maxLogCratio=1000  --showIntegralLegend=1
 
 
 # 3 PRODUCE DATACARDS
@@ -119,7 +119,7 @@ Using the script:
 
 # 6 DRAW THE EXCLUSION PLOTS
 
-    root -l -b -q 'plot_Asymptotic_ForCombination.C("","em")'
+    root -l -b -q 'plot_Asymptotic_ForCombination.C("","em","mthBin","MVA","2HDM")'
 
 
 # 7 PERFORM A GOODNESS OF FIT TEST ON THE CONTROL REGIONS
@@ -135,3 +135,66 @@ By hand for mth variable:
 Using the script on the three control regions:
 
     python scriptGoodnessOfFit.py mth
+
+# 8 PRODUCE PRE-FIT TABLES FOR NUISANCES IN THE SIGNAL REGION
+
+First produce a copy of the datacard with just one signal sample (in order to be able to read the table)	
+
+      cd ~/work/CMSSW_8_0_26_patch1/src/ModificationDatacards
+
+      python RemoveSample.py   ../PlotsConfigurations/Configurations/monoHWW/Full2016/datacards/monoH_MVA_em/muccamva2HDMadaptFull/datacard.txt.pruned.txt    -i   inputRemoval.py
+
+      cp test.tex cp test.txt ../PlotsConfigurations/Configurations/monoHWW/Full2016/datacards/monoH_MVA_em/muccamva2HDMadaptFull/
+
+      cd -
+
+And then create the actual table from that small datacard
+
+    cd ~/work/CMSSW_8_0_26_patch1/src/PlayWithDatacards/
+
+    python systematicsAnalyzer.py ../PlotsConfigurations/Configurations/monoHWW/Full2016/datacards/monoH_MVA_em/muccamva2HDMadaptFull/test.txt --all -f tex > ../PlotsConfigurations/Configurations/monoHWW/Full2016/tables/monoH_MVA_em_muccamva2HDMadaptFull.tex
+
+    cd -
+
+# 9 CALCULATE PDF AND QCD ACCEPTANCE UNCERTANTIES
+
+    At the end you will find the nuisances values in the testPDF folder. Copy them in your favourite nuisances.py file. 
+
+    cd PDFQCD/
+
+    mkShapes.py --pycfg=configuration.py --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__wwSel/ --doThread==True 
+
+    mkPDF.py --pycfg=configuration.py --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__wwSel/ --inputFile=rootFile/plots_monoHWW_em.root --outputDirPDF=testPDF/
+
+    cd -
+
+    
+# 10 PRODUCE SYSTEMATIC PULLS AND IMPACT PLOTS
+
+Step by step:
+
+    text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose --PO 'map=.*/monoH_*:0' --PO 'map=.*/monoH_800_300:r[1,0,10]' datacards/monoH_MVA_em/mthBin/datacard_combined.txt -o datacards/monoH_MVA_em/mthBin/datacard_combined.root
+
+    combineTool.py -M Impacts -d datacards/monoH_MVA_em/mthBin/datacard_combined.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit 1
+  
+    combineTool.py -M Impacts -d datacards/monoH_MVA_em/mthBin/datacard_combined.root -m 125 -t -1 --expectSignal=1 --robustFit 1 --doFits
+  
+    combineTool.py -M Impacts -d datacards/monoH_MVA_em/mthBin/datacard_combined.root -m 125 -o impactPlots_em/mthBin.json
+  
+    plotImpacts.py -i impactPlots_em/mthBin.json -o impactPlots_em/mthBin
+
+Or using the script:
+
+    python scriptImpact.py em mthBin MVA
+
+# 11 DRAW THE EFFECT OF SHAPE-BASED NUISANCES ON EACH SAMPLE ONE BY ONE
+
+    cd ~/work/CMSSW_8_0_26_patch1/src/LatinoAnalysis/ShapeAnalysis/test/draw/
+  
+    python DrawNuisancesAll.py --inputFile /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Full2016/datacards/monoH_MVA_em/muccamva2HDMadaptFull/shapes/histos_monoH_MVA_em.root --outputDirPlots nuisancesPlots_MVA_em_muccamva2HDMadaptFull --nuisancesFile /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Full2016/nuisances_full_em.py --samplesFile /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Full2016/samples_em.py --cutName monoH_MVA_em
+
+    cd -
+
+# 12 SPLIT DATACARDS IN ORDER TO HAVE JUST ONE SIGNAL IN EACH OF THEM (USE THIS FOR COMBINATION PURPOSES)
+
+  python scriptSplitting.py em mthBin MVA

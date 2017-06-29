@@ -31,7 +31,7 @@ cuts['hww2l2v_13TeV_top_ue2j']  = '(abs(std_vector_lepton_flavour[0]) == 13 && a
 
 cutsSF = '   && fabs(91.1876 - mll) > 15  \
              && metTtrk > 20  \
-             &&  ( ( ( abs(detajj) <  3.5 || mjj <  400 )  && dymvaggh < 0.93 )  || ( ( abs(detajj) >= 3.5 || mjj >= 400 ) && dymvavbf < 0.93 )  )  \
+             &&  ( ( ( abs(detajj) <  3.5 || mjj <  400 )  && dymvaggh > 0.93 )  || ( ( abs(detajj) >= 3.5 || mjj >= 400 ) && dymvavbf > 0.93 )  )  \
          '
 
 cuts['hww2l2v_13TeV_top_sf2j']  = '((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11) || (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13))  \
