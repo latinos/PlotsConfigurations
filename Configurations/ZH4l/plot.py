@@ -68,15 +68,16 @@ groupPlot['ZZ']  = {
                   'nameHR' : "ZZ",
                   'isSignal' : 0,
                   'color'    : 857,   # kAzure -3
-                  'samples'  : ['ZZ','ggZZ']
+                  'samples'  : ['ZZ']
+                  # 'samples'  : ['ZZ','ggZZ']
               }
 
-groupPlot['ggH_hzz']  = {
-                  'nameHR' : "ggH_hzz",
-                  'isSignal' : 0,
-                  'color'    : 626,   # kRed -6  
-                  'samples'  : ['ggH_hzz']
-              }
+# groupPlot['ggH_hzz']  = {
+                  # 'nameHR' : "ggH_hzz",
+                  # 'isSignal' : 0,
+                  # 'color'    : 626,   # kRed -6  
+                  # 'samples'  : ['ggH_hzz']
+              # }
 
 
 groupPlot['WZ']  = {
@@ -250,20 +251,20 @@ plot['ZZ']  = {
                   'scale'    : 1.0
                   }
 
-plot['ggZZ']  = { 
-                  'nameHR' : 'ggZZ',
-                  'color'    : 857,   # kAzure -3
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
-plot['ggH_hzz']  = { 
-                  'nameHR' : 'ggH_hzz',
-                  'color'    : 626,   # kRed -6  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
+# plot['ggZZ']  = { 
+                  # 'nameHR' : 'ggZZ',
+                  # 'color'    : 857,   # kAzure -3
+                  # 'isSignal' : 0,
+                  # 'isData'   : 0,
+                  # 'scale'    : 1.0
+                  # }
+# plot['ggH_hzz']  = { 
+                  # 'nameHR' : 'ggH_hzz',
+                  # 'color'    : 626,   # kRed -6  
+                  # 'isSignal' : 0,
+                  # 'isData'   : 0,
+                  # 'scale'    : 1.0
+                  # }
 
 plot['VVZ']  = { 
                   'color': 618, # kViolet +2   
@@ -334,7 +335,7 @@ plot['ggZH_hww'] = {
 #                  'isSignal' : 1,
 #                  'isData'   : 0,    
 #                  'scale'    : 1    #
-#
+
 #plot['ggH_hww'] = {
 #                  'nameHR' : 'ggH',
 #                  'color': 632, # kRed 
@@ -344,13 +345,13 @@ plot['ggZH_hww'] = {
 #                  }
 
 # data
-#
+
 plot['DATA']  = { 
                   'nameHR' : 'Data',
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0
+                  'isBlind'  : 1
               }
 
 
@@ -358,7 +359,7 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 12.9/fb' # 12.8890 fb-1
+legend['lumi'] = 'L = 35.9/fb' # Full2016 data
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 
