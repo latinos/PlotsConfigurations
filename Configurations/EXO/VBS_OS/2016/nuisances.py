@@ -543,8 +543,8 @@ nuisances['jes']  = {
 
 #Add Signal!!! 
                 },
-                'folderUp'   : '/eos/cms/store/caf/user/lenzip/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__JESup__wwSel__genericFormulas/',
-                'folderDown' : '/eos/cms/store/caf/user/lenzip/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__JESdo__wwSel__genericFormulas/' 
+                'folderUp'   : '###root://eoscms.cern.ch//eos/cms/store/caf/user/lenzip/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__JESup__wwSel__genericFormulas/',
+                'folderDown' : '###root://eoscms.cern.ch//eos/cms/store/caf/user/lenzip/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__JESdo__wwSel__genericFormulas/' 
 }
 nuisances['electronpt']  = {
                 'name'  : 'scale_e', 
@@ -572,8 +572,8 @@ nuisances['electronpt']  = {
                    'WW_DoubleScattering': ['1', '1'],
 #Add signal!!!
                 },
-                'folderUp'   : '/eos/cms/store/caf/user/lenzip/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepElepTCutup__wwSel__genericFormulas/',
-                'folderDown' : '/eos/cms/store/caf/user/lenzip/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepElepTCutdo__wwSel__genericFormulas/' 
+                'folderUp'   : '###root://eoscms.cern.ch//eos/cms/store/caf/user/lenzip/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepElepTCutup__wwSel__genericFormulas/',
+                'folderDown' : '###root://eoscms.cern.ch//eos/cms/store/caf/user/lenzip/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepElepTCutdo__wwSel__genericFormulas/' 
 }    
 nuisances['muonpt']  = {
                 'name'  : 'scale_m', 
@@ -602,8 +602,8 @@ nuisances['muonpt']  = {
 #Add signal!!!
 
                 },
-                'folderUp'   : '/eos/cms/store/caf/user/lenzip/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepMupTCutup__wwSel__genericFormulas/',
-                'folderDown' : '/eos/cms/store/caf/user/lenzip/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepMupTCutdo__wwSel__genericFormulas/' 
+                'folderUp'   : '###root://eoscms.cern.ch//eos/cms/store/caf/user/lenzip/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepMupTCutup__wwSel__genericFormulas/',
+                'folderDown' : '###root://eoscms.cern.ch//eos/cms/store/caf/user/lenzip/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepMupTCutdo__wwSel__genericFormulas/' 
 }
 
 nuisances['met']  = {
@@ -633,8 +633,8 @@ nuisances['met']  = {
 #Add signal!!!
 
                 },
-                'folderUp'   : '/eos/cms/store/caf/user/lenzip/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__METup__wwSel__genericFormulas/',
-                'folderDown' : '/eos/cms/store/caf/user/lenzip/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__METdo__wwSel__genericFormulas/' 
+                'folderUp'   : '###root://eoscms.cern.ch//eos/cms/store/caf/user/lenzip/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__METup__wwSel__genericFormulas/',
+                'folderDown' : '###root://eoscms.cern.ch//eos/cms/store/caf/user/lenzip/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__METdo__wwSel__genericFormulas/' 
 }
                 
                 

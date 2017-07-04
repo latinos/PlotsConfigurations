@@ -1,17 +1,17 @@
 # example of configuration file
 
-tag = 'HWWhighMass2016_SF_embeddedWeights1'
+tag = 'HWWhighMass2016_SF_embeddedWeights_ee'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = 'rootFile_ee'
 
 
 # file with list of variables
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
+cutsFile = 'cuts_ee.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 

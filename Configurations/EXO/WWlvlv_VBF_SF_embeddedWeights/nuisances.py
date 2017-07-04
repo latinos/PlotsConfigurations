@@ -86,7 +86,7 @@ else:
 
 Top_pTrw   = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topLHEpt) * TMath::Exp(0.0615-0.0005*antitopLHEpt) ) )'
 Top_pTrwUp = '1.'
-Top_pTrwDo = '1./(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topLHEpt) * TMath::Exp(0.0615-0.0005*antitopLHEpt) ) )'
+Top_pTrwDo = '(1./(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topLHEpt) * TMath::Exp(0.0615-0.0005*antitopLHEpt) ) ))'
 
 nuisances['TopPtRew']  = {
                 'name'  : 'TopPtRew',   # Theory uncertainty
@@ -116,7 +116,6 @@ weightMetDYDo+='+(0.304908-0.0324019+(0.023131+0.00112073) *metPfType1)*(njet==1
 weightMetDYDo+='+(0.503422-0.0327627+(0.0153159+0.00105088)*metPfType1)*(njet>=2 && (mjj < 500 || detajj<3.5))'
 weightMetDYDo+='+(0.524127-0.209824+(0.0318181+0.00636618) *metPfType1)*(njet>=2 && (mjj > 500 && detajj>3.5)))'
 
-'''
 nuisances['DYMetRew'] = {
   'name'  : 'DYMetRew',
   'kind'  : 'weight',
@@ -127,7 +126,6 @@ nuisances['DYMetRew'] = {
             weightMetDYUp+"/"+weightMetDY ]
    }   
   }
-'''
 
 
 nuisances['lumi']  = {
@@ -1046,8 +1044,8 @@ nuisances['jes']  = {
                    'ggH_hww_750_NWA' : ['1', '1'],
                    'qqH_hww_750_NWA' : ['1', '1'],
                 },
-                'folderUp'   : '/eos/user/l/lenzip/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__JESup__sfSel__genericFormulas/',
-                'folderDown' : '/eos/user/l/lenzip/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__JESdo__sfSel__genericFormulas/' 
+                'folderUp'   : '###root://eosuser.cern.ch//eos/user/l/lenzip/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__JESup__sfSel__genericFormulas/',
+                'folderDown' : '###root://eosuser.cern.ch//eos/user/l/lenzip/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__JESdo__sfSel__genericFormulas/' 
 }
 for m in masses:
   for model in models:
@@ -1081,8 +1079,8 @@ nuisances['electronpt']  = {
                    'ggH_hww_750_NWA' : ['1', '1'],
                    'qqH_hww_750_NWA' : ['1', '1'],
                 },
-                'folderUp'   : '/eos/user/l/lenzip/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepElepTCutup__sfSel__genericFormulas/',
-                'folderDown' : '/eos/user/l/lenzip/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepElepTCutdo__sfSel__genericFormulas/' 
+                'folderUp'   : '###root://eoscms.cern.ch//eos/cms/store/user/lenzip/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepElepTCutup__sfSel__genericFormulas/',
+                'folderDown' : '###root://eoscms.cern.ch//eos/cms/store/user/lenzip/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepElepTCutdo__sfSel__genericFormulas/' 
 }
 for m in masses:
   for model in models:
@@ -1114,8 +1112,8 @@ nuisances['muonpt']  = {
                    'ggH_hww_750_NWA' : ['1', '1'],
                    'qqH_hww_750_NWA' : ['1', '1'],
                 },
-                'folderUp'   : '/eos/user/l/lenzip/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepMupTCutup__sfSel__genericFormulas/',
-                'folderDown' : '/eos/user/l/lenzip/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepMupTCutdo__sfSel__genericFormulas/' 
+                'folderUp'   : '###root://eoscms.cern.ch//eos/cms/store/caf/user/lenzip/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepMupTCutup__sfSel__genericFormulas/',
+                'folderDown' : '###root://eoscms.cern.ch//eos/cms/store/caf/user/lenzip/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__LepMupTCutdo__sfSel__genericFormulas/' 
 }
 
 
@@ -1149,8 +1147,8 @@ nuisances['met']  = {
                    'ggH_hww_750_NWA' : ['1', '1'],
                    'qqH_hww_750_NWA' : ['1', '1'],
                 },
-                'folderUp'   : '/eos/user/l/lenzip/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__METup__sfSel__genericFormulas/',
-                'folderDown' : '/eos/user/l/lenzip/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__METdo__sfSel__genericFormulas/' 
+                'folderUp'   : '###root://eosuser.cern.ch//eos/user/l/lenzip/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__METup__sfSel__genericFormulas/',
+                'folderDown' : '###root://eosuser.cern.ch//eos/user/l/lenzip/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__METdo__sfSel__genericFormulas/' 
 }
 for m in masses:
   for model in models:

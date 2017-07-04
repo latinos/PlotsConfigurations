@@ -414,7 +414,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1 
+                  'isBlind'  : 0 
               }
 
 

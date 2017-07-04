@@ -76,11 +76,9 @@ DataTrig = {
             'DoubleEG'       : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu &&  trig_DbleEle' ,
             'SingleElectron' : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu && !trig_DbleEle &&  trig_SnglEle' ,
            }
-
 ###########################################
 #############  BACKGROUNDS  ###############
 ###########################################
-
 
 ###### DY #######
 
@@ -95,17 +93,26 @@ ptllDYW_LO  = '(8.61313e-01+gen_ptll*4.46807e-03-1.52324e-05*gen_ptll*gen_ptll)*
 samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-10to50')
                                   + getSampleFiles(directory,'DYJetsToLL_M-50')     ,
                      'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC', #XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC, 
-                     'FilesPerJob' : 3,
+                     'FilesPerJob' : 2,
                  }
 
 # ... Add DY HT Samples
 if useDYHT :
   #use the inclusive LO sample
+  # systematics are not available for that sample. Temporarily use the NLO one
+  #samples['DY'] = {  'name'   :   #getSampleFiles(directory,'DYJetsToLL_M-10to50-LO')
+  #                                getSampleFiles(directory,'DYJetsToLL_M-50-LO-ext1')     ,
+  #                   'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC*'+weightMetDY, #XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+  #                   'FilesPerJob' : 3, 
+  #               }  
   samples['DY'] = {  'name'   :   #getSampleFiles(directory,'DYJetsToLL_M-10to50-LO')
-                                  getSampleFiles(directory,'DYJetsToLL_M-50-LO-ext1')     ,
+                                  getSampleFiles(directory,'DYJetsToLL_M-50')     ,
                      'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC*'+weightMetDY, #XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
-                     'FilesPerJob' : 3, 
+                     'FilesPerJob' : 2, 
                  }  
+
+ 
+
   #samples['DY']['name'] +=  #getSampleFiles(directory,'DYJetsToLL_M-5to50_HT-70to100') 
                              #+ getSampleFiles(directory,'DYJetsToLL_M-5to50_HT-100to200')
                              #+ getSampleFiles(directory,'DYJetsToLL_M-5to50_HT-200to400') 
@@ -136,7 +143,9 @@ if useDYHT :
   # Remove high HT from inclusive sample
   genHT = 'std_vector_LHEparton_pt[0]*(std_vector_LHEparton_pt[0]>0)+std_vector_LHEparton_pt[1]*(std_vector_LHEparton_pt[1]>0)+std_vector_LHEparton_pt[2]*(std_vector_LHEparton_pt[2]>0)+std_vector_LHEparton_pt[3]*(std_vector_LHEparton_pt[3]>0)'
   #addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO', genHT+'<70.0')  
-  addSampleWeight(samples,'DY','DYJetsToLL_M-50-LO-ext1'    , genHT+'<70.0')  
+  #systematics are not available for that sample. Temporarily use the NLO one 
+  #addSampleWeight(samples,'DY','DYJetsToLL_M-50-LO-ext1'    , genHT+'<70.0') 
+  addSampleWeight(samples,'DY','DYJetsToLL_M-50'    , genHT+'<70.0') 
   # pt_ll weight
   #addSampleWeight(samples,'DY','DYJetsToLL_M-5to50-LO'            ,ptllDYW_LO)
   #addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-70to100'    ,ptllDYW_LO)
@@ -209,7 +218,7 @@ samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu')
                                   + getSampleFiles(directory,'ST_s-channel')   
                              ,
                       'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC',#XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC, 
-                      'FilesPerJob' : 3 
+                      'FilesPerJob' : 1 
                   }
 # add the top pt reweighting for ttbar                  
 addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
@@ -282,75 +291,8 @@ samples['VVV'] = {    'name':   getSampleFiles(directory,'ZZZ')
                   }
 
 ###########################################
-#############   SIGNALS  ##################
-###########################################
-
-'''
-#### ggH -> WW
-
-samples['ggH_hww']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-                      }
-
-
-#### VBF H->WW
-
-samples['qqH_hww']  = {   'name' : getSampleFiles(directory,'VBFHToWWTo2L2Nu_alternative_M125') ,
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-                      }
-
-### ZH ; H->WW
-
-samples['ZH_hww']   = {   'name' :  getSampleFiles(directory,'HZJ_HToWW_M125') ,
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-                      }
-
-samples['ggZH_hww'] = {   'name' : getSampleFiles(directory,'ggZH_HToWW_M125') ,
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-                      }
-
-#### WH ; H->WW
-
-samples['WH_hww']   = {   'name' :   getSampleFiles(directory,'HWminusJ_HToWW_M125')
-                                   + getSampleFiles(directory,'HWplusJ_HToWW_M125')
-                                   , 
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-                      }
-
-#### bbHY ; H->WW 
-
-samples['bbH_hww']  = {  'name' :   getSampleFiles(directory,'bbHToWWTo2L2Nu_M125_yb2') 
-                                  + getSampleFiles(directory,'bbHToWWTo2L2Nu_M125_ybyt')
-                                  ,
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                      }
-
-
-#### H -> TauTau
-
-samples['H_htt']    = {   'name' :   getSampleFiles(directory,'GluGluHToTauTau_M125')
-                                   + getSampleFiles(directory,'VBFHToTauTau_M125')
-                                   + getSampleFiles(directory,'HZJ_HToTauTau_M125')
-                                   + getSampleFiles(directory,'HWplusJ_HToTauTau_M125')
-                                   + getSampleFiles(directory,'HWminusJ_HToTauTau_M125')
-                                   ,  
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-                      }
-
-
-
-
-
-
-
-
-
-###########################################
 #############  HIGH MASS SIGNALS   ##################
 ###########################################
-#OLD directory, OLD signals
-
-#signal_dir='/../../../HWW12fb_repro/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/'
 massesAndModelsFile = "massesAndModels.py"
 
 if os.path.exists(massesAndModelsFile) :
@@ -374,24 +316,19 @@ for m in masses:
     print model_name
     
     #GluGlu
-    samples['ggH_hww_'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_JHUGen698_M'+m) ,
-
-                                             # 'name': [
-                                             #directory+'latino_GluGluHToWWTo2L2Nu_JHUGen698_M'+m+'.root'
-                                             #     ],
-                                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+ '*'+model+"*"+str(sf),
+    samples['ggH_hww_'+m+'_'+model_name] = {    'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_JHUGen698_M'+m) ,
+                                                'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+ '*'+model,
                                         }
 
+    samples['ggH_hww_INT'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_JHUGen698_M'+m) ,
+                                                'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+ '*'+model_int,
+                                        } 
+
     #VBF
-    samples['qqH_hww_'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m) ,
-                                             #'name': [
-                                             #directory+'latino_VBFHToWWTo2L2Nu_JHUGen698_M'+m+'.root'
-                                             #     ],
-                                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+ '*'+model+"*"+str(sf),
+    samples['qqH_hww_'+m+'_'+model_name] = {    'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m) ,
+                                                'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch,#+ '*'+model,
                                         }                   
 
-
-'''
 
 
 
@@ -434,4 +371,3 @@ for Run in DataRun :
     for iFile in FileTarget:
       samples['DATA']['name'].append(iFile)
       samples['DATA']['weights'].append(DataTrig[DataSet]) 
-

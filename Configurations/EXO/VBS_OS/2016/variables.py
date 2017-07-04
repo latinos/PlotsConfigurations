@@ -10,7 +10,7 @@ variables['events']  = {   'name': '1',
                          'fold' : 3
                         }
 
-
+'''
 variables['mTi']  = {   'name': 'mTi',            #   variable name    
                         'range' : ([100,150,200,250,300,350,400,450,500,600,700,1000],),    #   variable range
                         'xaxis' : 'm_{T,i} [GeV]',  #   x axis name
@@ -23,7 +23,6 @@ variables['mTi_VBF']  = {   'name': 'mTi',            #   variable name
                         'xaxis' : 'm_{T,i} [GeV]',  #   x axis name
                         'fold' : 3
                         }
-'''
 variables['mTi_VBF6']  = {   'name': 'mTi',            #   variable name    
                         'range' : ([100,200,300,400,500,700,1000],),    #   variable range
                         'xaxis' : 'm_{T,i} [GeV]',  #   x axis name
@@ -39,21 +38,17 @@ variables['mTi_VBF4']  = {   'name': 'mTi',            #   variable name
                         'xaxis' : 'm_{T,i} [GeV]',  #   x axis name
                         'fold' : 3
                         }
-'''
 variables['mTi_VBF5']  = {   'name': 'mTi',            #   variable name    
                         'range' : ([100,200,400,600,800,1000],),    #   variable range
                         'xaxis' : 'm_{T,i} [GeV]',  #   x axis name
                         'fold' : 3
                         }
 
-
-'''
 variables['mth_VBF']  = {   'name': 'mth',            #   variable name    
                         'range' : ([100,150,200,250,300,350,400,500,700,1000],),    #   variable range
                         'xaxis' : 'm_{T,i} [GeV]',  #   x axis name
                         'fold' : 3
                         }
-'''
 variables['mth']  = {   'name': 'mth',            #   variable name    
                         'range' : (20,0,400),    #   variable range
                         'xaxis' : 'm_{TH} [GeV]',  #   x axis name
@@ -65,18 +60,18 @@ variables['ptll']  = {   'name': 'ptll',            #   variable name
                         'xaxis' : 'pT_{ll} [GeV]',  #   x axis name
                         'fold' :3
                         }
+'''
 variables['mll']  = {   'name': 'mll',            #   variable name    
                         'range' : (40,0,400),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
                         'fold' :3
                         }
 
-
 variables['mjj']  = {   'name': 'mjj',            #   variable name    
                         'range' : (10,500,3000),    #   variable range
                         'xaxis' : 'm_{jj} [GeV]',  #   x axis name
                         'fold' :3
-                        }
+                        }                        
 
 variables['detajj']  = {   'name': 'detajj',            #   variable name    
                            'range' : (10,1.5,10),    #   variable range
@@ -84,6 +79,35 @@ variables['detajj']  = {   'name': 'detajj',            #   variable name
                            'fold' :0
                            }
 
+variables['mTi']  = {   'name': 'mTi',            #   variable name    
+                        'range' : ([100,200,300,400,500,700,1000],),    #   variable range
+                        'xaxis' : 'm_{T,i} [GeV]',  #   x axis name
+                        'fold' : 3
+                        }                        
+
+variables['mjjVSmTiAndrea']  = {   'name': 'mjj:mTi',            #   variable name    
+                        #'range' : ([100,200,300,400,500,700,1000],[500, 600, 700, 1000, 1500, 2000],),    #   variable range
+                        'range' : ([100,200,300,500,800],[500,700,1000,1300,1600,2000],),    #   variable range
+                        'yaxis' : 'm_{jj} [GeV]',  #   x axis name
+                        'xaxis' : 'mTi',  #   x axis name
+                        'fold' :3
+                        }
+                        
+variables['mjjVSmTi']  = {   'name': 'mjj:mTi',            #   variable name    
+                        'range' : ([100,200,300,400,500,700,1000],[500, 600, 700, 1000, 1500, 2000],),    #   variable range
+                        'yaxis' : 'm_{jj} [GeV]',  #   x axis name
+                        'xaxis' : 'mTi',  #   x axis name
+                        'fold' :3
+                        }
+
+variables['mjjVSmll']  = {   'name': 'mjj:mll',            #   variable name    
+                        'range' : ([0,100,200,300,400,700,1000],[500, 600, 700, 1000, 1500, 2000],),    #   variable range
+                        'yaxis' : 'm_{jj} [GeV]',  #   x axis name
+                        'xaxis' : 'mll',  #   x axis name
+                        'fold' :3
+                        }
+
+'''
 variables['dphill']  = {   'name': 'dphill',            #   variable name    
                            'range' : (30,0,3.2),    #   variable range
                            'xaxis' : '#Delta #phi ll',  #   x axis name
@@ -95,8 +119,6 @@ variables['drll']  = {   'name': 'drll',            #   variable name
                          'fold' :0
                          }
 
-
-'''
 variables['std_vector_lepton_pt[0]']  = {   'name': 'std_vector_lepton_pt[0]',            #   variable name    
                         'range' : (20,0,200),    #   variable range
                         'xaxis' : 'pT_{1l} [GeV]',  #   x axis name
@@ -137,8 +159,6 @@ variables['njet']  = {   'name': 'njet',            #   variable name
                         }
 
 
-'''
-'''
 variables['mR']  = {   'name': 'mR',            #   variable name    
                         'range' : ([100,150,200,250,300,350,400,450,500,600,700,1000],),    #   variable range
                         'xaxis' : 'mR [GeV]',  #   x axis name
