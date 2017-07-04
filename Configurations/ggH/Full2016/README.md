@@ -110,7 +110,18 @@ Now we are ready to make data/MC comparison plots.
                     > Full2016.txt.pruned.txt
 
 
-# 7. Get the significance
+# 7. Check consistency of datacards
+
+To check the consistency one can transform the datacard (txt file) into a RooFit binary file (workspace)
+
+    pushd $COMBINE_DIRECTORY/CMSSW_7_4_7/src/
+    eval `scramv1 runtime -sh`
+    popd
+
+    text2workspace.py Full2016.txt.pruned.txt
+
+
+# 8. Get the significance
 
     pushd $COMBINE_DIRECTORY/CMSSW_7_4_7/src/
     eval `scramv1 runtime -sh`
@@ -118,6 +129,6 @@ Now we are ready to make data/MC comparison plots.
 
     combine -M MaxLikelihoodFit \
             --rMin=-2 --rMax=4 \
-            Full2016.txt.pruned.txt -n Full2016.txt.pruned.txt \
+            Full2016.txt.pruned.root -n Full2016.txt.pruned.root \
             > result.data.MaxLikelihoodFit.Full2016.txt.pruned.txt
 
