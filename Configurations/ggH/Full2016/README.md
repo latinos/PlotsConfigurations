@@ -17,22 +17,22 @@ By following these instructions one should be able to read latino trees, produce
 
 # 1. First time only
 
-*Get the combine package.* Follow the instructions documented in the revision **r170** of the [combine twiki](https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHiggsAnalysisCombinedLimit#ROOT6_SLC6_release_CMSSW_7_4_X).
+**Get the combine package.** Follow the instructions documented in the revision **r170** of the [combine twiki](https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHiggsAnalysisCombinedLimit#ROOT6_SLC6_release_CMSSW_7_4_X).
 
     cd $COMBINE_DIRECTORY
 
-*Get Andrea's scripts for to modify datacards.*
+**Get Andrea's scripts to modify datacards.**
 
     cd $COMBINE_DIRECTORY
     git clone https://github.com/amassiro/ModificationDatacards
 
-*Copy and edit the latino user configuration file.*
+**Copy and edit the latino user configuration file.**
 
     cd $CMSSW_DIRECTORY/LatinoAnalysis/Tools/python
     cp userConfig_TEMPLATE.py userConfig.py
 
 
-# 2. Read the latino trees and produce histograms
+# 2. Produce histograms
 
 This step reads the post-processed latino trees and produces histograms for several variables and phase spaces.
 
