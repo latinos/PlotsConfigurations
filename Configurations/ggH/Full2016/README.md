@@ -118,7 +118,7 @@ To check the consistency one can transform the datacard (txt file) into a RooFit
     eval `scramv1 runtime -sh`
     popd
 
-    text2workspace.py Full2016.txt.pruned.txt
+    text2workspace.py Full2016.txt.pruned.txt -o Full2016.txt.pruned.root
 
 
 # 8. Get the significance
