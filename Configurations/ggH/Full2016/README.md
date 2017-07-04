@@ -17,16 +17,18 @@ By following these instructions one should be able to read latino trees, produce
 
 # 1. First time only
 
-**Get the combine package.** Follow the instructions documented in the revision **r170** of the [combine twiki](https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHiggsAnalysisCombinedLimit#ROOT6_SLC6_release_CMSSW_7_4_X).
+### Get the combine package
+
+Follow the instructions documented in the revision **r170** of the [combine twiki](https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHiggsAnalysisCombinedLimit#ROOT6_SLC6_release_CMSSW_7_4_X).
 
     cd $COMBINE_DIRECTORY
 
-**Get Andrea's scripts to modify datacards.**
+### Get Andrea's scripts to modify datacards
 
     cd $COMBINE_DIRECTORY
     git clone https://github.com/amassiro/ModificationDatacards
 
-**Copy and edit the latino user configuration file.**
+### Copy and edit the latino user configuration file
 
     cd $CMSSW_DIRECTORY/LatinoAnalysis/Tools/python
     cp userConfig_TEMPLATE.py userConfig.py
@@ -64,7 +66,11 @@ Once the previous jobs have finished we _hadd_ the outputs.
                 --doHadd=True
 
 
-# 4a. Take beautiful pictures
+# 4. Read histograms
+
+At this stage one can either produce plots or datacards.
+
+### Produce plots
 
 Now we are ready to make data/MC comparison plots.
 
@@ -72,7 +78,7 @@ Now we are ready to make data/MC comparison plots.
               --showIntegralLegend=1
 
 
-# 4b. Produce the datacards
+### Produce datacards
 
     mkDatacards.py --pycfg=configuration.py \
                    --inputFile=rootFile/plots_ggH.root
