@@ -17,18 +17,16 @@ By following these instructions one should be able to read latino trees, produce
 
 # 1. First time only
 
-### Get the combine package
-
-Follow the instructions documented in the revision **r170** of the [combine twiki](https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHiggsAnalysisCombinedLimit#ROOT6_SLC6_release_CMSSW_7_4_X).
+Get the combine package. Follow the instructions documented in the revision **r170** of the [combine twiki](https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHiggsAnalysisCombinedLimit#ROOT6_SLC6_release_CMSSW_7_4_X).
 
     cd $COMBINE_DIRECTORY
 
-### Get Andrea's scripts to modify datacards
+Get Andrea's scripts to modify datacards.
 
     cd $COMBINE_DIRECTORY
     git clone https://github.com/amassiro/ModificationDatacards
 
-### Copy and edit the latino user configuration file
+Copy and edit the latino user configuration file.
 
     cd $CMSSW_DIRECTORY/LatinoAnalysis/Tools/python
     cp userConfig_TEMPLATE.py userConfig.py
@@ -91,7 +89,7 @@ Now we are ready to make data/MC comparison plots.
     awk '{print "python PruneDatacard.py -d "$1" -o "$1".pruned.txt --suppressNegative=True -i examples/input_nuisances_to_prune.py"}' | /bin/sh
 
 
-# 6. Combine the datacards
+# 6. Combine datacards
 
     pushd $COMBINE_DIRECTORY/CMSSW_7_4_7/src/
     eval `scramv1 runtime -sh`
