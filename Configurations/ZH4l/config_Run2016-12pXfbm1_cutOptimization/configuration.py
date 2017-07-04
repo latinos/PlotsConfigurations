@@ -1,19 +1,10 @@
 # example of configuration file
 
+tag = 'ZH4l'
 
-eleWP='cut_WP_Tight80X'
-# eleWP='cut_WP_Tight80X_SS'
-# eleWP='mva_80p_Iso2015'
-# eleWP='mva_80p_Iso2016'
-# eleWP='mva_90p_Iso2015'
-# eleWP='mva_90p_Iso2016'
-
-
-tag = 'ZH4l'+eleWP
-# tag = 'ZH4l'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFiles'+eleWP
+outputDir = 'rootFiles'
 
 # file with list of variables
 variablesFile = 'variables.py'
@@ -28,15 +19,15 @@ samplesFile = 'samples.py'
 plotFile = 'plot.py' 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 35.867
+lumi = 12.8890
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot'+eleWP
+outputDirPlots = 'plot'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'+eleWP
+outputDirDatacard = 'datacards'
 
 
 # structure file for datacard
