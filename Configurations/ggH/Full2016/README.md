@@ -112,7 +112,7 @@ Now we are ready to make data/MC comparison plots.
 
 # 7. Check consistency of datacards
 
-To check the consistency one can transform the datacard (txt file) into a RooFit binary file (workspace)
+To check the consistency one can transform the datacard (txt file) into a RooFit binary file (workspace).
 
     pushd $COMBINE_DIRECTORY/CMSSW_7_4_7/src/
     eval `scramv1 runtime -sh`
