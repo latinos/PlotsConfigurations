@@ -14,12 +14,25 @@ By following these instructions one should be able to read latino trees, produce
     cmsenv
     scramv1 b
 
-    # First time only copy and modify
-    cd LatinoAnalysis/Tools/python
+
+# 1. First time only
+
+*Get the combine package.* Follow the instructions documented in the revision **r170** of the [combine twiki](https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHiggsAnalysisCombinedLimit#ROOT6_SLC6_release_CMSSW_7_4_X).
+
+    cd $COMBINE_DIRECTORY
+
+*Get Andrea's scripts for to modify datacards.*
+
+    cd $COMBINE_DIRECTORY
+    git clone https://github.com/amassiro/ModificationDatacards
+
+*Copy and edit the latino user configuration file.*
+
+    cd $CMSSW_DIRECTORY/LatinoAnalysis/Tools/python
     cp userConfig_TEMPLATE.py userConfig.py
 
 
-# 1. Read the latino trees and produce histograms
+# 2. Read the latino trees and produce histograms
 
 This step reads the post-processed latino trees and produces histograms for several variables and phase spaces.
 
@@ -41,7 +54,7 @@ If a job takes too long / fails, one can kill it and resubmit manually.
     bsub -q 1nd ~/cms/HWW2016/jobs/mkShapes__ggH/mkShapes__ggH__hww2l2v_13TeV_em_mp_1j__top2.sh
 
 
-# 2. Put all your apples in one basket
+# 3. Put all your apples in one basket
 
 Once the previous jobs have finished we _hadd_ the outputs.
 
@@ -51,7 +64,7 @@ Once the previous jobs have finished we _hadd_ the outputs.
                 --doHadd=True
 
 
-# 3a. Take beautiful pictures
+# 4a. Take beautiful pictures
 
 Now we are ready to make data/MC comparison plots.
 
@@ -59,26 +72,13 @@ Now we are ready to make data/MC comparison plots.
               --showIntegralLegend=1
 
 
-# 3b. Produce the datacards
+# 4b. Produce the datacards
 
     mkDatacards.py --pycfg=configuration.py \
                    --inputFile=rootFile/plots_ggH.root
 
 
-# 4. Get the combine package
-
-    cd $COMBINE_DIRECTORY
-
-This step is meant to be done the first time only, by following the instructions documented in the revision **r170** of the [combine twiki](https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHiggsAnalysisCombinedLimit#ROOT6_SLC6_release_CMSSW_7_4_X).
-
-
-# 5. Modify the datacards
-
-    # First time only
-    cd $COMBINE_DIRECTORY
-    git clone https://github.com/amassiro/ModificationDatacards
-
-Now one can prune the datacards.
+# 5. Pruning
 
     cd $COMBINE_DIRECTORY/ModificationDatacards
     ls /afs/cern.ch/user/p/piedra/work/CMSSW_Apr2017_HowToBeALatinLover/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/ggH/Full2016/datacards/*/*/*.txt | grep -v "pruned" | \
