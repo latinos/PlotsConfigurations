@@ -43,5 +43,28 @@ Now we are ready to make data/MC comparison plots.
               --showIntegralLegend=1
 
 
+and datacards 
 
+    mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_ggH.root
+    
 
+Plot each nuisance effect:
+
+    https://github.com/latinos/LatinoAnalysis/tree/master/ShapeAnalysis/test/draw          
+
+    cd ../../../../LatinoAnalysis/ShapeAnalysis/test/draw/
+    
+    python DrawNuisancesAll.py \
+         --inputFile ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/datacards/hww2l2v_13TeV_of_0j/events/shapes/histos_hww2l2v_13TeV_of_0j.root  \
+         --outputDirPlots ggH0j  \
+         --nuisancesFile  ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/nuisances.py  \
+         --samplesFile    ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/samples.py \
+         --cutName hww2l2v_13TeV_of_0j
+
+         
+    python DrawNuisancesAll.py \
+         --inputFile ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/datacards/hww2l2v_13TeV_of_0j/mll/shapes/histos_hww2l2v_13TeV_of_0j.root  \
+         --outputDirPlots ggH0j_mll  \
+         --nuisancesFile  ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/nuisances.py  \
+         --samplesFile    ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/samples.py \
+         --cutName hww2l2v_13TeV_of_0j
