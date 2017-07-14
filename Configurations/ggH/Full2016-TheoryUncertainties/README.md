@@ -68,3 +68,106 @@ Plot each nuisance effect:
          --nuisancesFile  ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/nuisances.py  \
          --samplesFile    ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/samples.py \
          --cutName hww2l2v_13TeV_of_0j
+
+         
+    python DrawNuisancesAll.py \
+         --inputFile ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/datacards/hww2l2v_13TeV_of_incl/mll/shapes/histos_hww2l2v_13TeV_of_incl.root  \
+         --outputDirPlots ggH_incl_mll  \
+         --nuisancesFile  ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/nuisances.py  \
+         --samplesFile    ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/samples.py \
+         --cutName hww2l2v_13TeV_of_incl
+     
+    python DrawNuisancesAll.py \
+         --inputFile ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/datacards/hww2l2v_13TeV_of_incl/njet/shapes/histos_hww2l2v_13TeV_of_incl.root  \
+         --outputDirPlots ggH_incl_njet  \
+         --nuisancesFile  ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/nuisances.py  \
+         --samplesFile    ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/samples.py \
+         --cutName hww2l2v_13TeV_of_incl
+     
+     
+     
+     
+    python DrawNuisancesAll.py \
+         --inputFile ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/datacards/hww2l2v_13TeV_of_incl_bveto/njet/shapes/histos_hww2l2v_13TeV_of_incl_bveto.root  \
+         --outputDirPlots ggH_incl_njet_bveto  \
+         --nuisancesFile  ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/nuisances.py  \
+         --samplesFile    ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/samples.py \
+         --cutName hww2l2v_13TeV_of_incl_bveto
+    
+    
+    python DrawNuisancesAll.py \
+         --inputFile ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/datacards/hww2l2v_13TeV_of_incl_bveto_2/njet/shapes/histos_hww2l2v_13TeV_of_incl_bveto_2.root  \
+         --outputDirPlots ggH_incl_njet_bveto_2  \
+         --nuisancesFile  ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/nuisances.py  \
+         --samplesFile    ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/samples.py \
+         --cutName hww2l2v_13TeV_of_incl_bveto_2
+    
+    
+    python DrawNuisancesAll.py \
+         --inputFile ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/datacards/hww2l2v_13TeV_of_incl_bveto_3/njet/shapes/histos_hww2l2v_13TeV_of_incl_bveto_3.root  \
+         --outputDirPlots ggH_incl_njet_bveto_3  \
+         --nuisancesFile  ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/nuisances.py  \
+         --samplesFile    ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/samples.py \
+         --cutName hww2l2v_13TeV_of_incl_bveto_3
+    
+    
+    python DrawNuisancesAll.py \
+         --inputFile ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/datacards/hww2l2v_13TeV_of_incl_bveto_4/njet/shapes/histos_hww2l2v_13TeV_of_incl_bveto_4.root  \
+         --outputDirPlots ggH_incl_njet_bveto_4  \
+         --nuisancesFile  ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/nuisances.py  \
+         --samplesFile    ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/samples.py \
+         --cutName hww2l2v_13TeV_of_incl_bveto_4
+
+         
+         
+         
+         
+         
+    
+    
+    
+    python DrawNuisancesAll.py \
+         --inputFile ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/datacards/hww2l2v_13TeV_of_incl_bveto/mll/shapes/histos_hww2l2v_13TeV_of_incl_bveto.root  \
+         --outputDirPlots ggH_incl_mll_bveto  \
+         --nuisancesFile  ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/nuisances.py  \
+         --samplesFile    ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/samples.py \
+         --cutName hww2l2v_13TeV_of_incl_bveto
+    
+    
+    python DrawNuisancesAll.py \
+         --inputFile ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/datacards/hww2l2v_13TeV_of_incl_bveto_2/mll/shapes/histos_hww2l2v_13TeV_of_incl_bveto_2.root  \
+         --outputDirPlots ggH_incl_mll_bveto_2  \
+         --nuisancesFile  ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/nuisances.py  \
+         --samplesFile    ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/samples.py \
+         --cutName hww2l2v_13TeV_of_incl_bveto_2
+    
+    
+    python DrawNuisancesAll.py \
+         --inputFile ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/datacards/hww2l2v_13TeV_of_incl_bveto_3/mll/shapes/histos_hww2l2v_13TeV_of_incl_bveto_3.root  \
+         --outputDirPlots ggH_incl_mll_bveto_3  \
+         --nuisancesFile  ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/nuisances.py  \
+         --samplesFile    ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/samples.py \
+         --cutName hww2l2v_13TeV_of_incl_bveto_3
+    
+    
+    python DrawNuisancesAll.py \
+         --inputFile ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/datacards/hww2l2v_13TeV_of_incl_bveto_4/mll/shapes/histos_hww2l2v_13TeV_of_incl_bveto_4.root  \
+         --outputDirPlots ggH_incl_mll_bveto_4  \
+         --nuisancesFile  ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/nuisances.py  \
+         --samplesFile    ../../../../PlotsConfigurations/Configurations/ggH/Full2016-TheoryUncertainties/samples.py \
+         --cutName hww2l2v_13TeV_of_incl_bveto_4
+    
+    
+
+     
+     
+     
+     
+     
+      
+      
+      
+      
+      
+      
+         

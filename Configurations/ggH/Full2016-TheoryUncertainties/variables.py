@@ -11,7 +11,7 @@ variables['events']  = {   'name': '1',
                         }
     
 variables['mll']  = {   'name': 'mll',            #   variable name    
-                        'range' : (20,10,200),    #   variable range
+                        'range' : (10,10,100),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
                          'fold' : 0
                         }
@@ -45,6 +45,13 @@ variables['mllVSmth'] = {   'name': 'mll:mth',            #   variable name
 
 
 ## just for fun plots:
+
+
+variables['njet']  = {   'name': 'njet',      
+                        'range' : (4,0,4),  
+                        'xaxis' : 'njet', 
+                         'fold' : 3
+                        }
 
 
                      
