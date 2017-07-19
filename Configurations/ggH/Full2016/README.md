@@ -132,3 +132,21 @@ To check the consistency one can transform the datacard (txt file) into a RooFit
             Full2016.txt.pruned.root -n Full2016.txt.pruned.root \
             > result.data.MaxLikelihoodFit.Full2016.txt.pruned.txt
 
+            
+            
+            
+# 9. Post-fit plots
+
+Fit with combine and save the output histograms
+
+    combine -M MaxLikelihoodFit datacards/hww2l2v_13TeV_em_pm_0j/mll/datacard.txt -n mytest --saveShapes --saveNormalizations   --saveWithUncertainties
+
+Digest the histograms so that they can be used by mkPlot
+
+    mkPostFitPlot.py --inputFileCombine mlfitmytest.root --outputFile out.root --variable mll --cut hww2l2v_13TeV_em_pm_0j --inputFile rootFile/plots_ggH.root
+
+Run mkPlot with the new file (NB: only one variable should be defined in variables.py!)
+    
+    mkPlot.py --inputFile=out.root               --showIntegralLegend=1
+            
+            
