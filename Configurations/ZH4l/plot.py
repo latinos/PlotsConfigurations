@@ -23,15 +23,15 @@ groupPlot['DY']  = {
               }
 groupPlot['ttV']  = {  
                   'nameHR' : 'ttV',
-                  'isSignal' : 417,
-                  'color': , 
+                  'isSignal' : 0,
+                  'color': 417, 
                   'samples'  : ['ttW','ttZ']
               }
 
 groupPlot['WW']  = {  
                   'nameHR' : 'WW',
                   'isSignal' : 0,
-                  'color': ,397,
+                  'color': 397,
                   'samples'  : ['WW']
               }
 
