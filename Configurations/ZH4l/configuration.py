@@ -4,7 +4,7 @@ import os
 
 configDir = "/afs/cern.ch/work/p/pyu/HWAnalysis/zh4lFull2016/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/ZH4l"
 
-tagName=WPS
+tagName='_SG_cut_WP_Tight80X'
 #'_CR_cut_WP_Tight80X_SS'
 #'_CR_cut_WP_Tight80X_SS'
 #'_CR_mva_80p_Iso2015'

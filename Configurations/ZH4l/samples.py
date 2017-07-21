@@ -44,7 +44,7 @@ GenLepMatch4l = '(1+(std_vector_lepton_genmatched[0]*std_vector_lepton_genmatche
 
 #... Electron:
 
-eleWP=WPS
+eleWP='cut_WP_Tight80X'
 #'cut_WP_Tight80X_SS'
 #'cut_WP_Tight80X_SS'
 #'mva_80p_Iso2015'
