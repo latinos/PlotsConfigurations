@@ -10,9 +10,9 @@ else:
     treeBaseDir = "/eos/cms/store/group/phys_higgs/cmshww/amassiro/"
 
 # directory     = os.path.join(treeBaseDir,"Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__l2loose__hadd__l2tightOR__formulasMC")
-directory     = os.path.join(treeBaseDir,"Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__MCFix")
-directoryDATA = os.path.join(treeBaseDir,"Full2016_Apr17/Apr2017_Run2016{0}_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__hadd__l2tightOR__formulasDATA")
-directoryFake = os.path.join(treeBaseDir,"Full2016_Apr17/Apr2017_Run2016{0}_RemAOD/lepSel__EpTCorr__TrigMakerData__fakeSel__hadd")
+directory           = os.path.join(treeBaseDir,"Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__vh3lSel")
+directoryDATA       = os.path.join(treeBaseDir,"Full2016_Apr17/{0}/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__hadd__l2tightOR__formulasDATA__vh3lSel")
+directoryFake       = os.path.join(treeBaseDir,"Full2016_Apr17/{0}/lepSel__EpTCorr__TrigMakerData__fakeSel__hadd")
 
 ################################################
 ############ basic mc weights ##################
@@ -24,10 +24,18 @@ directoryFake = os.path.join(treeBaseDir,"Full2016_Apr17/Apr2017_Run2016{0}_RemA
 
 # The following tags are defined in LatinoAnalysis/Gardener/python/data/formulasToAdd.py
 # Remark: In self-defined variables, existense check for some key branches is omitted.
+# If there is no bjet veto, remove the bPogSF_CMVAL.
+
 XSWeight      = 'XSWeight'
-SFweight2l    = 'SFweight2l'
-SFweight3l    = 'SFweight3l'
-SFweight4l    = '(1+(puW*bPogSF_CMVAL*effTrigW3l*veto_EMTFBug*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_recoW[2]*std_vector_lepton_recoW[3]-1))'
+# SFweight2l    = 'SFweight2l'
+# SFweight3l    = 'SFweight3l'
+# SFweight4l    = '(1+(puW*bPogSF_CMVAL*effTrigW3l*veto_EMTFBug*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_recoW[2]*std_vector_lepton_recoW[3]-1))'
+# SFweight      = '(1+(puW*effTrigW2l*veto_EMTFBug*std_vector_lepton_recoW[0]-1))'
+SFweight2l    = '(1+(puW*effTrigW2l*veto_EMTFBug*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]-1))'
+SFweight3l    = '(1+(puW*effTrigW3l*veto_EMTFBug*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_recoW[2]-1))'
+#Trigger efficiencies with 4 lepton case is still unavilable.
+SFweight4l    = '(1+(puW*effTrigW3l*veto_EMTFBug*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_recoW[2]*std_vector_lepton_recoW[3]-1))'
+
 GenLepMatch2l = '(1+(std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]-1))'
 GenLepMatch3l = '(1+(std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]-1))'
 GenLepMatch4l = '(1+(std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]*std_vector_lepton_genmatched[3]-1))'
@@ -36,12 +44,13 @@ GenLepMatch4l = '(1+(std_vector_lepton_genmatched[0]*std_vector_lepton_genmatche
 
 #... Electron:
 
-# eleWP='cut_WP_Tight80X'
-# eleWP='cut_WP_Tight80X_SS'
-# eleWP='mva_80p_Iso2015'
-# eleWP='mva_80p_Iso2016'
-# eleWP='mva_90p_Iso2015'
-eleWP='mva_90p_Iso2016'
+eleWP=WPS
+#'cut_WP_Tight80X_SS'
+#'cut_WP_Tight80X_SS'
+#'mva_80p_Iso2015'
+#'mva_80p_Iso2016'
+#'mva_90p_Iso2015'
+#'mva_90p_Iso2016'
 
 #... Muon:
 
@@ -77,7 +86,7 @@ SFweight4l += '*'+LepWPweight4l+'*'+LepWPCut4l
 #METFilter_MCver  =  '(std_vector_trigger_special[8]==-2.)'
 #METFilter_MCOld  =  '(std_vector_trigger_special[6]*std_vector_trigger_special[7])'
 #METFilter_MCNew  =  '(std_vector_trigger_special[8]*std_vector_trigger_special[9])'
-#METFilter_MC     =  METFilter_Common + '*' + '(('+METFilter_MCver+'*'+METFilter_MCOld+')||(!'+METFilter_MCver+'*'+METFilter_MCNew+'))' 
+#METFilter_MC     =  METFilter_Common + '*' + '(('+METFilter_MCver+'*'+METFilter_MCOld+')||(!'+METFilter_MCver+'*'+METFilter_MCNew+'))'
 
 METFilter_MC   = 'METFilter_MC'
 METFilter_DATA = 'METFilter_DATA'
@@ -86,40 +95,33 @@ METFilter_DATA = 'METFilter_DATA'
 ############ DATA DECLARATION ##################
 ################################################
 
-DataRun = [ 
-            ['B','Run2016B-03Feb2017_ver2-v2'] , 
-            ['C','Run2016C-03Feb2017-v1'] , 
-            ['D','Run2016D-03Feb2017-v1'] , 
-            ['E','Run2016E-03Feb2017-v1'] ,
-            ['F','Run2016F-03Feb2017-v1'] , 
-            ['G','Run2016G-03Feb2017-v1'] , 
-            ['H','Run2016H-03Feb2017_ver2-v1'] , 
-            ['H','Run2016H-03Feb2017_ver3-v1'] ,
-          ] 
+# DataRun = [
+            # ['Apr2017_Run2016B_RemAOD','Run2016B-03Feb2017_ver2-v2'] ,
+            # ['Apr2017_Run2016C_RemAOD','Run2016C-03Feb2017-v1'] ,
+            # ['Apr2017_Run2016D_RemAOD','Run2016D-03Feb2017-v1'] ,
+            # ['Apr2017_Run2016E_RemAOD','Run2016E-03Feb2017-v1'] ,
+            # ['Apr2017_Run2016F_RemAOD','Run2016F-03Feb2017-v1'] ,
+            # ['Apr2017_Run2016G_RemAOD','Run2016G-03Feb2017-v1'] ,
+            # ['Apr2017_Run2016H_RemAOD','Run2016H-03Feb2017_ver2-v1'] ,
+            # ['Apr2017_Run2016H_RemAOD','Run2016H-03Feb2017_ver3-v1'] ,
+          # ]
 
-# DataSets = ['MuonEG','DoubleMuon','SingleMuon']
-DataSets = ['MuonEG','DoubleMuon','SingleMuon','DoubleEG','SingleElectron']
+# DataSets = ['MuonEG','DoubleMuon','SingleMuon','DoubleEG','SingleElectron']
 
-DataTrig = {
-            'MuonEG'         : ' trig_EleMu' ,
-            'DoubleMuon'     : '!trig_EleMu &&  trig_DbleMu' ,
-            'SingleMuon'     : '!trig_EleMu && !trig_DbleMu &&  trig_SnglMu' ,
-            'DoubleEG'       : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu &&  trig_DbleEle' ,
-            'SingleElectron' : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu && !trig_DbleEle &&  trig_SnglEle' ,
-           }
+# DataTrig = {
             # 'MuonEG'         : ' trig_EleMu' ,
             # 'DoubleMuon'     : '!trig_EleMu &&  trig_DbleMu' ,
             # 'SingleMuon'     : '!trig_EleMu && !trig_DbleMu &&  trig_SnglMu' ,
             # 'DoubleEG'       : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu &&  trig_DbleEle' ,
             # 'SingleElectron' : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu && !trig_DbleEle &&  trig_SnglEle' ,
-
-samples['DATA']  = {   'name': [] ,
-                       # 'weight' : "1",
-                       'weight' : 'veto_EMTFBug'+'*'+METFilter_DATA+'*'+LepWPCut4l,
-                       'weights' : [],
-                       'isData': ['all'],
-                       'FilesPerJob' : 5 ,
-                   }
+           # }
+# samples['DATA']  = {   'name': [] ,
+                       # # 'weight' : "1",
+                       # 'weight' : 'veto_EMTFBug'+'*'+METFilter_DATA+'*'+LepWPCut4l,
+                       # 'weights' : [],
+                       # 'isData': ['all'],
+                       # 'FilesPerJob' : 5 ,
+                   # }
 
 # samples['Fake']  = {   'name': [] ,
 #                        'weight' : 'fakeW4l'+'*'+'veto_EMTFBug'+'*'+METFilter_DATA,
@@ -128,15 +130,15 @@ samples['DATA']  = {   'name': [] ,
 #                        'FilesPerJob' : 5 ,
 #                    }
 
-for Run in DataRun :
-    directoryDATARun = directoryDATA.format(Run[0])
-    directoryFakeRun = directoryFake.format(Run[0])
-    for DataSet in DataSets :
-        FileTargetDATA = getSampleFiles(directoryDATARun,DataSet+'_'+Run[1],True)
-        FileTargetFake = getSampleFiles(directoryFakeRun,DataSet+'_'+Run[1],True)
-        for iFile in FileTargetDATA:
-            samples['DATA']['name'].append(iFile.lstrip('#'))
-            samples['DATA']['weights'].append(DataTrig[DataSet])
+# for Run in DataRun :
+    # directoryDATARun = directoryDATA.format(Run[0])
+    # directoryFakeRun = directoryFake.format(Run[0])
+    # for DataSet in DataSets :
+        # FileTargetDATA = getSampleFiles(directoryDATARun,DataSet+'_'+Run[1],True)
+        # FileTargetFake = getSampleFiles(directoryFakeRun,DataSet+'_'+Run[1],True)
+        # for iFile in FileTargetDATA:
+            # samples['DATA']['name'].append(iFile.lstrip('#'))
+            # samples['DATA']['weights'].append(DataTrig[DataSet])
         # for iFile in FileTargetFake:
         #     samples['Fake']['name'].append(iFile.lstrip('#'))
         #     samples['Fake']['weights'].append(DataTrig[DataSet])
@@ -161,8 +163,8 @@ samples['ZZ']  = {    'name': getSampleFiles(directory,'ZZTo4L'),
                          # ],
                       # 'weight' : 'puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_idisoWcut_WP_Tight80X[2]*std_vector_lepton_idisoWcut_WP_Tight80X[3]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_recoW[2]*std_vector_lepton_recoW[3]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]*std_vector_lepton_genmatched[3]',
                       # #1.256/1.212 see this page https://twiki.cern.ch/twiki/bin/viewauth/CMS/SummaryTable1G25ns#Diboson
-                      # #'weights': ['1'] ,           
-                      # #'isData': ['0'],                            
+                      # #'weights': ['1'] ,
+                      # #'isData': ['0'],
                   # }
 
 # samples['ggH_hzz']  = {    'name': ['../../../HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__vh3lSel__l3kin__l4kin/latino_GluGluHToZZTo4L_M125.root'],
@@ -174,8 +176,24 @@ samples['WW']  = {    'name': getSampleFiles(directory,'WWTo2L2Nu')
                       'weight' : 'baseW'+'*'+SFweight4l+'*'+GenLepMatch2l+'*'+METFilter_MC+'*'+'nllW',
                  }
 
+samples['DY']  = {    'name': getSampleFiles(directory,'DYJetsToLL_M-10to50')
+                             +getSampleFiles(directory,'DYJetsToLL_M-50'),
+                      'weight' : 'baseW'+'*'+SFweight4l+'*'+GenLepMatch2l+'*'+METFilter_MC,
+                     'FilesPerJob' : 1,
+                 }
 
+samples['ttW']  = {    'name': getSampleFiles(directory,'TTWJetsToLNu_ext2'),
+                      'weight' : XSWeight+'*'+SFweight4l+'*'+GenLepMatch3l+'*'+METFilter_MC,
+                 }
 
+samples['ttZ']  = {    'name': getSampleFiles(directory,'TTZjets'),
+                      'weight' : XSWeight+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC,
+                 }
+
+# samples['WZ_SP']  = {    'name': getSampleFiles(directorySpring16,'WZTo3LNu'),
+#                       # 'weight' : '1.11'+'*'+XSWeight+'*'+SFweight4l+'*'+GenLepMatch3l+'*'+METFilter_MC,
+#                       'weight' : '1.11*puW*baseW*bPogSF*effTrigW3l*std_vector_lepton_idisoW[0]*std_vector_lepton_idisoW[1]*std_vector_lepton_idisoW[2]*std_vector_lepton_idisoW[3]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_recoW[2]*std_vector_lepton_recoW[3]*std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]*GEN_weight_SM/abs(GEN_weight_SM)',
+#                   }
 
 samples['WZ']  = {    'name': getSampleFiles(directory,'WZTo3LNu'),
                       'weight' : '1.11'+'*'+XSWeight+'*'+SFweight4l+'*'+GenLepMatch3l+'*'+METFilter_MC,
@@ -194,7 +212,7 @@ samples['top'] = {   'name': getSampleFiles(directory,'TTTo2L2Nu')
 
 samples['VVZ'] = {    'name': getSampleFiles(directory,'WZZ')
                               +getSampleFiles(directory,'ZZZ')
-                              +getSampleFiles(directory,'WWZ'),      
+                              +getSampleFiles(directory,'WWZ'),
                       'weight' : XSWeight+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC,
                   }
 
@@ -206,22 +224,23 @@ samples['WWW'] = {    'name': getSampleFiles(directory,'WWW'),
 ####################################
 ############# Signal ###############
 ####################################
-samples['ZH_hww']  = {  'name': getSampleFiles(directory,'HZJ_HToWW_M125'),  
+samples['ZH_hww']  = {  'name': getSampleFiles(directory,'HZJ_HToWW_M125'),
                         'weight' : XSWeight+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC,
                      }
 
 samples['ZH_htt']  = {  'name':#getSampleFiles(directory,'HWminusJ_HToTauTau_M125'),
                                # getSampleFiles(directory,'HWplusJ_HToTauTau_M125'),
-                               getSampleFiles(directory,'HZJ_HToTauTau_M125'),      
+                               getSampleFiles(directory,'HZJ_HToTauTau_M125'),
                            'weight' : XSWeight+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC,
                      }
 
-samples['ggZH_hww']  = { 'name': getSampleFiles(directory,'ggZH_HToWW_M125'),  
+# samples['ggZH_hww']  = { 'name': getSampleFiles(directory,'ggZH_HToWW_M125'),
+samples['ggZH_hww']  = { 'name': getSampleFiles(directory,'GluGluZH_HToWWTo2L2Nu_M125'),
                          'weight' : XSWeight+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC,
                        }
 
 if treeBaseDir.startswith('/eos/cms') :
-    directory     = "root://eoscms.cern.ch/"+directory
+    directory         = "root://eoscms.cern.ch/"+directory
     # directoryDATA = "root://eoscms.cern.ch/"+directoryDATA
     # directoryFake = "root://eoscms.cern.ch/"+directoryFake
 for sampleName, sample in samples.iteritems():
@@ -232,6 +251,6 @@ for sampleName, sample in samples.iteritems():
 ##################################
 
 # Keep specific samples
-# samplesToKeep = ['DATA']
-# samples = {sampleName: sample for sampleName, sample in samples.iteritems() if sampleName in samplesToKeep }
+# samplesToKeep = ['DATA','Fake']
+# samples = {sampleName: sample for sampleName, sample in samples.iteritems() if sampleName not in samplesToKeep }
 

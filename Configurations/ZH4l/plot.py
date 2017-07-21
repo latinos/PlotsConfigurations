@@ -32,6 +32,19 @@ groupPlot['top']  = {
                   'samples'  : ['top']
               }
 
+groupPlot['DY']  = {  
+                  'nameHR' : 'DY',
+                  'isSignal' : 0,
+                  'color': 422,    # kGreen+3
+                  'samples'  : ['DY']
+              }
+groupPlot['ttV']  = {  
+                  'nameHR' : 'ttV',
+                  'isSignal' : 0,
+                  'color': 862,    # kGreen+3
+                  'samples'  : ['ttW','ttZ']
+              }
+
 groupPlot['WW']  = {  
                   'nameHR' : 'WW',
                   'isSignal' : 0,
@@ -102,11 +115,11 @@ groupPlot['ZH4l']  = {
 
 # keys here must match keys in samples.py    
 #                    
-#plot['DY']  = {  
-#                  'color': 418,    # kGreen+2
-#                  'isSignal' : 0,
-#                  'isData'   : 0, 
-#                  'scale'    : 1.0,
+plot['DY']  = {  
+                 'color': 418,    # kGreen+2
+                 'isSignal' : 0,
+                 'isData'   : 0, 
+                 'scale'    : 1.0,
  #                 'cuts'  : {
 #                       'hww2l2v_13TeV_of0j'      : 0.95 ,
 #                       'hww2l2v_13TeV_top_of0j'  : 0.95 , 
@@ -121,8 +134,21 @@ groupPlot['ZH4l']  = {
  #                      'hww2l2v_13TeV_me_1j'     : 1.08 , 
   #                      },
 #
- #             }
+             }
 
+plot['ttZ']  = {
+                  'color': 419,    # kGreen+3
+                  'isSignal' : 0,
+                  'isData'   : 0,    
+                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+                  }
+
+plot['ttW']  = {
+                  'color': 419,    # kGreen+3
+                  'isSignal' : 0,
+                  'isData'   : 0,    
+                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+                  }
 
                
 #plot['Wjets']  = {  
@@ -351,6 +377,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
+                  # 'isBlind'  : 0
                   'isBlind'  : 1
               }
 

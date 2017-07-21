@@ -15,6 +15,24 @@ structure['WW']  = {
                   'isData'   : 0    
                   }
 
+# structure['ttV']  = {
+                  # 'isSignal' : 0,
+                  # 'isData'   : 0    
+                  # }
+
+structure['DY']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0    
+                  }
+
+structure['ttW']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0    
+                  }
+structure['ttZ']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0    
+                  }
 structure['top']  = {
                   'isSignal' : 0,
                   'isData'   : 0
