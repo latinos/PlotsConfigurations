@@ -9,22 +9,37 @@ structure['Fake']  = {
                   'isData'   : 0 
               }
 
+structure['DY']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
+structure['top']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
 
 structure['WW']  = {
                   'isSignal' : 0,
                   'isData'   : 0    
                   }
 
-#structure['ggWW']  = {
-#                  'isSignal' : 0,
-#                  'isData'   : 0    
-#                  }
+structure['ggWW']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0    
+                  }
 
 
 structure['Vg']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
+
+structure['VgS']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
 
 structure['WZ']  = { 
                   'isSignal' : 0,
