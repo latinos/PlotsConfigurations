@@ -140,7 +140,15 @@ To check the consistency one can transform the datacard (txt file) into a RooFit
 Fit with combine and save the output histograms
 
     combine -M MaxLikelihoodFit datacards/hww2l2v_13TeV_em_pm_0j/mll/datacard.txt -n mytest --saveShapes --saveNormalizations   --saveWithUncertainties
-    combine -M MaxLikelihoodFit datacards/hww2l2v_13TeV_top_of1j/mll/datacard.txt -n mytest --saveShapes --saveNormalizations   --saveWithUncertainties
+    combine -M MaxLikelihoodFit datacards/hww2l2v_13TeV_top_of1j/mll/datacard.txt -n mytest --saveShapes --saveNormalizations   --saveWithUncertainties  --freezeNuisances=WWnorm1j
+
+    
+    combineCards.py phasespace1=datacards/hww2l2v_13TeV_top_of1j/mll/datacard.txt \
+                    phasespace2=datacards/hww2l2v_13TeV_top_of1j/mll/datacard.txt \
+                    > Full2016.txt
+
+    combine -M MaxLikelihoodFit Full2016.txt -n mytest --saveShapes --saveNormalizations   --saveWithUncertainties  --freezeNuisances=WWnorm1j
+
 
 Digest the histograms so that they can be used by mkPlot
 
@@ -150,6 +158,10 @@ Digest the histograms so that they can be used by mkPlot
     mkPostFitPlot.py --inputFileCombine mlfitmytest.root --outputFile out.pre.root --variable mll --cut hww2l2v_13TeV_em_pm_0j --kind p    --inputFile rootFile/plots_ggH.root
 
     mkPostFitPlot.py --inputFileCombine mlfitmytest.root --outputFile out.b.root   --variable mll --cut hww2l2v_13TeV_top_of1j --kind b    --inputFile rootFile/plots_ggH.root
+    mkPostFitPlot.py --inputFileCombine mlfitmytest.root --outputFile out.b.root   --variable mll --cut phasespace1   --cutNameInOriginal  hww2l2v_13TeV_top_of1j        --kind b    --inputFile rootFile/plots_ggH.root
+ 
+ 
+ 
  
  
 Run mkPlot with the new file (NB: only one variable should be defined in variables.py!)
