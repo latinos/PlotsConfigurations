@@ -11,8 +11,8 @@ from LatinoAnalysis.Tools.commonTools import *
 ################# SKIMS ########################
 ################################################
 
-#skim=''
-skim='__wwSel'
+skim=''
+#skim='__wwSel'
 #skim='__topSel'
 #skim='__topSel'
 #skim='__vh3lSel' 
@@ -79,10 +79,10 @@ bVeto='bveto_'+bAlgo+bWP
 
 #... Electron:
 
-eleWP='cut_WP_Tight80X'
+#eleWP='cut_WP_Tight80X'
 #eleWP='cut_WP_Tight80X_SS'
 #eleWP='mva_80p_Iso2015'
-#eleWP='mva_80p_Iso2016'
+eleWP='mva_80p_Iso2016'
 #eleWP='mva_90p_Iso2015'
 #eleWP='mva_90p_Iso2016'
 
