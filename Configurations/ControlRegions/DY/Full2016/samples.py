@@ -76,6 +76,8 @@ elif bAlgo == 'DeepCSVB' :
  bSF='bPogSF_deepCSV'+bWP
 
 SFweight += '*'+bSF
+# Fix for 2-leptons for which this was kept in global formula !
+if Nlep == '2' : SFweight += '/bPogSF_CMVAL'
 
 # ... b Veto
 

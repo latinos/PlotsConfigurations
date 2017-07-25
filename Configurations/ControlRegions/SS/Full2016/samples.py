@@ -20,8 +20,7 @@ from LatinoAnalysis.Tools.commonTools import *
 #skim='__vbsSel'
 skim='__ssSel'
 
-if   skim =='__vh3lSel' :  skimFake='__vh3lFakeSel'
-#elif skim =='__ssSel' :  skimFake='__ssSel__multiFakeW__formulasFAKE'
+if skim =='__vh3lSel' :  skimFake='__vh3lFakeSel'
 else:                    skimFake=skim
 
 ##############################################
@@ -39,12 +38,20 @@ elif  'cern' in SITE :
 directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC'+skim+'/'
 
 ################################################
+############ NUMBER OF LEPTONS #################
+################################################
+
+Nlep='2'
+#Nlep='3'
+#Nlep='4'
+
+################################################
 ############ BASIC MC WEIGHTS ##################
 ################################################
 
 XSWeight      = 'XSWeight'
-SFweight      = 'SFweight2l'
-GenLepMatch   = 'GenLepMatch2l'
+SFweight      = 'SFweight'+Nlep+'l'
+GenLepMatch   = 'GenLepMatch'+Nlep+'l'
 
 ################################################
 ############### B-Tag  WP ######################
@@ -93,14 +100,17 @@ muWP='cut_Tight80x'
 
 #... Build formula
 
-LepWPCut        = 'LepCut2l__ele_'+eleWP+'__mu_'+muWP
-LepWPweight     = 'LepSF2l__ele_'+eleWP+'__mu_'+muWP
+LepWPCut        = 'LepCut'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
+LepWPweight     = 'LepSF'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
 
 SFweight += '*'+LepWPweight+'*'+LepWPCut
 
 #... And the fakeW
 
-fakeW  = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP
+if Nlep == '2' :
+  fakeW = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP
+else:
+  fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l'
 
 ################################################
 ############   MET  FILTERS  ###################
