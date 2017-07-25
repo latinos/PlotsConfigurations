@@ -41,7 +41,6 @@ variables['mll']  = {   'name': 'mll',            #   variable name
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
                         'fold' :3
                         }
-'''
 
 variables['mjj']  = {   'name': 'mjj',            #   variable name    
                         'range' : (40,0,400),    #   variable range
@@ -49,7 +48,6 @@ variables['mjj']  = {   'name': 'mjj',            #   variable name
                         'fold' :3
                         }
 
-'''
 variables['std_vector_lepton_pt[0]']  = {   'name': 'std_vector_lepton_pt[0]',            #   variable name    
                         'range' : (20,0,200),    #   variable range
                         'xaxis' : 'pT_{1l} [GeV]',  #   x axis name

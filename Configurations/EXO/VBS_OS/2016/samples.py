@@ -205,13 +205,13 @@ addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
 #                 }
 
 samples['WpWmJJ_EWK_noTop'] = { 'name': getSampleFiles(directory,'WpWmJJ_EWK_noTop'),
-                                'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC',#*(mWp>60)*(mWp<100)*(mWm>60)*(mWm<100)',
+                                'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC*(mWp>60)*(mWp<100)*(mWm>60)*(mWm<100)',
                               }
 
 
 
 samples['WpWmJJ_QCD_noTop'] = { 'name':  getSampleFiles(directory,'WpWmJJ_QCD_noTop'),
-                                'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC',#*(mWp>60)*(mWp<100)*(mWm>60)*(mWm<100)',
+                                'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC*(mWp>60)*(mWp<100)*(mWm>60)*(mWm<100)',
                               }
 
 

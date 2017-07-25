@@ -1,6 +1,6 @@
 # example of configuration file
 
-tag = 'HWWhighMass2016_SF_embeddedWeights'
+tag = 'HWWhighMass2016_SF_embeddedWeights1'
 
 
 # used by mkShape to define output directory for root files

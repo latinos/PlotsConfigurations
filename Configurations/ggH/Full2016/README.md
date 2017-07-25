@@ -14,12 +14,25 @@ By following these instructions one should be able to read latino trees, produce
     cmsenv
     scramv1 b
 
-    # First time only copy and modify
-    cd LatinoAnalysis/Tools/python
+
+# 1. First time only
+
+Get the combine package. Follow the instructions documented in the revision **r170** of the [combine twiki](https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHiggsAnalysisCombinedLimit#ROOT6_SLC6_release_CMSSW_7_4_X).
+
+    cd $COMBINE_DIRECTORY
+
+Get Andrea's scripts to modify datacards.
+
+    cd $COMBINE_DIRECTORY
+    git clone https://github.com/amassiro/ModificationDatacards
+
+Copy and edit the latino user configuration file.
+
+    cd $CMSSW_DIRECTORY/LatinoAnalysis/Tools/python
     cp userConfig_TEMPLATE.py userConfig.py
 
 
-# 1. Read the latino trees and produce histograms
+# 2. Produce histograms
 
 This step reads the post-processed latino trees and produces histograms for several variables and phase spaces.
 
@@ -41,7 +54,7 @@ If a job takes too long / fails, one can kill it and resubmit manually.
     bsub -q 1nd ~/cms/HWW2016/jobs/mkShapes__ggH/mkShapes__ggH__hww2l2v_13TeV_em_mp_1j__top2.sh
 
 
-# 2. Put all your apples in one basket
+# 3. Put all your apples in one basket
 
 Once the previous jobs have finished we _hadd_ the outputs.
 
@@ -51,7 +64,11 @@ Once the previous jobs have finished we _hadd_ the outputs.
                 --doHadd=True
 
 
-# 3a. Take beautiful pictures
+# 4. Read histograms
+
+At this stage one can either produce plots or datacards.
+
+### Produce plots
 
 Now we are ready to make data/MC comparison plots.
 
@@ -59,33 +76,20 @@ Now we are ready to make data/MC comparison plots.
               --showIntegralLegend=1
 
 
-# 3b. Produce the datacards
+### Produce datacards
 
     mkDatacards.py --pycfg=configuration.py \
                    --inputFile=rootFile/plots_ggH.root
 
 
-# 4. Get the combine package
-
-    cd $COMBINE_DIRECTORY
-
-This step is meant to be done the first time only, by following the instructions documented in the revision **r170** of the [combine twiki](https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHiggsAnalysisCombinedLimit#ROOT6_SLC6_release_CMSSW_7_4_X).
-
-
-# 5. Modify the datacards
-
-    # First time only
-    cd $COMBINE_DIRECTORY
-    git clone https://github.com/amassiro/ModificationDatacards
-
-Now one can prune the datacards.
+# 5. Pruning
 
     cd $COMBINE_DIRECTORY/ModificationDatacards
     ls /afs/cern.ch/user/p/piedra/work/CMSSW_Apr2017_HowToBeALatinLover/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/ggH/Full2016/datacards/*/*/*.txt | grep -v "pruned" | \
     awk '{print "python PruneDatacard.py -d "$1" -o "$1".pruned.txt --suppressNegative=True -i examples/input_nuisances_to_prune.py"}' | /bin/sh
 
 
-# 6. Combine the datacards
+# 6. Combine datacards
 
     pushd $COMBINE_DIRECTORY/CMSSW_7_4_7/src/
     eval `scramv1 runtime -sh`
@@ -106,7 +110,18 @@ Now one can prune the datacards.
                     > Full2016.txt.pruned.txt
 
 
-# 7. Get the significance
+# 7. Check consistency of datacards
+
+To check the consistency one can transform the datacard (txt file) into a RooFit binary file (workspace).
+
+    pushd $COMBINE_DIRECTORY/CMSSW_7_4_7/src/
+    eval `scramv1 runtime -sh`
+    popd
+
+    text2workspace.py Full2016.txt.pruned.txt -o Full2016.txt.pruned.root
+
+
+# 8. Get the significance
 
     pushd $COMBINE_DIRECTORY/CMSSW_7_4_7/src/
     eval `scramv1 runtime -sh`
@@ -114,6 +129,48 @@ Now one can prune the datacards.
 
     combine -M MaxLikelihoodFit \
             --rMin=-2 --rMax=4 \
-            Full2016.txt.pruned.txt -n Full2016.txt.pruned.txt \
+            Full2016.txt.pruned.root -n Full2016.txt.pruned.root \
             > result.data.MaxLikelihoodFit.Full2016.txt.pruned.txt
 
+            
+            
+            
+# 9. Post-fit plots
+
+Fit with combine and save the output histograms
+
+    combine -M MaxLikelihoodFit datacards/hww2l2v_13TeV_em_pm_0j/mll/datacard.txt -n mytest --saveShapes --saveNormalizations   --saveWithUncertainties
+    combine -M MaxLikelihoodFit datacards/hww2l2v_13TeV_top_of1j/mll/datacard.txt -n mytest --saveShapes --saveNormalizations   --saveWithUncertainties  --freezeNuisances=WWnorm1j
+
+    
+    combineCards.py phasespace1=datacards/hww2l2v_13TeV_top_of1j/mll/datacard.txt \
+                    phasespace2=datacards/hww2l2v_13TeV_top_of1j/mll/datacard.txt \
+                    > Full2016.txt
+
+    combine -M MaxLikelihoodFit Full2016.txt -n mytest --saveShapes --saveNormalizations   --saveWithUncertainties  --freezeNuisances=WWnorm1j
+
+
+Digest the histograms so that they can be used by mkPlot
+
+    mkPostFitPlot.py --inputFileCombine mlfitmytest.root --outputFile out.root --variable mll --cut hww2l2v_13TeV_em_pm_0j --inputFile rootFile/plots_ggH.root
+    mkPostFitPlot.py --inputFileCombine mlfitmytest.root --outputFile out.s.root   --variable mll --cut hww2l2v_13TeV_em_pm_0j --kind s    --inputFile rootFile/plots_ggH.root
+    mkPostFitPlot.py --inputFileCombine mlfitmytest.root --outputFile out.b.root   --variable mll --cut hww2l2v_13TeV_em_pm_0j --kind b    --inputFile rootFile/plots_ggH.root
+    mkPostFitPlot.py --inputFileCombine mlfitmytest.root --outputFile out.pre.root --variable mll --cut hww2l2v_13TeV_em_pm_0j --kind p    --inputFile rootFile/plots_ggH.root
+
+    mkPostFitPlot.py --inputFileCombine mlfitmytest.root --outputFile out.b.root   --variable mll --cut hww2l2v_13TeV_top_of1j --kind b    --inputFile rootFile/plots_ggH.root
+    mkPostFitPlot.py --inputFileCombine mlfitmytest.root --outputFile out.b.root   --variable mll --cut phasespace1   --cutNameInOriginal  hww2l2v_13TeV_top_of1j        --kind b    --inputFile rootFile/plots_ggH.root
+ 
+ 
+ 
+ 
+ 
+Run mkPlot with the new file (NB: only one variable should be defined in variables.py!)
+    
+    mkPlot.py --inputFile=out.root               --showIntegralLegend=1
+    mkPlot.py --inputFile=out.s.root             --showIntegralLegend=1
+    mkPlot.py --inputFile=out.b.root             --showIntegralLegend=1
+    mkPlot.py --inputFile=out.pre.root           --showIntegralLegend=1
+            
+            
+            
+            

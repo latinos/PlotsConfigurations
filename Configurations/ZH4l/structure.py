@@ -15,16 +15,23 @@ structure['WW']  = {
                   'isData'   : 0    
                   }
 
+structure['DY']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0    
+                  }
+
+structure['ttW']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0    
+                  }
+structure['ttZ']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0    
+                  }
 structure['top']  = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
-
-#structure['ggWW']  = {
-#                  'isSignal' : 0,
-#                  'isData'   : 0    
-#                  }
-
 
 structure['Vg']  = { 
                   'isSignal' : 0,
@@ -61,11 +68,6 @@ structure['ggZZ']  = {
                   'isData'   : 0    
                   }
 
-#structure['WH_hww'] = {
-#                  'isSignal' : 1,
-#                  'isData'   : 0    
-#                  }
-
 structure['ZH_hww'] = {
                   'isSignal' : 1,
                   'isData'   : 0    
@@ -79,12 +81,6 @@ structure['ZH_htt'] = {
                   'isSignal' : 1,
                   'isData'   : 0    
                   }
-
-#structure['WH_htt'] = {
-#                  'isSignal' : 1,
-#                  'isData'   : 0    
-#                  }
-
 
 # data
 
