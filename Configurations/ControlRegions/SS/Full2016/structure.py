@@ -52,10 +52,17 @@ structure['ggWW_Int']  = {
                   'isData'   : 0    
                   }
 
-structure['Wg']  = { 
+structure['Vg']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
+
+structure['VgS']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
+
 
 structure['VZ']  = { 
                   'isSignal' : 0,
@@ -88,6 +95,12 @@ structure['ggH_hww'] = {
                   'isSignal' : 1,
                   'isData'   : 0    
                   }
+
+structure['bbH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
+
 
 structure['qqH_hww'] = {
                   'isSignal' : 1,
