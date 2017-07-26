@@ -1,45 +1,41 @@
 # example of configuration file
 
-tag = 'SS'
-#tag = 'DATA'
+tag = 'monoHWW_ss'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = 'rootFile_ss'
 
 
 # file with list of variables
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
+cutsFile = 'cuts_ss.py' 
 
 # file with list of samples
-samplesFile = 'samples.py' 
-
+samplesFile = 'samples_ss.py'
+ 
 # file with list of samples
-plotFile = 'plot.py' 
-
+plotFile = 'plot_em.py' 
 
 
 # luminosity to normalize to (in 1/fb)
-#lumi = 4.3
 lumi = 35.9
 
-# used by mkPlot to define output directory for plots
-# different from "outputDir" to do things more tidy
-outputDirPlots = 'plotSS'
 
+# used by mkPlot to define output directory for plots
+outputDirPlots = 'monoH_2HDM_ss'
 
 # used by mkDatacards to define output directory for datacards
 outputDirDatacard = 'datacards'
-
 
 # structure file for datacard
 structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
+#nuisancesFile = 'nuisances_light.py'
 nuisancesFile = 'nuisances.py'
-
+#nuisancesFile = 'nuisances_full_em.py'
 

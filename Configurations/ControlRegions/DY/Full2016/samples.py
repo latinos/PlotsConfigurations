@@ -38,12 +38,20 @@ elif  'cern' in SITE :
 directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC'+skim+'/'
 
 ################################################
+############ NUMBER OF LEPTONS #################
+################################################
+
+Nlep='2'
+#Nlep='3'
+#Nlep='4'
+
+################################################
 ############ BASIC MC WEIGHTS ##################
 ################################################
 
 XSWeight      = 'XSWeight'
-SFweight      = 'SFweight2l'
-GenLepMatch   = 'GenLepMatch2l'
+SFweight      = 'SFweight'+Nlep+'l'
+GenLepMatch   = 'GenLepMatch'+Nlep+'l'
 
 ################################################
 ############### B-Tag  WP ######################
@@ -68,6 +76,8 @@ elif bAlgo == 'DeepCSVB' :
  bSF='bPogSF_deepCSV'+bWP
 
 SFweight += '*'+bSF
+# Fix for 2-leptons for which this was kept in global formula !
+if Nlep == '2' : SFweight += '/bPogSF_CMVAL'
 
 # ... b Veto
 
@@ -92,14 +102,17 @@ muWP='cut_Tight80x'
 
 #... Build formula
 
-LepWPCut        = 'LepCut2l__ele_'+eleWP+'__mu_'+muWP
-LepWPweight     = 'LepSF2l__ele_'+eleWP+'__mu_'+muWP
+LepWPCut        = 'LepCut'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
+LepWPweight     = 'LepSF'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
 
 SFweight += '*'+LepWPweight+'*'+LepWPCut
 
 #... And the fakeW
 
-fakeW  = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP
+if Nlep == '2' :
+  fakeW = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP
+else:
+  fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l'
 
 ################################################
 ############   MET  FILTERS  ###################
@@ -389,20 +402,20 @@ samples['H_htt']    = {   'name' :   getSampleFiles(directory,'GluGluHToTauTau_M
 ################## FAKE ###################
 ###########################################
 
-#samples['Fake']  = {   'name': [ ] ,
-#                       'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA,              #   weight/cut 
-#                       'weights' : [ ] ,
-#                       'isData': ['all'],
-#                       'FilesPerJob' : 5 ,
-#                   }
+samples['Fake']  = {   'name': [ ] ,
+                       'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA,              #   weight/cut 
+                       'weights' : [ ] ,
+                       'isData': ['all'],
+                       'FilesPerJob' : 5 ,
+                   }
 
-#for Run in DataRun :
-#  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__multiFakeW__formulasFAKE__hadd'+skimFake+'/'
-#  for DataSet in DataSets :
-#    FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
-#    for iFile in FileTarget:
-#      samples['Fake']['name'].append(iFile)
-#      samples['Fake']['weights'].append(DataTrig[DataSet])
+for Run in DataRun :
+  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__multiFakeW__formulasFAKE__hadd'+skimFake+'/'
+  for DataSet in DataSets :
+    FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
+    for iFile in FileTarget:
+      samples['Fake']['name'].append(iFile)
+      samples['Fake']['weights'].append(DataTrig[DataSet])
 
 ###########################################
 ################## DATA ###################

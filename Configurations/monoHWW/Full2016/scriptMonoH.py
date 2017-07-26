@@ -40,6 +40,7 @@ os.system('mkdir -p  pulls_' + channel + '_' + cut + '/')
 print "+++++ 2HDM Mass Points +++++"
 for mZp in ZpMasses :
     for mA0 in A0Masses :
+
         # text2workspace step
         print "+++++ Translating Datacards to Rootfiles +++++"
         os.system('text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose --PO \'map=.*/monoH_*:0\' --PO \'map=.*/monoH_' + mZp + '_' + mA0 + ':r[1,0,10]\' --channel-masks datacards/monoH_' + cut + '_' + channel + '/' + variable + '/datacard_combined.txt -o monoH_' + mZp + '_' + mA0 + '.root')
@@ -52,11 +53,11 @@ for mZp in ZpMasses :
 
         # Produce pulls
         print "+++++ Producing Pulls +++++"
-        print "+++++ Signal and Control Regions. S + B +++++"
-        os.system('combine -M MaxLikelihoodFit -t -1 --expectSignal 1 --robustFit 1 --saveShapes --saveWithUncertainties  -d combine_' + channel + '_' + cut + '/monoH_' + mZp + '_' + mA0 + '_' + variable + '_pullSB.root')
-        os.system('mv mlfit.root combine_' + channel + '_' + cut + '/mlfit_' + mZp + '_' + mA0 + '_' + variable + '_SB.root')
-        os.system('python ~/work/CMSSW_7_4_7/src/HiggsAnalysis/CombinedLimit/test/diffNuisances.py combine_' + channel + '_' + cut + '/mlfit_' + mZp + '_' + mA0 + '_' + variable + '_SB.root -a -f latex --histogram pulls_' + channel + '_' + cut + '/pulls_' + mZp + '_' + mA0 + '_' + variable + '_SB.root')
-        os.system('root -l -b -q \'macroPulls.C(\"pulls_' + channel + '_' + cut + '\",\"\",\"' + mZp + '_' + mA0 + '\",\"' + variable + '\",\"SB\")\'')
+        # print "+++++ Signal and Control Regions. S + B +++++"
+        # os.system('combine -M MaxLikelihoodFit -t -1 --expectSignal 1 --robustFit 1 --saveShapes --saveWithUncertainties -d combine_' + channel + '_' + cut + '/monoH_' + mZp + '_' + mA0 + '_' + variable + '.root')
+        # os.system('mv mlfit.root combine_' + channel + '_' + cut + '/mlfit_' + mZp + '_' + mA0 + '_' + variable + '_SB.root')
+        # os.system('python ~/work/CMSSW_7_4_7/src/HiggsAnalysis/CombinedLimit/test/diffNuisances.py combine_' + channel + '_' + cut + '/mlfit_' + mZp + '_' + mA0 + '_' + variable + '_SB.root -a -f latex --histogram pulls_' + channel + '_' + cut + '/pulls_' + mZp + '_' + mA0 + '_' + variable + '_SB.root')
+        # os.system('root -l -b -q \'macroPulls.C(\"pulls_' + channel + '_' + cut + '\",\"\",\"' + mZp + '_' + mA0 + '\",\"' + variable + '\",\"SB\")\'')
 
         print "+++++ Signal and Control Regions. B Only Asimov +++++"
         os.system('combine -M MaxLikelihoodFit -t -1 --expectSignal 0 --robustFit 1 --saveShapes --saveWithUncertainties -d combine_' + channel + '_' + cut + '/monoH_' + mZp + '_' + mA0 + '_' + variable + '.root')
