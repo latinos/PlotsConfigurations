@@ -87,6 +87,19 @@ variables['eta2large']  = {  'name': 'std_vector_lepton_eta[1]',
                        'fold'  : 3
                        }
 
+variables['phi1']  = {  'name': 'std_vector_lepton_phi[0]',
+                        'range' : (40,-3.2,3.2),
+                        'xaxis' : '#phi 1st lep',
+                        'fold'  : 3
+                        }
+
+variables['phi2']  = {  'name': 'std_vector_lepton_phi[1]',
+                        'range' : (40,-3.2,3.2),
+                        'xaxis' : '#phi 2nd lep',
+                        'fold'  : 3
+                        }
+
+
 ##variables['taupt1']  = {'name': 'std_vector_tau_pt[0]',     
 #                        #'range' : (100,0,200),   
 #                        #'xaxis' : 'p_{T} 1st tau',
