@@ -2,7 +2,7 @@
 
 #nuisances = {}
 
-eleWP='cut_WP_Tight80X'
+eleWP='mva_90p_Iso2016'
 #'cut_WP_Tight80X'
 #'cut_WP_Tight80X_SS'
 #'mva_80p_Iso2015'
@@ -11,12 +11,7 @@ eleWP='cut_WP_Tight80X'
 #'mva_90p_Iso2016'
 muWP='cut_Tight80x'
 
-# folderUpPath =
-# folderDownPath =
-
-electronIdIso = '(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_electron_idisoW_'+eleWP+'_Up[0])/(std_vector_electron_idisoW_'+eleWP+'[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_electron_idisoW_'+eleWP+'_Up[1])/(std_vector_electron_idisoW_'+eleWP+'[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_electron_idisoW_'+eleWP+'_Up[2])/(std_vector_electron_idisoW_'+eleWP+'[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_electron_idisoW_'+eleWP+'_Up[3])/(std_vector_electron_idisoW_'+eleWP+'[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_electron_idisoW_'+eleWP+'_Down[0])/(std_vector_electron_idisoW_'+eleWP+'[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_electron_idisoW_'+eleWP+'_Down[1])/(std_vector_electron_idisoW_'+eleWP+'[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_electron_idisoW_'+eleWP+'_Down[2])/(std_vector_electron_idisoW_'+eleWP+'[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_electron_idisoW_'+eleWP+'_Down[3])/(std_vector_electron_idisoW_'+eleWP+'[3]-1))'
-
-muonIdIso = '(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_muon_idisoW_'+muWP+'_Up[0])/(std_vector_muon_idisoW_'+muWP+'[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_muon_idisoW_'+muWP+'_Up[1])/(std_vector_muon_idisoW_'+muWP+'[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_muon_idisoW_'+muWP+'_Up[2])/(std_vector_muon_idisoW_'+muWP+'[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_muon_idisoW_'+muWP+'_Up[3])/(std_vector_muon_idisoW_'+muWP+'[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_muon_idisoW_'+muWP+'_Down[0])/(std_vector_muon_idisoW_'+muWP+'[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_muon_idisoW_'+muWP+'_Down[1])/(std_vector_muon_idisoW_'+muWP+'[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_muon_idisoW_'+muWP+'_Down[2])/(std_vector_muon_idisoW_'+muWP+'[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_muon_idisoW_'+muWP+'_Down[3])/(std_vector_muon_idisoW_'+muWP+'[3]-1))'
+upDownPath = "/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/"
 
 
 # name of samples here must match keys in samples.py
@@ -46,6 +41,38 @@ nuisances['lumi']  = {
             },
         'type'  : 'lnN',
         }
+
+
+nuisances['lumi2016']  = {
+               'name'  : 'lumi_13TeV_2016', 
+               'samples'  : {
+                   'ggH_hww'  : '1.058',
+                   'qqH_hww'  : '1.058',
+                   'WH_hww'   : '1.058',
+                   'ZH_hww'   : '1.058',
+                   'ZH_htt'   : '1.058',
+                   'H_htt'    : '1.058',
+                   'H_hww'    : '1.058',
+                   'WH_hww'   : '1.058',
+                   'ggZH_hww'   : '1.058',
+                   'VVZ'      : '1.058',
+                   'WWW'      : '1.058',
+                   'WZ'       : '1.058',
+                   'WW'       : '1.058',
+                   'ttW'       : '1.058',
+                   'ttZ'       : '1.058',
+                   'ggWW'     : '1.058',
+                   'Vg'       : '1.058',
+                   'VgS'      : '1.058',
+                   #'DY'       : '1.058',    # --> datadriven
+                   #'WW'       : '1.058',    # --> datadriven
+                   #'top'      : '1.058',    # --> datadriven
+                   },
+               'type'  : 'lnN',
+              }
+
+
+
 
 # Theoritical Systematics
 
@@ -192,6 +219,7 @@ nuisances['btagudsg']  = {
 nuisances['trigg_zh4l']  = {
         'name'  : 'trigger',
         'kind'  : 'weight',
+        #'kind'  : 'tree', #'weight',
         'type'  : 'shape',
         'samples'  : {
             'WH_hww'   : ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)'],
@@ -214,157 +242,166 @@ nuisances['trigg_zh4l']  = {
             },
         }
 
-nuisances['idiso_ele_wh3l']  = {
-        'name'  : 'idiso_ele',
-        'kind'  : 'weight',
+# electronIdIso = '(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_electron_idisoW_'+eleWP+'_Up[0])/(std_vector_electron_idisoW_'+eleWP+'[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_electron_idisoW_'+eleWP+'_Up[1])/(std_vector_electron_idisoW_'+eleWP+'[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_electron_idisoW_'+eleWP+'_Up[2])/(std_vector_electron_idisoW_'+eleWP+'[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_electron_idisoW_'+eleWP+'_Up[3])/(std_vector_electron_idisoW_'+eleWP+'[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_electron_idisoW_'+eleWP+'_Down[0])/(std_vector_electron_idisoW_'+eleWP+'[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_electron_idisoW_'+eleWP+'_Down[1])/(std_vector_electron_idisoW_'+eleWP+'[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_electron_idisoW_'+eleWP+'_Down[2])/(std_vector_electron_idisoW_'+eleWP+'[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_electron_idisoW_'+eleWP+'_Down[3])/(std_vector_electron_idisoW_'+eleWP+'[3]-1))'
+
+# muonIdIso = '(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_muon_idisoW_'+muWP+'_Up[0])/(std_vector_muon_idisoW_'+muWP+'[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_muon_idisoW_'+muWP+'_Up[1])/(std_vector_muon_idisoW_'+muWP+'[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_muon_idisoW_'+muWP+'_Up[2])/(std_vector_muon_idisoW_'+muWP+'[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_muon_idisoW_'+muWP+'_Up[3])/(std_vector_muon_idisoW_'+muWP+'[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_muon_idisoW_'+muWP+'_Down[0])/(std_vector_muon_idisoW_'+muWP+'[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_muon_idisoW_'+muWP+'_Down[1])/(std_vector_muon_idisoW_'+muWP+'[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_muon_idisoW_'+muWP+'_Down[2])/(std_vector_muon_idisoW_'+muWP+'[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_muon_idisoW_'+muWP+'_Down[3])/(std_vector_muon_idisoW_'+muWP+'[3]-1))'
+
+
+
+# nuisances['idiso_ele_wh3l']  = {
+#         'name'  : 'idiso_ele',
+#         'kind'  : 'weight',
+#         #'kind'  : 'tree', #'weight',
+#         'type'  : 'shape',
+#         'samples'  : {
+#               'WH_hww'   : [electronIdIso],
+#               'ZH_hww'   : [electronIdIso],
+#               'ggZH_hww' : [electronIdIso],
+#               'WH_htt'   : [electronIdIso],
+#               'WW'       : [electronIdIso],
+#               'Vg'       : [electronIdIso],
+#               'WZ'       : [electronIdIso],
+#               'ZZ'       : [electronIdIso],
+#               'ggZZ'     : [electronIdIso],
+#               'WWW'      : [electronIdIso],
+#               'VVZ'      : [electronIdIso],
+#               'ttZ'      : [electronIdIso],
+#               'ttW'      : [electronIdIso],
+#             },
+#         #'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/',    # uncertainties fixed!
+#         #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/'
+#         }
+
+
+# nuisances['idiso_mu_wh3l']  = {
+#         'name'  : 'idiso_mu',
+#         'kind'  : 'weight',
+#         #'kind'  : 'tree', #'weight',
+#         'type'  : 'shape',
+#         'samples'  : {
+#               'WH_hww'   : [muonIdIso],
+#               'ZH_hww'   : [muonIdIso],
+#               'ggZH_hww' : [muonIdIso],
+#               'WH_htt'   : [muonIdIso],
+#               'WW'       : [muonIdIso],
+#               'Vg'       : [muonIdIso],
+#               'WZ'       : [muonIdIso],
+#               'ZZ'       : [muonIdIso],
+#               'ggZZ'     : [muonIdIso],
+#               'WWW'      : [muonIdIso],
+#               'VVZ'      : [muonIdIso],
+#               'ttZ'      : [muonIdIso],
+#               'ttW'      : [muonIdIso],
+#             },
+#         }
+
+# # # nuisances handled by means of a different set of trees
+
+
+nuisances['jes_zh4l']  = {
+        'name'  : 'scale_j',
+        'kind'  : 'tree',
         'type'  : 'shape',
         'samples'  : {
-              'WH_hww'   : [electronIdIso],
-              'ZH_hww'   : [electronIdIso],
-              'ggZH_hww' : [electronIdIso],
-              'WH_htt'   : [electronIdIso],
-              'WW'       : [electronIdIso],
-              'Vg'       : [electronIdIso],
-              'WZ'       : [electronIdIso],
-              'ZZ'       : [electronIdIso],
-              'ggZZ'     : [electronIdIso],
-              'WWW'      : [electronIdIso],
-              'VVZ'      : [electronIdIso],
-              'ttZ'      : [electronIdIso],
-              'ttW'      : [electronIdIso],
+            'WW'       : ['1', '1'],
+            'WZ'       : ['1', '1'],
+            'ZZ'       : ['1', '1'],
+            'DY'       : ['1', '1'],
+            'ttW'      : ['1', '1'],
+            'ttZ'      : ['1', '1'],
+            'ggZZ'     : ['1', '1'],
+            'WWW'      : ['1', '1'],
+            'VVZ'      : ['1', '1'],
+            'WH_hww'   : ['1', '1'],
+            'ZH_hww'   : ['1', '1'],
+            'ggZH_hww' : ['1', '1'],
+            'ZH_htt'   : ['1', '1'],
+            'ggH_hzz'  : ['1', '1'],
+            'WH_htt'   : ['1', '1'],
+            'Vg'       : ['1', '1'],
             },
-        # 'folderUp'   : folderUpPath
-        # 'folderDown' : forlderDownPath
+        'folderUp'   : upDownPath+'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__JESup',
+        'folderDown'   : upDownPath+'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__JESdo'
+
         }
 
-
-nuisances['idiso_mu_wh3l']  = {
-        'name'  : 'idiso_mu',
-        'kind'  : 'weight',
+nuisances['electronpt_zh4l']  = {
+        'name'  : 'scale_e',
+        'kind'  : 'tree',
         'type'  : 'shape',
         'samples'  : {
-              'WH_hww'   : [muonIdIso],
-              'ZH_hww'   : [muonIdIso],
-              'ggZH_hww' : [muonIdIso],
-              'WH_htt'   : [muonIdIso],
-              'WW'       : [muonIdIso],
-              'Vg'       : [muonIdIso],
-              'WZ'       : [muonIdIso],
-              'ZZ'       : [muonIdIso],
-              'ggZZ'     : [muonIdIso],
-              'WWW'      : [muonIdIso],
-              'VVZ'      : [muonIdIso],
-              'ttZ'      : [muonIdIso],
-              'ttW'      : [muonIdIso],
+            'WW'       : ['1', '1'],
+            'WZ'       : ['1', '1'],
+            'ZZ'       : ['1', '1'],
+            'DY'       : ['1', '1'],
+            'ttW'      : ['1', '1'],
+            'ttZ'      : ['1', '1'],
+            'ggZZ'     : ['1', '1'],
+            'WWW'      : ['1', '1'],
+            'VVZ'      : ['1', '1'],
+            'WH_hww'   : ['1', '1'],
+            'ZH_hww'   : ['1', '1'],
+            'ggZH_hww' : ['1', '1'],
+            'ggH_hzz'  : ['1', '1'],
+            'ZH_htt'   : ['1', '1'],
+            'WH_htt'   : ['1', '1'],
+            'Vg'       : ['1', '1'],
             },
+        'folderUp'   : upDownPath+'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__LepElepTup',
+        'folderDown'   : upDownPath+'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__LepElepTdo'
         }
 
-# nuisances handled by means of a different set of trees
+nuisances['muonpt_zh4l']  = {
+        'name'  : 'scale_m',
+        'kind'  : 'tree',
+        'type'  : 'shape',
+        'samples'  : {
+            'WW'       : ['1', '1'],
+            'WZ'       : ['1', '1'],
+            'ZZ'       : ['1', '1'],
+            'DY'       : ['1', '1'],
+            'ttW'      : ['1', '1'],
+            'ttZ'      : ['1', '1'],
+            'ggZZ'     : ['1', '1'],
+            'WWW'      : ['1', '1'],
+            'VVZ'      : ['1', '1'],
+            'WH_hww'   : ['1', '1'],
+            'ZH_hww'   : ['1', '1'],
+            'ggZH_hww' : ['1', '1'],
+            'ZH_htt'   : ['1', '1'],
+            'ggH_hzz'  : ['1', '1'],
+            'WH_htt'   : ['1', '1'],
+            'Vg'       : ['1', '1'],
+            },
+        'folderUp'   : upDownPath+'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__LepMupTup',
+        'folderDown'   : upDownPath+'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__LepMupTdo'
+        }
 
-
-# nuisances['jes_zh4l']  = {
-#         'name'  : 'scale_j',
-#         'kind'  : 'tree',
-#         'type'  : 'shape',
-#         'samples'  : {
-#             'WW'       : ['1', '1'],
-#             'WZ'       : ['1', '1'],
-#             'ZZ'       : ['1', '1'],
-#             'DY'       : ['1', '1'],
-#             'ttW'      : ['1', '1'],
-#             'ttZ'      : ['1', '1'],
-#             'ggZZ'     : ['1', '1'],
-#             'WWW'      : ['1', '1'],
-#             'VVZ'      : ['1', '1'],
-#             'WH_hww'   : ['1', '1'],
-#             'ZH_hww'   : ['1', '1'],
-#             'ggZH_hww' : ['1', '1'],
-#             'ZH_htt'   : ['1', '1'],
-#             'ggH_hzz'  : ['1', '1'],
-#             'WH_htt'   : ['1', '1'],
-#             'Vg'       : ['1', '1'],
-#             },
-#         'folderUp'   : folderUpPath
-#         'folderDown' : forlderDownPath
-#         }
-
-# nuisances['electronpt_zh4l']  = {
-#         'name'  : 'scale_e',
-#         'kind'  : 'tree',
-#         'type'  : 'shape',
-#         'samples'  : {
-#             'WW'       : ['1', '1'],
-#             'WZ'       : ['1', '1'],
-#             'ZZ'       : ['1', '1'],
-#             'DY'       : ['1', '1'],
-#             'ttW'      : ['1', '1'],
-#             'ttZ'      : ['1', '1'],
-#             'ggZZ'     : ['1', '1'],
-#             'WWW'      : ['1', '1'],
-#             'VVZ'      : ['1', '1'],
-#             'WH_hww'   : ['1', '1'],
-#             'ZH_hww'   : ['1', '1'],
-#             'ggZH_hww' : ['1', '1'],
-#             'ggH_hzz'  : ['1', '1'],
-#             'ZH_htt'   : ['1', '1'],
-#             'WH_htt'   : ['1', '1'],
-#             'Vg'       : ['1', '1'],
-#             },
-#         'folderUp'   : folderUpPath
-#         'folderDown' : forlderDownPath
-#         }
-
-# nuisances['muonpt_zh4l']  = {
-#         'name'  : 'scale_m',
-#         'kind'  : 'tree',
-#         'type'  : 'shape',
-#         'samples'  : {
-#             'WW'       : ['1', '1'],
-#             'WZ'       : ['1', '1'],
-#             'ZZ'       : ['1', '1'],
-#             'DY'       : ['1', '1'],
-#             'ttW'      : ['1', '1'],
-#             'ttZ'      : ['1', '1'],
-#             'ggZZ'     : ['1', '1'],
-#             'WWW'      : ['1', '1'],
-#             'VVZ'      : ['1', '1'],
-#             'WH_hww'   : ['1', '1'],
-#             'ZH_hww'   : ['1', '1'],
-#             'ggZH_hww' : ['1', '1'],
-#             'ZH_htt'   : ['1', '1'],
-#             'ggH_hzz'  : ['1', '1'],
-#             'WH_htt'   : ['1', '1'],
-#             'Vg'       : ['1', '1'],
-#             },
-#         'folderUp'   : folderUpPath
-#         'folderDown' : forlderDownPath
-#         }
-
-# nuisances['met_zh4l']  = {
-#         'name'  : 'scale_met',
-#         'kind'  : 'tree',
-#         'type'  : 'shape',
-#         'samples'  : {
-#             'WW'       : ['1', '1'],
-#             'WZ'       : ['1', '1'],
-#             'ZZ'       : ['1', '1'],
-#             'DY'       : ['1', '1'],
-#             'ttW'      : ['1', '1'],
-#             'ttZ'      : ['1', '1'],
-#             'ggZZ'     : ['1', '1'],
-#             'WWW'      : ['1', '1'],
-#             'VVZ'      : ['1', '1'],
-#             'WH_hww'   : ['1', '1'],
-#             'ZH_hww'   : ['1', '1'],
-#             'ggZH_hww' : ['1', '1'],
-#             'ZH_htt'   : ['1', '1'],
-#             'ggH_hzz'  : ['1', '1'],
-#             'WH_htt'   : ['1', '1'],
-#             'Vg'       : ['1', '1'],
-#             },
-#         'folderUp'   : folderUpPath
-#         'folderDown' : forlderDownPath
-#         }
+nuisances['met_zh4l']  = {
+        'name'  : 'scale_met',
+        'kind'  : 'tree',
+        'type'  : 'shape',
+        'samples'  : {
+            'WW'       : ['1', '1'],
+            'WZ'       : ['1', '1'],
+            'ZZ'       : ['1', '1'],
+            'DY'       : ['1', '1'],
+            'ttW'      : ['1', '1'],
+            'ttZ'      : ['1', '1'],
+            'ggZZ'     : ['1', '1'],
+            'WWW'      : ['1', '1'],
+            'VVZ'      : ['1', '1'],
+            'WH_hww'   : ['1', '1'],
+            'ZH_hww'   : ['1', '1'],
+            'ggZH_hww' : ['1', '1'],
+            'ZH_htt'   : ['1', '1'],
+            'ggH_hzz'  : ['1', '1'],
+            'WH_htt'   : ['1', '1'],
+            'Vg'       : ['1', '1'],
+            },
+        'folderUp'   : upDownPath+'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__METup',
+        'folderDown'   : upDownPath+'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__METdo'
+        }
 
 # statistical fluctuation
 # on MC/data

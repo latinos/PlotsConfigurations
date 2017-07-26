@@ -11,40 +11,40 @@
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bart',
                   'isSignal' : 0,
-                  'color': 881, 
+                  'color': 401,   # kYellow+1
                   'samples'  : ['top']
               }
 
 groupPlot['DY']  = {  
                   'nameHR' : 'DY',
                   'isSignal' : 0,
-                  'color': 840,
+                  'color': 635,    # kGreen+3
                   'samples'  : ['DY']
               }
 groupPlot['ttV']  = {  
                   'nameHR' : 'ttV',
                   'isSignal' : 0,
-                  'color': 417, 
+                  'color': 418,    # kGreen+3
                   'samples'  : ['ttW','ttZ']
               }
 
 groupPlot['WW']  = {  
                   'nameHR' : 'WW',
                   'isSignal' : 0,
-                  'color': 397,
+                  'color': 419,    # kGreen+3
                   'samples'  : ['WW']
               }
 
 groupPlot['VVV']  = {  
                   'nameHR' : 'VVV',
                   'isSignal' : 0,
-                  'color': 807,
+                  'color': 618, # kViolet +2   
                   'samples'  : ['VVZ','WWW']
               }
 
 groupPlot['Vg']  = {
                   'nameHR' : 'Zg',
-                  'color': 910,
+                  'color': 922,    # kGray + 2
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0,
@@ -54,22 +54,22 @@ groupPlot['Vg']  = {
 groupPlot['ZZ']  = {
                   'nameHR' : "ZZ",
                   'isSignal' : 0,
-                  'color'    :867,
-                  'samples'  : ['ZZ']
-                  # 'samples'  : ['ZZ','ggZZ']
+                  'color'    : 857,   # kAzure -3
+                  # 'samples'  : ['ZZ']
+                  'samples'  : ['ZZ','ggZZ']
               }
 
-# groupPlot['ggH_hzz']  = {
-                  # 'nameHR' : "ggH_hzz",
-                  # 'isSignal' : 0,
-                  # 'color'    : 626,   # kRed -6  
-                  # 'samples'  : ['ggH_hzz']
-              # }
+groupPlot['ggH_hzz']  = {
+                  'nameHR' : "ggH_hzz",
+                  'isSignal' : 0,
+                  'color'    : 626,   # kRed -6  
+                  'samples'  : ['ggH_hzz']
+              }
 
 groupPlot['WZ']  = {
                   'nameHR' : "WZ",
                   'isSignal' : 0,
-                  'color'    : 922,
+                  'color'    : 612,   # kMagenta -4
                   'samples'  : ['WZ']
               }
 
@@ -148,20 +148,20 @@ plot['ZZ']  = {
                   'scale'    : 1.0
                   }
 
-# plot['ggZZ']  = { 
-                  # 'nameHR' : 'ggZZ',
-                  # 'color'    : 857,   # kAzure -3
-                  # 'isSignal' : 0,
-                  # 'isData'   : 0,
-                  # 'scale'    : 1.0
-                  # }
-# plot['ggH_hzz']  = { 
-                  # 'nameHR' : 'ggH_hzz',
-                  # 'color'    : 626,   # kRed -6  
-                  # 'isSignal' : 0,
-                  # 'isData'   : 0,
-                  # 'scale'    : 1.0
-                  # }
+plot['ggZZ']  = { 
+                  'nameHR' : 'ggZZ',
+                  'color'    : 857,   # kAzure -3
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+plot['ggH_hzz']  = { 
+                  'nameHR' : 'ggH_hzz',
+                  'color'    : 626,   # kRed -6  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
 
 plot['VVZ']  = { 
                   'color': 618, # kViolet +2   
@@ -224,7 +224,5 @@ plot['DATA']  = {
 
 legend['lumi'] = 'L = 35.9/fb' # Full2016 data
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
-
-
 
 

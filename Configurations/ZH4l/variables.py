@@ -138,3 +138,14 @@ variables['z1Mt_zh4l']  = {   'name': 'z1Mt_zh4l',            #   variable name
                        'fold' : 0
                      }
 
+variables['nbjet']  = {   'name': 'nbjet',            #   variable name    
+                        'range' : (10,0,10),    #   variable range
+                        'xaxis' : 'nbjet',  #   x axis name
+                       'fold' : 0
+                     }
+
+variables['njet']  = {   'name': 'njet',            #   variable name    
+                        'range' : (10,0,10),    #   variable range
+                        'xaxis' : 'njet',  #   x axis name
+                       'fold' : 0
+                     }
