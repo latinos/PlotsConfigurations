@@ -42,10 +42,7 @@ variables['mllVSmth'] = {   'name': 'mll:mth',            #   variable name
                         #
                         }
 
-
-
 ## just for fun plots:
-
 
                      
 #variables['drll']  = {   'name': 'drll',        #   variable name    
