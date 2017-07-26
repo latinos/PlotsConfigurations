@@ -270,7 +270,7 @@ samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu')
                                   + getSampleFiles(directory,'ST_s-channel')   
                              ,
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-                      'FilesPerJob' : 8 ,
+                      'FilesPerJob' : 1 ,
                   }
                   
 
@@ -406,7 +406,7 @@ samples['Fake']  = {   'name': [ ] ,
                        'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA,              #   weight/cut 
                        'weights' : [ ] ,
                        'isData': ['all'],
-                       'FilesPerJob' : 8 ,
+                       'FilesPerJob' : 2 ,
                    }
 
 for Run in DataRun :
@@ -425,7 +425,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'weight' : 'veto_EMTFBug'+'*'+METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],                            
-                       'FilesPerJob' : 8 ,
+                       'FilesPerJob' : 2 ,
                   }
 
 for Run in DataRun :
