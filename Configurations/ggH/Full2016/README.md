@@ -39,7 +39,7 @@ This step reads the post-processed latino trees and produces histograms for seve
     cd $CONFIGURATION_DIRECTORY
 
     mkShapes.py --pycfg=configuration.py \
-                --inputDir=/eos/cms/store/caf/user/lenzip/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__wwSel__genericFormulas \
+                --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel \
                 --batchSplit=AsMuchAsPossible \
                 --doBatch=True \
                 --batchQueue=1nd
@@ -59,7 +59,7 @@ If a job takes too long / fails, one can kill it and resubmit manually.
 Once the previous jobs have finished we _hadd_ the outputs.
 
     mkShapes.py --pycfg=configuration.py \
-                --inputDir=/eos/cms/store/caf/user/lenzip/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__wwSel__genericFormulas \
+                --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel \
                 --batchSplit=AsMuchAsPossible \
                 --doHadd=True
 
