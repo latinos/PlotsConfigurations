@@ -978,8 +978,12 @@ nuisances['stat']  = {
                    'ggZH_hww': {
                          'typeStat' : 'bbb',
                          },
+
+                   'bbH_hww': {
+                         'typeStat' : 'bbb',
+                         },
                    
-                   'Fake': {  # needed?
+                   'Fake': {
                          'typeStat' : 'bbb',
                          },
                    

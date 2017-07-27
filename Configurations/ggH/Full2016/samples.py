@@ -186,14 +186,24 @@ if useDYHT :
                              + getSampleFiles(directory,'DYJetsToLL_M-50_HT-2500toInf') 
 
 if useDYtt :
-  samples['DY']['name'] +=   getSampleFiles(directory,'DYJetsToTT_MuEle_M-50') \
+  # if skim=='__wwSel' do not include DYJetsToLL_M-50 in the list of samples
+  if skim=='__wwSel':
+    samples['DY']['name'] =   getSampleFiles(directory,'DYJetsToTT_MuEle_M-50') \
+                            + getSampleFiles(directory,'DYJetsToTT_MuEle_M-50_ext1') \
+                            + getSampleFiles(directory,'DYJetsToLL_M-10to50')
+  else:
+    samples['DY']['name'] +=   getSampleFiles(directory,'DYJetsToTT_MuEle_M-50') \
                              + getSampleFiles(directory,'DYJetsToTT_MuEle_M-50_ext1')
 
 # ... Fix Weights (always after all samples are included !)
 
 # pt_ll weight
-addSampleWeight(samples,'DY','DYJetsToLL_M-10to50',ptllDYW_NLO)
-addSampleWeight(samples,'DY','DYJetsToLL_M50'     ,ptllDYW_NLO)
+# in this case DYJetsToLL_M50 is not included in the list of samples
+if (useDYtt and skim=='__wwSel'):
+  addSampleWeight(samples,'DY','DYJetsToLL_M-10to50',ptllDYW_NLO)
+else:
+  addSampleWeight(samples,'DY','DYJetsToLL_M-10to50',ptllDYW_NLO)
+  addSampleWeight(samples,'DY','DYJetsToLL_M50'     ,ptllDYW_NLO)
 
 if useDYHT :
   # Remove high HT from inclusive sample
@@ -227,8 +237,10 @@ if useDYHT :
 
 if useDYtt :
   # Remove OF from Inclusive sample
-  cutSF = '(abs(std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]) == 11*11)||(abs(std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]) == 13*13)'
-  addSampleWeight(samples,'DY','DYJetsToLL_M-50',cutSF)
+  # No need to do it if skim=='__wwSel'
+  if not skim=='__wwSel':
+    cutSF = '(abs(std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]) == 11*11)||(abs(std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]) == 13*13)'
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50',cutSF)
   # pt_ll weight
   addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50'     ,ptllDYW_NLO)
   addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50_ext1',ptllDYW_NLO)
