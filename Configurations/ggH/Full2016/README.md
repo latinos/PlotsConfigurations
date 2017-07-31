@@ -171,6 +171,9 @@ Run mkPlot with the new file (NB: only one variable should be defined in variabl
     mkPlot.py --inputFile=out.b.root             --showIntegralLegend=1
     mkPlot.py --inputFile=out.pre.root           --showIntegralLegend=1
             
+and to plot only the variable used in the maximum likelihood fit:
+
+    mkPlot.py --inputFile=out.pre.root           --showIntegralLegend=1        --onlyCut=hww2l2v_13TeV_top_of1j   --onlyVariable=mll        
             
             
             
