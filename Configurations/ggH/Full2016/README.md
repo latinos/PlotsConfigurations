@@ -152,13 +152,13 @@ Fit with combine and save the output histograms
 
 Digest the histograms so that they can be used by mkPlot
 
-    mkPostFitPlot.py --inputFileCombine mlfitmytest.root --outputFile out.root --variable mll --cut hww2l2v_13TeV_em_pm_0j --inputFile rootFile/plots_ggH.root
-    mkPostFitPlot.py --inputFileCombine mlfitmytest.root --outputFile out.s.root   --variable mll --cut hww2l2v_13TeV_em_pm_0j --kind s    --inputFile rootFile/plots_ggH.root
-    mkPostFitPlot.py --inputFileCombine mlfitmytest.root --outputFile out.b.root   --variable mll --cut hww2l2v_13TeV_em_pm_0j --kind b    --inputFile rootFile/plots_ggH.root
-    mkPostFitPlot.py --inputFileCombine mlfitmytest.root --outputFile out.pre.root --variable mll --cut hww2l2v_13TeV_em_pm_0j --kind p    --inputFile rootFile/plots_ggH.root
+    mkPostFitPlot.py --pycfg=configuration.py    --inputFileCombine mlfitmytest.root --outputFile out.root --variable mll --cut hww2l2v_13TeV_em_pm_0j --inputFile rootFile/plots_ggH.root
+    mkPostFitPlot.py --pycfg=configuration.py    --inputFileCombine mlfitmytest.root --outputFile out.s.root   --variable mll --cut hww2l2v_13TeV_em_pm_0j --kind s    --inputFile rootFile/plots_ggH.root
+    mkPostFitPlot.py --pycfg=configuration.py    --inputFileCombine mlfitmytest.root --outputFile out.b.root   --variable mll --cut hww2l2v_13TeV_em_pm_0j --kind b    --inputFile rootFile/plots_ggH.root
+    mkPostFitPlot.py --pycfg=configuration.py    --inputFileCombine mlfitmytest.root --outputFile out.pre.root --variable mll --cut hww2l2v_13TeV_em_pm_0j --kind p    --inputFile rootFile/plots_ggH.root
 
-    mkPostFitPlot.py --inputFileCombine mlfitmytest.root --outputFile out.b.root   --variable mll --cut hww2l2v_13TeV_top_of1j --kind b    --inputFile rootFile/plots_ggH.root
-    mkPostFitPlot.py --inputFileCombine mlfitmytest.root --outputFile out.b.root   --variable mll --cut phasespace1   --cutNameInOriginal  hww2l2v_13TeV_top_of1j        --kind b    --inputFile rootFile/plots_ggH.root
+    mkPostFitPlot.py --pycfg=configuration.py    --inputFileCombine mlfitmytest.root --outputFile out.b.root   --variable mll --cut hww2l2v_13TeV_top_of1j --kind b    --inputFile rootFile/plots_ggH.root
+    mkPostFitPlot.py --pycfg=configuration.py    --inputFileCombine mlfitmytest.root --outputFile out.b.root   --variable mll --cut phasespace1   --cutNameInOriginal  hww2l2v_13TeV_top_of1j        --kind b    --inputFile rootFile/plots_ggH.root
  
  
  
@@ -166,11 +166,14 @@ Digest the histograms so that they can be used by mkPlot
  
 Run mkPlot with the new file (NB: only one variable should be defined in variables.py!)
     
-    mkPlot.py --inputFile=out.root               --showIntegralLegend=1
-    mkPlot.py --inputFile=out.s.root             --showIntegralLegend=1
-    mkPlot.py --inputFile=out.b.root             --showIntegralLegend=1
-    mkPlot.py --inputFile=out.pre.root           --showIntegralLegend=1
+    mkPlot.py --pycfg=configuration.py    --inputFile=out.root               --showIntegralLegend=1
+    mkPlot.py --pycfg=configuration.py    --inputFile=out.s.root             --showIntegralLegend=1
+    mkPlot.py --pycfg=configuration.py    --inputFile=out.b.root             --showIntegralLegend=1
+    mkPlot.py --pycfg=configuration.py    --inputFile=out.pre.root           --showIntegralLegend=1
             
+and to plot only the variable used in the maximum likelihood fit:
+
+    mkPlot.py --pycfg=configuration.py   --inputFile=out.pre.root           --showIntegralLegend=1        --onlyCut=hww2l2v_13TeV_top_of1j   --onlyVariable=mll        
             
             
             
