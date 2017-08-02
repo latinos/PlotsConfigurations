@@ -892,8 +892,10 @@ nuisances['tttwTh']  = {
 
 nuisances['stat']  = {
                 # apply to the following samples: name of samples here must match keys in samples.py
-               'samples'  : {
-                   
+               'samples'  : { },
+                'type'  : 'shape'
+}
+'''                   
                    'ttbar': {
                          'typeStat' : 'bbb',
                          },
@@ -998,4 +1000,4 @@ nuisances['stat']  = {
                  },
                'type'  : 'shape'
               }
-
+'''
