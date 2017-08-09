@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#cd ~/Framework/Combine/CMSSW_7_4_7/src/
+## FIXME this is where the Combine framework is installed
 cd ~/Combine/CMSSW_7_4_7/src/
 
 eval `scramv1 runtime -sh`
