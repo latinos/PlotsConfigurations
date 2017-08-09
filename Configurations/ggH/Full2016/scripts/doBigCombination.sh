@@ -8,12 +8,12 @@ cd -
 
 workdir=`pwd`
 
-outputdir=`pwd`/combine_8Aug
+outputdir=`pwd`/combine
 cd $outputdir
 
-datacardDir=datacards_8Aug
+datacardDir=datacards
 
-variable=mllVSmth_pt2bins
+variable=mllVSmth
 
 # Fix ggH
 #cat datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt &> datacards/hww2l2v_13TeV_top_of0j/events/datacard.test.txt
