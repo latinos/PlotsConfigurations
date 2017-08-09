@@ -41,10 +41,21 @@ variables['mllVSmth_more'] = {   'name': 'mll:mth',            #   variable name
                              #
                              }
 
-variables['mllVSmth_pt2bins'] = {   'name': 'mll:(mth*(std_vector_lepton_pt[1]<20)+(mth+200-60)*(std_vector_lepton_pt[1]>20))',            #   variable name    
+variables['mllVSmth_pt2bins_v2'] = {   'name': 'mll:(( mth + (mth>180)*(190-mth) )*(std_vector_lepton_pt[1]<20)+(mth+200-60)*(std_vector_lepton_pt[1]>20))',            #   variable name
+                             'range' : ([60,80,100,120,140,160,180,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340],[10,20,30,40,50,60,70,80,90,100,110,120,130,140,150],),          #   variable range
+                             'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
+                             'fold' : 3 ,
+                             # do weighted plot too
+                             'doWeight' : 1,
+                             'binX'     : 21,
+                             'binY'     : 14 
+                             #
+                             }
+
+variables['mllVSmth_pt2bins'] = {   'name': 'mll:((mth + (mth>180)*(190-mth) )*(std_vector_lepton_pt[1]<20)+(mth+200-60)*(std_vector_lepton_pt[1]>20))',            #   variable name    
                              'range' : (14,60,340, 14,10,150),            #   variable range
                              'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
-                             'fold' : 3 , 
+                             'fold' : 3 ,
                              # do weighted plot too
                              'doWeight' : 1,
                              'binX'     : 14,
@@ -52,8 +63,19 @@ variables['mllVSmth_pt2bins'] = {   'name': 'mll:(mth*(std_vector_lepton_pt[1]<2
                              #
                              }
 
+variables['mllVSmth_pt2ge20'] = {   'name': 'mll:(mth*(std_vector_lepton_pt[1]>20))',            #   variable name    
+                             'range' : (7,60,200, 14,10,150),            #   variable range
+                             'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
+                             'fold' : 3 ,
+                             # do weighted plot too
+                             'doWeight' : 1,
+                             'binX'     : 7,
+                             'binY'     : 14
+                             #
+                             }
+
 ## just for fun plots:
-                  
+'''                  
 variables['drll']  = {  'name': 'drll',        #   variable name    
                         'range' : (100,0,2),    #   variable range
                         'xaxis' : 'DR_{ll}',    #   x axis name
@@ -152,4 +174,4 @@ variables['jeteta2']  = {  'name': 'std_vector_jet_eta[1]',
                         'xaxis' : '#eta 2nd jet',
                         'fold'  : 0
                         }
-
+'''
