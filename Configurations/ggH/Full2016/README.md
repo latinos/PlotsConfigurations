@@ -62,6 +62,7 @@ Once the previous jobs have finished we _hadd_ the outputs.
                 --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel \
                 --batchSplit=AsMuchAsPossible \
                 --doHadd=True
+NB: If the --batchSplit=AsMuchAsPossible option is used, do not _hadd_ the outputs by hand but use the command above instead. Otherwise the MC statistical uncertainties are not treated in the correct way.
 
 
 # 4. Read histograms
