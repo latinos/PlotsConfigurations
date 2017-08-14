@@ -5,10 +5,10 @@ void printPrePostFit(std::string process = "ggH_hww") {
   RooArgSet*     post = (RooArgSet*) _file0->Get("norm_fit_s");
   RooArgSet*     pre = (RooArgSet*) _file0->Get("norm_prefit");
 
-  cuts.push_back("of0jDYtt");
-  cuts.push_back("of1jDYtt");
-  cuts.push_back("of0jTop");
-  cuts.push_back("of1jTop");
+  cuts.push_back("of0j_DYtt");
+  cuts.push_back("of1j_DYtt");
+  cuts.push_back("of0j_Top");
+  cuts.push_back("of1j_Top");
   cuts.push_back("em_mp_0j");
   cuts.push_back("me_mp_0j");
   cuts.push_back("em_pm_0j");
@@ -46,7 +46,7 @@ void printAllNuisances(){
 
   RooFitResult* fit_s;
   fit_s = (RooFitResult*) _file0->Get("fit_s");
-
+  //fit_s = (RooFitResult*) _file0->Get("nuisances_prefit_res");
   RooArgList parList = fit_s->floatParsFinal();
 
   for( Int_t j=0; j<parList.getSize(); j++){
@@ -57,3 +57,10 @@ void printAllNuisances(){
 
 }
 
+void printCorrelation(char* nuis1, char* nuis2){
+
+  RooFitResult* fit_s;
+  fit_s = (RooFitResult*) _file0->Get("fit_s");
+  std::cout << "Correlation between nuisances " << nuis1 << " and " << nuis2 << " = " << fit_s->correlation(nuis1, nuis2) << std::endl;
+
+}
