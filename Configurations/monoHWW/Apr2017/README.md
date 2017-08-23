@@ -19,7 +19,8 @@ WITH LXBATCH
 
 em Channel:
 
-   mkShapes.py --pycfg=configuration_em.py  --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel/  --doBatch=True --batchSplit=AsMuchAsPossible --batchQueue=8nh
+   mkShapes.py --pycfg=configuration_em.py  --inputDir=/eos/user/c/calderon/monoH/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__monohSel__muccaMonoHem/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
+
     mkBatch.py --status
 
     cd rootFile_em/
@@ -28,9 +29,26 @@ em Channel:
 
     cd ..
 
-    mkPlot.py        --pycfg=configuration_em.py  --inputFile=rootFile_em/plots_monoHWW_em.root  --minLogC=0.01 --minLogCratio=0.01 --maxLogC=1000 --maxLogCratio=1000  --showIntegralLegend=1
+    mkPlot.py --pycfg=configuration_em.py --inputFile=rootFile_em/plots_monoHWW_em.root --minLogC=0.01 --minLogCratio=0.01 --maxLogC=1000 --maxLogCratio=1000 --showIntegralLegend=1
 
     rm rootFile_em/plots_monoHWW_em_monoH_MVA_*
+
+
+em Channel (blind luminosity):
+
+   mkShapes.py --pycfg=configuration_em_blindData.py  --inputDir=/eos/user/c/calderon/monoH/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__monohSel__muccaMonoHem/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
+
+    mkBatch.py --status
+
+    cd rootFile_em_blindData/
+
+    hadd plots_monoHWW_em_blindData.root *
+
+    cd ..
+
+    mkPlot.py --pycfg=configuration_em_blindData.py  --inputFile=rootFile_em_blindData/plots_monoHWW_em_blindData.root  --minLogC=0.01 --minLogCratio=0.01 --maxLogC=1000 --maxLogCratio=1000  --showIntegralLegend=1
+
+    rm rootFile_em_blindData/plots_monoHWW_em*
 
 
 sf Channel:
@@ -87,6 +105,8 @@ Produce Plots for sf Channel:
 
     mkDatacards.py   --pycfg=configuration_em.py  --inputFile=rootFile_em/plots_monoHWW_em.root
 
+    mkDatacards.py   --pycfg=configuration_em_blindData.py  --inputFile=rootFile_em_blindData/plots_monoHWW_em_blindData.root
+
     mkDatacards.py   --pycfg=configuration_sf.py  --inputFile=rootFile_sf/plots_monoHWW_sf.root
 
 
@@ -95,7 +115,10 @@ PRUNE DATACARDS
 
       cd ../../../../ModificationDatacards/
 
-      ls ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Full2016/datacards/*/*/*.txt  | grep -v "pruned"  |   \
+      ls ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/*/*/*.txt  | grep -v "pruned"  |   \
+      awk '{print "python PruneDatacard.py  -d "$1" -o "$1".pruned.txt    -i examples/input_nuisances_to_prune.py"}' | /bin/sh
+
+      ls ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards_blindData/*/*/*.txt  | grep -v "pruned"  |   \
       awk '{print "python PruneDatacard.py  -d "$1" -o "$1".pruned.txt    -i examples/input_nuisances_to_prune.py"}' | /bin/sh
 
       cd -
@@ -124,16 +147,22 @@ By hand (for 2HDM model, mZ' = 800 GeV, mA0 = 300 GeV):
     
     combine -M Asymptotic monoH800.root
 
-Using the script:
-
-      python scriptMonoH.py em mth
-
-      python scriptMonoH.py sf mth
+    python scriptMonoH.py
 
 
 # 6 DRAW THE EXCLUSION PLOTS
 
     root -l -b -q 'plot_Asymptotic_ForCombination.C("","em","mthBin","MVA","2HDM")'
+
+    root -l -b -q 'plot_Asymptotic_ForCombination.C("","em","muccamva2HDMadaptFull","MVA","2HDM")'
+
+    root -l -b -q 'plot_Asymptotic_ForCombination.C("","em","muccamva2HDMgradFull","MVA","2HDM")'
+
+    root -l -b -q 'plot_Asymptotic_ForCombination.C("","em","mthBin","MVA","Zbar")'
+
+    root -l -b -q 'plot_Asymptotic_ForCombination.C("","em","muccamvaZbaradaptFull","MVA","Zbar")'
+
+    root -l -b -q 'plot_Asymptotic_ForCombination.C("","em","muccamvaZbargradFull","MVA","Zbar")'
 
 
 # 7 PERFORM A GOODNESS OF FIT TEST ON THE CONTROL REGIONS
