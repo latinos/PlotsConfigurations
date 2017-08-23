@@ -17,7 +17,7 @@ SITE='cern'
 if    'iihe' in SITE :
   treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/'
 elif  'cern' in SITE :
-  treeBaseDir = '/eos/cms/store/caf/user/lenzip/Full2016/'
+  treeBaseDir = 'root://eoscms.cern.ch//eos/cms/store/caf/user/lenzip/Full2016/'
 
 directory = treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__wwSel__genericFormulas/'
 
@@ -75,7 +75,6 @@ DataTrig = {
 #############  BACKGROUNDS  ###############
 ###########################################
 
-
 ###### DY #######
 
 useDYHT = False       # be carefull DY HT is LO 
@@ -85,7 +84,6 @@ mixDYttandHT = False  # be carefull DY HT is LO (HT better stat for HT>450 GEV)
 ### These weights were evaluated on ICHEP16 MC -> Update ?
 ptllDYW_NLO = '1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582))'
 ptllDYW_LO  = '(8.61313e-01+gen_ptll*4.46807e-03-1.52324e-05*gen_ptll*gen_ptll)*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-11.)/5.51582)))*(gen_ptll<140)+1.141996*(gen_ptll>=140)'
-
 samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-10to50')
                                   + getSampleFiles(directory,'DYJetsToLL_M-50'), 
                      'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC', #XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC, 
@@ -182,17 +180,18 @@ if useDYtt :
 
 ###### Top #######
 
-samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu') 
-                                  + getSampleFiles(directory,'ST_tW_antitop')
-                                  + getSampleFiles(directory,'ST_tW_top')  
+samples['top'] = {   'name'     : ['latino_TTTo2L2Nu__part0.root']
+                                  #getSampleFiles(directory,'TTTo2L2Nu') 
+                                  #+ getSampleFiles(directory,'ST_tW_antitop')
+                                  #+ getSampleFiles(directory,'ST_tW_top')  
                                   # We should use in principle: ST_tW_antitop_noHad + ST_tW_antitop_noHad_ext1 + ST_tW_top_noHad + ST_tW_top_noHad_ext1   
                                   # but first need to compute x-section and correct baseW
-                                  + getSampleFiles(directory,'ST_t-channel_antitop')
-                                  + getSampleFiles(directory,'ST_t-channel_top')
-                                  + getSampleFiles(directory,'ST_s-channel')   
+                                  #+ getSampleFiles(directory,'ST_t-channel_antitop')
+                                  #+ getSampleFiles(directory,'ST_t-channel_top')
+                                  #+ getSampleFiles(directory,'ST_s-channel')   
                              ,
                       'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC', #XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC, 
-                      'FilesPerJob' : 3 
+                      'FilesPerJob' : 1 
                   }
 # add the top pt reweighting for ttbar                  
 addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
@@ -203,11 +202,9 @@ addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
 #samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu') ,
 #                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*nllW' ,  
 #                 }
-
 samples['WpWmJJ_EWK_noTop'] = { 'name': getSampleFiles(directory,'WpWmJJ_EWK_noTop'),
                                 'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC*(mWp>60)*(mWp<100)*(mWm>60)*(mWm<100)',
                               }
-
 
 
 samples['WpWmJJ_QCD_noTop'] = { 'name':  getSampleFiles(directory,'WpWmJJ_QCD_noTop'),
@@ -330,4 +327,3 @@ for Run in DataRun :
     for iFile in FileTarget:
       samples['DATA']['name'].append(iFile)
       samples['DATA']['weights'].append(DataTrig[DataSet]) 
-
