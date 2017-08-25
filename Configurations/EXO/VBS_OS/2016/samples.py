@@ -17,7 +17,8 @@ SITE='cern'
 if    'iihe' in SITE :
   treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/'
 elif  'cern' in SITE :
-  treeBaseDir = 'root://eoscms.cern.ch//eos/cms/store/caf/user/lenzip/Full2016/'
+  #treeBaseDir = 'root://eoscms.cern.ch//eos/cms/store/caf/user/lenzip/Full2016/'
+  treeBaseDir = '/eos/cms/store/caf/user/lenzip/Full2016/'
 
 directory = treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__wwSel__genericFormulas/'
 
@@ -179,15 +180,15 @@ if useDYtt :
       addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toInf'     , cutSF)
 ###### Top #######
 
-samples['top'] = {   'name'     : ['latino_TTTo2L2Nu__part0.root']
-                                  #getSampleFiles(directory,'TTTo2L2Nu') 
-                                  #+ getSampleFiles(directory,'ST_tW_antitop')
-                                  #+ getSampleFiles(directory,'ST_tW_top')  
+samples['top'] = {   'name'     : #['latino_TTTo2L2Nu__part0.root']
+                                  getSampleFiles(directory,'TTTo2L2Nu') 
+                                  + getSampleFiles(directory,'ST_tW_antitop')
+                                  + getSampleFiles(directory,'ST_tW_top')  
                                   # We should use in principle: ST_tW_antitop_noHad + ST_tW_antitop_noHad_ext1 + ST_tW_top_noHad + ST_tW_top_noHad_ext1   
                                   # but first need to compute x-section and correct baseW
-                                  #+ getSampleFiles(directory,'ST_t-channel_antitop')
-                                  #+ getSampleFiles(directory,'ST_t-channel_top')
-                                  #+ getSampleFiles(directory,'ST_s-channel')   
+                                  + getSampleFiles(directory,'ST_t-channel_antitop')
+                                  + getSampleFiles(directory,'ST_t-channel_top')
+                                  + getSampleFiles(directory,'ST_s-channel')   
                              ,
                       'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC', #XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC, 
                       'FilesPerJob' : 1 

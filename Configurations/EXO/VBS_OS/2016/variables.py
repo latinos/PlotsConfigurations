@@ -25,7 +25,7 @@ variables['Zeppll']  = {   'name': 'Zeppll(std_vector_lepton_pt[0],std_vector_le
                            'range' : (10,0,5),    #   variable range
                            'xaxis' : 'Zeppenfeld_{ll}',  #   x axis name
                            'fold' :3,
-                        'linesToAdd' : ['.L /afs/cern.ch/work/a/acardini/Latinos/VBS2017/CMSSW_8_0_26_patch1/work/Config2016/Zeppll.C+']
+                        'linesToAdd' : ['.L /afs/cern.ch/user/l/lenzip/work/ww2017/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/VBS_OS/2016/Zeppll.C+']
                            }
                         
                    
