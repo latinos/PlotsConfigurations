@@ -177,7 +177,6 @@ if useDYtt :
       addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-800to1200'     , cutSF)
       addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-1200to2500'    , cutSF)
       addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toInf'     , cutSF)
-
 ###### Top #######
 
 samples['top'] = {   'name'     : ['latino_TTTo2L2Nu__part0.root']
@@ -195,7 +194,6 @@ samples['top'] = {   'name'     : ['latino_TTTo2L2Nu__part0.root']
                   }
 # add the top pt reweighting for ttbar                  
 addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
-
 ###### WW ########
 # TO BE REPLACED WITH THE DEDICATED MG sample
 
@@ -327,3 +325,4 @@ for Run in DataRun :
     for iFile in FileTarget:
       samples['DATA']['name'].append(iFile)
       samples['DATA']['weights'].append(DataTrig[DataSet]) 
+
