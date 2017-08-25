@@ -14,7 +14,6 @@ variables['events']  = {   'name': '1',
                          'fold' : 3
                         }
 
-                   }
 variables['R']  = {   'name': 'R(ptll,phill(std_vector_lepton_pt[0],std_vector_lepton_phi[0],std_vector_lepton_pt[1],std_vector_lepton_phi[1]),metPfType1,metPfType1Phi,std_vector_jet_pt[0],std_vector_jet_phi[0],std_vector_jet_pt[1],std_vector_jet_phi[1])',            #   variable name    
                         'range' : (20,0.,1.),    #   variable range
                         'xaxis' : 'R',  #   x axis name
