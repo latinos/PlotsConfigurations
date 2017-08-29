@@ -27,6 +27,10 @@ WITH LXBATCH
 ------------
 
     mkBatch.py --clean
+  
+    or
+    
+    rm -rf /eos/user/n/ntrevisa/jobs/
 
 em Channel:
 
@@ -213,7 +217,7 @@ Step by step:
 
     combineTool.py -M Impacts -d combine_em_MVA/monoH_600_300_muccamva2HDMadaptFull.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit 1 -n 600_300_muccamva2HDMadaptFull
   
-  combineTool.py -M Impacts -d combine_em_MVA/monoH_600_300_muccamva2HDMadaptFull.root -m 125 --robustFit 1 --doFits --parallel 5 --job-mode lxbatch --task-name 600_300_muccamva2HDMadaptFull  --sub-opts='-q 2nd' -n 600_300_muccamva2HDMadaptFull
+    combineTool.py -M Impacts -d combine_em_MVA/monoH_600_300_muccamva2HDMadaptFull.root -m 125 --robustFit 1 --doFits --parallel 5 --job-mode lxbatch --task-name 600_300_muccamva2HDMadaptFull  --sub-opts='-q 2nd' -n 600_300_muccamva2HDMadaptFull
 
     combineTool.py -M Impacts -d combine_em_MVA/monoH_600_300_muccamva2HDMadaptFull.root -m 125 -o pulls_em_MVA/impact_mthBin.json -n 600_300_muccamva2HDMadaptFull
   
