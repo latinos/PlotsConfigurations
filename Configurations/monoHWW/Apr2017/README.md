@@ -30,7 +30,7 @@ WITH LXBATCH
 
 em Channel:
 
-   mkShapes.py --pycfg=configuration_em.py  --inputDir=/eos/user/c/calderon/monoH/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__monohSel__muccaMonoHem/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
+    mkShapes.py --pycfg=configuration_em.py  --inputDir=/eos/user/c/calderon/monoH/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__monohSel__muccaMonoHem/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
 
     mkBatch.py --status
 
@@ -47,7 +47,7 @@ em Channel:
 
 em Channel (blind luminosity):
 
-   mkShapes.py --pycfg=configuration_em_blindData.py  --inputDir=/eos/user/c/calderon/monoH/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__monohSel__muccaMonoHem/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
+    mkShapes.py --pycfg=configuration_em_blindData.py  --inputDir=/eos/user/c/calderon/monoH/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__monohSel__muccaMonoHem/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
 
     mkBatch.py --status
 
@@ -233,4 +233,4 @@ Or using the script:
 
 # 12 SPLIT DATACARDS IN ORDER TO HAVE JUST ONE SIGNAL IN EACH OF THEM (USE THIS FOR COMBINATION PURPOSES)
 
-  python scriptSplitting.py em mthBin MVA
+    python scriptSplitting.py em mthBin MVA
