@@ -3,9 +3,20 @@ MonoHWW analysis
 
 # 1 SET UP THE ENVIRONMENT
 
+Setup Latinos:
+
     cd ~/work/CMSSW_8_0_26_patch1/src
 
     cmsenv
+
+    cd -
+
+
+Setup combine:
+
+    cd ~/work/CMSSW_7_4_7/src/HiggsAnalysis/CombinedLimit/
+
+    cmsenv     
 
     cd -
 
@@ -126,14 +137,6 @@ PRUNE DATACARDS
 
 # 4 COMBINE DATACARDS
 
-Setup combine:
-
-      cd ~/work/CMSSW_7_4_7/src/HiggsAnalysis/CombinedLimit/
-
-      cmsenv     
-
-      cd -
-
 Do the combination:
 
       combineCards.py datacards/monoH_MVA_em/mth_control/datacard.txt.pruned.txt datacards/monoH_MVA_WW_em/events/datacard.txt.pruned.txt datacards/monoH_MVA_Top_em/events/datacard.txt.pruned.txt datacards/monoH_MVA_DYtt_em/events/datacard.txt.pruned.txt > datacards/monoH_MVA_em/mth_control/datacard_combined.txt
@@ -152,19 +155,9 @@ By hand (for 2HDM model, mZ' = 800 GeV, mA0 = 300 GeV):
 
 # 6 DRAW THE EXCLUSION PLOTS
 
-    root -l -b -q 'plot_Asymptotic_ForCombination.C("","em","mthBin","MVA","2HDM")'
-
-    root -l -b -q 'plot_Asymptotic_ForCombination.C("","em","muccamva2HDMadaptFull","MVA","2HDM")'
-
-    root -l -b -q 'plot_Asymptotic_ForCombination.C("","em","muccamva2HDMgradFull","MVA","2HDM")'
-
-    root -l -b -q 'plot_Asymptotic_ForCombination.C("","em","mthBin","MVA","Zbar")'
-
-    root -l -b -q 'plot_Asymptotic_ForCombination.C("","em","muccamvaZbaradaptFull","MVA","Zbar")'
-
-    root -l -b -q 'plot_Asymptotic_ForCombination.C("","em","muccamvaZbargradFull","MVA","Zbar")'
-
-
+    root -l -b -q 'macroPlotAsymptotic.C("","em","mthBin","MVA","2HDM")'
+    root -l -b -q 'macroExclusionTable.C("mthBin","em","MVA","2HDM")'
+    
 # 7 PERFORM A GOODNESS OF FIT TEST ON THE CONTROL REGIONS
 
 By hand for mth variable:
@@ -185,9 +178,9 @@ First produce a copy of the datacard with just one signal sample (in order to be
 
       cd ~/work/CMSSW_8_0_26_patch1/src/ModificationDatacards
 
-      python RemoveSample.py   ../PlotsConfigurations/Configurations/monoHWW/Full2016/datacards/monoH_MVA_em/muccamva2HDMadaptFull/datacard.txt.pruned.txt    -i   inputRemoval.py
+      python RemoveSample.py   ../PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_MVA_em/muccamva2HDMadaptFull/datacard.txt.pruned.txt    -i   inputRemoval.py
 
-      cp test.tex cp test.txt ../PlotsConfigurations/Configurations/monoHWW/Full2016/datacards/monoH_MVA_em/muccamva2HDMadaptFull/
+      cp test.tex cp test.txt ../PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_MVA_em/muccamva2HDMadaptFull/
 
       cd -
 
@@ -195,7 +188,7 @@ And then create the actual table from that small datacard
 
     cd ~/work/CMSSW_8_0_26_patch1/src/PlayWithDatacards/
 
-    python systematicsAnalyzer.py ../PlotsConfigurations/Configurations/monoHWW/Full2016/datacards/monoH_MVA_em/muccamva2HDMadaptFull/test.txt --all -f tex > ../PlotsConfigurations/Configurations/monoHWW/Full2016/tables/monoH_MVA_em_muccamva2HDMadaptFull.tex
+    python systematicsAnalyzer.py ../PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_MVA_em/muccamva2HDMadaptFull/test.txt --all -f tex > ../PlotsConfigurations/Configurations/monoHWW/Apr2017/tables/monoH_MVA_em_muccamva2HDMadaptFull.tex
 
     cd -
 
@@ -218,13 +211,13 @@ Step by step:
 
     text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose --PO 'map=.*/monoH_*:0' --PO 'map=.*/monoH_800_300:r[1,0,10]' datacards/monoH_MVA_em/mthBin/datacard_combined.txt -o datacards/monoH_MVA_em/mthBin/datacard_combined.root
 
-    combineTool.py -M Impacts -d datacards/monoH_MVA_em/mthBin/datacard_combined.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit 1
+    combineTool.py -M Impacts -d combine_em_MVA/monoH_600_300_muccamva2HDMadaptFull.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit 1 -n 600_300_muccamva2HDMadaptFull
   
-    combineTool.py -M Impacts -d datacards/monoH_MVA_em/mthBin/datacard_combined.root -m 125 -t -1 --expectSignal=1 --robustFit 1 --doFits
+  combineTool.py -M Impacts -d combine_em_MVA/monoH_600_300_muccamva2HDMadaptFull.root -m 125 --robustFit 1 --doFits --parallel 5 --job-mode lxbatch --task-name 600_300_muccamva2HDMadaptFull  --sub-opts='-q 2nd' -n 600_300_muccamva2HDMadaptFull
+
+    combineTool.py -M Impacts -d combine_em_MVA/monoH_600_300_muccamva2HDMadaptFull.root -m 125 -o pulls_em_MVA/impact_mthBin.json -n 600_300_muccamva2HDMadaptFull
   
-    combineTool.py -M Impacts -d datacards/monoH_MVA_em/mthBin/datacard_combined.root -m 125 -o impactPlots_em/mthBin.json
-  
-    plotImpacts.py -i impactPlots_em/mthBin.json -o impactPlots_em/mthBin
+    plotImpacts.py -i pulls_em_MVA/impact_mthBin.json -o pulls_em_MVA/mthBin
 
 Or using the script:
 
@@ -234,7 +227,7 @@ Or using the script:
 
     cd ~/work/CMSSW_8_0_26_patch1/src/LatinoAnalysis/ShapeAnalysis/test/draw/
   
-    python DrawNuisancesAll.py --inputFile /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Full2016/datacards/monoH_MVA_em/muccamva2HDMadaptFull/shapes/histos_monoH_MVA_em.root --outputDirPlots nuisancesPlots_MVA_em_muccamva2HDMadaptFull --nuisancesFile /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Full2016/nuisances_full_em.py --samplesFile /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Full2016/samples_em.py --cutName monoH_MVA_em
+    python DrawNuisancesAll.py --inputFile /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards_top/monoH_MVA_em/muccamva2HDMadaptFull/shapes/histos_monoH_MVA_em.root --outputDirPlots nuisancesPlots_MVA_em_muccamva2HDMadaptFull --nuisancesFile /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/nuisances_full.py --samplesFile /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/samples_em.py --cutName monoH_MVA_em
 
     cd -
 
