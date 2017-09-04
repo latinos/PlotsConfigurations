@@ -433,12 +433,12 @@ samples['WH_lep_fwd']   = {   'name' :   getSampleFiles(directory,'HWminusJ_HToW
 
 #### bbH 
 
-samples['bbH']  = {  'name' :   getSampleFiles(directory,'bbHToWWTo2L2Nu_M125_yb2') 
+samples['bbH_st0']  = {  'name' :   getSampleFiles(directory,'bbHToWWTo2L2Nu_M125_yb2') 
                               + getSampleFiles(directory,'bbHToWWTo2L2Nu_M125_ybyt') ,
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage0==71)' ,
                       }
 
-samples['bbH_fwd']  = {  'name' :   getSampleFiles(directory,'bbHToWWTo2L2Nu_M125_yb2')    
+samples['bbH_st0_fwd']  = {  'name' :   getSampleFiles(directory,'bbHToWWTo2L2Nu_M125_yb2')    
                                   + getSampleFiles(directory,'bbHToWWTo2L2Nu_M125_ybyt') ,
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage0==70)' ,
                       }
