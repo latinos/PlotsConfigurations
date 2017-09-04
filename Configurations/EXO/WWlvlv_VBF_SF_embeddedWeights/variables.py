@@ -15,13 +15,13 @@ variables['mTi']  = {   'name': 'mTi',            #   variable name
                         'fold' : 3
                         }
 
-'''
 variables['mTi_VBF']  = {   'name': 'mTi',            #   variable name    
-                        'range' : ([100,150,200,250,300,350,400,500,700,1000],),    #   variable range
+                        'range' : ([100,150,200,250,300,350,400,500,700,1000, 2000],),    #   variable range
                         'xaxis' : 'm_{T,i} [GeV]',  #   x axis name
                         'fold' : 3
                         }
 
+'''
 
 variables['HT']    = {  'name': 'std_vector_LHEparton_pt[0]*(std_vector_LHEparton_pt[0]>0)+std_vector_LHEparton_pt[1]*(std_vector_LHEparton_pt[1]>0)+std_vector_LHEparton_pt[2]*(std_vector_LHEparton_pt[2]>0)+std_vector_LHEparton_pt[3]*(std_vector_LHEparton_pt[3]>0)',            #   variable name    
                         'range' : (300,0,3000),    #   variable range

@@ -52,6 +52,7 @@ Nlep='2'
 XSWeight      = 'XSWeight'
 SFweight      = 'SFweight'+Nlep+'l'
 GenLepMatch   = 'GenLepMatch'+Nlep+'l'
+Top_pTrw = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topLHEpt) * TMath::Exp(0.0615-0.0005*antitopLHEpt) ) )'
 
 ################################################
 ############### B-Tag  WP ######################
@@ -286,6 +287,7 @@ samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu')
                       'FilesPerJob' : 1 ,
                   }
                   
+addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
 
 ###### WW ########
              

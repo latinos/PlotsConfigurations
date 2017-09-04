@@ -589,13 +589,6 @@ nuisances['pdf_qqbar']  = {
               }
 
 
-
-#    
-#    
-#    
-#    
-
-
 nuisances['pdf_gg_accept']  = {
                'name'  : 'pdf_gg_accept', 
                'samples'  : {
@@ -622,8 +615,16 @@ nuisances['pdf_qqbar_accept']  = {
               }
 
 
-
-
+# Top pT reweighting uncertainty
+nuisances['TopPtRew']  = {
+                'name'  : 'TopPtRew',   # Theory uncertainty
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples' : {
+                     'top'  : [Top_pTrwUp+"/"+Top_pTrw,
+                               Top_pTrwDo+"/"+Top_pTrw]
+                }
+         }
 
 # ggww and interference
 

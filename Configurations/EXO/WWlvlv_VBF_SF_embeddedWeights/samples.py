@@ -18,7 +18,7 @@ if    'iihe' in SITE :
   treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/'
 elif  'cern' in SITE :
   #treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016/'
-  treeBaseDir = '/eos/user/l/lenzip/'
+  treeBaseDir = 'root://eosuser.cern.ch//eos/user/l/lenzip/'
 
 directory = treeBaseDir+'Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__sfSel__genericFormulas/'
 
@@ -33,10 +33,11 @@ GenLepMatch   = 'std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]
 
 Top_pTrw      = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topLHEpt) * TMath::Exp(0.0615-0.0005*antitopLHEpt) ) )'
 
-weightMetDY ='((1.03783-0.00576232*metPfType1)*(njet==0)'
-weightMetDY+='+(1.08826-0.00412335*metPfType1)*(njet==1)'
-weightMetDY+='+(0.994585-0.0018199*metPfType1)*(njet>=2 && (mjj < 500 || detajj<3.5))'
-weightMetDY+='+(1.69647-0.00903982*metPfType1)*(njet>=2 && (mjj > 500 && detajj>3.5)))'
+#weightMetDY ='((1.03783-0.00576232*metPfType1)*(njet==0)'
+#weightMetDY+='+(1.08826-0.00412335*metPfType1)*(njet==1)'
+#weightMetDY+='+(0.994585-0.0018199*metPfType1)*(njet>=2 && (mjj < 500 || detajj<3.5))'
+#weightMetDY+='+(1.69647-0.00903982*metPfType1)*(njet>=2 && (mjj > 500 && detajj>3.5)))'
+weightMetDY ="1."
 
 
 ################################################
@@ -229,17 +230,13 @@ samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu') ,
                       'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC',#XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*nllW' ,  
                  }
 
-
-
 samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'),      
                       'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC', #XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                       'isData': ['0'],                            
                    }
-
 ## during tree production: 1.4 k-factor has been applied to both samples
 ## ggWW sample: k = 1.4 +/- 15%
 ## ggWW interference: k = 1.87 +/- 25%
-
 ######## Vg ########
 
 samples['Vg']  =  {     'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM')
@@ -294,7 +291,6 @@ samples['VVV'] = {    'name':   getSampleFiles(directory,'ZZZ')
 #############  HIGH MASS SIGNALS   ##################
 ###########################################
 massesAndModelsFile = "massesAndModels.py"
-
 if os.path.exists(massesAndModelsFile) :
   handle = open(massesAndModelsFile,'r')
   exec(handle)
@@ -328,7 +324,6 @@ for m in masses:
     samples['qqH_hww_'+m+'_'+model_name] = {    'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m) ,
                                                 'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch,#+ '*'+model,
                                         }                   
-
 
 
 
