@@ -205,7 +205,6 @@ samples['WpWmJJ_EWK_noTop'] = { 'name': getSampleFiles(directory,'WpWmJJ_EWK_noT
                                 'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC*(mWp>60)*(mWp<100)*(mWm>60)*(mWm<100)',
                               }
 
-
 samples['WpWmJJ_QCD_noTop'] = { 'name':  getSampleFiles(directory,'WpWmJJ_QCD_noTop'),
                                 'weight' : 'XSWeight*SFweight*GenLepMatch*METFilter_MC*(mWp>60)*(mWp<100)*(mWm>60)*(mWm<100)',
                               }
@@ -326,4 +325,3 @@ for Run in DataRun :
     for iFile in FileTarget:
       samples['DATA']['name'].append(iFile)
       samples['DATA']['weights'].append(DataTrig[DataSet]) 
-
