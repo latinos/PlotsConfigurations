@@ -6,7 +6,8 @@
 #                    
 structure['DY']  = {  
                   'isSignal' : 0,
-                  'isData'   : 0 
+                  'isData'   : 0,
+                  'removeFromCuts' : ['hww2l2v_13TeV_of_incl_bveto_4']
               }
 
 
@@ -96,12 +97,13 @@ structure['ZZ']  = {
 
 structure['ggH'] = {
                   'isSignal' : 1,
-                  'isData'   : 0    
+                  'isData'   : 0
                   }
 
 structure['ggH_hww'] = {
                   'isSignal' : 1,
-                  'isData'   : 0    
+                  'isData'   : 0,
+                  'removeFromCuts' : ['hww2l2v_13TeV_of_incl_bveto_3']
                   }
 
 structure['qqH_hww'] = {
