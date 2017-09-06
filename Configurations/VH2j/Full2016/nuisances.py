@@ -589,13 +589,6 @@ nuisances['pdf_qqbar']  = {
               }
 
 
-
-#    
-#    
-#    
-#    
-
-
 nuisances['pdf_gg_accept']  = {
                'name'  : 'pdf_gg_accept', 
                'samples'  : {
@@ -622,8 +615,19 @@ nuisances['pdf_qqbar_accept']  = {
               }
 
 
+# Top pT reweighting uncertainty
+Top_pTrwUp = '1.'
+Top_pTrwDo = '(1./(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topLHEpt) * TMath::Exp(0.0615-0.0005*antitopLHEpt) ) ))'
 
-
+nuisances['TopPtRew']  = {
+                'name'  : 'TopPtRew',   # Theory uncertainty
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples' : {
+                     'top'  : [Top_pTrwUp+"/"+Top_pTrw,
+                               Top_pTrwDo+"/"+Top_pTrw]
+                }
+         }
 
 # ggww and interference
 
@@ -636,99 +640,32 @@ nuisances['kfactggww']  = {
               }
 
 #  - WW shaping
-nuisances['WWresum0j']  = {
-                'name'  : 'WWresum0j',
+nuisances['WWresum2j']  = {
+                'name'  : 'WWresum2j',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
-                   },
+                'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+                },
                'cuts'  : [
-                 'hww2l2v_13TeV_of0j',
-                 'hww2l2v_13TeV_top_of0j',
-                 'hww2l2v_13TeV_dytt_of0j',
-#                 
-                 'hww2l2v_13TeV_me_0j',
-                 'hww2l2v_13TeV_em_0j',
-#
-                 'hww2l2v_13TeV_me_mp_0j',
-                 'hww2l2v_13TeV_me_pm_0j',
-                 'hww2l2v_13TeV_em_mp_0j',
-                 'hww2l2v_13TeV_em_pm_0j',
-#                 
-                ]               
-                
+                 'hww2l2v_13TeV_of2j',
+                 'hww2l2v_13TeV_top_of2j',
+                 'hww2l2v_13TeV_dytt_of2j',
+                ]
                 }
 
-
-nuisances['WWresum1j']  = {
-                'name'  : 'WWresum1j',
+nuisances['WWqscale2j']  = {
+                'name'  : 'WWqscale2j',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
-                   },
-               'cuts'  : [
-                 'hww2l2v_13TeV_of1j',
-                 'hww2l2v_13TeV_top_of1j',
-                 'hww2l2v_13TeV_dytt_of1j',
-#                 
-                 'hww2l2v_13TeV_me_1j',
-                 'hww2l2v_13TeV_em_1j',
-#
-                 'hww2l2v_13TeV_me_mp_1j',
-                 'hww2l2v_13TeV_me_pm_1j',
-                 'hww2l2v_13TeV_em_mp_1j',
-                 'hww2l2v_13TeV_em_pm_1j',
-#                 
-                ]               
-                }
-
-nuisances['WWqscale0j']  = {
-                'name'  : 'WWqscale0j',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
-                   },
-               'cuts'  : [
-                 'hww2l2v_13TeV_of0j',
-                 'hww2l2v_13TeV_top_of0j',
-                 'hww2l2v_13TeV_dytt_of0j',
-#                 
-                 'hww2l2v_13TeV_me_0j',
-                 'hww2l2v_13TeV_em_0j',
-#
-                 'hww2l2v_13TeV_me_mp_0j',
-                 'hww2l2v_13TeV_me_pm_0j',
-                 'hww2l2v_13TeV_em_mp_0j',
-                 'hww2l2v_13TeV_em_pm_0j',
-#                 
-                ] 
-                }
-
-
-nuisances['WWqscale1j']  = {
-                'name'  : 'WWqscale1j',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
-                   },
-               'cuts'  : [
-                 'hww2l2v_13TeV_of1j',
-                 'hww2l2v_13TeV_top_of1j',
-                 'hww2l2v_13TeV_dytt_of1j',
-#                 
-                 'hww2l2v_13TeV_me_1j',
-                 'hww2l2v_13TeV_em_1j',
-#
-                 'hww2l2v_13TeV_me_mp_1j',
-                 'hww2l2v_13TeV_me_pm_1j',
-                 'hww2l2v_13TeV_em_mp_1j',
-                 'hww2l2v_13TeV_em_pm_1j',
-#                 
-                ] 
+                'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+                },
+                'cuts'  : [
+                 'hww2l2v_13TeV_of2j',
+                 'hww2l2v_13TeV_top_of2j',
+                 'hww2l2v_13TeV_dytt_of2j',
+                ]
                 }
 
 nuisances['WgStarScale']  = {
@@ -741,139 +678,43 @@ nuisances['WgStarScale']  = {
                 }
  
 
-nuisances['DYttnorm0j']  = {
-               'name'  : 'DYttnorm0j', 
+nuisances['DYttnorm2j']  = {
+               'name'  : 'DYttnorm2j', 
                'samples'  : {
                    'DY' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                 'hww2l2v_13TeV_of0j',
-                 'hww2l2v_13TeV_top_of0j',
-                 'hww2l2v_13TeV_dytt_of0j',
-#                 
-                 'hww2l2v_13TeV_me_0j',
-                 'hww2l2v_13TeV_em_0j',
-#
-                 'hww2l2v_13TeV_me_mp_0j',
-                 'hww2l2v_13TeV_me_pm_0j',
-                 'hww2l2v_13TeV_em_mp_0j',
-                 'hww2l2v_13TeV_em_pm_0j',
-#                 
-                ]
-              }
-
-nuisances['DYttnorm1j']  = {
-               'name'  : 'DYttnorm1j', 
-               'samples'  : {
-                   'DY' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [
-                 'hww2l2v_13TeV_of1j',
-                 'hww2l2v_13TeV_top_of1j',
-                 'hww2l2v_13TeV_dytt_of1j',
-#                 
-                 'hww2l2v_13TeV_me_1j',
-                 'hww2l2v_13TeV_em_1j',
-#
-                 'hww2l2v_13TeV_me_mp_1j',
-                 'hww2l2v_13TeV_me_pm_1j',
-                 'hww2l2v_13TeV_em_mp_1j',
-                 'hww2l2v_13TeV_em_pm_1j',
-#                 
+                 'hww2l2v_13TeV_of2j',
+                 'hww2l2v_13TeV_top_of2j',
+                 'hww2l2v_13TeV_dytt_of2j',
                 ]
               }
 
 
-
-
-nuisances['WWnorm0j']  = {
-               'name'  : 'WWnorm0j', 
+nuisances['WWnorm2j']  = {
+               'name'  : 'WWnorm2j', 
                'samples'  : {
                    'WW' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                 'hww2l2v_13TeV_of0j',
-                 'hww2l2v_13TeV_top_of0j',
-                 'hww2l2v_13TeV_dytt_of0j',              
-#                 
-                 'hww2l2v_13TeV_me_0j',
-                 'hww2l2v_13TeV_em_0j',
-#
-                 'hww2l2v_13TeV_me_mp_0j',
-                 'hww2l2v_13TeV_me_pm_0j',
-                 'hww2l2v_13TeV_em_mp_0j',
-                 'hww2l2v_13TeV_em_pm_0j',
-#                 
+                 'hww2l2v_13TeV_of2j',
+                 'hww2l2v_13TeV_top_of2j',
+                 'hww2l2v_13TeV_dytt_of2j',              
                 ]
               }
 
-nuisances['WWnorm1j']  = {
-               'name'  : 'WWnorm1j', 
-               'samples'  : {
-                   'WW' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [
-                 'hww2l2v_13TeV_of1j',
-                 'hww2l2v_13TeV_top_of1j',
-                 'hww2l2v_13TeV_dytt_of1j',              
-#                 
-                 'hww2l2v_13TeV_me_1j',
-                 'hww2l2v_13TeV_em_1j',
-#
-                 'hww2l2v_13TeV_me_mp_1j',
-                 'hww2l2v_13TeV_me_pm_1j',
-                 'hww2l2v_13TeV_em_mp_1j',
-                 'hww2l2v_13TeV_em_pm_1j',
-#                 
-                ]
-              }
-
-
-nuisances['Topnorm0j']  = {
-               'name'  : 'Topnorm0j', 
+nuisances['Topnorm2j']  = {
+               'name'  : 'Topnorm2j', 
                'samples'  : {
                    'top' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                 'hww2l2v_13TeV_of0j',
-                 'hww2l2v_13TeV_top_of0j',
-                 'hww2l2v_13TeV_dytt_of0j',              
-#                 
-                 'hww2l2v_13TeV_me_0j',
-                 'hww2l2v_13TeV_em_0j',
-#
-                 'hww2l2v_13TeV_me_mp_0j',
-                 'hww2l2v_13TeV_me_pm_0j',
-                 'hww2l2v_13TeV_em_mp_0j',
-                 'hww2l2v_13TeV_em_pm_0j',
-#                 
-                ]
-              }
-
-nuisances['Topnorm1j']  = {
-               'name'  : 'Topnorm1j', 
-               'samples'  : {
-                   'top' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [
-                 'hww2l2v_13TeV_of1j',
-                 'hww2l2v_13TeV_top_of1j',
-                 'hww2l2v_13TeV_dytt_of1j',              
-#                 
-                 'hww2l2v_13TeV_me_1j',
-                 'hww2l2v_13TeV_em_1j',
-#
-                 'hww2l2v_13TeV_me_mp_1j',
-                 'hww2l2v_13TeV_me_pm_1j',
-                 'hww2l2v_13TeV_em_mp_1j',
-                 'hww2l2v_13TeV_em_pm_1j',
-#                 
+                 'hww2l2v_13TeV_of2j',
+                 'hww2l2v_13TeV_top_of2j',
+                 'hww2l2v_13TeV_dytt_of2j',              
                 ]
               }
 
@@ -891,23 +732,13 @@ nuisances['tttwTh']  = {
                 
 }
 
-
-### FIXME: This must be implemented in mkDatacards.py using  a flag or something.
-### Use the following if you want to apply the new combine MC stat nuisances.
-### In this case remember to add the following line in the datacard
-### * autoMCStats 10 1
-
-#nuisances['stat']  = {
-#                # apply to the following samples: name of samples here must match keys in samples.py
-#               'samples'  : { },
-#               'type'  : 'shape'
-#              }
-
-
-### Use the following if you want to apply the MC stat nuisances accoriding to the standard approach
 nuisances['stat']  = {
                 # apply to the following samples: name of samples here must match keys in samples.py
                'samples'  : { 
+                 },
+               'type'  : 'shape'
+              }
+'''
                    'ttbar': {
                          'typeStat' : 'bbb',
                          },
@@ -1008,7 +839,8 @@ nuisances['stat']  = {
                    'VgS':{  
                          'typeStat' : 'bbb',
                          },
+                            
                  },
                'type'  : 'shape'
               }
-
+'''

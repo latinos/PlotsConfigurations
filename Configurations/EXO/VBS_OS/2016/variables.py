@@ -4,19 +4,31 @@
     
 #'fold' : # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
 
+#gROOT.ProcessLineSync('.L m4l.C+')
+#gROOT.ProcessLineSync('.L mucca.C+')
+#gROOT.ProcessLineSync('initMyReader()')
+
 variables['events']  = {   'name': '1',
                         'range' : (1,0,2),
                         'xaxis' : 'events',
                          'fold' : 3
                         }
-'''
-variables['mjj_vs_mTi_20']  = {   'name': 'mjj:mTi',            #   variable name    
-                        'range' : ([100,200,300,500,800],[500,700,1000,1300,1600,2000],),    #   variable range
-                        'xaxis' : 'mTi [GeV]',  #   x axis name
-                        'yaxis' : 'mjj [GeV]',  #   y axis name
-                        'fold' :3
+
+variables['R']  = {   'name': 'R(ptll,phill(std_vector_lepton_pt[0],std_vector_lepton_phi[0],std_vector_lepton_pt[1],std_vector_lepton_phi[1]),metPfType1,metPfType1Phi,std_vector_jet_pt[0],std_vector_jet_phi[0],std_vector_jet_pt[1],std_vector_jet_phi[1])',            #   variable name    
+                        'range' : (20,0.,1.),    #   variable range
+                        'xaxis' : 'R',  #   x axis name
+                        'fold' : 3,
+                        'linesToAdd' : ['.L /afs/cern.ch/user/l/lenzip/work/ww2017/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/VBS_OS/2016/R.C+','.L /afs/cern.ch/user/l/lenzip/work/ww2017/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/VBS_OS/2016/phill.C+']
                         }
-'''
+
+variables['Zeppll']  = {   'name': 'Zeppll(std_vector_lepton_pt[0],std_vector_lepton_phi[0],std_vector_lepton_eta[0],std_vector_lepton_pt[1],std_vector_lepton_phi[1],std_vector_lepton_eta[1],std_vector_jet_eta[0],std_vector_jet_eta[1],detajj)',            #   variable name    
+                           'range' : (10,0,5),    #   variable range
+                           'xaxis' : 'Zeppenfeld_{ll}',  #   x axis name
+                           'fold' :3,
+                        'linesToAdd' : ['.L /afs/cern.ch/user/l/lenzip/work/ww2017/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/VBS_OS/2016/Zeppll.C+']
+                           }
+                        
+                   
 variables['mjj_vs_mTi']  = {   'name': 'mjj:mTi',            #   variable name    
                         'range' : ([100,250,400,600,1000],[500,700,1000,1300,1600,2000],),    #   variable range
                         'xaxis' : 'mjj:mTi',  #   x axis name
@@ -24,39 +36,6 @@ variables['mjj_vs_mTi']  = {   'name': 'mjj:mTi',            #   variable name
                         'fold' :3
                         }
 '''
-variables['mjj_vs_mTi_25']  = {   'name': 'mjj:mTi',            #   variable name    
-                        'range' : ([100,200,300,400,600,1000],[500,700,1000,1300,1600,2000],),    #   variable range
-                        'xaxis' : 'mTi [GeV]',  #   x axis name
-                        'yaxis' : 'mjj [GeV]',  #   y axis name
-                        'fold' :3
-                        }
-variables['mjj_vs_mTi_30']  = {   'name': 'mjj:mTi',            #   variable name    
-                        'range' : ([100,200,300,400,600,1000],[500,700,1000,1300,1600,2000,3000],),    #   variable range
-                        'xaxis' : 'mTi [GeV]',  #   x axis name
-                        'yaxis' : 'mjj [GeV]',  #   y axis name
-                        'fold' :3
-                        }
-
-
-variables['mjj_vs_mll']  = {   'name': 'mjj:mll',            #   variable name    
-                        'range' : ([50,150,250,350,450],[500,700,1000,1300,1600,2000],),    #   variable range
-                        'xaxis' : 'mTi [GeV]',  #   x axis name
-                        'yaxis' : 'mjj [GeV]',  #   y axis name
-                        'fold' :3
-                        }
-
-variables['mjj_vs_mTi_35']  = {   'name': 'mjj:mTi',            #   variable name    
-                        'range' : ([100,200,300,500,700,1000],[500,700,1000,1300,1600,2000,2500,3000],),    #   variable range
-                        'xaxis' : 'mTi [GeV]',  #   x axis name
-                        'yaxis' : 'mjj [GeV]',  #   y axis name
-                        'fold' :3
-                        }
-variables['mjj_vs_mTi_90']  = {   'name': 'mjj:mTi',            #   variable name    
-                        'range' : (9,100.,1000.,10,500.,3000.),    #   variable range
-                        'xaxis' : 'mTi [GeV]',  #   x axis name
-                        'yaxis' : 'mjj [GeV]',  #   y axis name
-                        'fold' :3
-                        }
 variables['mTi']  = {   'name': 'mTi',            #   variable name    
                         'range' : ([100,150,200,250,300,350,400,450,500,600,700,1000],),    #   variable range
                         'xaxis' : 'm_{T,i} [GeV]',  #   x axis name
@@ -64,41 +43,6 @@ variables['mTi']  = {   'name': 'mTi',            #   variable name
                         }
 
 
-variables['mTi_VBF']  = {   'name': 'mTi',            #   variable name    
-                        'range' : ([100,150,200,250,300,350,400,500,700,1000],),    #   variable range
-                        'xaxis' : 'm_{T,i} [GeV]',  #   x axis name
-                        'fold' : 3
-                        }
-variables['mTi_VBF6']  = {   'name': 'mTi',            #   variable name    
-                        'range' : ([100,200,300,400,500,700,1000],),    #   variable range
-                        'xaxis' : 'm_{T,i} [GeV]',  #   x axis name
-                        'fold' : 3
-                        }
-variables['mTi_VBF5']  = {   'name': 'mTi',            #   variable name    
-                        'range' : ([100,200,300,500,700,1000],),    #   variable range
-                        'xaxis' : 'm_{T,i} [GeV]',  #   x axis name
-                        'fold' : 3
-                        }
-variables['mTi_VBF4']  = {   'name': 'mTi',            #   variable name    
-                        'range' : ([100,300,500,700,1000],),    #   variable range
-                        'xaxis' : 'm_{T,i} [GeV]',  #   x axis name
-                        'fold' : 3
-                        }
-
-
-variables['mTi_VBF5']  = {   'name': 'mTi',            #   variable name    
-                        'range' : ([100,200,400,600,800,1000],),    #   variable range
-                        'xaxis' : 'm_{T,i} [GeV]',  #   x axis name
-                        'fold' : 3
-                        }
-
-
-
-variables['mth_VBF']  = {   'name': 'mth',            #   variable name    
-                        'range' : ([100,150,200,250,300,350,400,500,700,1000],),    #   variable range
-                        'xaxis' : 'm_{T,i} [GeV]',  #   x axis name
-                        'fold' : 3
-                        }
 variables['mth']  = {   'name': 'mth',            #   variable name    
                         'range' : (20,0,400),    #   variable range
                         'xaxis' : 'm_{TH} [GeV]',  #   x axis name
@@ -122,11 +66,6 @@ variables['mjj']  = {   'name': 'mjj',            #   variable name
                         'xaxis' : 'm_{jj} [GeV]',  #   x axis name
                         'fold' :3
                         }
-variables['mjj_2']  = {   'name': 'mjj',            #   variable name    
-                        'range' : (10,500,2000),    #   variable range
-                        'xaxis' : 'm_{jj} [GeV]',  #   x axis name
-                        'fold' :3
-                        }
 variables['detajj']  = {   'name': 'detajj',            #   variable name    
                            'range' : (10,3.5,8.5),    #   variable range
                            'xaxis' : '#Delta #eta jj',  #   x axis name
@@ -143,13 +82,15 @@ variables['Zepp2']  = {   'name': 'abs(std_vector_lepton_eta[1]-0.5*(std_vector_
                            'xaxis' : 'Zeppenfeld_1',  #   x axis name
                            'fold' :0
                            }
+'''
 
-variables['Zeppll']  = {   'name': '0.5*abs((std_vector_lepton_eta[0]+std_vector_lepton_eta[1])-(std_vector_jet_eta[0]+std_vector_jet_eta[1]))',            #   variable name    
+variables['ZeppllOld']  = {   'name': '0.5*abs((std_vector_lepton_eta[0]+std_vector_lepton_eta[1])-(std_vector_jet_eta[0]+std_vector_jet_eta[1]))',            #   variable name    
                            'range' : (10,0,5),    #   variable range
                            'xaxis' : 'Zeppenfeld_1',  #   x axis name
                            'fold' :0
                            }
-
+                           
+'''
 variables['dphill']  = {   'name': 'dphill',            #   variable name    
                            'range' : (30,0,3.2),    #   variable range
                            'xaxis' : '#Delta #phi ll',  #   x axis name
@@ -217,50 +158,5 @@ variables['std_vector_jet_pt[2]']  = {   'name': 'std_vector_jet_pt[2]',        
                         'xaxis' : 'pT_{3j} [GeV]',  #   x axis name
                         'fold' :3
                         }
-
-
-
-
-'''
-'''
-variables['mR']  = {   'name': 'mR',            #   variable name    
-                        'range' : ([100,150,200,250,300,350,400,450,500,600,700,1000],),    #   variable range
-                        'xaxis' : 'mR [GeV]',  #   x axis name
-                        'fold' : 3
-                        }
-variables['mTe']  = {   'name': 'mTe',            #   variable name    
-                        'range' : ([100,150,200,250,300,350,400,450,500,600,700,1000],),    #   variable range
-                        'xaxis' : 'mTe [GeV]',  #   x axis name
-                        'fold' : 3
-                        }
-
-variables['mcoll']  = {   'name': 'mcoll',            #   variable name    
-                        'range' : ([100,150,200,250,300,350,400,450,500,600,700,1000],),    #   variable range
-                        'xaxis' : 'mcoll [GeV]',  #   x axis name
-                        'fold' : 3
-                        }
-
-variables['mcollWW']  = {   'name': 'mcollWW',            #   variable name    
-                        'range' : ([100,150,200,250,300,350,400,450,500,600,700,1000],),    #   variable range
-                        'xaxis' : 'mcollWW [GeV]',  #   x axis name
-                        'fold' : 3
-                        }
-
-
-variables['std_vector_lepton_phi[0]']  = {   'name': 'std_vector_lepton_phi[0]',            #   variable name    
-                        'range' : (20,-5,5),    #   variable range
-                        'xaxis' : 'phi_{1l} [GeV]',  #   x axis name
-                        'fold' :3
-                        }
-
-variables['std_vector_lepton_phi[1]']  = {   'name': 'std_vector_lepton_phi[1]',            #   variable name    
-                        'range' : (20,-5,5),    #   variable range
-                        'xaxis' : 'phi_{2l} [GeV]',  #   x axis name
-                        'fold' :3
-                        }
-
-
-
-
 
 '''

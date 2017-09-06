@@ -47,7 +47,6 @@ cuts['Signal_region']  = '( mth>=60) \
                 && (( TMath::Min(abs( std_vector_jet_eta[8] - std_vector_jet_eta[0]),abs(std_vector_jet_eta[8] - std_vector_jet_eta[1])) < 1 || std_vector_jet_pt[8] < 20) || (std_vector_jet_eta[8] < TMath::Min(std_vector_jet_eta[0],std_vector_jet_eta[1])) || (std_vector_jet_eta[8] > TMath::Max(std_vector_jet_eta[0],std_vector_jet_eta[1])) )\
                 && (( TMath::Min(abs( std_vector_jet_eta[9] - std_vector_jet_eta[0]),abs(std_vector_jet_eta[9] - std_vector_jet_eta[1])) < 1 || std_vector_jet_pt[9] < 20) || (std_vector_jet_eta[9] < TMath::Min(std_vector_jet_eta[0],std_vector_jet_eta[1])) || (std_vector_jet_eta[9] > TMath::Max(std_vector_jet_eta[0],std_vector_jet_eta[1])) )\
                 '
-
        
 cuts['Signal_region_lowZepp']  = '( mth>=60) \
                 && ( mjj>500 ) \
@@ -115,4 +114,3 @@ cuts['controlregion'] = '( mth>=60) \
                 && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.715 ) \
                 && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.715 ) \
                 '
-       

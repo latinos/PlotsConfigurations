@@ -1,4 +1,6 @@
- #plot configuration
+# plot configuration
+
+
 
 # groupPlot = {}
 # 
@@ -16,7 +18,7 @@ groupPlot['DY']  = {
 
 
 groupPlot['Fake']  = {  
-                  'nameHR' : 'Fake',
+                  'nameHR' : 'Non-prompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
                   'samples'  : ['Fake']
@@ -24,7 +26,7 @@ groupPlot['Fake']  = {
 
 
 groupPlot['top']  = {  
-                  'nameHR' : 'tW and t#bart',
+                  'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
                   'color': 400,   # kYellow
                   'samples'  : ['top']
@@ -53,11 +55,22 @@ groupPlot['VZ']  = {
               }
 
 
-groupPlot['Higgs']  = {  
-                  'nameHR' : 'Higgs',
+
+groupPlot['HiggsOther']  = {  
+                  'nameHR' : 'ggH+VBF',
+                  'isSignal' : 1,
+                  'color': 635, # kRed+3 
+                  'samples'  : ['H_htt', 'H_hww', 'qqH_hww', 'ggH_hww']
+              }
+
+
+
+
+groupPlot['HiggsVH']  = {  
+                  'nameHR' : 'VH',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww']
+                  'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww']
               }
 
 
@@ -265,14 +278,6 @@ plot['ZH_hww'] = {
                   'scale'    : 1    #
                   }
 
-plot['bbH_hww'] = {
-                  'nameHR' : 'bbH',
-                  'color': 632-1, # kRed-1 
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1    #
-                  }
-
 plot['ggZH_hww'] = {
                   'nameHR' : 'ggZH',
                   'color': 632+4, # kRed+4
@@ -314,7 +319,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  #'isBlind'  : 1
               }
 
 
@@ -323,8 +328,13 @@ plot['DATA']  = {
 # additional options
 
 # legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
-legend['lumi'] = 'L = 35.9/fb' # 2.318 fb-1
+#legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
+#legend['lumi'] = 'L = 4.3/fb' # 2.318 fb-1
+#legend['lumi'] = 'L = 6.3/fb'
+legend['lumi'] = 'L = 12.9/fb'
+
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
+
 
 
 

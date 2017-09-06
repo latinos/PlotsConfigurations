@@ -38,7 +38,7 @@ structure['top'] = {
 
 
 structure['WW']  = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0    
                   }
 
@@ -95,53 +95,54 @@ structure['ZZ']  = {
 
 
 structure['ggH'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0    
                   }
 
 structure['ggH_hww'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0    
                   }
 
 structure['qqH_hww'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0    
                   }
 
 structure['qqH_hww'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0    
                   }
 
 structure['WH_hww'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0    
                   }
 
 structure['ZH_hww'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0    
                   }
 
 structure['ggZH_hww'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0    
                   }
 
 structure['H_htt'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0    
                   }
 
 structure['H_hww'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0    
                   }
 
 
 
 # data
+
 
 structure['DATA']  = { 
                   'isSignal' : 0,
