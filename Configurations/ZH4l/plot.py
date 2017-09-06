@@ -31,7 +31,7 @@ groupPlot['ttV']  = {
 groupPlot['WW']  = {  
                   'nameHR' : 'WW',
                   'isSignal' : 0,
-                  'color': 419,    # kGreen+3
+                  'color': 431,    # kGreen+3
                   'samples'  : ['WW']
               }
 

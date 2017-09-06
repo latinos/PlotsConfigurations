@@ -43,35 +43,6 @@ nuisances['lumi']  = {
         }
 
 
-nuisances['lumi2016']  = {
-               'name'  : 'lumi_13TeV_2016', 
-               'samples'  : {
-                   'ggH_hww'  : '1.058',
-                   'qqH_hww'  : '1.058',
-                   'WH_hww'   : '1.058',
-                   'ZH_hww'   : '1.058',
-                   'ZH_htt'   : '1.058',
-                   'H_htt'    : '1.058',
-                   'H_hww'    : '1.058',
-                   'WH_hww'   : '1.058',
-                   'ggZH_hww'   : '1.058',
-                   'VVZ'      : '1.058',
-                   'WWW'      : '1.058',
-                   'WZ'       : '1.058',
-                   'WW'       : '1.058',
-                   'ttW'       : '1.058',
-                   'ttZ'       : '1.058',
-                   'ggWW'     : '1.058',
-                   'Vg'       : '1.058',
-                   'VgS'      : '1.058',
-                   #'DY'       : '1.058',    # --> datadriven
-                   #'WW'       : '1.058',    # --> datadriven
-                   #'top'      : '1.058',    # --> datadriven
-                   },
-               'type'  : 'lnN',
-              }
-
-
 
 
 # Theoritical Systematics
@@ -143,6 +114,18 @@ nuisances['ZZ4lnorm']  = {
         'name'  : 'ZZ4lnorm',
         'samples'  : {
             'ZZ' : '1.00',
+            },
+        'type'  : 'rateParam',
+        'cuts'  : [
+            'zh4l_ZZ_13TeV',
+            'zh4l_XSF_13TeV',
+            'zh4l_XDF_13TeV',
+            ]
+        }
+nuisances['ggZZ4lnorm']  = {
+        'name'  : 'ZZ4lnorm',
+        'samples'  : {
+            'ggZZ' : '1.00',
             },
         'type'  : 'rateParam',
         'cuts'  : [
@@ -242,58 +225,57 @@ nuisances['trigg_zh4l']  = {
             },
         }
 
-# electronIdIso = '(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_electron_idisoW_'+eleWP+'_Up[0])/(std_vector_electron_idisoW_'+eleWP+'[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_electron_idisoW_'+eleWP+'_Up[1])/(std_vector_electron_idisoW_'+eleWP+'[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_electron_idisoW_'+eleWP+'_Up[2])/(std_vector_electron_idisoW_'+eleWP+'[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_electron_idisoW_'+eleWP+'_Up[3])/(std_vector_electron_idisoW_'+eleWP+'[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==11)*(std_vector_electron_idisoW_'+eleWP+'_Down[0])/(std_vector_electron_idisoW_'+eleWP+'[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==11)*(std_vector_electron_idisoW_'+eleWP+'_Down[1])/(std_vector_electron_idisoW_'+eleWP+'[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==11)*(std_vector_electron_idisoW_'+eleWP+'_Down[2])/(std_vector_electron_idisoW_'+eleWP+'[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==11)*(std_vector_electron_idisoW_'+eleWP+'_Down[3])/(std_vector_electron_idisoW_'+eleWP+'[3]-1))'
 
-# muonIdIso = '(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_muon_idisoW_'+muWP+'_Up[0])/(std_vector_muon_idisoW_'+muWP+'[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_muon_idisoW_'+muWP+'_Up[1])/(std_vector_muon_idisoW_'+muWP+'[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_muon_idisoW_'+muWP+'_Up[2])/(std_vector_muon_idisoW_'+muWP+'[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_muon_idisoW_'+muWP+'_Up[3])/(std_vector_muon_idisoW_'+muWP+'[3]-1))','(1+(abs(std_vector_lepton_flavour[0])==13)*(std_vector_muon_idisoW_'+muWP+'_Down[0])/(std_vector_muon_idisoW_'+muWP+'[0]-1))*(1+(abs(std_vector_lepton_flavour[1])==13)*(std_vector_muon_idisoW_'+muWP+'_Down[1])/(std_vector_muon_idisoW_'+muWP+'[1]-1))*(1+(abs(std_vector_lepton_flavour[2])==13)*(std_vector_muon_idisoW_'+muWP+'_Down[2])/(std_vector_muon_idisoW_'+muWP+'[2]-1))*(1+(abs(std_vector_lepton_flavour[3])==13)*(std_vector_muon_idisoW_'+muWP+'_Down[3])/(std_vector_muon_idisoW_'+muWP+'[3]-1))'
-
-
-
-# nuisances['idiso_ele_wh3l']  = {
-#         'name'  : 'idiso_ele',
-#         'kind'  : 'weight',
-#         #'kind'  : 'tree', #'weight',
-#         'type'  : 'shape',
-#         'samples'  : {
-#               'WH_hww'   : [electronIdIso],
-#               'ZH_hww'   : [electronIdIso],
-#               'ggZH_hww' : [electronIdIso],
-#               'WH_htt'   : [electronIdIso],
-#               'WW'       : [electronIdIso],
-#               'Vg'       : [electronIdIso],
-#               'WZ'       : [electronIdIso],
-#               'ZZ'       : [electronIdIso],
-#               'ggZZ'     : [electronIdIso],
-#               'WWW'      : [electronIdIso],
-#               'VVZ'      : [electronIdIso],
-#               'ttZ'      : [electronIdIso],
-#               'ttW'      : [electronIdIso],
-#             },
-#         #'folderUp'   : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/',    # uncertainties fixed!
-#         #'folderDown' : 'eos/user/a/amassiro/HWW2015/22Jan_25ns_mAODv2_MC/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__TrigEff/'
-#         }
+id_syst_ele = [ 'LepSF4l__ele_'+eleWP+'__Up' , 'LepSF4l__ele_'+eleWP+'__Do' ]
+id_syst_mu  = [ 'LepSF4l__mu_'+muWP+'__Up' , 'LepSF4l__mu_'+muWP+'__Do' ]
 
 
-# nuisances['idiso_mu_wh3l']  = {
-#         'name'  : 'idiso_mu',
-#         'kind'  : 'weight',
-#         #'kind'  : 'tree', #'weight',
-#         'type'  : 'shape',
-#         'samples'  : {
-#               'WH_hww'   : [muonIdIso],
-#               'ZH_hww'   : [muonIdIso],
-#               'ggZH_hww' : [muonIdIso],
-#               'WH_htt'   : [muonIdIso],
-#               'WW'       : [muonIdIso],
-#               'Vg'       : [muonIdIso],
-#               'WZ'       : [muonIdIso],
-#               'ZZ'       : [muonIdIso],
-#               'ggZZ'     : [muonIdIso],
-#               'WWW'      : [muonIdIso],
-#               'VVZ'      : [muonIdIso],
-#               'ttZ'      : [muonIdIso],
-#               'ttW'      : [muonIdIso],
-#             },
-#         }
+nuisances['idiso_ele_zh4l']  = {
+        'name'  : 'idiso_ele',
+        'kind'  : 'weight',
+        'type'  : 'shape',
+        'samples'  : {
+              'WH_hww'   : id_syst_ele,
+              'ZH_hww'   : id_syst_ele,
+              'ZH_htt'   : id_syst_ele,
+              'ggZH_hww' : id_syst_ele,
+              'WH_htt'   : id_syst_ele,
+              'ggH_hzz'  : id_syst_ele,
+              'WW'       : id_syst_ele,
+              'Vg'       : id_syst_ele,
+              'WZ'       : id_syst_ele,
+              'ZZ'       : id_syst_ele,
+              'ggZZ'     : id_syst_ele,
+              'WWW'      : id_syst_ele,
+              'VVZ'      : id_syst_ele,
+              'ttZ'      : id_syst_ele,
+              'ttW'      : id_syst_ele,
+            },
+        }
+
+
+nuisances['idiso_mu_zh4l']  = {
+        'name'  : 'idiso_mu',
+        'kind'  : 'weight',
+        'type'  : 'shape',
+        'samples'  : {
+              'WH_hww'   : id_syst_mu,
+              'ZH_hww'   : id_syst_mu,
+              'ZH_htt'   : id_syst_mu,
+              'ggZH_hww' : id_syst_mu,
+              'WH_htt'   : id_syst_mu,
+              'ggH_hzz'  : id_syst_mu,
+              'WW'       : id_syst_mu,
+              'Vg'       : id_syst_mu,
+              'WZ'       : id_syst_mu,
+              'ZZ'       : id_syst_mu,
+              'ggZZ'     : id_syst_mu,
+              'WWW'      : id_syst_mu,
+              'VVZ'      : id_syst_mu,
+              'ttZ'      : id_syst_mu,
+              'ttW'      : id_syst_mu,
+            },
+        }
 
 # # # nuisances handled by means of a different set of trees
 
