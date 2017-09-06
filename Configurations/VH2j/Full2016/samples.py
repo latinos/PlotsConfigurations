@@ -11,8 +11,8 @@ from LatinoAnalysis.Tools.commonTools import *
 ################# SKIMS ########################
 ################################################
 
-skim=''
-#skim='__wwSel'
+#skim=''
+skim='__wwSel'
 #skim='__topSel'
 #skim='__topSel'
 #skim='__vh3lSel' 
@@ -33,7 +33,6 @@ if    'iihe' in SITE :
   xrootdPath  = 'dcap://maite.iihe.ac.be/' 
   treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/'
 elif  'cern' in SITE :
-  #xrootdPath='root://eoscms.cern.ch/'
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/'
 
 directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC'+skim+'/'
@@ -53,6 +52,7 @@ Nlep='2'
 XSWeight      = 'XSWeight'
 SFweight      = 'SFweight'+Nlep+'l'
 GenLepMatch   = 'GenLepMatch'+Nlep+'l'
+Top_pTrw = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topLHEpt) * TMath::Exp(0.0615-0.0005*antitopLHEpt) ) )'
 
 ################################################
 ############### B-Tag  WP ######################
@@ -66,23 +66,24 @@ bWP='L'
 #bWP='M'
 #bWP='T'
 
-# ... bPog SF
+# ... bPog SF and b veto
 
 bSF='1.'
+bVeto='1'
 if   bAlgo == 'cmvav2' :
  bSF='bPogSF_CMVA'+bWP
+ bVeto='bveto_CMVA'+bWP
 elif bAlgo == 'csvv2ivf' :
  bSF='bPogSF_CSV'+bWP
+ bVeto='bveto_CSV'+bWP
 elif bAlgo == 'DeepCSVB' :
  bSF='bPogSF_deepCSV'+bWP
+ bVeto='bveto_deepCSV'+bWP
 
 SFweight += '*'+bSF
 # Fix for 2-leptons for which this was kept in global formula !
 if Nlep == '2' : SFweight += '/bPogSF_CMVAL'
 
-# ... b Veto
-
-bVeto='bveto_'+bAlgo+bWP
 
 ################################################
 ############### Lepton WP ######################
@@ -155,7 +156,7 @@ DataTrig = {
 ###### DY #######
 
 useDYHT = False       # be carefull DY HT is LO 
-useDYtt = False     
+useDYtt = True     
 mixDYttandHT = False  # be carefull DY HT is LO (HT better stat for HT>450 GEV)
 
 ### These weights were evaluated on ICHEP16 MC -> Update ?
@@ -187,14 +188,24 @@ if useDYHT :
                              + getSampleFiles(directory,'DYJetsToLL_M-50_HT-2500toInf') 
 
 if useDYtt :
-  samples['DY']['name'] +=   getSampleFiles(directory,'DYJetsToTT_MuEle_M-50') \
+  # if skim=='__wwSel' do not include DYJetsToLL_M-50 in the list of samples
+  if skim=='__wwSel':
+    samples['DY']['name'] =   getSampleFiles(directory,'DYJetsToTT_MuEle_M-50') \
+                            + getSampleFiles(directory,'DYJetsToTT_MuEle_M-50_ext1') \
+                            + getSampleFiles(directory,'DYJetsToLL_M-10to50')
+  else:
+    samples['DY']['name'] +=   getSampleFiles(directory,'DYJetsToTT_MuEle_M-50') \
                              + getSampleFiles(directory,'DYJetsToTT_MuEle_M-50_ext1')
 
 # ... Fix Weights (always after all samples are included !)
 
 # pt_ll weight
-addSampleWeight(samples,'DY','DYJetsToLL_M-10to50',ptllDYW_NLO)
-addSampleWeight(samples,'DY','DYJetsToLL_M50'     ,ptllDYW_NLO)
+# in this case DYJetsToLL_M50 is not included in the list of samples
+if (useDYtt and skim=='__wwSel'):
+  addSampleWeight(samples,'DY','DYJetsToLL_M-10to50',ptllDYW_NLO)
+else:
+  addSampleWeight(samples,'DY','DYJetsToLL_M-10to50',ptllDYW_NLO)
+  addSampleWeight(samples,'DY','DYJetsToLL_M50'     ,ptllDYW_NLO)
 
 if useDYHT :
   # Remove high HT from inclusive sample
@@ -228,8 +239,10 @@ if useDYHT :
 
 if useDYtt :
   # Remove OF from Inclusive sample
-  cutSF = '(abs(std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]) == 11*11)||(abs(std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]) == 13*13)'
-  addSampleWeight(samples,'DY','DYJetsToLL_M-50',cutSF)
+  # No need to do it if skim=='__wwSel'
+  if not skim=='__wwSel':
+    cutSF = '(abs(std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]) == 11*11)||(abs(std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]) == 13*13)'
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50',cutSF)
   # pt_ll weight
   addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50'     ,ptllDYW_NLO)
   addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50_ext1',ptllDYW_NLO)
@@ -271,9 +284,10 @@ samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu')
                                   + getSampleFiles(directory,'ST_s-channel')   
                              ,
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-                      'FilesPerJob' : 3 ,
+                      'FilesPerJob' : 1 ,
                   }
                   
+addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
 
 ###### WW ########
              
@@ -325,7 +339,7 @@ samples['VZ']  = {    'name':   getSampleFiles(directory,'WZTo3LNu')
                               # + getSampleFiles(directory,'tZq_ll')
                               ,   
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.11' ,  
-                      'FilesPerJob' : 3 ,
+                      'FilesPerJob' : 4 ,
                   }
 
 ### 1.11 normalisation was measured in 3-lepton
@@ -407,7 +421,7 @@ samples['Fake']  = {   'name': [ ] ,
                        'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA,              #   weight/cut 
                        'weights' : [ ] ,
                        'isData': ['all'],
-                       'FilesPerJob' : 5 ,
+                       'FilesPerJob' : 4 ,
                    }
 
 for Run in DataRun :
@@ -426,7 +440,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'weight' : 'veto_EMTFBug'+'*'+METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],                            
-                       'FilesPerJob' : 5 ,
+                       'FilesPerJob' : 4 ,
                   }
 
 for Run in DataRun :

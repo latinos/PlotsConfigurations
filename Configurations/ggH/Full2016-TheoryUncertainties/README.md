@@ -6,7 +6,7 @@ Test of Theory uncertainties
 This step reads the post-processed latino trees and produces histograms for several variables and phase spaces.
 
     mkShapes.py --pycfg=configuration.py \
-                --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__MCFix/ \
+                --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC/ \
                 --batchSplit=AsMuchAsPossible \
                 --doBatch=True \
                 --batchQueue=1nd
@@ -26,7 +26,7 @@ If a job takes too long / fails, one can kill it and resubmit manually.
 Once the previous jobs have finished we _hadd_ the outputs.
 
     mkShapes.py --pycfg=configuration.py \
-                --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__MCFix/ \
+                --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC/ \
                 --batchSplit=AsMuchAsPossible \
                 --doHadd=True
 

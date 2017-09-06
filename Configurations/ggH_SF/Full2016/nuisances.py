@@ -11,16 +11,16 @@
 nuisances['lumi']  = {
                'name'  : 'lumi_13TeV',
                'samples'  : {
-                   'DY'       : '1.023',  ##?? data driven??    
-                   'top'      : '1.023',  ##?? data driven??  
-                   'WW'       : '1.023',  ##?? data driven??  
+                   #'DY'       : '1.023',  ## data driven    
+                   #'top'      : '1.023',  ## data driven  
+                   #'WW'       : '1.023',  ## data driven  
                    'ggWW'     : '1.023',
                    'Vg'       : '1.023',
                    'VgS'      : '1.023',
                    'VZ'       : '1.023',
                    'VVV'      : '1.023',
-                   'ggH_hww'  : '1.023',  ##???
-                   'qqH_hww'  : '1.023',  ##???
+                   'ggH_hww'  : '1.023', 
+                   'qqH_hww'  : '1.023',
                    'ZH_hww'   : '1.023',
                    'ggZH_hww' : '1.023',
                    'WH_hww'   : '1.023',
@@ -99,13 +99,14 @@ nuisances['fake_mu_stat']  = {
 }
 
 ##### B-tagger
+# Here we keep top and WW even if data driven because 0f x-talk between both regions
 
 nuisances['btagbc']  = {
                 'name'  : 'Full2016_btag_bc',
                 'kind'  : 'weight',
                'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   #'DY'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],  # DATA Driven
                    'WW'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'ggWW'    : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'VVV'     : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
@@ -113,8 +114,8 @@ nuisances['btagbc']  = {
                    'top'     : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'Vg'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'VgS'     : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'ggH_hww' : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'], ##??
-                   'qqH_hww' : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'], ##??
+                   'ggH_hww' : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'], 
+                   'qqH_hww' : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'WH_hww'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'ZH_hww'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'H_htt'   : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
@@ -127,7 +128,7 @@ nuisances['btagudsg']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   #'DY'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'], # DATA Driven
                    'VVV'     : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'VZ'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'WW'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
@@ -135,8 +136,8 @@ nuisances['btagudsg']  = {
                    'top'     : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'Vg'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'VgS'     : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'ggH_hww' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'], ##??
-                   'qqH_hww' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'], ##??
+                   'ggH_hww' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   'qqH_hww' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'], 
                    'WH_hww'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'ZH_hww'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'bbH_hww' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
@@ -156,16 +157,16 @@ nuisances['trigg']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : trig_syst , #???
+                   #'DY'      : trig_syst , # Data driven
                    'VVV'     : trig_syst ,
                    'VZ'      : trig_syst ,
-                   'ggWW'    : trig_syst ,
-                   'WW'      : trig_syst ,
-                   'top'     : trig_syst ,
+                   'ggWW'    : trig_syst , 
+                   #'WW'      : trig_syst , # Data driven
+                   #'top'     : trig_syst , # Data driven
                    'Vg'      : trig_syst ,
                    'VgS'     : trig_syst ,
-                   'ggH_hww' : trig_syst , #???
-                   'qqH_hww' : trig_syst , #???
+                   'ggH_hww' : trig_syst , 
+                   'qqH_hww' : trig_syst , 
                    'WH_hww'  : trig_syst ,
                    'ZH_hww'  : trig_syst ,
                    'ggZH_hww': trig_syst ,
@@ -183,12 +184,12 @@ nuisances['idiso_ele']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : id_syst_ele ,
+                   #'DY'      : id_syst_ele , # DATA Driven
                    'VVV'     : id_syst_ele ,
                    'VZ'      : id_syst_ele ,
                    'ggWW'    : id_syst_ele ,
-                   'WW'      : id_syst_ele ,
-                   'top'     : id_syst_ele ,
+                   #'WW'      : id_syst_ele , # Data driven
+                   #'top'     : id_syst_ele , # Data driven
                    'Vg'      : id_syst_ele ,
                    'VgS'     : id_syst_ele ,
                    'ggH_hww' : id_syst_ele ,
@@ -206,10 +207,10 @@ nuisances['electronpt']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY' :  ['1', '1'],
+                   #'DY' :  ['1', '1'], # Data driven
                    'ggWW' :['1', '1'],
-                   'WW' :  ['1', '1'],
-                   'top' : ['1', '1'],
+                   #'WW' :  ['1', '1'], # Data driven
+                   #'top' : ['1', '1'], # Data driven
                    'VZ' :  ['1', '1'],
                    'VVV' : ['1', '1'],
                    'Vg' : ['1', '1'],
@@ -217,8 +218,8 @@ nuisances['electronpt']  = {
                    'ggH_hww' : ['1', '1'],
                    'qqH_hww' : ['1', '1'],
                    'WH_hww'  :  ['1', '1'],
-                   'ZH_hww'  :  ['1', '1'],
-                   'ggZH_hww':  ['1', '1'],
+          #        'ZH_hww'  :  ['1', '1'], --> Buggy
+          #        'ggZH_hww':  ['1', '1'], --> Buggy
                    'bbH_hww' : ['1', '1'],
                    'H_htt'   : ['1', '1'],
                  },
@@ -236,12 +237,12 @@ nuisances['idiso_mu']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : id_syst_mu ,
+                   #'DY'      : id_syst_mu , # Data driven
                    'VVV'     : id_syst_mu ,
                    'VZ'      : id_syst_mu ,
                    'ggWW'    : id_syst_mu ,
-                   'WW'      : id_syst_mu ,
-                   'top'     : id_syst_mu ,
+                   #'WW'      : id_syst_mu , # Data driven
+                   #'top'     : id_syst_mu , # Data driven
                    'Vg'      : id_syst_mu ,
                    'VgS'     : id_syst_mu ,
                    'ggH_hww' : id_syst_mu ,
@@ -260,9 +261,9 @@ nuisances['muonpt']  = {
                 'type'  : 'shape',
                 'samples'  : {
                    'ggWW' :['1', '1'],
-                   'WW' :  ['1', '1'],
-                   'DY' :  ['1', '1'],
-                   'top' : ['1', '1'],
+                   #'WW' :  ['1', '1'], # Data driven
+                   #'DY' :  ['1', '1'], # Data driven
+                   #'top' : ['1', '1'], # Data driven
                    'VZ' :  ['1', '1'],
                    'VVV' : ['1', '1'],
                    'Vg' : ['1', '1'],
@@ -270,8 +271,8 @@ nuisances['muonpt']  = {
                    'ggH_hww' : ['1', '1'],
                    'qqH_hww' : ['1', '1'],
                    'WH_hww' :  ['1', '1'],
-                   'ZH_hww' :  ['1', '1'],
-                   'ggZH_hww':  ['1', '1'],
+           #       'ZH_hww' :  ['1', '1'],
+           #       'ggZH_hww':  ['1', '1'],
                    'bbH_hww' : ['1', '1'],
                    'H_htt' : ['1', '1'],
                 },
@@ -288,9 +289,9 @@ nuisances['jes']  = {
                 'type'  : 'shape',
                 'samples'  : {
                    'ggWW' :['1', '1'],
-                   'WW' :  ['1', '1'],
-                   'DY' :  ['1', '1'],
-                   'top' : ['1', '1'],
+                   #'WW' :  ['1', '1'], # Data driven
+                   #'DY' :  ['1', '1'], # Data driven
+                   #'top' : ['1', '1'], # Data driven
                    'VZ' :  ['1', '1'],
                    'VVV' : ['1', '1'],
                    'Vg' : ['1', '1'],
@@ -298,8 +299,8 @@ nuisances['jes']  = {
                    'ggH_hww' : ['1', '1'],
                    'qqH_hww' : ['1', '1'],
                    'WH_hww' :  ['1', '1'],
-                   'ZH_hww' :  ['1', '1'],
-                   'ggZH_hww':  ['1', '1'],
+            #      'ZH_hww' :  ['1', '1'],
+            #      'ggZH_hww':  ['1', '1'],
                    'bbH_hww' : ['1', '1'],
                    'H_htt' : ['1', '1'],
                 },
@@ -315,9 +316,9 @@ nuisances['met']  = {
                 'type'  : 'shape',
                 'samples'  : {
                    'ggWW' :['1', '1'],
-                   'WW' :  ['1', '1'],
-                   'DY' :  ['1', '1'],
-                   'top' : ['1', '1'],
+                   #'WW' :  ['1', '1'], # Data driven
+                   #'DY' :  ['1', '1'], # Data driven
+                   #'top' : ['1', '1'], # Data driven
                    'VZ' :  ['1', '1'],
                    'VVV' : ['1', '1'],
                    'Vg' : ['1', '1'],
@@ -325,8 +326,8 @@ nuisances['met']  = {
                    'ggH_hww' : ['1', '1'],
                    'qqH_hww' : ['1', '1'],
                    'WH_hww' :  ['1', '1'],
-                   'ZH_hww' :  ['1', '1'],
-                   'ggZH_hww':  ['1', '1'],
+             #     'ZH_hww' :  ['1', '1'],
+             #     'ggZH_hww':  ['1', '1'],
                    'bbH_hww' : ['1', '1'],
                    'H_htt' : ['1', '1'],
                 },
@@ -830,15 +831,27 @@ nuisances['tttwTh']  = {
                 
 }
 
+
+### FIXME: This must be implemented in mkDatacards.py using  a flag or something.
+### Use the following if you want to apply the new combine MC stat nuisances.
+### In this case remember to add the following line in the datacard
+### * autoMCStats 10 1
+
+#nuisances['stat']  = {
+#                # apply to the following samples: name of samples here must match keys in samples.py
+#               'samples'  : { },
+#               'type'  : 'shape'
+#              }
+
+
+### Use the following if you want to apply the MC stat nuisances accoriding to the standard approach
 nuisances['stat']  = {
                 # apply to the following samples: name of samples here must match keys in samples.py
-               'samples'  : { },
-                'type'  : 'shape'
-}
-'''                   
+               'samples'  : { 
                    'ttbar': {
                          'typeStat' : 'bbb',
                          },
+
                    'singletop': {
                          'typeStat' : 'bbb',
                          },
@@ -846,11 +859,12 @@ nuisances['stat']  = {
                    'top': {
                          'typeStat' : 'bbb',
                          },
-                    
-                   'DY': {
-                         'typeStat' : 'bbb',
-                         'keepNormalization' : '1'  # default = 0 -> 0=don't keep normalization
-                         },
+
+# DATA DRIVEN:                    
+#                  'DY': {
+#                        'typeStat' : 'bbb',
+#                        'keepNormalization' : '1'  # default = 0 -> 0=don't keep normalization
+#                        },
                     
                    'ggWW': {
                          'typeStat' : 'bbb',
@@ -863,48 +877,63 @@ nuisances['stat']  = {
                    'WW': {
                          'typeStat' : 'bbb',
                          },
+
                    'VZ': {
                          'typeStat' : 'bbb',
                          },
+
                    'WZ': {
                          'typeStat' : 'bbb',
                          },
+
                    'VVV': {
                          'typeStat' : 'bbb',
                          },
+
                    'H_hww': {
                          'typeStat' : 'bbb',
                          },
+
                    'ggH_hww': {
                          'typeStat' : 'bbb',
                          },
+
                    'qqH_hww': {
                          'typeStat' : 'bbb',
                          },
+
                    'WH_hww': {
                          'typeStat' : 'bbb',
                          },
+
                    'ZH_hww': {
                          'typeStat' : 'bbb',
                          },
+
                    'H_htt': {
                          'typeStat' : 'bbb',
                          },
+
                    'ggH_htt': {
                          'typeStat' : 'bbb',
                          },
+
                    'qqH_htt': {
                          'typeStat' : 'bbb',
                          },
+
                    'WH_htt': {
                          'typeStat' : 'bbb',
                          },
+
                    'ZH_htt': {
                          'typeStat' : 'bbb',
                          },
+
                    'ggZH_hww': {
                          'typeStat' : 'bbb',
                          },
+
                    'bbH_hww': {
                          'typeStat' : 'bbb',
                          },
@@ -916,14 +945,16 @@ nuisances['stat']  = {
                    'Vg': {  
                          'typeStat' : 'bbb',
                          },
+
                    'VgS':{  
                          'typeStat' : 'bbb',
                          },
-                            
                  },
                'type'  : 'shape'
               }
-'''
+
+
+
 #for iNP in nuisances:
 #  if 'cuts' in nuisances[iNP] :
 #    newCuts = []
