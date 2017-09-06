@@ -332,7 +332,7 @@ plot['ggH_hww'] = {
 import os.path
 
 massesAndModelsFile = "massesAndModels.py"
-'''
+
 if os.path.exists(massesAndModelsFile) :
   handle = open(massesAndModelsFile,'r')
   exec(handle)
@@ -371,7 +371,7 @@ for m in masses:
                   'color': 600+int(int(m)/100+0.5), 
                   'samples'  : ['ggH_hww_'+m+'_'+model_name, 'qqH_hww_'+m+'_'+model_name]
                }
-''' 
+ 
 # data
 
 
