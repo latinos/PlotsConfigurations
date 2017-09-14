@@ -6,11 +6,11 @@
    
 # Tuning for shape analysis
 
-# variables['events']  = {   'name': '1',      
-#                         'range' : (1,0,2),  
-#                         'xaxis' : 'events', 
-#                          'fold' : 3
-#                         }
+variables['events']  = {   'name': '1',      
+                        'range' : (1,0,2),  
+                        'xaxis' : 'events', 
+                         'fold' : 3
+                        }
 
 # # # variables for significance computation - Run without nuisances!!!
 # # # mucca for 2HDM Model
@@ -54,97 +54,112 @@
 # #     }
 
 
-# # # # # Analysis Variables
+# # # # Analysis Variables
 
-# # # # mucca for 2HDM Model
-# variables['muccamva2HDMgradFull'] = {
-#     'name': 'muccamva2HDMgradFull_em',
-# #    'range' : ([-1,-0.8,-0.6,-0.4,-0.2,0.1,1],), # old 6 bins
-#     'range' : ([-1,-0.80,-0.65,-0.50,-0.35,-0.20,-0.05,0.136,1.00],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
+# # # mucca for 2HDM Model
+variables['muccamva2HDMgradFull'] = {
+    'name': 'muccamva2HDMgradFull_em',
+#    'range' : ([-1,-0.8,-0.6,-0.4,-0.2,0.1,1],), # old 6 bins
+    'range' : ([-1,-0.80,-0.65,-0.50,-0.35,-0.20,-0.05,0.136,1.00],),
+    'xaxis' : 'MVA discriminant',
+    'fold' : 3
+    }
 
-# variables['muccamva2HDMadaptFull'] = {
-#     'name': 'muccamva2HDMadaptFull_em',
-#     #    'range' : ([-1,-0.8,-0.6,-0.4,-0.2,0.0,0.2,0.5,1],), # old range in the AN_v2
-#     'range' : ([-1,-0.55,-0.35,-0.15,0.05,0.25,0.45,0.65,1.00],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-
-# # mucca for Z'B Model
-# variables['muccamvaZbargradFull'] = {
-#     'name': 'muccamvaZbargradFull_em',
-#     # 'range' : ([-1,-0.8,-0.6,-0.4,-0.2,0.05,1],),           #  old range in AN_v2
-#     'range' : ([-1,-0.82,-0.67,-0.52,-0.37,-0.22,-0.07,0.077,1.00],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamvaZbaradaptFull'] = {
-#     'name': 'muccamvaZbaradaptFull_em',
-#     'range' : ([-1,-0.8,-0.6,-0.4,-0.2,0.0,0.2,0.5,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
+variables['muccamva2HDMadaptFull'] = {
+    'name': 'muccamva2HDMadaptFull_em',
+    #    'range' : ([-1,-0.8,-0.6,-0.4,-0.2,0.0,0.2,0.5,1],), # old range in the AN_v2
+    'range' : ([-1,-0.55,-0.35,-0.15,0.05,0.25,0.45,0.65,1.00],),
+    'xaxis' : 'MVA discriminant',
+    'fold' : 3
+    }
 
 
-# # # # # Analysis Variables - Super Optimized Binning for Adish
+# mucca for Z'B Model
+variables['muccamvaZbargradFull'] = {
+    'name': 'muccamvaZbargradFull_em',
+    # 'range' : ([-1,-0.8,-0.6,-0.4,-0.2,0.05,1],),           #  old range in AN_v2
+    'range' : ([-1,-0.82,-0.67,-0.52,-0.37,-0.22,-0.07,0.077,1.00],),
+    'xaxis' : 'MVA discriminant',
+    'fold' : 3
+    }
 
-# # # # mucca for 2HDM Model
-# variables['muccamva2HDMgradFull_SuperBin'] = {
-#     'name': 'muccamva2HDMgradFull_em',
-#     'range' : ([-0.9999,-0.7563,-0.7079,-0.5795,-0.3181,0.0591,0.1311,0.1361,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamva2HDMadaptFull_SuperBin'] = {
-#     'name': 'muccamva2HDMadaptFull_em',
-#     'range' : ([-0.9999,-0.6673,-0.4973,-0.2927,-0.0753,0.1723,0.3733,0.5153,0.6533,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
+variables['muccamvaZbaradaptFull'] = {
+    'name': 'muccamvaZbaradaptFull_em',
+    'range' : ([-1,-0.8,-0.6,-0.4,-0.2,0.0,0.2,0.5,1],),
+    'xaxis' : 'MVA discriminant',
+    'fold' : 3
+    }
 
 
-# # mucca for Z'B Model
-# variables['muccamvaZbargradFull_SuperBin'] = {
-#     'name': 'muccamvaZbargradFull_em',
-#     'range' : ([-0.9999,-0.7955,-0.5009,-0.1449,0.0651,0.0771,0.0775,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
+# # # # Analysis Variables - Super Optimized Binning for Adish
 
-# variables['muccamvaZbaradaptFull_SuperBin'] = {
-#     'name': 'muccamvaZbaradaptFull_em',
-#     'range' : ([-0.9999,-0.6531,-0.2673,0.0513,0.3197,0.4207,0.5371,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
+# # # mucca for 2HDM Model
+variables['muccamva2HDMgradFull_SuperBin'] = {
+    'name': 'muccamva2HDMgradFull_em',
+    'range' : ([-0.9999,-0.7563,-0.7079,-0.5795,-0.3181,0.0591,0.1311,0.1361,1],),
+    'xaxis' : 'MVA discriminant',
+    'fold' : 3
+    }
+
+variables['muccamva2HDMadaptFull_SuperBin'] = {
+    'name': 'muccamva2HDMadaptFull_em',
+    'range' : ([-0.9999,-0.6673,-0.4973,-0.2927,-0.0753,0.1723,0.3733,0.5153,0.6533,1],),
+    'xaxis' : 'MVA discriminant',
+    'fold' : 3
+    }
+
+
+# mucca for Z'B Model
+variables['muccamvaZbargradFull_SuperBin'] = {
+    'name': 'muccamvaZbargradFull_em',
+    'range' : ([-0.9999,-0.7955,-0.5009,-0.1449,0.0651,0.0771,0.0775,1],),
+    'xaxis' : 'MVA discriminant',
+    'fold' : 3
+    }
+
+variables['muccamvaZbaradaptFull_SuperBin'] = {
+    'name': 'muccamvaZbaradaptFull_em',
+    'range' : ([-0.9999,-0.6531,-0.2673,0.0513,0.3197,0.4207,0.5371,1],),
+    'xaxis' : 'MVA discriminant',
+    'fold' : 3
+    }
 
 
 # # BDTs trained for 2HDM model mass point mZp = 2000 GeV, mA0 = 300 GeV
 
 # # # mucca for 2HDM Model
-# variables['muccamva2HDMgradFull_high'] = {
-#     'name': 'muccaMonoHFullVar(mth,mpmet,mtw2,metTtrk,drll,mtw1,mll,ptll,dphilmet,dphilmet1,dphilmet2,std_vector_lepton_pt[0],metPfType1,dphill,std_vector_lepton_pt[1])',
-#     'range' : ([-1,-0.80,-0.65,-0.50,-0.35,-0.20,-0.05,0.136,1.00],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3,
-#     'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/muccaMonoHFullVar.C+', 'bookMyReader(\"2HDM\",\"em\",\"BDTG18\",\"high\")']
-#     }
-
-#variables['muccamva2HDMadaptFull_high'] = {
-#    'name': 'mucca2HDMadapt(mth,mtw2,metTtrk,drll,ptll,mpmet,mtw1,mll,dphilmet,dphilmet1,dphilmet2,std_vector_lepton_pt[0],metPfType1,dphill,std_vector_lepton_pt[1])',
-variables['myDummy'] = {
-    'name': 'mucca2HDMadapt(mth,mtw2,metTtrk,drll,ptll,mpmet,mtw1,mll,dphilmet,dphilmet1,dphilmet2,std_vector_lepton_pt[0],metPfType1,dphill,std_vector_lepton_pt[1])',
-    #    'range' : ([-1,-0.55,-0.35,-0.15,0.05,0.25,0.45,0.65,1.00],),
-    'range' : (10,-1,1),
+variables['muccamva2HDMgradFull_high'] = {
+   'name': 'mucca2HDMgrad(mth,mtw2,metTtrk,drll,ptll)',
+    'range' : ([-1,-0.80,-0.65,-0.50,-0.35,-0.20,-0.05,0.136,1.00],),
     'xaxis' : 'MVA discriminant',
     'fold' : 3,
-    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/mucca2HDMadapt.C+']#, 'initMyReader()']
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/mucca2HDMgrad.C+', 'initMyReader2HDMgrad()']
+   }
+
+variables['muccamva2HDMadaptFull_high'] = {
+    'name': 'mucca2HDMadapt(mth,mtw2,metTtrk,drll,ptll)',
+    'range' : ([-1,-0.55,-0.35,-0.15,0.05,0.25,0.45,0.65,1.00],),
+    'xaxis' : 'MVA discriminant',
+    'fold' : 3,
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/mucca2HDMadapt.C+', 'initMyReader2HDMadapt()']
+    }
+
+
+# mucca for Z'B Model
+variables['muccamvaZbargradFull_high'] = {
+    'name': 'muccaZbargrad(mth,mtw2,metTtrk,drll,ptll)',
+    'range' : ([-1,-0.82,-0.67,-0.52,-0.37,-0.22,-0.07,0.077,1.00],),
+    'xaxis' : 'MVA discriminant',
+    'fold' : 3,
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/muccaZbargrad.C+', 'initMyReaderZbargrad()']
+    }
+
+variables['muccamvaZbaradaptFull_high'] = {
+    'name': 'muccaZbaradapt(mth,mtw2,metTtrk,drll,ptll)',
+    'range' : ([-1,-0.8,-0.6,-0.4,-0.2,0.0,0.2,0.5,1],),
+    'xaxis' : 'MVA discriminant',
+    'fold' : 3,
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/muccaZbaradapt.C+', 'initMyReaderZbaradapt()']
     }
 
 
@@ -154,24 +169,6 @@ variables['myDummy'] = {
 #     'xaxis' : 'dummy',
 #     'fold' : 3,
 #     'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/myDummy.C+']#, 'initMyReader()', 'bookMyReader(\"2HDM\",\"em\",\"BDT7\",\"high\")']
-#     }
-
-
-# # mucca for Z'B Model
-# variables['muccamvaZbargradFull_high'] = {
-#     'name': 'muccaMonoHFullVar(mth,mpmet,mtw2,metTtrk,drll,mtw1,mll,ptll,dphilmet,dphilmet1,dphilmet2,std_vector_lepton_pt[0],metPfType1,dphill,std_vector_lepton_pt[1])',
-#     'range' : ([-1,-0.82,-0.67,-0.52,-0.37,-0.22,-0.07,0.077,1.00],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3,
-#     'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/muccaMonoHFullVar.C+', 'bookMyReader(\"Zbar\",\"em\",\"BDTG19\",\"high\")']
-#     }
-
-# variables['muccamvaZbaradaptFull_high'] = {
-#     'name': 'muccaMonoHFullVar(mth,mpmet,mtw2,metTtrk,drll,mtw1,mll,ptll,dphilmet,dphilmet1,dphilmet2,std_vector_lepton_pt[0],metPfType1,dphill,std_vector_lepton_pt[1])',
-#     'range' : ([-1,-0.8,-0.6,-0.4,-0.2,0.0,0.2,0.5,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3,
-#     'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/muccaMonoHFullVar.C+', 'initMyReader()', 'bookMyReader(\"Zbar\",\"em\",\"BDT7\",\"high\")']
 #     }
 
 
