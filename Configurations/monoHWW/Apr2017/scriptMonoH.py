@@ -38,20 +38,20 @@ print mA0
 # os.chdir("/afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Full2016/")
 
 # Combine datacards
-# print "+++++ Combining Datacards +++++"
+print "+++++ Combining Datacards +++++"
 
-# print "Full Signal Region"
-# os.system("combineCards.py signal=datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard.txt.pruned.txt WW=datacards/monoH_" + cut + "_WW_" + channel + "/events/datacard.txt.pruned.txt Top=datacards/monoH_" + cut + "_Top_" + channel + "/events/datacard.txt.pruned.txt DYtt=datacards/monoH_" + cut + "_DYtt_" + channel + "/events/datacard.txt.pruned.txt > datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_combined.txt")
+print "Full Signal Region"
+os.system("combineCards.py signal=datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard.txt.pruned.txt WW=datacards/monoH_" + cut + "_WW_" + channel + "/events/datacard.txt.pruned.txt Top=datacards/monoH_" + cut + "_Top_" + channel + "/events/datacard.txt.pruned.txt DYtt=datacards/monoH_" + cut + "_DYtt_" + channel + "/events/datacard.txt.pruned.txt > datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_combined.txt")
 
-# print "1/15 Signal Region"
-# os.system("combineCards.py signal=datacards_blindData/monoH_" + cut + "_" + channel + "/" + variable + "/datacard.txt.pruned.txt WW=datacards/monoH_" + cut + "_WW_" + channel + "/events/datacard.txt.pruned.txt Top=datacards/monoH_" + cut + "_Top_" + channel + "/events/datacard.txt.pruned.txt DYtt=datacards/monoH_" + cut + "_DYtt_" + channel + "/events/datacard.txt.pruned.txt > datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_blind.txt")
+print "1/15 Signal Region"
+os.system("combineCards.py signal=datacards_blindData/monoH_" + cut + "_" + channel + "/" + variable + "/datacard.txt.pruned.txt WW=datacards/monoH_" + cut + "_WW_" + channel + "/events/datacard.txt.pruned.txt Top=datacards/monoH_" + cut + "_Top_" + channel + "/events/datacard.txt.pruned.txt DYtt=datacards/monoH_" + cut + "_DYtt_" + channel + "/events/datacard.txt.pruned.txt > datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_blind.txt")
 
-# # Create folders for results
-# print "+++++ Creating Folders for Results +++++"
-# os.system('mkdir -p  goodnessOfFit_' + channel + '_' + cut + '/')
-# os.system('mkdir -p  combine_' + channel + '_' + cut + '/')
-# os.system('mkdir -p  limits_' + channel + '_' + cut + '/')
-# os.system('mkdir -p  pulls_' + channel + '_' + cut + '/')
+# Create folders for results
+print "+++++ Creating Folders for Results +++++"
+os.system('mkdir -p  goodnessOfFit_' + channel + '_' + cut + '/')
+os.system('mkdir -p  combine_' + channel + '_' + cut + '/')
+os.system('mkdir -p  limits_' + channel + '_' + cut + '/')
+os.system('mkdir -p  pulls_' + channel + '_' + cut + '/')
 
 ##if "Zbar" not in variable: 
 
@@ -63,15 +63,15 @@ print mA0
     #     for mA0 in A0Masses :
             
 # text2workspace step
-# print "+++++ Translating Datacards to Rootfiles +++++"
+print "+++++ Translating Datacards to Rootfiles +++++"
 
-# print "Full Signal Region"
-# os.system('text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose --PO \'map=.*/monoH_*:0\' --PO \'map=.*/monoH_' + mZp + '_' + mA0 + ':r[1,0,10]\' --channel-masks datacards/monoH_' + cut + '_' + channel + '/' + variable + '/datacard_combined.txt -o monoH_' + mZp + '_' + mA0 + '.root')
-# os.system('mv monoH_' + mZp + '_' + mA0 + '.root combine_' + channel + '_' + cut + '/monoH_' + mZp + '_' + mA0 + '_' + variable + '.root')
+print "Full Signal Region"
+os.system('text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose --PO \'map=.*/monoH_*:0\' --PO \'map=.*/monoH_' + mZp + '_' + mA0 + ':r[1,0,10]\' --channel-masks datacards/monoH_' + cut + '_' + channel + '/' + variable + '/datacard_combined.txt -o monoH_' + mZp + '_' + mA0 + '.root')
+os.system('mv monoH_' + mZp + '_' + mA0 + '.root combine_' + channel + '_' + cut + '/monoH_' + mZp + '_' + mA0 + '_' + variable + '.root')
 
-# print "1/15 Signal Region"
-# os.system('text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose --PO \'map=.*/monoH_*:0\' --PO \'map=.*/monoH_' + mZp + '_' + mA0 + ':r[1,0,10]\' --channel-masks datacards/monoH_' + cut + '_' + channel + '/' + variable + '/datacard_blind.txt -o monoH_' + mZp + '_' + mA0 + '_blind.root')
-# os.system('mv monoH_' + mZp + '_' + mA0 + '_blind.root combine_' + channel + '_' + cut + '/monoH_' + mZp + '_' + mA0 + '_' + variable + '_blind.root')
+print "1/15 Signal Region"
+os.system('text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose --PO \'map=.*/monoH_*:0\' --PO \'map=.*/monoH_' + mZp + '_' + mA0 + ':r[1,0,10]\' --channel-masks datacards/monoH_' + cut + '_' + channel + '/' + variable + '/datacard_blind.txt -o monoH_' + mZp + '_' + mA0 + '_blind.root')
+os.system('mv monoH_' + mZp + '_' + mA0 + '_blind.root combine_' + channel + '_' + cut + '/monoH_' + mZp + '_' + mA0 + '_' + variable + '_blind.root')
 
 # Use combine to calculate limits
 print "+++++ Extracting Limits +++++"

@@ -46,9 +46,9 @@ if "Zbar" not in variable :
         for ma0 in A0Masses :
             if (mzp == "600" and (ma0 == "500" or ma0 == "600" or ma0 == "700" or ma0 == "800")) : continue;
             if (mzp == "800" and (ma0 == "700" or ma0 == "800")) : continue;
-            print 'bsub -q 8nh -o jobs/' + mzp + '_' + ma0 + '_' + cut + '_'  + channel + '_' + variable + '.out -e jobs/' + mzp + '_' + ma0 + '_' + cut + '_' + channel + '_' + variable + '.err submitMonoH.sh ' + channel + ' ' + variable + ' ' + cut + ' ' + mzp + ' ' + ma0
-            os.system('bsub -q 8nh -o jobs/' + mzp + '_' + ma0 + '_' + cut + '_'  + channel + '_' + variable + '.out -e jobs/' + mzp + '_' + ma0 + '_' + cut + '_' + channel + '_' + variable + '.err submitMonoH.sh ' + channel + ' ' + variable + ' ' + cut + ' ' + mzp + ' ' + ma0)
-            #os.system('./submitMonoH.sh ' + channel + ' ' + variable + ' ' + cut + ' ' + mzp + ' ' + ma0)
+            print 'bsub -q 8nh -o jobs/' + mzp + '_' + ma0 + '_' + cut + '_'  + channel + '_' + variable + '.out -e jobs/' + mzp + '_' + ma0 + '_' + cut + '_' + channel + '_' + variable + '.err /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/submitMonoH.sh ' + channel + ' ' + variable + ' ' + cut + ' ' + mzp + ' ' + ma0
+            os.system('bsub -q 8nh -o jobs/' + mzp + '_' + ma0 + '_' + cut + '_'  + channel + '_' + variable + '.out -e jobs/' + mzp + '_' + ma0 + '_' + cut + '_' + channel + '_' + variable + '.err /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/submitMonoH.sh ' + channel + ' ' + variable + ' ' + cut + ' ' + mzp + ' ' + ma0)
+            #os.system('.//afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/submitMonoH.sh ' + channel + ' ' + variable + ' ' + cut + ' ' + mzp + ' ' + ma0)
 
 
 print "Zbar Model Mass Points:"
@@ -58,7 +58,7 @@ ZBmasses={"10000_1000_","10000_500_","10000_150_","10000_50_","10000_1_","2000_1
 
 if "2HDM" not in variable :                                                                                                                  
     for ma0 in ZBmasses :
-        print 'bsub -q 8nh -o jobs/' + ZB + '_' + ma0 + '_' + cut + '_'  + channel + '_' + variable + '.out -e jobs/' + ZB + '_' + ma0 + '_' + cut + '_' + channel + '_' + variable + '.err submitMonoH.sh ' + channel + ' ' + variable + ' ' + cut + ' ' + ZB + ' ' + ma0
-        os.system('bsub -q 8nh -o jobs/' + ZB + '_' + ma0 + '_' + cut + '_'  + channel + '_' + variable + '.out -e jobs/' + ZB + '_' + ma0 + '_' + cut + '_' + channel + '_' + variable + '.err submitMonoH.sh ' + channel + ' ' + variable + ' ' + cut + ' ' + ZB + ' ' + ma0)
-        #os.system('./submitMonoH.sh ' + channel + ' ' + variable + ' ' + cut + ' ' + ZB + ' ' + ma0)
+        print 'bsub -q 8nh -o jobs/' + ZB + '_' + ma0 + '_' + cut + '_'  + channel + '_' + variable + '.out -e jobs/' + ZB + '_' + ma0 + '_' + cut + '_' + channel + '_' + variable + '.err /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/submitMonoH.sh ' + channel + ' ' + variable + ' ' + cut + ' ' + ZB + ' ' + ma0
+        os.system('bsub -q 8nh -o jobs/' + ZB + '_' + ma0 + '_' + cut + '_'  + channel + '_' + variable + '.out -e jobs/' + ZB + '_' + ma0 + '_' + cut + '_' + channel + '_' + variable + '.err /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/submitMonoH.sh ' + channel + ' ' + variable + ' ' + cut + ' ' + ZB + ' ' + ma0)
+        #os.system('.//afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/submitMonoH.sh ' + channel + ' ' + variable + ' ' + cut + ' ' + ZB + ' ' + ma0)
 
