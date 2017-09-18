@@ -906,9 +906,9 @@ nuisances['stat']  = {
                          'typeStat' : 'bbb',
                          },
 
-                   'ZH_hww': {
-                         'typeStat' : 'bbb',
-                         },
+#                  'ZH_hww': {
+#                        'typeStat' : 'bbb',
+#                        },
 
                    'H_htt': {
                          'typeStat' : 'bbb',
@@ -930,9 +930,9 @@ nuisances['stat']  = {
                          'typeStat' : 'bbb',
                          },
 
-                   'ggZH_hww': {
-                         'typeStat' : 'bbb',
-                         },
+#                  'ggZH_hww': {
+#                        'typeStat' : 'bbb',
+#                        },
 
                    'bbH_hww': {
                          'typeStat' : 'bbb',
@@ -946,9 +946,9 @@ nuisances['stat']  = {
                          'typeStat' : 'bbb',
                          },
 
-                   'VgS':{  
-                         'typeStat' : 'bbb',
-                         },
+#                  'VgS':{  
+#                        'typeStat' : 'bbb',
+#                        },
                  },
                'type'  : 'shape'
               }
