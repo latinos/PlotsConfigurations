@@ -3,7 +3,7 @@
 tag = 'ggH_SF_1j_dymvaOptim'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = 'rootFile_1j_dymvaOptim'
 
 
 # file with list of variables
