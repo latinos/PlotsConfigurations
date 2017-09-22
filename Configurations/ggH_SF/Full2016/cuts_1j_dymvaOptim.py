@@ -6,22 +6,22 @@ supercut = ' mll > 12 \
            '
 
 optim={}
-optim['dymva0p80']  = ' && dymvaggh > 0.80 '
+#optim['dymva0p80']  = ' && dymvaggh > 0.80 '
 optim['dymva0p85']  = ' && dymvaggh > 0.85 '
-optim['dymva0p90']  = ' && dymvaggh > 0.90 '
-optim['dymva0p91']  = ' && dymvaggh > 0.91 '
-optim['dymva0p92']  = ' && dymvaggh > 0.92 '
-optim['dymva0p93']  = ' && dymvaggh > 0.93 '
-optim['dymva0p94']  = ' && dymvaggh > 0.94 '
-optim['dymva0p945'] = ' && dymvaggh > 0.945 '
-optim['dymva0p95']  = ' && dymvaggh > 0.95 '
-optim['dymva0p955'] = ' && dymvaggh > 0.955 '
-optim['dymva0p96']  = ' && dymvaggh > 0.96 '
-optim['dymva0p965'] = ' && dymvaggh > 0.965 '
-optim['dymva0p97']  = ' && dymvaggh > 0.97 '
-optim['dymva0p975'] = ' && dymvaggh > 0.975 '
-optim['dymva0p98']  = ' && dymvaggh > 0.98 '
-optim['dymva0p99']  = ' && dymvaggh > 0.99 '
+#optim['dymva0p90']  = ' && dymvaggh > 0.90 '
+#optim['dymva0p91']  = ' && dymvaggh > 0.91 '
+#optim['dymva0p92']  = ' && dymvaggh > 0.92 '
+#optim['dymva0p93']  = ' && dymvaggh > 0.93 '
+#optim['dymva0p94']  = ' && dymvaggh > 0.94 '
+#optim['dymva0p945'] = ' && dymvaggh > 0.945 '
+#optim['dymva0p95']  = ' && dymvaggh > 0.95 '
+#optim['dymva0p955'] = ' && dymvaggh > 0.955 '
+#optim['dymva0p96']  = ' && dymvaggh > 0.96 '
+#optim['dymva0p965'] = ' && dymvaggh > 0.965 '
+#optim['dymva0p97']  = ' && dymvaggh > 0.97 '
+#optim['dymva0p975'] = ' && dymvaggh > 0.975 '
+#optim['dymva0p98']  = ' && dymvaggh > 0.98 '
+#optim['dymva0p99']  = ' && dymvaggh > 0.99 '
 
 for iCut in optim:
   
@@ -71,7 +71,7 @@ for iCut in optim:
   ## Top CR: No H sel , bTag , tight DYmva
   
   
-  cuts['hww2l2v_13TeV_top_1jsf'] = '( std_vector_jet_pt[0] >= 30 ) \
+  cuts['hww2l2v_13TeV_top_1jsf_'+iCut] = '( std_vector_jet_pt[0] >= 30 ) \
                && ( std_vector_jet_pt[1] < 30 ) \
                && ((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
                || (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)) \

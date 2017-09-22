@@ -17,6 +17,7 @@ skim=''
 #skim='__topSel'
 #skim='__vh3lSel' 
 #skim='__sfSel' 
+#skim='__sfmvaSel'
 #skim='__vbsSel'
 #skim='__ssSel'
 
@@ -90,12 +91,12 @@ bVeto='bveto_'+bAlgo+bWP
 
 #... Electron:
 
-eleWP='cut_WP_Tight80X'
+#eleWP='cut_WP_Tight80X'
 #eleWP='cut_WP_Tight80X_SS'
 #eleWP='mva_80p_Iso2015'
 #eleWP='mva_80p_Iso2016'
 #eleWP='mva_90p_Iso2015'
-#eleWP='mva_90p_Iso2016'
+eleWP='mva_90p_Iso2016'
 
 #... Muon:
 
@@ -165,7 +166,8 @@ ptllDYW_LO  = '(8.61313e-01+gen_ptll*4.46807e-03-1.52324e-05*gen_ptll*gen_ptll)*
 samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-10to50')
                                   + getSampleFiles(directory,'DYJetsToLL_M-50')     ,
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 4 ,
+                     'FilesPerJob' : 1 ,
+                         'suppressNegativeNuisances' :['all'],
                  }
 
 # ... Add DY HT Samples
@@ -271,7 +273,8 @@ samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu')
                                   + getSampleFiles(directory,'ST_s-channel')   
                              ,
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-                      'FilesPerJob' : 3 ,
+                      'FilesPerJob' : 1 ,
+                         'suppressNegativeNuisances' :['all'],
                   }
                   
 
@@ -279,6 +282,7 @@ samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu')
              
 samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu') ,
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*nllW' ,  
+                         'suppressNegativeNuisances' :['all'],
                  }
 
 
@@ -286,6 +290,7 @@ samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu') ,
 samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'),      
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                       'isData': ['0'],                            
+                         'suppressNegativeNuisances' :['all'],
                    }
 
 ## during tree production: 1.4 k-factor has been applied to both samples
@@ -298,12 +303,14 @@ samples['Vg']  =  {     'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM')
                                    + getSampleFiles(directory,'Zg')
                                    ,
                         'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
+                         'suppressNegativeNuisances' :['all'],
                   }
 
 ######## VgS ########
 
 samples['VgS']  = {    'name':  getSampleFiles(directory,'WgStarLNuEE') + getSampleFiles(directory,'WgStarLNuMuMu') ,
                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.4' ,  
+                         'suppressNegativeNuisances' :['all'],
                   }
 
 ## 
@@ -325,7 +332,8 @@ samples['VZ']  = {    'name':   getSampleFiles(directory,'WZTo3LNu')
                               # + getSampleFiles(directory,'tZq_ll')
                               ,   
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.11' ,  
-                      'FilesPerJob' : 3 ,
+                      'FilesPerJob' : 1 ,
+                         'suppressNegativeNuisances' :['all'],
                   }
 
 ### 1.11 normalisation was measured in 3-lepton
@@ -340,6 +348,7 @@ samples['VVV'] = {    'name':   getSampleFiles(directory,'ZZZ')
                            #  + getSampleFiles(directory,'WWG')
                               ,    
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                         'suppressNegativeNuisances' :['all'],
                   }
 
 ###########################################
@@ -351,6 +360,7 @@ samples['VVV'] = {    'name':   getSampleFiles(directory,'ZZZ')
 
 samples['ggH_hww']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                         'suppressNegativeNuisances' :['all'],
                       }
 
 
@@ -358,16 +368,19 @@ samples['ggH_hww']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuP
 
 samples['qqH_hww']  = {   'name' : getSampleFiles(directory,'VBFHToWWTo2L2Nu_alternative_M125') ,
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                         'suppressNegativeNuisances' :['all'],
                       }
 
 ### ZH ; H->WW
 
 samples['ZH_hww']   = {   'name' :  getSampleFiles(directory,'HZJ_HToWW_M125') ,
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                         'suppressNegativeNuisances' :['all'],
                       }
 
 samples['ggZH_hww'] = {   'name' : getSampleFiles(directory,'ggZH_HToWW_M125') ,
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                         'suppressNegativeNuisances' :['all'],
                       }
 
 #### WH ; H->WW
@@ -376,6 +389,7 @@ samples['WH_hww']   = {   'name' :   getSampleFiles(directory,'HWminusJ_HToWW_M1
                                    + getSampleFiles(directory,'HWplusJ_HToWW_M125')
                                    , 
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                         'suppressNegativeNuisances' :['all'],
                       }
 
 #### bbHY ; H->WW 
@@ -384,6 +398,7 @@ samples['bbH_hww']  = {  'name' :   getSampleFiles(directory,'bbHToWWTo2L2Nu_M12
                                   + getSampleFiles(directory,'bbHToWWTo2L2Nu_M125_ybyt')
                                   ,
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                         'suppressNegativeNuisances' :['all'],
                       }
 
 
@@ -396,6 +411,7 @@ samples['H_htt']    = {   'name' :   getSampleFiles(directory,'GluGluHToTauTau_M
                                    + getSampleFiles(directory,'HWminusJ_HToTauTau_M125')
                                    ,  
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                         'suppressNegativeNuisances' :['all'],
                       }
 
 
@@ -407,7 +423,8 @@ samples['Fake']  = {   'name': [ ] ,
                        'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA,              #   weight/cut 
                        'weights' : [ ] ,
                        'isData': ['all'],
-                       'FilesPerJob' : 15 ,
+                       'FilesPerJob' : 5 ,
+                       'suppressNegativeNuisances' :['all'],
                    }
 
 for Run in DataRun :
@@ -426,7 +443,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'weight' : 'veto_EMTFBug'+'*'+METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],                            
-                       'FilesPerJob' : 15 ,
+                       'FilesPerJob' : 5 ,
                   }
 
 for Run in DataRun :
