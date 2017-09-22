@@ -72,37 +72,6 @@ groupPlot['Vg']  = {
 #                  'color': 633, # kRed 
 #                  'samples'  : ['ggH_hww_250_c10brn00','ggH_hww_INT250_c10brn00','qqH_hww_250_c10brn00']
 #               }
-
-'''
-groupPlot['400']  = {
-                  'nameHR' : 'mH = 400 GeV X 10',
-                  'isSignal' : 2,
-                  'color': 633, # kRed 
-                  'samples'  : ['ggH_hww_400_c10brn00','ggH_hww_INT400_c10brn00','qqH_hww_400_c10brn00']
-               }
-
-groupPlot['800']  = {
-                  'nameHR' : 'mH = 800 GeV X 10',
-                  'isSignal' : 2,
-                  'color': 635, # kRed 
-                  'samples'  : ['ggH_hww_800_c10brn00','ggH_hwwINT_800_c10brn00','qqH_hww_800_c10brn00']
-               }
-
-groupPlot['400']  = {
-                  'nameHR' : 'mH = 400 GeV X 10',
-                  'isSignal' : 2,
-                  'color': 633, # kRed 
-                  'samples'  : ['ggH_hww_400_1','ggH_hww_INT400_1','qqH_hww_400_1']
-               }
-
-groupPlot['800']  = {
-                  'nameHR' : 'mH = 800 GeV X 10',
-                  'isSignal' : 2,
-                  'color': 635, # kRed 
-                  'samples'  : ['ggH_hww_800_1','ggH_hwwINT_800_1','qqH_hww_800_1']
-               }
-
-'''
 #groupPlot['900']  = {
 #                  'nameHR' : 'mH = 900 GeV X 10',
 #                  'isSignal' : 2,
@@ -370,7 +339,6 @@ if os.path.exists(massesAndModelsFile) :
   handle.close()
 else:
   print "!!! ERROR file ", massesAndModelsFile, " does not exist."
-'''
 for m in masses:
   for model in models:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
@@ -380,7 +348,7 @@ for m in masses:
                   #'color':   col,
                   'isSignal' : 2,
                   'isData'   : 0,
-                  'scale'    : 1.0    #
+                  'scale'    : 10.0    #
                   }
     plot['ggH_hww_INT'+m+'_'+model_name] = {
                   'nameHR' : 'ggH '+m+' '+model,
@@ -388,14 +356,14 @@ for m in masses:
                   #'color':   col,
                   'isSignal' : 2,
                   'isData'   : 0,
-                  'scale'    : 1.0    #
+                  'scale'    : 10.0    #
                   }
     plot['qqH_hww_'+m+'_'+model_name] = {
                   'nameHR' : 'qqH '+m+' '+model+' (x100)',
                   'color': 600+20+int(int(m)/100+0.5), # kRed 
                   'isSignal' : 2,
                   'isData'   : 0,
-                  'scale'    : 1.0    #
+                  'scale'    : 10.0    #
                   }
     groupPlot[m]  = {
                   'nameHR' : 'mH = '+m+' GeV #times 10',
@@ -404,8 +372,6 @@ for m in masses:
                   'samples'  : ['ggH_hww_'+m+'_'+model_name, 'qqH_hww_'+m+'_'+model_name]
                }
  
-'''
-
 # data
 
 

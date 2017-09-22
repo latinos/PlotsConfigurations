@@ -59,12 +59,14 @@ structure['Wg']  = {
 
 structure['Vg']  = { 
                   'isSignal' : 0,
-                  'isData'   : 0 
+                  'isData'   : 0, 
+                  'removeFromCuts' : ['hww2l2v_13TeV_top_0jee']
                   }
 
 structure['VgS'] = { 
                   'isSignal' : 0,
-                  'isData'   : 0 
+                  'isData'   : 0,
+                  'removeFromCuts' : ['hww2l2v_13TeV_0jee'] 
                   }
 
 structure['Zg']  = { 
@@ -75,7 +77,7 @@ structure['Zg']  = {
 structure['VZ']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
-                  }
+                   }
 
 structure['WZ']  = { 
                   'isSignal' : 0,
@@ -139,6 +141,12 @@ structure['H_hww'] = {
                   'isData'   : 0    
                   }
 
+structure['bbH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'removeFromCuts' : ['hww2l2v_13TeV_WW_0jmm']
+                  }
+
 
 
 # data
@@ -148,3 +156,15 @@ structure['DATA']  = {
                   'isSignal' : 0,
                   'isData'   : 1 
 }
+
+try:
+  for iStruct in structure:
+    if 'removeFromCuts' in structure[iStruct]:
+      newCuts = []
+      for iCut in structure[iStruct]['removeFromCuts']:
+        for iOptim in optim:
+           newCuts.append(iCut+'_'+iOptim)
+      structure[iStruct]['removeFromCuts'] = newCuts
+except:
+  print "No optim dictionary"
+

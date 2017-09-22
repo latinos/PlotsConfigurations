@@ -19,7 +19,8 @@ if    'iihe' in SITE :
 elif  'cern' in SITE :
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/'
 
-directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__MCFix/'
+#directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__MCFix/'
+directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC/'
 
 
 
@@ -39,6 +40,7 @@ GenLepMatch   = 'std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]
 samples['ggH_hww']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2Nu_M125') ,
                          'weight': 'XSWeight' ,
                          #'weight': 'XSWeight*SFweight*GenLepMatch' ,
+                         'suppressNegative' : ['hww2l2v_13TeV_of_incl_bveto_4']
                       }
 
 

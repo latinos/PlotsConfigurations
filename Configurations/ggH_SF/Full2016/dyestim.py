@@ -55,7 +55,7 @@ RAndKff['DYmva0p8top'] = {
 
 DYestim['hww2l2v_13TeV_0jee'] = {
                                  'rinout'  : 'DYmva0p8' ,
-                                 'rsyst'   : 0.01 , 
+                                 'rsyst'   : 0.04 , 
                                  'ksyst'   : 0.01 , 
                                  'njet'    : '0j' , 
                                  'flavour' : 'ee' ,
@@ -69,12 +69,12 @@ DYestim['hww2l2v_13TeV_0jee'] = {
                                  'NPname'  : 'DYeenorm0j' , 
                                  'AccNum'  : 'hww2l2v_13TeV_0jee_HAccNum/events/histo_DY',
                                  'AccDen'  : 'hww2l2v_13TeV_0jee_AccDen/events/histo_DY',
-                                 'asyst'   : 0.04 , 
+                                 'asyst'   : 0.06 , 
                                 } 
 
 DYestim['hww2l2v_13TeV_0jmm'] = {
                                  'rinout'  : 'DYmva0p8' ,
-                                 'rsyst'   : 0.01 , 
+                                 'rsyst'   : 0.03 , 
                                  'ksyst'   : 0.02 , 
                                  'njet'    : '0j'    ,
                                  'flavour' : 'mm' ,
@@ -93,7 +93,7 @@ DYestim['hww2l2v_13TeV_0jmm'] = {
 
 DYestim['hww2l2v_13TeV_1jee'] = {
                                  'rinout'  : 'DYmva0p8' ,
-                                 'rsyst'   : 0.03 , 
+                                 'rsyst'   : 0.02 , 
                                  'ksyst'   : 0.01 , 
                                  'njet'    : '1j'    ,
                                  'flavour' : 'ee' ,
@@ -107,12 +107,12 @@ DYestim['hww2l2v_13TeV_1jee'] = {
                                  'NPname'  : 'DYeenorm1j' ,
                                  'AccNum'  : 'hww2l2v_13TeV_1jee_HAccNum/events/histo_DY',
                                  'AccDen'  : 'hww2l2v_13TeV_1jee_AccDen/events/histo_DY',
-                                 'asyst'   : 0.07 , 
+                                 'asyst'   : 0.10 , 
                                 } 
 
 DYestim['hww2l2v_13TeV_1jmm'] = {
                                  'rinout'  : 'DYmva0p8' ,
-                                 'rsyst'   : 0.04 , 
+                                 'rsyst'   : 0.08 , 
                                  'ksyst'   : 0.01 , 
                                  'njet'    : '1j'    ,
                                  'flavour' : 'mm' ,
@@ -126,7 +126,7 @@ DYestim['hww2l2v_13TeV_1jmm'] = {
                                  'NPname'  : 'DYmmnorm1j' ,
                                  'AccNum'  : 'hww2l2v_13TeV_1jmm_HAccNum/events/histo_DY',
                                  'AccDen'  : 'hww2l2v_13TeV_1jmm_AccDen/events/histo_DY',
-                                 'asyst'   : 0.03 , 
+                                 'asyst'   : 0.06 , 
                                 } 
 
 DYestim['hww2l2v_13TeV_WW_0jee'] = {
@@ -177,7 +177,7 @@ DYestim['hww2l2v_13TeV_WW_1jee'] = {
                                  'NPname'  : 'DYeenorm1j' ,
                                  'AccNum'  : 'hww2l2v_13TeV_WW_1jee_WWAccNum/events/histo_DY',
                                  'AccDen'  : 'hww2l2v_13TeV_1jee_AccDen/events/histo_DY',
-                                 'asyst'   : 0.07 , 
+                                 'asyst'   : 0.04 , 
                                    }
 
 DYestim['hww2l2v_13TeV_WW_1jmm'] = {
@@ -194,7 +194,7 @@ DYestim['hww2l2v_13TeV_WW_1jmm'] = {
                                  'NPname'  : 'DYmmnorm1j' ,
                                  'AccNum'  : 'hww2l2v_13TeV_WW_1jmm_WWAccNum/events/histo_DY',
                                  'AccDen'  : 'hww2l2v_13TeV_1jmm_AccDen/events/histo_DY',
-                                 'asyst'   : 0.03 ,
+                                 'asyst'   : 0.02 ,
                                    }
 
 DYestim['hww2l2v_13TeV_top_0jee'] = {
@@ -209,7 +209,7 @@ DYestim['hww2l2v_13TeV_top_0jee'] = {
                                  'DFinDa'  : 'DATA' ,
                                  'DFinMC'  : ['VZ','Vg','VgS'],
                                  'NPname'  : 'DYeenorm0j' ,
-                                 'asyst'   : 0.1 ,
+                                 'asyst'   : 0.08 ,
                                    }
 
 DYestim['hww2l2v_13TeV_top_0jmm'] = {
@@ -224,5 +224,5 @@ DYestim['hww2l2v_13TeV_top_0jmm'] = {
                                  'DFinDa'  : 'DATA' ,
                                  'DFinMC'  : ['VZ','Vg','VgS'],
                                  'NPname'  : 'DYmmnorm0j' ,
-                                 'asyst'   : 0.1 ,
+                                 'asyst'   : 0.04 ,
                                    }

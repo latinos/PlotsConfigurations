@@ -877,6 +877,7 @@ nuisances['Topnorm1j']  = {
                 ]
               }
 
+
 nuisances['tttwTh']  = {
                 'name'  : 'tttwTh',   # Theory uncertainty
                 'kind'  : 'weight',
@@ -890,10 +891,23 @@ nuisances['tttwTh']  = {
                 
 }
 
+
+### FIXME: This must be implemented in mkDatacards.py using  a flag or something.
+### Use the following if you want to apply the new combine MC stat nuisances.
+### In this case remember to add the following line in the datacard
+### * autoMCStats 10 1
+
+#nuisances['stat']  = {
+#                # apply to the following samples: name of samples here must match keys in samples.py
+#               'samples'  : { },
+#               'type'  : 'shape'
+#              }
+
+
+### Use the following if you want to apply the MC stat nuisances accoriding to the standard approach
 nuisances['stat']  = {
                 # apply to the following samples: name of samples here must match keys in samples.py
-               'samples'  : {
-                   
+               'samples'  : { 
                    'ttbar': {
                          'typeStat' : 'bbb',
                          },
@@ -994,7 +1008,6 @@ nuisances['stat']  = {
                    'VgS':{  
                          'typeStat' : 'bbb',
                          },
-                            
                  },
                'type'  : 'shape'
               }

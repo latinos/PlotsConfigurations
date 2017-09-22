@@ -65,23 +65,24 @@ bWP='L'
 #bWP='M'
 #bWP='T'
 
-# ... bPog SF
+# ... bPog SF and b veto
 
 bSF='1.'
+bVeto='1'
 if   bAlgo == 'cmvav2' :
  bSF='bPogSF_CMVA'+bWP
+ bVeto='bveto_CMVA'+bWP
 elif bAlgo == 'csvv2ivf' :
  bSF='bPogSF_CSV'+bWP
+ bVeto='bveto_CSV'+bWP
 elif bAlgo == 'DeepCSVB' :
  bSF='bPogSF_deepCSV'+bWP
+ bVeto='bveto_deepCSV'+bWP
 
 SFweight += '*'+bSF
 # Fix for 2-leptons for which this was kept in global formula !
 if Nlep == '2' : SFweight += '/bPogSF_CMVAL'
 
-# ... b Veto
-
-bVeto='bveto_'+bAlgo+bWP
 
 ################################################
 ############### Lepton WP ######################
@@ -336,7 +337,7 @@ samples['VZ']  = {    'name':   getSampleFiles(directory,'WZTo3LNu')
                               # + getSampleFiles(directory,'tZq_ll')
                               ,   
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.11' ,  
-                      'FilesPerJob' : 3 ,
+                      'FilesPerJob' : 4 ,
                   }
 
 ### 1.11 normalisation was measured in 3-lepton
@@ -418,7 +419,7 @@ samples['Fake']  = {   'name': [ ] ,
                        'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA,              #   weight/cut 
                        'weights' : [ ] ,
                        'isData': ['all'],
-                       'FilesPerJob' : 2 ,
+                       'FilesPerJob' : 4 ,
                    }
 
 for Run in DataRun :
@@ -437,7 +438,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'weight' : 'veto_EMTFBug'+'*'+METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],                            
-                       'FilesPerJob' : 2 ,
+                       'FilesPerJob' : 4 ,
                   }
 
 for Run in DataRun :

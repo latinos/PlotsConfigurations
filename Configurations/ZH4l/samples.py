@@ -182,7 +182,8 @@ samples['ggH_hzz']  = {    'name': getSampleFiles(directory,'GluGluHToZZTo4L_M12
 
 samples['WW']  = {    'name': getSampleFiles(directory,'WWTo2L2Nu')
                              +getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'),
-                      'weight' : 'baseW'+'*'+SFweight4l+'*'+GenLepMatch2l+'*'+METFilter_MC+'*'+'nllW',
+                      'weight' : 'baseW'+'*'+SFweight4l+'*'+GenLepMatch2l+'*'+METFilter_MC,
+                      # 'weight' : 'baseW'+'*'+SFweight4l+'*'+GenLepMatch2l+'*'+METFilter_MC+'*'+'nllW',
                  }
 
 samples['DY']  = {    'name': getSampleFiles(directory,'DYJetsToLL_M-10to50')
@@ -244,7 +245,7 @@ samples['ggZH_hww']  = { 'name': getSampleFiles(directory,'GluGluZH_HToWWTo2L2Nu
                        }
 
 if treeBaseDir.startswith('/eos/cms') :
-    directory         = "root://eoscms.cern.ch/"+directory
+    directory     = "root://eoscms.cern.ch/"+directory
     directoryDATA = "root://eoscms.cern.ch/"+directoryDATA
     # directoryFake = "root://eoscms.cern.ch/"+directoryFake
 for sampleName, sample in samples.iteritems():

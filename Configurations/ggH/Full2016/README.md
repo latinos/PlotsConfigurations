@@ -48,11 +48,20 @@ The jobs can take a while, thus it is natural to check their status.
 
     mkBatch.py --status
 
+After all your jobs are finished, and before going to the next step, check the .jid files in the following output directory (tag is specified in configuration.py):
 
-If a job takes too long / fails, one can kill it and resubmit manually.
+    ls -l $CONFIGURATION_DIRECTORY/jobs/mkShapes__tag/*.jid
+    
+If you find .jid files it means that the corresponding jobs failed, check the .err and .out files to understand the reason of the failure.
 
-    bsub -q 1nd ~/cms/HWW2016/jobs/mkShapes__ggH/mkShapes__ggH__hww2l2v_13TeV_em_mp_1j__top2.sh
+If a job takes too long / fails, one can kill it and resubmit manually, e.g.:
 
+    bsub -q 1nd $CONFIGURATION_DIRECTORY/jobs/mkShapes__ggH/mkShapes__ggH__hww2l2v_13TeV_em_mp_1j__top2.sh
+
+If several jobs failed and you want to resubmit them all at once you can do:
+
+    cd $CONFIGURATION_DIRECTORY/jobs/mkShapes__tag
+    for i in *jid; do bsub -q 1nd ${i/jid/sh}; done
 
 # 3. Put all your apples in one basket
 
@@ -62,6 +71,7 @@ Once the previous jobs have finished we _hadd_ the outputs.
                 --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel \
                 --batchSplit=AsMuchAsPossible \
                 --doHadd=True
+*NB*: If the --batchSplit=AsMuchAsPossible option is used, do not _hadd_ the outputs by hand but use the command above instead. Otherwise the MC statistical uncertainties are not treated in the correct way.
 
 
 # 4. Read histograms
