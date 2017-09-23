@@ -16,11 +16,11 @@ variables['events']  = {   'name': '1',
 #                         'fold' : 3
 #                        }
                         
-variables['mll']  = {   'name': 'mll',              
-                         'range' : (80,0,200),     
-                         'xaxis' : 'm_{ll} [GeV]', 
-                         'fold' : 3
-                         }       
+#variables['mll']  = {   'name': 'mll',              
+#                         'range' : (80,0,200),     
+#                         'xaxis' : 'm_{ll} [GeV]', 
+#                         'fold' : 3
+#                         }       
                         
 #variables['mth']  = {   'name': 'mth',                
 #                        'range' : (40,0,200),        
@@ -158,17 +158,17 @@ variables['mll']  = {   'name': 'mll',
 #                        'fold' : 3
 #                        }
 #
-variables['dymvaggh']  = { 'name': 'dymvaggh',
-                        'range' : (40,-1,1),
-                        'xaxis' : 'DY MVA (ggH)',
-                        'fold' : 3
-                        }
+#variables['dymvaggh']  = { 'name': 'dymvaggh',
+#                        'range' : (40,-1,1),
+#                        'xaxis' : 'DY MVA (ggH)',
+#                        'fold' : 3
+#                        }
 
-variables['dymvavbf']  = { 'name': 'dymvaggh',
-                        'range' : (40,-1,1),
-                        'xaxis' : 'DY MVA (VBF)',
-                        'fold' : 3
-                        }
+#variables['dymvavbf']  = { 'name': 'dymvaggh',
+#                        'range' : (40,-1,1),
+#                        'xaxis' : 'DY MVA (VBF)',
+#                        'fold' : 3
+#                        }
 
 ##variables['jetpt2']  = {
 ##                        'name': 'std_vector_jet_pt[1]',     

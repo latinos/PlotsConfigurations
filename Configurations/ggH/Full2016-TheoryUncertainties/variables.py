@@ -19,6 +19,7 @@ variables['mll']  = {   'name': 'mll',            #   variable name
 variables['mth']  = {   'name': 'mth',            #   variable name    
                         'range' : (10,60,200),    #   variable range
                         'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
+                        'yaxis' : 'Nice Events',  #   x axis name
                         'fold' : 0
                         }
 
