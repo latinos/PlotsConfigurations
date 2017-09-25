@@ -1,8 +1,23 @@
 /*
-root -l -b -q 'macroSignificance.C("2HDM","grad","monoH_600_300")'
-root -l -b -q 'macroSignificance.C("2HDM","adapt","monoH_600_300")'
-root -l -b -q 'macroSignificance.C("Zbar","grad","monoH_ZB_100_1_")'
-root -l -b -q 'macroSignificance.C("Zbar","adapt","monoH_ZB_100_1_")'
+root -l -b -q 'macroSignificance.C("2HDM","grad","monoH_600_300","new")'
+root -l -b -q 'macroSignificance.C("2HDM","adapt","monoH_600_300","new")'
+root -l -b -q 'macroSignificance.C("Zbar","grad","monoH_ZB_100_1_","new")'
+root -l -b -q 'macroSignificance.C("Zbar","adapt","monoH_ZB_100_1_","new")'
+
+root -l -b -q 'macroSignificance.C("2HDM","grad","monoH_600_300","low")'
+root -l -b -q 'macroSignificance.C("2HDM","adapt","monoH_600_300","low")'
+root -l -b -q 'macroSignificance.C("Zbar","grad","monoH_ZB_100_1_","low")'
+root -l -b -q 'macroSignificance.C("Zbar","adapt","monoH_ZB_100_1_","low")'
+
+root -l -b -q 'macroSignificance.C("2HDM","grad","monoH_2000_300","high")'
+root -l -b -q 'macroSignificance.C("2HDM","adapt","monoH_2000_300","high")'
+root -l -b -q 'macroSignificance.C("Zbar","grad","monoH_ZB_1000_1_","high")'
+root -l -b -q 'macroSignificance.C("Zbar","adapt","monoH_ZB_1000_1_","high")'
+
+root -l -b -q 'macroSignificance.C("2HDM","grad","monoH_2500_300","superHigh")'
+root -l -b -q 'macroSignificance.C("2HDM","adapt","monoH_2500_300","superHigh")'
+root -l -b -q 'macroSignificance.C("Zbar","grad","monoH_ZB_10000_1_","superHigh")'
+root -l -b -q 'macroSignificance.C("Zbar","adapt","monoH_ZB_10000_1_","superHigh")'
 */
 
 const int nBkg = 16;
@@ -26,16 +41,17 @@ TString bkgNames[nBkg] = {"histo_DY",
 
 using namespace std;
 
-void macroSignificance( TString model    = "2HDM",
-			TString training = "adapt",
-			TString signal   = "monoH_600_300" //monoH_ZB_100_1_
+void macroSignificance( TString model     = "2HDM",
+			TString training  = "adapt",
+			TString signal    = "monoH_600_300", //monoH_ZB_100_1_
+			TString massPoint = "new" 
 			){
 
   TH1F* hDumpBkg[nBkg];
 
-  TString folder = "monoH_MVA_em/muccamva" + model + training + "Full_sign";
+  TString folder = "monoH_MVA_em/muccamva" + model + training + "Full_" + massPoint + "_sign";
 
-  TFile* f = new TFile("rootFile_em/plots_monoHWW_em_SIGN.root","read");
+  TFile* f = new TFile("rootFile_em/plots_monoHWW_em_SIGN_APR17.root","read_sign");
 
   TH1F* hSig = (TH1F*) f->Get(folder + "/histo_" + signal);
   TH1F* hBkg = new TH1F("hBkg","hBkg",10000,-1.,1.);
@@ -139,6 +155,9 @@ void macroSignificance( TString model    = "2HDM",
   TString save = "";
   save = "Significance" + model + "_" + training + ".png";
   c1->Print(save);
+  TString save2 = "";
+  save2 = "Significance" + model + "_" + training + ".pdf";
+  c1->Print(save2);
 }
 
 // KEY: TH1Dhisto_DATA;1histo_DATA
