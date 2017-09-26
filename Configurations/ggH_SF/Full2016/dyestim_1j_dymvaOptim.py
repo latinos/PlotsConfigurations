@@ -19,25 +19,6 @@ RAndKff['DYmva0p8'] = {
                                    } , 
                      }
  
-RAndKff['DYmva0p8top'] = {
-                      'RFile'   : 'rootFile/plots_BG_DY_NOHR_btag.root' ,
-                      'KffFile' : 'rootFile/plots_BG_DY_NOHR_MVA060.root' ,
-                      'Regions' : { '1jee' : {
-                                               'kNum' : '1j_ee_in/events/histo_DY' ,
-                                               'kDen' : '1j_uu_in/events/histo_DY' ,
-                                               'RNum' : '1j_ee_out/events/histo_DY' ,       
-                                               'RDen' : '1j_ee_in/events/histo_DY' ,       
-                                             } ,
-                                    '1jmm' : { 
-                                               'kNum' : '1j_uu_in/events/histo_DY' ,
-                                               'kDen' : '1j_ee_in/events/histo_DY' ,
-                                               'RNum' : '1j_uu_out/events/histo_DY' ,
-                                               'RDen' : '1j_uu_in/events/histo_DY' ,
-                                             } ,
-                                   } , 
-                     }
-
-
 #DYestim = {}
 
 for iCut in optim:

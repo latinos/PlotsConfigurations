@@ -69,16 +69,21 @@ outputDir='/pnfs/knu.ac.kr/data/cms/store/user/salee/Full2016_Apr17/'
 #mkShapes.py --pycfg=configuration.py --doBatch=True --batchSplit=AsMuchAsPossible --batchQueue=cms # using directory in sample.py for KNU case
 #mkShapes.py --pycfg=configuration.py --doHadd=True --batchSplit=AsMuchAsPossible # using directory in sample.py for KNU case
 
+
 ######################################################################################################
 # mkPlot.py
 ######################################################################################################
-rm -rf plotDYCorrMetXYshift.old
+rm -rf plotWZsamples.old
+#rm -rf plotDYCorrMetXYshift.old
 #rm -rf plotGGhCorrMetXYshift.old
-mv plotDYCorrMetXYshift plotDYCorrMetXYshift.old
+mv plotWZsamples plotWZsamples.old
+#mv plotDYCorrMetXYshift plotDYCorrMetXYshift.old
 #mv plotGGhCorrMetXYshift plotGGhCorrMetXYshift.old
-mkdir plotDYCorrMetXYshift
+mkdir plotWZsamples
+#mkdir plotDYCorrMetXYshift
 #mkdir plotGGhCorrMetXYshift
-mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile/plots_DYmetXYcor.root --showIntegralLegend=1
+mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile/plots_WZsamples.root --showIntegralLegend=1
+#mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile/plots_DYmetXYcor.root --showIntegralLegend=1
 #mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile/plots_ggHmetXYcor.root --showIntegralLegend=1
 #tar cvf plot_WZTo3LNu.tar plot_comp_WZold_min01
 #tar cvf plotWgsKinematics.tar plotWgsKinematics

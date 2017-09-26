@@ -6,24 +6,30 @@ supercut = ' mll > 12 \
            '
 
 optim={}
-optim['dymva0p90'] = ' && dymvaggh > 0.90 '
-#optim['dymva0p91'] = ' && dymvaggh > 0.91 ' 
-#optim['dymva0p92'] = ' && dymvaggh > 0.92 ' 
-#optim['dymva0p93'] = ' && dymvaggh > 0.93 ' 
-#optim['dymva0p94'] = ' && dymvaggh > 0.94 ' 
-optim['dymva0p95'] = ' && dymvaggh > 0.95 '
-#optim['dymva0p96'] = ' && dymvaggh > 0.96 ' 
-#optim['dymva0p97'] = ' && dymvaggh > 0.97 ' 
-#optim['dymva0p98'] = ' && dymvaggh > 0.98 ' 
-optim['dymva0p99'] = ' && dymvaggh > 0.99 '
+optim['dymva0p80']  = ' && dymvaggh > 0.80 '
+optim['dymva0p85']  = ' && dymvaggh > 0.85 '
+optim['dymva0p90']  = ' && dymvaggh > 0.90 '
+optim['dymva0p91']  = ' && dymvaggh > 0.91 '
+optim['dymva0p92']  = ' && dymvaggh > 0.92 '
+optim['dymva0p93']  = ' && dymvaggh > 0.93 '
+optim['dymva0p94']  = ' && dymvaggh > 0.94 '
+optim['dymva0p945'] = ' && dymvaggh > 0.945 '
+optim['dymva0p95']  = ' && dymvaggh > 0.95 '
+optim['dymva0p955'] = ' && dymvaggh > 0.955 '
+optim['dymva0p96']  = ' && dymvaggh > 0.96 '
+optim['dymva0p965'] = ' && dymvaggh > 0.965 '
+optim['dymva0p97']  = ' && dymvaggh > 0.97 '
+optim['dymva0p975'] = ' && dymvaggh > 0.975 '
+optim['dymva0p98']  = ' && dymvaggh > 0.98 '
+optim['dymva0p99']  = ' && dymvaggh > 0.99 '
 
 for iCut in optim:
-
+  
 
 # Higgs Signal Regions: ee/uu * 0/1 jet
 
                
-  cuts['hww2l2v_13TeV_1jee'] = '( std_vector_jet_pt[0] >= 30 ) \
+  cuts['hww2l2v_13TeV_1jee_'+iCut] = '( std_vector_jet_pt[0] >= 30 ) \
                && ( std_vector_jet_pt[1] < 30 ) \
                && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
                && fabs(91.1876 - mll) > 15  \
@@ -42,7 +48,7 @@ for iCut in optim:
                && mll < 55 \
                  ' + optim[iCut]
   
-  cuts['hww2l2v_13TeV_1jmm'] = '( std_vector_jet_pt[0] >= 30 ) \
+  cuts['hww2l2v_13TeV_1jmm_'+iCut] = '( std_vector_jet_pt[0] >= 30 ) \
                && ( std_vector_jet_pt[1] < 30 ) \
                && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)   \
                && fabs(91.1876 - mll) > 15  \
@@ -65,7 +71,7 @@ for iCut in optim:
   ## Top CR: No H sel , bTag , tight DYmva
   
   
-  cuts['hww2l2v_13TeV_top_1jsf'] = '( std_vector_jet_pt[0] >= 30 ) \
+  cuts['hww2l2v_13TeV_top_1jsf_'+iCut] = '( std_vector_jet_pt[0] >= 30 ) \
                && ( std_vector_jet_pt[1] < 30 ) \
                && ((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
                || (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)) \
@@ -75,7 +81,7 @@ for iCut in optim:
   
   ## WW CR: No H Sel , mll>80, tight DYMva
   
-  cuts['hww2l2v_13TeV_WW_1jee'] = '( std_vector_jet_pt[0] >= 30 ) \
+  cuts['hww2l2v_13TeV_WW_1jee_'+iCut] = '( std_vector_jet_pt[0] >= 30 ) \
                && ( std_vector_jet_pt[1] < 30 ) \
                && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)  \
                && fabs(91.1876 - mll) > 15  \
@@ -92,7 +98,7 @@ for iCut in optim:
                && mll > 80 \
                  ' + optim[iCut]
   
-  cuts['hww2l2v_13TeV_WW_1jmm'] = '( std_vector_jet_pt[0] >= 30 ) \
+  cuts['hww2l2v_13TeV_WW_1jmm_'+iCut] = '( std_vector_jet_pt[0] >= 30 ) \
                && ( std_vector_jet_pt[1] < 30 ) \
                && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13) \
                && fabs(91.1876 - mll) > 15  \
@@ -111,7 +117,7 @@ for iCut in optim:
   
   ## DY Background IN with DYMVA>0.9X : Split ee/mm , No H cut !
   
-  cuts['hww2l2v_13TeV_DYin_1jee'] = '( std_vector_jet_pt[0] >= 30 ) \
+  cuts['hww2l2v_13TeV_DYin_1jee_'+iCut] = '( std_vector_jet_pt[0] >= 30 ) \
                && ( std_vector_jet_pt[1] < 30 ) \
                && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
                && fabs(91.1876 - mll) < 7.5 \
@@ -127,7 +133,7 @@ for iCut in optim:
                && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.5884 ) \
                  ' + optim[iCut]
   
-  cuts['hww2l2v_13TeV_DYin_1jmm'] = '( std_vector_jet_pt[0] >= 30 ) \
+  cuts['hww2l2v_13TeV_DYin_1jmm_'+iCut] = '( std_vector_jet_pt[0] >= 30 ) \
                && ( std_vector_jet_pt[1] < 30 ) \
                && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)   \
                && fabs(91.1876 - mll) < 7.5 \
@@ -143,7 +149,7 @@ for iCut in optim:
                && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.5884 ) \
                  ' + optim[iCut]
   
-  cuts['hww2l2v_13TeV_DYin_1jdf'] = '( std_vector_jet_pt[0] >= 30 ) \
+  cuts['hww2l2v_13TeV_DYin_1jdf_'+iCut] = '( std_vector_jet_pt[0] >= 30 ) \
                && ( std_vector_jet_pt[1] < 30 ) \
                && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)   \
                && fabs(91.1876 - mll) < 7.5 \
@@ -274,4 +280,3 @@ cuts['hww2l2v_13TeV_WW_1jmm_WWAccNum'] = '( std_vector_jet_pt[0] >= 30 ) \
              && mll > 80 \
              && dymvaggh > 0.6  \
                '
-

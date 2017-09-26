@@ -40,6 +40,7 @@ GenLepMatch   = 'std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]
 samples['ggH_hww']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2Nu_M125') ,
                          'weight': 'XSWeight' ,
                          #'weight': 'XSWeight*SFweight*GenLepMatch' ,
+                         'suppressNegative' : ['hww2l2v_13TeV_of_incl_bveto_4']
                       }
 
 
