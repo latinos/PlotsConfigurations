@@ -29,5 +29,25 @@ WW differential distirbutions
                    --inputFile=rootFile/plots_WW.root
 
 
+                   
+                   
             
-            
+Now Fit:
+
+
+    cd /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/Differential/ggH/pt1/
+    cmsenv
+    
+    cd tests
+    sh ../scripts/doGGH_doMultisignal.sh
+    cd -
+
+    
+    r99t tests/higgsCombineTest.MultiDimFit.mH120.root ../scripts/Draw2DImproved.cxx
+    
+    r99t tests/higgsCombineTest.MultiDimFit.mH120.root ../scripts/Draw2DImproved.cxx\(\"r1\",\"r2\",\"r1\",\"r2\",2,\"r3\>0.9\&\&r3\<1.1\"\)
+    r99t tests/higgsCombineTest.MultiDimFit.mH120.root ../scripts/Draw2DImproved.cxx\(\"r1\",\"r3\",\"r1\",\"r3\",2,\"r2\>0.9\&\&r2\<1.1\"\)
+    r99t tests/higgsCombineTest.MultiDimFit.mH120.root ../scripts/Draw2DImproved.cxx\(\"r2\",\"r3\",\"r2\",\"r3\",2,\"r1\>0.9\&\&r1\<1.1\"\)
+
+    r99t tests/higgsCombineTest.MultiDimFit.mH120.root ../scripts/Draw3DImproved.cxx
+

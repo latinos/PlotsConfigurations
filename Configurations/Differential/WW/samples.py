@@ -317,10 +317,10 @@ samples['WW_pt6']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu') ,
 
 
 
-samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'),      
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-                      'isData': ['0'],                            
-                   }
+#samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'),      
+                      #'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                      #'isData': ['0'],                            
+                   #}
 
 ## during tree production: 1.4 k-factor has been applied to both samples
 ## ggWW sample: k = 1.4 +/- 15%

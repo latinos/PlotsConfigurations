@@ -42,6 +42,41 @@ structure['WW']  = {
                   'isData'   : 0    
                   }
 
+
+structure['WW_pt1']  = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['WW_pt2']  = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['WW_pt3']  = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['WW_pt4']  = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['WW_pt5']  = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['WW_pt6']  = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+
+
+
+
 structure['ggWW']  = {
                   'isSignal' : 0,
                   'isData'   : 0    
