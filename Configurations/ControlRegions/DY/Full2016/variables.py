@@ -2,13 +2,37 @@
 
 #variables = {}
     
-   
+
 variables['events']  = {   'name': '1',      
                         'range' : (1,0,2),  
                         'xaxis' : 'events', 
                         'fold' : 3
                         }
-    
+   
+variables['pt1VSeta1'] = {   'name': 'std_vector_lepton_pt[0]:std_vector_lepton_eta[0]',            #   variable name    
+                        'range' : (20,-2.5,2.5, 20,0,80),            #   variable range
+                        'xaxis' : 'p_{T1} : #eta_{1}',      #   x axis name
+                        'fold' : 0 ,
+                        }
+
+variables['pt2VSeta2'] = {   'name': 'std_vector_lepton_pt[1]:std_vector_lepton_eta[1]',            #   variable name    
+                        'range' : (20,-2.5,2.5, 20,0,80),            #   variable range
+                        'xaxis' : 'p_{T2} : #eta_{2}',      #   x axis name
+                        'fold' : 0 ,
+                        }
+
+variables['eta1VSpt1'] = {   'name': 'std_vector_lepton_eta[0]:std_vector_lepton_pt[0]',            #   variable name    
+                        'range' : (20,0,80, 20,-2.5,2.5),            #   variable range
+                        'xaxis' : '#eta_{1} : p_{T1}',      #   x axis name
+                        'fold' : 0 ,
+                        }
+
+variables['eta2VSpt2'] = {   'name': 'std_vector_lepton_eta[1]:std_vector_lepton_pt[1]',            #   variable name    
+                        'range' : (20,0,80, 20,-2.5,2.5),            #   variable range
+                        'xaxis' : '#eta_{2} : p_{T2}',      #   x axis name
+                        'fold' : 0 ,
+                        }
+
 variables['nvtx']  = {   'name': 'nvtx',      
                         'range' : (40,0,40),  
                         'xaxis' : 'nvtx', 
@@ -42,8 +66,22 @@ variables['dphill']  = {   'name': 'abs(dphill)',
 variables['ptll']  = {   'name': 'ptll',     
                         'range' : (40, 0,200),   
                         'xaxis' : 'p_{T}^{ll} [GeV]',
-                        'fold' : 3
+                        'fold' : 0
                         }
+
+variables['ptll_low']  = {   'name': 'ptll',
+                        'range' : (100,0,50),
+                        'xaxis' : 'p_{T}^{ll} [GeV]',
+                        'fold' : 0
+                        }
+
+variables['ptll_more']  = {   'name': 'ptll',
+                        'range' : (60, 0,300),
+                        'xaxis' : 'p_{T}^{ll} [GeV]',
+                        'fold' : 0
+                        }
+
+
 
 variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
                         'range' : (40,0,100),   

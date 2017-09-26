@@ -335,3 +335,28 @@ nuisances['met']  = {
                 'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__METdo'+skim,
 }
 
+nuisances['WgStarScale']  = {
+               'name'  : 'WgStarScale', 
+               'type'  : 'lnN',
+               'samples'  : {
+                   'WgS' : '1.25',  # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
+                   'VgS' : '1.25',  # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
+                   },
+                }
+ 
+
+
+nuisances['tttwTh']  = {
+                'name'  : 'tttwTh',   # Theory uncertainty
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {  # up              down
+                   'top'     : ['((dataset==15 || dataset==16) * 1.0816 + (dataset==17 || dataset==18 || dataset==19))',
+                                '((dataset==15 || dataset==16) * 0.9184 + (dataset==17 || dataset==18 || dataset==19))'],
+                }
+                # tt = 17/18/19 depending on the sample/generator
+                # tW = 15/16
+                
+}
+
+
