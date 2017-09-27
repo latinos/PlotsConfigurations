@@ -2,7 +2,7 @@
 
 import os
 
-configDir = "/afs/cern.ch/work/p/pyu/HWAnalysis/zh4lFull2016/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/ZH4l/"
+configDir = "/afs/cern.ch/work/p/pyu/HWAnalysis/zh4lFull2016/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/ZH4l/config_Run2016-35pXfbm1_cutOptimization/"
 
 tagName='_SG_mva_90p_Iso2016'
 #'_CR_cut_WP_Tight80X_SS'
