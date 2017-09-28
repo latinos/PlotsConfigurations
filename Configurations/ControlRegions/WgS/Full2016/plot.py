@@ -54,6 +54,20 @@ groupPlot['VVV']  = {
 #                  'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ']
 #              }
 
+groupPlot['WZgS_L']  = {  
+                  'nameHR' : "WZTo3LNu_mll0.1",
+                  'isSignal' : 0,
+                  'color'    : 890,   # kViolet + 1  
+                  'samples'  : ['WZgS_L']
+              }
+
+groupPlot['WZgS_H']  = {  
+                  'nameHR' : "WZTo3LNu_mll4",
+                  'isSignal' : 0,
+                  'color'    : 887,   # kViolet + 1  
+                  'samples'  : ['WZgS_H']
+              }
+
 groupPlot['VZ']  = {  
                   'nameHR' : "VZ",
                   'isSignal' : 0,
@@ -68,13 +82,13 @@ groupPlot['Vg']  = {
                   'samples'  : ['Vg', 'Wg']
               }
 
-groupPlot['VgS']  = {
-                  'nameHR' : "V#gamma*",
-                  'isSignal' : 0,
-                  'color'    : 409,   # kGreen - 9
-                  'samples'  : ['VgS']
-              }
-
+#groupPlot['VgS']  = {
+#                  'nameHR' : "V#gamma*",
+#                  'isSignal' : 0,
+#                  'color'    : 409,   # kGreen - 9
+#                  'samples'  : ['VgS']
+#              }
+#
 
 
 groupPlot['Higgs']  = {  
@@ -216,13 +230,13 @@ plot['Vg']  = {
                   'scale'    : 1.0
                   }
 
-plot['VgS'] = { 
-                  'color'    : 617,   # kViolet + 1  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
-
+#plot['VgS'] = { 
+#                  'color'    : 617,   # kViolet + 1  
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1.0
+#                  }
+#
 plot['VZ']  = { 
                   'color': 858, # kAzure -2  
                   'isSignal' : 0,
@@ -230,8 +244,15 @@ plot['VZ']  = {
                   'scale'    : 1.0
                   }
 
-plot['WZ']  = { 
-                  'color': 858, # kAzure -2  
+plot['WZgS_L']  = { 
+                  'color': 890, # kAzure -2  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+plot['WZgS_H']  = { 
+                  'color': 887, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0

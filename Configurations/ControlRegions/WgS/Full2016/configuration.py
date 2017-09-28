@@ -1,7 +1,8 @@
 # example of configuration file
 
 #tag = 'ggHmetXYcor'
-tag = 'WZsamples'
+tag = 'WgSt'
+#tag = 'WZsamples'
 #tag = 'DYmetXYcor'
 #tag = 'ggH'
 #tag = 'ggHTESTPARTIALamassiro'
@@ -12,33 +13,35 @@ outputDir = 'rootFile'
 
 
 # file with list of variables
-variablesFile = 'variables_WZsampleStudy.py'
+#variablesFile = 'variables_WZsampleStudy.py'
 #variablesFile = 'variablesDY.py'
-#variablesFile = 'variables.py'
+variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts_WZsampleStudy.py' 
+#cutsFile = 'cuts_WZsampleStudy.py' 
 #cutsFile = 'cutsDY.py' 
-#cutsFile = 'cuts.py' 
+cutsFile = 'cuts.py' 
 
 # file with list of samples
 #samplesFile = 'samples_fake.py' 
-samplesFile = 'samples_WZsampleStudy.py' 
-#samplesFile = 'samples.py' 
+#samplesFile = 'samples_WZsampleStudy.py' 
+samplesFile = 'samples.py' 
+#samplesFile = 'samples_test.py' 
 
 # file with list of samples
-plotFile = 'plot_WZsampleStudy.py' 
-#plotFile = 'plot.py' 
+#plotFile = 'plot_WZsampleStudy.py' 
+plotFile = 'plot.py' 
 
 
 
 # luminosity to normalize to (in 1/fb)
-#lumi = 35.867
-lumi = 1.
+lumi = 35.867
+#lumi = 1.
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotWZsamples'
+outputDirPlots = 'plotWgSt'
+#outputDirPlots = 'plotWZsamples'
 #outputDirPlots = 'plotDYCorrMetXYshift'
 #outputDirPlots = 'plotGGhCorrMetXYshift'
 

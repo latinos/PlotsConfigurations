@@ -13,8 +13,8 @@ from LatinoAnalysis.Tools.commonTools import *
 ################# SKIMS ########################
 ################################################
 
-McMetCor='__metXYshift_MC'
-DATaMetCor='__metXYshift_2016'
+#DATaMetCor='__metXYshift_2016'
+DATaMetCor=''
 skim=''
 #skim='__wwSel'
 #skim='__topSel'
@@ -42,14 +42,15 @@ elif 'knu' in SITE :
   treeBaseDir = '/pnfs/knu.ac.kr/data/cms/store/user/salee/Full2016_Apr17/'
   copiedTreeBaseDir = '/pnfs/knu.ac.kr/data/cms/store/user/spak/LatinoTree/Full2016_Apr17/'
 
-directory = treeBaseDir+'Apr2017_summer16_KNU/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC'+skim+McMetCor+'/'
+directory = copiedTreeBaseDir+'Apr2017_summer16_KNU/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC'+skim+'/'
+directoryMcWgSt = treeBaseDir+'Apr2017_summer16_KNU/MCWgStarsel__hadd__MCWeights__bSFLpTEffMulti__cleanTauMC__formulasMC/'
 
 ################################################
 ############ NUMBER OF LEPTONS #################
 ################################################
 
-Nlep='2'
-#Nlep='3'
+#Nlep='2'
+Nlep='3'
 #Nlep='4'
 
 ################################################
@@ -110,14 +111,16 @@ muWP='cut_Tight80x'
 
 #... Build formula
 
-LepWPCut        = 'LepCut'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
-LepWPweight     = 'LepSF'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
+#LepWPCut        = 'LepCut'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
+LepWPCut        = '1'
+LepWPweight     = '1'
+#LepWPweight     = 'LepSF'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
 
 SFweight += '*'+LepWPweight+'*'+LepWPCut
 
 #... And the fakeW
 
-if Nlep == '2' :
+if Nlep == '2' or Nlep == '3' :
   fakeW = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP
 else:
   fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l'
@@ -169,8 +172,8 @@ mixDYttandHT = False  # be carefull DY HT is LO (HT better stat for HT>450 GEV)
 ptllDYW_NLO = '1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582))'
 ptllDYW_LO  = '(8.61313e-01+gen_ptll*4.46807e-03-1.52324e-05*gen_ptll*gen_ptll)*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-11.)/5.51582)))*(gen_ptll<140)+1.141996*(gen_ptll>=140)'
 
-samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-10to50', True)
-                                  + getSampleFiles(directory,'DYJetsToLL_M-50', True)     ,
+samples['DY'] = {    'name'   :   getSampleFiles(directoryMcWgSt,'DYJetsToLL_M-10to50', True)
+                                  + getSampleFiles(directoryMcWgSt,'DYJetsToLL_M-50', True)     ,
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                      'FilesPerJob' : 1 ,
                  }
@@ -198,7 +201,7 @@ if useDYtt :
   if skim=='__wwSel':
     samples['DY']['name'] =   getSampleFiles(directory,'DYJetsToTT_MuEle_M-50', True) \
                             + getSampleFiles(directory,'DYJetsToTT_MuEle_M-50_ext1',True) \
-                            + getSampleFiles(directory,'DYJetsToLL_M-10to50', True)
+                            + getSampleFiles(directoryMcWgSt,'DYJetsToLL_M-10to50', True)
   else:
     samples['DY']['name'] +=   getSampleFiles(directory,'DYJetsToTT_MuEle_M-50', True) \
                              + getSampleFiles(directory,'DYJetsToTT_MuEle_M-50_ext1', True)
@@ -313,7 +316,7 @@ samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'
 
 ######## Vg ########
 
-samples['Vg']  =  {     'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM', True)
+samples['Vg']  =  {     'name'   :   getSampleFiles(directoryMcWgSt,'Wg_MADGRAPHMLM', True)
                                    + getSampleFiles(directory,'Zg', True)
                                    ,
                         'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
@@ -321,24 +324,37 @@ samples['Vg']  =  {     'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM', 
 
 ######## VgS ########
 
-samples['VgS']  = {    'name':  getSampleFiles(directory,'WgStarLNuEE', True) + getSampleFiles(directory,'WgStarLNuMuMu', True) ,
-                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.4' ,  
+#samples['VgS']  = {    'name':  getSampleFiles(directory,'WgStarLNuEE', True) + getSampleFiles(directory,'WgStarLNuMuMu', True) ,
+#                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.4' ,  
+#                  }
+
+samples['WZgS_L']  = {    'name':  getSampleFiles(directoryMcWgSt,'WZTo3LNu_mllmin01_ext1', True) ,
+                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '* (Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 5)' + '*0.79' ,  
                   }
 
 ## 
 ## Wg* scale factor is
 ##
 ## X.X  +/- X.X     in mumumu
-## 1.4  +/- 0.4     in emumu
+## 0.79  +/- 0.22     in emumu
 ##
 ##
 
 
 ######### VZ #########
 
-samples['VZ']  = {    'name':   getSampleFiles(directory,'WZTo3LNu', True)
-                              + getSampleFiles(directory,'ZZTo2L2Nu', True)
-                              + getSampleFiles(directory,'WZTo2L2Q', True)
+samples['WZgS_H']  = {    'name':   getSampleFiles(directoryMcWgSt,'WZTo3LNu', True)
+                              # Should we include this as well here:
+                              # + getSampleFiles(directory,'tZq_ll')
+                              ,   
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.11' + '* (Gen_ZGstar_mass <0 || Gen_ZGstar_mass >= 5)' ,  
+                      'FilesPerJob' : 4 ,
+                  }
+
+### 1.11 normalisation was measured in 3-lepton
+
+samples['VZ']  = {    'name':   getSampleFiles(directory,'ZZTo2L2Nu', True)
+                              + getSampleFiles(directoryMcWgSt,'WZTo2L2Q', True)
                               + getSampleFiles(directory,'ZZTo2L2Q', True)  
                               # Should we include this as well here:
                               # + getSampleFiles(directory,'tZq_ll')
@@ -430,7 +446,7 @@ samples['Fake']  = {   'name': [ ] ,
                    }
 
 for Run in DataRun :
-  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD_KNU/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__multiFakeW__formulasFAKE__hadd'+skimFake+DATaMetCor+Run[0]+'/'
+  directory = copiedTreeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD_KNU/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__multiFakeW__formulasFAKE__hadd'+skimFake+'/'
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:
@@ -452,7 +468,7 @@ for Run in DataRun :
   if DATaMetCor is not '':
     directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD_KNU/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__hadd__l2tightOR__formulasDATA'+skim+DATaMetCor+Run[0]+'/'
   else:
-    directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD_KNU/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__hadd__l2tightOR__formulasDATA'+skim+'/'
+    directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD_KNU/WgStarsel__hadd__EpTCorr__TrigMakerData__cleanTauData__formulasDATA/'
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:
