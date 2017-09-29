@@ -74,6 +74,47 @@ combine -M MaxLikelihoodFit -t -1 \
       workspace.pt1.combined.txt.root           >   result.MaxLikelihoodFit.workspace.pt1.combined.txt.root.noOption.txt
  
  
+combine -M MultiDimFit -t -1 \
+     --setPhysicsModelParameters  r1=1,r2=1,r3=1,r4=1,r5=1,r6=1 \
+     --redefineSignalPOIs     r1,r2,r3,r4,r5,r6  \
+     --algo=random --points=1000 --cl=0.68  \
+      -n 'pt1.random.068.1kpoints'  \
+      workspace.pt1.combined.txt.root           >   result.MultiDimFit.workspace.pt1.combined.txt.root.random.txt
+
+      
+      
+combine -M MultiDimFit -t -1 \
+     --setPhysicsModelParameters  r1=1,r2=1 \
+     --redefineSignalPOIs     r1,r2  \
+     --freezeNuisances            r3,r4,r5,r6  \
+     --algo=random --points=1000 --cl=0.68  \
+      -n 'pt1.onlyr1r2.random.068.1kpoints'  \
+      workspace.pt1.combined.txt.root           >   result.MultiDimFit.workspace.pt1.combined.txt.root.onlyr1r2.random.txt
+
+
+      
+      
+      
+combine -M MultiDimFit -t -1 \
+     --setPhysicsModelParameters  r1=1,r2=1,r3=1,r4=1,r5=1,r6=1 \
+     --redefineSignalPOIs     r1,r2,r3,r4,r5,r6  \
+     --algo=contour2d --points=1000 --cl=0.68  \
+      -n 'pt1.contour2d.068.1kpoints'  \
+      workspace.pt1.combined.txt.root           >   result.MultiDimFit.workspace.pt1.combined.txt.root.contour2d.txt
+      
+      
+combine -M MultiDimFit -t -1 \
+     --setPhysicsModelParameters  r1=1,r2=1 \
+     --redefineSignalPOIs     r1,r2  \
+     --freezeNuisances            r3,r4,r5,r6  \
+     --algo=contour2d --points=1000 --cl=0.68  \
+      -n 'pt1.onlyr1r2.contour2d.068.1kpoints'  \
+      workspace.pt1.combined.txt.root           >   result.MultiDimFit.workspace.pt1.combined.txt.root.onlyr1r2.contour2d.txt
+
+      
+      
+ 
+ 
  
       
       
@@ -111,7 +152,6 @@ combine -M MultiDimFit -t -1 \
        
        
       
-
 combineTool.py -d    workspace.pt1.combined.txt.root  -M MultiDimFit    \
                --algo=grid     --X-rtd OPTIMIZE_BOUNDS=0   \
                -t -1   -n "LH6Dpt1MClxbatch"   \
@@ -122,6 +162,27 @@ ls -alrth lxbatch/higgsCombineLH6Dpt1MClxbatch.POINTS.*.MultiDimFit.mH120.root  
 hadd higgsCombineLH6Dpt1MClxbatch.root   lxbatch/higgsCombineLH6Dpt1MClxbatch.POINTS.*.MultiDimFit.mH120.root
 
 
+
+      
+
+combineTool.py -d    workspace.pt1.combined.txt.root  -M MultiDimFit    \
+               --algo=grid     --X-rtd OPTIMIZE_BOUNDS=0   \
+               -t -1   -n "LH6Dpt1MClxbatchOnlyr1r2"   \
+               --setPhysicsModelParameters  r1=1,r2=1 \
+               --redefineSignalPOIs     r1,r2  \
+               --freezeNuisances            r3,r4,r5,r6  \
+               --points 1000    --job-mode lxbatch --task-name lxbatch-pt1-mc-y2016-onlyr1r2 --sub-opts='-q 8nm' --split-points 1 
+
+ls -alrth lxbatch/higgsCombineLH6Dpt1MClxbatchOnlyr1r2.POINTS.*.MultiDimFit.mH120.root    | grep -v K  | awk '{print "rm "$9}' | /bin/sh
+               
+hadd higgsCombineLH6Dpt1MClxbatchOnlyr1r2.root   lxbatch/higgsCombineLH6Dpt1MClxbatchOnlyr1r2.POINTS.*.MultiDimFit.mH120.root
+
+
+
+
+
+      
+      
 
 r99t   higgsCombineLH6Dpt1MClxbatch.root ../../ggH/scripts/Draw1DImproved.cxx\(\"r2\",\"r2\",2,\"1\"\)
 
@@ -195,10 +256,15 @@ for (int
 
 limit->Scan("r1:r2:r3:r4:r5:r6")  
 
+limit->Draw("r1 >> h1(30,0,2)");
+h1->Draw();
+
+limit->Draw("r2 >> h2(300,0,2)");
+h2->Draw();
 
 
-
-
+limit->Draw("r2 >> h2(300,0,2)", "deltaNLL<1");
+h2->Draw();
 
 
         
