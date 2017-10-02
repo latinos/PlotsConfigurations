@@ -1,5 +1,5 @@
 
-voms-proxy-init --voms cms --valid 168:0
+#voms-proxy-init --voms cms --valid 168:0
 # queues at KNU: short(cpu:00:30:00, wall:00:45:00), cms, long
 
 #############################################
@@ -66,24 +66,29 @@ outputDir='/pnfs/knu.ac.kr/data/cms/store/user/salee/Full2016_Apr17/'
 #            --batchSplit=AsMuchAsPossible \
 #	    --batchQueue=cms
 #mkShapes.py --pycfg=configuration.py --doBatch=True --batchSplit=Samples --batchQueue=cms # using directory in sample.py for KNU case
-mkShapes.py --pycfg=configuration.py --doBatch=True --batchSplit=AsMuchAsPossible --batchQueue=cms # using directory in sample.py for KNU case
+#mkShapes.py --pycfg=configuration.py --doBatch=True --batchSplit=AsMuchAsPossible --batchQueue=cms # using directory in sample.py for KNU case
 #mkShapes.py --pycfg=configuration.py --doHadd=True --batchSplit=AsMuchAsPossible # using directory in sample.py for KNU case
 
 
 ######################################################################################################
 # mkPlot.py
 ######################################################################################################
+#rm -rf plotWgst_LepCut2l_LepSF2l.old
 #rm -rf plotWgSt.old
 #rm -rf plotWZsamples.old
 #rm -rf plotDYCorrMetXYshift.old
 #rm -rf plotGGhCorrMetXYshift.old
+#mv plotWgst_LepCut2l_LepSF2l plotWgst_LepCut2l_LepSF2l.old
 #mv plotWgSt plotWgSt.old
 #mv plotWZsamples plotWZsamples.old
-#mkdir plotWgSt
+#mkdir plotWgst_LepCut2l_LepSF2l
 #mkdir plotWZsamples
 #mkdir plotDYCorrMetXYshift
 #mkdir plotGGhCorrMetXYshift
-#mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile/plots_WgSt.root --showIntegralLegend=1
+#mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile_LepCut2l_LepSF2l/plots_WgSt.root
+mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile_NoLepCut_LepSF3l/plots_WgSt_NoLepCut_LepSF3l.root
+#mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile_GenWgStM4/plots_WgSt.root 
+#mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile_noWPscale_mllWgStRange01/plots_WgSt.root 
 #mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile/plots_WZsamples.root --showIntegralLegend=1
 #mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile/plots_DYmetXYcor.root --showIntegralLegend=1
 #mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile/plots_ggHmetXYcor.root --showIntegralLegend=1

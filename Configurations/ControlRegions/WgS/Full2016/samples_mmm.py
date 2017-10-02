@@ -58,7 +58,8 @@ Nlep='3'
 ################################################
 
 XSWeight      = 'XSWeight'
-SFweight      = 'SFweight'+Nlep+'l'
+SFweight      = 'puW*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_recoW[2]*veto_EMTFBug'
+#SFweight      = 'SFweight'+Nlep+'l'
 GenLepMatch   = 'GenLepMatch'+Nlep+'l'
 
 ################################################
@@ -149,14 +150,17 @@ DataRun = [
             ['H','Run2016H-03Feb2017_ver3-v1'] ,
           ] 
 
-DataSets = ['MuonEG','DoubleMuon','SingleMuon','DoubleEG','SingleElectron']
+DataSets = ['SingleMuon']
+#DataSets = ['MuonEG','DoubleMuon','SingleMuon','DoubleEG','SingleElectron']
 
 DataTrig = {
             'MuonEG'         : ' trig_EleMu' ,
             'DoubleMuon'     : '!trig_EleMu &&  trig_DbleMu' ,
-            'SingleMuon'     : '!trig_EleMu && !trig_DbleMu &&  trig_SnglMu' ,
+            'SingleMuon'     : ' trig_SnglMu' ,
+            #'SingleMuon'     : '!trig_EleMu && !trig_DbleMu &&  trig_SnglMu' ,
             'DoubleEG'       : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu &&  trig_DbleEle' ,
-            'SingleElectron' : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu && !trig_DbleEle &&  trig_SnglEle' ,
+            'SingleElectron' : ' trig_SnglEle' ,
+            #'SingleElectron' : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu && !trig_DbleEle &&  trig_SnglEle' ,
            }
 
 ###########################################
