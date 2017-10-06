@@ -33,7 +33,10 @@ if    'iihe' in SITE :
   xrootdPath  = 'dcap://maite.iihe.ac.be/' 
   treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/'
 elif  'cern' in SITE :
+  xrootdPath  = 'root://eoscms.cern.ch/'
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/'
+elif  'gridui' in SITE: #PISA
+  treeBaseDir = '/gpfs/ddn/srm/cms/store/user/lviliani/Full2016_Apr17/'
 
 directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC'+skim+'/'
 
@@ -52,6 +55,7 @@ Nlep='2'
 XSWeight      = 'XSWeight'
 SFweight      = 'SFweight'+Nlep+'l'
 GenLepMatch   = 'GenLepMatch'+Nlep+'l'
+Top_pTrw = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topLHEpt) * TMath::Exp(0.0615-0.0005*antitopLHEpt) ) )'
 
 ################################################
 ############### B-Tag  WP ######################
@@ -90,12 +94,12 @@ if Nlep == '2' : SFweight += '/bPogSF_CMVAL'
 
 #... Electron:
 
-eleWP='cut_WP_Tight80X'
+#eleWP='cut_WP_Tight80X'
 #eleWP='cut_WP_Tight80X_SS'
 #eleWP='mva_80p_Iso2015'
 #eleWP='mva_80p_Iso2016'
 #eleWP='mva_90p_Iso2015'
-#eleWP='mva_90p_Iso2016'
+eleWP='mva_90p_Iso2016'
 
 #... Muon:
 
@@ -159,7 +163,7 @@ useDYtt = True
 mixDYttandHT = False  # be carefull DY HT is LO (HT better stat for HT>450 GEV)
 
 ### These weights were evaluated on ICHEP16 MC -> Update ?
-ptllDYW_NLO = '1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582))'
+ptllDYW_NLO = '(0.876979+gen_ptll*(4.11598e-03)-(2.35520e-05)*gen_ptll*gen_ptll)*(1.10211 * (0.958512 - 0.131835*TMath::Erf((gen_ptll-14.1972)/10.1525)))*(gen_ptll<140)+0.891188*(gen_ptll>=140)'
 ptllDYW_LO  = '(8.61313e-01+gen_ptll*4.46807e-03-1.52324e-05*gen_ptll*gen_ptll)*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-11.)/5.51582)))*(gen_ptll<140)+1.141996*(gen_ptll>=140)'
 
 samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-10to50')
@@ -199,12 +203,12 @@ if useDYtt :
 # ... Fix Weights (always after all samples are included !)
 
 # pt_ll weight
-# in this case DYJetsToLL_M50 is not included in the list of samples
+# in this case DYJetsToLL_M-50 is not included in the list of samples
 if (useDYtt and skim=='__wwSel'):
   addSampleWeight(samples,'DY','DYJetsToLL_M-10to50',ptllDYW_NLO)
 else:
   addSampleWeight(samples,'DY','DYJetsToLL_M-10to50',ptllDYW_NLO)
-  addSampleWeight(samples,'DY','DYJetsToLL_M50'     ,ptllDYW_NLO)
+  addSampleWeight(samples,'DY','DYJetsToLL_M-50'     ,ptllDYW_NLO)
 
 if useDYHT :
   # Remove high HT from inclusive sample
@@ -286,6 +290,7 @@ samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu')
                       'FilesPerJob' : 1 ,
                   }
                   
+addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
 
 ###### WW ########
              
@@ -362,9 +367,14 @@ samples['VVV'] = {    'name':   getSampleFiles(directory,'ZZZ')
 #### ggH -> WW
 
 samples['ggH_hww']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*weight2MINLO' ,  
                       }
 
+##### ggH -> WW NNLOPS
+#
+#samples['ggH_hww']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2Nu_M125_minloHJ_NNLOPS') ,  
+#                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+#                      }
 
 #### VBF H->WW
 
