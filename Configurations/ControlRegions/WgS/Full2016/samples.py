@@ -111,10 +111,12 @@ muWP='cut_Tight80x'
 
 #... Build formula
 
+#LepWPCut        = 'LepCut2l__ele_'+eleWP+'__mu_'+muWP
 #LepWPCut        = 'LepCut'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
 LepWPCut        = '1'
-LepWPweight     = '1'
-#LepWPweight     = 'LepSF'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
+#LepWPweight     = 'LepSF2l__ele_'+eleWP+'__mu_'+muWP
+LepWPweight     = 'LepSF'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
+#LepWPweight     = '1'
 
 SFweight += '*'+LepWPweight+'*'+LepWPCut
 
@@ -329,7 +331,7 @@ samples['Vg']  =  {     'name'   :   getSampleFiles(directoryMcWgSt,'Wg_MADGRAPH
 #                  }
 
 samples['WZgS_L']  = {    'name':  getSampleFiles(directoryMcWgSt,'WZTo3LNu_mllmin01_ext1', True) ,
-                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '* (Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 5)' + '*0.79' ,  
+                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '* (Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4)' ,  
                   }
 
 ## 
@@ -347,7 +349,7 @@ samples['WZgS_H']  = {    'name':   getSampleFiles(directoryMcWgSt,'WZTo3LNu', T
                               # Should we include this as well here:
                               # + getSampleFiles(directory,'tZq_ll')
                               ,   
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.11' + '* (Gen_ZGstar_mass <0 || Gen_ZGstar_mass >= 5)' ,  
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.11' ,  
                       'FilesPerJob' : 4 ,
                   }
 

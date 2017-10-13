@@ -1,7 +1,8 @@
 # example of configuration file
 
 #tag = 'ggHmetXYcor'
-tag = 'WgSt'
+tag = 'WgSt_NoLepCut_LepSF3'
+#tag = 'WgSt'
 #tag = 'WZsamples'
 #tag = 'DYmetXYcor'
 #tag = 'ggH'
@@ -9,7 +10,8 @@ tag = 'WgSt'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = 'rootFile_NoLepCut_LepSF3'
+#outputDir = 'rootFile'
 
 
 # file with list of variables
@@ -40,7 +42,9 @@ lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotWgSt'
+outputDirPlots = 'plotWgst_LepCut2l_LepSF2l'
+#outputDirPlots = 'plotWgst_NoLepCut_LepSF3l'
+#outputDirPlots = 'plotWgSt'
 #outputDirPlots = 'plotWZsamples'
 #outputDirPlots = 'plotDYCorrMetXYshift'
 #outputDirPlots = 'plotGGhCorrMetXYshift'

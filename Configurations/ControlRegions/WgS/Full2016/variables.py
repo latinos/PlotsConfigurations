@@ -79,20 +79,20 @@ variables['mllTwoThree']  = {   'name': 'mllTwoThree',            #   variable n
 
 
 variables['mllWgSt']  = {   'name': 'mllWgSt',
-                        'range' : (120,0.1,120.1),    #   variable range
+                        'range' : (120,0,120),    #   variable range
                         'xaxis' : 'm_{ll} from Z/#gamma^{*} [GeV]',  #   x axis name
                          'fold' : 0
                         }
 
 
 variables['mllWgStLowM']  = {   'name': 'mllWgSt',
-                        'range' : (20,0.1,10.1),    #   variable range
+                        'range' : (20,0,10),    #   variable range
                         'xaxis' : 'm_{ll} from Z/#gamma^{*} [GeV]',  #   x axis name
                          'fold' : 0
                         }
 
 variables['mllWgStLLowM']  = {   'name': 'mllWgSt',
-                        'range' : (100,0.1,5.1),    #   variable range
+                        'range' : (100,0,5),    #   variable range
                         'xaxis' : 'm_{ll} from #gamma^{*} [GeV]',  #   x axis name
                          'fold' : 0
                         }
