@@ -1,14 +1,13 @@
 # example of configuration file
 
-tag = 'monoHWW_em'
+tag = 'monoHWW_test'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_em_test'
-
+outputDir = 'rootFile_test'
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = 'variables_test.py'
 
 # file with list of cuts
 cutsFile = 'cuts_em.py' 
@@ -35,5 +34,5 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances_full.py'
+#nuisancesFile = 'nuisances_full.py'
 

@@ -20,9 +20,7 @@ from LatinoAnalysis.Tools.commonTools import *
 #skim='__vbsSel'
 #skim='__ssSel'
 #skim="__wwSel__monohSel"
-#skim="__wwSel__monohSel__muccaMonoHem"
-skim="__wwSel__monohSel__muccaMonoH_Apr2017_em"
-#skim="__wwSel__monohSel__muccaMonoHem__muccaMonoHem_high"
+skim="__sfSel__monohSel"
 
 if skim =='__vh3lSel' :  skimFake='__vh3lFakeSel'
 else:                    skimFake=skim
@@ -37,7 +35,8 @@ if    'iihe' in SITE :
   xrootdPath  = 'dcap://maite.iihe.ac.be/' 
   treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/'
 elif  'cern' in SITE :
-  treeBaseDir = '/eos/user/f/fernanpe/trees_DF/Full2016_Apr17/'
+  treeBaseDir = '/eos/user/f/fernanpe/trees_SF/'
+#  treeBaseDir = '/eos/user/c/calderon/monoH/Full2016_Apr17/'
 #  treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/'
 
 directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC'+skim+'/'
@@ -159,7 +158,7 @@ DataTrig = {
 ###### DY #######
 
 useDYHT = False       # be carefull DY HT is LO 
-useDYtt = True     
+useDYtt = False     
 mixDYttandHT = False  # be carefull DY HT is LO (HT better stat for HT>450 GEV)
 
 ### These weights were evaluated on ICHEP16 MC -> Update ?
@@ -513,9 +512,9 @@ samples['monoH_ZB_10_150_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-15
 samples['monoH_ZB_10_50_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-50.root'],
                               'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
 samples['monoH_ZB_10_10_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-10.root'],
-                               'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
-samples['monoH_ZB_10_1_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-1.root'],
                               'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_10_1_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-1.root'],
+                             'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
 
 
 ###########################################

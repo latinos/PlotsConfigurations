@@ -1,39 +1,41 @@
 # example of configuration file
 
-tag = 'monoHWW_em'
+tag = 'monoHWW_sf_blindData'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_em'
+outputDir = 'rootFile_sf_blindData'
 
 
 # file with list of variables
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts_em.py' 
+cutsFile = 'cuts_sf_blindData.py' 
 
 # file with list of samples
-samplesFile = 'samples_em.py'
+samplesFile = 'samples_sf_blindData.py'
  
 # file with list of samples
-plotFile = 'plot.py' 
+plotFile = 'plot_em_blindData.py' 
 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 35.9
+lumi = 2.39
 
 
 # used by mkPlot to define output directory for plots
-outputDirPlots = 'monoH_2HDM_em'
+outputDirPlots = 'monoH_2HDM_sf_blindData'
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'
+outputDirDatacard = 'datacards_blindData'
 
 # structure file for datacard
 structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances_full.py'
+#nuisancesFile = 'nuisances_light.py'
+#nuisancesFile = 'nuisances.py'
+#nuisancesFile = 'nuisances_full.py'
 

@@ -18,11 +18,7 @@ from LatinoAnalysis.Tools.commonTools import *
 #skim='__vh3lSel' 
 #skim='__sfSel' 
 #skim='__vbsSel'
-#skim='__ssSel'
-#skim="__wwSel__monohSel"
-#skim="__wwSel__monohSel__muccaMonoHem"
-skim="__wwSel__monohSel__muccaMonoH_Apr2017_em"
-#skim="__wwSel__monohSel__muccaMonoHem__muccaMonoHem_high"
+skim='__ssSel'
 
 if skim =='__vh3lSel' :  skimFake='__vh3lFakeSel'
 else:                    skimFake=skim
@@ -37,8 +33,7 @@ if    'iihe' in SITE :
   xrootdPath  = 'dcap://maite.iihe.ac.be/' 
   treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/'
 elif  'cern' in SITE :
-  treeBaseDir = '/eos/user/f/fernanpe/trees_DF/Full2016_Apr17/'
-#  treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/'
+  treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/'
 
 directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC'+skim+'/'
 
@@ -192,7 +187,7 @@ if useDYHT :
 
 if useDYtt :
   # if skim=='__wwSel' do not include DYJetsToLL_M-50 in the list of samples
-  if "__wwSel" in skim:
+  if skim=='__wwSel':
     samples['DY']['name'] =   getSampleFiles(directory,'DYJetsToTT_MuEle_M-50') \
                             + getSampleFiles(directory,'DYJetsToTT_MuEle_M-50_ext1') \
                             + getSampleFiles(directory,'DYJetsToLL_M-10to50')
@@ -204,7 +199,7 @@ if useDYtt :
 
 # pt_ll weight
 # in this case DYJetsToLL_M50 is not included in the list of samples
-if (useDYtt and ("__wwSel" in skim)) :
+if (useDYtt and skim=='__wwSel'):
   addSampleWeight(samples,'DY','DYJetsToLL_M-10to50',ptllDYW_NLO)
 else:
   addSampleWeight(samples,'DY','DYJetsToLL_M-10to50',ptllDYW_NLO)
@@ -243,7 +238,7 @@ if useDYHT :
 if useDYtt :
   # Remove OF from Inclusive sample
   # No need to do it if skim=='__wwSel'
-  if "__wwSel" not in skim :
+  if not skim=='__wwSel':
     cutSF = '(abs(std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]) == 11*11)||(abs(std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]) == 13*13)'
     addSampleWeight(samples,'DY','DYJetsToLL_M-50',cutSF)
   # pt_ll weight
@@ -378,19 +373,13 @@ samples['qqH_hww']  = {   'name' : getSampleFiles(directory,'VBFHToWWTo2L2Nu_alt
 
 ### ZH ; H->WW
 
-samples['ZH_hww']   = {   'name' :  getSampleFiles(directory,'HZJ_HToWWTo2L2Nu_M125') ,
+samples['ZH_hww']   = {   'name' :  getSampleFiles(directory,'HZJ_HToWW_M125') ,
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                       }
-# samples['ZH_hww']   = {   'name' :  getSampleFiles(directory,'HZJ_HToWW_M125') ,
-#                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-#                       }
 
-samples['ggZH_hww'] = {   'name' : getSampleFiles(directory,'GluGluZH_HToWWTo2L2Nu_M125') ,
+samples['ggZH_hww'] = {   'name' : getSampleFiles(directory,'ggZH_HToWW_M125') ,
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                       }
-# samples['ggZH_hww'] = {   'name' : getSampleFiles(directory,'ggZH_HToWW_M125') ,
-#                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-#                       }
 
 #### WH ; H->WW
 
@@ -423,7 +412,7 @@ samples['H_htt']    = {   'name' :   getSampleFiles(directory,'GluGluHToTauTau_M
 
 #### mono-Higgs Signal 2HDM
 
-ZpMasses={"600","800","1000","1200","1400","1700","2000","2500"}
+ZpMasses={"600","800","1000","1200","1400","1700"}#,"2000","2500"}
 A0Masses={"300","400","500","600","700","800"}
 
 for mZp in ZpMasses:
@@ -513,9 +502,9 @@ samples['monoH_ZB_10_150_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-15
 samples['monoH_ZB_10_50_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-50.root'],
                               'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
 samples['monoH_ZB_10_10_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-10.root'],
-                               'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
-samples['monoH_ZB_10_1_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-1.root'],
                               'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_10_1_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-1.root'],
+                             'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
 
 
 ###########################################

@@ -513,9 +513,9 @@ samples['monoH_ZB_10_150_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-15
 samples['monoH_ZB_10_50_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-50.root'],
                               'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
 samples['monoH_ZB_10_10_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-10.root'],
-                               'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
-samples['monoH_ZB_10_1_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-1.root'],
                               'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_10_1_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-1.root'],
+                             'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
 
 
 ###########################################
@@ -523,7 +523,7 @@ samples['monoH_ZB_10_1_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-1.ro
 ###########################################
 
 samples['Fake']  = {   'name': [ ] ,
-                       'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA,              #   weight/cut 
+                       'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA+'/15.',              #   weight/cut 
                        'weights' : [ ] ,
                        'isData': ['all'],
                        'FilesPerJob' : 2 ,
@@ -542,7 +542,7 @@ for Run in DataRun :
 ###########################################
 
 samples['DATA']  = {   'name': [ ] ,     
-                       'weight' : 'veto_EMTFBug'+'*'+METFilter_DATA+'*'+LepWPCut,
+                       'weight' : 'veto_EMTFBug'+'*'+METFilter_DATA+'*'+LepWPCut+'*(event % 15 == 0)',
                        'weights' : [ ],
                        'isData': ['all'],                            
                        'FilesPerJob' : 2 ,

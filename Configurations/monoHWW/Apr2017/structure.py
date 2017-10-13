@@ -146,7 +146,6 @@ structure['bbH_hww'] = {
 
 # Signals
 ZpMasses={"600","800","1000","1200","1400","1700","2000","2500"}
-#ZpMasses={"800","1200","1400","1700","2000"}
 A0Masses={"300","400","500","600","700","800"}
 
 for mZp in ZpMasses:
@@ -157,153 +156,14 @@ for mZp in ZpMasses:
                 'isData'   : 0    
                 }
             
-structure['monoH_ZB_10000_50'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-    }
-structure['monoH_ZB_10000_150'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-    }
-structure['monoH_ZB_10000_1000'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-    }
-structure['monoH_ZB_10000_500'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-    }
-structure['monoH_ZB_1000_1'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_1000_1000'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_1000_150'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_995_500'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_1995_1000'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_295_150'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_100_1'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_100_10'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_10_1'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_10_10'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_10_1000'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_10_50'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_10_150'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_10_500'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_15_10'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_200_1'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_200_150'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_200_50'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_300_1'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_300_50'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_500_1'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_500_150'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_500_500'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_50_1'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_50_10'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_50_50'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_2000_1'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_20_1'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
-structure['monoH_ZB_95_50'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
+ZBmasses={"10000_1000_","10000_500_","10000_150_","10000_50_","10000_1_","2000_1_","1995_1000_","1000_1000_","1000_150_","1000_1_","995_500_","500_500_","500_150_","500_1_","300_50_","300_1_","295_150_","200_150_","200_50_","200_1_","100_10_","100_1_","95_50_","50_50_","50_10_","50_1_","20_1_","15_10_","10_1000_","10_500_","10_150_","10_50_","10_10_","10_1_"}
 
+for mZB in ZBmasses:
+    structure['monoH_ZB_'+mZB] = {
+        'isSignal' : 1,
+        'isData'   : 0
+        }
 
-# ZbarMasses={"500","1000"}
-# ChiMasses={"1","150","500","1000"}
-
-# for mZb in ZbarMasses :
-#     for Chi in ChiMasses :
-#         if mZb == "500" and Chi == "1000" :
-#             continue
-#         if mZb == "1000" and Chi == "500" :
-#             continue
-#         structure['Zbar_' + mZb + '_' + Chi] = { 
-#             'isSignal' : 1,
-#             'isData'   : 0    
-#             }
 
 
 # data
