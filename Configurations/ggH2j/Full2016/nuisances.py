@@ -614,6 +614,16 @@ nuisances['pdf_qqbar_accept']  = {
                    },
               }
 
+## Shape nuisance due to QCD scale variations for DY
+nuisances['DYQCDscale']  = {
+                'name'  : 'DYQCDscale',
+                'kind'  : 'weight',
+               'type'  : 'shape',
+                'samples'  : {
+                   'DY'      : ['std_vector_LHE_weight[8]/std_vector_LHE_weight[0]', 'std_vector_LHE_weight[4]/std_vector_LHE_weight[0]'],
+                }
+}
+
 
 # Top pT reweighting uncertainty
 nuisances['TopPtRew']  = {
@@ -621,8 +631,7 @@ nuisances['TopPtRew']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples' : {
-                     'top'  : [Top_pTrwUp+"/"+Top_pTrw,
-                               Top_pTrwDo+"/"+Top_pTrw]
+                     'top'  : ["1.","((1./"+Top_pTrw+" - 1)*(dataset==19) + 1)"]
                 }
          }
 
@@ -728,14 +737,14 @@ nuisances['tttwTh']  = {
                 # tW = 15/16
                 
 }
-
+'''
 nuisances['stat']  = {
                 # apply to the following samples: name of samples here must match keys in samples.py
                'samples'  : { 
                  },
                'type'  : 'shape'
               }
-'''
+
                    'ttbar': {
                          'typeStat' : 'bbb',
                          },
