@@ -139,6 +139,10 @@ structure['H_hww'] = {
                   'isData'   : 0    
                   }
 
+structure['bbH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
 
 
 # data
