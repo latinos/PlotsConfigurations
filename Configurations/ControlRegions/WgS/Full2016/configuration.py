@@ -1,7 +1,12 @@
 # example of configuration file
 
 #tag = 'ggHmetXYcor'
-tag = 'WgSt_NoLepCut_LepSF3'
+#tag = 'WgSt_SnglEle01'
+#tag = 'WgSt_Test'
+tag = 'WgSt_ZllWl'
+#tag = 'WgSt_ZllWl_histFr01'
+#tag = 'WgSt_SnglMu01'
+#tag = 'WgSt_NoLepCut_LepSF3'
 #tag = 'WgSt'
 #tag = 'WZsamples'
 #tag = 'DYmetXYcor'
@@ -10,23 +15,36 @@ tag = 'WgSt_NoLepCut_LepSF3'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_NoLepCut_LepSF3'
+#outputDir = 'rootFile_SnglEle01'
+#outputDir = 'rootFile_Test'
+#outputDir = 'rootFile_ZllWl_histFr01'
+outputDir = 'rootFile_ZllWl'
+#outputDir = 'rootFile_SnglMu01'
+#outputDir = 'rootFile_NoLepCut_LepSF3'
 #outputDir = 'rootFile'
 
 
 # file with list of variables
 #variablesFile = 'variables_WZsampleStudy.py'
 #variablesFile = 'variablesDY.py'
-variablesFile = 'variables.py'
+#variablesFile = 'variables.py'
+variablesFile = 'variables_ZllWl.py'
+#variablesFile = 'variables_ZllWl_histFr01.py'
 
 # file with list of cuts
 #cutsFile = 'cuts_WZsampleStudy.py' 
 #cutsFile = 'cutsDY.py' 
-cutsFile = 'cuts.py' 
+cutsFile = 'cuts_ZllWl.py' 
+#cutsFile = 'cuts_mmm.py' 
+#cutsFile = 'cuts_emm.py' 
+#cutsFile = 'cuts.py' 
 
 # file with list of samples
 #samplesFile = 'samples_fake.py' 
 #samplesFile = 'samples_WZsampleStudy.py' 
+#samplesFile = 'samples_mmm.py' 
+#samplesFile = 'samples_emm.py' 
+#samplesFile = 'samples_test.py' 
 samplesFile = 'samples.py' 
 #samplesFile = 'samples_test.py' 
 
@@ -42,7 +60,12 @@ lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotWgst_LepCut2l_LepSF2l'
+#outputDirPlots = 'plotWgst_SnglEle01'
+#outputDirPlots = 'plotWgst_Test'
+outputDirPlots = 'plotWgst_ZllWl_WZ01'
+#outputDirPlots = 'plotWgst_ZllWl'
+#outputDirPlots = 'plotWgst_SnglMu01'
+#outputDirPlots = 'plotWgst_LepCut2l_LepSF2l'
 #outputDirPlots = 'plotWgst_NoLepCut_LepSF3l'
 #outputDirPlots = 'plotWgSt'
 #outputDirPlots = 'plotWZsamples'

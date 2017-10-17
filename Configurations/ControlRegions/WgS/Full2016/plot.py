@@ -55,24 +55,31 @@ groupPlot['VVV']  = {
 #              }
 
 groupPlot['WZgS_L']  = {  
-                  'nameHR' : "WZTo3LNu_mll0.1",
+                  'nameHR' : "WZmll01_L",
                   'isSignal' : 0,
-                  'color'    : 890,   # kViolet + 1  
+                  'color'    : 600,   # kViolet + 1  
                   'samples'  : ['WZgS_L']
               }
 
 groupPlot['WZgS_H']  = {  
-                  'nameHR' : "WZTo3LNu_mll4",
+                  'nameHR' : "WZmll01_H",
                   'isSignal' : 0,
                   'color'    : 887,   # kViolet + 1  
                   'samples'  : ['WZgS_H']
               }
 
+#groupPlot['WZ']  = {  
+#                  'nameHR' : "WZmll40",
+#                  'isSignal' : 0,
+#                  'color'    : 619,   # kViolet + 1  
+#                  'samples'  : ['WZ']
+#              }
+#
 groupPlot['VZ']  = {  
                   'nameHR' : "VZ",
                   'isSignal' : 0,
                   'color'    : 617,   # kViolet + 1  
-                  'samples'  : ['VZ', 'WZ', 'ZZ']
+                  'samples'  : ['VZ', 'ZZ']
               }
 
 groupPlot['Vg']  = {  
@@ -252,6 +259,13 @@ plot['WZgS_L']  = {
                   }
 
 plot['WZgS_H']  = { 
+                  'color': 887, # kAzure -2  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+plot['WZ']  = { 
                   'color': 887, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
