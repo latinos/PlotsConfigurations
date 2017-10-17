@@ -11,14 +11,14 @@ from LatinoAnalysis.Tools.commonTools import *
 ################# SKIMS ########################
 ################################################
 
-skim=''
+#skim=''
 #skim='__wwSel'
 #skim='__topSel'
 #skim='__topSel'
 #skim='__vh3lSel' 
 #skim='__sfSel' 
 #skim='__vbsSel'
-#skim='__ssSel'
+skim='__ssSel'
 
 if skim =='__vh3lSel' :  skimFake='__vh3lFakeSel'
 else:                    skimFake=skim
@@ -89,12 +89,12 @@ bVeto='bveto_'+bAlgo+bWP
 
 #... Electron:
 
-#eleWP='cut_WP_Tight80X'
+eleWP='cut_WP_Tight80X'
 #eleWP='cut_WP_Tight80X_SS'
 #eleWP='mva_80p_Iso2015'
 #eleWP='mva_80p_Iso2016'
 #eleWP='mva_90p_Iso2015'
-eleWP='mva_90p_Iso2016'
+#eleWP='mva_90p_Iso2016'
 
 #... Muon:
 
@@ -158,7 +158,7 @@ useDYtt = True
 mixDYttandHT = False  # be carefull DY HT is LO (HT better stat for HT>450 GEV)
 
 ### These weights were evaluated on ICHEP16 MC -> Update ?
-ptllDYW_NLO = '(0.876979+gen_ptll*(4.11598e-03)-(2.35520e-05)*gen_ptll*gen_ptll)*(1.10211 * (0.958512 - 0.131835*TMath::Erf((gen_ptll-14.1972)/10.1525)))*(gen_ptll<140)+0.891188*(gen_ptll>=140)'
+ptllDYW_NLO = '1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582))'
 ptllDYW_LO  = '(8.61313e-01+gen_ptll*4.46807e-03-1.52324e-05*gen_ptll*gen_ptll)*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-11.)/5.51582)))*(gen_ptll<140)+1.141996*(gen_ptll>=140)'
 
 samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-10to50')
@@ -186,14 +186,24 @@ if useDYHT :
                              + getSampleFiles(directory,'DYJetsToLL_M-50_HT-2500toInf') 
 
 if useDYtt :
-  samples['DY']['name'] +=   getSampleFiles(directory,'DYJetsToTT_MuEle_M-50') \
+  # if skim=='__wwSel' do not include DYJetsToLL_M-50 in the list of samples
+  if skim=='__wwSel':
+    samples['DY']['name'] =   getSampleFiles(directory,'DYJetsToTT_MuEle_M-50') \
+                            + getSampleFiles(directory,'DYJetsToTT_MuEle_M-50_ext1') \
+                            + getSampleFiles(directory,'DYJetsToLL_M-10to50')
+  else:
+    samples['DY']['name'] +=   getSampleFiles(directory,'DYJetsToTT_MuEle_M-50') \
                              + getSampleFiles(directory,'DYJetsToTT_MuEle_M-50_ext1')
 
 # ... Fix Weights (always after all samples are included !)
 
 # pt_ll weight
-addSampleWeight(samples,'DY','DYJetsToLL_M-10to50',ptllDYW_NLO)
-addSampleWeight(samples,'DY','DYJetsToLL_M-50'     ,ptllDYW_NLO)
+# in this case DYJetsToLL_M50 is not included in the list of samples
+if (useDYtt and skim=='__wwSel'):
+  addSampleWeight(samples,'DY','DYJetsToLL_M-10to50',ptllDYW_NLO)
+else:
+  addSampleWeight(samples,'DY','DYJetsToLL_M-10to50',ptllDYW_NLO)
+  addSampleWeight(samples,'DY','DYJetsToLL_M50'     ,ptllDYW_NLO)
 
 if useDYHT :
   # Remove high HT from inclusive sample
@@ -227,8 +237,10 @@ if useDYHT :
 
 if useDYtt :
   # Remove OF from Inclusive sample
-  cutSF = '(abs(std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]) == 11*11)||(abs(std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]) == 13*13)'
-  addSampleWeight(samples,'DY','DYJetsToLL_M-50',cutSF)
+  # No need to do it if skim=='__wwSel'
+  if not skim=='__wwSel':
+    cutSF = '(abs(std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]) == 11*11)||(abs(std_vector_lepton_flavour[0]*std_vector_lepton_flavour[1]) == 13*13)'
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50',cutSF)
   # pt_ll weight
   addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50'     ,ptllDYW_NLO)
   addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50_ext1',ptllDYW_NLO)
@@ -270,7 +282,7 @@ samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu')
                                   + getSampleFiles(directory,'ST_s-channel')   
                              ,
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-                      'FilesPerJob' : 1,
+                      'FilesPerJob' : 1 ,
                   }
                   
 
@@ -324,7 +336,7 @@ samples['VZ']  = {    'name':   getSampleFiles(directory,'WZTo3LNu')
                               # + getSampleFiles(directory,'tZq_ll')
                               ,   
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.11' ,  
-                      'FilesPerJob' : 2 ,
+                      'FilesPerJob' : 3 ,
                   }
 
 ### 1.11 normalisation was measured in 3-lepton
@@ -345,7 +357,7 @@ samples['VVV'] = {    'name':   getSampleFiles(directory,'ZZZ')
 #############   SIGNALS  ##################
 ###########################################
 
-'''
+
 #### ggH -> WW
 
 samples['ggH_hww']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
@@ -396,7 +408,104 @@ samples['H_htt']    = {   'name' :   getSampleFiles(directory,'GluGluHToTauTau_M
                                    ,  
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                       }
-'''
+
+
+#### mono-Higgs Signal 2HDM
+
+ZpMasses={"600","800","1000","1200","1400","1700"}#,"2000","2500"}
+A0Masses={"300","400","500","600","700","800"}
+
+for mZp in ZpMasses:
+  for mA0 in A0Masses :
+    if ((mZp == "600" and (mA0 == "300" or mA0 == "400")) or ((mZp == "800" and (mA0 == "300" or mA0 == "400" or mA0 == "500" or mA0 == "600"))) or (mZp != "600" and mZp != "800")) :
+      samples['monoH_' + mZp + '_' + mA0] = { 'name': ['latino_monoH_2HDM_MZp-' + mZp + '_MA0-' + mA0 + '.root'],
+                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                                              }
+
+#### mono-Higgs Signal Z'B
+samples['monoH_ZB_10000_1000_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10000_MChi-1000.root'],
+                                             'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_10000_500_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10000_MChi-500.root'],
+                                  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_10000_150_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10000_MChi-150.root'],
+                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_10000_50_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10000_MChi-50.root'],
+                                 'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_10000_1_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10000_MChi-1.root'],
+                                 'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+#
+samples['monoH_ZB_2000_1_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-2000_MChi-1.root'],
+                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+#
+samples['monoH_ZB_1995_1000_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-1995_MChi-1000.root'],
+                                  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+#
+samples['monoH_ZB_1000_1000_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-1000_MChi-1000.root'],
+                                  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_1000_150_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-1000_MChi-150.root'],
+                                 'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_1000_1_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-1000_MChi-1.root'],
+                               'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+#
+samples['monoH_ZB_995_500_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-995_MChi-500.root'],
+                                'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+#
+samples['monoH_ZB_500_500_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-500_MChi-500.root'],
+                                'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_500_150_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-500_MChi-150.root'],
+                                'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_500_1_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-500_MChi-1.root'],
+                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+#
+samples['monoH_ZB_300_50_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-300_MChi-50.root'],
+                               'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_300_1_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-300_MChi-1.root'],
+                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+#
+samples['monoH_ZB_295_150_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-295_MChi-150.root'],
+                                'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+#
+samples['monoH_ZB_200_150_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-200_MChi-150.root'],
+                                'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_200_50_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-200_MChi-50.root'],
+                               'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_200_1_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-200_MChi-1.root'],
+                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+#
+samples['monoH_ZB_100_10_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-100_MChi-10.root'],
+                               'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_100_1_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-100_MChi-1.root'],
+                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+#
+samples['monoH_ZB_95_50_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-95_MChi-50.root'],
+                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+#
+samples['monoH_ZB_50_50_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-50_MChi-50.root'],
+                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_50_10_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-50_MChi-10.root'],
+                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_50_1_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-50_MChi-1.root'],
+                             'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+#
+samples['monoH_ZB_20_1_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-20_MChi-1.root'],
+                             'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+#
+samples['monoH_ZB_15_10_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-15_MChi-10.root'],
+                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+#
+samples['monoH_ZB_10_1000_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-1000.root'],
+                                'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_10_500_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-500.root'],
+                               'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_10_150_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-150.root'],
+                               'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_10_50_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-50.root'],
+                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_10_10_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-10.root'],
+                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['monoH_ZB_10_1_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-1.root'],
+                             'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+
 
 ###########################################
 ################## FAKE ###################

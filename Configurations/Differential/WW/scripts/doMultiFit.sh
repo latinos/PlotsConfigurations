@@ -179,6 +179,30 @@ hadd higgsCombineLH6Dpt1MClxbatchOnlyr1r2.root   lxbatch/higgsCombineLH6Dpt1MClx
 
 
 
+r99t   higgsCombineLH6Dpt1MClxbatchOnlyr1r2.root ../../ggH/scripts/Draw2DImproved.cxx\(\"r2\",\"r1\",\"r2\",\"r1\",2,\"1\"\)
+
+
+r99t higgsCombineLH6Dpt1MClxbatchOnlyr1r2.root
+
+r99t higgsCombineLH6Dpt1MClxbatchOnlyr1r2.root   ../scripts/plotDistribution.cxx
+
+
+1 sigma -> 2*deltaNLL = 2.41
+limit->Draw("r1 >> h1(300,0.8,1.2)", "2*deltaNLL < 2.41");
+h1->Draw();
+
+limit->Draw(">>elist","2*deltaNLL < 2.41")
+TEventList* tel = (TEventList*) gDirectory->Get("elist")
+limit->SetEventList(tel)
+limit->GetMinimum("r1")
+limit->GetMaximum("r1")
+
+limit->GetMinimum("r2")
+limit->GetMaximum("r2")
+
+
+
+
 
 
       
