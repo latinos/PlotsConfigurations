@@ -16,11 +16,6 @@ variables['mll']  = {   'name': 'mll',            #   variable name
                          'fold' : 1
                        }
 
-variables['mth']  = {   'name': 'mth',            #   variable name    
-                        'range' : (100,0,200),    #   variable range
-                        'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
-                        'fold' : 3
-                        }
 variables['ptll']  = {   'name': 'ptll',            #   variable name    
                         'range' : (20,0,200),    #   variable range
                         'xaxis' : 'pt_{ll} [GeV]',  #   x axis name
@@ -43,41 +38,6 @@ variables['drll']  = {   'name': 'drll',            #   variable name
 #
 
 
-variables['drllOneThree']  = {   'name': 'drllOneThree',            #   variable name    
-                        'range' : (10,0,1),    #   variable range
-                        'xaxis' : '#Delta R_{ll} 2nd3rd',  #   x axis name
-                         'fold' : 0
-                        }
-variables['drllTwoThree']  = {   'name': 'drllTwoThree',            #   variable name    
-                        'range' : (10,0,1),    #   variable range
-                        'xaxis' : '#Delta R_{ll} 2nd3rd',  #   x axis name
-                         'fold' : 0
-                        }
-
-#
- 
-variables['mllThird']  = {   'name': 'mllThird',            #   variable name    
-                        'range' : (80,0,120),    #   variable range
-                        'xaxis' : 'm_{ll} 3rd [GeV]',  #   x axis name
-                         'fold' : 0
-                        }
-
-
-variables['mllOneThree']  = {   'name': 'mllOneThree',            #   variable name    
-                        'range' : (80,0,120),    #   variable range
-                        'xaxis' : 'm_{ll} 1st3rd [GeV]',  #   x axis name
-                         'fold' : 0
-                        }
-
-variables['mllTwoThree']  = {   'name': 'mllTwoThree',            #   variable name    
-                        'range' : (80,0,120),    #   variable range
-                        'xaxis' : 'm_{ll} 2nd3rd [GeV]',  #   x axis name
-                         'fold' : 0
-                        }
-
-#
-
-
 variables['mllWgSt']  = {   'name': 'mllWgSt',
                         'range' : (120,0,120),    #   variable range
                         'xaxis' : 'm_{ll} from Z/#gamma^{*} [GeV]',  #   x axis name
@@ -96,23 +56,18 @@ variables['mllWgStLLowM']  = {   'name': 'mllWgSt',
                         'xaxis' : 'm_{ll} from #gamma^{*} [GeV]',  #   x axis name
                          'fold' : 0
                         }
-##
-##
-##
-variables['mtw1']  = {   'name': 'mtw1',      
-                        'range' : (50,0,100),  
-                        'xaxis' : 'mtw1 [GeV]',   
-                         'fold' : 3
+variables['mllmin3l']  = {   'name': 'mllmin3l',            #   variable name    
+                        'range' : (120, 0,120),    #   variable range
+                        'xaxis' : 'm_{ll} [GeV]',  #   x axis name
+                         'fold' : 0
                         }
 
-##                        
-variables['njet']  = {   'name': 'njet',      
-                        'range' : (4,0,4),  
-                        'xaxis' : 'njet',   
-                         'fold' : 3
+variables['mllmin3lLLowM'] = {   'name': 'mllmin3l',            #   variable name
+                           'range' : (100,0,5),    #   variable range
+                           'xaxis' : 'm_{ll} [GeV]',  #   x axis name
+                           'fold' : 0
                         }
-
-##                        
+##
 ##
 ##
 ##

@@ -47,30 +47,41 @@ groupPlot['VVV']  = {
               }
 
 
+#groupPlot['VZ']  = {  
+#                  'nameHR' : "VZ/#gamma*/#gamma",
+#                  'isSignal' : 0,
+#                  'color'    : 617,   # kViolet + 1  
+#                  'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ']
+#              }
+
 groupPlot['VZ']  = {  
-                  'nameHR' : "VZ/#gamma*/#gamma",
+                  'nameHR' : "VZ",
                   'isSignal' : 0,
                   'color'    : 617,   # kViolet + 1  
-                  'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ']
+                  'samples'  : ['VZ', 'WZ', 'ZZ']
+              }
+
+groupPlot['Vg']  = {  
+                  'nameHR' : "V#gamma",
+                  'isSignal' : 0,
+                  'color'    : 810,   # kOrange + 10
+                  'samples'  : ['Vg', 'Wg']
+              }
+
+groupPlot['VgS']  = {
+                  'nameHR' : "V#gamma*",
+                  'isSignal' : 0,
+                  'color'    : 409,   # kGreen - 9
+                  'samples'  : ['VgS']
               }
 
 
 
-groupPlot['HiggsOther']  = {  
-                  'nameHR' : 'ggH+VBF',
-                  'isSignal' : 1,
-                  'color': 635, # kRed+3 
-                  'samples'  : ['H_htt', 'H_hww', 'qqH_hww', 'ggH_hww']
-              }
-
-
-
-
-groupPlot['HiggsVH']  = {  
-                  'nameHR' : 'VH',
+groupPlot['Higgs']  = {  
+                  'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww']
+                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww', 'bbH_hww']
               }
 
 
@@ -86,19 +97,19 @@ plot['DY']  = {
                   'isSignal' : 0,
                   'isData'   : 0, 
                   'scale'    : 1.0,
-                  'cuts'  : {
-                       'hww2l2v_13TeV_of0j'      : 0.95 ,
-                       'hww2l2v_13TeV_top_of0j'  : 0.95 , 
-                       'hww2l2v_13TeV_dytt_of0j' : 0.95 ,
-                       'hww2l2v_13TeV_em_0j'     : 0.95 , 
-                       'hww2l2v_13TeV_me_0j'     : 0.95 , 
-                       #
-                       'hww2l2v_13TeV_of1j'      : 1.08 ,
-                       'hww2l2v_13TeV_top_of1j'  : 1.08 , 
-                       'hww2l2v_13TeV_dytt_of1j' : 1.08 ,
-                       'hww2l2v_13TeV_em_1j'     : 1.08 , 
-                       'hww2l2v_13TeV_me_1j'     : 1.08 , 
-                        },
+                  #'cuts'  : {
+                       #'hww2l2v_13TeV_of0j'      : 0.95 ,
+                       #'hww2l2v_13TeV_top_of0j'  : 0.95 , 
+                       #'hww2l2v_13TeV_dytt_of0j' : 0.95 ,
+                       #'hww2l2v_13TeV_em_0j'     : 0.95 , 
+                       #'hww2l2v_13TeV_me_0j'     : 0.95 , 
+                       ##
+                       #'hww2l2v_13TeV_of1j'      : 1.08 ,
+                       #'hww2l2v_13TeV_top_of1j'  : 1.08 , 
+                       #'hww2l2v_13TeV_dytt_of1j' : 1.08 ,
+                       #'hww2l2v_13TeV_em_1j'     : 1.08 , 
+                       #'hww2l2v_13TeV_me_1j'     : 1.08 , 
+                        #},
 
               }
 
@@ -149,24 +160,24 @@ plot['singletop'] = {
                   }
 
 plot['top'] = {   
-                  'nameHR' : 'tW and t#bart',
+                  'nameHR' : 'tW and t#bar{t}',
                   'color': 400,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
                   'scale'    : 1.0,
-                  'cuts'  : {
-                       'hww2l2v_13TeV_of0j'      : 0.94 ,
-                       'hww2l2v_13TeV_top_of0j'  : 0.94 , 
-                       'hww2l2v_13TeV_dytt_of0j' : 0.94 ,
-                       'hww2l2v_13TeV_em_0j'     : 0.94 , 
-                       'hww2l2v_13TeV_me_0j'     : 0.94 , 
-                       #
-                       'hww2l2v_13TeV_of1j'      : 0.86 ,
-                       'hww2l2v_13TeV_top_of1j'  : 0.86 , 
-                       'hww2l2v_13TeV_dytt_of1j' : 0.86 ,
-                       'hww2l2v_13TeV_em_1j'     : 0.86 , 
-                       'hww2l2v_13TeV_me_1j'     : 0.86 , 
-                        },
+                  #'cuts'  : {
+                       #'hww2l2v_13TeV_of0j'      : 0.94 ,
+                       #'hww2l2v_13TeV_top_of0j'  : 0.94 , 
+                       #'hww2l2v_13TeV_dytt_of0j' : 0.94 ,
+                       #'hww2l2v_13TeV_em_0j'     : 0.94 , 
+                       #'hww2l2v_13TeV_me_0j'     : 0.94 , 
+                       ##
+                       #'hww2l2v_13TeV_of1j'      : 0.86 ,
+                       #'hww2l2v_13TeV_top_of1j'  : 0.86 , 
+                       #'hww2l2v_13TeV_dytt_of1j' : 0.86 ,
+                       #'hww2l2v_13TeV_em_1j'     : 0.86 , 
+                       #'hww2l2v_13TeV_me_1j'     : 0.86 , 
+                        #},
                   }
 
 
@@ -312,6 +323,15 @@ plot['ggH_hww'] = {
                   'scale'    : 1    #
                   }
 
+plot['bbH_hww'] = {
+                  'nameHR' : 'bbH',
+                  'color': 632+5, # kRed+5 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
+
 # data
 
 plot['DATA']  = { 
@@ -319,7 +339,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  #'isBlind'  : 1
+                  'isBlind'  : 1
               }
 
 
@@ -329,9 +349,12 @@ plot['DATA']  = {
 
 # legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
 #legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
-#legend['lumi'] = 'L = 4.3/fb' # 2.318 fb-1
+#legend['lumi'] = 'L = 0.8/fb' # 2.318 fb-1
+#legend['lumi'] = 'L = 2.6/fb'
+#legend['lumi'] = 'L = 4.3/fb'
 #legend['lumi'] = 'L = 6.3/fb'
-legend['lumi'] = 'L = 12.9/fb'
+#legend['lumi'] = 'L = 12.9/fb'
+legend['lumi'] = 'L = 35.9/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

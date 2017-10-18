@@ -436,10 +436,6 @@ nuisances['QCDscale_CRSR_accept_dytt']  = {
                    'DY' : '1.02',
                    },
                'cuts'  : [
-                 'hww2l2v_13TeV_dytt_of0j',
-                 'hww2l2v_13TeV_dytt_of1j',
-                 'hww2l2v_13TeV_dytt_of2j',
-                 'hww2l2v_13TeV_dytt_of2j_vbf',
                  'hww2l2v_13TeV_dytt_of2j_vh2j'
                 ]               
               }
@@ -451,10 +447,6 @@ nuisances['QCDscale_CRSR_accept_top']  = {
                    'top' : '1.01',
                    },
                'cuts'  : [
-                 'hww2l2v_13TeV_top_of0j',
-                 'hww2l2v_13TeV_top_of1j',
-                 'hww2l2v_13TeV_top_of2j',
-                 'hww2l2v_13TeV_top_of2j_vbf',
                  'hww2l2v_13TeV_top_of2j_vh2j'
                 ]               
               }
@@ -614,18 +606,23 @@ nuisances['pdf_qqbar_accept']  = {
                    },
               }
 
+## Shape nuisance due to QCD scale variations for DY
+nuisances['DYQCDscale']  = {
+                'name'  : 'DYQCDscale',
+                'kind'  : 'weight',
+               'type'  : 'shape',
+                'samples'  : {
+                   'DY'      : ['std_vector_LHE_weight[8]/std_vector_LHE_weight[0]', 'std_vector_LHE_weight[4]/std_vector_LHE_weight[0]'],
+                }
+}
 
 # Top pT reweighting uncertainty
-Top_pTrwUp = '1.'
-Top_pTrwDo = '(1./(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topLHEpt) * TMath::Exp(0.0615-0.0005*antitopLHEpt) ) ))'
-
 nuisances['TopPtRew']  = {
                 'name'  : 'TopPtRew',   # Theory uncertainty
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples' : {
-                     'top'  : [Top_pTrwUp+"/"+Top_pTrw,
-                               Top_pTrwDo+"/"+Top_pTrw]
+                     'top'  : ["1.","((1./"+Top_pTrw+" - 1)*(dataset==19) + 1)"]
                 }
          }
 
@@ -648,9 +645,9 @@ nuisances['WWresum2j']  = {
                 'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
                 },
                'cuts'  : [
-                 'hww2l2v_13TeV_of2j',
-                 'hww2l2v_13TeV_top_of2j',
-                 'hww2l2v_13TeV_dytt_of2j',
+                 'hww2l2v_13TeV_of2j_vh2j',
+                 'hww2l2v_13TeV_top_of2j_vh2j',
+                 'hww2l2v_13TeV_dytt_of2j_vh2j',
                 ]
                 }
 
@@ -662,9 +659,9 @@ nuisances['WWqscale2j']  = {
                 'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
                 },
                 'cuts'  : [
-                 'hww2l2v_13TeV_of2j',
-                 'hww2l2v_13TeV_top_of2j',
-                 'hww2l2v_13TeV_dytt_of2j',
+                 'hww2l2v_13TeV_of2j_vh2j',
+                 'hww2l2v_13TeV_top_of2j_vh2j',
+                 'hww2l2v_13TeV_dytt_of2j_vh2j',
                 ]
                 }
 
@@ -678,43 +675,43 @@ nuisances['WgStarScale']  = {
                 }
  
 
-nuisances['DYttnorm2j']  = {
-               'name'  : 'DYttnorm2j', 
+nuisances['DYttnormvh2j']  = {
+               'name'  : 'DYttnormvh2j', 
                'samples'  : {
                    'DY' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                 'hww2l2v_13TeV_of2j',
-                 'hww2l2v_13TeV_top_of2j',
-                 'hww2l2v_13TeV_dytt_of2j',
+                 'hww2l2v_13TeV_of2j_vh2j',
+                 'hww2l2v_13TeV_top_of2j_vh2j',
+                 'hww2l2v_13TeV_dytt_of2j_vh2j',
                 ]
               }
 
 
-nuisances['WWnorm2j']  = {
-               'name'  : 'WWnorm2j', 
+nuisances['WWnormvh2j']  = {
+               'name'  : 'WWnormvh2j', 
                'samples'  : {
                    'WW' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                 'hww2l2v_13TeV_of2j',
-                 'hww2l2v_13TeV_top_of2j',
-                 'hww2l2v_13TeV_dytt_of2j',              
+                 'hww2l2v_13TeV_of2j_vh2j',
+                 'hww2l2v_13TeV_top_of2j_vh2j',
+                 'hww2l2v_13TeV_dytt_of2j_vh2j',              
                 ]
               }
 
-nuisances['Topnorm2j']  = {
-               'name'  : 'Topnorm2j', 
+nuisances['Topnormvh2j']  = {
+               'name'  : 'Topnormvh2j', 
                'samples'  : {
                    'top' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                 'hww2l2v_13TeV_of2j',
-                 'hww2l2v_13TeV_top_of2j',
-                 'hww2l2v_13TeV_dytt_of2j',              
+                 'hww2l2v_13TeV_of2j_vh2j',
+                 'hww2l2v_13TeV_top_of2j_vh2j',
+                 'hww2l2v_13TeV_dytt_of2j_vh2j',              
                 ]
               }
 
@@ -732,13 +729,22 @@ nuisances['tttwTh']  = {
                 
 }
 
+### FIXME: This must be implemented in mkDatacards.py using  a flag or something.
+### Use the following if you want to apply the new combine MC stat nuisances.
+### In this case remember to add the following line in the datacard
+### * autoMCStats 10 1
+
+#nuisances['stat']  = {
+#                # apply to the following samples: name of samples here must match keys in samples.py
+#               'samples'  : { },
+#               'type'  : 'shape'
+#              }
+
+'''
+### Use the following if you want to apply the MC stat nuisances accoriding to the standard approach
 nuisances['stat']  = {
                 # apply to the following samples: name of samples here must match keys in samples.py
-               'samples'  : { 
-                 },
-               'type'  : 'shape'
-              }
-'''
+               'samples'  : {
                    'ttbar': {
                          'typeStat' : 'bbb',
                          },
@@ -746,24 +752,24 @@ nuisances['stat']  = {
                    'singletop': {
                          'typeStat' : 'bbb',
                          },
-                    
+
                    'top': {
                          'typeStat' : 'bbb',
                          },
-                    
+
                    'DY': {
                          'typeStat' : 'bbb',
                          'keepNormalization' : '1'  # default = 0 -> 0=don't keep normalization
                          },
-                    
+
                    'ggWW': {
                          'typeStat' : 'bbb',
                          },
-                    
+
                    'ggWW_Int': {
                          'typeStat' : 'bbb',
                          },
-                    
+
                    'WW': {
                          'typeStat' : 'bbb',
                          },
@@ -827,19 +833,18 @@ nuisances['stat']  = {
                    'bbH_hww': {
                          'typeStat' : 'bbb',
                          },
-                   
+
                    'Fake': {
                          'typeStat' : 'bbb',
                          },
-                   
-                   'Vg': {  
+
+                   'Vg': {
                          'typeStat' : 'bbb',
                          },
 
-                   'VgS':{  
+                   'VgS':{
                          'typeStat' : 'bbb',
                          },
-                            
                  },
                'type'  : 'shape'
               }

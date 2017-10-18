@@ -66,7 +66,6 @@ outputDir='/pnfs/knu.ac.kr/data/cms/store/user/salee/Full2016_Apr17/'
 #            --batchSplit=AsMuchAsPossible \
 #	    --batchQueue=cms
 #mkShapes.py --pycfg=configuration.py --doBatch=True --batchSplit=Samples --batchQueue=cms # using directory in sample.py for KNU case
-#mkShapes.py --pycfg=configuration.py --doBatch=True --batchSplit=AsMuchAsPossible --batchQueue=short # using directory in sample.py for KNU case
 #mkShapes.py --pycfg=configuration.py --doBatch=True --batchSplit=AsMuchAsPossible --batchQueue=cms # using directory in sample.py for KNU case
 #mkShapes.py --pycfg=configuration.py --doHadd=True --batchSplit=AsMuchAsPossible # using directory in sample.py for KNU case
 
@@ -86,19 +85,11 @@ outputDir='/pnfs/knu.ac.kr/data/cms/store/user/salee/Full2016_Apr17/'
 #mkdir plotWZsamples
 #mkdir plotDYCorrMetXYshift
 #mkdir plotGGhCorrMetXYshift
-mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile_ZllWl/plots_WgSt_ZllWl.root
-#mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile_SnglMu/plots_WgSt_SnglMu.root
-#mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile_SnglMu01/plots_WgSt_SnglMu01.root
-#mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile_SnglEle01/plots_WgSt_SnglEle01.root
-#mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile_siglMu/plots_WgSt_siglMu.root
-#mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile_siglEl/plots_WgSt_siglEl.root
-#mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile_LepCut2l_LepSF2l/plots_WgSt.root
-#mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile_NoLepCut_LepSF3l/plots_WgSt_NoLepCut_LepSF3l.root
-#mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile_GenWgStM4/plots_WgSt.root 
-#mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile_noWPscale_mllWgStRange01/plots_WgSt.root 
-#mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile/plots_WZsamples.root --showIntegralLegend=1
-#mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile/plots_DYmetXYcor.root --showIntegralLegend=1
-#mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile/plots_ggHmetXYcor.root --showIntegralLegend=1
+#mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile_l2tightWZonly/plots_l2tightWZonly.root
+mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile_WZ_WZCut_Nlep2_LepCut3/plots_WZ_WZCut_Nlep2_LepCut3.root
+#mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile_WZ_WZCut_3tight/plots_WZ_WZCut_3tight.root
+#mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile_WZ_WZCut/plots_WZ_WZCut.root
+#mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile_WZ_ggHCut/plots_WZ_ggHCut.root
 #tar cvf plot_WZTo3LNu.tar plot_comp_WZold_min01
 #tar cvf plotWgsKinematics.tar plotWgsKinematics
 #scp plot_WZTo3LNu.tar lxplus.cern.ch:www/WZ/
