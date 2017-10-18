@@ -58,7 +58,8 @@ Nlep='3'
 ################################################
 
 XSWeight      = 'XSWeight'
-SFweight      = 'SFweight'+Nlep+'l'
+SFweight      = 'puW*bPogSF_CMVAL*veto_EMTFBug*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_recoW[2]'
+#SFweight      = 'SFweight'+Nlep+'l'
 GenLepMatch   = 'GenLepMatch'+Nlep+'l'
 
 ################################################
@@ -87,9 +88,9 @@ elif bAlgo == 'DeepCSVB' :
  bSF='bPogSF_deepCSV'+bWP
  bVeto='bveto_deepCSV'+bWP
 
-SFweight += '*'+bSF
+#SFweight += '*'+bSF
 # Fix for 2-leptons for which this was kept in global formula !
-if Nlep == '2' : SFweight += '/bPogSF_CMVAL'
+#if Nlep == '2' : SFweight += '/bPogSF_CMVAL'
 
 
 ################################################
@@ -118,7 +119,7 @@ LepWPCut        = '1'
 LepWPweight     = 'LepSF'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
 #LepWPweight     = '1'
 
-SFweight += '*'+LepWPweight+'*'+LepWPCut
+#SFweight += '*'+LepWPweight+'*'+LepWPCut
 
 #... And the fakeW
 
@@ -332,6 +333,12 @@ samples['Vg']  =  {     'name'   :   getSampleFiles(directoryMcWgSt,'Wg_MADGRAPH
 
 samples['WZgS_L']  = {    'name':  getSampleFiles(directoryMcWgSt,'WZTo3LNu_mllmin01_ext1', True) ,
                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '* (Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4)' ,  
+                      'FilesPerJob' : 1 ,
+                  }
+
+samples['WZgS_H']  = {    'name':  getSampleFiles(directoryMcWgSt,'WZTo3LNu_mllmin01_ext1', True) ,
+                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '* (Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4)' ,  
+                      'FilesPerJob' : 1 ,
                   }
 
 ## 
@@ -345,7 +352,7 @@ samples['WZgS_L']  = {    'name':  getSampleFiles(directoryMcWgSt,'WZTo3LNu_mllm
 
 ######### VZ #########
 
-samples['WZgS_H']  = {    'name':   getSampleFiles(directoryMcWgSt,'WZTo3LNu', True)
+samples['WZ']  = {    'name':   getSampleFiles(directoryMcWgSt,'WZTo3LNu', True)
                               # Should we include this as well here:
                               # + getSampleFiles(directory,'tZq_ll')
                               ,   
