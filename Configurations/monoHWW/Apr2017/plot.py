@@ -500,7 +500,7 @@ for mZp in ZpMasses :
                 plot['monoH_' + mZp + '_' + mA0]  = {  
                     'nameHR' : '',
                     'color': 2, # kOrange + i
-                    'isSignal' : 0,
+                    'isSignal' : 2,
                     'isData'   : 0,
                     'scale'    : 0   #
                     }
