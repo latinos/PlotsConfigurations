@@ -17,24 +17,24 @@ if len(sys.argv) < 6 :
     sys.exit()
 
 channel = sys.argv[1]
-print channel
+print "Channel: " + channel
 
 variable = sys.argv[2]
-print variable
+print "Variable: " + variable
 
 cut = sys.argv[3]
-print cut
+print "Cut: " + cut
 
 mZp = sys.argv[4]
-print mZp
+print "Mass Point/Model: " + mZp
 
 mA0 = sys.argv[5]
-print mA0
+print "Mass Point: " + mA0
 
 doPulls="False"
 if len(sys.argv) > 6 :
     doPulls = sys.argv[6]
-print doPulls
+print "Do pulls: " + doPulls
 
 # # Source Combine
 # print "+++++ Source Combine +++++"
