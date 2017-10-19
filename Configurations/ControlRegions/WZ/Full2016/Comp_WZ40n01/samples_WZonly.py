@@ -40,7 +40,10 @@ elif  'cern' in SITE :
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/'
 elif 'knu' in SITE :
   treeBaseDir = '/pnfs/knu.ac.kr/data/cms/store/user/salee/Full2016_Apr17/'
-  copiedTreeBaseDir = '/pnfs/knu.ac.kr/data/cms/store/user/spak/LatinoTree/Full2016_Apr17/'
+  copiedTreeBaseDir = '/xrootd/store/user/spak/LatinoTree/Full2016_Apr17/'
+elif 'sdfarm' in SITE :
+  treeBaseDir = '/pnfs/knu.ac.kr/data/cms/store/user/salee/Full2016_Apr17/'
+  copiedTreeBaseDir = '/xrootd/store/user/spak/LatinoTree/Full2016_Apr17/'
 
 directory = copiedTreeBaseDir+'Apr2017_summer16_KNU/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC'+skim+'/'
 #directoryMcWgSt = treeBaseDir+'Apr2017_summer16_KNU/MCWgStarsel__hadd__MCWeights__bSFLpTEffMulti__cleanTauMC__formulasMC/'
