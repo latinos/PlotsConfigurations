@@ -118,6 +118,8 @@ Now we are ready to make data/MC comparison plots.
                     of0j_DYtt=datacards/hww2l2v_13TeV_dytt_of0j/events/datacard.txt.pruned.txt \
                     of1j_DYtt=datacards/hww2l2v_13TeV_dytt_of1j/events/datacard.txt.pruned.txt \
                     > Full2016.txt.pruned.txt
+    # Do the following to use the automatic approach in combine to include the MC statistical nuisances
+    echo "* autoMCStats 10 1" >> Full2016.txt.pruned.txt
 
 
 # 7. Check consistency of datacards
