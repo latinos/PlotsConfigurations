@@ -8,6 +8,21 @@
 # If not defined, normal plots is used
 #
 
+
+groupPlot['top']  = {  
+                  'nameHR' : 'tW and t#bar{t}',
+                  'isSignal' : 0,
+                  'color': 400,   # kYellow
+                  'samples'  : ['top']
+              }
+
+groupPlot['WW']  = {  
+                  'nameHR' : 'WW',
+                  'isSignal' : 0,
+                  'color': 851, # kAzure -9 
+                  'samples'  : ['WW', 'ggWW']
+              }
+
 groupPlot['DY']  = {  
                   'nameHR' : "DY",
                   'isSignal' : 0,
@@ -24,20 +39,6 @@ groupPlot['Fake']  = {
                   'samples'  : ['Fake']
               }
 
-
-groupPlot['top']  = {  
-                  'nameHR' : 'tW and t#bar{t}',
-                  'isSignal' : 0,
-                  'color': 400,   # kYellow
-                  'samples'  : ['top']
-              }
-
-groupPlot['WW']  = {  
-                  'nameHR' : 'WW',
-                  'isSignal' : 0,
-                  'color': 851, # kAzure -9 
-                  'samples'  : ['WW', 'ggWW']
-              }
 
 groupPlot['VVV']  = {  
                   'nameHR' : 'VVV',
