@@ -34,7 +34,7 @@ WITH LXBATCH
 
 em Channel:
 
-    mkShapes.py --pycfg=configuration_em.py  --inputDir=/eos/user/f/fernanpe/trees_DF/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__monohSel__muccaMonoH_Apr2017_em__muccaMonoH_Apr2017_em/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
+    mkShapes.py --pycfg=configuration_em.py  --inputDir=/eos/user/f/fernanpe/trees_DF/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__muccaApr2017_em__muccaAll_em/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
 
     mkBatch.py --status
 
@@ -51,7 +51,7 @@ em Channel:
 
 em Channel (blind luminosity):
 
-    mkShapes.py --pycfg=configuration_em_blindData.py  --inputDir=/eos/user/f/fernanpe/trees_DF/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__monohSel__muccaMonoH_Apr2017_em__muccaMonoH_Apr2017_em/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
+    mkShapes.py --pycfg=configuration_em_blindData.py  --inputDir=/eos/user/f/fernanpe/trees_DF/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__muccaApr2017_em__muccaAll_em/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
 
     mkBatch.py --status
 
