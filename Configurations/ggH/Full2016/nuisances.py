@@ -1042,10 +1042,18 @@ nuisances['TopPtRew']  = {
          }
 
 
-### FIXME: This must be implemented in mkDatacards.py using  a flag or something.
 ### Use the following if you want to apply the new combine MC stat nuisances.
 ### In this case remember to add the following line in the datacard
 ### * autoMCStats 10 1
+
+nuisances['stat']  = {
+              'type'  : 'auto'
+              'maxPoiss'  : '10'
+              'includeSignal'  : '1'
+              #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
+              #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
+             }
+
 
 #nuisances['stat']  = {
 #                # apply to the following samples: name of samples here must match keys in samples.py
