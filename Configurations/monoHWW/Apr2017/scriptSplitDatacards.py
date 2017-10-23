@@ -9,7 +9,19 @@ A0Masses = {"300","400","500","600","700","800"}
 
 if len(sys.argv) < 2 :
     print "Please insert all the inputs I need: variable"
+    print ""
+    print "python scriptSplitDatacards.py events"
+    print ""
+    print "python scriptSplitDatacards.py muccamva2HDMadaptFull_600"
     print "python scriptSplitDatacards.py muccamva2HDMadaptFull_1000"
+    print "python scriptSplitDatacards.py muccamva2HDMadaptFull_2000"
+    print "python scriptSplitDatacards.py muccamva2HDMadaptFull_2500"
+    print ""
+    print "python scriptSplitDatacards.py muccamvaZbaradaptFull_10"
+    print "python scriptSplitDatacards.py muccamvaZbaradaptFull_100"
+    print "python scriptSplitDatacards.py muccamvaZbaradaptFull_1000"
+    print "python scriptSplitDatacards.py muccamvaZbaradaptFull_2000"
+    print ""
     sys.exit()
     
 variable = sys.argv[1]
@@ -26,10 +38,13 @@ if "Zbar" not in variable :
             if (mZp == "800" and (mA0 == "700" or mA0 == "800")) : continue;
             print "+++++ Splitting Datacards +++++"
             os.chdir("/afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/ModificationDatacards")
+            # Full lumi datacards
             os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt -k \"monoH_" + mZp + "_" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
             os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_WW_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt -k \"monoH_" + mZp + "_" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_WW_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
             os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_Top_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt -k \"monoH_" + mZp + "_" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_Top_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
             os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_DYtt_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt -k \"monoH_" + mZp + "_" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_DYtt_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
+            # 1/15 lumi datacards
+            os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards_blindData/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt -k \"monoH_" + mZp + "_" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards_blindData/monoH_" + cut + "_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
 
 
 print "Zbar Model Mass Points:"
@@ -41,7 +56,10 @@ if "2HDM" not in variable :
     for mA0 in ZBmasses :
         print "+++++ Splitting Datacards +++++"
         os.chdir("/afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/ModificationDatacards")
+        # Full lumi datacards
         os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + ZB + "_" + mA0 + ".txt.pruned.txt -k \"monoH_" + ZB + "_" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
         os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_WW_" + channel + "/" + variable + "/datacard_" + ZB + "_" + mA0 + ".txt.pruned.txt -k \"monoH_" + ZB + "_" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_WW_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
         os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_Top_" + channel + "/" + variable + "/datacard_" + ZB + "_" + mA0 + ".txt.pruned.txt -k \"monoH_" + ZB + "_" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_Top_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
         os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_DYtt_" + channel + "/" + variable + "/datacard_" + ZB + "_" + mA0 + ".txt.pruned.txt -k \"monoH_" + ZB + "_" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_DYtt_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
+        # 1/15 lumi datacards
+        os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards_blindData/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt -k \"monoH_" + mZp + "_" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards_blindData/monoH_" + cut + "_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
