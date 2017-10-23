@@ -34,7 +34,7 @@ WITH LXBATCH
 
 em Channel:
 
-    mkShapes.py --pycfg=configuration_em.py  --inputDir=/eos/user/c/calderon/monoH/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__monohSel__muccaMonoHem/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
+    mkShapes.py --pycfg=configuration_em.py  --inputDir=/eos/user/f/fernanpe/trees_DF/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__monohSel__muccaMonoH_Apr2017_em__muccaMonoH_Apr2017_em/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
 
     mkBatch.py --status
 
@@ -51,7 +51,7 @@ em Channel:
 
 em Channel (blind luminosity):
 
-    mkShapes.py --pycfg=configuration_em_blindData.py  --inputDir=/eos/user/c/calderon/monoH/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__monohSel__muccaMonoHem/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
+    mkShapes.py --pycfg=configuration_em_blindData.py  --inputDir=/eos/user/f/fernanpe/trees_DF/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__monohSel__muccaMonoH_Apr2017_em__muccaMonoH_Apr2017_em/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
 
     mkBatch.py --status
 
@@ -68,7 +68,7 @@ em Channel (blind luminosity):
 
 sf Channel:
 
-    mkShapes.py --pycfg=configuration_sf.py  --inputDir=/eos/user/n/ntrevisa/trees/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__sfSel__monohSel/  --doBatch=True --batchQueue=1nd --batchSplit=AsMuchAsPossible
+    mkShapes.py --pycfg=configuration_sf.py  --inputDir=/eos/user/f/fernanpe/trees_SF/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__sfSel__monohSel/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
 
     mkBatch.py --status
 
@@ -139,6 +139,12 @@ PRUNE DATACARDS
       cd -
 
 
+SPLIT DATACARDS: ONE FOR EACH SIGNAL
+------------------------------------
+
+      python scriptSplitDatacards.py 
+
+
 # 4 COMBINE DATACARDS
 
 Do the combination:
@@ -148,13 +154,26 @@ Do the combination:
 
 # 5 GET THE LIMITS
 
-By hand (for 2HDM model, mZ' = 800 GeV, mA0 = 300 GeV):
+BY HAND
+-------
 
     text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose --PO 'map=.*/monoH_800:r[1,0,10]' --PO 'map=.*/monoH_1200:0' --PO 'map=.*/monoH_1400:0' --PO 'map=.*/monoH_1700:0' --PO 'map=.*/monoH_2000:0' datacards/monoH_MVA_em/mth_control/datacard_combined.txt -o monoH800.root
     
     combine -M Asymptotic monoH800.root
 
     python scriptMonoH.py
+
+
+USING THE AUTOMATIC SCRIPT (ON THE SPLITTED DATACARDS)
+------------------------------------------------------
+
+      python scriptMonoHSplit.py 
+
+
+USING LXBATCH (ON THE SPLITTED DATACARDS)
+------------------------------------------------------
+
+      python mkMonoHiggsAnalysis.py
 
 
 # 6 DRAW THE EXCLUSION PLOTS
