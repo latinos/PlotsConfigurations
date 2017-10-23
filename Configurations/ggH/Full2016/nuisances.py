@@ -1017,20 +1017,30 @@ nuisances['tttwTh']  = {
                 # tW = 15/16
                 
 }
-
-# Top pT reweighting uncertainty
-Top_pTrwUp = '1.'
-Top_pTrwDo = '(1./(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topLHEpt) * TMath::Exp(0.0615-0.0005*antitopLHEpt) ) ))'
+'''
+## Top pT reweighting uncertainty
+#Top_pTrwUp = '1.'
+#Top_pTrwDo = '(1./(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topLHEpt) * TMath::Exp(0.0615-0.0005*antitopLHEpt) ) ))'
+#
+#nuisances['TopPtRew']  = {
+#                'name'  : 'TopPtRew',   # Theory uncertainty
+#                'kind'  : 'weight',
+#                'type'  : 'shape',
+#                'samples' : {
+#                     'top'  : ["(("+Top_pTrwUp+"/"+Top_pTrw+" - 1)*(dataset==19) + 1)", "(("+Top_pTrwDo+"/"+Top_pTrw+" - 1)*(dataset==19) + 1)"]
+#                }
+#         }
+'''
 
 nuisances['TopPtRew']  = {
                 'name'  : 'TopPtRew',   # Theory uncertainty
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples' : {
-                     'top'  : [Top_pTrwUp+"/"+Top_pTrw,
-                               Top_pTrwDo+"/"+Top_pTrw]
+                     'top'  : ["1.","((1./"+Top_pTrw+" - 1)*(dataset==19) + 1)"]
                 }
          }
+
 
 ### FIXME: This must be implemented in mkDatacards.py using  a flag or something.
 ### Use the following if you want to apply the new combine MC stat nuisances.
