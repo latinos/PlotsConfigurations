@@ -1047,11 +1047,12 @@ nuisances['TopPtRew']  = {
 ### * autoMCStats 10 1
 
 nuisances['stat']  = {
-              'type'  : 'auto'
-              'maxPoiss'  : '10'
-              'includeSignal'  : '1'
+              'type'  : 'auto',
+              'maxPoiss'  : '10',
+              'includeSignal'  : '1',
               #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
               #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
+              'samples' : {}
              }
 
 
