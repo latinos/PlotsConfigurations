@@ -14,7 +14,7 @@ Setup Latinos:
 
 Setup combine:
 
-    cd ~/work/CMSSW_7_4_7/src/HiggsAnalysis/CombinedLimit/
+    cd ~/work/CMSSW_8_1_0/src/HiggsAnalysis/CombinedLimit/
 
     cmsenv     
 
@@ -257,3 +257,10 @@ Or using the script:
 # 12 SPLIT DATACARDS IN ORDER TO HAVE JUST ONE SIGNAL IN EACH OF THEM (USE THIS FOR COMBINATION PURPOSES)
 
     python scriptSplitting.py em mthBin MVA
+
+# 13 COMPUTE CR/SR TRANSFER FACTOR UNCERTAINTIES
+
+FOR TOP CONTROL REGION
+----------------------
+
+    root -l /eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel/latino_TTTo2L2Nu__part0.root      DrawPDF.cxx\(\"\(std_vector_jet_cmvav2[0]\>-0.5884\|\|std_vector_jet_cmvav2[1]\>-0.5884\)*1+\(std_vector_jet_pt[0]\<20\|\|std_vector_jet_cmvav2[0]\<-0.5884\)*2\",2,1,3,\"mll\>12\&\&std_vector_lepton_pt[0]\>25\&\&std_vector_lepton_pt[1]\>20\&\&std_vector_lepton_pt[2]\<10\&\&metPfType1\>20\&\&ptll\>30\&\&drll\<2.5\&\&mll\<76\&\&mpmet\>20\",9,1\)
