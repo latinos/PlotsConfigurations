@@ -39,7 +39,7 @@ void macroPulls(TString folder = "pulls_em_MVA",
     //}
   }
   //gr1->Draw("APE");
-  
+  gr3->GetXaxis()->LabelsOption("v");  
   TH1F *oneSigmaUp = new TH1F("oneSigmaUp","oneSigmaUp",nbins,0,nbins);
   oneSigmaUp->SetFillColor(kGreen);
   oneSigmaUp->SetLineColor(kGreen);
