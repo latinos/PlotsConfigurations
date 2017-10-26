@@ -1,3 +1,5 @@
+// root -l -b -q 'macroPulls.C("pulls_em_MVA","","600_300","muccamva2HDMadaptFull_600","SR")'
+
 #include "TAxis.h"
 
 using namespace std;
@@ -25,18 +27,18 @@ void macroPulls(TString folder = "pulls_em_MVA",
   
   //Count the number of actual nuisances
   int cont = 1;
-  for (int i = 0; i < g3 -> GetSize(); ++i){
+  for (int i = 0; i < g3 -> GetSize() ; ++i){
     TString string = g3->GetXaxis()->GetBinLabel(i);
-    if (string.Contains("monoH_"+model+"_"+massPoint) || (!string.Contains("em_monoH"))){
-      gr1->SetPoint(cont,cont+0.4,g1->Eval(i+0.4));
-      gr2->SetPoint(cont,cont+0.6,g2->Eval(i+0.6));
-      gr1->SetPointError(cont,0.,0.,g1->GetErrorYlow(i),g1->GetErrorYhigh(i));  //Double_t exl, Double_t exh, Double_t eyl, Double_t eyh
-      gr2->SetPointError(cont,0.,0.,g2->GetErrorYlow(i),g2->GetErrorYhigh(i));  //Double_t exl, Double_t exh, Double_t eyl, Double_t eyh
-      gr3->GetXaxis()->SetBinLabel(cont,g3->GetXaxis()->GetBinLabel(i));
-      ++cont;
-    }
+    //    if (string.Contains("monoH_"+model+"_"+massPoint) || (!string.Contains("em_monoH"))){
+    gr1->SetPoint(cont,cont+0.4,g1->Eval(i+0.4));
+    gr2->SetPoint(cont,cont+0.6,g2->Eval(i+0.6));
+    gr1->SetPointError(cont,0.,0.,g1->GetErrorYlow(i),g1->GetErrorYhigh(i));  //Double_t exl, Double_t exh, Double_t eyl, Double_t eyh
+    gr2->SetPointError(cont,0.,0.,g2->GetErrorYlow(i),g2->GetErrorYhigh(i));  //Double_t exl, Double_t exh, Double_t eyl, Double_t eyh
+    gr3->GetXaxis()->SetBinLabel(cont,g3->GetXaxis()->GetBinLabel(i));
+    ++cont;
+    //}
   }
-  gr1->Draw("APE");
+  //gr1->Draw("APE");
   
   TH1F *oneSigmaUp = new TH1F("oneSigmaUp","oneSigmaUp",nbins,0,nbins);
   oneSigmaUp->SetFillColor(kGreen);
@@ -99,6 +101,7 @@ void macroPulls(TString folder = "pulls_em_MVA",
   gr1->SetMarkerColor(kRed);
   gr1->SetMarkerStyle(8);
   gr2->SetMarkerStyle(8);
+  gr3->GetXaxis()->SetRangeUser(gr3->GetXaxis()->GetXmin()+1,gr3->GetXaxis()->GetXmax()-1);
   gr3->Draw();
   twoSigmaUp->Draw("same");
   twoSigmaDo->Draw("same");
