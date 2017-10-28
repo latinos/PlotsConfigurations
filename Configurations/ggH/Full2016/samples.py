@@ -37,6 +37,10 @@ elif  'cern' in SITE :
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/'
 elif  'gridui' in SITE: #PISA
   treeBaseDir = '/gpfs/ddn/srm/cms/store/user/lviliani/Full2016_Apr17/'
+elif 'sdfarm' in SITE : # KISTI T3
+  xrootdPath  = 'root://cms-xrdr.sdfarm.kr:1094/'
+  treeBaseDir = '/xrootd/store/user/salee/cmshww/Full2016_Apr17/'
+
 
 directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC'+skim+'/'
 
