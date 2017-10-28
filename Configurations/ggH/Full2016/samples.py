@@ -42,7 +42,7 @@ elif 'sdfarm' in SITE : # KISTI T3
   treeBaseDir = '/xrootd/store/user/salee/cmshww/Full2016_Apr17/'
 
 
-directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC'+skim+'/'
+directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC'+skim+'/'
 
 ################################################
 ############ NUMBER OF LEPTONS #################
@@ -59,7 +59,6 @@ Nlep='2'
 XSWeight      = 'XSWeight'
 SFweight      = 'SFweight'+Nlep+'l'
 GenLepMatch   = 'GenLepMatch'+Nlep+'l'
-Top_pTrw = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topLHEpt) * TMath::Exp(0.0615-0.0005*antitopLHEpt) ) )'
 
 ################################################
 ############### B-Tag  WP ######################
@@ -88,8 +87,6 @@ elif bAlgo == 'DeepCSVB' :
  bVeto='bveto_deepCSV'+bWP
 
 SFweight += '*'+bSF
-# Fix for 2-leptons for which this was kept in global formula !
-if Nlep == '2' : SFweight += '/bPogSF_CMVAL'
 
 
 ################################################
@@ -173,7 +170,7 @@ ptllDYW_LO  = '(8.61313e-01+gen_ptll*4.46807e-03-1.52324e-05*gen_ptll*gen_ptll)*
 samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-10to50')
                                   + getSampleFiles(directory,'DYJetsToLL_M-50')     ,
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 1 ,
+                     'FilesPerJob' : 2 ,
                  }
 
 # ... Add DY HT Samples
@@ -280,6 +277,7 @@ if useDYtt :
       addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toInf'     , cutSF)
 
 ###### Top #######
+Top_pTrw = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topLHEpt) * TMath::Exp(0.0615-0.0005*antitopLHEpt) ) )'
 
 samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu') 
                                   + getSampleFiles(directory,'ST_tW_antitop')
@@ -291,7 +289,7 @@ samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu')
                                   + getSampleFiles(directory,'ST_s-channel')   
                              ,
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-                      'FilesPerJob' : 1 ,
+                      'FilesPerJob' : 2 ,
                   }
                   
 addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
@@ -323,23 +321,22 @@ samples['Vg']  =  {     'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM')
 
 ######## VgS ########
 
-samples['VgS']  = {    'name':  getSampleFiles(directory,'WgStarLNuEE') + getSampleFiles(directory,'WgStarLNuMuMu') ,
-                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.4' ,  
+#samples['VgS']  = {    'name':  getSampleFiles(directory,'WgStarLNuEE') + getSampleFiles(directory,'WgStarLNuMuMu') ,
+#                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.4' ,  
+#                  }
+
+
+samples['WZgS_L']  = {    'name': getSampleFiles(directory,'WZTo3LNu_mllmin01_ext1') ,
+                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '* (Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4)*0.89' ,
                   }
 
-## 
-## Wg* scale factor is
-##
-## X.X  +/- X.X     in mumumu
-## 1.4  +/- 0.4     in emumu
-##
-##
-
+samples['WZgS_H']  = {    'name': getSampleFiles(directory,'WZTo3LNu_mllmin01_ext1') ,
+                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '* (Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4)*1.14' ,
+                  } 
 
 ######### VZ #########
 
-samples['VZ']  = {    'name':   getSampleFiles(directory,'WZTo3LNu')
-                              + getSampleFiles(directory,'ZZTo2L2Nu')
+samples['VZ']  = {    'name':   getSampleFiles(directory,'ZZTo2L2Nu')
                               + getSampleFiles(directory,'WZTo2L2Q')
                               + getSampleFiles(directory,'ZZTo2L2Q')  
                               # Should we include this as well here:
@@ -404,11 +401,17 @@ samples['WH_hww']   = {   'name' :   getSampleFiles(directory,'HWminusJ_HToWW_M1
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                       }
 
-#### bbHY ; H->WW 
+#### bbH ; H->WW 
 
 samples['bbH_hww']  = {  'name' :   getSampleFiles(directory,'bbHToWWTo2L2Nu_M125_yb2') 
                                   + getSampleFiles(directory,'bbHToWWTo2L2Nu_M125_ybyt')
                                   ,
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                      }
+
+#### ttH ; H->WW 
+
+samples['ttH_hww']  = {  'name' :   getSampleFiles(directory,'ttHToNonbb_M125'), 
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                       }
 

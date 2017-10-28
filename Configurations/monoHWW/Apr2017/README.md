@@ -14,7 +14,7 @@ Setup Latinos:
 
 Setup combine:
 
-    cd ~/work/CMSSW_7_4_7/src/HiggsAnalysis/CombinedLimit/
+    cd ~/work/CMSSW_8_1_0/src/HiggsAnalysis/CombinedLimit/
 
     cmsenv     
 
@@ -34,7 +34,7 @@ WITH LXBATCH
 
 em Channel:
 
-    mkShapes.py --pycfg=configuration_em.py  --inputDir=/eos/user/c/calderon/monoH/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__monohSel__muccaMonoHem/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
+    mkShapes.py --pycfg=configuration_em.py  --inputDir=/eos/user/f/fernanpe/trees_DF/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__muccaApr2017_em__muccaAll_em/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
 
     mkBatch.py --status
 
@@ -51,7 +51,7 @@ em Channel:
 
 em Channel (blind luminosity):
 
-    mkShapes.py --pycfg=configuration_em_blindData.py  --inputDir=/eos/user/c/calderon/monoH/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__monohSel__muccaMonoHem/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
+    mkShapes.py --pycfg=configuration_em_blindData.py  --inputDir=/eos/user/f/fernanpe/trees_DF/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__muccaApr2017_em__muccaAll_em/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
 
     mkBatch.py --status
 
@@ -68,7 +68,7 @@ em Channel (blind luminosity):
 
 sf Channel:
 
-    mkShapes.py --pycfg=configuration_sf.py  --inputDir=/eos/user/n/ntrevisa/trees/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__sfSel__monohSel/  --doBatch=True --batchQueue=1nd --batchSplit=AsMuchAsPossible
+    mkShapes.py --pycfg=configuration_sf.py  --inputDir=/eos/user/f/fernanpe/trees_SF/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__sfSel__monohSel/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
 
     mkBatch.py --status
 
@@ -139,6 +139,12 @@ PRUNE DATACARDS
       cd -
 
 
+SPLIT DATACARDS: ONE FOR EACH SIGNAL
+------------------------------------
+
+      python scriptSplitDatacards.py 
+
+
 # 4 COMBINE DATACARDS
 
 Do the combination:
@@ -148,13 +154,26 @@ Do the combination:
 
 # 5 GET THE LIMITS
 
-By hand (for 2HDM model, mZ' = 800 GeV, mA0 = 300 GeV):
+BY HAND
+-------
 
     text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose --PO 'map=.*/monoH_800:r[1,0,10]' --PO 'map=.*/monoH_1200:0' --PO 'map=.*/monoH_1400:0' --PO 'map=.*/monoH_1700:0' --PO 'map=.*/monoH_2000:0' datacards/monoH_MVA_em/mth_control/datacard_combined.txt -o monoH800.root
     
     combine -M Asymptotic monoH800.root
 
     python scriptMonoH.py
+
+
+USING THE AUTOMATIC SCRIPT (ON THE SPLITTED DATACARDS)
+------------------------------------------------------
+
+      python scriptMonoHSplit.py 
+
+
+USING LXBATCH (ON THE SPLITTED DATACARDS)
+------------------------------------------------------
+
+      python mkMonoHiggsAnalysis.py
 
 
 # 6 DRAW THE EXCLUSION PLOTS
@@ -238,3 +257,10 @@ Or using the script:
 # 12 SPLIT DATACARDS IN ORDER TO HAVE JUST ONE SIGNAL IN EACH OF THEM (USE THIS FOR COMBINATION PURPOSES)
 
     python scriptSplitting.py em mthBin MVA
+
+# 13 COMPUTE CR/SR TRANSFER FACTOR UNCERTAINTIES
+
+FOR TOP CONTROL REGION
+----------------------
+
+    root -l /eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel/latino_TTTo2L2Nu__part0.root      DrawPDF.cxx\(\"\(std_vector_jet_cmvav2[0]\>-0.5884\|\|std_vector_jet_cmvav2[1]\>-0.5884\)*1+\(std_vector_jet_pt[0]\<20\|\|std_vector_jet_cmvav2[0]\<-0.5884\)*2\",2,1,3,\"mll\>12\&\&std_vector_lepton_pt[0]\>25\&\&std_vector_lepton_pt[1]\>20\&\&std_vector_lepton_pt[2]\<10\&\&metPfType1\>20\&\&ptll\>30\&\&drll\<2.5\&\&mll\<76\&\&mpmet\>20\",9,1\)

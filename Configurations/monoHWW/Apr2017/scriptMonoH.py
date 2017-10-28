@@ -8,12 +8,18 @@ A0Masses = {"300"}#,"400","500","600","700","800"}
 
 if len(sys.argv) < 6 :
     print "Please insert all the inputs I need: channel, variable, cut"
-    print "python scriptMonoH.py em mthBin MVA 600 300 False"
-    print "python scriptMonoH.py em mthBin MVA ZB 100_10_"
-    print "python scriptMonoH.py em muccamva2HDMadaptFull MVA"
-    print "python scriptMonoH.py em muccamva2HDMgradFull MVA"
-    print "python scriptMonoH.py em muccamvaZbaradaptFull MVA"
-    print "python scriptMonoH.py em muccamvaZbargradFull MVA"
+    print "python scriptMonoH.py em muccamva2HDMadaptFull_600 MVA 600 300 False"
+    print "python scriptMonoH.py em muccamvaZbaradaptFull_100 MVA ZB 100_1_ False"
+    print ""
+    print "python scriptMonoH.py em muccamva2HDMadaptFull_600 MVA 600 300 True"
+    print "python scriptMonoH.py em muccamva2HDMadaptFull_1000 MVA 1000 300 True"
+    print "python scriptMonoH.py em muccamva2HDMadaptFull_2000 MVA 2000 300 True"
+    print "python scriptMonoH.py em muccamva2HDMadaptFull_2500 MVA 2500 300 True"
+    print ""
+    print "python scriptMonoH.py em muccamvaZbaradaptFull_10 MVA ZB 10_1_ True"
+    print "python scriptMonoH.py em muccamvaZbaradaptFull_100 MVA ZB 100_1_ True"
+    print "python scriptMonoH.py em muccamvaZbaradaptFull_1000 MVA ZB 1000_1_ True"
+    print "python scriptMonoH.py em muccamvaZbaradaptFull_2000 MVA ZB 2000_1_ True"
     sys.exit()
 
 channel = sys.argv[1]

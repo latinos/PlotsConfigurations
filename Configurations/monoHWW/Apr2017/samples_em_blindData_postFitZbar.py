@@ -20,8 +20,9 @@ from LatinoAnalysis.Tools.commonTools import *
 #skim='__vbsSel'
 #skim='__ssSel'
 #skim="__wwSel__monohSel"
-skim="__wwSel__monohSel__muccaMonoH_Apr2017_em"
+#skim="__wwSel__monohSel__muccaMonoH_Apr2017_em"
 #skim="__wwSel__monohSel__muccaMonoHem"
+skim="__wwSel__muccaApr2017_em__muccaAll_em"
 
 if skim =='__vh3lSel' :  skimFake='__vh3lFakeSel'
 else:                    skimFake=skim
