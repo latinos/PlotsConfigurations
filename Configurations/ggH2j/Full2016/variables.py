@@ -10,20 +10,6 @@ variables['events']  = {   'name': '1',
                          'fold' : 3
                         }
 
-variables['mll']  = {   'name': 'mll',            #   variable name    
-                        'range' : (20,10,200),    #   variable range
-                        'xaxis' : 'm_{ll} [GeV]',  #   x axis name
-                         'fold' : 0
-                        }
-
-variables['mjj']  = {  'name': 'mjj',
-                       'range': (40,20,400),  #for 500 < mjj < 1000
-                       #'range': (20,0,200),  #for 500 < mjj < 1000
-                       # 'range': (15,1000,2000),  #for  mjj > 1000
-                       'xaxis': 'mjj [GeV]',
-                       'fold': 0
-                    }
-
 variables['mllVSmth'] = {   'name': 'mll:mth',            #   variable name    
                         #'range' : (7,60,200, 5,10,110),            #   variable range
                         'range'  :  ([60,80,90,110,130,150,200],[10,20,30,50,70,90,150],),
@@ -36,48 +22,63 @@ variables['mllVSmth'] = {   'name': 'mll:mth',            #   variable name
                         #
                         }
 
-variables['mth']  = {   'name': 'mth',            #   variable name    
-                        'range' : (10,60,200),    #   variable range
-                        'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
-                        'fold' : 0
-                        }
+## Just for fun plots
+#variables['mll']  = {   'name': 'mll',            #   variable name    
+#                        'range' : (20,10,200),    #   variable range
+#                        'xaxis' : 'm_{ll} [GeV]',  #   x axis name
+#                         'fold' : 0
+#                        }
+#
+#variables['mjj']  = {  'name': 'mjj',
+#                       'range': (40,20,400),  #for 500 < mjj < 1000
+#                       #'range': (20,0,200),  #for 500 < mjj < 1000
+#                       # 'range': (15,1000,2000),  #for  mjj > 1000
+#                       'xaxis': 'mjj [GeV]',
+#                       'fold': 0
+#                    }
+#
+#variables['mth']  = {   'name': 'mth',            #   variable name    
+#                        'range' : (10,60,200),    #   variable range
+#                        'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
+#                        'fold' : 0
+#                        }
+#
+#variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
+#                        'range' : (20,0,100),   
+#                        'xaxis' : 'p_{T} 1st lep',
+#                        'fold'  : 0                         
+#                        }
+#variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
+#                        'range' : (20,0,100),   
+#                        'xaxis' : 'p_{T} 2nd lep',
+#                        'fold'  : 0                         
+#                        }
 
-variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
-                        'range' : (20,0,100),   
-                        'xaxis' : 'p_{T} 1st lep',
-                        'fold'  : 0                         
-                        }
-variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
-                        'range' : (20,0,100),   
-                        'xaxis' : 'p_{T} 2nd lep',
-                        'fold'  : 0                         
-                        }
-
-variables['jetpt1']  = {
-                        'name': 'std_vector_jet_pt[0]',     
-                        'range' : (40,0,200),   
-                        'xaxis' : 'p_{T} 1st jet',
-                        'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
-                        }
-
-variables['jetpt2']  = {
-                        'name': 'std_vector_jet_pt[1]',     
-                        'range' : (40,0,200),   
-                        'xaxis' : 'p_{T} 2nd jet',
-                        'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
-                        }
-
-variables['jeteta1']  = {  'name': 'std_vector_jet_eta[0]',
-                        'range' : (40,-5.0,5.0),
-                        'xaxis' : '#eta 1st jet',
-                        'fold'  : 0
-                        }
-
-variables['jeteta2']  = {  'name': 'std_vector_jet_eta[1]',
-                        'range' : (40,-5.0,5.0),
-                        'xaxis' : '#eta 2nd jet',
-                        'fold'  : 0
-                        }
+#variables['jetpt1']  = {
+#                        'name': 'std_vector_jet_pt[0]',     
+#                        'range' : (40,0,200),   
+#                        'xaxis' : 'p_{T} 1st jet',
+#                        'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+#                        }
+#
+#variables['jetpt2']  = {
+#                        'name': 'std_vector_jet_pt[1]',     
+#                        'range' : (40,0,200),   
+#                        'xaxis' : 'p_{T} 2nd jet',
+#                        'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+#                        }
+#
+#variables['jeteta1']  = {  'name': 'std_vector_jet_eta[0]',
+#                        'range' : (40,-5.0,5.0),
+#                        'xaxis' : '#eta 1st jet',
+#                        'fold'  : 0
+#                        }
+#
+#variables['jeteta2']  = {  'name': 'std_vector_jet_eta[1]',
+#                        'range' : (40,-5.0,5.0),
+#                        'xaxis' : '#eta 2nd jet',
+#                        'fold'  : 0
+#                        }
 #variables['mjj']  = {  'name': 'mjj',
 #                       'range': (10,20,200),  #for 500 < mjj < 1000
 #                       #'range': (20,0,200),  #for 500 < mjj < 1000
