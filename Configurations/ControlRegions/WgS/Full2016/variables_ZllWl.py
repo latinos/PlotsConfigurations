@@ -17,7 +17,7 @@ variables['mll']  = {   'name': 'mll',            #   variable name
                        }
 
 variables['ptll']  = {   'name': 'ptll',            #   variable name    
-                        'range' : (20,0,200),    #   variable range
+                        'range' : (20,0,150),    #   variable range
                         'xaxis' : 'pt_{ll} [GeV]',  #   x axis name
                         'fold' : 0
                         }
@@ -72,7 +72,7 @@ variables['mllmin3lLLowM'] = {   'name': 'mllmin3l',            #   variable nam
 ##
 ##
 variables['met']  = {   'name': 'metPfType1',            #   variable name    
-                        'range' : (20,0,200),    #   variable range
+                        'range' : (20,0,150),    #   variable range
                         'xaxis' : 'pfmet [GeV]',  #   x axis name
                         'fold' : 0
                         }
@@ -85,19 +85,24 @@ variables['mpmet']  = {   'name': 'mpmet',            #   variable name
  
 
 variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
-                        'range' : (45,0,90),   
+                        'range' : (20,10,100),   
                         'xaxis' : 'p_{T} 1st lep',
                         'fold'  : 0                         
                         }
 variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
-                        'range' : (30,0,60),   
+                        'range' : (20,10,100),   
                         'xaxis' : 'p_{T} 2nd lep',
                         'fold'  : 0                         
                         }
 
 variables['pt3']  = {   'name': 'std_vector_lepton_pt[2]',     
-                        'range' : (30,0,60),   
+                        'range' : (20,10,100),   
                         'xaxis' : 'p_{T} 3rd lep',
                         'fold'  : 0                         
                         }
 
+variables['njet']  = {   'name': 'njet',      
+                        'range' : (4,0,4),  
+                        'xaxis' : 'njet',   
+                         'fold' : 3
+                        }
