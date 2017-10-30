@@ -1,8 +1,15 @@
 /*
-root -l -b -q 'macroSignificance.C("2HDM","grad","monoH_600_300")'
-root -l -b -q 'macroSignificance.C("2HDM","adapt","monoH_600_300")'
-root -l -b -q 'macroSignificance.C("Zbar","grad","monoH_ZB_100_1_")'
-root -l -b -q 'macroSignificance.C("Zbar","adapt","monoH_ZB_100_1_")'
+root -l -b -q 'macroSignificance.C("2HDM","adapt","monoH_600_300","600")'
+root -l -b -q 'macroSignificance.C("Zbar","adapt","monoH_ZB_10_1_","10")'
+
+root -l -b -q 'macroSignificance.C("2HDM","adapt","monoH_1000_300","1000")'
+root -l -b -q 'macroSignificance.C("Zbar","adapt","monoH_ZB_100_1_","100")'
+
+root -l -b -q 'macroSignificance.C("2HDM","adapt","monoH_2000_300","2000")'
+root -l -b -q 'macroSignificance.C("Zbar","adapt","monoH_ZB_1000_1_","1000")'
+
+root -l -b -q 'macroSignificance.C("2HDM","adapt","monoH_2500_300","2500")'
+root -l -b -q 'macroSignificance.C("Zbar","adapt","monoH_ZB_2000_1_","2000")'
 */
 
 const int nBkg = 16;
@@ -26,14 +33,15 @@ TString bkgNames[nBkg] = {"histo_DY",
 
 using namespace std;
 
-void macroSignificance( TString model    = "2HDM",
-			TString training = "adapt",
-			TString signal   = "monoH_600_300" //monoH_ZB_100_1_
+void macroSignificance( TString model     = "2HDM",
+			TString training  = "adapt",
+			TString signal    = "monoH_600_300", //monoH_ZB_100_1_
+			TString massPoint = "new" 
 			){
 
   TH1F* hDumpBkg[nBkg];
-
-  TString folder = "monoH_MVA_em/muccamva" + model + training + "Full_sign";
+  //muccamvaZbaradaptFull_2000_sign
+  TString folder = "monoH_MVA_em/muccamva" + model + training + "Full_" + massPoint + "_sign";
 
   TFile* f = new TFile("rootFile_em/plots_monoHWW_em_SIGN.root","read");
 
@@ -41,6 +49,8 @@ void macroSignificance( TString model    = "2HDM",
   TH1F* hBkg = new TH1F("hBkg","hBkg",10000,-1.,1.);
  
   TH1F* hSignificance = new TH1F("hSignificance","hSignificance",10000,-1.,1.);
+
+  TGraph* ROC = new TGraph();
 
   for (int j = 0; j < nBkg; ++j){
     hDumpBkg[j] = (TH1F*) f->Get(folder + "/" + bkgNames[j]);
@@ -53,6 +63,24 @@ void macroSignificance( TString model    = "2HDM",
   int cont = 1;
   int bestBin = 100000;
   std::vector<float> myBestBinning;
+
+  Float_t integralSig = 0.;
+  Float_t integralBkg = 0.;
+
+  integralSig = hSig -> Integral();
+  integralBkg = hBkg -> Integral();
+
+  Float_t effSig = 0.;
+  Float_t effBkg = 0.;
+
+  // ROC Curve
+  for (int b = 0; b < 10000; ++b){
+    Float_t S = hSig -> Integral(b,10000);
+    Float_t B = hBkg -> Integral(b,10000);
+    effSig = S / integralSig;
+    effBkg = B / integralBkg;
+    ROC -> SetPoint(b, 1 - effBkg, effSig);
+  }
 
   while (upperLimit > 1){
     maxSig = -9999.;
@@ -138,7 +166,13 @@ void macroSignificance( TString model    = "2HDM",
   tl2->Draw("same");
   TString save = "";
   save = "Significance" + model + "_" + training + ".png";
-  c1->Print(save);
+  //c1->Print(save);
+  TString save2 = "";
+  save2 = "Significance" + model + "_" + training + ".pdf";
+  //c1->Print(save2);
+
+  ROC -> Draw("APL");
+
 }
 
 // KEY: TH1Dhisto_DATA;1histo_DATA

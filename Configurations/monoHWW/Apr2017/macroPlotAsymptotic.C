@@ -1,18 +1,23 @@
 /*
-root -l -b -q 'macroPlotAsymptotic.C("","em","mthBin","MVA","2HDM")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","mthBin_blind","MVA","2HDM")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","mthBin","MVA","Zbar")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","mthBin_blind","MVA","Zbar")'
 
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull","MVA","2HDM")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_blind","MVA","2HDM")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull","MVA","Zbar")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_blind","MVA","Zbar")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_600","MVA","2HDM")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_600_blind","MVA","2HDM")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_1000","MVA","2HDM")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_1000_blind","MVA","2HDM")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_2000","MVA","2HDM")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_2000_blind","MVA","2HDM")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_2500","MVA","2HDM")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_2500_blind","MVA","2HDM")'
 
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMgradFull","MVA","2HDM")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMgradFull_blind","MVA","2HDM")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbargradFull","MVA","Zbar")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbargradFull_blind","MVA","Zbar")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_10","MVA","Zbar")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_10_blind","MVA","Zbar")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_100","MVA","Zbar")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_100_blind","MVA","Zbar")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_1000","MVA","Zbar")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_1000_blind","MVA","Zbar")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_2000","MVA","Zbar")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_2000_blind","MVA","Zbar")'
+
 */
 #include <Riostream.h>
 #include <string>
@@ -141,10 +146,10 @@ void macroPlotAsymptotic(TString outputdir,
     TString limitfilename;
     if (Xmass[n] == 0) continue;
     if (model == "Zbar")
-      //higgsCombineZB_100_1__mthBin_blind.Asymptotic.mH120
+      //higgsCombineZB_1000_1__muccamvaZbaradaptFull_100.Asymptotic.mH120.root
       limitfilename = "combine_" + channel + "_" + cut + "/higgsCombineZB_" + massZbar[n] + "_1__" + variable + ".Asymptotic.mH120.root";
     else if (model == "2HDM")
-      //higgsCombine600_300_mthBin_blind.Asymptotic.mH120
+      //higgsCombine1000_300_muccamva2HDMadaptFull_600.Asymptotic.mH120.root
       limitfilename = "combine_" + channel + "_" + cut + "/higgsCombine" + mass2HDM[n] + "_300_" + variable + ".Asymptotic.mH120.root";
     TString limitfile = /*outputdir+"/"+*/limitfilename;
     fFREQ[n] = new TFile(limitfile, "READ");

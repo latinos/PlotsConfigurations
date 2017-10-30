@@ -71,7 +71,7 @@ for iCut in optim:
   ## Top CR: No H sel , bTag , tight DYmva
   
   
-  cuts['hww2l2v_13TeV_top_1jsf'] = '( std_vector_jet_pt[0] >= 30 ) \
+  cuts['hww2l2v_13TeV_top_1jsf_'+iCut] = '( std_vector_jet_pt[0] >= 30 ) \
                && ( std_vector_jet_pt[1] < 30 ) \
                && ((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
                || (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)) \

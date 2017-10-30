@@ -80,11 +80,50 @@ groupPlot['Higgs']  = {
 
 
 
-groupPlot['WW']  = {  
-                  'nameHR' : 'WW',
+#groupPlot['WW']  = {  
+                  #'nameHR' : 'WW',
+                  #'isSignal' : 1,
+                  #'color': 851, # kAzure -9 
+                  #'samples'  : ['WW', 'ggWW', 'WW_pt1', 'WW_pt2', 'WW_pt3', 'WW_pt4', 'WW_pt5', 'WW_pt6']
+              #}
+
+
+
+groupPlot['WW1']  = {  
+                  'nameHR' : 'WW pt1',
                   'isSignal' : 1,
                   'color': 851, # kAzure -9 
-                  'samples'  : ['WW', 'ggWW', 'WW_pt1', 'WW_pt2', 'WW_pt3', 'WW_pt4', 'WW_pt5', 'WW_pt6']
+                  'samples'  : ['WW_pt1']
+              }
+groupPlot['WW2']  = {  
+                  'nameHR' : 'WW pt2',
+                  'isSignal' : 1,
+                  'color': 852, # kAzure -9 
+                  'samples'  : ['WW_pt2']
+              }
+groupPlot['WW3']  = {  
+                  'nameHR' : 'WW pt3',
+                  'isSignal' : 1,
+                  'color': 853, # kAzure -9 
+                  'samples'  : ['WW_pt3']
+              }
+groupPlot['WW4']  = {  
+                  'nameHR' : 'WW pt4',
+                  'isSignal' : 1,
+                  'color': 854, # kAzure -9 
+                  'samples'  : ['WW_pt4']
+              }
+groupPlot['WW5']  = {  
+                  'nameHR' : 'WW pt5',
+                  'isSignal' : 1,
+                  'color': 855, # kAzure -9 
+                  'samples'  : ['WW_pt5']
+              }
+groupPlot['WW6']  = {  
+                  'nameHR' : 'WW pt6',
+                  'isSignal' : 1,
+                  'color': 856, # kAzure -9 
+                  'samples'  : ['WW_pt6']
               }
 
 
@@ -392,7 +431,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0
+                  'isBlind'  : 1
               }
 
 

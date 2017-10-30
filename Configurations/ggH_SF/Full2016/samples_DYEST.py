@@ -11,12 +11,13 @@ from LatinoAnalysis.Tools.commonTools import *
 ################# SKIMS ########################
 ################################################
 
-skim=''
+#skim=''
 #skim='__wwSel'
 #skim='__topSel'
 #skim='__topSel'
 #skim='__vh3lSel' 
 #skim='__sfSel' 
+skim='__sfmvaSel' 
 #skim='__vbsSel'
 #skim='__ssSel'
 
@@ -89,12 +90,12 @@ bVeto='bveto_'+bAlgo+bWP
 
 #... Electron:
 
-eleWP='cut_WP_Tight80X'
+#eleWP='cut_WP_Tight80X'
 #eleWP='cut_WP_Tight80X_SS'
 #eleWP='mva_80p_Iso2015'
 #eleWP='mva_80p_Iso2016'
 #eleWP='mva_90p_Iso2015'
-#eleWP='mva_90p_Iso2016'
+eleWP='mva_90p_Iso2016'
 
 #... Muon:
 
@@ -153,7 +154,7 @@ DataTrig = {
 
 ###### DY #######
 
-useDYHT = False       # be carefull DY HT is LO 
+useDYHT = True        # be carefull DY HT is LO 
 useDYtt = False     
 mixDYttandHT = False  # be carefull DY HT is LO (HT better stat for HT>450 GEV)
 

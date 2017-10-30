@@ -8,28 +8,39 @@ A0Masses = {"300"}#,"400","500","600","700","800"}
 
 if len(sys.argv) < 6 :
     print "Please insert all the inputs I need: channel, variable, cut"
-    print "python scriptMonoH.py em mthBin MVA 800 300"
-    print "python scriptMonoH.py em mthBin MVA ZB 100_10_"
-    print "python scriptMonoH.py em muccamva2HDMadaptFull MVA"
-    print "python scriptMonoH.py em muccamva2HDMgradFull MVA"
-    print "python scriptMonoH.py em muccamvaZbaradaptFull MVA"
-    print "python scriptMonoH.py em muccamvaZbargradFull MVA"
+    print "python scriptMonoH.py em muccamva2HDMadaptFull_600 MVA 600 300 False"
+    print "python scriptMonoH.py em muccamvaZbaradaptFull_100 MVA ZB 100_1_ False"
+    print ""
+    print "python scriptMonoH.py em muccamva2HDMadaptFull_600 MVA 600 300 True"
+    print "python scriptMonoH.py em muccamva2HDMadaptFull_1000 MVA 1000 300 True"
+    print "python scriptMonoH.py em muccamva2HDMadaptFull_2000 MVA 2000 300 True"
+    print "python scriptMonoH.py em muccamva2HDMadaptFull_2500 MVA 2500 300 True"
+    print ""
+    print "python scriptMonoH.py em muccamvaZbaradaptFull_10 MVA ZB 10_1_ True"
+    print "python scriptMonoH.py em muccamvaZbaradaptFull_100 MVA ZB 100_1_ True"
+    print "python scriptMonoH.py em muccamvaZbaradaptFull_1000 MVA ZB 1000_1_ True"
+    print "python scriptMonoH.py em muccamvaZbaradaptFull_2000 MVA ZB 2000_1_ True"
     sys.exit()
 
 channel = sys.argv[1]
-print channel
+print "Channel: " + channel
 
 variable = sys.argv[2]
-print variable
+print "Variable: " + variable
 
 cut = sys.argv[3]
-print cut
+print "Cut: " + cut
 
 mZp = sys.argv[4]
-print mZp
+print "Mass Point/Model: " + mZp
 
 mA0 = sys.argv[5]
-print mA0
+print "Mass Point: " + mA0
+
+doPulls="False"
+if len(sys.argv) > 6 :
+    doPulls = sys.argv[6]
+print "Do pulls: " + doPulls
 
 # # Source Combine
 # print "+++++ Source Combine +++++"
@@ -84,7 +95,8 @@ print "1/15 Signal Region"
 os.system('combine -M Asymptotic -n ' + mZp + '_' + mA0 + '_' + variable + '_blind combine_' + channel + '_' + cut + '/monoH_' + mZp + '_' + mA0 + '_' + variable + '_blind.root &> limits_' + channel + '_' + cut + '/monoH_' + mZp + '_' + mA0 + '_' + variable + '_blind.txt')
 os.system('mv higgsCombine' + mZp + '_' + mA0 + '_' + variable + '_blind.Asymptotic.mH120.root combine_' + channel + '_' + cut + '/')
 
-if (mZp == "600" and mA0 == "300") or (mZp == "ZB" and mA0 == "100_1_"):
+#if (mZp == "600" and mA0 == "300") or (mZp == "ZB" and mA0 == "100_1_"):
+if (doPulls=="True") :
     # Produce pulls
     print "+++++ Producing Pulls +++++"
     

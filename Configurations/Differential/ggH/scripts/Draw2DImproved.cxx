@@ -12,7 +12,8 @@ void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", st
   
   std::cout << " whatToDraw = " << whatToDraw.Data() << std::endl;
   std::cout << " cutToDraw  = " << cutToDraw.Data() << std::endl;
-  
+ 
+  TTree* limit = (TTree*) _file0 -> Get("limit");
   
   int n =  limit->Draw(whatToDraw.Data(),cutToDraw.Data(),"goff");
   

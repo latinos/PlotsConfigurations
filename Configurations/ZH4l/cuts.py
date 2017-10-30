@@ -46,16 +46,18 @@ cuts['zh4l_ZZ_13TeV']  = 'flagZ1SF_zh4l==1\
 
 
 # cutflow
-cuts['zh4l_XSF']  = 'flagZ1SF_zh4l==1\
-        && mllll_zh4l > 140\
-        '
-cuts['zh4l_XSF_mz0']  = 'flagZ1SF_zh4l==1\
-        && mllll_zh4l > 140\
-        && fabs(z0Mass_zh4l-91.1876)< 15'
-cuts['zh4l_XSF_mz0_met']  = 'flagZ1SF_zh4l==1\
-        && metPfType1 > 35 \
-        && mllll_zh4l > 140\
-        && fabs(z0Mass_zh4l-91.1876)< 15'
+# cuts['zh4l_XSF_mllll']  = 'flagZ1SF_zh4l==1\
+        # '
+# cuts['zh4l_XSF']  = 'flagZ1SF_zh4l==1\
+        # && mllll_zh4l > 140\
+        # '
+# cuts['zh4l_XSF_mz0']  = 'flagZ1SF_zh4l==1\
+        # && mllll_zh4l > 140\
+        # && fabs(z0Mass_zh4l-91.1876)< 15'
+# cuts['zh4l_XSF_mz0_met']  = 'flagZ1SF_zh4l==1\
+        # && metPfType1 > 35 \
+        # && mllll_zh4l > 140\
+        # && fabs(z0Mass_zh4l-91.1876)< 15'
 cuts['zh4l_XSF_mz0_met_mz1']  = 'flagZ1SF_zh4l==1\
         &&  z1Mass_zh4l < 60 && z1Mass_zh4l > 10 \
         && metPfType1 > 35 \
@@ -63,17 +65,17 @@ cuts['zh4l_XSF_mz0_met_mz1']  = 'flagZ1SF_zh4l==1\
         && fabs(z0Mass_zh4l-91.1876)< 15'
 
 
-cuts['zh4l_XDF']  = 'flagZ1SF_zh4l==0\
-        '
-cuts['zh4l_XDF_mz0']  = 'flagZ1SF_zh4l==0\
-        && fabs(z0Mass_zh4l-91.1876)< 15'
-cuts['zh4l_XDF_mz0_met']  = 'flagZ1SF_zh4l==0\
-        && metPfType1 > 20 \
-        && fabs(z0Mass_zh4l-91.1876)< 15'
-cuts['zh4l_XDF_mz0_met_mz1']  = 'flagZ1SF_zh4l==0\
-        && metPfType1 > 20 \
-        && z1Mass_zh4l < 70 && z1Mass_zh4l >10 \
-        && fabs(z0Mass_zh4l-91.1876)< 15'
+# cuts['zh4l_XDF']  = 'flagZ1SF_zh4l==0\
+        # '
+# cuts['zh4l_XDF_mz0']  = 'flagZ1SF_zh4l==0\
+        # && fabs(z0Mass_zh4l-91.1876)< 15'
+# cuts['zh4l_XDF_mz0_met']  = 'flagZ1SF_zh4l==0\
+        # && metPfType1 > 20 \
+        # && fabs(z0Mass_zh4l-91.1876)< 15'
+# cuts['zh4l_XDF_mz0_met_mz1']  = 'flagZ1SF_zh4l==0\
+        # && metPfType1 > 20 \
+        # && z1Mass_zh4l < 70 && z1Mass_zh4l >10 \
+        # && fabs(z0Mass_zh4l-91.1876)< 15'
 cuts['zh4l_XDF_mz0_met_mz1_jet']  = 'flagZ1SF_zh4l==0\
         && metPfType1 > 20 \
         && z1Mass_zh4l < 70 && z1Mass_zh4l >10 \
