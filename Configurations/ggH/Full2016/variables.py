@@ -48,51 +48,51 @@ variables['mllVSmth_pt2lt20'] = {   'name': 'mll:mth',            #   variable n
 #                        'xaxis' : 'nvtx', 
 #                        'fold' : 3
 #                        }
-
-variables['mll']  = {   'name': 'mll',            #   variable name    
-                        'range' : (20,10,200),    #   variable range
-                        'xaxis' : 'm_{ll} [GeV]',  #   x axis name
-                         'fold' : 0
-                        }
-                        
-variables['mth']  = {   'name': 'mth',            #   variable name    
-                        'range' : (10,60,200),    #   variable range
-                        'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
-                        'fold' : 0
-                        }
-
-variables['ptll']  = {   'name': 'ptll',            #   variable name    
-                        'range' : (20,0,200),    #   variable range
-                        'xaxis' : 'pt_{ll} [GeV]',  #   x axis name
-                        'fold' : 0
-                        }
-
-variables['met']  = {   'name': 'metPfType1',            #   variable name    
-                        'range' : (20,0,200),    #   variable range
-                        'xaxis' : 'pfmet [GeV]',  #   x axis name
-                        'fold' : 0
-                        }
-
+#
+#variables['mll']  = {   'name': 'mll',            #   variable name    
+#                        'range' : (20,10,200),    #   variable range
+#                        'xaxis' : 'm_{ll} [GeV]',  #   x axis name
+#                         'fold' : 0
+#                        }
+#                        
+#variables['mth']  = {   'name': 'mth',            #   variable name    
+#                        'range' : (10,60,200),    #   variable range
+#                        'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
+#                        'fold' : 0
+#                        }
+#
+#variables['ptll']  = {   'name': 'ptll',            #   variable name    
+#                        'range' : (20,0,200),    #   variable range
+#                        'xaxis' : 'pt_{ll} [GeV]',  #   x axis name
+#                        'fold' : 0
+#                        }
+#
+#variables['met']  = {   'name': 'metPfType1',            #   variable name    
+#                        'range' : (20,0,200),    #   variable range
+#                        'xaxis' : 'pfmet [GeV]',  #   x axis name
+#                        'fold' : 0
+#                        }
+#
 #variables['dphill']  = {   'name': 'abs(dphill)',     
 #                        'range' : (20,0,3.14),   
 #                        'xaxis' : '#Delta#phi_{ll}',
 #                        'fold' : 3
 #                        }
-
-variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
-                        'range' : (40,0,200),   
-                        'xaxis' : 'p_{T} 1st lep',
-                        'fold'  : 0                         
-                        }
-
-variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
-                        'range' : (40,0,100),   
-                        'xaxis' : 'p_{T} 2nd lep',
-                        'fold'  : 0                         
-                        }
-
-
-
+#
+#variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
+#                        'range' : (40,0,200),   
+#                        'xaxis' : 'p_{T} 1st lep',
+#                        'fold'  : 0                         
+#                        }
+#
+#variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
+#                        'range' : (40,0,100),   
+#                        'xaxis' : 'p_{T} 2nd lep',
+#                        'fold'  : 0                         
+#                        }
+#
+#
+#
 #variables['eta1']  = {  'name': 'std_vector_lepton_eta[0]',     
 #                        'range' : (20,-3,3),   
 #                        'xaxis' : '#eta 1st lep',
