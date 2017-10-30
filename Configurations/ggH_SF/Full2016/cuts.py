@@ -23,7 +23,7 @@ cuts['hww2l2v_13TeV_0jee'] = '( std_vector_jet_pt[0] < 30 && std_vector_jet_pt[1
              && std_vector_lepton_pt[0] < 53 \
              && std_vector_lepton_pt[1] < 34 \
              && mll < 60 \
-             && dymvaggh > 0.96 \
+             && dymvaggh > 0.99 \
                '
                
 cuts['hww2l2v_13TeV_1jee'] = '( std_vector_jet_pt[0] >= 30 ) \
@@ -62,7 +62,7 @@ cuts['hww2l2v_13TeV_0jmm'] = '( std_vector_jet_pt[0] < 30 && std_vector_jet_pt[1
              && std_vector_lepton_pt[0] < 53 \
              && std_vector_lepton_pt[1] < 34 \
              && mll < 60 \
-             && dymvaggh > 0.96 \
+             && dymvaggh > 0.99 \
                '
 
 cuts['hww2l2v_13TeV_1jmm'] = '( std_vector_jet_pt[0] >= 30 ) \
@@ -180,7 +180,7 @@ cuts['hww2l2v_13TeV_top_0jee'] = '( std_vector_jet_pt[0] < 30 && std_vector_jet_
                  || ( std_vector_jet_pt[8] > 20 && std_vector_jet_cmvav2[8] > -0.5884 ) \
                  || ( std_vector_jet_pt[9] > 20 && std_vector_jet_cmvav2[9] > -0.5884 ) \
                  ) \
-             && dymvaggh > 0.96 \
+             && dymvaggh > 0.99 \
                '
 
 cuts['hww2l2v_13TeV_top_0jmm'] = '( std_vector_jet_pt[0] < 30 && std_vector_jet_pt[1] < 30 ) \
@@ -197,7 +197,7 @@ cuts['hww2l2v_13TeV_top_0jmm'] = '( std_vector_jet_pt[0] < 30 && std_vector_jet_
                  || ( std_vector_jet_pt[8] > 20 && std_vector_jet_cmvav2[8] > -0.5884 ) \
                  || ( std_vector_jet_pt[9] > 20 && std_vector_jet_cmvav2[9] > -0.5884 ) \
                  ) \
-             && dymvaggh > 0.96 \
+             && dymvaggh > 0.99 \
                '
 
 cuts['hww2l2v_13TeV_top_1jsf'] = '( std_vector_jet_pt[0] >= 30 ) \
@@ -225,7 +225,7 @@ cuts['hww2l2v_13TeV_WW_0jee'] = '( std_vector_jet_pt[0] < 30 && std_vector_jet_p
              && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.5884 ) \
              && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.5884 ) \
              && mll > 80 \
-             && dymvaggh > 0.96 \
+             && dymvaggh > 0.99 \
                '
 
 cuts['hww2l2v_13TeV_WW_0jmm'] = '( std_vector_jet_pt[0] < 30 && std_vector_jet_pt[1] < 30 ) \
@@ -242,7 +242,7 @@ cuts['hww2l2v_13TeV_WW_0jmm'] = '( std_vector_jet_pt[0] < 30 && std_vector_jet_p
              && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.5884 ) \
              && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.5884 ) \
              && mll > 80 \
-             && dymvaggh > 0.96 \
+             && dymvaggh > 0.99 \
                '
  
 cuts['hww2l2v_13TeV_WW_1jee'] = '( std_vector_jet_pt[0] >= 30 ) \
@@ -296,7 +296,7 @@ cuts['hww2l2v_13TeV_DYin_0jee'] = '( std_vector_jet_pt[0] < 30 && std_vector_jet
              && ( std_vector_jet_pt[7] < 20 || std_vector_jet_cmvav2[7] < -0.5884 ) \
              && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.5884 ) \
              && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.5884 ) \
-             && dymvaggh > 0.96 \
+             && dymvaggh > 0.99 \
                '
  
 cuts['hww2l2v_13TeV_DYin_1jee'] = '( std_vector_jet_pt[0] >= 30 ) \
@@ -329,7 +329,7 @@ cuts['hww2l2v_13TeV_DYin_0jmm'] = '( std_vector_jet_pt[0] < 30 && std_vector_jet
              && ( std_vector_jet_pt[7] < 20 || std_vector_jet_cmvav2[7] < -0.5884 ) \
              && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.5884 ) \
              && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.5884 ) \
-             && dymvaggh > 0.96 \
+             && dymvaggh > 0.99 \
                '
  
 cuts['hww2l2v_13TeV_DYin_1jmm'] = '( std_vector_jet_pt[0] >= 30 ) \
@@ -362,7 +362,7 @@ cuts['hww2l2v_13TeV_DYin_0jdf'] = '( std_vector_jet_pt[0] < 30 && std_vector_jet
              && ( std_vector_jet_pt[7] < 20 || std_vector_jet_cmvav2[7] < -0.5884 ) \
              && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.5884 ) \
              && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.5884 ) \
-             && dymvaggh > 0.96 \
+             && dymvaggh > 0.99 \
                '
 
 cuts['hww2l2v_13TeV_DYin_1jdf'] = '( std_vector_jet_pt[0] >= 30 ) \
@@ -399,7 +399,7 @@ cuts['hww2l2v_13TeV_DYin_btag_0jee'] = '( std_vector_jet_pt[0] < 30 && std_vecto
                  || ( std_vector_jet_pt[8] > 20 && std_vector_jet_cmvav2[8] > -0.5884 ) \
                  || ( std_vector_jet_pt[9] > 20 && std_vector_jet_cmvav2[9] > -0.5884 ) \
                  ) \
-             && dymvaggh > 0.96 \
+             && dymvaggh > 0.99 \
                '
 
 cuts['hww2l2v_13TeV_DYin_btag_0jmm'] = '( std_vector_jet_pt[0] < 30 && std_vector_jet_pt[1] < 30 ) \
@@ -416,7 +416,7 @@ cuts['hww2l2v_13TeV_DYin_btag_0jmm'] = '( std_vector_jet_pt[0] < 30 && std_vecto
                  || ( std_vector_jet_pt[8] > 20 && std_vector_jet_cmvav2[8] > -0.5884 ) \
                  || ( std_vector_jet_pt[9] > 20 && std_vector_jet_cmvav2[9] > -0.5884 ) \
                  ) \
-             && dymvaggh > 0.96 \
+             && dymvaggh > 0.99 \
                '
 
 cuts['hww2l2v_13TeV_DYin_btag_0jdf'] = '( std_vector_jet_pt[0] < 30 && std_vector_jet_pt[1] < 30 ) \
@@ -433,7 +433,7 @@ cuts['hww2l2v_13TeV_DYin_btag_0jdf'] = '( std_vector_jet_pt[0] < 30 && std_vecto
                  || ( std_vector_jet_pt[8] > 20 && std_vector_jet_cmvav2[8] > -0.5884 ) \
                  || ( std_vector_jet_pt[9] > 20 && std_vector_jet_cmvav2[9] > -0.5884 ) \
                  ) \
-             && dymvaggh > 0.96 \
+             && dymvaggh > 0.99 \
                '
 
 ## DY CR for Acc Denominator

@@ -154,7 +154,7 @@ DataTrig = {
 
 ###### DY #######
 
-useDYHT = True        # be carefull DY HT is LO 
+useDYHT = False       # be carefull DY HT is LO 
 useDYtt = False     
 mixDYttandHT = False  # be carefull DY HT is LO (HT better stat for HT>450 GEV)
 
