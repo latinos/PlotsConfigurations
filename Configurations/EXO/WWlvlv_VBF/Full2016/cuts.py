@@ -85,9 +85,9 @@ cuts['hww2l2v_13TeV_dytt_of2j_vbf']  = '( mth<60) \
                 '
  
  
-
+ 
 #------------TOP----------------------
-
+ 
                 
 cuts['hww2l2v_13TeV_top_of0j']  = 'mll>50 \
                 && ( std_vector_jet_pt[0] < 30 ) \
@@ -103,16 +103,16 @@ cuts['hww2l2v_13TeV_top_of0j']  = 'mll>50 \
                     || ( std_vector_jet_pt[9] > 20 && std_vector_jet_cmvav2[9] > -0.5884 ) \
                     ) \
                 '
-
-
+ 
+ 
 #exaclty one b-tag jet pT>30 GeV
 cuts['hww2l2v_13TeV_top_of1j']  = 'mll>50 \
                 && ( std_vector_jet_pt[0] >= 30 ) \
                 && ( std_vector_jet_pt[1] < 30 ) \
                 && std_vector_jet_cmvav2[0]>-0.5884 \
                 '
-
-
+ 
+ 
 #NEW in 2jet region: taken from Moriond analysis (but modified...)
 #https://github.com/latinos/PlotsConfigurations/blob/master/Configurations/ggH2j/Moriond/cuts.py#L14
 #ortogonal to VBF control region
@@ -122,9 +122,9 @@ cuts['hww2l2v_13TeV_top_of2j']  = ' mll>50 \
                 && (detajj<3.5 || mjj<500) \
                 && ( std_vector_jet_cmvav2[0]>-0.5884 || std_vector_jet_cmvav2[1]>-0.5884 ) \
                 '
-
-
-
+ 
+ 
+ 
 #NEW: VBF Top Ctrl region: only 2 jets and one b-jet with p T > 30 GeV. Plus detajj>3.5 && mjj>500
 #https://github.com/latinos/PlotsConfigurations/blob/master/Configurations/VBF/Moriond/cuts.py#L59
 cuts['hww2l2v_13TeV_top_VBF']  = ' mll>50 \
@@ -134,16 +134,16 @@ cuts['hww2l2v_13TeV_top_VBF']  = ' mll>50 \
                 && ( std_vector_jet_cmvav2[0]>-0.5884 || std_vector_jet_cmvav2[1]>-0.5884 ) \
                 '
                 
-
-
-
+ 
+ 
+ 
 # 11 = e
 # 13 = mu
 # 15 = tau
-
-
+ 
+ 
 #------------SIGNAL REGION----------------------
-
+ 
  
 cuts['hwwhm_13TeV_of_0j'] = '( mth>=60) \
                 && ( mTi > 100 ) \
@@ -215,7 +215,7 @@ cuts['hwwhm_13TeV_of_VBF']  = '( mth>=60) \
  
  
  
-
+ 
 
 #*************INCLUSIVE************************************
 

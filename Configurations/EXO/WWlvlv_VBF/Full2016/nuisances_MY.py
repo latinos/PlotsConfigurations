@@ -64,11 +64,9 @@ nuisances['TopPtRew']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples' : {
-                     'top'  : [Top_pTrwUp+"/"+Top_pTrw,
-                               Top_pTrwDo+"/"+Top_pTrw]
+                     'top'  : ["1.","((1./"+Top_pTrw+" - 1)*(dataset==19) + 1)"]
                 }
-
-}
+         }
 
 
 weightMetDY ='((0.306383+0.0270402*metPfType1)*(njet==0)'
