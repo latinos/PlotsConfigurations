@@ -1,10 +1,10 @@
 # example of configuration file
 
-tag = 'HWWhighMass2016_nuis_top_bin_test'
+tag = 'HWWhighMass2016_nuis_OF_V1'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_nuis_top_bin_test'
+outputDir = 'rootFile_allSig_OF_V1'
 
 
 # file with list of variables
@@ -23,20 +23,19 @@ plotFile = 'plot.py'
 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 1.0
-#**********RIMETTERE baseW!!!!!*****
-#lumi = 6.264
-#lumi = 12.9
+#RIMETTERE baswW se lumi !=1 !!!!
+#lumi = 1.0
 #lumi = 35.867
-#lumi = 35.9
+
+lumi = 35.9
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotHWWhighMass_top_bin_test'
+outputDirPlots = 'plotHWWhighMass_OF_V1'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'
+outputDirDatacard = 'datacards_test_OF_V1'
 
 
 # structure file for datacard
@@ -44,6 +43,6 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
+nuisancesFile = 'nuisances_MY.py'
 
-#nuisancesFile = 'nuisances_MY.py'
-nuisancesFile = 'nuisances_vuoto.py'
+#nuisancesFile = 'nuisances_vuoto.py'

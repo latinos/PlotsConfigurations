@@ -47,16 +47,6 @@ cuts['hww2l2v_13TeV_of2j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton
                                '
 
 
-
-#cuts['hww2l2v_13TeV_of2j_nomth']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
-#                               && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13) \
-#                               && (njet>=2) \
-#                               && (std_vector_jet_pt[0]>30 && std_vector_jet_pt[1]>30) \
-#                               && (mjj<65 || (mjj > 105 && mjj<400)) \
-#                               && '+bVeto+' \
-#                               '
-
-
 # 11 = e
 # 13 = mu
 # 15 = tau

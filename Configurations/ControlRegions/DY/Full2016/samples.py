@@ -154,7 +154,7 @@ DataTrig = {
 
 ###### DY #######
 
-useDYHT = False       # be carefull DY HT is LO 
+useDYHT = True        # be carefull DY HT is LO 
 useDYtt = False     
 mixDYttandHT = False  # be carefull DY HT is LO (HT better stat for HT>450 GEV)
 
@@ -258,6 +258,7 @@ if useDYtt :
       addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-800to1200'     , cutSF)
       addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-1200to2500'    , cutSF)
       addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toInf'     , cutSF)
+
 
 ###### Top #######
 

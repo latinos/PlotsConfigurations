@@ -10,21 +10,6 @@ variables['events']  = {   'name': '1',
                          'fold' : 3
                         }
 
-
-variables['mjj']  = {  'name': 'mjj',
-                       'range': (20,65,105),
-                       'xaxis': 'mjj [GeV]',
-                       'fold': 0
-                       }
-
-#variables['mll']  = {   'name': 'mll',            #   variable name
-#                        'range' : (4, 0,200),    #   variable range
-#                        #'range' : (7,10,210),    #   variable range
-#                      # 'range' : (12,90,300),    #   control region: mll > 90
-#                        'xaxis' : 'mll [GeV]',  #   x axis name
-#                        'fold' : 3
-#                        }
-
 variables['mll_more']  = {   'name': 'mll',            #   variable name
                         'range' : (8, 0,200),    #   variable range
                         #'range' : (7,10,210),    #   variable range
@@ -33,33 +18,48 @@ variables['mll_more']  = {   'name': 'mll',            #   variable name
                         'fold' : 3
                         }
 
-variables['detajj']  = {  'name': 'detajj',
-                       'range': (7,0.0,3.5),
-                     # 'range': (10,3.5,8.5),
-                       'xaxis': 'detajj',
-                       'fold': 3
-                       }
 
-variables['ptll']  = {  'name': 'ptll',            #   variable name
-                        'range' : (20,30,200),    #   variable range
-                        'xaxis' : 'ptll [GeV]',  #   x axis name
-                        'fold' : 3
-                        }
+#variables['mjj']  = {  'name': 'mjj',
+#                       'range': (20,65,105),
+#                       'xaxis': 'mjj [GeV]',
+#                       'fold': 0
+#                       }
+#
+#variables['mll']  = {   'name': 'mll',            #   variable name
+#                        'range' : (4, 0,200),    #   variable range
+#                        #'range' : (7,10,210),    #   variable range
+#                      # 'range' : (12,90,300),    #   control region: mll > 90
+#                        'xaxis' : 'mll [GeV]',  #   x axis name
+#                        'fold' : 3
+#                        }
 
-
-variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
-                        'range' : (40,0,100),   
-                        'xaxis' : 'p_{T} 1st lep',
-                        'fold'  : 3                         
-                        }
-
-variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
-                        'range' : (40,0,100),   
-                        'xaxis' : 'p_{T} 2nd lep',
-                        'fold'  : 3                         
-                        }
-
-
+#variables['detajj']  = {  'name': 'detajj',
+#                       'range': (7,0.0,3.5),
+#                     # 'range': (10,3.5,8.5),
+#                       'xaxis': 'detajj',
+#                       'fold': 3
+#                       }
+#
+#variables['ptll']  = {  'name': 'ptll',            #   variable name
+#                        'range' : (20,30,200),    #   variable range
+#                        'xaxis' : 'ptll [GeV]',  #   x axis name
+#                        'fold' : 3
+#                        }
+#
+#
+#variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
+#                        'range' : (40,0,100),   
+#                        'xaxis' : 'p_{T} 1st lep',
+#                        'fold'  : 3                         
+#                        }
+#
+#variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
+#                        'range' : (40,0,100),   
+#                        'xaxis' : 'p_{T} 2nd lep',
+#                        'fold'  : 3                         
+#                        }
+#
+#
 #variables['drll']  = {   'name': 'drll',     
 #                        'range' : (40,0,3.15),   
 #                        'xaxis' : '#Delta R_{ll}',
@@ -100,26 +100,26 @@ variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',
                         #'xaxis' : 'p_{T} 2nd lep',
                         #'fold'  : 0                         
                         #}
-
-
-
-
-variables['jetpt1']  = {   'name': 'std_vector_jet_pt[0]',     
-                        #'range' : (40,0,100),   
-                        'range' : (10,30,200),   
-                        'xaxis' : 'p_{T} 1st jet',
-                        'fold'  : 0                        
-                        }
-
-variables['jetpt2']  = {   'name': 'std_vector_jet_pt[1]',     
-                        #'range' : (40,0,100),   
-                        'range' : (10,30,200),   
-                        'xaxis' : 'p_{T} 2nd jet',
-                        'fold'  : 0                        
-                        }
-
-
-
+#
+#
+#
+#
+#variables['jetpt1']  = {   'name': 'std_vector_jet_pt[0]',     
+#                        #'range' : (40,0,100),   
+#                        'range' : (10,30,200),   
+#                        'xaxis' : 'p_{T} 1st jet',
+#                        'fold'  : 0                        
+#                        }
+#
+#variables['jetpt2']  = {   'name': 'std_vector_jet_pt[1]',     
+#                        #'range' : (40,0,100),   
+#                        'range' : (10,30,200),   
+#                        'xaxis' : 'p_{T} 2nd jet',
+#                        'fold'  : 0                        
+#                        }
+#
+#
+#
 #variables['pt1manybins']  = {   'name': 'std_vector_lepton_pt[0]',     
 #                        #'range' : (40,0,100),   
 #                        'range' : (100,25,200),   

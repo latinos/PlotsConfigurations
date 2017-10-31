@@ -67,7 +67,7 @@ outputDir='/pnfs/knu.ac.kr/data/cms/store/user/salee/Full2016_Apr17/'
 #	    --batchQueue=cms
 #mkShapes.py --pycfg=configuration.py --doBatch=True --batchSplit=Samples --batchQueue=cms # using directory in sample.py for KNU case
 #mkShapes.py --pycfg=configuration.py --doBatch=True --batchSplit=AsMuchAsPossible --batchQueue=short # using directory in sample.py for KNU case
-#mkShapes.py --pycfg=configuration.py --doBatch=True --batchSplit=AsMuchAsPossible --batchQueue=cms # using directory in sample.py for KNU case
+mkShapes.py --pycfg=configuration.py --doBatch=True --batchSplit=AsMuchAsPossible --batchQueue=cms # using directory in sample.py for KNU case
 #mkShapes.py --pycfg=configuration.py --doHadd=True --batchSplit=AsMuchAsPossible # using directory in sample.py for KNU case
 
 
@@ -86,7 +86,7 @@ outputDir='/pnfs/knu.ac.kr/data/cms/store/user/salee/Full2016_Apr17/'
 #mkdir plotWZsamples
 #mkdir plotDYCorrMetXYshift
 #mkdir plotGGhCorrMetXYshift
-mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile_ZllWl/plots_WgSt_ZllWl.root
+#mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile_ZllWl/plots_WgSt_ZllWl.root
 #mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile_SnglMu/plots_WgSt_SnglMu.root
 #mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile_SnglMu01/plots_WgSt_SnglMu01.root
 #mkPlot.py   --pycfg=configuration.py  --inputFile=rootFile_SnglEle01/plots_WgSt_SnglEle01.root
