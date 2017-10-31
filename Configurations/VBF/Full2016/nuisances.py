@@ -12,12 +12,14 @@
 nuisances['lumi']  = {
                'name'  : 'lumi_13TeV',
                'samples'  : {
-                   'DY'       : '1.023',    
-                   'top'      : '1.023',    
-                   'WW'       : '1.023',    
+                   'DY'       : '1.023',
+                   'top'      : '1.023',
+                   'WW'       : '1.023',
                    'ggWW'     : '1.023',
                    'Vg'       : '1.023',
                    'VgS'      : '1.023',
+                   'WZgS_L'   : '1.023',
+                   'WZgS_H'   : '1.023',
                    'VZ'       : '1.023',
                    'VVV'      : '1.023',
                    'ggH_hww'  : '1.023',
@@ -26,6 +28,7 @@ nuisances['lumi']  = {
                    'ggZH_hww' : '1.023',
                    'WH_hww'   : '1.023',
                    'bbH_hww'  : '1.023',
+                   'ttH_hww'  : '1.023',
                    'H_htt'    : '1.023',
                    },
                'type'  : 'lnN',
@@ -111,6 +114,8 @@ nuisances['btagbc']  = {
                    'ggWW'    : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'VVV'     : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'VZ'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   'WZgS_L'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   'WZgS_H'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'top'     : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'Vg'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'VgS'     : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
@@ -120,6 +125,7 @@ nuisances['btagbc']  = {
                    'ZH_hww'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'H_htt'   : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'bbH_hww' : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   'ttH_hww' : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                 }
 }
 
@@ -131,6 +137,8 @@ nuisances['btagudsg']  = {
                    'DY'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'VVV'     : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'VZ'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   'WZgS_L'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   'WZgS_H'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'WW'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'ggWW'    : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'top'     : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
@@ -141,6 +149,7 @@ nuisances['btagudsg']  = {
                    'WH_hww'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'ZH_hww'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'bbH_hww' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   'ttH_hww' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'H_htt'   : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                 }
 }
@@ -160,6 +169,8 @@ nuisances['trigg']  = {
                    'DY'      : trig_syst ,
                    'VVV'     : trig_syst ,
                    'VZ'      : trig_syst ,
+                   'WZgS_L'  : trig_syst ,
+                   'WZgS_H'  : trig_syst ,
                    'ggWW'    : trig_syst ,
                    'WW'      : trig_syst ,
                    'top'     : trig_syst ,
@@ -171,6 +182,7 @@ nuisances['trigg']  = {
                    'ZH_hww'  : trig_syst ,
                    'ggZH_hww': trig_syst ,
                    'bbH_hww' : trig_syst ,
+                   'ttH_hww' : trig_syst ,
                    'H_htt'   : trig_syst ,
                 },
 }
@@ -187,6 +199,8 @@ nuisances['idiso_ele']  = {
                    'DY'      : id_syst_ele ,
                    'VVV'     : id_syst_ele ,
                    'VZ'      : id_syst_ele ,
+                   'WZgS_L'  : id_syst_ele ,
+                   'WZgS_H'  : id_syst_ele ,
                    'ggWW'    : id_syst_ele ,
                    'WW'      : id_syst_ele ,
                    'top'     : id_syst_ele ,
@@ -198,6 +212,7 @@ nuisances['idiso_ele']  = {
                    'ZH_hww'  : id_syst_ele ,
                    'ggZH_hww': id_syst_ele ,
                    'bbH_hww' : id_syst_ele ,
+                   'ttH_hww' : id_syst_ele ,
                    'H_htt'   : id_syst_ele ,
                 },
 }
@@ -207,24 +222,27 @@ nuisances['electronpt']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY' :  ['1', '1'],
-                   'ggWW' :['1', '1'],
-                   'WW' :  ['1', '1'],
-                   'top' : ['1', '1'],
-                   'VZ' :  ['1', '1'],
-                   'VVV' : ['1', '1'],
-                   'Vg' : ['1', '1'],
-                   'VgS': ['1', '1'],
-                   'ggH_hww' : ['1', '1'],
-                   'qqH_hww' : ['1', '1'],
-                   'WH_hww'  :  ['1', '1'],
-                   'ZH_hww'  :  ['1', '1'],
-                   'ggZH_hww':  ['1', '1'],
+                   'DY'      : ['1', '1'],
+                   'ggWW'    : ['1', '1'],
+                   'WW'      : ['1', '1'],
+                   'top'     : ['1', '1'],
+                   'VZ'      : ['1', '1'],
+                   'WZgS_L'  : ['1', '1'],
+                   'WZgS_H'  : ['1', '1'],
+                   'VVV'     : ['1', '1'],
+                   'Vg'      : ['1', '1'],
+                   'VgS'     : ['1', '1'],
+                   'ggH_hww ': ['1', '1'],
+                   'qqH_hww ': ['1', '1'],
+                   'WH_hww'  : ['1', '1'],
+                   'ZH_hww'  : ['1', '1'],
+                   'ggZH_hww': ['1', '1'],
                    'bbH_hww' : ['1', '1'],
+                   'ttH_hww' : ['1', '1'],
                    'H_htt'   : ['1', '1'],
                  },
-                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__LepElepTup'+skim,
-                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__LepElepTdo'+skim,
+                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__LepElepTup'+skim,
+                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__LepElepTdo'+skim,
 }
 
 
@@ -240,6 +258,8 @@ nuisances['idiso_mu']  = {
                    'DY'      : id_syst_mu ,
                    'VVV'     : id_syst_mu ,
                    'VZ'      : id_syst_mu ,
+                   'WZgS_L'  : id_syst_mu ,
+                   'WZgS_H'  : id_syst_mu ,
                    'ggWW'    : id_syst_mu ,
                    'WW'      : id_syst_mu ,
                    'top'     : id_syst_mu ,
@@ -251,6 +271,7 @@ nuisances['idiso_mu']  = {
                    'ZH_hww'  : id_syst_mu ,
                    'ggZH_hww': id_syst_mu ,
                    'bbH_hww' : id_syst_mu ,
+                   'ttH_hww' : id_syst_mu ,
                    'H_htt'   : id_syst_mu ,
                 },
 }
@@ -260,24 +281,27 @@ nuisances['muonpt']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                   'ggWW' :['1', '1'],
-                   'WW' :  ['1', '1'],
-                   'DY' :  ['1', '1'],
-                   'top' : ['1', '1'],
-                   'VZ' :  ['1', '1'],
-                   'VVV' : ['1', '1'],
-                   'Vg' : ['1', '1'],
-                   'VgS': ['1', '1'],
-                   'ggH_hww' : ['1', '1'],
-                   'qqH_hww' : ['1', '1'],
-                   'WH_hww' :  ['1', '1'],
-                   'ZH_hww' :  ['1', '1'],
-                   'ggZH_hww':  ['1', '1'],
+                   'DY'      : ['1', '1'],
+                   'ggWW'    : ['1', '1'],
+                   'WW'      : ['1', '1'],
+                   'top'     : ['1', '1'],
+                   'VZ'      : ['1', '1'],
+                   'WZgS_L'  : ['1', '1'],
+                   'WZgS_H'  : ['1', '1'],
+                   'VVV'     : ['1', '1'],
+                   'Vg'      : ['1', '1'],
+                   'VgS'     : ['1', '1'],
+                   'ggH_hww ': ['1', '1'],
+                   'qqH_hww ': ['1', '1'],
+                   'WH_hww'  : ['1', '1'],
+                   'ZH_hww'  : ['1', '1'],
+                   'ggZH_hww': ['1', '1'],
                    'bbH_hww' : ['1', '1'],
-                   'H_htt' : ['1', '1'],
+                   'ttH_hww' : ['1', '1'],
+                   'H_htt'   : ['1', '1'],
                 },
-                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__LepMupTup'+skim,
-                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__LepMupTdo'+skim,
+                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__LepMupTup'+skim,
+                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__LepMupTdo'+skim,
 }
 
 
@@ -288,24 +312,27 @@ nuisances['jes']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                   'ggWW' :['1', '1'],
-                   'WW' :  ['1', '1'],
-                   'DY' :  ['1', '1'],
-                   'top' : ['1', '1'],
-                   'VZ' :  ['1', '1'],
-                   'VVV' : ['1', '1'],
-                   'Vg' : ['1', '1'],
-                   'VgS': ['1', '1'],
-                   'ggH_hww' : ['1', '1'],
-                   'qqH_hww' : ['1', '1'],
-                   'WH_hww' :  ['1', '1'],
-                   'ZH_hww' :  ['1', '1'],
-                   'ggZH_hww':  ['1', '1'],
+                   'DY'      : ['1', '1'],
+                   'ggWW'    : ['1', '1'],
+                   'WW'      : ['1', '1'],
+                   'top'     : ['1', '1'],
+                   'VZ'      : ['1', '1'],
+                   'WZgS_L'  : ['1', '1'],
+                   'WZgS_H'  : ['1', '1'],
+                   'VVV'     : ['1', '1'],
+                   'Vg'      : ['1', '1'],
+                   'VgS'     : ['1', '1'],
+                   'ggH_hww ': ['1', '1'],
+                   'qqH_hww ': ['1', '1'],
+                   'WH_hww'  : ['1', '1'],
+                   'ZH_hww'  : ['1', '1'],
+                   'ggZH_hww': ['1', '1'],
                    'bbH_hww' : ['1', '1'],
-                   'H_htt' : ['1', '1'],
+                   'ttH_hww' : ['1', '1'],
+                   'H_htt'   : ['1', '1'],
                 },
-                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__JESup'+skim,
-                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__JESdo'+skim,
+                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__JESup'+skim,
+                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__JESdo'+skim,
 }
 
 ##### MET energy scale
@@ -315,24 +342,117 @@ nuisances['met']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                   'ggWW' :['1', '1'],
-                   'WW' :  ['1', '1'],
-                   'DY' :  ['1', '1'],
-                   'top' : ['1', '1'],
-                   'VZ' :  ['1', '1'],
-                   'VVV' : ['1', '1'],
-                   'Vg' : ['1', '1'],
-                   'VgS': ['1', '1'],
-                   'ggH_hww' : ['1', '1'],
-                   'qqH_hww' : ['1', '1'],
-                   'WH_hww' :  ['1', '1'],
-                   'ZH_hww' :  ['1', '1'],
-                   'ggZH_hww':  ['1', '1'],
+                   'DY'      : ['1', '1'],
+                   'ggWW'    : ['1', '1'],
+                   'WW'      : ['1', '1'],
+                   'top'     : ['1', '1'],
+                   'VZ'      : ['1', '1'],
+                   'WZgS_L'  : ['1', '1'],
+                   'WZgS_H'  : ['1', '1'],
+                   'VVV'     : ['1', '1'],
+                   'Vg'      : ['1', '1'],
+                   'VgS'     : ['1', '1'],
+                   'ggH_hww ': ['1', '1'],
+                   'qqH_hww ': ['1', '1'],
+                   'WH_hww'  : ['1', '1'],
+                   'ZH_hww'  : ['1', '1'],
+                   'ggZH_hww': ['1', '1'],
                    'bbH_hww' : ['1', '1'],
-                   'H_htt' : ['1', '1'],
+                   'ttH_hww' : ['1', '1'],
+                   'H_htt'   : ['1', '1'],
                 },
-                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__METup'+skim,
-                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__METdo'+skim,
+                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__METup'+skim,
+                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__METdo'+skim,
+}
+
+nuisances['PS']  = {
+                'name'  : 'PS', 
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples'  : {
+                  'WW'      : ['0.92657', '1.'], #
+                  'ggH_hww' : ['0.98554', '1.'], # These numbers are used to normalize the PS variation to the same integral as the nominal after the wwSel skim
+                  'qqH_hww' : ['0.92511', '1.'], #
+                },
+                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__PS'+skim,
+                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC'+skim,
+                }
+
+nuisances['UE']  = {
+                'name'  : 'UE', 
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples'  : {
+                  'WW'      : ['1.0226', '0.9897'], #
+                  'ggH_hww' : ['1.0739', '1.0211'], # These numbers are used to normalize the UE up/down variations to the same integral as the nominal after the wwSel skim
+                  'qqH_hww' : ['1.0560', '0.9992'], #
+                },
+                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__UEup'+skim,
+                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__UEdo'+skim,
+                }
+
+
+## Shape nuisance due to QCD scale variations for DY
+nuisances['DYQCDscale']  = {
+                'name'  : 'DYQCDscale',
+                'kind'  : 'weight',
+               'type'  : 'shape',
+                'samples'  : {
+                   'DY'      : ['std_vector_LHE_weight[8]/std_vector_LHE_weight[0]', 'std_vector_LHE_weight[4]/std_vector_LHE_weight[0]'],
+                }
+}
+
+
+nuisances['elePtCor']  = {
+                'name'  : 'elePtCor',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'DY'         : ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l'], 
+                   'ggWW'       : ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l'],    
+                   'WW'         : ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l'],
+                   'top'        : ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l'],
+                   'VZ'         : ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l'],
+                   'WZgS_L'     : ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l'],
+                   'WZgS_H'     : ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l'],
+                   'VVV'        : ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l'],
+                   'Vg'         : ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l'],
+                   'VgS'        : ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l'],
+                   'ggH_hww '   : ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l'],
+                   'qqH_hww '   : ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l'],
+                   'WH_hww'     : ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l'],
+                   'ZH_hww'     : ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l'],
+                   'ggZH_hww'   : ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l'],
+                   'bbH_hww'    : ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l'],
+                   'ttH_hww'    : ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l'],
+                   'H_htt'      : ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l'],
+                }
+}
+
+nuisances['eleEtaCor']  = {
+                'name'  : 'eleEtaCor',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'DY'         : ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l'],
+                   'ggWW'       : ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l'],
+                   'WW'         : ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l'],
+                   'top'        : ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l'],
+                   'VZ'         : ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l'],
+                   'WZgS_L'     : ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l'],
+                   'WZgS_H'     : ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l'],
+                   'VVV'        : ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l'],
+                   'Vg'         : ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l'],
+                   'VgS'        : ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l'],
+                   'ggH_hww '   : ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l'],
+                   'qqH_hww '   : ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l'],
+                   'WH_hww'     : ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l'],
+                   'ZH_hww'     : ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l'],
+                   'ggZH_hww'   : ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l'],
+                   'bbH_hww'    : ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l'],
+                   'ttH_hww'    : ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l'],
+                   'H_htt'      : ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l'],
+                }
 }
 
 #
@@ -436,7 +556,11 @@ nuisances['QCDscale_CRSR_accept_dytt']  = {
                    'DY' : '1.02',
                    },
                'cuts'  : [
-                 'hww2l2v_13TeV_dytt_of2j_vbf'
+                 'hww2l2v_13TeV_dytt_of0j',
+                 'hww2l2v_13TeV_dytt_of1j',
+                 'hww2l2v_13TeV_dytt_of2j',
+                 'hww2l2v_13TeV_dytt_of2j_vbf',
+                 'hww2l2v_13TeV_dytt_of2j_vh2j'
                 ]               
               }
 
@@ -447,7 +571,11 @@ nuisances['QCDscale_CRSR_accept_top']  = {
                    'top' : '1.01',
                    },
                'cuts'  : [
-                 'hww2l2v_13TeV_top_of2j_vbf'
+                 'hww2l2v_13TeV_top_of0j',
+                 'hww2l2v_13TeV_top_of1j',
+                 'hww2l2v_13TeV_top_of2j',
+                 'hww2l2v_13TeV_top_of2j_vbf',
+                 'hww2l2v_13TeV_top_of2j_vh2j'
                 ]               
               }
 
@@ -513,17 +641,26 @@ nuisances['QCDscale_ggZH']  = {
                'type'  : 'lnN',
               }
 
+nuisances['QCDscale_bbH']  = {
+               'name'  : 'QCDscale_bbH',
+               'samples'  : {
+                   'bbH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','bbH','125.0','scale','sm'),
+                   },
+               'type'  : 'lnN',
+              }
+
+nuisances['QCDscale_ttH']  = {
+               'name'  : 'QCDscale_ttH',
+               'samples'  : {
+                   'ttH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ttH','125.0','scale','sm'),
+                   },
+               'type'  : 'lnN',
+              }
 
 nuisances['QCDscale_qqbar_accept']  = {
                'name'  : 'QCDscale_qqbar_accept', 
                'type'  : 'lnN',
                'samples'  : {
-                   #'qqH_hww' : '1.02',
-                   #'qqH_htt' : '1.02',
-                   #'WH_hww'  : '1.02',
-                   #'ZH_hww'  : '1.02',
-                   #
-                   #'WW'      : '1.015', -> not included since part of weights from WWqscale0j and WWqscale1j
                    'qqH_hww' : '1.007',
                    'qqH_htt' : '1.007',
                    'WH_hww'  : '1.05',
@@ -533,16 +670,9 @@ nuisances['QCDscale_qqbar_accept']  = {
               }
 
 
-
 nuisances['QCDscale_gg_accept']  = {
                'name'  : 'QCDscale_gg_accept', 
                'samples'  : {
-                   #'ggWW'    : '1.03',
-                   #'ggH_hww' : '1.03',
-                   #'ggH_htt' : '1.03',
-                   #'H_htt'   : '1.03',
-                   #'ggZH_hww': '1.03',                   
-                   #
                    'ggWW'    : '1.027',
                    'ggH_hww' : '1.027',
                    'ggH_htt' : '1.027',
@@ -556,13 +686,12 @@ nuisances['QCDscale_gg_accept']  = {
 ###### pdf uncertainty
 
 nuisances['pdf_gg']  = {
-               'name'  : 'pdf_gg', 
+               'name'  : 'pdf_gg',
                'samples'  : {
-                   #'ggWW'    : '1.05',    # --> no, since absorbed into k-scale factor
                    'ggH_hww' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,'125.0','pdf','sm'),
                    'ggH_htt' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,'125.0','pdf','sm'),
                    'H_htt'   : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,'125.0','pdf','sm'),
-                   'ggZH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggZH','125.0','pdf','sm'),                   
+                   'ggZH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggZH','125.0','pdf','sm'),
                    },
                'type'  : 'lnN',
               }
@@ -616,6 +745,7 @@ nuisances['DYQCDscale']  = {
                 }
 }
 
+
 # Top pT reweighting uncertainty
 nuisances['TopPtRew']  = {
                 'name'  : 'TopPtRew',   # Theory uncertainty
@@ -646,6 +776,8 @@ nuisances['WWresum2j']  = {
                 },
                'cuts'  : [
                  'hww2l2v_13TeV_of2j_vbf',
+                 'hww2l2v_13TeV_of2j_vbf_lowmjj',
+                 'hww2l2v_13TeV_of2j_vbf_highmjj',
                  'hww2l2v_13TeV_top_of2j_vbf',
                  'hww2l2v_13TeV_dytt_of2j_vbf',
                 ]
@@ -660,21 +792,24 @@ nuisances['WWqscale2j']  = {
                 },
                 'cuts'  : [
                  'hww2l2v_13TeV_of2j_vbf',
+                 'hww2l2v_13TeV_of2j_vbf_lowmjj',
+                 'hww2l2v_13TeV_of2j_vbf_highmjj',
                  'hww2l2v_13TeV_top_of2j_vbf',
                  'hww2l2v_13TeV_dytt_of2j_vbf',
                 ]
                 }
 
+
 nuisances['WgStarScale']  = {
-               'name'  : 'WgStarScale', 
+               'name'  : 'WgStarScale',
                'type'  : 'lnN',
                'samples'  : {
-                   'WgS' : '1.25',  # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
-                   'VgS' : '1.25',  # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
+                   'WgS'    : '1.25',  # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
+                   'VgS'    : '1.25',  # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
+                   'WZgS_L' : '1.25',  #FIXME check!
                    },
                 }
  
-
 nuisances['DYttnormvbf']  = {
                'name'  : 'DYttnormvbf', 
                'samples'  : {
@@ -683,6 +818,8 @@ nuisances['DYttnormvbf']  = {
                'type'  : 'rateParam',
                'cuts'  : [
                  'hww2l2v_13TeV_of2j_vbf',
+                 'hww2l2v_13TeV_of2j_vbf_lowmjj',
+                 'hww2l2v_13TeV_of2j_vbf_highmjj',
                  'hww2l2v_13TeV_top_of2j_vbf',
                  'hww2l2v_13TeV_dytt_of2j_vbf',
                 ]
@@ -697,6 +834,8 @@ nuisances['WWnormvbf']  = {
                'type'  : 'rateParam',
                'cuts'  : [
                  'hww2l2v_13TeV_of2j_vbf',
+                 'hww2l2v_13TeV_of2j_vbf_lowmjj',
+                 'hww2l2v_13TeV_of2j_vbf_highmjj',
                  'hww2l2v_13TeV_top_of2j_vbf',
                  'hww2l2v_13TeV_dytt_of2j_vbf',              
                 ]
@@ -710,10 +849,13 @@ nuisances['Topnormvbf']  = {
                'type'  : 'rateParam',
                'cuts'  : [
                  'hww2l2v_13TeV_of2j_vbf',
+                 'hww2l2v_13TeV_of2j_vbf_lowmjj',
+                 'hww2l2v_13TeV_of2j_vbf_highmjj',
                  'hww2l2v_13TeV_top_of2j_vbf',
                  'hww2l2v_13TeV_dytt_of2j_vbf',              
                 ]
               }
+
 
 
 nuisances['tttwTh']  = {
@@ -729,123 +871,121 @@ nuisances['tttwTh']  = {
                 
 }
 
-### FIXME: This must be implemented in mkDatacards.py using  a flag or something.
-### Use the following if you want to apply the new combine MC stat nuisances.
-### In this case remember to add the following line in the datacard
-### * autoMCStats 10 1
+## Use the following if you want to apply the automatic combine MC stat nuisances.
+nuisances['stat']  = {
+              'type'  : 'auto',
+              'maxPoiss'  : '10',
+              'includeSignal'  : '1',
+              #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
+              #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
+              'samples' : {}
+             }
 
+#### Use the following if you want to apply the MC stat nuisances accoriding to the standard approach
 #nuisances['stat']  = {
 #                # apply to the following samples: name of samples here must match keys in samples.py
-#               'samples'  : { },
+#               'samples'  : { 
+#                   'ttbar': {
+#                         'typeStat' : 'bbb',
+#                         },
+#
+#                   'singletop': {
+#                         'typeStat' : 'bbb',
+#                         },
+#                    
+#                   'top': {
+#                         'typeStat' : 'bbb',
+#                         },
+#                    
+#                   'DY': {
+#                         'typeStat' : 'bbb',
+#                         'keepNormalization' : '1'  # default = 0 -> 0=don't keep normalization
+#                         },
+#                    
+#                   'ggWW': {
+#                         'typeStat' : 'bbb',
+#                         },
+#                    
+#                   'ggWW_Int': {
+#                         'typeStat' : 'bbb',
+#                         },
+#                    
+#                   'WW': {
+#                         'typeStat' : 'bbb',
+#                         },
+#
+#                   'VZ': {
+#                         'typeStat' : 'bbb',
+#                         },
+#
+#                   'WZ': {
+#                         'typeStat' : 'bbb',
+#                         },
+#
+#                   'VVV': {
+#                         'typeStat' : 'bbb',
+#                         },
+#
+#                   'H_hww': {
+#                         'typeStat' : 'bbb',
+#                         },
+#
+#                   'ggH_hww': {
+#                         'typeStat' : 'bbb',
+#                         },
+#
+#                   'qqH_hww': {
+#                         'typeStat' : 'bbb',
+#                         },
+#
+#                   'WH_hww': {
+#                         'typeStat' : 'bbb',
+#                         },
+#
+#                   'ZH_hww': {
+#                         'typeStat' : 'bbb',
+#                         },
+#
+#                   'H_htt': {
+#                         'typeStat' : 'bbb',
+#                         },
+#
+#                   'ggH_htt': {
+#                         'typeStat' : 'bbb',
+#                         },
+#
+#                   'qqH_htt': {
+#                         'typeStat' : 'bbb',
+#                         },
+#
+#                   'WH_htt': {
+#                         'typeStat' : 'bbb',
+#                         },
+#
+#                   'ZH_htt': {
+#                         'typeStat' : 'bbb',
+#                         },
+#
+#                   'ggZH_hww': {
+#                         'typeStat' : 'bbb',
+#                         },
+#
+#                   'bbH_hww': {
+#                         'typeStat' : 'bbb',
+#                         },
+#                   
+#                   'Fake': {
+#                         'typeStat' : 'bbb',
+#                         },
+#                   
+#                   'Vg': {  
+#                         'typeStat' : 'bbb',
+#                         },
+#
+#                   'VgS':{  
+#                         'typeStat' : 'bbb',
+#                         },
+#                 },
 #               'type'  : 'shape'
 #              }
 
-'''
-### Use the following if you want to apply the MC stat nuisances accoriding to the standard approach
-nuisances['stat']  = {
-                # apply to the following samples: name of samples here must match keys in samples.py
-               'samples'  : {
-                   'ttbar': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'singletop': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'top': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'DY': {
-                         'typeStat' : 'bbb',
-                         'keepNormalization' : '1'  # default = 0 -> 0=don't keep normalization
-                         },
-
-                   'ggWW': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'ggWW_Int': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'WW': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'VZ': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'WZ': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'VVV': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'H_hww': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'ggH_hww': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'qqH_hww': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'WH_hww': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'ZH_hww': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'H_htt': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'ggH_htt': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'qqH_htt': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'WH_htt': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'ZH_htt': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'ggZH_hww': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'bbH_hww': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'Fake': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'Vg': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'VgS':{
-                         'typeStat' : 'bbb',
-                         },
-                 },
-               'type'  : 'shape'
-              }
-'''
