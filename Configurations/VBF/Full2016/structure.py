@@ -67,6 +67,16 @@ structure['VgS'] = {
                   'isData'   : 0 
                   }
 
+structure['WZgS_L'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
+structure['WZgS_H'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
 structure['Zg']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
@@ -144,6 +154,10 @@ structure['bbH_hww'] = {
                   'isData'   : 0
                   }
 
+structure['ttH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
 
 # data
 
