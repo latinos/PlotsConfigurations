@@ -14,6 +14,14 @@ eval `scramv1 runtime -sh`
 
 cd -
 
+mkdir -p /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/goodnessOfFit_em_MVA
+
+mkdir -p /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/combine_em_MVA
+
+mkdir -p /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/limits_em_MVA
+
+mkdir -p /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/pulls_em_MVA
+
 mkdir -p goodnessOfFit_em_MVA
 
 mkdir -p combine_em_MVA
