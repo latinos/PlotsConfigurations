@@ -7,11 +7,11 @@ supercut = ' mll > 12 \
 
 # Sone cuts
 
-dymva0jet = 'dymvaggh > 0.99'
+dymva0jet = 'dymvaggh > 0.991'
 dymva1jet = 'dymvaggh > 0.95'
 
-Higgs0jet = 'std_vector_lepton_pt[1] < 50 && abs(dphill) < 1.45 && mll < 55'
-Higgs1jet = 'std_vector_lepton_pt[0] < 50 && abs(dphill) < 1.75 && mll < 57'
+Higgs0jet = 'std_vector_lepton_pt[1] < 50 && abs(dphill) < 1.70 && mll < 55 && mth > 50'
+Higgs1jet = 'std_vector_lepton_pt[0] < 50 && abs(dphill) < 1.75 && mll < 57 && mth > 50 && mth <155'
 
 # Higgs Signal Regions: ee/uu * 0/1 jet
 
