@@ -49,7 +49,7 @@ groupPlot['VZ']  = {
                   'nameHR' : "VZ/#gamma*/#gamma",
                   'isSignal' : 0,
                   'color'    : 617,   # kViolet + 1  
-                  'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ']
+                  'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ','WZgS_L','WZgS_H']
               }
 
 
@@ -57,7 +57,7 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww']
+                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww']
               }
 
 
@@ -199,6 +199,21 @@ plot['VgS'] = {
                   'scale'    : 1.0
                   }
 
+plot['WZgS_L'] = {
+                  'color'    : 617,   # kViolet + 1  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+plot['WZgS_H'] = {
+                  'color'    : 617,   # kViolet + 1  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+
 plot['VZ']  = { 
                   'color': 858, # kAzure -2  
                   'isSignal' : 0,
@@ -272,6 +287,15 @@ plot['bbH_hww'] = {
                   'isData'   : 0,
                   'scale'    : 1    #
                   }
+
+plot['ttH_hww'] = {
+                  'nameHR' : 'bbH',
+                  'color': 632-2, # kRed-1 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
 
 plot['ggZH_hww'] = {
                   'nameHR' : 'ggZH',
