@@ -54,6 +54,7 @@ nuisances['QCDscale_ZH_zh4l']  = {
         'name' : 'QCDscale_ZH',
         'samples' : {
             'ZH_hww' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH','125.0','scale','sm'),
+            'ZH_htt' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH','125.0','scale','sm'),
             },
         'type' : 'lnN',
         }
@@ -81,8 +82,53 @@ nuisances['pdf_qqbar_zh4l']  = {
         'type'  : 'lnN',
         'samples'  : {
             'ZH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH' ,'125.0','pdf','sm'),
+            'ZH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH' ,'125.0','pdf','sm'),
             },
         }
+
+
+##acceptance
+
+nuisances['pdf_qqbar_accept_zh4l']  = {
+               'name'  : 'pdf_qqbar_accept',
+               'type'  : 'lnN',
+               'samples'  : {
+                   #
+                   'ZH_hww'  : '1.013',
+                   'ZH_htt'  : '1.009',
+                   # 'ZZ' : '1.06',
+                   },
+              }
+
+nuisances['pdf_gg_accept_zh4l']  = {
+               'name'  : 'pdf_gg_accept',
+               'type'  : 'lnN',
+               'samples'  : {
+                   #
+                   'ggZH_hww'  : '1.012',
+                   },
+              }
+
+nuisances['QCDscale_qqbar_accept']  = {
+               'name'  : 'QCDscale_qqbar_accept', 
+               'type'  : 'lnN',
+               'samples'  : {
+                   'ZH_hww'  : '1.016',
+                   'ZH_htt'  : '1.004',
+                   # 'ZZ'      : '1.048',
+                   },
+              }
+
+
+nuisances['QCDscale_gg_accept']  = {
+               'name'  : 'QCDscale_gg_accept', 
+               'samples'  : {
+                   'ggZH_hww': '1.003',                   
+                   },
+               'type'  : 'lnN',
+              }
+
+
 
 ## PS/UE
 #
@@ -90,12 +136,11 @@ nuisances['pdf_qqbar_zh4l']  = {
 #
 nuisances['PS_zh4l']  = {
         'name'  : 'PS_zh4l',
-        #               'kind'  : 'tree',
         'type'  : 'lnN',
         'samples'  : {
             'ZH_hww'   : '1.037',
             'ZH_htt'   : '1.037',
-            'ggH_hzz'  : '1.037',
+            'ggZH_hww'  : '1.037',
             },
         }
 
@@ -105,7 +150,7 @@ nuisances['UE_zh4l']  = {
         'samples'  : {
             'ZH_hww'   : '1.010',
             'ZH_htt'   : '1.010',
-            'ggH_hzz'  : '1.010',
+            'ggZH_hww'  : '1.010',
             },
         }
 
@@ -122,23 +167,11 @@ nuisances['ZZ4lnorm']  = {
             'zh4l_XDF_13TeV',
             ]
         }
-nuisances['ggZZ4lnorm']  = {
-        'name'  : 'ZZ4lnorm',
-        'samples'  : {
-            'ggZZ' : '1.00',
-            },
-        'type'  : 'rateParam',
-        'cuts'  : [
-            'zh4l_ZZ_13TeV',
-            'zh4l_XSF_13TeV',
-            'zh4l_XDF_13TeV',
-            ]
-        }
 # Other Systematics
 
 
 nuisances['btagbc']  = {
-        'name'  : 'ICHEP_btag_bc',
+        'name'  : 'Full2016_btag_bc',
         'kind'  : 'weight',
         'type'  : 'shape',
         'samples'  : {
@@ -168,7 +201,7 @@ nuisances['btagbc']  = {
         }
 
 nuisances['btagudsg']  = {
-        'name'  : 'ICHEP_btag_udsg',
+        'name'  : 'Full2016_btag_udsg',
         'kind'  : 'weight',
         'type'  : 'shape',
         'samples'  : {
@@ -302,7 +335,7 @@ nuisances['jes_zh4l']  = {
             'WH_htt'   : ['1', '1'],
             'Vg'       : ['1', '1'],
             },
-        'folderUp'   : upDownPath+'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__JESup',
+        'folderUp'   : upDownPath+'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l3loose__hadd__l2tightOR__formulasMC__JESup',
         'folderDown'   : upDownPath+'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__JESdo'
 
         }
