@@ -309,7 +309,7 @@ nuisances['idiso_ele']  = {
                    'VH_had_fwd':id_syst_ele ,
                    'WH_lep_fwd':id_syst_ele ,
                    'ZH_lep_fwd':id_syst_ele ,
-                   'ggZH_lep_fwd': id_syst_ele
+                   'ggZH_lep_fwd': id_syst_ele,
                    'ttH_fwd'  : id_syst_ele ,
                    'bbH_fwd'  : id_syst_ele ,
                    'tH_fwd'   : id_syst_ele ,
@@ -355,7 +355,7 @@ nuisances['electronpt']  = {
                    'VH_had_fwd':['1', '1'] ,
                    'WH_lep_fwd':['1', '1'] ,
                    'ZH_lep_fwd':['1', '1'] ,
-                   'ggZH_lep_fwd': ['1', '1']
+                   'ggZH_lep_fwd': ['1', '1'],
                    'ttH_fwd'  : ['1', '1'] ,
                    'bbH_fwd'  : ['1', '1'] ,
                    'tH_fwd'   : ['1', '1'] ,
@@ -408,7 +408,7 @@ nuisances['idiso_mu']  = {
                    'VH_had_fwd':id_syst_mu ,
                    'WH_lep_fwd':id_syst_mu ,
                    'ZH_lep_fwd':id_syst_mu ,
-                   'ggZH_lep_fwd': id_syst_mu
+                   'ggZH_lep_fwd': id_syst_mu,
                    'ttH_fwd'  : id_syst_mu ,
                    'bbH_fwd'  : id_syst_mu ,
                    'tH_fwd'   : id_syst_mu ,
@@ -454,7 +454,7 @@ nuisances['muonpt']  = {
                    'VH_had_fwd':['1', '1'] ,
                    'WH_lep_fwd':['1', '1'] ,
                    'ZH_lep_fwd':['1', '1'] ,
-                   'ggZH_lep_fwd': ['1', '1']
+                   'ggZH_lep_fwd': ['1', '1'],
                    'ttH_fwd'  : ['1', '1'] ,
                    'bbH_fwd'  : ['1', '1'] ,
                    'tH_fwd'   : ['1', '1'] ,
@@ -504,7 +504,7 @@ nuisances['jes']  = {
                    'VH_had_fwd':['1', '1'] ,
                    'WH_lep_fwd':['1', '1'] ,
                    'ZH_lep_fwd':['1', '1'] ,
-                   'ggZH_lep_fwd': ['1', '1']
+                   'ggZH_lep_fwd': ['1', '1'],
                    'ttH_fwd'  : ['1', '1'] ,
                    'bbH_fwd'  : ['1', '1'] ,
                    'tH_fwd'   : ['1', '1'] ,                 },
@@ -552,7 +552,7 @@ nuisances['met']  = {
                    'VH_had_fwd':['1', '1'] ,
                    'WH_lep_fwd':['1', '1'] ,
                    'ZH_lep_fwd':['1', '1'] ,
-                   'ggZH_lep_fwd': ['1', '1']
+                   'ggZH_lep_fwd': ['1', '1'],
                    'ttH_fwd'  : ['1', '1'] ,
                    'bbH_fwd'  : ['1', '1'] ,
                    'tH_fwd'   : ['1', '1'] ,
@@ -648,7 +648,7 @@ nuisances['elePtCor']  = {
                    'VH_had_fwd':['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l'] ,
                    'WH_lep_fwd':['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l'] ,
                    'ZH_lep_fwd':['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l'] ,
-                   'ggZH_lep_fwd': ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l']
+                   'ggZH_lep_fwd': ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l'],
                    'ttH_fwd'  : ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l'] ,
                    'bbH_fwd'  : ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l'] ,
                    'tH_fwd'   : ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l'] ,
@@ -693,7 +693,7 @@ nuisances['eleEtaCor']  = {
                    'VH_had_fwd':['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l'] ,
                    'WH_lep_fwd':['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l'] ,
                    'ZH_lep_fwd':['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l'] ,
-                   'ggZH_lep_fwd': ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l']
+                   'ggZH_lep_fwd': ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l'],
                    'ttH_fwd'  : ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l'] ,
                    'bbH_fwd'  : ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l'] ,
                    'tH_fwd'   : ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l'] ,
