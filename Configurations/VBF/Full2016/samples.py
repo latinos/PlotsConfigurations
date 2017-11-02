@@ -321,9 +321,9 @@ samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'
 ######## Vg ########
 
 samples['Vg']  =  {     'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM')
-                                   + getSampleFiles(directory,'Zg')
-                                   ,
+                                   + getSampleFiles(directory,'Zg'),
                         'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
+                        'suppressNegativeNuisances' :['all'],
                   }
 
 ######## VgS ########
@@ -364,7 +364,8 @@ samples['VVV'] = {    'name':   getSampleFiles(directory,'ZZZ')
                            #  WWG: Might be added to WW by PYTHIA in tuning step, super small x-section anyway -> skipped for now 
                            #  + getSampleFiles(directory,'WWG')
                               ,    
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC , 
+                      'suppressNegativeNuisances' :['all'], 
                   }
 
 ###########################################
