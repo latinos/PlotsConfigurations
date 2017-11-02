@@ -1,10 +1,10 @@
 # example of configuration file
 
-tag = 'DY_mva90pIso16'
+tag = 'ggH2j_HTHS'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_dataOnly'
+outputDir = 'rootFile'
 
 
 # file with list of variables
@@ -14,7 +14,7 @@ variablesFile = 'variables.py'
 cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples_mva90pIso16.py' 
+samplesFile = 'samples.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
@@ -26,8 +26,7 @@ lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-# outputDirPlots = '~/www/plotCR'
-outputDirPlots = 'plotDY_mva90pIso16'
+outputDirPlots = 'plotGGH'
 
 
 # used by mkDatacards to define output directory for datacards
@@ -39,6 +38,6 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-# nuisancesFile = 'nuisances.py'
+nuisancesFile = 'nuisances.py'
 
 

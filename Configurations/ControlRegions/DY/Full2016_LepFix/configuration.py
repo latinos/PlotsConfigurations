@@ -1,10 +1,10 @@
 # example of configuration file
 
-tag = 'DY_mva90pIso16'
+tag = 'DY_LepFix'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_dataOnly'
+outputDir = 'rootFile'
 
 
 # file with list of variables
@@ -14,7 +14,7 @@ variablesFile = 'variables.py'
 cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples_mva90pIso16.py' 
+samplesFile = 'samples.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
@@ -39,6 +39,6 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-# nuisancesFile = 'nuisances.py'
+nuisancesFile = 'nuisances.py'
 
 

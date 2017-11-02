@@ -4,10 +4,37 @@
 
 # keys here must match keys in samples.py    
 #                    
+structure['DY']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0 
+              }
+
+
+structure['Wjets']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0 
+              }
+
 structure['Fake']  = {  
                   'isSignal' : 0,
                   'isData'   : 0 
               }
+
+structure['ttbar'] = {   
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
+
+
+structure['singletop'] = {   
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
+
+structure['top'] = {   
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
 
 
 structure['WW']  = {
@@ -15,25 +42,28 @@ structure['WW']  = {
                   'isData'   : 0    
                   }
 
-structure['DY']  = {
+structure['ggWW']  = {
                   'isSignal' : 0,
                   'isData'   : 0    
                   }
 
-structure['ttW']  = {
+structure['ggWW_Int']  = {
                   'isSignal' : 0,
                   'isData'   : 0    
                   }
-structure['ttZ']  = {
+
+structure['Wg']  = { 
                   'isSignal' : 0,
-                  'isData'   : 0    
+                  'isData'   : 0 
                   }
-structure['top']  = {
+
+
+structure['Zg']  = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
 
-structure['Vg']  = { 
+structure['VZ']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
@@ -43,28 +73,35 @@ structure['WZ']  = {
                   'isData'   : 0 
                   }
 
-structure['ggH_hzz'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
 
-
-structure['VVZ']  = { 
+structure['VVV']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
 
-structure['WWW']  = { 
-                  'isSignal' : 0,
-                  'isData'   : 0 
-                  }
 structure['ZZ']  = {
                   'isSignal' : 0,
                   'isData'   : 0    
                   }
 
-structure['ggZZ']  = {
-                  'isSignal' : 0,
+
+structure['ggH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['qqH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['qqH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['WH_hww'] = {
+                  'isSignal' : 1,
                   'isData'   : 0    
                   }
 
@@ -77,7 +114,8 @@ structure['ggZH_hww'] = {
                   'isSignal' : 1,
                   'isData'   : 0    
                   }
-structure['ZH_htt'] = {
+
+structure['H_htt'] = {
                   'isSignal' : 1,
                   'isData'   : 0    
                   }
@@ -89,3 +127,7 @@ structure['DATA']  = {
                   'isSignal' : 0,
                   'isData'   : 1 
               }
+
+
+
+

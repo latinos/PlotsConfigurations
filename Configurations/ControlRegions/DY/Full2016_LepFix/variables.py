@@ -2,19 +2,14 @@
 
 #variables = {}
     
-variables['trigger'] = { 'name': '1*((trig_EleMu + trig_DbleMu+trig_SnglMu+trig_DbleEle+trig_SnglEle)>0)*trig_EleMu + 2* ((trig_DbleMu+trig_SnglMu+trig_DbleEle+trig_SnglEle)>0)*(!trig_EleMu &&  trig_DbleMu) + 3 * ((trig_SnglMu+trig_DbleEle+trig_SnglEle)>0)*(!trig_EleMu && !trig_DbleMu &&  trig_SnglMu) + 4 *((trig_DbleEle+trig_SnglEle)>0)*(!trig_EleMu && !trig_DbleMu && !trig_SnglMu &&  trig_DbleEle) + 5* (trig_SnglEle>0)*(!trig_EleMu && !trig_DbleMu && !trig_SnglMu && !trig_DbleEle &&  trig_SnglEle)',
-                    'range' : (7, 0, 7),
-                    'xaxis' : 'triggerbit',
-                    'fold' : 3
-}
 
-'''
 variables['events']  = {   'name': '1',      
                         'range' : (1,0,2),  
                         'xaxis' : 'events', 
                         'fold' : 3
                         }
    
+'''
 variables['pt1VSeta1'] = {   'name': 'std_vector_lepton_pt[0]:std_vector_lepton_eta[0]',            #   variable name    
                         'range' : (20,-2.5,2.5, 20,0,80),            #   variable range
                         'xaxis' : 'p_{T1} : #eta_{1}',      #   x axis name
@@ -39,6 +34,7 @@ variables['eta2VSpt2'] = {   'name': 'std_vector_lepton_eta[1]:std_vector_lepton
                         'fold' : 0 ,
                         }
 
+'''
 variables['nvtx']  = {   'name': 'nvtx',      
                         'range' : (40,0,40),  
                         'xaxis' : 'nvtx', 
@@ -155,6 +151,7 @@ variables['phi2']  = {  'name': 'std_vector_lepton_phi[1]',
 #
 #
 #
+'''
 variables['cmva_1']  = { 
                         'name': 'std_vector_jet_cmvav2[0]',     
                         'range' : (40,-1,1),   
@@ -178,6 +175,7 @@ variables['pfmet']  = {
                         'fold'  : 3                         
                         }
 
+'''
 
 variables['njet']  = {
                         'name': 'njet',     
@@ -216,6 +214,7 @@ variables['jeteta2']  = {  'name': 'std_vector_jet_eta[1]',
                         }
 
 
+'''
 variables['mtw1']  = {  'name': 'mtw1',
                         'range' : (40,0,200),
                         'xaxis' : 'm_{T}^{W_{1}} [GeV]',

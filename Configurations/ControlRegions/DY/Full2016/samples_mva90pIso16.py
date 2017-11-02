@@ -146,7 +146,7 @@ DataTrig = {
             'DoubleEG'       : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu &&  trig_DbleEle' ,
             'SingleElectron' : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu && !trig_DbleEle &&  trig_SnglEle' ,
            }
-
+'''
 ###########################################
 #############  BACKGROUNDS  ###############
 ###########################################
@@ -365,7 +365,7 @@ for Run in DataRun :
     for iFile in FileTarget:
       samples['Fake']['name'].append(iFile)
       samples['Fake']['weights'].append(DataTrig[DataSet])
-
+'''
 ###########################################
 ################## DATA ###################
 ###########################################
