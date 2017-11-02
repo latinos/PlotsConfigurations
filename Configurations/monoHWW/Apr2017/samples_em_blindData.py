@@ -24,7 +24,8 @@ from LatinoAnalysis.Tools.commonTools import *
 #skim="__wwSel__monohSel__muccaMonoH_Apr2017_em"
 #skim="__wwSel__monohSel__muccaMonoH_Apr2017_em__muccaMonoH_Apr2017_em"
 #skim="__wwSel__monohSel__muccaMonoHem__muccaMonoHem_high"
-skim="__wwSel__muccaApr2017_em__muccaAll_em"
+#skim="__wwSel__muccaApr2017_em__muccaAll_em"
+skim="__wwSel__monohSel__muccaAll_em"
 
 if skim =='__vh3lSel' :  skimFake='__vh3lFakeSel'
 else:                    skimFake=skim
@@ -57,7 +58,13 @@ Nlep='2'
 ################################################
 
 XSWeight      = 'XSWeight'
-SFweight      = 'SFweight'+Nlep+'l'
+### SFweight      = 'SFweight'+Nlep+'l'
+SFweight      = 'puW*\
+                 effTrigW*\
+                 std_vector_lepton_recoW[0]*\
+                 std_vector_lepton_recoW[1]*\
+                 veto_EMTFBug'
+###                 electron_etaW_2l*electron_ptW_2l*\
 GenLepMatch   = 'GenLepMatch'+Nlep+'l'
 
 ################################################
