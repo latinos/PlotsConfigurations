@@ -1,22 +1,20 @@
 /*
 
-root -l -b -q 'macroExclusionTable.C("muccamva2HDMadaptFull_600","em","MVA","2HDM",false)'
-root -l -b -q 'macroExclusionTable.C("muccamva2HDMadaptFull_600","em","MVA","2HDM",true)'
-root -l -b -q 'macroExclusionTable.C("muccamva2HDMadaptFull_1000","em","MVA","2HDM",false)'
-root -l -b -q 'macroExclusionTable.C("muccamva2HDMadaptFull_1000","em","MVA","2HDM",true)'
-root -l -b -q 'macroExclusionTable.C("muccamva2HDMadaptFull_2000","em","MVA","2HDM",false)'
-root -l -b -q 'macroExclusionTable.C("muccamva2HDMadaptFull_2000","em","MVA","2HDM",true)'
-root -l -b -q 'macroExclusionTable.C("muccamva2HDMadaptFull_2500","em","MVA","2HDM",false)'
-root -l -b -q 'macroExclusionTable.C("muccamva2HDMadaptFull_2500","em","MVA","2HDM",true)'
+root -l -b -q 'macroExclusionTable.C("muccamva2HDMadaptFull_All_Bin600","em","MVA","2HDM",false)'
+root -l -b -q 'macroExclusionTable.C("muccamva2HDMadaptFull_All_Bin800","em","MVA","2HDM",false)'
+root -l -b -q 'macroExclusionTable.C("muccamva2HDMadaptFull_All_Bin1000","em","MVA","2HDM",false)'
+root -l -b -q 'macroExclusionTable.C("muccamva2HDMadaptFull_All_Bin2000","em","MVA","2HDM",false)'
+root -l -b -q 'macroExclusionTable.C("muccamva2HDMadaptFull_All_Bin600","em","MVA","2HDM",true)'
+root -l -b -q 'macroExclusionTable.C("muccamva2HDMadaptFull_All_Bin800","em","MVA","2HDM",true)'
+root -l -b -q 'macroExclusionTable.C("muccamva2HDMadaptFull_All_Bin1000","em","MVA","2HDM",true)'
+root -l -b -q 'macroExclusionTable.C("muccamva2HDMadaptFull_All_Bin2000","em","MVA","2HDM",true)'
 
-root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_10","em","MVA","Zbar",false)'
-root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_10","em","MVA","Zbar",true)'
-root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_100","em","MVA","Zbar",false)'
-root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_100","em","MVA","Zbar",true)'
-root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_1000","em","MVA","Zbar",false)'
-root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_1000","em","MVA","Zbar",true)'
-root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_2000","em","MVA","Zbar",false)'
-root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_2000","em","MVA","Zbar",true)'
+root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_All_Bin100","em","MVA","Zbar",false)'
+root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_All_Bin1000","em","MVA","Zbar",false)'
+root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_All_Bin2000","em","MVA","Zbar",false)'
+root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_All_Bin100","em","MVA","Zbar",true)'
+root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_All_Bin1000","em","MVA","Zbar",true)'
+root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_All_Bin2000","em","MVA","Zbar",true)'
 
 */
 
@@ -128,18 +126,18 @@ void macroExclusionTable(TString variable  = "mthBin",
       if (t == NULL){
 	cout<<"Launch again this:"<<endl;
 	if (model == "2HDM")
-	  cout<<"python scriptMonoH.py em "<<variable<<" MVA "<<mX[i]<<" "<<mY[j]<<endl;
+	  cout<<"python scriptMonoHSplit.py em "<<variable<<" MVA "<<mX[i]<<" "<<mY[j]<<endl;
 	if (model == "Zbar")
-	  cout<<"python scriptMonoH.py em "<<variable<<" MVA ZB "<<mX[i]<<"_"<<mY[j]<<endl;
+	  cout<<"python scriptMonoHSplit.py em "<<variable<<" MVA ZB "<<mX[i]<<"_"<<mY[j]<<endl;
 	  continue;
       }
       t->SetBranchAddress("limit", &limit);
       if (t->GetEntries() < 2){
 	cout<<"Launch again this:"<<endl;
 	if (model == "2HDM")
-	  cout<<"python scriptMonoH.py em "<<variable<<" MVA "<<mX[i]<<" "<<mY[j]<<endl;
+	  cout<<"python scriptMonoHSplit.py em "<<variable<<" MVA "<<mX[i]<<" "<<mY[j]<<endl;
 	if (model == "Zbar")
-	  cout<<"python scriptMonoH.py em "<<variable<<" MVA ZB "<<mX[i]<<"_"<<mY[j]<<endl;
+	  cout<<"python scriptMonoHSplit.py em "<<variable<<" MVA ZB "<<mX[i]<<"_"<<mY[j]<<endl;
 	  continue;
       }
       t->GetEntry(2);
