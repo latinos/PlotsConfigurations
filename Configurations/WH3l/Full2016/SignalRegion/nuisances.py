@@ -289,7 +289,7 @@ nuisances['fake_syst_wh3l']  = {
                    },
 }
 
-##### B-tagger
+###### B-tagger
 
 nuisances['btagbc']  = {
                 'name'  : 'Full2016_btag_bc',
@@ -325,7 +325,7 @@ nuisances['btagudsg']  = {
                 }
 }
 
-##### Trigger Efficiency
+#### Trigger Efficiency
 
 if   Nlep == '2' : trig_syst = ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)']
 elif Nlep == '3' : trig_syst = ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)']
@@ -427,7 +427,7 @@ nuisances['eleEtaCor']  = {
                 }
 }
 
-##### Muon Efficiency and energy scale
+###### Muon Efficiency and energy scale
 
 id_syst_mu = [ 'LepSF'+Nlep+'l__mu_'+muWP+'__Up' , 'LepSF'+Nlep+'l__mu_'+muWP+'__Do' ]
 
@@ -469,7 +469,7 @@ nuisances['muonpt_wh3l']  = {
                 'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__LepMupTdo'+skim,
 }
 
-##### Jet energy scale
+###### Jet energy scale
 
 nuisances['jes_wh3l']  = {
                 'name'  : 'scale_j',
@@ -517,6 +517,16 @@ nuisances['met_wh3l']  = {
 }
 
 
+## Use the following if you want to apply the automatic combine MC stat nuisances.
+#nuisances['stat']  = {
+#              'type'  : 'auto',
+#              'maxPoiss'  : '10',
+#              'includeSignal'  : '1',
+#              #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
+#              #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
+#              'samples' : {}
+#             }
+
 ## statistical fluctuation on MC/data
 ## "stat" is a special word to identify this nuisance
 nuisances['stat']  = {
@@ -563,6 +573,6 @@ nuisances['stat']  = {
 
                  },
                'type'  : 'shape'
-              }
+             }
 
 

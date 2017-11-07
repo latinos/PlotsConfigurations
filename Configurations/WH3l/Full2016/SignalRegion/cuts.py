@@ -80,7 +80,7 @@ cuts['wh3l_13TeV_ossf']  = 'njet_3l == 0 \
                        && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.5884 ) \
                        && dphilllmet > 2.2 \
                        && metPfType1 > 50\
-                       && zveto_3l > 20\
+                       && zveto_3l > 25\
                        && mllmin3l < 100\
                        && flagOSSF == 1\
                        '

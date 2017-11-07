@@ -7,7 +7,8 @@
 #eleWP='mva_90p_Iso2015'
 eleWP='mva_90p_Iso2016'
 
-tag = 'WH3l_Signal_Final_'+eleWP
+#tag = 'WH3l_Signal_Final_'+eleWP
+tag = 'WH3l_Signal_forPlots_'+eleWP
 
 
 # used by mkShape to define output directory for root files
@@ -19,8 +20,8 @@ outputDir = 'rootFiles_'+tag
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
-#cutsFile = 'cuts_detailed.py'
+#cutsFile = 'cuts.py' 
+cutsFile = 'cuts_detailed.py'
 
 # file with list of samples
 samplesFile = 'samples.py' 
