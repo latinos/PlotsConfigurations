@@ -7,7 +7,9 @@
 #eleWP='mva_90p_Iso2015'
 eleWP='mva_90p_Iso2016'
 
-tag = 'WH3l_ControlRegion_01102017_Nmu_'+eleWP
+#tag = 'WH3l_ControlRegion_forWZ_'+eleWP
+tag = 'WH3l_ControlRegion_forPlots_'+eleWP
+#tag = 'WH3l_ControlRegion_Final_'+eleWP
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFiles_'+tag

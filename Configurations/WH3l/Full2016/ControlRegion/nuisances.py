@@ -11,15 +11,9 @@ nuisances['lumi']  = {
                'name'  : 'lumi_13TeV',
                'samples'  : { 
                    'WW'       : '1.023',
-                   'ggWW'     : '1.023',
                    'Vg'       : '1.023',
-                   'VgS'      : '1.023',
                    'WZ'       : '1.023',
                    'ZZ'       : '1.023',
-                   'ggZZ_tt'       : '1.023',
-                   'ggZZ_em'       : '1.023',
-                   'ggZZ_ee'       : '1.023',
-                   'ggZZ_mm'       : '1.023',
                    'VVV'      : '1.023',
                    'ZH_hww'   : '1.023',
                    'ggZH_hww' : '1.023',
@@ -195,14 +189,8 @@ nuisances['Zg3lnorm']  = {
                'type'  : 'rateParam',
                'cuts'  : [
                  'wh3l_zg_13TeV',
-#                 'wh3l_13TeV_sssf',
                  'wh3l_13TeV_ossf',
-#                 'wh3l_13TeV_sssf_3m',
-  #               'wh3l_13TeV_sssf_2m',
                  'wh3l_13TeV_sssf',
-#                 'wh3l_13TeV_ossf_3m',
-#                 'wh3l_13TeV_ossf_2m',
-#                 'wh3l_13TeV_ossf_m',
                  'wh3l_wz_13TeV',
                 ]
               }
@@ -215,14 +203,8 @@ nuisances['WZ3lnorm']  = {
                'type'  : 'rateParam',
                'cuts'  : [
                  'wh3l_wz_13TeV',
-               #  'wh3l_13TeV_sssf',
                  'wh3l_13TeV_ossf',
-#                 'wh3l_13TeV_sssf_3m',
-#                 'wh3l_13TeV_sssf_2m',
                  'wh3l_13TeV_sssf',
-#                 'wh3l_13TeV_ossf_3m',
-#                 'wh3l_13TeV_ossf_2m',
-#                 'wh3l_13TeV_ossf_m',
                  'wh3l_zg_13TeV',
                 ]
               }
@@ -307,7 +289,7 @@ nuisances['fake_syst_wh3l']  = {
                    },
 }
 
-##### B-tagger
+###### B-tagger
 
 nuisances['btagbc']  = {
                 'name'  : 'Full2016_btag_bc',
@@ -315,16 +297,10 @@ nuisances['btagbc']  = {
                'type'  : 'shape',
                 'samples'  : {
                    'WW'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'ggWW'    : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'VVV'     : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'WZ'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'ZZ'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'ggZZ_tt'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'ggZZ_em'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'ggZZ_ee'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'ggZZ_mm'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'Vg'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'VgS'     : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'WH_hww'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'ZH_hww'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'WH_htt'   : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
@@ -340,14 +316,8 @@ nuisances['btagudsg']  = {
                    'VVV'     : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'WZ'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'ZZ'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'ggZZ_tt'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'ggZZ_em'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'ggZZ_ee'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'ggZZ_mm'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'WW'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'ggWW'    : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'Vg'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'VgS'     : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'WH_hww'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'ZH_hww'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'WH_htt'   : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
@@ -355,7 +325,7 @@ nuisances['btagudsg']  = {
                 }
 }
 
-##### Trigger Efficiency
+#### Trigger Efficiency
 
 if   Nlep == '2' : trig_syst = ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)']
 elif Nlep == '3' : trig_syst = ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)']
@@ -370,14 +340,8 @@ nuisances['trigg_wh3l']  = {
                    'VVV'     : trig_syst ,
                    'WZ'      : trig_syst ,
                    'ZZ'      : trig_syst ,
-                   'ggZZ_tt'      : trig_syst ,
-                   'ggZZ_em'      : trig_syst ,
-                   'ggZZ_ee'      : trig_syst ,
-                   'ggZZ_mm'      : trig_syst ,
-                   'ggWW'    : trig_syst ,
                    'WW'      : trig_syst ,
                    'Vg'      : trig_syst ,
-                   'VgS'     : trig_syst ,
                    'WH_hww'  : trig_syst ,
                    'ZH_hww'  : trig_syst ,
                    'ggZH_hww': trig_syst ,
@@ -397,14 +361,8 @@ nuisances['idiso_ele_wh3l']  = {
                    'VVV'     : id_syst_ele ,
                    'WZ'      : id_syst_ele ,
                    'ZZ'      : id_syst_ele ,
-                   'ggZZ_tt'      : id_syst_ele ,
-                   'ggZZ_em'      : id_syst_ele ,
-                   'ggZZ_ee'      : id_syst_ele ,
-                   'ggZZ_mm'      : id_syst_ele ,
-                   'ggWW'    : id_syst_ele ,
                    'WW'      : id_syst_ele ,
                    'Vg'      : id_syst_ele ,
-                   'VgS'     : id_syst_ele ,
                    'WH_hww'  : id_syst_ele ,
                    'ZH_hww'  : id_syst_ele ,
                    'ggZH_hww': id_syst_ele ,
@@ -417,17 +375,11 @@ nuisances['electronpt_wh3l']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                   'ggWW' :['1', '1'],
                    'WW' :  ['1', '1'],
                    'WZ' :  ['1', '1'],
                    'ZZ' :  ['1', '1'],
-                   'ggZZ_tt' :  ['1', '1'],
-                   'ggZZ_em' :  ['1', '1'],
-                   'ggZZ_ee' :  ['1', '1'],
-                   'ggZZ_mm' :  ['1', '1'],
                    'VVV' : ['1', '1'],
                    'Vg' : ['1', '1'],
-                   'VgS': ['1', '1'],
                    'WH_hww'  :  ['1', '1'],
                    'ZH_hww'  :  ['1', '1'],
                    'ggZH_hww':  ['1', '1'],
@@ -445,21 +397,15 @@ nuisances['elePtCor']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'ggWW'       : elePtCor_Syst_wh3l ,
                    'WW'         : elePtCor_Syst_wh3l ,
                    'WZ'         : elePtCor_Syst_wh3l ,
                    'VVV'        : elePtCor_Syst_wh3l ,
                    'Vg'         : elePtCor_Syst_wh3l ,
-                   'VgS'        : elePtCor_Syst_wh3l ,
-                   'ZZ'        : elePtCor_Syst_wh3l ,
+                   'ZZ'         : elePtCor_Syst_wh3l ,
                    'WH_hww'     : elePtCor_Syst_wh3l ,
                    'ZH_hww'     : elePtCor_Syst_wh3l ,
                    'ggZH_hww'   : elePtCor_Syst_wh3l ,
-                   'WH_htt'      : elePtCor_Syst_wh3l ,
-                   'ggZZ_tt' :  elePtCor_Syst_wh3l ,
-                   'ggZZ_em' :  elePtCor_Syst_wh3l ,
-                   'ggZZ_ee' :  elePtCor_Syst_wh3l ,
-                   'ggZZ_mm' :  elePtCor_Syst_wh3l ,
+                   'WH_htt'     : elePtCor_Syst_wh3l ,
                 }
 }
 
@@ -469,25 +415,19 @@ nuisances['eleEtaCor']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'ggWW'       : eleEtaCor_Syst_wh3l ,
                    'WW'         : eleEtaCor_Syst_wh3l ,
                    'WZ'         : eleEtaCor_Syst_wh3l ,
                    'ZZ'         : eleEtaCor_Syst_wh3l ,
                    'VVV'        : eleEtaCor_Syst_wh3l ,
                    'Vg'         : eleEtaCor_Syst_wh3l ,
-                   'VgS'        : eleEtaCor_Syst_wh3l ,
                    'WH_hww'     : eleEtaCor_Syst_wh3l ,
                    'ZH_hww'     : eleEtaCor_Syst_wh3l ,
                    'ggZH_hww'   : eleEtaCor_Syst_wh3l ,
                    'WH_htt'      : eleEtaCor_Syst_wh3l ,
-                   'ggZZ_tt' :  eleEtaCor_Syst_wh3l ,
-                   'ggZZ_em' :  eleEtaCor_Syst_wh3l ,
-                   'ggZZ_ee' :  eleEtaCor_Syst_wh3l ,
-                   'ggZZ_mm' :  eleEtaCor_Syst_wh3l ,
                 }
 }
 
-##### Muon Efficiency and energy scale
+###### Muon Efficiency and energy scale
 
 id_syst_mu = [ 'LepSF'+Nlep+'l__mu_'+muWP+'__Up' , 'LepSF'+Nlep+'l__mu_'+muWP+'__Do' ]
 
@@ -499,14 +439,8 @@ nuisances['idiso_mu_wh3l']  = {
                    'VVV'     : id_syst_mu ,
                    'WZ'      : id_syst_mu ,
                    'ZZ'      : id_syst_mu ,
-                   'ggZZ_tt'      : id_syst_mu ,
-                   'ggZZ_em'      : id_syst_mu ,
-                   'ggZZ_ee'      : id_syst_mu ,
-                   'ggZZ_mm'      : id_syst_mu ,
-                   'ggWW'    : id_syst_mu ,
                    'WW'      : id_syst_mu ,
                    'Vg'      : id_syst_mu ,
-                   'VgS'     : id_syst_mu ,
                    'WH_hww'  : id_syst_mu ,
                    'ZH_hww'  : id_syst_mu ,
                    'ggZH_hww': id_syst_mu ,
@@ -519,17 +453,11 @@ nuisances['muonpt_wh3l']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                   'ggWW' :['1', '1'],
                    'WW' :  ['1', '1'],
                    'WZ' :  ['1', '1'],
                    'ZZ' :  ['1', '1'],
-                   'ggZZ_tt' :  ['1', '1'],
-                   'ggZZ_em' :  ['1', '1'],
-                   'ggZZ_ee' :  ['1', '1'],
-                   'ggZZ_mm' :  ['1', '1'],
                    'VVV' : ['1', '1'],
                    'Vg' : ['1', '1'],
-                   'VgS': ['1', '1'],
                    'WH_hww' :  ['1', '1'],
                    'ZH_hww' :  ['1', '1'],
                    'ggZH_hww':  ['1', '1'],
@@ -541,24 +469,18 @@ nuisances['muonpt_wh3l']  = {
                 'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__LepMupTdo'+skim,
 }
 
-##### Jet energy scale
+###### Jet energy scale
 
 nuisances['jes_wh3l']  = {
                 'name'  : 'scale_j',
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                   'ggWW' :['1', '1'],
                    'WW' :  ['1', '1'],
                    'WZ' :  ['1', '1'],
                    'ZZ' :  ['1', '1'],
-                   'ggZZ_tt' :  ['1', '1'],
-                   'ggZZ_em' :  ['1', '1'],
-                   'ggZZ_ee' :  ['1', '1'],
-                   'ggZZ_mm' :  ['1', '1'],
                    'VVV' : ['1', '1'],
                    'Vg' : ['1', '1'],
-                   'VgS': ['1', '1'],
                    'WH_hww' :  ['1', '1'],
                    'ZH_hww' :  ['1', '1'],
                    'ggZH_hww':  ['1', '1'],
@@ -578,17 +500,11 @@ nuisances['met_wh3l']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                   'ggWW' :['1', '1'],
                    'WW' :  ['1', '1'],
                    'WZ' :  ['1', '1'],
                    'ZZ' :  ['1', '1'],
-                   'ggZZ_tt' :  ['1', '1'],
-                   'ggZZ_em' :  ['1', '1'],
-                   'ggZZ_ee' :  ['1', '1'],
-                   'ggZZ_mm' :  ['1', '1'],
                    'VVV' : ['1', '1'],
                    'Vg' : ['1', '1'],
-                   'VgS': ['1', '1'],
                    'WH_hww' :  ['1', '1'],
                    'ZH_hww' :  ['1', '1'],
                    'ggZH_hww':  ['1', '1'],
@@ -601,6 +517,16 @@ nuisances['met_wh3l']  = {
 }
 
 
+## Use the following if you want to apply the automatic combine MC stat nuisances.
+#nuisances['stat']  = {
+#              'type'  : 'auto',
+#              'maxPoiss'  : '10',
+#              'includeSignal'  : '1',
+#              #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
+#              #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
+#              'samples' : {}
+#             }
+
 ## statistical fluctuation on MC/data
 ## "stat" is a special word to identify this nuisance
 nuisances['stat']  = {
@@ -610,22 +536,7 @@ nuisances['stat']  = {
                    'WW': {
                          'typeStat' : 'bbb',
                          },
-                   'ggWW': {
-                         'typeStat' : 'bbb',
-                         },
                    'ZZ': {
-                         'typeStat' : 'bbb',
-                         },
-                   'ggZZ_tt': {
-                         'typeStat' : 'bbb',
-                         },
-                   'ggZZ_em': {
-                         'typeStat' : 'bbb',
-                         },
-                   'ggZZ_ee': {
-                         'typeStat' : 'bbb',
-                         },
-                   'ggZZ_mm': {
                          'typeStat' : 'bbb',
                          },
                    'WZ': {
@@ -660,11 +571,8 @@ nuisances['stat']  = {
                          'typeStat' : 'bbb',
                          },
 
-                   'VgS': {
-                         'typeStat' : 'bbb',
-                         },
                  },
                'type'  : 'shape'
-              }
+             }
 
 
