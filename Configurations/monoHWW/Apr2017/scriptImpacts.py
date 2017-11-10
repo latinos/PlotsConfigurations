@@ -60,17 +60,17 @@ print "text2workspace.py datacards/monoH_" + cut + "_" + channel + "/" + variabl
 print ""
 print "3) Do the initial fit:"
 print ""
-print "combineTool.py -M Impacts -d datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + "_combined.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit 1 -n " + mZp + "_" + mA0 + "_" + variable + " --named WWnorm,Topnorm,DYttnorm --setPhysicsModelParameterRanges WWnorm=-3,4:Topnorm=-3,4:DYttnorm=-3,4"
+print "combineTool.py -M Impacts -d datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + "_combined.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit 1 -n " + mZp + "_" + mA0 + "_" + variable + " --named WWnorm,Topnorm,DYttnorm --setParameterRanges WWnorm=-3,4:Topnorm=-3,4:DYttnorm=-3,4"
   
 print ""
 print "4) Send all the impacts to lxbatch:"
 print ""
-print "combineTool.py -M Impacts -d datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + "_combined.root -m 125 --robustFit 1 -t -1 --expectSignal=1 --doFits --parallel 5 --job-mode lxbatch --task-name " + mZp + "_" + mA0 + "_" + variable + " --sub-opts=\'-q 2nd\' -n " + mZp + "_" + mA0 + "_" + variable + " --named WWnorm,Topnorm,DYttnorm --setPhysicsModelParameterRanges WWnorm=-3,4:Topnorm=-3,4:DYttnorm=-3,4"
+print "combineTool.py -M Impacts -d datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + "_combined.root -m 125 --robustFit 1 -t -1 --expectSignal=1 --doFits --parallel 5 --job-mode lxbatch --task-name " + mZp + "_" + mA0 + "_" + variable + " --sub-opts=\'-q 2nd\' -n " + mZp + "_" + mA0 + "_" + variable + " --named WWnorm,Topnorm,DYttnorm --setParameterRanges WWnorm=-3,4:Topnorm=-3,4:DYttnorm=-3,4"
 
 print ""
 print "5) When all the jobs are finished, produce the json file:"
 print ""
-print "combineTool.py -M Impacts -d datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + "_combined.root -m 125 -o pulls_" + channel + "_" + cut + "/impact_" + mZp + "_" + mA0 + "_" + variable + ".json -n " + mZp + "_" + mA0 + "_" + variable + " --named WWnorm,Topnorm,DYttnorm --setPhysicsModelParameterRanges WWnorm=-3,4:Topnorm=-3,4:DYttnorm=-3,4"
+print "combineTool.py -M Impacts -d datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + "_combined.root -m 125 -o pulls_" + channel + "_" + cut + "/impact_" + mZp + "_" + mA0 + "_" + variable + ".json -n " + mZp + "_" + mA0 + "_" + variable + " --named WWnorm,Topnorm,DYttnorm --setParameterRanges WWnorm=-3,4:Topnorm=-3,4:DYttnorm=-3,4"
   
 print ""
 print "6) Translate the json file into a pdf file:"
