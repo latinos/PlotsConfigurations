@@ -622,7 +622,8 @@ HiggsXS = HiggsXSection()
 nuisances['QCDscale_ggH']  = {
                'name'  : 'QCDscale_ggH', 
                'samples'  : {
-                   'ggH_hww' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.0','scale','sm'),
+                   # QCD scale ggH is already in jet bin uncertainty !
+                   #'ggH_hww' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.0','scale','sm'),
                    'ggH_htt' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.0','scale','sm'),
                    'H_htt'   : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.0','scale','sm'),
                    },
