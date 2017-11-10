@@ -57,7 +57,14 @@ Nlep='2'
 ################################################
 
 XSWeight      = 'XSWeight'
-SFweight      = 'SFweight'+Nlep+'l'
+#SFweight      = 'SFweight'+Nlep+'l'
+SFweight      = 'puW*\
+                 effTrigW*\
+                 std_vector_lepton_recoW[0]*\
+                 std_vector_lepton_recoW[1]*\
+                 electron_etaW_2l*electron_ptW_2l*\
+                 veto_EMTFBug'
+
 GenLepMatch   = 'GenLepMatch'+Nlep+'l'
 
 ################################################
@@ -343,7 +350,7 @@ samples['VZ']  = {    'name':   getSampleFiles(directory,'ZZTo2L2Nu')
                               # + getSampleFiles(directory,'tZq_ll')
                               ,   
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.11' ,  
-                      'FilesPerJob' : 4 ,
+                      'FilesPerJob' : 6 ,
                   }
 
 ### 1.11 normalisation was measured in 3-lepton
@@ -413,6 +420,7 @@ samples['bbH_hww']  = {  'name' :   getSampleFiles(directory,'bbHToWWTo2L2Nu_M12
 
 samples['ttH_hww']  = {  'name' :   getSampleFiles(directory,'ttHToNonbb_M125'), 
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                         'suppressNegativeNuisances' :['all'], 
                       }
 
 
@@ -424,8 +432,8 @@ samples['H_htt']    = {   'name' :   getSampleFiles(directory,'GluGluHToTauTau_M
                                    + getSampleFiles(directory,'HWplusJ_HToTauTau_M125')
                                    + getSampleFiles(directory,'HWminusJ_HToTauTau_M125')
                                    ,  
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-                      }
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC , 
+                                              }
 
 
 ###########################################
@@ -436,7 +444,7 @@ samples['Fake']  = {   'name': [ ] ,
                        'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA,              #   weight/cut 
                        'weights' : [ ] ,
                        'isData': ['all'],
-                       'FilesPerJob' : 4 ,
+                       'FilesPerJob' : 6 ,
                    }
 
 for Run in DataRun :
@@ -455,7 +463,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'weight' : 'veto_EMTFBug'+'*'+METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],                            
-                       'FilesPerJob' : 4 ,
+                       'FilesPerJob' : 6 ,
                   }
 
 for Run in DataRun :

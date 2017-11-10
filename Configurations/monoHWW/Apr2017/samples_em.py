@@ -23,7 +23,8 @@ from LatinoAnalysis.Tools.commonTools import *
 #skim="__wwSel__monohSel__muccaMonoHem"
 #skim="__wwSel__monohSel__muccaMonoH_Apr2017_em__muccaMonoH_Apr2017_em"
 #skim="__wwSel__monohSel__muccaMonoHem__muccaMonoHem_high"
-skim="__wwSel__muccaApr2017_em__muccaAll_em"
+#skim="__wwSel__muccaApr2017_em__muccaAll_em"
+skim="__wwSel__monohSel__muccaAll_em"
 
 if skim =='__vh3lSel' :  skimFake='__vh3lFakeSel'
 else:                    skimFake=skim
@@ -56,7 +57,13 @@ Nlep='2'
 ################################################
 
 XSWeight      = 'XSWeight'
-SFweight      = 'SFweight'+Nlep+'l'
+### SFweight      = 'SFweight'+Nlep+'l'
+SFweight      = 'puW*\
+                 effTrigW*\
+                 std_vector_lepton_recoW[0]*\
+                 std_vector_lepton_recoW[1]*\
+                 veto_EMTFBug'
+###                 electron_etaW_2l*electron_ptW_2l*\
 GenLepMatch   = 'GenLepMatch'+Nlep+'l'
 
 ################################################
@@ -516,6 +523,37 @@ samples['monoH_ZB_10_50_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-50.
 samples['monoH_ZB_10_10_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-10.root'],
                                'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
 samples['monoH_ZB_10_1_'] = { 'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-1.root'],
+                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+
+#### ttDM Signal
+samples['ttDMpseudo00010_'] = { 'name': ['latino_ttDM0001pseudo00010.root'],
+                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['ttDMpseudo00020_'] = { 'name': ['latino_ttDM0001pseudo00020.root'],
+                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['ttDMpseudo00050_'] = { 'name': ['latino_ttDM0001pseudo00050.root'],
+                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['ttDMpseudo00100_'] = { 'name': ['latino_ttDM0001pseudo00100.root'],
+                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['ttDMpseudo00200_'] = { 'name': ['latino_ttDM0001pseudo00200.root'],
+                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['ttDMpseudo00300_'] = { 'name': ['latino_ttDM0001pseudo00300.root'],
+                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['ttDMpseudo00500_'] = { 'name': ['latino_ttDM0001pseudo00500.root'],
+                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+
+samples['ttDMscalar00010_'] = { 'name': ['latino_ttDM0001scalar00010.root'],
+                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['ttDMscalar00020_'] = { 'name': ['latino_ttDM0001scalar00020.root'],
+                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['ttDMscalar00050_'] = { 'name': ['latino_ttDM0001scalar00050.root'],
+                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['ttDMscalar00100_'] = { 'name': ['latino_ttDM0001scalar00100.root'],
+                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['ttDMscalar00200_'] = { 'name': ['latino_ttDM0001scalar00200.root'],
+                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['ttDMscalar00300_'] = { 'name': ['latino_ttDM0001scalar00300.root'],
+                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
+samples['ttDMscalar00500_'] = { 'name': ['latino_ttDM0001scalar00500.root'],
                               'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,}
 
 

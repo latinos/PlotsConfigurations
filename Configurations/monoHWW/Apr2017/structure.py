@@ -164,8 +164,17 @@ for mZB in ZBmasses:
         'isData'   : 0
         }
 
-
-
+ttDMmasses={"00010_","00020_","00050_","00100_","00200_","00300_","00500_"}
+for ttDM in ttDMmasses:
+    structure['ttDMscalar' + ttDM] = {
+        'isSignal' : 1,
+        'isData'   : 0
+        }
+    structure['ttDMpseudo' + ttDM] = {
+        'isSignal' : 1,
+        'isData'   : 0
+        }
+        
 # data
 
 structure['DATA']  = { 

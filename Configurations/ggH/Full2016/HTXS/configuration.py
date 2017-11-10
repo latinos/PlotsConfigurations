@@ -1,6 +1,6 @@
 # example of configuration file
 
-tag = 'ggH'
+tag = 'ggH_HTXS'
 #tag = 'ggHTESTPARTIALamassiro'
 
 

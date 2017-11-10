@@ -7,13 +7,13 @@ supercut = ' mll>60 \
 
 cuts['Zee']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
                  && std_vector_lepton_pt[0]>25 && std_vector_lepton_pt[1]>13 \
-                 && mll>80 && mll<100 \
+                 && mll>60 && mll<120 \
                '
 
 cuts['Zmm']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)   \
                  && mll>80 && mll<100 \
                '
-
+'''
 cuts['Zee0j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
                    && std_vector_lepton_pt[0]>25 && std_vector_lepton_pt[1]>13 \
                    && mll>80 && mll<100 \
@@ -39,4 +39,4 @@ cuts['Zmm1j']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] =
                  '
 
 
-
+'''

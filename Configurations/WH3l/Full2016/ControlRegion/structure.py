@@ -9,22 +9,37 @@ structure['Fake']  = {
                   'isData'   : 0 
               }
 
+#structure['DY']  = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0
+#                  }
+#
+#structure['top']  = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0
+#                  }
 
 structure['WW']  = {
                   'isSignal' : 0,
                   'isData'   : 0    
                   }
 
-#structure['ggWW']  = {
-#                  'isSignal' : 0,
-#                  'isData'   : 0    
-#                  }
+structure['ggWW']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0    
+                  }
 
 
 structure['Vg']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
+
+structure['VgS']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
 
 structure['WZ']  = { 
                   'isSignal' : 0,
@@ -40,6 +55,26 @@ structure['VVV']  = {
 structure['ZZ']  = {
                   'isSignal' : 0,
                   'isData'   : 0    
+                  }
+
+structure['ggZZ_tt']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
+structure['ggZZ_em']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
+structure['ggZZ_ee']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+                  
+structure['ggZZ_mm']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
                   }
 
 structure['WH_hww'] = {

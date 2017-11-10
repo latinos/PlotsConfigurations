@@ -149,13 +149,23 @@ for Run in DataRun :
 #############  BACKGROUNDS  ###############
 ###########################################
 
-# samples['ZZ']  = {    'name': getSampleFiles(directory,'ZZTo4L'),
+samples['ZZ']  = {    'name': getSampleFiles(directory,'ZZTo4L'),
+                      'weight' : 'baseW'+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC,
+                      #1.256/1.212 see this page https://twiki.cern.ch/twiki/bin/viewauth/CMS/SummaryTable1G25ns#Diboson
+                  }
+
+# samples['ZZ']  = {    'name': getSampleFiles(directory,'ZZTo4L')
+                              # +getSampleFiles(directory,'ggZZ2e2t')
+                              # +getSampleFiles(directory,'ggZZ2m2t')
+                              # +getSampleFiles(directory,'ggZZ2e2m')
+                              # +getSampleFiles(directory,'ggZZ4t')
+                              # +getSampleFiles(directory,'ggZZ4e')
+                              # +getSampleFiles(directory,'ggZZ4m'),
                       # 'weight' : 'baseW'+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC,
                       # #1.256/1.212 see this page https://twiki.cern.ch/twiki/bin/viewauth/CMS/SummaryTable1G25ns#Diboson
                   # }
 
-samples['ZZ']  = {    'name': getSampleFiles(directory,'ZZTo4L')
-                              +getSampleFiles(directory,'ggZZ2e2t')
+samples['ggZZ']  = {    'name': getSampleFiles(directory,'ggZZ2e2t')
                               +getSampleFiles(directory,'ggZZ2m2t')
                               +getSampleFiles(directory,'ggZZ2e2m')
                               +getSampleFiles(directory,'ggZZ4t')
@@ -163,18 +173,7 @@ samples['ZZ']  = {    'name': getSampleFiles(directory,'ZZTo4L')
                               +getSampleFiles(directory,'ggZZ4m'),
                       'weight' : 'baseW'+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC,
                      'FilesPerJob' : 1,
-                      #1.256/1.212 see this page https://twiki.cern.ch/twiki/bin/viewauth/CMS/SummaryTable1G25ns#Diboson
                   }
-
-# samples['ggZZ']  = {    'name': getSampleFiles(directory,'ggZZ2e2t')
-                              # +getSampleFiles(directory,'ggZZ2m2t')
-                              # +getSampleFiles(directory,'ggZZ2e2m')
-                              # +getSampleFiles(directory,'ggZZ4t')
-                              # +getSampleFiles(directory,'ggZZ4e')
-                              # +getSampleFiles(directory,'ggZZ4m'),
-                      # 'weight' : 'baseW'+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC,
-                     # 'FilesPerJob' : 1,
-                  # }
 
 samples['ggH_hzz']  = {    'name': getSampleFiles(directory,'GluGluHToZZTo4L_M125'),
                       'weight' : 'baseW'+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC,

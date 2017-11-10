@@ -2,7 +2,13 @@
 
 #variables = {}
     
+variables['trigger'] = { 'name': '1*((trig_EleMu + trig_DbleMu+trig_SnglMu+trig_DbleEle+trig_SnglEle)>0)*trig_EleMu + 2* ((trig_DbleMu+trig_SnglMu+trig_DbleEle+trig_SnglEle)>0)*(!trig_EleMu &&  trig_DbleMu) + 3 * ((trig_SnglMu+trig_DbleEle+trig_SnglEle)>0)*(!trig_EleMu && !trig_DbleMu &&  trig_SnglMu) + 4 *((trig_DbleEle+trig_SnglEle)>0)*(!trig_EleMu && !trig_DbleMu && !trig_SnglMu &&  trig_DbleEle) + 5* (trig_SnglEle>0)*(!trig_EleMu && !trig_DbleMu && !trig_SnglMu && !trig_DbleEle &&  trig_SnglEle)',
+                    'range' : (7, 0, 7),
+                    'xaxis' : 'triggerbit',
+                    'fold' : 3
+}
 
+'''
 variables['events']  = {   'name': '1',      
                         'range' : (1,0,2),  
                         'xaxis' : 'events', 
@@ -112,7 +118,9 @@ variables['eta2']  = {  'name': 'std_vector_lepton_eta[1]',
                         'xaxis' : '#eta 2nd lep',
                         'fold'  : 3                         
                         }
-
+'''
+                        
+'''
 variables['eta1large']  = {  'name': 'std_vector_lepton_eta[0]',
                        'range' : ([-2.4, -2.1, -1.6, -1.2, -0.8, -0.3, -0.2, 0.2, 0.3, 0.8, 1.2, 1.6, 2.1, 2.4,],),
                        'xaxis' : '#eta 1st lep',
@@ -238,6 +246,6 @@ variables['dymvaggh']  = { 'name': 'dymvaggh',
                         'fold' : 3
                         }
 
-
+'''
                         
 

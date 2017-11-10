@@ -54,7 +54,7 @@ groupPlot['DY']  = {
                   'samples'  : ['DY']
               }
 
-
+'''
 groupPlot['Higgs']  = {  
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
@@ -62,7 +62,7 @@ groupPlot['Higgs']  = {
                   'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww']
               }
 
-
+'''
 
 
 

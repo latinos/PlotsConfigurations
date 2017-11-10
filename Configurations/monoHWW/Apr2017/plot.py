@@ -747,6 +747,24 @@ plot['monoH_ZB_10_1_'] = {
     'scale'    : 0.0000001
 }
 
+
+ttDMmasses={"00010_","00020_","00050_","00100_","00200_","00300_","00500_"}
+for ttDM in ttDMmasses:
+plot['ttDMscalar' + ttDM] = {
+    'nameHR' : '',
+    'color': 900,
+    'isSignal' : 2,
+    'isData'   : 0,
+    'scale'    : 0.0000001
+}
+plot['ttDMpseudo' + ttDM] = {
+    'nameHR' : '',
+    'color': 900,
+    'isSignal' : 2,
+    'isData'   : 0,
+    'scale'    : 0.0000001
+}
+
 # data
 
 plot['DATA']  = { 
