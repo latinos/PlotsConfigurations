@@ -1,8 +1,6 @@
 # example of configuration file
 
-tag = 'ggH_HTXS'
-#tag = 'ggHTESTPARTIALamassiro'
-
+tag = 'ggH_SF_splitpt2'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -12,7 +10,7 @@ outputDir = 'rootFile'
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
+cutsFile = 'cuts_splitpt2.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 
@@ -27,7 +25,7 @@ lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotGGH'
+outputDirPlots = 'plotGGH_SF_signal_splitpt2'
 
 
 # used by mkDatacards to define output directory for datacards
@@ -40,5 +38,4 @@ structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
 nuisancesFile = 'nuisances.py'
-
 

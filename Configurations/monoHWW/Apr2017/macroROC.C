@@ -12,7 +12,7 @@ root -l -b -q 'macroROC.C("Zbar","adapt","monoH_ZB_2000_1_")'
 
 */
 
-const int nprocesses = 4;
+const int nprocesses = 5;
 
 Double_t maximum(Double_t x, Double_t y, Double_t w, Double_t z) {
   Double_t max = x;
@@ -61,12 +61,14 @@ void macroROC( TString model     = "2HDM",
     massPoint[1] = "1000";
     massPoint[2] = "2000";
     massPoint[3] = "2500";
+    massPoint[4] = "All_NoWeights";
   }
   else if (model == "Zbar"){
     massPoint[0] = "10";
     massPoint[1] = "100";
     massPoint[2] = "1000";
     massPoint[3] = "2000";
+    massPoint[4] = "All_NoWeights";
   }
 
   TH1F* hDumpBkg[nBkg];
@@ -121,7 +123,7 @@ void macroROC( TString model     = "2HDM",
       Float_t B = hBkg -> Integral(i,nbins); // background yields
       if (i == 1) cout<<"Signal Integral = "<<S<<endl;
       Float_t significance = 0.;
-      if (S + B != 0) significance = S / sqrt(S + B);
+      if (S + B > 0) significance = S / sqrt(S + B);
       hSignificance[train] -> SetBinContent(i,significance);
     }
   }
@@ -149,10 +151,13 @@ void macroROC( TString model     = "2HDM",
   ROC[2] -> SetLineWidth(4);
   ROC[3] -> SetLineColor(kOrange);
   ROC[3] -> SetLineWidth(4);
+  ROC[4] -> SetLineColor(kViolet);
+  ROC[4] -> SetLineWidth(4);
   ROC[0] -> Draw("AL");
   ROC[1] -> Draw("Lsame");
   ROC[2] -> Draw("Lsame");
   ROC[3] -> Draw("Lsame");
+  ROC[4] -> Draw("Lsame");
 
   TString legendLabel[nprocesses];
   if (model == "2HDM"){
@@ -160,12 +165,14 @@ void macroROC( TString model     = "2HDM",
     legendLabel[1] = "1000 300";
     legendLabel[2] = "2000 300";
     legendLabel[3] = "2500 300";
+    legendLabel[4] = "All";
   }
   else if (model == "Zbar"){
     legendLabel[0] = "10 1";
     legendLabel[1] = "100 1";
     legendLabel[2] = "1000 1";
     legendLabel[3] = "2000 1";  
+    legendLabel[4] = "All";  
   }
   TLegend* leg1 = new TLegend(0.2,0.2,0.5,0.4);
   leg1->SetHeader("Trainings:");
@@ -177,6 +184,8 @@ void macroROC( TString model     = "2HDM",
   l3->SetMarkerColor(kBlue);
   TLegendEntry* l4 = leg1->AddEntry("ROC[3]",legendLabel[3],"lp");
   l4->SetMarkerColor(kOrange);
+  TLegendEntry* l5 = leg1->AddEntry("ROC[4]",legendLabel[4],"lp");
+  l5->SetMarkerColor(kViolet);
   leg1->SetLineColor(kWhite);
   leg1->Draw("same");
 
@@ -209,10 +218,13 @@ void macroROC( TString model     = "2HDM",
   hSignificance[2] -> SetLineWidth(4);
   hSignificance[3] -> SetLineColor(kOrange);
   hSignificance[3] -> SetLineWidth(4);
+  hSignificance[4] -> SetLineColor(kViolet);
+  hSignificance[4] -> SetLineWidth(4);
   hSignificance[0]->Draw();
   hSignificance[1]->Draw("same");
   hSignificance[2]->Draw("same");
   hSignificance[3]->Draw("same");
+  hSignificance[4]->Draw("same");
 
   TLegend* leg2 = new TLegend(0.2,0.6,0.5,0.8);
   leg2->SetHeader("Trainings:");
@@ -224,6 +236,8 @@ void macroROC( TString model     = "2HDM",
   lc->SetMarkerColor(kBlue);
   TLegendEntry* ld = leg2->AddEntry("hSignificance[3]",legendLabel[3],"lp");
   ld->SetMarkerColor(kOrange);
+  TLegendEntry* le = leg2->AddEntry("hSignificance[4]",legendLabel[4],"lp");
+  le->SetMarkerColor(kViolet);
   leg2->SetLineColor(kWhite);
   leg2->Draw("same");
 

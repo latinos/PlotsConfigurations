@@ -60,13 +60,11 @@ structure['Wg']  = {
 structure['Vg']  = { 
                   'isSignal' : 0,
                   'isData'   : 0,
-                  #'removeFromCuts' : ['hww2l2v_13TeV_top_0jee']
                   }
 
 structure['VgS'] = { 
                   'isSignal' : 0,
                   'isData'   : 0,
-                  #'removeFromCuts' : ['hww2l2v_13TeV_0jee'] 
                   }
 
 structure['WZgS_L'] = {
@@ -121,11 +119,6 @@ structure['qqH_hww'] = {
                   'isData'   : 0,
                   }
 
-structure['qqH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  }
-
 structure['WH_hww'] = {
                   'isSignal' : 1,
                   'isData'   : 0,
@@ -141,20 +134,9 @@ structure['ggZH_hww'] = {
                   'isData'   : 0,
                   }
 
-structure['H_htt'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  }
-
-structure['H_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  }
-
 structure['bbH_hww'] = {
                   'isSignal' : 1,
                   'isData'   : 0,
-#                 'removeFromCuts' : ['hww2l2v_13TeV_WW_0jmm']
                   }
 
 structure['ttH_hww'] = {
@@ -162,6 +144,37 @@ structure['ttH_hww'] = {
                   'isData'   : 0
                   }
 
+structure['H_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+
+structure['ggH_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['qqH_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['WH_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['ZH_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+
+structure['H_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
 # data
 
 

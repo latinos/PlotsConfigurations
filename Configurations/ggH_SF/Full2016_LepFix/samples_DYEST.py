@@ -58,7 +58,12 @@ Nlep='2'
 ################################################
 
 XSWeight      = 'XSWeight'
-SFweight      = 'SFweight'+Nlep+'l'
+#SFweight      = 'SFweight'+Nlep+'l'
+if Nlep == '2' :
+  SFweight = 'puW * effTrigW * electron_etaW_'+Nlep+'l * electron_ptW_'+Nlep+'l * veto_EMTFBug '
+else:
+  SFweight = 'puW * effTrigW'+Nlep+'l * electron_etaW_'+Nlep+'l * electron_ptW_'+Nlep+'l * veto_EMTFBug '
+for iLep in range(int(Nlep)): SFweight += ' * std_vector_lepton_recoW['+str(iLep)+'] '
 GenLepMatch   = 'GenLepMatch'+Nlep+'l'
 
 ################################################

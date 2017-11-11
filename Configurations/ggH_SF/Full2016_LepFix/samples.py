@@ -58,7 +58,12 @@ Nlep='2'
 ################################################
 
 XSWeight      = 'XSWeight'
-SFweight      = 'SFweight'+Nlep+'l'
+#SFweight      = 'SFweight'+Nlep+'l'
+if Nlep == '2' :
+  SFweight = 'puW * effTrigW * electron_etaW_'+Nlep+'l * electron_ptW_'+Nlep+'l * veto_EMTFBug '
+else:
+  SFweight = 'puW * effTrigW'+Nlep+'l * electron_etaW_'+Nlep+'l * electron_ptW_'+Nlep+'l * veto_EMTFBug '
+for iLep in range(int(Nlep)): SFweight += ' * std_vector_lepton_recoW['+str(iLep)+'] '
 GenLepMatch   = 'GenLepMatch'+Nlep+'l'
 
 ################################################
@@ -400,7 +405,7 @@ samples['ggH_hww']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuP
 
 #### VBF H->WW
 
-samples['qqH_hww']  = {   'name' : getSampleFiles(directory,'VBFHToWWTo2L2Nu_alternative_M125') ,
+samples['qqH_hww']  = {   'name' : getSampleFiles(directory,'VBFHToWWTo2L2Nu_M125') ,
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                      'suppressNegative' :['all'],
                      'suppressNegativeNuisances' :['all'],
@@ -451,16 +456,51 @@ samples['ttH_hww']  = {  'name' :   getSampleFiles(directory,'ttHToNonbb_M125'),
 
 #### H -> TauTau
 
-samples['H_htt']    = {   'name' :   getSampleFiles(directory,'GluGluHToTauTau_M125')
-                                   + getSampleFiles(directory,'VBFHToTauTau_M125')
-                                   + getSampleFiles(directory,'HZJ_HToTauTau_M125')
-                                   + getSampleFiles(directory,'HWplusJ_HToTauTau_M125')
-                                   + getSampleFiles(directory,'HWminusJ_HToTauTau_M125')
+splitHtt=True
+if not splitHtt:
+
+  samples['H_htt']    = {   'name' :   getSampleFiles(directory,'GluGluHToTauTau_M125')
+                                     + getSampleFiles(directory,'VBFHToTauTau_M125')
+                                     + getSampleFiles(directory,'HZJ_HToTauTau_M125')
+                                     + getSampleFiles(directory,'HWplusJ_HToTauTau_M125')
+                                     + getSampleFiles(directory,'HWminusJ_HToTauTau_M125')
                                    ,  
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-                     'suppressNegative' :['all'],
-                     'suppressNegativeNuisances' :['all'],
-                      }
+                           'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                           'suppressNegative' :['all'],
+                           'suppressNegativeNuisances' :['all'],
+                        }
+
+else:
+
+  samples['ggH_htt']  = { 'name' :   getSampleFiles(directory,'GluGluHToTauTau_M125') ,
+                                   ,
+                           'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                           'suppressNegative' :['all'],
+                           'suppressNegativeNuisances' :['all'],
+                        }
+
+  samples['qqH_htt']  = { 'name' :   getSampleFiles(directory,'VBFHToTauTau_M125') ,
+                                   ,
+                           'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                           'suppressNegative' :['all'],
+                           'suppressNegativeNuisances' :['all'],
+                        }
+
+
+  samples['ZH_htt']  = { 'name' :   getSampleFiles(directory,'HZJ_HToTauTau_M125') ,
+                                   ,
+                           'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                           'suppressNegative' :['all'],
+                           'suppressNegativeNuisances' :['all'],
+                        }
+
+  samples['WH_htt']  = { 'name' :   getSampleFiles(directory,'HWplusJ_HToTauTau_M125') ,
+                                  + getSampleFiles(directory,'HWminusJ_HToTauTau_M125')
+                                   ,
+                           'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                           'suppressNegative' :['all'],
+                           'suppressNegativeNuisances' :['all'],
+                        }
 
 
 ###########################################

@@ -50,13 +50,23 @@ Nlep='3'
 
 XSWeight      = 'XSWeight'
 #SFweight      = 'SFweight3l'
-SFweight      = 'puW*\
-                 effTrigW3l*\
-                 std_vector_lepton_recoW[0]*\
-                 std_vector_lepton_recoW[1]*\
-                 std_vector_lepton_recoW[2]*\
-                 electron_etaW_3l*electron_ptW_3l*\
-                 veto_EMTFBug'
+#if Nlep == '2' :
+#  SFweight = 'puW * effTrigW * electron_etaW_'+Nlep+'l * electron_ptW_'+Nlep+'l * veto_EMTFBug '
+#else:
+#  SFweight = 'puW * effTrigW'+Nlep+'l * electron_etaW_'+Nlep+'l * electron_ptW_'+Nlep+'l * veto_EMTFBug '
+#for iLep in range(int(Nlep)): SFweight += ' * std_vector_lepton_recoW['+str(iLep)+'] '
+if Nlep == '2' :
+  SFweight = 'puW * effTrigW * electron_etaW_'+Nlep+'l * electron_ptW_'+Nlep+'l * veto_EMTFBug '
+else:
+  SFweight = 'puW * effTrigW'+Nlep+'l * electron_etaW_'+Nlep+'l * electron_ptW_'+Nlep+'l * veto_EMTFBug '
+for iLep in range(int(Nlep)): SFweight += ' * std_vector_lepton_recoW['+str(iLep)+'] '
+##SFweight      = 'puW*\
+#                 effTrigW3l*\
+#                 std_vector_lepton_recoW[0]*\
+#                 std_vector_lepton_recoW[1]*\
+#                 std_vector_lepton_recoW[2]*\
+#                 electron_etaW_3l*electron_ptW_3l*\
+#                 veto_EMTFBug'
 GenLepMatch3L   = 'GenLepMatch3l'
 GenLepMatch2L   = 'GenLepMatch2l'
 
@@ -168,7 +178,7 @@ samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu'),
                  }
 
 
-samples['ZZ']  = {    'name': getSampleFiles(directory,'ZZ'),
+samples['ZZ']  = {    'name': getSampleFiles(directory,'ZZTo4L'),
                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC ,
                        'suppressNegativeNuisances' :['all'],
                   }
