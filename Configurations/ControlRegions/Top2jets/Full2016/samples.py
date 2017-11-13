@@ -45,6 +45,45 @@ Nlep='2'
 #Nlep='3'
 #Nlep='4'
 
+leg1AdHocEta = "( (abs(std_vector_lepton_flavour[0]) == 13) + \
+(abs(std_vector_lepton_flavour[0]) == 11)*\
+(0.984769 - \
+0.0267535*std_vector_lepton_eta[0] + \
+0.0282053*std_vector_lepton_eta[0]**2 + \
+0.0218046*std_vector_lepton_eta[0]**3 - \
+0.00936741*std_vector_lepton_eta[0]**4  - \
+0.00388378*std_vector_lepton_eta[0]**5) \
+)"
+
+leg2AdHocEta = leg1AdHocEta.replace("[0]", "[1]")
+
+adHocEta = leg1AdHocEta+"*"+leg2AdHocEta
+
+#****************************************
+#Minimizer is Linear
+#Chi2                      =  0.000535935
+#NDf                       =           13
+#p0                        =     0.816352   +/-   0.0346138   
+#p1                        =    0.0074592   +/-   0.0035542   
+#p2                        = -6.62652e-05   +/-   0.000111992 
+#p3                        = -2.10195e-07   +/-   1.10007e-06 
+
+leg1AdHocPt = "( (abs(std_vector_lepton_flavour[0]) == 13) +\
+(abs(std_vector_lepton_flavour[0]) == 11)*( \
+(0.816352+\
+0.0074592*std_vector_lepton_pt[0] - \
+6.62652e-5*std_vector_lepton_pt[0]**2 -\
+2.10195e-7*std_vector_lepton_pt[0]**3) * (std_vector_lepton_pt[0]<45) + (std_vector_lepton_pt[0]>=45)) \
+)"
+
+leg2AdHocPt = leg1AdHocPt.replace("[0]", "[1]")
+
+adHocPt = leg1AdHocPt+"*"+leg2AdHocPt
+
+adHoc = "(sqrt("+adHocPt+"*"+adHocEta+")*(abs(std_vector_lepton_flavour[0])==abs(std_vector_lepton_flavour[1]))+("+adHocPt+"*"+adHocEta+")*(abs(std_vector_lepton_flavour[0])!=abs(std_vector_lepton_flavour[1])))"
+
+adHoc="1."
+
 ################################################
 ############ BASIC MC WEIGHTS ##################
 ################################################
@@ -163,7 +202,7 @@ ptllDYW_LO  = '(8.61313e-01+gen_ptll*4.46807e-03-1.52324e-05*gen_ptll*gen_ptll)*
 
 samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-10to50')
                                   + getSampleFiles(directory,'DYJetsToLL_M-50')     ,
-                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + "*"+ adHoc,
                      'FilesPerJob' : 1 ,
                  }
 
@@ -260,16 +299,47 @@ if useDYtt :
 
 ###### Top #######
 
-samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu') 
-                                  + getSampleFiles(directory,'ST_tW_antitop')
-                                  + getSampleFiles(directory,'ST_tW_top')  
-                                  # We should use in principle: ST_tW_antitop_noHad + ST_tW_antitop_noHad_ext1 + ST_tW_top_noHad + ST_tW_top_noHad_ext1   
-                                  # but first need to compute x-section and correct baseW
-                                  + getSampleFiles(directory,'ST_t-channel_antitop')
-                                  + getSampleFiles(directory,'ST_t-channel_top')
-                                  + getSampleFiles(directory,'ST_s-channel')   
-                             ,
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+samples['top'] = {   'name'     :['###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_TTTo2L2Nu__part0.root',
+                                  '###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_TTTo2L2Nu__part1.root',
+                                  '###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_TTTo2L2Nu__part2.root',
+                                  '###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_TTTo2L2Nu__part3.root',
+                                  '###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_TTTo2L2Nu__part4.root',
+                                  '###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_TTTo2L2Nu__part5.root',
+                                  '###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_TTTo2L2Nu__part6.root',
+                                  '###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_TTTo2L2Nu__part7.root',
+                                  '###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_TTTo2L2Nu__part8.root',
+                                  '###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_TTTo2L2Nu__part9.root',
+                                  '###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_TTTo2L2Nu__part10.root',
+                                  '###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_TTTo2L2Nu__part11.root',
+                                  '###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_TTTo2L2Nu__part12.root',
+                                  '###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_TTTo2L2Nu__part13.root',
+                                  '###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_TTTo2L2Nu__part14.root',
+                                  '###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_TTTo2L2Nu__part15.root',
+                                  '###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_TTTo2L2Nu__part16.root',
+                                  '###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_TTTo2L2Nu__part17.root',
+                                  '###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_TTTo2L2Nu__part18.root',
+                                  '###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_TTTo2L2Nu__part19.root',
+                                  '###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_TTTo2L2Nu__part20.root',
+                                  #  getSampleFiles(directory,'TTTo2L2Nu') 
+                                  #+ getSampleFiles(directory,'ST_tW_antitop')
+                                  #+ getSampleFiles(directory,'ST_tW_top')  
+                                  ## We should use in principle: ST_tW_antitop_noHad + ST_tW_antitop_noHad_ext1 + ST_tW_top_noHad + ST_tW_top_noHad_ext1   
+                                  ## but first need to compute x-section and correct baseW
+                                  '###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_ST_tW_antitop.root',
+                                  '###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_ST_tW_top.root',
+                                  '###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_ST_t-channel_antitop.root',
+                                  '###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_ST_t-channel_top.root',
+                                  '###/eos/cms/store/caf/user/lenzip/test/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__TrigMakerMCkeepRunTest3/latino_ST_s-channel.root',]
+                                  #+ getSampleFiles(directory,'ST_t-channel_antitop')
+                                  #+ getSampleFiles(directory,'ST_t-channel_top')
+                                  #+ getSampleFiles(directory,'ST_s-channel')   
+                      ,       
+                      'weight' : XSWeight+'*puW*\
+                                           bPogSF_CMVAL*\
+                                           effTrigW*\
+                                           std_vector_lepton_recoW[0]*\
+                                           std_vector_lepton_recoW[1]*\
+                                           veto_EMTFBug*'+LepWPweight+'*'+LepWPCut+"*"+GenLepMatch+'*'+METFilter_MC + "*"+ adHoc,  
                       'FilesPerJob' : 1,
                   }
                   
@@ -277,13 +347,13 @@ samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu')
 ###### WW ########
              
 samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu') ,
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*nllW' ,  
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*nllW' + "*"+ adHoc,  
                  }
 
 
 
 samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'),      
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + "*"+ adHoc,  
                       'isData': ['0'],                            
                    }
 
@@ -296,13 +366,13 @@ samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'
 samples['Vg']  =  {     'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM')
                                    + getSampleFiles(directory,'Zg')
                                    ,
-                        'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
+                        'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )'+ "*"+ adHoc,
                   }
 
 ######## VgS ########
 
 samples['VgS']  = {    'name':  getSampleFiles(directory,'WgStarLNuEE') + getSampleFiles(directory,'WgStarLNuMuMu') ,
-                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.4' ,  
+                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.4' + "*"+ adHoc,  
                   }
 
 ## 
@@ -323,7 +393,7 @@ samples['VZ']  = {    'name':   getSampleFiles(directory,'WZTo3LNu')
                               # Should we include this as well here:
                               # + getSampleFiles(directory,'tZq_ll')
                               ,   
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.11' ,  
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.11' + "*"+ adHoc,  
                       'FilesPerJob' : 2 ,
                   }
 
@@ -338,7 +408,7 @@ samples['VVV'] = {    'name':   getSampleFiles(directory,'ZZZ')
                            #  WWG: Might be added to WW by PYTHIA in tuning step, super small x-section anyway -> skipped for now 
                            #  + getSampleFiles(directory,'WWG')
                               ,    
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + "*"+ adHoc,  
                   }
 
 ###########################################

@@ -68,7 +68,7 @@ void macroPulls(TString folder = "pulls_em_MVA",
   gStyle->SetOptStat(0);
 
   TLegend* legend = new TLegend(0.6,0.8,0.85,0.88);
-  TLegendEntry* l1 = legend->AddEntry("gr2","B-Fit Only","lep");
+  TLegendEntry* l1 = legend->AddEntry("gr2","B-Only Fit","lep");
   l1->SetMarkerColor(kBlue);
   TLegendEntry* l2 = legend->AddEntry("gr1","S+B Fit","lep");
   l2->SetMarkerColor(kRed);
