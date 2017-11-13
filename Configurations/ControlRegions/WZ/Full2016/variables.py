@@ -68,19 +68,19 @@ variables['eta3']  = {  'name': 'std_vector_lepton_eta[2]',
 
 variables['pfmet']  = { 
                         'name': 'metPfType1',     
-                        'range' : (40,0,200),   
+                        'range' : (50,0,200),   
                         'xaxis' : 'pfmet [GeV]',
                         'fold'  : 3                         
                         }
 
 variables['trkMet']  = {   'name': 'metTtrk',
-                        'range' : (40,0,200),
+                        'range' : (50,0,200),
                         'xaxis' : 'trk met [GeV]',
                          'fold' : 3
                         }
 
 variables['mpmet']  = { 'name': 'mpmet',
-                        'range' : (40,0,200),
+                        'range' : (50,0,200),
                         'xaxis' : 'min proj met [GeV]',
                         'fold' : 3
                         }
@@ -93,7 +93,7 @@ variables['mth']  = {   'name': 'mth',            #   variable name
                         'fold' : 3
                         }
 variables['ptll']  = {   'name': 'ptll',            #   variable name    
-                        'range' : (20,0,200),    #   variable range
+                        'range' : (50,0,200),    #   variable range
                         'xaxis' : 'pt_{ll} [GeV]',  #   x axis name
                         'fold' : 0
                         }
