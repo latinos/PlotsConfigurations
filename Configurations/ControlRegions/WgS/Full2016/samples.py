@@ -43,10 +43,12 @@ elif 'knu' in SITE :
   copiedTreeBaseDir = '/pnfs/knu.ac.kr/data/cms/store/user/spak/LatinoTree/Full2016_Apr17/'
 elif 'sdfarm' in SITE : # KISTI T3
   xrootdPath  = 'root://cms-xrdr.sdfarm.kr:1094/'
-  treeBaseDir = '/xrootd/store/user/spak/LatinoTree/Full2016_Apr17/'
+  treeBaseDir = '/xrootd/store/group/hww/Full2016_Apr17/'
 
-directory = copiedTreeBaseDir+'Apr2017_summer16_KNU/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC'+skim+'/'
-directoryMcWgSt = treeBaseDir+'Apr2017_summer16_KNU/MCWgStarsel__hadd__MCWeights__bSFLpTEffMulti__cleanTauMC__formulasMC/'
+#directory = copiedTreeBaseDir+'Apr2017_summer16_KNU/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC'+skim+'/'
+#directoryMcWgSt = treeBaseDir+'Apr2017_summer16_KNU/MCWgStarsel__hadd__MCWeights__bSFLpTEffMulti__cleanTauMC__formulasMC/'
+directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC'+skim+'/'
+directoryMcWgSt = treeBaseDir+'Apr2017_summer16/MCWgStarsel__hadd__MCWeights__bSFLpTEffMulti__cleanTauMC__formulasMC/'
 
 ################################################
 ############ NUMBER OF LEPTONS #################
@@ -458,7 +460,7 @@ samples['Fake']  = {   'name': [ ] ,
                    }
 
 for Run in DataRun :
-  directory = copiedTreeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD_KNU/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__multiFakeW__formulasFAKE__hadd'+skimFake+'/'
+  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__multiFakeW__formulasFAKE__hadd'+skimFake+'/'
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:
@@ -478,9 +480,9 @@ samples['DATA']  = {   'name': [ ] ,
 
 for Run in DataRun :
   if DATaMetCor is not '':
-    directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD_KNU/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__hadd__l2tightOR__formulasDATA'+skim+DATaMetCor+Run[0]+'/'
+    directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__hadd__l2tightOR__formulasDATA'+skim+DATaMetCor+Run[0]+'/'
   else:
-    directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD_KNU/WgStarsel__hadd__EpTCorr__TrigMakerData__cleanTauData__formulasDATA/'
+    directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/WgStarsel__hadd__EpTCorr__TrigMakerData__cleanTauData__formulasDATA/'
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:
