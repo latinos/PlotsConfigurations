@@ -12,28 +12,28 @@
 nuisances['lumi']  = {
                'name'  : 'lumi_13TeV',
                'samples'  : {
-                   #'DY'       : '1.023',  ## data driven    
-                   #'top'      : '1.023',  ## data driven  
-                   #'WW'       : '1.023',  ## data driven  
-                   'ggWW'     : '1.023',
-                   'Vg'       : '1.023',
-                   'VgS'      : '1.023',
-                   'WZgS_L'   : '1.023',
-                   'WZgS_H'   : '1.023',
-                   'VZ'       : '1.023',
-                   'VVV'      : '1.023',
-                   'ggH_hww'  : '1.023', 
-                   'qqH_hww'  : '1.023',
-                   'ZH_hww'   : '1.023',
-                   'ggZH_hww' : '1.023',
-                   'WH_hww'   : '1.023',
-                   'bbH_hww'  : '1.023',
-                   'ttH_hww'  : '1.023',
-                   'ggH_htt'  : '1.023',
-                   'qqH_htt'  : '1.023',
-                   'ZH_htt'   : '1.023',
-                   'WH_htt'   : '1.023',
-                   'H_htt'    : '1.023',
+                   #'DY'       : '1.025',  ## data driven    
+                   #'top'      : '1.025',  ## data driven  
+                   #'WW'       : '1.025',  ## data driven  
+                   'ggWW'     : '1.025',
+                   'Vg'       : '1.025',
+                   'VgS'      : '1.025',
+                   'WZgS_L'   : '1.025',
+                   'WZgS_H'   : '1.025',
+                   'VZ'       : '1.025',
+                   'VVV'      : '1.025',
+                   'ggH_hww'  : '1.025', 
+                   'qqH_hww'  : '1.025',
+                   'ZH_hww'   : '1.025',
+                   'ggZH_hww' : '1.025',
+                   'WH_hww'   : '1.025',
+                   'bbH_hww'  : '1.025',
+                   'ttH_hww'  : '1.025',
+                   'ggH_htt'  : '1.025',
+                   'qqH_htt'  : '1.025',
+                   'ZH_htt'   : '1.025',
+                   'WH_htt'   : '1.025',
+                   'H_htt'    : '1.025',
                    },
                'type'  : 'lnN',
               }
@@ -768,7 +768,9 @@ nuisances['pdf_qqbar_accept']  = {
                    'qqH_hww' : '1.011',
                    'qqH_htt' : '1.011',
                    'WH_hww'  : '1.007',
+                   'WH_htt'  : '1.007',
                    'ZH_hww'  : '1.012',
+                   'ZH_htt'  : '1.012',
                    'VZ'      : '1.005',
                    },
               }
