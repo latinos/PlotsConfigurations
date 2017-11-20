@@ -35,7 +35,7 @@ if    'iihe' in SITE :
 elif  'cern' in SITE :
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/'
 
-directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC'+skim+'/'
+directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC'+skim+'/'
 
 ################################################
 ############ NUMBER OF LEPTONS #################
@@ -70,16 +70,15 @@ bWP='L'
 bSF='1.'
 if   bAlgo == 'cmvav2' :
  bSF='bPogSF_CMVA'+bWP
+ bVeto='bveto_CMVA'+bWP
 elif bAlgo == 'csvv2ivf' :
  bSF='bPogSF_CSV'+bWP
+ bVeto='bveto_CSV'+bWP
 elif bAlgo == 'DeepCSVB' :
  bSF='bPogSF_deepCSV'+bWP
+ bVeto='bveto_deepCSV'+bWP 
 
 SFweight += '*'+bSF
-
-# ... b Veto
-
-bVeto='bveto_'+bAlgo+bWP
 
 ################################################
 ############### Lepton WP ######################
@@ -408,7 +407,7 @@ samples['Fake']  = {   'name': [ ] ,
                    }
 
 for Run in DataRun :
-  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__multiFakeW__formulasFAKE__hadd'+skimFake+'/'
+  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__dorochester__multiFakeW__formulasFAKE__hadd'+skimFake+'/'
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:
@@ -427,7 +426,7 @@ samples['DATA']  = {   'name': [ ] ,
                   }
 
 for Run in DataRun :
-  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__hadd__l2tightOR__formulasDATA'+skim+'/'
+  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__hadd__l2tightOR__dorochester__formulasDATA'+skim+'/'
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:
