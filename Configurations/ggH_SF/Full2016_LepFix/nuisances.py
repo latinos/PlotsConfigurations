@@ -1,5 +1,5 @@
 
-# nuisances
+hww_# nuisances
 
 #nuisances = {}
 
@@ -61,16 +61,55 @@ else:
   fakeW_statMuUp    = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lstatMuUp   / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
   fakeW_statMuDown  = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lstatMuDown / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
 
-nuisances['fake_syst']  = {
-               'name'  : 'fake_syst',
+#nuisances['fake_syst']  = {
+#               'name'  : 'fake_syst',
+#               'type'  : 'lnN',
+#               'samples'  : {
+#                             'Fake' : '1.30',
+#                             },
+#}
+
+nuisances['fake_syst_ee']  = {
+               'name'  : 'CMS_hwwee_fake_syst',
                'type'  : 'lnN',
                'samples'  : {
                              'Fake' : '1.30',
                              },
+               'cuts'  : [
+                 'hww2l2v_13TeV_0jee',
+                 'hww2l2v_13TeV_0jee_pt2ge20',
+                 'hww2l2v_13TeV_0jee_pt2lt20',
+                 'hww2l2v_13TeV_WW_0jee',
+                 'hww2l2v_13TeV_top_0jee',
+                 'hww2l2v_13TeV_1jee',
+                 'hww2l2v_13TeV_1jee_pt2ge20',
+                 'hww2l2v_13TeV_1jee_pt2lt20',
+                 'hww2l2v_13TeV_WW_1jee',
+                         ]
 }
 
+nuisances['fake_syst_mm']  = {
+               'name'  : 'CMS_hwwmm_fake_syst',
+               'type'  : 'lnN',
+               'samples'  : {
+                             'Fake' : '1.30',
+                             },
+               'cuts'  : [
+                 'hww2l2v_13TeV_0jmm',
+                 'hww2l2v_13TeV_0jmm_pt2ge20',
+                 'hww2l2v_13TeV_0jmm_pt2lt20',
+                 'hww2l2v_13TeV_WW_0jmm',
+                 'hww2l2v_13TeV_top_0jmm',
+                 'hww2l2v_13TeV_1jmm',
+                 'hww2l2v_13TeV_1jmm_pt2ge20',
+                 'hww2l2v_13TeV_1jmm_pt2lt20',
+                 'hww2l2v_13TeV_WW_1jmm',
+                         ]
+}
+
+
 nuisances['fake_ele']  = {
-                'name'  : 'fake_ele_hww',
+                'name'  : 'hww_fake_ele',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -79,7 +118,7 @@ nuisances['fake_ele']  = {
 }
 
 nuisances['fake_ele_stat']  = {
-                'name'  : 'fake_ele_stat_hww',
+                'name'  : 'hww_fake_ele_stat',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -88,7 +127,7 @@ nuisances['fake_ele_stat']  = {
 }
 
 nuisances['fake_mu']  = {
-                'name'  : 'fake_mu_hww',
+                'name'  : 'hww_fake_mu',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -98,7 +137,7 @@ nuisances['fake_mu']  = {
 
 
 nuisances['fake_mu_stat']  = {
-                'name'  : 'fake_mu_stat_hww',
+                'name'  : 'hww_fake_mu_stat',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -174,7 +213,7 @@ elif Nlep == '3' : trig_syst = ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Dow
 elif Nlep == '4' : trig_syst = ['(effTrigW4l_Up)/(effTrigW4l)', '(effTrigW4l_Down)/(effTrigW4l)']
 
 nuisances['trigg']  = {
-                'name'  : 'trigger',
+                'name'  : 'hww_trigger',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -272,7 +311,7 @@ nuisances['electronpt']  = {
 elePtCor_Syst = [ 'electron_ptW_'+Nlep+'l_Up / electron_ptW_'+Nlep+'l', 'electron_ptW_'+Nlep+'l_Down / electron_ptW_'+Nlep+'l']
 
 nuisances['elePtCor']  = {
-                'name'  : 'elePtCor',
+                'name'  : 'hww_elePtCor',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -304,7 +343,7 @@ nuisances['elePtCor']  = {
 eleEtaCor_Syst = [ 'electron_etaW_'+Nlep+'l_Up / electron_etaW_'+Nlep+'l', 'electron_etaW_'+Nlep+'l_Down / electron_etaW_'+Nlep+'l']
 
 nuisances['eleEtaCor']  = {
-                'name'  : 'eleEtaCor',
+                'name'  : 'hww_eleEtaCor',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -613,7 +652,7 @@ nuisances['ggH_qmtop']  = {
                 }
 
 nuisances['QCDscale_CRSR_accept_top']  = {
-               'name'  : 'QCDscale_CRSR_accept_top', 
+               'name'  : 'CMS_hww_QCDscale_CRSR_accept_top', 
                'type'  : 'lnN',
                'samples'  : {
                    'top' : '1.01',
@@ -875,6 +914,7 @@ nuisances['WWresum1j']  = {
 
 nuisances['WWqscale0j']  = {
                 'name'  : 'WWqscale0j',
+                'skipCMS' : '1',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -898,6 +938,7 @@ nuisances['WWqscale0j']  = {
 
 nuisances['WWqscale1j']  = {
                 'name'  : 'WWqscale1j',
+                'skipCMS' : '1',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -918,12 +959,20 @@ nuisances['WWqscale1j']  = {
                 }
 
 nuisances['WgStarScale']  = {
-               'name'  : 'WgStarScale', 
+               'name'  : 'CMS_hww_WgStarScale', 
                'type'  : 'lnN',
                'samples'  : {
-                   'WgS' : '1.25',  # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
-                   'VgS' : '1.25',  # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
-                   'WZgS_L' : '1.25',  #FIXME check!
+                   'WgS' : '1.25',  
+                   'VgS' : '1.25',  
+                   'WZgS_L' : '1.25',  
+                   },
+                }
+
+nuisances['WZScale'] = {
+               'name'  : 'CMS_hww_WZScale',
+               'type'  : 'lnN',
+               'samples'  : {
+                   'WZgS_H' : '1.16', 
                    },
                 }
                 
@@ -1079,8 +1128,8 @@ nuisances['DYmmnorm1j'] = {
 
 ######## TOP UNCERTAINTIES
 
-nuisances['tttwTh']  = {
-                'name'  : 'tttwTh',   # Theory uncertainty
+nuisances['singleTopToTTbar']  = {
+                'name'  : 'singleTopToTTbar',   # Theory uncertainty
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {  # up              down
@@ -1109,139 +1158,139 @@ nuisances['TopPtRew']  = {
 ### In this case remember to add the following line in the datacard
 ### * autoMCStats 10 1
 
-#nuisances['stat']  = {
-#              'type'  : 'auto',
-#              'maxPoiss'  : '10',
-#              'includeSignal'  : '1',
-#              #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
-#              #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
-#              'samples' : {}
-#             }
-
-
-### Use the following if you want to apply the MC stat nuisances accoriding to the standard approach
 nuisances['stat']  = {
-                # apply to the following samples: name of samples here must match keys in samples.py
-               'samples'  : { 
-                   'ttbar': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'singletop': {
-                         'typeStat' : 'bbb',
-                         },
-                    
-                   'top': {
-                         'typeStat' : 'bbb',
-                         },
-
-# DATA DRIVEN:                    
-#                  'DY': {
-#                        'typeStat' : 'bbb',
-#                        'keepNormalization' : '1'  # default = 0 -> 0=don't keep normalization
-#                        },
-                    
-                   'ggWW': {
-                         'typeStat' : 'bbb',
-                         },
-                    
-                   'ggWW_Int': {
-                         'typeStat' : 'bbb',
-                         },
-                    
-                   'WW': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'VZ': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'WZ': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'VVV': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'H_hww': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'ggH_hww': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'qqH_hww': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'WH_hww': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'ZH_hww': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'H_htt': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'ggH_htt': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'qqH_htt': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'WH_htt': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'ZH_htt': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'ggZH_hww': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'bbH_hww': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   'ttH_hww': {
-                         'typeStat' : 'bbb',
-                         },
-
-                   
-                   'Fake': {
-                         'typeStat' : 'bbb',
-                         },
-                   
-                   'Vg': {  
-                         'typeStat' : 'bbb',
-                         },
-
-                   'VgS':{  
-                         'typeStat' : 'bbb',
-                         },
-
-                   'WZgS_L':{
-                         'typeStat' : 'bbb',
-                         },
-
-                   'WZgS_H':{
-                         'typeStat' : 'bbb',
-                         },
+              'type'  : 'auto',
+              'maxPoiss'  : '10',
+              'includeSignal'  : '1',
+              #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
+              #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
+              'samples' : {}
+             }
 
 
-                 },
-               'type'  : 'shape'
-              }
+###### Use the following if you want to apply the MC stat nuisances accoriding to the standard approach
+###nuisances['stat']  = {
+###                # apply to the following samples: name of samples here must match keys in samples.py
+###               'samples'  : { 
+###                   'ttbar': {
+###                         'typeStat' : 'bbb',
+###                         },
+###
+###                   'singletop': {
+###                         'typeStat' : 'bbb',
+###                         },
+###                    
+###                   'top': {
+###                         'typeStat' : 'bbb',
+###                         },
+###
+#### DATA DRIVEN:                    
+####                  'DY': {
+####                        'typeStat' : 'bbb',
+####                        'keepNormalization' : '1'  # default = 0 -> 0=don't keep normalization
+####                        },
+###                    
+###                   'ggWW': {
+###                         'typeStat' : 'bbb',
+###                         },
+###                    
+###                   'ggWW_Int': {
+###                         'typeStat' : 'bbb',
+###                         },
+###                    
+###                   'WW': {
+###                         'typeStat' : 'bbb',
+###                         },
+###
+###                   'VZ': {
+###                         'typeStat' : 'bbb',
+###                         },
+###
+###                   'WZ': {
+###                         'typeStat' : 'bbb',
+###                         },
+###
+###                   'VVV': {
+###                         'typeStat' : 'bbb',
+###                         },
+###
+###                   'H_hww': {
+###                         'typeStat' : 'bbb',
+###                         },
+###
+###                   'ggH_hww': {
+###                         'typeStat' : 'bbb',
+###                         },
+###
+###                   'qqH_hww': {
+###                         'typeStat' : 'bbb',
+###                         },
+###
+###                   'WH_hww': {
+###                         'typeStat' : 'bbb',
+###                         },
+###
+###                   'ZH_hww': {
+###                         'typeStat' : 'bbb',
+###                         },
+###
+###                   'H_htt': {
+###                         'typeStat' : 'bbb',
+###                         },
+###
+###                   'ggH_htt': {
+###                         'typeStat' : 'bbb',
+###                         },
+###
+###                   'qqH_htt': {
+###                         'typeStat' : 'bbb',
+###                         },
+###
+###                   'WH_htt': {
+###                         'typeStat' : 'bbb',
+###                         },
+###
+###                   'ZH_htt': {
+###                         'typeStat' : 'bbb',
+###                         },
+###
+###                   'ggZH_hww': {
+###                         'typeStat' : 'bbb',
+###                         },
+###
+###                   'bbH_hww': {
+###                         'typeStat' : 'bbb',
+###                         },
+###
+###                   'ttH_hww': {
+###                         'typeStat' : 'bbb',
+###                         },
+###
+###                   
+###                   'Fake': {
+###                         'typeStat' : 'bbb',
+###                         },
+###                   
+###                   'Vg': {  
+###                         'typeStat' : 'bbb',
+###                         },
+###
+###                   'VgS':{  
+###                         'typeStat' : 'bbb',
+###                         },
+###
+###                   'WZgS_L':{
+###                         'typeStat' : 'bbb',
+###                         },
+###
+###                   'WZgS_H':{
+###                         'typeStat' : 'bbb',
+###                         },
+###
+###
+###                 },
+###               'type'  : 'shape'
+###              }
 
 
 try:
