@@ -41,8 +41,7 @@ elif 'sdfarm' in SITE : # KISTI T3
   xrootdPath  = 'root://cms-xrdr.sdfarm.kr:1094/'
   treeBaseDir = '/xrootd/store/user/salee/cmshww/Full2016_Apr17/'
 
-
-directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC'+skim+'/'
+directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC'+skim+'/'
 
 ################################################
 ############ NUMBER OF LEPTONS #################
@@ -57,13 +56,13 @@ Nlep='2'
 ################################################
 
 XSWeight      = 'XSWeight'
-#SFweight      = 'SFweight'+Nlep+'l'
-SFweight      = 'puW*\
-                 effTrigW*\
-                 std_vector_lepton_recoW[0]*\
-                 std_vector_lepton_recoW[1]*\
-                 electron_etaW_2l*electron_ptW_2l*\
-                 veto_EMTFBug'
+SFweight      = 'SFweight'+Nlep+'l'
+#SFweight      = 'puW*\
+#                 effTrigW*\
+#                 std_vector_lepton_recoW[0]*\
+#                 std_vector_lepton_recoW[1]*\
+#                 electron_etaW_2l*electron_ptW_2l*\
+#                 veto_EMTFBug'
 
 GenLepMatch   = 'GenLepMatch'+Nlep+'l'
 
@@ -296,7 +295,7 @@ samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu')
                                   + getSampleFiles(directory,'ST_s-channel')   
                              ,
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-                      'FilesPerJob' : 2 ,
+                      'FilesPerJob' : 1 ,
                   }
                   
 addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
@@ -307,7 +306,9 @@ samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu') ,
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*nllW' ,  
                  }
 
-
+samples['WWewk'] = { 'name': getSampleFiles(directory,'WpWmJJ_EWK_noTop'),
+                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC +'*(lhe_mWp>60)*(lhe_mWp<100)*(lhe_mWm>60)*(lhe_mWm<100)',
+                   }
 
 samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'),      
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
@@ -334,12 +335,12 @@ samples['Vg']  =  {     'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM')
 
 
 samples['WZgS_L']  = {    'name': getSampleFiles(directory,'WZTo3LNu_mllmin01_ext1') ,
-                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '* (Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4)*0.89' ,
+                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '* (Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4)*0.94' ,
                   }
 
 samples['WZgS_H']  = {    'name': getSampleFiles(directory,'WZTo3LNu_mllmin01_ext1') ,
                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '* (Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4)*1.14' ,
-                  } 
+                  }
 
 ######### VZ #########
 
@@ -471,20 +472,29 @@ else:
 ################## FAKE ###################
 ###########################################
 
-samples['Fake']  = {   'name': [ ] ,
-                       'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA,              #   weight/cut 
+samples['Fake_em']  = {'name': [ ] ,
+                       'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA+'*(abs(std_vector_lepton_flavour[0])==11 && abs(std_vector_lepton_flavour[1])==13)',              #   weight/cut 
                        'weights' : [ ] ,
                        'isData': ['all'],
                        'FilesPerJob' : 6 ,
-                   }
+                     }
+
+samples['Fake_me']  = {'name': [ ] ,
+                       'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA+'*(abs(std_vector_lepton_flavour[0])==13 && abs(std_vector_lepton_flavour[1])==11)',              #   weight/cut 
+                       'weights' : [ ] ,
+                       'isData': ['all'],
+                       'FilesPerJob' : 6 ,
+                     }
 
 for Run in DataRun :
-  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__multiFakeW__formulasFAKE__hadd'+skimFake+'/'
+  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__dorochester__multiFakeW__formulasFAKE__hadd'+skimFake+'/'
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:
-      samples['Fake']['name'].append(iFile)
-      samples['Fake']['weights'].append(DataTrig[DataSet])
+      samples['Fake_em']['name'].append(iFile)
+      samples['Fake_em']['weights'].append(DataTrig[DataSet])
+      samples['Fake_me']['name'].append(iFile)
+      samples['Fake_me']['weights'].append(DataTrig[DataSet])
 
 ###########################################
 ################## DATA ###################
