@@ -295,7 +295,7 @@ samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu')
                                   + getSampleFiles(directory,'ST_s-channel')   
                              ,
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-                      'FilesPerJob' : 2 ,
+                      'FilesPerJob' : 1 ,
                   }
                   
 addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
@@ -322,8 +322,8 @@ samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'
 ######## Vg ########
 
 samples['Vg']  =  {     'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM')
-                                   + getSampleFiles(directory,'Zg')
-                                   ,
+                                   + getSampleFiles(directory,'Zg'),
+                        'suppressNegativeNuisances' :['all'],
                         'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
                   }
 
@@ -346,10 +346,10 @@ samples['WZgS_H']  = {    'name': getSampleFiles(directory,'WZTo3LNu_mllmin01_ex
 
 samples['VZ']  = {    'name':   getSampleFiles(directory,'ZZTo2L2Nu')
                               + getSampleFiles(directory,'WZTo2L2Q')
-                              + getSampleFiles(directory,'ZZTo2L2Q')  
+                              + getSampleFiles(directory,'ZZTo2L2Q') , 
                               # Should we include this as well here:
-                              # + getSampleFiles(directory,'tZq_ll')
-                              ,   
+                              # + getSampleFiles(directory,'tZq_ll'),  
+                      'suppressNegativeNuisances' :['all'], 
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.11' ,  
                       'FilesPerJob' : 6 ,
                   }
@@ -365,6 +365,7 @@ samples['VVV'] = {    'name':   getSampleFiles(directory,'ZZZ')
                            #  WWG: Might be added to WW by PYTHIA in tuning step, super small x-section anyway -> skipped for now 
                            #  + getSampleFiles(directory,'WWG')
                               ,    
+                      'suppressNegativeNuisances' :['all'],
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                   }
 
@@ -393,12 +394,14 @@ samples['qqH_hww']  = {   'name' : getSampleFiles(directory,'VBFHToWWTo2L2Nu_M12
 
 ### ZH ; H->WW
 
-samples['ZH_hww']   = {   'name' :  getSampleFiles(directory,'HZJ_HToWW_M125') ,
+samples['ZH_hww']   = {  'name' :  getSampleFiles(directory,'HZJ_HToWW_M125') ,
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                         'suppressNegativeNuisances' :['all'],
                       }
 
 samples['ggZH_hww'] = {   'name' : getSampleFiles(directory,'ggZH_HToWW_M125') ,
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                          'suppressNegativeNuisances' :['all'],
                       }
 
 #### WH ; H->WW
@@ -412,8 +415,8 @@ samples['WH_hww']   = {   'name' :   getSampleFiles(directory,'HWminusJ_HToWW_M1
 #### bbH ; H->WW 
 
 samples['bbH_hww']  = {  'name' :   getSampleFiles(directory,'bbHToWWTo2L2Nu_M125_yb2') 
-                                  + getSampleFiles(directory,'bbHToWWTo2L2Nu_M125_ybyt')
-                                  ,
+                                  + getSampleFiles(directory,'bbHToWWTo2L2Nu_M125_ybyt'),
+                         'suppressNegativeNuisances' :['all'],
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                       }
 
