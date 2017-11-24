@@ -56,13 +56,13 @@ Nlep='2'
 ################################################
 
 XSWeight      = 'XSWeight'
-#SFweight      = 'SFweight'+Nlep+'l'
-SFweight      = 'puW*\
-                 effTrigW*\
-                 std_vector_lepton_recoW[0]*\
-                 std_vector_lepton_recoW[1]*\
-                 electron_etaW_2l*electron_ptW_2l*\
-                 veto_EMTFBug'
+SFweight      = 'SFweight'+Nlep+'l'
+#SFweight      = 'puW*\
+#                 effTrigW*\
+#                 std_vector_lepton_recoW[0]*\
+#                 std_vector_lepton_recoW[1]*\
+#                 electron_etaW_2l*electron_ptW_2l*\
+#                 veto_EMTFBug'
 
 GenLepMatch   = 'GenLepMatch'+Nlep+'l'
 
