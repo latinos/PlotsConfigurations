@@ -20,6 +20,40 @@ structure['Fake']  = {
                   'isData'   : 0,
               }
 
+
+structure['Fake_ee']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'removeFromCuts' : [
+                                      'hww2l2v_13TeV_0jmm',
+                                      'hww2l2v_13TeV_0jmm_pt2ge20',
+                                      'hww2l2v_13TeV_0jmm_pt2lt20',
+                                      'hww2l2v_13TeV_1jmm',
+                                      'hww2l2v_13TeV_1jmm_pt2ge20',
+                                      'hww2l2v_13TeV_1jmm_pt2lt20',
+                                      'hww2l2v_13TeV_WW_0jmm',
+                                      'hww2l2v_13TeV_WW_1jmm',
+                                      'hww2l2v_13TeV_top_0jmm',
+                                     ],
+              }
+
+structure['Fake_mm']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'removeFromCuts' : [
+                                      'hww2l2v_13TeV_0jee',
+                                      'hww2l2v_13TeV_0jee_pt2ge20',
+                                      'hww2l2v_13TeV_0jee_pt2lt20',
+                                      'hww2l2v_13TeV_1jee',
+                                      'hww2l2v_13TeV_1jee_pt2ge20',
+                                      'hww2l2v_13TeV_1jee_pt2lt20',
+                                      'hww2l2v_13TeV_WW_0jee',
+                                      'hww2l2v_13TeV_WW_1jee',
+                                      'hww2l2v_13TeV_top_0jee',
+                                     ],
+              }
+
+
 structure['ttbar'] = {   
                   'isSignal' : 0,
                   'isData'   : 0,

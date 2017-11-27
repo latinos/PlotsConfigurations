@@ -503,8 +503,8 @@ else:
 ################## FAKE ###################
 ###########################################
 
-samples['Fake']  = {   'name': [ ] ,
-                       'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA,              #   weight/cut 
+samples['Fake_ee']  = {   'name': [ ] ,
+                       'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA+'*(abs(std_vector_lepton_flavour[0])==11 && abs(std_vector_lepton_flavour[1])==11)',              #   weight/cut 
                        'weights' : [ ] ,
                        'isData': ['all'],
                        'FilesPerJob' : 4 ,
@@ -512,13 +512,26 @@ samples['Fake']  = {   'name': [ ] ,
                      'suppressNegativeNuisances' :['all'],
                    }
 
+
+samples['Fake_mm']  = {   'name': [ ] ,
+                       'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA+'*(abs(std_vector_lepton_flavour[0])==13 && abs(std_vector_lepton_flavour[1])==13)',              #   weight/cut 
+                       'weights' : [ ] ,
+                       'isData': ['all'],
+                       'FilesPerJob' : 4 ,
+                     'suppressNegative' :['all'],
+                     'suppressNegativeNuisances' :['all'],
+                   }
+
+
 for Run in DataRun :
   directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__dorochester__multiFakeW__formulasFAKE__hadd'+skimFake+'/'
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:
-      samples['Fake']['name'].append(iFile)
-      samples['Fake']['weights'].append(DataTrig[DataSet])
+      samples['Fake_ee']['name'].append(iFile)
+      samples['Fake_ee']['weights'].append(DataTrig[DataSet])
+      samples['Fake_mm']['name'].append(iFile)
+      samples['Fake_mm']['weights'].append(DataTrig[DataSet])
 
 ###########################################
 ################## DATA ###################
