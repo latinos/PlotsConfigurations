@@ -73,7 +73,7 @@ nuisances['fake_syst_ee']  = {
                'name'  : 'CMS_hwwee_fake_syst',
                'type'  : 'lnN',
                'samples'  : {
-                             'Fake' : '1.30',
+                             'Fake_ee' : '1.30',
                              },
                'cuts'  : [
                  'hww2l2v_13TeV_0jee',
@@ -85,6 +85,7 @@ nuisances['fake_syst_ee']  = {
                  'hww2l2v_13TeV_1jee_pt2ge20',
                  'hww2l2v_13TeV_1jee_pt2lt20',
                  'hww2l2v_13TeV_WW_1jee',
+                 'hww2l2v_13TeV_top_1jsf',
                          ]
 }
 
@@ -92,7 +93,7 @@ nuisances['fake_syst_mm']  = {
                'name'  : 'CMS_hwwmm_fake_syst',
                'type'  : 'lnN',
                'samples'  : {
-                             'Fake' : '1.30',
+                             'Fake_mm' : '1.30',
                              },
                'cuts'  : [
                  'hww2l2v_13TeV_0jmm',
@@ -104,6 +105,7 @@ nuisances['fake_syst_mm']  = {
                  'hww2l2v_13TeV_1jmm_pt2ge20',
                  'hww2l2v_13TeV_1jmm_pt2lt20',
                  'hww2l2v_13TeV_WW_1jmm',
+                 'hww2l2v_13TeV_top_1jsf',
                          ]
 }
 
@@ -114,7 +116,21 @@ nuisances['fake_ele']  = {
                 'type'  : 'shape',
                 'samples'  : {
                               'Fake'     : [ fakeW_EleUp , fakeW_EleDown ],
+                              'Fake_ee'     : [ fakeW_EleUp , fakeW_EleDown ],
                              },
+               'cuts'  : [
+                 'hww2l2v_13TeV_0jee',
+                 'hww2l2v_13TeV_0jee_pt2ge20',
+                 'hww2l2v_13TeV_0jee_pt2lt20',
+                 'hww2l2v_13TeV_WW_0jee',
+                 'hww2l2v_13TeV_top_0jee',
+                 'hww2l2v_13TeV_1jee',
+                 'hww2l2v_13TeV_1jee_pt2ge20',
+                 'hww2l2v_13TeV_1jee_pt2lt20',
+                 'hww2l2v_13TeV_WW_1jee',
+                 'hww2l2v_13TeV_top_1jsf',
+                         ]
+
 }
 
 nuisances['fake_ele_stat']  = {
@@ -123,7 +139,20 @@ nuisances['fake_ele_stat']  = {
                 'type'  : 'shape',
                 'samples'  : {
                               'Fake'      : [ fakeW_statEleUp , fakeW_statEleDown ]
+                              'Fake_ee'      : [ fakeW_statEleUp , fakeW_statEleDown ]
                              },
+               'cuts'  : [
+                 'hww2l2v_13TeV_0jee',
+                 'hww2l2v_13TeV_0jee_pt2ge20',
+                 'hww2l2v_13TeV_0jee_pt2lt20',
+                 'hww2l2v_13TeV_WW_0jee',
+                 'hww2l2v_13TeV_top_0jee',
+                 'hww2l2v_13TeV_1jee',
+                 'hww2l2v_13TeV_1jee_pt2ge20',
+                 'hww2l2v_13TeV_1jee_pt2lt20',
+                 'hww2l2v_13TeV_WW_1jee',
+                 'hww2l2v_13TeV_top_1jsf',
+                         ]
 }
 
 nuisances['fake_mu']  = {
@@ -132,7 +161,21 @@ nuisances['fake_mu']  = {
                 'type'  : 'shape',
                 'samples'  : {
                               'Fake'     : [ fakeW_MuUp , fakeW_MuDown ],
+                              'Fake_mm'     : [ fakeW_MuUp , fakeW_MuDown ],
                              },
+               'cuts'  : [
+                 'hww2l2v_13TeV_0jmm',
+                 'hww2l2v_13TeV_0jmm_pt2ge20',
+                 'hww2l2v_13TeV_0jmm_pt2lt20',
+                 'hww2l2v_13TeV_WW_0jmm',
+                 'hww2l2v_13TeV_top_0jmm',
+                 'hww2l2v_13TeV_1jmm',
+                 'hww2l2v_13TeV_1jmm_pt2ge20',
+                 'hww2l2v_13TeV_1jmm_pt2lt20',
+                 'hww2l2v_13TeV_WW_1jmm',
+                 'hww2l2v_13TeV_top_1jsf',
+                         ]
+
 }
 
 
@@ -142,7 +185,20 @@ nuisances['fake_mu_stat']  = {
                 'type'  : 'shape',
                 'samples'  : {
                               'Fake'     : [ fakeW_statMuUp , fakeW_statMuDown ]
+                              'Fake_mm'     : [ fakeW_statMuUp , fakeW_statMuDown ]
                              },
+               'cuts'  : [
+                 'hww2l2v_13TeV_0jmm',
+                 'hww2l2v_13TeV_0jmm_pt2ge20',
+                 'hww2l2v_13TeV_0jmm_pt2lt20',
+                 'hww2l2v_13TeV_WW_0jmm',
+                 'hww2l2v_13TeV_top_0jmm',
+                 'hww2l2v_13TeV_1jmm',
+                 'hww2l2v_13TeV_1jmm_pt2ge20',
+                 'hww2l2v_13TeV_1jmm_pt2lt20',
+                 'hww2l2v_13TeV_WW_1jmm',
+                 'hww2l2v_13TeV_top_1jsf',
+                         ]
 }
 
 ##### B-tagger
@@ -916,7 +972,7 @@ nuisances['WWresum1j']  = {
 
 nuisances['WWqscale0j']  = {
                 'name'  : 'WWqscale0j',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -940,7 +996,7 @@ nuisances['WWqscale0j']  = {
 
 nuisances['WWqscale1j']  = {
                 'name'  : 'WWqscale1j',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -1132,6 +1188,7 @@ nuisances['DYmmnorm1j'] = {
 
 nuisances['singleTopToTTbar']  = {
                 'name'  : 'singleTopToTTbar',   # Theory uncertainty
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {  # up              down
@@ -1147,6 +1204,7 @@ nuisances['singleTopToTTbar']  = {
 
 nuisances['TopPtRew']  = {
                 'name'  : 'TopPtRew',   # Theory uncertainty
+                'skipCMS'  : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples' : {
