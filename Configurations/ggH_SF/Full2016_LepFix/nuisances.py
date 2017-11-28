@@ -724,7 +724,7 @@ nuisances['QCDscale_CRSR_accept_top']  = {
 nuisances['QCDscale_VZ']  = {
                'name'  : 'QCDscale_VZ', 
                'samples'  : {
-                   'VW' : '1.03',
+                   'VZ' : '1.03',
                    },
                'type'  : 'lnN'
               }
