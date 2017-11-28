@@ -138,7 +138,7 @@ nuisances['fake_ele_stat']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                              'Fake'      : [ fakeW_statEleUp , fakeW_statEleDown ]
+                              'Fake'      : [ fakeW_statEleUp , fakeW_statEleDown ],
                               'Fake_ee'      : [ fakeW_statEleUp , fakeW_statEleDown ]
                              },
                'cuts'  : [
@@ -184,7 +184,7 @@ nuisances['fake_mu_stat']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                              'Fake'     : [ fakeW_statMuUp , fakeW_statMuDown ]
+                              'Fake'     : [ fakeW_statMuUp , fakeW_statMuDown ],
                               'Fake_mm'     : [ fakeW_statMuUp , fakeW_statMuDown ]
                              },
                'cuts'  : [
@@ -1204,7 +1204,6 @@ nuisances['singleTopToTTbar']  = {
 
 nuisances['TopPtRew']  = {
                 'name'  : 'TopPtRew',   # Theory uncertainty
-                'skipCMS'  : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples' : {
