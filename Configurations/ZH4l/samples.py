@@ -9,9 +9,14 @@ if isNtugrid5:
 else:
     treeBaseDir = "/eos/cms/store/group/phys_higgs/cmshww/amassiro/"
 
-directory           = os.path.join(treeBaseDir,"Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__vh3lSel")
-directoryDATA       = os.path.join(treeBaseDir,"Full2016_Apr17/{0}/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__hadd__l2tightOR__formulasDATA__vh3lSel")
+
+directory           = os.path.join(treeBaseDir,"Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__vh3lSel")
+# directory           = os.path.join(treeBaseDir,"Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__vh3lSel")Nov20
+# directory           = os.path.join(treeBaseDir,"Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__vh3lSel")
+directoryDATA       = os.path.join(treeBaseDir,"Full2016_Apr17/{0}/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__hadd__l2tightOR__dorochester__formulasDATA__vh3lSel")
+# directoryDATA       = os.path.join(treeBaseDir,"Full2016_Apr17/{0}/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__hadd__l2tightOR__formulasDATA__vh3lSel")Nov20
 # directoryFake       = os.path.join(treeBaseDir,"Full2016_Apr17/{0}/lepSel__EpTCorr__TrigMakerData__fakeSel__hadd")
+
 
 ################################################
 ############ basic mc weights ##################
@@ -28,7 +33,7 @@ directoryDATA       = os.path.join(treeBaseDir,"Full2016_Apr17/{0}/lepSel__EpTCo
 XSWeight      = 'XSWeight'
 SFweight2l    = 'SFweight2l'
 SFweight3l    = 'SFweight3l'
-SFweight4l    = 'SFweight4l'
+# SFweight4l    = 'SFweight4l'
 GenLepMatch2l = 'GenLepMatch2l'
 GenLepMatch3l = 'GenLepMatch3l'
 GenLepMatch4l = 'GenLepMatch4l'
@@ -37,7 +42,7 @@ GenLepMatch4l = 'GenLepMatch4l'
 # SFweight2l    = '(1+(puW*effTrigW2l*veto_EMTFBug*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]-1))'
 # SFweight3l    = '(1+(puW*effTrigW3l*veto_EMTFBug*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_recoW[2]-1))'
 #Trigger efficiencies with 4 lepton case is still unavilable.
-# SFweight4l    = '(1+(puW*effTrigW3l*veto_EMTFBug*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_recoW[2]*std_vector_lepton_recoW[3]-1))'
+SFweight4l    = '(1+(puW*effTrigW4l*electron_etaW_4l*electron_ptW_4l*veto_EMTFBug*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_recoW[2]*std_vector_lepton_recoW[3]-1))'
 # GenLepMatch2l = '(1+(std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]-1))'
 # GenLepMatch3l = '(1+(std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]-1))'
 # GenLepMatch4l = '(1+(std_vector_lepton_genmatched[0]*std_vector_lepton_genmatched[1]*std_vector_lepton_genmatched[2]*std_vector_lepton_genmatched[3]-1))'
@@ -149,23 +154,13 @@ for Run in DataRun :
 #############  BACKGROUNDS  ###############
 ###########################################
 
-samples['ZZ']  = {    'name': getSampleFiles(directory,'ZZTo4L'),
-                      'weight' : 'baseW'+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC,
-                      #1.256/1.212 see this page https://twiki.cern.ch/twiki/bin/viewauth/CMS/SummaryTable1G25ns#Diboson
-                  }
-
-# samples['ZZ']  = {    'name': getSampleFiles(directory,'ZZTo4L')
-                              # +getSampleFiles(directory,'ggZZ2e2t')
-                              # +getSampleFiles(directory,'ggZZ2m2t')
-                              # +getSampleFiles(directory,'ggZZ2e2m')
-                              # +getSampleFiles(directory,'ggZZ4t')
-                              # +getSampleFiles(directory,'ggZZ4e')
-                              # +getSampleFiles(directory,'ggZZ4m'),
+# samples['ZZ']  = {    'name': getSampleFiles(directory,'ZZTo4L'),
                       # 'weight' : 'baseW'+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC,
                       # #1.256/1.212 see this page https://twiki.cern.ch/twiki/bin/viewauth/CMS/SummaryTable1G25ns#Diboson
                   # }
 
-samples['ggZZ']  = {    'name': getSampleFiles(directory,'ggZZ2e2t')
+samples['ZZ']  = {    'name': getSampleFiles(directory,'ZZTo4L')
+                              +getSampleFiles(directory,'ggZZ2e2t')
                               +getSampleFiles(directory,'ggZZ2m2t')
                               +getSampleFiles(directory,'ggZZ2e2m')
                               +getSampleFiles(directory,'ggZZ4t')
@@ -173,7 +168,29 @@ samples['ggZZ']  = {    'name': getSampleFiles(directory,'ggZZ2e2t')
                               +getSampleFiles(directory,'ggZZ4m'),
                       'weight' : 'baseW'+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC,
                      'FilesPerJob' : 1,
+                      #1.256/1.212 see this page https://twiki.cern.ch/twiki/bin/viewauth/CMS/SummaryTable1G25ns#Diboson
                   }
+
+    # Fix the loop correction to NNLO
+addSampleWeight(samples,'ZZ','ZZTo4L',"1.1654") ## The NNLO/NLO k-factor, cited from https://arxiv.org/abs/1405.2219v1
+addSampleWeight(samples,'ZZ','ggZZ2e2t',"2.27") ## The NLO/LO k-factor, cited from https://arxiv.org/abs/1509.06734v1
+addSampleWeight(samples,'ZZ','ggZZ2m2t',"2.27") 
+addSampleWeight(samples,'ZZ','ggZZ2e2m',"2.27")
+addSampleWeight(samples,'ZZ','ggZZ4e',"2.27")
+addSampleWeight(samples,'ZZ','ggZZ4m',"2.27")
+addSampleWeight(samples,'ZZ','ggZZ4t',"2.27")
+
+
+
+# samples['ggZZ']  = {    'name': getSampleFiles(directory,'ggZZ2e2t')
+                              # +getSampleFiles(directory,'ggZZ2m2t')
+                              # +getSampleFiles(directory,'ggZZ2e2m')
+                              # +getSampleFiles(directory,'ggZZ4t')
+                              # +getSampleFiles(directory,'ggZZ4e')
+                              # +getSampleFiles(directory,'ggZZ4m'),
+                      # 'weight' : 'baseW'+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC,
+                     # 'FilesPerJob' : 1,
+                  # }
 
 samples['ggH_hzz']  = {    'name': getSampleFiles(directory,'GluGluHToZZTo4L_M125'),
                       'weight' : 'baseW'+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC,

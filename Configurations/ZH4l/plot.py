@@ -148,13 +148,13 @@ plot['ZZ']  = {
                   'scale'    : 1.0
                   }
 
-plot['ggZZ']  = { 
-                  'nameHR' : 'ggZZ',
-                  'color'    : 857,   # kAzure -3
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
+# plot['ggZZ']  = { 
+                  # 'nameHR' : 'ggZZ',
+                  # 'color'    : 857,   # kAzure -3
+                  # 'isSignal' : 0,
+                  # 'isData'   : 0,
+                  # 'scale'    : 1.0
+                  # }
 plot['ggH_hzz']  = { 
                   'nameHR' : 'ggH_hzz',
                   'color'    : 626,   # kRed -6  
