@@ -69,16 +69,16 @@ nuisances['QCDscale_ggZH']  = {
 
 # pdf uncertainty
 
-nuisances['pdf_gg_zh4l']  = {
-        'name' : 'pdf_gg',
+nuisances['pdf_Higgs_gg']  = {
+        'name' : 'pdf_Higgs_gg',
         'samples' : {
             'ggZH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggZH','125.0','pdf','sm'),
             },
         'type' : 'lnN',
         }
 
-nuisances['pdf_qqbar_zh4l']  = {
-        'name'  : 'pdf_qqbar',
+nuisances['pdf_Higgs_qqbar']  = {
+        'name'  : 'pdf_Higgs_qqbar',
         'type'  : 'lnN',
         'samples'  : {
             'ZH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH' ,'125.0','pdf','sm'),
@@ -89,8 +89,8 @@ nuisances['pdf_qqbar_zh4l']  = {
 
 ##acceptance
 
-nuisances['pdf_qqbar_ACCEPT']  = {
-               'name'  : 'pdf_qqbar_ACCEPT',
+nuisances['pdf_Higgs_qqbar_ACCEPT']  = {
+               'name'  : 'pdf_Higgs_qqbar_ACCEPT',
                'type'  : 'lnN',
                'samples'  : {
                    #
@@ -99,8 +99,8 @@ nuisances['pdf_qqbar_ACCEPT']  = {
                    },
               }
 
-nuisances['pdf_gg_ACCEPT']  = {
-               'name'  : 'pdf_gg_ACCEPT',
+nuisances['pdf_Higgs_gg_ACCEPT']  = {
+               'name'  : 'pdf_Higgs_gg_ACCEPT',
                'type'  : 'lnN',
                'samples'  : {
                    #
@@ -231,8 +231,8 @@ nuisances['btag_light']  = {
         }
 
 
-nuisances['hww_trigger_zh4l']  = {
-        'name'  : 'hww_trigger_zh4l',
+nuisances['hww_trigger']  = {
+        'name'  : 'hww_trigger',
         'kind'  : 'weight',
         #'kind'  : 'tree', #'weight',
         'type'  : 'shape',
@@ -417,77 +417,56 @@ nuisances['scale_met']  = {
         'folderDown'   : upDownPath+'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__METdo__vh3lSel'
         }
 
-# statistical fluctuation
-# on MC/data
-# "stat" is a special word to identify this nuisance
+
+elePtCor_Syst = [ 'electron_ptW_4l_Up / electron_ptW_4l', 'electron_ptW_4l_Down / electron_ptW_4l']
+nuisances['elePtCor']  = {
+                'name'  : 'hww_elePtCor',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                'WW'       :elePtCor_Syst ,
+                'WZ'       :elePtCor_Syst ,
+                'ZZ'       :elePtCor_Syst ,
+                'DY'       :elePtCor_Syst ,
+                'ttW'      :elePtCor_Syst ,
+                'ttZ'      :elePtCor_Syst ,
+                'WWW'      :elePtCor_Syst ,
+                'VVZ'      :elePtCor_Syst ,
+                'ZH_hww'   :elePtCor_Syst ,
+                'ggZH_hww' :elePtCor_Syst ,
+                'ZH_htt'   :elePtCor_Syst ,
+                'ggH_hzz'  :elePtCor_Syst ,
+                'Vg'       :elePtCor_Syst ,
+                }
+}
+
+eleEtaCor_Syst = [ 'electron_etaW_4l_Up / electron_etaW_4l', 'electron_etaW_4l_Down / electron_etaW_4l']
+
+nuisances['eleEtaCor']  = {
+                'name'  : 'hww_eleEtaCor',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                'WW'       :eleEtaCor_Syst ,
+                'WZ'       :eleEtaCor_Syst ,
+                'ZZ'       :eleEtaCor_Syst ,
+                'DY'       :eleEtaCor_Syst ,
+                'ttW'      :eleEtaCor_Syst ,
+                'ttZ'      :eleEtaCor_Syst ,
+                'WWW'      :eleEtaCor_Syst ,
+                'VVZ'      :eleEtaCor_Syst ,
+                'ZH_hww'   :eleEtaCor_Syst ,
+                'ggZH_hww' :eleEtaCor_Syst ,
+                'ZH_htt'   :eleEtaCor_Syst ,
+                'ggH_hzz'  :eleEtaCor_Syst ,
+                'Vg'       :eleEtaCor_Syst ,
+                }
+}
+
+
 nuisances['stat']  = {
-        # apply to the following samples: name of samples here must match keys in samples.py
-        'samples'  : {
-            'ttW': {
-                'typeStat' : 'bbb',
-                },
-            'ttZ': {
-                'typeStat' : 'bbb',
-                },
-            'DY': {
-                'typeStat' : 'bbb',
-                },
-
-            'WW': {
-                'typeStat' : 'bbb',
-                },
-
-            'ZZ': {
-                'typeStat' : 'bbb',
-                },
-
-            'ggZZ': {
-                'typeStat' : 'bbb',
-                },
-
-            'WZ': {
-                'typeStat' : 'bbb',
-                },
-
-            'WWW': {
-                'typeStat' : 'bbb',
-                },
-
-            'VVZ': {
-                'typeStat' : 'bbb',
-                },
-
-            'WH_hww': {
-                'typeStat' : 'bbb',
-                },
-
-            'ZH_hww': {
-                'typeStat' : 'bbb',
-                },
-
-            'ggZH_hww': {
-                'typeStat' : 'bbb',
-                },
-
-            'WH_htt': {
-                'typeStat' : 'bbb',
-                },
-
-            'ZH_htt': {
-                'typeStat' : 'bbb',
-                },
-            'ggH_hzz': {
-                'typeStat' : 'bbb',
-                },
-            'Top': {
-                'typeStat' : 'bbb',
-                },
-            'Fake': {
-                'typeStat' : 'bbb',
-                },
-            'Vg': {
-                    'typeStat' : 'bbb',
-                    },
-            },
-               'type'  : 'shape'
-                 }
+              'type'  : 'auto',
+              'maxPoiss'  : '10',       #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
+              'includeSignal'  : '1',   #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
+              'samples' : {}
+             }
