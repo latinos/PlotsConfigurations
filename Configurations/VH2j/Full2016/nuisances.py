@@ -500,7 +500,7 @@ nuisances['met']  = {
 
 nuisances['PS']  = {
                 'name'  : 'PS',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
@@ -515,7 +515,7 @@ nuisances['PS']  = {
 
 nuisances['UE']  = {
                 'name'  : 'UE',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
@@ -532,7 +532,7 @@ nuisances['UE']  = {
 ## Shape nuisance due to QCD scale variations for DY
 nuisances['DYQCDscale']  = {
                 'name'  : 'QCDscale_V',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -554,10 +554,9 @@ nuisances['DYQCDscale']  = {
 
 nuisances['ggH_mu']  = {
                 'name'  : 'THU_ggH_Mu',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_mu', '1+(1.-ggH_mu)'],
                    'ggH_htt'   : ['ggH_mu', '1+(1.-ggH_mu)'],
@@ -567,10 +566,9 @@ nuisances['ggH_mu']  = {
 
 nuisances['ggH_res']  = {
                 'name'  : 'THU_ggH_Res',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_res', '1+(1.-ggH_res)'],
                    'ggH_htt'   : ['ggH_res', '1+(1.-ggH_res)'],
@@ -579,10 +577,9 @@ nuisances['ggH_res']  = {
 
 nuisances['ggH_mig01']  = {
                 'name'  : 'THU_ggH_Mig01',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_mig01', '1+(1.-ggH_mig01)'],
                    'ggH_htt'   : ['ggH_mig01', '1+(1.-ggH_mig01)'],
@@ -591,10 +588,9 @@ nuisances['ggH_mig01']  = {
 
 nuisances['ggH_mig12']  = {
                 'name'  : 'THU_ggH_Mig12',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_mig12', '1+(1.-ggH_mig12)'],
                    'ggH_htt'   : ['ggH_mig12', '1+(1.-ggH_mig12)'],
@@ -603,10 +599,9 @@ nuisances['ggH_mig12']  = {
 
 nuisances['ggH_pT60']  = {
                 'name'  : 'THU_ggH_PT60',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_pT60', '1+(1.-ggH_pT60)'],
                    'ggH_htt'   : ['ggH_pT60', '1+(1.-ggH_pT60)'],
@@ -615,10 +610,9 @@ nuisances['ggH_pT60']  = {
 
 nuisances['ggH_pT120']  = {
                 'name'  : 'THU_ggH_PT120',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_pT120', '1+(1.-ggH_pT120)'],
                    'ggH_htt'   : ['ggH_pT120', '1+(1.-ggH_pT120)'],
@@ -627,10 +621,9 @@ nuisances['ggH_pT120']  = {
 
 nuisances['ggH_VBF2j']  = {
                 'name'  : 'THU_ggH_VBF2j',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_VBF2j', '1+(1.-ggH_VBF2j)'],
                    'ggH_htt'   : ['ggH_VBF2j', '1+(1.-ggH_VBF2j)'],
@@ -639,10 +632,9 @@ nuisances['ggH_VBF2j']  = {
 
 nuisances['ggH_VBF3j']  = {
                 'name'  : 'THU_ggH_VBF3j',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_VBF3j', '1+(1.-ggH_VBF3j)'],
                    'ggH_htt'   : ['ggH_VBF3j', '1+(1.-ggH_VBF3j)'],
@@ -651,10 +643,9 @@ nuisances['ggH_VBF3j']  = {
 
 nuisances['ggH_qmtop']  = {
                 'name'  : 'THU_ggH_qmtop',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_qmtop', '1+(1.-ggH_qmtop)'],
                    'ggH_htt'   : ['ggH_qmtop', '1+(1.-ggH_qmtop)'],
@@ -708,7 +699,6 @@ HiggsXS = HiggsXSection()
 nuisances['QCDscale_ggH']  = {
                'name'  : 'QCDscale_ggH', 
                'samples'  : {
-                   'ggH_htt' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.0','scale','sm'),
                    'H_htt'   : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.0','scale','sm'),
                    },
                'type'  : 'lnN',
@@ -897,7 +887,7 @@ nuisances['QCDscale_ggWW']  = {
 #  - WW shaping
 nuisances['WWresum2j']  = {
                 'name'  : 'WWresum2j',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -912,7 +902,7 @@ nuisances['WWresum2j']  = {
 
 nuisances['WWqscale2j']  = {
                 'name'  : 'WWqscale2j',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -985,7 +975,7 @@ nuisances['Topnormvh2j']  = {
 
 nuisances['singleTopToTTbar']  = {
                 'name'  : 'singleTopToTTbar',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {

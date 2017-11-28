@@ -63,10 +63,10 @@ structure['ZZ']  = {
                   'isData'   : 0    
                   }
 
-structure['ggZZ']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0    
-                  }
+# structure['ggZZ']  = {
+                  # 'isSignal' : 0,
+                  # 'isData'   : 0    
+                  # }
 
 structure['ZH_hww'] = {
                   'isSignal' : 1,

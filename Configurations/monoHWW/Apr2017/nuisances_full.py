@@ -49,6 +49,8 @@ nuisances['lumi']  = {
         'ggWW'     : '1.025',
         'Vg'       : '1.025',
         'VgS'      : '1.025',
+        'WZgS_L'   : '1.025',
+        'WZgS_H'   : '1.025',
         'VZ'       : '1.025',
         'VVV'      : '1.025',
         'ggH_hww'  : '1.025',
@@ -150,6 +152,8 @@ nuisances['btagbc']  = {
         'ggWW'    : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
         'VVV'     : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
         'VZ'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+        'WZgS_L'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+        'WZgS_H'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
         'top'     : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
         'Vg'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
         'VgS'     : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
@@ -179,6 +183,8 @@ nuisances['btagudsg']  = {
         'DY'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
         'VVV'     : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
         'VZ'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+        'WZgS_L'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+        'WZgS_H'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
         'WW'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
         'ggWW'    : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
         'top'     : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
@@ -222,6 +228,8 @@ nuisances['trigg']  = {
         'top'     : trig_syst,
         'Vg'      : trig_syst,
         'VgS'     : trig_syst,
+        'WZgS_L'  : trig_syst,
+        'WZgS_H'  : trig_syst,
         'ggH_hww' : trig_syst,
         'qqH_hww' : trig_syst,
         'WH_hww'  : trig_syst,
@@ -251,20 +259,22 @@ nuisances['idiso_ele']  = {
     'type'  : 'shape',
     'samples'  : {
         'DY'      : id_syst_ele,
-        'VVV'     : id_syst_ele ,
-        'VZ'      : id_syst_ele ,
-        'ggWW'    : id_syst_ele ,
-        'WW'      : id_syst_ele ,
-        'top'     : id_syst_ele ,
-        'Vg'      : id_syst_ele ,
-        'VgS'     : id_syst_ele ,
-        'ggH_hww' : id_syst_ele ,
-        'qqH_hww' : id_syst_ele ,
-        'WH_hww'  : id_syst_ele ,
-        'ZH_hww'  : id_syst_ele ,
-        'ggZH_hww': id_syst_ele ,
-        'bbH_hww' : id_syst_ele ,
-        'H_htt'   : id_syst_ele ,
+        'VVV'     : id_syst_ele,
+        'VZ'      : id_syst_ele,
+        'ggWW'    : id_syst_ele,
+        'WW'      : id_syst_ele,
+        'top'     : id_syst_ele,
+        'Vg'      : id_syst_ele,
+        'VgS'     : id_syst_ele,
+        'WZgS_L'  : id_syst_ele,
+        'WZgS_H'  : id_syst_ele,
+        'ggH_hww' : id_syst_ele,
+        'qqH_hww' : id_syst_ele,
+        'WH_hww'  : id_syst_ele,
+        'ZH_hww'  : id_syst_ele,
+        'ggZH_hww': id_syst_ele,
+        'bbH_hww' : id_syst_ele,
+        'H_htt'   : id_syst_ele,
         },
     }
 for mZp in ZpMasses:
@@ -290,6 +300,8 @@ nuisances['electronpt']  = {
                    'VVV'               : ['1','1'],
                    'Vg'                : ['1','1'],
                    'VgS'               : ['1','1'],
+                   'WZgS_L'            : ['1','1'],
+                   'WZgS_H'            : ['1','1'],
                    'ggH_hww'           : ['1','1'],
                    'qqH_hww'           : ['1','1'],
                    'WH_hww'            : ['1','1'],
@@ -328,6 +340,8 @@ nuisances['idiso_mu']  = {
         'top'               : id_syst_mu,
         'Vg'                : id_syst_mu,
         'VgS'               : id_syst_mu,
+        'WZgS_L'            : id_syst_mu,
+        'WZgS_H'            : id_syst_mu,
         'ggH_hww'           : id_syst_mu,
         'qqH_hww'           : id_syst_mu,
         'WH_hww'            : id_syst_mu,
@@ -360,6 +374,8 @@ nuisances['muonpt']  = {
                    'VVV'               : ['1','1'],
                    'Vg'                : ['1','1'],
                    'VgS'               : ['1','1'],
+                   'WZgS_L'            : ['1','1'],
+                   'WZgS_H'            : ['1','1'],
                    'ggH_hww'           : ['1','1'],
                    'qqH_hww'           : ['1','1'],
                    'WH_hww'            : ['1','1'],
@@ -388,21 +404,23 @@ nuisances['jes']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                   'ggWW' :['1', '1'],
-                   'WW' :  ['1', '1'],
-                   'DY' :  ['1', '1'],
-                   'top' : ['1', '1'],
-                   'VZ' :  ['1', '1'],
-                   'VVV' : ['1', '1'],
-                   'Vg' : ['1', '1'],
-                   'VgS': ['1', '1'],
+                   'ggWW'    : ['1', '1'],
+                   'WW'      : ['1', '1'],
+                   'DY'      : ['1', '1'],
+                   'top'     : ['1', '1'],
+                   'VZ'      : ['1', '1'],
+                   'VVV'     : ['1', '1'],
+                   'Vg'      : ['1', '1'],
+                   'VgS'     : ['1', '1'],
+                   'WZgS_L'  : ['1', '1'],
+                   'WZgS_H'  : ['1', '1'],
                    'ggH_hww' : ['1', '1'],
                    'qqH_hww' : ['1', '1'],
-                   'WH_hww' :  ['1', '1'],
-                   'ZH_hww' :  ['1', '1'],
-                   'ggZH_hww':  ['1', '1'],
+                   'WH_hww'  : ['1', '1'],
+                   'ZH_hww'  : ['1', '1'],
+                   'ggZH_hww': ['1', '1'],
                    'bbH_hww' : ['1', '1'],
-                   'H_htt' : ['1', '1'],
+                   'H_htt'   : ['1', '1'],
                 },
                 'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__JESup'+skim,
                 'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__JESdo'+skim,
@@ -432,6 +450,8 @@ nuisances['met']  = {
                    'VVV'               : ['1','1'],
                    'Vg'                : ['1','1'],
                    'VgS'               : ['1','1'],
+                   'WZgS_L'            : ['1','1'],
+                   'WZgS_H'            : ['1','1'],
                    'ggH_hww'           : ['1','1'],
                    'qqH_hww'           : ['1','1'],
                    'WH_hww'            : ['1','1'],
@@ -454,8 +474,6 @@ for ttDM in ttDMmasses:
 
 
 ################################ THEORETICAL UNCERTAINTIES  #################################
-                             ###     Taken from ICHEP!      ###
-
 
 ##### QCD scale
 
@@ -699,8 +717,8 @@ nuisances['tttwTh']  = {
 #                 }
 
 
-nuisances['PSICHEP']  = {
-                'name'  : 'PS_ICHEP', 
+nuisances['PS']  = {
+                'name'  : 'PS', 
                 'type'  : 'lnN',
                 'samples'  : {
                    'ggH_hww' : '1.02',
@@ -712,8 +730,8 @@ nuisances['PSICHEP']  = {
 
 ##### Underlying event
 
-nuisances['UEICHEP']  = {
-                'name'  : 'UE_ICHEP', 
+nuisances['UE']  = {
+                'name'  : 'UE', 
                 'type'  : 'lnN',
                 'samples'  : {
                    'ggH_hww' : '1.03',
@@ -726,14 +744,24 @@ nuisances['UEICHEP']  = {
 
 # K factor (Data/Wg*) = 2.0 +/- 0.5
 nuisances['WgStarScale']  = {
-               'name'  : 'WgStarScale', 
+               'name'  : 'CMS_hww_WgStarScale', 
                'type'  : 'lnN',
                'samples'  : {
-                   'WgS' : '1.25',  # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
-                   'VgS' : '1.25',  # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
+                   'WgS'    : '1.25',  # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
+                   'VgS'    : '1.25',  # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
+                   'WZgS_L' : '1.25',  
                    },
                 }
  
+nuisances['WZScale'] = {
+               'name'  : 'CMS_hww_WZScale',
+               'type'  : 'lnN',
+               'samples'  : {
+                   'WZgS_H' : '1.16', 
+                   },
+                }
+
+
 
 ##### Data driven backgrounds normalizations
 
@@ -793,6 +821,7 @@ nuisances['stat']  = {
         
         'top': {
             'typeStat' : 'bbb',
+###            'zeroMCError' : '1',
             },
         
         'DY': {
@@ -801,14 +830,24 @@ nuisances['stat']  = {
         
         'ggWW': {
             'typeStat' : 'bbb',
+###            'zeroMCError' : '1',
             },
         
         'ggWW_Int': {
             'typeStat' : 'bbb',
             },
         
+        'WZgS_L'  : {
+            'typeStat' : 'bbb',
+            },
+        
+        'WZgS_H'  : {
+            'typeStat' : 'bbb',
+            },
+
         'WW': {
             'typeStat' : 'bbb',
+###            'zeroMCError' : '1',
             },
         
         'VZ': {
@@ -869,6 +908,7 @@ nuisances['stat']  = {
         
         'Fake': {  # needed? YES?
             'typeStat' : 'bbb',
+###            'zeroMCError' : '1',
             },
         
         'Vg': {  
