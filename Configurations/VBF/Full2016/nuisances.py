@@ -930,7 +930,7 @@ nuisances['WZScale'] = {
                 }
  
 nuisances['DYttnormvbf']  = {
-               'name'  : 'CMS_DYttnormvbf', 
+               'name'  : 'CMS_hww_DYttnormvbf', 
                'samples'  : {
                    'DY' : '1.00',
                    },
@@ -946,7 +946,7 @@ nuisances['DYttnormvbf']  = {
 
 
 nuisances['WWnormvbf']  = {
-               'name'  : 'CMS_WWnormvbf', 
+               'name'  : 'CMS_hww_WWnormvbf', 
                'samples'  : {
                    'WW' : '1.00',
                    },
@@ -961,7 +961,7 @@ nuisances['WWnormvbf']  = {
               }
 
 nuisances['Topnormvbf']  = {
-               'name'  : 'CMS_Topnormvbf', 
+               'name'  : 'CMS_hww_Topnormvbf', 
                'samples'  : {
                    'top' : '1.00',
                    },
