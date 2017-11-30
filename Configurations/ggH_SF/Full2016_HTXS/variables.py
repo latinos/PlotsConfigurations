@@ -5,17 +5,17 @@
 #'fold' : # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
 
 
-variables['HTXS0']   = { 'name'  : 'HTXS_stage0',
-                         'range' : (100,0,100) ,
-                         'xaxis' : 'HTXS_stage0',
-                         'fold' : 3
-                        }
-
-#variables['events']  = {   'name': '1',      
-#                        'range' : (1,0,2),  
-#                        'xaxis' : 'events', 
+#variables['HTXS0']   = { 'name'  : 'HTXS_stage0',
+#                         'range' : (100,0,100) ,
+#                         'xaxis' : 'HTXS_stage0',
 #                         'fold' : 3
 #                        }
+
+variables['events']  = {   'name': '1',      
+                        'range' : (1,0,2),  
+                        'xaxis' : 'events', 
+                         'fold' : 3
+                        }
     
 #variables['nvtx']  = {   'name': 'nvtx',      
 #                        'range' : (40,0,40),  

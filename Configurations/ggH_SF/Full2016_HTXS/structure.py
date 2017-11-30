@@ -138,17 +138,25 @@ structure['ZZ']  = {
                   }
 
 
-structure['ggH'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  }
+# Signals
 
 structure['ggH_hww'] = {
                   'isSignal' : 1,
                   'isData'   : 0,
                   }
 
+structure['ggH_fwd_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+
 structure['qqH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['qqH_fwd_hww'] = {
                   'isSignal' : 1,
                   'isData'   : 0,
                   }
@@ -158,7 +166,47 @@ structure['WH_hww'] = {
                   'isData'   : 0,
                   }
 
+structure['WH_had_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['WH_had_fwd_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['WH_lep_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['WH_lep_fwd_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
 structure['ZH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['ZH_had_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['ZH_had_fwd_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['ZH_lep_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['ZH_lep_fwd_hww'] = {
                   'isSignal' : 1,
                   'isData'   : 0,
                   }
@@ -168,7 +216,22 @@ structure['ggZH_hww'] = {
                   'isData'   : 0,
                   }
 
+structure['ggZH_lep_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['ggZH_lep_fwd_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
 structure['bbH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['bbH_fwd_hww'] = {
                   'isSignal' : 1,
                   'isData'   : 0,
                   }
@@ -178,10 +241,11 @@ structure['ttH_hww'] = {
                   'isData'   : 0
                   }
 
-structure['H_hww'] = {
+structure['ttH_fwd_hww'] = {
                   'isSignal' : 1,
-                  'isData'   : 0,
+                  'isData'   : 0
                   }
+
 
 
 structure['ggH_htt'] = {
@@ -189,7 +253,18 @@ structure['ggH_htt'] = {
                   'isData'   : 0,
                   }
 
+structure['ggH_fwd_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+
 structure['qqH_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['qqH_fwd_htt'] = {
                   'isSignal' : 1,
                   'isData'   : 0,
                   }
@@ -199,16 +274,51 @@ structure['WH_htt'] = {
                   'isData'   : 0,
                   }
 
+structure['WH_had_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['WH_had_fwd_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['WH_lep_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['WH_lep_fwd_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
 structure['ZH_htt'] = {
                   'isSignal' : 1,
                   'isData'   : 0,
                   }
 
-
-structure['H_htt'] = {
+structure['ZH_had_htt'] = {
                   'isSignal' : 1,
                   'isData'   : 0,
                   }
+
+structure['ZH_had_fwd_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['ZH_lep_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['ZH_lep_fwd_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
 # data
 
 
