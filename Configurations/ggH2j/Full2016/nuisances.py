@@ -943,7 +943,7 @@ nuisances['WZScale'] = {
                 }
 
 nuisances['DYttnorm2j']  = {
-               'name'  : 'CMS_DYttnorm2j', 
+               'name'  : 'CMS_hww_DYttnorm2j', 
                'samples'  : {
                    'DY' : '1.00',
                    },
@@ -957,7 +957,7 @@ nuisances['DYttnorm2j']  = {
 
 
 nuisances['WWnorm2j']  = {
-               'name'  : 'CMS_WWnorm2j', 
+               'name'  : 'CMS_hww_WWnorm2j', 
                'samples'  : {
                    'WW' : '1.00',
                    },
@@ -970,7 +970,7 @@ nuisances['WWnorm2j']  = {
               }
 
 nuisances['Topnorm2j']  = {
-               'name'  : 'CMS_Topnorm2j', 
+               'name'  : 'CMS_hww_Topnorm2j', 
                'samples'  : {
                    'top' : '1.00',
                    },
