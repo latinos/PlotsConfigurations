@@ -12,10 +12,14 @@ How to use:
           --variable=mllVSmth  \
           --minvariable=10 \
           --maxvariable=110  \
-          --variableHR="m_{ll} [GeV]"
+          --variableHR="m_{ll} [GeV]" \
+          --getVarFromFile=1 \
+          --divideByBinWidth \
+          --removeOverflow \
     
-    
-    
+    --getVarFromFile=1: get the variable binning from variables.py
+    --divideByBinWidth: didive the bin content by the bin width, useful for asymmetric binning
+    --removeOverflow: drop the overflow bin 
     
     
     
