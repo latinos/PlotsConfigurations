@@ -10,29 +10,27 @@ variables['events']  = {   'name': '1',
                          'fold' : 3
                         }
 
-variables['mll']  = {   'name': 'mll',            #   variable name
-                        'range' : (4, 0,200),    #   variable range
-                        #'range' : (7,10,210),    #   variable range
-                      # 'range' : (12,90,300),    #   control region: mll > 90
-                        'xaxis' : 'mll [GeV]',  #   x axis name
-                        'fold' : 3
-                        }
+variables['mll_optim']  = { 'name': 'mll',            #   variable name
+                            'range' : ([12,30,50,70,90,110,150,200],),    #   variable range
+                            'xaxis' : 'mll [GeV]',  #   x axis name
+                            'fold' : 3
+                          }
 
-variables['mll_more']  = {   'name': 'mll',            #   variable name
-                        'range' : (8, 0,200),    #   variable range
-                        #'range' : (7,10,210),    #   variable range
-                      # 'range' : (12,90,300),    #   control region: mll > 90
-                        'xaxis' : 'mll [GeV]',  #   x axis name
-                        'fold' : 3
-                        }
-
-variables['mll_optim']  = {   'name': 'mll',            #   variable name
-                        'range' : ([12,30,50,70,90,110,150,200],),    #   variable range
-                        #'range' : (7,10,210),    #   variable range
-                      # 'range' : (12,90,300),    #   control region: mll > 90
-                        'xaxis' : 'mll [GeV]',  #   x axis name
-                        'fold' : 3
-                        }
+#variables['mll']  = {   'name': 'mll',            #   variable name
+#                        'range' : (4, 0,200),    #   variable range
+#                        #'range' : (7,10,210),    #   variable range
+#                      # 'range' : (12,90,300),    #   control region: mll > 90
+#                        'xaxis' : 'mll [GeV]',  #   x axis name
+#                        'fold' : 3
+#                        }
+#
+#variables['mll_more']  = {   'name': 'mll',            #   variable name
+#                        'range' : (8, 0,200),    #   variable range
+#                        #'range' : (7,10,210),    #   variable range
+#                      # 'range' : (12,90,300),    #   control region: mll > 90
+#                        'xaxis' : 'mll [GeV]',  #   x axis name
+#                        'fold' : 3
+#                        }
 
 
 #variables['mjj']  = {  'name': 'mjj',
