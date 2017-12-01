@@ -1,6 +1,6 @@
 # example of configuration file
 
-tag = 'ggH2j_HTHS'
+tag = 'ggH_HTXS'
 
 
 # used by mkShape to define output directory for root files
