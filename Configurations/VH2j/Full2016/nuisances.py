@@ -715,21 +715,11 @@ nuisances['QCDscale_qqH']  = {
               }
 
 
-
-nuisances['QCDscale_WH']  = {
-               'name'  : 'QCDscale_WH', 
+nuisances['QCDscale_VH']  = {
+               'name'  : 'QCDscale_VH',
                'samples'  : {
                    'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
                    'WH_htt' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
-                   },
-               'type'  : 'lnN',
-              }
-
-
-
-nuisances['QCDscale_ZH']  = {
-               'name'  : 'QCDscale_ZH', 
-               'samples'  : {
                    'ZH_hww' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH','125.0','scale','sm'),
                    'ZH_htt' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH','125.0','scale','sm'),
                    },
