@@ -1,11 +1,13 @@
 # example of configuration file
 
-tag = 'ggH'
+date='_25Nov'
+
+tag = 'ggH'+date
 #tag = 'ggHTESTPARTIALamassiro'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = 'rootFile'+date
 
 
 # file with list of variables
@@ -27,11 +29,11 @@ lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotGGH'
+outputDirPlots = 'plotGGH'+date
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'
+outputDirDatacard = 'datacards'+date
 
 
 # structure file for datacard
