@@ -364,7 +364,8 @@ samples['VVV'] = {    'name':   getSampleFiles(directory,'ZZZ')
                               + getSampleFiles(directory,'WWW')
                            #  WWG: Might be added to WW by PYTHIA in tuning step, super small x-section anyway -> skipped for now 
                            #  + getSampleFiles(directory,'WWG')
-                              ,    
+                              ,   
+                      'suppressNegative' :['all'], 
                       'suppressNegativeNuisances' :['all'],
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                   }

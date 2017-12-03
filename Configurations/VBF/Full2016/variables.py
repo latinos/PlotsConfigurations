@@ -13,7 +13,10 @@ variables['events']  = {   'name': '1',
 variables['mll_optim']  = { 'name': 'mll',            #   variable name
                             'range' : ([12,30,50,70,90,110,150,200],),    #   variable range
                             'xaxis' : 'mll [GeV]',  #   x axis name
-                            'fold' : 3
+                            'fold' : 3,
+                            'doWeight' : 1,
+                            'binX'     : 1,
+                            'binY'     : 7
                           }
 
 #variables['mll']  = {   'name': 'mll',            #   variable name
