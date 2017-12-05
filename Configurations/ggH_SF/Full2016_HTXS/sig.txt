@@ -1,0 +1,45 @@
+                   #
+                   'ggH_hww'          : TODO 
+                   'ggH_fwd_hww'      : TODO 
+                   #
+                   'qqH_hww'          : TODO
+                   'qqH_fwd_hww'      : TODO
+                   # 
+                   'ZH_hww'           : TODO 
+                   'ZH_had_hww'       : TODO
+                   'ZH_had_fwd_hww'   : TODO
+                   'ZH_lep_hww'       : TODO
+                   'ZH_lep_fwd_hww'   : TODO
+                   #
+                   'ggZH_hww'         : TODO
+                   'ggZH_lep_hww'     : TODO
+                   'ggZH_lep_fwd_hww' : TODO
+                   # 
+                   'WH_hww'           : TODO
+                   'WH_had_hww'       : TODO
+                   'WH_had_fwd_hww'   : TODO
+                   'WH_lep_hww'       : TODO
+                   'WH_lep_fwd_hww'   : TODO
+                   #
+                   'bbH_hww'          : TODO
+                   'bbH_fwd_hww'      : TODO
+                   'ttH_hww'          : TODO
+                   'ttH_fwd_hww'      : TODO
+                   #
+                   'ggH_htt'          : TODO
+                   'ggH_fwd_htt'      : TODO
+                   #
+                   'qqH_htt'          : TODO
+                   'qqH_fwd_htt'      : TODO
+                   # 
+                   'ZH_htt'           : TODO
+                   'ZH_had_htt'       : TODO
+                   'ZH_had_fwd_htt'   : TODO
+                   'ZH_lep_htt'       : TODO
+                   'ZH_lep_fwd_htt'   : TODO
+                   # 
+                   'WH_htt'           : TODO
+                   'WH_had_htt'       : TODO
+                   'WH_had_fwd_htt'   : TODO
+                   'WH_lep_htt'       : TODO
+                   'WH_lep_fwd_htt'   : TODO

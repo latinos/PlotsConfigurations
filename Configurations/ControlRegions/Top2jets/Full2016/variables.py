@@ -1,6 +1,11 @@
 # variables
 
 #variables = {}
+variables['pt2vspt1']  = {   'name': 'std_vector_lepton_pt[1]:std_vector_lepton_pt[0]',
+                        'range' : (10, 20., 40., 15, 10., 40.),
+                        'xaxis' : 'p_{T} 2nd lep:p_{T} 1st lep',
+                        'fold'  : 0
+                        }
     
    
 variables['events']  = {   'name': '1',      
@@ -8,13 +13,13 @@ variables['events']  = {   'name': '1',
                         'xaxis' : 'events', 
                         'fold' : 3
                         }
-    
+'''    
 variables['nvtx']  = {   'name': 'nvtx',      
                         'range' : (40,0,40),  
                         'xaxis' : 'nvtx', 
                          'fold' : 3
                       }
-                        
+'''                        
 variables['mll']  = {   'name': 'mll',            #   variable name    
                         'range' : (40, 0,200),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
@@ -68,7 +73,7 @@ variables['eta2']  = {  'name': 'std_vector_lepton_eta[1]',
                         'xaxis' : '#eta 2nd lep',
                         'fold'  : 3                         
                         }
-
+'''
 variables['eta1large']  = {  'name': 'std_vector_lepton_eta[0]',
                        'range' : ([-2.4, -2.1, -1.6, -1.2, -0.8, -0.3, -0.2, 0.2, 0.3, 0.8, 1.2, 1.6, 2.1, 2.4,],),
                        'xaxis' : '#eta 1st lep',
@@ -244,4 +249,4 @@ variables['dphijjmet_cut'] = {   'name': 'dphijjmet_cut',
                           'xaxis' : '#Delta #Phi_{jj,E_{T}^{miss}} [rad]',
                           'fold' : 3
                           }
-
+'''

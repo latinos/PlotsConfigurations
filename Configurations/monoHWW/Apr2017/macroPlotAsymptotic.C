@@ -18,6 +18,24 @@ root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_1000_blind",
 root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_2000","MVA","Zbar")'
 root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_2000_blind","MVA","Zbar")'
 
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_All_Bin600","MVA","2HDM")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_All_Bin600_blind","MVA","2HDM")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_All_Bin1000","MVA","2HDM")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_All_Bin1000_blind","MVA","2HDM")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_All_Bin2000","MVA","2HDM")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_All_Bin2000_blind","MVA","2HDM")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_All_Bin2500","MVA","2HDM")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_All_Bin2500_blind","MVA","2HDM")'
+
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_All_Bin10","MVA","Zbar")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_All_Bin10_blind","MVA","Zbar")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_All_Bin100","MVA","Zbar")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_All_Bin100_blind","MVA","Zbar")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_All_Bin1000","MVA","Zbar")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_All_Bin1000_blind","MVA","Zbar")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_All_Bin2000","MVA","Zbar")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_All_Bin2000_blind","MVA","Zbar")'
+
 */
 #include <Riostream.h>
 #include <string>
@@ -343,7 +361,7 @@ void macroPlotAsymptotic(TString outputdir,
     fr_up = 1000000.0;
   }
   if (model == "Zbar"){
-    fr_left = 0.0; 
+    fr_left = 10.0; 
     //fr_down = 0.00001; 
     fr_down = 0.1;
     fr_right = 2000.0; 
@@ -479,6 +497,8 @@ void macroPlotAsymptotic(TString outputdir,
   //string outputname="counting";
 
   gPad->SetLogy();
+  if (model == "Zbar")
+    gPad->SetLogx();
   TString varName = variable;
   fnam = "ExclusionPlot" + model + varName + ".png";
   //  sprintf(fnam, "MonoHCombined_12fbInv_%s_Asymptotic_log.png", outputdir.data());

@@ -34,15 +34,11 @@ WITH LXBATCH
 
 em Channel:
 
-    mkShapes.py --pycfg=configuration_em.py  --inputDir=/eos/user/f/fernanpe/trees_DF/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__muccaApr2017_em__muccaAll_em/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
+    mkShapes.py --pycfg=configuration_em.py  --inputDir=/eos/user/f/fernanpe/trees_DF/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__monohSel__muccaAll_em/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
 
     mkBatch.py --status
 
-    cd rootFile_em/
-
-    hadd plots_monoHWW_em.root *
-
-    cd ..
+    mkShapes.py --pycfg=configuration_em.py --inputDir=/eos/user/f/fernanpe/trees_DF/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__monohSel__muccaAll_em/ --batchSplit=AsMuchAsPossible --doHadd=True
 
     mkPlot.py --pycfg=configuration_em.py --inputFile=rootFile_em/plots_monoHWW_em.root --minLogC=0.01 --minLogCratio=0.01 --maxLogC=1000 --maxLogCratio=1000 --showIntegralLegend=1
 
@@ -51,15 +47,11 @@ em Channel:
 
 em Channel (blind luminosity):
 
-    mkShapes.py --pycfg=configuration_em_blindData.py  --inputDir=/eos/user/f/fernanpe/trees_DF/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__muccaApr2017_em__muccaAll_em/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
+    mkShapes.py --pycfg=configuration_em_blindData.py  --inputDir=/eos/user/f/fernanpe/trees_DF/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__monohSel__muccaAll_em/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
 
     mkBatch.py --status
 
-    cd rootFile_em_blindData/
-
-    hadd plots_monoHWW_em_blindData.root *
-
-    cd ..
+    mkShapes.py --pycfg=configuration_em_blindData.py --inputDir=/eos/user/f/fernanpe/trees_DF/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__monohSel__muccaAll_em/ --batchSplit=AsMuchAsPossible --doHadd=True
 
     mkPlot.py --pycfg=configuration_em_blindData.py  --inputFile=rootFile_em_blindData/plots_monoHWW_em_blindData.root  --minLogC=0.01 --minLogCratio=0.01 --maxLogC=1000 --maxLogCratio=1000  --showIntegralLegend=1
 
@@ -85,7 +77,7 @@ sf Channel:
 
 ss Channel:
 
-    mkShapes.py --pycfg=configuration_ss.py  --inputDir=/eos/user/n/ntrevisa/trees/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__ssSel/  --doBatch=True --batchQueue=1nd --batchSplit=AsMuchAsPossible
+    mkShapes.py --pycfg=configuration_ss.py  --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__ssSel/  --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
 
     mkBatch.py --status
 
@@ -234,13 +226,13 @@ Step by step:
 
     text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose --PO 'map=.*/monoH_*:0' --PO 'map=.*/monoH_800_300:r[1,0,10]' datacards/monoH_MVA_em/mthBin/datacard_combined.txt -o datacards/monoH_MVA_em/mthBin/datacard_combined.root
 
-    combineTool.py -M Impacts -d combine_em_MVA/monoH_600_300_muccamva2HDMadaptFull.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit 1 -n 600_300_muccamva2HDMadaptFull
+    combineTool.py -M Impacts -d datacards/monoH_MVA_em/muccamva2HDMadaptFull_All_Bin800/datacard_600_300_combined.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit 1 -n 600_300_muccamva2HDMadaptFull_All_Bin800
   
-    combineTool.py -M Impacts -d combine_em_MVA/monoH_600_300_muccamva2HDMadaptFull.root -m 125 --robustFit 1 --doFits --parallel 5 --job-mode lxbatch --task-name 600_300_muccamva2HDMadaptFull  --sub-opts='-q 2nd' -n 600_300_muccamva2HDMadaptFull
+    combineTool.py -M Impacts -d datacards/monoH_MVA_em/muccamva2HDMadaptFull_All_Bin800/datacard_600_300_combined.root -m 125 --robustFit 1 -t -1 --expectSignal=1 --doFits --parallel 5 --job-mode lxbatch --task-name 600_300_muccamva2HDMadaptFull_All_Bin800  --sub-opts='-q 2nd' -n 600_300_muccamva2HDMadaptFull_All_Bin800
 
-    combineTool.py -M Impacts -d combine_em_MVA/monoH_600_300_muccamva2HDMadaptFull.root -m 125 -o pulls_em_MVA/impact_mthBin.json -n 600_300_muccamva2HDMadaptFull
+    combineTool.py -M Impacts -d datacards/monoH_MVA_em/muccamva2HDMadaptFull_All_Bin800/datacard_600_300_combined.root -m 125 -o pulls_em_MVA/impact_600_300_muccamva2HDMadaptFull_All_Bin800.json -n 600_300_muccamva2HDMadaptFull_All_Bin800
   
-    plotImpacts.py -i pulls_em_MVA/impact_mthBin.json -o pulls_em_MVA/mthBin
+    plotImpacts.py -i pulls_em_MVA/impact_600_300_muccamva2HDMadaptFull_All_Bin800.json -o pulls_em_MVA/impact_600_300_muccamva2HDMadaptFull_All_Bin800
 
 Or using the script:
 
@@ -250,7 +242,7 @@ Or using the script:
 
     cd ~/work/CMSSW_8_0_26_patch1/src/LatinoAnalysis/ShapeAnalysis/test/draw/
   
-    python DrawNuisancesAll.py --inputFile /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards_top/monoH_MVA_em/muccamva2HDMadaptFull/shapes/histos_monoH_MVA_em.root --outputDirPlots nuisancesPlots_MVA_em_muccamva2HDMadaptFull --nuisancesFile /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/nuisances_full.py --samplesFile /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/samples_em.py --cutName monoH_MVA_em
+    python DrawNuisancesAll.py --inputFile /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_MVA_em/muccamva2HDMadaptFull_All_Bin800/shapes/histos_monoH_MVA_em.root --outputDirPlots nuisancesPlots_MVA_em_muccamva2HDMadaptFull_All_Bin800 --nuisancesFile /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/nuisances_full.py --samplesFile /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/samples_em.py --cutName monoH_MVA_em
 
     cd -
 
@@ -263,4 +255,17 @@ Or using the script:
 FOR TOP CONTROL REGION
 ----------------------
 
-    root -l /eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel/latino_TTTo2L2Nu__part0.root      DrawPDF.cxx\(\"\(std_vector_jet_cmvav2[0]\>-0.5884\|\|std_vector_jet_cmvav2[1]\>-0.5884\)*1+\(std_vector_jet_pt[0]\<20\|\|std_vector_jet_cmvav2[0]\<-0.5884\)*2\",2,1,3,\"mll\>12\&\&std_vector_lepton_pt[0]\>25\&\&std_vector_lepton_pt[1]\>20\&\&std_vector_lepton_pt[2]\<10\&\&metPfType1\>20\&\&ptll\>30\&\&drll\<2.5\&\&mll\<76\&\&mpmet\>20\",9,1\)
+    root -l /eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel/latino_DYJetsToTT_MuEle_M-50__part0.root      DrawPDF.cxx\(\"\(std_vector_jet_cmvav2[0]\>-0.5884)*1+\(std_vector_jet_pt[0]\<20\|\|std_vector_jet_cmvav2[0]\<-0.5884\)*2\",2,1,3,\"mll\>12\&\&std_vector_lepton_pt[0]\>25\&\&std_vector_lepton_pt[1]\>20\&\&std_vector_lepton_pt[2]\<10\&\&metPfType1\>20\&\&ptll\>30\&\&drll\<2.5\&\&mll\<76\&\&mpmet\>20\",9,1\)
+
+
+FOR DY CONTROL REGION
+----------------------
+
+   root -l /eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel/latino_TTTo2L2Nu__part0.root      DrawPDF.cxx\(\"\(std_vector_jet_cmvav2[0]\>-0.5884\|\|std_vector_jet_cmvav2[1]\>-0.5884\)*1+\(std_vector_jet_pt[0]\<20\|\|std_vector_jet_cmvav2[0]\<-0.5884\)*2\",2,1,3,\"mll\>12\&\&std_vector_lepton_pt[0]\>25\&\&std_vector_lepton_pt[1]\>20\&\&std_vector_lepton_pt[2]\<10\&\&metPfType1\>20\&\&ptll\>30\&\&drll\<2.5\&\&mll\<76\&\&mpmet\>20\",9,1\)
+
+# 14 PERFORM A LIKELIHOOD SCAN ON A SIGNLE NUISANCE
+
+ON ASIMOV DATASET
+-----------------
+
+  combine -M MultiDimFit datacards/monoH_MVA_em/muccamva2HDMadaptFull_2000/datacard_600_300_combined.txt --algo=grid --points 100 --redefineSignalPOIs CMS_ICHEP_btag_bc --freezeNuisances=r --setPhysicsModelParameterRanges CMS_ICHEP_btag_bc=-2,2

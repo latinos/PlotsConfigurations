@@ -43,7 +43,7 @@ elif 'sdfarm' in SITE : # KISTI T3
   treeBaseDir = '/xrootd/store/user/salee/cmshww/Full2016_Apr17/'
 
 
-directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC'+skim+'/'
+directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC'+skim+'/'
 
 ################################################
 ############ NUMBER OF LEPTONS #################
@@ -58,7 +58,12 @@ Nlep='2'
 ################################################
 
 XSWeight      = 'XSWeight'
-SFweight      = 'SFweight'+Nlep+'l'
+#SFweight      = 'SFweight'+Nlep+'l'
+if Nlep == '2' :
+  SFweight = 'puW * effTrigW * electron_etaW_'+Nlep+'l * electron_ptW_'+Nlep+'l * veto_EMTFBug '
+else:
+  SFweight = 'puW * effTrigW'+Nlep+'l * electron_etaW_'+Nlep+'l * electron_ptW_'+Nlep+'l * veto_EMTFBug '
+for iLep in range(int(Nlep)): SFweight += ' * std_vector_lepton_recoW['+str(iLep)+'] '
 GenLepMatch   = 'GenLepMatch'+Nlep+'l'
 
 ################################################
@@ -338,7 +343,7 @@ samples['Vg']  =  {     'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM')
 
 
 samples['WZgS_L']  = {    'name': getSampleFiles(directory,'WZTo3LNu_mllmin01_ext1') ,
-                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '* (Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4)*0.89' ,
+                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '* (Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4)*0.94' ,
                      'suppressNegative' :['all'],
                      'suppressNegativeNuisances' :['all'],
                   }
@@ -400,7 +405,7 @@ samples['ggH_hww']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuP
 
 #### VBF H->WW
 
-samples['qqH_hww']  = {   'name' : getSampleFiles(directory,'VBFHToWWTo2L2Nu_alternative_M125') ,
+samples['qqH_hww']  = {   'name' : getSampleFiles(directory,'VBFHToWWTo2L2Nu_M125') ,
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                      'suppressNegative' :['all'],
                      'suppressNegativeNuisances' :['all'],
@@ -451,24 +456,55 @@ samples['ttH_hww']  = {  'name' :   getSampleFiles(directory,'ttHToNonbb_M125'),
 
 #### H -> TauTau
 
-samples['H_htt']    = {   'name' :   getSampleFiles(directory,'GluGluHToTauTau_M125')
-                                   + getSampleFiles(directory,'VBFHToTauTau_M125')
-                                   + getSampleFiles(directory,'HZJ_HToTauTau_M125')
-                                   + getSampleFiles(directory,'HWplusJ_HToTauTau_M125')
-                                   + getSampleFiles(directory,'HWminusJ_HToTauTau_M125')
+splitHtt=True
+if not splitHtt:
+
+  samples['H_htt']    = {   'name' :   getSampleFiles(directory,'GluGluHToTauTau_M125')
+                                     + getSampleFiles(directory,'VBFHToTauTau_M125')
+                                     + getSampleFiles(directory,'HZJ_HToTauTau_M125')
+                                     + getSampleFiles(directory,'HWplusJ_HToTauTau_M125')
+                                     + getSampleFiles(directory,'HWminusJ_HToTauTau_M125')
                                    ,  
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-                     'suppressNegative' :['all'],
-                     'suppressNegativeNuisances' :['all'],
-                      }
+                           'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                           'suppressNegative' :['all'],
+                           'suppressNegativeNuisances' :['all'],
+                        }
+
+else:
+
+  samples['ggH_htt']  = { 'name' :   getSampleFiles(directory,'GluGluHToTauTau_M125') ,
+                           'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                           'suppressNegative' :['all'],
+                           'suppressNegativeNuisances' :['all'],
+                        }
+
+  samples['qqH_htt']  = { 'name' :   getSampleFiles(directory,'VBFHToTauTau_M125') ,
+                           'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                           'suppressNegative' :['all'],
+                           'suppressNegativeNuisances' :['all'],
+                        }
+
+
+  samples['ZH_htt']  = { 'name' :   getSampleFiles(directory,'HZJ_HToTauTau_M125') ,
+                           'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                           'suppressNegative' :['all'],
+                           'suppressNegativeNuisances' :['all'],
+                        }
+
+  samples['WH_htt']  = { 'name' :   getSampleFiles(directory,'HWplusJ_HToTauTau_M125')
+                                  + getSampleFiles(directory,'HWminusJ_HToTauTau_M125') ,
+                           'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                           'suppressNegative' :['all'],
+                           'suppressNegativeNuisances' :['all'],
+                        }
 
 
 ###########################################
 ################## FAKE ###################
 ###########################################
 
-samples['Fake']  = {   'name': [ ] ,
-                       'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA,              #   weight/cut 
+samples['Fake_ee']  = {   'name': [ ] ,
+                       'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA+'*(abs(std_vector_lepton_flavour[0])==11 && abs(std_vector_lepton_flavour[1])==11)',              #   weight/cut 
                        'weights' : [ ] ,
                        'isData': ['all'],
                        'FilesPerJob' : 4 ,
@@ -476,13 +512,26 @@ samples['Fake']  = {   'name': [ ] ,
                      'suppressNegativeNuisances' :['all'],
                    }
 
+
+samples['Fake_mm']  = {   'name': [ ] ,
+                       'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA+'*(abs(std_vector_lepton_flavour[0])==13 && abs(std_vector_lepton_flavour[1])==13)',              #   weight/cut 
+                       'weights' : [ ] ,
+                       'isData': ['all'],
+                       'FilesPerJob' : 4 ,
+                     'suppressNegative' :['all'],
+                     'suppressNegativeNuisances' :['all'],
+                   }
+
+
 for Run in DataRun :
-  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__multiFakeW__formulasFAKE__hadd'+skimFake+'/'
+  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__dorochester__multiFakeW__formulasFAKE__hadd'+skimFake+'/'
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:
-      samples['Fake']['name'].append(iFile)
-      samples['Fake']['weights'].append(DataTrig[DataSet])
+      samples['Fake_ee']['name'].append(iFile)
+      samples['Fake_ee']['weights'].append(DataTrig[DataSet])
+      samples['Fake_mm']['name'].append(iFile)
+      samples['Fake_mm']['weights'].append(DataTrig[DataSet])
 
 ###########################################
 ################## DATA ###################
@@ -496,7 +545,7 @@ samples['DATA']  = {   'name': [ ] ,
                   }
 
 for Run in DataRun :
-  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__hadd__l2tightOR__formulasDATA'+skim+'/'
+  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__hadd__l2tightOR__dorochester__formulasDATA'+skim+'/'
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:

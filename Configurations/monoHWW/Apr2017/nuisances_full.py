@@ -11,7 +11,7 @@ A0Masses={"300","400","500","600","700","800"}
         
 ZBmasses={"10000_1000_","10000_500_","10000_150_","10000_50_","10000_1_","2000_1_","1995_1000_","1000_1000_","1000_150_","1000_1_","995_500_","500_500_","500_150_","500_1_","300_50_","300_1_","295_150_","200_150_","200_50_","200_1_","100_10_","100_1_","95_50_","50_50_","50_10_","50_1_","20_1_","15_10_","10_1000_","10_500_","10_150_","10_50_","10_10_","10_1_"}
                              
-
+ttDMmasses={"00010_","00020_","00050_","00100_","00200_","00300_","00500_"}
 
 #### Control Regions 
 
@@ -49,6 +49,8 @@ nuisances['lumi']  = {
         'ggWW'     : '1.025',
         'Vg'       : '1.025',
         'VgS'      : '1.025',
+        'WZgS_L'   : '1.025',
+        'WZgS_H'   : '1.025',
         'VZ'       : '1.025',
         'VVV'      : '1.025',
         'ggH_hww'  : '1.025',
@@ -66,6 +68,9 @@ for mZp in ZpMasses:
         nuisances['lumi']['samples'].update({'monoH_' + mZp + '_' + mA0:'1.025'})
 for mZB in ZBmasses:
         nuisances['lumi']['samples'].update({'monoH_ZB_' + mZB:'1.025'})
+for ttDM in ttDMmasses:
+        nuisances['lumi']['samples'].update({'ttDMscalar' + ttDM:'1.025'})
+        nuisances['lumi']['samples'].update({'ttDMpseudo' + ttDM:'1.025'})
        
 #### FAKES
 
@@ -147,6 +152,8 @@ nuisances['btagbc']  = {
         'ggWW'    : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
         'VVV'     : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
         'VZ'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+        'WZgS_L'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+        'WZgS_H'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
         'top'     : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
         'Vg'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
         'VgS'     : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
@@ -163,6 +170,9 @@ for mZp in ZpMasses:
         nuisances['btagbc']['samples'].update({'monoH_' + mZp + '_' + mA0: ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')']})
 for mZB in ZBmasses:
         nuisances['btagbc']['samples'].update({'monoH_ZB_' + mZB: ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')']})
+for ttDM in ttDMmasses:
+        nuisances['btagbc']['samples'].update({'ttDMscalar' + ttDM: ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')']})
+        nuisances['btagbc']['samples'].update({'ttDMpseudo' + ttDM: ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')']})
             
             
 nuisances['btagudsg']  = {
@@ -173,6 +183,8 @@ nuisances['btagudsg']  = {
         'DY'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
         'VVV'     : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
         'VZ'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+        'WZgS_L'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+        'WZgS_H'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
         'WW'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
         'ggWW'    : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
         'top'     : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
@@ -191,6 +203,9 @@ for mZp in ZpMasses:
         nuisances['btagudsg']['samples'].update({'monoH_' + mZp + '_' + mA0: ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')']})
 for mZB in ZBmasses:
         nuisances['btagudsg']['samples'].update({'monoH_ZB_' + mZB: ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')']})
+for ttDM in ttDMmasses:
+        nuisances['btagudsg']['samples'].update({'ttDMscalar' + ttDM: ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')']})
+        nuisances['btagudsg']['samples'].update({'ttDMpseudo' + ttDM: ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')']})
 
 
 ##### Trigger Efficiency
@@ -213,6 +228,8 @@ nuisances['trigg']  = {
         'top'     : trig_syst,
         'Vg'      : trig_syst,
         'VgS'     : trig_syst,
+        'WZgS_L'  : trig_syst,
+        'WZgS_H'  : trig_syst,
         'ggH_hww' : trig_syst,
         'qqH_hww' : trig_syst,
         'WH_hww'  : trig_syst,
@@ -227,6 +244,9 @@ for mZp in ZpMasses:
         nuisances['trigg']['samples'].update({'monoH_' + mZp + '_' + mA0: trig_syst})
 for mZB in ZBmasses:
         nuisances['trigg']['samples'].update({'monoH_ZB_' + mZB: trig_syst})
+for ttDM in ttDMmasses:
+        nuisances['trigg']['samples'].update({'ttDMscalar' + ttDM: trig_syst})
+        nuisances['trigg']['samples'].update({'ttDMpseudo' + ttDM: trig_syst})
 
 
 # ##### Electron Efficiency and energy scale
@@ -239,20 +259,22 @@ nuisances['idiso_ele']  = {
     'type'  : 'shape',
     'samples'  : {
         'DY'      : id_syst_ele,
-        'VVV'     : id_syst_ele ,
-        'VZ'      : id_syst_ele ,
-        'ggWW'    : id_syst_ele ,
-        'WW'      : id_syst_ele ,
-        'top'     : id_syst_ele ,
-        'Vg'      : id_syst_ele ,
-        'VgS'     : id_syst_ele ,
-        'ggH_hww' : id_syst_ele ,
-        'qqH_hww' : id_syst_ele ,
-        'WH_hww'  : id_syst_ele ,
-        'ZH_hww'  : id_syst_ele ,
-        'ggZH_hww': id_syst_ele ,
-        'bbH_hww' : id_syst_ele ,
-        'H_htt'   : id_syst_ele ,
+        'VVV'     : id_syst_ele,
+        'VZ'      : id_syst_ele,
+        'ggWW'    : id_syst_ele,
+        'WW'      : id_syst_ele,
+        'top'     : id_syst_ele,
+        'Vg'      : id_syst_ele,
+        'VgS'     : id_syst_ele,
+        'WZgS_L'  : id_syst_ele,
+        'WZgS_H'  : id_syst_ele,
+        'ggH_hww' : id_syst_ele,
+        'qqH_hww' : id_syst_ele,
+        'WH_hww'  : id_syst_ele,
+        'ZH_hww'  : id_syst_ele,
+        'ggZH_hww': id_syst_ele,
+        'bbH_hww' : id_syst_ele,
+        'H_htt'   : id_syst_ele,
         },
     }
 for mZp in ZpMasses:
@@ -260,6 +282,9 @@ for mZp in ZpMasses:
         nuisances['idiso_ele']['samples'].update({'monoH_' + mZp + '_' + mA0: id_syst_ele})
 for mZB in ZBmasses:
         nuisances['idiso_ele']['samples'].update({'monoH_ZB_' + mZB: id_syst_ele})
+for ttDM in ttDMmasses:
+        nuisances['idiso_ele']['samples'].update({'ttDMscalar' + ttDM: id_syst_ele})
+        nuisances['idiso_ele']['samples'].update({'ttDMpseudo' + ttDM: id_syst_ele})
 
 
 nuisances['electronpt']  = {
@@ -275,6 +300,8 @@ nuisances['electronpt']  = {
                    'VVV'               : ['1','1'],
                    'Vg'                : ['1','1'],
                    'VgS'               : ['1','1'],
+                   'WZgS_L'            : ['1','1'],
+                   'WZgS_H'            : ['1','1'],
                    'ggH_hww'           : ['1','1'],
                    'qqH_hww'           : ['1','1'],
                    'WH_hww'            : ['1','1'],
@@ -291,6 +318,9 @@ for mZp in ZpMasses:
         nuisances['electronpt']['samples'].update({'monoH_' + mZp + '_' + mA0: ['1','1']})
 for mZB in ZBmasses:
         nuisances['electronpt']['samples'].update({'monoH_ZB_' + mZB: ['1','1']})
+for ttDM in ttDMmasses:
+        nuisances['electronpt']['samples'].update({'ttDMscalar' + ttDM: ['1','1']})
+        nuisances['electronpt']['samples'].update({'ttDMpseudo' + ttDM: ['1','1']})
 
 
 ##### Muon Efficiency and energy scale
@@ -310,6 +340,8 @@ nuisances['idiso_mu']  = {
         'top'               : id_syst_mu,
         'Vg'                : id_syst_mu,
         'VgS'               : id_syst_mu,
+        'WZgS_L'            : id_syst_mu,
+        'WZgS_H'            : id_syst_mu,
         'ggH_hww'           : id_syst_mu,
         'qqH_hww'           : id_syst_mu,
         'WH_hww'            : id_syst_mu,
@@ -324,6 +356,9 @@ for mZp in ZpMasses:
         nuisances['idiso_mu']['samples'].update({'monoH_' + mZp + '_' + mA0: id_syst_mu})
 for mZB in ZBmasses:
         nuisances['idiso_mu']['samples'].update({'monoH_ZB_' + mZB: id_syst_mu})
+for ttDM in ttDMmasses:
+        nuisances['idiso_mu']['samples'].update({'ttDMscalar' + ttDM: id_syst_mu})
+        nuisances['idiso_mu']['samples'].update({'ttDMpseudo' + ttDM: id_syst_mu})
 
 
 nuisances['muonpt']  = {
@@ -339,6 +374,8 @@ nuisances['muonpt']  = {
                    'VVV'               : ['1','1'],
                    'Vg'                : ['1','1'],
                    'VgS'               : ['1','1'],
+                   'WZgS_L'            : ['1','1'],
+                   'WZgS_H'            : ['1','1'],
                    'ggH_hww'           : ['1','1'],
                    'qqH_hww'           : ['1','1'],
                    'WH_hww'            : ['1','1'],
@@ -355,6 +392,9 @@ for mZp in ZpMasses:
         nuisances['muonpt']['samples'].update({'monoH_' + mZp + '_' + mA0: ['1','1']})
 for mZB in ZBmasses:
         nuisances['muonpt']['samples'].update({'monoH_ZB_' + mZB: ['1','1']})
+for ttDM in ttDMmasses:
+        nuisances['muonpt']['samples'].update({'ttDMscalar' + ttDM: ['1','1']})
+        nuisances['muonpt']['samples'].update({'ttDMpseudo' + ttDM: ['1','1']})
 
 
 ##### Jet energy scale
@@ -364,21 +404,23 @@ nuisances['jes']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                   'ggWW' :['1', '1'],
-                   'WW' :  ['1', '1'],
-                   'DY' :  ['1', '1'],
-                   'top' : ['1', '1'],
-                   'VZ' :  ['1', '1'],
-                   'VVV' : ['1', '1'],
-                   'Vg' : ['1', '1'],
-                   'VgS': ['1', '1'],
+                   'ggWW'    : ['1', '1'],
+                   'WW'      : ['1', '1'],
+                   'DY'      : ['1', '1'],
+                   'top'     : ['1', '1'],
+                   'VZ'      : ['1', '1'],
+                   'VVV'     : ['1', '1'],
+                   'Vg'      : ['1', '1'],
+                   'VgS'     : ['1', '1'],
+                   'WZgS_L'  : ['1', '1'],
+                   'WZgS_H'  : ['1', '1'],
                    'ggH_hww' : ['1', '1'],
                    'qqH_hww' : ['1', '1'],
-                   'WH_hww' :  ['1', '1'],
-                   'ZH_hww' :  ['1', '1'],
-                   'ggZH_hww':  ['1', '1'],
+                   'WH_hww'  : ['1', '1'],
+                   'ZH_hww'  : ['1', '1'],
+                   'ggZH_hww': ['1', '1'],
                    'bbH_hww' : ['1', '1'],
-                   'H_htt' : ['1', '1'],
+                   'H_htt'   : ['1', '1'],
                 },
                 'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__JESup'+skim,
                 'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__JESdo'+skim,
@@ -388,6 +430,9 @@ for mZp in ZpMasses:
         nuisances['jes']['samples'].update({'monoH_' + mZp + '_' + mA0: ['1','1']})
 for mZB in ZBmasses:
         nuisances['jes']['samples'].update({'monoH_ZB_' + mZB: ['1','1']})
+for ttDM in ttDMmasses:
+        nuisances['jes']['samples'].update({'ttDMscalar' + ttDM: ['1','1']})
+        nuisances['jes']['samples'].update({'ttDMpseudo' + ttDM: ['1','1']})
 
 
 ##### MET energy scale
@@ -405,6 +450,8 @@ nuisances['met']  = {
                    'VVV'               : ['1','1'],
                    'Vg'                : ['1','1'],
                    'VgS'               : ['1','1'],
+                   'WZgS_L'            : ['1','1'],
+                   'WZgS_H'            : ['1','1'],
                    'ggH_hww'           : ['1','1'],
                    'qqH_hww'           : ['1','1'],
                    'WH_hww'            : ['1','1'],
@@ -421,11 +468,12 @@ for mZp in ZpMasses:
         nuisances['met']['samples'].update({'monoH_' + mZp + '_' + mA0: ['1','1']})
 for mZB in ZBmasses:
         nuisances['met']['samples'].update({'monoH_ZB_' + mZB: ['1','1']})
+for ttDM in ttDMmasses:
+        nuisances['met']['samples'].update({'ttDMscalar' + ttDM: ['1','1']})
+        nuisances['met']['samples'].update({'ttDMpseudo' + ttDM: ['1','1']})
 
 
 ################################ THEORETICAL UNCERTAINTIES  #################################
-                             ###     Taken from ICHEP!      ###
-
 
 ##### QCD scale
 
@@ -669,8 +717,8 @@ nuisances['tttwTh']  = {
 #                 }
 
 
-nuisances['PSICHEP']  = {
-                'name'  : 'PS_ICHEP', 
+nuisances['PS']  = {
+                'name'  : 'PS', 
                 'type'  : 'lnN',
                 'samples'  : {
                    'ggH_hww' : '1.02',
@@ -682,8 +730,8 @@ nuisances['PSICHEP']  = {
 
 ##### Underlying event
 
-nuisances['UEICHEP']  = {
-                'name'  : 'UE_ICHEP', 
+nuisances['UE']  = {
+                'name'  : 'UE', 
                 'type'  : 'lnN',
                 'samples'  : {
                    'ggH_hww' : '1.03',
@@ -696,14 +744,24 @@ nuisances['UEICHEP']  = {
 
 # K factor (Data/Wg*) = 2.0 +/- 0.5
 nuisances['WgStarScale']  = {
-               'name'  : 'WgStarScale', 
+               'name'  : 'CMS_hww_WgStarScale', 
                'type'  : 'lnN',
                'samples'  : {
-                   'WgS' : '1.25',  # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
-                   'VgS' : '1.25',  # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
+                   'WgS'    : '1.25',  # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
+                   'VgS'    : '1.25',  # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
+                   'WZgS_L' : '1.25',  
                    },
                 }
  
+nuisances['WZScale'] = {
+               'name'  : 'CMS_hww_WZScale',
+               'type'  : 'lnN',
+               'samples'  : {
+                   'WZgS_H' : '1.16', 
+                   },
+                }
+
+
 
 ##### Data driven backgrounds normalizations
 
@@ -734,9 +792,21 @@ nuisances['Topnorm']  = {
     }
 
 
-##### Statistical fluctuation
-# # on MC/data
-# # "stat" is a special word to identify this nuisance
+# nuisances['stat']  = {
+#               'type'  : 'auto',
+#               'maxPoiss'  : '10',
+#               'includeSignal'  : '1',
+#               #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
+#               #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
+#               'samples' : {}
+#              }
+
+
+
+
+# Statistical fluctuation
+# on MC/data
+# "stat" is a special word to identify this nuisance
 nuisances['stat']  = {
     # apply to the following samples: name of samples here must match keys in samples.py
     'samples'  : {
@@ -751,6 +821,7 @@ nuisances['stat']  = {
         
         'top': {
             'typeStat' : 'bbb',
+###            'zeroMCError' : '1',
             },
         
         'DY': {
@@ -759,14 +830,24 @@ nuisances['stat']  = {
         
         'ggWW': {
             'typeStat' : 'bbb',
+###            'zeroMCError' : '1',
             },
         
         'ggWW_Int': {
             'typeStat' : 'bbb',
             },
         
+        'WZgS_L'  : {
+            'typeStat' : 'bbb',
+            },
+        
+        'WZgS_H'  : {
+            'typeStat' : 'bbb',
+            },
+
         'WW': {
             'typeStat' : 'bbb',
+###            'zeroMCError' : '1',
             },
         
         'VZ': {
@@ -827,6 +908,7 @@ nuisances['stat']  = {
         
         'Fake': {  # needed? YES?
             'typeStat' : 'bbb',
+###            'zeroMCError' : '1',
             },
         
         'Vg': {  
@@ -845,3 +927,9 @@ for mZp in ZpMasses:
         nuisances['stat']['samples'].update({'monoH_' + mZp + '_' + mA0:{'typeStat' : 'bbb',}})
 for mZB in ZBmasses:
         nuisances['stat']['samples'].update({'monoH_ZB_' + mZB:{'typeStat' : 'bbb',}})
+for ttDM in ttDMmasses:
+        nuisances['stat']['samples'].update({'ttDMscalar' + ttDM:{'typeStat' : 'bbb',}})
+        nuisances['stat']['samples'].update({'ttDMpseudo' + ttDM:{'typeStat' : 'bbb',}})
+
+
+

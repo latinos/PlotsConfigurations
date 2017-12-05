@@ -117,7 +117,7 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 1.0,
+                  'scale'    : 1,
                   #'cuts'  : {
                        #'hww2l2v_13TeV_of0j'      : 0.95 ,
                        #'hww2l2v_13TeV_top_of0j'  : 0.95 , 
@@ -255,14 +255,14 @@ plot['WZgS_L']  = {
                   'color': 890, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0
+                  'scale'    : 1.1
                   }
 
 plot['WZgS_H']  = { 
                   'color': 887, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0
+                  'scale'    : 1.24
                   }
 
 plot['WZ']  = { 

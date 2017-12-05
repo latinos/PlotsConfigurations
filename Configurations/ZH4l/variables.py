@@ -67,7 +67,7 @@ variables['events']  = {   'name': '1',
                      # }
 
 # variables['z1Mass_zh4l']  = {   'name': 'z1Mass_zh4l',            #   variable name    
-                        # 'range' : (25,0,250),    #   variable range
+                        # 'range' : (9,10,100),    #   variable range
                         # 'xaxis' : 'XMass [GeV]',  #   x axis name
                        # 'fold' : 0
                      # }
@@ -138,14 +138,3 @@ variables['events']  = {   'name': '1',
                        # 'fold' : 0
                      # }
 
-# variables['nbjet']  = {   'name': 'nbjet',            #   variable name    
-                        # 'range' : (10,0,10),    #   variable range
-                        # 'xaxis' : 'nbjet',  #   x axis name
-                       # 'fold' : 0
-                     # }
-
-# variables['njet']  = {   'name': 'njet',            #   variable name    
-                        # 'range' : (10,0,10),    #   variable range
-                        # 'xaxis' : 'njet',  #   x axis name
-                       # 'fold' : 0
-                     # }

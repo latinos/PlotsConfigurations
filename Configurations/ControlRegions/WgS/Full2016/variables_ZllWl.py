@@ -13,7 +13,13 @@
 variables['mll']  = {   'name': 'mll',            #   variable name    
                         'range' : (120,0,120),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
-                         'fold' : 1
+                         'fold' : 0
+                       }
+
+variables['mll_low']  = {   'name': 'mll',            #   variable name    
+                        'range' : (50,0,5),    #   variable range
+                        'xaxis' : 'm_{ll} [GeV]',  #   x axis name
+                         'fold' : 0
                        }
 
 variables['ptll']  = {   'name': 'ptll',            #   variable name    
@@ -25,7 +31,7 @@ variables['ptll']  = {   'name': 'ptll',            #   variable name
 variables['drll']  = {   'name': 'drll',            #   variable name    
                         'range' : (40,0,4),    #   variable range
                         'xaxis' : 'DR_{ll}',  #   x axis name
-                         'fold' : 3
+                         'fold' : 2
                         }
 # from usage guid from https://indico.cern.ch/event/628846/  upto 10 arguments
 
@@ -80,7 +86,7 @@ variables['met']  = {   'name': 'metPfType1',            #   variable name
 variables['mpmet']  = {   'name': 'mpmet',            #   variable name    
                         'range' : (20,0,200),    #   variable range
                         'xaxis' : 'mpmet [GeV]',  #   x axis name
-                         'fold' : 3
+                         'fold' : 2
                         }
  
 
@@ -104,5 +110,5 @@ variables['pt3']  = {   'name': 'std_vector_lepton_pt[2]',
 variables['njet']  = {   'name': 'njet',      
                         'range' : (4,0,4),  
                         'xaxis' : 'njet',   
-                         'fold' : 3
+                         'fold' : 2
                         }

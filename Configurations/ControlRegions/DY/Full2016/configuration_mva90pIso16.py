@@ -4,7 +4,7 @@ tag = 'DY_mva90pIso16'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = 'rootFile_dataOnly'
 
 
 # file with list of variables
