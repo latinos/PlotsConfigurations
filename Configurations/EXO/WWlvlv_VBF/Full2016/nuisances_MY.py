@@ -733,9 +733,9 @@ nuisances['lumi']  = {
 for m in masses:
   for model in models:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
-    nuisances['lumi']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.050'})
-    nuisances['lumi']['samples'].update({'qqH_hww_'+m+'_'+model_name:'1.050'})
-    nuisances['lumi']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:'1.050'})
+    nuisances['lumi']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.025'})
+    nuisances['lumi']['samples'].update({'qqH_hww_'+m+'_'+model_name:'1.025'})
+    nuisances['lumi']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:'1.025'})
 
 
 
