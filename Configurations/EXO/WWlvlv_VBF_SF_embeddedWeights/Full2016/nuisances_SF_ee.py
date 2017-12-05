@@ -134,21 +134,20 @@ nuisances['DYMetRew'] = {
 nuisances['lumi']  = {
                'name'  : 'lumi_ICHEP_13TeV', 
                'samples'  : {
-                   'ggH_hww_750_NWA'  : '1.023',
-                   'qqH_hww_750_NWA'  : '1.023',
-                   'ggH_hww'  : '1.023',
-                   'qqH_hww'  : '1.023',
-                   'WH_hww'   : '1.023',
-                   'ZH_hww'   : '1.023',
-                   'H_htt'    : '1.023',
-                   'H_hww'    : '1.023',
-                   'WH_hww'   : '1.023',
-                   'ggZH_hww' : '1.023',
-                   'VVV'      : '1.023',
-                   'VZ'       : '1.023',
-                   'ggWW'     : '1.023',
-                   'Vg'       : '1.023',
-                   'VgS'      : '1.023',
+                   
+                   'ggH_hww'  : '1.025',
+                   'qqH_hww'  : '1.025',
+                   'WH_hww'   : '1.025',
+                   'ZH_hww'   : '1.025',
+                   'H_htt'    : '1.025',
+                   'H_hww'    : '1.025',
+                   'WH_hww'   : '1.025',
+                   'ggZH_hww' : '1.025',
+                   'VVV'      : '1.025',
+                   'VZ'       : '1.025',
+                   'ggWW'     : '1.025',
+                   'Vg'       : '1.025',
+                   'VgS'      : '1.025',
                    },
                'type'  : 'lnN',
               }
@@ -585,29 +584,41 @@ nuisances['WWqscale2j']  = {
  
 # PS
  
-'''
- 
 nuisances['PS']  = {
-                'name'  : 'PS', 
+                'name'  : 'PS',
+                'skipCMS' : 1,
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                   'WW' :  ['1./1.03295', '1.'],  # latino_WWTo2L2NuHerwigPS.root moved with different name in __PS folder
+                  'WW'      : ['0.92657', '1.'], #
+                  'ggH_hww' : ['0.98554', '1.'], # These numbers are used to normalize the PS variation to the same integral as the nominal after the wwSel skim
+                  'qqH_hww' : ['0.92511', '1.'], #
                 },
-                'folderUp'   : 'root://eosuser.cern.ch//eos/user/r/rodrigo/HWW2016/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS',
-                'folderDown' : 'root://eosuser.cern.ch//eos/user/r/rodrigo/HWW2016/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel__PS' 
-                }
- 
-'''
- 
+                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__PS'+skim,
+                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC'+skim,
+                'AsLnN'      : '1',
+}
+
 nuisances['UE']  = {
                 'name'  : 'UE', 
-                'kind'  : 'weight',
+                'skipCMS' : 1,
+                'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                   'WW' :  ['1/0.978817', '1/1.0192'], 
+                  'WW'      : ['1.0226', '0.9897'], #
+                  'ggH_hww' : ['1.0739', '1.0211'], # These numbers are used to normalize the UE up/down variations to the same integral as the nominal after the wwSel skim
+                  'qqH_hww' : ['1.0560', '0.9992'], #
                 },
+                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__UEup'+skim,
+                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__UEdo'+skim,
+                'AsLnN'      : '1',
                 }
+
+
+####################################
+
+
+
  
 nuisances['WgStarScale']  = {
                'name'  : 'WgStarScale', 
@@ -1001,15 +1012,19 @@ for m in masses:
     nuisances['trigg']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:trig_syst})
  
 ###### Electron Efficiency and energy scale
- 
+
+
+
 id_syst_ele = [ 'LepSF'+Nlep+'l__ele_'+eleWP+'__Up' , 'LepSF'+Nlep+'l__ele_'+eleWP+'__Do' ]
- 
-nuisances['idiso_ele']  = {
-                'name'  : 'idiso_ele',
+
+
+
+nuisances['eff_e']  = {
+                'name'  : 'eff_e',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : id_syst_ele ,
+                    'DY'      : id_syst_ele ,
                    'VVV'     : id_syst_ele ,
                    'VZ'      : id_syst_ele ,
                    'ggWW'    : id_syst_ele ,
@@ -1026,15 +1041,47 @@ nuisances['idiso_ele']  = {
                    'H_htt'   : id_syst_ele ,
                 },
 }
- 
+
 for m in masses:
   for model in models:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
-    nuisances['idiso_ele']['samples'].update({'ggH_hww_'+m+'_'+model_name:id_syst_ele})
-    nuisances['idiso_ele']['samples'].update({'qqH_hww_'+m+'_'+model_name:id_syst_ele})
-    nuisances['idiso_ele']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:id_syst_ele}) 
- 
- 
+    nuisances['eff_e']['samples'].update({'ggH_hww_'+m+'_'+model_name: id_syst_ele })
+    nuisances['eff_e']['samples'].update({'qqH_hww_'+m+'_'+model_name: id_syst_ele })
+    nuisances['eff_e']['samples'].update({'ggH_hww_INT'+m+'_'+model_name: id_syst_ele })
+
+
+#nuisances['idiso_ele']  = {
+#                'name'  : 'idiso_ele',
+#                'kind'  : 'weight',
+#                'type'  : 'shape',
+#                'samples'  : {
+#                   'DY'      : id_syst_ele ,
+#                   'VVV'     : id_syst_ele ,
+#                   'VZ'      : id_syst_ele ,
+#                   'ggWW'    : id_syst_ele ,
+#                   'WW'      : id_syst_ele ,
+#                   'top'     : id_syst_ele ,
+#                   'Vg'      : id_syst_ele ,
+#                   'VgS'     : id_syst_ele ,
+#                   'ggH_hww' : id_syst_ele ,
+#                   'qqH_hww' : id_syst_ele ,
+#                   'WH_hww'  : id_syst_ele ,
+#                   'ZH_hww'  : id_syst_ele ,
+#                   'ggZH_hww': id_syst_ele ,
+#                   'bbH_hww' : id_syst_ele ,
+#                   'H_htt'   : id_syst_ele ,
+#                },
+#}
+# 
+#for m in masses:
+#  for model in models:
+#    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+#    nuisances['idiso_ele']['samples'].update({'ggH_hww_'+m+'_'+model_name: id_syst_ele })
+#    nuisances['idiso_ele']['samples'].update({'qqH_hww_'+m+'_'+model_name: id_syst_ele })
+#    nuisances['idiso_ele']['samples'].update({'ggH_hww_INT'+m+'_'+model_name: id_syst_ele })
+
+
+
 nuisances['electronpt']  = {
                 'name'  : 'scale_e',
                 'kind'  : 'tree',
@@ -1056,28 +1103,108 @@ nuisances['electronpt']  = {
                    'bbH_hww' : ['1', '1'],
                    'H_htt'   : ['1', '1'],
                  },
-                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__LepElepTup'+skim,
-                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__LepElepTdo'+skim,
+
+                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepElepTup'+skim,
+                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepElepTdo'+skim,
 }
- 
-#for m in masses:
-#  for model in models:
-#    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
-#    nuisances['electronpt']['samples'].update({'ggH_hww_'+m+'_'+model_name:['1', '1']})
-#    nuisances['electronpt']['samples'].update({'qqH_hww_'+m+'_'+model_name:['1', '1']})
-#    nuisances['electronpt']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:['1', '1']}) 
-#               
-# 
-###### Muon Efficiency and energy scale
- 
-id_syst_mu = [ 'LepSF'+Nlep+'l__mu_'+muWP+'__Up' , 'LepSF'+Nlep+'l__mu_'+muWP+'__Do' ]
- 
-nuisances['idiso_mu']  = {
-                'name'  : 'idiso_mu',
+                
+
+
+for m in masses:
+  for model in models:
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    nuisances['electronpt']['samples'].update({'ggH_hww_'+m+'_'+model_name:['1', '1']})
+    nuisances['electronpt']['samples'].update({'qqH_hww_'+m+'_'+model_name:['1', '1']})
+    nuisances['electronpt']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:['1', '1']})                
+
+
+
+
+elePtCor_Syst = [ 'electron_ptW_'+Nlep+'l_Up / electron_ptW_'+Nlep+'l', 'electron_ptW_'+Nlep+'l_Down / electron_ptW_'+Nlep+'l']
+nuisances['elePtCor']  = {
+                'name'  : 'hww_elePtCor',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : id_syst_mu ,
+                   'DY'         : elePtCor_Syst ,
+                   'ggWW'       : elePtCor_Syst ,
+                   'WW'         : elePtCor_Syst ,
+                   'top'        : elePtCor_Syst ,
+                   'VZ'         : elePtCor_Syst ,
+                   'VVV'        : elePtCor_Syst ,
+                   'Vg'         : elePtCor_Syst ,
+                   'VgS'        : elePtCor_Syst ,
+                   'ggH_hww '   : elePtCor_Syst ,
+                   'qqH_hww '   : elePtCor_Syst ,
+                   'WH_hww'     : elePtCor_Syst ,
+                   'ZH_hww'     : elePtCor_Syst ,
+                   'ggZH_hww'   : elePtCor_Syst ,
+                   'bbH_hww'    : elePtCor_Syst ,
+                   'H_htt'      : elePtCor_Syst ,
+
+                   
+                                  
+                }
+}
+
+for m in masses:
+  for model in models:
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    nuisances['elePtCor']['samples'].update({'ggH_hww_'+m+'_'+model_name: elePtCor_Syst})
+    nuisances['elePtCor']['samples'].update({'qqH_hww_'+m+'_'+model_name: elePtCor_Syst})
+    nuisances['elePtCor']['samples'].update({'ggH_hww_INT'+m+'_'+model_name: elePtCor_Syst}) 
+
+
+eleEtaCor_Syst = [ 'electron_etaW_'+Nlep+'l_Up / electron_etaW_'+Nlep+'l', 'electron_etaW_'+Nlep+'l_Down / electron_etaW_'+Nlep+'l']
+
+nuisances['eleEtaCor']  = {
+                'name'  : 'hww_eleEtaCor',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                  
+                   'DY'         : eleEtaCor_Syst, 
+                   'ggWW'       : eleEtaCor_Syst, 
+                   'WW'         : eleEtaCor_Syst, 
+                   'top'        : eleEtaCor_Syst, 
+                   'VZ'         : eleEtaCor_Syst, 
+                   'VVV'        : eleEtaCor_Syst, 
+                   'Vg'         : eleEtaCor_Syst, 
+                   'VgS'        : eleEtaCor_Syst, 
+                   'ggH_hww '   : eleEtaCor_Syst, 
+                   'qqH_hww '   : eleEtaCor_Syst, 
+                   'WH_hww'     : eleEtaCor_Syst, 
+                   'ZH_hww'     : eleEtaCor_Syst, 
+                   'ggZH_hww'   : eleEtaCor_Syst, 
+                   'bbH_hww'    : eleEtaCor_Syst, 
+                   'H_htt'      : eleEtaCor_Syst, 
+
+                                  }
+}
+
+
+for m in masses:
+  for model in models:
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    nuisances['eleEtaCor']['samples'].update({'ggH_hww_'+m+'_'+model_name:  eleEtaCor_Syst})
+    nuisances['eleEtaCor']['samples'].update({'qqH_hww_'+m+'_'+model_name:  eleEtaCor_Syst})
+    nuisances['eleEtaCor']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:  eleEtaCor_Syst}) 
+
+
+
+###### Muon Efficiency and energy scale
+
+
+id_syst_mu = [ 'LepSF'+Nlep+'l__mu_'+muWP+'__Up' , 'LepSF'+Nlep+'l__mu_'+muWP+'__Do' ]
+
+
+
+nuisances['eff_m']  = {
+                'name'  : 'eff_m',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                    'DY'      : id_syst_mu ,
                    'VVV'     : id_syst_mu ,
                    'VZ'      : id_syst_mu ,
                    'ggWW'    : id_syst_mu ,
@@ -1094,16 +1221,49 @@ nuisances['idiso_mu']  = {
                    'H_htt'   : id_syst_mu ,
                 },
 }
- 
+
 for m in masses:
   for model in models:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
-    nuisances['idiso_mu']['samples'].update({'ggH_hww_'+m+'_'+model_name:id_syst_mu})
-    nuisances['idiso_mu']['samples'].update({'qqH_hww_'+m+'_'+model_name:id_syst_mu})
-    nuisances['idiso_mu']['samples'].update({'qqH_hww_INT'+m+'_'+model_name:id_syst_mu})
-# nuisances handled by means of a different set of trees
- 
- 
+    nuisances['eff_m']['samples'].update({'ggH_hww_'+m+'_'+model_name: id_syst_mu })
+    nuisances['eff_m']['samples'].update({'qqH_hww_'+m+'_'+model_name: id_syst_mu })
+    nuisances['eff_m']['samples'].update({'ggH_hww_INT'+m+'_'+model_name: id_syst_mu })
+
+
+
+#nuisances['idiso_mu']  = {
+#                'name'  : 'idiso_mu',
+#                'kind'  : 'weight',
+#                'type'  : 'shape',
+#                'samples'  : {
+#                   'DY'      : id_syst_mu ,
+#                   'VVV'     : id_syst_mu ,
+#                   'VZ'      : id_syst_mu ,
+#                   'ggWW'    : id_syst_mu ,
+#                   'WW'      : id_syst_mu ,
+#                   'top'     : id_syst_mu ,
+#                   'Vg'      : id_syst_mu ,
+#                   'VgS'     : id_syst_mu ,
+#                   'ggH_hww' : id_syst_mu ,
+#                   'qqH_hww' : id_syst_mu ,
+#                   'WH_hww'  : id_syst_mu ,
+#                   'ZH_hww'  : id_syst_mu ,
+#                   'ggZH_hww': id_syst_mu ,
+#                   'bbH_hww' : id_syst_mu ,
+#                   'H_htt'   : id_syst_mu ,
+#                },
+#}
+# 
+# 
+# 
+#for m in masses:
+#  for model in models:
+#    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+#    nuisances['idiso_mu']['samples'].update({'ggH_hww_'+m+'_'+model_name: id_syst_mu })
+#    nuisances['idiso_mu']['samples'].update({'qqH_hww_'+m+'_'+model_name: id_syst_mu })
+#    nuisances['idiso_mu']['samples'].update({'ggH_hww_INT'+m+'_'+model_name: id_syst_mu })
+
+
 nuisances['muonpt']  = {
                 'name'  : 'scale_m',
                 'kind'  : 'tree',
@@ -1125,16 +1285,25 @@ nuisances['muonpt']  = {
                    'bbH_hww' : ['1', '1'],
                    'H_htt' : ['1', '1'],
                 },
-                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__LepMupTup'+skim,
-                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__LepMupTdo'+skim,
+
+
+
+                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepMupTup'+skim,
+                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepMupTdo'+skim,
 }
- 
+
+
+
 for m in masses:
   for model in models:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['muonpt']['samples'].update({'ggH_hww_'+m+'_'+model_name:['1', '1']})
     nuisances['muonpt']['samples'].update({'qqH_hww_'+m+'_'+model_name:['1', '1']})
     nuisances['muonpt']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:['1', '1']})
+
+
+
+
  
 ##### Jet energy scale
  
@@ -1159,10 +1328,9 @@ nuisances['jes']  = {
                    'bbH_hww' : ['1', '1'],
                    'H_htt' : ['1', '1'],
                 },
-                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__JESup'+skim,
-                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__JESdo'+skim,
+                 'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__JESup'+skim,
+                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__JESdo'+skim,
 }
- 
  
 for m in masses:
   for model in models:
@@ -1194,9 +1362,13 @@ nuisances['met']  = {
                    'ggH_hww_750_NWA' : ['1', '1'],
                    'qqH_hww_750_NWA' : ['1', '1'],
                 },
-                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__METup'+skim,
-                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__METdo'+skim
+               
+
+                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__METup'+skim,
+                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__METdo'+skim,
 }
+
+
 for m in masses:
   for model in models:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
