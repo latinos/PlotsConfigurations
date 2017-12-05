@@ -326,7 +326,8 @@ samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu') ,
  
 samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'),      
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,  
-                      'isData': ['0'],                            
+                      'isData': ['0'],                           
+                      'suppressNegativeNuisances' :['all'],
                    }
 # during tree production: 1.4 k-factor has been applied to both samples
 # ggWW sample: k = 1.4 +/- 15%
@@ -340,12 +341,14 @@ samples['Vg']  =  {     'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM')
                                    + getSampleFiles(directory,'Zg')
                                    ,
                         'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
+                        'suppressNegativeNuisances' :['all'],
                   }
  
 ######## VgS ########
  
 samples['VgS']  = {    'name':  getSampleFiles(directory,'WgStarLNuEE') + getSampleFiles(directory,'WgStarLNuMuMu') ,
                        'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '*1.4' ,  
+                       'suppressNegativeNuisances' :['all'],
                   }
  
 ## 
@@ -367,7 +370,8 @@ samples['VZ']  = {    'name':   getSampleFiles(directory,'WZTo3LNu')
                               # + getSampleFiles(directory,'tZq_ll')
                               ,   
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.11',
-                      'FilesPerJob' : 1 
+                      'FilesPerJob' : 1,
+                      'suppressNegativeNuisances' :['all'],
                   }
  
 ### 1.11 normalisation was measured in 3-lepton
@@ -382,6 +386,7 @@ samples['VVV'] = {    'name':   getSampleFiles(directory,'ZZZ')
                            #  + getSampleFiles(directory,'WWG')
                               ,    
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+                      'suppressNegativeNuisances' :['all'],
                   }
  
 ###########################################
@@ -418,6 +423,7 @@ for m in masses:
  
                                             
                                           'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+model+"*"+str(sf),
+                                          'suppressNegativeNuisances' :['all'],
                                              
                                         }
  
@@ -426,6 +432,7 @@ for m in masses:
                                              
                                           'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+str(sf)+"*"+model_int,
                                                    # +'*(abs('+model_int+')<10)', removed
+                                          'suppressNegativeNuisances' :['all'],         
                                                 
                                         }
  
@@ -434,6 +441,7 @@ for m in masses:
                                             
                                           'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+"*"+str(sf),
                                              #Remove "model" in weight: in the ntuple there are not the cprimeX.XBRnewY.Y 
+                                          'suppressNegativeNuisances' :['all'],   
                                         }                   
 
 
@@ -448,15 +456,18 @@ for m in masses:
      #GluGlu
      samples['ggH_hww_'+m+'_'+model_name] = {    'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_JHUGen698_M'+m) ,
                                                 'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*'+model,
+                                                'suppressNegativeNuisances' :['all'],
                                         }
  
      samples['ggH_hww_INT'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_JHUGen698_M'+m) ,
                                                 'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*'+model_int,
+                                                'suppressNegativeNuisances' :['all'],
                                         } 
  
      #VBF
      samples['qqH_hww_'+m+'_'+model_name] = {    'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m) ,
                                                 'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*'+model,
+                                                'suppressNegativeNuisances' :['all'],
                                         }                   
  
  
