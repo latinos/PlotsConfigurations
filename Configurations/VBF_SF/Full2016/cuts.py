@@ -176,11 +176,13 @@ cuts['hww2l2v_13TeV_WW_2jee_vbf_WWAccNum'] = '    (std_vector_lepton_flavour[0] 
                                    && fabs(91.1876 - mll) < 7.5  \
                                    && '+bVeto+' \
                                    && dymvavbf > 0.6 \
+                                   && mll > 80 \
                                  '
 
 cuts['hww2l2v_13TeV_WW_2jmm_vbf_WWAccNum'] = '    (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)   \
                                    && fabs(91.1876 - mll) < 7.5  \
                                    && '+bVeto+' \
                                    && dymvavbf > 0.6 \
+                                   && mll > 80 \
                                  '
 
