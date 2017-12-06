@@ -58,6 +58,7 @@ Nlep='2'
 ################################################
 
 XSWeight      = 'XSWeight'
+SFweight      = 'SFweight'+Nlep+'l'
 GenLepMatch   = 'GenLepMatch'+Nlep+'l'
 
 ################################################
