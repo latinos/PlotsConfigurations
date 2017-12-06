@@ -113,6 +113,18 @@ cuts['hww2l2v_13TeV_2jmm_vbf_highmjj_HAccNum'] = '    (std_vector_lepton_flavour
 
 ## Top CR: No H sel , bTag , tight DYmva
 
+cuts['hww2l2v_13TeV_top_2jee_vbf'] = '    (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)  \
+                                       && fabs(91.1876 - mll) > 15  \
+                                       && ( std_vector_jet_cmvav2[0]>-0.5884 || std_vector_jet_cmvav2[1]>-0.5884 ) \
+                                       && '+dymvaVBF+' \
+                                     '
+
+cuts['hww2l2v_13TeV_top_2jmm_vbf'] = '    (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)  \
+                                       && fabs(91.1876 - mll) > 15  \
+                                       && ( std_vector_jet_cmvav2[0]>-0.5884 || std_vector_jet_cmvav2[1]>-0.5884 ) \
+                                       && '+dymvaVBF+' \
+                                     '
+
 cuts['hww2l2v_13TeV_top_2jsf_vbf'] = '    (    (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
                                             || (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13) ) \
                                        && fabs(91.1876 - mll) > 15  \
@@ -156,6 +168,27 @@ cuts['hww2l2v_13TeV_DYin_2jdf_vbf'] = '    (std_vector_lepton_flavour[0] * std_v
                                    && '+bVeto+' \
                                    && '+dymvaVBF+' \
                                  '
+
+## DY Background IN with btag : Split ee/mm , No H cut !
+
+cuts['hww2l2v_13TeV_DYin_btag_2jee_vbf'] = '    (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)  \
+                                       && fabs(91.1876 - mll) < 7.5  \
+                                       && ( std_vector_jet_cmvav2[0]>-0.5884 || std_vector_jet_cmvav2[1]>-0.5884 ) \
+                                       && '+dymvaVBF+' \
+                                     '
+
+cuts['hww2l2v_13TeV_DYin_btag_2jmm_vbf'] = '    (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)  \
+                                       && fabs(91.1876 - mll) < 7.5  \
+                                       && ( std_vector_jet_cmvav2[0]>-0.5884 || std_vector_jet_cmvav2[1]>-0.5884 ) \
+                                       && '+dymvaVBF+' \
+                                     '
+
+cuts['hww2l2v_13TeV_DYin_btag_2jdf_vbf'] = '    (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)  \
+                                       && fabs(91.1876 - mll) < 7.5  \
+                                       && ( std_vector_jet_cmvav2[0]>-0.5884 || std_vector_jet_cmvav2[1]>-0.5884 ) \
+                                       && '+dymvaVBF+' \
+                                     '
+
 
 ## DY CR for Acc Denominator
 
