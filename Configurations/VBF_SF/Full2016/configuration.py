@@ -1,6 +1,6 @@
 # example of configuration file
 
-tag = 'ggH_SF_HTXS'
+tag = 'VBF_SF'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -25,7 +25,7 @@ lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotGGH_SF_HTXS'
+outputDirPlots = 'plotVBF_SF'
 
 
 # used by mkDatacards to define output directory for datacards
@@ -37,5 +37,5 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+# nuisancesFile = 'nuisances.py'
 
