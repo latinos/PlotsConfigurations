@@ -36,7 +36,7 @@ cuts['hww2l2v_13TeV_2jee_vbf_lowmjj'] = '    (std_vector_lepton_flavour[0] * std
                                    && '+bVeto+' \
                                    && '+dymvaVBF+' \
                                    && '+HiggsVBF+' \
-                                   && mjj < 700
+                                   && mjj < 700 \
                                  '
 
 cuts['hww2l2v_13TeV_2jmm_vbf_lowmjj'] = '    (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)   \
@@ -44,14 +44,14 @@ cuts['hww2l2v_13TeV_2jmm_vbf_lowmjj'] = '    (std_vector_lepton_flavour[0] * std
                                    && '+bVeto+' \
                                    && '+dymvaVBF+' \
                                    && '+HiggsVBF+' \
-                                   && mjj < 700
+                                   && mjj < 700 \
                                  '
 cuts['hww2l2v_13TeV_2jee_vbf_highmjj'] = '    (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
                                    && fabs(91.1876 - mll) > 15  \
                                    && '+bVeto+' \
                                    && '+dymvaVBF+' \
                                    && '+HiggsVBF+' \
-                                   && mjj >= 700
+                                   && mjj >= 700 \
                                  '
 
 cuts['hww2l2v_13TeV_2jmm_vbf_highmjj'] = '    (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)   \
@@ -59,7 +59,7 @@ cuts['hww2l2v_13TeV_2jmm_vbf_highmjj'] = '    (std_vector_lepton_flavour[0] * st
                                    && '+bVeto+' \
                                    && '+dymvaVBF+' \
                                    && '+HiggsVBF+' \
-                                   && mjj >= 700
+                                   && mjj >= 700 \
                                  '
 
 ## Loose dymva + H sel for DY Acc
@@ -84,7 +84,7 @@ cuts['hww2l2v_13TeV_2jee_vbf_lowmjj_HAccNum'] = '    (std_vector_lepton_flavour[
                                    && '+bVeto+' \
                                    && dymvavbf > 0.6 \
                                    && '+HiggsVBF+' \
-                                   && mjj < 700
+                                   && mjj < 700 \
                                  '
 
 cuts['hww2l2v_13TeV_2jmm_vbf_lowmjj_HAccNum'] = '    (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)   \
@@ -92,7 +92,7 @@ cuts['hww2l2v_13TeV_2jmm_vbf_lowmjj_HAccNum'] = '    (std_vector_lepton_flavour[
                                    && '+bVeto+' \
                                    && dymvavbf > 0.6 \
                                    && '+HiggsVBF+' \
-                                   && mjj < 700
+                                   && mjj < 700 \
                                  '
 
 cuts['hww2l2v_13TeV_2jee_vbf_highmjj_HAccNum'] = '    (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \
@@ -100,7 +100,7 @@ cuts['hww2l2v_13TeV_2jee_vbf_highmjj_HAccNum'] = '    (std_vector_lepton_flavour
                                    && '+bVeto+' \
                                    && dymvavbf > 0.6 \
                                    && '+HiggsVBF+' \
-                                   && mjj >= 700
+                                   && mjj >= 700 \
                                  '
 
 cuts['hww2l2v_13TeV_2jmm_vbf_highmjj_HAccNum'] = '    (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*13)   \
@@ -108,7 +108,7 @@ cuts['hww2l2v_13TeV_2jmm_vbf_highmjj_HAccNum'] = '    (std_vector_lepton_flavour
                                    && '+bVeto+' \
                                    && dymvavbf > 0.6 \
                                    && '+HiggsVBF+' \
-                                   && mjj >= 700
+                                   && mjj >= 700 \
                                  '
 
 ## Top CR: No H sel , bTag , tight DYmva
