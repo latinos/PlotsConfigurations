@@ -69,7 +69,7 @@ groupPlot['ggH_hzz']  = {
 groupPlot['WZ']  = {
                   'nameHR' : "WZ",
                   'isSignal' : 0,
-                  'color'    : 612,   # kMagenta -4
+                  'color'    : 603,   # kMagenta -4
                   'samples'  : ['WZ']
               }
 

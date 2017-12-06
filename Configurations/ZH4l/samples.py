@@ -154,11 +154,6 @@ for Run in DataRun :
 #############  BACKGROUNDS  ###############
 ###########################################
 
-# samples['ZZ']  = {    'name': getSampleFiles(directory,'ZZTo4L'),
-                      # 'weight' : 'baseW'+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC,
-                      # #1.256/1.212 see this page https://twiki.cern.ch/twiki/bin/viewauth/CMS/SummaryTable1G25ns#Diboson
-                  # }
-
 samples['ZZ']  = {    'name': getSampleFiles(directory,'ZZTo4L')
                               +getSampleFiles(directory,'ggZZ2e2t')
                               +getSampleFiles(directory,'ggZZ2m2t')
@@ -182,15 +177,6 @@ addSampleWeight(samples,'ZZ','ggZZ4t',"2.27")
 
 
 
-# samples['ggZZ']  = {    'name': getSampleFiles(directory,'ggZZ2e2t')
-                              # +getSampleFiles(directory,'ggZZ2m2t')
-                              # +getSampleFiles(directory,'ggZZ2e2m')
-                              # +getSampleFiles(directory,'ggZZ4t')
-                              # +getSampleFiles(directory,'ggZZ4e')
-                              # +getSampleFiles(directory,'ggZZ4m'),
-                      # 'weight' : 'baseW'+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC,
-                     # 'FilesPerJob' : 1,
-                  # }
 
 samples['ggH_hzz']  = {    'name': getSampleFiles(directory,'GluGluHToZZTo4L_M125'),
                       'weight' : 'baseW'+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC,
@@ -242,6 +228,7 @@ samples['WWW'] = {    'name': getSampleFiles(directory,'WWW'),
                       'weight' : XSWeight+'*'+SFweight4l+'*'+GenLepMatch3l+'*'+METFilter_MC,
                   }
 
+addSampleWeight(samples,'WWW','WWW',"0.2086/0.1833") # Fixing incorrect xsec from 0.1833 to 0.2086
 
 ####################################
 ############# Signal ###############
@@ -261,16 +248,16 @@ samples['ggZH_hww']  = { 'name': getSampleFiles(directory,'GluGluZH_HToWWTo2L2Nu
                          'weight' : XSWeight+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC,
                        }
 
-if treeBaseDir.startswith('/eos/cms') :
-    directory     = "root://eoscms.cern.ch/"+directory
-    directoryDATA = "root://eoscms.cern.ch/"+directoryDATA
-    # directoryFake = "root://eoscms.cern.ch/"+directoryFake
-for sampleName, sample in samples.iteritems():
-    sample['name']=[ os.path.join(directory, it) if sampleName not in ['DATA', 'Fake'] else it for it in sample['name'] ]
-
 ##################################
 ############ Tools ###############
 ##################################
+
+# Fixing to absolute path
+for sampleName, sample in samples.iteritems():
+    sample['name']=[ os.path.join(directory,it) if sampleName not in ['DATA', 'Fake'] else it for it in sample['name'] ]
+    if treeBaseDir.startswith('/eos/cms'):
+        sample['name']=[ "root://eoscms.cern.ch/"+it for it in sample['name'] ]
+
 
 # Keep specific samples
 # samplesToKeep = ['DATA','Fake']
