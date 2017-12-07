@@ -445,11 +445,11 @@ else:
   print "!!! ERROR file ", massesAndModelsFile, " does not exist."
 for m in masses:
   for model in models:
- 
+
 #    kp = float(model[6:9])*float(model[6:9]) rimosso
     brn = float(model[-3:])
     #sf = kp*(1-brn)
-    sf = 1.0                                    
+    sf = 1.0
     #sf125 = 1-kp
     #sf125int = sqrt(1-kp)
     model_int = model+"_I"
@@ -464,29 +464,35 @@ for m in masses:
      print "if300=", m
      #GluGlu
      samples['ggH_hww_'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_M'+m) ,
- 
-                                            
-                                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+model+"*"+str(sf),
+
+
+                                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+model,
                                           'suppressNegativeNuisances' :['all'],
-                                             
+
                                         }
- 
-     samples['ggH_hww_INT'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_M'+m) ,
- 
-                                             
-                                          'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+str(sf)+"*"+model_int,
+
+     samples['ggH_hww_SBI'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_M'+m) + \
+                                                         getSampleFiles(directory,'GluGluHToWWTo2L2Nu_M'+m) + \
+                                                         getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM') + \
+                                                         getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125'),
+
+                                          'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
                                                    # +'*(abs('+model_int+')<10)', removed
-                                          'suppressNegativeNuisances' :['all'],         
-                                                
+                                          'suppressNegativeNuisances' :['all'],
+                                          'weights':[model,
+                                                     model_int,
+                                                     '1.',
+                                                     '1.']
+
                                         }
- 
+
      #VBF
      samples['qqH_hww_'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_M'+m) ,
-                                            
-                                          'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+"*"+str(sf),
+
+                                          'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
                                              #Remove "model" in weight: in the ntuple there are not the cprimeX.XBRnewY.Y 
-                                          'suppressNegativeNuisances' :['all'],   
-                                        }                   
+                                          'suppressNegativeNuisances' :['all'],
+                                        }
 
 
 
@@ -496,24 +502,34 @@ for m in masses:
      print "else=", m
 
 
-    
+
      #GluGlu
      samples['ggH_hww_'+m+'_'+model_name] = {    'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_JHUGen698_M'+m) ,
                                                 'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*'+model,
                                                 'suppressNegativeNuisances' :['all'],
                                         }
- 
-     samples['ggH_hww_INT'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_JHUGen698_M'+m) ,
-                                                'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*'+model_int,
+
+     samples['ggH_hww_SBI'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_JHUGen698_M'+m) + \
+                                                         getSampleFiles(directory,'GluGluHToWWTo2L2Nu_JHUGen698_M'+m) + \
+                                                         getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM') + \
+                                                         getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,
+                                                'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
                                                 'suppressNegativeNuisances' :['all'],
-                                        } 
- 
+                                                'weights':[model,
+                                                           model_int,
+                                                           '1.',
+                                                           '1.']
+
+                                        }
+
      #VBF
      samples['qqH_hww_'+m+'_'+model_name] = {    'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m) ,
                                                 'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*'+model,
                                                 'suppressNegativeNuisances' :['all'],
-                                        }                   
- 
+                                        }
+
+
+
  
  
 ###########################################

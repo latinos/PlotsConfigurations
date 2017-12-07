@@ -162,7 +162,7 @@ DataTrig = {
             'DoubleEG'       : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu &&  trig_DbleEle' ,
             'SingleElectron' : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu && !trig_DbleEle &&  trig_SnglEle' ,
            }
-
+'''
 ###########################################
 #############  BACKGROUNDS  ###############
 ###########################################
@@ -329,6 +329,9 @@ samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'
                       'isData': ['0'],                           
                       'suppressNegativeNuisances' :['all'],
                    }
+samples['ggH_hww']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                      }                  
 # during tree production: 1.4 k-factor has been applied to both samples
 # ggWW sample: k = 1.4 +/- 15%
 # ggWW interference: k = 1.87 +/- 25%
@@ -388,7 +391,7 @@ samples['VVV'] = {    'name':   getSampleFiles(directory,'ZZZ')
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
                       'suppressNegativeNuisances' :['all'],
                   }
- 
+'''
 ###########################################
 #############  HIGH MASS SIGNALS   ##################
 ###########################################
@@ -422,24 +425,30 @@ for m in masses:
      samples['ggH_hww_'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_M'+m) ,
  
                                             
-                                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+model+"*"+str(sf),
+                                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+model,
                                           'suppressNegativeNuisances' :['all'],
                                              
                                         }
  
-     samples['ggH_hww_INT'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_M'+m) ,
- 
+     samples['ggH_hww_SBI'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_M'+m) + \
+                                                         getSampleFiles(directory,'GluGluHToWWTo2L2Nu_M'+m) + \
+                                                         getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM') + \
+                                                         getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125'),                                            
                                              
-                                          'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+str(sf)+"*"+model_int,
+                                          'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
                                                    # +'*(abs('+model_int+')<10)', removed
-                                          'suppressNegativeNuisances' :['all'],         
+                                          'suppressNegativeNuisances' :['all'],
+                                          'weights':[model,
+                                                     model_int,
+                                                     '1.',
+                                                     '1.']
                                                 
                                         }
  
      #VBF
      samples['qqH_hww_'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_M'+m) ,
                                             
-                                          'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+"*"+str(sf),
+                                          'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
                                              #Remove "model" in weight: in the ntuple there are not the cprimeX.XBRnewY.Y 
                                           'suppressNegativeNuisances' :['all'],   
                                         }                   
@@ -459,9 +468,17 @@ for m in masses:
                                                 'suppressNegativeNuisances' :['all'],
                                         }
  
-     samples['ggH_hww_INT'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_JHUGen698_M'+m) ,
-                                                'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*'+model_int,
+     samples['ggH_hww_SBI'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_JHUGen698_M'+m) + \
+                                                         getSampleFiles(directory,'GluGluHToWWTo2L2Nu_JHUGen698_M'+m) + \
+                                                         getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM') + \
+                                                         getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,
+                                                'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC, 
                                                 'suppressNegativeNuisances' :['all'],
+                                                'weights':[model,
+                                                           model_int,
+                                                           '1.',
+                                                           '1.']
+
                                         } 
  
      #VBF

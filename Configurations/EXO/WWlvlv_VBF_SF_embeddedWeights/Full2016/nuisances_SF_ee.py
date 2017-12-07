@@ -156,7 +156,7 @@ for m in masses:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['lumi']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.025'})
     nuisances['lumi']['samples'].update({'qqH_hww_'+m+'_'+model_name:'1.025'})
-    nuisances['lumi']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:'1.025'})
+    nuisances['lumi']['samples'].update({'ggH_hww_SBI'+m+'_'+model_name:'1.025'})
  
 # theory uncertainties
  
@@ -280,7 +280,7 @@ for m in masses:
   for model in models:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['QCDscale_gg_accept']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.027'})
-    nuisances['QCDscale_gg_accept']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:'1.027'})
+    nuisances['QCDscale_gg_accept']['samples'].update({'ggH_hww_SBI'+m+'_'+model_name:'1.027'})
  
  
 # pdf uncertainty
@@ -301,7 +301,7 @@ for m in masses:
   for model in models:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['pdf_gg']['samples'].update({'ggH_hww_'+m+'_'+model_name: HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,m,'pdf','bsm')})
-    nuisances['pdf_gg']['samples'].update({'ggH_hww_INT'+m+'_'+model_name: HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,m,'pdf','bsm')})
+    nuisances['pdf_gg']['samples'].update({'ggH_hww_SBI'+m+'_'+model_name: HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,m,'pdf','bsm')})
  
  
 nuisances['pdf_qqbar']  = {
@@ -345,7 +345,7 @@ for m in masses:
   for model in models:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['pdf_gg_accept']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.005'})
-    nuisances['pdf_gg_accept']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:'1.005'})
+    nuisances['pdf_gg_accept']['samples'].update({'ggH_hww_SBI'+m+'_'+model_name:'1.005'})
  
  
 nuisances['pdf_qqbar_accept']  = {
@@ -840,7 +840,7 @@ for m in masses:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['btagbc']['samples'].update({'ggH_hww_'+m+'_'+model_name:['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')']})
     nuisances['btagbc']['samples'].update({'qqH_hww_'+m+'_'+model_name:['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')']})
-    nuisances['btagbc']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')']})
+    nuisances['btagbc']['samples'].update({'ggH_hww_SBI'+m+'_'+model_name:['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')']})
  
  
  
@@ -873,7 +873,7 @@ for m in masses:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['btagudsg']['samples'].update({'ggH_hww_'+m+'_'+model_name:['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')']})
     nuisances['btagudsg']['samples'].update({'qqH_hww_'+m+'_'+model_name:['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')']}) 
-    nuisances['btagudsg']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')']}) 
+    nuisances['btagudsg']['samples'].update({'ggH_hww_SBI'+m+'_'+model_name:['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')']}) 
  
  
 nuisances['tttwTh']  = {
@@ -955,7 +955,7 @@ for m in masses:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['trigg']['samples'].update({'ggH_hww_'+m+'_'+model_name:trig_syst})
     nuisances['trigg']['samples'].update({'qqH_hww_'+m+'_'+model_name:trig_syst})
-    nuisances['trigg']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:trig_syst})
+    nuisances['trigg']['samples'].update({'ggH_hww_SBI'+m+'_'+model_name:trig_syst})
  
 ###### Electron Efficiency and energy scale
 
@@ -993,7 +993,7 @@ for m in masses:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['eff_e']['samples'].update({'ggH_hww_'+m+'_'+model_name: id_syst_ele })
     nuisances['eff_e']['samples'].update({'qqH_hww_'+m+'_'+model_name: id_syst_ele })
-    nuisances['eff_e']['samples'].update({'ggH_hww_INT'+m+'_'+model_name: id_syst_ele })
+    nuisances['eff_e']['samples'].update({'ggH_hww_SBI'+m+'_'+model_name: id_syst_ele })
 
 
 nuisances['electronpt']  = {
@@ -1029,7 +1029,7 @@ for m in masses:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['electronpt']['samples'].update({'ggH_hww_'+m+'_'+model_name:['1', '1']})
     nuisances['electronpt']['samples'].update({'qqH_hww_'+m+'_'+model_name:['1', '1']})
-    nuisances['electronpt']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:['1', '1']})                
+    nuisances['electronpt']['samples'].update({'ggH_hww_SBI'+m+'_'+model_name:['1', '1']})                
 
 
 
@@ -1066,7 +1066,7 @@ for m in masses:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['elePtCor']['samples'].update({'ggH_hww_'+m+'_'+model_name: elePtCor_Syst})
     nuisances['elePtCor']['samples'].update({'qqH_hww_'+m+'_'+model_name: elePtCor_Syst})
-    nuisances['elePtCor']['samples'].update({'ggH_hww_INT'+m+'_'+model_name: elePtCor_Syst}) 
+    nuisances['elePtCor']['samples'].update({'ggH_hww_SBI'+m+'_'+model_name: elePtCor_Syst}) 
 
 
 eleEtaCor_Syst = [ 'electron_etaW_'+Nlep+'l_Up / electron_etaW_'+Nlep+'l', 'electron_etaW_'+Nlep+'l_Down / electron_etaW_'+Nlep+'l']
@@ -1102,7 +1102,7 @@ for m in masses:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['eleEtaCor']['samples'].update({'ggH_hww_'+m+'_'+model_name:  eleEtaCor_Syst})
     nuisances['eleEtaCor']['samples'].update({'qqH_hww_'+m+'_'+model_name:  eleEtaCor_Syst})
-    nuisances['eleEtaCor']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:  eleEtaCor_Syst}) 
+    nuisances['eleEtaCor']['samples'].update({'ggH_hww_SBI'+m+'_'+model_name:  eleEtaCor_Syst}) 
 
 
 
@@ -1141,7 +1141,7 @@ for m in masses:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['eff_m']['samples'].update({'ggH_hww_'+m+'_'+model_name: id_syst_mu })
     nuisances['eff_m']['samples'].update({'qqH_hww_'+m+'_'+model_name: id_syst_mu })
-    nuisances['eff_m']['samples'].update({'ggH_hww_INT'+m+'_'+model_name: id_syst_mu })
+    nuisances['eff_m']['samples'].update({'ggH_hww_SBI'+m+'_'+model_name: id_syst_mu })
 
 
 
@@ -1180,7 +1180,7 @@ for m in masses:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['muonpt']['samples'].update({'ggH_hww_'+m+'_'+model_name:['1', '1']})
     nuisances['muonpt']['samples'].update({'qqH_hww_'+m+'_'+model_name:['1', '1']})
-    nuisances['muonpt']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:['1', '1']})
+    nuisances['muonpt']['samples'].update({'ggH_hww_SBI'+m+'_'+model_name:['1', '1']})
 
 
 
@@ -1218,7 +1218,7 @@ for m in masses:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['jes']['samples'].update({'ggH_hww_'+m+'_'+model_name:['1', '1']})
     nuisances['jes']['samples'].update({'qqH_hww_'+m+'_'+model_name:['1', '1']})
-    nuisances['jes']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:['1', '1']})
+    nuisances['jes']['samples'].update({'ggH_hww_SBI'+m+'_'+model_name:['1', '1']})
  
 nuisances['met']  = {
                 'name'  : 'scale_met',
@@ -1255,7 +1255,7 @@ for m in masses:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     nuisances['met']['samples'].update({'ggH_hww_'+m+'_'+model_name:['1', '1']})
     nuisances['met']['samples'].update({'qqH_hww_'+m+'_'+model_name:['1', '1']})
-    nuisances['met']['samples'].update({'ggH_hww_INT'+m+'_'+model_name:['1', '1']})
+    nuisances['met']['samples'].update({'ggH_hww_SBI'+m+'_'+model_name:['1', '1']})
  
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat']  = {
