@@ -162,7 +162,7 @@ DataTrig = {
             'DoubleEG'       : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu &&  trig_DbleEle' ,
             'SingleElectron' : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu && !trig_DbleEle &&  trig_SnglEle' ,
            }
-'''
+
 ###########################################
 #############  BACKGROUNDS  ###############
 ###########################################
@@ -391,7 +391,7 @@ samples['VVV'] = {    'name':   getSampleFiles(directory,'ZZZ')
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
                       'suppressNegativeNuisances' :['all'],
                   }
-'''
+
 ###########################################
 #############  HIGH MASS SIGNALS   ##################
 ###########################################
