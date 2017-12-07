@@ -9,12 +9,8 @@ if isNtugrid5:
 else:
     treeBaseDir = "/eos/cms/store/group/phys_higgs/cmshww/amassiro/"
 
-
 directory           = os.path.join(treeBaseDir,"Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__vh3lSel")
-# directory           = os.path.join(treeBaseDir,"Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__vh3lSel")Nov20
-# directory           = os.path.join(treeBaseDir,"Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__vh3lSel")
 directoryDATA       = os.path.join(treeBaseDir,"Full2016_Apr17/{0}/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__hadd__l2tightOR__dorochester__formulasDATA__vh3lSel")
-# directoryDATA       = os.path.join(treeBaseDir,"Full2016_Apr17/{0}/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__hadd__l2tightOR__formulasDATA__vh3lSel")Nov20
 # directoryFake       = os.path.join(treeBaseDir,"Full2016_Apr17/{0}/lepSel__EpTCorr__TrigMakerData__fakeSel__hadd")
 
 
@@ -95,8 +91,62 @@ SFweight4l += '*'+LepWPweight4l+'*'+LepWPCut4l
 #METFilter_MCNew  =  '(std_vector_trigger_special[8]*std_vector_trigger_special[9])'
 #METFilter_MC     =  METFilter_Common + '*' + '(('+METFilter_MCver+'*'+METFilter_MCOld+')||(!'+METFilter_MCver+'*'+METFilter_MCNew+'))'
 
-METFilter_MC   = 'METFilter_MC'
-METFilter_DATA = 'METFilter_DATA'
+METFilter_MC   = 'METFilter _MC'
+METFilter_DATA = 'METFilter _DATA'
+
+########################### #####################
+###########%%%%%%   STXS      ###################
+########################### #####################
+
+useSTXS = True
+def STXSweight(val):
+    dict_name2id = {
+        # https://github.com/cms-sw/cmssw/blob/master/SimDataFormats/HTXS/interface/HiggsTemplateCrossSections.h
+        'ggH_hww'         : 11, #ggF
+        'ggH_fwd_hww'     : 10,
+        'ggH_htt'         : 11,
+        'ggH_fwd_htt'     : 10,
+        'qqH_hww'         : 21, #VBF
+        'qqH_fwd_hww'     : 20,
+        'qqH_htt'         : 21,
+        'qqH_fwd_htt'     : 20,
+        'WH_had_hww'      : 23, #VH
+        'WH_had_fwd_hww'  : 22,
+        'WH_had_htt'      : 23,
+        'WH_had_fwd_htt'  : 22,
+        'ZH_had_hww'      : 23,
+        'ZH_had_fwd_hww'  : 22,
+        'ZH_had_htt'      : 23,
+        'ZH_had_fwd_htt'  : 22,
+        'WH_lep_hww'      : 31,
+        'WH_lep_fwd_hww'  : 30,
+        'WH_lep_htt'      : 31,
+        'WH_lep_fwd_htt'  : 30,
+        'ZH_lep_hww'      : 41,
+        'ZH_lep_fwd_hww'  : 40,
+        'ZH_lep_htt'      : 41,
+        'ZH_lep_fwd_htt'  : 40,
+        'ggZH_lep_hww'    : 51, #ggZH
+        'ggZH_lep_fwd_hww': 50,
+        'ggZH_lep_htt'    : 51,
+        'ggZH_lep_fwd_htt': 50,
+        'ttH_hww'         : 61, #ttH
+        'ttH_fwd_hww'     : 60,
+        'ttH_htt'         : 61,
+        'ttH_fwd_htt'     : 60,
+        'bbH_hww'         : 71, #bbH
+        'bbH_fwd_hww'     : 70,
+        'bbH_htt'         : 71,
+        'bbH_fwd_htt'     : 70,
+    }
+    if useSTXS:
+        if isinstance(val,int):
+            return "(HTXS_stage0=={0})".format(val)
+        elif val in dict_name2id.keys():
+            return STXSweight(dict_name2id[val])
+    return "(1)"
+
+
 
 ################################################
 ############ DATA DECLARATION ##################
@@ -162,24 +212,20 @@ samples['ZZ']  = {    'name': getSampleFiles(directory,'ZZTo4L')
                               +getSampleFiles(directory,'ggZZ4e')
                               +getSampleFiles(directory,'ggZZ4m'),
                       'weight' : 'baseW'+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC,
-                     'FilesPerJob' : 1,
+                      # 'FilesPerJob' : 1,
                       #1.256/1.212 see this page https://twiki.cern.ch/twiki/bin/viewauth/CMS/SummaryTable1G25ns#Diboson
                   }
-
-    # Fix the loop correction to NNLO
 addSampleWeight(samples,'ZZ','ZZTo4L',"1.1654") ## The NNLO/NLO k-factor, cited from https://arxiv.org/abs/1405.2219v1
 addSampleWeight(samples,'ZZ','ggZZ2e2t',"2.27") ## The NLO/LO k-factor, cited from https://arxiv.org/abs/1509.06734v1
-addSampleWeight(samples,'ZZ','ggZZ2m2t',"2.27") 
+addSampleWeight(samples,'ZZ','ggZZ2m2t',"2.27")
 addSampleWeight(samples,'ZZ','ggZZ2e2m',"2.27")
 addSampleWeight(samples,'ZZ','ggZZ4e',"2.27")
 addSampleWeight(samples,'ZZ','ggZZ4m',"2.27")
 addSampleWeight(samples,'ZZ','ggZZ4t',"2.27")
 
 
-
-
 samples['ggH_hzz']  = {    'name': getSampleFiles(directory,'GluGluHToZZTo4L_M125'),
-                      'weight' : 'baseW'+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC,
+                      'weight' : 'baseW'+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC+'*'+STXSweight(11),
                       #1.256/1.212 see this page https://twiki.cern.ch/twiki/bin/viewauth/CMS/SummaryTable1G25ns#Diboson
                   }
 
@@ -192,7 +238,7 @@ samples['WW']  = {    'name': getSampleFiles(directory,'WWTo2L2Nu')
 samples['DY']  = {    'name': getSampleFiles(directory,'DYJetsToLL_M-10to50')
                              +getSampleFiles(directory,'DYJetsToLL_M-50'),
                       'weight' : 'baseW'+'*'+SFweight4l+'*'+GenLepMatch2l+'*'+METFilter_MC,
-                     'FilesPerJob' : 1,
+                     # 'FilesPerJob' : 1,
                  }
 
 samples['ttW']  = {    'name': getSampleFiles(directory,'TTWJetsToLNu_ext2'),
@@ -215,7 +261,7 @@ samples['top'] = {   'name': getSampleFiles(directory,'TTTo2L2Nu')
                             +getSampleFiles(directory,'ST_tW_antitop')
                             +getSampleFiles(directory,'ST_tW_top'),
                      'weight' : 'baseW'+'*'+SFweight4l+'*'+GenLepMatch2l+'*'+METFilter_MC,
-                     'FilesPerJob' : 1,
+                     # 'FilesPerJob' : 1,
                  }
 
 samples['VVZ'] = {    'name': getSampleFiles(directory,'WZZ')
@@ -227,37 +273,53 @@ samples['VVZ'] = {    'name': getSampleFiles(directory,'WZZ')
 samples['WWW'] = {    'name': getSampleFiles(directory,'WWW'),
                       'weight' : XSWeight+'*'+SFweight4l+'*'+GenLepMatch3l+'*'+METFilter_MC,
                   }
+addSampleWeight(samples,'WWW','WWW',"0.2086/0.1833") # Fixing incorrect xsec from 0.1833 to 0.2087
 
-addSampleWeight(samples,'WWW','WWW',"0.2086/0.1833") # Fixing incorrect xsec from 0.1833 to 0.2086
 
 ####################################
 ############# Signal ###############
 ####################################
-samples['ZH_hww']  = {  'name': getSampleFiles(directory,'HZJ_HToWW_M125'),
-                        'weight' : XSWeight+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC,
+samples['ZH_lep_hww']  = {  'name': getSampleFiles(directory,'HZJ_HToWW_M125'),
+                        'weight' : XSWeight+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC+'*'+STXSweight('ZH_lep_hww'),
+                     }
+samples['ZH_lep_fwd_hww']  = {  'name': getSampleFiles(directory,'HZJ_HToWW_M125'),
+                        'weight' : XSWeight+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC+'*'+STXSweight('ZH_lep_fwd_hww'),
+                     }
+samples['ZH_had_hww']  = {  'name': getSampleFiles(directory,'HZJ_HToWW_M125'),
+                        'weight' : XSWeight+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC+'*'+STXSweight('ZH_had_hww'),
+                     }
+samples['ZH_had_fwd_hww']  = {  'name': getSampleFiles(directory,'HZJ_HToWW_M125'),
+                        'weight' : XSWeight+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC+'*'+STXSweight('ZH_had_fwd_hww'),
                      }
 
-samples['ZH_htt']  = {  'name':#getSampleFiles(directory,'HWminusJ_HToTauTau_M125'),
-                               # getSampleFiles(directory,'HWplusJ_HToTauTau_M125'),
-                               getSampleFiles(directory,'HZJ_HToTauTau_M125'),
-                           'weight' : XSWeight+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC,
+samples['ZH_lep_htt']  = {  'name': getSampleFiles(directory,'HZJ_HToTauTau_M125'),
+                           'weight' : XSWeight+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC+'*'+STXSweight('ZH_lep_htt'),
+                     }
+samples['ZH_lep_fwd_htt']  = {  'name': getSampleFiles(directory,'HZJ_HToTauTau_M125'),
+                           'weight' : XSWeight+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC+'*'+STXSweight('ZH_lep_fwd_htt'),
+                     }
+samples['ZH_had_htt']  = {  'name': getSampleFiles(directory,'HZJ_HToTauTau_M125'),
+                           'weight' : XSWeight+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC+'*'+STXSweight('ZH_had_htt'),
+                     }
+samples['ZH_had_fwd_htt']  = {  'name': getSampleFiles(directory,'HZJ_HToTauTau_M125'),
+                           'weight' : XSWeight+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC+'*'+STXSweight('ZH_had_fwd_htt'),
                      }
 
-# samples['ggZH_hww']  = { 'name': getSampleFiles(directory,'ggZH_HToWW_M125'),
-samples['ggZH_hww']  = { 'name': getSampleFiles(directory,'GluGluZH_HToWWTo2L2Nu_M125'),
-                         'weight' : XSWeight+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC,
+samples['ggZH_lep_hww']  = { 'name': getSampleFiles(directory,'GluGluZH_HToWWTo2L2Nu_M125'),
+                         'weight' : XSWeight+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC+'*'+STXSweight('ggZH_lep_hww'),
+                       }
+samples['ggZH_lep_fwd_hww']  = { 'name': getSampleFiles(directory,'GluGluZH_HToWWTo2L2Nu_M125'),
+                         'weight' : XSWeight+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC+'*'+STXSweight('ggZH_lep_fwd_hww'),
                        }
 
-##################################
-############ Tools ###############
-##################################
-
-# Fixing to absolute path
 for sampleName, sample in samples.iteritems():
     sample['name']=[ os.path.join(directory,it) if sampleName not in ['DATA', 'Fake'] else it for it in sample['name'] ]
     if treeBaseDir.startswith('/eos/cms'):
         sample['name']=[ "root://eoscms.cern.ch/"+it for it in sample['name'] ]
 
+##################################
+############ Tools ###############
+##################################
 
 # Keep specific samples
 # samplesToKeep = ['DATA','Fake']
