@@ -25,14 +25,10 @@ structure['Fake_ee']  = {
                   'isSignal' : 0,
                   'isData'   : 0,
                   'removeFromCuts' : [
-                                      'hww2l2v_13TeV_2jmm_vbf',
-                                      'hww2l2v_13TeV_2jmm_vbf_lowmjj',
-                                      'hww2l2v_13TeV_2jmm_vbf_highmjj',
-                                      'hww2l2v_13TeV_WW_2jmm_vbf',
-                                      'hww2l2v_13TeV_top_2jmm_vbf', 
-                                      #
-                                      'hww2l2v_13TeV_WW_2jee_vbf',
-                                      'hww2l2v_13TeV_2jee_vbf_highmjj',
+                                      'hww2l2v_13TeV_2jmm',
+                                      'hww2l2v_13TeV_2jmm_vh2j',
+                                      'hww2l2v_13TeV_WW_2jmm',
+                                      'hww2l2v_13TeV_top_2jmm', 
                                      ],
               }
 
@@ -40,11 +36,10 @@ structure['Fake_mm']  = {
                   'isSignal' : 0,
                   'isData'   : 0,
                   'removeFromCuts' : [
-                                      'hww2l2v_13TeV_2jee_vbf',
-                                      'hww2l2v_13TeV_2jee_vbf_lowmjj',
-                                      'hww2l2v_13TeV_2jee_vbf_highmjj',
-                                      'hww2l2v_13TeV_WW_2jee_vbf',
-                                      'hww2l2v_13TeV_top_2jee_vbf',
+                                      'hww2l2v_13TeV_2jee',
+                                      'hww2l2v_13TeV_2jee_vh2j',
+                                      'hww2l2v_13TeV_WW_2jee',
+                                      'hww2l2v_13TeV_top_2jee',
                                      ],
               }
 

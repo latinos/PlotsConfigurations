@@ -1,6 +1,6 @@
 # example of configuration file
 
-tag = 'VBF_SF'
+tag = 'ggH2j_SF'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -25,7 +25,7 @@ lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotVBF_SF'
+outputDirPlots = 'plotggH2j_SF'
 
 
 # used by mkDatacards to define output directory for datacards
