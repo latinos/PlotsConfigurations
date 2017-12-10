@@ -7,7 +7,7 @@ supercut = ' mll > 12 \
              && std_vector_jet_pt[0] >= 30 && std_vector_jet_pt[1] >= 30 \
              && ((abs(detajj) < 3.5) || (mjj < 400 && (abs(detajj) >= 3.5))) \
              && '+bVeto+' \
-             && dymvavbf > 0.8 \
+             && dymvaggh > 0.8 \
            '               
 
 cuts['2j_ggH_ee_in'] = '   (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11)   \

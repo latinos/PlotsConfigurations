@@ -153,6 +153,40 @@ DYestim['hww2l2v_13TeV_WW_2jmm'] = {
                                    'asyst'   : 0.02 ,
                                      }
 
+DYestim['hww2l2v_13TeV_WW_2jee_vh2j'] = {
+                                   'rinout'  : 'DYmva0p8' ,
+                                   'njet'    : '2j'    ,
+                                   'flavour' : 'ee' ,
+                                   'DYProc'  : 'DY' ,
+                                   'SFin'    : 'hww2l2v_13TeV_DYin_2jee' ,
+                                   'SFinDa'  : 'DATA',
+                                   'SFinMC'  : ['VZ','Vg','WZgS_L','WZgS_H'],
+                                   'DFin'    : 'hww2l2v_13TeV_DYin_2jdf' ,
+                                   'DFinDa'  : 'DATA' ,
+                                   'DFinMC'  : ['VZ','Vg','WZgS_L','WZgS_H'],
+                                   'NPname'  : 'hww_DYeenorm2j' ,
+                                   'AccNum'  : 'hww2l2v_13TeV_WW_2jee_vh2j_WWAccNum/events/histo_DY',
+                                   'AccDen'  : 'hww2l2v_13TeV_2jee_AccDen/events/histo_DY',
+                                   'asyst'   : 0.03 ,
+                                     }
+
+DYestim['hww2l2v_13TeV_WW_2jmm_vh2j'] = {
+                                   'rinout'  : 'DYmva0p8' ,
+                                   'njet'    : '2j'    ,
+                                   'flavour' : 'mm' ,
+                                   'DYProc'  : 'DY' ,
+                                   'SFin'    : 'hww2l2v_13TeV_DYin_2jmm' ,
+                                   'SFinDa'  : 'DATA',
+                                   'SFinMC'  : ['VZ','Vg','WZgS_L','WZgS_H'],
+                                   'DFin'    : 'hww2l2v_13TeV_DYin_2jdf' ,
+                                   'DFinDa'  : 'DATA' ,
+                                   'DFinMC'  : ['VZ','Vg','WZgS_L','WZgS_H'],
+                                   'NPname'  : 'hww_DYmmnorm2j' ,
+                                   'AccNum'  : 'hww2l2v_13TeV_WW_2jmm_vh2j_WWAccNum/events/histo_DY',
+                                   'AccDen'  : 'hww2l2v_13TeV_2jmm_AccDen/events/histo_DY',
+                                   'asyst'   : 0.02 ,
+                                     }
+
 
 #DYestim['hww2l2v_13TeV_top_2jee'] = {
 #                                   'rinout'  : 'DYmva0p8top' ,

@@ -113,8 +113,11 @@ nuisances['fake_syst_ee']  = {
                            'hww2l2v_13TeV_2jee',
                            'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
                            'hww2l2v_13TeV_top_2jee',
+                           'hww2l2v_13TeV_top_2jee_vh2j',
                            'hww2l2v_13TeV_top_2jsf',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
                          ]
 }
 
@@ -128,8 +131,11 @@ nuisances['fake_syst_mm']  = {
                            'hww2l2v_13TeV_2jmm',
                            'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
                            'hww2l2v_13TeV_top_2jmm',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
                            'hww2l2v_13TeV_top_2jsf',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
                          ]
 }
 
@@ -146,8 +152,11 @@ nuisances['fake_ele']  = {
                            'hww2l2v_13TeV_2jee',
                            'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
                            'hww2l2v_13TeV_top_2jee',
+                           'hww2l2v_13TeV_top_2jee_vh2j',
                            'hww2l2v_13TeV_top_2jsf',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
                          ]
 
 }
@@ -164,8 +173,11 @@ nuisances['fake_ele_stat']  = {
                            'hww2l2v_13TeV_2jee',
                            'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
                            'hww2l2v_13TeV_top_2jee',
+                           'hww2l2v_13TeV_top_2jee_vh2j',
                            'hww2l2v_13TeV_top_2jsf',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
                          ]
 }
 
@@ -181,8 +193,11 @@ nuisances['fake_mu']  = {
                            'hww2l2v_13TeV_2jmm',
                            'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
                            'hww2l2v_13TeV_top_2jmm',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
                            'hww2l2v_13TeV_top_2jsf',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
                          ]
 
 }
@@ -200,8 +215,11 @@ nuisances['fake_mu_stat']  = {
                            'hww2l2v_13TeV_2jmm',
                            'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
                            'hww2l2v_13TeV_top_2jmm',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
                            'hww2l2v_13TeV_top_2jsf',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
                          ]
 }
 
@@ -214,15 +232,21 @@ nuisances['btagbc']  = {
                 'type'  : 'shape',               
                 'cuts'  : [
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
                            'hww2l2v_13TeV_top_2jee'
                            'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
                            'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                ],
+                           #
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jee_vh2j'
+                           'hww2l2v_13TeV_2jmm_vh2j',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
                 'samples'  : {
                    #'DY'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],  # DATA Driven
                    'WW'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
@@ -289,15 +313,21 @@ nuisances['btagudsg']  = {
                 'type'  : 'shape',
                 'cuts'  : [
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
                            'hww2l2v_13TeV_top_2jee'
                            'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
                            'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                ],
+                           #
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jee_vh2j'
+                           'hww2l2v_13TeV_2jmm_vh2j',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
                 'samples'  : {
                    #'DY'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'], # DATA Driven
                    'VVV'     : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
@@ -370,15 +400,21 @@ nuisances['trigg']  = {
                 'type'  : 'shape',
                 'cuts'  : [
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
                            'hww2l2v_13TeV_top_2jee'
                            'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
                            'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                ],
+                           #
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jee_vh2j'
+                           'hww2l2v_13TeV_2jmm_vh2j',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
                 'samples'  : {
                    #'DY'      : trig_syst , # Data driven
                    'VVV'     : trig_syst ,
@@ -449,15 +485,15 @@ nuisances['eff_e']  = {
                 'type'  : 'shape',
                 'cuts'  : [
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
                            'hww2l2v_13TeV_top_2jee'
-                           'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
-                           'hww2l2v_13TeV_WW_2jmm',
-                           'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                ],
+                           #
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jee_vh2j'
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
                 'samples'  : {
                    #'DY'      : id_syst_ele , # DATA Driven
                    'VVV'     : id_syst_ele ,
@@ -524,15 +560,15 @@ nuisances['electronpt']  = {
                 'type'  : 'shape',
                 'cuts'  : [
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
                            'hww2l2v_13TeV_top_2jee'
-                           'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
-                           'hww2l2v_13TeV_WW_2jmm',
-                           'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                ],
+                           #
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jee_vh2j'
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
                 'samples'  : {
                    #'DY' :  ['1', '1'], # Data driven
                    'ggWW' :['1', '1'],
@@ -603,15 +639,15 @@ nuisances['elePtCor']  = {
                 'type'  : 'shape',
                 'cuts'  : [
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
                            'hww2l2v_13TeV_top_2jee'
-                           'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
-                           'hww2l2v_13TeV_WW_2jmm',
-                           'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                ],
+                           #
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jee_vh2j'
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
                 'samples'  : {
                    #'DY'         : elePtCor_Syst , #Data driven
                    'ggWW'       : elePtCor_Syst ,
@@ -678,17 +714,17 @@ nuisances['eleEtaCor']  = {
                 'name'  : 'hww_eleEtaCor',
                 'kind'  : 'weight',
                 'type'  : 'shape',
-               'cuts'  : [
+                'cuts'  : [
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
                            'hww2l2v_13TeV_top_2jee'
-                           'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
-                           'hww2l2v_13TeV_WW_2jmm',
-                           'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                ],
+                           #
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jee_vh2j'
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
                 'samples'  : {
                    #'DY'         : eleEtaCor_Syst , #Data driven
                    'ggWW'       : eleEtaCor_Syst ,
@@ -759,16 +795,16 @@ nuisances['eff_m']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'cuts'  : [
-                           'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
-                           'hww2l2v_13TeV_WW_2jee',
-                           'hww2l2v_13TeV_top_2jee'
                            'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
                            'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                ],
+                           #
+                           'hww2l2v_13TeV_2jmm_vh2j',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
                 'samples'  : {
                    #'DY'      : id_syst_mu , # Data driven
                    'VVV'     : id_syst_mu ,
@@ -833,17 +869,17 @@ nuisances['muonpt']  = {
                 'name'  : 'scale_m',
                 'kind'  : 'tree',
                 'type'  : 'shape',
-               'cuts'  : [
-                           'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
-                           'hww2l2v_13TeV_WW_2jee',
-                           'hww2l2v_13TeV_top_2jee'
+                'cuts'  : [
                            'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
                            'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                ],
+                           #
+                           'hww2l2v_13TeV_2jmm_vh2j',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
                 'samples'  : {
                    'ggWW' :['1', '1'],
                    #'WW' :  ['1', '1'], # Data driven
@@ -915,15 +951,21 @@ nuisances['jes']  = {
                 'type'  : 'shape',
                 'cuts'  : [
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
                            'hww2l2v_13TeV_top_2jee'
                            'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
                            'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                ],
+                           #
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jee_vh2j'
+                           'hww2l2v_13TeV_2jmm_vh2j',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
                 'samples'  : {
                    'ggWW' :['1', '1'],
                    #'WW' :  ['1', '1'], # Data driven
@@ -994,16 +1036,21 @@ nuisances['met']  = {
                 'type'  : 'shape',
                 'cuts'  : [
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
                            'hww2l2v_13TeV_top_2jee'
                            'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
                            'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                ],
-
+                           #
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jee_vh2j'
+                           'hww2l2v_13TeV_2jmm_vh2j',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
                 'samples'  : {
                    'ggWW' :['1', '1'],
                    #'WW' :  ['1', '1'], # Data driven
@@ -1077,15 +1124,21 @@ nuisances['PS']  = {
                 'type'  : 'shape',
                 'cuts'  : [
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
                            'hww2l2v_13TeV_top_2jee'
                            'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
                            'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                ],
+                           #
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jee_vh2j'
+                           'hww2l2v_13TeV_2jmm_vh2j',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
                 'samples'  : {
                   'WW'          : ['0.91922', '1.'], #
                   'ggH_hww'     : ['0.91036', '1.'], # These numbers are used to normalize the PS variation to the same integral as the nominal after the wwSel skim
@@ -1104,15 +1157,21 @@ nuisances['UE']  = {
                 'type'  : 'shape',
                 'cuts'  : [
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
                            'hww2l2v_13TeV_top_2jee'
                            'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
                            'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                ],
+                           #
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jee_vh2j'
+                           'hww2l2v_13TeV_2jmm_vh2j',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
                 'samples'  : {
                   'WW'          : ['1.0336', '0.9863'], #
                   'ggH_hww'     : ['1.0019', '0.9254'], # These numbers are used to normalize the UE up/down variations to the same integral as the nominal after the wwSel skim
@@ -1142,15 +1201,21 @@ nuisances['ggH_mu']  = {
                 'type'  : 'shape',
                 'cuts'  : [
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
                            'hww2l2v_13TeV_top_2jee'
                            'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
                            'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                ],
+                           #
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jee_vh2j'
+                           'hww2l2v_13TeV_2jmm_vh2j',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
                 'samples'  : {
                    'ggH_hww'       : ['ggH_mu', '1+(1.-ggH_mu)'],
                    'ggH_fwd_hww'   : ['ggH_mu', '1+(1.-ggH_mu)'],
@@ -1167,15 +1232,21 @@ nuisances['ggH_res']  = {
                 'type'  : 'shape',
                 'cuts'  : [
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
                            'hww2l2v_13TeV_top_2jee'
                            'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
                            'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                ],
+                           #
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jee_vh2j'
+                           'hww2l2v_13TeV_2jmm_vh2j',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
 
                 'samples'  : {
                    'ggH_hww'       : ['ggH_res', '1+(1.-ggH_res)'],
@@ -1192,15 +1263,21 @@ nuisances['ggH_mig01']  = {
                 'type'  : 'shape',
                 'cuts'  : [
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
                            'hww2l2v_13TeV_top_2jee'
                            'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
                            'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                ],
+                           #
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jee_vh2j'
+                           'hww2l2v_13TeV_2jmm_vh2j',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
                 'samples'  : {
                    'ggH_hww'       : ['ggH_mig01', '1+(1.-ggH_mig01)'],
                    'ggH_fwd_hww'   : ['ggH_mig01', '1+(1.-ggH_mig01)'],
@@ -1216,15 +1293,21 @@ nuisances['ggH_mig12']  = {
                 'type'  : 'shape',
                 'cuts'  : [
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
                            'hww2l2v_13TeV_top_2jee'
                            'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
                            'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                ],
+                           #
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jee_vh2j'
+                           'hww2l2v_13TeV_2jmm_vh2j',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
                 'samples'  : {
                    'ggH_hww'       : ['ggH_mig12', '1+(1.-ggH_mig12)'],
                    'ggH_fwd_hww'   : ['ggH_mig12', '1+(1.-ggH_mig12)'],
@@ -1240,15 +1323,21 @@ nuisances['ggH_pT60']  = {
                 'type'  : 'shape',
                 'cuts'  : [
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
                            'hww2l2v_13TeV_top_2jee'
                            'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
                            'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                ],
+                           #
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jee_vh2j'
+                           'hww2l2v_13TeV_2jmm_vh2j',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
                 'samples'  : {
                    'ggH_hww'       : ['ggH_pT60', '1+(1.-ggH_pT60)'],
                    'ggH_fwd_hww'   : ['ggH_pT60', '1+(1.-ggH_pT60)'],
@@ -1262,17 +1351,23 @@ nuisances['ggH_pT120']  = {
                 'skipCMS'  : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-               'cuts'  : [
+                'cuts'  : [
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
                            'hww2l2v_13TeV_top_2jee'
                            'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
                            'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                ],
+                           #
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jee_vh2j'
+                           'hww2l2v_13TeV_2jmm_vh2j',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
                 'samples'  : {
                    'ggH_hww'       : ['ggH_pT120', '1+(1.-ggH_pT120)'],
                    'ggH_fwd_hww'   : ['ggH_pT120', '1+(1.-ggH_pT120)'],
@@ -1312,15 +1407,21 @@ nuisances['ggH_VBF3j']  = {
                 'type'  : 'shape',
                 'cuts'  : [
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
                            'hww2l2v_13TeV_top_2jee'
                            'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
                            'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                ],
+                           #
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jee_vh2j'
+                           'hww2l2v_13TeV_2jmm_vh2j',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
                 'samples'  : {
                    'ggH_hww'       : ['ggH_VBF3j', '1+(1.-ggH_VBF3j)'],
                    'ggH_fwd_hww'   : ['ggH_VBF3j', '1+(1.-ggH_VBF3j)'],
@@ -1336,15 +1437,21 @@ nuisances['ggH_qmtop']  = {
                 'type'  : 'shape',
                 'cuts'  : [
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
                            'hww2l2v_13TeV_top_2jee'
                            'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
                            'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                ],
+                           #
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jee_vh2j'
+                           'hww2l2v_13TeV_2jmm_vh2j',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
                 'samples'  : {
                    'ggH_hww'       : ['ggH_qmtop', '1+(1.-ggH_qmtop)'],
                    'ggH_fwd_hww'   : ['ggH_qmtop', '1+(1.-ggH_qmtop)'],
@@ -1363,6 +1470,9 @@ nuisances['QCDscale_CRSR_accept_top']  = {
                            'hww2l2v_13TeV_top_2jee',
                            'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
+                           'hww2l2v_13TeV_top_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
                 ]               
               }
 
@@ -1697,17 +1807,23 @@ nuisances['WWresum2j']  = {
                 'samples'  : {
                 'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
                 },
-               'cuts'  : [
+                'cuts'  : [
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
                            'hww2l2v_13TeV_top_2jee'
                            'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
                            'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                ]
+                           #
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jee_vh2j'
+                           'hww2l2v_13TeV_2jmm_vh2j',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
                 }
 
 nuisances['WWqscale2j']  = {
@@ -1720,15 +1836,21 @@ nuisances['WWqscale2j']  = {
                 },
                 'cuts'  : [
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
-                           'hww2l2v_13TeV_top_2jee',
+                           'hww2l2v_13TeV_top_2jee'
                            'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
                            'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                ]
+                           #
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jee_vh2j'
+                           'hww2l2v_13TeV_2jmm_vh2j',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
                 }
 
 nuisances['WgStarScale']  = {
@@ -1754,42 +1876,73 @@ nuisances['WZScale'] = {
 #### WW fit
 
 nuisances['WWnorm2jsf']  = {
-               'name'  : 'CMS_hww_WWnorm2jsfvbf',
+               'name'  : 'CMS_hww_WWnorm2jsf',
                'samples'  : {
                    'WW' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
                            'hww2l2v_13TeV_top_2jee'
                            'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
                            'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                         ],
+                           ],
               }
+
+nuisances['WWnorm2jsf_vh2j']  = {
+               'name'  : 'CMS_hww_WWnorm2jsfvh2j',
+               'samples'  : {
+                   'WW' : '1.00',
+                   },  
+               'type'  : 'rateParam',
+               'cuts'  : [
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jee_vh2j'
+                           'hww2l2v_13TeV_2jmm_vh2j',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
+              }
+
 
 #### Top fit
 
 nuisances['Topnorm2jsf']  = {
-               'name'  : 'CMS_hww_Topnorm2jsfvbf',
+               'name'  : 'CMS_hww_Topnorm2jsf',
                'samples'  : {
                    'top' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
                            'hww2l2v_13TeV_top_2jee',
                            'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
                            'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
+                         ],
+              }
+
+nuisances['Topnorm2jsf_vh2j']  = {
+               'name'  : 'CMS_hww_Topnorm2jsfvh2j',
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jee_vh2j',
+                           'hww2l2v_13TeV_2jmm_vh2j',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
                          ],
               }
 
@@ -1805,9 +1958,10 @@ nuisances['DYeenorm2j'] = {
                              },
                 'cuts'  : [ 
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
-                           'hww2l2v_13TeV_top_2jee',
+                           #
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
                           ] ,
                 }
 
@@ -1820,9 +1974,10 @@ nuisances['DYmmnorm2j'] = {
                              },
                 'cuts'  : [ 
                            'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
-                           'hww2l2v_13TeV_top_2jmm',
+                           #
+                           'hww2l2v_13TeV_2jmm_vh2j',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
                           ] ,
                 }
 
@@ -1836,16 +1991,21 @@ nuisances['singleTopToTTbar']  = {
                 'type'  : 'shape',
                 'cuts'  : [
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
                            'hww2l2v_13TeV_top_2jee'
                            'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
                            'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                ],
-
+                           #
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jee_vh2j'
+                           'hww2l2v_13TeV_2jmm_vh2j',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
                 'samples'  : {  # up              down
                    'top'     : ['((dataset==15 || dataset==16) * 1.0816 + (dataset==17 || dataset==18 || dataset==19))',
                                 '((dataset==15 || dataset==16) * 0.9184 + (dataset==17 || dataset==18 || dataset==19))'],
@@ -1863,15 +2023,21 @@ nuisances['TopPtRew']  = {
                 'type'  : 'shape',
                 'cuts'  : [
                            'hww2l2v_13TeV_2jee',
-                           'hww2l2v_13TeV_2jee_vh2j',
                            'hww2l2v_13TeV_WW_2jee',
                            'hww2l2v_13TeV_top_2jee'
                            'hww2l2v_13TeV_2jmm',
-                           'hww2l2v_13TeV_2jmm_vh2j',
                            'hww2l2v_13TeV_WW_2jmm',
                            'hww2l2v_13TeV_top_2jmm',
                            'hww2l2v_13TeV_top_2jsf',
-                ],
+                           #
+                           'hww2l2v_13TeV_2jee_vh2j',
+                           'hww2l2v_13TeV_WW_2jee_vh2j',
+                           'hww2l2v_13TeV_top_2jee_vh2j'
+                           'hww2l2v_13TeV_2jmm_vh2j',
+                           'hww2l2v_13TeV_WW_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jmm_vh2j',
+                           'hww2l2v_13TeV_top_2jsf_vh2j',
+                           ],
                 'samples' : {
                      'top'  : ["1.","((1./"+Top_pTrw+" - 1)*(dataset==19) + 1)"]
                 }
