@@ -1,19 +1,19 @@
 # example of configuration file
 
-tag = 'VBF_SF'
+tag = 'BG_DY_NOHR_MVA080'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
 
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = 'variables_DYEST.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
+cutsFile = 'cuts_DYEST080.py' 
 
 # file with list of samples
-samplesFile = 'samples.py' 
+samplesFile = 'samples_DYEST.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
@@ -25,7 +25,7 @@ lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotVBF_SF'
+outputDirPlots = 'plotGGH'
 
 
 # used by mkDatacards to define output directory for datacards
@@ -37,5 +37,5 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+#nuisancesFile = 'nuisances.py'
 
