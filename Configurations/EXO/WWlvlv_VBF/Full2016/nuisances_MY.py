@@ -650,7 +650,7 @@ nuisances['Topofnorm0j']  = {
               }
 
 nuisances['Topofnorm1j']  = {
-               'name'  : 'ICHEP_Topnorm1j', 
+               'name'  : 'CMS_hwwhmof_Topnorm0j', 
                'samples'  : {
                    'top' : '1.00',
                    },
