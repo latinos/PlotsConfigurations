@@ -171,17 +171,14 @@ plot['top'] = {
                   'isData'   : 0, 
                   'scale'    : 1.0,
                   'cuts'  : {
-                       'hww2l2v_13TeV_of0j'      : 0.94 ,
-                       'hww2l2v_13TeV_top_of0j'  : 0.94 , 
-                       'hww2l2v_13TeV_dytt_of0j' : 0.94 ,
-                       'hww2l2v_13TeV_em_0j'     : 0.94 , 
-                       'hww2l2v_13TeV_me_0j'     : 0.94 , 
-                       #
-                       'hww2l2v_13TeV_of1j'      : 0.86 ,
-                       'hww2l2v_13TeV_top_of1j'  : 0.86 , 
-                       'hww2l2v_13TeV_dytt_of1j' : 0.86 ,
-                       'hww2l2v_13TeV_em_1j'     : 0.86 , 
-                       'hww2l2v_13TeV_me_1j'     : 0.86 , 
+                               'hww2l2v_13TeV_WW_0jee'  : 1.02537 ,
+                               'hww2l2v_13TeV_top_0jee' : 1.02537 ,
+                               'hww2l2v_13TeV_WW_0jmm'  : 1.02537 ,
+                               'hww2l2v_13TeV_top_0jmm' : 1.02537 ,
+                               #
+                               'hww2l2v_13TeV_WW_1jee'  : 0.983372 ,
+                               'hww2l2v_13TeV_WW_1jmm'  : 0.983372 ,
+                               'hww2l2v_13TeV_top_1jsf' : 0.983372 ,
                         },
                   }
 
@@ -191,6 +188,16 @@ plot['WW']  = {
                   'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+                  'cuts'  : {
+                               'hww2l2v_13TeV_WW_0jee'  : 1.12608 ,
+                               'hww2l2v_13TeV_top_0jee' : 1.12608 ,
+                               'hww2l2v_13TeV_WW_0jmm'  : 1.12608 ,
+                               'hww2l2v_13TeV_top_0jmm' : 1.12608 ,
+                               #
+                               'hww2l2v_13TeV_WW_1jee'  : 1.03282 ,
+                               'hww2l2v_13TeV_WW_1jmm'  : 1.03282 ,
+                               'hww2l2v_13TeV_top_1jsf' : 1.03282 ,
+                        },
                   }
 
 plot['ggWW']  = {
