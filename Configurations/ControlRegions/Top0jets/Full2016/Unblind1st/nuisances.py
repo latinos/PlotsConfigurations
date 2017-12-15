@@ -1387,25 +1387,6 @@ nuisances['DY0jpostfit']  = {
               }
 
 
-##  --- FitDiagnostics ---
-## Best fit CMS_hww_DYttnorm1j: 1.01685  -0.0430823/+0.0460648  (68% CL)
-
-DY1jpostfit     = 1.01685
-DY1jpostfitDown = 1 + 0.0430823/DY1jpostfit
-DY1jpostfitUp   = 1 + 0.0460648/DY1jpostfit
-
-nuisances['DY1jpostfit']  = {
-               'name'  : 'DY1jpostfit',
-               'type'  : 'lnN',
-               'samples'  : {
-                   'DY' : str(DY1jpostfitDown)+'/'+str(DY1jpostfitUp),
-                   },
-               'cuts'  : [
-                 'hww2l2v_13TeV_dytt_of1j',
-                 'hww2l2v_13TeV_top_of1j',
-                ]
-              }
-
 ## --- FitDiagnostics ---
 ## Best fit CMS_hww_Topnorm0j: 0.938715  -0.0476224/+0.0517666  (68% CL)
 
@@ -1417,7 +1398,7 @@ nuisances['Top0jpostfit']  = {
                'name'  : 'Top0jpostfit',
                'type'  : 'lnN',
                'samples'  : {
-                   'DY' : str(Top0jpostfitDown)+'/'+str(Top0jpostfitUp),
+                   'top' : str(Top0jpostfitDown)+'/'+str(Top0jpostfitUp),
                    },
                'cuts'  : [
                  'hww2l2v_13TeV_dytt_of0j',
@@ -1425,26 +1406,6 @@ nuisances['Top0jpostfit']  = {
                 ]
               }
 
-
-## --- FitDiagnostics ---
-## Best fit CMS_hww_Topnorm1j: 0.944139  -0.0318098/+0.0338566  (68% CL)
-
-
-Top1jpostfit     = 0.944139 
-Top1jpostfitDown = 1 + 0.0318098/Top1jpostfit
-Top1jpostfitUp   = 1 + 0.0338566/Top1jpostfit
-
-nuisances['Top1jpostfit']  = {
-               'name'  : 'Top1jpostfit',
-               'type'  : 'lnN',
-               'samples'  : {
-                   'DY' : str(Top1jpostfitDown)+'/'+str(Top1jpostfitUp),
-                   },
-               'cuts'  : [
-                 'hww2l2v_13TeV_dytt_of1j',
-                 'hww2l2v_13TeV_top_of1j',
-                ]
-              }
 
 ## --- FitDiagnostics ---
 ## Best fit CMS_hww_WWnorm0j: 1.15489  -0.0480807/+0.0640312  (68% CL)
@@ -1457,29 +1418,10 @@ nuisances['WW0jpostfit']  = {
                'name'  : 'WW0jpostfit',
                'type'  : 'lnN',
                'samples'  : {
-                   'DY' : str(WW0jpostfitDown)+'/'+str(WW0jpostfitUp),
+                   'WW' : str(WW0jpostfitDown)+'/'+str(WW0jpostfitUp),
                    },
                'cuts'  : [
                  'hww2l2v_13TeV_dytt_of0j',
                  'hww2l2v_13TeV_top_of0j',
-                ]
-              }
-
-## --- FitDiagnostics ---
-## Best fit CMS_hww_WWnorm1j: 1.05597  -0.109579/+0.139443  (68% CL)
-
-WW1jpostfit     = 1.05597
-WW1jpostfitDown = 1 + 0.109579/WW1jpostfit
-WW1jpostfitUp   = 1 + 0.139443/WW1jpostfit
-
-nuisances['WW1jpostfit']  = {
-               'name'  : 'WW1jpostfit',
-               'type'  : 'lnN',
-               'samples'  : {
-                   'DY' : str(WW1jpostfitDown)+'/'+str(WW1jpostfitUp),
-                   },
-               'cuts'  : [
-                 'hww2l2v_13TeV_dytt_of1j',
-                 'hww2l2v_13TeV_top_of1j',
                 ]
               }
