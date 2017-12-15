@@ -4,6 +4,7 @@ By following these instructions one should be able to read latino trees, produce
 # 0. Everything starts here
 
     ssh -Y lxplus.cern.ch -o ServerAliveInterval=240
+
     bash -l
 
     export CMSSW_DIRECTORY=~/work/CMSSW_Apr2017_HowToBeALatinLover/CMSSW_8_0_26_patch1/src
