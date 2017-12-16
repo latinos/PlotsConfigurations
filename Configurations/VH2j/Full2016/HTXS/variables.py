@@ -12,8 +12,6 @@ variables['events']  = {   'name': '1',
 
 variables['mll_more']  = {   'name': 'mll',            #   variable name
                         'range' : (8, 0,200),    #   variable range
-                        #'range' : (7,10,210),    #   variable range
-                      # 'range' : (12,90,300),    #   control region: mll > 90
                         'xaxis' : 'mll [GeV]',  #   x axis name
                         'fold' : 3
                         }

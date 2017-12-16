@@ -12,6 +12,28 @@ variables['events']  = {   'name': '1',
 
 
 variables['mllVSmth_pt2ge20'] = {   'name': 'mll:mth',            #   variable name    
+                             'range' : ([60,80,90,100,110,120,130,150,200],[10,25,35,40,45,50,55,70,90,210],),            #   variable range
+                             'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
+                             'fold' : 3 ,
+                             # do weighted plot too
+                             'doWeight' : 1,
+                             'binX'     : 8,
+                             'binY'     : 9
+                             #
+                             }
+
+variables['mllVSmth_pt2lt20'] = {   'name': 'mll:mth',            #   variable name    
+                             'range' : ([60,80,90,110,130,150,200],[10,25,40,50,70,90,210],),            #   variable range
+                             'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
+                             'fold' : 3 ,
+                             # do weighted plot too
+                             'doWeight' : 1,
+                             'binX'     : 6,
+                             'binY'     : 6
+                             #
+                             }
+ 
+variables['mllVSmth_pt2ge20_old'] = {   'name': 'mll:mth',            #   variable name    
                              'range' : ([60,80,90,100,110,120,130,140,200],[10,25,35,40,45,50,55,65,210],),            #   variable range
                              'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
                              'fold' : 3 ,
@@ -22,7 +44,8 @@ variables['mllVSmth_pt2ge20'] = {   'name': 'mll:mth',            #   variable n
                              #
                              }
 
-variables['mllVSmth_pt2lt20'] = {   'name': 'mll:mth',            #   variable name    
+
+variables['mllVSmth_pt2lt20_old'] = {   'name': 'mll:mth',            #   variable name    
                              'range' : ([60,80,90,110,130,150,200],[10,20,30,50,70,90,150],),            #   variable range
                              'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
                              'fold' : 3 ,
@@ -33,7 +56,6 @@ variables['mllVSmth_pt2lt20'] = {   'name': 'mll:mth',            #   variable n
                              #
                              }
  
-
 ## just for fun plots:
                   
 #variables['drll']  = {  'name': 'drll',        #   variable name    

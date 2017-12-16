@@ -275,8 +275,8 @@ nuisances['electronpt']  = {
                    'VVV'     : ['1', '1'],
                    'Vg'      : ['1', '1'],
                    'VgS'     : ['1', '1'],
-                   'ggH_hww ': ['1', '1'],
-                   'qqH_hww ': ['1', '1'],
+                   'ggH_hww' : ['1', '1'],
+                   'qqH_hww' : ['1', '1'],
                    'WH_hww'  : ['1', '1'],
                    'ZH_hww'  : ['1', '1'],
                    'ggZH_hww': ['1', '1'],
@@ -310,8 +310,8 @@ nuisances['elePtCor']  = {
                    'VVV'        : elePtCor_Syst ,
                    'Vg'         : elePtCor_Syst ,
                    'VgS'        : elePtCor_Syst ,
-                   'ggH_hww '   : elePtCor_Syst ,
-                   'qqH_hww '   : elePtCor_Syst ,
+                   'ggH_hww'    : elePtCor_Syst ,
+                   'qqH_hww'    : elePtCor_Syst ,
                    'WH_hww'     : elePtCor_Syst ,
                    'ZH_hww'     : elePtCor_Syst ,
                    'ggZH_hww'   : elePtCor_Syst ,
@@ -343,8 +343,8 @@ nuisances['eleEtaCor']  = {
                    'VVV'        : eleEtaCor_Syst ,
                    'Vg'         : eleEtaCor_Syst ,
                    'VgS'        : eleEtaCor_Syst ,
-                   'ggH_hww '   : eleEtaCor_Syst ,
-                   'qqH_hww '   : eleEtaCor_Syst ,
+                   'ggH_hww'    : eleEtaCor_Syst ,
+                   'qqH_hww'    : eleEtaCor_Syst ,
                    'WH_hww'     : eleEtaCor_Syst ,
                    'ZH_hww'     : eleEtaCor_Syst ,
                    'ggZH_hww'   : eleEtaCor_Syst ,
@@ -410,8 +410,8 @@ nuisances['muonpt']  = {
                    'VVV'     : ['1', '1'],
                    'Vg'      : ['1', '1'],
                    'VgS'     : ['1', '1'],
-                   'ggH_hww ': ['1', '1'],
-                   'qqH_hww ': ['1', '1'],
+                   'ggH_hww' : ['1', '1'],
+                   'qqH_hww' : ['1', '1'],
                    'WH_hww'  : ['1', '1'],
                    'ZH_hww'  : ['1', '1'],
                    'ggZH_hww': ['1', '1'],
@@ -446,8 +446,8 @@ nuisances['jes']  = {
                    'VVV'     : ['1', '1'],
                    'Vg'      : ['1', '1'],
                    'VgS'     : ['1', '1'],
-                   'ggH_hww ': ['1', '1'],
-                   'qqH_hww ': ['1', '1'],
+                   'ggH_hww' : ['1', '1'],
+                   'qqH_hww' : ['1', '1'],
                    'WH_hww'  : ['1', '1'],
                    'ZH_hww'  : ['1', '1'],
                    'ggZH_hww': ['1', '1'],
@@ -480,8 +480,8 @@ nuisances['met']  = {
                    'VVV'     : ['1', '1'],
                    'Vg'      : ['1', '1'],
                    'VgS'     : ['1', '1'],
-                   'ggH_hww ': ['1', '1'],
-                   'qqH_hww ': ['1', '1'],
+                   'ggH_hww' : ['1', '1'],
+                   'qqH_hww' : ['1', '1'],
                    'WH_hww'  : ['1', '1'],
                    'ZH_hww'  : ['1', '1'],
                    'ggZH_hww': ['1', '1'],
@@ -500,7 +500,7 @@ nuisances['met']  = {
 
 nuisances['PS']  = {
                 'name'  : 'PS',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
@@ -515,7 +515,7 @@ nuisances['PS']  = {
 
 nuisances['UE']  = {
                 'name'  : 'UE',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
@@ -532,7 +532,7 @@ nuisances['UE']  = {
 ## Shape nuisance due to QCD scale variations for DY
 nuisances['DYQCDscale']  = {
                 'name'  : 'QCDscale_V',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -554,10 +554,9 @@ nuisances['DYQCDscale']  = {
 
 nuisances['ggH_mu']  = {
                 'name'  : 'THU_ggH_Mu',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_mu', '1+(1.-ggH_mu)'],
                    'ggH_htt'   : ['ggH_mu', '1+(1.-ggH_mu)'],
@@ -567,10 +566,9 @@ nuisances['ggH_mu']  = {
 
 nuisances['ggH_res']  = {
                 'name'  : 'THU_ggH_Res',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_res', '1+(1.-ggH_res)'],
                    'ggH_htt'   : ['ggH_res', '1+(1.-ggH_res)'],
@@ -579,10 +577,9 @@ nuisances['ggH_res']  = {
 
 nuisances['ggH_mig01']  = {
                 'name'  : 'THU_ggH_Mig01',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_mig01', '1+(1.-ggH_mig01)'],
                    'ggH_htt'   : ['ggH_mig01', '1+(1.-ggH_mig01)'],
@@ -591,10 +588,9 @@ nuisances['ggH_mig01']  = {
 
 nuisances['ggH_mig12']  = {
                 'name'  : 'THU_ggH_Mig12',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_mig12', '1+(1.-ggH_mig12)'],
                    'ggH_htt'   : ['ggH_mig12', '1+(1.-ggH_mig12)'],
@@ -603,10 +599,9 @@ nuisances['ggH_mig12']  = {
 
 nuisances['ggH_pT60']  = {
                 'name'  : 'THU_ggH_PT60',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_pT60', '1+(1.-ggH_pT60)'],
                    'ggH_htt'   : ['ggH_pT60', '1+(1.-ggH_pT60)'],
@@ -615,10 +610,9 @@ nuisances['ggH_pT60']  = {
 
 nuisances['ggH_pT120']  = {
                 'name'  : 'THU_ggH_PT120',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_pT120', '1+(1.-ggH_pT120)'],
                    'ggH_htt'   : ['ggH_pT120', '1+(1.-ggH_pT120)'],
@@ -627,10 +621,9 @@ nuisances['ggH_pT120']  = {
 
 nuisances['ggH_VBF2j']  = {
                 'name'  : 'THU_ggH_VBF2j',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_VBF2j', '1+(1.-ggH_VBF2j)'],
                    'ggH_htt'   : ['ggH_VBF2j', '1+(1.-ggH_VBF2j)'],
@@ -639,10 +632,9 @@ nuisances['ggH_VBF2j']  = {
 
 nuisances['ggH_VBF3j']  = {
                 'name'  : 'THU_ggH_VBF3j',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_VBF3j', '1+(1.-ggH_VBF3j)'],
                    'ggH_htt'   : ['ggH_VBF3j', '1+(1.-ggH_VBF3j)'],
@@ -651,10 +643,9 @@ nuisances['ggH_VBF3j']  = {
 
 nuisances['ggH_qmtop']  = {
                 'name'  : 'THU_ggH_qmtop',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_qmtop', '1+(1.-ggH_qmtop)'],
                    'ggH_htt'   : ['ggH_qmtop', '1+(1.-ggH_qmtop)'],
@@ -708,7 +699,6 @@ HiggsXS = HiggsXSection()
 nuisances['QCDscale_ggH']  = {
                'name'  : 'QCDscale_ggH', 
                'samples'  : {
-                   'ggH_htt' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.0','scale','sm'),
                    'H_htt'   : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.0','scale','sm'),
                    },
                'type'  : 'lnN',
@@ -725,21 +715,11 @@ nuisances['QCDscale_qqH']  = {
               }
 
 
-
-nuisances['QCDscale_WH']  = {
-               'name'  : 'QCDscale_WH', 
+nuisances['QCDscale_VH']  = {
+               'name'  : 'QCDscale_VH',
                'samples'  : {
                    'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
                    'WH_htt' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
-                   },
-               'type'  : 'lnN',
-              }
-
-
-
-nuisances['QCDscale_ZH']  = {
-               'name'  : 'QCDscale_ZH', 
-               'samples'  : {
                    'ZH_hww' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH','125.0','scale','sm'),
                    'ZH_htt' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH','125.0','scale','sm'),
                    },
@@ -897,7 +877,7 @@ nuisances['QCDscale_ggWW']  = {
 #  - WW shaping
 nuisances['WWresum2j']  = {
                 'name'  : 'WWresum2j',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -912,7 +892,7 @@ nuisances['WWresum2j']  = {
 
 nuisances['WWqscale2j']  = {
                 'name'  : 'WWqscale2j',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -944,7 +924,7 @@ nuisances['WZScale'] = {
                 }
  
 nuisances['DYttnormvh2j']  = {
-               'name'  : 'CMS_DYttnormvh2j', 
+               'name'  : 'CMS_hww_DYttnormvh2j', 
                'samples'  : {
                    'DY' : '1.00',
                    },
@@ -958,7 +938,7 @@ nuisances['DYttnormvh2j']  = {
 
 
 nuisances['WWnormvh2j']  = {
-               'name'  : 'CMS_WWnormvh2j', 
+               'name'  : 'CMS_hww_WWnormvh2j', 
                'samples'  : {
                    'WW' : '1.00',
                    },
@@ -971,7 +951,7 @@ nuisances['WWnormvh2j']  = {
               }
 
 nuisances['Topnormvh2j']  = {
-               'name'  : 'CMS_Topnormvh2j', 
+               'name'  : 'CMS_hww_Topnormvh2j', 
                'samples'  : {
                    'top' : '1.00',
                    },
@@ -985,7 +965,7 @@ nuisances['Topnormvh2j']  = {
 
 nuisances['singleTopToTTbar']  = {
                 'name'  : 'singleTopToTTbar',
-                'skipCMS' : '1',
+                'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {

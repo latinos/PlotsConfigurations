@@ -1,12 +1,12 @@
 # example of configuration file
 
-tag = 'HWWhighMass2016_SF_embeddedWeights_ee_VBF_up200'
+tag = 'HWWhighMass2016_SF_embeddedWeights_ee_VBF_V3'
 
 
 #ee 1nw, mm 2nw
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_SF_ee_VBF_up200'
+outputDir = 'rootFile_SF_ee_VBF_V3'
 
 
 # file with list of variables
@@ -34,7 +34,7 @@ lumi = 35.9
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotHWWhighMass_SF_ee_VBF_up200'
+outputDirPlots = 'plotHWWhighMass_SF_ee_VBF_V3'
 
 
 # used by mkDatacards to define output directory for datacards

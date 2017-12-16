@@ -208,7 +208,7 @@ nuisances['trigg']  = {
                    'WZgS_H'  : trig_syst ,
                    'ggWW'    : trig_syst ,
                    'WW'      : trig_syst ,
-                   'WWewk'  : trig_syst ,
+                   'WWewk'   : trig_syst ,
                    'top'     : trig_syst ,
                    'Vg'      : trig_syst ,
                    'VgS'     : trig_syst ,
@@ -243,7 +243,7 @@ nuisances['eff_e']  = {
                    'WZgS_H'  : id_syst_ele ,
                    'ggWW'    : id_syst_ele ,
                    'WW'      : id_syst_ele ,
-                   'WWewk'  : id_syst_ele ,
+                   'WWewk'   : id_syst_ele ,
                    'top'     : id_syst_ele ,
                    'Vg'      : id_syst_ele ,
                    'VgS'     : id_syst_ele ,
@@ -270,7 +270,7 @@ nuisances['electronpt']  = {
                    'DY'      : ['1', '1'],
                    'ggWW'    : ['1', '1'],
                    'WW'      : ['1', '1'],
-                   'WWewk'  : ['1', '1'],
+                   'WWewk'   : ['1', '1'],
                    'top'     : ['1', '1'],
                    'VZ'      : ['1', '1'],
                    'WZgS_L'  : ['1', '1'],
@@ -278,8 +278,8 @@ nuisances['electronpt']  = {
                    'VVV'     : ['1', '1'],
                    'Vg'      : ['1', '1'],
                    'VgS'     : ['1', '1'],
-                   'ggH_hww ': ['1', '1'],
-                   'qqH_hww ': ['1', '1'],
+                   'ggH_hww' : ['1', '1'],
+                   'qqH_hww' : ['1', '1'],
                    'WH_hww'  : ['1', '1'],
                    'ZH_hww'  : ['1', '1'],
                    'ggZH_hww': ['1', '1'],
@@ -304,7 +304,7 @@ nuisances['elePtCor']  = {
                    'DY'         : elePtCor_Syst ,
                    'ggWW'       : elePtCor_Syst ,
                    'WW'         : elePtCor_Syst ,
-                   'WWewk'     : elePtCor_Syst ,
+                   'WWewk'      : elePtCor_Syst ,
                    'top'        : elePtCor_Syst ,
                    'VZ'         : elePtCor_Syst ,
                    'WZgS_L'     : elePtCor_Syst ,
@@ -312,8 +312,8 @@ nuisances['elePtCor']  = {
                    'VVV'        : elePtCor_Syst ,
                    'Vg'         : elePtCor_Syst ,
                    'VgS'        : elePtCor_Syst ,
-                   'ggH_hww '   : elePtCor_Syst ,
-                   'qqH_hww '   : elePtCor_Syst ,
+                   'ggH_hww'    : elePtCor_Syst ,
+                   'qqH_hww'    : elePtCor_Syst ,
                    'WH_hww'     : elePtCor_Syst ,
                    'ZH_hww'     : elePtCor_Syst ,
                    'ggZH_hww'   : elePtCor_Syst ,
@@ -337,7 +337,7 @@ nuisances['eleEtaCor']  = {
                    'DY'         : eleEtaCor_Syst ,
                    'ggWW'       : eleEtaCor_Syst ,
                    'WW'         : eleEtaCor_Syst ,
-                   'WWewk'     : eleEtaCor_Syst ,
+                   'WWewk'      : eleEtaCor_Syst ,
                    'top'        : eleEtaCor_Syst ,
                    'VZ'         : eleEtaCor_Syst ,
                    'WZgS_L'     : eleEtaCor_Syst ,
@@ -345,8 +345,8 @@ nuisances['eleEtaCor']  = {
                    'VVV'        : eleEtaCor_Syst ,
                    'Vg'         : eleEtaCor_Syst ,
                    'VgS'        : eleEtaCor_Syst ,
-                   'ggH_hww '   : eleEtaCor_Syst ,
-                   'qqH_hww '   : eleEtaCor_Syst ,
+                   'ggH_hww'    : eleEtaCor_Syst ,
+                   'qqH_hww'    : eleEtaCor_Syst ,
                    'WH_hww'     : eleEtaCor_Syst ,
                    'ZH_hww'     : eleEtaCor_Syst ,
                    'ggZH_hww'   : eleEtaCor_Syst ,
@@ -376,7 +376,7 @@ nuisances['eff_m']  = {
                    'WZgS_H'  : id_syst_mu ,
                    'ggWW'    : id_syst_mu ,
                    'WW'      : id_syst_mu ,
-                   'WWewk'  : id_syst_mu ,
+                   'WWewk'   : id_syst_mu ,
                    'top'     : id_syst_mu ,
                    'Vg'      : id_syst_mu ,
                    'VgS'     : id_syst_mu ,
@@ -403,7 +403,7 @@ nuisances['muonpt']  = {
                    'DY'      : ['1', '1'],
                    'ggWW'    : ['1', '1'],
                    'WW'      : ['1', '1'],
-                   'WWewk'  : ['1', '1'],
+                   'WWewk'   : ['1', '1'],
                    'top'     : ['1', '1'],
                    'VZ'      : ['1', '1'],
                    'WZgS_L'  : ['1', '1'],
@@ -411,8 +411,8 @@ nuisances['muonpt']  = {
                    'VVV'     : ['1', '1'],
                    'Vg'      : ['1', '1'],
                    'VgS'     : ['1', '1'],
-                   'ggH_hww ': ['1', '1'],
-                   'qqH_hww ': ['1', '1'],
+                   'ggH_hww' : ['1', '1'],
+                   'qqH_hww' : ['1', '1'],
                    'WH_hww'  : ['1', '1'],
                    'ZH_hww'  : ['1', '1'],
                    'ggZH_hww': ['1', '1'],
@@ -439,7 +439,7 @@ nuisances['jes']  = {
                    'DY'      : ['1', '1'],
                    'ggWW'    : ['1', '1'],
                    'WW'      : ['1', '1'],
-                   'WWewk'  : ['1', '1'],
+                   'WWewk'   : ['1', '1'],
                    'top'     : ['1', '1'],
                    'VZ'      : ['1', '1'],
                    'WZgS_L'  : ['1', '1'],
@@ -447,8 +447,8 @@ nuisances['jes']  = {
                    'VVV'     : ['1', '1'],
                    'Vg'      : ['1', '1'],
                    'VgS'     : ['1', '1'],
-                   'ggH_hww ': ['1', '1'],
-                   'qqH_hww ': ['1', '1'],
+                   'ggH_hww' : ['1', '1'],
+                   'qqH_hww' : ['1', '1'],
                    'WH_hww'  : ['1', '1'],
                    'ZH_hww'  : ['1', '1'],
                    'ggZH_hww': ['1', '1'],
@@ -474,7 +474,7 @@ nuisances['met']  = {
                    'DY'      : ['1', '1'],
                    'ggWW'    : ['1', '1'],
                    'WW'      : ['1', '1'],
-                   'WWewk'  : ['1', '1'],
+                   'WWewk'   : ['1', '1'],
                    'top'     : ['1', '1'],
                    'VZ'      : ['1', '1'],
                    'WZgS_L'  : ['1', '1'],
@@ -482,8 +482,8 @@ nuisances['met']  = {
                    'VVV'     : ['1', '1'],
                    'Vg'      : ['1', '1'],
                    'VgS'     : ['1', '1'],
-                   'ggH_hww ': ['1', '1'],
-                   'qqH_hww ': ['1', '1'],
+                   'ggH_hww' : ['1', '1'],
+                   'qqH_hww' : ['1', '1'],
                    'WH_hww'  : ['1', '1'],
                    'ZH_hww'  : ['1', '1'],
                    'ggZH_hww': ['1', '1'],
@@ -693,6 +693,15 @@ nuisances['QCDscale_VZ']  = {
                'type'  : 'lnN'
               }
 
+nuisances['QCDscale_WWewk']  = {
+               'name'  : 'QCDscale_WWewk',
+               'samples'  : {
+                   'WWewk' : '1.11',
+                   },
+               'type'  : 'lnN'
+              }
+
+
 #### QCD scale uncertainties for Higgs signals other than ggH
 
 from LatinoAnalysis.Tools.HiggsXSection  import *
@@ -701,7 +710,6 @@ HiggsXS = HiggsXSection()
 nuisances['QCDscale_ggH']  = {
                'name'  : 'QCDscale_ggH', 
                'samples'  : {
-                   'ggH_htt' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.0','scale','sm'),
                    'H_htt'   : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.0','scale','sm'),
                    },
                'type'  : 'lnN',
@@ -931,7 +939,7 @@ nuisances['WZScale'] = {
                 }
  
 nuisances['DYttnormvbf']  = {
-               'name'  : 'CMS_DYttnormvbf', 
+               'name'  : 'CMS_hww_DYttnormvbf', 
                'samples'  : {
                    'DY' : '1.00',
                    },
@@ -947,7 +955,7 @@ nuisances['DYttnormvbf']  = {
 
 
 nuisances['WWnormvbf']  = {
-               'name'  : 'CMS_WWnormvbf', 
+               'name'  : 'CMS_hww_WWnormvbf', 
                'samples'  : {
                    'WW' : '1.00',
                    },
@@ -962,7 +970,7 @@ nuisances['WWnormvbf']  = {
               }
 
 nuisances['Topnormvbf']  = {
-               'name'  : 'CMS_Topnormvbf', 
+               'name'  : 'CMS_hww_Topnormvbf', 
                'samples'  : {
                    'top' : '1.00',
                    },

@@ -1,10 +1,10 @@
 # example of configuration file
 
-tag = 'HWWhighMass2016_nuis_OF_V1'
+tag = 'HWWhighMass2016_nuis_OF_V2'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_allSig_OF_V1'
+outputDir = 'rootFile_allSig_OF_V2'
 
 
 # file with list of variables
@@ -31,11 +31,11 @@ lumi = 35.9
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotHWWhighMass_OF_V1'
+outputDirPlots = 'plotHWWhighMass_OF_V2'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards_test_OF_V1'
+outputDirDatacard = 'datacards_test_OF_V2_SFw'
 
 
 # structure file for datacard

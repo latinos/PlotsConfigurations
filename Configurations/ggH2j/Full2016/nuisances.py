@@ -275,8 +275,8 @@ nuisances['electronpt']  = {
                    'VVV'     : ['1', '1'],
                    'Vg'      : ['1', '1'],
                    'VgS'     : ['1', '1'],
-                   'ggH_hww ': ['1', '1'],
-                   'qqH_hww ': ['1', '1'],
+                   'ggH_hww' : ['1', '1'],
+                   'qqH_hww' : ['1', '1'],
                    'WH_hww'  : ['1', '1'],
                    'ZH_hww'  : ['1', '1'],
                    'ggZH_hww': ['1', '1'],
@@ -310,8 +310,8 @@ nuisances['elePtCor']  = {
                    'VVV'        : elePtCor_Syst ,
                    'Vg'         : elePtCor_Syst ,
                    'VgS'        : elePtCor_Syst ,
-                   'ggH_hww '   : elePtCor_Syst ,
-                   'qqH_hww '   : elePtCor_Syst ,
+                   'ggH_hww'    : elePtCor_Syst ,
+                   'qqH_hww'    : elePtCor_Syst ,
                    'WH_hww'     : elePtCor_Syst ,
                    'ZH_hww'     : elePtCor_Syst ,
                    'ggZH_hww'   : elePtCor_Syst ,
@@ -343,8 +343,8 @@ nuisances['eleEtaCor']  = {
                    'VVV'        : eleEtaCor_Syst ,
                    'Vg'         : eleEtaCor_Syst ,
                    'VgS'        : eleEtaCor_Syst ,
-                   'ggH_hww '   : eleEtaCor_Syst ,
-                   'qqH_hww '   : eleEtaCor_Syst ,
+                   'ggH_hww'    : eleEtaCor_Syst ,
+                   'qqH_hww'    : eleEtaCor_Syst ,
                    'WH_hww'     : eleEtaCor_Syst ,
                    'ZH_hww'     : eleEtaCor_Syst ,
                    'ggZH_hww'   : eleEtaCor_Syst ,
@@ -410,8 +410,8 @@ nuisances['muonpt']  = {
                    'VVV'     : ['1', '1'],
                    'Vg'      : ['1', '1'],
                    'VgS'     : ['1', '1'],
-                   'ggH_hww ': ['1', '1'],
-                   'qqH_hww ': ['1', '1'],
+                   'ggH_hww' : ['1', '1'],
+                   'qqH_hww' : ['1', '1'],
                    'WH_hww'  : ['1', '1'],
                    'ZH_hww'  : ['1', '1'],
                    'ggZH_hww': ['1', '1'],
@@ -446,8 +446,8 @@ nuisances['jes']  = {
                    'VVV'     : ['1', '1'],
                    'Vg'      : ['1', '1'],
                    'VgS'     : ['1', '1'],
-                   'ggH_hww ': ['1', '1'],
-                   'qqH_hww ': ['1', '1'],
+                   'ggH_hww' : ['1', '1'],
+                   'qqH_hww' : ['1', '1'],
                    'WH_hww'  : ['1', '1'],
                    'ZH_hww'  : ['1', '1'],
                    'ggZH_hww': ['1', '1'],
@@ -480,8 +480,8 @@ nuisances['met']  = {
                    'VVV'     : ['1', '1'],
                    'Vg'      : ['1', '1'],
                    'VgS'     : ['1', '1'],
-                   'ggH_hww ': ['1', '1'],
-                   'qqH_hww ': ['1', '1'],
+                   'ggH_hww' : ['1', '1'],
+                   'qqH_hww' : ['1', '1'],
                    'WH_hww'  : ['1', '1'],
                    'ZH_hww'  : ['1', '1'],
                    'ggZH_hww': ['1', '1'],
@@ -708,7 +708,6 @@ HiggsXS = HiggsXSection()
 nuisances['QCDscale_ggH']  = {
                'name'  : 'QCDscale_ggH', 
                'samples'  : {
-                   'ggH_htt' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.0','scale','sm'),
                    'H_htt'   : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.0','scale','sm'),
                    },
                'type'  : 'lnN',
@@ -725,27 +724,16 @@ nuisances['QCDscale_qqH']  = {
               }
 
 
-
-nuisances['QCDscale_WH']  = {
-               'name'  : 'QCDscale_WH', 
+nuisances['QCDscale_VH']  = {
+               'name'  : 'QCDscale_VH',
                'samples'  : {
                    'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
                    'WH_htt' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
-                   },
-               'type'  : 'lnN',
-              }
-
-
-
-nuisances['QCDscale_ZH']  = {
-               'name'  : 'QCDscale_ZH', 
-               'samples'  : {
                    'ZH_hww' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH','125.0','scale','sm'),
                    'ZH_htt' : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH','125.0','scale','sm'),
                    },
                'type'  : 'lnN',
               }
-
 
 nuisances['QCDscale_ggZH']  = {
                'name'  : 'QCDscale_ggZH', 
@@ -944,7 +932,7 @@ nuisances['WZScale'] = {
                 }
 
 nuisances['DYttnorm2j']  = {
-               'name'  : 'CMS_DYttnorm2j', 
+               'name'  : 'CMS_hww_DYttnorm2j', 
                'samples'  : {
                    'DY' : '1.00',
                    },
@@ -958,7 +946,7 @@ nuisances['DYttnorm2j']  = {
 
 
 nuisances['WWnorm2j']  = {
-               'name'  : 'CMS_WWnorm2j', 
+               'name'  : 'CMS_hww_WWnorm2j', 
                'samples'  : {
                    'WW' : '1.00',
                    },
@@ -971,7 +959,7 @@ nuisances['WWnorm2j']  = {
               }
 
 nuisances['Topnorm2j']  = {
-               'name'  : 'CMS_Topnorm2j', 
+               'name'  : 'CMS_hww_Topnorm2j', 
                'samples'  : {
                    'top' : '1.00',
                    },
