@@ -1611,7 +1611,7 @@ nuisances['WZScale'] = {
 #Best fit CMS_hww_WWnorm0jsf: 1.12608  -0.0611853/+0.0722874  (68% CL)
 
 WW0jpostfit     = 1.12608
-WW0jpostfitDown = 1 - 0.0611853/WW0jpostfit
+WW0jpostfitDown = 1 + 0.0611853/WW0jpostfit
 WW0jpostfitUp   = 1 + 0.0722874/WW0jpostfit
 
 nuisances['WW0jpostfit']  = {
@@ -1638,7 +1638,7 @@ nuisances['WW0jpostfit']  = {
 #Best fit CMS_hww_WWnorm1jsf: 1.03282  -0.176818/+0.194575  (68% CL)
 
 WW1jpostfit     = 1.03282
-WW1jpostfitDown = 1 - 0.176818/WW1jpostfit
+WW1jpostfitDown = 1 + 0.176818/WW1jpostfit
 WW1jpostfitUp   = 1 + 0.194575/WW1jpostfit
 
 nuisances['WW1jpostfit']  = {
@@ -1704,14 +1704,14 @@ nuisances['WW1jpostfit']  = {
 # Best fit CMS_hww_Topnorm0jsf: 1.02537  -0.0565054/+0.0567658  (68% CL)
 
 Top0jpostfit     = 1.02537
-Top0jpostfitDown = 1 - 0.0565054/Top0jpostfit
+Top0jpostfitDown = 1 + 0.0565054/Top0jpostfit
 Top0jpostfitUp   = 1 + 0.0567658/Top0jpostfit
 
 nuisances['Top0jpostfit']  = {
                'name'  : 'Top0jpostfit',
                'type'  : 'lnN',
                'samples'  : {
-                   'WW' : str(Top0jpostfitDown)+'/'+str(Top0jpostfitUp),
+                   'top' : str(Top0jpostfitDown)+'/'+str(Top0jpostfitUp),
                    },
                'cuts'  : [
                             'hww2l2v_13TeV_0jee',
@@ -1730,14 +1730,14 @@ nuisances['Top0jpostfit']  = {
 # Best fit CMS_hww_Topnorm1jsf: 0.983372  -0.0243916/+0.0239784  (68% CL)
 
 Top1jpostfit     = 0.983372
-Top1jpostfitDown = 1 - 0.0243916/Top1jpostfit
+Top1jpostfitDown = 1 + 0.0243916/Top1jpostfit
 Top1jpostfitUp   = 1 + 0.0239784/Top1jpostfit
 
 nuisances['Top1jpostfit']  = {
                'name'  : 'Top1jpostfit',
                'type'  : 'lnN',
                'samples'  : {
-                   'WW' : str(Top1jpostfitDown)+'/'+str(Top1jpostfitUp),
+                   'top' : str(Top1jpostfitDown)+'/'+str(Top1jpostfitUp),
                    },
                'cuts'  : [
                             'hww2l2v_13TeV_1jee',

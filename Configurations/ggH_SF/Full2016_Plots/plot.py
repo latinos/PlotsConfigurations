@@ -187,7 +187,7 @@ plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,    
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+                  'scale'    : 1.0,  # ele/mu trigger efficiency   datadriven
                   'cuts'  : {
                                'hww2l2v_13TeV_WW_0jee'  : 1.12608 ,
                                'hww2l2v_13TeV_top_0jee' : 1.12608 ,
@@ -592,7 +592,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  'isBlind'  : 0
               }
 
 
