@@ -34,17 +34,22 @@ variables['pt4']  = {   'name': 'std_vector_lepton_pt[3]',            #   variab
                         'fold' : 0
                        }
 
-
-# variables['nvtx']  = {   'name': 'nvtx',      
-                        # 'range' : (40,0,40),  
-                        # 'xaxis' : 'nvtx', 
-                         # 'fold' : 3
-                        # }
-                        
 variables['met']  = {   'name': 'metPfType1',            #   variable name    
                         'range' : (10,0,100),    #   variable range
                         # 'range' : (50,0,250),    #   variable range
                         'xaxis' : 'pfMET [GeV]',  #   x axis name
+                       'fold' : 0
+                     }
+
+variables['z0Mass_zh4l']  = {   'name': 'z0Mass_zh4l',            #   variable name    
+                        'range' : (5,80,100),    #   variable range
+                        'xaxis' : 'z0Mass [GeV]',  #   x axis name
+                       'fold' : 0
+                     }
+
+variables['z1Mass_zh4l']  = {   'name': 'z1Mass_zh4l',            #   variable name    
+                        'range' : (9,10,100),    #   variable range
+                        'xaxis' : 'XMass [GeV]',  #   x axis name
                        'fold' : 0
                      }
 
@@ -60,18 +65,6 @@ variables['met']  = {   'name': 'metPfType1',            #   variable name
                        # 'fold' : 0
                      # }
 
-
-variables['z0Mass_zh4l']  = {   'name': 'z0Mass_zh4l',            #   variable name    
-                        'range' : (5,80,100),    #   variable range
-                        'xaxis' : 'z0Mass [GeV]',  #   x axis name
-                       'fold' : 0
-                     }
-
-variables['z1Mass_zh4l']  = {   'name': 'z1Mass_zh4l',            #   variable name    
-                        'range' : (9,10,100),    #   variable range
-                        'xaxis' : 'XMass [GeV]',  #   x axis name
-                       'fold' : 0
-                     }
 
 # variables['zaMass_zh4l']  = {   'name': 'zaMass_zh4l',            #   variable name    
                         # 'range' : (40,0,200),    #   variable range

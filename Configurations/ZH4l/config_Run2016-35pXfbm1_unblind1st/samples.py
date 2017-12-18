@@ -161,7 +161,7 @@ samples['ZZ']  = {    'name': getSampleFiles(directory,'ZZTo4L')
                               +getSampleFiles(directory,'ggZZ4t')
                               +getSampleFiles(directory,'ggZZ4e')
                               +getSampleFiles(directory,'ggZZ4m'),
-                      'weight' : 'baseW'+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC+'*0.95834',
+                      'weight' : 'baseW'+'*'+SFweight4l+'*'+GenLepMatch4l+'*'+METFilter_MC,
                       'FilesPerJob' : 1,
                       #1.256/1.212 see this page https://twiki.cern.ch/twiki/bin/viewauth/CMS/SummaryTable1G25ns#Diboson
                   }
