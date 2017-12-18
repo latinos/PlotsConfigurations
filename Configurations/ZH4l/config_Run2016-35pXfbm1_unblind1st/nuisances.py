@@ -151,18 +151,19 @@ nuisances['UE_zh4l']  = {
             },
         }
 
-# nuisances['CMS_hww_ZZ4lnorm']  = {
-#         'name'  : 'CMS_hww_ZZ4lnorm',
-#         'samples'  : {
-#             'ZZ' : '1.00',
-#             },
-#         'type'  : 'rateParam',
-#         'cuts'  : [
-#             'zh4l_ZZ_13TeV',
-#             'zh4l_XSF_13TeV',
-#             'zh4l_XDF_13TeV',
-#             ]
-#         }
+nuisances['CMS_hww_ZZ4lnorm']  = {
+        'name'  : 'CMS_hww_ZZ4lnorm',
+        'samples'  : {
+            'ZZ' : '1.00',
+            },
+        'type'  : 'rateParam',
+        'cuts'  : [
+            'zh4l_ZZ_13TeV',
+            'zh4l_XSF_13TeV',
+            'zh4l_XDF_13TeV',
+            'zh4l_preselection_13TeV',
+            ]
+        }
 
 ZZ4lpostfit     = 0.95834
 ZZ4lpostfitDown = 1 + 0.0679342/ZZ4lpostfit
@@ -177,6 +178,7 @@ nuisances['CMS_hww_ZZ4lpostfit']  = {
             'zh4l_ZZ_13TeV' ,
             'zh4l_XSF_13TeV',
             'zh4l_XDF_13TeV',
+            'zh4l_preselection_13TeV',
             ]
         }
 
