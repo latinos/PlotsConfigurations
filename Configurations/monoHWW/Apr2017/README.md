@@ -261,11 +261,11 @@ FOR TOP CONTROL REGION
 FOR DY CONTROL REGION
 ----------------------
 
-   root -l /eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel/latino_TTTo2L2Nu__part0.root      DrawPDF.cxx\(\"\(std_vector_jet_cmvav2[0]\>-0.5884\|\|std_vector_jet_cmvav2[1]\>-0.5884\)*1+\(std_vector_jet_pt[0]\<20\|\|std_vector_jet_cmvav2[0]\<-0.5884\)*2\",2,1,3,\"mll\>12\&\&std_vector_lepton_pt[0]\>25\&\&std_vector_lepton_pt[1]\>20\&\&std_vector_lepton_pt[2]\<10\&\&metPfType1\>20\&\&ptll\>30\&\&drll\<2.5\&\&mll\<76\&\&mpmet\>20\",9,1\)
+    root -l /eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel/latino_TTTo2L2Nu__part0.root      DrawPDF.cxx\(\"\(std_vector_jet_cmvav2[0]\>-0.5884\|\|std_vector_jet_cmvav2[1]\>-0.5884\)*1+\(std_vector_jet_pt[0]\<20\|\|std_vector_jet_cmvav2[0]\<-0.5884\)*2\",2,1,3,\"mll\>12\&\&std_vector_lepton_pt[0]\>25\&\&std_vector_lepton_pt[1]\>20\&\&std_vector_lepton_pt[2]\<10\&\&metPfType1\>20\&\&ptll\>30\&\&drll\<2.5\&\&mll\<76\&\&mpmet\>20\",9,1\)
 
 # 14 PERFORM A LIKELIHOOD SCAN ON A SIGNLE NUISANCE
 
 ON ASIMOV DATASET
 -----------------
 
-  combine -M MultiDimFit datacards/monoH_MVA_em/muccamva2HDMadaptFull_2000/datacard_600_300_combined.txt --algo=grid --points 100 --redefineSignalPOIs CMS_ICHEP_btag_bc --freezeNuisances=r --setPhysicsModelParameterRanges CMS_ICHEP_btag_bc=-2,2
+    combine -M MultiDimFit datacards/monoH_MVA_em/muccamva2HDMadaptFull_2000/datacard_600_300_combined.txt --algo=grid --points 100 --redefineSignalPOIs CMS_ICHEP_btag_bc --freezeNuisances=r --setPhysicsModelParameterRanges CMS_ICHEP_btag_bc=-2,2
