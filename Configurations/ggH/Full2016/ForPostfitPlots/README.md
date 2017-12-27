@@ -2,9 +2,9 @@ Produce the fitDiagnostics.root file containinig the fit results
 
     combine -M FitDiagnostics -d Full2016.root --X-rtd MINIMIZER_analytic --saveShapes --saveNormalizations --saveWithUncertainties
 
-Make the mkPostFitPlot.py output directory
+The fitDiagnostics.root obtained with the command above can be found in the following directory:
 
-    mkdir plots
+    inputFiles/fitDiagnostics.root
 
 Run mkPostFitPlot.py for a given cut and variable
 
