@@ -14,7 +14,7 @@ Run mkPlot.py to get standard latino plots
 
     mkPlot.py --pycfg=configuration.py --inputFile=plots/ggHtag_of0j_em_mp_0j_pt2ge20.root --onlyCut=hww2l2v_13TeV_em_mp_0j_pt2ge20 --onlyVariable=mllVSmth_pt2ge20
 
-Script to run mkPostFitPlot.py for all cuts signal and control regions
+Script to run mkPostFitPlot.py for all signal and control regions
 
     ./doPlots.sh KIND
     
