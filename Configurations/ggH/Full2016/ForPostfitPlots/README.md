@@ -15,9 +15,13 @@ Run mkPlot.py to get standard latino plots
     mkPlot.py --pycfg=configuration.py --inputFile=plots/ggHtag_of0j_em_mp_0j_pt2ge20.root --onlyCut=hww2l2v_13TeV_em_mp_0j_pt2ge20 --onlyVariable=mllVSmth_pt2ge20
 
 Script to run mkPostFitPlot.py for all cuts signal and control regions
+
 KIND=s(default),b,p
+
 s: signal+background fit results
+
 b: background only fit results
+
 p: prefit results
 
     ./doPlots.sh KIND
