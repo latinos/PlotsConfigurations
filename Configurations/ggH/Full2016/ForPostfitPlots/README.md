@@ -16,12 +16,12 @@ Run mkPlot.py to get standard latino plots
 
 Script to run mkPostFitPlot.py for all cuts signal and control regions
 
-KIND=s(default),b,p
-
-s: signal+background fit results
-
-b: background only fit results
-
-p: prefit results
-
     ./doPlots.sh KIND
+    
+KIND=s, b, p
+
+*s*: signal+background fit results (default)
+
+*b*: background only fit results
+
+*p*: prefit results
