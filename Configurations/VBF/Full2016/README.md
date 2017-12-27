@@ -18,6 +18,12 @@ plot:
     mkPlot.py --inputFile=rootFile_3Dec/plots_VBF_3Dec.root \
               --showIntegralLegend=1
 
+    mkPlot.py --inputFile=rootFile_3Dec/plots_VBF_3Dec.root \
+              --showIntegralLegend=1  \
+              --showDataMinusBkgOnly
+
+              
+              
 datacard:
 
     mkDatacards.py --pycfg=configuration.py \
