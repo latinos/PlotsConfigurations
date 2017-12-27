@@ -1,6 +1,6 @@
 # example of configuration file
 
-date='_27Dec'
+date=_`date | awk '{ print $3$2 }'`
 
 tag = 'ggH'+date
 #tag = 'ggHTESTPARTIALamassiro'
