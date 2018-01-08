@@ -24,15 +24,15 @@ Float_t pt12  (double pt1, double eta1, double phi1,
 
 
 
-
+/*
 Float_t ptbest  (double pt1, double eta1, double phi1, double ch1,
                  double pt2, double eta2, double phi2, double ch2,
                  double pt3 //, double phi3 //, double eta3, double ch3
-                ){
+                ){*/
 
 
 // Float_t ptbest  (std::vector<float> v_pt, std::vector<float> v_eta, std::vector<float> v_phi, std::vector<float> v_ch){
-  
+//   
 //   float pt1  = v_pt.at(0);
 //   float eta1 = v_eta.at(0);
 //   float phi1 = v_phi.at(0);
@@ -47,15 +47,15 @@ Float_t ptbest  (double pt1, double eta1, double phi1, double ch1,
 //   float eta3 = v_eta.at(2);
 //   float phi3 = v_phi.at(2);
 //   float ch3  = v_ch.at(2);
-  
-  std::cout << " lep [1] = " << pt1 << " , " << eta1 << " , " << phi1 << " , " << ch1 << "   " << std::endl;
-  std::cout << " lep [2] = " << pt2 << " , " << eta2 << " , " << phi2 << " , " << ch2 << "   " << std::endl;
-//   std::cout << " lep [3] = " << pt3 << " , " << eta3 << " , " << phi3 << " , " << ch3 << "   " << std::endl;
-  
-  
-  return 12.0;
-  
-  
+//   
+//   std::cout << " lep [1] = " << pt1 << " , " << eta1 << " , " << phi1 << " , " << ch1 << "   " << std::endl;
+//   std::cout << " lep [2] = " << pt2 << " , " << eta2 << " , " << phi2 << " , " << ch2 << "   " << std::endl;
+// //   std::cout << " lep [3] = " << pt3 << " , " << eta3 << " , " << phi3 << " , " << ch3 << "   " << std::endl;
+//   
+//   
+// //   return 12.0;
+//   
+//   
 //   TLorentzVector l1;
 //   l1.SetPtEtaPhiM(pt1,eta1,phi1,0);
 //   TLorentzVector l2;
@@ -118,8 +118,8 @@ Float_t ptbest  (double pt1, double eta1, double phi1, double ch1,
 //       // ---> C
 //       return (l1+l3).Pt();
 //   }
-  
-}
+//   
+// }
 
 
 
