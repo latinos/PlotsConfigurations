@@ -5,8 +5,8 @@
 #include <iostream>
 
 
-Float_t pt12  (double pt1, double phi1, double eta1,
-               double pt2, double phi2, double eta2){
+Float_t pt12  (double pt1, double eta1, double phi1,
+               double pt2, double eta2, double phi2){
   TLorentzVector l1;
   l1.SetPtEtaPhiM(pt1,eta1,phi1,0);
   TLorentzVector l2;
@@ -25,8 +25,8 @@ Float_t pt12  (double pt1, double phi1, double eta1,
 
 
 
-Float_t ptbest  (double pt1, double phi1, double eta1, double ch1,
-                 double pt2, double phi2, double eta2, double ch2,
+Float_t ptbest  (double pt1, double eta1, double phi1, double ch1,
+                 double pt2, double eta2, double phi2, double ch2,
                  double pt3 //, double phi3 //, double eta3, double ch3
                 ){
 
