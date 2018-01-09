@@ -146,12 +146,6 @@ plot['ZZ']  = {
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0,
-                  'cuts'     : {
-                      'zh4l_preselection_13TeV'     : 0.95834 ,
-                      'zh4l_XSF_13TeV'     : 0.95834 ,
-                      'zh4l_XDF_13TeV'     : 0.95834 ,
-                      'zh4l_ZZ_13TeV'      : 0.95834 ,
-                      },
                   }
 
 plot['ggH_hzz']  = { 
