@@ -19,7 +19,7 @@ groupPlot['Fake']  = {
                   'nameHR' : 'Fake',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fake']
+                  'samples'  : ['Fake','Fake_ee','Fake_mm']
               }
 
 
@@ -49,7 +49,7 @@ groupPlot['VZ']  = {
                   'nameHR' : "VZ/#gamma*/#gamma",
                   'isSignal' : 0,
                   'color'    : 617,   # kViolet + 1  
-                  'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ']
+                  'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ','WZgS_L','WZgS_H']
               }
 
 
@@ -57,7 +57,20 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww']
+                  'samples'  : [
+                                'ggH_hww', 'ggH_fwd_hww' , 
+                                'qqH_hww', 'qqH_fwd_hww' , 
+                                'ZH_hww', 'ZH_had_hww' , 'ZH_had_fwd_hww' , 'ZH_lep_hww' , 'ZH_lep_fwd_hww' , 
+                                'WH_hww', 'WH_had_hww' , 'WH_had_fwd_hww' , 'WH_lep_hww' , 'WH_lep_fwd_hww' , 
+                                'bbH_hww', 'bbH_fwd_hww' , 
+                                'ttH_hww', 'ttH_fwd_hww' , 
+                                'ggZH_hww' , 'ggZH_lep_hww' , 'ggZH_lep_fwd_hww' , 
+                                #
+                                'ggH_htt', 'ggH_fwd_htt' , 
+                                'qqH_htt', 'qqH_fwd_htt' , 
+                                'ZH_htt', 'ZH_had_htt' , 'ZH_had_fwd_htt' , 'ZH_lep_htt' , 'ZH_lep_fwd_htt' , 
+                                'WH_htt', 'WH_had_htt' , 'WH_had_fwd_htt' , 'WH_lep_htt' , 'WH_lep_fwd_htt' , 
+                               ]
               }
 
 
@@ -106,6 +119,22 @@ plot['Fake']  = {
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0                  
+              }
+
+
+plot['Fake_ee']  = {
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+              }
+
+
+plot['Fake_mm']  = {
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
               }
 
               
@@ -199,6 +228,21 @@ plot['VgS'] = {
                   'scale'    : 1.0
                   }
 
+plot['WZgS_L'] = {
+                  'color'    : 617,   # kViolet + 1  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+plot['WZgS_H'] = {
+                  'color'    : 617,   # kViolet + 1  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+
 plot['VZ']  = { 
                   'color': 858, # kAzure -2  
                   'isSignal' : 0,
@@ -239,23 +283,125 @@ plot['ZZ']  = {
 
 # Htautau
 
-plot['H_htt'] = {
-                  'nameHR' : 'Htt',
-                  'color': 632+4, # kRed+4 
+
+
+plot['ZH_htt'] = {
+                  'nameHR' : 'ZH',
+                  'color': 632+3, # kRed+3 
                   'isSignal' : 1,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
 
-# HWW 
+plot['ZH_had_htt'] = {
+                  'nameHR' : 'ZH',
+                  'color': 632+3, # kRed+3 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
 
-plot['H_hww'] = {
-                  'nameHR' : 'Hww',
+plot['ZH_had_fwd_htt'] = {
+                  'nameHR' : 'ZH',
+                  'color': 632+3, # kRed+3 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
+plot['ZH_lep_htt'] = {
+                  'nameHR' : 'ZH',
+                  'color': 632+3, # kRed+3 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
+plot['ZH_lep_fwd_htt'] = {
+                  'nameHR' : 'ZH',
+                  'color': 632+3, # kRed+3 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
+plot['WH_htt'] = {
+                  'nameHR' : 'WH',
+                  'color': 632+2, # kRed+2 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+
+plot['WH_had_htt'] = {
+                  'nameHR' : 'WH',
+                  'color': 632+2, # kRed+2 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
+plot['WH_had_fwd_htt'] = {
+                  'nameHR' : 'WH',
+                  'color': 632+2, # kRed+2 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
+plot['WH_lep_htt'] = {
+                  'nameHR' : 'WH',
+                  'color': 632+2, # kRed+2 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
+plot['WH_lep_fwd_htt'] = {
+                  'nameHR' : 'WH',
+                  'color': 632+2, # kRed+2 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
+
+plot['qqH_htt'] = {
+                  'nameHR' : 'qqH',
+                  'color': 632+1, # kRed+1 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+
+plot['qqH_fwd_htt'] = {
+                  'nameHR' : 'qqH',
+                  'color': 632+1, # kRed+1 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
+
+plot['ggH_htt'] = {
+                  'nameHR' : 'ggH',
                   'color': 632, # kRed 
                   'isSignal' : 1,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
+
+plot['ggH_fwd_htt'] = {
+                  'nameHR' : 'ggH',
+                  'color': 632, # kRed 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
+
+
+# HWW 
 
 plot['ZH_hww'] = {
                   'nameHR' : 'ZH',
@@ -265,6 +411,74 @@ plot['ZH_hww'] = {
                   'scale'    : 1    #
                   }
 
+plot['ZH_had_hww'] = {
+                  'nameHR' : 'ZH',
+                  'color': 632+3, # kRed+3 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
+plot['ZH_had_fwd_hww'] = {
+                  'nameHR' : 'ZH',
+                  'color': 632+3, # kRed+3 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
+plot['ZH_lep_hww'] = {
+                  'nameHR' : 'ZH',
+                  'color': 632+3, # kRed+3 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
+plot['ZH_lep_fwd_hww'] = {
+                  'nameHR' : 'ZH',
+                  'color': 632+3, # kRed+3 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
+
+
+plot['bbH_hww'] = {
+                  'nameHR' : 'bbH',
+                  'color': 632-1, # kRed-1 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
+plot['bbH_fwd_hww'] = {
+                  'nameHR' : 'bbH',
+                  'color': 632-1, # kRed-1 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
+
+plot['ttH_hww'] = {
+                  'nameHR' : 'bbH',
+                  'color': 632-2, # kRed-1 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
+plot['ttH_fwd_hww'] = {
+                  'nameHR' : 'bbH',
+                  'color': 632-2, # kRed-1 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
+
 plot['ggZH_hww'] = {
                   'nameHR' : 'ggZH',
                   'color': 632+4, # kRed+4
@@ -273,11 +487,59 @@ plot['ggZH_hww'] = {
                   'scale'    : 1    #
                   }
 
+plot['ggZH_lep_hww'] = {
+                  'nameHR' : 'ggZH',
+                  'color': 632+4, # kRed+4
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
+plot['ggZH_lep_fwd_hww'] = {
+                  'nameHR' : 'ggZH',
+                  'color': 632+4, # kRed+4
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
 plot['WH_hww'] = {
                   'nameHR' : 'WH',
                   'color': 632+2, # kRed+2 
                   'isSignal' : 1,
                   'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+
+plot['WH_had_hww'] = {
+                  'nameHR' : 'WH',
+                  'color': 632+2, # kRed+2 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
+plot['WH_had_fwd_hww'] = {
+                  'nameHR' : 'WH',
+                  'color': 632+2, # kRed+2 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
+plot['WH_lep_hww'] = {
+                  'nameHR' : 'WH',
+                  'color': 632+2, # kRed+2 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
+plot['WH_lep_fwd_hww'] = {
+                  'nameHR' : 'WH',
+                  'color': 632+2, # kRed+2 
+                  'isSignal' : 1,
+                  'isData'   : 0,
                   'scale'    : 1    #
                   }
 
@@ -290,6 +552,14 @@ plot['qqH_hww'] = {
                   'scale'    : 1    #
                   }
 
+plot['qqH_fwd_hww'] = {
+                  'nameHR' : 'qqH',
+                  'color': 632+1, # kRed+1 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
 
 plot['ggH_hww'] = {
                   'nameHR' : 'ggH',
@@ -298,6 +568,15 @@ plot['ggH_hww'] = {
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
+
+plot['ggH_fwd_hww'] = {
+                  'nameHR' : 'ggH',
+                  'color': 632, # kRed 
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
 
 # data
 
@@ -315,7 +594,7 @@ plot['DATA']  = {
 # additional options
 
 # legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
-legend['lumi'] = 'L = 12.3/fb' # 2.318 fb-1
+legend['lumi'] = 'L = 35.9/fb' # 2.318 fb-1
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 

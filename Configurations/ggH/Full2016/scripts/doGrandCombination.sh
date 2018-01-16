@@ -1,12 +1,12 @@
 #!/bin/bash
 
 ## FIXME this is where the Combine framework is installed
-cd ~/Combine/CMSSW_7_4_7/src/
+cd ~/Combine/CMSSW_8_1_0/src/
 eval `scramv1 runtime -sh`
 cd -
 
 ## work directory
-workdir=/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_Full2016/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/ggH/Full2016/GrandCombination_8Nov
+workdir=/afs/cern.ch/work/l/lviliani/LatinosFramework13TeV_Full2016/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/ggH/Full2016/GrandCombination_3Dec
 
 datacardDir=datacards
 
@@ -108,17 +108,17 @@ combineCards.py   ggHtag_of0j=Full2016_0jet_ggH.txt \
 bsub -q 8nh "text2workspace.py ${workdir}/Full2016_0jet_ggH.txt -o ${workdir}/Full2016_0jet_ggH.root"
 bsub -q 8nh "text2workspace.py ${workdir}/Full2016_1jet_ggH.txt -o ${workdir}/Full2016_1jet_ggH.root"
 bsub -q 8nh "text2workspace.py ${workdir}/Full2016_2jet_ggH.txt -o ${workdir}/Full2016_2jet_ggH.root"
-bsub -q 8nh "text2workspace.py ${workdir}/Full2016_2jet_VBF.txt -o ${workdir}/Full2016_2jet_VBF.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose --PO 'map=.*/.*H_.*:r[1,-10,10]' --PO 'map=.*vbf_2j/ggZH*:0' --PO 'map=.*vbf_2j/ZH*:0' --PO 'map=.*vbf_2j_Top/Vg:0' --PO 'map=.*vbf_2j_DYtt/VVV:0'"
+bsub -q 8nh "text2workspace.py ${workdir}/Full2016_2jet_VBF.txt -o ${workdir}/Full2016_2jet_VBF.root"
+#bsub -q 8nh "text2workspace.py ${workdir}/Full2016_2jet_VBF.txt -o ${workdir}/Full2016_2jet_VBF.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose --PO 'map=.*/.*H_.*:r[1,-10,10]' --PO 'map=.*vbf_2j/ggZH*:0' --PO 'map=.*vbf_2j/ZH*:0' --PO 'map=.*vbf_2j_Top/Vg:0' --PO 'map=.*vbf_2j_DYtt/VVV:0'"
 bsub -q 8nh "text2workspace.py ${workdir}/Full2016_2jet_VH2j.txt -o ${workdir}/Full2016_2jet_VH2j.root"
 bsub -q 8nh "text2workspace.py ${workdir}/Full2016_0jet_SF_ggH.txt -o ${workdir}/Full2016_0jet_SF_ggH.root"
 bsub -q 8nh "text2workspace.py ${workdir}/Full2016_1jet_SF_ggH.txt -o ${workdir}/Full2016_1jet_SF_ggH.root"
 bsub -q 8nh "text2workspace.py ${workdir}/Full2016_WH3l.txt -o ${workdir}/Full2016_WH3l.root"
 bsub -q 8nh "text2workspace.py ${workdir}/Full2016_ZH4l.txt -o ${workdir}/Full2016_ZH4l.root"
 
-bsub -q 8nh "text2workspace.py ${workdir}/Full2016.txt -o ${workdir}/Full2016.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose --PO 'map=.*/.*H_.*:r[1,-10,10]' --PO 'map=.*vbf_2j/ggZH*:0' --PO 'map=.*vbf_2j/ZH*:0' --PO 'map=.*vbf_2j_Top/Vg:0' --PO 'map=.*vbf_2j_DYtt/VVV:0'"
+bsub -q 8nh "text2workspace.py ${workdir}/Full2016.txt -o ${workdir}/Full2016.root"
+#bsub -q 8nh "text2workspace.py ${workdir}/Full2016.txt -o ${workdir}/Full2016.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose --PO 'map=.*/.*H_.*:r[1,-10,10]' --PO 'map=.*vbf_2j/ggZH*:0' --PO 'map=.*vbf_2j/ZH*:0' --PO 'map=.*vbf_2j_Top/Vg:0' --PO 'map=.*vbf_2j_DYtt/VVV:0'"
 
-#text2workspace.py ${workdir}/Full2016.txt -o ${workdir}/Full2016.root  -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO 'map=.*/*hww*:r[1,-10,10]' 
-##--PO 'map=.*vbf_2j/ggZH*:0' --PO 'map=.*vbf_2j/ZH*:0' --PO 'map=.*vbf_2j_Top/Vg:0' --PO 'map=.*vbf_2j_DYtt/VVV:0'
 
 bsub -q 8nh "text2workspace.py ${workdir}/Full2016.txt -o ${workdir}/Full2016.categories.root  -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
                    --PO 'map=.*ggHtag_of0j.*/.*H_.*:r_of0jet[1,-5,5]' \
@@ -129,25 +129,27 @@ bsub -q 8nh "text2workspace.py ${workdir}/Full2016.txt -o ${workdir}/Full2016.ca
                    --PO 'map=.*vbftag_of2j.*/.*H_.*:r_of2jetvbf[1,-5,5]' \
                    --PO 'map=.*vhtag_of2j.*/.*H_.*:r_of2jetvh[1,-5,5]' \
                    --PO 'map=.*wh3ltag.*/.*H_.*:r_wh3l[1,-5,5]' \
-                   --PO 'map=.*zh4ltag.*/.*H_.*:r_zh4l[1,-5,5]' \
-                   --PO 'map=.*vbf_2j/ggZH*:0' \
-                   --PO 'map=.*vbf_2j/ZH*:0' \
-                   --PO 'map=.*vbf_2j_Top/Vg:0' \
-                   --PO 'map=.*vbf_2j_DYtt/VVV:0'"
+                   --PO 'map=.*zh4ltag.*/.*H_.*:r_zh4l[1,-5,5]'" 
 
-# Should I scale H_htt with muGGH or muVBF? Or consider it as a background?
+#                   --PO 'map=.*vbf_2j/ggZH*:0' \
+#                   --PO 'map=.*vbf_2j/ZH*:0' \
+#                   --PO 'map=.*vbf_2j_Top/Vg:0' \
+#                   --PO 'map=.*vbf_2j_DYtt/VVV:0'"
+
 bsub -q 8nh "text2workspace.py ${workdir}/Full2016.txt -o ${workdir}/Full2016.kVkF.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose  \
                    --PO 'map=.*/ggH_hww:muGGH[1,-1,3]' \
                    --PO 'map=.*/ggZH_hww:muGGH' \
-                   --PO 'map=.*/H_htt:muGGH' \
+                   --PO 'map=.*/ggH_htt:muGGH' \
                    --PO 'map=.*/bbH_hww:muGGH' \
                    --PO 'map=.*/ttH_hww:muGGH' \
                    --PO 'map=.*/qqH_hww:muVBF[1,-3,6]'  \
+                   --PO 'map=.*/qqH_htt:muVBF'  \
                    --PO 'map=.*/WH_hww:muVBF'  \
                    --PO 'map=.*/WH_htt:muVBF' \
                    --PO 'map=.*/ZH_hww:muVBF' \
-                   --PO 'map=.*/ZH_htt:muVBF' \
-                   --PO 'map=.*vbf_2j/ggZH*:0' \
-                   --PO 'map=.*vbf_2j/ZH*:0' \
-                   --PO 'map=.*vbf_2j_Top/Vg:0' \
-                   --PO 'map=.*vbf_2j_DYtt/VVV:0'"
+                   --PO 'map=.*/ZH_htt:muVBF'"
+
+#                   --PO 'map=.*vbf_2j/ggZH*:0' \
+#                   --PO 'map=.*vbf_2j/ZH*:0' \
+#                   --PO 'map=.*vbf_2j_Top/Vg:0' \
+#                   --PO 'map=.*vbf_2j_DYtt/VVV:0'"

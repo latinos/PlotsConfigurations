@@ -28,8 +28,7 @@ nuisances['lumi']  = {
             'ggH_hzz'   : '1.025',
             'WWW'       : '1.025',
             'VVZ'       : '1.025',
-            'ZZ'        : '1.025',
-            'ggZZ'      : '1.025',
+            # 'ZZ'        : '1.025', # This should *not* appear in samples whose normalization is taken care by rateParam nuisance.
             'WZ'        : '1.025',
             'WW'        : '1.025',
             'ggWW'      : '1.025',
@@ -37,7 +36,7 @@ nuisances['lumi']  = {
             'DY'        : '1.025',
             'ttW'       : '1.025',
             'ttZ'       : '1.025',
-            'Top'       : '1.025',
+            'top'       : '1.025',
             },
         'type'  : 'lnN',
         }
@@ -88,7 +87,6 @@ nuisances['pdf_Higgs_qqbar']  = {
 
 
 ##acceptance
-
 nuisances['pdf_Higgs_qqbar_ACCEPT']  = {
                'name'  : 'pdf_Higgs_qqbar_ACCEPT',
                'type'  : 'lnN',
