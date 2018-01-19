@@ -7,26 +7,36 @@ print "2HDM Model Mass Points:"
 ZpMasses = {"600","800","1000","1200","1400","1700","2000","2500"}
 A0Masses = {"300","400","500","600","700","800"}
 
-if len(sys.argv) < 2 :
+if len(sys.argv) < 3 :
     print "Please insert all the inputs I need: variable"
     print ""
-    print "python scriptSplitDatacards.py events"
+    print "python scriptSplitDatacards.py events em"
     print ""
-    print "python scriptSplitDatacards.py muccamva2HDMadaptFull_All_Bin1000" 
-    print "python scriptSplitDatacards.py muccamva2HDMadaptFull_All_Bin2000"
-    print "python scriptSplitDatacards.py muccamva2HDMadaptFull_All_Bin600"
-    print "python scriptSplitDatacards.py muccamva2HDMadaptFull_All_Bin800"
+    print "python scriptSplitDatacards.py muccamva2HDMadaptFull_All_Bin800 em"
     print ""
-    print "python scriptSplitDatacards.py muccamvaZbaradaptFull_All_Bin100"
-    print "python scriptSplitDatacards.py muccamvaZbaradaptFull_All_Bin1000"
-    print "python scriptSplitDatacards.py muccamvaZbaradaptFull_All_Bin2000"
+    print "python scriptSplitDatacards.py muccamvaZbaradaptFull_All_Bin100 em"
+    print ""
+    print "python scriptSplitDatacards.py events sf"
+    print ""
+    print "python scriptSplitDatacards.py muccamva2HDMadaptFull_All_Bin800 sf"
+    print ""
+    print "python scriptSplitDatacards.py muccamvaZbaradaptFull_All_Bin100 sf"
+    print ""
+    print "python scriptSplitDatacards.py events sf_Tight"
+    print ""
+    print "python scriptSplitDatacards.py muccamva2HDMadaptFull_All_Bin800_Bis sf_Tight"
+    print ""
+    print "python scriptSplitDatacards.py muccamvaZbaradaptFull_All_Bin100_Bis sf_Tight"
     print ""
     sys.exit()
     
 variable = sys.argv[1]
 print "Variable: " + variable
 
-channel = "em"
+channel = sys.argv[2]
+print "Channel: " + channel
+
+#channel = "em"
 cut = "MVA"
 
 #Splitting Datacards
@@ -67,16 +77,16 @@ if "2HDM" not in variable and "ttDM" not in variable:
 print "ttDM Model Mass Points:"
 
 ZB = "ttDM"
-ttDMmasses={"pseudo00010_","pseudo00020_","pseudo00050_","pseudo00100_","pseudo000200_","pseudo00300_","pseudo00500_","scalar00010_","scalar00020_","scalar00050_","scalar00100_","scalar000200_","scalar00300_","scalar00500_"}
+ttDMmasses={"pseudo_00010_","pseudo_00020_","pseudo_00050_","pseudo_00100_","pseudo_00200_","pseudo_00300_","pseudo_00500_","scalar_00010_","scalar_00020_","scalar_00050_","scalar_00100_","scalar_00200_","scalar_00300_","scalar_00500_"}
 
-if "2HDM" not in variable and "Zbar" not in variable:                                                                                                                  
-    for mA0 in ttDMmasses :
-        print "+++++ Splitting Datacards +++++"
-        os.chdir("/afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/ModificationDatacards")
-        # Full lumi datacards
-        os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + ZB + "_" + mA0 + ".txt.pruned.txt -k \"monoH_" + ZB + "_" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
-        os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_WW_" + channel + "/" + variable + "/datacard_" + ZB + "_" + mA0 + ".txt.pruned.txt -k \"monoH_" + ZB + "_" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_WW_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
-        os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_Top_" + channel + "/" + variable + "/datacard_" + ZB + "_" + mA0 + ".txt.pruned.txt -k \"monoH_" + ZB + "_" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_Top_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
-        os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_DYtt_" + channel + "/" + variable + "/datacard_" + ZB + "_" + mA0 + ".txt.pruned.txt -k \"monoH_" + ZB + "_" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_DYtt_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
-        # 1/15 lumi datacards
-        os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards_blindData/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + ZB + "_" + mA0 + ".txt.pruned.txt -k \"monoH_" + ZB + "_" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards_blindData/monoH_" + cut + "_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
+###if "2HDM" not in variable and "Zbar" not in variable:                                                                                                                  
+for mA0 in ttDMmasses :
+    print "+++++ Splitting Datacards +++++"
+    os.chdir("/afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/ModificationDatacards")
+    # Full lumi datacards
+    os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mA0 + ".txt.pruned.txt -k \"ttDM" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
+    os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_WW_" + channel + "/" + variable + "/datacard_" + mA0 + ".txt.pruned.txt -k \"ttdm" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_WW_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
+    os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_Top_" + channel + "/" + variable + "/datacard_" + mA0 + ".txt.pruned.txt -k \"ttDM" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_Top_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
+    os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_DYtt_" + channel + "/" + variable + "/datacard_" + mA0 + ".txt.pruned.txt -k \"ttDM" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_DYtt_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
+    # 1/15 lumi datacards
+    os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards_blindData/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mA0 + ".txt.pruned.txt -k \"ttDM" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards_blindData/monoH_" + cut + "_" + channel + "/" + variable + "/datacard.txt.pruned.txt")

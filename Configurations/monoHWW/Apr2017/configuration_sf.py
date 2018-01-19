@@ -17,7 +17,7 @@ cutsFile = 'cuts_sf.py'
 samplesFile = 'samples_sf.py'
  
 # file with list of samples
-plotFile = 'plot_em.py' 
+plotFile = 'plot.py' 
 
 
 # luminosity to normalize to (in 1/fb)
@@ -37,5 +37,5 @@ structureFile = 'structure.py'
 # nuisances file for mkDatacards and for mkShape
 #nuisancesFile = 'nuisances_light.py'
 #nuisancesFile = 'nuisances.py'
-#nuisancesFile = 'nuisances_full.py'
+nuisancesFile = 'nuisances_full.py'
 

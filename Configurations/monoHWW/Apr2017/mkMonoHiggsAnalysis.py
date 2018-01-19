@@ -3,31 +3,28 @@
 import os
 import sys
 
-if len(sys.argv) < 2 :
+if len(sys.argv) < 3 :
     print "Please insert all the inputs I need: variable"
+    print ""
+    print "python mkMonoHiggsAnalysis.py muccamva2HDMadaptFull_All_Bin800 em"
+    print ""
+    print "python mkMonoHiggsAnalysis.py muccamvaZbaradaptFull_All_Bin100 em"
+    print ""
+    print ""
+    print "python mkMonoHiggsAnalysis.py muccamva2HDMadaptFull_All_Bin800 sf"
+    print ""
+    print "python mkMonoHiggsAnalysis.py muccamvaZbaradaptFull_All_Bin100 sf"
+    print ""
 
-    print "python mkMonoHiggsAnalysis.py mthBin"
-
-    print "python mkMonoHiggsAnalysis.py muccamva2HDMadaptFull"
-    print "python mkMonoHiggsAnalysis.py muccamva2HDMgradFull"
-    print "python mkMonoHiggsAnalysis.py muccamvaZbaradaptFull"
-    print "python mkMonoHiggsAnalysis.py muccamvaZbargradFull"
-
-    print "python mkMonoHiggsAnalysis.py muccamva2HDMadaptFull_Intermediate"
-    print "python mkMonoHiggsAnalysis.py muccamva2HDMgradFull_Intermediate"
-    print "python mkMonoHiggsAnalysis.py muccamvaZbaradaptFull_Intermediate"
-    print "python mkMonoHiggsAnalysis.py muccamvaZbargradFull_Intermediate"
-
-    print "python mkMonoHiggsAnalysis.py muccamva2HDMadaptFull_Old"
-    print "python mkMonoHiggsAnalysis.py muccamva2HDMgradFull_Old"
-    print "python mkMonoHiggsAnalysis.py muccamvaZbaradaptFull_Old"
-    print "python mkMonoHiggsAnalysis.py muccamvaZbargradFull_Old"
     sys.exit()
     
 variable = sys.argv[1]
 print "Variable: " + variable
 
-channel = "em"
+channel = sys.argv[2]
+print "Channel: " + channel
+
+#channel = "em"
 cut = "MVA"
 
 os.system("mkdir -p jobs")
@@ -36,6 +33,7 @@ print "2HDM Model Mass Points:"
 
 ZpMasses = {"600","800","1000","1200","1400","1700","2000","2500"}
 A0Masses = {"300","400","500","600","700","800"}
+ttDMmasses={"scalar00010_","scalar00020_","scalar00050_","scalar00100_","scalar00200_","scalar00300_","scalar00500_","pseudo00010_","pseudo00020_","pseudo00050_","pseudo00100_","pseudo00200_","pseudo00300_","pseudo00500_"}
 
 os.system("cp /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/submitMonoH.sh .")
 os.system("chmod +x submitMonoH.sh")
@@ -48,6 +46,12 @@ if "Zbar" not in variable :
             if (mzp == "800" and (ma0 == "700" or ma0 == "800")) : continue;
             print 'bsub -q 8nh -o jobs/' + mzp + '_' + ma0 + '_' + cut + '_'  + channel + '_' + variable + '.out -e jobs/' + mzp + '_' + ma0 + '_' + cut + '_' + channel + '_' + variable + '.err /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/submitMonoH.sh ' + channel + ' ' + variable + ' ' + cut + ' ' + mzp + ' ' + ma0
             os.system('bsub -q 8nh -o jobs/' + mzp + '_' + ma0 + '_' + cut + '_'  + channel + '_' + variable + '.out -e jobs/' + mzp + '_' + ma0 + '_' + cut + '_' + channel + '_' + variable + '.err /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/submitMonoH.sh ' + channel + ' ' + variable + ' ' + cut + ' ' + mzp + ' ' + ma0)
+
+    for ttdm in ttDMmasses :
+        print 'bsub -q 8nh -o jobs/' + mzp + '_' + ma0 + '_' + cut + '_'  + channel + '_' + variable + '.out -e jobs/' + mzp + '_' + ma0 + '_' + cut + '_' + channel + '_' + variable + '.err /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/submitMonoH.sh ' + channel + ' ' + variable + ' ' + cut + '  ttdm ' + ttdm
+        os.system('bsub -q 8nh -o jobs/' + mzp + '_' + ma0 + '_' + cut + '_'  + channel + '_' + variable + '.out -e jobs/' + mzp + '_' + ma0 + '_' + cut + '_' + channel + '_' + variable + '.err /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/submitMonoH.sh ' + channel + ' ' + variable + ' ' + cut + ' ttdm ' + ttdm)
+
+# python scriptMonoHSplit80.py em muccamva2HDMadaptFull_All_Bin800 MVA ttDM scalar00010_
             #os.system('.//afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/submitMonoH.sh ' + channel + ' ' + variable + ' ' + cut + ' ' + mzp + ' ' + ma0)
 
 

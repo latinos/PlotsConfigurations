@@ -8,7 +8,7 @@ outputDir = 'rootFile_sf_blindData'
 
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = 'variables_sf.py'
 
 # file with list of cuts
 cutsFile = 'cuts_sf_blindData.py' 
@@ -37,5 +37,5 @@ structureFile = 'structure.py'
 # nuisances file for mkDatacards and for mkShape
 #nuisancesFile = 'nuisances_light.py'
 #nuisancesFile = 'nuisances.py'
-#nuisancesFile = 'nuisances_full.py'
+nuisancesFile = 'nuisances_full.py'
 
