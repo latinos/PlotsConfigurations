@@ -107,7 +107,7 @@ void macroPulls(TString folder = "pulls_em_MVA",
   twoSigmaDo->Draw("same");
   oneSigmaUp->Draw("same");
   oneSigmaDo->Draw("same");
-  if (region == "SB" || region == "BSR")
+  if (region == "SB" || region == "BSR" || region == "SR")
     gr1->Draw("ep,same");
   if (region == "SR" || region == "BSR" || region == "B" || region == "CR")
     gr2->Draw("ep,same");
