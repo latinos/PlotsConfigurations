@@ -30,4 +30,7 @@ datacard:
                    --inputFile=rootFile_3Dec/plots_VBF_3Dec.root
     
     
-    
+post-fit table:
+
+    higgsCombineTest.MaxLikelihoodFit.mH120.root
+
