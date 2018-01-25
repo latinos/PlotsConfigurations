@@ -9,7 +9,7 @@
 #
 
 groupPlot['Fake']  = {  
-                  'nameHR' : 'Fake',
+                  'nameHR' : 'Non-Prompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
                   'samples'  : ['Fake']
@@ -39,12 +39,21 @@ groupPlot['VVV']  = {
 
 
 groupPlot['VZ']  = {  
-                  'nameHR' : "VZ/#gamma*/#gamma",
-                  'isSignal' : 0,
-                  'color'    : 617,   # kViolet + 1  
-                  'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ','Zg']
-              }
+    #'nameHR' : "VZ/#gamma*/#gamma",
+    'nameHR' : "VZ",
+    'isSignal' : 0,
+    'color'    : 617,   # kViolet + 1  
+    #'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ','Zg','WZgS_H']
+    'samples'  : ['VZ', 'WZ', 'ZZ', 'WZgS_H']
+    }
 
+
+groupPlot['VgS']  = {
+                  'nameHR' : "V#gamma*",
+                  'isSignal' : 0,
+                  'color'    : 409,   # kGreen - 9
+                  'samples'  : ['VgS','WZgS_L']
+              }
 
 groupPlot['DY']  = {  
                   'nameHR' : "DY",
@@ -288,6 +297,20 @@ groupPlot['monoH_ZB_100_1_'] = {
 
 # keys here must match keys in samples.py    
 #                    
+plot['WZgS_L']  = {
+    'color': 617,
+    'isSignal' : 0,
+    'isData'   : 0, 
+    'scale'    : 1.0,
+    }
+
+plot['WZgS_H']  = {
+    'color': 617,
+    'isSignal' : 0,
+    'isData'   : 0, 
+    'scale'    : 1.0,
+    } 
+
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
@@ -750,20 +773,20 @@ plot['monoH_ZB_10_1_'] = {
 
 ttDMmasses={"00010_","00020_","00050_","00100_","00200_","00300_","00500_"}
 for ttDM in ttDMmasses:
-plot['ttDMscalar' + ttDM] = {
-    'nameHR' : '',
-    'color': 900,
-    'isSignal' : 2,
-    'isData'   : 0,
-    'scale'    : 0.0000001
-}
-plot['ttDMpseudo' + ttDM] = {
-    'nameHR' : '',
-    'color': 900,
-    'isSignal' : 2,
-    'isData'   : 0,
-    'scale'    : 0.0000001
-}
+    plot['ttDMscalar_' + ttDM] = {
+        'nameHR' : '',
+        'color': 900,
+        'isSignal' : 2,
+        'isData'   : 0,
+        'scale'    : 0.0000001
+        }
+    plot['ttDMpseudo_' + ttDM] = {
+        'nameHR' : '',
+        'color': 900,
+        'isSignal' : 2,
+        'isData'   : 0,
+        'scale'    : 0.0000001
+        }
 
 # data
 

@@ -83,6 +83,18 @@ structure['WZ']  = {
                   }
 
 
+structure['WZgS_L']  = { 
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
+
+
+structure['WZgS_H']  = { 
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
+
+
 structure['VVV']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
@@ -166,11 +178,11 @@ for mZB in ZBmasses:
 
 ttDMmasses={"00010_","00020_","00050_","00100_","00200_","00300_","00500_"}
 for ttDM in ttDMmasses:
-    structure['ttDMscalar' + ttDM] = {
+    structure['ttDMscalar_' + ttDM] = {
         'isSignal' : 1,
         'isData'   : 0
         }
-    structure['ttDMpseudo' + ttDM] = {
+    structure['ttDMpseudo_' + ttDM] = {
         'isSignal' : 1,
         'isData'   : 0
         }

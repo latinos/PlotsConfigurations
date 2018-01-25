@@ -17,7 +17,35 @@ variables['events']  = {   'name': '1',
 # Variables for significance computation - Run without nuisances!!! #
 #####################################################################
 
-# mucca for 2HDM Model
+# # mucca for 2HDM Model
+# variables['muccamva2HDMadaptFull_600_sign'] = {
+#     'name': 'muccamva2HDMadaptFull_600_300_em ',
+#     'range' : (10000,-1,1),
+#     'xaxis' : 'MVA discriminant',
+#     'fold' : 3
+#     }
+
+# variables['muccamva2HDMadaptFull_1000_sign'] = {
+#     'name': 'muccamva2HDMadaptFull_1000_300_em ',
+#     'range' : (10000,-1,1),
+#     'xaxis' : 'MVA discriminant',
+#     'fold' : 3
+#     }
+
+# variables['muccamva2HDMadaptFull_2000_sign'] = {
+#     'name': 'muccamva2HDMadaptFull_2000_300_em ',
+#     'range' : (10000,-1,1),
+#     'xaxis' : 'MVA discriminant',
+#     'fold' : 3
+#     }
+
+# variables['muccamva2HDMadaptFull_2500_sign'] = {
+#     'name': 'muccamva2HDMadaptFull_2500_300_em ',
+#     'range' : (10000,-1,1),
+#     'xaxis' : 'MVA discriminant',
+#     'fold' : 3
+#     }
+
 # variables['muccamva2HDMadaptFull_All_sign'] = {
 #     'name': 'muccamva2HDMadaptFull_All_em',
 #     'range' : (10000,-1,1),
@@ -25,70 +53,15 @@ variables['events']  = {   'name': '1',
 #     'fold' : 3
 #     }
 
-# variables['muccamva2HDMadaptFull_600_sign'] = {
-#     'name': 'muccamva2HDMadaptFull_600_300_em',
+# variables['muccamva2HDMadaptFull_All_NoWeights_sign'] = {
+#     'name': 'muccamva2HDMadaptFull_All_em_NoWeights',
 #     'range' : (10000,-1,1),
 #     'xaxis' : 'MVA discriminant',
 #     'fold' : 3
 #     }
 
-# variables['muccamva2HDMadaptFull_800_sign'] = {
-#     'name': 'muccamva2HDMadaptFull_800_300_em',
-#     'range' : (10000,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
 
-# variables['muccamva2HDMadaptFull_1000_sign'] = {
-#     'name': 'muccamva2HDMadaptFull_1000_300_em',
-#     'range' : (10000,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamva2HDMadaptFull_1200_sign'] = {
-#     'name': 'muccamva2HDMadaptFull_1200_300_em',
-#     'range' : (10000,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamva2HDMadaptFull_1400_sign'] = {
-#     'name': 'muccamva2HDMadaptFull_1400_300_em',
-#     'range' : (10000,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamva2HDMadaptFull_1700_sign'] = {
-#     'name': 'muccamva2HDMadaptFull_1700_300_em',
-#     'range' : (10000,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamva2HDMadaptFull_2000_sign'] = {
-#     'name': 'muccamva2HDMadaptFull_2000_300_em',
-#     'range' : (10000,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamva2HDMadaptFull_2500_sign'] = {
-#     'name': 'muccamva2HDMadaptFull_2500_300_em',
-#     'range' : (10000,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# mucca for Z'B Model
-# variables['muccamvaZbaradaptFull_All_sign'] = {
-#     'name': 'muccamvaZbaradaptFull_All_em',
-#     'range' : (10000,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
+# # mucca for Z'B Model
 # variables['muccamvaZbaradaptFull_10_sign'] = {
 #     'name': 'muccamvaZbaradaptFull_10_1_em',
 #     'range' : (10000,-1,1),
@@ -96,43 +69,8 @@ variables['events']  = {   'name': '1',
 #     'fold' : 3
 #     }
 
-# # variables['muccamvaZbaradaptFull_20_sign'] = {
-# #     'name': 'muccamvaZbaradaptFull_20_1_em',
-# #     'range' : (10000,-1,1),
-# #     'xaxis' : 'MVA discriminant',
-# #     'fold' : 3
-# #     }
-
-# variables['muccamvaZbaradaptFull_50_sign'] = {
-#     'name': 'muccamvaZbaradaptFull_50_1_em',
-#     'range' : (10000,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
 # variables['muccamvaZbaradaptFull_100_sign'] = {
 #     'name': 'muccamvaZbaradaptFull_100_1_em',
-#     'range' : (10000,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamvaZbaradaptFull_200_sign'] = {
-#     'name': 'muccamvaZbaradaptFull_200_1_em',
-#     'range' : (10000,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# # variables['muccamvaZbaradaptFull_300_sign'] = {
-# #     'name': 'muccamvaZbaradaptFull_300_1_em',
-# #     'range' : (10000,-1,1),
-# #     'xaxis' : 'MVA discriminant',
-# #     'fold' : 3
-# #     }
-
-# variables['muccamvaZbaradaptFull_500_sign'] = {
-#     'name': 'muccamvaZbaradaptFull_500_1_em',
 #     'range' : (10000,-1,1),
 #     'xaxis' : 'MVA discriminant',
 #     'fold' : 3
@@ -152,148 +90,107 @@ variables['events']  = {   'name': '1',
 #     'fold' : 3
 #     }
 
-# variables['muccamvaZbaradaptFull_10000_sign'] = {
-#     'name': 'muccamvaZbaradaptFull_10000_1_em',
+# variables['muccamvaZbaradaptFull_All_sign'] = {
+#     'name': 'muccamvaZbaradaptFull_All_em',
 #     'range' : (10000,-1,1),
 #     'xaxis' : 'MVA discriminant',
 #     'fold' : 3
 #     }
 
+# variables['muccamvaZbaradaptFull_All_NoWeights_sign'] = {
+#     'name': 'muccamvaZbaradaptFull_All_em_NoWeights',
+#     'range' : (10000,-1,1),
+#     'xaxis' : 'MVA discriminant',
+#     'fold' : 3
+#     }
+
+
+##############################
+# MVA Variables with 40 bins #
+##############################
+
+# # mucca for 2HDM Model
+# variables['muccamva2HDMadaptFull_All'] = {
+#     'name': 'muccamva2HDMadaptFull_All_em',
+#     'range' : (40,-1,1),
+#     'xaxis' : 'MVA discriminant',
+#     'fold' : 3
+#     }
+
+# variables['muccamva2HDMadaptFull_All_NoWeights'] = {
+#     'name': 'muccamva2HDMadaptFull_All_em_NoWeights',
+#     'range' : (40,-1,1),
+#     'xaxis' : 'MVA discriminant',
+#     'fold' : 3
+#     }
+
+
+# # mucca for Zbar Model
+# variables['muccamvaZbaradaptFull_All'] = {
+#     'name': 'muccamvaZbaradaptFull_All_em',
+#     'range' : (40,-1,1),
+#     'xaxis' : 'MVA discriminant',
+#     'fold' : 3
+#     }
+
+# variables['muccamvaZbaradaptFull_All_NoWeights'] = {
+#     'name': 'muccamvaZbaradaptFull_All_em_NoWeights',
+#     'range' : (40,-1,1),
+#     'xaxis' : 'MVA discriminant',
+#     'fold' : 3
+#     }
+
+
 ######################
 # Analysis Variables #
 ######################
 
-# # mucca for 2HDM Model
-# variables['muccamva2HDMadaptFull_600'] = {
-#     'name': 'muccamva2HDMadaptFull_600_300_em',
-#     'range' : ([-0.9999,-0.6315,-0.5191,-0.4641,-0.2969,-0.1369,0.1897,0.4329,0.6255,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-# variables['muccamva2HDMadaptFull_All_Bin600'] = {
-#     'name': 'muccamva2HDMadaptFull_All_em',
-#     'range' : ([-0.9999,-0.6761,-0.3527,0.0483,0.2371,0.4455,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
+# mucca for 2HDM Model
 variables['muccamva2HDMadaptFull_All_Bin800'] = {
     'name': 'muccamva2HDMadaptFull_All_em',
-    'range' : ([-0.9999,-0.5127,-0.2735,0.0223,0.1991,0.3389,0.5905,1],),
+    'range' : ([-0.9999,-0.7633,-0.5461,-0.3133,-0.0363,0.1099,0.3129,0.4833,0.7299,1],),
     'xaxis' : 'MVA discriminant',
     'fold' : 3
     }
-
-# variables['muccamva2HDMadaptFull_1000'] = {
-#     'name': 'muccamva2HDMadaptFull_1000_300_em',
-#     'range' : ([-0.9999,-0.5905,-0.4071,-0.2329,-0.0867,0.1237,0.2965,0.4169,0.5007,0.6735,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-# variables['muccamva2HDMadaptFull_All_Bin1000'] = {
-#     'name': 'muccamva2HDMadaptFull_All_em',
-#     'range' : ([-0.9999,-0.7631,-0.5193,-0.3261,-0.1249,0.0845,0.2131,0.3351,0.5631,0.7555,1],),
+# variables['muccamva2HDMadaptFull_All_NoWeights_Bin800'] = {
+#     'name': 'muccamva2HDMadaptFull_All_em_NoWeights',
+#     'range' : ([-0.9999,-0.6879,-0.4019,-0.2039,0.0797,0.2665,0.4229,0.6637,1],),
 #     'xaxis' : 'MVA discriminant',
 #     'fold' : 3
 #     }
 
-# variables['muccamva2HDMadaptFull_2000'] = {
-#     'name': 'muccamva2HDMadaptFull_2000_300_em',
-#     'range' : ([-0.9999,-0.5313,-0.2297,-0.1677,-0.0297,0.1729,0.2789,0.3919,0.4977,0.6403,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-# variables['muccamva2HDMadaptFull_All_Bin2000'] = {
-#     'name': 'muccamva2HDMadaptFull_All_em',
-#     'range' : ([-0.9999,-0.5641,-0.3219,-0.2011,0.0223,0.2055,0.3395,0.5907,0.7555,0.7951,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-# variables['muccamva2HDMadaptFull_All_Bin2000_Bis'] = {
-#     'name': 'muccamva2HDMadaptFull_All_em',
-#     'range' : ([-0.9999,-0.5641,-0.3219,-0.2011,0.0223,0.2055,0.3395,0.5907,0.7555,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-# variables['muccamva2HDMadaptFull_All_Bin2000_Tris'] = {
-#     'name': 'muccamva2HDMadaptFull_All_em',
-#     'range' : ([-0.9999,-0.5641,-0.3219,-0.2011,0.0223,0.2055,0.3395,0.5907,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamva2HDMadaptFull_2500'] = {
-#     'name': 'muccamva2HDMadaptFull_2500_300_em',
-#     'range' : ([-0.9999,-0.5421,-0.2793,-0.1673,-0.0839,0.0275,0.2271,0.3647,0.4865,0.5891,0.6103,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-# variables['muccamva2HDMadaptFull_All_Bin2500'] = {
-#     'name': 'muccamva2HDMadaptFull_All_em',
-#     'range' : ([-0.9999,-0.7333,-0.4005,-0.2823,-0.1667,0.0211,0.2965,0.4461,0.5733,0.7555,0.7951,0.8415,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# # # mucca for Z'B Model
-# variables['muccamvaZbaradaptFull_10'] = {
-#     'name': 'muccamvaZbaradaptFull_10_1_em',
-#     'range' : ([-0.9999,-0.6715,-0.3729,-0.2421,-0.0097,0.3613,0.5047,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-# variables['muccamvaZbaradaptFull_All_Bin10'] = {
-#     'name': 'muccamvaZbaradaptFull_All_em',
-#     'range' : ([-0.9999,-0.6731,-0.6729,-0.5239,-0.3449,-0.1481,0.2811,0.5471,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamvaZbaradaptFull_100'] = {
-#     'name': 'muccamvaZbaradaptFull_100_1_em',
-#     'range' : ([-0.9999,-0.6275,-0.4315,-0.2051,0.0125,0.3313,0.5427,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
+# mucca for Z'B Model
 variables['muccamvaZbaradaptFull_All_Bin100'] = {
     'name': 'muccamvaZbaradaptFull_All_em',
-    'range' : ([-0.9999,-0.7235,-0.3379,-0.1673,0.2957,0.5461,1],),
+    'range' : ([-0.9999,-0.6041,-0.4669,-0.3249,-0.1113,0.2497,0.6039,1],),
     'xaxis' : 'MVA discriminant',
     'fold' : 3
     }
-
-# variables['muccamvaZbaradaptFull_1000'] = {
-#     'name': 'muccamvaZbaradaptFull_1000_1_em',
-#     'range' : ([-0.9999,-0.5143,-0.2293,0.1043,0.3427,0.4871,0.6677,1],),
+# variables['muccamvaZbaradaptFull_All_NoWeights_Bin100'] = {
+#     'name': 'muccamvaZbaradaptFull_All_em_NoWeights',
+#     'range' : ([-0.9999,-0.6493,-0.4915,-0.2653,-0.0019,0.3719,0.5847,1],),
 #     'xaxis' : 'MVA discriminant',
 #     'fold' : 3
 #     }
-variables['muccamvaZbaradaptFull_All_Bin1000'] = {
-    'name': 'muccamvaZbaradaptFull_All_em',
-    'range' : ([-0.9999,-0.6561,-0.4527,-0.2735,0.0507,0.3379,0.5739,0.7321,1],),
-    'xaxis' : 'MVA discriminant',
-    'fold' : 3
-    }
 
-# variables['muccamvaZbaradaptFull_2000'] = {
-#     'name': 'muccamvaZbaradaptFull_2000_1_em',
-#     'range' : ([-0.9999,-0.5431,-0.2167,0.0251,0.2865,0.4845,0.6823,0.8279,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-# variables['muccamvaZbaradaptFull_All_Bin2000'] = {
+# variables['muccamvaZbaradaptFull_All_Bin1000'] = {
 #     'name': 'muccamvaZbaradaptFull_All_em',
-#     'range' : ([-0.9999,-0.6325,-0.3509,-0.2151,0.0995,0.3985,0.5555,0.6871,0.8433,1],),
+#     'range' : ([-0.9999,-0.6219,-0.3213,-0.0615,0.2479,0.3939,0.6145,0.7451,1],),
 #     'xaxis' : 'MVA discriminant',
 #     'fold' : 3
 #     }
-
+# variables['muccamvaZbaradaptFull_All_NoWeights_Bin1000'] = {
+#     'name': 'muccamvaZbaradaptFull_All_em_NoWeights',
+#     'range' : ([-0.9999,-0.6413,-0.2129,0.1573,0.2983,0.4755,0.6579,0.8393,1],),
+#     'xaxis' : 'MVA discriminant',
+#     'fold' : 3
+#     }
 
 ###############################
 # Old variables configuration #
 ###############################
 
-# # # mucca for 2HDM Model
+# # mucca for 2HDM Model
 # variables['muccamva2HDMadaptFull'] = {
 #     'name': 'muccamva2HDMadaptFull_em',
 #     #    'range' : ([-1,-0.8,-0.6,-0.4,-0.2,0.0,0.2,0.5,1],), # old range in the AN_v2
@@ -443,15 +340,15 @@ variables['muccamvaZbaradaptFull_All'] = {
     'fold' : 3
     }
 
-variables['mth']  = {   'name': 'mth',            #   variable name    
-                        'range' : (25,0,500),     #   variable range
-                        'xaxis' : 'm_{T}^{\ell\ell} [GeV]',  #   x axis name
+variables['mth']  = {   'name': 'mth',
+                        'range' : (25,0,500),
+                        'xaxis' : 'm_{T}^{\ell\ell} [GeV]',
                         'fold' : 3
                         }
 
-variables['mtw1'] = {     'name'  : 'mtw1',            #   variable name    
-                          'range' : (25,0,500),    #   variable range
-                          'xaxis' : 'm_{T}^{W1}',  #   x axis name
+variables['mtw1'] = {     'name'  : 'mtw1',
+                          'range' : (25,0,500),
+                          'xaxis' : 'm_{T}^{W1}',
                           'fold'  : 3
                           }
 
@@ -467,21 +364,21 @@ variables['drll'] = {     'name': 'drll',
                           'fold'  : 0
                           }
 
-variables['dphill'] = {   'name': 'dphill',            #   variable name    
-                         'range' : (20,0,3.2),    #   variable range
-                         'xaxis' : '\Delta\Phi_{\ell\ell} [rad]',  #   x axis name
+variables['dphill'] = {   'name': 'dphill',
+                         'range' : (20,0,3.2),
+                         'xaxis' : '\Delta\Phi_{\ell\ell} [rad]',
                          'fold' : 0
                          }
 
-variables['dphilmet1'] = {   'name': 'dphilmet1',            #   variable name    
-                          'range' : (20,0,3.2),    #   variable range
-                          'xaxis' : '\Delta\Phi_{\ell 1, E_{T}^{miss}} [rad]',  #   x axis name
+variables['dphilmet1'] = {   'name': 'dphilmet1',
+                          'range' : (20,0,3.2),
+                          'xaxis' : '\Delta\Phi_{\ell 1, E_{T}^{miss}} [rad]',
                           'fold' : 0
                           }
 
-variables['dphilmet2'] = {   'name': 'dphilmet2',            #   variable name    
-                          'range' : (20,0,3.2),    #   variable range
-                          'xaxis' : '\Delta\Phi_{\ell 2, E_{T}^{miss}} [rad]',  #   x axis name
+variables['dphilmet2'] = {   'name': 'dphilmet2',
+                          'range' : (20,0,3.2),
+                          'xaxis' : '\Delta\Phi_{\ell 2, E_{T}^{miss}} [rad]',
                           'fold' : 0
                           }
 
@@ -491,15 +388,15 @@ variables['njet']  = {   'name': 'njet',
                          'fold' : 0
                          }
                         
-variables['ptll']  = {   'name': 'ptll',            #   variable name    
-                         'range' : (25,0,250),    #   variable range
-                         'xaxis' : 'p_{T}^{\ell\ell} [GeV]',  #   x axis name
+variables['ptll']  = {   'name': 'ptll',
+                         'range' : (25,0,250),
+                         'xaxis' : 'p_{T}^{\ell\ell} [GeV]',
                          'fold' : 3
                          }
 
-variables['met']  = {   'name': 'metPfType1',            #   variable name    
-                        'range' : (25,0,250),    #   variable range
-                        'xaxis' : 'E_{T}^{miss} [GeV]',  #   x axis name
+variables['met']  = {   'name': 'metPfType1',
+                        'range' : (25,0,250),
+                        'xaxis' : 'E_{T}^{miss} [GeV]',
                         'fold' : 0
                         }
 
@@ -515,15 +412,15 @@ variables['metTtrk'] = {'name': 'metTtrk',
                         'fold' : 0
                         }
 
-variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',            #   variable name    
-                        'range' : (40,0,400),    #   variable range
-                        'xaxis' : 'p_{T}^{1st lep} [GeV]',  #   x axis name
+variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',
+                        'range' : (40,0,400),
+                        'xaxis' : 'p_{T}^{1st lep} [GeV]',
                         'fold' : 3
                         }
 
-variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',            #   variable name    
-                        'range' : (40,0,150),    #   variable range
-                        'xaxis' : 'p_{T}^{2nd lep} [GeV]',  #   x axis name
+variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',
+                        'range' : (40,0,150),
+                        'xaxis' : 'p_{T}^{2nd lep} [GeV]',
                         'fold' : 3
                         }
 
@@ -538,6 +435,14 @@ variables['mpmet']  = {   'name': 'mpmet',
                          'xaxis' : 'min. (proj. tk. E_{T}^{miss}, proj. E_{T}^{miss})', 
                          'fold' : 3
                          }
+
+
+
+
+
+
+
+
                         
 
 # variables['pt1-pt2']  = {   'name': 'std_vector_lepton_pt[0] - std_vector_lepton_pt[1]',            #   variable name    
@@ -576,307 +481,4 @@ variables['mpmet']  = {   'name': 'mpmet',
 #                         'fold' : 3
 #                         }
 
-
-# # mucca for 2HDM Model - new
-# variables['muccamva2HDMgradFull_new'] = {
-#     'name': 'muccamva2HDMgradFull_new_em',
-#     'range' : (40,-1,1),  
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamva2HDMadaptFull_new'] = {
-#     'name': 'muccamva2HDMadaptFull_new_em',
-#     'range' : (40,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-
-# # mucca for Z'B Model - new
-# variables['muccamvaZbargradFull_new'] = {
-#     'name': 'muccamvaZbargradFull_new_em',
-#     'range' : (40,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamvaZbaradaptFull_new'] = {
-#     'name': 'muccamvaZbaradaptFull_new_em',
-#     'range' : (40,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-
-# # mucca for 2HDM Model - low
-# variables['muccamva2HDMadaptFull_low'] = {
-#     'name': 'muccamva2HDMadaptFull_low_em',
-#     'range' : (40,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-
-# # # mucca for Z'B Model - low
-# # variables['muccamvaZbaradaptFull_low'] = {
-# #     'name': 'muccamvaZbaradaptFull_low_em',
-# #     'range' : (40,-1,1),
-# #     'xaxis' : 'MVA discriminant',
-# #     'fold' : 3
-# #     }
-
-
-# # mucca for 2HDM Model - high
-# variables['muccamva2HDMadaptFull_high'] = {
-#     'name': 'muccamva2HDMadaptFull_high_em',
-#     'range' : (40,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-
-# # mucca for Z'B Model - high
-# variables['muccamvaZbaradaptFull_high'] = {
-#     'name': 'muccamvaZbaradaptFull_high_em',
-#     'range' : (40,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-
-# # mucca for 2HDM Model - superHigh
-# variables['muccamva2HDMadaptFull_superHigh'] = {
-#     'name': 'muccamva2HDMadaptFull_superHigh_em',
-#     'range' : (40,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-
-# # mucca for Z'B Model - superHigh
-# variables['muccamvaZbaradaptFull_superHigh'] = {
-#     'name': 'muccamvaZbaradaptFull_superHigh_em',
-#     'range' : (40,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-
-
-####################################
-# Gradient boost useless variables #
-####################################
-
-# variables['muccamva2HDMgradFull_high'] = {
-#     'name': 'muccamva2HDMgradFull_high_em',
-#     'range' : (40,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamvaZbargradFull_high'] = {
-#     'name': 'muccamvaZbargradFull_high_em',
-#     'range' : (40,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamva2HDMgradFull_superHigh'] = {
-#     'name': 'muccamva2HDMgradFull_superHigh_em',
-#     'range' : (40,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamvaZbargradFull_superHigh'] = {
-#     'name': 'muccamvaZbargradFull_superHigh_em',
-#     'range' : (40,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# # variables['muccamvaZbargradFull_low'] = {
-# #     'name': 'muccamvaZbargradFull_low_em',
-# #     'range' : (40,-1,1),
-# #     'xaxis' : 'MVA discriminant',
-# #     'fold' : 3
-# #     }
-
-# variables['muccamva2HDMgradFull_new_sign'] = {
-#     'name': 'muccamva2HDMgradFull_new_em',
-#     'range' : (10000,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamvaZbargradFull_new_sign'] = {
-#     'name': 'muccamvaZbargradFull_new_em',
-#     'range' : (10000,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamva2HDMgradFull_low_sign'] = {
-#     'name': 'muccamva2HDMgradFull_low_em',
-#     'range' : (10000,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamvaZbargradFull_low_sign'] = {
-#     'name': 'muccamvaZbargradFull_low_em',
-#     'range' : (10000,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamva2HDMgradFull_high_sign'] = {
-#     'name': 'muccamva2HDMgradFull_high_em',
-#     'range' : (10000,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamvaZbargradFull_high_sign'] = {
-#     'name': 'muccamvaZbargradFull_high_em',
-#     'range' : (10000,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamva2HDMgradFull_superHigh_sign'] = {
-#     'name': 'muccamva2HDMgradFull_superHigh_em',
-#     'range' : (10000,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamvaZbargradFull_superHigh_sign'] = {
-#     'name': 'muccamvaZbargradFull_superHigh_em',
-#     'range' : (10000,-1,1),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamva2HDMgradFull_new'] = {
-#     'name': 'muccamva2HDMgradFull_new_em',
-#     'range' : ([-0.9999,-0.7837,-0.6849,-0.5989,-0.2363,0.1223,0.1751,0.1835,0.1837,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamvaZbargradFull_new'] = {
-#     'name': 'muccamvaZbargradFull_new_em',
-#     'range' : ([-0.9999,-0.8517,-0.7087,-0.5677,-0.2177,0.0861,0.0963,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamva2HDMgradFull_low'] = {
-#     'name': 'muccamva2HDMgradFull_low_em',
-#     'range' : ([-0.9999,-0.6487,-0.3473,0.0039,0.0991,0.1511,0.1547,0.1549,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamvaZbargradFull_low'] = {
-#     'name': 'muccamvaZbargradFull_low_em',
-#     'range' : ([-0.9999,-0.8517,-0.7087,-0.5677,-0.2177,0.0861,0.0963,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamva2HDMgradFull_high'] = {
-#     'name': 'muccamva2HDMgradFull_high_em',
-#     'range' : ([-0.9999,-0.2545,0.1047,0.1321,0.1325,0.1327,0.1329,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamvaZbargradFull_high'] = {
-#     'name': 'muccamvaZbargradFull_high_em',
-#     'range' : ([-0.9999,-0.8361,-0.7305,-0.6243,-0.4475,0.0709,0.1629,0.1703,0.1705,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamva2HDMgradFull_superHigh'] = {
-#     'name': 'muccamva2HDMgradFull_superHigh_em',
-#     'range' : ([-0.9999,-0.7261,-0.1365,0.1053,0.1067,0.1069,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamvaZbargradFull_superHigh'] = {
-#     'name': 'muccamvaZbargradFull_superHigh_em',
-#     'range' : ([-0.9999,-0.8937,-0.7997,-0.6505,-0.0379,0.1299,0.1555,0.1597,0.1599,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-
-# variables['muccamva2HDMgradFull'] = {
-#     'name': 'muccamva2HDMgradFull_em',
-# #    'range' : ([-1,-0.8,-0.6,-0.4,-0.2,0.1,1],), # old 6 bins
-#     'range' : ([-1,-0.80,-0.65,-0.50,-0.35,-0.20,-0.05,0.136,1.00],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamvaZbargradFull'] = {
-#     'name': 'muccamvaZbargradFull_em',
-#     # 'range' : ([-1,-0.8,-0.6,-0.4,-0.2,0.05,1],),           #  old range in AN_v2
-#     'range' : ([-1,-0.82,-0.67,-0.52,-0.37,-0.22,-0.07,0.077,1.00],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamva2HDMgradFull_SuperBinBis'] = { # Real endpoint = 0.1361
-#     'name': 'muccamva2HDMgradFull_em',
-#     'range' : ([-0.9999,-0.7563,-0.7079,-0.5795,-0.3181,0.0591,0.1311,0.1361,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamva2HDMadaptFull_SuperBinBis'] = { # Real endpoint = 0.8
-#     'name': 'muccamvaZbargradFull_em',
-#     'range' : ([-0.9999,-0.7955,-0.5009,-0.1449,0.0651,0.0771,0.0775,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-#     'name': 'muccamvaZbargradFull_high_em',
-#     'range' : ([-0.9999,-0.8093,-0.7489,-0.6121,-0.3991,0.0899,0.1365,0.1433,0.1435,1],),
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamva2HDMgradFull_Old'] = {
-#     'name': 'muccamva2HDMgradFull_em',
-#     'range' : ([-1,-0.8,-0.6,-0.4,-0.2,0.1,1],), # old 6 bins
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamvaZbargradFull_Old'] = {
-#     'name': 'muccamvaZbargradFull_em',
-#     'range' : ([-1,-0.8,-0.6,-0.4,-0.2,0.05,1],),           #  old range in AN_v2
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamva2HDMgradFull_Intermediate'] = {
-#     'name': 'muccamva2HDMgradFull_em',
-#     'range' : ([-1,-0.8,-0.6,-0.4,-0.2,0.136,1],), # old 6 bins (just last bin optimised)
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
-
-# variables['muccamvaZbargradFull_Intermediate'] = {
-#     'name': 'muccamvaZbargradFull_em',
-#     'range' : ([-1,-0.8,-0.6,-0.4,-0.2,0.077,1],),           #  old range in AN_v2 (just last bin optimised)
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3
-#     }
 

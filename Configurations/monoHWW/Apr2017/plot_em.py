@@ -39,12 +39,21 @@ groupPlot['VVV']  = {
 
 
 groupPlot['VZ']  = {  
-                  'nameHR' : "VZ/#gamma*/#gamma",
-                  'isSignal' : 0,
-                  'color'    : 617,   # kViolet + 1  
-                  'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ','Zg']
-              }
+    #'nameHR' : "VZ/#gamma*/#gamma",
+    'nameHR' : "VZ",
+    'isSignal' : 0,
+    'color'    : 617,   # kViolet + 1  
+    #'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ','Zg','WZgS_H']
+    'samples'  : ['VZ', 'WZ', 'ZZ', 'WZgS_H']
+    }
 
+
+groupPlot['VgS']  = {
+                  'nameHR' : "V#gamma*",
+                  'isSignal' : 0,
+                  'color'    : 409,   # kGreen - 9
+                  'samples'  : ['VgS','WZgS_L']
+              }
 
 groupPlot['DY']  = {  
                   'nameHR' : "DY",
@@ -63,7 +72,7 @@ groupPlot['Higgs']  = {
               }
 
 
-ZpMasses={"600","800","1000","1200","1400","1700"}#,"2000","2500"}
+ZpMasses={"600","800","1000","1200","1400","1700","2000","2500"}
 A0Masses={"300","400","500","600","700","800"}
 i=0
 
@@ -124,11 +133,11 @@ groupPlot['monoH_600_300'] = {
 #     'samples'  : ['monoH_ZB_995_500']
 # }
 
-groupPlot['monoH_ZB_100_1'] = {
+groupPlot['monoH_ZB_100_1_'] = {
     'nameHR' : 'mZ=100 GeV, mChi=1 GeV x 100',
     'isSignal' : 2,
     'color': 1,
-    'samples'  : ['monoH_ZB_100_1']
+    'samples'  : ['monoH_ZB_100_1_']
 }
 # groupPlot['monoH_ZB_100_10'] = {
 #     'nameHR' : 'mZ=100 GeV, mChi=10 GeV x 100',
@@ -219,6 +228,20 @@ groupPlot['monoH_ZB_100_1'] = {
 
 # keys here must match keys in samples.py    
 #                    
+plot['WZgS_L']  = {
+    'color': 617,
+    'isSignal' : 0,
+    'isData'   : 0, 
+    'scale'    : 1.0,
+    }
+
+plot['WZgS_H']  = {
+    'color': 617,
+    'isSignal' : 0,
+    'isData'   : 0, 
+    'scale'    : 1.0,
+    } 
+
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
@@ -584,7 +607,7 @@ plot['monoH_ZB_100_10'] = {
     'isData'   : 0,
     'scale'    : 0.0000001
 }
-plot['monoH_ZB_100_1'] = {
+plot['monoH_ZB_100_1_'] = {
     'nameHR' : 'mZ=100 GeV, mChi=1 GeV x 100',
     'color': 920,
     'isSignal' : 2,
