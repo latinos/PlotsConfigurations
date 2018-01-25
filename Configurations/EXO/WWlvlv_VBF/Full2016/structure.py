@@ -23,11 +23,18 @@ for m in masses:
                     'isSignal' : 1,
                     'isData'   : 0
                     }
-    structure['ggH_hww_INT'+m+'_'+model_name]  = {
+    #Signal 1?
+    structure['ggH_hww_SBI'+m+'_'+model_name]  = {
+                     'isSignal' : 1,
+                     'isData'   : 0
+                     }
+
+    structure['qqH_hww_'+m+'_'+model_name]  = {
                     'isSignal' : 1,
                     'isData'   : 0
                     }
-    structure['qqH_hww_'+m+'_'+model_name]  = {
+
+    structure['qqH_hww_SBI'+m+'_'+model_name]  = {
                     'isSignal' : 1,
                     'isData'   : 0
                     }
