@@ -19,13 +19,22 @@ plot['ggWW']  = {
                   }
 
 
-plot['WW_aTGC'] = {
-                  'nameHR' : 'WW_aTGC',
-                  'color': 632, # kRed 
+plot['WW_aTGC_SM'] = {
+                  'nameHR' : 'WW_aTGC_SM',
+                  'color': 1, # kRed 
                   'isSignal' : 0,
                   'isData'   : 1,    
                   'scale'    : 1    #
                   }
+
+plot['WW_aTGC_111'] = {
+                  'nameHR' : 'WW_aTGC_111',
+                  'color': 632, # kRed 
+                  'isSignal' : 2,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
 
 # additional options
 

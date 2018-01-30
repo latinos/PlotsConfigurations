@@ -155,7 +155,8 @@ DataTrig = {
 ###### WW ########
              
 samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu') ,
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*nllW' ,  
+                      #'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*nllW' ,  
+                      'weight' : XSWeight ,
                       'FilesPerJob' : 1 , 
                  }
 
@@ -171,10 +172,22 @@ samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu') ,
 #############   SIGNALS  ##################
 ###########################################
 
-samples['WW_aTGC'] = {   'name'  :     getSampleFiles(directory,'WWTo2L2Nu_aTGC_0-400')    
+samples['WW_aTGC_SM'] = {   'name'  :     getSampleFiles(directory,'WWTo2L2Nu_aTGC_0-400')    
                                     +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_400-600')  
                                     +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_600-800')  
                                     +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_800-Inf') ,
-                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(22357.2/24701.9)*(std_vector_LHE_weight[173]/GEN_weight_SM)*(std_vector_LHE_weight[173]!=-999)',
+                        #'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(22357.2/24701.9)*(std_vector_LHE_weight[173]/GEN_weight_SM)*(std_vector_LHE_weight[173]!=-999)',
+                        'weight' : XSWeight+'*(22357.2/24701.9)*(std_vector_LHE_weight[173]/GEN_weight_SM)*(std_vector_LHE_weight[173]!=-999)',
                         'FilesPerJob' : 1 , 
                      }
+
+samples['WW_aTGC_111'] = {   'name'  :     getSampleFiles(directory,'WWTo2L2Nu_aTGC_0-400')
+                                    +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_400-600')
+                                    +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_600-800')
+                                    +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_800-Inf') ,
+                        #'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(22357.2/24701.9)*(std_vector_LHE_weight[111]/GEN_weight_SM)*(std_vector_LHE_weight[173]!=-999)',
+                        'weight' : XSWeight+'*(22357.2/24701.9)*(std_vector_LHE_weight[111]/GEN_weight_SM)*(std_vector_LHE_weight[173]!=-999)',
+                        'FilesPerJob' : 1 ,
+                     }
+
+
