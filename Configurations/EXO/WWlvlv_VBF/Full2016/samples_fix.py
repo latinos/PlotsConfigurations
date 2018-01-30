@@ -479,7 +479,8 @@ for m in masses:
  
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     print "model=",model,"   Model_int=",  model_int, "   Name=", model_name
-    
+
+    #Split sample in according to the name: 200<m<300 ...ToWWTo2L2Nu and 300<m<3000 name with ...ToWWTo2L2Nu_JHUGen698_
     print m
     my_list = ['200','210','230' ,'250', '270']
     if m  in my_list:
@@ -489,7 +490,7 @@ for m in masses:
      samples['ggH_hww_'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_M'+m) ,
  
                                             
-                                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+model+"*"+str(sf),
+                                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+model+'*'+str(sf),
                                           'suppressNegativeNuisances' :['all'],                           
                                         }
      
@@ -499,7 +500,6 @@ for m in masses:
                                                          getSampleFiles(directory,'GluGluHToWWTo2L2Nu_M'+m) + \
                                                          getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM') + \
                                                          getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125'),                                            
-                                             
                                           'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
                                                    # +'*(abs('+model_int+')<10)', removed
                                           'suppressNegativeNuisances' :['all'],
@@ -513,10 +513,29 @@ for m in masses:
      #VBF
      samples['qqH_hww_'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_M'+m) ,
                                             
-                                          'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+"*"+str(sf),
-                                             #Remove "model" in weight: in the ntuple there are not the cprimeX.XBRnewY.Y 
+                                          'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+model+'*'+str(sf),
+                                           #Put 'model' in weight  
                                           'suppressNegativeNuisances' :['all'],
                                         }                   
+
+
+     samples['qqH_hww_SBI'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_M'+m)  + \
+                                                         getSampleFiles(directory,'VBFHToWWTo2L2Nu_M'+m)  + \
+                                                         #getSampleFiles(directory,'') ,
+                                                         getSampleFiles(directory,'WWTo2L2Nu')  + \
+                                                         getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125'),
+
+                                          'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+str(sf),
+                                          'suppressNegativeNuisances' :['all'],
+                                          'weights':[model,
+                                                     model_int,
+                                                     #add *nllW as in WW sample
+                                                     '1.*nllW',
+                                                     '1.']
+
+                                        }                   
+  
+                       
 
 
 
@@ -528,7 +547,7 @@ for m in masses:
      samples['ggH_hww_'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_JHUGen698_M'+m) ,
  
                                             
-                                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+model+"*"+str(sf),
+                                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+model+'*'+str(sf),
                                           'suppressNegativeNuisances' :['all'],
                                         }
  
@@ -552,13 +571,27 @@ for m in masses:
      #VBF
      samples['qqH_hww_'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m) ,
                                             
-                                          'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+"*"+str(sf),
+                                          'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+model+'*'+str(sf),
                                              #Remove "model" in weight: in the ntuple there are not the cprimeX.XBRnewY.Y 
                                           'suppressNegativeNuisances' :['all'], 
                                        }                   
  
  
- 
+     samples['qqH_hww_SBI'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m)  + \
+                                                         getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m)  + \
+                                                         #getSampleFiles(directory,'') ,
+                                                         getSampleFiles(directory,'WWTo2L2Nu')  + \
+                                                         getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125'),
+
+                                          'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+str(sf),
+                                          'suppressNegativeNuisances' :['all'],
+                                          'weights':[model,
+                                                     model_int,
+                                                     #add *nllW as in WW sample
+                                                     '1.*nllW',
+                                                     '1.']
+
+                                        }               
  
  
  
