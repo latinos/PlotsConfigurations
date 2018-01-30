@@ -172,7 +172,7 @@ samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu') ,
 #############   SIGNALS  ##################
 ###########################################
 
-samples['WW_aTGC_SM'] = {   'name'  :     getSampleFiles(directory,'WWTo2L2Nu_aTGC_0-400')    
+samples['WW_SM'] = {   'name'  :     getSampleFiles(directory,'WWTo2L2Nu_aTGC_0-400')    
                                     +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_400-600')  
                                     +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_600-800')  
                                     +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_800-Inf') ,
@@ -181,13 +181,16 @@ samples['WW_aTGC_SM'] = {   'name'  :     getSampleFiles(directory,'WWTo2L2Nu_aT
                         'FilesPerJob' : 1 , 
                      }
 
-samples['WW_aTGC_111'] = {   'name'  :     getSampleFiles(directory,'WWTo2L2Nu_aTGC_0-400')
+h=open('acoupling.py','r')
+exec(h)
+for iWeight in acoupling['weights']:
+  iLheWeight=acoupling['weights'][iWeight]['LheWeight']
+  samples['WW_'+str(iWeight)+'_aTGC'] = {
+                         'name'  :     getSampleFiles(directory,'WWTo2L2Nu_aTGC_0-400')
                                     +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_400-600')
                                     +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_600-800')
                                     +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_800-Inf') ,
-                        #'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(22357.2/24701.9)*(std_vector_LHE_weight[111]/GEN_weight_SM)*(std_vector_LHE_weight[173]!=-999)',
-                        'weight' : XSWeight+'*(22357.2/24701.9)*(std_vector_LHE_weight[111]/GEN_weight_SM)*(std_vector_LHE_weight[173]!=-999)',
+                        #'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(22357.2/24701.9)*(std_vector_LHE_weight[173]/GEN_weight_SM)*(std_vector_LHE_weight[173]!=-999)',
+                        'weight' : XSWeight+'*(22357.2/24701.9)*(std_vector_LHE_weight['+str(iLheWeight)+']/GEN_weight_SM)*(std_vector_LHE_weight[173]!=-999)',
                         'FilesPerJob' : 1 ,
                      }
-
-
