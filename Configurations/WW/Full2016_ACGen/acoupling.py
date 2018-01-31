@@ -3,6 +3,7 @@ acoupling = {}
 
 # Basic definition
 
+acoupling['sigName']       = 'WW_${iWeight}_aTGC'  # End name by a string to avoid problems
 acoupling['launch_card']   = 'WWTolnulnu_01j_aTGC_lep_WWmass-0to400_4f_NLO_FXFX_reweight_card.dat'
 acoupling['nOperators']    = 3
 acoupling['operatorNames'] = ['CWWW','CW','CB']
@@ -33,18 +34,17 @@ for line in open(acoupling['launch_card'],'r').readlines():
 
 acoupling['ScanConfig']  = {
                              '1D' : ['CWWW','CW','CB'],
+                          #  '2D' : ['CWWW:CW'],
                              '2D' : ['CWWW:CW','CWWW:CB','CW:CB'],
                              '3D' : ['CWWW:CW:CB'],
                            }
 
 # ... Start filling (You should not need to edit below)
 acoupling['Scans'] = {}
-acoupling['Scans']['1D'] = {}
-acoupling['Scans']['2D'] = {}
-acoupling['Scans']['3D'] = {}
 
 # ... 1D Scan
 if '1D' in acoupling['ScanConfig'] and len(acoupling['ScanConfig']['1D']) > 0 :
+  acoupling['Scans']['1D'] = {}
   for iScan in acoupling['ScanConfig']['1D']:
     acoupling['Scans']['1D'][iScan] = {}
     idx = acoupling['operatorNames'].index(iScan) 
@@ -57,6 +57,7 @@ if '1D' in acoupling['ScanConfig'] and len(acoupling['ScanConfig']['1D']) > 0 :
 
 # ... 2D Scan
 if '2D' in acoupling['ScanConfig'] and len(acoupling['ScanConfig']['2D']) > 0 :
+  acoupling['Scans']['2D'] = {}
   for iScan in acoupling['ScanConfig']['2D']:
      acoupling['Scans']['2D'][iScan] = {}
      idx1= acoupling['operatorNames'].index(iScan.split(':')[0])
@@ -70,6 +71,7 @@ if '2D' in acoupling['ScanConfig'] and len(acoupling['ScanConfig']['2D']) > 0 :
 
 # ... 3D Scan
 if '3D' in acoupling['ScanConfig'] and len(acoupling['ScanConfig']['3D']) > 0 :
+  acoupling['Scans']['3D'] = {}
   for iScan in acoupling['ScanConfig']['3D']:
      acoupling['Scans']['3D'][iScan] = {}
      idx1= acoupling['operatorNames'].index(iScan.split(':')[0])
