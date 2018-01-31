@@ -147,105 +147,116 @@ nuisances['QCDscale_qqbar_accept']  = {
                'name'  : 'QCDscale_qqbar_accept', 
                'type'  : 'lnN',
                'samples'  : {
-                  
+                    #ctrl WWQCD
+                   'WWQCD' : '1.03',
                    'qqH_hww' : '1.007',
                    'WH_hww'  : '1.05',
                    'ZH_hww'  : '1.04',
                    'VZ'      : '1.029',
-                   'qqH_hww_200_c10brn00': '0.991/1.003' ,
-                   'qqH_hww_210_c10brn00': '0.990/1.005' ,
-                   'qqH_hww_230_c10brn00': '0.994/1.001' ,
-                   'qqH_hww_250_c10brn00': '0.994/1.002' ,
-                   'qqH_hww_270_c10brn00': '0.993/1.003' ,
-                   'qqH_hww_300_c10brn00': '0.996/0.999' ,
-                   'qqH_hww_350_c10brn00': '0.996/0.999' ,
-                   'qqH_hww_400_c10brn00': '0.998/0.997' ,
-                   'qqH_hww_450_c10brn00': '1.000/0.995' ,
-                   'qqH_hww_500_c10brn00': '1.001/0.994' ,
-                   'qqH_hww_550_c10brn00': '1.004/0.990' ,
-                   'qqH_hww_650_c10brn00': '1.003/0.992' ,
-                   'qqH_hww_700_c10brn00': '1.004/0.990' ,
-                   'qqH_hww_750_c10brn00': '1.006/0.989' ,
-                   'qqH_hww_800_c10brn00': '1.009/0.984' ,
-                   'qqH_hww_900_c10brn00': '1.007/0.988' ,
-                   'qqH_hww_1000_c10brn00': '1.008/0.986' ,
-                   'qqH_hww_1500_c10brn00': '1.015/0.976' ,
-                   'qqH_hww_2000_c10brn00': '1.017/0.973' ,
-                   'qqH_hww_2500_c10brn00': '1.016/0.973' ,
-                   'qqH_hww_3000_c10brn00': '1.022/0.963' ,
+                   #'qqH_hww_200_c10brn00': '0.991/1.003' ,
+                   #'qqH_hww_210_c10brn00': '0.990/1.005' ,
+                   #'qqH_hww_230_c10brn00': '0.994/1.001' ,
+                   #'qqH_hww_250_c10brn00': '0.994/1.002' ,
+                   #'qqH_hww_270_c10brn00': '0.993/1.003' ,
+                   #'qqH_hww_300_c10brn00': '0.996/0.999' ,
+                   #'qqH_hww_350_c10brn00': '0.996/0.999' ,
+                   #'qqH_hww_400_c10brn00': '0.998/0.997' ,
+                   #'qqH_hww_450_c10brn00': '1.000/0.995' ,
+                   #'qqH_hww_500_c10brn00': '1.001/0.994' ,
+                   #'qqH_hww_550_c10brn00': '1.004/0.990' ,
+                   #'qqH_hww_650_c10brn00': '1.003/0.992' ,
+                   #'qqH_hww_700_c10brn00': '1.004/0.990' ,
+                   #'qqH_hww_750_c10brn00': '1.006/0.989' ,
+                   #'qqH_hww_800_c10brn00': '1.009/0.984' ,
+                   #'qqH_hww_900_c10brn00': '1.007/0.988' ,
+                   #'qqH_hww_1000_c10brn00': '1.008/0.986' ,
+                   #'qqH_hww_1500_c10brn00': '1.015/0.976' ,
+                   #'qqH_hww_2000_c10brn00': '1.017/0.973' ,
+                   #'qqH_hww_2500_c10brn00': '1.016/0.973' ,
+                   #'qqH_hww_3000_c10brn00': '1.022/0.963' ,
 
 
                    },
               }
-#for m in masses:
-#  for model in models:
-#    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
-#    nuisances['QCDscale_qqbar_accept']['samples'].update({'qqH_hww_'+m+'_'+model_name:'1.02'})
-#Controllare il 2%
+for m in masses:
+  
+  mass=int(m)
+  weight1=0.971893 + (mass*8.75961e-05 )+(mass*mass*-3.9762e-08)+(mass*mass*mass*6.78212e-12 )
+  weight=str(weight1)
+  #print  weight
+  for model in models:
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    nuisances['QCDscale_qqbar_accept']['samples'].update({'qqH_hww_'+m+'_'+model_name: weight})
+    nuisances['QCDscale_qqbar_accept']['samples'].update({'qqH_hww_SBI'+m+'_'+model_name: weight})
 
 
 #For the HM singals, the un. are taken from in 0 jet
 nuisances['QCDscale_gg_accept']  = {
                'name'  : 'QCDscale_gg_accept', 
                'samples'  : {
-                  
+                   
                    'ggWW'    : '1.027',
                    'ggH_hww' : '1.027',                  
                    'H_htt'   : '1.027',
                    'ggZH_hww': '1.027',                   
-                   'ggH_hww_200_c10brn00': '1.024/0.969' ,
-                   'ggH_hww_SBI200_c10brn00': '1.058/0.937' ,
-                   'ggH_hww_210_c10brn00': '1.023/0.971' ,
-                   'ggH_hww_SBI210_c10brn00': '1.057/0.938' ,
-                   'ggH_hww_230_c10brn00': '1.023/0.971' ,
-                   'ggH_hww_SBI230_c10brn00': '1.056/0.941' ,
-                   'ggH_hww_250_c10brn00': '1.024/0.969' ,
-                   'ggH_hww_SBI250_c10brn00': '1.059/0.937' ,
-                   'ggH_hww_270_c10brn00': '1.026/0.966' ,
-                   'ggH_hww_SBI270_c10brn00': '1.063/0.932' ,
-                   'ggH_hww_300_c10brn00': '1.024/0.969' ,
-                   'ggH_hww_SBI300_c10brn00': '1.066/0.932' ,
-                   'ggH_hww_350_c10brn00': '1.022/0.971' ,
-                   'ggH_hww_SBI350_c10brn00': '1.062/0.936' ,
-                   'ggH_hww_400_c10brn00': '1.022/0.971' ,
-                   'ggH_hww_SBI400_c10brn00': '1.067/0.932' ,
-                   'ggH_hww_450_c10brn00': '1.023/0.969' ,
-                   'ggH_hww_SBI450_c10brn00': '1.078/0.922' ,
-                   'ggH_hww_500_c10brn00': '1.025/0.966' ,
-                   'ggH_hww_SBI500_c10brn00': '1.090/0.912' ,
-                   'ggH_hww_550_c10brn00': '1.025/0.966' ,
-                   'ggH_hww_SBI550_c10brn00': '1.102/0.904' ,
-                   'ggH_hww_650_c10brn00': '1.026/0.964' ,
-                   'ggH_hww_SBI650_c10brn00': '1.120/0.891' ,
-                   'ggH_hww_700_c10brn00': '1.026/0.963' ,
-                   'ggH_hww_SBI700_c10brn00': '1.127/0.886' ,
-                   'ggH_hww_750_c10brn00': '1.025/0.964' ,
-                   'ggH_hww_SBI750_c10brn00': '1.133/0.883' ,
-                   'ggH_hww_800_c10brn00': '1.026/0.964' ,
-                   'ggH_hww_SBI800_c10brn00': '1.137/0.880' ,
-                   'ggH_hww_900_c10brn00': '1.026/0.964' ,
-                   'ggH_hww_SBI900_c10brn00': '1.142/0.877' ,
-                   'ggH_hww_1000_c10brn00': '1.024/0.966' ,
-                   'ggH_hww_SBI1000_c10brn00': '1.146/0.875' ,
-                   'ggH_hww_1500_c10brn00': '1.022/0.969' ,
-                   'ggH_hww_SBI1500_c10brn00': '1.152/0.870' ,
-                   'ggH_hww_2000_c10brn00': '1.021/0.972' ,
-                   'ggH_hww_SBI2000_c10brn00': '1.155/0.869' ,
-                   'ggH_hww_2500_c10brn00': '1.018/0.977' ,
-                   'ggH_hww_SBI2500_c10brn00': '1.143/0.865' ,
-                   'ggH_hww_3000_c10brn00': '1.015/0.981' ,
-                   'ggH_hww_SBI3000_c10brn00': '1.157/0.868' ,
+                   #'ggH_hww_200_c10brn00': '1.024/0.969' ,
+                   #'ggH_hww_SBI200_c10brn00': '1.058/0.937' ,
+                   #'ggH_hww_210_c10brn00': '1.023/0.971' ,
+                   #'ggH_hww_SBI210_c10brn00': '1.057/0.938' ,
+                   #'ggH_hww_230_c10brn00': '1.023/0.971' ,
+                   #'ggH_hww_SBI230_c10brn00': '1.056/0.941' ,
+                   #'ggH_hww_250_c10brn00': '1.024/0.969' ,
+                   #'ggH_hww_SBI250_c10brn00': '1.059/0.937' ,
+                   #'ggH_hww_270_c10brn00': '1.026/0.966' ,
+                   #'ggH_hww_SBI270_c10brn00': '1.063/0.932' ,
+                   #'ggH_hww_300_c10brn00': '1.024/0.969' ,
+                   #'ggH_hww_SBI300_c10brn00': '1.066/0.932' ,
+                   #'ggH_hww_350_c10brn00': '1.022/0.971' ,
+                   #'ggH_hww_SBI350_c10brn00': '1.062/0.936' ,
+                   #'ggH_hww_400_c10brn00': '1.022/0.971' ,
+                   #'ggH_hww_SBI400_c10brn00': '1.067/0.932' ,
+                   #'ggH_hww_450_c10brn00': '1.023/0.969' ,
+                   #'ggH_hww_SBI450_c10brn00': '1.078/0.922' ,
+                   #'ggH_hww_500_c10brn00': '1.025/0.966' ,
+                   #'ggH_hww_SBI500_c10brn00': '1.090/0.912' ,
+                   #'ggH_hww_550_c10brn00': '1.025/0.966' ,
+                   #'ggH_hww_SBI550_c10brn00': '1.102/0.904' ,
+                   #'ggH_hww_650_c10brn00': '1.026/0.964' ,
+                   #'ggH_hww_SBI650_c10brn00': '1.120/0.891' ,
+                   #'ggH_hww_700_c10brn00': '1.026/0.963' ,
+                   #'ggH_hww_SBI700_c10brn00': '1.127/0.886' ,
+                   #'ggH_hww_750_c10brn00': '1.025/0.964' ,
+                   #'ggH_hww_SBI750_c10brn00': '1.133/0.883' ,
+                   #'ggH_hww_800_c10brn00': '1.026/0.964' ,
+                   #'ggH_hww_SBI800_c10brn00': '1.137/0.880' ,
+                   #'ggH_hww_900_c10brn00': '1.026/0.964' ,
+                   #'ggH_hww_SBI900_c10brn00': '1.142/0.877' ,
+                   #'ggH_hww_1000_c10brn00': '1.024/0.966' ,
+                   #'ggH_hww_SBI1000_c10brn00': '1.146/0.875' ,
+                   #'ggH_hww_1500_c10brn00': '1.022/0.969' ,
+                   #'ggH_hww_SBI1500_c10brn00': '1.152/0.870' ,
+                   #'ggH_hww_2000_c10brn00': '1.021/0.972' ,
+                   #'ggH_hww_SBI2000_c10brn00': '1.155/0.869' ,
+                   #'ggH_hww_2500_c10brn00': '1.018/0.977' ,
+                   #'ggH_hww_SBI2500_c10brn00': '1.143/0.865' ,
+                   #'ggH_hww_3000_c10brn00': '1.015/0.981' ,
+                   #'ggH_hww_SBI3000_c10brn00': '1.157/0.868' ,
                     
                    },
                'type'  : 'lnN',
               }
 
 
-#for m in masses:
-#  for model in models:
-#    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
-#    nuisances['QCDscale_gg_accept']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.027'})
-#    nuisances['QCDscale_gg_accept']['samples'].update({'ggH_hww_SBI'+m+'_'+model_name:'1.027'})
+for m in masses:
+
+  massA=int(m)
+  weightA1=1.04802  + (massA*3.62976e-05)+(massA*massA*-2.61565e-08 )+(massA*massA*massA*4.20694e-12 )
+  weightA=str(weightA1)
+
+  for model in models:
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    nuisances['QCDscale_gg_accept']['samples'].update({'ggH_hww_'+m+'_'+model_name: weightA})
+    nuisances['QCDscale_gg_accept']['samples'].update({'ggH_hww_SBI'+m+'_'+model_name: weightA})
 
 
 
@@ -433,101 +444,109 @@ nuisances['pdf_gg_accept']  = {
                    'ggH_hww' : '1.005',                   
                    'H_htt'   : '1.005',
                    'ggZH_hww': '1.005', 
-                   'ggH_hww_200_c10brn00': '1.007',
-                   'ggH_hww_SBI200_c10brn00': '1.005',
-                   'ggH_hww_210_c10brn00': '1.007',
-                   'ggH_hww_SBI210_c10brn00': '1.005',
-                   'ggH_hww_230_c10brn00': '1.007',
-                   'ggH_hww_SBI230_c10brn00': '1.005',
-                   'ggH_hww_250_c10brn00': '1.007',
-                   'ggH_hww_SBI250_c10brn00': '1.005',
-                   'ggH_hww_270_c10brn00': '1.007',
-                   'ggH_hww_SBI270_c10brn00': '1.006',
-                   'ggH_hww_300_c10brn00': '1.007',
-                   'ggH_hww_SBI300_c10brn00': '1.006',
-                   'ggH_hww_350_c10brn00': '1.007',
-                   'ggH_hww_SBI350_c10brn00': '1.006',
-                   'ggH_hww_400_c10brn00': '1.007',
-                   'ggH_hww_SBI400_c10brn00': '1.006',
-                   'ggH_hww_450_c10brn00': '1.007',
-                   'ggH_hww_SBI450_c10brn00': '1.007',
-                   'ggH_hww_500_c10brn00': '1.007',
-                   'ggH_hww_SBI500_c10brn00': '1.008',
-                   'ggH_hww_550_c10brn00': '1.007',
-                   'ggH_hww_SBI550_c10brn00': '1.010',
-                   'ggH_hww_650_c10brn00': '1.007',
-                   'ggH_hww_SBI650_c10brn00': '1.012',
-                   'ggH_hww_700_c10brn00': '1.007',
-                   'ggH_hww_SBI700_c10brn00': '1.014',
-                   'ggH_hww_750_c10brn00': '1.007',
-                   'ggH_hww_SBI750_c10brn00': '1.015',
-                   'ggH_hww_800_c10brn00': '1.007',
-                   'ggH_hww_SBI800_c10brn00': '1.016',
-                   'ggH_hww_900_c10brn00': '1.007',
-                   'ggH_hww_SBI900_c10brn00': '1.019',
-                   'ggH_hww_1000_c10brn00': '1.007',
-                   'ggH_hww_SBI1000_c10brn00': '1.021',
-                   'ggH_hww_1500_c10brn00': '1.009',
-                   'ggH_hww_SBI1500_c10brn00': '1.029',
-                   'ggH_hww_2000_c10brn00': '1.010',
-                   'ggH_hww_SBI2000_c10brn00': '1.035',
-                   'ggH_hww_2500_c10brn00': '1.016',
-                   'ggH_hww_SBI2500_c10brn00': '1.014',
-                   'ggH_hww_3000_c10brn00': '1.022',
-                   'ggH_hww_SBI3000_c10brn00': '1.046',
+                   #'ggH_hww_200_c10brn00': '1.007',
+                   #'ggH_hww_SBI200_c10brn00': '1.005',
+                   #'ggH_hww_210_c10brn00': '1.007',
+                   #'ggH_hww_SBI210_c10brn00': '1.005',
+                   #'ggH_hww_230_c10brn00': '1.007',
+                   #'ggH_hww_SBI230_c10brn00': '1.005',
+                   #'ggH_hww_250_c10brn00': '1.007',
+                   #'ggH_hww_SBI250_c10brn00': '1.005',
+                   #'ggH_hww_270_c10brn00': '1.007',
+                   #'ggH_hww_SBI270_c10brn00': '1.006',
+                   #'ggH_hww_300_c10brn00': '1.007',
+                   #'ggH_hww_SBI300_c10brn00': '1.006',
+                   #'ggH_hww_350_c10brn00': '1.007',
+                   #'ggH_hww_SBI350_c10brn00': '1.006',
+                   #'ggH_hww_400_c10brn00': '1.007',
+                   #'ggH_hww_SBI400_c10brn00': '1.006',
+                   #'ggH_hww_450_c10brn00': '1.007',
+                   #'ggH_hww_SBI450_c10brn00': '1.007',
+                   #'ggH_hww_500_c10brn00': '1.007',
+                   #'ggH_hww_SBI500_c10brn00': '1.008',
+                   #'ggH_hww_550_c10brn00': '1.007',
+                   #'ggH_hww_SBI550_c10brn00': '1.010',
+                   #'ggH_hww_650_c10brn00': '1.007',
+                   #'ggH_hww_SBI650_c10brn00': '1.012',
+                   #'ggH_hww_700_c10brn00': '1.007',
+                   #'ggH_hww_SBI700_c10brn00': '1.014',
+                   #'ggH_hww_750_c10brn00': '1.007',
+                   #'ggH_hww_SBI750_c10brn00': '1.015',
+                   #'ggH_hww_800_c10brn00': '1.007',
+                   #'ggH_hww_SBI800_c10brn00': '1.016',
+                   #'ggH_hww_900_c10brn00': '1.007',
+                   #'ggH_hww_SBI900_c10brn00': '1.019',
+                   #'ggH_hww_1000_c10brn00': '1.007',
+                   #'ggH_hww_SBI1000_c10brn00': '1.021',
+                   #'ggH_hww_1500_c10brn00': '1.009',
+                   #'ggH_hww_SBI1500_c10brn00': '1.029',
+                   #'ggH_hww_2000_c10brn00': '1.010',
+                   #'ggH_hww_SBI2000_c10brn00': '1.035',
+                   #'ggH_hww_2500_c10brn00': '1.016',
+                   #'ggH_hww_SBI2500_c10brn00': '1.014',
+                   #'ggH_hww_3000_c10brn00': '1.022',
+                   #'ggH_hww_SBI3000_c10brn00': '1.046',
                   
                    },
                'type'  : 'lnN',
               }
-#for m in masses:
-#  for model in models:
-#    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
-#    nuisances['pdf_gg_accept']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.005'})
-#    nuisances['pdf_gg_accept']['samples'].update({'ggH_hww_SBI'+m+'_'+model_name:'1.005'})
-#Controllare il 0.5%
+for m in masses:
+  for model in models:
+    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+    if m<1500:    
+      nuisances['pdf_gg_accept']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.007'})
+      nuisances['pdf_gg_accept']['samples'].update({'ggH_hww_SBI'+m+'_'+model_name:'1.010'})
+    if m>1499:
+      nuisances['pdf_gg_accept']['samples'].update({'ggH_hww_'+m+'_'+model_name:'1.012'})           
+      nuisances['pdf_gg_accept']['samples'].update({'ggH_hww_SBI'+m+'_'+model_name:'1.035'})
+
 
 #For the HM singals, the un. are taken from in VBF cat
 nuisances['pdf_qqbar_accept']  = {
                'name'  : 'pdf_qqbar_accept', 
                'type'  : 'lnN',
                'samples'  : {
-                   #
+                   #ctrt WWQCD number
+                   'WWQCD' : '1.01',    
                    'qqH_hww' : '1.011',                  
                    'WH_hww'  : '1.007',
                    'ZH_hww'  : '1.012',
                    'VZ'      : '1.005',                   
-                   'qqH_hww_200_c10brn00': '1.005',
-                   'qqH_hww_210_c10brn00': '1.005',
-                   'qqH_hww_230_c10brn00': '1.005',
-                   'qqH_hww_250_c10brn00': '1.004',
-                   'qqH_hww_270_c10brn00': '1.005',
-                   'qqH_hww_300_c10brn00': '1.004',
-                   'qqH_hww_350_c10brn00': '1.005',
-                   'qqH_hww_400_c10brn00': '1.005',
-                   'qqH_hww_450_c10brn00': '1.005',
-                   'qqH_hww_500_c10brn00': '1.006',
-                   'qqH_hww_550_c10brn00': '1.006',
-                   'qqH_hww_650_c10brn00': '1.006',
-                   'qqH_hww_700_c10brn00': '1.005',
-                   'qqH_hww_750_c10brn00': '1.007',
-                   'qqH_hww_800_c10brn00': '1.007',
-                   'qqH_hww_900_c10brn00': '1.007',
-                   'qqH_hww_1000_c10brn00': '1.009',
-                   'qqH_hww_1500_c10brn00': '1.012',
-                   'qqH_hww_2000_c10brn00': '1.014',
-                   'qqH_hww_2500_c10brn00': '1.017',
-                   'qqH_hww_3000_c10brn00': '1.022',
+                   #'qqH_hww_200_c10brn00': '1.005',
+                   #'qqH_hww_210_c10brn00': '1.005',
+                   #'qqH_hww_230_c10brn00': '1.005',
+                   #'qqH_hww_250_c10brn00': '1.004',
+                   #'qqH_hww_270_c10brn00': '1.005',
+                   #'qqH_hww_300_c10brn00': '1.004',
+                   #'qqH_hww_350_c10brn00': '1.005',
+                   #'qqH_hww_400_c10brn00': '1.005',
+                   #'qqH_hww_450_c10brn00': '1.005',
+                   #'qqH_hww_500_c10brn00': '1.006',
+                   #'qqH_hww_550_c10brn00': '1.006',
+                   #'qqH_hww_650_c10brn00': '1.006',
+                   #'qqH_hww_700_c10brn00': '1.005',
+                   #'qqH_hww_750_c10brn00': '1.007',
+                   #'qqH_hww_800_c10brn00': '1.007',
+                   #'qqH_hww_900_c10brn00': '1.007',
+                   #'qqH_hww_1000_c10brn00': '1.009',
+                   #'qqH_hww_1500_c10brn00': '1.012',
+                   #'qqH_hww_2000_c10brn00': '1.014',
+                   #'qqH_hww_2500_c10brn00': '1.017',
+                   #'qqH_hww_3000_c10brn00': '1.022',
 
                    },
               }
 
-#For qq_SBI, I put a fix value (conservative) of 1.025 
+
 for m in masses:
   for model in models:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
-    nuisances['pdf_qqbar_accept']['samples'].update({'qqH_hww_SBI'+m+'_'+model_name:'1.025'})
-#Controllare il 1.1%
-
+    if m<1000:  
+      nuisances['pdf_qqbar_accept']['samples'].update({'qqH_hww_'+m+'_'+model_name:'1.005'})
+      nuisances['pdf_qqbar_accept']['samples'].update({'qqH_hww_SBI'+m+'_'+model_name:'(1.005)'})
+    if m>999:  
+      nuisances['pdf_qqbar_accept']['samples'].update({'qqH_hww_'+m+'_'+model_name:'1.015'})
+      nuisances['pdf_qqbar_accept']['samples'].update({'qqH_hww_SBI'+m+'_'+model_name:'(1.015)'})
 
 
 #######################################
@@ -541,6 +560,18 @@ nuisances['QCDscale_ggWW']  = {
                    'ggWW' : '1.15',
                    },
               }
+
+
+#da mettere? ctrl
+nuisances['QCDscale_WWQCD']  = {
+               'name'  : 'QCDscale_WWQCD',
+               'samples'  : {
+                   'WWQCD' : '1.15',
+                   },
+               'type'  : 'lnN'
+               }
+
+
 
 
 #  - WW shaping
@@ -805,6 +836,7 @@ nuisances['lumi']  = {
                    #'DY'       : '1.025',    \
                    #'top'      : '1.025',    |--> controlled via rateParams
                    #'WW'       : '1.025',    /
+                   'WWQCD' : '1.025',
                    'ggWW'     : '1.025',
                    'Vg'       : '1.025',
                    'VgS'      : '1.025',
@@ -906,6 +938,7 @@ nuisances['btagbc']  = {
                 'kind'  : 'weight',
                'type'  : 'shape',
                 'samples'  : {
+                   'WWQCD'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'DY'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'WW'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'ggWW'    : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
@@ -937,6 +970,7 @@ nuisances['btagudsg']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
+                   'WWQCD'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'DY'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'VVV'     : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'VZ'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
@@ -976,6 +1010,7 @@ nuisances['trigg']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
+                   'WWQCD'      : trig_syst ,
                    'DY'      : trig_syst ,
                    'VVV'     : trig_syst ,
                    'VZ'      : trig_syst ,
@@ -1015,7 +1050,8 @@ nuisances['eff_e']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                    'DY'      : id_syst_ele ,
+                   'WWQCD'      : id_syst_ele ,
+                   'DY'      : id_syst_ele ,
                    'VVV'     : id_syst_ele ,
                    'VZ'      : id_syst_ele ,
                    'ggWW'    : id_syst_ele ,
@@ -1047,6 +1083,7 @@ nuisances['electronpt']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
+                   'WWQCD' :  ['1', '1'],
                    'DY' :  ['1', '1'],
                    'ggWW' :['1', '1'],
                    'WW' :  ['1', '1'],
@@ -1086,6 +1123,7 @@ nuisances['elePtCor']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
+                   'WWQCD'         : elePtCor_Syst ,
                    'DY'         : elePtCor_Syst ,
                    'ggWW'       : elePtCor_Syst ,
                    'WW'         : elePtCor_Syst ,
@@ -1122,7 +1160,7 @@ nuisances['eleEtaCor']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                  
+                   'WWQCD'         : eleEtaCor_Syst, 
                    'DY'         : eleEtaCor_Syst, 
                    'ggWW'       : eleEtaCor_Syst, 
                    'WW'         : eleEtaCor_Syst, 
@@ -1162,7 +1200,8 @@ nuisances['eff_m']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                    'DY'      : id_syst_mu ,
+                   'WWQCD'      : id_syst_mu ,
+                   'DY'      : id_syst_mu ,
                    'VVV'     : id_syst_mu ,
                    'VZ'      : id_syst_mu ,
                    'ggWW'    : id_syst_mu ,
@@ -1194,6 +1233,7 @@ nuisances['muonpt']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
+                   'WWQCD' :  ['1', '1'],
                    'ggWW' :['1', '1'],
                    'WW' :  ['1', '1'],
                    'DY' :  ['1', '1'],
@@ -1235,6 +1275,7 @@ nuisances['jes']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
+                   'WWQCD' :  ['1', '1'],
                    'ggWW' :['1', '1'],
                    'WW' :  ['1', '1'],
                    'DY' :  ['1', '1'],
@@ -1274,6 +1315,7 @@ nuisances['met']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
+                   'WWQCD' :  ['1', '1'],
                    'ggWW' :['1', '1'],
                    'WW' :  ['1', '1'],
                    'DY' :  ['1', '1'],
@@ -1327,4 +1369,7 @@ nuisances['stat']  = {
               #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
               'samples' : {}
              }
+
+
+
 
