@@ -191,6 +191,11 @@ for iWeight in acoupling['weights']:
                                     +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_600-800')
                                     +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_800-Inf') ,
                         #'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(22357.2/24701.9)*(std_vector_LHE_weight[173]/GEN_weight_SM)*(std_vector_LHE_weight[173]!=-999)',
-                        'weight' : XSWeight+'*(22357.2/24701.9)*(std_vector_LHE_weight['+str(iLheWeight)+']/GEN_weight_SM)*(std_vector_LHE_weight[173]!=-999)',
+                        #'weight' : XSWeight+'*(22357.2/24701.9)*(std_vector_LHE_weight['+str(iLheWeight)+']/GEN_weight_SM)*(std_vector_LHE_weight[173]!=-999)',
                         'FilesPerJob' : 1 ,
                      }
+  if iLheWeight == -1 :
+    samples['WW_'+str(iWeight)+'_aTGC']['weight'] = XSWeight+'*(22357.2/24701.9)*(std_vector_LHE_weight[173]!=-999)'
+  else:
+    samples['WW_'+str(iWeight)+'_aTGC']['weight'] = XSWeight+'*(22357.2/24701.9)*(std_vector_LHE_weight['+str(iLheWeight)+']/GEN_weight_SM)*(std_vector_LHE_weight[173]!=-999)'
+

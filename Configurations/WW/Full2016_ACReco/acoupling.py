@@ -7,6 +7,7 @@ acoupling['sigName']       = 'WW_${iWeight}_aTGC'  # End name by a string to avo
 acoupling['launch_card']   = 'WWTolnulnu_01j_aTGC_lep_WWmass-0to400_4f_NLO_FXFX_reweight_card.dat'
 acoupling['nOperators']    = 3
 acoupling['operatorNames'] = ['CWWW','CW','CB']
+acoupling['scanOrigin']    = ['3' , '4', '20' ]   # Declare it if one of the point is used as central value for the generation
 acoupling['LheOffset']     = 112
 acoupling['weights']       = {}
 
@@ -29,7 +30,15 @@ for line in open(acoupling['launch_card'],'r').readlines():
      acoupling['weights'][iWeight] = {}
      acoupling['weights'][iWeight]['operatorValues'] = acVal 
      acoupling['weights'][iWeight]['LheWeight']      = iLheWeight 
+
+if 'scanOrigin' in acoupling :
+  iWeight+=1
+  iLheWeight=-1
+  acoupling['weights'][iWeight] = {}
+  acoupling['weights'][iWeight]['operatorValues'] = acoupling['scanOrigin']
+  acoupling['weights'][iWeight]['LheWeight']      = iLheWeight 
      
+
 # Retrieve scans from weights (Edit the ScanConfig, rest should be automatic, you can comment out some lines to suppress 1D, 2D or 3D)
 
 acoupling['ScanConfig']  = {
@@ -38,8 +47,8 @@ acoupling['ScanConfig']  = {
                              '3D' : ['CWWW:CW:CB'],
                            }
 
-# In case of missing point on the grid, we can take a neightbouring one with increased error bars:
-acoupling['ScansFix'] = { '3D' : { 'CWWW:CW:CB' : { '3:4:20' : '3:4:10' } } }
+# In case of missing point on the grid, we can take a neightbouring one with increased error bars (need to activate in mkACPlot as well):
+#acoupling['ScansFix'] = { '3D' : { 'CWWW:CW:CB' : { '3:4:20' : '3:4:10' } } }
 
 # ... Start filling (You should not need to edit below)
 acoupling['Scans'] = {}
