@@ -33,11 +33,13 @@ for line in open(acoupling['launch_card'],'r').readlines():
 # Retrieve scans from weights (Edit the ScanConfig, rest should be automatic, you can comment out some lines to suppress 1D, 2D or 3D)
 
 acoupling['ScanConfig']  = {
-                             '1D' : ['CWWW','CW','CB'],
-                          #  '2D' : ['CWWW:CW'],
-                             '2D' : ['CWWW:CW','CWWW:CB','CW:CB'],
+                           # '1D' : ['CWWW','CW','CB'],
+                           # '2D' : ['CWWW:CW','CWWW:CB','CW:CB'],
                              '3D' : ['CWWW:CW:CB'],
                            }
+
+# In case of missing point on the grid, we can take a neightbouring one with increased error bars:
+acoupling['ScansFix'] = { '3D' : { 'CWWW:CW:CB' : { '3:4:20' : '3:4:10' } } }
 
 # ... Start filling (You should not need to edit below)
 acoupling['Scans'] = {}
