@@ -60,8 +60,8 @@ GenLepMatch   = 'GenLepMatch'+Nlep+'l'
 ############### B-Tag  WP ######################
 ################################################
 
-bAlgo='cmvav2'
-#bAlgo='csvv2ivf'
+#bAlgo='cmvav2'
+bAlgo='csvv2ivf'
 #bAlgo='DeepCSVB'
 
 bWP='L'
@@ -90,12 +90,12 @@ SFweight += '*'+bSF
 
 #... Electron:
 
-#eleWP='cut_WP_Tight80X'
+eleWP='cut_WP_Tight80X'
 #eleWP='cut_WP_Tight80X_SS'
 #eleWP='mva_80p_Iso2015'
 #eleWP='mva_80p_Iso2016'
 #eleWP='mva_90p_Iso2015'
-eleWP='mva_90p_Iso2016'
+#eleWP='mva_90p_Iso2016'
 
 #... Muon:
 
@@ -155,8 +155,7 @@ DataTrig = {
 ###### WW ########
              
 samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu') ,
-                      #'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*nllW' ,  
-                      'weight' : XSWeight ,
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*nllW' ,  
                       'FilesPerJob' : 1 , 
                  }
 
@@ -172,15 +171,6 @@ samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu') ,
 #############   SIGNALS  ##################
 ###########################################
 
-samples['WW_SM'] = {   'name'  :     getSampleFiles(directory,'WWTo2L2Nu_aTGC_0-400')    
-                                    +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_400-600')  
-                                    +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_600-800')  
-                                    +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_800-Inf') ,
-                        #'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(22357.2/24701.9)*(std_vector_LHE_weight[173]/GEN_weight_SM)*(std_vector_LHE_weight[173]!=-999)',
-                        'weight' : XSWeight+'*(22357.2/24701.9)*(std_vector_LHE_weight[173]/GEN_weight_SM)*(std_vector_LHE_weight[173]!=-999)',
-                        'FilesPerJob' : 1 , 
-                     }
-
 h=open('acoupling.py','r')
 exec(h)
 for iWeight in acoupling['weights']:
@@ -190,12 +180,9 @@ for iWeight in acoupling['weights']:
                                     +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_400-600')
                                     +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_600-800')
                                     +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_800-Inf') ,
-                        #'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(22357.2/24701.9)*(std_vector_LHE_weight[173]/GEN_weight_SM)*(std_vector_LHE_weight[173]!=-999)',
-                        #'weight' : XSWeight+'*(22357.2/24701.9)*(std_vector_LHE_weight['+str(iLheWeight)+']/GEN_weight_SM)*(std_vector_LHE_weight[173]!=-999)',
+                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(22357.2/24701.9)*(std_vector_LHE_weight[173]!=-999)',
                         'FilesPerJob' : 1 ,
                      }
-  if iLheWeight == -1 :
-    samples['WW_'+str(iWeight)+'_aTGC']['weight'] = XSWeight+'*(22357.2/24701.9)*(std_vector_LHE_weight[173]!=-999)'
-  else:
-    samples['WW_'+str(iWeight)+'_aTGC']['weight'] = XSWeight+'*(22357.2/24701.9)*(std_vector_LHE_weight['+str(iLheWeight)+']/GEN_weight_SM)*(std_vector_LHE_weight[173]!=-999)'
+  if not iLheWeight == -1 :
+    samples['WW_'+str(iWeight)+'_aTGC']['weight'] += '*(std_vector_LHE_weight['+str(iLheWeight)+']/GEN_weight_SM)'
 

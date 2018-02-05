@@ -42,8 +42,8 @@ if 'scanOrigin' in acoupling :
 # Retrieve scans from weights (Edit the ScanConfig, rest should be automatic, you can comment out some lines to suppress 1D, 2D or 3D)
 
 acoupling['ScanConfig']  = {
-                           # '1D' : ['CWWW','CW','CB'],
-                           # '2D' : ['CWWW:CW','CWWW:CB','CW:CB'],
+                             '1D' : ['CWWW','CW','CB'],
+                             '2D' : ['CWWW:CW','CWWW:CB','CW:CB'],
                              '3D' : ['CWWW:CW:CB'],
                            }
 
