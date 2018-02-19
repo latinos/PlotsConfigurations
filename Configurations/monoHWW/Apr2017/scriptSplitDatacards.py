@@ -10,16 +10,28 @@ import sys
 # ZpMasses = {"600","800","1000","1200","1400","1700","2000","2500"}
 # A0Masses = {"300","400","500","600","700","800"}
 
-if len(sys.argv) < 3 :
+if len(sys.argv) < 5 :
     print "Please insert all the inputs I need: variable"
     print ""
-    print "python scriptSplitDatacards.py events em 600 400"
+    print "python scriptSplitDatacards.py events em MVA &"
+    print "python scriptSplitDatacards.py events em MVA_DYtt &"
+    print "python scriptSplitDatacards.py events em MVA_Top &"
+    print "python scriptSplitDatacards.py events em MVA_WW &"
     print ""
-    print "python scriptSplitDatacards.py mthBin em 600 400"
+    print "python scriptSplitDatacards.py mthBin em MVA &"
+    print "python scriptSplitDatacards.py mthBin em MVA_DYtt &"
+    print "python scriptSplitDatacards.py mthBin em MVA_Top &"
+    print "python scriptSplitDatacards.py mthBin em MVA_WW &"
     print ""
-    print "python scriptSplitDatacards.py muccamva2HDMadaptFull_All_Bin800 em 600 400"
+    print "python scriptSplitDatacards.py muccamva2HDMadaptFull_All_Bin800 em MVA &"
+    print "python scriptSplitDatacards.py muccamva2HDMadaptFull_All_Bin800 em MVA_DYtt &"
+    print "python scriptSplitDatacards.py muccamva2HDMadaptFull_All_Bin800 em MVA_Top &"
+    print "python scriptSplitDatacards.py muccamva2HDMadaptFull_All_Bin800 em MVA_WW &"
     print ""
-    print "python scriptSplitDatacards.py muccamvaZbaradaptFull_All_Bin100 em 600 400"
+    print "python scriptSplitDatacards.py muccamvaZbaradaptFull_All_Bin100 em MVA &"
+    print "python scriptSplitDatacards.py muccamvaZbaradaptFull_All_Bin100 em MVA_DYtt &"
+    print "python scriptSplitDatacards.py muccamvaZbaradaptFull_All_Bin100 em MVA_Top &"
+    print "python scriptSplitDatacards.py muccamvaZbaradaptFull_All_Bin100 em MVA_WW &"
     print ""
     print ""
     sys.exit()
@@ -30,28 +42,36 @@ print "Variable: " + variable
 channel = sys.argv[2]
 print "Channel: " + channel
 
-mZp = sys.argv[3]
+cut = sys.argv[3]
+print "Cut: " + cut
+
+mZp = sys.argv[4]
 print "mZp: " + mZp
 
-mA0 = sys.argv[4]
+mA0 = sys.argv[5]
 print "mA0: " + mA0
 
 #channel = "em"
-cut = "MVA"
 
 #Splitting Datacards
-#if "Zbar" not in variable and "ttDM" not in variable:                
-#for mZp in ZpMasses :
-#    for mA0 in A0Masses :
-#        if (mZp == "600" and (mA0 == "500" or mA0 == "600" or mA0 == "700" or mA0 == "800")) : continue;
-#        if (mZp == "800" and (mA0 == "700" or mA0 == "800")) : continue;
+# for mZp in ZpMasses :
+#     for mA0 in A0Masses :
 print "+++++ Splitting Datacards +++++"
 os.chdir("/afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/ModificationDatacards")
+
 # Full lumi datacards
 os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt -k \"monoH_" + mZp + "_" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
-os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_WW_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt -k \"monoH_" + mZp + "_" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_WW_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
-os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_Top_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt -k \"monoH_" + mZp + "_" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_Top_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
-os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_DYtt_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt -k \"monoH_" + mZp + "_" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_DYtt_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
+
+        # os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_WW_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt -k \"monoH_" + mZp + "_" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_WW_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
+        # os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_Top_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt -k \"monoH_" + mZp + "_" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_Top_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
+        # os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_DYtt_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt -k \"monoH_" + mZp + "_" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_" + cut + "_DYtt_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
+
+
+
+
+
+
+
 # # 1/15 lumi datacards
 # os.system("python RemoveSample.py -i inputRemoval.py -o ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards_blindData/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt -k \"monoH_" + mZp + "_" + mA0 + "\" ~/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards_blindData/monoH_" + cut + "_" + channel + "/" + variable + "/datacard.txt.pruned.txt")
 
