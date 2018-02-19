@@ -102,6 +102,13 @@ structure['WW']  = {
                   'isData'   : 0    
                   }
 
+structure['WWQCD']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0    
+                  }
+
+
+
 structure['ggWW']  = {
                   'isSignal' : 0,
                   'isData'   : 0    
