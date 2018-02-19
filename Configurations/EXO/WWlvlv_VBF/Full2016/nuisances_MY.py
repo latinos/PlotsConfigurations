@@ -181,7 +181,7 @@ nuisances['QCDscale_qqbar_accept']  = {
 for m in masses:
   
   mass=int(m)
-  weight1=0.971893 + (mass*8.75961e-05 )+(mass*mass*-3.9762e-08)+(mass*mass*mass*6.78212e-12 )
+  weight1= ((0.971893 + (mass*8.75961e-05 )+(mass*mass*-3.9762e-08)+(mass*mass*mass*6.78212e-12 ))*(mass>449) + 1.003*(mass<449))
   weight=str(weight1)
   #print  weight
   for model in models:
@@ -543,10 +543,10 @@ for m in masses:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     if m<1000:  
       nuisances['pdf_qqbar_accept']['samples'].update({'qqH_hww_'+m+'_'+model_name:'1.005'})
-      nuisances['pdf_qqbar_accept']['samples'].update({'qqH_hww_SBI'+m+'_'+model_name:'(1.005)'})
+      nuisances['pdf_qqbar_accept']['samples'].update({'qqH_hww_SBI'+m+'_'+model_name:'1.005'})
     if m>999:  
       nuisances['pdf_qqbar_accept']['samples'].update({'qqH_hww_'+m+'_'+model_name:'1.015'})
-      nuisances['pdf_qqbar_accept']['samples'].update({'qqH_hww_SBI'+m+'_'+model_name:'(1.015)'})
+      nuisances['pdf_qqbar_accept']['samples'].update({'qqH_hww_SBI'+m+'_'+model_name:'1.015'})
 
 
 #######################################

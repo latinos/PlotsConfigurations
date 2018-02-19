@@ -320,7 +320,7 @@ addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
 ####### WW ########
              
 samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu') ,
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*nllW' ,  
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*nllW *(mjj<300)' ,  
                  }
  
  
@@ -330,6 +330,11 @@ samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'
                       'isData': ['0'],                            
                       'suppressNegativeNuisances' :['all'],
                    }
+
+
+samples['WWQCD'] = { 'name': getSampleFiles(directory,'WpWmJJ_QCD_noTop'),
+                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC +'*(mjj>300)',
+}
  
 ## during tree production: 1.4 k-factor has been applied to both samples
 ## ggWW sample: k = 1.4 +/- 15%
@@ -519,24 +524,24 @@ for m in masses:
                                         }                   
 
 
-     samples['qqH_hww_SBI'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_M'+m)  + \
-                                                         getSampleFiles(directory,'VBFHToWWTo2L2Nu_M'+m)  + \
-                                                         #getSampleFiles(directory,'') ,
-                                                         getSampleFiles(directory,'WWTo2L2Nu')  + \
-                                                         getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125'),
-
+     
+                             
+     samples['qqH_hww_SBI'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_M'+m) + \
+                                                         getSampleFiles(directory,'VBFHToWWTo2L2Nu_M'+m) + \
+                                                         getSampleFiles(directory,'WWTo2L2Nu') + \
+                                                         getSampleFiles(directory,'WpWmJJ_QCD_noTop')  + \
+                                                         getSampleFiles(directory,'VBFHToWWTo2L2Nu_M125'),                                            
                                           'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+str(sf),
+                                                  
                                           'suppressNegativeNuisances' :['all'],
                                           'weights':[model,
                                                      model_int,
                                                      #add *nllW as in WW sample
-                                                     '1.*nllW',
+                                                     '1.0*(nllW)*(mjj<300)',
+                                                     '1.0*(mjj>300)',
                                                      '1.']
-
-                                        }                   
-  
-                       
-
+                                                
+                                          }    
 
 
 
@@ -579,16 +584,17 @@ for m in masses:
  
      samples['qqH_hww_SBI'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m)  + \
                                                          getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m)  + \
-                                                         #getSampleFiles(directory,'') ,
                                                          getSampleFiles(directory,'WWTo2L2Nu')  + \
-                                                         getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125'),
+                                                         getSampleFiles(directory,'WpWmJJ_QCD_noTop')  + \
+                                                         getSampleFiles(directory,'VBFHToWWTo2L2Nu_M125'),
 
                                           'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+str(sf),
                                           'suppressNegativeNuisances' :['all'],
                                           'weights':[model,
                                                      model_int,
                                                      #add *nllW as in WW sample
-                                                     '1.*nllW',
+                                                     '1. *(nllW)*(mjj<300)',
+                                                     '1.*(mjj>300)',                                                    
                                                      '1.']
 
                                         }               
