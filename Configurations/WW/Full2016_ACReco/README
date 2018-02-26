@@ -13,12 +13,21 @@ This is based on acoupling.py disctionary.
 
 - mkShapes.py --pycfg=configuration_TGC_em.py --inputDir=. --doBatch=True --batchSplit=Samples
 - wait for jobs to finish
-- mkShapes.py --pycfg=configuration_TGC_em.py --inputDir=. --doBatch=True --batchSplit=Samples
+- mkShapes.py --pycfg=configuration_TGC_em.py --inputDir=. --doHadd=True --batchSplit=Samples
 - mkACPlot.py --pycfg=configuration_TGC_em.py  --inputFile=rootFile_em/plots_WWTGC_em.root
-  --> This create a new root file in rootFile_em which cointain for each bin of the distribution, the variation in 1D, 2D 
-      and 3D of the event yield in that bin as well as a quadratic fit function (1D, 2D and 3D) due to the 3 anomalous 
-      couplings
+  --> This create a new root file in rootFile_em which cointain for each bin of the distribution, the variation in 1D, 2D and 3D of the event yield in that bin as well as a quadratic fit function (1D, 2D and 3D) due to the 3 anomalous couplings
 
 Step 3: Create the Anomalous Coupling datacards
 ===============================================
 
+- mkACDatacards.py --pycfg=configuration_em.py --varList=mll     --cutList=ww_0jet_em,ww_1jet_em       --inputFile=rootFile_em/plots_WWTGC_em_ACCoupling.root
+- mkACDatacards.py --pycfg=configuration_em.py --varList=events  --cutList=ww_top0jet_em,ww_top1jet_em --inputFile=rootFile_em/plots_WWTGC_em_ACCoupling.root
+--> this will create one datacard and a workpace per scan (each coupling in 1D or each pair of coupling in 2D, 3D to be implemented) separately for each cut and variable
+
+Step 4: Combine datacards for different cuts
+============================================
+
+
+
+
+-
