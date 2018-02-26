@@ -8,6 +8,13 @@
 # If not defined, normal plots is used
 #
 
+groupPlot['Vg']  = {  
+                  'nameHR' : "V#gamma",
+                  'isSignal' : 0,
+                  'color'    : 810,   # kOrange + 10
+                  'samples'  : ['Vg', 'Wg']
+              }
+
 groupPlot['Fake']  = {  
                   'nameHR' : 'Non-Prompt',
                   'isSignal' : 0,
@@ -23,12 +30,28 @@ groupPlot['top']  = {
                   'samples'  : ['top']
               }
 
-groupPlot['WW']  = {  
-                  'nameHR' : 'WW',
+# groupPlot['WW']  = {  
+#                   'nameHR' : 'WW',
+#                   'isSignal' : 0,
+#                   'color': 851, # kAzure -9 
+#                   'samples'  : ['WW', 'ggWW']
+#               }
+
+groupPlot['qqWW']  = {  
+                  'nameHR' : 'qqWW',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  'samples'  : ['WW', 'ggWW']
+                  'samples'  : ['WW']
               }
+
+
+groupPlot['ggWW']  = {  
+                  'nameHR' : 'ggWW',
+                  'isSignal' : 0,
+                  'color': 852, # kAzure -8
+                  'samples'  : ['ggWW']
+              }
+
 
 groupPlot['VVV']  = {  
                   'nameHR' : 'VVV',
@@ -72,8 +95,19 @@ groupPlot['Higgs']  = {
               }
 
 
-ZpMasses={"600","800","1000","1200","1400","1700","2000","2500"}
-A0Masses={"300","400","500","600","700","800"}
+# groupPlot['ggH']  = {  
+#                   'nameHR' : 'ggH',
+#                   'isSignal' : 0,
+#                   'color': 632, # kRed 
+#                   'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww']
+#               }
+
+
+# ZpMasses={"600","800","1000","1200","1400","1700","2000","2500"} #"1200","1400","1700","2000","2500"}
+# A0Masses={"300","400","500","600","700","800"}
+ZpMasses={"600","650","700","750","800","850","900","950","1000","1050","1100","1150","1200","1250","1300","1350","1400","1450","1500","1600","1650","1700","1750","1800","1850","1900","1950","2000","2050","2100","2150","2200","2250","2300","2350","2400","2450","2500"}
+A0Masses={"300","325","350","375","400","425","450","475","500","525","550","575","600","625","650","675","700","725","750","775","800","825","850","875","900","925","950","975"}
+        
 i=0
 
 # for mZp in ZpMasses:

@@ -452,363 +452,721 @@ A0Masses={"300","400","500","600","700","800"}
 for mZp in ZpMasses:
   for mA0 in A0Masses :
     if ((mZp == "600" and (mA0 == "300" or mA0 == "400")) or ((mZp == "800" and (mA0 == "300" or mA0 == "400" or mA0 == "500" or mA0 == "600"))) or (mZp != "600" and mZp != "800")) :
-      samples['monoH_' + mZp + '_' + mA0] = { 'name': ['latino_monoH_2HDM_MZp-' + mZp + '_MA0-' + mA0 + '.root'],
-                                              'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-                                              # 'suppressNegative' :['all'],
-                                              # 'suppressNegativeNuisances' :['all'],
-                                              }
+      samples['monoH_' + mZp + '_' + mA0] = { 
+        'name': ['latino_monoH_2HDM_MZp-' + mZp + '_MA0-' + mA0 + '.root'],
+        'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+        }
+
+
+## Samples for which reweighting is done by using 600_300 sample
+list_600_300={("600","325"),("600","350"),("600","375"),("600","425"),("600","450"),("600","475"),("600","525"),("600","550"),("600","625"),("600","675"),("600","700"),("600","750"),("600","775"),("600","800"),("600","825"),("600","875"),("600","900"),("600","925"),("650","350"),("650","375"),("650","400"),("650","425"),("650","450"),("650","475"),("650","500"),("650","525"),("650","550"),("650","600"),("650","625"),("650","650"),("650","675"),("650","700"),("650","725"),("650","750"),("650","775"),("650","800"),("650","825"),("650","850"),("650","875"),("650","900"),("650","925"),("650","975"),("700","300"),("700","325"),("700","375"),("700","400"),("700","425"),("700","450"),("700","475"),("700","500"),("700","575"),("700","625"),("700","650"),("700","725"),("700","750"),("700","825"),("700","850"),("700","875"),("700","900"),("700","925"),("700","950"),("700","975")}
+
+for mZ,mA in list_600_300:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-600_MA0-300.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_600_300")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+## Samples for which reweighting is done by using 800_300 sample
+list_800_300={("750","300"),("750","325"),("750","350"),("800","350"),("850","300"),("850","325"),("850","350"),("900","300"),("900","325"),("900","350")}
+
+for mZ,mA in list_800_300:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-800_MA0-300.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_800_300")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 800_400 sample
+list_800_400={("750","375"),("750","450"),("800","375"),("800","400"),("800","425"),("800","450"),("850","375"),("850","400"),("850","425"),("850","450"),("900","375"),("900","400"),("900","425"),("900","450")}
+
+for mZ,mA in list_800_400:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-800_MA0-400.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_800_400")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 800_500 sample
+list_800_500={("750","500"),("750","550"),("750","575"),("750","600"),("750","625"),("750","650"),("750","675"),("750","700"),("750","725"),("750","775"),("750","800"),("750","850"),("750","875"),("750","900"),("750","925"),("750","950"),("750","975"),("800","475"),("800","525"),("800","550"),("800","575"),("800","600"),("800","625"),("800","675"),("800","700"),("800","750"),("800","775"),("800","800"),("800","825"),("800","850"),("800","875"),("800","900"),("800","925"),("800","950"),("850","475"),("850","500"),("850","525"),("850","575"),("850","600"),("850","625"),("850","650"),("850","675"),("850","700"),("850","725"),("850","750"),("850","775"),("850","825"),("850","850"),("850","900"),("850","950"),("850","975"),("900","475"),("900","525"),("900","550"),("900","575"),("900","675"),("900","700"),("900","725"),("900","750"),("900","775"),("900","825"),("900","850"),("900","900"),("900","950"),("900","975")}
+
+for mZ,mA in list_800_500:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-800_MA0-500.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_800_500")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 1000_300 sample
+list_1000_300={("950","300"),("950","325"),("950","350"),("1050","300"),("1050","325"),("1050","350"),("1100","300"),("1100","350")}
+
+for mZ,mA in list_1000_300:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-1000_MA0-300.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_1000_300")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 1000_400 sample
+list_1000_400={("950","375"),("950","400"),("950","450"),("1000","375"),("1000","425"),("1000","450"),("1050","400"),("1050","425"),("1050","450"),("1100","375"),("1100","400"),("1100","450")}
+
+for mZ,mA in list_1000_400:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-1000_MA0-400.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_1000_400")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 1000_500 sample
+list_1000_500={("950","475"),("950","500"),("950","525"),("1000","550"),("1050","475"),("1050","550"),("1100","525"),("1100","550")}
+
+for mZ,mA in list_1000_500:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-1000_MA0-500.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_1000_500")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 1000_600 sample
+list_1000_600={("950","575"),("950","600"),("950","625"),("1000","575"),("1000","625"),("1000","650"),("1050","600"),("1050","625"),("1100","575"),("1100","600"),("1100","625"),("1100","650")}
+
+for mZ,mA in list_1000_600:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-1000_MA0-600.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_1000_600")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 1000_700 sample
+list_1000_700={("950","675"),("950","700"),("950","750"),("950","775"),("950","800"),("950","850"),("950","875"),("950","900"),("950","950"),("950","975"),("1000","675"),("1000","725"),("1000","825"),("1000","875"),("1000","900"),("1000","950"),("1000","975"),("1050","675"),("1050","700"),("1050","725"),("1050","750"),("1050","775"),("1050","800"),("1050","850"),("1050","875"),("1050","900"),("1050","925"),("1050","950"),("1050","975"),("1100","675"),("1100","725"),("1100","750"),("1100","775"),("1100","800"),("1100","825"),("1100","850"),("1100","875"),("1100","900"),("1100","925"),("1100","950")}
+
+for mZ,mA in list_1000_700:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-1000_MA0-700.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_1000_700")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 1200_300 sample
+list_1200_300={("1150","300"),("1150","325"),("1150","350"),("1200","325"),("1250","300"),("1250","325"),("1300","325"),("1300","350")}
+
+for mZ,mA in list_1200_300:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-1200_MA0-300.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_1200_300")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 1200_400 sample
+list_1200_400={("1150","375"),("1150","400"),("1150","425"),("1150","450"),("1250","400"),("1250","425"),("1250","450"),("1300","375"),("1300","400"),("1300","450")}
+
+for mZ,mA in list_1200_400:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-1200_MA0-400.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_1200_400")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 1200_500 sample
+list_1200_500={("1150","475"),("1150","500"),("1150","525"),("1150","550"),("1200","475"),("1200","525"),("1200","550"),("1250","475"),("1250","500"),("1250","525"),("1250","550"),("1300","475"),("1300","500"),("1300","550")}
+
+for mZ,mA in list_1200_500:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-1200_MA0-500.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_1200_500")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 1200_600 sample
+list_1200_600={("1150","600"),("1150","625"),("1150","650"),("1200","575"),("1200","625"),("1200","650"),("1250","575"),("1250","625"),("1250","650"),("1300","575"),("1300","600"),("1300","650")}
+
+for mZ,mA in list_1200_600:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-1200_MA0-600.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_1200_600")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 1200_700 sample
+list_1200_700={("1150","675"),("1150","700"),("1150","725"),("1200","675"),("1200","725"),("1200","750"),("1250","750"),("1300","675"),("1300","725"),("1300","750")}
+
+for mZ,mA in list_1200_700:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-1200_MA0-700.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_1200_700")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 1200_800 sample
+list_1200_800={("1150","775"),("1150","800"),("1150","825"),("1150","850"),("1150","875"),("1150","900"),("1150","925"),("1150","950"),("1150","975"),("1200","775"),("1200","825"),("1200","850"),("1200","925"),("1200","950"),("1200","975"),("1250","775"),("1250","800"),("1250","825"),("1250","850"),("1250","875"),("1250","925"),("1250","950"),("1250","975"),("1300","775"),("1300","800"),("1300","825"),("1300","850"),("1300","875"),("1300","900"),("1300","925"),("1300","975")}
+
+for mZ,mA in list_1200_800:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-1200_MA0-800.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_1200_800")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 1400_300 sample
+list_1400_300={("1350","325"),("1350","350"),("1400","300"),("1400","350"),("1450","300"),("1450","350"),("1500","300"),("1500","325"),("1500","350"),("1550","325"),("1550","350")}
+
+for mZ,mA in list_1400_300:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-1400_MA0-300.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_1400_300")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 1400_400 sample
+list_1400_400={("1350","375"),("1350","400"),("1350","425"),("1350","450"),("1400","450"),("1450","375"),("1450","400"),("1450","425"),("1450","450"),("1500","375"),("1500","425"),("1500","450"),("1550","375"),("1550","400"),("1550","425"),("1550","450")}
+
+for mZ,mA in list_1400_400:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-1400_MA0-400.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_1400_400")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 1400_500 sample
+list_1400_500={("1350","475"),("1350","500"),("1350","525"),("1350","550"),("1400","475"),("1400","525"),("1400","550"),("1450","475"),("1450","500"),("1450","525"),("1450","550"),("1500","475"),("1500","500"),("1500","525"),("1500","550"),("1550","500"),("1550","550")}
+
+for mZ,mA in list_1400_500:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-1400_MA0-500.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_1400_500")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 1400_600 sample
+list_1400_600={("1350","575"),("1350","600"),("1350","650"),("1400","650"),("1450","650"),("1500","575"),("1500","600"),("1550","600"),("1550","625"),("1550","650")}
+
+for mZ,mA in list_1400_600:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-1400_MA0-600.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_1400_600")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 1400_700 sample
+list_1400_700={("1350","675"),("1350","725"),("1350","750"),("1400","675"),("1400","725"),("1400","750"),("1450","700"),("1450","725"),("1450","750"),("1500","675"),("1500","700"),("1500","725"),("1550","675"),("1550","700"),("1550","750")}
+
+for mZ,mA in list_1400_700:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-1400_MA0-700.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_1400_700")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 1400_800 sample
+list_1400_800={("1350","775"),("1350","800"),("1350","825"),("1350","850"),("1350","875"),("1350","900"),("1350","925"),("1350","950"),("1350","975"),("1400","775"),("1400","825"),("1400","875"),("1400","900"),("1400","925"),("1450","775"),("1450","875"),("1450","900"),("1450","925"),("1450","975"),("1500","800"),("1500","850"),("1500","900"),("1500","950"),("1500","975"),("1550","775"),("1550","800"),("1550","875"),("1550","900"),("1550","950")}
+
+for mZ,mA in list_1400_800:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-1400_MA0-800.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_1400_800")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 1700_300 sample
+list_1700_300={("1600","300"),("1600","325"),("1600","350"),("1650","300"),("1650","325"),("1650","350"),("1700","300"),("1700","350"),("1750","300"),("1750","325"),("1800","300"),("1800","350"),("1850","300"),("1850","325"),("1850","350")}
+
+for mZ,mA in list_1700_300:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-1700_MA0-300.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_1700_300")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 1700_400 sample
+list_1700_400={("1600","425"),("1600","450"),("1650","375"),("1650","400"),("1650","425"),("1650","450"),("1700","375"),("1700","425"),("1700","450"),("1750","375"),("1750","400"),("1750","425"),("1800","375"),("1800","400"),("1800","450"),("1850","375"),("1850","425"),("1850","450")}
+
+for mZ,mA in list_1700_400:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-1700_MA0-400.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_1700_400")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 1700_500 sample
+list_1700_500={("1600","500"),("1600","525"),("1600","550"),("1650","525"),("1650","550"),("1700","475"),("1700","525"),("1700","550"),("1750","475"),("1750","500"),("1750","525"),("1750","550"),("1800","475"),("1800","500"),("1800","525"),("1800","550"),("1850","475"),("1850","500"),("1850","525"),("1850","550")}
+
+for mZ,mA in list_1700_500:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-1700_MA0-500.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_1700_500")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 1700_600 sample
+list_1700_600={("1600","575"),("1600","600"),("1600","625"),("1650","575"),("1650","600"),("1650","625"),("1700","625"),("1750","575"),("1750","600"),("1800","575"),("1800","600"),("1800","650"),("1850","575"),("1850","600"),("1850","625")}
+
+for mZ,mA in list_1700_600:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-1700_MA0-600.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_1700_600")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 1700_700 sample
+list_1700_700={("1600","675"),("1600","700"),("1600","725"),("1600","750"),("1650","675"),("1650","700"),("1650","725"),("1700","675"),("1700","750"),("1750","675"),("1750","700"),("1750","725"),("1800","675"),("1800","700"),("1800","750"),("1850","700"),("1850","725"),("1850","750")}
+
+for mZ,mA in list_1700_700:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-1700_MA0-700.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_1700_700")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 1700_800 sample
+list_1700_800={("1600","775"),("1600","800"),("1600","825"),("1600","900"),("1600","950"),("1600","975"),("1650","775"),("1650","800"),("1650","825"),("1650","850"),("1650","875"),("1650","950"),("1700","775"),("1700","800"),("1700","825"),("1700","850"),("1700","875"),("1700","925"),("1700","950"),("1700","975"),("1750","800"),("1750","825"),("1750","850"),("1750","875"),("1750","900"),("1750","925"),("1750","975"),("1800","775"),("1800","800"),("1800","850"),("1800","875"),("1800","925"),("1800","950"),("1800","975"),("1850","775"),("1850","850"),("1850","900"),("1850","925"),("1850","975")}
+
+for mZ,mA in list_1700_800:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-1700_MA0-800.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_1700_800")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+## Samples for which reweighting is done by using 2000_300 sample
+list_2000_300={("1900","300"),("1950","300"),("1950","325"),("1950","350"),("2000","325"),("2000","350"),("2050","300"),("2050","325"),("2050","350"),("2100","300"),("2100","325"),("2100","350"),("2150","300"),("2150","325"),("2200","300"),("2200","325"),("2200","350"),("2250","300"),("2250","325"),("2250","350")}
+
+for mZ,mA in list_2000_300:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-2000_MA0-300.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_2000_300")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+## Samples for which reweighting is done by using 2000_400 sample
+list_2000_400={("1900","400"),("1900","425"),("1900","450"),("1950","375"),("1950","400"),("1950","425"),("1950","450"),("2000","425"),("2000","450"),("2050","375"),("2050","400"),("2050","425"),("2050","450"),("2100","375"),("2100","400"),("2100","425"),("2100","450"),("2150","375"),("2150","400"),("2150","450"),("2200","375"),("2200","400"),("2200","425"),("2200","450"),("2250","375"),("2250","400"),("2250","425"),("2250","450")}
+
+for mZ,mA in list_2000_400:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-2000_MA0-400.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_2000_400")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 2000_500 sample
+list_2000_500={("1900","475"),("1900","500"),("1900","525"),("1950","475"),("1950","550"),("2000","475"),("2000","550"),("2050","475"),("2050","500"),("2050","525"),("2050","550"),("2100","475"),("2100","500"),("2100","525"),("2100","550"),("2150","475"),("2150","500"),("2150","525"),("2150","550"),("2200","475"),("2200","500"),("2200","525"),("2200","550"),("2250","475"),("2250","500"),("2250","525"),("2250","550")}
+
+for mZ,mA in list_2000_500:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-2000_MA0-500.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_2000_500")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 2000_600 sample
+list_2000_600={("1900","600"),("1900","625"),("1950","575"),("1950","600"),("1950","625"),("1950","650"),("2000","575"),("2000","625"),("2000","650"),("2050","575"),("2050","600"),("2050","625"),("2050","650"),("2100","575"),("2100","600"),("2100","625"),("2100","650"),("2150","575"),("2150","600"),("2150","625"),("2150","650"),("2200","575"),("2200","600"),("2200","625"),("2200","650"),("2250","575"),("2250","600"),("2250","625"),("2250","650")}
+
+for mZ,mA in list_2000_600:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-2000_MA0-600.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_2000_600")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 2000_700 sample
+list_2000_700={("1950","675"),("1950","700"),("1950","750"),("2000","700"),("2000","725"),("2050","675"),("2050","700"),("2050","725"),("2050","750"),("2100","675"),("2100","700"),("2100","725"),("2100","750"),("2150","675"),("2150","700"),("2150","750"),("2200","675"),("2200","700"),("2200","725"),("2200","750"),("2250","675"),("2250","700"),("2250","725"),("2250","750")}
+
+for mZ,mA in list_2000_700:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-2000_MA0-700.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_2000_700")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 2000_800 sample
+list_2000_800={("1900","800"),("1900","825"),("1900","900"),("1900","925"),("1900","975"),("1950","800"),("1950","850"),("1950","875"),("1950","925"),("1950","975"),("2000","775"),("2000","825"),("2000","850"),("2000","875"),("2000","900"),("2000","925"),("2000","950"),("2050","775"),("2050","800"),("2050","825"),("2050","850"),("2050","875"),("2050","900"),("2050","925"),("2050","950"),("2050","975"),("2100","775"),("2100","800"),("2100","825"),("2100","850"),("2100","875"),("2100","900"),("2100","925"),("2100","950"),("2100","975"),("2150","775"),("2150","800"),("2150","825"),("2150","850"),("2150","875"),("2150","900"),("2150","925"),("2150","950"),("2150","975"),("2200","775"),("2200","825"),("2200","850"),("2200","875"),("2200","900"),("2200","925"),("2200","950"),("2250","775"),("2250","800"),("2250","825"),("2250","850"),("2250","875"),("2250","900"),("2250","925"),("2250","975")}
+
+for mZ,mA in list_2000_800:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-2000_MA0-800.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_2000_800")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 2500_300 sample
+list_2500_300={("2300","300"),("2300","325"),("2350","300"),("2350","325"),("2350","350"),("2400","300"),("2400","325"),("2400","350"),("2450","300"),("2450","325"),("2450","350"),("2500","325"),("2500","350")}
+
+for mZ,mA in list_2500_300:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-2500_MA0-300.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_2500_300")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 2500_400 sample
+list_2500_400={("2300","375"),("2300","400"),("2300","425"),("2300","450"),("2350","375"),("2350","400"),("2350","425"),("2350","450"),("2400","375"),("2400","400"),("2400","425"),("2400","450"),("2450","375"),("2450","400"),("2450","425"),("2450","450"),("2500","375"),("2500","425"),("2500","450")}
+
+for mZ,mA in list_2500_400:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-2500_MA0-400.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_2500_400")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 2500_500 sample
+list_2500_500={("2300","500"),("2300","525"),("2300","550"),("2350","475"),("2350","500"),("2350","525"),("2350","550"),("2400","475"),("2400","525"),("2400","550"),("2450","475"),("2450","500"),("2450","525"),("2450","550"),("2500","475"),("2500","525")}
+
+for mZ,mA in list_2500_500:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-2500_MA0-500.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_2500_500")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 2500_600 sample
+list_2500_600={("2300","575"),("2300","600"),("2300","625"),("2300","650"),("2350","575"),("2350","600"),("2350","625"),("2350","650"),("2400","575"),("2400","600"),("2400","625"),("2400","650"),("2450","600"),("2450","625"),("2450","650"),("2500","575"),("2500","625"),("2500","650")}
+
+for mZ,mA in list_2500_600:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-2500_MA0-600.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_2500_600")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 2500_700 sample
+list_2500_700={("2300","675"),("2300","700"),("2300","725"),("2300","750"),("2350","700"),("2350","725"),("2350","750"),("2400","675"),("2400","700"),("2400","725"),("2400","750"),("2450","675"),("2450","700"),("2450","725"),("2450","750"),("2500","675"),("2500","750")}
+
+for mZ,mA in list_2500_700:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-2500_MA0-700.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_2500_700")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
+
+## Samples for which reweighting is done by using 2500_800 sample
+list_2500_800={("2300","800"),("2300","825"),("2300","850"),("2300","875"),("2300","900"),("2300","925"),("2300","950"),("2300","975"),("2350","800"),("2350","825"),("2350","850"),("2350","875"),("2350","900"),("2350","925"),("2350","950"),("2350","975"),("2400","775"),("2400","800"),("2400","825"),("2400","850"),("2400","875"),("2400","900"),("2400","925"),("2400","975"),("2450","775"),("2450","800"),("2450","825"),("2450","850"),("2450","875"),("2450","900"),("2450","925"),("2450","950"),("2450","975"),("2500","775"),("2500","825"),("2500","850"),("2500","875"),("2500","900"),("2500","925"),("2500","975")}
+
+for mZ,mA in list_2500_800:
+  samples['monoH_' + mZ + '_' + mA] = { 
+    'name': ['latino_monoH_2HDM_MZp-2500_MA0-800.root'],
+    'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(higgsGenpt)*get2HDMxs('+mZ+','+mA+')',
+    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("Target_'+mZ+'_'+mA+'_Ref_2500_800")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/get2HDMxs.C+'] 
+    }
+
 
 #### mono-Higgs Signal Z'B
 samples['monoH_ZB_10000_1000_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-10000_MChi-1000.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 samples['monoH_ZB_10000_500_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-10000_MChi-500.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 samples['monoH_ZB_10000_150_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-10000_MChi-150.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 samples['monoH_ZB_10000_50_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-10000_MChi-50.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 samples['monoH_ZB_10000_1_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-10000_MChi-1.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 #
 samples['monoH_ZB_2000_1_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-2000_MChi-1.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 #
 samples['monoH_ZB_1995_1000_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-1995_MChi-1000.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 #
 samples['monoH_ZB_1000_1000_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-1000_MChi-1000.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 samples['monoH_ZB_1000_150_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-1000_MChi-150.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 samples['monoH_ZB_1000_1_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-1000_MChi-1.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 #
 samples['monoH_ZB_995_500_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-995_MChi-500.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 #
 samples['monoH_ZB_500_500_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-500_MChi-500.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 samples['monoH_ZB_500_150_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-500_MChi-150.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 samples['monoH_ZB_500_1_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-500_MChi-1.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 #
 samples['monoH_ZB_300_50_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-300_MChi-50.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 samples['monoH_ZB_300_1_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-300_MChi-1.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 #
 samples['monoH_ZB_295_150_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-295_MChi-150.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 #
 samples['monoH_ZB_200_150_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-200_MChi-150.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 samples['monoH_ZB_200_50_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-200_MChi-50.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 samples['monoH_ZB_200_1_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-200_MChi-1.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 #
 samples['monoH_ZB_100_10_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-100_MChi-10.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 samples['monoH_ZB_100_1_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-100_MChi-1.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 #
 samples['monoH_ZB_95_50_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-95_MChi-50.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 #
 samples['monoH_ZB_50_50_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-50_MChi-50.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 samples['monoH_ZB_50_10_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-50_MChi-10.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 samples['monoH_ZB_50_1_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-50_MChi-1.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 #
 samples['monoH_ZB_20_1_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-20_MChi-1.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 #
 samples['monoH_ZB_15_10_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-15_MChi-10.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 #
 samples['monoH_ZB_10_1000_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-1000.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 samples['monoH_ZB_10_500_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-500.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 samples['monoH_ZB_10_150_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-150.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 samples['monoH_ZB_10_50_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-50.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 samples['monoH_ZB_10_10_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-10.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
 samples['monoH_ZB_10_1_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-1.root'],
   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
   }
 
-#### ttDM Signal
-samples['ttDMpseudo_00010_'] = {
-  'name': ['latino_ttDM0001pseudo00010.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
-  }
+# #### ttDM Signal
+# samples['ttDMpseudo_00010_'] = {
+#   'name': ['latino_ttDM0001pseudo00010.root'],
+#   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+# 
+# 
+#   }
 
-samples['ttDMpseudo_00020_'] = {
-  'name': ['latino_ttDM0001pseudo00020.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
-  }
+# samples['ttDMpseudo_00020_'] = {
+#   'name': ['latino_ttDM0001pseudo00020.root'],
+#   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+# 
+# 
+#   }
 
-samples['ttDMpseudo_00050_'] = {
-  'name': ['latino_ttDM0001pseudo00050.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
-  }
+# samples['ttDMpseudo_00050_'] = {
+#   'name': ['latino_ttDM0001pseudo00050.root'],
+#   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+# 
+# 
+#   }
 
-samples['ttDMpseudo_00100_'] = {
-  'name': ['latino_ttDM0001pseudo00100.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
-  }
+# samples['ttDMpseudo_00100_'] = {
+#   'name': ['latino_ttDM0001pseudo00100.root'],
+#   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+# 
+# 
+#   }
 
-samples['ttDMpseudo_00200_'] = { 
-  'name': ['latino_ttDM0001pseudo00200.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
-  }
+# samples['ttDMpseudo_00200_'] = { 
+#   'name': ['latino_ttDM0001pseudo00200.root'],
+#   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+# 
+# 
+#   }
 
-samples['ttDMpseudo_00300_'] = { 
-  'name': ['latino_ttDM0001pseudo00300.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
-  }
+# samples['ttDMpseudo_00300_'] = { 
+#   'name': ['latino_ttDM0001pseudo00300.root'],
+#   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+# 
+# 
+#   }
 
-samples['ttDMpseudo_00500_'] = { 
-  'name': ['latino_ttDM0001pseudo00500.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
-  }
+# samples['ttDMpseudo_00500_'] = { 
+#   'name': ['latino_ttDM0001pseudo00500.root'],
+#   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+# 
+# 
+#   }
 
-samples['ttDMscalar_00010_'] = { 
-  'name': ['latino_ttDM0001scalar00010.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
-  }
+# samples['ttDMscalar_00010_'] = { 
+#   'name': ['latino_ttDM0001scalar00010.root'],
+#   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+# 
+# 
+#   }
 
-samples['ttDMscalar_00020_'] = { 
-  'name': ['latino_ttDM0001scalar00020.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
-  }
+# samples['ttDMscalar_00020_'] = { 
+#   'name': ['latino_ttDM0001scalar00020.root'],
+#   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+# 
+# 
+#   }
 
-samples['ttDMscalar_00050_'] = { 
-  'name': ['latino_ttDM0001scalar00050.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
-  }
+# samples['ttDMscalar_00050_'] = { 
+#   'name': ['latino_ttDM0001scalar00050.root'],
+#   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+# 
+# 
+#   }
 
-samples['ttDMscalar_00100_'] = {
-  'name': ['latino_ttDM0001scalar00100.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
-  }
+# samples['ttDMscalar_00100_'] = {
+#   'name': ['latino_ttDM0001scalar00100.root'],
+#   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+# 
+# 
+#   }
 
-samples['ttDMscalar_00200_'] = { 
-  'name': ['latino_ttDM0001scalar00200.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
-  }
+# samples['ttDMscalar_00200_'] = { 
+#   'name': ['latino_ttDM0001scalar00200.root'],
+#   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+# 
+# 
+#   }
 
-samples['ttDMscalar_00300_'] = { 
-  'name': ['latino_ttDM0001scalar00300.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
-  }
+# samples['ttDMscalar_00300_'] = { 
+#   'name': ['latino_ttDM0001scalar00300.root'],
+#   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+# 
+# 
+#   }
 
-samples['ttDMscalar_00500_'] = { 
-  'name': ['latino_ttDM0001scalar00500.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  # 'suppressNegative' :['all'],
-  # 'suppressNegativeNuisances' :['all'],
-  }
+# samples['ttDMscalar_00500_'] = { 
+#   'name': ['latino_ttDM0001scalar00500.root'],
+#   'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+# 
+# 
+#   }
 
 
 ###########################################
