@@ -27,7 +27,20 @@ Step 3: Create the Anomalous Coupling datacards
 Step 4: Combine datacards for different cuts
 ============================================
 
+- Edit comb.py to add wanted combination
+- mkACComb.py --pycfg=configuration_em.py
 
 
+PS: Still need to add rateParam in combination
+
+Step 5: Compute limits
+======================
+
+Expected:
+- Go to combination folder
+- 1D: combine aC_ww_01jet_em.root -M MultiDimFit -P CWWW --floatOtherPOIs=0 --algo=grid --points=100 --minimizerStrategy=2 -t -1 --expectSignal=1
+      --> Replace aC_ww_01jet_em.root and CWWW as needed for different combo/parameter
+- 2D: combine aC_ww_0jet_em.root -M MultiDimFit -P CWWW -P CW --floatOtherPOIs=0 --algo=grid --points=10000 --minimizerStrategy=2 -t -1 --expectSignal=1
+      --> Again replace worspace and parameters if needed
 
 -
