@@ -28,10 +28,7 @@ Step 4: Combine datacards for different cuts
 ============================================
 
 - Edit comb.py to add wanted combination
-- mkACComb.py --pycfg=configuration_em.py
-
-
-PS: Still need to add rateParam in combination
+- mkACComb.py --pycfg=configuration_TGC_em.py --nuisancesFile=nuisances.py
 
 Step 5: Compute limits
 ======================

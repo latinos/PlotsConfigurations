@@ -28,7 +28,7 @@ lumi = 35.867
 outputDirPlots = 'WWTGC_em'
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'
+outputDirDatacard = 'datacards_em'
 
 # structure file for datacard
 structureFile = 'structure.py'
