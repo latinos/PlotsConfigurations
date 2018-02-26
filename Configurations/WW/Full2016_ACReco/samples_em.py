@@ -56,16 +56,17 @@ Nlep='2'
 XSWeight      = 'XSWeight'
 
 #aTGCWeight    = 'std_vector_LHE_weight[111]*(std_vector_LHE_weight[173]!=-999)/GEN_weight_SM*22357.2/24701.9'
+SMWeight    = 'std_vector_LHE_weight[173]*(std_vector_LHE_weight[173]!=-999)/GEN_weight_SM*22357.2/24701.9'
 
-SFweight      = 'puW*\
-                 effTrigW*\
-                 std_vector_lepton_recoW[0]*\
-                 std_vector_lepton_recoW[1]*\
-                 electron_etaW_2l*electron_ptW_2l*\
-                 veto_EMTFBug'
+# SFweight      = 'puW*\
+#                  effTrigW*\
+#                  std_vector_lepton_recoW[0]*\
+#                  std_vector_lepton_recoW[1]*\
+#                  electron_etaW_2l*electron_ptW_2l*\
+#                  veto_EMTFBug'
 
 
-#SFweight      = 'SFweight'+Nlep+'l'
+SFweight      = 'SFweight'+Nlep+'l'
 GenLepMatch   = 'GenLepMatch'+Nlep+'l'
 
 ################################################
@@ -91,8 +92,6 @@ elif bAlgo == 'DeepCSVB' :
  bSF='bPogSF_deepCSV'+bWP
 
 SFweight += '*'+bSF
-# Fix for 2-leptons for which this was kept in global formula !
-#if Nlep == '2' : SFweight += '/bPogSF_CMVAL'
 
 # ... b Veto
 
@@ -306,12 +305,22 @@ samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu')
                   
 
 ###### WW ########
-             
-samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu') ,
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*nllW' ,  
+
+samples['WW']  =  {    'name'   : getSampleFiles(directory,'WWTo2L2Nu_aTGC_0-400')
+                                   + getSampleFiles(directory,'WWTo2L2Nu_aTGC_400-600')
+                                   + getSampleFiles(directory,'WWTo2L2Nu_aTGC_600-800')
+                                   + getSampleFiles(directory,'WWTo2L2Nu_aTGC_800-Inf')
+                                   ,
+                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC +'*'+SMWeight ,
                      'suppresNegative':['all'],
                      'suppressNegativeNuisances' :['all'],
-                 }
+                  }
+             
+# samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu') ,
+#                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*nllW' ,  
+#                      'suppresNegative':['all'],
+#                      'suppressNegativeNuisances' :['all'],
+#                  }
 
 
 
@@ -334,7 +343,7 @@ samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'
 #                                    + getSampleFiles(directory,'WWTo2L2Nu_aTGC_600-800')
 #                                    + getSampleFiles(directory,'WWTo2L2Nu_aTGC_800-Inf')
 #                                    ,
-#                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC +'*'+aTGCWeight+'*nllW' ,
+#                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC +'*'+aTGCWeight ,
 #                      'suppresNegative':['all'],
 #                      'suppressNegativeNuisances' :['all'],
 #                   }
@@ -499,7 +508,7 @@ samples['Fake']  = {   'name': [ ] ,
                    }
 
 for Run in DataRun :
-  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__multiFakeW__formulasFAKE__hadd'+skimFake+'/'
+  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__dorochester__multiFakeW__formulasFAKE__hadd'+skimFake+'/'
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:
@@ -518,7 +527,7 @@ samples['DATA']  = {   'name': [ ] ,
                   }
 
 for Run in DataRun :
-  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__hadd__l2tightOR__formulasDATA'+skim+'/'
+  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__hadd__l2tightOR__dorochester__formulasDATA'+skim+'/'
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:

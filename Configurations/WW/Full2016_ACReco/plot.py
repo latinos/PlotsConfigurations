@@ -54,13 +54,13 @@ groupPlot['DY']  = {
                   'samples'  : ['DY']
               }
 
-groupPlot['aTGC']  = {  
-                  'nameHR' : "aTGC 112",
-                  'isSignal' : 2,
-                  'color': 801,  #  kGreen+2
-                  #'samples'  : ['DY1', 'DY2']
-                  'samples'  : ['aTGC']
-              }
+# groupPlot['aTGC']  = {  
+#                   'nameHR' : "aTGC 112",
+#                   'isSignal' : 2,
+#                   'color': 801,  #  kGreen+2
+#                   #'samples'  : ['DY1', 'DY2']
+#                   'samples'  : ['aTGC']
+#               }
 
 
 groupPlot['Higgs']  = {  
@@ -169,12 +169,12 @@ plot['ggWW']  = {
                   'scale'    : 1.0
                   }
 
-plot['aTGC']  = {
-                  'color': 801,
-                  'isSignal' : 2,
-                  'isData'   : 0,    
-                  'scale'    : 1.0
-                  }
+# plot['aTGC']  = {
+#                   'color': 801,
+#                   'isSignal' : 2,
+#                   'isData'   : 0,    
+#                   'scale'    : 1.0
+#                   }
 
 plot['ggWW_Int']  = {
                   'color': 616, # kMagenta

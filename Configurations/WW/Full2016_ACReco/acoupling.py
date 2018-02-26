@@ -7,6 +7,8 @@ acoupling['sigName']       = 'WW_${iWeight}_aTGC'  # End name by a string to avo
 acoupling['launch_card']   = 'WWTolnulnu_01j_aTGC_lep_WWmass-0to400_4f_NLO_FXFX_reweight_card.dat'
 acoupling['nOperators']    = 3
 acoupling['operatorNames'] = ['CWWW','CW','CB']
+acoupling['operatorLatex'] = { 'CWWW':'c_{WWW}','CW':'c_{W}','CB':'c_{B}' }
+acoupling['operatorRange'] = { 'CWWW' : [-15,15] , 'CW': [-15,15] , 'CB': [-30,30] }
 acoupling['scanOrigin']    = ['3' , '4', '20' ]   # Declare it if one of the point is used as central value for the generation
 acoupling['LheOffset']     = 112
 acoupling['weights']       = {}
@@ -42,9 +44,11 @@ if 'scanOrigin' in acoupling :
 # Retrieve scans from weights (Edit the ScanConfig, rest should be automatic, you can comment out some lines to suppress 1D, 2D or 3D)
 
 acoupling['ScanConfig']  = {
-                             '1D' : ['CWWW','CW','CB'],
-                             '2D' : ['CWWW:CW','CWWW:CB','CW:CB'],
-                             '3D' : ['CWWW:CW:CB'],
+                            #'1D' : ['CWWW'],
+                            '1D' : ['CWWW','CW','CB'],
+                            '2D' : ['CWWW:CW','CWWW:CB','CW:CB'],
+                            #'2D' : ['CWWW:CW'],
+                            '3D' : ['CWWW:CW:CB'],
                            }
 
 # In case of missing point on the grid, we can take a neightbouring one with increased error bars (need to activate in mkACPlot as well):
