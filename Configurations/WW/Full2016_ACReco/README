@@ -1,0 +1,24 @@
+
+
+Step 1: Create SM datacards
+===========================
+
+Usual mkShape/mkDatacards commands based on configuration_em.py
+
+
+Step 2: Fill aTGC histograms + aTGC Fits
+========================================
+
+This is based on acoupling.py disctionary.
+
+- mkShapes.py --pycfg=configuration_TGC_em.py --inputDir=. --doBatch=True --batchSplit=Samples
+- wait for jobs to finish
+- mkShapes.py --pycfg=configuration_TGC_em.py --inputDir=. --doBatch=True --batchSplit=Samples
+- mkACPlot.py --pycfg=configuration_TGC_em.py  --inputFile=rootFile_em/plots_WWTGC_em.root
+  --> This create a new root file in rootFile_em which cointain for each bin of the distribution, the variation in 1D, 2D 
+      and 3D of the event yield in that bin as well as a quadratic fit function (1D, 2D and 3D) due to the 3 anomalous 
+      couplings
+
+Step 3: Create the Anomalous Coupling datacards
+===============================================
+
