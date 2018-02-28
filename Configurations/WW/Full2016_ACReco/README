@@ -14,7 +14,7 @@ This is based on acoupling.py disctionary.
 - mkShapes.py --pycfg=configuration_TGC_em.py --inputDir=. --doBatch=True --batchSplit=Samples
 - wait for jobs to finish
 - mkShapes.py --pycfg=configuration_TGC_em.py --inputDir=. --doHadd=True --batchSplit=Samples
-- mkACPlot.py --pycfg=configuration_TGC_em.py  --inputFile=rootFile_em/plots_WWTGC_em.root
+- mkACFit.py --pycfg=configuration_TGC_em.py  --inputFile=rootFile_em/plots_WWTGC_em.root
   --> This create a new root file in rootFile_em which cointain for each bin of the distribution, the variation in 1D, 2D and 3D of the event yield in that bin as well as a quadratic fit function (1D, 2D and 3D) due to the 3 anomalous couplings
 
 Step 3: Create the Anomalous Coupling datacards
@@ -40,4 +40,22 @@ Expected:
 - 2D: combine aC_ww_0jet_em.root -M MultiDimFit -P CWWW -P CW --floatOtherPOIs=0 --algo=grid --points=10000 --minimizerStrategy=2 -t -1 --expectSignal=1
       --> Again replace worspace and parameters if needed
 
--
+OR BETTER USE THE python launcher:
+
+mkACLimit.py --pycfg=configuration_TGC_em.py --combcfg=comb.py --step=compute --batch [--varList=...] [--cutList=...] [--unblind]
+
+Step 6: Plotting
+================
+
+To plot the limits:
+
+mkACLimit.py --pycfg=configuration_TGC_em.py --combcfg=comb.py --step=plot [--varList=...] [--cutList=...] [--unblind]
+
+To plot the AC fits:
+
+TODO
+
+To plot the distribution with a few AC signals on top:
+
+TODO
+
