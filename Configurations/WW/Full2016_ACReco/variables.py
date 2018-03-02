@@ -13,8 +13,14 @@ variables['events']  = {   'name': '1',
                         }
 
 
-variables['mll']  = {   'name': 'mll',            
-                        'range' : (8,0,700),     
+#variables['mll']  = {   'name': 'mll',            
+#                        'range' : (8,0,700),     
+#                        'xaxis' : 'm_{\ell\ell} [GeV]',
+#                        'fold' : 3
+#                        }
+
+variables['mll']  = {   'name': 'mll',
+                        'range' : ([0,100,200,300,400,500,550,600,650,700,750,800,850],),
                         'xaxis' : 'm_{\ell\ell} [GeV]',
                         'fold' : 3
                         }

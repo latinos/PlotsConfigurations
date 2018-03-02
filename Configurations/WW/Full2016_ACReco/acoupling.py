@@ -7,8 +7,9 @@ acoupling['sigName']       = 'WW_${iWeight}_aTGC'  # End name by a string to avo
 acoupling['launch_card']   = 'WWTolnulnu_01j_aTGC_lep_WWmass-0to400_4f_NLO_FXFX_reweight_card.dat'
 acoupling['nOperators']    = 3
 acoupling['operatorNames'] = ['CWWW','CW','CB']
-acoupling['operatorLatex'] = { 'CWWW':'c_{WWW}','CW':'c_{W}','CB':'c_{B}' }
+acoupling['operatorLatex'] = { 'CWWW':'c_{WWW}/#Lambda^{2} (TeV^{-2})','CW':'c_{W}/#Lambda^{2} (TeV^{-2})','CB':'c_{B}/#Lambda^{2} (TeV^{-2})' }
 acoupling['operatorRange'] = { 'CWWW' : [-8,8] , 'CW': [-15,15] , 'CB': [-30,30] }
+acoupling['operatorPlot']  = { 'CWWW' : [-8,8] , 'CW': [-15,15] , 'CB': [-30,30] }
 acoupling['scanOrigin']    = ['3' , '4', '20' ]   # Declare it if one of the point is used as central value for the generation
 acoupling['LheOffset']     = 112
 acoupling['weights']       = {}
@@ -39,7 +40,16 @@ if 'scanOrigin' in acoupling :
   acoupling['weights'][iWeight] = {}
   acoupling['weights'][iWeight]['operatorValues'] = acoupling['scanOrigin']
   acoupling['weights'][iWeight]['LheWeight']      = iLheWeight 
-     
+
+# Plotting some values of the AC on top of distributions as signal
+
+acoupling['PlotConfig']  = {
+                            '1D' : { 
+                                     'CWW' : '3.0' ,
+                                     'CB'  : '3.0' ,
+                                     'CW'  : '3.0' ,
+                                   } ,
+                           }     
 
 # Retrieve scans from weights (Edit the ScanConfig, rest should be automatic, you can comment out some lines to suppress 1D, 2D or 3D)
 

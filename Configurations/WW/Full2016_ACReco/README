@@ -43,6 +43,8 @@ Expected:
 OR BETTER USE THE python launcher:
 
 mkACLimit.py --pycfg=configuration_TGC_em.py --combcfg=comb.py --step=compute --batch [--varList=...] [--cutList=...] [--unblind]
+When job are done, you need to hadd with:
+mkACLimit.py --pycfg=configuration_TGC_em.py --combcfg=comb.py --step=harvest --batch [--varList=...] [--cutList=...] [--unblind]
 
 Step 6: Plotting
 ================
