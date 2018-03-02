@@ -70,7 +70,7 @@ groupPlot['VgS']  = {
 
 
 groupPlot['bb-Higgs']  = {  
-                  'nameHR' : 'bb-Higgs x100',
+                  'nameHR' : 'bb-Higgs x1000',
                   'isSignal' : 1,
                   'color': 600, # kBlue 
                   'samples'  : ['bbH_hww' ]
@@ -365,11 +365,11 @@ plot['ggH_hww'] = {
                   #}
 
 plot['bbH_hww'] = {
-                  'nameHR' : 'bbH x 100',
+                  'nameHR' : 'bbH x 1000',
                   'color': 632+5, # kRed+5 
                   'isSignal' : 1,
                   'isData'   : 0,
-                  'scale'    : 100    #
+                  'scale'    : 1000    #
                   }
 
 plot['ttH_hww'] = {
