@@ -72,7 +72,7 @@ groupPlot['VgS']  = {
 groupPlot['bb-Higgs']  = {  
                   'nameHR' : 'bb-Higgs x100',
                   'isSignal' : 1,
-                  'color': 633, # kRed+1 
+                  'color': 600, # kBlue 
                   'samples'  : ['bbH_hww' ]
               }
 
