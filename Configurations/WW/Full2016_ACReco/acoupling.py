@@ -9,6 +9,7 @@ acoupling['nOperators']    = 3
 acoupling['operatorNames'] = ['CWWW','CW','CB']
 acoupling['operatorLatex'] = { 'CWWW':'c_{WWW}/#Lambda^{2} (TeV^{-2})','CW':'c_{W}/#Lambda^{2} (TeV^{-2})','CB':'c_{B}/#Lambda^{2} (TeV^{-2})' }
 acoupling['operatorRange'] = { 'CWWW' : [-8,8] , 'CW': [-15,15] , 'CB': [-30,30] }
+acoupling['combsName']     = { 'ww_0jet_em' : 'WW #rightarrow e#mu, 0 jet' , 'ww_1jet_em' : 'WW #rightarrow e#mu, 1 jet' , 'ww_01jet_em' : 'WW #rightarrow e#mu, 0+1 jet' }
 acoupling['operatorPlot']  = { 'CWWW' : [-8,8] , 'CW': [-15,15] , 'CB': [-30,30] }
 acoupling['scanOrigin']    = ['3' , '4', '20' ]   # Declare it if one of the point is used as central value for the generation
 acoupling['LheOffset']     = 112
