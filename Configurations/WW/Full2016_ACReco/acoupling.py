@@ -7,7 +7,8 @@ acoupling['sigName']       = 'WW_${iWeight}_aTGC'  # End name by a string to avo
 acoupling['launch_card']   = 'WWTolnulnu_01j_aTGC_lep_WWmass-0to400_4f_NLO_FXFX_reweight_card.dat'
 acoupling['nOperators']    = 3
 acoupling['operatorNames'] = ['CWWW','CW','CB']
-acoupling['operatorLatex'] = { 'CWWW':'c_{WWW}/#Lambda^{2} (TeV^{-2})','CW':'c_{W}/#Lambda^{2} (TeV^{-2})','CB':'c_{B}/#Lambda^{2} (TeV^{-2})' }
+acoupling['operatorLatex'] = { 'CWWW':'c_{WWW}/#Lambda^{2}','CW':'c_{W}/#Lambda^{2}','CB':'c_{B}/#Lambda^{2}' }
+acoupling['operatorUnit']  = { 'CWWW':'TeV^{-2}','CW':'TeV^{-2}','CB':'TeV^{-2}' }
 acoupling['operatorRange'] = { 'CWWW' : [-8,8] , 'CW': [-15,15] , 'CB': [-30,30] }
 
 acoupling['combsName']     = { 
@@ -82,15 +83,16 @@ if 'scanOrigin' in acoupling :
   acoupling['weights'][iWeight]['LheWeight']      = iLheWeight 
 
 # Plotting some values of the AC on top of distributions as signal
+# Value(s) and Color
 
 acoupling['PlotConfig']  = {
                             '1D' : { 
-                                     'CWWW' : [3.0] ,
-                                     'CB'   : [3.0] ,
-                                     'CW'   : [3.0] ,
+                                   # 'CWWW' : [3.2,632] ,
+                                   # 'CW'   : [4.9,632] ,
+                                   # 'CB'   : [15.0,632] ,
                                    } ,
                             '2D' : {
-                                     'CWWW:CB' : [3.0,3.0],
+                                     'CWWW:CB' : [3.0,15.0,632],
                                    }, 
                            }     
 
