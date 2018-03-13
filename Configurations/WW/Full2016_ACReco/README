@@ -1,10 +1,32 @@
 
+Install the software:
+====================
+
+You will need to install 2 different CMSSW version:
+* CMSSW_7_1_5 for the aTGC and combine packages
+* CMSSW_8_*_* for the Latino FW
+
+For the aTGC and combine packages install, follow th instructions from:
+https://twiki.cern.ch/twiki/bin/viewauth/CMS/ATGCRooStats#Setting_up_the_environment
+and patch it with the following command as well:
+
+- scp lxplus.cern.ch:/afs/cern.ch/user/x/xjanssen/public/CombinedEWKAnalysis_Patch/test/buildWorkspace_AC.py <YourDirectoryWithCMSSW_7_1_5>/src/CombinedEWKAnalysis/CommonTools/test/.
+- scp lxplus.cern.ch:/afs/cern.ch/user/x/xjanssen/public/CombinedEWKAnalysis_Patch/python/ACModel.py <YourDirectoryWithCMSSW_7_1_5>/src/CombinedEWKAnalysis/CommonTools/python/.
+- scp lxplus.cern.ch:/afs/cern.ch/user/x/xjanssen/public/CombinedEWKAnalysis_Patch/python/AnomalousCouplingModel.py <YourDirectoryWithCMSSW_7_1_5>/src/CombinedEWKAnalysis/CommonTools/python/.
+
+For the Latino FW, use the standard SahpeOnly install script.
+
 
 Step 1: Create SM datacards
 ===========================
 
 Usual mkShape/mkDatacards commands based on configuration_em.py
 
+-  mkShapes.py --pycfg=configuration_em.py --inputDir=. --doBatch=True --batchSplit=AsMuchAsPossible
+Wait for jobs to finish:
+-  mkShapes.py --pycfg=configuration_em.py --inputDir=. --doHadd=True --batchSplit=AsMuchAsPossible
+Create cards:
+-  mkDatacards.py --pycfg=configuration_em.py --inputFile=rootFile_em/plots_WW_em.root
 
 Step 2: Fill aTGC histograms + aTGC Fits
 ========================================
