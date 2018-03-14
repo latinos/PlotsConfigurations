@@ -87,21 +87,21 @@ if 'scanOrigin' in acoupling :
 
 acoupling['PlotConfig']  = {
                             '1D' : { 
-                                   # 'CWWW' : [3.2,632] ,
+                                     'CWWW' : [3.2,632] ,
                                    # 'CW'   : [4.9,632] ,
                                    # 'CB'   : [15.0,632] ,
                                    } ,
                             '2D' : {
-                                     'CWWW:CB' : [3.0,15.0,632],
+                            #        'CWWW:CB' : [3.0,15.0,632],
                                    }, 
                            }     
 
 # Retrieve scans from weights (Edit the ScanConfig, rest should be automatic, you can comment out some lines to suppress 1D, 2D or 3D)
 
 acoupling['ScanConfig']  = {
-                            #'1D' : ['CWWW'],
                              '1D' : ['CWWW','CW','CB'],
-                             '2D' : ['CWWW:CW','CWWW:CB','CW:CB'],
+                            #'2D' : ['CWWW:CW','CWWW:CB','CW:CB'],
+                            #'1D' : ['CWWW'],
                             #'2D' : ['CWWW:CW'],
                             #'3D' : ['CWWW:CW:CB'],
                            }

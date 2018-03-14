@@ -5,7 +5,7 @@
 supercut = 'std_vector_lepton_pt[0]>25 && std_vector_lepton_pt[1]>20 \
             && std_vector_lepton_pt[2]<10 \
             && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*11) \
-            && mll > 20 \
+            && mll > 100 \
             && metPfType1 > 20 \
             && mpmet > 20 \
             && ptll > 30 \

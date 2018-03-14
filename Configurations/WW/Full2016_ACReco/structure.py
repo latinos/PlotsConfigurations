@@ -50,10 +50,10 @@ structure['WW']  = {
                   'isData'   : 0    
                   }
 
-structure['ggWW']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0    
-                  }
+#structure['ggWW']  = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0    
+#                  }
 
 #structure['ggWW_Int']  = {
 #                  'isSignal' : 0,

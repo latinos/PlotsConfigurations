@@ -77,9 +77,9 @@ mkACLimit.py --pycfg=configuration_TGC_em.py --combcfg=comb.py --step=plot [--va
 
 To plot the AC fits:
 
-TODO
+mkACPlot.py --pycfg=configuration_TGC_em.py  --outputDir=rootFile_em --type=fits [--cutList=...] [--varList=...] [--scanList=...]
 
 To plot the distribution with a few AC signals on top:
 
-TODO
+mkACPlot.py --pycfg=configuration_TGC_em.py --inputFitFile=rootFile_em/plots_WWTGC_em_ACCoupling.root --inputPlotFile=rootFile_em/plots_WW_em.root   --outputDir=rootFile_em --type=plots --nuisancesFile=nuisances.py [--cutList=...] [--varList=...] [--scanList=...]
 
