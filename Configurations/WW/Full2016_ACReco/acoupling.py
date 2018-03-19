@@ -7,8 +7,50 @@ acoupling['sigName']       = 'WW_${iWeight}_aTGC'  # End name by a string to avo
 acoupling['launch_card']   = 'WWTolnulnu_01j_aTGC_lep_WWmass-0to400_4f_NLO_FXFX_reweight_card.dat'
 acoupling['nOperators']    = 3
 acoupling['operatorNames'] = ['CWWW','CW','CB']
-acoupling['operatorLatex'] = { 'CWWW':'c_{WWW}','CW':'c_{W}','CB':'c_{B}' }
+acoupling['operatorLatex'] = { 'CWWW':'c_{WWW}/#Lambda^{2}','CW':'c_{W}/#Lambda^{2}','CB':'c_{B}/#Lambda^{2}' }
+acoupling['operatorUnit']  = { 'CWWW':'TeV^{-2}','CW':'TeV^{-2}','CB':'TeV^{-2}' }
 acoupling['operatorRange'] = { 'CWWW' : [-8,8] , 'CW': [-15,15] , 'CB': [-30,30] }
+
+acoupling['combsName']     = { 
+                               'ww_0jet_em' : 'WW #rightarrow e#mu, 0 jet' , 
+                               'ww_1jet_em' : 'WW #rightarrow e#mu, 1 jet' , 
+                               'ww_01jet_em' : 'WW #rightarrow e#mu, 0+1 jet' ,
+                               # ---
+                               'ww_0jet_em_mll1' : 'WW #rightarrow e#mu, 0 jet (mll binning 1)' ,
+                               'ww_1jet_em_mll1' : 'WW #rightarrow e#mu, 1 jet (mll binning 1)' ,
+                               'ww_01jet_em_mll1' : 'WW #rightarrow e#mu, 0+1 jet (mll binning 1)' ,
+                               # ---
+                               'ww_0jet_em_mll2' : 'WW #rightarrow e#mu, 0 jet (mll binning 2)' , 
+                               'ww_1jet_em_mll2' : 'WW #rightarrow e#mu, 1 jet (mll binning 2)' , 
+                               'ww_01jet_em_mll2' : 'WW #rightarrow e#mu, 0+1 jet (mll binning 2)' ,
+                               # ---
+                               'ww_0jet_em_mll3' : 'WW #rightarrow e#mu, 0 jet (mll binning 3)' ,
+                               'ww_1jet_em_mll3' : 'WW #rightarrow e#mu, 1 jet (mll binning 3)' ,
+                               'ww_01jet_em_mll3' : 'WW #rightarrow e#mu, 0+1 jet (mll binning 3)' ,
+                               # ---
+                               'ww_0jet_em_mll4' : 'WW #rightarrow e#mu, 0 jet (mll binning 4)' ,
+                               'ww_1jet_em_mll4' : 'WW #rightarrow e#mu, 1 jet (mll binning 4)' ,
+                               'ww_01jet_em_mll4' : 'WW #rightarrow e#mu, 0+1 jet (mll binning 4)' ,
+                               # ---
+                               'ww_0jet_em_mll4_2' : 'WW #rightarrow e#mu, 0 jet (mll binning 4_2)' ,
+                               'ww_1jet_em_mll4_2' : 'WW #rightarrow e#mu, 1 jet (mll binning 4_2)' ,
+                               'ww_01jet_em_mll4_2' : 'WW #rightarrow e#mu, 0+1 jet (mll binning 4_2)' ,
+                               # ---
+                               'ww_0jet_em_mll4_3' : 'WW #rightarrow e#mu, 0 jet (mll binning 4_3)' ,
+                               'ww_1jet_em_mll4_3' : 'WW #rightarrow e#mu, 1 jet (mll binning 4_3)' ,
+                               'ww_01jet_em_mll4_3' : 'WW #rightarrow e#mu, 0+1 jet (mll binning 4_3)' ,
+                               # ---
+                               'ww_0jet_em_mll5' : 'WW #rightarrow e#mu, 0 jet (mll binning 5)' ,
+                               'ww_1jet_em_mll5' : 'WW #rightarrow e#mu, 1 jet (mll binning 5)' ,
+                               'ww_01jet_em_mll5' : 'WW #rightarrow e#mu, 0+1 jet (mll binning 5)' ,
+                               # ---
+                               'ww_0jet_em_mll6' : 'WW #rightarrow e#mu, 0 jet (mll binning 6)' ,
+                               'ww_1jet_em_mll6' : 'WW #rightarrow e#mu, 1 jet (mll binning 6)' ,
+                               'ww_01jet_em_mll6' : 'WW #rightarrow e#mu, 0+1 jet (mll binning 6)' ,
+                             }
+
+
+acoupling['operatorPlot']  = { 'CWWW' : [-8,8] , 'CW': [-15,15] , 'CB': [-30,30] }
 acoupling['scanOrigin']    = ['3' , '4', '20' ]   # Declare it if one of the point is used as central value for the generation
 acoupling['LheOffset']     = 112
 acoupling['weights']       = {}
@@ -39,14 +81,27 @@ if 'scanOrigin' in acoupling :
   acoupling['weights'][iWeight] = {}
   acoupling['weights'][iWeight]['operatorValues'] = acoupling['scanOrigin']
   acoupling['weights'][iWeight]['LheWeight']      = iLheWeight 
-     
+
+# Plotting some values of the AC on top of distributions as signal
+# Value(s) and Color
+
+acoupling['PlotConfig']  = {
+                            '1D' : { 
+                                     'CWWW' : [3.2,632] ,
+                                   # 'CW'   : [4.9,632] ,
+                                   # 'CB'   : [15.0,632] ,
+                                   } ,
+                            '2D' : {
+                            #        'CWWW:CB' : [3.0,15.0,632],
+                                   }, 
+                           }     
 
 # Retrieve scans from weights (Edit the ScanConfig, rest should be automatic, you can comment out some lines to suppress 1D, 2D or 3D)
 
 acoupling['ScanConfig']  = {
+                             '1D' : ['CWWW','CW','CB'],
+                            #'2D' : ['CWWW:CW','CWWW:CB','CW:CB'],
                             #'1D' : ['CWWW'],
-                            '1D' : ['CWWW','CW','CB'],
-                            '2D' : ['CWWW:CW','CWWW:CB','CW:CB'],
                             #'2D' : ['CWWW:CW'],
                             #'3D' : ['CWWW:CW:CB'],
                            }

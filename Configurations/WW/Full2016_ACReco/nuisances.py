@@ -622,6 +622,23 @@ nuisances['WWqscale']  = {
                 }
 
 
+EWK_corr = ['1.0*(mll<600)+1.05*(mll>=600)','1.0*(mll<600)+1/1.05*(mll>=600)']
+
+nuisances['EWK_corrections']  = {
+    'name'  : 'EWK_corrections',
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+        'WW'      : EWK_corr,
+        },
+    'cuts'  : [
+        'ww_0jet_em',
+        'ww_1jet_em',
+        #                 
+        ]
+
+    }
+
 
 
 ################################ THEORETICAL UNCERTAINTIES  #################################
