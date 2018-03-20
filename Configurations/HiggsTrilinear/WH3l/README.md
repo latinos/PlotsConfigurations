@@ -56,3 +56,35 @@ Check distribution:
      
      
      latino->Draw("ptbest:higgsLHEpt", "", "colz")
+
+     
+     
+     
+     
+Anomalous couplings:
+
+
+     example
+     https://github.com/latinos/PlotsConfigurations/tree/master/Configurations/WW/Full2016_ACGen
+
+a script to prepare the input to the datacards (fit of the yields as a function of the anomalous coupling value in each bin of the distribution)
+
+    acoupling.py
+
+is loading the generated grid and make a link to the structure of the performed parameter scan (1D, 2D and 3D scans are possible)
+This disctionary is then used in samples.py to create all the needed histogram (1 hustogram per LHE weight)
+
+The script is in ShapeAnalysis/script and can be used like:
+
+    mkACPlot.py --pycfg=configuration_em.py  --inputFile=rootFile_em/plots_WW_em.root --varList=mll --cutList=all
+
+that will create 1D 2D and/or 3D scan histogram for each bin of mll distribution
+and perform pol2 fits (in 1D, 2D and 3D) to them + save in a new file
+
+The idea is to run this only on signal samples
+for now and create the SM datacards from another cfg
+
+A-coupling model defined here:
+
+    https://twiki.cern.ch/twiki/bin/viewauth/CMS/ATGCRooStats#Model_building
+

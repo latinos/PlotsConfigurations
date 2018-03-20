@@ -1,0 +1,85 @@
+
+Install the software:
+====================
+
+You will need to install 2 different CMSSW version:
+* CMSSW_7_1_5 for the aTGC and combine packages
+* CMSSW_8_*_* for the Latino FW
+
+For the aTGC and combine packages install, follow th instructions from:
+https://twiki.cern.ch/twiki/bin/viewauth/CMS/ATGCRooStats#Setting_up_the_environment
+and patch it with the following command as well:
+
+- scp lxplus.cern.ch:/afs/cern.ch/user/x/xjanssen/public/CombinedEWKAnalysis_Patch/test/buildWorkspace_AC.py <YourDirectoryWithCMSSW_7_1_5>/src/CombinedEWKAnalysis/CommonTools/test/.
+- scp lxplus.cern.ch:/afs/cern.ch/user/x/xjanssen/public/CombinedEWKAnalysis_Patch/python/ACModel.py <YourDirectoryWithCMSSW_7_1_5>/src/CombinedEWKAnalysis/CommonTools/python/.
+- scp lxplus.cern.ch:/afs/cern.ch/user/x/xjanssen/public/CombinedEWKAnalysis_Patch/python/AnomalousCouplingModel.py <YourDirectoryWithCMSSW_7_1_5>/src/CombinedEWKAnalysis/CommonTools/python/.
+
+For the Latino FW, use the standard SahpeOnly install script.
+
+
+Step 1: Create SM datacards
+===========================
+
+Usual mkShape/mkDatacards commands based on configuration_em.py
+
+-  mkShapes.py --pycfg=configuration_em.py --inputDir=. --doBatch=True --batchSplit=AsMuchAsPossible
+Wait for jobs to finish:
+-  mkShapes.py --pycfg=configuration_em.py --inputDir=. --doHadd=True --batchSplit=AsMuchAsPossible
+Create cards:
+-  mkDatacards.py --pycfg=configuration_em.py --inputFile=rootFile_em/plots_WW_em.root
+
+Step 2: Fill aTGC histograms + aTGC Fits
+========================================
+
+This is based on acoupling.py disctionary.
+
+- mkShapes.py --pycfg=configuration_TGC_em.py --inputDir=. --doBatch=True --batchSplit=Samples
+- wait for jobs to finish
+- mkShapes.py --pycfg=configuration_TGC_em.py --inputDir=. --doHadd=True --batchSplit=Samples
+- mkACFit.py --pycfg=configuration_TGC_em.py  --inputFile=rootFile_em/plots_WWTGC_em.root
+  --> This create a new root file in rootFile_em which cointain for each bin of the distribution, the variation in 1D, 2D and 3D of the event yield in that bin as well as a quadratic fit function (1D, 2D and 3D) due to the 3 anomalous couplings
+
+Step 3: Create the Anomalous Coupling datacards
+===============================================
+
+- mkACDatacards.py --pycfg=configuration_em.py --varList=mll     --cutList=ww_0jet_em,ww_1jet_em       --inputFile=rootFile_em/plots_WWTGC_em_ACCoupling.root
+- mkACDatacards.py --pycfg=configuration_em.py --varList=events  --cutList=ww_top0jet_em,ww_top1jet_em --inputFile=rootFile_em/plots_WWTGC_em_ACCoupling.root
+--> this will create one datacard and a workpace per scan (each coupling in 1D or each pair of coupling in 2D, 3D to be implemented) separately for each cut and variable
+
+Step 4: Combine datacards for different cuts
+============================================
+
+- Edit comb.py to add wanted combination
+- mkACComb.py --pycfg=configuration_TGC_em.py --nuisancesFile=nuisances.py
+
+Step 5: Compute limits
+======================
+
+Expected:
+- Go to combination folder
+- 1D: combine aC_ww_01jet_em.root -M MultiDimFit -P CWWW --floatOtherPOIs=0 --algo=grid --points=100 --minimizerStrategy=2 -t -1 --expectSignal=1
+      --> Replace aC_ww_01jet_em.root and CWWW as needed for different combo/parameter
+- 2D: combine aC_ww_0jet_em.root -M MultiDimFit -P CWWW -P CW --floatOtherPOIs=0 --algo=grid --points=10000 --minimizerStrategy=2 -t -1 --expectSignal=1
+      --> Again replace worspace and parameters if needed
+
+OR BETTER USE THE python launcher:
+
+mkACLimit.py --pycfg=configuration_TGC_em.py --combcfg=comb.py --step=compute --batch [--varList=...] [--cutList=...] [--unblind]
+When job are done, you need to hadd with:
+mkACLimit.py --pycfg=configuration_TGC_em.py --combcfg=comb.py --step=harvest --batch [--varList=...] [--cutList=...] [--unblind]
+
+Step 6: Plotting
+================
+
+To plot the limits:
+
+mkACLimit.py --pycfg=configuration_TGC_em.py --combcfg=comb.py --step=plot [--varList=...] [--cutList=...] [--unblind]
+
+To plot the AC fits:
+
+mkACPlot.py --pycfg=configuration_TGC_em.py  --outputDir=rootFile_em --type=fits [--cutList=...] [--varList=...] [--scanList=...]
+
+To plot the distribution with a few AC signals on top:
+
+mkACPlot.py --pycfg=configuration_TGC_em.py --inputFitFile=rootFile_em/plots_WWTGC_em_ACCoupling.root --inputPlotFile=rootFile_em/plots_WW_em.root   --outputDir=rootFile_em --type=plots --nuisancesFile=nuisances.py [--cutList=...] [--varList=...] [--scanList=...]
+

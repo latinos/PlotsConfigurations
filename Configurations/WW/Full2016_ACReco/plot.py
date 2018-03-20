@@ -54,13 +54,13 @@ groupPlot['DY']  = {
                   'samples'  : ['DY']
               }
 
-groupPlot['aTGC']  = {  
-                  'nameHR' : "aTGC 112",
-                  'isSignal' : 2,
-                  'color': 801,  #  kGreen+2
-                  #'samples'  : ['DY1', 'DY2']
-                  'samples'  : ['aTGC']
-              }
+# groupPlot['aTGC']  = {  
+#                   'nameHR' : "aTGC 112",
+#                   'isSignal' : 2,
+#                   'color': 801,  #  kGreen+2
+#                   #'samples'  : ['DY1', 'DY2']
+#                   'samples'  : ['aTGC']
+#               }
 
 
 groupPlot['Higgs']  = {  
@@ -169,12 +169,12 @@ plot['ggWW']  = {
                   'scale'    : 1.0
                   }
 
-plot['aTGC']  = {
-                  'color': 801,
-                  'isSignal' : 2,
-                  'isData'   : 0,    
-                  'scale'    : 1.0
-                  }
+# plot['aTGC']  = {
+#                   'color': 801,
+#                   'isSignal' : 2,
+#                   'isData'   : 0,    
+#                   'scale'    : 1.0
+#                   }
 
 plot['ggWW_Int']  = {
                   'color': 616, # kMagenta
@@ -299,7 +299,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  #'isBlind'  : 1
+                  'isBlind'  : 1
               }
 
 
@@ -309,6 +309,7 @@ plot['DATA']  = {
 
 #legend['lumi'] = 'L = 6.3/fb'
 legend['lumi'] = 'L = 35.9/fb'
+legend['lumiEnrg'] = '35.9 fbi^{-1} (13 TeV)'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 
