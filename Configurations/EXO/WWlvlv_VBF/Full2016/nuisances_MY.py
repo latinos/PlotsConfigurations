@@ -147,8 +147,7 @@ nuisances['QCDscale_qqbar_accept']  = {
                'name'  : 'QCDscale_qqbar_accept', 
                'type'  : 'lnN',
                'samples'  : {
-                    #ctrl WWQCD
-                   'WWQCD' : '1.03',
+                   
                    'qqH_hww' : '1.007',
                    'WH_hww'  : '1.05',
                    'ZH_hww'  : '1.04',
@@ -506,8 +505,7 @@ nuisances['pdf_qqbar_accept']  = {
                'name'  : 'pdf_qqbar_accept', 
                'type'  : 'lnN',
                'samples'  : {
-                   #ctrt WWQCD number
-                   'WWQCD' : '1.01',    
+                  
                    'qqH_hww' : '1.011',                  
                    'WH_hww'  : '1.007',
                    'ZH_hww'  : '1.012',
@@ -560,17 +558,6 @@ nuisances['QCDscale_ggWW']  = {
                    'ggWW' : '1.15',
                    },
               }
-
-
-#da mettere? ctrl
-nuisances['QCDscale_WWQCD']  = {
-               'name'  : 'QCDscale_WWQCD',
-               'samples'  : {
-                   'WWQCD' : '1.15',
-                   },
-               'type'  : 'lnN'
-               }
-
 
 
 
@@ -836,7 +823,7 @@ nuisances['lumi']  = {
                    #'DY'       : '1.025',    \
                    #'top'      : '1.025',    |--> controlled via rateParams
                    #'WW'       : '1.025',    /
-                   'WWQCD' : '1.025',
+                  
                    'ggWW'     : '1.025',
                    'Vg'       : '1.025',
                    'VgS'      : '1.025',
@@ -938,7 +925,7 @@ nuisances['btagbc']  = {
                 'kind'  : 'weight',
                'type'  : 'shape',
                 'samples'  : {
-                   'WWQCD'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                  
                    'DY'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'WW'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'ggWW'    : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
@@ -970,7 +957,7 @@ nuisances['btagudsg']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'WWQCD'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                  
                    'DY'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'VVV'     : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'VZ'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
@@ -1010,7 +997,7 @@ nuisances['trigg']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'WWQCD'      : trig_syst ,
+                  
                    'DY'      : trig_syst ,
                    'VVV'     : trig_syst ,
                    'VZ'      : trig_syst ,
@@ -1050,7 +1037,7 @@ nuisances['eff_e']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'WWQCD'      : id_syst_ele ,
+                   
                    'DY'      : id_syst_ele ,
                    'VVV'     : id_syst_ele ,
                    'VZ'      : id_syst_ele ,
@@ -1083,7 +1070,7 @@ nuisances['electronpt']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                   'WWQCD' :  ['1', '1'],
+                   
                    'DY' :  ['1', '1'],
                    'ggWW' :['1', '1'],
                    'WW' :  ['1', '1'],
@@ -1123,7 +1110,7 @@ nuisances['elePtCor']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'WWQCD'         : elePtCor_Syst ,
+                  
                    'DY'         : elePtCor_Syst ,
                    'ggWW'       : elePtCor_Syst ,
                    'WW'         : elePtCor_Syst ,
@@ -1160,7 +1147,7 @@ nuisances['eleEtaCor']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'WWQCD'         : eleEtaCor_Syst, 
+                  
                    'DY'         : eleEtaCor_Syst, 
                    'ggWW'       : eleEtaCor_Syst, 
                    'WW'         : eleEtaCor_Syst, 
@@ -1200,7 +1187,7 @@ nuisances['eff_m']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'WWQCD'      : id_syst_mu ,
+                   
                    'DY'      : id_syst_mu ,
                    'VVV'     : id_syst_mu ,
                    'VZ'      : id_syst_mu ,
@@ -1233,7 +1220,7 @@ nuisances['muonpt']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                   'WWQCD' :  ['1', '1'],
+                   
                    'ggWW' :['1', '1'],
                    'WW' :  ['1', '1'],
                    'DY' :  ['1', '1'],
@@ -1275,7 +1262,7 @@ nuisances['jes']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                   'WWQCD' :  ['1', '1'],
+                  
                    'ggWW' :['1', '1'],
                    'WW' :  ['1', '1'],
                    'DY' :  ['1', '1'],
@@ -1315,7 +1302,7 @@ nuisances['met']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                   'WWQCD' :  ['1', '1'],
+                   
                    'ggWW' :['1', '1'],
                    'WW' :  ['1', '1'],
                    'DY' :  ['1', '1'],
@@ -1358,6 +1345,20 @@ nuisances['DYQCDscale']  = {
                    'DY'      : ['std_vector_LHE_weight[8]/std_vector_LHE_weight[0]', 'std_vector_LHE_weight[4]/std_vector_LHE_weight[0]'],
                 }
 }
+
+
+
+nuisances['WW2JQCDscale']  = {
+                'name'  : 'WW2J_QCDscale_V',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'qqWWqq'      : ['std_vector_LHE_weight[8]/std_vector_LHE_weight[0]', 'std_vector_LHE_weight[4]/std_vector_LHE_weight[0]'],
+                   'WW2J'      : ['std_vector_LHE_weight[8]/std_vector_LHE_weight[0]', 'std_vector_LHE_weight[4]/std_vector_LHE_weight[0]'],
+                }
+}
+
 
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.

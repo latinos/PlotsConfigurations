@@ -318,12 +318,41 @@ addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
  
  
 ####### WW ########
-             
-samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu') ,
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*nllW *(mjj<300)' ,  
+
+
+
+##gROOT.ProcessLineSync(".L /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/deltaRMatch.C+");
+##gROOT.ProcessLineSync(".L /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/cleanJetIndex.C+");
+##gROOT.ProcessLineSync(".L /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/mjjGen.C+");
+
+mjjGen='mjjGen(std_vector_jetGen_pt[cleanJetIndex(deltaRMatch( std_vector_leptonGen_eta[0], std_vector_leptonGen_phi[0], std_vector_jetGen_eta[0], std_vector_jetGen_phi[0]), deltaRMatch(std_vector_leptonGen_eta[1], std_vector_leptonGen_phi[1], std_vector_jetGen_eta[1], std_vector_jetGen_phi[1]), 0)], std_vector_jetGen_eta[cleanJetIndex(deltaRMatch( std_vector_leptonGen_eta[0], std_vector_leptonGen_phi[0], std_vector_jetGen_eta[0], std_vector_jetGen_phi[0]), deltaRMatch(std_vector_leptonGen_eta[1], std_vector_leptonGen_phi[1], std_vector_jetGen_eta[1], std_vector_jetGen_phi[1]), 0)], std_vector_jetGen_phi[cleanJetIndex(deltaRMatch( std_vector_leptonGen_eta[0], std_vector_leptonGen_phi[0], std_vector_jetGen_eta[0], std_vector_jetGen_phi[0]), deltaRMatch(std_vector_leptonGen_eta[1], std_vector_leptonGen_phi[1], std_vector_jetGen_eta[1], std_vector_jetGen_phi[1]), 0)], std_vector_jetGen_pt[cleanJetIndex(deltaRMatch( std_vector_leptonGen_eta[0], std_vector_leptonGen_phi[0], std_vector_jetGen_eta[0], std_vector_jetGen_phi[0]), deltaRMatch(std_vector_leptonGen_eta[1], std_vector_leptonGen_phi[1], std_vector_jetGen_eta[1], std_vector_jetGen_phi[1]), 1)], std_vector_jetGen_eta[cleanJetIndex(deltaRMatch( std_vector_leptonGen_eta[0], std_vector_leptonGen_phi[0], std_vector_jetGen_eta[0], std_vector_jetGen_phi[0]), deltaRMatch(std_vector_leptonGen_eta[1], std_vector_leptonGen_phi[1], std_vector_jetGen_eta[1], std_vector_jetGen_phi[1]), 1)], std_vector_jetGen_phi[cleanJetIndex(deltaRMatch( std_vector_leptonGen_eta[0], std_vector_leptonGen_phi[0], std_vector_jetGen_eta[0], std_vector_jetGen_phi[0]), deltaRMatch(std_vector_leptonGen_eta[1], std_vector_leptonGen_phi[1], std_vector_jetGen_eta[1], std_vector_jetGen_phi[1]), 1)])'
+
+
+samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu'), 
+                                 
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*nllW*('+mjjGen+' <100  )',                       
+                     
+                      'linesToAdd' : ['.L /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/cleanJetIndex.C+','.L /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/deltaRMatch.C+ ', '.L /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/mjjGen.C+','mjjGen.C()']
                  }
  
+
+samples['qqWWqq']  = {    'name'   :getSampleFiles(directory,'WpWmJJ_QCD_noTop') ,
+
+                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*('+mjjGen+'>100)*(std_vector_LHEparton_id[0]!=21 &&  std_vector_LHEparton_id[1]!=21)', 
+
+
+                      'linesToAdd' : ['.L /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/cleanJetIndex.C+','.L /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/deltaRMatch.C+ ', '.L /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/mjjGen.C+','mjjGen.C()']
+                 }
  
+
+
+samples['WW2J']  = {    'name'   :getSampleFiles(directory,'WpWmJJ_QCD_noTop') ,
+
+                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*('+mjjGen+'>100)*(std_vector_LHEparton_id[0]==21 ||  std_vector_LHEparton_id[1]==21)', 
+
+                      'linesToAdd' : ['.L /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/cleanJetIndex.C+','.L /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/deltaRMatch.C+ ', '.L /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/mjjGen.C+','mjjGen.C()']
+                 }
+
  
 samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'),      
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
@@ -332,14 +361,12 @@ samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'
                    }
 
 
-samples['WWQCD'] = { 'name': getSampleFiles(directory,'WpWmJJ_QCD_noTop'),
-                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC +'*(mjj>300)',
-}
- 
-## during tree production: 1.4 k-factor has been applied to both samples
-## ggWW sample: k = 1.4 +/- 15%
-## ggWW interference: k = 1.87 +/- 25%
- 
+
+
+# during tree production: 1.4 k-factor has been applied to both samples
+# ggWW sample: k = 1.4 +/- 15%
+# ggWW interference: k = 1.87 +/- 25%
+
 ######## Vg ########
  
 samples['Vg']  =  {     'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM')
@@ -484,12 +511,12 @@ for m in masses:
  
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
     print "model=",model,"   Model_int=",  model_int, "   Name=", model_name
-
+ 
     #Split sample in according to the name: 200<m<300 ...ToWWTo2L2Nu and 300<m<3000 name with ...ToWWTo2L2Nu_JHUGen698_
     print m
     my_list = ['200','210','230' ,'250', '270']
     if m  in my_list:
-
+ 
      print "if300=", m
      #GluGlu
      samples['ggH_hww_'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_M'+m) ,
@@ -499,8 +526,8 @@ for m in masses:
                                           'suppressNegativeNuisances' :['all'],                           
                                         }
      
-
-
+ 
+ 
      samples['ggH_hww_SBI'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_M'+m) + \
                                                          getSampleFiles(directory,'GluGluHToWWTo2L2Nu_M'+m) + \
                                                          getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM') + \
@@ -509,7 +536,7 @@ for m in masses:
                                                    # +'*(abs('+model_int+')<10)', removed
                                           'suppressNegativeNuisances' :['all'],
                                           'weights':[model,
-                                                     model_int,
+                                                     model_int +'*(abs('+model_int+')<10)',
                                                      '1.',
                                                      '1.']
                                                 
@@ -522,30 +549,30 @@ for m in masses:
                                            #Put 'model' in weight  
                                           'suppressNegativeNuisances' :['all'],
                                         }                   
-
-
+ 
+ 
      
                              
      samples['qqH_hww_SBI'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_M'+m) + \
                                                          getSampleFiles(directory,'VBFHToWWTo2L2Nu_M'+m) + \
                                                          getSampleFiles(directory,'WWTo2L2Nu') + \
-                                                         getSampleFiles(directory,'WpWmJJ_QCD_noTop')  + \
-                                                         getSampleFiles(directory,'VBFHToWWTo2L2Nu_M125'),                                            
+                                                         getSampleFiles(directory,'WpWmJJ_QCD_noTop') + \
+                                                         getSampleFiles(directory,'VBFHToWWTo2L2Nu_M125'),                   
+                         
                                           'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+str(sf),
                                                   
                                           'suppressNegativeNuisances' :['all'],
                                           'weights':[model,
-                                                     model_int,
-                                                     #add *nllW as in WW sample
-                                                     '1.0*(nllW)*(mjj<300)',
-                                                     '1.0*(mjj>300)',
+                                                     model_int  +'*(abs('+model_int+')<10)',
+                                                     'nllW*('+mjjGen+' <100  )*(std_vector_jet_pt[1]>0 && std_vector_jet_pt[2]<0)',                               
+                                                     '('+mjjGen+'>100)*(std_vector_jet_pt[1]>0 && std_vector_jet_pt[2]<0)',  
                                                      '1.']
                                                 
                                           }    
-
-
-
-
+ 
+ #(std_vector_LHEparton_id[0]>-6 && std_vector_LHEparton_id[0]!=21) && (std_vector_LHEparton_id[1] >-6 && std_vector_LHEparton_id[1]!=21)
+ 
+ 
     else:
      print "else=", m
      #GluGlu
@@ -557,7 +584,7 @@ for m in masses:
                                         }
  
      
-
+ 
      samples['ggH_hww_SBI'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_JHUGen698_M'+m) + \
                                                          getSampleFiles(directory,'GluGluHToWWTo2L2Nu_JHUGen698_M'+m) + \
                                                          getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM') + \
@@ -565,14 +592,14 @@ for m in masses:
                                                 'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC, 
                                                 'suppressNegativeNuisances' :['all'],
                                                 'weights':[model,
-                                                           model_int,
+                                                           model_int +'*(abs('+model_int+')<10)',
                                                            '1.',
                                                            '1.']
- 
+      
                                                  } 
-
-
-
+ 
+ 
+ 
      #VBF
      samples['qqH_hww_'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m) ,
                                             
@@ -585,22 +612,21 @@ for m in masses:
      samples['qqH_hww_SBI'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m)  + \
                                                          getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m)  + \
                                                          getSampleFiles(directory,'WWTo2L2Nu')  + \
-                                                         getSampleFiles(directory,'WpWmJJ_QCD_noTop')  + \
+                                                         getSampleFiles(directory,'WpWmJJ_QCD_noTop') + \
                                                          getSampleFiles(directory,'VBFHToWWTo2L2Nu_M125'),
-
-                                          'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+str(sf),
+      
+                                          'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+str(sf) ,
                                           'suppressNegativeNuisances' :['all'],
                                           'weights':[model,
-                                                     model_int,
-                                                     #add *nllW as in WW sample
-                                                     '1. *(nllW)*(mjj<300)',
-                                                     '1.*(mjj>300)',                                                    
+                                                     model_int  +'*(abs('+model_int+')<10)',
+                                                     'nllW*('+mjjGen+' <100  )*(std_vector_jet_pt[1]>0 && std_vector_jet_pt[2]<0)',                               
+                                                     '('+mjjGen+'>100)*( std_vector_jet_pt[1]>0 && std_vector_jet_pt[2]<0)',   
                                                      '1.']
-
+      
                                         }               
  
  
- 
+
 ############################################
 ################### FAKE ###################
 ############################################

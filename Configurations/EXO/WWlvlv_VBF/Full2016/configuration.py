@@ -1,12 +1,9 @@
 # example of configuration file
 
-tag = 'HWWhighMass2016_OF_V3'
-#V3 fix nuisance to SM H
-#V4 con SBI (+V3)
-
+tag = 'HWWhighMass2016_OF'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_OF_V3'
+outputDir = 'rootFile_OF'
 
 
 # file with list of variables
@@ -22,18 +19,12 @@ samplesFile = 'samples_fix.py'
 # file with list of samples
 plotFile = 'plot.py' 
 
-
-
 # luminosity to normalize to (in 1/fb)
-#RIMETTERE baswW se lumi !=1 !!!!
-#lumi = 1.0
-#lumi = 35.867
-
 lumi = 35.9
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotHWWhighMass_OF_V3'
+outputDirPlots = 'plotHWWhighMass_OF_TEST'
 
 
 # used by mkDatacards to define output directory for datacards
