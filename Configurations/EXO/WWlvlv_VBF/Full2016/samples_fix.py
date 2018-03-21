@@ -554,8 +554,7 @@ for m in masses:
      
                              
      samples['qqH_hww_SBI'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_M'+m) + \
-                                                         getSampleFiles(directory,'VBFHToWWTo2L2Nu_M'+m) + \
-                                                         getSampleFiles(directory,'WWTo2L2Nu') + \
+                                                         getSampleFiles(directory,'VBFHToWWTo2L2Nu_M'+m) + \                                                        
                                                          getSampleFiles(directory,'WpWmJJ_QCD_noTop') + \
                                                          getSampleFiles(directory,'VBFHToWWTo2L2Nu_M125'),                   
                          
@@ -564,13 +563,10 @@ for m in masses:
                                           'suppressNegativeNuisances' :['all'],
                                           'weights':[model,
                                                      model_int  +'*(abs('+model_int+')<10)',
-                                                     'nllW*('+mjjGen+' <100  )*(std_vector_jet_pt[1]>0 && std_vector_jet_pt[2]<0)',                               
-                                                     '('+mjjGen+'>100)*(std_vector_jet_pt[1]>0 && std_vector_jet_pt[2]<0)',  
+                                                    '('+mjjGen+'>100)*(std_vector_LHEparton_id[0]!=21 &&  std_vector_LHEparton_id[1]!=21)', 
                                                      '1.']
                                                 
                                           }    
- 
- #(std_vector_LHEparton_id[0]>-6 && std_vector_LHEparton_id[0]!=21) && (std_vector_LHEparton_id[1] >-6 && std_vector_LHEparton_id[1]!=21)
  
  
     else:
@@ -610,8 +606,7 @@ for m in masses:
  
  
      samples['qqH_hww_SBI'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m)  + \
-                                                         getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m)  + \
-                                                         getSampleFiles(directory,'WWTo2L2Nu')  + \
+                                                         getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m)  + \ 
                                                          getSampleFiles(directory,'WpWmJJ_QCD_noTop') + \
                                                          getSampleFiles(directory,'VBFHToWWTo2L2Nu_M125'),
       
@@ -619,8 +614,7 @@ for m in masses:
                                           'suppressNegativeNuisances' :['all'],
                                           'weights':[model,
                                                      model_int  +'*(abs('+model_int+')<10)',
-                                                     'nllW*('+mjjGen+' <100  )*(std_vector_jet_pt[1]>0 && std_vector_jet_pt[2]<0)',                               
-                                                     '('+mjjGen+'>100)*( std_vector_jet_pt[1]>0 && std_vector_jet_pt[2]<0)',   
+                                                     '('+mjjGen+'>100)*(std_vector_LHEparton_id[0]!=21 &&  std_vector_LHEparton_id[1]!=21)', 
                                                      '1.']
       
                                         }               
