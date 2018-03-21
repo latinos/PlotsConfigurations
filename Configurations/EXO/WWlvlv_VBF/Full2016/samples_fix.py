@@ -554,7 +554,7 @@ for m in masses:
      
                              
      samples['qqH_hww_SBI'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_M'+m) + \
-                                                         getSampleFiles(directory,'VBFHToWWTo2L2Nu_M'+m) + \                                                        
+                                                         getSampleFiles(directory,'VBFHToWWTo2L2Nu_M'+m) + \
                                                          getSampleFiles(directory,'WpWmJJ_QCD_noTop') + \
                                                          getSampleFiles(directory,'VBFHToWWTo2L2Nu_M125'),                   
                          
@@ -606,7 +606,7 @@ for m in masses:
  
  
      samples['qqH_hww_SBI'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m)  + \
-                                                         getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m)  + \ 
+                                                         getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m)  + \
                                                          getSampleFiles(directory,'WpWmJJ_QCD_noTop') + \
                                                          getSampleFiles(directory,'VBFHToWWTo2L2Nu_M125'),
       
