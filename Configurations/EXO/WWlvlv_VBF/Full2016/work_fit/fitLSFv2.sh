@@ -31,58 +31,49 @@ cd -
 
         if [ "${cat}" == "all" ]; then
             
-	    text2workspace.py  MORIOND2017.txt -o MORIOND2017.workspace.mH${massmodel}.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \ 
-	        --PO 'map=.*/ggH_hww_.*:0' --PO 'map=.*/qqH_hww_.*:0' \
-		--PO 'map=.*/qqH_hww_'${massmodel}':r[1,0,10]' \
-		--PO 'map=.*/ggWW:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)' \
-		--PO 'map=.*/ggH_hww$:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)' \
-		--PO 'map=.*/ggH_hww_'${massmodel}':s_scaling=expr::s_scaling("@0 - TMath::Sqrt(@0)", r)' \
-		--PO 'map=.*/ggH_hww_SBI'${massmodel}':sbi_scaling=expr::sbi_scaling("TMath::Sqrt(@0)",r)'\
-                --PO 'map=.*/qqWW:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)'\
-         	--PO 'map=.*/qqH_hww$:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)'\
-        	--PO 'map=.*/qqH_hww_'${massmodel}':s_scaling=expr::s_scaling("@0 - TMath::Sqrt(@0)", r)'\
-        	--PO 'map=.*/qqH_hww_SBI'${massmodel}':sbi_scaling=expr::sbi_scaling("TMath::Sqrt(@0)",r)' 
-
-
-
-
-
-	    
-	    #text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO 'map=.*/ggH_hww*:1' --PO 'map=.*/qqH_hww*:1' --PO 'map=.*/ggH_hww_:0' --PO 'map=.*/qqH_hww_:0' --PO 'map=.*/ggH_hww_'${massmodel}':r[1,-10,10]' --PO 'map=.*/qqH_hww_'${massmodel}':r'  --PO 'map=.*/ggH_hww_750_NWA:0' --PO 'map=.*/qqH_hww_750_NWA:0' --PO 'map=.*/ggH_hww_INT'${massmodel}':sqrt_scaling=expr::sqrt_scaling("TMath::Sqrt(@0)",r)' --PO 'map=.*Top*/ggH_hww_INT'${massmodel}':0' --PO 'map=.*DYtt*/ggH_hww_INT'${massmodel}':0' --PO 'map=of0jDYtt/qqH_hww_300_c10brn00:0' --PO 'map=of1jDYtt/Fake:0' MORIOND2017.txt -o MORIOND2017.workspace.mH${massmodel}.root -m ${m} -v 1 
-#&> log.workspace.mH${massmodel}.txt         
-	    
-        else
-         
-
-    text2workspace.py  MORIOND2017.${cat}.txt -o MORIOND2017.workspace.${cat}.mH${massmodel}.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
+    text2workspace.py  MORIOND2017.txt -o MORIOND2017.workspace.mH${massmodel}.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
 	--PO 'map=.*/ggH_hww_.*:0' --PO 'map=.*/qqH_hww_.*:0' \
-	--PO 'map=.*/qqH_hww_'${massmodel}':r[1,0,10]' \
-
+	--PO 'map=.*/ggH_hww_'${massmodel}':s_scaling=expr::s_scaling("@0 - TMath::Sqrt(@0)", r)' \
 	--PO 'map=.*/ggWW:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)' \
 	--PO 'map=.*/ggH_hww$:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)' \
-
-	--PO 'map=.*/ggH_hww_'${massmodel}':s_scaling=expr::s_scaling("@0 - TMath::Sqrt(@0)", r)' \
-
 	--PO 'map=.*/ggH_hww_SBI'${massmodel}':sbi_scaling=expr::sbi_scaling("TMath::Sqrt(@0)",r)'\
-
-        --PO 'map=.*/qqWW:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)'\
-	--PO 'map=.*/qqH_hww$:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)'\
 	--PO 'map=.*/qqH_hww_'${massmodel}':s_scaling=expr::s_scaling("@0 - TMath::Sqrt(@0)", r)'\
+        --PO 'map=.*/qqWWqq:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)'\
+	--PO 'map=.*/qqH_hww$:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)'\
+	--PO 'map=.*/qqH_hww_SBI'${massmodel}':sbi_scaling=expr::sbi_scaling("TMath::Sqrt(@0)",r)' 
+
+		
+	
+	       
+        else
+         
+	    
+    text2workspace.py  MORIOND2017.${cat}.txt -o MORIOND2017.workspace.${cat}.mH${massmodel}.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
+	--PO 'map=.*/ggH_hww_.*:0' --PO 'map=.*/qqH_hww_.*:0' \
+	--PO 'map=.*/ggH_hww_'${massmodel}':s_scaling=expr::s_scaling("@0 - TMath::Sqrt(@0)", r)' \
+	--PO 'map=.*/ggWW:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)' \
+	--PO 'map=.*/ggH_hww$:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)' \
+	--PO 'map=.*/ggH_hww_SBI'${massmodel}':sbi_scaling=expr::sbi_scaling("TMath::Sqrt(@0)",r)'\
+	--PO 'map=.*/qqH_hww_'${massmodel}':s_scaling=expr::s_scaling("@0 - TMath::Sqrt(@0)", r)'\
+        --PO 'map=.*/qqWWqq:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)'\
+	--PO 'map=.*/qqH_hww$:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)'\
 	--PO 'map=.*/qqH_hww_SBI'${massmodel}':sbi_scaling=expr::sbi_scaling("TMath::Sqrt(@0)",r)' 
 
 
         #Comments 
-	#--PO 'map=.*/ggH_hww_.*:0' --PO 'map=.*/qqH_hww_.*:0' \ Scalo Tutti i 
-	#--PO 'map=.*/qqH_hww_'${massmodel}':r[1,0,10]' \
+	#per ggH
+        #--PO 'map=.*/ggH_hww_.*:0' --PO 'map=.*/qqH_hww_.*:0' \ Scalo Tutti i sign HM a zero	
 	# 
-	#--PO 'map=.*/ggWW:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)' \
-	#--PO 'map=.*/ggH_hww$:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)' \
+	#--PO 'map=.*/ggWW:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)' \ Background ggWW
+	#--PO 'map=.*/ggH_hww$:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)' \  Background H125
 	# 
-	#--PO 'map=.*/ggH_hww_'${massmodel}':s_scaling=expr::s_scaling("@0 - TMath::Sqrt(@0)", r)' \
+	#--PO 'map=.*/ggH_hww_'${massmodel}':s_scaling=expr::s_scaling("@0 - TMath::Sqrt(@0)", r)' \ Signal HM_XXX sclatato (solo quello a massa XXX) 
 	# 
-	#--PO 'map=.*/ggH_hww_SBI'${massmodel}':sbi_scaling=expr::sbi_scaling("TMath::Sqrt(@0)",r)'\
+	#--PO 'map=.*/ggH_hww_SBI'${massmodel}':sbi_scaling=expr::sbi_scaling("TMath::Sqrt(@0)",r)'\ Interferenza
 	# 
-        #--PO 'map=.*/qqWW:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)'\
+        #Per VBF
+        #--PO 'map=.*/qqH_hww_'${massmodel}':r[1,0,10]' \ TOLTO!
+        #--PO 'map=.*/qqWWqq:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)'\
 	#--PO 'map=.*/qqH_hww$:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)'\
 	#--PO 'map=.*/qqH_hww_'${massmodel}':s_scaling=expr::s_scaling("@0 - TMath::Sqrt(@0)", r)'\
 	#--PO 'map=.*/qqH_hww_SBI'${massmodel}':sbi_scaling=expr::sbi_scaling("TMath::Sqrt(@0)",r)' 
