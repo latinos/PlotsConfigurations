@@ -32,15 +32,16 @@ cd -
         if [ "${cat}" == "all" ]; then
             
     text2workspace.py  MORIOND2017.txt -o MORIOND2017.workspace.mH${massmodel}.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
+	--PO 'map=.*/ggH_hww_.*:r[1, 0, 10]' --PO 'map=.*/qqH_hww_.*:r'\
 	--PO 'map=.*/ggH_hww_.*:0' --PO 'map=.*/qqH_hww_.*:0' \
-	--PO 'map=.*/ggH_hww_'${massmodel}':s_scaling=expr::s_scaling("@0 - TMath::Sqrt(@0)", r)' \
+	--PO 'map=.*/ggH_hww_'${massmodel}_':s_scaling=expr::s_scaling("@0 - TMath::Sqrt(@0)", r)' \
 	--PO 'map=.*/ggWW:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)' \
 	--PO 'map=.*/ggH_hww$:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)' \
-	--PO 'map=.*/ggH_hww_SBI'${massmodel}':sbi_scaling=expr::sbi_scaling("TMath::Sqrt(@0)",r)'\
-	--PO 'map=.*/qqH_hww_'${massmodel}':s_scaling=expr::s_scaling("@0 - TMath::Sqrt(@0)", r)'\
+	--PO 'map=.*/ggH_hww_SBI'${massmodel}_':sbi_scaling=expr::sbi_scaling("TMath::Sqrt(@0)",r)'\
+	--PO 'map=.*/qqH_hww_'${massmodel}_':s_scaling=expr::s_scaling("@0 - TMath::Sqrt(@0)", r)'\
         --PO 'map=.*/qqWWqq:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)'\
 	--PO 'map=.*/qqH_hww$:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)'\
-	--PO 'map=.*/qqH_hww_SBI'${massmodel}':sbi_scaling=expr::sbi_scaling("TMath::Sqrt(@0)",r)' 
+	--PO 'map=.*/qqH_hww_SBI'${massmodel}_':sbi_scaling=expr::sbi_scaling("TMath::Sqrt(@0)",r)' 
 
 		
 	
@@ -49,15 +50,16 @@ cd -
          
 	    
     text2workspace.py  MORIOND2017.${cat}.txt -o MORIOND2017.workspace.${cat}.mH${massmodel}.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
+	--PO 'map=.*/ggH_hww_.*:r[1, 0, 10]' --PO 'map=.*/qqH_hww_.*:r'\
 	--PO 'map=.*/ggH_hww_.*:0' --PO 'map=.*/qqH_hww_.*:0' \
-	--PO 'map=.*/ggH_hww_'${massmodel}':s_scaling=expr::s_scaling("@0 - TMath::Sqrt(@0)", r)' \
+	--PO 'map=.*/ggH_hww_'${massmodel}_':s_scaling=expr::s_scaling("@0 - TMath::Sqrt(@0)", r)' \
 	--PO 'map=.*/ggWW:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)' \
 	--PO 'map=.*/ggH_hww$:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)' \
-	--PO 'map=.*/ggH_hww_SBI'${massmodel}':sbi_scaling=expr::sbi_scaling("TMath::Sqrt(@0)",r)'\
-	--PO 'map=.*/qqH_hww_'${massmodel}':s_scaling=expr::s_scaling("@0 - TMath::Sqrt(@0)", r)'\
+	--PO 'map=.*/ggH_hww_SBI'${massmodel}_':sbi_scaling=expr::sbi_scaling("TMath::Sqrt(@0)",r)'\
+	--PO 'map=.*/qqH_hww_'${massmodel}_':s_scaling=expr::s_scaling("@0 - TMath::Sqrt(@0)", r)'\
         --PO 'map=.*/qqWWqq:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)'\
 	--PO 'map=.*/qqH_hww$:b_scaling=expr::b_scaling("1.-TMath::Sqrt(@0)",r)'\
-	--PO 'map=.*/qqH_hww_SBI'${massmodel}':sbi_scaling=expr::sbi_scaling("TMath::Sqrt(@0)",r)' 
+	--PO 'map=.*/qqH_hww_SBI'${massmodel}_':sbi_scaling=expr::sbi_scaling("TMath::Sqrt(@0)",r)' 
 
 
         #Comments 
