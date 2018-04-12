@@ -23,6 +23,7 @@ mkdir -p /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigur
 
 mkdir -p /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/pulls_"$CHANNEL"_MVA
 
+
 mkdir -p goodnessOfFit_"$CHANNEL"_MVA
 
 mkdir -p combine_"$CHANNEL"_MVA
@@ -33,7 +34,7 @@ mkdir -p pulls_"$CHANNEL"_MVA
 
 
 cp -r /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/ .
-cp -r /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards_blindData/ .
+# cp -r /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards_blindData/ .
 
 python /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/scriptMonoHSplit80.py $CHANNEL $VARIABLES $CUT $MZP $MA0
 
@@ -45,8 +46,11 @@ cp limits_"$CHANNEL"_MVA/* /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1
 
 cp pulls_"$CHANNEL"_MVA/* /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/pulls_"$CHANNEL"_MVA/
 
+cp datacards/monoH_MVA_em/$VARIABLES/datacard_"$MZP"_"$MA0"_combined.txt  /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_MVA_em/$VARIABLES/
+### cp datacards/monoH_MVA_em/$VARIABLES/datacard_"$MZP"_"$MA0"_combined.root /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards/monoH_MVA_em/$VARIABLES/
+
 rm -rf datacards
-rm -rf datacards_blindData
+# rm -rf datacards_blindData
 
 ##cd /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017
 

@@ -46,8 +46,8 @@ cp limits_"$CHANNEL"_MVA_combination/* /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8
 
 cp pulls_"$CHANNEL"_MVA_combination/* /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/pulls_"$CHANNEL"_MVA_combination/
 
-cp datacards_combination/monoH_MVA_em/$VARIABLES/datacard_"$MZP"_"$MA0"_combined.txt  datacards_combination/monoH_MVA_em/$VARIABLES/
-cp datacards_combination/monoH_MVA_em/$VARIABLES/datacard_"$MZP"_"$MA0"_combined.root datacards_combination/monoH_MVA_em/$VARIABLES/
+cp datacards_combination/monoH_MVA_em/$VARIABLES/datacard_"$MZP"_"$MA0"_combined.txt  /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards_combination/monoH_MVA_em/$VARIABLES/
+### cp datacards_combination/monoH_MVA_em/$VARIABLES/datacard_"$MZP"_"$MA0"_combined.root /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/datacards_combination/monoH_MVA_em/$VARIABLES/
 
 rm -rf datacards_combination
 # rm -rf datacards_blindData
