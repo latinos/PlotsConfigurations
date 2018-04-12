@@ -32,6 +32,11 @@ for m in masses:
                     'isData'   : 0
                     }
 
+    structure['qqH_hww_SBI'+m+'_'+model_name]  = {
+                    'isSignal' : 1,
+                    'isData'   : 0
+                    }
+
 structure['ggH_hww_750_NWA']  = {
                   'isSignal' : 1,
                   'isData'   : 0

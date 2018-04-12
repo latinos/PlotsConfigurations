@@ -1,9 +1,9 @@
 # example of configuration file
 
-tag = 'HWWhighMass2016_SF_embeddedWeights_mm_VBF'
+tag = 'HWWhighMass2016_SF_embeddedWeights_mm_VBF_V3'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_SF_mm_VBF'
+outputDir = 'rootFile_SF_mm_VBF_V3'
 
 # file with list of variables
 variablesFile = 'variables_SF.py'
@@ -30,7 +30,7 @@ lumi = 35.9
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotHWWhighMass_SF_mm'
+outputDirPlots = 'plotHWWhighMass_SF_mm_V3'
 
 
 # used by mkDatacards to define output directory for datacards

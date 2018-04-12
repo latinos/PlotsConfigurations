@@ -2,14 +2,7 @@
 
 #plot = {}
 
-# keys here must match keys in samples.py    
-#                    
-
-
-
-
-
-
+# keys here must match keys in samples.py                       
 
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bart',

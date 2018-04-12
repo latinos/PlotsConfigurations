@@ -935,7 +935,7 @@ nuisances['TopPS']  = {
                 }
  
 } 
-'''  
+  
 ## DY pt corrections
 nuisances['DYptRew']  = {
                 'name'  : 'DYptRew',   # Theory uncertainty
@@ -949,7 +949,7 @@ nuisances['DYptRew']  = {
                 # tW = 15/16
                 
 }
-'''
+
 
 ##         1  p0           1.42199e+01   2.00614e-01   7.49397e-04  -3.24175e-03
 ##         2  p1           8.78770e+00   2.36675e-01   1.47925e-03  -1.11709e-03
@@ -1086,8 +1086,8 @@ nuisances['elePtCor']  = {
                    'VVV'        : elePtCor_Syst ,
                    'Vg'         : elePtCor_Syst ,
                    'VgS'        : elePtCor_Syst ,
-                   'ggH_hww '   : elePtCor_Syst ,
-                   'qqH_hww '   : elePtCor_Syst ,
+                   'ggH_hww'   : elePtCor_Syst ,
+                   'qqH_hww'   : elePtCor_Syst ,
                    'WH_hww'     : elePtCor_Syst ,
                    'ZH_hww'     : elePtCor_Syst ,
                    'ggZH_hww'   : elePtCor_Syst ,
@@ -1123,8 +1123,8 @@ nuisances['eleEtaCor']  = {
                    'VVV'        : eleEtaCor_Syst, 
                    'Vg'         : eleEtaCor_Syst, 
                    'VgS'        : eleEtaCor_Syst, 
-                   'ggH_hww '   : eleEtaCor_Syst, 
-                   'qqH_hww '   : eleEtaCor_Syst, 
+                   'ggH_hww'   : eleEtaCor_Syst, 
+                   'qqH_hww'   : eleEtaCor_Syst, 
                    'WH_hww'     : eleEtaCor_Syst, 
                    'ZH_hww'     : eleEtaCor_Syst, 
                    'ggZH_hww'   : eleEtaCor_Syst, 
@@ -1477,4 +1477,3 @@ for m in masses:
          "(1./("+unc0jet+"*(std_vector_jet_pt[0] < 30)+"+unc1jet+"*(std_vector_jet_pt[0] > 30 && std_vector_jet_pt[1] < 30)+"+unc2jet+"*((std_vector_jet_pt[1]> 30) && (mjj<500 || detajj<3.5))+"+unc3jet+"*(std_vector_jet_pt[1]> 30 )*(mjj>500 && detajj>3.5)))"
                                                                          ]
                                             })
-  
