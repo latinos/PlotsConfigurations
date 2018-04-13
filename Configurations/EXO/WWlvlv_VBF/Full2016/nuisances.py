@@ -168,7 +168,7 @@ nuisances['fake_mu_stat']  = {
 
 
 ####################### B-tagger ################################################################
-#crtl qqWWqq
+#ctrl qqWWqq
 nuisances['btagbc']  = {
                 'name'  : 'btag_heavy',
                 'kind'  : 'weight',
