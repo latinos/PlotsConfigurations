@@ -122,10 +122,10 @@ else:
   fakeW_statMuDown  = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lstatMuDown / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
 
 nuisances['fake_syst']  = {
-               'name'  : 'CMS_hww_fake_syst',
+               'name'  : 'CMS_hww_fake_syst_OF',
                'type'  : 'lnN',
                'samples'  : {
-                             'Fake' : '1.30',
+                             'FakeOF' : '1.30',
                              },
 }
 
@@ -134,7 +134,7 @@ nuisances['fake_ele']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                              'Fake'     : [ fakeW_EleUp , fakeW_EleDown ],
+                              'FakeOF'     : [ fakeW_EleUp , fakeW_EleDown ],
                              },
 }
 
@@ -143,7 +143,7 @@ nuisances['fake_ele_stat']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                              'Fake'      : [ fakeW_statEleUp , fakeW_statEleDown ]
+                              'FakeOF'      : [ fakeW_statEleUp , fakeW_statEleDown ]
                              },
 }
 
@@ -152,7 +152,7 @@ nuisances['fake_mu']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                              'Fake'     : [ fakeW_MuUp , fakeW_MuDown ],
+                              'FakeOF'     : [ fakeW_MuUp , fakeW_MuDown ],
                              },
 }
 
@@ -162,7 +162,7 @@ nuisances['fake_mu_stat']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                              'Fake'     : [ fakeW_statMuUp , fakeW_statMuDown ]
+                              'FakeOF'     : [ fakeW_statMuUp , fakeW_statMuDown ]
                              },
 }
 

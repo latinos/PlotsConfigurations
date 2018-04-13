@@ -552,7 +552,7 @@ for m in masses:
 #################### FAKE ###################
 #############################################
  
-samples['Fake']  = {   'name': [ ] ,
+samples['FakeSF']  = {   'name': [ ] ,
                        'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA,              #   weight/cut 
                        'weights' : [ ] ,
                        'isData': ['all'],
@@ -564,8 +564,8 @@ for Run in DataRun :
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:
-      samples['Fake']['name'].append(iFile)
-      samples['Fake']['weights'].append(DataTrig[DataSet])
+      samples['FakeSF']['name'].append(iFile)
+      samples['FakeSF']['weights'].append(DataTrig[DataSet])
  
 ############################################
 ################### DATA ###################
