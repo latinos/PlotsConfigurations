@@ -1,5 +1,3 @@
-##Controllare idiso_ele, muon rispetto alle nuisances ggH
- 
 # nuisances
  
 #nuisances = {}
@@ -44,6 +42,8 @@ weightMetDYUp='(0.569390378003+(0.0109640805496*metPfType1)*(metPfType1<100)+(0.
 weightMetDYDo='(1.29622894597+(-0.000652258014386*metPfType1)*(metPfType1<100)+(-0.000652258014386*100)*(metPfType1>100))'
 
 
+############################### EXPERIMENTAL UNCERTAINTIES  #################################
+###############################################################################
  
  
 nuisances['lumi']  = {
@@ -816,37 +816,39 @@ for m in masses:
     
     unc3jet=str(unc["QCDscale"]["VBF"])
     nuisances['QCDscale']['samples'].update({'ggH_hww_'+m+'_'+model_name:[
-         "("+unc0jet+"*(std_vector_jet_pt[0] < 30)+"+unc1jet+"*(std_vector_jet_pt[0] > 30 && std_vector_jet_pt[1] < 30)+"+unc2jet+"*((std_vector_jet_pt[1]> 30 ) && (mjj<500 || detajj<3.5))+"+unc3jet+"*(std_vector_jet_pt[1]> 30)*(mjj>500 && detajj>3.5))",
-         "(1./("+unc0jet+"*(std_vector_jet_pt[0] < 30)+"+unc1jet+"*(std_vector_jet_pt[0] > 30 && std_vector_jet_pt[1] < 30)+"+unc2jet+"*((std_vector_jet_pt[1]> 30 ) && (mjj<500 || detajj<3.5))+"+unc3jet+"*(std_vector_jet_pt[1]> 30)*(mjj>500 && detajj>3.5)))"
+          unc3jet+"*(std_vector_jet_pt[1]> 30)*(mjj>500 && detajj>3.5)))"
                                                                          ]
                                             })
    
      
     unc3jet=str(unc["QCDscale1in"]["VBF"])
     nuisances['QCDscale1in']['samples'].update({'ggH_hww_'+m+'_'+model_name:[
-         "("+unc0jet+"*(std_vector_jet_pt[0] < 30)+"+unc1jet+"*(std_vector_jet_pt[0] > 30 && std_vector_jet_pt[1] < 30)+"+unc2jet+"*((std_vector_jet_pt[1]> 30) && (mjj<500 || detajj<3.5))+"+unc3jet+"*(std_vector_jet_pt[1]> 30 )*(mjj>500 && detajj>3.5))",
-         "(1./("+unc0jet+"*(std_vector_jet_pt[0] < 30)+"+unc1jet+"*(std_vector_jet_pt[0] > 30 && std_vector_jet_pt[1] < 30)+"+unc2jet+"*((std_vector_jet_pt[1]> 30) && (mjj<500 || detajj<3.5))+"+unc3jet+"*(std_vector_jet_pt[1]> 30 )*(mjj>500 && detajj>3.5)))"
+          unc3jet+"*(std_vector_jet_pt[1]> 30 )*(mjj>500 && detajj>3.5)))"
                                                                          ]
                                             })
     
     
     unc3jet=str(unc["QCDscale2in"]["VBF"])
     nuisances['QCDscale2in']['samples'].update({'ggH_hww_'+m+'_'+model_name:[
-         "("+unc0jet+"*(std_vector_jet_pt[0] < 30)+"+unc1jet+"*(std_vector_jet_pt[0] > 30 && std_vector_jet_pt[1] < 30)+"+unc2jet+"*((std_vector_jet_pt[1]> 30) && (mjj<500 || detajj<3.5))+"+unc3jet+"*(std_vector_jet_pt[1]> 30 )*(mjj>500 && detajj>3.5))",
-         "(1./("+unc0jet+"*(std_vector_jet_pt[0] < 30)+"+unc1jet+"*(std_vector_jet_pt[0] > 30 && std_vector_jet_pt[1] < 30)+"+unc2jet+"*((std_vector_jet_pt[1]> 30) && (mjj<500 || detajj<3.5))+"+unc3jet+"*(std_vector_jet_pt[1]> 30 )*(mjj>500 && detajj>3.5)))"
+          unc3jet+"*(std_vector_jet_pt[1]> 30 )*(mjj>500 && detajj>3.5)))"
                                                                          ]
                                             })
  
     
     unc3jet=str(unc["QCDscale3in"]["VBF"])
     nuisances['QCDscale3in']['samples'].update({'ggH_hww_'+m+'_'+model_name:[
-         "("+unc0jet+"*(std_vector_jet_pt[0] < 30)+"+unc1jet+"*(std_vector_jet_pt[0] > 30 && std_vector_jet_pt[1] < 30)+"+unc2jet+"*((std_vector_jet_pt[1]> 30) && (mjj<500 || detajj<3.5))+"+unc3jet+"*(std_vector_jet_pt[1]> 30 )*(mjj>500 && detajj>3.5))",
-         "(1./("+unc0jet+"*(std_vector_jet_pt[0] < 30)+"+unc1jet+"*(std_vector_jet_pt[0] > 30 && std_vector_jet_pt[1] < 30)+"+unc2jet+"*((std_vector_jet_pt[1]> 30) && (mjj<500 || detajj<3.5))+"+unc3jet+"*(std_vector_jet_pt[1]> 30 )*(mjj>500 && detajj>3.5)))"
+          unc3jet+"*(std_vector_jet_pt[1]> 30 )*(mjj>500 && detajj>3.5)))"
                                                                          ]
+
+                                            })
 
 
 # pdf uncertainty
- nuisances['pdf_Higgs_gg']  = {
+
+
+
+
+nuisances['pdf_Higgs_gg']  = {
                'name'  : 'pdf_Higgs_gg', 
                'samples'  : {
                    #'ggWW'    : '1.05',    # --> no, since absorbed into k-scale factor
@@ -1097,7 +1099,7 @@ nuisances['DYMetRew'] = {
   'name'  : 'DYMetRew',
   'kind'  : 'weight',
   'type'  : 'shape',
-  'cuts'  :  regions0j_sf + regions1j_sf + regions2j_sf + regions2j_VBF,
+  'cuts'  : regions2j_VBF,
   'samples': { 
     'DY': [ weightMetDYDo+"/"+weightMetDY, 
             weightMetDYUp+"/"+weightMetDY ]
