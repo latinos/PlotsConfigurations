@@ -29,6 +29,8 @@ regions2j_VBF = ['hww2l2v_13TeV_dy_ofVBF',
                  ]
 
 
+
+
 massesAndModelsFile = "massesAndModels.py"
 if os.path.exists(massesAndModelsFile) :
   handle = open(massesAndModelsFile,'r')
@@ -780,10 +782,11 @@ nuisances['QCDscale']  = {
                                 '1.'],
                 },                
                 'cuts'  : [
-                          'hwwhm_13TeV_of_0j',
-                          'hwwhm_13TeV_of_1j',
-                          'hwwhm_13TeV_of_2j',
-                          'hwwhm_13TeV_of_2j_VBF',                         
+                            'hwwhm_13TeV_of0j',
+                            'hwwhm_13TeV_of1j',
+                            'hwwhm_13TeV_of2j',
+                            'hwwhm_13TeV_ofVBF',
+                                               
                          ],
 
 }                                       
@@ -797,11 +800,10 @@ nuisances['QCDscale1in']  = {
                                 '1.'],
                 },
                 'cuts'  : [
-                          'hwwhm_13TeV_of_0j',
-                          'hwwhm_13TeV_of_1j',
-                          'hwwhm_13TeV_of_2j',
-                          'hwwhm_13TeV_of_2j_VBF',
-                         
+                            'hwwhm_13TeV_of0j',
+                            'hwwhm_13TeV_of1j',
+                            'hwwhm_13TeV_of2j',
+                            'hwwhm_13TeV_ofVBF',
                          ],
 
 }
@@ -815,10 +817,10 @@ nuisances['QCDscale2in']  = {
                                 '1.'],
                 },
                 'cuts'  : [
-                          'hwwhm_13TeV_of_0j',
-                          'hwwhm_13TeV_of_1j',
-                          'hwwhm_13TeV_of_2j',
-                          'hwwhm_13TeV_of_2j_VBF',
+                          'hwwhm_13TeV_of0j',
+                          'hwwhm_13TeV_of1j',
+                          'hwwhm_13TeV_of2j',
+                          'hwwhm_13TeV_ofVBF',
                          
                          ],
 
@@ -833,10 +835,10 @@ nuisances['QCDscale3in']  = {
                                 '1.'],
                 },
                 'cuts'  : [
-                          'hwwhm_13TeV_of_0j',
-                          'hwwhm_13TeV_of_1j',
-                          'hwwhm_13TeV_of_2j',
-                          'hwwhm_13TeV_of_2j_VBF',
+                           'hwwhm_13TeV_of0j',
+                           'hwwhm_13TeV_of1j',
+                           'hwwhm_13TeV_of2j',
+                           'hwwhm_13TeV_ofVBF',
 
                          ],
 
@@ -1115,10 +1117,22 @@ nuisances['DYttnorm2jVBF']  = {
 
 
 
-nuisances['WWofnorm0j']  = {
+nuisances['WWofnorm0j_WW']  = {
                'name'  : 'CMS_hwwhmof_WWofnorm0j', 
                'samples'  : {
                    'WW' : '1.00',
+                   #'WW2J' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : regions0j 
+              }
+
+
+
+nuisances['WWofnorm0j_WW2J']  = {
+               'name'  : 'CMS_hwwhmof_WWofnorm0j', 
+               'samples'  : {
+                   #'WW' : '1.00',
                    'WW2J' : '1.00',
                    },
                'type'  : 'rateParam',
@@ -1126,20 +1140,43 @@ nuisances['WWofnorm0j']  = {
               }
 
 
-nuisances['WWofnorm1j']  = {
+nuisances['WWofnorm1j_WW']  = {
                'name'  : 'CMS_hwwhmof_WWnorm1j', 
                'samples'  : {
                    'WW' : '1.00',
+                   #'WW2J' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : regions1j 
+              }
+
+
+
+nuisances['WWofnorm1j_WW2J']  = {
+               'name'  : 'CMS_hwwhmof_WWnorm1j', 
+               'samples'  : {
+                   #'WW' : '1.00',
                    'WW2J' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : regions1j 
               }
 
-nuisances['WWofnorm2j']  = {
+nuisances['WWofnorm2j_WW']  = {
                'name'  : 'CMS_hwwhmof_WWnorm2j',
                'samples'  : {
                    'WW' : '1.00',
+                   #'WW2J' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : regions2j
+              }
+
+
+nuisances['WWofnorm2j_WW2J']  = {
+               'name'  : 'CMS_hwwhmof_WWnorm2j',
+               'samples'  : {
+                   #'WW' : '1.00',
                    'WW2J' : '1.00',
                    },
                'type'  : 'rateParam',
@@ -1147,16 +1184,28 @@ nuisances['WWofnorm2j']  = {
               }
 
 
-nuisances['WWofnorm2jVBF']  = {
+
+nuisances['WWofnorm2jVBF_WW']  = {
                'name'  : 'CMS_hwwhmof_WWnorm2jVBF',
                'samples'  : {
                    'WW' : '1.00',
-                   'WW2J' : '1.00',
+                   #'WW2J' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : regions2j_VBF 
               }
 
+
+
+nuisances['WWofnorm2jVBF_WW2J']  = {
+               'name'  : 'CMS_hwwhmof_WWnorm2jVBF',
+               'samples'  : {
+                   #'WW' : '1.00',
+                   'WW2J' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : regions2j_VBF 
+              }
 
 
 nuisances['Topofnorm0j']  = {
