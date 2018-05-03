@@ -1,40 +1,17 @@
 /*
 
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_600","MVA","2HDM")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_600_blind","MVA","2HDM")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_1000","MVA","2HDM")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_1000_blind","MVA","2HDM")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_2000","MVA","2HDM")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_2000_blind","MVA","2HDM")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_2500","MVA","2HDM")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_2500_blind","MVA","2HDM")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_All_Bin800","MVA","2HDM")'
+root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_All_Bin800_blind","MVA","2HDM")'
 
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_10","MVA","Zbar")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_10_blind","MVA","Zbar")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_100","MVA","Zbar")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_100_blind","MVA","Zbar")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_1000","MVA","Zbar")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_1000_blind","MVA","Zbar")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_2000","MVA","Zbar")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_2000_blind","MVA","Zbar")'
-
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_All_Bin600","MVA","2HDM")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_All_Bin600_blind","MVA","2HDM")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_All_Bin1000","MVA","2HDM")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_All_Bin1000_blind","MVA","2HDM")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_All_Bin2000","MVA","2HDM")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_All_Bin2000_blind","MVA","2HDM")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_All_Bin2500","MVA","2HDM")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamva2HDMadaptFull_All_Bin2500_blind","MVA","2HDM")'
-
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_All_Bin10","MVA","Zbar")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_All_Bin10_blind","MVA","Zbar")'
 root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_All_Bin100","MVA","Zbar")'
 root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_All_Bin100_blind","MVA","Zbar")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_All_Bin1000","MVA","Zbar")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_All_Bin1000_blind","MVA","Zbar")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_All_Bin2000","MVA","Zbar")'
-root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_All_Bin2000_blind","MVA","Zbar")'
+
+
+root -l -b -q 'macroPlotAsymptotic.C("","sf_Tight","muccamva2HDMadaptFull_All_Bin800_Bis","MVA","2HDM")'
+root -l -b -q 'macroPlotAsymptotic.C("","sf_Tight","muccamva2HDMadaptFull_All_Bin800_Bis_blind","MVA","2HDM")'
+
+root -l -b -q 'macroPlotAsymptotic.C("","sf_Tight","muccamvaZbaradaptFull_All_Bin100_Bis","MVA","Zbar")'
+root -l -b -q 'macroPlotAsymptotic.C("","sf_Tight","muccamvaZbaradaptFull_All_Bin100_Bis_blind","MVA","Zbar")'
 
 */
 #include <Riostream.h>
@@ -54,8 +31,9 @@ root -l -b -q 'macroPlotAsymptotic.C("","em","muccamvaZbaradaptFull_All_Bin2000_
 #include "TLegend.h"
 #include "TStyle.h"
 #include "TPaveText.h"
-#define nXm_2HDM 8     //2HDM
+#define nXm_2HDM 8    //2HDM
 #define nXm_Zbar 9    //Zbar
+#define nXm_ttDM 7    //ttDM
 
 using namespace std;
 
@@ -122,7 +100,8 @@ void macroPlotAsymptotic(TString outputdir,
 			 TString model = "2HDM"
 			 )
 {
-  bool obs=false;
+  //bool obs=false;
+  bool obs=true;
   if (variable.Contains("blind")){
     obs=true;
     intLumi = 2.39;
@@ -138,14 +117,17 @@ void macroPlotAsymptotic(TString outputdir,
   int nXm;
   if (model == "2HDM") nXm = nXm_2HDM;
   if (model == "Zbar") nXm = nXm_Zbar;
+  if (model == "ttDM") nXm = nXm_ttDM;
 
   TFile *fFREQ[nXm];
   TTree *t[nXm];
 
   int XmassZbar[nXm_Zbar]={10,20,50,100,200,300,500,1000,2000};    // Zbar
   int Xmass2HDM[nXm_2HDM]={600,800,1000,1200,1400,1700,2000,2500};   // 2HDM
+  int XmassttDM[nXm_ttDM]={00010,00020,00050,00100,00200,00300,00500};   // ttDM
   TString massZbar[nXm_Zbar]={"10","20","50","100","200","300","500","1000","2000"};    // Zbar
   TString mass2HDM[nXm_2HDM]={"600","800","1000","1200","1400","1700","2000","2500"};   // 2HDM
+  TString massttDM[nXm_ttDM]={"00010","00020","00050","00100","00200","00300","00500"};   // ttDM
 
   int Xmass[nXm];
   if (model == "2HDM"){
@@ -155,6 +137,10 @@ void macroPlotAsymptotic(TString outputdir,
   if (model == "Zbar"){ 
     for (int x = 0; x < nXm; ++x)
       Xmass[x] = XmassZbar[x];
+  }
+  if (model == "ttDM"){ 
+    for (int x = 0; x < nXm; ++x)
+      Xmass[x] = XmassttDM[x];
   }
 
   vector<double> v_mh, v_median, v_68l, v_68h, v_95l, v_95h, v_obs;
@@ -169,6 +155,9 @@ void macroPlotAsymptotic(TString outputdir,
     else if (model == "2HDM")
       //higgsCombine1000_300_muccamva2HDMadaptFull_600.Asymptotic.mH120.root
       limitfilename = "combine_" + channel + "_" + cut + "/higgsCombine" + mass2HDM[n] + "_300_" + variable + ".Asymptotic.mH120.root";
+    else if (model == "ttDM")
+      //higgsCombinettdm_scalar00010__muccamva2HDMadaptFull_All_Bin800.Asymptotic.mH120.root
+      limitfilename = "combine_" + channel + "_" + cut + "/higgsCombinepseudo_" + massttDM[n] + "__" + variable + ".Asymptotic.mH120.root";
     TString limitfile = /*outputdir+"/"+*/limitfilename;
     fFREQ[n] = new TFile(limitfile, "READ");
     cout<<" Read limit file: "<<limitfile<<endl;
@@ -229,6 +218,8 @@ void macroPlotAsymptotic(TString outputdir,
     xsect_file_th = dirXSect + "xsec_MonoHTheoryZbar.txt";
   else if (model == "2HDM")
     xsect_file_th = dirXSect + "xsec_MonoHTheory2HDM.txt";
+  else if (model == "ttDM")
+    xsect_file_th = dirXSect + "xsec_MonoHTheoryttDM.txt";
   std::cout<<" debug_1"<<std::endl;
 
   ifstream xsect_file(xsect_file_th.c_str(), ios::in);
@@ -238,6 +229,7 @@ void macroPlotAsymptotic(TString outputdir,
   std::cout<<" debug_2"<<std::endl;
   float mH, CS;
   vector<float> v_mhxs, v_xs, v_toterrh, v_toterrl;
+  //  while (!xsect_file.eof()) {
   while (xsect_file.good()) {
     xsect_file >> mH >> CS;
     std::cout<<" debug_3"<<std::endl;
@@ -358,13 +350,22 @@ void macroPlotAsymptotic(TString outputdir,
     fr_down = 0.1;
     fr_right = 2500.0;
     //fr_up = 5;
-    fr_up = 1000000.0;
+    fr_up = 10000.0;
   }
   if (model == "Zbar"){
     fr_left = 10.0; 
     //fr_down = 0.00001; 
     fr_down = 0.1;
     fr_right = 2000.0; 
+    //fr_up = 5;
+    fr_up = 1000.0;
+  }
+
+  if (model == "ttDM"){
+    fr_left = 10.0; 
+    //fr_down = 0.00001; 
+    fr_down = 00.1;
+    fr_right = 500.0; 
     //fr_up = 5;
     fr_up = 1000000.0;
   }
@@ -378,7 +379,7 @@ void macroPlotAsymptotic(TString outputdir,
   TH1F *hr = cMCMC->DrawFrame(fr_left, fr_down, fr_right, fr_up, "");
   TString VV = "ZH";
   
-  hr->SetXTitle("M_{Zp} [GeV]");
+  hr->SetXTitle("M_{Z'} [GeV]");
   //  hr->SetYTitle("#sigma_{95%} [pb]"); // #rightarrow 2l2q
   hr->SetYTitle("#sigma_{obs} / #sigma_{th} (95% C.L.)");
   hr->SetMinimum(fr_down);
@@ -462,7 +463,7 @@ void macroPlotAsymptotic(TString outputdir,
 
   //more graphics
 
-  TLegend *leg = new TLegend(.20, .70, .70, .90);
+  TLegend *leg = new TLegend(.20, .60, .70, .92);
   //   TLegend *leg = new TLegend(.35,.71,.90,.90);
   leg->SetFillColor(0);
   leg->SetLineColor(0);
@@ -470,7 +471,15 @@ void macroPlotAsymptotic(TString outputdir,
   leg->SetTextFont(42);
   leg->SetTextSize(0.03);
   //   leg->SetBorderMode(0);
-  if(obs) leg->AddEntry(grobslim_cls, "Frequentist CL_{S} Observed", "LP");
+  if (model == "2HDM"){
+    leg->SetHeader("Z\'-2HDM, Z\' #rightarrow DM + h(WW)");
+    leg->AddEntry((TObject*)0, "g_{Z} = 0.8, tan(#beta) = 1, m_{A} = 300 GeV, m_{#chi} = 100 GeV", "");
+  }
+  if (model == "Zbar"){
+    leg->SetHeader("Z\'-Baryonic, Z\' #rightarrow DM + h(WW)");
+    leg->AddEntry((TObject*)0, "g_{#chi} = 1, g_{q} = 1/3, #frac{g_{hZ\'Z\'}}{m_{Z\'}}, m_{#chi} = 1 GeV", "");
+  }
+  if(obs) leg->AddEntry(grobslim_cls, "Frequentist CL_{S} Observed", "LP"); 
   leg->AddEntry(gr68_cls, "Frequentist CL_{S}  Expected #pm 1#sigma", "LF");
   leg->AddEntry(gr95_cls, "Frequentist CL_{S}  Expected #pm 2#sigma", "LF");
   leg->AddEntry(grthSM, "#sigma_{TH}", "L");
