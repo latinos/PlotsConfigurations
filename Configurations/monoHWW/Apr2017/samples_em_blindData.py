@@ -327,9 +327,9 @@ samples['Vg']  =  {     'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM')
 
 ######## VgS ########
 
-samples['VgS']  = {    'name':  getSampleFiles(directory,'WgStarLNuEE') + getSampleFiles(directory,'WgStarLNuMuMu') ,
-                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.4' ,  
-                  }
+# samples['VgS']  = {    'name':  getSampleFiles(directory,'WgStarLNuEE') + getSampleFiles(directory,'WgStarLNuMuMu') ,
+#                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.4' ,  
+#                   }
 
 ## 
 ## Wg* scale factor is
@@ -340,14 +340,22 @@ samples['VgS']  = {    'name':  getSampleFiles(directory,'WgStarLNuEE') + getSam
 ##
 
 
+samples['WZgS_L']  = {    'name': getSampleFiles(directory,'WZTo3LNu_mllmin01_ext1') ,
+                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '* (Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4)*0.94' ,
+                          }
+
+samples['WZgS_H']  = {    'name': getSampleFiles(directory,'WZTo3LNu_mllmin01_ext1') ,
+                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '* (Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4)*1.14' ,
+                          } 
+
 ######### VZ #########
 
-samples['VZ']  = {    'name':   getSampleFiles(directory,'WZTo3LNu')
-                              + getSampleFiles(directory,'ZZTo2L2Nu')
+samples['VZ']  = {    'name': getSampleFiles(directory,'ZZTo2L2Nu')
                               + getSampleFiles(directory,'WZTo2L2Q')
                               + getSampleFiles(directory,'ZZTo2L2Q')  
-                              # Should we include this as well here:
-                              # + getSampleFiles(directory,'tZq_ll')
+                      # getSampleFiles(directory,'WZTo3LNu')
+                      # Should we include this as well here:
+                        # + getSampleFiles(directory,'tZq_ll')
                               ,   
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.11' ,  
                       'FilesPerJob' : 3 ,

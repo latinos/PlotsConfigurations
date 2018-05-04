@@ -3,24 +3,27 @@
 #datacardDir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/2015/datacards_WWewk
 
 workdir=/afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/combined_datacards_2016
-datacardDir=/afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/datacards
+datacardDir=/afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/datacards_OF
 
-#variable0j=mTi
-#variable1j=mTi
-#variable2j=mTi
-#variableVBF=mTi_VBF
-
-variable0j=mTi_VBF
-variable1j=mTi_VBF
-variable2j=mTi_VBF
+variable0j=mTi
+variable1j=mTi
+variable2j=mTi
 variableVBF=mTi_VBF
+
+#variable0j=mTi_VBF
+#variable1j=mTi_VBF
+#variable2j=mTi_VBF
+#variableVBF=mTi_VBF
 
 
 #variableINCL=mTi
 
 cd $workdir
 
-cd /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Combine/CMSSW_7_4_7/src/
+#cd /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Combine/CMSSW_7_4_7/src/
+
+#MC stat
+cd /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/combine_V2/CMSSW_7_4_7/src/
 eval `scramv1 runtime -sh`
 cd -
 
@@ -97,4 +100,79 @@ combineCards.py   ofVBF=${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacar
                  
 
 
-
+##0 jet
+#echo "nuisance edit drop qqH_hww_250_c10brn00 of0jDYtt CMS_scale_met
+#nuisance edit drop qqH_hww_450_c10brn00 of0jDYtt CMS_scale_met
+#nuisance edit drop VVV of0jDYtt CMS_scale_j" >>  MORIOND2017.0jet.txt
+# 
+##1 jet
+#echo "nuisance edit drop qqH_hww_1500_c10brn00 of2jDYtt CMS_scale_e
+#nuisance edit drop qqH_hww_1500_c10brn00 of2jDYtt CMS_scale_m
+#nuisance edit drop qqH_hww_1500_c10brn00 of2jDYtt CMS_scale_j" >>  MORIOND2017.2jet.txt
+# 
+# 
+#echo "
+#nuisance edit drop ggH_hww_INT300_c10brn00 ofVBF CMS_Full2016_btag_bc  
+#nuisance edit drop ggH_hww_INT300_c10brn00 ofVBF CMS_Full2016_btag_udsg
+#nuisance edit drop ggH_hww_INT300_c10brn00 ofVBF CMS_idiso_ele
+#nuisance edit drop ggH_hww_INT300_c10brn00 ofVBF CMS_idiso_mu
+#nuisance edit drop ggH_hww_INT300_c10brn00 ofVBF CMS_scale_e
+#nuisance edit drop ggH_hww_INT300_c10brn00 ofVBF CMS_scale_j
+#nuisance edit drop ggH_hww_INT300_c10brn00 ofVBF CMS_scale_m
+#nuisance edit drop ggH_hww_INT300_c10brn00 ofVBF CMS_trigger
+# 
+#nuisance edit drop Vg ofVBFTop CMS_scale_j
+#nuisance edit drop VVV ofVBFDYtt CMS_hww2l2v_13TeV_dytt_of2j_vbf_VVV_ibin_1_stat
+#nuisance edit drop VVV ofVBFDYtt CMS_scale_j
+#nuisance edit drop VVV ofVBFDYtt CMS_scale_m
+#nuisance edit drop Vg ofVBFDYtt CMS_hww2l2v_13TeV_dytt_of2j_vbf_Vg_ibin_1_stat
+# 
+#nuisance edit drop ggH_hww_INT350_c10brn00 ofVBF CMS_Full2016_btag_bc  
+#nuisance edit drop ggH_hww_INT350_c10brn00 ofVBF CMS_Full2016_btag_udsg
+#nuisance edit drop ggH_hww_INT350_c10brn00 ofVBF CMS_idiso_ele
+#nuisance edit drop ggH_hww_INT350_c10brn00 ofVBF CMS_idiso_mu
+#nuisance edit drop ggH_hww_INT350_c10brn00 ofVBF CMS_scale_e
+#nuisance edit drop ggH_hww_INT350_c10brn00 ofVBF CMS_scale_j
+#nuisance edit drop ggH_hww_INT350_c10brn00 ofVBF CMS_scale_m
+#nuisance edit drop ggH_hww_INT350_c10brn00 ofVBF CMS_trigger
+# 
+# 
+#"  >>  MORIOND2017.VBF.txt
+# 
+##ALL
+#echo "nuisance edit drop qqH_hww_250_c10brn00 of0jDYtt CMS_scale_met
+#nuisance edit drop qqH_hww_450_c10brn00 of0jDYtt CMS_scale_met
+#nuisance edit drop VVV of0jDYtt CMS_scale_j
+# 
+#nuisance edit drop qqH_hww_1500_c10brn00 of2jDYtt CMS_scale_e
+#nuisance edit drop qqH_hww_1500_c10brn00 of2jDYtt CMS_scale_m
+#nuisance edit drop qqH_hww_1500_c10brn00 of2jDYtt CMS_scale_j
+# 
+# 
+# 
+#nuisance edit drop ggH_hww_INT300_c10brn00 ofVBF CMS_Full2016_btag_bc  
+#nuisance edit drop ggH_hww_INT300_c10brn00 ofVBF CMS_Full2016_btag_udsg
+#nuisance edit drop ggH_hww_INT300_c10brn00 ofVBF CMS_idiso_ele
+#nuisance edit drop ggH_hww_INT300_c10brn00 ofVBF CMS_idiso_mu
+#nuisance edit drop ggH_hww_INT300_c10brn00 ofVBF CMS_scale_e
+#nuisance edit drop ggH_hww_INT300_c10brn00 ofVBF CMS_scale_j
+#nuisance edit drop ggH_hww_INT300_c10brn00 ofVBF CMS_scale_m
+#nuisance edit drop ggH_hww_INT300_c10brn00 ofVBF CMS_trigger
+# 
+#nuisance edit drop Vg ofVBFTop CMS_scale_j
+#nuisance edit drop VVV ofVBFDYtt CMS_hww2l2v_13TeV_dytt_of2j_vbf_VVV_ibin_1_stat
+#nuisance edit drop VVV ofVBFDYtt CMS_scale_j
+#nuisance edit drop VVV ofVBFDYtt CMS_scale_m
+#nuisance edit drop Vg ofVBFDYtt CMS_hww2l2v_13TeV_dytt_of2j_vbf_Vg_ibin_1_stat
+# 
+#nuisance edit drop ggH_hww_INT350_c10brn00 ofVBF CMS_Full2016_btag_bc  
+#nuisance edit drop ggH_hww_INT350_c10brn00 ofVBF CMS_Full2016_btag_udsg
+#nuisance edit drop ggH_hww_INT350_c10brn00 ofVBF CMS_idiso_ele
+#nuisance edit drop ggH_hww_INT350_c10brn00 ofVBF CMS_idiso_mu
+#nuisance edit drop ggH_hww_INT350_c10brn00 ofVBF CMS_scale_e
+#nuisance edit drop ggH_hww_INT350_c10brn00 ofVBF CMS_scale_j
+#nuisance edit drop ggH_hww_INT350_c10brn00 ofVBF CMS_scale_m
+#nuisance edit drop ggH_hww_INT350_c10brn00 ofVBF CMS_trigger
+# 
+# 
+#" >>   MORIOND2017.txt

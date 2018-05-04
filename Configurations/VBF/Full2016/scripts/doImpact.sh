@@ -59,14 +59,22 @@ plotImpacts.py -i workspace.my.root_impacts_datacard_data.json -o impacts_dataca
 
 combineTool.py -M Impacts -d workspace.my.root -m 125 --doInitialFit --robustFit 1  --expectSignal=1 -t -1    --saveWorkspace
 
---snapshotName MIOSNAPSHOT
-
 # the next one may takes ... hours!
-combineTool.py -M Impacts -d workspace.my.root -m 125 --robustFit 1 --doFits --parallel 20  --expectSignal=1  -t -1    --job-mode lxbatch --task-name lxbatch-test --sub-opts='-q 1nd'   --snapshotName MIOSNAPSHOT  --dry-run
-combineTool.py -M Impacts -d workspace.my.root -m 125 --robustFit 1 --doFits --parallel 20  --expectSignal=1  -t -1    --job-mode lxbatch --task-name lxbatch-test --sub-opts='-q 1nd'  
+combineTool.py -M Impacts -d workspace.my.root -m 120 --robustFit 1 --doFits --parallel 20  --expectSignal=1  -t -1    --job-mode lxbatch --task-name lxbatch-test --sub-opts='-q 1nd'     --dry-run
 
-combineTool.py -M Impacts -d workspace.my.root -m 125  --expectSignal=1  -t -1   -o workspace.my.root_impacts_datacard.MCAsimov.json
-combineTool.py -M Impacts -d workspace.my.root -m 125  --expectSignal=1  -t -1   -o workspace.my.root_impacts_datacard.MCAsimov.json   --dry-run
+combineTool.py -M Impacts -d higgsCombine_initialFit_Test.MultiDimFit.mH125.root -m 125 --robustFit 1 --doFits --parallel 20  --expectSignal=1  -t -1    --job-mode lxbatch --task-name lxbatch-test --sub-opts='-q 1nd'   --snapshotName MultiDimFit  --doImpactNoCorr        --dry-run
+combineTool.py -M Impacts -d higgsCombine_initialFit_Test.MultiDimFit.mH125.root -m 125 --robustFit 1 --doFits --parallel 20  --expectSignal=1  -t -1    --job-mode lxbatch --task-name lxbatch-test --sub-opts='-q 1nd'   --snapshotName MultiDimFit  --doImpactNoCorr   
+
+combineTool.py -M Impacts -d higgsCombine_initialFit_Test.MultiDimFit.mH125.root -m 125  --expectSignal=1  -t -1  --doImpactNoCorr  -o workspace.my.root_impacts_datacard.MCAsimov.MYNEW.json
+
+plotImpacts.py -i workspace.my.root_impacts_datacard.MCAsimov.MYNEW.json  -o impacts_datacard_MCAsimov.MYNEW
+
+
+
+
+
+
+combineTool.py -M Impacts -d workspace.my.root -m 120  --expectSignal=1  -t -1   -o workspace.my.root_impacts_datacard.MCAsimov.json
 
 plotImpacts.py -i workspace.my.root_impacts_datacard.MCAsimov.json  -o impacts_datacard_MCAsimov
 

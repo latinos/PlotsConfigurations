@@ -38,11 +38,28 @@ groupPlot['VVV']  = {
               }
 
 
+# groupPlot['VZ']  = {  
+#                   'nameHR' : "VZ/#gamma*/#gamma",
+#                   'isSignal' : 0,
+#                   'color'    : 617,   # kViolet + 1  
+#                   'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ','Zg']
+#               }
+
 groupPlot['VZ']  = {  
-                  'nameHR' : "VZ/#gamma*/#gamma",
+    #'nameHR' : "VZ/#gamma*/#gamma",
+    'nameHR' : "VZ",
+    'isSignal' : 0,
+    'color'    : 617,   # kViolet + 1  
+    #'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ','Zg','WZgS_H']
+    'samples'  : ['VZ', 'WZ', 'ZZ', 'WZgS_H']
+    }
+
+
+groupPlot['VgS']  = {
+                  'nameHR' : "V#gamma*",
                   'isSignal' : 0,
-                  'color'    : 617,   # kViolet + 1  
-                  'samples'  : ['VZ', 'Vg', 'Wg', 'VgS', 'WZ', 'ZZ','Zg']
+                  'color'    : 409,   # kGreen - 9
+                  'samples'  : ['VgS','WZgS_L']
               }
 
 
@@ -219,6 +236,21 @@ groupPlot['monoH_ZB_100_1_'] = {
 
 # keys here must match keys in samples.py    
 #                    
+plot['WZgS_L']  = {
+    'color': 617,
+    'isSignal' : 0,
+    'isData'   : 0, 
+    'scale'    : 1.0,
+    }
+
+plot['WZgS_H']  = {
+    'color': 617,
+    'isSignal' : 0,
+    'isData'   : 0, 
+    'scale'    : 1.0,
+    } 
+
+
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,

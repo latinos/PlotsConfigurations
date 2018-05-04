@@ -8,14 +8,13 @@ A0Masses = {"300"}#,"400","500","600","700","800"}
 if len(sys.argv) < 6 :
     print "Please insert all the inputs I need: channel, variable, cut"
     print ""
-    print "python scriptMonoHSplit80.py em muccamva2HDMadaptFull_All_Bin600  MVA 600 300 True"
-    print "python scriptMonoHSplit80.py em muccamva2HDMadaptFull_All_Bin800  MVA 600 300 True"
-    print "python scriptMonoHSplit80.py em muccamva2HDMadaptFull_All_Bin1000 MVA 600 300 True"
-    print "python scriptMonoHSplit80.py em muccamva2HDMadaptFull_All_Bin2000 MVA 600 300 True"
+    print "python scriptMonoHSplit80.py em muccamva2HDMadaptFull_All_Bin800            MVA 800 300 True"
     print ""
-    print "python scriptMonoHSplit80.py em muccamvaZbaradaptFull_All_Bin100  MVA ZB 100_1_ True"
-    print "python scriptMonoHSplit80.py em muccamvaZbaradaptFull_All_Bin1000 MVA ZB 100_1_ True"
-    print "python scriptMonoHSplit80.py em muccamvaZbaradaptFull_All_Bin2000 MVA ZB 100_1_ True"
+    print "python scriptMonoHSplit80.py em muccamvaZbaradaptFull_All_Bin100            MVA ZB 100_1_ True"
+    print ""
+    print "python scriptMonoHSplit80.py sf_Tight muccamva2HDMadaptFull_All_Bin800_Bis  MVA 800 300 True"
+    print ""
+    print "python scriptMonoHSplit80.py sf_Tight muccamvaZbaradaptFull_All_Bin100_Bis  MVA ZB 100_1_ True"
     print ""
     sys.exit()
 
@@ -44,10 +43,10 @@ print "+++++ Combining Datacards +++++"
 
 print "Full Signal Region"  # datacard_600_300.txt.pruned.txt
 os.system("combineCards.py signal=datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt WW=datacards/monoH_" + cut + "_WW_" + channel + "/events/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt Top=datacards/monoH_" + cut + "_Top_" + channel + "/events/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt DYtt=datacards/monoH_" + cut + "_DYtt_" + channel + "/events/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt > datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + "_combined.txt")
-#os.system("echo \"* autoMCStats 10 1\" >> datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + "_combined.txt")
+os.system("echo \"* autoMCStats 10 1\" >> datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + "_combined.txt")
 
-print "1/15 Signal Region"
-os.system("combineCards.py signal=datacards_blindData/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt WW=datacards/monoH_" + cut + "_WW_" + channel + "/events/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt Top=datacards/monoH_" + cut + "_Top_" + channel + "/events/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt DYtt=datacards/monoH_" + cut + "_DYtt_" + channel + "/events/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt > datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + "_blind.txt")
+# print "1/15 Signal Region"
+# os.system("combineCards.py signal=datacards_blindData/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt WW=datacards/monoH_" + cut + "_WW_" + channel + "/events/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt Top=datacards/monoH_" + cut + "_Top_" + channel + "/events/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt DYtt=datacards/monoH_" + cut + "_DYtt_" + channel + "/events/datacard_" + mZp + "_" + mA0 + ".txt.pruned.txt > datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + "_blind.txt")
 #os.system("echo \"* autoMCStats 10 1\" >> datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + "_blind.txt")
 
 
@@ -64,8 +63,8 @@ print "+++++ Translating Datacards to Rootfiles +++++"
 print "Full Signal Region"
 os.system("text2workspace.py --channel-masks datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + "_combined.txt")
 
-print "1/15 Signal Region"
-os.system("text2workspace.py --channel-masks datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + "_blind.txt")
+# print "1/15 Signal Region"
+# os.system("text2workspace.py --channel-masks datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + "_blind.txt")
 
 # Use combine to calculate limits
 
@@ -74,13 +73,14 @@ print "+++++ Extracting Limits +++++"
 print "Full Signal Region"
 
 # datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + "_combined.txt
-os.system('combine -M Asymptotic -n ' + mZp + '_' + mA0 + '_' + variable + ' -t -1 --expectSignal=1 --run expected datacards/monoH_' + cut + '_' + channel + '/' + variable + '/datacard_' + mZp + '_' + mA0 + '_combined.root &> limits_' + channel + '_' + cut + '/monoH_' + mZp + '_' + mA0 + '_' + variable + '.txt')
+# We have removed '-t -1 --expectSignal=1 --runExpected' since we are now unblind!!!
+os.system('combine -M Asymptotic -n ' + mZp + '_' + mA0 + '_' + variable + ' datacards/monoH_' + cut + '_' + channel + '/' + variable + '/datacard_' + mZp + '_' + mA0 + '_combined.root &> limits_' + channel + '_' + cut + '/monoH_' + mZp + '_' + mA0 + '_' + variable + '.txt')
 os.system('mv higgsCombine' + mZp + '_' + mA0 + '_' + variable + '.Asymptotic.mH120.root combine_' + channel + '_' + cut + '/')
 
-# datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + "_blind.txt
-print "1/15 Signal Region"
-os.system('combine -M Asymptotic -n ' + mZp + '_' + mA0 + '_' + variable + '_blind datacards/monoH_' + cut + '_' + channel + '/' + variable + '/datacard_' + mZp + '_' + mA0 + '_blind.root &> limits_' + channel + '_' + cut + '/monoH_' + mZp + '_' + mA0 + '_' + variable + '_blind.txt')
-os.system('mv higgsCombine' + mZp + '_' + mA0 + '_' + variable + '_blind.Asymptotic.mH120.root combine_' + channel + '_' + cut + '/')
+# # datacards/monoH_" + cut + "_" + channel + "/" + variable + "/datacard_" + mZp + "_" + mA0 + "_blind.txt
+# print "1/15 Signal Region"
+# os.system('combine -M Asymptotic -n ' + mZp + '_' + mA0 + '_' + variable + '_blind datacards/monoH_' + cut + '_' + channel + '/' + variable + '/datacard_' + mZp + '_' + mA0 + '_blind.root &> limits_' + channel + '_' + cut + '/monoH_' + mZp + '_' + mA0 + '_' + variable + '_blind.txt')
+# os.system('mv higgsCombine' + mZp + '_' + mA0 + '_' + variable + '_blind.Asymptotic.mH120.root combine_' + channel + '_' + cut + '/')
 
 
 

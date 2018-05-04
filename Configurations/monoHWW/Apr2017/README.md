@@ -34,15 +34,24 @@ WITH LXBATCH
 
 em Channel:
 
-    mkShapes.py --pycfg=configuration_em.py  --inputDir=/eos/user/f/fernanpe/trees_DF/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__monohSel__muccaAll_em/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
+    mkShapes.py --pycfg=configuration_em.py  --inputDir=/eos/user/c/calderon/monoH/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__wwSel__monohSel__muccaAll_em/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
 
     mkBatch.py --status
 
-    mkShapes.py --pycfg=configuration_em.py --inputDir=/eos/user/f/fernanpe/trees_DF/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel__monohSel__muccaAll_em/ --batchSplit=AsMuchAsPossible --doHadd=True
+    mkShapes.py --pycfg=configuration_em.py --inputDir=/eos/user/c/calderon/monoH/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__wwSel__monohSel__muccaAll_em/ --batchSplit=AsMuchAsPossible --doHadd=True
 
     mkPlot.py --pycfg=configuration_em.py --inputFile=rootFile_em/plots_monoHWW_em.root --minLogC=0.01 --minLogCratio=0.01 --maxLogC=1000 --maxLogCratio=1000 --showIntegralLegend=1
 
-    rm rootFile_em/plots_monoHWW_em_monoH_MVA_*
+
+em Channel, for combination with other channels (signal XS are normalized to 1pb x BR(h->WW->lvlv)):
+
+    mkShapes.py --pycfg=configuration_em_combination.py  --inputDir=/eos/user/c/calderon/monoH/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__wwSel__monohSel__muccaAll_em/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
+
+    mkBatch.py --status
+
+    mkShapes.py --pycfg=configuration_em_combination.py --inputDir=/eos/user/c/calderon/monoH/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__wwSel__monohSel__muccaAll_em/ --batchSplit=AsMuchAsPossible --doHadd=True
+
+    mkPlot.py --pycfg=configuration_em_combination.py --inputFile=rootFile_em_combination/plots_monoHWW_em.root --minLogC=0.01 --minLogCratio=0.01 --maxLogC=1000 --maxLogCratio=1000 --showIntegralLegend=1
 
 
 em Channel (blind luminosity):
@@ -55,37 +64,36 @@ em Channel (blind luminosity):
 
     mkPlot.py --pycfg=configuration_em_blindData.py  --inputFile=rootFile_em_blindData/plots_monoHWW_em_blindData.root  --minLogC=0.01 --minLogCratio=0.01 --maxLogC=1000 --maxLogCratio=1000  --showIntegralLegend=1
 
-    rm rootFile_em_blindData/plots_monoHWW_em*
-
 
 sf Channel:
 
-    mkShapes.py --pycfg=configuration_sf.py  --inputDir=/eos/user/f/fernanpe/trees_SF/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__sfSel__monohSel/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
+    mkShapes.py --pycfg=configuration_sf.py  --inputDir=/eos/user/f/fernanpe/trees_SF/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__sfSel__monohSel__muccaAll_sf/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
 
     mkBatch.py --status
 
-    cd rootFile_sf/
-
-    hadd plots_monoHWW_sf.root *
-
-    cd ..
+    mkShapes.py --pycfg=configuration_sf.py  --inputDir=/eos/user/f/fernanpe/trees_SF/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__sfSel__monohSel__muccaAll_sf/ --doHadd=True --batchSplit=AsMuchAsPossible
 
     mkPlot.py --pycfg=configuration_sf.py  --inputFile=rootFile_sf/plots_monoHWW_sf.root  --minLogC=0.01 --minLogCratio=0.01 --maxLogC=1000 --maxLogCratio=1000  --showIntegralLegend=1
 
-    rm rootFile_sf/plots_monoHWW_sf_monoH_MVA_*
+
+sf Channel (blind luminosity):
+
+    mkShapes.py --pycfg=configuration_sf_blindData.py  --inputDir=/eos/user/f/fernanpe/trees_SF/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__sfSel__monohSel__muccaAll_sf/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
+
+    mkBatch.py --status
+
+    mkShapes.py --pycfg=configuration_sf_blindData.py  --inputDir=/eos/user/f/fernanpe/trees_SF/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__sfSel__monohSel__muccaAll_sf/ --doHadd=True --batchSplit=AsMuchAsPossible
+
+    mkPlot.py --pycfg=configuration_sf_blindData.py  --inputFile=rootFile_sf_blindData/plots_monoHWW_sf_blindData.root --minLogC=0.01 --minLogCratio=0.01 --maxLogC=1000 --maxLogCratio=1000  --showIntegralLegend=1
 
 
 ss Channel:
 
-    mkShapes.py --pycfg=configuration_ss.py  --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__ssSel/  --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
+    mkShapes.py --pycfg=configuration_ss.py  --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__ssSel/  --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
 
     mkBatch.py --status
 
-    cd rootFile_ss/
-
-    hadd plots_monoHWW_ss.root *
-
-    cd ..
+    mkShapes.py --pycfg=configuration_ss.py  --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__ssSel/ --doHadd=True --batchSplit=AsMuchAsPossible
 
     mkPlot.py        --pycfg=configuration_ss.py  --inputFile=rootFile_ss/plots_monoHWW_ss.root  --minLogC=0.01 --minLogCratio=0.01 --maxLogC=1000 --maxLogCratio=1000  --showIntegralLegend=1
 
@@ -115,6 +123,8 @@ Produce Plots for sf Channel:
     mkDatacards.py   --pycfg=configuration_em_blindData.py  --inputFile=rootFile_em_blindData/plots_monoHWW_em_blindData.root
 
     mkDatacards.py   --pycfg=configuration_sf.py  --inputFile=rootFile_sf/plots_monoHWW_sf.root
+
+    mkDatacards.py   --pycfg=configuration_sf_blindData.py  --inputFile=rootFile_sf_blindData/plots_monoHWW_sf_blindData.root
 
 
 PRUNE DATACARDS
@@ -255,17 +265,44 @@ Or using the script:
 FOR TOP CONTROL REGION
 ----------------------
 
-    root -l /eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel/latino_DYJetsToTT_MuEle_M-50__part0.root      DrawPDF.cxx\(\"\(std_vector_jet_cmvav2[0]\>-0.5884)*1+\(std_vector_jet_pt[0]\<20\|\|std_vector_jet_cmvav2[0]\<-0.5884\)*2\",2,1,3,\"mll\>12\&\&std_vector_lepton_pt[0]\>25\&\&std_vector_lepton_pt[1]\>20\&\&std_vector_lepton_pt[2]\<10\&\&metPfType1\>20\&\&ptll\>30\&\&drll\<2.5\&\&mll\<76\&\&mpmet\>20\",9,1\)
+         root -l 
+/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel/latino_DYJetsToTT_MuEle_M-50__part0.root 
+DrawPDF.cxx\(\"\(std_vector_jet_cmvav2[0]\>-0.5884)*1+\(std_vector_jet_pt[0]\<20\|\|std_vector_jet_cmvav2[0]\<-0.5884\)*2\",2,1,3,\"mll\>12\&\&std_vector_lepton_pt[0]\>25\&\&std_vector_lepton_pt[1]\>20\&\&std_vector_lepton_pt[2]\<10\&\&metPfType1\>20\&\&ptll\>30\&\&drll\<2.5\&\&mll\<76\&\&mpmet\>20\",9,1\)
 
 
-FOR DY CONTROL REGION
-----------------------
-
-    root -l /eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel/latino_TTTo2L2Nu__part0.root      DrawPDF.cxx\(\"\(std_vector_jet_cmvav2[0]\>-0.5884\|\|std_vector_jet_cmvav2[1]\>-0.5884\)*1+\(std_vector_jet_pt[0]\<20\|\|std_vector_jet_cmvav2[0]\<-0.5884\)*2\",2,1,3,\"mll\>12\&\&std_vector_lepton_pt[0]\>25\&\&std_vector_lepton_pt[1]\>20\&\&std_vector_lepton_pt[2]\<10\&\&metPfType1\>20\&\&ptll\>30\&\&drll\<2.5\&\&mll\<76\&\&mpmet\>20\",9,1\)
+FOR DY CONTROL REGION ----------------------
+    cd -
+   root -l 
+/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__wwSel/latino_TTTo2L2Nu__part0.root 
+DrawPDF.cxx\(\"\(std_vector_jet_cmvav2[0]\>-0.5884\|\|std_vector_jet_cmvav2[1]\>-0.5884\)*1+\(std_vector_jet_pt[0]\<20\|\|std_vector_jet_cmvav2[0]\<-0.5884\)*2\",2,1,3,\"mll\>12\&\&std_vector_lepton_pt[0]\>25\&\&std_vector_lepton_pt[1]\>20\&\&std_vector_lepton_pt[2]\<10\&\&metPfType1\>20\&\&ptll\>30\&\&drll\<2.5\&\&mll\<76\&\&mpmet\>20\",9,1\)
 
 # 14 PERFORM A LIKELIHOOD SCAN ON A SIGNLE NUISANCE
 
 ON ASIMOV DATASET
 -----------------
 
-    combine -M MultiDimFit datacards/monoH_MVA_em/muccamva2HDMadaptFull_2000/datacard_600_300_combined.txt --algo=grid --points 100 --redefineSignalPOIs CMS_ICHEP_btag_bc --freezeNuisances=r --setPhysicsModelParameterRanges CMS_ICHEP_btag_bc=-2,2
+  combine -M MultiDimFit datacards/monoH_MVA_em/muccamva2HDMadaptFull_2000/datacard_600_300_combined.txt --algo=grid --points 100 --redefineSignalPOIs CMS_ICHEP_btag_bc --freezeNuisances=r --setPhysicsModelParameterRanges CMS_ICHEP_btag_bc=-2,2
+
+
+# 15 PRODUCE POST-FIT TABLES (WAITING FOR ONE OF MY USELESS SCRIPTS)
+
+2HDM Model:
+
+   mkPostFitTable.py --pycfg=configuration_em.py    --inputFileCombine combine_em_MVA/fitDiagnostics_800_300_muccamva2HDMadaptFull_All_Bin800_SR.root --outputFile tables/fitDiagnostics_800_300_muccamva2HDMadaptFull_All_Bin800_SR.tex --variable muccamva2HDMadaptFull_All_Bin800 --cut signal --inputFile rootFile_em/plots_monoHWW_em.root --cutNameInOriginal monoH_MVA_em
+
+   mkPostFitTable.py --pycfg=configuration_em.py    --inputFileCombine combine_em_MVA/fitDiagnostics_800_300_muccamva2HDMadaptFull_All_Bin800_SR.root --outputFile tables/fitDiagnostics_800_300_muccamva2HDMadaptFull_All_Bin800_SR_DYtt.tex --variable muccamva2HDMadaptFull_All_Bin800 --cut DYtt --inputFile rootFile_em/plots_monoHWW_em.root --cutNameInOriginal monoH_MVA_DYtt_em
+
+   mkPostFitTable.py --pycfg=configuration_em.py    --inputFileCombine combine_em_MVA/fitDiagnostics_800_300_muccamva2HDMadaptFull_All_Bin800_SR.root --outputFile tables/fitDiagnostics_800_300_muccamva2HDMadaptFull_All_Bin800_SR_Top.tex --variable muccamva2HDMadaptFull_All_Bin800 --cut Top --inputFile rootFile_em/plots_monoHWW_em.root --cutNameInOriginal monoH_MVA_Top_em
+
+   mkPostFitTable.py --pycfg=configuration_em.py    --inputFileCombine combine_em_MVA/fitDiagnostics_800_300_muccamva2HDMadaptFull_All_Bin800_SR.root --outputFile tables/fitDiagnostics_800_300_muccamva2HDMadaptFull_All_Bin800_SR_WW.tex --variable muccamva2HDMadaptFull_All_Bin800 --cut WW --inputFile rootFile_em/plots_monoHWW_em.root --cutNameInOriginal monoH_MVA_WW_em
+
+Z' Baryonic Model:
+
+   mkPostFitTable.py --pycfg=configuration_em.py    --inputFileCombine combine_em_MVA/fitDiagnostics_ZB_100_1__muccamvaZbaradaptFull_All_Bin100_SR.root --outputFile tables/fitDiagnostics_ZB_100_1__muccamvaZbaradaptFull_All_Bin100_SR.tex --variable muccamvaZbaradaptFull_All_Bin100 --cut signal --inputFile rootFile_em/plots_monoHWW_em.root --cutNameInOriginal monoH_MVA_em
+
+   mkPostFitTable.py --pycfg=configuration_em.py    --inputFileCombine combine_em_MVA/fitDiagnostics_ZB_100_1__muccamvaZbaradaptFull_All_Bin100_SR.root --outputFile tables/fitDiagnostics_ZB_100_1__muccamvaZbaradaptFull_All_Bin100_SR_DYtt.tex --variable muccamvaZbaradaptFull_All_Bin100 --cut DYtt --inputFile rootFile_em/plots_monoHWW_em.root --cutNameInOriginal monoH_MVA_DYtt_em
+
+   mkPostFitTable.py --pycfg=configuration_em.py    --inputFileCombine combine_em_MVA/fitDiagnostics_ZB_100_1__muccamvaZbaradaptFull_All_Bin100_SR.root --outputFile tables/fitDiagnostics_ZB_100_1__muccamvaZbaradaptFull_All_Bin100_SR_Top.tex --variable muccamvaZbaradaptFull_All_Bin100 --cut Top --inputFile rootFile_em/plots_monoHWW_em.root --cutNameInOriginal monoH_MVA_Top_em
+
+   mkPostFitTable.py --pycfg=configuration_em.py    --inputFileCombine combine_em_MVA/fitDiagnostics_ZB_100_1__muccamvaZbaradaptFull_All_Bin100_SR.root --outputFile tables/fitDiagnostics_ZB_100_1__muccamvaZbaradaptFull_All_Bin100_SR_WW.tex --variable muccamvaZbaradaptFull_All_Bin100 --cut WW --inputFile rootFile_em/plots_monoHWW_em.root --cutNameInOriginal monoH_MVA_WW_em
+

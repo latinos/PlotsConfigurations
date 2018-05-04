@@ -23,101 +23,37 @@ supercut = 'mll>70  \
                                                                    
 
 
-### Control Region tt and DY ####
-
-## perche' si taglia su mth?
-
-
-#cuts['hww2l2v_13TeV_dy_e_e_0j']  = 'mll>70 && mll<120 \
-#                && std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11 \
-#                && ( std_vector_jet_pt[0] < 30 ) \
-#                && ' + bVeto
-# 
-
-#cuts['hww2l2v_13TeV_dy_e_e_1j']  = 'mll>70 && mll<120 \
-#                && std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11 \
-#                && ( std_vector_jet_pt[0] >= 30 ) \
-#                && ( std_vector_jet_pt[1] < 30 ) \
-#                && '  + bVeto
-# 
-
-#cuts['hww2l2v_13TeV_dy_e_e_2j']  = 'mll>70 && mll<120 \
-#                && std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11 \
-#                && ( mjj<500 || detajj<3.5 ) \
-#                && ( std_vector_jet_pt[1] >= 30 ) \
-#                && '  + bVeto
-# 
-
-
-
-cuts['hww2l2v_13TeV_dy_e_e_2j_VBF']  = 'mll>70 && mll<120 \
+### Control  DY ####
+      
+cuts['hww2l2v_13TeV_dy_sfVBF_ee']  = 'mll>70 && mll<120 \
                 && std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11 \
                 && ( mjj>500 ) \
                 && ( detajj>3.5 ) \
                 && ( std_vector_jet_pt[1] >= 30 ) \
                 && '  + bVeto
  
-
-
-#############TOP####################
-
-#cuts['hww2l2v_13TeV_top_e_e_0j']  = 'mll>120 \
-#                && ( std_vector_jet_pt[0] < 30 ) \
-#                && std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11 \
-#                && !('  + bVeto + ')'
-
-#cuts['hww2l2v_13TeV_top_e_e_1j']  = 'mll>120 \
-#                && std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11 \
-#                && ( std_vector_jet_pt[0] >= 30 ) \
-#                && ( std_vector_jet_pt[1] < 30 ) \
-#                && !('  + bVeto + ')'
-# 
-#cuts['hww2l2v_13TeV_top_e_e_2j']  = 'mll>120 \
-#                && std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11 \
-#                && ( std_vector_jet_pt[1] >= 30 ) \
-#                && ( mjj<500 || detajj<3.5  ) \
-#                && !('  + bVeto + ')'
-# 
-
-
-
-cuts['hww2l2v_13TeV_top_e_e_2j_VBF']  = 'mll>120 \
+ 
+### Control  TOP ####
+cuts['hww2l2v_13TeV_top_sfVBF_ee']  = 'mll>120 \
                 && ( std_vector_jet_pt[1] >= 30 ) \
                 && std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11 \
                 && ( mjj>500 ) \
                 && ( detajj>3.5 ) \
                 && !('  + bVeto + ')'
  
+# 
+#### Signal Region ###
 
-### Signal Region ###
-
-#cuts['hwwhm_13TeV_e_e_0j'] = 'std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11 \
-#                && ( mTi > 100 ) \
-#                && (mll>120) \
-#                && ( std_vector_jet_pt[0] < 30 ) \
-#                && '  + bVeto
-# 
-# 
-#cuts['hwwhm_13TeV_e_e_1j']  = 'std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11 \
-#                && ( mTi > 100 ) \
-#                && (mll>120) \
-#                && ( std_vector_jet_pt[0] >= 30 ) \
-#                && ( std_vector_jet_pt[1] < 30 ) \
-#                && '  + bVeto
-# 
-#cuts['hwwhm_13TeV_e_e_2j']  = 'std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11 \
-#                && ( mTi > 100 ) \
-#                && (mll>120) \
-#                && ( mjj<500 || detajj<3.5 ) \
-#                && ( std_vector_jet_pt[1] >= 30 ) \
-#                && '  + bVeto
-# 
-# 
-# 
-cuts['hwwhm_13TeV_e_e_2j_VBF']  = 'std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11 \
+cuts['hwwhm_13TeV_sfVBF_ee']  = 'std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*11 \
                 && ( mTi > 100 ) \
                 && (mll>120) \
                 && ( mjj>500 ) \
                 && ( detajj>3.5  ) \
                 && ( std_vector_jet_pt[1] >= 30 ) \
                 && '  + bVeto
+
+
+
+
+
+

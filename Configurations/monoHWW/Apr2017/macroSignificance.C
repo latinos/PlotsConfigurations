@@ -1,15 +1,17 @@
 /*
-root -l -b -q 'macroSignificance.C("2HDM","adapt","monoH_600_300","600")'
-root -l -b -q 'macroSignificance.C("Zbar","adapt","monoH_ZB_10_1_","10")'
 
-root -l -b -q 'macroSignificance.C("2HDM","adapt","monoH_1000_300","1000")'
-root -l -b -q 'macroSignificance.C("Zbar","adapt","monoH_ZB_100_1_","100")'
+root -l -b -q 'macroSignificance.C("2HDM","adapt","monoH_800_300","All_DY")'
+root -l -b -q 'macroSignificance.C("Zbar","adapt","monoH_ZB_100_1_","All_DY")'
 
-root -l -b -q 'macroSignificance.C("2HDM","adapt","monoH_2000_300","2000")'
-root -l -b -q 'macroSignificance.C("Zbar","adapt","monoH_ZB_1000_1_","1000")'
+root -l -b -q 'macroSignificance.C("2HDM","adapt","monoH_1000_300","All")'
+root -l -b -q 'macroSignificance.C("Zbar","adapt","monoH_ZB_100_1_","All")'
 
-root -l -b -q 'macroSignificance.C("2HDM","adapt","monoH_2500_300","2500")'
-root -l -b -q 'macroSignificance.C("Zbar","adapt","monoH_ZB_2000_1_","2000")'
+root -l -b -q 'macroSignificance.C("2HDM","adapt","monoH_2000_300","All")'
+root -l -b -q 'macroSignificance.C("Zbar","adapt","monoH_ZB_1000_1_","All")'
+
+root -l -b -q 'macroSignificance.C("2HDM","adapt","monoH_2500_300","All")'
+root -l -b -q 'macroSignificance.C("Zbar","adapt","monoH_ZB_2000_1_","All")'
+
 */
 
 const int nBkg = 16;
@@ -41,9 +43,9 @@ void macroSignificance( TString model     = "2HDM",
 
   TH1F* hDumpBkg[nBkg];
   //muccamvaZbaradaptFull_2000_sign
-  TString folder = "monoH_MVA_em/muccamva" + model + training + "Full_" + massPoint + "_sign";
+  TString folder = "monoH_MVA_sf/muccamva" + model + training + "Full_" + massPoint + "_sign";
 
-  TFile* f = new TFile("rootFile_em/plots_monoHWW_em_SIGN.root","read");
+  TFile* f = new TFile("rootFile_sf/plots_monoHWW_sf_SIGN.root","read");
 
   TH1F* hSig = (TH1F*) f->Get(folder + "/histo_" + signal);
   TH1F* hBkg = new TH1F("hBkg","hBkg",10000,-1.,1.);
@@ -166,10 +168,10 @@ void macroSignificance( TString model     = "2HDM",
   tl2->Draw("same");
   TString save = "";
   save = "Significance" + model + "_" + training + ".png";
-  //c1->Print(save);
+  c1->Print(save);
   TString save2 = "";
   save2 = "Significance" + model + "_" + training + ".pdf";
-  //c1->Print(save2);
+  c1->Print(save2);
 
   ROC -> Draw("APL");
 
