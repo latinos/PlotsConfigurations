@@ -13,24 +13,16 @@ groupPlot['top']  = {
                   'samples'  : ['top']
               }
 
+
+
 groupPlot['DY']  = {  
                   'nameHR' : "DY",
                   'isSignal' : 0,
                   'color': 418,    # kGreen+2
                   'samples'  : ['DY']
               }
- 
- 
- 
-groupPlot['Fake']  = {  
-                  'nameHR' : 'Fake',
-                  'isSignal' : 0,
-                  'color': 921,    # kGray + 1
-                  'samples'  : ['Fake']
-              }
- 
- 
- 
+
+
 groupPlot['WW']  = {  
                   'nameHR' : 'WW',
                   'isSignal' : 0,
@@ -38,6 +30,15 @@ groupPlot['WW']  = {
                   'samples'  : ['WW', 'ggWW', 'qqWWqq','WW2J']
               }
  
+groupPlot['Fake']  = {  
+                  'nameHR' : 'Fake',
+                  'isSignal' : 0,
+                  'color': 921,    # kGray + 1
+                  'samples'  : ['FakeOF']
+              }
+ 
+ 
+
 
 groupPlot['VVV']  = {  
                   'nameHR' : 'VVV',
@@ -72,48 +73,54 @@ groupPlot['Higgs']  = {
  
  
  
+
+ 
+ 
+#groupPlot['800']  = {
+#                  'nameHR' : 'mH = 800 GeV X10',
+#                  'isSignal' : 2,
+#                  'color': 603, # kRed 
+#                  'samples'  : ['ggH_hww_800_c10brn00','ggH_hwwINT_800_c10brn00','qqH_hww_800_c10brn00']
+#               }
+# 
+ 
+
+#Separated ggH, INT, VBF mH=400
+
 groupPlot['400']  = {
-                  'nameHR' : 'mH = 400 GeV X10',
+                  'nameHR' : 'mH=400 GeV',
                   'isSignal' : 2,
                   'color': 633, # kRed 
                   'samples'  : ['ggH_hww_400_c10brn00','ggH_hww_INT400_c10brn00','qqH_hww_400_c10brn00']
                }
  
- 
- 
-groupPlot['800']  = {
-                  'nameHR' : 'mH = 800 GeV X10',
+
+
+groupPlot['400_ggH']  = {
+                  'nameHR' : 'mH ggH=400 GeV',
                   'isSignal' : 2,
-                  'color': 603, # kRed 
-                  'samples'  : ['ggH_hww_800_c10brn00','ggH_hwwINT_800_c10brn00','qqH_hww_800_c10brn00']
-               }
- 
- 
-'''
-#Separated ggH, INT, VBF
-groupPlot['400']  = {
-                  'nameHR' : 'mH = 400 GeV',
-                  'isSignal' : 2,
-                  'color': 633, # kRed 
+                  'color': 4, # kRed 
                   'samples'  : ['ggH_hww_400_c10brn00']
                }
  
+
+groupPlot['400_VBF']  = {
+                  'nameHR' : 'mH VBF=400 GeV',
+                  'isSignal' : 2,
+                  'color': 6, # kRed 
+                  'samples'  : ['qqH_hww_400_c10brn00']
+               }
+
+
+
 groupPlot['400_INT']  = {
                   'nameHR' : 'mH INT= 400 GeV',
                   'isSignal' : 2,
                   'color': 4, # kRed 
                   'samples'  : ['ggH_hww_INT400_c10brn00']
-               }
+               } 
  
-groupPlot['400_VBF']  = {
-                  'nameHR' : 'mH VBF= 400 GeV',
-                  'isSignal' : 2,
-                  'color': 6, # kRed 
-                  'samples'  : ['qqH_hww_400_c10brn00']
-               }
-'''
- 
- 
+#############################
  
 plot['ttbar'] = {   
                   'nameHR' : 't#bart',
@@ -189,7 +196,7 @@ plot['Wjets']  = {
  
  
                
-plot['Fake']  = {  
+plot['FakeOF']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -393,14 +400,15 @@ plot['ggH_hww_INT400_c10brn00'] = {
               #'color':   col,
               'isSignal' : 2,
               'isData'   : 0,
-              'scale'    : 1,    #
-               'cuts'     : {
+              'scale'    : 1,    
+              'cuts'     : {
                         'hwwhm_13TeV_of_0j'  : 1,
                         'hwwhm_13TeV_of_1j'  : 1,
                         'hwwhm_13TeV_of2j'   : 1,
                         'hwwhm_13TeV_of_VBF' : 1,
                 }
               }
+
 plot['qqH_hww_400_c10brn00'] = {
               'nameHR' : 'qqH 400',
               'color': 600, # kRed 
@@ -430,6 +438,7 @@ plot['ggH_hww_800_c10brn00'] = {
                         'hwwhm_13TeV_of_VBF' : 100,
                 }
                }
+
 plot['ggH_hww_INT800_c10brn00'] = {
               'nameHR' : 'ggH 800',
               'color': 600, # kRed 
@@ -458,46 +467,48 @@ plot['qqH_hww_800_c10brn00'] = {
                 }
               }
 
-import os.path
- 
-massesAndModelsFile = "massesAndModels.py"
- 
-if os.path.exists(massesAndModelsFile) :
-  handle = open(massesAndModelsFile,'r')
-  exec(handle)
-  handle.close()
-else:
-  print "!!! ERROR file ", massesAndModelsFile, " does not exist."
- 
-for m in masses:
-  for model in models:
-    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
- 
- 
-    plot['ggH_hww_'+m+'_'+model_name] = {
-                  'nameHR' : 'ggH '+m+' '+model,
-                  'color': 600+int(int(m)/100+0.5), # kRed 
-                  #'color':   col,
-                  'isSignal' : 2,
-                  'isData'   : 0,
-                  'scale'    : 1    #
-                  }
-    plot['ggH_hww_INT'+m+'_'+model_name] = {
-                  'nameHR' : 'ggH '+m+' '+model,
-                  'color': 600+int(int(m)/100+0.5), # kRed 
-                  #'color':   col,
-                  'isSignal' : 2,
-                  'isData'   : 0,
-                  'scale'    : 1    #
-                  }
-    plot['qqH_hww_'+m+'_'+model_name] = {
-                  'nameHR' : 'qqH '+m+' '+model,
-                  'color': 600+20+int(int(m)/100+0.5), # kRed 
-                  'isSignal' : 2,
-                  'isData'   : 0,
-                  'scale'    : 1    #
-                  }
- 
+
+#Plot all Sign
+#import os.path
+# 
+#massesAndModelsFile = "massesAndModels.py"
+# 
+#if os.path.exists(massesAndModelsFile) :
+#  handle = open(massesAndModelsFile,'r')
+#  exec(handle)
+#  handle.close()
+#else:
+#  print "!!! ERROR file ", massesAndModelsFile, " does not exist."
+# 
+#for m in masses:
+#  for model in models:
+#    model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+# 
+# 
+#    plot['ggH_hww_'+m+'_'+model_name] = {
+#                  'nameHR' : 'ggH '+m+' '+model,
+#                  'color': 600+int(int(m)/100+0.5), # kRed 
+#                  #'color':   col,
+#                  'isSignal' : 2,
+#                  'isData'   : 0,
+#                  'scale'    : 1    #
+#                  }
+#    plot['ggH_hww_INT'+m+'_'+model_name] = {
+#                  'nameHR' : 'ggH '+m+' '+model,
+#                  'color': 600+int(int(m)/100+0.5), # kRed 
+#                  #'color':   col,
+#                  'isSignal' : 2,
+#                  'isData'   : 0,
+#                  'scale'    : 1    #
+#                  }
+#    plot['qqH_hww_'+m+'_'+model_name] = {
+#                  'nameHR' : 'qqH '+m+' '+model,
+#                  'color': 600+20+int(int(m)/100+0.5), # kRed 
+#                  'isSignal' : 2,
+#                  'isData'   : 0,
+#                  'scale'    : 1    #
+#                  }
+# 
  
 
 # data
@@ -510,6 +521,10 @@ plot['DATA']  = {
                   'isData'   : 1 ,
                   'isBlind'  : 0
               }
+
+
+
+
 
 
 # additional options

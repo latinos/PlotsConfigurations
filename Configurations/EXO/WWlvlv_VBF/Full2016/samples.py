@@ -312,10 +312,10 @@ addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
  
  
 ####### WW ########
-
+ 
 mjjGen='mjjGen(std_vector_jetGen_pt[cleanJetIndex(deltaRMatch( std_vector_leptonGen_eta[0], std_vector_leptonGen_phi[0], std_vector_jetGen_eta[0], std_vector_jetGen_phi[0]), deltaRMatch(std_vector_leptonGen_eta[1], std_vector_leptonGen_phi[1], std_vector_jetGen_eta[1], std_vector_jetGen_phi[1]), 0)], std_vector_jetGen_eta[cleanJetIndex(deltaRMatch( std_vector_leptonGen_eta[0], std_vector_leptonGen_phi[0], std_vector_jetGen_eta[0], std_vector_jetGen_phi[0]), deltaRMatch(std_vector_leptonGen_eta[1], std_vector_leptonGen_phi[1], std_vector_jetGen_eta[1], std_vector_jetGen_phi[1]), 0)], std_vector_jetGen_phi[cleanJetIndex(deltaRMatch( std_vector_leptonGen_eta[0], std_vector_leptonGen_phi[0], std_vector_jetGen_eta[0], std_vector_jetGen_phi[0]), deltaRMatch(std_vector_leptonGen_eta[1], std_vector_leptonGen_phi[1], std_vector_jetGen_eta[1], std_vector_jetGen_phi[1]), 0)], std_vector_jetGen_pt[cleanJetIndex(deltaRMatch( std_vector_leptonGen_eta[0], std_vector_leptonGen_phi[0], std_vector_jetGen_eta[0], std_vector_jetGen_phi[0]), deltaRMatch(std_vector_leptonGen_eta[1], std_vector_leptonGen_phi[1], std_vector_jetGen_eta[1], std_vector_jetGen_phi[1]), 1)], std_vector_jetGen_eta[cleanJetIndex(deltaRMatch( std_vector_leptonGen_eta[0], std_vector_leptonGen_phi[0], std_vector_jetGen_eta[0], std_vector_jetGen_phi[0]), deltaRMatch(std_vector_leptonGen_eta[1], std_vector_leptonGen_phi[1], std_vector_jetGen_eta[1], std_vector_jetGen_phi[1]), 1)], std_vector_jetGen_phi[cleanJetIndex(deltaRMatch( std_vector_leptonGen_eta[0], std_vector_leptonGen_phi[0], std_vector_jetGen_eta[0], std_vector_jetGen_phi[0]), deltaRMatch(std_vector_leptonGen_eta[1], std_vector_leptonGen_phi[1], std_vector_jetGen_eta[1], std_vector_jetGen_phi[1]), 1)])'
-
-
+ 
+ 
 samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu'), 
                                  
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*nllW*('+mjjGen+' <100  )',                       
@@ -323,33 +323,33 @@ samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu'),
                       'linesToAdd' : ['.L /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/cleanJetIndex.C+','.L /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/deltaRMatch.C+ ', '.L /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/mjjGen.C+','mjjGen.C()']
                  }
  
-
+ 
 samples['qqWWqq']  = {    'name'   :getSampleFiles(directory,'WpWmJJ_QCD_noTop') ,
-
+ 
                           'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*('+mjjGen+'>100)*(std_vector_LHEparton_id[0]!=21 &&  std_vector_LHEparton_id[1]!=21)', 
-
-
+ 
+ 
                       'linesToAdd' : ['.L /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/cleanJetIndex.C+','.L /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/deltaRMatch.C+ ', '.L /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/mjjGen.C+','mjjGen.C()']
                  }
  
-
-
+ 
+ 
 samples['WW2J']  = {    'name'   :getSampleFiles(directory,'WpWmJJ_QCD_noTop') ,
-
+ 
                           'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*('+mjjGen+'>100)*(std_vector_LHEparton_id[0]==21 ||  std_vector_LHEparton_id[1]==21)', 
-
+ 
                       'linesToAdd' : ['.L /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/cleanJetIndex.C+','.L /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/deltaRMatch.C+ ', '.L /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/mjjGen.C+','mjjGen.C()']
                  }
-
+ 
  
 samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'),      
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                       'isData': ['0'],                            
                       'suppressNegativeNuisances' :['all'],
                    }
-
-
-
+ 
+ 
+ 
 ######## Vg ########
  
 samples['Vg']  =  {     'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM')
@@ -499,18 +499,18 @@ for m in masses:
     print m
     my_list = ['200','210','230' ,'250', '270']
     if m  in my_list:
- 
+     
      print "if300=", m
      #GluGlu
      samples['ggH_hww_'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_M'+m) ,
- 
+     
                                             
                                           'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+model+'*'+str(sf),
                                           'suppressNegativeNuisances' :['all'],                           
                                         }
      
- 
- 
+     
+     
      samples['ggH_hww_SBI'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_M'+m) + \
                                                          getSampleFiles(directory,'GluGluHToWWTo2L2Nu_M'+m) + \
                                                          getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM') + \
@@ -524,7 +524,9 @@ for m in masses:
                                                      '1.']
                                                 
                                           }    
- 
+     
+     
+     
      #VBF
      samples['qqH_hww_'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_M'+m) ,
                                             
@@ -532,8 +534,8 @@ for m in masses:
                                            #Put 'model' in weight  
                                           'suppressNegativeNuisances' :['all'],
                                         }                   
- 
- 
+     
+     
      
                              
      samples['qqH_hww_SBI'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_M'+m) + \
@@ -550,20 +552,20 @@ for m in masses:
                                                      '1.']
                                                 
                                           }    
- 
- 
+     
+     
     else:
      print "else=", m
      #GluGlu
      samples['ggH_hww_'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_JHUGen698_M'+m) ,
- 
+      
                                             
                                           'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+model+'*'+str(sf),
                                           'suppressNegativeNuisances' :['all'],
                                         }
- 
-     
- 
+      
+      
+      
      samples['ggH_hww_SBI'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_JHUGen698_M'+m) + \
                                                          getSampleFiles(directory,'GluGluHToWWTo2L2Nu_JHUGen698_M'+m) + \
                                                          getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM') + \
@@ -576,9 +578,10 @@ for m in masses:
                                                            '1.']
       
                                                  } 
- 
- 
- 
+      
+      
+      
+      
      #VBF
      samples['qqH_hww_'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m) ,
                                             
@@ -586,8 +589,8 @@ for m in masses:
                                              #Remove "model" in weight: in the ntuple there are not the cprimeX.XBRnewY.Y 
                                           'suppressNegativeNuisances' :['all'], 
                                        }                   
- 
- 
+      
+      
      samples['qqH_hww_SBI'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m)  + \
                                                          getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m)  + \
                                                          getSampleFiles(directory,'WpWmJJ_QCD_noTop') + \
@@ -603,6 +606,24 @@ for m in masses:
                                         }               
       
  
+
+     #INT for plot
+     samples['ggH_hww_INT'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_JHUGen698_M'+m) ,
+      
+                                              
+                                           'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+str(sf)+"*" +'*(abs('+model_int+')<10)',                                                   
+      
+                                                 }
+      
+      
+     samples['qqH_hww_INT'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m) ,
+      
+                                              
+                                           'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+str(sf)+"*" +'*(abs('+model_int+')<10)',                                                   
+      
+                                                 }
+      
+
 
 ############################################
 ################### FAKE ###################

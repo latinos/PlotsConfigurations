@@ -24,12 +24,13 @@ lumi = 35.9
 outputDirPlots = 'plotHWWhighMass_OF'
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards_test_OF'
+outputDirDatacard = 'datacards_OF'
 
 # structure file for datacard
 structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
 #nuisancesFile = 'nuisances_MY.py'
+
 nuisancesFile = 'nuisances.py'
 #nuisancesFile = 'nuisances_vuoto.py'

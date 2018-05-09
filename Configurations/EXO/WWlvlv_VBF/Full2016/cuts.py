@@ -16,7 +16,7 @@ supercut = 'mll>50  \
 
 
 
-#*************0-1-2-VBF-categories************************************
+##*************0-1-2-VBF-categories************************************
  
 ##------------DY----------------------
  
@@ -110,7 +110,7 @@ cuts['hww2l2v_13TeV_top_of1j']  = 'mll>50 \
                 '
  
  
-
+ 
 cuts['hww2l2v_13TeV_top_of2j']  = ' mll>50 \
                 && ( std_vector_jet_pt[0] >= 30 ) \
                 && ( std_vector_jet_pt[1] >= 30 ) \
@@ -119,7 +119,7 @@ cuts['hww2l2v_13TeV_top_of2j']  = ' mll>50 \
                 '
  
  
-
+ 
 cuts['hww2l2v_13TeV_top_ofVBF']  = ' mll>50 \
                 && ( std_vector_jet_pt[0] >= 30 ) \
                 && ( std_vector_jet_pt[1] >= 30 ) \
@@ -128,7 +128,7 @@ cuts['hww2l2v_13TeV_top_ofVBF']  = ' mll>50 \
                 '
                 
    
-#------------SIGNAL REGION----------------------
+###------------SIGNAL REGION----------------------
  
  
 cuts['hwwhm_13TeV_of0j'] = '( mth>=60) \

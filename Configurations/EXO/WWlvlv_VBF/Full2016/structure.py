@@ -33,21 +33,11 @@ for m in masses:
                     'isSignal' : 1,
                     'isData'   : 0
                     }
-
+    #Signal 0?
     structure['qqH_hww_SBI'+m+'_'+model_name]  = {
-                    'isSignal' : 1,
+                    'isSignal' : 0,
                     'isData'   : 0
                     }
-
-structure['ggH_hww_750_NWA']  = {
-                  'isSignal' : 1,
-                  'isData'   : 0
-              }
-
-structure['qqH_hww_750_NWA']  = {
-                  'isSignal' : 1,
-                  'isData'   : 0
-              }             
    
 structure['DY']  = {  
                   'isSignal' : 0,
@@ -75,7 +65,7 @@ structure['Wjets']  = {
                   'isData'   : 0 
               }
 
-structure['Fake']  = {  
+structure['FakeOF']  = {  
                   'isSignal' : 0,
                   'isData'   : 0 
               }
@@ -115,11 +105,6 @@ structure['WW2J']  = {
 
 
 structure['ggWW']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0    
-                  }
-
-structure['ggWW_Int']  = {
                   'isSignal' : 0,
                   'isData'   : 0    
                   }
