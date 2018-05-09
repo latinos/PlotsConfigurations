@@ -547,6 +547,25 @@ for m in masses:
       
 
 
+     #INT for plot mH=400 and 800
+     samples['ggH_hww_INT'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_JHUGen698_M'+m) ,
+      
+                                              
+                                           'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+str(sf)+"*" +'*(abs('+model_int+')<10)',                                                   
+      
+                                                 }
+      
+      
+     samples['qqH_hww_INT'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m) ,
+      
+                                              
+                                           'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+str(sf)+"*" +'*(abs('+model_int+')<10)',                                                   
+      
+                                                 }
+      
+      
+
+
 
 #############################################
 #################### FAKE ###################

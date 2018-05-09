@@ -1,9 +1,9 @@
 
 # example of configuration file
-tag = 'HWWhighMass2016_SF_embeddedWeights_ee_VBF'
+tag = 'HWWhighMass2016_SF_embeddedWeights_ee_VBF_V2'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_SF_ee_VBF'
+outputDir = 'rootFile_SF_ee_VBF_V2'
 
 # file with list of variables
 variablesFile = 'variables_SF.py'

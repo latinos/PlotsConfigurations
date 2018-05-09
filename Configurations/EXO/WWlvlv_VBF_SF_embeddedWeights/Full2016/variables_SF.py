@@ -74,13 +74,13 @@ variables['mTi_VBF']  = {   'name': 'mTi',            #   variable name
 #                       }
 # 
 # 
-variables['mjj']  = {   'name': 'mjj',            #   variable name    
-                       'range' : (40,0,400),    #   variable range
-                       'xaxis' : 'm_{jj} [GeV]',  #   x axis name
-                       'fold' :3,
-                       'divideByBinWidth': 1,
-                       }
- 
+#variables['mjj']  = {   'name': 'mjj',            #   variable name    
+#                       'range' : (40,0,400),    #   variable range
+#                       'xaxis' : 'm_{jj} [GeV]',  #   x axis name
+#                       'fold' :3,
+#                       'divideByBinWidth': 1,
+#                       }
+# 
 #variables['mjj_DY']  = {   'name': 'mjj',            #   variable name    
 #                       'range' : (25,500,1000),    #   variable range
 #                       'xaxis' : 'm_{jj} [GeV]',  #   x axis name
