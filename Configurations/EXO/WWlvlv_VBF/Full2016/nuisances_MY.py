@@ -14,25 +14,26 @@ import copy
 
 massesAndModelsFile = "massesAndModels.py"
 
-regions0j = ['hww2l2v_13TeV_top_of0j',             
-             'hww2l2v_13TeV_dytt_of0j',             
+regions0j = ['hww2l2v_13TeV_top_of_0j',
+             'hww2l2v_13TeV_dytt_of_0j',
              'hwwhm_13TeV_of_0j',
              ]
 
-regions1j = ['hww2l2v_13TeV_top_of1j',             
-             'hww2l2v_13TeV_dytt_of1j',             
+regions1j = ['hww2l2v_13TeV_top_of_1j',
+             'hww2l2v_13TeV_dytt_of_1j',
              'hwwhm_13TeV_of_1j',
              ]
 
-regions2j = ['hww2l2v_13TeV_top_of2j',             
-             'hww2l2v_13TeV_dytt_of2j',
+regions2j = ['hww2l2v_13TeV_top_of_2j',
+             'hww2l2v_13TeV_dytt_of_2j',
              'hwwhm_13TeV_of_2j',
              ]
 
-regions2j_VBF = ['hww2l2v_13TeV_top_of2j_VBF',
-                 'hww2l2v_13TeV_dytt_of2j_VBF',
-                 'hwwhm_13TeV_of_2j_VBF',
+regions2j_VBF = ['hww2l2v_13TeV_top_of_VBF',
+                 'hww2l2v_13TeV_dytt_of_VBF',
+                 'hwwhm_13TeV_of_VBF',
                  ]
+
 
 regions0j_of = [ item for item in regions0j if "of" in item]
 regions1j_of = [ item for item in regions1j if "of" in item]
@@ -717,6 +718,7 @@ nuisances['WWofnorm0j']  = {
                'name'  : 'CMS_hwwhmof_WWofnorm0j', 
                'samples'  : {
                    'WW' : '1.00',
+                   'WW2J' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : regions0j 
@@ -726,6 +728,7 @@ nuisances['WWofnorm1j']  = {
                'name'  : 'CMS_hwwhmof_WWnorm1j', 
                'samples'  : {
                    'WW' : '1.00',
+                   'WW2J' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : regions1j 
@@ -735,6 +738,7 @@ nuisances['WWofnorm2j']  = {
                'name'  : 'CMS_hwwhmof_WWnorm2j',
                'samples'  : {
                    'WW' : '1.00',
+                   'WW2J' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : regions2j 
@@ -744,6 +748,7 @@ nuisances['WWofnorm2jVBF']  = {
                'name'  : 'CMS_hwwhmof_WWnorm2jVBF',
                'samples'  : {
                    'WW' : '1.00',
+                   'WW2J' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : regions2j_VBF 
@@ -1119,8 +1124,8 @@ nuisances['elePtCor']  = {
                    'VVV'        : elePtCor_Syst ,
                    'Vg'         : elePtCor_Syst ,
                    'VgS'        : elePtCor_Syst ,
-                   'ggH_hww '   : elePtCor_Syst ,
-                   'qqH_hww '   : elePtCor_Syst ,
+                   'ggH_hww'    : elePtCor_Syst ,
+                   'qqH_hww'     : elePtCor_Syst ,
                    'WH_hww'     : elePtCor_Syst ,
                    'ZH_hww'     : elePtCor_Syst ,
                    'ggZH_hww'   : elePtCor_Syst ,
@@ -1156,8 +1161,8 @@ nuisances['eleEtaCor']  = {
                    'VVV'        : eleEtaCor_Syst, 
                    'Vg'         : eleEtaCor_Syst, 
                    'VgS'        : eleEtaCor_Syst, 
-                   'ggH_hww '   : eleEtaCor_Syst, 
-                   'qqH_hww '   : eleEtaCor_Syst, 
+                   'ggH_hww'    : eleEtaCor_Syst, 
+                   'qqH_hww'    : eleEtaCor_Syst, 
                    'WH_hww'     : eleEtaCor_Syst, 
                    'ZH_hww'     : eleEtaCor_Syst, 
                    'ggZH_hww'   : eleEtaCor_Syst, 

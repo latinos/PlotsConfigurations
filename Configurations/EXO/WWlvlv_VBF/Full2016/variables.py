@@ -29,7 +29,7 @@ variables['mTi_VBF']  = {   'name': 'mTi',            #   variable name
                         }
 
 
-
+'''
 variables['mth_VBF']  = {   'name': 'mth',            #   variable name    
                         'range' : ([100,150,200,250,300,350,400,500,700,1000,2000,3000],),    #   variable range
                         'xaxis' : 'm_{T,i} [GeV]',  #   x axis name
@@ -79,7 +79,7 @@ variables['mjj']  = {   'name': 'mjj',            #   variable name
                         'fold' :3,
                         'divideByBinWidth': 1, 
                         }
- 
+'''
 
 #gROOT.ProcessLineSync(".L mjjGen.C");
 #gROOT.ProcessLineSync(".L deltaRMatch.C");
@@ -95,7 +95,7 @@ variables['mjjGen'] = { 'name':'mjjGen(std_vector_jet_pt[0], std_vector_jet_eta[
 
 
 
-
+'''
  
 variables['mjj_DY_VBF']  = {   'name': 'mjj',            #   variable name    
                         'range' : (30,500,1500),    #   variable range
@@ -154,6 +154,7 @@ variables['njet']  = {   'name': 'njet',            #   variable name
  
 
 
+'''
 '''
 variables['mR']  = {   'name': 'mR',            #   variable name    
                         'range' : ([100,150,200,250,300,350,400,450,500,600,700,1000],),    #   variable range

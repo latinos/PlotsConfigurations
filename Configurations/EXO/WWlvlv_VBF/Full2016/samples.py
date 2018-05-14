@@ -303,7 +303,7 @@ samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu')
                                   + getSampleFiles(directory,'ST_s-channel')   
                              ,
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,  
-                      'FilesPerJob' : 1 ,
+                      'FilesPerJob' : 2 ,
                   }
                   
  
@@ -606,7 +606,7 @@ for m in masses:
                                         }               
       
  
-
+     '''
      #INT for plot
      samples['ggH_hww_INT'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_JHUGen698_M'+m) ,
       
@@ -622,7 +622,7 @@ for m in masses:
                                            'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+str(sf)+"*" +'*(abs('+model_int+')<10)',                                                   
       
                                                  }
-      
+      '''
 
 
 ############################################
@@ -634,7 +634,7 @@ samples['FakeOF']  = {   'name': [ ] ,
                        'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA,              #   weight/cut 
                        'weights' : [ ] ,
                        'isData': ['all'],
-                       'FilesPerJob' : 2 ,
+                       'FilesPerJob' : 6 ,
                    }
  
 for Run in DataRun :
