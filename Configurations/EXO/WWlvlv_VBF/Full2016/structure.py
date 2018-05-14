@@ -35,7 +35,7 @@ for m in masses:
                     }
     #Signal 0?
     structure['qqH_hww_SBI'+m+'_'+model_name]  = {
-                    'isSignal' : 0,
+                    'isSignal' : 1,
                     'isData'   : 0
                     }
    
