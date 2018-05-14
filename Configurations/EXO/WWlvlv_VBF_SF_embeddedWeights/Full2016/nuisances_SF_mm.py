@@ -1276,52 +1276,11 @@ nuisances['QCDscale']  = {
                    'ggH_hww' : ['1.', 
                                 '1.'],
                 },                
-                'cuts'  : ['hwwhm_13TeV_sfVBF_ee',
+                'cuts'  : ['hwwhm_13TeV_sfVBF_mm',
                          ],
  
 }                                       
  
-nuisances['QCDscale1in']  = {
-                'name'  : 'QCDscale1in',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'ggH_hww' : ['1.',
-                                '1.'],
-                },
-                'cuts'  : ['hwwhm_13TeV_sfVBF_ee',
-                         
-                         ],
- 
-}
- 
-nuisances['QCDscale2in']  = {
-                'name'  : 'QCDscale2in',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'ggH_hww' : ['1.',
-                                '1.'],
-                },
-                'cuts'  : ['hwwhm_13TeV_sfVBF_ee',
-                          
-                         ],
- 
-}
- 
-nuisances['QCDscale3in']  = {
-                'name'  : 'QCDscale3in',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'ggH_hww' : ['1.',
-                                '1.'],
-                },
-                'cuts'  : ['hwwhm_13TeV_sfVBF_ee',
-                          
-                         ],
- 
-}
  
 def findClosestMass(m):
   mindistance=99999
@@ -1331,39 +1290,26 @@ def findClosestMass(m):
       mindistance = abs(float(mass) - float(m))
   
   return STUnc[thekey]
- 
+
 for m in masses:
   unc=findClosestMass(m)
   for model in models:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")
-    
+    unc0jet=str(unc["QCDscale"]["0jet"])
+    unc1jet=str(unc["QCDscale"]["1jet"])
+    unc2jet=str(unc["QCDscale"]["2jet"])
     unc3jet=str(unc["QCDscale"]["VBF"])
     nuisances['QCDscale']['samples'].update({'ggH_hww_'+m+'_'+model_name:[
-          unc3jet+"*(std_vector_jet_pt[1]> 30)*(mjj>500 && detajj>3.5)))"
+         "("+unc0jet+"*(std_vector_jet_pt[0] < 30)+"+unc1jet+"*(std_vector_jet_pt[0] > 30 && std_vector_jet_pt[1] < 30)+"+unc2jet+"*((std_vector_jet_pt[1]> 30 ) && (mjj<500 || detajj<3.5))+"+unc3jet+"*(std_vector_jet_pt[1]> 30)*(mjj>500 && detajj>3.5))",
+         "(1./("+unc0jet+"*(std_vector_jet_pt[0] < 30)+"+unc1jet+"*(std_vector_jet_pt[0] > 30 && std_vector_jet_pt[1] < 30)+"+unc2jet+"*((std_vector_jet_pt[1]> 30 ) && (mjj<500 || detajj<3.5))+"+unc3jet+"*(std_vector_jet_pt[1]> 30)*(mjj>500 && detajj>3.5)))"
                                                                          ]
                                             })
-   
-     
-    unc3jet=str(unc["QCDscale1in"]["VBF"])
-    nuisances['QCDscale1in']['samples'].update({'ggH_hww_'+m+'_'+model_name:[
-          unc3jet+"*(std_vector_jet_pt[1]> 30 )*(mjj>500 && detajj>3.5)))"
+    nuisances['QCDscale']['samples'].update({'ggH_hww_SBI'+m+'_'+model_name:[
+         "("+unc0jet+"*(std_vector_jet_pt[0] < 30)+"+unc1jet+"*(std_vector_jet_pt[0] > 30 && std_vector_jet_pt[1] < 30)+"+unc2jet+"*((std_vector_jet_pt[1]> 30 ) && (mjj<500 || detajj<3.5))+"+unc3jet+"*(std_vector_jet_pt[1]> 30)*(mjj>500 && detajj>3.5))",
+         "(1./("+unc0jet+"*(std_vector_jet_pt[0] < 30)+"+unc1jet+"*(std_vector_jet_pt[0] > 30 && std_vector_jet_pt[1] < 30)+"+unc2jet+"*((std_vector_jet_pt[1]> 30 ) && (mjj<500 || detajj<3.5))+"+unc3jet+"*(std_vector_jet_pt[1]> 30)*(mjj>500 && detajj>3.5)))"
                                                                          ]
                                             })
-    
-    
-    unc3jet=str(unc["QCDscale2in"]["VBF"])
-    nuisances['QCDscale2in']['samples'].update({'ggH_hww_'+m+'_'+model_name:[
-          unc3jet+"*(std_vector_jet_pt[1]> 30 )*(mjj>500 && detajj>3.5)))"
-                                                                         ]
-                                            })
- 
-    
-    unc3jet=str(unc["QCDscale3in"]["VBF"])
-    nuisances['QCDscale3in']['samples'].update({'ggH_hww_'+m+'_'+model_name:[
-          unc3jet+"*(std_vector_jet_pt[1]> 30 )*(mjj>500 && detajj>3.5)))"
-                                                                         ]
 
-                                            })
 
 
 # pdf uncertainty
@@ -1520,12 +1466,19 @@ nuisances['DYnorm2jVBF']  = {
                'cuts'  : regions2j_VBF 
               }
 
-
- 
-nuisances['WWnorm2jVBF']  = {
+nuisances['WWnorm2jVBF_WW']  = {
                'name'  : 'CMS_hwwhmsf_mm_WWnorm2jVBF',
                'samples'  : {
                    'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : regions2j_VBF
+              }
+
+ 
+nuisances['WWnorm2jVBF_WW2J']  = {
+               'name'  : 'CMS_hwwhmsf_mm_WWnorm2jVBF',
+               'samples'  : {
                    'WW2J' : '1.00',
                    },
                'type'  : 'rateParam',

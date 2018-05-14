@@ -390,7 +390,7 @@ samples['VZ']  = {    'name':   getSampleFiles(directory,'WZTo3LNu')
                               # + getSampleFiles(directory,'tZq_ll')
                               ,   
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.11',
-                      'FilesPerJob' : 1,
+                      'FilesPerJob' : 3,
                       'suppressNegativeNuisances' :['all'],
                   }
  
@@ -536,7 +536,7 @@ for m in masses:
       
 
 
-
+     '''
      samples['ggH_hww_INT'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_JHUGen698_M'+m) ,
       
                                               
@@ -551,8 +551,8 @@ for m in masses:
                                            'weight' :  XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+str(sf)+"*" +'*(abs('+model_int+')<10)',                                                   
       
                                                  }
+     '''
 
- 
 ###########################################
 ################## FAKE ###################
 ###########################################
@@ -561,7 +561,7 @@ samples['FakeSF']  = {   'name': [ ] ,
                       'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA,              #   weight/cut 
                       'weights' : [ ] ,
                       'isData': ['all'],
-                      'FilesPerJob' : 4 ,
+                      'FilesPerJob' : 6 ,
                   }
 
 for Run in DataRun :
@@ -580,7 +580,7 @@ samples['DATA']  = {   'name': [ ] ,
                       'weight' : 'veto_EMTFBug*METFilter_DATA',#'veto_EMTFBug'+'*'+METFilter_DATA,
                       'weights' : [ ],
                       'isData': ['all'], 
-                      'FilesPerJob' : 8 ,
+                      'FilesPerJob' : 6 ,
                  }
 
 for Run in DataRun :
@@ -590,3 +590,4 @@ for Run in DataRun :
    for iFile in FileTarget:
      samples['DATA']['name'].append(iFile)
      samples['DATA']['weights'].append(DataTrig[DataSet]) 
+    
