@@ -889,186 +889,186 @@ for mZ,mA in list_2500_800:
 #### mono-Higgs Signal Z'B
 samples['monoH_ZB_10000_1000_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-10000_MChi-1000.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 samples['monoH_ZB_10000_500_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-10000_MChi-500.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 samples['monoH_ZB_10000_150_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-10000_MChi-150.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 samples['monoH_ZB_10000_50_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-10000_MChi-50.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 samples['monoH_ZB_10000_1_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-10000_MChi-1.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 #
 samples['monoH_ZB_2000_1_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-2000_MChi-1.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 #
 samples['monoH_ZB_1995_1000_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-1995_MChi-1000.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 #
 samples['monoH_ZB_1000_1000_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-1000_MChi-1000.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 samples['monoH_ZB_1000_150_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-1000_MChi-150.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 samples['monoH_ZB_1000_1_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-1000_MChi-1.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 #
 samples['monoH_ZB_995_500_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-995_MChi-500.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 #
 samples['monoH_ZB_500_500_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-500_MChi-500.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 samples['monoH_ZB_500_150_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-500_MChi-150.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 samples['monoH_ZB_500_1_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-500_MChi-1.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 #
 samples['monoH_ZB_300_50_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-300_MChi-50.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 samples['monoH_ZB_300_1_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-300_MChi-1.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 #
 samples['monoH_ZB_295_150_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-295_MChi-150.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 #
 samples['monoH_ZB_200_150_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-200_MChi-150.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 samples['monoH_ZB_200_50_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-200_MChi-50.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 samples['monoH_ZB_200_1_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-200_MChi-1.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 #
 samples['monoH_ZB_100_10_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-100_MChi-10.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 samples['monoH_ZB_100_1_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-100_MChi-1.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 #
 samples['monoH_ZB_95_50_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-95_MChi-50.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 #
 samples['monoH_ZB_50_50_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-50_MChi-50.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 samples['monoH_ZB_50_10_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-50_MChi-10.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 samples['monoH_ZB_50_1_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-50_MChi-1.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 #
 samples['monoH_ZB_20_1_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-20_MChi-1.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 #
 samples['monoH_ZB_15_10_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-15_MChi-10.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 #
 samples['monoH_ZB_10_1000_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-1000.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 samples['monoH_ZB_10_500_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-500.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 samples['monoH_ZB_10_150_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-150.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 samples['monoH_ZB_10_50_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-50.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 samples['monoH_ZB_10_10_'] = { 
   'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-10.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 samples['monoH_ZB_10_1_'] = {
   'name': ['latino_monoH_ZpBaryonic_MZp-10_MChi-1.root'],
-  'weight': 'baseW*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+  'weight': '(baseW*0.2137*0.104976/Xsec)*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
   }
 
 
@@ -1303,8 +1303,8 @@ for mZ,mX in list_ZB_1000_1:
     'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/interpolationWeightZB.C+', 'initInterpolationWeightZB("Target_'+mZ+'_'+mX+'_Ref_1000_1")', '.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/onTheFly/getZbarxs.C+'] 
     }
 
-## Samples for which reweighting is done by using ZB_2000_500 sample
-list_ZB_2000_500={("1500","400"),("1500","425"),("1500","500"),("1500","600"),("1500","650"),("1500","675"),("1500","700"),("1500","725"),("1600","300"),("1600","325"),("1600","350"),("1600","375"),("1600","400"),("1600","425"),("1600","500"),("1600","575"),("1600","600"),("1600","650"),("1600","675"),("1700","275"),("1700","300"),("1700","325"),("1700","350"),("1700","375"),("1700","400"),("1700","425"),("1700","450"),("1700","475"),("1700","525"),("1700","550"),("1700","600"),("1700","625"),("1700","650"),("1700","675"),("1700","700"),("1700","725"),("1800","275"),("1800","325"),("1800","350"),("1800","375"),("1800","400"),("1800","425"),("1800","450"),("1800","475"),("1800","500"),("1800","525"),("1800","550"),("1800","575"),("1800","600"),("1800","625"),("1800","650"),("1800","675"),("1800","700"),("1800","725"),("1900","275"),("1900","300"),("1900","325"),("1900","350"),("1900","375"),("1900","400"),("1900","425"),("1900","450"),("1900","475"),("1900","500"),("1900","525"),("1900","550"),("1900","575"),("1900","600"),("1900","625"),("1900","650"),("1900","675"),("1900","700"),("1900","725"),("2000","300"),("2000","350"),("2000","375"),("2000","400"),("2000","425"),("2000","450"),("2000","475"),("2000","525"),("2000","550"),("2000","575"),("2000","700"),("2000","750"),("2500","275"),("2500","300"),("2500","325"),("2500","425"),("2500","450"),("2500","475"),("2500","500"),("2500","525"),("2500","550"),("2500","575"),("2500","600"),("2500","625"),("2500","650"),("2500","675"),("2500","700"),("2500","725")}
+## Samples for which reweighting is done by using ZB_2000_500 sample - 1800_625
+list_ZB_2000_500={("1500","400"),("1500","425"),("1500","500"),("1500","600"),("1500","650"),("1500","675"),("1500","700"),("1500","725"),("1600","300"),("1600","325"),("1600","350"),("1600","375"),("1600","400"),("1600","425"),("1600","500"),("1600","575"),("1600","600"),("1600","650"),("1600","675"),("1700","275"),("1700","300"),("1700","325"),("1700","350"),("1700","375"),("1700","400"),("1700","425"),("1700","450"),("1700","475"),("1700","525"),("1700","550"),("1700","600"),("1700","625"),("1700","650"),("1700","675"),("1700","700"),("1700","725"),("1800","275"),("1800","325"),("1800","350"),("1800","375"),("1800","400"),("1800","425"),("1800","450"),("1800","475"),("1800","500"),("1800","525"),("1800","550"),("1800","575"),("1800","600"),("1800","650"),("1800","675"),("1800","700"),("1800","725"),("1900","275"),("1900","300"),("1900","325"),("1900","350"),("1900","375"),("1900","400"),("1900","425"),("1900","450"),("1900","475"),("1900","500"),("1900","525"),("1900","550"),("1900","575"),("1900","600"),("1900","625"),("1900","650"),("1900","675"),("1900","700"),("1900","725"),("2000","300"),("2000","350"),("2000","375"),("2000","400"),("2000","425"),("2000","450"),("2000","475"),("2000","525"),("2000","550"),("2000","575"),("2000","700"),("2000","750"),("2500","275"),("2500","300"),("2500","325"),("2500","425"),("2500","450"),("2500","475"),("2500","500"),("2500","525"),("2500","550"),("2500","575"),("2500","600"),("2500","625"),("2500","650"),("2500","675"),("2500","700"),("2500","725")}
 
 for mZ,mX in list_ZB_2000_500:
   samples['monoH_ZB_' + mZ + '_' + mX + '_'] = { 
