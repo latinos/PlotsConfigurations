@@ -1,13 +1,10 @@
 # example of configuration file
 
-date=_`date | awk '{ print $3$2 }'`
-
-tag = 'ggH'+date
-#tag = 'ggHTESTPARTIALamassiro'
+tag = 'ggH'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'+date
+outputDir = 'rootFile'
 
 
 # file with list of variables
@@ -29,11 +26,11 @@ lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotGGH'+date
+outputDirPlots = 'plotGGH'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'+date
+outputDirDatacard = 'datacards'
 
 
 # structure file for datacard
