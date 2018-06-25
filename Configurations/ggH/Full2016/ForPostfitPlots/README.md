@@ -1,3 +1,5 @@
+Tutorial slides from Andrea: https://indico.cern.ch/event/628839/contributions/2671229/attachments/1497414/2330676/Jul-26-postFitPlots_Massironi.pdf
+
 Produce the fitDiagnostics.root file containinig the fit results
 
     combine -M FitDiagnostics -d Full2016.root --X-rtd MINIMIZER_analytic --saveShapes --saveNormalizations --saveWithUncertainties
