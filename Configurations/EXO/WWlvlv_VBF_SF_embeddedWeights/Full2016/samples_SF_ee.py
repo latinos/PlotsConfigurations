@@ -546,7 +546,7 @@ for m in masses:
                                         }               
       
 
-     ''' 
+''' 
      #INT for plot mH=400 and 800
      samples['ggH_hww_INT'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_JHUGen698_M'+m) ,
       
@@ -563,8 +563,7 @@ for m in masses:
       
                                                  }
       
-     ''' 
-
+''' 
 
 
 #############################################
@@ -605,4 +604,3 @@ for Run in DataRun :
     for iFile in FileTarget:
       samples['DATA']['name'].append(iFile)
       samples['DATA']['weights'].append(DataTrig[DataSet]) 
-      
