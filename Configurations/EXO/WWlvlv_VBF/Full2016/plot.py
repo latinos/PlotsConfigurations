@@ -24,12 +24,13 @@ groupPlot['DY']  = {
 
 
 groupPlot['WW']  = {  
-                  'nameHR' : 'WW',
+                  'nameHR' : 'Signal (300 GeV) + WW + Int',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  'samples'  : ['WW', 'ggWW', 'qqWWqq','WW2J']
+                  'samples'  : ['WW', 'ggWW', 'qqWWqq','WW2J', 'ggH_hww_SBI300_c10brn00', 'qqH_hww_SBI300_c10brn00', 'ggH_hww_300_c10brn00', 'qqH_hww_300_c10brn00',]
               }
- 
+
+
 groupPlot['Fake']  = {  
                   'nameHR' : 'Fake',
                   'isSignal' : 0,
@@ -86,7 +87,7 @@ groupPlot['Higgs']  = {
  
 
 #Separated ggH, INT, VBF mH=400
-
+'''
 groupPlot['300']  = {
                   'nameHR' : 'mH=300 GeV',
                   'isSignal' : 2,
@@ -110,7 +111,7 @@ groupPlot['300_VBF']  = {
                   'color': 6, # kRed 
                   'samples'  : ['qqH_hww_300_c10brn00']
                }
-
+'''
 
 #############################
  
@@ -376,7 +377,7 @@ plot['ggH_hww_300_c10brn00'] = {
                'nameHR' : 'ggH 300',
                'color': 600, # kRed 
                #'color':   col,
-               'isSignal' : 2,
+               'isSignal' : 1,
                'isData'   : 0,
                'scale'    : 1,    #
                'cuts'     : {
@@ -390,7 +391,7 @@ plot['ggH_hww_SBI300_c10brn00'] = {
               'nameHR' : 'ggH 400',
               'color': 600, # kRed 
               #'color':   col,
-              'isSignal' : 2,
+              'isSignal' : 0,
               'isData'   : 0,
               'scale'    : 1,    
               'cuts'     : {
@@ -404,7 +405,7 @@ plot['ggH_hww_SBI300_c10brn00'] = {
 plot['qqH_hww_300_c10brn00'] = {
               'nameHR' : 'qqH 400',
               'color': 600, # kRed 
-              'isSignal' : 2,
+              'isSignal' : 1,
               'isData'   : 0,
               'scale'    : 1,    #
                'cuts'     : {
@@ -418,7 +419,7 @@ plot['qqH_hww_300_c10brn00'] = {
 plot['qqH_hww_SBI300_c10brn00'] = {
               'nameHR' : 'qqH 400',
               'color': 600, # kRed 
-              'isSignal' : 2,
+              'isSignal' : 0,
               'isData'   : 0,
               'scale'    : 1,    #
                'cuts'     : {
@@ -451,7 +452,7 @@ plot['ggH_hww_SBI800_c10brn00'] = {
               'nameHR' : 'ggH 800',
               'color': 600, # kRed 
               #'color':   col,
-              'isSignal' : 2,
+              'isSignal' : 0,
               'isData'   : 0,
               'scale'    : 1,    #
                'cuts'     : {
@@ -479,7 +480,7 @@ plot['qqH_hww_800_c10brn00'] = {
 plot['qqH_hww_SBI800_c10brn00'] = {
               'nameHR' : 'qqH 800',
               'color': 600, # kRed 
-              'isSignal' : 2,
+              'isSignal' : 0,
               'isData'   : 0,
               'scale'    : 1,    #
                'cuts'     : {
