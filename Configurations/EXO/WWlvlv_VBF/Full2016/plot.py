@@ -87,39 +87,31 @@ groupPlot['Higgs']  = {
 
 #Separated ggH, INT, VBF mH=400
 
-groupPlot['400']  = {
-                  'nameHR' : 'mH=400 GeV',
+groupPlot['300']  = {
+                  'nameHR' : 'mH=300 GeV',
                   'isSignal' : 2,
                   'color': 633, # kRed 
-                  'samples'  : ['ggH_hww_400_c10brn00','ggH_hww_INT400_c10brn00','qqH_hww_400_c10brn00']
+                  'samples'  : ['ggH_hww_300_c10brn00','ggH_hww_INT300_c10brn00','qqH_hww_300_c10brn00']
                }
  
 
 
-groupPlot['400_ggH']  = {
-                  'nameHR' : 'mH ggH=400 GeV',
+groupPlot['300_ggH']  = {
+                  'nameHR' : 'mH ggH=300 GeV',
                   'isSignal' : 2,
                   'color': 4, # kRed 
-                  'samples'  : ['ggH_hww_400_c10brn00']
+                  'samples'  : ['ggH_hww_300_c10brn00']
                }
  
 
-groupPlot['400_VBF']  = {
-                  'nameHR' : 'mH VBF=400 GeV',
+groupPlot['300_VBF']  = {
+                  'nameHR' : 'mH VBF=300 GeV',
                   'isSignal' : 2,
                   'color': 6, # kRed 
-                  'samples'  : ['qqH_hww_400_c10brn00']
+                  'samples'  : ['qqH_hww_300_c10brn00']
                }
 
 
-
-groupPlot['400_INT']  = {
-                  'nameHR' : 'mH INT= 400 GeV',
-                  'isSignal' : 2,
-                  'color': 4, # kRed 
-                  'samples'  : ['ggH_hww_INT400_c10brn00']
-               } 
- 
 #############################
  
 plot['ttbar'] = {   
@@ -380,8 +372,8 @@ plot['ggH_hww'] = {
 #Signal
 
 
-plot['ggH_hww_400_c10brn00'] = {
-               'nameHR' : 'ggH 400',
+plot['ggH_hww_300_c10brn00'] = {
+               'nameHR' : 'ggH 300',
                'color': 600, # kRed 
                #'color':   col,
                'isSignal' : 2,
@@ -394,7 +386,7 @@ plot['ggH_hww_400_c10brn00'] = {
                         'hwwhm_13TeV_of_VBF' : 1,
                 }
                }
-plot['ggH_hww_INT400_c10brn00'] = {
+plot['ggH_hww_SBI300_c10brn00'] = {
               'nameHR' : 'ggH 400',
               'color': 600, # kRed 
               #'color':   col,
@@ -409,7 +401,7 @@ plot['ggH_hww_INT400_c10brn00'] = {
                 }
               }
 
-plot['qqH_hww_400_c10brn00'] = {
+plot['qqH_hww_300_c10brn00'] = {
               'nameHR' : 'qqH 400',
               'color': 600, # kRed 
               'isSignal' : 2,
@@ -422,6 +414,22 @@ plot['qqH_hww_400_c10brn00'] = {
                         'hwwhm_13TeV_of_VBF' : 1,
                 }
               }
+
+plot['qqH_hww_SBI300_c10brn00'] = {
+              'nameHR' : 'qqH 400',
+              'color': 600, # kRed 
+              'isSignal' : 2,
+              'isData'   : 0,
+              'scale'    : 1,    #
+               'cuts'     : {
+                        'hwwhm_13TeV_of_0j'  : 1,
+                        'hwwhm_13TeV_of_1j'  : 1,
+                        'hwwhm_13TeV_of2j'   : 1,
+                        'hwwhm_13TeV_of_VBF' : 1,
+                }
+              }
+
+
  
  
 plot['ggH_hww_800_c10brn00'] = {
@@ -439,7 +447,7 @@ plot['ggH_hww_800_c10brn00'] = {
                 }
                }
 
-plot['ggH_hww_INT800_c10brn00'] = {
+plot['ggH_hww_SBI800_c10brn00'] = {
               'nameHR' : 'ggH 800',
               'color': 600, # kRed 
               #'color':   col,
@@ -467,6 +475,20 @@ plot['qqH_hww_800_c10brn00'] = {
                 }
               }
 
+
+plot['qqH_hww_SBI800_c10brn00'] = {
+              'nameHR' : 'qqH 800',
+              'color': 600, # kRed 
+              'isSignal' : 2,
+              'isData'   : 0,
+              'scale'    : 1,    #
+               'cuts'     : {
+                        'hwwhm_13TeV_of_0j'  : 100,
+                        'hwwhm_13TeV_of_1j'  : 100,
+                        'hwwhm_13TeV_of2j'   : 100,
+                        'hwwhm_13TeV_of_VBF' : 100,
+                }
+              }
 
 #Plot all Sign
 #import os.path

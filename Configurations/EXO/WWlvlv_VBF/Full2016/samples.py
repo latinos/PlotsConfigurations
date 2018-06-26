@@ -510,7 +510,7 @@ for m in masses:
                                         }
      
      
-     
+      
      samples['ggH_hww_SBI'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'GluGluHToWWTo2L2Nu_M'+m) + \
                                                          getSampleFiles(directory,'GluGluHToWWTo2L2Nu_M'+m) + \
                                                          getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM') + \
@@ -590,7 +590,7 @@ for m in masses:
                                           'suppressNegativeNuisances' :['all'], 
                                        }                   
       
-      
+     
      samples['qqH_hww_SBI'+m+'_'+model_name] = { 'name': getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m)  + \
                                                          getSampleFiles(directory,'VBFHToWWTo2L2Nu_JHUGen698_M'+m)  + \
                                                          getSampleFiles(directory,'WpWmJJ_QCD_noTop') + \
@@ -604,7 +604,7 @@ for m in masses:
                                                      '1.']
       
                                         }               
-      
+     
  
      '''
      #INT for plot
