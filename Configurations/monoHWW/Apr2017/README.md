@@ -32,6 +32,17 @@ WITH LXBATCH
     
     rm -rf /eos/user/n/ntrevisa/jobs/
 
+em Channel, for the combination PAPER:
+
+    mkShapes.py --pycfg=configuration_em_PAPER.py  --inputDir=/eos/user/c/calderon/monoH/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__wwSel__monohSel__muccaAll_em/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
+
+    mkBatch.py --status
+
+    mkShapes.py --pycfg=configuration_em_PAPER.py --inputDir=/eos/user/c/calderon/monoH/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__wwSel__monohSel__muccaAll_em/ --batchSplit=AsMuchAsPossible --doHadd=True
+
+    mkPlot.py --pycfg=configuration_em_PAPER.py --inputFile=rootFile_em_PAPER/plots_monoHWW_em.root --minLogC=0.01 --minLogCratio=0.01 --maxLogC=1000 --maxLogCratio=1000
+
+
 em Channel:
 
     mkShapes.py --pycfg=configuration_em.py  --inputDir=/eos/user/c/calderon/monoH/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__wwSel__monohSel__muccaAll_em/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
@@ -119,6 +130,8 @@ Produce Plots for sf Channel:
 # 3 PRODUCE DATACARDS
 
     mkDatacards.py   --pycfg=configuration_em.py  --inputFile=rootFile_em/plots_monoHWW_em.root
+
+    mkDatacards.py   --pycfg=configuration_em_combination.py  --inputFile=rootFile_em_combination/plots_monoHWW_em.root
 
     mkDatacards.py   --pycfg=configuration_em_blindData.py  --inputFile=rootFile_em_blindData/plots_monoHWW_em_blindData.root
 
