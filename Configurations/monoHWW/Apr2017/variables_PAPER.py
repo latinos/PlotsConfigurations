@@ -114,6 +114,7 @@ variables['muccamva2HDMadaptFull_All'] = {
     'name': 'muccamva2HDMadaptFull_All_em',
     'range' : (40,-1,1),
     'xaxis' : 'MVA discriminant',
+    'yaxis' : 'Events / Bin',
     'fold' : 3
     }
 
@@ -122,6 +123,7 @@ variables['muccamvaZbaradaptFull_All'] = {
     'name': 'muccamvaZbaradaptFull_All_em',
     'range' : (40,-1,1),
     'xaxis' : 'MVA discriminant',
+    'yaxis' : 'Events / Bin',
     'fold' : 3
     }
 
@@ -134,6 +136,7 @@ variables['muccamva2HDMadaptFull_All_Bin800'] = {
     'name': 'muccamva2HDMadaptFull_All_em',
     'range' : ([-0.9999,-0.7633,-0.5461,-0.3133,-0.0363,0.1099,0.3129,0.4833,0.7299,1],),
     'xaxis' : 'MVA discriminant',
+    'yaxis' : 'Events / Bin',
     'fold' : 3
     }
 
@@ -142,6 +145,7 @@ variables['muccamvaZbaradaptFull_All_Bin100'] = {
     'name': 'muccamvaZbaradaptFull_All_em',
     'range' : ([-0.9999,-0.6041,-0.4669,-0.3249,-0.1113,0.2497,0.6039,1],),
     'xaxis' : 'MVA discriminant',
+    'yaxis' : 'Events / Bin',
     'fold' : 3
     }
 
@@ -156,7 +160,7 @@ variables['muccamvaZbaradaptFull_All_Bin100'] = {
 # variables['mthBin']  = {
 #     'name': 'mth',
 #     'range' : ([0,50,100,150,200,1000],),
-#     'xaxis' : 'm_{T}^{\ell\ell} [GeV]',
+#     'xaxis' : 'm_{T}^{ll} [GeV]',
 #     'fold' : 3
 #     }
 
@@ -180,109 +184,127 @@ variables['muccamvaZbaradaptFull_All_Bin100'] = {
 
 variables['mll']  = {   'name': 'mll',            
                         'range' : (40,0,400),     
-                        'xaxis' : 'm_{\ell\ell} [GeV]',
-                        'fold' : 3
+                        'xaxis' : '\r m_{ll} [GeV]',
+                        'yaxis' : 'Events / 10 GeV',
+                        'fold' : 3,
                         }
                         
 variables['drll'] = {     'name': 'drll',    
                           'range' : (25,0,5.0),
-                          'xaxis' : '\Delta R_{\ell\ell}',
+                          'xaxis' : '#Delta R(ll) [rad]',
+                          'yaxis' : 'Events / 0.2 rad',
                           'fold'  : 0
                           }
 
 variables['ptllmet']  = {   'name': 'sqrt((metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))*(metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))+(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1]))*(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1])))',
                         'range' : (25,0,250),
-                        'xaxis' : 'p_{T}^{llmet} [GeV]',
+                        'xaxis' : '\r p_{T}^{ll, met} [GeV]',
+                        'yaxis' : 'Events / 10 GeV',
                         'fold' : 3
                         }
 
 variables['ptllmet_10']  = {   'name': 'sqrt((metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))*(metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))+(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1]))*(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1])))',
                         'range' : (10,0,250),
-                        'xaxis' : 'p_{T}^{llmet} [GeV]',
+                        'xaxis' : '\r p_{T}^{ll,met} [GeV]',
+                        'yaxis' : 'Events / 25 GeV',
                         'fold' : 3
                         }
 
 variables['mth']  = {   'name': 'mth',
                         'range' : (25,0,500),
-                        'xaxis' : 'm_{T}^{\ell\ell} [GeV]',
+                        'xaxis' : '\r m_{T}^{ll,met} [GeV]',
+                        'yaxis' : 'Events / 20 GeV',
                         'fold' : 3
                         }
 
 variables['mtw1'] = {     'name'  : 'mtw1',
                           'range' : (25,0,500),
-                          'xaxis' : 'm_{T}^{W1}',
+                          'xaxis' : '\r m_{T}^{W1} [GeV]',
+                          'yaxis' : 'Events / 20 GeV',
                           'fold'  : 3
                           }
 
 variables['mtw2'] = {     'name'  : 'mtw2',    
                           'range' : (25,0,250),
-                          'xaxis' : 'm_{T}^{W2}', 
+                          'xaxis' : '\r m_{T}^{W2} [GeV]', 
+                          'yaxis' : 'Events / 10 GeV',
                           'fold'  : 3
                           }
 
 variables['dphill'] = {   'name': 'dphill',
-                         'range' : (20,0,3.2),
-                         'xaxis' : '\Delta\Phi_{\ell\ell} [rad]',
-                         'fold' : 0
-                         }
-
-variables['dphilmet1'] = {   'name': 'dphilmet1',
                           'range' : (20,0,3.2),
-                          'xaxis' : '\Delta\Phi_{\ell 1, E_{T}^{miss}} [rad]',
+                          'xaxis' : '\r #Delta#Phi(ll) [rad]',
+                          'yaxis' : 'Events / 0.16 rad',
                           'fold' : 0
                           }
 
+variables['dphilmet1'] = {   'name': 'dphilmet1',
+                             'range' : (20,0,3.2),
+                             'xaxis' : '\r #Delta#Phi(l1, E_{T}^{miss}) [rad]',
+                             'yaxis' : 'Events / 0.16 rad',
+                             'fold' : 0
+                          }
+
 variables['dphilmet2'] = {   'name': 'dphilmet2',
-                          'range' : (20,0,3.2),
-                          'xaxis' : '\Delta\Phi_{\ell 2, E_{T}^{miss}} [rad]',
-                          'fold' : 0
+                             'range' : (20,0,3.2),
+                             'xaxis' : '\r #Delta#Phi(l2, E_{T}^{miss}) [rad]',
+                             'yaxis' : 'Events / 0.16 rad',
+                             'fold' : 0
                           }
 
 variables['njet']  = {   'name': 'njet',      
                          'range' : (10,0,10),  
-                         'xaxis' : 'njet', 
+                         'xaxis' : '\r njet', 
+                         'yaxis' : 'Events / Jet',
                          'fold' : 0
                          }
                         
 variables['ptll']  = {   'name': 'ptll',
                          'range' : (25,0,250),
-                         'xaxis' : 'p_{T}^{\ell\ell} [GeV]',
+                         'xaxis' : '\r p_{T}^{ll} [GeV]',
+                         'yaxis' : 'Events / 10 GeV',
                          'fold' : 3
                          }
 
 variables['met']  = {   'name': 'metPfType1',
                         'range' : (25,0,250),
                         'xaxis' : 'E_{T}^{miss} [GeV]',
+                        'yaxis' : 'Events / 10 GeV',
                         'fold' : 0
                         }
 
 variables['metTtrk'] = {'name': 'metTtrk',            
                         'range' : (25,0,250),    
                         'xaxis' : 'tracker E_{T}^{miss} [GeV]',  
+                        'yaxis' : 'Events / 10 GeV',
                         'fold' : 0
                         }
 
 variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',
                         'range' : (40,0,400),
-                        'xaxis' : 'p_{T}^{1st lep} [GeV]',
+                        'xaxis' : '\r Leading lepton p_{T} [GeV]',
+                        'yaxis' : 'Events / 10 GeV',
                         'fold' : 3
                         }
 
 variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',
                         'range' : (40,0,150),
-                        'xaxis' : 'p_{T}^{2nd lep} [GeV]',
+                        'xaxis' : '\r Trailing lepton p_{T} [GeV]',
+                        'yaxis' : 'Events / 3.75 GeV',
                         'fold' : 3
                         }
 
 variables['nvtx']  = {   'name': 'nvtx',      
                          'range' : (40,0,40),  
-                         'xaxis' : 'nvtx', 
+                         'xaxis' : '\r nvtx', 
+                         'yaxis' : 'Events / nvtx',
                          'fold' : 3
                          }
                         
 variables['mpmet']  = {   'name': 'mpmet',      
                          'range' : (40,0,300),  
-                         'xaxis' : 'min. (proj. tk. E_{T}^{miss}, proj. E_{T}^{miss})', 
+                         'xaxis' : '\r min. (proj. tk. E_{T}^{miss}, proj. E_{T}^{miss}) [GeV]', 
+                         'yaxis' : 'Events / 7.5 GeV',
                          'fold' : 3
                          }
 
@@ -297,37 +319,37 @@ variables['mpmet']  = {   'name': 'mpmet',
 
 # variables['pt1-pt2']  = {   'name': 'std_vector_lepton_pt[0] - std_vector_lepton_pt[1]',            #   variable name    
 #                         'range' : (40,0,400),    #   variable range
-#                         'xaxis' : 'p_{T}^{1st lep} - p_{T}^{2nd lep}[GeV]',  #   x axis name
+#                         'xaxis' : '\r p_{T}^{1st lep} - p_{T}^{2nd lep}[GeV]',  #   x axis name
 #                         'fold' : 3
 #                         }
 
 # variables['dymva']  = {   'name': 'dymvaggh',      
 #                          'range' : (40,-1,1),  
-#                          'xaxis' : 'dymva', 
+#                          'xaxis' : '\r dymva', 
 #                          'fold' : 3
 #                          }
                         
 # variables['Puppi met']  = {   'name': 'metPuppi',            #   variable name    
 #                         'range' : (80,0,800),    #   variable range
-#                         'xaxis' : 'PUPPI E_{T}^{miss} [GeV]',  #   x axis name
+#                         'xaxis' : '\r PUPPI E_{T}^{miss} [GeV]',  #   x axis name
 #                         'fold' : 0
 #                         }
 
 # variables['ht20']  = {   'name': 'std_vector_lepton_pt[0] + std_vector_lepton_pt[1] + metPfType1 + std_vector_jet_pt[0]*(std_vector_jet_pt[0]>20) + std_vector_jet_pt[1]*(std_vector_jet_pt[1]>20) + std_vector_jet_pt[2]*(std_vector_jet_pt[2]>20) + std_vector_jet_pt[3]*(std_vector_jet_pt[3]>20) + std_vector_jet_pt[4]*(std_vector_jet_pt[4]>20) + std_vector_jet_pt[5]*(std_vector_jet_pt[5]>20) + std_vector_jet_pt[6]*(std_vector_jet_pt[6]>20) + std_vector_jet_pt[7]*(std_vector_jet_pt[7]>20) + std_vector_jet_pt[8]*(std_vector_jet_pt[8]>20) + std_vector_jet_pt[9]*(std_vector_jet_pt[9]>20)',            #   variable name    
 #                         'range' : (150,0,1500),     #   variable range
-#                         'xaxis' : 'H_{T} [GeV]',  #   x axis name
+#                         'xaxis' : '\r H_{T} [GeV]',  #   x axis name
 #                         'fold' : 3
 #                         }
 
 # variables['ht']  = {   'name': 'std_vector_lepton_pt[0] + std_vector_lepton_pt[1] + metPfType1 + std_vector_jet_pt[0]*(std_vector_jet_pt[0]>30) + std_vector_jet_pt[1]*(std_vector_jet_pt[1]>30) + std_vector_jet_pt[2]*(std_vector_jet_pt[2]>30) + std_vector_jet_pt[3]*(std_vector_jet_pt[3]>30) + std_vector_jet_pt[4]*(std_vector_jet_pt[4]>30) + std_vector_jet_pt[5]*(std_vector_jet_pt[5]>30) + std_vector_jet_pt[6]*(std_vector_jet_pt[6]>30) + std_vector_jet_pt[7]*(std_vector_jet_pt[7]>30) + std_vector_jet_pt[8]*(std_vector_jet_pt[8]>30) + std_vector_jet_pt[9]*(std_vector_jet_pt[9]>30)',            #   variable name    
 #                         'range' : (80,0,800),     #   variable range
-#                         'xaxis' : 'H_{T} [GeV]',  #   x axis name
+#                         'xaxis' : '\r H_{T} [GeV]',  #   x axis name
 #                         'fold' : 3
 #                         }
 
 # variables['lep_ht']  = {   'name': 'std_vector_lepton_pt[0] + std_vector_lepton_pt[1] + metPfType1',            #   variable name    
 #                         'range' : (50,0,500),     #   variable range
-#                         'xaxis' : 'p_{T}^{1} + p_{T}^{2} + E_{T}^{miss} [GeV]',  #   x axis name
+#                         'xaxis' : '\r p_{T}^{1} + p_{T}^{2} + E_{T}^{miss} [GeV]',  #   x axis name
 #                         'fold' : 3
 #                         }
 
