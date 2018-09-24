@@ -1,5 +1,7 @@
-/*
+/*                           
 
+Run this in lxplus7 !!!
+                                                                             
 source /cvmfs/sft.cern.ch/lcg/contrib/gcc/4.8/x86_64-centos7-gcc48-opt/setup.sh
 source /cvmfs/sft.cern.ch/lcg/app/releases/ROOT/6.12.06/x86_64-centos7-gcc48-opt/root/bin/thisroot.sh
 
@@ -14,7 +16,7 @@ putEverythingTogether("2HDM","muccamva2HDMadaptFull_All_Bin800")
 putEverythingTogetherSmooth("2HDM","muccamva2HDMadaptFull_All_Bin800")
 .q
 
-cp ExclusionMap* ~/www/figuresLxplus/16Mar2018/Apr2017/pulls_em_MVA/
+cp ExclusionMap* ~/www/figuresLxplus/18Sep2018/Apr2017/pulls_em_MVA/
 
 // Zbar Model
 
@@ -27,7 +29,7 @@ putEverythingTogether("Zbar","muccamvaZbaradaptFull_All_Bin100")
 putEverythingTogetherSmooth("Zbar","muccamvaZbaradaptFull_All_Bin100")
 .q
 
-cp ExclusionMap* ~/www/figuresLxplus/16Mar2018/Apr2017/pulls_em_MVA/
+cp ExclusionMap* ~/www/figuresLxplus/18Sep2018/Apr2017/pulls_em_MVA/
 
 root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_All_Bin1000","em","MVA","Zbar",false)'
 root -l -b
@@ -281,6 +283,8 @@ void macroExclusionTable(TString variable  = "mthBin",
     mapTitle = mapTitle + "(35.9fb^{-1})";
   //  mymap->SetTitle(mapTitle);
   mymap->SetTitle("");
+  mymap->GetXaxis()->SetTitleSize(0.05);
+  mymap->GetYaxis()->SetTitleSize(0.05);
   mymap->GetXaxis()->SetTitle("M_{Z'} [GeV]");
   if (model == "2HDM")
     mymap->GetYaxis()->SetTitle("M_{A} [GeV]");
@@ -293,7 +297,7 @@ void macroExclusionTable(TString variable  = "mthBin",
   // char latexString2[80];
   // sprintf(latexString2,"Best significance: %3f", maxSig);
 
-  TLatex* tl = new TLatex(0.15,0.91,"CMS preliminary");
+  TLatex* tl = new TLatex(0.15,0.91,"CMS");// preliminary");
   tl->SetNDC();
   tl->SetTextSize(0.03);
   TLatex* tl2 = new TLatex(0.63,0.91,"35.9 fb^{-1} (13 TeV)");
@@ -437,11 +441,11 @@ void smoothMap(TString model = "2HDM",
   pad1->cd();
 
   if (model == "2HDM"){
-    Exp->GetXaxis()->SetRangeUser(500,1200);
+    Exp->GetXaxis()->SetRangeUser(600,1200);
     Exp->GetYaxis()->SetRangeUser(300,500);
   }
   else if (model == "Zbar"){
-    Exp->GetXaxis()->SetRangeUser(10,1000);
+    Exp->GetXaxis()->SetRangeUser(100,1000);
     Exp->GetYaxis()->SetRangeUser(1,500);
   }
 
@@ -921,14 +925,21 @@ void putEverythingTogether(TString model = "2HDM",
   TPad* pad1 = new TPad("pad1","pad1",0.,0.,1.,1.);
   pad1->SetLeftMargin(0.15);
   pad1->SetRightMargin(0.15);
+  pad1->SetBottomMargin(0.12);
   pad1->Draw();
   pad1->cd();
 
+  map->GetXaxis()->SetTitleSize(0.05);
+  map->GetYaxis()->SetTitleSize(0.05);
   if (model == "2HDM"){
-    map->GetXaxis()->SetRangeUser(500,1200);
+    map->GetXaxis()->SetRangeUser(600,1200);
     map->GetYaxis()->SetRangeUser(305,500);
+    map->GetXaxis()->SetTitle("m_{Z'} [GeV]");
+    map->GetYaxis()->SetTitle("m_{A} [GeV]");
   }
   else if (model == "Zbar"){
+    map->GetXaxis()->SetTitle("m_{Z'} [GeV]");
+    map->GetYaxis()->SetTitle("m_{#chi} [GeV]");
     for (int i = 1; i < map->GetXaxis()->GetNbins()+1; ++i){
       for (int j = 1; j < map->GetYaxis()->GetNbins()+1; ++j){
     	float xxx, yyy;
@@ -940,7 +951,7 @@ void putEverythingTogether(TString model = "2HDM",
     map->Smooth(1);
     map->Smooth(1);
     map->Smooth(1);
-    map->GetXaxis()->SetRangeUser(15,1000);
+    map->GetXaxis()->SetRangeUser(105,1000);
     map->GetYaxis()->SetRangeUser(5,500);
   }
 
@@ -959,12 +970,15 @@ void putEverythingTogether(TString model = "2HDM",
   l1 -> AddEntry(ExpUp,"#pm 1 std. dev.","l");
   //l1 -> AddEntry(ExpDo,"Expected, 1 #sigma down","l");
 
-  TLatex* tl = new TLatex(0.15,0.91,"CMS preliminary");
+  TLatex* tl = new TLatex(0.15,0.94,"CMS");// preliminary");
   tl->SetNDC();
-  tl->SetTextSize(0.03);
-  TLatex* tl2 = new TLatex(0.63,0.91,"35.9 fb^{-1} (13 TeV)");
+  tl->SetTextFont(61);
+  tl->SetTextSize(0.05);
+  TLatex* tl2 = new TLatex(0.59,0.94,"35.9 fb^{-1} (13 TeV)");
   tl2->SetNDC();
-  tl2->SetTextSize(0.03);
+  tl2->SetTextFont(42);
+  tl2->SetTextSize(0.040);
+  tl2->SetTextSize(0.045);
 
   // if (model == "2HDM"){
   //   map -> GetYaxis() -> SetRangeUser(300,700);
@@ -1041,11 +1055,12 @@ void putEverythingTogetherSmooth(TString model = "2HDM",
   TPad* pad1 = new TPad("pad1","pad1",0.,0.,1.,1.);
   pad1->SetLeftMargin(0.15);
   pad1->SetRightMargin(0.15);
+  pad1->SetBottomMargin(0.20);
   pad1->Draw();
   pad1->cd();
 
   if (model == "2HDM"){
-    map->GetXaxis()->SetRangeUser(500,2000);
+    map->GetXaxis()->SetRangeUser(600,2000);
     map->GetYaxis()->SetRangeUser(300,500);
   }
   else if (model == "Zbar"){
@@ -1068,7 +1083,7 @@ void putEverythingTogetherSmooth(TString model = "2HDM",
   l1 -> AddEntry(ExpUp,"#pm 1 std. dev.","l");
   //l1 -> AddEntry(ExpDo,"Expected, 1 #sigma down","l");
 
-  TLatex* tl = new TLatex(0.15,0.91,"CMS preliminary");
+  TLatex* tl = new TLatex(0.15,0.91,"CMS");// preliminary");
   tl->SetNDC();
   tl->SetTextSize(0.03);
   TLatex* tl2 = new TLatex(0.63,0.91,"35.9 fb^{-1} (13 TeV)");

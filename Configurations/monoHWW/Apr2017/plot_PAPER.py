@@ -24,7 +24,7 @@ groupPlot['Fake']  = {
 
 
 groupPlot['top']  = {  
-                  'nameHR' : 'tW and t#bart',
+                  'nameHR' : 'Top',#'tW and t#bart',
                   'isSignal' : 0,
                   'color': 400, #  kYellow
                   'samples'  : ['top']
@@ -110,21 +110,21 @@ groupPlot['Higgs']  = {
 #               }
 
 
-# Z'-2HDM
-groupPlot['monoH_1200_300'] = {
-    'nameHR' : 'm_{Z\'} = 1200, m_{A} = 300 GeV x 100',
-    'isSignal' : 2,
-    'color': 801,
-    'samples'  : ['monoH_1200_300']
-    }
-
 # Z'-Baryonic
 groupPlot['monoH_ZB_500_1_'] = {
-    'nameHR' : 'm_{Z\'}=100 GeV, m_{#chi}=1 GeV x 100', #'mZ=100 GeV, mChi=1 GeV x 100',
+    'nameHR' : 'm_{Z\'} = 500 GeV, m_{#chi} = 1 GeV x 100', #'mZ=100 GeV, mChi=1 GeV x 100',
     'isSignal' : 2,
     'color': 1,
     'samples'  : ['monoH_ZB_500_1_']
 }
+
+# Z'-2HDM
+groupPlot['monoH_1200_300'] = {
+    'nameHR' : 'm_{Z\'} = 1200, m_{A} = 300 GeV x 500',
+    'isSignal' : 2,
+    'color': 801,
+    'samples'  : ['monoH_1200_300']
+    }
 
 
 # keys here must match keys in samples.py    
@@ -337,15 +337,6 @@ plot['bbH_hww'] = {
                   'scale'    : 1    #
                   }
 
-# Z'-2HDM
-plot['monoH_1200_300'] = {
-    'nameHR' : 'm_{Z\'} = 1200, m_{A} = 300 GeV x 100',
-    'color': 801,
-    'isSignal' : 2,
-    'isData'   : 0,
-    'scale'    : 100
-    }
-
 # Z'-Baryonic
 plot['monoH_ZB_500_1_'] = {
     'nameHR' : 'm_{Z\'} = 500 GeV, m_{#chi} = 1 GeV',
@@ -354,6 +345,15 @@ plot['monoH_ZB_500_1_'] = {
     'isData'   : 0,
     'scale'    : 100
 }
+
+# Z'-2HDM
+plot['monoH_1200_300'] = {
+    'nameHR' : 'm_{Z\'} = 1200, m_{A} = 300 GeV x 500',
+    'color': 801,
+    'isSignal' : 2,
+    'isData'   : 0,
+    'scale'    : 500
+    }
 
 # data
 
