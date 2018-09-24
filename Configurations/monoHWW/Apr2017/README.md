@@ -32,16 +32,16 @@ WITH LXBATCH
     
     rm -rf /eos/user/n/ntrevisa/jobs/
 
+
 em Channel, for the combination PAPER:
 
-    mkShapes.py --pycfg=configuration_em_PAPER.py  --inputDir=/eos/user/c/calderon/monoH/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__wwSel__monohSel__muccaAll_em/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
+    mkShapes.py --pycfg=configuration_em_PAPER.py  --inputDir=/eos/user/c/calderon/monoH/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__wwSel__monohSel__muccaAll_em/ --doThread=True
 
-    mkBatch.py --status
+    mkPlot.py --pycfg=configuration_em_PAPER.py --inputFile=rootFile_em_PAPER/plots_monoHWW_em.root --minLogC=0.01 --minLogCratio=0.01 --maxLogC=10000 --maxLogCratio=10000
 
-    mkShapes.py --pycfg=configuration_em_PAPER.py --inputDir=/eos/user/c/calderon/monoH/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__wwSel__monohSel__muccaAll_em/ --batchSplit=AsMuchAsPossible --doHadd=True
+    mkShapes.py --pycfg=configuration_ss_PAPER.py  --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__ssSel/  --doThread=True
 
-    mkPlot.py --pycfg=configuration_em_PAPER.py --inputFile=rootFile_em_PAPER/plots_monoHWW_em.root --minLogC=0.01 --minLogCratio=0.01 --maxLogC=1000 --maxLogCratio=1000
-
+    mkPlot.py --pycfg=configuration_ss_PAPER.py --inputFile=rootFile_ss_PAPER/plots_monoHWW_ss.root --minLogC=0.01 --minLogCratio=0.01 --maxLogC=10000 --maxLogCratio=10000
 
 em Channel:
 
