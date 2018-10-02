@@ -6,20 +6,20 @@
 
 using namespace std;
 
-TH1F* h;
+TH1F* hh;
 
 void initInterpolationWeightZB(TString histoName = "Target_50_40_Ref_50_50"){
 
   std::cout<<histoName<<std::endl;
 
-  TFile* f = new TFile("/afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/HISTOShapesZpB_READ.root");
+  TFile* ff = new TFile("/afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/HISTOShapesZpB_READ.root");
 
-  h = (TH1F*) f -> Get(histoName);
+  hh = (TH1F*) ff -> Get(histoName);
 
 }
 
 float interpolationWeightZB(float higgsPt){
 
-  return h->GetBinContent(h->FindBin(higgsPt));
+  return hh->GetBinContent(hh->FindBin(higgsPt));
 
 }

@@ -36,11 +36,6 @@ structure['top'] = {
                   'isData'   : 0 
                   }
 
-structure['ttsemileptonic'] = {   
-                  'isSignal' : 0,
-                  'isData'   : 0 
-                  }
-
 
 structure['WW']  = {
                   'isSignal' : 0,
@@ -83,6 +78,18 @@ structure['VZ']  = {
                   }
 
 structure['WZ']  = { 
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
+
+
+structure['WZgS_L']  = { 
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
+
+
+structure['WZgS_H']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
@@ -144,8 +151,31 @@ structure['H_hww'] = {
                   'isData'   : 0    
                   }
 
-# data
+structure['bbH_hww'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0    
+                  }
 
+# Signals
+ZpMasses={"1200"}
+A0Masses={"300"}
+
+for mZp in ZpMasses:
+    for mA0 in A0Masses :
+        structure['monoH_' + mZp + '_' + mA0] = {
+            'isSignal' : 1,
+            'isData'   : 0    
+            }
+            
+ZBmasses={"500_1_"}
+
+for mZB in ZBmasses:
+    structure['monoH_ZB_'+mZB] = {
+        'isSignal' : 1,
+        'isData'   : 0
+        }
+
+# data
 
 structure['DATA']  = { 
                   'isSignal' : 0,
