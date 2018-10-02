@@ -2,8 +2,8 @@
 #workdir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/2015/combine2015_WWewk
 #datacardDir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/2015/datacards_WWewk
 
-workdir=/afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/combined_datacards_2016
-datacardDir=/afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/datacards_OF
+workdir=/afs/cern.ch/user/l/lenzip/work/ww2017/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/combined_datacards_2016
+datacardDir=/afs/cern.ch/user/l/lenzip/work/ww2017/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/datacards_OF
 
 variable0j=mTi
 variable1j=mTi
@@ -23,7 +23,7 @@ cd $workdir
 #cd /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Combine/CMSSW_7_4_7/src/
 
 #MC stat
-cd /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/combine_V2/CMSSW_7_4_7/src/
+cd ~/work/Combine_autoMC/CMSSW_8_1_0/ 
 eval `scramv1 runtime -sh`
 cd -
 
@@ -40,52 +40,52 @@ cd -
 
 
 #all
-combineCards.py   of0j=${datacardDir}/hwwhm_13TeV_of_0j/${variable0j}/datacard.txt \
-                  of1j=${datacardDir}/hwwhm_13TeV_of_1j/${variable1j}/datacard.txt \
+combineCards.py   of0j=${datacardDir}/hwwhm_13TeV_of0j/${variable0j}/datacard.txt \
+                  of1j=${datacardDir}/hwwhm_13TeV_of1j/${variable1j}/datacard.txt \
                   of2j=${datacardDir}/hwwhm_13TeV_of2j/${variable2j}/datacard.txt \
-                  ofVBF=${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.txt \
+                  ofVBF=${datacardDir}/hwwhm_13TeV_ofVBF/${variableVBF}/datacard.txt \
                   of0jTop=${datacardDir}/hww2l2v_13TeV_top_of0j/events/datacard.txt \
                   of1jTop=${datacardDir}/hww2l2v_13TeV_top_of1j/events/datacard.txt \
                   of2jTop=${datacardDir}/hww2l2v_13TeV_top_of2j/events/datacard.txt \
-                  ofVBFTop=${datacardDir}/hww2l2v_13TeV_top_VBF/events/datacard.txt \
-                  of0jDYtt=${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.txt \
-                  of1jDYtt=${datacardDir}/hww2l2v_13TeV_dytt_of1j/events/datacard.txt \
-                  of2jDYtt=${datacardDir}/hww2l2v_13TeV_dytt_of2j/events/datacard.txt \
-                  ofVBFDYtt=${datacardDir}/hww2l2v_13TeV_dytt_of2j_vbf/events/datacard.txt \
-                  >   MORIOND2017.txt
+                  ofVBFTop=${datacardDir}/hww2l2v_13TeV_top_ofVBF/events/datacard.txt \
+                  of0jDYtt=${datacardDir}/hww2l2v_13TeV_dy_of0j/events/datacard.txt \
+                  of1jDYtt=${datacardDir}/hww2l2v_13TeV_dy_of1j/events/datacard.txt \
+                  of2jDYtt=${datacardDir}/hww2l2v_13TeV_dy_of2j/events/datacard.txt \
+                  ofVBFDYtt=${datacardDir}/hww2l2v_13TeV_dy_ofVBF/events/datacard.txt \
+                  >   MORIOND2017.OF.txt
 
 #0j
-combineCards.py   of0j=${datacardDir}/hwwhm_13TeV_of_0j/${variable0j}/datacard.txt \
+combineCards.py   of0j=${datacardDir}/hwwhm_13TeV_of0j/${variable0j}/datacard.txt \
                   of0jTop=${datacardDir}/hww2l2v_13TeV_top_of0j/events/datacard.txt \
-                  of0jDYtt=${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.txt \
+                  of0jDYtt=${datacardDir}/hww2l2v_13TeV_dy_of0j/events/datacard.txt \
                   >   MORIOND2017.0jet.txt
 
 #1j
-combineCards.py   of1j=${datacardDir}/hwwhm_13TeV_of_1j/${variable1j}/datacard.txt \
+combineCards.py   of1j=${datacardDir}/hwwhm_13TeV_of1j/${variable1j}/datacard.txt \
                   of1jTop=${datacardDir}/hww2l2v_13TeV_top_of1j/events/datacard.txt \
-                  of1jDYtt=${datacardDir}/hww2l2v_13TeV_dytt_of1j/events/datacard.txt \
+                  of1jDYtt=${datacardDir}/hww2l2v_13TeV_dy_of1j/events/datacard.txt \
                   >   MORIOND2017.1jet.txt
 
 #01j
-combineCards.py   of1j=${datacardDir}/hwwhm_13TeV_of_1j/${variable1j}/datacard.txt \
-                  of0j=${datacardDir}/hwwhm_13TeV_of_0j/${variable0j}/datacard.txt \
+combineCards.py   of1j=${datacardDir}/hwwhm_13TeV_of1j/${variable1j}/datacard.txt \
+                  of0j=${datacardDir}/hwwhm_13TeV_of0j/${variable0j}/datacard.txt \
                   of0jTop=${datacardDir}/hww2l2v_13TeV_top_of0j/events/datacard.txt \
                   of1jTop=${datacardDir}/hww2l2v_13TeV_top_of1j/events/datacard.txt \
-                  of0jDYtt=${datacardDir}/hww2l2v_13TeV_dytt_of0j/events/datacard.txt \
-                  of1jDYtt=${datacardDir}/hww2l2v_13TeV_dytt_of1j/events/datacard.txt \
+                  of0jDYtt=${datacardDir}/hww2l2v_13TeV_dy_of0j/events/datacard.txt \
+                  of1jDYtt=${datacardDir}/hww2l2v_13TeV_dy_of1j/events/datacard.txt \
                   >   MORIOND2017.01jet.txt
 
 #2j
 combineCards.py   of2j=${datacardDir}/hwwhm_13TeV_of2j/${variable2j}/datacard.txt \
                   of2jTop=${datacardDir}/hww2l2v_13TeV_top_of2j/events/datacard.txt \
-                  of2jDYtt=${datacardDir}/hww2l2v_13TeV_dytt_of2j/events/datacard.txt \
+                  of2jDYtt=${datacardDir}/hww2l2v_13TeV_dy_of2j/events/datacard.txt \
                   >   MORIOND2017.2jet.txt
 
 
 #VBF
-combineCards.py   ofVBF=${datacardDir}/hwwhm_13TeV_of_VBF/${variableVBF}/datacard.txt \
-                  ofVBFTop=${datacardDir}/hww2l2v_13TeV_top_VBF/events/datacard.txt \
-                  ofVBFDYtt=${datacardDir}/hww2l2v_13TeV_dytt_of2j_vbf/events/datacard.txt \
+combineCards.py   ofVBF=${datacardDir}/hwwhm_13TeV_ofVBF/${variableVBF}/datacard.txt \
+                  ofVBFTop=${datacardDir}/hww2l2v_13TeV_top_ofVBF/events/datacard.txt \
+                  ofVBFDYtt=${datacardDir}/hww2l2v_13TeV_dy_ofVBF/events/datacard.txt \
                   >   MORIOND2017.VBF.txt
 
 

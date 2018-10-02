@@ -464,7 +464,7 @@ samples['H_htt']    = {   'name' :   getSampleFiles(directory,'GluGluHToTauTau_M
                       }
  
  
- 
+
  
  
 ##########################################
@@ -497,7 +497,7 @@ for m in masses:
  
     #Split sample in according to the name: 200<m<300 ...ToWWTo2L2Nu and 300<m<3000 name with ...ToWWTo2L2Nu_JHUGen698_
     print m
-    my_list = ['200','210','230' ,'250', '270']
+    my_list = ['130', '140', '150', '160', '170', '180', '190', '200','210','230' ,'250', '270']
     if m  in my_list:
      
      print "if300=", m
@@ -663,3 +663,5 @@ for Run in DataRun :
     for iFile in FileTarget:
       samples['DATA']['name'].append(iFile)
       samples['DATA']['weights'].append(DataTrig[DataSet]) 
+
+
