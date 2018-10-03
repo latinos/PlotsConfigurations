@@ -41,10 +41,10 @@ samples['ttbar'] = {    'name'   :   getSampleFiles(directoryMC,'TTTo2L2Nu') ,
                         'FilesPerJob' : 2 ,
                         }
 
-samples['ttsemileptonic'] = {    'name'   :   getSampleFiles(directoryMC,'TTToSemileptonic') ,
-                                 'weight' : XSWeight+'*'+PUWeight,
-                                 'FilesPerJob' : 2 ,
-                                 }
+#samples['ttsemileptonic'] = {    'name'   :   getSampleFiles(directoryMC,'TTToSemileptonic') ,
+#                                 'weight' : XSWeight+'*'+PUWeight,
+#                                 'FilesPerJob' : 2 ,
+#                                 }
 
 samples['singletop'] = {    'name'   :   getSampleFiles(directoryMC,'ST_tW_top') + getSampleFiles(directoryMC, 'ST_tW_antitop') ,
                             'weight' : XSWeight+'*'+PUWeight,
