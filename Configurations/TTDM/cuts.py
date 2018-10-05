@@ -6,10 +6,13 @@
 #supercut = 'Lepton_pt[0] > 25. && Lepton_pt[1] > 20. \
 #            && (Lepton_pdgId[0] * Lepton_pdgId[1]) < 0'
 
-supercut = '1'
+supercut = 'nLepton >= 2'
 
-cuts['ttbar'] = '1'
-#cuts['ttbar'] = 'njet > 1 && mll > 20. && (fabs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 143) || (fabs(mll - 91.2) > 15)'
+cuts['all'] = '1'
+
+cuts['leptons'] = 'Lepton_pt[0] > 25. && Lepton_pt[1] > 20. && (Lepton_pdgId[0] * Lepton_pdgId[1]) < 0'
+
+cuts['ttbar'] = 'Lepton_pt[0] > 25. && Lepton_pt[1] > 20. && (Lepton_pdgId[0] * Lepton_pdgId[1]) < 0 && njet > 1 && mll > 20. && (fabs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 143) || (fabs(mll - 91.2) > 15)'
 
 # Missing the nbjet > 0, pt3 < 10 
 

@@ -30,21 +30,16 @@ PUWeight      = 'puWeight'
 #############  BACKGROUNDS  ###############
 ###########################################
 
-samples['DY'] = {    'name'   :   getSampleFiles(directoryMC,'DYJetsToLL_M-50'),
-                     'weight' : XSWeight+'*'+PUWeight,
-                     'FilesPerJob' : 2 ,
-                     }
-
 
 samples['ttbar'] = {    'name'   :   getSampleFiles(directoryMC,'TTTo2L2Nu') ,
                         'weight' : XSWeight+'*'+PUWeight,
                         'FilesPerJob' : 2 ,
                         }
 
-#samples['ttsemileptonic'] = {    'name'   :   getSampleFiles(directoryMC,'TTToSemileptonic') ,
-#                                 'weight' : XSWeight+'*'+PUWeight,
-#                                 'FilesPerJob' : 2 ,
-#                                 }
+samples['ttsemileptonic'] = {    'name'   :   getSampleFiles(directoryMC,'TTToSemileptonic') ,
+                                 'weight' : XSWeight+'*'+PUWeight,
+                                 'FilesPerJob' : 2 ,
+                                 }
 
 samples['singletop'] = {    'name'   :   getSampleFiles(directoryMC,'ST_tW_top') + getSampleFiles(directoryMC, 'ST_tW_antitop') ,
                             'weight' : XSWeight+'*'+PUWeight,
@@ -52,10 +47,35 @@ samples['singletop'] = {    'name'   :   getSampleFiles(directoryMC,'ST_tW_top')
                             }
 
 
+samples['DY'] = {    'name'   :   getSampleFiles(directoryMC,'DYJetsToLL_M-50') + getSampleFiles(directoryMC, 'DYJetsToLL_M-5to50-LO'),
+                     'weight' : XSWeight+'*'+PUWeight,
+                     'FilesPerJob' : 2 ,
+                     }
+
 samples['WJets'] = {    'name'   :   getSampleFiles(directoryMC,'WJetsToLNu-LO') ,
                         'weight' : XSWeight+'*'+PUWeight,
                         'FilesPerJob' : 2 ,
                         }
+
+samples['WW'] = {    'name'   :   getSampleFiles(directoryMC,'WW-LO') ,
+                     'weight' : XSWeight+'*'+PUWeight,
+                     'FilesPerJob' : 2 ,
+                     }
+
+samples['WZ'] = {    'name'   : getSampleFiles(directoryMC,'WZ') ,
+                     'weight' : XSWeight+'*'+PUWeight,
+                     'FilesPerJob' : 2 ,
+                     }
+
+samples['ZZ'] = {    'name'   : getSampleFiles(directoryMC,'ZZ') ,
+                     'weight' : XSWeight+'*'+PUWeight,
+                     'FilesPerJob' : 2 ,
+                     }
+
+samples['VVV'] = {    'name'   : getSampleFiles(directoryMC,'WWW') + getSampleFiles(directoryMC,'WWZ') + getSampleFiles(directoryMC,'WZZ') + getSampleFiles(directoryMC,'ZZZ'),
+                      'weight' : XSWeight+'*'+PUWeight,
+                      'FilesPerJob' : 2 ,
+                      }
 
 ################################################
 ############ DATA DECLARATION ##################
@@ -80,7 +100,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'weight' : '1' ,
                        'weights' : [ ],
                        'isData': ['all'],                            
-                       'FilesPerJob' : 6 ,
+                       'FilesPerJob' : 2,
                   }
 
 for Run in DataRun :
