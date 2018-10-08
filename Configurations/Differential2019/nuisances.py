@@ -166,7 +166,7 @@ nuisances['btagbc']  = {
                    'qqH_htt'             : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'ZH_htt'              : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'WH_htt'              : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                }
+                },
 }
 
 nuisances['btagudsg']  = {
@@ -211,7 +211,7 @@ nuisances['btagudsg']  = {
                    'qqH_htt'             : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'ZH_htt'              : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'WH_htt'              : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                }
+                },
 }
 
 ##### Trigger Efficiency
@@ -355,10 +355,10 @@ nuisances['electronpt']  = {
                    'bbH_hww'             : ['1', '1'],
                    'ttH_hww'             : ['1', '1'],
                    'H_htt'               : ['1', '1'],
-                   'ggH_htt'             : ['1', '1'] ,
-                   'qqH_htt'             : ['1', '1'] ,
-                   'ZH_htt'              : ['1', '1'] ,
-                   'WH_htt'              : ['1', '1'] ,
+                   'ggH_htt'             : ['1', '1'],
+                   'qqH_htt'             : ['1', '1'],
+                   'ZH_htt'              : ['1', '1'],
+                   'WH_htt'              : ['1', '1'],
                  },
                 'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepElepTup'+skim,
                 'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepElepTdo'+skim,
@@ -409,7 +409,7 @@ nuisances['elePtCor']  = {
                    'qqH_htt'             : elePtCor_Syst ,
                    'ZH_htt'              : elePtCor_Syst ,
                    'WH_htt'              : elePtCor_Syst ,
-                }
+                },
 }
 
 eleEtaCor_Syst = [ 'electron_etaW_'+Nlep+'l_Up / electron_etaW_'+Nlep+'l', 'electron_etaW_'+Nlep+'l_Down / electron_etaW_'+Nlep+'l']
@@ -457,7 +457,7 @@ nuisances['eleEtaCor']  = {
                    'qqH_htt'             : eleEtaCor_Syst ,
                    'ZH_htt'              : eleEtaCor_Syst ,
                    'WH_htt'              : eleEtaCor_Syst ,
-                }
+                },
 }
 
 
@@ -550,10 +550,10 @@ nuisances['muonpt']  = {
                    'bbH_hww'             : ['1', '1'],
                    'ttH_hww'             : ['1', '1'],
                    'H_htt'               : ['1', '1'],
-                   'ggH_htt'             : ['1', '1'] ,
-                   'qqH_htt'             : ['1', '1'] ,
-                   'ZH_htt'              : ['1', '1'] ,
-                   'WH_htt'              : ['1', '1'] ,
+                   'ggH_htt'             : ['1', '1'],
+                   'qqH_htt'             : ['1', '1'],
+                   'ZH_htt'              : ['1', '1'],
+                   'WH_htt'              : ['1', '1'],
                 },
                 'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepMupTup'+skim,
                 'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepMupTdo'+skim,
@@ -601,10 +601,10 @@ nuisances['jes']  = {
                    'bbH_hww'             : ['1', '1'],
                    'ttH_hww'             : ['1', '1'],
                    'H_htt'               : ['1', '1'],
-                   'ggH_htt'             : ['1', '1'] ,
-                   'qqH_htt'             : ['1', '1'] ,
-                   'ZH_htt'              : ['1', '1'] ,
-                   'WH_htt'              : ['1', '1'] ,
+                   'ggH_htt'             : ['1', '1'],
+                   'qqH_htt'             : ['1', '1'],
+                   'ZH_htt'              : ['1', '1'],
+                   'WH_htt'              : ['1', '1'],
                 },
                 'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__JESup'+skim,
                 'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__JESdo'+skim,
@@ -651,10 +651,10 @@ nuisances['met']  = {
                    'bbH_hww'             : ['1', '1'],
                    'ttH_hww'             : ['1', '1'],
                    'H_htt'               : ['1', '1'],
-                   'ggH_htt'             : ['1', '1'] ,
-                   'qqH_htt'             : ['1', '1'] ,
-                   'ZH_htt'              : ['1', '1'] ,
-                   'WH_htt'              : ['1', '1'] ,
+                   'ggH_htt'             : ['1', '1'],
+                   'qqH_htt'             : ['1', '1'],
+                   'ZH_htt'              : ['1', '1'],
+                   'WH_htt'              : ['1', '1'],
                 },
                 'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__METup'+skim,
                 'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__METdo'+skim,
@@ -734,8 +734,8 @@ nuisances['DYQCDscale']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : ['std_vector_LHE_weight[8]/std_vector_LHE_weight[0]', 'std_vector_LHE_weight[4]/std_vector_LHE_weight[0]'],
-                }
+                   'DY'      : ['std_vector_LHE_weight[8]/std_vector_LHE_weight[0]', 'std_vector_LHE_weight[4]/std_vector_LHE_weight[0]',],
+                },
 }
 
 
@@ -1006,8 +1006,8 @@ nuisances['QCDscale_CRSR_accept_dytt']  = {
                  'hww2l2v_13TeV_dytt_of1j',
                  'hww2l2v_13TeV_dytt_of2j',
                  'hww2l2v_13TeV_dytt_of2j_vbf',
-                 'hww2l2v_13TeV_dytt_of2j_vh2j'
-                ]               
+                 'hww2l2v_13TeV_dytt_of2j_vh2j',
+                ],               
               }
 
 nuisances['QCDscale_CRSR_accept_top']  = {
@@ -1021,8 +1021,8 @@ nuisances['QCDscale_CRSR_accept_top']  = {
                  'hww2l2v_13TeV_top_of1j',
                  'hww2l2v_13TeV_top_of2j',
                  'hww2l2v_13TeV_top_of2j_vbf',
-                 'hww2l2v_13TeV_top_of2j_vh2j'
-                ]               
+                 'hww2l2v_13TeV_top_of2j_vh2j',
+                ],               
               }
 
 
@@ -1031,7 +1031,7 @@ nuisances['QCDscale_VZ']  = {
                'samples'  : {
                    'VZ' : '1.03',
                    },
-               'type'  : 'lnN'
+               'type'  : 'lnN',
               }
 
 
@@ -1272,34 +1272,13 @@ nuisances['WWresum0j']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW',],
                    },
                'cuts'  : [
-                 'hww2l2v_13TeV_of0j',
+                 'hww2l2v_13TeV_0j',
                  'hww2l2v_13TeV_top_of0j',
                  'hww2l2v_13TeV_dytt_of0j',
-#                 
-                 'hww2l2v_13TeV_0j',
-#
-                 'hww2l2v_13TeV_me_0j',
-                 'hww2l2v_13TeV_em_0j',
-#
-                 'hww2l2v_13TeV_me_mp_0j',
-                 'hww2l2v_13TeV_me_pm_0j',
-                 'hww2l2v_13TeV_em_mp_0j',
-                 'hww2l2v_13TeV_em_pm_0j',
-#                
-		 'hww2l2v_13TeV_em_pm_0j_pt2ge20',
-                 'hww2l2v_13TeV_em_mp_0j_pt2ge20',
-                 'hww2l2v_13TeV_me_pm_0j_pt2ge20',
-                 'hww2l2v_13TeV_me_mp_0j_pt2ge20',
-#
-                 'hww2l2v_13TeV_em_pm_0j_pt2lt20',
-                 'hww2l2v_13TeV_em_mp_0j_pt2lt20',
-                 'hww2l2v_13TeV_me_pm_0j_pt2lt20',
-                 'hww2l2v_13TeV_me_mp_0j_pt2lt20',
-#
-                ]               
+                ],               
                 
                 }
 
@@ -1310,34 +1289,13 @@ nuisances['WWresum1j']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW',],
                    },
                'cuts'  : [
-                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_1j',
                  'hww2l2v_13TeV_top_of1j',
                  'hww2l2v_13TeV_dytt_of1j',
-#                 
-                 'hww2l2v_13TeV_1j',
-#
-                 'hww2l2v_13TeV_me_1j',
-                 'hww2l2v_13TeV_em_1j',
-#
-                 'hww2l2v_13TeV_me_mp_1j',
-                 'hww2l2v_13TeV_me_pm_1j',
-                 'hww2l2v_13TeV_em_mp_1j',
-                 'hww2l2v_13TeV_em_pm_1j',
-#               
-                 'hww2l2v_13TeV_em_pm_1j_pt2ge20',
-                 'hww2l2v_13TeV_em_mp_1j_pt2ge20',
-                 'hww2l2v_13TeV_me_pm_1j_pt2ge20',
-                 'hww2l2v_13TeV_me_mp_1j_pt2ge20',
-#
-                 'hww2l2v_13TeV_em_pm_1j_pt2lt20',
-                 'hww2l2v_13TeV_em_mp_1j_pt2lt20',
-                 'hww2l2v_13TeV_me_pm_1j_pt2lt20',
-                 'hww2l2v_13TeV_me_mp_1j_pt2lt20',
-#
-                ]               
+                ],               
                 }
 
 nuisances['WWqscale0j']  = {
@@ -1346,34 +1304,13 @@ nuisances['WWqscale0j']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+                   'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW',],
                    },
                'cuts'  : [
-                 'hww2l2v_13TeV_of0j',
+                 'hww2l2v_13TeV_0j',
                  'hww2l2v_13TeV_top_of0j',
                  'hww2l2v_13TeV_dytt_of0j',
-#                 
-                 'hww2l2v_13TeV_0j',
-#
-                 'hww2l2v_13TeV_me_0j',
-                 'hww2l2v_13TeV_em_0j',
-#
-                 'hww2l2v_13TeV_me_mp_0j',
-                 'hww2l2v_13TeV_me_pm_0j',
-                 'hww2l2v_13TeV_em_mp_0j',
-                 'hww2l2v_13TeV_em_pm_0j',
-#               
-                 'hww2l2v_13TeV_em_pm_0j_pt2ge20',
-                 'hww2l2v_13TeV_em_mp_0j_pt2ge20',
-                 'hww2l2v_13TeV_me_pm_0j_pt2ge20',
-                 'hww2l2v_13TeV_me_mp_0j_pt2ge20',
-#                
-                 'hww2l2v_13TeV_em_pm_0j_pt2lt20',
-                 'hww2l2v_13TeV_em_mp_0j_pt2lt20',
-                 'hww2l2v_13TeV_me_pm_0j_pt2lt20',
-                 'hww2l2v_13TeV_me_mp_0j_pt2lt20',
-#  
-                ] 
+                ], 
                 }
 
 
@@ -1383,34 +1320,13 @@ nuisances['WWqscale1j']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+                   'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW',],
                    },
                'cuts'  : [
-                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_1j',
                  'hww2l2v_13TeV_top_of1j',
                  'hww2l2v_13TeV_dytt_of1j',
-#                 
-                 'hww2l2v_13TeV_1j',
-#
-                 'hww2l2v_13TeV_me_1j',
-                 'hww2l2v_13TeV_em_1j',
-#
-                 'hww2l2v_13TeV_me_mp_1j',
-                 'hww2l2v_13TeV_me_pm_1j',
-                 'hww2l2v_13TeV_em_mp_1j',
-                 'hww2l2v_13TeV_em_pm_1j',
-#
-                 'hww2l2v_13TeV_em_pm_1j_pt2ge20',
-                 'hww2l2v_13TeV_em_mp_1j_pt2ge20',
-                 'hww2l2v_13TeV_me_pm_1j_pt2ge20',
-                 'hww2l2v_13TeV_me_mp_1j_pt2ge20',
-#
-                 'hww2l2v_13TeV_em_pm_1j_pt2lt20',
-                 'hww2l2v_13TeV_em_mp_1j_pt2lt20',
-                 'hww2l2v_13TeV_me_pm_1j_pt2lt20',
-                 'hww2l2v_13TeV_me_mp_1j_pt2lt20',
-#                 
-                ] 
+                ], 
                 }
 
 nuisances['WgStarScale']  = {
@@ -1438,31 +1354,10 @@ nuisances['DYttnorm0j']  = {
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                 'hww2l2v_13TeV_of0j',
+                 'hww2l2v_13TeV_0j',
                  'hww2l2v_13TeV_top_of0j',
                  'hww2l2v_13TeV_dytt_of0j',
-#                 
-                 'hww2l2v_13TeV_0j',
-#
-                 'hww2l2v_13TeV_me_0j',
-                 'hww2l2v_13TeV_em_0j',
-#
-                 'hww2l2v_13TeV_me_mp_0j',
-                 'hww2l2v_13TeV_me_pm_0j',
-                 'hww2l2v_13TeV_em_mp_0j',
-                 'hww2l2v_13TeV_em_pm_0j',
-#
-                 'hww2l2v_13TeV_em_pm_0j_pt2ge20',
-                 'hww2l2v_13TeV_em_mp_0j_pt2ge20',
-                 'hww2l2v_13TeV_me_pm_0j_pt2ge20',
-                 'hww2l2v_13TeV_me_mp_0j_pt2ge20',
-#                
-                 'hww2l2v_13TeV_em_pm_0j_pt2lt20',
-                 'hww2l2v_13TeV_em_mp_0j_pt2lt20',
-                 'hww2l2v_13TeV_me_pm_0j_pt2lt20',
-                 'hww2l2v_13TeV_me_mp_0j_pt2lt20',
-#
-                ]
+                ],
               }
 
 nuisances['DYttnorm1j']  = {
@@ -1472,31 +1367,10 @@ nuisances['DYttnorm1j']  = {
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_1j',
                  'hww2l2v_13TeV_top_of1j',
                  'hww2l2v_13TeV_dytt_of1j',
-#                 
-                 'hww2l2v_13TeV_1j',
-#
-                 'hww2l2v_13TeV_me_1j',
-                 'hww2l2v_13TeV_em_1j',
-#
-                 'hww2l2v_13TeV_me_mp_1j',
-                 'hww2l2v_13TeV_me_pm_1j',
-                 'hww2l2v_13TeV_em_mp_1j',
-                 'hww2l2v_13TeV_em_pm_1j',
-#
-                 'hww2l2v_13TeV_em_pm_1j_pt2ge20',
-                 'hww2l2v_13TeV_em_mp_1j_pt2ge20',
-                 'hww2l2v_13TeV_me_pm_1j_pt2ge20',
-                 'hww2l2v_13TeV_me_mp_1j_pt2ge20',
-#
-                 'hww2l2v_13TeV_em_pm_1j_pt2lt20',
-                 'hww2l2v_13TeV_em_mp_1j_pt2lt20',
-                 'hww2l2v_13TeV_me_pm_1j_pt2lt20',
-                 'hww2l2v_13TeV_me_mp_1j_pt2lt20',
-#                 
-                ]
+                ],
               }
 
 
@@ -1509,31 +1383,10 @@ nuisances['WWnorm0j']  = {
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                 'hww2l2v_13TeV_of0j',
+                 'hww2l2v_13TeV_0j',
                  'hww2l2v_13TeV_top_of0j',
                  'hww2l2v_13TeV_dytt_of0j',              
-#                 
-                 'hww2l2v_13TeV_0j',
-#
-                 'hww2l2v_13TeV_me_0j',
-                 'hww2l2v_13TeV_em_0j',
-#
-                 'hww2l2v_13TeV_me_mp_0j',
-                 'hww2l2v_13TeV_me_pm_0j',
-                 'hww2l2v_13TeV_em_mp_0j',
-                 'hww2l2v_13TeV_em_pm_0j',
-#                
-                 'hww2l2v_13TeV_em_pm_0j_pt2ge20',
-                 'hww2l2v_13TeV_em_mp_0j_pt2ge20',
-                 'hww2l2v_13TeV_me_pm_0j_pt2ge20',
-                 'hww2l2v_13TeV_me_mp_0j_pt2ge20',
-#                
-                 'hww2l2v_13TeV_em_pm_0j_pt2lt20',
-                 'hww2l2v_13TeV_em_mp_0j_pt2lt20',
-                 'hww2l2v_13TeV_me_pm_0j_pt2lt20',
-                 'hww2l2v_13TeV_me_mp_0j_pt2lt20',
-#
-                ]
+                ],
               }
 
 nuisances['WWnorm1j']  = {
@@ -1543,31 +1396,10 @@ nuisances['WWnorm1j']  = {
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_1j',
                  'hww2l2v_13TeV_top_of1j',
                  'hww2l2v_13TeV_dytt_of1j',              
-#                 
-                 'hww2l2v_13TeV_1j',
-#
-                 'hww2l2v_13TeV_me_1j',
-                 'hww2l2v_13TeV_em_1j',
-#
-                 'hww2l2v_13TeV_me_mp_1j',
-                 'hww2l2v_13TeV_me_pm_1j',
-                 'hww2l2v_13TeV_em_mp_1j',
-                 'hww2l2v_13TeV_em_pm_1j',
-#               
-                 'hww2l2v_13TeV_em_pm_1j_pt2ge20',
-                 'hww2l2v_13TeV_em_mp_1j_pt2ge20',
-                 'hww2l2v_13TeV_me_pm_1j_pt2ge20',
-                 'hww2l2v_13TeV_me_mp_1j_pt2ge20',
-#
-                 'hww2l2v_13TeV_em_pm_1j_pt2lt20',
-                 'hww2l2v_13TeV_em_mp_1j_pt2lt20',
-                 'hww2l2v_13TeV_me_pm_1j_pt2lt20',
-                 'hww2l2v_13TeV_me_mp_1j_pt2lt20',
-#  
-                ]
+                ],
               }
 
 
@@ -1578,31 +1410,10 @@ nuisances['Topnorm0j']  = {
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                 'hww2l2v_13TeV_of0j',
+                 'hww2l2v_13TeV_0j',
                  'hww2l2v_13TeV_top_of0j',
                  'hww2l2v_13TeV_dytt_of0j',              
-#                 
-                 'hww2l2v_13TeV_0j',
-#
-                 'hww2l2v_13TeV_me_0j',
-                 'hww2l2v_13TeV_em_0j',
-#
-                 'hww2l2v_13TeV_me_mp_0j',
-                 'hww2l2v_13TeV_me_pm_0j',
-                 'hww2l2v_13TeV_em_mp_0j',
-                 'hww2l2v_13TeV_em_pm_0j',
-#
-                 'hww2l2v_13TeV_em_pm_0j_pt2ge20',
-                 'hww2l2v_13TeV_em_mp_0j_pt2ge20',
-                 'hww2l2v_13TeV_me_pm_0j_pt2ge20',
-                 'hww2l2v_13TeV_me_mp_0j_pt2ge20',
-#                
-                 'hww2l2v_13TeV_em_pm_0j_pt2lt20',
-                 'hww2l2v_13TeV_em_mp_0j_pt2lt20',
-                 'hww2l2v_13TeV_me_pm_0j_pt2lt20',
-                 'hww2l2v_13TeV_me_mp_0j_pt2lt20',
-#                
-                ]
+                ],
               }
 
 nuisances['Topnorm1j']  = {
@@ -1612,31 +1423,10 @@ nuisances['Topnorm1j']  = {
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_1j',
                  'hww2l2v_13TeV_top_of1j',
                  'hww2l2v_13TeV_dytt_of1j',              
-#                 
-                 'hww2l2v_13TeV_1j',
-#
-                 'hww2l2v_13TeV_me_1j',
-                 'hww2l2v_13TeV_em_1j',
-#
-                 'hww2l2v_13TeV_me_mp_1j',
-                 'hww2l2v_13TeV_me_pm_1j',
-                 'hww2l2v_13TeV_em_mp_1j',
-                 'hww2l2v_13TeV_em_pm_1j',
-#   
-                 'hww2l2v_13TeV_em_pm_1j_pt2ge20',
-                 'hww2l2v_13TeV_em_mp_1j_pt2ge20',
-                 'hww2l2v_13TeV_me_pm_1j_pt2ge20',
-                 'hww2l2v_13TeV_me_mp_1j_pt2ge20',
-#
-                 'hww2l2v_13TeV_em_pm_1j_pt2lt20',
-                 'hww2l2v_13TeV_em_mp_1j_pt2lt20',
-                 'hww2l2v_13TeV_me_pm_1j_pt2lt20',
-                 'hww2l2v_13TeV_me_mp_1j_pt2lt20',
-#              
-                ]
+                ],
               }
 
 
@@ -1647,8 +1437,8 @@ nuisances['singleTopToTTbar']  = {
                 'type'  : 'shape',
                 'samples'  : { 
                    'top'     : ['((dataset==15 || dataset==16) * 1.0816 + (dataset==17 || dataset==18 || dataset==19))',
-                                '((dataset==15 || dataset==16) * 0.9184 + (dataset==17 || dataset==18 || dataset==19))'],
-                }
+                                '((dataset==15 || dataset==16) * 0.9184 + (dataset==17 || dataset==18 || dataset==19))',],
+                },
                 # tt = 17/18/19 depending on the sample/generator
                 # tW = 15/16
            }
@@ -1660,8 +1450,8 @@ nuisances['TopPtRew']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples' : {
-                     'top'  : ["1.","((1./"+Top_pTrw+" - 1)*(dataset==19) + 1)"]
-                }
+                     'top'  : ["1.","((1./"+Top_pTrw+" - 1)*(dataset==19) + 1)",],
+                },
          }
 
 
@@ -1672,7 +1462,7 @@ nuisances['stat']  = {
               'includeSignal'  : '1',
               #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
               #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
-              'samples' : {}
+              'samples' : {},
              }
 
 #### Use the following if you want to apply the MC stat nuisances accoriding to the standard approach
