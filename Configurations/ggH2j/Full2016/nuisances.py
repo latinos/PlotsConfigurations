@@ -87,7 +87,7 @@ nuisances['fake_syst_me']  = {
                }
 
 nuisances['fake_ele']  = {
-                'name'  : 'fake_ele_hww',
+                'name'  : 'hww_fake_ele',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -96,7 +96,7 @@ nuisances['fake_ele']  = {
 }
 
 nuisances['fake_ele_stat']  = {
-                'name'  : 'fake_ele_stat_hww',
+                'name'  : 'hww_fake_ele_stat',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -105,7 +105,7 @@ nuisances['fake_ele_stat']  = {
 }
 
 nuisances['fake_mu']  = {
-                'name'  : 'fake_mu_hww',
+                'name'  : 'hww_fake_mu',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -115,7 +115,7 @@ nuisances['fake_mu']  = {
 
 
 nuisances['fake_mu_stat']  = {
-                'name'  : 'fake_mu_stat_hww',
+                'name'  : 'hww_fake_mu_stat',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -189,8 +189,7 @@ nuisances['btagudsg']  = {
 
 if   Nlep == '2' : trig_syst = ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)']
 elif Nlep == '3' : trig_syst = ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)']
-# !!!!! We don't have the trigger formula implemented for 4l !!!! -> Use 3l but not correct
-elif Nlep == '4' : trig_syst = ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)']
+elif Nlep == '4' : trig_syst = ['(effTrigW4l_Up)/(effTrigW4l)', '(effTrigW4l_Down)/(effTrigW4l)']
 
 
 nuisances['trigg']  = {
@@ -557,7 +556,6 @@ nuisances['ggH_mu']  = {
                 'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_mu', '1+(1.-ggH_mu)'],
                    'ggH_htt'   : ['ggH_mu', '1+(1.-ggH_mu)'],
@@ -570,7 +568,6 @@ nuisances['ggH_res']  = {
                 'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_res', '1+(1.-ggH_res)'],
                    'ggH_htt'   : ['ggH_res', '1+(1.-ggH_res)'],
@@ -582,7 +579,6 @@ nuisances['ggH_mig01']  = {
                 'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_mig01', '1+(1.-ggH_mig01)'],
                    'ggH_htt'   : ['ggH_mig01', '1+(1.-ggH_mig01)'],
@@ -594,7 +590,6 @@ nuisances['ggH_mig12']  = {
                 'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_mig12', '1+(1.-ggH_mig12)'],
                    'ggH_htt'   : ['ggH_mig12', '1+(1.-ggH_mig12)'],
@@ -606,7 +601,6 @@ nuisances['ggH_pT60']  = {
                 'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_pT60', '1+(1.-ggH_pT60)'],
                    'ggH_htt'   : ['ggH_pT60', '1+(1.-ggH_pT60)'],
@@ -618,7 +612,6 @@ nuisances['ggH_pT120']  = {
                 'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_pT120', '1+(1.-ggH_pT120)'],
                    'ggH_htt'   : ['ggH_pT120', '1+(1.-ggH_pT120)'],
@@ -630,7 +623,6 @@ nuisances['ggH_VBF2j']  = {
                 'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_VBF2j', '1+(1.-ggH_VBF2j)'],
                    'ggH_htt'   : ['ggH_VBF2j', '1+(1.-ggH_VBF2j)'],
@@ -642,7 +634,6 @@ nuisances['ggH_VBF3j']  = {
                 'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_VBF3j', '1+(1.-ggH_VBF3j)'],
                    'ggH_htt'   : ['ggH_VBF3j', '1+(1.-ggH_VBF3j)'],
@@ -654,7 +645,6 @@ nuisances['ggH_qmtop']  = {
                 'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'skipCMS'  : 1,
                 'samples'  : {
                    'ggH_hww'   : ['ggH_qmtop', '1+(1.-ggH_qmtop)'],
                    'ggH_htt'   : ['ggH_qmtop', '1+(1.-ggH_qmtop)'],
@@ -695,7 +685,7 @@ nuisances['QCDscale_CRSR_accept_top']  = {
 nuisances['QCDscale_VZ']  = {
                'name'  : 'QCDscale_VZ',
                'samples'  : {
-                   'VW' : '1.03',
+                   'VZ' : '1.03',
                    },
                'type'  : 'lnN'
               }
@@ -914,7 +904,7 @@ nuisances['WWqscale2j']  = {
                 }
 
 nuisances['WgStarScale']  = {
-               'name'  : 'CMS_WgStarScale',
+               'name'  : 'CMS_hww_WgStarScale',
                'type'  : 'lnN',
                'samples'  : {
                    'WgS'    : '1.25',  # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5

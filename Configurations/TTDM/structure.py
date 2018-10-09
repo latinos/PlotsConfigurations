@@ -36,14 +36,19 @@ structure['top'] = {
                   'isData'   : 0 
                   }
 
+structure['ttsemileptonic'] = {   
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
+
 
 structure['WW']  = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0    
                   }
 
 structure['ggWW']  = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0    
                   }
 
@@ -58,6 +63,11 @@ structure['Wg']  = {
                   }
 
 structure['Vg']  = { 
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
+
+structure['VgS'] = { 
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
@@ -133,8 +143,6 @@ structure['H_hww'] = {
                   'isSignal' : 0,
                   'isData'   : 0    
                   }
-
-
 
 # data
 

@@ -21,7 +21,7 @@ lumi = 35.9
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotHWWhighMass_OF'
+outputDirPlots = 'plotHWWhighMass_OF_PostFit'
 
 # used by mkDatacards to define output directory for datacards
 outputDirDatacard = 'datacards_OF'

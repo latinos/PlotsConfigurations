@@ -39,7 +39,7 @@ elif  'gridui' in SITE: #PISA
   treeBaseDir = '/gpfs/ddn/srm/cms/store/user/lviliani/Full2016_Apr17/'
 elif 'sdfarm' in SITE : # KISTI T3
   xrootdPath  = 'root://cms-xrdr.sdfarm.kr:1094/'
-  treeBaseDir = '/xrootd/store/user/salee/cmshww/Full2016_Apr17/'
+  treeBaseDir = '/xrootd/store/group/hww/Full2016_Apr17/'
 
 directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC'+skim+'/'
 
@@ -295,7 +295,7 @@ samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu')
                                   + getSampleFiles(directory,'ST_s-channel')   
                              ,
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-                      'FilesPerJob' : 1 ,
+                      'FilesPerJob' : 2 ,
                   }
                   
 addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
@@ -306,9 +306,7 @@ samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu') ,
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*nllW' ,  
                  }
 
-samples['WWewk'] = { 'name': getSampleFiles(directory,'WpWmJJ_EWK_noTop'),
-                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC +'*(lhe_mWp>60)*(lhe_mWp<100)*(lhe_mWm>60)*(lhe_mWm<100)',
-                   }
+
 
 samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'),      
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
@@ -340,7 +338,7 @@ samples['WZgS_L']  = {    'name': getSampleFiles(directory,'WZTo3LNu_mllmin01_ex
 
 samples['WZgS_H']  = {    'name': getSampleFiles(directory,'WZTo3LNu_mllmin01_ext1') ,
                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '* (Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4)*1.14' ,
-                  }
+                  } 
 
 ######### VZ #########
 
@@ -372,12 +370,112 @@ samples['VVV'] = {    'name':   getSampleFiles(directory,'ZZZ')
 #############   SIGNALS  ##################
 ###########################################
 
+#### Cuts for signal splitting
+# ==2 OSOF leptons
+# pt1 > 25
+# pt2 > 10(13) el(mu)
+# mll = sqrt(2*pt1*pt2*(cosh(eta1-eta2)-cos(phi1-phi2))) > 12
+# MET > 20
+# ptll = sqrt(pt1^2+pt2^2+2*pt1*pt2*cos(phi1-phi2)) > 30 
+# mth = sqrt(2*met*(sqrt(pt1^2+pt2^2+2*pt1*pt2*cos(phi1-phi2))-cos(metphi)*(pt1*cos(phi1)+pt2*cos(phi2))-sin(metphi)*(pt1*sin(phi1)+pt2*sin(phi2)))) >= 60 
+# mtw2 = sqrt(2*pt2*met*(1-cos(phi2-metphi))) > 30
+
+fiducial = 'std_vector_dressedLeptonGen_pt[0]>25 && std_vector_dressedLeptonGen_pt[1]>10 \
+            && std_vector_dressedLeptonGen_pid[0] * std_vector_dressedLeptonGen_pid[1] == -11*13 \
+            && (abs(std_vector_dressedLeptonGen_pid[1]) == 13 || std_vector_dressedLeptonGen_pt[1]>13) \
+            && std_vector_dressedLeptonGen_pt[2]<10 \
+            && sqrt(2*std_vector_dressedLeptonGen_pt[0]*std_vector_dressedLeptonGen_pt[1]*(cosh(std_vector_dressedLeptonGen_eta[0]-std_vector_dressedLeptonGen_eta[1])-cos(std_vector_dressedLeptonGen_phi[0]-std_vector_dressedLeptonGen_phi[1])))>12 \
+            && metGenpt>20 \
+            && sqrt(pow(std_vector_dressedLeptonGen_pt[0],2)+pow(std_vector_dressedLeptonGen_pt[1],2)+2*std_vector_dressedLeptonGen_pt[0]*std_vector_dressedLeptonGen_pt[1]*cos(std_vector_dressedLeptonGen_phi[0]-std_vector_dressedLeptonGen_phi[1]))>30 \
+            && sqrt(2*metGenpt*(sqrt(pow(std_vector_dressedLeptonGen_pt[0],2)+pow(std_vector_dressedLeptonGen_pt[1],2)+2*std_vector_dressedLeptonGen_pt[0]*std_vector_dressedLeptonGen_pt[1]*cos(std_vector_dressedLeptonGen_phi[0]-std_vector_dressedLeptonGen_phi[1]))-cos(metGenphi)*(std_vector_dressedLeptonGen_pt[0]*cos(std_vector_dressedLeptonGen_phi[0])+std_vector_dressedLeptonGen_pt[1]*cos(std_vector_dressedLeptonGen_phi[1]))-sin(metGenphi)*(std_vector_dressedLeptonGen_pt[0]*sin(std_vector_dressedLeptonGen_phi[0])+std_vector_dressedLeptonGen_pt[1]*sin(std_vector_dressedLeptonGen_phi[1]))))>=60 \
+            && sqrt(2*std_vector_dressedLeptonGen_pt[1]*metGenpt*(1-cos(std_vector_dressedLeptonGen_phi[1]-metGenphi)))>30'
+
+ptllmetcut1 = 'sqrt(pow(std_vector_dressedLeptonGen_pt[0]*cos(std_vector_dressedLeptonGen_phi[0])+std_vector_dressedLeptonGen_pt[1]*cos(std_vector_dressedLeptonGen_phi[1])+metGenpt*cos(metGenphi),2)+pow(std_vector_dressedLeptonGen_pt[0]*sin(std_vector_dressedLeptonGen_phi[0])+std_vector_dressedLeptonGen_pt[1]*sin(std_vector_dressedLeptonGen_phi[1])+metGenpt*sin(metGenphi),2))<35'
+ptllmetcut2 = 'sqrt(pow(std_vector_dressedLeptonGen_pt[0]*cos(std_vector_dressedLeptonGen_phi[0])+std_vector_dressedLeptonGen_pt[1]*cos(std_vector_dressedLeptonGen_phi[1])+metGenpt*cos(metGenphi),2)+pow(std_vector_dressedLeptonGen_pt[0]*sin(std_vector_dressedLeptonGen_phi[0])+std_vector_dressedLeptonGen_pt[1]*sin(std_vector_dressedLeptonGen_phi[1])+metGenpt*sin(metGenphi),2))>=35 \
+               && sqrt(pow(std_vector_dressedLeptonGen_pt[0]*cos(std_vector_dressedLeptonGen_phi[0])+std_vector_dressedLeptonGen_pt[1]*cos(std_vector_dressedLeptonGen_phi[1])+metGenpt*cos(metGenphi),2)+pow(std_vector_dressedLeptonGen_pt[0]*sin(std_vector_dressedLeptonGen_phi[0])+std_vector_dressedLeptonGen_pt[1]*sin(std_vector_dressedLeptonGen_phi[1])+metGenpt*sin(metGenphi),2))<50'
+ptllmetcut3 = 'sqrt(pow(std_vector_dressedLeptonGen_pt[0]*cos(std_vector_dressedLeptonGen_phi[0])+std_vector_dressedLeptonGen_pt[1]*cos(std_vector_dressedLeptonGen_phi[1])+metGenpt*cos(metGenphi),2)+pow(std_vector_dressedLeptonGen_pt[0]*sin(std_vector_dressedLeptonGen_phi[0])+std_vector_dressedLeptonGen_pt[1]*sin(std_vector_dressedLeptonGen_phi[1])+metGenpt*sin(metGenphi),2))>=50 \
+               && sqrt(pow(std_vector_dressedLeptonGen_pt[0]*cos(std_vector_dressedLeptonGen_phi[0])+std_vector_dressedLeptonGen_pt[1]*cos(std_vector_dressedLeptonGen_phi[1])+metGenpt*cos(metGenphi),2)+pow(std_vector_dressedLeptonGen_pt[0]*sin(std_vector_dressedLeptonGen_phi[0])+std_vector_dressedLeptonGen_pt[1]*sin(std_vector_dressedLeptonGen_phi[1])+metGenpt*sin(metGenphi),2))<65'
+ptllmetcut4 = 'sqrt(pow(std_vector_dressedLeptonGen_pt[0]*cos(std_vector_dressedLeptonGen_phi[0])+std_vector_dressedLeptonGen_pt[1]*cos(std_vector_dressedLeptonGen_phi[1])+metGenpt*cos(metGenphi),2)+pow(std_vector_dressedLeptonGen_pt[0]*sin(std_vector_dressedLeptonGen_phi[0])+std_vector_dressedLeptonGen_pt[1]*sin(std_vector_dressedLeptonGen_phi[1])+metGenpt*sin(metGenphi),2))>=65 \
+               && sqrt(pow(std_vector_dressedLeptonGen_pt[0]*cos(std_vector_dressedLeptonGen_phi[0])+std_vector_dressedLeptonGen_pt[1]*cos(std_vector_dressedLeptonGen_phi[1])+metGenpt*cos(metGenphi),2)+pow(std_vector_dressedLeptonGen_pt[0]*sin(std_vector_dressedLeptonGen_phi[0])+std_vector_dressedLeptonGen_pt[1]*sin(std_vector_dressedLeptonGen_phi[1])+metGenpt*sin(metGenphi),2))<80'
+ptllmetcut5 = 'sqrt(pow(std_vector_dressedLeptonGen_pt[0]*cos(std_vector_dressedLeptonGen_phi[0])+std_vector_dressedLeptonGen_pt[1]*cos(std_vector_dressedLeptonGen_phi[1])+metGenpt*cos(metGenphi),2)+pow(std_vector_dressedLeptonGen_pt[0]*sin(std_vector_dressedLeptonGen_phi[0])+std_vector_dressedLeptonGen_pt[1]*sin(std_vector_dressedLeptonGen_phi[1])+metGenpt*sin(metGenphi),2))>=80'
+
+jetcut1 = 'std_vector_jetGen_pt[0]<30'
+jetcut2 = 'std_vector_jetGen_pt[0]>=30 && std_vector_jetGen_pt[1]<30'
+jetcut3 = 'std_vector_jetGen_pt[0]>=30 && std_vector_jetGen_pt[2]>=30 \
+           && (sqrt(2*std_vector_jetGen_pt[0]*std_vector_jetGen_pt[1]*(cosh(std_vector_jetGen_eta[0]-std_vector_jetGen_eta[1])-cos(std_vector_jetGen_phi[0]-std_vector_jetGen_phi[1])))<65 \
+           || (sqrt(2*std_vector_jetGen_pt[0]*std_vector_jetGen_pt[1]*(cosh(std_vector_jetGen_eta[0]-std_vector_jetGen_eta[1])-cos(std_vector_jetGen_phi[0]-std_vector_jetGen_phi[1])))>105 \
+           &&  sqrt(2*std_vector_jetGen_pt[0]*std_vector_jetGen_pt[1]*(cosh(std_vector_jetGen_eta[0]-std_vector_jetGen_eta[1])-cos(std_vector_jetGen_phi[0]-std_vector_jetGen_phi[1])))<400))'
 
 #### ggH -> WW
 
 samples['ggH_hww']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*weight2MINLO' ,  
                       }
+samples['ggH_hww_0j_ptllmet1']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
+                                     'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*weight2MINLO' ,  
+                                     }
+samples['ggH_hww_0j_ptllmet2']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
+                                     'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*weight2MINLO' ,  
+                                     }
+samples['ggH_hww_0j_ptllmet3']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
+                                     'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*weight2MINLO' ,  
+                                     }
+samples['ggH_hww_0j_ptllmet4']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
+                                     'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*weight2MINLO' ,  
+                                     }
+samples['ggH_hww_0j_ptllmet5']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
+                                     'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*weight2MINLO' ,  
+                                     }
+samples['ggH_hww_1j_ptllmet1']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
+                                     'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*weight2MINLO' ,  
+                                     }
+samples['ggH_hww_1j_ptllmet2']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
+                                     'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*weight2MINLO' ,  
+                                     }
+samples['ggH_hww_1j_ptllmet3']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
+                                     'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*weight2MINLO' ,  
+                                     }
+samples['ggH_hww_1j_ptllmet4']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
+                                     'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*weight2MINLO' ,  
+                                     }
+samples['ggH_hww_1j_ptllmet5']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
+                                     'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*weight2MINLO' ,  
+                                     }
+samples['ggH_hww_2j_ptllmet1']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
+                                     'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*weight2MINLO' ,  
+                                     }
+samples['ggH_hww_2j_ptllmet2']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
+                                     'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*weight2MINLO' ,  
+                                     }
+samples['ggH_hww_2j_ptllmet3']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
+                                     'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*weight2MINLO' ,  
+                                     }
+samples['ggH_hww_2j_ptllmet4']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
+                                     'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*weight2MINLO' ,  
+                                     }
+samples['ggH_hww_2j_ptllmet5']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
+                                     'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*weight2MINLO' ,  
+                                     }
+samples['ggH_hww_nonfid']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
+                                'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*weight2MINLO' ,  
+                                }
+
+addSampleWeight(samples,'ggH_hww_0j_ptllmet1','GluGluHToWWTo2L2NuPowheg_M125','('+fiducial+')&&('+ptllmetcut1+')&&('+jetcut1+')')
+addSampleWeight(samples,'ggH_hww_0j_ptllmet2','GluGluHToWWTo2L2NuPowheg_M125','('+fiducial+')&&('+ptllmetcut2+')&&('+jetcut1+')')
+addSampleWeight(samples,'ggH_hww_0j_ptllmet3','GluGluHToWWTo2L2NuPowheg_M125','('+fiducial+')&&('+ptllmetcut3+')&&('+jetcut1+')')
+addSampleWeight(samples,'ggH_hww_0j_ptllmet4','GluGluHToWWTo2L2NuPowheg_M125','('+fiducial+')&&('+ptllmetcut4+')&&('+jetcut1+')')
+addSampleWeight(samples,'ggH_hww_0j_ptllmet5','GluGluHToWWTo2L2NuPowheg_M125','('+fiducial+')&&('+ptllmetcut5+')&&('+jetcut1+')')
+addSampleWeight(samples,'ggH_hww_1j_ptllmet1','GluGluHToWWTo2L2NuPowheg_M125','('+fiducial+')&&('+ptllmetcut1+')&&('+jetcut2+')')
+addSampleWeight(samples,'ggH_hww_1j_ptllmet2','GluGluHToWWTo2L2NuPowheg_M125','('+fiducial+')&&('+ptllmetcut2+')&&('+jetcut2+')')
+addSampleWeight(samples,'ggH_hww_1j_ptllmet3','GluGluHToWWTo2L2NuPowheg_M125','('+fiducial+')&&('+ptllmetcut3+')&&('+jetcut2+')')
+addSampleWeight(samples,'ggH_hww_1j_ptllmet4','GluGluHToWWTo2L2NuPowheg_M125','('+fiducial+')&&('+ptllmetcut4+')&&('+jetcut2+')')
+addSampleWeight(samples,'ggH_hww_1j_ptllmet5','GluGluHToWWTo2L2NuPowheg_M125','('+fiducial+')&&('+ptllmetcut5+')&&('+jetcut2+')')
+addSampleWeight(samples,'ggH_hww_2j_ptllmet1','GluGluHToWWTo2L2NuPowheg_M125','('+fiducial+')&&('+ptllmetcut1+')&&('+jetcut3+')')
+addSampleWeight(samples,'ggH_hww_2j_ptllmet2','GluGluHToWWTo2L2NuPowheg_M125','('+fiducial+')&&('+ptllmetcut2+')&&('+jetcut3+')')
+addSampleWeight(samples,'ggH_hww_2j_ptllmet3','GluGluHToWWTo2L2NuPowheg_M125','('+fiducial+')&&('+ptllmetcut3+')&&('+jetcut3+')')
+addSampleWeight(samples,'ggH_hww_2j_ptllmet4','GluGluHToWWTo2L2NuPowheg_M125','('+fiducial+')&&('+ptllmetcut4+')&&('+jetcut3+')')
+addSampleWeight(samples,'ggH_hww_2j_ptllmet5','GluGluHToWWTo2L2NuPowheg_M125','('+fiducial+')&&('+ptllmetcut5+')&&('+jetcut3+')')
+addSampleWeight(samples,'ggH_hww_nonfid','GluGluHToWWTo2L2NuPowheg_M125','!('+fiducial+')')
 
 ##### ggH -> WW NNLOPS
 #
@@ -472,15 +570,8 @@ else:
 ################## FAKE ###################
 ###########################################
 
-samples['Fake_em']  = {'name': [ ] ,
-                       'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA+'*(abs(std_vector_lepton_flavour[0])==11 && abs(std_vector_lepton_flavour[1])==13)',              #   weight/cut 
-                       'weights' : [ ] ,
-                       'isData': ['all'],
-                       'FilesPerJob' : 6 ,
-                     }
-
-samples['Fake_me']  = {'name': [ ] ,
-                       'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA+'*(abs(std_vector_lepton_flavour[0])==13 && abs(std_vector_lepton_flavour[1])==11)',              #   weight/cut 
+samples['Fake']  = {'name': [ ] ,
+                    'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA,
                        'weights' : [ ] ,
                        'isData': ['all'],
                        'FilesPerJob' : 6 ,
@@ -491,10 +582,8 @@ for Run in DataRun :
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:
-      samples['Fake_em']['name'].append(iFile)
-      samples['Fake_em']['weights'].append(DataTrig[DataSet])
-      samples['Fake_me']['name'].append(iFile)
-      samples['Fake_me']['weights'].append(DataTrig[DataSet])
+      samples['Fake']['name'].append(iFile)
+      samples['Fake']['weights'].append(DataTrig[DataSet])
 
 ###########################################
 ################## DATA ###################
