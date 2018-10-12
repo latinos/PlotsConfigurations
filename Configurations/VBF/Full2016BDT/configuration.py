@@ -1,10 +1,11 @@
-# Configuration file to produce initial root files -- has both merged and binned ggH samples
+# example of configuration file
 
-tag = 'ggH'
+date='_09Oct2018'
 
+tag = 'VBF_SR_MVA_final_'+date
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = 'rootFile'+date
 
 
 # file with list of variables
@@ -19,6 +20,9 @@ samplesFile = 'samples.py'
 # file with list of samples
 plotFile = 'plot.py' 
 
+# options of the plots
+plotNormalizedDistributions = True   # default is False
+
 
 
 # luminosity to normalize to (in 1/fb)
@@ -26,11 +30,11 @@ lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotGGH'
+outputDirPlots = 'plotVBF'+date
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'
+outputDirDatacard = 'datacards'+date
 
 
 # structure file for datacard

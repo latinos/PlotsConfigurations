@@ -1,4 +1,4 @@
-# Configuration file to produce initial root files -- has both merged and binned ggH samples
+# Configuration file to do plotting / fit with inclusive ggH sample
 
 tag = 'ggH'
 
@@ -14,7 +14,7 @@ variablesFile = 'variables.py'
 cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples.py' 
+samplesFile = 'samples_inc.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
@@ -30,7 +30,7 @@ outputDirPlots = 'plotGGH'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'
+outputDirDatacard = 'datacards_inc'
 
 
 # structure file for datacard

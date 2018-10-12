@@ -164,12 +164,12 @@ variables['ptllmet'] = { 'name': 'sqrt((metPfType1*cos(metPfType1Phi)+std_vector
                           'fold' : 3
                               }
 variables['ptllmet_reco'] = { 'name': 'sqrt((metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))*(metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))+(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1]))*(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1])))',
-                               'range' : ([0,35,50,65,80,300]),
+                               'range' : ([0,35,50,65,80,300],),
                                'xaxis' : 'p_{T}^{llmet} [GeV]',
                                'fold'  : 3
 }
 variables['ptllmet_gen'] = { 'name': 'sqrt(pow(metGenpt*cos(metGenphi)+std_vector_dressedLeptonGen_pt[0]*cos(std_vector_dressedLeptonGen_phi[0])+std_vector_dressedLeptonGen_pt[1]*cos(std_vector_dressedLeptonGen_phi[1]),2)+pow(metGenpt*sin(metGenphi)+std_vector_dressedLeptonGen_pt[0]*sin(std_vector_dressedLeptonGen_phi[0])+std_vector_dressedLeptonGen_pt[1]*sin(std_vector_dressedLeptonGen_phi[1]),2))',
-                               'range' : ([0,35,50,65,80,300]),
+                               'range' : ([0,35,50,65,80,300],),
                                'xaxis' : 'p_{T}^{llmet} [GeV]',
                                'fold'  : 3
 }
