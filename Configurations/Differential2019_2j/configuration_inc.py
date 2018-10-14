@@ -1,7 +1,5 @@
-# Configuration file to produce initial root files -- has both merged and binned ggH samples
-
+# example of configuration file
 tag = 'ggH'
-
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -14,7 +12,7 @@ variablesFile = 'variables.py'
 cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples.py' 
+samplesFile = 'samples_inc.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
