@@ -1,6 +1,6 @@
-# Configuration file to produce initial root files -- has both merged and binned ggH samples
+# example of configuration file
 
-tag = 'ggH'
+tag = 'DY'
 
 
 # used by mkShape to define output directory for root files
@@ -22,11 +22,12 @@ plotFile = 'plot.py'
 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 35.867
+lumi = 42.
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotGGH'
+# outputDirPlots = '~/www/plotCR'
+outputDirPlots = 'plotDY'
 
 
 # used by mkDatacards to define output directory for datacards
@@ -38,6 +39,6 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+# nuisancesFile = 'nuisances.py'
 
 

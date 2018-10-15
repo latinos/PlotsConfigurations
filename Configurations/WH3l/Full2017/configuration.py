@@ -1,56 +1,39 @@
 # example of configuration file
 
-#eleWP='cut_WP_Tight80X'
-# eleWP='cut_WP_Tight80X_SS'
-#eleWP='mva_80p_Iso2015'
-#eleWP='mva_80p_Iso2016'
-#eleWP='mva_90p_Iso2015'
-eleWP='mva_90p_Iso2016'
+import os
 
-#tag = 'WH3l_Signal_Final_'+eleWP
-#tag = 'WH3l_Signal_forPlots_'+eleWP
-#tag = 'WH3l_Signal_forCutFlow_'+eleWP
-#tag = 'WH3l_Signal_Review_'+eleWP
-#tag = 'WH3l_Signal_NewVar'
-tag = 'WH3l_Signal_Rochester_'+eleWP
+configDir = os.path.expandvars("${CMSSW_BASE}/src/PlotsConfigurations/Configurations/WH3l/Full2017/")
 
-
-# used by mkShape to define output directory for root files
-outputDir = 'rootFiles_'+tag
-#outputDir = 'rootFiles_forPlots_'+tag
-
-
-# file with list of variables
-variablesFile = 'variables.py'
-
-# file with list of cuts
-cutsFile = 'cuts.py' 
-#cutsFile = 'cuts_detailed.py'
-
-# file with list of samples
-samplesFile = 'samples.py' 
-
-# file with list of samples
-plotFile = 'plot.py' 
+tagName = ''
 
 # luminosity to normalize to (in 1/fb)
-#lumi = 12.2950
-lumi = 35.867
+lumi = 41.860
+
+# file with list of variables
+variablesFile = os.path.join(configDir,'variables.py')
+
+# file with list of cuts
+cutsFile = os.path.join(configDir,'cuts.py' )
+
+# file with list of samples
+samplesFile = os.path.join(configDir,'samples.py' )
+
+# file with list of samples
+plotFile = os.path.join(configDir,'plot.py')
+
+# structure file for datacard
+structureFile = os.path.join(configDir,'structure.py')
+
+# nuisances file for mkDatacards and for mkShape
+nuisancesFile = os.path.join(configDir,'nuisances.py')
+
+# used by mkShape to define output directory for root files
+outputDir = 'rootFiles'+tagName
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot_'+tag
-#outputDirPlots = 'plot_forPlots_'+tag
-
+outputDirPlots = 'plot'+tagName
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards_'+tag
-#outputDirDatacard = 'datacards_forPlots_'+tag
+outputDirDatacard = 'datacards'+tagName
 
-
-# structure file for datacard
-structureFile = 'structure.py'
-
-
-# nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
