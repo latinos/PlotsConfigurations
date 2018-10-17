@@ -861,41 +861,14 @@ nuisances['UE1j']  = {
             }
 
 
-nuisances['pu_syst0j']  = {
-               'name'  : 'pu_syst', 
-               'kind'  : 'tree',
-               'type' : 'shape',
-               'samples'  : {
-                   'ggWW'              : ['1','1'],
-                   'WW'                : ['1.0203','0.9857'],
-                   'DY'                : ['1','1'],
-                   'top'               : ['1','1'],
-                   'VZ'                : ['1','1'],
-                   'VVV'               : ['1','1'],
-                   'Vg'                : ['1','1'],
-                   'VgS'               : ['1','1'],
-                   'ggH_hww'           : ['1','1'],
-                   'qqH_hww'           : ['1','1'],
-                   'WH_hww'            : ['1','1'],
-                   'ZH_hww'            : ['1','1'],
-                   'ggZH_hww'          : ['1','1'],
-                   'bbH_hww'           : ['1','1'],
-                   'H_htt'             : ['1','1'],
-               },
-               'cuts'  : [
-                 'ww_0jet_em',
-                 ],
-               'folderUp'   : '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__PUup__wwSel/',
-               'folderDown' : '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__PUdo__wwSel/',
-            }
 
-nuisances['pu_syst1j']  = {
-               'name'  : 'pu_syst', 
+nuisances['pu_syst']  = {
+               'name'  : 'pu', 
                'kind'  : 'tree',
                'type' : 'shape',
                'samples'  : {
                    'ggWW'              : ['1','1'],
-                   'WW'                : ['1.00672','0.9929'],
+                   'WW'                : ['1','1'],
                    'DY'                : ['1','1'],
                    'top'               : ['1','1'],
                    'VZ'                : ['1','1'],
@@ -910,11 +883,8 @@ nuisances['pu_syst1j']  = {
                    'bbH_hww'           : ['1','1'],
                    'H_htt'             : ['1','1'],
                },
-               'cuts'  : [
-                 'ww_1jet_em',
-                 ],
-               'folderUp'   : '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__PUup__wwSel/',
-               'folderDown' : '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__PUdo__wwSel/',
+               'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__PUup'+skim,
+               'folderDown'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__PUdo'+skim,
             }
 
 
