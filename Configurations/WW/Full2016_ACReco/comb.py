@@ -190,7 +190,26 @@ combs['ww_01jet_em_mll5'] = {
 #XJ                   'ww_1jet_em' : 'mll5_3' ,
 #XJ                   'ww_top1jet_em' : 'events' ,
 #XJ                 }
-#XJ 
+#XJ
+# ---
+
+combs['ww_0jet_em_mll5_4'] = {
+                  'ww_0jet_em' : 'mll5_4' ,
+                  'ww_top0jet_em' : 'events' ,
+                }
+
+combs['ww_1jet_em_mll5_4'] = {
+                  'ww_1jet_em' : 'mll5_4' ,
+                  'ww_top1jet_em' : 'events' ,
+                }
+
+combs['ww_01jet_em_mll5_4'] = {
+                  'ww_0jet_em' : 'mll5_4' ,
+                  'ww_top0jet_em' : 'events' ,
+                  'ww_1jet_em' : 'mll5_4' ,
+                  'ww_top1jet_em' : 'events' ,
+                }
+
 #XJ # ---
 #XJ 
 #XJ combs['ww_0jet_em_mll6'] = {
