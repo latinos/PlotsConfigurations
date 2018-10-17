@@ -69,6 +69,12 @@ variables['mll5_3']  = {   'name': 'mll',
                         'fold' : 3
                         }
 
+variables['mll5_4']  = {   'name': 'mll',
+                        'range' : ([100,200,300,400,500,600,700,750,800,850,1000,1250],),
+                        'xaxis' : 'm_{\ell\ell} [GeV]',
+                        'fold' : 3
+                        }
+
 variables['mll6']  = {   'name': 'mll',
                         'range' : (8,100,800),
                         'xaxis' : 'm_{\ell\ell} [GeV]',
