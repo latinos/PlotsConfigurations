@@ -4,7 +4,22 @@ from LatinoAnalysis.Tools.commonTools import *
 def getSampleFilesNano(inputDir,Sample,absPath=False,rootFilePrefix='nanoLatino_',FromPostProc=False):
     return [ s.lstrip('#') for s in getSampleFiles(inputDir, Sample, absPath, rootFilePrefix, FromPostProc) ]
 
-samples={}
+
+def addSampleWeightNano(sampleDic,key,Sample,Weight):
+    # Modified from LatinoAnalysis/Tools/python/commonTools.py
+    if not 'weights' in sampleDic[key] :
+      sampleDic[key]['weights'] = []
+    if len(sampleDic[key]['weights']) == 0 :
+      for iEntry in range(len(sampleDic[key]['name'])) : sampleDic[key]['weights'].append('(1.)')
+
+    ### Now add the actual weight
+    for iEntry in range(len(sampleDic[key]['name'])):
+      name = sampleDic[key]['name'][iEntry].replace('nanoLatino_','').replace('.root','').split('__part')[0]
+      if '/' in name : name = os.path.basename(name)
+      if name == Sample:
+        sampleDic[key]['weights'][iEntry] += '*(' + Weight + ')'
+
+# samples={}
 
 ################################################
 ################# SKIMS ########################
@@ -21,9 +36,9 @@ else:
 ###### Tree Directory according to site ######
 ##############################################
 
-treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/'
+treeBaseDir = "/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/"
 
-directoryMC     = os.path.join(treeBaseDir,'Fall2017_nAOD_v1_Full2017/MCl1loose2017__MCformulas')
+directoryMC     = os.path.join(treeBaseDir,"Fall2017_nAOD_v1_Full2017/MCl1loose2017__MCformulas__MCWeights2017")
 directoryDATA   = os.path.join(treeBaseDir,"Run2017_nAOD_v1_Full2017/DATAl1loose2017__l2loose__hadd")
 directoryFAKE   = os.path.join(treeBaseDir,"Run2017_nAOD_v1_Full2017/DATAl1loose2017__l2loose__hadd")
 
@@ -52,10 +67,10 @@ bVeto="bveto_deepCSVBT"
 
 #... lepton:
 
-eleWP='mva_90p_Iso2016'
-muWP='cut_Tight80x'
-LepWPCut        = 'LepCut3l__ele_'+eleWP+'__mu_'+muWP
-LepWPweight     = 'LepSF3l__ele_'+eleWP+'__mu_'+muWP
+eleWP='mvaFall17Iso_WP90'
+muWP='cut_Tight'
+LepWPCut        = 'LepCut3l__ele_'+eleWP+'__mu_'+muWP+'_HWWW'
+LepWPweight     = 'LepSF3l__ele_'+eleWP+'__mu_'+muWP+'_HWWW'
 
 #... And the fakeW
 fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_3l'
@@ -100,7 +115,7 @@ samples['DATA']  = {   'name': [] ,
                    }
 
 samples['Fake']  = {   'name': [] ,
-                       'weight' : 'fakeW3l'+'*'+'veto_EMTFBug'+'*'+METFilter_DATA,
+                       'weight' : fakeW+'*'+'veto_EMTFBug'+'*'+METFilter_DATA,
                        'weights' : [],
                        'isData': ['all'],
                        'FilesPerJob' : 5 ,
@@ -115,9 +130,11 @@ for Run in DataRun :
         for iFile in FileTargetDATA:
             samples['DATA']['name']   .append(iFile)
             samples['DATA']['weights'].append(DataTrig[DataSet])
+            addSampleWeightNano(samples,'DATA',DataSet+'_'+Run[1],DataTrig[DataSet])
         for iFile in FileTargetFAKE:
             samples['Fake']['name']   .append(iFile)
             samples['Fake']['weights'].append(DataTrig[DataSet])
+            addSampleWeightNano(samples,'Fake',DataSet+'_'+Run[1],DataTrig[DataSet])
 
 ###########################################
 #############  BACKGROUNDS  ###############
