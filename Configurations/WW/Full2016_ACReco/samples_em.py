@@ -322,7 +322,7 @@ samples['WW']  =  {    'name'   : getSampleFiles(directory,'WWTo2L2Nu_aTGC_0-400
                                    + getSampleFiles(directory,'WWTo2L2Nu_aTGC_800-Inf')
                                    ,
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+SMWeight+'*'+ggWW_Scale+'*'+EWK_corr,
-                      'linesToAdd' : ['.L /afs/cern.ch/work/f/fernanpe/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/WW/Full2016/onTheFly/addEWKcorr.C+', 'initaddEWKcorr("ratio_Ptlm")'],
+                      'linesToAdd' : ['.L '+os.environ['CMSSW_BASE']+'/src/PlotsConfigurations/Configurations/WW/Full2016/onTheFly/addEWKcorr.C+', 'initaddEWKcorr("ratio_Ptlm")'],
                        'suppressNegative':['all'],
                        'suppressNegativeNuisances' :['all'],
                   }

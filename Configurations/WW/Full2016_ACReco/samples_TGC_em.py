@@ -173,6 +173,10 @@ samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu') ,
 #############   SIGNALS  ##################
 ###########################################
 
+ggWW_Scale = '(1.0836*(njet==0)+1.1096*(njet==1))'
+EWK_corr   = '(addEWKcorr(TMath::Min(std_vector_leptonGen_pt[0],499.9)) * (std_vector_leptonGen_pid[0] > 0) + addEWKcorr(TMath::Min(std_vector_leptonGen_pt[1],499.9)) * (std_vector_leptonGen_pid[1] > 0))'
+
+
 h=open('acoupling.py','r')
 exec(h)
 for iWeight in acoupling['weights']:
@@ -182,7 +186,8 @@ for iWeight in acoupling['weights']:
                                     +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_400-600')
                                     +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_600-800')
                                     +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_800-Inf') ,
-                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(22357.2/24701.9)*(std_vector_LHE_weight[173]!=-999)',
+                         'linesToAdd' : ['.L '+os.environ['CMSSW_BASE']+'/src/PlotsConfigurations/Configurations/WW/Full2016/onTheFly/addEWKcorr.C+', 'initaddEWKcorr("ratio_Ptlm")'],
+                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(22357.2/24701.9)*(std_vector_LHE_weight[173]!=-999)'+'*'+ggWW_Scale+'*'+EWK_corr,
                         'FilesPerJob' : 1 ,
                      }
   if not iLheWeight == -1 :
