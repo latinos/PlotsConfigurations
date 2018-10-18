@@ -17,51 +17,82 @@
 
 # keys here must match keys in samples.py    
 #                    
-plot['DY']  = {  
-                  'color': 418,    # kGreen+2
-                  'isSignal' : 0,
-                  'isData'   : 0, 
-                  'scale'    : 1.0
-              }
-
-
-               
-plot['WJets']  = {  
-                  'color': 921,    # kGray + 1
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0                  
-              }
-
-
+     
 plot['ttbar'] = {   
-                  'nameHR' : 't#bart',
-                  'color': 400,   # kYellow 
-                  'isSignal' : 0,
-                  'isData'   : 0 ,
-                  'scale'    : 1.0
-                  }
+    'nameHR' : 't#bart (2l)',
+    'color': 400,   # kYellow 
+    'isSignal' : 0,
+    'isData'   : 0 ,
+    'scale'    : 1.0
+    }
 
+plot['ttsemileptonic'] = {   
+    'nameHR' : 't#bart (1l)',
+    'color': 399,   # kYellow -1
+    'isSignal' : 0,
+    'isData'   : 0, 
+    'scale'    : 1.0
+    }
 
 plot['singletop'] = {   
-                  'nameHR' : 't and tW',
-                  'color': 401,   # kYellow +1
-                  'isSignal' : 0,
-                  'isData'   : 0, 
-                  'scale'    : 1.0
-                  }
+    'nameHR' : 'Single top',
+    'color': 401,   # kYellow +1
+    'isSignal' : 0,
+    'isData'   : 0, 
+    'scale'    : 1.0
+    }
+
+plot['DY']  = {  
+    'color': 418,    # kGreen+2
+    'isSignal' : 0,
+    'isData'   : 0, 
+    'scale'    : 1.0
+    }
+     
+plot['WJets']  = {  
+    'color': 921,    # kGray + 1
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0                  
+    }
+
+plot['WW'] = {   
+    'color': 851,   # kAzure -9
+    'isSignal' : 0,
+    'isData'   : 0, 
+    'scale'    : 1.0
+    }
+
+plot['WZ'] = {   
+    'color': 858,   # kAzure -2
+    'isSignal' : 0,
+    'isData'   : 0, 
+    'scale'    : 1.0
+    }
+
+plot['ZZ'] = {   
+    'color': 856,   # kAzure -4
+    'isSignal' : 0,
+    'isData'   : 0, 
+    'scale'    : 1.0
+    }
+
+plot['VVV'] = {   
+    'color': 857,   # kAzure -3
+    'isSignal' : 0,
+    'isData'   : 0, 
+    'scale'    : 1.0
+    }
 
 # data
 
 plot['DATA']  = { 
-                  'nameHR' : 'Data',
-                  'color': 1 ,  
-                  'isSignal' : 0,
-                  'isData'   : 1 ,
-                  'isBlind'  : 0
-              }
-
-
+    'nameHR' : 'Data',
+    'color': 1 ,  
+    'isSignal' : 0,
+    'isData'   : 1 ,
+    'isBlind'  : 0
+    }
 
 
 # Additional options

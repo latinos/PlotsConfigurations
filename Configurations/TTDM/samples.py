@@ -15,7 +15,7 @@ treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/'
 
 #directoryData = treeBaseDir+'Run2017_nAOD_v1_Study2017/DATAl1loose2017'
 #directoryData = treeBaseDir+'Run2017_nAOD_v1_Full2017/DATAl1loose2017__l2loose__hadd'
-directoryData = treeBaseDir+'Run2017_nAOD_v1_Full2017/DATAl1loose2017'
+directoryData = treeBaseDir+'Run2017_nAOD_v1_Study2017/DATAl1loose2017'
 directoryMC = treeBaseDir+'Fall2017_nAOD_v1_Study2017/MCl1loose2017__baseW__hadd'
 
 ################################################
@@ -31,6 +31,7 @@ PUWeight      = 'puWeight'
 ###########################################
 
 
+"""
 samples['ttbar'] = {    'name'   :   getSampleFiles(directoryMC,'TTTo2L2Nu') ,
                         'weight' : XSWeight+'*'+PUWeight,
                         'FilesPerJob' : 2 ,
@@ -76,7 +77,7 @@ samples['VVV'] = {    'name'   : getSampleFiles(directoryMC,'WWW') + getSampleFi
                       'weight' : XSWeight+'*'+PUWeight,
                       'FilesPerJob' : 2 ,
                       }
-
+"""
 ################################################
 ############ DATA DECLARATION ##################
 ################################################

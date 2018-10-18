@@ -312,13 +312,17 @@ samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu')
 SMWeight    = '(std_vector_LHE_weight[173]*(std_vector_LHE_weight[173]!=-999)/GEN_weight_SM*22357.2/24701.9)'
 ggWW_Scale = '(1.0836*(njet==0)+1.1096*(njet==1))'
 
+EWK_corr = '(addEWKcorr(TMath::Min(std_vector_leptonGen_pt[0],499.9)) * (std_vector_leptonGen_pid[0] > 0) + addEWKcorr(TMath::Min(std_vector_leptonGen_pt[1],499.9)) * (std_vector_leptonGen_pid[1] > 0))'
+
+
 
 samples['WW']  =  {    'name'   : getSampleFiles(directory,'WWTo2L2Nu_aTGC_0-400')
                                    + getSampleFiles(directory,'WWTo2L2Nu_aTGC_400-600')
                                    + getSampleFiles(directory,'WWTo2L2Nu_aTGC_600-800')
                                    + getSampleFiles(directory,'WWTo2L2Nu_aTGC_800-Inf')
                                    ,
-                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+SMWeight+'*'+ggWW_Scale,
+                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+SMWeight+'*'+ggWW_Scale+'*'+EWK_corr,
+                      'linesToAdd' : ['.L /afs/cern.ch/work/f/fernanpe/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/WW/Full2016/onTheFly/addEWKcorr.C+', 'initaddEWKcorr("ratio_Ptlm")'],
                        'suppressNegative':['all'],
                        'suppressNegativeNuisances' :['all'],
                   }
