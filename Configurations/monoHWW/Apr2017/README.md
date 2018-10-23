@@ -37,11 +37,20 @@ em Channel, for the combination PAPER:
 
     mkShapes.py --pycfg=configuration_em_PAPER.py  --inputDir=/eos/user/c/calderon/monoH/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC__wwSel__monohSel__muccaAll_em/ --doThread=True
 
-    mkPlot.py --pycfg=configuration_em_PAPER.py --inputFile=rootFile_em_PAPER/plots_monoHWW_em.root --minLogC=0.01 --minLogCratio=0.01 --maxLogC=10000 --maxLogCratio=10000
+    mkPlot.py --pycfg=configuration_em_PAPER.py --inputFile=rootFile_em_PAPER/plots_monoHWW_em.root --minLogC=1.001 --minLogCratio=1.001 --maxLogC=100000 --maxLogCratio=100000
+
+    mkPlot.py --pycfg=configuration_em_2HDM_only.py --inputFile=rootFile_em_PAPER/plots_monoHWW_em.root --minLogC=1.001 --minLogCratio=1.001 --maxLogC=100000 --maxLogCratio=100000
+
+    mkPlot.py --pycfg=configuration_em_Zbar_only.py --inputFile=rootFile_em_PAPER/plots_monoHWW_em.root --minLogC=1.001 --minLogCratio=1.001 --maxLogC=100000 --maxLogCratio=100000
+
+    cp monoH_2HDM_em_PAPER/* ~/www/figuresLxplus/18Sep2018/monoH_2HDM_em_PAPER/
 
     mkShapes.py --pycfg=configuration_ss_PAPER.py  --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__ssSel/  --doThread=True
 
-    mkPlot.py --pycfg=configuration_ss_PAPER.py --inputFile=rootFile_ss_PAPER/plots_monoHWW_ss.root --minLogC=0.01 --minLogCratio=0.01 --maxLogC=10000 --maxLogCratio=10000
+    mkPlot.py --pycfg=configuration_ss_PAPER.py --inputFile=rootFile_ss_PAPER/plots_monoHWW_ss.root --minLogC=1.001 --minLogCratio=1.001 --maxLogC=100000 --maxLogCratio=100000
+
+    cp monoH_2HDM_ss_PAPER/* ~/www/figuresLxplus/18Sep2018/monoH_2HDM_em_PAPER/
+
 
 em Channel:
 
