@@ -1,34 +1,22 @@
 # example of configuration file
-
+ 
  # ===== VBF analysis
-#date='_mjj400Nodetajj'
-#date='_400mjj700Nodetajj'
-#date='_mjj700Nodetajj'
-#date='_mjj400'
-#date='_400mjj700'
-#date='_mjj700'
+#date = '_detajj'
+#date = '_nodetajj'
 
  # ===== DNN studies
-#date='_mjj400NodetajjDNN'
-#date='_400mjj700NodetajjDNN'
-#date='_mjj700NodetajjDNN'
-#date='_mjj400DNN'
-#date='_400mjj700DNN'
-#date='_mjj700DNN'
+#date = '_nodetajj_DNNlowmjj'
+date = '_nodetajj_DNNhighmjj'
 
-# ===== DNN optimized
-#date='_mjj400NodetajjDNNoptim'
-#date='_400mjj700NodetajjDNNoptim'
-date='_mjj700NodetajjDNNoptim'
-#date='_mjj400DNNoptim'
-#date='_400mjj700DNNoptim'
-#date='_mjj700DNNoptim'
+ # ===== DNN optimized
+#date = '_nodetajjDNNoptim'
 
-tag = 'VBF'+date
+#tag = 'VBF'+date
+tag = 'Higgs'+date
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'+date
+outputDir = 'rootFile'+tag
 
 
 # file with list of variables
@@ -50,11 +38,11 @@ lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotVBF'+date
+outputDirPlots = 'plot'+tag
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'+date
+outputDirDatacard = 'datacards'+tag
 
 
 # structure file for datacard
