@@ -1,7 +1,7 @@
 # cuts
 
 #cuts = {}
-
+  
 supercut = 'mll>12  \
             && std_vector_lepton_pt[0]>25 && std_vector_lepton_pt[1]>10 \
             && std_vector_lepton_pt[2]<10 \
@@ -10,33 +10,34 @@ supercut = 'mll>12  \
             && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13) \
             '
 
-cuts['hww2l2v_13TeV_of2j_vbf_lowmjj']   = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
-                                      && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13) \
-                                      && (mth>=60 && mth<125) \
-                                      && (njet==2) \
-                                      && (abs(std_vector_jet_eta[0])<4.7) && (abs(std_vector_jet_eta[1])<4.7) \
-                                      && (abs((std_vector_lepton_eta[0] - (jeteta1+jeteta2)/2)/detajj) < 0.5) \
-                                      && (abs((std_vector_lepton_eta[1] - (jeteta1+jeteta2)/2)/detajj) < 0.5) \
-                                      && (detajj>3.5 && mjj>=400 && mjj<700) \
-                                      && (std_vector_jet_pt[0]>30 && std_vector_jet_pt[1]>30) \
-                                      && '+bVeto+' \
-                                      '
-
-cuts['hww2l2v_13TeV_of2j_vbf_highmjj']   = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
-                                      && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13) \
-                                      && (mth>=60 && mth<125) \
-                                      && (njet==2) \
-                                      && (abs(std_vector_jet_eta[0])<4.7) && (abs(std_vector_jet_eta[1])<4.7) \
-                                      && (abs((std_vector_lepton_eta[0] - (jeteta1+jeteta2)/2)/detajj) < 0.5) \
-                                      && (abs((std_vector_lepton_eta[1] - (jeteta1+jeteta2)/2)/detajj) < 0.5) \
-                                      && (detajj>3.5 && mjj>=700) \
-                                      && (std_vector_jet_pt[0]>30 && std_vector_jet_pt[1]>30) \
-                                      && '+bVeto+' \
-                                      '
+#cuts['hww2l2v_13TeV_of2j_vbf_lowmjj']   = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
+#                                      && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13) \
+#                                      && (mth>=60 && mth<125) \
+#                                      && (njet==2) \
+#                                      && (abs(std_vector_jet_eta[0])<4.7) && (abs(std_vector_jet_eta[1])<4.7) \
+#                                      && (abs((std_vector_lepton_eta[0] - (jeteta1+jeteta2)/2)/detajj) < 0.5) \
+#                                      && (abs((std_vector_lepton_eta[1] - (jeteta1+jeteta2)/2)/detajj) < 0.5) \
+#                                      && (detajj>3.5 && mjj>=400 && mjj<700) \
+#                                      && (std_vector_jet_pt[0]>30 && std_vector_jet_pt[1]>30) \
+#                                      && '+bVeto+' \
+#                                      '
+#
+#cuts['hww2l2v_13TeV_of2j_vbf_highmjj']   = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
+#                                      && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13) \
+#                                      && (mth>=60 && mth<125) \
+#                                      && (njet==2) \
+#                                      && (abs(std_vector_jet_eta[0])<4.7) && (abs(std_vector_jet_eta[1])<4.7) \
+#                                      && (abs((std_vector_lepton_eta[0] - (jeteta1+jeteta2)/2)/detajj) < 0.5) \
+#                                      && (abs((std_vector_lepton_eta[1] - (jeteta1+jeteta2)/2)/detajj) < 0.5) \
+#                                      && (detajj>3.5 && mjj>=700) \
+#                                      && (std_vector_jet_pt[0]>30 && std_vector_jet_pt[1]>30) \
+#                                      && '+bVeto+' \
+#                                      '
+#
 
 ############
 
-#cuts['hww2l2v_13TeV_of2j_vbf_lowmjj_NOdetajj']   = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
+#cuts['hww2l2v_13TeV_of2j_vbf_lowmjj_nodetajj']   = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
 #                                      && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13) \
 #                                      && (mth>=60 && mth<125) \
 #                                      && (njet==2) \
@@ -48,18 +49,18 @@ cuts['hww2l2v_13TeV_of2j_vbf_highmjj']   = '(std_vector_lepton_flavour[0] * std_
 #                                      && '+bVeto+' \
 #                                      '
 #
-#cuts['hww2l2v_13TeV_of2j_vbf_highmjj_NOdetajj']   = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
-#                                      && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13) \
-#                                      && (mth>=60 && mth<125) \
-#                                      && (njet==2) \
-#                                      && (abs(std_vector_jet_eta[0])<4.7) && (abs(std_vector_jet_eta[1])<4.7) \
-#                                      && (abs((std_vector_lepton_eta[0] - (jeteta1+jeteta2)/2)/detajj) < 0.5) \
-#                                      && (abs((std_vector_lepton_eta[1] - (jeteta1+jeteta2)/2)/detajj) < 0.5) \
-#                                      && (mjj>=700) \
-#                                      && (std_vector_jet_pt[0]>30 && std_vector_jet_pt[1]>30) \
-#                                      && '+bVeto+' \
-#                                      '
-#
+cuts['hww2l2v_13TeV_of2j_vbf_highmjj_nodetajj']   = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
+                                      && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13) \
+                                      && (mth>=60 && mth<125) \
+                                      && (njet==2) \
+                                      && (abs(std_vector_jet_eta[0])<4.7) && (abs(std_vector_jet_eta[1])<4.7) \
+                                      && (abs((std_vector_lepton_eta[0] - (jeteta1+jeteta2)/2)/detajj) < 0.5) \
+                                      && (abs((std_vector_lepton_eta[1] - (jeteta1+jeteta2)/2)/detajj) < 0.5) \
+                                      && (mjj>=700) \
+                                      && (std_vector_jet_pt[0]>30 && std_vector_jet_pt[1]>30) \
+                                      && '+bVeto+' \
+                                      '
+
 #
 # control regions
 #
