@@ -5,7 +5,7 @@
  ``` bash
  gfal-ls srm://maite.iihe.ac.be:8443/pnfs/iihe/cms/store/user/xjanssen/HWW2015/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/  > source.txt 
  
- ls /eos/user/g/govoni/samples/HWW2015/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/ > target.txt
+ ls --color=none /eos/user/g/govoni/samples/HWW2015/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/ > target.txt
  ```
  
  Execute the script to copy the files with N parallel workers
