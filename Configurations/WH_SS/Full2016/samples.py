@@ -515,6 +515,10 @@ for Run in DataRun :
       samples['Fake_em']['weights'].append(DataTrig[DataSet])
       samples['Fake_me']['name'].append(iFile)
       samples['Fake_me']['weights'].append(DataTrig[DataSet])
+      samples['Fake_mm']['name'].append(iFile)
+      samples['Fake_mm']['weights'].append(DataTrig[DataSet])
+      samples['Fake_ee']['name'].append(iFile)
+      samples['Fake_ee']['weights'].append(DataTrig[DataSet])
 
 ###########################################
 ################## DATA ###################
