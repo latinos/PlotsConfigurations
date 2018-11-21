@@ -1,8 +1,8 @@
 # example of configuration file
 
-date='_12Nov2018'
+date='_Nov192018_mtcut'
 
-tag = 'WH'+date
+tag = 'WHSS'+date
 
 
 # used by mkShape to define output directory for root files
@@ -14,6 +14,7 @@ variablesFile = 'variables.py'
 
 # file with list of cuts
 cutsFile = 'cuts_WH.py' 
+#cutsFile = 'cuts_forPlots.py'
 
 # file with list of samples
 samplesFile = 'samples.py' 
