@@ -1,6 +1,7 @@
 # example of configuration file
 
-date='_Nov192018_mtcut'
+#date='_Nov252018_ptll'
+date='_test'
 
 tag = 'WHSS'+date
 
