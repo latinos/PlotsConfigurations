@@ -26,7 +26,7 @@ groupPlot['Fake']  = {
                   'nameHR' : 'Non-prompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fake', 'Fake_em', 'Fake_me']
+                  'samples'  : ['Fake', 'Fake_em', 'Fake_me', 'Fake_ee', 'Fake_mm']
               }
 
 
@@ -36,7 +36,6 @@ groupPlot['DY']  = {
                   'color': 418,    # kGreen+2
                   'samples'  : ['DY']
               }
-
 
 
 groupPlot['VVV']  = {  
@@ -130,6 +129,19 @@ plot['Fake_me']  = {
                   'scale'    : 1.0                  
               }
 
+plot['Fake_ee']  = {
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+              }
+
+plot['Fake_mm']  = {
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+              }
               
 plot['top'] = {   
                   'nameHR' : 'tW and t#bar{t}',
