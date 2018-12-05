@@ -1,50 +1,38 @@
 # example of configuration file
 
-#date='_Nov252018_ptll'
-date='_test'
-
-tag = 'WHSS'+date
+tag = 'monoHWW_em'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'+date
+outputDir = 'rootFile_em'
 
 
 # file with list of variables
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts_WH.py' 
-#cutsFile = 'cuts_forPlots.py'
+cutsFile = 'cuts_em.py' 
 
 # file with list of samples
-samplesFile = 'samples.py' 
+samplesFile = 'samples_em.py'
 
 # file with list of samples
 plotFile = 'plot.py' 
 
-# options of the plots
-plotNormalizedDistributions = True   # default is False
-
-
 
 # luminosity to normalize to (in 1/fb)
-lumi = 35.867
+lumi = 35.9
+
 
 # used by mkPlot to define output directory for plots
-# different from "outputDir" to do things more tidy
-outputDirPlots = 'plotWH'+date
-
+outputDirPlots = 'monoH_2HDM_em'
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'+date
-
+outputDirDatacard = 'datacards'
 
 # structure file for datacard
 structureFile = 'structure.py'
 
-
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
-
+nuisancesFile = 'nuisances_full.py'
 

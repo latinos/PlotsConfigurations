@@ -6,7 +6,7 @@
 #                    
 structure['DY']  = {  
                   'isSignal' : 0,
-                  'isData'   : 0
+                  'isData'   : 0 
               }
 
 
@@ -19,27 +19,6 @@ structure['Fake']  = {
                   'isSignal' : 0,
                   'isData'   : 0 
               }
-
-structure['Fake_em']  = {  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-              }
-
-structure['Fake_me']  = {  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-              }
-
-structure['Fake_ee']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0,
-              }
-
-structure['Fake_mm']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0,
-              }
-
 
 structure['ttbar'] = {   
                   'isSignal' : 0,
@@ -62,11 +41,6 @@ structure['WW']  = {
                   'isSignal' : 0,
                   'isData'   : 0    
                   }
-
-structure['WWewk']  = {
-                      'isSignal' : 0,
-                      'isData'   : 0
-                      }
 
 structure['ggWW']  = {
                   'isSignal' : 0,
@@ -93,16 +67,6 @@ structure['VgS'] = {
                   'isData'   : 0 
                   }
 
-structure['WZgS_L'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
-
-structure['WZgS_H'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
-
 structure['Zg']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
@@ -119,10 +83,21 @@ structure['WZ']  = {
                   }
 
 
+structure['WZgS_L']  = { 
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
+
+
+structure['WZgS_H']  = { 
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
+
+
 structure['VVV']  = { 
                   'isSignal' : 0,
-                  'isData'   : 0,
-                  'removeFromCuts' : ['hww2l2v_13TeV_dytt_of2j_vbf'],
+                  'isData'   : 0 
                   }
 
 structure['ZZ']  = {
@@ -132,83 +107,75 @@ structure['ZZ']  = {
 
 
 structure['ggH'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0    
                   }
 
 structure['ggH_hww'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0    
                   }
 
 structure['qqH_hww'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0    
                   }
 
 structure['qqH_hww'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0    
                   }
 
 structure['WH_hww'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0    
                   }
 
 structure['ZH_hww'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0    
                   }
 
 structure['ggZH_hww'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
+                  'isData'   : 0    
+                  }
+
+structure['H_htt'] = {
+                  'isSignal' : 0,
                   'isData'   : 0    
                   }
 
 structure['H_hww'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0    
                   }
 
 structure['bbH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0
-                  }
-
-structure['ttH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0
-                  }
-
-structure['ggH_htt'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  }
-
-structure['qqH_htt'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  }
-
-structure['WH_htt'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  }
-
-structure['ZH_htt'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  }
-
-structure['H_htt'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0    
                   }
 
+# Signals
+ZpMasses={"1200"}
+A0Masses={"300"}
+
+for mZp in ZpMasses:
+    for mA0 in A0Masses :
+        structure['monoH_' + mZp + '_' + mA0] = {
+            'isSignal' : 1,
+            'isData'   : 0    
+            }
+            
+ZBmasses={"500_1_"}
+
+for mZB in ZBmasses:
+    structure['monoH_ZB_'+mZB] = {
+        'isSignal' : 1,
+        'isData'   : 0
+        }
 
 # data
-
 
 structure['DATA']  = { 
                   'isSignal' : 0,

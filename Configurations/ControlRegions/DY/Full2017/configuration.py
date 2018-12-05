@@ -1,4 +1,5 @@
 # example of configuration file
+treeName= 'Events'
 
 tag = 'DY'
 
