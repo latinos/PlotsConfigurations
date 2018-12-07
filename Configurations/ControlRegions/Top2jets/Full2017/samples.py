@@ -19,7 +19,7 @@ elif  'cern' in SITE :
   #xrootdPath='root://eoscms.cern.ch/'
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/'
 
-directory = treeBaseDir+'Fall2017_nAOD_v1_Full2017/MCl1loose2017__MCformulas__MCWeights2017'
+directory = treeBaseDir+'Fall2017_nAOD_v1_Full2017v2/MCl1loose2017v2__MCCorr2017test__l2loose'
 
 
 ################################################
@@ -27,7 +27,7 @@ directory = treeBaseDir+'Fall2017_nAOD_v1_Full2017/MCl1loose2017__MCformulas__MC
 ################################################
 
 XSWeight      = 'XSWeight'
-SFweight      = 'SFweight2l*LepSF2l__ele_mvaFall17Iso_WP90__mu_cut_Tight_HWWW'
+SFweight      = 'SFweight2l*LepSF2l__ele_mvaFall17Iso_WP90__mu_cut_Tight_HWWW*PrefireWeight'
 GenLepMatch   = 'GenLepMatch2l'
 
 ################################################
@@ -76,7 +76,7 @@ DataTrig = {
 samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50',False,'nanoLatino_') ,
                                  # + getSampleFiles(directory,'DYJetsToLL_M-50')     ,
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 1 ,
+                     'FilesPerJob' : 20,
                  }
 
 
@@ -99,11 +99,11 @@ samples['DATA']  = {   'name': [ ] ,
                        'weight' : METFilter_DATA,
                        'weights' : [ ],
                        'isData': ['all'],                            
-                       'FilesPerJob' : 5 ,
+                       'FilesPerJob' : 20,
                   }
 
 for Run in DataRun :
-	directory = treeBaseDir+'Run2017_nAOD_v1_Full2017/DATAl1loose2017__l2loose__hadd'
+	directory = treeBaseDir+'Run2017_nAOD_v1_Full2017v2/DATAl1loose2017v2__DATACorr2017__l2loose/'
 	for DataSet in DataSets :
 		FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
 		for iFile in FileTarget:

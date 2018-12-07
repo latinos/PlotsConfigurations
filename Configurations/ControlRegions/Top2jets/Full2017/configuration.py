@@ -1,6 +1,6 @@
 # example of configuration file
 
-tag = 'DY'
+tag = 'Top'
 
 
 # used by mkShape to define output directory for root files
