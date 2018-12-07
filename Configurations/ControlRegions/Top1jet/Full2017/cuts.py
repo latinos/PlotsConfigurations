@@ -6,7 +6,7 @@ supercut = 'mll>60 \
             (nLepton>=2 && Alt$(Lepton_pt[2],0)<10) && \
             abs(Lepton_eta[0])<2.5 && abs(Lepton_eta[1])<2.5 && \
             LepCut2l==1 && \
-            Alt$(CleanJet_pt[0],0)>30\
+            Alt$(CleanJet_pt[0],0)>30 &&\
             Alt$(CleanJet_pt[1],100)<30\
             '
 

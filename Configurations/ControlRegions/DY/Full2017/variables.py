@@ -181,6 +181,14 @@ variables['pfmet']  = {
                         'fold'  : 3                         
                         }
 
+variables['puppimet']  = {
+                        'name': 'PuppiMET_pt',
+                        'range' : (40,0,200),
+                        'xaxis' : 'pfmet [GeV]',
+                        'fold'  : 3
+                        }
+
+
 variables['njet']  = {
                         'name': 'Sum$(CleanJet_pt>30)',     
                         'range' : (5,0,5),   
