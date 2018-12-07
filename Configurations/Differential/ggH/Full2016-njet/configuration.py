@@ -1,6 +1,7 @@
 # example of configuration file
 
-tag = 'VBF'
+tag = 'ggH_HTXS'
+#tag = 'ggHTESTPARTIALamassiro'
 
 
 # used by mkShape to define output directory for root files
@@ -19,20 +20,14 @@ samplesFile = 'samples.py'
 # file with list of samples
 plotFile = 'plot.py' 
 
-# options of the plots
-plotNormalizedDistributions = True   # default is False
-
 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 6.264
-#lumi = 4.3
-# lumi = 5
-#lumi = 12.8890
+lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotVBF'
+outputDirPlots = 'plotGGH'
 
 
 # used by mkDatacards to define output directory for datacards
