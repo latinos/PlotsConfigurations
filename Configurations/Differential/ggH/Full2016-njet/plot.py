@@ -74,7 +74,7 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww_0j_fid', 'qqH_hww_1j_fid', 'qqH_hww_2j_fid', 'qqH_hww_3j_fid',  'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
+		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww_0j_fid', 'qqH_hww_1j_fid', 'qqH_hww_2j_fid', 'qqH_hww_3j_fid', 'qqH_hww_4j_fid',  'ggH_hww_0j_fid','ggH_hww_1j_fid','ggH_hww_2j_fid','ggH_hww_3j_fid','ggH_hww_4j_fid','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
               }
 
 
@@ -419,6 +419,14 @@ plot['qqH_hww_3j_fid'] = {
                   'scale'    : 1    #
                   }
                   
+plot['qqH_hww_4j_fid'] = {
+                  'nameHR' : 'ggH',
+                  'color': 632, # kRed 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+                  
 plot['qqH_hww_0j_nonfid'] = {
                   'nameHR' : 'ggH',
                   'color': 632, # kRed 
@@ -450,7 +458,14 @@ plot['qqH_hww_3j_nonfid'] = {
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
-
+                  
+plot['qqH_hww_4j_nonfid'] = {
+                  'nameHR' : 'ggH',
+                  'color': 632, # kRed 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
 
 plot['ggH_hww_0j_fid'] = {
                   'nameHR' : 'ggH',
@@ -477,6 +492,14 @@ plot['ggH_hww_2j_fid'] = {
                   }
                   
 plot['ggH_hww_3j_fid'] = {
+                  'nameHR' : 'ggH',
+                  'color': 632, # kRed 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+                  
+plot['ggH_hww_4j_fid'] = {
                   'nameHR' : 'ggH',
                   'color': 632, # kRed 
                   'isSignal' : 1,
@@ -515,6 +538,14 @@ plot['ggH_hww_3j_nonfid'] = {
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
+                  
+plot['ggH_hww_4j_nonfid'] = {
+                  'nameHR' : 'ggH',
+                  'color': 632, # kRed 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
 
 plot['bbH_hww'] = {
                   'nameHR' : 'bbH',
@@ -540,7 +571,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0
+                  'isBlind'  : 1
               }
 
 

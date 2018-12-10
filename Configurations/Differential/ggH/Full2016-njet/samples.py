@@ -364,10 +364,7 @@ samples['VVV'] = {    'name':   getSampleFiles(directory,'ZZZ')
                               ,    
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                   }
-
-###########################################
-#############   SIGNALS  ##################
-###########################################
+                  
 
 ###########################################
 #############   SIGNALS  ##################
@@ -405,7 +402,13 @@ samples['ggH_hww_2j_fid']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWT
                       }
 
 samples['ggH_hww_3j_fid']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
-                         				'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*weight2MINLO'+'*('+fiducial+')*(Sum$(std_vector_jetGen_pt > 30 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[0],2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[0]),2. ) > 0.16 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[1],2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[1]),2. ) > 0.16 ) > 2)' ,  
+                         				'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*weight2MINLO'+'*('+fiducial+')*(Sum$(std_vector_jetGen_pt > 30 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[0],2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[0]),2. ) > 0.16 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[1],2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[1]),2. ) > 0.16 ) == 3)' ,  
+                         'suppressNegative' :['all'],
+                         'suppressNegativeNuisances' :['all'],
+                      }
+                      
+samples['ggH_hww_4j_fid']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
+                         				'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*weight2MINLO'+'*('+fiducial+')*(Sum$(std_vector_jetGen_pt > 30 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[0],2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[0]),2. ) > 0.16 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[1],2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[1]),2. ) > 0.16 ) > 3)' ,  
                          'suppressNegative' :['all'],
                          'suppressNegativeNuisances' :['all'],
                       }
@@ -429,7 +432,13 @@ samples['ggH_hww_2j_nonfid']  = {  'name'  : getSampleFiles(directory,'GluGluHTo
                       }
                       
 samples['ggH_hww_3j_nonfid']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
-                         					 'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*weight2MINLO'+'*(!'+fiducial+')*(Sum$(std_vector_jetGen_pt > 30 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[0],2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[0]),2. ) > 0.16 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[1],2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[1]),2. ) > 0.16 ) > 2)' ,  
+                         					 'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*weight2MINLO'+'*(!'+fiducial+')*(Sum$(std_vector_jetGen_pt > 30 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[0],2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[0]),2. ) > 0.16 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[1],2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[1]),2. ) > 0.16 ) == 3)' ,  
+                         'suppressNegative' :['all'],
+                         'suppressNegativeNuisances' :['all'],
+                      }
+                      
+samples['ggH_hww_4j_nonfid']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
+                         					 'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*weight2MINLO'+'*(!'+fiducial+')*(Sum$(std_vector_jetGen_pt > 30 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[0],2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[0]),2. ) > 0.16 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[1],2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[1]),2. ) > 0.16 ) > 3)' ,  
                          'suppressNegative' :['all'],
                          'suppressNegativeNuisances' :['all'],
                       }
@@ -457,6 +466,10 @@ samples['qqH_hww_2j_fid']  = {   'name' : getSampleFiles(directory,'VBFHToWWTo2L
                       }
                       
 samples['qqH_hww_3j_fid']  = {   'name' : getSampleFiles(directory,'VBFHToWWTo2L2Nu_M125') ,
+                          			 'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*('+fiducial+')*(Sum$(std_vector_jetGen_pt > 30 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[0],2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[0]),2. ) > 0.16 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[1],2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[1]),2. ) > 0.16 ) == 3)' ,  
+                      }
+                      
+samples['qqH_hww_4j_fid']  = {   'name' : getSampleFiles(directory,'VBFHToWWTo2L2Nu_M125') ,
                           			 'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*('+fiducial+')*(Sum$(std_vector_jetGen_pt > 30 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[0],2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[0]),2. ) > 0.16 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[1],2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[1]),2. ) > 0.16 ) > 3)' ,  
                       }
 
@@ -473,94 +486,67 @@ samples['qqH_hww_2j_nonfid']  = {   'name' : getSampleFiles(directory,'VBFHToWWT
                       }
                       
 samples['qqH_hww_3j_nonfid']  = {   'name' : getSampleFiles(directory,'VBFHToWWTo2L2Nu_M125') ,
-                          			 		'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(!'+fiducial+')*(Sum$(std_vector_jetGen_pt > 30 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[0],2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[0]),2. ) > 0.16 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[1],2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[1]),2. ) > 0.16 ) > 2)' ,  
+                          			 		'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(!'+fiducial+')*(Sum$(std_vector_jetGen_pt > 30 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[0],2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[0]),2. ) > 0.16 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[1],2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[1]),2. ) > 0.16 ) == 3)' ,  
+                      }
+                      
+samples['qqH_hww_4j_nonfid']  = {   'name' : getSampleFiles(directory,'VBFHToWWTo2L2Nu_M125') ,
+                          			 		'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(!'+fiducial+')*(Sum$(std_vector_jetGen_pt > 30 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[0],2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[0]),2. ) > 0.16 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[1],2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[1]),2. ) > 0.16 ) > 3)' ,  
                       }
                       
 
 samples['qqH_htt']  = { 'name' :   getSampleFiles(directory,'VBFHToTauTau_M125') ,
-                        'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage0==21)' ,
+                        'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
                         'suppressNegative' :['all'],
                         'suppressNegativeNuisances' :['all'],
                       }
                       
 
-### ZH, Z->had
+### ZH
 
-samples['ZH_had_hww']  = { 'name' :  getSampleFiles(directory,'HZJ_HToWW_M125') ,
-                           'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage0==23)' ,
+samples['ZH_hww']  = { 'name' :  getSampleFiles(directory,'HZJ_HToWW_M125') ,
+                           'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
                            'suppressNegative' :['all'],
                            'suppressNegativeNuisances' :['all'],
                          }
 
-samples['ZH_had_htt']  = { 'name' :   getSampleFiles(directory,'HZJ_HToTauTau_M125') ,
-                           'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage0==23)' ,
+samples['ZH_htt']  = { 'name' :   getSampleFiles(directory,'HZJ_HToTauTau_M125') ,
+                           'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
                            'suppressNegative' :['all'],
                            'suppressNegativeNuisances' :['all'],
                          }
 
-### WH, W->had
+### WH
 
-samples['WH_had_hww']   = {  'name' :   getSampleFiles(directory,'HWminusJ_HToWW_M125')
+samples['WH_hww']   = {  'name' :   getSampleFiles(directory,'HWminusJ_HToWW_M125')
                                       + getSampleFiles(directory,'HWplusJ_HToWW_M125')  , 
-                             'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage0==23)' ,  
+                             'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,  
                              'suppressNegative' :['all'],
                              'suppressNegativeNuisances' :['all'],
                           }
 
-samples['WH_had_htt']  = { 'name' :   getSampleFiles(directory,'HWplusJ_HToTauTau_M125')
+samples['WH_htt']  = { 'name' :   getSampleFiles(directory,'HWplusJ_HToTauTau_M125')
                                     + getSampleFiles(directory,'HWminusJ_HToTauTau_M125') ,
-                           'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage0==23)' ,
+                           'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
                            'suppressNegative' :['all'],
                            'suppressNegativeNuisances' :['all'],
                          }
                          
 
-### ZH ; Z->ll
+### ggZH
 
-samples['ZH_lep_hww']  = {  'name' :  getSampleFiles(directory,'HZJ_HToWW_M125') ,
-                            'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage0==41)' ,  
-                            'suppressNegative' :['all'],
-                            'suppressNegativeNuisances' :['all'],
-                         }
-
-samples['ZH_lep_htt']  = { 'name' :   getSampleFiles(directory,'HZJ_HToTauTau_M125') ,
-                           'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage0==41)' ,
-                           'suppressNegative' :['all'],
-                           'suppressNegativeNuisances' :['all'],
-                         }
-                         
-
-### ggZH_lep
-
-samples['ggZH_lep_hww'] = {  'name' : getSampleFiles(directory,'ggZH_HToWW_M125') ,
-                             'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage0==51)' ,  
+samples['ggZH_hww'] = {  'name' : getSampleFiles(directory,'ggZH_HToWW_M125') ,
+                             'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,  
                              'suppressNegative' :['all'],
                              'suppressNegativeNuisances' :['all'],
                           }
                           
-
-#### WH ; W->lnu
-
-samples['WH_lep_hww']   = {  'name' :   getSampleFiles(directory,'HWminusJ_HToWW_M125')
-                                        + getSampleFiles(directory,'HWplusJ_HToWW_M125') , 
-                             'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage0==31)' ,  
-                             'suppressNegative' :['all'],
-                             'suppressNegativeNuisances' :['all'],
-                          }
-
-samples['WH_lep_htt']  = { 'name' :   getSampleFiles(directory,'HWplusJ_HToTauTau_M125')
-                                    + getSampleFiles(directory,'HWminusJ_HToTauTau_M125') ,
-                           'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage0==31)' ,
-                           'suppressNegative' :['all'],
-                           'suppressNegativeNuisances' :['all'],
-                         }
-                         
+                     
 
 #### bbH ; H->WW 
 
 samples['bbH_hww']  = {  'name' :   getSampleFiles(directory,'bbHToWWTo2L2Nu_M125_yb2') 
                                   + getSampleFiles(directory,'bbHToWWTo2L2Nu_M125_ybyt') ,
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage0==71)' ,
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
                          'suppressNegative' :['all'],
                          'suppressNegativeNuisances' :['all'],
                       }
@@ -569,7 +555,7 @@ samples['bbH_hww']  = {  'name' :   getSampleFiles(directory,'bbHToWWTo2L2Nu_M12
 #### ttH ; H->WW 
 
 samples['ttH_hww']  = {  'name' :   getSampleFiles(directory,'ttHToNonbb_M125'), 
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage0==61)' ,
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
                          'suppressNegative' :['all'],
                          'suppressNegativeNuisances' :['all'],
                       }
