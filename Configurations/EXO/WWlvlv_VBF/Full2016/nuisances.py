@@ -1,5 +1,4 @@
 # nuisances
-#nuisances = {}
 # name of samples here must match keys in samples.py 
 
 #########################################################
@@ -1298,7 +1297,6 @@ nuisances['TopPS']  = {
 #              'samples' : {}
 #             }
 
-
 # on MC/data
 # "stat" is a special word to identify this nuisance
 nuisances['stat']  = {
@@ -1336,19 +1334,20 @@ for m in masses:
     model_name = model.replace("cprime","c").replace(".","").replace("BRnew","brn")  
     nuisances['stat']['samples']['ggWW']["correlate"].append('ggH_hww_SBI'+m+"_"+model_name)
     nuisances['stat']['samples']['ggH_hww']["correlate"].append('ggH_hww_SBI'+m+"_"+model_name)
-    nuisances['stat']['samples']['ggH_hww_'+m+"_"+model_name] = { 'typeStat' : 'bbb', 'zeroMCError' : '0', 'correlate': [] }
+    nuisances['stat']['samples']['ggH_hww_'+m+"_"+model_name] = { 'typeStat' : 'bbb', 'zeroMCError' : '0', 'correlate': [], 'errorsFrom': [] }
 
     
     nuisances['stat']['samples']['qqWWqq']["correlate"].append('qqH_hww_SBI'+m+"_"+model_name)
     nuisances['stat']['samples']['qqH_hww']["correlate"].append('qqH_hww_SBI'+m+"_"+model_name)
-    nuisances['stat']['samples']['qqH_hww_'+m+"_"+model_name] = { 'typeStat' : 'bbb', 'zeroMCError' : '0', 'correlate': [] }
+    nuisances['stat']['samples']['qqH_hww_'+m+"_"+model_name] = { 'typeStat' : 'bbb', 'zeroMCError' : '0', 'correlate': [], 'errorsFrom': [] }
 
-print nuisances['stat']['samples']['ggWW']
-print nuisances['stat']['samples']['ggH_hww']
-print nuisances['stat']['samples']['qqWWqq']
-print nuisances['stat']['samples']['qqH_hww']
+#print nuisances['stat']['samples']['ggWW']
+#print nuisances['stat']['samples']['ggH_hww']
+#print nuisances['stat']['samples']['qqWWqq']
+#print nuisances['stat']['samples']['qqH_hww']
 
-print nuisances['stat']
+
+#print nuisances['stat']
 
 for m in masses:
   for model in models:
@@ -1356,10 +1355,12 @@ for m in masses:
     for item in nuisances['stat']['samples']['ggH_hww']["correlate"]:
       if ("SBI"+m+"_"+model_name) in item:
         nuisances['stat']['samples']['ggH_hww_'+m+"_"+model_name]['correlate'].append(item)
+        nuisances['stat']['samples']['ggH_hww_'+m+"_"+model_name]['errorsFrom'].append(item.replace("SBI", "SI"))
     print ("_"+m+"_"+model_name),nuisances['stat']['samples']['ggH_hww_'+m+"_"+model_name]['correlate']
     for item in nuisances['stat']['samples']['qqH_hww']["correlate"]:
       if ("SBI"+m+"_"+model_name) in item:
         nuisances['stat']['samples']['qqH_hww_'+m+"_"+model_name]['correlate'].append(item)
+        nuisances['stat']['samples']['qqH_hww_'+m+"_"+model_name]['errorsFrom'].append(item.replace("SBI", "SI"))
     print ("_"+m+"_"+model_name),nuisances['stat']['samples']['qqH_hww_'+m+"_"+model_name]['correlate']
 
 print nuisances['stat']['samples']
