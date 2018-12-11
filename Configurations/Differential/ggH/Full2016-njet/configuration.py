@@ -1,6 +1,6 @@
 # example of configuration file
 
-tag = 'ggH_HTXS'
+tag = 'ggH_differential_njet'
 #tag = 'ggHTESTPARTIALamassiro'
 
 
