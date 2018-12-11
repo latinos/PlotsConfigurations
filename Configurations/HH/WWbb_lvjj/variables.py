@@ -57,12 +57,12 @@ variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',
                         'fold'  : 3                         
                         }
 
-
-variables['jetprunedmass1']  = {   'name': 'std_vector_fatjet_prunedmass[0]',     
-                        'range' : (50,0,200),   
-                        'xaxis' : 'Reduced mass 1st Jet',
-                        'fold'  : 3                         
-                        }
+variables['njets'] =  {
+		'name': 'njet',
+		'range': (15,0,15),
+		'xaxis': '# jets',
+		'fold': 3	
+	}
 
 
 
