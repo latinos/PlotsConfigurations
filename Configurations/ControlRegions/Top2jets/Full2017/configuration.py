@@ -1,6 +1,7 @@
+treeName= 'Events'
 # example of configuration file
 
-tag = 'Top'
+tag = 'Top2j'
 
 
 # used by mkShape to define output directory for root files
@@ -27,7 +28,7 @@ lumi = 42.
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
 # outputDirPlots = '~/www/plotCR'
-outputDirPlots = 'plotDY'
+outputDirPlots = 'plotTop2j'
 
 
 # used by mkDatacards to define output directory for datacards

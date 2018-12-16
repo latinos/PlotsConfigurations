@@ -1,3 +1,5 @@
+treeName= 'Events'
+
 # example of configuration file
 
 tag = 'Top1jet'
