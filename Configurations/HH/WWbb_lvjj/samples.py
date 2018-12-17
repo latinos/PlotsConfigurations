@@ -11,7 +11,7 @@ from LatinoAnalysis.Tools.commonTools import *
 ###### Tree Directory according to site ######
 ##############################################
 
-samples['HH']  = {    'name'   : ['latino_stepB_mc_numEvent500.root'] ,
+samples['HH']  = {    'name'   : ['latino_stepB_mc_numEvent5000.root'] ,
                            'weight' :   '1.' ,
                  }
 

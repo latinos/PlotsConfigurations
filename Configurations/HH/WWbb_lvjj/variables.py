@@ -64,7 +64,12 @@ variables['njets'] =  {
 		'fold': 3	
 	}
 
-
+variables['nlep'] =  {
+                'name': '1*(std_vector_lepton_pt[0]>20) + 1*(std_vector_lepton_pt[1]>20) + 1*(std_vector_lepton_pt[2]>20)+ 1*(std_vector_lepton_pt[3]>20) + 1*(std_vector_lepton_pt[4]>20)',
+                'range': (5,0,5),
+                'xaxis': '# leptons',
+                'fold': 3
+        }
 
 ##variables['pt3']  = {   'name': 'std_vector_lepton_pt[2]',     
                         ##'range' : (10,0,50),   
