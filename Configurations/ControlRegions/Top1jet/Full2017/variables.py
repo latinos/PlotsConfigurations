@@ -72,7 +72,7 @@ variables['pfmet']  = {
 variables['puppimet']  = {
                         'name': 'PuppiMET_pt',    
                         'range' : (40,0,200),
-                        'xaxis' : 'pfmet [GeV]',
+                        'xaxis' : 'puppimet [GeV]',
                         'fold'  : 3
                         }                        
 
