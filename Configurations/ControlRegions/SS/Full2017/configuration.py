@@ -1,5 +1,5 @@
 # example of configuration file
-tag = 'ttDM'
+tag = 'SS'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'

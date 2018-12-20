@@ -85,13 +85,13 @@ plot['ZZ'] = {
     'scale'    : 1.0
     }
 
+
 plot['VV'] = {   
     'color': 856, #kAzure-4
     'isSignal' : 0,
     'isData'   : 0, 
     'scale'    : 1.0
     }
-
 
 plot['VVV'] = {   
     'color': 857, #kAzure-3
