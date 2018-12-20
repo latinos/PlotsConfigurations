@@ -46,20 +46,20 @@ variables['mll']  = {   'name': 'mll',            #   variable name
                         #}
 
 variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
-                        'range' : (40,20,200),   
+                        'range' : (10,20,200),   
                         'xaxis' : 'p_{T} 1st lep',
                         'fold'  : 2                         
                         }
 
 variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
-                        'range' : (40,0,100),   
+                        'range' : (10,0,100),   
                         'xaxis' : 'p_{T} 2nd lep',
                         'fold'  : 0                         
                         }
 
 variables['njets'] =  {
 		'name': 'njet',
-		'range': (15,0,15),
+		'range': (10,0,10),
 		'xaxis': '# jets',
 		'fold': 3	
 	}
@@ -78,13 +78,13 @@ variables['nlep'] =  {
                         #}
 
 variables['eta1']  = {  'name': 'std_vector_lepton_eta[0]',     
-                        'range' : (40,-3,3),   
+                        'range' : (10,-3,3),   
                         'xaxis' : '#eta 1st lep',
                         'fold'  : 0                         
                         }
 
 variables['eta2']  = {  'name': 'std_vector_lepton_eta[1]',     
-                        'range' : (40,-3,3),   
+                        'range' : (10,-3,3),   
                         'xaxis' : '#eta 2nd lep',
                         'fold'  : 0                         
                         }
@@ -112,7 +112,7 @@ variables['eta2']  = {  'name': 'std_vector_lepton_eta[1]',
 
 variables['cmva_1']  = { 
                         'name': 'std_vector_jet_cmvav2[0]',     
-                        'range' : (40,-1,1),   
+                        'range' : (10,-1,1),   
                         'xaxis' : 'cmva jet 1st',
                         'fold'  : 3                         
                         }
@@ -121,7 +121,7 @@ variables['cmva_1']  = {
 
 variables['cmva_2']  = { 
                         'name': 'std_vector_jet_cmvav2[1]',     
-                        'range' : (40,-1,1),   
+                        'range' : (10,-1,1),   
                         'xaxis' : 'cmva  jet 2nd',
                         'fold'  : 3                         
                         }
@@ -129,7 +129,7 @@ variables['cmva_2']  = {
 
 variables['cmva_3']  = { 
                         'name': 'std_vector_jet_cmvav2[2]',     
-                        'range' : (40,-1,1),   
+                        'range' : (10,-1,1),   
                         'xaxis' : 'cmva jet 3rd',
                         'fold'  : 3                         
                         }
@@ -138,14 +138,14 @@ variables['cmva_3']  = {
 
 variables['cmva_4']  = { 
                         'name': 'std_vector_jet_cmvav2[3]',     
-                        'range' : (40,-1,1),   
+                        'range' : (10,-1,1),   
                         'xaxis' : 'cmva  jet 4th',
                         'fold'  : 3                         
                         }
 
 variables['pfmet']  = { 
                         'name': 'metPfType1',     
-                        'range' : (40,0,1000),   
+                        'range' : (20,0,1000),   
                         'xaxis' : 'pfmet [GeV]',
                         'fold'  : 3                         
                         }
@@ -163,14 +163,14 @@ variables['pfmet']  = {
 
 variables['jetpt1']  = {
                         'name': 'std_vector_jet_pt[0]',     
-                        'range' : (40,0,200),   
+                        'range' : (10,0,200),   
                         'xaxis' : 'p_{T} 1st jet',
                         'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
 
 variables['jetpt2']  = {
                         'name': 'std_vector_jet_pt[1]',     
-                        'range' : (40,0,200),   
+                        'range' : (10,0,200),   
                         'xaxis' : 'p_{T} 2nd jet',
                         'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
@@ -178,26 +178,26 @@ variables['jetpt2']  = {
 
 variables['jetpt3']  = {
                         'name': 'std_vector_jet_pt[2]',     
-                        'range' : (40,0,200),   
+                        'range' : (10,0,200),   
                         'xaxis' : 'p_{T} 3rd jet',
                         'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
 
 variables['jetpt4']  = {
                         'name': 'std_vector_jet_pt[3]',     
-                        'range' : (40,0,200),   
+                        'range' : (10,0,200),   
                         'xaxis' : 'p_{T} 4th jet',
                         'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
 
 variables['jeteta1']  = {  'name': 'std_vector_jet_eta[0]',
-                        'range' : (80,-5.0,5.0),
+                        'range' : (10,-5.0,5.0),
                         'xaxis' : '#eta 1st jet',
                         'fold'  : 0
                         }
 
 variables['jeteta2']  = {  'name': 'std_vector_jet_eta[1]',
-                        'range' : (80,-5.0,5.0),
+                        'range' : (10,-5.0,5.0),
                         'xaxis' : '#eta 2nd jet',
                         'fold'  : 0
                         }
