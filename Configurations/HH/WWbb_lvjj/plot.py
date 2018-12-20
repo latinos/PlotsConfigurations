@@ -13,18 +13,24 @@
 
 groupPlot['HH']  = {  
                  'nameHR' : 'HH',
-                 'isSignal' : 0,
-                 'color': 396, # kAzure  
+                 'isSignal' : 2,
+                 'color': 861,   
                  'samples'  : ['HH']
               }
 
-groupPlot['HH_cleaned']  = {
-                 	'nameHR' : 'HH_cleaned',
-                 	'isSignal' : 2,
-                 	'color': 861, # kAzure +1 
-                 	'samples'  : ['HH_cleaned']
-              		}
+#groupPlot['HH_cleaned']  = {
+ #                	'nameHR' : 'HH_cleaned',
+  #               	'isSignal' : 2,
+   #              	'color': 861, # kAzure +1 
+    #             	'samples'  : ['HH_cleaned']
+     #         		}
 
+groupPlot['W+Jets']  = {
+                        'nameHR' : 'W+Jets',
+                        'isSignal' : 2,
+                        'color': 629,  
+                        'samples'  : ['W+Jets']
+                        }
 
 
 #groupPlot['top']  = {  
@@ -83,18 +89,23 @@ groupPlot['HH_cleaned']  = {
 # keys here must match keys in samples.py    
 #                    
 plot['HH']  = {  
-                  'color': 396,    
-                  'isSignal' : 0,
+                  'color': 861,    
+                  'isSignal' : 2,
                   'isData'   : 0, 
                   'scale'    : 1.   ,
               }
-plot['HH_cleaned']  = {
-                  'color': 861,    
+#plot['HH_cleaned']  = {
+#                  'color': 861,    
+#                  'isSignal' : 2,
+#                  'isData'   : 0,
+#                  'scale'    : 1.   ,
+#              }
+plot['W+Jets']  = {
+                  'color': 629,
                   'isSignal' : 2,
                   'isData'   : 0,
                   'scale'    : 1.   ,
               }
-
 
 #legend['lumi'] = 'L = 6.3/fb'
 legend['lumi'] = 'L = 35.9/fb'
