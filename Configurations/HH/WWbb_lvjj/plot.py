@@ -13,7 +13,7 @@
 
 groupPlot['HH']  = {  
                  'nameHR' : 'HH',
-                 'isSignal' : 2,
+                 'isSignal' : 1,
                  'color': 861,   
                  'samples'  : ['HH']
               }
@@ -25,11 +25,11 @@ groupPlot['HH']  = {
     #             	'samples'  : ['HH_cleaned']
      #         		}
 
-groupPlot['W+Jets']  = {
+groupPlot['Wjets']  = {
                         'nameHR' : 'W+Jets',
-                        'isSignal' : 2,
+                        'isSignal' : 0,
                         'color': 629,  
-                        'samples'  : ['W+Jets']
+                        'samples'  : ['Wjets']
                         }
 
 
@@ -100,9 +100,9 @@ plot['HH']  = {
 #                  'isData'   : 0,
 #                  'scale'    : 1.   ,
 #              }
-plot['W+Jets']  = {
+plot['Wjets']  = {
                   'color': 629,
-                  'isSignal' : 2,
+                  'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.   ,
               }

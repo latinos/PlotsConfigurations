@@ -9,6 +9,10 @@ structure['HH'] = {
                   'isData'   : 0    
                   }
 
+structure['Wjets'] = {
+		'isSignal': 0,
+		'isData': 0
+}
 
 
 # data
