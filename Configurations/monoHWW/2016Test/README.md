@@ -45,3 +45,5 @@ em Channel:
     cd ..
 
     mkPlot.py --pycfg=configuration_em.py --inputFile=rootFile_em/plots_monoHWW_em_ALL.root --minLogC=1.001 --minLogCratio=1.001 --maxLogC=100000 --maxLogCratio=100000
+
+    mkDatacards.py   --pycfg=configuration_em.py  --inputFile=rootFile_em/plots_monoHWW_em_ALL.root
