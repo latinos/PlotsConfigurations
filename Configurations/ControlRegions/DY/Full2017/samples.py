@@ -19,16 +19,50 @@ elif  'cern' in SITE :
   #xrootdPath='root://eoscms.cern.ch/'
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/'
 
-directory = treeBaseDir+'Fall2017_nAOD_v1_Full2017v2/MCl1loose2017v2__MCCorr2017test__l2loose'
+directory = treeBaseDir+'Fall2017_nAOD_v1_Full2017v2/MCl1loose2017v2__MCCorr2017__btagPerEvent__l2loose__l2tightOR2017'
 
+################################################
+############ NUMBER OF LEPTONS #################
+################################################
+
+Nlep='2'
+#Nlep='3'
+#Nlep='4'
+
+################################################
+############### Lepton WP ######################
+################################################
+
+#... Electron:
+
+eleWP='mvaFall17Iso_WP90'
+#eleWP='mvaFall17Iso_WP90_SS'
+
+#... Muon:
+
+muWP='cut_Tight_HWWW'
+
+#... Build formula
+
+LepWPCut        = 'LepCut'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
+LepWPweight     = 'LepSF'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
 
 ################################################
 ############ BASIC MC WEIGHTS ##################
 ################################################
 
 XSWeight      = 'XSWeight'
-SFweight      = 'SFweight2l*LepSF2l__ele_mvaFall17Iso_WP90__mu_cut_Tight_HWWW*PrefireWeight'
-GenLepMatch   = 'GenLepMatch2l'
+SFweight      = 'SFweight'+Nlep+'l' + '*PrefireWeight' + '*'+LepWPweight + '*'+LepWPCut 
+GenLepMatch   = 'GenLepMatch'+Nlep+'l'
+
+################################################
+############## FAKE WEIGHTS ####################
+################################################
+
+if Nlep == '2' :
+  fakeW = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP
+else:
+  fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l'
 
 ################################################
 ############### B-Tag  WP ######################
@@ -49,11 +83,10 @@ METFilter_DATA = 'METFilter_DATA'
 
 DataRun = [ 
             ['B','Run2017B-31Mar2018-v1'] ,
-						['C','Run2017C-31Mar2018-v1'] ,
-						['D','Run2017D-31Mar2018-v1'] ,
-						['E','Run2017E-31Mar2018-v1'] ,
-						['F','Run2017F-31Mar2018-v1']
-            
+            ['C','Run2017C-31Mar2018-v1'] ,
+            ['D','Run2017D-31Mar2018-v1'] ,
+            ['E','Run2017E-31Mar2018-v1'] ,
+            ['F','Run2017F-31Mar2018-v1'] ,
           ]
 
 DataSets = ['MuonEG','DoubleMuon','SingleMuon','DoubleEG','SingleElectron']
@@ -69,9 +102,6 @@ DataTrig = {
 ###########################################
 #############  BACKGROUNDS  ###############
 ###########################################
-
-
-
 
 samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50',False,'nanoLatino_') ,
                                  # + getSampleFiles(directory,'DYJetsToLL_M-50')     ,
@@ -90,20 +120,39 @@ samples['top'] = {    'name'   :   getSampleFiles(directory,'TTTo2L2Nu',False,'n
                      'FilesPerJob' : 1 ,
                  }
 
+###########################################
+################## FAKES ##################
+###########################################
+
+samples['Fake']  = {   'name': [ ] ,
+                       'weight' : METFilter_DATA+'*'+fakeW,              #   weight/cut 
+                       'weights' : [ ] ,
+                       'isData': ['all'],
+                       'FilesPerJob' : 20 ,
+                   }
+
+for Run in DataRun :
+  directory = treeBaseDir+'Run2017_nAOD_v1_Full2017v2/DATAl1loose2017v2__DATACorr2017__l2loose__fakeW/'
+  for DataSet in DataSets :
+    FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
+    for iFile in FileTarget:
+      samples['Fake']['name'].append(iFile)
+      samples['Fake']['weights'].append(DataTrig[DataSet])
+
 
 ###########################################
 ################## DATA ###################
 ###########################################
 
 samples['DATA']  = {   'name': [ ] ,     
-                       'weight' : METFilter_DATA,
+                       'weight' : METFilter_DATA+'*'+LepWPCut ,
                        'weights' : [ ],
                        'isData': ['all'],                            
                        'FilesPerJob' : 20,
                   }
 
 for Run in DataRun :
-	directory = treeBaseDir+'Run2017_nAOD_v1_Full2017v2/DATAl1loose2017v2__DATACorr2017__l2loose/'
+	directory = treeBaseDir+'Run2017_nAOD_v1_Full2017v2/DATAl1loose2017v2__DATACorr2017__l2loose__l2tightOR2017/'
 	for DataSet in DataSets :
 		FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
 		for iFile in FileTarget:
