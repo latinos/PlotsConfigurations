@@ -7,7 +7,6 @@ supercut = '   mll>12 \
             && abs(Lepton_eta[0])<2.5 && abs(Lepton_eta[1])<2.5 \
             && ptll>30 \
             && MET_pt > 20 \
-            && LepCut2l==1 \
            '
 
 
