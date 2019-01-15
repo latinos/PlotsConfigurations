@@ -23,7 +23,7 @@ _tmp = [
      'ptll > 30.',
      'Alt$(CleanJet_pt[0],0)>20.',
      'Alt$(CleanJet_pt[0],100)<30.',
-     'Jet_btagCSVV2[CleanJet_jetIdx[0]] < 0.5803',
+      bVeto,
        ]
 
 addcut('WW_0j_em', _tmp)
@@ -34,8 +34,7 @@ _tmp = [
      'Alt$(CleanJet_pt[0],0)>30.',
      'Alt$(CleanJet_pt[1],0)>20.',
      'Alt$(CleanJet_pt[1],100)<30.',
-     'Jet_btagCSVV2[CleanJet_jetIdx[0]] < 0.5803',
-     'Jet_btagCSVV2[CleanJet_jetIdx[1]] < 0.5803',
+      bVeto,
        ]
 
 addcut('WW_1j_em', _tmp)
@@ -45,7 +44,7 @@ _tmp = [
      'ptll > 30.',
      'Alt$(CleanJet_pt[0],0)>20.',
      'Alt$(CleanJet_pt[0],100)<30.',
-     'Jet_btagCSVV2[CleanJet_jetIdx[0]] < 0.5803',
+     bVeto,
        ]
 
 addcut('SS_0j_em', _tmp)
@@ -56,8 +55,7 @@ _tmp = [
      'Alt$(CleanJet_pt[0],0)>30.',
      'Alt$(CleanJet_pt[1],0)>20.',
      'Alt$(CleanJet_pt[1],100)<30.',
-     'Jet_btagCSVV2[CleanJet_jetIdx[0]] < 0.5803',
-     'Jet_btagCSVV2[CleanJet_jetIdx[1]] < 0.5803',
+     bVeto,
         ]
 
 addcut('SS_1j_em', _tmp)
@@ -67,7 +65,7 @@ _tmp = [
      'ptll > 30.',
      'Alt$(CleanJet_pt[0],0)>20.',
      'Alt$(CleanJet_pt[0],100)<30.',
-     'Jet_btagCSVV2[CleanJet_jetIdx[0]] > 0.5803',
+     '!'+bVeto,
        ]
 
 addcut('Top_0j_em', _tmp)
@@ -78,8 +76,7 @@ _tmp = [
      'Alt$(CleanJet_pt[0],0)>30.',
      'Alt$(CleanJet_pt[1],0)>20.',
      'Alt$(CleanJet_pt[1],100)<30.',
-     'Jet_btagCSVV2[CleanJet_jetIdx[0]] > 0.5803',
-     'Jet_btagCSVV2[CleanJet_jetIdx[1]] > 0.5803',
+     '!'+bVeto,
        ]
 
 addcut('Top_1j_em', _tmp)
@@ -90,7 +87,7 @@ _tmp = [
      'mll<80.',
      'Alt$(CleanJet_pt[0],0)>20.',
      'Alt$(CleanJet_pt[0],100)<30.',
-     'Jet_btagCSVV2[CleanJet_jetIdx[0]] < 0.5803',
+     bVeto,
        ]
 
 addcut('DY_0j_em', _tmp)
@@ -102,8 +99,7 @@ _tmp = [
      'Alt$(CleanJet_pt[0],0)>30.',
      'Alt$(CleanJet_pt[1],0)>20.',
      'Alt$(CleanJet_pt[1],100)<30.',
-     'Jet_btagCSVV2[CleanJet_jetIdx[0]] < 0.5803',
-     'Jet_btagCSVV2[CleanJet_jetIdx[1]] < 0.5803',
+     bVeto,
         ]
 
 addcut('DY_1j_em', _tmp)

@@ -86,7 +86,7 @@ plot['Higgs']  = {
                   'scale'    : 1.   ,
               }
 
-plot['VgS'] = { 
+plot['WZgS'] = { 
                   'color'    : 617,   # kViolet + 1  
                   'isSignal' : 0,
                   'isData'   : 0,
