@@ -10,28 +10,29 @@
 nuisances['lumi']  = {
                'name'  : 'lumi_13TeV',
                'samples'  : {
-                   #'DY'       : '1.025',    |
-                   #'top'      : '1.025',    | These 3 backgrounds are data driven, no need to include the luminosity uncertainty
-                   #'WW'       : '1.025',    |
-                   'ggWW'     : '1.025',
-                   'Vg'       : '1.025',
-                   'VgS'      : '1.025',
-                   'WZgS_L'   : '1.025',
-                   'WZgS_H'   : '1.025',
-                   'VZ'       : '1.025',
-                   'VVV'      : '1.025',
-                   'ggH_hww'  : '1.025',
-                   'qqH_hww'  : '1.025',
-                   'ZH_hww'   : '1.025',
-                   'ggZH_hww' : '1.025',
-                   'WH_hww'   : '1.025',
-                   'bbH_hww'  : '1.025',
-                   'ttH_hww'  : '1.025',
-                   'ggH_htt'  : '1.025',
-                   'qqH_htt'  : '1.025',
-                   'ZH_htt'   : '1.025',
-                   'WH_htt'   : '1.025',
-                   'H_htt'    : '1.025',
+                   #'DY'       : '1.023',    |
+                   #'top'      : '1.023',    | These 3 backgrounds are data driven, no need to include the luminosity uncertainty
+                   #'WW'       : '1.023',    |
+                   'ggWW'     : '1.023',
+                   'Vg'       : '1.023',
+                   'VgS'      : '1.023',
+                   'WZgS'     : '1.023',
+                   'WZgS_L'   : '1.023',
+                   'WZgS_H'   : '1.023',
+                   'VZ'       : '1.023',
+                   'VVV'      : '1.023',
+                   'ggH_hww'  : '1.023',
+                   'qqH_hww'  : '1.023',
+                   'ZH_hww'   : '1.023',
+                   'ggZH_hww' : '1.023',
+                   'WH_hww'   : '1.023',
+                   'bbH_hww'  : '1.023',
+                   'ttH_hww'  : '1.023',
+                   'ggH_htt'  : '1.023',
+                   'qqH_htt'  : '1.023',
+                   'ZH_htt'   : '1.023',
+                   'WH_htt'   : '1.023',
+                   'H_htt'    : '1.023',
                    },
                'type'  : 'lnN',
               }
@@ -40,14 +41,14 @@ nuisances['lumi']  = {
 
 if Nlep == '2' :
   # already divided by central values in formulas !
-  fakeW_EleUp       = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleUp'
-  fakeW_EleDown     = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleDown'
-  fakeW_MuUp        = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuUp'
-  fakeW_MuDown      = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuDown'
-  fakeW_statEleUp   = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleUp'
-  fakeW_statEleDown = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleDown'
-  fakeW_statMuUp    = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuUp'
-  fakeW_statMuDown  = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuDown'
+  fakeW_EleUp       = fakeW+'_EleUp'
+  fakeW_EleDown     = fakeW+'_EleDown'
+  fakeW_MuUp        = fakeW+'_MuUp'
+  fakeW_MuDown      = fakeW+'_MuDown'
+  fakeW_statEleUp   = fakeW+'_statEleUp'
+  fakeW_statEleDown = fakeW+'_statEleDown'
+  fakeW_statMuUp    = fakeW+'_statMuUp'
+  fakeW_statMuDown  = fakeW+'_statMuDown'
 
 else:
   fakeW_EleUp       = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lElUp       / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
@@ -59,14 +60,7 @@ else:
   fakeW_statMuUp    = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lstatMuUp   / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
   fakeW_statMuDown  = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lstatMuDown / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
 
-#nuisances['fake_syst']  = {
-#               'name'  : 'fake_syst',
-#               'type'  : 'lnN',
-#               'samples'  : {
-#                             'Fake' : '1.30',
-#                             },
-#}
-
+## FIXME: check the 30% lnN
 nuisances['fake_syst_em']  = {
                'name'  : 'CMS_hwwem_fake_syst',
                'type'  : 'lnN',
@@ -125,70 +119,281 @@ nuisances['fake_mu_stat']  = {
 }
 
 ##### B-tagger
-
-nuisances['btagbc']  = {
-                'name'  : 'btag_heavy',
-                'kind'  : 'weight',
-               'type'  : 'shape',
-                'samples'  : {
-                   'DY'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'WW'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'ggWW'    : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'VVV'     : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'VZ'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'WZgS_L'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'WZgS_H'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'top'     : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'Vg'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'VgS'     : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'ggH_hww' : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'qqH_hww' : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'WH_hww'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'ZH_hww'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'H_htt'   : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'bbH_hww' : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'ttH_hww' : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'ggH_htt' : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],  
-                   'qqH_htt' : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'ZH_htt'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'WH_htt'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                }
-}
-
-nuisances['btagudsg']  = {
-                'name'  : 'btag_light',
+nuisances['btag_shape_jes']  = {
+                'name'  : 'btag_shape_jes',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'VVV'     : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'VZ'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'WZgS_L'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'WZgS_H'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'WW'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'ggWW'    : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'top'     : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'Vg'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'VgS'     : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'ggH_hww' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'qqH_hww' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'WH_hww'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'ZH_hww'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'bbH_hww' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'ttH_hww' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'H_htt'   : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'ggH_htt' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'qqH_htt' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'ZH_htt'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'WH_htt'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   'DY'      : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
+                   'WW'      : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
+                   'ggWW'    : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
+                   'VVV'     : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
+                   'VZ'      : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
+                   'WZgS'    : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
+                   'WZgS_L'  : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
+                   'WZgS_H'  : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
+                   'top'     : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
+                   'Vg'      : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
+                   'VgS'     : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
+                   'ggH_hww' : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
+                   'qqH_hww' : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
+                   'WH_hww'  : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
+                   'ZH_hww'  : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
+                   'ggZH_hww': ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
+                   'H_htt'   : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
+                   'bbH_hww' : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
+                   'ttH_hww' : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
+                   'ggH_htt' : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],  
+                   'qqH_htt' : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
+                   'ZH_htt'  : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
+                   'WH_htt'  : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
                 }
 }
 
+nuisances['btag_shape_lf']  = {
+                'name'  : 'btag_shape_lf',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'DY'      : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
+                   'VVV'     : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
+                   'VZ'      : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
+                   'WZgS'    : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
+                   'WZgS_L'  : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
+                   'WZgS_H'  : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
+                   'WW'      : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
+                   'ggWW'    : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
+                   'top'     : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
+                   'Vg'      : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
+                   'VgS'     : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
+                   'ggH_hww' : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
+                   'qqH_hww' : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
+                   'WH_hww'  : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
+                   'ZH_hww'  : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
+                   'ggZH_hww': ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
+                   'bbH_hww' : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
+                   'ttH_hww' : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
+                   'H_htt'   : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
+                   'ggH_htt' : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
+                   'qqH_htt' : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
+                   'ZH_htt'  : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
+                   'WH_htt'  : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
+                }
+}
+
+nuisances['btag_shape_hf']  = {
+                'name'  : 'btag_shape_hf',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'DY'      : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
+                   'VVV'     : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
+                   'VZ'      : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
+                   'WZgS'    : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
+                   'WZgS_L'  : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
+                   'WZgS_H'  : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
+                   'WW'      : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
+                   'ggWW'    : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
+                   'top'     : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
+                   'Vg'      : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
+                   'VgS'     : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
+                   'ggH_hww' : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
+                   'qqH_hww' : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
+                   'WH_hww'  : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
+                   'ZH_hww'  : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
+                   'ggZH_hww': ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
+                   'bbH_hww' : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
+                   'ttH_hww' : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
+                   'H_htt'   : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
+                   'ggH_htt' : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
+                   'qqH_htt' : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
+                   'ZH_htt'  : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
+                   'WH_htt'  : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
+                }
+
+nuisances['btag_shape_hfstats1']  = {
+                'name'  : 'btag_shape_hfstats1',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'DY'      : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
+                   'VVV'     : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
+                   'VZ'      : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
+                   'WZgS'    : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
+                   'WZgS_L'  : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
+                   'WZgS_H'  : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
+                   'WW'      : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
+                   'ggWW'    : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
+                   'top'     : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
+                   'Vg'      : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
+                   'VgS'     : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
+                   'ggH_hww' : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
+                   'qqH_hww' : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
+                   'WH_hww'  : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
+                   'ZH_hww'  : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
+                   'ggZH_hww': ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
+                   'bbH_hww' : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
+                   'ttH_hww' : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
+                   'H_htt'   : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
+                   'ggH_htt' : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
+                   'qqH_htt' : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
+                   'ZH_htt'  : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
+                   'WH_htt'  : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
+                }
+
+nuisances['btag_shape_hfstats2']  = {
+                'name'  : 'btag_shape_hfstats2',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'DY'      : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
+                   'VVV'     : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
+                   'VZ'      : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
+                   'WZgS'    : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
+                   'WZgS_L'  : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
+                   'WZgS_H'  : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
+                   'WW'      : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
+                   'ggWW'    : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
+                   'top'     : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
+                   'Vg'      : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
+                   'VgS'     : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
+                   'ggH_hww' : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
+                   'qqH_hww' : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
+                   'WH_hww'  : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
+                   'ZH_hww'  : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
+                   'ggZH_hww': ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
+                   'bbH_hww' : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
+                   'ttH_hww' : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
+                   'H_htt'   : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
+                   'ggH_htt' : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
+                   'qqH_htt' : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
+                   'ZH_htt'  : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
+                   'WH_htt'  : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
+                }
+
+nuisances['btag_shape_lfstats1']  = {
+                'name'  : 'btag_shape_lfstats1',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'DY'      : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
+                   'VVV'     : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
+                   'VZ'      : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
+                   'WZgS'    : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
+                   'WZgS_L'  : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
+                   'WZgS_H'  : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
+                   'WW'      : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
+                   'ggWW'    : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
+                   'top'     : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
+                   'Vg'      : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
+                   'VgS'     : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
+                   'ggH_hww' : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
+                   'qqH_hww' : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
+                   'WH_hww'  : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
+                   'ZH_hww'  : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
+                   'ggZH_hww': ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
+                   'bbH_hww' : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
+                   'ttH_hww' : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
+                   'H_htt'   : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
+                   'ggH_htt' : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
+                   'qqH_htt' : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
+                   'ZH_htt'  : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
+                   'WH_htt'  : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
+                }
+
+nuisances['btag_shape_lfstats2']  = {
+                'name'  : 'btag_shape_lfstats2',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'DY'      : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
+                   'VVV'     : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
+                   'VZ'      : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
+                   'WZgS'    : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
+                   'WZgS_L'  : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
+                   'WZgS_H'  : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
+                   'WW'      : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
+                   'ggWW'    : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
+                   'top'     : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
+                   'Vg'      : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
+                   'VgS'     : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
+                   'ggH_hww' : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
+                   'qqH_hww' : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
+                   'WH_hww'  : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
+                   'ZH_hww'  : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
+                   'ggZH_hww': ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
+                   'bbH_hww' : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
+                   'ttH_hww' : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
+                   'H_htt'   : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
+                   'ggH_htt' : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
+                   'qqH_htt' : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
+                   'ZH_htt'  : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
+                   'WH_htt'  : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
+                }
+
+nuisances['btag_shape_cferr1']  = {
+                'name'  : 'btag_shape_cferr1',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'DY'      : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
+                   'VVV'     : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
+                   'VZ'      : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
+                   'WZgS'    : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
+                   'WZgS_L'  : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
+                   'WZgS_H'  : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
+                   'WW'      : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
+                   'ggWW'    : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
+                   'top'     : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
+                   'Vg'      : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
+                   'VgS'     : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
+                   'ggH_hww' : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
+                   'qqH_hww' : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
+                   'WH_hww'  : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
+                   'ZH_hww'  : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
+                   'ggZH_hww': ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
+                   'bbH_hww' : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
+                   'ttH_hww' : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
+                   'H_htt'   : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
+                   'ggH_htt' : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
+                   'qqH_htt' : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
+                   'ZH_htt'  : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
+                   'WH_htt'  : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
+                }
+
+nuisances['btag_shape_cferr2']  = {
+                'name'  : 'btag_shape_cferr2',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'DY'      : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
+                   'VVV'     : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
+                   'VZ'      : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
+                   'WZgS'    : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
+                   'WZgS_L'  : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
+                   'WZgS_H'  : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
+                   'WW'      : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
+                   'ggWW'    : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
+                   'top'     : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
+                   'Vg'      : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
+                   'VgS'     : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
+                   'ggH_hww' : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
+                   'qqH_hww' : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
+                   'WH_hww'  : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
+                   'ZH_hww'  : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
+                   'ggZH_hww': ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
+                   'bbH_hww' : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
+                   'ttH_hww' : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
+                   'H_htt'   : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
+                   'ggH_htt' : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
+                   'qqH_htt' : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
+                   'ZH_htt'  : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
+                   'WH_htt'  : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
+                }
+
 ##### Trigger Efficiency
 
-if   Nlep == '2' : trig_syst = ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)']
-elif Nlep == '3' : trig_syst = ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)']
-elif Nlep == '4' : trig_syst = ['(effTrigW4l_Up)/(effTrigW4l)', '(effTrigW3l_Down)/(effTrigW4l)']
+trig_syst = ['(TriggerEffWeight_'+Nlep+'l_u)/(TriggerEffWeight_'+Nlep+'l)', '(TriggerEffWeight_'+Nlep+'l_d)/(TriggerEffWeight_'+Nlep+'l)']
 
 nuisances['trigg']  = {
                 'name'  : 'hww_trigger',
@@ -254,101 +459,102 @@ nuisances['eff_e']  = {
                 },
 }
 
-nuisances['electronpt']  = {
-                'name'  : 'scale_e',
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : {
-                   'DY'      : ['1', '1'],
-                   'ggWW'    : ['1', '1'],
-                   'WW'      : ['1', '1'],
-                   'top'     : ['1', '1'],
-                   'VZ'      : ['1', '1'],
-                   'WZgS_L'  : ['1', '1'],
-                   'WZgS_H'  : ['1', '1'],
-                   'VVV'     : ['1', '1'],
-                   'Vg'      : ['1', '1'],
-                   'VgS'     : ['1', '1'],
-                   'ggH_hww' : ['1', '1'],
-                   'qqH_hww' : ['1', '1'],
-                   'WH_hww'  : ['1', '1'],
-                   'ZH_hww'  : ['1', '1'],
-                   'ggZH_hww': ['1', '1'],
-                   'bbH_hww' : ['1', '1'],
-                   'ttH_hww' : ['1', '1'],
-                   'H_htt'   : ['1', '1'],
-                   'ggH_htt' : ['1', '1'] ,
-                   'qqH_htt' : ['1', '1'] ,
-                   'ZH_htt'  : ['1', '1'] ,
-                   'WH_htt'  : ['1', '1'] ,
-                 },
-                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepElepTup'+skim,
-                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepElepTdo'+skim,
-}
+#FIXME: Add electron pT uncertainty
+#nuisances['electronpt']  = {
+#                'name'  : 'scale_e',
+#                'kind'  : 'tree',
+#                'type'  : 'shape',
+#                'samples'  : {
+#                   'DY'      : ['1', '1'],
+#                   'ggWW'    : ['1', '1'],
+#                   'WW'      : ['1', '1'],
+#                   'top'     : ['1', '1'],
+#                   'VZ'      : ['1', '1'],
+#                   'WZgS_L'  : ['1', '1'],
+#                   'WZgS_H'  : ['1', '1'],
+#                   'VVV'     : ['1', '1'],
+#                   'Vg'      : ['1', '1'],
+#                   'VgS'     : ['1', '1'],
+#                   'ggH_hww' : ['1', '1'],
+#                   'qqH_hww' : ['1', '1'],
+#                   'WH_hww'  : ['1', '1'],
+#                   'ZH_hww'  : ['1', '1'],
+#                   'ggZH_hww': ['1', '1'],
+#                   'bbH_hww' : ['1', '1'],
+#                   'ttH_hww' : ['1', '1'],
+#                   'H_htt'   : ['1', '1'],
+#                   'ggH_htt' : ['1', '1'] ,
+#                   'qqH_htt' : ['1', '1'] ,
+#                   'ZH_htt'  : ['1', '1'] ,
+#                   'WH_htt'  : ['1', '1'] ,
+#                 },
+#                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__btagSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepElepTup'+skim,
+#                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__btagSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepElepTdo'+skim,
+#}
 
-
-elePtCor_Syst = [ 'electron_ptW_'+Nlep+'l_Up / electron_ptW_'+Nlep+'l', 'electron_ptW_'+Nlep+'l_Down / electron_ptW_'+Nlep+'l']
-nuisances['elePtCor']  = {
-                'name'  : 'hww_elePtCor',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'DY'         : elePtCor_Syst ,
-                   'ggWW'       : elePtCor_Syst ,
-                   'WW'         : elePtCor_Syst ,
-                   'top'        : elePtCor_Syst ,
-                   'VZ'         : elePtCor_Syst ,
-                   'WZgS_L'     : elePtCor_Syst ,
-                   'WZgS_H'     : elePtCor_Syst ,
-                   'VVV'        : elePtCor_Syst ,
-                   'Vg'         : elePtCor_Syst ,
-                   'VgS'        : elePtCor_Syst ,
-                   'ggH_hww'    : elePtCor_Syst ,
-                   'qqH_hww'    : elePtCor_Syst ,
-                   'WH_hww'     : elePtCor_Syst ,
-                   'ZH_hww'     : elePtCor_Syst ,
-                   'ggZH_hww'   : elePtCor_Syst ,
-                   'bbH_hww'    : elePtCor_Syst ,
-                   'ttH_hww'    : elePtCor_Syst ,
-                   'H_htt'      : elePtCor_Syst ,
-                   'ggH_htt'    : elePtCor_Syst ,
-                   'qqH_htt'    : elePtCor_Syst ,
-                   'ZH_htt'     : elePtCor_Syst ,
-                   'WH_htt'     : elePtCor_Syst ,
-                }
-}
-
-eleEtaCor_Syst = [ 'electron_etaW_'+Nlep+'l_Up / electron_etaW_'+Nlep+'l', 'electron_etaW_'+Nlep+'l_Down / electron_etaW_'+Nlep+'l']
-
-nuisances['eleEtaCor']  = {
-                'name'  : 'hww_eleEtaCor',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'DY'         : eleEtaCor_Syst ,
-                   'ggWW'       : eleEtaCor_Syst ,
-                   'WW'         : eleEtaCor_Syst ,
-                   'top'        : eleEtaCor_Syst ,
-                   'VZ'         : eleEtaCor_Syst ,
-                   'WZgS_L'     : eleEtaCor_Syst ,
-                   'WZgS_H'     : eleEtaCor_Syst ,
-                   'VVV'        : eleEtaCor_Syst ,
-                   'Vg'         : eleEtaCor_Syst ,
-                   'VgS'        : eleEtaCor_Syst ,
-                   'ggH_hww'    : eleEtaCor_Syst ,
-                   'qqH_hww'    : eleEtaCor_Syst ,
-                   'WH_hww'     : eleEtaCor_Syst ,
-                   'ZH_hww'     : eleEtaCor_Syst ,
-                   'ggZH_hww'   : eleEtaCor_Syst ,
-                   'bbH_hww'    : eleEtaCor_Syst ,
-                   'ttH_hww'    : eleEtaCor_Syst ,
-                   'H_htt'      : eleEtaCor_Syst ,
-                   'ggH_htt'    : eleEtaCor_Syst ,
-                   'qqH_htt'    : eleEtaCor_Syst ,
-                   'ZH_htt'     : eleEtaCor_Syst ,
-                   'WH_htt'     : eleEtaCor_Syst ,
-                }
-}
+#FIXME: The following should not be needed for 2017
+#elePtCor_Syst = [ 'electron_ptW_'+Nlep+'l_Up / electron_ptW_'+Nlep+'l', 'electron_ptW_'+Nlep+'l_Down / electron_ptW_'+Nlep+'l']
+#nuisances['elePtCor']  = {
+#                'name'  : 'hww_elePtCor',
+#                'kind'  : 'weight',
+#                'type'  : 'shape',
+#                'samples'  : {
+#                   'DY'         : elePtCor_Syst ,
+#                   'ggWW'       : elePtCor_Syst ,
+#                   'WW'         : elePtCor_Syst ,
+#                   'top'        : elePtCor_Syst ,
+#                   'VZ'         : elePtCor_Syst ,
+#                   'WZgS_L'     : elePtCor_Syst ,
+#                   'WZgS_H'     : elePtCor_Syst ,
+#                   'VVV'        : elePtCor_Syst ,
+#                   'Vg'         : elePtCor_Syst ,
+#                   'VgS'        : elePtCor_Syst ,
+#                   'ggH_hww'    : elePtCor_Syst ,
+#                   'qqH_hww'    : elePtCor_Syst ,
+#                   'WH_hww'     : elePtCor_Syst ,
+#                   'ZH_hww'     : elePtCor_Syst ,
+#                   'ggZH_hww'   : elePtCor_Syst ,
+#                   'bbH_hww'    : elePtCor_Syst ,
+#                   'ttH_hww'    : elePtCor_Syst ,
+#                   'H_htt'      : elePtCor_Syst ,
+#                   'ggH_htt'    : elePtCor_Syst ,
+#                   'qqH_htt'    : elePtCor_Syst ,
+#                   'ZH_htt'     : elePtCor_Syst ,
+#                   'WH_htt'     : elePtCor_Syst ,
+#                }
+#}
+#
+#eleEtaCor_Syst = [ 'electron_etaW_'+Nlep+'l_Up / electron_etaW_'+Nlep+'l', 'electron_etaW_'+Nlep+'l_Down / electron_etaW_'+Nlep+'l']
+#
+#nuisances['eleEtaCor']  = {
+#                'name'  : 'hww_eleEtaCor',
+#                'kind'  : 'weight',
+#                'type'  : 'shape',
+#                'samples'  : {
+#                   'DY'         : eleEtaCor_Syst ,
+#                   'ggWW'       : eleEtaCor_Syst ,
+#                   'WW'         : eleEtaCor_Syst ,
+#                   'top'        : eleEtaCor_Syst ,
+#                   'VZ'         : eleEtaCor_Syst ,
+#                   'WZgS_L'     : eleEtaCor_Syst ,
+#                   'WZgS_H'     : eleEtaCor_Syst ,
+#                   'VVV'        : eleEtaCor_Syst ,
+#                   'Vg'         : eleEtaCor_Syst ,
+#                   'VgS'        : eleEtaCor_Syst ,
+#                   'ggH_hww'    : eleEtaCor_Syst ,
+#                   'qqH_hww'    : eleEtaCor_Syst ,
+#                   'WH_hww'     : eleEtaCor_Syst ,
+#                   'ZH_hww'     : eleEtaCor_Syst ,
+#                   'ggZH_hww'   : eleEtaCor_Syst ,
+#                   'bbH_hww'    : eleEtaCor_Syst ,
+#                   'ttH_hww'    : eleEtaCor_Syst ,
+#                   'H_htt'      : eleEtaCor_Syst ,
+#                   'ggH_htt'    : eleEtaCor_Syst ,
+#                   'qqH_htt'    : eleEtaCor_Syst ,
+#                   'ZH_htt'     : eleEtaCor_Syst ,
+#                   'WH_htt'     : eleEtaCor_Syst ,
+#                }
+#}
 
 
 ##### Muon Efficiency and energy scale
@@ -413,8 +619,8 @@ nuisances['muonpt']  = {
                    'ZH_htt'  : ['1', '1'] ,
                    'WH_htt'  : ['1', '1'] ,
                 },
-                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepMupTup'+skim,
-                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepMupTdo'+skim,
+                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__btagSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepMupTup'+skim,
+                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__btagSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepMupTdo'+skim,
 }
 
 
@@ -448,8 +654,8 @@ nuisances['jes']  = {
                    'ZH_htt'  : ['1', '1'] ,
                    'WH_htt'  : ['1', '1'] ,
                 },
-                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__JESup'+skim,
-                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__JESdo'+skim,
+                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__btagSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__JESup'+skim,
+                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__btagSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__JESdo'+skim,
 }
 
 ##### MET energy scale
@@ -482,8 +688,8 @@ nuisances['met']  = {
                    'ZH_htt'  : ['1', '1'] ,
                    'WH_htt'  : ['1', '1'] ,
                 },
-                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__METup'+skim,
-                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__METdo'+skim,
+                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__btagSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__METup'+skim,
+                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__btagSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__METdo'+skim,
 }
 
 #
@@ -500,8 +706,8 @@ nuisances['PS']  = {
                   'ggH_hww' : ['0.98554', '1.'], # These numbers are used to normalize the PS variation to the same integral as the nominal after the wwSel skim
                   'qqH_hww' : ['0.92511', '1.'], #
                 },
-                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__PS'+skim,
-                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC'+skim,
+                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__btagSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__PS'+skim,
+                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__btagSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC'+skim,
                 'AsLnN'      : '1',
                 }
 
@@ -515,8 +721,8 @@ nuisances['UE']  = {
                   'ggH_hww' : ['1.0739', '1.0211'], # These numbers are used to normalize the UE up/down variations to the same integral as the nominal after the wwSel skim
                   'qqH_hww' : ['1.0560', '0.9992'], #
                 },
-                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__UEup'+skim,
-                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__UEdo'+skim,
+                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__btagSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__UEup'+skim,
+                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__btagSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__UEdo'+skim,
                 'AsLnN'      : '1',
                 }
 

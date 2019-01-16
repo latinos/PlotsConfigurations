@@ -121,15 +121,16 @@ DataTrig = {
 ############ DY ############
 #FIXME Add Z pT reweighting SF
 
-useDYtt = True
+useDYtt = False
 
-samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50',False,'nanoLatino_') ,
+samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50',False,'nanoLatino_') 
+                                + getSampleFiles(directory,'DYJetsToLL_M-10to50-LO',False,'nanoLatino_'),
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 10,
+                     'FilesPerJob' : 5,
                  }
 
 if useDYtt :
-    samples['DY']['name'] =   getSampleFiles(directory,'DYJetsToTT_MuEle_M-50_PSWeights',False,'nanoLatino_')
+    samples['DY']['name'] =   getSampleFiles(directory,'DYJetsToTT_MuEle_M-50_PSWeights',False,'nanoLatino_')+ getSampleFiles(directory,'DYJetsToLL_M-10to50-LO',False,'nanoLatino_')
     
     ## Remove OF from inclusive sample (is it needed?)
     #cutSF = '(abs(Lepton_pdgId[0]*Lepton_pdgId[1]) == 11*11)||(Lepton_pdgId[0]*Lepton_pdgId[1]) == 13*13)'
@@ -138,6 +139,7 @@ if useDYtt :
 
 ############ Top ############
 #FIXME Add top pT reweighting
+Top_pTrw = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )'
 
 samples['top'] = {    'name'   :   getSampleFiles(directory,'TTTo2L2Nu',False,'nanoLatino_') 
                                  + getSampleFiles(directory,'ST_s-channel',False,'nanoLatino_') 
@@ -149,6 +151,7 @@ samples['top'] = {    'name'   :   getSampleFiles(directory,'TTTo2L2Nu',False,'n
                      'FilesPerJob' : 1,
                  }
 
+addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
 
 ############ WW ############
 
