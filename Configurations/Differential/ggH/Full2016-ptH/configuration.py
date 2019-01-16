@@ -1,4 +1,5 @@
 # example of configuration file
+
 tag = 'ggH'
 
 # used by mkShape to define output directory for root files
@@ -12,12 +13,13 @@ variablesFile = 'variables.py'
 cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples_inc.py' 
+samplesFile = 'samples.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
 
-
+# file with aliases
+aliasesFile = 'aliases.py'
 
 # luminosity to normalize to (in 1/fb)
 lumi = 35.867
