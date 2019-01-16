@@ -13,7 +13,7 @@
 
 groupPlot['HH']  = {  
                  'nameHR' : 'HH',
-                 'isSignal' : 1,
+                 'isSignal' : 2,
                  'color': 861,   
                  'samples'  : ['HH']
               }
@@ -27,10 +27,18 @@ groupPlot['HH']  = {
 
 groupPlot['Wjets']  = {
                         'nameHR' : 'W+Jets',
-                        'isSignal' : 0,
+                        'isSignal' : 2,
                         'color': 629,  
                         'samples'  : ['Wjets']
                         }
+
+groupPlot['Data']  = {
+                        'nameHR' : 'Data',
+                        'isSignal' : 2,
+                        'color': 396,
+                        'samples'  : ['Data']
+                        }
+
 
 
 #groupPlot['top']  = {  
@@ -102,10 +110,18 @@ plot['HH']  = {
 #              }
 plot['Wjets']  = {
                   'color': 629,
-                  'isSignal' : 0,
+                  'isSignal' : 2,
                   'isData'   : 0,
                   'scale'    : 1.   ,
               }
+
+plot['Data']  = {
+                  'color': 396,
+                  'isSignal' : 2,
+                  'isData'   : 0,
+                  'scale'    : 1.   ,
+              }
+
 
 #legend['lumi'] = 'L = 6.3/fb'
 legend['lumi'] = 'L = 35.9/fb'
