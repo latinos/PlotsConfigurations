@@ -1,9 +1,11 @@
 # example of configuration file
-tag = 'ggH'
+tag = 'SS'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
 
+# file with TTree aliases                                                           
+aliasesFile = 'aliases.py'
 
 # file with list of variables
 variablesFile = 'variables.py'
@@ -12,30 +14,27 @@ variablesFile = 'variables.py'
 cutsFile = 'cuts.py' 
 
 # file with list of samples
+#samplesFile = 'samplesMinitrees.py' 
 samplesFile = 'samples.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
 
-
-
 # luminosity to normalize to (in 1/fb)
-lumi = 35.867
+lumi = 42.0
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotGGH'
-
+outputDirPlots = 'plots'
 
 # used by mkDatacards to define output directory for datacards
 outputDirDatacard = 'datacards'
 
-
 # structure file for datacard
 structureFile = 'structure.py'
 
-
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+nuisancesFile = 'nuisances_light.py'
+#nuisancesFile = 'nuisances.py'
 
 

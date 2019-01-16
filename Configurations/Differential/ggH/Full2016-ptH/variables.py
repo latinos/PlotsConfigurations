@@ -33,28 +33,25 @@ variables['mllVSmth_pt2lt20'] = {   'name': 'mll:mth',            #   variable n
                              #
                              }
  
-variables['mllVSmth_pt2ge20_old'] = {   'name': 'mll:mth',            #   variable name    
-                             'range' : ([60,80,90,100,110,120,130,140,200],[10,25,35,40,45,50,55,65,210],),            #   variable range
-                             'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
-                             'fold' : 3 ,
-                             # do weighted plot too
-                             'doWeight' : 1,
-                             'binX'     : 8,
-                             'binY'     : 8
-                             #
-                             }
 
-
-variables['mllVSmth_pt2lt20_old'] = {   'name': 'mll:mth',            #   variable name    
-                             'range' : ([60,80,90,110,130,150,200],[10,20,30,50,70,90,150],),            #   variable range
-                             'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
-                             'fold' : 3 ,
-                             # do weighted plot too
-                             'doWeight' : 1,
-                             'binX'     : 6,
-                             'binY'     : 6
-                             #
-                             }
+                             
+variables['mllVSmth_2j'] = {   'name': 'mll:mth',            #   variable name    
+                        #'range' : (7,60,200, 5,10,110),            #   variable range
+                        'range'  :  ([60,80,90,110,130,150,200],[10,20,30,50,70,90,150],),
+                        'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
+                        'fold' : 3 , 
+                        # do weighted plot too
+                        'doWeight' : 1,
+                        'binX'     : 6,
+                        'binY'     : 6
+                        #
+                        }
+                        
+variables['mll_optim']  = { 'name': 'mll',            #   variable name
+                            'range' : ([12,30,50,70,90,110,150,200],),    #   variable range
+                            'xaxis' : 'mll [GeV]',  #   x axis name
+                            'fold' : 3
+                          }
  
 ## just for fun plots:
                   
@@ -127,6 +124,13 @@ variables['mllVSmth_pt2lt20_old'] = {   'name': 'mll:mth',            #   variab
 #                        'fold'  : 3                         
 #                        }
 #
+#variables['njet']  = {
+#                        'name': 'njet',     
+#                        'range' : (5,0,5),   
+#                        'xaxis' : 'Number of jets',
+#                        'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+#                        }
+#
 #variables['jetpt1']  = {
 #                        'name': 'std_vector_jet_pt[0]',     
 #                        'range' : (40,0,200),   
@@ -152,24 +156,4 @@ variables['mllVSmth_pt2lt20_old'] = {   'name': 'mll:mth',            #   variab
 #                        'xaxis' : '#eta 2nd jet',
 #                        'fold'  : 0
 #                        }
-variables['njet']  = {
-                        'name': 'njet',     
-                        'range' : (5,0,5),   
-                        'xaxis' : 'Number of jets',
-                        'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
-                        }
-variables['ptllmet'] = { 'name': 'sqrt((metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))*(metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))+(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1]))*(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1])))',
-                          'range' : (100,0,300),
-                          'xaxis' : 'p_{T}^{llmet} [GeV]',
-                          'fold' : 3
-                              }
-variables['ptllmet_reco'] = { 'name': 'sqrt((metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))*(metPfType1*cos(metPfType1Phi)+std_vector_lepton_pt[0]*cos(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*cos(std_vector_lepton_phi[1]))+(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1]))*(metPfType1*sin(metPfType1Phi)+std_vector_lepton_pt[0]*sin(std_vector_lepton_phi[0])+std_vector_lepton_pt[1]*sin(std_vector_lepton_phi[1])))',
-                               'range' : ([0,35,50,65,80,300],),
-                               'xaxis' : 'p_{T}^{llmet} [GeV]',
-                               'fold'  : 3
-}
-variables['ptllmet_gen'] = { 'name': 'sqrt(pow(metGenpt*cos(metGenphi)+std_vector_dressedLeptonGen_pt[0]*cos(std_vector_dressedLeptonGen_phi[0])+std_vector_dressedLeptonGen_pt[1]*cos(std_vector_dressedLeptonGen_phi[1]),2)+pow(metGenpt*sin(metGenphi)+std_vector_dressedLeptonGen_pt[0]*sin(std_vector_dressedLeptonGen_phi[0])+std_vector_dressedLeptonGen_pt[1]*sin(std_vector_dressedLeptonGen_phi[1]),2))',
-                               'range' : ([0,35,50,65,80,300],),
-                               'xaxis' : 'p_{T}^{llmet} [GeV]',
-                               'fold'  : 3
-}
+

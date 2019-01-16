@@ -26,7 +26,7 @@ groupPlot['Fake']  = {
                   'nameHR' : 'Non-prompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fake']
+                  'samples'  : ['Fake', 'Fake_em', 'Fake_me']
               }
 
 
@@ -51,7 +51,7 @@ groupPlot['VZ']  = {
                   'nameHR' : "VZ",
                   'isSignal' : 0,
                   'color'    : 617,   # kViolet + 1  
-                  'samples'  : ['VZ', 'WZ', 'ZZ', 'WZgS_H']
+                  'samples'  : ['VZ', 'WZ', 'ZZ']
               }
 
 groupPlot['Vg']  = {  
@@ -65,23 +65,21 @@ groupPlot['VgS']  = {
                   'nameHR' : "V#gamma*",
                   'isSignal' : 0,
                   'color'    : 409,   # kGreen - 9
-                  'samples'  : ['VgS','WZgS_L']
+                  'samples'  : ['VgS','WZgS']
               }
 
 
-groupPlot['Higgs_sig']  = {  
-                  'nameHR' : 'Higgs sig',
+
+groupPlot['Higgs']  = {  
+                  'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-		  'samples'  : ['ggH_hww']
+		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
               }
 
-groupPlot['Higgs_bkg']  = {  
-                  'nameHR' : 'Higgs bkg',
-                  'isSignal' : 0,
-                  'color': 634, # kRed+2 
-		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
-              }
+
+
+
 
 #plot = {}
 
@@ -92,6 +90,20 @@ plot['DY']  = {
                   'isSignal' : 0,
                   'isData'   : 0, 
                   'scale'    : 1.0,
+                  #'cuts'  : {
+                       #'hww2l2v_13TeV_of0j'      : 0.95 ,
+                       #'hww2l2v_13TeV_top_of0j'  : 0.95 , 
+                       #'hww2l2v_13TeV_dytt_of0j' : 0.95 ,
+                       #'hww2l2v_13TeV_em_0j'     : 0.95 , 
+                       #'hww2l2v_13TeV_me_0j'     : 0.95 , 
+                       ##
+                       #'hww2l2v_13TeV_of1j'      : 1.08 ,
+                       #'hww2l2v_13TeV_top_of1j'  : 1.08 , 
+                       #'hww2l2v_13TeV_dytt_of1j' : 1.08 ,
+                       #'hww2l2v_13TeV_em_1j'     : 1.08 , 
+                       #'hww2l2v_13TeV_me_1j'     : 1.08 , 
+                        #},
+
               }
 
 
@@ -102,12 +114,42 @@ plot['Fake']  = {
                   'scale'    : 1.0                  
               }
 
+
+plot['Fake_em']  = {  
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0                  
+              }
+
+
+plot['Fake_me']  = {  
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0                  
+              }
+
+              
 plot['top'] = {   
                   'nameHR' : 'tW and t#bar{t}',
                   'color': 400,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
                   'scale'    : 1.0,
+                  #'cuts'  : {
+                       #'hww2l2v_13TeV_of0j'      : 0.94 ,
+                       #'hww2l2v_13TeV_top_of0j'  : 0.94 , 
+                       #'hww2l2v_13TeV_dytt_of0j' : 0.94 ,
+                       #'hww2l2v_13TeV_em_0j'     : 0.94 , 
+                       #'hww2l2v_13TeV_me_0j'     : 0.94 , 
+                       ##
+                       #'hww2l2v_13TeV_of1j'      : 0.86 ,
+                       #'hww2l2v_13TeV_top_of1j'  : 0.86 , 
+                       #'hww2l2v_13TeV_dytt_of1j' : 0.86 ,
+                       #'hww2l2v_13TeV_em_1j'     : 0.86 , 
+                       #'hww2l2v_13TeV_me_1j'     : 0.86 , 
+                        #},
                   }
 
 
@@ -149,6 +191,13 @@ plot['VZ']  = {
 
 plot['VVV']  = { 
                   'color': 857, # kAzure -3  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+plot['WZgS']  = {
+                  'color': 617, # kViolet + 1
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
@@ -291,134 +340,6 @@ plot['ggH_hww'] = {
                   'scale'    : 1    #
                   }
 
-plot['ggH_hww_0j_ptllmet1'] = {
-                  'nameHR' : 'ggH_0j_ptllmet1',
-                  'color': 632,
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-
-plot['ggH_hww_0j_ptllmet2'] = {
-                  'nameHR' : 'ggH_0j_ptllmet2',
-                  'color': 632, 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-
-plot['ggH_hww_0j_ptllmet3'] = {
-                  'nameHR' : 'ggH_0j_ptllmet3',
-                  'color': 632, # kMagenta-3 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-
-plot['ggH_hww_0j_ptllmet4'] = {
-                  'nameHR' : 'ggH_0j_ptllmet4',
-                  'color': 632,
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-
-plot['ggH_hww_0j_ptllmet5'] = {
-                  'nameHR' : 'ggH_0j_ptllmet5',
-                  'color': 632,
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-
-plot['ggH_hww_1j_ptllmet1'] = {
-                  'nameHR' : 'ggH_1j_ptllmet1',
-                  'color': 632,
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-
-plot['ggH_hww_1j_ptllmet2'] = {
-                  'nameHR' : 'ggH_1j_ptllmet2',
-                  'color': 632,
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-
-plot['ggH_hww_1j_ptllmet3'] = {
-                  'nameHR' : 'ggH_1j_ptllmet3',
-                  'color': 632,
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-
-plot['ggH_hww_1j_ptllmet4'] = {
-                  'nameHR' : 'ggH_1j_ptllmet4',
-                  'color': 632,
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-
-plot['ggH_hww_1j_ptllmet5'] = {
-                  'nameHR' : 'ggH_1j_ptllmet5',
-                  'color': 632,
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-
-plot['ggH_hww_2j_ptllmet1'] = {
-                  'nameHR' : 'ggH_2j_ptllmet1',
-                  'color': 632,
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-
-plot['ggH_hww_2j_ptllmet2'] = {
-                  'nameHR' : 'ggH_2j_ptllmet2',
-                  'color': 632,
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-
-plot['ggH_hww_2j_ptllmet3'] = {
-                  'nameHR' : 'ggH_2j_ptllmet3',
-                  'color': 632,
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-
-plot['ggH_hww_2j_ptllmet4'] = {
-                  'nameHR' : 'ggH_2j_ptllmet4',
-                  'color': 632,
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-
-plot['ggH_hww_2j_ptllmet5'] = {
-                  'nameHR' : 'ggH_2j_ptllmet5',
-                  'color': 632,
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-
-plot['ggH_hww_nonfid'] = {
-                  'nameHR' : 'ggH_nonfid',
-                  'color': 634,
-                  'isSignal' : 0,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-
 plot['bbH_hww'] = {
                   'nameHR' : 'bbH',
                   'color': 632+5, # kRed+5 
@@ -458,7 +379,7 @@ plot['DATA']  = {
 #legend['lumi'] = 'L = 4.3/fb'
 #legend['lumi'] = 'L = 6.3/fb'
 #legend['lumi'] = 'L = 12.9/fb'
-legend['lumi'] = 'L = 35.9/fb'
+legend['lumi'] = 'L = 42.0/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
