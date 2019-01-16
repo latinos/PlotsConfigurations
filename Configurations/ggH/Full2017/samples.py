@@ -121,7 +121,7 @@ DataTrig = {
 ############ DY ############
 #FIXME Add Z pT reweighting SF
 
-useDYtt = False
+useDYtt = True
 
 samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50',False,'nanoLatino_') 
                                 + getSampleFiles(directory,'DYJetsToLL_M-10to50-LO',False,'nanoLatino_'),
