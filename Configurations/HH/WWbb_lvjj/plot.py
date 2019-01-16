@@ -13,7 +13,7 @@
 
 groupPlot['HH']  = {  
                  'nameHR' : 'HH',
-                 'isSignal' : 2,
+                 'isSignal' : 1,
                  'color': 861,   
                  'samples'  : ['HH']
               }
@@ -98,7 +98,7 @@ groupPlot['Data']  = {
 #                    
 plot['HH']  = {  
                   'color': 861,    
-                  'isSignal' : 2,
+                  'isSignal' : 1,
                   'isData'   : 0, 
                   'scale'    : 1.   ,
               }
