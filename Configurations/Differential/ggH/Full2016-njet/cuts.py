@@ -302,7 +302,9 @@ cuts['hww2l2v_13TeV_me_mp_1j_pt2ge20']  = '(std_vector_lepton_flavour[0] * std_v
                 && ( std_vector_jet_pt[1] < 30 ) \
                 && '+bVeto+' \
                 '
-############# pT2 < 20 GeV
+
+
+############# pT2 < 20 GeV ###################################
 
 cuts['hww2l2v_13TeV_em_pm_0j_pt2lt20']  = '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
                 && (abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13) \
