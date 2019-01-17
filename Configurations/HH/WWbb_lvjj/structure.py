@@ -10,7 +10,7 @@ structure['HH'] = {
                   }
 
 structure['Wjets'] = {
-		'isSignal': 0,
+		'isSignal': 2,
 		'isData': 0
 }
 
@@ -18,8 +18,8 @@ structure['Wjets'] = {
 # data
 
 
-structure['DATA']  = { 
-                  'isSignal' : 0,
+structure['Data']  = { 
+                  'isSignal' : 2,
                   'isData'   : 1 
               }
 

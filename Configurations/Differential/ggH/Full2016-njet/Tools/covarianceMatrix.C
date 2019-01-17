@@ -62,7 +62,6 @@ void covarianceMatrix(){
   
 	cout << "Maximum global correlation: " << max_global_corr << endl;
 	cout << "Mean global correlation: " << mean_global_corr << endl;
-  
-  //paolo
+
 
 }

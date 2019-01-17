@@ -110,38 +110,38 @@ variables['eta2']  = {  'name': 'std_vector_lepton_eta[1]',
 
 
 
-variables['cmva_1']  = { 
-                        'name': 'std_vector_jet_cmvav2[0]',     
-                        'range' : (10,-1,1),   
-                        'xaxis' : 'cmva jet 1st',
-                        'fold'  : 3                         
-                        }
+#variables['cmva_1']  = { 
+#                        'name': 'std_vector_jet_cmvav2[0]',     
+#                        'range' : (10,-1,1),   
+#                        'xaxis' : 'cmva jet 1st',
+#                        'fold'  : 3                         
+#                        }
 
 
 
-variables['cmva_2']  = { 
-                        'name': 'std_vector_jet_cmvav2[1]',     
-                        'range' : (10,-1,1),   
-                        'xaxis' : 'cmva  jet 2nd',
-                        'fold'  : 3                         
-                        }
+#variables['cmva_2']  = { 
+#                        'name': 'std_vector_jet_cmvav2[1]',     
+#                        'range' : (10,-1,1),   
+#                        'xaxis' : 'cmva  jet 2nd',
+#                        'fold'  : 3                         
+#                        }
 
 
-variables['cmva_3']  = { 
-                        'name': 'std_vector_jet_cmvav2[2]',     
-                        'range' : (10,-1,1),   
-                        'xaxis' : 'cmva jet 3rd',
-                        'fold'  : 3                         
-                        }
+#variables['cmva_3']  = { 
+#                        'name': 'std_vector_jet_cmvav2[2]',     
+#                        'range' : (10,-1,1),   
+#                        'xaxis' : 'cmva jet 3rd',
+#                        'fold'  : 3                         
+#                        }
 
 
 
-variables['cmva_4']  = { 
-                        'name': 'std_vector_jet_cmvav2[3]',     
-                        'range' : (10,-1,1),   
-                        'xaxis' : 'cmva  jet 4th',
-                        'fold'  : 3                         
-                        }
+#variables['cmva_4']  = { 
+#                        'name': 'std_vector_jet_cmvav2[3]',     
+#                        'range' : (10,-1,1),   
+#                        'xaxis' : 'cmva  jet 4th',
+#                        'fold'  : 3                         
+#                        }
 
 variables['pfmet']  = { 
                         'name': 'metPfType1',     
@@ -149,6 +149,13 @@ variables['pfmet']  = {
                         'xaxis' : 'pfmet [GeV]',
                         'fold'  : 3                         
                         }
+variables['nbjet_loose']  = {
+                        'name': '1*(std_vector_jet_cmvav2[0]>-0.715)+1*(std_vector_jet_cmvav2[1]>-0.715)+1*(std_vector_jet_cmvav2[2]>-0.715)+1*(std_vector_jet_cmvav2[3]>-0.715)+1*(std_vector_jet_cmvav2[4]>-0.715)+1*(std_vector_jet_cmvav2[5]>-0.715)',
+                        'range' : (10,0,10),
+                        'xaxis' : 'nbjet_loose',
+                        'fold'  : 3
+                        }
+
 
 
 #variables['njet']  = {
