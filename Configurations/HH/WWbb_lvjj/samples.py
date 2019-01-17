@@ -27,6 +27,10 @@ samples['Wjets'] = { 'name' : ['W+jets/latino_WJetsToLNu_HT100_200_ext1__part0.r
                          'W+jets/latino_WJetsToLNu_HT800_1200_ext1__part0.root'],
 			'weight': '1.'}
 
+samples['Data'] = { 'name' : ['latino_SingleElectron_Run2016B-03Feb2017_ver2-v2__part0.root',
+			'latino_SingleMuon_Run2016B-03Feb2017_ver2-v2__part0.root'],
+                        'weight': '1.'}
+
 ###########################################
 ################## DATA ###################
 ###########################################

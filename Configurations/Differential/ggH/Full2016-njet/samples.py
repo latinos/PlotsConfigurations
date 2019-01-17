@@ -375,7 +375,6 @@ fiducial = '(std_vector_dressedLeptonGen_pt[0]>25 && std_vector_dressedLeptonGen
             && (abs(std_vector_dressedLeptonGen_pid[1]) == 13 || std_vector_dressedLeptonGen_pt[1]>13) \
             && std_vector_dressedLeptonGen_pt[2]<10 \
             && sqrt(2*std_vector_dressedLeptonGen_pt[0]*std_vector_dressedLeptonGen_pt[1]*(cosh(std_vector_dressedLeptonGen_eta[0]-std_vector_dressedLeptonGen_eta[1])-cos(std_vector_dressedLeptonGen_phi[0]-std_vector_dressedLeptonGen_phi[1])))>12 \
-            && metGenpt>20 \
             && sqrt(pow(std_vector_dressedLeptonGen_pt[0],2)+pow(std_vector_dressedLeptonGen_pt[1],2)+2*std_vector_dressedLeptonGen_pt[0]*std_vector_dressedLeptonGen_pt[1]*cos(std_vector_dressedLeptonGen_phi[0]-std_vector_dressedLeptonGen_phi[1]))>30 \
             && sqrt(2*metGenpt*(sqrt(pow(std_vector_dressedLeptonGen_pt[0],2)+pow(std_vector_dressedLeptonGen_pt[1],2)+2*std_vector_dressedLeptonGen_pt[0]*std_vector_dressedLeptonGen_pt[1]*cos(std_vector_dressedLeptonGen_phi[0]-std_vector_dressedLeptonGen_phi[1]))-cos(metGenphi)*(std_vector_dressedLeptonGen_pt[0]*cos(std_vector_dressedLeptonGen_phi[0])+std_vector_dressedLeptonGen_pt[1]*cos(std_vector_dressedLeptonGen_phi[1]))-sin(metGenphi)*(std_vector_dressedLeptonGen_pt[0]*sin(std_vector_dressedLeptonGen_phi[0])+std_vector_dressedLeptonGen_pt[1]*sin(std_vector_dressedLeptonGen_phi[1]))))>=60 \
             && sqrt(2*std_vector_dressedLeptonGen_pt[1]*metGenpt*(1-cos(std_vector_dressedLeptonGen_phi[1]-metGenphi)))>30)'
@@ -445,7 +444,7 @@ samples['ggH_hww_4j_nonfid']  = {  'name'  : getSampleFiles(directory,'GluGluHTo
 
 
 samples['ggH_htt']  = { 'name' :   getSampleFiles(directory,'GluGluHToTauTau_M125') ,
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage0==11)' ,
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                          'suppressNegative' :['all'],
                          'suppressNegativeNuisances' :['all'],
                       }
