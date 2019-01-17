@@ -124,24 +124,28 @@ ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397
 
 useDYtt = True
 
-samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50',False,'nanoLatino_') 
-                                + getSampleFiles(directory,'DYJetsToLL_M-10to50-LO',False,'nanoLatino_'),
-                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 5,
-                 }
-addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO)
-addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
-
-
 if useDYtt :
-    samples['DY']['name'] =   getSampleFiles(directory,'DYJetsToTT_MuEle_M-50',False,'nanoLatino_')+ getSampleFiles(directory,'DYJetsToLL_M-10to50-LO',False,'nanoLatino_')
-    
+    samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToTT_MuEle_M-50',False,'nanoLatino_')
+                                    + getSampleFiles(directory,'DYJetsToLL_M-10to50-LO',False,'nanoLatino_'),
+                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                         'FilesPerJob' : 5,
+                    }
     addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO)
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
     
     ## Remove OF from inclusive sample (is it needed?)
     #cutSF = '(abs(Lepton_pdgId[0]*Lepton_pdgId[1]) == 11*11)||(Lepton_pdgId[0]*Lepton_pdgId[1]) == 13*13)'
     #addSampleWeight(samples,'DY','DYJetsToLL_M-50',cutSF)
+
+else:
+    samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50',False,'nanoLatino_')
+                                    + getSampleFiles(directory,'DYJetsToLL_M-10to50-LO',False,'nanoLatino_'),
+                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                         'FilesPerJob' : 5,
+                     }
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO)
+    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
+
 
 
 ############ Top ############
