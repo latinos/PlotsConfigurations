@@ -20,7 +20,7 @@ _tmp = [
      'abs(mll - 91.1876) < 15.',
      'Alt$(CleanJet_pt[0],0)>20.',
      'Alt$(CleanJet_pt[0],100)<30.',
-     'Jet_btagCSVV2[CleanJet_jetIdx[0]] < 0.5803',
+     bVeto,
        ]
 
 addcut('DY_0j_mm_noMET', _tmp)
@@ -31,8 +31,7 @@ _tmp = [
      'Alt$(CleanJet_pt[0],0)>30.',
      'Alt$(CleanJet_pt[1],0)>20.',
      'Alt$(CleanJet_pt[1],100)<30.',
-     'Jet_btagCSVV2[CleanJet_jetIdx[0]] < 0.5803',
-     'Jet_btagCSVV2[CleanJet_jetIdx[1]] < 0.5803',
+     bVeto,
        ]
 
 addcut('DY_1j_mm_noMET', _tmp)
@@ -43,7 +42,7 @@ _tmp = [
      'abs(mll - 91.1876) < 15.',
      'Alt$(CleanJet_pt[0],0)>20.',
      'Alt$(CleanJet_pt[0],100)<30.',
-     'Jet_btagCSVV2[CleanJet_jetIdx[0]] < 0.5803',
+     bVeto,
        ]
 
 addcut('DY_0j_ee_noMET', _tmp)
@@ -54,8 +53,7 @@ _tmp = [
      'Alt$(CleanJet_pt[0],0)>30.',
      'Alt$(CleanJet_pt[1],0)>20.',
      'Alt$(CleanJet_pt[1],100)<30.',
-     'Jet_btagCSVV2[CleanJet_jetIdx[0]] < 0.5803',
-     'Jet_btagCSVV2[CleanJet_jetIdx[1]] < 0.5803',
+     bVeto,
        ]
 
 addcut('DY_1j_ee_noMET', _tmp)
@@ -64,6 +62,7 @@ addcut('DY_1j_ee_noMET', _tmp)
 _tmp = [
      'Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13',
      'abs(mll - 91.1876) < 15.',
+     bVeto,
        ]
 
 addcut('DY_Incl_mm_noMET', _tmp)
@@ -72,6 +71,7 @@ addcut('DY_Incl_mm_noMET', _tmp)
 _tmp = [
      'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11',
      'abs(mll - 91.1876) < 15.',
+     bVeto,
        ]
 
 addcut('DY_Incl_ee_noMET', _tmp)

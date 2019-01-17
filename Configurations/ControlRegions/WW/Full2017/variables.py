@@ -206,6 +206,13 @@ variables['jetpt1']  = {
                         'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
 
+variables['jetpt1_0j']  = {
+                        'name': 'CleanJet_pt[0]>20? CleanJet_pt[0]:-1',     
+                        'range' : (10,20,30),   
+                        'xaxis' : 'p_{T} 1st jet (20 < p_{T} < 30) ',
+                        'fold' : 3   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+                        }
+
 # variables['jetpt2']  = {
 #                         'name': 'CleanJet_pt[1]>30? CleanJet_pt[1]:-1',     
 #                         'range' : (40,0,200),   
