@@ -126,6 +126,9 @@ DataTrig = {
 #############  BACKGROUNDS  ###############
 ###########################################
 
+ptllDYW_NLO = '((0.623108 + 0.0722934*gen_ptll - 0.00364918*gen_ptll*gen_ptll + 6.97227e-05*gen_ptll*gen_ptll*gen_ptll - 4.52903e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll<45)*(gen_ptll>0) + 1*(gen_ptll>=45))'
+ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
+
 
 useDYtt = False
 
@@ -139,6 +142,9 @@ if useDYtt :
                        'FilesPerJob' : 5 ,
                        }
 
+  addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO)
+  addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
+
 else:
 
   samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50',False,'nanoLatino_')
@@ -147,9 +153,14 @@ else:
                        'FilesPerJob' : 5 ,
                        }
 
+  addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO)
+  addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 
 
-samples['Top'] = {    'name'   :   getSampleFiles(directory,'TTTo2L2Nu',False,'nanoLatino_')
+
+Top_pTrw = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )'
+
+samples['top'] = {    'name'   :   getSampleFiles(directory,'TTTo2L2Nu',False,'nanoLatino_')
                                  + getSampleFiles(directory,'ST_tW_antitop',False,'nanoLatino_')
                                  + getSampleFiles(directory,'ST_tW_top',False,'nanoLatino_')
                                  + getSampleFiles(directory,'ST_s-channel',False,'nanoLatino_') 
@@ -158,6 +169,8 @@ samples['Top'] = {    'name'   :   getSampleFiles(directory,'TTTo2L2Nu',False,'n
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                      'FilesPerJob' : 2 ,
                       }
+
+addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
 
 
 samples['WW'] = {    'name'   :   getSampleFiles(directory,'WWTo2L2Nu',False,'nanoLatino_')
@@ -208,7 +221,7 @@ samples['VVV'] = {    'name'   : getSampleFiles(directory,'WWW',False,'nanoLatin
 
 
 samples['Vg'] = {    'name'   : getSampleFiles(directory,'Wg_MADGRAPHMLM',False,'nanoLatino_') ,
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(Gen_ZGstar_mass<4)',
                       'FilesPerJob' : 20 ,
                       }
 
@@ -219,12 +232,11 @@ samples['Vg'] = {    'name'   : getSampleFiles(directory,'Wg_MADGRAPHMLM',False,
 #FIXME Use WZTo3LNu_mllmin01 sample (gstar mass > 100 MeV) when available. This one has gstar mass > 4 GeV
 #FIXME Add normalization k-factor
 samples['WZgS']  = {  'name'   :   getSampleFiles(directory,'WZTo3LNu',False,'nanoLatino_'),
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'(Gen_ZGstar_mass>4)',
                       'FilesPerJob' : 20 ,
                    }
 
 
-# missing VgS!!
 
 ###########################################
 ################## FAKES ##################

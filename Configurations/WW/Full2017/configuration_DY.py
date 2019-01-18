@@ -15,7 +15,7 @@ variablesFile = 'variables.py'
 cutsFile = 'cuts_DY.py' 
 
 # file with list of samples
-samplesFile = 'samples_DY.py' 
+samplesFile = 'samples.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
@@ -23,7 +23,7 @@ plotFile = 'plot.py'
 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 42.
+lumi = 41.5
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
@@ -40,6 +40,6 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-#nuisancesFile = 'nuisances.py'
+nuisancesFile = 'nuisances.py'
 
 
