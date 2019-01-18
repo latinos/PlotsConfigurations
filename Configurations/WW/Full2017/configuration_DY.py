@@ -1,39 +1,45 @@
-# Configuration file to produce initial root files -- has both merged and binned ggH samples
-tag = 'ggHDifferential2016'
+# example of configuration file
+treeName= 'Events'
+
+tag = 'DY'
+
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = 'rootFile_DY'
 
-# file with TTree aliases
-aliasesFile = 'aliases.py'
 
 # file with list of variables
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts_test.py' 
+cutsFile = 'cuts_DY.py' 
 
 # file with list of samples
-samplesFile = 'samples_test.py' 
+samplesFile = 'samples.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
 
+
+
 # luminosity to normalize to (in 1/fb)
-lumi = 35.867
+lumi = 41.5
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'ggHDifferential2016_plots'
+# outputDirPlots = '~/www/plotCR'
+outputDirPlots = 'plotDY'
+
 
 # used by mkDatacards to define output directory for datacards
 outputDirDatacard = 'datacards'
 
+
 # structure file for datacard
 structureFile = 'structure.py'
 
-# nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances_test.py'
 
-# input files
-# /eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__wwSel
+# nuisances file for mkDatacards and for mkShape
+nuisancesFile = 'nuisances.py'
+
+
