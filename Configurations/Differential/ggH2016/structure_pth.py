@@ -13,7 +13,10 @@
 # remove samples we won't use in limit setting
 samples.pop('DY')
 samples.pop('top')
-
+for sname in samples.keys():
+    if sname.startswith('ggH_hww_minloHJ'):
+        samples.pop(sname)
+    
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 dy = [skey for skey in samples if skey.startswith('DY')]
 top = [skey for skey in samples if skey.startswith('top')]
@@ -31,12 +34,24 @@ for sname in ['WW', 'Fake', 'Wjets', 'ggWW', 'Vg', 'WZgS_L', 'WZgS_H', 'VZ', 'VV
         'isData'   : 0
     }
 
+for sname in dy:
+  structure[sname]  = {
+      'isSignal' : 0,
+      'isData'   : 0
+  }
+
+for sname in top:
+  structure[sname] = {
+      'isSignal' : 0,
+      'isData'   : 0
+  }
+
 #for sname in ['ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']:
 for sname in ['H_htt']:
     structure[sname] = {
         'isSignal' : 0,
         'isData'   : 0,
-        'removeFromCuts': crs
+        'removeFromCuts': topcr + dycr
     }
 
 for sname in ['ggH_hww', 'XH_hww']:
@@ -48,7 +63,7 @@ for sname in ['ggH_hww', 'XH_hww']:
             structure[sname + suffix] = {
                 'isSignal' : 1,
                 'isData'   : 0,
-                'removeFromCuts': crs
+                'removeFromCuts': topcr + dycr
             }
 
         # drop the other pthBinning

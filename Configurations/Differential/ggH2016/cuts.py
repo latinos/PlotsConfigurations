@@ -80,7 +80,7 @@ addcut('topcr_ge2j', _tmp)
 ## Signal regions
 pt2confs = [
     ('pt2lt20', 'std_vector_lepton_pt[1] < 20.'),
-    ('pt2gt20', 'std_vector_lepton_pt[1] >= 20.')
+    ('pt2ge20', 'std_vector_lepton_pt[1] >= 20.')
 ]
 lepconfs = [
     ('em', 'abs(std_vector_lepton_flavour[0]) == 11'),
