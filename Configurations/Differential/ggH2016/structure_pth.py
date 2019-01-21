@@ -28,6 +28,9 @@ topcr = [ckey for ckey in cuts if ckey.startswith('topcr')]
 dycr = [ckey for ckey in cuts if ckey.startswith('dycr')]
 sr = [ckey for ckey in cuts if ckey.startswith('sr')]
 
+usedCuts = [ckey for ckey in dycr if not ckey.endswith('_incl')]
+usedCuts += [ckey for ckey in topcr if not ckey.endswith('_incl')]
+
 for sname in ['WW', 'Fake', 'Wjets', 'ggWW', 'Vg', 'WZgS_L', 'WZgS_H', 'VZ', 'VVV']:
     structure[sname] = {
         'isSignal' : 0,
@@ -54,6 +57,26 @@ for sname in ['H_htt']:
         'removeFromCuts': topcr + dycr
     }
 
+pthBinning = [0., 20., 45., 80., 120., 200., 350., 6500.] # hybrid of binning1 and 2
+split = [8, 8, 4, 3, 2, 2, 2]
+
+for ipt in range(len(pthBinning1) - 1):
+    low, high = pthBinning1[ipt:ipt+2]
+    if split[ipt] == 8:
+        for lep in ['emmp', 'mmep', 'epmm', 'mpem']:
+            for pt2 in ['pt2lt20', 'pt2ge20']:
+                usedCuts.append('sr_pth_%.0f_%.0f_%s_%s' % (low, high, lep, pt2))
+    elif split[ipt] == 4:
+        for lep in ['em', 'me']:
+            for pt2 in ['pt2lt20', 'pt2ge20']:
+                usedCuts.append('sr_pth_%.0f_%.0f_%s_%s' % (low, high, lep, pt2))
+    elif split[ipt] == 3:
+        for leppt2 in ['pt2ge20', 'em_pt2lt20', 'me_pt2lt20']:
+            usedCuts.append('sr_pth_%.0f_%.0f_%s' % (low, high, leppt2))
+    elif split[ipt] == 2:
+        for pt2 in ['pt2lt20', 'pt2ge20']:
+            usedCuts.append('sr_pth_%.0f_%.0f_%s' % (low, high, pt2))
+
 for sname in ['ggH_hww', 'XH_hww']:
     #for fid in ['fid', 'nonfid']:
     for fid in ['incl']:
@@ -66,32 +89,19 @@ for sname in ['ggH_hww', 'XH_hww']:
                 'removeFromCuts': topcr + dycr
             }
 
-        # drop the other pthBinning
-        for ipt in range(len(pthBinning2) - 1):
-            low, high = pthBinning2[ipt:ipt+2]
-            suffix = '_pth_%.0f_%.0f_%s' % (low, high, fid)
-            samples.pop(sname + suffix)
-
-    # drop fid and nonfid samples
-    for fid in ['fid', 'nonfid']:
-        for ipt in range(len(pthBinning1) - 1):
-            low, high = pthBinning1[ipt:ipt+2]
-            suffix = '_pth_%.0f_%.0f_%s' % (low, high, fid)
-            samples.pop(sname + suffix)
-
-        for ipt in range(len(pthBinning2) - 1):
-            low, high = pthBinning2[ipt:ipt+2]
-            suffix = '_pth_%.0f_%.0f_%s' % (low, high, fid)
-            samples.pop(sname + suffix)    
-
-    # drop other signal bins
-    for key in samples.keys():
-        if key == sname or (key.startswith(sname) and '_pth_' not in key):
-            samples.pop(key)
-
 # data
 
 structure['DATA']  = {
     'isSignal' : 0,
     'isData'   : 1
 }
+
+# Drop unused samples and cuts
+
+for skey in samples.keys():
+    if skey not in structure:
+        samples.pop(skey)
+
+for ckey in cuts.keys():
+    if ckey not in usedCuts:
+        cuts.pop(ckey)
