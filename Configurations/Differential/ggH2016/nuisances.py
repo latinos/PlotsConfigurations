@@ -202,20 +202,29 @@ nuisances['met'] = {
 psVarSteps = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__PS__wwSel'
 
 # These numbers are used to normalize the PS variation to the same integral as the nominal after the wwSel skim
-# Factors applied to XH are actually only for qqH, but the other contributions are small anyway
+# There is also a factor for qqH, but we are skipping it right now because of a technical reason (cannot apply a nuisance to specific files within the XH sample)
+apply_on = [('WW', ['0.92657', '1.'])]
+apply_on += [(skey, ['0.98554', '1.']) for skey in ggh if 'minloHJ' not in skey]
+#apply_on += [(skey, ['0.92511', '1.']) for skey in xh]
+
 nuisances['PS'] = {
   'name': 'PS',
   'skipCMS': 1,
   'kind': 'tree',
   'type': 'shape',
-  'samples': dict([('WW', ['0.92657', '1.'])] + [(skey, ['0.98554', '1.']) for skey in ggh] + [(skey, ['0.92511', '1.']) for skey in xh]),
+  'samples': dict(apply_on),
   'folderUp': os.path.join(treeBaseDir, mcProduction, psVarSteps),
   'folderDown': os.path.join(treeBaseDir, mcProduction, mcSteps),
   'AsLnN': '1'
 }
 
+# Same story here; skipping weight application on qqH
 ueUpSteps = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__UEup__wwSel'
 ueDownSteps = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__UEdo__wwSel'
+
+apply_on = [('WW', ['1.0226', '0.9897'])]
+apply_on += [(skey, ['1.0739', '1.0211']) for skey in ggh if 'minloHJ' not in skey]
+#apply_on += [(skey, ['1.0560', '0.9992']) for skey in xh]
 
 # Normalize the UE up/down variations to the same integral as the nominal after the wwSel skim
 nuisances['UE'] = {
@@ -223,7 +232,7 @@ nuisances['UE'] = {
   'skipCMS': 1,
   'kind': 'tree',
   'type': 'shape',
-  'samples': dict([('WW', ['1.0226', '0.9897'])] + [(skey, ['1.0739', '1.0211']) for skey in ggh] + [(skey, ['1.0560', '0.9992']) for skey in xh]),
+  'samples': dict(apply_on),
   'folderUp': os.path.join(treeBaseDir, mcProduction, ueUpSteps),
   'folderDown': os.path.join(treeBaseDir, mcProduction, ueDownSteps),
   'AsLnN': '1'
@@ -639,7 +648,7 @@ nuisances['Topnorm1j'] = {
 nuisances['Topnormge2j'] = {
   'name': 'CMS_hww_Topnormge2j',
   'samples': {
-    'top_2j': '1.00',
+    'top_ge2j': '1.00',
   },
   'type': 'rateParam',
   'cuts': sr + ['topcr_ge2j', 'dycr_ge2j']
