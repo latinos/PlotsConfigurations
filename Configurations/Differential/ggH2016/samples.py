@@ -1,4 +1,5 @@
 import os
+import copy
 from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
 
 # samples
@@ -100,6 +101,8 @@ if useDYtt :
   addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50', getBaseW(mcDirectory,['DYJetsToTT_MuEle_M-50','DYJetsToTT_MuEle_M-50_ext1'])+'/baseW')
   addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50_ext1', getBaseW(mcDirectory,['DYJetsToTT_MuEle_M-50','DYJetsToTT_MuEle_M-50_ext1'])+'/baseW')
 
+  samples['DY']['FilesPerJob'] = 1
+
 else:
   samples['DY']['name'] = getSampleFiles(mcDirectory,'DYJetsToLL_M-10to50') \
                           + getSampleFiles(mcDirectory,'DYJetsToLL_M-50')
@@ -155,6 +158,14 @@ else:
     addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400', getBaseW(mcDirectory,['DYJetsToLL_M-50_HT-200to400','DYJetsToLL_M-50_HT-200to400_ext1'])+'/baseW')
     addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400_ext1', getBaseW(mcDirectory,['DYJetsToLL_M-50_HT-200to400','DYJetsToLL_M-50_HT-200to400_ext1'])+'/baseW')
 
+samples['DY_0j'] = copy.deepcopy(samples['DY'])
+samples['DY_0j']['weight'] += '*(zeroJet)'
+
+samples['DY_1j'] = copy.deepcopy(samples['DY'])
+samples['DY_1j']['weight'] += '*(oneJet)'
+
+samples['DY_ge2j'] = copy.deepcopy(samples['DY'])
+samples['DY_ge2j']['weight'] += '*(manyJet)'
 
 ###### Top #######
 # We should use in principle: ST_tW_antitop_noHad + ST_tW_antitop_noHad_ext1 + ST_tW_top_noHad + ST_tW_top_noHad_ext1   
@@ -169,10 +180,20 @@ files = getSampleFiles(mcDirectory,'TTTo2L2Nu') \
 samples['top'] = {
   'name': files,
   'weight': mcCommonWeight,
-  'FilesPerJob': 4
+  'FilesPerJob': 1,
+  'EventsPerJob': 50000
 }
                   
 addSampleWeight(samples,'top','TTTo2L2Nu','toprwgt')
+
+samples['top_0j'] = copy.deepcopy(samples['top'])
+samples['top_0j']['weight'] += '*(zeroJet)'
+
+samples['top_1j'] = copy.deepcopy(samples['top'])
+samples['top_1j']['weight'] += '*(oneJet)'
+
+samples['top_ge2j'] = copy.deepcopy(samples['top'])
+samples['top_ge2j']['weight'] += '*(manyJet)'
 
 ###### WW ########
              
@@ -253,83 +274,148 @@ samples['VVV'] = {
 # mth = sqrt(2*met*(sqrt(pt1^2+pt2^2+2*pt1*pt2*cos(phi1-phi2))-cos(metphi)*(pt1*cos(phi1)+pt2*cos(phi2))-sin(metphi)*(pt1*sin(phi1)+pt2*sin(phi2)))) >= 60 
 # mtw2 = sqrt(2*pt2*met*(1-cos(phi2-metphi))) > 30
 
-#### ggH -> WW
+pthBinning1 = [0., 20., 45., 80., 120., 200., 6500.]
+pthBinning2 = [0., 30., 60., 100., 200., 350., 6500.]
+yhBinning = [0., 0.15, 0.3, 0.6, 0.9, 1.2, 2.5, 10.]
+njetBinning = [0, 1, 2, 3, 4]
 
-pthBinning = [
-  'genPtHcut0',
-  'genPtHcut1',
-  'genPtHcut2',
-  'genPtHcut3',
-  'genPtHcut4'
-]
-njetBinning = [
-  'njetcut0',
-  'njetcut1',
-  'njetcut2'
-]
+signals = []
+
+#### ggH -> WW
 
 samples['ggH_hww']  = {
   'name': getSampleFiles(mcDirectory,'GluGluHToWWTo2L2NuPowheg_M125'),  
-  'weight': mcCommonWeight+'*weight2MINLO',
-  'bins': {}
+  'weight': mcCommonWeight+'*weight2MINLO'
 }
 
-#samples['ggH_hww']  = {
-#  'name': getSampleFiles(mcDirectory,'GluGluHToWWTo2L2Nu_M125_minloHJ_NNLOPS'),  
-#  'weight': mcCommonWeight,  
+signals.append('ggH_hww')
+
+samples['ggH_hww_minloHJ']  = {
+  'name': getSampleFiles(mcDirectory,'GluGluHToWWTo2L2Nu_M125_minloHJ_NNLOPS'),  
+  'weight': mcCommonWeight,  
+}
+
+signals.append('ggH_hww_minloHJ')
+
+##### VBF H -> WW
+#
+#samples['qqH_hww']  = { 
+#  'name': getSampleFiles(mcDirectory,'VBFHToWWTo2L2Nu_M125'),
+#  'weight': mcCommonWeight
 #}
+#
+#signals.append('qqH_hww')
+#
+#### ZH ; H->WW
+#
+#samples['ZH_hww']   = { 
+#  'name': getSampleFiles(mcDirectory,'HZJ_HToWW_M125'),
+#  'weight': mcCommonWeight
+#}
+#
+#signals.append('ZH_hww')
+#
+#samples['ggZH_hww'] = { 
+#  'name': getSampleFiles(mcDirectory,'ggZH_HToWW_M125'),
+#  'weight': mcCommonWeight
+#}
+#
+#signals.append('ggZH_hww')
+#
+##### WH ; H->WW
+#
+#samples['WH_hww']   = { 
+#  'name': getSampleFiles(mcDirectory,'HWminusJ_HToWW_M125') + getSampleFiles(mcDirectory,'HWplusJ_HToWW_M125'), 
+#  'weight': mcCommonWeight
+#}
+#
+#signals.append('WH_hww')
+#
+##### bbH ; H->WW 
+#
+#samples['bbH_hww']  = {
+#  'name': getSampleFiles(mcDirectory,'bbHToWWTo2L2Nu_M125_yb2') + getSampleFiles(mcDirectory,'bbHToWWTo2L2Nu_M125_ybyt'),
+#  'weight': mcCommonWeight,
+#}
+#
+#signals.append('bbH_hww')
+#
+##### ttH ; H->WW 
+#
+#samples['ttH_hww']  = {
+#  'name': getSampleFiles(mcDirectory,'ttHToNonbb_M125'),
+#  'weight': mcCommonWeight,
+#  'suppressNegativeNuisances': ['all']
+#}
+#
+#signals.append('ttH_hww')
 
-samples['ggH_hww']['bins'].update(dict((p, 'fiducial && ' + p) for p in pthBinning))
-samples['ggH_hww']['bins'].update(dict((n, 'fiducial && ' + n) for n in njetBinning))
-samples['ggH_hww']['bins'].update(dict(('%s_%s' % (p, n), 'fiducial && %s && %s' % (p, n)) for p in pthBinning for n in njetBinning))
-samples['ggH_hww']['bins'].update(dict(('nonfid_' + p, '!fiducial && ' + p) for p in pthBinning))
-samples['ggH_hww']['bins'].update(dict(('nonfid_' + n, '!fiducial && ' + n) for n in njetBinning))
-samples['ggH_hww']['bins'].update(dict(('nonfid_%s_%s' % (p, n), '!fiducial && %s && %s' % (p, n)) for p in pthBinning for n in njetBinning))
+files = getSampleFiles(mcDirectory,'VBFHToWWTo2L2Nu_M125') + \
+        getSampleFiles(mcDirectory,'HZJ_HToWW_M125') + \
+        getSampleFiles(mcDirectory,'ttHToNonbb_M125') + \
+        getSampleFiles(mcDirectory,'ggZH_HToWW_M125') + \
+        getSampleFiles(mcDirectory,'HWminusJ_HToWW_M125') + getSampleFiles(mcDirectory,'HWplusJ_HToWW_M125') + \
+        getSampleFiles(mcDirectory,'bbHToWWTo2L2Nu_M125_yb2') + getSampleFiles(mcDirectory,'bbHToWWTo2L2Nu_M125_ybyt') + \
+        getSampleFiles(mcDirectory,'ttHToNonbb_M125')
 
-#### VBF H -> WW
-
-samples['qqH_hww']  = { 
-  'name': getSampleFiles(mcDirectory,'VBFHToWWTo2L2Nu_M125'),
-  'weight': mcCommonWeight
-}
-
-### ZH ; H->WW
-
-samples['ZH_hww']   = { 
-  'name': getSampleFiles(mcDirectory,'HZJ_HToWW_M125'),
-  'weight': mcCommonWeight
-}
-
-samples['ggZH_hww'] = { 
-  'name': getSampleFiles(mcDirectory,'ggZH_HToWW_M125'),
-  'weight': mcCommonWeight
-}
-
-#### WH ; H->WW
-
-samples['WH_hww']   = { 
-  'name': getSampleFiles(mcDirectory,'HWminusJ_HToWW_M125') + getSampleFiles(mcDirectory,'HWplusJ_HToWW_M125'), 
-  'weight': mcCommonWeight
-}
-
-#### bbH ; H->WW 
-
-samples['bbH_hww']  = {
-  'name': getSampleFiles(mcDirectory,'bbHToWWTo2L2Nu_M125_yb2') + getSampleFiles(mcDirectory,'bbHToWWTo2L2Nu_M125_ybyt'),
+samples['XH_hww']  = {
+  'name': files,
   'weight': mcCommonWeight,
+  'suppressNegativeNuisances': ['all'],
+  'FilesPerJob': 1
 }
 
-#### ttH ; H->WW 
+signals.append('XH_hww')
 
-samples['ttH_hww']  = {
-  'name': getSampleFiles(mcDirectory,'ttHToNonbb_M125'),
-  'weight': mcCommonWeight,
-  'suppressNegativeNuisances': ['all']
-}
+for signal in signals:
+    for ipt in range(len(pthBinning1) - 1):
+      low, high = pthBinning1[ipt:ipt+2]
+
+      samples[signal + '_pth_%.0f_%.0f_incl' % (low, high)] = copy.deepcopy(samples[signal])
+      samples[signal + '_pth_%.0f_%.0f_incl' % (low, high)]['weight'] += '*(genPth > %f && genPth < %f)' % (low, high)
+
+      samples[signal + '_pth_%.0f_%.0f_fid' % (low, high)] = copy.deepcopy(samples[signal])
+      samples[signal + '_pth_%.0f_%.0f_fid' % (low, high)]['weight'] += '*(fiducial && genPth > %f && genPth < %f)' % (low, high)
+
+      samples[signal + '_pth_%.0f_%.0f_nonfid' % (low, high)] = copy.deepcopy(samples[signal])
+      samples[signal + '_pth_%.0f_%.0f_nonfid' % (low, high)]['weight'] += '*(!fiducial && genPth > %f && genPth < %f)' % (low, high)
+
+    for ipt in range(len(pthBinning2) - 1):
+      low, high = pthBinning2[ipt:ipt+2]
+
+      samples[signal + '_pth_%.0f_%.0f_incl' % (low, high)] = copy.deepcopy(samples[signal])
+      samples[signal + '_pth_%.0f_%.0f_incl' % (low, high)]['weight'] += '*(genPth > %f && genPth < %f)' % (low, high)
+
+      samples[signal + '_pth_%.0f_%.0f_fid' % (low, high)] = copy.deepcopy(samples[signal])
+      samples[signal + '_pth_%.0f_%.0f_fid' % (low, high)]['weight'] += '*(fiducial && genPth > %f && genPth < %f)' % (low, high)
+
+      samples[signal + '_pth_%.0f_%.0f_nonfid' % (low, high)] = copy.deepcopy(samples[signal])
+      samples[signal + '_pth_%.0f_%.0f_nonfid' % (low, high)]['weight'] += '*(!fiducial && genPth > %f && genPth < %f)' % (low, high)
+    
+    #samples[signal + '_yhbins'] = copy.deepcopy(samples[signal])
+    #samples[signal + '_yhbins']['bins'] = {}
+    #
+    #for iy in range(len(yhBinning) - 1):
+    #  low, high = yhBinning[iy:iy+2]
+    #  samples[signal + '_yhbins']['bins'][('fid_yh_%.2f_%.2f' % (low, high)).replace('.', 'p')] = 'fiducial && absGenYH > %f && absGenYH < %f' % (low, high)
+    #  samples[signal + '_yhbins']['bins'][('nonfid_yh_%.2f_%.2f' % (low, high)).replace('.', 'p')] = '!fiducial && absGenYH > %f && absGenYH < %f' % (low, high)
+    
+    #for n in njetBinning:
+    #  samples[signal + '_nj_%d_fid' % n] = copy.deepcopy(samples[signal])
+    #  if n == njetBinning[-1]:
+    #    samples[signal + '_nj_%d_fid' % n]['weight'] += '*(fiducial && nGenJet >= %d)' % n
+    #  else:
+    #    samples[signal + '_nj_%d_fid' % n]['weight'] += '*(fiducial && nGenJet == %d)' % n
+    #
+    #  samples[signal + '_nj_%d_nonfid' % n] = copy.deepcopy(samples[signal])
+    #  if n == njetBinning[-1]:
+    #    samples[signal + '_nj_%d_nonfid' % n]['weight'] += '*(!fiducial && nGenJet >= %d)' % n
+    #  else:
+    #    samples[signal + '_nj_%d_nonfid' % n]['weight'] += '*(!fiducial && nGenJet == %d)' % n
 
 #### H -> TauTau
 
-splitHtt=True
+splitHtt=False
 if splitHtt:
   samples['ggH_htt'] = {
     'name': getSampleFiles(mcDirectory,'GluGluHToTauTau_M125'),
@@ -343,7 +429,7 @@ if splitHtt:
     'weight': mcCommonWeight,
     'suppressNegative': ['all'],
     'suppressNegativeNuisances': ['all'],
-}
+  }
 
   samples['ZH_htt'] = {
     'name': getSampleFiles(mcDirectory,'HZJ_HToTauTau_M125'),
@@ -382,7 +468,8 @@ samples['Fake']  = {
   'name': [],
   'weight': 'fakeWeight*veto_EMTFBug*METFilter_DATA',
   'weights': [],
-  'isData': ['all']
+  'isData': ['all'],
+  'FilesPerJob': 6
 }
 
 for era, sd in DataRun:
@@ -407,4 +494,3 @@ for era, sd in DataRun:
     files = getSampleFiles(dataDirectory.format(era = era), pd + '_' + sd, True)
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
-

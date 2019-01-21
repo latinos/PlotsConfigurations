@@ -2,11 +2,16 @@
 
 # imported from samples.py:
 # samples
+# imported from cuts.py
+# cuts
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
+
+pt2lt20Cuts = [ckey for ckey in cuts if ckey.endswith('pt2lt20')]
+pt2ge20Cuts = [ckey for ckey in cuts if ckey.endswith('pt2ge20')]
     
 #'fold' : # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
-   
+
 variables['events'] = {
     'name': '1',
     'range': (1,0,2),
@@ -14,75 +19,73 @@ variables['events'] = {
     'fold': 3
 }
 
-variables['mllVSmth_pt2ge20'] = {
+variables['mllVSmth_8x9'] = {
     'name': 'mll:mth', #   variable name    
     'range': ([60,80,90,100,110,120,130,150,200],[10,25,35,40,45,50,55,70,90,210],), #   variable range
     'xaxis': 'm_{ll}: m_{T}^{H}', #   x axis name
     'fold': 3,
     'doWeight': 1, # do weighted plot too
     'binX': 8,
-    'binY': 9
+    'binY': 9,
+    'cuts': pt2ge20Cuts
 }
 
-variables['mllVSmth_pt2lt20'] = {
+variables['mllVSmth_6x6'] = {
     'name': 'mll:mth', #   variable name    
     'range': ([60,80,90,110,130,150,200],[10,25,40,50,70,90,210],), #   variable range
     'xaxis': 'm_{ll}: m_{T}^{H}', #   x axis name
     'fold': 3,
     'doWeight': 1, # do weighted plot too
     'binX': 6,
-    'binY': 6
+    'binY': 6,
+    'cuts': pt2lt20Cuts
 }
 
-variables['njet']  = {
-    'name': 'njet',     
-    'range': (5,0,5),   
-    'xaxis': 'Number of jets',
-    'fold': 2,
-}
+#variables['njet']  = {
+#    'name': 'njet',     
+#    'range': (5,0,5),   
+#    'xaxis': 'Number of jets',
+#    'fold': 2,
+#}
+#
+#variables['ptllmet'] = {
+#    'name': 'ptH',
+#    'range': (100,0,300),
+#    'xaxis': 'p_{T}^{llmet} [GeV]',
+#    'fold': 3
+#}
+#
+#variables['ptllmet_reco'] = {
+#    'name': 'ptH',
+#    'range': (ptHBinning,),
+#    'xaxis': 'p_{T}^{llmet} [GeV]'
+#}
+#
+#variables['ptllmet_gen'] = {
+#    'name': 'higgsGenpt',
+#    'range': (ptHBinning,),
+#    'xaxis': 'p_{T}^{llmet} [GeV]',
+#    'samples': mc
+#}
+#
+#variables['rmat_pth'] = {
+#    'name': 'higgsGenpt:pTWW',
+#    'range': ([0.,15.,30.,45.,60.,80.,120.,200.,350.,400.],[0.,15.,30.,45.,60.,80.,120.,200.,350.,400.]),
+#    'xaxis': 'Reco p_{T}^{H} [GeV]',
+#    'yaxis': 'Gen p_{T}^{H} [GeV]',
+#    'fold': 2,
+#    'samples': ['ggH_hww']
+#}
+#
+#variables['rmat_njet'] = {
+#    'name': 'nGenJetCapped:njet',
+#    'range': ([0.,1.,2.,3.],[0.,1.,2.,3.]),
+#    'xaxis': 'Reco number of jets',
+#    'yaxis': 'Gen number of jets',
+#    'fold': 2,
+#    'samples': ['ggH_hww']
+#}
 
-variables['ptllmet'] = {
-    'name': 'ptH',
-    'range': (100,0,300),
-    'xaxis': 'p_{T}^{llmet} [GeV]',
-    'fold': 3
-}
-
-variables['ptllmet_reco'] = {
-    'name': 'ptH',
-    'range': ([0,35,50,65,80,300],),
-    'xaxis': 'p_{T}^{llmet} [GeV]',
-    'fold': 3
-}
-
-variables['ptllmet_gen'] = {
-    'name': 'genPtH',
-    'range': ([0,35,50,65,80,300],),
-    'xaxis': 'p_{T}^{llmet} [GeV]',
-    'fold': 3,
-    'samples': mc
-}
-
-variables['mllVSmth_pt2ge20_old'] = {
-    'name': 'mll:mth', #   variable name    
-    'range': ([60,80,90,100,110,120,130,140,200],[10,25,35,40,45,50,55,65,210],), #   variable range
-    'xaxis': 'm_{ll}: m_{T}^{H}', #   x axis name
-    'fold': 3,
-    'doWeight': 1, # do weighted plot too
-    'binX': 8,
-    'binY': 8
-}
-
-variables['mllVSmth_pt2lt20_old'] = {
-    'name': 'mll:mth', #   variable name    
-    'range': ([60,80,90,110,130,150,200],[10,20,30,50,70,90,150],), #   variable range
-    'xaxis': 'm_{ll}: m_{T}^{H}', #   x axis name
-    'fold': 3,
-    'doWeight': 1, # do weighted plot too
-    'binX': 6,
-    'binY': 6
-}
- 
 # # just for fun plots:
                  
 #variables['drll']  = {  'name': 'drll', #   variable name    

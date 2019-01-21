@@ -1,7 +1,6 @@
-# Configuration file to do plotting / fit with inclusive ggH sample
+# example of configuration file
 
 tag = 'ggH'
-
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -14,12 +13,13 @@ variablesFile = 'variables.py'
 cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples_inc.py' 
+samplesFile = 'samples.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
 
-
+# file with aliases
+aliasesFile = 'aliases.py'
 
 # luminosity to normalize to (in 1/fb)
 lumi = 35.867
@@ -30,7 +30,7 @@ outputDirPlots = 'plotGGH'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards_inc'
+outputDirDatacard = 'datacards'
 
 
 # structure file for datacard

@@ -1,10 +1,12 @@
 # example of configuration file
+treeName= 'Events'
+
 
 tag = 'ggH'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = 'rootFile'+tag
 
 
 # file with list of variables
@@ -26,7 +28,7 @@ lumi = 42.0
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotGGH'
+outputDirPlots = 'plot'+tag
 
 
 # used by mkDatacards to define output directory for datacards

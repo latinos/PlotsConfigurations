@@ -8,8 +8,19 @@ import os
 
 # imported from samples.py:
 # samples, treeBaseDir, mcProduction, mcSteps
+# imported from cuts.py
+# cuts
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
+dy = [skey for skey in samples if skey.startswith('DY')]
+top = [skey for skey in samples if skey.startswith('top')]
+signal = [skey for skey in samples if '_hww' in skey]
+ggh = [skey for skey in samples if skey.startswith('ggH_hww')]
+xh = [skey for skey in samples if skey.startswith('XH_hww')]
+
+topcr = [ckey for ckey in cuts if ckey.startswith('topcr')]
+dycr = [ckey for ckey in cuts if ckey.startswith('dycr')]
+sr = [ckey for ckey in cuts if ckey.startswith('sr')]
 
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
@@ -19,7 +30,7 @@ mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 nuisances['lumi'] = {
   'name': 'lumi_13TeV',
   'type': 'lnN',
-  'samples': dict((skey, '1.025') for skey in mc if skey not in ('DY', 'top', 'WW'))
+  'samples': dict((skey, '1.025') for skey in list(set(mc) - set(dy) - set(top) - set(signal)))
 }
 
 #### FAKES
@@ -191,16 +202,13 @@ nuisances['met'] = {
 psVarSteps = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__PS__wwSel'
 
 # These numbers are used to normalize the PS variation to the same integral as the nominal after the wwSel skim
+# Factors applied to XH are actually only for qqH, but the other contributions are small anyway
 nuisances['PS'] = {
   'name': 'PS',
   'skipCMS': 1,
   'kind': 'tree',
   'type': 'shape',
-  'samples': {
-    'WW': ['0.92657', '1.'],
-    'ggH_hww': ['0.98554', '1.'],
-    'qqH_hww': ['0.92511', '1.']
-  },
+  'samples': dict([('WW', ['0.92657', '1.'])] + [(skey, ['0.98554', '1.']) for skey in ggh] + [(skey, ['0.92511', '1.']) for skey in xh]),
   'folderUp': os.path.join(treeBaseDir, mcProduction, psVarSteps),
   'folderDown': os.path.join(treeBaseDir, mcProduction, mcSteps),
   'AsLnN': '1'
@@ -215,11 +223,7 @@ nuisances['UE'] = {
   'skipCMS': 1,
   'kind': 'tree',
   'type': 'shape',
-  'samples': {
-    'WW': ['1.0226', '0.9897'],
-    'ggH_hww': ['1.0739', '1.0211'],
-    'qqH_hww': ['1.0560', '0.9992']
-   },
+  'samples': dict([('WW', ['1.0226', '0.9897'])] + [(skey, ['1.0739', '1.0211']) for skey in ggh] + [(skey, ['1.0560', '0.9992']) for skey in xh]),
   'folderUp': os.path.join(treeBaseDir, mcProduction, ueUpSteps),
   'folderDown': os.path.join(treeBaseDir, mcProduction, ueDownSteps),
   'AsLnN': '1'
@@ -233,11 +237,8 @@ nuisances['DYQCDscale'] = {
   'skipCMS': 1,
   'kind': 'weight',
   'type': 'shape',
-  'samples': {
-    'DY': ['std_vector_LHE_weight[8]/std_vector_LHE_weight[0]', 'std_vector_LHE_weight[4]/std_vector_LHE_weight[0]']
-  }
+  'samples': dict((skey, ['std_vector_LHE_weight[8]/std_vector_LHE_weight[0]', 'std_vector_LHE_weight[4]/std_vector_LHE_weight[0]']) for skey in dy)
 }
-
 
 # Theory uncertainty for ggH
 #
@@ -348,31 +349,15 @@ nuisances['ggH_qmtop'] = {
 nuisances['QCDscale_CRSR_accept_dytt'] = {
   'name': 'CMS_hww_QCDscale_CRSR_accept_dytt', 
   'type': 'lnN',
-  'samples': {
-    'DY': '1.02',
-  },
-  'cuts': [
-    'hww2l2v_13TeV_dytt_of0j',
-    'hww2l2v_13TeV_dytt_of1j',
-    'hww2l2v_13TeV_dytt_of2j',
-    'hww2l2v_13TeV_dytt_of2j_vbf',
-    'hww2l2v_13TeV_dytt_of2j_vh2j'
-  ]
+  'samples': dict((skey, '1.02') for skey in dy),
+  'cuts': dycr
 }
 
 nuisances['QCDscale_CRSR_accept_top'] = {
   'name': 'CMS_hww_QCDscale_CRSR_accept_top', 
   'type': 'lnN',
-  'samples': {
-    'top': '1.01',
-  },
-  'cuts': [
-    'hww2l2v_13TeV_top_of0j',
-    'hww2l2v_13TeV_top_of1j',
-    'hww2l2v_13TeV_top_of2j',
-    'hww2l2v_13TeV_top_of2j_vbf',
-    'hww2l2v_13TeV_top_of2j_vh2j'
-  ]
+  'samples': dict((skey, '1.01') for skey in top),
+  'cuts': topcr
 }
 
 nuisances['QCDscale_VZ'] = {
@@ -395,7 +380,6 @@ nuisances['QCDscale_ggH'] = {
   },
   'type': 'lnN',
 }
-
 
 nuisances['QCDscale_qqH'] = {
   'name': 'QCDscale_qqH', 
@@ -561,64 +545,24 @@ nuisances['QCDscale_ggWW'] = {
 }
 
 #  - WW shaping
-nuisances['WWresum0j'] = {
-  'name': 'WWresum0j',
+nuisances['WWresum'] = {
+  'name': 'WWresum',
   'skipCMS': 1,
   'kind': 'weight',
   'type': 'shape',
   'samples': {
     'WW': ['nllW_Rup/nllW', 'nllW_Rdown/nllW',],
-  },
-  'cuts': [
-    'hww2l2v_13TeV_0j',
-    'hww2l2v_13TeV_top_of0j',
-    'hww2l2v_13TeV_dytt_of0j',
-  ],               
+  }
 }
 
-nuisances['WWresum1j'] = {
-  'name': 'WWresum1j',
-  'skipCMS': 1,
-  'kind': 'weight',
-  'type': 'shape',
-  'samples': {
-    'WW': ['nllW_Rup/nllW', 'nllW_Rdown/nllW',],
-  },
-  'cuts': [
-    'hww2l2v_13TeV_1j',
-    'hww2l2v_13TeV_top_of1j',
-    'hww2l2v_13TeV_dytt_of1j',
-  ],               
-}
-
-nuisances['WWqscale0j'] = {
-  'name': 'WWqscale0j',
+nuisances['WWqscale'] = {
+  'name': 'WWqscale',
   'skipCMS': 1,
   'kind': 'weight',
   'type': 'shape',
   'samples': {
     'WW': ['nllW_Qup/nllW', 'nllW_Qdown/nllW',],
-  },
-  'cuts': [
-    'hww2l2v_13TeV_0j',
-    'hww2l2v_13TeV_top_of0j',
-    'hww2l2v_13TeV_dytt_of0j',
-  ], 
-}
-
-nuisances['WWqscale1j'] = {
-  'name': 'WWqscale1j',
-  'skipCMS': 1,
-  'kind': 'weight',
-  'type': 'shape',
-  'samples': {
-    'WW': ['nllW_Qup/nllW', 'nllW_Qdown/nllW',],
-  },
-  'cuts': [
-    'hww2l2v_13TeV_1j',
-    'hww2l2v_13TeV_top_of1j',
-    'hww2l2v_13TeV_dytt_of1j',
-  ], 
+  }
 }
 
 nuisances['WgStarScale'] = {
@@ -643,56 +587,33 @@ nuisances['WZScale'] = {
 
 nuisances['DYttnorm0j'] = {
   'name': 'CMS_hww_DYttnorm0j', 
-  'samples': {
-    'DY': '1.00',
-  },
+  'samples': {'DY_0j': '1.00'},
   'type': 'rateParam',
-  'cuts': [
-    'hww2l2v_13TeV_0j',
-    'hww2l2v_13TeV_top_of0j',
-    'hww2l2v_13TeV_dytt_of0j',
-  ],
+  'cuts': sr + ['topcr_0j', 'dycr_0j']
 }
 
 nuisances['DYttnorm1j'] = {
   'name': 'CMS_hww_DYttnorm1j', 
-  'samples': {
-    'DY': '1.00',
-  },
+  'samples': {'DY_1j': '1.00'},
   'type': 'rateParam',
-  'cuts': [
-    'hww2l2v_13TeV_1j',
-    'hww2l2v_13TeV_top_of1j',
-    'hww2l2v_13TeV_dytt_of1j',
-  ],
+  'cuts': sr + ['topcr_1j', 'dycr_1j']
+}
+
+nuisances['DYttnormge2j'] = {
+  'name': 'CMS_hww_DYttnormge2j',
+  'samples': {'DY_ge2j': '1.00'},
+  'type': 'rateParam',
+  'cuts': sr + ['topcr_ge2j', 'dycr_ge2j']
 }
 
 ###### WW norm
 
-nuisances['WWnorm0j'] = {
-  'name': 'CMS_hww_WWnorm0j', 
+nuisances['WWnorm'] = {
+  'name': 'CMS_hww_WWnorm',
   'samples': {
     'WW': '1.00',
   },
-  'type': 'rateParam',
-  'cuts': [
-    'hww2l2v_13TeV_0j',
-    'hww2l2v_13TeV_top_of0j',
-    'hww2l2v_13TeV_dytt_of0j',              
-  ],
-}
-
-nuisances['WWnorm1j'] = {
-  'name': 'CMS_hww_WWnorm1j', 
-  'samples': {
-    'WW': '1.00',
-  },
-  'type': 'rateParam',
-  'cuts': [
-    'hww2l2v_13TeV_1j',
-    'hww2l2v_13TeV_top_of1j',
-    'hww2l2v_13TeV_dytt_of1j',              
-  ],
+  'type': 'rateParam'
 }
 
 ###### top norm
@@ -700,27 +621,28 @@ nuisances['WWnorm1j'] = {
 nuisances['Topnorm0j'] = {
   'name': 'CMS_hww_Topnorm0j', 
   'samples': {
-    'top': '1.00',
+    'top_0j': '1.00',
   },
   'type': 'rateParam',
-  'cuts': [
-    'hww2l2v_13TeV_0j',
-    'hww2l2v_13TeV_top_of0j',
-    'hww2l2v_13TeV_dytt_of0j',              
-  ],
+  'cuts': sr + ['topcr_0j', 'dycr_0j']
 }
 
 nuisances['Topnorm1j'] = {
   'name': 'CMS_hww_Topnorm1j', 
   'samples': {
-    'top': '1.00',
+    'top_1j': '1.00',
   },
   'type': 'rateParam',
-  'cuts': [
-    'hww2l2v_13TeV_1j',
-    'hww2l2v_13TeV_top_of1j',
-    'hww2l2v_13TeV_dytt_of1j',              
-  ],
+  'cuts': sr + ['topcr_1j', 'dycr_1j']
+}
+
+nuisances['Topnormge2j'] = {
+  'name': 'CMS_hww_Topnormge2j',
+  'samples': {
+    'top_2j': '1.00',
+  },
+  'type': 'rateParam',
+  'cuts': sr + ['topcr_ge2j', 'dycr_ge2j']
 }
 
 nuisances['singleTopToTTbar'] = {
@@ -728,10 +650,7 @@ nuisances['singleTopToTTbar'] = {
   'skipCMS': 1,
   'kind': 'weight',
   'type': 'shape',
-  'samples': { 
-    'top': ['((dataset==15 || dataset==16) * 1.0816 + (dataset==17 || dataset==18 || dataset==19))',
-            '((dataset==15 || dataset==16) * 0.9184 + (dataset==17 || dataset==18 || dataset==19))',],
-  },
+  'samples': dict((skey, ['((dataset==15 || dataset==16) * 1.0816 + (dataset==17 || dataset==18 || dataset==19))', '((dataset==15 || dataset==16) * 0.9184 + (dataset==17 || dataset==18 || dataset==19))',]) for skey in top)
   # tt = 17/18/19 depending on the sample/generator
   # tW = 15/16
 }
@@ -742,9 +661,7 @@ nuisances['TopPtRew'] = {
   'name': 'TopPtRew',   # Theory uncertainty
   'kind': 'weight',
   'type': 'shape',
-  'samples': {
-    'top': ["1.","((1./toprwgt - 1)*(dataset==19) + 1)",],
-  },
+  'samples': dict((skey, ["1.","((1./toprwgt - 1)*(dataset==19) + 1)"]) for skey in top)
 }
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
