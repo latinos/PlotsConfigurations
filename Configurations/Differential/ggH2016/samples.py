@@ -5,6 +5,10 @@ from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSample
 # samples
 
 #samples = {}
+try:
+  len(samples)
+except NameError:
+  samples = {}
 
 ################################################
 ################# SKIMS ########################
