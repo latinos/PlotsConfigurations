@@ -1,13 +1,26 @@
 #!/usr/bin/env python
 
+####################################################################################
+### Resubmit failed or aborted jobs
+### In principle this should be taken care of by batchTools. Y.I. is just not
+### willing to deal with it at the moment.
+####################################################################################
+
 import os
 import sys
 import glob
 import re
 import shutil
 import subprocess
+from argparse import ArgumentParser
 
-execfile('configuration.py')
+argParser = ArgumentParser(description = 'Run hadd in batch')
+argParser.add_argument('--pycfg', '-c', metavar = 'PATH', dest = 'pycfg', default = 'configuration.py', help = 'Configuration file name.')
+
+args = argParser.parse_args()
+del sys.argv[1:]
+
+execfile(args.pycfg)
 
 jobsdir = os.path.realpath('jobs/mkShapes__%s' % tag)
 jobnames = []
@@ -22,24 +35,6 @@ for jdspath in glob.glob('%s/mkShapes__%s__ALL__*.jds' % (jobsdir, tag)):
 
     if not os.path.exists(rootfile):
         jobnames.append(os.path.basename(jdspath).replace('.jds', ''))
-
-# temporary
-for jobname in jobnames:
-    matches = re.match('mkShapes__%s__ALL__([^.]+)(\.[0-9]+(?:\.[0-9]+|)|)' % tag, jobname)
-    sample, isplit = [matches.group(i) for i in range(1, 3)]
-    oldname = 'mkShapes__%s__ALL__%s' % (tag, sample)
-    if isplit:
-        oldname += isplit[1:]
-
-    with open('tmpsh', 'w') as out:
-        with open('%s/%s.sh' % (jobsdir, jobname)) as source:
-            for line in source:
-                out.write(line.replace(oldname, jobname))
-
-        out.write('\n')
-
-    os.rename('tmpsh', '%s/%s.sh' % (jobsdir, jobname))
-    os.chmod('%s/%s.sh' % (jobsdir, jobname), 0755)
 
 jds = 'executable = {jobsdir}/$(JobName).sh\n'
 jds += 'universe = vanilla\n'

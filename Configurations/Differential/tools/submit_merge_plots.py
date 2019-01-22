@@ -1,26 +1,45 @@
 #!/usr/bin/env python
 
+####################################################################################
+### Run hadd in batch
+### We have too many cuts and samples in the differential measurement that a
+### single hadd (with or without multicore option) fails. The second-best thing
+### we can do is to merge them by sample. mkPlot and mkDatacard have been updated
+### to accept a directory with per-sample histogram files as the "inputFile"
+### argument.
+####################################################################################
+
 import os
 import sys
 import shutil
 import subprocess
+from argparse import ArgumentParser
 
-execfile('configuration.py')
+argParser = ArgumentParser(description = 'Run hadd in batch')
+argParser.add_argument('--pycfg', '-c', metavar = 'PATH', dest = 'pycfg', default = 'configuration.py', help = 'Configuration file name.')
+argParser.add_argument('--out-suffix', '-x', metavar = 'NAME', dest = 'out_suffix', default = 'merged', help = 'Suffix for the output directory name. Appended to the outputDir parameter of the configuration file.')
+
+args = argParser.parse_args()
+del sys.argv[1:]
+
+execfile(args.pycfg)
+
+if os.path.isdir('%s_%s' % (outputDir, args.out_suffix)):
+    sys.stderr.write('Directory %s_%s already exists.' % (outputDir, args.out_suffix))
+    sys.exit(2)
 
 samples = {}
 execfile(samplesFile)
 
-try:
-    os.mkdir(outputDir + '_merged')
-except OSError:
-    pass
+os.makedirs(outputDir + '_merged')
+
 try:
     os.mkdir('merge_log')
 except OSError:
     pass
 
 inFullPath = os.path.realpath(outputDir)
-outFullPath = os.path.realpath(outputDir + '_merged')
+outFullPath = os.path.realpath('%s_%s' % (outputDir, args.out_suffix))
 
 rootFiles = os.listdir(outputDir)
 need_merging = []
@@ -30,7 +49,7 @@ for sname in samples:
     if len(files) > 1:
         need_merging.append(sname)
     else:
-        shutil.copyfile(outputDir + '/' + files[0], outputDir + '_merged/' + files[0])
+        shutil.copyfile('%s/%s' % (outputDir, files[0]), '%s_%s/%s' % (outputDir, args.out_suffix, files[0]))
 
 jds = 'executable = merge_plots.sh\n'
 jds += 'universe = vanilla\n'
