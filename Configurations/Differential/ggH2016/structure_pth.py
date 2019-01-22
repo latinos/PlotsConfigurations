@@ -10,19 +10,10 @@
 # keys here must match keys in samples.py
 #
 
-# remove samples we won't use in limit setting
-samples.pop('DY')
-samples.pop('top')
-for sname in samples.keys():
-    if sname.startswith('ggH_hww_minloHJ'):
-        samples.pop(sname)
-    
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
-dy = [skey for skey in samples if skey.startswith('DY')]
-top = [skey for skey in samples if skey.startswith('top')]
+dy = [skey for skey in samples if skey.startswith('DY_')]
+top = [skey for skey in samples if skey.startswith('top_')]
 signal = [skey for skey in samples if '_hww' in skey]
-ggh = [skey for skey in samples if skey.startswith('ggH_hww')]
-xh = [skey for skey in samples if skey.startswith('XH_hww')]
 
 topcr = [ckey for ckey in cuts if ckey.startswith('topcr')]
 dycr = [ckey for ckey in cuts if ckey.startswith('dycr')]
@@ -31,7 +22,7 @@ sr = [ckey for ckey in cuts if ckey.startswith('sr')]
 usedCuts = [ckey for ckey in dycr if not ckey.endswith('_incl')]
 usedCuts += [ckey for ckey in topcr if not ckey.endswith('_incl')]
 
-for sname in ['WW', 'Fake', 'Wjets', 'ggWW', 'Vg', 'WZgS_L', 'WZgS_H', 'VZ', 'VVV']:
+for sname in set(mc) - set(dy) - set(top) - set(signal):
     structure[sname] = {
         'isSignal' : 0,
         'isData'   : 0
@@ -78,7 +69,6 @@ for ipt in range(len(pthBinning1) - 1):
             usedCuts.append('sr_pth_%.0f_%.0f_%s' % (low, high, pt2))
 
 for sname in ['ggH_hww', 'XH_hww']:
-    #for fid in ['fid', 'nonfid']:
     for fid in ['incl']:
         for ipt in range(len(pthBinning1) - 1):
             low, high = pthBinning1[ipt:ipt+2]
@@ -88,6 +78,13 @@ for sname in ['ggH_hww', 'XH_hww']:
                 'isData'   : 0,
                 'removeFromCuts': topcr + dycr
             }
+
+# fake
+
+structure['Fake'] = {
+    'isSignal' : 0,
+    'isData'   : 0
+}
 
 # data
 
