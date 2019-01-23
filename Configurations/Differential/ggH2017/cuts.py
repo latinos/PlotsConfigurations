@@ -1,16 +1,16 @@
 # cuts
 
 #cuts = {}
- 
+
 _tmp = [
     'osof',
-    'std_vector_lepton_pt[0]>25 && std_vector_lepton_pt[1]>10 && std_vector_lepton_pt[2]<10',
-    'std_vector_electron_passConversionVeto[0] * std_vector_electron_passConversionVeto[1] == 1',
+    'Lepton_pt[0]>20 && Sum$(Lepton_pt>10) == 2',
+    'abs(Lepton_eta[0])<2.5 && abs(Lepton_eta[1])<2.5',
     'trailingE13',
-    'metPfType1>20',
+    'MET_pt > 20',
     'mll>12',
     'ptll>30',
-    'mtw2>30'
+    'mtw2>30.'
 ]
 supercut = ' && '.join(_tmp)
 
@@ -52,43 +52,43 @@ addcut('dycr_ge2j', _tmp)
 ## Top control regions
 _tmp = [
     'mll>50',
-    'Sum$(std_vector_jet_pt > 20. && std_vector_jet_cmvav2 > -0.5884) != 0'
+    '!bVeto'
 ]
 addcut('topcr_incl', _tmp)
 
 _tmp = [
     'mll>50',
     'zeroJet',
-    'Sum$(std_vector_jet_pt > 20. && std_vector_jet_cmvav2 > -0.5884) != 0'
+    '!bVeto'
 ]
 addcut('topcr_0j', _tmp)
 
 _tmp = [
     'mll>50',
     'oneJet',
-    'std_vector_jet_cmvav2[0] > -0.5884'
+    'leadingBJet'
 ]
 addcut('topcr_1j', _tmp)
 
 _tmp = [
     'mll>50',
     'manyJet',
-    '(std_vector_jet_cmvav2[0] > -0.5884 || std_vector_jet_cmvav2[1] > -0.5884)'
+    'atleastoneBJet'
 ]
 addcut('topcr_ge2j', _tmp)
 
 ## Signal regions
 pt2confs = [
-    ('pt2lt20', 'std_vector_lepton_pt[1] < 20.'),
-    ('pt2ge20', 'std_vector_lepton_pt[1] >= 20.')
+    ('pt2lt20', 'Lepton_pt[1] < 20.'),
+    ('pt2ge20', 'Lepton_pt[1] >= 20.')
 ]
 lepconfs = [
-    ('em', 'abs(std_vector_lepton_flavour[0]) == 11'),
-    ('me', 'abs(std_vector_lepton_flavour[0]) == 13'),
-    ('emmp', 'std_vector_lepton_flavour[0] == 11'),
-    ('mmep', 'std_vector_lepton_flavour[0] == 13'),
-    ('epmm', 'std_vector_lepton_flavour[0] == -11'),
-    ('mpem', 'std_vector_lepton_flavour[0] == -13')
+    ('em', 'abs(Lepton_pdgId[0]) == 11'),
+    ('me', 'abs(Lepton_pdgId[0]) == 13'),
+    ('emmp', 'Lepton_pdgId[0] == 11'),
+    ('mmep', 'Lepton_pdgId[0] == 13'),
+    ('epmm', 'Lepton_pdgId[0] == -11'),
+    ('mpem', 'Lepton_pdgId[0] == -13')
 ]
 
 srcuts = []

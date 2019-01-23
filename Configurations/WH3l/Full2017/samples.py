@@ -1,12 +1,16 @@
-import os
-from LatinoAnalysis.Tools.commonTools import *
+#!/usr/bin/env python
 
-def getSampleFilesNano(inputDir,Sample,absPath=False,rootFilePrefix='nanoLatino_',FromPostProc=False):
+import os
+
+global getSampleFiles
+from LatinoAnalysis.Tools.commonTools import getSampleFiles
+
+def getSampleFilesNano(inputDir,Sample,absPath=False,rootFilePrefix='nanoLatino_',FromPostProc=True):
+    """ Use "nanoLatino_" instead of "latino_" as the sample file prefix """
     return [ s.lstrip('#') for s in getSampleFiles(inputDir, Sample, absPath, rootFilePrefix, FromPostProc) ]
 
-
 def addSampleWeightNano(sampleDic,key,Sample,Weight):
-    # Modified from LatinoAnalysis/Tools/python/commonTools.py
+    """ Modified from LatinoAnalysis/Tools/python/commonTools.py """
     if not 'weights' in sampleDic[key] :
       sampleDic[key]['weights'] = []
     if len(sampleDic[key]['weights']) == 0 :
@@ -38,9 +42,9 @@ else:
 
 treeBaseDir = "/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/"
 
-directoryMC     = os.path.join(treeBaseDir,"Fall2017_nAOD_v1_Full2017/MCl1loose2017__MCformulas__MCWeights2017")
-directoryDATA   = os.path.join(treeBaseDir,"Run2017_nAOD_v1_Full2017/DATAl1loose2017__l2loose__hadd")
-directoryFAKE   = os.path.join(treeBaseDir,"Run2017_nAOD_v1_Full2017/DATAl1loose2017__l2loose__hadd")
+directoryMC     = os.path.join(treeBaseDir,"Fall2017_nAOD_v1_Full2017v2/MCl1loose2017v2__MCCorr2017__btagPerEvent__l2loose__l2tightOR2017")
+directoryDATA   = os.path.join(treeBaseDir,"Run2017_nAOD_v1_Full2017v2/DATAl1loose2017v2__DATACorr2017__l2loose__l2tightOR2017")
+directoryFAKE   = os.path.join(treeBaseDir,"Run2017_nAOD_v1_Full2017v2/DATAl1loose2017v2__DATACorr2017__fakeSel")
 
 
 ################################################
@@ -51,6 +55,7 @@ replaceNLep = lambda s, nLep : s.format(nLep)
 
 XSWeight    = 'XSWeight'
 SFweight    = replaceNLep('SFweight{0}l',3)
+SFweight    += '*'+'PrefireWeight'
 
 GenLepMatch   = 'GenLepMatch{0}l'
 GenLepMatch2l = replaceNLep(GenLepMatch,2)
@@ -62,8 +67,7 @@ GenLepMatch3l = replaceNLep(GenLepMatch,3)
 
 #... b jet
 
-bSF="bPogSF_deepCSVBT"
-bVeto="bveto_deepCSVBT"
+btagSF = 'btagWeight'
 
 #... lepton:
 
@@ -75,7 +79,8 @@ LepWPweight     = 'LepSF3l__ele_'+eleWP+'__mu_'+muWP+'_HWWW'
 #... And the fakeW
 fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_3l'
 
-SFweight += '*'+LepWPweight+'*'+LepWPCut
+
+SFweight += '*'+LepWPCut+'*'+LepWPweight
 
 ################################################
 ############   MET  FILTERS  ###################
@@ -100,22 +105,22 @@ DataSets = ['MuonEG','DoubleMuon','SingleMuon','DoubleEG','SingleElectron']
 
 
 DataTrig = {
-            'MuonEG'         : ' trig_EleMu' ,
-            'DoubleMuon'     : '!trig_EleMu &&  trig_DbleMu' ,
-            'SingleMuon'     : '!trig_EleMu && !trig_DbleMu &&  trig_SnglMu' ,
-            'DoubleEG'       : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu &&  trig_DbleEle' ,
-            'SingleElectron' : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu && !trig_DbleEle &&  trig_SnglEle' ,
+            'MuonEG'         : ' Trigger_ElMu' ,
+            'DoubleMuon'     : '!Trigger_ElMu &&  Trigger_dblMu' ,
+            'SingleMuon'     : '!Trigger_ElMu && !Trigger_dblMu &&  Trigger_sngMu' ,
+            'DoubleEG'       : '!Trigger_ElMu && !Trigger_dblMu && !Trigger_sngMu &&  Trigger_dblEl' ,
+            'SingleElectron' : '!Trigger_ElMu && !Trigger_dblMu && !Trigger_sngMu && !Trigger_dblEl &&  Trigger_sngEl' ,
            }
 
 samples['DATA']  = {   'name': [] ,
-                       'weight' : 'veto_EMTFBug'+'*'+METFilter_DATA+'*'+LepWPCut,
+                       'weight' : 'EMTFbug_veto'+'*'+METFilter_DATA+'*'+LepWPCut,
                        'weights' : [],
                        'isData': ['all'],
                        'FilesPerJob' : 5 ,
                    }
 
 samples['Fake']  = {   'name': [] ,
-                       'weight' : fakeW+'*'+'veto_EMTFBug'+'*'+METFilter_DATA,
+                       'weight' : fakeW+'*'+'EMTFbug_veto'+'*'+METFilter_DATA,
                        'weights' : [],
                        'isData': ['all'],
                        'FilesPerJob' : 5 ,
@@ -125,8 +130,8 @@ for Run in DataRun :
     directoryDATARun = directoryDATA.format(Run[0])
     directoryFAKERun = directoryFAKE.format(Run[0])
     for DataSet in DataSets :
-        FileTargetDATA = getSampleFilesNano(directoryDATARun,DataSet+'_'+Run[1],True)
-        FileTargetFAKE = getSampleFilesNano(directoryFAKERun,DataSet+'_'+Run[1],True)
+        FileTargetDATA = getSampleFilesNano(directoryDATARun,DataSet+'_'+Run[1],absPath=True)
+        FileTargetFAKE = getSampleFilesNano(directoryFAKERun,DataSet+'_'+Run[1],absPath=True)
         for iFile in FileTargetDATA:
             samples['DATA']['name']   .append(iFile)
             samples['DATA']['weights'].append(DataTrig[DataSet])
@@ -140,9 +145,17 @@ for Run in DataRun :
 #############  BACKGROUNDS  ###############
 ###########################################
 
+# Missing nllW branch
 samples['WW'] = {
     'name'   : getSampleFilesNano(directoryMC,'WWTo2L2Nu'),
-    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch2l+'*'+METFilter_MC + '*nllW' ,
+    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch2l+'*'+METFilter_MC, #+ '*nllW' ,
+    'suppressNegativeNuisances' :['all'],
+}
+
+wzSF = '1.108'
+samples['WZ'] = {
+    'name': getSampleFilesNano(directoryMC,'WZTo3LNu'),
+    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC+'*'+wzSF,
     'suppressNegativeNuisances' :['all'],
 }
 
@@ -169,13 +182,6 @@ samples['ZZ'] = {
 #     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC ,
 #     'suppressNegativeNuisances' :['all'],
 # }
-
-wzSF = '1.108'
-samples['WZ'] = {
-    'name': getSampleFilesNano(directoryMC,'WZTo3LNu'),
-    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC+'*'+wzSF,
-    'suppressNegativeNuisances' :['all'],
-}
 
 samples['VVV'] = {
     'name': getSampleFilesNano(directoryMC,'WWW')

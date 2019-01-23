@@ -1,5 +1,8 @@
 # Configuration file to produce initial root files -- has both merged and binned ggH samples
-tag = 'ggHDifferential2016'
+
+treeName = 'Events'
+
+tag = 'ggHDifferential2017'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -20,7 +23,7 @@ samplesFile = 'samples.py'
 plotFile = 'plot.py' 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 35.867
+lumi = 42.0
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
