@@ -13,3 +13,18 @@
  ```bash
  python transfer_on_eos.py N
  ```
+
+ 
+ 
+Web interface:
+
+    https://webfts.cern.ch/
+
+Origin:
+
+    srm://maite.iihe.ac.be:8443/pnfs/iihe/cms/store/user/xjanssen/HWW2015/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/
+    
+Destination:
+
+    srm://storm.mib.infn.it:8444/cms/store/group/OneLepton/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/
+

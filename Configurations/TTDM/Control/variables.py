@@ -8,12 +8,6 @@ variables['events']  = {   'name': '1',
                         'fold' : 3
                         }
 
-variables['metvspuppi'] = {   'name': 'MET_pt:PuppiMET_pt',
-                              'range' : (20, 0,100, 20,0,100),
-                              'xaxis' : 'met [GeV] : puppimet [GeV]',  
-                              'fold' : 0 ,
-                              }
-
 '''   
 variables['pt1VSeta1'] = {   'name': 'Lepton_pt[0]:Lepton_eta[0]',            #   variable name    
                         'range' : (20,-2.5,2.5, 20,0,80),            #   variable range

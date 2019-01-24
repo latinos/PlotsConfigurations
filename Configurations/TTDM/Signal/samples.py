@@ -89,7 +89,7 @@ bVeto = '( Alt$(CleanJet_pt[0],0)<20 || Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[0
       && ( Alt$(CleanJet_pt[10],0)<20 || Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[10]],0)<'+bWP+' )\
       '
 
-bOne = '( Alt$(CleanJet_pt[0],0)>20 && Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[0]],0)>'+bWP+' )\
+bOne = '(( Alt$(CleanJet_pt[0],0)>20 && Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[0]],0)>'+bWP+' )\
       || ( Alt$(CleanJet_pt[1],0)>20 && Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[1]],0)>'+bWP+' )\
       || ( Alt$(CleanJet_pt[2],0)>20 && Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[2]],0)>'+bWP+' )\
       || ( Alt$(CleanJet_pt[3],0)>20 && Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[3]],0)>'+bWP+' )\
@@ -99,7 +99,7 @@ bOne = '( Alt$(CleanJet_pt[0],0)>20 && Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[0]
       || ( Alt$(CleanJet_pt[7],0)>20 && Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[7]],0)>'+bWP+' )\
       || ( Alt$(CleanJet_pt[8],0)>20 && Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[8]],0)>'+bWP+' )\
       || ( Alt$(CleanJet_pt[9],0)>20 && Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[9]],0)>'+bWP+' )\
-      || ( Alt$(CleanJet_pt[10],0)>20 && Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[10]],0)>'+bWP+' )\
+      || ( Alt$(CleanJet_pt[10],0)>20 && Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[10]],0)>'+bWP+' ))\
       '
 
 SFweight += '*'+btagSF
@@ -258,7 +258,7 @@ samples['WZgS']  = {  'name'   :   getSampleFiles(directory,'WZTo3LNu',False,'na
 
 
 samples['Fake']  = {   'name': [ ] ,
-                       'weight' : METFilter_DATA+'*'+fakeW,              #   weight/cut 
+                       'weight' : METFilter_DATA+'*'+fakeW+'/4',              #   weight/cut 
                        'weights' : [ ] ,
                        'isData': ['all'],
                        'FilesPerJob' : 20 ,
@@ -279,7 +279,7 @@ for Run in DataRun :
 ###########################################
        
 samples['DATA']  = {   'name': [ ] ,     
-                       'weight' : METFilter_DATA+'*'+LepWPCut,
+                       'weight' : METFilter_DATA+'*'+LepWPCut +'*(event%4 == 0)',
                        'weights' : [ ],
                        'isData': ['all'],                            
                        'FilesPerJob' : 20 ,
