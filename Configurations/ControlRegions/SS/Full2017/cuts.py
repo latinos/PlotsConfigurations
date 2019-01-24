@@ -78,7 +78,7 @@ _tmp = [
     'Alt$(CleanJet_pt[0],0)>20',
     'Alt$(CleanJet_pt[0],100)<30'
 ]
-addcut('hww2l2v_13TeV_ss_em0j', _tmp)
+addcut('hww2l2v_13TeV_ss_me0j', _tmp)
 
 _tmp = [
     '(Lepton_pdgId[0] == 13 || Lepton_pdgId[0] == -13)',
@@ -88,7 +88,7 @@ _tmp = [
     'Alt$(CleanJet_pt[1],0)>20',
     'Alt$(CleanJet_pt[1],100)<30'
 ]
-addcut('hww2l2v_13TeV_ss_em1j', _tmp)
+addcut('hww2l2v_13TeV_ss_me1j', _tmp)
 
 _tmp = [
     '(Lepton_pdgId[0] == 13 || Lepton_pdgId[0] == -13)',
@@ -97,7 +97,7 @@ _tmp = [
     'Alt$(CleanJet_pt[0],0)>30',
     'Alt$(CleanJet_pt[1],0)>30'
 ]
-addcut('hww2l2v_13TeV_ss_em2j', _tmp)
+addcut('hww2l2v_13TeV_ss_me2j', _tmp)
 
 ### ee
 _tmp = [
