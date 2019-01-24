@@ -19,7 +19,7 @@ elif  'cern' in SITE :
   #xrootdPath='root://eoscms.cern.ch/'
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/'
 
-directory = treeBaseDir+'Fall2017_nAOD_v1_Full2017v2/MCl1loose2017v2__MCCorr2017'
+directory = treeBaseDir+'Fall2017_nAOD_v1_Full2017v2/MCl1loose2017v2__MCCorr2017__btagPerEvent__l2loose__l2tightOR2017'
 
 
 ################################################
@@ -70,6 +70,39 @@ else:
 ############### B-Tag  WP ######################
 ################################################
 
+#FIXME b-tagging to be optimized
+
+bAlgo = 'DeepB'
+btagSF = 'btagWeight'
+bWP = '0.1522'
+
+bVeto = '( Alt$(CleanJet_pt[0],0)<20 || Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[0]],0)<'+bWP+' )\
+      && ( Alt$(CleanJet_pt[1],0)<20 || Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[1]],0)<'+bWP+' )\
+      && ( Alt$(CleanJet_pt[2],0)<20 || Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[2]],0)<'+bWP+' )\
+      && ( Alt$(CleanJet_pt[3],0)<20 || Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[3]],0)<'+bWP+' )\
+      && ( Alt$(CleanJet_pt[4],0)<20 || Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[4]],0)<'+bWP+' )\
+      && ( Alt$(CleanJet_pt[5],0)<20 || Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[5]],0)<'+bWP+' )\
+      && ( Alt$(CleanJet_pt[6],0)<20 || Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[6]],0)<'+bWP+' )\
+      && ( Alt$(CleanJet_pt[7],0)<20 || Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[7]],0)<'+bWP+' )\
+      && ( Alt$(CleanJet_pt[8],0)<20 || Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[8]],0)<'+bWP+' )\
+      && ( Alt$(CleanJet_pt[9],0)<20 || Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[9]],0)<'+bWP+' )\
+      && ( Alt$(CleanJet_pt[10],0)<20 || Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[10]],0)<'+bWP+' )\
+      '
+
+bOne = '( Alt$(CleanJet_pt[0],0)>20 && Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[0]],0)>'+bWP+' )\
+      || ( Alt$(CleanJet_pt[1],0)>20 && Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[1]],0)>'+bWP+' )\
+      || ( Alt$(CleanJet_pt[2],0)>20 && Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[2]],0)>'+bWP+' )\
+      || ( Alt$(CleanJet_pt[3],0)>20 && Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[3]],0)>'+bWP+' )\
+      || ( Alt$(CleanJet_pt[4],0)>20 && Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[4]],0)>'+bWP+' )\
+      || ( Alt$(CleanJet_pt[5],0)>20 && Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[5]],0)>'+bWP+' )\
+      || ( Alt$(CleanJet_pt[6],0)>20 && Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[6]],0)>'+bWP+' )\
+      || ( Alt$(CleanJet_pt[7],0)>20 && Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[7]],0)>'+bWP+' )\
+      || ( Alt$(CleanJet_pt[8],0)>20 && Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[8]],0)>'+bWP+' )\
+      || ( Alt$(CleanJet_pt[9],0)>20 && Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[9]],0)>'+bWP+' )\
+      || ( Alt$(CleanJet_pt[10],0)>20 && Alt$(Jet_btag'+bAlgo+'[CleanJet_jetIdx[10]],0)>'+bWP+' )\
+      '
+
+SFweight += '*'+btagSF
 
 
 ################################################
@@ -106,67 +139,89 @@ DataTrig = {
 #############  BACKGROUNDS  ###############
 ###########################################
 
+ptllDYW_NLO = '((0.623108 + 0.0722934*gen_ptll - 0.00364918*gen_ptll*gen_ptll + 6.97227e-05*gen_ptll*gen_ptll*gen_ptll - 4.52903e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll<45)*(gen_ptll>0) + 1*(gen_ptll>=45))'
+ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
+
+
+useDYtt = False
+
+# missing 10to50
+
+if useDYtt :
+
+  samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToTT_MuEle_M-50',False,'nanoLatino_')
+                                  + getSampleFiles(directory,'DYJetsToLL_M-10to50-LO',False,'nanoLatino_'),
+                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                       'FilesPerJob' : 5 ,
+                       }
+
+  addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO)
+  addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
+
+else:
+
+  samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50',False,'nanoLatino_')
+                                  + getSampleFiles(directory,'DYJetsToLL_M-10to50-LO',False,'nanoLatino_'),
+                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                       'FilesPerJob' : 5 ,
+                       }
+
+  addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO)
+  addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 
 
 
-samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50',False,'nanoLatino_') ,
-                                 # + getSampleFiles(directory,'DYJetsToLL_M-50')     ,
+Top_pTrw = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )'
+
+samples['top'] = {    'name'   :   getSampleFiles(directory,'TTTo2L2Nu',False,'nanoLatino_')
+                                 + getSampleFiles(directory,'ST_tW_antitop',False,'nanoLatino_')
+                                 + getSampleFiles(directory,'ST_tW_top',False,'nanoLatino_')
+                                 + getSampleFiles(directory,'ST_s-channel',False,'nanoLatino_') 
+                                 + getSampleFiles(directory,'ST_t-channel_antitop',False,'nanoLatino_') 
+                                 + getSampleFiles(directory,'ST_t-channel_top',False,'nanoLatino_'),
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 5 ,
-                 }
+                     'FilesPerJob' : 2 ,
+                      }
+
+addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
 
 
-samples['ttbar'] = {    'name'   :   getSampleFiles(directory,'TTTo2L2Nu',False,'nanoLatino_') ,
-                                 #+ getSampleFiles(directory,'ST_s-channel',False,'nanoLatino_') 
-				 #+ getSampleFiles(directory,'ST_t-channel_antitop',False,'nanoLatino_') 
-				 #+ getSampleFiles(directory,'ST_t-channel_top',False,'nanoLatino_') 
-				 #+ getSampleFiles(directory,'ST_tW_antitop',False,'nanoLatino_') 
-				 #+ getSampleFiles(directory,'ST_tW_top',False,'nanoLatino_') ,
+samples['WW'] = {    'name'   :   getSampleFiles(directory,'WWTo2L2Nu',False,'nanoLatino_')
+                                + getSampleFiles(directory,'GluGluToWWToENEN',False,'nanoLatino_')
+                                + getSampleFiles(directory,'GluGluToWWToMNMN',False,'nanoLatino_')
+                                + getSampleFiles(directory,'GluGluToWWToENMN',False,'nanoLatino_')
+                                + getSampleFiles(directory,'GluGluToWWToMNEN',False,'nanoLatino_')
+                                + getSampleFiles(directory,'GluGluToWWToTNEN',False,'nanoLatino_')
+                                + getSampleFiles(directory,'GluGluToWWToENTN',False,'nanoLatino_')
+                                + getSampleFiles(directory,'GluGluToWWToMNTN',False,'nanoLatino_')
+                                + getSampleFiles(directory,'GluGluToWWToTNMN',False,'nanoLatino_')
+                                + getSampleFiles(directory,'GluGluToWWToTNTN',False,'nanoLatino_'),
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 5 ,
-                 }
-
-samples['singletop'] = {   'name': getSampleFiles(directory,'ST_s-channel',False,'nanoLatino_') 
-                           + getSampleFiles(directory,'ST_t-channel_antitop',False,'nanoLatino_') 
-                           + getSampleFiles(directory,'ST_t-channel_top',False,'nanoLatino_') 
-                           + getSampleFiles(directory,'ST_tW_antitop',False,'nanoLatino_') 
-                           + getSampleFiles(directory,'ST_tW_top',False,'nanoLatino_') ,
-                           'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                           'FilesPerJob' : 5 ,
-                           }
-
-samples['ttsemi'] = {    'name'   :   getSampleFiles(directory,'TTToSemiLeptonic',False,'nanoLatino_') ,
-                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 5 ,
-                 }
-
-samples['TTV'] = {   'name'   :   getSampleFiles(directory,'TTZjets',False,'nanoLatino_') 
-                     + getSampleFiles(directory,'TTWjets',False,'nanoLatino_') ,
-                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 5 ,
-                 }
-
-"""
-samples['WW'] = {    'name'   :   getSampleFiles(directory,'WW-LO',False,'nanoLatino_') ,
-                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 5 ,
+                     'FilesPerJob' : 4 ,                    
                      }
 
-samples['WZ'] = {    'name'   : getSampleFiles(directory,'WZ',False,'nanoLatino_') ,
+# missing bbH
+samples['Higgs'] = {    'name'   : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125',False,'nanoLatino_')
+                        + getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125',False,'nanoLatino_')
+                        + getSampleFiles(directory,'HZJ_HToWWTo2L2Nu_M125',False,'nanoLatino_')
+                        + getSampleFiles(directory,'GluGluZH_HToWWTo2L2Nu_M125',False,'nanoLatino_')
+                        + getSampleFiles(directory,'HWminusJ_HToWW_M125',False,'nanoLatino_')
+                        + getSampleFiles(directory,'HWplusJ_HToWW_M125',False,'nanoLatino_')
+                        + getSampleFiles(directory,'GluGluHToTauTau_M125',False,'nanoLatino_')
+                        + getSampleFiles(directory,'VBFHToTauTau_M125',False,'nanoLatino_')
+                        + getSampleFiles(directory,'HZJ_HToTauTau_M125',False,'nanoLatino_')
+                        + getSampleFiles(directory,'HWplusJ_HToTauTau_M125',False,'nanoLatino_')
+                        + getSampleFiles(directory,'HWminusJ_HToTauTau_M125',False,'nanoLatino_') ,
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 5 ,
+                      'FilesPerJob' : 60 ,
                      }
 
-samples['ZZ'] = {    'name'   : getSampleFiles(directory,'ZZ',False,'nanoLatino_') ,
-                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 5 ,
-                     }
-"""
-samples['VV'] = {    'name'   : getSampleFiles(directory,'WW-LO',False,'nanoLatino_') 
-                     + getSampleFiles(directory,'WZ',False,'nanoLatino_') 
-                     + getSampleFiles(directory,'ZZ',False,'nanoLatino_'),
-                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 5 ,
+samples['VZ'] = {    'name'   : getSampleFiles(directory,'WZTo3LNu',False,'nanoLatino_')
+                     + getSampleFiles(directory,'ZZTo2L2Nu',False,'nanoLatino_')
+                     + getSampleFiles(directory,'WZTo2L2Q',False,'nanoLatino_')
+                     + getSampleFiles(directory,'ZZTo2L2Q',False,'nanoLatino_'),
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                     'FilesPerJob' : 20 ,
                      }
 
 samples['VVV'] = {    'name'   : getSampleFiles(directory,'WWW',False,'nanoLatino_') 
@@ -178,10 +233,30 @@ samples['VVV'] = {    'name'   : getSampleFiles(directory,'WWW',False,'nanoLatin
                       }
 
 
+samples['Vg'] = {    'name'   : getSampleFiles(directory,'Wg_MADGRAPHMLM',False,'nanoLatino_') ,
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(Gen_ZGstar_mass<4)',
+                      'FilesPerJob' : 20 ,
+                      }
+
+
+
+############ VgS ############
+
+#FIXME Use WZTo3LNu_mllmin01 sample (gstar mass > 100 MeV) when available. This one has gstar mass > 4 GeV
+#FIXME Add normalization k-factor
+samples['WZgS']  = {  'name'   :   getSampleFiles(directory,'WZTo3LNu',False,'nanoLatino_'),
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(Gen_ZGstar_mass>4)',
+                      'FilesPerJob' : 20 ,
+                   }
+
+
+
 ###########################################
 ################## FAKES ##################
 ###########################################
  
+
+
 samples['Fake']  = {   'name': [ ] ,
                        'weight' : METFilter_DATA+'*'+fakeW,              #   weight/cut 
                        'weights' : [ ] ,
@@ -197,12 +272,14 @@ for Run in DataRun :
       samples['Fake']['name'].append(iFile)
       samples['Fake']['weights'].append(DataTrig[DataSet])
 
+
+
 ###########################################
 ################## DATA ###################
 ###########################################
        
 samples['DATA']  = {   'name': [ ] ,     
-                       'weight' : METFilter_DATA,
+                       'weight' : METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],                            
                        'FilesPerJob' : 20 ,
