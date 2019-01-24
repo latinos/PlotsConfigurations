@@ -32,6 +32,14 @@ groupPlot['Wjets']  = {
                         'samples'  : ['Wjets']
                         }
 
+groupPlot['Data']  = {
+                        'nameHR' : 'Data',
+                        'isSignal' : 1,
+                        'color': 415,
+                        'samples'  : ['Data']
+                        }
+
+
 
 #groupPlot['top']  = {  
                   #'nameHR' : 'tW and t#bart',
@@ -90,7 +98,7 @@ groupPlot['Wjets']  = {
 #                    
 plot['HH']  = {  
                   'color': 861,    
-                  'isSignal' : 2,
+                  'isSignal' : 1,
                   'isData'   : 0, 
                   'scale'    : 1.   ,
               }
@@ -106,6 +114,14 @@ plot['Wjets']  = {
                   'isData'   : 0,
                   'scale'    : 1.   ,
               }
+
+plot['Data']  = {
+                 'color': 415,
+                 'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1.   ,
+             }
+
 
 #legend['lumi'] = 'L = 6.3/fb'
 legend['lumi'] = 'L = 35.9/fb'
