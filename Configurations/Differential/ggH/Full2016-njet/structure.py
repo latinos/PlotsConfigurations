@@ -235,49 +235,189 @@ structure['qqH_hww_4j_nonfid'] = {
                   'isSignal' : 1,
                   'isData'   : 0,
                   }
-
-structure['WH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  }
-
-structure['ZH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  }
-
-structure['ggZH_hww'] = {
+                  
+structure['XH_hww_0j_fid'] = {
                   'isSignal' : 1,
                   'isData'   : 0,
                   }
                   
-structure['bbH_hww'] = {
+structure['XH_hww_1j_fid'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+                  
+structure['XH_hww_2j_fid'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+                  
+structure['XH_hww_3j_fid'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+                  
+structure['XH_hww_4j_fid'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+                  
+structure['XH_hww_0j_nonfid'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+                  
+structure['XH_hww_1j_nonfid'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+                  
+structure['XH_hww_2j_nonfid'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+                  
+structure['XH_hww_3j_nonfid'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+                  
+structure['XH_hww_4j_nonfid'] = {
                   'isSignal' : 1,
                   'isData'   : 0,
                   }
 
-structure['ttH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0
-                  }
+#structure['WH_hww_0j_fid'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  }
+#                  
+#structure['WH_hww_1j_fid'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  }
+#                  
+#structure['WH_hww_2j_fid'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  }
+#                  
+#structure['WH_hww_3j_fid'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  }
+#                  
+#structure['WH_hww_4j_fid'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  }
+#                  
+#structure['WH_hww_0j_nonfid'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  }
+#                  
+#structure['WH_hww_1j_nonfid'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  }
+#                  
+#structure['WH_hww_2j_nonfid'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  }
+#                  
+#structure['WH_hww_3j_nonfid'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  }
+#                  
+#structure['WH_hww_4j_nonfid'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  }
+
+#structure['ZH_hww_0j_fid'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  }
+#                  
+#structure['ZH_hww_1j_fid'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  }
+#                  
+#structure['ZH_hww_2j_fid'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  }
+#                  
+#structure['ZH_hww_3j_fid'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  }
+#                  
+#structure['ZH_hww_4j_fid'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  }
+#                  
+#structure['ZH_hww_0j_nonfid'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  }
+#                  
+#structure['ZH_hww_1j_nonfid'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  }
+#                  
+#structure['ZH_hww_2j_nonfid'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  }
+#                  
+#structure['ZH_hww_3j_nonfid'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  }
+#                  
+#structure['ZH_hww_4j_nonfid'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  }
+
+#structure['ggZH_hww'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  }
+#                  
+#structure['bbH_hww'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  }
+
+#structure['ttH_hww'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0
+#                  }
 
 structure['ggH_htt'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,
                   }
 
 structure['qqH_htt'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,
                   }
 
 structure['WH_htt'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,
                   }
 
 structure['ZH_htt'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,
                   }
 

@@ -61,13 +61,13 @@ variables['mll_optim']  = { 'name': 'mll',            #   variable name
 #                        'fold' : 3
 #                        }
 #
-
-variables['nvtx']  = {   'name': 'nvtx',      
-                        'range' : (100,0,100),  
-                        'xaxis' : 'nvtx', 
-                        'fold' : 3
-                        }
-
+#
+#variables['nvtx']  = {   'name': 'nvtx',      
+#                        'range' : (100,0,100),  
+#                        'xaxis' : 'nvtx', 
+#                        'fold' : 3
+#                        }
+#
 #variables['mll']  = {   'name': 'mll',            #   variable name    
 #                        'range' : (20,10,200),    #   variable range
 #                        'xaxis' : 'm_{ll} [GeV]',  #   x axis name

@@ -27,7 +27,7 @@ lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotGGH'
+outputDirPlots = 'plot_2016'
 
 
 # used by mkDatacards to define output directory for datacards
