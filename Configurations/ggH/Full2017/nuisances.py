@@ -400,7 +400,7 @@ nuisances['btag_shape_cferr2']  = {
 
 ##### Trigger Efficiency
 
-trig_syst = ['(TriggerEffWeight_'+Nlep+'l_u)/(TriggerEffWeight_'+Nlep+'l)', '(TriggerEffWeight_'+Nlep+'l_d)/(TriggerEffWeight_'+Nlep+'l)']
+trig_syst = ['((TriggerEffWeight_'+Nlep+'l_u)/(TriggerEffWeight_'+Nlep+'l))*(TriggerEffWeight_'+Nlep+'l>0.02) + (TriggerEffWeight_'+Nlep+'l<=0.02)', '(TriggerEffWeight_'+Nlep+'l_d)/(TriggerEffWeight_'+Nlep+'l)']
 
 nuisances['trigg']  = {
                 'name'  : 'hww_trigger',
@@ -1517,19 +1517,18 @@ nuisances['Topnorm2j']  = {
                 ]
               }
 
-##FIXME: There is something wrong here
-##nuisances['singleTopToTTbar']  = {
-##                'name'  : 'singleTopToTTbar',
-##                'skipCMS' : 1,
-##                'kind'  : 'weight',
-##                'type'  : 'shape',
-##                'samples'  : { 
-##                   'top'     : ['(( (topGenPt>0 && antitopGenPt<0) || (topGenPt<0 && antitopGenPt>0)  ) * 1.0816 + ( topGenPt>0 && antitopGenPt>0 ))',
-##                                '(( (topGenPt>0 && antitopGenPt<0) || (topGenPt<0 && antitopGenPt>0)  ) * 0.9184 + ( topGenPt>0 && antitopGenPt>0 ))'],
-##                }
-##                # tt = 17/18/19 depending on the sample/generator
-##                # tW = 15/16
-##           }
+nuisances['singleTopToTTbar']  = {
+                'name'  : 'singleTopToTTbar',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : { 
+                   'top'     : ['(( (topGenPt>0 && antitopGenPt<=0) || (topGenPt<=0 && antitopGenPt>0)  ) * 1.0816 + ( topGenPt>0 && antitopGenPt>0 ))',
+                                '(( (topGenPt>0 && antitopGenPt<=0) || (topGenPt<=0 && antitopGenPt>0)  ) * 0.9184 + ( topGenPt>0 && antitopGenPt>0 ))'],
+                }
+                # tt = 17/18/19 depending on the sample/generator
+                # tW = 15/16
+           }
 
 ## Top pT reweighting uncertainty
 
