@@ -1,11 +1,12 @@
 # example of configuration file
+treeName= 'Events'
 
-tag = 'ggH_differential_njet'
-#tag = 'ggHTESTPARTIALamassiro'
+
+tag = 'ggH_differential_njets_2017'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = 'rootFile'+tag
 
 
 # file with list of variables
@@ -23,11 +24,11 @@ plotFile = 'plot.py'
 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 35.867
+lumi = 42.0
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot_2016'
+outputDirPlots = 'plot'+tag
 
 
 # used by mkDatacards to define output directory for datacards

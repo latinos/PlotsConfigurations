@@ -10,7 +10,7 @@
 #### Luminosity
 
 nuisances['lumi']  = {
-               'name'  : 'lumi_13TeV',
+               'name'  : 'lumi_13TeV_2016',
                'samples'  : {
                    #'DY'       : '1.025',    |
                    #'top'      : '1.025',    | These 3 backgrounds are data driven, no need to include the luminosity uncertainty
@@ -57,11 +57,39 @@ nuisances['lumi']  = {
                    'qqH_hww_3j_nonfid'    : '1.025',
                    'qqH_hww_4j_nonfid'    : '1.025',
                    # 
-                   'ZH_hww'           : '1.025',
+                   'ZH_hww_0j_fid'           : '1.025',
+                   'ZH_hww_1j_fid'           : '1.025',
+                   'ZH_hww_2j_fid'           : '1.025',
+                   'ZH_hww_3j_fid'           : '1.025',
+                   'ZH_hww_4j_fid'           : '1.025',
+                   'ZH_hww_0j_nonfid'           : '1.025',
+                   'ZH_hww_1j_nonfid'           : '1.025',
+                   'ZH_hww_2j_nonfid'           : '1.025',
+                   'ZH_hww_3j_nonfid'           : '1.025',
+                   'ZH_hww_4j_nonfid'           : '1.025',
                    #
                    'ggZH_hww'         : '1.025',
                    # 
-                   'WH_hww'           : '1.025',
+                   'WH_hww_0j_fid'           : '1.025',
+                   'WH_hww_1j_fid'           : '1.025',
+                   'WH_hww_2j_fid'           : '1.025',
+                   'WH_hww_3j_fid'           : '1.025',
+                   'WH_hww_4j_fid'           : '1.025',
+                   'WH_hww_0j_nonfid'           : '1.025',
+                   'WH_hww_1j_nonfid'           : '1.025',
+                   'WH_hww_2j_nonfid'           : '1.025',
+                   'WH_hww_3j_nonfid'           : '1.025',
+                   'WH_hww_4j_nonfid'           : '1.025',
+                   #
+                   'XH_hww_0j_fid'           : '1.025',
+                   'XH_hww_1j_fid'           : '1.025',
+                   'XH_hww_2j_fid'           : '1.025',
+                   'XH_hww_3j_fid'           : '1.025',
+                   'XH_hww_0j_nonfid'           : '1.025',
+                   'XH_hww_1j_nonfid'           : '1.025',
+                   'XH_hww_2j_nonfid'           : '1.025',
+                   'XH_hww_3j_nonfid'           : '1.025',
+                   'XH_hww_4j_nonfid'           : '1.025',
                    #
                    'bbH_hww'          : '1.025',
                    'ttH_hww'          : '1.025',
@@ -109,7 +137,7 @@ else:
 #}
 
 nuisances['fake_syst_em']  = {
-               'name'  : 'CMS_hwwem_fake_syst',
+               'name'  : 'CMS_hwwem_fake_syst_2016',
                'type'  : 'lnN',
                'samples'  : {
                              'Fake_em' : '1.30',
@@ -117,7 +145,7 @@ nuisances['fake_syst_em']  = {
                }
 
 nuisances['fake_syst_me']  = {
-               'name'  : 'CMS_hwwme_fake_syst',
+               'name'  : 'CMS_hwwme_fake_syst_2016',
                'type'  : 'lnN',
                'samples'  : {
                              'Fake_me' : '1.30',
@@ -125,7 +153,7 @@ nuisances['fake_syst_me']  = {
                }
 
 nuisances['fake_ele']  = {
-                'name'  : 'hww_fake_ele',
+                'name'  : 'hww_fake_ele_2016',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -135,7 +163,7 @@ nuisances['fake_ele']  = {
 }
 
 nuisances['fake_ele_stat']  = {
-                'name'  : 'hww_fake_ele_stat',
+                'name'  : 'hww_fake_ele_stat_2016',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -145,7 +173,7 @@ nuisances['fake_ele_stat']  = {
 }
 
 nuisances['fake_mu']  = {
-                'name'  : 'hww_fake_mu',
+                'name'  : 'hww_fake_mu_2016',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -156,7 +184,7 @@ nuisances['fake_mu']  = {
 
 
 nuisances['fake_mu_stat']  = {
-                'name'  : 'hww_fake_mu_stat',
+                'name'  : 'hww_fake_mu_stat_2016',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -168,7 +196,7 @@ nuisances['fake_mu_stat']  = {
 ##### B-tagger
 
 nuisances['btagbc']  = {
-                'name'  : 'btag_heavy',
+                'name'  : 'btag_heavy_2016',
                 'kind'  : 'weight',
                'type'  : 'shape',
                 'samples'  : {
@@ -184,8 +212,38 @@ nuisances['btagbc']  = {
                    'VgS'     					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'ggH_hww' 					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'qqH_hww' 					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'WH_hww'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'ZH_hww'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   'WH_hww_0j_fid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   'WH_hww_1j_fid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   'WH_hww_2j_fid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   'WH_hww_3j_fid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   'WH_hww_4j_fid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   'WH_hww_0j_nonfid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   'WH_hww_1j_nonfid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   'WH_hww_2j_nonfid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   'WH_hww_3j_nonfid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   'WH_hww_4j_nonfid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   'ZH_hww_0j_fid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   'ZH_hww_1j_fid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   'ZH_hww_2j_fid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   'ZH_hww_3j_fid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   'ZH_hww_4j_fid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   'ZH_hww_0j_nonfid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   'ZH_hww_1j_nonfid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   'ZH_hww_2j_nonfid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   'ZH_hww_3j_nonfid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   'ZH_hww_4j_nonfid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   #
+#                   'XH_hww_0j_fid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+#                   'XH_hww_1j_fid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+#                   'XH_hww_2j_fid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+#                   'XH_hww_3j_fid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+#                   'XH_hww_4j_fid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+#                   'XH_hww_0j_nonfid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+#                   'XH_hww_1j_nonfid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+#                   'XH_hww_2j_nonfid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+#                   'XH_hww_3j_nonfid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+#                   'XH_hww_4j_nonfid'  					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                   #
                    'H_htt'   					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'bbH_hww' 					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
                    'ttH_hww' 					 : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
@@ -236,7 +294,7 @@ nuisances['btagbc']  = {
 }
 
 nuisances['btagudsg']  = {
-                'name'  : 'btag_light',
+                'name'  : 'btag_light_2016',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -252,8 +310,38 @@ nuisances['btagudsg']  = {
                    'VgS'     : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'ggH_hww' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'qqH_hww' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'WH_hww'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'ZH_hww'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   'WH_hww_0j_fid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   'WH_hww_1j_fid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   'WH_hww_2j_fid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   'WH_hww_3j_fid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   'WH_hww_4j_fid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   'WH_hww_0j_nonfid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   'WH_hww_1j_nonfid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   'WH_hww_2j_nonfid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   'WH_hww_3j_nonfid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   'WH_hww_4j_nonfid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   'ZH_hww_0j_fid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   'ZH_hww_1j_fid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   'ZH_hww_2j_fid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   'ZH_hww_3j_fid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   'ZH_hww_4j_fid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   'ZH_hww_0j_nonfid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   'ZH_hww_1j_nonfid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   'ZH_hww_2j_nonfid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   'ZH_hww_3j_nonfid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   'ZH_hww_4j_nonfid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   #
+#                   'XH_hww_0j_fid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+#                   'XH_hww_1j_fid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+#                   'XH_hww_2j_fid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+#                   'XH_hww_3j_fid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+#                   'XH_hww_4j_fid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+#                   'XH_hww_0j_nonfid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+#                   'XH_hww_1j_nonfid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+#                   'XH_hww_2j_nonfid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+#                   'XH_hww_3j_nonfid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+#                   'XH_hww_4j_nonfid'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+                   #
                    'bbH_hww' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'ttH_hww' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
                    'H_htt'   : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
@@ -310,7 +398,7 @@ elif Nlep == '3' : trig_syst = ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Dow
 elif Nlep == '4' : trig_syst = ['(effTrigW4l_Up)/(effTrigW4l)', '(effTrigW3l_Down)/(effTrigW4l)']
 
 nuisances['trigg']  = {
-                'name'  : 'hww_trigger',
+                'name'  : 'hww_trigger_2016',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -326,8 +414,38 @@ nuisances['trigg']  = {
                    'VgS'     : trig_syst ,
                    'ggH_hww' : trig_syst ,
                    'qqH_hww' : trig_syst ,
-                   'WH_hww'  : trig_syst ,
-                   'ZH_hww'  : trig_syst ,
+                   'WH_hww_0j_fid'  : trig_syst ,
+                   'WH_hww_1j_fid'  : trig_syst ,
+                   'WH_hww_2j_fid'  : trig_syst ,
+                   'WH_hww_3j_fid'  : trig_syst ,
+                   'WH_hww_4j_fid'  : trig_syst ,
+                   'WH_hww_0j_nonfid'  : trig_syst ,
+                   'WH_hww_1j_nonfid'  : trig_syst ,
+                   'WH_hww_2j_nonfid'  : trig_syst ,
+                   'WH_hww_3j_nonfid'  : trig_syst ,
+                   'WH_hww_4j_nonfid'  : trig_syst ,
+                   'ZH_hww_0j_fid'  : trig_syst ,
+                   'ZH_hww_1j_fid'  : trig_syst ,
+                   'ZH_hww_2j_fid'  : trig_syst ,
+                   'ZH_hww_3j_fid'  : trig_syst ,
+                   'ZH_hww_4j_fid'  : trig_syst ,
+                   'ZH_hww_0j_nonfid'  : trig_syst ,
+                   'ZH_hww_1j_nonfid'  : trig_syst ,
+                   'ZH_hww_2j_nonfid'  : trig_syst ,
+                   'ZH_hww_3j_nonfid'  : trig_syst ,
+                   'ZH_hww_4j_nonfid'  : trig_syst ,
+                   #
+#                   'XH_hww_0j_fid'  : trig_syst ,
+#                   'XH_hww_1j_fid'  : trig_syst ,
+#                   'XH_hww_2j_fid'  : trig_syst ,
+#                   'XH_hww_3j_fid'  : trig_syst ,
+#                   'XH_hww_4j_fid'  : trig_syst ,
+#                   'XH_hww_0j_nonfid'  : trig_syst ,
+#                   'XH_hww_1j_nonfid'  : trig_syst ,
+#                   'XH_hww_2j_nonfid'  : trig_syst ,
+#                   'XH_hww_3j_nonfid'  : trig_syst ,
+#                   'XH_hww_4j_nonfid'  : trig_syst ,
+                   #
                    'ggZH_hww': trig_syst ,
                    'bbH_hww' : trig_syst ,
                    'ttH_hww' : trig_syst ,
@@ -359,22 +477,22 @@ nuisances['trigg']  = {
                    'qqH_hww_3j_nonfid'       : trig_syst ,
                    'qqH_hww_4j_nonfid'       : trig_syst ,
                    # 
-                   'ZH_hww'           : trig_syst ,
+                   #'ZH_hww'           : trig_syst ,
                    #
                    'ggZH_hww'         : trig_syst ,
                    # 
-                   'WH_hww'           : trig_syst ,
+                   #'WH_hww'           : trig_syst ,
                    #
                    'bbH_hww'          : trig_syst ,
                    'ttH_hww'          : trig_syst ,
                    #
-                   'ggH_htt'          : trig_syst ,
+                   #'ggH_htt'          : trig_syst ,
                    #
-                   'qqH_htt'          : trig_syst ,
+                   #'qqH_htt'          : trig_syst ,
                    # 
-                   'ZH_htt'           : trig_syst ,
+                   #'ZH_htt'           : trig_syst ,
                    # 
-                   'WH_htt'           : trig_syst ,
+                   #'WH_htt'           : trig_syst ,
                 },
 }
 
@@ -383,7 +501,7 @@ nuisances['trigg']  = {
 id_syst_ele = [ 'LepSF'+Nlep+'l__ele_'+eleWP+'__Up' , 'LepSF'+Nlep+'l__ele_'+eleWP+'__Do' ]
 
 nuisances['eff_e']  = {
-                'name'  : 'eff_e',
+                'name'  : 'eff_e_2016',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -432,11 +550,40 @@ nuisances['eff_e']  = {
                    'qqH_hww_3j_nonfid': id_syst_ele ,
                    'qqH_hww_4j_nonfid': id_syst_ele ,
                    # 
-                   'ZH_hww'           : id_syst_ele ,
+                   'ZH_hww_0j_fid'           : id_syst_ele ,
+                   'ZH_hww_1j_fid'           : id_syst_ele ,
+                   'ZH_hww_2j_fid'           : id_syst_ele ,
+                   'ZH_hww_3j_fid'           : id_syst_ele ,
+                   'ZH_hww_4j_fid'           : id_syst_ele ,
+                   'ZH_hww_0j_nonfid'           : id_syst_ele ,
+                   'ZH_hww_1j_nonfid'           : id_syst_ele ,
+                   'ZH_hww_2j_nonfid'           : id_syst_ele ,
+                   'ZH_hww_3j_nonfid'           : id_syst_ele ,
+                   'ZH_hww_4j_nonfid'           : id_syst_ele ,
                    #
                    'ggZH_hww'         : id_syst_ele ,
                    # 
-                   'WH_hww'           : id_syst_ele ,
+                   'WH_hww_0j_fid'           : id_syst_ele ,
+                   'WH_hww_1j_fid'           : id_syst_ele ,
+                   'WH_hww_2j_fid'           : id_syst_ele ,
+                   'WH_hww_3j_fid'           : id_syst_ele ,
+                   'WH_hww_4j_fid'           : id_syst_ele ,
+                   'WH_hww_0j_nonfid'           : id_syst_ele ,
+                   'WH_hww_1j_nonfid'           : id_syst_ele ,
+                   'WH_hww_2j_nonfid'           : id_syst_ele ,
+                   'WH_hww_3j_nonfid'           : id_syst_ele ,
+                   'WH_hww_4j_nonfid'           : id_syst_ele ,
+                   #
+#                   'XH_hww_0j_fid'           : id_syst_ele ,
+#                   'XH_hww_1j_fid'           : id_syst_ele ,
+#                   'XH_hww_2j_fid'           : id_syst_ele ,
+#                   'XH_hww_3j_fid'           : id_syst_ele ,
+#                   'XH_hww_4j_fid'           : id_syst_ele ,
+#                   'XH_hww_0j_nonfid'           : id_syst_ele ,
+#                   'XH_hww_1j_nonfid'           : id_syst_ele ,
+#                   'XH_hww_2j_nonfid'           : id_syst_ele ,
+#                   'XH_hww_3j_nonfid'           : id_syst_ele ,
+#                   'XH_hww_4j_nonfid'           : id_syst_ele ,
                    #
                    'bbH_hww'          : id_syst_ele ,
                    'ttH_hww'          : id_syst_ele ,
@@ -452,7 +599,7 @@ nuisances['eff_e']  = {
 }
 
 nuisances['electronpt']  = {
-                'name'  : 'scale_e',
+                'name'  : 'scale_e_2016',
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
@@ -468,8 +615,38 @@ nuisances['electronpt']  = {
                    'VgS'     : ['1', '1'],
                    'ggH_hww ': ['1', '1'],
                    'qqH_hww ': ['1', '1'],
-                   'WH_hww'  : ['1', '1'],
-                   'ZH_hww'  : ['1', '1'],
+                   'WH_hww_0j_fid'  : ['1', '1'],
+                   'WH_hww_1j_fid'  : ['1', '1'],
+                   'WH_hww_2j_fid'  : ['1', '1'],
+                   'WH_hww_3j_fid'  : ['1', '1'],
+                   'WH_hww_4j_fid'  : ['1', '1'],
+                   'WH_hww_0j_nonfid'  : ['1', '1'],
+                   'WH_hww_1j_nonfid'  : ['1', '1'],
+                   'WH_hww_2j_nonfid'  : ['1', '1'],
+                   'WH_hww_3j_nonfid'  : ['1', '1'],
+                   'WH_hww_4j_nonfid'  : ['1', '1'],
+                   'ZH_hww_0j_fid'  : ['1', '1'],
+                   'ZH_hww_1j_fid'  : ['1', '1'],
+                   'ZH_hww_2j_fid'  : ['1', '1'],
+                   'ZH_hww_3j_fid'  : ['1', '1'],
+                   'ZH_hww_4j_fid'  : ['1', '1'],
+                   'ZH_hww_0j_nonfid'  : ['1', '1'],
+                   'ZH_hww_1j_nonfid'  : ['1', '1'],
+                   'ZH_hww_2j_nonfid'  : ['1', '1'],
+                   'ZH_hww_3j_nonfid'  : ['1', '1'],
+                   'ZH_hww_4j_nonfid'  : ['1', '1'],
+                   #
+#                   'XH_hww_0j_fid'  : ['1', '1'],
+#                   'XH_hww_1j_fid'  : ['1', '1'],
+#                   'XH_hww_2j_fid'  : ['1', '1'],
+#                   'XH_hww_3j_fid'  : ['1', '1'],
+#                   'XH_hww_4j_fid'  : ['1', '1'],
+#                   'XH_hww_0j_nonfid'  : ['1', '1'],
+#                   'XH_hww_1j_nonfid'  : ['1', '1'],
+#                   'XH_hww_2j_nonfid'  : ['1', '1'],
+#                   'XH_hww_3j_nonfid'  : ['1', '1'],
+#                   'XH_hww_4j_nonfid'  : ['1', '1'],
+                   #
                    'ggZH_hww': ['1', '1'],
                    'bbH_hww' : ['1', '1'],
                    'ttH_hww' : ['1', '1'],
@@ -525,7 +702,7 @@ nuisances['electronpt']  = {
 
 elePtCor_Syst = [ 'electron_ptW_'+Nlep+'l_Up / electron_ptW_'+Nlep+'l', 'electron_ptW_'+Nlep+'l_Down / electron_ptW_'+Nlep+'l']
 nuisances['elePtCor']  = {
-                'name'  : 'hww_elePtCor',
+                'name'  : 'hww_elePtCor_2016',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -539,10 +716,40 @@ nuisances['elePtCor']  = {
                    'VVV'        : elePtCor_Syst ,
                    'Vg'         : elePtCor_Syst ,
                    'VgS'        : elePtCor_Syst ,
-                   'ggH_hww '   : elePtCor_Syst ,
-                   'qqH_hww '   : elePtCor_Syst ,
-                   'WH_hww'     : elePtCor_Syst ,
-                   'ZH_hww'     : elePtCor_Syst ,
+                   'ggH_hww'    : elePtCor_Syst ,
+                   'qqH_hww'    : elePtCor_Syst ,
+                   'WH_hww_0j_fid'     : elePtCor_Syst ,
+                   'WH_hww_1j_fid'     : elePtCor_Syst ,
+                   'WH_hww_2j_fid'     : elePtCor_Syst ,
+                   'WH_hww_3j_fid'     : elePtCor_Syst ,
+                   'WH_hww_4j_fid'     : elePtCor_Syst ,
+                   'WH_hww_0j_nonfid'     : elePtCor_Syst ,
+                   'WH_hww_1j_nonfid'     : elePtCor_Syst ,
+                   'WH_hww_2j_nonfid'     : elePtCor_Syst ,
+                   'WH_hww_3j_nonfid'     : elePtCor_Syst ,
+                   'WH_hww_4j_nonfid'     : elePtCor_Syst ,
+                   'ZH_hww_0j_fid'     : elePtCor_Syst ,
+                   'ZH_hww_1j_fid'     : elePtCor_Syst ,
+                   'ZH_hww_2j_fid'     : elePtCor_Syst ,
+                   'ZH_hww_3j_fid'     : elePtCor_Syst ,
+                   'ZH_hww_4j_fid'     : elePtCor_Syst ,
+                   'ZH_hww_0j_nonfid'     : elePtCor_Syst ,
+                   'ZH_hww_1j_nonfid'     : elePtCor_Syst ,
+                   'ZH_hww_2j_nonfid'     : elePtCor_Syst ,
+                   'ZH_hww_3j_nonfid'     : elePtCor_Syst ,
+                   'ZH_hww_4j_nonfid'     : elePtCor_Syst ,
+                   #
+#                   'XH_hww_0j_fid'     : elePtCor_Syst ,
+#                   'XH_hww_1j_fid'     : elePtCor_Syst ,
+#                   'XH_hww_2j_fid'     : elePtCor_Syst ,
+#                   'XH_hww_3j_fid'     : elePtCor_Syst ,
+#                   'XH_hww_4j_fid'     : elePtCor_Syst ,
+#                   'XH_hww_0j_nonfid'     : elePtCor_Syst ,
+#                   'XH_hww_1j_nonfid'     : elePtCor_Syst ,
+#                   'XH_hww_2j_nonfid'     : elePtCor_Syst ,
+#                   'XH_hww_3j_nonfid'     : elePtCor_Syst ,
+#                   'XH_hww_4j_nonfid'     : elePtCor_Syst ,
+                   #
                    'ggZH_hww'   : elePtCor_Syst ,
                    'bbH_hww'    : elePtCor_Syst ,
                    'ttH_hww'    : elePtCor_Syst ,
@@ -596,7 +803,7 @@ nuisances['elePtCor']  = {
 eleEtaCor_Syst = [ 'electron_etaW_'+Nlep+'l_Up / electron_etaW_'+Nlep+'l', 'electron_etaW_'+Nlep+'l_Down / electron_etaW_'+Nlep+'l']
 
 nuisances['eleEtaCor']  = {
-                'name'  : 'hww_eleEtaCor',
+                'name'  : 'hww_eleEtaCor_2016',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -612,8 +819,38 @@ nuisances['eleEtaCor']  = {
                    'VgS'        : eleEtaCor_Syst ,
                    'ggH_hww '   : eleEtaCor_Syst ,
                    'qqH_hww '   : eleEtaCor_Syst ,
-                   'WH_hww'     : eleEtaCor_Syst ,
-                   'ZH_hww'     : eleEtaCor_Syst ,
+                   'WH_hww_0j_fid'     : eleEtaCor_Syst ,
+                   'WH_hww_1j_fid'     : eleEtaCor_Syst ,
+                   'WH_hww_2j_fid'     : eleEtaCor_Syst ,
+                   'WH_hww_3j_fid'     : eleEtaCor_Syst ,
+                   'WH_hww_4j_fid'     : eleEtaCor_Syst ,
+                   'WH_hww_0j_nonfid'     : eleEtaCor_Syst ,
+                   'WH_hww_1j_nonfid'     : eleEtaCor_Syst ,
+                   'WH_hww_2j_nonfid'     : eleEtaCor_Syst ,
+                   'WH_hww_3j_nonfid'     : eleEtaCor_Syst ,
+                   'WH_hww_4j_nonfid'     : eleEtaCor_Syst ,
+                   'ZH_hww_0j_fid'     : eleEtaCor_Syst ,
+                   'ZH_hww_1j_fid'     : eleEtaCor_Syst ,
+                   'ZH_hww_2j_fid'     : eleEtaCor_Syst ,
+                   'ZH_hww_3j_fid'     : eleEtaCor_Syst ,
+                   'ZH_hww_4j_fid'     : eleEtaCor_Syst ,
+                   'ZH_hww_0j_nonfid'     : eleEtaCor_Syst ,
+                   'ZH_hww_1j_nonfid'     : eleEtaCor_Syst ,
+                   'ZH_hww_2j_nonfid'     : eleEtaCor_Syst ,
+                   'ZH_hww_3j_nonfid'     : eleEtaCor_Syst ,
+                   'ZH_hww_4j_nonfid'     : eleEtaCor_Syst ,
+                   #
+#                   'XH_hww_0j_fid'     : eleEtaCor_Syst ,
+#                   'XH_hww_1j_fid'     : eleEtaCor_Syst ,
+#                   'XH_hww_2j_fid'     : eleEtaCor_Syst ,
+#                   'XH_hww_3j_fid'     : eleEtaCor_Syst ,
+#                   'XH_hww_4j_fid'     : eleEtaCor_Syst ,
+#                   'XH_hww_0j_nonfid'     : eleEtaCor_Syst ,
+#                   'XH_hww_1j_nonfid'     : eleEtaCor_Syst ,
+#                   'XH_hww_2j_nonfid'     : eleEtaCor_Syst ,
+#                   'XH_hww_3j_nonfid'     : eleEtaCor_Syst ,
+#                   'XH_hww_4j_nonfid'     : eleEtaCor_Syst ,
+                   #
                    'ggZH_hww'   : eleEtaCor_Syst ,
                    'bbH_hww'    : eleEtaCor_Syst ,
                    'ttH_hww'    : eleEtaCor_Syst ,
@@ -673,7 +910,7 @@ nuisances['eleEtaCor']  = {
 id_syst_mu = [ 'LepSF'+Nlep+'l__mu_'+muWP+'__Up' , 'LepSF'+Nlep+'l__mu_'+muWP+'__Do' ]
 
 nuisances['eff_m']  = {
-                'name'  : 'eff_m',
+                'name'  : 'eff_m_2016',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -689,8 +926,38 @@ nuisances['eff_m']  = {
                    'VgS'     : id_syst_mu ,
                    'ggH_hww' : id_syst_mu ,
                    'qqH_hww' : id_syst_mu ,
-                   'WH_hww'  : id_syst_mu ,
-                   'ZH_hww'  : id_syst_mu ,
+                   'WH_hww_0j_fid'  : id_syst_mu ,
+                   'WH_hww_1j_fid'  : id_syst_mu ,
+                   'WH_hww_2j_fid'  : id_syst_mu ,
+                   'WH_hww_3j_fid'  : id_syst_mu ,
+                   'WH_hww_4j_fid'  : id_syst_mu ,
+                   'WH_hww_0j_nonfid'  : id_syst_mu ,
+                   'WH_hww_1j_nonfid'  : id_syst_mu ,
+                   'WH_hww_2j_nonfid'  : id_syst_mu ,
+                   'WH_hww_3j_nonfid'  : id_syst_mu ,
+                   'WH_hww_4j_nonfid'  : id_syst_mu ,
+                   'ZH_hww_0j_fid'  : id_syst_mu ,
+                   'ZH_hww_1j_fid'  : id_syst_mu ,
+                   'ZH_hww_2j_fid'  : id_syst_mu ,
+                   'ZH_hww_3j_fid'  : id_syst_mu ,
+                   'ZH_hww_4j_fid'  : id_syst_mu ,
+                   'ZH_hww_0j_nonfid'  : id_syst_mu ,
+                   'ZH_hww_1j_nonfid'  : id_syst_mu ,
+                   'ZH_hww_2j_nonfid'  : id_syst_mu ,
+                   'ZH_hww_3j_nonfid'  : id_syst_mu ,
+                   'ZH_hww_4j_nonfid'  : id_syst_mu ,
+                   #
+#                   'XH_hww_0j_fid'  : id_syst_mu ,
+#                   'XH_hww_1j_fid'  : id_syst_mu ,
+#                   'XH_hww_2j_fid'  : id_syst_mu ,
+#                   'XH_hww_3j_fid'  : id_syst_mu ,
+#                   'XH_hww_4j_fid'  : id_syst_mu ,
+#                   'XH_hww_0j_nonfid'  : id_syst_mu ,
+#                   'XH_hww_1j_nonfid'  : id_syst_mu ,
+#                   'XH_hww_2j_nonfid'  : id_syst_mu ,
+#                   'XH_hww_3j_nonfid'  : id_syst_mu ,
+#                   'XH_hww_4j_nonfid'  : id_syst_mu ,
+                   #
                    'ggZH_hww': id_syst_mu ,
                    'bbH_hww' : id_syst_mu ,
                    'ttH_hww' : id_syst_mu ,
@@ -742,7 +1009,7 @@ nuisances['eff_m']  = {
 }
 
 nuisances['muonpt']  = {
-                'name'  : 'scale_m',
+                'name'  : 'scale_m_2016',
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
@@ -758,8 +1025,38 @@ nuisances['muonpt']  = {
                    'VgS'     : ['1', '1'],
                    'ggH_hww ': ['1', '1'],
                    'qqH_hww ': ['1', '1'],
-                   'WH_hww'  : ['1', '1'],
-                   'ZH_hww'  : ['1', '1'],
+                   'WH_hww_0j_fid'  : ['1', '1'],
+                   'WH_hww_1j_fid'  : ['1', '1'],
+                   'WH_hww_2j_fid'  : ['1', '1'],
+                   'WH_hww_3j_fid'  : ['1', '1'],
+                   'WH_hww_4j_fid'  : ['1', '1'],
+                   'WH_hww_0j_nonfid'  : ['1', '1'],
+                   'WH_hww_1j_nonfid'  : ['1', '1'],
+                   'WH_hww_2j_nonfid'  : ['1', '1'],
+                   'WH_hww_3j_nonfid'  : ['1', '1'],
+                   'WH_hww_4j_nonfid'  : ['1', '1'],
+                   'ZH_hww_0j_fid'  : ['1', '1'],
+                   'ZH_hww_1j_fid'  : ['1', '1'],
+                   'ZH_hww_2j_fid'  : ['1', '1'],
+                   'ZH_hww_3j_fid'  : ['1', '1'],
+                   'ZH_hww_4j_fid'  : ['1', '1'],
+                   'ZH_hww_0j_nonfid'  : ['1', '1'],
+                   'ZH_hww_1j_nonfid'  : ['1', '1'],
+                   'ZH_hww_2j_nonfid'  : ['1', '1'],
+                   'ZH_hww_3j_nonfid'  : ['1', '1'],
+                   'ZH_hww_4j_nonfid'  : ['1', '1'],
+                   #
+#                   'XH_hww_0j_fid'  : ['1', '1'],
+#                   'XH_hww_1j_fid'  : ['1', '1'],
+#                   'XH_hww_2j_fid'  : ['1', '1'],
+#                   'XH_hww_3j_fid'  : ['1', '1'],
+#                   'XH_hww_4j_fid'  : ['1', '1'],
+#                   'XH_hww_0j_nonfid'  : ['1', '1'],
+#                   'XH_hww_1j_nonfid'  : ['1', '1'],
+#                   'XH_hww_2j_nonfid'  : ['1', '1'],
+#                   'XH_hww_3j_nonfid'  : ['1', '1'],
+#                   'XH_hww_4j_nonfid'  : ['1', '1'],
+                   #
                    'ggZH_hww': ['1', '1'],
                    'bbH_hww' : ['1', '1'],
                    'ttH_hww' : ['1', '1'],
@@ -816,7 +1113,7 @@ nuisances['muonpt']  = {
 ##### Jet energy scale
 
 nuisances['jes']  = {
-                'name'  : 'scale_j',
+                'name'  : 'scale_j_2016',
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
@@ -832,8 +1129,38 @@ nuisances['jes']  = {
                    'VgS'     : ['1', '1'],
                    'ggH_hww ': ['1', '1'],
                    'qqH_hww ': ['1', '1'],
-                   'WH_hww'  : ['1', '1'],
-                   'ZH_hww'  : ['1', '1'],
+                   'WH_hww_0j_fid'  : ['1', '1'],
+                   'WH_hww_1j_fid'  : ['1', '1'],
+                   'WH_hww_2j_fid'  : ['1', '1'],
+                   'WH_hww_3j_fid'  : ['1', '1'],
+                   'WH_hww_4j_fid'  : ['1', '1'],
+                   'WH_hww_0j_nonfid'  : ['1', '1'],
+                   'WH_hww_1j_nonfid'  : ['1', '1'],
+                   'WH_hww_2j_nonfid'  : ['1', '1'],
+                   'WH_hww_3j_nonfid'  : ['1', '1'],
+                   'WH_hww_4j_nonfid'  : ['1', '1'],
+                   'ZH_hww_0j_fid'  : ['1', '1'],
+                   'ZH_hww_1j_fid'  : ['1', '1'],
+                   'ZH_hww_2j_fid'  : ['1', '1'],
+                   'ZH_hww_3j_fid'  : ['1', '1'],
+                   'ZH_hww_4j_fid'  : ['1', '1'],
+                   'ZH_hww_0j_nonfid'  : ['1', '1'],
+                   'ZH_hww_1j_nonfid'  : ['1', '1'],
+                   'ZH_hww_2j_nonfid'  : ['1', '1'],
+                   'ZH_hww_3j_nonfid'  : ['1', '1'],
+                   'ZH_hww_4j_nonfid'  : ['1', '1'],
+                   #
+#                   'XH_hww_0j_fid'  : ['1', '1'],
+#                   'XH_hww_1j_fid'  : ['1', '1'],
+#                   'XH_hww_2j_fid'  : ['1', '1'],
+#                   'XH_hww_3j_fid'  : ['1', '1'],
+#                   'XH_hww_4j_fid'  : ['1', '1'],
+#                   'XH_hww_0j_nonfid'  : ['1', '1'],
+#                   'XH_hww_1j_nonfid'  : ['1', '1'],
+#                   'XH_hww_2j_nonfid'  : ['1', '1'],
+#                   'XH_hww_3j_nonfid'  : ['1', '1'],
+#                   'XH_hww_4j_nonfid'  : ['1', '1'],
+                   #
                    'ggZH_hww': ['1', '1'],
                    'bbH_hww' : ['1', '1'],
                    'ttH_hww' : ['1', '1'],
@@ -889,7 +1216,7 @@ nuisances['jes']  = {
 ##### MET energy scale
 
 nuisances['met']  = {
-                'name'  : 'scale_met',
+                'name'  : 'scale_met_2016',
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
@@ -905,8 +1232,38 @@ nuisances['met']  = {
                    'VgS'     : ['1', '1'],
                    'ggH_hww ': ['1', '1'],
                    'qqH_hww ': ['1', '1'],
-                   'WH_hww'  : ['1', '1'],
-                   'ZH_hww'  : ['1', '1'],
+                   'WH_hww_0j_fid'  : ['1', '1'],
+                   'WH_hww_1j_fid'  : ['1', '1'],
+                   'WH_hww_2j_fid'  : ['1', '1'],
+                   'WH_hww_3j_fid'  : ['1', '1'],
+                   'WH_hww_4j_fid'  : ['1', '1'],
+                   'WH_hww_0j_nonfid'  : ['1', '1'],
+                   'WH_hww_1j_nonfid'  : ['1', '1'],
+                   'WH_hww_2j_nonfid'  : ['1', '1'],
+                   'WH_hww_3j_nonfid'  : ['1', '1'],
+                   'WH_hww_4j_nonfid'  : ['1', '1'],
+                   'ZH_hww_0j_fid'  : ['1', '1'],
+                   'ZH_hww_1j_fid'  : ['1', '1'],
+                   'ZH_hww_2j_fid'  : ['1', '1'],
+                   'ZH_hww_3j_fid'  : ['1', '1'],
+                   'ZH_hww_4j_fid'  : ['1', '1'],
+                   'ZH_hww_0j_nonfid'  : ['1', '1'],
+                   'ZH_hww_1j_nonfid'  : ['1', '1'],
+                   'ZH_hww_2j_nonfid'  : ['1', '1'],
+                   'ZH_hww_3j_nonfid'  : ['1', '1'],
+                   'ZH_hww_4j_nonfid'  : ['1', '1'],
+                   #
+#                   'XH_hww_0j_fid'  : ['1', '1'],
+#                   'XH_hww_1j_fid'  : ['1', '1'],
+#                   'XH_hww_2j_fid'  : ['1', '1'],
+#                   'XH_hww_3j_fid'  : ['1', '1'],
+#                   'XH_hww_4j_fid'  : ['1', '1'],
+#                   'XH_hww_0j_nonfid'  : ['1', '1'],
+#                   'XH_hww_1j_nonfid'  : ['1', '1'],
+#                   'XH_hww_2j_nonfid'  : ['1', '1'],
+#                   'XH_hww_3j_nonfid'  : ['1', '1'],
+#                   'XH_hww_4j_nonfid'  : ['1', '1'],
+                   #
                    'ggZH_hww': ['1', '1'],
                    'bbH_hww' : ['1', '1'],
                    'ttH_hww' : ['1', '1'],
@@ -964,7 +1321,7 @@ nuisances['met']  = {
 #
 
 nuisances['PS']  = {
-                'name'  : 'PS',
+                'name'  : 'PS_2016',
                 'skipCMS' : 1,
                 'kind'  : 'tree',
                 'type'  : 'shape',
@@ -992,13 +1349,13 @@ nuisances['PS']  = {
                 }
 
 nuisances['UE']  = {
-                'name'  : 'UE', 
+                'name'  : 'UE_2016', 
                 'skipCMS' : 1,
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                  'WW'      : ['1.0226', '0.9897'], #
-                  'ggH_hww_0j_fid' 		:     ['1.0739', '1.0211'], # These numbers are used to normalize the UE up/down variations to the same integral as the nominal after the wwSel skim
+                  'WW'      : ['1.0226', '0.9897'],
+                  'ggH_hww_0j_fid' 		:     ['1.0739', '1.0211'],
                   'ggH_hww_1j_fid' 		:     ['1.0739', '1.0211'],
                   'ggH_hww_2j_fid' 		:     ['1.0739', '1.0211'],
                   #'ggH_hww_0j_nonfid' :     ['1.0739', '1.0211'],
@@ -1018,7 +1375,7 @@ nuisances['UE']  = {
                 'AsLnN'      : '1',
                 }
 
-
+'''
 ## Shape nuisance due to QCD scale variations for DY
 nuisances['DYQCDscale']  = {
                 'name'  : 'QCDscale_V',
@@ -1030,7 +1387,7 @@ nuisances['DYQCDscale']  = {
                 }
 }
 
-
+'''
 #
 #
 # Theory uncertainty for ggH
@@ -1300,11 +1657,29 @@ nuisances['QCDscale_qqH']  = {
 nuisances['QCDscale_VH']  = {
                'name'  : 'QCDscale_VH', 
                'samples'  : {
-                   'WH_hww'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
+                   'WH_hww_0j_fid'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
+                   'WH_hww_1j_fid'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
+                   'WH_hww_2j_fid'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
+                   'WH_hww_3j_fid'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
+                   'WH_hww_4j_fid'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
+                   'WH_hww_0j_nonfid'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
+                   'WH_hww_1j_nonfid'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
+                   'WH_hww_2j_nonfid'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
+                   'WH_hww_3j_nonfid'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
+                   'WH_hww_4j_nonfid'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
                    #
                    'WH_htt'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
                    # 
-                   'ZH_hww'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH','125.0','scale','sm'),
+                   'ZH_hww_0j_fid'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
+                   'ZH_hww_1j_fid'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
+                   'ZH_hww_2j_fid'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
+                   'ZH_hww_3j_fid'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
+                   'ZH_hww_4j_fid'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
+                   'ZH_hww_0j_nonfid'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
+                   'ZH_hww_1j_nonfid'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
+                   'ZH_hww_2j_nonfid'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
+                   'ZH_hww_3j_nonfid'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
+                   'ZH_hww_4j_nonfid'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
                    # 
                    'ZH_htt'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH','125.0','scale','sm'),
                    },
@@ -1354,11 +1729,40 @@ nuisances['QCDscale_qqbar_ACCEPT']  = {
                    # 
                    'qqH_htt'     : '1.007',
                    # 
-                   'WH_hww'          : '1.05',
+                   'WH_hww_0j_fid'          : '1.05',
+                   'WH_hww_1j_fid'          : '1.05',
+                   'WH_hww_2j_fid'          : '1.05',
+                   'WH_hww_3j_fid'          : '1.05',
+                   'WH_hww_4j_fid'          : '1.05',
+                   'WH_hww_0j_nonfid'          : '1.05',
+                   'WH_hww_1j_nonfid'          : '1.05',
+                   'WH_hww_2j_nonfid'          : '1.05',
+                   'WH_hww_3j_nonfid'          : '1.05',
+                   'WH_hww_4j_nonfid'          : '1.05',
+                   #
+                   'XH_hww_0j_fid'          : '1.05',
+                   'XH_hww_1j_fid'          : '1.05',
+                   'XH_hww_2j_fid'          : '1.05',
+                   'XH_hww_3j_fid'          : '1.05',
+                   'XH_hww_4j_fid'          : '1.05',
+                   'XH_hww_0j_nonfid'          : '1.05',
+                   'XH_hww_1j_nonfid'          : '1.05',
+                   'XH_hww_2j_nonfid'          : '1.05',
+                   'XH_hww_3j_nonfid'          : '1.05',
+                   'XH_hww_4j_nonfid'          : '1.05',
                    #
                    'WH_htt'          : '1.05',
                    # 
-                   'ZH_hww'          : '1.04',
+                   'ZH_hww_0j_fid'          : '1.05',
+                   'ZH_hww_1j_fid'          : '1.05',
+                   'ZH_hww_2j_fid'          : '1.05',
+                   'ZH_hww_3j_fid'          : '1.05',
+                   'ZH_hww_4j_fid'          : '1.05',
+                   'ZH_hww_0j_nonfid'          : '1.05',
+                   'ZH_hww_1j_nonfid'          : '1.05',
+                   'ZH_hww_2j_nonfid'          : '1.05',
+                   'ZH_hww_3j_nonfid'          : '1.05',
+                   'ZH_hww_4j_nonfid'          : '1.05',
                    #
                    'ZH_htt'          : '1.04',
                    },
@@ -1438,12 +1842,30 @@ nuisances['pdf_Higgs_qqbar']  = {
                    'qqH_hww_4j_nonfid'  : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.0','pdf','sm'),
                    'qqH_htt'     : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.0','pdf','sm'),
                    #
-                   'WH_hww'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),
+                   'WH_hww_0j_fid'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),
+                   'WH_hww_1j_fid'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),
+                   'WH_hww_2j_fid'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),
+                   'WH_hww_3j_fid'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),
+                   'WH_hww_4j_fid'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),
+                   'WH_hww_0j_nonfid'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),
+                   'WH_hww_1j_nonfid'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),
+                   'WH_hww_2j_nonfid'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),
+                   'WH_hww_3j_nonfid'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),
+                   'WH_hww_4j_nonfid'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),
                    #
                    'WH_htt'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),     
                    # 
-                   'ZH_hww'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH' ,'125.0','pdf','sm'),
-                   # 
+                   'ZH_hww_0j_fid'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),
+                   'ZH_hww_1j_fid'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),
+                   'ZH_hww_2j_fid'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),
+                   'ZH_hww_3j_fid'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),
+                   'ZH_hww_4j_fid'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),
+                   'ZH_hww_0j_nonfid'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),
+                   'ZH_hww_1j_nonfid'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),
+                   'ZH_hww_2j_nonfid'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),
+                   'ZH_hww_3j_nonfid'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),
+                   'ZH_hww_4j_nonfid'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),
+                   #
                    'ZH_htt'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH' ,'125.0','pdf','sm'),
                    },
               }
@@ -1504,11 +1926,40 @@ nuisances['pdf_Higgs_qqbar_ACCEPT']  = {
                    #
                    'qqH_htt' : '1.011',
                    # 
-                   'WH_hww'          : '1.007',
+                   'WH_hww_0j_fid'          : '1.007',
+                   'WH_hww_1j_fid'          : '1.007',
+                   'WH_hww_2j_fid'          : '1.007',
+                   'WH_hww_3j_fid'          : '1.007',
+                   'WH_hww_4j_fid'          : '1.007',
+                   'WH_hww_0j_nonfid'          : '1.007',
+                   'WH_hww_1j_nonfid'          : '1.007',
+                   'WH_hww_2j_nonfid'          : '1.007',
+                   'WH_hww_3j_nonfid'          : '1.007',
+                   'WH_hww_4j_nonfid'          : '1.007',
                    # 
                    'WH_htt'          : '1.007',
                    # 
-                   'ZH_hww'          : '1.012',
+                   'ZH_hww_0j_fid'          : '1.007',
+                   'ZH_hww_1j_fid'          : '1.007',
+                   'ZH_hww_2j_fid'          : '1.007',
+                   'ZH_hww_3j_fid'          : '1.007',
+                   'ZH_hww_4j_fid'          : '1.007',
+                   'ZH_hww_0j_nonfid'          : '1.007',
+                   'ZH_hww_1j_nonfid'          : '1.007',
+                   'ZH_hww_2j_nonfid'          : '1.007',
+                   'ZH_hww_3j_nonfid'          : '1.007',
+                   'ZH_hww_4j_nonfid'          : '1.007',
+                   #
+                   'XH_hww_0j_fid'          : '1.007',
+                   'XH_hww_1j_fid'          : '1.007',
+                   'XH_hww_2j_fid'          : '1.007',
+                   'XH_hww_3j_fid'          : '1.007',
+                   'XH_hww_4j_fid'          : '1.007',
+                   'XH_hww_0j_nonfid'          : '1.007',
+                   'XH_hww_1j_nonfid'          : '1.007',
+                   'XH_hww_2j_nonfid'          : '1.007',
+                   'XH_hww_3j_nonfid'          : '1.007',
+                   'XH_hww_4j_nonfid'          : '1.007',
                    #
                    'ZH_htt'          : '1.012',
                    },
@@ -2176,9 +2627,205 @@ nuisances['stat']  = {
 #                         'typeStat' : 'bbb',
 #                         },
 #
-#                   'ggH_hww': {
+#                   'ggH_hww_0j_fid': {
 #                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
 #                         },
+#                         
+#                   'ggH_hww_1j_fid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'ggH_hww_2j_fid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'ggH_hww_3j_fid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'ggH_hww_4j_fid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'ggH_hww_0j_nonfid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'ggH_hww_1j_nonfid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'ggH_hww_2j_nonfid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'ggH_hww_3j_nonfid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'ggH_hww_4j_nonfid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'qqH_hww_0j_fid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'qqH_hww_1j_fid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'qqH_hww_2j_fid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'qqH_hww_3j_fid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'qqH_hww_4j_fid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'qqH_hww_0j_nonfid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'qqH_hww_1j_nonfid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'qqH_hww_2j_nonfid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'qqH_hww_3j_nonfid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'qqH_hww_4j_nonfid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'ZH_hww_0j_fid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'ZH_hww_1j_fid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'ZH_hww_2j_fid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'ZH_hww_3j_fid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'ZH_hww_4j_fid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'ZH_hww_0j_nonfid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'ZH_hww_1j_nonfid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'ZH_hww_2j_nonfid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'ZH_hww_3j_nonfid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'ZH_hww_4j_nonfid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         }, 
+#                         
+#                   'WH_hww_0j_fid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'WH_hww_1j_fid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'WH_hww_2j_fid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'WH_hww_3j_fid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'WH_hww_4j_fid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'WH_hww_0j_nonfid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'WH_hww_1j_nonfid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'WH_hww_2j_nonfid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'WH_hww_3j_nonfid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         },
+#                         
+#                   'WH_hww_4j_nonfid': {
+#                         'typeStat' : 'bbb',
+#                         'zeroMCError' : '1',
+#                         }, 
 #
 #                   'qqH_hww': {
 #                         'typeStat' : 'bbb',
