@@ -1,50 +1,14 @@
 WW analysis
 ===========
 
-Steps to get datacards and plots:
+mkShapes.py --pycfg=configuration_sf.py  --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__sfSel/ --doBatch=True --batchQueue=8nh --batchSplit=AsMuchAsPossible
 
-    cd ~/work/CMSSW_8_0_26/src
-
-    cmsenv
-
-    cd -
+mkShapes.py --pycfg=configuration_sf.py  --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__sfSel/ --batchSplit=AsMuchAsPossible --doHadd=True
 
 
-Produce Histograms Using lxbatch:
+mkPlot.py --pycfg=configuration_sf.py --inputFile=rootFile_sf/plots_WW_sf.root --minLogC=0.01 --minLogCratio=0.01 --maxLogC=1000 --maxLogCratio=1000 --showIntegralLegend=1
 
-    mkBatch.py --clean
-
-em Channel:
-
-   mkShapes.py --pycfg=configuration_em.py  --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__wwSel/  --doBatch=True --batchSplit=Cuts,Samples --batchQueue=1nd
-
-    mkBatch.py --status
-
-    mkShapes.py --pycfg=configuration_em.py  --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__wwSel/ --doHadd=True --batchSplit=Cuts,Samples
+mkDatacards.py   --pycfg=configuration_sf.py  --inputFile=rootFile_sf/plots_WW_sf.root
 
 
-sf Channel:
 
-    mkShapes.py --pycfg=configuration_sf.py  --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__sfSel/  --doBatch=True --batchSplit=Cuts,Samples --batchQueue=1nd
-
-    mkBatch.py --status
-
-    mkShapes.py --pycfg=configuration_sf.py  --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__sfSel/ --doHadd=True --batchSplit=Cuts,Samples
-
-
-Produce Plots for em Channel:
-
-    mkShapes.py      --pycfg=configuration_em.py  --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__wwSel/ --doThread=True
-
-    mkPlot.py        --pycfg=configuration_em.py  --inputFile=rootFile_em/plots_WW_em.root --minLogC=0.0001 --minLogCratio=0.0001 --maxLogC=1000 --maxLogCratio=1000  --showIntegralLegend=1  
-
-
-Produce Plots for sf Channel:
-
-    mkShapes.py      --pycfg=configuration_sf.py  --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016/Feb2017_summer16/MCl2looseCut__hadd__bSFL2pTEffCut__l2tight__sfSel/ --doThread=True
-
-    mkPlot.py        --pycfg=configuration_sf.py  --inputFile=rootFile_sf/plots_monoHWW_sf.root  --minLogC=0.0001 --minLogCratio=0.0001 --maxLogC=1000 --maxLogCratio=1000  --showIntegralLegend=1
-
-Produce Datacards:
-
-    mkDatacards.py   --pycfg=configuration_lxbatch.py  --inputFile=rootFile/plots_WW.root
