@@ -1,6 +1,13 @@
 # cuts
 
+import re
+
 #cuts = {}
+
+# imported from samples.py:
+# samples, signals
+
+nonfloated = [skey for skey in samples if skey not in ('DY', 'top', 'WW')]
  
 _tmp = [
     'osof',
@@ -15,67 +22,42 @@ _tmp = [
 supercut = ' && '.join(_tmp)
 
 def addcut(name, exprs):
-    cuts[name] = ' && '.join(exprs)
+    cuts[name] = {'expr': ' && '.join(exprs)}
 
-## DY control regions
-_tmp = [
-    'mth<60',
-    'mll>30 && mll<80',
-    'bVeto'
-]
-addcut('dycr_incl', _tmp)
+# treat all CR as categories (total 10)
+addcut('hww_CR', ['1'])
 
-_tmp = [
-    'mth<60',
-    'mll>30 && mll<80',
-    'zeroJet',
-    'bVeto'
+njbinning = [
+    ('reco0j', 'zeroJet'),
+    ('reco1j', 'oneJet'),
+    ('reco2j', 'twoJet'),
+    ('reco3j', 'threeJet'),
+    ('recoge4j', 'manyJets')
 ]
-addcut('dycr_0j', _tmp)
 
-_tmp = [
-    'mth<60',
-    'mll>30 && mll<80',
-    'oneJet',
-    'bVeto'
-]
-addcut('dycr_1j', _tmp)
+cuts['hww_CR']['categories'] = []
 
-_tmp = [
-    'mth<60',
-    'mll>30 && mll<80',
-    'manyJet',
-    'bVeto'
-]
-addcut('dycr_ge2j', _tmp)
+categorization = '-1'
 
-## Top control regions
-_tmp = [
-    'mll>50',
-    'Sum$(std_vector_jet_pt > 20. && std_vector_jet_cmvav2 > -0.5884) != 0'
-]
-addcut('topcr_incl', _tmp)
+categorization += '+(mth<60 && mll>30 && mll<80 && bVeto)'
+dycategorization = []
+for ibin, (bname, bcut) in enumerate(njbinning):
+    cuts['hww_CR']['categories'].append('catDY' + bname)
+    dycategorization.append('%d*%s' % (ibin + 1, bcut))
+categorization += '*(' + '+'.join(dycategorization) + ')'
 
-_tmp = [
-    'mll>50',
-    'zeroJet',
-    'Sum$(std_vector_jet_pt > 20. && std_vector_jet_cmvav2 > -0.5884) != 0'
-]
-addcut('topcr_0j', _tmp)
+categorization += '+(mll>50)'
+categorization += '*(6*(Sum$(std_vector_jet_pt > 20. && std_vector_jet_cmvav2 > -0.5884) != 0 && zeroJet)'
+categorization += '+(Sum$(std_vector_jet_pt > 30. && std_vector_jet_cmvav2 > -0.5884) != 0)'
+topcategorization = []
+for ibin, (bname, bcut) in enumerate(njbinning):
+    cuts['hww_CR']['categories'].append('cattop' + bname)
+    if ibin != 0:
+        topcategorization.append('%d*%s' % (ibin + 6, bcut))
+categorization += '*(' + '+'.join(topcategorization) + ')'
+categorization += ')'
 
-_tmp = [
-    'mll>50',
-    'oneJet',
-    'std_vector_jet_cmvav2[0] > -0.5884'
-]
-addcut('topcr_1j', _tmp)
-
-_tmp = [
-    'mll>50',
-    'manyJet',
-    '(std_vector_jet_cmvav2[0] > -0.5884 || std_vector_jet_cmvav2[1] > -0.5884)'
-]
-addcut('topcr_ge2j', _tmp)
+cuts['hww_CR']['categorization'] = categorization
 
 ## Signal regions
 pt2confs = [
@@ -83,50 +65,82 @@ pt2confs = [
     ('pt2ge20', 'std_vector_lepton_pt[1] >= 20.')
 ]
 lepconfs = [
-    ('em', 'abs(std_vector_lepton_flavour[0]) == 11'),
-    ('me', 'abs(std_vector_lepton_flavour[0]) == 13'),
     ('emmp', 'std_vector_lepton_flavour[0] == 11'),
     ('mmep', 'std_vector_lepton_flavour[0] == 13'),
     ('epmm', 'std_vector_lepton_flavour[0] == -11'),
     ('mpem', 'std_vector_lepton_flavour[0] == -13')
 ]
 
-srcuts = []
-for pt2, pt2cut in pt2confs:
-    srcuts.append((pt2, [pt2cut]))
-    for lep, lepcut in lepconfs:
-        srcuts.append((lep + '_' + pt2, [lepcut, pt2cut]))
+def addsr(name, srbins, signalbins):
+    apply_to = [sname for sname in samples if sname not in signals]
+    for sname in signals:
+        sample = samples[sname]
+        for bname in sample['subsamples']:
+            if re.match(signalbins, bname):
+                apply_to.append('%s/%s' % (sname, bname))
 
-def addsr(name, cuts):
-    addcut(name, cuts)
-    for suffix, expr in srcuts:
-        addcut(name + '_' + suffix, cuts + expr)
+    cuts[name]['samples'] = apply_to
+    cuts[name]['categories'] = []
+    categorization = []
+    for ibin, (bname, bcut) in enumerate(srbins):
+        for pt2, _ in pt2confs:
+            for lep, _ in lepconfs:
+                cuts[name]['categories'].append(bname + '_cat' + lep + pt2)
+
+        if ibin != 0:
+            categorization.append('%d * (%s)' % (8 * ibin, bcut))
+
+    categorization.append('4 * (%s)' % pt2confs[1][1])
+    for ilep, (_, lepcut) in enumerate(lepconfs):
+        if ilep != 0:
+            categorization.append('%d * (%s)' % (ilep, lepcut))
+
+    # all bins cover the full phase space - no need for a default category
+    cuts[name]['categorization'] = ' + '.join(categorization)
+    print cuts[name]['categorization']
 
 _tmp = [
     'mth>=60',
     'bVeto'
 ]
-addsr('sr_incl', _tmp)
 
-pthBinning1 = [0., 20., 45., 80., 120., 200., 6500.]
-pthBinning2 = [0., 30., 60., 100., 200., 350., 6500.]
-yhBinning = [0., 0.15, 0.3, 0.6, 0.9, 1.2, 2.5, 10.]
-njetBinning = [0, 1, 2, 3, 4]
+addcut('hww_PTH', _tmp)
+addcut('hww_NJ', _tmp)
 
-for ipt in range(len(pthBinning1) - 1):
-    low, high = pthBinning1[ipt:ipt+2]
-    addsr('sr_pth_%.0f_%.0f' % (low, high), _tmp + ['pTWW > %f && pTWW < %f' % (low, high)])
+pthBinning = ['0', '20', '30', '45', '60', '80', '100', '120', '155', '200', '260', '350', 'inf']
+#yhBinning = [0., 0.15, 0.3, 0.6, 0.9, 1.2, 2.5, 10.]
+njetBinning = ['0', '1', '2', '3', '4+']
 
-for ipt in range(len(pthBinning2) - 1):
-    low, high = pthBinning2[ipt:ipt+2]
-    addsr('sr_pth_%.0f_%.0f' % (low, high), _tmp + ['pTWW > %f && pTWW < %f' % (low, high)])
+srBins = []
+for ipt in range(len(pthBinning) - 1):
+    low, high = pthBinning[ipt:ipt+2]
 
-#for n in njetBinning:
-#    if n == 0:
-#        njcut = 'std_vector_jet_pt[0] < 20'
-#    elif n == njetBinning[-1]:
-#        njcut = 'std_vector_jet_pt[%d] < 20' % n
-#    else:
-#        njcut = 'std_vector_jet_pt[%d] > 20 && std_vector_jet_pt[%d] < 20' % (n - 1, n)
-#
-#    addsr('sr_nj_%d' % n, _tmp + [njcut])
+    if high == 'inf':
+        binName = 'GT%s' % low
+        cut = 'pTWW >= %s' % low
+    else:
+        binName = '%s_%s' % (low, high)
+        cut = 'pTWW >= %s && pTWW < %s' % (low, high)
+
+    srBins.append((binName, cut))
+        
+addsr('hww_PTH', srBins, 'PTH_.*')
+
+srBins = []
+for nj in njetBinning:
+    if nj.endswith('+'):
+        binName = 'hww_NJ_GE%s' % nj[:-1]
+        #binName = 'GE%s' % nj[:-1] # correct
+        cut = 'std_vector_jet_pt[%d] >= 30.' % (int(nj[:-1]) - 1)
+    elif nj == '0':
+        binName = 'hww_NJ_0'
+        #binName = '0'
+        cut = 'std_vector_jet_pt[0] < 30.'
+    else:
+        binName = 'hww_NJ_%s' % nj
+        #binName = str(nj)
+        cut = 'std_vector_jet_pt[%d] >= 30. && std_vector_jet_pt[%d] < 30.' % (int(nj) - 1, int(nj))
+
+    srBins.append((binName, cut))
+
+addsr('hww_NJ', srBins, 'NJ_.*')

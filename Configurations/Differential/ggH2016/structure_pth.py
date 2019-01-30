@@ -10,99 +10,92 @@
 # keys here must match keys in samples.py
 #
 
-# remove samples we won't use in limit setting
-samples.pop('DY')
-samples.pop('top')
-
-mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
-dy = [skey for skey in samples if skey.startswith('DY')]
-top = [skey for skey in samples if skey.startswith('top')]
-signal = [skey for skey in samples if '_hww' in skey]
-
-topcr = [ckey for ckey in cuts if ckey.startswith('topcr')]
-dycr = [ckey for ckey in cuts if ckey.startswith('dycr')]
-sr = [ckey for ckey in cuts if ckey.startswith('sr')]
-
-usedCuts = [ckey for ckey in dycr if not ckey.endswith('_incl')]
-usedCuts += [ckey for ckey in topcr if not ckey.endswith('_incl')]
-
-for sname in set(mc) - set(dy) - set(top) - set(signal):
-    structure[sname] = {
-        'isSignal' : 0,
-        'isData'   : 0
-    }
-
-for sname in dy:
-  structure[sname]  = {
-      'isSignal' : 0,
-      'isData'   : 0
-  }
-
-for sname in top:
-  structure[sname] = {
-      'isSignal' : 0,
-      'isData'   : 0
-  }
-
-#for sname in ['ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']:
-for sname in ['H_htt']:
-    structure[sname] = {
-        'isSignal' : 0,
-        'isData'   : 0,
-        'removeFromCuts': topcr + dycr
-    }
-
-pthBinning = [0., 20., 45., 80., 120., 200., 350., 6500.] # hybrid of binning1 and 2
+pthBins = [
+  'PTH_0_20',
+  'PTH_20_45',
+  'PTH_45_80',
+  'PTH_80_120',
+  'PTH_120_200',
+  'PTH_200_350',
+  'PTH_GT350'
+]
 split = [8, 8, 4, 3, 2, 2, 2]
 
-for ipt in range(len(pthBinning1) - 1):
-    low, high = pthBinning1[ipt:ipt+2]
-    if split[ipt] == 8:
-        for lep in ['emmp', 'mmep', 'epmm', 'mpem']:
-            for pt2 in ['pt2lt20', 'pt2ge20']:
-                usedCuts.append('sr_pth_%.0f_%.0f_%s_%s' % (low, high, lep, pt2))
-    elif split[ipt] == 4:
-        for lep in ['em', 'me']:
-            for pt2 in ['pt2lt20', 'pt2ge20']:
-                usedCuts.append('sr_pth_%.0f_%.0f_%s_%s' % (low, high, lep, pt2))
-    elif split[ipt] == 3:
-        for leppt2 in ['pt2ge20', 'em_pt2lt20', 'me_pt2lt20']:
-            usedCuts.append('sr_pth_%.0f_%.0f_%s' % (low, high, leppt2))
-    elif split[ipt] == 2:
-        for pt2 in ['pt2lt20', 'pt2ge20']:
-            usedCuts.append('sr_pth_%.0f_%.0f_%s' % (low, high, pt2))
+pt2confs = ['pt2lt20', 'pt2ge20']
+lepconfs = ['emmp', 'epmm', 'mmep', 'mpem']
 
-for sname in ['ggH_hww', 'XH_hww']:
-    for fid in ['incl']:
-        for ipt in range(len(pthBinning1) - 1):
-            low, high = pthBinning1[ipt:ipt+2]
-            suffix = '_pth_%.0f_%.0f_%s' % (low, high, fid)
-            structure[sname + suffix] = {
-                'isSignal' : 1,
-                'isData'   : 0,
-                'removeFromCuts': topcr + dycr
-            }
+# redefine samples as a simple list
+samples = [
+  'DATA',
+  'minor',
+  'htt',
+  'Fake'
+]
+for nj in ['0j', '1j', '2j', '3j', 'ge4j']:
+  samples.append('WW_%s' % nj)
+  samples.append('top_%s' % nj)
+  samples.append('DY_%s' % nj)
 
-# fake
+for pthBin in pthBins:
+  samples.append('smH_hww_%s' % pthBin)
 
-structure['Fake'] = {
-    'isSignal' : 0,
-    'isData'   : 0
+# redefine cuts as a simple list
+cuts = []
+
+for nj in ['0j', '1j', '2j', '3j', 'ge4j']:
+  cuts.append('hww_CR_catDYreco%s' % nj)
+  cuts.append('hww_CR_cattopreco%s' % nj)
+
+crs = list(cuts)
+
+for pthBin, nsplit in zip(pthBins, split):
+  if nsplit == 8:
+    for pt2 in pt2confs:
+      for lep in lepconfs:
+        cuts.append('hww_%s_cat%s%s' % (pthBin, lep, pt2))
+
+  elif nsplit == 4:
+    for pt2 in pt2confs:
+      for lep in ['em', 'me']:
+        cuts.append('hww_%s_cat%s%s' % (pthBin, lep, pt2))
+
+  elif nsplit == 3:
+    for lep in ['em', 'me']:
+      cuts.append('hww_%s_cat%spt2lt20' % (pthBin, lep))
+    cuts.append('hww_%s_catpt2ge20' % pthBin)
+
+  elif nsplit == 2:
+    for pt2 in pt2confs:
+      cuts.append('hww_%s_cat%s' % (pthBin, pt2))
+
+  elif nsplit == 1:
+    cuts.append('hww_%s' % pthBin)
+
+for sname in samples:
+  if sname == 'DATA':
+    structure['DATA']  = {
+      'isSignal' : 0,
+      'isData'   : 1
+    }
+
+  elif sname.startswith('smH_hww'):
+    structure[sname] = {
+      'isSignal' : 1,
+      'isData'   : 0,
+      'removeFromCuts': crs
+    }
+
+  else:
+    structure[sname] = {
+      'isSignal' : 0,
+      'isData'   : 0
+    }
+
+structure['htt']['removeFromCuts'] = crs
+
+# redefine variables
+variables = {
+    'events': {'cuts': crs},
+    'mllVSmth_6x6': {'cuts': [c for c in cuts if c.endswith('pt2lt20')]},
+    'mllVSmth_8x9': {'cuts': [c for c in cuts if c.endswith('pt2ge20')]}
 }
-
-# data
-
-structure['DATA']  = {
-    'isSignal' : 0,
-    'isData'   : 1
-}
-
-# Drop unused samples and cuts
-
-for skey in samples.keys():
-    if skey not in structure:
-        samples.pop(skey)
-
-for ckey in cuts.keys():
-    if ckey not in usedCuts:
-        cuts.pop(ckey)

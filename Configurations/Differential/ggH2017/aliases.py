@@ -1,10 +1,11 @@
+import copy
+
 #aliases = {}
 
 # imported from samples.py:
-# samples
+# samples, signals
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
-signal = [skey for skey in samples if '_hww' in skey]
 dy = [skey for skey in samples if skey.startswith('DY')]
 top = [skey for skey in samples if skey.startswith('top')]
 
@@ -102,18 +103,6 @@ aliases['trailingE13'] = {
     'expr': 'abs(Lepton_pdgId[1]) == 13 || Lepton_pt[1] > 13.'
 }
 
-aliases['bVeto'] = {
-    'expr': 'Sum$(CleanJet_pt > 20. && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0'
-}
-
-aliases['leadingBJet'] = {
-    'expr': 'Jet_btagDeepB[CleanJet_jetIdx[0]] > 0.1522'
-}
-
-aliases['atleastoneBJet'] = {
-    'expr': 'Jet_btagDeepB[CleanJet_jetIdx[0]] > 0.1522 || Jet_btagDeepB[CleanJet_jetIdx[1]] > 0.1522'
-}
-
 # No jet with pt > 30 GeV
 aliases['zeroJet'] = {
     'expr': 'Sum$(CleanJet_pt >= 30.) == 0'
@@ -124,123 +113,196 @@ aliases['oneJet'] = {
     'expr': 'Sum$(CleanJet_pt >= 30.) == 1'
 }
 
-# >=2 jets with pt > 30 GeV
-aliases['manyJet'] = {
-    'expr': 'Sum$(CleanJet_pt >= 30.) >= 2'
+# ==2 jets with pt > 30 GeV
+aliases['twoJet'] = {
+    'expr': 'Sum$(CleanJet_pt >= 30.) == 2'
 }
+
+# ==3 jets with pt > 30 GeV
+aliases['threeJet'] = {
+    'expr': 'Sum$(CleanJet_pt >= 30.) == 3'
+}
+
+# >=4 jets with pt > 30 GeV
+aliases['manyJets'] = {
+    'expr': 'Sum$(CleanJet_pt >= 30.) >= 4'
+}
+
+aliases['bVeto'] = {
+    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0'
+}
+
+aliases['bReq'] = {
+    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) >= 1'
+}
+
+aliases['btag0'] = {
+    'expr': 'zeroJet && !bVeto'
+}
+
+aliases['btag1'] = {
+    'expr': 'oneJet && bReq'
+}
+
+aliases['btag2'] = {
+    'expr': 'twoJet && bReq'
+}
+
+aliases['bVetoSF'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
+    'samples': mc
+}
+
+aliases['btag0SF'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && CleanJet_pt<30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || CleanJet_pt>30 || abs(CleanJet_eta)>2.5))))',
+    'samples': mc
+}
+
+aliases['btagnSF'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx] + (CleanJet_pt<30 || abs(CleanJet_eta)>2.5))))',
+    'samples': mc
+}
+
+aliases['btagSF'] = {
+    'expr': 'bVetoSF*bVeto + btag0SF*btag0 + btagnSF*(btag1 + btag2) + (!bVeto && !btag0 && !btag1 && !btag2)',
+    'samples': mc
+}
+
+for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
+    for targ in ['bVeto', 'btag0', 'btagn']:
+        alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
+        alias['expr'] = alias['expr'].replace('btagSF_shape', 'btagSF_shape_up_%s' % shift)
+
+        alias = aliases['%sSF%sdown' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
+        alias['expr'] = alias['expr'].replace('btagSF_shape', 'btagSF_shape_down_%s' % shift)
+
+    aliases['btagSF%sup' % shift] = {
+        'expr': 'bVetoSF{shift}up*bVeto + btag0SF{shift}up*btag0 + btagnSF{shift}up*(btag1 + btag2) + (!bVeto && !btag0 && !btag1 && !btag2)'.format(shift = shift),
+        'samples': mc
+    }
+
+    aliases['btagSF%sdown' % shift] = {
+        'expr': 'bVetoSF{shift}down*bVeto + btag0SF{shift}down*btag0 + btagnSF{shift}down*(btag1 + btag2) + (!bVeto && !btag0 && !btag1 && !btag2)'.format(shift = shift),
+        'samples': mc
+    }
 
 ## Variables for fiducial region definition
 
 # Gen Mll
 aliases['genMll'] = {
     'expr': 'sqrt(2*GenDressedLepton_pt[0] * GenDressedLepton_pt[1] * (cosh(GenDressedLepton_eta[0]-GenDressedLepton_eta[1])-cos(GenDressedLepton_phi[0]-GenDressedLepton_phi[1])))',
-    'samples': signal
+    'samples': signals
 }
 
 # Gen px, py
 aliases['genPx0'] = {
     'expr': 'GenDressedLepton_pt[0] * cos(GenDressedLepton_phi[0])',
-    'samples': signal
+    'samples': signals
 }
 aliases['genPy0'] = {
     'expr': 'GenDressedLepton_pt[0] * sin(GenDressedLepton_phi[0])',
-    'samples': signal
+    'samples': signals
 }
 aliases['genPx1'] = {
     'expr': 'GenDressedLepton_pt[1] * cos(GenDressedLepton_phi[1])',
-    'samples': signal
+    'samples': signals
 }
 aliases['genPy1'] = {
     'expr': 'GenDressedLepton_pt[1] * sin(GenDressedLepton_phi[1])',
-    'samples': signal
+    'samples': signals
 }
 
 # Gen pxll, pyll
 aliases['genPxll'] = {
     'expr': 'genPx0 + genPx1',
-    'samples': signal
+    'samples': signals
 }
 aliases['genPyll'] = {
     'expr': 'genPy0 + genPy1',
-    'samples': signal
+    'samples': signals
 }
 
 # Gen met x, y
 aliases['genMetx'] = {
     'expr': 'GenMET_pt * cos(GenMET_phi)',
-    'samples': signal
+    'samples': signals
 }
 aliases['genMety'] = {
     'expr': 'GenMET_pt * sin(GenMET_phi)',
-    'samples': signal
+    'samples': signals
 }
 
 # Gen pxH, pyH
 aliases['genPxH'] = {
     'expr': 'genPxll + genMetx',
-    'samples': signal
+    'samples': signals
 }
 aliases['genPyH'] = {
     'expr': 'genPyll + genMety',
-    'samples': signal
+    'samples': signals
 }
 
 aliases['genPth'] = {
     'expr': 'sqrt(genPxH * genPxH + genPyH * genPyH)',
-    'samples': signal
+    'samples': signals
 }
 
 # Gen pTll
 aliases['genPtll'] = {
     'expr': 'sqrt(genPxll * genPxll + genPyll * genPyll)',
-    'samples': signal
+    'samples': signals
 }
 
 # Gen mth
 aliases['genMth'] = {
     'expr': 'sqrt(2 * GenMET_pt * (genPtll - genPxll * cos(GenMET_phi) - genPyll * sin(GenMET_phi)))',
-    'samples': signal
+    'samples': signals
 }
 
 # Gen mtw2
 aliases['genMtw2'] = {
     'expr': 'sqrt(2 * GenDressedLepton_pt[1] * GenMET_pt * (1-cos(GenDressedLepton_phi[1]-GenMET_phi)))',
-    'samples': signal
+    'samples': signals
 }
 
 ## Overlap cleaning for gen jets
-#aliases['genJetClean'] = {
-#    'expr': 'TMath::Power(std_vector_jetGen_eta - GenDressedLepton_eta[0], 2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - GenDressedLepton_phi[0]), 2.) > 0.16 && TMath::Power(std_vector_jetGen_eta - GenDressedLepton_eta[1], 2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - GenDressedLepton_phi[1]), 2.) > 0.16',
-#    'samples': signal
-#}
-#
+aliases['genJetClean'] = {
+    'expr': 'TMath::Power(GenJet_eta - GenDressedLepton_eta[0], 2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[0]), 2.) > 0.16 && TMath::Power(GenJet_eta - GenDressedLepton_eta[1], 2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[1]), 2.) > 0.16',
+    'samples': mc
+}
+
 #aliases['genJet0Clean'] = {
-#    'expr': 'TMath::Power(std_vector_jetGen_eta[0] - GenDressedLepton_eta[0], 2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi[0] - GenDressedLepton_phi[0]), 2.) > 0.16 && TMath::Power(std_vector_jetGen_eta[0] - GenDressedLepton_eta[1], 2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi[0] - GenDressedLepton_phi[1]), 2.) > 0.16',
-#    'samples': signal
+#    'expr': 'TMath::Power(GenJet_eta[0] - GenDressedLepton_eta[0], 2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi[0] - GenDressedLepton_phi[0]), 2.) > 0.16 && TMath::Power(GenJet_eta[0] - GenDressedLepton_eta[1], 2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi[0] - GenDressedLepton_phi[1]), 2.) > 0.16',
+#    'samples': signals
 #}
 #
 #aliases['genJet1Clean'] = {
-#    'expr': 'TMath::Power(std_vector_jetGen_eta[1] - GenDressedLepton_eta[0], 2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi[1] - GenDressedLepton_phi[0]), 2.) > 0.16 && TMath::Power(std_vector_jetGen_eta[1] - GenDressedLepton_eta[1], 2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi[1] - GenDressedLepton_phi[1]), 2.) > 0.16',
-#    'samples': signal
+#    'expr': 'TMath::Power(GenJet_eta[1] - GenDressedLepton_eta[0], 2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi[1] - GenDressedLepton_phi[0]), 2.) > 0.16 && TMath::Power(GenJet_eta[1] - GenDressedLepton_eta[1], 2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi[1] - GenDressedLepton_phi[1]), 2.) > 0.16',
+#    'samples': signals
 #}
 
 # Components for the fiducial cut
 aliases['genLeptonPt'] = {
     'expr': 'GenDressedLepton_pt[0]>25 && Sum$(GenDressedLepton_pt>10) == 2',
-    'samples': signal
+    'samples': signals
 }
 aliases['genOSOF'] = {
     'expr': 'GenDressedLepton_pdgId[0] * GenDressedLepton_pdgId[1] == -11 * 13',
-    'samples': signal
+    'samples': signals
 }
 aliases['genTrailingE13'] = {
     'expr': 'abs(GenDressedLepton_pdgId[1]) == 13 || GenDressedLepton_pt[1]>13',
-    'samples': signal
+    'samples': signals
+}
+
+aliases['nGenJet'] = {
+    'expr': 'Sum$(GenJet_pt > 30 && genJetClean)',
+    'samples': mc
 }
 
 # Fiducial cut for differential measurements
 aliases['fiducial'] = {
     #'expr': 'genLeptonPt && genOSOF && genTrailingE13 && genMll>12 && GenMET_pt>20 && genPtll>30 && genMth>=60 && genMtw2>30'
     'expr': 'genLeptonPt && genOSOF && genTrailingE13 && genMll>12 && genPtll>30 && genMth>=60 && genMtw2>30',
-    'samples': signal
+    'samples': signals
 }

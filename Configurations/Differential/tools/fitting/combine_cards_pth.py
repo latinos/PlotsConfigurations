@@ -176,6 +176,9 @@ for ipt in range(len(pthBinning) - 1):
                 target.write(''.join([name.ljust(colw) for name in usedSignals]))
                 target.write(''.join([name.ljust(colw) for name in usedBkgs]))
                 target.write('\n')
+                
+                # discard one line because we use our own process ids
+                source.readline()
 
                 target.write('process'.ljust(80))
                 target.write(''.join([('%d' % procIds[name]).ljust(colw) for name in usedSignals]))
@@ -196,39 +199,40 @@ for ipt in range(len(pthBinning) - 1):
                 while True:
                     line = source.readline()
                     
-                    if line.startswith('-'):
+                    if not line or line.startswith('-'):
                         break
                     
                     words = line.split()
+
                     if 'autoMCStats' in words:
                         if dropMCStats:
                             continue
                         else:
                             target.write(line)
+                            continue
 
                     elif 'rateParam' in words:
                         continue
 
-                    else:
-                        nuisName = words[0]
-                        if nuisName == 'lumi_13TeV' and dropLumi:
-                            continue
-                        
-                        nuisType = words[1]
-                        values = words[2:]
-                        valueMap = dict(zip(procNames, values))
+                    nuisName = words[0]
+                    if nuisName == 'lumi_13TeV' and dropLumi:
+                        continue
+                    
+                    nuisType = words[1]
+                    values = words[2:]
+                    valueMap = dict(zip(procNames, values))
 
-                        if nuisType == 'lnN':
-                            for procName in procNames:
-                                # drop scaling nuisances for free-floating processes
-                                if procName.startswith('top') or procName.startswith('DY') or procName == 'WW' or procIds[procName] <= 0:
-                                    valueMap[procName] = '-'
+                    if nuisType == 'lnN':
+                        for procName in usedProcs:
+                            # drop scaling nuisances for free-floating processes
+                            if procName.startswith('top') or procName.startswith('DY') or procName == 'WW' or procIds[procName] <= 0:
+                                valueMap[procName] = '-'
 
-                        target.write(nuisName.ljust(60))
-                        target.write(nuisType.ljust(20))
-                        target.write(''.join([('%s' % valueMap[name]).ljust(colw) for name in usedProcs if '_hww_' in name]))
-                        target.write(''.join([('%s' % valueMap[name]).ljust(colw) for name in usedProcs if '_hww_' not in name]))
-                        target.write('\n')
+                    target.write(nuisName.ljust(60))
+                    target.write(nuisType.ljust(20))
+                    target.write(''.join([('%s' % valueMap[name]).ljust(colw) for name in usedProcs if '_hww_' in name]))
+                    target.write(''.join([('%s' % valueMap[name]).ljust(colw) for name in usedProcs if '_hww_' not in name]))
+                    target.write('\n')
 
                 target.write(line)
             
@@ -248,6 +252,8 @@ for cr in crs:
             for line in source:
                 if line.startswith('lumi_13TeV') and dropLumi:
                     continue
+                elif ' autoMCStats ' in line and dropMCStats:
+                    continue
                 elif ' rateParam ' in line:
                     continue
 
@@ -260,9 +266,11 @@ for cr in crs:
 
     shutil.copyfile(sourceDir + '/shapes/histos_%s.root' % cr, targetDir + '/shapes/histos_%s.root' % cr)
 
-print 'Combining:', cards
+cmd = ['combineCards.py'] + cards
 
-proc = subprocess.Popen(['combineCards.py'] + cards, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+print ' '.join(cmd)
+
+proc = subprocess.Popen(cmd, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
 out, err = proc.communicate()
 
 if proc.returncode != 0:
@@ -296,6 +304,10 @@ for ibin, ptbin in enumerate(ptbins):
     cmd.append('map=.*/(gg|X)H_hww_%s_(incl|fid|nonfid):r_%d[1.,-3.,3.]' % (ptbin, ibin))
 
 cmd.extend([args.outpath + '/fullmodel.txt', '-o', args.outpath + '/fullmodel.root'])
+
+print ' '.join(cmd)
+
+sys.exit(0)
 
 proc = subprocess.Popen(cmd, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
 out, err = proc.communicate()
