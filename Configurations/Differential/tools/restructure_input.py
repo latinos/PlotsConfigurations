@@ -45,9 +45,10 @@ else:
 
 binMap = dict(binMerging)
 # temporary bugfix
-for key in binMap:
-    src = ['NJ_hww_' + b for b in binMap[key]]
-    binMap[key] = src
+if measurement == 'njet':
+    for key in binMap:
+        src = ['NJ_hww_' + b for b in binMap[key]]
+        binMap[key] = src
     
 signals = [
     'ggH_hww',
@@ -59,10 +60,13 @@ signals = [
     'ttH_hww'
 ]
 
-backgrounds = {
-    'minor': ['ggWW', 'Vg', 'WZgS_L', 'WZgS_H', 'VZ', 'VVV'],
-    'Fake': ['Fake']
-}
+backgrounds = {'Fake': ['Fake']}
+if tag == 'ggHDifferential2016':
+    backgrounds['minor'] = ['ggWW', 'Vg', 'WZgS_L', 'WZgS_H', 'VZ', 'VVV']
+else:
+    signals.remove('bbH_hww')
+    backgrounds['minor'] = ['ggWW', 'Vg', 'WZgS', 'VZ', 'VVV']
+    
 backgrounds['htt'] = []
 for sample in ['ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']:
     backgrounds['htt'].append((sample, allBins))

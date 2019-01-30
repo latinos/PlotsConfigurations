@@ -24,6 +24,8 @@ split = [8, 8, 4, 3, 2, 2, 2]
 pt2confs = ['pt2lt20', 'pt2ge20']
 lepconfs = ['emmp', 'epmm', 'mmep', 'mpem']
 
+njs = ['0j', '1j', '2j', '3j', 'ge4j']
+
 # redefine samples as a simple list
 samples = [
   'DATA',
@@ -31,18 +33,20 @@ samples = [
   'htt',
   'Fake'
 ]
-for nj in ['0j', '1j', '2j', '3j', 'ge4j']:
+for nj in njs:
   samples.append('WW_%s' % nj)
   samples.append('top_%s' % nj)
   samples.append('DY_%s' % nj)
 
+smH = []
 for pthBin in pthBins:
   samples.append('smH_hww_%s' % pthBin)
+  smH.append('smH_hww_%s' % pthBin)
 
 # redefine cuts as a simple list
 cuts = []
 
-for nj in ['0j', '1j', '2j', '3j', 'ge4j']:
+for nj in njs:
   cuts.append('hww_CR_catDYreco%s' % nj)
   cuts.append('hww_CR_cattopreco%s' % nj)
 
@@ -95,7 +99,44 @@ structure['htt']['removeFromCuts'] = crs
 
 # redefine variables
 variables = {
-    'events': {'cuts': crs},
-    'mllVSmth_6x6': {'cuts': [c for c in cuts if c.endswith('pt2lt20')]},
-    'mllVSmth_8x9': {'cuts': [c for c in cuts if c.endswith('pt2ge20')]}
+  'events': {'cuts': crs},
+  'mllVSmth_6x6': {'cuts': [c for c in cuts if c.endswith('pt2lt20')]},
+  'mllVSmth_8x9': {'cuts': [c for c in cuts if c.endswith('pt2ge20')]}
 }
+
+sampleMapping = {
+  'ggH_hww': smH,
+  'qqH_hww': smH,
+  'ZH_hww': smH,
+  'ggZH_hww': smH,
+  'WH_hww': smH,
+  'bbH_hww': smH,
+  'ttH_hww': smH,
+  'ggWW': 'minor',
+  'Vg': 'minor',
+  'WZgS_L': 'minor',
+  'WZgS_H': 'minor',
+  'WZgS': 'minor',
+  'VZ': 'minor',
+  'VVV': 'minor',
+  'Fake': 'Fake',
+  'ggH_htt': 'htt',
+  'qqH_htt': 'htt',
+  'ZH_htt': 'htt',
+  'WH_htt': 'htt'
+}
+njs = ['0j', '1j', '2j', '3j', 'ge4j']
+sampleMapping['WW'] = ['WW_%s' % nj for nj in njs]
+sampleMapping['top'] = ['top_%s' % nj for nj in njs]
+sampleMapping['DY'] = ['DY_%s' % nj for nj in njs]
+
+for nuisance in nuisances.itervalues():
+  if 'samples' not in nuisance:
+    continue
+
+  for sname, value in nuisance['samples'].items():
+    if type(sampleMapping[sname]) is list:
+      for mapped in sampleMapping[sname]:
+        nuisance['samples'][mapped] = value
+    else:
+      nuisance['samples'][sampleMapping[sname]] = value

@@ -291,13 +291,13 @@ samples['ggH_hww'] = {
 
 signals.append('ggH_hww')
 
-samples['ggH_hww_minloHJ'] = {
-  'name': getSampleFiles(mcDirectory,'GluGluHToWWTo2L2Nu_M125_minloHJ_NNLOPS'),
-  'weight': mcCommonWeight,
-  'FilesPerJob': 1
-}
-
-signals.append('ggH_hww_minloHJ')
+#samples['ggH_hww_minloHJ'] = {
+#  'name': getSampleFiles(mcDirectory,'GluGluHToWWTo2L2Nu_M125_minloHJ_NNLOPS'),
+#  'weight': mcCommonWeight,
+#  'FilesPerJob': 1
+#}
+#
+#signals.append('ggH_hww_minloHJ')
 
 #samples['ggH_hww_amcnlo'] = {
 #  'name': getSampleFiles(mcDirectory,'GluGluHToWWTo2L2NuAMCNLO_M125'),

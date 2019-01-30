@@ -436,11 +436,3 @@ for _, sd in DataRun:
 #samples.pop('ZH_hww')
 #signals.remove('ZH_hww')
 
-for sname in samples.keys():
-    if not sname.endswith('_htt'):
-        samples.pop(sname)
-        try:
-            signals.remove(sname)
-        except:
-            pass
-

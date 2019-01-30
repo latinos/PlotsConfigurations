@@ -526,7 +526,6 @@ nuisances['QCDscale_gg_ACCEPT'] = {
         'ggWW': '1.027',
         'ggH_hww': '1.027',
         'ggH_htt': '1.027',
-        'H_htt': '1.027',
         'ggZH_hww': '1.027',
     },
     'type': 'lnN',

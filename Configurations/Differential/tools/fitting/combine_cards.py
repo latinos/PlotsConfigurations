@@ -234,16 +234,32 @@ if proc.returncode != 0:
 
 # Write combined datacard
 with open(args.outpath + '/fullmodel.txt', 'w') as fullmodel:
+    procNames = None
+    
     for line in out.strip().split('\n'):
         if line.startswith('kmax'):
             fullmodel.write('kmax * number of nuisance parameters\n')
         else:
             fullmodel.write(line + '\n')
 
+        if line.startswith('process') and procNames is None:
+            procNames = line.split()[1:]
+
     for nj in ['0j', '1j', '2j', '3j', 'ge4j']:
-        fullmodel.write('CMS_hww_WWnorm{nj} rateParam * WW_{nj} 1.\n'.format(nj = nj))
-        fullmodel.write('CMS_hww_topnorm{nj} rateParam * top_{nj} 1.\n'.format(nj = nj))
-        fullmodel.write('CMS_hww_DYnorm{nj} rateParam * DY_{nj} 1.\n'.format(nj = nj))
+        # temporary until I figure out how to implement rateParams in texthdf5
+        # fullmodel.write('CMS_hww_WWnorm{nj} rateParam * WW_{nj} 1.\n'.format(nj = nj))
+        # fullmodel.write('CMS_hww_topnorm{nj} rateParam * top_{nj} 1.\n'.format(nj = nj))
+        # fullmodel.write('CMS_hww_DYnorm{nj} rateParam * DY_{nj} 1.\n'.format(nj = nj))
+        for sname in ['WW', 'top', 'DY']:
+            line = 'CMS_hww_%snorm%s   lnN   ' % (sname, nj)
+            applyto = '%s_%s' % (sname, nj)
+            for name in procNames:
+                if name == applyto:
+                    line += ' 6.00 '
+                else:
+                    line += ' - '
+
+            fullmodel.write(line + '\n')
 
     if not args.hdf5:
         # Add constraints
