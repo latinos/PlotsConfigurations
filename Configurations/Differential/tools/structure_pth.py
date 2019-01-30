@@ -1,79 +1,49 @@
 # structure configuration for datacard
+# works with input file produced by restructure_input.py
 
 #structure = {}
 
-# imported from samples.py:
-# samples, pthBinning1, pthBinning2
-# imported from cuts.py
-# cuts
+# imported from mkDatacards.py
+# opt
 
 # keys here must match keys in samples.py
 #
 
-pthBins = [
-  'PTH_0_20',
-  'PTH_20_45',
-  'PTH_45_80',
-  'PTH_80_120',
-  'PTH_120_200',
-  'PTH_200_350',
-  'PTH_GT350'
-]
-split = [8, 8, 4, 3, 2, 2, 2]
+import re
 
-pt2confs = ['pt2lt20', 'pt2ge20']
-lepconfs = ['emmp', 'epmm', 'mmep', 'mpem']
-
-njs = ['0j', '1j', '2j', '3j', 'ge4j']
-
-# redefine samples as a simple list
-samples = [
-  'DATA',
-  'minor',
-  'htt',
-  'Fake'
-]
-for nj in njs:
-  samples.append('WW_%s' % nj)
-  samples.append('top_%s' % nj)
-  samples.append('DY_%s' % nj)
-
+# redefine samples and cuts as simple lists
+samples = []
 smH = []
-for pthBin in pthBins:
-  samples.append('smH_hww_%s' % pthBin)
-  smH.append('smH_hww_%s' % pthBin)
-
-# redefine cuts as a simple list
 cuts = []
+crs = []
 
-for nj in njs:
-  cuts.append('hww_CR_catDYreco%s' % nj)
-  cuts.append('hww_CR_cattopreco%s' % nj)
+# open the input file and check what observable it is made for
+source = ROOT.TFile.Open(opt.inputFile)
+firstdir = source.GetDirectory('%s/events' % source.GetListOfKeys().At(0).GetName())
+for key in firstdir.GetListOfKeys():
+  name = key.GetName()
 
-crs = list(cuts)
+  if not name.endswith('Up') and not name.endswith('Down'):
+    matches = re.match('histo_(.+)$', name)
+    if 'smH_hww' in name:
+      smH.append(matches.group(1))
+    else:
+      # signal procs added after sorting
+      samples.append(matches.group(1))
 
-for pthBin, nsplit in zip(pthBins, split):
-  if nsplit == 8:
-    for pt2 in pt2confs:
-      for lep in lepconfs:
-        cuts.append('hww_%s_cat%s%s' % (pthBin, lep, pt2))
+for key in source.GetListOfKeys():
+  name = key.GetName()
 
-  elif nsplit == 4:
-    for pt2 in pt2confs:
-      for lep in ['em', 'me']:
-        cuts.append('hww_%s_cat%s%s' % (pthBin, lep, pt2))
+  cuts.append(name)
+  if '_CR_' in name:
+    crs.append(name)
 
-  elif nsplit == 3:
-    for lep in ['em', 'me']:
-      cuts.append('hww_%s_cat%spt2lt20' % (pthBin, lep))
-    cuts.append('hww_%s_catpt2ge20' % pthBin)
+source.Close()
 
-  elif nsplit == 2:
-    for pt2 in pt2confs:
-      cuts.append('hww_%s_cat%s' % (pthBin, pt2))
-
-  elif nsplit == 1:
-    cuts.append('hww_%s' % pthBin)
+smH.sort(key = lambda name: int(re.match('smH_hww_[^_]+_(?:GE|GT|)([0-9]+)', name).group(1)))
+samples.sort()
+samples.extend(smH)
+cuts.sort()
 
 for sname in samples:
   if sname == 'DATA':
