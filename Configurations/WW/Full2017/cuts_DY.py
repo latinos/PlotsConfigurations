@@ -3,6 +3,7 @@
 
 _tmp = [ 
      'ptll>30',
+     'mll>20',
      'Lepton_pt[0]>25.',
      'Lepton_pt[1]>20.',
      '(nLepton>=2 && Alt$(Lepton_pt[2],0)<10.)',
