@@ -34,6 +34,8 @@ cuts['monoH_MVA_em'] = 'njet >= 0 \
             && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.5884 ) \
             && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.5884 ) \
 '
+<<<<<<< HEAD
+=======
 cuts['monoH_MVA_em_pm']  = 'njet >= 0 \
                && std_vector_lepton_flavour[0] == 11 \
                && mth > 40 \
@@ -98,6 +100,7 @@ cuts['monoH_MVA_me_mp']  = 'njet >= 0 \
                && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.5884 ) \
                && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.5884 ) \
                '
+>>>>>>> 3849cb41e4046ce4fd0345b02bde5ec3145593f2
 # DY->tt Control Region
 cuts['monoH_MVA_DYtt_em'] = 'njet >= 0 \
             && mth < 40 \
@@ -141,7 +144,11 @@ cuts['monoH_MVA_Top_em'] = 'njet >= 0 \
 # 0-Jets Bin Analysis
 #####################
 
+<<<<<<< HEAD
+# Signal Region
+=======
 # Signal Regions
+>>>>>>> 3849cb41e4046ce4fd0345b02bde5ec3145593f2
 cuts['monoH_0Jet_em'] = 'std_vector_jet_pt[0] < 30 \
             && mth > 40 \
             && mll < 76 \
@@ -157,6 +164,8 @@ cuts['monoH_0Jet_em'] = 'std_vector_jet_pt[0] < 30 \
             && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.5884 ) \
             && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.5884 ) \
 '
+<<<<<<< HEAD
+=======
 cuts['monoH_0Jet_em_pm']  = 'std_vector_jet_pt[0] < 30 \
                && std_vector_lepton_flavour[0] == 11 \
                && mth > 40 \
@@ -221,6 +230,7 @@ cuts['monoH_0Jet_me_mp']  = 'std_vector_jet_pt[0] < 30 \
                && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.5884 ) \
                && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.5884 ) \
                '
+>>>>>>> 3849cb41e4046ce4fd0345b02bde5ec3145593f2
 # DY->tt Control Region
 cuts['monoH_0Jet_DYtt_em'] = 'std_vector_jet_pt[0] < 30 \
             && mth < 40 \
@@ -281,6 +291,8 @@ cuts['monoH_1Jet_em'] = 'std_vector_jet_pt[1] < 30 \
             && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.5884 ) \
             && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.5884 ) \
 '
+<<<<<<< HEAD
+=======
 cuts['monoH_1Jet_em_pm']  = 'std_vector_jet_pt[1] < 30 \
                && std_vector_lepton_flavour[0] == 11 \
                && mth > 40 \
@@ -345,6 +357,7 @@ cuts['monoH_1Jet_me_mp']  = 'std_vector_jet_pt[1] < 30 \
                && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.5884 ) \
                && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.5884 ) \
                '
+>>>>>>> 3849cb41e4046ce4fd0345b02bde5ec3145593f2
 # DY->tt Control Region
 cuts['monoH_1Jet_DYtt_em'] = 'std_vector_jet_pt[1] < 30 \
             && std_vector_jet_pt[0] >= 30 \
@@ -407,6 +420,8 @@ cuts['monoH_2Jet_em'] = 'std_vector_jet_pt[1] >= 30 \
             && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.5884 ) \
             && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.5884 ) \
 '
+<<<<<<< HEAD
+=======
 cuts['monoH_2Jet_em_pm']  = 'std_vector_jet_pt[1] >= 30 \
                && std_vector_lepton_flavour[0] == 11 \
                && mth > 40 \
@@ -471,6 +486,7 @@ cuts['monoH_2Jet_me_mp']  = 'std_vector_jet_pt[1] >= 30 \
                && ( std_vector_jet_pt[8] < 20 || std_vector_jet_cmvav2[8] < -0.5884 ) \
                && ( std_vector_jet_pt[9] < 20 || std_vector_jet_cmvav2[9] < -0.5884 ) \
                '
+>>>>>>> 3849cb41e4046ce4fd0345b02bde5ec3145593f2
 # DY->tt Control Region
 cuts['monoH_2Jet_DYtt_em'] = 'std_vector_jet_pt[1] >= 30 \
             && mth < 40 \
@@ -514,3 +530,7 @@ cuts['monoH_2Jet_Top_em'] = 'std_vector_jet_pt[1] >= 30 \
 # 11 = e
 # 13 = mu
 # 15 = tau
+<<<<<<< HEAD
+
+=======
+>>>>>>> 3849cb41e4046ce4fd0345b02bde5ec3145593f2
