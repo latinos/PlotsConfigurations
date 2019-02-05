@@ -913,9 +913,12 @@ void putEverythingTogether(TString model = "2HDM",
   TGraph* Obs   = (TGraph*) lineFile->Get("grObs");
 
   Exp   -> SetLineWidth(4);
-  ExpUp -> SetLineWidth(1);
-  ExpDo -> SetLineWidth(1);
+  ExpUp -> SetLineWidth(4);
+  ExpDo -> SetLineWidth(4);
   Obs   -> SetLineWidth(4);
+
+  ExpUp -> SetLineStyle(3);
+  ExpDo -> SetLineStyle(3);
 
   Obs -> SetLineColor(kRed);
   //  Exp -> SetLineStyle(9);
@@ -924,14 +927,18 @@ void putEverythingTogether(TString model = "2HDM",
   c1->cd();
 
   TPad* pad1 = new TPad("pad1","pad1",0.,0.,1.,1.);
+  pad1->SetTopMargin(0.10);
   pad1->SetLeftMargin(0.15);
   pad1->SetRightMargin(0.15);
   pad1->SetBottomMargin(0.12);
+  pad1->SetTicks();
   pad1->Draw();
   pad1->cd();
 
   map->GetXaxis()->SetTitleSize(0.05);
   map->GetYaxis()->SetTitleSize(0.05);
+  map->GetYaxis()->SetTitleOffset(1.3);
+
   if (model == "2HDM"){
     map->GetXaxis()->SetRangeUser(600,1200);
     map->GetYaxis()->SetRangeUser(305,500);
@@ -963,7 +970,7 @@ void putEverythingTogether(TString model = "2HDM",
   TString heather = "";
   if (model == "2HDM") heather = "Z'-2HDM, Z' #rightarrow DM + h(WW)";
   else if (model == "Zbar") heather = "Z' Baryonic, Z' #rightarrow DM + h(WW)";
-  TLegend* l1 = new TLegend(0.5,0.74,0.84,0.89);
+  TLegend* l1 = new TLegend(0.48,0.74,0.82,0.88);
   gStyle -> SetLegendTextSize(0.025);
   l1 -> SetHeader(heather);
   l1 -> SetLineColor(kWhite);
@@ -972,51 +979,61 @@ void putEverythingTogether(TString model = "2HDM",
   l1 -> AddEntry(ExpUp,"#pm 1 std. dev.","l");
   //l1 -> AddEntry(ExpDo,"Expected, 1 #sigma down","l");
 
-  TLatex* tl = new TLatex(0.15,0.94,"CMS");// preliminary");
+  //TLatex* tl = new TLatex(0.15,0.92,"CMS");// preliminary");
+  TLatex* tl = new TLatex(0.18,0.84,"CMS");// preliminary");
   tl->SetNDC();
   tl->SetTextFont(61);
   tl->SetTextSize(0.05);
-  TLatex* tl2 = new TLatex(0.59,0.94,"35.9 fb^{-1} (13 TeV)");
+
+  TLatex* tl2 = new TLatex(0.59,0.92,"35.9 fb^{-1} (13 TeV)");
   tl2->SetNDC();
   tl2->SetTextFont(42);
   tl2->SetTextSize(0.040);
   tl2->SetTextSize(0.045);
 
   // Z'-2HDM
-  TLatex* tl3 = new TLatex(0.2,0.85,"Z'-2HDM, Dirac DM");
+  TLatex* tl3 = new TLatex(0.18,0.80,"Z'-2HDM, Dirac DM");
   tl3->SetNDC();
   tl3->SetTextFont(42);
   tl3->SetTextSize(0.03);
-  TLatex* tl4 = new TLatex(0.2,0.81,"g_{Z'} = 0.8, g_{#chi} = 1");
+  TLatex* tl4 = new TLatex(0.18,0.76,"g_{Z'} = 0.8, g_{#chi} = 1");
   tl4->SetNDC();
   tl4->SetTextFont(42);
   tl4->SetTextSize(0.03);
-  TLatex* tl5 = new TLatex(0.2,0.77,"m_{#chi} = 100 GeV");
+  TLatex* tl5 = new TLatex(0.18,0.72,"m_{#chi} = 100 GeV");
   tl5->SetNDC();
   tl5->SetTextFont(42);
   tl5->SetTextSize(0.03);
-  TLatex* tl6 = new TLatex(0.2,0.73,"tan#beta = 1");
+  TLatex* tl6 = new TLatex(0.18,0.68,"tan#beta = 1");
   tl6->SetNDC();
   tl6->SetTextFont(42);
   tl6->SetTextSize(0.03);
-  TLatex* tl7 = new TLatex(0.2,0.69,"m_{A} = m_{H^{#pm}} = m_{H}");
+  TLatex* tl7 = new TLatex(0.18,0.64,"m_{A} = m_{H^{#pm}} = m_{H}");
   tl7->SetNDC();
   tl7->SetTextFont(42);
   tl7->SetTextSize(0.03);
 
   // Baryonic Z'
-  TLatex* tl8 = new TLatex(0.2,0.85,"Baryonic Z'");
+  TLatex* tl8 = new TLatex(0.18,0.80,"Baryonic Z'");
   tl8->SetNDC();
   tl8->SetTextFont(42);
   tl8->SetTextSize(0.03);
-  TLatex* tl9 = new TLatex(0.2,0.81,"Dirac DM");
+  TLatex* tl9 = new TLatex(0.18,0.76,"Dirac DM");
   tl9->SetNDC();
   tl9->SetTextFont(42);
   tl9->SetTextSize(0.03);
-  TLatex* tl10 = new TLatex(0.2,0.77,"g_{q} = 0.25, g_{#chi} = 1");
+  TLatex* tl10 = new TLatex(0.18,0.72,"g_{q} = 0.25, g_{#chi} = 1");
   tl10->SetNDC();
   tl10->SetTextFont(42);
   tl10->SetTextSize(0.03);
+
+  TLatex* tex2 = new TLatex(0.95,0.90,"#sigma/#sigma_{theory}");
+  tex2->SetNDC();
+  tex2->SetTextFont(42);
+  tex2->SetLineWidth(2);
+  tex2->SetTextSize(0.04);
+  tex2->SetTextAngle(90);
+  tex2->SetTextAlign(33);
 
   // if (model == "2HDM"){
   //   map -> GetYaxis() -> SetRangeUser(300,700);
@@ -1037,6 +1054,7 @@ void putEverythingTogether(TString model = "2HDM",
   l1   ->Draw("same");
   tl   ->Draw("same");
   tl2  ->Draw("same");
+  tex2 ->Draw("same");
 
   // Z'-2HDM
   if (model == "2HDM"){
@@ -1046,6 +1064,7 @@ void putEverythingTogether(TString model = "2HDM",
     tl6  ->Draw("same");
     tl7  ->Draw("same");
   }
+  // Baryonic Z'
   if (model == "Zbar"){
     tl8  ->Draw("same");
     tl9  ->Draw("same");
