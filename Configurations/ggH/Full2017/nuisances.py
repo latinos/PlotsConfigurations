@@ -124,29 +124,29 @@ nuisances['btag_shape_jes']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
-                   'WW'      : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
-                   'ggWW'    : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
-                   'VVV'     : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
-                   'VZ'      : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
-                   'WZgS'    : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
-                   'WZgS_L'  : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
-                   'WZgS_H'  : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
-                   'top'     : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
-                   'Vg'      : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
-                   'VgS'     : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
-                   'ggH_hww' : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
-                   'qqH_hww' : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
-                   'WH_hww'  : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
-                   'ZH_hww'  : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
-                   'ggZH_hww': ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
-                   'H_htt'   : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
-                   'bbH_hww' : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
-                   'ttH_hww' : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
-                   'ggH_htt' : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],  
-                   'qqH_htt' : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
-                   'ZH_htt'  : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
-                   'WH_htt'  : ['('+btagSF+'_up_jes)/('+btagSF+')', '('+btagSF+'_down_jes)/('+btagSF+')'],
+                   'DY'      : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
+                   'WW'      : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
+                   'ggWW'    : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
+                   'VVV'     : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
+                   'VZ'      : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
+                   'WZgS'    : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
+                   'WZgS_L'  : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
+                   'WZgS_H'  : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
+                   'top'     : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
+                   'Vg'      : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
+                   'VgS'     : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
+                   'ggH_hww' : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
+                   'qqH_hww' : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
+                   'WH_hww'  : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
+                   'ZH_hww'  : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
+                   'ggZH_hww': ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
+                   'H_htt'   : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
+                   'bbH_hww' : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
+                   'ttH_hww' : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
+                   'ggH_htt' : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
+                   'qqH_htt' : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
+                   'ZH_htt'  : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
+                   'WH_htt'  : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
                 }
 }
 
@@ -155,29 +155,29 @@ nuisances['btag_shape_lf']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
-                   'VVV'     : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
-                   'VZ'      : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
-                   'WZgS'    : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
-                   'WZgS_L'  : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
-                   'WZgS_H'  : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
-                   'WW'      : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
-                   'ggWW'    : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
-                   'top'     : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
-                   'Vg'      : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
-                   'VgS'     : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
-                   'ggH_hww' : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
-                   'qqH_hww' : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
-                   'WH_hww'  : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
-                   'ZH_hww'  : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
-                   'ggZH_hww': ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
-                   'bbH_hww' : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
-                   'ttH_hww' : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
-                   'H_htt'   : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
-                   'ggH_htt' : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
-                   'qqH_htt' : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
-                   'ZH_htt'  : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
-                   'WH_htt'  : ['('+btagSF+'_up_lf)/('+btagSF+')', '('+btagSF+'_down_lf)/('+btagSF+')'],
+                   'DY'      : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
+                   'VVV'     : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
+                   'VZ'      : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
+                   'WZgS'    : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
+                   'WZgS_L'  : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
+                   'WZgS_H'  : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
+                   'WW'      : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
+                   'ggWW'    : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
+                   'top'     : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
+                   'Vg'      : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
+                   'VgS'     : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
+                   'ggH_hww' : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
+                   'qqH_hww' : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
+                   'WH_hww'  : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
+                   'ZH_hww'  : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
+                   'ggZH_hww': ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
+                   'bbH_hww' : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
+                   'ttH_hww' : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
+                   'H_htt'   : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
+                   'ggH_htt' : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
+                   'qqH_htt' : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
+                   'ZH_htt'  : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
+                   'WH_htt'  : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
                 }
 }
 
@@ -186,29 +186,29 @@ nuisances['btag_shape_hf']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
-                   'VVV'     : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
-                   'VZ'      : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
-                   'WZgS'    : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
-                   'WZgS_L'  : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
-                   'WZgS_H'  : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
-                   'WW'      : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
-                   'ggWW'    : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
-                   'top'     : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
-                   'Vg'      : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
-                   'VgS'     : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
-                   'ggH_hww' : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
-                   'qqH_hww' : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
-                   'WH_hww'  : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
-                   'ZH_hww'  : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
-                   'ggZH_hww': ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
-                   'bbH_hww' : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
-                   'ttH_hww' : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
-                   'H_htt'   : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
-                   'ggH_htt' : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
-                   'qqH_htt' : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
-                   'ZH_htt'  : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
-                   'WH_htt'  : ['('+btagSF+'_up_hf)/('+btagSF+')', '('+btagSF+'_down_hf)/('+btagSF+')'],
+                   'DY'      : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
+                   'VVV'     : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
+                   'VZ'      : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
+                   'WZgS'    : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
+                   'WZgS_L'  : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
+                   'WZgS_H'  : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
+                   'WW'      : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
+                   'ggWW'    : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
+                   'top'     : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
+                   'Vg'      : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
+                   'VgS'     : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
+                   'ggH_hww' : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
+                   'qqH_hww' : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
+                   'WH_hww'  : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
+                   'ZH_hww'  : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
+                   'ggZH_hww': ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
+                   'bbH_hww' : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
+                   'ttH_hww' : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
+                   'H_htt'   : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
+                   'ggH_htt' : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
+                   'qqH_htt' : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
+                   'ZH_htt'  : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
+                   'WH_htt'  : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
                 }
 }
 
@@ -217,29 +217,29 @@ nuisances['btag_shape_hfstats1']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
-                   'VVV'     : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
-                   'VZ'      : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
-                   'WZgS'    : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
-                   'WZgS_L'  : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
-                   'WZgS_H'  : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
-                   'WW'      : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
-                   'ggWW'    : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
-                   'top'     : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
-                   'Vg'      : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
-                   'VgS'     : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
-                   'ggH_hww' : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
-                   'qqH_hww' : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
-                   'WH_hww'  : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
-                   'ZH_hww'  : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
-                   'ggZH_hww': ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
-                   'bbH_hww' : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
-                   'ttH_hww' : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
-                   'H_htt'   : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
-                   'ggH_htt' : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
-                   'qqH_htt' : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
-                   'ZH_htt'  : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
-                   'WH_htt'  : ['('+btagSF+'_up_hfstats1)/('+btagSF+')', '('+btagSF+'_down_hfstats1)/('+btagSF+')'],
+                   'DY'      : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
+                   'VVV'     : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
+                   'VZ'      : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
+                   'WZgS'    : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
+                   'WZgS_L'  : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
+                   'WZgS_H'  : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
+                   'WW'      : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
+                   'ggWW'    : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
+                   'top'     : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
+                   'Vg'      : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
+                   'VgS'     : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
+                   'ggH_hww' : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
+                   'qqH_hww' : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
+                   'WH_hww'  : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
+                   'ZH_hww'  : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
+                   'ggZH_hww': ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
+                   'bbH_hww' : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
+                   'ttH_hww' : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
+                   'H_htt'   : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
+                   'ggH_htt' : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
+                   'qqH_htt' : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
+                   'ZH_htt'  : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
+                   'WH_htt'  : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
                 }
 }
 
@@ -248,29 +248,29 @@ nuisances['btag_shape_hfstats2']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
-                   'VVV'     : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
-                   'VZ'      : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
-                   'WZgS'    : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
-                   'WZgS_L'  : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
-                   'WZgS_H'  : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
-                   'WW'      : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
-                   'ggWW'    : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
-                   'top'     : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
-                   'Vg'      : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
-                   'VgS'     : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
-                   'ggH_hww' : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
-                   'qqH_hww' : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
-                   'WH_hww'  : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
-                   'ZH_hww'  : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
-                   'ggZH_hww': ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
-                   'bbH_hww' : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
-                   'ttH_hww' : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
-                   'H_htt'   : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
-                   'ggH_htt' : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
-                   'qqH_htt' : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
-                   'ZH_htt'  : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
-                   'WH_htt'  : ['('+btagSF+'_up_hfstats2)/('+btagSF+')', '('+btagSF+'_down_hfstats2)/('+btagSF+')'],
+                   'DY'      : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
+                   'VVV'     : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
+                   'VZ'      : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
+                   'WZgS'    : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
+                   'WZgS_L'  : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
+                   'WZgS_H'  : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
+                   'WW'      : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
+                   'ggWW'    : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
+                   'top'     : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
+                   'Vg'      : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
+                   'VgS'     : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
+                   'ggH_hww' : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
+                   'qqH_hww' : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
+                   'WH_hww'  : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
+                   'ZH_hww'  : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
+                   'ggZH_hww': ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
+                   'bbH_hww' : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
+                   'ttH_hww' : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
+                   'H_htt'   : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
+                   'ggH_htt' : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
+                   'qqH_htt' : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
+                   'ZH_htt'  : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
+                   'WH_htt'  : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
                 }
 }
 
@@ -279,29 +279,29 @@ nuisances['btag_shape_lfstats1']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
-                   'VVV'     : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
-                   'VZ'      : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
-                   'WZgS'    : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
-                   'WZgS_L'  : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
-                   'WZgS_H'  : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
-                   'WW'      : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
-                   'ggWW'    : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
-                   'top'     : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
-                   'Vg'      : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
-                   'VgS'     : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
-                   'ggH_hww' : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
-                   'qqH_hww' : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
-                   'WH_hww'  : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
-                   'ZH_hww'  : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
-                   'ggZH_hww': ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
-                   'bbH_hww' : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
-                   'ttH_hww' : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
-                   'H_htt'   : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
-                   'ggH_htt' : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
-                   'qqH_htt' : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
-                   'ZH_htt'  : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
-                   'WH_htt'  : ['('+btagSF+'_up_lfstats1)/('+btagSF+')', '('+btagSF+'_down_lfstats1)/('+btagSF+')'],
+                   'DY'      : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
+                   'VVV'     : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
+                   'VZ'      : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
+                   'WZgS'    : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
+                   'WZgS_L'  : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
+                   'WZgS_H'  : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
+                   'WW'      : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
+                   'ggWW'    : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
+                   'top'     : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
+                   'Vg'      : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
+                   'VgS'     : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
+                   'ggH_hww' : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
+                   'qqH_hww' : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
+                   'WH_hww'  : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
+                   'ZH_hww'  : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
+                   'ggZH_hww': ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
+                   'bbH_hww' : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
+                   'ttH_hww' : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
+                   'H_htt'   : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
+                   'ggH_htt' : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
+                   'qqH_htt' : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
+                   'ZH_htt'  : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
+                   'WH_htt'  : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
                 }
 }
 
@@ -310,29 +310,29 @@ nuisances['btag_shape_lfstats2']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
-                   'VVV'     : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
-                   'VZ'      : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
-                   'WZgS'    : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
-                   'WZgS_L'  : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
-                   'WZgS_H'  : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
-                   'WW'      : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
-                   'ggWW'    : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
-                   'top'     : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
-                   'Vg'      : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
-                   'VgS'     : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
-                   'ggH_hww' : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
-                   'qqH_hww' : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
-                   'WH_hww'  : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
-                   'ZH_hww'  : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
-                   'ggZH_hww': ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
-                   'bbH_hww' : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
-                   'ttH_hww' : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
-                   'H_htt'   : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
-                   'ggH_htt' : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
-                   'qqH_htt' : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
-                   'ZH_htt'  : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
-                   'WH_htt'  : ['('+btagSF+'_up_lfstats2)/('+btagSF+')', '('+btagSF+'_down_lfstats2)/('+btagSF+')'],
+                   'DY'      : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
+                   'VVV'     : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
+                   'VZ'      : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
+                   'WZgS'    : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
+                   'WZgS_L'  : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
+                   'WZgS_H'  : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
+                   'WW'      : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
+                   'ggWW'    : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
+                   'top'     : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
+                   'Vg'      : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
+                   'VgS'     : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
+                   'ggH_hww' : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
+                   'qqH_hww' : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
+                   'WH_hww'  : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
+                   'ZH_hww'  : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
+                   'ggZH_hww': ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
+                   'bbH_hww' : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
+                   'ttH_hww' : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
+                   'H_htt'   : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
+                   'ggH_htt' : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
+                   'qqH_htt' : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
+                   'ZH_htt'  : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
+                   'WH_htt'  : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
                 }
 }
 
@@ -341,29 +341,29 @@ nuisances['btag_shape_cferr1']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
-                   'VVV'     : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
-                   'VZ'      : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
-                   'WZgS'    : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
-                   'WZgS_L'  : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
-                   'WZgS_H'  : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
-                   'WW'      : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
-                   'ggWW'    : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
-                   'top'     : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
-                   'Vg'      : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
-                   'VgS'     : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
-                   'ggH_hww' : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
-                   'qqH_hww' : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
-                   'WH_hww'  : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
-                   'ZH_hww'  : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
-                   'ggZH_hww': ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
-                   'bbH_hww' : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
-                   'ttH_hww' : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
-                   'H_htt'   : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
-                   'ggH_htt' : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
-                   'qqH_htt' : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
-                   'ZH_htt'  : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
-                   'WH_htt'  : ['('+btagSF+'_up_cferr1)/('+btagSF+')', '('+btagSF+'_down_cferr1)/('+btagSF+')'],
+                   'DY'      : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
+                   'VVV'     : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
+                   'VZ'      : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
+                   'WZgS'    : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
+                   'WZgS_L'  : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
+                   'WZgS_H'  : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
+                   'WW'      : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
+                   'ggWW'    : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
+                   'top'     : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
+                   'Vg'      : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
+                   'VgS'     : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
+                   'ggH_hww' : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
+                   'qqH_hww' : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
+                   'WH_hww'  : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
+                   'ZH_hww'  : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
+                   'ggZH_hww': ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
+                   'bbH_hww' : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
+                   'ttH_hww' : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
+                   'H_htt'   : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
+                   'ggH_htt' : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
+                   'qqH_htt' : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
+                   'ZH_htt'  : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
+                   'WH_htt'  : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
                 }
 }
 
@@ -372,35 +372,35 @@ nuisances['btag_shape_cferr2']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                   'DY'      : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
-                   'VVV'     : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
-                   'VZ'      : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
-                   'WZgS'    : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
-                   'WZgS_L'  : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
-                   'WZgS_H'  : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
-                   'WW'      : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
-                   'ggWW'    : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
-                   'top'     : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
-                   'Vg'      : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
-                   'VgS'     : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
-                   'ggH_hww' : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
-                   'qqH_hww' : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
-                   'WH_hww'  : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
-                   'ZH_hww'  : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
-                   'ggZH_hww': ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
-                   'bbH_hww' : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
-                   'ttH_hww' : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
-                   'H_htt'   : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
-                   'ggH_htt' : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
-                   'qqH_htt' : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
-                   'ZH_htt'  : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
-                   'WH_htt'  : ['('+btagSF+'_up_cferr2)/('+btagSF+')', '('+btagSF+'_down_cferr2)/('+btagSF+')'],
+                   'DY'      : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
+                   'VVV'     : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
+                   'VZ'      : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
+                   'WZgS'    : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
+                   'WZgS_L'  : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
+                   'WZgS_H'  : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
+                   'WW'      : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
+                   'ggWW'    : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
+                   'top'     : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
+                   'Vg'      : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
+                   'VgS'     : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
+                   'ggH_hww' : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
+                   'qqH_hww' : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
+                   'WH_hww'  : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
+                   'ZH_hww'  : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
+                   'ggZH_hww': ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
+                   'bbH_hww' : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
+                   'ttH_hww' : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
+                   'H_htt'   : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
+                   'ggH_htt' : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
+                   'qqH_htt' : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
+                   'ZH_htt'  : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
+                   'WH_htt'  : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
                 }
 }
 
 ##### Trigger Efficiency
 
-trig_syst = ['(TriggerEffWeight_'+Nlep+'l_u)/(TriggerEffWeight_'+Nlep+'l)', '(TriggerEffWeight_'+Nlep+'l_d)/(TriggerEffWeight_'+Nlep+'l)']
+trig_syst = ['((TriggerEffWeight_'+Nlep+'l_u)/(TriggerEffWeight_'+Nlep+'l))*(TriggerEffWeight_'+Nlep+'l>0.02) + (TriggerEffWeight_'+Nlep+'l<=0.02)', '(TriggerEffWeight_'+Nlep+'l_d)/(TriggerEffWeight_'+Nlep+'l)']
 
 nuisances['trigg']  = {
                 'name'  : 'hww_trigger',
@@ -1096,145 +1096,177 @@ nuisances['QCDscale_ggWW']  = {
               }
 
 #  - WW shaping
-#FIXME: nll weights are not in the trees??
-#nuisances['WWresum0j']  = {
-#                'name'  : 'WWresum0j',
-#                'skipCMS' : 1,
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
-#                   },
-#               'cuts'  : [
-#                 'hww2l2v_13TeV_of0j',
-#                 'hww2l2v_13TeV_top_of0j',
-#                 'hww2l2v_13TeV_dytt_of0j',
-##                 
-#                 'hww2l2v_13TeV_me_0j',
-#                 'hww2l2v_13TeV_em_0j',
-##
-#                 'hww2l2v_13TeV_me_mp_0j',
-#                 'hww2l2v_13TeV_me_pm_0j',
-#                 'hww2l2v_13TeV_em_mp_0j',
-#                 'hww2l2v_13TeV_em_pm_0j',
-##                
-#		 'hww2l2v_13TeV_em_pm_0j_pt2ge20',
-#                 'hww2l2v_13TeV_em_mp_0j_pt2ge20',
-#                 'hww2l2v_13TeV_me_pm_0j_pt2ge20',
-#                 'hww2l2v_13TeV_me_mp_0j_pt2ge20',
-##
-#                 'hww2l2v_13TeV_em_pm_0j_pt2lt20',
-#                 'hww2l2v_13TeV_em_mp_0j_pt2lt20',
-#                 'hww2l2v_13TeV_me_pm_0j_pt2lt20',
-#                 'hww2l2v_13TeV_me_mp_0j_pt2lt20',
-##
-#                ]               
+nuisances['WWresum0j']  = {
+                'name'  : 'WWresum0j',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+                   },
+               'cuts'  : [
+                 'hww2l2v_13TeV_of0j',
+                 'hww2l2v_13TeV_top_of0j',
+                 'hww2l2v_13TeV_dytt_of0j',
+#                 
+                 'hww2l2v_13TeV_me_0j',
+                 'hww2l2v_13TeV_em_0j',
+#
+                 'hww2l2v_13TeV_me_mp_0j',
+                 'hww2l2v_13TeV_me_pm_0j',
+                 'hww2l2v_13TeV_em_mp_0j',
+                 'hww2l2v_13TeV_em_pm_0j',
 #                
-#                }
+		 'hww2l2v_13TeV_em_pm_0j_pt2ge20',
+                 'hww2l2v_13TeV_em_mp_0j_pt2ge20',
+                 'hww2l2v_13TeV_me_pm_0j_pt2ge20',
+                 'hww2l2v_13TeV_me_mp_0j_pt2ge20',
 #
+                 'hww2l2v_13TeV_em_pm_0j_pt2lt20',
+                 'hww2l2v_13TeV_em_mp_0j_pt2lt20',
+                 'hww2l2v_13TeV_me_pm_0j_pt2lt20',
+                 'hww2l2v_13TeV_me_mp_0j_pt2lt20',
 #
-#nuisances['WWresum1j']  = {
-#                'name'  : 'WWresum1j',
-#                'skipCMS' : 1,
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
-#                   },
-#               'cuts'  : [
-#                 'hww2l2v_13TeV_of1j',
-#                 'hww2l2v_13TeV_top_of1j',
-#                 'hww2l2v_13TeV_dytt_of1j',
-##                 
-#                 'hww2l2v_13TeV_me_1j',
-#                 'hww2l2v_13TeV_em_1j',
-##
-#                 'hww2l2v_13TeV_me_mp_1j',
-#                 'hww2l2v_13TeV_me_pm_1j',
-#                 'hww2l2v_13TeV_em_mp_1j',
-#                 'hww2l2v_13TeV_em_pm_1j',
-##               
-#                 'hww2l2v_13TeV_em_pm_1j_pt2ge20',
-#                 'hww2l2v_13TeV_em_mp_1j_pt2ge20',
-#                 'hww2l2v_13TeV_me_pm_1j_pt2ge20',
-#                 'hww2l2v_13TeV_me_mp_1j_pt2ge20',
-##
-#                 'hww2l2v_13TeV_em_pm_1j_pt2lt20',
-#                 'hww2l2v_13TeV_em_mp_1j_pt2lt20',
-#                 'hww2l2v_13TeV_me_pm_1j_pt2lt20',
-#                 'hww2l2v_13TeV_me_mp_1j_pt2lt20',
-##
-#                ]               
-#                }
+                ]               
+                
+                }
+
+
+nuisances['WWresum1j']  = {
+                'name'  : 'WWresum1j',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+                   },
+               'cuts'  : [
+                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_top_of1j',
+                 'hww2l2v_13TeV_dytt_of1j',
+#                 
+                 'hww2l2v_13TeV_me_1j',
+                 'hww2l2v_13TeV_em_1j',
 #
-#nuisances['WWqscale0j']  = {
-#                'name'  : 'WWqscale0j',
-#                'skipCMS' : 1,
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
-#                   },
-#               'cuts'  : [
-#                 'hww2l2v_13TeV_of0j',
-#                 'hww2l2v_13TeV_top_of0j',
-#                 'hww2l2v_13TeV_dytt_of0j',
-##                 
-#                 'hww2l2v_13TeV_me_0j',
-#                 'hww2l2v_13TeV_em_0j',
-##
-#                 'hww2l2v_13TeV_me_mp_0j',
-#                 'hww2l2v_13TeV_me_pm_0j',
-#                 'hww2l2v_13TeV_em_mp_0j',
-#                 'hww2l2v_13TeV_em_pm_0j',
-##               
-#                 'hww2l2v_13TeV_em_pm_0j_pt2ge20',
-#                 'hww2l2v_13TeV_em_mp_0j_pt2ge20',
-#                 'hww2l2v_13TeV_me_pm_0j_pt2ge20',
-#                 'hww2l2v_13TeV_me_mp_0j_pt2ge20',
-##                
-#                 'hww2l2v_13TeV_em_pm_0j_pt2lt20',
-#                 'hww2l2v_13TeV_em_mp_0j_pt2lt20',
-#                 'hww2l2v_13TeV_me_pm_0j_pt2lt20',
-#                 'hww2l2v_13TeV_me_mp_0j_pt2lt20',
-##  
-#                ] 
-#                }
+                 'hww2l2v_13TeV_me_mp_1j',
+                 'hww2l2v_13TeV_me_pm_1j',
+                 'hww2l2v_13TeV_em_mp_1j',
+                 'hww2l2v_13TeV_em_pm_1j',
+#               
+                 'hww2l2v_13TeV_em_pm_1j_pt2ge20',
+                 'hww2l2v_13TeV_em_mp_1j_pt2ge20',
+                 'hww2l2v_13TeV_me_pm_1j_pt2ge20',
+                 'hww2l2v_13TeV_me_mp_1j_pt2ge20',
 #
+                 'hww2l2v_13TeV_em_pm_1j_pt2lt20',
+                 'hww2l2v_13TeV_em_mp_1j_pt2lt20',
+                 'hww2l2v_13TeV_me_pm_1j_pt2lt20',
+                 'hww2l2v_13TeV_me_mp_1j_pt2lt20',
 #
-#nuisances['WWqscale1j']  = {
-#                'name'  : 'WWqscale1j',
-#                'skipCMS' : 1,
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
-#                   },
-#               'cuts'  : [
-#                 'hww2l2v_13TeV_of1j',
-#                 'hww2l2v_13TeV_top_of1j',
-#                 'hww2l2v_13TeV_dytt_of1j',
-##                 
-#                 'hww2l2v_13TeV_me_1j',
-#                 'hww2l2v_13TeV_em_1j',
-##
-#                 'hww2l2v_13TeV_me_mp_1j',
-#                 'hww2l2v_13TeV_me_pm_1j',
-#                 'hww2l2v_13TeV_em_mp_1j',
-#                 'hww2l2v_13TeV_em_pm_1j',
-##
-#                 'hww2l2v_13TeV_em_pm_1j_pt2ge20',
-#                 'hww2l2v_13TeV_em_mp_1j_pt2ge20',
-#                 'hww2l2v_13TeV_me_pm_1j_pt2ge20',
-#                 'hww2l2v_13TeV_me_mp_1j_pt2ge20',
-##
-#                 'hww2l2v_13TeV_em_pm_1j_pt2lt20',
-#                 'hww2l2v_13TeV_em_mp_1j_pt2lt20',
-#                 'hww2l2v_13TeV_me_pm_1j_pt2lt20',
-#                 'hww2l2v_13TeV_me_mp_1j_pt2lt20',
-##                 
-#                ] 
-#                }
+                ]               
+                }
+
+nuisances['WWqscale0j']  = {
+                'name'  : 'WWqscale0j',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+                   },
+               'cuts'  : [
+                 'hww2l2v_13TeV_of0j',
+                 'hww2l2v_13TeV_top_of0j',
+                 'hww2l2v_13TeV_dytt_of0j',
+#                 
+                 'hww2l2v_13TeV_me_0j',
+                 'hww2l2v_13TeV_em_0j',
+#
+                 'hww2l2v_13TeV_me_mp_0j',
+                 'hww2l2v_13TeV_me_pm_0j',
+                 'hww2l2v_13TeV_em_mp_0j',
+                 'hww2l2v_13TeV_em_pm_0j',
+#               
+                 'hww2l2v_13TeV_em_pm_0j_pt2ge20',
+                 'hww2l2v_13TeV_em_mp_0j_pt2ge20',
+                 'hww2l2v_13TeV_me_pm_0j_pt2ge20',
+                 'hww2l2v_13TeV_me_mp_0j_pt2ge20',
+#                
+                 'hww2l2v_13TeV_em_pm_0j_pt2lt20',
+                 'hww2l2v_13TeV_em_mp_0j_pt2lt20',
+                 'hww2l2v_13TeV_me_pm_0j_pt2lt20',
+                 'hww2l2v_13TeV_me_mp_0j_pt2lt20',
+#  
+                ] 
+                }
+
+
+nuisances['WWqscale1j']  = {
+                'name'  : 'WWqscale1j',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+                   },
+               'cuts'  : [
+                 'hww2l2v_13TeV_of1j',
+                 'hww2l2v_13TeV_top_of1j',
+                 'hww2l2v_13TeV_dytt_of1j',
+#                 
+                 'hww2l2v_13TeV_me_1j',
+                 'hww2l2v_13TeV_em_1j',
+#
+                 'hww2l2v_13TeV_me_mp_1j',
+                 'hww2l2v_13TeV_me_pm_1j',
+                 'hww2l2v_13TeV_em_mp_1j',
+                 'hww2l2v_13TeV_em_pm_1j',
+#
+                 'hww2l2v_13TeV_em_pm_1j_pt2ge20',
+                 'hww2l2v_13TeV_em_mp_1j_pt2ge20',
+                 'hww2l2v_13TeV_me_pm_1j_pt2ge20',
+                 'hww2l2v_13TeV_me_mp_1j_pt2ge20',
+#
+                 'hww2l2v_13TeV_em_pm_1j_pt2lt20',
+                 'hww2l2v_13TeV_em_mp_1j_pt2lt20',
+                 'hww2l2v_13TeV_me_pm_1j_pt2lt20',
+                 'hww2l2v_13TeV_me_mp_1j_pt2lt20',
+#                 
+                ] 
+                }
+
+nuisances['WWresum2j']  = {
+                'name'  : 'WWresum2j',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+                },
+               'cuts'  : [
+                 'hww2l2v_13TeV_of2j',
+                 'hww2l2v_13TeV_top_of2j',
+                 'hww2l2v_13TeV_dytt_of2j',
+                ]
+                }
+
+nuisances['WWqscale2j']  = {
+                'name'  : 'WWqscale2j',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+                },
+                'cuts'  : [
+                 'hww2l2v_13TeV_of2j',
+                 'hww2l2v_13TeV_top_of2j',
+                 'hww2l2v_13TeV_dytt_of2j',
+                ]
+                }
+
+
+
 
 nuisances['WgStarScale']  = {
                'name'  : 'CMS_hww_WgStarScale', 
@@ -1485,15 +1517,14 @@ nuisances['Topnorm2j']  = {
                 ]
               }
 
-
 nuisances['singleTopToTTbar']  = {
                 'name'  : 'singleTopToTTbar',
                 'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : { 
-                   'top'     : ['(( (topGenPt>0 && antitopGenPt<0) || (topGenPt<0 && antitopGenPt>0)  ) * 1.0816 + ( topGenPt>0 && antitopGenPt>0 ))',
-                                '(( (topGenPt>0 && antitopGenPt<0) || (topGenPt<0 && antitopGenPt>0)  ) * 0.9184 + ( topGenPt>0 && antitopGenPt>0 ))'],
+                   'top'     : ['(( (topGenPt>0 && antitopGenPt<=0) || (topGenPt<=0 && antitopGenPt>0)  ) * 1.0816 + ( topGenPt>0 && antitopGenPt>0 ))',
+                                '(( (topGenPt>0 && antitopGenPt<=0) || (topGenPt<=0 && antitopGenPt>0)  ) * 0.9184 + ( topGenPt>0 && antitopGenPt>0 ))'],
                 }
                 # tt = 17/18/19 depending on the sample/generator
                 # tW = 15/16

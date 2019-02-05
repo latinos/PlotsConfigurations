@@ -70,9 +70,19 @@ aliases['oneJet'] = {
     'expr': 'std_vector_jet_pt[0] >= 30. && std_vector_jet_pt[1] < 30.'
 }
 
+# ==2 jets with pt > 30 GeV
+aliases['twoJet'] = {
+    'expr': 'std_vector_jet_pt[1] >= 30. && std_vector_jet_pt[2] < 30.'
+}
+
+# ==3 jets with pt > 30 GeV
+aliases['threeJet'] = {
+    'expr': 'std_vector_jet_pt[2] >= 30. && std_vector_jet_pt[3] < 30.'
+}
+
 # >=2 jets with pt > 30 GeV
-aliases['manyJet'] = {
-    'expr': 'std_vector_jet_pt[1] >= 30.'
+aliases['manyJets'] = {
+    'expr': 'std_vector_jet_pt[3] >= 30.'
 }
 
 ## >=2 jets with pt > 30 GeV limiting to "ggh" configuration
@@ -370,11 +380,11 @@ aliases['genTrailingE13'] = {
 #    'samples': mc
 #}
 
-## Number of gen jets with pt > 30 GeV
-#aliases['nGenJet'] = {
-#    'expr': 'Sum$(std_vector_jetGen_pt > 30 && genJetClean)',
-#    'samples': mc
-#}
+# Number of gen jets with pt > 30 GeV
+aliases['nGenJet'] = {
+    'expr': 'Sum$(std_vector_jetGen_pt > 30 && genJetClean)',
+    'samples': mc
+}
 
 #aliases['nGenJetCapped'] = {
 #    'expr': 'nGenJet * (nGenJet < 3) + 2 * (nGenJet > 2)',

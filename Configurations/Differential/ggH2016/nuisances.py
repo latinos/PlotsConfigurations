@@ -12,31 +12,29 @@ import os
 # cuts
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
-dy = [skey for skey in samples if skey.startswith('DY')]
-top = [skey for skey in samples if skey.startswith('top')]
-signal = [skey for skey in samples if '_hww' in skey]
-ggh = [skey for skey in samples if skey.startswith('ggH_hww')]
-xh = [skey for skey in samples if skey.startswith('XH_hww')]
 
 topcr = [ckey for ckey in cuts if ckey.startswith('topcr')]
 dycr = [ckey for ckey in cuts if ckey.startswith('dycr')]
 sr = [ckey for ckey in cuts if ckey.startswith('sr')]
 
+from LatinoAnalysis.Tools.HiggsXSection import *
+HiggsXS = HiggsXSection()
+
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
 #### Luminosity
 
-# DY, top, and WW are data driven, no need to include the luminosity uncertainty
+# Will be dropped from DY, top, and WW but that's taken care of in datacard generation
 nuisances['lumi'] = {
-  'name': 'lumi_13TeV',
+  'name': 'lumi_2016',
   'type': 'lnN',
-  'samples': dict((skey, '1.025') for skey in list(set(mc) - set(dy) - set(top) - set(signal)))
+  'samples': dict((skey, '1.025') for skey in mc)
 }
 
 #### FAKES
 
 nuisances['fake_syst'] = {
-  'name': 'fake_syst',
+  'name': 'fake_syst_2016',
   'type': 'lnN',
   'samples': {
     'Fake': '1.30',
@@ -44,7 +42,7 @@ nuisances['fake_syst'] = {
 }
 
 nuisances['fake_ele'] = {
-  'name': 'hww_fake_ele',
+  'name': 'fake_ele_2016',
   'kind': 'weight',
   'type': 'shape',
   'samples': {
@@ -53,7 +51,7 @@ nuisances['fake_ele'] = {
 }
 
 nuisances['fake_ele_stat'] = {
-  'name': 'hww_fake_ele_stat',
+  'name': 'fake_ele_stat_2016',
   'kind': 'weight',
   'type': 'shape',
   'samples': {
@@ -62,7 +60,7 @@ nuisances['fake_ele_stat'] = {
 }
 
 nuisances['fake_mu'] = {
-  'name': 'hww_fake_mu',
+  'name': 'fake_mu_2016',
   'kind': 'weight',
   'type': 'shape',
   'samples': {
@@ -72,7 +70,7 @@ nuisances['fake_mu'] = {
 
 
 nuisances['fake_mu_stat'] = {
-  'name': 'hww_fake_mu_stat',
+  'name': 'fake_mu_stat_2016',
   'kind': 'weight',
   'type': 'shape',
   'samples': {
@@ -83,14 +81,14 @@ nuisances['fake_mu_stat'] = {
 ##### B-tagger
 
 nuisances['btagbc'] = {
-  'name': 'btag_heavy',
+  'name': 'btag_heavy_2016',
   'kind': 'weight',
   'type': 'shape',
   'samples': dict((skey, ['sfWeightBtagBCUp', 'sfWeightBtagBCDown']) for skey in mc)
 }
 
 nuisances['btagudsg'] = {
-  'name': 'btag_light',
+  'name': 'btag_light_2016',
   'kind': 'weight',
   'type': 'shape',
   'samples': dict((skey, ['sfWeightBtagUDSGUp', 'sfWeightBtagUDSGDown']) for skey in mc)
@@ -101,7 +99,7 @@ nuisances['btagudsg'] = {
 trig_syst = ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)']
 
 nuisances['trigg'] = {
-  'name': 'hww_trigger',
+  'name': 'trigger_2016',
   'kind': 'weight',
   'type': 'shape',
   'samples': dict((skey, trig_syst) for skey in mc)
@@ -110,7 +108,7 @@ nuisances['trigg'] = {
 ##### Electron Efficiency and energy scale
 
 nuisances['eff_e'] = {
-  'name': 'eff_e',
+  'name': 'eff_e_2016',
   'kind': 'weight',
   'type': 'shape',
   'samples': dict((skey, ['sfWeightEleUp', 'sfWeightEleDown']) for skey in mc)
@@ -120,7 +118,7 @@ eleUpSteps = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2ti
 eleDownSteps = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepElepTdo__wwSel'
 
 nuisances['electronpt'] = {
-  'name': 'scale_e',
+  'name': 'electronpt_2016',
   'kind': 'tree',
   'type': 'shape',
   'samples': dict((skey, ['1', '1']) for skey in mc),
@@ -131,7 +129,7 @@ nuisances['electronpt'] = {
 elePtCor_Syst = ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l']
 
 nuisances['elePtCor'] = {
-  'name': 'hww_elePtCor',
+  'name': 'elePtCor_2016',
   'kind': 'weight',
   'type': 'shape',
   'samples': dict((skey, elePtCor_Syst) for skey in mc)
@@ -140,7 +138,7 @@ nuisances['elePtCor'] = {
 eleEtaCor_Syst = ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l']
 
 nuisances['eleEtaCor'] = {
-  'name': 'hww_eleEtaCor',
+  'name': 'eleEtaCor_2016',
   'kind': 'weight',
   'type': 'shape',
   'samples': dict((skey, eleEtaCor_Syst) for skey in mc)
@@ -150,7 +148,7 @@ nuisances['eleEtaCor'] = {
 ##### Muon Efficiency and energy scale
 
 nuisances['eff_m'] = {
-  'name': 'eff_m',
+  'name': 'eff_m_2016',
   'kind': 'weight',
   'type': 'shape',
   'samples': dict((skey, ['sfWeightMuUp', 'sfWeightMuDown']) for skey in mc)
@@ -160,7 +158,7 @@ muUpSteps = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tig
 muDownSteps = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepMupTdo__wwSel'
 
 nuisances['muonpt'] = {
-  'name': 'scale_m',
+  'name': 'muonpt_2016',
   'kind': 'tree',
   'type': 'shape',
   'samples': dict((skey, ['1', '1']) for skey in mc),
@@ -174,7 +172,7 @@ jesUpSteps = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2ti
 jesDownSteps = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__JESdo__wwSel'
 
 nuisances['jes'] = {
-  'name': 'scale_j',
+  'name': 'jes_2016',
   'kind': 'tree',
   'type': 'shape',
   'samples': dict((skey, ['1', '1']) for skey in mc),
@@ -188,7 +186,7 @@ metUpSteps = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2ti
 metDownSteps = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__METdo__wwSel'
 
 nuisances['met'] = {
-  'name': 'scale_met',
+  'name': 'met_2016',
   'kind': 'tree',
   'type': 'shape',
   'samples': dict((skey, ['1', '1']) for skey in mc),
@@ -196,320 +194,175 @@ nuisances['met'] = {
   'folderDown': os.path.join(treeBaseDir, mcProduction, metDownSteps),
 }
 
-
 ##### PS and UE
 
 psVarSteps = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__PS__wwSel'
 
-# These numbers are used to normalize the PS variation to the same integral as the nominal after the wwSel skim
-# There is also a factor for qqH, but we are skipping it right now because of a technical reason (cannot apply a nuisance to specific files within the XH sample)
-apply_on = [('WW', ['0.92657', '1.'])]
-apply_on += [(skey, ['0.98554', '1.']) for skey in ggh if 'minloHJ' not in skey]
-#apply_on += [(skey, ['0.92511', '1.']) for skey in xh]
+## These numbers are used to normalize the PS variation to the same integral as the nominal after the wwSel skim
+#apply_on = {
+#  'WW': ['0.92657', '1.'],
+#  'ggH_hww': ['0.98554', '1.'],
+#  'qqH_hww': ['0.92511', '1.']
+#}
+# -> will do this programmatically
+
+apply_on = {
+  'WW': ['1.', '1.'],
+  'ggH_hww': ['1.', '1.'],
+  'qqH_hww': ['1.', '1.']
+}
 
 nuisances['PS'] = {
-  'name': 'PS',
+  'name': 'wwPS',
   'skipCMS': 1,
   'kind': 'tree',
   'type': 'shape',
-  'samples': dict(apply_on),
+  'samples': apply_on,
   'folderUp': os.path.join(treeBaseDir, mcProduction, psVarSteps),
   'folderDown': os.path.join(treeBaseDir, mcProduction, mcSteps),
   'AsLnN': '1'
 }
 
-# Same story here; skipping weight application on qqH
 ueUpSteps = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__UEup__wwSel'
 ueDownSteps = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__UEdo__wwSel'
 
-apply_on = [('WW', ['1.0226', '0.9897'])]
-apply_on += [(skey, ['1.0739', '1.0211']) for skey in ggh if 'minloHJ' not in skey]
-#apply_on += [(skey, ['1.0560', '0.9992']) for skey in xh]
+## Normalize the UE up/down variations to the same integral as the nominal after the wwSel skim
+#apply_on = {
+#    'WW': ['1.0226', '0.9897'],
+#    'ggH_hww': ['1.0739', '1.0211'],
+#    'qqh_hww': ['1.0560', '0.9992']
+#}
 
-# Normalize the UE up/down variations to the same integral as the nominal after the wwSel skim
+apply_on = {
+  'WW': ['1.', '1.'],
+  'ggH_hww': ['1.', '1.'],
+  'qqH_hww': ['1.', '1.']
+}
+
 nuisances['UE'] = {
-  'name': 'UE', 
+  'name': 'wwUE', 
   'skipCMS': 1,
   'kind': 'tree',
   'type': 'shape',
-  'samples': dict(apply_on),
+  'samples': apply_on,
   'folderUp': os.path.join(treeBaseDir, mcProduction, ueUpSteps),
   'folderDown': os.path.join(treeBaseDir, mcProduction, ueDownSteps),
   'AsLnN': '1'
 }
 
-##### Renormalization & factorization scales
+####### Generic "cross section uncertainties"
 
-# Shape nuisance due to QCD scale variations for DY
-nuisances['DYQCDscale'] = {
-  'name': 'QCDscale_V',
+# ttbar / single top ratio uncertainty
+apply_on = {
+    'top': [
+        '((dataset==15 || dataset==16) * 1.0816 + (dataset==17 || dataset==18 || dataset==19))',
+        '((dataset==15 || dataset==16) * 0.9184 + (dataset==17 || dataset==18 || dataset==19))'
+    ]
+}
+
+nuisances['singleTopToTTbar'] = {
+  'name': 'singleTopToTTbar',
   'skipCMS': 1,
   'kind': 'weight',
   'type': 'shape',
-  'samples': dict((skey, ['std_vector_LHE_weight[8]/std_vector_LHE_weight[0]', 'std_vector_LHE_weight[4]/std_vector_LHE_weight[0]']) for skey in dy)
+  'samples': apply_on
+  # tt = 17/18/19 depending on the sample/generator
+  # tW = 15/16
 }
 
-# Theory uncertainty for ggH
-#
-#
-#   THU_ggH_Mu, THU_ggH_Res, THU_ggH_Mig01, THU_ggH_Mig12, THU_ggH_VBF2j, THU_ggH_VBF3j, THU_ggH_PT60, THU_ggH_PT120, THU_ggH_qmtop
-#
-#   see https://twiki.cern.ch/twiki/bin/viewauth/CMS/HiggsWG/SignalModelingTools
+## Top pT reweighting uncertainty
 
-nuisances['ggH_mu'] = {
-  'name': 'THU_ggH_Mu',
-  'skipCMS': 1,
+nuisances['TopPtRew'] = {
+  'name': 'TopPtRew',   # Theory uncertainty
   'kind': 'weight',
   'type': 'shape',
-  'samples': {
-    'ggH_hww': ['ggH_mu', '1+(1.-ggH_mu)'],
-    'ggH_htt': ['ggH_mu', '1+(1.-ggH_mu)']
-  }
+  'samples': {'top': ["1.","((1./toprwgt - 1)*(dataset==19) + 1)"]}
 }
 
-nuisances['ggH_res'] = {
-  'name': 'THU_ggH_Res',
-  'skipCMS': 1,
-  'kind': 'weight',
-  'type': 'shape',
-  'samples': {
-    'ggH_hww': ['ggH_res', '1+(1.-ggH_res)'],
-    'ggH_htt': ['ggH_res', '1+(1.-ggH_res)']
-  }
-}
-
-nuisances['ggH_mig01'] = {
-  'name': 'THU_ggH_Mig01',
-  'skipCMS': 1,
-  'kind': 'weight',
-  'type': 'shape',
-  'samples': {
-    'ggH_hww': ['ggH_mig01', '1+(1.-ggH_mig01)'],
-    'ggH_htt': ['ggH_mig01', '1+(1.-ggH_mig01)']
-  }
-}
-
-nuisances['ggH_mig12'] = {
-  'name': 'THU_ggH_Mig12',
-  'skipCMS': 1,
-  'kind': 'weight',
-  'type': 'shape',
-  'samples': {
-    'ggH_hww': ['ggH_mig12', '1+(1.-ggH_mig12)'],
-    'ggH_htt': ['ggH_mig12', '1+(1.-ggH_mig12)']
-  }
-}
-
-nuisances['ggH_pT60'] = {
-  'name': 'THU_ggH_PT60',
-  'skipCMS': 1,
-  'kind': 'weight',
-  'type': 'shape',
-  'samples': {
-    'ggH_hww': ['ggH_pT60', '1+(1.-ggH_pT60)'],
-    'ggH_htt': ['ggH_pT60', '1+(1.-ggH_pT60)']
-  }
-}
-
-nuisances['ggH_pT120'] = {
-  'name': 'THU_ggH_PT120',
-  'skipCMS': 1,
-  'kind': 'weight',
-  'type': 'shape',
-  'samples': {
-    'ggH_hww': ['ggH_pT120', '1+(1.-ggH_pT120)'],
-    'ggH_htt': ['ggH_pT120', '1+(1.-ggH_pT120)']
-  }
-}
-
-nuisances['ggH_VBF2j'] = {
-  'name': 'THU_ggH_VBF2j',
-  'skipCMS': 1,
-  'kind': 'weight',
-  'type': 'shape',
-  'samples': {
-    'ggH_hww': ['ggH_VBF2j', '1+(1.-ggH_VBF2j)'],
-    'ggH_htt': ['ggH_VBF2j', '1+(1.-ggH_VBF2j)']
-  }
-}
-
-nuisances['ggH_VBF3j'] = {
-  'name': 'THU_ggH_VBF3j',
-  'skipCMS': 1,
-  'kind': 'weight',
-  'type': 'shape',
-  'samples': {
-    'ggH_hww': ['ggH_VBF3j', '1+(1.-ggH_VBF3j)'],
-    'ggH_htt': ['ggH_VBF3j', '1+(1.-ggH_VBF3j)']
-  }
-}
-
-nuisances['ggH_qmtop'] = {
-  'name': 'THU_ggH_qmtop',
-  'skipCMS': 1,
-  'kind': 'weight',
-  'type': 'shape',
-  'samples': {
-    'ggH_hww': ['ggH_qmtop', '1+(1.-ggH_qmtop)'],
-    'ggH_htt': ['ggH_qmtop', '1+(1.-ggH_qmtop)']
-  }
-}
-
-nuisances['QCDscale_CRSR_accept_dytt'] = {
-  'name': 'CMS_hww_QCDscale_CRSR_accept_dytt', 
+nuisances['WgStarRate'] = {
+  'name': 'WgStarRate',
   'type': 'lnN',
-  'samples': dict((skey, '1.02') for skey in dy),
-  'cuts': dycr
-}
-
-nuisances['QCDscale_CRSR_accept_top'] = {
-  'name': 'CMS_hww_QCDscale_CRSR_accept_top', 
-  'type': 'lnN',
-  'samples': dict((skey, '1.01') for skey in top),
-  'cuts': topcr
-}
-
-nuisances['QCDscale_VZ'] = {
-  'name': 'QCDscale_VZ', 
   'samples': {
-    'VZ': '1.03'
+    'WZgS_L': '1.25' # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
   },
-  'type': 'lnN'
 }
-
-#### QCD scale uncertainties for Higgs signals other than ggH
-
-from LatinoAnalysis.Tools.HiggsXSection import *
-HiggsXS = HiggsXSection()
-
-nuisances['QCDscale_ggH'] = {
-  'name': 'QCDscale_ggH', 
+ 
+nuisances['WZRate'] = {
+  'name': 'WZRate',
+  'type': 'lnN',
   'samples': {
-    'H_htt': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.0','scale','sm'),
+    'WZgS_H': '1.16', 
   },
-  'type': 'lnN',
 }
 
-nuisances['QCDscale_qqH'] = {
-  'name': 'QCDscale_qqH', 
-  'samples': {
-    'qqH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.0','scale','sm'),
-    'qqH_htt': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.0','scale','sm'),
-  },
-  'type': 'lnN',
-}
+###### pdf uncertainties
 
-nuisances['QCDscale_VH'] = {
-  'name': 'QCDscale_VH', 
-  'samples': {
-    'WH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
-    'WH_htt': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
-    'ZH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH','125.0','scale','sm'),
-    'ZH_htt': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH','125.0','scale','sm'),
-  },
-  'type': 'lnN',
-}
+## All shifts on signal have to be renormalized at the datacard generation step
 
-nuisances['QCDscale_ggZH'] = {
-  'name': 'QCDscale_ggZH', 
-  'samples': {
-    'ggZH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggZH','125.0','scale','sm'),                  
-  },
-  'type': 'lnN',
-}
-
-nuisances['QCDscale_bbH'] = {
-  'name': 'QCDscale_bbH',
-  'samples': {
-    'bbH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','bbH','125.0','scale','sm'),
-  },
-  'type': 'lnN',
-}
-
-nuisances['QCDscale_ttH'] = {
-  'name': 'QCDscale_ttH',
-  'samples': {
-    'ttH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ttH','125.0','scale','sm'),
-  },
-  'type': 'lnN',
-}
-
-nuisances['QCDscale_qqbar_ACCEPT'] = {
-  'name': 'QCDscale_qqbar_ACCEPT', 
-  'type': 'lnN',
-  'samples': {
-    'qqH_hww': '1.007',
-    'qqH_htt': '1.007',
-    'WH_hww': '1.05',
-    'WH_htt': '1.05',
-    'ZH_hww': '1.04',
-    'ZH_htt': '1.04',
-    'VZ': '1.029',
-  }
-}
-
-nuisances['QCDscale_gg_ACCEPT'] = {
-  'name': 'QCDscale_gg_ACCEPT', 
-  'samples': {
-    'ggWW': '1.027',
-    'ggH_hww': '1.027',
-    'ggH_htt': '1.027',
-    'H_htt': '1.027',
-    'ggZH_hww': '1.027',                   
-  },
-  'type': 'lnN',
-}
-
-###### pdf uncertainty
+valuesggh = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.09','pdf','sm')
+valuesggzh = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggZH','125.09','pdf','sm')
+valuesbbh = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','bbH','125.09','pdf','sm')
 
 nuisances['pdf_Higgs_gg'] = {
   'name': 'pdf_Higgs_gg', 
   'samples': {
-    'ggH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.0','pdf','sm'),
-    'ggH_htt': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.0','pdf','sm'),
-    'H_htt': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.0','pdf','sm'),
-    'ggZH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggZH','125.0','pdf','sm'), 
-    'bbH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','bbH','125.0','pdf','sm'),
+    'ggH_hww': valuesggh,
+    'ggH_htt': valuesggh,
+    'ggZH_hww': valuesggzh,
+    'bbH_hww': valuesbbh
   },
   'type': 'lnN',
 }
 
+values = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ttH','125.09','pdf','sm')
+
 nuisances['pdf_Higgs_ttH'] = {
   'name': 'pdf_Higgs_ttH',
   'samples': {
-    'ttH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ttH','125.0','pdf','sm'),
+    'ttH_hww': values
   },
   'type': 'lnN',
 }
+
+valuesqqh = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.09','pdf','sm')
+valueswh = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.09','pdf','sm')
+valueszh = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH','125.09','pdf','sm')
 
 nuisances['pdf_Higgs_qqbar'] = {
   'name': 'pdf_Higgs_qqbar', 
   'type': 'lnN',
   'samples': {
-    'qqH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.0','pdf','sm'),
-    'qqH_htt': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.0','pdf','sm'),
-    'WH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','pdf','sm'),
-    'WH_htt': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','pdf','sm'),
-    'ZH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH','125.0','pdf','sm'),
-    'ZH_htt': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH','125.0','pdf','sm'),
+    'qqH_hww': valuesqqh,
+    'qqH_htt': valuesqqh,
+    'WH_hww': valueswh,
+    'WH_htt': valueswh,
+    'ZH_hww': valueszh,
+    'ZH_htt': valueszh
   },
 }
+
+# PDF: 0.0064 / 0.1427 = 0.0448493
 
 nuisances['pdf_qqbar'] = {
   'name': 'pdf_qqbar',
   'type': 'lnN',
   'samples': {
-    'VZ': '1.04',  # PDF: 0.0064 / 0.1427 = 0.0448493
+    'Vg': '1.04',
+    'VZ': '1.04', 
+    'WZgS_L': '1.04', # PDF: 0.0064 / 0.1427 = 0.0448493
+    'WZgS_H': '1.04' # PDF: 0.0064 / 0.1427 = 0.0448493
   },
 }
+
+## acceptance effects
 
 nuisances['pdf_Higgs_gg_ACCEPT'] = {
   'name': 'pdf_Higgs_gg_ACCEPT', 
   'samples': {
     'ggH_hww': '1.005',
     'ggH_htt': '1.005',
-    'H_htt': '1.005',
-    'ggZH_hww': '1.005', 
+    'ggZH_hww': '1.005',
+    'bbH_hww': '1.005'
   },
   'type': 'lnN',
 }
@@ -539,12 +392,32 @@ nuisances['pdf_qqbar_ACCEPT'] = {
   'name': 'pdf_qqbar_ACCEPT',
   'type': 'lnN',
   'samples': {
-    'VZ': '1.005',
+    'VZ': '1.005', 
   },
 }
 
-# ggww and interference
+##### Renormalization & factorization scales
 
+# Shape nuisance due to QCD scale variations for DY
+nuisances['QCDscale_DY'] = {
+  'name': 'QCDscale_DY',
+  'skipCMS': 1,
+  'kind': 'weight',
+  'type': 'shape',
+  'samples': {
+    'DY': ['std_vector_LHE_weight[8]/std_vector_LHE_weight[0]', 'std_vector_LHE_weight[4]/std_vector_LHE_weight[0]']
+  }
+}
+
+nuisances['QCDscale_VZ'] = {
+  'name': 'QCDscale_VZ',
+  'type': 'lnN',
+  'samples': {
+    'VZ': '1.03'
+  }
+}
+
+# ggww and interference
 nuisances['QCDscale_ggWW'] = {
   'name': 'QCDscale_ggWW',
   'type': 'lnN',
@@ -553,9 +426,9 @@ nuisances['QCDscale_ggWW'] = {
   },
 }
 
-#  - WW shaping
-nuisances['WWresum'] = {
-  'name': 'WWresum',
+# NLL resummation variations
+nuisances['Resumscale_WW'] = {
+  'name': 'Resumscale_WW',
   'skipCMS': 1,
   'kind': 'weight',
   'type': 'shape',
@@ -564,8 +437,8 @@ nuisances['WWresum'] = {
   }
 }
 
-nuisances['WWqscale'] = {
-  'name': 'WWqscale',
+nuisances['QCDscale_WW'] = {
+  'name': 'QCDscale_WW',
   'skipCMS': 1,
   'kind': 'weight',
   'type': 'shape',
@@ -574,104 +447,143 @@ nuisances['WWqscale'] = {
   }
 }
 
-nuisances['WgStarScale'] = {
-  'name': 'CMS_hww_WgStarScale', 
+# Uncertainty on SR/CR ratio
+nuisances['QCDscale_CRSR_accept_DY'] = {
+  'name': 'QCDscale_CRSR_accept_DY', 
   'type': 'lnN',
   'samples': {
-    'WgS': '1.25',  # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
-    'VgS': '1.25',  # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
-    'WZgS_L': '1.25',  
+    'DY': '1.02'
   },
+  'cuts': dycr
 }
- 
-nuisances['WZScale'] = {
-  'name': 'CMS_hww_WZScale',
+
+# Uncertainty on SR/CR ratio
+nuisances['QCDscale_CRSR_accept_top'] = {
+  'name': 'QCDscale_CRSR_accept_top', 
   'type': 'lnN',
   'samples': {
-    'WZgS_H': '1.16', 
+    'top': '1.01'
   },
+  'cuts': topcr
 }
 
-###### DY norm
+# Theory uncertainty for ggH
+#
+#
+#   THU_ggH_Mu, THU_ggH_Res, THU_ggH_Mig01, THU_ggH_Mig12, THU_ggH_VBF2j, THU_ggH_VBF3j, THU_ggH_PT60, THU_ggH_PT120, THU_ggH_qmtop
+#
+#   see https://twiki.cern.ch/twiki/bin/viewauth/CMS/HiggsWG/SignalModelingTools
 
-nuisances['DYttnorm0j'] = {
-  'name': 'CMS_hww_DYttnorm0j', 
-  'samples': {'DY_0j': '1.00'},
-  'type': 'rateParam',
-  'cuts': sr + ['topcr_0j', 'dycr_0j']
-}
+thus = [
+    ('THU_ggH_Mu', 'ggH_mu'),
+    ('THU_ggH_Res', 'ggH_res'),
+    ('THU_ggH_Mig01', 'ggH_mig01'),
+    ('THU_ggH_Mig12', 'ggH_mig12'),
+    ('THU_ggH_VBF2j', 'ggH_VBF2j'),
+    ('THU_ggH_VBF3j', 'ggH_VBF3j'),
+    ('THU_ggH_PT60', 'ggH_pT60'),
+    ('THU_ggH_PT120', 'ggH_pT120'),
+    ('THU_ggH_qmtop', 'ggH_qmtop')
+]
 
-nuisances['DYttnorm1j'] = {
-  'name': 'CMS_hww_DYttnorm1j', 
-  'samples': {'DY_1j': '1.00'},
-  'type': 'rateParam',
-  'cuts': sr + ['topcr_1j', 'dycr_1j']
-}
+for name, vname in thus:
+  updown = [vname, '2.-%s' % vname]
+  
+  nuisances[name] = {
+    'name': name,
+    'skipCMS': 1,
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+      'ggH_hww': updown,
+      'ggH_htt': updown
+    }
+  }
 
-nuisances['DYttnormge2j'] = {
-  'name': 'CMS_hww_DYttnormge2j',
-  'samples': {'DY_ge2j': '1.00'},
-  'type': 'rateParam',
-  'cuts': sr + ['topcr_ge2j', 'dycr_ge2j']
-}
+#### QCD scale uncertainties for Higgs signals other than ggH
+# These shifts change the shape of smH but do not have acceptance effects
+# -> renormalize smH at datacard generation step
 
-###### WW norm
+values = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.09','scale','sm')
 
-nuisances['WWnorm'] = {
-  'name': 'CMS_hww_WWnorm',
+nuisances['QCDscale_qqH'] = {
+  'name': 'QCDscale_qqH', 
   'samples': {
-    'WW': '1.00',
+    'qqH_hww': values,
+    'qqH_htt': values
   },
-  'type': 'rateParam'
+  'type': 'lnN'
 }
 
-###### top norm
+valueswh = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.09','scale','sm')
+valueszh = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH','125.09','scale','sm')
 
-nuisances['Topnorm0j'] = {
-  'name': 'CMS_hww_Topnorm0j', 
+nuisances['QCDscale_VH'] = {
+  'name': 'QCDscale_VH', 
   'samples': {
-    'top_0j': '1.00',
+    'WH_hww': valueswh,
+    'WH_htt': valueswh,
+    'ZH_hww': valueszh,
+    'ZH_htt': valueszh
   },
-  'type': 'rateParam',
-  'cuts': sr + ['topcr_0j', 'dycr_0j']
+  'type': 'lnN',
 }
 
-nuisances['Topnorm1j'] = {
-  'name': 'CMS_hww_Topnorm1j', 
+values = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggZH','125.09','scale','sm')
+
+nuisances['QCDscale_ggZH'] = {
+  'name': 'QCDscale_ggZH', 
   'samples': {
-    'top_1j': '1.00',
+    'ggZH_hww': values
   },
-  'type': 'rateParam',
-  'cuts': sr + ['topcr_1j', 'dycr_1j']
+  'type': 'lnN',
 }
 
-nuisances['Topnormge2j'] = {
-  'name': 'CMS_hww_Topnormge2j',
+values = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','bbH','125.09','scale','sm')
+
+nuisances['QCDscale_bbH'] = {
+  'name': 'QCDscale_bbH',
   'samples': {
-    'top_ge2j': '1.00',
+    'bbH_hww': values
   },
-  'type': 'rateParam',
-  'cuts': sr + ['topcr_ge2j', 'dycr_ge2j']
+  'type': 'lnN',
 }
 
-nuisances['singleTopToTTbar'] = {
-  'name': 'singleTopToTTbar',
-  'skipCMS': 1,
-  'kind': 'weight',
-  'type': 'shape',
-  'samples': dict((skey, ['((dataset==15 || dataset==16) * 1.0816 + (dataset==17 || dataset==18 || dataset==19))', '((dataset==15 || dataset==16) * 0.9184 + (dataset==17 || dataset==18 || dataset==19))',]) for skey in top)
-  # tt = 17/18/19 depending on the sample/generator
-  # tW = 15/16
+values = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ttH','125.09','scale','sm')
+
+nuisances['QCDscale_ttH'] = {
+  'name': 'QCDscale_ttH',
+  'samples': {
+    'ttH_hww': values
+  },
+  'type': 'lnN',
 }
 
-## Top pT reweighting uncertainty
-
-nuisances['TopPtRew'] = {
-  'name': 'TopPtRew',   # Theory uncertainty
-  'kind': 'weight',
-  'type': 'shape',
-  'samples': dict((skey, ["1.","((1./toprwgt - 1)*(dataset==19) + 1)"]) for skey in top)
+nuisances['QCDscale_qqbar_ACCEPT'] = {
+  'name': 'QCDscale_qqbar_ACCEPT', 
+  'type': 'lnN',
+  'samples': {
+    'qqH_hww': '1.007',
+    'qqH_htt': '1.007',
+    'WH_hww': '1.05',
+    'WH_htt': '1.05',
+    'ZH_hww': '1.04',
+    'ZH_htt': '1.04',
+    'VZ': '1.029',
+  }
 }
+
+nuisances['QCDscale_gg_ACCEPT'] = {
+  'name': 'QCDscale_gg_ACCEPT', 
+  'samples': {
+    'ggH_hww': '1.027',
+    'ggH_htt': '1.027',
+    'ggZH_hww': '1.027',
+    'ggWW': '1.027',
+  },
+  'type': 'lnN',
+}
+
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat'] = {
@@ -689,3 +601,8 @@ nuisances['stat'] = {
 #  'samples': dict((skey, {'typeStat': 'bbb'}) for skey in mc + ['Fake'])
 #}
 #nuisances['stat']['samples']['DY']['keepNormalization'] = '1'
+
+#mynuisances = {}
+#mynuisances['electronpt'] = nuisances['electronpt']
+#mynuisances['lumi'] = nuisances['lumi']
+#nuisances = mynuisances

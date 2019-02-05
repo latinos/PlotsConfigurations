@@ -6,7 +6,7 @@ _tmp = [
      'Lepton_pt[0]>25.',
      'Lepton_pt[1]>20.',
      '(nLepton>=2 && Alt$(Lepton_pt[2],0)<10.)',
-     'abs(Lepton_eta[0])<2.4 && abs(Lepton_eta[1])<2.4',
+     'fabs(Lepton_eta[0])<2.5 && fabs(Lepton_eta[1])<2.5',
      'MET_pt > 20.',
        ]
 
@@ -21,9 +21,8 @@ def addcut(name, exprs):
 _tmp = [
      'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
      'ptll > 30.',
-     'Alt$(CleanJet_pt[0],0)>20.',
-     'Alt$(CleanJet_pt[0],100)<30.',
-      bVeto,
+     'Alt$(CleanJet_pt[0],0)<30',
+     'bVeto',
        ]
 
 addcut('WW_0j_em', _tmp)
@@ -31,10 +30,9 @@ addcut('WW_0j_em', _tmp)
 _tmp = [
      'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
      'ptll > 30.',
-     'Alt$(CleanJet_pt[0],0)>30.',
-     'Alt$(CleanJet_pt[1],0)>20.',
-     'Alt$(CleanJet_pt[1],100)<30.',
-      bVeto,
+     'Alt$(CleanJet_pt[0],0)>30',
+     'Alt$(CleanJet_pt[1],0)<30',
+      'bVeto',
        ]
 
 addcut('WW_1j_em', _tmp)
@@ -42,9 +40,8 @@ addcut('WW_1j_em', _tmp)
 _tmp = [
      'Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13',
      'ptll > 30.',
-     'Alt$(CleanJet_pt[0],0)>20.',
-     'Alt$(CleanJet_pt[0],100)<30.',
-     bVeto,
+     'Alt$(CleanJet_pt[0],0)<30',
+     'bVeto',
        ]
 
 addcut('SS_0j_em', _tmp)
@@ -52,10 +49,9 @@ addcut('SS_0j_em', _tmp)
 _tmp = [
      'Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13',
      'ptll > 30.',
-     'Alt$(CleanJet_pt[0],0)>30.',
-     'Alt$(CleanJet_pt[1],0)>20.',
-     'Alt$(CleanJet_pt[1],100)<30.',
-     bVeto,
+     'Alt$(CleanJet_pt[0],0)>30',
+     'Alt$(CleanJet_pt[1],0)<30',
+     'bVeto',
         ]
 
 addcut('SS_1j_em', _tmp)
@@ -63,9 +59,8 @@ addcut('SS_1j_em', _tmp)
 _tmp = [
      'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
      'ptll > 30.',
-     'Alt$(CleanJet_pt[0],0)>20.',
-     'Alt$(CleanJet_pt[0],100)<30.',
-     '!'+bVeto,
+     'Alt$(CleanJet_pt[0],0)<30',
+     'btag0',
        ]
 
 addcut('Top_0j_em', _tmp)
@@ -73,10 +68,9 @@ addcut('Top_0j_em', _tmp)
 _tmp = [
      'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
      'ptll > 30.',
-     'Alt$(CleanJet_pt[0],0)>30.',
-     'Alt$(CleanJet_pt[1],0)>20.',
-     'Alt$(CleanJet_pt[1],100)<30.',
-     '!'+bVeto,
+     'Alt$(CleanJet_pt[0],0)>30',
+     'Alt$(CleanJet_pt[1],0)<30',
+     'btag1',
        ]
 
 addcut('Top_1j_em', _tmp)
@@ -85,9 +79,8 @@ _tmp = [
      'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
      'ptll < 30.',
      'mll<80.',
-     'Alt$(CleanJet_pt[0],0)>20.',
-     'Alt$(CleanJet_pt[0],100)<30.',
-     bVeto,
+     'Alt$(CleanJet_pt[0],0)<30',
+     'bVeto',
        ]
 
 addcut('DY_0j_em', _tmp)
@@ -96,10 +89,9 @@ _tmp = [
      'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
      'ptll < 30.',
      'mll<80.',
-     'Alt$(CleanJet_pt[0],0)>30.',
-     'Alt$(CleanJet_pt[1],0)>20.',
-     'Alt$(CleanJet_pt[1],100)<30.',
-     bVeto,
+     'Alt$(CleanJet_pt[0],0)>30',
+     'Alt$(CleanJet_pt[1],0)<30',
+     'bVeto',
         ]
 
 addcut('DY_1j_em', _tmp)

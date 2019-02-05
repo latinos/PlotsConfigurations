@@ -13,6 +13,7 @@ import os
 import sys
 import shutil
 import subprocess
+import collections
 from argparse import ArgumentParser
 
 argParser = ArgumentParser(description = 'Run hadd in batch')
@@ -28,7 +29,7 @@ if os.path.isdir('%s_%s' % (outputDir, args.out_suffix)):
     sys.stderr.write('Directory %s_%s already exists.' % (outputDir, args.out_suffix))
     sys.exit(2)
 
-samples = {}
+samples = collections.OrderedDict()
 execfile(samplesFile)
 
 os.makedirs(outputDir + '_merged')
@@ -49,9 +50,10 @@ for sname in samples:
     if len(files) > 1:
         need_merging.append(sname)
     else:
-        shutil.copyfile('%s/%s' % (outputDir, files[0]), '%s_%s/%s' % (outputDir, args.out_suffix, files[0]))
+        newname = 'plots_' + tag + '_ALL_' + sname + '.root'
+        shutil.copyfile('%s/%s' % (outputDir, files[0]), '%s_%s/%s' % (outputDir, args.out_suffix, newname))
 
-jds = 'executable = merge_plots.sh\n'
+jds = 'executable = %s/merge_plots.sh\n' % os.path.dirname(os.path.realpath(__file__))
 jds += 'universe = vanilla\n'
 jds += 'arguments = "$(Sample) %s %s %s"\n' % (tag, inFullPath, outFullPath)
 jds += 'getenv = True\n'
@@ -59,7 +61,7 @@ jds += 'output = merge_log/$(Sample).out\n'
 jds += 'error = merge_log/$(Sample).err\n'
 jds += 'log = merge_log/$(Sample).log\n'
 jds += 'request_cpus = 8\n'
-jds += '+JobFlavour = "espresso"\n'
+jds += '+JobFlavour = "longlunch"\n'
 jds += 'queue Sample in (\n'
 for sname in need_merging:
     jds += sname + '\n'

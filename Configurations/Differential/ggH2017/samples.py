@@ -10,7 +10,8 @@ def nanoGetSampleFiles(inputDir, Sample):
 try:
     len(samples)
 except NameError:
-    samples = {}
+    import collections
+    samples = collections.OrderedDict()
 
 ################################################
 ################# SKIMS ########################
@@ -52,14 +53,12 @@ DataRun = [
     ['F','Run2017F-31Mar2018-v1']
 ]
 
-DataSets = ['MuonEG','DoubleMuon','SingleMuon','DoubleEG','SingleElectron']
+DataSets = ['MuonEG','SingleMuon','SingleElectron']
 
 DataTrig = {
     'MuonEG': 'Trigger_ElMu',
-    'DoubleMuon': '!Trigger_ElMu && Trigger_dblMu',
-    'SingleMuon': '!Trigger_ElMu && !Trigger_dblMu && Trigger_sngMu',
-    'DoubleEG': '!Trigger_ElMu && !Trigger_dblMu && !Trigger_sngMu && Trigger_dblEl',
-    'SingleElectron': '!Trigger_ElMu && !Trigger_dblMu && !Trigger_sngMu && !Trigger_dblEl && Trigger_sngEl',
+    'SingleMuon': '!Trigger_ElMu && Trigger_sngMu',
+    'SingleElectron': '!Trigger_ElMu && !Trigger_sngMu && Trigger_sngEl',
 }
 
 #########################################
@@ -83,7 +82,7 @@ if useDYtt:
     samples['DY'] = {
         'name': files,
         'weight': mcCommonWeight,
-        'FilesPerJob': 3,
+        'FilesPerJob': 1,
     }
     addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50','ptllDYW_NLO')
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO','ptllDYW_LO')
@@ -99,19 +98,18 @@ else:
     samples['DY'] = {
         'name': files,
         'weight': mcCommonWeight,
-        'FilesPerJob': 3,
+        'FilesPerJob': 1,
     }
     addSampleWeight(samples,'DY','DYJetsToLL_M-50','ptllDYW_NLO')
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO','ptllDYW_LO')
 
-samples['DY_0j'] = copy.deepcopy(samples['DY'])
-samples['DY_0j']['weight'] += '*(zeroJet)'
-
-samples['DY_1j'] = copy.deepcopy(samples['DY'])
-samples['DY_1j']['weight'] += '*(oneJet)'
-
-samples['DY_ge2j'] = copy.deepcopy(samples['DY'])
-samples['DY_ge2j']['weight'] += '*(manyJet)'
+samples['DY']['subsamples'] = {
+  '0j': 'zeroJet',
+  '1j': 'oneJet',
+  '2j': 'twoJet',
+  '3j': 'threeJet',
+  'ge4j': 'manyJets'
+}
 
 ###### Top #######
 
@@ -130,21 +128,28 @@ samples['top'] = {
 
 addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
-samples['top_0j'] = copy.deepcopy(samples['top'])
-samples['top_0j']['weight'] += '*(zeroJet)'
-
-samples['top_1j'] = copy.deepcopy(samples['top'])
-samples['top_1j']['weight'] += '*(oneJet)'
-
-samples['top_ge2j'] = copy.deepcopy(samples['top'])
-samples['top_ge2j']['weight'] += '*(manyJet)'
+samples['top']['subsamples'] = {
+  '0j': 'zeroJet',
+  '1j': 'oneJet',
+  '2j': 'twoJet',
+  '3j': 'threeJet',
+  'ge4j': 'manyJets'
+}
 
 ###### WW ########
 
-#FIXME Add nllW weight to WW
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    'weight': mcCommonWeight
+    'weight': mcCommonWeight + '*nllW',
+    'FilesPerJob': 1
+}
+
+samples['WW']['subsamples'] = {
+  '0j': 'zeroJet',
+  '1j': 'oneJet',
+  '2j': 'twoJet',
+  '3j': 'threeJet',
+  'ge4j': 'manyJets'
 }
 
 #FIXME Check if k-factor is already taken into account in XSWeight
@@ -161,7 +166,7 @@ files = nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
 samples['ggWW'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 4
+    'FilesPerJob': 12
 }
 
 ######## Vg ########
@@ -171,8 +176,7 @@ samples['Vg'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM'),
     #+ nanoGetSampleFiles(mcDirectory, 'Zg'),
     #'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
-    'weight': 'XSWeight*SFweight*METFilter_MC*(Gen_ZGstar_mass<4)',
-    'FilesPerJob': 5
+    'weight': 'XSWeight*SFweight*METFilter_MC*(Gen_ZGstar_mass<4)'
 }
 
 ######## VgS ########
@@ -182,6 +186,7 @@ samples['Vg'] = {
 samples['WZgS'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WZTo3LNu'),
     'weight': mcCommonWeight+'*(Gen_ZGstar_mass>4)',
+    'FilesPerJob': 1
 }
 
 ############ VZ ############
@@ -195,7 +200,7 @@ files = nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu') + \
 samples['VZ'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 5
+    'FilesPerJob': 1
 }
 
 ########## VVV #########
@@ -208,28 +213,12 @@ files = nanoGetSampleFiles(mcDirectory, 'ZZZ') + \
 
 samples['VVV'] = {
     'name': files,
-    'weight': mcCommonWeight,
-    'FilesPerJob': 2
+    'weight': mcCommonWeight
 }
 
 ###########################################
 #############   SIGNALS  ##################
 ###########################################
-
-#### Cuts for signal splitting
-# ==2 OSOF leptons
-# pt1 > 25
-# pt2 > 10(13) el(mu)
-# mll = sqrt(2*pt1*pt2*(cosh(eta1-eta2)-cos(phi1-phi2))) > 12
-# MET > 20
-# ptll = sqrt(pt1^2+pt2^2+2*pt1*pt2*cos(phi1-phi2)) > 30
-# mth = sqrt(2*met*(sqrt(pt1^2+pt2^2+2*pt1*pt2*cos(phi1-phi2))-cos(metphi)*(pt1*cos(phi1)+pt2*cos(phi2))-sin(metphi)*(pt1*sin(phi1)+pt2*sin(phi2)))) >= 60
-# mtw2 = sqrt(2*pt2*met*(1-cos(phi2-metphi))) > 30
-
-pthBinning1 = [0., 20., 45., 80., 120., 200., 6500.]
-pthBinning2 = [0., 30., 60., 100., 200., 350., 6500.]
-yhBinning = [0., 0.15, 0.3, 0.6, 0.9, 1.2, 2.5, 10.]
-njetBinning = [0, 1, 2, 3, 4]
 
 signals = []
 
@@ -243,151 +232,159 @@ samples['ggH_hww'] = {
 
 signals.append('ggH_hww')
 
-############# VBF H->WW ############
-#samples['qqH_hww'] = {
-#    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2NuPowheg_M125'),
-#    'weight': mcCommonWeight
-#}
-#
-#signals.append('qqH_hww')
-#
-############# ZH H->WW ############
-#
-#samples['ZH_hww'] = {
-#    'name':   nanoGetSampleFiles(mcDirectory, 'HZJ_HToWW_M120'), #FIXME replace with 125 GeV sample when available
-#    'weight': mcCommonWeight
-#}
-#
-#signals.append('ZH_hww')
-#
-#samples['ggZH_hww'] = {
-#    'name':   nanoGetSampleFiles(mcDirectory, 'GluGluZH_HToWW_M125'),
-#    'weight': mcCommonWeight
-#}
-#
-#signals.append('ggZH_hww')
-#
-############# WH H->WW ############
-#
-#samples['WH_hww'] = {
-#    'name':   nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125')
-#    + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125'),
-#    'weight': mcCommonWeight
-#}
-#
-#signals.append('WH_hww')
-#
-############# ttH ############
-#
-#samples['ttH_hww'] = {
-#    'name':   nanoGetSampleFiles(mcDirectory, 'ttHToNonbb_M125'),
-#    'weight': mcCommonWeight
-#}
-#
-#signals.append('ttH_hww')
+############ VBF H->WW ############
+samples['qqH_hww'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2NuPowheg_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 3
+}
+
+signals.append('qqH_hww')
+
+############ ZH H->WW ############
+
+samples['ZH_hww'] = {
+    'name':   nanoGetSampleFiles(mcDirectory, 'HZJ_HToWW_M120'), #FIXME replace with 125 GeV sample when available
+    'weight': mcCommonWeight
+}
+
+signals.append('ZH_hww')
+
+samples['ggZH_hww'] = {
+    'name':   nanoGetSampleFiles(mcDirectory, 'GluGluZH_HToWW_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 10
+}
+
+signals.append('ggZH_hww')
+
+############ WH H->WW ############
+
+samples['WH_hww'] = {
+    'name':   nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125')
+    + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 10
+}
+
+signals.append('WH_hww')
+
+############ ttH ############
+
+samples['ttH_hww'] = {
+    'name':   nanoGetSampleFiles(mcDirectory, 'ttHToNonbb_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 11
+}
+
+signals.append('ttH_hww')
 
 ############ bbH ############
 #FIXME Missing samples
 
 ############ XH ############
 
-files = nanoGetSampleFiles(mcDirectory, 'HZJ_HToWW_M120') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluZH_HToWW_M125') + \
-    nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125') + \
-    nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125') + \
-    nanoGetSampleFiles(mcDirectory, 'ttHToNonbb_M125')
-
-samples['XH_hww'] = {
-  'name': files,
-  'weight': mcCommonWeight,
-  'FilesPerJob': 5
-}
-
-signals.append('XH_hww')
-
-for signal in signals:
-    for ipt in range(len(pthBinning1) - 1):
-      low, high = pthBinning1[ipt:ipt+2]
-
-      samples[signal + '_pth_%.0f_%.0f_incl' % (low, high)] = copy.deepcopy(samples[signal])
-      samples[signal + '_pth_%.0f_%.0f_incl' % (low, high)]['weight'] += '*(genPth > %f && genPth < %f)' % (low, high)
-
-      samples[signal + '_pth_%.0f_%.0f_fid' % (low, high)] = copy.deepcopy(samples[signal])
-      samples[signal + '_pth_%.0f_%.0f_fid' % (low, high)]['weight'] += '*(fiducial && genPth > %f && genPth < %f)' % (low, high)
-
-      samples[signal + '_pth_%.0f_%.0f_nonfid' % (low, high)] = copy.deepcopy(samples[signal])
-      samples[signal + '_pth_%.0f_%.0f_nonfid' % (low, high)]['weight'] += '*(!fiducial && genPth > %f && genPth < %f)' % (low, high)
-
-    for ipt in range(len(pthBinning2) - 1):
-      low, high = pthBinning2[ipt:ipt+2]
-
-      samples[signal + '_pth_%.0f_%.0f_incl' % (low, high)] = copy.deepcopy(samples[signal])
-      samples[signal + '_pth_%.0f_%.0f_incl' % (low, high)]['weight'] += '*(genPth > %f && genPth < %f)' % (low, high)
-
-      samples[signal + '_pth_%.0f_%.0f_fid' % (low, high)] = copy.deepcopy(samples[signal])
-      samples[signal + '_pth_%.0f_%.0f_fid' % (low, high)]['weight'] += '*(fiducial && genPth > %f && genPth < %f)' % (low, high)
-
-      samples[signal + '_pth_%.0f_%.0f_nonfid' % (low, high)] = copy.deepcopy(samples[signal])
-      samples[signal + '_pth_%.0f_%.0f_nonfid' % (low, high)]['weight'] += '*(!fiducial && genPth > %f && genPth < %f)' % (low, high)
-
-    #samples[signal + '_yhbins'] = copy.deepcopy(samples[signal])
-    #samples[signal + '_yhbins']['bins'] = {}
-    #
-    #for iy in range(len(yhBinning) - 1):
-    #  low, high = yhBinning[iy:iy+2]
-    #  samples[signal + '_yhbins']['bins'][('fid_yh_%.2f_%.2f' % (low, high)).replace('.', 'p')] = 'fiducial && absGenYH > %f && absGenYH < %f' % (low, high)
-    #  samples[signal + '_yhbins']['bins'][('nonfid_yh_%.2f_%.2f' % (low, high)).replace('.', 'p')] = '!fiducial && absGenYH > %f && absGenYH < %f' % (low, high)
-
-    #for n in njetBinning:
-    #  samples[signal + '_nj_%d_fid' % n] = copy.deepcopy(samples[signal])
-    #  if n == njetBinning[-1]:
-    #    samples[signal + '_nj_%d_fid' % n]['weight'] += '*(fiducial && nGenJet >= %d)' % n
-    #  else:
-    #    samples[signal + '_nj_%d_fid' % n]['weight'] += '*(fiducial && nGenJet == %d)' % n
-    #
-    #  samples[signal + '_nj_%d_nonfid' % n] = copy.deepcopy(samples[signal])
-    #  if n == njetBinning[-1]:
-    #    samples[signal + '_nj_%d_nonfid' % n]['weight'] += '*(!fiducial && nGenJet >= %d)' % n
-    #  else:
-    #    samples[signal + '_nj_%d_nonfid' % n]['weight'] += '*(!fiducial && nGenJet == %d)' % n
+#files = nanoGetSampleFiles(mcDirectory, 'HZJ_HToWW_M120') + \
+#    nanoGetSampleFiles(mcDirectory, 'GluGluZH_HToWW_M125') + \
+#    nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125') + \
+#    nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125') + \
+#    nanoGetSampleFiles(mcDirectory, 'ttHToNonbb_M125')
+#
+#samples['XH_hww'] = {
+#  'name': files,
+#  'weight': mcCommonWeight,
+#  'FilesPerJob': 5
+#}
+#
+#signals.append('XH_hww')
 
 ############ H->TauTau ############
 
-splitHtt=False
-if splitHtt:
-    samples['ggH_htt'] = {
-        'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125'),
-        'weight': mcCommonWeight
-    }
+samples['ggH_htt'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 1
+}
 
-    samples['qqH_htt'] = {
-        'name': nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125'),
-        'weight': mcCommonWeight
-    }
+signals.append('ggH_htt')
 
-    samples['ZH_htt'] = {
-        'name': nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125'),
-        'weight': mcCommonWeight
-    }
+samples['qqH_htt'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 2
+}
 
-    samples['WH_htt'] = {
-        'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125')
-        + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
-        'weight': mcCommonWeight
-    }
+signals.append('qqH_htt')
 
-else:
-    files = nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125') + \
-        nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125') + \
-        nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125') + \
-        nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + \
-        nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125')
+samples['ZH_htt'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 1
+}
 
-    samples['H_htt'] = {
-        'name': files,
-        'weight': mcCommonWeight,
-        'FilesPerJob': 2
-    }
+signals.append('ZH_htt')
+
+samples['WH_htt'] = {
+    'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125')
+    + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 1
+}
+
+signals.append('WH_htt')
+
+pthBinning = ['0', '20', '30', '45', '60', '80', '100', '120', '155', '200', '260', '350', 'inf']
+#yhBinning = [0., 0.15, 0.3, 0.6, 0.9, 1.2, 2.5, 10.]
+njetBinning = ['0', '1', '2', '3', '4+']
+
+for sname in signals:
+  sample = samples[sname]
+  sample['subsamples'] = {}
+
+  for ipt in range(len(pthBinning) - 1):
+    low, high = pthBinning[ipt:ipt+2]
+
+    if high == 'inf':
+      binName = 'PTH_GT%s' % low
+      cut = 'genPth > %s' % low
+    else:
+      binName = 'PTH_%s_%s' % (low, high)
+      cut = 'genPth > %s && genPth < %s' % (low, high)
+
+    sample['subsamples'][binName] = cut
+
+  for nj in njetBinning:
+    if nj.endswith('+'):
+      binName = 'NJ_GE%s' % nj[:-1]
+      cut = 'nGenJet >= %s' % nj[:-1]
+    else:
+      binName = 'NJ_%s' % nj
+      cut = 'nGenJet == %s' % nj
+
+    sample['subsamples'][binName] = cut
+
+#  for fid, fidcut in [('', 'fiducial'), ('nonfid', '!fiducial')]:
+#    for ipt in range(len(pthBinning) - 1):
+#      low, high = pthBinning[ipt:ipt+2]
+#
+#      if high == 'inf':
+#        binName = fid + ('_PTH_GT%s' % low)
+#        cut = '%s && genPth > %s' % (fidcut, low)
+#      else:
+#        binName = fid + ('_PTH_%s_%s' % (low, high))
+#        cut = '%s && genPth > %s && genPth < %s' % (fidcut, low, high)
+#
+#      sample['subsamples'][binName] = cut
+#
+#    for nj in njetBinning:
+#      if nj.endswith('+'):
+#        binName = fid + ('_NJ_GE%s' % nj[:-1])
+#        cut = '%s && nGenJet >= %s' % (fidcut, nj[:-1])
+#      else:
+#        binName = fid + ('_NJ_%s' % nj)
+#        cut = '%s && nGenJet == %s' % (fidcut, nj)
+#
+#      sample['subsamples'][binName] = cut
 
 ###########################################
 ################## FAKE ###################
@@ -398,7 +395,7 @@ samples['Fake'] = {
     'weight': 'METFilter_DATA*fakeW',
     'weights': [],
     'isData': ['all'],
-    'FilesPerJob': 15,
+    'FilesPerJob': 5,
 }
 
 for _, sd in DataRun:
@@ -416,7 +413,7 @@ samples['DATA'] = {
     'weight': 'METFilter_DATA*LepWPCut',
     'weights': [],
     'isData': ['all'],
-    'FilesPerJob': 20,
+    'FilesPerJob': 5,
 }
 
 for _, sd in DataRun:
@@ -425,10 +422,17 @@ for _, sd in DataRun:
         samples['DATA']['name'].extend(files)
         samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
 
-#for sname in sorted(samples.keys()):
-#    if 'pth_' in sname:
-#        continue
-#
-#    print sname, len(samples[sname]['name'])
-#    if sname == 'DATA':
-#        print samples[sname]['name'][0]
+#mysamples = collections.OrderedDict()
+#mysamples['ggH_hww'] = samples['ggH_hww']
+#mysamples['ZH_hww'] = samples['ZH_hww']
+#mysamples['WW'] = samples['WW']
+##mysamples['top'] = samples['top']
+#samples = mysamples
+#signals = ['ZH_hww']
+#signals = []
+
+#samples.pop('DATA')
+#samples.pop('Fake')
+#samples.pop('ZH_hww')
+#signals.remove('ZH_hww')
+
