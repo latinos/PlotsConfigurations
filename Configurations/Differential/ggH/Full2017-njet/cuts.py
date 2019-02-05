@@ -1,9 +1,8 @@
 # cuts
 
 supercut = '   mll>12 \
-            && Lepton_pt[0]>20 \
+            && Lepton_pt[0]>25 \
             && Lepton_pt[1]>10 \
-            && (abs(Lepton_pdgId[0])==13 || Lepton_pt[0]>25) \
             && (abs(Lepton_pdgId[1])==13 || Lepton_pt[1]>13) \
             && (nLepton>=2 && Alt$(Lepton_pt[2],0)<10) \
             && abs(Lepton_eta[0])<2.5 && abs(Lepton_eta[1])<2.5 \
@@ -21,7 +20,7 @@ cuts['hww2l2v_13TeV_em_pm_0j_pt2ge20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] =
                                && Alt$(CleanJet_pt[0],0)<30 \
                                && Lepton_pt[1] >= 20 \
                                && Lepton_pdgId[0] == 11 && Lepton_pdgId[1] == -13 \
-                               && '+bVeto+' \
+                               && bVeto \
                               '
                               
 cuts['hww2l2v_13TeV_em_mp_0j_pt2ge20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
@@ -30,7 +29,7 @@ cuts['hww2l2v_13TeV_em_mp_0j_pt2ge20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] =
                                && Alt$(CleanJet_pt[0],0)<30 \
                                && Lepton_pt[1] >= 20 \
                                && Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == 13 \
-                               && '+bVeto+' \
+                               && bVeto \
                               '
                               
 cuts['hww2l2v_13TeV_me_pm_0j_pt2ge20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
@@ -39,7 +38,7 @@ cuts['hww2l2v_13TeV_me_pm_0j_pt2ge20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] =
                                && Alt$(CleanJet_pt[0],0)<30 \
                                && Lepton_pt[1] >= 20 \
                                && Lepton_pdgId[0] == 13 && Lepton_pdgId[1] == -11 \
-                               && '+bVeto+' \
+                               && bVeto \
                               '
                               
 cuts['hww2l2v_13TeV_me_mp_0j_pt2ge20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
@@ -48,7 +47,7 @@ cuts['hww2l2v_13TeV_me_mp_0j_pt2ge20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] =
                                && Alt$(CleanJet_pt[0],0)<30 \
                                && Lepton_pt[1] >= 20 \
                                && Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == 11 \
-                               && '+bVeto+' \
+                               && bVeto \
                               '
 
 cuts['hww2l2v_13TeV_em_pm_1j_pt2ge20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
@@ -58,7 +57,7 @@ cuts['hww2l2v_13TeV_em_pm_1j_pt2ge20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] =
                                && Alt$(CleanJet_pt[1],0)<30 \
                                && Lepton_pt[1] >= 20 \
                                && Lepton_pdgId[0] == 11 && Lepton_pdgId[1] == -13 \
-                               && '+bVeto+' \
+                               && bVeto \
                               '
                               
 cuts['hww2l2v_13TeV_em_mp_1j_pt2ge20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
@@ -68,7 +67,7 @@ cuts['hww2l2v_13TeV_em_mp_1j_pt2ge20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] =
                                && Alt$(CleanJet_pt[1],0)<30 \
                                && Lepton_pt[1] >= 20 \
                                && Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == 13 \
-                               && '+bVeto+' \
+                               && bVeto \
                               '
                               
 cuts['hww2l2v_13TeV_me_pm_1j_pt2ge20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
@@ -78,7 +77,7 @@ cuts['hww2l2v_13TeV_me_pm_1j_pt2ge20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] =
                                && Alt$(CleanJet_pt[1],0)<30 \
                                && Lepton_pt[1] >= 20 \
                                && Lepton_pdgId[0] == 13 && Lepton_pdgId[1] == -11 \
-                               && '+bVeto+' \
+                               && bVeto \
                               '
                               
 cuts['hww2l2v_13TeV_me_mp_1j_pt2ge20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
@@ -88,7 +87,7 @@ cuts['hww2l2v_13TeV_me_mp_1j_pt2ge20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] =
                                && Alt$(CleanJet_pt[1],0)<30 \
                                && Lepton_pt[1] >= 20 \
                                && Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == 11 \
-                               && '+bVeto+' \
+                               && bVeto \
                               '
 
                               
@@ -101,7 +100,7 @@ cuts['hww2l2v_13TeV_em_pm_0j_pt2lt20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] =
                                && Alt$(CleanJet_pt[0],0)<30 \
                                && Lepton_pt[1] < 20 \
                                && Lepton_pdgId[0] == 11 && Lepton_pdgId[1] == -13 \
-                               && '+bVeto+' \
+                               && bVeto \
                               '
                               
 cuts['hww2l2v_13TeV_em_mp_0j_pt2lt20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
@@ -110,7 +109,7 @@ cuts['hww2l2v_13TeV_em_mp_0j_pt2lt20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] =
                                && Alt$(CleanJet_pt[0],0)<30 \
                                && Lepton_pt[1] < 20 \
                                && Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == 13 \
-                               && '+bVeto+' \
+                               && bVeto \
                               '
                               
 cuts['hww2l2v_13TeV_me_pm_0j_pt2lt20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
@@ -119,7 +118,7 @@ cuts['hww2l2v_13TeV_me_pm_0j_pt2lt20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] =
                                && Alt$(CleanJet_pt[0],0)<30 \
                                && Lepton_pt[1] < 20 \
                                && Lepton_pdgId[0] == 13 && Lepton_pdgId[1] == -11 \
-                               && '+bVeto+' \
+                               && bVeto \
                               '
                               
 cuts['hww2l2v_13TeV_me_mp_0j_pt2lt20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
@@ -128,7 +127,7 @@ cuts['hww2l2v_13TeV_me_mp_0j_pt2lt20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] =
                                && Alt$(CleanJet_pt[0],0)<30 \
                                && Lepton_pt[1] < 20 \
                                && Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == 11 \
-                               && '+bVeto+' \
+                               && bVeto \
                               '
 
 cuts['hww2l2v_13TeV_em_pm_1j_pt2lt20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
@@ -138,7 +137,7 @@ cuts['hww2l2v_13TeV_em_pm_1j_pt2lt20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] =
                                && Alt$(CleanJet_pt[1],0)<30 \
                                && Lepton_pt[1] < 20 \
                                && Lepton_pdgId[0] == 11 && Lepton_pdgId[1] == -13 \
-                               && '+bVeto+' \
+                               && bVeto \
                               '
                               
 cuts['hww2l2v_13TeV_em_mp_1j_pt2lt20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
@@ -148,7 +147,7 @@ cuts['hww2l2v_13TeV_em_mp_1j_pt2lt20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] =
                                && Alt$(CleanJet_pt[1],0)<30 \
                                && Lepton_pt[1] < 20 \
                                && Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == 13 \
-                               && '+bVeto+' \
+                               && bVeto \
                               '
                               
 cuts['hww2l2v_13TeV_me_pm_1j_pt2lt20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
@@ -158,7 +157,7 @@ cuts['hww2l2v_13TeV_me_pm_1j_pt2lt20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] =
                                && Alt$(CleanJet_pt[1],0)<30 \
                                && Lepton_pt[1] < 20 \
                                && Lepton_pdgId[0] == 13 && Lepton_pdgId[1] == -11 \
-                               && '+bVeto+' \
+                               && bVeto \
                               '
                               
 cuts['hww2l2v_13TeV_me_mp_1j_pt2lt20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
@@ -168,7 +167,7 @@ cuts['hww2l2v_13TeV_me_mp_1j_pt2lt20']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] =
                                && Alt$(CleanJet_pt[1],0)<30 \
                                && Lepton_pt[1] < 20 \
                                && Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == 11 \
-                               && '+bVeto+' \
+                               && bVeto \
                               '
 
 
@@ -179,8 +178,8 @@ cuts['hww2l2v_13TeV_of2j']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
                                && mtw2>30 \
                                && Alt$(CleanJet_pt[0],0)>30 \
                                && Alt$(CleanJet_pt[1],0)>30 \
-                               && Alt$(CleanJet_pt[3],0)<30 \
-                               && '+bVeto+' \
+                               && Alt$(CleanJet_pt[2],0)<30 \
+                               && bVeto \
                               '
 
 cuts['hww2l2v_13TeV_of3j']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
@@ -190,7 +189,7 @@ cuts['hww2l2v_13TeV_of3j']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
                                && Alt$(CleanJet_pt[1],0)>30 \
                                && Alt$(CleanJet_pt[2],0)>30 \
                                && Alt$(CleanJet_pt[3],0)<30 \
-                               && '+bVeto+' \
+                               && bVeto \
                               '
                               
 cuts['hww2l2v_13TeV_of4j']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
@@ -200,7 +199,7 @@ cuts['hww2l2v_13TeV_of4j']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
                                && Alt$(CleanJet_pt[1],0)>30 \
                                && Alt$(CleanJet_pt[2],0)>30 \
                                && Alt$(CleanJet_pt[3],0)>30 \
-                               && '+bVeto+' \
+                               && bVeto \
                               '
 
 
@@ -266,7 +265,7 @@ cuts['hww2l2v_13TeV_dytt_of0j']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*1
                                     && mth<60 \
                                     && mll>40 && mll<80 \
                                     && Alt$(CleanJet_pt[0],0)<30 \
-                                    && '+bVeto+' \
+                                    && bVeto \
                                    '
 
 cuts['hww2l2v_13TeV_dytt_of1j']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
@@ -274,7 +273,7 @@ cuts['hww2l2v_13TeV_dytt_of1j']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*1
                                     && mll>40 && mll<80 \
                                     && Alt$(CleanJet_pt[0],0)>30 \
                                     && Alt$(CleanJet_pt[1],0)<30 \
-                                    && '+bVeto+' \
+                                    && bVeto \
                                    '
 
 cuts['hww2l2v_13TeV_dytt_of2j']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
@@ -283,7 +282,7 @@ cuts['hww2l2v_13TeV_dytt_of2j']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*1
                                     && Alt$(CleanJet_pt[0],0)>30 \
                                     && Alt$(CleanJet_pt[1],0)>30 \
                                     && Alt$(CleanJet_pt[2],0)<30 \
-                                    && '+bVeto+' \
+                                    && bVeto \
                                    '
                                    
 cuts['hww2l2v_13TeV_dytt_of3j']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
@@ -293,7 +292,7 @@ cuts['hww2l2v_13TeV_dytt_of3j']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*1
                                     && Alt$(CleanJet_pt[1],0)>30 \
                                     && Alt$(CleanJet_pt[2],0)>30 \
                                     && Alt$(CleanJet_pt[3],0)<30 \
-                                    && '+bVeto+' \
+                                    && bVeto \
                                    '
                                    
 cuts['hww2l2v_13TeV_dytt_of4j']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
@@ -303,6 +302,6 @@ cuts['hww2l2v_13TeV_dytt_of4j']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*1
                                     && Alt$(CleanJet_pt[1],0)>30 \
                                     && Alt$(CleanJet_pt[2],0)>30 \
                                     && Alt$(CleanJet_pt[3],0)>30 \
-                                    && '+bVeto+' \
+                                    && bVeto \
                                    '
 

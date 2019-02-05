@@ -7,6 +7,8 @@ tag = 'DY'
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_DY'
 
+# file with TTree aliases
+aliasesFile = 'aliases.py'
 
 # file with list of variables
 variablesFile = 'variables.py'

@@ -10,7 +10,7 @@
 #### Luminosity
 
 nuisances['lumi']  = {
-               'name'  : 'lumi_13TeV_2016',
+               'name'  : 'lumi_13TeV',
                'samples'  : {
                    #'DY'       : '1.025',    |
                    #'top'      : '1.025',    | These 3 backgrounds are data driven, no need to include the luminosity uncertainty
@@ -137,7 +137,7 @@ else:
 #}
 
 nuisances['fake_syst_em']  = {
-               'name'  : 'CMS_hwwem_fake_syst_2016',
+               'name'  : 'CMS_hwwem_fake_syst',
                'type'  : 'lnN',
                'samples'  : {
                              'Fake_em' : '1.30',
@@ -145,7 +145,7 @@ nuisances['fake_syst_em']  = {
                }
 
 nuisances['fake_syst_me']  = {
-               'name'  : 'CMS_hwwme_fake_syst_2016',
+               'name'  : 'CMS_hwwme_fake_syst',
                'type'  : 'lnN',
                'samples'  : {
                              'Fake_me' : '1.30',
@@ -153,7 +153,7 @@ nuisances['fake_syst_me']  = {
                }
 
 nuisances['fake_ele']  = {
-                'name'  : 'hww_fake_ele_2016',
+                'name'  : 'hww_fake_ele',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -163,7 +163,7 @@ nuisances['fake_ele']  = {
 }
 
 nuisances['fake_ele_stat']  = {
-                'name'  : 'hww_fake_ele_stat_2016',
+                'name'  : 'hww_fake_ele_stat',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -173,7 +173,7 @@ nuisances['fake_ele_stat']  = {
 }
 
 nuisances['fake_mu']  = {
-                'name'  : 'hww_fake_mu_2016',
+                'name'  : 'hww_fake_mu',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -184,7 +184,7 @@ nuisances['fake_mu']  = {
 
 
 nuisances['fake_mu_stat']  = {
-                'name'  : 'hww_fake_mu_stat_2016',
+                'name'  : 'hww_fake_mu_stat',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -196,7 +196,7 @@ nuisances['fake_mu_stat']  = {
 ##### B-tagger
 
 nuisances['btagbc']  = {
-                'name'  : 'btag_heavy_2016',
+                'name'  : 'btag_heavy',
                 'kind'  : 'weight',
                'type'  : 'shape',
                 'samples'  : {
@@ -294,7 +294,7 @@ nuisances['btagbc']  = {
 }
 
 nuisances['btagudsg']  = {
-                'name'  : 'btag_light_2016',
+                'name'  : 'btag_light',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -398,7 +398,7 @@ elif Nlep == '3' : trig_syst = ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Dow
 elif Nlep == '4' : trig_syst = ['(effTrigW4l_Up)/(effTrigW4l)', '(effTrigW3l_Down)/(effTrigW4l)']
 
 nuisances['trigg']  = {
-                'name'  : 'hww_trigger_2016',
+                'name'  : 'hww_trigger',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -501,7 +501,7 @@ nuisances['trigg']  = {
 id_syst_ele = [ 'LepSF'+Nlep+'l__ele_'+eleWP+'__Up' , 'LepSF'+Nlep+'l__ele_'+eleWP+'__Do' ]
 
 nuisances['eff_e']  = {
-                'name'  : 'eff_e_2016',
+                'name'  : 'eff_e',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -599,7 +599,7 @@ nuisances['eff_e']  = {
 }
 
 nuisances['electronpt']  = {
-                'name'  : 'scale_e_2016',
+                'name'  : 'scale_e',
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
@@ -702,7 +702,7 @@ nuisances['electronpt']  = {
 
 elePtCor_Syst = [ 'electron_ptW_'+Nlep+'l_Up / electron_ptW_'+Nlep+'l', 'electron_ptW_'+Nlep+'l_Down / electron_ptW_'+Nlep+'l']
 nuisances['elePtCor']  = {
-                'name'  : 'hww_elePtCor_2016',
+                'name'  : 'hww_elePtCor',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -803,7 +803,7 @@ nuisances['elePtCor']  = {
 eleEtaCor_Syst = [ 'electron_etaW_'+Nlep+'l_Up / electron_etaW_'+Nlep+'l', 'electron_etaW_'+Nlep+'l_Down / electron_etaW_'+Nlep+'l']
 
 nuisances['eleEtaCor']  = {
-                'name'  : 'hww_eleEtaCor_2016',
+                'name'  : 'hww_eleEtaCor',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -910,7 +910,7 @@ nuisances['eleEtaCor']  = {
 id_syst_mu = [ 'LepSF'+Nlep+'l__mu_'+muWP+'__Up' , 'LepSF'+Nlep+'l__mu_'+muWP+'__Do' ]
 
 nuisances['eff_m']  = {
-                'name'  : 'eff_m_2016',
+                'name'  : 'eff_m',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -1009,7 +1009,7 @@ nuisances['eff_m']  = {
 }
 
 nuisances['muonpt']  = {
-                'name'  : 'scale_m_2016',
+                'name'  : 'scale_m',
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
@@ -1113,7 +1113,7 @@ nuisances['muonpt']  = {
 ##### Jet energy scale
 
 nuisances['jes']  = {
-                'name'  : 'scale_j_2016',
+                'name'  : 'scale_j',
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
@@ -1216,7 +1216,7 @@ nuisances['jes']  = {
 ##### MET energy scale
 
 nuisances['met']  = {
-                'name'  : 'scale_met_2016',
+                'name'  : 'scale_met',
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
@@ -1321,7 +1321,7 @@ nuisances['met']  = {
 #
 
 nuisances['PS']  = {
-                'name'  : 'PS_2016',
+                'name'  : 'PS',
                 'skipCMS' : 1,
                 'kind'  : 'tree',
                 'type'  : 'shape',
@@ -1349,7 +1349,7 @@ nuisances['PS']  = {
                 }
 
 nuisances['UE']  = {
-                'name'  : 'UE_2016', 
+                'name'  : 'UE', 
                 'skipCMS' : 1,
                 'kind'  : 'tree',
                 'type'  : 'shape',
