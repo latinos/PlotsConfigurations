@@ -36,7 +36,7 @@ structure['top'] = {
                   'isData'   : 0 
                   }
 
-structure['ttsemileptonic'] = {   
+structure['ttsemi'] = {   
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
@@ -78,6 +78,11 @@ structure['Zg']  = {
                   }
 
 structure['VZ']  = { 
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
+
+structure['VV']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
                   }

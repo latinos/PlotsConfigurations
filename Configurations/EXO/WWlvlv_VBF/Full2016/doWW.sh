@@ -2,8 +2,8 @@
 #workdir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/2015/combine2015_WWewk
 #datacardDir=${CMSSW_BASE}/src/LatinoAnalysis/ShapeAnalysis/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/2015/datacards_WWewk
 
-workdir=/afs/cern.ch/user/l/lenzip/work/ww2017/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/combined_datacards_2016
-datacardDir=/afs/cern.ch/user/l/lenzip/work/ww2017/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/datacards_OF
+workdir=/afs/cern.ch/user/l/lenzip/work/ww2018/MultiDraw/CMSSW_9_4_9/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/combined_datacards_2016
+datacardDir=/afs/cern.ch/user/l/lenzip/work/ww2018/MultiDraw/CMSSW_9_4_9/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/datacards_OF
 
 variable0j=mTi
 variable1j=mTi
@@ -23,7 +23,8 @@ cd $workdir
 #cd /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Combine/CMSSW_7_4_7/src/
 
 #MC stat
-cd ~/work/Combine_autoMC/CMSSW_8_1_0/ 
+cd ~/work/Combine_autoMC_May232018/CMSSW_8_1_0/ 
+#cd ~/work/Combine_autoMC/CMSSW_8_1_0/ 
 eval `scramv1 runtime -sh`
 cd -
 

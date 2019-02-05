@@ -109,6 +109,7 @@ variables['events']  = {   'name': '1',
 # MVA Variables with 40 bins #
 ##############################
 
+<<<<<<< HEAD
 # # mucca for 2HDM Model
 # variables['muccamva2HDMadaptFull_All'] = {
 #     'name': 'muccamva2HDMadaptFull_All_em',
@@ -126,11 +127,75 @@ variables['events']  = {   'name': '1',
 #     'yaxis' : 'Events / Bin',
 #     'fold' : 3
 #     }
+=======
+# mucca for 2HDM Model
+variables['muccamva2HDMadaptFull_All'] = {
+    'name': 'muccamva2HDMadaptFull_All_em',
+    'range' : (40,-1,1),
+    'xaxis' : 'MVA discriminant',
+    'yaxis' : 'Events / Bin',
+    'fold' : 3
+    }
+
+# mucca for Zbar Model
+variables['muccamvaZbaradaptFull_All'] = {
+    'name': 'muccamvaZbaradaptFull_All_em',
+    'range' : (40,-1,1),
+    'xaxis' : 'MVA discriminant',
+    'yaxis' : 'Events / Bin',
+    'fold' : 3
+    }
+
+##############################
+# MVA Variables with 10 bins #
+##############################
+
+# mucca for 2HDM Model
+variables['muccamva2HDMadaptFull_All_10'] = {
+    'name': 'muccamva2HDMadaptFull_All_em',
+    'range' : (10,-1,1),
+    'xaxis' : 'MVA discriminant',
+    'yaxis' : 'Events / Bin',
+    'fold' : 3
+    }
+
+# mucca for Zbar Model
+variables['muccamvaZbaradaptFull_All_10'] = {
+    'name': 'muccamvaZbaradaptFull_All_em',
+    'range' : (10,-1,1),
+    'xaxis' : 'MVA discriminant',
+    'yaxis' : 'Events / Bin',
+    'fold' : 3
+    }
+
+###################################
+# MVA Variables with test binning #
+###################################
+
+# mucca for 2HDM Model
+variables['muccamva2HDMadaptFull_All_test'] = {
+    'name': 'muccamva2HDMadaptFull_All_em',
+    'range' : ([-1,-0.8,-0.6,-0.4,-0.2,0.0,0.2,0.4,0.6,1],),
+    'xaxis' : 'MVA discriminant',
+    'yaxis' : 'Events / Bin',
+    'fold' : 3
+    }
+
+# mucca for Zbar Model
+variables['muccamvaZbaradaptFull_All_test'] = {
+    'name': 'muccamvaZbaradaptFull_All_em',
+    'range' : ([-1,-0.8,-0.6,-0.4,-0.2,0.0,0.2,0.4,0.6,1],),
+    'xaxis' : 'MVA discriminant',
+    'yaxis' : 'Events / Bin',
+    'fold' : 3
+    }
+>>>>>>> 3849cb41e4046ce4fd0345b02bde5ec3145593f2
 
 ######################
 # Analysis Variables #
 ######################
 
+<<<<<<< HEAD
 # # mucca for 2HDM Model
 # variables['muccamva2HDMadaptFull_All_Bin800'] = {
 #     'name': 'muccamva2HDMadaptFull_All_em',
@@ -163,6 +228,48 @@ variables['events']  = {   'name': '1',
 #     'xaxis' : 'm_{T}^{ll} [GeV]',
 #     'fold' : 3
 #     }
+=======
+# mucca for 2HDM Model
+variables['muccamva2HDMadaptFull_All_Bin800'] = {
+    'name': 'muccamva2HDMadaptFull_All_em',
+    'range' : ([-0.9999,-0.7633,-0.5461,-0.3133,-0.0363,0.1099,0.3129,0.4833,0.7299,1],),
+    'xaxis' : 'MVA discriminant',
+    'yaxis' : 'Events / Bin',
+    'fold' : 3
+    }
+
+# mucca for Z'B Model
+variables['muccamvaZbaradaptFull_All_Bin100'] = {
+    'name': 'muccamvaZbaradaptFull_All_em',
+    'range' : ([-0.9999,-0.6041,-0.4669,-0.3249,-0.1113,0.2497,0.6039,1],),
+    'xaxis' : 'MVA discriminant',
+    'yaxis' : 'Events / Bin',
+    'fold' : 3
+    }
+
+variables['muccamvaZbaradaptFull_All_Bin1000'] = {
+    'name': 'muccamvaZbaradaptFull_All_em',
+    'range' : ([-0.9999,-0.6563,-0.4529,-0.2735,0.0507,0.3379,0.5739,0.7321,1],),
+    'xaxis' : 'MVA discriminant',
+    'fold' : 3
+    }
+
+# mth
+variables['mthBin']  = {
+    'name': 'mth',
+    'range' : ([0,50,100,150,200,1000],),
+    'xaxis' : 'm_{T}^{ll} [GeV]',
+    'fold' : 3
+    }
+
+# mth
+variables['mthBin2']  = {
+    'name': 'mth',
+    'range' : ([0,50,100,150,200,250,1000],),
+    'xaxis' : 'm_{T}^{ll} [GeV]',
+    'fold' : 3
+    }
+>>>>>>> 3849cb41e4046ce4fd0345b02bde5ec3145593f2
 
 
 ############################################
