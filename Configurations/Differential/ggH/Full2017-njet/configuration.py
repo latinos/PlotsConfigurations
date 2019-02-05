@@ -8,6 +8,8 @@ tag = 'ggH_differential_njets_2017'
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'+tag
 
+# file with TTree aliases
+aliasesFile = 'aliases.py'
 
 # file with list of variables
 variablesFile = 'variables.py'
