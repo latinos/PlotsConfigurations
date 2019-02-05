@@ -912,10 +912,10 @@ void putEverythingTogether(TString model = "2HDM",
   TGraph* ExpDo = (TGraph*) lineFile->Get("grExpDo");
   TGraph* Obs   = (TGraph*) lineFile->Get("grObs");
 
-  Exp   -> SetLineWidth(4);
-  ExpUp -> SetLineWidth(4);
-  ExpDo -> SetLineWidth(4);
-  Obs   -> SetLineWidth(4);
+  Exp   -> SetLineWidth(3);
+  ExpUp -> SetLineWidth(3);
+  ExpDo -> SetLineWidth(3);
+  Obs   -> SetLineWidth(3);
 
   ExpUp -> SetLineStyle(3);
   ExpDo -> SetLineStyle(3);
