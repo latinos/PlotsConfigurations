@@ -111,7 +111,7 @@ if useDYtt :
     samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToTT_MuEle_M-50',False,'nanoLatino_')
                                     + getSampleFiles(directory,'DYJetsToLL_M-10to50-LO',False,'nanoLatino_'),
                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                         'FilesPerJob' : 3,
+                         'FilesPerJob' : 6,
                     }
     addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO)
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
@@ -124,7 +124,7 @@ else:
     samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50',False,'nanoLatino_')
                                     + getSampleFiles(directory,'DYJetsToLL_M-10to50-LO',False,'nanoLatino_'),
                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                         'FilesPerJob' : 3,
+                         'FilesPerJob' : 6,
                      }
     addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO)
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
@@ -195,7 +195,7 @@ samples['VZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo2L2Nu',False,'nan
                                + getSampleFiles(directory,'ZZTo4L',False,'nanoLatino_')
                                + getSampleFiles(directory,'WZTo2L2Q',False,'nanoLatino_'),
                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                    'FilesPerJob' : 3,
+                    'FilesPerJob' : 6,
                  }
 
 

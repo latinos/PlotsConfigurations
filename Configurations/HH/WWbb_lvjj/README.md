@@ -5,11 +5,11 @@ Transfer data:
 
     single lepton MC
     
-    /eos/user/g/govoni/samples/HWW2015/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/
+    /gwteras/cms/store/group/OneLepton/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/
 
     voms-proxy-init -voms cms
 
-    gfal-ls srm://maite.iihe.ac.be:8443/pnfs/iihe/cms/store/user/xjanssen/HWW2015/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/ | awk '{print "gfal-copy srm://maite.iihe.ac.be:8443/pnfs/iihe/cms/store/user/xjanssen/HWW2015/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/"$1"  /eos/user/g/govoni/samples/HWW2015/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/"$1}'
+    gfal-ls srm://storm.mib.infn.it:8444/cms/store/group/OneLepton/Apr2017_Run2016B_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__hadd/ | awk '{print "gfal-copy srm://storm.mib.infn.it:8444/cms/store/group/OneLepton/Apr2017_Run2016B_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__hadd/"$1"  /gwteras/cms/store/group/OneLepton/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/"$1}'
 
 
 Instructions:
@@ -39,7 +39,7 @@ This step reads the post-processed latino trees and produces histograms for seve
     cd $CONFIGURATION_DIRECTORY
 
     mkShapes.py --pycfg=configuration.py \
-                --inputDir=/eos/user/g/govoni/samples/HWW2015/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/ \
+                --inputDir=/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/ \
                 --batchSplit=AsMuchAsPossible \
                 --doBatch=True \
                 --batchQueue=1nd
@@ -68,7 +68,7 @@ If several jobs failed and you want to resubmit them all at once you can do:
 Once the previous jobs have finished we _hadd_ the outputs.
 
     mkShapes.py --pycfg=configuration.py \
-                --inputDir=/eos/user/g/govoni/samples/HWW2015/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/ \
+                --inputDir=/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/ \
                 --batchSplit=AsMuchAsPossible \
                 --doHadd=True
                 
