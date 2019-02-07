@@ -1,60 +1,27 @@
-/*                           
+/*
 
-Run this in lxplus7 !!!
-                                                                             
-source /cvmfs/sft.cern.ch/lcg/contrib/gcc/4.8/x86_64-centos7-gcc48-opt/setup.sh
-source /cvmfs/sft.cern.ch/lcg/app/releases/ROOT/6.12.06/x86_64-centos7-gcc48-opt/root/bin/thisroot.sh
 
-// 2HDM Model
-
-root -l -b -q 'macroExclusionTable.C("muccamva2HDMadaptFull_All_Bin800","em","MVA","2HDM",false)'
+// Zp-2HDM-HZZ:
+//rm -f datacards_4l_2D*
+bash linkcombinefiles.sh 
+root -l -b -q 'macroExclusionTable.C("MET","4l","2HDM",false)'
 root -l -b
 .L macroExclusionTable.C
-smoothMap("2HDM","muccamva2HDMadaptFull_All_Bin800")
-drawLines("2HDM","muccamva2HDMadaptFull_All_Bin800")
-putEverythingTogether("2HDM","muccamva2HDMadaptFull_All_Bin800")
-putEverythingTogetherSmooth("2HDM","muccamva2HDMadaptFull_All_Bin800")
+smoothMap("2HDM","MET")               
+drawLines("2HDM","MET")          
+putEverythingTogether("2HDM","MET")
 .q
 
-cp ExclusionMap* ~/www/figuresLxplus/18Sep2018/Apr2017/pulls_em_MVA/
-
-// Zbar Model
-
-root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_All_Bin100","em","MVA","Zbar",false)'
+// Zp-Baryonic-HZZ Model
+//rm -f datacards_4l_2D*
+bash linkcombinefiles.sh 
+root -l -b -q 'macroExclusionTable.C("MET","4l","Baryonic",false)'
 root -l -b
 .L macroExclusionTable.C
-smoothMap("Zbar","muccamvaZbaradaptFull_All_Bin100")
-drawLines("Zbar","muccamvaZbaradaptFull_All_Bin100")
-putEverythingTogether("Zbar","muccamvaZbaradaptFull_All_Bin100")
-putEverythingTogetherSmooth("Zbar","muccamvaZbaradaptFull_All_Bin100")
+smoothMap("Baryonic","MET")               
+drawLines("Baryonic","MET")          
+putEverythingTogether("Baryonic","MET")
 .q
-
-cp ExclusionMap* ~/www/figuresLxplus/18Sep2018/Apr2017/pulls_em_MVA/
-
-root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_All_Bin1000","em","MVA","Zbar",false)'
-root -l -b
-.L macroExclusionTable.C
-smoothMap("Zbar","muccamvaZbaradaptFull_All_Bin1000")
-drawLines("Zbar","muccamvaZbaradaptFull_All_Bin1000")
-putEverythingTogether("Zbar","muccamvaZbaradaptFull_All_Bin1000")
-putEverythingTogetherSmooth("Zbar","muccamvaZbaradaptFull_All_Bin1000")
-.q
-
-cp ExclusionMap* ~/www/figuresLxplus/16Mar2018/Apr2017/pulls_em_MVA/
-
-
-root -l -b -q 'macroExclusionTable.C("muccamva2HDMadaptFull_All_NoWeights_Bin800","em","MVA","2HDM",false)'
-root -l -b -q 'macroExclusionTable.C("muccamva2HDMadaptFull_All_Bin800","em","MVA","2HDM",true)'
-root -l -b -q 'macroExclusionTable.C("muccamva2HDMadaptFull_All_NoWeights_Bin800","em","MVA","2HDM",true)'
-
-root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_All_Bin100","em","MVA","Zbar",false)'
-root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_All_NoWeights_Bin100","em","MVA","Zbar",false)'
-root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_All_Bin1000","em","MVA","Zbar",false)'
-root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_All_NoWeights_Bin1000","em","MVA","Zbar",false)'
-root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_All_Bin100","em","MVA","Zbar",true)'
-root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_All_NoWeights_Bin100","em","MVA","Zbar",true)'
-root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_All_Bin1000","em","MVA","Zbar",true)'
-root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_All_NoWeights_Bin1000","em","MVA","Zbar",true)'
 
 */
 
@@ -75,49 +42,40 @@ root -l -b -q 'macroExclusionTable.C("muccamvaZbaradaptFull_All_NoWeights_Bin100
 #include "TLegend.h"
 #include "TStyle.h"
 #include "TPaveText.h"
-#include "tdrStyle/CMS_lumi.C"
+//#include "CMS_lumi.C"
 
 using namespace std;
 
 float intLumi = 35.9;
 
+// 2HDM
 const int nX_2HDM = 42;
 const int nY_2HDM = 28;
+
 TString mZp[nX_2HDM]      = {"450","500","550","600","650","700","750","800","850","900","950","1000","1050","1100","1150","1200","1250","1300","1350","1400","1450","1500","1550","1600","1650","1700","1750","1800","1850","1900","1950","2000","2050","2100","2150","2200","2250","2300","2350","2400","2450","2500"};
 TString mA0[nY_2HDM]      = {"300","325","350","375","400","425","450","475","500","525","550","575","600","625","650","675","700","725","750","775","800","825","850","875","900","925","950","975"};
 
-Float_t x_2HDM[nX_2HDM] = {450,500,550,600,650,700,750,800,850,900,950,1000,1050,1100,1150,1200,1250,1300,1350,1400,1450,1500,1550,1600,1650,1700,1750,1800,1850,1900,1950,2000,2050,2100,2150,2200,2250,2300,2350,2400,2450,2500};
-Float_t y_2HDM[nY_2HDM] = {300,325,350,375,400,425,450,475,500,525,550,575,600,625,650,675,700,725,750,775,800,825,850,875,900,925,950,975};
+Float_t x_2HDM[nX_2HDM+1] = {400,450,500,550,600,650,700,750,800,850,900,950,1000,1050,1100,1150,1200,1250,1300,1350,1400,1450,1500,1550,1600,1650,1700,1750,1800,1850,1900,1950,2000,2050,2100,2150,2200,2250,2300,2350,2400,2450,2500};
+Float_t y_2HDM[nY_2HDM+1] = {275,300,325,350,375,400,425,450,475,500,525,550,575,600,625,650,675,700,725,750,775,800,825,850,875,900,925,950,975};
 
-// if (model == "2HDM"){
-//   map -> GetYaxis() -> SetRangeUser(300,700);
-//   map -> GetXaxis() -> SetRangeUser(450,2000);
-// }
 
-const int nX_Zbar = 37;
+// ZpBaryonic
+const int nX_Zbar = 36;
 const int nY_Zbar = 52;
 
-TString mZb[nX_Zbar]      = {"10","15","20","30","40","50","75","95","100","150","200","250","300","350","400","450","500","550","600","650","700","750","800","850","900","950","1000","1100","1200","1300","1400","1500","1600","1700","1800","1900","2000"};
+TString mZb[nX_Zbar] = {"10","20","30","40","50","75","100","150","200","250","300","350","400","450","500","550","600","650","700","750","800","850","900","950","1000", "1100", "1200", "1300", "1400", "1500", "1600", "1700", "1800", "1900", "2000", "2500"};
 TString mChi[nY_Zbar]     = {"1","5","10","15","20","25","30","35","40","45","50","60","70","80","90","100","125","150","175","200","225","250","275","300","325","350","375","400","425","450","475","500","525","550","575","600","625","650","675","700","725","750","775","800","825","850","875","900","925","950","975","1000"};
-Float_t x_Zbar[nX_Zbar] = {10,15,20,30,40,50,75,95,100,150,200,250,300,350,400,450,500,550,600,650,700,750,800,850,900,950,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000};
-Float_t y_Zbar[nY_Zbar] = {1,5,10,15,20,25,30,35,40,45,50,60,70,80,90,100,125,150,175,200,225,250,275,300,325,350,375,400,425,450,475,500,525,550,575,600,625,650,675,700,725,750,775,800,825,850,875,900,925,950,975,1000};
 
-
-//   if (model == "Zbar"){
-//   map -> GetYaxis() -> SetRangeUser(0,1000);
-//   map -> GetXaxis() -> SetRangeUser(0,2000);
-// }
-
+Float_t x_Zbar[nX_Zbar+1] = {0,10,20,30,40,50,75,100,150,200,250,300,350,400,450,500,550,600,650,700,750,800,850,900,950,1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2500};
+Float_t y_Zbar[nY_Zbar+1] = {0,1,5,10,15,20,25,30,35,40,45,50,60,70,80,90,100,125,150,175,200,225,250,275,300,325,350,375,400,425,450,475,500,525,550,575,600,625,650,675,700,725,750,775,800,825,850,875,900,925,950,975,1000};
 
 double limit;
 
 void macroExclusionTable(TString variable  = "mthBin",
-			 TString channel   = "em",
-			 TString cut       = "MVA",
+			 TString channel   = "4l",
 			 TString model     = "2HDM",
 			 bool    isBlind   = false
 			 ){
-
   Int_t nX,nY,minX,maxX,minY,maxY;
   Float_t xx[100];
   Float_t yy[100];
@@ -125,33 +83,33 @@ void macroExclusionTable(TString variable  = "mthBin",
   TString mY[100];
 
   if (model == "2HDM"){
-    minX = 600;
+    minX = 450;
     maxX = 2500;
     minY = 300;
-    maxY = 975;
+    maxY = 1000;
     nX = nX_2HDM;
     nY = nY_2HDM;
-    for (int i = 0; i < nX; ++i)
+    for (int i = 0; i < nX+1; ++i)
       xx[i] = x_2HDM[i];
     for (int i = 0; i < nX; ++i)
       mX[i] = mZp[i];
-    for (int i = 0; i < nY; ++i)
+    for (int i = 0; i < nY+1; ++i)
       yy[i] = y_2HDM[i];
     for (int i = 0; i < nY; ++i)
       mY[i] = mA0[i];
   }
-  else if (model == "Zbar"){
-    minX = 1;
-    maxX = 10000;
+  else if (model == "Baryonic"){
+    minX = 10;
+    maxX = 2500;
     minY = 1;
     maxY = 1000;
     nX = nX_Zbar;
     nY = nY_Zbar;
-    for (int i = 0; i < nX; ++i)
+    for (int i = 0; i < nX+1; ++i)
       xx[i] = x_Zbar[i];
     for (int i = 0; i < nX; ++i)
       mX[i] = mZb[i];
-    for (int i = 0; i < nY; ++i)
+    for (int i = 0; i < nY+1; ++i)
       yy[i] = y_Zbar[i];
     for (int i = 0; i < nY; ++i)
       mY[i] = mChi[i];
@@ -161,39 +119,38 @@ void macroExclusionTable(TString variable  = "mthBin",
     return; 
   }
 
-  // Float_t xbins[12] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 12, 16, 20};
-  // TH1F *EFar = new TH1F("EFar","EFar title",11,xbins);
+
 
   TH2F* mymap            = new TH2F("mymap","mymap",nX-1,xx,nY-1,yy); //nominal
   TH2F* mymapOneSigmaUp  = new TH2F("mymapOneSigmaUp","mymapOneSigmaUp",nX-1,xx,nY-1,yy); // +1 sigma
   TH2F* mymapOneSigmaDo  = new TH2F("mymapOneSigmaDo","mymapOneSigmaDo",nX-1,xx,nY-1,yy); // -1 sigma
   TH2F* mymapTwoSigmaUp  = new TH2F("mymapTwoSigmaUp","mymapTwoSigmaUp",nX-1,xx,nY-1,yy); // +2 sigma
   TH2F* mymapTwoSigmaDo  = new TH2F("mymapTwoSigmaDo","mymapTwoSigmaDo",nX-1,xx,nY-1,yy); // -2 sigma
-
   TH2F* myobs  = new TH2F("myobs","myobs",nX-1,xx,nY-1,yy);
 
-  // TH2F* mymap            = new TH2F("mymap","mymap",nX-1,minX,maxX,nY-1,minY,maxY); //nominal
-  // TH2F* mymapOneSigmaUp  = new TH2F("mymapOneSigmaUp","mymapOneSigmaUp",nX-1,minX,maxX,nY-1,minY,maxY); // +1 sigma
-  // TH2F* mymapOneSigmaDo  = new TH2F("mymapOneSigmaDo","mymapOneSigmaDo",nX-1,minX,maxX,nY-1,minY,maxY); // -1 sigma
-  // TH2F* mymapTwoSigmaUp  = new TH2F("mymapTwoSigmaUp","mymapTwoSigmaUp",nX-1,minX,maxX,nY-1,minY,maxY); // +2 sigma
-  // TH2F* mymapTwoSigmaDo  = new TH2F("mymapTwoSigmaDo","mymapTwoSigmaDo",nX-1,minX,maxX,nY-1,minY,maxY); // -2 sigma
-
-  // TH2F* myobs  = new TH2F("myobs","myobs",nX-1,minX,maxX,nY-1,minY,maxY);
+  /*
+  TH2F* mymap            = new TH2F("mymap","mymap",nX-1,minX,maxX,nY-1,minY,maxY); //nominal
+  TH2F* mymapOneSigmaUp  = new TH2F("mymapOneSigmaUp","mymapOneSigmaUp",nX-1,minX,maxX,nY-1,minY,maxY); // +1 sigma
+  TH2F* mymapOneSigmaDo  = new TH2F("mymapOneSigmaDo","mymapOneSigmaDo",nX-1,minX,maxX,nY-1,minY,maxY); // -1 sigma
+  TH2F* mymapTwoSigmaUp  = new TH2F("mymapTwoSigmaUp","mymapTwoSigmaUp",nX-1,minX,maxX,nY-1,minY,maxY); // +2 sigma
+  TH2F* mymapTwoSigmaDo  = new TH2F("mymapTwoSigmaDo","mymapTwoSigmaDo",nX-1,minX,maxX,nY-1,minY,maxY); // -2 sigma
+  TH2F* myobs  = new TH2F("myobs","myobs",nX-1,minX,maxX,nY-1,minY,maxY);
+  */
 
   TString filename = "";
   for (int i = 0; i < nX; ++i){
-    //if (i % 4 == 0) mymap->GetXaxis()->SetBinLabel(i+1,mX[i]);
+    if (i % 4 == 0) mymap->GetXaxis()->SetBinLabel(i+1,mX[i]);
     for (int j = 0; j < nY; ++j){
-      //if (j % 4 == 0) mymap->GetYaxis()->SetBinLabel(j+1,mY[j]);
+      if (j % 4 == 0) mymap->GetYaxis()->SetBinLabel(j+1,mY[j]);
       if (model == "2HDM"){
-	filename = "combine_" + channel + "_" + cut + "/higgsCombine" + mX[i] + "_" + mY[j] + "_"+ variable + ".Asymptotic.mH120.root";
+	filename = "datacards_" + channel + "_2D/higgsCombine_hhxx_Spring16_card_4l_ZprimeToA0hToA0chichihZZTo4l_2HDM_13TeV-madgraph_Target_MZp-" + mX[i] + "_MA0-" + mY[j] + "_reweighted.AsymptoticLimits.mH125.root";
 	if (isBlind)
-	  filename = "combine_" + channel + "_" + cut + "/higgsCombine" + mX[i] + "_" + mY[j] + "_"+ variable + "_blind.Asymptotic.mH120.root";
+	  filename = "combine_" + channel + "_/higgsCombine" + mX[i] + "_" + mY[j] + "_blind.Asymptotic.mH120.root";
       }
-      if (model == "Zbar"){
-	filename = "combine_" + channel + "_" + cut + "/higgsCombineZB_" + mX[i] + "_" + mY[j] + "__"+ variable + ".Asymptotic.mH120.root";
+      if (model == "Baryonic"){
+	filename = "datacards_" + channel + "_2D/higgsCombine_hhxx_Spring16_card_4l_MonoHZZ4l_ZpBaryonic_13TeV-madgraph_Target_MZp-" + mX[i] + "_MChi-" + mY[j] + "_reweighted.AsymptoticLimits.mH125.root";
 	if (isBlind)
-	  filename = "combine_" + channel + "_" + cut + "/higgsCombineZB_" + mX[i] + "_" + mY[j] + "__"+ variable + "_blind.Asymptotic.mH120.root";
+	  filename = "combine_" + channel + "_/higgsCombineZB_" + mX[i] + "_" + mY[j] + "_blind.Asymptotic.mH120.root";
       }
       cout<<"Name: "<<filename<<endl;
       TFile* f = NULL;
@@ -204,77 +161,37 @@ void macroExclusionTable(TString variable  = "mthBin",
       if (t == NULL){
 	cout<<"Launch again this:"<<endl;
 	if (model == "2HDM")
-	  cout<<"python scriptMonoHSplit.py em "<<variable<<" MVA "<<mX[i]<<" "<<mY[j]<<endl;
-	if (model == "Zbar")
-	  cout<<"python scriptMonoHSplit.py em "<<variable<<" MVA ZB "<<mX[i]<<"_"<<mY[j]<<endl;
+	  cout<<"python scriptMonoHSplit.py em "<<variable<<" MET 2HDM "<<mX[i]<<" "<<mY[j]<<endl;
+	if (model == "Baryonic")
+	  cout<<"python scriptMonoHSplit.py em "<<variable<<" MET ZpBaryionic "<<mX[i]<<"_"<<mY[j]<<endl;
 	  continue;
       }
       t->SetBranchAddress("limit", &limit);
       if (t->GetEntries() < 2){
 	cout<<"Launch again this:"<<endl;
 	if (model == "2HDM")
-	  cout<<"python scriptMonoHSplit.py em "<<variable<<" MVA "<<mX[i]<<" "<<mY[j]<<endl;
-	if (model == "Zbar")
-	  cout<<"python scriptMonoHSplit.py em "<<variable<<" MVA ZB "<<mX[i]<<"_"<<mY[j]<<endl;
+	  cout<<"python scriptMonoHSplit.py em "<<variable<<" MET 2HDM "<<mX[i]<<" "<<mY[j]<<endl;
+	if (model == "Baryonic")
+	  cout<<"python scriptMonoHSplit.py em "<<variable<<" MET ZpBaryonic "<<mX[i]<<"_"<<mY[j]<<endl;
 	  continue;
       }
-      if (model == "Zbar" && mX[i] == "10"   && mY[j] ==  "50") continue; // crazy limit there
-      if (model == "Zbar" && mX[i] == "300"  && mY[j] ==  "70") continue; // crazy limit there
-      if (model == "Zbar" && mX[i] == "150"  && mY[j] ==  "70") continue; // crazy limit there
-      if (model == "Zbar" && mX[i] == "150"  && mY[j] ==  "10") continue; // crazy limit there
-      if (model == "Zbar" && mX[i] == "150"  && mY[j] ==  "15") continue; // crazy limit there
-      if (model == "Zbar" && mX[i] == "150"  && mY[j] ==  "25") continue; // crazy limit there
-      if (model == "Zbar" && mX[i] == "150"  && mY[j] ==  "30") continue; // crazy limit there
-      if (model == "Zbar" && mX[i] == "100"  && mY[j] ==  "60") continue; // crazy limit there
-      if (model == "Zbar" && mX[i] == "900"  && mY[j] == "100") continue; // crazy limit there
-      if (model == "2HDM" && mX[i] == "1100" && mY[j] == "375") continue; // crazy limit there
-      if (model == "2HDM" && mX[i] == "1000" && mY[j] == "375") continue; // crazy limit there
-      if (model == "2HDM" && mX[i] == "1050" && mY[j] == "300") continue; // crazy limit there
-
-      if (model == "2HDM" && mX[i] == "1150" && mY[j] == "375") continue; // crazy limit there
-      if (model == "2HDM" && mX[i] == "1100" && mY[j] == "350") continue; // crazy limit there
-      if (model == "2HDM" && mX[i] == "1150" && mY[j] == "325") continue; // crazy limit there
-      if (model == "2HDM" && mX[i] == "1150" && mY[j] == "300") continue; // crazy limit there
-      if (model == "2HDM" && mX[i] == "1050" && mY[j] == "425") continue; // crazy limit there
-      if (model == "2HDM" && mX[i] == "1000" && mY[j] == "450") continue; // crazy limit there
-      if (model == "2HDM" && mX[i] == "1150" && mY[j] == "425") continue; // crazy limit there
-      if (model == "2HDM" && mX[i] == "1150" && mY[j] == "450") continue; // crazy limit there
-      if (model == "2HDM" && mX[i] == "1150" && mY[j] == "475") continue; // crazy limit there
-      if (model == "2HDM" && mX[i] == "1100" && mY[j] == "450") continue; // crazy limit there
-      if (model == "2HDM" && mX[i] == "1100" && mY[j] == "400") continue; // crazy limit there
-
-      //      if (t -> GetEntries() == 6){
       t->GetEntry(0);
       mymapTwoSigmaDo -> SetBinContent(i+1,j+1,limit);
-      if (model == "Zbar" && (xx[i] < (yy[j] + yy[j] - 0))) mymapTwoSigmaDo -> SetBinContent(i+1,j+1,2);
-      if (model == "Zbar" && (xx[i] >= (yy[j] + yy[j] - 0)) && limit > 50) continue; 
       t->GetEntry(1);
       mymapOneSigmaDo -> SetBinContent(i+1,j+1,limit);
-      if (model == "Zbar" && (xx[i] < (yy[j] + yy[j] - 0))) mymapOneSigmaDo -> SetBinContent(i+1,j+1,2);
-      if (model == "Zbar" && (xx[i] >= (yy[j] + yy[j] - 0)) && limit > 50) continue; 
       t->GetEntry(2);
       mymap -> SetBinContent(i+1,j+1,limit);
-      if (model == "Zbar" && (xx[i] < (yy[j] + yy[j] - 0))) mymap -> SetBinContent(i+1,j+1,2);
-      if (model == "Zbar" && (xx[i] >= (yy[j] + yy[j] - 0)) && limit > 50) continue; 
-      //      cout<<"For bin "<<mX[i]<<", "<<mY[j]<<" the limits is "<<limit<<endl;
+      cout<<"For bin "<<mX[i]<<", "<<mY[j]<<" the limits is "<<limit<<endl;
       t->GetEntry(3);
       mymapOneSigmaUp -> SetBinContent(i+1,j+1,limit);
-      if (model == "Zbar" && (xx[i] < (yy[j] + yy[j] - 0))) mymapOneSigmaUp -> SetBinContent(i+1,j+1,2);
-      if (model == "Zbar" && (xx[i] >= (yy[j] + yy[j] - 0)) && limit > 50) continue; 
       t->GetEntry(4);
       mymapTwoSigmaUp -> SetBinContent(i+1,j+1,limit);
-      if (model == "Zbar" && (xx[i] < (yy[j] + yy[j] - 25))) mymapTwoSigmaUp -> SetBinContent(i+1,j+1,2);
-      if (model == "Zbar" && (xx[i] >= (yy[j] + yy[j] - 25)) && limit > 50) continue; 
       t->GetEntry(5);
       myobs -> SetBinContent(i+1,j+1,limit);
-      //      }
       f->Close();
     }
   }
   gStyle->SetOptStat(0);
-  gStyle->SetPalette(kBird);
-  //  TColor::InvertPalette();
-
   gStyle->SetPaintTextFormat("4.2f");
   TString mapTitle = "Exclusion Limits for " + model +  " Model - " + variable + " Variable";
   if (isBlind)
@@ -283,12 +200,10 @@ void macroExclusionTable(TString variable  = "mthBin",
     mapTitle = mapTitle + "(35.9fb^{-1})";
   //  mymap->SetTitle(mapTitle);
   mymap->SetTitle("");
-  mymap->GetXaxis()->SetTitleSize(0.05);
-  mymap->GetYaxis()->SetTitleSize(0.05);
   mymap->GetXaxis()->SetTitle("M_{Z'} [GeV]");
   if (model == "2HDM")
     mymap->GetYaxis()->SetTitle("M_{A} [GeV]");
-  if (model == "Zbar")
+  if (model == "Baryonic")
     mymap->GetYaxis()->SetTitle("M_{#chi} [GeV]");
   mymap->GetYaxis()->SetTitleOffset(1.5);
 
@@ -297,7 +212,7 @@ void macroExclusionTable(TString variable  = "mthBin",
   // char latexString2[80];
   // sprintf(latexString2,"Best significance: %3f", maxSig);
 
-  TLatex* tl = new TLatex(0.15,0.91,"CMS");// preliminary");
+  TLatex* tl = new TLatex(0.15,0.91,"CMS preliminary");
   tl->SetNDC();
   tl->SetTextSize(0.03);
   TLatex* tl2 = new TLatex(0.63,0.91,"35.9 fb^{-1} (13 TeV)");
@@ -306,28 +221,21 @@ void macroExclusionTable(TString variable  = "mthBin",
 
   TString heather = "";
   if (model == "2HDM") heather = "Z'-2HDM Model";
-  else if (model == "Zbar") heather = "Z' Baryonic Model";
+  else if (model == "Baryonic") heather = "Z'-baryonic Model";
+
   TCanvas *c1 = new TCanvas("c1","c1",800,800);
   c1->cd();
-  TLegend* l1 = new TLegend(0.2,0.69,0.6,0.89);
+  TLegend* l1 = new TLegend(0.2,0.79,0.4,0.89);
   gStyle -> SetLegendTextSize(0.025);
-  l1 -> SetHeader(heather);
+  l1->SetHeader(heather);
   l1 -> SetLineColor(kWhite);
   TPad* pad1 = new TPad("pad1","pad1",0.,0.,1.,1.);
   pad1->SetLeftMargin(0.15);
   pad1->SetRightMargin(0.15);
   pad1->Draw();
   pad1->cd();
-  //  pad1->SetLogz();
 
   mymap->GetXaxis()->SetNdivisions(408);
-  mymap->GetZaxis()->SetRangeUser(0,100);
-
-  if (model == "Zbar"){
-    mymap->GetXaxis()->SetRangeUser(10,1000);
-    mymap->GetYaxis()->SetRangeUser(1,500);
-  }
-    
   mymap->Draw("colz");//,text");
   l1->Draw("same");
   tl->Draw("same");
@@ -358,7 +266,6 @@ void smoothMap(TString model = "2HDM",
 
   gStyle->SetOptStat(0);
   gStyle->SetPalette(kBird);
-  //  TColor::InvertPalette();
 
   TString fileName = "ExclusionMap" + model + variable + ".root";
   
@@ -375,7 +282,7 @@ void smoothMap(TString model = "2HDM",
   out->cd();
 
   std::ifstream file;
-  file.open("/afs/cern.ch/user/n/ntrevisa/work/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/monoHWW/Apr2017/crosssectionZp2HDM.txt",std::ios::in);
+  file.open("crosssectionZp2HDM.txt",std::ios::in);
   std::string str; 
   float str1; 
   float str2; 
@@ -390,43 +297,65 @@ void smoothMap(TString model = "2HDM",
   
   // Expected Limits - Nominal
   cont = 0;
-  for (int i = 1; i < Exp->GetNbinsX() + 1; ++i){
-    for (int j = 1; j < Exp->GetNbinsY() + 1; ++j){
+  for (int i = 1; i < Exp->GetNbinsX(); ++i){
+    for (int j = 1; j < Exp->GetNbinsY(); ++j){
       if (Exp->GetBinContent(Exp->GetBin(i,j)) == 0){
 	++cont;
-	left     = 0;
-	right    = 0;
-	up       = 0;
-	down     = 0;
+	left  = 0;
+	right = 0;
+	up    = 0;
+	down  = 0;
 	leftLim  = Exp->GetBinContent(Exp->GetBin(i-1,j));
 	rightLim = Exp->GetBinContent(Exp->GetBin(i+1,j));
 	upLim    = Exp->GetBinContent(Exp->GetBin(i,j+1));
 	downLim  = Exp->GetBinContent(Exp->GetBin(i,j-1));
-	sum      = 0.;
+	sum = 0.;
 	// left
-	if (leftLim > 0 && ((((leftLim < 50 && 2*Exp->GetYaxis()->GetBinCenter(j) < Exp->GetXaxis()->GetBinCenter(i)) || (2*Exp->GetYaxis()->GetBinCenter(j)+25 > Exp->GetXaxis()->GetBinCenter(i) && leftLim > 50)) && model == "Zbar") || model == "2HDM")){
+	if (Exp->GetBinContent(Exp->GetBin(i-1,j)) != 0){
 	  left = 1;
-	  sum = sum + leftLim;
+	  sum = sum + Exp->GetBinContent(Exp->GetBin(i-1,j));
 	}
 	// right
-	if (rightLim > 0 && ((((rightLim < 50 && 2*Exp->GetYaxis()->GetBinCenter(j) < Exp->GetXaxis()->GetBinCenter(i)) || (2*Exp->GetYaxis()->GetBinCenter(j)+25 > Exp->GetXaxis()->GetBinCenter(i) && rightLim > 50)) && model == "Zbar") || model == "2HDM")){
+	if (Exp->GetBinContent(Exp->GetBin(i+1,j)) != 0){
 	  right = 1;
-	  sum = sum + rightLim;
+	  sum = sum + Exp->GetBinContent(Exp->GetBin(i+1,j));
 	}
 	// up
-	if (upLim > 0 && ((((upLim < 50 && 2*Exp->GetYaxis()->GetBinCenter(j) < Exp->GetXaxis()->GetBinCenter(i)) || (2*Exp->GetYaxis()->GetBinCenter(j)+25 > Exp->GetXaxis()->GetBinCenter(i) && upLim > 50)) && model == "Zbar") || model == "2HDM")){
+	if (Exp->GetBinContent(Exp->GetBin(i,j+1)) != 0){
 	  up = 1;
-	  sum = sum + upLim;
+	  sum = sum + Exp->GetBinContent(Exp->GetBin(i,j+1));
 	}
 	// down
-	if (downLim > 0 && ((((downLim < 50 && 2*Exp->GetYaxis()->GetBinCenter(j) < Exp->GetXaxis()->GetBinCenter(i)) || (2*Exp->GetYaxis()->GetBinCenter(j)+25 > Exp->GetXaxis()->GetBinCenter(i) && downLim > 50)) && model == "Zbar") || model == "2HDM")){
+	if (Exp->GetBinContent(Exp->GetBin(i,j-1)) != 0){
 	  down = 1;
-	  sum = sum + downLim;
+	  sum = sum + Exp->GetBinContent(Exp->GetBin(i,j-1));
 	}
-	float myZ = 2.;
-	if (right+left+up+down != 0)
-	  myZ = sum/(right+left+up+down);
-	Exp->SetBinContent(i,j,myZ);
+	Exp->SetBinContent(i,j,sum/(right+left+up+down));
+
+	// // left
+	// if (leftLim > 0 && ((((leftLim < 50 && 2*Exp->GetYaxis()->GetBinCenter(j) < Exp->GetXaxis()->GetBinCenter(i)) || (2*Exp->GetYaxis()->GetBinCenter(j)+25 > Exp->GetXaxis()->GetBinCenter(i) && leftLim > 50)) && model == "Zbar") || model == "2HDM")){
+	//   left = 1;
+	//   sum = sum + leftLim;
+	// }
+	// // right
+	// if (rightLim > 0 && ((((rightLim < 50 && 2*Exp->GetYaxis()->GetBinCenter(j) < Exp->GetXaxis()->GetBinCenter(i)) || (2*Exp->GetYaxis()->GetBinCenter(j)+25 > Exp->GetXaxis()->GetBinCenter(i) && rightLim > 50)) && model == "Zbar") || model == "2HDM")){
+	//   right = 1;
+	//   sum = sum + rightLim;
+	// }
+	// // up
+	// if (upLim > 0 && ((((upLim < 50 && 2*Exp->GetYaxis()->GetBinCenter(j) < Exp->GetXaxis()->GetBinCenter(i)) || (2*Exp->GetYaxis()->GetBinCenter(j)+25 > Exp->GetXaxis()->GetBinCenter(i) && upLim > 50)) && model == "Zbar") || model == "2HDM")){
+	//   up = 1;
+	//   sum = sum + upLim;
+	// }
+	// // down
+	// if (downLim > 0 && ((((downLim < 50 && 2*Exp->GetYaxis()->GetBinCenter(j) < Exp->GetXaxis()->GetBinCenter(i)) || (2*Exp->GetYaxis()->GetBinCenter(j)+25 > Exp->GetXaxis()->GetBinCenter(i) && downLim > 50)) && model == "Zbar") || model == "2HDM")){
+	//   down = 1;
+	//   sum = sum + downLim;
+	// }
+	// float myZ = 2.;
+	// if (right+left+up+down != 0)
+	//   myZ = sum/(right+left+up+down);
+	// Exp->SetBinContent(i,j,myZ);
       }
     }
   }
@@ -445,7 +374,7 @@ void smoothMap(TString model = "2HDM",
     Exp->GetXaxis()->SetRangeUser(600,1200);
     Exp->GetYaxis()->SetRangeUser(300,500);
   }
-  else if (model == "Zbar"){
+  else if (model == "Baryonic"){
     Exp->GetXaxis()->SetRangeUser(100,1000);
     Exp->GetYaxis()->SetRangeUser(1,500);
   }
@@ -460,15 +389,15 @@ void smoothMap(TString model = "2HDM",
 
   // Expected Limits - 1 Sigma Up
   cont = 0;
-  for (int i = 1; i < ExpUp->GetNbinsX() + 1; ++i){
-    for (int j = 1; j < ExpUp->GetNbinsY() + 1; ++j){
+  for (int i = 1; i < ExpUp->GetNbinsX(); ++i){
+    for (int j = 1; j < ExpUp->GetNbinsY(); ++j){
       if (ExpUp->GetBinContent(ExpUp->GetBin(i,j)) == 0){
 	++cont;
 	left  = 0;
 	right = 0;
 	up    = 0;
 	down  = 0;
-	sum   = 0.;
+	sum = 0.;
 	// left
 	if (ExpUp->GetBinContent(ExpUp->GetBin(i-1,j)) != 0){
 	  left = 1;
@@ -500,8 +429,8 @@ void smoothMap(TString model = "2HDM",
 
   // Expected Limits - 1 Sigma Down
   cont = 0;
-  for (int i = 1; i < ExpDo->GetNbinsX() + 1; ++i){
-    for (int j = 1; j < ExpDo->GetNbinsY() + 1; ++j){
+  for (int i = 1; i < ExpDo->GetNbinsX(); ++i){
+    for (int j = 1; j < ExpDo->GetNbinsY(); ++j){
       if (ExpDo->GetBinContent(ExpDo->GetBin(i,j)) == 0){
 	++cont;
 	left  = 0;
@@ -540,8 +469,8 @@ void smoothMap(TString model = "2HDM",
 
   // Observed Limits - Nominal
   cont = 0;
-  for (int i = 1; i < Obs->GetNbinsX() + 1; ++i){
-    for (int j = 1; j < Obs->GetNbinsY() + 1; ++j){
+  for (int i = 1; i < Obs->GetNbinsX(); ++i){
+    for (int j = 1; j < Obs->GetNbinsY(); ++j){
       if (Obs->GetBinContent(Obs->GetBin(i,j)) == 0){
 	++cont;
 	left  = 0;
@@ -573,67 +502,11 @@ void smoothMap(TString model = "2HDM",
       }
     }
   }
-  cout<<"I've found "<<cont<<" empty bins in expected limits map"<<endl;
+  cout<<"I've found "<<cont<<" empty bins in observed limits map"<<endl;
   Obs->Write();
 
 
   out->Close();
-}
-
-
-void interpolateMap(TString model = "2HDM",
-		    TString variable = "muccamva2HDMadaptFull_All_Bin800"
-		    ){
-  
-  TString fileName = "ExclusionMap" + model + variable + "_smooth.root";
-
-  TFile* f    = new TFile(fileName,"read");
-
-  TH2F* Exp   = (TH2F*) f ->Get("mymap");
-  TH2F* ExpDo = (TH2F*) f ->Get("mymapOneSigmaDo");
-  TH2F* ExpUp = (TH2F*) f ->Get("mymapOneSigmaUp");
-  TH2F* Obs   = (TH2F*) f ->Get("myobs");
-
-  TGraph2D *gExp   = new TGraph2D();
-  TGraph2D *gExpDo = new TGraph2D();
-  TGraph2D *gExpUp = new TGraph2D();
-  TGraph2D *gObs   = new TGraph2D();
-
-  float N,x,y,z;
-  for (int i = 1; i < Exp->GetNbinsX() + 1; ++i){
-    for (int j = 1; j < Exp->GetNbinsY() + 1; ++j){
-      N = i+(j+Exp->GetNbinsX()*(i-1));
-
-      // Expected TGraph2D
-      x = Exp->GetXaxis()->GetBinLowEdge(i)+Exp->GetXaxis()->GetBinWidth(i);
-      y = Exp->GetYaxis()->GetBinLowEdge(j)+Exp->GetYaxis()->GetBinWidth(j);
-      z = Exp->GetBinContent(i,j);
-      cout<<N<<": "<<x<<", "<<y<<", "<<z<<endl;
-      gExp->SetPoint(N,x,y,z);
-
-      // Expected TGraph2D 1 sigma up
-      x = ExpUp->GetXaxis()->GetBinLowEdge(i)+ExpUp->GetXaxis()->GetBinWidth(i);
-      y = ExpUp->GetYaxis()->GetBinLowEdge(j)+ExpUp->GetYaxis()->GetBinWidth(j);
-      z = ExpUp->GetBinContent(i,j);
-      cout<<N<<": "<<x<<", "<<y<<", "<<z<<endl;
-      gExpUp->SetPoint(N,x,y,z);
-
-      // Expected TGraph2D 1 sigma down
-      x = ExpDo->GetXaxis()->GetBinLowEdge(i)+ExpDo->GetXaxis()->GetBinWidth(i);
-      y = ExpDo->GetYaxis()->GetBinLowEdge(j)+ExpDo->GetYaxis()->GetBinWidth(j);
-      z = ExpDo->GetBinContent(i,j);
-      cout<<N<<": "<<x<<", "<<y<<", "<<z<<endl;
-      gExpDo->SetPoint(N,x,y,z);
-
-      // Observed TGraph2D
-      x = Obs->GetXaxis()->GetBinLowEdge(i)+Obs->GetXaxis()->GetBinWidth(i);
-      y = Obs->GetYaxis()->GetBinLowEdge(j)+Obs->GetYaxis()->GetBinWidth(j);
-      z = Obs->GetBinContent(i,j);
-      cout<<N<<": "<<x<<", "<<y<<", "<<z<<endl;
-      gObs->SetPoint(N,x,y,z);
-    }
-  }
-  cout<<""<<endl;
 }
 
 
@@ -696,7 +569,7 @@ void drawLines(TString model = "2HDM",
   hExp->SetName("hExp");
   if (model == "2HDM") 
     hExp->Smooth(1);
-  if (model == "Zbar"){
+  if (model == "Baryonic"){
     hExp->Smooth(1);
   }
   TGraph2D gExp(hExp);
@@ -744,7 +617,7 @@ void drawLines(TString model = "2HDM",
   hExpUp->SetName("gExpUp");
   if (model == "2HDM") 
     hExpUp->Smooth(1);
-  if (model == "Zbar") 
+  if (model == "Baryonic") 
     hExpUp->Smooth(1);
   TGraph2D gExpUp(hExpUp);
   gExpUp.SetNpx(200);
@@ -792,7 +665,7 @@ void drawLines(TString model = "2HDM",
   hExpDo->SetName("gExpDo");
   if (model == "2HDM") 
     hExpDo->Smooth(1);
-  if (model == "Zbar") 
+  if (model == "Baryonic") 
     hExpDo->Smooth(1);
   TGraph2D gExpDo(hExpDo);
   gExpDo.SetNpx(100);
@@ -840,7 +713,7 @@ void drawLines(TString model = "2HDM",
   hObs->SetName("ggObs");
   if (model == "2HDM") 
     hObs->Smooth(1);
-  if (model == "Zbar") 
+  if (model == "Baryonic") 
     hObs->Smooth(1);
   TGraph2D gObs(hObs);
   gObs.SetNpx(200);
@@ -887,9 +760,9 @@ void putEverythingTogether(TString model = "2HDM",
 			   TString variable = "muccamva2HDMadaptFull_All_Bin800"
 			   ){
 
+
   gStyle->SetOptStat(0);
   gStyle->SetPalette(kBird);
-  //TColor::InvertPalette();
 
   TString mapFileName  = "";
   TString lineFileName = "";
@@ -900,7 +773,7 @@ void putEverythingTogether(TString model = "2HDM",
   TFile* mapFile  = new TFile(mapFileName);
   TFile* lineFile = new TFile(lineFileName);
 
-  //  TH2F* map = (TH2F*) mapFile->Get("mymap");
+  //TH2F* map = (TH2F*) mapFile->Get("mymap");
   TGraph2D* mymap = (TGraph2D*) lineFile->Get("gExp");
   TH2D* map = mymap->GetHistogram();
 
@@ -934,6 +807,7 @@ void putEverythingTogether(TString model = "2HDM",
   pad1->SetTicks();
   pad1->Draw();
   pad1->cd();
+  pad1->SetLogz();
 
   map->GetXaxis()->SetTitleSize(0.05);
   map->GetYaxis()->SetTitleSize(0.05);
@@ -945,7 +819,7 @@ void putEverythingTogether(TString model = "2HDM",
     map->GetXaxis()->SetTitle("m_{Z'} [GeV]");
     map->GetYaxis()->SetTitle("m_{A} [GeV]");
   }
-  else if (model == "Zbar"){
+  else if (model == "Baryonic"){
     map->GetXaxis()->SetTitle("m_{Z'} [GeV]");
     map->GetYaxis()->SetTitle("m_{#chi} [GeV]");
     for (int i = 1; i < map->GetXaxis()->GetNbins()+1; ++i){
@@ -968,18 +842,27 @@ void putEverythingTogether(TString model = "2HDM",
   pad1->SetLogz();
 
   TString heather = "";
-  if (model == "2HDM") heather = "Z'-2HDM, Z' #rightarrow DM + h(WW)";
-  else if (model == "Zbar") heather = "Baryonic Z', Z' #rightarrow DM + h(WW)";
+  if (model == "2HDM") heather = "Z'-2HDM, Z' #rightarrow DM + h(ZZ)";
+  else if (model == "Baryonic") heather = "Baryonic Z', Z' #rightarrow DM + h(ZZ)";
   TLegend* l1 = new TLegend(0.54,0.74,0.82,0.88);
   gStyle -> SetLegendTextSize(0.022);
   l1 -> SetHeader(heather);
   l1 -> SetLineColor(kWhite);
+  // l1->SetFillStyle(0);
+  // l1->SetBorderSize(0);
+  // l1->SetTextSize(0.032);
   l1 -> AddEntry(Obs,"Observed 95\% CL","l");
   l1 -> AddEntry(Exp,"Expected 95\% CL","l");
   l1 -> AddEntry(ExpUp,"#pm 1 std. dev.","l");
-  //l1 -> AddEntry(ExpDo,"Expected, 1 #sigma down","l");
+  //  l1 -> AddEntry(ExpDo,"Expected, 1 #sigma down","l");
 
-  //TLatex* tl = new TLatex(0.15,0.92,"CMS");// preliminary");
+  // TLatex* tl = new TLatex(0.15,0.91,"CMS preliminary");
+  // tl->SetNDC();
+  // tl->SetTextSize(0.03);
+  // TLatex* tl2 = new TLatex(0.63,0.91,"35.9 fb^{-1} (13 TeV)");
+  // tl2->SetNDC();
+  // tl2->SetTextSize(0.03);
+
   TLatex* tl = new TLatex(0.18,0.84,"CMS");// preliminary");
   tl->SetNDC();
   tl->SetTextFont(61);
@@ -1040,26 +923,36 @@ void putEverythingTogether(TString model = "2HDM",
   tex2->SetTextAngle(90);
   tex2->SetTextAlign(33);
 
-  // if (model == "2HDM"){
-  //   map -> GetYaxis() -> SetRangeUser(300,700);
-  //   map -> GetXaxis() -> SetRangeUser(450,2000);
-  // }
-  //   if (model == "Zbar"){
-  //   map -> GetYaxis() -> SetRangeUser(0,1000);
-  //   map -> GetXaxis() -> SetRangeUser(0,2000);
-  // }
+  // TH2F *hframe=NULL;
 
-  //  map -> GetZaxis() -> SetRangeUser(0.1,100);
+  // if (model == "2HDM") hframe= new TH2F("hframe","",1000, 450., 2300., 1000, 300., 900.);
+  // if (model == "Baryonic") hframe= new TH2F("hframe","",1000, 10., 1900., 1000, 1., 900.);
   
+  // hframe->SetTitle("");
+  // hframe->GetXaxis()->SetTitle("M_{Z'} [GeV]");
+  // if (model == "2HDM")
+  //   hframe->GetYaxis()->SetTitle("M_{A} [GeV]");
+  // if (model == "Baryonic")
+  //   hframe->GetYaxis()->SetTitle("M_{#chi} [GeV]");
+  // hframe->GetYaxis()->SetTitleOffset(1.5);
+
+  //   hframe->Draw();
+
+  // //map -> GetYaxis() -> SetRangeUser(300,700);
+  // //map -> GetXaxis() -> SetRangeUser(450,2000);
+  // map->GetZaxis()->SetTitle("#mu^{95\% C.L.}");
+  // map->GetZaxis()->SetTitleOffset(1.4);
+
   map  ->Draw("colz");
-  Exp  ->Draw("PC,same");
-  ExpUp->Draw("PC,same");
-  ExpDo->Draw("PC,same");
-  Obs  ->Draw("PC,same");
+  //Exp  ->Draw("PL,same");
+  //ExpUp->Draw("PL,same");
+  //ExpDo->Draw("PL,same");
+  //Obs  ->Draw("PL,same");
   l1   ->Draw("same");
   tl   ->Draw("same");
-  tlSup->Draw("same");
   tl2  ->Draw("same");
+  tlSup->Draw("same");
+  //  gPad->RedrawAxis();
   tex2 ->Draw("same");
 
   // Z'-2HDM
@@ -1071,123 +964,16 @@ void putEverythingTogether(TString model = "2HDM",
     tl7  ->Draw("same");
   }
   // Baryonic Z'
-  if (model == "Zbar"){
+  if (model == "Baryonic"){
     tl8  ->Draw("same");
     tl9  ->Draw("same");
     tl10 ->Draw("same");
   }
-  
-  TString canvasName = "";
-  canvasName = "ExclusionMap"+model+variable+"_together";
-  c1 -> Print(canvasName+".png");
-  c1 -> Print(canvasName+".pdf");
 
-  TString plotTitle = "ExclusionMap" + model + variable+"_together";
-  TFile *outFile = new TFile(plotTitle + ".root","recreate");
-  outFile->cd();
-  map->Write();
-  outFile->Close();
-}
+  char canvasNamepng[50],canvasNamepdf[50];
+  sprintf(canvasNamepng,"ExclusionMap_HZZ4l_%s%s_together.png",model.Data(),variable.Data());
+  c1 -> SaveAs(canvasNamepng);
+  sprintf(canvasNamepdf,"ExclusionMap_HZZ4l_%s%s_together.pdf",model.Data(),variable.Data());
+  c1 -> SaveAs(canvasNamepdf);
 
-
-void putEverythingTogetherSmooth(TString model = "2HDM",
-				 TString variable = "muccamva2HDMadaptFull_All_Bin800"
-				 ){
-  
-  gStyle->SetOptStat(0);
-  gStyle->SetPalette(kBird);
-  //  TColor::InvertPalette();
-
-  TString mapFileName  = "";
-  TString lineFileName = "";
-
-  mapFileName  = "ExclusionMap"+model+variable+"_smooth.root";
-  lineFileName = "outMaps_"+model+"_"+variable+".root";
-
-  TFile* mapFile  = new TFile(mapFileName);
-  TFile* lineFile = new TFile(lineFileName);
-
-  //  TH2F* map = (TH2F*) mapFile->Get("mymap");
-  TGraph2D* mymap = (TGraph2D*) lineFile->Get("gExp");
-  TH2D* map = mymap->GetHistogram();
- 
-  map -> Smooth(1,"k3a");
-  
-  TGraph* Exp   = (TGraph*) lineFile->Get("grExp");
-  TGraph* ExpUp = (TGraph*) lineFile->Get("grExpUp");
-  TGraph* ExpDo = (TGraph*) lineFile->Get("grExpDo");
-  TGraph* Obs   = (TGraph*) lineFile->Get("grObs");
-
-  Exp   -> SetLineWidth(4);
-  ExpUp -> SetLineWidth(1);
-  ExpDo -> SetLineWidth(1);
-  Obs   -> SetLineWidth(4);
-
-  Obs -> SetLineColor(kRed);
-  //  Exp -> SetLineStyle(9);
-
-  TCanvas *c1 = new TCanvas("c1","c1",800,800);
-  c1->cd();
-
-  TPad* pad1 = new TPad("pad1","pad1",0.,0.,1.,1.);
-  pad1->SetLeftMargin(0.15);
-  pad1->SetRightMargin(0.15);
-  pad1->SetBottomMargin(0.20);
-  pad1->Draw();
-  pad1->cd();
-
-  if (model == "2HDM"){
-    map->GetXaxis()->SetRangeUser(600,2000);
-    map->GetYaxis()->SetRangeUser(300,500);
-  }
-  else if (model == "Zbar"){
-    map->GetXaxis()->SetRangeUser(0,1000);
-    map->GetYaxis()->SetRangeUser(0,500);
-  }
-
-  map->GetZaxis()->SetRangeUser(0.7,100);
-
-  pad1->SetLogz();
-
-  TString heather = "";
-  if (model == "2HDM") heather = "Z'-2HDM, Z' #rightarrow DM + h(WW)";
-  else if (model == "Zbar") heather = "Z' Baryonic Model";
-  TLegend* l1 = new TLegend(0.2,0.69,0.6,0.89);
-  gStyle -> SetLegendTextSize(0.03);
-  l1 -> SetHeader(heather);
-  l1 -> SetLineColor(kWhite);
-  l1 -> AddEntry(Obs,"Observed 95\% CL","l");
-  l1 -> AddEntry(Exp,"Expected 95\% CL","l");
-  l1 -> AddEntry(ExpUp,"#pm 1 std. dev.","l");
-  //l1 -> AddEntry(ExpDo,"Expected, 1 #sigma down","l");
-
-  TLatex* tl = new TLatex(0.15,0.91,"CMS");// preliminary");
-  tl->SetNDC();
-  tl->SetTextSize(0.03);
-  TLatex* tl2 = new TLatex(0.63,0.91,"35.9 fb^{-1} (13 TeV)");
-  tl2->SetNDC();
-  tl2->SetTextSize(0.03);
-
-  // map -> GetYaxis() -> SetRangeUser(300,700);
-  // map -> GetXaxis() -> SetRangeUser(450,2000);
-
-  map  ->Draw("colz");
-  Exp  ->Draw("PL,same");
-  ExpUp->Draw("PL,same");
-  ExpDo->Draw("PL,same");
-  Obs  ->Draw("PL,same");
-  l1   ->Draw("same");
-  tl   ->Draw("same");
-  tl2  ->Draw("same");
-  
-  TString canvasName = "";
-  canvasName = "ExclusionMap"+model+variable+"_together_smooth";
-  c1 -> Print(canvasName+".png");
-  c1 -> Print(canvasName+".pdf");
-
-  TString plotTitle = "ExclusionMap" + model + variable+"_together_smooth";
-  TFile *outFile = new TFile(plotTitle + ".root","recreate");
-  outFile->cd();
-  map->Write();
-  outFile->Close();
 }

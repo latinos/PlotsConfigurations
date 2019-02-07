@@ -10,6 +10,8 @@ supercut = '   mll>12 \
             && MET_pt > 20 \
            '
 
+bAlgo = 'DeepB'
+bWP = '0.1522'
 
 ## Signal regions
 ## pt2 > 20 GeV

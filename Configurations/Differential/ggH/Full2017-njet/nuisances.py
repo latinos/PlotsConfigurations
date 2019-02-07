@@ -873,7 +873,7 @@ nuisances['electronpt']  = {
 #                   'XH_hww_0j_nonfid' : ['1', '1'],
 #                   'XH_hww_1j_nonfid' : ['1', '1'],
 #                   'XH_hww_2j_nonfid' : ['1', '1'],
-#                   'XH_hww_3j_nonfid' : ['1', '1'],
+#                   'XH_hww_3j_snonfid' : ['1', '1'],
 #                   'XH_hww_4j_nonfid' : ['1', '1'],
                    #
                    'VgS'     : ['1', '1'],
