@@ -11,33 +11,40 @@
 
 
 
-groupPlot['HH']  = {  
-                 'nameHR' : 'HH',
-                 'isSignal' : 1,
-                 'color': 861,   
-                 'samples'  : ['HH']
-              }
+#groupPlot['HH']  = {  
+#                 'nameHR' : 'HH',
+#                 'isSignal' : 1,
+#         0        'color': 861,   
+#                 'samples'  : ['HH']
+#              }
 
-#groupPlot['HH_cleaned']  = {
- #                	'nameHR' : 'HH_cleaned',
-  #               	'isSignal' : 2,
-   #              	'color': 861, # kAzure +1 
-    #             	'samples'  : ['HH_cleaned']
-     #         		}
+groupPlot['TTToSemilepton']  = {
+                 	'nameHR' : 'TTToSemilepton',
+                 	'isSignal' : 1,
+                 	'color': 861, # kAzure +1 
+                 	'samples'  : ['TTToSemilepton']
+              		}
 
-groupPlot['Wjets']  = {
-                        'nameHR' : 'W+Jets',
-                        'isSignal' : 0,
-                        'color': 629,  
-                        'samples'  : ['Wjets']
-                        }
+#groupPlot['Wjets']  = {
+#                        'nameHR' : 'W+Jets',
+#                        'isSignal' : 0,
+#                        'color': 629,  
+#                        'samples'  : ['Wjets']
+#                        }
 
-groupPlot['Data']  = {
-                        'nameHR' : 'Data',
-                        'isSignal' : 1,
-                        'color': 415,
-                        'samples'  : ['Data']
-                        }
+groupPlot['TTWJetsToLNu'] = {
+				'nameHR' : 'TTWJetsToLNu',
+				'isSignal' : 0,
+				'color' : 629,
+				'samples' : ['TTWJetsToLNu']
+				}
+
+groupPlot['WZTo1L1Nu2Q'] = {
+                                'nameHR' : 'WZTo1L1Nu2Q',
+                                'isSignal' : 0,
+                                'color' : 415,
+                                'samples' : ['WZTo1L1Nu2Q']
+                                }
 
 
 
@@ -96,32 +103,40 @@ groupPlot['Data']  = {
 
 # keys here must match keys in samples.py    
 #                    
-plot['HH']  = {  
+#plot['HH']  = {  
+#                  'color': 861,    
+#                  'isSignal' : 1,
+#                  'isData'   : 0, 
+#                  'scale'    : 1.   ,
+#              }
+
+plot['TTToSemilepton']  = {
                   'color': 861,    
                   'isSignal' : 1,
-                  'isData'   : 0, 
+                  'isData'   : 0,
                   'scale'    : 1.   ,
               }
-#plot['HH_cleaned']  = {
-#                  'color': 861,    
-#                  'isSignal' : 2,
+
+#plot['Wjets']  = {
+#                  'color': 629,
+#                  'isSignal' : 0,
 #                  'isData'   : 0,
 #                  'scale'    : 1.   ,
 #              }
-plot['Wjets']  = {
+
+plot['TTWJetsToLNu']  = {
                   'color': 629,
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.   ,
               }
 
-plot['Data']  = {
-                 'color': 415,
-                 'isSignal' : 1,
+plot['WZTo1L1Nu2Q']  = {
+                  'color': 415,
+                  'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.   ,
-             }
-
+              }
 
 #legend['lumi'] = 'L = 6.3/fb'
 legend['lumi'] = 'L = 35.9/fb'
