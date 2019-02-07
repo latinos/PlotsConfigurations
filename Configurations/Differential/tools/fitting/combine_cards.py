@@ -9,6 +9,7 @@ from argparse import ArgumentParser
 argParser = ArgumentParser(description = 'Select and edit the datacards to use in full fit and combine them.')
 argParser.add_argument('--in', '-i', metavar = 'PATH', dest = 'inpath', default = 'datacards', help = 'Input directory name.')
 argParser.add_argument('--out', '-o', metavar = 'PATH', dest = 'outpath', default = 'datacards_fullmodel', help = 'Output directory name.')
+argParser.add_argument('--drop-mcstats', '-M', action = 'store_true', dest = 'dropMCStats', help = 'Drop MC stats (for test only).')
 argParser.add_argument('--hdf5', '-H', action = 'store_true', dest = 'hdf5', help = 'Use text2hdf5.py.')
 
 args = argParser.parse_args()
@@ -21,11 +22,7 @@ try:
 except OSError:
     pass
 
-dropMCStats = True
-#dropLumi = True
-
-cards = []
-ptbins = []
+cmd = ['combineCards.py']
 procIds = {} # it seems that we don't really need to have the process ids synched between the combined cards, but let's make them common
 
 for cut in os.listdir(args.inpath):
@@ -188,7 +185,7 @@ for cut in os.listdir(args.inpath):
                 words = line.split()
 
                 if 'autoMCStats' in words:
-                    if dropMCStats:
+                    if args.dropMCStats or args.hdf5:
                         continue
                     else:
                         target.write(line)
@@ -198,18 +195,10 @@ for cut in os.listdir(args.inpath):
                     continue
 
                 nuisName = words[0]
-                #if nuisName.startswith('lumi') and dropLumi:
-                #    continue
                 
                 nuisType = words[1]
                 values = words[2:]
                 valueMap = dict(zip(procNames, values))
-
-                #if nuisType == 'lnN':
-                #    for procName in usedProcs:
-                #        # drop scaling nuisances for free-floating processes
-                #        if procName.startswith('top') or procName.startswith('DY') or procName == 'WW' or procIds[procName] <= 0:
-                #            valueMap[procName] = '-'
 
                 target.write(nuisName.ljust(60))
                 target.write(nuisType.ljust(20))
@@ -219,10 +208,12 @@ for cut in os.listdir(args.inpath):
 
             target.write(line)
         
-    cards.append(targetDir + '/datacard.txt')
+    cmd.append('%s=%s/datacard.txt' % (cut, os.path.realpath(targetDir)))
 
-cmd = ['combineCards.py'] + cards
+# list of signal proc name ordered by decreasing process id (and therefore in physical order coming from structure.py)
+signalProcs = [x[1] for x in sorted(((pid, pname) for pname, pid in procIds.items() if pid <= 0), reverse = True)]
 
+# now run combineCards.py (output goes to stdout)
 print ' '.join(cmd)
 
 proc = subprocess.Popen(cmd, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
@@ -246,40 +237,56 @@ with open(args.outpath + '/fullmodel.txt', 'w') as fullmodel:
             procNames = line.split()[1:]
 
     for nj in ['0j', '1j', '2j', '3j', 'ge4j']:
-        # temporary until I figure out how to implement rateParams in texthdf5
-        # fullmodel.write('CMS_hww_WWnorm{nj} rateParam * WW_{nj} 1.\n'.format(nj = nj))
-        # fullmodel.write('CMS_hww_topnorm{nj} rateParam * top_{nj} 1.\n'.format(nj = nj))
-        # fullmodel.write('CMS_hww_DYnorm{nj} rateParam * DY_{nj} 1.\n'.format(nj = nj))
         for sname in ['WW', 'top', 'DY']:
-            line = 'CMS_hww_%snorm%s   lnN   ' % (sname, nj)
-            applyto = '%s_%s' % (sname, nj)
-            for name in procNames:
-                if name == applyto:
-                    line += ' 6.00 '
-                else:
-                    line += ' - '
+            if args.hdf5:
+                # temporary until I figure out how to implement rateParams in texthdf5
+                line = 'CMS_hww_%snorm%s   lnN   ' % (sname, nj)
+                applyto = '%s_%s' % (sname, nj)
+                for name in procNames:
+                    if name == applyto:
+                        line += ' 6.00 '
+                    else:
+                        line += ' - '
+    
+                fullmodel.write(line + '\n')
+            else:
+                fullmodel.write('CMS_hww_{sname}norm{nj} rateParam * {sname}_{nj} 1.00\n'.format(sname = sname, nj = nj))
 
-            fullmodel.write(line + '\n')
+if not args.hdf5:
+    with open(args.outpath + '/fullmodel.txt') as fullmodel:
+        with open(args.outpath + '/fullmodel_unreg.txt', 'w') as fullmodel_unreg:
+            fullmodel_unreg.write(fullmodel.read())
 
-    if not args.hdf5:
-        # Add constraints
-        for ic in range(len(ptbins) - 2):
+    # Add constraints. In hdf5 version we do this when running combinetf.py
+    with open(args.outpath + '/fullmodel.txt', 'a') as fullmodel:
+        for ic in range(len(signalProcs) - 2):
             fullmodel.write('constr{ic} constr const{ic}_In[0.],RooFormulaVar::fconstr{ic}("@0+@2-2*@1",{{r_{low},r_{mid},r_{high}}}),delta[10.]\n'.format(ic = ic, low = ic, mid = ic + 1, high = ic + 2))
 
 if args.hdf5:
     cmd = ['text2hdf5.py', args.outpath + '/fullmodel.txt', '-o', args.outpath + '/fullmodel.hdf5']
-else:
-    cmd = ['text2workspace.py', '-P', 'HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel', '--PO', 'verbose']
-    for ibin, ptbin in enumerate(ptbins):
-        cmd.append('--PO')
-        cmd.append('map=.*/(gg|X)H_hww_%s_(incl|fid|nonfid):r_%d[1.,-3.,3.]' % (ptbin, ibin))
 
+    print ' '.join(cmd)
+    proc = subprocess.Popen(cmd)
+    proc.communicate()
+
+else:
+    #text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO 'map=.*/smH.*_NJ_0:r_0[1, -5, 5]' --PO 'map=.*/smH.*_NJ_1:r_1[1, -5, 5]' --PO 'map=.*/smH.*_NJ_2:r_2[1, -5, 5]' --PO 'map=.*/smH.*_NJ_3:r_3[1, -5, 5]' --PO 'map=.*/smH.*_NJ_GE4:r_4[1, -5, 5]' Full2016.txt -o Full2016.root
+
+    cmdbase = ['text2workspace.py', '-P', 'HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel', '--PO', 'verbose']
+    for ibin, signal in enumerate(signalProcs):
+        cmdbase.append('--PO')
+        cmdbase.append('map=.*/%s:r_%d[1.,-3.,3.]' % (signal, ibin))
+
+    cmd = list(cmdbase)
     cmd.extend([args.outpath + '/fullmodel.txt', '-o', args.outpath + '/fullmodel.root'])
 
-print ' '.join(cmd)
+    print ' '.join(cmd)
+    proc = subprocess.Popen(cmd)
+    proc.communicate()
 
-proc = subprocess.Popen(cmd, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
-out, err = proc.communicate()
+    cmd = list(cmdbase)
+    cmd.extend([args.outpath + '/fullmodel_unreg.txt', '-o', args.outpath + '/fullmodel_unreg.root'])
 
-print out
-print err
+    print ' '.join(cmd)
+    proc = subprocess.Popen(cmd)
+    proc.communicate()

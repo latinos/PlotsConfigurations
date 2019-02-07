@@ -110,3 +110,6 @@ for nuisance in nuisances.itervalues():
         nuisance['samples'][mapped] = value
     else:
       nuisance['samples'][sampleMapping[sname]] = value
+
+  if nuisance['type'] == 'lnN':
+    nuisance['type'] = 'shape'
