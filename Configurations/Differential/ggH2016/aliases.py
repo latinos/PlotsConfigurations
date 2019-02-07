@@ -1,10 +1,9 @@
 #aliases = {}
 
 # imported from samples.py:
-# samples
+# samples, signals
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
-signal = [skey for skey in samples if '_hww' in skey]
 top = [skey for skey in samples if skey.startswith('top')]
 
 ##############################
@@ -28,30 +27,34 @@ muWP='cut_Tight80x'
 ##############################
 
 ## categorization
-aliases['leade'] = {
-    'expr': 'abs(std_vector_lepton_flavour[0]) == 11'
-}
+#aliases['leade'] = {
+#    'expr': 'abs(std_vector_lepton_flavour[0]) == 11'
+#}
+#
+#aliases['leadm'] = {
+#    'expr': 'abs(std_vector_lepton_flavour[0]) == 13'
+#}
 
-aliases['leadm'] = {
-    'expr': 'abs(std_vector_lepton_flavour[0]) == 13'
-}
-
-aliases['highptTrail'] = {
-    'expr': 'std_vector_lepton_pt[1] > 20.'
-}
-
-aliases['lowptTrail'] = {
-    'expr': 'std_vector_lepton_pt[1] < 20.'
-}
+#aliases['highptTrail'] = {
+#    'expr': 'std_vector_lepton_pt[1] > 20.'
+#}
+#
+#aliases['lowptTrail'] = {
+#    'expr': 'std_vector_lepton_pt[1] < 20.'
+#}
 
 # Trailing lepton is a muon (with pt > 10 GeV implied) or an electron with pt > 13 GeV
 aliases['trailingE13'] = {
-    'expr': '(abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13)'
+    'expr': 'abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13'
 }
 
 # Leading two leptons have opposite sign & flavor
 aliases['osof'] = {
     'expr': 'std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13'
+}
+
+aliases['passConversionVeto'] = {
+    'expr': '(TMath::Abs(std_vector_lepton_flavour[0]) == 13 || std_vector_electron_passConversionVeto[0] == 1) && (TMath::Abs(std_vector_lepton_flavour[1]) == 13 || std_vector_electron_passConversionVeto[1] == 1)'
 }
 
 # Precompiled lepton cuts
@@ -355,15 +358,15 @@ aliases['genJet1Clean'] = {
 # Components for the fiducial cut
 aliases['genLeptonPt'] = {
     'expr': 'std_vector_dressedLeptonGen_pt[0]>25 && std_vector_dressedLeptonGen_pt[1]>10 && std_vector_dressedLeptonGen_pt[2]<10',
-    'samples': signal
+    'samples': signals
 }
 aliases['genOSOF'] = {
     'expr': 'std_vector_dressedLeptonGen_pid[0] * std_vector_dressedLeptonGen_pid[1] == -11 * 13',
-    'samples': signal
+    'samples': signals
 }
 aliases['genTrailingE13'] = {
     'expr': '(abs(std_vector_dressedLeptonGen_pid[1]) == 13 || std_vector_dressedLeptonGen_pt[1]>13)',
-    'samples': signal
+    'samples': signals
 }
 
 #expr = 'sqrt(2 * std_vector_jetGen_pt[0] * std_vector_jetGen_pt[1] * (cosh(std_vector_jetGen_eta[0]-std_vector_jetGen_eta[1])-cos(std_vector_jetGen_phi[0]-std_vector_jetGen_phi[1]))) * (genJet0Clean && genJet1Clean) + '
@@ -400,20 +403,20 @@ aliases['nGenJet'] = {
 aliases['fiducial'] = {
     #'expr': 'genLeptonPt && genOSOF && genTrailingE13 && genMll>12 && metGenpt>20 && genPtll>30 && genMth>=60 && genMtw2>30'
     'expr': 'genLeptonPt && genOSOF && genTrailingE13 && genMll>12 && genPtll>30 && genMth>=60 && genMtw2>30',
-    'samples': signal
+    'samples': signals
 }
 
 #aliases['gen_STXS_VBF'] = {
 #    'expr': 'higgsGenpt < 200. && genMjj > 400. && genDetajj > 2.8',
-#    'samples': signal
+#    'samples': signals
 #}
 #aliases['bin_njet_2_STXS_ggF_gg'] = {
 #    'expr': 'nGenJet >= 2 && !gen_STXS_VBF',
-#    'samples': signal
+#    'samples': signals
 #}
 #aliases['bin_njet_2_STXS_ggF_VBF'] = {
 #    'expr': 'nGenJet >= 2 && gen_STXS_VBF',
-#    'samples': signal
+#    'samples': signals
 #}
 #
 ## Reco cuts for STXS

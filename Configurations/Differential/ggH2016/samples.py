@@ -57,14 +57,15 @@ DataRun = [
   ['H','Run2016H-03Feb2017_ver3-v1'],
 ] 
 
-#DataSets = ['MuonEG','DoubleMuon','SingleMuon','DoubleEG','SingleElectron']
-DataSets = ['MuonEG','SingleMuon','SingleElectron']
+DataSets = ['MuonEG','SingleMuon','SingleElectron','DoubleMuon', 'DoubleEG']
 
 DataTrig = {
-  'MuonEG'         : ' trig_EleMu',
-  'SingleMuon'     : '!trig_EleMu && trig_SnglMu',
-  'SingleElectron' : '!trig_EleMu && !trig_SnglMu && trig_SnglEle',
-}
+            'MuonEG'         : ' trig_EleMu' ,
+            'SingleMuon'     : '!trig_EleMu && trig_SnglMu' ,
+            'SingleElectron' : '!trig_EleMu && !trig_SnglMu && trig_SnglEle',
+            'DoubleMuon'     : '!trig_EleMu && !trig_SnglMu && !trig_SnglEle && trig_DbleMu',
+            'DoubleEG'       : '!trig_EleMu && !trig_SnglMu && !trig_SnglEle && !trig_DbleMu && trig_DbleEle'
+           }
 
 #########################################
 ############ MC COMMON ##################
@@ -450,50 +451,28 @@ for sname in signals:
   sample = samples[sname]
   sample['subsamples'] = {}
 
-  for ipt in range(len(pthBinning) - 1):
-    low, high = pthBinning[ipt:ipt+2]
-
-    if high == 'inf':
-      binName = 'PTH_GT%s' % low
-      cut = 'genPth > %s' % low
-    else:
-      binName = 'PTH_%s_%s' % (low, high)
-      cut = 'genPth > %s && genPth < %s' % (low, high)
-
-    sample['subsamples'][binName] = cut
-
-  for nj in njetBinning:
-    if nj.endswith('+'):
-      binName = 'NJ_GE%s' % nj[:-1]
-      cut = 'nGenJet >= %s' % nj[:-1]
-    else:
-      binName = 'NJ_%s' % nj
-      cut = 'nGenJet == %s' % nj
-
-    sample['subsamples'][binName] = cut
-
-#  for fid, fidcut in [('', 'fiducial'), ('nonfid', '!fiducial')]:
-#    for ipt in range(len(pthBinning) - 1):
-#      low, high = pthBinning[ipt:ipt+2]
-#
-#      if high == 'inf':
-#        binName = fid + ('_PTH_GT%s' % low)
-#        cut = '%s && genPth > %s' % (fidcut, low)
-#      else:
-#        binName = fid + ('_PTH_%s_%s' % (low, high))
-#        cut = '%s && genPth > %s && genPth < %s' % (fidcut, low, high)
-#
-#      sample['subsamples'][binName] = cut
-#
-#    for nj in njetBinning:
-#      if nj.endswith('+'):
-#        binName = fid + ('_NJ_GE%s' % nj[:-1])
-#        cut = '%s && nGenJet >= %s' % (fidcut, nj[:-1])
-#      else:
-#        binName = fid + ('_NJ_%s' % nj)
-#        cut = '%s && nGenJet == %s' % (fidcut, nj)
-#
-#      sample['subsamples'][binName] = cut
+  for flabel, fidcut in [('fid', 'fiducial'), ('nonfid', '!fiducial')]:
+    for ipt in range(len(pthBinning) - 1):
+      low, high = pthBinning[ipt:ipt+2]
+  
+      if high == 'inf':
+        binName = '%s_PTH_GT%s' % (flabel, low)
+        cut = '%s && genPth > %s' % (fidcut, low)
+      else:
+        binName = '%s_PTH_%s_%s' % (flabel, low, high)
+        cut = '%s && genPth > %s && genPth < %s' % (fidcut, low, high)
+  
+      sample['subsamples'][binName] = cut
+  
+    for nj in njetBinning:
+      if nj.endswith('+'):
+        binName = '%s_NJ_GE%s' % (flabel, nj[:-1])
+        cut = '%s && nGenJet >= %s' % (fidcut, nj[:-1])
+      else:
+        binName = '%s_NJ_%s' % (flabel, nj)
+        cut = '%s && nGenJet == %s' % (fidcut, nj)
+  
+      sample['subsamples'][binName] = cut
 
 ###########################################
 ################## FAKE ###################
@@ -531,9 +510,22 @@ for era, sd in DataRun:
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
 
 #mysamples = collections.OrderedDict()
-##mysamples['ggH_hww'] = samples['ggH_hww']
+#mysignals = []
+#for sname in signals:
+#  mysamples[sname] = samples[sname]
+#  mysignals.append(sname)
+#
+#samples = mysamples
+#signals = mysignals
+
 ##mysamples['WW'] = samples['WW']
 #mysamples['top'] = samples['top']
 #samples = mysamples
 ##signals = ['ggH_hww']
 #signals = []
+
+#samples = {'ggH_htt': samples['ggH_htt']}
+#signals = ['ggH_htt']
+
+#samples = {'DATA': samples['DATA'], 'ggH_hww': samples['ggH_hww']}
+#signals = ['ggH_hww']

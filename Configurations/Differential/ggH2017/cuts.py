@@ -8,14 +8,13 @@ import re
 # samples, signals
 
 _tmp = [
-    'osof',
+    'mll>12',
     'Lepton_pt[0]>25 && Sum$(Lepton_pt>10) == 2',
     'abs(Lepton_eta[0])<2.5 && abs(Lepton_eta[1])<2.5',
-    'trailingE13',
     'MET_pt > 20',
-    'mll>12',
     'ptll>30',
-    'mtw2>30.'
+    'osof',
+    'trailingE13'
 ]
 supercut = ' && '.join(_tmp)
 
@@ -32,27 +31,36 @@ njbinning = [
     ('reco3j', 'threeJet'),
     ('recoge4j', 'manyJets')
 ]
+nnjbins = len(njbinning)
 
 cuts['hww_CR']['categories'] = []
 
 categorization = '-1'
 
-categorization += '+(mth<60 && mll>30 && mll<80 && bVeto)'
+categorization += '+(mth<60 && mll>40 && mll<80 && bVeto)'
 dycategorization = []
 for ibin, (bname, bcut) in enumerate(njbinning):
     cuts['hww_CR']['categories'].append('catDY' + bname)
     dycategorization.append('%d*%s' % (ibin + 1, bcut))
 categorization += '*(' + '+'.join(dycategorization) + ')'
 
-categorization += '+(mll>50)'
-categorization += '*(6*btag0*zeroJet+bReq'
+categorization += '+(mtw2>30 && mll>50)'
+categorization += '*(%d*btag0*zeroJet' % (nnjbins + 1)
+categorization += '+bReq'
 topcategorization = []
 for ibin, (bname, bcut) in enumerate(njbinning):
     cuts['hww_CR']['categories'].append('cattop' + bname)
     if ibin != 0:
-        topcategorization.append('%d*%s' % (ibin + 6, bcut))
+        topcategorization.append('%d*%s' % (ibin + nnjbins + 1, bcut))
 categorization += '*(' + '+'.join(topcategorization) + ')'
 categorization += ')'
+
+categorization += '+(mth>60 && mtw2>30 && bVeto && mll>100)'
+highmllcategorization = []
+for ibin, (bname, bcut) in enumerate(njbinning):
+    cuts['hww_CR']['categories'].append('cathighmll' + bname)
+    highmllcategorization.append('%d*%s' % (ibin + 2 * nnjbins + 1, bcut))
+categorization += '*(' + '+'.join(highmllcategorization) + ')'
 
 cuts['hww_CR']['categorization'] = categorization
 
@@ -98,6 +106,7 @@ def addsr(name, srbins, signalbins):
 
 _tmp = [
     'mth>=60',
+    'mtw2>30',
     'bVeto'
 ]
 
@@ -126,18 +135,16 @@ addsr('hww_PTH', srBins, 'PTH_.*')
 srBins = []
 for nj in njetBinning:
     if nj.endswith('+'):
-        binName = 'hww_NJ_GE%s' % nj[:-1]
-        #binName = 'GE%s' % nj[:-1] # correct
+        binName = 'GE%s' % nj[:-1] # correct
         cut = 'Sum$(CleanJet_pt >= 30. && abs(CleanJet_eta) < 2.5) >= %s' % nj[:-1]
     elif nj == '0':
-        binName = 'hww_NJ_0'
-        #binName = '0'
+        binName = '0'
         cut = 'Sum$(CleanJet_pt >= 30. && abs(CleanJet_eta) < 2.5) == 0'
     else:
-        binName = 'hww_NJ_%s' % nj
-        #binName = str(nj)
+        binName = str(nj)
         cut = 'Sum$(CleanJet_pt >= 30. && abs(CleanJet_eta) < 2.5) == %s' % nj
 
     srBins.append((binName, cut))
 
 addsr('hww_NJ', srBins, 'NJ_.*')
+
