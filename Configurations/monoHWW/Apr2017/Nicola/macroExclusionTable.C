@@ -951,7 +951,7 @@ void putEverythingTogether(TString model = "2HDM",
   l1   ->Draw("same");
   tl   ->Draw("same");
   tl2  ->Draw("same");
-  tlSup->Draw("same");
+  //tlSup->Draw("same");
   //  gPad->RedrawAxis();
   tex2 ->Draw("same");
 
