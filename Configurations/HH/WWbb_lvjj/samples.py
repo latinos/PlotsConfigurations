@@ -11,10 +11,11 @@ from LatinoAnalysis.Tools.commonTools import *
 ###### Tree Directory according to site ######
 ##############################################
 
-directory = '/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/'
+#directory = '/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/'
+directory = '/gwterap/cms/store/group/OneLepton/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/'
 
-samples['Wjets'] = { 'name' : getSampleFiles(directory, 'WJetsToLNu_HT100_200')\
-				+getSampleFiles(directory, 'WJetsToLNu_HT200_400')\
+samples['Wjets'] = { 'name' :     getSampleFiles(directory, 'WJetsToLNu_HT100_200')\
+				+ getSampleFiles(directory, 'WJetsToLNu_HT200_400')\
 				+ getSampleFiles(directory, 'WJetsToLNu_HT400_600')\
 				+ getSampleFiles(directory, 'WJetsToLNu_HT600_800')\
 #				+ getSampleFiles(directory, 'WJetsToLNu_HT800_1200')\

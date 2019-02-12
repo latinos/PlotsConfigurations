@@ -16,6 +16,12 @@ Transfer data:
     https://webfts.cern.ch/transmissions.php
     
 
+    
+For hercules:
+
+    source /cvmfs/cms.cern.ch/cmsset_default.sh
+    
+    
 Instructions:
 
 
