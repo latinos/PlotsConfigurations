@@ -15,11 +15,11 @@ variables['events']  = {   'name': '1',
                          #'fold' : 3
                       #}
                         
-variables['mll']  = {   'name': 'mll',            #   variable name    
-                        'range' : (40, 0,200),    #   variable range
-                        'xaxis' : 'm_{ll} [GeV]',  #   x axis name
-                         'fold' : 0
-                        }
+#variables['mll']  = {   'name': 'mll',            #   variable name    
+#                        'range' : (40, 0,200),    #   variable range
+#                        'xaxis' : 'm_{ll} [GeV]',  #   x axis name
+#                         'fold' : 0
+#                        }
 
 #variables['mllpeak'] = {   'name': 'mll',            #   variable name
                            #'range' : (100,80,100),    #   variable range
@@ -77,17 +77,17 @@ variables['nlep'] =  {
                         #'fold'  : 3                         
                         #}
 
-variables['eta1']  = {  'name': 'std_vector_lepton_eta[0]',     
-                        'range' : (10,-3,3),   
-                        'xaxis' : '#eta 1st lep',
-                        'fold'  : 0                         
-                        }
+#variables['eta1']  = {  'name': 'std_vector_lepton_eta[0]',     
+#                        'range' : (10,-3,3),   
+#                        'xaxis' : '#eta 1st lep',
+#                        'fold'  : 0                         
+#                        }
 
-variables['eta2']  = {  'name': 'std_vector_lepton_eta[1]',     
-                        'range' : (10,-3,3),   
-                        'xaxis' : '#eta 2nd lep',
-                        'fold'  : 0                         
-                        }
+#variables['eta2']  = {  'name': 'std_vector_lepton_eta[1]',     
+#                        'range' : (10,-3,3),   
+#                        'xaxis' : '#eta 2nd lep',
+#                        'fold'  : 0                         
+#                        }
 
 #variables['eta1large']  = {  'name': 'std_vector_lepton_eta[0]',
                        #'range' : ([-2.4, -2.1, -1.6, -1.2, -0.8, -0.3, -0.2, 0.2, 0.3, 0.8, 1.2, 1.6, 2.1, 2.4,],),
@@ -197,17 +197,17 @@ variables['jetpt4']  = {
                         'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
 
-variables['jeteta1']  = {  'name': 'std_vector_jet_eta[0]',
-                        'range' : (10,-5.0,5.0),
-                        'xaxis' : '#eta 1st jet',
-                        'fold'  : 0
-                        }
+#variables['jeteta1']  = {  'name': 'std_vector_jet_eta[0]',
+#                        'range' : (10,-5.0,5.0),
+#                        'xaxis' : '#eta 1st jet',
+#                        'fold'  : 0
+#                        }
 
-variables['jeteta2']  = {  'name': 'std_vector_jet_eta[1]',
-                        'range' : (10,-5.0,5.0),
-                        'xaxis' : '#eta 2nd jet',
-                        'fold'  : 0
-                        }
+#variables['jeteta2']  = {  'name': 'std_vector_jet_eta[1]',
+#                        'range' : (10,-5.0,5.0),
+#                        'xaxis' : '#eta 2nd jet',
+#                        'fold'  : 0
+#                        }
 
 
 #variables['mtw1']  = {  'name': 'mtw1',
@@ -247,12 +247,12 @@ variables['jeteta2']  = {  'name': 'std_vector_jet_eta[1]',
                         #}
 
 
-variables['mjj']  = {   
-			'name': 'mjj',            #   variable name    
-                        'range' : (-100, 0,3000),    #   variable range
-                        'xaxis' : 'm_{jj} [GeV]',  #   x axis name
-                         'fold' : 0
-                        }
+#variables['mjj']  = {   
+#			'name': 'mjj',            #   variable name    
+#                        'range' : (-100, 0,3000),    #   variable range
+#                        'xaxis' : 'm_{jj} [GeV]',  #   x axis name
+#                         'fold' : 0
+#                        }
 
 variables['max_mjj']  = {   'name': 'max_mjj(std_vector_jet_eta[0],std_vector_jet_eta[1],std_vector_jet_eta[2], std_vector_jet_pt[0], std_vector_jet_pt[1], std_vector_jet_pt[2], std_vector_jet_phi[0], std_vector_jet_pt[1], std_vector_jet_pt[2])',            #   variable name    
                            'range' : (25,0,1000),    #   variable range
