@@ -11,6 +11,10 @@ Transfer data:
 
     gfal-ls srm://storm.mib.infn.it:8444/cms/store/group/OneLepton/Apr2017_Run2016B_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__hadd/ | awk '{print "gfal-copy srm://storm.mib.infn.it:8444/cms/store/group/OneLepton/Apr2017_Run2016B_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__hadd/"$1"  /gwteras/cms/store/group/OneLepton/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/"$1}'
 
+    
+    Using webfts to trasnfer data: 
+    https://webfts.cern.ch/transmissions.php
+    
 
 Instructions:
 
@@ -28,10 +32,15 @@ Get Andrea's scripts to modify datacards.
 
 Copy and edit the latino user configuration file.
 
+    export CMSSW_DIRECTORY=/gwpool/users/amassiro/CMSSW_8_0_26_patch1/src
     cd $CMSSW_DIRECTORY/LatinoAnalysis/Tools/python
     cp userConfig_TEMPLATE.py userConfig.py
 
+For example:
 
+    baseDir  = '/gwpool/users/amassiro/Submit/'
+
+    
 # 2. Produce histograms
 
 This step reads the post-processed latino trees and produces histograms for several variables and phase spaces.
@@ -44,6 +53,20 @@ This step reads the post-processed latino trees and produces histograms for seve
                 --doBatch=True \
                 --batchQueue=1nd
 
+Local test:
+
+    mkShapes.py --inputDir=/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC --pycfg=configuration.py
+ 
+To expand and see what is happening:
+
+    easyDescription.py   --inputFileSamples=samples.py   --outputFileSamples=my_expanded_samples.py
+
+
+Bicocca batch:
+
+    hercules.hcms.it
+    
+    
 The jobs can take a while, thus it is natural to check their status.
 
     mkBatch.py --status

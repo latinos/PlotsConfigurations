@@ -258,5 +258,6 @@ variables['max_mjj']  = {   'name': 'max_mjj(std_vector_jet_eta[0],std_vector_je
                            'range' : (25,0,1000),    #   variable range
                            'xaxis' : 'max m_{jj}',  #   x axis name
                            'fold' :3,
-                        'linesToAdd' : ['.L /gwpool/users/achiapparini/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/HH/WWbb_lvjj/max_mjj.C+']
+                        #'linesToAdd' : ['.L /gwpool/users/achiapparini/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/HH/WWbb_lvjj/max_mjj.C+']
+                        'linesToAdd' : ['.L max_mjj.C+']
 }
