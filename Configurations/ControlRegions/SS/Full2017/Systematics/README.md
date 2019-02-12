@@ -1,0 +1,3 @@
+Configuration used to compute the systematics related to the fakes by changing the nominal and jetET weights up and down.
+This configuration has to be run 9 times to get the complete table of the Analysis Note, changing each time the output directory and the weight applied in the samples.py file. We only run on the fake trees and using the WW configuration.
+We are only interested in the number of yields so the only variable we draw is events in this case. We only plot the em in the 0 and 1j bin case.

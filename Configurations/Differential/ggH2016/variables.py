@@ -1,9 +1,14 @@
 #variables = {}
 
-# imported from samples.py:
-# samples
 # imported from cuts.py
 # cuts
+
+try:
+    variables
+except NameError:
+    import collections
+    variables = collections.OrderedDict()
+    cuts = []
 
 sr = [ckey for ckey in cuts if '_CR' not in ckey]
 
@@ -12,25 +17,22 @@ sr = [ckey for ckey in cuts if '_CR' not in ckey]
 variables['events'] = {
     'name': '0.5',
     'range': (1,0,1),
-    'xaxis': 'events',
-    'fold': 3
+    'xaxis': 'events'
 }
 
 mthbinning = [60,80,90,100,110,120,130,150,200]
 mllbinning = [10,25,35,40,45,50,55,70,90,210]
 name = ''
-mthbin = ['1'] # folding underflow -> always 1
-for imth in range(1, len(mthbinning) - 1):
-    mthbin.append('(mth >= %d)' % mthbinning[imth])
-name += '+'.join(mthbin)
-name += ' + %d*(' % (len(mthbinning) - 1)
-mllbin = [] # 1-1 for first bin
+mllbin = ['1'] # folding underflow -> always 1
 for imll in range(1, len(mllbinning) - 1):
     mllbin.append('(mll >= %d)' % mllbinning[imll])
 name += '+'.join(mllbin)
+name += ' + %d*(' % (len(mllbinning) - 1)
+mthbin = [] # 1-1 for first bin
+for imth in range(1, len(mthbinning) - 1):
+    mthbin.append('(mth >= %d)' % mthbinning[imth])
+name += '+'.join(mthbin)
 name += ') - 0.5'
-
-print name
 
 variables['mllVSmth_8x9'] = {
     'name': name,
@@ -43,15 +45,15 @@ variables['mllVSmth_8x9'] = {
 mthbinning = [60,80,90,110,130,150,200]
 mllbinning = [10,25,40,50,70,90,210]
 name = ''
-mthbin = ['1']
-for imth in range(1, len(mthbinning) - 1):
-    mthbin.append('(mth >= %d)' % mthbinning[imth])
-name += '+'.join(mthbin)
-name += ' + %d*(' % (len(mthbinning) - 1)
-mllbin = []
+mllbin = ['1'] # folding underflow -> always 1
 for imll in range(1, len(mllbinning) - 1):
     mllbin.append('(mll >= %d)' % mllbinning[imll])
 name += '+'.join(mllbin)
+name += ' + %d*(' % (len(mllbinning) - 1)
+mthbin = [] # 1-1 for first bin
+for imth in range(1, len(mthbinning) - 1):
+    mthbin.append('(mth >= %d)' % mthbinning[imth])
+name += '+'.join(mthbin)
 name += ') - 0.5'
 
 variables['mllVSmth_6x6'] = {

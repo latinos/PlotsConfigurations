@@ -701,7 +701,7 @@ nuisances['btag_shape_cferr2']  = {
 
 ##### Trigger Efficiency
 
-trig_syst = ['(TriggerEffWeight_'+Nlep+'l_u)/(TriggerEffWeight_'+Nlep+'l)', '(TriggerEffWeight_'+Nlep+'l_d)/(TriggerEffWeight_'+Nlep+'l)']
+trig_syst = ['((TriggerEffWeight_'+Nlep+'l_u)/(TriggerEffWeight_'+Nlep+'l))*(TriggerEffWeight_'+Nlep+'l>0.02) + (TriggerEffWeight_'+Nlep+'l<=0.02)', '(TriggerEffWeight_'+Nlep+'l_d)/(TriggerEffWeight_'+Nlep+'l)']
 
 nuisances['trigg']  = {
                 'name'  : 'hww_trigger_2017',
@@ -761,7 +761,7 @@ nuisances['trigg']  = {
                    'qqH_htt' : trig_syst ,
                    'ZH_htt'  : trig_syst ,
                    'WH_htt'  : trig_syst ,
-                },
+                }
 }
 
 ##### Electron Efficiency and energy scale
@@ -826,7 +826,7 @@ nuisances['eff_e']  = {
                    'qqH_htt' : id_syst_ele ,
                    'ZH_htt'  : id_syst_ele ,
                    'WH_htt'  : id_syst_ele ,
-                },
+                }
 }
 
 nuisances['electronpt']  = {
@@ -872,7 +872,7 @@ nuisances['electronpt']  = {
 #                   'XH_hww_4j_fid' : ['1', '1'],
 #                   'XH_hww_0j_nonfid' : ['1', '1'],
 #                   'XH_hww_1j_nonfid' : ['1', '1'],
-#                   'XH_hww_2j_nonfid' : ['1', '1'],
+#            s       'XH_hww_2j_nonfid' : ['1', '1'],
 #                   'XH_hww_3j_snonfid' : ['1', '1'],
 #                   'XH_hww_4j_nonfid' : ['1', '1'],
                    #
@@ -1107,26 +1107,26 @@ nuisances['jes']  = {
                    'WZgS_H'  : ['1', '1'],
                    'VVV'     : ['1', '1'],
                    #'Vg'      : ['1', '1'],
-                   'ggH_hww_0j_fid' : ['1', '1'],
-                   'ggH_hww_1j_fid' : ['1', '1'],
-                   'ggH_hww_2j_fid' : ['1', '1'],
-                   'ggH_hww_3j_fid' : ['1', '1'],
-                   'ggH_hww_4j_fid' : ['1', '1'],
-                   'ggH_hww_0j_nonfid' : ['1', '1'],
-                   'ggH_hww_1j_nonfid' : ['1', '1'],
-                   'ggH_hww_2j_nonfid' : ['1', '1'],
-                   'ggH_hww_3j_nonfid' : ['1', '1'],
-                   'ggH_hww_4j_nonfid' : ['1', '1'],
-                   'qqH_hww_0j_fid' : ['1', '1'],
-                   'qqH_hww_1j_fid' : ['1', '1'],
-                   'qqH_hww_2j_fid' : ['1', '1'],
-                   'qqH_hww_3j_fid' : ['1', '1'],
-                   'qqH_hww_4j_fid' : ['1', '1'],
-                   'qqH_hww_0j_nonfid' : ['1', '1'],
-                   'qqH_hww_1j_nonfid' : ['1', '1'],
-                   'qqH_hww_2j_nonfid' : ['1', '1'],
-                   'qqH_hww_3j_nonfid' : ['1', '1'],
-                   'qqH_hww_4j_nonfid' : ['1', '1'],
+#                   'ggH_hww_0j_fid' : ['1', '1'],
+#                   'ggH_hww_1j_fid' : ['1', '1'],
+#                   'ggH_hww_2j_fid' : ['1', '1'],
+#                   'ggH_hww_3j_fid' : ['1', '1'],
+#                   'ggH_hww_4j_fid' : ['1', '1'],
+#                   'ggH_hww_0j_nonfid' : ['1', '1'],
+#                   'ggH_hww_1j_nonfid' : ['1', '1'],
+#                   'ggH_hww_2j_nonfid' : ['1', '1'],
+#                   'ggH_hww_3j_nonfid' : ['1', '1'],
+#                   'ggH_hww_4j_nonfid' : ['1', '1'],
+#                   'qqH_hww_0j_fid' : ['1', '1'],
+#                   'qqH_hww_1j_fid' : ['1', '1'],
+#                   'qqH_hww_2j_fid' : ['1', '1'],
+#                   'qqH_hww_3j_fid' : ['1', '1'],
+#                   'qqH_hww_4j_fid' : ['1', '1'],
+#                   'qqH_hww_0j_nonfid' : ['1', '1'],
+#                   'qqH_hww_1j_nonfid' : ['1', '1'],
+#                   'qqH_hww_2j_nonfid' : ['1', '1'],
+#                   'qqH_hww_3j_nonfid' : ['1', '1'],
+#                   'qqH_hww_4j_nonfid' : ['1', '1'],
                    #
 #                   'XH_hww_0j_fid' : ['1', '1'],
 #                   'XH_hww_1j_fid' : ['1', '1'],
@@ -1175,26 +1175,26 @@ nuisances['met']  = {
                    'VVV'     : ['1', '1'],
                    #'Vg'      : ['1', '1'],
                    'VgS'     : ['1', '1'],
-                   'ggH_hww_0j_fid' : ['1', '1'],
-                   'ggH_hww_1j_fid' : ['1', '1'],
-                   'ggH_hww_2j_fid' : ['1', '1'],
-                   'ggH_hww_3j_fid' : ['1', '1'],
-                   'ggH_hww_4j_fid' : ['1', '1'],
-                   'ggH_hww_0j_nonfid' : ['1', '1'],
-                   'ggH_hww_1j_nonfid' : ['1', '1'],
-                   'ggH_hww_2j_nonfid' : ['1', '1'],
-                   'ggH_hww_3j_nonfid' : ['1', '1'],
-                   'ggH_hww_4j_nonfid' : ['1', '1'],
-                   'qqH_hww_0j_fid' : ['1', '1'],
-                   'qqH_hww_1j_fid' : ['1', '1'],
-                   'qqH_hww_2j_fid' : ['1', '1'],
-                   'qqH_hww_3j_fid' : ['1', '1'],
-                   'qqH_hww_4j_fid' : ['1', '1'],
-                   'qqH_hww_0j_nonfid' : ['1', '1'],
-                   'qqH_hww_1j_nonfid' : ['1', '1'],
-                   'qqH_hww_2j_nonfid' : ['1', '1'],
-                   'qqH_hww_3j_nonfid' : ['1', '1'],
-                   'qqH_hww_4j_nonfid' : ['1', '1'],
+#                   'ggH_hww_0j_fid' : ['1', '1'],
+#                   'ggH_hww_1j_fid' : ['1', '1'],
+#                   'ggH_hww_2j_fid' : ['1', '1'],
+#                   'ggH_hww_3j_fid' : ['1', '1'],
+#                   'ggH_hww_4j_fid' : ['1', '1'],
+#                   'ggH_hww_0j_nonfid' : ['1', '1'],
+#                   'ggH_hww_1j_nonfid' : ['1', '1'],
+#                   'ggH_hww_2j_nonfid' : ['1', '1'],
+#                   'ggH_hww_3j_nonfid' : ['1', '1'],
+#                   'ggH_hww_4j_nonfid' : ['1', '1'],
+#                   'qqH_hww_0j_fid' : ['1', '1'],
+#                   'qqH_hww_1j_fid' : ['1', '1'],
+#                   'qqH_hww_2j_fid' : ['1', '1'],
+#                   'qqH_hww_3j_fid' : ['1', '1'],
+#                   'qqH_hww_4j_fid' : ['1', '1'],
+#                   'qqH_hww_0j_nonfid' : ['1', '1'],
+#                   'qqH_hww_1j_nonfid' : ['1', '1'],
+#                   'qqH_hww_2j_nonfid' : ['1', '1'],
+#                   'qqH_hww_3j_nonfid' : ['1', '1'],
+#                   'qqH_hww_4j_nonfid' : ['1', '1'],
                    #
 #                   'XH_hww_0j_fid' : ['1', '1'],
 #                   'XH_hww_1j_fid' : ['1', '1'],
@@ -1285,105 +1285,105 @@ nuisances['DYQCDscale']  = {
 # FIXME: Add these uncertainties
 
 
-#nuisances['ggH_mu']  = {
-#                'name'  : 'THU_ggH_Mu',
-#                'skipCMS' : 1,
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'ggH_hww'   : ['ggH_mu', '1+(1.-ggH_mu)'],
-#                   'ggH_htt'   : ['ggH_mu', '1+(1.-ggH_mu)'],
-#                   },
-#                }
-#
-#
-#nuisances['ggH_res']  = {
-#                'name'  : 'THU_ggH_Res',
-#                'skipCMS' : 1,
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'ggH_hww'   : ['ggH_res', '1+(1.-ggH_res)'],
-#                   'ggH_htt'   : ['ggH_res', '1+(1.-ggH_res)'],
-#                   },
-#                }
-#
-#nuisances['ggH_mig01']  = {
-#                'name'  : 'THU_ggH_Mig01',
-#                'skipCMS' : 1,
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'ggH_hww'   : ['ggH_mig01', '1+(1.-ggH_mig01)'],
-#                   'ggH_htt'   : ['ggH_mig01', '1+(1.-ggH_mig01)'],
-#                   },
-#                }
-#
-#nuisances['ggH_mig12']  = {
-#                'name'  : 'THU_ggH_Mig12',
-#                'skipCMS' : 1,
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'ggH_hww'   : ['ggH_mig12', '1+(1.-ggH_mig12)'],
-#                   'ggH_htt'   : ['ggH_mig12', '1+(1.-ggH_mig12)'],
-#                   },
-#                }
-#
-#nuisances['ggH_pT60']  = {
-#                'name'  : 'THU_ggH_PT60',
-#                'skipCMS' : 1,
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'ggH_hww'   : ['ggH_pT60', '1+(1.-ggH_pT60)'],
-#                   'ggH_htt'   : ['ggH_pT60', '1+(1.-ggH_pT60)'],
-#                   },
-#                }
-#
-#nuisances['ggH_pT120']  = {
-#                'name'  : 'THU_ggH_PT120',
-#                'skipCMS' : 1,
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'ggH_hww'   : ['ggH_pT120', '1+(1.-ggH_pT120)'],
-#                   'ggH_htt'   : ['ggH_pT120', '1+(1.-ggH_pT120)'],
-#                   },
-#                }
-#
-#nuisances['ggH_VBF2j']  = {
-#                'name'  : 'THU_ggH_VBF2j',
-#                'skipCMS' : 1,
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'ggH_hww'   : ['ggH_VBF2j', '1+(1.-ggH_VBF2j)'],
-#                   'ggH_htt'   : ['ggH_VBF2j', '1+(1.-ggH_VBF2j)'],
-#                   },
-#                }
-#
-#nuisances['ggH_VBF3j']  = {
-#                'name'  : 'THU_ggH_VBF3j',
-#                'skipCMS' : 1,
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'ggH_hww'   : ['ggH_VBF3j', '1+(1.-ggH_VBF3j)'],
-#                   'ggH_htt'   : ['ggH_VBF3j', '1+(1.-ggH_VBF3j)'],
-#                   },
-#                }
-#
-#nuisances['ggH_qmtop']  = {
-#                'name'  : 'THU_ggH_qmtop',
-#                'skipCMS' : 1,
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'ggH_hww'   : ['ggH_qmtop', '1+(1.-ggH_qmtop)'],
-#                   'ggH_htt'   : ['ggH_qmtop', '1+(1.-ggH_qmtop)'],
-#                   },
-#                }
+nuisances['ggH_mu']  = {
+                'name'  : 'THU_ggH_Mu',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'ggH_hww'   : ['ggH_mu', '1+(1.-ggH_mu)'],
+                   'ggH_htt'   : ['ggH_mu', '1+(1.-ggH_mu)'],
+                   },
+                }
+
+
+nuisances['ggH_res']  = {
+                'name'  : 'THU_ggH_Res',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'ggH_hww'   : ['ggH_res', '1+(1.-ggH_res)'],
+                   'ggH_htt'   : ['ggH_res', '1+(1.-ggH_res)'],
+                   },
+                }
+
+nuisances['ggH_mig01']  = {
+                'name'  : 'THU_ggH_Mig01',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'ggH_hww'   : ['ggH_mig01', '1+(1.-ggH_mig01)'],
+                   'ggH_htt'   : ['ggH_mig01', '1+(1.-ggH_mig01)'],
+                   },
+                }
+
+nuisances['ggH_mig12']  = {
+                'name'  : 'THU_ggH_Mig12',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'ggH_hww'   : ['ggH_mig12', '1+(1.-ggH_mig12)'],
+                   'ggH_htt'   : ['ggH_mig12', '1+(1.-ggH_mig12)'],
+                   },
+                }
+
+nuisances['ggH_pT60']  = {
+                'name'  : 'THU_ggH_PT60',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'ggH_hww'   : ['ggH_pT60', '1+(1.-ggH_pT60)'],
+                   'ggH_htt'   : ['ggH_pT60', '1+(1.-ggH_pT60)'],
+                   },
+                }
+
+nuisances['ggH_pT120']  = {
+                'name'  : 'THU_ggH_PT120',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'ggH_hww'   : ['ggH_pT120', '1+(1.-ggH_pT120)'],
+                   'ggH_htt'   : ['ggH_pT120', '1+(1.-ggH_pT120)'],
+                   },
+                }
+
+nuisances['ggH_VBF2j']  = {
+                'name'  : 'THU_ggH_VBF2j',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'ggH_hww'   : ['ggH_VBF2j', '1+(1.-ggH_VBF2j)'],
+                   #'ggH_htt'   : ['ggH_VBF2j', '1+(1.-ggH_VBF2j)'],
+                   },
+                }
+
+nuisances['ggH_VBF3j']  = {
+                'name'  : 'THU_ggH_VBF3j',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'ggH_hww'   : ['ggH_VBF3j', '1+(1.-ggH_VBF3j)'],
+                   #'ggH_htt'   : ['ggH_VBF3j', '1+(1.-ggH_VBF3j)'],
+                   },
+                }
+
+nuisances['ggH_qmtop']  = {
+                'name'  : 'THU_ggH_qmtop',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'ggH_hww'   : ['ggH_qmtop', '1+(1.-ggH_qmtop)'],
+                   #'ggH_htt'   : ['ggH_qmtop', '1+(1.-ggH_qmtop)'],
+                   },
+                }
 
 nuisances['QCDscale_CRSR_accept_dytt']  = {
                'name'  : 'CMS_hww_QCDscale_CRSR_accept_dytt', 
@@ -1681,145 +1681,196 @@ nuisances['QCDscale_ggWW']  = {
               }
 
 #  - WW shaping
-#FIXME: nll weights are not in the trees??
-#nuisances['WWresum0j']  = {
-#                'name'  : 'WWresum0j',
-#                'skipCMS' : 1,
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
-#                   },
-#               'cuts'  : [
-#                 'hww2l2v_13TeV_of0j',
-#                 'hww2l2v_13TeV_top_of0j',
-#                 'hww2l2v_13TeV_dytt_of0j',
-##                 
-#                 'hww2l2v_13TeV_me_0j',
-#                 'hww2l2v_13TeV_em_0j',
-##
-#                 'hww2l2v_13TeV_me_mp_0j',
-#                 'hww2l2v_13TeV_me_pm_0j',
-#                 'hww2l2v_13TeV_em_mp_0j',
-#                 'hww2l2v_13TeV_em_pm_0j',
-##                
-#		 'hww2l2v_13TeV_em_pm_0j_pt2ge20',
-#                 'hww2l2v_13TeV_em_mp_0j_pt2ge20',
-#                 'hww2l2v_13TeV_me_pm_0j_pt2ge20',
-#                 'hww2l2v_13TeV_me_mp_0j_pt2ge20',
-##
-#                 'hww2l2v_13TeV_em_pm_0j_pt2lt20',
-#                 'hww2l2v_13TeV_em_mp_0j_pt2lt20',
-#                 'hww2l2v_13TeV_me_pm_0j_pt2lt20',
-#                 'hww2l2v_13TeV_me_mp_0j_pt2lt20',
-##
-#                ]               
+
+nuisances['WWresum0j']  = {
+                'name'  : 'WWresum0j',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+                   },
+               'cuts'  : [
+		 						 'hww2l2v_13TeV_em_pm_0j_pt2ge20',
+                 'hww2l2v_13TeV_em_mp_0j_pt2ge20',
+                 'hww2l2v_13TeV_me_pm_0j_pt2ge20',
+                 'hww2l2v_13TeV_me_mp_0j_pt2ge20',
+#
+                 'hww2l2v_13TeV_em_pm_0j_pt2lt20',
+                 'hww2l2v_13TeV_em_mp_0j_pt2lt20',
+                 'hww2l2v_13TeV_me_pm_0j_pt2lt20',
+                 'hww2l2v_13TeV_me_mp_0j_pt2lt20',
+#
+                ]               
+                
+                }
+
+
+nuisances['WWresum1j']  = {
+                'name'  : 'WWresum1j',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+                   },
+               'cuts'  : [
+                 'hww2l2v_13TeV_em_pm_1j_pt2ge20',
+                 'hww2l2v_13TeV_em_mp_1j_pt2ge20',
+                 'hww2l2v_13TeV_me_pm_1j_pt2ge20',
+                 'hww2l2v_13TeV_me_mp_1j_pt2ge20',
+#
+                 'hww2l2v_13TeV_em_pm_1j_pt2lt20',
+                 'hww2l2v_13TeV_em_mp_1j_pt2lt20',
+                 'hww2l2v_13TeV_me_pm_1j_pt2lt20',
+                 'hww2l2v_13TeV_me_mp_1j_pt2lt20',
+#
+                ]               
+                }
+                
+nuisances['WWresum2j']  = {
+                'name'  : 'WWresum2j',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+                   },
+               'cuts'  : [
+                 'hww2l2v_13TeV_of2j',
+                 'hww2l2v_13TeV_top_of2j',
+                 'hww2l2v_13TeV_dytt_of2j',
+#
+                ]               
+                }
+                
+nuisances['WWresum3j']  = {
+                'name'  : 'WWresum3j',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+                   },
+               'cuts'  : [
+                 'hww2l2v_13TeV_of3j',
+                 'hww2l2v_13TeV_top_of3j',
+                 'hww2l2v_13TeV_dytt_of3j',
+#
+                ]               
+                }
+                
+nuisances['WWresum4j']  = {
+                'name'  : 'WWresum4j',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+                   },
+               'cuts'  : [
+                 'hww2l2v_13TeV_of4j',
+                 'hww2l2v_13TeV_top_of4j',
+                 'hww2l2v_13TeV_dytt_of4j',
+#
+                ]               
+                }
+
+
+nuisances['WWqscale0j']  = {
+                'name'  : 'WWqscale0j',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+                   },
+               'cuts'  : [
+                 'hww2l2v_13TeV_em_pm_0j_pt2ge20',
+                 'hww2l2v_13TeV_em_mp_0j_pt2ge20',
+                 'hww2l2v_13TeV_me_pm_0j_pt2ge20',
+                 'hww2l2v_13TeV_me_mp_0j_pt2ge20',
 #                
-#                }
+                 'hww2l2v_13TeV_em_pm_0j_pt2lt20',
+                 'hww2l2v_13TeV_em_mp_0j_pt2lt20',
+                 'hww2l2v_13TeV_me_pm_0j_pt2lt20',
+                 'hww2l2v_13TeV_me_mp_0j_pt2lt20',
+#  
+                ] 
+                }
+
+
+nuisances['WWqscale1j']  = {
+                'name'  : 'WWqscale1j',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+                   },
+               'cuts'  : [
+                 'hww2l2v_13TeV_em_pm_1j_pt2ge20',
+                 'hww2l2v_13TeV_em_mp_1j_pt2ge20',
+                 'hww2l2v_13TeV_me_pm_1j_pt2ge20',
+                 'hww2l2v_13TeV_me_mp_1j_pt2ge20',
 #
-#
-#nuisances['WWresum1j']  = {
-#                'name'  : 'WWresum1j',
-#                'skipCMS' : 1,
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
-#                   },
-#               'cuts'  : [
-#                 'hww2l2v_13TeV_of1j',
-#                 'hww2l2v_13TeV_top_of1j',
-#                 'hww2l2v_13TeV_dytt_of1j',
-##                 
-#                 'hww2l2v_13TeV_me_1j',
-#                 'hww2l2v_13TeV_em_1j',
-##
-#                 'hww2l2v_13TeV_me_mp_1j',
-#                 'hww2l2v_13TeV_me_pm_1j',
-#                 'hww2l2v_13TeV_em_mp_1j',
-#                 'hww2l2v_13TeV_em_pm_1j',
-##               
-#                 'hww2l2v_13TeV_em_pm_1j_pt2ge20',
-#                 'hww2l2v_13TeV_em_mp_1j_pt2ge20',
-#                 'hww2l2v_13TeV_me_pm_1j_pt2ge20',
-#                 'hww2l2v_13TeV_me_mp_1j_pt2ge20',
-##
-#                 'hww2l2v_13TeV_em_pm_1j_pt2lt20',
-#                 'hww2l2v_13TeV_em_mp_1j_pt2lt20',
-#                 'hww2l2v_13TeV_me_pm_1j_pt2lt20',
-#                 'hww2l2v_13TeV_me_mp_1j_pt2lt20',
-##
-#                ]               
-#                }
-#
-#nuisances['WWqscale0j']  = {
-#                'name'  : 'WWqscale0j',
-#                'skipCMS' : 1,
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
-#                   },
-#               'cuts'  : [
-#                 'hww2l2v_13TeV_of0j',
-#                 'hww2l2v_13TeV_top_of0j',
-#                 'hww2l2v_13TeV_dytt_of0j',
-##                 
-#                 'hww2l2v_13TeV_me_0j',
-#                 'hww2l2v_13TeV_em_0j',
-##
-#                 'hww2l2v_13TeV_me_mp_0j',
-#                 'hww2l2v_13TeV_me_pm_0j',
-#                 'hww2l2v_13TeV_em_mp_0j',
-#                 'hww2l2v_13TeV_em_pm_0j',
-##               
-#                 'hww2l2v_13TeV_em_pm_0j_pt2ge20',
-#                 'hww2l2v_13TeV_em_mp_0j_pt2ge20',
-#                 'hww2l2v_13TeV_me_pm_0j_pt2ge20',
-#                 'hww2l2v_13TeV_me_mp_0j_pt2ge20',
-##                
-#                 'hww2l2v_13TeV_em_pm_0j_pt2lt20',
-#                 'hww2l2v_13TeV_em_mp_0j_pt2lt20',
-#                 'hww2l2v_13TeV_me_pm_0j_pt2lt20',
-#                 'hww2l2v_13TeV_me_mp_0j_pt2lt20',
-##  
-#                ] 
-#                }
-#
-#
-#nuisances['WWqscale1j']  = {
-#                'name'  : 'WWqscale1j',
-#                'skipCMS' : 1,
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
-#                   },
-#               'cuts'  : [
-#                 'hww2l2v_13TeV_of1j',
-#                 'hww2l2v_13TeV_top_of1j',
-#                 'hww2l2v_13TeV_dytt_of1j',
-##                 
-#                 'hww2l2v_13TeV_me_1j',
-#                 'hww2l2v_13TeV_em_1j',
-##
-#                 'hww2l2v_13TeV_me_mp_1j',
-#                 'hww2l2v_13TeV_me_pm_1j',
-#                 'hww2l2v_13TeV_em_mp_1j',
-#                 'hww2l2v_13TeV_em_pm_1j',
-##
-#                 'hww2l2v_13TeV_em_pm_1j_pt2ge20',
-#                 'hww2l2v_13TeV_em_mp_1j_pt2ge20',
-#                 'hww2l2v_13TeV_me_pm_1j_pt2ge20',
-#                 'hww2l2v_13TeV_me_mp_1j_pt2ge20',
-##
-#                 'hww2l2v_13TeV_em_pm_1j_pt2lt20',
-#                 'hww2l2v_13TeV_em_mp_1j_pt2lt20',
-#                 'hww2l2v_13TeV_me_pm_1j_pt2lt20',
-#                 'hww2l2v_13TeV_me_mp_1j_pt2lt20',
-##                 
-#                ] 
-#                }
+                 'hww2l2v_13TeV_em_pm_1j_pt2lt20',
+                 'hww2l2v_13TeV_em_mp_1j_pt2lt20',
+                 'hww2l2v_13TeV_me_pm_1j_pt2lt20',
+                 'hww2l2v_13TeV_me_mp_1j_pt2lt20',
+#                 
+                ] 
+                }
+                
+nuisances['WWqscale2j']  = {
+                'name'  : 'WWqscale2j',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+                   },
+               'cuts'  : [
+                 'hww2l2v_13TeV_of2j',
+                 'hww2l2v_13TeV_top_of2j',
+                 'hww2l2v_13TeV_dytt_of2j',
+#                 
+                ] 
+                }
+                
+                
+nuisances['WWqscale3j']  = {
+                'name'  : 'WWqscale3j',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+                   },
+               'cuts'  : [
+                 'hww2l2v_13TeV_of3j',
+                 'hww2l2v_13TeV_top_of3j',
+                 'hww2l2v_13TeV_dytt_of3j',
+#                 
+                ] 
+                }
+                
+                
+nuisances['WWqscale4j']  = {
+                'name'  : 'WWqscale4j',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+                   },
+               'cuts'  : [
+                 'hww2l2v_13TeV_of4j',
+                 'hww2l2v_13TeV_top_of4j',
+                 'hww2l2v_13TeV_dytt_of4j',
+#                 
+                ] 
+                }
 
 nuisances['WgStarScale']  = {
                'name'  : 'CMS_hww_WgStarScale', 
