@@ -18,27 +18,27 @@
 #                 'samples'  : ['HH']
 #              }
 
-groupPlot['Wjets']  = {
-                        'nameHR' : 'W+Jets',
-                        'isSignal' : 0,
-                        'color': 620,  
-                        'samples'  : ['Wjets']
-                        }
+#groupPlot['Wjets']  = {
+                        #'nameHR' : 'W+Jets',
+                        #'isSignal' : 0,
+                        #'color': 620,  
+                        #'samples'  : ['Wjets']
+                        #}
 
-groupPlot['TTToSemilepton']  = {    
-				'nameHR' : 'TTToSemilepton',
-				'isSignal' : 0,
-				'color' : 860,
-				'samples' : ['TT']
-                		 }	
+#groupPlot['TTToSemilepton']  = {    
+				#'nameHR' : 'TTToSemilepton',
+				#'isSignal' : 0,
+				#'color' : 860,
+				#'samples' : ['TT']
+                		 #}	
 
 
-groupPlot['TTWJetsToLNu'] = {
-				'nameHR' : 'TTWJetsToLNu',
-				'isSignal' : 0,
-				'color' : 617,
-				'samples' : ['TTW']
-				}
+#groupPlot['TTWJetsToLNu'] = {
+				#'nameHR' : 'TTWJetsToLNu',
+				#'isSignal' : 0,
+				#'color' : 617,
+				#'samples' : ['TTW']
+				#}
 
 groupPlot['WZTo1L1Nu2Q'] = {
                                 'nameHR' : 'WZTo1L1Nu2Q',
@@ -47,19 +47,19 @@ groupPlot['WZTo1L1Nu2Q'] = {
                                 'samples' : ['WZTo1L1Nu2Q']
                                 }
 
-groupPlot['WZTo1L3Nu'] = {
-                                'nameHR' : 'WZTo1L3Nu',
-                                'isSignal' : 0,
-                                'color' : 632,
-                                'samples' : ['WZTo1L3Nu']
-                                }
+#groupPlot['WZTo1L3Nu'] = {
+                                #'nameHR' : 'WZTo1L3Nu',
+                                #'isSignal' : 0,
+                                #'color' : 632,
+                                #'samples' : ['WZTo1L3Nu']
+                                #}
 
-groupPlot['WWW']  = {
-                        'nameHR' : 'WWW',
-                        'isSignal' : 0,
-                        'color': 850,
-                        'samples'  : ['WWW']
-                        }
+#groupPlot['WWW']  = {
+                        #'nameHR' : 'WWW',
+                        #'isSignal' : 0,
+                        #'color': 850,
+                        #'samples'  : ['WWW']
+                        #}
 
 
 
