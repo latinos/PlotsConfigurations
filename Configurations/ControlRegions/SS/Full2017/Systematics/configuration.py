@@ -4,7 +4,7 @@ treeName= 'Events'
 tag = 'SS'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFileMuStatUp'
+outputDir = 'rootFile'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'

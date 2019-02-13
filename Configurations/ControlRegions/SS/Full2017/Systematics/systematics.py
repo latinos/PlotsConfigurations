@@ -1,4 +1,5 @@
-import os, sys, optparse, ROOT
+import os, sys, optparse, math, ROOT
+from ROOT import TFile
 
 #Code to compute the systematics of the fakes, to include it in the Analysis Note
 class bcolors:
@@ -14,25 +15,59 @@ class bcolors:
 def calculate():
 
     parser = optparse.OptionParser(usage='usage: %prog [opts] FilenameWithSamples', version='%prog 1.0')
-    parser.add_option('-d', '--directory', action='store', type=str, dest='directory', default='rootFile', help='Base name of the directory where the rootfiles are stored')
-    parser.add_option('-f', '--file', action='store', type=str, dest='file', default='plots_SS.root', help='Name of the rootfile obtained after the hadd')
+    parser.add_option('-f', '--file', action='store', type=str, dest='file', default='rootFile/plots_SS.root', help='Name of the rootfile obtained after the hadd')
     (opts, args) = parser.parse_args()
 
-    #Define the lists that will be used
-    systematics = ["Nominal", "EleUp", "EleDown", "MuUp", "MuDown", "EleStatUp", "EleStatDown", "MuStatUp", "MuStatDown"]
-    channels = ["WW_0j_em", "WW_1j_em"] #The names have to match the cuts applied
+    fname = opts.file
+    if not fname:
+        print ("The file "+ fname +" has not been found")
+        return
 
-    #Read the options given
-    baseDirectory = opts.directory
-    haddName = opts.file
+    channels = []
+    names = []
+    systematics = []
+    values = []
+    errors = []
 
-    print bcolors.HEADER
-    print '#######################################################################'
-    print '                              Yields table                             '
-    print '#######################################################################' + bcolors.ENDC
+    tfile = TFile.Open(fname)
+    for key in tfile.GetListOfKeys():
+        h = key.ReadObj()
+        channels.append(h.GetName())
 
+    for channel in channels:
+
+        cnames = []
+        csystematics = []
+        cvalues = []
+        cerrors = []
+
+        tfile = TFile.Open(fname)
+        myDir = tfile.Get(channel+"/events")
+        
+        for key in myDir.GetListOfKeys():
+            h = key.ReadObj()
+            if (h.ClassName() == 'TH1D' or h.ClassName() == 'TH1F') and ('histo_Fake' in h.GetName()):
+                cnames.append(h.GetName())
+                csystematics.append(h.GetName().split("_")[-1].capitalize())
+                cvalues.append(h.Integral(-1, -1))
+                cerrors.append(h.GetBinError(1))
+                
+        names.append(cnames)
+        #systematics.append(csystematics)
+        values.append(cvalues)
+        errors.append(cerrors)
+
+    systematics = csystematics #Don't need a multidimensional array for this list
+
+    #Start printing the output
+    print(bcolors.HEADER)
+    print('#######################################################################')
+    print('                              Yields table                             ')
+    print('#######################################################################' + bcolors.ENDC)
+    
     print('\n\n')
     print('\hline')
+    
     output = ''
     for channel in channels:
         output += '{:12s} &     {:9s}'.format(' ', channel)
@@ -40,29 +75,18 @@ def calculate():
     print output
     print('\hline')
 
-    for systematic in systematics:
-        rootfileName = baseDirectory+systematic+"/"+haddName
-        rootfile = open(rootfileName, "read")
-        if not rootfile:
-            print "The "+systematic+" directory has not been found"
-            return
-
+    for sindex, systematic in enumerate(systematics):        
         output = ''
         output += '{:12s}'.format(systematic)
-
-        f = ROOT.TFile.Open(rootfileName, 'read')
-
-        for channel in channels:
-            hist = f.Get(channel+'/events/histo_Fake')
-            value = hist.Integral(-1, -1)
-            error = hist.GetBinError(1)
-            output += ' & {:12.2f} {:4s} {:6.2f}'.format(value, '$\\pm$', error)
+        
+        for cindex, channel in enumerate(channels):
+            output += ' & {:11.2f}  {:4s} {:6.2f}'.format(values[cindex][sindex], '$\\pm$', errors[cindex][sindex])
 
         print output
 
     print('\hline')
     print('\n\n')
-    
+
     print bcolors.HEADER
     print '#######################################################################'
     print '                         Systematics table                             '
@@ -70,14 +94,45 @@ def calculate():
 
     print('\n\n')
     print('\hline')
- 
+
     output = '{:22s}'.format(' ')
     for channel in channels:
         output += ' &    {:11s}'.format(channel)
 
     print output
     print('\hline')
-    output = ''
+
+    for sindex, systematic in enumerate(systematics):        
+        output = ''
+        if systematic == "Eleup":
+            systematic = "Electron jet ET"
+        elif systematic == "Muup":
+            systematic = "Muon jet ET"
+        elif systematic == "Statup" and systematics[sindex-1] == "Eledown":
+            systematic = "Electron statistical"
+        elif systematic == "Statup":
+            systematic = "Muon statistical"
+            
+        output += '{:22s}'.format(systematic)        
+
+        if sindex % 2 != 0:
+            for cindex, channel in enumerate(channels):
+                valueUp = abs(100-(100*abs(values[cindex][sindex]/values[cindex][0])))
+                valueDown = abs(100-(100*abs(values[cindex][sindex+1]/values[cindex][0])))
+                #valueUp = (values[cindex][sindex]-values[cindex][sindex])/(2.*values[cindex][0])
+                output += ' &  {:4.2f}%/-{:4.2f}% '.format(valueUp, valueDown)
+        
+            print output
+
+    print('\hline')
+    print('\n\n')
+
+"""    
+
+
+
+ 
+
 
     if "EleUp" in systematics and "EleDown" in systematics and "Nominal" in systematics: #Print the ele jet ET line
         output = '{:22s}'.format('Electron jet $E_T$')
@@ -171,8 +226,7 @@ def calculate():
     else:
         print "The muon statistical error has not been calculated"
 
-    print('\hline')
-    print('\n\n')
 
+    """
 if __name__ == "__main__":
     calculate()
