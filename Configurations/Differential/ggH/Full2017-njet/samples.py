@@ -150,7 +150,7 @@ addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
 ############ WW ############
 
 #FIXME Add nllW weight to WW
-samples['WW'] = {    'name'   :   getSampleFiles(directory,'WWTo2L2Nu',False,'nanoLatino_') ,
+samples['WW'] = {    'name'   :   getSampleFiles(directory,'WWTo2L2Nu_PrivateNano',False,'nanoLatino_') ,
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*nllW' ,
                  }
 
@@ -277,45 +277,45 @@ samples['ggH_hww_4j_nonfid']  = {  'name'   :   getSampleFiles(directory,'GluGlu
 
 ### FIDUCIAL
 
-samples['qqH_hww_0j_fid']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'),
+samples['qqH_hww_0j_fid']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125_PrivateNano',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*('+fiducial+')*(Sum$(GenJet_pt > 30 && TMath::Power(GenJet_eta - GenDressedLepton_eta[0],2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[0]),2. ) > 0.16 && TMath::Power(GenJet_eta - GenDressedLepton_eta[1],2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[1]),2. ) > 0.16 ) == 0)' ,
                      }
                      
-samples['qqH_hww_1j_fid']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'),
+samples['qqH_hww_1j_fid']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125_PrivateNano',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*('+fiducial+')*(Sum$(GenJet_pt > 30 && TMath::Power(GenJet_eta - GenDressedLepton_eta[0],2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[0]),2. ) > 0.16 && TMath::Power(GenJet_eta - GenDressedLepton_eta[1],2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[1]),2. ) > 0.16 ) == 1)' ,
                      }
                      
-samples['qqH_hww_2j_fid']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'),
+samples['qqH_hww_2j_fid']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125_PrivateNano',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*('+fiducial+')*(Sum$(GenJet_pt > 30 && TMath::Power(GenJet_eta - GenDressedLepton_eta[0],2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[0]),2. ) > 0.16 && TMath::Power(GenJet_eta - GenDressedLepton_eta[1],2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[1]),2. ) > 0.16 ) == 2)' ,
                      }
                      
-samples['qqH_hww_3j_fid']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'),
+samples['qqH_hww_3j_fid']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125_PrivateNano',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*('+fiducial+')*(Sum$(GenJet_pt > 30 && TMath::Power(GenJet_eta - GenDressedLepton_eta[0],2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[0]),2. ) > 0.16 && TMath::Power(GenJet_eta - GenDressedLepton_eta[1],2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[1]),2. ) > 0.16 ) == 3)' ,
                      }
                      
-samples['qqH_hww_4j_fid']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'),
+samples['qqH_hww_4j_fid']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125_PrivateNano',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*('+fiducial+')*(Sum$(GenJet_pt > 30 && TMath::Power(GenJet_eta - GenDressedLepton_eta[0],2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[0]),2. ) > 0.16 && TMath::Power(GenJet_eta - GenDressedLepton_eta[1],2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[1]),2. ) > 0.16 ) > 3)' ,
                      }
                      
 ### NON FIDUCIAL
 
-samples['qqH_hww_0j_nonfid']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'),
+samples['qqH_hww_0j_nonfid']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125_PrivateNano',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(!'+fiducial+')*(Sum$(GenJet_pt > 30 && TMath::Power(GenJet_eta - GenDressedLepton_eta[0],2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[0]),2. ) > 0.16 && TMath::Power(GenJet_eta - GenDressedLepton_eta[1],2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[1]),2. ) > 0.16 ) == 0)' ,
                      }
                      
-samples['qqH_hww_1j_nonfid']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'),
+samples['qqH_hww_1j_nonfid']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125_PrivateNano',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(!'+fiducial+')*(Sum$(GenJet_pt > 30 && TMath::Power(GenJet_eta - GenDressedLepton_eta[0],2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[0]),2. ) > 0.16 && TMath::Power(GenJet_eta - GenDressedLepton_eta[1],2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[1]),2. ) > 0.16 ) == 1)' ,
                      }
                      
-samples['qqH_hww_2j_nonfid']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'),
+samples['qqH_hww_2j_nonfid']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125_PrivateNano',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(!'+fiducial+')*(Sum$(GenJet_pt > 30 && TMath::Power(GenJet_eta - GenDressedLepton_eta[0],2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[0]),2. ) > 0.16 && TMath::Power(GenJet_eta - GenDressedLepton_eta[1],2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[1]),2. ) > 0.16 ) == 2)' ,
                      }
                      
-samples['qqH_hww_3j_nonfid']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'),
+samples['qqH_hww_3j_nonfid']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125_PrivateNano',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(!'+fiducial+')*(Sum$(GenJet_pt > 30 && TMath::Power(GenJet_eta - GenDressedLepton_eta[0],2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[0]),2. ) > 0.16 && TMath::Power(GenJet_eta - GenDressedLepton_eta[1],2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[1]),2. ) > 0.16 ) == 3)' ,
                      }
                      
-samples['qqH_hww_4j_nonfid']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'),
+samples['qqH_hww_4j_nonfid']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125_PrivateNano',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(!'+fiducial+')*(Sum$(GenJet_pt > 30 && TMath::Power(GenJet_eta - GenDressedLepton_eta[0],2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[0]),2. ) > 0.16 && TMath::Power(GenJet_eta - GenDressedLepton_eta[1],2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[1]),2. ) > 0.16 ) > 3)' ,
                      }
 
