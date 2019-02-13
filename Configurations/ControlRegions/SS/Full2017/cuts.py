@@ -16,7 +16,7 @@ supercut = ' && '.join(_tmp)
 def addcut(name, exprs):
     cuts[name] = ' && '.join(exprs)
   
-### DF
+### df
 _tmp = [
     'Lepton_pdgId[0] * Lepton_pdgId[1] ==11*13',
     'mth > 60.',
