@@ -53,12 +53,14 @@ DataRun = [
     ['F','Run2017F-31Mar2018-v1']
 ]
 
-DataSets = ['MuonEG','SingleMuon','SingleElectron']
+DataSets = ['MuonEG','SingleMuon','SingleElectron','DoubleMuon', 'DoubleEG']
 
 DataTrig = {
-    'MuonEG': 'Trigger_ElMu',
-    'SingleMuon': '!Trigger_ElMu && Trigger_sngMu',
-    'SingleElectron': '!Trigger_ElMu && !Trigger_sngMu && Trigger_sngEl',
+    'MuonEG'         : ' Trigger_ElMu' ,
+    'SingleMuon'     : '!Trigger_ElMu && Trigger_sngMu' ,
+    'SingleElectron' : '!Trigger_ElMu && !Trigger_sngMu && Trigger_sngEl',
+    'DoubleMuon'     : '!Trigger_ElMu && !Trigger_sngMu && !Trigger_sngEl && Trigger_dblMu',
+    'DoubleEG'       : '!Trigger_ElMu && !Trigger_sngMu && !Trigger_sngEl && !Trigger_dblMu && Trigger_dblEl'
 }
 
 #########################################
@@ -82,7 +84,7 @@ if useDYtt:
     samples['DY'] = {
         'name': files,
         'weight': mcCommonWeight,
-        'FilesPerJob': 1,
+        'FilesPerJob': 5,
     }
     addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50','ptllDYW_NLO')
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO','ptllDYW_LO')
@@ -98,7 +100,7 @@ else:
     samples['DY'] = {
         'name': files,
         'weight': mcCommonWeight,
-        'FilesPerJob': 1,
+        'FilesPerJob': 5,
     }
     addSampleWeight(samples,'DY','DYJetsToLL_M-50','ptllDYW_NLO')
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO','ptllDYW_LO')
@@ -435,4 +437,3 @@ for _, sd in DataRun:
 #samples.pop('Fake')
 #samples.pop('ZH_hww')
 #signals.remove('ZH_hww')
-

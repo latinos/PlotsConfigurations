@@ -13,9 +13,8 @@ import os
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-topcr = [ckey for ckey in cuts if ckey.startswith('topcr')]
-dycr = [ckey for ckey in cuts if ckey.startswith('dycr')]
-sr = [ckey for ckey in cuts if ckey.startswith('sr')]
+topcr = [ckey for ckey in cuts if 'cattop' in ckey]
+dycr = [ckey for ckey in cuts if 'catDY' in ckey]
 
 from LatinoAnalysis.Tools.HiggsXSection import *
 HiggsXS = HiggsXSection()
@@ -219,8 +218,7 @@ nuisances['PS'] = {
   'type': 'shape',
   'samples': apply_on,
   'folderUp': os.path.join(treeBaseDir, mcProduction, psVarSteps),
-  'folderDown': os.path.join(treeBaseDir, mcProduction, mcSteps),
-  'AsLnN': '1'
+  'folderDown': os.path.join(treeBaseDir, mcProduction, mcSteps)
 }
 
 ueUpSteps = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__UEup__wwSel'
@@ -246,8 +244,7 @@ nuisances['UE'] = {
   'type': 'shape',
   'samples': apply_on,
   'folderUp': os.path.join(treeBaseDir, mcProduction, ueUpSteps),
-  'folderDown': os.path.join(treeBaseDir, mcProduction, ueDownSteps),
-  'AsLnN': '1'
+  'folderDown': os.path.join(treeBaseDir, mcProduction, ueDownSteps)
 }
 
 ####### Generic "cross section uncertainties"

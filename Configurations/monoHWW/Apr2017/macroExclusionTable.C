@@ -1058,7 +1058,7 @@ void putEverythingTogether(TString model = "2HDM",
   Obs  ->Draw("PC,same");
   l1   ->Draw("same");
   tl   ->Draw("same");
-  tlSup->Draw("same");
+  //tlSup->Draw("same");
   tl2  ->Draw("same");
   tex2 ->Draw("same");
 

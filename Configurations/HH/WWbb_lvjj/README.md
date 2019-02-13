@@ -11,7 +11,17 @@ Transfer data:
 
     gfal-ls srm://storm.mib.infn.it:8444/cms/store/group/OneLepton/Apr2017_Run2016B_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__hadd/ | awk '{print "gfal-copy srm://storm.mib.infn.it:8444/cms/store/group/OneLepton/Apr2017_Run2016B_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__hadd/"$1"  /gwteras/cms/store/group/OneLepton/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/"$1}'
 
+    
+    Using webfts to trasnfer data: 
+    https://webfts.cern.ch/transmissions.php
+    
 
+    
+For hercules:
+
+    source /cvmfs/cms.cern.ch/cmsset_default.sh
+    
+    
 Instructions:
 
 
@@ -28,10 +38,15 @@ Get Andrea's scripts to modify datacards.
 
 Copy and edit the latino user configuration file.
 
+    export CMSSW_DIRECTORY=/gwpool/users/amassiro/CMSSW_8_0_26_patch1/src
     cd $CMSSW_DIRECTORY/LatinoAnalysis/Tools/python
     cp userConfig_TEMPLATE.py userConfig.py
 
+For example:
 
+    baseDir  = '/gwpool/users/amassiro/Submit/'
+
+    
 # 2. Produce histograms
 
 This step reads the post-processed latino trees and produces histograms for several variables and phase spaces.
@@ -41,13 +56,31 @@ This step reads the post-processed latino trees and produces histograms for seve
     mkShapes.py --pycfg=configuration.py \
                 --inputDir=/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/ \
                 --batchSplit=AsMuchAsPossible \
-                --doBatch=True \
-                --batchQueue=1nd
+                --doBatch=True
+        
+Local test:
 
+    mkShapes.py --inputDir=/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC --pycfg=configuration.py
+ 
+To expand and see what is happening:
+
+    easyDescription.py   --inputFileSamples=samples.py   --outputFileSamples=my_expanded_samples.py
+
+
+Bicocca batch:
+
+    hercules.hcms.it
+    
+    
 The jobs can take a while, thus it is natural to check their status.
 
     mkBatch.py --status
 
+To see all the jobs running on the batch system:
+
+    qstat        
+
+    
 After all your jobs are finished, and before going to the next step, check the .jid files in the following output directory (tag is specified in configuration.py):
 
     ls -l $CONFIGURATION_DIRECTORY/jobs/mkShapes__tag/*.jid
@@ -56,12 +89,12 @@ If you find .jid files it means that the corresponding jobs failed, check the .e
 
 If a job takes too long / fails, one can kill it and resubmit manually, e.g.:
 
-    bsub -q 1nd $CONFIGURATION_DIRECTORY/jobs/mkShapes__WWbb_lvjj/mkShapes__WWbb_lvjj__hww2l2v_13TeV_em_mp_1j__top2.sh
+    qsub $CONFIGURATION_DIRECTORY/jobs/mkShapes__WWbb_lvjj/mkShapes__WWbb_lvjj__hww2l2v_13TeV_em_mp_1j__top2.sh
 
 If several jobs failed and you want to resubmit them all at once you can do:
 
     cd $CONFIGURATION_DIRECTORY/jobs/mkShapes__tag
-    for i in *jid; do bsub -q 1nd ${i/jid/sh}; done
+    for i in *jid; do qsub ${i/jid/sh}; done
 
 # 3. Put all your apples in one basket
 
@@ -83,14 +116,14 @@ At this stage one can either produce plots or datacards.
 
 Now we are ready to make data/MC comparison plots.
 
-    mkPlot.py --inputFile=rootFile/plots_WWbb_lvjj.root \
+    mkPlot.py --inputFile=rootFile/plots_WWlvjj.root \
               --showIntegralLegend=1
 
 
 ### Produce datacards
 
     mkDatacards.py --pycfg=configuration.py \
-                   --inputFile=rootFile/plots_WWbb_lvjj.root
+                   --inputFile=rootFile/plots_WWlvjj.root
 
                    
                    

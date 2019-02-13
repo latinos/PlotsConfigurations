@@ -18,34 +18,57 @@
 #                 'samples'  : ['HH']
 #              }
 
-groupPlot['TTToSemilepton']  = {
-                 	'nameHR' : 'TTToSemilepton',
-                 	'isSignal' : 1,
-                 	'color': 861, # kAzure +1 
-                 	'samples'  : ['TTToSemilepton']
-              		}
-
 #groupPlot['Wjets']  = {
-#                        'nameHR' : 'W+Jets',
-#                        'isSignal' : 0,
-#                        'color': 629,  
-#                        'samples'  : ['Wjets']
-#                        }
+                        #'nameHR' : 'W+Jets',
+                        #'isSignal' : 0,
+                        #'color': 620,  
+                        #'samples'  : ['Wjets']
+                        #}
 
-groupPlot['TTWJetsToLNu'] = {
-				'nameHR' : 'TTWJetsToLNu',
-				'isSignal' : 0,
-				'color' : 629,
-				'samples' : ['TTWJetsToLNu']
-				}
+#groupPlot['TTToSemilepton']  = {    
+				#'nameHR' : 'TTToSemilepton',
+				#'isSignal' : 0,
+				#'color' : 860,
+				#'samples' : ['TT']
+                		 #}	
+
+
+#groupPlot['TTWJetsToLNu'] = {
+				#'nameHR' : 'TTWJetsToLNu',
+				#'isSignal' : 0,
+				#'color' : 617,
+				#'samples' : ['TTW']
+				#}
 
 groupPlot['WZTo1L1Nu2Q'] = {
                                 'nameHR' : 'WZTo1L1Nu2Q',
                                 'isSignal' : 0,
-                                'color' : 415,
+                                'color' : 400,
                                 'samples' : ['WZTo1L1Nu2Q']
                                 }
 
+#groupPlot['WZTo1L3Nu'] = {
+                                #'nameHR' : 'WZTo1L3Nu',
+                                #'isSignal' : 0,
+                                #'color' : 632,
+                                #'samples' : ['WZTo1L3Nu']
+                                #}
+
+#groupPlot['WWW']  = {
+                        #'nameHR' : 'WWW',
+                        #'isSignal' : 0,
+                        #'color': 850,
+                        #'samples'  : ['WWW']
+                        #}
+
+
+
+groupPlot['WWZ']  = {
+                        'nameHR' : 'WWZ',
+                        'isSignal' : 0,
+                        'color': 410,
+                        'samples'  : ['WWZ']
+                        }
 
 
 #groupPlot['top']  = {  
@@ -110,29 +133,53 @@ groupPlot['WZTo1L1Nu2Q'] = {
 #                  'scale'    : 1.   ,
 #              }
 
-plot['TTToSemilepton']  = {
-                  'color': 861,    
+plot['Wjets']  = {
+                  'color': 620,
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.   ,
+              }
+
+
+plot['TT']  = {
+                  'color': 860,    
                   'isSignal' : 1,
                   'isData'   : 0,
                   'scale'    : 1.   ,
               }
 
-#plot['Wjets']  = {
-#                  'color': 629,
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.   ,
-#              }
 
-plot['TTWJetsToLNu']  = {
-                  'color': 629,
+
+plot['TTW']  = {
+                  'color': 617,
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.   ,
               }
 
 plot['WZTo1L1Nu2Q']  = {
-                  'color': 415,
+                  'color': 400,
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.   ,
+              }
+
+plot['WZTo1L3Nu']  = {
+	          'color': 632,
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.   ,
+              }
+
+plot['WWW']  = {
+                  'color': 850,
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.   ,
+              }
+
+plot['WWZ']  = {
+                  'color': 410,
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.   ,

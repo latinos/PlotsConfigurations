@@ -7,17 +7,13 @@ import re
 # imported from samples.py:
 # samples, signals
 
-nonfloated = [skey for skey in samples if skey not in ('DY', 'top', 'WW')]
- 
 _tmp = [
-    'osof',
-    'std_vector_lepton_pt[0]>25 && std_vector_lepton_pt[1]>10 && std_vector_lepton_pt[2]<10',
-    'std_vector_electron_passConversionVeto[0] * std_vector_electron_passConversionVeto[1] == 1',
-    'trailingE13',
-    'metPfType1>20',
     'mll>12',
+    'std_vector_lepton_pt[0]>25 && std_vector_lepton_pt[1]>10 && std_vector_lepton_pt[2]<10',
+    'metPfType1>20',
     'ptll>30',
-    'mtw2>30'
+    'osof',
+    'trailingE13'
 ]
 supercut = ' && '.join(_tmp)
 
@@ -34,28 +30,36 @@ njbinning = [
     ('reco3j', 'threeJet'),
     ('recoge4j', 'manyJets')
 ]
+nnjbins = len(njbinning)
 
 cuts['hww_CR']['categories'] = []
 
 categorization = '-1'
 
-categorization += '+(mth<60 && mll>30 && mll<80 && bVeto)'
+categorization += '+(mth<60 && mll>40 && mll<80 && bVeto)'
 dycategorization = []
 for ibin, (bname, bcut) in enumerate(njbinning):
     cuts['hww_CR']['categories'].append('catDY' + bname)
     dycategorization.append('%d*%s' % (ibin + 1, bcut))
 categorization += '*(' + '+'.join(dycategorization) + ')'
 
-categorization += '+(mll>50)'
-categorization += '*(6*(Sum$(std_vector_jet_pt > 20. && std_vector_jet_cmvav2 > -0.5884) != 0 && zeroJet)'
+categorization += '+(mtw2>30 && mll>50)'
+categorization += '*(%d*(Sum$(std_vector_jet_pt > 20. && std_vector_jet_cmvav2 > -0.5884) != 0 && zeroJet)' % (nnjbins + 1)
 categorization += '+(Sum$(std_vector_jet_pt > 30. && std_vector_jet_cmvav2 > -0.5884) != 0)'
 topcategorization = []
 for ibin, (bname, bcut) in enumerate(njbinning):
     cuts['hww_CR']['categories'].append('cattop' + bname)
     if ibin != 0:
-        topcategorization.append('%d*%s' % (ibin + 6, bcut))
+        topcategorization.append('%d*%s' % (ibin + nnjbins + 1, bcut))
 categorization += '*(' + '+'.join(topcategorization) + ')'
 categorization += ')'
+
+categorization += '+(mth>60 && mtw2>30 && bVeto && mll>100)'
+highmllcategorization = []
+for ibin, (bname, bcut) in enumerate(njbinning):
+    cuts['hww_CR']['categories'].append('cathighmll' + bname)
+    highmllcategorization.append('%d*%s' % (ibin + 2 * nnjbins + 1, bcut))
+categorization += '*(' + '+'.join(highmllcategorization) + ')'
 
 cuts['hww_CR']['categorization'] = categorization
 
@@ -65,10 +69,10 @@ pt2confs = [
     ('pt2ge20', 'std_vector_lepton_pt[1] >= 20.')
 ]
 lepconfs = [
-    ('emmp', 'std_vector_lepton_flavour[0] == 11'),
-    ('mmep', 'std_vector_lepton_flavour[0] == 13'),
-    ('epmm', 'std_vector_lepton_flavour[0] == -11'),
-    ('mpem', 'std_vector_lepton_flavour[0] == -13')
+    ('emmp', 'std_vector_lepton_flavour[0] == -11'),
+    ('mmep', 'std_vector_lepton_flavour[0] == -13'),
+    ('epmm', 'std_vector_lepton_flavour[0] == 11'),
+    ('mpem', 'std_vector_lepton_flavour[0] == 13')
 ]
 
 def addsr(name, srbins, signalbins):
@@ -97,10 +101,10 @@ def addsr(name, srbins, signalbins):
 
     # all bins cover the full phase space - no need for a default category
     cuts[name]['categorization'] = ' + '.join(categorization)
-    print cuts[name]['categorization']
 
 _tmp = [
     'mth>=60',
+    'mtw2>30',
     'bVeto'
 ]
 
@@ -124,23 +128,29 @@ for ipt in range(len(pthBinning) - 1):
 
     srBins.append((binName, cut))
         
-addsr('hww_PTH', srBins, 'PTH_.*')
+addsr('hww_PTH', srBins, '.*_PTH_.*')
 
 srBins = []
 for nj in njetBinning:
     if nj.endswith('+'):
-        binName = 'hww_NJ_GE%s' % nj[:-1]
-        #binName = 'GE%s' % nj[:-1] # correct
+        binName = 'GE%s' % nj[:-1] # correct
         cut = 'std_vector_jet_pt[%d] >= 30.' % (int(nj[:-1]) - 1)
     elif nj == '0':
-        binName = 'hww_NJ_0'
-        #binName = '0'
+        binName = '0'
         cut = 'std_vector_jet_pt[0] < 30.'
     else:
-        binName = 'hww_NJ_%s' % nj
-        #binName = str(nj)
+        binName = str(nj)
         cut = 'std_vector_jet_pt[%d] >= 30. && std_vector_jet_pt[%d] < 30.' % (int(nj) - 1, int(nj))
 
     srBins.append((binName, cut))
 
-addsr('hww_NJ', srBins, 'NJ_.*')
+addsr('hww_NJ', srBins, '.*_NJ_.*')
+
+####
+#cuts = {
+#    'hww_NJ': {
+#        'expr': 'mth>=60 && bVeto',
+#        'categories': ['0_catepmmptge20'],
+#        'categorization': '-1 + (std_vector_jet_pt[0] < 30. && std_vector_lepton_pt[1] >= 20. && std_vector_lepton_flavour[0] == 11)'
+#    }
+#}

@@ -9,21 +9,9 @@
 # cuts
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
-dy = [skey for skey in samples if skey.startswith('DY')]
-top = [skey for skey in samples if skey.startswith('top')]
-signal = [skey for skey in samples if '_hww' in skey]
-ggh = [skey for skey in samples if skey.startswith('ggH_hww')]
-xh = [skey for skey in samples if skey.startswith('XH_hww')]
 
-topcr = [ckey for ckey in cuts if ckey.startswith('topcr')]
-dycr = [ckey for ckey in cuts if ckey.startswith('dycr')]
-sr = [ckey for ckey in cuts if ckey.startswith('sr')]
-
-mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
-
-topcr = [ckey for ckey in cuts if ckey.startswith('topcr')]
-dycr = [ckey for ckey in cuts if ckey.startswith('dycr')]
-sr = [ckey for ckey in cuts if ckey.startswith('sr')]
+topcr = [ckey for ckey in cuts if 'cattop' in ckey]
+dycr = [ckey for ckey in cuts if 'catDY' in ckey]
 
 from LatinoAnalysis.Tools.HiggsXSection import *
 HiggsXS = HiggsXSection()
