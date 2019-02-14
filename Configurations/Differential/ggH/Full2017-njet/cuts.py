@@ -14,11 +14,10 @@ bAlgo = 'DeepB'
 bWP = '0.1522'
 
 ## DY control regions
-categorization = '0*(Alt$(CleanJet_pt[0], 0) < 30)' # 0jet
-categorization += '+1*(Alt$(CleanJet_pt[0], 0) >= 30 && Alt$(CleanJet_pt[1], 0) < 30)' # 1jet
-categorization += '+2*(Alt$(CleanJet_pt[1], 0) >= 30 && Alt$(CleanJet_pt[2], 0) < 30)' # 2jet
-categorization += '+3*(Alt$(CleanJet_pt[2], 0) >= 30 && Alt$(CleanJet_pt[3], 0) < 30)' # 3jet
-categorization += '+4*(Alt$(CleanJet_pt[3], 0) >= 30)' # >=4jet
+categorization = '0*(Alt$(CleanJet_pt[0], 0) < 30)+(Alt$(CleanJet_pt[0], 0) >= 30)*('
+categorization += '1*(Alt$(CleanJet_pt[1], 0) < 30)+(Alt$(CleanJet_pt[1], 0) >= 30)*('
+categorization += '2*(Alt$(CleanJet_pt[2], 0) < 30)+(Alt$(CleanJet_pt[2], 0) >= 30)*('
+categorization += '3*(Alt$(CleanJet_pt[3], 0) < 30)+4*(Alt$(CleanJet_pt[3], 0) >= 30))))'
 
 cuts['hww_CR_catDY'] = {
     'expr': '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13)    \
@@ -31,12 +30,11 @@ cuts['hww_CR_catDY'] = {
 
 ## Top control regions
 categorization = '-1' # default
-categorization += '+1*(Alt$(CleanJet_pt[0], 0) < 30 && Sum$(CleanJet_pt > 20 && Jet_btag'+bAlgo+'[CleanJet_jetIdx]>'+bWP+') != 0)' # 0jet
-categorization += '+(Sum$(CleanJet_pt >= 30 && Jet_btag'+bAlgo+'[CleanJet_jetIdx]>'+bWP+') != 0)*'
-categorization += '(2*(Alt$(CleanJet_pt[0], 0) >= 30 && Alt$(CleanJet_pt[1], 0) < 30)' # 1jet
-categorization += '+3*(Alt$(CleanJet_pt[1], 0) >= 30 && Alt$(CleanJet_pt[2], 0) < 30)' # 2jet
-categorization += '+4*(Alt$(CleanJet_pt[2], 0) >= 30 && Alt$(CleanJet_pt[3], 0) < 30)' # 3jet
-categorization += '+5*(Alt$(CleanJet_pt[3], 0) >= 30))' # >=4jet
+categorization += '+1*(Sum$(CleanJet_pt > 30) == 0 && Sum$(CleanJet_pt > 20 && Jet_btag'+bAlgo+'[CleanJet_jetIdx]>'+bWP+') != 0)'
+categorization += '+(Sum$(CleanJet_pt >= 30 && Jet_btag'+bAlgo+'[CleanJet_jetIdx]>'+bWP+') != 0 && Alt$(CleanJet_pt[0], 0) >= 30)*('
+categorization += '2*(Alt$(CleanJet_pt[1], 0) < 30)+(Alt$(CleanJet_pt[1], 0) >= 30)*('
+categorization += '3*(Alt$(CleanJet_pt[2], 0) < 30)+(Alt$(CleanJet_pt[2], 0) >= 30)*('
+categorization += '4*(Alt$(CleanJet_pt[3], 0) < 30)+5*(Alt$(CleanJet_pt[3], 0) >= 30))))'
 
 cuts['hww_CR_cattop'] = {
     'expr': '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13)    \
@@ -55,11 +53,10 @@ for njbin in ['0', '1', '2', '3', 'GE4']:
             for chargecat in ['pm', 'mp']:
                 categories.append('NJ_%s_cat%s%s%s_2017' % (njbin, ptcat, flavcat, chargecat))
 
-categorization = '0*(Alt$(CleanJet_pt[0], 0) < 30)'
-categorization += '+8*(Alt$(CleanJet_pt[0], 0) >= 30 && Alt$(CleanJet_pt[1], 0) < 30)'
-categorization += '+16*(Alt$(CleanJet_pt[1], 0) >= 30 && Alt$(CleanJet_pt[2], 0) < 30)'
-categorization += '+24*(Alt$(CleanJet_pt[2], 0) >= 30 && Alt$(CleanJet_pt[3], 0) < 30)'
-categorization += '+32*(Alt$(CleanJet_pt[3], 0) >= 30)'
+categorization = '0*(Alt$(CleanJet_pt[0], 0) < 30)+(Alt$(CleanJet_pt[0], 0) >= 30)*('
+categorization += '8*(Alt$(CleanJet_pt[1], 0) < 30)+(Alt$(CleanJet_pt[1], 0) >= 30)*('
+categorization += '16*(Alt$(CleanJet_pt[2], 0) < 30)+(Alt$(CleanJet_pt[2], 0) >= 30)*('
+categorization += '24*(Alt$(CleanJet_pt[3], 0) < 30)+32*(Alt$(CleanJet_pt[3], 0) >= 30))))'
 categorization += '+4*(Lepton_pt[1] >= 20)'
 categorization += '+2*(abs(Lepton_pdgId[0]) == 13)'
 categorization += '+1*(Lepton_pdgId[0]>0)' # note: sign is opposite from 2016 (correct pdgid of e- is 11)
