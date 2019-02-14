@@ -267,11 +267,18 @@ signals.append('qqH_htt')
 ### ZH
 
 samples['ZH_hww'] = {
-  'name': getSampleFiles(directory,'HZJ_HToWWTo2L2Nu_M125',False,'nanoLatino_') + getSampleFiles(directory,'GluGluZH_HToWW_M125',False,'nanoLatino_'),
+  'name': getSampleFiles(directory,'HZJ_HToWWTo2L2Nu_M125',False,'nanoLatino_'),
   'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
   'suppressNegativeNuisances' :['all']
 }
 signals.append('ZH_hww')
+
+samples['ggZH_hww'] = {
+  'name': getSampleFiles(directory,'GluGluZH_HToWW_M125',False,'nanoLatino_'),
+  'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+  'suppressNegativeNuisances' :['all']
+}
+signals.append('ggZH_hww')
 
 samples['ZH_htt'] = {
   'name': getSampleFiles(directory,'HZJ_HToTauTau_M125',False,'nanoLatino_'),

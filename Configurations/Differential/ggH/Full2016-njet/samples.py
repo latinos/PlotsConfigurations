@@ -422,11 +422,18 @@ signals.append('qqH_htt')
 ### ZH
 
 samples['ZH_hww'] = {
-  'name': getSampleFiles(directory,'HZJ_HToWW_M125') + getSampleFiles(directory,'ggZH_HToWW_M125'),
+  'name': getSampleFiles(directory,'HZJ_HToWW_M125'),
   'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
   'suppressNegativeNuisances' :['all']
 }
 signals.append('ZH_hww')
+
+samples['ggZH_hww'] = {
+  'name': getSampleFiles(directory,'ggZH_HToWW_M125'),
+  'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+  'suppressNegativeNuisances' :['all']
+}
+signals.append('ggZH_hww')
 
 samples['ZH_htt'] = {
   'name' :   getSampleFiles(directory,'HZJ_HToTauTau_M125') ,
