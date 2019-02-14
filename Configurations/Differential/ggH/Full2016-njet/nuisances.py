@@ -284,113 +284,40 @@ nuisances['DYQCDscale']  = {
 #
 #  Renormalize at datacard generation step
 
-nuisances['ggH_mu']  = {
-                'name'  : 'THU_ggH_Mu',
-                'skipCMS' : 1,
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                  #'ggH_hww': ['0.956862481999*ggH_mu', '1.04721061556*(1+(1.-ggH_mu))'],
-                  'ggH_hww': ['ggH_mu', '1+(1.-ggH_mu)'],
-                  'ggH_htt'       : ['ggH_mu', '1+(1.-ggH_mu)'],
-                },
-}
+thus = [
+    ('THU_ggH_Mu', 'ggH_mu'),
+    ('THU_ggH_Res', 'ggH_res'),
+    ('THU_ggH_Mig01', 'ggH_mig01'),
+    ('THU_ggH_Mig12', 'ggH_mig12'),
+    ('THU_ggH_VBF2j', 'ggH_VBF2j'),
+    ('THU_ggH_VBF3j', 'ggH_VBF3j'),
+    ('THU_ggH_PT60', 'ggH_pT60'),
+    ('THU_ggH_PT120', 'ggH_pT120'),
+    ('THU_ggH_qmtop', 'ggH_qmtop')
+]
 
-nuisances['ggH_res']  = {
-                'name'  : 'THU_ggH_Res',
-                'skipCMS' : 1,
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                  #'ggH_hww'       : ['0.976053022102*ggH_res', '1.02515158689*(1+(1.-ggH_res))'],
-                  'ggH_hww'       : ['ggH_res', '1+(1.-ggH_res)'],
-                  'ggH_htt'       : ['ggH_res', '1+(1.-ggH_res)'],
-                },
-}
+# manual renormalizations
+#'ggH_hww': ['0.956862481999*ggH_mu', '1.04721061556*(1+(1.-ggH_mu))'],
+#'ggH_hww': ['0.976053022102*ggH_res', '1.02515158689*(1+(1.-ggH_res))'],
+#'ggH_hww': ['0.978541312796*ggH_mig01', '1.02242093486*(1+(1.-ggH_mig01))'],
+#'ggH_hww': ['1.03354649125*ggH_mig12', '0.968562729019*(1+(1.-ggH_mig12))'],
+#'ggH_hww': ['0.986873455747*ggH_pT60', '1.01348044764*(1+(1.-ggH_pT60))'],
+#'ggH_hww': ['0.991114238973*ggH_pT120', '1.00904653166*(1+(1.-ggH_pT120))'],
+#'ggH_hww': ['0.99565225214*ggH_VBF2j', '1.00438588531*(1+(1.-ggH_VBF2j))'],
+#'ggH_hww': ['0.999899080749*ggH_VBF3j', '1.00010093962*(1+(1.-ggH_VBF3j))'],
+#'ggH_hww': ['0.995393164223*ggH_qmtop', '1.00464967637*(1+(1.-ggH_qmtop))'],
 
-nuisances['ggH_mig01']  = {
-                'name'  : 'THU_ggH_Mig01',
-                'skipCMS' : 1,
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                  #'ggH_hww'       : ['0.978541312796*ggH_mig01', '1.02242093486*(1+(1.-ggH_mig01))'],
-                  'ggH_hww': ['ggH_mig01', '1+(1.-ggH_mig01)'],
-                  'ggH_htt'       : ['ggH_mig01', '1+(1.-ggH_mig01)'],
-                },
-}
-
-nuisances['ggH_mig12']  = {
-                'name'  : 'THU_ggH_Mig12',
-                'skipCMS' : 1,
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                  #'ggH_hww'       : ['1.03354649125*ggH_mig12', '0.968562729019*(1+(1.-ggH_mig12))'],
-                  'ggH_hww'       : ['ggH_mig12', '1+(1.-ggH_mig12)'],
-                  'ggH_htt'       : ['ggH_mig12', '1+(1.-ggH_mig12)'],
-                },
-}
-
-nuisances['ggH_pT60']  = {
-                'name'  : 'THU_ggH_PT60',
-                'skipCMS' : 1,
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                  #'ggH_hww'       : ['0.986873455747*ggH_pT60', '1.01348044764*(1+(1.-ggH_pT60))'],
-                  'ggH_hww'       : ['ggH_pT60', '1+(1.-ggH_pT60)'],
-                  'ggH_htt'       : ['ggH_pT60', '1+(1.-ggH_pT60)'],
-                },
-}
-
-nuisances['ggH_pT120']  = {
-                'name'  : 'THU_ggH_PT120',
-                'skipCMS' : 1,
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                  #'ggH_hww'       : ['0.991114238973*ggH_pT120', '1.00904653166*(1+(1.-ggH_pT120))'],
-                  'ggH_hww'       : ['ggH_pT120', '1+(1.-ggH_pT120)'],
-                  'ggH_htt'       : ['ggH_pT120', '1+(1.-ggH_pT120)'],
-                },
-}
-
-nuisances['ggH_VBF2j']  = {
-                'name'  : 'THU_ggH_VBF2j',
-                'skipCMS' : 1,
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                  #'ggH_hww'       : ['0.99565225214*ggH_VBF2j', '1.00438588531*(1+(1.-ggH_VBF2j))'],
-                  'ggH_hww'       : ['ggH_VBF2j', '1+(1.-ggH_VBF2j)'],
-                  'ggH_htt'       : ['ggH_VBF2j', '1+(1.-ggH_VBF2j)'],
-                },
-}
-
-nuisances['ggH_VBF3j']  = {
-                'name'  : 'THU_ggH_VBF3j',
-                'skipCMS' : 1,
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                  #'ggH_hww'       : ['0.999899080749*ggH_VBF3j', '1.00010093962*(1+(1.-ggH_VBF3j))'],
-                  'ggH_hww'       : ['ggH_VBF3j', '1+(1.-ggH_VBF3j)'],
-                  'ggH_htt'       : ['ggH_VBF3j', '1+(1.-ggH_VBF3j)'],
-                },
-}
-
-nuisances['ggH_qmtop']  = {
-                'name'  : 'THU_ggH_qmtop',
-                'skipCMS' : 1,
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                  #'ggH_hww'       : ['0.995393164223*ggH_qmtop', '1.00464967637*(1+(1.-ggH_qmtop))'],
-                  'ggH_hww'       : ['ggH_qmtop', '1+(1.-ggH_qmtop)'],
-                  'ggH_htt'       : ['ggH_qmtop', '1+(1.-ggH_qmtop)'],
-                },
-}
+for name, vname in thus:
+    nuisances[vname]  = {
+      'name'  : name,
+      'skipCMS' : 1,
+      'kind'  : 'weight',
+      'type'  : 'shape',
+      'samples'  : {
+        'ggH_hww': [vname, '1+(1.-'+vname+')'],
+        'ggH_htt': [vname, '1+(1.-'+vname+')'],
+      },
+    }
 
 nuisances['CRSR_accept_dytt']  = {
                'name'  : 'CMS_hww_CRSR_accept_dytt',
@@ -422,7 +349,6 @@ nuisances['QCDscale_VV']  = {
               }
 
 
-
 #### QCD scale uncertainties for Higgs signals other than ggH
 
 from LatinoAnalysis.Tools.HiggsXSection  import *
@@ -431,7 +357,7 @@ HiggsXS = HiggsXSection()
 #nuisances['QCDscale_ggH']  = {
 #               'name'  : 'QCDscale_ggH', 
 #               'samples'  : {
-#                   'H_htt'   : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.0','scale','sm'),
+#                   'H_htt'   : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.09','scale','sm'),
 #                   },
 #               'type'  : 'lnN',
 #              }
@@ -440,8 +366,8 @@ HiggsXS = HiggsXSection()
 nuisances['QCDscale_qqH']  = {
                'name'  : 'QCDscale_qqH', 
                'samples'  : {
-                   'qqH_hww'     : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.0','scale','sm'),
-                   'qqH_htt'     : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.0','scale','sm'),
+                   'qqH_hww'     : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.09','scale','sm'),
+                   'qqH_htt'     : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.09','scale','sm'),
                    },
                'type'  : 'lnN',
               }
@@ -449,10 +375,10 @@ nuisances['QCDscale_qqH']  = {
 nuisances['QCDscale_VH']  = {
                'name'  : 'QCDscale_VH', 
                'samples'  : {
-                   'WH_hww'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
-                   'WH_htt'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.0','scale','sm'),
-                   'ZH_hww'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH','125.0','scale','sm'),
-                   'ZH_htt'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH','125.0','scale','sm'),
+                   'WH_hww'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.09','scale','sm'),
+                   'WH_htt'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.09','scale','sm'),
+                   'ZH_hww'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH','125.09','scale','sm'),
+                   'ZH_htt'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH','125.09','scale','sm'),
                    },
                'type'  : 'lnN',
               }
@@ -460,7 +386,7 @@ nuisances['QCDscale_VH']  = {
 nuisances['QCDscale_ggZH']  = {
                'name'  : 'QCDscale_ggZH', 
                'samples'  : {
-                   'ggZH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggZH','125.0','scale','sm'),
+                   'ggZH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggZH','125.09','scale','sm'),
                    },
                'type'  : 'lnN',
               }
@@ -468,7 +394,7 @@ nuisances['QCDscale_ggZH']  = {
 nuisances['QCDscale_bbH']  = {
                'name'  : 'QCDscale_bbH',
                'samples'  : {
-                   'bbH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','bbH','125.0','scale','sm'),
+                   'bbH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','bbH','125.09','scale','sm'),
                    },
                'type'  : 'lnN',
               }
@@ -476,7 +402,7 @@ nuisances['QCDscale_bbH']  = {
 nuisances['QCDscale_ttH']  = {
                'name'  : 'QCDscale_ttH',
                'samples'  : {
-                   'ttH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ttH','125.0','scale','sm'),
+                   'ttH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ttH','125.09','scale','sm'),
                    },
                'type'  : 'lnN',
               }
@@ -491,7 +417,7 @@ nuisances['QCDscale_qqbar_ACCEPT']  = {
                    'qqH_htt'     : '1.007',
                    'WH_hww'          : '1.05',
                    'WH_htt'          : '1.05',
-                   'ZH'          : '1.05',
+                   'ZH_hww'          : '1.05',
                    'ZH_htt'          : '1.04',
                    },
               }
@@ -512,10 +438,10 @@ nuisances['QCDscale_gg_ACCEPT']  = {
 nuisances['pdf_Higgs_gg']  = {
                'name'  : 'pdf_Higgs_gg', 
                'samples'  : {
-                   'ggH_hww'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,'125.0','pdf','sm'),
-                   'ggH_htt'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,'125.0','pdf','sm'),
-                   'ggZH_hww'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggZH','125.0','pdf','sm'),                   
-                   'bbH_hww'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','bbH' ,'125.0','pdf','sm'),
+                   'ggH_hww'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,'125.09','pdf','sm'),
+                   'ggH_htt'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH' ,'125.09','pdf','sm'),
+                   'ggZH_hww'         : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggZH','125.09','pdf','sm'),                   
+                   'bbH_hww'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','bbH' ,'125.09','pdf','sm'),
                    },
                'type'  : 'lnN',
               }
@@ -523,7 +449,7 @@ nuisances['pdf_Higgs_gg']  = {
 nuisances['pdf_Higgs_ttH']  = {
                'name'  : 'pdf_Higgs_ttH',
                'samples'  : {
-                   'ttH_hww'     : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ttH' ,'125.0','pdf','sm'),
+                   'ttH_hww'     : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ttH' ,'125.09','pdf','sm'),
                    },
                'type'  : 'lnN',
               }
@@ -532,12 +458,12 @@ nuisances['pdf_Higgs_qqbar']  = {
                'name'  : 'pdf_Higgs_qqbar', 
                'type'  : 'lnN',
                'samples'  : {
-                   'qqH_hww'     : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.0','pdf','sm'),
-                   'qqH_htt'     : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.0','pdf','sm'),
-                   'WH_hww'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),
-                   'WH_htt'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.0','pdf','sm'),     
-                   'ZH_hww'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH' ,'125.0','pdf','sm'),
-                   'ZH_htt'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH' ,'125.0','pdf','sm'),
+                   'qqH_hww'     : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.09','pdf','sm'),
+                   'qqH_htt'     : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.09','pdf','sm'),
+                   'WH_hww'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.09','pdf','sm'),
+                   'WH_htt'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH' ,'125.09','pdf','sm'),     
+                   'ZH_hww'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH' ,'125.09','pdf','sm'),
+                   'ZH_htt'          : HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH' ,'125.09','pdf','sm'),
                    },
               }
 
@@ -576,7 +502,7 @@ nuisances['pdf_Higgs_qqbar_ACCEPT']  = {
                    'qqH_htt' : '1.011',
                    'WH_hww'          : '1.007',
                    'WH_htt'          : '1.007',
-                   'ZH_hww'          : '1.007',
+                   'ZH_hww'          : '1.012',
                    'ZH_htt'          : '1.012',
                    },
               }

@@ -30,13 +30,12 @@ cuts['hww_CR_catDY'] = {
 ## Top control regions
 categorization = '-1' # default
 categorization += '+1*(std_vector_jet_pt[0] < 30 && Sum$(std_vector_jet_pt > 20 && std_vector_jet_cmvav2 > -0.5884) != 0)' # 0jet
-categorization += '+2*(std_vector_jet_pt[0] >= 30 && std_vector_jet_pt[1] < 30 && std_vector_jet_cmvav2[0]>-0.5884)' # 1jet
-categorization += '+3*(std_vector_jet_pt[1] >= 30 && std_vector_jet_pt[2] < 30 &&'
-categorization += ' Sum$(std_vector_jet_pt >= 30 && std_vector_jet_cmvav2>-0.5884) != 0)' # 2jet
-categorization += '+4*(std_vector_jet_pt[2] >= 30 && std_vector_jet_pt[3] < 30 &&'
-categorization += ' Sum$(std_vector_jet_pt >= 30 && std_vector_jet_cmvav2>-0.5884) != 0)' # 3jet
-categorization += '+5*(std_vector_jet_pt[3] >= 30 &&'
-categorization += ' Sum$(std_vector_jet_pt >= 30 && std_vector_jet_cmvav2>-0.5884) != 0)' # >=4jet
+categorization += '+(Sum$(std_vector_jet_pt >= 30 && std_vector_jet_cmvav2>-0.5884) != 0)*'
+categorization += '(2*(std_vector_jet_pt[0] >= 30 && std_vector_jet_pt[1] < 30 && std_vector_jet_cmvav2[0]>-0.5884)' # 1jet
+categorization += '+3*(std_vector_jet_pt[1] >= 30 && std_vector_jet_pt[2] < 30)' # 2jet
+categorization += '+4*(std_vector_jet_pt[2] >= 30 && std_vector_jet_pt[3] < 30)' # 3jet
+categorization += '+5*(std_vector_jet_pt[3] >= 30))' # >=4jet
+
 
 cuts['hww_CR_cattop'] = {
     'expr': '(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13)    \
