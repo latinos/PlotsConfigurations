@@ -22,3 +22,39 @@ def setupfiducial(drawer, variables = ['ptH', 'njet']):
     if 'njet' in variables:
         drawer.addVariable('genJetClean', 'TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[0], 2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[0]), 2.) > 0.16 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[1], 2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[1]), 2.) > 0.16')
         drawer.addVariable('nGenJet', 'Sum$(std_vector_jetGen_pt > 30 && genJetClean)')
+
+if __name__ == '__main__':
+    import re
+
+    class Drawer(object):
+        def __init__(self):
+            self.aliases = {}
+
+        def addVariable(self, name, expr):
+            self.aliases[name] = expr
+
+        def dump(self, expr):
+            fullexpr = expr.strip()
+
+            while True:
+                replaced = False
+
+                for name, ex in self.aliases.iteritems():
+                    if name == fullexpr:
+                        fullexpr = ex
+                        continue
+
+                    subbed = re.sub('([^a-zA-z_])' + name + '([^a-zA-Z0-9_])', r'\1(' + ex + r')\2', fullexpr)
+                    if subbed != fullexpr:
+                        replaced = True
+                        fullexpr = subbed
+
+                if not replaced:
+                    break
+
+            return fullexpr
+
+    drawer = Drawer()
+    setupfiducial(drawer)
+
+    print drawer.dump('fiducial')
