@@ -1,83 +1,172 @@
 # structure configuration for datacard
 # works with input file produced by restructure_input.py
 
-#structure = {}
+#structure = {} or plot = {}
 
 # imported from mkDatacards.py
 # opt
 
-# keys here must match keys in samples.py
-#
-
+import collections
 import re
 
+PLOT_DATA_BLINDED = True
+
+try:
+  len(structure)
+except NameError:
+  # not invoked as a structure file
+  doStructure = False
+else:
+  doStructure = True
+
+try:
+  len(plot)
+  len(groupPlot)
+except NameError:
+  # not invoked as a plot file
+  doPlot = False
+else:
+  doPlot = True
+
 # redefine samples and cuts as simple lists
-samples = []
-signals = []
+samples = set()
 cuts = []
-crs = []
 variables = {} # redefine variables too
 
-# open the input file and check what observable it is made for
+signals = set()
+crs = []
+
+# open the input file and pick up all sample, cut, and variable names
 source = ROOT.TFile.Open(opt.inputFile)
-firstdir = source.GetDirectory('%s/events' % source.GetListOfKeys().At(0).GetName())
-for key in firstdir.GetListOfKeys():
-  hname = key.GetName()
 
-  if hname.endswith('Up') or hname.endswith('Down'):
-    continue
-
-  matches = re.match('histo_(.+)$', hname)
-  sname = matches.group(1)
-  if sname.startswith('smH_hww') or sname.startswith('ggH_hww') or sname.startswith('xH_hww'):
-    signals.append(matches.group(1))
-  else:
-    # signal procs added after sorting
-    samples.append(matches.group(1))
-
-for key in source.GetListOfKeys():
-  cname = key.GetName()
+for ckey in source.GetListOfKeys():
+  cname = ckey.GetName()
 
   cuts.append(cname)
   if '_CR_' in cname:
     crs.append(cname)
 
-  cutdir = key.ReadObj()
+  cutdir = ckey.ReadObj()
   for vkey in cutdir.GetListOfKeys():
     vname = vkey.GetName()
     if vname not in variables:
-      variables[vname] = {'cuts': []}
+      # first encounter
+
+      variables[vname] = {'cuts': [], 'samples': []}
+
+      vardir = vkey.ReadObj()
+      for hkey in vardir.GetListOfKeys():
+        hname = hkey.GetName()
+      
+        if hname.endswith('Up') or hname.endswith('Down'):
+          continue
+    
+        matches = re.match('histo_(.+)$', hname)
+        sname = matches.group(1)
+
+        variables[vname]['samples'].append(sname)
 
     variables[vname]['cuts'].append(cname)
 
+  # pick up all sample names in the cut (events should have all samples allowed for the cut)
+  eventsdir = source.GetDirectory('%s/events' % cname)
+  for hkey in eventsdir.GetListOfKeys():
+    hname = hkey.GetName()
+  
+    if hname.endswith('Up') or hname.endswith('Down'):
+      continue
+
+    matches = re.match('histo_(.+)$', hname)
+    sname = matches.group(1)
+
+    if sname in signals or sname in samples:
+      continue
+
+    if sname.startswith('smH_hww') or sname.startswith('ggH_hww') or sname.startswith('xH_hww'):
+      signals.add(matches.group(1))
+    else:
+      # signal procs added after sorting
+      samples.add(matches.group(1))
+
 source.Close()
 
-signals.sort(key = lambda sname: int(re.match('(?:sm|gg|x)H_hww_[^_]+_(?:GE|GT|)([0-9]+)', sname).group(1)))
-samples.sort()
+signals = sorted(signals, key = lambda sname: int(re.match('(?:sm|gg|x)H_hww_[^_]+_(?:GE|GT|)([0-9]+)', sname).group(1)))
+samples = sorted(samples)
 samples.extend(signals)
 cuts.sort()
 
-for sname in samples:
-  if sname == 'DATA':
-    structure['DATA']  = {
-      'isSignal' : 0,
-      'isData'   : 1
-    }
+if doPlot:
+  plot['DATA']  = { 
+      'nameHR': 'Data',
+      'color': 1,  
+      'isSignal': 0,
+      'isData': 1,
+      'isBlind': (1 if PLOT_DATA_BLINDED else 0)
+  }
 
-  elif sname.startswith('smH_hww') or sname.startswith('ggH_hww') or sname.startswith('xH_hww'):
-    structure[sname] = {
-      'isSignal' : 1,
-      'isData'   : 0,
-      #'removeFromCuts': crs
+  pdefs = [
+      ('top', 'tW and t#bar{t}', ['top.*'], 0, ROOT.kYellow),
+      ('WW', 'WW', ['WW.*', 'ggWW'], 0, ROOT.kAzure - 9),
+      ('Fake', 'Non-prompt', ['Fake.*'], 0, ROOT.kGray + 1),
+      ('DY', 'DY', ['DY.*'], 0, ROOT.kGreen + 2),
+      ('VZ', 'VZ', ['VZ', 'WZ', 'ZZ', 'WZgS_H'], 0, ROOT.kViolet + 1),
+      ('Vg', 'V#gamma', ['Vg', 'Wg'], 0, ROOT.kOrange + 10),
+      ('VgS', 'V#gamma*', ['VgS','WZgS_L'], 0, ROOT.kGreen - 9),
+      ('VVV', 'VVV', ['VVV'], 0, ROOT.kAzure - 3),
+      ('htt', 'H#tau#tau', ['.*H_htt.*'], 0, ROOT.kRed + 2),
+      ('hww', 'HWW', ['.*H_hww.*'], 1, ROOT.kRed)
+  ]
+  
+  for gname, title, patterns, isSignal, color in pdefs:
+    groupPlot[gname] = {
+      'nameHR': title,
+      'isSignal': isSignal,
+      'color': color,
+      'samples': []
     }
+  
+    for pattern in patterns:
+      for sname in samples:
+        if re.match(pattern, sname):
+          plot[sname]  = {  
+            'color': color,
+            'isSignal': isSignal,
+            'isData': 0,
+            'scale': 1.
+          }
+  
+          groupPlot[gname]['samples'].append(sname)
 
-  else:
-    structure[sname] = {
-      'isSignal' : 0,
-      'isData'   : 0
-    }
+  # additional options
+  
+  legend['lumi'] = 'L = 35.9/fb'
+  
+  legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
-#structure['htt']['removeFromCuts'] = crs
+if doStructure:
+  for sname in samples:
+    if sname == 'DATA':
+      structure['DATA']  = {
+        'isSignal' : 0,
+        'isData'   : 1
+      }
+  
+    elif sname.startswith('smH_hww') or sname.startswith('ggH_hww') or sname.startswith('xH_hww'):
+      structure[sname] = {
+        'isSignal' : 1,
+        'isData'   : 0,
+        #'removeFromCuts': crs
+      }
+  
+    else:
+      structure[sname] = {
+        'isSignal' : 0,
+        'isData'   : 0
+      }
+  
+  #structure['htt']['removeFromCuts'] = crs
+
+# restructure nuisances
 
 sampleMapping = {
   'Fake_em': 'Fake',
