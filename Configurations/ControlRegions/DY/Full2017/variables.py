@@ -35,24 +35,25 @@ variables['eta2VSpt2'] = {   'name': 'Lepton_eta[1]:Lepton_pt[1]',            # 
                         'fold' : 0 ,
                         }
 
-variables['nvtx']  = {   'name': 'nvtx',      
+'''                        
+variables['nvtx']  = {   'name': 'PV_npvsGood',      
                         'range' : (40,0,40),  
                         'xaxis' : 'nvtx', 
                          'fold' : 3
                       }
-'''                        
 variables['mll']  = {   'name': 'mll',            #   variable name    
                         'range' : (40, 0,200),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
                          'fold' : 0
                         }
-'''
+
 variables['mllpeak'] = {   'name': 'mll',            #   variable name
                            'range' : (100,80,100),    #   variable range
                            'xaxis' : 'm_{ll} [GeV]',  #   x axis name
                            'fold' : 0
                         }
 
+'''
 variables['mth']  = {   'name': 'mth',            #   variable name    
                         'range' : (40,0,200),    #   variable range
                         'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
@@ -78,7 +79,7 @@ variables['ptll_low']  = {   'name': 'ptll',
                         'xaxis' : 'p_{T}^{ll} [GeV]',
                         'fold' : 0
                         }
---treeName
+
 variables['ptll_more']  = {   'name': 'ptll',
                         'range' : (60, 0,300),
                         'xaxis' : 'p_{T}^{ll} [GeV]',
@@ -172,13 +173,21 @@ variables['cmva_2']  = {
                         'fold'  : 3                         
                         }
 
+'''
 variables['pfmet']  = { 
-                        'name': 'metPfType1',     
+                        'name': 'MET_pt',     
                         'range' : (40,0,200),   
                         'xaxis' : 'pfmet [GeV]',
                         'fold'  : 3                         
                         }
-'''
+
+variables['puppimet']  = {
+                        'name': 'PuppiMET_pt',
+                        'range' : (40,0,200),
+                        'xaxis' : 'puppimet [GeV]',
+                        'fold'  : 3
+                        }
+
 
 variables['njet']  = {
                         'name': 'Sum$(CleanJet_pt>30)',     

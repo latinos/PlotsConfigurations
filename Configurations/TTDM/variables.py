@@ -60,11 +60,11 @@ variables['mll']  = {   'name': 'mll',
                         'fold' : 3
                         }
 
-variables['njet']  = {   'name': 'njet',      
-                         'range' : (10,0,10),  
-                         'xaxis' : 'njet', 
-                         'fold' : 0
-                         }
+variables['njet']  = {   'name': 'nCleanJet',      
+                              'range' : (10,0,10),  
+                              'xaxis' : 'njet', 
+                              'fold' : 0
+                              }
 
 variables['dphill'] = {   'name': 'dphill',            
                           'range' : (20,0,3.2),   
@@ -109,21 +109,21 @@ variables['dphill'] = {   'name': 'dphill',
 #                         'fold' : 3
 #                         }
 
-# variables['ptll']  = {   'name': 'ptll',            #   variable name    
-#                          'range' : (80,0,800),    #   variable range
-#                          'xaxis' : 'p_{T}^{\ell\ell} [GeV]',  #   x axis name
-#                          'fold' : 3
-#                          }
-                        
+variables['ptll']  = {   'name': 'ptll',            #   variable name    
+                         'range' : (80,0,800),    #   variable range
+                         'xaxis' : 'p_{T}^{\ell\ell} [GeV]',  #   x axis name
+                         'fold' : 3
+                         }
+
 # variables['metTtrk'] = {'name': 'metTtrk',            #   variable name    
 #                         'range' : (50,0,500),    #   variable range
 #                         'xaxis' : 'tracker E_{T}^{miss} [GeV]',  #   x axis name
 #                         'fold' : 0
 #                         }
 
-# variables['nvtx']  = {   'name': 'nvtx',      
-#                          'range' : (40,0,40),  
-#                          'xaxis' : 'nvtx', 
-#                          'fold' : 3
-#                          }
+#variables['nvtx']  = {   'name': 'nvtx',      
+#                         'range' : (40,0,40),  
+#                         'xaxis' : 'nvtx', 
+#                         'fold' : 3
+#                         }
                         

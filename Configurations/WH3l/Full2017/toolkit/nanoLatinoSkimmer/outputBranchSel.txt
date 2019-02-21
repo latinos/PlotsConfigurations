@@ -1,0 +1,51 @@
+drop *
+
+# Event info
+keep run
+keep run_period
+keep luminosityBlock
+keep event
+keep Pileup_*
+keep Trigger_*
+keep TriggerEffWeight_*
+
+# Physical objects
+keep nElectron
+keep Electron_*
+keep nMuon
+keep Muon_*
+keep nLepton
+keep Lepton_*
+
+keep nJet
+keep Jet_btag*
+keep nCleanJet
+keep CleanJet_*
+keep btagWeight
+keep btagWeight_*
+keep MET_*
+keep PuppiMET_*
+
+keep PV_*
+
+# MC info
+keep Xsec
+keep nLHEPdfWeight
+keep LHEPdfWeight
+keep nLHEScaleWeight
+keep LHEScaleWeight
+keep genWeight
+
+# Analysis specified branches
+# keepmatch \w*[234]l\w*
+keep WH3l_*
+
+keep XSWeight
+keepmatch SFWeight[234]l
+keepmatch LepCut[234]l.*
+keepmatch LepSF[234]l.*
+keepmatch METFilter_(MC|DATA)
+keepmatch GenLepMatch[234]l.*
+
+keep EMTFbug_veto
+

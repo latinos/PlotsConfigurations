@@ -11,15 +11,16 @@ from LatinoAnalysis.Tools.commonTools import *
 ################# SKIMS ########################
 ################################################
 
-skim=''
+#skim=''
 #skim='__wwSel'
 #skim='__topSel'
 #skim='__topSel'
 #skim='__vh3lSel' 
-#skim='__sfSel' 
+skim='__sfSel' 
 #skim='__vbsSel'
 #skim='__ssSel'
 #skim="__wwSel__monohSel"
+#skim="__sfSel__monohSel"
 #skim="__wwSel__monohSel__muccaMonoHem"
 
 if skim =='__vh3lSel' :  skimFake='__vh3lFakeSel'
@@ -36,9 +37,10 @@ if    'iihe' in SITE :
   treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/'
 elif  'cern' in SITE :
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/'
+#  treeBaseDir = '/eos/user/f/fernanpe/trees_SF/'
 #  treeBaseDir = '/eos/user/c/calderon/monoH/Full2016_Apr17/'
 
-directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC'+skim+'/'
+directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC'+skim+'/'
 
 ################################################
 ############ NUMBER OF LEPTONS #################
@@ -53,15 +55,27 @@ Nlep='2'
 ################################################
 
 XSWeight      = 'XSWeight'
-SFweight      = 'SFweight'+Nlep+'l'
+
+
+SFweight      = 'puW*\
+                 effTrigW*\
+                 std_vector_lepton_recoW[0]*\
+                 std_vector_lepton_recoW[1]*\
+                 electron_etaW_2l*electron_ptW_2l*\
+                 veto_EMTFBug'
+
+#SFweight      = 'SFweight'+Nlep+'l'
 GenLepMatch   = 'GenLepMatch'+Nlep+'l'
+
+
+
 
 ################################################
 ############### B-Tag  WP ######################
 ################################################
 
-bAlgo='cmvav2'
-#bAlgo='csvv2ivf'
+#bAlgo='cmvav2'
+bAlgo='csvv2ivf'
 #bAlgo='DeepCSVB'
 
 bWP='L'
@@ -80,7 +94,7 @@ elif bAlgo == 'DeepCSVB' :
 
 SFweight += '*'+bSF
 # Fix for 2-leptons for which this was kept in global formula !
-if Nlep == '2' : SFweight += '/bPogSF_CMVAL'
+#if Nlep == '2' : SFweight += '/bPogSF_CMVAL'
 
 # ... b Veto
 
@@ -160,13 +174,25 @@ useDYHT = False       # be carefull DY HT is LO
 useDYtt = True     
 mixDYttandHT = False  # be carefull DY HT is LO (HT better stat for HT>450 GEV)
 
+#norm_data = '((5690.0/5556.1)*(njet==0) + (3914.0/4187.7)*(njet==1))'
+#norm_data = '(1.0)'
+
 ### These weights were evaluated on ICHEP16 MC -> Update ?
-ptllDYW_NLO = '1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582))'
+ptllDYW_NLO = '(0.876979+gen_ptll*(4.11598e-03)-(2.35520e-05)*gen_ptll*gen_ptll)*(1.10211 * (0.958512 - 0.131835*TMath::Erf((gen_ptll-14.1972)/10.1525)))*(gen_ptll<140)+0.891188*(gen_ptll>=140)'
 ptllDYW_LO  = '(8.61313e-01+gen_ptll*4.46807e-03-1.52324e-05*gen_ptll*gen_ptll)*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-11.)/5.51582)))*(gen_ptll<140)+1.141996*(gen_ptll>=140)'
+
+RinoutSF = '(1.495 * (dymvaggh > 0.98 && abs(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) == 11*11 && njet==0) + 1.620 * (dymvaggh > 0.98 && std_vector_lepton_flavour[0] * abs(std_vector_lepton_flavour[1]) == 13*13 && njet==0) + 1.342 * (dymvaggh > 0.95 && dymvaggh < 0.98 && abs(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) == 11*11 && njet==0) + 1.306 * (dymvaggh > 0.95 && dymvaggh<0.98 && abs(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) == 13*13 && njet==0) + 1.244 * (dymvaggh > 0.9 && dymvaggh < 0.95 && abs(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) == 11*11 && njet==0) + 1.202 * (dymvaggh > 0.9 && dymvaggh < 0.95 && abs(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) == 13*13 && njet==0) + 1.413 * (dymvaggh > 0.9 && abs(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) == 11*11 && njet==1) + 1.218 * (dymvaggh > 0.9 && abs(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) == 13*13 && njet==1))'
+
+#0, 0.5, 0.7, 0.9, 0.95, 0.98, -1
+# {0, 0.5, 0.7, 0.9, 1}
+
+#Rinout from Analysis CMS
 
 samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-10to50')
                                   + getSampleFiles(directory,'DYJetsToLL_M-50')     ,
-                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+RinoutSF,
+                     'suppressNegative':['all'],
+                     'suppressNegativeNuisances' :['all'],
                      'FilesPerJob' : 1 ,
                  }
 
@@ -279,26 +305,37 @@ samples['top'] = {   'name'     :   getSampleFiles(directory,'TTTo2L2Nu')
                                   + getSampleFiles(directory,'ST_tW_antitop')
                                   + getSampleFiles(directory,'ST_tW_top')  
                                   # We should use in principle: ST_tW_antitop_noHad + ST_tW_antitop_noHad_ext1 + ST_tW_top_noHad + ST_tW_top_noHad_ext1   
-                                  # but first need to compute x-section and correct baseW
-                                  + getSampleFiles(directory,'ST_t-channel_antitop')
-                                  + getSampleFiles(directory,'ST_t-channel_top')
-                                  + getSampleFiles(directory,'ST_s-channel')   
+#                                  # but first need to compute x-section and correct baseW
+#                                  + getSampleFiles(directory,'ST_t-channel_antitop')
+#                                  + getSampleFiles(directory,'ST_t-channel_top')
+#                                  + getSampleFiles(directory,'ST_s-channel')   
                              ,
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                      'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC,  
+                     'suppressNegative':['all'],
+                     'suppressNegativeNuisances' :['all'],
                       'FilesPerJob' : 1 ,
                   }
                   
 
 ###### WW ########
+
+EWK_corr = '(addEWKcorr(TMath::Min(std_vector_leptonGen_pt[0],499.9)) * (std_vector_leptonGen_pid[0] > 0) + addEWKcorr(TMath::Min(std_vector_leptonGen_pt[1],499.9)) * (std_vector_leptonGen_pid[1] > 0))'
+
              
 samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu') ,
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*nllW' ,  
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*nllW'+'*'+EWK_corr,
+                      'linesToAdd' : ['.L /afs/cern.ch/work/f/fernanpe/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/WW/Full2016/onTheFly/addEWKcorr.C+', 'initaddEWKcorr("ratio_Ptlm")'],  
+                      'suppressNegative':['all'],
+                      'suppressNegativeNuisances' :['all'],
                  }
 
 
 
 samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'),      
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+EWK_corr,
+                      'linesToAdd' : ['.L /afs/cern.ch/work/f/fernanpe/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/WW/Full2016/onTheFly/addEWKcorr.C+', 'initaddEWKcorr("ratio_Ptlm")'],
+                      'suppressNegative':['all'],
+                      'suppressNegativeNuisances' :['all'],
                       'isData': ['0'],                            
                    }
 
@@ -312,12 +349,16 @@ samples['Vg']  =  {     'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM')
                                    + getSampleFiles(directory,'Zg')
                                    ,
                         'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
+                        'suppressNegative':['all'],
+                        'suppressNegativeNuisances' :['all'],
                   }
 
 ######## VgS ########
 
 samples['VgS']  = {    'name':  getSampleFiles(directory,'WgStarLNuEE') + getSampleFiles(directory,'WgStarLNuMuMu') ,
-                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.4' ,  
+                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.4',  
+                       'suppressNegative':['all'],
+                       'suppressNegativeNuisances' :['all'],
                   }
 
 ## 
@@ -338,8 +379,10 @@ samples['VZ']  = {    'name':   getSampleFiles(directory,'WZTo3LNu')
                               # Should we include this as well here:
                               # + getSampleFiles(directory,'tZq_ll')
                               ,   
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.11' ,  
-                      'FilesPerJob' : 3 ,
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*1.11',  
+                      'suppressNegative':['all'],
+                      'suppressNegativeNuisances' :['all'],
+                      'FilesPerJob' : 1 ,
                   }
 
 ### 1.11 normalisation was measured in 3-lepton
@@ -352,8 +395,10 @@ samples['VVV'] = {    'name':   getSampleFiles(directory,'ZZZ')
                               + getSampleFiles(directory,'WWW')
                            #  WWG: Might be added to WW by PYTHIA in tuning step, super small x-section anyway -> skipped for now 
                            #  + getSampleFiles(directory,'WWG')
-                              ,    
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                              ,
+                      'suppressNegative':['all'],    
+                      'suppressNegativeNuisances' :['all'],
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,  
                   }
 
 ###########################################
@@ -364,7 +409,9 @@ samples['VVV'] = {    'name':   getSampleFiles(directory,'ZZZ')
 #### ggH -> WW
 
 samples['ggH_hww']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125') ,  
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                         'weight': XSWeight+'*'+'48.58/44.14'+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                         'suppressNegative':['all'],
+                         'suppressNegativeNuisances' :['all'],
                       }
 
 
@@ -372,12 +419,16 @@ samples['ggH_hww']  = {  'name'  : getSampleFiles(directory,'GluGluHToWWTo2L2NuP
 
 samples['qqH_hww']  = {   'name' : getSampleFiles(directory,'VBFHToWWTo2L2Nu_alternative_M125') ,
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                          'suppressNegative':['all'],
+                          'suppressNegativeNuisances' :['all'],
                       }
 
 ### ZH ; H->WW
 
 samples['ZH_hww']   = {   'name' :  getSampleFiles(directory,'HZJ_HToWWTo2L2Nu_M125') ,
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                          'suppressNegative':['all'],
+                          'suppressNegativeNuisances' :['all'],
                       }
 # samples['ZH_hww']   = {   'name' :  getSampleFiles(directory,'HZJ_HToWW_M125') ,
 #                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
@@ -385,6 +436,8 @@ samples['ZH_hww']   = {   'name' :  getSampleFiles(directory,'HZJ_HToWWTo2L2Nu_M
 
 samples['ggZH_hww'] = {   'name' : getSampleFiles(directory,'GluGluZH_HToWWTo2L2Nu_M125') ,
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                          'suppressNegative':['all'],
+                          'suppressNegativeNuisances' :['all'],
                       }
 # samples['ggZH_hww'] = {   'name' : getSampleFiles(directory,'ggZH_HToWW_M125') ,
 #                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
@@ -396,6 +449,8 @@ samples['WH_hww']   = {   'name' :   getSampleFiles(directory,'HWminusJ_HToWW_M1
                                    + getSampleFiles(directory,'HWplusJ_HToWW_M125')
                                    , 
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                          'suppressNegative':['all'],
+                          'suppressNegativeNuisances' :['all'],
                       }
 
 #### bbHY ; H->WW 
@@ -404,21 +459,30 @@ samples['bbH_hww']  = {  'name' :   getSampleFiles(directory,'bbHToWWTo2L2Nu_M12
                                   + getSampleFiles(directory,'bbHToWWTo2L2Nu_M125_ybyt')
                                   ,
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                         'suppressNegative':['all'],
+                         'suppressNegativeNuisances' :['all'],
                       }
 
 
 #### H -> TauTau
 
-samples['H_htt']    = {   'name' :   getSampleFiles(directory,'GluGluHToTauTau_M125')
-                                   + getSampleFiles(directory,'VBFHToTauTau_M125')
+samples['H_htt']    = {   'name' :   getSampleFiles(directory,'VBFHToTauTau_M125')
                                    + getSampleFiles(directory,'HZJ_HToTauTau_M125')
                                    + getSampleFiles(directory,'HWplusJ_HToTauTau_M125')
                                    + getSampleFiles(directory,'HWminusJ_HToTauTau_M125')
                                    ,  
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                          'suppressNegative':['all'],
+                          'suppressNegativeNuisances' :['all'],
                       }
 
 
+samples['ggH_htt']    = {   'name' :   getSampleFiles(directory,'GluGluHToTauTau_M125')
+                                   ,  
+                            'weight': XSWeight+'*'+'48.58/44.14'+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                            'suppressNegative':['all'],
+                            'suppressNegativeNuisances' :['all'],
+                      }
 
 
 ###########################################
@@ -430,10 +494,12 @@ samples['Fake']  = {   'name': [ ] ,
                        'weights' : [ ] ,
                        'isData': ['all'],
                        'FilesPerJob' : 2 ,
+                       'suppressNegative':['all'],
+                       'suppressNegativeNuisances' :['all'],
                    }
 
 for Run in DataRun :
-  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__multiFakeW__formulasFAKE__hadd'+skimFake+'/'
+  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__dorochester__multiFakeW__formulasFAKE__hadd'+skimFake+'/'
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:
@@ -452,7 +518,7 @@ samples['DATA']  = {   'name': [ ] ,
                   }
 
 for Run in DataRun :
-  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__hadd__l2tightOR__formulasDATA'+skim+'/'
+  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__hadd__l2tightOR__dorochester__formulasDATA'+skim+'/'
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:

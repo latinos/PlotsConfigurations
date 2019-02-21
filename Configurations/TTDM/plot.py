@@ -20,15 +20,15 @@
      
 plot['ttbar'] = {   
     'nameHR' : 't#bart (2l)',
-    'color': 400,   # kYellow 
+    'color': 400, #kYellow  
     'isSignal' : 0,
     'isData'   : 0 ,
     'scale'    : 1.0
     }
 
-plot['ttsemileptonic'] = {   
+plot['ttsemi'] = {   
     'nameHR' : 't#bart (1l)',
-    'color': 399,   # kYellow -1
+    'color':402, #kYellow+2
     'isSignal' : 0,
     'isData'   : 0, 
     'scale'    : 1.0
@@ -36,52 +36,75 @@ plot['ttsemileptonic'] = {
 
 plot['singletop'] = {   
     'nameHR' : 'Single top',
-    'color': 401,   # kYellow +1
+    'color': 401, #kYellow+1
+    'isSignal' : 0,
+    'isData'   : 0, 
+    'scale'    : 1.0
+    }
+
+plot['TTV'] = {   
+    'nameHR' : 'TTV',
+    'color': 434, #kCyan+2  
     'isSignal' : 0,
     'isData'   : 0, 
     'scale'    : 1.0
     }
 
 plot['DY']  = {  
-    'color': 418,    # kGreen+2
+    'color': 418, #kGreen+2
     'isSignal' : 0,
     'isData'   : 0, 
     'scale'    : 1.0
     }
      
 plot['WJets']  = {  
-    'color': 921,    # kGray + 1
+    'color': 921, #kGray+1
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.0                  
     }
 
 plot['WW'] = {   
-    'color': 851,   # kAzure -9
+    'color': 851, #kAzure-9
     'isSignal' : 0,
     'isData'   : 0, 
     'scale'    : 1.0
     }
 
 plot['WZ'] = {   
-    'color': 858,   # kAzure -2
+    'color': 858, #kAzure-2 
     'isSignal' : 0,
     'isData'   : 0, 
     'scale'    : 1.0
     }
 
 plot['ZZ'] = {   
-    'color': 856,   # kAzure -4
+    'color': 856, #kAzure-4
     'isSignal' : 0,
     'isData'   : 0, 
     'scale'    : 1.0
     }
 
-plot['VVV'] = {   
-    'color': 857,   # kAzure -3
+plot['VV'] = {   
+    'color': 856, #kAzure-4
     'isSignal' : 0,
     'isData'   : 0, 
     'scale'    : 1.0
+    }
+
+
+plot['VVV'] = {   
+    'color': 857, #kAzure-3
+    'isSignal' : 0,
+    'isData'   : 0, 
+    'scale'    : 1.0
+    }
+
+plot['Fake']  = {  
+    'color': 921,    # kGray + 1
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0                  
     }
 
 # data
@@ -102,7 +125,7 @@ plot['DATA']  = {
 #legend['lumi'] = 'L = 2.6/fb' # 
 #legend['lumi'] = 'L = 4.3/fb' # 
 #legend['lumi'] = 'L = 6.3/fb' # 
-legend['lumi'] = 'L = 41.2/fb' # 
+legend['lumi'] = 'L = 42.0/fb' # 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 

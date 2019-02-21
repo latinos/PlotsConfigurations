@@ -8,7 +8,8 @@ variables['events']  = {   'name': '1',
                         'range' : (1,0,2),
                         'xaxis' : 'events',
                         'fold' : 3,
-                        'divideByBinWidth': 1, 
+                        'divideByBinWidth': 1,
+                        'linesToAdd' : ['.L /afs/cern.ch/user/l/lenzip/work/ww2018/MultiDraw/CMSSW_9_4_9/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/cleanJetIndex.C+','.L /afs/cern.ch/user/l/lenzip/work/ww2018/MultiDraw/CMSSW_9_4_9/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/deltaRMatch.C+ ', '.L /afs/cern.ch/user/l/lenzip/work/ww2018/MultiDraw/CMSSW_9_4_9/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/mjjGen.C+'],
                         }
 
 
@@ -84,17 +85,17 @@ variables['mjj']  = {   'name': 'mjj',            #   variable name
 #gROOT.ProcessLineSync(".L mjjGen.C");
 #gROOT.ProcessLineSync(".L deltaRMatch.C");
 #gROOT.ProcessLineSync(".L cleanJetIndex.C");
-'''
+"""
 variables['mjjGen'] = { 'name':'mjjGen(std_vector_jet_pt[0], std_vector_jet_eta[0], std_vector_jet_phi[0], std_vector_jet_pt[1], std_vector_jet_eta[1], std_vector_jet_phi[1])' ,
 
                        'range' : (100,0,5000),
                        'xaxis' : "mjjGen",
                        'fold' : 3,
-                        'linesToAdd' : ['.L /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/cleanJetIndex.C+','.L /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/deltaRMatch.C+ ', '.L /afs/cern.ch/user/l/lorusso/work/Higgs_highmass/Full_2016_V2/CMSSW_8_0_26_patch1/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/mjjGen.C+','mjjGen.C()']         
+                       'linesToAdd' : ['.L /afs/cern.ch/user/l/lenzip/work/ww2018/MultiDraw/CMSSW_9_4_9/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/cleanJetIndex.C+','.L /afs/cern.ch/user/l/lenzip/work/ww2018/MultiDraw/CMSSW_9_4_9/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/deltaRMatch.C+ ', '.L /afs/cern.ch/user/l/lenzip/work/ww2018/MultiDraw/CMSSW_9_4_9/work/PlotsConfigurations/Configurations/EXO/WWlvlv_VBF/Full2016/mjjGen.C+'],
+                       'samples': ['ggH_hww']
                     }
 
-
-'''
+"""
 '''
  
 variables['mjj_DY_VBF']  = {   'name': 'mjj',            #   variable name    
