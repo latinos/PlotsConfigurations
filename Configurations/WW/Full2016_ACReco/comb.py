@@ -136,22 +136,22 @@
 
 # ---
 
-combs['ww_0jet_em_mll5'] = {
-                  'ww_0jet_em' : 'mll5' ,
-                  'ww_top0jet_em' : 'events' ,
-                }
+#combs['ww_0jet_em_mll5'] = {
+#                  'ww_0jet_em' : 'mll5' ,
+#                  'ww_top0jet_em' : 'events' ,
+#                }
 
-combs['ww_1jet_em_mll5'] = {
-                  'ww_1jet_em' : 'mll5' ,
-                  'ww_top1jet_em' : 'events' ,
-                }
+#combs['ww_1jet_em_mll5'] = {
+#                  'ww_1jet_em' : 'mll5' ,
+#                  'ww_top1jet_em' : 'events' ,
+#                }
 
-combs['ww_01jet_em_mll5'] = {
-                  'ww_0jet_em' : 'mll5' ,
-                  'ww_top0jet_em' : 'events' ,
-                  'ww_1jet_em' : 'mll5' ,
-                  'ww_top1jet_em' : 'events' ,
-                }
+#combs['ww_01jet_em_mll5'] = {
+#                  'ww_0jet_em' : 'mll5' ,
+#                  'ww_top0jet_em' : 'events' ,
+#                  'ww_1jet_em' : 'mll5' ,
+#                  'ww_top1jet_em' : 'events' ,
+#                }
 
 # ---
 

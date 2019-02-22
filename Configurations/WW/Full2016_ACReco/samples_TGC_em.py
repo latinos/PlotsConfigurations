@@ -186,7 +186,7 @@ for iWeight in acoupling['weights']:
                                     +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_400-600')
                                     +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_600-800')
                                     +  getSampleFiles(directory,'WWTo2L2Nu_aTGC_800-Inf') ,
-                         'linesToAdd' : ['.L '+os.environ['CMSSW_BASE'].replace('/storage_mnt/storage','')+'/src/PlotsConfigurations/Configurations/WW/Full2016_ACReco/onTheFly/addEWKcorr.C+', 'initaddEWKcorr("ratio_Ptlm")'],
+                          'linesToAdd' : ['.L '+os.environ['CMSSW_BASE'].replace('/storage_mnt/storage','')+'/src/PlotsConfigurations/Configurations/WW/Full2016_ACReco/onTheFly/addEWKcorr.C+', 'initaddEWKcorr("'+os.environ['CMSSW_BASE'].replace('/storage_mnt/storage','')+'/src/PlotsConfigurations/Configurations/WW/Full2016_ACReco/onTheFly/WW_EWK_Corr.root","ratio_Ptlm")'],
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(22357.2/24701.9)*(std_vector_LHE_weight[173]!=-999)'+'*'+ggWW_Scale+'*'+EWK_corr,
                         'FilesPerJob' : 1 ,
                      }
