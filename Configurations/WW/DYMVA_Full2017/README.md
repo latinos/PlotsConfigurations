@@ -17,7 +17,7 @@
 
 
 
-##To Produce skimmed trees for BDT training
+## Production of skimmed trees for BDT training
 
 
 ### Postprocessing script reminder:
@@ -37,22 +37,22 @@ In order to read more about it: LatinoAnalysis/NanoGardener/scripts/mkPostProc.p
 
 *This will submit the MCl1loose2017v2 chain on all the samples defined in Fall2017_nAOD_v1_Full2017v2.
 
-	mkPostProc.py -p Fall2017_nAOD_v1_Full2017v2 -s MCl1loose2017v2 -b --queue=workday
+      mkPostProc.py -p Fall2017_nAOD_v1_Full2017v2 -s MCl1loose2017v2 -b --queue=workday
 
 
 *This will submit the MCCorr2017 chain on all the samples defined in Fall2017_nAOD_v1_Full2017v2. It is done after the step shown in the example above.
 
-     	mkPostProc.py -p Fall2017_nAOD_v1_Full2017v2 -i MCl1loose2017v2 -s MCCorr2017 -b --queue=workday
+      mkPostProc.py -p Fall2017_nAOD_v1_Full2017v2 -i MCl1loose2017v2 -s MCCorr2017 -b --queue=workday
 
 
 *This will submit the btagPerEvent chain on all the samples defined in Fall2017_nAOD_v1_Full2017v2. It is done after the step shown in the example above.
 
-     	mkPostProc.py -p Fall2017_nAOD_v1_Full2017v2 -i MCl1loose2017v2__MCCorr2017 -s btagPerEvent -b --queue=workday
+      mkPostProc.py -p Fall2017_nAOD_v1_Full2017v2 -i MCl1loose2017v2__MCCorr2017 -s btagPerEvent -b --queue=workday
 
 
 *This will submit the trainDYMVA_forWW chain on the samples defined in Fall2017_nAOD_v1_Full2017v2 that we specify by using the -T option. It is done after several previous steps (some of them shown in the examples above). The list of samples to run on is specified with the -T option and a comma separated list of sample short names.
 
-     	mkPostProc.py -p Fall2017_nAOD_v1_Full2017v2 -i MCl1loose2017v2__MCCorr2017__btagPerEvent__l2loose__l2tightOR2017 -s trainDYMVA_forWW -b --queue=workday -T DYJetsToLL_M-10to50-LO,DYJetsToLL_M-50,GluGluToWWToENEN,GluGluToWWToENMN,GluGluToWWToENTN,GluGluToWWToMNEN,GluGluToWWToMNMN,GluGluToWWToMNTN,GluGluToWWToTNEN,GluGluToWWToTNMN,GluGluToWWToTNTN,WWTo2L2Nu
+      mkPostProc.py -p Fall2017_nAOD_v1_Full2017v2 -i MCl1loose2017v2__MCCorr2017__btagPerEvent__l2loose__l2tightOR2017 -s trainDYMVA_forWW -b --queue=workday -T DYJetsToLL_M-10to50-LO,DYJetsToLL_M-50,GluGluToWWToENEN,GluGluToWWToENMN,GluGluToWWToENTN,GluGluToWWToMNEN,GluGluToWWToMNMN,GluGluToWWToMNTN,GluGluToWWToTNEN,GluGluToWWToTNMN,GluGluToWWToTNTN,WWTo2L2Nu
 
 
 
