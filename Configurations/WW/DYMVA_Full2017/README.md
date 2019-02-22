@@ -58,17 +58,18 @@ In order to read more about it: LatinoAnalysis/NanoGardener/scripts/mkPostProc.p
 
 ### Options: 
 
-	 -b (--batch) : submit to batch [default is interactive execution] 
-         -c (--crab) : submit via crab  
-         -n : dry-run  just produce script in job directory but di not submit  
-         -T <sample1>, ... ,< sampleN > (--selTree) : run only on these samples. Select only some tree 
-         -E <sample1>, ... ,< sampleN > (--excTree) : do not run on these samples. Exclude some tree 
-         -R (--redo) : redo all jobs even if output file exist 
-         -Q < queuename > (--queue) : specify queue like 8nh [default btw, see  Site_cfg.py ]
+
+    -b (--batch) : submit to batch [default is interactive execution] 
+	 -c (--crab) : submit via crab  
+	 -n : dry-run  just produce script in job directory but di not submit  
+	 -T <sample1>, ... ,< sampleN > (--selTree) : run only on these samples. Select only some tree 
+	 -E <sample1>, ... ,< sampleN > (--excTree) : do not run on these samples. Exclude some tree 
+	 -R (--redo) : redo all jobs even if output file exist 
+	 -Q < queuename > (--queue) : specify queue like 8nh [default btw, see  Site_cfg.py ]
 	 -p (--prods) : List of production to run on
 	 -i (--iniStep) : Step to restart from
 	 -s (--steps) : List of Steps to produce	 
          Not needed by default 
-         -S <File> (--sitescfg) : alternative site cfg
-         -m <File> (--modcfg) : alternative step/module  cfg
-         -d <File> (--datacfg) : alternative production cfg
+	 -S <File> (--sitescfg) : alternative site cfg
+	 -m <File> (--modcfg) : alternative step/module  cfg
+	 -d <File> (--datacfg) : alternative production cfg
