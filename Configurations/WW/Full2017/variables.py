@@ -11,7 +11,7 @@ variables['events']  = {   'name': '1',
                         }
 
 variables['nvtx']  = {   'name': 'PV_npvsGood',      
-                        'range' : (40,0,60),  
+                        'range' : (50,0,50),  
                         'xaxis' : 'nvtx', 
                          'fold' : 3
                       }
@@ -77,6 +77,14 @@ variables['pfmet']  = {
                         'fold'  : 3                         
                         }
 
+
+variables['rawmet']  = { 
+                        'name': 'RawMET_pt',     
+                        'range' : (40,0,150),   
+                        'xaxis' : 'RawMET [GeV]',
+                        'fold'  : 3                         
+                        }
+
 variables['TkMET']  = { 
                         'name': 'TkMET_pt',     
                         'range' : (40,0,150),   
@@ -107,30 +115,33 @@ variables['njet']  = {
                         }
 
 variables['jetpt1']  = {
-                        'name': 'CleanJet_pt[0]>30? CleanJet_pt[0]:-1',     
-                        'range' : (40,0,200),   
+                        'name': 'CleanJet_pt[0]*(CleanJet_pt[0]>30)',     
+                        'range' : (40,30,200),   
                         'xaxis' : 'p_{T} 1st jet',
                         'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
 
 variables['jetpt1_0j']  = {
-                        'name': 'CleanJet_pt[0]<30? CleanJet_pt[0]:-1',     
+                        'name': 'CleanJet_pt[0]*(CleanJet_pt[0]<30)',     
                         'range' : (40,0,30),   
                         'xaxis' : 'p_{T} 1st jet (p_{T} < 30 GeV) ',
-                        'fold' : 1   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+                        'fold' : 0  # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
 
-variables['jeteta1']  = {  'name': 'CleanJet_pt[0]>30? CleanJet_eta[0]:-999',
+
+variables['jetphi1']  = {  'name': 'CleanJet_phi[0]',
+                        'range' : (40,-3.2,3.2),
+                        'xaxis' : '#phi 1st jet',
+                        'fold'  : 0
+                        }
+
+
+variables['jeteta1']  = {  'name': 'CleanJet_eta[0]',
                         'range' : (80,-5.0,5.0),
                         'xaxis' : '#eta 1st jet',
                         'fold'  : 0
                         }
 
-variables['jeteta1_0j']  = {  'name': 'CleanJet_pt[0]<30? CleanJet_eta[0]:-999',
-                        'range' : (40,-5.0,5.0),
-                        'xaxis' : '#eta 1st jet (p_{T} < 30 GeV)',
-                        'fold'  : 0
-                        }
 
 variables['mth']  = {   'name': 'mth',            #   variable name    
                         'range' : (40,0,200),    #   variable range
