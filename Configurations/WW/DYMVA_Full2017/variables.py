@@ -115,28 +115,31 @@ variables['njet']  = {
                         }
 
 variables['jetpt1']  = {
-                        'name': 'CleanJet_pt[0]>30? CleanJet_pt[0]:-1',     
-                        'range' : (40,0,200),   
+                        'name': 'CleanJet_pt[0]*CleanJet_pt[0]>30',     
+                        'range' : (40,30,200),   
                         'xaxis' : 'p_{T} 1st jet',
                         'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
 
 variables['jetpt1_0j']  = {
-                        'name': 'CleanJet_pt[0]<30? CleanJet_pt[0]:-1',     
+                        'name': ' CleanJet_pt[0]*CleanJet_pt[0]<30',     
                         'range' : (40,0,30),   
                         'xaxis' : 'p_{T} 1st jet (p_{T} < 30 GeV) ',
+                        'fold' : 0   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+                        }
+
+
+variables['jetphi1']  = {
+                        'name': 'CleanJet_phi[0]',     
+                        'range' : (40,-3.2,3.2),   
+                        'xaxis' : '#phi 1st jet',
                         'fold' : 1   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
 
-variables['jeteta1']  = {  'name': 'CleanJet_pt[0]>30? CleanJet_eta[0]:-999',
+
+variables['jeteta1']  = {  'name': 'CleanJet_eta[0]*CleanJet_pt[0]>30',
                         'range' : (80,-5.0,5.0),
                         'xaxis' : '#eta 1st jet',
-                        'fold'  : 0
-                        }
-
-variables['jeteta1_0j']  = {  'name': 'CleanJet_pt[0]<30? CleanJet_eta[0]:-999',
-                        'range' : (40,-5.0,5.0),
-                        'xaxis' : '#eta 1st jet (p_{T} < 30 GeV)',
                         'fold'  : 0
                         }
 
@@ -149,5 +152,61 @@ variables['mth']  = {   'name': 'mth',            #   variable name
 variables['dphill']  = {   'name': 'abs(dphill)',     
                         'range' : (20,0,3.14),   
                         'xaxis' : '#Delta#phi_{ll}',
+                        'fold' : 0
+                        }
+
+#New added variables
+
+
+# variables['dphilljet_Clara'] = { 'name': 'CleanJet_pt[0]>15? dphilljet_Clara.C(CleanJet_pt[0], CleanJet_eta[0], CleanJet_phi[0], Lepton_pt[0], Lepton_eta[0], Lepton_phi[0], Lepton_pt[1], Lepton_eta[1], Lepton_phi[1]):-1',
+#                        'range' : (40,0,3.2),
+#                        'xaxis' : '#Delta#phi_{ll,jet}',
+#                        'fold' : 3
+#                        }
+
+variables['dphilljet']  = {   'name': 'dphilljet',
+                        'range' : (40,0,3.2),
+                        'xaxis' : '#Delta#phi_{ll,jet}',
+                        'fold' : 0
+                        }
+
+
+variables['projtkmet']  = {   'name': 'projtkmet',
+                        'range' : (40,0,150),
+                        'xaxis' : 'Proj. TkMET [GeV]',
                         'fold' : 3
-}
+                        }
+
+
+variables['projpfmet']  = {   'name': 'projpfmet',
+                        'range' : (40,0,150),
+                        'xaxis' : 'Proj. MET [GeV]',
+                        'fold' : 3
+                      }
+
+variables['recoil']  = {   'name': 'recoil',
+                        'range' : (40,0,120),
+                        'xaxis' : 'recoil [GeV]',
+                        'fold' : 3
+                        }  
+
+
+variables['dphillmet']  = {   'name': 'dphillmet',
+                        'range' : (40,0,3.2),
+                        'xaxis' : '#Delta#phi_{ll,MET}',
+                        'fold' : 0
+                        }  
+
+
+variables['dphijet1met']  = {   'name': 'dphijet1met',
+                        'range' : (40,0,3.2),
+                        'xaxis' : '#Delta#phi_{jet1,MET}',
+                        'fold' : 0
+                        }  
+
+
+variables['PfMetDivSumMet']  = {   'name': 'PfMetDivSumMet',
+                        'range' : (40,0,10), #en diapos Alicia aparece casi 7
+                        'xaxis' : 'PfMetDivSumMet [GeV]',
+                        'fold' : 3
+                        }
