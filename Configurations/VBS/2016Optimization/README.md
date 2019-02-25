@@ -42,9 +42,6 @@ If you find .jid files it means that the corresponding jobs failed, check the .e
 
 If several jobs failed and you want to resubmit them all at once you can do:
 
-    cd $CMSSW_DIRECTORY/jobs/mkShapes__VBS_SS_test
-    for i in *jid; do sed -i "s/espresso/microcentury/g" ${i/jid/jds}; condor_submit ${i/jid/jds}; done
-
 # 3. Put all your apples in one basket
 
 Once the previous jobs have finished we _hadd_ the outputs.
