@@ -19,7 +19,7 @@ MCDir = directory + '__l2tightVBS__tightVbsSel/'
 XSWeight      = 'baseW*GEN_weight_SM/abs(GEN_weight_SM)'
 SFweight    = 'puW*effTrigW*bPogSF_CSVM*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]'
 SFweight +='*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]'
-PromptGenLepMatch='std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]'
+PromptGenLepMatch2l='std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]'
 
 ################################################
 ############   MET  FILTERS  ###################
@@ -75,12 +75,12 @@ DataTrig = {
 
 ###### DY = Z+Jets #######
 
-DY_W = '(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))''
+DY_W = '(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))'
 
 samples['ChMisId'] = {    'name'   :getSampleFiles(MCDir,'DYJetsToLL_M-10to50')
                                     +getSampleFiles(MCDir,'DYJetsToLL_M-50')    
 				                            ,
-                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
+                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,
                      'FilesPerJob' : 2 ,
                  }
 addSampleWeight(samples,'ChMisId','DYJetsToLL_M-10to50',DY_W)
@@ -92,7 +92,7 @@ Top_pTrw = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topLHEpt) * TMath::Exp(0.0615
 
 samples['ttbar'] = {   'name'  :getSampleFiles(MCDir,'TTTo2L2Nu') 
                                     ,
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                      'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
                       'FilesPerJob' : 1 ,
                   }
                   
@@ -101,7 +101,7 @@ addSampleWeight(samples,'ttbar','TTTo2L2Nu',Top_pTrw)
 
 samples['Wjets'] = {   'name'  :getSampleFiles(MCDir,'WJetsToLNu')
                                     ,
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                      'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
                       'FilesPerJob' : 1 ,
                   }
 ######## Vgamma ########
@@ -109,8 +109,8 @@ samples['Wjets'] = {   'name'  :getSampleFiles(MCDir,'WJetsToLNu')
 samples['Vg']  =  {     'name'  :getSampleFiles(MCDir,'Wg_MADGRAPHMLM')
                                 +getSampleFiles(MCDir,'Zg')
 		                        +getSampleFiles(MCDir,'WGJJ')
-                                +getSampleFiles(MCDir,'WgStarLNuMuMu')
-                                +getSampleFiles(MCDir,'WgStarLNuEE')
+                              #  +getSampleFiles(MCDir,'WgStarLNuMuMu')
+                              # +getSampleFiles(MCDir,'WgStarLNuEE')
                                 ,
                         'suppressNegativeNuisances' :['all'],
                         'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
@@ -118,11 +118,12 @@ samples['Vg']  =  {     'name'  :getSampleFiles(MCDir,'Wg_MADGRAPHMLM')
 
 ######### VV #########
 
-samples['ZZ']  = {    'name': getSampleFiles(MCDir,'ZZTo2L2Nu')
-                              #+ getSampleFiles(directory,'ZZTo4L')
-                              + getSampleFiles(MCDir,'ZZTo2L2Q') ,   
+samples['ZZ']  = {    'name' :getSampleFiles(MCDir,'ZZTo4L')
+                             # + getSampleFiles(directory,'ZZTo4L')
+                             # + getSampleFiles(MCDir,'ZZTo2L2Q')
+			      ,   
                       'suppressNegativeNuisances' :['all'], 
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                      'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
                       'FilesPerJob' : 6 ,
                   }
     
@@ -130,7 +131,7 @@ samples['ZZ']  = {    'name': getSampleFiles(MCDir,'ZZTo2L2Nu')
 samples['WZ']  = {    'name':getSampleFiles(MCDir,'WZTo3LNu')
                             ,
                       'suppressNegativeNuisances' :['all'], 
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                      'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
                       'FilesPerJob' : 6 ,
                   }
 
@@ -147,7 +148,7 @@ samples['VVV'] = {    'name':getSampleFiles(MCDir,'ZZZ')
                             ,   
                       'suppressNegative' :['all'], 
                       'suppressNegativeNuisances' :['all'],
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                      'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
                   }
 
 ########## DPS #########
@@ -156,7 +157,7 @@ samples['DPS'] = {    'name': getSampleFiles(MCDir,'WWTo2L2Nu_DoubleScattering')
                             ,   
                       'suppressNegative' :['all'], 
                       'suppressNegativeNuisances' :['all'],
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
+                      'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
                   }
 
 
@@ -164,15 +165,15 @@ samples['DPS'] = {    'name': getSampleFiles(MCDir,'WWTo2L2Nu_DoubleScattering')
 #######  IRREDUCIBLE BACKGROUNDS  #########
 ###########################################
 
-samples['WW_strong'] = {   'name'     :getSampleFiles(MCDir,'WpWpJJ_QCD')
-										                  #+getSampleFiles(directory,'WpWpJJ_EWK_QCD_aQGC')
-										                  ,
-						'suppressNegative' :['all'], 
-						'suppressNegativeNuisances' :['all'],
-						'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,    
-						'weights' : ['1.057'],
-						'FilesPerJob' : 1 ,
-						}
+samples['WW_strong'] = {   'name'     :	getSampleFiles(MCDir,'WpWpJJ_QCD')
+					#+getSampleFiles(directory,'WpWpJJ_EWK_QCD_aQGC')
+					 ,
+					'suppressNegative' :['all'], 
+					'suppressNegativeNuisances' :['all'],
+					'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,    
+					'weights' : ['1.057'],
+					'FilesPerJob' : 1 ,
+					}
 
 
 ###########################################
@@ -180,15 +181,15 @@ samples['WW_strong'] = {   'name'     :getSampleFiles(MCDir,'WpWpJJ_QCD')
 ###########################################
 
 samples['WW_EWK'] = {   'name'    :	getSampleFiles(MCDir,'WmWmJJ_EWK_powheg')
-									+getSampleFiles(MCDir,'WpWpJJ_EWK')
-									#+getSampleFiles(directory,'WpWpJJ_EWK_aQGC')
-										              ,
-						'suppressNegative' :['all'], 
-						'suppressNegativeNuisances' :['all'],
-						'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,    
-						'weights' : ['1.067466'],
-						'FilesPerJob' : 1 ,
-						}
+					+getSampleFiles(MCDir,'WpWpJJ_EWK')
+					#+getSampleFiles(directory,'WpWpJJ_EWK_aQGC')
+				         ,
+					'suppressNegative' :['all'], 
+					'suppressNegativeNuisances' :['all'],
+					'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,    
+					'weights' : ['1.067466'],
+					'FilesPerJob' : 1 ,
+					}
 
 ###########################################
 ################## FAKE ###################
@@ -254,3 +255,4 @@ for Run in DataRun :
     for iFile in FileTarget:
       samples['DATA']['name'].append(iFile)
       samples['DATA']['weights'].append(DataTrig[DataSet]) 
+
