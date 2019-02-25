@@ -85,21 +85,18 @@ variables['events']  = {   'name': '1',
                       # }
 
 # variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
-                       # 'range' : (10,0.,150),   
-                      'range' : (10,25,100),   
+                       # 'range' : (10,0.,150),      
                        # 'xaxis' : 'p_{T} 1st lep',
                        # 'fold'  : 3                         
                        # }
 
-# variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
-                       'range' : (10,0,100),   
+# variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',        
                        # 'range' : (20,0.,100),   
                        # 'xaxis' : 'p_{T} 2nd lep',
                        # 'fold'  : 3                         
                        # }
 
-# variables['jetpt1']  = {   'name': 'std_vector_jet_pt[0]',     
-                       'range' : (40,0,100),   
+# variables['jetpt1']  = {   'name': 'std_vector_jet_pt[0]',        
                        # 'range' : (15,0.,200),   
                        # 'xaxis' : 'p_{T} 1st jet',
                        # 'fold'  : 3                        
@@ -107,7 +104,6 @@ variables['events']  = {   'name': '1',
 
 # variables['jetpt2']  = {   'name': 'std_vector_jet_pt[1]',     
                        # 'range' : (40,0.,100),   
-                       'range' : (10,30,200),   
                        # 'xaxis' : 'p_{T} 2nd jet',
                        # 'fold'  : 3                       
                        # }
@@ -133,7 +129,6 @@ variables['events']  = {   'name': '1',
 
 # variables['detajj']  = {  'name': 'detajj',
                       # 'range': (7,0.0,7.0),
-                    'range': (10,3.5,8.5),
                       # 'xaxis': 'detajj',
                       # 'fold': 3
                       # }

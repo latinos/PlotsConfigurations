@@ -171,7 +171,7 @@ samples['WW_strong'] = {   'name'     :	getSampleFiles(MCDir,'WpWpJJ_QCD')
 					'suppressNegative' :['all'], 
 					'suppressNegativeNuisances' :['all'],
 					'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,    
-					'weights' : ['1.057'],
+#					'weights' : ['1.057'],
 					'FilesPerJob' : 1 ,
 					}
 
@@ -187,7 +187,7 @@ samples['WW_EWK'] = {   'name'    :	getSampleFiles(MCDir,'WmWmJJ_EWK_powheg')
 					'suppressNegative' :['all'], 
 					'suppressNegativeNuisances' :['all'],
 					'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,    
-					'weights' : ['1.067466'],
+#					'weights' : ['1.067466'],
 					'FilesPerJob' : 1 ,
 					}
 
