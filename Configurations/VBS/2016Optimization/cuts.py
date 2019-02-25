@@ -6,6 +6,7 @@ supercut='abs(std_vector_lepton_eta[1])<5 && abs(std_vector_lepton_eta[0])<5 \
             && std_vector_jet_pt[1]>30 \
             && metPfType1 > 30 \
             && njet>=2 \
+			&& veto_EMTFBug \
             && mjj < 500 '
             # && (abs((std_vector_lepton_eta[0] - (std_vector_jet_eta[0]+std_vector_jet_eta[1])/2)/detajj) < 0.5) \
             # && (abs((std_vector_lepton_eta[1] - (std_vector_jet_eta[0]+std_vector_jet_eta[1])/2)/detajj) < 0.5) \
@@ -17,9 +18,9 @@ supercut='abs(std_vector_lepton_eta[1])<5 && abs(std_vector_lepton_eta[0])<5 \
 cuts['VBS_13TeV_BaseCut']='1'
 
 #cuts['VBS_13TeV_BaseCut_LL']=BaseCut + '&& (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 11*11 || std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 13*13)' 
-cuts['VBS_13TeV_BaseCut_eMu']='std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 11*13' 
-cuts['VBS_13TeV_BaseCut_ee']='std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 11*11' 
-cuts['VBS_13TeV_BaseCut_MuMu']='std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 13*13' 
+# cuts['VBS_13TeV_BaseCut_eMu']='std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 11*13' 
+# cuts['VBS_13TeV_BaseCut_ee']='std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 11*11' 
+# cuts['VBS_13TeV_BaseCut_MuMu']='std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 13*13' 
 
 tauVeto = ' \
             && ( std_vector_tau_pt[0] < 18 || std_vector_tau_looseIso_dbeta[0] < 1. || (sqrt( pow(std_vector_tau_eta[0] - std_vector_lepton_eta[0], 2) + pow(abs(abs(std_vector_tau_phi[0] - std_vector_lepton_phi[0])-pi)-pi, 2) ) < 0.3 || sqrt( pow(std_vector_tau_eta[0] - std_vector_lepton_eta[1], 2) + pow(abs(abs(std_vector_tau_phi[0] - std_vector_lepton_phi[1])-pi)-pi, 2) ) < 0.3 ) ) \
@@ -59,23 +60,23 @@ softMuVeto='&& ( std_vector_softMuPt[0] < 3 || ((abs(std_vector_lepton_flavour[0
             && ( std_vector_softMuPt[8] < 3 || ((abs(std_vector_lepton_flavour[0]) == 13. && sqrt( pow(std_vector_softMuEta[8] - std_vector_lepton_eta[0], 2) + pow(abs(abs(std_vector_softMuPhi[8] - std_vector_lepton_phi[0])-pi)-pi, 2) ) < 0.3) || (abs(std_vector_lepton_flavour[1]) == 13. && sqrt( pow(std_vector_softMuEta[8] - std_vector_lepton_eta[1], 2) + pow(abs(abs(std_vector_softMuPhi[8] - std_vector_lepton_phi[1])-pi)-pi, 2) ) < 0.3 ) ) ) \
             && ( std_vector_softMuPt[9] < 3 || ((abs(std_vector_lepton_flavour[0]) == 13. && sqrt( pow(std_vector_softMuEta[9] - std_vector_lepton_eta[0], 2) + pow(abs(abs(std_vector_softMuPhi[9] - std_vector_lepton_phi[0])-pi)-pi, 2) ) < 0.3) || (abs(std_vector_lepton_flavour[1]) == 13. && sqrt( pow(std_vector_softMuEta[9] - std_vector_lepton_eta[1], 2) + pow(abs(abs(std_vector_softMuPhi[9] - std_vector_lepton_phi[1])-pi)-pi, 2) ) < 0.3 ) ) ) \
             '
-bJetVeto = BVeto + softMuVeto
-bJetTag  = '!(' + bJetVeto + ')'  
 
-cuts['VBS_13TeV_TauVeto']='1' + tauVeto
+# bJetTag  = '!(' + bJetVeto + ')'  
 
-cuts['VBS_13TeV_bJetVeto']=bJetVeto
+# cuts['VBS_13TeV_TauVeto']='1' + tauVeto
 
-cuts['VBS_13TeV_bJetTag']=bJetTag
+# cuts['VBS_13TeV_bJetVeto']=bJetVeto
 
-zveto ='mll>20 && (abs(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) != 11*11 || abs(mll - 91) > 15)'
-cuts['VBS_13TeV_Zveto_ee']=zveto + '&& std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 11*11'
-cuts['VBS_13TeV_Zveto_MuMU']=zveto + '&& std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 13*13'
+# cuts['VBS_13TeV_bJetTag']=bJetTag
+
+# zveto ='mll>20 && (abs(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) != 11*11 || abs(mll - 91) > 15)'
+# cuts['VBS_13TeV_Zveto_ee']=zveto + '&& std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 11*11'
+# cuts['VBS_13TeV_Zveto_MuMU']=zveto + '&& std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 13*13'
 #cuts['VBS_13TeV_Zveto_LL']=zveto + '&& (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 11*11 || std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 13*13)' 
-cuts['VBS_13TeV_Zveto_eMu']=zveto + '&& std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 11*13' 
+# cuts['VBS_13TeV_Zveto_eMu']=zveto + '&& std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 11*13' 
 
 
-cuts['VBS_13TeV_AllVetoes']  = zveto + tauVeto + '&&' + bJetVeto
+# cuts['VBS_13TeV_AllVetoes']  = zveto + tauVeto + '&&' + bJetVeto
 
 
 # 11 = e
