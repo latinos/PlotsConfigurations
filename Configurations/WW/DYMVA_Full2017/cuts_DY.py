@@ -9,6 +9,8 @@ _tmp = [
      '(nLepton>=2 && Alt$(Lepton_pt[2],0)<10.)',
      'fabs(Lepton_eta[0])<2.5 && fabs(Lepton_eta[1])<2.5',
      'Sum$(abs(CleanJet_eta)>2.5) == 0',
+     'MET_pt>20.',
+     'mpmet>20.',
        ]
 
 supercut = ' && '.join(_tmp)
@@ -37,6 +39,17 @@ _tmp = [
 
 addcut('DY_1j_mm_out', _tmp)
 
+_tmp = [
+     'Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13',
+     'fabs(mll - 91.1876) > 15.',
+     'Alt$(CleanJet_pt[0],0)>30',
+     'Alt$(CleanJet_pt[1],0)>30',
+     'Alt$(CleanJet_pt[2],0)<30',
+     bVeto,
+       ]
+
+addcut('DY_2j_mm_out', _tmp)
+
 
 _tmp = [
      'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11',
@@ -56,6 +69,18 @@ _tmp = [
        ]
 
 addcut('DY_1j_ee_out', _tmp)
+
+_tmp = [
+     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11',
+     'fabs(mll - 91.1876) > 15.',
+     'Alt$(CleanJet_pt[0],0)>30',
+     'Alt$(CleanJet_pt[1],0)>30',
+     'Alt$(CleanJet_pt[2],0)<30',
+     bVeto,
+       ]
+
+addcut('DY_2j_ee_out', _tmp)
+
 
 
 _tmp = [
@@ -84,7 +109,7 @@ _tmp = [
      'Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13',
      'fabs(mll - 91.1876) < 15.',
      'Alt$(CleanJet_pt[0],0)<30',
-     bVeto,
+      bVeto,
        ]
 
 addcut('DY_0j_mm_in', _tmp)
@@ -99,12 +124,23 @@ _tmp = [
 
 addcut('DY_1j_mm_in', _tmp)
 
+_tmp = [
+     'Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13',
+     'fabs(mll - 91.1876) < 15.',
+     'Alt$(CleanJet_pt[0],0)>30',
+     'Alt$(CleanJet_pt[1],0)>30',
+     'Alt$(CleanJet_pt[2],0)<30',
+     bVeto,
+       ]
+
+addcut('DY_2j_mm_in', _tmp)
+
 
 _tmp = [
      'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11',
      'fabs(mll - 91.1876) < 15.',
      'Alt$(CleanJet_pt[0],0)<30',
-     bVeto,
+      bVeto,
        ]
 
 addcut('DY_0j_ee_in', _tmp)
@@ -119,6 +155,17 @@ _tmp = [
 
 addcut('DY_1j_ee_in', _tmp)
 
+
+_tmp = [
+     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11',
+     'fabs(mll - 91.1876) < 15.',
+     'Alt$(CleanJet_pt[0],0)>30',
+     'Alt$(CleanJet_pt[1],0)>30',
+     'Alt$(CleanJet_pt[2],0)<30',
+     bVeto,
+       ]
+
+addcut('DY_2j_ee_in', _tmp)
 
 _tmp = [
      'Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13',

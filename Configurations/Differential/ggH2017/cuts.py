@@ -5,13 +5,13 @@ import re
 #cuts = {}
 
 # imported from samples.py:
-# samples, signals
+# samples, signals, pthBins, njetBinning
 
 _tmp = [
     'mll>12',
     'Lepton_pt[0]>25 && Sum$(Lepton_pt>10) == 2',
     'abs(Lepton_eta[0])<2.5 && abs(Lepton_eta[1])<2.5',
-    'MET_pt > 20',
+    'PuppiMET_pt > 20',
     'ptll>30',
     'osof',
     'trailingE13'
@@ -21,130 +21,117 @@ supercut = ' && '.join(_tmp)
 def addcut(name, exprs):
     cuts[name] = {'expr': ' && '.join(exprs)}
 
-# treat all CR as categories (total 10)
-addcut('hww_CR', ['1'])
+### sample lists separating signal bins
 
-njbinning = [
-    ('reco0j', 'zeroJet'),
-    ('reco1j', 'oneJet'),
-    ('reco2j', 'twoJet'),
-    ('reco3j', 'threeJet'),
-    ('recoge4j', 'manyJets')
-]
-nnjbins = len(njbinning)
+slist_njsignal = [sname for sname in samples if sname not in signals]
+for sname in signals:
+    sample = samples[sname]
+    for bname in sample['subsamples']:
+        if re.match('.*_NJ_.*', bname):
+            slist_njsignal.append('%s/%s' % (sname, bname))
 
-cuts['hww_CR']['categories'] = []
+slist_pthsignal = [sname for sname in samples if sname not in signals]
+for sname in signals:
+    sample = samples[sname]
+    for bname in sample['subsamples']:
+        if re.match('.*_PTH_.*', bname):
+            slist_pthsignal.append('%s/%s' % (sname, bname))
 
-categorization = '-1'
+njetCuts = {
+    '0': 'zeroJet',
+    '1': 'oneJet',
+    '2': 'twoJet',
+    '3': 'threeJet',
+    'GE4': 'manyJets'
+}
 
-categorization += '+(mth<60 && mll>40 && mll<80 && bVeto)'
-dycategorization = []
-for ibin, (bname, bcut) in enumerate(njbinning):
-    cuts['hww_CR']['categories'].append('catDY' + bname)
-    dycategorization.append('%d*%s' % (ibin + 1, bcut))
-categorization += '*(' + '+'.join(dycategorization) + ')'
+pthCuts = {}
+for pth in pthBins:
+    if pth.startswith('GT'):
+        pthCuts[pth] = 'pTWW >= %s' % pth[2:]
+    else:
+        pthCuts[pth] = 'pTWW >= %s && pTWW < %s' % tuple(pth.split('_'))
 
-categorization += '+(mtw2>30 && mll>50)'
-categorization += '*(%d*btag0*zeroJet' % (nnjbins + 1)
-categorization += '+bReq'
-topcategorization = []
-for ibin, (bname, bcut) in enumerate(njbinning):
-    cuts['hww_CR']['categories'].append('cattop' + bname)
-    if ibin != 0:
-        topcategorization.append('%d*%s' % (ibin + nnjbins + 1, bcut))
-categorization += '*(' + '+'.join(topcategorization) + ')'
-categorization += ')'
+### Control regions
 
-categorization += '+(mth>60 && mtw2>30 && bVeto && mll>100)'
-highmllcategorization = []
-for ibin, (bname, bcut) in enumerate(njbinning):
-    cuts['hww_CR']['categories'].append('cathighmll' + bname)
-    highmllcategorization.append('%d*%s' % (ibin + 2 * nnjbins + 1, bcut))
-categorization += '*(' + '+'.join(highmllcategorization) + ')'
+# top || DY || WW
+crCut = '((mtw2>30 && mll>50 && !bVeto && (zeroJet || bReq)) || (mth<60 && mll>40 && mll<80 && bVeto) || (mth>60 && mtw2>30 && mll>100 && bVeto))'
 
-cuts['hww_CR']['categorization'] = categorization
+# top + DY + WW
+categorization = '(mtw2>30 && mll>50 && !bVeto)*(%s)+(mth<60 && mll>40 && mll<80 && bVeto)*(%s)+(mth>60 && mtw2>30 && mll>100 && bVeto)*(%s)'
 
-## Signal regions
-pt2confs = [
+def addcr(name, binning, cutsMap, slist):
+    addcut(name, [crCut])
+    cuts[name]['categories'] = []
+    cuts[name]['samples'] = slist
+
+    topcat = []
+    for ibin, bin in enumerate(binning):
+        cuts[name]['categories'].append('%s_top_2017' % bin)
+        if ibin != 0:
+            topcat.append('%d*(%s)' % (ibin, cutsMap[bin]))
+    
+    dycat = []
+    for ibin, bin in enumerate(binning):
+        cuts[name]['categories'].append('%s_DY_2017' % bin)
+        if ibin == 0:
+            dycat.append('%d' % len(binning))
+        else:
+            dycat.append('%d*(%s)' % (ibin, cutsMap[bin]))
+    
+    wwcat = []
+    for ibin, bin in enumerate(binning):
+        cuts[name]['categories'].append('%s_WW_2017' % bin)
+        if ibin == 0:
+            wwcat.append('%d' % (2 * len(binning)))
+        else:
+            wwcat.append('%d*(%s)' % (ibin, cutsMap[bin]))
+    
+    cuts[name]['categorization'] = categorization % ('+'.join(topcat), '+'.join(dycat), '+'.join(wwcat))
+
+
+addcr('hww_CR_catNJ', njetBinning, njetCuts, slist_njsignal)
+addcr('hww_CR_catPTH', pthBins, pthCuts, slist_pthsignal)
+
+### Signal regions
+
+pt2cats = [
     ('pt2lt20', 'Lepton_pt[1] < 20.'),
     ('pt2ge20', 'Lepton_pt[1] >= 20.')
 ]
-lepconfs = [
-    ('emmp', 'Lepton_pdgId[0] == 11'),
-    ('mmep', 'Lepton_pdgId[0] == 13'),
-    ('epmm', 'Lepton_pdgId[0] == -11'),
-    ('mpem', 'Lepton_pdgId[0] == -13')
+flavcats = [
+    ('em', 'abs(Lepton_pdgId[0]) == 11'),
+    ('me', 'abs(Lepton_pdgId[0]) == 13')
+]
+chargecats = [
+    ('pm', 'Lepton_pdgId[0] < 0'),
+    ('mp', 'Lepton_pdgId[0] > 0')
 ]
 
-def addsr(name, srbins, signalbins):
-    apply_to = [sname for sname in samples if sname not in signals]
-    for sname in signals:
-        sample = samples[sname]
-        for bname in sample['subsamples']:
-            if re.match(signalbins, bname):
-                apply_to.append('%s/%s' % (sname, bname))
-
-    cuts[name]['samples'] = apply_to
+def addsr(name, binning, cutsMap, slist):
+    addcut(name, ['mth>=60', 'mtw2>30', 'bVeto'])
     cuts[name]['categories'] = []
-    categorization = []
-    for ibin, (bname, bcut) in enumerate(srbins):
-        for pt2, _ in pt2confs:
-            for lep, _ in lepconfs:
-                cuts[name]['categories'].append(bname + '_cat' + lep + pt2)
+    cuts[name]['samples'] = slist
+
+    cats = []
+    for ibin, bin in enumerate(binning):
+        for pt2cat, _ in pt2cats:
+            for flavcat, _ in flavcats:
+                for chargecat, _ in chargecats:
+                    cuts[name]['categories'].append('%s_cat%s%s%s_2017' % (bin, pt2cat, flavcat, chargecat))
 
         if ibin != 0:
-            categorization.append('%d * (%s)' % (8 * ibin, bcut))
+            cats.append('%d*(%s)' % (8 * ibin, cutsMap[bin]))
 
-    categorization.append('4 * (%s)' % pt2confs[1][1])
-    for ilep, (_, lepcut) in enumerate(lepconfs):
-        if ilep != 0:
-            categorization.append('%d * (%s)' % (ilep, lepcut))
+    cats.append('4*(%s)' % pt2cats[1][1])
+    cats.append('2*(%s)' % flavcats[1][1])
+    cats.append('(%s)' % chargecats[1][1])
 
     # all bins cover the full phase space - no need for a default category
-    cuts[name]['categorization'] = ' + '.join(categorization)
-    print cuts[name]['categorization']
+    cuts[name]['categorization'] = '+'.join(cats)
 
-_tmp = [
-    'mth>=60',
-    'mtw2>30',
-    'bVeto'
-]
 
-addcut('hww_PTH', _tmp)
-addcut('hww_NJ', _tmp)
+addsr('hww_NJ', njetBinning, njetCuts, slist_njsignal)
+addsr('hww_PTH', pthBins, pthCuts, slist_pthsignal)
 
-pthBinning = ['0', '20', '30', '45', '60', '80', '100', '120', '155', '200', '260', '350', 'inf']
-#yhBinning = [0., 0.15, 0.3, 0.6, 0.9, 1.2, 2.5, 10.]
-njetBinning = ['0', '1', '2', '3', '4+']
-
-srBins = []
-for ipt in range(len(pthBinning) - 1):
-    low, high = pthBinning[ipt:ipt+2]
-
-    if high == 'inf':
-        binName = 'GT%s' % low
-        cut = 'pTWW >= %s' % low
-    else:
-        binName = '%s_%s' % (low, high)
-        cut = 'pTWW >= %s && pTWW < %s' % (low, high)
-
-    srBins.append((binName, cut))
-        
-addsr('hww_PTH', srBins, 'PTH_.*')
-
-srBins = []
-for nj in njetBinning:
-    if nj.endswith('+'):
-        binName = 'GE%s' % nj[:-1] # correct
-        cut = 'Sum$(CleanJet_pt >= 30. && abs(CleanJet_eta) < 2.5) >= %s' % nj[:-1]
-    elif nj == '0':
-        binName = '0'
-        cut = 'Sum$(CleanJet_pt >= 30. && abs(CleanJet_eta) < 2.5) == 0'
-    else:
-        binName = str(nj)
-        cut = 'Sum$(CleanJet_pt >= 30. && abs(CleanJet_eta) < 2.5) == %s' % nj
-
-    srBins.append((binName, cut))
-
-addsr('hww_NJ', srBins, 'NJ_.*')
-
+#cuts = {'hww_NJ': cuts['hww_NJ']}
