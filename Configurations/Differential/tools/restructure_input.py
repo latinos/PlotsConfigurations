@@ -52,6 +52,13 @@ class SourceGetter(object):
     def close(self):
         self.source.Close()
 
+
+def nonnegatify(histogram):
+    for iX in range(1, histogram.GetNbinsX() + 1):
+        if histogram.GetBinContent(iX) < 0.:
+            histogram.SetBinContent(iX, 0.)
+
+
 class HistogramMerger(object):
     '''Tool to restructure and merge histograms'''
 
@@ -314,13 +321,22 @@ class HistogramMerger(object):
             self.mergeSample(templateSpecs, sample)
 
     def writeTarget(self, output):
+        """
+        Make all bin content non-negative and write to output
+        """
+
         for dname, templates in self._outNominals.iteritems():
             for tname, histogram in templates.iteritems():
                 output.cd('%s/%s' % (dname, tname))
+
+                nonnegatify(histogram)
+
                 histogram.Write()
                 histogram.Delete()
 
                 for vh in self._outVariations[dname][tname].itervalues():
+                    nonnegatify(vh)
+
                     vh.Write()
                     vh.Delete()
     
@@ -657,7 +673,7 @@ if __name__ == '__main__':
             for sname, vdef in nuisance['samples'].iteritems():
                 lnNUp[sname] = ('histo', float(nuisance['AsLnN']))
                 lnNDown[sname] = ('histo', float(nuisance['AsLnN']))
-    
+
     HistogramMerger.renormalizedVariations = {}
     source = ROOT.TFile.Open(os.path.dirname(__file__) + '/renormalize_theoretical_%s.root' % args.year)
     hup = source.Get('up')
