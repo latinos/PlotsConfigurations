@@ -21,7 +21,7 @@ def setupfiducial(drawer, variables = ['ptH', 'njet']):
 
     if 'njet' in variables:
         drawer.addVariable('genJetClean', 'TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[0], 2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[0]), 2.) > 0.16 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[1], 2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[1]), 2.) > 0.16')
-        drawer.addVariable('nGenJet', 'Sum$(std_vector_jetGen_pt > 30 && genJetClean)')
+        drawer.addVariable('nCleanGenJet', 'Sum$(std_vector_jetGen_pt > 30 && genJetClean)')
 
 if __name__ == '__main__':
     import re
