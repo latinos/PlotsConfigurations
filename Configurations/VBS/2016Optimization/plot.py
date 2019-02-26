@@ -4,7 +4,7 @@
 
 # groupPlot = {}
 # 
-# Groups of samples to improve the plots.
+# Groups of samples to improve the plots (merge different sample during plot).
 # If not defined, normal plots is used
 #
 
@@ -71,21 +71,15 @@ groupPlot['WW_strong']  = {
 #plot = {}
 
 # keys here must match keys in samples.py    
-#                    
+#    
+
+##Fake                
 plot['ChMisId']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
                   'scale'    : 1.0
               }
-
-
-#plot['Fake']  = {  
-#                  'color': 921,    # kGray + 1
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.0                  
-#              }
 
 
 plot['Fake_em']  = {  
@@ -116,7 +110,8 @@ plot['Fake_mm']  = {
                   'isData'   : 0,
                   'scale'    : 1.0
               }
-              
+
+##Non-Prompt
 plot['ttbar'] = {   
                   'nameHR' : 't#bar{t}',
                   'color': 400,   # kYellow
@@ -132,25 +127,19 @@ plot['Wjets'] = {
                   'scale'    : 1.0
                   }
 
-# plot['WW']  = {
-#                   'color': 851, # kAzure -9 
-#                   'isSignal' : 0,
-#                   'isData'   : 0,    
-#                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
-#                   }
-
+##Signal
 plot['WW_EWK']  = {
                   'color': 651, # kAzure -9 
                   'isSignal' : 1,
                   'isData'   : 0,
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+                  'scale'    : 1.0   
                   }
-
+##Irreducible Background
 plot['WW_strong']  = {
                   'color': 633, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+                  'scale'    : 1.0   
                   }
 
 
@@ -161,14 +150,7 @@ plot['Vg']  = {
                   'scale'    : 1.0
                   }
 
-
-#plot['VV']  = {  
-#                  'color': 617,    # kGray + 1
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.0                  
-#              }
-
+##VV plot
 plot['ZZ']  = { 
                   'color': 617, # kAzure -2  
                   'isSignal' : 0,
@@ -189,7 +171,7 @@ plot['DPS']  = {
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-
+##VVV
 plot['VVV']  = { 
                   'color': 857, # kAzure -3  
                   'isSignal' : 0,
@@ -197,7 +179,7 @@ plot['VVV']  = {
                   'scale'    : 1.0
                   }
 
-#data
+##Data
 
 plot['DATA']  = { 
                   'nameHR' : 'Data',

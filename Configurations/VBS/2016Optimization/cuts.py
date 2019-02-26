@@ -1,13 +1,12 @@
 # cuts
 #cuts = {}
 
-supercut='1'
-#'abs(std_vector_lepton_eta[1])<5 && abs(std_vector_lepton_eta[0])<5 \
-#            && std_vector_lepton_pt[0]>25 && std_vector_lepton_pt[1]>20 \
-#            && std_vector_jet_pt[1]>30 \
- #           && metPfType1 > 30 \
-  #          && njet>=2 \
-#	    && mjj < 500 '
+supercut=	'abs(std_vector_lepton_eta[1])<5 && abs(std_vector_lepton_eta[0])<5 \
+			&& std_vector_lepton_pt[0]>25 && std_vector_lepton_pt[1]>20 \
+			&& std_vector_jet_pt[1]>30 \
+			&& metPfType1 > 30 \
+			&& njet>=2 \
+			&& mjj < 500 '
             # && (abs((std_vector_lepton_eta[0] - (std_vector_jet_eta[0]+std_vector_jet_eta[1])/2)/detajj) < 0.5) \
             # && (abs((std_vector_lepton_eta[1] - (std_vector_jet_eta[0]+std_vector_jet_eta[1])/2)/detajj) < 0.5) \
             
