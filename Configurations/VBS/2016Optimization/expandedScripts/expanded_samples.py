@@ -3,23 +3,23 @@
 # 
 samples['ChMisId'] = { 
      'name'  :  [ 
-            'latino_DYJetsToLL_M-10to50.root',
-            'latino_DYJetsToLL_M-50__part0.root',
-            'latino_DYJetsToLL_M-50__part1.root',
-            'latino_DYJetsToLL_M-50__part10.root',
-            'latino_DYJetsToLL_M-50__part11.root',
-            'latino_DYJetsToLL_M-50__part12.root',
-            'latino_DYJetsToLL_M-50__part13.root',
-            'latino_DYJetsToLL_M-50__part14.root',
-            'latino_DYJetsToLL_M-50__part15.root',
-            'latino_DYJetsToLL_M-50__part2.root',
-            'latino_DYJetsToLL_M-50__part3.root',
-            'latino_DYJetsToLL_M-50__part4.root',
-            'latino_DYJetsToLL_M-50__part5.root',
-            'latino_DYJetsToLL_M-50__part6.root',
-            'latino_DYJetsToLL_M-50__part7.root',
-            'latino_DYJetsToLL_M-50__part8.root',
-            'latino_DYJetsToLL_M-50__part9.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_DYJetsToLL_M-10to50.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_DYJetsToLL_M-50__part0.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_DYJetsToLL_M-50__part10.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_DYJetsToLL_M-50__part11.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_DYJetsToLL_M-50__part12.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_DYJetsToLL_M-50__part13.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_DYJetsToLL_M-50__part14.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_DYJetsToLL_M-50__part15.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_DYJetsToLL_M-50__part1.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_DYJetsToLL_M-50__part2.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_DYJetsToLL_M-50__part3.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_DYJetsToLL_M-50__part4.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_DYJetsToLL_M-50__part5.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_DYJetsToLL_M-50__part6.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_DYJetsToLL_M-50__part7.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_DYJetsToLL_M-50__part8.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_DYJetsToLL_M-50__part9.root',
      ],  
      'weights'  :  [ 
             '(1.)*((1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582))))',
@@ -40,30 +40,30 @@ samples['ChMisId'] = {
             '(1.)*((1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582))))',
             '(1.)*((1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582))))',
      ],  
-     'weight'  :   'baseW*GEN_weight_SM/abs(GEN_weight_SM)*puW*effTrigW*bPogSF_CSVM*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*(std_vector_trigger_special[0]*                     std_vector_trigger_special[1]*                     std_vector_trigger_special[2]*                     std_vector_trigger_special[3]*                     std_vector_trigger_special[5]                   )*(((std_vector_trigger_special[8]==-2.)*(std_vector_trigger_special[6]*std_vector_trigger_special[7])) || ((! (std_vector_trigger_special[8]==-2.))*(std_vector_trigger_special[8]*std_vector_trigger_special[9])))' ,
+     'weight'  :   'baseW*GEN_weight_SM/abs(GEN_weight_SM)*puW*effTrigW*bPogSF_CSVM*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*(std_vector_trigger_special[0]*                     std_vector_trigger_special[1]*                     std_vector_trigger_special[2]*                     std_vector_trigger_special[3]*                     std_vector_trigger_special[5]                   )*(((std_vector_trigger_special[8]==-2.)*(std_vector_trigger_special[6]*std_vector_trigger_special[7])) || ((! (std_vector_trigger_special[8]==-2.))*(std_vector_trigger_special[8]*std_vector_trigger_special[9])))*chargeFlipW' ,
      'FilesPerJob'  :   2 ,
 }  
    
  samples['ttbar'] = { 
      'name'  :  [ 
-            'latino_TTTo2L2Nu__part0.root',
-            'latino_TTTo2L2Nu__part1.root',
-            'latino_TTTo2L2Nu__part10.root',
-            'latino_TTTo2L2Nu__part11.root',
-            'latino_TTTo2L2Nu__part12.root',
-            'latino_TTTo2L2Nu__part13.root',
-            'latino_TTTo2L2Nu__part14.root',
-            'latino_TTTo2L2Nu__part15.root',
-            'latino_TTTo2L2Nu__part16.root',
-            'latino_TTTo2L2Nu__part17.root',
-            'latino_TTTo2L2Nu__part2.root',
-            'latino_TTTo2L2Nu__part3.root',
-            'latino_TTTo2L2Nu__part4.root',
-            'latino_TTTo2L2Nu__part5.root',
-            'latino_TTTo2L2Nu__part6.root',
-            'latino_TTTo2L2Nu__part7.root',
-            'latino_TTTo2L2Nu__part8.root',
-            'latino_TTTo2L2Nu__part9.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_TTTo2L2Nu__part0.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_TTTo2L2Nu__part10.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_TTTo2L2Nu__part11.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_TTTo2L2Nu__part12.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_TTTo2L2Nu__part13.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_TTTo2L2Nu__part14.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_TTTo2L2Nu__part15.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_TTTo2L2Nu__part16.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_TTTo2L2Nu__part17.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_TTTo2L2Nu__part1.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_TTTo2L2Nu__part2.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_TTTo2L2Nu__part3.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_TTTo2L2Nu__part4.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_TTTo2L2Nu__part5.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_TTTo2L2Nu__part6.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_TTTo2L2Nu__part7.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_TTTo2L2Nu__part8.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_TTTo2L2Nu__part9.root',
      ],  
      'weights'  :  [ 
             '(1.)*((TMath::Sqrt( TMath::Exp(0.0615-0.0005*topLHEpt) * TMath::Exp(0.0615-0.0005*antitopLHEpt) ) ))',
@@ -91,7 +91,7 @@ samples['ChMisId'] = {
    
  samples['Wjets'] = { 
      'name'  :  [ 
-            'latino_WJetsToLNu.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_WJetsToLNu.root',
      ],  
      'weight'  :   'baseW*GEN_weight_SM/abs(GEN_weight_SM)*puW*effTrigW*bPogSF_CSVM*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*(std_vector_trigger_special[0]*                     std_vector_trigger_special[1]*                     std_vector_trigger_special[2]*                     std_vector_trigger_special[3]*                     std_vector_trigger_special[5]                   )*(((std_vector_trigger_special[8]==-2.)*(std_vector_trigger_special[6]*std_vector_trigger_special[7])) || ((! (std_vector_trigger_special[8]==-2.))*(std_vector_trigger_special[8]*std_vector_trigger_special[9])))' ,
      'FilesPerJob'  :   1 ,
@@ -99,18 +99,18 @@ samples['ChMisId'] = {
    
  samples['Vg'] = { 
      'name'  :  [ 
-            'latino_Wg_MADGRAPHMLM.root',
-            'latino_Zg__part0.root',
-            'latino_Zg__part1.root',
-            'latino_WGJJ.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_Wg_MADGRAPHMLM.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_Zg__part0.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_Zg__part1.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_WGJJ.root',
      ],  
      'weight'  :   'baseW*GEN_weight_SM/abs(GEN_weight_SM)*puW*effTrigW*bPogSF_CSVM*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*(std_vector_trigger_special[0]*                     std_vector_trigger_special[1]*                     std_vector_trigger_special[2]*                     std_vector_trigger_special[3]*                     std_vector_trigger_special[5]                   )*(((std_vector_trigger_special[8]==-2.)*(std_vector_trigger_special[6]*std_vector_trigger_special[7])) || ((! (std_vector_trigger_special[8]==-2.))*(std_vector_trigger_special[8]*std_vector_trigger_special[9])))* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )' ,
 }  
    
  samples['ZZ'] = { 
      'name'  :  [ 
-            'latino_ZZTo4L__part0.root',
-            'latino_ZZTo4L__part1.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_ZZTo4L__part0.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_ZZTo4L__part1.root',
      ],  
      'weight'  :   'baseW*GEN_weight_SM/abs(GEN_weight_SM)*puW*effTrigW*bPogSF_CSVM*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*(std_vector_trigger_special[0]*                     std_vector_trigger_special[1]*                     std_vector_trigger_special[2]*                     std_vector_trigger_special[3]*                     std_vector_trigger_special[5]                   )*(((std_vector_trigger_special[8]==-2.)*(std_vector_trigger_special[6]*std_vector_trigger_special[7])) || ((! (std_vector_trigger_special[8]==-2.))*(std_vector_trigger_special[8]*std_vector_trigger_special[9])))' ,
      'FilesPerJob'  :   6 ,
@@ -118,7 +118,7 @@ samples['ChMisId'] = {
    
  samples['WZ'] = { 
      'name'  :  [ 
-            'latino_WZTo3LNu.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_WZTo3LNu.root',
      ],  
      'weight'  :   'baseW*GEN_weight_SM/abs(GEN_weight_SM)*puW*effTrigW*bPogSF_CSVM*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*(std_vector_trigger_special[0]*                     std_vector_trigger_special[1]*                     std_vector_trigger_special[2]*                     std_vector_trigger_special[3]*                     std_vector_trigger_special[5]                   )*(((std_vector_trigger_special[8]==-2.)*(std_vector_trigger_special[6]*std_vector_trigger_special[7])) || ((! (std_vector_trigger_special[8]==-2.))*(std_vector_trigger_special[8]*std_vector_trigger_special[9])))' ,
      'FilesPerJob'  :   6 ,
@@ -126,41 +126,35 @@ samples['ChMisId'] = {
    
  samples['VVV'] = { 
      'name'  :  [ 
-            'latino_ZZZ.root',
-            'latino_WZZ.root',
-            'latino_WWZ.root',
-            'latino_WWW.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_ZZZ.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_WZZ.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_WWZ.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_WWW.root',
      ],  
      'weight'  :   'baseW*GEN_weight_SM/abs(GEN_weight_SM)*puW*effTrigW*bPogSF_CSVM*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*(std_vector_trigger_special[0]*                     std_vector_trigger_special[1]*                     std_vector_trigger_special[2]*                     std_vector_trigger_special[3]*                     std_vector_trigger_special[5]                   )*(((std_vector_trigger_special[8]==-2.)*(std_vector_trigger_special[6]*std_vector_trigger_special[7])) || ((! (std_vector_trigger_special[8]==-2.))*(std_vector_trigger_special[8]*std_vector_trigger_special[9])))' ,
 }  
    
  samples['DPS'] = { 
      'name'  :  [ 
-            'latino_WWTo2L2Nu_DoubleScattering.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_WWTo2L2Nu_DoubleScattering.root',
      ],  
      'weight'  :   'baseW*GEN_weight_SM/abs(GEN_weight_SM)*puW*effTrigW*bPogSF_CSVM*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*(std_vector_trigger_special[0]*                     std_vector_trigger_special[1]*                     std_vector_trigger_special[2]*                     std_vector_trigger_special[3]*                     std_vector_trigger_special[5]                   )*(((std_vector_trigger_special[8]==-2.)*(std_vector_trigger_special[6]*std_vector_trigger_special[7])) || ((! (std_vector_trigger_special[8]==-2.))*(std_vector_trigger_special[8]*std_vector_trigger_special[9])))' ,
 }  
    
  samples['WW_strong'] = { 
      'name'  :  [ 
-            'latino_WpWpJJ_QCD.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_WpWpJJ_QCD.root',
      ],  
-     'weights'  :  [ 
-            '1.057',
-     ],  
-     'weight'  :   'baseW*GEN_weight_SM/abs(GEN_weight_SM)*puW*effTrigW*bPogSF_CSVM*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*(std_vector_trigger_special[0]*                     std_vector_trigger_special[1]*                     std_vector_trigger_special[2]*                     std_vector_trigger_special[3]*                     std_vector_trigger_special[5]                   )*(((std_vector_trigger_special[8]==-2.)*(std_vector_trigger_special[6]*std_vector_trigger_special[7])) || ((! (std_vector_trigger_special[8]==-2.))*(std_vector_trigger_special[8]*std_vector_trigger_special[9])))' ,
+     'weight'  :   'baseW*GEN_weight_SM/abs(GEN_weight_SM)*puW*effTrigW*bPogSF_CSVM*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*(std_vector_trigger_special[0]*                     std_vector_trigger_special[1]*                     std_vector_trigger_special[2]*                     std_vector_trigger_special[3]*                     std_vector_trigger_special[5]                   )*(((std_vector_trigger_special[8]==-2.)*(std_vector_trigger_special[6]*std_vector_trigger_special[7])) || ((! (std_vector_trigger_special[8]==-2.))*(std_vector_trigger_special[8]*std_vector_trigger_special[9])))*1.057' ,
      'FilesPerJob'  :   1 ,
 }  
    
  samples['WW_EWK'] = { 
      'name'  :  [ 
-            'latino_WmWmJJ_EWK_powheg.root',
-            'latino_WpWpJJ_EWK.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_WmWmJJ_EWK_powheg.root',
+            '###/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables__l2tightVBS__tightVbsSel//latino_WpWpJJ_EWK.root',
      ],  
-     'weights'  :  [ 
-            '1.067466',
-     ],  
-     'weight'  :   'baseW*GEN_weight_SM/abs(GEN_weight_SM)*puW*effTrigW*bPogSF_CSVM*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*(std_vector_trigger_special[0]*                     std_vector_trigger_special[1]*                     std_vector_trigger_special[2]*                     std_vector_trigger_special[3]*                     std_vector_trigger_special[5]                   )*(((std_vector_trigger_special[8]==-2.)*(std_vector_trigger_special[6]*std_vector_trigger_special[7])) || ((! (std_vector_trigger_special[8]==-2.))*(std_vector_trigger_special[8]*std_vector_trigger_special[9])))' ,
+     'weight'  :   'baseW*GEN_weight_SM/abs(GEN_weight_SM)*puW*effTrigW*bPogSF_CSVM*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*(std_vector_trigger_special[0]*                     std_vector_trigger_special[1]*                     std_vector_trigger_special[2]*                     std_vector_trigger_special[3]*                     std_vector_trigger_special[5]                   )*(((std_vector_trigger_special[8]==-2.)*(std_vector_trigger_special[6]*std_vector_trigger_special[7])) || ((! (std_vector_trigger_special[8]==-2.))*(std_vector_trigger_special[8]*std_vector_trigger_special[9])))*1.067466' ,
      'FilesPerJob'  :   1 ,
 }  
    

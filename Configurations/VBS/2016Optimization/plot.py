@@ -80,12 +80,12 @@ plot['ChMisId']  = {
               }
 
 
-plot['Fake']  = {  
-                  'color': 921,    # kGray + 1
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0                  
-              }
+#plot['Fake']  = {  
+#                  'color': 921,    # kGray + 1
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1.0                  
+#              }
 
 
 plot['Fake_em']  = {  
@@ -162,12 +162,12 @@ plot['Vg']  = {
                   }
 
 
-plot['VV']  = {  
-                  'color': 617,    # kGray + 1
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0                  
-              }
+#plot['VV']  = {  
+#                  'color': 617,    # kGray + 1
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1.0                  
+#              }
 
 plot['ZZ']  = { 
                   'color': 617, # kAzure -2  

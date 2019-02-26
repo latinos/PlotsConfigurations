@@ -17,8 +17,7 @@ MCDir = directory + '__l2tightVBS__tightVbsSel/'
 ################################################
 #Weight added manually
 XSWeight      = 'baseW*GEN_weight_SM/abs(GEN_weight_SM)'
-SFweight    = 'puW*effTrigW*bPogSF_CSVM*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]'
-SFweight +='*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]'
+SFweight    = 'puW*effTrigW*bPogSF_CSVM*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]'
 PromptGenLepMatch2l='std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]'
 
 ################################################
@@ -77,10 +76,10 @@ DataTrig = {
 
 DY_W = '(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))'
 
-samples['ChMisId'] = {    'name'   :getSampleFiles(MCDir,'DYJetsToLL_M-10to50')
-                                    +getSampleFiles(MCDir,'DYJetsToLL_M-50')    
+samples['ChMisId'] = {    'name'   :getSampleFiles(MCDir,'DYJetsToLL_M-10to50',True)
+                                    +getSampleFiles(MCDir,'DYJetsToLL_M-50',True)    
 				                            ,
-                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,
+                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC,#+'*chargeFlipW',
                      'FilesPerJob' : 2 ,
                  }
 addSampleWeight(samples,'ChMisId','DYJetsToLL_M-10to50',DY_W)
@@ -90,47 +89,44 @@ addSampleWeight(samples,'ChMisId','DYJetsToLL_M-50'     ,DY_W)
 ###### TopAntiTop#######
 Top_pTrw = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topLHEpt) * TMath::Exp(0.0615-0.0005*antitopLHEpt) ) )'
 
-samples['ttbar'] = {   'name'  :getSampleFiles(MCDir,'TTTo2L2Nu') 
+samples['ttbar'] = {   'name'  :getSampleFiles(MCDir,'TTTo2L2Nu',True) 
                                     ,
                       'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
-                      'FilesPerJob' : 1 ,
+                      'FilesPerJob' : 6 ,
                   }
-                  
-addSampleWeight(samples,'ttbar','TTTo2L2Nu',Top_pTrw)
 
 
-samples['Wjets'] = {   'name'  :getSampleFiles(MCDir,'WJetsToLNu')
+samples['Wjets'] = {   'name'  :getSampleFiles(MCDir,'WJetsToLNu',True)
                                     ,
-                      'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
-                      'FilesPerJob' : 1 ,
+                      'weight' :'1',# XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
                   }
 ######## Vgamma ########
 
-samples['Vg']  =  {     'name'  :getSampleFiles(MCDir,'Wg_MADGRAPHMLM')
-                                +getSampleFiles(MCDir,'Zg')
-		                        +getSampleFiles(MCDir,'WGJJ')
+samples['Vg']  =  {     'name'  :getSampleFiles(MCDir,'Wg_MADGRAPHMLM',True)
+                                +getSampleFiles(MCDir,'Zg',True)
+		                +getSampleFiles(MCDir,'WGJJ',True)
                               #  +getSampleFiles(MCDir,'WgStarLNuMuMu')
                               # +getSampleFiles(MCDir,'WgStarLNuEE')
                                 ,
-                        'suppressNegativeNuisances' :['all'],
+                        #'suppressNegativeNuisances' :['all'],
                         'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
                   }
 
 ######### VV #########
 
-samples['ZZ']  = {    'name' :getSampleFiles(MCDir,'ZZTo4L')
+samples['ZZ']  = {    'name' :getSampleFiles(MCDir,'ZZTo4L',True)
                              # + getSampleFiles(directory,'ZZTo4L')
                              # + getSampleFiles(MCDir,'ZZTo2L2Q')
 			      ,   
-                      'suppressNegativeNuisances' :['all'], 
+                      #'suppressNegativeNuisances' :['all'], 
                       'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
                       'FilesPerJob' : 6 ,
                   }
     
 
-samples['WZ']  = {    'name':getSampleFiles(MCDir,'WZTo3LNu')
+samples['WZ']  = {    'name':getSampleFiles(MCDir,'WZTo3LNu',True)
                             ,
-                      'suppressNegativeNuisances' :['all'], 
+                      #'suppressNegativeNuisances' :['all'], 
                       'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
                       'FilesPerJob' : 6 ,
                   }
@@ -139,25 +135,23 @@ samples['WZ']  = {    'name':getSampleFiles(MCDir,'WZTo3LNu')
 
 ########## VVV #########
 
-samples['VVV'] = {    'name':getSampleFiles(MCDir,'ZZZ')
-                            +getSampleFiles(MCDir,'WZZ')
-                            +getSampleFiles(MCDir,'WWZ')
-                            +getSampleFiles(MCDir,'WWW')
-                           #  WWG: Might be added to WW by PYTHIA in tuning step, super small x-section anyway -> skipped for now 
-                           #  + getSampleFiles(MCDir,'WWG')
+samples['VVV'] = {    'name':getSampleFiles(MCDir,'ZZZ',True)
+                            +getSampleFiles(MCDir,'WZZ',True)
+                            +getSampleFiles(MCDir,'WWZ',True)
+                            +getSampleFiles(MCDir,'WWW',True)
                             ,   
-                      'suppressNegative' :['all'], 
-                      'suppressNegativeNuisances' :['all'],
+                      #'suppressNegative' :['all'], 
+                      #'suppressNegativeNuisances' :['all'],
                       'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
                   }
 
 ########## DPS #########
 
-samples['DPS'] = {    'name': getSampleFiles(MCDir,'WWTo2L2Nu_DoubleScattering')
+samples['DPS'] = {    'name': getSampleFiles(MCDir,'WWTo2L2Nu_DoubleScattering',True)
                             ,   
-                      'suppressNegative' :['all'], 
-                      'suppressNegativeNuisances' :['all'],
-                      'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
+                      #'suppressNegative' :['all'], 
+                      #'suppressNegativeNuisances' :['all'],
+                      'weight' :'baseW*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
                   }
 
 
@@ -165,12 +159,12 @@ samples['DPS'] = {    'name': getSampleFiles(MCDir,'WWTo2L2Nu_DoubleScattering')
 #######  IRREDUCIBLE BACKGROUNDS  #########
 ###########################################
 
-samples['WW_strong'] = {   'name'     :	getSampleFiles(MCDir,'WpWpJJ_QCD')
+samples['WW_strong'] = {   'name'     :	getSampleFiles(MCDir,'WpWpJJ_QCD',True)
 					#+getSampleFiles(directory,'WpWpJJ_EWK_QCD_aQGC')
 					 ,
-					'suppressNegative' :['all'], 
-					'suppressNegativeNuisances' :['all'],
-					'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,    
+					#'suppressNegative' :['all'], 
+					#'suppressNegativeNuisances' :['all'],
+					'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*1.057' ,    
 #					'weights' : ['1.057'],
 					'FilesPerJob' : 1 ,
 					}
@@ -180,13 +174,13 @@ samples['WW_strong'] = {   'name'     :	getSampleFiles(MCDir,'WpWpJJ_QCD')
 #############   SIGNALS  ##################
 ###########################################
 
-samples['WW_EWK'] = {   'name'    :	getSampleFiles(MCDir,'WmWmJJ_EWK_powheg')
-					+getSampleFiles(MCDir,'WpWpJJ_EWK')
+samples['WW_EWK'] = {   'name'    :	getSampleFiles(MCDir,'WmWmJJ_EWK_powheg',True)
+					+getSampleFiles(MCDir,'WpWpJJ_EWK',True)
 					#+getSampleFiles(directory,'WpWpJJ_EWK_aQGC')
 				         ,
-					'suppressNegative' :['all'], 
-					'suppressNegativeNuisances' :['all'],
-					'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,    
+					#'suppressNegative' :['all'], 
+					#'suppressNegativeNuisances' :['all'],
+					'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*1.067466' ,    
 #					'weights' : ['1.067466'],
 					'FilesPerJob' : 1 ,
 					}
