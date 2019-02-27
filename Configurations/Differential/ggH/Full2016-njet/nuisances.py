@@ -261,6 +261,23 @@ nuisances['UE']  = {
                 'AsLnN'      : '1',
                 }
 
+nuisances['PU']  = {
+                'name'  : 'PU',
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples'  : {
+                  'WW'      : ['1.01', '0.99'],
+                  'ggH_hww':  ['1.01', '0.99'],
+                  'qqH_hww':  ['1.01', '0.99'],
+                  'top':      ['1.01', '0.99'],
+                  'DY':       ['1.01', '0.99'],
+                },
+                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__PUup'+skim,
+                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__PUdo'+skim,
+                'AsLnN'      : '1',
+                }
+
+
 
 ## Shape nuisance due to QCD scale variations for DY
 nuisances['DYQCDscale']  = {
