@@ -87,16 +87,15 @@ for cut in os.listdir(args.inpath):
         if isSignal(name) and sumw > signalMax:
             signalMax = sumw
 
-    if not isCR:
-        # Drop signal processes that contribute less than 1% of the max (super-off diagonal in the response matrix)
-        for name, hist in nominalTemplates.items():
-            if not isSignal(name):
-                continue
-            
-            sumw = hist.GetSumOfWeights()
-            if sumw < 0.01 * signalMax:
-                print 'Dropping', name, 'from', cut, '(%f << %f)' % (sumw, signalMax)
-                nominalTemplates.pop(name).Delete()
+    # Drop processes that contribute less than 1% of the max (super-off diagonal in the response matrix)
+    for name, hist in nominalTemplates.items():
+        if not isSignal(name):
+            continue
+        
+        sumw = hist.GetSumOfWeights()
+        if sumw < 0.01 * signalMax:
+            print 'Dropping', name, 'from', cut, '(%f << %f)' % (sumw, signalMax)
+            nominalTemplates.pop(name).Delete()
 
     # Copy the histograms applying adjustments
     if not args.onlyFullModel:
@@ -113,7 +112,17 @@ for cut in os.listdir(args.inpath):
         if name in nominalTemplates:
             hist = nominalTemplates[name]
         else:
+            try:
+                nominal = next(key for key in nominalTemplates if name.startswith(key))
+            except StopIteration:
+                # nominal is dropped
+                continue
+
             hist = key.ReadObj()
+            if hist.GetSumOfWeights() <= 0.:
+                hist.Delete()
+                hist = nominalTemplates[nominal].Clone(name)
+                hist.Scale(1.5e-4)
             
         hist.SetDirectory(targetFullHistDir)
         hist.Write()

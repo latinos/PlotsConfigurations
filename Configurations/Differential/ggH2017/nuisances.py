@@ -35,8 +35,9 @@ nuisances['fake_syst'] = {
     'name': 'CMS_fake_syst_2017',
     'type': 'lnN',
     'samples': {
-        'Fake': '1.30',
-    }
+        'Fake': '1.3',
+    },
+    'perRecoBin': True
 }
 
 nuisances['fake_ele'] = {
@@ -46,7 +47,8 @@ nuisances['fake_ele'] = {
     'samples': {
         'Fake': ['fakeWEleUp', 'fakeWEleDown'],
     },
-    'AsLnN': '1'
+    #'AsLnN': '1'
+    'perRecoBin': True
 }
 
 nuisances['fake_ele_stat'] = {
@@ -56,6 +58,8 @@ nuisances['fake_ele_stat'] = {
     'samples': {
         'Fake': ['fakeWStatEleUp', 'fakeWStatEleDown']
     },
+    #'AsLnN': '1'
+    'perRecoBin': True
 }
 
 nuisances['fake_mu'] = {
@@ -65,7 +69,8 @@ nuisances['fake_mu'] = {
     'samples': {
         'Fake': ['fakeWMuUp', 'fakeWMuDown'],
     },
-    'AsLnN': '1'
+    #'AsLnN': '1'
+    'perRecoBin': True
 }
 
 nuisances['fake_mu_stat'] = {
@@ -75,6 +80,8 @@ nuisances['fake_mu_stat'] = {
     'samples': {
         'Fake': ['fakeWStatMuUp', 'fakeWStatMuDown'],
     },
+    #'AsLnN': '1'
+    'perRecoBin': True
 }
 
 ##### B-tagger
@@ -197,7 +204,8 @@ nuisances['PS']  = {
         #'ggH_hww': ['PSWeight[0]', 'PSWeight[3]'],
         #'qqH_hww': ['PSWeight[0]', 'PSWeight[3]']
     },
-    'AsLnN': '1'
+    'AsLnN': '1',
+    #'symmetrize': True
 }
 
 # Scales are used to normalize the UE up/down variations to the same integral as the nominal after the wwSel skim
@@ -243,7 +251,8 @@ nuisances['TopPtRew'] = {
     'name': 'CMS_topPtRew',   # Theory uncertainty
     'kind': 'weight',
     'type': 'shape',
-    'samples': {'top': ["1.","((1./Top_pTrw - 1)*(topGenPt>0 && antitopGenPt>0) + 1)"]}
+    'samples': {'top': ["1.","((1./Top_pTrw - 1)*(topGenPt>0 && antitopGenPt>0) + 1)"]},
+    'symmetrize': True
 }
 
 #nuisances['WgStarRate'] = {

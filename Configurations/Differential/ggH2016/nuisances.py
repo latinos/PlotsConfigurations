@@ -31,8 +31,9 @@ nuisances['fake_syst'] = {
     'name': 'CMS_fake_syst_2016',
     'type': 'lnN',
     'samples': {
-        'Fake': '1.30',
-    }
+        'Fake': '1.3',
+    },
+    'perRecoBin': True
 }
 
 nuisances['fake_ele'] = {
@@ -42,7 +43,8 @@ nuisances['fake_ele'] = {
     'samples': {
         'Fake': ['fakeWeightEleUp', 'fakeWeightEleDown'],
     },
-    'AsLnN': '1'
+    #'AsLnN': '1',
+    'perRecoBin': True
 }
 
 nuisances['fake_ele_stat'] = {
@@ -51,7 +53,9 @@ nuisances['fake_ele_stat'] = {
     'type': 'shape',
     'samples': {
         'Fake': ['fakeWeightStatEleUp', 'fakeWeightStatEleDown'],
-    }
+    },
+    #'AsLnN': '1',
+    'perRecoBin': True
 }
 
 nuisances['fake_mu'] = {
@@ -61,7 +65,8 @@ nuisances['fake_mu'] = {
     'samples': {
         'Fake': ['fakeWeightMuUp', 'fakeWeightMuDown'],
     },
-    'AsLnN': '1'
+    #'AsLnN': '1',
+    'perRecoBin': True
 }
 
 nuisances['fake_mu_stat'] = {
@@ -70,7 +75,9 @@ nuisances['fake_mu_stat'] = {
     'type': 'shape',
     'samples': {
         'Fake': ['fakeWeightStatMuUp', 'fakeWeightStatMuDown'],
-    }
+    },
+    #'AsLnN': '1',
+    'perRecoBin': True
 }
 
 ##### B-tagger
@@ -139,23 +146,25 @@ nuisances['electronpt'] = {
     'AsLnN': '1'
 }
 
-elePtCor_Syst = ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l']
-
-nuisances['elePtCor'] = {
-    'name': 'CMS_eff_e_residual_pt_2016',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': dict((skey, elePtCor_Syst) for skey in mc)
-}
-
-eleEtaCor_Syst = ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l']
-
-nuisances['eleEtaCor'] = {
-    'name': 'CMS_eff_e_residual_eta_2016',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': dict((skey, eleEtaCor_Syst) for skey in mc)
-}
+#elePtCor_Syst = ['electron_ptW_2l_Up / electron_ptW_2l', 'electron_ptW_2l_Down / electron_ptW_2l']
+#
+#nuisances['elePtCor'] = {
+#    'name': 'CMS_eff_e_residual_pt_2016',
+#    'kind': 'weight',
+#    'type': 'shape',
+#    'samples': dict((skey, elePtCor_Syst) for skey in mc),
+#    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_CR_' not in cut]),
+#}
+#
+#eleEtaCor_Syst = ['electron_etaW_2l_Up / electron_etaW_2l', 'electron_etaW_2l_Down / electron_etaW_2l']
+#
+#nuisances['eleEtaCor'] = {
+#    'name': 'CMS_eff_e_residual_eta_2016',
+#    'kind': 'weight',
+#    'type': 'shape',
+#    'samples': dict((skey, eleEtaCor_Syst) for skey in mc),
+#    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_CR_' not in cut])
+#}
 
 
 ##### Muon Efficiency and energy scale
@@ -238,7 +247,8 @@ nuisances['PS'] = {
     'samples': apply_on,
     'folderUp': makeMCDirectory('PS'),
     'folderDown': makeMCDirectory(),
-    'AsLnN': '1'
+    'AsLnN': '1',
+    'symmetrize': True
 }
 
 ## Normalize the UE up/down variations to the same integral as the nominal after the wwSel skim
@@ -262,7 +272,7 @@ nuisances['UE'] = {
     'samples': apply_on,
     'folderUp': makeMCDirectory('UEup'),
     'folderDown': makeMCDirectory('UEdo'),
-    'AsLnN': '1',
+    'AsLnN': '1'
 }
 
 ####### Generic "cross section uncertainties"
@@ -291,7 +301,8 @@ nuisances['TopPtRew'] = {
     'name': 'CMS_topPtRew',   # Theory uncertainty
     'kind': 'weight',
     'type': 'shape',
-    'samples': {'top': ["1.","((1./toprwgt - 1)*(dataset==19) + 1)"]}
+    'samples': {'top': ["1.","((1./toprwgt - 1)*(dataset==19) + 1)"]},
+    'symmetrize': True
 }
 
 nuisances['WgStarScale'] = {

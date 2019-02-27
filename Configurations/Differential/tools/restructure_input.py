@@ -331,14 +331,22 @@ class HistogramMerger(object):
 
                 nonnegatify(histogram)
 
-                histogram.Write()
-                histogram.Delete()
+                nominalSumW = histogram.GetSumOfWeights()
 
                 for vh in self._outVariations[dname][tname].itervalues():
                     nonnegatify(vh)
 
+                    if nominalSumW > 0. and vh.GetSumOfWeights() / nominalSumW < 1.e-4:
+                        vname = vh.GetName()
+                        vh.Delete()
+                        vh = histogram.Clone(vname)
+                        vh.Scale(1.5e-4)
+
                     vh.Write()
                     vh.Delete()
+
+                histogram.Write()
+                histogram.Delete()
     
     def createOutputAndMerge(self, outputPath, sourcePath, targets):
         ### Create the output directory structure first
@@ -347,33 +355,49 @@ class HistogramMerger(object):
         ROOT.gROOT.GetListOfFiles().Remove(output)
 
         dnames = []
+        binCategories = {}
         for outBin, nsplit in zip(self.outBins, self.split):
+            binCategories[outBin] = []
             if nsplit == 8:
                 for pt2 in self.pt2confs:
                     for flav in self.flavconfs:
                         for chrg in self.chrgconfs:
-                            dnames.append('hww_%s_cat%s%s%s_%s' % (outBin, pt2, flav, chrg, self.year))
+                            dname = 'hww_%s_cat%s%s%s_%s' % (outBin, pt2, flav, chrg, self.year)
+                            dnames.append(dname)
+                            binCategories[outBin].append(dname)
         
             elif nsplit == 4:
                 for pt2 in self.pt2confs:
                     for flav in self.flavconfs:
-                        dnames.append('hww_%s_cat%s%s_%s' % (outBin, pt2, flav, self.year))
+                        dname = 'hww_%s_cat%s%s_%s' % (outBin, pt2, flav, self.year)
+                        dnames.append(dname)
+                        binCategories[outBin].append(dname)
         
             elif nsplit == 3:
                 for flav in self.flavconfs:
-                    dnames.append('hww_%s_catpt2lt20%s_%s' % (outBin, flav, self.year))
+                    dname = 'hww_%s_catpt2lt20%s_%s' % (outBin, flav, self.year)
+                    dnames.append(dname)
+                    binCategories[outBin].append(dname)
 
-                dnames.append('hww_%s_catpt2ge20_%s' % (outBin, self.year))
+                dname = 'hww_%s_catpt2ge20_%s' % (outBin, self.year)
+                dnames.append(dname)
+                binCategories[outBin].append(dname)
         
             elif nsplit == 2:
                 for pt2 in self.pt2confs:
-                    dnames.append('hww_%s_cat%s_%s' % (outBin, pt2, self.year))
+                    dname = 'hww_%s_cat%s_%s' % (outBin, pt2, self.year)
+                    dnames.append(dname)
+                    binCategories[outBin].append(dname)
         
             elif nsplit == 1:
-                dnames.append('hww_%s_%s' % (outBin, self.year))
+                dname = 'hww_%s_%s' % (outBin, self.year)
+                dnames.append(dname)
+                binCategories[outBin].append(dname)
         
         for cat in self.crCategories:
-            dnames.append('hww_CR_cat%s_%s' % (cat, self.year))
+            dname = 'hww_CR_cat%s_%s' % (cat, self.year)
+            dnames.append(dname)
+            binCategories[cat] = [dname]
 
         for dname in dnames:
             output.mkdir(dname)
@@ -409,7 +433,7 @@ class HistogramMerger(object):
 
                 if os.path.isdir(sourcePath):
                     self.getter.close()
-
+                                
             self.writeTarget(output)
         
         output.Close()
