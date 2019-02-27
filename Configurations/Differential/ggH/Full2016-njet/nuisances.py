@@ -407,6 +407,14 @@ nuisances['QCDscale_ttH']  = {
                'type'  : 'lnN',
               }
 
+nuisances['QCDscale_WWewk']  = {
+               'name'  : 'QCDscale_WWewk',
+               'samples'  : {
+                   'WWewk' : '1.11',
+                   },
+               'type'  : 'lnN'
+              }
+
 # why are we correlating all these unrelated processes?
 nuisances['QCDscale_qqbar_ACCEPT']  = {
                'name'  : 'QCDscale_qqbar_ACCEPT', 

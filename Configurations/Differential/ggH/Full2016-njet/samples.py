@@ -305,7 +305,9 @@ addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
 samples['WW']  = {    'name'   : getSampleFiles(directory,'WWTo2L2Nu') ,
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*nllW' ,  
                  }
-
+samples['WWewk'] = { 'name': getSampleFiles(directory,'WpWmJJ_EWK_noTop'),
+                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC +'*(lhe_mWp>60)*(lhe_mWp<100)*(lhe_mWm>60)*(lhe_mWm<100)',
+                   }
 
 
 samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'),      
