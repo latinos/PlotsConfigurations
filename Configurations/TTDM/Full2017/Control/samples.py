@@ -129,8 +129,8 @@ DataTrig = {
 ###########################################
 
 ############ DY ############
-ptllDYW_NLO = '((0.623108 + 0.0722934*gen_ptll - 0.00364918*gen_ptll*gen_ptll + 6.97227e-05*gen_ptll*gen_ptll*gen_ptll - 4.52903e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll<45)*(gen_ptll>0) + 1*(gen_ptll>=45))'
-ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
+ptllDYW_NLO = '(((0.623108 + 0.0722934*gen_ptll - 0.00364918*gen_ptll*gen_ptll + 6.97227e-05*gen_ptll*gen_ptll*gen_ptll - 4.52903e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll<45)*(gen_ptll>0) + 1*(gen_ptll>=45))) * (abs(gen_mll-90)<3) + 1.* (abs(gen_mll-90)>=3)'
+ptllDYW_LO = '(((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))) * (abs(gen_mll-90)<3) + 1.* (abs(gen_mll-90)>=3)'
 
 useDYtt = False
 
@@ -317,11 +317,14 @@ else:
 ###########################################
 
 samples['Fake']  = {   'name': [ ] ,
-                       'weight' : METFilter_DATA+'*'+fakeW,              #   weight/cut 
+                       'weight' : METFilter_DATA+'*'+fakeW+'*((Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13)||(abs(mll-90)>=3))',              #   weight/cut 
                        'weights' : [ ] ,
                        'isData': ['all'],
                        'FilesPerJob' : 20 ,
                        }
+
+#Remove the fakes in the enriched DY region
+#addSampleWeight(samples,'Fake','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 
 for Run in DataRun :
   directory = treeBaseDir+'Run2017_nAOD_v1_Full2017v2/DATAl1loose2017v2__DATACorr2017__l2loose__fakeW/'
