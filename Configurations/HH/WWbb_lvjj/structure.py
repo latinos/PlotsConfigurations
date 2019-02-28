@@ -12,12 +12,12 @@ structure['HH'] = {
 
     
 structure['Wjets'] = {
-		'isSignal': 1,
+		'isSignal': 0,
 		'isData': 0
 		}
 
-structure['TTToSemilepton'] = {
-                  'isSignal' : 1,
+structure['TT'] = {
+                  'isSignal' : 0,
                   'isData'   : 0
                   }
 
@@ -33,42 +33,47 @@ structure['WZTo1L1Nu2Q'] = {
 		}
 
 structure['WZTo1L3Nu'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0
                   }
 
 structure['WWW'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0
                   }
 
 structure['WWZ'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0
                   }
 
 structure['Others'] = {
-                  	'isSignal' : 1,
+                  	'isSignal' : 0,
                   	'isData'   : 0
                   }
 
+structure['Others2'] = {
+                        'isSignal' : 0,
+                        'isData'   : 0
+                  }
+
 structure['DY'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0
                   }
 
 structure['WWTo2L2Nu'] = {
-                 	 'isSignal' : 1,
+                 	 'isSignal' : 0,
                   	'isData'   : 0
 			}
 
 structure['WZTo2L2Q'] = {
-                  	'isSignal' : 1,
+                  	'isSignal' : 0,
                   	'isData'   : 0
                   	}
 
 structure['ZZTo2L2Q'] = {
-                  	'isSignal' : 1,
+                  	'isSignal' : 0,
                   	'isData'   : 0
                   	}
 
