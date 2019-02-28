@@ -169,6 +169,10 @@ class HistogramMerger(object):
                 continue
     
             variation = matches.group(1)
+            
+            # temporary
+            if 'CMS_scale_met_DYCR' in variation or ('CMS_btag_' in variation and '_topCR_' in variation):
+                continue
 
             outVariation = self.newOutVariation(variation)
     
@@ -186,7 +190,7 @@ class HistogramMerger(object):
             outVariation = self.newOutVariation(variation)
     
             inVariation = inNominal.Clone('histo_%s_%s' % (sourceSample, variation))
-            if type(lnNDef) is tuple:
+            if type(lnNDef[sample]) is tuple:
                 # AsLnN type
                 inVariationSource = self.getter.get('histo_%s_%s' % (sourceSample, variation))
                 numer = inVariationSource.Integral()
@@ -498,6 +502,7 @@ if __name__ == '__main__':
 
     if args.observable == 'ptH':
         HistogramMerger.outBins = ['PTH_0_20', 'PTH_20_45', 'PTH_45_80', 'PTH_80_120', 'PTH_120_200', 'PTH_200_350', 'PTH_GT350']
+        #HistogramMerger.outBins = ['PTH_0_15', 'PTH_15_30', 'PTH_30_45', 'PTH_45_80', 'PTH_80_120', 'PTH_120_200', 'PTH_200_350', 'PTH_GT350']
     
         HistogramMerger.recoBinMap = {
             'PTH_0_20': ['PTH_0_10', 'PTH_10_15', 'PTH_15_20'],
@@ -612,7 +617,8 @@ if __name__ == '__main__':
             signals['smH'] = ggH_hww + xH_hww + ggH_htt + xH_htt
     
     if args.input_fake_flavored:
-        backgrounds['Fake'] = ['Fake_em', 'Fake_me']
+        backgrounds['Fake_em'] = [('Fake', ['em'])]
+        backgrounds['Fake_me'] = [('Fake', ['me'])]
     else:
         backgrounds['Fake'] = ['Fake']
     

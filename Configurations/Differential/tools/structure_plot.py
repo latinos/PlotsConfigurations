@@ -179,8 +179,8 @@ if doStructure:
 # restructure nuisances
 
 sampleMapping = {
-  'Fake_em': 'Fake',
-  'Fake_me': 'Fake',
+  'Fake_em': 'Fake_em',
+  'Fake_me': 'Fake_me',
   'ggH_htt': 'htt',
   'qqH_htt': 'htt',
   'ZH_htt': 'htt',

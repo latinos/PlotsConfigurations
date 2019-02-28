@@ -38,7 +38,7 @@ mcProduction = 'Fall2017_nAOD_v1_Full2017v2'
 dataReco = 'Run2017_nAOD_v1_Full2017v2'
 
 mcSteps = 'MCl1loose2017v2__MCCorr2017__btagPerEvent__l2loose__l2tightOR2017{var}__wwSel'
-#mcSteps = 'MCl1loose2017v2__MCCorr2017__btagPerEvent__l2loose__l2tightOR2017'
+#mcSteps = 'MCl1loose2017v2__MCCorr2017__btagPerEvent__l2loose__l2tightOR2017{var}'
 
 def makeMCDirectory(var = ''):
     if var:
@@ -109,7 +109,7 @@ if useDYtt:
     samples['DY'] = {
         'name': files,
         'weight': mcCommonWeight,
-        'FilesPerJob': 40,
+        'FilesPerJob': 4,
     }
     addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50','ptllDYW_NLO')
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO','ptllDYW_LO')
@@ -125,7 +125,7 @@ else:
     samples['DY'] = {
         'name': files,
         'weight': mcCommonWeight,
-        'FilesPerJob': 40,
+        'FilesPerJob': 4,
     }
     addSampleWeight(samples,'DY','DYJetsToLL_M-50','ptllDYW_NLO')
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO','ptllDYW_LO')
