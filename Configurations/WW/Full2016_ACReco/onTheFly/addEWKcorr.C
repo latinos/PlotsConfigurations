@@ -8,11 +8,11 @@ using namespace std;
 
 TH1F* h;
 
-void initaddEWKcorr(TString histoName){
+void initaddEWKcorr(TString fileName, TString histoName){
 
   std::cout<<histoName<<std::endl;
 
-  TFile* f = new TFile("/afs/cern.ch/work/f/fernanpe/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/WW/Full2016/onTheFly/WW_EWK_Corr.root");
+  TFile* f = new TFile(fileName);
 
   h = (TH1F*) f -> Get(histoName);
 

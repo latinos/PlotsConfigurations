@@ -1,6 +1,8 @@
 # example of configuration file
 
-tag = 'ggH'
+tag = 'DZ_me'
+
+treeName='Events'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -10,23 +12,23 @@ outputDir = 'rootFile'
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
+cutsFile = 'cuts_me.py' 
 
 # file with list of samples
-samplesFile = 'samples.py' 
+samplesFile = 'samples_me.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
 
-# file with aliases
-aliasesFile = 'aliases.py'
+
 
 # luminosity to normalize to (in 1/fb)
-lumi = 35.867
+lumi = 42.
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotGGH'
+# outputDirPlots = '~/www/plotCR'
+outputDirPlots = 'plotDZ'
 
 
 # used by mkDatacards to define output directory for datacards
@@ -38,6 +40,6 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+# nuisancesFile = 'nuisances.py'
 
 

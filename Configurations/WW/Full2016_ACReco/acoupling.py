@@ -52,9 +52,9 @@ acoupling['combsName']     = {
                                'ww_1jet_em_mll5_3' : 'WW #rightarrow e#mu, 1 jet (mll binning 5_3)' ,
                                'ww_01jet_em_mll5_3' : 'WW #rightarrow e#mu, 0+1 jet (mll binning 5_3)' ,
                                # ---
-                               'ww_0jet_em_mll5_4' : 'WW #rightarrow e#mu, 0 jet (mll binning 5_4)' ,
-                               'ww_1jet_em_mll5_4' : 'WW #rightarrow e#mu, 1 jet (mll binning 5_4)' ,
-                               'ww_01jet_em_mll5_4' : 'WW #rightarrow e#mu, 0+1 jet (mll binning 5_4)' ,
+                               'ww_0jet_em_mll5_4' : 'WW #rightarrow e#mu, 0 jet' ,
+                               'ww_1jet_em_mll5_4' : 'WW #rightarrow e#mu, 1 jet' ,
+                               'ww_01jet_em_mll5_4' : 'WW #rightarrow e#mu, 0+1 jet' ,
                                # ---
                                'ww_0jet_em_mll6' : 'WW #rightarrow e#mu, 0 jet (mll binning 6)' ,
                                'ww_1jet_em_mll6' : 'WW #rightarrow e#mu, 1 jet (mll binning 6)' ,
@@ -111,10 +111,10 @@ acoupling['PlotConfig']  = {
 # Retrieve scans from weights (Edit the ScanConfig, rest should be automatic, you can comment out some lines to suppress 1D, 2D or 3D)
 
 acoupling['ScanConfig']  = {
-                            #'1D' : ['CWWW','CW','CB'],
-                            #'2D' : ['CWWW:CW','CWWW:CB','CW:CB'],
+                            '1D' : ['CWWW','CW','CB'],
+                            '2D' : ['CWWW:CW','CWWW:CB','CW:CB'],
                             #'1D' : ['CWWW'],
-                            '2D' : ['CWWW:CW'],
+                            #'2D' : ['CWWW:CW'],
                             #'3D' : ['CWWW:CW:CB'],
                            }
 

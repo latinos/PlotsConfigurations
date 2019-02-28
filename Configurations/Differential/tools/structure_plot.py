@@ -8,6 +8,7 @@
 
 import collections
 import re
+import copy
 
 PLOT_DATA_BLINDED = True
 
@@ -35,12 +36,16 @@ variables = {} # redefine variables too
 
 signals = set()
 crs = []
+recoBins = set()
 
 # open the input file and pick up all sample, cut, and variable names
 source = ROOT.TFile.Open(opt.inputFile)
 
 for ckey in source.GetListOfKeys():
   cname = ckey.GetName()
+
+  if doStructure and '_CR_' in cname and '_WW_' in cname:
+    continue
 
   cuts.append(cname)
   if '_CR_' in cname:
@@ -87,6 +92,11 @@ for ckey in source.GetListOfKeys():
     else:
       # signal procs added after sorting
       samples.add(matches.group(1))
+
+  # extract reco bin name
+  matches = re.match('.*((?:PTH|NJ)_(?:GE|GT|)[0-9]+(?:_[0-9]+|))_.+', cname)
+  if matches:
+    recoBins.add(matches.group(1))
 
 source.Close()
 
@@ -209,14 +219,11 @@ else:
   ])
 
 if 'minor' in samples:
-  #background_minor_merge
-
   sampleMapping.update([
     ('ggWW', 'minor'),
     ('Vg', 'minor'),
     ('WZgS_L', 'minor'),
     ('WZgS_H', 'minor'),
-    ('WZgS', 'minor'),
     ('VZ', 'minor'),
     ('VVV', 'minor')
   ])
@@ -228,6 +235,15 @@ if 'top' not in samples:
   sampleMapping['top'] = ['top_%s' % nj for nj in njs]
 if 'DY' not in samples:
   sampleMapping['DY'] = ['DY_%s' % nj for nj in njs]
+
+for nkey, nuisance in nuisances.items():
+  if 'perRecoBin' in nuisance and nuisance['perRecoBin']:
+    for bin in recoBins:
+      nuisances[nkey + '_' + bin] = copy.copy(nuisance)
+      nuisances[nkey + '_' + bin]['name'] += '_' + bin
+      nuisances[nkey + '_' + bin]['cuts'] = [cut for cut in cuts if bin in cut]
+
+    nuisances.pop(nkey)
 
 reverseSampleMapping = {}
 for sname, value in sampleMapping.iteritems():
@@ -245,21 +261,30 @@ for nuisance in nuisances.itervalues():
   if 'samples' not in nuisance:
     continue
 
+  if 'samplespost' in nuisance:
+    nuisance['samples'] = nuisance['samplespost'](nuisance, samples)
+
+  if 'cutspost' in nuisance:
+    nuisance['cuts'] = nuisance['cutspost'](nuisance, cuts)
+
   toShape = False
   for sname, value in nuisance['samples'].items():
     if sname not in sampleMapping:
       continue
 
     if nuisance['type'] == 'lnN':
-      # has this nuisance been turned into shape?
-      if type(sampleMapping[sname]) is list:
-        key = tuple(sampleMapping[sname])
-      else:
-        key = sampleMapping[sname]
-
-      mergedSnames = reverseSampleMapping[key]
-      if len(set(mergedSnames) - set(nuisance['samples'])) != 0:
-        toShape = True
+      if not toShape:
+          # has this nuisance been turned into shape?
+          if type(sampleMapping[sname]) is list:
+            key = tuple(sampleMapping[sname])
+          else:
+            key = sampleMapping[sname]
+    
+          mergedSnames = reverseSampleMapping[key]
+          if len(set(mergedSnames) - set(nuisance['samples'])) != 0:
+            print nuisance['name'], 'to shape because of', sname
+            print mergedSnames, nuisance['samples']
+            toShape = True
 
     if type(sampleMapping[sname]) is list:
       for mapped in sampleMapping[sname]:

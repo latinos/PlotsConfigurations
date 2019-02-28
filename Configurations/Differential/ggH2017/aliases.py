@@ -103,29 +103,32 @@ aliases['trailingE13'] = {
     'expr': 'abs(Lepton_pdgId[1]) == 13 || Lepton_pt[1] > 13.'
 }
 
+# Jet bins
+# using Alt$(CleanJet_pt[n], 0) instead of Sum$(CleanJet_pt >= 30) because jet pt ordering is not strictly followed in JES-varied samples
+
 # No jet with pt > 30 GeV
 aliases['zeroJet'] = {
-    'expr': 'Sum$(CleanJet_pt >= 30.) == 0'
+    'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
 }
 
 # ==1 jet with pt > 30 GeV
 aliases['oneJet'] = {
-    'expr': 'Sum$(CleanJet_pt >= 30.) == 1'
+    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) < 30.'
 }
 
 # ==2 jets with pt > 30 GeV
 aliases['twoJet'] = {
-    'expr': 'Sum$(CleanJet_pt >= 30.) == 2'
+    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) >= 30. && Alt$(CleanJet_pt[2], 0) < 30.'
 }
 
 # ==3 jets with pt > 30 GeV
 aliases['threeJet'] = {
-    'expr': 'Sum$(CleanJet_pt >= 30.) == 3'
+    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) >= 30. && Alt$(CleanJet_pt[2], 0) >= 30. && Alt$(CleanJet_pt[3], 0) < 30.'
 }
 
 # >=4 jets with pt > 30 GeV
 aliases['manyJets'] = {
-    'expr': 'Sum$(CleanJet_pt >= 30.) >= 4'
+    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) >= 30. && Alt$(CleanJet_pt[2], 0) >= 30. && Alt$(CleanJet_pt[3], 0) >= 30.'
 }
 
 aliases['bVeto'] = {
@@ -295,7 +298,7 @@ aliases['genTrailingE13'] = {
     'samples': signals
 }
 
-aliases['nGenJet'] = {
+aliases['nCleanGenJet'] = {
     'expr': 'Sum$(GenJet_pt > 30 && genJetClean)',
     'samples': mc
 }
