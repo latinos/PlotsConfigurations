@@ -488,6 +488,11 @@ for era, sd in DataRun:
     samples['Fake']['name'].extend(files)
     samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
 
+samples['Fake']['subsamples'] = {
+  'em': 'abs(std_vector_lepton_flavour[0]) == 11',
+  'me': 'abs(std_vector_lepton_flavour[0]) == 13'
+}
+
 ###########################################
 ################## DATA ###################
 ###########################################
@@ -505,14 +510,3 @@ for era, sd in DataRun:
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
 
-#mysamples = {'DATA': samples['DATA']}
-#samples = mysamples
-#signals = []
-#samples.pop('DATA')
-
-#mysamples = {}
-#for s in ['WW', 'DY', 'top']:
-#  mysamples[s] = samples[s]
-#samples = mysamples
-#
-#signals = []

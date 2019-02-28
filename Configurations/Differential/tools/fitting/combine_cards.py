@@ -76,47 +76,26 @@ for cut in os.listdir(args.inpath):
             continue
         
         hist = key.ReadObj()
+
         sumw = hist.GetSumOfWeights()
 
-        if sumw <= 0.:
-            print cut, name, 'has nonpositive nominal'
+        if sumw == 0.:
+            print cut, name, 'has null nominal'
         else:
             nominalTemplates[name] = hist
 
         if isSignal(name) and sumw > signalMax:
             signalMax = sumw
 
-    if not isCR:
-        # Drop signal processes that contribute less than 1% of the max (super-off diagonal in the response matrix)
-        for name, hist in nominalTemplates.items():
-            if not isSignal(name):
-                continue
-            
-            sumw = hist.GetSumOfWeights()
-            if sumw < 0.01 * signalMax:
-                print 'Dropping', name, 'from', cut, '(%f << %f)' % (sumw, signalMax)
-                nominalTemplates.pop(name).Delete()
-
-    # If a nuisance variation histogram goes negative, we need to fix it to nominal
-    nuisancesToAdjust = {}
-    for key in histRepo.GetListOfKeys():
-        name = key.GetName()
-        if not (name.endswith('Up') or name.endswith('Down')):
+    # Drop processes that contribute less than 1% of the max (super-off diagonal in the response matrix)
+    for name, hist in nominalTemplates.items():
+        if not isSignal(name):
             continue
-
-        try:
-            nominal = next(nom for nom in nominalTemplates if name.startswith(nom))
-        except StopIteration:
-            # doesn't have a corresponding nominal (can happen if the nominal is dropped above or if the input is broken)
-            continue
-
-        hist = key.ReadObj()
+        
         sumw = hist.GetSumOfWeights()
-        hist.Delete()
-
-        if sumw <= 0.:
-            print cut, name, 'has nonpositive sumw'
-            nuisancesToAdjust[name] = nominal
+        if sumw < 0.01 * signalMax:
+            print 'Dropping', name, 'from', cut, '(%f << %f)' % (sumw, signalMax)
+            nominalTemplates.pop(name).Delete()
 
     # Copy the histograms applying adjustments
     if not args.onlyFullModel:
@@ -129,11 +108,22 @@ for cut in os.listdir(args.inpath):
         name = key.GetName()
 
         targetFullHistDir.cd()
-        if name in nuisancesToAdjust:
-            hist = nominalTemplates[nuisancesToAdjust[name]].Clone(name)
-        else:
-            hist = key.ReadObj()
 
+        if name in nominalTemplates:
+            hist = nominalTemplates[name]
+        else:
+            try:
+                nominal = next(key for key in nominalTemplates if name.startswith(key))
+            except StopIteration:
+                # nominal is dropped
+                continue
+
+            hist = key.ReadObj()
+            if hist.GetSumOfWeights() <= 0.:
+                hist.Delete()
+                hist = nominalTemplates[nominal].Clone(name)
+                hist.Scale(1.5e-4)
+            
         hist.SetDirectory(targetFullHistDir)
         hist.Write()
 

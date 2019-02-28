@@ -35,8 +35,9 @@ nuisances['fake_syst'] = {
     'name': 'CMS_fake_syst_2017',
     'type': 'lnN',
     'samples': {
-        'Fake': '1.30',
-    }
+        'Fake': '1.3',
+    },
+    'perRecoBin': True
 }
 
 nuisances['fake_ele'] = {
@@ -46,7 +47,8 @@ nuisances['fake_ele'] = {
     'samples': {
         'Fake': ['fakeWEleUp', 'fakeWEleDown'],
     },
-    'AsLnN': '1'
+    #'AsLnN': '1'
+    'perRecoBin': True
 }
 
 nuisances['fake_ele_stat'] = {
@@ -56,6 +58,8 @@ nuisances['fake_ele_stat'] = {
     'samples': {
         'Fake': ['fakeWStatEleUp', 'fakeWStatEleDown']
     },
+    #'AsLnN': '1'
+    'perRecoBin': True
 }
 
 nuisances['fake_mu'] = {
@@ -65,7 +69,8 @@ nuisances['fake_mu'] = {
     'samples': {
         'Fake': ['fakeWMuUp', 'fakeWMuDown'],
     },
-    'AsLnN': '1'
+    #'AsLnN': '1'
+    'perRecoBin': True
 }
 
 nuisances['fake_mu_stat'] = {
@@ -75,6 +80,8 @@ nuisances['fake_mu_stat'] = {
     'samples': {
         'Fake': ['fakeWStatMuUp', 'fakeWStatMuDown'],
     },
+    #'AsLnN': '1'
+    'perRecoBin': True
 }
 
 ##### B-tagger
@@ -87,15 +94,14 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
         'kind': 'weight',
         'type': 'shape',
         'samples': dict((skey, btag_syst) for skey in mc),
-        'samplespost': (lambda self, samples: dict((skey, ['1', '1']) for skey in samples if skey not in ('Fake', 'DATA', 'top'))),
         'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' not in cut])
     }
 
     nuisances['btag_shape_%s_top' % shift] = {
-        'name': 'CMS_btag_%s_top_2017' % shift,
+        'name': 'CMS_btag_%s_topCR_2017' % shift,
         'kind': 'weight',
         'type': 'shape',
-        'samples': {'top': btag_syst},
+        'samples': dict((skey, btag_syst) for skey in mc),
         'cuts': [cut for cut in cuts if '_CR_' in cut],
         'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut]),
     }
@@ -170,16 +176,15 @@ nuisances['met'] = {
     'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': makeMCDirectory('METup'),
     'folderDown': makeMCDirectory('METdo'),
-    'samplespost': (lambda self, samples: dict((skey, ['1', '1']) for skey in samples if skey not in ('Fake', 'DATA', 'DY'))),
     'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' not in cut]),
     'AsLnN': '1'
 }
 
 nuisances['met_DY'] = {
-    'name': 'CMS_scale_met_DYCR_2016',
+    'name': 'CMS_scale_met_DYCR_2017',
     'kind': 'tree',
     'type': 'shape',
-    'samples': {'DY': ['1', '1']},
+    'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': makeMCDirectory('METup'),
     'folderDown': makeMCDirectory('METdo'),
     'cuts': [cut for cut in cuts if '_CR_' in cut],
@@ -199,7 +204,8 @@ nuisances['PS']  = {
         #'ggH_hww': ['PSWeight[0]', 'PSWeight[3]'],
         #'qqH_hww': ['PSWeight[0]', 'PSWeight[3]']
     },
-    'AsLnN': '1'
+    'AsLnN': '1',
+    #'symmetrize': True
 }
 
 # Scales are used to normalize the UE up/down variations to the same integral as the nominal after the wwSel skim
@@ -245,7 +251,8 @@ nuisances['TopPtRew'] = {
     'name': 'CMS_topPtRew',   # Theory uncertainty
     'kind': 'weight',
     'type': 'shape',
-    'samples': {'top': ["1.","((1./Top_pTrw - 1)*(topGenPt>0 && antitopGenPt>0) + 1)"]}
+    'samples': {'top': ["1.","((1./Top_pTrw - 1)*(topGenPt>0 && antitopGenPt>0) + 1)"]},
+    'symmetrize': True
 }
 
 #nuisances['WgStarRate'] = {
@@ -426,7 +433,8 @@ nuisances['QCDscale_WW'] = {
 nuisances['CRSR_accept_DY'] = {
     'name': 'CMS_hww_CRSR_accept_DY',
     'type': 'lnN',
-    'samples': {'DY': '1.02'},
+    #'samples': {'DY': '1.02'},
+    'samples': {'DY': '1.1'},
     'cuts': [cut for cut in cuts if '_CR_' in cut],
     'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut and cut in self['cuts']]),
     'perRecoBin': True
@@ -436,7 +444,7 @@ nuisances['CRSR_accept_DY'] = {
 nuisances['CRSR_accept_top'] = {
     'name': 'CMS_hww_CRSR_accept_top',
     'type': 'lnN',
-    'samples': {'top': '1.01'},
+    'samples': {'top': '1.05'},
     'cuts': [cut for cut in cuts if '_CR_' in cut],
     'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut and cut in self['cuts']]),
     'perRecoBin': True

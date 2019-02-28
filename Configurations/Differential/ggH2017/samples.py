@@ -385,6 +385,11 @@ for _, sd in DataRun:
     samples['Fake']['name'].extend(files)
     samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
 
+samples['Fake']['subsamples'] = {
+  'em': 'abs(Lepton_pdgId[0]) == 11',
+  'me': 'abs(Lepton_pdgId[0]) == 13'
+}
+
 ###########################################
 ################## DATA ###################
 ###########################################
@@ -402,18 +407,3 @@ for _, sd in DataRun:
     files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
-
-#mysamples = {
-#    'WW': samples['WW'],
-#    'ggH_hww': samples['ggH_hww'],
-#    'qqH_hww': samples['qqH_hww']
-#}
-#samples = mysamples
-#signals = ['ggH_hww', 'qqH_hww']
-
-#mysamples = {}
-#for s in ['WW', 'DY', 'top']:
-#  mysamples[s] = samples[s]
-#samples = mysamples
-#
-#signals = []
