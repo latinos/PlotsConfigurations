@@ -1,17 +1,35 @@
-# samples
 import os
 import subprocess
 import string
 from LatinoAnalysis.Tools.commonTools import *
 
+# samples
 
 #samples = {}
-directory = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables' 
-chargeFlipDir = directory + '__l2tightVBS__chMisId__tightVbsSel/'
-fakeDir = directory + '__tightVbsSel__bkgWeights/'
-normalDir = directory + '__l2tightVBS__tightVbsSel/'
 
-# MET filter
+directory = '/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables' 
+chargeFlipDir = directory + '__l2tightVBS__chMisId__tightVbsSel/'
+PromptSubtr = directory + '__tightVbsSel__bkgWeights/'
+MCDir = directory + '__l2tightVBS__tightVbsSel/'
+
+################################################
+############ BASIC MC WEIGHTS ##################
+################################################
+
+#Weight added manually
+XSWeight      = 'baseW*GEN_weight_SM/abs(GEN_weight_SM)'
+SFweight    = 'puW*effTrigW*bPogSF_CSVM*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]'
+PromptGenLepMatch2l='std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]'
+
+ChargMisSign='((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) != -11*11 || (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) != -11*13 )'
+
+
+
+################################################
+############   MET  FILTERS  ###################
+################################################
+
+#Adding manually missing trasverse energy filter (same defined in formulasToAdd.py)
 METFilter_Common = '(std_vector_trigger_special[0]*\
                      std_vector_trigger_special[1]*\
                      std_vector_trigger_special[2]*\
@@ -30,138 +48,149 @@ METFilter_MCOld  =  '(std_vector_trigger_special[6]*std_vector_trigger_special[7
 METFilter_MCNew  =  '(std_vector_trigger_special[8]*std_vector_trigger_special[9])'
 METFilter_MC = METFilter_Common + '*' + '(('+METFilter_MCver+'*'+METFilter_MCOld+') || ((! '+METFilter_MCver+')*'+METFilter_MCNew+'))' 
 
-#METFilter_DATA = '1'
-#METFilter_MC = '1'
+################################################
+############ DATA DECLARATION ##################
+################################################
 
-#################
-## Charge flip ##
-#################
-MyWeights={
-           'DYJetsToLL_M-10to50'   : '(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))' ,
-           'DYJetsToLL_M-50'       : '(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))' ,
-           'TTTo2L2Nu'             : '1' ,
-           'ST_tW_top_noHad'       : '1' ,
-           'ST_tW_antitop_noHad'   : '1' ,
-           'GluGluWWTo2L2Nu_MCFM'  : '1' ,
-           'WWTo2L2Nu'             : '1' ,
+DataRun = [ 
+            ['B','Run2016B-03Feb2017_ver2-v2'] , 
+            ['C','Run2016C-03Feb2017-v1'] , 
+            ['D','Run2016D-03Feb2017-v1'] , 
+            ['E','Run2016E-03Feb2017-v1'] ,
+            ['F','Run2016F-03Feb2017-v1'] , 
+            ['G','Run2016G-03Feb2017-v1'] , 
+            ['H','Run2016H-03Feb2017_ver2-v1'] , 
+            ['H','Run2016H-03Feb2017_ver3-v1'] ,
+          ] 
+
+DataSets = ['MuonEG','DoubleMuon','SingleMuon','DoubleEG','SingleElectron']
+
+DataTrig = {
+            'MuonEG'         : ' trig_EleMu' ,
+            'DoubleMuon'     : '!trig_EleMu &&  trig_DbleMu' ,
+            'SingleMuon'     : '!trig_EleMu && !trig_DbleMu &&  trig_SnglMu' ,
+            'DoubleEG'       : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu &&  trig_DbleEle' ,
+            'SingleElectron' : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu && !trig_DbleEle &&  trig_SnglEle' ,
            }
 
-# only for ee and em with charge flip
-samples['chargeMisId']  = {    'name': [ ], 
-                      'weight' : 'puW*baseW*bPogSF_CSVM*effTrigW*'+METFilter_MC+'*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) != -11*11 || (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) != -11*13 )*chargeFlipW',
-                       'weights' : [ ],                                    
-                  }
-
-for DataSet in MyWeights.keys():
-    FileTarget = getSampleFiles(chargeFlipDir,DataSet)
-    for iFile in FileTarget:
-      samples['chargeMisId']['name'].append(iFile)
-      samples['chargeMisId']['weights'].append(MyWeights[DataSet]) 
+###########################################
+#####  Charge Misidentification Bkg  ######
+###########################################
 
 
+###### DY = Z+Jets #######
 
-#samples['DY']  = {    'name'   :   getSampleFiles(chargeFlipDir,'DYJetsToLL_M-10to50')
-                                 #+ getSampleFiles(chargeFlipDir,'DYJetsToLL_M-50')     ,
-                      #'weight' : 'puW*baseW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF_CSVM*effTrigW*'+METFilter_MC+'*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) != -11*11 || (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) != -11*13 )*chargeFlipW',  
-                 #}
+DY_W = '(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))'
+
+samples['ChMisId']=	{  	'name'	:getSampleFiles(chargeFlipDir,'DYJetsToLL_M-10to50',True)
+								+getSampleFiles(chargeFlipDir,'DYJetsToLL_M-50',True) 
+								+getSampleFiles(chargeFlipDir,'GluGluWWTo2L2Nu_MCFM',True) 
+								+getSampleFiles(chargeFlipDir,'WWTo2L2Nu',True)             							
+				                ,
+						'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+ChargMisSign+'*chargeFlipW',
+						'FilesPerJob' : 2 ,
+					}
+addSampleWeight(samples,'ChMisId','DYJetsToLL_M-10to50'	,DY_W)
+addSampleWeight(samples,'ChMisId','DYJetsToLL_M-50'   	,DY_W)
 
 
-#samples['lep_TT']  = {    'name': getSampleFiles(chargeFlipDir,'TTTo2L2Nu'),
-                      #'weight' : 'puW*baseW*bPogSF_CSVM*effTrigW*'+METFilter_MC+'*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) != -11*11 || (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) != -11*13 )*chargeFlipW',  
-                    #}
+###### TopAntiTop#######
 
-#samples['singleTop']  = {    'name': getSampleFiles(chargeFlipDir,'ST_tW_top_noHad'),
-                      #'weight' : 'puW*baseW*bPogSF_CSVM*effTrigW*'+METFilter_MC+'*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) != -11*11 || (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) != -11*13 )*chargeFlipW',  
-                    #}
+samples['ttbar'] = 	{ 	'name'  :getSampleFiles(chargeFlipDir,'TTTo2L2Nu',True)
+					+getSampleFiles(chargeFlipDir,'ST_tW_top_noHad',True)
+					+getSampleFiles(chargeFlipDir,'ST_tW_antitop_noHad',True) 
+                                ,
+						'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+ChargMisSign+'*chargeFlipW',  
+						'FilesPerJob' : 6 ,
+					}
 
-#samples['singleAntiTop']  = {    'name': getSampleFiles(chargeFlipDir,'ST_tW_antitop_noHad'),
-                      #'weight' : 'puW*baseW*bPogSF_CSVM*effTrigW*'+METFilter_MC+'*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) != -11*11 || (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) != -11*13 )*chargeFlipW',  
-                    #}
 
-#samples['ggWWTo2L2Nu']  = {    'name': getSampleFiles(chargeFlipDir,'GluGluWWTo2L2Nu_MCFM'),
-                      #'weight' : 'puW*baseW*bPogSF_CSVM*effTrigW*'+METFilter_MC+'*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) != -11*11 || (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) != -11*13 )*chargeFlipW',  
-                    #}
 
-#samples['WWTo2L2Nu']  = {    'name': getSampleFiles(chargeFlipDir,'WWTo2L2Nu'),
-                      #'weight' : 'puW*baseW*bPogSF_CSVM*effTrigW*'+METFilter_MC+'*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) != -11*11 || (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) != -11*13 )*chargeFlipW',  
-                    #}
+###########################################
+#########  Prompt Substraction  ###########
+###########################################
 
-########################
-## Prompt subtraction ##
-########################
-
-samples['DY_promptSubtr']  = {    'name'   :   getSampleFiles(fakeDir,'DYJetsToLL_M-10to50')
-                                 + getSampleFiles(fakeDir,'DYJetsToLL_M-50')     ,
-                      'weight' : '-1. * puW*baseW*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))*bPogSF_CSVM*effTrigW*'+METFilter_MC+'*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0)*fakeW2l', 
-#                      'weights' : ['-1.'],
+samples['DY_promptSubtr']  = { 	'name' 	:getSampleFiles(PromptSubtr,'DYJetsToLL_M-10to50',True)
+										+getSampleFiles(PromptSubtr,'DYJetsToLL_M-50',True)    
+										,
+								'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC, 
                  }
+				 
+addSampleWeight(samples,'DY_promptSubtr','DYJetsToLL_M-10to50'	,DY_W)
+addSampleWeight(samples,'DY_promptSubtr','DYJetsToLL_M-50'   	,DY_W)
 
-samples['lep_TT_promptSubtr']  = {    'name': getSampleFiles(fakeDir,'TTTo2L2Nu'),
-                      'weight' : '-1. * puW*baseW*bPogSF_CSVM*effTrigW*'+METFilter_MC+'*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0)*fakeW2l',  
-#                      'weights' : ['-1.'], 
-                    }
+samples['lep_TT_promptSubtr'] =	{  'name': getSampleFiles(PromptSubtr,'TTTo2L2Nu',True) 
+									,
+									'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC,
+									'FilesPerJob' : 6 ,									
+								}
 
-samples['singleTop_promptSubtr']  = {    'name': getSampleFiles(fakeDir,'ST_tW_top_noHad'),
-                      'weight' : '-1. * puW*baseW*bPogSF_CSVM*effTrigW*'+METFilter_MC+'*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0)*fakeW2l',  
-#                      'weights' : ['-1.'],  
-                    }
+samples['singleTop_promptSubtr']  = {   'name': getSampleFiles(PromptSubtr,'ST_tW_top_noHad',True) ,
+					'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC, 
+					}
 
-samples['singleAntiTop_promptSubtr']  = {    'name': getSampleFiles(fakeDir,'ST_tW_antitop_noHad'),
-                      'weight' : '-1. * puW*baseW*bPogSF_CSVM*effTrigW*'+METFilter_MC+'*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0)*fakeW2l',  
-#                      'weights' : ['-1.'],  
-                    }
+samples['singleAntiTop_promptSubtr']  = {    'name': getSampleFiles(PromptSubtr,'ST_tW_antitop_noHad',True),
+                                             'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC, 
+					}
 
-samples['ggWWTo2L2Nu_promptSubtr']  = {    'name': getSampleFiles(fakeDir,'GluGluWWTo2L2Nu_MCFM'),
-                      'weight' : '-1. * puW*baseW*bPogSF_CSVM*effTrigW*'+METFilter_MC+'*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0)*fakeW2l',  
-#                      'weights' : ['-1.'],  
-                    }
+samples['ggWWTo2L2Nu_promptSubtr']= {	'name': getSampleFiles(PromptSubtr,'GluGluWWTo2L2Nu_MCFM',True)
+										,
+										'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC, 
+									}
 
-samples['WWTo2L2Nu_promptSubtr']  = {    'name': getSampleFiles(fakeDir,'WWTo2L2Nu'),
-                      'weight' : '-1. * puW*baseW*bPogSF_CSVM*effTrigW*'+METFilter_MC+'*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0)*fakeW2l',  
-#                      'weights' : ['-1.'],  
-                    }
-samples['Vg_promptSubtr']  = {    'name': getSampleFiles(fakeDir,'WGJJ') + getSampleFiles(fakeDir,'Zg'),    
-                      'weight' : '-1. * puW*baseW*bPogSF_CSVM*effTrigW*'+METFilter_MC+'*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0)*fakeW2l',  
-#                      'weights' : ['-1.'],                          
-                  }
+samples['WWTo2L2Nu_promptSubtr']  = { 	'name': getSampleFiles(PromptSubtr,'WWTo2L2Nu',True)
+										,
+                                        'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC, 
+									}
+					
+samples['Vg_promptSubtr'] =	{ 	'name':getSampleFiles(PromptSubtr,'Wg_MADGRAPHMLM',True)
+					      +getSampleFiles(PromptSubtr,'WGJJ',True)  
+					      +getSampleFiles(PromptSubtr,'Zg',True) 
+										,    
+                                'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+METFilter_MC,    
+							}
 
 
-samples['ZZ_promptSubtr']  = {    'name': getSampleFiles(fakeDir,'ZZTo4L'),
-                      'weight' : '-1. * puW*baseW*bPogSF_CSVM*effTrigW*'+METFilter_MC+'*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0)*fakeW2l',    
-#                      'weights' : ['-1.'],                                
-                  }
+samples['ZZ_promptSubtr'] =	{ 	'name': getSampleFiles(PromptSubtr,'ZZTo4L',True) 
+										,
+								'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC,  
+							}
 
-samples['WpWpJJ_promptSubtr']  = {  'name': getSampleFiles(fakeDir,'WpWpJJ_EWK'),
-                        'weight' : '-1. * puW*baseW*bPogSF_CSVM*effTrigW*'+METFilter_MC+'*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0)*fakeW2l',  
-                        'weights' : ['1.067466']
-                  }
+samples['WpWpJJ_promptSubtr'] = {  	'name':getSampleFiles(PromptSubtr,'WpWpJJ_EWK',True)
+										  +getSampleFiles(MCDir,'WmWmJJ_EWK_powheg',True) 
+										  ,
+									'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*1.067466',
+								}
 
-samples['WpWpJJ_QCD_promptSubtr']  = {  'name': getSampleFiles(fakeDir,'WpWpJJ_QCD'),
-                        'weight' : '-1. * puW*baseW*bPogSF_CSVM*effTrigW*'+METFilter_MC+'*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0)*fakeW2l',   
-                        'weights' : ['1.057']
-                  }
+samples['WpWpJJ_QCD_promptSubtr'] = {  	'name':getSampleFiles(PromptSubtr,'WpWpJJ_QCD',True)
+											  ,
+										'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*1.057', 
+									}
 
-samples['VVV_promptSubtr'] = {    'name': getSampleFiles(fakeDir,'WZZ') +\
-                          getSampleFiles(fakeDir,'ZZZ') +\
-                          getSampleFiles(fakeDir,'WWW') +\
-                          getSampleFiles(fakeDir,'WWZ') +\
-                          getSampleFiles(fakeDir,'TTZToQQ') +\
-                          getSampleFiles(fakeDir,'TTWJetsToQQ') +\
-                          getSampleFiles(fakeDir,'TTWJetsToLNu') +\
-                          getSampleFiles(fakeDir,'TTZToLLNuNu_M-10'),
-                      'weight' : '-1. * puW*baseW*effTrigW*'+METFilter_MC+'*bPogSF_CSVM*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0)*fakeW2l',   
-#                      'weights' : ['-1.'],         
-                      #'isData': ['0'],                            
-                  }
+samples['VVV_promptSubtr']= {	'name':getSampleFiles(PromptSubtr,'WZZ',True) 
+									  +getSampleFiles(PromptSubtr,'ZZZ',True)
+									  +getSampleFiles(PromptSubtr,'WWW',True) 
+									  +getSampleFiles(PromptSubtr,'WWZ',True) 
+									  +getSampleFiles(PromptSubtr,'TTZToQQ',True) 
+									  +getSampleFiles(PromptSubtr,'TTWJetsToQQ',True) 
+									  +getSampleFiles(PromptSubtr,'TTWJetsToLNu',True) 
+									  +getSampleFiles(PromptSubtr,'TTZToLLNuNu_M-10',True)
+									  ,								  
+								'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC, 
+							}
 
-samples['DPS_promptSubtr'] = {    'name': getSampleFiles(fakeDir,'WWTo2L2Nu_DoubleScattering'), 
-                      'weight' : '-1. * puW*baseW*effTrigW*'+METFilter_MC+'*bPogSF_CSVM*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0)*fakeW2l',    
-#                      'weights' : ['-1.'],        
-                      #'isData': ['0'],                            
-                  }       
+samples['DPS_promptSubtr']= {  	'name': getSampleFiles(PromptSubtr,'WWTo2L2Nu_DoubleScattering',True)
+										, 
+								'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC, 
+							}       
         
-
+samples['WZ_promptSubtr'] =	{	'name': [ ], 
+								'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC,
+								'weights' : [ ],
+								'FilesPerJob' : 6 ,                                    
+							}
 MyWeights={
+		   'WZTo3LNu'						   : '1' , 
            'WLLJJToLNu_M-4To60_EWK_4F'         : '1.' ,
            'WLLJJToLNu_M-60_EWK_4F'            : '1.' ,
            'WLLJJToLNu_M-4To50_QCD_0Jet'       : '1.206' ,
@@ -174,60 +203,44 @@ MyWeights={
            'WLLJJToLNu_M-50_QCD_3Jet'          : '1.206' ,
            'tZq_ll'                            : '1.',
            }
-
-samples['WZ_promptSubtr']  = {    'name': [ ], 
-                      'weight' : '-1. * puW*baseW*bPogSF_CSVM*effTrigW*'+METFilter_MC+'*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0)*fakeW2l',
-                       'weights' : [ ],                                    
-                  }
-
+		   
 for DataSet in MyWeights.keys():
-    FileTarget = getSampleFiles(fakeDir,DataSet)
+    FileTarget = getSampleFiles(PromptSubtr,DataSet,True)
     for iFile in FileTarget:
       samples['WZ_promptSubtr']['name'].append(iFile)
       samples['WZ_promptSubtr']['weights'].append(MyWeights[DataSet]) 
 
-####################
-## Normal Samples ##
-####################
 
-samples['Vg']  = {    'name': getSampleFiles(normalDir,'WGJJ') + getSampleFiles(normalDir,'Zg'),    
-                      'weight' : 'puW*baseW*bPogSF_CSVM*effTrigW*'+METFilter_MC+'*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*GEN_weight_SM/abs(GEN_weight_SM)*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0)',                          
+
+###########################################
+############  Reducible Bkg  ##############
+###########################################
+######## Vgamma ########
+
+samples['Vg']  =  {     'name'  :getSampleFiles(MCDir,'Wg_MADGRAPHMLM',True)
+                                +getSampleFiles(MCDir,'Zg',True)
+								+getSampleFiles(MCDir,'WGJJ',True)
+                                ,
+                        'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
                   }
 
+######### VV #########
 
-samples['ZZ']  = {    'name': getSampleFiles(normalDir,'ZZTo4L'),
-                      'weight' : 'puW*baseW*bPogSF_CSVM*effTrigW*'+METFilter_MC+'*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0)',                                  
-                  }
+samples['ZZ'] = {  	'name':getSampleFiles(MCDir,'ZZTo4L',True)
+						  ,   
+					'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
+					'FilesPerJob' : 6 ,
+                }
+    
 
-samples['WpWpJJ']  = {  'name': getSampleFiles(normalDir,'WpWpJJ_EWK'),
-                        'weight' : 'puW*baseW*bPogSF_CSVM*effTrigW*'+METFilter_MC+'*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0)',  
-                        'weights' : ['1.067466']
-                  }
-
-samples['WpWpJJ_QCD']  = {  'name': getSampleFiles(normalDir,'WpWpJJ_QCD'),
-                        'weight' : 'puW*baseW*bPogSF_CSVM*effTrigW*'+METFilter_MC+'*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0)',   
-                        'weights' : ['1.057']
-                  }
-
-samples['VVV'] = {    'name': getSampleFiles(normalDir,'WZZ') +\
-                          getSampleFiles(normalDir,'ZZZ') +\
-                          getSampleFiles(normalDir,'WWW') +\
-                          getSampleFiles(normalDir,'WWZ') +\
-                          #getSampleFiles(normalDir,'TTZToQQ') +\
-                          #getSampleFiles(normalDir,'TTWJetsToQQ') +\
-                          getSampleFiles(normalDir,'TTWJetsToLNu') +\
-                          getSampleFiles(normalDir,'TTZToLLNuNu_M-10'),
-                      'weight' : 'puW*baseW*effTrigW*'+METFilter_MC+'*bPogSF_CSVM*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0)',          
-                      #'isData': ['0'],                            
-                  }
-
-samples['DPS'] = {    'name': getSampleFiles(normalDir,'WWTo2L2Nu_DoubleScattering'), 
-                      'weight' : 'puW*baseW*effTrigW*'+METFilter_MC+'*bPogSF_CSVM*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0)',          
-                      #'isData': ['0'],                            
-                  }       
-        
-
+samples['WZ'] =	{ 	'name':[]
+                            ,
+					'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC , 
+					'weights' : [ ],
+					'FilesPerJob' : 6 ,
+                }
 MyWeights={
+		   'WZTo3LNu'						   : '1' , 
            'WLLJJToLNu_M-4To60_EWK_4F'         : '1.' ,
            'WLLJJToLNu_M-60_EWK_4F'            : '1.' ,
            'WLLJJToLNu_M-4To50_QCD_0Jet'       : '1.206' ,
@@ -238,59 +251,119 @@ MyWeights={
            'WLLJJToLNu_M-50_QCD_1Jet'          : '1.206' ,
            'WLLJJToLNu_M-50_QCD_2Jet'          : '1.206' ,
            'WLLJJToLNu_M-50_QCD_3Jet'          : '1.206' ,
-           'tZq_ll'                            : '1.',
            }
-
-samples['WZ']  = {    'name': [ ], 
-                      'weight' : 'puW*baseW*bPogSF_CSVM*effTrigW*'+METFilter_MC+'*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]*GEN_weight_SM/abs(GEN_weight_SM)*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0)',
-                       'weights' : [ ],                                    
-                  }
-
+		   
 for DataSet in MyWeights.keys():
-    FileTarget = getSampleFiles(normalDir,DataSet)
+    FileTarget = getSampleFiles(MCDir,DataSet,True)
     for iFile in FileTarget:
       samples['WZ']['name'].append(iFile)
-      samples['WZ']['weights'].append(MyWeights[DataSet]) 
+      samples['WZ']['weights'].append(MyWeights[DataSet])
 
-###########################################
-###########################################
-###########################################
+########## VVV #########
 
-MyWeights={
-           'MuonEG'         : ' trig_EleMu' ,
-           'DoubleMuon'     : '!trig_EleMu &&  trig_DbleMu' ,
-           'SingleMuon'     : '!trig_EleMu && !trig_DbleMu &&  trig_SnglMu' ,
-           'DoubleEG'       : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu &&  trig_DbleEle' ,
-           'SingleElectron' : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu && !trig_DbleEle &&  trig_SnglEle' ,
-          }
-
-# data driven
-samples['Fake']  = {    'name': [ ],     
-                      'weight' : 'fakeW2l*((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0)*'+METFilter_DATA,              #   weight/cut 
-                      'isData': ['all'],
-                       'weights' : [ ],                      
+samples['VVV'] = {    'name':getSampleFiles(MCDir,'ZZZ',True)
+                            +getSampleFiles(MCDir,'WZZ',True)
+                            +getSampleFiles(MCDir,'WWZ',True)
+                            +getSampleFiles(MCDir,'WWW',True)
+							+getSampleFiles(MCDir,'TTWJetsToLNu',True)
+							+getSampleFiles(MCDir,'TTZToLLNuNu_M-10',True)
+                            ,   
+                      'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
                   }
 
-for Run in ['B','C','D','E','F','G','H'] : 
-  directory = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/Apr2017_Run2016'+Run+'_RemAOD/lep2SelVBS__hadd__EpTCorr__TrigMakerData__tightVbsSel__bkgWeights/'
-  for DataSet in ['MuonEG','DoubleMuon','SingleMuon','DoubleEG','SingleElectron']:
-    FileTarget = getSampleFiles(directory,'*'+DataSet+'*',True)
-    for iFile in FileTarget:
-      samples['Fake']['name'].append(iFile)
-      samples['Fake']['weights'].append(MyWeights[DataSet]) 
+########## DPS #########
 
-samples['DATA']  = {   'name': [ ] ,     
-                       'weight' : '((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0)*'+METFilter_DATA,
+samples['DPS'] = {    'name':getSampleFiles(MCDir,'WWTo2L2Nu_DoubleScattering',True)
+                            ,   
+                      'weight' :'baseW*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
+                  }
+
+
+###########################################
+#######  IRREDUCIBLE BACKGROUNDS  #########
+###########################################
+
+samples['WW_strong'] = {   	'name'   :getSampleFiles(MCDir,'WpWpJJ_QCD',True)
+									#+getSampleFiles(directory,'WpWpJJ_EWK_QCD_aQGC')
+									,
+							'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*1.057' ,    
+							'FilesPerJob' : 1 ,
+						}
+
+
+###########################################
+#############   SIGNALS  ##################
+###########################################
+
+samples['WW_EWK'] = {  	'name'  :getSampleFiles(MCDir,'WmWmJJ_EWK_powheg',True)
+								+getSampleFiles(MCDir,'WpWpJJ_EWK',True)
+								#+getSampleFiles(directory,'WpWpJJ_EWK_aQGC')
+								,
+						'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*1.067466' ,    
+						'FilesPerJob' : 1 ,
+					}
+
+###########################################
+################## FAKE ###################
+###########################################
+
+samples['Fake_em']={'name': [ ] ,
+                       'weight' : 'fakeW2l'+'*'+METFilter_DATA+'*(abs(std_vector_lepton_flavour[0])==11 && abs(std_vector_lepton_flavour[1])==13)',              #   weight/cut 
+                       'weights' : [ ] ,
+                       'isData': ['all'],
+                       'FilesPerJob' : 6 ,
+					}
+samples['Fake_me']={'name': [ ] ,
+                       'weight' : 'fakeW2l'+'*'+METFilter_DATA+'*(abs(std_vector_lepton_flavour[0])==13 && abs(std_vector_lepton_flavour[1])==11)',              #   weight/cut 
+                       'weights' : [ ] ,
+                       'isData': ['all'],
+                       'FilesPerJob' : 6 ,
+                    }
+
+samples['Fake_ee']=	{'name': [ ] ,
+                       'weight' : 'fakeW2l'+'*'+METFilter_DATA+'*(abs(std_vector_lepton_flavour[0])==11 && abs(std_vector_lepton_flavour[1])==11)',              #   weight/cut 
+                       'weights' : [ ] ,
+                       'isData': ['all'],
+                       'FilesPerJob' : 6 ,
+                    }
+
+samples['Fake_mm']=	{'name': [ ] ,
+                       'weight' : 'fakeW2l'+'*'+METFilter_DATA+'*(abs(std_vector_lepton_flavour[0])==13 && abs(std_vector_lepton_flavour[1])==13)',              #   weight/cut 
+                       'weights' : [ ] ,
+                       'isData': ['all'],
+                       'FilesPerJob' : 6 ,
+                    }
+
+
+for Run in DataRun :
+  directory = '/gwteras/cms/store/group/OneLepton/Apr2017_Run2016'+Run[0]+'_RemAOD/lep2SelVBS__hadd__EpTCorr__TrigMakerData__tightVbsSel__bkgWeights/'
+  for DataSet in DataSets :
+    FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
+    for iFile in FileTarget:
+      samples['Fake_em']['name'].append(iFile)
+      samples['Fake_em']['weights'].append(DataTrig[DataSet])
+      samples['Fake_me']['name'].append(iFile)
+      samples['Fake_me']['weights'].append(DataTrig[DataSet])
+      samples['Fake_mm']['name'].append(iFile)
+      samples['Fake_mm']['weights'].append(DataTrig[DataSet])
+      samples['Fake_ee']['name'].append(iFile)
+      samples['Fake_ee']['weights'].append(DataTrig[DataSet])
+
+###########################################
+################## DATA ###################
+###########################################
+
+samples['DATA']  = 	{   'name': [ ] ,     
+                       'weight' :METFilter_DATA,
                        'weights' : [ ],
                        'isData': ['all'],                            
-                  }
+                       'FilesPerJob' : 6 ,
+					}
 
-for Run in ['B','C','D','E','F','G','H'] :
-  directory = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/Apr2017_Run2016'+Run+'_RemAOD/lep2SelVBS__hadd__EpTCorr__TrigMakerData__l2tightVBS__tightVbsSel/'
-  for DataSet in ['MuonEG','DoubleMuon','SingleMuon','DoubleEG','SingleElectron']:
-    FileTarget = getSampleFiles(directory,'*'+DataSet+'*',True)
+for Run in DataRun :
+  directory = '/gwteras/cms/store/group/OneLepton/Apr2017_Run2016'+Run[0]+'_RemAOD/lep2SelVBS__hadd__EpTCorr__TrigMakerData__l2tightVBS__tightVbsSel/'
+  for DataSet in DataSets :
+    FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:
       samples['DATA']['name'].append(iFile)
-      samples['DATA']['weights'].append(MyWeights[DataSet]) 
-
-
+      samples['DATA']['weights'].append(DataTrig[DataSet]) 
