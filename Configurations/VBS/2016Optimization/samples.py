@@ -8,21 +8,27 @@ from LatinoAnalysis.Tools.commonTools import *
 #samples = {}
 
 directory = '/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables' 
-#chargeFlipDir = directory + '__l2tightVBS__chMisId__tightVbsSel/'
-#PromptSubtr = directory + '__tightVbsSel__bkgWeights/'
+chargeFlipDir = directory + '__l2tightVBS__chMisId__tightVbsSel/'
+PromptSubtr = directory + '__tightVbsSel__bkgWeights/'
 MCDir = directory + '__l2tightVBS__tightVbsSel/'
 
 ################################################
 ############ BASIC MC WEIGHTS ##################
 ################################################
+
 #Weight added manually
 XSWeight      = 'baseW*GEN_weight_SM/abs(GEN_weight_SM)'
 SFweight    = 'puW*effTrigW*bPogSF_CSVM*std_vector_lepton_recoW[0]*std_vector_lepton_recoW[1]*std_vector_lepton_idisoWcut_WP_Tight80X[0]*std_vector_lepton_idisoWcut_WP_Tight80X[1]'
 PromptGenLepMatch2l='std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]'
 
+ChargMisSign='((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) != -11*11 || (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) != -11*13 )'
+
+
+
 ################################################
 ############   MET  FILTERS  ###################
 ################################################
+
 #Adding manually missing trasverse energy filter (same defined in formulasToAdd.py)
 METFilter_Common = '(std_vector_trigger_special[0]*\
                      std_vector_trigger_special[1]*\
@@ -68,7 +74,7 @@ DataTrig = {
            }
 
 ###########################################
-########  REDUCIBLE BACKGROUNDS  ##########
+#####  Charge Misidentification Bkg  ######
 ###########################################
 
 
@@ -76,10 +82,12 @@ DataTrig = {
 
 DY_W = '(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-12.5151)/5.51582)))'
 
-samples['ChMisId']=	{  	'name'	:getSampleFiles(MCDir,'DYJetsToLL_M-10to50',True)
-								+getSampleFiles(MCDir,'DYJetsToLL_M-50',True)    
+samples['ChMisId']=	{  	'name'	:getSampleFiles(chargeFlipDir,'DYJetsToLL_M-10to50',True)
+								+getSampleFiles(chargeFlipDir,'DYJetsToLL_M-50',True) 
+								+getSampleFiles(chargeFlipDir,'GluGluWWTo2L2Nu_MCFM',True) 
+								+getSampleFiles(chargeFlipDir,'WWTo2L2Nu',True)             							
 				                ,
-						'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC,#+'*chargeFlipW',
+						'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+ChargMisSign+'*chargeFlipW',
 						'FilesPerJob' : 2 ,
 					}
 addSampleWeight(samples,'ChMisId','DYJetsToLL_M-10to50'	,DY_W)
@@ -87,50 +95,169 @@ addSampleWeight(samples,'ChMisId','DYJetsToLL_M-50'   	,DY_W)
 
 
 ###### TopAntiTop#######
-Top_pTrw = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topLHEpt) * TMath::Exp(0.0615-0.0005*antitopLHEpt) ) )'
 
-samples['ttbar'] = 	{ 	'name'  :getSampleFiles(MCDir,'TTTo2L2Nu',True) 
+samples['ttbar'] = 	{ 	'name'  :getSampleFiles(chargeFlipDir,'TTTo2L2Nu',True)
+					+getSampleFiles(chargeFlipDir,'ST_tW_top_noHad',True)
+					+getSampleFiles(chargeFlipDir,'ST_tW_antitop_noHad',True) 
                                 ,
-						'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
+						'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+ChargMisSign+'*chargeFlipW',  
 						'FilesPerJob' : 6 ,
 					}
 
-addSampleWeight(samples,'ttbar','TTTo2L2Nu',Top_pTrw)
 
-samples['Wjets']  = { 	'name'  :getSampleFiles(MCDir,'WJetsToLNu',True)
-                                ,
-						'weight' :'1',# XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
+
+###########################################
+#########  Prompt Substraction  ###########
+###########################################
+
+samples['DY_promptSubtr']  = { 	'name' 	:getSampleFiles(PromptSubtr,'DYJetsToLL_M-10to50',True)
+										+getSampleFiles(PromptSubtr,'DYJetsToLL_M-50',True)    
+										,
+								'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC, 
+                 }
+				 
+addSampleWeight(samples,'DY_promptSubtr','DYJetsToLL_M-10to50'	,DY_W)
+addSampleWeight(samples,'DY_promptSubtr','DYJetsToLL_M-50'   	,DY_W)
+
+samples['lep_TT_promptSubtr'] =	{  'name': getSampleFiles(PromptSubtr,'TTTo2L2Nu',True) 
+									,
+									'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC,
+									'FilesPerJob' : 6 ,									
+								}
+
+samples['singleTop_promptSubtr']  = {   'name': getSampleFiles(PromptSubtr,'ST_tW_top_noHad',True) ,
+					'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC, 
 					}
+
+samples['singleAntiTop_promptSubtr']  = {    'name': getSampleFiles(PromptSubtr,'ST_tW_antitop_noHad',True),
+                                             'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC, 
+					}
+
+samples['ggWWTo2L2Nu_promptSubtr']= {	'name': getSampleFiles(PromptSubtr,'GluGluWWTo2L2Nu_MCFM',True)
+										,
+										'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC, 
+									}
+
+samples['WWTo2L2Nu_promptSubtr']  = { 	'name': getSampleFiles(PromptSubtr,'WWTo2L2Nu',True)
+										,
+                                        'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC, 
+									}
+					
+samples['Vg_promptSubtr'] =	{ 	'name':getSampleFiles(PromptSubtr,'Wg_MADGRAPHMLM',True)
+					      +getSampleFiles(PromptSubtr,'WGJJ',True)  
+					      +getSampleFiles(PromptSubtr,'Zg',True) 
+										,    
+                                'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+METFilter_MC,    
+							}
+
+
+samples['ZZ_promptSubtr'] =	{ 	'name': getSampleFiles(PromptSubtr,'ZZTo4L',True) 
+										,
+								'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC,  
+							}
+
+samples['WpWpJJ_promptSubtr'] = {  	'name':getSampleFiles(PromptSubtr,'WpWpJJ_EWK',True)
+										  +getSampleFiles(MCDir,'WmWmJJ_EWK_powheg',True) 
+										  ,
+									'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*1.067466',
+								}
+
+samples['WpWpJJ_QCD_promptSubtr'] = {  	'name':getSampleFiles(PromptSubtr,'WpWpJJ_QCD',True)
+											  ,
+										'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*1.057', 
+									}
+
+samples['VVV_promptSubtr']= {	'name':getSampleFiles(PromptSubtr,'WZZ',True) 
+									  +getSampleFiles(PromptSubtr,'ZZZ',True)
+									  +getSampleFiles(PromptSubtr,'WWW',True) 
+									  +getSampleFiles(PromptSubtr,'WWZ',True) 
+									  +getSampleFiles(PromptSubtr,'TTZToQQ',True) 
+									  +getSampleFiles(PromptSubtr,'TTWJetsToQQ',True) 
+									  +getSampleFiles(PromptSubtr,'TTWJetsToLNu',True) 
+									  +getSampleFiles(PromptSubtr,'TTZToLLNuNu_M-10',True)
+									  ,								  
+								'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC, 
+							}
+
+samples['DPS_promptSubtr']= {  	'name': getSampleFiles(PromptSubtr,'WWTo2L2Nu_DoubleScattering',True)
+										, 
+								'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC, 
+							}       
+        
+samples['WZ_promptSubtr'] =	{	'name': [ ], 
+								'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC,
+								'weights' : [ ],
+								'FilesPerJob' : 6 ,                                    
+							}
+MyWeights={
+		   'WZTo3LNu'						   : '1' , 
+           'WLLJJToLNu_M-4To60_EWK_4F'         : '1.' ,
+           'WLLJJToLNu_M-60_EWK_4F'            : '1.' ,
+           'WLLJJToLNu_M-4To50_QCD_0Jet'       : '1.206' ,
+           'WLLJJToLNu_M-4To50_QCD_1Jet'       : '1.206' ,
+           'WLLJJToLNu_M-4To50_QCD_2Jet'       : '1.206' ,
+           'WLLJJToLNu_M-4To50_QCD_3Jet'       : '1.206' ,
+           'WLLJJToLNu_M-50_QCD_0Jet'          : '1.206' ,
+           'WLLJJToLNu_M-50_QCD_1Jet'          : '1.206' ,
+           'WLLJJToLNu_M-50_QCD_2Jet'          : '1.206' ,
+           'WLLJJToLNu_M-50_QCD_3Jet'          : '1.206' ,
+           'tZq_ll'                            : '1.',
+           }
+		   
+for DataSet in MyWeights.keys():
+    FileTarget = getSampleFiles(PromptSubtr,DataSet,True)
+    for iFile in FileTarget:
+      samples['WZ_promptSubtr']['name'].append(iFile)
+      samples['WZ_promptSubtr']['weights'].append(MyWeights[DataSet]) 
+
+
+
+###########################################
+############  Reducible Bkg  ##############
+###########################################
 ######## Vgamma ########
 
 samples['Vg']  =  {     'name'  :getSampleFiles(MCDir,'Wg_MADGRAPHMLM',True)
                                 +getSampleFiles(MCDir,'Zg',True)
 								+getSampleFiles(MCDir,'WGJJ',True)
                                 ,
-                        #'suppressNegativeNuisances' :['all'],
                         'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
                   }
 
 ######### VV #########
 
 samples['ZZ'] = {  	'name':getSampleFiles(MCDir,'ZZTo4L',True)
-						# + getSampleFiles(directory,'ZZTo4L')
-						# + getSampleFiles(MCDir,'ZZTo2L2Q')
-						,   
-					#'suppressNegativeNuisances' :['all'], 
+						  ,   
 					'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
 					'FilesPerJob' : 6 ,
                 }
     
 
-samples['WZ'] =	{ 	'name':getSampleFiles(MCDir,'WZTo3LNu',True)
+samples['WZ'] =	{ 	'name':[]
                             ,
-					#'suppressNegativeNuisances' :['all'], 
-					'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
+					'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC , 
+					'weights' : [ ],
 					'FilesPerJob' : 6 ,
                 }
-
-### 1.11 normalisation was measured in 3-lepton
+MyWeights={
+		   'WZTo3LNu'						   : '1' , 
+           'WLLJJToLNu_M-4To60_EWK_4F'         : '1.' ,
+           'WLLJJToLNu_M-60_EWK_4F'            : '1.' ,
+           'WLLJJToLNu_M-4To50_QCD_0Jet'       : '1.206' ,
+           'WLLJJToLNu_M-4To50_QCD_1Jet'       : '1.206' ,
+           'WLLJJToLNu_M-4To50_QCD_2Jet'       : '1.206' ,
+           'WLLJJToLNu_M-4To50_QCD_3Jet'       : '1.206' ,
+           'WLLJJToLNu_M-50_QCD_0Jet'          : '1.206' ,
+           'WLLJJToLNu_M-50_QCD_1Jet'          : '1.206' ,
+           'WLLJJToLNu_M-50_QCD_2Jet'          : '1.206' ,
+           'WLLJJToLNu_M-50_QCD_3Jet'          : '1.206' ,
+           }
+		   
+for DataSet in MyWeights.keys():
+    FileTarget = getSampleFiles(MCDir,DataSet,True)
+    for iFile in FileTarget:
+      samples['WZ']['name'].append(iFile)
+      samples['WZ']['weights'].append(MyWeights[DataSet])
 
 ########## VVV #########
 
@@ -138,9 +265,9 @@ samples['VVV'] = {    'name':getSampleFiles(MCDir,'ZZZ',True)
                             +getSampleFiles(MCDir,'WZZ',True)
                             +getSampleFiles(MCDir,'WWZ',True)
                             +getSampleFiles(MCDir,'WWW',True)
+							+getSampleFiles(MCDir,'TTWJetsToLNu',True)
+							+getSampleFiles(MCDir,'TTZToLLNuNu_M-10',True)
                             ,   
-                      #'suppressNegative' :['all'], 
-                      #'suppressNegativeNuisances' :['all'],
                       'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
                   }
 
@@ -148,8 +275,6 @@ samples['VVV'] = {    'name':getSampleFiles(MCDir,'ZZZ',True)
 
 samples['DPS'] = {    'name':getSampleFiles(MCDir,'WWTo2L2Nu_DoubleScattering',True)
                             ,   
-                      #'suppressNegative' :['all'], 
-                      #'suppressNegativeNuisances' :['all'],
                       'weight' :'baseW*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
                   }
 
@@ -161,10 +286,7 @@ samples['DPS'] = {    'name':getSampleFiles(MCDir,'WWTo2L2Nu_DoubleScattering',T
 samples['WW_strong'] = {   	'name'   :getSampleFiles(MCDir,'WpWpJJ_QCD',True)
 									#+getSampleFiles(directory,'WpWpJJ_EWK_QCD_aQGC')
 									,
-							#'suppressNegative' :['all'], 
-							#'suppressNegativeNuisances' :['all'],
 							'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*1.057' ,    
-		#					'weights' : ['1.057'],
 							'FilesPerJob' : 1 ,
 						}
 
@@ -177,10 +299,7 @@ samples['WW_EWK'] = {  	'name'  :getSampleFiles(MCDir,'WmWmJJ_EWK_powheg',True)
 								+getSampleFiles(MCDir,'WpWpJJ_EWK',True)
 								#+getSampleFiles(directory,'WpWpJJ_EWK_aQGC')
 								,
-						#'suppressNegative' :['all'], 
-						#'suppressNegativeNuisances' :['all'],
 						'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*1.067466' ,    
-	#					'weights' : ['1.067466'],
 						'FilesPerJob' : 1 ,
 					}
 

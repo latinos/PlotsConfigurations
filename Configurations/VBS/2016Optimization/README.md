@@ -12,7 +12,7 @@ export CMSSW_DIRECTORY=~/CMSSW_8_0_26_patch1/src
 export CONFIGURATION_DIRECTORY=$CMSSW_DIRECTORY/PlotsConfigurations/Configuration/YourConfigPath
 
 ```
-Modify *$CMSSW_DIRECTORY/LatinoAnalysis/Tools/python/userConfig.py* (or *userConfig_TEMPLATE.py*)
+Modify *$CMSSW_DIRECTORY/LatinoAnalysis/Tools/python/userConfig.py* (rename *userConfig_TEMPLATE.py* as *userConfig.py*)
 ```
 #!/usr/bin/env python
 baseDir  = '/gwpool/users/afendillo/'
@@ -67,9 +67,9 @@ At this stage one can either produce plots or datacards.
 
 Now we are ready to make data/MC comparison plots.
 
-	mkPlot.py 	--inputFile=rootFile_test/plots_VBS_SS_test.root \ 
-				--scaleToPlot=1.9 \
-				--showIntegralLegend=1
+	mkPlot.py --inputFile=rootFile_test/plots_VBS_SS_test.root \ 
+		  --scaleToPlot=1.9 \
+  		  --showIntegralLegend=1
 
 
 ### Produce datacards
