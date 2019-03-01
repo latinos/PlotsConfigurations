@@ -266,11 +266,11 @@ nuisances['PU']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                  'WW'      : ['1.01', '0.99'],
-                  'ggH_hww':  ['1.01', '0.99'],
-                  'qqH_hww':  ['1.01', '0.99'],
-                  'top':      ['1.01', '0.99'],
-                  'DY':       ['1.01', '0.99'],
+                  'WW'      : ['1.01244825559', '0.989356107719'],
+                  'ggH_hww':  ['1.01372240456', '0.987061972012'],
+                  'qqH_hww':  ['1.01939300826', '0.990627253001'],
+                  'top':      ['1.03521043346', '1.00269118365'], # we don't have some of the ST samples in the PU varied directories, so the factors are both above 1 
+                  'DY':       ['1.01057222659', '0.989724928521'],
                 },
                 'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__PUup'+skim,
                 'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__PUdo'+skim,
