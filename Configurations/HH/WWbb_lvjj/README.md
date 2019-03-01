@@ -5,11 +5,11 @@ Transfer data:
 
     single lepton MC
     
-    /gwteras/cms/store/group/OneLepton/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/
+    /gwteraz/users/amassiro/latino/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/ 
 
     voms-proxy-init -voms cms
 
-    gfal-ls srm://storm.mib.infn.it:8444/cms/store/group/OneLepton/Apr2017_Run2016B_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__hadd/ | awk '{print "gfal-copy srm://storm.mib.infn.it:8444/cms/store/group/OneLepton/Apr2017_Run2016B_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__hadd/"$1"  /gwteras/cms/store/group/OneLepton/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/"$1}'
+    gfal-ls srm://storm.mib.infn.it:8444/cms/store/group/OneLepton/Apr2017_Run2016B_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__hadd/ | awk '{print "gfal-copy srm://storm.mib.infn.it:8444/cms/store/group/OneLepton/Apr2017_Run2016B_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__hadd/"$1"  /gwteraz/users/amassiro/latino/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/"$1}'
 
     
     Using webfts to trasnfer data: 
@@ -54,13 +54,13 @@ This step reads the post-processed latino trees and produces histograms for seve
     cd $CONFIGURATION_DIRECTORY
 
     mkShapes.py --pycfg=configuration.py \
-                --inputDir=/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/ \
+                --inputDir=/gwteraz/users/amassiro/latino/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/  \
                 --batchSplit=AsMuchAsPossible \
                 --doBatch=True
         
 Local test:
 
-    mkShapes.py --inputDir=/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC --pycfg=configuration.py
+    mkShapes.py --inputDir=/gwteraz/users/amassiro/latino/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC  --pycfg=configuration.py
  
 To expand and see what is happening:
 
@@ -101,7 +101,7 @@ If several jobs failed and you want to resubmit them all at once you can do:
 Once the previous jobs have finished we _hadd_ the outputs.
 
     mkShapes.py --pycfg=configuration.py \
-                --inputDir=/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/ \
+                --inputDir=/gwteraz/users/amassiro/latino/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/  \
                 --batchSplit=AsMuchAsPossible \
                 --doHadd=True
                 

@@ -509,4 +509,3 @@ for era, sd in DataRun:
     files = getSampleFiles(dataDirectory.format(era = era), pd + '_' + sd, True)
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
-

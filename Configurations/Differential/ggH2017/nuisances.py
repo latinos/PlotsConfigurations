@@ -31,12 +31,19 @@ nuisances['lumi'] = {
 #### FAKES
 
 ## FIXME: check the 30% lnN
-nuisances['fake_syst'] = {
-    'name': 'CMS_fake_syst_2017',
+nuisances['fake_syst_em'] = {
+    'name': 'CMS_fake_syst_em_2017',
     'type': 'lnN',
-    'samples': {
-        'Fake': '1.3',
-    },
+    'samples': {},
+    'samplespost': (lambda self, samples: {'Fake_em': '1.3'}),
+    'perRecoBin': True
+}
+
+nuisances['fake_syst_me'] = {
+    'name': 'CMS_fake_syst_me_2017',
+    'type': 'lnN',
+    'samples': {},
+    'samplespost': (lambda self, samples: {'Fake_me': '1.3'}),
     'perRecoBin': True
 }
 
@@ -47,6 +54,7 @@ nuisances['fake_ele'] = {
     'samples': {
         'Fake': ['fakeWEleUp', 'fakeWEleDown'],
     },
+    'samplespost': (lambda self, samples: {'Fake_em': self['samples']['Fake']}),
     #'AsLnN': '1'
     'perRecoBin': True
 }
@@ -58,6 +66,7 @@ nuisances['fake_ele_stat'] = {
     'samples': {
         'Fake': ['fakeWStatEleUp', 'fakeWStatEleDown']
     },
+    'samplespost': (lambda self, samples: {'Fake_em': self['samples']['Fake']}),
     #'AsLnN': '1'
     'perRecoBin': True
 }
@@ -69,6 +78,7 @@ nuisances['fake_mu'] = {
     'samples': {
         'Fake': ['fakeWMuUp', 'fakeWMuDown'],
     },
+    'samplespost': (lambda self, samples: {'Fake_me': self['samples']['Fake']}),
     #'AsLnN': '1'
     'perRecoBin': True
 }
@@ -80,6 +90,7 @@ nuisances['fake_mu_stat'] = {
     'samples': {
         'Fake': ['fakeWStatMuUp', 'fakeWStatMuDown'],
     },
+    'samplespost': (lambda self, samples: {'Fake_me': self['samples']['Fake']}),
     #'AsLnN': '1'
     'perRecoBin': True
 }
