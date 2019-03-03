@@ -56,25 +56,11 @@ structure['WW_EWK']  = {
                       }
 
 #Fake
-structure['Fake_em']  = {  
+structure['Fake_lep']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
               }
 
-structure['Fake_me']  = {  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-              }
-
-structure['Fake_ee']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0,
-              }
-
-structure['Fake_mm']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0,
-              }
 structure['DY_promptSubtr']  = {  
                   'isSignal' : 0,
                   'isData'   : 0 
