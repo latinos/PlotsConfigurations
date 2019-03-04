@@ -37,29 +37,29 @@ nuisances['lumi']  = {
                    },
                'type'  : 'lnN',
               }
-
+'''
 #### FAKES
 
-if Nlep == '2' :
+#if Nlep == '2' :
   # already divided by central values in formulas !
-  fakeW_EleUp       = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleUp'
-  fakeW_EleDown     = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleDown'
-  fakeW_MuUp        = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuUp'
-  fakeW_MuDown      = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuDown'
-  fakeW_statEleUp   = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleUp'
-  fakeW_statEleDown = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleDown'
-  fakeW_statMuUp    = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuUp'
-  fakeW_statMuDown  = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuDown'
+ # fakeW_EleUp       = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleUp'
+  #fakeW_EleDown     = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleDown'
+  #fakeW_MuUp        = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuUp'
+  #fakeW_MuDown      = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuDown'
+  #fakeW_statEleUp   = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleUp'
+  #fakeW_statEleDown = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleDown'
+  #fakeW_statMuUp    = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuUp'
+  #fakeW_statMuDown  = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuDown'
 
-else:
-  fakeW_EleUp       = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lElUp       / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
-  fakeW_EleDown     = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lElDown     / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
-  fakeW_MuUp        = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lMuUp       / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
-  fakeW_MuDown      = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lMuDown     / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
-  fakeW_statEleUp   = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lstatElUp   / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
-  fakeW_statEleDown = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lstatElDown / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
-  fakeW_statMuUp    = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lstatMuUp   / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
-  fakeW_statMuDown  = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lstatMuDown / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
+#else:
+ # fakeW_EleUp       = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lElUp       / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
+  #fakeW_EleDown     = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lElDown     / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
+  #fakeW_MuUp        = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lMuUp       / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
+  #fakeW_MuDown      = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lMuDown     / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
+  #fakeW_statEleUp   = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lstatElUp   / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
+  #fakeW_statEleDown = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lstatElDown / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
+  #fakeW_statMuUp    = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lstatMuUp   / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
+  #fakeW_statMuDown  = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lstatMuDown / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
 
 #nuisances['fake_syst']  = {
 #               'name'  : 'fake_syst',
@@ -69,228 +69,228 @@ else:
 #                             },
 #}
 
-nuisances['fake_syst_em']  = {
-               'name'  : 'CMS_hwwem_fake_syst',
-               'type'  : 'lnN',
-               'samples'  : {
-                             'Fake_em' : '1.30',
-                             },
-               }
+#nuisances['fake_syst_em']  = {
+ #              'name'  : 'CMS_hwwem_fake_syst',
+  #             'type'  : 'lnN',
+   #            'samples'  : {
+    #                         'Fake_em' : '1.30',
+     #                        },
+      #         }
 
-nuisances['fake_syst_me']  = {
-               'name'  : 'CMS_hwwme_fake_syst',
-               'type'  : 'lnN',
-               'samples'  : {
-                             'Fake_me' : '1.30',
-                             },
-               }
+#nuisances['fake_syst_me']  = {
+ #              'name'  : 'CMS_hwwme_fake_syst',
+  #             'type'  : 'lnN',
+   #            'samples'  : {
+    #                         'Fake_me' : '1.30',
+     #                        },
+      #         }
 
-nuisances['fake_ele']  = {
-                'name'  : 'hww_fake_ele',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                              'Fake_em'     : [ fakeW_EleUp , fakeW_EleDown ],
-                              'Fake_me'     : [ fakeW_EleUp , fakeW_EleDown ],
-                             },
-}
+#nuisances['fake_ele']  = {
+ #               'name'  : 'hww_fake_ele',
+  #              'kind'  : 'weight',
+   #             'type'  : 'shape',
+    #            'samples'  : {
+     #                         'Fake_em'     : [ fakeW_EleUp , fakeW_EleDown ],
+      #                        'Fake_me'     : [ fakeW_EleUp , fakeW_EleDown ],
+ #                            },
+#}
 
-nuisances['fake_ele_stat']  = {
-                'name'  : 'hww_fake_ele_stat',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                              'Fake_em'      : [ fakeW_statEleUp , fakeW_statEleDown ],
-                              'Fake_me'      : [ fakeW_statEleUp , fakeW_statEleDown ],
-                             },
-}
+#nuisances['fake_ele_stat']  = {
+ #               'name'  : 'hww_fake_ele_stat',
+  #              'kind'  : 'weight',
+   #             'type'  : 'shape',
+    #            'samples'  : {
+     #                         'Fake_em'      : [ fakeW_statEleUp , fakeW_statEleDown ],
+      #                        'Fake_me'      : [ fakeW_statEleUp , fakeW_statEleDown ],
+       #                      },
+#}
 
-nuisances['fake_mu']  = {
-                'name'  : 'hww_fake_mu',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                              'Fake_em'     : [ fakeW_MuUp , fakeW_MuDown ],
-                              'Fake_me'     : [ fakeW_MuUp , fakeW_MuDown ],
-                             },
-}
+#nuisances['fake_mu']  = {
+ #               'name'  : 'hww_fake_mu',
+  #              'kind'  : 'weight',
+   #             'type'  : 'shape',
+    #            'samples'  : {
+     #                         'Fake_em'     : [ fakeW_MuUp , fakeW_MuDown ],
+      #                        'Fake_me'     : [ fakeW_MuUp , fakeW_MuDown ],
+       #                      },
+#}
 
 
-nuisances['fake_mu_stat']  = {
-                'name'  : 'hww_fake_mu_stat',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                              'Fake_em'     : [ fakeW_statMuUp , fakeW_statMuDown ],
-                              'Fake_me'     : [ fakeW_statMuUp , fakeW_statMuDown ],
-                             },
-}
+#nuisances['fake_mu_stat']  = {
+ #               'name'  : 'hww_fake_mu_stat',
+  #              'kind'  : 'weight',
+   #             'type'  : 'shape',
+    #            'samples'  : {
+     #                         'Fake_em'     : [ fakeW_statMuUp , fakeW_statMuDown ],
+      #                        'Fake_me'     : [ fakeW_statMuUp , fakeW_statMuDown ],
+       #                      },
+#}
 
 ##### B-tagger
 
-nuisances['btagbc']  = {
-                'name'  : 'btag_heavy',
-                'kind'  : 'weight',
-               'type'  : 'shape',
-                'samples'  : {
-                   'DY'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'WW'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'ggWW'    : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'VVV'     : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'VZ'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'WZgS_L'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'WZgS_H'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'top'     : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'Vg'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'VgS'     : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'ggH_hww' : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'qqH_hww' : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'WH_hww'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'ZH_hww'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'H_htt'   : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'bbH_hww' : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'ttH_hww' : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'ggH_htt' : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],  
-                   'qqH_htt' : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'ZH_htt'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                   'WH_htt'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
-                }
-}
+#nuisances['btagbc']  = {
+ #               'name'  : 'btag_heavy',
+  #              'kind'  : 'weight',
+   #            'type'  : 'shape',
+    #            'samples'  : {
+     #              'DY'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+      #             'WW'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+       #            'ggWW'    : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+        #           'VVV'     : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+         #          'VZ'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+           #        'WZgS_L'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+          #         'WZgS_H'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+            #       'top'     : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+             #      'Vg'      : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+              #     'VgS'     : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+               #    'ggH_hww' : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+                #   'qqH_hww' : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+   #                'WH_hww'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+    #               'ZH_hww'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+     #              'H_htt'   : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+      #             'bbH_hww' : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+       #            'ttH_hww' : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+        #           'ggH_htt' : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],  
+         #          'qqH_htt' : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+ #                  'ZH_htt'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+  #                 'WH_htt'  : ['('+bSF+'_bc_up)/('+bSF+')', '('+bSF+'_bc_down)/('+bSF+')'],
+   #             }
+#}
 
-nuisances['btagudsg']  = {
-                'name'  : 'btag_light',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'DY'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'VVV'     : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'VZ'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'WZgS_L'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'WZgS_H'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'WW'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'ggWW'    : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'top'     : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'Vg'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'VgS'     : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'ggH_hww' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'qqH_hww' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'WH_hww'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'ZH_hww'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'bbH_hww' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'ttH_hww' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'H_htt'   : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'ggH_htt' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'qqH_htt' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'ZH_htt'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                   'WH_htt'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
-                }
-}
+#nuisances['btagudsg']  = {
+ #               'name'  : 'btag_light',
+  #              'kind'  : 'weight',
+   #             'type'  : 'shape',
+    #            'samples'  : {
+     #              'DY'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+      #             'VVV'     : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+#                   'VZ'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+ #                  'WZgS_L'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+  #                 'WZgS_H'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+   #                'WW'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+    #               'ggWW'    : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+     #              'top'     : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+      #             'Vg'      : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+       #            'VgS'     : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+        #           'ggH_hww' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+         #          'qqH_hww' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+          #         'WH_hww'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+           #        'ZH_hww'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+            #       'bbH_hww' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+#                   'ttH_hww' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+ #                  'H_htt'   : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+  #                 'ggH_htt' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+   #                'qqH_htt' : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+    #               'ZH_htt'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+     #              'WH_htt'  : ['('+bSF+'_udsg_up)/('+bSF+')', '('+bSF+'_udsg_down)/('+bSF+')'],
+      #          }
+#}
 
 ##### Trigger Efficiency
 
-if   Nlep == '2' : trig_syst = ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)']
-elif Nlep == '3' : trig_syst = ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)']
-elif Nlep == '4' : trig_syst = ['(effTrigW4l_Up)/(effTrigW4l)', '(effTrigW3l_Down)/(effTrigW4l)']
+#if   Nlep == '2' : trig_syst = ['(effTrigW_Up)/(effTrigW)', '(effTrigW_Down)/(effTrigW)']
+#elif Nlep == '3' : trig_syst = ['(effTrigW3l_Up)/(effTrigW3l)', '(effTrigW3l_Down)/(effTrigW3l)']
+#elif Nlep == '4' : trig_syst = ['(effTrigW4l_Up)/(effTrigW4l)', '(effTrigW3l_Down)/(effTrigW4l)']
 
-nuisances['trigg']  = {
-                'name'  : 'hww_trigger',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'DY'      : trig_syst ,
-                   'VVV'     : trig_syst ,
-                   'VZ'      : trig_syst ,
-                   'WZgS_L'  : trig_syst ,
-                   'WZgS_H'  : trig_syst ,
-                   'ggWW'    : trig_syst ,
-                   'WW'      : trig_syst ,
-                   'top'     : trig_syst ,
-                   'Vg'      : trig_syst ,
-                   'VgS'     : trig_syst ,
-                   'ggH_hww' : trig_syst ,
-                   'qqH_hww' : trig_syst ,
-                   'WH_hww'  : trig_syst ,
-                   'ZH_hww'  : trig_syst ,
-                   'ggZH_hww': trig_syst ,
-                   'bbH_hww' : trig_syst ,
-                   'ttH_hww' : trig_syst ,
-                   'H_htt'   : trig_syst ,
-                   'ggH_htt' : trig_syst ,
-                   'qqH_htt' : trig_syst ,
-                   'ZH_htt'  : trig_syst ,
-                   'WH_htt'  : trig_syst ,
-                },
-}
+#nuisances['trigg']  = {
+ #               'name'  : 'hww_trigger',
+  #              'kind'  : 'weight',
+   #             'type'  : 'shape',
+    #            'samples'  : {
+#                   'DY'      : trig_syst ,
+ #                  'VVV'     : trig_syst ,
+  #                 'VZ'      : trig_syst ,
+   #                'WZgS_L'  : trig_syst ,
+    #               'WZgS_H'  : trig_syst ,
+     #              'ggWW'    : trig_syst ,
+      #             'WW'      : trig_syst ,
+#                   'top'     : trig_syst ,
+ #                  'Vg'      : trig_syst ,
+  #                 'VgS'     : trig_syst ,
+   #                'ggH_hww' : trig_syst ,
+    #               'qqH_hww' : trig_syst ,
+     #              'WH_hww'  : trig_syst ,
+      #             'ZH_hww'  : trig_syst ,
+       #            'ggZH_hww': trig_syst ,
+        #           'bbH_hww' : trig_syst ,
+         #          'ttH_hww' : trig_syst ,
+#                   'H_htt'   : trig_syst ,
+ #                  'ggH_htt' : trig_syst ,
+  #                 'qqH_htt' : trig_syst ,
+   #                'ZH_htt'  : trig_syst ,
+    #               'WH_htt'  : trig_syst ,
+     #           },
+#}
 
 ##### Electron Efficiency and energy scale
 
-id_syst_ele = [ 'LepSF'+Nlep+'l__ele_'+eleWP+'__Up' , 'LepSF'+Nlep+'l__ele_'+eleWP+'__Do' ]
+#id_syst_ele = [ 'LepSF'+Nlep+'l__ele_'+eleWP+'__Up' , 'LepSF'+Nlep+'l__ele_'+eleWP+'__Do' ]
 
-nuisances['eff_e']  = {
-                'name'  : 'eff_e',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'DY'      : id_syst_ele ,
-                   'VVV'     : id_syst_ele ,
-                   'VZ'      : id_syst_ele ,
-                   'WZgS_L'  : id_syst_ele ,
-                   'WZgS_H'  : id_syst_ele ,
-                   'ggWW'    : id_syst_ele ,
-                   'WW'      : id_syst_ele ,
-                   'top'     : id_syst_ele ,
-                   'Vg'      : id_syst_ele ,
-                   'VgS'     : id_syst_ele ,
-                   'ggH_hww' : id_syst_ele ,
-                   'qqH_hww' : id_syst_ele ,
-                   'WH_hww'  : id_syst_ele ,
-                   'ZH_hww'  : id_syst_ele ,
-                   'ggZH_hww': id_syst_ele ,
-                   'bbH_hww' : id_syst_ele ,
-                   'ttH_hww' : id_syst_ele ,
-                   'H_htt'   : id_syst_ele ,
-                   'ggH_htt' : id_syst_ele ,
-                   'qqH_htt' : id_syst_ele ,
-                   'ZH_htt'  : id_syst_ele ,
-                   'WH_htt'  : id_syst_ele ,
-                },
-}
+#nuisances['eff_e']  = {
+ #               'name'  : 'eff_e',
+  #              'kind'  : 'weight',
+   #             'type'  : 'shape',
+    #            'samples'  : {
+     #              'DY'      : id_syst_ele ,
+      #             'VVV'     : id_syst_ele ,
+       #            'VZ'      : id_syst_ele ,
+        #           'WZgS_L'  : id_syst_ele ,
+         #          'WZgS_H'  : id_syst_ele ,
+#                   'ggWW'    : id_syst_ele ,
+ #                  'WW'      : id_syst_ele ,
+  #                 'top'     : id_syst_ele ,
+   #                'Vg'      : id_syst_ele ,
+    #               'VgS'     : id_syst_ele ,
+     #              'ggH_hww' : id_syst_ele ,
+      #             'qqH_hww' : id_syst_ele ,
+       #            'WH_hww'  : id_syst_ele ,
+        #           'ZH_hww'  : id_syst_ele ,
+         #          'ggZH_hww': id_syst_ele ,
+          #         'bbH_hww' : id_syst_ele ,
+           #        'ttH_hww' : id_syst_ele ,
+            #       'H_htt'   : id_syst_ele ,
+             #      'ggH_htt' : id_syst_ele ,
+#                   'qqH_htt' : id_syst_ele ,
+ #                  'ZH_htt'  : id_syst_ele ,
+  #                 'WH_htt'  : id_syst_ele ,
+   #             },
+#}
 
-nuisances['electronpt']  = {
-                'name'  : 'scale_e',
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : {
-                   'DY'      : ['1', '1'],
-                   'ggWW'    : ['1', '1'],
-                   'WW'      : ['1', '1'],
-                   'top'     : ['1', '1'],
-                   'VZ'      : ['1', '1'],
-                   'WZgS_L'  : ['1', '1'],
-                   'WZgS_H'  : ['1', '1'],
-                   'VVV'     : ['1', '1'],
-                   'Vg'      : ['1', '1'],
-                   'VgS'     : ['1', '1'],
-                   'ggH_hww' : ['1', '1'],
-                   'qqH_hww' : ['1', '1'],
-                   'WH_hww'  : ['1', '1'],
-                   'ZH_hww'  : ['1', '1'],
-                   'ggZH_hww': ['1', '1'],
-                   'bbH_hww' : ['1', '1'],
-                   'ttH_hww' : ['1', '1'],
-                   'H_htt'   : ['1', '1'],
-                   'ggH_htt' : ['1', '1'] ,
-                   'qqH_htt' : ['1', '1'] ,
-                   'ZH_htt'  : ['1', '1'] ,
-                   'WH_htt'  : ['1', '1'] ,
-                 },
-                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepElepTup'+skim,
-                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepElepTdo'+skim,
-}
+#nuisances['electronpt']  = {
+ #               'name'  : 'scale_e',
+  #              'kind'  : 'tree',
+   #             'type'  : 'shape',
+    #            'samples'  : {
+     #              'DY'      : ['1', '1'],
+      #             'ggWW'    : ['1', '1'],
+       #            'WW'      : ['1', '1'],
+        #           'top'     : ['1', '1'],
+         #          'VZ'      : ['1', '1'],
+          #         'WZgS_L'  : ['1', '1'],
+           #        'WZgS_H'  : ['1', '1'],
+ #                  'VVV'     : ['1', '1'],
+  #                 'Vg'      : ['1', '1'],
+   #                'VgS'     : ['1', '1'],
+    #               'ggH_hww' : ['1', '1'],
+     #              'qqH_hww' : ['1', '1'],
+       #            'WH_hww'  : ['1', '1'],
+      #             'ZH_hww'  : ['1', '1'],
+        #           'ggZH_hww': ['1', '1'],
+          #         'bbH_hww' : ['1', '1'],
+         #          'ttH_hww' : ['1', '1'],
+           #        'H_htt'   : ['1', '1'],
+            #       'ggH_htt' : ['1', '1'] ,
+#                   'qqH_htt' : ['1', '1'] ,
+ #                  'ZH_htt'  : ['1', '1'] ,
+  #                 'WH_htt'  : ['1', '1'] ,
+   #              },
+    #            'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepElepTup'+skim,
+     #           'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepElepTdo'+skim,
+#}
 
-
-elePtCor_Syst = [ 'electron_ptW_'+Nlep+'l_Up / electron_ptW_'+Nlep+'l', 'electron_ptW_'+Nlep+'l_Down / electron_ptW_'+Nlep+'l']
-nuisances['elePtCor']  = {
+'''
+#elePtCor_Syst = [ 'electron_ptW_'+Nlep+'l_Up / electron_ptW_'+Nlep+'l', 'electron_ptW_'+Nlep+'l_Down / electron_ptW_'+Nlep+'l']
+'''nuisances['elePtCor']  = {
                 'name'  : 'hww_elePtCor',
                 'kind'  : 'weight',
                 'type'  : 'shape',
@@ -1366,4 +1366,4 @@ nuisances['stat']  = {
 #                 },
 #               'type'  : 'shape'
 #              }
-
+'''
