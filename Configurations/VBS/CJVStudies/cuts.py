@@ -20,17 +20,18 @@ cuts['VBS_13TeV_BaseCut']='1'
 #cuts['VBS_13TeV_BaseCut_MuMu']='std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 13*13'
 
 JetVeto = '\
-std_vector_jet_pt[2]>30 \
+std_vector_jet_pt[2]<30 \
 '
 
 CentralJetVeto = '\
-std_vector_jet_pt[2]>30 \
-&& std_vector_jet_eta[2] > min( std_vector_jet_eta[0], std_vector_jet_eta[1]) \
-&& std_vector_jet_eta[2] < max( std_vector_jet_eta[0], std_vector_jet_eta[1]) \
+std_vector_jet_pt[2]<30 \
+|| (std_vector_jet_pt[2]>30 \
+&& std_vector_jet_eta[2] < min( std_vector_jet_eta[0], std_vector_jet_eta[1]) \
+&& std_vector_jet_eta[2] > max( std_vector_jet_eta[0], std_vector_jet_eta[1])) \
 '
 
 DynamicJetVeto = '\
-std_vector_jet_pt[2] > 0.25 * std_vector_lepton_pt[2] \
+std_vector_jet_pt[2] < 0.25 * std_vector_lepton_pt[2] \
 ' #ho inserito una percentuale del 25% come esempio
 
 bJetVeto = CentralJetVeto
