@@ -21,6 +21,10 @@ structure['TT'] = {
                   'isData'   : 0
                   }
 
+structure['Others'] = {
+                        'isSignal' : 0,
+                        'isData'   : 0
+                  }
 
 structure['TTWJetsToLNu'] = {
                   'isSignal' : 0,
@@ -47,16 +51,6 @@ structure['WWZ'] = {
                   'isData'   : 0
                   }
 
-structure['Others'] = {
-                  	'isSignal' : 0,
-                  	'isData'   : 0
-                  }
-
-structure['Others2'] = {
-                        'isSignal' : 0,
-                        'isData'   : 0
-                  }
-
 structure['DY'] = {
                   'isSignal' : 0,
                   'isData'   : 0
@@ -79,8 +73,10 @@ structure['ZZTo2L2Q'] = {
 
 
 # data
-
-
+structure['DATA'] = {
+                       	'isSignal' : 0,
+                       	'isData'   : 1
+		    }
 
 
 

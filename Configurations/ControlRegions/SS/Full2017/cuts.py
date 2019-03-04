@@ -1,17 +1,17 @@
  # cuts
 
 _tmp = [ 
-     'Lepton_pt[0]>25. && Lepton_pt[1]>10.',
-     '(abs(Lepton_pdgId[0])==13 || Lepton_pt[0]>25)',
-     '(abs(Lepton_pdgId[1])==13 || Lepton_pt[1]>13)', 
-     '(nLepton>=2 && Alt$(Lepton_pt[2],0)<10.)',
-     'fabs(Lepton_eta[0])<2.5 && fabs(Lepton_eta[1])<2.5',
-     'mll>12.',
-     'PuppiMET_pt > 20.',
-     'ptll > 30.',
-     'mth > 60.',
-     'Lepton_pdgId[0]*Lepton_pdgId[1] >0',
-      ]
+    'Lepton_pt[0]>20. && Lepton_pt[1]>10.' ,
+    '(abs(Lepton_pdgId[0])==13 || Lepton_pt[0]>25)',
+    '(abs(Lepton_pdgId[1])==13 || Lepton_pt[1]>13)', 
+    '(nLepton>=2 && Alt$(Lepton_pt[2],0)<10.)',
+    'fabs(Lepton_eta[0])<2.5 && fabs(Lepton_eta[1])<2.5',
+    'mll>12.',
+    'PuppiMET_pt > 20.',
+    'ptll > 30.',
+    'mth > 60.',
+    'Lepton_pdgId[0]*Lepton_pdgId[1] >0',
+    ]
 
 supercut = ' && '.join(_tmp)
 
@@ -135,6 +135,7 @@ addcut('SS_2j_ee', _tmp)
 
 _tmp = [
      'Lepton_pdgId[0]*Lepton_pdgId[1] ==13*13',
+     'Lepton_pt[1]>20',      
      'Alt$(CleanJet_pt[0],0)<30',
      'fabs(mll-91.2) > 20.',
       ]
@@ -265,7 +266,7 @@ addcut('SS_pt2lt20_1j_me', _tmp)
 _tmp = [
      'fabs(Lepton_pdgId[0])== 13',
      'fabs(Lepton_pdgId[1])== 11',
-     'Lepton_pt[1]>20', 
+     'Lepton_pt[1]<20', 
      'Lepton_pdgId[0]*Lepton_pdgId[1] >0',
      'Alt$(CleanJet_pt[0],0)>30',
      'Alt$(CleanJet_pt[1],0)>30',
@@ -302,6 +303,7 @@ addcut('SS_pt2lt20_2j_ee', _tmp)
 
 _tmp = [
      'Lepton_pdgId[0]*Lepton_pdgId[1] ==13*13',
+     'Lepton_pt[1]<20',      
      'Alt$(CleanJet_pt[0],0)<30',
      'fabs(mll-91.2) > 20.',
       ]
