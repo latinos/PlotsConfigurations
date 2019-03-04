@@ -1,7 +1,7 @@
 # example of configuration file
 
 #date='_Nov252018_ptll'
-date='_4Mar_CR'
+date='_test_CR'
 
 tag = 'WHSS'+date
 
