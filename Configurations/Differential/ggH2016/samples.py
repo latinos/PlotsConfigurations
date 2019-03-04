@@ -249,6 +249,11 @@ samples['WW'] = {
 #  samples['WW']['subsamples']['pth_%s_%s' %  (low, high)] = 'pTWW > %s && pTWW < %s' % (low, high)
 #samples['WW']['subsamples']['pth_gt%s' % pthBinning[-2]] = 'pTWW > %s' % pthBinning[-2]
 
+samples['WWewk'] = {
+  'name': getSampleFiles(mcDirectory,'WpWmJJ_EWK_noTop'),
+  'weight': mcCommonWeight + '*(lhe_mWp>60)*(lhe_mWp<100)*(lhe_mWm>60)*(lhe_mWm<100)',
+}
+
 samples['ggWW'] = {
   'name': getSampleFiles(mcDirectory,'GluGluWWTo2L2Nu_MCFM'),      
   'weight': mcCommonWeight

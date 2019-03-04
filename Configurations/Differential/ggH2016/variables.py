@@ -75,6 +75,50 @@ variables['mll'] = {
     'cuts': cr
 }
 
+variables['jet1Eta'] = {
+    'name': 'std_vector_jet_eta[0] * (std_vector_jet_pt[0] > 30.) - 5. * (std_vector_jet_pt[0] < 30.)',
+    'range': (50, -4.7, 4.7),
+    'xaxis': '#eta^{j1}',
+    'doWeight': 1
+}
+
+variables['jet2Eta'] = {
+    'name': 'std_vector_jet_eta[1] * (std_vector_jet_pt[1] > 30.) - 5. * (std_vector_jet_pt[1] < 30.)',
+    'range': (50, -4.7, 4.7),
+    'xaxis': '#eta^{j2}',
+    'doWeight': 1
+}
+
+variables['met'] = {
+    'name': 'metPfType1',
+    'range': (50, 0., 100.),
+    'xaxis': 'E_{T}^{miss} [GeV]',
+    'doWeight': 1
+}
+
+variables['metPhi'] = {
+    'name': 'metPfType1Phi',
+    'range': (50, -math.pi, math.pi),
+    'xaxis': '#phi(E_{T}^{miss})',
+    'doWeight': 1
+}
+
+variables['ptWW'] = {
+    'name': 'pTWW',
+    'range': (50, 0., 400.),
+    'xaxis': 'p_{T}^{WW} [GeV]',
+    'doWeight': 1,
+    'cuts': cr
+}
+
+variables['ht'] = {
+    'name': 'Sum$(std_vector_jet_pt * (std_vector_jet_pt > 30. && TMath::Abs(std_vector_jet_eta) < 4.7))',
+    'range': (50, 0., 1000.),
+    'xaxis': 'H_{T} [GeV]',
+    'doWeight': 1,
+    'cuts': cr
+}
+
 #variables['njet']  = {
 #    'name': 'njet',     
 #    'range': (5,0,5),   
