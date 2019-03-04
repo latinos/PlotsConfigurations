@@ -8,11 +8,11 @@ variables['events']  = {   'name': '1',
                         'xaxis' : 'events', 
                         'fold' : 3
                         }
-    
+   
 variables['nvtx']  = {  'name': 'nvtx',      
                         'range' : (30,0,40),  
                         'xaxis' : 'nvtx', 
-                        'fold' : 3
+                       'fold' : 3
                       }
 
 #lepton
@@ -42,7 +42,6 @@ variables['nlep'] =  {
                 'fold': 3
         }
 
-
 variables['eta1']  = {  'name': 'std_vector_lepton_eta[0]',     
                         'range' : (10,-3,3),   
                         'xaxis' : '#eta 1st lep',
@@ -62,13 +61,13 @@ variables['njets'] =  {
                'xaxis': '# jets',
                'fold': 3
        }
+
 variables['nbjet_loose']  = {
                         'name': '1*(std_vector_jet_cmvav2[0]>-0.715)+1*(std_vector_jet_cmvav2[1]>-0.715)+1*(std_vector_jet_cmvav2[2]>-0.715)+1*(std_vector_jet_cmvav2[3]>-0.715)+1*(std_vector_jet_cmvav2[4]>-0.715)+1*(std_vector_jet_cmvav2[5]>-0.715)',
                         'range' : (10,0,10),
                         'xaxis' : 'nbjet_loose',
                         'fold'  : 3
                         }
-
 
 variables['jetpt1']  = {
                         'name': 'std_vector_jet_pt[0]',     

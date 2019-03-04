@@ -12,25 +12,25 @@
 
 
 groupPlot['HH']  = {  
-                 'nameHR' : 'HH',
-                 'isSignal' : 1,
-                 'color': 632,   
-                 'samples'  : ['HH']
-              }
+			'nameHR' : 'HH',
+			'isSignal' : 1,
+			'color': 632,   
+			'samples'  : ['HH']
+		   }
 
 groupPlot['Wjets']  = {
                         'nameHR' : 'W+Jets',
                         'isSignal' : 0,
                         'color': 418,  
                         'samples'  : ['Wjets']
-                        }
+                      }
 
-groupPlot['TTToSemilepton']  = {    
-				'nameHR' : 'TTToSemilepton',
-				'isSignal' : 0,
-				'color' : 860,
-				'samples' : ['TT']
-                		 }	
+#groupPlot['TTToSemilepton']  = {    
+#				  'nameHR' : 'TTToSemilepton',
+#				  'isSignal' : 0,
+#				  'color' : 860,
+#			  	  'samples' : ['TT']
+#			       }	
 
 
 #groupPlot['Others']  = {
@@ -104,6 +104,13 @@ groupPlot['TTToSemilepton']  = {
 #                        'samples'  : ['ZZTo2L2Q']
 #                        }
 
+#DATA
+#groupPlot['DATA']  = {
+#			'nameHR' : 'DATA',
+#			'isSignal' : 0,
+#                	'color': 617,
+#                        'samples'  : ['DATA']
+#		     }	
 
 
 
@@ -117,7 +124,6 @@ plot['HH']  = {
                   'isData'   : 0, 
                   'scale'    : 1.   ,
               }
-
 plot['Wjets']  = {
                   'color': 418,
                   'isSignal' : 0,
@@ -126,12 +132,12 @@ plot['Wjets']  = {
               }
 
 
-plot['TT']  = {
-                  'color': 860,    
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1.   ,
-              }
+#plot['TT']  = {
+#                  'color': 860,    
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1.   ,
+#              }
 
 #plot['Others']  = {
 #                  'color': 418,
@@ -203,6 +209,20 @@ plot['TT']  = {
 #                  'isData'   : 0,
 #                  'scale'    : 1.   ,
 #              }
+
+
+#DATA
+plot['DATA']  = { 
+                  'nameHR' : 'Data',
+                  'color': 1 ,  
+                  'isSignal' : 0,
+                  'isData'   : 1 ,
+                  'isBlind'  : 0
+              }
+
+
+
+
 
 #legend['lumi'] = 'L = 6.3/fb'
 legend['lumi'] = 'L = 35.9/fb'
