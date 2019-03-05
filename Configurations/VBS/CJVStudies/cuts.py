@@ -33,7 +33,7 @@ std_vector_jet_pt[2]<=30 \
 '
 
 DynamicJetVeto = '\
-std_vector_jet_pt[2] < 0.25 * std_vector_lepton_pt[2] \
+std_vector_jet_pt[2] < 0.25 * std_vector_lepton_pt[0] \
 ' #ho inserito una percentuale del 25% come esempio
 
 cuts['Jet_Veto']=JetVeto
