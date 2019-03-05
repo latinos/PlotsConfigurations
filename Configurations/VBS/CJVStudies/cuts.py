@@ -27,17 +27,20 @@ CentralJetVeto = '\
 std_vector_jet_pt[2]<30 \
 || (std_vector_jet_pt[2]>30 \
 && std_vector_jet_eta[2] <  \
-((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[0]+(std_vector_jet_eta[0]>std_vector_jet_eta[1])*std_vector_jet_eta[1]) \
+((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[0]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[1]) \
 && std_vector_jet_eta[2] > \
-((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[1]+(std_vector_jet_eta[0]>std_vector_jet_eta[1])*std_vector_jet_eta[0]) ) \
+((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[1]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[0]) ) \
 '
 
 DynamicJetVeto = '\
 std_vector_jet_pt[2] < 0.25 * std_vector_lepton_pt[2] \
 ' #ho inserito una percentuale del 25% come esempio
 
-bJetVeto = CentralJetVeto
+cuts['Jet_Veto']=JetVeto
 
+cuts['Central_Jet_Veto']=CentralJetVeto
+
+cuts['Dynamic_Jet_Veto']=DynamicJetVeto
 
 tauVeto = '\
 ( std_vector_tau_pt[0] < 18 || std_vector_tau_looseIso_dbeta[0] < 1. || (sqrt( pow(std_vector_tau_eta[0] - std_vector_lepton_eta[0], 2) + pow(abs(abs(std_vector_tau_phi[0] - std_vector_lepton_phi[0])-pi)-pi, 2) ) < 0.3 || sqrt( pow(std_vector_tau_eta[0] - std_vector_lepton_eta[1], 2) + pow(abs(abs(std_vector_tau_phi[0] - std_vector_lepton_phi[1])-pi)-pi, 2) ) < 0.3 ) ) \
@@ -81,7 +84,7 @@ softMuVeto='\
 '
 
 
-"bJetVeto = BVeto #+ softMuVeto"
+bJetVeto = BVeto #+ softMuVeto
 bJetTag  = '!(' + bJetVeto + ')'  
 
 #cuts['VBS_13TeV_TauVeto']='1' + tauVeto
