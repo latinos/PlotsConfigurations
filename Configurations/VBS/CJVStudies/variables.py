@@ -52,7 +52,7 @@ variables['mll']  = {   'name': 'mll',            #   variable name
                       #'fold': 3
                       #}
 
-variables['mjj']  = {  'name': '1*(std_vector_jet_pt[2]<=30 || (std_vector_jet_pt[2]>30 && std_vector_jet_eta[2] < \
+variables['cjv']  = {  'name': '1*(std_vector_jet_pt[2]<=30 || (std_vector_jet_pt[2]>30 && std_vector_jet_eta[2] < \
 		        ((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[0]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[1]) \
 		        && std_vector_jet_eta[2] > \
 		        ((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[1]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[0]) )) \
@@ -61,7 +61,7 @@ variables['mjj']  = {  'name': '1*(std_vector_jet_pt[2]<=30 || (std_vector_jet_p
 		        && std_vector_jet_eta[2] > \
 		        ((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[1]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[0]) )))',
                       'range': (2,0,2), 
-                      'xaxis': 'CJV [GeV]',
+                      'xaxis': 'cjv [GeV]',
                       'fold': 3
                       }
 
