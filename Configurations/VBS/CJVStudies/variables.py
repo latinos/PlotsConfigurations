@@ -62,9 +62,9 @@ variables['cjv']  = {  'name': '1*(std_vector_jet_pt[2]<=30 || (std_vector_jet_p
                       'fold': 3
                       }
 
-variables['prel']  = {   'name': 'std_vector_lepton_pt/std_vector_jet_pt[2]',
+variables['prel']  = {   'name': 'std_vector_lepton_pt[2]/std_vector_jet_pt[2]',
                        'range' : (10, 0. ,200),    #   variable range
-                       'xaxis' : 'p_{t}^{lepton} / p_{t}^{jet}[2]',  #   x axis name
+                       'xaxis' : 'p_{t}^{lepton}[2] / p_{t}^{jet}[2]',  #   x axis name
                        'fold' : 3
                        }
 
