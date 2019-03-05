@@ -39,11 +39,11 @@
                 # 'fold': 3
         # }
 
-variables['mll']  = {   'name': 'mll',            #   variable name
-                       'range' : (10, 0. ,200),    #   variable range
-                       'xaxis' : 'mll [GeV]',  #   x axis name
-                       'fold' : 3
-                       }
+#variables['mll']  = {   'name': 'mll',            #   variable name
+                       #'range' : (10, 0. ,200),    #   variable range
+                       #'xaxis' : 'mll [GeV]',  #   x axis name
+                       #'fold' : 3
+                       #}
 
 
 #variables['mjj']  = {  'name': 'mjj',
@@ -51,6 +51,12 @@ variables['mll']  = {   'name': 'mll',            #   variable name
                       #'xaxis': 'mjj [GeV]',
                       #'fold': 3
                       #}
+                      
+variables['jv']  = {   'name': '1*(std_vector_jet_pt[2]<30)',
+                       'range' : (10, 0. ,2),    
+                       'xaxis' : 'p_{t}^{lepton}[2] / p_{t}^{jet}[2]',  
+                       'fold' : 3
+                       } #if jet veto is satisfied jv is equal to 1, else 0
 
 variables['cjv']  = {  'name': '1*(std_vector_jet_pt[2]<=30 || (std_vector_jet_pt[2]>30 && std_vector_jet_eta[2] < \
 		        ((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[0]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[1]) \
@@ -60,11 +66,11 @@ variables['cjv']  = {  'name': '1*(std_vector_jet_pt[2]<=30 || (std_vector_jet_p
                       'range': (2,0.,2), 
                       'xaxis': 'cjv',
                       'fold': 3
-                      }
+                      } #if central jet veto is satisfied cjv is equal to 1, else 0
 
 variables['prel']  = {   'name': 'std_vector_lepton_pt[0]/std_vector_jet_pt[2]',
-                       'range' : (10, 0. ,200),    #   variable range
-                       'xaxis' : 'p_{t}^{lepton}[2] / p_{t}^{jet}[2]',  #   x axis name
+                       'range' : (10, 0. ,2),    
+                       'xaxis' : 'p_{t}^{lepton}[2] / p_{t}^{jet}[2]',  
                        'fold' : 3
                        }
 
