@@ -216,7 +216,7 @@ nuisances['met_DY'] = {
 
 nuisances['PU'] = {
     'name': 'CMS_PU_2017',
-    'kind': 'tree',
+    'kind': 'weight',
     'type': 'shape',
     'samples': {
         'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
@@ -290,22 +290,6 @@ nuisances['TopPtRew'] = {
     'type': 'shape',
     'samples': {'top': ["1.","((1./Top_pTrw - 1)*(topGenPt>0 && antitopGenPt>0) + 1)"]},
     'symmetrize': True
-}
-
-#nuisances['WgStarRate'] = {
-#    'name': 'CMS_hww_WgStarScale',
-#    'type': 'lnN',
-#    'samples': {
-#        'WZgS_L': '1.25',
-#    },
-#}
-
-nuisances['WZRate'] = {
-    'name': 'CMS_hww_WZScale',
-    'type': 'lnN',
-    'samples': {
-        'WZgS_H': '1.16',
-    },
 }
 
 ###### pdf uncertainties
@@ -428,9 +412,10 @@ nuisances['QCDscale_VV'] = {
     'name': 'QCDscale_VV',
     'type': 'lnN',
     'samples': {
-        'VZ': '1.03',
-        'WZgS_L': '1.03',
-        'WZgS_H': '1.03'
+        'Vg': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
+        'VZ': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
+        'WZgS_L': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
+        'WZgS_H': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]']
     }
 }
 
