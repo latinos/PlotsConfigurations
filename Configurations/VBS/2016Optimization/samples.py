@@ -109,7 +109,7 @@ samples['ttbar'] = 	{ 	'name'  :getSampleFiles(chargeFlipDir,'TTTo2L2Nu',True)
 ###########################################
 #########  Prompt Substraction  ###########
 ###########################################
-
+#The FakeW=FakeR/1-FakeR is calculated from DATA in a region enhanced in non-Prompt and fake leptons. Using Simulations is possible to substract the fake contributions (done using two regions: Tight-Loose and Loose-Loose) leaving only the non-prompt background (TL-LL)DATA-(TL-LL)Sim*FakeW=N_non-prompt
 samples['DY_promptSubtr']  = { 	'name' 	:getSampleFiles(PromptSubtr,'DYJetsToLL_M-10to50',True)
 										+getSampleFiles(PromptSubtr,'DYJetsToLL_M-50',True)    
 										,

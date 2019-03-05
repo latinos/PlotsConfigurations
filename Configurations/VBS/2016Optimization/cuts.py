@@ -78,6 +78,11 @@ zveto ='mll>20 && (abs(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[
 cuts['VBS_13TeV_AllVetoes']  =zveto + '&&' + tauVeto +'&&'+ bJetVeto  
 cuts['VBS_13TeV_AllVetoes_Positive']  =zveto + '&&' + tauVeto +'&&'+ bJetVeto + '&& std_vector_lepton_flavour[0]>0'
 cuts['VBS_13TeV_AllVetoes_Negative']  =zveto + '&&' + tauVeto +'&&'+ bJetVeto + '&& std_vector_lepton_flavour[0]<0'
+cuts['VBS_13TeV_AllVetoes_Mu']  =zveto + '&&' + tauVeto +'&&'+ bJetVeto + '&& std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 11*11'
+cuts['VBS_13TeV_AllVetoes_Ele']  =zveto + '&&' + tauVeto +'&&'+ bJetVeto + '&& std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 13*13'
+
+cuts['VBS_13TeV_AllVetoes_SameFlavour']  =zveto + '&&' + tauVeto +'&&'+ bJetVeto + '&& std_vector_lepton_flavour[0] == std_vector_lepton_flavour[1]'
+cuts['VBS_13TeV_AllVetoes_OppositeFlavour']  =zveto + '&&' + tauVeto +'&&'+ bJetVeto + '&& std_vector_lepton_flavour[0] != std_vector_lepton_flavour[1]'
 # 11 = e
 # 13 = mu
 # 15 = tau
