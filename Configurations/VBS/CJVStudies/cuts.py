@@ -24,7 +24,7 @@ std_vector_jet_pt[2]<30 \
 '
 
 CentralJetVeto = '\
-std_vector_jet_pt[2]<30 \
+std_vector_jet_pt[2]<=30 \
 || (std_vector_jet_pt[2]>30 \
 && std_vector_jet_eta[2] <  \
 ((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[0]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[1]) \

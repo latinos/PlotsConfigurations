@@ -46,11 +46,25 @@ variables['mll']  = {   'name': 'mll',            #   variable name
                        }
 
 
-variables['mjj']  = {  'name': 'mjj',
-                      'range': (10,500,2000),  #for 500 < mjj < 1000
-                      'xaxis': 'mjj [GeV]',
+#variables['mjj']  = {  'name': 'mjj',
+                      #'range': (10,500,2000),  #for 500 < mjj < 1000
+                      #'xaxis': 'mjj [GeV]',
+                      #'fold': 3
+                      #}
+
+variables['CJV']  = {  'name': '1*(std_vector_jet_pt[2]<=30 || (std_vector_jet_pt[2]>30 && std_vector_jet_eta[2] < \
+		        ((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[0]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[1]) \
+		        && std_vector_jet_eta[2] > \
+		        ((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[1]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[0]) )) \
+		        + 0* (!(std_vector_jet_pt[2]<=30 || (std_vector_jet_pt[2]>30 && std_vector_jet_eta[2] < \
+		        ((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[0]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[1]) \
+		        && std_vector_jet_eta[2] > \
+		        ((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[1]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[0]) )))',
+                      'range': (2,0,2), 
+                      'xaxis': 'CJV [GeV]',
                       'fold': 3
                       }
+
 
 # variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
                        # 'range' : (10,0.,150),   
