@@ -46,16 +46,16 @@ samples['HH'] = {	'name' : getSampleFiles(directory_MC, 'HHWWbblvjj_nevents5k', 
 			'weight' : XSWeight + '*' + SFweight1l + '*' + METFilter_MC,
 		}
 
-#samples['Wjets'] = { 	'name' :   getSampleFiles(directory_MC, 'WJetsToLNu_HT100_200', True)\
-#				+ getSampleFiles(directory_MC, 'WJetsToLNu_HT200_400', True)\
-#				+ getSampleFiles(directory_MC, 'WJetsToLNu_HT400_600', True)\
-#				+ getSampleFiles(directory_MC, 'WJetsToLNu_HT600_800', True)\
-#				+ getSampleFiles(directory_MC, 'WJetsToLNu_HT800_1200_ext1', True)\
-#				+ getSampleFiles(directory_MC, 'WJetsToLNu_HT1200_2500', True)\
-#				+ getSampleFiles(directory_MC, 'WJetsToLNu_HT2500_inf', True),
-#				'weight': XSWeight + '*' + SFweight1l + '*' + METFilter_MC ,
-#				'FilesPerJob' : 2,
-#		   }
+samples['Wjets'] = { 	'name' :   getSampleFiles(directory_MC, 'WJetsToLNu_HT100_200', True)\
+				+ getSampleFiles(directory_MC, 'WJetsToLNu_HT200_400', True)\
+				+ getSampleFiles(directory_MC, 'WJetsToLNu_HT400_600', True)\
+				+ getSampleFiles(directory_MC, 'WJetsToLNu_HT600_800', True)\
+				+ getSampleFiles(directory_MC, 'WJetsToLNu_HT800_1200_ext1', True)\
+				+ getSampleFiles(directory_MC, 'WJetsToLNu_HT1200_2500', True)\
+				+ getSampleFiles(directory_MC, 'WJetsToLNu_HT2500_inf', True),
+				'weight': XSWeight + '*' + SFweight1l + '*' + METFilter_MC ,
+				'FilesPerJob' : 2,
+		   }
 
 
 
@@ -151,20 +151,20 @@ DataTrig = {
             'SingleMuon'     : '!trig_EleMu && !trig_DbleMu &&  trig_SnglMu' ,
             'DoubleEG'       : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu &&  trig_DbleEle' ,
             'SingleElectron' : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu && !trig_DbleEle &&  trig_SnglEle' ,
-}
+	   }
 
-samples['DATA']  = {    'name'   : [],
-				   'weight' : XSWeight + '*' + SFweight1l + '*' + METFilter_MC,
-				   'weights' : [],
-				   'isData': ['all'],
-                      		   'FilesPerJob' : 2,
-		   }		
+#samples['DATA']  = {    'name'   : [],
+#				   'weight' : XSWeight + '*' + SFweight1l + '*' + METFilter_MC,
+#				   'weights' : [],
+#				   'isData': ['all'],
+#                      		   'FilesPerJob' : 2,
+#		   }		
 
 
-for Run in DataRun :
-	directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__hadd/'
-	for DataSet in DataSets :
-	 	FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
-		for iFile in FileTarget:
-			samples['DATA']['name'].append(iFile)
-			samples['DATA']['weights'].append(DataTrig[DataSet]) 
+#for Run in DataRun :
+#	directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__hadd/'
+#	for DataSet in DataSets :
+#	 	FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
+#		for iFile in FileTarget:
+#			samples['DATA']['name'].append(iFile)
+#			samples['DATA']['weights'].append(DataTrig[DataSet]) 

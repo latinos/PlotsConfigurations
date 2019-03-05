@@ -18,12 +18,12 @@ groupPlot['HH']  = {
 			'samples'  : ['HH']
 		   }
 
-#groupPlot['Wjets']  = {
-#                        'nameHR' : 'W+Jets',
-#                        'isSignal' : 0,
-#                        'color': 418,  
-#                        'samples'  : ['Wjets']
-#                      }
+groupPlot['Wjets']  = {
+                        'nameHR' : 'W+Jets',
+                        'isSignal' : 0,
+                        'color': 418,  
+                        'samples'  : ['Wjets']
+                     }
 
 #groupPlot['TTToSemilepton']  = {    
 #				  'nameHR' : 'TTToSemilepton',
@@ -124,12 +124,12 @@ plot['HH']  = {
                   'isData'   : 0, 
                   'scale'    : 1.   ,
               }
-#plot['Wjets']  = {
-#                  'color': 418,
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.   ,
-#              }
+plot['Wjets']  = {
+                  'color': 418,
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.   ,
+	          }
 
 
 #plot['TT']  = {
@@ -212,14 +212,14 @@ plot['HH']  = {
 
 
 #DATA
-plot['DATA']  = { 
-                  'nameHR' : 'Data',
-                  'color': 1 ,  
-                  'isSignal' : 0,
-                  'isData'   : 1 ,
-                  'isBlind'  : 0,
-		  'scale' : 1.
-              }
+#plot['DATA']  = { 
+#                  'nameHR' : 'Data',
+#                  'color': 1 ,  
+#                  'isSignal' : 0,
+#                  'isData'   : 1 ,
+#                  'isBlind'  : 0,
+#		  'scale' : 1.
+#              }
 
 
 
