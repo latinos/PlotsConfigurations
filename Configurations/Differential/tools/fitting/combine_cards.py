@@ -13,6 +13,7 @@ argParser.add_argument('--out', '-o', metavar = 'PATH', dest = 'outpath', defaul
 argParser.add_argument('--drop-mcstats', '-M', action = 'store_true', dest = 'dropMCStats', help = 'Drop MC stats (for test only).')
 argParser.add_argument('--only-fullmodel', '-O', action = 'store_true', dest = 'onlyFullModel', help = 'Keep only the full model card.')
 argParser.add_argument('--just-combine', '-C', action = 'store_true', dest = 'justCombine', help = 'Do not run text2workspace.')
+argParser.add_argument('--exclude', '-x', metavar = 'PATTERN', dest = 'exclude', nargs = '+', help = 'Exclude cards matching regular expression patterns.')
 argParser.add_argument('--hdf5', '-H', action = 'store_true', dest = 'hdf5', help = 'Use text2hdf5.py.')
 
 args = argParser.parse_args()
@@ -47,6 +48,14 @@ for cut in os.listdir(args.inpath):
 
     if isCR and '_WW' in cut:
         continue
+
+    if args.exclude:
+        try:
+            next(pat for pat in args.exclude if re.match(pat, cut))
+        except StopIteration:
+            pass
+        else:
+            continue
 
     cuts.append(cut)
 

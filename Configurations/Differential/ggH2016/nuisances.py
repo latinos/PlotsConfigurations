@@ -286,6 +286,24 @@ nuisances['UE'] = {
     'AsLnN': '1'
 }
 
+##### Pileup reweighting
+
+nuisances['PU']  = {
+    'name': 'CMS_PU_2016',
+    'kind': 'tree',
+    'type': 'shape',
+    'samples': {
+        'WW': ['1.01244825559', '0.989356107719'],
+        'ggH_hww': ['1.01372240456', '0.987061972012'],
+        'qqH_hww': ['1.01939300826', '0.990627253001'],
+        'top': ['1.03521043346', '1.00269118365'], # we don't have some of the ST samples in the PU varied directories, so the factors are both above 1 
+        'DY': ['1.01057222659', '0.989724928521'],
+    },
+    'folderUp': makeMCDirectory('PUup'),
+    'folderDown': makeMCDirectory('PUdo'),
+    'AsLnN': '1',
+}
+
 ####### Generic "cross section uncertainties"
 
 # ttbar / single top ratio uncertainty
@@ -600,6 +618,14 @@ nuisances['QCDscale_ttH'] = {
         'ttH_hww': values
     },
     'type': 'lnN',
+}
+
+nuisances['QCDscale_WWewk'] = {
+    'name': 'QCDscale_WWewk',
+    'samples': {
+        'WWewk': '1.11',
+    },
+    'type': 'lnN'
 }
 
 nuisances['QCDscale_qqbar_ACCEPT'] = {

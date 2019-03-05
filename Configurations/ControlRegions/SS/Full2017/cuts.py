@@ -135,6 +135,7 @@ addcut('SS_2j_ee', _tmp)
 
 _tmp = [
      'Lepton_pdgId[0]*Lepton_pdgId[1] ==13*13',
+     'Lepton_pt[1]>20',      
      'Alt$(CleanJet_pt[0],0)<30',
      'fabs(mll-91.2) > 20.',
       ]
@@ -265,7 +266,7 @@ addcut('SS_pt2lt20_1j_me', _tmp)
 _tmp = [
      'fabs(Lepton_pdgId[0])== 13',
      'fabs(Lepton_pdgId[1])== 11',
-     'Lepton_pt[1]>20', 
+     'Lepton_pt[1]<20', 
      'Lepton_pdgId[0]*Lepton_pdgId[1] >0',
      'Alt$(CleanJet_pt[0],0)>30',
      'Alt$(CleanJet_pt[1],0)>30',
@@ -302,6 +303,7 @@ addcut('SS_pt2lt20_2j_ee', _tmp)
 
 _tmp = [
      'Lepton_pdgId[0]*Lepton_pdgId[1] ==13*13',
+     'Lepton_pt[1]<20',      
      'Alt$(CleanJet_pt[0],0)<30',
      'fabs(mll-91.2) > 20.',
       ]

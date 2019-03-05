@@ -180,6 +180,11 @@ samples['WW'] = {
 #  'ge4j': 'manyJets'
 #}
 
+samples['WWewk'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK'),
+    'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6)==0)' #filter tops
+}
+
 #FIXME Check if k-factor is already taken into account in XSWeight
 files = nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
     nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') + \

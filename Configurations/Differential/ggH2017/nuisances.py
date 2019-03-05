@@ -128,6 +128,15 @@ nuisances['trigg'] = {
     'samples': dict((skey, trig_syst) for skey in mc)
 }
 
+prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
+
+nuisances['prefire'] = {
+    'name': 'CMS_eff_prefiring_2017',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, prefire_syst) for skey in mc)
+}
+
 ##### Electron Efficiency and energy scale
 
 nuisances['eff_e'] = {
@@ -202,6 +211,23 @@ nuisances['met_DY'] = {
     'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut]),
     'AsLnN': '1'
 }
+
+##### Pileup
+
+nuisances['PU'] = {
+    'name': 'CMS_PU_2017',
+    'kind': 'tree',
+    'type': 'shape',
+    'samples': {
+        'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
+        'top': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
+        'WW': ['1.0033022059*(puWeightUp/puWeight)', '0.997085330608*(puWeightDown/puWeight)'],
+        'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
+        'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
+    },
+    'AsLnN': '1',
+}
+
 
 ##### PS and UE
 
@@ -550,6 +576,15 @@ nuisances['QCDscale_ttH'] = {
     },
     'type': 'lnN',
 }
+
+nuisances['QCDscale_WWewk'] = {
+    'name': 'QCDscale_WWewk',
+    'samples': {
+        'WWewk': '1.11',
+    },
+    'type': 'lnN'
+}
+
 
 #FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['QCDscale_qqbar_ACCEPT'] = {

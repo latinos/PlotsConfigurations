@@ -12,6 +12,8 @@ sys.argv = argv[:1]
 import ROOT
 
 FIRENZE = False
+NOHIGGS = True
+SRONLY = True
 
 class SourceGetter(object):
     '''Tool to get source histograms'''
@@ -487,7 +489,8 @@ if __name__ == '__main__':
             raise RuntimeError('Cannot determine year')
     
     ### Load the configuration
-    
+
+    _samples_noload = True
     samples = {}
     with open('samples.py') as samplesfile:
         exec(samplesfile)
@@ -523,8 +526,9 @@ if __name__ == '__main__':
                 return 'mllVSmth_8x9', 72
 
         HistogramMerger.crCategories = []
-        for sel in ['top', 'DY', 'WW']:
-            HistogramMerger.crCategories.extend('%s_%s' % (outBin, sel) for outBin in HistogramMerger.outBins)
+        if not SRONLY:
+            for sel in ['top', 'DY', 'WW']:
+                HistogramMerger.crCategories.extend('%s_%s' % (outBin, sel) for outBin in HistogramMerger.outBins)
     
     else:
         HistogramMerger.outBins = ['NJ_0', 'NJ_1', 'NJ_2', 'NJ_3', 'NJ_GE4']
@@ -566,11 +570,12 @@ if __name__ == '__main__':
             crs = ['top', 'DY', 'WW']
 
         HistogramMerger.crCategories = []
-        for sel in crs:
-            if FIRENZE:
-                HistogramMerger.crCategories.extend('%s_%sj' % (sel, nj) for nj in ['0', '1', '2', '3', 'ge4'])
-            else:
-                HistogramMerger.crCategories.extend('%s_%s' % (outBin, sel) for outBin in HistogramMerger.outBins)
+        if not SRONLY:
+            for sel in crs:
+                if FIRENZE:
+                    HistogramMerger.crCategories.extend('%s_%sj' % (sel, nj) for nj in ['0', '1', '2', '3', 'ge4'])
+                else:
+                    HistogramMerger.crCategories.extend('%s_%s' % (outBin, sel) for outBin in HistogramMerger.outBins)
     
     ### Sample merging configuration according to the flags at the beginning
     
@@ -600,21 +605,22 @@ if __name__ == '__main__':
     else:
         xH_hww.remove('bbH_hww')
         minors = ['ggWW', 'Vg', 'WZgS_H', 'VZ', 'VVV']
-    
-    if args.signal_hww_only:
-        if args.signal_ggH_separate:
-            signals['ggH_hww'] = ggH_hww
-            signals['xH_hww'] = xH_hww
+
+    if not NOHIGGS:
+        if args.signal_hww_only:
+            if args.signal_ggH_separate:
+                signals['ggH_hww'] = ggH_hww
+                signals['xH_hww'] = xH_hww
+            else:
+                signals['smH_hww'] = ggH_hww + xH_hww
+        
+            backgrounds['htt'] = [(sample, [f + b for f in ['fid_', 'nonfid_'] for b in allBins]) for sample in (ggH_htt + xH_htt)]
         else:
-            signals['smH_hww'] = ggH_hww + xH_hww
-    
-        backgrounds['htt'] = [(sample, [f + b for f in ['fid_', 'nonfid_'] for b in allBins]) for sample in (ggH_htt + xH_htt)]
-    else:
-        if args.signal_ggH_separate:
-            signals['ggH'] = ggH_hww + ggH_htt
-            signals['xH'] = xH_hww + xH_htt
-        else:
-            signals['smH'] = ggH_hww + xH_hww + ggH_htt + xH_htt
+            if args.signal_ggH_separate:
+                signals['ggH'] = ggH_hww + ggH_htt
+                signals['xH'] = xH_hww + xH_htt
+            else:
+                signals['smH'] = ggH_hww + xH_hww + ggH_htt + xH_htt
     
     if args.input_fake_flavored:
         backgrounds['Fake_em'] = [('Fake', ['em'])]
@@ -652,7 +658,7 @@ if __name__ == '__main__':
 
     HistogramMerger.year = args.year
     SourceGetter.tag = args.tag
-    
+
     ### Prepare nuisance editing
     
     HistogramMerger.lnNSpecific = {}
@@ -761,7 +767,7 @@ if __name__ == '__main__':
                 time.sleep(1)
                 checkProcess()
     
-            proc = multiprocessing.Process(target = mergeOne, name = target, args = (args.sourcePath, jobArg, queue))
+            proc = multiprocessing.Process(target = mergeOne, args = (args.sourcePath, jobArg, queue))
             proc.start()
             processes.append(proc)
     

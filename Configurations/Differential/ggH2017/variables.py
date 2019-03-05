@@ -3,6 +3,8 @@
 # imported from cuts.py
 # cuts
 
+import math
+
 try:
     variables
 except NameError:
@@ -72,5 +74,49 @@ variables['mll'] = {
     'range': (mllbinning,),
     'xaxis': 'm^{ll} [GeV]', #   x axis name
     'doWeight': 1, # do weighted plot too
+    'cuts': cr
+}
+
+variables['jet1Eta'] = {
+    'name': 'CleanJet_eta[0] * (CleanJet_pt[0] > 30.) - 5. * (CleanJet_pt[0] < 30.)',
+    'range': (50, -4.7, 4.7),
+    'xaxis': '#eta^{j1}',
+    'doWeight': 1
+}
+
+variables['jet2Eta'] = {
+    'name': 'CleanJet_eta[1] * (CleanJet_pt[1] > 30.) - 5. * (CleanJet_pt[1] < 30.)',
+    'range': (50, -4.7, 4.7),
+    'xaxis': '#eta^{j2}',
+    'doWeight': 1
+}
+
+variables['met'] = {
+    'name': 'PuppiMET_pt',
+    'range': (50, 0., 100.),
+    'xaxis': 'E_{T}^{miss} [GeV]',
+    'doWeight': 1
+}
+
+variables['metPhi'] = {
+    'name': 'PuppiMET_phi',
+    'range': (50, -math.pi, math.pi),
+    'xaxis': '#phi(E_{T}^{miss})',
+    'doWeight': 1
+}
+
+variables['ptWW'] = {
+    'name': 'pTWW',
+    'range': (50, 0., 400.),
+    'xaxis': 'p_{T}^{WW} [GeV]',
+    'doWeight': 1,
+    'cuts': cr
+}
+
+variables['ht'] = {
+    'name': 'Sum$(CleanJet_pt * (CleanJet_pt > 30. && TMath::Abs(CleanJet_eta) < 4.7))',
+    'range': (50, 0., 1000.),
+    'xaxis': 'H_{T} [GeV]',
+    'doWeight': 1,
     'cuts': cr
 }
