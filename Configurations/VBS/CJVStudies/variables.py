@@ -58,9 +58,15 @@ variables['cjv']  = {  'name': '1*(std_vector_jet_pt[2]<=30 || (std_vector_jet_p
 		        ((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[1]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[0]) )) \
 		        + 0',
                       'range': (2,0.,2), 
-                      'xaxis': 'cjv [GeV]',
+                      'xaxis': 'cjv',
                       'fold': 3
                       }
+
+variables['prel']  = {   'name': 'std_vector_lepton_pt/std_vector_jet_pt[2]',
+                       'range' : (10, 0. ,200),    #   variable range
+                       'xaxis' : 'p_{t}^{lepton} / p_{t}^{jet}[2]',  #   x axis name
+                       'fold' : 3
+                       }
 
 
 # variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
