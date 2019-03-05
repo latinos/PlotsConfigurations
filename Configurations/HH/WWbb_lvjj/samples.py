@@ -153,18 +153,17 @@ DataTrig = {
             'SingleElectron' : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu && !trig_DbleEle &&  trig_SnglEle' ,
 	   }
 
-#samples['DATA']  = {    'name'   : [],
-#				   'weight' : XSWeight + '*' + SFweight1l + '*' + METFilter_MC,
-#				   'weights' : [],
-#				   'isData': ['all'],
-#                      		   'FilesPerJob' : 2,
-#		   }		
+samples['DATA']  = {    'name'   : [],
+				   'weight' : XSWeight + '*' + SFweight1l + '*' + METFilter_MC,
+				   'weights' : [],
+				   'isData': ['all'],
+                      		   'FilesPerJob' : 2,
+		   }		
 
-
-#for Run in DataRun :
-#	directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__hadd/'
-#	for DataSet in DataSets :
-#	 	FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
-#		for iFile in FileTarget:
-#			samples['DATA']['name'].append(iFile)
-#			samples['DATA']['weights'].append(DataTrig[DataSet]) 
+for Run in DataRun :
+	directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__hadd/'
+	for DataSet in DataSets :
+	 	FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
+		for iFile in FileTarget:
+			samples['DATA']['name'].append(iFile)
+			samples['DATA']['weights'].append(DataTrig[DataSet]) 
