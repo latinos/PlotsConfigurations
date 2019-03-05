@@ -60,7 +60,7 @@ variables['cjv']  = {  'name': '1*(std_vector_jet_pt[2]<=30 || (std_vector_jet_p
 		        ((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[0]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[1]) \
 		        && std_vector_jet_eta[2] > \
 		        ((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[1]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[0]) )))',
-                      'range': (2,0,2), 
+                      'range': (2,0.,2), 
                       'xaxis': 'cjv [GeV]',
                       'fold': 3
                       }
