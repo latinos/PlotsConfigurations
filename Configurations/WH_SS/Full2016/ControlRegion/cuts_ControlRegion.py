@@ -3,9 +3,7 @@
   
 supercut = 'mll>12  \
             && std_vector_lepton_pt[0]>25 && std_vector_lepton_pt[1]>20 \
-            && metPfType1 > 20 \
             && (njet>=1) \
-            && abs(std_vector_lepton_eta[0] - std_vector_lepton_eta[1])<2.0 \
             '
 
 #supercut = 'mll>12  \
@@ -41,8 +39,27 @@ cuts['hww2l2v_13TeV_WH_SS_ue_WZ_CR'] = '((std_vector_lepton_flavour[0] == 13 && 
                                        && std_vector_jet_pt[0]>30 \
                                        '
 cuts['hww2l2v_13TeV_WH_SS_ee_DY_CR'] = '((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 11*11) || (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*-11)) \
+                                       && '+bVeto+' \
                                        && std_vector_electron_tripleChargeAgreement[0]==1 \
                                        && std_vector_electron_tripleChargeAgreement[1]==1 \
+                                       && std_vector_lepton_pt[2]<10 \
+                                       && abs(mll-91.2)<15 \
+                                       && std_vector_jet_pt[0]>30 \
+                                       '
+cuts['hww2l2v_13TeV_WH_SS_uu_DY_CR'] = '((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 13*13) || (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -13*-13)) \
+                                       && '+bVeto+' \
+                                       && std_vector_lepton_pt[2]<10 \
+                                       && abs(mll-91.2)<15 \
+                                       && std_vector_jet_pt[0]>30 \
+                                       '
+cuts['hww2l2v_13TeV_WH_SS_eu_DY_CR'] = '((std_vector_lepton_flavour[0] == 11 && std_vector_lepton_flavour[1] == 13) || (std_vector_lepton_flavour[0] == -11 && std_vector_lepton_flavour[1] == -13)) \
+                                       && '+bVeto+' \
+                                       && std_vector_lepton_pt[2]<10 \
+                                       && abs(mll-91.2)<15 \
+                                       && std_vector_jet_pt[0]>30 \
+                                       '
+cuts['hww2l2v_13TeV_WH_SS_ue_DY_CR'] = '((std_vector_lepton_flavour[0] == 13 && std_vector_lepton_flavour[1] == 11) || (std_vector_lepton_flavour[0] == -13 && std_vector_lepton_flavour[1] == -11)) \
+                                       && '+bVeto+' \
                                        && std_vector_lepton_pt[2]<10 \
                                        && abs(mll-91.2)<15 \
                                        && std_vector_jet_pt[0]>30 \
@@ -53,7 +70,7 @@ cuts['hww2l2v_13TeV_WH_SS_eu_Top_CR'] = '((std_vector_lepton_flavour[0] == 11 &&
                                         && ( std_vector_jet_pt[1] >= 30 ) \
                                         && ( std_vector_jet_cmvav2[0]>-0.5884 || std_vector_jet_cmvav2[1]>-0.5884 ) \
                                         '
-cuts['hww2l2v_13TeV_WH_SS_ue_Top_CR'] = '((std_vector_lepton_flavour[0] == 13 && std_vector_lepton_flavour[1] == 11 || (std_vector_lepton_flavour[0] == -13 && std_vector_lepton_flavour[1] == -11)) \
+cuts['hww2l2v_13TeV_WH_SS_ue_Top_CR'] = '((std_vector_lepton_flavour[0] == 13 && std_vector_lepton_flavour[1] == 11) || (std_vector_lepton_flavour[0] == -13 && std_vector_lepton_flavour[1] == -11)) \
                                         && std_vector_lepton_pt[2]<10 \
                                         && ( std_vector_jet_pt[0] >= 30 ) \
                                         && ( std_vector_jet_pt[1] >= 30 ) \
