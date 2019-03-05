@@ -12,5 +12,5 @@ See as a reference Run I configuration:
 
 Trees location:
 
-    srm://storm.mib.infn.it:8444/cms/store/group/OneLepton/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__ssSel/
+    srm://storm.mib.infn.it:8444/cms/store/group/OneLepton/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__wwSel/
     
