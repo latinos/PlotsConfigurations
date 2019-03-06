@@ -4,6 +4,28 @@
     
 #'fold' : # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
 
+variables['jv']  = {   'name': '1*(std_vector_jet_pt[2]<30)',
+                       'range' : (10, 0. ,2),    
+                       'xaxis' : 'jv',  
+                       'fold' : 3
+                       } #if jet veto is satisfied jv is equal to 1, else 0
+
+variables['cjv']  = {  'name': '1*(std_vector_jet_pt[2]<=30 || (std_vector_jet_pt[2]>30 && std_vector_jet_eta[2] < \
+		        ((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[0]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[1]) \
+		        && std_vector_jet_eta[2] > \
+		        ((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[1]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[0]) )) \
+		        + 0',
+                      'range': (2,0.,2), 
+                      'xaxis': 'cjv',
+                      'fold': 3
+                      } #if central jet veto is satisfied cjv is equal to 1, else 0
+
+variables['prel']  = {   'name': 'std_vector_lepton_pt[0]/std_vector_jet_pt[2]',
+                       'range' : (10, 0. ,2),    
+                       'xaxis' : '(1st p_{t}^{lepton}) / (3rd p_{t}^{jet})',  
+                       'fold' : 3
+                       }
+
 # variables['events']  = {   'name': '1',      
                         # 'range' : (1,0,2),  
                         # 'xaxis' : 'events', 
