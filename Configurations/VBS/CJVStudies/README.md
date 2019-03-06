@@ -63,6 +63,7 @@ Once the previous jobs have finished we _hadd_ the outputs.
     mkShapes.py --pycfg=configuration.py \
                 --batchSplit=AsMuchAsPossible \
                 --doHadd=True
+
 *NB*: If the --batchSplit=AsMuchAsPossible option is used, do not _hadd_ the outputs by hand but use the command above instead. Otherwise the MC statistical uncertainties are not treated in the correct way.
 
 
@@ -74,7 +75,7 @@ At this stage one can either produce plots or datacards.
 
 Now we are ready to make data/MC comparison plots.
 
-	mkPlot.py --inputFile=rootFile_test/plots_VBS_SS_test.root \ 
+	mkPlot.py --inputFile=rootFile_test/plots_VBS_SS_test.root \
 		  --scaleToPlot=1.9 \
   		  --showIntegralLegend=1
 
