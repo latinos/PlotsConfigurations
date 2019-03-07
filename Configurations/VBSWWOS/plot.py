@@ -428,7 +428,7 @@ plot['WpWmJJ_EWK_QCD_noTop_noHiggs']  = {
 
 
 # data
-
+'''
 plot['DATA']  = { 
                   'nameHR' : 'Data',
                   'color': 1 ,  
@@ -438,7 +438,7 @@ plot['DATA']  = {
               }
 
 
-
+'''
 
 # additional options
 
