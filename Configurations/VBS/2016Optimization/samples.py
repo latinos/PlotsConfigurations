@@ -145,7 +145,7 @@ samples['WWTo2L2Nu_promptSubtr']  = { 	'name': getSampleFiles(PromptSubtr,'WWTo2
 					
 samples['Vg_promptSubtr'] =	{ 	'name':getSampleFiles(PromptSubtr,'WGJJ',True)  
 									   +getSampleFiles(PromptSubtr,'Zg',True) 
-					 	#+getSampleFiles(PromptSubtr,'Wg_MADGRAPHMLM',True)
+					 	+getSampleFiles(PromptSubtr,'Wg_MADGRAPHMLM',True)
 										,    
                                 'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+SameSign,    
 							}
@@ -297,7 +297,7 @@ samples['WW_strong'] = {   	'name'   :getSampleFiles(MCDir,'WpWpJJ_QCD',True)
 ###########################################
 
 samples['WW_EWK'] = {  	'name'  :getSampleFiles(MCDir,'WpWpJJ_EWK',True)
-				#+getSampleFiles(MCDir,'WmWmJJ_EWK_powheg',True)
+				+getSampleFiles(MCDir,'WmWmJJ_EWK_powheg',True)
 								#+getSampleFiles(directory,'WpWpJJ_EWK_aQGC')
 								,
 						'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+SameSign+'*1.067466' ,    

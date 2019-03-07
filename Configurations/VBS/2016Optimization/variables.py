@@ -103,13 +103,13 @@ variables['detajj']  = {  'name': 'detajj',
                       }
 
 variables['Zlep1']  = {  'name': '(std_vector_lepton_eta[0] - (std_vector_jet_eta[0]+std_vector_jet_eta[1])/2)/detajj',
-                      'range': (10,-2,2),
+                      'range': (10,-1.5,1.5),
                       'xaxis': 'Z^{lep}_{1}',
                       'fold': 3
                       }
 
 variables['Zlep2']  = {  'name': '(std_vector_lepton_eta[1] - (std_vector_jet_eta[0]+std_vector_jet_eta[1])/2)/detajj',
-                      'range': (10,-2,2),
+                      'range': (10,-1.5,1.5),
                       'xaxis': 'Z^{lep}_{2}',
                       'fold': 3
                       }
