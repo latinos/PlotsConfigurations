@@ -167,6 +167,48 @@ samples['DY'] = {
      'weight'  :   'XSWeight*SFweight2l*bPogSF_CMVAL*LepSF2l__ele_mva_90p_Iso2016__mu_cut_Tight80x*LepCut2l__ele_mva_90p_Iso2016__mu_cut_Tight80x*GenLepMatch2l*METFilter_MC' ,
 }  
    
+ samples['WpWmJJ_EWK'] = { 
+     'name'  :  [ 
+            'latino_WpWmJJ_EWK.root',
+     ],  
+     'weight'  :   'XSWeight*SFweight2l*bPogSF_CMVAL*LepSF2l__ele_mva_90p_Iso2016__mu_cut_Tight80x*LepCut2l__ele_mva_90p_Iso2016__mu_cut_Tight80x*GenLepMatch2l*METFilter_MC' ,
+}  
+   
+ samples['WpWmJJ_EWK_QCD_noHiggs'] = { 
+     'name'  :  [ 
+            'latino_WpWmJJ_EWK_QCD_noHiggs.root',
+     ],  
+     'weight'  :   'XSWeight*SFweight2l*bPogSF_CMVAL*LepSF2l__ele_mva_90p_Iso2016__mu_cut_Tight80x*LepCut2l__ele_mva_90p_Iso2016__mu_cut_Tight80x*GenLepMatch2l*METFilter_MC' ,
+}  
+   
+ samples['WpWmJJ_EWK_QCD_noTop'] = { 
+     'name'  :  [ 
+            'latino_WpWmJJ_EWK_QCD_noTop.root',
+     ],  
+     'weight'  :   'XSWeight*SFweight2l*bPogSF_CMVAL*LepSF2l__ele_mva_90p_Iso2016__mu_cut_Tight80x*LepCut2l__ele_mva_90p_Iso2016__mu_cut_Tight80x*GenLepMatch2l*METFilter_MC' ,
+}  
+   
+ samples['WpWmJJ_EWK_QCD_noTop_noHiggs'] = { 
+     'name'  :  [ 
+            'latino_WpWmJJ_EWK_QCD_noTop_noHiggs.root',
+     ],  
+     'weight'  :   'XSWeight*SFweight2l*bPogSF_CMVAL*LepSF2l__ele_mva_90p_Iso2016__mu_cut_Tight80x*LepCut2l__ele_mva_90p_Iso2016__mu_cut_Tight80x*GenLepMatch2l*METFilter_MC' ,
+}  
+   
+ samples['WpWmJJ_EWK_noTop'] = { 
+     'name'  :  [ 
+            'latino_WpWmJJ_EWK_noTop.root',
+     ],  
+     'weight'  :   'XSWeight*SFweight2l*bPogSF_CMVAL*LepSF2l__ele_mva_90p_Iso2016__mu_cut_Tight80x*LepCut2l__ele_mva_90p_Iso2016__mu_cut_Tight80x*GenLepMatch2l*METFilter_MC' ,
+}  
+   
+ samples['WpWmJJ_QCD_noTop'] = { 
+     'name'  :  [ 
+            'latino_WpWmJJ_QCD_noTop.root',
+     ],  
+     'weight'  :   'XSWeight*SFweight2l*bPogSF_CMVAL*LepSF2l__ele_mva_90p_Iso2016__mu_cut_Tight80x*LepCut2l__ele_mva_90p_Iso2016__mu_cut_Tight80x*GenLepMatch2l*METFilter_MC' ,
+}  
+   
  samples['ZH_hww'] = { 
      'name'  :  [ 
             'latino_HZJ_HToWW_M125.root',
