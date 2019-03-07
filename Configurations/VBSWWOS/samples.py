@@ -28,20 +28,23 @@ else:                    skimFake=skim
 ##############################################
 
 SITE=os.uname()[1]
-xrootdPath=''
-if    'iihe' in SITE :
-  xrootdPath  = 'dcap://maite.iihe.ac.be/' 
-  treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/'
-elif  'cern' in SITE :
-  xrootdPath  = 'root://eoscms.cern.ch/'
-  treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/'
-elif  'gridui' in SITE: #PISA
-  treeBaseDir = '/gpfs/ddn/srm/cms/store/user/lviliani/Full2016_Apr17/'
-elif 'sdfarm' in SITE : # KISTI T3
-  xrootdPath  = 'root://cms-xrdr.sdfarm.kr:1094/'
-  treeBaseDir = '/xrootd/store/group/hww/Full2016_Apr17/'
+#xrootdPath='srm://storm.mib.infn.it:8444'
+treeBaseDir = '/gwteras/cms/store/group/OneLepton/Apr2017_summer16'
 
-directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC'+skim+'/'      #new position of samples
+#if    'iihe' in SITE :
+ # xrootdPath  = 'dcap://maite.iihe.ac.be/' 
+ # treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/'
+#elif  'cern' in SITE :
+#  xrootdPath  = 'root://eoscms.cern.ch/'
+#  treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/'
+#elif  'gridui' in SITE: #PISA
+#  treeBaseDir = '/gpfs/ddn/srm/cms/store/user/lviliani/Full2016_Apr17/'
+#elif 'sdfarm' in SITE : # KISTI T3
+#  xrootdPath  = 'root://cms-xrdr.sdfarm.kr:1094/'
+#  treeBaseDir = '/xrootd/store/group/hww/Full2016_Apr17'
+
+
+directory =  treeBaseDir + '/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC'+skim+'/'      #new position of samples
 
 ################################################
 ############ NUMBER OF LEPTONS #################
@@ -320,9 +323,9 @@ samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM'
 ######## Vg ########
 
 samples['Vg']  =  {     'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM')
-                                   + getSampleFiles(directory,'Zg')
+                                  + getSampleFiles(directory,'Zg')
                                    ,
-                        'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
+                       'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
                   }
 
 ######## VgS ########
@@ -366,8 +369,22 @@ samples['VVV'] = {    'name':   getSampleFiles(directory,'ZZZ')
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                   }
 
+########Background irriducible##########
+
+
+
+
+
+
+
+
+
+
+
+#######################################
+
 ###########################################
-#############   SIGNALS  ##################
+#############   Signals ##################
 ###########################################
 
 
@@ -389,6 +406,11 @@ samples['qqH_hww']  = {   'name' : getSampleFiles(directory,'VBFHToWWTo2L2Nu_M12
                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                       }
 
+
+##################
+
+
+###########################
 ### ZH ; H->WW
 
 samples['ZH_hww']   = {   'name' :  getSampleFiles(directory,'HZJ_HToWW_M125') ,
@@ -497,7 +519,7 @@ else:
 ###########################################
 ################## DATA ###################
 ###########################################
-
+'''
 samples['DATA']  = {   'name': [ ] ,     
                        'weight' : 'veto_EMTFBug'+'*'+METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
@@ -506,10 +528,10 @@ samples['DATA']  = {   'name': [ ] ,
                   }
 
 for Run in DataRun :
-  directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC'+skim+'/'             #new postion of samples
+  directory = directory = xrootdPath + treeBaseDir + '/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC'+skim+'/'           #new postion of samples
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:
       samples['DATA']['name'].append(iFile)
       samples['DATA']['weights'].append(DataTrig[DataSet]) 
-
+'''
