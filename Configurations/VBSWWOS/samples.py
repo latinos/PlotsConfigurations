@@ -537,19 +537,19 @@ else:
 ###########################################
 ################## DATA ###################
 ###########################################
-'''
-samples['DATA']  = {   'name': [ ] ,     
-                       'weight' : 'veto_EMTFBug'+'*'+METFilter_DATA+'*'+LepWPCut,
-                       'weights' : [ ],
-                       'isData': ['all'],                            
-                       'FilesPerJob' : 6 ,
-                  }
 
-for Run in DataRun :
-  directory = directory = xrootdPath + treeBaseDir + '/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC'+skim+'/'           #new postion of samples
-  for DataSet in DataSets :
-    FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
-    for iFile in FileTarget:
-      samples['DATA']['name'].append(iFile)
-      samples['DATA']['weights'].append(DataTrig[DataSet]) 
-'''
+#samples['DATA']  = {   'name': [ ] ,     
+#                       'Weight ' : 'veto_EMTFBug'+'*'+METFilter_DATA+'*'+LepWPCut,
+  #                     'weights' : [ ],
+ #                      'isData': ['all'],                            
+   #                    'FilesPerJob' : 6 ,
+    #              }
+
+#for Run in DataRun :
+#  directory = directory = xrootdPath + treeBaseDir + '/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC'+skim+'/'           #new postion of samples
+ # for DataSet in DataSets :
+  #  FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
+   # for iFile in FileTarget:
+    #  samples['DATA']['name'].append(iFile)
+     # samples['DATA']['weights'].append(DataTrig[DataSet]) 
+
