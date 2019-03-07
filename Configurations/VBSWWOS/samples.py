@@ -369,12 +369,6 @@ samples['VVV'] = {    'name':   getSampleFiles(directory,'ZZZ')
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                   }
 
-########Background irriducible##########
-
-
-
-
-
 
 
 
@@ -407,10 +401,34 @@ samples['qqH_hww']  = {   'name' : getSampleFiles(directory,'VBFHToWWTo2L2Nu_M12
                       }
 
 
-##################
+##################new samples #######
+
+samples['WpWmJJ_EWK']  = {   'name' : getSampleFiles(directory,'WpWmJJ_EWK') ,
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                      }
+
+samples['WpWmJJ_EWK_QCD_noHiggs']  = {   'name' : getSampleFiles(directory,'WpWmJJ_EWK_QCD_noHiggs') ,
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                      }
+
+samples['WpWmJJ_EWK_QCD_noTop']  = {   'name' : getSampleFiles(directory,'WpWmJJ_EWK_QCD_noTop') ,
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                      }
+
+samples['WpWmJJ_EWK_QCD_noTop_noHiggs']  = {   'name' : getSampleFiles(directory,'WpWmJJ_EWK_QCD_noTop_noHiggs') ,
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                      }
+
+samples['WpWmJJ_EWK_noTop']  = {   'name' : getSampleFiles(directory,'WpWmJJ_EWK_noTop') ,
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                      }
+
+samples['WpWmJJ_QCD_noTop']  = {   'name' : getSampleFiles(directory,'WpWmJJ_QCD_noTop') ,
+                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,                      }
 
 
-###########################
+
+####################################
 ### ZH ; H->WW
 
 samples['ZH_hww']   = {   'name' :  getSampleFiles(directory,'HZJ_HToWW_M125') ,
