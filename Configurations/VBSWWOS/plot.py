@@ -21,14 +21,14 @@ groupPlot['WW']  = {
                   'color': 851, # kAzure -9 
                   'samples'  : ['WW', 'ggWW']
               }
-
+'''
 groupPlot['Fake']  = {  
                   'nameHR' : 'Non-prompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
                   'samples'  : ['Fake', 'Fake_em', 'Fake_me']
               }
-
+'''
 
 groupPlot['DY']  = {  
                   'nameHR' : "DY",
@@ -111,7 +111,7 @@ plot['DY']  = {
 
               }
 
-
+'''
 plot['Fake']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
@@ -134,7 +134,7 @@ plot['Fake_me']  = {
                   'isData'   : 0,
                   'scale'    : 1.0                  
               }
-
+'''
               
 plot['top'] = {   
                   'nameHR' : 'tW and t#bar{t}',
