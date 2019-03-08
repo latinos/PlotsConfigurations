@@ -78,12 +78,20 @@ groupPlot['Higgs']  = {
               }
 
 
-groupPlot['WpWmJJ']  = {
+groupPlot['WpWmJJS']  = {
                   'nameHR' : 'WpWmJJ',
                   'isSignal' : 1,
                   'color': 432, # kCyan                                                                            
-                  'samples'  : ['WpWmJJ_EWK', 'WpWmJJ_EWK_QCD_noHiggs', 'WpWmJJ_EWK_QCD_noTop', 'WpWmJJ_EWK_QCD_noTop_noHiggs', 'WpWmJJ_EWK_noTop', 'WpWmJJ_QCD_noTop' ]
+                  'samples'  : ['WpWmJJ_EWK']
               }
+
+groupPlot['WpWmJJBkg']  = {
+                  'nameHR' : 'WpWmJJBkg',
+                  'isSignal' : 0,
+                  'color': 820, # kSpring                                                                            
+                  'samples'  : [ 'WpWmJJ_EWK_QCD_noHiggs', 'WpWmJJ_EWK_QCD_noTop', 'WpWmJJ_EWK_QCD_noTop_noHiggs', 'WpWmJJ_EWK_noTop', 'WpWmJJ_QCD_noTop' ]
+              }
+
 
 
 #plot = {}
@@ -367,7 +375,7 @@ plot['WpWmJJ_EWK']  = {
 plot['WpWmJJ_EWK_QCD_noHiggs']  = {
                   'color': 900+10, # kPink+10                                                                                             
                                                                                                                                          
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven                                                           
                                                                                                                                          
@@ -378,7 +386,7 @@ plot['WpWmJJ_EWK_QCD_noTop']  = {
                   'color': 900+1, # kPink+1                                                                                           
                                                                                                                                          
                                                                                                                                         
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven                                                           
                                                                                                                                         
@@ -390,7 +398,7 @@ plot['WpWmJJ_EWK_noTop']  = {
                                                                                                                                       
 
 
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven                                                           
 
@@ -402,7 +410,7 @@ plot['WpWmJJ_QCD_noTop']  = {
 
 
 
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven                                                           
 
@@ -415,7 +423,7 @@ plot['WpWmJJ_EWK_QCD_noTop_noHiggs']  = {
 
 
 
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven                                                           
 
