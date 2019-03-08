@@ -12,8 +12,15 @@ Float_t  max_mjj(double eta1, double eta2, double eta3, double eta4,
         double m_12 = sqrt(2*pt1*pt2*(cosh(eta1-eta2) - cos(phi1-phi2)));
         double m_13 = sqrt(2*pt1*pt3*(cosh(eta1-eta3) - cos(phi1-phi3)));
         double m_23 = sqrt(2*pt2*pt3*(cosh(eta2-eta3) - cos(phi2-phi3)));
+	double m_14 = sqrt(2*pt1*pt4*(cosh(eta1-eta4) - cos(phi1-phi4)));
+	double m_24 = sqrt(2*pt2*pt4*(cosh(eta2-eta4) - cos(phi2-phi4)));
+	double m_43 = sqrt(2*pt4*pt3*(cosh(eta4-eta3) - cos(phi4-phi3)));
 
-  return std::max(m_12, std::max(m_13, m_23));
+	double max1 = std::max(m_12, m_13);
+	double max2 = std::max(m_23, m_14);
+	double max3 = std::max(m_24, m_43);
+
+  return std::max(max3, std::max(max1, max2));
 }
 
 

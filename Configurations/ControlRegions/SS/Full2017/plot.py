@@ -101,14 +101,14 @@ plot['Vg'] = {
                   'scale'    : 1.0
                   }
 
-
+'''
 plot['Wjets']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0                  
               }
-
+'''
 
 
                
@@ -119,7 +119,7 @@ plot['Fake']  = {
                   'scale'    : 1.0                  
               }
 
-
+'''
 plot['top'] = {
                   'nameHR' : 't#bart',
                   'color': 400,   # kYellow 
@@ -127,7 +127,7 @@ plot['top'] = {
                   'isData'   : 0 ,
                   'scale'    : 1.0
                   }
-
+'''
 plot['ttbar'] = {   
                   'nameHR' : 't#bart',
                   'color': 400,   # kYellow 
@@ -135,7 +135,7 @@ plot['ttbar'] = {
                   'isData'   : 0 ,
                   'scale'    : 1.0
                   }
-
+'''
 
 plot['singletop'] = {   
                   'nameHR' : 't and tW',
@@ -144,7 +144,7 @@ plot['singletop'] = {
                   'isData'   : 0, 
                   'scale'    : 1.0
                   }
-
+'''
 
 plot['WW']  = {
                   'color': 851, # kAzure -9 
@@ -152,7 +152,7 @@ plot['WW']  = {
                   'isData'   : 0,    
                   'scale'    : 1.0             
                   }
-
+'''
 plot['ggWW']  = {
                   'color': 850, # kAzure -10
                   'isSignal' : 0,
@@ -173,14 +173,14 @@ plot['Wg']  = {
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-
+'''
 plot['VZ']  = { 
                   'color': 858, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-
+'''
 plot['WZ']  = { 
                   'color': 858, # kAzure -2  
                   'isSignal' : 0,
@@ -195,6 +195,13 @@ plot['ZZ']  = {
                   'scale'    : 1.0
                   }
 
+plot['ZZ']  = { 
+                  'color': 856, # kAzure -4  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+'''
 
 plot['VVV']  = { 
                   'color': 857, # kAzure -3  
@@ -202,7 +209,7 @@ plot['VVV']  = {
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-
+'''
 # Htautau
 
 plot['H_htt'] = {
@@ -266,7 +273,7 @@ plot['bbH_hww'] = {
                   }
 
 # data
-
+'''
 plot['DATA']  = { 
                   'nameHR' : 'Data',
                   'color': 1 ,  

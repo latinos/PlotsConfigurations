@@ -11,6 +11,22 @@ except NameError:
   samples = collections.OrderedDict()
 
 ################################################
+############### Fiducial bins ##################
+################################################
+
+pthBinning = ['0', '10', '15', '20', '30', '45', '60', '80', '100', '120', '155', '200', '260', '350', 'inf']
+pthBins = []
+for ibin in range(len(pthBinning) - 1):
+    low, high = pthBinning[ibin:ibin + 2]
+    if high == 'inf':
+      pthBins.append('GT%s' % low)
+    else:
+      pthBins.append('%s_%s' % (low, high))
+
+#yhBinning = [0., 0.15, 0.3, 0.6, 0.9, 1.2, 2.5, 10.]
+njetBinning = ['0', '1', '2', '3', 'GE4']
+  
+################################################
 ################# SKIMS ########################
 ################################################
 
@@ -18,7 +34,13 @@ mcProduction = 'Apr2017_summer16'
 
 dataReco = 'Apr2017_Run2016{era}_RemAOD'
 
-mcSteps = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__wwSel'
+mcSteps = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC{var}__wwSel'
+
+def makeMCDirectory(var = ''):
+    if var:
+        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var = '__' + var))
+    else:
+        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var = ''))
 
 fakeSteps = 'lepSel__EpTCorr__TrigMakerData__cleanTauData__l2loose__dorochester__multiFakeW__formulasFAKE__hadd__wwSel'
 
@@ -38,7 +60,7 @@ elif  'gridui' in SITE: #PISA
 elif 'sdfarm' in SITE : # KISTI T3
   treeBaseDir = '/xrootd/store/group/hww/Full2016_Apr17'
 
-mcDirectory = os.path.join(treeBaseDir, mcProduction, mcSteps)
+mcDirectory = makeMCDirectory()
 fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
 dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 
@@ -106,7 +128,7 @@ if useDYtt :
   addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50_ext1', getBaseW(mcDirectory,['DYJetsToTT_MuEle_M-50','DYJetsToTT_MuEle_M-50_ext1'])+'/baseW')
 
   samples['DY']['FilesPerJob'] = 1
-  samples['DY']['EventsPerJob'] = 20000
+  samples['DY']['EventsPerJob'] = 100000
 
 else:
   samples['DY']['name'] = getSampleFiles(mcDirectory,'DYJetsToLL_M-10to50') \
@@ -163,13 +185,17 @@ else:
     addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400', getBaseW(mcDirectory,['DYJetsToLL_M-50_HT-200to400','DYJetsToLL_M-50_HT-200to400_ext1'])+'/baseW')
     addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400_ext1', getBaseW(mcDirectory,['DYJetsToLL_M-50_HT-200to400','DYJetsToLL_M-50_HT-200to400_ext1'])+'/baseW')
 
-samples['DY']['subsamples'] = {
-  '0j': 'zeroJet',
-  '1j': 'oneJet',
-  '2j': 'twoJet',
-  '3j': 'threeJet',
-  'ge4j': 'manyJets'
-}
+#samples['DY']['subsamples'] = {
+#  'nj_0': 'zeroJet',
+#  'nj_1': 'oneJet',
+#  'nj_2': 'twoJet',
+#  'nj_3': 'threeJet',
+#  'nj_ge4': 'manyJets'
+#}
+#for ipt in range(len(pthBinning) - 2):
+#  low, high = pthBinning[ipt:ipt+2]
+#  samples['DY']['subsamples']['pth_%s_%s' %  (low, high)] = 'pTWW > %s && pTWW < %s' % (low, high)
+#samples['DY']['subsamples']['pth_gt%s' % pthBinning[-2]] = 'pTWW > %s' % pthBinning[-2]
 
 ###### Top #######
 # We should use in principle: ST_tW_antitop_noHad + ST_tW_antitop_noHad_ext1 + ST_tW_top_noHad + ST_tW_top_noHad_ext1   
@@ -185,18 +211,22 @@ samples['top'] = {
   'name': files,
   'weight': mcCommonWeight,
   'FilesPerJob': 1,
-  #'EventsPerJob': 10000
+  'EventsPerJob': 100000
 }
                   
 addSampleWeight(samples,'top','TTTo2L2Nu','toprwgt')
 
-samples['top']['subsamples'] = {
-  '0j': 'zeroJet',
-  '1j': 'oneJet',
-  '2j': 'twoJet',
-  '3j': 'threeJet',
-  'ge4j': 'manyJets'
-}
+#samples['top']['subsamples'] = {
+#  'nj_0': 'zeroJet',
+#  'nj_1': 'oneJet',
+#  'nj_2': 'twoJet',
+#  'nj_3': 'threeJet',
+#  'nj_ge4': 'manyJets'
+#}
+#for ipt in range(len(pthBinning) - 2):
+#  low, high = pthBinning[ipt:ipt+2]
+#  samples['top']['subsamples']['pth_%s_%s' %  (low, high)] = 'pTWW > %s && pTWW < %s' % (low, high)
+#samples['top']['subsamples']['pth_gt%s' % pthBinning[-2]] = 'pTWW > %s' % pthBinning[-2]
 
 ###### WW ########
              
@@ -204,15 +234,24 @@ samples['WW'] = {
   'name': getSampleFiles(mcDirectory,'WWTo2L2Nu'),
   'weight': mcCommonWeight + '*nllW',
   'FilesPerJob': 1,
-  'EventsPerJob': 10000
+  #'EventsPerJob': 10000
 }
 
-samples['WW']['subsamples'] = {
-  '0j': 'zeroJet',
-  '1j': 'oneJet',
-  '2j': 'twoJet',
-  '3j': 'threeJet',
-  'ge4j': 'manyJets'
+#samples['WW']['subsamples'] = {
+#  'nj_0': 'zeroJet',
+#  'nj_1': 'oneJet',
+#  'nj_2': 'twoJet',
+#  'nj_3': 'threeJet',
+#  'nj_ge4': 'manyJets'
+#}
+#for ipt in range(len(pthBinning) - 2):
+#  low, high = pthBinning[ipt:ipt+2]
+#  samples['WW']['subsamples']['pth_%s_%s' %  (low, high)] = 'pTWW > %s && pTWW < %s' % (low, high)
+#samples['WW']['subsamples']['pth_gt%s' % pthBinning[-2]] = 'pTWW > %s' % pthBinning[-2]
+
+samples['WWewk'] = {
+  'name': getSampleFiles(mcDirectory,'WpWmJJ_EWK_noTop'),
+  'weight': mcCommonWeight + '*(lhe_mWp>60)*(lhe_mWp<100)*(lhe_mWm>60)*(lhe_mWm<100)',
 }
 
 samples['ggWW'] = {
@@ -373,23 +412,6 @@ samples['ttH_hww'] = {
 
 signals.append('ttH_hww')
 
-#files = getSampleFiles(mcDirectory,'VBFHToWWTo2L2Nu_M125') + \
-#        getSampleFiles(mcDirectory,'HZJ_HToWW_M125') + \
-#        getSampleFiles(mcDirectory,'ttHToNonbb_M125') + \
-#        getSampleFiles(mcDirectory,'ggZH_HToWW_M125') + \
-#        getSampleFiles(mcDirectory,'HWminusJ_HToWW_M125') + getSampleFiles(mcDirectory,'HWplusJ_HToWW_M125') + \
-#        getSampleFiles(mcDirectory,'bbHToWWTo2L2Nu_M125_yb2') + getSampleFiles(mcDirectory,'bbHToWWTo2L2Nu_M125_ybyt') + \
-#        getSampleFiles(mcDirectory,'ttHToNonbb_M125')
-#
-#samples['xH_hww'] = {
-#  'name': files,
-#  'weight': mcCommonWeight,
-#  'suppressNegativeNuisances': ['all'],
-#  'FilesPerJob': 1
-#}
-#
-#signals.append('xH_hww')
-
 #### H -> TauTau
 
 samples['ggH_htt'] = {
@@ -428,49 +450,28 @@ samples['WH_htt'] = {
 
 signals.append('WH_htt')
 
-#files = getSampleFiles(mcDirectory,'VBFHToTauTau_M125') \
-#  + getSampleFiles(mcDirectory,'HZJ_HToTauTau_M125') \
-#  + getSampleFiles(mcDirectory,'HWplusJ_HToTauTau_M125') \
-#  + getSampleFiles(mcDirectory,'HWminusJ_HToTauTau_M125')
-#
-#samples['xH_htt'] = {
-#  'name': files,
-#  'weight': mcCommonWeight,  
-#  'suppressNegative': ['all'],
-#  'suppressNegativeNuisances': ['all'],
-#  'FilesPerJob': 1
-#}
-#
-#signals.append('xH_htt')
-
-pthBinning = ['0', '20', '30', '45', '60', '80', '100', '120', '155', '200', '260', '350', 'inf']
-#yhBinning = [0., 0.15, 0.3, 0.6, 0.9, 1.2, 2.5, 10.]
-njetBinning = ['0', '1', '2', '3', '4+']
+#### Add subsamples to signals
 
 for sname in signals:
   sample = samples[sname]
   sample['subsamples'] = {}
 
   for flabel, fidcut in [('fid', 'fiducial'), ('nonfid', '!fiducial')]:
-    for ipt in range(len(pthBinning) - 1):
-      low, high = pthBinning[ipt:ipt+2]
-  
-      if high == 'inf':
-        binName = '%s_PTH_GT%s' % (flabel, low)
-        cut = '%s && genPth > %s' % (fidcut, low)
+    for pth in pthBins:
+      binName = '%s_PTH_%s' % (flabel, pth)
+      if pth.startswith('GT'):
+        cut = '%s && genPth > %s' % (fidcut, pth[2:])
       else:
-        binName = '%s_PTH_%s_%s' % (flabel, low, high)
-        cut = '%s && genPth > %s && genPth < %s' % (fidcut, low, high)
+        cut = '%s && genPth > %s && genPth < %s' % ((fidcut,) + tuple(pth.split('_')))
   
       sample['subsamples'][binName] = cut
   
     for nj in njetBinning:
-      if nj.endswith('+'):
-        binName = '%s_NJ_GE%s' % (flabel, nj[:-1])
-        cut = '%s && nGenJet >= %s' % (fidcut, nj[:-1])
+      binName = '%s_NJ_%s' % (flabel, nj)
+      if nj.startswith('GE'):
+        cut = '%s && nCleanGenJet >= %s' % (fidcut, nj[2:])
       else:
-        binName = '%s_NJ_%s' % (flabel, nj)
-        cut = '%s && nGenJet == %s' % (fidcut, nj)
+        cut = '%s && nCleanGenJet == %s' % (fidcut, nj)
   
       sample['subsamples'][binName] = cut
 
@@ -492,6 +493,11 @@ for era, sd in DataRun:
     samples['Fake']['name'].extend(files)
     samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
 
+samples['Fake']['subsamples'] = {
+  'em': 'abs(std_vector_lepton_flavour[0]) == 11',
+  'me': 'abs(std_vector_lepton_flavour[0]) == 13'
+}
+
 ###########################################
 ################## DATA ###################
 ###########################################
@@ -508,24 +514,3 @@ for era, sd in DataRun:
     files = getSampleFiles(dataDirectory.format(era = era), pd + '_' + sd, True)
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
-
-#mysamples = collections.OrderedDict()
-#mysignals = []
-#for sname in signals:
-#  mysamples[sname] = samples[sname]
-#  mysignals.append(sname)
-#
-#samples = mysamples
-#signals = mysignals
-
-##mysamples['WW'] = samples['WW']
-#mysamples['top'] = samples['top']
-#samples = mysamples
-##signals = ['ggH_hww']
-#signals = []
-
-#samples = {'ggH_htt': samples['ggH_htt']}
-#signals = ['ggH_htt']
-
-#samples = {'DATA': samples['DATA'], 'ggH_hww': samples['ggH_hww']}
-#signals = ['ggH_hww']

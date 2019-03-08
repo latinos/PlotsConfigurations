@@ -3,6 +3,7 @@
 import os
 import sys
 import shutil
+import re
 import subprocess
 from argparse import ArgumentParser
 
@@ -10,6 +11,9 @@ argParser = ArgumentParser(description = 'Select and edit the datacards to use i
 argParser.add_argument('--in', '-i', metavar = 'PATH', dest = 'inpath', default = 'datacards', help = 'Input directory name.')
 argParser.add_argument('--out', '-o', metavar = 'PATH', dest = 'outpath', default = 'datacards_fullmodel', help = 'Output directory name.')
 argParser.add_argument('--drop-mcstats', '-M', action = 'store_true', dest = 'dropMCStats', help = 'Drop MC stats (for test only).')
+argParser.add_argument('--only-fullmodel', '-O', action = 'store_true', dest = 'onlyFullModel', help = 'Keep only the full model card.')
+argParser.add_argument('--just-combine', '-C', action = 'store_true', dest = 'justCombine', help = 'Do not run text2workspace.')
+argParser.add_argument('--exclude', '-x', metavar = 'PATTERN', dest = 'exclude', nargs = '+', help = 'Exclude cards matching regular expression patterns.')
 argParser.add_argument('--hdf5', '-H', action = 'store_true', dest = 'hdf5', help = 'Use text2hdf5.py.')
 
 args = argParser.parse_args()
@@ -25,14 +29,54 @@ except OSError:
 cmd = ['combineCards.py']
 procIds = {} # it seems that we don't really need to have the process ids synched between the combined cards, but let's make them common
 
-for cut in os.listdir(args.inpath):
+cuts = []
+observableBins = []
+
+def isSignal(name):
+    if 'smH' in name or 'ggH' in name or 'xH' in name:
+        return True
+    if args.hdf5 and (name.startswith('WW') or name.startswith('top') or name.startswith('DY')):
+        # treat the split major background as signal instead of using rateParams
+        return True
+
+os.makedirs(args.outpath)
+
+# Copy the histograms applying adjustments
+targetFullHistRepo = ROOT.TFile.Open('%s/histos.root' % args.outpath, 'recreate')
+
+for cut in sorted(os.listdir(args.inpath)):
+    if cut == 'nuisances.py':
+        continue
+    
     isCR = ('_CR_' in cut)
+
+    if isCR and '_WW' in cut:
+        continue
+
+    if args.exclude:
+        try:
+            next(pat for pat in args.exclude if re.match(pat, cut))
+        except StopIteration:
+            pass
+        else:
+            continue
+
+    cuts.append(cut)
+
+    if isCR:
+        matches = re.match('hww_CR_cat((?:PTH|NJ)_(?:[0-9]+|G[ET][0-9]+|[0-9]+_[0-9]+))_[a-zA-Z]+_[0-9]+$', cut)
+    else:
+        matches = re.match('hww_((?:PTH|NJ)_(?:[0-9]+|G[ET][0-9]+|[0-9]+_[0-9]+))(?:_cat(.+)|)_[0-9]+$', cut)
+
+    obsBin = matches.group(1)
+    if obsBin not in observableBins:
+        observableBins.append(obsBin)
     
     variable = os.listdir('%s/%s' % (args.inpath, cut))[0]
     
     sourceDir = '%s/%s/%s' % (args.inpath, cut, variable)
     targetDir = '%s/%s/%s' % (args.outpath, cut, variable)
-    os.makedirs(targetDir + '/shapes')
+    os.makedirs('%s/shapes' % targetDir)
 
     histRepo = ROOT.TFile.Open('%s/shapes/histos_%s.root' % (sourceDir, cut))
     if not histRepo:
@@ -40,84 +84,100 @@ for cut in os.listdir(args.inpath):
         sys.exit(1)
 
     # Only select processes with positive contributions
-    nominalNames = []
+    nominalTemplates = {}
     signalMax = 0.
     for key in histRepo.GetListOfKeys():
         name = key.GetName()
-       
         if name.endswith('Up') or name.endswith('Down'):
             continue
         
         hist = key.ReadObj()
+
         sumw = hist.GetSumOfWeights()
 
-        if sumw <= 0.:
-            continue
+        if sumw == 0.:
+            print cut, name, 'has null nominal'
+        else:
+            nominalTemplates[name] = hist
 
-        nominalNames.append(name)
-
-        if 'smH' in name and sumw > signalMax:
+        if isSignal(name) and sumw > signalMax:
             signalMax = sumw
 
-    if not isCR:
-        # Drop signal processes that contribute less than 1% of the max (super-off diagonal in the response matrix)
-        for name in list(nominalNames):
-            if 'smH' not in name:
-                continue
-            
-            hist = histRepo.Get(name)
-            sumw = hist.GetSumOfWeights()
-            if sumw < 0.01 * signalMax:
-                nominalNames.remove(name)
-
-    # If a nuisance variation histogram goes negative, we need to fix it to nominal
-    nuisancesToAdjust = []
-    for key in histRepo.GetListOfKeys():
-        name = key.GetName()
-        hist = key.ReadObj()
-        sumw = hist.GetSumOfWeights()
-        if (name.endswith('Up') or name.endswith('Down')) and sumw <= 0.:
-            for nom in nominalNames:
-                if name.startswith(nom):
-                    nuisancesToAdjust.append((nom, name))
+    ## Drop processes that contribute less than 1% of the max (super-off diagonal in the response matrix)
+    #for name, hist in nominalTemplates.items():
+    #    if not isSignal(name):
+    #        continue
+    #    
+    #    sumw = hist.GetSumOfWeights()
+    #    if sumw < 0.01 * signalMax:
+    #        print 'Dropping', name, 'from', cut, '(%f << %f)' % (sumw, signalMax)
+    #        nominalTemplates.pop(name).Delete()
 
     # Copy the histograms applying adjustments
-    targetHistRepo = ROOT.TFile.Open(targetDir + '/shapes/histos_%s.root' % cut, 'recreate')
+    if not args.onlyFullModel:
+        targetHistRepo = ROOT.TFile.Open('%s/shapes/histos_%s.root' % (targetDir, cut), 'recreate')
+
+    targetFullHistDir = targetFullHistRepo.mkdir(cut)
+    targetFullHistDir.cd()
 
     for key in histRepo.GetListOfKeys():
         name = key.GetName()
-        for nom in nominalNames:
-            if name.startswith(nom):
-                break
-        else:
-            continue    
-        
-        hist = key.ReadObj()
 
-        targetHistRepo.cd()
-        for nom, nuis in nuisancesToAdjust:
-            if nuis == name:
-                hist = histRepo.Get(nom).Clone(nuis)
-        else:
-            hist.SetDirectory(targetHistRepo)
+        targetFullHistDir.cd()
 
+        if name in nominalTemplates:
+            hist = nominalTemplates[name]
+            nominal = name
+            varsuffix = ''
+        else:
+            try:
+                nominal = next(key for key in nominalTemplates if name.startswith(key))
+            except StopIteration:
+                # nominal is dropped
+                continue
+
+            varsuffix = name[len(nominal):]
+
+            hist = key.ReadObj()
+            if hist.GetSumOfWeights() <= 0.:
+                hist.Delete()
+                hist = nominalTemplates[nominal].Clone(name)
+                hist.Scale(1.5e-4)
+
+        if args.hdf5 and nominal.replace('histo_', '') in ['WW', 'top', 'DY']:
+            hist.SetName('%s_%s%s' % (nominal, obsBin, varsuffix))
+            hist.SetTitle('%s_%s%s' % (nominal, obsBin, varsuffix))
+            
+        hist.SetDirectory(targetFullHistDir)
         hist.Write()
 
-    targetHistRepo.Close()
+        if not args.onlyFullModel:
+            targetHistRepo.cd()
+            hist.SetDirectory(targetHistRepo)
+            hist.Write()
+
+        hist.Delete()
+
+    if not args.onlyFullModel:
+        targetHistRepo.Close()
 
     colw = 30
     if len(cut) >= (colw - 5):
         colw = len(cut) + 7
 
+    if args.hdf5:
+        for proc in ['WW', 'top', 'DY']:
+            nominalTemplates['histo_%s_%s' % (proc, obsBin)] = nominalTemplates.pop('histo_%s' % proc)
+
     usedProcs = []
-    for histName in nominalNames:
+    for histName in nominalTemplates:
         usedProcs.append(histName.replace('histo_', ''))
 
     usedProcs.remove('Data')
 
     print sourceDir, '->', targetDir
-    with open(targetDir + '/datacard.txt', 'w') as target:
-        with open(sourceDir + '/datacard.txt') as source:
+    with open('%s/datacard.txt' % targetDir, 'w') as target:
+        with open('%s/datacard.txt' % sourceDir) as source:
             # Header
             saidObs = False
             while True:
@@ -138,11 +198,16 @@ for cut in os.listdir(args.inpath):
 
             procNames = source.readline().split()[1:]
 
+            if args.hdf5:
+                for proc in ['WW', 'top', 'DY']:
+                    idx = procNames.index(proc)
+                    procNames[idx] = '%s_%s' % (proc, obsBin)
+
             for name in procNames:
                 if name not in usedProcs:
                     continue
                 if name not in procIds:
-                    if 'smH' in name:
+                    if isSignal(name):
                         procId = min(procIds.values() + [1]) - 1
                     else:
                         procId = max(procIds.values() + [0]) + 1
@@ -150,27 +215,27 @@ for cut in os.listdir(args.inpath):
                     procIds[name] = procId
 
             usedSignals = [name for name in usedProcs if procIds[name] <= 0]
+            usedSignals.sort(key = lambda sname: int(re.match('.+_(?:PTH|NJ)_(?:GE|GT|)([0-9]+)', sname).group(1)))
             usedBkgs = [name for name in usedProcs if procIds[name] > 0]
+            # reorder
+            usedProcs = usedSignals + usedBkgs
 
             target.write('process'.ljust(80))
-            target.write(''.join([name.ljust(colw) for name in usedSignals]))
-            target.write(''.join([name.ljust(colw) for name in usedBkgs]))
+            target.write(''.join([name.ljust(colw) for name in usedProcs]))
             target.write('\n')
             
             # discard one line because we use our own process ids
             source.readline()
 
             target.write('process'.ljust(80))
-            target.write(''.join([('%d' % procIds[name]).ljust(colw) for name in usedSignals]))
-            target.write(''.join([('%d' % procIds[name]).ljust(colw) for name in usedBkgs]))
+            target.write(''.join([('%d' % procIds[name]).ljust(colw) for name in usedProcs]))
             target.write('\n')
 
             rates = map(float, source.readline().split()[1:])
             rateMap = dict(zip(procNames, rates))
 
             target.write('rate'.ljust(80))
-            target.write(''.join([('%-.4f' % rateMap[name]).ljust(colw) for name in usedSignals]))
-            target.write(''.join([('%-.4f' % rateMap[name]).ljust(colw) for name in usedBkgs]))
+            target.write(''.join([('%-.4f' % rateMap[name]).ljust(colw) for name in usedProcs]))
             target.write('\n')
 
             target.write(source.readline())
@@ -202,16 +267,19 @@ for cut in os.listdir(args.inpath):
 
                 target.write(nuisName.ljust(60))
                 target.write(nuisType.ljust(20))
-                target.write(''.join([('%s' % valueMap[name]).ljust(colw) for name in usedProcs if '_hww_' in name]))
-                target.write(''.join([('%s' % valueMap[name]).ljust(colw) for name in usedProcs if '_hww_' not in name]))
+                target.write(''.join([('%s' % valueMap[name]).ljust(colw) for name in usedProcs]))
                 target.write('\n')
 
             target.write(line)
         
     cmd.append('%s=%s/datacard.txt' % (cut, os.path.realpath(targetDir)))
 
+targetFullHistRepo.Close()
+
 # list of signal proc name ordered by decreasing process id (and therefore in physical order coming from structure.py)
 signalProcs = [x[1] for x in sorted(((pid, pname) for pname, pid in procIds.items() if pid <= 0), reverse = True)]
+
+observableBins.sort(key = lambda s: int(re.match('[^0-9]+([0-9]+)', s).group(1)))
 
 # now run combineCards.py (output goes to stdout)
 print ' '.join(cmd)
@@ -224,46 +292,61 @@ if proc.returncode != 0:
     sys.exit(1)
 
 # Write combined datacard
-with open(args.outpath + '/fullmodel.txt', 'w') as fullmodel:
+with open('%s/fullmodel.txt' % args.outpath, 'w') as fullmodel:
+    outFullPath = os.path.realpath(args.outpath)
+    binNames = None
     procNames = None
     
     for line in out.strip().split('\n'):
+        line = line.replace(outFullPath + '/', '')
+
+        # overwrite certain lines
         if line.startswith('kmax'):
+            # will be adding rateParam and regularization terms
             fullmodel.write('kmax * number of nuisance parameters\n')
+            fullmodel.write(('-' * 100) + '\n')
+            fullmodel.write('shapes *        * histos.root $CHANNEL/histo_$PROCESS $CHANNEL/histo_$PROCESS_$SYSTEMATIC\n')
+            fullmodel.write('shapes data_obs * histos.root $CHANNEL/histo_Data\n')
+        elif line.startswith('shapes'):
+            # take histograms from a single file - already taken care of above
+            continue
         else:
             fullmodel.write(line + '\n')
+
+        if line.startswith('bin'):
+            if binNames is None:
+                binNames = []
+            else:
+                # we want the second line
+                binNames = line.split()[1:]
 
         if line.startswith('process') and procNames is None:
             procNames = line.split()[1:]
 
-    for nj in ['0j', '1j', '2j', '3j', 'ge4j']:
+    if not args.hdf5:
         for sname in ['WW', 'top', 'DY']:
-            if args.hdf5:
-                # temporary until I figure out how to implement rateParams in texthdf5
-                line = 'CMS_hww_%snorm%s   lnN   ' % (sname, nj)
-                applyto = '%s_%s' % (sname, nj)
-                for name in procNames:
-                    if name == applyto:
-                        line += ' 6.00 '
-                    else:
-                        line += ' - '
-    
-                fullmodel.write(line + '\n')
-            else:
-                fullmodel.write('CMS_hww_{sname}norm{nj} rateParam * {sname}_{nj} 1.00\n'.format(sname = sname, nj = nj))
+            for obsBin in observableBins:
+                    fullmodel.write('CMS_hww_{sname}norm_{obsBin} rateParam *{obsBin}* {sname} 1.00\n'.format(sname = sname, obsBin = obsBin))
 
 if not args.hdf5:
-    with open(args.outpath + '/fullmodel.txt') as fullmodel:
-        with open(args.outpath + '/fullmodel_unreg.txt', 'w') as fullmodel_unreg:
+    with open('%s/fullmodel.txt' % args.outpath) as fullmodel:
+        with open('%s/fullmodel_unreg.txt' % args.outpath, 'w') as fullmodel_unreg:
             fullmodel_unreg.write(fullmodel.read())
 
     # Add constraints. In hdf5 version we do this when running combinetf.py
-    with open(args.outpath + '/fullmodel.txt', 'a') as fullmodel:
-        for ic in range(len(signalProcs) - 2):
+    with open('%s/fullmodel.txt' % args.outpath, 'a') as fullmodel:
+        for ic in range(len(observableBins) - 2):
             fullmodel.write('constr{ic} constr const{ic}_In[0.],RooFormulaVar::fconstr{ic}("@0+@2-2*@1",{{r_{low},r_{mid},r_{high}}}),delta[10.]\n'.format(ic = ic, low = ic, mid = ic + 1, high = ic + 2))
 
+if args.onlyFullModel:
+    for cut in cuts:
+        shutil.rmtree('%s/%s' % (args.outpath, cut))
+
+if args.justCombine:
+    sys.exit(0)
+
 if args.hdf5:
-    cmd = ['text2hdf5.py', args.outpath + '/fullmodel.txt', '-o', args.outpath + '/fullmodel.hdf5']
+    cmd = ['text2hdf5.py', '%s/fullmodel.txt' % args.outpath, '-o', '%s/fullmodel.hdf5' % args.outpath]
 
     print ' '.join(cmd)
     proc = subprocess.Popen(cmd)
@@ -273,19 +356,19 @@ else:
     #text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO 'map=.*/smH.*_NJ_0:r_0[1, -5, 5]' --PO 'map=.*/smH.*_NJ_1:r_1[1, -5, 5]' --PO 'map=.*/smH.*_NJ_2:r_2[1, -5, 5]' --PO 'map=.*/smH.*_NJ_3:r_3[1, -5, 5]' --PO 'map=.*/smH.*_NJ_GE4:r_4[1, -5, 5]' Full2016.txt -o Full2016.root
 
     cmdbase = ['text2workspace.py', '-P', 'HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel', '--PO', 'verbose']
-    for ibin, signal in enumerate(signalProcs):
+    for ibin, obsBin in enumerate(observableBins):
         cmdbase.append('--PO')
-        cmdbase.append('map=.*/%s:r_%d[1.,-3.,3.]' % (signal, ibin))
+        cmdbase.append('map=.*/.*H_hww_%s:r_%d[1.,-10.,10.]' % (obsBin, ibin))
 
     cmd = list(cmdbase)
-    cmd.extend([args.outpath + '/fullmodel.txt', '-o', args.outpath + '/fullmodel.root'])
+    cmd.extend(['%s/fullmodel.txt' % args.outpath, '-o', '%s/fullmodel.root' % args.outpath])
 
     print ' '.join(cmd)
     proc = subprocess.Popen(cmd)
     proc.communicate()
 
     cmd = list(cmdbase)
-    cmd.extend([args.outpath + '/fullmodel_unreg.txt', '-o', args.outpath + '/fullmodel_unreg.root'])
+    cmd.extend(['%s/fullmodel_unreg.txt' % args.outpath, '-o', '%s/fullmodel_unreg.root' % args.outpath])
 
     print ' '.join(cmd)
     proc = subprocess.Popen(cmd)
