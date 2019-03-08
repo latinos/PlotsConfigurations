@@ -101,11 +101,11 @@ This program is used to skim ROOT files by applying cuts on an input tree and co
 * filenameOutput -> Path to the output ROOT file.
 
 
-	-t (--tree) : Name of the tree holding the variables
-	-c (--cut) : Cut string which is used on input tree 
-	-r (--remove) : List of branches, which are removed from tree
-	-k (--keep) : List of branches, which are explicitly kept in tree. This option deactivates the 'remove' argument for the specified branches.
-	-v (--verbosity) : Increase or decrease output verbosity for input/output tree properties
+      -t (--tree) : Name of the tree holding the variables
+      -c (--cut) : Cut string which is used on input tree 
+      -r (--remove) : List of branches, which are removed from tree
+      -k (--keep) : List of branches, which are explicitly kept in tree. This option deactivates the 'remove' argument for the specified branches.
+      -v (--verbosity) : Increase or decrease output verbosity for input/output tree properties
 
 
 ### Examples:
