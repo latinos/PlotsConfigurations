@@ -11,14 +11,14 @@
 * mkShapesMulti: creates a root file with a lot of histograms
 * mkPlot: merge the histograms into canvases and saves images
 
-   	 voms-proxy-init -voms cms -rfc --valid 168:0
+
+  voms-proxy-init -voms cms -rfc --valid 168:0
 	 
-   	 cmsenv
+	 cmsenv
 	 
-   	 mkShapesMulti.py --pycfg=configuration_DY.py  --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/ --doBatch=True --batchQueue=workday --treeName=Events --batchSplit=Samples,Files
+	 mkShapesMulti.py --pycfg=configuration_DY.py  --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/ --doBatch=True --batchQueue=workday --treeName=Events --batchSplit=Samples,Files
 	 
-   	 mkShapesMulti.py --pycfg=configuration_DY.py  --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/ --doHadd=True --batchSplit=Samples,Files --doNotCleanup
-	 
+	 mkShapesMulti.py --pycfg=configuration_DY.py  --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/ --doHadd=True --batchSplit=Samples,Files --doNotCleanup
 	 
 	 mkPlot.py        --pycfg=configuration_DY.py  --inputFile=rootFile_DY/plots_DY.root --minLogC=0.01 --minLogCratio=0.01 --maxLogC=1000 --maxLogCratio=1000  --showIntegralLegend=1 
 
@@ -44,7 +44,7 @@ In order to read more about it: LatinoAnalysis/NanoGardener/scripts/mkPostProc.p
 ### Options: 
 
 
-    -b (--batch) : submit to batch [default is interactive execution] 
+     -b (--batch) : submit to batch [default is interactive execution] 
 	 -c (--crab) : submit via crab  
 	 -n : dry-run  just produce script in job directory but di not submit  
 	 -T <sample1>, ... ,< sampleN > (--selTree) : run only on these samples. Select only some tree 
