@@ -7,7 +7,7 @@
 # Groups of samples to improve the plots.
 # If not defined, normal plots is used
 #
-
+'''
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
@@ -22,6 +22,7 @@ groupPlot['WW']  = {
                   'samples'  : ['WW', 'ggWW']
               }
 '''
+'''
 groupPlot['Fake']  = {  
                   'nameHR' : 'Non-prompt',
                   'isSignal' : 0,
@@ -29,7 +30,7 @@ groupPlot['Fake']  = {
                   'samples'  : ['Fake', 'Fake_em', 'Fake_me']
               }
 '''
-
+'''
 groupPlot['DY']  = {  
                   'nameHR' : "DY",
                   'isSignal' : 0,
@@ -76,21 +77,34 @@ groupPlot['Higgs']  = {
                   'color': 632, # kRed 
 		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
               }
-
+'''
 
 groupPlot['WpWmJJS']  = {
-                  'nameHR' : 'WpWmJJ',
+                  'nameHR' : 'WpWmJJX100',
                   'isSignal' : 1,
                   'color': 432, # kCyan                                                                            
                   'samples'  : ['WpWmJJ_EWK']
               }
-
+'''
 groupPlot['WpWmJJBkg']  = {
                   'nameHR' : 'WpWmJJBkg',
                   'isSignal' : 0,
                   'color': 820, # kSpring                                                                            
                   'samples'  : [ 'WpWmJJ_EWK_QCD_noHiggs', 'WpWmJJ_EWK_QCD_noTop', 'WpWmJJ_EWK_QCD_noTop_noHiggs', 'WpWmJJ_EWK_noTop', 'WpWmJJ_QCD_noTop' ]
               }
+
+'''
+groupPlot['Bkg']  = {
+                  'nameHR' : 'Bkg',
+                  'isSignal' : 0,
+                  'color': 416+3, # kGreen+3                                                                                                                                                                                                                                   
+                  'samples'  : [ 'WpWmJJ_EWK_QCD_noHiggs', 'WpWmJJ_EWK_QCD_noTop', 'WpWmJJ_EWK_QCD_noTop_noHiggs', 'WpWmJJ_EWK_noTop', 'WpWmJJ_QCD_noTop','H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt','VgS','WZgS_L','Vg', 'Wg','VZ', 'WZ', 'ZZ', 'WZgS_H','VVV','DY','WW', 'ggWW','top' ]
+              }
+
+
+
+
+
 
 
 
@@ -167,14 +181,14 @@ plot['top'] = {
 
 
 plot['WW']  = {
-                  'color': 851, # kAzure -9 
+                  'color': 616-7, # kMagenta -7 
                   'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
 
 plot['ggWW']  = {
-                  'color': 850, # kAzure -10
+                  'color': 616-4, # kMagenta -4
                   'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1.0
@@ -182,7 +196,7 @@ plot['ggWW']  = {
 
 
 plot['Vg']  = { 
-                  'color': 859, # kAzure -1  
+                  'color': 616, # kMagenta  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
@@ -196,14 +210,14 @@ plot['VgS'] = {
                   }
 '''
 plot['VZ']  = { 
-                  'color': 858, # kAzure -2  
+                  'color': 920+2, # -kGray+2  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
 
 plot['VVV']  = { 
-                  'color': 857, # kAzure -3  
+                  'color': 920, # kGray  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
@@ -365,10 +379,10 @@ plot['ttH_hww'] = {
 # WpWm
 
 plot['WpWmJJ_EWK']  = {
-                  'color': 900, # kPinkg                                                                                              
+                  'color': 900, # kPink                                                                                       
                   'isSignal' : 1,
                   'isData'   : 0,
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven                                                            
+                  'scale'    : 100.0   # ele/mu trigger efficiency   datadriven                                                            
                   }
 
 
