@@ -19,7 +19,7 @@ groupPlot['Fake']  = {
 groupPlot['ChargeMisId']  = {  
                   'nameHR' : "ChMisId",
                   'isSignal' : 0,
-                  'color': 418,    # kGreen+2
+                  'color': 617,    # kViolet+1
                   'samples'  : ['ChMisId' , 'ttbar']
               }
 
@@ -27,7 +27,7 @@ groupPlot['ChargeMisId']  = {
 groupPlot['VVV']  = {  
                   'nameHR' : 'VVV',
                   'isSignal' : 0,
-                  'color': 857, # kAzure -3  
+                  'color': 797, # kOrange -3  
                   'samples'  : ['VVV']
               }
 
@@ -35,7 +35,7 @@ groupPlot['VVV']  = {
 groupPlot['VV']  = {  
                   'nameHR' : "VV",
                   'isSignal' : 0,
-                  'color'    : 617,   # kViolet + 1  
+                  'color'    : 418,   # kGreen + 2  
                   'samples'  : ['ZZ' , 'WZ' , 'DPS']
               }
 
@@ -49,14 +49,14 @@ groupPlot['Vg']  = {
 groupPlot['WW_EWK']  = {  
                   'nameHR' : "WW_EWK",
                   'isSignal' : 1,
-                  'color'    : 651,   # kViolet + 1  
+                  'color'    : 1,   # kBlack  
                   'samples'  : ['WW_EWK']
               }
 
 groupPlot['WW_strong']  = {  
                   'nameHR' : "WW QCD",
                   'isSignal' : 0,
-                  'color'    : 633,   # kOrange + 10
+                  'color'    : 600,   # kBlue
                   'samples'  : ['WW_strong']
               }
 
@@ -68,7 +68,7 @@ groupPlot['WW_strong']  = {
 
 ##Charge Misidentification               
 plot['ChMisId']  = {  
-                  'color': 418,    # kGreen+2
+                  'color': 617,    # kViolet+1
                   'isSignal' : 0,
                   'isData'   : 0, 
                   'scale'    : 1.0
@@ -204,14 +204,14 @@ plot['WZ_promptSubtr']  = {
 
 ##Signal
 plot['WW_EWK']  = {
-                  'color': 651, # kAzure -9 
+                  'color': 632, # kAzure -9 
                   'isSignal' : 1,
                   'isData'   : 0,
                   'scale'    : 1.0   
                   }
 ##Irreducible Background
 plot['WW_strong']  = {
-                  'color': 633, # kAzure -9 
+                  'color': 600, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0   
@@ -268,5 +268,4 @@ plot['DATA']  = {
 
 # additional options
 legend['lumi'] = 'L = 35.9/fb'
-
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
