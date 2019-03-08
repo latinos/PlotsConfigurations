@@ -17,7 +17,7 @@ variables['cjv']  = {  'name': '1*(std_vector_jet_pt[2]<=30 || (std_vector_jet_p
                       } #if central jet veto is satisfied cjv is equal to 1, else 0
 
 variables['prel']  = {   'name': 'std_vector_lepton_pt[0]/((std_vector_jet_pt[2]>20)*std_vector_jet_pt[2]-1*(std_vector_jet_pt[2]<=20))',
-                       'range' : (11, -1 ,10),    
+                       'range' : (17, -0.5 ,8),    
                        'xaxis' : 'p_{t}^{lep1} / p_{t}^{jet3}',  
                        'fold' : 3
                        } #usually jet_pt > 20 (if not verified, use -1 instead of jet_pt)
