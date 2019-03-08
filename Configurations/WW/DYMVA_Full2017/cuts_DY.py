@@ -1,5 +1,4 @@
- # cuts
-
+# cuts
 
 _tmp = [ 
      'ptll>30.',
@@ -9,7 +8,7 @@ _tmp = [
      '(nLepton>=2 && Alt$(Lepton_pt[2],0)<10.)',
      'fabs(Lepton_eta[0])<2.5 && fabs(Lepton_eta[1])<2.5',
      'Sum$(abs(CleanJet_eta)>2.5) == 0',
-     'MET_pt>20.',
+     'PuppiMET_pt>20.',
      'mpmet>20.',
        ]
 
