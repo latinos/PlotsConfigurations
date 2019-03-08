@@ -50,10 +50,15 @@ METFilter_DATA = 'METFilter_DATA'
 ################################################
 
 DataRun = [ 
-            ['A','Run2018A-14Sep2018_ver3-v1'] ,
-            ['B','Run2018B-14Sep2018_ver2-v1'] ,
-            ['C','Run2018C-14Sep2018_ver3-v1'] ,
-            ['D','Run2018D-14Sep2018_ver2-v1'] ,
+            ['A1','Run2018A-14Sep2018_ver1-v1'] ,
+            ['A2','Run2018A-14Sep2018_ver2-v1'] ,
+            ['A3','Run2018A-14Sep2018_ver3-v1'] ,
+            ['B1','Run2018B-14Sep2018_ver1-v1'] ,
+            ['B2','Run2018B-14Sep2018_ver2-v1'] ,
+            ['C1','Run2018C-14Sep2018_ver1-v1'] ,
+            ['C2','Run2018C-14Sep2018_ver2-v1'] ,
+            ['C3','Run2018C-14Sep2018_ver3-v1'] ,
+            ['D2','Run2018D-14Sep2018_ver2-v1'] ,
           ]
 
 DataSets = ['MuonEG','DoubleMuon','EGamma','SingleMuon',]
@@ -79,6 +84,7 @@ samples['DATA']  = {   'name': [ ] ,
 for Run in DataRun :
 	directory = treeBaseDir+'Run2018_102X_nAODv4_14Sep_Full2018/DATAl1loose2018__l2loose__l2tightOR2018'
 	for DataSet in DataSets :
+                if DataSet == 'SingleMuon' and ( Run[0] == 'A1' or Run[0] == 'A2') : continue
 		FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
 		for iFile in FileTarget:
 			print(iFile)
