@@ -100,12 +100,17 @@ variables['mjj']  = {   'name': 'mjj',            #   variable name
 #                        'fold' : 0
 #                        }
 #
-#variables['dphill']  = {   'name': 'abs(dphill)',     
-#                        'range' : (20,0,3.14),   
-#                        'xaxis' : '#Delta#phi_{ll}',
-#                        'fold' : 3
-#                        }
-#
+variables['dphill']  = {   'name': 'abs(dphill)',     
+                        'range' : (20,0,3.14),   
+                        'xaxis' : '#Delta#phi_{ll}',
+                        'fold' : 3
+                        }
+variables['dphijj']  = {   'name': 'abs(dphijj)',
+                        'range' : (20,0,4.7),
+                        'xaxis' : '#Delta#phi_{ll}',
+                        'fold' : 3
+                        }
+
 #variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
 #                        'range' : (40,0,200),   
 #                        'xaxis' : 'p_{T} 1st lep',
