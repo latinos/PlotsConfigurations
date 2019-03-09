@@ -105,7 +105,7 @@ variables['dphill']  = {   'name': 'abs(dphill)',
                         'xaxis' : '#Delta#phi_{ll}',
                         'fold' : 3
                         }
-variables['dphijj']  = {   'name': 'abs(dphijj)',
+variables['detajj']  = {   'name': 'abs(dphijj)',
                         'range' : (20,0,4.7),
                         'xaxis' : '#Delta#phi_{ll}',
                         'fold' : 3
