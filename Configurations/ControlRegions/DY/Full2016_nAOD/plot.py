@@ -15,7 +15,7 @@
 #                  'samples'  : ['Fake']
 #              }
 #
-
+'''
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bart',
                   'isSignal' : 0,
@@ -23,7 +23,6 @@ groupPlot['top']  = {
                   'samples'  : ['top']
               }
 
-'''
 groupPlot['WW']  = {  
                   'nameHR' : 'WW',
                   'isSignal' : 0,
@@ -78,7 +77,7 @@ plot['DY']  = {
                   'isData'   : 0, 
                   'scale'    : 1.   ,
               }
-
+'''
 plot['VgS'] = { 
                   'color'    : 617,   # kViolet + 1  
                   'isSignal' : 0,
@@ -265,7 +264,7 @@ plot['bbH_hww'] = {
                   'isData'   : 0,
                   'scale'    : 1    #
                   }
-
+'''
 
 # data
 
@@ -285,7 +284,3 @@ plot['DATA']  = {
 #legend['lumi'] = 'L = 6.3/fb'
 legend['lumi'] = 'L = 35.9/fb'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
-
-
-
-

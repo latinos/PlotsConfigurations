@@ -16,20 +16,20 @@ cuts['Zmm']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -13*13)   \
 
 cuts['Zee0j']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*11)   \
                    && Lepton_pt[0]>25 && Lepton_pt[1]>13 \
-                   && ( Jet_pt[0] < 30 ) \
+                   && Alt$(CleanJet_pt[0],0)<30 \
                  '
 
 cuts['Zmm0j']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -13*13)   \
-                   && ( Jet_pt[0] < 30 ) \
+                   && Alt$(CleanJet_pt[0],0)<30 \
                  '
 
 cuts['Zee1j']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*11)   \
                    && Lepton_pt[0]>25 && Lepton_pt[1]>13 \
-                   && ( Jet_pt[0] >= 30 ) \
-                   && ( Jet_pt[1] < 30 ) \
+                   && Alt$(CleanJet_pt[0],0)>=30 \
+                   && Alt$(CleanJet_pt[1],0)<30  \
                  '
 
 cuts['Zmm1j']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -13*13)   \
-                   && ( Jet_pt[0] >= 30 ) \
-                   && ( Jet_pt[1] < 30 ) \
+                   && Alt$(CleanJet_pt[0],0)>=30 \
+                   && Alt$(CleanJet_pt[1],0)<30  \
                  '

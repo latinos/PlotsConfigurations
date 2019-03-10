@@ -9,7 +9,7 @@ structure['DY']  = {
                   'isData'   : 0 
               }
 
-
+'''
 structure['Wjets']  = {  
                   'isSignal' : 0,
                   'isData'   : 0 
@@ -119,7 +119,7 @@ structure['H_htt'] = {
                   'isSignal' : 1,
                   'isData'   : 0    
                   }
-
+'''
 # data
 
 
