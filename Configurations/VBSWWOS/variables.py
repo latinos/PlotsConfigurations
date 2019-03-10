@@ -174,7 +174,7 @@ variables['mll*abs(detall)']  = {   'name': 'mll*abs(std_vector_lepton_eta[0]-st
                                                                                     
                          'fold' : 3                                                                                                                                                                    
                         }  
-
+#new variable
 variables['R_{pT}']  = {   'name': '(std_vector_lepton_pt[0]-std_vector_lepton_pt[1])/(std_vector_jet_pt[0]*std_vector_jet_pt[1])',          
                                                                                                       
 
