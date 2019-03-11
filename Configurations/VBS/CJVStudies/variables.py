@@ -4,23 +4,35 @@
     
 #'fold' : # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
 
-variables['jv']  = {   'name': '1*(std_vector_jet_pt[2]<30)',
-                       'range' : (4, -1 ,3),    
-                       'xaxis' : 'JV',  
-                       'fold' : 3
-                       } #if jet veto is satisfied jv is equal to 1, else 0
+#variables['jv']  = {   'name': '1*(std_vector_jet_pt[2]<30)',
+                       #'range' : (4, -1 ,3),    
+                       #'xaxis' : 'JV',  
+                       #'fold' : 3
+                       #} #if jet veto is satisfied jv is equal to 1, else 0
 
-variables['cjv']  = {  'name': '1*(std_vector_jet_pt[2]<=30 || (std_vector_jet_pt[2]>30 && std_vector_jet_eta[2] < ((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[0]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[1]) && std_vector_jet_eta[2] > ((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[1]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[0]) ))',
-                      'range': (4,-1,3), 
-                      'xaxis': 'CJV',
-                      'fold': 3
-                      } #if central jet veto is satisfied cjv is equal to 1, else 0
+#variables['cjv']  = {  'name': '1*(std_vector_jet_pt[2]<=30 || (std_vector_jet_pt[2]>30 && std_vector_jet_eta[2] < ((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[0]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[1]) && std_vector_jet_eta[2] > ((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[1]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[0]) ))',
+                      #'range': (4,-1,3), 
+                      #'xaxis': 'CJV',
+                      #'fold': 3
+                      #} #if central jet veto is satisfied cjv is equal to 1, else 0
 
-variables['prel']  = {   'name': 'std_vector_lepton_pt[0]/((std_vector_jet_pt[2]>20)*std_vector_jet_pt[2]-1*(std_vector_jet_pt[2]<=20))',
-                       'range' : (8, -1 ,7),    
-                       'xaxis' : 'p_{t}^{lep1} / p_{t}^{jet3}',  
+variables['djv_ptl1']  = {   'name': '(std_vector_jet_pt[2]>20)*(std_vector_jet_pt[2]/std_vector_lepton_pt[0])',
+                       'range' : (7, -0.25 ,1),    
+                       'xaxis' : 'djv(p_{t}^{lep1})',  
                        'fold' : 3
-                       } #usually jet_pt > 20 (if not verified, use -1 instead of jet_pt)
+                       } #usually jet_pt > 20 (if not verified, use 0 instead of jet_pt)
+
+variables['djv_mll']  = {   'name': '(std_vector_jet_pt[2]>20)*(std_vector_jet_pt[2]/mll)',
+                       'range' : (7, -0.25 ,1),    
+                       'xaxis' : 'djv(m_{ll})',
+                       'fold' : 3
+                       } #usually jet_pt > 20 (if not verified, use 0 instead of jet_pt)
+
+variables['djv_ptll']  = {   'name': '(std_vector_jet_pt[2]>20)*(std_vector_jet_pt[2]/ptll)',
+                       'range' : (7, -0.25 ,1),    
+                       'xaxis' : 'djv(p_{t}^{ll})',
+                       'fold' : 3
+                       } #usually jet_pt > 20 (if not verified, use 0 instead of jet_pt)
 
 #variables['pt3']  = {   'name': 'std_vector_jet_pt[2]',
                        #'range' : (10, 0 ,100),    
@@ -69,26 +81,26 @@ variables['prel']  = {   'name': 'std_vector_lepton_pt[0]/((std_vector_jet_pt[2]
                 # 'fold': 3
         # }
 
-#variables['mll']  = {   'name': 'mll',            #   variable name
-                       #'range' : (10, 0. ,200),    #   variable range
-                       #'xaxis' : 'mll [GeV]',  #   x axis name
-                       #'fold' : 3
-                       #}
+variables['mll']  = {  'name': 'mll',          
+                       'range' : (8, 0. ,350),    
+                       'xaxis' : 'm_{ll} [GeV]',  
+                       'fold' : 3
+                       }
 
 
 variables['mjj']  = {  'name': 'mjj',
-                      'range': (10,500,2000),
+                      'range': (8,500,2000),
                       'xaxis': 'm_{jj} [GeV]',
                       'fold': 3
                       }
                       
-# variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
+# variables['ptl1']  = {   'name': 'std_vector_lepton_pt[0]',     
                        # 'range' : (10,0.,150),   
                        # 'xaxis' : 'p_{T} 1st lep',
                        # 'fold'  : 3                         
                        # }
 
-# variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',        
+# variables['ptl2']  = {   'name': 'std_vector_lepton_pt[1]',        
                        # 'range' : (10,0.,100),   
                        # 'xaxis' : 'p_{T} 2nd lep',
                        # 'fold'  : 3                         
@@ -107,9 +119,9 @@ variables['mjj']  = {  'name': 'mjj',
                        # }
 
 
-# variables['met']  = {   'name': 'metPfType1',            #   variable name    
-                       # 'range' : (10,0,200),    #   variable range
-                       # 'xaxis' : 'pfmet [GeV]',  #   x axis name
+# variables['met']  = {   'name': 'metPfType1',        
+                       # 'range' : (10,0,200),    
+                       # 'xaxis' : 'pfmet [GeV]',  
                        # 'fold' : 3
                        # }
 

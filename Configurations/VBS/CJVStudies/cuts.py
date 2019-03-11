@@ -20,27 +20,50 @@ cuts['VBS_13TeV_BaseCut']='1'
 #cuts['VBS_13TeV_BaseCut_MuMu']='std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 13*13'
 
 JetVeto = '\
-std_vector_jet_pt[2]<30 \
+(std_vector_jet_pt[2]<30) \
 '
 
 CentralJetVeto = '\
-std_vector_jet_pt[2]<=30 \
+(std_vector_jet_pt[2]<=30 \
 || (std_vector_jet_pt[2]>30 \
 && std_vector_jet_eta[2] <  \
 ((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[0]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[1]) \
 && std_vector_jet_eta[2] > \
-((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[1]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[0]) ) \
+((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[1]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[0]) )) \
 '
 
 DynamicJetVeto = '\
-std_vector_jet_pt[2] < 0.25 * std_vector_lepton_pt[0] \
+(std_vector_jet_pt[2] < 0.25 * std_vector_lepton_pt[0]) \
 ' #ho inserito una percentuale del 25% come esempio
 
+mjjVeto1 = '(mjj>100)'
+
+mjjVeto5 = '(mjj>500)'
+
+mjjVeto10 = '(mjj>1000)'
+
+detajjVeto10 = '(detajj>1.0)'
+
+detajjVeto25 = '(detajj>2.5)'
+
+detajjVeto30 = '(detajj>3.0)'
+
+
 cuts['Jet_Veto']=JetVeto
-
 cuts['Central_Jet_Veto']=CentralJetVeto
-
 cuts['Dynamic_Jet_Veto']=DynamicJetVeto
+
+cuts['mjjV1']=mjjVeto1
+cuts['mjjV5']=mjjVeto5
+cuts['mjjV10']=mjjVeto10
+
+cuts['DJV_mjjV1']= DynamicJetVeto + ' && ' + mjjVeto1
+cuts['DJV_mjjV5']=DynamicJetVeto + ' && ' + mjjVeto5
+cuts['DJV_mjjV10']=DynamicJetVeto + ' && ' + mjjVeto10
+
+cuts['DJV_detajjV10']=DynamicJetVeto + ' && ' + detajjVeto10
+cuts['DJV_detajjV25']=DynamicJetVeto + ' && ' + detajjVeto25
+cuts['DJV_detajjV30']=DynamicJetVeto + ' && ' + detajjVeto30
 
 tauVeto = '\
 ( std_vector_tau_pt[0] < 18 || std_vector_tau_looseIso_dbeta[0] < 1. || (sqrt( pow(std_vector_tau_eta[0] - std_vector_lepton_eta[0], 2) + pow(abs(abs(std_vector_tau_phi[0] - std_vector_lepton_phi[0])-pi)-pi, 2) ) < 0.3 || sqrt( pow(std_vector_tau_eta[0] - std_vector_lepton_eta[1], 2) + pow(abs(abs(std_vector_tau_phi[0] - std_vector_lepton_phi[1])-pi)-pi, 2) ) < 0.3 ) ) \
