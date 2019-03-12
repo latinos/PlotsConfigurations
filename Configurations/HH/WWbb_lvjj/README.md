@@ -57,7 +57,8 @@ This step reads the post-processed latino trees and produces histograms for seve
                 --inputDir=/gwteraz/users/amassiro/latino/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC/  \
                 --batchSplit=AsMuchAsPossible \
                 --doBatch=True
-        
+    You need --inputDir= only if you don't insert the directory in samples.py
+
 Local test:
 
     mkShapes.py --inputDir=/gwteraz/users/amassiro/latino/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC  --pycfg=configuration.py
@@ -117,7 +118,9 @@ At this stage one can either produce plots or datacards.
 Now we are ready to make data/MC comparison plots.
 
     mkPlot.py --inputFile=rootFile/plots_WWlvjj.root \
-              --showIntegralLegend=1
+              --showIntegralLegend=1 \
+	      --showRelativeRatio \
+	      --plotNormalizedDistributions=True
 
 
 ### Produce datacards

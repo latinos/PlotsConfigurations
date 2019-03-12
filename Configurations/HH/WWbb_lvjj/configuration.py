@@ -19,6 +19,8 @@ samplesFile = 'samples.py'
 # file with list of samples
 plotFile = 'plot.py' 
 
+#options of the plots
+plotNormalizedDistributions = True   # default is False
 
 
 # luminosity to normalize to (in 1/fb)

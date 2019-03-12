@@ -8,21 +8,16 @@ from LatinoAnalysis.Tools.commonTools import *
 ##############################################
 
 directory_MC = '/gwteraz/users/amassiro/latino/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC'
+#directory_data = '/gwteras/cms/store/group/OneLepton/Apr2017_Run2016B_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__hadd/'
 treeBaseDir = '/gwteras/cms/store/group/OneLepton/'
 
 #############################################
 ########### Definition of weights ###########
 #############################################
 
-XSWeight = 'event.baseW*\
-                        event.GEN_weight_SM/abs(event.GEN_weight_SM) \
-                        if hasattr(event, \'GEN_weight_SM\') else event.baseW'
+XSWeight = 'event.baseW*event.GEN_weight_SM/abs(event.GEN_weight_SM)'
 
-SFweight1l = 'event.puW*\
-                          event.effTrigW*\
-                          event.std_vector_lepton_recoW[0]*\
-                          event.veto_EMTFBug \
-                          if hasattr(event, \'std_vector_lepton_recoW\') else 1.'
+SFweight1l = 'event.puW*event.effTrigW*event.std_vector_lepton_recoW[0]*event.electron_etaW_1l*event.electron_ptW_1l'
 
 METFilter_Common = '(event.std_vector_trigger_special[0]*\
                      event.std_vector_trigger_special[1]*\
@@ -34,6 +29,10 @@ METFilter_MCver  =  '(event.std_vector_trigger_special[8]==-2.)'
 METFilter_MCOld  =  '(event.std_vector_trigger_special[6]*event.std_vector_trigger_special[7])'
 METFilter_MCNew  =  '(event.std_vector_trigger_special[8]*event.std_vector_trigger_special[9])'
 METFilter_MC     =  METFilter_Common + '*' + '(('+METFilter_MCver+'*'+METFilter_MCOld+') or ((not '+METFilter_MCver+')*'+METFilter_MCNew+'))' 
+
+METFilter_DATA   =  METFilter_Common + '*' + '(event.std_vector_trigger_special[4]*\
+                                              event.std_vector_trigger_special[8]*\
+                                              event.std_vector_trigger_special[9])'
 
 
 
@@ -54,27 +53,27 @@ samples['Wjets'] = { 	'name' :   getSampleFiles(directory_MC, 'WJetsToLNu_HT100_
 				+ getSampleFiles(directory_MC, 'WJetsToLNu_HT1200_2500', True)\
 				+ getSampleFiles(directory_MC, 'WJetsToLNu_HT2500_inf', True),
 				'weight': XSWeight + '*' + SFweight1l + '*' + METFilter_MC ,
-				'FilesPerJob' : 2,
+				'FilesPerJob' : 3,
 		   }
 
 
 
 #samples['TT']  = {    'name'   : getSampleFiles(directory_MC, 'TTToSemiLepton', True) ,
 #                      'weight' :   XSWeight + '*' + SFweight1l + '*' + METFilter_MC ,
-#		      'FilesPerJob' : 2,
+#		      'FilesPerJob' : 3,
 #		 }
 
 #others minor backgrounds all inside Others
-#samples['Others']  = {    'name'   : getSampleFiles(directory_MC, 'TTWJetsToLNu') \
-#                                +       getSampleFiles(directory_MC, 'WZTo1L1Nu2Q') \
-#                                +       getSampleFiles(directory_MC, 'WZTo1L3Nu') \
-#                                +       getSampleFiles(directory_MC, 'WWW') \
-#                                +       getSampleFiles(directory_MC, 'WWZ') \
-#                                +       getSampleFiles(directory_MC, 'DYJetsToLL_M-10to50-LO') \
-#                                +       getSampleFiles(directory_MC, 'WWTo2L2Nu') \
-#                                +       getSampleFiles(directory_MC, 'WZTo2L2Q') \
-#                                +       getSampleFiles(directory_MC, 'ZZTo2L2Q') ,
-#                                'weight' :   '1.' ,
+#samples['Others']  = {    'name'   : getSampleFiles(directory_MC, 'TTWJetsToLNu', True) \
+#                                +       getSampleFiles(directory_MC, 'WZTo1L1Nu2Q', True) \
+#                                +       getSampleFiles(directory_MC, 'WZTo1L3Nu', True) \
+#                                +       getSampleFiles(directory_MC, 'WWW', True) \
+#                                +       getSampleFiles(directory_MC, 'WWZ', True) \
+#                                +       getSampleFiles(directory_MC, 'DYJetsToLL_M-10to50-LO', True) \
+#                                +       getSampleFiles(directory_MC, 'WWTo2L2Nu', True) \
+#                                +       getSampleFiles(directory_MC, 'WZTo2L2Q', True) \
+#                                +       getSampleFiles(directory_MC, 'ZZTo2L2Q', True) ,
+#                                'weight' :    XSWeight + '*' + SFweight1l + '*' + METFilter_MC ,
 #                        'FilesPerJob' : 3,
 #                         }
 
@@ -154,7 +153,7 @@ DataTrig = {
 	   }
 
 samples['DATA']  = {    'name'   : [],
-				   'weight' : XSWeight + '*' + SFweight1l + '*' + METFilter_MC,
+				   'weight' : METFilter_DATA,
 				   'weights' : [],
 				   'isData': ['all'],
                       		   'FilesPerJob' : 2,
@@ -163,7 +162,7 @@ samples['DATA']  = {    'name'   : [],
 for Run in DataRun :
 	directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__hadd/'
 	for DataSet in DataSets :
-	 	FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
+ 		FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
 		for iFile in FileTarget:
 			samples['DATA']['name'].append(iFile)
 			samples['DATA']['weights'].append(DataTrig[DataSet]) 

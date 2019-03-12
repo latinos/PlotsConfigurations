@@ -3,17 +3,17 @@
 #variables = {}
     
    
-#variables['events']  = {   'name': '1',      
-#                        'range' : (1,0,2),  
-#                        'xaxis' : 'events', 
-#                        'fold' : 3
-#                        }
+variables['events']  = {   'name': '1',      
+                        'range' : (1,0,2),  
+                        'xaxis' : 'events', 
+                        'fold' : 3
+                        }
    
-#variables['nvtx']  = {  'name': 'nvtx',      
-#                        'range' : (30,0,40),  
-#                        'xaxis' : 'nvtx', 
-#                       'fold' : 3
-#                      }
+variables['nvtx']  = {  'name': 'nvtx',      
+                        'range' : (30,0,40),  
+                        'xaxis' : 'nvtx', 
+                       'fold' : 3
+                      }
 
 #lepton
 variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     

@@ -11,12 +11,7 @@
 
 
 
-groupPlot['HH']  = {  
-			'nameHR' : 'HH',
-			'isSignal' : 1,
-			'color': 632,   
-			'samples'  : ['HH']
-		   }
+#BKG
 
 groupPlot['Wjets']  = {
                         'nameHR' : 'W+Jets',
@@ -26,7 +21,7 @@ groupPlot['Wjets']  = {
                      }
 
 #groupPlot['TTToSemilepton']  = {    
-#				  'nameHR' : 'TTToSemilepton',
+#				  'nameHR' : 'ttbar',
 #				  'isSignal' : 0,
 #				  'color' : 860,
 #			  	  'samples' : ['TT']
@@ -36,7 +31,7 @@ groupPlot['Wjets']  = {
 #groupPlot['Others']  = {
 #                        'nameHR' : 'Others',
 #                        'isSignal' : 0,
-#                        'color': 418,
+#                        'color': 617,
 #                        'samples'  : ['Others']
 #                        }
 
@@ -104,6 +99,16 @@ groupPlot['Wjets']  = {
 #                        'samples'  : ['ZZTo2L2Q']
 #                        }
 
+#SIGNAL
+groupPlot['HH']  = {
+                        'nameHR' : 'HH',
+                        'isSignal' : 1,
+                        'color': 632,
+                        'samples'  : ['HH']
+                   }
+
+
+
 #DATA
 #groupPlot['DATA']  = {
 #			'nameHR' : 'DATA',
@@ -118,17 +123,13 @@ groupPlot['Wjets']  = {
 
 # keys here must match keys in samples.py    
 #                    
-plot['HH']  = {  
-                  'color': 632,    
-                  'isSignal' : 1,
-                  'isData'   : 0, 
-                  'scale'    : 1.   ,
-              }
+
+#BKG
 plot['Wjets']  = {
                   'color': 418,
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.   ,
+                  'scale'    : 10e-68   ,
 	          }
 
 
@@ -140,7 +141,7 @@ plot['Wjets']  = {
 #              }
 
 #plot['Others']  = {
-#                  'color': 418,
+#                  'color': 617,
 #                  'isSignal' : 0,
 #                  'isData'   : 0,
 #                  'scale'    : 1.   ,
@@ -210,16 +211,24 @@ plot['Wjets']  = {
 #                  'scale'    : 1.   ,
 #              }
 
+#SIGNAL
+plot['HH']  = {
+                  'color': 632,
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1.  ,
+              }
+
 
 #DATA
-#plot['DATA']  = { 
-#                  'nameHR' : 'Data',
-#                  'color': 1 ,  
-#                  'isSignal' : 0,
-#                  'isData'   : 1 ,
-#                  'isBlind'  : 0,
-#		  'scale' : 1.
-#              }
+plot['DATA']  = { 
+                  'nameHR' : 'Data',
+                  'color': 1 ,  
+                  'isSignal' : 0,
+                  'isData'   : 1 ,
+                  'isBlind'  : 0,
+		  'scale' : 1.
+              }
 
 
 
