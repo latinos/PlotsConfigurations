@@ -49,7 +49,7 @@ groupPlot['non-prompt']  = {
                   'nameHR' : 'non-Prompt',
                   'isSignal' : 0,
                   'color': 400,    # kYellow
-                  'samples'  : ['Fake_lep','DY_promptSubtr','lep_TT_promptSubtr','singleTop_promptSubtr','singleAntiTop_promptSubtr','ggWWTo2L2Nu_promptSubtr','WWTo2L2Nu_promptSubtr','Vg_promptSubtr','ZZ_promptSubtr','WpWpJJ_promptSubtr','WpWpJJ_QCD_promptSubtr','VVV_promptSubtr','DPS_promptSubtr','WZ_promptSubtr']
+                  'samples'  : ['Fake_lep','DY_promptSubtr','lep_TT_promptSubtr','singleTop_promptSubtr','singleAntiTop_promptSubtr','ggWWTo2L2Nu_promptSubtr','WWTo2L2Nu_promptSubtr','Vg_promptSubtr','ZZ_promptSubtr','WpWpJJ_promptSubtr','WpWpJJ_promptSubtr','WpWpJJ_QCD_promptSubtr','VVV_promptSubtr','DPS_promptSubtr','WZ_promptSubtr']
               }
 
 
@@ -57,7 +57,7 @@ groupPlot['WW_EWK']  = {
                   'nameHR' : "WW EWK",
                   'isSignal' : 0,
                   'color'    : 602,   # kViolet + 1  
-                  'samples'  : ['WW_EWK']
+                  'samples'  : ['WpWp_EWK' , 'WmWm_EWK']
               }
 
 
@@ -155,6 +155,13 @@ plot['WpWpJJ_promptSubtr']  = {
                   'isData'   : 0,
                   'scale'    : 1.0                  
               }
+             
+plot['WmWmJJ_promptSubtr']  = {  
+                  'color': 400,    # kYellow
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0                  
+              }
 
 plot['WpWpJJ_QCD_promptSubtr']  = {  
                   'color': 400,    # kYellow
@@ -185,7 +192,14 @@ plot['WZ_promptSubtr']  = {
               }
 
 ##Signal
-plot['WW_EWK']  = {
+plot['WpWp_EWK']  = {
+                  'color': 602, # kAzure -9 
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0   
+                  }
+        
+plot['WmWm_EWK']  = {
                   'color': 602, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -243,7 +257,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0 ,
+                  'isBlind'  : 1 ,
 		  'scale'    : 1.0
               }
 

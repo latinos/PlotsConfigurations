@@ -145,7 +145,7 @@ samples['WWTo2L2Nu_promptSubtr']  = { 	'name': getSampleFiles(PromptSubtr,'WWTo2
 					
 samples['Vg_promptSubtr'] =	{ 	'name':getSampleFiles(PromptSubtr,'WGJJ',True)  
 									   +getSampleFiles(PromptSubtr,'Zg',True) 
-					 	+getSampleFiles(PromptSubtr,'Wg_MADGRAPHMLM',True)
+					 	#+getSampleFiles(PromptSubtr,'Wg_MADGRAPHMLM',True)
 										,    
                                 'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+SameSign,    
 							}
@@ -157,10 +157,14 @@ samples['ZZ_promptSubtr'] =	{ 	'name': getSampleFiles(PromptSubtr,'ZZTo4L',True)
 							}
 
 samples['WpWpJJ_promptSubtr'] = {  	'name':getSampleFiles(PromptSubtr,'WpWpJJ_EWK',True)
-					      +getSampleFiles(MCDir,'WmWmJJ_EWK_powheg',True) 
 										  ,
 									'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+SameSign+'*1.067466',
-								}
+			}
+			
+samples['WmWmJJ_promptSubtr'] = {  	'name':getSampleFiles(PromptSubtr,'WmWmJJ_EWK_powheg',True) 
+										  ,
+									'weight' : '-1.*fakeW2l*baseW*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+SameSign+'*1.067466',
+								}								
 
 samples['WpWpJJ_QCD_promptSubtr'] = {  	'name':getSampleFiles(PromptSubtr,'WpWpJJ_QCD',True)
 											  ,
@@ -190,7 +194,7 @@ samples['WZ_promptSubtr'] =	{	'name': [ ],
 								'FilesPerJob' : 6 ,                                    
 							}
 MyWeights={
-	   'WZTo3LNu'						   : '1' , 
+	   #'WZTo3LNu'						   : '1' , 
            'WLLJJToLNu_M-4To60_EWK_4F'         : '1.' ,
            'WLLJJToLNu_M-60_EWK_4F'            : '1.' ,
            'WLLJJToLNu_M-4To50_QCD_0Jet'       : '1.206' ,
@@ -219,7 +223,7 @@ for DataSet in MyWeights.keys():
 
 samples['Vg']  =  {     'name'  :getSampleFiles(MCDir,'Zg',True)
 				+getSampleFiles(MCDir,'WGJJ',True)
-				+getSampleFiles(MCDir,'Wg_MADGRAPHMLM',True)
+				#+getSampleFiles(MCDir,'Wg_MADGRAPHMLM',True)
                                 ,
                         'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC +'*'+SameSign,
                   }
@@ -240,7 +244,7 @@ samples['WZ'] =	{ 	'name':[]
 					'FilesPerJob' : 6 ,
                 }
 MyWeights={
-	   'WZTo3LNu'						   : '1' , 
+	   #'WZTo3LNu'						   : '1' , 
            'WLLJJToLNu_M-4To60_EWK_4F'         : '1.' ,
            'WLLJJToLNu_M-60_EWK_4F'            : '1.' ,
            'WLLJJToLNu_M-4To50_QCD_0Jet'       : '1.206' ,
@@ -296,13 +300,19 @@ samples['WW_strong'] = {   	'name'   :getSampleFiles(MCDir,'WpWpJJ_QCD',True)
 #############   SIGNALS  ##################
 ###########################################
 
-samples['WW_EWK'] = {  	'name'  :getSampleFiles(MCDir,'WpWpJJ_EWK',True)
-				+getSampleFiles(MCDir,'WmWmJJ_EWK_powheg',True)
+samples['WpWp_EWK'] = {  	'name'  :getSampleFiles(MCDir,'WpWpJJ_EWK',True)
 								#+getSampleFiles(directory,'WpWpJJ_EWK_aQGC')
 								,
 						'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+SameSign+'*1.067466' ,    
 						'FilesPerJob' : 1 ,
 					}
+					
+samples['WmWm_EWK'] = {  	'name'  :getSampleFiles(MCDir,'WmWmJJ_EWK_powheg',True)
+								#+getSampleFiles(directory,'WpWpJJ_EWK_aQGC')
+								,
+						'weight' : 'baseW*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+SameSign+'*1.067466' ,    
+						'FilesPerJob' : 1 ,
+					}					
 
 ###########################################
 ################## FAKE ###################
