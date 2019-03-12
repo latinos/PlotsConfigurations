@@ -33,14 +33,18 @@ cuts = []
 observableBins = []
 
 def isSignal(name):
-    return 'smH' in name or 'ggH' in name or 'xH' in name
+    if 'smH' in name or 'ggH' in name or 'xH' in name:
+        return True
+    if args.hdf5 and (name.startswith('WW') or name.startswith('top') or name.startswith('DY')):
+        # treat the split major background as signal instead of using rateParams
+        return True
 
 os.makedirs(args.outpath)
 
 # Copy the histograms applying adjustments
 targetFullHistRepo = ROOT.TFile.Open('%s/histos.root' % args.outpath, 'recreate')
 
-for cut in os.listdir(args.inpath):
+for cut in sorted(os.listdir(args.inpath)):
     if cut == 'nuisances.py':
         continue
     
@@ -59,11 +63,14 @@ for cut in os.listdir(args.inpath):
 
     cuts.append(cut)
 
-    if not isCR:
+    if isCR:
+        matches = re.match('hww_CR_cat((?:PTH|NJ)_(?:[0-9]+|G[ET][0-9]+|[0-9]+_[0-9]+))_[a-zA-Z]+_[0-9]+$', cut)
+    else:
         matches = re.match('hww_((?:PTH|NJ)_(?:[0-9]+|G[ET][0-9]+|[0-9]+_[0-9]+))(?:_cat(.+)|)_[0-9]+$', cut)
-        obsBin = matches.group(1)
-        if obsBin not in observableBins:
-            observableBins.append(obsBin)
+
+    obsBin = matches.group(1)
+    if obsBin not in observableBins:
+        observableBins.append(obsBin)
     
     variable = os.listdir('%s/%s' % (args.inpath, cut))[0]
     
@@ -96,15 +103,15 @@ for cut in os.listdir(args.inpath):
         if isSignal(name) and sumw > signalMax:
             signalMax = sumw
 
-    # Drop processes that contribute less than 1% of the max (super-off diagonal in the response matrix)
-    for name, hist in nominalTemplates.items():
-        if not isSignal(name):
-            continue
-        
-        sumw = hist.GetSumOfWeights()
-        if sumw < 0.01 * signalMax:
-            print 'Dropping', name, 'from', cut, '(%f << %f)' % (sumw, signalMax)
-            nominalTemplates.pop(name).Delete()
+    ## Drop processes that contribute less than 1% of the max (super-off diagonal in the response matrix)
+    #for name, hist in nominalTemplates.items():
+    #    if not isSignal(name):
+    #        continue
+    #    
+    #    sumw = hist.GetSumOfWeights()
+    #    if sumw < 0.01 * signalMax:
+    #        print 'Dropping', name, 'from', cut, '(%f << %f)' % (sumw, signalMax)
+    #        nominalTemplates.pop(name).Delete()
 
     # Copy the histograms applying adjustments
     if not args.onlyFullModel:
@@ -120,6 +127,8 @@ for cut in os.listdir(args.inpath):
 
         if name in nominalTemplates:
             hist = nominalTemplates[name]
+            nominal = name
+            varsuffix = ''
         else:
             try:
                 nominal = next(key for key in nominalTemplates if name.startswith(key))
@@ -127,11 +136,17 @@ for cut in os.listdir(args.inpath):
                 # nominal is dropped
                 continue
 
+            varsuffix = name[len(nominal):]
+
             hist = key.ReadObj()
             if hist.GetSumOfWeights() <= 0.:
                 hist.Delete()
                 hist = nominalTemplates[nominal].Clone(name)
                 hist.Scale(1.5e-4)
+
+        if args.hdf5 and nominal.replace('histo_', '') in ['WW', 'top', 'DY']:
+            hist.SetName('%s_%s%s' % (nominal, obsBin, varsuffix))
+            hist.SetTitle('%s_%s%s' % (nominal, obsBin, varsuffix))
             
         hist.SetDirectory(targetFullHistDir)
         hist.Write()
@@ -149,6 +164,10 @@ for cut in os.listdir(args.inpath):
     colw = 30
     if len(cut) >= (colw - 5):
         colw = len(cut) + 7
+
+    if args.hdf5:
+        for proc in ['WW', 'top', 'DY']:
+            nominalTemplates['histo_%s_%s' % (proc, obsBin)] = nominalTemplates.pop('histo_%s' % proc)
 
     usedProcs = []
     for histName in nominalTemplates:
@@ -179,6 +198,11 @@ for cut in os.listdir(args.inpath):
 
             procNames = source.readline().split()[1:]
 
+            if args.hdf5:
+                for proc in ['WW', 'top', 'DY']:
+                    idx = procNames.index(proc)
+                    procNames[idx] = '%s_%s' % (proc, obsBin)
+
             for name in procNames:
                 if name not in usedProcs:
                     continue
@@ -191,27 +215,27 @@ for cut in os.listdir(args.inpath):
                     procIds[name] = procId
 
             usedSignals = [name for name in usedProcs if procIds[name] <= 0]
+            usedSignals.sort(key = lambda sname: int(re.match('.+_(?:PTH|NJ)_(?:GE|GT|)([0-9]+)', sname).group(1)))
             usedBkgs = [name for name in usedProcs if procIds[name] > 0]
+            # reorder
+            usedProcs = usedSignals + usedBkgs
 
             target.write('process'.ljust(80))
-            target.write(''.join([name.ljust(colw) for name in usedSignals]))
-            target.write(''.join([name.ljust(colw) for name in usedBkgs]))
+            target.write(''.join([name.ljust(colw) for name in usedProcs]))
             target.write('\n')
             
             # discard one line because we use our own process ids
             source.readline()
 
             target.write('process'.ljust(80))
-            target.write(''.join([('%d' % procIds[name]).ljust(colw) for name in usedSignals]))
-            target.write(''.join([('%d' % procIds[name]).ljust(colw) for name in usedBkgs]))
+            target.write(''.join([('%d' % procIds[name]).ljust(colw) for name in usedProcs]))
             target.write('\n')
 
             rates = map(float, source.readline().split()[1:])
             rateMap = dict(zip(procNames, rates))
 
             target.write('rate'.ljust(80))
-            target.write(''.join([('%-.4f' % rateMap[name]).ljust(colw) for name in usedSignals]))
-            target.write(''.join([('%-.4f' % rateMap[name]).ljust(colw) for name in usedBkgs]))
+            target.write(''.join([('%-.4f' % rateMap[name]).ljust(colw) for name in usedProcs]))
             target.write('\n')
 
             target.write(source.readline())
@@ -243,8 +267,7 @@ for cut in os.listdir(args.inpath):
 
                 target.write(nuisName.ljust(60))
                 target.write(nuisType.ljust(20))
-                target.write(''.join([('%s' % valueMap[name]).ljust(colw) for name in usedProcs if '_hww_' in name]))
-                target.write(''.join([('%s' % valueMap[name]).ljust(colw) for name in usedProcs if '_hww_' not in name]))
+                target.write(''.join([('%s' % valueMap[name]).ljust(colw) for name in usedProcs]))
                 target.write('\n')
 
             target.write(line)
@@ -299,21 +322,11 @@ with open('%s/fullmodel.txt' % args.outpath, 'w') as fullmodel:
 
         if line.startswith('process') and procNames is None:
             procNames = line.split()[1:]
-    
-    for sname in ['WW', 'top', 'DY']:
-        for obsBin in observableBins:
-            if args.hdf5:
-                # temporary until I figure out how to implement rateParams in texthdf5
-                line = 'CMS_hww_%snorm_%s   lnN   ' % (sname, obsBin)
-                for bin, proc in zip(binNames, procNames):
-                    if obsBin in bin and proc == sname:
-                        line += ' 6.00 '
-                    else:
-                        line += ' - '
-    
-                fullmodel.write(line + '\n')
-            else:
-                fullmodel.write('CMS_hww_{sname}norm_{obsBin} rateParam *{obsBin}* {sname} 1.00\n'.format(sname = sname, obsBin = obsBin))
+
+    if not args.hdf5:
+        for sname in ['WW', 'top', 'DY']:
+            for obsBin in observableBins:
+                    fullmodel.write('CMS_hww_{sname}norm_{obsBin} rateParam *{obsBin}* {sname} 1.00\n'.format(sname = sname, obsBin = obsBin))
 
 if not args.hdf5:
     with open('%s/fullmodel.txt' % args.outpath) as fullmodel:

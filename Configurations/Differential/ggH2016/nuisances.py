@@ -334,22 +334,6 @@ nuisances['TopPtRew'] = {
     'symmetrize': True
 }
 
-nuisances['WgStarScale'] = {
-    'name': 'CMS_hww_WgStarScale',
-    'type': 'lnN',
-    'samples': {
-        'WZgS_L': '1.25' # 0.5 / 2.0   --> k_factor = 2.0 +/- 0.5
-    },
-}
- 
-nuisances['WZScale'] = {
-    'name': 'CMS_hww_WZScale',
-    'type': 'lnN',
-    'samples': {
-        'WZgS_H': '1.16',
-    },
-}
-
 ###### pdf uncertainties
 
 ## All shifts on signal have to be renormalized at the datacard generation step
@@ -469,9 +453,10 @@ nuisances['QCDscale_VV'] = {
     'name': 'QCDscale_VV',
     'type': 'lnN',
     'samples': {
-        'VZ': '1.03',
-        'WZgS_L': '1.03',
-        'WZgS_H': '1.03'
+        'Vg': ['std_vector_LHE_weight[8]/std_vector_LHE_weight[0]', 'std_vector_LHE_weight[4]/std_vector_LHE_weight[0]'],
+        'VZ': ['std_vector_LHE_weight[8]/std_vector_LHE_weight[0]', 'std_vector_LHE_weight[4]/std_vector_LHE_weight[0]'],
+        'WZgS_L': ['std_vector_LHE_weight[8]/std_vector_LHE_weight[0]', 'std_vector_LHE_weight[4]/std_vector_LHE_weight[0]'],
+        'WZgS_H': ['std_vector_LHE_weight[8]/std_vector_LHE_weight[0]', 'std_vector_LHE_weight[4]/std_vector_LHE_weight[0]']
     }
 }
 

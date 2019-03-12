@@ -109,7 +109,7 @@ if useDYtt:
     samples['DY'] = {
         'name': files,
         'weight': mcCommonWeight,
-        'FilesPerJob': 4,
+        'FilesPerJob': 16,
     }
     addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50','ptllDYW_NLO')
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO','ptllDYW_LO')
@@ -125,7 +125,7 @@ else:
     samples['DY'] = {
         'name': files,
         'weight': mcCommonWeight,
-        'FilesPerJob': 4,
+        'FilesPerJob': 16,
     }
     addSampleWeight(samples,'DY','DYJetsToLL_M-50','ptllDYW_NLO')
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO','ptllDYW_LO')
@@ -150,7 +150,7 @@ files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
 samples['top'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 1,
+    'FilesPerJob': 10,
     'EventsPerJob': 100000
 }
 
@@ -169,7 +169,7 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu_PrivateNano'),
     'weight': mcCommonWeight + '*nllW',
-    'FilesPerJob': 1
+    'FilesPerJob': 8
 }
 
 #samples['WW']['subsamples'] = {
@@ -199,7 +199,7 @@ files = nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
 samples['ggWW'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 2
+    'FilesPerJob': 10
 }
 
 ######## Vg ########
@@ -219,7 +219,7 @@ samples['Vg'] = {
 samples['WZgS_H'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WZTo3LNu'),
     'weight': mcCommonWeight+'*(Gen_ZGstar_mass>4)',
-    'FilesPerJob': 1
+    'FilesPerJob': 4
 }
 
 ############ VZ ############
@@ -232,7 +232,7 @@ files = nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu') + \
 samples['VZ'] = {
     'name': files,
     'weight': mcCommonWeight + '*0.98',
-    'FilesPerJob': 10
+    'FilesPerJob': 15
 }
 
 ########## VVV #########
@@ -259,7 +259,7 @@ signals = []
 samples['ggH_hww'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125_PrivateNano'),
     'weight': mcCommonWeight,
-    'FilesPerJob': 1
+    'FilesPerJob': 5
 }
 
 signals.append('ggH_hww')
@@ -381,7 +381,7 @@ samples['Fake'] = {
   'weight': 'METFilter_DATA*fakeW',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 3,
+  'FilesPerJob': 15,
 }
 
 for _, sd in DataRun:
@@ -404,7 +404,7 @@ samples['DATA'] = {
   'weight': 'METFilter_DATA*LepWPCut',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 3,
+  'FilesPerJob': 30,
 }
 
 for _, sd in DataRun:

@@ -1,0 +1,3 @@
+drop *
+keep GenPtH
+keep GenJetClean*

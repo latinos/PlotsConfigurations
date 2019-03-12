@@ -2,6 +2,8 @@
 
 # imported from cuts.py
 # cuts
+# imported from samples.py
+# samples signals
 
 try:
     variables
@@ -12,6 +14,8 @@ except NameError:
 
 sr = [ckey for ckey in cuts if '_CR' not in ckey]
 cr = [ckey for ckey in cuts if '_CR' in ckey]
+
+nosignal = [skey for skey in samples if skey not in signals]
 
 #'fold' : # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
 
@@ -65,6 +69,42 @@ variables['mllVSmth_6x6'] = {
     'cuts': sr
 }
 
+mthbinning = [60,80,90,110,130,150,200]
+mllbinning = [10,20,30,50,70,90,150]
+name = ''
+mllbin = ['1'] # folding underflow -> always 1
+for imll in range(1, len(mllbinning) - 1):
+    mllbin.append('(mll >= %d)' % mllbinning[imll])
+name += '+'.join(mllbin)
+name += ' + %d*(' % (len(mllbinning) - 1)
+mthbin = [] # 1-1 for first bin
+for imth in range(1, len(mthbinning) - 1):
+    mthbin.append('(mth >= %d)' % mthbinning[imth])
+name += '+'.join(mthbin)
+name += ') - 0.5'
+
+variables['mllVSmth_6x6low'] = {
+    'name': name,
+    'range': (36, 0., 36.),
+    'xaxis': 'm^{ll}:m_{T}^{H}',
+    'doWeight': 1,
+    'cuts': sr
+}
+
+mllbinning = [12,30,50,70,90,110,150,200]
+name = ''
+mllbin = ['0.5'] # folding underflow -> always 1
+for imll in range(1, len(mllbinning) - 1):
+    mllbin.append('(mll >= %d)' % mllbinning[imll])
+name += '+'.join(mllbin)
+                        
+variables['mll_optim'] = {
+    'name': name,
+    'range': (len(mllbinning) - 1, 0., len(mllbinning) - 1.),
+    'xaxis': 'imll',
+    'cuts': sr
+}
+
 mllbinning = [10,25,35,40,45,50,55,70,90,210]
 
 variables['mll'] = {
@@ -72,35 +112,44 @@ variables['mll'] = {
     'range': (mllbinning,),
     'xaxis': 'm^{ll} [GeV]', #   x axis name
     'doWeight': 1, # do weighted plot too
-    'cuts': cr
+    'cuts': cr,
+    'samples': nosignal
 }
 
 variables['jet1Eta'] = {
     'name': 'std_vector_jet_eta[0] * (std_vector_jet_pt[0] > 30.) - 5. * (std_vector_jet_pt[0] < 30.)',
     'range': (50, -4.7, 4.7),
     'xaxis': '#eta^{j1}',
-    'doWeight': 1
+    'doWeight': 1,
+    'cuts': cr,
+    'samples': nosignal
 }
 
 variables['jet2Eta'] = {
     'name': 'std_vector_jet_eta[1] * (std_vector_jet_pt[1] > 30.) - 5. * (std_vector_jet_pt[1] < 30.)',
     'range': (50, -4.7, 4.7),
     'xaxis': '#eta^{j2}',
-    'doWeight': 1
+    'doWeight': 1,
+    'cuts': cr,
+    'samples': nosignal
 }
 
 variables['met'] = {
     'name': 'metPfType1',
     'range': (50, 0., 100.),
     'xaxis': 'E_{T}^{miss} [GeV]',
-    'doWeight': 1
+    'doWeight': 1,
+    'cuts': cr,
+    'samples': nosignal
 }
 
 variables['metPhi'] = {
     'name': 'metPfType1Phi',
     'range': (50, -math.pi, math.pi),
     'xaxis': '#phi(E_{T}^{miss})',
-    'doWeight': 1
+    'doWeight': 1,
+    'cuts': cr,
+    'samples': nosignal
 }
 
 variables['ptWW'] = {
@@ -108,15 +157,17 @@ variables['ptWW'] = {
     'range': (50, 0., 400.),
     'xaxis': 'p_{T}^{WW} [GeV]',
     'doWeight': 1,
-    'cuts': cr
+    'cuts': cr,
+    'samples': nosignal
 }
 
 variables['ht'] = {
-    'name': 'Sum$(std_vector_jet_pt * (std_vector_jet_pt > 30. && TMath::Abs(std_vector_jet_eta) < 4.7))',
+    'name': ('Sum$(std_vector_jet_pt * (std_vector_jet_pt > 30. && TMath::Abs(std_vector_jet_eta) < 4.7))',),
     'range': (50, 0., 1000.),
     'xaxis': 'H_{T} [GeV]',
     'doWeight': 1,
-    'cuts': cr
+    'cuts': cr,
+    'samples': nosignal
 }
 
 #variables['njet']  = {
