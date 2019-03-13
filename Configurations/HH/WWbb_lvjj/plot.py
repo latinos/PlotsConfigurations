@@ -228,7 +228,7 @@ plot['DATA']  = {
                   'isData'   : 1 ,
                   'isBlind'  : 0,
 		  'scale' : 1.
-              }
+                }
 
 
 

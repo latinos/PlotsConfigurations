@@ -145,11 +145,8 @@ DataRun = [
 DataSets = ['SingleMuon','SingleElectron']
 
 DataTrig = {
-            'MuonEG'         : ' trig_EleMu' ,
-            'DoubleMuon'     : '!trig_EleMu &&  trig_DbleMu' ,
-            'SingleMuon'     : '!trig_EleMu && !trig_DbleMu &&  trig_SnglMu' ,
-            'DoubleEG'       : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu &&  trig_DbleEle' ,
-            'SingleElectron' : '!trig_EleMu && !trig_DbleMu && !trig_SnglMu && !trig_DbleEle &&  trig_SnglEle' ,
+            'SingleMuon'     : 'trig_SnglMu' ,
+            'SingleElectron' : '!trig_SnglMu && trig_SnglEle' ,
 	   }
 
 samples['DATA']  = {    'name'   : [],
