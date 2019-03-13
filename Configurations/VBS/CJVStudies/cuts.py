@@ -1,15 +1,31 @@
 # cuts
 #cuts = {}
-#supercut='1'
-supercut='\
-abs(std_vector_jet_eta[1])<5 && abs(std_vector_jet_eta[0])<5 \
+supercut='1'
+
+'abs(std_vector_jet_eta[1])<5 && abs(std_vector_jet_eta[0])<5 \
 && metPfType1 > 30 \
 && std_vector_jet_pt[0]>30 && std_vector_jet_pt[1]>30 \
 && (abs((std_vector_lepton_eta[0] - (std_vector_jet_eta[0]+std_vector_jet_eta[1])/2)/detajj) < 0.5) \
 && (abs((std_vector_lepton_eta[1] - (std_vector_jet_eta[0]+std_vector_jet_eta[1])/2)/detajj) < 0.5) \
 && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0 \
 && veto_EMTFBug'
-           
+
+sc1 = '(abs(std_vector_jet_eta[1])<5 && abs(std_vector_jet_eta[0])<5)'
+sc2 = '(metPfType1 > 30)'
+sc3 = '(std_vector_jet_pt[0]>30 && std_vector_jet_pt[1]>30)'
+sc4 = '((abs((std_vector_lepton_eta[0] - (std_vector_jet_eta[0]+std_vector_jet_eta[1])/2)/detajj) < 0.5)\
+&& (abs((std_vector_lepton_eta[1] - (std_vector_jet_eta[0]+std_vector_jet_eta[1])/2)/detajj) < 0.5))'
+sc5 = '(veto_EMTFBug)'
+
+cuts['SPC1'] = sc1
+cuts['SPC2'] = sc2
+cuts['SPC3'] = sc3
+cuts['SPC4'] = sc4
+cuts['SPC5'] = sc5 
+cuts['SPC_5_3']=sc5+'&&'+sc3
+cuts['SPC_5_3_1']=sc5+'&&'+sc3+'&&'+sc1
+cuts['SPC_5_3_1_2']=sc5+'&&'+sc3+'&&'+sc1+'&&'+sc2
+cuts['SPC_5_3_1_2_4']=sc5+'&&'+sc3+'&&'+sc1+'&&'+sc2+'&&'+sc4
 
 #cuts['VBS_13TeV_SS']='(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0'
 cuts['VBS_13TeV_BaseCut']='1'
@@ -17,53 +33,7 @@ cuts['VBS_13TeV_BaseCut']='1'
  
 # cuts['VBS_13TeV_BaseCut_eMu']='std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 11*13' 
 #cuts['VBS_13TeV_BaseCut_ee']='std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 11*11' 
-#cuts['VBS_13TeV_BaseCut_MuMu']='std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 13*13'
-
-JetVeto = '\
-(std_vector_jet_pt[2]<30) \
-'
-
-CentralJetVeto = '\
-(std_vector_jet_pt[2]<=30 \
-|| (std_vector_jet_pt[2]>30 \
-&& std_vector_jet_eta[2] <  \
-((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[0]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[1]) \
-&& std_vector_jet_eta[2] > \
-((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[1]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[0]) )) \
-'
-
-DynamicJetVeto = '\
-(std_vector_jet_pt[2] < 0.25 * std_vector_lepton_pt[0]) \
-' #ho inserito una percentuale del 25% come esempio
-
-mjjVeto1 = '(mjj>100)'
-
-mjjVeto5 = '(mjj>500)'
-
-mjjVeto10 = '(mjj>1000)'
-
-detajjVeto10 = '(detajj>1.0)'
-
-detajjVeto25 = '(detajj>2.5)'
-
-detajjVeto30 = '(detajj>3.0)'
-
-
-cuts['Jet_Veto']=JetVeto
-cuts['Central_Jet_Veto']=CentralJetVeto
-cuts['Dynamic_Jet_Veto']=DynamicJetVeto
-
-cuts['mjjV1']=mjjVeto1
-cuts['mjjV5']=mjjVeto5
-cuts['mjjV10']=mjjVeto10
-
-cuts['DJV_mjjV1']= DynamicJetVeto + ' && ' + mjjVeto1
-cuts['DJV_mjjV5']=DynamicJetVeto + ' && ' + mjjVeto5
-cuts['DJV_mjjV10']=DynamicJetVeto + ' && ' + mjjVeto10
-
-cuts['DJV_detajjV10']=DynamicJetVeto + ' && ' + detajjVeto10
-cuts['DJV_detajjV25']=DynamicJetVeto + ' && ' + detajjVeto25
-cuts['DJV_detajjV30']=DynamicJetVeto + ' && ' + detajjVeto30
+#cuts['VBS_13TeV_BaseCut_MuMu']='std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 13*13' 
 
 tauVeto = '\
 ( std_vector_tau_pt[0] < 18 || std_vector_tau_looseIso_dbeta[0] < 1. || (sqrt( pow(std_vector_tau_eta[0] - std_vector_lepton_eta[0], 2) + pow(abs(abs(std_vector_tau_phi[0] - std_vector_lepton_phi[0])-pi)-pi, 2) ) < 0.3 || sqrt( pow(std_vector_tau_eta[0] - std_vector_lepton_eta[1], 2) + pow(abs(abs(std_vector_tau_phi[0] - std_vector_lepton_phi[1])-pi)-pi, 2) ) < 0.3 ) ) \
@@ -76,9 +46,8 @@ tauVeto = '\
 && ( std_vector_tau_pt[7] < 18 || std_vector_tau_looseIso_dbeta[7] < 1. || (sqrt( pow(std_vector_tau_eta[7] - std_vector_lepton_eta[0], 2) + pow(abs(abs(std_vector_tau_phi[7] - std_vector_lepton_phi[0])-pi)-pi, 2) ) < 0.3 || sqrt( pow(std_vector_tau_eta[7] - std_vector_lepton_eta[1], 2) + pow(abs(abs(std_vector_tau_phi[7] - std_vector_lepton_phi[1])-pi)-pi, 2) ) < 0.3 ) ) \
 && ( std_vector_tau_pt[8] < 18 || std_vector_tau_looseIso_dbeta[8] < 1. || (sqrt( pow(std_vector_tau_eta[8] - std_vector_lepton_eta[0], 2) + pow(abs(abs(std_vector_tau_phi[8] - std_vector_lepton_phi[0])-pi)-pi, 2) ) < 0.3 || sqrt( pow(std_vector_tau_eta[8] - std_vector_lepton_eta[1], 2) + pow(abs(abs(std_vector_tau_phi[8] - std_vector_lepton_phi[1])-pi)-pi, 2) ) < 0.3 ) ) \
 && ( std_vector_tau_pt[9] < 18 || std_vector_tau_looseIso_dbeta[9] < 1. || (sqrt( pow(std_vector_tau_eta[9] - std_vector_lepton_eta[0], 2) + pow(abs(abs(std_vector_tau_phi[9] - std_vector_lepton_phi[0])-pi)-pi, 2) ) < 0.3 || sqrt( pow(std_vector_tau_eta[9] - std_vector_lepton_eta[1], 2) + pow(abs(abs(std_vector_tau_phi[9] - std_vector_lepton_phi[1])-pi)-pi, 2) ) < 0.3 ) )\
-&& std_vector_lepton_pt[2]<10 \
 '
-          
+            
 
 BVeto = '\
 ( std_vector_jet_pt[0] < 20 || (std_vector_jet_csvv2ivf[0] < 0.8484 )  ) \
@@ -105,27 +74,32 @@ softMuVeto='\
 && ( std_vector_softMuPt[8] < 3 || ((abs(std_vector_lepton_flavour[0]) == 13. && sqrt( pow(std_vector_softMuEta[8] - std_vector_lepton_eta[0], 2) + pow(abs(abs(std_vector_softMuPhi[8] - std_vector_lepton_phi[0])-pi)-pi, 2) ) < 0.3) || (abs(std_vector_lepton_flavour[1]) == 13. && sqrt( pow(std_vector_softMuEta[8] - std_vector_lepton_eta[1], 2) + pow(abs(abs(std_vector_softMuPhi[8] - std_vector_lepton_phi[1])-pi)-pi, 2) ) < 0.3 ) ) ) \
 && ( std_vector_softMuPt[9] < 3 || ((abs(std_vector_lepton_flavour[0]) == 13. && sqrt( pow(std_vector_softMuEta[9] - std_vector_lepton_eta[0], 2) + pow(abs(abs(std_vector_softMuPhi[9] - std_vector_lepton_phi[0])-pi)-pi, 2) ) < 0.3) || (abs(std_vector_lepton_flavour[1]) == 13. && sqrt( pow(std_vector_softMuEta[9] - std_vector_lepton_eta[1], 2) + pow(abs(abs(std_vector_softMuPhi[9] - std_vector_lepton_phi[1])-pi)-pi, 2) ) < 0.3 ) ) ) \
 '
-
-
-bJetVeto = BVeto #+ softMuVeto
+bJetVeto = BVeto # + softMuVeto
 bJetTag  = '!(' + bJetVeto + ')'  
 
-#cuts['VBS_13TeV_TauVeto']='1' + tauVeto
+#cuts['VBS_13TeV_TauVeto']=tauVeto
 
 #cuts['VBS_13TeV_bJetVeto']=bJetVeto
 
 #cuts['VBS_13TeV_bJetTag']=bJetTag
 
-"zveto ='mll>20 && (abs(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) != 11*11 || abs(mll - 91) > 15)'"
+zveto ='mll>20 && (abs(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) != 11*11 || abs(mll - 91) > 15)'
 #cuts['VBS_13TeV_Zveto_ee']=zveto + '&& std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 11*11'
 #cuts['VBS_13TeV_Zveto']=zveto 
 #cuts['VBS_13TeV_Zveto_LL']=zveto + '&& (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 11*11 || std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 13*13)' 
 #cuts['VBS_13TeV_Zveto_eMu']=zveto + '&& std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 11*13' 
 
 
-#cuts['VBS_13TeV_AllVetoes']  = zveto + tauVeto + '&&' + bJetVeto
+#cuts['VBS_13TeV_AllVetoes']  =zveto + '&&' + tauVeto +'&&'+ bJetVeto  
+#cuts['VBS_13TeV_AllVetoes_Positive']  =zveto + '&&' + tauVeto +'&&'+ bJetVeto + '&& std_vector_lepton_flavour[0]>0'
+#cuts['VBS_13TeV_AllVetoes_Negative']  =zveto + '&&' + tauVeto +'&&'+ bJetVeto + '&& std_vector_lepton_flavour[0]<0'
+#cuts['VBS_13TeV_AllVetoes_Mu']  =zveto + '&&' + tauVeto +'&&'+ bJetVeto + '&& std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 11*11'
+#cuts['VBS_13TeV_AllVetoes_Ele']  =zveto + '&&' + tauVeto +'&&'+ bJetVeto + '&& std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 13*13'
 
-
+#cuts['VBS_13TeV_AllVetoes_SameFlavour']  =zveto + '&&' + tauVeto +'&&'+ bJetVeto + '&& std_vector_lepton_flavour[0] == std_vector_lepton_flavour[1]'
+#cuts['VBS_13TeV_AllVetoes_OppositeFlavour']  =zveto + '&&' + tauVeto +'&&'+ bJetVeto + '&& std_vector_lepton_flavour[0] != std_vector_lepton_flavour[1]'
 # 11 = e
 # 13 = mu
 # 15 = tau
+
+

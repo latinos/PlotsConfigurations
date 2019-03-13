@@ -22,7 +22,7 @@ SFweight    = 'puW*effTrigW*bPogSF_CSVM*std_vector_lepton_recoW[0]*std_vector_le
 PromptGenLepMatch2l='std_vector_lepton_promptgenmatched[0]*std_vector_lepton_promptgenmatched[1]'
 
 ChargMisSign='((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) != -11*11 || (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) != -11*13 )'
-
+SameSign = '((std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1])>0)'
 
 
 ################################################
@@ -87,7 +87,7 @@ samples['ChMisId']=	{  	'name'	:getSampleFiles(chargeFlipDir,'DYJetsToLL_M-10to5
 								+getSampleFiles(chargeFlipDir,'GluGluWWTo2L2Nu_MCFM',True) 
 								+getSampleFiles(chargeFlipDir,'WWTo2L2Nu',True)             							
 				                ,
-						'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+ChargMisSign+'*chargeFlipW',
+						'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*chargeFlipW*'+ChargMisSign,
 						'FilesPerJob' : 2 ,
 					}
 addSampleWeight(samples,'ChMisId','DYJetsToLL_M-10to50'	,DY_W)
@@ -100,7 +100,7 @@ samples['ttbar'] = 	{ 	'name'  :getSampleFiles(chargeFlipDir,'TTTo2L2Nu',True)
 					+getSampleFiles(chargeFlipDir,'ST_tW_top_noHad',True)
 					+getSampleFiles(chargeFlipDir,'ST_tW_antitop_noHad',True) 
                                 ,
-						'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+ChargMisSign+'*chargeFlipW',  
+						'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*chargeFlipW*'+ChargMisSign,
 						'FilesPerJob' : 6 ,
 					}
 
@@ -109,11 +109,11 @@ samples['ttbar'] = 	{ 	'name'  :getSampleFiles(chargeFlipDir,'TTTo2L2Nu',True)
 ###########################################
 #########  Prompt Substraction  ###########
 ###########################################
-
+#The FakeW=FakeR/1-FakeR is calculated from DATA in a region enhanced in non-Prompt and fake leptons. Using Simulations is possible to substract the fake contributions (done using two regions: Tight-Loose and Loose-Loose) leaving only the non-prompt background (TL-LL)DATA-(TL-LL)Sim*FakeW=N_non-prompt
 samples['DY_promptSubtr']  = { 	'name' 	:getSampleFiles(PromptSubtr,'DYJetsToLL_M-10to50',True)
 										+getSampleFiles(PromptSubtr,'DYJetsToLL_M-50',True)    
 										,
-								'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC, 
+								'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+SameSign, 
                  }
 				 
 addSampleWeight(samples,'DY_promptSubtr','DYJetsToLL_M-10to50'	,DY_W)
@@ -121,50 +121,54 @@ addSampleWeight(samples,'DY_promptSubtr','DYJetsToLL_M-50'   	,DY_W)
 
 samples['lep_TT_promptSubtr'] =	{  'name': getSampleFiles(PromptSubtr,'TTTo2L2Nu',True) 
 									,
-									'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC,
+									'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+SameSign,
 									'FilesPerJob' : 6 ,									
 								}
 
 samples['singleTop_promptSubtr']  = {   'name': getSampleFiles(PromptSubtr,'ST_tW_top_noHad',True) ,
-					'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC, 
+					'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+SameSign, 
 					}
 
 samples['singleAntiTop_promptSubtr']  = {    'name': getSampleFiles(PromptSubtr,'ST_tW_antitop_noHad',True),
-                                             'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC, 
+                                             'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+SameSign, 
 					}
 
 samples['ggWWTo2L2Nu_promptSubtr']= {	'name': getSampleFiles(PromptSubtr,'GluGluWWTo2L2Nu_MCFM',True)
 										,
-										'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC, 
+										'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+SameSign, 
 									}
 
 samples['WWTo2L2Nu_promptSubtr']  = { 	'name': getSampleFiles(PromptSubtr,'WWTo2L2Nu',True)
 										,
-                                        'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC, 
+                                        'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+SameSign, 
 									}
 					
-samples['Vg_promptSubtr'] =	{ 	'name':getSampleFiles(PromptSubtr,'Wg_MADGRAPHMLM',True)
-					      +getSampleFiles(PromptSubtr,'WGJJ',True)  
-					      +getSampleFiles(PromptSubtr,'Zg',True) 
+samples['Vg_promptSubtr'] =	{ 	'name':getSampleFiles(PromptSubtr,'WGJJ',True)  
+									   +getSampleFiles(PromptSubtr,'Zg',True) 
+					 	#+getSampleFiles(PromptSubtr,'Wg_MADGRAPHMLM',True)
 										,    
-                                'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+METFilter_MC,    
+                                'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+SameSign,    
 							}
 
 
 samples['ZZ_promptSubtr'] =	{ 	'name': getSampleFiles(PromptSubtr,'ZZTo4L',True) 
 										,
-								'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC,  
+								'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+SameSign,  
 							}
 
 samples['WpWpJJ_promptSubtr'] = {  	'name':getSampleFiles(PromptSubtr,'WpWpJJ_EWK',True)
-										  +getSampleFiles(MCDir,'WmWmJJ_EWK_powheg',True) 
 										  ,
-									'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*1.067466',
-								}
+									'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+SameSign+'*1.067466',
+			}
+			
+samples['WmWmJJ_promptSubtr'] = {  	'name':getSampleFiles(PromptSubtr,'WmWmJJ_EWK_powheg',True) 
+										  ,
+									'weight' : '-1.*fakeW2l*baseW*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+SameSign+'*1.067466',
+								}								
 
 samples['WpWpJJ_QCD_promptSubtr'] = {  	'name':getSampleFiles(PromptSubtr,'WpWpJJ_QCD',True)
 											  ,
-										'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*1.057', 
+										'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+SameSign+'*1.057', 
 									}
 
 samples['VVV_promptSubtr']= {	'name':getSampleFiles(PromptSubtr,'WZZ',True) 
@@ -176,21 +180,21 @@ samples['VVV_promptSubtr']= {	'name':getSampleFiles(PromptSubtr,'WZZ',True)
 									  +getSampleFiles(PromptSubtr,'TTWJetsToLNu',True) 
 									  +getSampleFiles(PromptSubtr,'TTZToLLNuNu_M-10',True)
 									  ,								  
-								'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC, 
+								'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+SameSign, 
 							}
 
 samples['DPS_promptSubtr']= {  	'name': getSampleFiles(PromptSubtr,'WWTo2L2Nu_DoubleScattering',True)
 										, 
-								'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC, 
+								'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+SameSign, 
 							}       
         
 samples['WZ_promptSubtr'] =	{	'name': [ ], 
-								'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC,
+								'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+SameSign,
 								'weights' : [ ],
 								'FilesPerJob' : 6 ,                                    
 							}
 MyWeights={
-		   'WZTo3LNu'						   : '1' , 
+	   #'WZTo3LNu'						   : '1' , 
            'WLLJJToLNu_M-4To60_EWK_4F'         : '1.' ,
            'WLLJJToLNu_M-60_EWK_4F'            : '1.' ,
            'WLLJJToLNu_M-4To50_QCD_0Jet'       : '1.206' ,
@@ -217,30 +221,30 @@ for DataSet in MyWeights.keys():
 ###########################################
 ######## Vgamma ########
 
-samples['Vg']  =  {     'name'  :getSampleFiles(MCDir,'Wg_MADGRAPHMLM',True)
-                                +getSampleFiles(MCDir,'Zg',True)
-								+getSampleFiles(MCDir,'WGJJ',True)
+samples['Vg']  =  {     'name'  :getSampleFiles(MCDir,'Zg',True)
+				+getSampleFiles(MCDir,'WGJJ',True)
+				#+getSampleFiles(MCDir,'Wg_MADGRAPHMLM',True)
                                 ,
-                        'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
+                        'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC +'*'+SameSign,
                   }
 
 ######### VV #########
 
 samples['ZZ'] = {  	'name':getSampleFiles(MCDir,'ZZTo4L',True)
 						  ,   
-					'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
+					'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+SameSign ,  
 					'FilesPerJob' : 6 ,
                 }
     
 
 samples['WZ'] =	{ 	'name':[]
                             ,
-					'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC , 
+					'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+SameSign , 
 					'weights' : [ ],
 					'FilesPerJob' : 6 ,
                 }
 MyWeights={
-		   'WZTo3LNu'						   : '1' , 
+	   #'WZTo3LNu'						   : '1' , 
            'WLLJJToLNu_M-4To60_EWK_4F'         : '1.' ,
            'WLLJJToLNu_M-60_EWK_4F'            : '1.' ,
            'WLLJJToLNu_M-4To50_QCD_0Jet'       : '1.206' ,
@@ -251,6 +255,7 @@ MyWeights={
            'WLLJJToLNu_M-50_QCD_1Jet'          : '1.206' ,
            'WLLJJToLNu_M-50_QCD_2Jet'          : '1.206' ,
            'WLLJJToLNu_M-50_QCD_3Jet'          : '1.206' ,
+           'tZq_ll'                            : '1.',
            }
 		   
 for DataSet in MyWeights.keys():
@@ -268,14 +273,14 @@ samples['VVV'] = {    'name':getSampleFiles(MCDir,'ZZZ',True)
 							+getSampleFiles(MCDir,'TTWJetsToLNu',True)
 							+getSampleFiles(MCDir,'TTZToLLNuNu_M-10',True)
                             ,   
-                      'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
+                      'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC +'*'+SameSign,  
                   }
 
 ########## DPS #########
 
 samples['DPS'] = {    'name':getSampleFiles(MCDir,'WWTo2L2Nu_DoubleScattering',True)
                             ,   
-                      'weight' :'baseW*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,  
+                      'weight' :'baseW*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC +'*'+SameSign,  
                   }
 
 
@@ -286,7 +291,7 @@ samples['DPS'] = {    'name':getSampleFiles(MCDir,'WWTo2L2Nu_DoubleScattering',T
 samples['WW_strong'] = {   	'name'   :getSampleFiles(MCDir,'WpWpJJ_QCD',True)
 									#+getSampleFiles(directory,'WpWpJJ_EWK_QCD_aQGC')
 									,
-							'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*1.057' ,    
+							'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+SameSign+'*1.057' ,    
 							'FilesPerJob' : 1 ,
 						}
 
@@ -295,44 +300,30 @@ samples['WW_strong'] = {   	'name'   :getSampleFiles(MCDir,'WpWpJJ_QCD',True)
 #############   SIGNALS  ##################
 ###########################################
 
-samples['WW_EWK'] = {  	'name'  :getSampleFiles(MCDir,'WmWmJJ_EWK_powheg',True)
-								+getSampleFiles(MCDir,'WpWpJJ_EWK',True)
+samples['WpWp_EWK'] = {  	'name'  :getSampleFiles(MCDir,'WpWpJJ_EWK',True)
 								#+getSampleFiles(directory,'WpWpJJ_EWK_aQGC')
 								,
-						'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*1.067466' ,    
+						'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+SameSign+'*1.067466' ,    
 						'FilesPerJob' : 1 ,
 					}
+					
+samples['WmWm_EWK'] = {  	'name'  :getSampleFiles(MCDir,'WmWmJJ_EWK_powheg',True)
+								#+getSampleFiles(directory,'WpWpJJ_EWK_aQGC')
+								,
+						'weight' : 'baseW*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+SameSign+'*1.067466' ,    
+						'FilesPerJob' : 1 ,
+					}					
 
 ###########################################
 ################## FAKE ###################
 ###########################################
 
-samples['Fake_em']={'name': [ ] ,
-                       'weight' : 'fakeW2l'+'*'+METFilter_DATA+'*(abs(std_vector_lepton_flavour[0])==11 && abs(std_vector_lepton_flavour[1])==13)',              #   weight/cut 
+samples['Fake_lep']={'name': [ ] ,
+                       'weight' : 'fakeW2l'+'*'+METFilter_DATA+'*'+SameSign,              #   weight/cut 
                        'weights' : [ ] ,
                        'isData': ['all'],
                        'FilesPerJob' : 6 ,
 					}
-samples['Fake_me']={'name': [ ] ,
-                       'weight' : 'fakeW2l'+'*'+METFilter_DATA+'*(abs(std_vector_lepton_flavour[0])==13 && abs(std_vector_lepton_flavour[1])==11)',              #   weight/cut 
-                       'weights' : [ ] ,
-                       'isData': ['all'],
-                       'FilesPerJob' : 6 ,
-                    }
-
-samples['Fake_ee']=	{'name': [ ] ,
-                       'weight' : 'fakeW2l'+'*'+METFilter_DATA+'*(abs(std_vector_lepton_flavour[0])==11 && abs(std_vector_lepton_flavour[1])==11)',              #   weight/cut 
-                       'weights' : [ ] ,
-                       'isData': ['all'],
-                       'FilesPerJob' : 6 ,
-                    }
-
-samples['Fake_mm']=	{'name': [ ] ,
-                       'weight' : 'fakeW2l'+'*'+METFilter_DATA+'*(abs(std_vector_lepton_flavour[0])==13 && abs(std_vector_lepton_flavour[1])==13)',              #   weight/cut 
-                       'weights' : [ ] ,
-                       'isData': ['all'],
-                       'FilesPerJob' : 6 ,
-                    }
 
 
 for Run in DataRun :
@@ -340,21 +331,15 @@ for Run in DataRun :
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:
-      samples['Fake_em']['name'].append(iFile)
-      samples['Fake_em']['weights'].append(DataTrig[DataSet])
-      samples['Fake_me']['name'].append(iFile)
-      samples['Fake_me']['weights'].append(DataTrig[DataSet])
-      samples['Fake_mm']['name'].append(iFile)
-      samples['Fake_mm']['weights'].append(DataTrig[DataSet])
-      samples['Fake_ee']['name'].append(iFile)
-      samples['Fake_ee']['weights'].append(DataTrig[DataSet])
+      samples['Fake_lep']['name'].append(iFile)
+      samples['Fake_lep']['weights'].append(DataTrig[DataSet])
 
 ###########################################
 ################## DATA ###################
 ###########################################
 
 samples['DATA']  = 	{   'name': [ ] ,     
-                       'weight' :METFilter_DATA,
+                       'weight' :METFilter_DATA+'*'+SameSign,
                        'weights' : [ ],
                        'isData': ['all'],                            
                        'FilesPerJob' : 6 ,
@@ -367,3 +352,4 @@ for Run in DataRun :
     for iFile in FileTarget:
       samples['DATA']['name'].append(iFile)
       samples['DATA']['weights'].append(DataTrig[DataSet]) 
+
