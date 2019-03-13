@@ -42,11 +42,11 @@ variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',
 #                'fold': 3
 #        }
 
-#variables['eta1']  = {  'name': 'std_vector_lepton_eta[0]',     
-#                        'range' : (10,-3,3),   
-#                        'xaxis' : '#eta 1st lep',
-#                        'fold'  : 0                         
-#                        }
+variables['eta1']  = {  'name': 'std_vector_lepton_eta[0]',     
+                        'range' : (10,-3,3),   
+                        'xaxis' : '#eta 1st lep',
+                        'fold'  : 0                         
+                        }
 
 #variables['eta2']  = {  'name': 'std_vector_lepton_eta[1]',     
 #                        'range' : (10,-3,3),   

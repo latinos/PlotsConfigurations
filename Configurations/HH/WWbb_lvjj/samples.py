@@ -15,24 +15,24 @@ treeBaseDir = '/gwteras/cms/store/group/OneLepton/'
 ########### Definition of weights ###########
 #############################################
 
-XSWeight = 'event.baseW*event.GEN_weight_SM/abs(event.GEN_weight_SM)'
+XSWeight = 'baseW*GEN_weight_SM/abs(GEN_weight_SM)'
 
-SFweight1l = 'event.puW*event.effTrigW*event.std_vector_lepton_recoW[0]*event.electron_etaW_1l*event.electron_ptW_1l'
+SFweight1l = 'puW*effTrigW*std_vector_lepton_recoW[0]*electron_etaW_1l*electron_ptW_1l'
 
-METFilter_Common = '(event.std_vector_trigger_special[0]*\
-                     event.std_vector_trigger_special[1]*\
-                     event.std_vector_trigger_special[2]*\
-                     event.std_vector_trigger_special[3]*\
-                     event.std_vector_trigger_special[5] )'
+METFilter_Common = '(std_vector_trigger_special[0]*\
+                     std_vector_trigger_special[1]*\
+                     std_vector_trigger_special[2]*\
+                     std_vector_trigger_special[3]*\
+                     std_vector_trigger_special[5] )'
 
-METFilter_MCver  =  '(event.std_vector_trigger_special[8]==-2.)'
-METFilter_MCOld  =  '(event.std_vector_trigger_special[6]*event.std_vector_trigger_special[7])'
-METFilter_MCNew  =  '(event.std_vector_trigger_special[8]*event.std_vector_trigger_special[9])'
+METFilter_MCver  =  '(std_vector_trigger_special[8]==-2.)'
+METFilter_MCOld  =  '(std_vector_trigger_special[6]*std_vector_trigger_special[7])'
+METFilter_MCNew  =  '(std_vector_trigger_special[8]*std_vector_trigger_special[9])'
 METFilter_MC     =  METFilter_Common + '*' + '(('+METFilter_MCver+'*'+METFilter_MCOld+') or ((not '+METFilter_MCver+')*'+METFilter_MCNew+'))' 
 
-METFilter_DATA   =  METFilter_Common + '*' + '(event.std_vector_trigger_special[4]*\
-                                              event.std_vector_trigger_special[8]*\
-                                              event.std_vector_trigger_special[9])'
+METFilter_DATA   =  METFilter_Common + '*' + '(std_vector_trigger_special[4]*\
+                                              std_vector_trigger_special[8]*\
+                                              std_vector_trigger_special[9])'
 
 
 
