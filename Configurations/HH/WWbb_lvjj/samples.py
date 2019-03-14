@@ -15,9 +15,9 @@ treeBaseDir = '/gwteras/cms/store/group/OneLepton/'
 ########### Definition of weights ###########
 #############################################
 
-XSWeight = 'baseW*GEN_weight_SM/abs(GEN_weight_SM)'
+XSWeight = 'event.baseW*event.GEN_weight_SM/abs(event.GEN_weight_SM)'
 
-SFweight1l = 'puW*effTrigW*std_vector_lepton_recoW[0]*electron_etaW_1l*electron_ptW_1l'
+SFweight1l = 'event.puW*effTrigW*event.std_vector_lepton_recoW[0]*event.electron_etaW_1l*event.electron_ptW_1l'
 
 METFilter_Common = '(std_vector_trigger_special[0]*\
                      std_vector_trigger_special[1]*\
