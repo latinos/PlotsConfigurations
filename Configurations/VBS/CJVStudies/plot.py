@@ -55,7 +55,7 @@ groupPlot['non-prompt']  = {
 
 groupPlot['WW_EWK']  = {  
                   'nameHR' : "WW EWK",
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'color'    : 602,   # kViolet + 1  
                   'samples'  : ['WpWp_EWK' , 'WmWm_EWK']
               }
