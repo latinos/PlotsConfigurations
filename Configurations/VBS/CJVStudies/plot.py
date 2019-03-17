@@ -7,6 +7,14 @@
 # Groups of samples to improve the plots (merge different sample during plot).
 # If not defined, normal plots is used
 #
+
+#groupPlot['Background']  = {  
+                  #'nameHR' : "Background",
+                  #'isSignal' : 0,
+                  #'color': 418,    # kGreen+2
+                  #'samples'  : ['ChMisId' , 'ttbar','VVV','ZZ' , 'WZ' , 'DPS','Vg', 'WW_strong', 'Fake_lep','DY_promptSubtr','lep_TT_promptSubtr','singleTop_promptSubtr','singleAntiTop_promptSubtr','ggWWTo2L2Nu_promptSubtr','WWTo2L2Nu_promptSubtr','Vg_promptSubtr','ZZ_promptSubtr','WpWpJJ_promptSubtr','WpWpJJ_promptSubtr','WpWpJJ_QCD_promptSubtr','VVV_promptSubtr','DPS_promptSubtr','WZ_promptSubtr',]
+              #}
+
 groupPlot['ChargeMisId']  = {  
                   'nameHR' : "ChMisId",
                   'isSignal' : 0,
@@ -45,12 +53,12 @@ groupPlot['WW_strong']  = {
               
               
         
-groupPlot['non-prompt']  = {  
-                  'nameHR' : 'non-Prompt',
-                  'isSignal' : 0,
-                  'color': 400,    # kYellow
-                  'samples'  : ['Fake_lep','DY_promptSubtr','lep_TT_promptSubtr','singleTop_promptSubtr','singleAntiTop_promptSubtr','ggWWTo2L2Nu_promptSubtr','WWTo2L2Nu_promptSubtr','Vg_promptSubtr','ZZ_promptSubtr','WpWpJJ_promptSubtr','WpWpJJ_promptSubtr','WpWpJJ_QCD_promptSubtr','VVV_promptSubtr','DPS_promptSubtr','WZ_promptSubtr']
-              }
+#groupPlot['non-prompt']  = {  
+                  #'nameHR' : 'non-Prompt',
+                  #'isSignal' : 0,
+                  #'color': 400,    # kYellow
+                  #'samples'  : ['Fake_lep','DY_promptSubtr','lep_TT_promptSubtr','singleTop_promptSubtr','singleAntiTop_promptSubtr','ggWWTo2L2Nu_promptSubtr','WWTo2L2Nu_promptSubtr','Vg_promptSubtr','ZZ_promptSubtr','WpWpJJ_promptSubtr','WpWpJJ_promptSubtr','WpWpJJ_QCD_promptSubtr','VVV_promptSubtr','DPS_promptSubtr','WZ_promptSubtr']
+              #}
 
 
 groupPlot['WW_EWK']  = {  
@@ -257,7 +265,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0 ,
+                  'isBlind'  : 1 ,
 		  'scale'    : 1.0
               }
 

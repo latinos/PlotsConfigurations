@@ -1,8 +1,6 @@
 # cuts
 #cuts = {}
-supercut='1'
-
-'abs(std_vector_jet_eta[1])<5 && abs(std_vector_jet_eta[0])<5 \
+supercut= 'abs(std_vector_jet_eta[1])<5 && abs(std_vector_jet_eta[0])<5 \
 && metPfType1 > 30 \
 && std_vector_jet_pt[0]>30 && std_vector_jet_pt[1]>30 \
 && (abs((std_vector_lepton_eta[0] - (std_vector_jet_eta[0]+std_vector_jet_eta[1])/2)/detajj) < 0.5) \
@@ -10,22 +8,15 @@ supercut='1'
 && (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0 \
 && veto_EMTFBug'
 
-sc1 = '(abs(std_vector_jet_eta[1])<5 && abs(std_vector_jet_eta[0])<5)'
-sc2 = '(metPfType1 > 30)'
-sc3 = '(std_vector_jet_pt[0]>30 && std_vector_jet_pt[1]>30)'
-sc4 = '((abs((std_vector_lepton_eta[0] - (std_vector_jet_eta[0]+std_vector_jet_eta[1])/2)/detajj) < 0.5)\
-&& (abs((std_vector_lepton_eta[1] - (std_vector_jet_eta[0]+std_vector_jet_eta[1])/2)/detajj) < 0.5))'
-sc5 = '(veto_EMTFBug)'
+#sc1 = '(abs(std_vector_jet_eta[1])<5 && abs(std_vector_jet_eta[0])<5)'
+#sc2 = '(metPfType1 > 30)'
+#sc3 = '(std_vector_jet_pt[0]>30 && std_vector_jet_pt[1]>30)'
+#sc4 = '((abs((std_vector_lepton_eta[0] - (std_vector_jet_eta[0]+std_vector_jet_eta[1])/2)/detajj) < 0.5)&& (abs((std_vector_lepton_eta[1] - (std_vector_jet_eta[0]+std_vector_jet_eta[1])/2)/detajj) < 0.5))'
+#sc5 = '(veto_EMTFBug)'
 
-cuts['SPC1'] = sc1
-cuts['SPC2'] = sc2
-cuts['SPC3'] = sc3
-cuts['SPC4'] = sc4
-cuts['SPC5'] = sc5 
-cuts['SPC_5_3']=sc5+'&&'+sc3
-cuts['SPC_5_3_1']=sc5+'&&'+sc3+'&&'+sc1
-cuts['SPC_5_3_1_2']=sc5+'&&'+sc3+'&&'+sc1+'&&'+sc2
-cuts['SPC_5_3_1_2_4']=sc5+'&&'+sc3+'&&'+sc1+'&&'+sc2+'&&'+sc4
+#cuts['SPC_5_3_1']=sc5+'&&'+sc3+'&&'+sc1
+#cuts['SPC_5_3_1_2']=sc5+'&&'+sc3+'&&'+sc1+'&&'+sc2
+#cuts['SPC_5_3_1_2_4']=sc5+'&&'+sc3+'&&'+sc1+'&&'+sc2+'&&'+sc4
 
 #cuts['VBS_13TeV_SS']='(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0'
 cuts['VBS_13TeV_BaseCut']='1'
@@ -33,7 +24,98 @@ cuts['VBS_13TeV_BaseCut']='1'
  
 # cuts['VBS_13TeV_BaseCut_eMu']='std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 11*13' 
 #cuts['VBS_13TeV_BaseCut_ee']='std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 11*11' 
-#cuts['VBS_13TeV_BaseCut_MuMu']='std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 13*13' 
+#cuts['VBS_13TeV_BaseCut_MuMu']='std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 13*13'
+
+JetVeto = '\
+(std_vector_jet_pt[2]<30) \
+'
+
+CentralJetVeto = '\
+(std_vector_jet_pt[2]<=30 \
+|| (std_vector_jet_pt[2]>30 \
+&& std_vector_jet_eta[2] <  \
+((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[0]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[1]) \
+&& std_vector_jet_eta[2] > \
+((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[1]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[0]) )) \
+'
+
+DynamicJetVeto25 = '\
+(std_vector_jet_pt[2] < 0.25 * std_vector_lepton_pt[0]) \
+'
+
+DynamicJetVeto40 = '\
+(std_vector_jet_pt[2] < 0.4 * std_vector_lepton_pt[0]) \
+'
+
+DynamicJetVeto55 = '\
+(std_vector_jet_pt[2] < 0.55 * std_vector_lepton_pt[0]) \
+'
+
+DynamicJetVeto70 = '\
+(std_vector_jet_pt[2] < 0.7 * std_vector_lepton_pt[0]) \
+'
+
+DynamicJetVeto85 = '\
+(std_vector_jet_pt[2] < 0.85 * std_vector_lepton_pt[0]) \
+'
+
+DynamicJetVeto100 = '\
+(std_vector_jet_pt[2] < std_vector_lepton_pt[0]) \
+'
+
+DynamicCentralJetVeto25 = '\
+(std_vector_jet_pt[2]<=0.25 * std_vector_lepton_pt[0] \
+|| (std_vector_jet_pt[2]>0.25 * std_vector_lepton_pt[0] \
+&& std_vector_jet_eta[2] <  \
+((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[0]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[1]) \
+&& std_vector_jet_eta[2] > \
+((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[1]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[0]) )) \
+'
+
+DynamicCentralJetVeto40 = '\
+(std_vector_jet_pt[2]<=0.4 * std_vector_lepton_pt[0] \
+|| (std_vector_jet_pt[2]>0.4 * std_vector_lepton_pt[0] \
+&& std_vector_jet_eta[2] <  \
+((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[0]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[1]) \
+&& std_vector_jet_eta[2] > \
+((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[1]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[0]) )) \
+'
+
+DynamicCentralJetVeto55 = '\
+(std_vector_jet_pt[2]<=0.55 * std_vector_lepton_pt[0] \
+|| (std_vector_jet_pt[2]>0.55 * std_vector_lepton_pt[0] \
+&& std_vector_jet_eta[2] <  \
+((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[0]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[1]) \
+&& std_vector_jet_eta[2] > \
+((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[1]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[0]) )) \
+'
+
+DynamicCentralJetVeto70 = '\
+(std_vector_jet_pt[2]<=0.7 * std_vector_lepton_pt[0] \
+|| (std_vector_jet_pt[2]>0.7 * std_vector_lepton_pt[0] \
+&& std_vector_jet_eta[2] <  \
+((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[0]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[1]) \
+&& std_vector_jet_eta[2] > \
+((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[1]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[0]) )) \
+'
+
+DynamicCentralJetVeto85 = '\
+(std_vector_jet_pt[2]<=0.85 * std_vector_lepton_pt[0] \
+|| (std_vector_jet_pt[2]>0.85 * std_vector_lepton_pt[0] \
+&& std_vector_jet_eta[2] <  \
+((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[0]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[1]) \
+&& std_vector_jet_eta[2] > \
+((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[1]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[0]) )) \
+'
+
+DynamicCentralJetVeto100 = '\
+(std_vector_jet_pt[2]<= std_vector_lepton_pt[0] \
+|| (std_vector_jet_pt[2]> std_vector_lepton_pt[0] \
+&& std_vector_jet_eta[2] <  \
+((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[0]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[1]) \
+&& std_vector_jet_eta[2] > \
+((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[1]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[0]) )) \
+'
 
 tauVeto = '\
 ( std_vector_tau_pt[0] < 18 || std_vector_tau_looseIso_dbeta[0] < 1. || (sqrt( pow(std_vector_tau_eta[0] - std_vector_lepton_eta[0], 2) + pow(abs(abs(std_vector_tau_phi[0] - std_vector_lepton_phi[0])-pi)-pi, 2) ) < 0.3 || sqrt( pow(std_vector_tau_eta[0] - std_vector_lepton_eta[1], 2) + pow(abs(abs(std_vector_tau_phi[0] - std_vector_lepton_phi[1])-pi)-pi, 2) ) < 0.3 ) ) \
@@ -98,6 +180,21 @@ zveto ='mll>20 && (abs(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[
 
 #cuts['VBS_13TeV_AllVetoes_SameFlavour']  =zveto + '&&' + tauVeto +'&&'+ bJetVeto + '&& std_vector_lepton_flavour[0] == std_vector_lepton_flavour[1]'
 #cuts['VBS_13TeV_AllVetoes_OppositeFlavour']  =zveto + '&&' + tauVeto +'&&'+ bJetVeto + '&& std_vector_lepton_flavour[0] != std_vector_lepton_flavour[1]'
+
+cuts['DJV25'] = DynamicJetVeto25
+cuts['DJV40'] = DynamicJetVeto40
+cuts['DJV55'] = DynamicJetVeto55
+cuts['DJV70'] = DynamicJetVeto70
+cuts['DJV85'] = DynamicJetVeto85
+cuts['DJV100'] = DynamicJetVeto100
+
+cuts['DCJV25'] = DynamicCentralJetVeto25
+cuts['DCJV40'] = DynamicCentralJetVeto40
+cuts['DCJV55'] = DynamicCentralJetVeto55
+cuts['DCJV70'] = DynamicCentralJetVeto70
+cuts['DCJV85'] = DynamicCentralJetVeto85
+cuts['DCJV100'] = DynamicCentralJetVeto100
+
 # 11 = e
 # 13 = mu
 # 15 = tau
