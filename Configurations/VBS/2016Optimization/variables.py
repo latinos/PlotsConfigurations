@@ -40,7 +40,7 @@ variables['nlep'] =  {
         # }
 
 variables['mll']  = {   'name': 'mll',            #   variable name
-                       'range' : (10, 0. ,200),    #   variable range
+                       'range' : (15, 0. ,600),    #   variable range
                        'xaxis' : 'mll [GeV]',  #   x axis name
                        'fold' : 3
                        }
@@ -71,7 +71,7 @@ variables['jetpt1']  = {   'name': 'std_vector_jet_pt[0]',
                        }
 
 variables['jetpt2']  = {   'name': 'std_vector_jet_pt[1]',     
-                       'range' : (15,0.,100),   
+                       'range' : (15,0.,150),   
                        'xaxis' : 'p_{T} 2nd jet',
                        'fold'  : 3                       
                        }

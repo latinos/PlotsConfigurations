@@ -10,10 +10,10 @@ abs(std_vector_jet_eta[1])<5 && abs(std_vector_jet_eta[0])<5 \
 && veto_EMTFBug'
 #&& (std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0 '
 
-           
+#signal cuts are used as preselections           
 
 #cuts['VBS_13TeV_SS']='(std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1]) > 0'
-#cuts['VBS_13TeV_BaseCut']='1'
+#cuts['VBS_13TeV_PreSelOnly']='1'
 
  
 # cuts['VBS_13TeV_BaseCut_eMu']='std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == 11*13' 
@@ -59,6 +59,7 @@ softMuVeto='\
 && ( std_vector_softMuPt[8] < 3 || ((abs(std_vector_lepton_flavour[0]) == 13. && sqrt( pow(std_vector_softMuEta[8] - std_vector_lepton_eta[0], 2) + pow(abs(abs(std_vector_softMuPhi[8] - std_vector_lepton_phi[0])-pi)-pi, 2) ) < 0.3) || (abs(std_vector_lepton_flavour[1]) == 13. && sqrt( pow(std_vector_softMuEta[8] - std_vector_lepton_eta[1], 2) + pow(abs(abs(std_vector_softMuPhi[8] - std_vector_lepton_phi[1])-pi)-pi, 2) ) < 0.3 ) ) ) \
 && ( std_vector_softMuPt[9] < 3 || ((abs(std_vector_lepton_flavour[0]) == 13. && sqrt( pow(std_vector_softMuEta[9] - std_vector_lepton_eta[0], 2) + pow(abs(abs(std_vector_softMuPhi[9] - std_vector_lepton_phi[0])-pi)-pi, 2) ) < 0.3) || (abs(std_vector_lepton_flavour[1]) == 13. && sqrt( pow(std_vector_softMuEta[9] - std_vector_lepton_eta[1], 2) + pow(abs(abs(std_vector_softMuPhi[9] - std_vector_lepton_phi[1])-pi)-pi, 2) ) < 0.3 ) ) ) \
 '
+#softMuVeto-> too many operators in TTformula so is currently excluded
 bJetVeto = BVeto # + softMuVeto
 bJetTag  = '!(' + bJetVeto + ')'  
 
