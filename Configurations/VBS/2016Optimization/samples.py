@@ -185,7 +185,7 @@ samples['VVV_promptSubtr']= {	'name':getSampleFiles(PromptSubtr,'WZZ',True)
 
 samples['DPS_promptSubtr']= {  	'name': getSampleFiles(PromptSubtr,'WWTo2L2Nu_DoubleScattering',True)
 										, 
-								'weight' : '-1.*fakeW2l*'+XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+SameSign, 
+								'weight' : '-1.*fakeW2l*baseW*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+SameSign, 
 							}       
         
 samples['WZ_promptSubtr'] =	{	'name': [ ], 
@@ -327,9 +327,9 @@ samples['Fake_lep']={'name': [ ] ,
 
 
 for Run in DataRun :
-  directory = '/gwteras/cms/store/group/OneLepton/Apr2017_Run2016'+Run[0]+'_RemAOD/lep2SelVBS__hadd__EpTCorr__TrigMakerData__tightVbsSel__bkgWeights/'
+  FakeDir = '/gwteras/cms/store/group/OneLepton/Apr2017_Run2016'+Run[0]+'_RemAOD/lep2SelVBS__hadd__EpTCorr__TrigMakerData__tightVbsSel__bkgWeights/'
   for DataSet in DataSets :
-    FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
+    FileTarget = getSampleFiles(FakeDir,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:
       samples['Fake_lep']['name'].append(iFile)
       samples['Fake_lep']['weights'].append(DataTrig[DataSet])
@@ -346,9 +346,9 @@ samples['DATA']  = 	{   'name': [ ] ,
 					}
 
 for Run in DataRun :
-  directory = '/gwteras/cms/store/group/OneLepton/Apr2017_Run2016'+Run[0]+'_RemAOD/lep2SelVBS__hadd__EpTCorr__TrigMakerData__l2tightVBS__tightVbsSel/'
+  DataDir = '/gwteras/cms/store/group/OneLepton/Apr2017_Run2016'+Run[0]+'_RemAOD/lep2SelVBS__hadd__EpTCorr__TrigMakerData__l2tightVBS__tightVbsSel/'
   for DataSet in DataSets :
-    FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
+    FileTarget = getSampleFiles(DataDir,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:
       samples['DATA']['name'].append(iFile)
       samples['DATA']['weights'].append(DataTrig[DataSet]) 
