@@ -2,7 +2,7 @@
 
 #cuts = {}
   
-supercut = 'std_vector_jet_pt[2]>25'
+supercut = 'std_vector_jet_pt[3]>15'
 #cuts['wwlvjj_13TeV_e']  = 'std_vector_jet_pt[0]>25'
 #cuts['wwlvjj_13TeV_m']  = 'std_vector_jet_pt[0]>25'
 

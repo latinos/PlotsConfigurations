@@ -243,22 +243,22 @@ variables['jeteta2']  = {  'name': 'std_vector_jet_eta[1]',
 #variables['dymvavbf']  = { 'name': 'dymvavbf',
                         #'range' : (40,-1,1),
                         #'xaxis' : 'DY MVA',
-                        #'fold' : 3
-                        #}
+#                         #'fold' : 3
+#                         #}
 
 
-variables['mjj']  = {   
-			'name': 'mjj',            #   variable name    
-                        'range' : (100, 0,1000),    #   variable range
-                        'xaxis' : 'm_{jj} [GeV]',  #   x axis name
-                         'fold' : 3
-                        }
+# variables['mjj']  = {   
+# 			'name': 'mjj',            #   variable name    
+#                         'range' : (100, 0,1000),    #   variable range
+#                         'xaxis' : 'm_{jj} [GeV]',  #   x axis name
+#                          'fold' : 3
+#                         }
 
-variables['max_mjj']  = {   
-			   'name': 'max_mjj(std_vector_jet_eta[0],std_vector_jet_eta[1],std_vector_jet_eta[2],std_vector_jet_eta[3], std_vector_jet_pt[0], std_vector_jet_pt[1], std_vector_jet_pt[2],std_vector_jet_pt[3], std_vector_jet_phi[0], std_vector_jet_phi[1], std_vector_jet_phi[2], std_vector_jet_phi[3])',            #   variable name    
-                           'range' : (25,0,1000),    #   variable range
-                           'xaxis' : 'max m_{jj}',  #   x axis name
-                           'fold' : 3,
-                        'linesToAdd' : ['.L /gwpool/users/achiapparini/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/HH/WWbb_lvjj/max_mjj.C+']
+# variables['max_mjj']  = {   
+# 			   'name': 'max_mjj(std_vector_jet_eta[0],std_vector_jet_eta[1],std_vector_jet_eta[2],std_vector_jet_eta[3], std_vector_jet_pt[0], std_vector_jet_pt[1], std_vector_jet_pt[2],std_vector_jet_pt[3], std_vector_jet_phi[0], std_vector_jet_phi[1], std_vector_jet_phi[2], std_vector_jet_phi[3])',            #   variable name    
+#                            'range' : (25,0,1000),    #   variable range
+#                            'xaxis' : 'max m_{jj}',  #   x axis name
+#                            'fold' : 3,
+#                         'linesToAdd' : ['.L /gwpool/users/achiapparini/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/HH/WWbb_lvjj/max_mjj.C+']
                         
-}
+# }
