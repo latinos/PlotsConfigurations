@@ -129,7 +129,7 @@ plot['Wjets']  = {
                   'color': 418,
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 10e-68   ,
+                  'scale'    : 1.   ,
 	          }
 
 

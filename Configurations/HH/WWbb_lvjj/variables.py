@@ -4,7 +4,7 @@
     
    
 variables['events']  = {   'name': '1',      
-                        'range' : (1,0,2),  
+                        'range' : (1000,0,1000),  
                         'xaxis' : 'events', 
                         'fold' : 3
                         }
@@ -17,7 +17,7 @@ variables['nvtx']  = {  'name': 'nvtx',
 
 #lepton
 variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
-                        'range' : (40,0,200),   
+                        'range' : (40,0,500),   
                         'xaxis' : 'p_{T} 1st lep',
                         'fold'  : 3                         
                         }
@@ -71,14 +71,14 @@ variables['nbjet_loose']  = {
 
 variables['jetpt1']  = {
                         'name': 'std_vector_jet_pt[0]',     
-                        'range' : (30,0,200),   
+                        'range' : (40,0,1000),   
                         'xaxis' : 'p_{T} 1st jet',
                         'fold' : 3   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
 
 variables['jetpt2']  = {
                         'name': 'std_vector_jet_pt[1]',     
-                        'range' : (30,0,200),   
+                        'range' : (40,0,1000),   
                         'xaxis' : 'p_{T} 2nd jet',
                         'fold' : 3   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
@@ -86,32 +86,32 @@ variables['jetpt2']  = {
 
 variables['jetpt3']  = { 
                         'name': 'std_vector_jet_pt[2]',     
-                        'range' : (30,0,200),   
+                        'range' : (40,0,500),   
                         'xaxis' : 'p_{T} 3rd jet',
                         'fold' : 3   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
 
 variables['jetpt4']  = {
                         'name': 'std_vector_jet_pt[3]',     
-                        'range' : (30,0,200),   
+                        'range' : (40,0,500),   
                         'xaxis' : 'p_{T} 4th jet',
                         'fold' : 3   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
 
 variables['mjj']  = {
                         'name': 'mjj',            #   variable name    
-                        'range' : (30, 0,800),    #   variable range
+                        'range' : (30, 0,1600),    #   variable range
                         'xaxis' : 'm_{jj} [GeV]',  #   x axis name
                          'fold' : 3
                         }
 
-#variables['max_mjj']  = {   
-#                          'name': 'max_mjj(std_vector_jet_eta[0],std_vector_jet_eta[1],std_vector_jet_eta[2],std_vector_jet_eta[3], std_vector_jet_pt[0], std_vector_jet_pt[1], std_vector_jet_pt[2],std_vector_jet_pt[3], std_vector_jet_phi[0], std_vector_jet_phi[1], std_vector_jet_phi[2], std_vector_jet_phi[3])',            #   variable name    
-#                           'range' : (25,0,1000),    #   variable range
-#                           'xaxis' : 'max m_{jj}',  #   x axis name
-#                           'fold' : 3,
-#                        'linesToAdd' : ['.L /gwpool/users/achiapparini/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/HH/WWbb_lvjj/max_mjj.C+']
-#}
+variables['max_mjj']  = {   
+                          'name': 'max_mjj(std_vector_jet_eta[0],std_vector_jet_eta[1],std_vector_jet_eta[2], std_vector_jet_pt[0], std_vector_jet_pt[1], std_vector_jet_pt[2], std_vector_jet_phi[0], std_vector_jet_phi[1], std_vector_jet_phi[2])',            #   variable name    
+                           'range' : (30,0,1200),    #   variable range
+                           'xaxis' : 'max m_{jj}',  #   x axis name
+                           'fold' : 3,
+                        'linesToAdd' : ['.L /gwpool/users/achiapparini/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/HH/WWbb_lvjj/max_mjj.C+']
+}
 
                         
 #variables['mll']  = {   'name': 'mll',            #   variable name    
@@ -199,12 +199,12 @@ variables['mjj']  = {
 #                        'fold'  : 3                         
 #                        }
 
-#variables['pfmet']  = { 
-                        #'name': 'metPfType1',     
-                        #'range' : (20,0,1000),   
-                        #'xaxis' : 'pfmet [GeV]',
-                        #'fold'  : 3                         
-                        #}
+variables['pfmet']  = { 
+                        'name': 'metPfType1',     
+                        'range' : (20,0,1000),   
+                        'xaxis' : 'pfmet [GeV]',
+                        'fold'  : 3                         
+                        }
 
 
 #variables['jeteta1']  = {  'name': 'std_vector_jet_eta[0]',
