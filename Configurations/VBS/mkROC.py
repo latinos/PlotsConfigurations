@@ -130,8 +130,8 @@ def roc_curve (sig, bkg, namevar, mycurves , mymulticurves):
     
 # mkROC macro
     
-file_in = input('Insert *.root file name: ')
-subdirectory = input('Insert subdirectory name: ')
+file_in = raw_input('Insert *.root file name: ')
+subdirectory = raw_input('Insert subdirectory name: ')
     
 variables = []
 v_curves = []
@@ -150,32 +150,38 @@ ansv = "y"
 # variables cycle
     
 while True:
-    variable = input('Insert variable name: ')
+    variable = raw_input('Insert variable name: ')
     variables.append(variable)
-    ansv = input('Do you want to insert any other variable (y/n)? ')
+    ansv = raw_input('Do you want to insert any other variable (y/n)? ')
     if ansv != "y":
         break
         
 # structures cycle
-    
-for i in range(0, len(variables)):
+
+i = 0
+while True:
     v_curves.append(create_curves())
     v_curves[i].nvar = i
+    i += 1
+    if i >= len(variables):
+        break
+
+rt.gDirectory.cd(subdirectory)           #subdirectory
     
-rt.gDirectory.cd(subd)           #subdirectory
-    
-namesgn = input('Insert signal histo to analyze: ')
-namebkg = input('Insert bkg histo to analyze: ')
+namesgn = raw_input('Insert signal histo to analyze: ')
+namebkg = raw_input('Insert bkg histo to analyze: ')
+
+mymulticurves = multicurves(rt.TMultiGraph(), rt.TMultiGraph(), rt.TMultiGraph(), rt.TMultiGraph())
         
 # cycle on the variables
     
 for i in range(0, len(variables)):
     if (i != 0):
         rt.gDirectory.cd("../")
-    gDirectory.cd(variables[i])
+    rt.gDirectory.cd(variables[i])
             
-    histosgn = TH1D*(gDirectory).Get(namesgn);
-    histobkg = TH1D*(gDirectory).Get(namebkg);
+    histosgn = rt.gDirectory.Get(namesgn);
+    histobkg = rt.gDirectory.Get(namebkg);
                
     roc_curve(histosgn,histobkg, variables[i], v_curves[i], mymulticurves)
     
