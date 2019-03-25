@@ -129,88 +129,86 @@ def roc_curve (sig, bkg, namevar, mycurves , mymulticurves):
         mymulticurves.signif2.GetYaxis().SetTitleOffset(0.85)
     
 # mkROC macro
+    
+file_in = input('Insert *.root file name: ')
+subdirectory = input('Insert subdirectory name: ')
+    
+variables = []
+v_curves = []
+    
+c = 1
+    
+c1 = rt.TCanvas("roc1", "", 100, 200, 700, 500)
+c2 = rt.TCanvas("roc2", "", 100, 200, 700, 500)
+c3 = rt.TCanvas("signif1", "", 100, 200, 700, 500)
+c4 = rt.TCanvas("signif2", "", 100, 200, 700, 500)
 
-def mkROC ():
+f = rt.TFile(file_in)
     
-    file_in = input('Insert *.root file name: ')
-    subdirectory = input('Insert subdirectory name: ')
-    
-    variables = []
-    v_curves = []
-    
-    c = 1
-    
-    c1 = rt.TCanvas("roc1", "", 100, 200, 700, 500)
-    c2 = rt.TCanvas("roc2", "", 100, 200, 700, 500)
-    c3 = rt.TCanvas("signif1", "", 100, 200, 700, 500)
-    c4 = rt.TCanvas("signif2", "", 100, 200, 700, 500)
+ansv = "y"
 
-    f = rt.TFile(file_in)
+# variables cycle
     
-    ansv = "y"
-
-    # variables cycle
-    
-    while True:
-        variable = input('Insert variable name: ')
-        variables.append(variable)
-        ansv = input('Do you want to insert any other variable (y/n)? ')
-        if ansv != "y":
-            break
+while True:
+    variable = input('Insert variable name: ')
+    variables.append(variable)
+    ansv = input('Do you want to insert any other variable (y/n)? ')
+    if ansv != "y":
+        break
         
-    # structures cycle
+# structures cycle
     
-    for i in range(0, len(variables)):
-        v_curves.append(create_curves())
-        v_curves[i].nvar = i
+for i in range(0, len(variables)):
+    v_curves.append(create_curves())
+    v_curves[i].nvar = i
     
-    rt.gDirectory.cd(subd)           #subdirectory
+rt.gDirectory.cd(subd)           #subdirectory
     
-    namesgn = input('Insert signal histo to analyze: ')
-    namebkg = input('Insert bkg histo to analyze: ')
+namesgn = input('Insert signal histo to analyze: ')
+namebkg = input('Insert bkg histo to analyze: ')
         
-    # cycle on the variables
+# cycle on the variables
     
-    for i in range(0, len(variables)):
-        if (i != 0):
-            rt.gDirectory.cd("../")
-        gDirectory.cd(variables[i])
+for i in range(0, len(variables)):
+    if (i != 0):
+        rt.gDirectory.cd("../")
+    gDirectory.cd(variables[i])
             
-        histosgn = TH1D*(gDirectory).Get(namesgn);
-        histobkg = TH1D*(gDirectory).Get(namebkg);
+    histosgn = TH1D*(gDirectory).Get(namesgn);
+    histobkg = TH1D*(gDirectory).Get(namebkg);
                
-        roc_curve(histosgn,histobkg, variables[i], v_curves[i], mymulticurves)
+    roc_curve(histosgn,histobkg, variables[i], v_curves[i], mymulticurves)
     
-    l = rt.TLine(0,0,1,1)
-    l.SetLineStyle(9)
-    l.SetLineColor(804)
-    l.SetLineWidth(2)
+l = rt.TLine(0,0,1,1)
+l.SetLineStyle(9)
+l.SetLineColor(804)
+l.SetLineWidth(2)
         
-    c1.cd()
-    mymulticurves.roc1.Draw("AP")
-    l.Draw("SAME")
+c1.cd()
+mymulticurves.roc1.Draw("AP")
+l.Draw("SAME")
     
-    c2.cd()
-    mymulticurves.roc2.Draw("AP")
-    l.Draw("SAME")    
+c2.cd()
+mymulticurves.roc2.Draw("AP")
+l.Draw("SAME")    
     
-    c3.cd()
-    mymulticurves.signif1.Draw("AP")
+c3.cd()
+mymulticurves.signif1.Draw("AP")
     
-    c4.cd()
-    mymulticurves.signif2.Draw("AP")
+c4.cd()
+mymulticurves.signif2.Draw("AP")
        
-    for j in range(0, len(variables)):
-        varname = variables[j]
+for j in range(0, len(variables)):
+    varname = variables[j]
         
-        c11 = create_canva(j)
-        c11.cd()
-        v_curves[j].signif11.GetXaxis().SetTitle(varname)
-        v_curves[j].signif11.GetYaxis().SetTitle("#Sigma_{1}")
-        v_curves[j].signif11.Draw("AP")
+    c11 = create_canva(j)
+    c11.cd()
+    v_curves[j].signif11.GetXaxis().SetTitle(varname)
+    v_curves[j].signif11.GetYaxis().SetTitle("#Sigma_{1}")
+    v_curves[j].signif11.Draw("AP")
         
-        c22 = create_canva(len(variables)*2 - 1 - j)
-        c22.cd()
-        v_curves[j].signif22.GetXaxis().SetTitle(varname)
-        v_curves[j].signif22.GetYaxis().SetTitle("#Sigma_{2}")
-        v_curves[j].signif22.Draw("AP")
+    c22 = create_canva(len(variables)*2 - 1 - j)
+    c22.cd()
+    v_curves[j].signif22.GetXaxis().SetTitle(varname)
+    v_curves[j].signif22.GetYaxis().SetTitle("#Sigma_{2}")
+    v_curves[j].signif22.Draw("AP")
