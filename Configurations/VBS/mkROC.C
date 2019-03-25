@@ -274,17 +274,20 @@ void mkROC () {
     
     const char * varname;
     
+    TCanvas * c11;
+    TCanvas * c22;
+    
     for(int j = 0; j < variables.size(); j++) {
         
         varname = variables[j].c_str();
         
-        TCanvas * c11 = create_canva(j);
+        c11 = create_canva(j);
         c11->cd();
         v_curves[j] -> signif11 -> GetXaxis() -> SetTitle(varname);
         v_curves[j] -> signif11 -> GetYaxis() -> SetTitle("#Sigma_{1}");
         v_curves[j] -> signif11 -> Draw("AP");
         
-        TCanvas * c22 = create_canva(variables.size()*2 - 1 - j);
+        c22 = create_canva(variables.size()*2 - 1 - j);
         c22->cd();
         v_curves[j] -> signif22 -> GetXaxis() -> SetTitle(varname);
         v_curves[j] -> signif22 -> GetYaxis() -> SetTitle("#Sigma_{2}");
