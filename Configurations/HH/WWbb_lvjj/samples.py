@@ -16,20 +16,20 @@ treeBaseDir = '/gwteras/cms/store/group/OneLepton/'
 ########### Definition of weights ###########
 #############################################
 
-METFilter_Common = '(std_vector_trigger_special[0]*\
-                     std_vector_trigger_special[1]*\
-                     std_vector_trigger_special[2]*\
-                     std_vector_trigger_special[3]*\
-                     std_vector_trigger_special[5] )'
+#METFilter_Common = '(std_vector_trigger_special[0]*\
+#                     std_vector_trigger_special[1]*\
+#                     std_vector_trigger_special[2]*\
+#                     std_vector_trigger_special[3]*\
+#                     std_vector_trigger_special[5] )'
 
-METFilter_MCver  =  '(std_vector_trigger_special[8]==-2.)'
-METFilter_MCOld  =  '(std_vector_trigger_special[6]*std_vector_trigger_special[7])'
-METFilter_MCNew  =  '(std_vector_trigger_special[8]*std_vector_trigger_special[9])'
-METFilter_MC2     =  METFilter_Common + '*' + '(('+METFilter_MCver+'*'+METFilter_MCOld+') or ((not '+METFilter_MCver+')*'+METFilter_MCNew+'))' 
+#METFilter_MCver  =  '(std_vector_trigger_special[8]==-2.)'
+#METFilter_MCOld  =  '(std_vector_trigger_special[6]*std_vector_trigger_special[7])'
+#METFilter_MCNew  =  '(std_vector_trigger_special[8]*std_vector_trigger_special[9])'
+#METFilter_MC2     =  METFilter_Common + '*' + '(('+METFilter_MCver+'*'+METFilter_MCOld+') or ((not '+METFilter_MCver+')*'+METFilter_MCNew+'))' 
 
-METFilter_DATA   =  METFilter_Common + '*' + '(std_vector_trigger_special[4]*\
-                                              std_vector_trigger_special[8]*\
-                                              std_vector_trigger_special[9])'
+#METFilter_DATA   =  METFilter_Common + '*' + '(std_vector_trigger_special[4]*\
+#                                              std_vector_trigger_special[8]*\
+#                                              std_vector_trigger_special[9])'
 
 
 
@@ -146,7 +146,7 @@ DataTrig = {
 	   }
 
 samples['DATA']  = {    'name'   : [],
-				   'weight' : 'METFilter_DATA', 
+				   'weight' : '1.', 
 				   'weights' : [],
 				   'isData': ['all'],
                       		   'FilesPerJob' : 2,

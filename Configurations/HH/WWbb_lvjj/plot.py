@@ -20,12 +20,12 @@ groupPlot['Wjets']  = {
                         'samples'  : ['Wjets']
                      }
 
-#groupPlot['TTToSemilepton']  = {    
-#				  'nameHR' : 'ttbar',
-#				  'isSignal' : 0,
-#				  'color' : 860,
-#			  	  'samples' : ['TT']
-#			       }	
+groupPlot['TTToSemilepton']  = {    
+				  'nameHR' : 'ttbar',
+				  'isSignal' : 0,
+				  'color' : 860,
+			  	  'samples' : ['TT']
+			       }	
 
 
 #groupPlot['Others']  = {
@@ -133,12 +133,12 @@ plot['Wjets']  = {
 	          }
 
 
-#plot['TT']  = {
-#                  'color': 860,    
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.   ,
-#              }
+plot['TT']  = {
+                  'color': 860,    
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.   ,
+              }
 
 #plot['Others']  = {
 #                  'color': 617,
