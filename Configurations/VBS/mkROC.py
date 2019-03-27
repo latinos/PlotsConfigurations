@@ -4,13 +4,13 @@ from collections import namedtuple
 
 #structures
 
-curves = namedtuple("curves", ["nvar", "roc1", "roc2", "signf1", "signf2", "signf11", "signf22"], verbose=True)
-multicurves = namedtuple("multicurves", ["roc1", "roc2", "signf1", "signf2"], verbose=True)
+curves = namedtuple("curves", ["nvar", "roc1", "roc2", "signif1", "signif2", "signif11", "signif22"], verbose=True)
+multicurves = namedtuple("multicurves", ["roc1", "roc2", "signif1", "signif2"], verbose=True)
 
 #create structure
 
-def create_curves ():
-    return curves(int, rt.TGraph(), rt.TGraph(), rt.TGraph(), rt.TGraph(),rt.TGraph(), rt.TGraph())
+def create_curves (number):
+    return curves(number, rt.TGraph(), rt.TGraph(), rt.TGraph(), rt.TGraph(),rt.TGraph(), rt.TGraph())
 
 #create canvas
 
@@ -36,10 +36,10 @@ def roc_curve (sig, bkg, namevar, mycurves , mymulticurves):
     sum_bkg = 0
     eff_sig=1.
     eff_bkg=1.
-    S1= float(N_sig) / sqrt(N_bkg)
-    S2= float(N_sig) / sqrt(N_bkg)
+    S1= float(N_sig) / (float (sqrt(N_bkg)))
+    S2= float(N_sig) / (float (sqrt(N_bkg)))
     
-    for i in range(1,Nbin+1):
+    for i in range(1,Nbin):
         mycurves.roc1.SetPoint(i, eff_bkg, eff_sig)
         mycurves.roc2.SetPoint(i, 1-eff_bkg, 1-eff_sig)
         mycurves.signif1.SetPoint(i, eff_sig, S1)
@@ -48,10 +48,12 @@ def roc_curve (sig, bkg, namevar, mycurves , mymulticurves):
         mycurves.signif22.SetPoint(i, sig.GetBinCenter(i), S2)
         sum_sig += sig.GetBinContent(i)
         sum_bkg += bkg.GetBinContent(i)
+        if N_bkg - sum_bkg == 0 or sum_bkg == 0:
+	  break
         eff_sig = float (N_sig - sum_sig) / N_sig
         eff_bkg = float (N_bkg - sum_bkg) / N_bkg
-        S1 = float (N_sig - sum_sig) / sqrt(N_bkg - sum_bkg)
-        S2 = float (sum_sig) / sqrt(sum_bkg)
+        S1 = float (N_sig - sum_sig) / (float (sqrt(N_bkg - sum_bkg)))
+        S2 = float (sum_sig) / (float (sqrt(sum_bkg)))
     
     mycurves.roc1.SetMarkerStyle(20)
     mycurves.roc1.SetMarkerSize(0.75)
@@ -160,8 +162,7 @@ while True:
 
 i = 0
 while True:
-    v_curves.append(create_curves())
-    v_curves[i].nvar = i
+    v_curves.append(create_curves(i))
     i += 1
     if i >= len(variables):
         break
