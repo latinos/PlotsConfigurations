@@ -2,6 +2,7 @@ import ROOT as rt
 from math import *
 from collections import namedtuple
 
+
 #structures
 
 curves = namedtuple("curves", ["nvar", "roc1", "roc2", "signif1", "signif2", "signif11", "signif22"], verbose=True)
@@ -131,7 +132,7 @@ def roc_curve (sig, bkg, namevar, mycurves , mymulticurves):
         mymulticurves.signif2.GetYaxis().SetTitleOffset(0.85)
     
 # mkROC macro
-    
+   
 file_in = raw_input('Insert *.root file name: ')
 subdirectory = raw_input('Insert subdirectory name: ')
     
@@ -194,17 +195,21 @@ l.SetLineWidth(2)
 c1.cd()
 mymulticurves.roc1.Draw("AP")
 l.Draw("SAME")
+c1.SaveAs("roc1.png")
     
 c2.cd()
 mymulticurves.roc2.Draw("AP")
-l.Draw("SAME")    
+l.Draw("SAME") 
+c2.SaveAs("roc2.png")
     
 c3.cd()
 mymulticurves.signif1.Draw("AP")
+c3.SaveAs("signif1.png")
     
 c4.cd()
 mymulticurves.signif2.Draw("AP")
-       
+c4.SaveAs("signif2.png")
+      
 for j in range(0, len(variables)):
     varname = variables[j]
         
@@ -213,9 +218,11 @@ for j in range(0, len(variables)):
     v_curves[j].signif11.GetXaxis().SetTitle(varname)
     v_curves[j].signif11.GetYaxis().SetTitle("#Sigma_{1}")
     v_curves[j].signif11.Draw("AP")
+    c11.SaveAs("signif1_{}".format(varname)+".png")
         
     c22 = create_canva(len(variables)*2 - 1 - j)
     c22.cd()
     v_curves[j].signif22.GetXaxis().SetTitle(varname)
     v_curves[j].signif22.GetYaxis().SetTitle("#Sigma_{2}")
     v_curves[j].signif22.Draw("AP")
+    c22.SaveAs("signif2_{}".format(varname)+".png")
