@@ -5,13 +5,13 @@ from collections import namedtuple
 
 #structures
 
-curves = namedtuple("curves", ["nvar", "roc1", "roc2", "signif1", "signif2", "signif11", "signif22"], verbose=True)
-multicurves = namedtuple("multicurves", ["roc1", "roc2", "signif1", "signif2"], verbose=True)
+curves = namedtuple("curves", ["nvar", "roc1", "roc2", "signif1", "signif2", "signif11", "signif22", "legf11", "legf22"], verbose=True)
+multicurves = namedtuple("multicurves", ["roc1", "roc2", "signif1", "signif2", "leg1", "leg2", "leg12", "leg22"], verbose=True)
 
 #create structure
 
 def create_curves (number):
-    return curves(number, rt.TGraph(), rt.TGraph(), rt.TGraph(), rt.TGraph(),rt.TGraph(), rt.TGraph())
+    return curves(number, rt.TGraph(), rt.TGraph(), rt.TGraph(), rt.TGraph(),rt.TGraph(), rt.TGraph(), rt.TLegend(0.1,0.8,0.2,0.9),rt.TLegend(0.1,0.8,0.2,0.9))
 
 #create canvas
 
@@ -123,6 +123,7 @@ def roc_curve (sig, bkg, namevar, mycurves , mymulticurves):
     mycurves.signif11.GetYaxis().SetLabelSize(0.05)
     mycurves.signif11.GetXaxis().SetTitleOffset(0.85)
     mycurves.signif11.GetYaxis().SetTitleOffset(0.85)
+    mycurves.legf11.AddEntry(mycurves.signif11, namevar, "lp")
 
     #mycurves.signif22.SetMarkerStyle(20)
     mycurves.signif22.SetMarkerSize(0.9)
@@ -133,11 +134,19 @@ def roc_curve (sig, bkg, namevar, mycurves , mymulticurves):
     mycurves.signif22.GetYaxis().SetLabelSize(0.05)
     mycurves.signif22.GetXaxis().SetTitleOffset(0.85)
     mycurves.signif22.GetYaxis().SetTitleOffset(0.85)
+    mycurves.legf22.AddEntry(mycurves.signif22, namevar, "lp")
  
     mymulticurves.roc1.Add(mycurves.roc1)
+    mymulticurves.leg1.AddEntry(mycurves.roc1, namevar, "lp")
+    
     mymulticurves.roc2.Add(mycurves.roc2)
+    mymulticurves.leg12.AddEntry(mycurves.roc2, namevar, "lp")
+    
     mymulticurves.signif1.Add(mycurves.signif1)
+    mymulticurves.leg2.AddEntry(mycurves.signif1, namevar, "lp")
+    
     mymulticurves.signif2.Add(mycurves.signif2)
+    mymulticurves.leg22.AddEntry(mycurves.signif2, namevar, "lp")
 
     if mycurves.nvar == 0:
     
@@ -217,7 +226,8 @@ rt.gDirectory.cd(subdirectory)           #subdirectory
 namesgn = raw_input('Insert signal histo to analyze: ')
 namebkg = raw_input('Insert bkg histo to analyze: ')
 
-mymulticurves = multicurves(rt.TMultiGraph(), rt.TMultiGraph(), rt.TMultiGraph(), rt.TMultiGraph())
+mymulticurves = multicurves(rt.TMultiGraph(), rt.TMultiGraph(), rt.TMultiGraph(), rt.TMultiGraph(), \
+    rt.TLegend(0.1,0.8,0.2,0.9), rt.TLegend(0.1,0.8,0.2,0.9), rt.TLegend(0.1,0.8,0.2,0.9), rt.TLegend(0.1,0.8,0.2,0.9))
         
 # cycle on the variables
     
@@ -239,20 +249,24 @@ l.SetLineWidth(2)
         
 c1.cd()
 mymulticurves.roc1.Draw("APL")
+mymulticurves.leg1.Draw("SAME")
 l.Draw("SAME")
 c1.SaveAs("roc1.png")
     
 c2.cd()
 mymulticurves.roc2.Draw("APL")
+mymulticurves.leg12.Draw("SAME")
 l.Draw("SAME") 
 c2.SaveAs("roc2.png")
     
 c3.cd()
 mymulticurves.signif1.Draw("APL")
+mymulticurves.leg2.Draw("SAME")
 c3.SaveAs("signif1.png")
     
 c4.cd()
 mymulticurves.signif2.Draw("APL")
+mymulticurves.leg22.Draw("SAME")
 c4.SaveAs("signif2.png")
       
 for j in range(0, len(variables)):
@@ -263,6 +277,7 @@ for j in range(0, len(variables)):
     v_curves[j].signif11.GetXaxis().SetTitle(varname)
     v_curves[j].signif11.GetYaxis().SetTitle("#Sigma_{1}")
     v_curves[j].signif11.Draw("APL")
+    v_curves[j].legf11.Draw("SAME")
     c11.SaveAs("signif1_{}".format(varname)+".png")
         
     c22 = create_canva(len(variables)*2 - 1 - j)
@@ -270,4 +285,5 @@ for j in range(0, len(variables)):
     v_curves[j].signif22.GetXaxis().SetTitle(varname)
     v_curves[j].signif22.GetYaxis().SetTitle("#Sigma_{2}")
     v_curves[j].signif22.Draw("APL")
+    v_curves[j].legf22.Draw("SAME")
     c22.SaveAs("signif2_{}".format(varname)+".png")
