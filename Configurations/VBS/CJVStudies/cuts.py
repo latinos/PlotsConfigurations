@@ -33,7 +33,7 @@ CentralJetVeto = '\
 ((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[1]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[0]) )) \
 '
 
-DynamicJetVeto25 = '(std_vector_jet_pt[2] < 0.25 * std_vector_lepton_pt[0])'
+DynamicJetVeto65ptl1 = '(std_vector_jet_pt[2] < 0.65 * std_vector_lepton_pt[0])'
 
 
 DynamicCentralJetVeto25 = '\
@@ -45,7 +45,9 @@ DynamicCentralJetVeto25 = '\
 ((std_vector_jet_eta[0]<std_vector_jet_eta[1])*std_vector_jet_eta[1]+(std_vector_jet_eta[0]>=std_vector_jet_eta[1])*std_vector_jet_eta[0]) )) \
 '
 
-#cuts['CJV'] = CentralJetVeto
+cuts['JV'] = JetVeto
+cuts['CJV'] = CentralJetVeto
+cuts['DJV_65ptl1'] = DynamicJetVeto65ptl1
 
 # 11 = e
 # 13 = mu
