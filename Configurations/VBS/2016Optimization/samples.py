@@ -87,7 +87,7 @@ samples['ChMisId']=	{  	'name'	:getSampleFiles(chargeFlipDir,'DYJetsToLL_M-10to5
 								+getSampleFiles(chargeFlipDir,'GluGluWWTo2L2Nu_MCFM',True) 
 								+getSampleFiles(chargeFlipDir,'WWTo2L2Nu',True)             							
 				                ,
-						'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*chargeFlipW*'+ChargMisSign,
+						'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*chargeFlipW',
 						'FilesPerJob' : 2 ,
 					}
 addSampleWeight(samples,'ChMisId','DYJetsToLL_M-10to50'	,DY_W)
@@ -100,7 +100,7 @@ samples['ttbar'] = 	{ 	'name'  :getSampleFiles(chargeFlipDir,'TTTo2L2Nu',True)
 					+getSampleFiles(chargeFlipDir,'ST_tW_top_noHad',True)
 					+getSampleFiles(chargeFlipDir,'ST_tW_antitop_noHad',True) 
                                 ,
-						'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*chargeFlipW*'+ChargMisSign,
+						'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*chargeFlipW',
 						'FilesPerJob' : 6 ,
 					}
 
