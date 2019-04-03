@@ -91,7 +91,7 @@ def roc_curve (sig, bkg, namevar, mycurves , mymulticurves):
         mycurves.signif22.SetPoint(i, sig.GetBinCenter(i), S2)
         sum_sig += sig.GetBinContent(i)
         sum_bkg += bkg.GetBinContent(i)
-        if N_bkg - sum_bkg != 0 or sum_bkg != 0:
+        if N_bkg - sum_bkg != 0 and sum_bkg != 0:
             #break
             eff_sig = float (N_sig - sum_sig) / N_sig
             eff_bkg = float (N_bkg - sum_bkg) / N_bkg
@@ -158,7 +158,7 @@ def roc_curve (sig, bkg, namevar, mycurves , mymulticurves):
         mymulticurves.roc1.GetXaxis().SetTitleOffset(0.85)
         mymulticurves.roc1.GetYaxis().SetTitleOffset(0.85)
         
-        mymulticurves.roc2.SetTitle(" ; 1- #varepsilon_{bkg}; #varepsilon_{sig} ")
+        mymulticurves.roc2.SetTitle(" ; #varepsilon_{bkg}; #varepsilon_{sig} ")
         mymulticurves.roc2.GetXaxis().SetTitleSize(0.05)
         mymulticurves.roc2.GetXaxis().SetLabelSize(0.05)
         mymulticurves.roc2.GetYaxis().SetTitleSize(0.05)
@@ -223,23 +223,44 @@ while True:
 
 rt.gDirectory.cd(subdirectory)           #subdirectory
     
-namesgn = raw_input('Insert signal histo to analyze: ')
-namebkg = raw_input('Insert bkg histo to analyze: ')
+#namesgn = raw_input('Insert signal histo to analyze: ')
+namesgn1 = "histo_WpWp_EWK"
+namesgn2 = "histo_WmWm_EWK"
+
+namebkg = []
+bkg = 'y'
+while True:
+    name_b = raw_input('Insert bkg histo to analyze: ')
+    namebkg.append(name_b)
+    bkg = raw_input('Do you want to group any other bkg histo (y/n)? ')
+    if bkg == "n":
+        break
 
 mymulticurves = multicurves(rt.TMultiGraph(), rt.TMultiGraph(), rt.TMultiGraph(), rt.TMultiGraph(), \
     rt.TLegend(0.1,0.8,0.2,0.9), rt.TLegend(0.1,0.8,0.2,0.9), rt.TLegend(0.1,0.8,0.2,0.9), rt.TLegend(0.1,0.8,0.2,0.9))
         
 # cycle on the variables
     
-for i in range(0, len(variables)):
-    if (i != 0):
+for i1 in range(0, len(variables)):
+    if (i1 != 0):
         rt.gDirectory.cd("../")
-    rt.gDirectory.cd(variables[i])
+    rt.gDirectory.cd(variables[i1])
             
-    histosgn = rt.gDirectory.Get(namesgn);
-    histobkg = rt.gDirectory.Get(namebkg);
+    histosgn1 = rt.gDirectory.Get(namesgn1)
+    histosgn2 = rt.gDirectory.Get(namesgn2)
+    histosgn = histosgn1
+    for i4 in range(0, histosgn1.GetNbinsX()):
+        histosgn.SetBinContent(i4, histosgn1.GetBinContent(i4)+histosgn2.GetBinContent(i4))
+    
+    for i2 in range(0, len(namebkg)):
+        histobkg = rt.gDirectory.Get(namebkg[i2])
+        if i2 == 0:
+	    histobkgTot = histobkg
+	else:
+	    for i3 in range(0, histobkg.GetNbinsX()):
+	        histobkgTot.SetBinContent(i3, histobkgTot.GetBinContent(i3)+histobkg.GetBinContent(i3))
                
-    roc_curve(histosgn,histobkg, variables[i], v_curves[i], mymulticurves)
+    roc_curve(histosgn,histobkgTot, variables[i1], v_curves[i1], mymulticurves)
     
 #l = rt.TLine(0,0,1,1)
 l = rt.TF1("bis","x",0.,1.)
@@ -248,24 +269,24 @@ l.SetLineColor(804)
 l.SetLineWidth(2)
         
 c1.cd()
-mymulticurves.roc1.Draw("APL")
+mymulticurves.roc1.Draw("AP")
 mymulticurves.leg1.Draw("SAME")
 l.Draw("SAME")
 c1.SaveAs("roc1.png")
     
 c2.cd()
-mymulticurves.roc2.Draw("APL")
+mymulticurves.roc2.Draw("AP")
 mymulticurves.leg12.Draw("SAME")
 l.Draw("SAME") 
 c2.SaveAs("roc2.png")
     
 c3.cd()
-mymulticurves.signif1.Draw("APL")
+mymulticurves.signif1.Draw("AP")
 mymulticurves.leg2.Draw("SAME")
 c3.SaveAs("signif1.png")
     
 c4.cd()
-mymulticurves.signif2.Draw("APL")
+mymulticurves.signif2.Draw("AP")
 mymulticurves.leg22.Draw("SAME")
 c4.SaveAs("signif2.png")
       
@@ -276,7 +297,7 @@ for j in range(0, len(variables)):
     c11.cd()
     v_curves[j].signif11.GetXaxis().SetTitle(varname)
     v_curves[j].signif11.GetYaxis().SetTitle("#Sigma_{1}")
-    v_curves[j].signif11.Draw("APL")
+    v_curves[j].signif11.Draw("AP")
     v_curves[j].legf11.Draw("SAME")
     c11.SaveAs("signif1_{}".format(varname)+".png")
         
@@ -284,6 +305,6 @@ for j in range(0, len(variables)):
     c22.cd()
     v_curves[j].signif22.GetXaxis().SetTitle(varname)
     v_curves[j].signif22.GetYaxis().SetTitle("#Sigma_{2}")
-    v_curves[j].signif22.Draw("APL")
+    v_curves[j].signif22.Draw("AP")
     v_curves[j].legf22.Draw("SAME")
     c22.SaveAs("signif2_{}".format(varname)+".png")
