@@ -86,30 +86,18 @@ plot['Higgs']  = {
                   'scale'    : 1.   ,
               }
 
-plot['WZgS'] = { 
-                  'color'    : 617,   # kViolet + 1  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
-
- 
 plot['Vg'] = { 
                   'color'    : 617,   # kViolet + 1  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-
-'''
-plot['Wjets']  = {  
-                  'color': 921,    # kGray + 1
+plot['VgS'] = {
+                  'color'    : 620,   # kViolet + 1  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0                  
-              }
-'''
-
+                  'scale'    : 1.0
+                  }                  
 
                
 plot['Fake']  = {  
@@ -119,33 +107,13 @@ plot['Fake']  = {
                   'scale'    : 1.0                  
               }
 
-'''
-plot['top'] = {
+plot['top'] = {   
                   'nameHR' : 't#bart',
                   'color': 400,   # kYellow 
                   'isSignal' : 0,
                   'isData'   : 0 ,
                   'scale'    : 1.0
                   }
-'''
-plot['ttbar'] = {   
-                  'nameHR' : 't#bart',
-                  'color': 400,   # kYellow 
-                  'isSignal' : 0,
-                  'isData'   : 0 ,
-                  'scale'    : 1.0
-                  }
-'''
-
-plot['singletop'] = {   
-                  'nameHR' : 't and tW',
-                  'color': 401,   # kYellow +1
-                  'isSignal' : 0,
-                  'isData'   : 0, 
-                  'scale'    : 1.0
-                  }
-'''
-
 plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,

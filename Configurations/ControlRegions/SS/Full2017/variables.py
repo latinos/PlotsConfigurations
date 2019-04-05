@@ -35,13 +35,13 @@ variables['ptll']  = {   'name': 'ptll',
                         }
 
 variables['pt1']  = {   'name': 'Lepton_pt[0]',     
-                        'range' : (40,0,300),   
+                        'range' : (40,0,40),   
                         'xaxis' : 'p_{T} 1st lep',
                         'fold'  : 3                         
                         }
 
 variables['pt2']  = {   'name': 'Lepton_pt[1]',     
-                        'range' : (40,0,200),   
+                        'range' : (40,0,40),   
                         'xaxis' : 'p_{T} 2nd lep',
                         'fold'  : 3                         
                         }
