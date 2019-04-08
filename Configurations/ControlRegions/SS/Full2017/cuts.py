@@ -1,7 +1,7 @@
  # cuts
 
 _tmp = [ 
-    'Lepton_pt[0]>20. && Lepton_pt[1]>10.' ,
+    'Lepton_pt[0]>20. && Lepton_pt[1]>13.' ,
     '(abs(Lepton_pdgId[0])==13 || Lepton_pt[0]>25)',
     '(abs(Lepton_pdgId[1])==13 || Lepton_pt[1]>13)', 
     '(nLepton>=2 && Alt$(Lepton_pt[2],0)<10.)',
