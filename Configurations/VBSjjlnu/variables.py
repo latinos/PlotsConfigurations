@@ -156,8 +156,6 @@ variables['nbjet_loose']  = {
                         'fold'  : 3
                         }
 
-
-
 #variables['njet']  = {
                         #'name': 'njet',     
                         #'range' : (5,0,5),   
@@ -262,3 +260,99 @@ variables['jeteta2']  = {  'name': 'std_vector_jet_eta[1]',
 #                         'linesToAdd' : ['.L /gwpool/users/achiapparini/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/HH/WWbb_lvjj/max_mjj.C+']
                         
 # }
+
+variables['nbjet_deepcsv_loose'] = {
+        'name':'1*(std_vector_jet_pt[0]>20)*(std_vector_jet_DeepCSVB[0]>0.2219) + \
+                1*(std_vector_jet_pt[1]>20)*(std_vector_jet_DeepCSVB[1]>0.2219) + \
+                1*(std_vector_jet_pt[2]>20)*(std_vector_jet_DeepCSVB[2]>0.2219) + \
+                1*(std_vector_jet_pt[3]>20)*(std_vector_jet_DeepCSVB[3]>0.2219) + \
+                1*(std_vector_jet_pt[4]>20)*(std_vector_jet_DeepCSVB[4]>0.2219) + \
+                1*(std_vector_jet_pt[5]>20)*(std_vector_jet_DeepCSVB[5]>0.2219) + \
+                1*(std_vector_jet_pt[6]>20)*(std_vector_jet_DeepCSVB[6]>0.2219) + \
+                1*(std_vector_jet_pt[7]>20)*(std_vector_jet_DeepCSVB[7]>0.2219) + \
+                1*(std_vector_jet_pt[8]>20)*(std_vector_jet_DeepCSVB[8]>0.2219) + \
+                1*(std_vector_jet_pt[9]>20)*(std_vector_jet_DeepCSVB[9]>0.2219)',
+        'range' : (10,0,10),
+        'xaxis' : 'nbjet_deepcsv_loose',
+        'fold'  : 3
+}
+
+variables['nbjet_deepcsv_medium'] = {
+        'name':'1*(std_vector_jet_pt[0]>20)*(std_vector_jet_DeepCSVB[0]>0.6324) + \
+                1*(std_vector_jet_pt[1]>20)*(std_vector_jet_DeepCSVB[1]>0.6324) + \
+                1*(std_vector_jet_pt[2]>20)*(std_vector_jet_DeepCSVB[2]>0.6324) + \
+                1*(std_vector_jet_pt[3]>20)*(std_vector_jet_DeepCSVB[3]>0.6324) + \
+                1*(std_vector_jet_pt[4]>20)*(std_vector_jet_DeepCSVB[4]>0.6324) + \
+                1*(std_vector_jet_pt[5]>20)*(std_vector_jet_DeepCSVB[5]>0.6324) + \
+                1*(std_vector_jet_pt[6]>20)*(std_vector_jet_DeepCSVB[6]>0.6324) + \
+                1*(std_vector_jet_pt[7]>20)*(std_vector_jet_DeepCSVB[7]>0.6324) + \
+                1*(std_vector_jet_pt[8]>20)*(std_vector_jet_DeepCSVB[8]>0.6324) + \
+                1*(std_vector_jet_pt[9]>20)*(std_vector_jet_DeepCSVB[9]>0.6324)',
+        'range' : (10,0,10),
+        'xaxis' : 'nbjet_deepcsv_medium',
+        'fold'  : 3
+}
+
+variables['nbjet_deepcsv_tight'] = {
+        'name':'1*(std_vector_jet_pt[0]>20)*(std_vector_jet_DeepCSVB[0]>0.8958) + \
+                1*(std_vector_jet_pt[1]>20)*(std_vector_jet_DeepCSVB[1]>0.8958) + \
+                1*(std_vector_jet_pt[2]>20)*(std_vector_jet_DeepCSVB[2]>0.8958) + \
+                1*(std_vector_jet_pt[3]>20)*(std_vector_jet_DeepCSVB[3]>0.8958) + \
+                1*(std_vector_jet_pt[4]>20)*(std_vector_jet_DeepCSVB[4]>0.8958) + \
+                1*(std_vector_jet_pt[5]>20)*(std_vector_jet_DeepCSVB[5]>0.8958) + \
+                1*(std_vector_jet_pt[6]>20)*(std_vector_jet_DeepCSVB[6]>0.8958) + \
+                1*(std_vector_jet_pt[7]>20)*(std_vector_jet_DeepCSVB[7]>0.8958) + \
+                1*(std_vector_jet_pt[8]>20)*(std_vector_jet_DeepCSVB[8]>0.8958) + \
+                1*(std_vector_jet_pt[9]>20)*(std_vector_jet_DeepCSVB[9]>0.8958)',
+        'range' : (10,0,10),
+        'xaxis' : 'nbjet_deepcsv_tight',
+        'fold'  : 3
+}
+
+variables['nbjet_cmvav2_loose'] = {
+        'name':'1*(std_vector_jet_pt[0]>20)*(std_vector_jet_cmvav2[0]>-0.5884) + \
+                1*(std_vector_jet_pt[1]>20)*(std_vector_jet_cmvav2[1]>-0.5884) + \
+                1*(std_vector_jet_pt[2]>20)*(std_vector_jet_cmvav2[2]>-0.5884) + \
+                1*(std_vector_jet_pt[3]>20)*(std_vector_jet_cmvav2[3]>-0.5884) + \
+                1*(std_vector_jet_pt[4]>20)*(std_vector_jet_cmvav2[4]>-0.5884) + \
+                1*(std_vector_jet_pt[5]>20)*(std_vector_jet_cmvav2[5]>-0.5884) + \
+                1*(std_vector_jet_pt[6]>20)*(std_vector_jet_cmvav2[6]>-0.5884) + \
+                1*(std_vector_jet_pt[7]>20)*(std_vector_jet_cmvav2[7]>-0.5884) + \
+                1*(std_vector_jet_pt[8]>20)*(std_vector_jet_cmvav2[8]>-0.5884) + \
+                1*(std_vector_jet_pt[9]>20)*(std_vector_jet_cmvav2[9]>-0.5884)',
+        'range' : (10,0,10),
+        'xaxis' : 'nbjet_cmvav2_tight',
+        'fold'  : 3
+}
+
+variables['nbjet_cmvav2_medium'] = {
+        'name':'1*(std_vector_jet_pt[0]>20)*(std_vector_jet_cmvav2[0]>0.4432) + \
+                1*(std_vector_jet_pt[1]>20)*(std_vector_jet_cmvav2[1]>0.4432) + \
+                1*(std_vector_jet_pt[2]>20)*(std_vector_jet_cmvav2[2]>0.4432) + \
+                1*(std_vector_jet_pt[3]>20)*(std_vector_jet_cmvav2[3]>0.4432) + \
+                1*(std_vector_jet_pt[4]>20)*(std_vector_jet_cmvav2[4]>0.4432) + \
+                1*(std_vector_jet_pt[5]>20)*(std_vector_jet_cmvav2[5]>0.4432) + \
+                1*(std_vector_jet_pt[6]>20)*(std_vector_jet_cmvav2[6]>0.4432) + \
+                1*(std_vector_jet_pt[7]>20)*(std_vector_jet_cmvav2[7]>0.4432) + \
+                1*(std_vector_jet_pt[8]>20)*(std_vector_jet_cmvav2[8]>0.4432) + \
+                1*(std_vector_jet_pt[9]>20)*(std_vector_jet_cmvav2[9]>0.4432)',
+        'range' : (10,0,10),
+        'xaxis' : 'nbjet_cmvav2_medium',
+        'fold'  : 3
+}
+
+variables['nbjet_cmvav2_medium'] = {
+        'name':'1*(std_vector_jet_pt[0]>20)*(std_vector_jet_cmvav2[0]>0.9432) + \
+                1*(std_vector_jet_pt[1]>20)*(std_vector_jet_cmvav2[1]>0.9432) + \
+                1*(std_vector_jet_pt[2]>20)*(std_vector_jet_cmvav2[2]>0.9432) + \
+                1*(std_vector_jet_pt[3]>20)*(std_vector_jet_cmvav2[3]>0.9432) + \
+                1*(std_vector_jet_pt[4]>20)*(std_vector_jet_cmvav2[4]>0.9432) + \
+                1*(std_vector_jet_pt[5]>20)*(std_vector_jet_cmvav2[5]>0.9432) + \
+                1*(std_vector_jet_pt[6]>20)*(std_vector_jet_cmvav2[6]>0.9432) + \
+                1*(std_vector_jet_pt[7]>20)*(std_vector_jet_cmvav2[7]>0.9432) + \
+                1*(std_vector_jet_pt[8]>20)*(std_vector_jet_cmvav2[8]>0.9432) + \
+                1*(std_vector_jet_pt[9]>20)*(std_vector_jet_cmvav2[9]>0.9432)',
+        'range' : (10,0,10),
+        'xaxis' : 'nbjet_cmvav2_medium',
+        'fold'  : 3
+}
