@@ -75,17 +75,17 @@ aliases['oneJet'] = {
 
 # ==2 jets with pt > 30 GeV
 aliases['twoJet'] = {
-    'expr': 'std_vector_jet_pt[1] >= 30. && std_vector_jet_pt[2] < 30.'
+    'expr': 'std_vector_jet_pt[0] >= 30. && std_vector_jet_pt[1] >= 30. && std_vector_jet_pt[2] < 30.'
 }
 
 # ==3 jets with pt > 30 GeV
 aliases['threeJet'] = {
-    'expr': 'std_vector_jet_pt[2] >= 30. && std_vector_jet_pt[3] < 30.'
+    'expr': 'std_vector_jet_pt[0] >= 30. && std_vector_jet_pt[1] >= 30. && std_vector_jet_pt[2] >= 30. && std_vector_jet_pt[3] < 30.'
 }
 
 # >=2 jets with pt > 30 GeV
 aliases['manyJets'] = {
-    'expr': 'std_vector_jet_pt[3] >= 30.'
+    'expr': 'std_vector_jet_pt[0] >= 30. && std_vector_jet_pt[1] >= 30. && std_vector_jet_pt[2] >= 30. && std_vector_jet_pt[3] >= 30.'
 }
 
 ## >=2 jets with pt > 30 GeV limiting to "ggh" configuration
@@ -106,6 +106,10 @@ aliases['manyJets'] = {
 # b-jet veto
 aliases['bVeto'] = {
     'expr': 'bveto_CMVA' + bWP
+}
+
+aliases['std_vector_jet_breq'] = {
+    'expr': 'std_vector_jet_cmvav2 > -0.5884'
 }
 
 aliases['toprwgt'] = {
@@ -345,16 +349,6 @@ aliases['genJetClean'] = {
     'samples': mc
 }
 
-aliases['genJet0Clean'] = {
-    'expr': 'TMath::Power(std_vector_jetGen_eta[0] - std_vector_dressedLeptonGen_eta[0], 2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi[0] - std_vector_dressedLeptonGen_phi[0]), 2.) > 0.16 && TMath::Power(std_vector_jetGen_eta[0] - std_vector_dressedLeptonGen_eta[1], 2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi[0] - std_vector_dressedLeptonGen_phi[1]), 2.) > 0.16',
-    'samples': mc
-}
-
-aliases['genJet1Clean'] = {
-    'expr': 'TMath::Power(std_vector_jetGen_eta[1] - std_vector_dressedLeptonGen_eta[0], 2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi[1] - std_vector_dressedLeptonGen_phi[0]), 2.) > 0.16 && TMath::Power(std_vector_jetGen_eta[1] - std_vector_dressedLeptonGen_eta[1], 2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi[1] - std_vector_dressedLeptonGen_phi[1]), 2.) > 0.16',
-    'samples': mc
-}
-
 # Components for the fiducial cut
 aliases['genLeptonPt'] = {
     'expr': 'std_vector_dressedLeptonGen_pt[0]>25 && std_vector_dressedLeptonGen_pt[1]>10 && std_vector_dressedLeptonGen_pt[2]<10',
@@ -369,11 +363,6 @@ aliases['genTrailingE13'] = {
     'samples': signals
 }
 
-#expr = 'sqrt(2 * std_vector_jetGen_pt[0] * std_vector_jetGen_pt[1] * (cosh(std_vector_jetGen_eta[0]-std_vector_jetGen_eta[1])-cos(std_vector_jetGen_phi[0]-std_vector_jetGen_phi[1]))) * (genJet0Clean && genJet1Clean) + '
-#expr += 'sqrt(2 * std_vector_jetGen_pt[0] * std_vector_jetGen_pt[2] * (cosh(std_vector_jetGen_eta[0]-std_vector_jetGen_eta[2])-cos(std_vector_jetGen_phi[0]-std_vector_jetGen_phi[2]))) * (genJet0Clean && !genJet1Clean) + '
-#expr += 'sqrt(2 * std_vector_jetGen_pt[1] * std_vector_jetGen_pt[2] * (cosh(std_vector_jetGen_eta[1]-std_vector_jetGen_eta[2])-cos(std_vector_jetGen_phi[1]-std_vector_jetGen_phi[2]))) * (!genJet0Clean && genJet1Clean) + '
-#expr += 'sqrt(2 * std_vector_jetGen_pt[2] * std_vector_jetGen_pt[3] * (cosh(std_vector_jetGen_eta[2]-std_vector_jetGen_eta[3])-cos(std_vector_jetGen_phi[2]-std_vector_jetGen_phi[3]))) * (!genJet0Clean && !genJet1Clean)'
-#
 #aliases['genMjj'] = {
 #    'expr': expr,
 #    'samples': mc
@@ -384,7 +373,7 @@ aliases['genTrailingE13'] = {
 #}
 
 # Number of gen jets with pt > 30 GeV
-aliases['nGenJet'] = {
+aliases['nCleanGenJet'] = {
     'expr': 'Sum$(std_vector_jetGen_pt > 30 && genJetClean)',
     'samples': mc
 }

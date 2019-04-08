@@ -261,6 +261,23 @@ nuisances['UE']  = {
                 'AsLnN'      : '1',
                 }
 
+nuisances['PU']  = {
+                'name'  : 'PU',
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples'  : {
+                  'WW'      : ['1.01244825559', '0.989356107719'],
+                  'ggH_hww':  ['1.01372240456', '0.987061972012'],
+                  'qqH_hww':  ['1.01939300826', '0.990627253001'],
+                  'top':      ['1.03521043346', '1.00269118365'], # we don't have some of the ST samples in the PU varied directories, so the factors are both above 1 
+                  'DY':       ['1.01057222659', '0.989724928521'],
+                },
+                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__PUup'+skim,
+                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__PUdo'+skim,
+                'AsLnN'      : '1',
+                }
+
+
 
 ## Shape nuisance due to QCD scale variations for DY
 nuisances['DYQCDscale']  = {
@@ -405,6 +422,14 @@ nuisances['QCDscale_ttH']  = {
                    'ttH_hww': HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ttH','125.09','scale','sm'),
                    },
                'type'  : 'lnN',
+              }
+
+nuisances['QCDscale_WWewk']  = {
+               'name'  : 'QCDscale_WWewk',
+               'samples'  : {
+                   'WWewk' : '1.11',
+                   },
+               'type'  : 'lnN'
               }
 
 # why are we correlating all these unrelated processes?
