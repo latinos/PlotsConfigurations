@@ -169,15 +169,15 @@ samples['Others']  = {    'name'   : getSampleFiles(bkgDir, 'TTWJetsToLNu', True
 
 
 samples['VBS']  = { 'name' :  
-                getSampleFiles(sigDir,'WmTo2J_ZTo2L') +
-								getSampleFiles(sigDir,'WmToLNu_WmTo2J') +
-								getSampleFiles(sigDir,'WmToLNu_ZTo2J') +
-								getSampleFiles(sigDir,'WpTo2J_WmToLNu') +
-								getSampleFiles(sigDir,'WpTo2J_ZTo2L') +
-								getSampleFiles(sigDir,'WpToLNu_WmTo2J') +
-								getSampleFiles(sigDir,'WpToLNu_WpTo2J') +
-								getSampleFiles(sigDir,'WpToLNu_ZTo2J') +
-								getSampleFiles(sigDir,'ZTo2L_ZTo2J') ,
+                getSampleFiles(sigDir,'WmTo2J_ZTo2L', True) +
+								getSampleFiles(sigDir,'WmToLNu_WmTo2J', True) +
+								getSampleFiles(sigDir,'WmToLNu_ZTo2J', True) +
+								getSampleFiles(sigDir,'WpTo2J_WmToLNu', True) +
+								getSampleFiles(sigDir,'WpTo2J_ZTo2L', True) +
+								getSampleFiles(sigDir,'WpToLNu_WmTo2J', True) +
+								getSampleFiles(sigDir,'WpToLNu_WpTo2J', True) +
+								getSampleFiles(sigDir,'WpToLNu_ZTo2J', True) +
+								getSampleFiles(sigDir,'ZTo2L_ZTo2J', True) ,
                            'weight':'1',
                            'suppressNegative' :['all'],
                            'suppressNegativeNuisances' :['all'],
