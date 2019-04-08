@@ -7,10 +7,15 @@ from LatinoAnalysis.Tools.commonTools import *
 
 #samples = {}
 
-directory = '/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables' 
+directory = '/gwteras/cms/store/group/OneLepton/Apr2017_summer16/lep2SelVBS__MCWeights__hadd__bSFL2pTEffCut__genMatchVariables'
+
 chargeFlipDir = directory + '__l2tightVBS__chMisId__tightVbsSel/'
 PromptSubtr = directory + '__tightVbsSel__bkgWeights/'
 MCDir = directory + '__l2tightVBS__tightVbsSel/'
+
+#chargeFlipDir = directory + '__l2tightVBS__chMisId/' #without preselections
+#PromptSubtr = directory + '/' #without preselections
+#MCDir = directory + '__l2tightVBS/' #without preselections
 
 ################################################
 ############ BASIC MC WEIGHTS ##################
