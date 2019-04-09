@@ -5,21 +5,21 @@
 # keys here must match keys in samples.py    
 
 #                
-structure['VBS'] = {
-                'isSignal': 1,
-                'isData': 0
-                }
+# structure['VBS'] = {
+#                 'isSignal': 1,
+#                 'isData': 0
+#                 }
 
     
-structure['Wjets'] = {
-		        'isSignal': 1,
-	        	'isData': 0
-		}
+# structure['Wjets'] = {
+# 		        'isSignal': 1,
+# 	        	'isData': 0
+# 		}
 
-structure['TT'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0
-                  }
+# structure['TT'] = {
+#                   'isSignal' : 1,
+#                   'isData'   : 0
+#                   }
 
 
 # structure['TTWJetsToLNu'] = {
@@ -47,10 +47,10 @@ structure['TT'] = {
 #                   'isData'   : 0
 #                   }
 
-structure['Others'] = {
-                  	'isSignal' : 0,
-                  	'isData'   : 0
-                  }
+# structure['Others'] = {
+#                   	'isSignal' : 0,
+#                   	'isData'   : 0
+#                   }
 
 # structure['DY'] = {
 #                   'isSignal' : 1,
@@ -74,10 +74,26 @@ structure['Others'] = {
 
 
 # data
+structure['VBS'] = {
+                'isSignal': 1,
+                'isData': 0
+                }
 
+    
+structure['Wjets'] = {
+		'isSignal': 0,
+		'isData': 0
+		}
 
+structure['TT'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
 
-
+structure['Others'] = {
+                        'isSignal' : 0,
+                        'isData'   : 0
+                  }
 
 
 
