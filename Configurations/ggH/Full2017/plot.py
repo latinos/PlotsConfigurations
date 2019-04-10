@@ -341,7 +341,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0
+                  'isBlind'  : 1
               }
 
 
@@ -349,13 +349,6 @@ plot['DATA']  = {
 
 # additional options
 
-# legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
-#legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
-#legend['lumi'] = 'L = 0.8/fb' # 2.318 fb-1
-#legend['lumi'] = 'L = 2.6/fb'
-#legend['lumi'] = 'L = 4.3/fb'
-#legend['lumi'] = 'L = 6.3/fb'
-#legend['lumi'] = 'L = 12.9/fb'
 legend['lumi'] = 'L = 41.5/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
