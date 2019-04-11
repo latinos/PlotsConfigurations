@@ -13,5 +13,6 @@ Make the plot:
     python multiSignalStrengthPlot.py Full2016.txt --plotFile=plot.py
 
 NB: Signal names and categories are hardcoded in the script for now.
+
 NB2: The tdrstyle.py and CMS_lumi.py scripts are needed to get the CMS style plot.
 
