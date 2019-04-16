@@ -176,7 +176,7 @@ plot['Wjets']  = {
 
 plot['TT']  = {
                   'color': 860,    
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.   ,
               }

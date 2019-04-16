@@ -5,7 +5,7 @@ from LatinoAnalysis.Tools.commonTools import *
 
 # samples
 
-#samples = {}
+samples = {}
 
 ################################################
 ################# SKIMS ########################
@@ -24,7 +24,7 @@ skim=''
 ##############################################
 
 treeBaseDir='/gwteray/users/govoni/OneLeptonSkims/'
-postProcStep = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC'
+postProcStep = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l1tightChain__bvetoTight__LepTrgFix__dorochester'
 bkgDir = treeBaseDir + 'Apr2017_summer16_SingleLepton_hercules/' + postProcStep + skim +"/" 
 sigDir = treeBaseDir + 'VBS_semileptonic_signal_summer16/' + postProcStep + skim +"/" 
 
@@ -132,7 +132,7 @@ samples['TT'] = 	{ 	'name'  :getSampleFiles(bkgDir,'TTToSemiLepton',True)
 				#	+getSampleFiles(directory,'ST_tW_antitop_noHad',True) 
                                 ,
 						'weight' : '1',
-						'FilesPerJob' : 6 ,
+						'FilesPerJob' : 10 ,
 					}
 
 samples['Wjets'] = { 'name' :   
@@ -158,7 +158,7 @@ samples['Others']  = {    'name'   : getSampleFiles(bkgDir, 'TTWJetsToLNu', True
                                 +       getSampleFiles(bkgDir, 'WZTo2L2Q', True) \
                                 +       getSampleFiles(bkgDir, 'ZZTo2L2Q', True) ,
                                 'weight' : '1.', #'puW*std_vector_lepton_recoW[0]*effTrigW1l*baseW*GEN_weight_SM/abs(GEN_weight_SM)' ,
-                        'FilesPerJob' : 3,
+                        'FilesPerJob' : 10
 }
 
 
