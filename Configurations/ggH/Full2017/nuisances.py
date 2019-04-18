@@ -705,6 +705,41 @@ nuisances['met']  = {
                 'folderDown' : treeBaseDir+'Fall2017_nAOD_v1_Full2017v2/MCl1loose2017v2__MCCorr2017__btagPerEvent__l2loose__l2tightOR2017__METdo',
 }
 
+# Prefire correction
+prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
+
+nuisances['prefire']  = {
+                'name'  : 'CMS_eff_prefiring_2017',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                   'DY'      : prefire_syst ,
+                   'VVV'     : prefire_syst ,
+                   'VZ'      : prefire_syst ,
+                   'WZgS'    : prefire_syst ,
+                   'WZgS_L'  : prefire_syst ,
+                   'WZgS_H'  : prefire_syst ,
+                   'ggWW'    : prefire_syst ,
+                   'WW'      : prefire_syst ,
+                   'top'     : prefire_syst ,
+                   'Vg'      : prefire_syst ,
+                   'VgS'     : prefire_syst ,
+                   'ggH_hww' : prefire_syst ,
+                   'qqH_hww' : prefire_syst ,
+                   'WH_hww'  : prefire_syst ,
+                   'ZH_hww'  : prefire_syst ,
+                   'ggZH_hww': prefire_syst ,
+                   'bbH_hww' : prefire_syst ,
+                   'ttH_hww' : prefire_syst ,
+                   'H_htt'   : prefire_syst ,
+                   'ggH_htt' : prefire_syst ,
+                   'qqH_htt' : prefire_syst ,
+                   'ZH_htt'  : prefire_syst ,
+                   'WH_htt'  : prefire_syst ,
+                }
+}
+
+
 #
 # PS and UE
 #
