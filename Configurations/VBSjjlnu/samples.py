@@ -24,9 +24,10 @@ skim=''
 ##############################################
 
 treeBaseDir='/gwteray/users/govoni/OneLeptonSkims/'
-postProcStep = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l1tightChain__bvetoTight__LepTrgFix__dorochester'
-bkgDir = treeBaseDir + 'Apr2017_summer16_SingleLepton_hercules/' + postProcStep + skim +"/" 
-sigDir = treeBaseDir + 'VBS_semileptonic_signal_summer16/' + postProcStep + skim +"/" 
+postProcStepBg  = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l1tightChain__bvetoTight__LepTrgFix__dorochester__formulasMC__resolvedVBSPairingAndVars'
+postProcStepSig = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l1tightChain__bvetoTight__LepTrgFix__dorochester__formulasMC__resolvedVBSPairingGenAndVars__hadd'
+bkgDir = treeBaseDir + 'Apr2017_summer16_SingleLepton_hercules/' + postProcStepBg  + skim +"/" 
+sigDir = treeBaseDir + 'VBS_semileptonic_signal_summer16/'       + postProcStepSig + skim +"/" 
 
 ################################################
 ############ NUMBER OF LEPTONS #################
