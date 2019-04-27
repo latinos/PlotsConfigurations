@@ -2,9 +2,10 @@
 
 tag = 'WWlvjj'
 
+base_output = './'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = base_output + 'rootFile'
 
 
 # file with list of variables
@@ -27,11 +28,11 @@ lumi = 35.867
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
 # outputDirPlots = '~/www/plotCR'
-outputDirPlots = 'plotWWlvjj'
+outputDirPlots = base_output + 'plotWWlvjj'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'
+outputDirDatacard = base_output + 'datacards'
 
 
 # structure file for datacard
