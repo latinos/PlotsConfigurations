@@ -65,7 +65,7 @@ groupPlot['VgS']  = {
                   'nameHR' : "V#gamma*",
                   'isSignal' : 0,
                   'color'    : 409,   # kGreen - 9
-                  'samples'  : ['VgS','WZgS']
+                  'samples'  : ['VgS']
               }
 
 
