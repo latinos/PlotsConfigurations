@@ -1,4 +1,4 @@
-WW plots
+VH2j plots
 ==============
 
 Common tools for analysis:
