@@ -8,256 +8,350 @@ variables['events']  = {   'name': '1',
                         'xaxis' : 'events', 
                         'fold' : 3
                         }
-    
-#variables['nvtx']  = {   'name': 'nvtx',      
-                        #'range' : (40,0,40),  
-                        #'xaxis' : 'nvtx', 
-                         #'fold' : 3
-                      #}
-                        
-#variables['mll']  = {   'name': 'mll',            #   variable name    
-#                        'range' : (40, 0,200),    #   variable range
-#                        'xaxis' : 'm_{ll} [GeV]',  #   x axis name
-#                         'fold' : 0
-#                        }
 
-#variables['mllpeak'] = {   'name': 'mll',            #   variable name
-                           #'range' : (100,80,100),    #   variable range
-                           #'xaxis' : 'm_{ll} [GeV]',  #   x axis name
-                           #'fold' : 0
-                        #}
 
-#variables['mth']  = {   'name': 'mth',            #   variable name    
-                        #'range' : (40,0,200),    #   variable range
-                        #'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
-                         #'fold' : 0
-                        #}
-
-#variables['dphill']  = {   'name': 'abs(dphill)',     
-                        #'range' : (20,0,3.14),   
-                        #'xaxis' : '#Delta#phi_{ll}',
-                        #'fold' : 3
-                        #}
-
-#variables['ptll']  = {   'name': 'ptll',     
-                        #'range' : (40, 0,200),   
-                        #'xaxis' : 'p_{T}^{ll} [GeV]',
-                        #'fold' : 3
-                        #}
-
-variables['pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
-                         'range' : (300,0,800),   
+variables['lep_pt1']  = {   'name': 'std_vector_lepton_pt[0]',     
+                         'range' : (60,0,600),   
                          'xaxis' : 'p_{T} 1st lep',
                          'fold'  : 3                         
                          }
 
-#variables['pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
-                        #'range' : (10,0,100),   
-                        #'xaxis' : 'p_{T} 2nd lep',
-                        #'fold'  : 0                         
-                        #}
+variables['lep_pt2']  = {   'name': 'std_vector_lepton_pt[1]',     
+                        'range' : (50,0,300),   
+                        'xaxis' : 'p_{T} 2rd lep',
+                        'fold'  : 3                         
+                        }
+
+variables['lep_eta1']  = {  'name': 'abs(std_vector_lepton_eta[0])',     
+                         'range' : (10,0.,3),   
+                         'xaxis' : '#eta 1st lep',
+                         'fold'  : 0                         
+                         }
+
 
 variables['njets'] =  {
- 		'name': 'njet',
+ 		'name': '1*(std_vector_jet_pt[0]>20) + 1*(std_vector_jet_pt[1]>20) + \
+                         1*(std_vector_jet_pt[2]>20)+ 1*(std_vector_jet_pt[3]>20) + \
+                         1*(std_vector_jet_pt[4]>20) + 1*(std_vector_jet_pt[5]>20) + \
+                         1*(std_vector_jet_pt[6]>20)+ 1*(std_vector_jet_pt[7]>20) + \
+                         1*(std_vector_jet_pt[8]>20) + 1*(std_vector_jet_pt[9]>20)',
  		'range': (10,0,10),
  		'xaxis': '# jets',
  		'fold': 3	
  	}
 
 variables['nlep'] =  {
-                 'name': '1*(std_vector_lepton_pt[0]>20) + 1*(std_vector_lepton_pt[1]>20) + 1*(std_vector_lepton_pt[2]>20)+ 1*(std_vector_lepton_pt[3]>20) + 1*(std_vector_lepton_pt[4]>20)',
+                 'name': '1*(std_vector_lepton_pt[0]>20) + 1*(std_vector_lepton_pt[1]>20) + \
+                         1*(std_vector_lepton_pt[2]>20)+ 1*(std_vector_lepton_pt[3]>20) + \
+                        1*(std_vector_lepton_pt[4]>20)',
                  'range': (5,0,5),
                  'xaxis': '# leptons',
                  'fold': 3
        }
 
-#variables['pt3']  = {   'name': 'std_vector_lepton_pt[2]',     
-                        #'range' : (10,0,50),   
-                        #'xaxis' : 'p_{T} 3rd lep',
-                        #'fold'  : 3                         
-                        #}
-
-variables['eta1']  = {  'name': 'abs(std_vector_lepton_eta[0])',     
-                         'range' : (10,0.,3),   
-                         'xaxis' : '#eta 1st lep',
-                         'fold'  : 0                         
-                         }
-
-# variables['eta2']  = {  'name': 'abs(std_vector_lepton_eta[1])',     
-#                         'range' : (10,0.,3),   
-#                         'xaxis' : '#eta 2nd lep',
-#                         'fold'  : 0                         
-#                         }
-
-#variables['eta1large']  = {  'name': 'std_vector_lepton_eta[0]',
-                       #'range' : ([-2.4, -2.1, -1.6, -1.2, -0.8, -0.3, -0.2, 0.2, 0.3, 0.8, 1.2, 1.6, 2.1, 2.4,],),
-                       #'xaxis' : '#eta 1st lep',
-                       #'fold'  : 3
-                       #}
-
-#variables['eta2large']  = {  'name': 'std_vector_lepton_eta[1]',
-                       #'range' : ([-2.4, -2.1, -1.6, -1.2, -0.8, -0.3, -0.2, 0.2, 0.3, 0.8, 1.2, 1.6, 2.1, 2.4,],),
-                       #'xaxis' : '#eta 2nd lep',
-                       #'fold'  : 3
-                       #}
-
-#variables['taupt1']  = {'name': 'std_vector_tau_pt[0]',     
-                        #'range' : (100,0,200),   
-                        #'xaxis' : 'p_{T} 1st tau',
-                        #'fold'  : 3                         
-                        #}
+# to be added recoMET and recoMET_pz after neutrino reco
 
 
+variables['pfmet']  = { 
+                        'name': 'metPfType1',     
+                        'range' : (20,0,1000),   
+                        'xaxis' : 'pfmet [GeV]',
+                        'fold'  : 3                         
+                }
 
 
-#variables['cmva_1']  = { 
-#                        'name': 'std_vector_jet_cmvav2[0]',     
-#                        'range' : (10,-1,1),   
-#                        'xaxis' : 'cmva jet 1st',
-#                        'fold'  : 3                         
-#                        }
-
-
-
-#variables['cmva_2']  = { 
-#                        'name': 'std_vector_jet_cmvav2[1]',     
-#                        'range' : (10,-1,1),   
-#                        'xaxis' : 'cmva  jet 2nd',
-#                        'fold'  : 3                         
-#                        }
-
-
-#variables['cmva_3']  = { 
-#                        'name': 'std_vector_jet_cmvav2[2]',     
-#                        'range' : (10,-1,1),   
-#                        'xaxis' : 'cmva jet 3rd',
-#                        'fold'  : 3                         
-#                        }
-
-
-
-#variables['cmva_4']  = { 
-#                        'name': 'std_vector_jet_cmvav2[3]',     
-#                        'range' : (10,-1,1),   
-#                        'xaxis' : 'cmva  jet 4th',
-#                        'fold'  : 3                         
-#                        }
-
-#variables['pfmet']  = { 
-                        #'name': 'metPfType1',     
-                        #'range' : (20,0,1000),   
-                        #'xaxis' : 'pfmet [GeV]',
-                        #'fold'  : 3                         
-                        #}
-
-#variables['njet']  = {
-                        #'name': 'njet',     
-                        #'range' : (5,0,5),   
-                        #'xaxis' : 'Number of jets',
-                        #'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
-                        #}
-
-
-
-
-variables['jetpt1']  = {
+variables['jet_pt1']  = {
                          'name': 'std_vector_jet_pt[0]',     
-                         'range' : (100,0,400),   
+                         'range' : (50,0,800),   
                          'xaxis' : 'p_{T} 1st jet',
-                         'fold' : 3   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
-                         }
+                         'fold' : 3   
+                        }
 
-variables['jetpt2']  = {
+variables['jet_pt2']  = {
                          'name': 'std_vector_jet_pt[1]',     
-                         'range' : (100,0,400),   
+                         'range' : (50,0,800),   
                          'xaxis' : 'p_{T} 2nd jet',
-                         'fold' : 3   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
-                         }
+                         'fold' : 3   
+                  }
 
 
-# variables['jetpt3']  = { 
-#                         'name': 'std_vector_jet_pt[2]',     
-#                         'range' : (40,0,200),   
-#                         'xaxis' : 'p_{T} 3rd jet',
-#                         'fold' : 3   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
-#                         }
+variables['jet_pt3']  = { 
+                        'name': 'std_vector_jet_pt[2]',     
+                        'range' : (50,0,800),   
+                        'xaxis' : 'p_{T} 3rd jet',
+                        'fold' : 3   
+                        }
 
-# variables['jetpt4']  = {
-#                         'name': 'std_vector_jet_pt[3]',     
-#                         'range' : (40,0,200),   
-#                         'xaxis' : 'p_{T} 4th jet',
-#                         'fold' : 3   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
-#                         }
+variables['jet_pt4']  = {
+                        'name': 'std_vector_jet_pt[3]',     
+                        'range' : (50,0,800),   
+                        'xaxis' : 'p_{T} 4th jet',
+                        'fold' : 3   
+                 }
 
-variables['jeteta1']  = {  'name': 'abs(std_vector_jet_eta[0])',
+variables['jet_eta1']  = {  'name': 'abs(std_vector_jet_eta[0])',
                          'range' : (10,0.0,5.0),
                          'xaxis' : '#eta 1st jet',
                          'fold'  : 0
                          }
 
-# variables['jeteta2']  = {  'name': 'abs(std_vector_jet_eta[1])',
-#                         'range' : (10,-5.0,5.0),
-#                         'xaxis' : '#eta 2nd jet',
-#                         'fold'  : 0
-#                         }
+variables['jet_eta2']  = {  'name': 'abs(std_vector_jet_eta[1])',
+                        'range' : (10,-5.0,5.0),
+                        'xaxis' : '#eta 2nd jet',
+                        'fold'  : 0
+                        }
 
+variables['jet_eta3']  = {  'name': 'abs(std_vector_jet_eta[2])',
+                         'range' : (10,0.0,5.0),
+                         'xaxis' : '#eta 1st jet',
+                         'fold'  : 0
+                         }
 
-#variables['mtw1']  = {  'name': 'mtw1',
-                        #'range' : (40,0,200),
-                        #'xaxis' : 'm_{T}^{W_{1}} [GeV]',
-                         #'fold' : 3
-                        #}
+variables['jet_eta4']  = {  'name': 'abs(std_vector_jet_eta[3])',
+                        'range' : (10,-5.0,5.0),
+                        'xaxis' : '#eta 2nd jet',
+                        'fold'  : 0
+                        }
 
-#variables['mtw2']  = {  'name': 'mtw2',
-                        #'range' : (40,0,200),
-                        #'xaxis' : 'm_{T}^{W_{2}} [GeV]',
-                         #'fold' : 3
-                        #}
+### VBS kinematic variables 
 
-#variables['trkMet']  = {   'name': 'metTtrk',
-                        #'range' : (40,0,200),
-                        #'xaxis' : 'trk met [GeV]',
-                         #'fold' : 3
-                        #}
+# vbs
+variables['vbs_pt_high'] = {
+        'name'  : 'vbs_pt_high',
+        'range' : (50,0,800),
+        'xaxis' : 'p_{T} 1st lep',
+        'fold'  : 3
+}
+variables['vbs_pt_low'] = {
+        'name'  : 'vbs_pt_low',
+        'range' : (50,0,800),
+        'xaxis' : 'p_{T} 2nd lep',
+        'fold'  : 3
+}
+variables['mjj_vbs'] = {
+        'name' : 'mjj_vbs',
+        'range': (50,0,1200),
+        'xaxis': 'm_{jj \ vbs} [GeV]',
+        'fold' : 3
+}
+variables['deltaeta_vbs'] = {
+        'name' : 'deltaeta_vbs',
+        'range': (10,0.,7),
+        'xaxis': '#Delta #eta vbs',
+        'fold' : 3
+}
+variables['deltaphi_vbs'] = {
+        'name': 'deltaphi_vbs',
+        'range' : (10,0.,6.28),
+        'xaxis' : '#Delta #phi vbs',
+        'fold'  : 3
+}
+variables['deltaR_vbs'] = {
+        'name' : 'deltaR_vbs',
+        'range': (40,2,8),
+        'xaxis': '#Delta R VBS',
+        'fold' : 3
+}
+variables['vbs_etaprod'] = {
+        'name' : 'abs(vbs_etaprod)',
+        'range': (10,0,20),
+        'xaxis': 'vbs #eta prod',
+        'fold' : 3
+}
+variables['vbs_eta_high'] = {
+        'name' : 'vbs_eta_high',
+        'range': (10,0,7),
+        'xaxis': '#eta vbs high',
+        'fold' : 3
+}
+variables['vbs_eta_low'] = {
+        'name' : 'vbs_eta_low',
+        'range': (10,0,7),
+        'xaxis': '#eta vbs low',
+        'fold' : 3
+}
 
-#variables['mpmet']  = { 'name': 'mpmet',
-                        #'range' : (40,0,200),
-                        #'xaxis' : 'min proj met [GeV]',
-                        #'fold' : 3
-                        #}
+# vjets
+variables['vjet_pt_high'] = {
+        'name' : 'vjet_pt_high',
+        'range': (50,0,800),
+        'xaxis': 'pt vbs jet high',
+        'fold' : 3
+}
+variables['vjet_pt_low'] = {
+        'name' : 'vjet_pt_low',
+        'range': (50,0,800),
+        'xaxis': 'pt vbs jet low',
+        'fold' : 3
+}
+variables['mjj_vjet'] = {
+        'name' : 'mjj_vjet',
+        'range': (40,0,200),
+        'xaxis': 'm_{jj \ vjet} [GeV]',
+        'fold' : 3
+}
+variables['deltaeta_vjet'] = {
+        'name' : 'deltaeta_vjet',
+        'range': (10,0.,7),
+        'xaxis': '#Delta #eta vjet',
+        'fold' : 3
+}
+variables['deltaphi_vjet'] = {
+        'name': 'deltaphi_vjet',
+        'range' : (10,0.,6.28),
+        'xaxis' : '#Delta #phi vjet',
+        'fold'  : 3
+}
+variables['deltaR_vjet'] = {
+        'name' : 'deltaR_vjet',
+        'range': (40,2,8),
+        'xaxis': '#Delta R vjet',
+        'fold' : 3
+}
+variables['vjet_eta_high'] = {
+        'name' : 'vjet_eta_high',
+        'range': (10,0,7),
+        'xaxis': '#eta vjet high',
+        'fold' : 3
+}
+variables['vjet_eta_low'] = {
+        'name' : 'vjet_eta_low',
+        'range': (10,0,7),
+        'xaxis': '#eta vjet low',
+        'fold' : 3
+}
 
-#variables['dymvaggh']  = { 'name': 'dymvaggh',
-                        #'range' : (40,-1,1),
-                        #'xaxis' : 'DY MVA',
-                        #'fold' : 3
-                        #}
+# neutrino
+variables['deltaphi_lep_nu'] = {
+        'name' : 'deltaphi_lep_nu',
+        'range': (10,0,7),
+        'xaxis': '#Delta #phi lep nu',
+        'fold' : 3
+}
+variables['deltaeta_lep_nu'] = {
+        'name' : 'deltaeta_lep_nu',
+        'range': (10,0,7),
+        'xaxis': '#Delta #eta lep nu',
+        'fold' : 3
+}
+variables['deltaR_lep_nu'] = {
+        'name' : 'deltaR_lep_nu',
+        'range': (2,0,4),
+        'xaxis': '#Delta R lep nu',
+        'fold' : 3
+}
 
-#variables['dymvavbf']  = { 'name': 'dymvavbf',
-                        #'range' : (40,-1,1),
-                        #'xaxis' : 'DY MVA',
-#                         #'fold' : 3
-#                         #}
+# angles with lepton
+variables['deltaphi_lep_vbs_high'] = {
+        'name' : 'deltaphi_lep_vbs_high',
+        'range': (10,0,7),
+        'xaxis': '#Delta #phi lep vbs high',
+        'fold' : 3
+}
+variables['deltaphi_lep_vbs_low'] = {
+        'name' : 'deltaphi_lep_vbs_low',
+        'range': (10,0,7),
+        'xaxis': '#Delta #phi lep vbs low',
+        'fold' : 3
+}
+variables['deltaphi_lep_vjet_high'] = {
+        'name' : 'deltaphi_lep_vjet_high',
+        'range': (10,0,7),
+        'xaxis': '#Delta #phi lep vjets high',
+        'fold' : 3
+}
+variables['deltaphi_lep_vjet_low'] = {
+        'name' : 'deltaphi_lep_vjet_low',
+        'range': (10,0,7),
+        'xaxis': '#Delta #phi lep vjets low',
+        'fold' : 3
+}
+variables['deltaeta_lep_vbs_high'] = {
+        'name' : 'deltaeta_lep_vbs_high',
+        'range': (10,0,7),
+        'xaxis': '#Delta #eta lep vbs high',
+        'fold' : 3
+}
+variables['deltaeta_lep_vbs_low']  = {
+        'name' : 'deltaeta_lep_vbs_low',
+        'range': (10,0,7),
+        'xaxis': '#Delta #eta lep vbs low',
+        'fold' : 3
+}
+variables['deltaeta_lep_vjet_high'] = {
+        'name' : 'deltaeta_lep_vjet_high',
+        'range': (10,0,7),
+        'xaxis': '#Delta #eta lep vjet high',
+        'fold' : 3
+}
+variables['deltaeta_lep_vjet_low'] = {
+        'name' : 'deltaeta_lep_vjet_low',
+        'range': (10,0,7),
+        'xaxis': '#Delta #eta lep vjet low',
+        'fold' : 3
+}
 
+# Look for nearest vbs jet from lepton
+variables['deltaR_lep_vbs'] = {
+        'name' : 'deltaR_lep_vbs',
+        'range': (2,0,4),
+        'xaxis': '#Delta R lep vbs',
+        'fold' : 3
+}
+variables['deltaR_lep_vjet'] = {
+        'name' : 'deltaR_lep_vjet',
+        'range': (2,0,4),
+        'xaxis': '#Delta R lep vjet',
+        'fold' : 3
+}
 
-# variables['mjj']  = {   
-# 			'name': 'mjj',            #   variable name    
-#                         'range' : (100, 0,1000),    #   variable range
-#                         'xaxis' : 'm_{jj} [GeV]',  #   x axis name
-#                          'fold' : 3
-#                         }
+# zeppenfeld
+variables['Zvjets_high'] = {
+        'name' : 'Zvjets_high',
+        'range': (10,-4,4),
+        'xaxis': 'Z vjets high',
+        'fold' : 3
+}
+variables['Zvjets_low'] = {
+        'name' : 'Zvjets_low',
+        'range': (10,-4,4),
+        'xaxis': 'Z vjets low',
+        'fold' : 3
+}
+variables['Zlep'] = {
+        'name' : 'Zlep',
+        'range': (10,-4,4),
+        'xaxis': 'Z lep',
+        'fold' : 3
+}
 
-# variables['max_mjj']  = {   
-# 			   'name': 'max_mjj(std_vector_jet_eta[0],std_vector_jet_eta[1],std_vector_jet_eta[2],std_vector_jet_eta[3], std_vector_jet_pt[0], std_vector_jet_pt[1], std_vector_jet_pt[2],std_vector_jet_pt[3], std_vector_jet_phi[0], std_vector_jet_phi[1], std_vector_jet_phi[2], std_vector_jet_phi[3])',            #   variable name    
-#                            'range' : (25,0,1000),    #   variable range
-#                            'xaxis' : 'max m_{jj}',  #   x axis name
-#                            'fold' : 3,
-#                         'linesToAdd' : ['.L /gwpool/users/achiapparini/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/HH/WWbb_lvjj/max_mjj.C+']
-                        
-# }
+# R variables
+variables['Rvjets_high'] = {
+        'name' : 'Rvjets_high',
+        'range': (10,-4,4),
+        'xaxis': 'R vjets high',
+        'fold' : 3
+}
+variables['Rvjets_low'] ={
+        'name' : 'Rvjets_low',
+        'range': (10,-4,4),
+        'xaxis': 'R vjets low',
+        'fold' : 3
+}
 
-
-
-
+# asymmetry
+variables['A_vbs']  = {
+        'name' : 'A_vbs',
+        'range': (10,0,1),
+        'xaxis': 'A vbs',
+        'fold' : 3
+}
+variables['A_vjet'] = {
+        'name' : 'A_vjet',
+        'range': (10,0,1),
+        'xaxis': 'A vjet',
+        'fold' : 3
+}
 
 
 ### btag cut efficiencies
@@ -358,242 +452,40 @@ variables['jeteta1']  = {  'name': 'abs(std_vector_jet_eta[0])',
 #         'fold'  : 3
 # }
 
-### VBS kinematic variables 
 
-# vbs
-variables['vbs_pt_high'] = {
-        'name'  : 'vbs_pt_high',
-        'range' : (10,0,200),
-        'xaxis' : 'p_{T} 1st lep',
-        'fold'  : 3
-}
-variables['vbs_pt_low'] = {
-        'name'  : 'vbs_pt_low',
-        'range' : (10,0,200),
-        'xaxis' : 'p_{T} 2nd lep',
-        'fold'  : 3
-}
-variables['mjj_vbs'] = {
-        'name' : 'mjj_vbs',
-        'range': (40,0,200),
-        'xaxis': 'm_{jj \ vbs} [GeV]',
-        'fold' : 3
-}
-variables['deltaeta_vbs'] = {
-        'name' : 'deltaeta_vbs',
-        'range': (10,0.,7),
-        'xaxis': '#Delta #eta vbs',
-        'fold' : 3
-}
-variables['deltaphi_vbs'] = {
-        'name': 'deltaphi_vbs',
-        'range' : (10,0.,6.28),
-        'xaxis' : '#Delta #phi vbs',
-        'fold'  : 3
-}
-variables['deltaR_vbs'] = {
-        'name' : 'deltaR_vbs',
-        'range': (40,2,8),
-        'xaxis': '#Delta R VBS',
-        'fold' : 3
-}
-variables['vbs_etaprod'] = {
-        'name' : 'abs(vbs_etaprod)',
-        'range': (10,0,20),
-        'xaxis': 'vbs #eta prod',
-        'fold' : 3
-}
-variables['vbs_eta_high'] = {
-        'name' : 'vbs_eta_high',
-        'range': (10,0,7),
-        'xaxis': '#eta vbs high',
-        'fold' : 3
-}
-variables['vbs_eta_low'] = {
-        'name' : 'vbs_eta_low',
-        'range': (10,0,7),
-        'xaxis': '#eta vbs low',
-        'fold' : 3
-}
+    
+#variables['nvtx']  = {   'name': 'nvtx',      
+                        #'range' : (40,0,40),  
+                        #'xaxis' : 'nvtx', 
+                         #'fold' : 3
+                      #}
+                        
+#variables['mll']  = {   'name': 'mll',            #   variable name    
+#                        'range' : (40, 0,200),    #   variable range
+#                        'xaxis' : 'm_{ll} [GeV]',  #   x axis name
+#                         'fold' : 0
+#                        }
 
-# vjets
-variables['vjet_pt_high'] = {
-        'name' : 'vjet_pt_high',
-        'range': (10,0,200),
-        'xaxis': 'pt vbs jet high',
-        'fold' : 3
-}
-variables['vjet_pt_low'] = {
-        'name' : 'vjet_pt_low',
-        'range': (10,0,200),
-        'xaxis': 'pt vbs jet low',
-        'fold' : 3
-}
-variables['mjj_vjet'] = {
-        'name' : 'mjj_vjet',
-        'range': (40,0,200),
-        'xaxis': 'm_{jj \ vjet} [GeV]',
-        'fold' : 3
-}
-variables['deltaeta_vjet'] = {
-        'name' : 'deltaeta_vjet',
-        'range': (10,0.,7),
-        'xaxis': '#Delta #eta vjet',
-        'fold' : 3
-}
-variables['deltaphi_vjet'] = {
-        'name': 'deltaphi_vjet',
-        'range' : (10,0.,6.28),
-        'xaxis' : '#Delta #phi vjet',
-        'fold'  : 3
-}
-variables['deltaR_vjet'] = {
-        'name' : 'deltaR_vjet',
-        'range': (40,2,8),
-        'xaxis': '#Delta R vjet',
-        'fold' : 3
-}
-variables['vjet_eta_high'] = {
-        'name' : 'vjet_eta_high',
-        'range': (10,0,7),
-        'xaxis': '#eta vjet high',
-        'fold' : 3
-}
-variables['vjet_eta_low'] = {
-        'name' : 'vjet_eta_low',
-        'range': (10,0,7),
-        'xaxis': '#eta vjet low',
-        'fold' : 3
-}
+#variables['mllpeak'] = {   'name': 'mll',            #   variable name
+                           #'range' : (100,80,100),    #   variable range
+                           #'xaxis' : 'm_{ll} [GeV]',  #   x axis name
+                           #'fold' : 0
+                        #}
 
-# neutrino
-variables['deltaphi_lep_nu'] = {
-        'name' : 'deltaphi_lep_nu',
-        'range': (10,0,7),
-        'xaxis': '#Delta #phi lep nu',
-        'fold' : 3
-}
-variables['deltaeta_lep_nu'] = {
-        'name' : 'deltaeta_lep_nu',
-        'range': (10,0,7),
-        'xaxis': '#Delta #eta lep nu',
-        'fold' : 3
-}
-variables['deltaR_lep_nu'] = {
-        'name' : 'deltaR_lep_nu',
-        'range': (40,2,8),
-        'xaxis': '#Delta R lep nu',
-        'fold' : 3
-}
+#variables['mth']  = {   'name': 'mth',            #   variable name    
+                        #'range' : (40,0,200),    #   variable range
+                        #'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
+                         #'fold' : 0
+                        #}
 
-# angles with lepton
-variables['deltaphi_lep_vbs_high'] = {
-        'name' : 'deltaphi_lep_vbs_high',
-        'range': (10,0,7),
-        'xaxis': '#Delta #phi lep vbs high',
-        'fold' : 3
-}
-variables['deltaphi_lep_vbs_low'] = {
-        'name' : 'deltaphi_lep_vbs_low',
-        'range': (10,0,7),
-        'xaxis': '#Delta #phi lep vbs low',
-        'fold' : 3
-}
-variables['deltaphi_lep_vjet_high'] = {
-        'name' : 'deltaphi_lep_vjet_high',
-        'range': (10,0,7),
-        'xaxis': '#Delta #phi lep vjets high',
-        'fold' : 3
-}
-variables['deltaphi_lep_vjet_low'] = {
-        'name' : 'deltaphi_lep_vjet_low',
-        'range': (10,0,7),
-        'xaxis': '#Delta #phi lep vjets low',
-        'fold' : 3
-}
-variables['deltaeta_lep_vbs_high'] = {
-        'name' : 'deltaeta_lep_vbs_high',
-        'range': (10,0,7),
-        'xaxis': '#Delta #eta lep vbs high',
-        'fold' : 3
-}
-variables['deltaeta_lep_vbs_low']  = {
-        'name' : 'deltaeta_lep_vbs_low',
-        'range': (10,0,7),
-        'xaxis': '#Delta #eta lep vbs low',
-        'fold' : 3
-}
-variables['deltaeta_lep_vjet_high'] = {
-        'name' : 'deltaeta_lep_vjet_high',
-        'range': (10,0,7),
-        'xaxis': '#Delta #eta lep vjet high',
-        'fold' : 3
-}
-variables['deltaeta_lep_vjet_low'] = {
-        'name' : 'deltaeta_lep_vjet_low',
-        'range': (10,0,7),
-        'xaxis': '#Delta #eta lep vjet low',
-        'fold' : 3
-}
+#variables['dphill']  = {   'name': 'abs(dphill)',     
+                        #'range' : (20,0,3.14),   
+                        #'xaxis' : '#Delta#phi_{ll}',
+                        #'fold' : 3
+                        #}
 
-# Look for nearest vbs jet from lepton
-variables['deltaR_lep_vbs'] = {
-        'name' : 'deltaR_lep_vbs',
-        'range': (40,2,8),
-        'xaxis': '#Delta R lep vbs',
-        'fold' : 3
-}
-variables['deltaR_lep_vjet'] = {
-        'name' : 'deltaR_lep_vjet',
-        'range': (40,2,8),
-        'xaxis': '#Delta R lep vjet',
-        'fold' : 3
-}
-
-# zeppenfeld
-variables['Zvjets_high'] = {
-        'name' : 'Zvjets_high',
-        'range': (10,-4,4),
-        'xaxis': 'Z vjets high',
-        'fold' : 3
-}
-variables['Zvjets_low'] = {
-        'name' : 'Zvjets_low',
-        'range': (10,-4,4),
-        'xaxis': 'Z vjets low',
-        'fold' : 3
-}
-variables['Zlep'] = {
-        'name' : 'Zlep',
-        'range': (10,-4,4),
-        'xaxis': 'Z lep',
-        'fold' : 3
-}
-
-# R variables
-variables['Rvjets_high'] = {
-        'name' : 'Rvjets_high',
-        'range': (10,-4,4),
-        'xaxis': 'R vjets high',
-        'fold' : 3
-}
-variables['Rvjets_low'] ={
-        'name' : 'Rvjets_low',
-        'range': (10,-4,4),
-        'xaxis': 'R vjets low',
-        'fold' : 3
-}
-
-# asymmetry
-variables['A_vbs']  = {
-        'name' : 'A_vbs',
-        'range': (10,0,1),
-        'xaxis': 'A vbs',
-        'fold' : 3
-}
-variables['A_vjet'] = {
-        'name' : 'A_vjet',
-        'range': (10,0,1),
-        'xaxis': 'A vjet',
-        'fold' : 3
-}
+#variables['ptll']  = {   'name': 'ptll',     
+                        #'range' : (40, 0,200),   
+                        #'xaxis' : 'p_{T}^{ll} [GeV]',
+                        #'fold' : 3
+                        #}

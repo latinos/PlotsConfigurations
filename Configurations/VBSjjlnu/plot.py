@@ -18,12 +18,14 @@ groupPlot['VBS']  = {
                  'samples'  : ['VBS']
               }
 
-groupPlot['Wjets']  = {
-                        'nameHR' : 'W+Jets',
+
+groupPlot['Others']  = {
+                        'nameHR' : 'Others',
                         'isSignal' : 0,
-                        'color': 620,  
-                        'samples'  : ['Wjets']
+                        'color': 632,
+                        'samples'  : ['Others']
                         }
+
 
 groupPlot['TT']  = {    
 				'nameHR' : 'TT',
@@ -32,6 +34,12 @@ groupPlot['TT']  = {
 				'samples' : ['TT']
                 		 }	
 
+groupPlot['Wjets']  = {
+                        'nameHR' : 'W+Jets',
+                        'isSignal' : 0,
+                        'color': 620,  
+                        'samples'  : ['Wjets']
+                        }
 
 #groupPlot['TTWJetsToLNu'] = {
 #				'nameHR' : 'TTWJetsToLNu',
@@ -70,12 +78,6 @@ groupPlot['TT']  = {
 #                        'samples'  : ['WWZ']
 #                        }
 
-groupPlot['Others']  = {
-                        'nameHR' : 'Others',
-                        'isSignal' : 0,
-                        'color': 632,
-                        'samples'  : ['Others']
-                        }
 
 # groupPlot['DY']  = {
 #                         'nameHR' : 'DY',
@@ -166,12 +168,13 @@ plot['VBS']  = {
                   'scale'    : 1.   ,
               }
 
-plot['Wjets']  = {
-                  'color': 620,
+plot['Others']  = {
+                  'color': 632,
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.   ,
               }
+
 
 
 plot['TT']  = {
@@ -181,6 +184,13 @@ plot['TT']  = {
                   'scale'    : 1.   ,
               }
 
+
+plot['Wjets']  = {
+                  'color': 620,
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.   ,
+              }
 
 
 #plot['TTW']  = {
@@ -218,12 +228,6 @@ plot['TT']  = {
 #                  'scale'    : 1.   ,
 #              }
 
-plot['Others']  = {
-                  'color': 632,
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.   ,
-              }
 
 
 # plot['DY']  = {
