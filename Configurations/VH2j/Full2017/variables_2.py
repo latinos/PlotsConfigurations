@@ -30,11 +30,11 @@ variables['events']  = {   'name': '1',
 #                         'fold' : 0
 #                        }
 #
-##variables['mllpeak'] = {   'name': 'mll',            #   variable name
-# #                          'range' : (20,80,100),    #   variable range
-#  #                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
-#   #                        'fold' : 0
-#    #                    }
+#variables['mllpeak'] = {   'name': 'mll',            #   variable name
+#                           'range' : (20,80,100),    #   variable range
+#                           'xaxis' : 'm_{ll} [GeV]',  #   x axis name
+#                           'fold' : 0
+#                        }
 #
 #variables['ptll']  = {   'name': 'ptll',     
 #                        'range' : (40, 0,200),   
@@ -163,24 +163,24 @@ variables['events']  = {   'name': '1',
 #                        'fold' : 3
 #}
 ##Added 9/4/19
-#variables['dphilljetjet']  = {   'name': 'abs(dphilljetjet)',     
-#                        'range' : (20,0,3.14),   
-#                        'xaxis' : '#Delta#phi_{} l l j j',
-#                        'fold' : 3
-#}
-#
-#variables['dphilljet']  = {   'name': 'abs(dphilljet)',     
-#                        'range' : (20,0,3.14),   
-#                        'xaxis' : '#Delta#phi_{} l l j',
-#                        'fold' : 3
-#}
-#
-#variables['dphijjmet']  = {   'name': 'abs(dphijjmet)',     
-#                        'range' : (20,0,3.14),   
-#                        'xaxis' : '#Delta#phi_{} j j met',
-#                        'fold' : 3
-#}
-#
+variables['dphilljetjet']  = {   'name': 'abs(dphilljetjet)',     
+                        'range' : (20,0,3.14),   
+                        'xaxis' : '#Delta#phi_{} l l j j',
+                        'fold' : 3
+}
+
+variables['dphilljet']  = {   'name': 'abs(dphilljet)',     
+                        'range' : (20,0,3.14),   
+                        'xaxis' : '#Delta#phi_{} l l j',
+                        'fold' : 3
+}
+
+variables['dphijjmet']  = {   'name': 'abs(dphijjmet)',     
+                        'range' : (20,0,3.14),   
+                        'xaxis' : '#Delta#phi_{} j j met',
+                        'fold' : 3
+}
+
 ##test
 #variables['dphijj']  = {  'name': 'abs(-(abs(CleanJet_phi[0]-CleanJet_phi[1])-3.14))',
 #                           'range' : (20,0,3.14),
@@ -188,37 +188,37 @@ variables['events']  = {   'name': '1',
 #                        'fold'  : 3
 #                        }
 #
-#variables['qgl0']  = {'name': 'Jet_qgl[CleanJet_jetIdx[0]]',
-#                        'range' : (10,0,1),
-#                        'xaxis' : 'Quark-Gluon Discrim Jet1',
-#                        'fold'  : 0
-#                        }
-#
-#variables['qgl1']  = {'name': 'Jet_qgl[CleanJet_jetIdx[1]]',
-#                        'range' : (10,0,1),
-#                        'xaxis' : 'Quark-Gluon Discrim Jet2',
-#                        'fold'  : 0
-#                        }
-#
-#PTH
-
-variables['ptH']  = {'name': 'vht_pt',
-                        'range' : (40,0,200),
-                        'xaxis' : 'vht_pt/Transverse momentum Higgs ptH??',
-                        'fold'  : 3
+variables['qgl0']  = {'name': 'Jet_qgl[CleanJet_jetIdx[0]]',
+                        'range' : (10,0,1),
+                        'xaxis' : 'Quark-Gluon Discrim Jet1',
+                        'fold'  : 0
                         }
+
+variables['qgl1']  = {'name': 'Jet_qgl[CleanJet_jetIdx[1]]',
+                        'range' : (10,0,1),
+                        'xaxis' : 'Quark-Gluon Discrim Jet2',
+                        'fold'  : 0
+                        }
+
+#not PTH
+
+#variables['ptH']  = {'name': 'vht_pt',
+#                        'range' : (40,0,200),
+#                        'xaxis' : 'vht_pt/Transverse momentum Higgs ptH??',
+#                        'fold'  : 3
+#                        }
 
 
 #Jet Flavor
-#
-#variables['LeadingJetFlavor']  = {'name': 'abs(Jet_partonFlavour[CleanJet_jetIdx[0]])',
-#                                  'range' : (6,0,6),
-#                        'xaxis' : 'Leading Jet Flavor',
-#                        'fold'  : 0
-#                        }
-#
-#variables['SubleadingJetFlavor']  = {'name': 'abs(Jet_partonFlavour[CleanJet_jetIdx[1]])',
-#                                     'range' : (6,0,6),
-#                        'xaxis' : 'Subleading Jet Flavor',
-#                        'fold'  : 0
-#                        }
+
+variables['LeadingJetFlavor']  = {'name': 'abs(Jet_partonFlavour[CleanJet_jetIdx[0]])',
+                                  'range' : (6,0,6),
+                        'xaxis' : 'Leading Jet Flavor',
+                        'fold'  : 0
+                        }
+
+variables['SubleadingJetFlavor']  = {'name': 'abs(Jet_partonFlavour[CleanJet_jetIdx[1]])',
+                                     'range' : (6,0,6),
+                        'xaxis' : 'Subleading Jet Flavor',
+                        'fold'  : 0
+                        }
