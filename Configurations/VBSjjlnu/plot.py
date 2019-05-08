@@ -14,15 +14,17 @@
 groupPlot['VBS']  = {  
                  'nameHR' : 'VBS',
                  'isSignal' : 1,
-                 'color': 617,   
+                 'color': 415, #617,   
                  'samples'  : ['VBS']
               }
+
+
 
 
 groupPlot['Others']  = {
                         'nameHR' : 'Others',
                         'isSignal' : 0,
-                        'color': 632,
+                        'color': 861,#632,
                         'samples'  : ['Others']
                         }
 
@@ -30,14 +32,14 @@ groupPlot['Others']  = {
 groupPlot['TT']  = {    
 				'nameHR' : 'TT',
 				'isSignal' : 0,
-				'color' : 860,
+				'color' : 797,#860,
 				'samples' : ['TT']
                 		 }	
 
 groupPlot['Wjets']  = {
                         'nameHR' : 'W+Jets',
                         'isSignal' : 0,
-                        'color': 620,  
+                        'color': 629, #620  
                         'samples'  : ['Wjets']
                         }
 
@@ -162,31 +164,30 @@ groupPlot['Wjets']  = {
 # keys here must match keys in samples.py    
 #                    
 plot['VBS']  = {  
-                  'color': 617,    
+                  'color': 415 ,    
                   'isSignal' : 1,
                   'isData'   : 0, 
                   'scale'    : 1.   ,
               }
 
+
+
 plot['Others']  = {
-                  'color': 632,
+                  'color': 861,
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.   ,
               }
-
-
 
 plot['TT']  = {
-                  'color': 860,    
+                  'color': 797,    
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.   ,
               }
 
-
 plot['Wjets']  = {
-                  'color': 620,
+                  'color': 629,
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.   ,
@@ -194,7 +195,7 @@ plot['Wjets']  = {
 
 
 #plot['TTW']  = {
-#                  'color': 617,
+#                  'color': ,
 #                  'isSignal' : 0,
 #                  'isData'   : 0,
 #                  'scale'    : 1.   ,
