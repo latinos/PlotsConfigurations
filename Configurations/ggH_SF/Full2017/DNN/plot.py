@@ -114,7 +114,7 @@ plot['DY']  = {
 #                  'scale'    : 1.0
 #              }
 
-plot['Fake_em']  = {  
+plot['Fake_ee']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -122,7 +122,7 @@ plot['Fake_em']  = {
               }
 
 
-plot['Fake_me']  = {  
+plot['Fake_mm']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
