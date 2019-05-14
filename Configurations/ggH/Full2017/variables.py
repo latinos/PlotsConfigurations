@@ -84,7 +84,7 @@ variables['njet']  = {
                         }
 
 
-
+'''
 
 variables['jetpt1']  = {
                         'name': 'CleanJet_pt[0]>30? CleanJet_pt[0]:-1',     
@@ -111,6 +111,7 @@ variables['jeteta2']  = {  'name': 'CleanJet_pt[1]>30? CleanJet_eta[1]:-999',
                         'xaxis' : '#eta 2nd jet',
                         'fold'  : 0
                         }
+'''
 
 '''
 variables['mtw1']  = {  'name': 'mtw1',
