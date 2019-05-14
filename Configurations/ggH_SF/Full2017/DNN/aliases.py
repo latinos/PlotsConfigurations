@@ -1,12 +1,49 @@
 #aliases = {}
 
-if useEmbeddedDY:
-  mc = [skey for skey in samples if skey not in ('Fake_em', 'Fake_me', 'DATA', 'DY')]
-else:
-  mc = [skey for skey in samples if skey not in ('Fake_em', 'Fake_me', 'DATA')]
+mc = [skey for skey in samples if skey not in ('Fake_ee', 'Fake_mm' , 'DATA')]
 
 bAlgo = 'DeepB'
 bWP = '0.1522'
+
+aliases['sameFlavor'] = {
+'expr': '((Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) || (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11))'
+}
+
+aliases['0j'] = {
+'expr': '( Alt$(CleanJet_pt[0],0)<30 )'
+}
+
+aliases['1j'] = {
+'expr': 'Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)<30'
+}
+
+aliases['2jggH'] = {
+'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && ( abs(detajj)<3.5 || ( mjj<400 && abs(detajj)>=3.5 ) ) )'
+}
+
+aliases['2jVBF'] = {
+'expr': '(Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && (mjj>=400 && abs(detajj)>=3.5))'
+}
+
+aliases['Higgs0jetsf'] = {
+'expr': '(abs(dphill) < 1.70 && mll < 60 && mth > 50)'
+}
+
+aliases['Higgs1jetsf'] = {
+'expr': '(abs(dphill) < 1.70 && mll < 60 && mth > 50)'
+}
+
+aliases['Higgs2jetsf'] = {
+'expr': '(abs(dphill) < 1.70 && mll < 60 && mth > 50)'
+}
+
+aliases['Higgsvbfsf'] = {
+'expr': '(abs(dphill) < 1.70 && mll < 60 && mth > 50)'
+}
+
+aliases['ZVeto'] = {
+'expr': '(fabs(91.1876 - mll) > 15)'
+}
 
 aliases['bVeto'] = {
 'expr': '(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0)'
@@ -32,7 +69,6 @@ aliases['btag2'] = {
          )' 
 }
 
-# NB These scale factors depend on the selections defined above, if different selections are used also the following expressions need to be changed!
 aliases['bVetoSF'] = {
 'expr': '( TMath::Exp(Sum$( TMath::Log( (CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5) ) ) ) )',
 'samples': mc
@@ -67,4 +103,3 @@ systs = ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','c
 for s in systs:
   aliases['btagSF'+s+'up'] = { 'expr': '( bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_up_'+s)+'+btag0*'+aliases['btag0SF']['expr'].replace('shape','shape_up_'+s)+'+btag1*'+aliases['btag1SF']['expr'].replace('shape','shape_up_'+s)+'+btag2*'+aliases['btag2SF']['expr'].replace('shape','shape_up_'+s)+' + ( (!bVeto) && (!btag0) && (!btag1) && (!btag2) ) )', 'samples':mc  }
   aliases['btagSF'+s+'down'] = { 'expr': '( bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_down_'+s)+'+btag0*'+aliases['btag0SF']['expr'].replace('shape','shape_down_'+s)+'+btag1*'+aliases['btag1SF']['expr'].replace('shape','shape_down_'+s)+'+btag2*'+aliases['btag2SF']['expr'].replace('shape','shape_down_'+s)+' + ( (!bVeto) && (!btag0) && (!btag1) && (!btag2) ) )', 'samples':mc  }
-
