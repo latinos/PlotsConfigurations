@@ -2,7 +2,7 @@
 treeName= 'Events'
 
 
-tag = 'ggH'
+tag = '_WH_2017_oldCuts_fixed'
 
 
 # used by mkShape to define output directory for root files
@@ -34,7 +34,7 @@ outputDirPlots = 'plot'+tag
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'
+outputDirDatacard = 'datacards'+tag
 
 
 # structure file for datacard
