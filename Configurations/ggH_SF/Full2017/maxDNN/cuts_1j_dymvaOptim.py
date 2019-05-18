@@ -55,12 +55,12 @@ for iCut in optim:
   
   cuts['hww2l2v_13TeV_top_1jee_'+iCut] = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) \
                && ZVeto \
-               && btag0 \
+               && btag1 \
                  ' + optim[iCut]
 
   cuts['hww2l2v_13TeV_top_1jmm_'+iCut] = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) \
                && ZVeto \
-               && btag0 \
+               && btag1 \
                  ' + optim[iCut]
   
 
@@ -101,17 +101,17 @@ for iCut in optim:
   #  1jet only: Negligible DY background in 1jet bTag region
 
   cuts['hww2l2v_13TeV_DYin_btag_1jee_'+iCut] = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) \
-               && btag0 \
+               && btag1 \
                && fabs(91.1876 - mll) < 7.5  \
                  ' + optim[iCut]
 
   cuts['hww2l2v_13TeV_DYin_btag_1jmm_'+iCut] = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) \
-               && btag0 \
+               && btag1 \
                && fabs(91.1876 - mll) < 7.5  \
                  ' + optim[iCut]
 
   cuts['hww2l2v_13TeV_DYin_btag_1jdf_'+iCut] = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
-               && btag0 \
+               && btag1 \
                && fabs(91.1876 - mll) < 7.5  \
                  ' + optim[iCut]
   
