@@ -62,6 +62,8 @@ if Nlep == '2' :
 else:
   fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l'
 
+bVeto ='(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0)'
+
 
 ################################################
 ############### B-Tag  WP ######################
@@ -70,7 +72,7 @@ else:
 #FIXME b-tagging to be optimized
 # Definitions in aliases.py
 
-SFweight += '*btagSF'
+#SFweight += '*btagSF'
 
 ################################################
 ############   MET  FILTERS  ###################
@@ -256,20 +258,20 @@ samples['Vg']  = {  'name'   :   getSampleFiles(directory2,'Wg_MADGRAPHMLM',Fals
                     'FilesPerJob': 5,
                   }
 
-
-############ VgS ############
-
-#FIXME Add normalization k-factor
-samples['VgS']  =  {  'name'   :   getSampleFiles(directory2,'Wg_MADGRAPHMLM',False,'nanoLatino_')
-                                 + getSampleFiles(directory2,'Zg',False,'nanoLatino_')
-                                 + getSampleFiles(directory2,'WZTo3LNu_mllmin01',False,'nanoLatino_'),
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC+embed_tautauveto,
-                      'FilesPerJob' : 5 ,
-                   }
-addSampleWeight(samples,'VgS','Wg_MADGRAPHMLM',    '(Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 0.1)')
-addSampleWeight(samples,'VgS','Zg',                '(Gen_ZGstar_mass >0)')
-addSampleWeight(samples,'VgS','WZTo3LNu_mllmin01', '(Gen_ZGstar_mass>=0.1 || Gen_ZGstar_mass<0)')
-
+#
+############# VgS ############
+#
+##FIXME Add normalization k-factor
+#samples['VgS']  =  {  'name'   :   getSampleFiles(directory2,'Wg_MADGRAPHMLM',False,'nanoLatino_')
+#                                 + getSampleFiles(directory2,'Zg',False,'nanoLatino_')
+#                                 + getSampleFiles(directory2,'WZTo3LNu_mllmin01',False,'nanoLatino_'),
+#                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC+embed_tautauveto,
+#                      'FilesPerJob' : 5 ,
+#                   }
+#addSampleWeight(samples,'VgS','Wg_MADGRAPHMLM',    '(Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 0.1)')
+#addSampleWeight(samples,'VgS','Zg',                '(Gen_ZGstar_mass >0)')
+#addSampleWeight(samples,'VgS','WZTo3LNu_mllmin01', '(Gen_ZGstar_mass>=0.1 || Gen_ZGstar_mass<0)')
+#
 ############ ZZ ############
 
 #FIXME Add normalization k-factor
@@ -281,7 +283,8 @@ samples['ZZ']  = {  'name'   :   getSampleFiles(directory2,'ZZTo4L',False,'nanoL
 #FIXME Add normalization k-factor
 samples['VZ']  = {  'name'   :   getSampleFiles(directory2,'ZZTo2L2Nu',False,'nanoLatino_')
                                + getSampleFiles(directory2,'ZZTo2L2Q',False,'nanoLatino_')
-                               + getSampleFiles(directory2,'WZTo2L2Q',False,'nanoLatino_'),
+                               + getSampleFiles(directory2,'WZTo2L2Q',False,'nanoLatino_')
+                               + getSampleFiles(directory2,'WZTo3LNu_mllmin01',False,'nanoLatino_'),
                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch2l+'*'+METFilter_MC+embed_tautauveto ,
                     'FilesPerJob' : 5,
                  }
