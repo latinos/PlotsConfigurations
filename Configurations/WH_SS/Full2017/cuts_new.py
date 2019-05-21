@@ -3,24 +3,15 @@
 
 supercut = 'mll>12  \
             && Lepton_pt[0]>25 && Lepton_pt[1]>15 \
-            && Lepton_pt[2]<10 \
+            && (nLepton>=2 && Alt$(Lepton_pt[2],0)<10) \
             && MET_pt > 20 \
-            && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 \
             '
 
-#supercut = '   mll>12 \
-#            && Lepton_pt[0]>25 \
-#            && Lepton_pt[1]>15 \
-#            && (nLepton>=2 && Alt$(Lepton_pt[2],0)<10) \
-#            && abs(Lepton_eta[0])<2.5 && abs(Lepton_eta[1])<2.5 \
-#            && MET_pt > 20 \
-#            && Sum$(CleanJet_pt>30)>=1 \
-#           '
-
-
 ## Signal regions
+#'expr': '(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0)'
 
 cuts['hww2l2v_13TeV_of2j_WH_SS_ll_1j'] = '((Lepton_pdgId[0] * Lepton_pdgId[1] == 13*13) || (Lepton_pdgId[0] * Lepton_pdgId[1] == 11*11)) \
+                                       && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 \
                                        && bVeto \
                                        && abs(mll-91.2)>15 \
                                        && Alt$(CleanJet_pt[0],0)>30 \
@@ -28,23 +19,26 @@ cuts['hww2l2v_13TeV_of2j_WH_SS_ll_1j'] = '((Lepton_pdgId[0] * Lepton_pdgId[1] ==
                                        && Alt$(CleanJet_pt[1],0)<30 \
                                        '
 cuts['hww2l2v_13TeV_of2j_WH_SS_ll_2j'] = '((Lepton_pdgId[0] * Lepton_pdgId[1] == 13*13) || (Lepton_pdgId[0] * Lepton_pdgId[1] == 11*11)) \
+                                       && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 \
                                        && bVeto \
                                        && abs(mll-91.2)>15 \
                                        && Alt$(CleanJet_pt[0],0)>30 \
                                        && Alt$(CleanJet_pt[1],0)>30 \
                                        '
 cuts['hww2l2v_13TeV_of2j_WH_SS_eu_1j'] = '(Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13) \
+                                       && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 \
                                        && bVeto \
                                        && Alt$(CleanJet_pt[0],0)>30 \
                                        && Alt$(CleanJet_pt[1],0)>20 \
                                        && Alt$(CleanJet_pt[1],0)<30 \
                                        '
 cuts['hww2l2v_13TeV_of2j_WH_SS_eu_2j'] = '(Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13) \
+                                       && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 \
                                        && bVeto \
                                        && Alt$(CleanJet_pt[0],0)>30 \
                                        && Alt$(CleanJet_pt[1],0)>30 \
                                        '
-
+#
 #cuts['hww2l2v_13TeV_of2j_WH_SS_ee'] = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == 11*11) \
 #                                       && Lepton_pt[1]>20 \
 #                                       && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 \
@@ -77,7 +71,13 @@ cuts['hww2l2v_13TeV_of2j_WH_SS_eu_2j'] = '(Lepton_pdgId[0]*Lepton_pdgId[1] == 11
 #                                       && bVeto \
 #                                     '
 
-### Top control regions
+#### Top control regions
+#cuts['hww2l2v_13TeV_top_of0j']  = '    (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
+#                                    && mll>50 \
+#                                    && mtw2>30 \
+#                                    && Alt$(CleanJet_pt[0],0)<30 \
+#                                    && btag0 \
+#                                  '
 #cuts['hww2l2v_13TeV_top_of0j']  = '    (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
 #                                    && mll>50 \
 #                                    && mtw2>30 \

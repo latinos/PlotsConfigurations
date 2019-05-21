@@ -2,11 +2,11 @@
 treeName= 'Events'
 
 
-tag = '_WHSS_2017'
+tag = 'ZH4l'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'+tag
+outputDir = 'rootFilenew'+tag
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
@@ -15,8 +15,7 @@ aliasesFile = 'aliases.py'
 variablesFile = 'variables.py'
 
 # file with list of cuts
-#cutsFile = 'cuts.py' 
-cutsFile = 'cuts_new.py' 
+cutsFile = 'cuts.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 
