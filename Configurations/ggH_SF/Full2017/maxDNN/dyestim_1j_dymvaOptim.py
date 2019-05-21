@@ -25,8 +25,8 @@ for iCut in optim:
 
   DYestim['hww2l2v_13TeV_1jee_'+iCut] = {
                                    'rinout'  : 'DYmva0p8' ,
-                                   'rsyst'   : 0.06 , 
-                                   'ksyst'   : 0.01 , 
+                                   'rsyst'   : 0.09 , 
+                                   'ksyst'   : 0.02 , 
                                    'njet'    : '1j' , 
                                    'flavour' : 'ee' ,
                                    'DYProc'  : 'DY' ,
@@ -39,13 +39,13 @@ for iCut in optim:
                                    'NPname'  : 'DYeenorm1j' , 
                                    'AccNum'  : 'hww2l2v_13TeV_1jee_HAccNum/events/histo_DY',
                                    'AccDen'  : 'hww2l2v_13TeV_1jee_AccDen/events/histo_DY',
-                                   'asyst'   : 0.04 , 
+                                   'asyst'   : 0.03 , 
                                   } 
   
   DYestim['hww2l2v_13TeV_1jmm_'+iCut] = {
                                    'rinout'  : 'DYmva0p8' ,
-                                   'rsyst'   : 0.06 , 
-                                   'ksyst'   : 0.02 , 
+                                   'rsyst'   : 0.10 , 
+                                   'ksyst'   : 0.04 , 
                                    'njet'    : '1j'    ,
                                    'flavour' : 'mm' ,
                                    'DYProc'  : 'DY' ,
@@ -58,7 +58,7 @@ for iCut in optim:
                                    'NPname'  : 'DYmmnorm1j' ,
                                    'AccNum'  : 'hww2l2v_13TeV_1jmm_HAccNum/events/histo_DY',
                                    'AccDen'  : 'hww2l2v_13TeV_1jmm_AccDen/events/histo_DY',
-                                   'asyst'   : 0.02 , 
+                                   'asyst'   : 0.03 , 
                                   } 
   
   DYestim['hww2l2v_13TeV_WW_1jee_'+iCut] = {

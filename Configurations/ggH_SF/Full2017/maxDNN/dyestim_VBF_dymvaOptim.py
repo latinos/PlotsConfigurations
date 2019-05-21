@@ -4,13 +4,13 @@
 RAndKff['DYmva0p8'] = {
                       'RFile'   : 'rootFile/plots_BG_DY_NOHR_MVA090.root' ,
                       'KffFile' : 'rootFile/plots_BG_DY_NOHR_MVA080.root' ,             
-                      'Regions' : { '2jee_vbf' : { 
+                      'Regions' : { '2jVBFee' : { 
                                                'kNum' : '2j_VBF_ee_in/events/histo_DY' ,
                                                'kDen' : '2j_VBF_uu_in/events/histo_DY' ,
                                                'RNum' : '2j_VBF_ee_out/events/histo_DY' , 
                                                'RDen' : '2j_VBF_ee_in/events/histo_DY' , 
                                              } ,
-                                    '2jmm_vbf' : { 
+                                    '2jVBFmm' : { 
                                                'kNum' : '2j_VBF_uu_in/events/histo_DY' ,
                                                'kDen' : '2j_VBF_ee_in/events/histo_DY' ,
                                                'RNum' : '2j_VBF_uu_out/events/histo_DY' , 
@@ -22,17 +22,17 @@ RAndKff['DYmva0p8'] = {
 RAndKff['DYmva0p8top'] = {
                       'RFile'   : 'rootFile/plots_BG_DY_NOHR_btag.root' ,
                       'KffFile' : 'rootFile/plots_BG_DY_NOHR_MVA080.root' ,
-                      'Regions' : { '2jee_vbf' : {
-                                               'kNum' : '2jVBF_ee_in/events/histo_DY' ,
-                                               'kDen' : '2jVBF_uu_in/events/histo_DY' ,
-                                               'RNum' : '2jVBF_ee_out/events/histo_DY' ,       
-                                               'RDen' : '2jVBF_ee_in/events/histo_DY' ,       
+                      'Regions' : { '2jVBFee' : {
+                                               'kNum' : '2j_VBF_ee_in/events/histo_DY' ,
+                                               'kDen' : '2j_VBF_uu_in/events/histo_DY' ,
+                                               'RNum' : '2j_VBF_ee_out/events/histo_DY' ,       
+                                               'RDen' : '2j_VBF_ee_in/events/histo_DY' ,       
                                              } ,
-                                    '2jmm_vbf' : { 
-                                               'kNum' : '2jVBF_uu_in/events/histo_DY' ,
-                                               'kDen' : '2jVBF_ee_in/events/histo_DY' ,
-                                               'RNum' : '2jVBF_uu_out/events/histo_DY' ,
-                                               'RDen' : '2jVBF_uu_in/events/histo_DY' ,
+                                    '2jVBFmm' : { 
+                                               'kNum' : '2j_VBF_uu_in/events/histo_DY' ,
+                                               'kDen' : '2j_VBF_ee_in/events/histo_DY' ,
+                                               'RNum' : '2j_VBF_uu_out/events/histo_DY' ,
+                                               'RDen' : '2j_VBF_uu_in/events/histo_DY' ,
                                              } ,
                                    } , 
                      }
@@ -44,7 +44,7 @@ for iCut in optim:
 
   DYestim['hww2l2v_13TeV_2jee_vbf_'+iCut] = {
                                    'rinout'  : 'DYmva0p8' ,
-                                   'rsyst'   : 0.06 , 
+                                   'rsyst'   : 0.10 , 
                                    'ksyst'   : 0.01 , 
                                    'njet'    : '2jVBF' , 
                                    'flavour' : 'ee' ,
@@ -58,13 +58,13 @@ for iCut in optim:
                                    'NPname'  : 'DYeenorm2jVBF' , 
                                    'AccNum'  : 'hww2l2v_13TeV_2jee_vbf_HAccNum/events/histo_DY',
                                    'AccDen'  : 'hww2l2v_13TeV_2jee_vbf_AccDen/events/histo_DY',
-                                   'asyst'   : 0.04 , 
+                                   'asyst'   : 0.06 , 
                                   } 
   
   DYestim['hww2l2v_13TeV_2jmm_vbf_'+iCut] = {
                                    'rinout'  : 'DYmva0p8' ,
-                                   'rsyst'   : 0.06 , 
-                                   'ksyst'   : 0.02 , 
+                                   'rsyst'   : 0.07 , 
+                                   'ksyst'   : 0.01 , 
                                    'njet'    : '2jVBF'    ,
                                    'flavour' : 'mm' ,
                                    'DYProc'  : 'DY' ,
@@ -77,7 +77,7 @@ for iCut in optim:
                                    'NPname'  : 'DYmmnorm2jVBF' ,
                                    'AccNum'  : 'hww2l2v_13TeV_2jmm_vbf_HAccNum/events/histo_DY',
                                    'AccDen'  : 'hww2l2v_13TeV_2jmm_vbf_AccDen/events/histo_DY',
-                                   'asyst'   : 0.02 , 
+                                   'asyst'   : 0.05 , 
                                   } 
   
   DYestim['hww2l2v_13TeV_WW_2jee_vbf_'+iCut] = {
@@ -94,7 +94,7 @@ for iCut in optim:
                                    'NPname'  : 'DYeenorm2jVBF' ,
                                    'AccNum'  : 'hww2l2v_13TeV_WW_2jee_vbf_WWAccNum/events/histo_DY',
                                    'AccDen'  : 'hww2l2v_13TeV_2jee_vbf_AccDen/events/histo_DY',
-                                   'asyst'   : 0.01 , 
+                                   'asyst'   : 0.06 , 
                                      }
   
   DYestim['hww2l2v_13TeV_WW_2jmm_vbf_'+iCut] = {
@@ -111,7 +111,7 @@ for iCut in optim:
                                    'NPname'  : 'DYmmnorm2jVBF' ,
                                    'AccNum'  : 'hww2l2v_13TeV_WW_2jmm_vbf_WWAccNum/events/histo_DY',
                                    'AccDen'  : 'hww2l2v_13TeV_2jmm_vbf_AccDen/events/histo_DY',
-                                   'asyst'   : 0.01 , 
+                                   'asyst'   : 0.03 , 
                                      }
   
   DYestim['hww2l2v_13TeV_top_2jee_vbf_'+iCut] = {
@@ -126,7 +126,7 @@ for iCut in optim:
                                    'DFinDa'  : 'DATA' ,
                                    'DFinMC'  : ['VZ','Vg','VgS'],
                                    'NPname'  : 'DYeenorm2jVBF' ,
-                                   'asyst'   : 0.07 ,
+                                   'asyst'   : 0.03 ,
                                      }
   
   DYestim['hww2l2v_13TeV_top_2jmm_vbf_'+iCut] = {
@@ -141,5 +141,5 @@ for iCut in optim:
                                    'DFinDa'  : 'DATA' ,
                                    'DFinMC'  : ['VZ','Vg','VgS'],
                                    'NPname'  : 'DYmmnorm2jVBF' ,
-                                   'asyst'   : 0.09 ,
+                                   'asyst'   : 0.04 ,
                                      }

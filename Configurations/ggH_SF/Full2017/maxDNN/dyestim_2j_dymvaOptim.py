@@ -25,7 +25,7 @@ for iCut in optim:
 
   DYestim['hww2l2v_13TeV_2jee_'+iCut] = {
                                    'rinout'  : 'DYmva0p8' ,
-                                   'rsyst'   : 0.06 , 
+                                   'rsyst'   : 0.04 , 
                                    'ksyst'   : 0.01 , 
                                    'njet'    : '2j' , 
                                    'flavour' : 'ee' ,
@@ -44,7 +44,7 @@ for iCut in optim:
   
   DYestim['hww2l2v_13TeV_2jmm_'+iCut] = {
                                    'rinout'  : 'DYmva0p8' ,
-                                   'rsyst'   : 0.06 , 
+                                   'rsyst'   : 0.10 , 
                                    'ksyst'   : 0.02 , 
                                    'njet'    : '2j'    ,
                                    'flavour' : 'mm' ,
@@ -58,7 +58,7 @@ for iCut in optim:
                                    'NPname'  : 'DYmmnorm2j' ,
                                    'AccNum'  : 'hww2l2v_13TeV_2jmm_HAccNum/events/histo_DY',
                                    'AccDen'  : 'hww2l2v_13TeV_2jmm_AccDen/events/histo_DY',
-                                   'asyst'   : 0.02 , 
+                                   'asyst'   : 0.04 , 
                                   } 
   
   DYestim['hww2l2v_13TeV_WW_2jee_'+iCut] = {
@@ -75,7 +75,7 @@ for iCut in optim:
                                    'NPname'  : 'DYeenorm2j' ,
                                    'AccNum'  : 'hww2l2v_13TeV_WW_2jee_WWAccNum/events/histo_DY',
                                    'AccDen'  : 'hww2l2v_13TeV_2jee_AccDen/events/histo_DY',
-                                   'asyst'   : 0.01 , 
+                                   'asyst'   : 0.04 , 
                                      }
   
   DYestim['hww2l2v_13TeV_WW_2jmm_'+iCut] = {
@@ -92,5 +92,5 @@ for iCut in optim:
                                    'NPname'  : 'DYmmnorm2j' ,
                                    'AccNum'  : 'hww2l2v_13TeV_WW_2jmm_WWAccNum/events/histo_DY',
                                    'AccDen'  : 'hww2l2v_13TeV_2jmm_AccDen/events/histo_DY',
-                                   'asyst'   : 0.01 , 
+                                   'asyst'   : 0.04 , 
                                      }

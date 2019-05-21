@@ -1144,6 +1144,26 @@ nuisances['WWnorm2jsf']  = {
                          ],
               }
 
+nuisances['WWnorm2jvbfsf']  = {
+               'name'  : 'CMS_hww_WWnorm2jvbfsf',
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                            'hww2l2v_13TeV_2jee_vbf',
+                            'hww2l2v_13TeV_2jee_vbf_pt2ge20',
+                            'hww2l2v_13TeV_2jee_vbf_pt2lt20',
+                            'hww2l2v_13TeV_WW_2jee_vbf',
+                            'hww2l2v_13TeV_top_2jee_vbf',
+                            'hww2l2v_13TeV_2jmm_vbf',
+                            'hww2l2v_13TeV_2jmm_vbf_pt2ge20',
+                            'hww2l2v_13TeV_2jmm_vbf_pt2lt20',
+                            'hww2l2v_13TeV_WW_2jmm_vbf',
+                            'hww2l2v_13TeV_top_2jmm_vbf',
+                         ],
+              }
+
 
 #### Top fit
 
@@ -1207,6 +1227,27 @@ nuisances['Topnorm2jsf']  = {
                          ],
               }
 
+nuisances['Topnorm2jvbfsf']  = {
+               'name'  : 'CMS_hww_Topnorm2jvbfsf',
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                            'hww2l2v_13TeV_2jee_vbf',
+                            'hww2l2v_13TeV_2jee_vbf_pt2ge20',
+                            'hww2l2v_13TeV_2jee_vbf_pt2lt20',
+                            'hww2l2v_13TeV_WW_2jee_vbf',
+                            'hww2l2v_13TeV_top_2jee_vbf',
+                            'hww2l2v_13TeV_2jmm_vbf',
+                            'hww2l2v_13TeV_2jmm_vbf_pt2ge20',
+                            'hww2l2v_13TeV_2jmm_vbf_pt2lt20',
+                            'hww2l2v_13TeV_WW_2jmm_vbf',
+                            'hww2l2v_13TeV_top_2jmm_vbf',
+                         ],
+              }
+
+
 
 
 #### DY estimation (just create dummy histograms to be scaled by the DY Rin/out method)
@@ -1257,6 +1298,21 @@ nuisances['DYeenorm2j'] = {
                           ] ,
                 }
 
+nuisances['DYeenorm2jvbf'] = {
+                'name'  : 'hww_DYeenorm2jvbf',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                    'DY' : ['1.','1.'] ,
+                             },
+                'cuts'  : [
+                            'hww2l2v_13TeV_2jee_vbf',
+                            'hww2l2v_13TeV_2jee_vbf_pt2ge20',
+                            'hww2l2v_13TeV_2jee_vbf_pt2lt20',
+                            'hww2l2v_13TeV_WW_vbf_2jee',
+                          ] ,
+                }
+
 
 nuisances['DYmmnorm0j'] = {
                 'name'  : 'hww_DYmmnorm0j',
@@ -1303,6 +1359,22 @@ nuisances['DYmmnorm2j'] = {
                             'hww2l2v_13TeV_WW_2jmm',
                           ] ,
                 }
+
+nuisances['DYmmnorm2jvbf'] = {
+                'name'  : 'hww_DYmmnorm2jvbf',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                    'DY' : ['1.','1.'] ,
+                             },
+                'cuts'  : [
+                            'hww2l2v_13TeV_2jmm_vbf',
+                            'hww2l2v_13TeV_2jmm_vbf_pt2ge20',
+                            'hww2l2v_13TeV_2jmm_vbf_pt2lt20',
+                            'hww2l2v_13TeV_WW_2jmm_vbf',
+                          ] ,
+                }
+
 
 
 
