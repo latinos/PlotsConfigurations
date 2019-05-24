@@ -2,7 +2,7 @@
 
 tag = 'WWlvjj'
 
-base_output = '/gwpool/users/davalsecchi/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/VBSjjlnu/'
+base_output = './'
 
 # used by mkShape to define output directory for root files
 outputDir = base_output + 'rootFile'

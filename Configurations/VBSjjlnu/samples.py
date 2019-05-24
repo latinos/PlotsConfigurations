@@ -24,8 +24,10 @@ skim=''
 ##############################################
 
 treeBaseDir='/gwteray/users/govoni/OneLeptonSkims/'
-postProcStepBg  = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l1tightChain__bvetoTight__LepTrgFix__dorochester__formulasMC__resolvedVBSPairingAndVars'
-postProcStepSig = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l1tightChain__bvetoTight__LepTrgFix__dorochester__formulasMC__resolvedVBSPairingGenAndVars'
+postProcStepBg  = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l1tightChain__bvetoTight__LepTrgFix__dorochester__formulasMC__gr4JetsSkim__resolvedVBSPairingAndVars'
+postProcStepSig = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l1tightChain__bvetoTight__LepTrgFix__dorochester__formulasMC__formulasMC__gr4JetsSkim__resolvedVBSPairingGenAndVars'
+#postProcStepBg  = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l1tightChain__bvetoTight__LepTrgFix__dorochester__formulasMCOld__formulasMC__gr4JetsSkim__VBSPairRevAndVars'
+#postProcStepSig = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l1tightChain__bvetoTight__LepTrgFix__dorochester__formulasMC__resolvedVBSPairingRevGenAndVars'
 bkgDir = treeBaseDir + 'Apr2017_summer16_SingleLepton_hercules/' + postProcStepBg  + skim +"/" 
 sigDir = treeBaseDir + 'VBS_semileptonic_signal_summer16/'       + postProcStepSig + skim +"/" 
 
