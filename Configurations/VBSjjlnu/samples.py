@@ -24,12 +24,10 @@ skim=''
 ##############################################
 
 treeBaseDir='/gwteray/users/govoni/OneLeptonSkims/'
-postProcStepBg  = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l1tightChain__bvetoTight__LepTrgFix__dorochester__formulasMC__gr4JetsSkim__resolvedVBSPairingAndVars'
-postProcStepSig = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l1tightChain__bvetoTight__LepTrgFix__dorochester__formulasMC__formulasMC__gr4JetsSkim__resolvedVBSPairingGenAndVars'
-#postProcStepBg  = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l1tightChain__bvetoTight__LepTrgFix__dorochester__formulasMCOld__formulasMC__gr4JetsSkim__VBSPairRevAndVars'
-#postProcStepSig = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l1tightChain__bvetoTight__LepTrgFix__dorochester__formulasMC__resolvedVBSPairingRevGenAndVars'
+postProcStepBg = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l1tightChain__btagMedium__LepTrgFix__dorochester__formulasMC__gr4JetsSkim__topCRVBSPairingAndVars'
+#postProcStepSig = ''
 bkgDir = treeBaseDir + 'Apr2017_summer16_SingleLepton_hercules/' + postProcStepBg  + skim +"/" 
-sigDir = treeBaseDir + 'VBS_semileptonic_signal_summer16/'       + postProcStepSig + skim +"/" 
+#sigDir = treeBaseDir + 'VBS_semileptonic_signal_summer16/'       + postProcStepSig + skim +"/" 
 
 ################################################
 ############ NUMBER OF LEPTONS #################
@@ -171,20 +169,20 @@ samples['Wjets'] = { 'name' :
 ###########################################
 
 
-samples['VBS']  = { 'name' :  
-                getSampleFiles(sigDir,'WmTo2J_ZTo2L', True) +
-                getSampleFiles(sigDir,'WmToLNu_WmTo2J', True) +
-                getSampleFiles(sigDir,'WmToLNu_ZTo2J', True) +
-                getSampleFiles(sigDir,'WpTo2J_WmToLNu', True) +
-                getSampleFiles(sigDir,'WpTo2J_ZTo2L', True) +
-                getSampleFiles(sigDir,'WpToLNu_WmTo2J', True) +
-                getSampleFiles(sigDir,'WpToLNu_WpTo2J', True) +
-                getSampleFiles(sigDir,'WpToLNu_ZTo2J', True) +
-                getSampleFiles(sigDir,'ZTo2L_ZTo2J', True) ,
-        'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
-        'suppressNegative' :['all'],
-        'suppressNegativeNuisances' :['all'],
-}
+#samples['VBS']  = { 'name' :  
+#                getSampleFiles(sigDir,'WmTo2J_ZTo2L', True) +
+#                getSampleFiles(sigDir,'WmToLNu_WmTo2J', True) +
+#                getSampleFiles(sigDir,'WmToLNu_ZTo2J', True) +
+#                getSampleFiles(sigDir,'WpTo2J_WmToLNu', True) +
+#                getSampleFiles(sigDir,'WpTo2J_ZTo2L', True) +
+#                getSampleFiles(sigDir,'WpToLNu_WmTo2J', True) +
+#                getSampleFiles(sigDir,'WpToLNu_WpTo2J', True) +
+#                getSampleFiles(sigDir,'WpToLNu_ZTo2J', True) +
+#                getSampleFiles(sigDir,'ZTo2L_ZTo2J', True) ,
+#        'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+#        'suppressNegative' :['all'],
+#        'suppressNegativeNuisances' :['all'],
+# }
 
 
 # ###########################################
