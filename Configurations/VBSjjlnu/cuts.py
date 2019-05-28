@@ -20,7 +20,6 @@ cuts['muon']  = '(abs(std_vector_lepton_flavour[0]) == 13)'
 cuts["vbslike"] = "mjj_vbs >= 200 && mjj_vjet > 65 && mjj_vjet < 105 && deltaeta_vbs > 2.5 && metPfType1> 20"
 # to be added recoMET 
 
-
-### btag efficiencies cuts
+cuts["events"] = '1.'
 
 
