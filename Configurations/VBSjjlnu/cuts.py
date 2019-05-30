@@ -2,7 +2,11 @@
 
 #cuts = {}
   
-supercut = '1.'
+# supercut = '1.'
+supercut = 'std_vector_lepton_pt[0]>30'
+
+cuts["events"] = '1.'
+
 #cuts['wwlvjj_13TeV_e']  = 'std_vector_jet_pt[0]>25'
 #cuts['wwlvjj_13TeV_m']  = 'std_vector_jet_pt[0]>25'
 
@@ -20,6 +24,5 @@ cuts['muon']  = '(abs(std_vector_lepton_flavour[0]) == 13)'
 cuts["vbslike"] = "mjj_vbs >= 200 && mjj_vjet > 65 && mjj_vjet < 105 && deltaeta_vbs > 2.5 && metPfType1> 20"
 # to be added recoMET 
 
-cuts["events"] = '1.'
 
 
