@@ -11,12 +11,12 @@
 
 
 # cr top
-# groupPlot['VBS']  = {  
-#                  'nameHR' : 'VBS',
-#                  'isSignal' : 1,
-#                  'color': 415, #617,   
-#                  'samples'  : ['VBS']
-#               }
+groupPlot['VBS']  = {  
+                 'nameHR' : 'VBS',
+                 'isSignal' : 1,
+                 'color': 415, #617,   
+                 'samples'  : ['VBS']
+              }
 
 
 
@@ -164,12 +164,12 @@ groupPlot['Wjets']  = {
 # keys here must match keys in samples.py    
 #                    
 # cr top
-# plot['VBS']  = {  
-#                   'color': 415 ,    
-#                   'isSignal' : 1,
-#                   'isData'   : 0, 
-#                   'scale'    : 1.   ,
-#               }
+plot['VBS']  = {  
+                  'color': 415 ,    
+                  'isSignal' : 1,
+                  'isData'   : 0, 
+                  'scale'    : 1.   ,
+              }
 
 
 
