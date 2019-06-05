@@ -24,8 +24,8 @@ skim=''
 ##############################################
 
 treeBaseDir='/gwteray/users/govoni/OneLeptonSkims/'
-postProcStepBg  = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l1tightChain__btagMedium__LepTrgFix__dorochester__formulasMC__gr4JetsSkim__topCRVBSjetpairAndVars'
-postProcStepSig = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l1tightChain__btagTight__LepTrgFix__dorochester__formulasMC__gr4JetsSkim__topCRVBSjetpairAndVars'
+postProcStepBg  = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l1tightChain__bvetoTight__LepTrgFix__dorochester__formulasMCOld__formulasMC__gr4JetsSkim__VBSjetpairAndVars'
+postProcStepSig = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l1tightChain__bvetoTight__LepTrgFix__dorochester__formulasMC__formulasMC__gr4JetsSkim__JetPairingGenVBS__VBSjetpairAndVars'
 bkgDir = treeBaseDir + 'Apr2017_summer16_SingleLepton_hercules/' + postProcStepBg  + skim +"/" 
 sigDir = treeBaseDir + 'VBS_semileptonic_signal_summer16/'       + postProcStepSig + skim +"/" 
 
