@@ -1,6 +1,6 @@
 # example of configuration file
 
-tag = 'WWlvjj'
+tag = 'VBSjjlnu'
 
 base_output = './'
 # base_output = '/gwpool/users/dmapelli/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/VBSjjlnu/'
@@ -29,7 +29,7 @@ lumi = 35.867
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
 # outputDirPlots = '~/www/plotCR'
-outputDirPlots = base_output + 'plotWWlvjj'
+outputDirPlots = base_output + 'plot' + tag
 
 
 # used by mkDatacards to define output directory for datacards
