@@ -2,7 +2,7 @@
 treeName= 'Events'
 
 
-tag = 'VBF_2017_26Feb'
+tag = 'VBF_2017_10Jun'
 
 
 # used by mkShape to define output directory for root files
@@ -42,6 +42,6 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+nuisancesFile = 'nuisances_new.py'
 
 

@@ -30,7 +30,7 @@
 #include "TMVA/TMVAMultiClassGui.h"
 
 #include "mlj.C"
-
+//#include "qg_mac.C"
 
 using namespace TMVA;
 
@@ -81,6 +81,9 @@ void TMVAMulticlass( TString myMethodList = "" )
 
    // Create a new root output file.
    TString outfileName = "TMVAMulticlass.root";
+   TString condizione0 = "(Alt$(Jet_qgl[0],-1)*(CleanJet_jetIdx[0]==0) + Alt$(Jet_qgl[1],-1)*(CleanJet_jetIdx[0]==1) + Alt$(Jet_qgl[2],-1)*(CleanJet_jetIdx[0]==2) + Alt$(Jet_qgl[3],-1)*(CleanJet_jetIdx[0]==3) + Alt$(Jet_qgl[4],-1)*(CleanJet_jetIdx[0]==4) + Alt$(Jet_qgl[5],-1)*(CleanJet_jetIdx[0]==5) + Alt$(Jet_qgl[6],-1)*(CleanJet_jetIdx[0]==6) + Alt$(Jet_qgl[7],-1)*(CleanJet_jetIdx[0]==7) + Alt$(Jet_qgl[8],-1)*(CleanJet_jetIdx[0]==8) + (CleanJet_jetIdx[0]>8)*(-1))";
+   TString condizione1 = "(Alt$(Jet_qgl[0],-1)*(CleanJet_jetIdx[1]==0) + Alt$(Jet_qgl[1],-1)*(CleanJet_jetIdx[1]==1) + Alt$(Jet_qgl[2],-1)*(CleanJet_jetIdx[1]==2) + Alt$(Jet_qgl[3],-1)*(CleanJet_jetIdx[1]==3) + Alt$(Jet_qgl[4],-1)*(CleanJet_jetIdx[1]==4) + Alt$(Jet_qgl[5],-1)*(CleanJet_jetIdx[1]==5) + Alt$(Jet_qgl[6],-1)*(CleanJet_jetIdx[1]==6) + Alt$(Jet_qgl[7],-1)*(CleanJet_jetIdx[1]==7) + Alt$(Jet_qgl[8],-1)*(CleanJet_jetIdx[1]==8) + (CleanJet_jetIdx[1]>8)*(-1))";
+
    TFile* outputFile = TFile::Open( outfileName, "RECREATE" );
 
    TMVA::Factory *factory = new TMVA::Factory( "TMVAMulticlass", outputFile,
@@ -101,8 +104,13 @@ void TMVAMulticlass( TString myMethodList = "" )
    dataloader->AddVariable("mlj_12:=mlj(Lepton_pt[0], Lepton_eta[0], Lepton_phi[0], CleanJet_pt[1], CleanJet_eta[1], CleanJet_phi[1])",'F');
    dataloader->AddVariable("mlj_21:=mlj(Lepton_pt[1], Lepton_eta[1], Lepton_phi[1], CleanJet_pt[0], CleanJet_eta[0], CleanJet_phi[0])",'F');
    dataloader->AddVariable("mlj_22:=mlj(Lepton_pt[1], Lepton_eta[1], Lepton_phi[1], CleanJet_pt[1], CleanJet_eta[1], CleanJet_phi[1])",'F');
-   dataloader->AddVariable("qgl1:=Jet_qgl[CleanJet_jetIdx[0]]", 'F');
-   dataloader->AddVariable("qgl2:=Jet_qgl[CleanJet_jetIdx[1]]", 'F');
+   //dataloader->AddVariable("qgl1:=Jet_qgl[CleanJet_jetIdx[0]]", 'F');
+   //dataloader->AddVariable("qgl2:=Jet_qgl[CleanJet_jetIdx[1]]", 'F');
+   //dataloader->AddVariable("qgl1:=qg_mac(Jet_qgl, CleanJet_jetIdx[0])", 'F'); 
+   //dataloader->AddVariable("qgl2:=qg_mac(Jet_qgl, CleanJet_jetIdx[1])", 'F'); 
+   dataloader->AddVariable("qgl1:=("+condizione0+">=0)*("+condizione0+"+1)-1", 'F'); 
+   dataloader->AddVariable("qgl2:=("+condizione1+">=0)*("+condizione1+"+1)-1", 'F'); 
+
 
    TChain *VBF = new TChain("Events");
    VBF->Add("/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_nAOD_v1_Full2017v2/MCl1loose2017v2__MCCorr2017__btagPerEvent__l2loose__l2tightOR2017/nanoLatino_VBFHToWWTo2L2NuPowheg_M125_CP5Up__part0.root");
@@ -166,10 +174,10 @@ void TMVAMulticlass( TString myMethodList = "" )
 
 
    gROOT->cd( outfileName+TString(":/") );
-   dataloader->AddTree    (VBF,"VBF", 1., "mll>12 && Lepton_pt[0]>25 && Lepton_pt[1]>10 && Alt$(Lepton_pt[2],0)<10 && ptll > 30 && (Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13) && (abs(Lepton_pdgId[1]) == 13 || Lepton_pt[1]>13) && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) && (nCleanJet==2) && mjj>200 && MET_pt > 20 && (Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0)", "Training and Testing");
-   dataloader->AddTree    (Top,"Top", 5444./1792, "mll>12 && Lepton_pt[0]>25 && Lepton_pt[1]>10 && Alt$(Lepton_pt[2],0)<10 && ptll > 30 && (Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13) && (abs(Lepton_pdgId[1]) == 13 || Lepton_pt[1]>13) && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) && (nCleanJet==2) && mjj>200 && MET_pt > 20 && (Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0)", "Training and Testing");
-   dataloader->AddTree    (ggH,"ggH", 5444./1877, "mll>12 && Lepton_pt[0]>25 && Lepton_pt[1]>10 && Alt$(Lepton_pt[2],0)<10 && ptll > 30 && (Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13) && (abs(Lepton_pdgId[1]) == 13 || Lepton_pt[1]>13) && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) && (nCleanJet==2) && mjj>200 && MET_pt > 20 && (Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0)", "Training and Testing");
-   dataloader->AddTree    (WW,"WW", 5444./1276, "mll>12 && Lepton_pt[0]>25 && Lepton_pt[1]>10 && Alt$(Lepton_pt[2],0)<10 && ptll > 30 && (Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13) && (abs(Lepton_pdgId[1]) == 13 || Lepton_pt[1]>13) && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) && (nCleanJet==2) && mjj>200 && MET_pt > 20 && (Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0)", "Training and Testing");
+   dataloader->AddTree    (VBF,"VBF", 1., "mll>12 && Lepton_pt[0]>25 && Lepton_pt[1]>10 && Alt$(Lepton_pt[2],0)<10 && ptll > 30 && (Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13) && (abs(Lepton_pdgId[1]) == 13 || Lepton_pt[1]>13) && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) && Sum$(CleanJet_pt>30)==2 && mjj>200 && MET_pt > 20 && (Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0)", "Training and Testing");
+   dataloader->AddTree    (Top,"Top", 5444./1792, "mll>12 && Lepton_pt[0]>25 && Lepton_pt[1]>10 && Alt$(Lepton_pt[2],0)<10 && ptll > 30 && (Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13) && (abs(Lepton_pdgId[1]) == 13 || Lepton_pt[1]>13) && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) && Sum$(CleanJet_pt>30)==2 && mjj>200 && MET_pt > 20 && (Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0)", "Training and Testing");
+   dataloader->AddTree    (ggH,"ggH", 5444./1877, "mll>12 && Lepton_pt[0]>25 && Lepton_pt[1]>10 && Alt$(Lepton_pt[2],0)<10 && ptll > 30 && (Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13) && (abs(Lepton_pdgId[1]) == 13 || Lepton_pt[1]>13) && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) && Sum$(CleanJet_pt>30)==2 && mjj>200 && MET_pt > 20 && (Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0)", "Training and Testing");
+   dataloader->AddTree    (WW,"WW", 5444./1276, "mll>12 && Lepton_pt[0]>25 && Lepton_pt[1]>10 && Alt$(Lepton_pt[2],0)<10 && ptll > 30 && (Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13) && (abs(Lepton_pdgId[1]) == 13 || Lepton_pt[1]>13) && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) && Sum$(CleanJet_pt>30)==2 && mjj>200 && MET_pt > 20 && (Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0)", "Training and Testing");
 
    
 
