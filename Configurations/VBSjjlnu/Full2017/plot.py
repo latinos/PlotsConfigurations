@@ -7,6 +7,14 @@
 # Groups of samples to improve the plots.
 # If not defined, normal plots is used
 #
+groupPlot['VBS']  = {  
+                 'nameHR' : 'VBS',
+                 'isSignal' : 1,
+                 'color': 415, #617,   
+                 'samples'  : ['VBS']
+              } 
+
+            
 
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bar{t}',
@@ -22,12 +30,12 @@ groupPlot['WW']  = {
                   'samples'  : ['WW', 'ggWW', 'WWewk']
               }
 
-groupPlot['Fake']  = {  
-                  'nameHR' : 'Non-prompt',
-                  'isSignal' : 0,
-                  'color': 921,    # kGray + 1
-                  'samples'  : ['Fake_em', 'Fake_me']
-              }
+# groupPlot['Fake']  = {  
+#                   'nameHR' : 'Non-prompt',
+#                   'isSignal' : 0,
+#                   'color': 921,    # kGray + 1
+#                   'samples'  : ['Fake_em', 'Fake_me']
+#               }
 
 
 groupPlot['DY']  = {  
@@ -70,14 +78,20 @@ groupPlot['VgS']  = {
 
 
 
-groupPlot['Higgs']  = {  
-                  'nameHR' : 'Higgs',
-                  'isSignal' : 1,
-                  'color': 632, # kRed 
-		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
+# groupPlot['Higgs']  = {  
+#                   'nameHR' : 'Higgs',
+#                   'isSignal' : 1,
+#                   'color': 632, # kRed 
+# 		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
+#               }
+
+
+groupPlot['Wjets']  = {  
+                  'nameHR' : 'W+Jets',
+                  'isSignal' : 0,
+                  'color': 629,   # kYellow
+                  'samples'  : ['Wjets']
               }
-
-
 
 
 
@@ -107,20 +121,20 @@ plot['DY']  = {
               }
 
 
-plot['Fake_em']  = {  
-                  'color': 921,    # kGray + 1
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0                  
-              }
+# plot['Fake_em']  = {  
+#                   'color': 921,    # kGray + 1
+#                   'isSignal' : 0,
+#                   'isData'   : 0,
+#                   'scale'    : 1.0                  
+#               }
 
 
-plot['Fake_me']  = {  
-                  'color': 921,    # kGray + 1
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0                  
-              }
+# plot['Fake_me']  = {  
+#                   'color': 921,    # kGray + 1
+#                   'isSignal' : 0,
+#                   'isData'   : 0,
+#                   'scale'    : 1.0                  
+#               }
 
               
 plot['top'] = {   
@@ -195,6 +209,12 @@ plot['VVV']  = {
                   'scale'    : 1.0
                   }
 
+plot['Wjets']  = {
+                  'color': 629,
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.   ,
+              }
 # # Htautau
 
 # plot['H_htt'] = {
