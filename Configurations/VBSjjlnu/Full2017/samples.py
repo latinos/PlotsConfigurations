@@ -235,75 +235,75 @@ addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
 
 ############ WW ############
 
-samples['WW'] = {    'name'   :   getSampleFiles(directory2,'WWTo2L2Nu_PrivateNano',False,'nanoLatino_') ,
-                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto+'*nllW' ,
-                 }
+# samples['WW'] = {    'name'   :   getSampleFiles(directory2,'WWTo2L2Nu_PrivateNano',False,'nanoLatino_') ,
+#                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto+'*nllW' ,
+#                  }
 
-samples['WWewk'] = {   'name'  : getSampleFiles(directory2, 'WpWmJJ_EWK',False,'nanoLatino_'),
-                       'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto + '*(Sum$(abs(GenPart_pdgId)==6)==0)' #filter tops
-                   }
+# samples['WWewk'] = {   'name'  : getSampleFiles(directory2, 'WpWmJJ_EWK',False,'nanoLatino_'),
+#                        'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto + '*(Sum$(abs(GenPart_pdgId)==6)==0)' #filter tops
+#                    }
 
-#FIXME Check if k-factor is already taken into account in XSWeight
-samples['ggWW']  = {  'name'   :   getSampleFiles(directory2,'GluGluToWWToENEN',False,'nanoLatino_')
-                                 + getSampleFiles(directory2,'GluGluToWWToENMN',False,'nanoLatino_') 
-                                 + getSampleFiles(directory2,'GluGluToWWToENTN',False,'nanoLatino_')
-                                 + getSampleFiles(directory2,'GluGluToWWToMNEN',False,'nanoLatino_')
-                                 + getSampleFiles(directory2,'GluGluToWWToMNMN',False,'nanoLatino_')
-                                 + getSampleFiles(directory2,'GluGluToWWToMNTN',False,'nanoLatino_')
-                                 + getSampleFiles(directory2,'GluGluToWWToTNEN',False,'nanoLatino_')
-                                 + getSampleFiles(directory2,'GluGluToWWToTNMN',False,'nanoLatino_')
-                                 + getSampleFiles(directory2,'GluGluToWWToTNTN',False,'nanoLatino_'),
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto ,
-                   }
+# #FIXME Check if k-factor is already taken into account in XSWeight
+# samples['ggWW']  = {  'name'   :   getSampleFiles(directory2,'GluGluToWWToENEN',False,'nanoLatino_')
+#                                  + getSampleFiles(directory2,'GluGluToWWToENMN',False,'nanoLatino_') 
+#                                  + getSampleFiles(directory2,'GluGluToWWToENTN',False,'nanoLatino_')
+#                                  + getSampleFiles(directory2,'GluGluToWWToMNEN',False,'nanoLatino_')
+#                                  + getSampleFiles(directory2,'GluGluToWWToMNMN',False,'nanoLatino_')
+#                                  + getSampleFiles(directory2,'GluGluToWWToMNTN',False,'nanoLatino_')
+#                                  + getSampleFiles(directory2,'GluGluToWWToTNEN',False,'nanoLatino_')
+#                                  + getSampleFiles(directory2,'GluGluToWWToTNMN',False,'nanoLatino_')
+#                                  + getSampleFiles(directory2,'GluGluToWWToTNTN',False,'nanoLatino_'),
+#                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto ,
+#                    }
 
 
 ############ Vg ############
 
-samples['Vg']  = {  'name'   :   getSampleFiles(directory2,'Wg_MADGRAPHMLM',False,'nanoLatino_')
-                               + getSampleFiles(directory2,'Zg',False,'nanoLatino_'),
-                    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto+'*(!(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 ))',
-                    'FilesPerJob': 5,
-                  }
+# samples['Vg']  = {  'name'   :   getSampleFiles(directory2,'Wg_MADGRAPHMLM',False,'nanoLatino_')
+#                                + getSampleFiles(directory2,'Zg',False,'nanoLatino_'),
+#                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto+'*(!(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 ))',
+#                     'FilesPerJob': 5,
+#                   }
 
 
 ############ VgS ############
 
-#FIXME Add normalization k-factor
-samples['VgS']  =  {  'name'   :   getSampleFiles(directory2,'Wg_MADGRAPHMLM',False,'nanoLatino_')
-                                 + getSampleFiles(directory2,'Zg',False,'nanoLatino_')
-                                 + getSampleFiles(directory2,'WZTo3LNu_mllmin01',False,'nanoLatino_'),
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto,
-                      'FilesPerJob' : 5 ,
-                   }
-addSampleWeight(samples,'VgS','Wg_MADGRAPHMLM',    '(Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 0.1)')
-addSampleWeight(samples,'VgS','Zg',                '(Gen_ZGstar_mass >0)')
-addSampleWeight(samples,'VgS','WZTo3LNu_mllmin01', '(Gen_ZGstar_mass>=0.1 || Gen_ZGstar_mass<0)')
+# #FIXME Add normalization k-factor
+# samples['VgS']  =  {  'name'   :   getSampleFiles(directory2,'Wg_MADGRAPHMLM',False,'nanoLatino_')
+#                                  + getSampleFiles(directory2,'Zg',False,'nanoLatino_')
+#                                  + getSampleFiles(directory2,'WZTo3LNu_mllmin01',False,'nanoLatino_'),
+#                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto,
+#                       'FilesPerJob' : 5 ,
+#                    }
+# addSampleWeight(samples,'VgS','Wg_MADGRAPHMLM',    '(Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 0.1)')
+# addSampleWeight(samples,'VgS','Zg',                '(Gen_ZGstar_mass >0)')
+# addSampleWeight(samples,'VgS','WZTo3LNu_mllmin01', '(Gen_ZGstar_mass>=0.1 || Gen_ZGstar_mass<0)')
 
 ############ VZ ############
 
 #FIXME Add normalization k-factor
-samples['VZ']  = {  'name'   :   getSampleFiles(directory2,'ZZTo2L2Nu',False,'nanoLatino_')
-                               + getSampleFiles(directory2,'ZZTo2L2Q',False,'nanoLatino_')
-                               + getSampleFiles(directory2,'ZZTo4L',False,'nanoLatino_')
-                               + getSampleFiles(directory2,'WZTo2L2Q',False,'nanoLatino_'),
-                    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto ,
-                    'FilesPerJob' : 5,
-                 }
+# samples['VZ']  = {  'name'   :   getSampleFiles(directory2,'ZZTo2L2Nu',False,'nanoLatino_')
+#                                + getSampleFiles(directory2,'ZZTo2L2Q',False,'nanoLatino_')
+#                                + getSampleFiles(directory2,'ZZTo4L',False,'nanoLatino_')
+#                                + getSampleFiles(directory2,'WZTo2L2Q',False,'nanoLatino_'),
+#                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto ,
+#                     'FilesPerJob' : 5,
+#                  }
 
 
 ############ VVV ############
 
-samples['VVV']  = {  'name'   :   getSampleFiles(directory,'ZZZ',False,'nanoLatino_')
-                                + getSampleFiles(directory,'WZZ',False,'nanoLatino_')
-                                + getSampleFiles(directory,'WWZ',False,'nanoLatino_')
-                                + getSampleFiles(directory,'WWW',False,'nanoLatino_'),
-                                #+ getSampleFiles(directory,'WWG',False,'nanoLatino_'), #should this be included? or is it already taken into account in the WW sample?
-                    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                  }
+# samples['VVV']  = {  'name'   :   getSampleFiles(directory,'ZZZ',False,'nanoLatino_')
+#                                 + getSampleFiles(directory,'WZZ',False,'nanoLatino_')
+#                                 + getSampleFiles(directory,'WWZ',False,'nanoLatino_')
+#                                 + getSampleFiles(directory,'WWW',False,'nanoLatino_'),
+#                                 #+ getSampleFiles(directory,'WWG',False,'nanoLatino_'), #should this be included? or is it already taken into account in the WW sample?
+#                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+#                   }
 
 
 samples['Wjets'] = { 'name' :   
-                                getSampleFiles(directory, 'WJetsToLNu_HT100_200', True, 'nanoLatino_')\
+          getSampleFiles(directory, 'WJetsToLNu_HT100_200', True, 'nanoLatino_')\
 				+ getSampleFiles(directory, 'WJetsToLNu_HT200_400', True, 'nanoLatino_')\
 				+ getSampleFiles(directory, 'WJetsToLNu_HT400_600', True, 'nanoLatino_')\
 				+ getSampleFiles(directory, 'WJetsToLNu_HT600_800', True, 'nanoLatino_')\
@@ -322,15 +322,15 @@ samples['Wjets'] = { 'name' :
 
 #
 samples['VBS']  = { 'name' :  
-               getSampleFiles(directory_signal,'WmTo2J_ZTo2L', True, 'nanoLatino_') +
+               getSampleFiles(directory_signal,'WmTo2J_ZTo2L',   True, 'nanoLatino_') +
                getSampleFiles(directory_signal,'WmToLNu_WmTo2J', True, 'nanoLatino_') +
-               getSampleFiles(directory_signal,'WmToLNu_ZTo2J', True, 'nanoLatino_') +
+               getSampleFiles(directory_signal,'WmToLNu_ZTo2J',  True, 'nanoLatino_') +
                getSampleFiles(directory_signal,'WpTo2J_WmToLNu', True, 'nanoLatino_') +
-               getSampleFiles(directory_signal,'WpTo2J_ZTo2L', True, 'nanoLatino_') +
+               getSampleFiles(directory_signal,'WpTo2J_ZTo2L',   True, 'nanoLatino_') +
                getSampleFiles(directory_signal,'WpToLNu_WmTo2J', True, 'nanoLatino_') +
                getSampleFiles(directory_signal,'WpToLNu_WpTo2J', True, 'nanoLatino_') +
-               getSampleFiles(directory_signal,'WpToLNu_ZTo2J', True, 'nanoLatino_') +
-               getSampleFiles(directory_signal,'ZTo2L_ZTo2J', True, 'nanoLatino_') ,
+               getSampleFiles(directory_signal,'WpToLNu_ZTo2J',  True, 'nanoLatino_') +
+               getSampleFiles(directory_signal,'ZTo2L_ZTo2J',    True, 'nanoLatino_') ,
        'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
        'suppressNegative' :['all'],
        'suppressNegativeNuisances' :['all'],
