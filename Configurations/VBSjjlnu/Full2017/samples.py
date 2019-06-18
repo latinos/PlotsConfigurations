@@ -55,10 +55,10 @@ SFweight1l =       'puWeight*\
                    TriggerEffWeight_1l*\
                    Lepton_RecoSF[0]*\
                    EMTFbug_veto'
-SFweight      = SFweight1l' *'+LepWPweight_1l+'*'+LepWPCut_1l+'*PrefireWeight'
+SFweight      = SFweight1l+'*'+LepWPWeight_1l+'*'+LepWPCut_1l+'*PrefireWeight'
 
                    
-GenLepMatch_1l   = 'Lepton_genmatched[0]'
+GenLepMatch   = 'Lepton_genmatched[0]'
 
 
 
@@ -303,13 +303,13 @@ samples['VVV']  = {  'name'   :   getSampleFiles(directory,'ZZZ',False,'nanoLati
 
 
 samples['Wjets'] = { 'name' :   
-                                getSampleFiles(bkgDir, 'WJetsToLNu_HT100_200', True, 'nanoLatino_')\
-				+ getSampleFiles(bkgDir, 'WJetsToLNu_HT200_400', True, 'nanoLatino_')\
-				+ getSampleFiles(bkgDir, 'WJetsToLNu_HT400_600', True, 'nanoLatino_')\
-				+ getSampleFiles(bkgDir, 'WJetsToLNu_HT600_800', True, 'nanoLatino_')\
-				+ getSampleFiles(bkgDir, 'WJetsToLNu_HT800_1200_ext1', True, 'nanoLatino_')\
-				+ getSampleFiles(bkgDir, 'WJetsToLNu_HT1200_2500', True, 'nanoLatino_')\
-				+ getSampleFiles(bkgDir, 'WJetsToLNu_HT2500_inf', True, 'nanoLatino_'),
+                                getSampleFiles(directory, 'WJetsToLNu_HT100_200', True, 'nanoLatino_')\
+				+ getSampleFiles(directory, 'WJetsToLNu_HT200_400', True, 'nanoLatino_')\
+				+ getSampleFiles(directory, 'WJetsToLNu_HT400_600', True, 'nanoLatino_')\
+				+ getSampleFiles(directory, 'WJetsToLNu_HT600_800', True, 'nanoLatino_')\
+				+ getSampleFiles(directory, 'WJetsToLNu_HT800_1200', True, 'nanoLatino_')\
+				+ getSampleFiles(directory, 'WJetsToLNu_HT1200_2500', True, 'nanoLatino_')\
+				+ getSampleFiles(directory, 'WJetsToLNu_HT2500_inf', True, 'nanoLatino_'),
 				'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
 				'FilesPerJob' : 3,
 		   }
