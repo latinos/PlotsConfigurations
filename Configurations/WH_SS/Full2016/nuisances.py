@@ -21,7 +21,8 @@ nuisances['lumi']  = {
                    'VgS'      : '1.025',
                    'WZgS_L'   : '1.025',
                    'WZgS_H'   : '1.025',
-                   'VZ'       : '1.025',
+                   'WZ'       : '1.025',
+                   'ZZ'       : '1.025',
                    'VVV'      : '1.025',
                    'ggH_hww'  : '1.025',
                    'qqH_hww'  : '1.025',
@@ -944,7 +945,22 @@ nuisances['lumi']  = {
 #                   'WZgS_H' : '1.16',
 #                   },
 #                }
-# 
+
+nuisances['WZnorm_whss']  = {
+               'name'  : 'CMS_hww_WZnorm_whss', 
+               'samples'  : {
+                   'WZ' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                 'hww2l2v_13TeV_of2j_WH_SS_ee',
+                 'hww2l2v_13TeV_of2j_WH_SS_uu',
+                 'hww2l2v_13TeV_of2j_WH_SS_eu',
+                 'hww2l2v_13TeV_of2j_WH_SS_ue',
+                 'hww2l2v_13TeV_WH_SS_WZ_CR',
+                ]
+              }
+ 
 #nuisances['DYttnormvbf']  = {
 #               'name'  : 'CMS_hww_DYttnormvbf', 
 #               'samples'  : {
@@ -1017,7 +1033,7 @@ nuisances['lumi']  = {
 
 
 
-## Use the following if you want to apply the automatic combine MC stat nuisances.
+### Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat']  = {
               'type'  : 'auto',
               'maxPoiss'  : '10',

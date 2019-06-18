@@ -230,14 +230,14 @@ plot['HH']  = {
 
 
 #DATA
-plot['DATA']  = { 
-                  'nameHR' : 'Data',
-                  'color': 1 ,  
-                  'isSignal' : 0,
-                  'isData'   : 1 ,
-                  'isBlind'  : 0,
-		  'scale' : 1.
-                }
+#plot['DATA']  = { 
+#                  'nameHR' : 'Data',
+#                  'color': 1 ,  
+#                  'isSignal' : 0,
+#                  'isData'   : 1 ,
+#                  'isBlind'  : 0,
+#		  'scale' : 1.
+#                }
 
 
 

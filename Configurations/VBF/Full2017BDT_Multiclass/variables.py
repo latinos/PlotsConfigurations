@@ -3,6 +3,8 @@
 #variables = {}
     
 #'fold' : # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+
+
 '''
 variables['mll_optim']  = { 'name': 'mll',            #   variable name
                             'range' : ([12,30,50,70,90,110,150,200],),    #   variable range
@@ -11,36 +13,42 @@ variables['mll_optim']  = { 'name': 'mll',            #   variable name
                             'doWeight' : 1,
                             'binX'     : 1,
                             'binY'     : 7
+
 }
+'''
+
 variables['class0'] = {
      'name': 'hww_VBF_MYmvaBDTG(Entry$,0)',
      'range' : (20,0.,1.),
      'xaxis' : 'MVA discriminant VBF',
      'fold' : 3,
-     'linesToAdd' : ['.L /afs/cern.ch/user/m/mlizzo/work/new_framework_2017/CMSSW_9_4_9/src/PlotsConfigurations/Configurations/VBF/Full2017BDT_equal_training_events/mymacros/hww_VBF_MYmvaBDTG.C+']
+     'linesToAdd' : ['.L /afs/cern.ch/work/r/rceccare/DAS/CMSSW_9_4_12/src/PlotsConfigurations/Configurations/VBF/Full2017BDT_Multiclass/hww_VBF_MYmvaBDTG.C+']
 }
+
+
+'''
 variables['class1'] = {
      'name': 'hww_VBF_MYmvaBDTG(Entry$,1)',
      'range' : (20,0.,1.),
      'xaxis' : 'MVA discriminant top',
      'fold' : 3,
-     'linesToAdd' : ['.L /afs/cern.ch/user/m/mlizzo/work/new_framework_2017/CMSSW_9_4_9/src/PlotsConfigurations/Configurations/VBF/Full2017BDT_equal_training_events/mymacros/hww_VBF_MYmvaBDTG.C+']
+     'linesToAdd' : ['.L /afs/cern.ch/work/r/rceccare/DAS/CMSSW_9_4_12/src/PlotsConfigurations/Configurations/VBF/Full2017BDT_Multiclass/hww_VBF_MYmvaBDTG.C+']
 }
 variables['class2'] = {
      'name': 'hww_VBF_MYmvaBDTG(Entry$,2)',
      'range' : (20,0.,1.),
      'xaxis' : 'MVA discriminant ggH',
      'fold' : 3,
-     'linesToAdd' : ['.L /afs/cern.ch/user/m/mlizzo/work/new_framework_2017/CMSSW_9_4_9/src/PlotsConfigurations/Configurations/VBF/Full2017BDT_equal_training_events/mymacros/hww_VBF_MYmvaBDTG.C+']
+     'linesToAdd' : ['.L /afs/cern.ch/work/r/rceccare/DAS/CMSSW_9_4_12/src/PlotsConfigurations/Configurations/VBF/Full2017BDT_Multiclass/hww_VBF_MYmvaBDTG.C+']
 }
 variables['class3'] = {
      'name': 'hww_VBF_MYmvaBDTG(Entry$,3)',
      'range' : (20,0.,1.),
      'xaxis' : 'MVA discriminant WW',
      'fold' : 3,
-     'linesToAdd' : ['.L /afs/cern.ch/user/m/mlizzo/work/new_framework_2017/CMSSW_9_4_9/src/PlotsConfigurations/Configurations/VBF/Full2017BDT_equal_training_events/mymacros/hww_VBF_MYmvaBDTG.C+']
+     'linesToAdd' : ['.L /afs/cern.ch/work/r/rceccare/DAS/CMSSW_9_4_12/src/PlotsConfigurations/Configurations/VBF/Full2017BDT_Multiclass/hww_VBF_MYmvaBDTG.C+']
 }
-'''
+
 variables['class013_6bin'] = {
      'name': 'hww_VBF_MYmvaBDTG(Entry$,3):(hww_VBF_MYmvaBDTG(Entry$,0)*(hww_VBF_MYmvaBDTG(Entry$,1)<0.1333)+(hww_VBF_MYmvaBDTG(Entry$,0)+1.0)*(hww_VBF_MYmvaBDTG(Entry$,1)<0.2667)*(hww_VBF_MYmvaBDTG(Entry$,1)>=0.1333)+(hww_VBF_MYmvaBDTG(Entry$,0)+2.0)*(hww_VBF_MYmvaBDTG(Entry$,1)<0.4)*(hww_VBF_MYmvaBDTG(Entry$,1)>=0.2667)+(hww_VBF_MYmvaBDTG(Entry$,0)+3.0)*(hww_VBF_MYmvaBDTG(Entry$,1)<0.5333)*(hww_VBF_MYmvaBDTG(Entry$,1)>=0.4)+(hww_VBF_MYmvaBDTG(Entry$,0)+4.0)*(hww_VBF_MYmvaBDTG(Entry$,1)<0.6667)*(hww_VBF_MYmvaBDTG(Entry$,1)>=0.5333)+(hww_VBF_MYmvaBDTG(Entry$,0)+5.0)*(hww_VBF_MYmvaBDTG(Entry$,1)>=0.6667))',
      'range' : (36,0.,6.,6,0.,0.7),
@@ -48,8 +56,10 @@ variables['class013_6bin'] = {
      'binX'  : 36,
      'binY'  : 6,
      'fold' : 3,
-     'linesToAdd' : ['.L /afs/cern.ch/user/m/mlizzo/work/new_framework_2017/CMSSW_9_4_9/src/PlotsConfigurations/Configurations/VBF/Full2017BDT_equal_training_events/mymacros/hww_VBF_MYmvaBDTG.C+']
+     'linesToAdd' : ['.L /afs/cern.ch/work/r/rceccare/DAS/CMSSW_9_4_12/src/PlotsConfigurations/Configurations/VBF/Full2017BDT_Multiclass/hww_VBF_MYmvaBDTG.C+']
 }
+'''
+'''
 variables['class012_6bin'] = {
      'name': 'hww_VBF_MYmvaBDTG(Entry$,2):(hww_VBF_MYmvaBDTG(Entry$,0)*(hww_VBF_MYmvaBDTG(Entry$,1)<0.1333)+(hww_VBF_MYmvaBDTG(Entry$,0)+1.0)*(hww_VBF_MYmvaBDTG(Entry$,1)<0.2667)*(hww_VBF_MYmvaBDTG(Entry$,1)>=0.1333)+(hww_VBF_MYmvaBDTG(Entry$,0)+2.0)*(hww_VBF_MYmvaBDTG(Entry$,1)<0.4)*(hww_VBF_MYmvaBDTG(Entry$,1)>=0.2667)+(hww_VBF_MYmvaBDTG(Entry$,0)+3.0)*(hww_VBF_MYmvaBDTG(Entry$,1)<0.5333)*(hww_VBF_MYmvaBDTG(Entry$,1)>=0.4)+(hww_VBF_MYmvaBDTG(Entry$,0)+4.0)*(hww_VBF_MYmvaBDTG(Entry$,1)<0.6667)*(hww_VBF_MYmvaBDTG(Entry$,1)>=0.5333)+(hww_VBF_MYmvaBDTG(Entry$,0)+5.0)*(hww_VBF_MYmvaBDTG(Entry$,1)>=0.6667))',
      'range' : (36,0.,6.,6,0.,0.8),
@@ -57,7 +67,7 @@ variables['class012_6bin'] = {
      'binX'  : 36,
      'binY'  : 6,
      'fold' : 3,
-     'linesToAdd' : ['.L /afs/cern.ch/user/m/mlizzo/work/new_framework_2017/CMSSW_9_4_9/src/PlotsConfigurations/Configurations/VBF/Full2017BDT_equal_training_events/mymacros/hww_VBF_MYmvaBDTG.C+']
+     'linesToAdd' : ['.L /afs/cern.ch/work/r/rceccare/DAS/CMSSW_9_4_12/src/PlotsConfigurations/Configurations/VBF/Full2017BDT_Multiclass/hww_VBF_MYmvaBDTG.C+']
 }
 variables['class023_6bin'] = {
      'name': 'hww_VBF_MYmvaBDTG(Entry$,3):(hww_VBF_MYmvaBDTG(Entry$,0)*(hww_VBF_MYmvaBDTG(Entry$,2)<0.1333)+(hww_VBF_MYmvaBDTG(Entry$,0)+1.0)*(hww_VBF_MYmvaBDTG(Entry$,2)<0.2667)*(hww_VBF_MYmvaBDTG(Entry$,2)>=0.1333)+(hww_VBF_MYmvaBDTG(Entry$,0)+2.0)*(hww_VBF_MYmvaBDTG(Entry$,2)<0.4)*(hww_VBF_MYmvaBDTG(Entry$,2)>=0.2667)+(hww_VBF_MYmvaBDTG(Entry$,0)+3.0)*(hww_VBF_MYmvaBDTG(Entry$,2)<0.5333)*(hww_VBF_MYmvaBDTG(Entry$,2)>=0.4)+(hww_VBF_MYmvaBDTG(Entry$,0)+4.0)*(hww_VBF_MYmvaBDTG(Entry$,2)<0.6667)*(hww_VBF_MYmvaBDTG(Entry$,2)>=0.5333)+(hww_VBF_MYmvaBDTG(Entry$,0)+5.0)*(hww_VBF_MYmvaBDTG(Entry$,2)>=0.6667))',
@@ -68,7 +78,7 @@ variables['class023_6bin'] = {
      'fold' : 3,
      'linesToAdd' : ['.L /afs/cern.ch/user/m/mlizzo/work/new_framework_2017/CMSSW_9_4_9/src/PlotsConfigurations/Configurations/VBF/Full2017BDT_equal_training_events/mymacros/hww_VBF_MYmvaBDTG.C+']
 }
-'''
+
 variables['class013_5bin'] = {
      'name': 'hww_VBF_MYmvaBDTG(Entry$,3):(hww_VBF_MYmvaBDTG(Entry$,0)*(hww_VBF_MYmvaBDTG(Entry$,1)<0.1)+(hww_VBF_MYmvaBDTG(Entry$,0)+0.7)*(hww_VBF_MYmvaBDTG(Entry$,1)<0.2)*(hww_VBF_MYmvaBDTG(Entry$,1)>=0.1)+(hww_VBF_MYmvaBDTG(Entry$,0)+1.4)*(hww_VBF_MYmvaBDTG(Entry$,1)<0.3)*(hww_VBF_MYmvaBDTG(Entry$,1)>=0.2)+(hww_VBF_MYmvaBDTG(Entry$,0)+2.1)*(hww_VBF_MYmvaBDTG(Entry$,1)<0.4)*(hww_VBF_MYmvaBDTG(Entry$,1)>=0.3)+(hww_VBF_MYmvaBDTG(Entry$,0)+2.8)*(hww_VBF_MYmvaBDTG(Entry$,1)>=0.4))',
      'range' : (25,0.,3.5,5,0.,0.5),
@@ -562,5 +572,4 @@ variables['events']  = {   'name': '1',
 ##                        'xaxis' : 'p_{T} 2nd jet',
 ##                        'fold'  : 0                         
 ##                        }
-
 

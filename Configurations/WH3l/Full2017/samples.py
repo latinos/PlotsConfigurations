@@ -79,6 +79,9 @@ LepWPweight     = 'LepSF3l__ele_'+eleWP+'__mu_'+muWP+'_HWWW'
 #... And the fakeW
 fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_3l'
 
+LepWPweight ='1'
+fakeW = '1'
+
 
 SFweight += '*'+LepWPCut+'*'+LepWPweight
 
@@ -105,41 +108,41 @@ DataSets = ['MuonEG','DoubleMuon','SingleMuon','DoubleEG','SingleElectron']
 
 
 DataTrig = {
-            'MuonEG'         : ' Trigger_ElMu' ,
+            'MuonEG'         : 'Trigger_ElMu' ,
             'DoubleMuon'     : '!Trigger_ElMu &&  Trigger_dblMu' ,
             'SingleMuon'     : '!Trigger_ElMu && !Trigger_dblMu &&  Trigger_sngMu' ,
             'DoubleEG'       : '!Trigger_ElMu && !Trigger_dblMu && !Trigger_sngMu &&  Trigger_dblEl' ,
             'SingleElectron' : '!Trigger_ElMu && !Trigger_dblMu && !Trigger_sngMu && !Trigger_dblEl &&  Trigger_sngEl' ,
            }
 
-samples['DATA']  = {   'name': [] ,
-                       'weight' : 'EMTFbug_veto'+'*'+METFilter_DATA+'*'+LepWPCut,
-                       'weights' : [],
-                       'isData': ['all'],
-                       'FilesPerJob' : 5 ,
-                   }
+# samples['DATA']  = {   'name': [] ,
+                       # 'weight' : 'EMTFbug_veto'+'*'+METFilter_DATA+'*'+LepWPCut,
+                       # 'weights' : [],
+                       # 'isData': ['all'],
+                       # 'FilesPerJob' : 10 ,
+                   # }
 
-samples['Fake']  = {   'name': [] ,
-                       'weight' : fakeW+'*'+'EMTFbug_veto'+'*'+METFilter_DATA,
-                       'weights' : [],
-                       'isData': ['all'],
-                       'FilesPerJob' : 5 ,
-                   }
+# samples['Fake']  = {   'name': [] ,
+                       # 'weight' : fakeW+'*'+'EMTFbug_veto'+'*'+METFilter_DATA,
+                       # 'weights' : [],
+                       # 'isData': ['all'],
+                       # 'FilesPerJob' : 5 ,
+                   # }
 
-for Run in DataRun :
-    directoryDATARun = directoryDATA.format(Run[0])
-    directoryFAKERun = directoryFAKE.format(Run[0])
-    for DataSet in DataSets :
-        FileTargetDATA = getSampleFilesNano(directoryDATARun,DataSet+'_'+Run[1],absPath=True)
-        FileTargetFAKE = getSampleFilesNano(directoryFAKERun,DataSet+'_'+Run[1],absPath=True)
-        for iFile in FileTargetDATA:
-            samples['DATA']['name']   .append(iFile)
-            samples['DATA']['weights'].append(DataTrig[DataSet])
-            addSampleWeightNano(samples,'DATA',DataSet+'_'+Run[1],DataTrig[DataSet])
-        for iFile in FileTargetFAKE:
-            samples['Fake']['name']   .append(iFile)
-            samples['Fake']['weights'].append(DataTrig[DataSet])
-            addSampleWeightNano(samples,'Fake',DataSet+'_'+Run[1],DataTrig[DataSet])
+# for Run in DataRun :
+    # directoryDATARun = directoryDATA.format(Run[0])
+    # directoryFAKERun = directoryFAKE.format(Run[0])
+    # for DataSet in DataSets :
+        # FileTargetDATA = getSampleFilesNano(directoryDATARun,DataSet+'_'+Run[1],absPath=True)
+        # FileTargetFAKE = getSampleFilesNano(directoryFAKERun,DataSet+'_'+Run[1],absPath=True)
+        # for iFile in FileTargetDATA:
+            # samples['DATA']['name']   .append(iFile)
+            # samples['DATA']['weights'].append(DataTrig[DataSet])
+            # addSampleWeightNano(samples,'DATA',DataSet+'_'+Run[1],DataTrig[DataSet])
+        # for iFile in FileTargetFAKE:
+            # samples['Fake']['name']   .append(iFile)
+            # samples['Fake']['weights'].append(DataTrig[DataSet])
+            # addSampleWeightNano(samples,'Fake',DataSet+'_'+Run[1],DataTrig[DataSet])
 
 ###########################################
 #############  BACKGROUNDS  ###############
@@ -150,14 +153,15 @@ samples['WW'] = {
     'name'   : getSampleFilesNano(directoryMC,'WWTo2L2Nu'),
     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch2l+'*'+METFilter_MC, #+ '*nllW' ,
     'suppressNegativeNuisances' :['all'],
+   'FilesPerJob' : 1,
 }
 
-wzSF = '1.108'
-samples['WZ'] = {
-    'name': getSampleFilesNano(directoryMC,'WZTo3LNu'),
-    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC+'*'+wzSF,
-    'suppressNegativeNuisances' :['all'],
-}
+# wzSF = '1.108'
+# samples['WZ'] = {
+    # 'name': getSampleFilesNano(directoryMC,'WZTo3LNu'),
+    # 'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC+'*'+wzSF,
+    # 'suppressNegativeNuisances' :['all'],
+# }
 
 samples['ZZ'] = {
     'name': getSampleFilesNano(directoryMC,'ZZTo4L'),
@@ -190,6 +194,7 @@ samples['VVV'] = {
            +getSampleFilesNano(directoryMC,'ZZZ'),
     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
     'suppressNegativeNuisances' :['all'],
+   'FilesPerJob' : 1,
 }
 
 # Not seen in nanoLatino
@@ -206,25 +211,26 @@ samples['VVV'] = {
 ####################################
 
 # Not ready in nanoLatino
-# samples['WH_htt']  = {
-#     'name': getSampleFilesNano(directoryMC,'HWminusJ_HToTauTau_M125')
-#            +getSampleFilesNano(directoryMC,'HWplusJ_HToTauTau_M125')
-#            +getSampleFilesNano(directoryMC,'HZJ_HToTauTau_M125'),
-#     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
-#     'suppressNegativeNuisances' :['all'],
-# }
+samples['WH_htt']  = {
+    'name': getSampleFilesNano(directoryMC,'HWminusJ_HToTauTau_M125')
+           +getSampleFilesNano(directoryMC,'HWplusJ_HToTauTau_M125')
+           +getSampleFilesNano(directoryMC,'HZJ_HToTauTau_M125'),
+    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
+    'suppressNegativeNuisances' :['all'],
+   'FilesPerJob' : 1,
+}
 
 # samples['ZH_hww']  = {
-#     'name': getSampleFilesNano(directoryMC,'ggZH_HToWW_M125')
-#            +getSampleFilesNano(directoryMC,'HZJ_HToWW_M125'),
-#     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
-#     'suppressNegativeNuisances' :['all'],
+    # 'name': getSampleFilesNano(directoryMC,'ggZH_HToWW_M125')
+           # +getSampleFilesNano(directoryMC,'HZJ_HToWW_M125'),
+    # 'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
+    # 'suppressNegativeNuisances' :['all'],
 # }
 
-# samples['WH_hww']  = {
-#     'name': getSampleFilesNano(directoryMC,'HWminusJ_HToWW_M125')
-#            +getSampleFilesNano(directoryMC,'HWplusJ_HToWW_M125'),
-#     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
-#     'suppressNegativeNuisances' :['all'],
-# }
+samples['WH_hww']  = {
+    'name': getSampleFilesNano(directoryMC,'HWminusJ_HToWW_M125')
+           +getSampleFilesNano(directoryMC,'HWplusJ_HToWW_M125'),
+    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
+    'suppressNegativeNuisances' :['all'],
+}
 
