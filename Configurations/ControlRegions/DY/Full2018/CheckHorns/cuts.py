@@ -118,13 +118,25 @@ cuts['Zee_hornhighpt']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*11)   \
 cuts['Zmm_hornlowptfixed']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -13*13)   \
                  && mll>60 && mll<120 \
                  && abs(CleanJet_eta[0]) <= 3 && abs(CleanJet_eta[0]) >= 2.5 \
-                 && CleanJet_pt[0] < 30 && Jet_neHEF[CleanJet_jetIdx[0]] < 0.6\
+                 && CleanJet_pt[0] < 30 && Jet_neHEF[CleanJet_jetIdx[0]] < 0.2\
                  '
 
 cuts['Zee_hornlowptfixed']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -13*13)   \
                  && mll>60 && mll<120 \
                  && abs(CleanJet_eta[0]) <= 3 && abs(CleanJet_eta[0]) >= 2.5 \
-                 && CleanJet_pt[0] < 30 && Jet_neHEF[CleanJet_jetIdx[0]] < 0.6 \
+                 && CleanJet_pt[0] < 30 && Jet_neHEF[CleanJet_jetIdx[0]] < 0.2 \
+                 '
+
+cuts['Zmm_hornhighptfixed']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -13*13)   \
+                 && mll>60 && mll<120 \
+                 && abs(CleanJet_eta[0]) <= 3 && abs(CleanJet_eta[0]) >= 2.5 \
+                 && CleanJet_pt[0] > 30 && Jet_neHEF[CleanJet_jetIdx[0]] < 0.2\
+                 '
+
+cuts['Zee_hornhighptfixed']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -13*13)   \
+                 && mll>60 && mll<120 \
+                 && abs(CleanJet_eta[0]) <= 3 && abs(CleanJet_eta[0]) >= 2.5 \
+                 && CleanJet_pt[0] > 30 && Jet_neHEF[CleanJet_jetIdx[0]] < 0.2 \
                  '
 
 #####################
@@ -133,11 +145,11 @@ cuts['Zee_hornlowptfixed']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -13*13)   \
 cuts['Zee_fixed']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*11)   \
                  && mll>60 && mll<120 \
                  && (abs(CleanJet_eta[0]) > 3 || abs(CleanJet_eta[0]) < 2.5 || \
-                   CleanJet_pt[0] > 30 || Jet_neHEF[CleanJet_jetIdx[0]] < 0.6)\
+                   CleanJet_pt[0] > 30 || Jet_neHEF[CleanJet_jetIdx[0]] < 0.2)\
                 '
 
 cuts['Zmm_fixed']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -13*13)   \
                  && mll>60 && mll<120 \
                  && (abs(CleanJet_eta[0]) > 3 || abs(CleanJet_eta[0]) < 2.5 || \
-                   CleanJet_pt[0] > 30 || Jet_neHEF[CleanJet_jetIdx[0]] < 0.6)\
+                   CleanJet_pt[0] > 30 || Jet_neHEF[CleanJet_jetIdx[0]] < 0.2)\
                 '
