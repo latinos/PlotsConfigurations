@@ -217,13 +217,26 @@ samples['VZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo2L2Nu',False,'nan
 ############ VVV ############
 
 samples['VVV']  = {  'name'   :   getSampleFiles(directory,'ZZZ',False,'nanoLatino_')
-                                + getSampleFiles(directory,'WZZ',False,'nanoLatino_')
-                                + getSampleFiles(directory,'WWZ',False,'nanoLatino_')
-                                + getSampleFiles(directory,'WWW',False,'nanoLatino_'),
-                                #+ getSampleFiles(directory,'WWG',False,'nanoLatino_'), #should this be included? or is it already taken into account in the WW sample?
-                    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                  }
-
+                                 + getSampleFiles(directory,'WZZ',False,'nanoLatino_')
+                                 + getSampleFiles(directory,'WWZ',False,'nanoLatino_')
+                                 + getSampleFiles(directory,'WWW',False,'nanoLatino_'),
+                                 #+ getSampleFiles(directory,'WWG',False,'nanoLatino_'), #should this be included? or is it already taken into account in the WW sample?
+                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                   }
+##
+##samples['ZZZ']  = {  'name'   :   getSampleFiles(directory,'ZZZ',False,'nanoLatino_'),
+##                    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+##                  }
+##samples['WZZ']  = {  'name'   :   getSampleFiles(directory,'WZZ',False,'nanoLatino_'),
+##                    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+##                  }
+##samples['WWZ']  = {  'name'   :   getSampleFiles(directory,'WWZ',False,'nanoLatino_'),
+##                    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+##                  }
+##samples['WWW']  = {  'name'   :   getSampleFiles(directory,'WWW',False,'nanoLatino_'),
+##                    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+##                  }
+##12/06 returned to VVV
 
 
 ##########################################
