@@ -126,7 +126,7 @@ else:
     samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50',False,'nanoLatino_')
                                     + getSampleFiles(directory,'DYJetsToLL_M-10to50-LO',False,'nanoLatino_'),
                          #'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                         'weight' : XSWeight,
                          'FilesPerJob' : 5,
                      }
     addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO)

@@ -152,6 +152,12 @@ void PDF_uncertainty(TString channel)
 
   //////////////////////////////////////////////////////
   cout<<"Creating plots..."<<endl;
+
+  TLegend *leg= new TLegend(0.1,0.7,0.48,0.9);
+  leg->AddEntry(mllratioupbin[0],"ratios for mth 50to100","l");
+  leg->AddEntry(mllratioupbin[1],"ratios for mth 100to150","l");
+  leg->AddEntry(mllratioupbin[2],"ratios for mth 150to200","l");
+
   gStyle->SetFrameLineWidth(3);
   gStyle->SetLabelSize(0.06);
   TCanvas *mll_bands=  new TCanvas(); mll_bands->cd(); auto pad4 =new TPad();
@@ -202,12 +208,12 @@ void PDF_uncertainty(TString channel)
   rat1->SetGridx(1);rat1->SetGridy(1); mllratioup->SetLineWidth(2); mllratioup->Draw(); mllratiodown->SetLineWidth(2); mllratiodown->Draw("same");
   pad6->GetFrame()->SetLineWidth(4);
   rat1->SaveAs("ratio_mll_PDF.png");
-  TCanvas *rat3= new TCanvas(); rat3->cd(); auto pad8 =new TPad();
+  TCanvas *rat2= new TCanvas(); rat2->cd(); auto pad8 =new TPad();
   mthratioup->SetTitle("ratio up/nominal and down/nominal");  mthratioup->GetXaxis()->SetTitle("mth [GeV]"); mthratioup->GetXaxis()->SetTitleOffset(1.4);   
   mthratioup->GetXaxis()->SetRangeUser(50,400); mthratioup->GetYaxis()->SetRangeUser(0.95,1.05);
-  rat3->SetGridx(1);rat3->SetGridy(1); mthratioup->SetLineWidth(2); mthratioup->Draw(); mthratiodown->SetLineWidth(2); mthratiodown->Draw("same");
+  rat2->SetGridx(1);rat2->SetGridy(1); mthratioup->SetLineWidth(2); mthratioup->Draw(); mthratiodown->SetLineWidth(2); mthratiodown->Draw("same");
   pad8->GetFrame()->SetLineWidth(4);
-  rat3->SaveAs("ratio_mth_PDF.png");
+  rat2->SaveAs("ratio_mth_PDF.png");
 
   ////////////////////////////// mth binned //////////////////////////////////
   for(int b=0;b<3;b++){
@@ -236,15 +242,20 @@ void PDF_uncertainty(TString channel)
     allshapes_mll->SaveAs(Form("allshapes_mll_PDF_mthbin%d.png",b*50+50));
   }
   */
+  TCanvas *rat4= new TCanvas();
   for(int b=0;b<3;b++){
-    TCanvas *rat2= new TCanvas(); rat2->cd(); auto pad9 =new TPad();
+    TCanvas *rat3= new TCanvas(); rat3->cd(); auto pad9 =new TPad();
     mllratioupbin[b]->SetTitle(Form("ratios mthbin%dto%d",b*50+50,b*50+100));  mllratioupbin[b]->GetXaxis()->SetTitle("mll [GeV]"); mllratioupbin[b]->GetXaxis()->SetTitleOffset(1.4);  
     mllratioupbin[b]->GetXaxis()->SetRangeUser(0,400); mllratioupbin[b]->GetYaxis()->SetRangeUser(0.95,1.05);
-    rat2->SetGridx(1);rat2->SetGridy(1); mllratioupbin[b]->SetLineWidth(2); mllratioupbin[b]->Draw(); mllratiodownbin[b]->SetLineWidth(2); mllratiodownbin[b]->Draw("same");
+    rat3->SetGridx(1);rat3->SetGridy(1); mllratioupbin[b]->SetLineWidth(2); mllratioupbin[b]->Draw(); mllratiodownbin[b]->SetLineWidth(2); mllratiodownbin[b]->Draw("same");
     pad9->GetFrame()->SetLineWidth(4);
-    rat2->SaveAs(Form("ratio_mll_PDF_mthbin%dto%d.png",b*50+50,b*50+100));
+    rat3->SaveAs(Form("ratio_mll_PDF_mthbin%dto%d.png",b*50+50,b*50+100));
     mllratioupbin[b]->GetYaxis()->SetRangeUser(0.5,1.5);
-    rat2->SaveAs(Form("ratio_mll_PDF_mthbin%dto%d_unzoomed.png",b*50+50,b*50+100));
+    rat3->SaveAs(Form("ratio_mll_PDF_mthbin%dto%d_unzoomed.png",b*50+50,b*50+100));
+    rat4->cd(); mllratioupbin[b]->SetLineColor(b+1); mllratiodownbin[b]->SetLineColor(b+1); 
+    if(b==0){mllratioupbin[b]->Draw();mllratiodownbin[b]->Draw("same"); mllratioupbin[b]->SetTitle("ratios for each mth bin");}
+    else{mllratioupbin[b]->Draw("same");mllratiodownbin[b]->Draw("same");}
+    leg->Draw(); rat4->SaveAs("ratio_mll_PDF_mthbin_unzoomed_ALL.png");
   }
 
   cout<<" The End "<<endl;
