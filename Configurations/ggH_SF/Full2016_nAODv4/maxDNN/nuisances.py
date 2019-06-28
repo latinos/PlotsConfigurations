@@ -782,29 +782,29 @@ nuisances['DYQCDscale']  = {
 #
 #
 
-thus = [
-    ('THU_ggH_Mu', 'ggH_mu'),
-    ('THU_ggH_Res', 'ggH_res'),
-    ('THU_ggH_Mig01', 'ggH_mig01'),
-    ('THU_ggH_Mig12', 'ggH_mig12'),
-    ('THU_ggH_VBF2j', 'ggH_VBF2j'),
-    ('THU_ggH_VBF3j', 'ggH_VBF3j'),
-    ('THU_ggH_PT60', 'ggH_pT60'),
-    ('THU_ggH_PT120', 'ggH_pT120'),
-    ('THU_ggH_qmtop', 'ggH_qmtop')
-]
-
-for name, vname in thus:
-    nuisances[vname]  = {
-      'name'  : name,
-      'skipCMS' : 1,
-      'kind'  : 'weight',
-      'type'  : 'shape',
-      'samples'  : {
-        'ggH_hww': [vname, '1+(1.-'+vname+')'],
-       #'ggH_htt': [vname, '1+(1.-'+vname+')'],
-      },
-}
+#thus = [
+#    ('THU_ggH_Mu', 'ggH_mu'),
+#    ('THU_ggH_Res', 'ggH_res'),
+#    ('THU_ggH_Mig01', 'ggH_mig01'),
+#    ('THU_ggH_Mig12', 'ggH_mig12'),
+#    ('THU_ggH_VBF2j', 'ggH_VBF2j'),
+#    ('THU_ggH_VBF3j', 'ggH_VBF3j'),
+#    ('THU_ggH_PT60', 'ggH_pT60'),
+#    ('THU_ggH_PT120', 'ggH_pT120'),
+#    ('THU_ggH_qmtop', 'ggH_qmtop')
+#]
+#
+#for name, vname in thus:
+#    nuisances[vname]  = {
+#      'name'  : name,
+#      'skipCMS' : 1,
+#      'kind'  : 'weight',
+#      'type'  : 'shape',
+#      'samples'  : {
+#        'ggH_hww': [vname, '1+(1.-'+vname+')'],
+#       #'ggH_htt': [vname, '1+(1.-'+vname+')'],
+#      },
+#}
 
 
 nuisances['QCDscale_VZ']  = {
