@@ -22,15 +22,27 @@ supercut = ' Lepton_pt[0]>25 \
 #cuts['zh4l_XDF_13TeV']  = ' flagZ1SF_zh4l==0 \
 #                          '
 
+#cuts['zh4l_XSF_13TeV']  = '   flagZ1SF_zh4l==1\
+#                               && z1Mass_zh4l < 60 && z1Mass_zh4l > 10 \
+#                               && mllll_zh4l > 140\
+#                               && abs(z0Mass_zh4l-91.1876)< 15\
+#                               && MET_pt > 35\
+#                            '
+#				  
+#cuts['zh4l_XDF_13TeV']  = 'flagZ1SF_zh4l==0\
+#                          && z1Mass_zh4l < 70 && z1Mass_zh4l >10 \
+#                          && abs(z0Mass_zh4l-91.1876)< 15\
+#                          && MET_pt > 20\
+#                           '
 cuts['zh4l_XSF_13TeV']  = '   flagZ1SF_zh4l==1\
-                               && z1Mass_zh4l < 60 && z1Mass_zh4l > 10 \
+                              && z1Mass_zh4l < 60 && z1Mass_zh4l > 10 \
                                && mllll_zh4l > 140\
                                && abs(z0Mass_zh4l-91.1876)< 15\
                                && MET_pt > 35\
                             '
-				  
+
 cuts['zh4l_XDF_13TeV']  = 'flagZ1SF_zh4l==0\
-                          && z1Mass_zh4l < 70 && z1Mass_zh4l >10 \
+                          && z1Mass_zh4l < 70 && z1Mass_zh4l > 10 \
                           && abs(z0Mass_zh4l-91.1876)< 15\
                           && MET_pt > 20\
                            '
@@ -52,8 +64,8 @@ cuts['zh4l_XDF_13TeV']  = 'flagZ1SF_zh4l==0\
                           # && fabs(z0Mass_zh4l-91.1876)< 15\
                           # '
 ##
-#cuts['zh4l_ZZ_13TeV']  = 'flagZ1SF_zh4l==1\
-#                           && z1Mass_zh4l < 105 && z1Mass_zh4l >75 \
-#                           && MET_pt < 35 \
-#                           && fabs(z0Mass_zh4l-91.1876)< 15\
-#                           '
+cuts['zh4l_ZZ_13TeV']  = 'flagZ1SF_zh4l==1\
+                           && z1Mass_zh4l < 105 && z1Mass_zh4l >75 \
+                           && MET_pt < 35 \
+                           && fabs(z0Mass_zh4l-91.1876)< 15\
+                           '
