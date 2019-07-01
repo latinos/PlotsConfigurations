@@ -18,10 +18,35 @@ variables['jetpt1']  = {
                         }
 
 
-
 variables['jeteta1']  = {  'name': 'CleanJet_eta[0]',
+                       'range' : (250,-5.0,5.0),
+                       'xaxis' : '#eta 1st jet',
+                       'fold'  : 0
+                       }
+
+variables['jeteta1_lessbins']  = {  'name': 'CleanJet_eta[0]',
                        'range' : (80,-5.0,5.0),
                        'xaxis' : '#eta 1st jet',
+                       'fold'  : 0
+                       }
+
+variables['jetpt2']  = {
+                        'name': 'CleanJet_pt[1]*(CleanJet_pt[1]>0)',     
+                        'range' : (40,15,50),   
+                        'xaxis' : 'p_{T} 2nd jet',
+                        'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+                        }
+
+
+variables['jeteta2']  = {  'name': 'CleanJet_eta[1]',
+                       'range' : (250,-5.0,5.0),
+                       'xaxis' : '#eta 2nd jet',
+                       'fold'  : 0
+                       }
+
+variables['jeteta2_lessbins']  = {  'name': 'CleanJet_eta[1]',
+                       'range' : (80,-5.0,5.0),
+                       'xaxis' : '#eta 2nd jet',
                        'fold'  : 0
                        }
 
