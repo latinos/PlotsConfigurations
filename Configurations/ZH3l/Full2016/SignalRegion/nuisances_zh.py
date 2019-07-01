@@ -143,7 +143,8 @@ nuisances['pdf_qqbar_ACCEPT_zh3l']  = {
                'name'  : 'pdf_qqbar_ACCEPT',
                'type'  : 'lnN',
                'samples'  : {
-                   'WZ'      : '1.006',
+                   'WZ'      : '1.06',
+#                   'WZ'      : '1.006',
                    },
               }
 
@@ -192,20 +193,18 @@ nuisances['UE_zh3l']  = {
 #                 ]
 #               }
 # 
-# nuisances['WZ3lnorm']  = {
-#                'name'  : 'CMS_hww_WZ3lnorm',
-#                'samples'  : {
-#                    'WZ' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : [
-#                  'wh3l_wz_13TeV',
-#                  'wh3l_13TeV_ossf',
-#                  'wh3l_13TeV_sssf',
-#                  'wh3l_zg_13TeV',
-#                 ]
-#               }
-# 
+nuisances['WZ3l2jnorm']  = {
+               'name'  : 'CMS_hww_WZ3l2jnorm',
+               'samples'  : {
+                   'WZ' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                 'zh3l_WZ_CR_cut',
+                 'zh3l_dphi_cut',
+                ]
+              }
+
 # Other Systematics
 #
 ## fakes 
@@ -372,7 +371,7 @@ nuisances['electronpt_zh3l']  = {
                    'WW' :  ['1', '1'],
                    'WZ' :  ['1', '1'],
                    'ZZ' :  ['1', '1'],
-                   'ttZ':  ['1', '1'],
+#                   'ttZ':  ['1', '1'],
                    'VVV' : ['1', '1'],
                    'Vg' : ['1', '1'],
                    'WH_hww'  :  ['1', '1'],
@@ -380,10 +379,8 @@ nuisances['electronpt_zh3l']  = {
                    'ggZH_hww':  ['1', '1'],
                    'WH_htt'   : ['1', '1'],
                  },
-#                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__LepElepTup'+skim,
-                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepElepTup'+skim,
-#                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__LepElepTdo'+skim,
-                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepElepTdo'+skim,
+                'folderUp'   : xrootdPath+treeBaseDir+'LepElepTup',
+                'folderDown' : xrootdPath+treeBaseDir+'LepElepTdo',
 }
 
 elePtCor_Syst_zh3l = [ 'electron_ptW_'+Nlep+'l_Up / electron_ptW_'+Nlep+'l', 'electron_ptW_'+Nlep+'l_Down / electron_ptW_'+Nlep+'l']
@@ -455,7 +452,7 @@ nuisances['muonpt_zh3l']  = {
                    'WW' :  ['1', '1'],
                    'WZ' :  ['1', '1'],
                    'ZZ' :  ['1', '1'],
-                   'ttZ':  ['1', '1'],
+#                   'ttZ':  ['1', '1'],
                    'VVV' : ['1', '1'],
                    'Vg' : ['1', '1'],
                    'WH_hww' :  ['1', '1'],
@@ -465,11 +462,11 @@ nuisances['muonpt_zh3l']  = {
                 },
 #                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__LepMupTup'+skim,
 #                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__LepMupTdo'+skim,
-                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepMupTup'+skim,
-                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepMupTdo'+skim,
+                'folderUp'   : xrootdPath+treeBaseDir+'LepMupTup',
+                'folderDown' : xrootdPath+treeBaseDir+'LepMupTdo',
 }
 
-###### Jet energy scale
+# ###### Jet energy scale
 
 nuisances['jes_zh3l']  = {
                 'name'  : 'scale_j',
@@ -479,7 +476,7 @@ nuisances['jes_zh3l']  = {
                    'WW' :  ['1', '1'],
                    'WZ' :  ['1', '1'],
                    'ZZ' :  ['1', '1'],
-                   'ttZ':  ['1', '1'],
+                   # 'ttZ':  ['1', '1'],
                    'VVV' : ['1', '1'],
                    'Vg' : ['1', '1'],
                    'WH_hww' :  ['1', '1'],
@@ -489,8 +486,8 @@ nuisances['jes_zh3l']  = {
                 },
 #                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__JESup'+skim,
 #                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__JESdo'+skim,
-                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__JESup'+skim,
-                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__JESdo'+skim,
+                'folderUp'   : xrootdPath+treeBaseDir+'JESup',
+                'folderDown' : xrootdPath+treeBaseDir+'JESdo',
 }
 
 
@@ -504,7 +501,7 @@ nuisances['met_zh3l']  = {
                    'WW' :  ['1', '1'],
                    'WZ' :  ['1', '1'],
                    'ZZ' :  ['1', '1'],
-                   'ttZ':  ['1', '1'],
+                   # 'ttZ':  ['1', '1'],
                    'VVV' : ['1', '1'],
                    'Vg' : ['1', '1'],
                    'WH_hww' :  ['1', '1'],
@@ -514,8 +511,8 @@ nuisances['met_zh3l']  = {
                 },
 #                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__METup'+skim,
 #                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC__METdo'+skim,
-                'folderUp'   : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__METup'+skim,
-                'folderDown' : xrootdPath+treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__METdo'+skim,
+                'folderUp'   : xrootdPath+treeBaseDir+'METup',
+                'folderDown' : xrootdPath+treeBaseDir+'METdo',
 }
 
 

@@ -1,8 +1,10 @@
 {
-  TFile *f0 = TFile::Open("rootFiles_ZH3lSR/plots_ZH3lSR.root");
+  // TFile *f0 = TFile::Open("rootFiles_ZH3lSR_1j/plots_ZH3lSR_1j.root");
+  TFile *f0 = TFile::Open("rootFiles_ZH3lSR_newWZ/plots_ZH3lSR_newWZ.root");
 
   // Fragile, because it must match the name and ordering in cuts.py
-  TString cutslist[6] = {"preselection", "zmass_cut", "2jet_cut", "bveto", "z4lveto", "dphi_cut"};
+  // TString cutslist[6] = {"preselection", "zmass_cut", "2jet_cut", "bveto", "z4lveto", "dphi_cut"};
+  TString cutslist[6] = {"preselection", "zmass_cut", "1jet_cut", "bveto_1j", "z4lveto_1j", "dphi_cut_1j"};
 
   float n_ZH = 0.0;
   float n_ggZH = 0.0;
@@ -61,7 +63,8 @@
     n_ZZ 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_ZZ"))->Integral();
     n_Fake 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_Fake"))->Integral();
     n_DATA 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_DATA"))->Integral();
-    n_WZ 	= 1.108*((TH1F*) f0->Get(cutslist[i]+"/events/histo_WZ"))->Integral();
+    // n_WZ 	= 1.09*((TH1F*) f0->Get(cutslist[i]+"/events/histo_WZ"))->Integral();
+    n_WZ 	= 1.16*((TH1F*) f0->Get(cutslist[i]+"/events/histo_WZ"))->Integral();
 
     n_Higgs = n_ZH + n_ggZH + n_WH_htt  +  n_WH_hww;
     n_BG = n_ttZ + n_Vg + n_VVV + n_WW + n_ZZ + n_Fake + n_WZ;

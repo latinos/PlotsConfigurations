@@ -117,12 +117,12 @@ plot['Fake']  = {
 #                  }
 
               
-plot['VV']  = {
-                  'color': 851, # kAzure -9 
-                  'isSignal' : 0,
-                  'isData'   : 0,    
-                  'scale'    : 1.0
-                  }
+# plot['VV']  = {
+#                   'color': 851, # kAzure -9 
+#                   'isSignal' : 0,
+#                   'isData'   : 0,    
+#                   'scale'    : 1.0
+#                   }
 
 plot['WW']  = {
                   'color': 850, # kAzure -10
