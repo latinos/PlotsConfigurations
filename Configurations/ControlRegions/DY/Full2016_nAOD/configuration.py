@@ -9,10 +9,10 @@ outputDir = 'rootFile'
 
 
 # file with list of variables
-variablesFile = 'variables_test.py'
+variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts_test.py' 
+cutsFile = 'cuts.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 
