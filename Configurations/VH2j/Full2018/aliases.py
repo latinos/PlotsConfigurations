@@ -44,7 +44,7 @@ aliases['btagSF'] = {
 systs = ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']
 
 for s in systs:
-  aliases['btagSF'+s+'up'] = { 'expr': 'bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_up_'+s) + 'bVetoDY*'+aliases['bVetoSFDY']['expr'].replace('shape','shape_up_'+s) + '+btag1*'+ aliases['btag1SF']['expr'].replace('shape','shape_up_'+s), 'samples':mc  }  
-  aliases['btagSF'+s+'down'] = { 'expr': 'bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_down_'+s) + 'bVetoDY*'+aliases['bVetoSFDY']['expr'].replace('shape','shape_down_'+s) + '+btag1*'+ aliases['btag1SF']['expr'].replace('shape','shape_down_'+s), 'samples':mc  }
+  aliases['btagSF'+s+'up'] = { 'expr': 'bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_up_'+s) + '+bVetoDY*'+aliases['bVetoSFDY']['expr'].replace('shape','shape_up_'+s) + '+btag1*'+ aliases['btag1SF']['expr'].replace('shape','shape_up_'+s), 'samples':mc  }  
+  aliases['btagSF'+s+'down'] = { 'expr': 'bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_down_'+s) + '+bVetoDY*'+aliases['bVetoSFDY']['expr'].replace('shape','shape_down_'+s) + '+btag1*'+ aliases['btag1SF']['expr'].replace('shape','shape_down_'+s), 'samples':mc  }
 
 
