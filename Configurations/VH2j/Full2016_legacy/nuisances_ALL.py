@@ -1492,3 +1492,33 @@ nuisances['stat']  = {
               'samples' : {}
              }
 
+
+nuisances['Topnorm']  = {
+    'name'  : 'Topnorm',
+    'samples'  : {
+        'top' : '1.00',
+        },
+    'type'  : 'rateParam',
+    'cuts'  : [
+        'VH_2j_emu',
+        'VH_2j_topemu',
+        #                                                                                                                         
+        ]
+    }
+
+
+nuisances['DYnorm']  = {                                                                                                           
+    'name'  : 'DYnorm',                                                                                                            
+    'samples'  : {                                                                                                                 
+        'top' : '1.00',                                                                                                            
+        },                                                                                                                         
+    'type'  : 'rateParam',                                                                                                         
+    'cuts'  : [                                                                                                                    
+        'VH_2j_emu',                                                                                                               
+        'VH_2j_DYtautau',                                                                                                          
+        #                                                                                                                          
+        ]                                                                                                                          
+    } 
+
+
+
