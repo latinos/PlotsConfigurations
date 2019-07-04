@@ -19,16 +19,22 @@ groupPlot['WW']  = {
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  'samples'  : ['WW', 'ggWW']
+                  'samples'  : ['WW', 'ggWW', 'WWewk']
               }
 
-groupPlot['Fake']  = {  
+groupPlot['Fake_em']  = {  
                   'nameHR' : 'Non-prompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fake']
+                  'samples'  : ['Fake_em']
               }
 
+groupPlot['Fake_me']  = {                                                                                                          
+                  'nameHR' : 'Non-prompt',                                                                                          
+                  'isSignal' : 0,                                                                                                   
+                  'color': 921,    # kGray + 1                                                                                      
+                  'samples'  : ['Fake_me']                                                                                         
+              }  
 
 groupPlot['DY']  = {  
                   'nameHR' : "DY",
@@ -65,7 +71,7 @@ groupPlot['VgS']  = {
                   'nameHR' : "V#gamma*",
                   'isSignal' : 0,
                   'color'    : 409,   # kGreen - 9
-                  'samples'  : ['WZgS']
+                  'samples'  : ['VgS']
               }
 
 
@@ -126,13 +132,19 @@ plot['DY']  = {
               }
 
 
-plot['Fake']  = {  
+plot['Fake_em']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0                  
               }
 
+plot['Fake_me']  = {                                                                                                               
+                  'color': 921,    # kGray + 1                                                                                      
+                  'isSignal' : 0,                                                                                                   
+                  'isData'   : 0,                                                                                                   
+                  'scale'    : 1.0                                                                                                  
+              } 
 
 
           
@@ -194,7 +206,7 @@ plot['VVV']  = {
                   'scale'    : 1.0
                   }
 
-plot['WZgS']  = {
+plot['VgS']  = {
                   'color': 617, # kViolet + 1
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -206,13 +218,13 @@ plot['WZgS']  = {
 
 # Htautau
 
-plot['H_htt'] = {
-                  'nameHR' : 'Htt',
-                  'color': 632+4, # kRed+4 
-                  'isSignal' : 0,  #Changed 1 to 0 6/3/19
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
+#plot['H_htt'] = {
+#                  'nameHR' : 'Htt',
+#                  'color': 632+4, # kRed+4 
+#                 'isSignal' : 0,  #Changed 1 to 0 6/3/19
+#                  'isData'   : 0,    
+#                  'scale'    : 1    #
+#                  }
 
 
 
@@ -293,9 +305,10 @@ plot['DATA']  = {
 #legend['lumi'] = 'L = 4.3/fb'
 #legend['lumi'] = 'L = 6.3/fb'
 #legend['lumi'] = 'L = 12.9/fb'
-legend['lumi'] = 'L = 41.5/fb'
+legend['lumi'] = 'L = 41.5/fb' # 2017 
+#legend['lumi'] = 'L = 59.7/fb'  # 2018 
 
-legend['sqrt'] = '#sqrt{s} = 13 TeV, 2018'
+legend['sqrt'] = '#sqrt{s} = 13 TeV, 2017'
 
 
 
