@@ -5,7 +5,7 @@ tag = 'VH2j_2018'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = 'rootFile_18'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
