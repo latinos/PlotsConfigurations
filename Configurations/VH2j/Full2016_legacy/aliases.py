@@ -3,18 +3,18 @@
 mc = [skey for skey in samples if skey not in ('Fake_em', 'Fake_me', 'DATA')]
 
 bAlgo = 'DeepB'
-bWP = '0.1241'
+bWP = '0.2217'
 
 aliases['bVeto'] = {
-'expr': '(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) == 0)'
+'expr': '(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0)'
 }
 
 aliases['bVetoDY'] = {                                                                                                              
-'expr': '(Sum$(CleanJet_pt > 30. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) == 0)'                       
+'expr': '(Sum$(CleanJet_pt > 30. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0)'                       
 }
 
 aliases['btag1'] = {
-'expr': '((Jet_btagDeepB[CleanJet_jetIdx[0]] > 0.1241) || (Jet_btagDeepB[CleanJet_jetIdx[1]] > 0.1241))'
+'expr': '((Jet_btagDeepB[CleanJet_jetIdx[0]] > 0.1241) || (Jet_btagDeepB[CleanJet_jetIdx[1]] > 0.2217))'
 }
 
 
