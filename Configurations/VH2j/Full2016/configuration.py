@@ -1,13 +1,14 @@
 # example of configuration file
+treeName= 'Events'
 
-date = '_24Nov'
-
-tag = 'VH2j'+date
+tag = 'VH2j_2016'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'+date
+outputDir = 'rootFile'
 
+# file with TTree aliases
+aliasesFile = 'aliases.py'
 
 # file with list of variables
 variablesFile = 'variables.py'
@@ -21,9 +22,6 @@ samplesFile = 'samples.py'
 # file with list of samples
 plotFile = 'plot.py' 
 
-# options of the plots
-plotNormalizedDistributions = True   # default is False
-
 
 
 # luminosity to normalize to (in 1/fb)
@@ -31,11 +29,12 @@ lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotVH2j'+date
+# outputDirPlots = '~/www/plotCR'
+outputDirPlots = 'plotVH2j_2016'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'+date
+outputDirDatacard = 'datacards'
 
 
 # structure file for datacard
@@ -43,6 +42,6 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+nuisancesFile = 'nuisances_ALL.py'
 
 

@@ -1,4 +1,3 @@
-# nuisances
 #FIXME: TO BE UPDATED FOR 2017!
 
 # name of samples here must match keys in samples.py 
