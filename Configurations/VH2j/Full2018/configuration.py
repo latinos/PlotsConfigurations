@@ -20,7 +20,7 @@ cutsFile = 'cuts.py'
 samplesFile = 'samples.py' 
 
 # file with list of samples
-plotFile = 'plot_.py' 
+plotFile = 'plot.py' 
 
 
 
