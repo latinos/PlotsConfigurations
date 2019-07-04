@@ -27,7 +27,7 @@ _tmp = [
      'mth<125.',
      'drll<2.',   #DeltaRll<2
      #'(Sum$(CleanJet_pt > 20. && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0)', #no bjets with pt>20
-     'bVeto'
+     'bVeto',
      'mjj>65.',
      'mjj<105.',
      'detajj<3.5',# delta eta entre dos jets 
@@ -64,7 +64,7 @@ _tmp = [
      'mth<60',
      'drll<2', #DeltaRll<2
      #'(Sum$(CleanJet_pt > 30. && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0)', #no bjets with pt>30
-     'bVetoDY'
+     'bVetoDY',
      'mjj>65',
      'mjj<105',
      'detajj<3.5',

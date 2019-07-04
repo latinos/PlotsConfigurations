@@ -4,12 +4,12 @@
     
 
 
-#Variables['events']  = {   'name': '1',      
-#                        'range' : (1,0,2),  
-#                        'xaxis' : 'events', 
-#                        'fold' : 3
-#                        }
-#
+variables['events']  = {'name': '1',      
+                        'range' : (1,0,2),  
+                        'xaxis' : 'events', 
+                        'fold' : 3
+                        }
+
 #variables['nvtx']  = {   'name': 'PV_npvsGood',      
 #                        'range' : (50,0,50),  
 #                        'xaxis' : 'nvtx', 
@@ -107,12 +107,12 @@ variables['ptll']  = {   'name': 'ptll',
 #                         }
 
 
-variables['puppimet']  = {
-                        'name': 'PuppiMET_pt',
-                        'range' : (40,0,150),
-                        'xaxis' : 'puppimet [GeV]',
-                        'fold'  : 3
-                        }
+#variables['puppimet']  = {
+#                        'name': 'PuppiMET_pt',
+#                        'range' : (40,0,150),
+#                        'xaxis' : 'puppimet [GeV]',
+#                        'fold'  : 3
+#                        }
 
 variables['njet']  = {
                         'name': 'Sum$(CleanJet_pt>30)',     
@@ -156,11 +156,11 @@ variables['njet']  = {
 #                         'fold' : 0
 #                        }
 
-variables['dphill']  = {   'name': 'abs(dphill)',     
-                        'range' : (20,0,3.14),   
-                        'xaxis' : '#Delta#phi_{ll}',
-                        'fold' : 3
-}
+#variables['dphill']  = {   'name': 'abs(dphill)',     
+#                        'range' : (20,0,3.14),   
+#                        'xaxis' : '#Delta#phi_{ll}',
+#                        'fold' : 3
+#}
 
 #Added 24/4
 variables['qgl0']  = {'name': 'Jet_qgl[CleanJet_jetIdx[0]]',
