@@ -36,16 +36,17 @@ Nlep='1'
 ############### Lepton WP ######################
 ################################################
 
-eleWP='mvaFall17IsoV2_WP90'
+eleWP='mvaFall17V2Iso_WP90'
 muWP='cut_Tight_HWWW'
 
 LepWPCut        = 'LepCut'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
 LepWPweight     = 'LepSF'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
 
-LepWPCut_1l =  '(Lepton_isTightElectron_'+eleWP+'[0]>0.5 or Lepton_isTightMuon_'+muWP+'[0]>0.5)'
+LepWPCut_1l =  '(Lepton_isTightElectron_'+eleWP+'[0]>0.5 || Lepton_isTightMuon_'+muWP+'[0]>0.5)'
 LepWPWeight_1l = 'Lepton_tightElectron_'+eleWP+'_IdIsoSF'+'[0]*\
                 Lepton_tightMuon_'+muWP+'_IdIsoSF'+'[0]'
 
+LepWPCut = LepWPCut_1l
 ################################################
 ############ BASIC MC WEIGHTS ##################
 ################################################
