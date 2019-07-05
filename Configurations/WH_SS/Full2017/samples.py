@@ -110,7 +110,7 @@ ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397
 useDYtt = False
 
 if useDYtt :
-    samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToTT_MuEle_M-50',False,'nanoLatino_')
+    samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToTT_MuEle_M-50_PSWeights',False,'nanoLatino_')
                                     + getSampleFiles(directory,'DYJetsToLL_M-10to50-LO',False,'nanoLatino_'),
                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                          'FilesPerJob' : 5,
@@ -152,9 +152,13 @@ addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
 ############ WW ############
 
 #FIXME Add nllW weight to WW
-samples['WW'] = {    'name'   :   getSampleFiles(directory,'WWTo2L2Nu',False,'nanoLatino_') ,
+samples['WW'] = {    'name'   :   getSampleFiles(directory,'WWTo2L2Nu_PrivateNano',False,'nanoLatino_') ,
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*nllW' ,
                  }
+
+samples['WWewk'] = {   'name'  : getSampleFiles(directory, 'WpWmJJ_EWK',False,'nanoLatino_'),
+                       'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*(Sum$(abs(GenPart_pdgId)==6)==0)' #filter tops
+                   }
 
 #FIXME Check if k-factor is already taken into account in XSWeight
 samples['ggWW']  = {  'name'   :   getSampleFiles(directory,'GluGluToWWToENEN',False,'nanoLatino_')
@@ -173,21 +177,38 @@ samples['ggWW']  = {  'name'   :   getSampleFiles(directory,'GluGluToWWToENEN',F
 ############ Vg ############
 
 #FIXME Add Zg when available
-samples['Vg']  = {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',False,'nanoLatino_'),
-                               #+ getSampleFiles(directory,'Zg',False,'nanoLatino_'),
-                    #'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
-                     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*(Gen_ZGstar_mass<4)',
-                  }
+#samples['Vg']  = {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',False,'nanoLatino_'),
+#                               + getSampleFiles(directory,'Zg',False,'nanoLatino_'),
+#                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
+#                    # 'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*(Gen_ZGstar_mass<4)',
+#                    'FilesPerJob': 5,
+#                  }
+#
 
+samples['Vg']  = {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',False,'nanoLatino_')
+                               + getSampleFiles(directory,'Zg',False,'nanoLatino_'),
+                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*(!(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 ))',  
+                    'FilesPerJob': 5,
+                  }
 
 ############ VgS ############
 
 #FIXME Use WZTo3LNu_mllmin01 sample (gstar mass > 100 MeV) when available. This one has gstar mass > 4 GeV
 #FIXME Add normalization k-factor
-samples['WZgS']  = {  'name'   :   getSampleFiles(directory,'WZTo3LNu',False,'nanoLatino_'),
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(Gen_ZGstar_mass>4)' ,
-                   }
+#samples['WZgS']  = {  'name'   :   getSampleFiles(directory,'WZTo3LNu_mllmin01',False,'nanoLatino_'),
+#                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+#                      'FilesPerJob' : 5,
+#                   }
 
+samples['VgS']  =  {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',False,'nanoLatino_')
+                                 + getSampleFiles(directory,'Zg',False,'nanoLatino_')
+                                 + getSampleFiles(directory,'WZTo3LNu_mllmin01',False,'nanoLatino_'),
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+                      'FilesPerJob' : 5 ,
+                   }
+addSampleWeight(samples,'VgS','Wg_MADGRAPHMLM',    '(Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 0.1)')
+addSampleWeight(samples,'VgS','Zg',                '(Gen_ZGstar_mass >0)')
+addSampleWeight(samples,'VgS','WZTo3LNu_mllmin01', '(Gen_ZGstar_mass>=0.1 || Gen_ZGstar_mass<0)')
 
 ############ VZ ############
 
@@ -219,12 +240,12 @@ samples['VVV']  = {  'name'   :   getSampleFiles(directory,'ZZZ',False,'nanoLati
 
 ############ ggH H->WW ############
 #FIXME Add reweighting to MiNLO NNLOPS or use NNLOPS sample when available
-samples['ggH_hww']  = {  'name'   :   getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'),
+samples['ggH_hww']  = {  'name'   :   getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125_PrivateNano',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                      }
 
 ############ VBF H->WW ############
-samples['qqH_hww']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'),
+samples['qqH_hww']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125_PrivateNano',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                      }
 
@@ -291,29 +312,38 @@ else:
 ################## FAKE ###################
 ###########################################
 
-samples['Fake_em']  = {   'name': [ ] ,
-                         'weight' : METFilter_DATA+'*'+fakeW+'*(abs(Lepton_pdgId[0])==11 && abs(Lepton_pdgId[1])==13)',              #   weight/cut 
-                         'weights' : [ ] ,
-                         'isData': ['all'],
-                         'FilesPerJob' : 15 ,
-                      }
+samples['Fake']  = {   'name': [ ] ,
+                       'weight' : fakeW+'*'+METFilter_DATA+'*((Lepton_pdgId[0]*Lepton_pdgId[1]==11*13) || (Lepton_pdgId[0]*Lepton_pdgId[1]==11*11) || (Lepton_pdgId[0]*Lepton_pdgId[1]==13*13))',              #   weight/cut 
+                       'weights' : [ ] ,
+                       'isData': ['all'],
+                       'FilesPerJob' : 6 ,
+                     }
 
-samples['Fake_me']  = {   'name': [ ] ,
-                         'weight' : METFilter_DATA+'*'+fakeW+'*(abs(Lepton_pdgId[0])==13 && abs(Lepton_pdgId[1])==11)',              #   weight/cut 
-                         'weights' : [ ] ,
-                         'isData': ['all'],
-                         'FilesPerJob' : 15 ,
-                      }
+#samples['Fake_em']  = {   'name': [ ] ,
+#                         'weight' : METFilter_DATA+'*'+fakeW+'*(abs(Lepton_pdgId[0])==11 && abs(Lepton_pdgId[1])==13)',              #   weight/cut 
+#                         'weights' : [ ] ,
+#                         'isData': ['all'],
+#                         'FilesPerJob' : 15 ,
+#                      }
+#
+#samples['Fake_me']  = {   'name': [ ] ,
+#                         'weight' : METFilter_DATA+'*'+fakeW+'*(abs(Lepton_pdgId[0])==13 && abs(Lepton_pdgId[1])==11)',              #   weight/cut 
+#                         'weights' : [ ] ,
+#                         'isData': ['all'],
+#                         'FilesPerJob' : 15 ,
+#                      }
 
 for Run in DataRun :
-        directory = treeBaseDir+'Run2017_nAOD_v1_Full2017v2/DATAl1loose2017v2__DATACorr2017__l2loose__fakeW/'
+        directory = treeBaseDir+'Run2017_nAOD_v1_Full2017v2/DATAl1loose2017v2__DATACorr2017__l2loose__fakeWp2NB/'
         for DataSet in DataSets :
                 FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
                 for iFile in FileTarget:
-                        samples['Fake_em']['name'].append(iFile)
-                        samples['Fake_em']['weights'].append(DataTrig[DataSet])
-                        samples['Fake_me']['name'].append(iFile)
-                        samples['Fake_me']['weights'].append(DataTrig[DataSet])
+#                        samples['Fake_em']['name'].append(iFile)
+#                        samples['Fake_em']['weights'].append(DataTrig[DataSet])
+#                        samples['Fake_me']['name'].append(iFile)
+#                        samples['Fake_me']['weights'].append(DataTrig[DataSet])
+                         samples['Fake']['name'].append(iFile)
+                         samples['Fake']['weights'].append(DataTrig[DataSet])
 
 ###########################################
 ################## DATA ###################
@@ -327,7 +357,7 @@ samples['DATA']  = {   'name': [ ] ,
                   }
 
 for Run in DataRun :
-        directory = treeBaseDir+'Run2017_nAOD_v1_Full2017v2/DATAl1loose2017v2__DATACorr2017__l2loose/'
+        directory = treeBaseDir+'Run2017_nAOD_v1_Full2017v2/DATAl1loose2017v2__DATACorr2017__l2loose__l2tightOR2017/'
         for DataSet in DataSets :
                 FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
                 for iFile in FileTarget:

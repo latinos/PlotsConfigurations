@@ -9,25 +9,53 @@ variables['events']  = {   'name': '1',
                         'xaxis' : 'events', 
                         'fold' : 3
                         }
-   
 
-variables['nvtx']  = {   'name': 'PV_npvsGood',      
-                        'range' : (50,0,100),  
-                        'xaxis' : 'nvtx', 
-                         'fold' : 3
-                      }
+
+variables['m2ljj20']  = {  'name': 'm2ljj20',
+                       'range': (25,100.,600),  #for 500 < mjj < 1000
+#                       'range': (30,100.,1000.),  #for 500 < mjj < 1000  
+                       'xaxis': 'm2ljj [GeV]',
+                       'fold': 0
+                       }
+
+variables['mlljj20_whss']  = {   'name': 'mlljj20_whss',
+                        'range' : (25,0.,600),
+                        'xaxis' : 'mlljj20_whss [GeV]',
+                        'fold' : 0
+                        }
+
+variables['mlljj30_whss']  = {   'name': 'mlljj30_whss',
+                        'range' : (25,0.,600),
+                        'xaxis' : 'mlljj30_whss [GeV]',
+                        'fold' : 0
+                        }
+
+
+variables['mjj']  = {  'name': 'mjj',
+                       'range': (25,0.,200),  #for 500 < mjj < 1000
+#                       'range': (20,60,120),  #for 500 < mjj < 1000
+                     # 'range': (15,1000,2000),  #for  mjj > 1000
+                       'xaxis': 'mjj [GeV]',
+                       'fold': 0
+                       }
+
+#variables['nvtx']  = {   'name': 'PV_npvsGood',      
+#                        'range' : (50,0,100),  
+#                        'xaxis' : 'nvtx', 
+#                         'fold' : 3
+#                      }
 variables['mll']  = {   'name': 'mll',            #   variable name    
                         'range' : (40, 0,200),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
                          'fold' : 0
                         }
 
-variables['mth']  = {   'name': 'mth',            #   variable name    
-                        'range' : (40,0,200),    #   variable range
-                        'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
-                         'fold' : 0
-                        }
-
+#variables['mth']  = {   'name': 'mth',            #   variable name    
+#                        'range' : (40,0,200),    #   variable range
+#                        'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
+#                         'fold' : 0
+#                        }
+#
 variables['dphill']  = {   'name': 'abs(dphill)',     
                         'range' : (20,0,3.14),   
                         'xaxis' : '#Delta#phi_{ll}',
@@ -69,13 +97,13 @@ variables['pfmet']  = {
                         'xaxis' : 'pfmet [GeV]',
                         'fold'  : 3                         
                         }
-variables['puppimet']  = {
-                        'name': 'PuppiMET_pt',    
-                        'range' : (40,0,200),
-                        'xaxis' : 'pfmet [GeV]',
-                        'fold'  : 3
-                        }                        
-
+#variables['puppimet']  = {
+#                        'name': 'PuppiMET_pt',    
+#                        'range' : (40,0,200),
+#                        'xaxis' : 'pfmet [GeV]',
+#                        'fold'  : 3
+#                        }                        
+#
 variables['njet']  = {
                         'name': 'Sum$(CleanJet_pt>30)',     
                         'range' : (5,0,5),   
@@ -87,62 +115,74 @@ variables['njet']  = {
 
 
 variables['jetpt1']  = {
-                        'name': 'CleanJet_pt[0]>30? CleanJet_pt[0]:-1',     
+                        'name': 'CleanJet_pt[0]*(CleanJet_pt[0]>30)',     
                         'range' : (40,0,200),   
                         'xaxis' : 'p_{T} 1st jet',
-                        'fold' : 0   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+                        'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
 
 variables['jetpt2']  = {
-                        'name': 'CleanJet_pt[1]>30? CleanJet_pt[1]:-1',     
+                        'name': 'CleanJet_pt[1]*(CleanJet_pt[1]>30) && CleanJet_pt[0]*(CleanJet_pt[0]>30)',     
                         'range' : (40,0,200),   
                         'xaxis' : 'p_{T} 2nd jet',
                         'fold' : 0   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
 
-variables['jeteta1']  = {  'name': 'CleanJet_pt[0]>30? CleanJet_eta[0]:-999',
-                        'range' : (80,-5.0,5.0),
-                        'xaxis' : '#eta 1st jet',
-                        'fold'  : 0
-                        }
+#variables['jeteta1']  = {  'name': 'CleanJet_eta[0]' #'CleanJet_pt[0]>30? CleanJet_eta[0]:-999',
+#                        'range' : (80,-5.0,5.0),
+#                        'xaxis' : '#eta 1st jet',
+#                        'fold'  : 0
+#                        }
 
-variables['jeteta2']  = {  'name': 'CleanJet_pt[1]>30? CleanJet_eta[1]:-999',
-                        'range' : (80,-5.0,5.0),
-                        'xaxis' : '#eta 2nd jet',
-                        'fold'  : 0
-                        }
+#variables['jeteta1']  = {  'name': 'CleanJet_pt[0]>30? CleanJet_eta[0]:-999',
+#                        'range' : (80,-5.0,5.0),
+#                        'xaxis' : '#eta 1st jet',
+#                        'fold'  : 0
+#                        }
 
-'''
-variables['mtw1']  = {  'name': 'mtw1',
-                        'range' : (40,0,200),
-                        'xaxis' : 'm_{T}^{W_{1}} [GeV]',
-                         'fold' : 3
-                        }
+#variables['jeteta2']  = {  'name': 'CleanJet_eta[1]' #'CleanJet_pt[1]>30? CleanJet_eta[1]:-999',
+#                        'range' : (80,-5.0,5.0),
+#                        'xaxis' : '#eta 2nd jet',
+#                        'fold'  : 0
+#                        }
 
-variables['mtw2']  = {  'name': 'mtw2',
-                        'range' : (40,0,200),
-                        'xaxis' : 'm_{T}^{W_{2}} [GeV]',
-                         'fold' : 3
-                        }
+#variables['jeteta2']  = {  'name': 'CleanJet_pt[1]>30? CleanJet_eta[1]:-999',
+#                        'range' : (80,-5.0,5.0),
+#                        'xaxis' : '#eta 2nd jet',
+#                        'fold'  : 0
+#                        }
 
-variables['trkMet']  = {   'name': 'metTtrk',
-                        'range' : (40,0,200),
-                        'xaxis' : 'trk met [GeV]',
-                         'fold' : 3
-                        }
-
-variables['mpmet']  = { 'name': 'mpmet',
-                        'range' : (40,0,200),
-                        'xaxis' : 'min proj met [GeV]',
-                        'fold' : 3
-                        }
-
-variables['dymvaggh']  = { 'name': 'dymvaggh',
-                        'range' : (40,-1,1),
-                        'xaxis' : 'DY MVA',
-                        'fold' : 3
-                        }
-
-'''
+#'''
+#variables['mtw1']  = {  'name': 'mtw1',
+#                        'range' : (40,0,200),
+#                        'xaxis' : 'm_{T}^{W_{1}} [GeV]',
+#                         'fold' : 3
+#                        }
+#
+#variables['mtw2']  = {  'name': 'mtw2',
+#                        'range' : (40,0,200),
+#                        'xaxis' : 'm_{T}^{W_{2}} [GeV]',
+#                         'fold' : 3
+#                        }
+#
+#variables['trkMet']  = {   'name': 'metTtrk',
+#                        'range' : (40,0,200),
+#                        'xaxis' : 'trk met [GeV]',
+#                         'fold' : 3
+#                        }
+#
+#variables['mpmet']  = { 'name': 'mpmet',
+#                        'range' : (40,0,200),
+#                        'xaxis' : 'min proj met [GeV]',
+#                        'fold' : 3
+#                        }
+#
+#variables['dymvaggh']  = { 'name': 'dymvaggh',
+#                        'range' : (40,-1,1),
+#                        'xaxis' : 'DY MVA',
+#                        'fold' : 3
+#                        }
+#
+#'''
                         
 

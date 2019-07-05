@@ -10,9 +10,14 @@ structure['DY']  = {
               }
 
 
-structure['Wjets']  = {  
+structure['WJets']  = {  
                   'isSignal' : 0,
                   'isData'   : 0 
+              }
+
+structure['top_had'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0
               }
 
 structure['Fake']  = {  
@@ -121,8 +126,8 @@ structure['WZ']  = {
 
 structure['VVV']  = { 
                   'isSignal' : 0,
-                  'isData'   : 0,
-                  'removeFromCuts' : ['hww2l2v_13TeV_dytt_of2j_vbf'],
+                  'isData'   : 0
+          #        'removeFromCuts' : ['hww2l2v_13TeV_dytt_of2j_vbf'],
                   }
 
 structure['ZZ']  = {
