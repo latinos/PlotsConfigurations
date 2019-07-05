@@ -57,6 +57,11 @@ structure['ZZ']  = {
                   'isData'   : 0    
                   }
 
+structure['ttZ']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0    
+                  }
+
 #structure['ggZZ_tt']  = {
 #                  'isSignal' : 0,
 #                  'isData'   : 0

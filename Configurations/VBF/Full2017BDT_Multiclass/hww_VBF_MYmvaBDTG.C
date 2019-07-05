@@ -34,7 +34,7 @@ float loc0_ptl [100];
 float loc0_etal [100];
 float loc0_phil [100];
 float loc0_qgl [100];
-
+int loc0_id [100];
 
 
 float mlj(float ptl, float etal, float phil, float ptj, float etaj, float phij){
@@ -49,6 +49,9 @@ float mlj(float ptl, float etal, float phil, float ptj, float etaj, float phij){
 void init_hww_VBF_MYmvaBDTG(TTree* tree){
 
 
+        TString condizione0 = "(Alt$(Jet_qgl[0],-1)*(CleanJet_jetIdx[0]==0) + Alt$(Jet_qgl[1],-1)*(CleanJet_jetIdx[0]==1) + Alt$(Jet_qgl[2],-1)*(CleanJet_jetIdx[0]==2) + Alt$(Jet_qgl[3],-1)*(CleanJet_jetIdx[0]==3) + Alt$(Jet_qgl[4],-1)*(CleanJet_jetIdx[0]==4) + Alt$(Jet_qgl[5],-1)*(CleanJet_jetIdx[0]==5) + Alt$(Jet_qgl[6],-1)*(CleanJet_jetIdx[0]==6) + Alt$(Jet_qgl[7],-1)*(CleanJet_jetIdx[0]==7) + Alt$(Jet_qgl[8],-1)*(CleanJet_jetIdx[0]==8) + (CleanJet_jetIdx[0]>8)*(-1))";
+        TString condizione1 = "(Alt$(Jet_qgl[0],-1)*(CleanJet_jetIdx[1]==0) + Alt$(Jet_qgl[1],-1)*(CleanJet_jetIdx[1]==1) + Alt$(Jet_qgl[2],-1)*(CleanJet_jetIdx[1]==2) + Alt$(Jet_qgl[3],-1)*(CleanJet_jetIdx[1]==3) + Alt$(Jet_qgl[4],-1)*(CleanJet_jetIdx[1]==4) + Alt$(Jet_qgl[5],-1)*(CleanJet_jetIdx[1]==5) + Alt$(Jet_qgl[6],-1)*(CleanJet_jetIdx[1]==6) + Alt$(Jet_qgl[7],-1)*(CleanJet_jetIdx[1]==7) + Alt$(Jet_qgl[8],-1)*(CleanJet_jetIdx[1]==8) + (CleanJet_jetIdx[1]>8)*(-1))";
+        
         tree->SetBranchAddress("mjj", &loc0_mjj);
         tree->SetBranchAddress("mll", &loc0_mll);
         tree->SetBranchAddress("ptll", &loc0_ptll);
@@ -61,7 +64,7 @@ void init_hww_VBF_MYmvaBDTG(TTree* tree){
         tree->SetBranchAddress("Lepton_eta", loc0_etal);
         tree->SetBranchAddress("Lepton_phi", loc0_phil);
         tree->SetBranchAddress("Jet_qgl", loc0_qgl);
-
+        tree->SetBranchAddress("CleanJet_jetIdx", loc0_id);
 
 	myreaderBDTG->AddVariable("mjj", &loc_mjj);
 	myreaderBDTG->AddVariable("mll", &loc_mll);
@@ -77,10 +80,14 @@ void init_hww_VBF_MYmvaBDTG(TTree* tree){
 	myreaderBDTG->AddVariable("mlj(Lepton_pt[0], Lepton_eta[0], Lepton_phi[0], CleanJet_pt[1], CleanJet_eta[1], CleanJet_phi[1])", &loc_mlj12);
 	myreaderBDTG->AddVariable("mlj(Lepton_pt[1], Lepton_eta[1], Lepton_phi[1], CleanJet_pt[0], CleanJet_eta[0], CleanJet_phi[0])", &loc_mlj21);
 	myreaderBDTG->AddVariable("mlj(Lepton_pt[1], Lepton_eta[1], Lepton_phi[1], CleanJet_pt[1], CleanJet_eta[1], CleanJet_phi[1])", &loc_mlj22);
-	myreaderBDTG->AddVariable("Jet_qgl[CleanJet_jetIdx[0]]", &loc_qgl1);
-	myreaderBDTG->AddVariable("Jet_qgl[CleanJet_jetIdx[1]]", &loc_qgl2);
+	//myreaderBDTG->AddVariable("Jet_qgl[CleanJet_jetIdx[0]]", &loc_qgl1);
+	//myreaderBDTG->AddVariable("Jet_qgl[CleanJet_jetIdx[1]]", &loc_qgl2);
+        myreaderBDTG->AddVariable("("+condizione0+">=0)*("+condizione0+"+1)-1", &loc_qgl1); 
+        myreaderBDTG->AddVariable("("+condizione1+">=0)*("+condizione1+"+1)-1", &loc_qgl2); 
 
-	myreaderBDTG->BookMVA("BDTG","/afs/cern.ch/user/m/mlizzo/work/new_framework_2017/CMSSW_9_4_9/src/PlotsConfigurations/Configurations/VBF/Full2017BDT_equal_training_events/dataset/weights/TMVAMulticlass_BDTG_30TopFiles.weights.xml"); 
+                
+	//myreaderBDTG->BookMVA("BDTG","/afs/cern.ch/work/r/rceccare/DAS/CMSSW_9_4_12/src/PlotsConfigurations/Configurations/VBF/Full2017BDT_Multiclass/TMVAMulticlass_BDTG_30TopFiles.weights.xml"); 
+        myreaderBDTG->BookMVA("BDTG","/afs/cern.ch/work/r/rceccare/DAS/CMSSW_9_4_12/src/PlotsConfigurations/Configurations/VBF/Full2017BDT_Multiclass/dataset/weights/TMVAMulticlass_BDTG.weights.xml"); 
 
 }
 
@@ -123,10 +130,16 @@ float hww_VBF_MYmvaBDTG(int entry, int nclass){
         loc_mlj12 = mlj(loc0_ptl[0], loc0_etal[0], loc0_phil[0], loc0_ptj[1], loc0_etaj[1], loc0_phij[1]);
         loc_mlj21 = mlj(loc0_ptl[1], loc0_etal[1], loc0_phil[1], loc0_ptj[0], loc0_etaj[0], loc0_phij[0]);
         loc_mlj22 = mlj(loc0_ptl[1], loc0_etal[1], loc0_phil[1], loc0_ptj[1], loc0_etaj[1], loc0_phij[1]);
-        loc_qgl1 = loc0_qgl[0];
-        loc_qgl2 = loc0_qgl[1];
+        
+        loc_qgl1 = loc0_qgl[loc0_id[0]];
+        loc_qgl2 = loc0_qgl[loc0_id[1]];
 
-	 
+	
+
+        //cout<<"*****INIZIO PROVA TMVA*****"<<endl;
+        //cout<<loc0_id[0]<<"  "<< loc_qgl1 <<"   "<<loc0_qgl[0]<<endl;
+        //cout<<loc0_id[1]<<"  "<< loc_qgl2 <<"   "<<loc0_qgl[1]<<endl;
+        //cout<<"*****FINE PROVA TMVA*****"<<endl;
 	
 	float classifier = myreaderBDTG->EvaluateMulticlass(nclass, "BDTG");
 	//cout << entry << " " << classifier << endl;

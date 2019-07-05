@@ -30,13 +30,13 @@ if    'iihe' in SITE :
   treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/'
 elif  'cern' in SITE :
   #treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/'
-  treeBaseDir = '/afs/cern.ch/user/c/cmills/public/Zh_root_files/'
+  treeBaseDir = '/afs/cern.ch/work/c/cmills/public/Zh3l_ntuples_1j/'
 
 #directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__formulasMC'+skim+'/'
 #directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__formulasMC'+skim+'/'
 #directory = treeBaseDir+'Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC'+skim+'/'
 
-directory = treeBaseDir+'/backgrounds/'
+directory = treeBaseDir+'/nominals/'
 
 ################################################
 ############ NUMBER OF LEPTONS #################
@@ -209,6 +209,12 @@ samples['WZ']  = {    'name': getSampleFiles(directory,'WZTo3LNu'),
                        'suppressNegativeNuisances' :['all'],
                   }
 
+samples['WZ']  = {    'name': getSampleFiles(directory,'WZTo3LNu_mllmin01_ext1'),
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC ,
+                   #   'weight' : wzSF+'*'+XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC,
+                      'suppressNegativeNuisances' :['all'],
+                  }
+
 samples['VVV'] = {    'name': getSampleFiles(directory,'WZZ')
                               +getSampleFiles(directory,'ZZZ')
                               +getSampleFiles(directory,'WWZ')
@@ -240,8 +246,12 @@ samples['WH_htt']  = {  'name': getSampleFiles(directory,'HWminusJ_HToTauTau_M12
                        'suppressNegativeNuisances' :['all'],
                      }
 
-samples['ZH_hww']  = {  'name': getSampleFiles(directory,'ggZH_HToWW_M125')
-                                 +getSampleFiles(directory,'HZJ_HToWW_M125'),
+samples['ggZH_hww']  = {  'name': getSampleFiles(directory,'HZJ_HToWW_M125'),
+                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC,
+                        'suppressNegativeNuisances' :['all'],
+                     }
+
+samples['ZH_hww']  = {  'name': getSampleFiles(directory,'ggZH_HToWW_M125'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC,
                         'suppressNegativeNuisances' :['all'],
                      }

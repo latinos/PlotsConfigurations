@@ -1,7 +1,7 @@
 # example of configuration file
 
 #date='_Nov252018_ptll'
-date='_test'
+date='_Apr2_BDT_10bins'
 
 tag = 'WHSS'+date
 
@@ -14,7 +14,7 @@ outputDir = 'rootFile'+date
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts_WH.py' 
+cutsFile = 'cuts.py' 
 #cutsFile = 'cuts_forPlots.py'
 
 # file with list of samples

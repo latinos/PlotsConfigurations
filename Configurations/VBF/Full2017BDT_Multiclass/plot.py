@@ -19,7 +19,7 @@ groupPlot['WW']  = {
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  'samples'  : ['WW', 'ggWW']
+                  'samples'  : ['WW', 'ggWW','WWewk']
               }
 
 groupPlot['Fake']  = {  
@@ -71,12 +71,20 @@ groupPlot['VgS']  = {
 
 
 groupPlot['Higgs']  = {  
-                  'nameHR' : 'Higgs',
-                  'isSignal' : 1,
+                  'nameHR' : 'Higgs_noVBF',
+                  'isSignal' : 0,
                   'color': 632, # kRed 
-		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
+		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
               }
 
+
+    
+groupPlot['VBF']  = {
+                  'nameHR' : 'VBF',
+                  'isSignal' : 1,
+                  'color': 409, # kRed
+                  'samples'  : ['qqH_hww', 'qqH_htt']
+              }
 
 
 
@@ -159,6 +167,16 @@ plot['WW']  = {
                   'isData'   : 0,    
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
+
+
+plot['WWewk']  = {
+                  'color': 851, # kAzure -9 
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+                  }
+
+
 
 plot['ggWW']  = {
                   'color': 850, # kAzure -10

@@ -2,7 +2,7 @@
 treeName= 'Events'
 
 
-tag = 'ggH'
+tag = '_WHSS_2017'
 
 
 # used by mkShape to define output directory for root files
@@ -15,7 +15,8 @@ aliasesFile = 'aliases.py'
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
+#cutsFile = 'cuts.py' 
+cutsFile = 'cuts_new.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 
@@ -34,7 +35,7 @@ outputDirPlots = 'plot'+tag
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'
+outputDirDatacard = 'datacards'+tag
 
 
 # structure file for datacard
