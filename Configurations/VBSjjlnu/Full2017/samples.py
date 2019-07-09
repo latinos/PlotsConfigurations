@@ -47,6 +47,7 @@ LepWPWeight_1l = 'Lepton_tightElectron_'+eleWP+'_IdIsoSF'+'[0]*\
                 Lepton_tightMuon_'+muWP+'_IdIsoSF'+'[0]'
 
 LepWPCut = LepWPCut_1l
+LepWPWeight = LepWPWeight_1l
 ################################################
 ############ BASIC MC WEIGHTS ##################
 ################################################
@@ -342,8 +343,13 @@ samples['VBS']  = { 'name' :
 ################## DATA ###################
 ###########################################
 
+
+LepWPCut_data =  '(Lepton_isTightElectron_mvaFall17Iso_WP90[0]>0.5 || Lepton_isTightMuon_cut_Tight_HWWW[0]>0.5)'
+
+
+
 samples['DATA']  = {   'name': [ ] ,
-                       'weight' : METFilter_DATA+'*'+LepWPCut,
+                       'weight' : METFilter_DATA+'*'+LepWPCut_data,
                        'weights' : [ ],
                        'isData': ['all'],
                        'FilesPerJob' : 20,
