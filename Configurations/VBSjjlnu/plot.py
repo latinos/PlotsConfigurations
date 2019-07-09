@@ -21,19 +21,19 @@ groupPlot['VBS']  = {
 
 
 
-# groupPlot['Others']  = {
-#                         'nameHR' : 'Others',
-#                         'isSignal' : 0,
-#                         'color': 861,#632,
-#                         'samples'  : ['Others']
-#                         }
+groupPlot['Others']  = {
+                        'nameHR' : 'Others',
+                        'isSignal' : 0,
+                        'color': 861,#632,
+                        'samples'  : ['Others']
+                        }
 
 
-groupPlot['top']  = {    
-				'nameHR' : 'top',
+groupPlot['TT']  = {    
+				'nameHR' : 'TT',
 				'isSignal' : 0,
 				'color' : 797,#860,
-				'samples' : ['top']
+				'samples' : ['TT']
                 		 }	
 
 groupPlot['Wjets']  = {
@@ -81,12 +81,12 @@ groupPlot['Wjets']  = {
 #                        }
 
 
-groupPlot['DY']  = {
-                        'nameHR' : 'DY',
-                        'isSignal' : 0,
-                        'color': 418,
-                        'samples'  : ['DY']
-                        }
+# groupPlot['DY']  = {
+#                         'nameHR' : 'DY',
+#                         'isSignal' : 0,
+#                         'color': 418,
+#                         'samples'  : ['DY']
+#                         }
 # groupPlot['WWTo2L2Nu']  = {
 #                         'nameHR' : 'WWTo2L2Nu',
 #                         'isSignal' : 0,
@@ -173,14 +173,14 @@ plot['VBS']  = {
 
 
 
-# plot['Others']  = {
-#                   'color': 861,
-#                   'isSignal' : 0,
-#                   'isData'   : 0,
-#                   'scale'    : 1.   ,
-#               }
+plot['Others']  = {
+                  'color': 861,
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.   ,
+              }
 
-plot['top']  = {
+plot['TT']  = {
                   'color': 797,    
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -232,12 +232,12 @@ plot['Wjets']  = {
 
 
 
-plot['DY']  = {
-                  'color': 418,
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.   ,
-              }
+# plot['DY']  = {
+#                   'color': 418,
+#                   'isSignal' : 0,
+#                   'isData'   : 0,
+#                   'scale'    : 1.   ,
+#               }
 
 # plot['WWTo2L2Nu']  = {
 #                   'color': 400,
