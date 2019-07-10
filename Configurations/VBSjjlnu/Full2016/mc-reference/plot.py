@@ -11,15 +11,15 @@ legend['sqrt'] = '#sqrt{s} = 13 TeV'
 #
 
 colors = [
-    415, # VBS
-    797, # TT
-    629, # Wjets
-    861, # TTWJets
-    632, # VV_VVV
-    617, # DYJets
-    860, # ST
-    620, # QCD_Pt
-    500  # QCD_WW
+    415, # 617
+    797, # 860
+    629, # 620
+    861, #632
+    632,
+    617,
+    860,
+    620,
+    500
 ]
 
 groupPlot['VBS']  = {  
@@ -78,7 +78,7 @@ groupPlot['QCD_Pt'] = {
     'samples'  : ['QCD_Pt']
 }
 
-groupPlot['QCD_WW'] = {
+groupPlot['QCD_WW'] {
     'nameHR'   : 'QCD_WW',
     'isSignal' : 0,
     'color'    : colors[8],
@@ -111,42 +111,42 @@ plot['Wjets']  = {
     'scale'    : 1.
 }
 
-plot['TTWJets']  = {  
+groupPlot['TTWJets']  = {  
     'color'    : colors[3],
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.
 }
 
-plot['VV_VVV']  = {
+groupPlot['VV_VVV']  = {
     'color'    : colors[4],
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.
 }
 
-plot['DYJets']  = {
+groupPlot['DYJets']  = {
     'color'    : colors[5],
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.
 }
 
-plot['ST'] = {
+groupPlot['ST'] = {
     'color'    : colors[6],
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.
 }
 
-plot['QCD_Pt'] = {
+groupPlot['QCD_Pt'] = {
     'color'    : colors[7],
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.
 }
 
-plot['QCD_WW']=  {
+groupPlot['QCD_WW'] {
     'color'    : colors[8],
     'isSignal' : 0,
     'isData'   : 0,

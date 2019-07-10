@@ -25,13 +25,11 @@ samples = {}
 
 treeBaseDir='/gwteray/users/govoni/OneLeptonSkims/'
 
-postProcStepSig   = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l1tightChain__btagTight__LepTrgFix__dorochester__formulasMC__gr4JetsSkim__topCRVBSjetpairAndVars'
+postProcStepSig = 'signal'
 sigDir = treeBaseDir + 'VBS_semileptonic_signal_summer16/'        + postProcStepSig + "/" 
-
-postProcStepBkg1  = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l1tightChain__btagMedium__LepTrgFix__dorochester__formulasMC__gr4JetsSkim__topCRVBSjetpairAndVars'
+postProcStepBkg1  = 'bkgvbs'
 bkgDir1 = treeBaseDir + 'Apr2017_summer16_SingleLepton_hercules/' + postProcStepBkg1 +"/" 
-
-postProcStepBkg2  = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l1tightChain__btagMedium__LepTrgFix__dorochester__formulasMC__gr4JetsSkim__topCRVBSjetpairAndVars'
+postProcStepBkg2  = 'bkgvbs'
 bkgDir2 = treeBaseDir + 'QCD_semileptonic_summer16/'              + postProcStepBkg2 + "/" 
 
 
@@ -296,18 +294,18 @@ DataTrig = {
 ################## DATA ###################
 ###########################################
 
-samples['DATA']  = {   'name': [ ] ,     
-                       'weight' : 'veto_EMTFBug'+'*'+METFilter_DATA+'*'+LepWPCut,
-                       'weights' : [ ],
-                       'isData': ['all'],                            
-                       'FilesPerJob' : 6 ,
-                  }
+# samples['DATA']  = {   'name': [ ] ,     
+#                        'weight' : 'veto_EMTFBug'+'*'+METFilter_DATA+'*'+LepWPCut,
+#                        'weights' : [ ],
+#                        'isData': ['all'],                            
+#                        'FilesPerJob' : 6 ,
+#                   }
 
-for Run in DataRun :
-  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__hadd__l1tight_l2veto_btag_4jets__VBSjetpairAndVars/'
-  for DataSet in DataSets :
-    FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
-    for iFile in FileTarget:
-      samples['DATA']['name'].append(iFile)
-      samples['DATA']['weights'].append(DataTrig[DataSet]) 
+# for Run in DataRun :
+#   directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__hadd__l1tight_l2veto_btag_4jets__VBSjetpairAndVars'+skim+'/'
+#   for DataSet in DataSets :
+#     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
+#     for iFile in FileTarget:
+#       samples['DATA']['name'].append(iFile)
+#       samples['DATA']['weights'].append(DataTrig[DataSet]) 
 

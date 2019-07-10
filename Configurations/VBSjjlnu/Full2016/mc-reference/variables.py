@@ -204,19 +204,19 @@ variables['deltaphi_vjet'] = {
 }
 variables['deltaR_vjet'] = {
         'name' : 'deltaR_vjet',
-        'range': (20,2,8),
+        'range': (40,2,8),
         'xaxis': '#Delta R vjet',
         'fold' : 3
 }
 variables['vjet_eta_high'] = {
         'name' : 'vjet_eta_high',
-        'range': (20,0,7),
+        'range': (10,0,7),
         'xaxis': '#eta vjet high',
         'fold' : 3
 }
 variables['vjet_eta_low'] = {
         'name' : 'vjet_eta_low',
-        'range': (20,0,7),
+        'range': (10,0,7),
         'xaxis': '#eta vjet low',
         'fold' : 3
 }
@@ -224,19 +224,19 @@ variables['vjet_eta_low'] = {
 # neutrino
 variables['deltaphi_lep_nu'] = {
         'name' : 'deltaphi_lep_nu',
-        'range': (20,0,7),
+        'range': (10,0,7),
         'xaxis': '#Delta #phi lep nu',
         'fold' : 3
 }
 variables['deltaeta_lep_nu'] = {
         'name' : 'deltaeta_lep_nu',
-        'range': (20,0,7),
+        'range': (10,0,7),
         'xaxis': '#Delta #eta lep nu',
         'fold' : 3
 }
 variables['deltaR_lep_nu'] = {
         'name' : 'deltaR_lep_nu',
-        'range': (20,0,4),
+        'range': (2,0,4),
         'xaxis': '#Delta R lep nu',
         'fold' : 3
 }
@@ -244,49 +244,49 @@ variables['deltaR_lep_nu'] = {
 # angles with lepton
 variables['deltaphi_lep_vbs_high'] = {
         'name' : 'deltaphi_lep_vbs_high',
-        'range': (20,0,7),
+        'range': (10,0,7),
         'xaxis': '#Delta #phi lep vbs high',
         'fold' : 3
 }
 variables['deltaphi_lep_vbs_low'] = {
         'name' : 'deltaphi_lep_vbs_low',
-        'range': (20,0,7),
+        'range': (10,0,7),
         'xaxis': '#Delta #phi lep vbs low',
         'fold' : 3
 }
 variables['deltaphi_lep_vjet_high'] = {
         'name' : 'deltaphi_lep_vjet_high',
-        'range': (20,0,7),
+        'range': (10,0,7),
         'xaxis': '#Delta #phi lep vjets high',
         'fold' : 3
 }
 variables['deltaphi_lep_vjet_low'] = {
         'name' : 'deltaphi_lep_vjet_low',
-        'range': (20,0,7),
+        'range': (10,0,7),
         'xaxis': '#Delta #phi lep vjets low',
         'fold' : 3
 }
 variables['deltaeta_lep_vbs_high'] = {
         'name' : 'deltaeta_lep_vbs_high',
-        'range': (20,0,7),
+        'range': (10,0,7),
         'xaxis': '#Delta #eta lep vbs high',
         'fold' : 3
 }
 variables['deltaeta_lep_vbs_low']  = {
         'name' : 'deltaeta_lep_vbs_low',
-        'range': (20,0,7),
+        'range': (10,0,7),
         'xaxis': '#Delta #eta lep vbs low',
         'fold' : 3
 }
 variables['deltaeta_lep_vjet_high'] = {
         'name' : 'deltaeta_lep_vjet_high',
-        'range': (20,0,7),
+        'range': (10,0,7),
         'xaxis': '#Delta #eta lep vjet high',
         'fold' : 3
 }
 variables['deltaeta_lep_vjet_low'] = {
         'name' : 'deltaeta_lep_vjet_low',
-        'range': (20,0,7),
+        'range': (10,0,7),
         'xaxis': '#Delta #eta lep vjet low',
         'fold' : 3
 }
@@ -294,13 +294,13 @@ variables['deltaeta_lep_vjet_low'] = {
 # Look for nearest vbs jet from lepton
 variables['deltaR_lep_vbs'] = {
         'name' : 'deltaR_lep_vbs',
-        'range': (20,0,4),
+        'range': (2,0,4),
         'xaxis': '#Delta R lep vbs',
         'fold' : 3
 }
 variables['deltaR_lep_vjet'] = {
         'name' : 'deltaR_lep_vjet',
-        'range': (20,0,4),
+        'range': (2,0,4),
         'xaxis': '#Delta R lep vjet',
         'fold' : 3
 }
@@ -308,19 +308,19 @@ variables['deltaR_lep_vjet'] = {
 # zeppenfeld
 variables['Zvjets_high'] = {
         'name' : 'Zvjets_high',
-        'range': (20,-4,4),
+        'range': (10,-4,4),
         'xaxis': 'Z vjets high',
         'fold' : 3
 }
 variables['Zvjets_low'] = {
         'name' : 'Zvjets_low',
-        'range': (20,-4,4),
+        'range': (10,-4,4),
         'xaxis': 'Z vjets low',
         'fold' : 3
 }
 variables['Zlep'] = {
         'name' : 'Zlep',
-        'range': (20,-4,4),
+        'range': (10,-4,4),
         'xaxis': 'Z lep',
         'fold' : 3
 }
@@ -328,13 +328,13 @@ variables['Zlep'] = {
 # R variables
 variables['Rvjets_high'] = {
         'name' : 'Rvjets_high',
-        'range': (20,0,4),
+        'range': (10,-4,4),
         'xaxis': 'R vjets high',
         'fold' : 3
 }
 variables['Rvjets_low'] ={
         'name' : 'Rvjets_low',
-        'range': (20,0,4),
+        'range': (10,-4,4),
         'xaxis': 'R vjets low',
         'fold' : 3
 }
