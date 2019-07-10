@@ -12,7 +12,7 @@ _tmp = [
      'PuppiMET_pt > 20.', 
    # 'Sum$(abs(CleanJet_eta)>2.5) == 0',
      'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13', #electron & muon with op. charge
-       ]
+     ]
 
 supercut = ' && '.join(_tmp)
 
@@ -27,12 +27,12 @@ _tmp = [
      'mth<125.',
      'drll<2.',   #DeltaRll<2
      #'(Sum$(CleanJet_pt > 20. && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0)', #no bjets with pt>20
-     'bVeto',
      'mjj>65.',
      'mjj<105.',
      'detajj<3.5',# delta eta entre dos jets 
-     'Jet_qgl[CleanJet_jetIdx[0]]>0.4', #QGL cuts 31/5/19
-     'Jet_qgl[CleanJet_jetIdx[1]]>0.3',
+     #'Jet_qgl[CleanJet_jetIdx[0]]>0.4', #QGL cuts 31/5/19
+     #'Jet_qgl[CleanJet_jetIdx[1]]>0.3',
+     'bVeto',
      ]
 
 addcut('VH_2j_emu', _tmp)
