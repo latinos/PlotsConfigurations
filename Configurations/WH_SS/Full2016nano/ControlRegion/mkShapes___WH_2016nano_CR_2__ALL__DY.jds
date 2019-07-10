@@ -1,0 +1,9 @@
+executable = /afs/cern.ch/user/s/safreed/HWW2017/jobs//mkShapes___WH_2016nano_CR_2/mkShapes___WH_2016nano_CR_2__ALL__DY.sh
+universe = vanilla
+output = /afs/cern.ch/user/s/safreed/HWW2017/jobs//mkShapes___WH_2016nano_CR_2/mkShapes___WH_2016nano_CR_2__ALL__DY.out
+error = /afs/cern.ch/user/s/safreed/HWW2017/jobs//mkShapes___WH_2016nano_CR_2/mkShapes___WH_2016nano_CR_2__ALL__DY.err
+log = /afs/cern.ch/user/s/safreed/HWW2017/jobs//mkShapes___WH_2016nano_CR_2/mkShapes___WH_2016nano_CR_2__ALL__DY.log
+request_cpus = 1
+periodic_hold = CurrentTime - EnteredCurrentStatus > 86340
++JobFlavour = "tomorrow"
+queue
