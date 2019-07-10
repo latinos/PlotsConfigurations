@@ -18,38 +18,63 @@ variables['jetpt1']  = {
                         }
 
 
-
 variables['jeteta1']  = {  'name': 'CleanJet_eta[0]',
-                       'range' : (40,-5.0,5.0),
+                       'range' : (250,-5.0,5.0),
                        'xaxis' : '#eta 1st jet',
+                       'fold'  : 0
+                       }
+
+variables['jeteta1_lessbins']  = {  'name': 'CleanJet_eta[0]',
+                       'range' : (80,-5.0,5.0),
+                       'xaxis' : '#eta 1st jet',
+                       'fold'  : 0
+                       }
+
+variables['jetpt2']  = {
+                        'name': 'CleanJet_pt[1]*(CleanJet_pt[1]>0)',     
+                        'range' : (40,15,50),   
+                        'xaxis' : 'p_{T} 2nd jet',
+                        'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+                        }
+
+
+variables['jeteta2']  = {  'name': 'CleanJet_eta[1]',
+                       'range' : (250,-5.0,5.0),
+                       'xaxis' : '#eta 2nd jet',
+                       'fold'  : 0
+                       }
+
+variables['jeteta2_lessbins']  = {  'name': 'CleanJet_eta[1]',
+                       'range' : (80,-5.0,5.0),
+                       'xaxis' : '#eta 2nd jet',
                        'fold'  : 0
                        }
 
 
 variables['Jet_neEMF_jet1']  = { 
                         'name': 'Jet_neEmEF[CleanJet_jetIdx[0]]',
-                        'range' : (80,0,1),
+                        'range' : (70,0,1),
                         'xaxis' : 'Neutral Em fraction',
                         'fold' : 3
                         }
 
 variables['Jet_neHF_jet1']  = { 
                         'name': 'Jet_neHEF[CleanJet_jetIdx[0]]',
-                        'range' : (80,0,1),
+                        'range' : (60,0,1),
                         'xaxis' : 'Neutral Had fraction',
                         'fold' : 3
                         }
 
 variables['Jet_chEMF_jet1']  = { 
                         'name': 'Jet_chEmEF[CleanJet_jetIdx[0]]',
-                        'range' : (80,0,1),
+                        'range' : (60,0,1),
                         'xaxis' : 'Charged Em fraction',
                         'fold' : 3
                         }
 
 variables['Jet_chHF_jet1']  = { 
                         'name': 'Jet_chHEF[CleanJet_jetIdx[0]]',
-                        'range' : (80,0,1),
+                        'range' : (60,0,1),
                         'xaxis' : 'Charged Had fraction',
                         'fold' : 3
                         }
@@ -103,11 +128,11 @@ variables['mll']  = {   'name': 'mll',            #   variable name
 #                         'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
 #                         }
 
-# variables['nvtx']  = {   'name': 'PV_npvsGood',      
-#                         'range' : (20,0,100),  
-#                         'xaxis' : 'nvtx', 
-#                          'fold' : 3
-#                       }
+variables['nvtx']  = {   'name': 'PV_npvsGood',      
+                        'range' : (40,0,100),  
+                        'xaxis' : 'nvtx', 
+                         'fold' : 3
+                      }
 
 # variables['mllpeak'] = {   'name': 'mll',            #   variable name
 #                            'range' : (20,80,100),    #   variable range
