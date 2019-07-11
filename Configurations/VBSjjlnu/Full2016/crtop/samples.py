@@ -25,15 +25,12 @@ samples = {}
 
 treeBaseDir='/gwteray/users/govoni/OneLeptonSkims/'
 
-postProcStepSig   = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l1tightChain__btagTight__LepTrgFix__dorochester__formulasMC__gr4JetsSkim__topCRVBSjetpairAndVars'
+postProcStepSig = 'signal'
 sigDir = treeBaseDir + 'VBS_semileptonic_signal_summer16/'        + postProcStepSig + "/" 
-
-postProcStepBkg1  = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l1tightChain__btagMedium__LepTrgFix__dorochester__formulasMC__gr4JetsSkim__topCRVBSjetpairAndVars'
+postProcStepBkg1  = 'bkgvbs'
 bkgDir1 = treeBaseDir + 'Apr2017_summer16_SingleLepton_hercules/' + postProcStepBkg1 +"/" 
-
-postProcStepBkg2  = 'lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l1tightChain__btagMedium__LepTrgFix__dorochester__formulasMC__gr4JetsSkim__topCRVBSjetpairAndVars'
-bkgDir2 = treeBaseDir + 'QCD_semileptonic_summer16/'              + postProcStepBkg2 + "/" 
-
+postProcStepBkg2  = 'bkgvbs'
+bkgDir2 = treeBaseDir + 'QCD_semileptonic_summe
 
 ################################################
 ############ NUMBER OF LEPTONS #################
@@ -126,8 +123,19 @@ SFweight += '*'+LepWPweight+'*'+LepWPCut
 ################################################
 
 METFilter_MC   = 'METFilter_MC'
-METFilter_DATA = 'METFilter_DATA'
 
+# no formulasDATA postprocessing on DATA
+METFilter_DATA = 'METFilter_DATA' 
+# METFilter_Common = '(event.std_vector_trigger_special[0]*\
+#                      event.std_vector_trigger_special[1]*\
+#                      event.std_vector_trigger_special[2]*\
+#                      event.std_vector_trigger_special[3]*\
+#                      event.std_vector_trigger_special[5]\
+#                    )'
+
+# METFilter_DATA   =  METFilter_Common + '*' + '(event.std_vector_trigger_special[4]*\
+#                                               event.std_vector_trigger_special[8]*\
+#                                               event.std_vector_trigger_special[9])'
 
 
 ###########################################
@@ -135,6 +143,13 @@ METFilter_DATA = 'METFilter_DATA'
 ###########################################
 
 #others minor backgrounds all inside Others
+samples['TTWJets']  = {  
+        'name': getSampleFiles(bkgDir1, 'TTWJetsToLNu', True) + \
+                getSampleFiles(bkgDir1, 'TTWJetsToQQ',  True),
+        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+        'FilesPerJob' : 10
+}
+
 samples['DYJets']  = {
         'name' : getSampleFiles(bkgDir1, 'DYJetsToLL_M-10to50', True) ,
         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
@@ -151,6 +166,32 @@ samples['VV_VVV']  = {
                 getSampleFiles(bkgDir1, 'WWZ',         True) ,
         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
         'FilesPerJob' : 10
+}
+
+samples['QCD_WW'] = {
+        'name': getSampleFiles(bkgDir2, 'WmTo2J_ZTo2L_QCD',   True)+\
+                getSampleFiles(bkgDir2, 'WmToLNu_ZTo2J_QCD',  True)+\
+                getSampleFiles(bkgDir2, 'WpTo2J_WmToLNu_QCD', True)+\
+                getSampleFiles(bkgDir2, 'WpTo2J_ZTo2L_QCD',   True)+\
+                getSampleFiles(bkgDir2, 'WpToLNu_WmTo2J_QCD', True)+\
+                getSampleFiles(bkgDir2, 'WpToLNu_ZTo2J_QCD',  True)+\
+                getSampleFiles(bkgDir2, 'WmToLNu_WmTo2J_QCD', True)+\
+                getSampleFiles(bkgDir2, 'WpToLNu_WpTo2J_QCD', True)+\
+                getSampleFiles(bkgDir2, 'ZTo2L_ZTo2J_QCD', True),
+        'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+        'FilesPerJob' : 3
+}
+
+samples['Wjets'] = { 
+        'name': getSampleFiles(bkgDir1, 'WJetsToLNu_HT100_200',       True) + \
+                getSampleFiles(bkgDir1, 'WJetsToLNu_HT200_400',       True) + \
+                getSampleFiles(bkgDir1, 'WJetsToLNu_HT400_600',       True) + \
+                getSampleFiles(bkgDir1, 'WJetsToLNu_HT600_800',       True) + \
+                getSampleFiles(bkgDir1, 'WJetsToLNu_HT800_1200_ext1', True) + \
+                getSampleFiles(bkgDir1, 'WJetsToLNu_HT1200_2500',     True) + \
+                getSampleFiles(bkgDir1, 'WJetsToLNu_HT2500_inf',      True),
+        'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+        'FilesPerJob' : 3,
 }
 
 samples['ST'] = {
@@ -170,12 +211,6 @@ samples['TT'] = {
         'FilesPerJob' : 10 ,
 }
 
-samples['TTWJets']  = {  
-        'name': getSampleFiles(bkgDir1, 'TTWJetsToLNu', True) + \
-                getSampleFiles(bkgDir1, 'TTWJetsToQQ',  True),
-        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-        'FilesPerJob' : 10
-}
 
 
 samples['QCD_Pt'] = {
@@ -193,33 +228,6 @@ samples['QCD_Pt'] = {
         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
         'FilesPerJob' : 10 ,
 }
-
-samples['Wjets'] = { 
-        'name': getSampleFiles(bkgDir1, 'WJetsToLNu_HT100_200',       True) + \
-                getSampleFiles(bkgDir1, 'WJetsToLNu_HT200_400',       True) + \
-                getSampleFiles(bkgDir1, 'WJetsToLNu_HT400_600',       True) + \
-                getSampleFiles(bkgDir1, 'WJetsToLNu_HT600_800',       True) + \
-                getSampleFiles(bkgDir1, 'WJetsToLNu_HT800_1200_ext1', True) + \
-                getSampleFiles(bkgDir1, 'WJetsToLNu_HT1200_2500',     True) + \
-                getSampleFiles(bkgDir1, 'WJetsToLNu_HT2500_inf',      True),
-        'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-        'FilesPerJob' : 3,
-}
-
-samples['QCD_WW'] = {
-        'name': getSampleFiles(bkgDir2, 'WmTo2J_ZTo2L_QCD',   True)+\
-                getSampleFiles(bkgDir2, 'WmToLNu_ZTo2J_QCD',  True)+\
-                getSampleFiles(bkgDir2, 'WpTo2J_WmToLNu_QCD', True)+\
-                getSampleFiles(bkgDir2, 'WpTo2J_ZTo2L_QCD',   True)+\
-                getSampleFiles(bkgDir2, 'WpToLNu_WmTo2J_QCD', True)+\
-                getSampleFiles(bkgDir2, 'WpToLNu_ZTo2J_QCD',  True),
-                # getSampleFiles(bkgDir2, 'WmToLNu_WmTo2J_QCD', True)+\
-                # getSampleFiles(bkgDir2, 'WpToLNu_WpTo2J_QCD', True)+\
-                # getSampleFiles(bkgDir2, 'ZTo2L_ZTo2J_QCD', True),
-        'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-        'FilesPerJob' : 3
-}
-
 
 ###########################################
 #############   SIGNALS  ##################
@@ -304,7 +312,7 @@ samples['DATA']  = {   'name': [ ] ,
                   }
 
 for Run in DataRun :
-  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__hadd__l1tight_l2veto_btag_4jets__VBSjetpairAndVars/'
+  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__hadd__l1tight_l2veto_btag_4jets__VBSjetpairAndVars__formulasDATA/'
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
     for iFile in FileTarget:
