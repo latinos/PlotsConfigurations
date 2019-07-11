@@ -949,34 +949,36 @@ nuisances['stat']  = {
               'maxPoiss'  : '10',
               'includeSignal'  : '1',
               #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
-              #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
+              #nuisance ['includeSignal'] = 1, # Include MC stat nuisances on signal processes (1=True, 0=False)
               'samples' : {}
              }
 
 
-nuisances['Topnorm']  = {
-    'name'  : 'Topnorm',
-    'samples'  : {
-        'top' : '1.00',
-        },
-    'type'  : 'rateParam',
-    'cuts'  : [
-        'VH_2j_emu',
-        'VH_2j_topemu',
+#nuisances['Topnorm']  = {
+#    'name'  : 'Topnorm',
+#    'samples'  : {
+#        'top' : '1.00',
+#        },
+#    'type'  : 'rateParam',
+#    'cuts'  : [
+#        'VH_2j_emu',
+#        'VH_2j_topemu',
+#        'VH_2j_DYtautau',
         #                                                                                                                         
-        ]
-    }
+#        ]
+#    }
 
 
-nuisances['DYnorm']  = {                                                                                                           
-    'name'  : 'DYnorm',                                                                                                            
-    'samples'  : {                                                                                                                 
-        'top' : '1.00',                                                                                                            
-        },                                                                                                                         
-    'type'  : 'rateParam',                                                                                                         
-    'cuts'  : [                                                                                                                    
-        'VH_2j_emu',                                                                                                               
-        'VH_2j_DYtautau',                                                                                                          
+#nuisances['DYnorm']  = {                                                                                                           
+#    'name'  : 'DYnorm',                                                                                                            
+#    'samples'  : {                                                                                                                 
+#        'top' : '1.00',                                                                                                            
+#        },                                                                                                                         
+#    'type'  : 'rateParam',                                                                                                         
+#   'cuts'  : [                                                                                                                    
+#        'VH_2j_emu',
+#        'VH_2j_topemu',                                                                                                            # 
+#        'VH_2j_DYtautau',                                                                                                          
         #                                                                                                                          
-        ]                                                                                                                          
-    } 
+#        ]                                                                                                                          
+#    } 
