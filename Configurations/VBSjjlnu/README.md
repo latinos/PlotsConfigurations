@@ -1,5 +1,32 @@
-HH > WW bb > lvjj bb
+VBSjjlnu
 ====
+
+# commands
+
+```
+tagname=crtop_1
+./apply_config.sh Full2016 ${tagname}
+```
+
+Edit the data
+
+```
+./archive_config.sh Full2016 ${tagname}
+```
+
+```
+mkshapes
+mkshapes-hadd
+```
+
+plot: 
+```
+mv rootFile-${tagname} rootFile && time mkplot --minLogC 100 --maxLogC 1e5 --minLogCratio 100. --maxLogCratio 1e5 && ./archive_plots.sh ${tagname}
+```
+
+
+
+# Other
 
 Transfer data:
 

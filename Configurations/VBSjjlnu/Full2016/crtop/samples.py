@@ -30,8 +30,7 @@ sigDir = treeBaseDir + 'VBS_semileptonic_signal_summer16/'        + postProcStep
 postProcStepBkg1  = 'bkgvbs'
 bkgDir1 = treeBaseDir + 'Apr2017_summer16_SingleLepton_hercules/' + postProcStepBkg1 +"/" 
 postProcStepBkg2  = 'bkgvbs'
-bkgDir2 = treeBaseDir + 'QCD_semileptonic_summer16/'              + postProcStepBkg2 + "/" 
-
+bkgDir2 = treeBaseDir + 'QCD_semileptonic_summe
 
 ################################################
 ############ NUMBER OF LEPTONS #################

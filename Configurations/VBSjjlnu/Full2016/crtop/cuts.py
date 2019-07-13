@@ -16,8 +16,7 @@ btagtight=' ((1*(std_vector_jet_DeepCSVB[0] > 0.8958)*(std_vector_jet_pt[0]>25) 
               1*(std_vector_jet_DeepCSVB[8] > 0.8958)*(std_vector_jet_pt[8]>25) + \
               1*(std_vector_jet_DeepCSVB[9] > 0.8958)*(std_vector_jet_pt[9]>25) \
               ) >= 1)'
-# supercut += '&& ' + l2vetotight + '&&' + btagtight
-supercut += '&& ' + l2vetotight
+supercut += '&& ' + l2vetotight + '&&' + btagtight
 
 cuts["events"] = '1.'
 
