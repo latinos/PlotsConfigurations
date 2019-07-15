@@ -108,7 +108,7 @@ DataTrig = {
 ptllDYW_NLO = '((0.623108 + 0.0722934*gen_ptll - 0.00364918*gen_ptll*gen_ptll + 6.97227e-05*gen_ptll*gen_ptll*gen_ptll - 4.52903e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll<45)*(gen_ptll>0) + 1*(gen_ptll>=45))'
 ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
 
-useEmbeddedDY = True
+useEmbeddedDY = False
 useDYtt = False
 
 if useEmbeddedDY: #Setup
@@ -283,26 +283,13 @@ samples['VZ']  = {  'name'   :   getSampleFiles(directory2,'ZZTo2L2Nu',False,'na
 ############ VVV ############
 
 samples['VVV']  = {  'name'   :   getSampleFiles(directory,'ZZZ',False,'nanoLatino_')
-                                 + getSampleFiles(directory,'WZZ',False,'nanoLatino_')
-                                 + getSampleFiles(directory,'WWZ',False,'nanoLatino_')
-                                 + getSampleFiles(directory,'WWW',False,'nanoLatino_'),
-                                 #+ getSampleFiles(directory,'WWG',False,'nanoLatino_'), #should this be included? or is it already taken into account in the WW sample?
-                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                   }
-##
-##samples['ZZZ']  = {  'name'   :   getSampleFiles(directory,'ZZZ',False,'nanoLatino_'),
-##                    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-##                  }
-##samples['WZZ']  = {  'name'   :   getSampleFiles(directory,'WZZ',False,'nanoLatino_'),
-##                    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-##                  }
-##samples['WWZ']  = {  'name'   :   getSampleFiles(directory,'WWZ',False,'nanoLatino_'),
-##                    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-##                  }
-##samples['WWW']  = {  'name'   :   getSampleFiles(directory,'WWW',False,'nanoLatino_'),
-##                    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-##                  }
-##12/06 returned to VVV
+                                + getSampleFiles(directory,'WZZ',False,'nanoLatino_')
+                                + getSampleFiles(directory,'WWZ',False,'nanoLatino_')
+                                + getSampleFiles(directory,'WWW',False,'nanoLatino_'),
+                                #+ getSampleFiles(directory,'WWG',False,'nanoLatino_'), #should this be included? or is it already taken into account in the WW sample?
+                    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                  }
+
 
 
 ##########################################
