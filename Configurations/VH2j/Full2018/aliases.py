@@ -14,9 +14,7 @@ aliases['bVetoDY'] = {
 'expr': '(Sum$(CleanJet_pt > 30. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) == 0) && mth < 60'                       
 }
 
-#aliases['btag1'] = {
-#'expr': '((Jet_btagDeepB[CleanJet_jetIdx[0]] > 0.1241) || (Jet_btagDeepB[CleanJet_jetIdx[1]] > 0.1241))'
-#}
+
 
 aliases['btag1'] = {
 'expr': '(    Alt$(CleanJet_pt[0],0)>30 \
