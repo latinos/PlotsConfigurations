@@ -17,12 +17,22 @@ cr = [ckey for ckey in cuts if '_CR' in ckey]
 
 nosignal = [skey for skey in samples if skey not in signals]
 
-#'fold' : # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
-
 variables['events'] = {
     'name': '0.5',
     'range': (1,0,1),
     'xaxis': 'events'
+}
+
+variables['mth'] = {
+    'name': 'mth',
+    'range': ([60,80,90,100,110,120,130,150,200],),
+    'xaxis': 'm_{T}^{H} (GeV)'
+}
+    
+variables['mll'] = {
+    'name': 'mll',
+    'range': ([10,25,35,40,45,50,55,70,90,210],),
+    'xaxis': 'm_{ll} (GeV)'
 }
 
 mthbinning = [60,80,90,100,110,120,130,150,200]
@@ -105,67 +115,85 @@ variables['mll_optim'] = {
     'cuts': sr
 }
 
-mllbinning = [10,25,35,40,45,50,55,70,90,210]
-
-variables['mll'] = {
-    'name': 'mll',
-    'range': (mllbinning,),
-    'xaxis': 'm^{ll} [GeV]', #   x axis name
-    'doWeight': 1, # do weighted plot too
-    'cuts': cr,
-    'samples': nosignal
-}
-
-variables['jet1Eta'] = {
-    'name': 'CleanJet_eta[0] * (CleanJet_pt[0] > 30.) - 5. * (CleanJet_pt[0] < 30.)',
-    'range': (50, -4.7, 4.7),
-    'xaxis': '#eta^{j1}',
-    'doWeight': 1,
-    'cuts': cr,
-    'samples': nosignal
-}
-
-variables['jet2Eta'] = {
-    'name': 'CleanJet_eta[1] * (CleanJet_pt[1] > 30.) - 5. * (CleanJet_pt[1] < 30.)',
-    'range': (50, -4.7, 4.7),
-    'xaxis': '#eta^{j2}',
-    'doWeight': 1,
-    'cuts': cr,
-    'samples': nosignal
-}
-
 variables['met'] = {
     'name': 'PuppiMET_pt',
     'range': (50, 0., 100.),
     'xaxis': 'E_{T}^{miss} [GeV]',
-    'doWeight': 1,
-    'cuts': cr,
-    'samples': nosignal
 }
 
-variables['metPhi'] = {
-    'name': 'PuppiMET_phi',
-    'range': (50, -math.pi, math.pi),
-    'xaxis': '#phi(E_{T}^{miss})',
-    'doWeight': 1,
-    'cuts': cr,
-    'samples': nosignal
+variables['ptll'] = {
+    'name': 'ptll',
+    'range': (20,0,200),
+    'xaxis': 'pt_{ll} [GeV]',
 }
 
-variables['ptWW'] = {
-    'name': 'pTWW',
-    'range': (50, 0., 400.),
-    'xaxis': 'p_{T}^{WW} [GeV]',
-    'doWeight': 1,
-    'cuts': cr,
-    'samples': nosignal
+variables['dphill'] = {
+    'name': 'abs(dphill)',     
+    'range': (20,0,3.14),   
+    'xaxis': ' #Delta #phi_{ll}',
 }
 
-variables['ht'] = {
-    'name': ('Sum$(CleanJet_pt * (CleanJet_pt > 30. && TMath::Abs(CleanJet_eta) < 4.7))',),
-    'range': (50, 0., 1000.),
-    'xaxis': 'H_{T} [GeV]',
-    'doWeight': 1,
-    'cuts': cr,
-    'samples': nosignal
-}
+#mllbinning = [10,25,35,40,45,50,55,70,90,210]
+#
+#variables['mll'] = {
+#    'name': 'mll',
+#    'range': (mllbinning,),
+#    'xaxis': 'm^{ll} [GeV]', #   x axis name
+#    'doWeight': 1, # do weighted plot too
+#    'cuts': cr,
+#    'samples': nosignal
+#}
+#
+#variables['jet1Eta'] = {
+#    'name': 'CleanJet_eta[0] * (CleanJet_pt[0] > 30.) - 5. * (CleanJet_pt[0] < 30.)',
+#    'range': (50, -4.7, 4.7),
+#    'xaxis': '#eta^{j1}',
+#    'doWeight': 1,
+#    'cuts': cr,
+#    'samples': nosignal
+#}
+#
+#variables['jet2Eta'] = {
+#    'name': 'CleanJet_eta[1] * (CleanJet_pt[1] > 30.) - 5. * (CleanJet_pt[1] < 30.)',
+#    'range': (50, -4.7, 4.7),
+#    'xaxis': '#eta^{j2}',
+#    'doWeight': 1,
+#    'cuts': cr,
+#    'samples': nosignal
+#}
+#
+#variables['met'] = {
+#    'name': 'PuppiMET_pt',
+#    'range': (50, 0., 100.),
+#    'xaxis': 'E_{T}^{miss} [GeV]',
+#    'doWeight': 1,
+#    'cuts': cr,
+#    'samples': nosignal
+#}
+#
+#variables['metPhi'] = {
+#    'name': 'PuppiMET_phi',
+#    'range': (50, -math.pi, math.pi),
+#    'xaxis': '#phi(E_{T}^{miss})',
+#    'doWeight': 1,
+#    'cuts': cr,
+#    'samples': nosignal
+#}
+#
+#variables['ptWW'] = {
+#    'name': 'pTWW',
+#    'range': (50, 0., 400.),
+#    'xaxis': 'p_{T}^{WW} [GeV]',
+#    'doWeight': 1,
+#    'cuts': cr,
+#    'samples': nosignal
+#}
+#
+#variables['ht'] = {
+#    'name': ('Sum$(CleanJet_pt * (CleanJet_pt > 30. && TMath::Abs(CleanJet_eta) < 4.7))',),
+#    'range': (50, 0., 1000.),
+#    'xaxis': 'H_{T} [GeV]',
+#    'doWeight': 1,
+#    'cuts': cr,
+#    'samples': nosignal
+#}

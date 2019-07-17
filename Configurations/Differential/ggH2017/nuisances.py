@@ -10,10 +10,15 @@
 # imported from cuts.py
 # cuts
 
+from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
+
+def nanoGetSampleFiles(inputDir, Sample):
+    return getSampleFiles(inputDir, Sample, False, 'nanoLatino_')
+
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
-mc.append('bbH_hww')
-mc.append('WZgS_L')
-signals.append('bbH_hww')
+#mc.append('bbH_hww')
+#mc.append('WZgS_L')
+#signals.append('bbH_hww')
 
 from LatinoAnalysis.Tools.HiggsXSection import *
 HiggsXS = HiggsXSection()
@@ -53,10 +58,7 @@ nuisances['fake_ele'] = {
     'type': 'shape',
     'samples': {
         'Fake': ['fakeWEleUp', 'fakeWEleDown'],
-    },
-    'samplespost': (lambda self, samples: {'Fake_em': self['samples']['Fake']}),
-    #'AsLnN': '1'
-    'perRecoBin': True
+    }
 }
 
 nuisances['fake_ele_stat'] = {
@@ -65,10 +67,7 @@ nuisances['fake_ele_stat'] = {
     'type': 'shape',
     'samples': {
         'Fake': ['fakeWStatEleUp', 'fakeWStatEleDown']
-    },
-    'samplespost': (lambda self, samples: {'Fake_em': self['samples']['Fake']}),
-    #'AsLnN': '1'
-    'perRecoBin': True
+    }
 }
 
 nuisances['fake_mu'] = {
@@ -77,10 +76,7 @@ nuisances['fake_mu'] = {
     'type': 'shape',
     'samples': {
         'Fake': ['fakeWMuUp', 'fakeWMuDown'],
-    },
-    'samplespost': (lambda self, samples: {'Fake_me': self['samples']['Fake']}),
-    #'AsLnN': '1'
-    'perRecoBin': True
+    }
 }
 
 nuisances['fake_mu_stat'] = {
@@ -89,10 +85,7 @@ nuisances['fake_mu_stat'] = {
     'type': 'shape',
     'samples': {
         'Fake': ['fakeWStatMuUp', 'fakeWStatMuDown'],
-    },
-    'samplespost': (lambda self, samples: {'Fake_me': self['samples']['Fake']}),
-    #'AsLnN': '1'
-    'perRecoBin': True
+    }
 }
 
 ##### B-tagger
@@ -105,17 +98,17 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
         'kind': 'weight',
         'type': 'shape',
         'samples': dict((skey, btag_syst) for skey in mc),
-        'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' not in cut])
+        #'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' not in cut])
     }
 
-    nuisances['btag_shape_%s_top' % shift] = {
-        'name': 'CMS_btag_%s_topCR_2017' % shift,
-        'kind': 'weight',
-        'type': 'shape',
-        'samples': dict((skey, btag_syst) for skey in mc),
-        'cuts': [cut for cut in cuts if '_CR_' in cut],
-        'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut]),
-    }
+    #nuisances['btag_shape_%s_top' % shift] = {
+    #    'name': 'CMS_btag_%s_topCR_2017' % shift,
+    #    'kind': 'weight',
+    #    'type': 'shape',
+    #    'samples': dict((skey, btag_syst) for skey in mc),
+    #    'cuts': [cut for cut in cuts if '_CR_' in cut],
+    #    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut]),
+    #}
 
 ##### Trigger Efficiency
 
@@ -151,9 +144,10 @@ nuisances['electronpt'] = {
     'kind': 'tree',
     'type': 'shape',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('ElepTup'),
-    'folderDown': makeMCDirectory('ElepTdo'),
-    'AsLnN': '1'
+    'folderUp': makeMCDirectory('ElepTupLP19'),
+    'folderDown': makeMCDirectory('ElepTdoLP19'),
+    'nominalAsAlt': True,
+#    'AsLnN': '1'
 }
 
 ##### Muon Efficiency and energy scale
@@ -170,9 +164,9 @@ nuisances['muonpt'] = {
     'kind': 'tree',
     'type': 'shape',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('MupTup'),
-    'folderDown': makeMCDirectory('MupTdo'),
-    'AsLnN': '1'
+    'folderUp': makeMCDirectory('MupTupLP19'),
+    'folderDown': makeMCDirectory('MupTdoLP19'),
+#    'AsLnN': '1'
 }
 
 ##### Jet energy scale
@@ -182,9 +176,9 @@ nuisances['jes'] = {
     'kind': 'tree',
     'type': 'shape',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('JESup'),
-    'folderDown': makeMCDirectory('JESdo'),
-    'AsLnN': '1'
+    'folderUp': makeMCDirectory('JESupLP19'),
+    'folderDown': makeMCDirectory('JESdoLP19'),
+#    'AsLnN': '1'
 }
 
 ##### MET energy scale
@@ -194,10 +188,10 @@ nuisances['met'] = {
     'kind': 'tree',
     'type': 'shape',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('METup'),
-    'folderDown': makeMCDirectory('METdo'),
+    'folderUp': makeMCDirectory('METupLP19'),
+    'folderDown': makeMCDirectory('METdoLP19'),
     'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' not in cut]),
-    'AsLnN': '1'
+#    'AsLnN': '1'
 }
 
 nuisances['met_DY'] = {
@@ -205,11 +199,11 @@ nuisances['met_DY'] = {
     'kind': 'tree',
     'type': 'shape',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('METup'),
-    'folderDown': makeMCDirectory('METdo'),
+    'folderUp': makeMCDirectory('METupLP19'),
+    'folderDown': makeMCDirectory('METdoLP19'),
     'cuts': [cut for cut in cuts if '_CR_' in cut],
     'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut]),
-    'AsLnN': '1'
+#    'AsLnN': '1'
 }
 
 ##### Pileup
@@ -228,27 +222,20 @@ nuisances['PU'] = {
     'AsLnN': '1',
 }
 
-
 ##### PS and UE
 
-# Scales are used to normalize the PS variation to the same integral as the nominal after the wwSel skim
 nuisances['PS']  = {
     'name': 'PS',
     'kind': 'weight',
     'type': 'shape',
     'samples': {
         'WW': ['PSWeight[0]', 'PSWeight[3]'],
-        #'ggH_hww': ['PSWeight[0]', 'PSWeight[3]'],
-        #'qqH_hww': ['PSWeight[0]', 'PSWeight[3]']
+        #'ggH_hww': ['PSWeight[0]', 'PSWeight[3]'], # broken in source
+        #'qqH_hww': ['PSWeight[0]', 'PSWeight[3]'] # broken in source
     },
     'AsLnN': '1',
-    #'symmetrize': True
+    'symmetrize': True
 }
-
-# Scales are used to normalize the UE up/down variations to the same integral as the nominal after the wwSel skim
-#'WW'      : ['1.12720771849', '1.13963144574'],
-#'ggH_hww' : ['1.00211385568', '0.994966378288'], 
-#'qqH_hww' : ['1.00367895901', '0.994831373195']
 
 nuisances['UE'] = {
     'name': 'UE', 
@@ -261,8 +248,19 @@ nuisances['UE'] = {
         'qqH_hww' : ['1', '1']
     },
     'AsLnN': '1',
+    #'filesUp': {
+    #  'WW': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu_CP5Up'),
+    #  'ggH_hww': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125_CP5Up'),
+    #  'qqH_hww': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2NuPowheg_M125_CP5Up'),
+    #},
+    #'filesDown': {
+    #  'WW': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu_CP5Up'),
+    #  'ggH_hww': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125_CP5Up'),
+    #  'qqH_hww': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2NuPowheg_M125_CP5Up'),
+    #},
     'folderUp': makeMCDirectory('UEup'),
-    'folderDown': makeMCDirectory('UEdo')
+    'folderDown': makeMCDirectory('UEdo'),
+    'synchronized': False
 }
 
 ####### Generic "cross section uncertainties"
@@ -343,8 +341,7 @@ nuisances['pdf_qqbar'] = {
     'samples': {
         'Vg': '1.04',
         'VZ': '1.04',  # PDF: 0.0064 / 0.1427 = 0.0448493
-        'WZgS_L': '1.04', # PDF: 0.0064 / 0.1427 = 0.0448493
-        'WZgS_H': '1.04' # PDF: 0.0064 / 0.1427 = 0.0448493
+        'VgS': '1.04', # PDF: 0.0064 / 0.1427 = 0.0448493
     },
 }
 
@@ -407,15 +404,14 @@ nuisances['QCDscale_V'] = {
     'AsLnN': '1'
 }
 
-#FIXME: check this 3%
 nuisances['QCDscale_VV'] = {
     'name': 'QCDscale_VV',
-    'type': 'lnN',
+    'kind': 'weight',
+    'type': 'shape',
     'samples': {
         'Vg': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
         'VZ': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-        'WZgS_L': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-        'WZgS_H': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]']
+        'VgS': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
     }
 }
 
@@ -437,7 +433,6 @@ nuisances['Resumscale_WW'] = {
     'samples': {
         'WW': ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
     },
-    'perRecoBin': True
 }
 
 nuisances['QCDscale_WW'] = {
@@ -448,7 +443,6 @@ nuisances['QCDscale_WW'] = {
     'samples': {
       'WW': ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
     },
-    'perRecoBin': True
 }
 
 # Uncertainty on SR/CR ratio
