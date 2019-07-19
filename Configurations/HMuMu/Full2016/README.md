@@ -1,9 +1,24 @@
 Higgs -> MuMu analysis
 ======================
 
-# 1 SET UP THE ENVIRONMENT
+# 0 INSTALL LATINOS
 
-Setup Latinos:
+Full set of instructions can be found in https://github.com/latinos/setup
+
+    cmsrel CMSSW_10_2_9
+
+    cd CMSSW_10_2_9/src
+
+    cmsenv
+
+    git cms-init
+
+    git clone --branch 13TeV git@github.com:latinos/setup.git LatinosSetup	
+
+    source LatinosSetup/SetupShapeOnly.sh
+
+
+# 1 SET UP THE ENVIRONMENT
 
     cd ~/work/CMSSW_10_2_9/src
 
