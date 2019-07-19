@@ -25,7 +25,7 @@ Then, install PlotsConfiguration
 
     cmsenv
 
-    git clone https://github.com/latinos/PlotsConfigurations.git
+    git clone git@github.com:latinos/PlotsConfigurations.git
 
 # 1 - SET UP THE ENVIRONMENT
 
