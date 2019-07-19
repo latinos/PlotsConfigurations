@@ -19,6 +19,18 @@ Full set of instructions can be found in https://github.com/latinos/setup
 
     source LatinosSetup/SetupShapeOnly.sh
 
+Configure you userConfig file:
+
+    cp ~/work/CMSSW_10_2_9/src/LatinoAnalysis/Tools/python/userConfig_TEMPLATE.py ~/work/CMSSW_10_2_9/src/LatinoAnalysis/Tools/python/userConfig.py
+
+Your userConfig file should look like this:
+
+    baseDir     = '/afs/cern.ch/user/n/ntrevisa/'
+    jobDir      = baseDir+'jobs/'
+    workDir     = baseDir+'workspace/'
+    batchType   = 'condor'
+    jobDirSplit = True
+
 Now compile:
 
     cd ~/work/CMSSW_10_2_9/src/LatinoAnalysis
