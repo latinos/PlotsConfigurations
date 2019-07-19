@@ -19,6 +19,36 @@ Full set of instructions can be found in https://github.com/latinos/setup
 
     source LatinosSetup/SetupShapeOnly.sh
 
+Configure you userConfig file:
+
+    cp ~/work/CMSSW_10_2_9/src/LatinoAnalysis/Tools/python/userConfig_TEMPLATE.py ~/work/CMSSW_10_2_9/src/LatinoAnalysis/Tools/python/userConfig.py
+
+Your userConfig file should look like this:
+
+    baseDir     = '/afs/cern.ch/user/n/ntrevisa/'
+    jobDir      = baseDir+'jobs/'
+    workDir     = baseDir+'workspace/'
+    batchType   = 'condor'
+    jobDirSplit = True
+
+Now compile:
+
+    cd ~/work/CMSSW_10_2_9/src/LatinoAnalysis
+
+    scram b -j 10
+
+Be sure you have the latest version of MultiDraw (code for producing histograms, originally developed independently on latinos framework):
+
+    cd ~/work/CMSSW_10_2_9/src/LatinoAnalysis/MultiDraw/
+
+    git checkout 2.0.5
+
+    git pull
+
+    cd ~/work/CMSSW_10_2_9/src/LatinoAnalysis
+
+    scram b -j 10
+
 Then, install PlotsConfiguration
 
     cd ~/work/CMSSW_10_2_9/src
