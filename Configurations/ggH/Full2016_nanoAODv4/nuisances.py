@@ -483,39 +483,39 @@ nuisances['eff_e']  = {
                 },
 }
 
-#nuisances['electronpt']  = {
-#                'name'  : 'scale_e_2016',
-#                'kind'  : 'tree',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'DY'      : ['1', '1'],
-#                   'ggWW'    : ['1', '1'],
-#                   'WW'      : ['1', '1'],
-#                   'top'     : ['1', '1'],
-#                   'VZ'      : ['1', '1'],
-#                   'WZgS_L'  : ['1', '1'],
-#                   'WZgS_H'  : ['1', '1'],
-#                   'VVV'     : ['1', '1'],
-#                   'Vg'      : ['1', '1'],
-#                   'VgS'     : ['1', '1'],
-#                   'ggH_hww' : ['1', '1'],
-#                   'qqH_hww' : ['1', '1'],
-#                   'WH_hww'  : ['1', '1'],
-#                   'ZH_hww'  : ['1', '1'],
-#                   'ggZH_hww': ['1', '1'],
-#                   'bbH_hww' : ['1', '1'],
-#                   'ttH_hww' : ['1', '1'],
-#                   'H_htt'   : ['1', '1'],
-#                   'ggH_htt' : ['1', '1'] ,
-#                   'qqH_htt' : ['1', '1'] ,
-#                   'ZH_htt'  : ['1', '1'] ,
-#                   'WH_htt'  : ['1', '1'] ,
-#                 },
-#                'folderUp'   : xrootdPath+treeBaseDir+'Apr2016_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepElepTup'+skim,
-#                'folderDown' : xrootdPath+treeBaseDir+'Apr2016_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__LepElepTdo'+skim,
-#}
-#
-#
+nuisances['electronpt']  = {
+                'name'  : 'scale_e_2016',
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples'  : {
+                   'DY'      : ['1', '1'],
+                   'ggWW'    : ['1', '1'],
+                   'WW'      : ['1', '1'],
+                   'top'     : ['1', '1'],
+                   'VZ'      : ['1', '1'],
+                   'WZgS_L'  : ['1', '1'],
+                   'WZgS_H'  : ['1', '1'],
+                   'VVV'     : ['1', '1'],
+                   'Vg'      : ['1', '1'],
+                   'VgS'     : ['1', '1'],
+                   'ggH_hww' : ['1', '1'],
+                   'qqH_hww' : ['1', '1'],
+                   'WH_hww'  : ['1', '1'],
+                   'ZH_hww'  : ['1', '1'],
+                   'ggZH_hww': ['1', '1'],
+                   'bbH_hww' : ['1', '1'],
+                   'ttH_hww' : ['1', '1'],
+                   'H_htt'   : ['1', '1'],
+                   'ggH_htt' : ['1', '1'] ,
+                   'qqH_htt' : ['1', '1'] ,
+                   'ZH_htt'  : ['1', '1'] ,
+                   'WH_htt'  : ['1', '1'] ,
+                 },
+                'folderUp'   : treeBaseDir+'Summer16_102X_nAODv4_Full2016v4/MCl1loose2016__MCCorr2016__l2loose__l2tightOR2016__ElepTup'+skim, 
+                'folderDown' : treeBaseDir+'Summer16_102X_nAODv4_Full2016v4/MCl1loose2016__MCCorr2016__l2loose__l2tightOR2016__ElepTdo'+skim, 
+}
+
+
 #elePtCor_Syst = [ 'electron_ptW_'+Nlep+'l_Up / electron_ptW_'+Nlep+'l', 'electron_ptW_'+Nlep+'l_Down / electron_ptW_'+Nlep+'l']
 #nuisances['elePtCor']  = {
 #                'name'  : 'hww_elePtCor',
