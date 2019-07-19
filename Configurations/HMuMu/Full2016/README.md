@@ -19,6 +19,24 @@ Full set of instructions can be found in https://github.com/latinos/setup
 
     source LatinosSetup/SetupShapeOnly.sh
 
+Now compile:
+
+    cd ~/work/CMSSW_10_2_9/src/LatinoAnalysis
+
+    scram b -j 10
+
+Be sure you have the latest version of MultiDraw (code for producing histograms, originally developed independently on latinos framework):
+
+    cd ~/work/CMSSW_10_2_9/src/LatinoAnalysis/MultiDraw/
+
+    git checkout 2.0.5
+
+    git pull
+
+    cd ~/work/CMSSW_10_2_9/src/LatinoAnalysis
+
+    scram b -j 10
+
 Then, install PlotsConfiguration
 
     cd ~/work/CMSSW_10_2_9/src
