@@ -1,7 +1,7 @@
 Higgs -> MuMu analysis
 ======================
 
-# 0 INSTALL LATINOS
+# 0 - INSTALL LATINOS
 
 Full set of instructions can be found in https://github.com/latinos/setup
 
@@ -18,7 +18,7 @@ Full set of instructions can be found in https://github.com/latinos/setup
     source LatinosSetup/SetupShapeOnly.sh
 
 
-# 1 SET UP THE ENVIRONMENT
+# 1 - SET UP THE ENVIRONMENT
 
     cd ~/work/CMSSW_10_2_9/src
 
@@ -26,7 +26,7 @@ Full set of instructions can be found in https://github.com/latinos/setup
 
     cd -
 
-# 2 PRODUCE HISTOGRAMS
+# 2 - PRODUCE HISTOGRAMS
   
     voms-proxy-init -voms cms -rfc --valid 168:0
  
