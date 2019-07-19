@@ -5,6 +5,8 @@ Higgs -> MuMu analysis
 
 Full set of instructions can be found in https://github.com/latinos/setup
 
+    cd ~/work
+
     cmsrel CMSSW_10_2_9
 
     cd CMSSW_10_2_9/src
