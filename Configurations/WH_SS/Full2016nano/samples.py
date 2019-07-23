@@ -330,19 +330,19 @@ else:
 
 
 
-samples['Fakes']  = {  'name'   :   getSampleFiles(directory,'WJetsToLNu-LO',False,'nanoLatino_')
-                                  + getSampleFiles(directory,'TTToSemiLeptonic',False,'nanoLatino_'),
-                       'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC,
-                       'FilesPerJob': 3,
-                    }
+#samples['Fakes']  = {  'name'   :   getSampleFiles(directory,'WJetsToLNu-LO',False,'nanoLatino_')
+#                                  + getSampleFiles(directory,'TTToSemiLeptonic',False,'nanoLatino_'),
+#                       'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC,
+#                       'FilesPerJob': 3,
+#                    }
+#
 
-
-#samples['Fake']  = {   'name': [ ] ,
-#                       'weight' : fakeW+'*'+METFilter_DATA+'*((Lepton_pdgId[0]*Lepton_pdgId[1]==11*13) || (Lepton_pdgId[0]*Lepton_pdgId[1]==11*11) || (Lepton_pdgId[0]*Lepton_pdgId[1]==13*13))',              #   weight/cut 
-#                       'weights' : [ ] ,
-#                       'isData': ['all'],
-#                       'FilesPerJob' : 6 ,
-#                     }
+samples['Fakes']  = {   'name': [ ] ,
+                       'weight' : fakeW+'*'+METFilter_DATA+'*((Lepton_pdgId[0]*Lepton_pdgId[1]==11*13) || (Lepton_pdgId[0]*Lepton_pdgId[1]==11*11) || (Lepton_pdgId[0]*Lepton_pdgId[1]==13*13))',              #   weight/cut 
+                       'weights' : [ ] ,
+                       'isData': ['all'],
+                       'FilesPerJob' : 6 ,
+                     }
 
 #samples['Fake_em']  = {   'name': [ ] ,
 #                         'weight' : METFilter_DATA+'*'+fakeW+'*(abs(Lepton_pdgId[0])==11 && abs(Lepton_pdgId[1])==13)',              #   weight/cut 
