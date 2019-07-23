@@ -97,11 +97,7 @@ class HistogramMerger(object):
 
     subsampleRmap = {}
 
-    variationRestrictions = {}
-    lnNToShape = {}
-    renormalizedVariations = {}
-    perBinVariations = []
-    copiedVariations = {}
+    variations = {}
 
     recoBinMap = {}
     outBins = []
@@ -194,13 +190,24 @@ class HistogramMerger(object):
                     inVariationUp.Scale(variation['factors'][inSample][0])
                     inVariationDown = inNominal.Clone('histo_%s_%sDown' % (inSample, vname))
                     inVariationDown.Scale(variation['factors'][inSample][1])
-                elif variation['copyfrom'] is not None:
-                    logging.debug('Copying from %s', variation['copyfrom'])
-                    inVariationUp = self._getter.get('histo_%s_%sUp' % (inSample, variation['copyfrom']))
-                    inVariationDown = self._getter.get('histo_%s_%sDown' % (inSample, variation['copyfrom']))
                 else:
-                    inVariationUp = self._getter.get('histo_%s_%sUp' % (inSample, vname))
-                    inVariationDown = self._getter.get('histo_%s_%sDown' % (inSample, vname))
+                    if variation['copyfrom'] is not None:
+                        logging.debug('Copying from %s', variation['copyfrom'])
+                        inVariationUp = self._getter.get('histo_%s_%sUp' % (inSample, variation['copyfrom']))
+                        inVariationDown = self._getter.get('histo_%s_%sDown' % (inSample, variation['copyfrom']))
+                    else:
+                        inVariationUp = self._getter.get('histo_%s_%sUp' % (inSample, vname))
+                        inVariationDown = self._getter.get('histo_%s_%sDown' % (inSample, vname))
+
+                    if variation['AsLnN'] > 0.:
+                        sumwup = inVariationUp.GetSumOfWeights()
+                        sumwdown = inVariationDown.GetSumOfWeights()
+
+                        inVariationUp.Reset()
+                        inVariationDown.Reset()
+                        if inNominal.GetSumOfWeights() > 0.:
+                            inVariationUp.Add(inNominal, variation['AsLnN'] * sumwup / inNominal.GetSumOfWeights())
+                            inVariationDown.Add(inNominal, variation['AsLnN'] * sumwdown / inNominal.GetSumOfWeights())
 
                 if inSample in variation['renormalization']:
                     logging.debug('Renormalize by %s', variation['renormalization'][inSample])
@@ -531,9 +538,9 @@ if __name__ == '__main__':
     HistogramMerger.templateSpecs = [
         ('mllVSmth_8x9', 72),
         ('mllVSmth_6x6', 36),
-        #('met', (50, 20., 220.)),
-        #('ptll', (20, 0., 200.)),
-        #('dphill', (20, 0., 3.14))
+        ('met', (50, 20., 220.)),
+        ('ptll', (20, 0., 200.)),
+        ('dphill', (20, 0., 3.14))
     ]
     if FIRENZE:
         HistogramMerger.templateSpecs.append(('events', (1, 0., 2.)))
@@ -541,8 +548,8 @@ if __name__ == '__main__':
         HistogramMerger.templateSpecs.append(('events', 1))
 
     HistogramMerger.secondarySpecs = [
-        #('mll', [10., 25., 35., 40., 45., 50., 55., 70., 90., 210.], 'mllVSmth_8x9', [range(i + 1, i + 73, 9) for i in range(9)]),
-        #('mth', [60., 80., 90., 100., 110., 120., 130., 150., 200.], 'mllVSmth_8x9', [range(i * 9 + 1, i * 9 + 10) for i in range(8)]),
+        ('mll', [10., 25., 35., 40., 45., 50., 55., 70., 90., 210.], 'mllVSmth_8x9', [range(i + 1, i + 73, 9) for i in range(9)]),
+        ('mth', [60., 80., 90., 100., 110., 120., 130., 150., 200.], 'mllVSmth_8x9', [range(i * 9 + 1, i * 9 + 10) for i in range(8)]),
     ]
 
     HistogramMerger.observable = args.observable
@@ -634,7 +641,9 @@ if __name__ == '__main__':
     
     ### Sample merging configuration according to the flags at the beginning
     
-    allBins = sum((HistogramMerger.recoBinMap[outBin] for outBin in HistogramMerger.outBins), [])
+    genBinMerging = []
+    for outBin in HistogramMerger.outBins:
+        genBinMerging.append((outBin, HistogramMerger.recoBinMap[outBin]))
 
     ### Group the higgs processes
     
@@ -750,8 +759,6 @@ if __name__ == '__main__':
             for target, sources in signals.items() + backgrounds.items():
                 ssources = set(sources)
                 affectedSources = affected & ssources
-                if nuisanceName == 'QCDscale_WWewk':
-                    print 'affected', affected, 'affectedSources', affectedSources, 'ssources', ssources
 
                 if len(affectedSources) == 0:
                     continue
@@ -795,6 +802,9 @@ if __name__ == '__main__':
                     variation['factors'][sname] = (float(vdef[0]), float(vdef[1]))
                 else:
                     variation['factors'][sname] = (float(vdef), 1. / float(vdef))
+
+        else:
+            variation['AsLnN'] = float(nuisance['AsLnN']) if 'AsLnN' in nuisance else 0.
 
     source = ROOT.TFile.Open(os.path.dirname(__file__) + '/renormalize_theoretical_%s.root' % args.year)
     hup = source.Get('up')

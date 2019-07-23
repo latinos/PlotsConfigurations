@@ -186,7 +186,6 @@ if doStructure:
       structure[sname] = {
         'isSignal' : 1,
         'isData'   : 0,
-        #'removeFromCuts': crs
       }
   
     else:
@@ -195,7 +194,6 @@ if doStructure:
         'isData'   : 0
       }
   
-  #structure['htt']['removeFromCuts'] = crs
   structure['Fake_em']['removeFromCuts'] = [cname for cname in cuts if '20me' in cname]
   structure['Fake_me']['removeFromCuts'] = [cname for cname in cuts if '20em' in cname]
 
@@ -236,49 +234,6 @@ for sname in signals:
     signal_ggH_separate = True
     break
 
-#if signal_ggH_separate:
-#  ggH = [sname for sname in signals if sname.startswith('ggH')]
-#  xH = [sname for sname in signals if not sname.startswith('ggH')]
-#
-#  sampleMapping.update([
-#    ('ggH_hww', ggH),
-#    ('qqH_hww', xH),
-#    ('ZH_hww', xH),
-#    ('ggZH_hww', xH),
-#    ('WH_hww', xH),
-#    ('bbH_hww', xH),
-#    ('ttH_hww', xH)
-#  ])
-#
-#else:
-#  sampleMapping.update([
-#    ('ggH_hww', signals),
-#    ('qqH_hww', signals),
-#    ('ZH_hww', signals),
-#    ('ggZH_hww', signals),
-#    ('WH_hww', signals),
-#    ('bbH_hww', signals),
-#    ('ttH_hww', signals)
-#  ])
-#
-#if 'minor' in samples:
-#  sampleMapping.update([
-#    ('ggWW', 'minor'),
-#    ('Vg', 'minor'),
-#    ('WZgS_L', 'minor'),
-#    ('WZgS_H', 'minor'),
-#    ('VZ', 'minor'),
-#    ('VVV', 'minor')
-#  ])
-#
-#njs = ['0j', '1j', '2j', '3j', 'ge4j']
-#if 'WW' not in samples:
-#  sampleMapping['WW'] = ['WW_%s' % nj for nj in njs]
-#if 'top' not in samples:
-#  sampleMapping['top'] = ['top_%s' % nj for nj in njs]
-#if 'DY' not in samples:
-#  sampleMapping['DY'] = ['DY_%s' % nj for nj in njs]
-
 for nkey, nuisance in nuisances.items():
   if 'perRecoBin' in nuisance and nuisance['perRecoBin']:
     for bin in recoBins:
@@ -287,18 +242,6 @@ for nkey, nuisance in nuisances.items():
       nuisances[nkey + '_' + bin]['cuts'] = [cut for cut in cuts if bin in cut]
 
     nuisances.pop(nkey)
-
-#reverseSampleMapping = {}
-#for sname, value in sampleMapping.iteritems():
-#  if type(value) is list:
-#    key = tuple(value)
-#  else:
-#    key = value
-#
-#  try:
-#    reverseSampleMapping[key].append(sname)
-#  except KeyError:
-#    reverseSampleMapping[key] = [sname]
 
 for nuisance in nuisances.itervalues():
   if 'samples' not in nuisance:
@@ -310,6 +253,7 @@ for nuisance in nuisances.itervalues():
   if 'cutspost' in nuisance:
     nuisance['cuts'] = nuisance['cutspost'](nuisance, cuts)
 
+  # If a variation histogram is found in the input file, it's a shape variation
   if 'name' in nuisance and nuisance['name'] in shapeVariations:
     nuisance['type'] = 'shape'
 
@@ -319,30 +263,6 @@ for nuisance in nuisances.itervalues():
         nuisance['samples'][sname] = nuisance['samples'][cardname]
         break
 
-#  toShape = False
-#  for sname, value in nuisance['samples'].items():
-#    if sname not in sampleMapping:
-#      continue
-#
-#    if nuisance['type'] == 'lnN':
-#      if not toShape:
-#          # has this nuisance been turned into shape?
-#          if type(sampleMapping[sname]) is list:
-#            key = tuple(sampleMapping[sname])
-#          else:
-#            key = sampleMapping[sname]
-#    
-#          mergedSnames = reverseSampleMapping[key]
-#          if len(set(mergedSnames) - set(nuisance['samples'])) != 0:
-#            print nuisance['name'], 'to shape because of', sname
-#            print mergedSnames, nuisance['samples']
-#            toShape = True
-#
-#    if type(sampleMapping[sname]) is list:
-#      for mapped in sampleMapping[sname]:
-#        nuisance['samples'][mapped] = value
-#    else:
-#      nuisance['samples'][sampleMapping[sname]] = value
-#
-#  if toShape:
-#    nuisance['type'] = 'shape'
+  # AsLnN nuisances are all converted to shape (nominal scaled to variation normalization) in restructure
+  if 'AsLnN' in nuisance:
+    nuisance.pop('AsLnN')
