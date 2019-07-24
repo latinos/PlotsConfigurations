@@ -61,13 +61,6 @@ else:
   fakeW_statMuUp    = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lstatMuUp   / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
   fakeW_statMuDown  = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lstatMuDown / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
 
-#nuisances['fake_syst']  = {
-#               'name'  : 'fake_syst',
-#               'type'  : 'lnN',
-#               'samples'  : {
-#                             'Fake' : '1.30',
-#                             },
-#}
 
 nuisances['fake_syst_em']  = {
                'name'  : 'CMS_hwwem_fake_syst',

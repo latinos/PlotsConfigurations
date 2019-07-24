@@ -22,11 +22,11 @@ groupPlot['WW']  = {
                   'samples'  : ['WW', 'ggWW', 'WWewk']
               }
 
-groupPlot['Fakes']  = {  
+groupPlot['Fake']  = {
                   'nameHR' : 'Non-prompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fakes']
+                  'samples'  : ['Fake_em', 'Fake_me']
               }
 
 
@@ -67,8 +67,6 @@ groupPlot['VgS']  = {
                   'color'    : 409,   # kGreen - 9
                   'samples'  : ['VgS']
               }
-
-
 
 groupPlot['ZHHiggs']  = {  
                   'nameHR' : 'ZH Higgs',
@@ -126,16 +124,22 @@ plot['DY']  = {
               }
 
 
-plot['Fakes']  = {  
+plot['Fake_em']  = {
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0                  
+                  'scale'    : 1.0
               }
 
 
+plot['Fake_me']  = {
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+              }
 
-          
+
 plot['top'] = {   
                   'nameHR' : 'tW and t#bar{t}',
                   'color': 400,   # kYellow
