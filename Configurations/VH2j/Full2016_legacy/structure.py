@@ -9,8 +9,12 @@ structure['DY']  = {
                   'isData'   : 0 
               }
 
-
 structure['Wjets']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0 
+              }
+
+structure['VgS'] = {  
                   'isSignal' : 0,
                   'isData'   : 0 
               }
