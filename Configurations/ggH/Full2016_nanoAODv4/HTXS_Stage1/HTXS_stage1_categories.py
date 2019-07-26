@@ -1,4 +1,4 @@
-HTXSStage1Categories : {
+HTXSStage1Categories = {
       'UNKNOWN'  : 0,
       # Gluon fusion
       'GG2H_FWDH' : 100,
@@ -37,7 +37,7 @@ HTXSStage1Categories : {
       'TH_FWDH' : 800, 'TH' : 801
 }
 
-HTXSStage1_1Categories : {
+HTXSStage1_1Categories = {
       'UNKNOWN' : 0,
       # Gluon fusion
       'GG2H_FWDH' : 100,
