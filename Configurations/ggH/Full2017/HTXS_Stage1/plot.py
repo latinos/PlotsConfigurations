@@ -340,22 +340,22 @@ plot['WH_hww'] = {
                   }
 
 
-plot['qqH_hww'] = {
-                  'nameHR' : 'qqH',
-                  'color': 632+1, # kRed+1 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-
-
-plot['ggH_hww'] = {
-                  'nameHR' : 'ggH',
-                  'color': 632, # kRed 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
+#plot['qqH_hww'] = {
+#                  'nameHR' : 'qqH',
+#                  'color': 632+1, # kRed+1 
+#                  'isSignal' : 1,
+#                  'isData'   : 0,    
+#                  'scale'    : 1    #
+#                  }
+#
+#
+#plot['ggH_hww'] = {
+#                  'nameHR' : 'ggH',
+#                  'color': 632, # kRed 
+#                  'isSignal' : 1,
+#                  'isData'   : 0,    
+#                  'scale'    : 1    #
+#                  }
 
 #plot['bbH_hww'] = {
 #                  'nameHR' : 'bbH',
