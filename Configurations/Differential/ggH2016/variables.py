@@ -10,12 +10,21 @@ try:
 except NameError:
     import collections
     variables = collections.OrderedDict()
-    cuts = []
 
 variables['events'] = {
     'name': '0.5',
     'range': (1,0,1),
     'xaxis': 'events'
+}
+
+variables['mll'] = {
+    'name': 'mll',
+    'range': (31,0.,310.)
+}
+
+variables['mth'] = {
+    'name': 'mth',
+    'range': (30,0.,300.)
 }
 
 variables['met'] = {

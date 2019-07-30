@@ -34,6 +34,16 @@ aliases['LepWPCut'] = {
     'samples': mc + ['DATA']
 }
 
+aliases['gstarLow'] = {
+    'expr': 'Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4',
+    'samples': 'VgS'
+}
+
+aliases['gstarHigh'] = {
+    'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
+    'samples': 'VgS'
+}
+
 # Fake leptons transfer factor
 aliases['fakeW'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP,
@@ -179,6 +189,42 @@ aliases['SFweightMuDown'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Do',
     'samples': mc
 }
+
+## TEMPORARY nllW for WWTo2L2Nu_PrivateNano
+#aliases['nllW'] = {
+#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2017/nllW.cc+' % os.getenv('CMSSW_BASE')],
+#    'class': 'WWNLLW',
+#    'args': ('central',),
+#    'samples': ['WW']
+#}
+#
+#aliases['nllW_Qup'] = {
+#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2017/nllW.cc+' % os.getenv('CMSSW_BASE')],
+#    'class': 'WWNLLW',
+#    'args': ('sup',),
+#    'samples': ['WW']
+#}
+#
+#aliases['nllW_Qdown'] = {
+#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2017/nllW.cc+' % os.getenv('CMSSW_BASE')],
+#    'class': 'WWNLLW',
+#    'args': ('sdown',),
+#    'samples': ['WW']
+#}
+#
+#aliases['nllW_Rup'] = {
+#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2017/nllW.cc+' % os.getenv('CMSSW_BASE')],
+#    'class': 'WWNLLW',
+#    'args': ('rup',),
+#    'samples': ['WW']
+#}
+#
+#aliases['nllW_Rdown'] = {
+#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2017/nllW.cc+' % os.getenv('CMSSW_BASE')],
+#    'class': 'WWNLLW',
+#    'args': ('rdown',),
+#    'samples': ['WW']
+#}
 
 ## Variables for fiducial region definition
 

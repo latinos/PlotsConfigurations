@@ -602,7 +602,7 @@ nuisances['QCDscale_gg_ACCEPT'] = {
 nuisances['stat'] = {
     'type': 'auto',
     'maxPoiss': '10',
-    'includeSignal': '1',
+    'includeSignal': '0',
     'samples': {}
 }
 

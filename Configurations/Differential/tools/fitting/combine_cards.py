@@ -3,19 +3,20 @@
 import os
 import sys
 import shutil
+import math
 import re
 import subprocess
 from argparse import ArgumentParser
 
-argParser = ArgumentParser(description = 'Select and edit the datacards to use in full fit and combine them.')
-argParser.add_argument('--in', '-i', metavar = 'PATH', dest = 'inpath', default = 'datacards', help = 'Input directory name.')
-argParser.add_argument('--out', '-o', metavar = 'PATH', dest = 'outpath', default = 'datacards_fullmodel', help = 'Output directory name.')
-argParser.add_argument('--drop-mcstats', '-M', action = 'store_true', dest = 'dropMCStats', help = 'Drop MC stats (for test only).')
-argParser.add_argument('--drop-nuisance', '-N', metavar = 'PARAM', dest = 'dropNuisance', nargs = '+', help = 'Drop specific nuisances.')
-argParser.add_argument('--only-fullmodel', '-O', action = 'store_true', dest = 'onlyFullModel', help = 'Keep only the full model card.')
-argParser.add_argument('--just-combine', '-C', action = 'store_true', dest = 'justCombine', help = 'Do not run text2workspace.')
-argParser.add_argument('--exclude', '-x', metavar = 'PATTERN', dest = 'exclude', nargs = '+', help = 'Exclude cards matching regular expression patterns.')
-argParser.add_argument('--hdf5', '-H', action = 'store_true', dest = 'hdf5', help = 'Use text2hdf5.py.')
+argParser = ArgumentParser(description='Select and edit the datacards to use in full fit and combine them.')
+argParser.add_argument('--in', '-i', metavar='PATH', dest='inpath', default='datacards', help='Input directory name.')
+argParser.add_argument('--out', '-o', metavar='PATH', dest='outpath', default='datacards_fullmodel', help='Output directory name.')
+argParser.add_argument('--drop-mcstats', '-M', metavar='PATTERN', dest='dropMCStats', nargs='*', help='Drop MC stats from specific cuts specified by regex.')
+argParser.add_argument('--drop-nuisance', '-N', metavar='PARAM', dest='dropNuisance', nargs='+', help='Drop specific nuisances.')
+argParser.add_argument('--only-fullmodel', '-O', action='store_true', dest='onlyFullModel', help='Keep only the full model card.')
+argParser.add_argument('--just-combine', '-C', action='store_true', dest='justCombine', help='Do not run text2workspace.')
+argParser.add_argument('--exclude', '-x', metavar='PATTERN', dest='exclude', nargs='+', help='Exclude cards matching regular expression patterns.')
+argParser.add_argument('--hdf5', '-H', action='store_true', dest='hdf5', help='Use text2hdf5.py.')
 
 args = argParser.parse_args()
 del sys.argv[1:]
@@ -27,7 +28,7 @@ try:
 except OSError:
     pass
 
-HDF5_RATEPARAM_MU = True
+RATEPARAM_MU = True
 
 cmd = ['combineCards.py']
 procIds = {} # it seems that we don't really need to have the process ids synched between the combined cards, but let's make them common
@@ -35,16 +36,16 @@ procIds = {} # it seems that we don't really need to have the process ids synche
 cuts = []
 observableBins = []
 
-def isHiggs(name):
-    if 'smH' in name or 'ggH' in name or 'xH' in name:
-        return True
-
 def isSignal(name):
-    if isHiggs(name):
+    return (re.match('.+H_hww', name) is not None)
+
+def isPOI(name):
+    if isSignal(name):
         return True
-    if HDF5_RATEPARAM_MU and args.hdf5 and (name.startswith('WW') or name.startswith('top') or name.startswith('DY')):
+    if RATEPARAM_MU and args.hdf5 and (name.startswith('WW') or name.startswith('top') or name.startswith('DY')):
         # treat the split major background as signal instead of using rateParams
         return True
+    return False
 
 os.makedirs(args.outpath)
 
@@ -105,7 +106,7 @@ for cut in sorted(os.listdir(args.inpath)):
 
         sumw = hist.GetSumOfWeights()
 
-        if sumw == 0.:
+        if sumw == 0. and name != 'histo_Data':
             print cut, name, 'has null nominal'
         else:
             nominalTemplates[name] = hist
@@ -119,7 +120,7 @@ for cut in sorted(os.listdir(args.inpath)):
             continue
         
         sumw = hist.GetSumOfWeights()
-        if sumw < 0.001 * signalMax:
+        if sumw < 0.001 * signalMax and name != 'histo_Data':
             print 'Dropping', name, 'from', cut, '(%f << %f)' % (sumw, signalMax)
             nominalTemplates.pop(name).Delete()
 
@@ -135,11 +136,11 @@ for cut in sorted(os.listdir(args.inpath)):
 
         targetFullHistDir.cd()
 
-        if name in nominalTemplates:
+        try:
             hist = nominalTemplates[name]
             nominal = name
             varsuffix = ''
-        else:
+        except KeyError:
             try:
                 nominal = next(key for key in nominalTemplates if name.startswith(key))
             except StopIteration:
@@ -154,7 +155,7 @@ for cut in sorted(os.listdir(args.inpath)):
                 hist = nominalTemplates[nominal].Clone(name)
                 hist.Scale(1.5e-4)
 
-        if HDF5_RATEPARAM_MU and args.hdf5 and nominal.replace('histo_', '') in ['WW', 'top', 'DY']:
+        if RATEPARAM_MU and nominal.replace('histo_', '') in ['WW', 'top', 'DY']:
             hist.SetName('%s_%s%s' % (nominal, obsBin, varsuffix))
             hist.SetTitle('%s_%s%s' % (nominal, obsBin, varsuffix))
             
@@ -166,7 +167,8 @@ for cut in sorted(os.listdir(args.inpath)):
             hist.SetDirectory(targetHistRepo)
             hist.Write()
 
-        hist.Delete()
+        if name != nominal:
+            hist.Delete()
 
     if not args.onlyFullModel:
         targetHistRepo.Close()
@@ -175,7 +177,7 @@ for cut in sorted(os.listdir(args.inpath)):
     if len(cut) >= (colw - 5):
         colw = len(cut) + 7
 
-    if HDF5_RATEPARAM_MU and args.hdf5:
+    if RATEPARAM_MU:
         for proc in ['WW', 'top', 'DY']:
             nominalTemplates['histo_%s_%s' % (proc, obsBin)] = nominalTemplates.pop('histo_%s' % proc)
 
@@ -208,7 +210,7 @@ for cut in sorted(os.listdir(args.inpath)):
 
             procNames = source.readline().split()[1:]
 
-            if HDF5_RATEPARAM_MU and args.hdf5:
+            if RATEPARAM_MU:
                 for proc in ['WW', 'top', 'DY']:
                     idx = procNames.index(proc)
                     procNames[idx] = '%s_%s' % (proc, obsBin)
@@ -217,7 +219,7 @@ for cut in sorted(os.listdir(args.inpath)):
                 if name not in usedProcs:
                     continue
                 if name not in procIds:
-                    if isSignal(name):
+                    if isPOI(name):
                         procId = min(procIds.values() + [1]) - 1
                     else:
                         procId = max(procIds.values() + [0]) + 1
@@ -260,11 +262,22 @@ for cut in sorted(os.listdir(args.inpath)):
                 words = line.split()
 
                 if 'autoMCStats' in words:
-                    if args.dropMCStats or args.hdf5:
+                    if args.hdf5:
                         continue
-                    else:
-                        target.write(line)
-                        continue
+                    if args.dropMCStats is not None:
+                        if len(args.dropMCStats) == 0:
+                            continue
+
+                        matches = False
+                        for pat in args.dropMCStats:
+                            if re.match(pat, cut):
+                                matches = True
+                                break
+                        if matches:
+                            continue
+
+                    target.write(line)
+                    continue
 
                 elif 'rateParam' in words:
                     continue
@@ -290,7 +303,7 @@ for cut in sorted(os.listdir(args.inpath)):
 targetFullHistRepo.Close()
 
 # list of signal proc name ordered by decreasing process id (and therefore in physical order coming from structure.py)
-signalProcs = [x[1] for x in sorted(((pid, pname) for pname, pid in procIds.items() if pid <= 0 and isHiggs(pname)), reverse = True)]
+signalProcs = [x[1] for x in sorted(((pid, pname) for pname, pid in procIds.items() if pid <= 0 and isSignal(pname)), reverse = True)]
 
 observableBins.sort(key = lambda s: int(re.match('[^0-9]+([0-9]+)', s).group(1)))
 
@@ -339,7 +352,7 @@ with open('%s/fullmodel_unreg.txt' % args.outpath, 'w') as fullmodel:
     for sname in ['WW', 'top', 'DY']:
         for obsBin in observableBins:
             if args.hdf5:
-                if not HDF5_RATEPARAM_MU:
+                if not RATEPARAM_MU:
                     line = 'CMS_hww_%snorm_%s   lnN   ' % (sname, obsBin)
                     for bin, proc in zip(binNames, procNames):
                         if obsBin in bin and proc == sname:
@@ -349,7 +362,10 @@ with open('%s/fullmodel_unreg.txt' % args.outpath, 'w') as fullmodel:
         
                     fullmodel.write(line + '\n')
             else:
-                fullmodel.write('CMS_hww_{sname}norm_{obsBin} rateParam *{obsBin}* {sname} 1.00\n'.format(sname = sname, obsBin = obsBin))
+                if RATEPARAM_MU:
+                    fullmodel.write('CMS_hww_{sname}norm_{obsBin} rateParam *{obsBin}* {sname}_{obsBin} 1.00\n'.format(sname = sname, obsBin = obsBin))
+                else:
+                    fullmodel.write('CMS_hww_{sname}norm_{obsBin} rateParam *{obsBin}* {sname} 1.00\n'.format(sname = sname, obsBin = obsBin))
 
 with open('%s/fullmodel_reg.txt' % args.outpath, 'w') as fullmodel_reg:
     with open('%s/fullmodel_unreg.txt' % args.outpath) as fullmodel:
@@ -360,7 +376,7 @@ with open('%s/fullmodel_reg.txt' % args.outpath, 'w') as fullmodel_reg:
 
     else:
         for ic in range(len(observableBins) - 2):
-            fullmodel_reg.write('constr{ic} constr const{ic}_In[0.],RooFormulaVar::fconstr{ic}("@0+@2-2*@1",{{r_{low},r_{mid},r_{high}}}),delta[10.]\n'.format(ic = ic, low = ic, mid = ic + 1, high = ic + 2))
+            fullmodel_reg.write('constr{ic} constr @0+@2-2*@1 r_{low},r_{mid},r_{high} delta[10.]\n'.format(ic = ic, low = ic, mid = ic + 1, high = ic + 2))
 
 if args.onlyFullModel:
     for cut in cuts:
@@ -399,7 +415,7 @@ else:
 
     cmd = list(cmdbase)
     cmd.extend(['%s/fullmodel_reg.txt' % args.outpath, '-o', '%s/fullmodel_reg.root' % args.outpath])
-
+    
     print ' '.join(cmd)
     proc = subprocess.Popen(cmd)
     proc.communicate()

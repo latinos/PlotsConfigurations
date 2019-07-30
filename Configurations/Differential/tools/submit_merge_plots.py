@@ -76,7 +76,7 @@ jds += 'log = merge_log/$(Sample).log\n'
 #jds += 'request_cpus = 8\n'
 jds += 'accounting_group = group_u_CMST3.all\n'
 jds += '+AccountingGroup = group_u_CMST3.all\n'
-jds += '+JobFlavour = "espresso"\n'
+jds += '+JobFlavour = "microcentury"\n'
 jds += 'queue Sample in (\n'
 for sname in need_merging:
     jds += sname + '\n'

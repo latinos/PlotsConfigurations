@@ -81,10 +81,9 @@ class SourceGetter(object):
 
 
 def nonnegatify(histogram):
-    return
-#    for iX in range(1, histogram.GetNbinsX() + 1):
-#        if histogram.GetBinContent(iX) < 0.:
-#            histogram.SetBinContent(iX, 0.)
+    for iX in range(1, histogram.GetNbinsX() + 1):
+        if histogram.GetBinContent(iX) < 0.:
+            histogram.SetBinContent(iX, 0.)
 
 
 class HistogramMerger(object):
@@ -478,9 +477,11 @@ if __name__ == '__main__':
     argParser.add_argument('--year', '-y', metavar = 'YEAR', dest = 'year', default = '', help = 'Year.')
     argParser.add_argument('--signal-fiducial-only', action = 'store_true', dest = 'signal_fiducial_only', help = 'Signal is fiducial only.')
     argParser.add_argument('--signal-ggH-separate', action = 'store_true', dest = 'signal_ggH_separate', help = 'Separate ggH and xH in signal.')
+    argParser.add_argument('--signal-separate', action = 'store_true', dest = 'signal_separate', help = 'Separate Higgs processes.')
     argParser.add_argument('--signal-hww-only', action = 'store_true', dest = 'signal_hww_only', help = 'Signal is HWW only.')
     argParser.add_argument('--background-minor-merge', action = 'store_true', dest = 'background_minor_merge', help = 'Merge minor backgrounds into one sample.')
     argParser.add_argument('--input-fake-flavored', action = 'store_true', dest = 'input_fake_flavored', help = 'Input Fake sample is split into Fake_em and Fake_me.')
+    argParser.add_argument('--gen-inclusive', action = 'store_true', dest = 'gen_inclusive', help = 'Create an input for an inclusive cross section measurement.')
     argParser.add_argument('--make-asimov-with-bias', metavar = 'SAMPLE=bias', nargs = '+', dest = 'make_asimov_with_bias', help = 'Replace histo_DATA with an Asimov dataset with biased sample scales')
     argParser.add_argument('--num-processes', '-j', metavar = 'N', dest = 'num_processes', type = int, default = 1, help = 'Number of parallel processes.')
     
@@ -548,8 +549,9 @@ if __name__ == '__main__':
         HistogramMerger.templateSpecs.append(('events', 1))
 
     HistogramMerger.secondarySpecs = [
-        ('mll', [10., 25., 35., 40., 45., 50., 55., 70., 90., 210.], 'mllVSmth_8x9', [range(i + 1, i + 73, 9) for i in range(9)]),
-        ('mth', [60., 80., 90., 100., 110., 120., 130., 150., 200.], 'mllVSmth_8x9', [range(i * 9 + 1, i * 9 + 10) for i in range(8)]),
+        ('mllfit', [10., 25., 35., 40., 45., 50., 55., 70., 90., 210.], 'mllVSmth_8x9', [range(i + 1, i + 73, 9) for i in range(9)]),
+        ('mthfit', [60., 80., 90., 100., 110., 120., 130., 150., 200.], 'mllVSmth_8x9', [range(i * 9 + 1, i * 9 + 10) for i in range(8)]),
+        ('mthfitww', [60., 80., 90., 100., 110., 120., 130., 150., 200.], 'mllVSmth_8x9', [range(i * 9 + 9, i * 9 + 10) for i in range(8)]),
     ]
 
     HistogramMerger.observable = args.observable
@@ -614,7 +616,7 @@ if __name__ == '__main__':
             HistogramMerger.split = [8, 8, 1, 1, 1]
         else:
             #HistogramMerger.split = [8, 8, 1, 1, 1]
-            HistogramMerger.split = [8, 8, 2, 2, 2]
+            HistogramMerger.split = [8, 8, 2, 1, 1]
             #HistogramMerger.split = [8, 8, 1]
     
         if FIRENZE:
@@ -637,14 +639,7 @@ if __name__ == '__main__':
         for cname in list(cuts):
             if 'catPTH' in cname:
                 cuts.remove(cname)
-
-    
-    ### Sample merging configuration according to the flags at the beginning
-    
-    genBinMerging = []
-    for outBin in HistogramMerger.outBins:
-        genBinMerging.append((outBin, HistogramMerger.recoBinMap[outBin]))
-
+        
     ### Group the higgs processes
     
     ggH_hww = ['ggH_hww']
@@ -688,9 +683,14 @@ if __name__ == '__main__':
 
     if not NOHIGGS:
         if args.signal_hww_only:
-            backgrounds['htt'] = sum(([sname for sname in samples if sname.startswith(htt)] for htt in ggH_htt + xH_htt), [])
-            if args.signal_fiducial_only:
-                backgrounds['nonfid'] = [sname for sname in samples if 'nonfid_' in sname and 'hww' in sname]
+            if args.signal_separate:
+                backgrounds['ggH_htt'] = [sname for sname in samples if sname.startswith('ggH_htt')]
+                for proc in xH_htt:
+                    backgrounds[proc] = [sname for sname in samples if sname.startswith(proc)]
+            else:
+                backgrounds['htt'] = sum(([sname for sname in samples if sname.startswith(htt)] for htt in ggH_htt + xH_htt), [])
+                if args.signal_fiducial_only:
+                    backgrounds['nonfid'] = [sname for sname in samples if 'nonfid_' in sname and 'hww' in sname]
 
         elif args.signal_fiducial_only:
             backgrounds['nonfid'] = [sname for sname in samples if 'nonfid_' in sname]
@@ -700,7 +700,11 @@ if __name__ == '__main__':
     signalSamples = []    
     if not NOHIGGS:
         if args.signal_hww_only:
-            if args.signal_ggH_separate:
+            if args.signal_separate:
+                signalSamples.append(('ggH_hww', ggH_hww))
+                for proc in xH_hww:
+                    signalSamples.append((proc, [proc]))
+            elif args.signal_ggH_separate:
                 signalSamples.append(('ggH_hww', ggH_hww))
                 signalSamples.append(('xH_hww', xH_hww))
             else:
@@ -711,6 +715,15 @@ if __name__ == '__main__':
                 signalSamples.append(('xH', xH_hww + xH_htt))
             else:
                 signalSamples.append(('smH', ggH_hww + xH_hww + ggH_htt + xH_htt))
+
+    ### Sample merging configuration according to the flags at the beginning
+
+    if args.gen_inclusive:
+        genBinMerging = [('NJ_GE0', sum(HistogramMerger.recoBinMap.itervalues(), []))]
+    else:
+        genBinMerging = []
+        for outBin in HistogramMerger.outBins:
+            genBinMerging.append((outBin, HistogramMerger.recoBinMap[outBin]))
     
     signals = {}
     for target, snames in signalSamples:

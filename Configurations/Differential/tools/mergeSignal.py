@@ -5,6 +5,8 @@ import sys
 import re
 import ROOT
 
+MERGE_GENBIN = True
+
 source = ROOT.TFile.Open(sys.argv[1])
 ROOT.gROOT.GetListOfFiles().Remove(source)
 target = ROOT.TFile.Open(sys.argv[2], 'recreate')
@@ -27,12 +29,16 @@ for ckey in source.GetListOfKeys():
         for hkey in sourcevar.GetListOfKeys():
             hist = hkey.ReadObj()
 
-            matches = re.match('histo_(.+_(?:hww|htt))_(?:fid|nonfid)_(?:PTH|NJ)_(?:[0-9]+_[0-9]+|[GET0-9]+)(|_.+)$', hkey.GetName())
+            matches = re.match('histo_(.+_(?:hww|htt))_(?:fid|nonfid)(_(?:PTH|NJ)_(?:[0-9]+_[0-9]+|[GET0-9]+))(|_.+)$', hkey.GetName())
 
             if matches:
                 sample = matches.group(1)
-                variation = matches.group(2)
-                hname = 'histo_' + sample + variation
+                genbin = matches.group(2)
+                variation = matches.group(3)
+                if MERGE_GENBIN:
+                    hname = 'histo_' + sample + variation
+                else:
+                    hname = 'histo_' + sample + genbin + variation
                 try:
                     signals[hname].Add(hist)
                 except KeyError:

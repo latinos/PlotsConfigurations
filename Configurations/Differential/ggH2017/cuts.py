@@ -19,7 +19,7 @@ _tmp = [
 supercut = ' && '.join(_tmp)
 
 def addcut(name, exprs):
-    cuts[name] = {'expr': ' && '.join(exprs)}
+    cuts[name] = {'expr': ' && '.join('(%s)' % e for e in exprs)}
 
 ### sample lists separating signal bins
 
@@ -54,7 +54,7 @@ for pth in pthBins[1:]:
 ### Control regions
 
 # top || DY || WW
-crCut = '(topcr || dycr || wwcr)'
+crCut = 'topcr || dycr || wwcr'
 
 # top + DY + WW
 categorization = 'topcr*({topcat})+dycr*({dyoffset}+{dycat})+wwcr*({wwoffset}+{wwcat})'

@@ -97,7 +97,7 @@ for ckey in source.GetListOfKeys():
     if sname in signals or sname in samples:
       continue
 
-    if sname.startswith('smH_hww') or sname.startswith('ggH_hww') or sname.startswith('xH_hww'):
+    if '_hww' in sname:
       signals.add(matches.group(1))
     else:
       # signal procs added after sorting
@@ -121,7 +121,7 @@ for ckey in source.GetListOfKeys():
 
 source.Close()
 
-signals = sorted(signals, key = lambda sname: int(re.match('(?:sm|gg|x)H_hww_[^_]+_(?:GE|GT|)([0-9]+)', sname).group(1)))
+signals = sorted(signals, key = lambda sname: int(re.match('.+H_hww_[^_]+_(?:GE|GT|)([0-9]+)', sname).group(1)))
 samples = sorted(samples)
 samples.extend(signals)
 cuts.sort()
@@ -182,7 +182,7 @@ if doStructure:
         'isData'   : 1
       }
   
-    elif sname.startswith('smH_hww') or sname.startswith('ggH_hww') or sname.startswith('xH_hww'):
+    elif '_hww' in sname:
       structure[sname] = {
         'isSignal' : 1,
         'isData'   : 0,
@@ -215,6 +215,8 @@ def sampleMapping(sname):
     return signals
   elif sname.startswith('ggH_hww'):
     return ['ggH_hww']
+  elif sname.startswith('ggH_htt'):
+    return ['ggH_htt']
   elif sname.startswith('xH_hww'):
     return ['qqH_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'bbH_hww', 'ttH_hww']
   elif sname.startswith('smH_hww'):
@@ -226,7 +228,7 @@ def sampleMapping(sname):
   elif sname.startswith('smH'):
     return ['ggH_hww', 'qqH_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'bbH_hww', 'ttH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'ggZH_htt', 'WH_htt', 'bbH_htt', 'ttH_htt']
   else:
-    return sname
+    return [sname]
 
 signal_ggH_separate = False
 for sname in signals:

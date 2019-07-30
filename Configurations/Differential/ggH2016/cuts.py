@@ -13,7 +13,7 @@ _tmp = [
     'metPfType1>20',
     'ptll>30',
     'std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13',
-    '(abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13)'
+    'abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13'
     #'((abs(std_vector_lepton_flavour[0]) == 11 && std_vector_electron_passConversionVeto[0]) || (abs(std_vector_lepton_flavour[1]) == 11 && std_vector_electron_passConversionVeto[1]))' # only applied to SR in Full2016
 ]
 supercut = ' && '.join(_tmp)
