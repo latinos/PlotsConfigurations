@@ -4,32 +4,32 @@ import os
 import sys
 import re
 import time
+import copy
 import math
-from array import array
+import array
 import tempfile
+import logging
 argv = sys.argv
 sys.argv = argv[:1]
 import ROOT
 
 FIRENZE = False
-NOHIGGS = True
-SRONLY = True
+NOHIGGS = False
+SRONLY = False
+
+logging.basicConfig(level=logging.WARNING)
 
 class SourceGetter(object):
     '''Tool to get source histograms'''
 
     tag = ''
 
-    def __init__(self, path, sample = ''):
-        if sample:
-            self.source = ROOT.TFile.Open('%s/plots_%s_ALL_%s.root' % (path, self.tag, sample))
-        else:
-            self.source = ROOT.TFile.Open(path)
-        if not self.source:
-            raise RuntimeError(path)
-
-        ROOT.gROOT.GetListOfFiles().Remove(self.source)
-        self.cwd = ''
+    def __init__(self, path='', sample=''):
+        self.source = None
+        self.path = ''
+        self.sample = ''
+        if path:
+            self.open(path, sample=sample)
 
     def cd(self, path):
         self.cwd = path
@@ -51,8 +51,33 @@ class SourceGetter(object):
 
         return d.GetListOfKeys()
 
+    def open(self, path, sample=''):
+        if path != self.path or sample != self.sample:
+            self.close()
+            if not sample:
+                logging.info('Opening file %s', path)
+                self.source = ROOT.TFile.Open(path)
+            else:
+                logging.info('Opening file %s/plots_%s_ALL_%s.root', path, self.tag, sample)
+                self.source = ROOT.TFile.Open('%s/plots_%s_ALL_%s.root' % (path, self.tag, sample))
+
+            ROOT.gROOT.GetListOfFiles().Remove(self.source)
+
+        if not self.source:
+            raise RuntimeError(path)
+
+        self.path = path
+        self.sample = sample
+
+        self.cwd = ''
+
     def close(self):
-        self.source.Close()
+        if self.source is not None:
+            logging.info('Closing source file')
+            self.source.Close()
+            self.source = None
+            self.path = ''
+            self.sample = ''
 
 
 def nonnegatify(histogram):
@@ -69,290 +94,243 @@ class HistogramMerger(object):
     chrgconfs = ['pm', 'mp']
     split = []
 
-    lnNSpecific = {}
-    renormalizedVariations = {}
-    perBinVariations = []
+    subsampleRmap = {}
+
+    variations = {}
 
     recoBinMap = {}
     outBins = []
     crCategories = []
 
-    def __init__(self):
-        self.subsamples = []
-        self.sourceDirectories = []
+    templateSpecs = []
+    secondarySpecs = []
 
-        self.getter = None
-
-        self.outCutDir = None
-
-    def getSRSourceDirectories(self, category):
-        self.sourceDirectories = []
-        for recoBin in self.recoBinMap[self._recoOutBin]:
+    def getSRSourceDirectories(self, recoOutBin, category):
+        sourceDirectories = []
+        for recoBin in self.recoBinMap[recoOutBin]:
             if category is None:
                 for pt2 in self.pt2confs:
                     for flav in self.flavconfs:
                         for chrg in self.chrgconfs:
-                            self.sourceDirectories.append('hww_%s_cat%s%s%s_%s' % (recoBin, pt2, flav, chrg, self.year))
+                            sourceDirectories.append('hww_%s_cat%s%s%s_%s' % (recoBin, pt2, flav, chrg, self.year))
     
             elif category in self.pt2confs:
                 for flav in self.flavconfs:
                     for chrg in self.chrgconfs:
-                        self.sourceDirectories.append('hww_%s_cat%s%s%s_%s' % (recoBin, category, flav, chrg, self.year))
+                        sourceDirectories.append('hww_%s_cat%s%s%s_%s' % (recoBin, category, flav, chrg, self.year))
     
             elif category in [pt2 + flav for pt2 in self.pt2confs for flav in self.flavconfs]:
                 for chrg in self.chrgconfs:
-                    self.sourceDirectories.append('hww_%s_cat%s%s_%s' % (recoBin, category, chrg, self.year))
+                    sourceDirectories.append('hww_%s_cat%s%s_%s' % (recoBin, category, chrg, self.year))
     
             else:
-                self.sourceDirectories.append('hww_%s_cat%s_%s' % (recoBin, category, self.year))
-    
-    def getCRSourceDirectories(self, sel):
-        self.sourceDirectories = []
+                sourceDirectories.append('hww_%s_cat%s_%s' % (recoBin, category, self.year))
 
-        if self._recoOutBin not in self.recoBinMap:
+        logging.debug('SR source directories for %s/%s: %s', recoOutBin, category, sourceDirectories)
+
+        return sourceDirectories
+    
+    def getCRSourceDirectories(self, recoOutBin, cr):
+        sourceDirectories = []
+
+        if recoOutBin not in self.recoBinMap:
             return
 
-        for recoBin in self.recoBinMap[self._recoOutBin]:
+        for recoBin in self.recoBinMap[recoOutBin]:
             if FIRENZE:
                 recoBin = recoBin.replace('NJ_', '').lower() + 'j'
-                self.sourceDirectories.append('hww_CR_cat%s_%s_%s' % (sel, recoBin, self.year))
+                sourceDirectories.append('hww_CR_cat%s_%s_%s' % (cr, recoBin, self.year))
             else:
-                self.sourceDirectories.append('hww_CR_cat%s_%s_%s' % (recoBin, sel, self.year))
+                sourceDirectories.append('hww_CR_cat%s_%s_%s' % (recoBin, cr, self.year))
+
+        logging.debug('CR source directories for %s/%s: %s', recoOutBin, cr, sourceDirectories)
+
+        return sourceDirectories
     
     ### Functions for actual merging steps
     
-    def addFromOneDirectory(self, sample, sourceSample):
-        outNominal = self._outNominals[self.outCutDir.GetName()][self.templateName]
-
+    def addFromOneDirectory(self, inSample, outNominal, outHistograms):
+        logging.debug('addFromOneDirectory %s %s', inSample, outNominal.GetName())
         # pick up the nominal input
-        inNominal = self.getter.get('histo_%s' % sourceSample)
-    
-        # then deal with variations
-        for variation, outVariation in self._outVariations[self.outCutDir.GetName()][self.templateName].iteritems():
-            if variation in self.lnNSpecific:
-                lnNDef = self.lnNSpecific[variation]
-    
-                if sample in lnNDef:
-                    inVariation = inNominal.Clone('histo_%s_%s' % (sourceSample, variation))
-    
-                    if type(lnNDef[sample]) is tuple:
-                        # AsLnN type
-                        inVariationSource = self.getter.get('histo_%s_%s' % (sourceSample, variation))
-                        numer = inVariationSource.Integral()
-                        denom = inVariation.Integral()
-                        if numer > 0. and denom > 0.:
-                            inVariation.Scale(numer / denom / lnNDef[sample][1])
-                    else:
-                        # float values
-                        inVariation.Scale(lnNDef[sample])
-                else:
-                    inVariation = None
-            else:
-                inVariation = self.getter.get('histo_%s_%s' % (sourceSample, variation), noraise=True)
-                
-            if inVariation:
-                if (sample, variation) in self.renormalizedVariations:
-                    inVariation.Scale(self.renormalizedVariations[(sample, variation)])
+        inNominal = self._getter.get('histo_%s' % inSample)
 
-                try:
-                    outVariation.Add(inVariation)
-                except:
-                    print self.outCutDir.GetName(), self.templateName, outNominal.GetName(), variation
-                    raise
+        inCategory = self._getter.cwd[:self._getter.cwd.find('/')]
 
-                inVariation.Delete()
-            else:
-                outVariation.Add(inNominal)
-    
-        # unknown variations (only need to do this once per input sample in principle)
-        for key in self.getter.getkeys():
-            matches = re.match('histo_%s_(.+)$' % sourceSample, key.GetName())
-            if not matches or matches.group(1) in self._outVariations[self.outCutDir.GetName()][self.templateName]:
+        logging.debug('inCategory %s', inCategory)
+
+        outNominalName = outNominal.GetName()
+        outSample = outNominalName.replace('histo_', '')
+        outDir = outNominal.GetDirectory()
+        templateName = outDir.GetName()
+        outCatDir = outDir.GetMother()
+        outCatName = outCatDir.GetName()
+        outVariations = outHistograms[(outCatName, templateName, outSample)][1]
+
+        logging.debug('output %s %s', outSample, outCatName)
+
+        for vname, variation in self.variations.iteritems():
+            if outSample not in variation['appliesTo']:
                 continue
-    
-            variation = matches.group(1)
-            
-            # temporary
-            if 'CMS_scale_met_DYCR' in variation or ('CMS_btag_' in variation and '_topCR_' in variation):
+            if variation['cuts'] is not None and outCatName not in variation['cuts']:
                 continue
 
-            outVariation = self.newOutVariation(variation)
-    
-            inVariation = key.ReadObj()
-            if (sample, variation) in self.renormalizedVariations:
-                inVariation.Scale(self.renormalizedVariations[(sample, variation)])
-            
-            outVariation.Add(inVariation)
-            inVariation.Delete()
-    
-        for variation, lnNDef in self.lnNSpecific.iteritems():
-            if sample not in lnNDef or variation in self._outVariations[self.outCutDir.GetName()][self.templateName]:
-                continue
-
-            outVariation = self.newOutVariation(variation)
-    
-            inVariation = inNominal.Clone('histo_%s_%s' % (sourceSample, variation))
-            if type(lnNDef[sample]) is tuple:
-                # AsLnN type
-                inVariationSource = self.getter.get('histo_%s_%s' % (sourceSample, variation))
-                numer = inVariationSource.Integral()
-                denom = inVariation.Integral()
-                if numer > 0. and denom > 0.:
-                    inVariation.Scale(numer / denom / lnNDef[sample][1])
-            else:
-                inVariation.Scale(lnNDef[sample])
-    
-            outVariation.Add(inVariation)
-            inVariation.Delete()
-   
-        # finally update out nominal
-        outNominal.Add(inNominal)
-        inNominal.Delete()
-
-    def newOutVariation(self, variation):
-        outNominal = self._outNominals[self.outCutDir.GetName()][self.templateName]
-
-        if variation in self.perBinVariations:
-            if variation.endswith('Up'):
-                variationCore = variation[:-2]
-                updown = 'Up'
-            else:
-                variationCore = variation[:-4]
-                updown = 'Down'
-
-            outVariationName = '%s_%s_%s%s' % (outNominal.GetName(), variationCore, self._recoOutBin, updown)
-        else:
-            outVariationName = '%s_%s' % (outNominal.GetName(), variation)
-
-        self.outCutDir.cd(self.templateName)
-        outVariation = outNominal.Clone(outVariationName)
-        outVariation.SetTitle(outVariationName)
-
-        self._outVariations[self.outCutDir.GetName()][self.templateName][variation] = outVariation
-
-        return outVariation
-    
-    def mergeSampleTemplate(self, sample):
-        for sourceDirectory in self.sourceDirectories:
-            self.getter.cd('%s/%s' % (sourceDirectory, self.templateName))
-            for subsample in self.subsamples:
-                if not subsample:
-                    sourceSample = sample
-                else:
-                    sourceSample = '%s_%s' % (sample, subsample)
-    
-                self.addFromOneDirectory(sample, sourceSample)
-   
-    def mergeSample(self, templateSpecs, sample):
-        for templateName, templateBins in templateSpecs:
-            if not self.outCutDir.GetDirectory(templateName):
-                self.outCutDir.mkdir(templateName)
-
-            self.templateName = templateName
+            logging.debug('Variation %s applies to %s/%s', vname, outSample, outCatName)
 
             try:
-                outNominal = self._outNominals[self.outCutDir.GetName()][templateName]
+                outVariationUp, outVariationDown = outVariations[vname]
             except KeyError:
-                self.outCutDir.cd(self.templateName)
-                if type(templateBins) is int:
-                    outNominal = ROOT.TH1D(self._outNominalName, self._outNominalName, templateBins, 0., float(templateBins))
-                elif type(templateBins) is tuple:
-                    outNominal = ROOT.TH1D(self._outNominalName, self._outNominalName, *templateBins)
-                elif type(templateBins) is list:
-                    outNominal = ROOT.TH1D(self._outNominalName, self._outNominalName, len(templateBins) - 1, array('d', templateBins))
-                    
-                self._outNominals[self.outCutDir.GetName()][self.templateName] = outNominal
-                self._outVariations[self.outCutDir.GetName()][self.templateName] = {}
+                outVariationUp, outVariationDown = self.newOutVariation(vname, variation, outNominal)
+                outVariations[vname] = (outVariationUp, outVariationDown)
 
-            self.mergeSampleTemplate(sample)
-    
-    def restructureSR(self, output, sample):
-        # merge sample from one sample at each output cut
-
-        for dkey in output.GetListOfKeys():
-            matches = re.match('hww_((?:PTH|NJ)_(?:[0-9]+|G[ET][0-9]+|[0-9]+_[0-9]+))(?:_cat(.+)|)_[0-9]+$', dkey.GetName())
-            if not matches:
-                continue
-
-            recoOutBin = matches.group(1)
-            category = matches.group(2)
-
-            self._recoOutBin = recoOutBin
-    
-            self.getSRSourceDirectories(category)
-
-            templateSpecs = [getTemplateSpec(recoOutBin, category)]
-            if FIRENZE:
-                templateSpecs.append(('events', (1, 0., 2.)))
-            else:
-                templateSpecs.append(('events', 1))
-            self.outCutDir = output.GetDirectory(dkey.GetName())
-           
-            self.mergeSample(templateSpecs, sample)
-    
-    def restructureCR(self, output, sample):
-        # merge sample from one sample at each output cut
-
-        for dkey in output.GetListOfKeys():
-            if FIRENZE:
-                matches = re.match('hww_CR_cat(top|DY|WW)_((?:ge|)[0-4]j)_[0-9]+$', dkey.GetName())
-            else:
-                matches = re.match('hww_CR_cat((?:PTH|NJ)_(?:[0-9]+|G[ET][0-9]+|[0-9]+_[0-9]+))_(top|DY|WW)_[0-9]+$', dkey.GetName())
-
-            if matches:
-                if FIRENZE:
-                    sel = matches.group(1)
-                    recoOutBin = matches.group(2)
-                    recoOutBin = 'NJ_' + recoOutBin[:-1].upper()
+            if inSample in variation['inSamples']:
+                logging.debug('Sample has %s shift', variation['type'])
+                if variation['type'] == 'lnN':
+                    inVariationUp = inNominal.Clone('histo_%s_%sUp' % (inSample, vname))
+                    inVariationUp.Scale(variation['factors'][inSample][0])
+                    inVariationDown = inNominal.Clone('histo_%s_%sDown' % (inSample, vname))
+                    inVariationDown.Scale(variation['factors'][inSample][1])
                 else:
-                    recoOutBin = matches.group(1)
-                    sel = matches.group(2)
+                    if variation['copyfrom'] is not None:
+                        logging.debug('Copying from %s', variation['copyfrom'])
+                        inVariationUp = self._getter.get('histo_%s_%sUp' % (inSample, variation['copyfrom']))
+                        inVariationDown = self._getter.get('histo_%s_%sDown' % (inSample, variation['copyfrom']))
+                    else:
+                        inVariationUp = self._getter.get('histo_%s_%sUp' % (inSample, vname))
+                        inVariationDown = self._getter.get('histo_%s_%sDown' % (inSample, vname))
 
-                self._recoOutBin = recoOutBin
+                    if variation['AsLnN'] > 0.:
+                        sumwup = inVariationUp.GetSumOfWeights()
+                        sumwdown = inVariationDown.GetSumOfWeights()
 
-                self.getCRSourceDirectories(sel)
-            elif dkey.GetName().startswith('hww_CR'):
-                self._recoOutBin = None
-                self.sourceDirectories = [dkey.GetName()]
+                        inVariationUp.Reset()
+                        inVariationDown.Reset()
+                        if inNominal.GetSumOfWeights() > 0.:
+                            inVariationUp.Add(inNominal, variation['AsLnN'] * sumwup / inNominal.GetSumOfWeights())
+                            inVariationDown.Add(inNominal, variation['AsLnN'] * sumwdown / inNominal.GetSumOfWeights())
+
+                if inSample in variation['renormalization']:
+                    logging.debug('Renormalize by %s', variation['renormalization'][inSample])
+                    inVariationUp.Scale(variation['renormalization'][inSample][0])
+                    inVariationDown.Scale(variation['renormalization'][inSample][1])
+
+                outVariationUp.Add(inVariationUp)
+                outVariationDown.Add(inVariationDown)
+            else:
+                logging.debug('No variation from input %s', inSample)
+                outVariationUp.Add(inNominal)
+                outVariationDown.Add(inNominal)
+
+        # finally update out nominal
+        outNominal.Add(inNominal)
+        logging.debug('outNominal sumw %f', outNominal.GetSumOfWeights())
+        inNominal.Delete()
+
+    def newOutVariation(self, vname, variation, outNominal):
+        logging.debug('Making variation %s out of nominal %s', vname, outNominal.GetName())
+
+        if variation['perRecoBin']:
+            outCategory = outNominal.GetDirectory().GetMother().GetName()
+            _, recoOutBin, _ = self.parseDirectoryName(outCategory)
+
+            outVariationName = '%s_%s_%s' % (outNominal.GetName(), vname, recoOutBin)
+        else:
+            outVariationName = '%s_%s' % (outNominal.GetName(), vname)
+
+        outNominal.GetDirectory().cd()
+        outVariationUp = outNominal.Clone(outVariationName + 'Up')
+        outVariationUp.SetTitle(outVariationName + 'Up')
+        outVariationDown = outNominal.Clone(outVariationName + 'Down')
+        outVariationDown.SetTitle(outVariationName + 'Down')
+
+        return outVariationUp, outVariationDown
+    
+    def mergeSample(self, inSample, outSample, sourceDirectories, outCatDir, outHistograms):
+        logging.debug('\n\nmergeSample %s, %s, %s', inSample, outSample, outCatDir.GetName())
+        
+        outCatName = outCatDir.GetName()
+        
+        for templateName, templateBinning in self.templateSpecs:
+            logging.debug('\nmergeSample for %s', templateName)
+            try:
+                outNominal = outHistograms[(outCatName, templateName, outSample)][0]
+            except KeyError:
+                outCatDir.cd(templateName)
+                outNominal = HistogramMerger.makeTH1('histo_%s' % outSample, templateBinning)
+                outHistograms[(outCatName, templateName, outSample)] = (outNominal, {})
+
+            for sourceDirectory in sourceDirectories:
+                self._getter.cd('%s/%s' % (sourceDirectory, templateName))
+                self.addFromOneDirectory(inSample, outNominal, outHistograms)
+
+    def createSecondaries(self, outCatDir):
+        for secondaryName, secondaryBinning, primaryName, primaryBins in self.secondarySpecs:
+            outCatDir.mkdir(secondaryName)
+
+            sourceDir = outCatDir.GetDirectory(primaryName)
+            for key in sourceDir.GetListOfKeys():
+                primary = key.ReadObj()
+
+                outCatDir.cd(secondaryName)
+                secondary = HistogramMerger.makeTH1(primary.GetName(), secondaryBinning)
+
+                for ix, binrange in enumerate(primaryBins):
+                    cont = 0.
+                    err2 = 0.
+                    for ibin in binrange:
+                        cont += primary.GetBinContent(ibin)
+                        err2 += math.pow(primary.GetBinError(ibin), 2.)
+
+                    secondary.SetBinContent(ix + 1, cont)
+                    secondary.SetBinError(ix + 1, math.sqrt(err2))
+
+                secondary.Write()
+    
+    def restructure(self, output, inSample, outSample, outHistograms):
+        # merge sample from one sample at each output cut
+
+        for catkey in output.GetListOfKeys():
+            region, recoOutBin, cat = self.parseDirectoryName(catkey.GetName())
+
+            if region == 'SR':
+                sourceDirectories = self.getSRSourceDirectories(recoOutBin, cat)
+            elif region == 'CR':
+                sourceDirectories = self.getCRSourceDirectories(recoOutBin, cat)
             else:
                 continue
 
-            if FIRENZE:
-                templateSpecs = [('events', (1, 0., 2.))]
-            else:
-                templateSpecs = [('events', 1)]
+            outCatDir = output.GetDirectory(catkey.GetName())
+           
+            self.mergeSample(inSample, outSample, sourceDirectories, outCatDir, outHistograms)
 
-            self.outCutDir = output.GetDirectory(dkey.GetName())
-    
-            self.mergeSample(templateSpecs, sample)
 
-    def writeTarget(self, output):
+    def writePrimaries(self, outHistograms):
         """
         Make all bin content non-negative and write to output
         """
 
-        for dname, templates in self._outNominals.iteritems():
-            for tname, histogram in templates.iteritems():
-                output.cd('%s/%s' % (dname, tname))
+        for (nominal, variations) in outHistograms.itervalues():
+            outDir = nominal.GetDirectory()
+            outDir.cd()
+            
+            nonnegatify(nominal)
 
-                nonnegatify(histogram)
+            nominalSumW = nominal.GetSumOfWeights()
 
-                nominalSumW = histogram.GetSumOfWeights()
-
-                for vh in self._outVariations[dname][tname].itervalues():
+            for vv in variations.itervalues():
+                for vh in vv:
                     nonnegatify(vh)
-
+    
                     if nominalSumW > 0. and vh.GetSumOfWeights() / nominalSumW < 1.e-4:
                         vname = vh.GetName()
                         vh.Delete()
-                        vh = histogram.Clone(vname)
+                        vh = nominal.Clone(vname)
                         vh.Scale(1.5e-4)
-
+    
                     vh.Write()
                     vh.Delete()
 
-                histogram.Write()
-                histogram.Delete()
+            nominal.Write()
+            nominal.Delete()
     
     def createOutputAndMerge(self, outputPath, sourcePath, targets):
         ### Create the output directory structure first
@@ -360,7 +338,6 @@ class HistogramMerger(object):
         output = ROOT.TFile.Open(outputPath, 'recreate')
         ROOT.gROOT.GetListOfFiles().Remove(output)
 
-        dnames = []
         binCategories = {}
         for outBin, nsplit in zip(self.outBins, self.split):
             binCategories[outBin] = []
@@ -368,81 +345,110 @@ class HistogramMerger(object):
                 for pt2 in self.pt2confs:
                     for flav in self.flavconfs:
                         for chrg in self.chrgconfs:
-                            dname = 'hww_%s_cat%s%s%s_%s' % (outBin, pt2, flav, chrg, self.year)
-                            dnames.append(dname)
-                            binCategories[outBin].append(dname)
+                            category = 'hww_%s_cat%s%s%s_%s' % (outBin, pt2, flav, chrg, self.year)
+                            binCategories[outBin].append(category)
         
             elif nsplit == 4:
                 for pt2 in self.pt2confs:
                     for flav in self.flavconfs:
-                        dname = 'hww_%s_cat%s%s_%s' % (outBin, pt2, flav, self.year)
-                        dnames.append(dname)
-                        binCategories[outBin].append(dname)
+                        category = 'hww_%s_cat%s%s_%s' % (outBin, pt2, flav, self.year)
+                        binCategories[outBin].append(category)
         
             elif nsplit == 3:
                 for flav in self.flavconfs:
-                    dname = 'hww_%s_catpt2lt20%s_%s' % (outBin, flav, self.year)
-                    dnames.append(dname)
-                    binCategories[outBin].append(dname)
+                    category = 'hww_%s_catpt2lt20%s_%s' % (outBin, flav, self.year)
+                    binCategories[outBin].append(category)
 
-                dname = 'hww_%s_catpt2ge20_%s' % (outBin, self.year)
-                dnames.append(dname)
-                binCategories[outBin].append(dname)
+                category = 'hww_%s_catpt2ge20_%s' % (outBin, self.year)
+                binCategories[outBin].append(category)
         
             elif nsplit == 2:
                 for pt2 in self.pt2confs:
-                    dname = 'hww_%s_cat%s_%s' % (outBin, pt2, self.year)
-                    dnames.append(dname)
-                    binCategories[outBin].append(dname)
+                    category = 'hww_%s_cat%s_%s' % (outBin, pt2, self.year)
+                    binCategories[outBin].append(category)
         
             elif nsplit == 1:
-                dname = 'hww_%s_%s' % (outBin, self.year)
-                dnames.append(dname)
-                binCategories[outBin].append(dname)
+                category = 'hww_%s_%s' % (outBin, self.year)
+                binCategories[outBin].append(category)
         
         for cat in self.crCategories:
-            dname = 'hww_CR_cat%s_%s' % (cat, self.year)
-            dnames.append(dname)
-            binCategories[cat] = [dname]
+            category = 'hww_CR_cat%s_%s' % (cat, self.year)
+            binCategories[cat] = [category]
 
-        for dname in dnames:
-            output.mkdir(dname)
+        allCategories = sum(binCategories.values(), [])
+
+        ### Make the directory structure into the file first
+        for category in allCategories:
+            output.mkdir(category)
+            for templateName, _ in self.templateSpecs:
+                output.mkdir('%s/%s' % (category, templateName))
         
         ### Now merge
-        
         if os.path.isfile(sourcePath):
-            self.getter = SourceGetter(sourcePath)
+            self._getter = SourceGetter(sourcePath)
+        else:
+            self._getter = SourceGetter()
     
-        for outSample, snames in targets:
-            self._outNominals = dict((dname, dict()) for dname in dnames)
-            self._outVariations = dict((dname, dict()) for dname in dnames)
-
-            self._outNominalName = 'histo_%s' % outSample
-
-            for sample in snames:
-                if type(sample) is tuple:
-                    self.subsamples = sample[1]
-                    sample = sample[0]
-                    print '%s/%s(%s) -> %s/%s' % (sourcePath, sample, ', '.join(self.subsamples), outputPath, outSample)
-                else:
-                    self.subsamples = ['']
-                    print '%s/%s -> %s/%s' % (sourcePath, sample, outputPath, outSample)
-        
-                if os.path.isdir(sourcePath):
-                    self.getter = SourceGetter(sourcePath, sample)
-
-                # Signal region directories
-                self.restructureSR(output, sample)
+        for outSample, inSamples in targets:
+            outHistograms = {}
             
-                # Control region directories
-                self.restructureCR(output, sample)
+            for inSample in inSamples:
+                print '%s/%s -> %s/%s' % (sourcePath, inSample, outputPath, outSample)
 
                 if os.path.isdir(sourcePath):
-                    self.getter.close()
-                                
-            self.writeTarget(output)
+                    if inSample in self.subsampleRmap:
+                        sourceSample = self.subsampleRmap[inSample]
+                    else:
+                        sourceSample = inSample
+
+                    self._getter.open(sourcePath, sourceSample)
+
+                self.restructure(output, inSample, outSample, outHistograms)
+
+            self.writePrimaries(outHistograms)
+
+        # come back here
+        for catkey in output.GetListOfKeys():
+            self.createSecondaries(output.GetDirectory(catkey.GetName()))
         
         output.Close()
+
+    def parseDirectoryName(self, name):
+        matches = re.match('hww_((?:PTH|NJ)_(?:[0-9]+|G[ET][0-9]+|[0-9]+_[0-9]+))(?:_cat(.+)|)_[0-9]+$', name)
+        if matches:
+            recoOutBin = matches.group(1)
+            category = matches.group(2)
+            return 'SR', recoOutBin, category
+
+        if FIRENZE:
+            matches = re.match('hww_CR_cat(top|DY|WW)_((?:ge|)[0-4]j)_[0-9]+$', name)
+            if matches:
+                recoOutBin = matches.group(2)
+                recoOutBin = 'NJ_' + recoOutBin[:-1].upper()
+                cr = matches.group(1)
+                return 'CR', recoOutBin, cr
+
+        else:
+            matches = re.match('hww_CR_cat((?:PTH|NJ)_(?:[0-9]+|G[ET][0-9]+|[0-9]+_[0-9]+))_(top|DY|WW)_[0-9]+$', name)
+            if matches:
+                recoOutBin = matches.group(1)
+                cr = matches.group(2)
+                return 'CR', recoOutBin, cr
+
+        return '', '', ''
+
+    @staticmethod
+    def makeTH1(name, bins):
+        if type(bins) is int:
+            hout = ROOT.TH1D(name, name, bins, 0., float(bins))
+        elif type(bins) is tuple:
+            hout = ROOT.TH1D(name, name, *bins)
+        elif type(bins) is list:
+            hout = ROOT.TH1D(name, name, len(bins) - 1, array.array('d', bins))
+
+        hout.Sumw2()
+
+        return hout
 
 
 def mergeOne(sourcePath, jobArg, queue):
@@ -471,10 +477,11 @@ if __name__ == '__main__':
     argParser.add_argument('--year', '-y', metavar = 'YEAR', dest = 'year', default = '', help = 'Year.')
     argParser.add_argument('--signal-fiducial-only', action = 'store_true', dest = 'signal_fiducial_only', help = 'Signal is fiducial only.')
     argParser.add_argument('--signal-ggH-separate', action = 'store_true', dest = 'signal_ggH_separate', help = 'Separate ggH and xH in signal.')
+    argParser.add_argument('--signal-separate', action = 'store_true', dest = 'signal_separate', help = 'Separate Higgs processes.')
     argParser.add_argument('--signal-hww-only', action = 'store_true', dest = 'signal_hww_only', help = 'Signal is HWW only.')
     argParser.add_argument('--background-minor-merge', action = 'store_true', dest = 'background_minor_merge', help = 'Merge minor backgrounds into one sample.')
     argParser.add_argument('--input-fake-flavored', action = 'store_true', dest = 'input_fake_flavored', help = 'Input Fake sample is split into Fake_em and Fake_me.')
-    argParser.add_argument('--input-major-split', metavar = '(NJ|PTH)', dest = 'input_major_split', help = 'Input sample is split in reco bins of NJ or PTH.')
+    argParser.add_argument('--gen-inclusive', action = 'store_true', dest = 'gen_inclusive', help = 'Create an input for an inclusive cross section measurement.')
     argParser.add_argument('--make-asimov-with-bias', metavar = 'SAMPLE=bias', nargs = '+', dest = 'make_asimov_with_bias', help = 'Replace histo_DATA with an Asimov dataset with biased sample scales')
     argParser.add_argument('--num-processes', '-j', metavar = 'N', dest = 'num_processes', type = int, default = 1, help = 'Number of parallel processes.')
     
@@ -494,48 +501,112 @@ if __name__ == '__main__':
     samples = {}
     with open('samples.py') as samplesfile:
         exec(samplesfile)
+
     cuts = {}
     with open('cuts.py') as cutsfile:
         exec(cutsfile)
+
     nuisances = {}
     with open('nuisances.py') as nuisancesfile:
         exec(nuisancesfile)
-    
+
+    sampleslist = []
+    subsamplemap = {}
+    for sname, sample in samples.items():
+        if 'subsamples' in sample:
+            for sub in sample['subsamples']:
+                sampleslist.append('%s_%s' % (sname, sub))
+
+            subsamplemap[sname] = ['%s_%s' % (sname, sub) for sub in sample['subsamples']]
+        else:
+            sampleslist.append(sname)
+
+    samples = sampleslist
+
+    cutslist = []
+    categorymap = {}
+    for cname, cut in cuts.iteritems():
+        if 'categories' in cut:
+            categorymap[cname] = ['%s_%s' % (cname, cat) for cat in cut['categories']]
+            cutslist.extend(categorymap[cname])
+        else:
+            cutslist.append(cname)
+
+    cuts = set(cutslist)
+        
     ### How we merge the bins & categories
+
+    HistogramMerger.templateSpecs = [
+        ('mllVSmth_8x9', 72),
+        ('mllVSmth_6x6', 36),
+        ('met', (50, 20., 220.)),
+        ('ptll', (20, 0., 200.)),
+        ('dphill', (20, 0., 3.14))
+    ]
+    if FIRENZE:
+        HistogramMerger.templateSpecs.append(('events', (1, 0., 2.)))
+    else:
+        HistogramMerger.templateSpecs.append(('events', 1))
+
+    HistogramMerger.secondarySpecs = [
+        ('mllfit', [10., 25., 35., 40., 45., 50., 55., 70., 90., 210.], 'mllVSmth_8x9', [range(i + 1, i + 73, 9) for i in range(9)]),
+        ('mthfit', [60., 80., 90., 100., 110., 120., 130., 150., 200.], 'mllVSmth_8x9', [range(i * 9 + 1, i * 9 + 10) for i in range(8)]),
+        ('mthfitww', [60., 80., 90., 100., 110., 120., 130., 150., 200.], 'mllVSmth_8x9', [range(i * 9 + 9, i * 9 + 10) for i in range(8)]),
+    ]
+
+    HistogramMerger.observable = args.observable
+
+    for sname, subsamples in subsamplemap.iteritems():
+        HistogramMerger.subsampleRmap.update((subsample, sname) for subsample in subsamples)
 
     if args.observable == 'ptH':
         HistogramMerger.outBins = ['PTH_0_20', 'PTH_20_45', 'PTH_45_80', 'PTH_80_120', 'PTH_120_200', 'PTH_200_350', 'PTH_GT350']
         #HistogramMerger.outBins = ['PTH_0_15', 'PTH_15_30', 'PTH_30_45', 'PTH_45_80', 'PTH_80_120', 'PTH_120_200', 'PTH_200_350', 'PTH_GT350']
     
+        #HistogramMerger.recoBinMap = {
+        #    'PTH_0_20': ['PTH_0_10', 'PTH_10_15', 'PTH_15_20'],
+        #    'PTH_20_45': ['PTH_20_30', 'PTH_30_45'],
+        #    'PTH_45_80': ['PTH_45_60', 'PTH_60_80'],
+        #    'PTH_80_120': ['PTH_80_100', 'PTH_100_120'],
+        #    'PTH_120_200': ['PTH_120_155', 'PTH_155_200'],
+        #    'PTH_200_350': ['PTH_200_260', 'PTH_260_350'],
+        #    'PTH_GT350': ['PTH_GT350']
+        #}
         HistogramMerger.recoBinMap = {
-            'PTH_0_20': ['PTH_0_10', 'PTH_10_15', 'PTH_15_20'],
-            'PTH_20_45': ['PTH_20_30', 'PTH_30_45'],
-            'PTH_45_80': ['PTH_45_60', 'PTH_60_80'],
-            'PTH_80_120': ['PTH_80_100', 'PTH_100_120'],
-            'PTH_120_200': ['PTH_120_155', 'PTH_155_200'],
-            'PTH_200_350': ['PTH_200_260', 'PTH_260_350'],
+            'PTH_0_20': ['PTH_0_20'],
+            'PTH_20_45': ['PTH_20_45'],
+            'PTH_45_80': ['PTH_45_80'],
+            'PTH_80_120': ['PTH_80_120'],
+            'PTH_120_200': ['PTH_120_200'],
+            'PTH_200_350': ['PTH_200_350'],
             'PTH_GT350': ['PTH_GT350']
         }
     
         HistogramMerger.split = [8, 8, 4, 3, 2, 2, 1]
-    
-        def getTemplateSpec(recoOutBin, category):
-            if category is None or category.startswith('pt2lt20'):
-                return 'mllVSmth_6x6', 36
-            else:
-                return 'mllVSmth_8x9', 72
+        #HistogramMerger.split = [1, 1, 1, 1, 1, 1, 1]
 
         HistogramMerger.crCategories = []
         if not SRONLY:
             for sel in ['top', 'DY', 'WW']:
                 HistogramMerger.crCategories.extend('%s_%s' % (outBin, sel) for outBin in HistogramMerger.outBins)
+
+        for sname in list(samples):
+            if '_NJ_' in sname:
+                samples.remove(sname)
+
+        for cname in list(cuts):
+            if 'catNJ' in cname:
+                cuts.remove(cname)
     
     else:
         HistogramMerger.outBins = ['NJ_0', 'NJ_1', 'NJ_2', 'NJ_3', 'NJ_GE4']
-    
+        #HistogramMerger.outBins = ['NJ_0', 'NJ_1', 'NJ_GE2']
+        #HistogramMerger.outBins = ['NJ_0']
+        
         HistogramMerger.recoBinMap = {
             'NJ_0': ['NJ_0'],
             'NJ_1': ['NJ_1'],
+            #'NJ_GE2': ['NJ_2', 'NJ_3', 'NJ_GE4']
             'NJ_2': ['NJ_2'],
             'NJ_3': ['NJ_3'],
             'NJ_GE4': ['NJ_GE4']
@@ -544,26 +615,10 @@ if __name__ == '__main__':
         if FIRENZE:
             HistogramMerger.split = [8, 8, 1, 1, 1]
         else:
-            #HistogramMerger.split = [8, 8, 2, 2, 2]
-            HistogramMerger.split = [8, 8, 1, 1, 1]
+            #HistogramMerger.split = [8, 8, 1, 1, 1]
+            HistogramMerger.split = [8, 8, 2, 1, 1]
+            #HistogramMerger.split = [8, 8, 1]
     
-        def getTemplateSpec(recoOutBin, category):
-            if FIRENZE:
-                if recoOutBin in ['NJ_0', 'NJ_1']:
-                    if category.startswith('pt2lt20'):
-                        return 'mllVSmth_pt2lt20', 36
-                    else:
-                        return 'mllVSmth_pt2ge20', 72
-                elif recoOutBin == 'NJ_2':
-                    return 'mllVSmth_2j', 36
-                else:
-                    return 'mll_optim', [12.,30.,50.,70.,90.,110.,150.,200.]
-            else:
-                if category is None or category.startswith('pt2lt20'):
-                    return 'mllVSmth_6x6', 36
-                else:
-                    return 'mllVSmth_8x9', 72
-
         if FIRENZE:
             crs = ['top', 'DY']
         else:
@@ -576,16 +631,16 @@ if __name__ == '__main__':
                     HistogramMerger.crCategories.extend('%s_%sj' % (sel, nj) for nj in ['0', '1', '2', '3', 'ge4'])
                 else:
                     HistogramMerger.crCategories.extend('%s_%s' % (outBin, sel) for outBin in HistogramMerger.outBins)
-    
-    ### Sample merging configuration according to the flags at the beginning
-    
-    allBins = sum((HistogramMerger.recoBinMap[outBin] for outBin in HistogramMerger.outBins), [])
 
-    if args.make_asimov_with_bias:
-        backgrounds = {}
-    else:
-        backgrounds = {'DATA': ['DATA']}
-    signals = {}
+        for sname in list(samples):
+            if '_PTH_' in sname:
+                samples.remove(sname)
+
+        for cname in list(cuts):
+            if 'catPTH' in cname:
+                cuts.remove(cname)
+        
+    ### Group the higgs processes
     
     ggH_hww = ['ggH_hww']
     xH_hww = [
@@ -598,35 +653,23 @@ if __name__ == '__main__':
     ]
     ggH_htt = ['ggH_htt']
     xH_htt = ['qqH_htt', 'ZH_htt', 'WH_htt']
-    
     # temporary workaround - some missing samples
-    if args.year == '2016':
-        minors = ['ggWW', 'Vg', 'WZgS_L', 'WZgS_H', 'VZ', 'VVV']
-    else:
+    if args.year == '2017':
         xH_hww.remove('bbH_hww')
-        minors = ['ggWW', 'Vg', 'WZgS_H', 'VZ', 'VVV']
 
-    if not NOHIGGS:
-        if args.signal_hww_only:
-            if args.signal_ggH_separate:
-                signals['ggH_hww'] = ggH_hww
-                signals['xH_hww'] = xH_hww
-            else:
-                signals['smH_hww'] = ggH_hww + xH_hww
-        
-            backgrounds['htt'] = [(sample, [f + b for f in ['fid_', 'nonfid_'] for b in allBins]) for sample in (ggH_htt + xH_htt)]
-        else:
-            if args.signal_ggH_separate:
-                signals['ggH'] = ggH_hww + ggH_htt
-                signals['xH'] = xH_hww + xH_htt
-            else:
-                signals['smH'] = ggH_hww + xH_hww + ggH_htt + xH_htt
-    
+    ### Set background sample merging
+
+    backgrounds = {}
+    if not args.make_asimov_with_bias:
+        backgrounds['DATA'] = ['DATA']
+
     if args.input_fake_flavored:
-        backgrounds['Fake_em'] = [('Fake', ['em'])]
-        backgrounds['Fake_me'] = [('Fake', ['me'])]
+        backgrounds['Fake_em'] = ['Fake_em']
+        backgrounds['Fake_me'] = ['Fake_me']
     else:
         backgrounds['Fake'] = ['Fake']
+
+    minors = ['ggWW', 'WWewk', 'Vg', 'VgS_L', 'VgS_H', 'VZ', 'VVV']
     
     if args.background_minor_merge:
         backgrounds['minor'] = minors
@@ -634,83 +677,148 @@ if __name__ == '__main__':
         for name in minors:
             backgrounds[name] = [name]
     
-    if args.input_major_split == 'NJ':
-        for nj in ['0j', '1j', '2j', '3j', 'ge4j']:
-            backgrounds['WW_%s' % nj] = [('WW', [nj])]
-            backgrounds['top_%s' % nj] = [('top', [nj])]
-            backgrounds['DY_%s' % nj] = [('DY', [nj])]
-    elif args.input_major_split == 'PTH':
-        pass
-    elif args.input_major_split is None:
-        backgrounds['WW'] = ['WW']
-        backgrounds['top'] = ['top']
-        backgrounds['DY'] = ['DY']
-    
-    genBinMerging = []
-    if args.signal_fiducial_only:
-        backgrounds['nonfid'] = [(s, ['nonfid_' + b for b in allBins]) for s in sum(signals.values(), [])]
-    
-        for outBin in HistogramMerger.outBins:
-            genBinMerging.append((outBin, ['fid_' + s for s in HistogramMerger.recoBinMap[outBin]]))
+    backgrounds['WW'] = ['WW']
+    backgrounds['top'] = ['top']
+    backgrounds['DY'] = ['DY']
+
+    if not NOHIGGS:
+        if args.signal_hww_only:
+            if args.signal_separate:
+                backgrounds['ggH_htt'] = [sname for sname in samples if sname.startswith('ggH_htt')]
+                for proc in xH_htt:
+                    backgrounds[proc] = [sname for sname in samples if sname.startswith(proc)]
+            else:
+                backgrounds['htt'] = sum(([sname for sname in samples if sname.startswith(htt)] for htt in ggH_htt + xH_htt), [])
+                if args.signal_fiducial_only:
+                    backgrounds['nonfid'] = [sname for sname in samples if 'nonfid_' in sname and 'hww' in sname]
+
+        elif args.signal_fiducial_only:
+            backgrounds['nonfid'] = [sname for sname in samples if 'nonfid_' in sname]
+
+    ### Set signal sample merging
+
+    signalSamples = []    
+    if not NOHIGGS:
+        if args.signal_hww_only:
+            if args.signal_separate:
+                signalSamples.append(('ggH_hww', ggH_hww))
+                for proc in xH_hww:
+                    signalSamples.append((proc, [proc]))
+            elif args.signal_ggH_separate:
+                signalSamples.append(('ggH_hww', ggH_hww))
+                signalSamples.append(('xH_hww', xH_hww))
+            else:
+                signalSamples.append(('smH_hww', ggH_hww + xH_hww))
+        else:
+            if args.signal_ggH_separate:
+                signalSamples.append(('ggH', ggH_hww + ggH_htt))
+                signalSamples.append(('xH', xH_hww + xH_htt))
+            else:
+                signalSamples.append(('smH', ggH_hww + xH_hww + ggH_htt + xH_htt))
+
+    ### Sample merging configuration according to the flags at the beginning
+
+    if args.gen_inclusive:
+        genBinMerging = [('NJ_GE0', sum(HistogramMerger.recoBinMap.itervalues(), []))]
     else:
+        genBinMerging = []
         for outBin in HistogramMerger.outBins:
-            genBinMerging.append((outBin, ['fid_' + s for s in HistogramMerger.recoBinMap[outBin]] + ['nonfid_' + s for s in HistogramMerger.recoBinMap[outBin]]))
+            genBinMerging.append((outBin, HistogramMerger.recoBinMap[outBin]))
+    
+    signals = {}
+    for target, snames in signalSamples:
+        for genOutBin, genSourceBins in genBinMerging: # merge histograms from source truth bins
+            if args.signal_fiducial_only:
+                subsamples = ['fid_' + bin for bin in genSourceBins]
+            else:
+                subsamples = ['fid_' + bin for bin in genSourceBins] + ['nonfid_' + bin for bin in genSourceBins]
+
+            signals['%s_%s' % (target, genOutBin)] = ['%s_%s' % (sname, sub) for sname in snames for sub in subsamples]
 
     HistogramMerger.year = args.year
     SourceGetter.tag = args.tag
 
     ### Prepare nuisance editing
-    
-    HistogramMerger.lnNSpecific = {}
-    HistogramMerger.perBinVariations = []
-    for nuisance in nuisances.itervalues():
-        if 'perRecoBin' in nuisance and nuisance['perRecoBin']:
-            HistogramMerger.perBinVariations.append(nuisance['name'] + 'Up')
-            HistogramMerger.perBinVariations.append(nuisance['name'] + 'Down')
-        
-        if 'type' not in nuisance or 'samples' not in nuisance:
+    HistogramMerger.variations = {}
+
+    for nuisanceName, nuisance in nuisances.iteritems():
+        if nuisanceName == 'stat':
             continue
-    
-        if nuisance['type'] != 'lnN' and 'AsLnN' not in nuisance:
-            continue
-    
-        # if there is no mixing of affected and unaffected samples, we let the nuisance stay as lnN
-        mixing = False
-        for sname in nuisance['samples']:
-            for target, snames in signals.items() + backgrounds.items():
-                if sname in snames:
-                    if len(set(snames) - set(nuisance['samples'].keys())) != 0:
-                        # snames (merge list) and the sample list in nuisance only partially overlaps
-                        mixing = True
-                    break
-            if mixing:
-                break
-    
-        if not mixing:
-            continue
-    
+
+        for sname, value in nuisance['samples'].items():
+            if sname in subsamplemap:
+                nuisance['samples'].update((ssname, value) for ssname in subsamplemap[sname])
+                nuisance['samples'].pop(sname)
+            elif sname not in samples:
+                nuisance['samples'].pop(sname)
+
+        if 'cuts' in nuisance:
+            for cname in list(nuisance['cuts']):
+                if cname in categorymap:
+                    nuisance['cuts'].extend(categorymap[cname])
+                    nuisance['cuts'].remove(cname)
+                elif cname not in cuts:
+                    nuisance['cuts'].remove(cname)
+
+        if 'cutspost' in nuisance:
+            nuisance['cuts'] = nuisance['cutspost'](nuisance, cuts)
+
+        if 'samplespost' in nuisance:
+            nuisance['samples'] = nuisance['samplespost'](nuisance, samples)
+
         if nuisance['type'] == 'lnN':
-            lnNUp = HistogramMerger.lnNSpecific[nuisance['name'] + 'Up'] = {}
-            lnNDown = HistogramMerger.lnNSpecific[nuisance['name'] + 'Down'] = {}
+            # if samples affected by this uncertainty are all merged with uniform values, we let the nuisance stay as lnN
+            affected = set(nuisance['samples'].iterkeys())
+            for target, sources in signals.items() + backgrounds.items():
+                ssources = set(sources)
+                affectedSources = affected & ssources
+
+                if len(affectedSources) == 0:
+                    continue
+
+                if affectedSources != ssources or len(set(nuisance['samples'][s] for s in affectedSources)) != 1:
+                    break
+            else:
+                continue
+
+        appliesTo = set()
+        for inSample in nuisance['samples'].iterkeys():
+            for outSample, inSamples in signals.items() + backgrounds.items():
+                if inSample in inSamples:
+                    appliesTo.add(outSample)
+
+        if len(appliesTo) == 0:
+            continue
+
+        variation = HistogramMerger.variations[nuisance['name']] = {}
+        variation['appliesTo'] = appliesTo
+        variation['type'] = nuisance['type']
+        variation['inSamples'] = set(nuisance['samples'].keys())
+        variation['cuts'] = nuisance['cuts'] if 'cuts' in nuisance else None
+
+        variation['renormalization'] = {}
+
+        variation['perRecoBin'] = ('perRecoBin' in nuisance and nuisance['perRecoBin'])        
+        if 'copyfrom' in nuisance:
+            variation['copyfrom'] = nuisances[nuisance['copyfrom']]['name']
+        else:
+            variation['copyfrom'] = None
+
+        if variation['type'] == 'lnN':
+            variation['factors'] = {}
+
             for sname, vdef in nuisance['samples'].iteritems():
                 if '/' in vdef:
                     vdef = tuple(reversed(vdef.split('/')))
     
                 if type(vdef) is list or type(vdef) is tuple:
-                    lnNUp[sname] = float(vdef[0])
-                    lnNDown[sname] = float(vdef[1])
+                    variation['factors'][sname] = (float(vdef[0]), float(vdef[1]))
                 else:
-                    lnNUp[sname] = float(vdef)
-                    lnNDown[sname] = 2. - float(vdef)
-    
-        elif nuisance['type'] == 'shape' and 'AsLnN' in nuisance and float(nuisance['AsLnN']) >= 1.:
-            lnNUp = HistogramMerger.lnNSpecific[nuisance['name'] + 'Up'] = {}
-            lnNDown = HistogramMerger.lnNSpecific[nuisance['name'] + 'Down'] = {}
-            for sname, vdef in nuisance['samples'].iteritems():
-                lnNUp[sname] = ('histo', float(nuisance['AsLnN']))
-                lnNDown[sname] = ('histo', float(nuisance['AsLnN']))
+                    variation['factors'][sname] = (float(vdef), 1. / float(vdef))
 
-    HistogramMerger.renormalizedVariations = {}
+        else:
+            variation['AsLnN'] = float(nuisance['AsLnN']) if 'AsLnN' in nuisance else 0.
+
     source = ROOT.TFile.Open(os.path.dirname(__file__) + '/renormalize_theoretical_%s.root' % args.year)
     hup = source.Get('up')
     hdown = source.Get('down')
@@ -724,20 +832,23 @@ if __name__ == '__main__':
             sname = 'ggH_hww'
             nname = name
 
+        try:
+            variation = HistogramMerger.variations[nname]
+        except KeyError:
+            continue
+
         sup = 1. / hup.GetBinContent(iX)
         sdown = 1. / hdown.GetBinContent(iX)
-      
-        HistogramMerger.renormalizedVariations[(sname, nname + 'Up')] = sup
-        HistogramMerger.renormalizedVariations[(sname, nname + 'Down')] = sdown
+
+        if sname in subsamplemap:
+            for subsample in subsamplemap[sname]:
+                variation['renormalization'][subsample] = (sup, sdown)
+        else:
+            variation['renormalization'][sname] = (sup, sdown)
     
     source.Close()
 
-    binnedSignals = {}
-    for target, snames in signals.iteritems():
-        for genOutBin, genSourceBins in genBinMerging: # merge histograms from source truth bins
-            binnedSignals['%s_%s' % (target, genOutBin)] = [(sname, genSourceBins) for sname in snames]
-
-    jobArgs = binnedSignals.items() + backgrounds.items()
+    jobArgs = signals.items() + backgrounds.items()
 
     if args.num_processes == 1:
         merger = HistogramMerger()

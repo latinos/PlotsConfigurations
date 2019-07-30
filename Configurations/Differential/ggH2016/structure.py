@@ -7,94 +7,130 @@
 # imported from cuts.py
 # cuts
 
-# first remove samples we won't use in limit setting
-samples.pop('DY')
-samples.pop('top')
-samples.pop('ggH_hww')
-samples.pop('XH_hww')
+import copy
 
-mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
-dy = [skey for skey in samples if skey.startswith('DY')]
-top = [skey for skey in samples if skey.startswith('top')]
-signal = [skey for skey in samples if '_hww' in skey]
-ggh = [skey for skey in samples if skey.startswith('ggH_hww')]
-xh = [skey for skey in samples if skey.startswith('XH_hww')]
+for sname, sample in samples.items():
+  if 'subsamples' in sample:
+    if 'htt' in sname:
+      sample.pop('subsamples')
+      continue
 
-topcr = [ckey for ckey in cuts if ckey.startswith('topcr')]
-dycr = [ckey for ckey in cuts if ckey.startswith('dycr')]
-sr = [ckey for ckey in cuts if ckey.startswith('sr')]
+    if 'hww' in sname:
+      sample.pop('subsamples')
+      continue
 
-# keys here must match keys in samples.py
-#
-for skey in dy:
+    #for sub in sample['subsamples'].keys():
+    #  if sub.startswith('nonfid_'):
+    #    sample['subsamples'].pop(sub)
+    #  elif sub.startswith('fid_'):
+    #    sample['subsamples'][sub[4:]] = sample['subsamples'][sub]
+    #    sample['subsamples'].pop(sub)
+
+    for sub in sample['subsamples']:
+      ssname = '%s_%s' % (sname, sub)
+      samples[ssname] = copy.deepcopy(sample)
+      samples[ssname].pop('subsamples')
+      if sname in signals:
+        signals.append(ssname)
+
+    for nuis in nuisances.itervalues():
+      if 'samples' in nuis and sname in nuis['samples']:
+        spec = nuis['samples'].pop(sname)
+        for sub in sample['subsamples']:
+          nuis['samples']['%s_%s' % (sname, sub)] = spec
+
+    samples.pop(sname)
+    if sname in signals:
+      signals.remove(sname)
+
+for cname, cut in cuts.items():
+  if 'categories' in cut:
+    for cat in cut['categories']:
+      if '_WW_' in cat:
+        continue
+      cuts['%s_%s' % (cname, cat)] = copy.deepcopy(cut)
+      cuts['%s_%s' % (cname, cat)].pop('categories')
+
+    for nuis in nuisances.itervalues():
+      if 'cuts' in nuis and cname in nuis['cuts']:
+        nuis['cuts'].remove(cname)
+        for cat in cut['categories']:
+          if '_WW_' in cat:
+            continue
+          nuis['cuts'].append('%s_%s' % (cname, cat))
+
+    cuts.pop(cname)
+
+background = [skey for skey in samples if skey != 'DATA' and skey not in signals]
+# temporary
+background.remove('WWewk')
+
+for skey in background:
   structure[skey]  = {
       'isSignal' : 0,
       'isData'   : 0
   }
 
-for skey in top:
-  structure[skey] = {
-      'isSignal' : 0,
-      'isData'   : 0
-  }
+structure['Fake_em']['removeFromCuts'] = [ckey for ckey in cuts if '20me' in ckey]
+structure['Fake_me']['removeFromCuts'] = [ckey for ckey in cuts if '20em' in ckey]
 
-structure['Fake']  = {
-    'isSignal' : 0,
-    'isData'   : 0
-}
-
-structure['WW']  = {
-    'isSignal' : 0,
-    'isData'   : 0
-}
-
-structure['ggWW']  = {
-    'isSignal' : 0,
-    'isData'   : 0
-}
-
-structure['Vg']  = {
-    'isSignal' : 0,
-    'isData'   : 0
-}
-
-structure['WZgS_L'] = {
-    'isSignal' : 0,
-    'isData'   : 0
-}
-
-structure['WZgS_H'] = {
-    'isSignal' : 0,
-    'isData'   : 0
-}
-
-structure['VZ']  = {
-    'isSignal' : 0,
-    'isData'   : 0
-}
-
-structure['VVV']  = {
-    'isSignal' : 0,
-    'isData'   : 0
-}
-
-for skey in signal:
-  structure[skey] = {
-      'isSignal' : 1,
-      'isData'   : 0,
-      'removeFromCuts': dycr + topcr
-  }
-
-structure['H_htt'] = {
-    'isSignal' : 0,
-    'isData'   : 0,
-    'removeFromCuts': dycr + topcr
-}
-
-# data
+for skey in signals:
+  if '_hww' in skey:
+    structure[skey]  = {
+        'isSignal' : 1,
+        'isData'   : 0
+    }
+    if 'NJ' in skey:
+      structure[skey]['removeFromCuts'] = [ckey for ckey in cuts if 'PTH' in ckey]
+    elif 'PTH' in skey:
+      structure[skey]['removeFromCuts'] = [ckey for ckey in cuts if 'NJ' in ckey]
+  else:
+    structure[skey]  = {
+        'isSignal' : 0,
+        'isData'   : 0
+    }
 
 structure['DATA']  = {
     'isSignal' : 0,
     'isData'   : 1
 }
 
+for nuis in nuisances.itervalues():
+  if 'cutspost' in nuis:
+    nuis['cuts'] = nuis['cutspost'](nuis, cuts)
+
+  if 'samplespost' in nuis:
+    nuis['samples'] = nuis['samplespost'](nuis, cuts)
+
+# Add major background rateParam here
+
+nuisances['WWnorm'] = {
+    'name': 'CMS_hww_WWnorm',
+    'samples': {'WW': '1.00'},
+    'type': 'rateParam',
+    'perRecoBin': True
+}
+
+nuisances['DYnorm'] = {
+    'name': 'CMS_hww_DYnorm',
+    'samples': {'DY': '1.00'},
+    'type': 'rateParam',
+    'perRecoBin': True
+}
+
+nuisances['topnorm'] = {
+    'name': 'CMS_hww_topnorm',
+    'samples': {'top': '1.00'},
+    'type': 'rateParam',
+    'perRecoBin': True
+}
+
+for vname in variables.keys():
+  if vname == 'mllVSmth_8x9':
+    variables[vname]['cuts'] = [ckey for ckey in cuts if '_CR_' not in ckey and 'pt2ge20' in ckey]
+  elif vname == 'mllVSmth_6x6':
+    variables[vname]['cuts'] = [ckey for ckey in cuts if '_CR_' not in ckey and 'pt2ge20' not in ckey]
+  elif vname == 'events':
+    variables[vname]['cuts'] = [ckey for ckey in cuts if '_CR_' in ckey]
+  else:
+    variables.pop(vname)
