@@ -22,12 +22,18 @@ groupPlot['WW']  = {
                   'samples'  : ['WW', 'ggWW']
               }
 
+#groupPlot['Fake']  = {
+#                  'nameHR' : 'W+jets & TTsemilep',
+#                  'isSignal' : 0,
+#                  'color': 921,    # kGray + 1
+#                  'samples'  : ['Fakes']
+#}
 groupPlot['Fake']  = {
-                  'nameHR' : 'W+jets & TTsemilep',
+                  'nameHR' : 'Non-prompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fakes']
-}
+                  'samples'  : ['Fake_em', 'Fake_me']
+              }
 
 
 groupPlot['DY']  = {  
@@ -107,13 +113,27 @@ plot['DY']  = {
               }
 
 
-plot['Fakes']  = {  
+#plot['Fakes']  = {  
+#                  'color': 921,    # kGray + 1
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1.0                  
+#              }
+
+plot['Fake_em']  = {
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0                  
+                  'scale'    : 1.0
               }
 
+
+plot['Fake_me']  = {
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+              }
               
 plot['top'] = {   
                   'nameHR' : 'tW and t#bar{t}',

@@ -14,7 +14,7 @@ nuisances['lumi']  = {
                'samples'  : {
                    #'DY'       : '1.025',    |
                    #'top'      : '1.025',    | These 3 backgrounds are data driven, no need to include the luminosity uncertainty
-                   'WW'       : '1.025',    |
+                   #'WW'       : '1.025',    |
                    'ggWW'     : '1.025',
                    'Vg'       : '1.025',
                    'VgS'      : '1.025',
@@ -61,13 +61,6 @@ else:
   fakeW_statMuUp    = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lstatMuUp   / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
   fakeW_statMuDown  = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lstatMuDown / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
 
-#nuisances['fake_syst']  = {
-#               'name'  : 'fake_syst',
-#               'type'  : 'lnN',
-#               'samples'  : {
-#                             'Fake' : '1.30',
-#                             },
-#}
 
 nuisances['fake_syst_em']  = {
                'name'  : 'CMS_hwwem_fake_syst',

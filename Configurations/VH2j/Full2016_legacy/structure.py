@@ -9,8 +9,12 @@ structure['DY']  = {
                   'isData'   : 0 
               }
 
-
 structure['Wjets']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0 
+              }
+
+structure['VgS'] = {  
                   'isSignal' : 0,
                   'isData'   : 0 
               }
@@ -18,6 +22,18 @@ structure['Wjets']  = {
 structure['Fake']  = {  
                   'isSignal' : 0,
                   'isData'   : 0 
+              }
+
+structure['Fake_em']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'removeFromCuts' : [ k for k in cuts if 'me' in k],
+              }
+
+structure['Fake_me']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'removeFromCuts' : [ k for k in cuts if 'em' in k],
               }
 
 structure['top'] = {   
@@ -71,7 +87,6 @@ structure['Higgs'] = {
                   'isData'   : 0    
                   }
 
-#Added 11/4/19
 
 structure['ggH_hww']  = {  
                   'isSignal' : 1,
@@ -108,18 +123,10 @@ structure['H_htt']  = {
                   'isData'   : 0 
               }
 
-structure['Fake']  = {  
-                  'isSignal' : 0,
-                  'isData'   : 0 
-              }
-# data
 
+# data
 
 structure['DATA']  = { 
                   'isSignal' : 0,
                   'isData'   : 1 
               }
-
-
-
-

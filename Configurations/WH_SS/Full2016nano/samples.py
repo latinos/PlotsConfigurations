@@ -330,19 +330,19 @@ else:
 
 
 
-samples['Fakes']  = {  'name'   :   getSampleFiles(directory,'WJetsToLNu-LO',False,'nanoLatino_')
-                                  + getSampleFiles(directory,'TTToSemiLeptonic',False,'nanoLatino_'),
-                       'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC,
-                       'FilesPerJob': 3,
-                    }
+#samples['Fakes']  = {  'name'   :   getSampleFiles(directory,'WJetsToLNu-LO',False,'nanoLatino_')
+#                                  + getSampleFiles(directory,'TTToSemiLeptonic',False,'nanoLatino_'),
+#                       'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC,
+#                       'FilesPerJob': 3,
+#                    }
+#
 
-
-#samples['Fake']  = {   'name': [ ] ,
-#                       'weight' : fakeW+'*'+METFilter_DATA+'*((Lepton_pdgId[0]*Lepton_pdgId[1]==11*13) || (Lepton_pdgId[0]*Lepton_pdgId[1]==11*11) || (Lepton_pdgId[0]*Lepton_pdgId[1]==13*13))',              #   weight/cut 
-#                       'weights' : [ ] ,
-#                       'isData': ['all'],
-#                       'FilesPerJob' : 6 ,
-#                     }
+samples['Fakes']  = {   'name': [ ] ,
+                       'weight' : fakeW+'*'+METFilter_DATA+'*((Lepton_pdgId[0]*Lepton_pdgId[1]==11*13) || (Lepton_pdgId[0]*Lepton_pdgId[1]==11*11) || (Lepton_pdgId[0]*Lepton_pdgId[1]==13*13))',              #   weight/cut 
+                       'weights' : [ ] ,
+                       'isData': ['all'],
+                       'FilesPerJob' : 6 ,
+                     }
 
 #samples['Fake_em']  = {   'name': [ ] ,
 #                         'weight' : METFilter_DATA+'*'+fakeW+'*(abs(Lepton_pdgId[0])==11 && abs(Lepton_pdgId[1])==13)',              #   weight/cut 
@@ -358,17 +358,17 @@ samples['Fakes']  = {  'name'   :   getSampleFiles(directory,'WJetsToLNu-LO',Fal
 #                         'FilesPerJob' : 15 ,
 #                      }
 
-#for Run in DataRun :
-#        directory = treeBaseDir+'Run2017_nAOD_v1_Full2017v2/DATAl1loose2017v2__DATACorr2017__l2loose__fakeWp2NB/'
-#        for DataSet in DataSets :
-#                FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
-#                for iFile in FileTarget:
-##                        samples['Fake_em']['name'].append(iFile)
-##                        samples['Fake_em']['weights'].append(DataTrig[DataSet])
-##                        samples['Fake_me']['name'].append(iFile)
-##                        samples['Fake_me']['weights'].append(DataTrig[DataSet])
-#                         samples['Fake']['name'].append(iFile)
-#                         samples['Fake']['weights'].append(DataTrig[DataSet])
+for Run in DataRun :
+        directory = treeBaseDir+'Run2016_102X_nAODv4_Full2016v4/DATAl1loose2016__l2loose__fakeW/'
+        for DataSet in DataSets :
+                FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
+                for iFile in FileTarget:
+#                        samples['Fake_em']['name'].append(iFile)
+#                        samples['Fake_em']['weights'].append(DataTrig[DataSet])
+#                        samples['Fake_me']['name'].append(iFile)
+#                        samples['Fake_me']['weights'].append(DataTrig[DataSet])
+                         samples['Fakes']['name'].append(iFile)
+                         samples['Fakes']['weights'].append(DataTrig[DataSet])
 
 ###########################################
 ################## DATA ###################
