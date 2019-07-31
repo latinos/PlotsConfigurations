@@ -1,0 +1,11 @@
+#
+#             value     err-     err+     HR
+#
+*inclusive             1.000   0.1817  0.1927  combination
+#
+r_ggH_hww_0J            1.000   0.228   0.242   ggH_0J
+r_ggH_hww_1J_PTH_0_60   1.000   0.735   0.788   ggH_1J_PTH_0_60
+r_ggH_hww_1J_PTH_60_120 1.000   0.922   0.975   ggH_1J_PTH_60_120
+r_ggH_hww_1J_PTH_GT120  1.000   1.469   1.617   ggH_1J_PTH_GT120 
+r_ggH_hww_GE2J          1.000   1.051   1.193   ggH_GE2J
+r_ggH_hww_VBFTOPO       1.000   3.683   3.925   ggH_VBFTOPO 
