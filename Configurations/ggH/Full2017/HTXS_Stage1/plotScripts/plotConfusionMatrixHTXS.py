@@ -96,7 +96,9 @@ for i,c in enumerate(combChannelsToConsider):
   matrix.GetXaxis().SetBinLabel(i+1,c)
   for num,s in enumerate(overallSignalRate[c]):
     matrix.GetYaxis().SetBinLabel(num+1,s)
-    matrix.SetBinContent(i+1,num+1,overallSignalRate[c][s]/overallTotalSignal[c])
+    ratio = overallSignalRate[c][s]/overallTotalSignal[c]
+    #if ratio < 0.005: ratio=0
+    matrix.SetBinContent(i+1,num+1,ratio)
     print "category ", c," ", " signal ",s," signal fraction = ",overallSignalRate[c][s]/overallTotalSignal[c], " events = ", overallSignalRate[c][s]
 
 #change the CMS_lumi variables (see CMS_lumi.py)
@@ -104,6 +106,7 @@ CMS_lumi.lumi_13TeV = "41.5 fb^{-1}"
 CMS_lumi.writeExtraText = 1
 CMS_lumi.extraText = "Preliminary"
 ROOT.gStyle.SetPaintTextFormat("4.2f")
+ROOT.gStyle.SetHistMinimumZero()
 
 #iPos = 33
 iPos = 0
