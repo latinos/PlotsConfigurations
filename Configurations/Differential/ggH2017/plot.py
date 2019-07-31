@@ -10,14 +10,16 @@
 
 defs = [
     ('top', 'tW and t#bar{t}', ['top'], ROOT.kYellow),
-    ('WW', 'WW', ['WW', 'ggWW'], ROOT.kAzure - 9),
+    #('WW', 'WW', ['WW', 'ggWW'], ROOT.kAzure - 9),
+    ('WW', 'WW', ['WW'], ROOT.kAzure - 9),
+    ('ggWW', 'ggWW', ['ggWW'], ROOT.kBlack),
     ('Fake', 'Non-prompt', ['Fake'], ROOT.kGray + 1),
     ('DY', 'DY', ['DY'], ROOT.kGreen + 2),
     ('VZ', 'VZ', ['VZ', 'WZ', 'ZZ', 'WZgS_H'], ROOT.kViolet + 1),
     ('Vg', 'V#gamma', ['Vg', 'Wg'], ROOT.kOrange + 10),
     ('VgS', 'V#gamma*', ['VgS','WZgS_L'], ROOT.kGreen - 9),
     ('VVV', 'VVV', ['VVV'], ROOT.kAzure - 3),
-    ('Higgs_bkg', 'Higgs bkg', ['H_htt', 'ZH_htt', 'ggZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt', 'bbH_htt', 'ttH_htt'], ROOT.kRed + 2)
+    ('Higgs_bkg', 'Higgs bkg', ['H_htt', 'ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt', 'bbH_htt', 'ttH_htt'], ROOT.kRed + 2)
 ]
 
 for group, title, snames, color in defs:

@@ -1,3 +1,4 @@
+import os
 import copy
 
 #aliases = {}
@@ -12,9 +13,35 @@ top = [skey for skey in samples if skey.startswith('top')]
 eleWP = 'mvaFall17Iso_WP90'
 muWP = 'cut_Tight_HWWW'
 
+aliases['ReCleanJet_pt'] = {
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2017/recleanjet.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'ReCleanJet',
+    'args': ('pt',)
+}
+
+aliases['ReCleanJet_eta'] = {
+    'class': 'ReCleanJet',
+    'args': ('eta',)
+}
+
+aliases['ReCleanJet_jetIdx'] = {
+    'class': 'ReCleanJet',
+    'args': ('jetIdx',)
+}
+
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
     'samples': mc + ['DATA']
+}
+
+aliases['gstarLow'] = {
+    'expr': 'Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4',
+    'samples': 'VgS'
+}
+
+aliases['gstarHigh'] = {
+    'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
+    'samples': 'VgS'
 }
 
 # Fake leptons transfer factor
@@ -56,13 +83,96 @@ aliases['fakeWStatMuDown'] = {
     'samples': ['Fake']
 }
 
+# gen-matching to prompt only (GenLepMatch2l matches to *any* gen lepton)
+aliases['PromptGenLepMatch2l'] = {
+    'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
+    'samples': mc
+}
+
+aliases['Top_pTrw'] = {
+    'expr': '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )',
+    'samples': top
+}
+
+# Jet bins
+# using Alt$(ReCleanJet_pt[n], 0) instead of Sum$(ReCleanJet_pt >= 30) because jet pt ordering is not strictly followed in JES-varied samples
+
+# No jet with pt > 30 GeV
+aliases['zeroJet'] = {
+    'expr': 'Alt$(ReCleanJet_pt[0], 0) < 30.'
+}
+
+# B tagging
+
+aliases['bVeto'] = {
+    'expr': 'Sum$(ReCleanJet_pt > 20. && abs(ReCleanJet_eta) < 2.5 && Jet_btagDeepB[ReCleanJet_jetIdx] > 0.1522) == 0'
+}
+
+aliases['bReq'] = {
+    'expr': 'Sum$(ReCleanJet_pt > 30. && abs(ReCleanJet_eta) < 2.5 && Jet_btagDeepB[ReCleanJet_jetIdx] > 0.1522) >= 1'
+}
+
+# CR definitions
+
+aliases['topcr'] = {
+    'expr': 'mtw2>30 && mll>50 && ((zeroJet && !bVeto) || bReq)'
+}
+
+aliases['dycr'] = {
+    'expr': 'mth<60 && mll>40 && mll<80 && bVeto'
+}
+
+aliases['wwcr'] = {
+    'expr': 'mth>60 && mtw2>30 && mll>100 && bVeto'
+}
+
+# SR definition
+
+aliases['sr'] = {
+    'expr': 'mth>60 && mtw2>30 && bVeto'
+}
+
+# B tag scale factors
+
+aliases['bVetoSF'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log((ReCleanJet_pt>20 && abs(ReCleanJet_eta)<2.5)*Jet_btagSF_shape[ReCleanJet_jetIdx]+1*(ReCleanJet_pt<20 || abs(ReCleanJet_eta)>2.5))))',
+    'samples': mc
+}
+
+aliases['bReqSF'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log((ReCleanJet_pt>30 && abs(ReCleanJet_eta)<2.5)*Jet_btagSF_shape[ReCleanJet_jetIdx]+1*(ReCleanJet_pt<30 || abs(ReCleanJet_eta)>2.5))))',
+    'samples': mc
+}
+
+aliases['btagSF'] = {
+    'expr': '(bVeto || (topcr && zeroJet))*bVetoSF + (topcr && !zeroJet)*bReqSF',
+    'samples': mc
+}
+
+for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
+    for targ in ['bVeto', 'bReq']:
+        alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
+        alias['expr'] = alias['expr'].replace('btagSF_shape', 'btagSF_shape_up_%s' % shift)
+
+        alias = aliases['%sSF%sdown' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
+        alias['expr'] = alias['expr'].replace('btagSF_shape', 'btagSF_shape_down_%s' % shift)
+
+    aliases['btagSF%sup' % shift] = {
+        'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'up'),
+        'samples': mc
+    }
+
+    aliases['btagSF%sdown' % shift] = {
+        'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'down'),
+        'samples': mc
+    }
+
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'btagWeight', 'LepWPCut', 'PrefireWeight']),
+    'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut', 'btagSF', 'PrefireWeight']),
     'samples': mc
 }
 # variations
-# And variations
 aliases['SFweightEleUp'] = {
     'expr': 'LepSF2l__ele_'+eleWP+'__Up',
     'samples': mc
@@ -80,114 +190,41 @@ aliases['SFweightMuDown'] = {
     'samples': mc
 }
 
-aliases['ptllDYW_NLO'] = {
-    'expr': '(((0.623108 + 0.0722934*gen_ptll - 0.00364918*gen_ptll*gen_ptll + 6.97227e-05*gen_ptll*gen_ptll*gen_ptll - 4.52903e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll<45)*(gen_ptll>0) + 1*(gen_ptll>=45))*(abs(gen_mll-90)<3) + (abs(gen_mll-90)>3))',
-    'samples': dy
-}
-
-aliases['ptllDYW_LO'] = {
-    'expr': '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))',
-    'samples': dy
-}
-
-aliases['Top_pTrw'] = {
-    'expr': '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )',
-    'samples': top
-}
-
-aliases['osof'] = {
-    'expr': 'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13'
-}
-
-aliases['trailingE13'] = {
-    'expr': 'abs(Lepton_pdgId[1]) == 13 || Lepton_pt[1] > 13.'
-}
-
-# Jet bins
-# using Alt$(CleanJet_pt[n], 0) instead of Sum$(CleanJet_pt >= 30) because jet pt ordering is not strictly followed in JES-varied samples
-
-# No jet with pt > 30 GeV
-aliases['zeroJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
-}
-
-# ==1 jet with pt > 30 GeV
-aliases['oneJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) < 30.'
-}
-
-# ==2 jets with pt > 30 GeV
-aliases['twoJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) >= 30. && Alt$(CleanJet_pt[2], 0) < 30.'
-}
-
-# ==3 jets with pt > 30 GeV
-aliases['threeJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) >= 30. && Alt$(CleanJet_pt[2], 0) >= 30. && Alt$(CleanJet_pt[3], 0) < 30.'
-}
-
-# >=4 jets with pt > 30 GeV
-aliases['manyJets'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) >= 30. && Alt$(CleanJet_pt[2], 0) >= 30. && Alt$(CleanJet_pt[3], 0) >= 30.'
-}
-
-aliases['bVeto'] = {
-    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0'
-}
-
-aliases['bReq'] = {
-    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) >= 1'
-}
-
-aliases['btag0'] = {
-    'expr': 'zeroJet && !bVeto'
-}
-
-aliases['btag1'] = {
-    'expr': 'oneJet && bReq'
-}
-
-aliases['btag2'] = {
-    'expr': 'twoJet && bReq'
-}
-
-aliases['bVetoSF'] = {
-    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
-    'samples': mc
-}
-
-aliases['btag0SF'] = {
-    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && CleanJet_pt<30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || CleanJet_pt>30 || abs(CleanJet_eta)>2.5))))',
-    'samples': mc
-}
-
-aliases['btagnSF'] = {
-    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx] + (CleanJet_pt<30 || abs(CleanJet_eta)>2.5))))',
-    'samples': mc
-}
-
-aliases['btagSF'] = {
-    'expr': 'bVetoSF*bVeto + btag0SF*btag0 + btagnSF*(btag1 + btag2) + (!bVeto && !btag0 && !btag1 && !btag2)',
-    'samples': mc
-}
-
-for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
-    for targ in ['bVeto', 'btag0', 'btagn']:
-        alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
-        alias['expr'] = alias['expr'].replace('btagSF_shape', 'btagSF_shape_up_%s' % shift)
-
-        alias = aliases['%sSF%sdown' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
-        alias['expr'] = alias['expr'].replace('btagSF_shape', 'btagSF_shape_down_%s' % shift)
-
-    aliases['btagSF%sup' % shift] = {
-        'expr': 'bVetoSF{shift}up*bVeto + btag0SF{shift}up*btag0 + btagnSF{shift}up*(btag1 + btag2) + (!bVeto && !btag0 && !btag1 && !btag2)'.format(shift = shift),
-        'samples': mc
-    }
-
-    aliases['btagSF%sdown' % shift] = {
-        'expr': 'bVetoSF{shift}down*bVeto + btag0SF{shift}down*btag0 + btagnSF{shift}down*(btag1 + btag2) + (!bVeto && !btag0 && !btag1 && !btag2)'.format(shift = shift),
-        'samples': mc
-    }
+## TEMPORARY nllW for WWTo2L2Nu_PrivateNano
+#aliases['nllW'] = {
+#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2017/nllW.cc+' % os.getenv('CMSSW_BASE')],
+#    'class': 'WWNLLW',
+#    'args': ('central',),
+#    'samples': ['WW']
+#}
+#
+#aliases['nllW_Qup'] = {
+#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2017/nllW.cc+' % os.getenv('CMSSW_BASE')],
+#    'class': 'WWNLLW',
+#    'args': ('sup',),
+#    'samples': ['WW']
+#}
+#
+#aliases['nllW_Qdown'] = {
+#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2017/nllW.cc+' % os.getenv('CMSSW_BASE')],
+#    'class': 'WWNLLW',
+#    'args': ('sdown',),
+#    'samples': ['WW']
+#}
+#
+#aliases['nllW_Rup'] = {
+#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2017/nllW.cc+' % os.getenv('CMSSW_BASE')],
+#    'class': 'WWNLLW',
+#    'args': ('rup',),
+#    'samples': ['WW']
+#}
+#
+#aliases['nllW_Rdown'] = {
+#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2017/nllW.cc+' % os.getenv('CMSSW_BASE')],
+#    'class': 'WWNLLW',
+#    'args': ('rdown',),
+#    'samples': ['WW']
+#}
 
 ## Variables for fiducial region definition
 
@@ -293,10 +330,10 @@ aliases['genOSOF'] = {
     'expr': 'GenDressedLepton_pdgId[0] * GenDressedLepton_pdgId[1] == -11 * 13',
     'samples': signals
 }
-aliases['genTrailingE13'] = {
-    'expr': 'abs(GenDressedLepton_pdgId[1]) == 13 || GenDressedLepton_pt[1]>13',
-    'samples': signals
-}
+#aliases['genTrailingE13'] = {
+#    'expr': 'abs(GenDressedLepton_pdgId[1]) == 13 || GenDressedLepton_pt[1]>13',
+#    'samples': signals
+#}
 
 aliases['nCleanGenJet'] = {
     'expr': 'Sum$(GenJet_pt > 30 && genJetClean)',
@@ -305,7 +342,6 @@ aliases['nCleanGenJet'] = {
 
 # Fiducial cut for differential measurements
 aliases['fiducial'] = {
-    #'expr': 'genLeptonPt && genOSOF && genTrailingE13 && genMll>12 && GenMET_pt>20 && genPtll>30 && genMth>=60 && genMtw2>30'
-    'expr': 'genLeptonPt && genOSOF && genTrailingE13 && genMll>12 && genPtll>30 && genMth>=60 && genMtw2>30',
+    'expr': 'genLeptonPt && genOSOF && genMll>12 && genPtll>30 && genMth>=60 && genMtw2>30',
     'samples': signals
 }
