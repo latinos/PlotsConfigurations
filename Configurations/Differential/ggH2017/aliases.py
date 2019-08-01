@@ -7,8 +7,6 @@ import copy
 # samples, signals
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
-dy = [skey for skey in samples if skey.startswith('DY')]
-top = [skey for skey in samples if skey.startswith('top')]
 
 eleWP = 'mvaFall17Iso_WP90'
 muWP = 'cut_Tight_HWWW'
@@ -91,7 +89,7 @@ aliases['PromptGenLepMatch2l'] = {
 
 aliases['Top_pTrw'] = {
     'expr': '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )',
-    'samples': top
+    'samples': ['top']
 }
 
 # Jet bins
@@ -134,13 +132,36 @@ aliases['sr'] = {
 
 # B tag scale factors
 
+aliases['Jet_btagSF_shapeFix'] = {
+    'linesToAdd': [
+        'gSystem->Load("libCondFormatsBTauObjects.so");',
+        'gSystem->Load("libCondToolsBTau.so");',
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2017/btagsf.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'BtagSF',
+    'samples': mc
+}
+
+for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
+    aliases['Jet_btagSF_shapeFix_up_%s' % shift] = {
+        'class': 'BtagSF',
+        'args': ('up_' + shift),
+        'samples': mc
+    }
+    aliases['Jet_btagSF_shapeFix_down_%s' % shift] = {
+        'class': 'BtagSF',
+        'args': ('down_' + shift),
+        'samples': mc
+    }
+
 aliases['bVetoSF'] = {
-    'expr': 'TMath::Exp(Sum$(TMath::Log((ReCleanJet_pt>20 && abs(ReCleanJet_eta)<2.5)*Jet_btagSF_shape[ReCleanJet_jetIdx]+1*(ReCleanJet_pt<20 || abs(ReCleanJet_eta)>2.5))))',
+    'expr': 'TMath::Exp(Sum$(TMath::Log((ReCleanJet_pt>20 && abs(ReCleanJet_eta)<2.5)*Jet_btagSF_shapeFix[ReCleanJet_jetIdx]+1*(ReCleanJet_pt<20 || abs(ReCleanJet_eta)>2.5))))',
     'samples': mc
 }
 
 aliases['bReqSF'] = {
-    'expr': 'TMath::Exp(Sum$(TMath::Log((ReCleanJet_pt>30 && abs(ReCleanJet_eta)<2.5)*Jet_btagSF_shape[ReCleanJet_jetIdx]+1*(ReCleanJet_pt<30 || abs(ReCleanJet_eta)>2.5))))',
+    'expr': 'TMath::Exp(Sum$(TMath::Log((ReCleanJet_pt>30 && abs(ReCleanJet_eta)<2.5)*Jet_btagSF_shapeFix[ReCleanJet_jetIdx]+1*(ReCleanJet_pt<30 || abs(ReCleanJet_eta)>2.5))))',
     'samples': mc
 }
 
@@ -149,13 +170,13 @@ aliases['btagSF'] = {
     'samples': mc
 }
 
-for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
+for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
     for targ in ['bVeto', 'bReq']:
         alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
-        alias['expr'] = alias['expr'].replace('btagSF_shape', 'btagSF_shape_up_%s' % shift)
+        alias['expr'] = alias['expr'].replace('btagSF_shapeFix', 'btagSF_shapeFix_up_%s' % shift)
 
         alias = aliases['%sSF%sdown' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
-        alias['expr'] = alias['expr'].replace('btagSF_shape', 'btagSF_shape_down_%s' % shift)
+        alias['expr'] = alias['expr'].replace('btagSF_shapeFix', 'btagSF_shapeFix_down_%s' % shift)
 
     aliases['btagSF%sup' % shift] = {
         'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'up'),
@@ -228,57 +249,23 @@ aliases['SFweightMuDown'] = {
 
 ## Variables for fiducial region definition
 
-# Gen Mll
-aliases['genMll'] = {
-    'expr': 'sqrt(2*GenDressedLepton_pt[0] * GenDressedLepton_pt[1] * (cosh(GenDressedLepton_eta[0]-GenDressedLepton_eta[1])-cos(GenDressedLepton_phi[0]-GenDressedLepton_phi[1])))',
-    'samples': signals
-}
-
-# Gen px, py
-aliases['genPx0'] = {
-    'expr': 'GenDressedLepton_pt[0] * cos(GenDressedLepton_phi[0])',
-    'samples': signals
-}
-aliases['genPy0'] = {
-    'expr': 'GenDressedLepton_pt[0] * sin(GenDressedLepton_phi[0])',
-    'samples': signals
-}
-aliases['genPx1'] = {
-    'expr': 'GenDressedLepton_pt[1] * cos(GenDressedLepton_phi[1])',
-    'samples': signals
-}
-aliases['genPy1'] = {
-    'expr': 'GenDressedLepton_pt[1] * sin(GenDressedLepton_phi[1])',
-    'samples': signals
-}
-
 # Gen pxll, pyll
 aliases['genPxll'] = {
-    'expr': 'genPx0 + genPx1',
+    'expr': 'GenDressedLepton_pt[0] * cos(GenDressedLepton_phi[0]) + GenDressedLepton_pt[1] * cos(GenDressedLepton_phi[1])',
     'samples': signals
 }
 aliases['genPyll'] = {
-    'expr': 'genPy0 + genPy1',
-    'samples': signals
-}
-
-# Gen met x, y
-aliases['genMetx'] = {
-    'expr': 'GenMET_pt * cos(GenMET_phi)',
-    'samples': signals
-}
-aliases['genMety'] = {
-    'expr': 'GenMET_pt * sin(GenMET_phi)',
+    'expr': 'GenDressedLepton_pt[0] * sin(GenDressedLepton_phi[0]) + GenDressedLepton_pt[1] * sin(GenDressedLepton_phi[1])',
     'samples': signals
 }
 
 # Gen pxH, pyH
 aliases['genPxH'] = {
-    'expr': 'genPxll + genMetx',
+    'expr': 'genPxll + GenMET_pt * cos(GenMET_phi)',
     'samples': signals
 }
 aliases['genPyH'] = {
-    'expr': 'genPyll + genMety',
+    'expr': 'genPyll + GenMET_pt * sin(GenMET_phi)',
     'samples': signals
 }
 
@@ -293,22 +280,10 @@ aliases['genPtll'] = {
     'samples': signals
 }
 
-# Gen mth
-aliases['genMth'] = {
-    'expr': 'sqrt(2 * GenMET_pt * (genPtll - genPxll * cos(GenMET_phi) - genPyll * sin(GenMET_phi)))',
-    'samples': signals
-}
-
-# Gen mtw2
-aliases['genMtw2'] = {
-    'expr': 'sqrt(2 * GenDressedLepton_pt[1] * GenMET_pt * (1-cos(GenDressedLepton_phi[1]-GenMET_phi)))',
-    'samples': signals
-}
-
 ## Overlap cleaning for gen jets
 aliases['genJetClean'] = {
     'expr': 'TMath::Power(GenJet_eta - GenDressedLepton_eta[0], 2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[0]), 2.) > 0.16 && TMath::Power(GenJet_eta - GenDressedLepton_eta[1], 2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[1]), 2.) > 0.16',
-    'samples': mc
+    'samples': signals
 }
 
 #aliases['genJet0Clean'] = {
@@ -321,27 +296,21 @@ aliases['genJetClean'] = {
 #    'samples': signals
 #}
 
-# Components for the fiducial cut
-aliases['genLeptonPt'] = {
-    'expr': 'GenDressedLepton_pt[0]>25 && Sum$(GenDressedLepton_pt>10) == 2',
-    'samples': signals
-}
-aliases['genOSOF'] = {
-    'expr': 'GenDressedLepton_pdgId[0] * GenDressedLepton_pdgId[1] == -11 * 13',
-    'samples': signals
-}
-#aliases['genTrailingE13'] = {
-#    'expr': 'abs(GenDressedLepton_pdgId[1]) == 13 || GenDressedLepton_pt[1]>13',
-#    'samples': signals
-#}
-
 aliases['nCleanGenJet'] = {
     'expr': 'Sum$(GenJet_pt > 30 && genJetClean)',
-    'samples': mc
+    'samples': signals
 }
 
 # Fiducial cut for differential measurements
+fiducial = [
+    'GenDressedLepton_pt[0]>25 && Sum$(GenDressedLepton_pt>10) == 2',
+    'GenDressedLepton_pdgId[0] * GenDressedLepton_pdgId[1] == -11 * 13',
+    'sqrt(2*GenDressedLepton_pt[0] * GenDressedLepton_pt[1] * (cosh(GenDressedLepton_eta[0]-GenDressedLepton_eta[1])-cos(GenDressedLepton_phi[0]-GenDressedLepton_phi[1]))) > 12.',
+    'genPtll > 30.',
+    'sqrt(2. * GenMET_pt * (genPtll - genPxll * cos(GenMET_phi) - genPyll * sin(GenMET_phi))) > 60.',
+    'sqrt(2. * GenDressedLepton_pt[1] * GenMET_pt * (1-cos(GenDressedLepton_phi[1]-GenMET_phi))) > 30.',
+]
 aliases['fiducial'] = {
-    'expr': 'genLeptonPt && genOSOF && genMll>12 && genPtll>30 && genMth>=60 && genMtw2>30',
+    'expr': ' && '.join(fiducial),
     'samples': signals
 }

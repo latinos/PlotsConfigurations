@@ -12,11 +12,12 @@
 class ReCleanJet : public multidraw::TTreeFunction {
 public:
   ReCleanJet(char const* bname);
-  ~ReCleanJet();
+  ~ReCleanJet() {}
 
   char const* getName() const override { return "ReCleanJet"; }
   TTreeFunction* clone() const override { return new ReCleanJet(bname_.c_str()); }
 
+  void beginEvent(long long) override;
   int getMultiplicity() override { return 1; }
   unsigned getNdata() override;
   double evaluate(unsigned) override;
@@ -34,7 +35,7 @@ protected:
   };
 
   // this is horrible
-  static std::tuple<UInt_t, UInt_t, ULong64_t> currentEvent;
+  static long long currentEntry;
   static UIntValueReader* nJet;
   static FloatArrayReader* Jet_pt;
   static FloatArrayReader* Jet_eta;
@@ -46,17 +47,14 @@ protected:
   static FloatArrayReader* Lepton_eta;
   static FloatArrayReader* Lepton_phi;
 
-  static void setValues(UInt_t, UInt_t, ULong64_t);
+  static void setValues(long long);
 
   static std::vector<std::array<double, nReturnTypes>> returnValues;
 
   ReturnType returnType_{nReturnTypes};
-  UIntValueReader* run{};
-  UIntValueReader* luminosityBlock{};
-  ULong64ValueReader* event{};
 };
 
-std::tuple<UInt_t, UInt_t, ULong64_t> ReCleanJet::currentEvent{};
+long long ReCleanJet::currentEntry{-2};
 UIntValueReader* ReCleanJet::nJet{};
 FloatArrayReader* ReCleanJet::Jet_pt{};
 FloatArrayReader* ReCleanJet::Jet_eta{};
@@ -81,32 +79,29 @@ ReCleanJet::ReCleanJet(char const* bname) :
     returnType_ = kJetIdx;
 }
 
-ReCleanJet::~ReCleanJet()
+void
+ReCleanJet::beginEvent(long long _iEntry)
 {
+  setValues(_iEntry);
 }
 
 unsigned
 ReCleanJet::getNdata()
 {
-  setValues(*run->Get(), *luminosityBlock->Get(), *event->Get());
   return returnValues.size();
 }
 
 double
 ReCleanJet::evaluate(unsigned iJ)
 {
-  setValues(*run->Get(), *luminosityBlock->Get(), *event->Get());
   return returnValues[iJ][returnType_];
 }
 
 void
 ReCleanJet::bindTree_(multidraw::FunctionLibrary& _library)
 {
-  _library.bindBranch(run, "run");
-  _library.bindBranch(luminosityBlock, "luminosityBlock");
-  _library.bindBranch(event, "event");
-
-  if (nJet == nullptr) {
+  if (currentEntry == -2) {
+    currentEntry = -1;
     _library.bindBranch(nJet, "nJet");
     _library.bindBranch(Jet_pt, "Jet_pt");
     _library.bindBranch(Jet_eta, "Jet_eta");
@@ -118,9 +113,8 @@ ReCleanJet::bindTree_(multidraw::FunctionLibrary& _library)
     _library.bindBranch(Lepton_eta, "Lepton_eta");
     _library.bindBranch(Lepton_phi, "Lepton_phi");
 
-    currentEvent = std::make_tuple(0, 0, 0);
-
     _library.addDestructorCallback([]() {
+        currentEntry = -2;
         nJet = nullptr;
         Jet_pt = nullptr;
         Jet_eta = nullptr;
@@ -137,15 +131,13 @@ ReCleanJet::bindTree_(multidraw::FunctionLibrary& _library)
 
 /*static*/
 void
-ReCleanJet::setValues(UInt_t _run, UInt_t _luminosityBlock, ULong64_t _event)
+ReCleanJet::setValues(long long _iEntry)
 {
-  if (std::get<0>(currentEvent) == _run && \
-      std::get<1>(currentEvent) == _luminosityBlock && \
-      std::get<2>(currentEvent) == _event)
+  if (_iEntry == currentEntry)
     return;
 
-  currentEvent = std::make_tuple(_run, _luminosityBlock, _event);
-
+  currentEntry = _iEntry;
+  
   returnValues.clear();
 
   unsigned nL(*nLepton->Get());

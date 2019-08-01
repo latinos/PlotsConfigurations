@@ -27,14 +27,14 @@ slist_njsignal = [sname for sname in samples if sname not in signals]
 for sname in signals:
     sample = samples[sname]
     for bname in sample['subsamples']:
-        if re.match('.*_NJ_.*', bname):
+        if re.match('.*NJ_.*', bname):
             slist_njsignal.append('%s/%s' % (sname, bname))
 
 slist_pthsignal = [sname for sname in samples if sname not in signals]
 for sname in signals:
     sample = samples[sname]
     for bname in sample['subsamples']:
-        if re.match('.*_PTH_.*', bname):
+        if re.match('.*PTH_.*', bname):
             slist_pthsignal.append('%s/%s' % (sname, bname))
 
 njetCutsProgressive = {

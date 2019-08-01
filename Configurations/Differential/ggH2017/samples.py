@@ -46,12 +46,6 @@ dataReco = 'Run2017_nAOD_v1_Full2017v2LP19'
 
 mcSteps = 'MCl1loose2017__MCCorr2017LP19__l2loose__l2tightOR2017{var}__PUFIXLP19__wwSel'
 
-def makeMCDirectory(var = ''):
-    if var:
-        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var = '__' + var))
-    else:
-        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var = ''))
-
 fakeSteps = 'DATAl1loose2017LP19__l2loose__fakeWPUFIXLP19__wwSel'
 
 dataSteps = 'DATAl1loose2017LP19__l2loose__l2tightOR2017__wwSel'
@@ -65,6 +59,12 @@ if    'iihe' in SITE:
   treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015'
 elif  'cern' in SITE:
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
+
+def makeMCDirectory(var=''):
+    if var:
+        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
+    else:
+        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
 
 mcDirectory = makeMCDirectory()
 fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
@@ -164,11 +164,16 @@ samples['WW'] = {
     #'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
     'weight': mcCommonWeight + '*nllW',
     'FilesPerJob': 3,
+    'subsamples': {
+        '0J': 'Alt$(ReCleanJet_pt[0], 0) < 30.',
+        '1J': 'Alt$(ReCleanJet_pt[0], 0) > 30.',
+        'GE2J': 'Alt$(ReCleanJet_pt[1], 0) > 30.'
+    }
 }
 
 samples['WWewk'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK'),
-    'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6)==0)', #filter tops
+    'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)', #filter tops and Higgs
     'FilesPerJob': 4
 }
 
@@ -352,24 +357,42 @@ for sname in signals:
   sample = samples[sname]
   sample['subsamples'] = {}
 
-  for flabel, fidcut in [('fid', 'fiducial'), ('nonfid', '!fiducial')]:
-    for pth in pthBins:
-      binName = '%s_PTH_%s' % (flabel, pth)
-      if pth.startswith('GT'):
-        cut = '%s && genPth > %s' % (fidcut, pth[2:])
-      else:
-        cut = '%s && genPth > %s && genPth < %s' % ((fidcut,) + tuple(pth.split('_')))
-  
-      sample['subsamples'][binName] = cut
-  
-    for nj in njetBinning:
-      binName = '%s_NJ_%s' % (flabel, nj)
-      if nj.startswith('GE'):
-        cut = '%s && nCleanGenJet >= %s' % (fidcut, nj[2:])
-      else:
-        cut = '%s && nCleanGenJet == %s' % (fidcut, nj)
-  
-      sample['subsamples'][binName] = cut
+  for pth in pthBins:
+    binName = 'PTH_%s' % pth
+    if pth.startswith('GT'):
+      cut = 'genPth > %s' % pth[2:]
+    else:
+      cut = 'genPth > %s && genPth < %s' % tuple(pth.split('_'))
+
+    sample['subsamples'][binName] = cut
+
+  for nj in njetBinning:
+    binName = 'NJ_%s' % nj
+    if nj.startswith('GE'):
+      cut = 'nCleanGenJet >= %s' % nj[2:]
+    else:
+      cut = 'nCleanGenJet == %s' % nj
+
+    sample['subsamples'][binName] = cut
+
+#  for flabel, fidcut in [('fid', 'fiducial'), ('nonfid', '!fiducial')]:
+#    for pth in pthBins:
+#      binName = '%s_PTH_%s' % (flabel, pth)
+#      if pth.startswith('GT'):
+#        cut = '%s && genPth > %s' % (fidcut, pth[2:])
+#      else:
+#        cut = '%s && genPth > %s && genPth < %s' % ((fidcut,) + tuple(pth.split('_')))
+#  
+#      sample['subsamples'][binName] = cut
+#  
+#    for nj in njetBinning:
+#      binName = '%s_NJ_%s' % (flabel, nj)
+#      if nj.startswith('GE'):
+#        cut = '%s && nCleanGenJet >= %s' % (fidcut, nj[2:])
+#      else:
+#        cut = '%s && nCleanGenJet == %s' % (fidcut, nj)
+#  
+#      sample['subsamples'][binName] = cut
 
 ###########################################
 ################## FAKE ###################

@@ -52,15 +52,9 @@ Weight2MINLO::evaluate(unsigned)
   if (HTXS_Higgs_pt == nullptr)
     return 1.;
 
-  //  std::cout << "evaluate" << std::endl;
-  
   double pt{*HTXS_Higgs_pt->Get()};
 
-  //  std::cout << "pt = " << pt << std::endl;
-
   unsigned char njets{*HTXS_njets30->Get()};
-
-  //  std::cout << "njets = " << njets << std::endl;
 
   switch (njets) {
   case 0:
@@ -87,6 +81,4 @@ Weight2MINLO::bindTree_(multidraw::FunctionLibrary& _library)
     HTXS_njets30 = nullptr;
     HTXS_Higgs_pt = nullptr;
   }
-
-  std::cout << "bindTree_ " << HTXS_njets30 << " " << HTXS_Higgs_pt << std::endl;
 }

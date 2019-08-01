@@ -417,25 +417,28 @@ nuisances['QCDscale_ggVV'] = {
 }
 
 # NLL resummation variations
-nuisances['Resumscale_WW'] = {
-    'name': 'CMS_hww_WWresum',
-    'skipCMS': 1,
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {
-        'WW': ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
-    },
-}
-
-nuisances['QCDscale_WW'] = {
-    'name': 'CMS_hww_WWqscale',
-    'skipCMS': 1,
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {
-      'WW': ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
-    },
-}
+for nj in ['0J', '1J', 'GE2J']:
+    nuisances['Resumscale_WW_%s' % nj] = {
+        'name': 'CMS_hww_WWresum_%s' % nj,
+        'skipCMS': 1,
+        'kind': 'weight',
+        'type': 'shape',
+        'samples': {
+            'WW': ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+        },
+        'samplespost': (lambda self, samples: {'WW_%s' % self['name'][-2:]: ['nllW_Rup/nllW', 'nllW_Rdown/nllW']})
+    }
+    
+    nuisances['QCDscale_WW_%s' % nj] = {
+        'name': 'CMS_hww_WWqscale_%s' % nj,
+        'skipCMS': 1,
+        'kind': 'weight',
+        'type': 'shape',
+        'samples': {
+          'WW': ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+        },
+        'samplespost': (lambda self, samples: {'WW_%s' % self['name'][-2:]: ['nllW_Qup/nllW', 'nllW_Qdown/nllW']})
+    }
 
 # Uncertainty on SR/CR ratio
 nuisances['CRSR_accept_DY'] = {
