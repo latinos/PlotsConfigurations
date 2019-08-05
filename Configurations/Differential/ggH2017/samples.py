@@ -1,5 +1,4 @@
 import os
-import copy
 from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
 
 def nanoGetSampleFiles(inputDir, sample):
@@ -151,7 +150,7 @@ files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
 samples['top'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 2,
+    'FilesPerJob': 1,
     #'EventsPerJob': 100000
 }
 
@@ -161,14 +160,8 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu_PrivateNano'),
-    #'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
     'weight': mcCommonWeight + '*nllW',
-    'FilesPerJob': 3,
-    'subsamples': {
-        '0J': 'Alt$(ReCleanJet_pt[0], 0) < 30.',
-        '1J': 'Alt$(ReCleanJet_pt[0], 0) > 30.',
-        'GE2J': 'Alt$(ReCleanJet_pt[1], 0) > 30.'
-    }
+    'FilesPerJob': 3
 }
 
 samples['WWewk'] = {
@@ -190,7 +183,7 @@ files = nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
 
 samples['ggWW'] = {
     'name': files,
-    'weight': mcCommonWeight,
+    'weight': mcCommonWeight + '*1.53/1.4', # updating k-factor
     'FilesPerJob': 10
 }
 
@@ -297,8 +290,7 @@ signals.append('ggZH_hww')
 ############ WH H->WW ############
 
 samples['WH_hww'] = {
-    'name':   nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125')
-    + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125'),
+    'name':   nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125'),
     'weight': mcCommonWeight,
     'FilesPerJob': 2
 }
