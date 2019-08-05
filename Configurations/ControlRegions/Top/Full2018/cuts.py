@@ -8,6 +8,7 @@ _tmp = [
     '(abs(Lepton_pdgId[1])==13 || Lepton_pt[1]>13)', 
     '(nLepton>=2 && Alt$(Lepton_pt[2],0)<10.)',
     'fabs(Lepton_eta[0])<2.5 && fabs(Lepton_eta[1])<2.5',
+    'Lepton_pt[1]>20', 
     'mll>12.',
     'PuppiMET_pt > 20.',
     'ptll > 30.',
@@ -17,34 +18,21 @@ _tmp = [
 
 supercut = ' && '.join(_tmp)
 
-def addcut(name, exprs):
-    cuts[name] = ' && '.join(exprs)
+cutdf = '(mtw2>30 && mll>50 && !bVeto && Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13)'
+cutsf = '(mtw2>30 && mll>50 && !bVeto && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11 || Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13 ))'
+
+categories=['zeroJet', 'oneJet', 'twoJet']
 
 
-_tmp = [
-     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
-     'Lepton_pt[1]>20', 
-     'Alt$(CleanJet_pt[0],0)<30',
-     'btag0',
-       ]
-addcut('top_0j_df', _tmp)
 
-_tmp = [
-     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
-     'Lepton_pt[1]>20', 
-     'Alt$(CleanJet_pt[0],0)>30',
-     'Alt$(CleanJet_pt[1],0)<30',
-     'btag1',
-       ]
-addcut('top_1j_df', _tmp)
+def addcut(name, cut, categories):
+    cuts[name] = { 'expr': cut}
+    cuts[name]["categories"] = categories
+    cuts[name]["categorization"] = '0'
+    for i,cat in enumerate(categories):
+      cuts[name]["categorization"] += "+%d*(%s)" % (i, cat) 
 
-_tmp = [
-     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
-     'Lepton_pt[1]>20', 
-     'Alt$(CleanJet_pt[0],0)>30',
-     'Alt$(CleanJet_pt[1],0)>30',
-     'Alt$(CleanJet_pt[2],0)<30',
-     'btag2',
-       ]
-addcut('top_2j_df', _tmp)
+
+addcut('top_df', cutdf, categories)
+addcut('top_sf', cutsf, categories)
 
