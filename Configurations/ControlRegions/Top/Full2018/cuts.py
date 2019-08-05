@@ -19,7 +19,7 @@ _tmp = [
 supercut = ' && '.join(_tmp)
 
 cutdf = '(mtw2>30 && mll>50 && !bVeto && Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13)'
-cutsf = '(mtw2>30 && mll>50 && !bVeto && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11 || Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13 ))'
+cutsf = '(mtw2>30 && mll>110 && !bVeto && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11 || Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13 ))'
 
 categories=['zeroJet', 'oneJet', 'twoJet']
 
