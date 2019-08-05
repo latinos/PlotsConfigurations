@@ -45,7 +45,7 @@ LepWPweight     = 'LepSF'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
 
 XSWeight      = 'XSWeight'
 SFweight      = 'SFweight'+Nlep+'l*'+LepWPweight+'*'+LepWPCut
-GenLepMatch   = 'PromptGenLepMatch'+Nlep+'l'
+GenLepMatch   = '1' #'PromptGenLepMatch'+Nlep+'l' # FIXME change when we use real fakes
 
 
 ################################################
