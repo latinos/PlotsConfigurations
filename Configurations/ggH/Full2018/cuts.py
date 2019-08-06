@@ -15,11 +15,11 @@ supercut = '   mll>12 \
 ### Unsplitted signal regions
 
 cutsr = '(mth>60 && mtw2>30 && bVeto)'
-cuttt = '(mll>50 && mtw2>30 && bReq)'
+cuttt = '(mll>50 && mtw2>30 && (bReq || (!bVeto && zeroJet)))'
 cutdy = '(mth<60 && mll>40 && mll<80 && bVeto)'
 cutww = '(mth>60 && mtw2>30 && mll>100 && bVeto)'
 
-categories=['zeroJet', 'oneJet', 'twoJet']
+categories=['zeroJet', 'oneJet', 'twoJetOrMore']
 
 
 

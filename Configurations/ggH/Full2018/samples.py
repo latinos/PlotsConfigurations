@@ -116,12 +116,12 @@ if useDYtt :
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
     
 else:
-    samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50',False,'nanoLatino_')
+    samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50-LO',False,'nanoLatino_')
                                     + getSampleFiles(directory,'DYJetsToLL_M-10to50-LO',False,'nanoLatino_'),
                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                          'FilesPerJob' : 5,
                      }
-    addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO)
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50-LO',ptllDYW_NLO)
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 
 
@@ -304,7 +304,7 @@ samples['DATA']  = {   'name': [ ] ,
 for Run in DataRun :
         directory = treeBaseDir+'Run2018_102X_nAODv5_Full2018v5/DATAl1loose2018v5__l2loose__l2tightOR2018v5/'
         for DataSet in DataSets :
-                if (DataSet == "SingleMuon" and Run[0] == "D") or (DataSet == "EGamma" and Run[0] == "D"): continue #FIXME SingleMuon and EGamma RunD is not available 05 Aug
+                #if (DataSet == "SingleMuon" and Run[0] == "D") or (DataSet == "EGamma" and Run[0] == "D"): continue #FIXME SingleMuon and EGamma RunD is not available 05 Aug
                 FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
                 for iFile in FileTarget:
                         print(iFile)
