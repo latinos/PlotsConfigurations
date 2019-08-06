@@ -15,7 +15,7 @@ supercut = '   mll>12 \
 ### Unsplitted signal regions
 
 cutsr = '(mth>60 && mtw2>30 && bVeto)'
-cuttt = '(mll>50 && mtw2>30 && bReq)'
+cuttt = '(mll>50 && mtw2>30 && ((zeroJet && !bVeto) || bReq))'
 cutdy = '(mth<60 && mll>40 && mll<80 && bVeto)'
 cutww = '(mth>60 && mtw2>30 && mll>100 && bVeto)'
 
@@ -26,10 +26,9 @@ categories=['zeroJet', 'oneJet', 'twoJet']
 def addcut(name, cut, categories):
     cuts[name] = { 'expr': cut}
     cuts[name]["categories"] = categories
-    cuts[name]["categorization"] = '0'
+    cuts[name]["categorization"] = '-1'
     for i,cat in enumerate(categories):
-      cuts[name]["categorization"] += "+%d*(%s)" % (i, cat)
-
+      cuts[name]["categorization"] += "+%d*(%s)" % (i + 1, cat)
 
 #addcut('hww2l2v_13TeV_of', cutsr, categories)
 addcut('hww2l2v_13TeV_top', cuttt, categories)
