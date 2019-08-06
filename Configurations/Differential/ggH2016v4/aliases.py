@@ -8,8 +8,8 @@ import copy
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-eleWP = 'mvaFall17Iso_WP90'
-muWP = 'cut_Tight_HWWW'
+eleWP = 'mva_90p_Iso2016'
+muWP = 'cut_Tight80x'
 
 aliases['ReCleanJet_pt'] = {
     'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/recleanjet.cc+' % os.getenv('CMSSW_BASE')],
@@ -111,11 +111,11 @@ aliases['multiJet'] = {
 # B tagging
 
 aliases['bVeto'] = {
-    'expr': 'Sum$(ReCleanJet_pt > 20. && abs(ReCleanJet_eta) < 2.5 && Jet_btagDeepB[ReCleanJet_jetIdx] > 0.1522) == 0'
+    'expr': 'Sum$(ReCleanJet_pt > 20. && abs(ReCleanJet_eta) < 2.5 && Jet_btagDeepB[ReCleanJet_jetIdx] > 0.2217) == 0'
 }
 
 aliases['bReq'] = {
-    'expr': 'Sum$(ReCleanJet_pt > 30. && abs(ReCleanJet_eta) < 2.5 && Jet_btagDeepB[ReCleanJet_jetIdx] > 0.1522) >= 1'
+    'expr': 'Sum$(ReCleanJet_pt > 30. && abs(ReCleanJet_eta) < 2.5 && Jet_btagDeepB[ReCleanJet_jetIdx] > 0.2217) >= 1'
 }
 
 # CR definitions
@@ -140,7 +140,7 @@ aliases['sr'] = {
 
 # B tag scale factors
 
-btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_94XSF_V2_B_F.csv' % os.getenv('CMSSW_BASE')
+btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_2016LegacySF_V1.csv' % os.getenv('CMSSW_BASE')
 
 aliases['Jet_btagSF_shapeFix'] = {
     'linesToAdd': [
@@ -169,7 +169,7 @@ aliases['btagSF'] = {
     'samples': mc
 }
 
-for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
+for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
     aliases['Jet_btagSF_shapeFix_up_%s' % shift] = {
         'class': 'BtagSF',
         'args': (btagSFSource, 'up_' + shift),
@@ -180,7 +180,7 @@ for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2',
         'args': (btagSFSource, 'down_' + shift),
         'samples': mc
     }
-    
+
     for targ in ['bVeto', 'bReq']:
         alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
         alias['expr'] = alias['expr'].replace('btagSF_shapeFix', 'btagSF_shapeFix_up_%s' % shift)
@@ -221,37 +221,36 @@ aliases['SFweightMuDown'] = {
     'samples': mc
 }
 
-## TEMPORARY nllW for WWTo2L2Nu_PrivateNano
-#aliases['nllW'] = {
-#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2017/nllW.cc+' % os.getenv('CMSSW_BASE')],
-#    'class': 'WWNLLW',
-#    'args': ('central',),
-#    'samples': ['WW']
-#}
-#
+aliases['nllWOTF'] = {
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2016v4/nllW.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'WWNLLW',
+    'args': ('central',),
+    'samples': ['WW']
+}
+
 #aliases['nllW_Qup'] = {
-#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2017/nllW.cc+' % os.getenv('CMSSW_BASE')],
+#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2016v4/nllW.cc+' % os.getenv('CMSSW_BASE')],
 #    'class': 'WWNLLW',
 #    'args': ('sup',),
 #    'samples': ['WW']
 #}
 #
 #aliases['nllW_Qdown'] = {
-#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2017/nllW.cc+' % os.getenv('CMSSW_BASE')],
+#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2016v4/nllW.cc+' % os.getenv('CMSSW_BASE')],
 #    'class': 'WWNLLW',
 #    'args': ('sdown',),
 #    'samples': ['WW']
 #}
 #
 #aliases['nllW_Rup'] = {
-#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2017/nllW.cc+' % os.getenv('CMSSW_BASE')],
+#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2016v4/nllW.cc+' % os.getenv('CMSSW_BASE')],
 #    'class': 'WWNLLW',
 #    'args': ('rup',),
 #    'samples': ['WW']
 #}
 #
 #aliases['nllW_Rdown'] = {
-#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2017/nllW.cc+' % os.getenv('CMSSW_BASE')],
+#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2016v4/nllW.cc+' % os.getenv('CMSSW_BASE')],
 #    'class': 'WWNLLW',
 #    'args': ('rdown',),
 #    'samples': ['WW']
@@ -318,17 +317,16 @@ aliases['nCleanGenJet'] = {
     'samples': signals
 }
 
-#
-## Fiducial cut for differential measurements
-#fiducial = [
-#    'GenDressedLepton_pt[0]>25 && Sum$(GenDressedLepton_pt>10) == 2',
-#    'GenDressedLepton_pdgId[0] * GenDressedLepton_pdgId[1] == -11 * 13',
-#    'sqrt(2*GenDressedLepton_pt[0] * GenDressedLepton_pt[1] * (cosh(GenDressedLepton_eta[0]-GenDressedLepton_eta[1])-cos(GenDressedLepton_phi[0]-GenDressedLepton_phi[1]))) > 12.',
-#    'genPtll > 30.',
-#    'sqrt(2. * GenMET_pt * (genPtll - genPxll * cos(GenMET_phi) - genPyll * sin(GenMET_phi))) > 60.',
-#    'sqrt(2. * GenDressedLepton_pt[1] * GenMET_pt * (1-cos(GenDressedLepton_phi[1]-GenMET_phi))) > 30.',
-#]
-#aliases['fiducial'] = {
-#    'expr': ' && '.join(fiducial),
-#    'samples': signals
-#}
+# Fiducial cut for differential measurements
+fiducial = [
+    'GenDressedLepton_pt[0]>25 && Sum$(GenDressedLepton_pt>10) == 2',
+    'GenDressedLepton_pdgId[0] * GenDressedLepton_pdgId[1] == -11 * 13',
+    'sqrt(2*GenDressedLepton_pt[0] * GenDressedLepton_pt[1] * (cosh(GenDressedLepton_eta[0]-GenDressedLepton_eta[1])-cos(GenDressedLepton_phi[0]-GenDressedLepton_phi[1]))) > 12.',
+    'genPtll > 30.',
+    'sqrt(2. * GenMET_pt * (genPtll - genPxll * cos(GenMET_phi) - genPyll * sin(GenMET_phi))) > 60.',
+    'sqrt(2. * GenDressedLepton_pt[1] * GenMET_pt * (1-cos(GenDressedLepton_phi[1]-GenMET_phi))) > 30.',
+]
+aliases['fiducial'] = {
+    'expr': ' && '.join(fiducial),
+    'samples': signals
+}
