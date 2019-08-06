@@ -12,7 +12,7 @@ cuts['Zmm']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -13*13)   \
                  && mll>60 && mll<120 \
                '
 
-
+'''
 cuts['Zee0j']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*11)   \
                    && Lepton_pt[0]>25 && Lepton_pt[1]>13 \
                    && mll>80 && mll<100 \
@@ -36,4 +36,4 @@ cuts['Zmm1j']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -13*13)   \
                    && ( Jet_pt[0] >= 30 ) \
                    && ( Jet_pt[1] < 30 ) \
                  '
-
+'''

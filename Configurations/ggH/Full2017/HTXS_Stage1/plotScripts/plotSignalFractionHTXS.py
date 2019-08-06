@@ -32,11 +32,13 @@ options.stat = False
 
 DC = parseCard(file(args[0]), options)
 
-signals     = DC.list_of_signals()
-signals = sorted(signals, key=lambda s: s.lower())
+signals_orig     = DC.list_of_signals()
+signals = []
 
-for s in signals:
-  if 'htt' in s: signals.remove(s)
+for s in signals_orig:
+  if not 'htt' in s: signals.append(s)
+
+signals = sorted(signals, key=lambda s: s.lower())
 
 overallSignalRate = OrderedDict()
 overallTotalSignal = OrderedDict()

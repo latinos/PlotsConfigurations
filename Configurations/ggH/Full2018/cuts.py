@@ -14,78 +14,24 @@ supercut = '   mll>12 \
 
 ### Unsplitted signal regions
 
-cuts['hww2l2v_13TeV_of0j']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
-                               && mth>60 \
-                               && mtw2>30 \
-                               && Alt$(CleanJet_pt[0],0)<30 \
-                               && bVeto \
-                              '
+cutsr = '(mth>60 && mtw2>30 && bVeto)'
+cuttt = '(mll>50 && mtw2>30 && bReq)'
+cutdy = '(mth<60 && mll>40 && mll<80 && bVeto)'
+cutww = '(mth>60 && mtw2>30 && mll>100 && bVeto)'
 
-cuts['hww2l2v_13TeV_of1j']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
-                               && mth>60 \
-                               && mtw2>30 \
-                               && Alt$(CleanJet_pt[0],0)>30 \
-                               && Alt$(CleanJet_pt[1],0)<30 \
-                               && bVeto \
-                              '
-
-cuts['hww2l2v_13TeV_of2j']  = '   mth>60 \
-                               && mtw2>30 \
-                               && Alt$(CleanJet_pt[0],0)>30 \
-                               && Alt$(CleanJet_pt[1],0)>30 \
-                               && bVeto \
-                              '
-
-cuts['hww2l2v_13TeV_incl']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
-                               && mth>60 \
-                               && mtw2>30 \
-                               && bVeto \
-                              '
+categories=['zeroJet', 'oneJet', 'twoJet']
 
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-## Top control regions
-cuts['hww2l2v_13TeV_top_of0j']  = '    mll>50 \
-                                    && mtw2>30 \
-                                    && Alt$(CleanJet_pt[0],0)<30 \
-                                    && btag0 \
-                                  '
+def addcut(name, cut, categories):
+    cuts[name] = { 'expr': cut}
+    cuts[name]["categories"] = categories
+    cuts[name]["categorization"] = '0'
+    for i,cat in enumerate(categories):
+      cuts[name]["categorization"] += "+%d*(%s)" % (i, cat)
 
-cuts['hww2l2v_13TeV_top_of1j']  = '    mll>50 \
-                                    && mtw2>30 \
-                                    && Alt$(CleanJet_pt[0],0)>30 \
-                                    && Alt$(CleanJet_pt[1],0)<30 \
-                                    && btag1 \
-                                  '
 
-cuts['hww2l2v_13TeV_top_of2j']  = '    mll>50 \
-                                    && mtw2>30 \
-                                    && Alt$(CleanJet_pt[0],0)>30 \
-                                    && Alt$(CleanJet_pt[1],0)>30 \
-                                    && btag2 \
-                                  '
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-## DYtt control regions
-cuts['hww2l2v_13TeV_dytt_of0j']  = '   mth<60 \
-                                    && mll>40 && mll<80 \
-                                    && Alt$(CleanJet_pt[0],0)<30 \
-                                    && bVeto \
-                                   '
-
-cuts['hww2l2v_13TeV_dytt_of1j']  = '   mth<60 \
-                                    && mll>40 && mll<80 \
-                                    && Alt$(CleanJet_pt[0],0)>30 \
-                                    && Alt$(CleanJet_pt[1],0)<30 \
-                                    && bVeto \
-                                   '
-
-cuts['hww2l2v_13TeV_dytt_of2j']  = '   mth<60 \
-                                    && mll>40 && mll<80 \
-                                    && Alt$(CleanJet_pt[0],0)>30 \
-                                    && Alt$(CleanJet_pt[1],0)>30 \
-                                    && bVeto \
-                                   '
-
+#addcut('hww2l2v_13TeV_of', cutsr, categories)
+addcut('hww2l2v_13TeV_top', cuttt, categories)
+addcut('hww2l2v_13TeV_dytt', cutdy, categories)
+addcut('hww2l2v_13TeV_ww', cutww, categories)

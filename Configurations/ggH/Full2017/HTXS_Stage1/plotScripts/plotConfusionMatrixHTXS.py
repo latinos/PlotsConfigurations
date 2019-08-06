@@ -31,10 +31,15 @@ DC = parseCard(file(args[0]), options)
 
 signals_orig     = DC.list_of_signals()
 signals = []
+totalSignal = OrderedDict()
 
 # choose here what signals you want to show
 for s in signals_orig:
-  if 'ggH' in s: signals.append(s)
+  if 'ggH' in s: 
+    signals.append(s)
+    totalSignal[s] = 0.
+
+print totalSignal
 
 signals = sorted(signals, key=lambda s: s.lower())
 
@@ -57,6 +62,7 @@ for c in channels:
     if s not in channels[c].keys(): continue
     overallSignalRate[c][s] +=  channels[c][s]
     overallTotalSignal[c] += channels[c][s]
+    totalSignal[s] += channels[c][s]
 
 ncat=0
 combChannelsToConsider = []
@@ -67,14 +73,28 @@ for k in channels:
   combChannelsToConsider.append(k)
   print k
 
-matrix = ROOT.TH2F("matrix","matrix",len(combChannelsToConsider),0,len(combChannelsToConsider),len(signals),0,len(signals))
+matrixByCol = ROOT.TH2F("matrixByCol","matrixByCol",len(combChannelsToConsider),0,len(combChannelsToConsider),len(signals),0,len(signals))
 
-matrix.GetXaxis().SetLabelSize(0.04)
-matrix.GetYaxis().SetLabelSize(0.04)
-matrix.GetYaxis().SetTitleSize(0.05)
-matrix.GetYaxis().SetTitleOffset(1.1)
-matrix.SetTitle("")
-matrix.SetStats(0)
+matrixByCol.GetXaxis().SetLabelSize(0.04)
+matrixByCol.GetYaxis().SetLabelSize(0.04)
+matrixByCol.GetYaxis().SetTitleSize(0.05)
+matrixByCol.GetYaxis().SetTitleOffset(1.1)
+matrixByCol.GetZaxis().SetRangeUser(0,1)
+matrixByCol.SetTitle("")
+matrixByCol.SetStats(0)
+
+
+matrixByRow = ROOT.TH2F("matrixByRow","matrixByRow",len(combChannelsToConsider),0,len(combChannelsToConsider),len(signals),0,len(signals))
+
+matrixByRow.GetXaxis().SetLabelSize(0.04)
+matrixByRow.GetYaxis().SetLabelSize(0.04)
+matrixByRow.GetYaxis().SetTitleSize(0.05)
+matrixByRow.GetYaxis().SetTitleOffset(1.1)
+matrixByRow.GetZaxis().SetRangeUser(0,1)
+matrixByRow.SetTitle("")
+matrixByRow.SetStats(0)
+
+
 
 events = {}
 #ROOT.TColor.SetPalette(51)
@@ -90,13 +110,18 @@ b = np.array(blue)
 ROOT.TColor.CreateGradientColorTable(len(s), s, r, g, b, 99)
 ROOT.gStyle.SetNumberContours(99)
 
-
 for i,c in enumerate(combChannelsToConsider):
 #  if overallTotalSignal[c] == 0: continue
-  matrix.GetXaxis().SetBinLabel(i+1,c)
+  matrixByCol.GetXaxis().SetBinLabel(i+1,c)
+  matrixByRow.GetXaxis().SetBinLabel(i+1,c)
   for num,s in enumerate(overallSignalRate[c]):
-    matrix.GetYaxis().SetBinLabel(num+1,s)
-    matrix.SetBinContent(i+1,num+1,overallSignalRate[c][s]/overallTotalSignal[c])
+    matrixByCol.GetYaxis().SetBinLabel(num+1,s)
+    matrixByRow.GetYaxis().SetBinLabel(num+1,s)
+    ratioByCol = overallSignalRate[c][s]/overallTotalSignal[c]
+    ratioByRow = overallSignalRate[c][s]/totalSignal[s]
+    #if ratio < 0.005: ratio=0
+    matrixByCol.SetBinContent(i+1,num+1,ratioByCol)
+    matrixByRow.SetBinContent(i+1,num+1,ratioByRow)
     print "category ", c," ", " signal ",s," signal fraction = ",overallSignalRate[c][s]/overallTotalSignal[c], " events = ", overallSignalRate[c][s]
 
 #change the CMS_lumi variables (see CMS_lumi.py)
@@ -104,6 +129,7 @@ CMS_lumi.lumi_13TeV = "41.5 fb^{-1}"
 CMS_lumi.writeExtraText = 1
 CMS_lumi.extraText = "Preliminary"
 ROOT.gStyle.SetPaintTextFormat("4.2f")
+ROOT.gStyle.SetHistMinimumZero()
 
 #iPos = 33
 iPos = 0
@@ -132,12 +158,31 @@ canvas.SetTickx(0)
 canvas.SetTicky(0)
 #canvas.SetGrid()
 
-
-matrix.Draw("colz text")
+matrixByCol.Draw("colz text")
 
 CMS_lumi.CMS_lumi(canvas, 4, iPos)
 
 ROOT.gPad.RedrawAxis()
+
+canvas2 = ROOT.TCanvas("c22","c22",50,50,W,H)
+canvas2.SetFillColor(0)
+canvas2.SetBorderMode(0)
+canvas2.SetFrameFillStyle(0)
+canvas2.SetFrameBorderMode(0)
+canvas2.SetLeftMargin( L/W )
+canvas2.SetRightMargin( R/W )
+canvas2.SetTopMargin( T/H )
+canvas2.SetBottomMargin( B/H )
+canvas2.SetTickx(0)
+canvas2.SetTicky(0)
+#canvas2.SetGrid()
+
+matrixByRow.Draw("colz text")
+
+CMS_lumi.CMS_lumi(canvas2, 4, iPos)
+
+ROOT.gPad.RedrawAxis()
+
 
 
 a = raw_input()

@@ -5,6 +5,11 @@ mc = [skey for skey in samples if skey not in ('Fake_em', 'Fake_me', 'DATA')]
 bAlgo = 'DeepB'
 bWP = '0.1241'
 
+aliases['PromptGenLepMatch2l'] = {
+    'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
+    'samples': mc
+}
+
 aliases['bVeto'] = {
 'expr': '(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) == 0)'
 }
