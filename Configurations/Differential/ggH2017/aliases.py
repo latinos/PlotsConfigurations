@@ -307,6 +307,14 @@ aliases['SFweightMuDown'] = {
 #    'expr': 'Sum$(GenJet_pt > 30 && genJetClean)',
 #    'samples': signals
 #}
+
+# use HTXS_njets30 when moving to NanoAODv5
+aliases['nCleanGenJet'] = {
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2017/ngenjet.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'CountGenJet',
+    'samples': signals
+}
+
 #
 ## Fiducial cut for differential measurements
 #fiducial = [

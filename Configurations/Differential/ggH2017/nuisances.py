@@ -39,6 +39,7 @@ nuisances['fake_syst_em'] = {
     'samples': {
         'Fake_em': '1.3'
     },
+    'cuts': [cut for cut in cuts],
     'perRecoBin': True
 }
 
@@ -48,6 +49,7 @@ nuisances['fake_syst_me'] = {
     'samples': {
         'Fake_me': '1.3'
     },
+    'cuts': [cut for cut in cuts],
     'perRecoBin': True
 }
 

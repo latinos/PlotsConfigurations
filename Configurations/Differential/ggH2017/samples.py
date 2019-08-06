@@ -349,15 +349,17 @@ for sname in signals:
   sample = samples[sname]
   sample['subsamples'] = {}
 
+  # use HTXS_Higgs_pt when moving to NanoAODv5
   for pth in pthBins:
     binName = 'PTH_%s' % pth
     if pth.startswith('GT'):
-      cut = 'genPth > %s' % pth[2:]
+      cut = 'higgsGenPt > %s' % pth[2:]
     else:
-      cut = 'genPth > %s && genPth < %s' % tuple(pth.split('_'))
+      cut = 'higgsGenPt > %s && higgsGenPt < %s' % tuple(pth.split('_'))
 
     sample['subsamples'][binName] = cut
 
+  # use HTXS_njets30 when moving to NanoAODv5
   for nj in njetBinning:
     binName = 'NJ_%s' % nj
     if nj.startswith('GE'):
