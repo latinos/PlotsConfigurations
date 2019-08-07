@@ -122,11 +122,11 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 ###### Top #######
 
 files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
+    nanoGetSampleFiles(mcDirectory, 'ST_s-channel_ext1') + \
     nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
     nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
+    nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop_ext1') + \
+    nanoGetSampleFiles(mcDirectory, 'ST_tW_top_ext1')
 
 samples['top'] = {
     'name': files,
@@ -154,7 +154,7 @@ samples['WWewk'] = {
 
 samples['ggWW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') \
-    'name': nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') \
+          + nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') \
           + nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENTN') \
           + nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNEN') \
           + nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNMN') \
@@ -198,7 +198,7 @@ addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1 || 
 
 ############ VZ ############
 
-files = nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu') + \
+files = nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu_ext1') + \
     nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Q') + \
     nanoGetSampleFiles(mcDirectory, 'ZZTo4L_ext1') + \
     nanoGetSampleFiles(mcDirectory, 'WZTo2L2Q')
@@ -236,7 +236,7 @@ samples['ggH_hww'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125'),
     'weight': [mcCommonWeight, {'class': 'Weight2MINLO', 'args': '%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE')}],
     'FilesPerJob': 4,
-    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/weight2MINLO.cc+' % os.getenv('CMSSW_BASE')]
+    'linesToAdd': ['.L %s/work/PlotsConfigurations/Configurations/Differential/weight2MINLO.cc+' % os.getenv('CMSSW_BASE')]
 }
 
 signals.append('ggH_hww')
@@ -389,9 +389,9 @@ for sname in signals:
 #  'me': 'abs(Lepton_pdgId[0]) == 13'
 #}
 
-samples['Fakes']  = {  'name'   :   getSampleFiles(directory,'WJetsToLNu-LO',False,'nanoLatino_')
-                                  + getSampleFiles(directory,'TTToSemiLeptonic',False,'nanoLatino_'),
-                       'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC,
+samples['Fake']  = {  'name'   :   nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')
+                                  + nanoGetSampleFiles(mcDirectory,'TTToSemiLeptonic'),
+                       'weight' : mcCommonWeight,
                        'FilesPerJob': 3,
                     }
 
