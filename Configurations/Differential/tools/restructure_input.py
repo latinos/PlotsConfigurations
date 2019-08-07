@@ -476,6 +476,7 @@ if __name__ == '__main__':
     argParser.add_argument('--tag', '-t', metavar = 'TAG', dest = 'tag', default = '', help = 'Tag name when input is a directory.')
     argParser.add_argument('--year', '-y', metavar = 'YEAR', dest = 'year', default = '', help = 'Year.')
     argParser.add_argument('--signal-fiducial-only', action = 'store_true', dest = 'signal_fiducial_only', help = 'Signal is fiducial only.')
+    argParser.add_argument('--signal-no-fiducial', action = 'store_true', dest = 'signal_no_fiducial', help = 'No fiducial cut on signal.')
     argParser.add_argument('--signal-ggH-separate', action = 'store_true', dest = 'signal_ggH_separate', help = 'Separate ggH and xH in signal.')
     argParser.add_argument('--signal-separate', action = 'store_true', dest = 'signal_separate', help = 'Separate Higgs processes.')
     argParser.add_argument('--signal-hww-only', action = 'store_true', dest = 'signal_hww_only', help = 'Signal is HWW only.')
@@ -648,14 +649,13 @@ if __name__ == '__main__':
         'ZH_hww',
         'ggZH_hww',
         'WH_hww',
-        'bbH_hww',
         'ttH_hww'
     ]
     ggH_htt = ['ggH_htt']
     xH_htt = ['qqH_htt', 'ZH_htt', 'WH_htt']
     # temporary workaround - some missing samples
-    if args.year == '2017':
-        xH_hww.remove('bbH_hww')
+    if args.year == '2016':
+        xH_hww.remove('ttH_hww')
 
     ### Set background sample merging
 
@@ -670,6 +670,8 @@ if __name__ == '__main__':
         backgrounds['Fake'] = ['Fake']
 
     minors = ['ggWW', 'WWewk', 'Vg', 'VgS_L', 'VgS_H', 'VZ', 'VVV']
+    if args.year == '2016':
+        minors.remove('WWewk')
     
     if args.background_minor_merge:
         backgrounds['minor'] = minors
@@ -730,6 +732,8 @@ if __name__ == '__main__':
         for genOutBin, genSourceBins in genBinMerging: # merge histograms from source truth bins
             if args.signal_fiducial_only:
                 subsamples = ['fid_' + bin for bin in genSourceBins]
+            elif args.signal_no_fiducial:
+                subsamples = genSourceBins
             else:
                 subsamples = ['fid_' + bin for bin in genSourceBins] + ['nonfid_' + bin for bin in genSourceBins]
 
