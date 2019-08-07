@@ -222,7 +222,7 @@ aliases['SFweightMuDown'] = {
 }
 
 aliases['nllWOTF'] = {
-    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2016v4/nllW.cc+' % os.getenv('CMSSW_BASE')],
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/nllW.cc+' % os.getenv('CMSSW_BASE')],
     'class': 'WWNLLW',
     'args': ('central',),
     'samples': ['WW']
