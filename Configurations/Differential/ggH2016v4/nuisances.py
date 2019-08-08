@@ -134,7 +134,6 @@ nuisances['electronpt'] = {
     'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': makeMCDirectory('ElepTup'),
     'folderDown': makeMCDirectory('ElepTdo'),
-    'nominalAsAlt': True,
     'AsLnN': '1'
 }
 
@@ -237,7 +236,8 @@ nuisances['UE'] = {
     #},
     'folderUp': makeMCDirectory('UEup'),
     'folderDown': makeMCDirectory('UEdo'),
-    'synchronized': False
+    'synchronized': False,
+    'nominalAsAlt': True
 }
 
 ####### Generic "cross section uncertainties"
@@ -263,7 +263,7 @@ nuisances['TopPtRew'] = {
     'name': 'CMS_topPtRew',   # Theory uncertainty
     'kind': 'weight',
     'type': 'shape',
-    'samples': {'top': ["1.","((1./Top_pTrw - 1)*(topGenPt>0 && antitopGenPt>0) + 1)"]},
+    'samples': {'top': ["1.", "1./Top_pTrw"]},
     'symmetrize': True
 }
 
