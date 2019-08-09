@@ -135,7 +135,9 @@ samples['top'] = {
     #'EventsPerJob': 100000
 }
 
-addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
+Top_pTrw = "(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )"
+
+addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
 
 ###### WW ########
 
@@ -389,13 +391,13 @@ for sname in signals:
 #  'me': 'abs(Lepton_pdgId[0]) == 13'
 #}
 
-samples['Fake']  = {  'name'   :   nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')
+samples['MCFake']  = {  'name'   :   nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')
                                   + nanoGetSampleFiles(mcDirectory,'TTToSemiLeptonic'),
                        'weight' : mcCommonWeight,
                        'FilesPerJob': 3,
                     }
 
-samples['Fake']['subsamples'] = {
+samples['MCFake']['subsamples'] = {
   'em': 'abs(Lepton_pdgId[0]) == 11',
   'me': 'abs(Lepton_pdgId[0]) == 13'
 }

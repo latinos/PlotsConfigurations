@@ -235,8 +235,10 @@ nuisances['UE'] = {
 
 apply_on = {
     'top': [
-        '(( (topGenPt>0 && antitopGenPt<0) || (topGenPt<0 && antitopGenPt>0)  ) * 1.0816 + ( topGenPt>0 && antitopGenPt>0 ))',
-        '(( (topGenPt>0 && antitopGenPt<0) || (topGenPt<0 && antitopGenPt>0)  ) * 0.9184 + ( topGenPt>0 && antitopGenPt>0 ))'
+        '((1.0816*(Sum$(abs(GenPart_pdgId)==6)<4)) + Sum$(abs(GenPart_pdgId)==6)>=4)',
+        '((0.9184*(Sum$(abs(GenPart_pdgId)==6)<4)) + Sum$(abs(GenPart_pdgId)==6)>=4)',
+        #'(( (topGenPt>0 && antitopGenPt<0) || (topGenPt<0 && antitopGenPt>0)  ) * 1.0816 + ( topGenPt>0 && antitopGenPt>0 ))',
+        #'(( (topGenPt>0 && antitopGenPt<0) || (topGenPt<0 && antitopGenPt>0)  ) * 0.9184 + ( topGenPt>0 && antitopGenPt>0 ))'
     ]
 }
 
@@ -250,13 +252,14 @@ nuisances['singleTopToTTbar'] = {
 
 ## Top pT reweighting uncertainty
 
-nuisances['TopPtRew'] = {
-    'name': 'CMS_topPtRew',   # Theory uncertainty
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {'top': ["1.","((1./Top_pTrw - 1)*(topGenPt>0 && antitopGenPt>0) + 1)"]},
-    'symmetrize': True
-}
+#FIXME: don't know how to handle the fact that there is no topGenPt in ST samples
+#nuisances['TopPtRew'] = {
+#    'name': 'CMS_topPtRew',   # Theory uncertainty
+#    'kind': 'weight',
+#    'type': 'shape',
+#    'samples': {'top': ["1.","((Sum$(abs(GenPart_pdgId)==6)<4) + (Sum$(abs(GenPart_pdgId)==6)>=4) * (1./"+Top_pTrw+" - 1))"]},
+#    'symmetrize': True
+#}
 
 nuisances['VgStar'] = {
     'name': 'CMS_hww_VgStarScale',

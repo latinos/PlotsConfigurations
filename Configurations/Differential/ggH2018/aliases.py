@@ -26,7 +26,7 @@ aliases['gstarHigh'] = {
     'samples': 'VgS'
 }
 
-# Fake leptons transfer factor
+# Fake leptons transfer factor 
 aliases['fakeW'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP,
     'samples': ['Fake']
@@ -71,10 +71,10 @@ aliases['PromptGenLepMatch2l'] = {
     'samples': mc
 }
 
-aliases['Top_pTrw'] = {
-    'expr': '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )',
-    'samples': ['top']
-}
+#aliases['Top_pTrw'] = {
+#    'expr': '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )',
+#    'samples': ['top']
+#}
 
 # Jet bins
 # using Alt$(CleanJet_pt[n], 0) instead of Sum$(CleanJet_pt >= 30) because jet pt ordering is not strictly followed in JES-varied samples
@@ -301,16 +301,16 @@ aliases['nCleanGenJet'] = {
     'samples': signals
 }
 
-# Fiducial cut for differential measurements
-fiducial = [
-    'GenDressedLepton_pt[0]>25 && Sum$(GenDressedLepton_pt>10) == 2',
-    'GenDressedLepton_pdgId[0] * GenDressedLepton_pdgId[1] == -11 * 13',
-    'sqrt(2*GenDressedLepton_pt[0] * GenDressedLepton_pt[1] * (cosh(GenDressedLepton_eta[0]-GenDressedLepton_eta[1])-cos(GenDressedLepton_phi[0]-GenDressedLepton_phi[1]))) > 12.',
-    'genPtll > 30.',
-    'sqrt(2. * GenMET_pt * (genPtll - genPxll * cos(GenMET_phi) - genPyll * sin(GenMET_phi))) > 60.',
-    'sqrt(2. * GenDressedLepton_pt[1] * GenMET_pt * (1-cos(GenDressedLepton_phi[1]-GenMET_phi))) > 30.',
-]
-aliases['fiducial'] = {
-    'expr': ' && '.join(fiducial),
-    'samples': signals
-}
+## Fiducial cut for differential measurements
+#fiducial = [
+#    'GenDressedLepton_pt[0]>25 && Sum$(GenDressedLepton_pt>10) == 2',
+#    'GenDressedLepton_pdgId[0] * GenDressedLepton_pdgId[1] == -11 * 13',
+#    'sqrt(2*GenDressedLepton_pt[0] * GenDressedLepton_pt[1] * (cosh(GenDressedLepton_eta[0]-GenDressedLepton_eta[1])-cos(GenDressedLepton_phi[0]-GenDressedLepton_phi[1]))) > 12.',
+#    'genPtll > 30.',
+#    'sqrt(2. * GenMET_pt * (genPtll - genPxll * cos(GenMET_phi) - genPyll * sin(GenMET_phi))) > 60.',
+#    'sqrt(2. * GenDressedLepton_pt[1] * GenMET_pt * (1-cos(GenDressedLepton_phi[1]-GenMET_phi))) > 30.',
+#]
+#aliases['fiducial'] = {
+#    'expr': ' && '.join(fiducial),
+#    'samples': signals
+#}
