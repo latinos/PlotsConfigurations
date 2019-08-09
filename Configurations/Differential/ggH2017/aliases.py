@@ -88,7 +88,7 @@ aliases['PromptGenLepMatch2l'] = {
 }
 
 aliases['Top_pTrw'] = {
-    'expr': '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )',
+    'expr': '(topGenPt * antitopGenPt != 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt == 0.)',
     'samples': ['top']
 }
 
