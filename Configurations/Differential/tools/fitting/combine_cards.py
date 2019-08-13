@@ -142,7 +142,7 @@ for cut in sorted(os.listdir(args.inpath)):
             varsuffix = ''
         except KeyError:
             try:
-                nominal = next(key for key in nominalTemplates if name.startswith(key))
+                nominal = next(key for key in nominalTemplates if name.startswith(key + '_'))
             except StopIteration:
                 # nominal is dropped
                 continue
@@ -158,7 +158,8 @@ for cut in sorted(os.listdir(args.inpath)):
         if RATEPARAM_MU and nominal.replace('histo_', '') in ['WW', 'top', 'DY']:
             hist.SetName('%s_%s%s' % (nominal, obsBin, varsuffix))
             hist.SetTitle('%s_%s%s' % (nominal, obsBin, varsuffix))
-            
+
+        targetFullHistDir.cd()
         hist.SetDirectory(targetFullHistDir)
         hist.Write()
 
