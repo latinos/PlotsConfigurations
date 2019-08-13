@@ -103,40 +103,17 @@ nuisances['eff_e']  = {
                 'samples'  : dict((skey, id_syst_ele) for skey in mc), 
 }
 
-#nuisances['electronpt']  = {
-#                'name'  : 'scale_e_2018',
-#                'kind'  : 'tree',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'DY'      : ['1', '1'],
-#                   'ggWW'    : ['1', '1'],
-#                   'WW'      : ['1', '1'],
-#                   'WWewk'   : ['1', '1'],
-#                   'top'     : ['1', '1'],
-#                   'VZ'      : ['1', '1'],
-#                   'WZgS'    : ['1', '1'],
-#                   'WZgS_L'  : ['1', '1'],
-#                   'WZgS_H'  : ['1', '1'],
-#                   'VVV'     : ['1', '1'],
-#                   'Vg'      : ['1', '1'],
-#                   'VgS'     : ['1', '1'],
-#                   'ggH_hww' : ['1', '1'],
-#                   'qqH_hww' : ['1', '1'],
-#                   'WH_hww'  : ['1', '1'],
-#                   'ZH_hww'  : ['1', '1'],
-#                   'ggZH_hww': ['1', '1'],
-#                   'bbH_hww' : ['1', '1'],
-#                   'ttH_hww' : ['1', '1'],
-#                   'H_htt'   : ['1', '1'],
-#                   'ggH_htt' : ['1', '1'] ,
-#                   'qqH_htt' : ['1', '1'] ,
-#                   'ZH_htt'  : ['1', '1'] ,
-#                   'WH_htt'  : ['1', '1'] ,
-#                 },
-#                'folderUp'   : treeBaseDir+'Fall2018_nAOD_v1_Full2017v2/MCl1loose2017v2__MCCorr2017__btagPerEvent__l2loose__l2tightOR2017__ElepTup', #xrootdPath+treeBaseDir
-#                'folderDown' : treeBaseDir+'Fall2018_nAOD_v1_Full2017v2/MCl1loose2017v2__MCCorr2017__btagPerEvent__l2loose__l2tightOR2017__ElepTdo',
-#}
-#
+ept_syst = ['1', '1']
+
+nuisances['electronpt']  = {
+                'name'  : 'scale_e_2018',
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples': dict((skey, ept_syst) for skey in mc),
+                'folderUp'   : treeBaseDir+'Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5__ElepTup',
+                'folderDown' : treeBaseDir+'Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5__ElepTdo',
+}
+
 #if useEmbeddedDY:
 #  DYvetosamples = ['DY', 'ggWW', 'WW', 'WWewk', 'top', 'VZ', 'Vg', 'VgS']
 #  for samp in DYvetosamples:
@@ -170,71 +147,6 @@ nuisances['eff_e']  = {
 #                  'folderDown' : treeBaseDir+'Embedding2018_nAOD_v1_Full2017v2/DATAl1loose2017v2__DATACorr2017__l2loose__l2tightOR2017__Embedding2017__hadd__EmbElepTdo',
 #  }
 
-#FIXME: The following should not be needed for 2018
-#elePtCor_Syst = [ 'electron_ptW_'+Nlep+'l_Up / electron_ptW_'+Nlep+'l', 'electron_ptW_'+Nlep+'l_Down / electron_ptW_'+Nlep+'l']
-#nuisances['elePtCor']  = {
-#                'name'  : 'hww_elePtCor',
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'DY'         : elePtCor_Syst ,
-#                   'ggWW'       : elePtCor_Syst ,
-#                   'WW'         : elePtCor_Syst ,
-#                   'top'        : elePtCor_Syst ,
-#                   'VZ'         : elePtCor_Syst ,
-#                   'WZgS_L'     : elePtCor_Syst ,
-#                   'WZgS_H'     : elePtCor_Syst ,
-#                   'VVV'        : elePtCor_Syst ,
-#                   'Vg'         : elePtCor_Syst ,
-#                   'VgS'        : elePtCor_Syst ,
-#                   'ggH_hww'    : elePtCor_Syst ,
-#                   'qqH_hww'    : elePtCor_Syst ,
-#                   'WH_hww'     : elePtCor_Syst ,
-#                   'ZH_hww'     : elePtCor_Syst ,
-#                   'ggZH_hww'   : elePtCor_Syst ,
-#                   'bbH_hww'    : elePtCor_Syst ,
-#                   'ttH_hww'    : elePtCor_Syst ,
-#                   'H_htt'      : elePtCor_Syst ,
-#                   'ggH_htt'    : elePtCor_Syst ,
-#                   'qqH_htt'    : elePtCor_Syst ,
-#                   'ZH_htt'     : elePtCor_Syst ,
-#                   'WH_htt'     : elePtCor_Syst ,
-#                }
-#}
-#
-#eleEtaCor_Syst = [ 'electron_etaW_'+Nlep+'l_Up / electron_etaW_'+Nlep+'l', 'electron_etaW_'+Nlep+'l_Down / electron_etaW_'+Nlep+'l']
-#
-#nuisances['eleEtaCor']  = {
-#                'name'  : 'hww_eleEtaCor',
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'DY'         : eleEtaCor_Syst ,
-#                   'ggWW'       : eleEtaCor_Syst ,
-#                   'WW'         : eleEtaCor_Syst ,
-#                   'top'        : eleEtaCor_Syst ,
-#                   'VZ'         : eleEtaCor_Syst ,
-#                   'WZgS_L'     : eleEtaCor_Syst ,
-#                   'WZgS_H'     : eleEtaCor_Syst ,
-#                   'VVV'        : eleEtaCor_Syst ,
-#                   'Vg'         : eleEtaCor_Syst ,
-#                   'VgS'        : eleEtaCor_Syst ,
-#                   'ggH_hww'    : eleEtaCor_Syst ,
-#                   'qqH_hww'    : eleEtaCor_Syst ,
-#                   'WH_hww'     : eleEtaCor_Syst ,
-#                   'ZH_hww'     : eleEtaCor_Syst ,
-#                   'ggZH_hww'   : eleEtaCor_Syst ,
-#                   'bbH_hww'    : eleEtaCor_Syst ,
-#                   'ttH_hww'    : eleEtaCor_Syst ,
-#                   'H_htt'      : eleEtaCor_Syst ,
-#                   'ggH_htt'    : eleEtaCor_Syst ,
-#                   'qqH_htt'    : eleEtaCor_Syst ,
-#                   'ZH_htt'     : eleEtaCor_Syst ,
-#                   'WH_htt'     : eleEtaCor_Syst ,
-#                }
-#}
-
-
 ##### Muon Efficiency and energy scale
 
 id_syst_mu = [ 'LepSF'+Nlep+'l__mu_'+muWP+'__Up' , 'LepSF'+Nlep+'l__mu_'+muWP+'__Do' ]
@@ -246,39 +158,16 @@ nuisances['eff_m']  = {
                 'samples'  : dict((skey, id_syst_mu) for skey in mc),
 }
 
-#nuisances['muonpt']  = {
-#                'name'  : 'scale_m_2018',
-#                'kind'  : 'tree',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'DY'      : ['1', '1'],
-#                   'ggWW'    : ['1', '1'],
-#                   'WW'      : ['1', '1'],
-#                   'WWewk'   : ['1', '1'],
-#                   'top'     : ['1', '1'],
-#                   'VZ'      : ['1', '1'],
-#                   'WZgS'    : ['1', '1'],
-#                   'WZgS_L'  : ['1', '1'],
-#                   'WZgS_H'  : ['1', '1'],
-#                   'VVV'     : ['1', '1'],
-#                   'Vg'      : ['1', '1'],
-#                   'VgS'     : ['1', '1'],
-#                   'ggH_hww' : ['1', '1'],
-#                   'qqH_hww' : ['1', '1'],
-#                   'WH_hww'  : ['1', '1'],
-#                   'ZH_hww'  : ['1', '1'],
-#                   'ggZH_hww': ['1', '1'],
-#                   'bbH_hww' : ['1', '1'],
-#                   'ttH_hww' : ['1', '1'],
-#                   'H_htt'   : ['1', '1'],
-#                   'ggH_htt' : ['1', '1'] ,
-#                   'qqH_htt' : ['1', '1'] ,
-#                   'ZH_htt'  : ['1', '1'] ,
-#                   'WH_htt'  : ['1', '1'] ,
-#                },
-#                'folderUp'   : treeBaseDir+'Fall2018_nAOD_v1_Full2017v2/MCl1loose2017v2__MCCorr2017__btagPerEvent__l2loose__l2tightOR2017__MupTup',
-#                'folderDown' : treeBaseDir+'Fall2018_nAOD_v1_Full2017v2/MCl1loose2017v2__MCCorr2017__btagPerEvent__l2loose__l2tightOR2017__MupTdo',
-#}
+mpt_syst = ['1', '1']
+nuisances['muonpt']  = {
+                'name'  : 'scale_m_2018',
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples': dict((skey, mpt_syst) for skey in mc),
+                'folderUp'   : treeBaseDir+'Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5__MupTup',
+                'folderDown' : treeBaseDir+'Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5__MupTdo',
+
+}
 #
 #if useEmbeddedDY:
 #  for samp in DYvetosamples:
@@ -314,40 +203,17 @@ nuisances['eff_m']  = {
 #
 #
 ###### Jet energy scale
-#
-#nuisances['jes']  = {
-#                'name'  : 'scale_j_2018',
-#                'kind'  : 'tree',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'DY'      : ['1', '1'],
-#                   'ggWW'    : ['1', '1'],
-#                   'WW'      : ['1', '1'],
-#                   'WWewk'   : ['1', '1'],
-#                   'top'     : ['1', '1'],
-#                   'VZ'      : ['1', '1'],
-#                   'WZgS'    : ['1', '1'],
-#                   'WZgS_L'  : ['1', '1'],
-#                   'WZgS_H'  : ['1', '1'],
-#                   'VVV'     : ['1', '1'],
-#                   'Vg'      : ['1', '1'],
-#                   'VgS'     : ['1', '1'],
-#                   'ggH_hww' : ['1', '1'],
-#                   'qqH_hww' : ['1', '1'],
-#                   'WH_hww'  : ['1', '1'],
-#                   'ZH_hww'  : ['1', '1'],
-#                   'ggZH_hww': ['1', '1'],
-#                   'bbH_hww' : ['1', '1'],
-#                   'ttH_hww' : ['1', '1'],
-#                   'H_htt'   : ['1', '1'],
-#                   'ggH_htt' : ['1', '1'] ,
-#                   'qqH_htt' : ['1', '1'] ,
-#                   'ZH_htt'  : ['1', '1'] ,
-#                   'WH_htt'  : ['1', '1'] ,
-#                },
-#                'folderUp'   : treeBaseDir+'Fall2018_nAOD_v1_Full2017v2/MCl1loose2017v2__MCCorr2017__btagPerEvent__l2loose__l2tightOR2017__JESup',
-#                'folderDown' : treeBaseDir+'Fall2018_nAOD_v1_Full2017v2/MCl1loose2017v2__MCCorr2017__btagPerEvent__l2loose__l2tightOR2017__JESdo',
-#}
+
+j_syst = ['1', '1']
+nuisances['jes']  = {
+                'name'  : 'scale_j_2018',
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples': dict((skey, j_syst) for skey in mc),
+                'folderUp'   : treeBaseDir+'Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5__JESup',
+                'folderDown' : treeBaseDir+'Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5__JESdo',
+
+}
 #
 #if useEmbeddedDY:
 #  for samp in DYvetosamples:
@@ -371,41 +237,17 @@ nuisances['eff_m']  = {
 #  }
 #
 ###### MET energy scale
-#
-#nuisances['met']  = {
-#                'name'  : 'scale_met_2018',
-#                'kind'  : 'tree',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'DY'      : ['1', '1'],
-#                   'ggWW'    : ['1', '1'],
-#                   'WW'      : ['1', '1'],
-#                   'WWewk'   : ['1', '1'],
-#                   'top'     : ['1', '1'],
-#                   'VZ'      : ['1', '1'],
-#                   'WZgS'    : ['1', '1'],
-#                   'WZgS_L'  : ['1', '1'],
-#                   'WZgS_H'  : ['1', '1'],
-#                   'VVV'     : ['1', '1'],
-#                   'Vg'      : ['1', '1'],
-#                   'VgS'     : ['1', '1'],
-#                   'ggH_hww' : ['1', '1'],
-#                   'qqH_hww' : ['1', '1'],
-#                   'WH_hww'  : ['1', '1'],
-#                   'ZH_hww'  : ['1', '1'],
-#                   'ggZH_hww': ['1', '1'],
-#                   'bbH_hww' : ['1', '1'],
-#                   'ttH_hww' : ['1', '1'],
-#                   'H_htt'   : ['1', '1'],
-#                   'ggH_htt' : ['1', '1'] ,
-#                   'qqH_htt' : ['1', '1'] ,
-#                   'ZH_htt'  : ['1', '1'] ,
-#                   'WH_htt'  : ['1', '1'] ,
-#                },
-#                'folderUp'   : treeBaseDir+'Fall2018_nAOD_v1_Full2017v2/MCl1loose2017v2__MCCorr2017__btagPerEvent__l2loose__l2tightOR2017__METup',
-#                'folderDown' : treeBaseDir+'Fall2018_nAOD_v1_Full2017v2/MCl1loose2017v2__MCCorr2017__btagPerEvent__l2loose__l2tightOR2017__METdo',
-#}
-#
+met_syst = ['1', '1']
+nuisances['met']  = {
+                'name'  : 'scale_met_2018',
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples': dict((skey, met_syst) for skey in mc),
+                'folderUp'   : treeBaseDir+'Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5__METup',
+                'folderDown' : treeBaseDir+'Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5__METdo',
+
+}
+
 #if useEmbeddedDY:
 #  for samp in DYvetosamples:
 #    del nuisances['met']['samples'][samp]

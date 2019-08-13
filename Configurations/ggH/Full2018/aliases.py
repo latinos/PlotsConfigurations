@@ -59,8 +59,8 @@ aliases['Jet_btagSF_shapeFix'] = {
     'linesToAdd': [
         'gSystem->Load("libCondFormatsBTauObjects.so");',
         'gSystem->Load("libCondToolsBTau.so");',
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
-        '.L %s/src/PlotsConfigurations/Configurations/btagsfpatch.cc+' % os.getenv('CMSSW_BASE')
+        'gSystem->AddIncludePath("-I%s/work");' % os.getenv('CMSSW_RELEASE_BASE'),
+        '.L %s/work/PlotsConfigurations/Configurations/btagsfpatch.cc+' % os.getenv('CMSSW_BASE')
     ],
     'class': 'BtagSF',
     'args': (btagSFSource,),
