@@ -50,7 +50,7 @@ _tmp = [
      'mjj<105',
      'detajj<3.5', 
      'mll>50',
-     'btag1',
+     'btag2',
      #'((Jet_btagDeepB[CleanJet_jetIdx[0]] > 0.1522) || (Jet_btagDeepB[CleanJet_jetIdx[1]] > 0.1522))',   # At least one of the 2 lead jets is btagged
        ]
 
