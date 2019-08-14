@@ -6,10 +6,10 @@
 #                    
 structure['DY']  = {  
                   'isSignal' : 0,
-                  'isData'   : 0 
+                  'isData'   : 0
               }
 
-'''
+
 structure['Wjets']  = {  
                   'isSignal' : 0,
                   'isData'   : 0 
@@ -18,6 +18,18 @@ structure['Wjets']  = {
 structure['Fake']  = {  
                   'isSignal' : 0,
                   'isData'   : 0 
+              }
+
+structure['Fake_em']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'removeFromCuts' : [ k for k in cuts if 'me' in k],
+              }
+
+structure['Fake_me']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'removeFromCuts' : [ k for k in cuts if 'em' in k],
               }
 
 structure['ttbar'] = {   
@@ -42,6 +54,11 @@ structure['WW']  = {
                   'isData'   : 0    
                   }
 
+structure['WWewk']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
 structure['ggWW']  = {
                   'isSignal' : 0,
                   'isData'   : 0    
@@ -57,10 +74,29 @@ structure['Wg']  = {
                   'isData'   : 0 
                   }
 
+structure['Vg']  = { 
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
 
-structure['Zg']  = {
+structure['VgS'] = { 
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
+
+structure['WZgS_L'] = {
                   'isSignal' : 0,
                   'isData'   : 0
+                  }
+
+structure['WZgS_H'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
+structure['Zg']  = { 
+                  'isSignal' : 0,
+                  'isData'   : 0 
                   }
 
 structure['VZ']  = { 
@@ -84,6 +120,11 @@ structure['ZZ']  = {
                   'isData'   : 0    
                   }
 
+
+structure['ggH'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
 
 structure['ggH_hww'] = {
                   'isSignal' : 1,
@@ -115,11 +156,47 @@ structure['ggZH_hww'] = {
                   'isData'   : 0    
                   }
 
+structure['H_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['bbH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
+
+structure['ttH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
+
+structure['ggH_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['qqH_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['WH_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['ZH_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
 structure['H_htt'] = {
                   'isSignal' : 1,
                   'isData'   : 0    
                   }
-'''
+
+
 # data
 
 

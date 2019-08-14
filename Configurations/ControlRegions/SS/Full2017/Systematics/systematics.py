@@ -48,7 +48,7 @@ def calculate():
             h = key.ReadObj()
             if (h.ClassName() == 'TH1D' or h.ClassName() == 'TH1F') and ('histo_Fake' in h.GetName()):
                 cnames.append(h.GetName())
-                csystematics.append(h.GetName().split("_")[-1].capitalize())
+                csystematics.append(h.GetName().capitalize())
                 cvalues.append(h.Integral(-1, -1))
                 cerrors.append(h.GetBinError(1))
                 
@@ -104,18 +104,21 @@ def calculate():
 
     for sindex, systematic in enumerate(systematics):        
         output = ''
-        if systematic == "Eleup":
+        if systematic == "Eleup" or systematic == "EleUp":
             systematic = "Electron jet ET"
-        elif systematic == "Muup":
+        elif systematic == "Muup" or systematic == "MuUp":
             systematic = "Muon jet ET"
         elif systematic == "Statup" and systematics[sindex-1] == "Eledown":
             systematic = "Electron statistical"
         elif systematic == "Statup":
             systematic = "Muon statistical"
-            
+        else:
+            systematic = "None"
+
         output += '{:22s}'.format(systematic)        
 
-        if sindex % 2 != 0:
+        #if sindex % 2 != 0:
+        if systematic is not "None":
             for cindex, channel in enumerate(channels):
                 valueUp = abs(100-(100*abs(values[cindex][sindex]/values[cindex][0])))
                 valueDown = abs(100-(100*abs(values[cindex][sindex+1]/values[cindex][0])))
