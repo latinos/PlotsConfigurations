@@ -235,10 +235,8 @@ nuisances['UE'] = {
 
 apply_on = {
     'top': [
-        '((1.0816*(Sum$(abs(GenPart_pdgId)==6)<4)) + Sum$(abs(GenPart_pdgId)==6)>=4)',
-        '((0.9184*(Sum$(abs(GenPart_pdgId)==6)<4)) + Sum$(abs(GenPart_pdgId)==6)>=4)',
-        #'(( (topGenPt>0 && antitopGenPt<0) || (topGenPt<0 && antitopGenPt>0)  ) * 1.0816 + ( topGenPt>0 && antitopGenPt>0 ))',
-        #'(( (topGenPt>0 && antitopGenPt<0) || (topGenPt<0 && antitopGenPt>0)  ) * 0.9184 + ( topGenPt>0 && antitopGenPt>0 ))'
+        '(topGenPt * antitopGenPt <= 0.) * 1.0816 + (topGenPt * antitopGenPt > 0.)',
+        '(topGenPt * antitopGenPt <= 0.) * 0.9184 + (topGenPt * antitopGenPt > 0.)'
     ]
 }
 
