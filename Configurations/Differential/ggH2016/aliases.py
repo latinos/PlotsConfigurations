@@ -1,32 +1,32 @@
+import os
+import copy
+
 #aliases = {}
 
 # imported from samples.py:
 # samples, signals
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
-top = [skey for skey in samples if skey.startswith('top')]
 
-##############################
+eleWP = 'mva_90p_Iso2016'
+muWP = 'cut_Tight80x'
 
-bWP='L'
-#bWP='M'
-#bWP='T'
-bSF='bPogSF_CMVA'+bWP
-#bSF='bPogSF_CSV'+bWP
-#bSF='bPogSF_deepCSV'+bWP
+aliases['ReCleanJet_pt'] = {
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/recleanjet.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'ReCleanJet',
+    'args': ('pt',)
+}
 
-#eleWP='cut_WP_Tight80X'
-#eleWP='cut_WP_Tight80X_SS'
-#eleWP='mva_80p_Iso2015'
-#eleWP='mva_80p_Iso2016'
-#eleWP='mva_90p_Iso2015'
-eleWP='mva_90p_Iso2016'
+aliases['ReCleanJet_eta'] = {
+    'class': 'ReCleanJet',
+    'args': ('eta',)
+}
 
-muWP='cut_Tight80x'
+aliases['ReCleanJet_jetIdx'] = {
+    'class': 'ReCleanJet',
+    'args': ('jetIdx',)
+}
 
-##############################
-
-# Precompiled lepton cuts
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
     'samples': mc + ['DATA']
@@ -42,19 +42,83 @@ aliases['gstarHigh'] = {
     'samples': 'VgS'
 }
 
-# No jet with pt > 30 GeV
-aliases['zeroJet'] = {
-    'expr': 'std_vector_jet_pt[0] < 30.'
+# Fake leptons transfer factor
+aliases['fakeW'] = {
+    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP,
+    'samples': ['Fake']
+}
+# And variations - already divided by central values in formulas !
+aliases['fakeWEleUp'] = {
+    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleUp',
+    'samples': ['Fake']
+}
+aliases['fakeWEleDown'] = {
+    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleDown',
+    'samples': ['Fake']
+}
+aliases['fakeWMuUp'] = {
+    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuUp',
+    'samples': ['Fake']
+}
+aliases['fakeWMuDown'] = {
+    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuDown',
+    'samples': ['Fake']
+}
+aliases['fakeWStatEleUp'] = {
+    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleUp',
+    'samples': ['Fake']
+}
+aliases['fakeWStatEleDown'] = {
+    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleDown',
+    'samples': ['Fake']
+}
+aliases['fakeWStatMuUp'] = {
+    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuUp',
+    'samples': ['Fake']
+}
+aliases['fakeWStatMuDown'] = {
+    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuDown',
+    'samples': ['Fake']
 }
 
-# b-jet veto
+# gen-matching to prompt only (GenLepMatch2l matches to *any* gen lepton)
+aliases['PromptGenLepMatch2l'] = {
+    'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
+    'samples': mc
+}
+
+aliases['Top_pTrw'] = {
+    'expr': '(topGenPt * antitopGenPt != 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt == 0.)',
+    'samples': ['top']
+}
+
+# Jet bins
+# using Alt$(ReCleanJet_pt[n], 0) instead of Sum$(ReCleanJet_pt >= 30) because jet pt ordering is not strictly followed in JES-varied samples
+
+# No jet with pt > 30 GeV
+aliases['zeroJet'] = {
+    'expr': 'Alt$(ReCleanJet_pt[0], 0) < 30.'
+}
+
+aliases['oneJet'] = {
+    'expr': 'Alt$(ReCleanJet_pt[0], 0) > 30.'
+}
+
+aliases['multiJet'] = {
+    'expr': 'Alt$(ReCleanJet_pt[1], 0) > 30.'
+}
+
+# B tagging
+
 aliases['bVeto'] = {
-    'expr': 'bveto_CMVA' + bWP
+    'expr': 'Sum$(ReCleanJet_pt > 20. && abs(ReCleanJet_eta) < 2.5 && Jet_btagDeepB[ReCleanJet_jetIdx] > 0.2217) == 0'
 }
 
 aliases['bReq'] = {
-    'expr': 'Sum$(std_vector_jet_pt > 30. && abs(std_vector_jet_eta) < 2.5 && std_vector_jet_cmvav2 > -0.5884) >= 1'
+    'expr': 'Sum$(ReCleanJet_pt > 30. && abs(ReCleanJet_eta) < 2.5 && Jet_btagDeepB[ReCleanJet_jetIdx] > 0.2217) >= 1'
 }
+
+# CR definitions
 
 aliases['topcr'] = {
     'expr': 'mtw2>30 && mll>50 && ((zeroJet && !bVeto) || bReq)'
@@ -71,199 +135,198 @@ aliases['wwcr'] = {
 # SR definition
 
 aliases['sr'] = {
-    'expr': 'mth>60 && mtw2>30 && bVeto && std_vector_electron_passConversionVeto[1]' # this is how it's done in Full2016
+    'expr': 'mth>60 && mtw2>30 && bVeto'
 }
 
-# top reweighting
-aliases['toprwgt'] = {
-    'expr': 'TMath::Sqrt(TMath::Exp(0.0615-0.0005*topLHEpt) * TMath::Exp(0.0615-0.0005*antitopLHEpt))',
-    'samples': top
-}
+# B tag scale factors
 
-# Lepton & b-jet id efficiency scale factor
-aliases['sfWeight'] = {
-    'expr': ' * '.join(['SFweight2l', bSF, 'LepSF2l__ele_'+eleWP+'__mu_'+muWP, 'LepWPCut']),
+btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_2016LegacySF_V1.csv' % os.getenv('CMSSW_BASE')
+
+aliases['Jet_btagSF_shapeFix'] = {
+    'linesToAdd': [
+        'gSystem->Load("libCondFormatsBTauObjects.so");',
+        'gSystem->Load("libCondToolsBTau.so");',
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/btagsfpatch.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'BtagSF',
+    'args': (btagSFSource,),
     'samples': mc
 }
-# And variations
-aliases['sfWeightEleUp'] = {
+
+aliases['bVetoSF'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log((ReCleanJet_pt>20 && abs(ReCleanJet_eta)<2.5)*Jet_btagSF_shapeFix[ReCleanJet_jetIdx]+1*(ReCleanJet_pt<20 || abs(ReCleanJet_eta)>2.5))))',
+    'samples': mc
+}
+
+aliases['bReqSF'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log((ReCleanJet_pt>30 && abs(ReCleanJet_eta)<2.5)*Jet_btagSF_shapeFix[ReCleanJet_jetIdx]+1*(ReCleanJet_pt<30 || abs(ReCleanJet_eta)>2.5))))',
+    'samples': mc
+}
+
+aliases['btagSF'] = {
+    'expr': '(bVeto || (topcr && zeroJet))*bVetoSF + (topcr && !zeroJet)*bReqSF',
+    'samples': mc
+}
+
+for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
+    aliases['Jet_btagSF_shapeFix_up_%s' % shift] = {
+        'class': 'BtagSF',
+        'args': (btagSFSource, 'up_' + shift),
+        'samples': mc
+    }
+    aliases['Jet_btagSF_shapeFix_down_%s' % shift] = {
+        'class': 'BtagSF',
+        'args': (btagSFSource, 'down_' + shift),
+        'samples': mc
+    }
+
+    for targ in ['bVeto', 'bReq']:
+        alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
+        alias['expr'] = alias['expr'].replace('btagSF_shapeFix', 'btagSF_shapeFix_up_%s' % shift)
+
+        alias = aliases['%sSF%sdown' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
+        alias['expr'] = alias['expr'].replace('btagSF_shapeFix', 'btagSF_shapeFix_down_%s' % shift)
+
+    aliases['btagSF%sup' % shift] = {
+        'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'up'),
+        'samples': mc
+    }
+
+    aliases['btagSF%sdown' % shift] = {
+        'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'down'),
+        'samples': mc
+    }
+
+# data/MC scale factors
+aliases['SFweight'] = {
+    'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut', 'btagSF', 'PrefireWeight']),
+    'samples': mc
+}
+# variations
+aliases['SFweightEleUp'] = {
     'expr': 'LepSF2l__ele_'+eleWP+'__Up',
     'samples': mc
 }
-aliases['sfWeightEleDown'] = {
+aliases['SFweightEleDown'] = {
     'expr': 'LepSF2l__ele_'+eleWP+'__Do',
     'samples': mc
 }
-aliases['sfWeightMuUp'] = {
+aliases['SFweightMuUp'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Up',
     'samples': mc
 }
-aliases['sfWeightMuDown'] = {
+aliases['SFweightMuDown'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Do',
     'samples': mc
 }
-aliases['sfWeightBtagBCUp'] = {
-    'expr': '('+bSF+'_bc_up)/('+bSF+')',
-    'samples': mc
-}
-aliases['sfWeightBtagBCDown'] = {
-    'expr': '('+bSF+'_bc_down)/('+bSF+')',
-    'samples': mc
-}
-aliases['sfWeightBtagUDSGUp'] = {
-    'expr': '('+bSF+'_udsg_up)/('+bSF+')',
-    'samples': mc
-}
-aliases['sfWeightBtagUDSGDown'] = {
-    'expr': '('+bSF+'_udsg_down)/('+bSF+')',
-    'samples': mc
+
+aliases['nllWOTF'] = {
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/nllW.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'WWNLLW',
+    'args': ('central',),
+    'samples': ['WW']
 }
 
-# Fake leptons transfer factor
-aliases['fakeWeight'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP,
-    'samples': ['Fake']
-}
-# And variations - already divided by central values in formulas !
-aliases['fakeWeightEleUp'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleUp',
-    'samples': ['Fake']
-}
-aliases['fakeWeightEleDown'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleDown',
-    'samples': ['Fake']
-}
-aliases['fakeWeightMuUp'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuUp',
-    'samples': ['Fake']
-}
-aliases['fakeWeightMuDown'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuDown',
-    'samples': ['Fake']
-}
-aliases['fakeWeightStatEleUp'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleUp',
-    'samples': ['Fake']
-}
-aliases['fakeWeightStatEleDown'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleDown',
-    'samples': ['Fake']
-}
-aliases['fakeWeightStatMuUp'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuUp',
-    'samples': ['Fake']
-}
-aliases['fakeWeightStatMuDown'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuDown',
-    'samples': ['Fake']
-}
+#aliases['nllW_Qup'] = {
+#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2016v4/nllW.cc+' % os.getenv('CMSSW_BASE')],
+#    'class': 'WWNLLW',
+#    'args': ('sup',),
+#    'samples': ['WW']
+#}
+#
+#aliases['nllW_Qdown'] = {
+#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2016v4/nllW.cc+' % os.getenv('CMSSW_BASE')],
+#    'class': 'WWNLLW',
+#    'args': ('sdown',),
+#    'samples': ['WW']
+#}
+#
+#aliases['nllW_Rup'] = {
+#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2016v4/nllW.cc+' % os.getenv('CMSSW_BASE')],
+#    'class': 'WWNLLW',
+#    'args': ('rup',),
+#    'samples': ['WW']
+#}
+#
+#aliases['nllW_Rdown'] = {
+#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2016v4/nllW.cc+' % os.getenv('CMSSW_BASE')],
+#    'class': 'WWNLLW',
+#    'args': ('rdown',),
+#    'samples': ['WW']
+#}
 
-# Gen Mll
-aliases['genMll'] = {
-    'expr': 'sqrt(2*std_vector_dressedLeptonGen_pt[0] * std_vector_dressedLeptonGen_pt[1] * (cosh(std_vector_dressedLeptonGen_eta[0]-std_vector_dressedLeptonGen_eta[1])-cos(std_vector_dressedLeptonGen_phi[0]-std_vector_dressedLeptonGen_phi[1])))',
-    'samples': mc
-}
+### Variables for fiducial region definition
+#
+## Gen pxll, pyll
+#aliases['genPxll'] = {
+#    'expr': 'GenDressedLepton_pt[0] * cos(GenDressedLepton_phi[0]) + GenDressedLepton_pt[1] * cos(GenDressedLepton_phi[1])',
+#    'samples': signals
+#}
+#aliases['genPyll'] = {
+#    'expr': 'GenDressedLepton_pt[0] * sin(GenDressedLepton_phi[0]) + GenDressedLepton_pt[1] * sin(GenDressedLepton_phi[1])',
+#    'samples': signals
+#}
+#
+## Gen pxH, pyH
+#aliases['genPxH'] = {
+#    'expr': 'genPxll + GenMET_pt * cos(GenMET_phi)',
+#    'samples': signals
+#}
+#aliases['genPyH'] = {
+#    'expr': 'genPyll + GenMET_pt * sin(GenMET_phi)',
+#    'samples': signals
+#}
+#
+#aliases['genPth'] = {
+#    'expr': 'sqrt(genPxH * genPxH + genPyH * genPyH)',
+#    'samples': signals
+#}
+#
+## Gen pTll
+#aliases['genPtll'] = {
+#    'expr': 'sqrt(genPxll * genPxll + genPyll * genPyll)',
+#    'samples': signals
+#}
+#
+### Overlap cleaning for gen jets
+#aliases['genJetClean'] = {
+#    'expr': 'TMath::Power(GenJet_eta - GenDressedLepton_eta[0], 2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[0]), 2.) > 0.16 && TMath::Power(GenJet_eta - GenDressedLepton_eta[1], 2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[1]), 2.) > 0.16',
+#    'samples': signals
+#}
 
-# Gen px, py
-aliases['genPx0'] = {
-    'expr': 'std_vector_dressedLeptonGen_pt[0] * cos(std_vector_dressedLeptonGen_phi[0])',
-    'samples': mc
-}
-aliases['genPy0'] = {
-    'expr': 'std_vector_dressedLeptonGen_pt[0] * sin(std_vector_dressedLeptonGen_phi[0])',
-    'samples': mc
-}
-aliases['genPx1'] = {
-    'expr': 'std_vector_dressedLeptonGen_pt[1] * cos(std_vector_dressedLeptonGen_phi[1])',
-    'samples': mc
-}
-aliases['genPy1'] = {
-    'expr': 'std_vector_dressedLeptonGen_pt[1] * sin(std_vector_dressedLeptonGen_phi[1])',
-    'samples': mc
-}
+#aliases['genJet0Clean'] = {
+#    'expr': 'TMath::Power(GenJet_eta[0] - GenDressedLepton_eta[0], 2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi[0] - GenDressedLepton_phi[0]), 2.) > 0.16 && TMath::Power(GenJet_eta[0] - GenDressedLepton_eta[1], 2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi[0] - GenDressedLepton_phi[1]), 2.) > 0.16',
+#    'samples': signals
+#}
+#
+#aliases['genJet1Clean'] = {
+#    'expr': 'TMath::Power(GenJet_eta[1] - GenDressedLepton_eta[0], 2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi[1] - GenDressedLepton_phi[0]), 2.) > 0.16 && TMath::Power(GenJet_eta[1] - GenDressedLepton_eta[1], 2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi[1] - GenDressedLepton_phi[1]), 2.) > 0.16',
+#    'samples': signals
+#}
 
-# Gen pxll, pyll
-aliases['genPxll'] = {
-    'expr': 'genPx0 + genPx1',
-    'samples': mc
-}
-aliases['genPyll'] = {
-    'expr': 'genPy0 + genPy1',
-    'samples': mc
-}
+#aliases['nCleanGenJet'] = {
+#    'expr': 'Sum$(GenJet_pt > 30 && genJetClean)',
+#    'samples': signals
+#}
 
-# Gen met x, y
-aliases['genMetx'] = {
-    'expr': 'metGenpt * cos(metGenphi)',
-    'samples': mc
-}
-aliases['genMety'] = {
-    'expr': 'metGenpt * sin(metGenphi)',
-    'samples': mc
-}
-
-# Gen pxH, pyH
-aliases['genPxH'] = {
-    'expr': 'genPxll + genMetx',
-    'samples': mc
-}
-aliases['genPyH'] = {
-    'expr': 'genPyll + genMety',
-    'samples': mc
-}
-
-aliases['genPth'] = {
-    'expr': 'sqrt(genPxH * genPxH + genPyH * genPyH)',
-    'samples': mc
-}
-
-# Gen pTll
-aliases['genPtll'] = {
-    'expr': 'sqrt(genPxll * genPxll + genPyll * genPyll)',
-    'samples': mc
-}
-
-# Gen mth
-aliases['genMth'] = {
-    'expr': 'sqrt(2 * metGenpt * (genPtll - genPxll * cos(metGenphi) - genPyll * sin(metGenphi)))',
-    'samples': mc
-}
-
-# Gen mtw2
-aliases['genMtw2'] = {
-    'expr': 'sqrt(2 * std_vector_dressedLeptonGen_pt[1] * metGenpt * (1-cos(std_vector_dressedLeptonGen_phi[1]-metGenphi)))',
-    'samples': mc
-}
-
-# Overlap cleaning for gen jets
-aliases['genJetClean'] = {
-    'expr': 'TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[0], 2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[0]), 2.) > 0.16 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[1], 2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[1]), 2.) > 0.16',
-    'samples': mc
-}
-
-# Components for the fiducial cut
-aliases['genLeptonPt'] = {
-    'expr': 'std_vector_dressedLeptonGen_pt[0]>25 && std_vector_dressedLeptonGen_pt[1]>10 && std_vector_dressedLeptonGen_pt[2]<10',
-    'samples': signals
-}
-aliases['genOSOF'] = {
-    'expr': 'std_vector_dressedLeptonGen_pid[0] * std_vector_dressedLeptonGen_pid[1] == -11 * 13',
-    'samples': signals
-}
-aliases['genTrailingE13'] = {
-    'expr': '(abs(std_vector_dressedLeptonGen_pid[1]) == 13 || std_vector_dressedLeptonGen_pt[1]>13)',
-    'samples': signals
-}
-
-# Number of gen jets with pt > 30 GeV
+# use HTXS_njets30 when moving to NanoAODv5
 aliases['nCleanGenJet'] = {
-    'expr': 'Sum$(std_vector_jetGen_pt > 30 && genJetClean)',
-    'samples': mc
-}
-
-# Fiducial cut for differential measurements
-aliases['fiducial'] = {
-    #'expr': 'genLeptonPt && genOSOF && genTrailingE13 && genMll>12 && metGenpt>20 && genPtll>30 && genMth>=60 && genMtw2>30'
-    'expr': 'genLeptonPt && genOSOF && genMll>12 && genPtll>30 && genMth>=60 && genMtw2>30',
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'CountGenJet',
     'samples': signals
 }
+
+## Fiducial cut for differential measurements
+#fiducial = [
+#    'GenDressedLepton_pt[0]>25 && Sum$(GenDressedLepton_pt>10) == 2',
+#    'GenDressedLepton_pdgId[0] * GenDressedLepton_pdgId[1] == -11 * 13',
+#    'sqrt(2*GenDressedLepton_pt[0] * GenDressedLepton_pt[1] * (cosh(GenDressedLepton_eta[0]-GenDressedLepton_eta[1])-cos(GenDressedLepton_phi[0]-GenDressedLepton_phi[1]))) > 12.',
+#    'genPtll > 30.',
+#    'sqrt(2. * GenMET_pt * (genPtll - genPxll * cos(GenMET_phi) - genPyll * sin(GenMET_phi))) > 60.',
+#    'sqrt(2. * GenDressedLepton_pt[1] * GenMET_pt * (1-cos(GenDressedLepton_phi[1]-GenMET_phi))) > 30.',
+#]
+#aliases['fiducial'] = {
+#    'expr': ' && '.join(fiducial),
+#    'samples': signals
+#}

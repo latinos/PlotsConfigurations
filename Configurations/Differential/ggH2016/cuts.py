@@ -9,12 +9,12 @@ import re
 
 _tmp = [
     'mll>12',
-    'std_vector_lepton_pt[0]>25 && std_vector_lepton_pt[1]>10 && std_vector_lepton_pt[2]<10',
-    'metPfType1>20',
+    'Lepton_pt[0]>25 && Sum$(Lepton_pt>10) == 2',
+    'abs(Lepton_eta[0])<2.5 && abs(Lepton_eta[1])<2.5',
+    'PuppiMET_pt > 20',
     'ptll>30',
-    'std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13',
-    'abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13'
-    #'((abs(std_vector_lepton_flavour[0]) == 11 && std_vector_electron_passConversionVeto[0]) || (abs(std_vector_lepton_flavour[1]) == 11 && std_vector_electron_passConversionVeto[1]))' # only applied to SR in Full2016
+    'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
+    'abs(Lepton_pdgId[1]) == 13 || Lepton_pt[1] > 13.'
 ]
 supercut = ' && '.join(_tmp)
 
@@ -27,25 +27,25 @@ slist_njsignal = [sname for sname in samples if sname not in signals]
 for sname in signals:
     sample = samples[sname]
     for bname in sample['subsamples']:
-        if re.match('.*_NJ_.*', bname):
+        if re.match('.*NJ_.*', bname):
             slist_njsignal.append('%s/%s' % (sname, bname))
 
 slist_pthsignal = [sname for sname in samples if sname not in signals]
 for sname in signals:
     sample = samples[sname]
     for bname in sample['subsamples']:
-        if re.match('.*_PTH_.*', bname):
+        if re.match('.*PTH_.*', bname):
             slist_pthsignal.append('%s/%s' % (sname, bname))
 
 njetCutsProgressive = {
-    '1': 'std_vector_jet_pt[0] > 30.',
-    '2': 'std_vector_jet_pt[1] > 30.',
-    '3': 'std_vector_jet_pt[2] > 30.',
-    'GE4': 'std_vector_jet_pt[3] > 30.'
+    '1': 'Alt$(ReCleanJet_pt[0], 0) > 30.',
+    '2': 'Alt$(ReCleanJet_pt[1], 0) > 30.',
+    '3': 'Alt$(ReCleanJet_pt[2], 0) > 30.',
+    'GE4': 'Alt$(ReCleanJet_pt[3], 0) > 30.',
 }
 
 pthCutsProgressive = {}
-for pth in pthBins:
+for pth in pthBins[1:]:
     if pth.startswith('GT'):
         pthCutsProgressive[pth] = 'pTWW > %s' % pth[2:]
     else:
@@ -53,29 +53,36 @@ for pth in pthBins:
 
 ### Control regions
 
+# top || DY || WW
 crCut = 'topcr || dycr || wwcr'
 
-categorization = '{gencat}+dycr*{dyoffset}+wwcr*{wwoffset}'
+# top + DY + WW
+categorization = 'topcr*({topcat})+dycr*({dyoffset}+{dycat})+wwcr*({wwoffset}+{wwcat})'
 
 def addcr(name, binning, cutsMap, slist):
     addcut(name, [crCut])
     cuts[name]['categories'] = []
     cuts[name]['samples'] = slist
 
-    gencat = []
-    for bname in binning[1:]:
-        gencat.append('(%s)' % cutsMap[bname])
-
+    topcat = []
     for bname in binning:
         cuts[name]['categories'].append('%s_top_2016' % bname)
+        if bname != binning[0]:
+            topcat.append('(%s)' % cutsMap[bname])
     
+    dycat = []
     for bname in binning:
         cuts[name]['categories'].append('%s_DY_2016' % bname)
+        if bname != binning[0]:
+            dycat.append('(%s)' % cutsMap[bname])
     
+    wwcat = []
     for bname in binning:
         cuts[name]['categories'].append('%s_WW_2016' % bname)
+        if bname != binning[0]:
+            wwcat.append('(%s)' % cutsMap[bname])
     
-    cuts[name]['categorization'] = categorization.format(gencat='+'.join(gencat), dyoffset=len(binning), wwoffset=(2 * len(binning)))
+    cuts[name]['categorization'] = categorization.format(topcat='+'.join(topcat), dycat='+'.join(dycat), wwcat='+'.join(wwcat), dyoffset=len(binning), wwoffset=(2 * len(binning)))
 
 addcr('hww_CR_catNJ', njetBinning, njetCutsProgressive, slist_njsignal)
 addcr('hww_CR_catPTH', pthBins, pthCutsProgressive, slist_pthsignal)
@@ -83,16 +90,16 @@ addcr('hww_CR_catPTH', pthBins, pthCutsProgressive, slist_pthsignal)
 ### Signal regions
 
 pt2cats = [
-    ('pt2lt20', 'std_vector_lepton_pt[1] < 20.'),
-    ('pt2ge20', 'std_vector_lepton_pt[1] >= 20.')
+    ('pt2lt20', 'Lepton_pt[1] < 20.'),
+    ('pt2ge20', 'Lepton_pt[1] >= 20.')
 ]
 flavcats = [
-    ('em', 'abs(std_vector_lepton_flavour[0]) == 11'),
-    ('me', 'abs(std_vector_lepton_flavour[0]) == 13')
+    ('em', 'abs(Lepton_pdgId[0]) == 11'),
+    ('me', 'abs(Lepton_pdgId[0]) == 13')
 ]
 chargecats = [
-    ('pm', 'std_vector_lepton_flavour[0] > 0'),
-    ('mp', 'std_vector_lepton_flavour[0] < 0')
+    ('pm', 'Lepton_pdgId[0] < 0'),
+    ('mp', 'Lepton_pdgId[0] > 0')
 ]
 
 def addsr(name, binning, cutsMap, slist):

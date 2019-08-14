@@ -1,7 +1,4 @@
 # Configuration file to produce initial root files -- has both merged and binned ggH samples
-
-treeName = 'Events'
-
 tag = 'ggHDifferential2016'
 
 # used by mkShape to define output directory for root files
@@ -37,3 +34,6 @@ structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
 nuisancesFile = 'nuisances.py'
+
+# input files
+# /eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__wwSel

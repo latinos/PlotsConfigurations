@@ -28,7 +28,7 @@ variables['mth'] = {
 }
 
 variables['met'] = {
-    'name': 'metPfType1',
+    'name': 'PuppiMET_pt',
     'range': (50, 20., 220.),
     'xaxis': 'E_{T}^{miss} [GeV]',
 }

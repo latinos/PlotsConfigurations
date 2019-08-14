@@ -8,83 +8,57 @@
 
 # plot = {}
 
-import copy
-
-for sname, sample in samples.items():
-  if sname not in signals and 'subsamples' in sample:
-    for sub in sample['subsamples']:
-      samples['%s_%s' % (sname, sub)] = copy.deepcopy(sample)
-      samples['%s_%s' % (sname, sub)].pop('subsamples')
-
-    for nuis in nuisances.itervalues():
-      if 'samples' in nuis and sname in nuis['samples']:
-        spec = nuis['samples'].pop(sname)
-        for sub in sample['subsamples']:
-          nuis['samples']['%s_%s' % (sname, sub)] = spec
-
-    samples.pop(sname)
-
-for cname, cut in cuts.items():
-  if 'categories' in cut:
-    for cat in cut['categories']:
-      if '_WW_' in cat:
-        continue
-      cuts['%s_%s' % (cname, cat)] = copy.deepcopy(cut)
-      cuts['%s_%s' % (cname, cat)].pop('categories')
-
-    for nuis in nuisances.itervalues():
-      if 'cuts' in nuis and cname in nuis['cuts']:
-        nuis['cuts'].remove(cname)
-        for cat in cut['categories']:
-          if '_WW_' in cat:
-            continue
-          nuis['cuts'].append('%s_%s' % (cname, cat))
-
-    cuts.pop(cname)
-
-bkgdefs = [
-    ('top', 'tW and t#bar{t}', ['top'], ROOT.kYellow),
-    ('WW', 'WW', ['WW', 'ggWW', 'WWewk'], ROOT.kAzure - 9),
-    ('Fake', 'Non-prompt', ['Fake_em', 'Fake_me'], ROOT.kGray + 1),
-    ('DY', 'DY', ['DY'], ROOT.kGreen + 2),
-    ('VZ', 'VZ', ['VZ', 'VgS_H'], ROOT.kViolet + 1),
-    ('Vg', 'V#gamma', ['Vg'], ROOT.kOrange + 10),
-    ('VgS', 'V#gamma*', ['VgS_L'], ROOT.kGreen - 9),
-    ('VVV', 'VVV', ['VVV'], ROOT.kAzure - 3),
-    ('Higgs_bkg', 'Higgs bkg', [sname for sname in signals if 'htt' in sname], ROOT.kRed + 2)
+defs = [
+    ('top', 'tW and t#bar{t}', ['top'], ROOT.kYellow, 0),
+    ('WW', 'WW', ['WW', 'ggWW', 'WWewk'], ROOT.kAzure - 9, 0),
+    ('Fake', 'Non-prompt', ['Fake'], ROOT.kGray + 1, 0),
+    ('DY', 'DY', ['DY'], ROOT.kGreen + 2, 0),
+    ('VZ', 'VZ', ['VZ', 'VgS_H'], ROOT.kViolet + 1, 0),
+    ('Vg', 'V#gamma', ['Vg'], ROOT.kOrange + 10, 0),
+    ('VgS', 'V#gamma*', ['VgS_L'], ROOT.kGreen - 9, 0),
+    ('VVV', 'VVV', ['VVV'], ROOT.kAzure - 3, 0),
+    ('Higgs_bkg', 'Higgs bkg', ['ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt'], ROOT.kRed + 2, 0),
+    ('Higgs_signal', 'Higgs signal', ['ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ttH_hww'], ROOT.kRed, 1)
 ]
 
-for group, title, snames, color in bkgdefs:
-    groupPlot[group]  = {
-        'nameHR': title,
-        'isSignal': 0,
-        'color': color,
-        'samples': snames
-    }
+# Case like VgS_H/L above - if we already split subsamples in the defs, we need to know beforehand the full subsample names
+flattenedSamples = set()
+for sname in samples.keys():
+    sample = samples[sname]
+    if 'subsamples' in sample:
+        flattenedSamples.update('%s_%s' % (sname, sub) for sub in sample['subsamples'] if 'PTH' not in sub)
+    else:
+        flattenedSamples.add(sname)
 
-    for sname in snames:
+for group, title, snames, color, isSignal in defs:
+    snamesWithSub = []
+    for sname in list(snames):
+        try:
+            sample = samples[sname]
+        except KeyError:
+            if sname in flattenedSamples:
+                snamesWithSub.append(sname)
+            else:
+                raise
+        else:
+            if 'subsamples' in sample:
+                snamesWithSub.extend('%s_%s' % (sname, sub) for sub in sample['subsamples'] if 'PTH' not in sub)
+            else:
+                snamesWithSub.append(sname)
+
+    for sname in snamesWithSub:
         plot[sname]  = {  
             'color': color,
-            'isSignal': 0,
+            'isSignal': isSignal,
             'isData': 0,
             'scale': 1.
         }
-
-snames = [sname for sname in signals if 'hww' in sname]
-
-groupPlot['Higgs_signal']  = {
-    'nameHR': 'Higgs signal',
-    'isSignal': 1,
-    'color': ROOT.kRed,
-    'samples': snames
-}
-
-for sname in snames:
-    plot[sname] = {
+    
+    groupPlot[group]  = {
+        'nameHR': title,
+        'isSignal': isSignal,
         'color': color,
-        'isSignal': 1,
-        'isData': 0,    
-        'scale': 1.,
+        'samples': snamesWithSub
     }
 
 # data
@@ -103,12 +77,28 @@ legend['lumi'] = 'L = 35.9/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
-for nuisance in nuisances.itervalues():
-    if 'cutspost' in nuisance:
-        nuisance['cuts'] = nuisance['cutspost'](nuisance, cuts)
-    if 'samplespost' in nuisance:
-        nuisance['samples'] = nuisance['samplespost'](nuisance, samples)
+# flatten sample and cut lists
 
-for variable in variables.itervalues():
-    if 'cutspost' in variable:
-        variable['cuts'] = variable['cutspost'](variable, cuts)
+for sname in samples.keys():
+    sample = samples[sname]
+    if 'subsamples' in sample:
+        for sub in sample['subsamples']:
+            if 'PTH' in sub:
+                continue
+            
+            samples['%s_%s' % (sname, sub)] = sample
+
+        samples.pop(sname)
+
+for cname in cuts.keys():
+    if 'PTH' in cname:
+        cuts.pop(cname)
+        continue
+    
+    cut = cuts[cname]
+    if 'categories' in cut:
+        for cat in cut['categories']:
+            cuts['%s_%s' % (cname, cat)] = cut
+
+        cuts.pop(cname)
+    
