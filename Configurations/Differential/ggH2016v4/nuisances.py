@@ -38,6 +38,7 @@ nuisances['fake_syst_em'] = {
     'samples': {
         'Fake_em': '1.3'
     },
+    'cutspost': lambda self, cuts: [cut for cut in cuts if '20me' not in cut],
     'perRecoBin': True
 }
 
@@ -47,6 +48,7 @@ nuisances['fake_syst_me'] = {
     'samples': {
         'Fake_me': '1.3'
     },
+    'cutspost': lambda self, cuts: [cut for cut in cuts if '20em' not in cut],
     'perRecoBin': True
 }
 
@@ -285,9 +287,9 @@ nuisances['VZ'] = {
 
 ###### pdf uncertainties
 
-valuesggh = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggH','125.09','pdf','sm')
-valuesggzh = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggZH','125.09','pdf','sm')
-valuesbbh = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','bbH','125.09','pdf','sm')
+valuesggh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','pdf','sm')
+valuesggzh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggZH','125.09','pdf','sm')
+valuesbbh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','bbH','125.09','pdf','sm')
 
 nuisances['pdf_Higgs_gg'] = {
     'name': 'pdf_Higgs_gg',
@@ -300,7 +302,7 @@ nuisances['pdf_Higgs_gg'] = {
     'type': 'lnN',
 }
 
-#values = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ttH','125.09','pdf','sm')
+#values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','pdf','sm')
 #
 #nuisances['pdf_Higgs_ttH'] = {
 #    'name': 'pdf_Higgs_ttH',
@@ -310,9 +312,9 @@ nuisances['pdf_Higgs_gg'] = {
 #    'type': 'lnN',
 #}
 
-valuesqqh = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.09','pdf','sm')
-valueswh = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.09','pdf','sm')
-valueszh = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH','125.09','pdf','sm')
+valuesqqh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm')
+valueswh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','pdf','sm')
+valueszh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','pdf','sm')
 
 nuisances['pdf_Higgs_qqbar'] = {
     'name': 'pdf_Higgs_qqbar',
@@ -418,6 +420,13 @@ nuisances['QCDscale_ggVV'] = {
 }
 
 # NLL resummation variations
+
+wwcutsposts = {
+    'zeroJet': lambda self, cuts: [cut for cut in cuts if 'NJ_0' in cut or 'NJ' not in cut],
+    'oneJet': lambda self, cuts: [cut for cut in cuts if 'NJ_1' in cut or 'NJ' not in cut],
+    'multiJet': lambda self, cuts: [cut for cut in cuts if 'NJ_0' not in cut and 'NJ_1' not in cut]
+}
+
 for nj in ['zeroJet', 'oneJet', 'multiJet']:
     nuisances['Resumscale_WW_%s' % nj] = {
         'name': 'CMS_hww_WWresum_%s' % nj,
@@ -426,7 +435,8 @@ for nj in ['zeroJet', 'oneJet', 'multiJet']:
         'type': 'shape',
         'samples': {
             'WW': ['{0}*nllW_Rup/nllW + (!{0})'.format(nj), '{0}*nllW_Rdown/nllW + (!{0})'.format(nj)]
-        }
+        },
+        'cutspost': wwcutsposts[nj]
     }
     
     nuisances['QCDscale_WW_%s' % nj] = {
@@ -437,6 +447,7 @@ for nj in ['zeroJet', 'oneJet', 'multiJet']:
         'samples': {
           'WW': ['{0}*nllW_Qup/nllW + (!{0})'.format(nj), '{0}*nllW_Qdown/nllW + (!{0})'.format(nj)]
         },
+        'cutspost': wwcutsposts[nj]
     }
 
 # Uncertainty on SR/CR ratio
@@ -446,7 +457,8 @@ nuisances['CRSR_accept_DY'] = {
     'samples': {'DY': '1.02'},
     #'samples': {'DY': '1.1'},
     'cuts': [cut for cut in cuts if '_CR_' in cut],
-    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut and cut in self['cuts']]),
+    #'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut and cut in self['cuts']]),
+    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut]),
     #'perRecoBin': True
 }
 
@@ -457,8 +469,7 @@ nuisances['CRSR_accept_top'] = {
     'samples': {'top': '1.01'},
     #'samples': {'top': '1.05'},
     'cuts': [cut for cut in cuts if '_CR_' in cut],
-    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut and cut in self['cuts']]),
-    #'perRecoBin': True
+    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut]),
 }
 
 # Theory uncertainty for ggH
@@ -496,7 +507,7 @@ nuisances['CRSR_accept_top'] = {
 
 #### QCD scale uncertainties for Higgs signals other than ggH
 
-values = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','vbfH','125.09','scale','sm')
+values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm')
 
 nuisances['QCDscale_qqH'] = {
     'name': 'QCDscale_qqH', 
@@ -507,8 +518,8 @@ nuisances['QCDscale_qqH'] = {
     'type': 'lnN'
 }
 
-valueswh = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','WH','125.09','scale','sm')
-valueszh = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ZH','125.09','scale','sm')
+valueswh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm')
+valueszh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm')
 
 nuisances['QCDscale_VH'] = {
     'name': 'QCDscale_VH', 
@@ -521,7 +532,7 @@ nuisances['QCDscale_VH'] = {
     'type': 'lnN',
 }
 
-values = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ggZH','125.09','scale','sm')
+values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggZH','125.09','scale','sm')
 
 nuisances['QCDscale_ggZH'] = {
     'name': 'QCDscale_ggZH', 
@@ -531,7 +542,7 @@ nuisances['QCDscale_ggZH'] = {
     'type': 'lnN',
 }
 
-#values = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','bbH','125.09','scale','sm')
+#values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','bbH','125.09','scale','sm')
 #
 #nuisances['QCDscale_bbH'] = {
 #  'name': 'QCDscale_bbH',
@@ -541,7 +552,7 @@ nuisances['QCDscale_ggZH'] = {
 #  'type': 'lnN',
 #}
 
-#values = HiggsXS.GetHiggsProdXSNP('YR4prel','13TeV','ttH','125.09','scale','sm')
+#values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','scale','sm')
 #
 #nuisances['QCDscale_ttH'] = {
 #    'name': 'QCDscale_ttH',

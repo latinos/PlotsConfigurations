@@ -39,10 +39,10 @@ groupPlot['WW']  = {
               }
 
 groupPlot['Fake']  = {
-                  'nameHR' : 'W+jets & TTsemilep',
+                  'nameHR' : 'nonprompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fakes']
+                  'samples'  : ['Fake_me', 'Fake_em']
 }
 
 
@@ -90,7 +90,8 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
+		  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
+		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww', 'qqH_htt', 'ggH_htt' ]
               }
 
 
@@ -123,7 +124,15 @@ plot['DY']  = {
               }
 
 
-plot['Fakes']  = {  
+plot['Fake_me']  = {  
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0                  
+              }
+
+
+plot['Fake_em']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -263,7 +272,7 @@ plot['VVV']  = {
 #                  'isData'   : 0,    
 #                  'scale'    : 1    #
 #                  }
-
+#
 # HWW 
 
 #plot['H_hww'] = {
@@ -324,14 +333,14 @@ plot['ggH_hww'] = {
 #                  'scale'    : 1    #
 #                  }
 
-plot['ttH_hww'] = {
-                  'nameHR' : 'ttH',
-                  'color': 632+6, # kRed+6
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1    #
-                  }
-
+#plot['ttH_hww'] = {
+#                  'nameHR' : 'ttH',
+#                  'color': 632+6, # kRed+6
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  'scale'    : 1    #
+#                  }
+#
 
 # data
 
