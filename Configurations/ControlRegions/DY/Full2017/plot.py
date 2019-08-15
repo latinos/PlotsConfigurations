@@ -61,12 +61,12 @@ groupPlot['Vg']  = {
                   'samples'  : ['Vg', 'Wg']
               }
 
-groupPlot['VgS']  = {
-                  'nameHR' : "V#gamma*",
-                  'isSignal' : 0,
-                  'color'    : 409,   # kGreen - 9
-                  'samples'  : ['WZgS']
-              }
+#groupPlot['VgS']  = {
+#                  'nameHR' : "V#gamma*",
+#                  'isSignal' : 0,
+#                  'color'    : 409,   # kGreen - 9
+#                  'samples'  : ['WZgS']
+#              }
 
 
 '''
@@ -196,12 +196,12 @@ plot['VVV']  = {
                   'scale'    : 1.0
                   }
 
-plot['WZgS']  = {
-                  'color': 617, # kViolet + 1
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
+#plot['WZgS']  = {
+#                  'color': 617, # kViolet + 1
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1.0
+#                  }
 '''
 plot['WZgS_L']  = {
                   'color': 617, # kViolet + 1

@@ -14,15 +14,18 @@ import shutil
 import subprocess
 from argparse import ArgumentParser
 
+import LatinoAnalysis.Tools.userConfig as userConfig
+
 argParser = ArgumentParser(description = 'Run hadd in batch')
 argParser.add_argument('--pycfg', '-c', metavar = 'PATH', dest = 'pycfg', default = 'configuration.py', help = 'Configuration file name.')
+argParser.add_argument('--flavour', '-f', metavar = 'FLAVOUR', dest = 'flavour', default = 'longlunch', help = 'New job flavour')
 
 args = argParser.parse_args()
 del sys.argv[1:]
 
 execfile(args.pycfg)
 
-jobsdir = os.path.realpath('jobs/mkShapes__%s' % tag)
+jobsdir = os.path.realpath('%s/mkShapes__%s' % (userConfig.jobDir, tag))
 jobnames = []
 
 for jdspath in glob.glob('%s/mkShapes__%s__ALL__*.jds' % (jobsdir, tag)):
@@ -43,7 +46,10 @@ jds += 'error = {jobsdir}/$(JobName).err\n'
 jds += 'log = {jobsdir}/$(JobName).log\n'
 jds += 'request_cpus = 1\n'
 #jds += 'periodic_hold = CurrentTime - EnteredCurrentStatus > 28740\n'
-jds += '+JobFlavour = "longlunch"\n'
+jds += '+JobFlavour = "%s"\n' % args.flavour
+if hasattr(userConfig, 'condorAccountingGroup'):
+    jds += 'accounting_group = %s\n' % userConfig.condorAccountingGroup
+    jds += '+AccountingGroup = %s\n' % userConfig.condorAccountingGroup
 jds += 'queue JobName in (\n'
 for jobname in jobnames:
     jds += jobname + '\n'

@@ -3,6 +3,8 @@
 #include "TTreeReaderArray.h"
 #include "TVector2.h"
 #include "TLorentzVector.h"
+#include "TDirectory.h"
+#include "TH1D.h"
 
 #include <cmath>
 #include <iostream>
@@ -28,20 +30,39 @@ enum StatusBits {
 
 class HWWFiducial {
 public:
-  HWWFiducial() {}
-  ~HWWFiducial() { deleteTreeReaders(); }
+  HWWFiducial();
+  ~HWWFiducial() { deleteTreeReaders(); delete hSumW_; delete hSumW2_; }
 
   void setTreeReaders(TTreeReader*);
   void deleteTreeReaders();
+  void writeCounters(TDirectory*);
   bool fiducial();
 
-  Float_t GenPtH() const { return GenPtH_; }
-  UInt_t nGenJetClean() const { return nGenJetClean_; }
-  std::vector<Float_t> const& GenJetClean_eta() const { return GenJetClean_eta_; }
-  std::vector<Float_t> const& GenJetClean_phi() const { return GenJetClean_phi_; }
-  std::vector<Float_t> const& GenJetClean_pt() const { return GenJetClean_pt_; }
+  Int_t Lepton1_pdgId() const { return Lepton1_pdgId_; };
+  Float_t Lepton1_eta() const { return Lepton1_eta_; };
+  Float_t Lepton1_phi() const { return Lepton1_phi_; };
+  Float_t Lepton1_pt() const { return Lepton1_pt_; };
+  Float_t Lepton1_mass() const { return Lepton1_mass_; };
+  Int_t Lepton2_pdgId() const { return Lepton2_pdgId_; };
+  Float_t Lepton2_eta() const { return Lepton2_eta_; };
+  Float_t Lepton2_phi() const { return Lepton2_phi_; };
+  Float_t Lepton2_pt() const { return Lepton2_pt_; };
+  Float_t Lepton2_mass() const { return Lepton2_mass_; };
+  Float_t Dilepton_pt() const { return Dilepton_pt_; };
+  Float_t Dilepton_mass() const { return Dilepton_mass_; };
+  Float_t PtH() const { return PtH_; };
+  Float_t MtH() const { return MtH_; };
+  Float_t MtW2() const { return MtW2_; }; 
+  UInt_t nCleanJet() const { return nCleanJet_; }
+  std::vector<Float_t> const& CleanJet_eta() const { return CleanJet_eta_; }
+  std::vector<Float_t> const& CleanJet_phi() const { return CleanJet_phi_; }
+  std::vector<Float_t> const& CleanJet_pt() const { return CleanJet_pt_; }
+
+  TH1* sumW() const { return hSumW_; }
+  TH1* sumW2() const { return hSumW2_; }
 
 private:
+  TTreeReaderValue<Float_t>* genWeight_{nullptr};
   TTreeReaderValue<UInt_t>* nGenPart_{nullptr};
   TTreeReaderArray<Int_t>* GenPart_genPartIdxMother_{nullptr};
   TTreeReaderArray<Int_t>* GenPart_pdgId_{nullptr};
@@ -62,19 +83,47 @@ private:
   TTreeReaderArray<Float_t>* GenJet_eta_{nullptr};
   TTreeReaderArray<Float_t>* GenJet_phi_{nullptr};
   TTreeReaderArray<Float_t>* GenJet_pt_{nullptr};
-  
-  Float_t GenPtH_{};
-  UInt_t nGenJetClean_{};
-  std::vector<Float_t> GenJetClean_eta_{};
-  std::vector<Float_t> GenJetClean_phi_{};
-  std::vector<Float_t> GenJetClean_pt_{};
+
+  Int_t Lepton1_pdgId_{};
+  Float_t Lepton1_eta_{};
+  Float_t Lepton1_phi_{};
+  Float_t Lepton1_pt_{};
+  Float_t Lepton1_mass_{};
+  Int_t Lepton2_pdgId_{};
+  Float_t Lepton2_eta_{};
+  Float_t Lepton2_phi_{};
+  Float_t Lepton2_pt_{};
+  Float_t Lepton2_mass_{};
+  Float_t Dilepton_pt_{};
+  Float_t Dilepton_mass_{};
+  Float_t PtH_{};
+  Float_t MtH_{};
+  Float_t MtW2_{};
+  UInt_t nCleanJet_{};
+  std::vector<Float_t> CleanJet_eta_{};
+  std::vector<Float_t> CleanJet_phi_{};
+  std::vector<Float_t> CleanJet_pt_{};
+
+  TH1D* hSumW_{nullptr};
+  TH1D* hSumW2_{nullptr};
 };
+
+HWWFiducial::HWWFiducial() :
+  hSumW_(new TH1D("sumW", "sumW", 1, 0., 1.)),
+  hSumW2_(new TH1D("sumW2", "sumW2", 1, 0., 1.))
+{
+  hSumW_->SetDirectory(nullptr);
+  hSumW2_->SetDirectory(nullptr);
+  hSumW_->Sumw2();
+  hSumW2_->Sumw2();
+}
 
 void
 HWWFiducial::setTreeReaders(TTreeReader* _reader)
 {
   deleteTreeReaders();
 
+  genWeight_ = new TTreeReaderValue<Float_t>(*_reader, "genWeight");
   nGenPart_ = new TTreeReaderValue<UInt_t>(*_reader, "nGenPart");
   GenPart_genPartIdxMother_ = new TTreeReaderArray<Int_t>(*_reader, "GenPart_genPartIdxMother");
   GenPart_pdgId_ = new TTreeReaderArray<Int_t>(*_reader, "GenPart_pdgId");
@@ -100,6 +149,7 @@ HWWFiducial::setTreeReaders(TTreeReader* _reader)
 void
 HWWFiducial::deleteTreeReaders()
 {
+  delete genWeight_;
   delete nGenPart_;
   delete GenPart_genPartIdxMother_;
   delete GenPart_pdgId_;
@@ -122,30 +172,84 @@ HWWFiducial::deleteTreeReaders()
   delete GenJet_pt_;
 }
 
+void
+HWWFiducial::writeCounters(TDirectory* _outdir)
+{
+  TDirectory::TContext context(_outdir);
+  hSumW_->SetDirectory(_outdir);
+  hSumW_->Write();
+  delete hSumW_;
+  hSumW_ = nullptr;
+  hSumW2_->SetDirectory(_outdir);
+  hSumW2_->Write();
+  delete hSumW2_;
+  hSumW2_ = nullptr;
+}
+
 bool
 HWWFiducial::fiducial()
 {
+  double w(*genWeight_->Get());
+  hSumW_->Fill(0.5, w);
+  hSumW2_->Fill(0.5, w * w);
+
   unsigned nL(*nGenDressedLepton_->Get());
   if (nL < 2)
     return false;
 
-  unsigned nG(*nGenPart_->Get());
-  int hwwLeptons[2] = {-1, -1}; // find exactly two status 1 leptons directly from W that's from H
-  std::vector<unsigned> promptLeptons;
-  for (unsigned iG(0); iG != nG; ++iG) {
-    // needs to be prompt
-    int statusFlags(GenPart_statusFlags_->At(iG));
-    if ((statusFlags & (1 << kIsPrompt)) == 0)
+  bool hasLead(false);
+  bool hasTrail(false);
+  bool hasFlavor[4] = {false, false, false, false};
+  for (unsigned iL(0); iL != nL; ++iL) {
+    if (std::abs(GenDressedLepton_eta_->At(iL)) > 2.5)
       continue;
 
-    int status(GenPart_status_->At(iG));
-    unsigned absId(std::abs(GenPart_pdgId_->At(iG)));
+    double pt(GenDressedLepton_pt_->At(iL));
+    if (pt > 25.)
+      hasLead = true;
+    else if (pt > 10.)
+      hasTrail = true;
+    else
+      continue;
 
-    // a prompt finalstate e or mu, or a prompt last-copy tau
-    if ((status == 1 && (absId == 11 || absId == 13)) || ((statusFlags & (1 << kIsLastCopy)) != 0 && absId == 15))
-      promptLeptons.push_back(iG);
+    switch (GenDressedLepton_pdgId_->At(iL)) {
+    case 11:
+      hasFlavor[0] = true;
+      break;
+    case -11:
+      hasFlavor[1] = true;
+      break;
+    case 13:
+      hasFlavor[2] = true;
+      break;
+    case -13:
+      hasFlavor[3] = true;
+      break;
+    }
+  }
+
+  if (!hasLead || !hasTrail)
+    return false;
+  if (!(hasFlavor[0] && hasFlavor[3]) && !(hasFlavor[1] && hasFlavor[2]))
+    return false;
+
+  unsigned nG(*nGenPart_->Get());
+  int hwwLeptons[2] = {-1, -1}; // find exactly two status 1 leptons directly from W that's from H
+  for (unsigned iG(0); iG != nG; ++iG) {
+    // needs to be prompt
+    if ((GenPart_statusFlags_->At(iG) & (1 << kIsPrompt)) == 0)
+      continue;
+
+    if (GenPart_status_->At(iG) != 1)
+      continue;
+
+    int pdgId(GenPart_pdgId_->At(iG));
+    unsigned absId(std::abs(pdgId));
 
     if (absId != 11 && absId != 13)
+      continue;
+
+    if (hwwLeptons[0] >= 0 && pdgId * GenPart_pdgId_->At(hwwLeptons[0]) != -11*13)
       continue;
 
     int motherIdx(GenPart_genPartIdxMother_->At(iG));
@@ -182,10 +286,10 @@ HWWFiducial::fiducial()
 
     if (hwwLeptons[0] < 0)
       hwwLeptons[0] = iG;
-    else if (hwwLeptons[1] < 0)
+    else if (hwwLeptons[1] < 0) {
       hwwLeptons[1] = iG;
-    else // too many leptons
-      return false;
+      break;
+    }
   }
 
   if (hwwLeptons[1] < 0)
@@ -194,14 +298,17 @@ HWWFiducial::fiducial()
   if (GenPart_pdgId_->At(hwwLeptons[0]) * GenPart_pdgId_->At(hwwLeptons[1]) != -11*13)
     return false;
 
+  int lId[2];
   double lEta[2];
   double lPhi[2];
   for (unsigned iX(0); iX != 2; ++iX) {
+    lId[iX] = GenPart_pdgId_->At(hwwLeptons[iX]);
     lEta[iX] = GenPart_eta_->At(hwwLeptons[iX]);
     lPhi[iX] = GenPart_phi_->At(hwwLeptons[iX]);
   }
 
-  TLorentzVector p4ltmp[2];
+  // dressed p4
+  TLorentzVector p4l[2];
 
   for (unsigned iL(0); iL != nL; ++iL) {
     int dlId(GenDressedLepton_pdgId_->At(iL));
@@ -209,49 +316,89 @@ HWWFiducial::fiducial()
     double dlPhi(GenDressedLepton_phi_->At(iL));
 
     for (unsigned iX(0); iX != 2; ++iX) {
+      if (dlId != lId[iX])
+        continue;
+      
       double dEta(dlEta - lEta[iX]);
       double dPhi(TVector2::Phi_mpi_pi(dlPhi - lPhi[iX]));
 
       if (dEta * dEta + dPhi * dPhi < 0.01) {
-        p4ltmp[iX].SetPtEtaPhiM(GenDressedLepton_pt_->At(iL), dlEta, dlPhi, GenDressedLepton_mass_->At(iL));
+        p4l[iX].SetPtEtaPhiM(GenDressedLepton_pt_->At(iL), dlEta, dlPhi, GenDressedLepton_mass_->At(iL));
         break;
       }
     }
   }
 
-  TLorentzVector* p4l[2];
-  if (p4ltmp[0].Pt() > p4ltmp[1].Pt()) {
-    p4l[0] = &p4ltmp[0];
-    p4l[1] = &p4ltmp[1];
+  unsigned il1, il2;
+  if (p4l[0].Pt() > p4l[1].Pt()) {
+    il1 = 0;
+    il2 = 1;
   }
   else {
-    p4l[0] = &p4ltmp[1];
-    p4l[1] = &p4ltmp[0];
+    il1 = 1;
+    il2 = 0;
   }
 
-  if (p4l[0]->Pt() < 25. || p4l[1]->Pt() < 10. || std::abs(p4l[0]->Eta()) > 2.5 || std::abs(p4l[1]->Eta()) > 2.5)
+  Lepton1_pt_ = p4l[il1].Pt();
+  Lepton1_eta_ = p4l[il1].Eta();
+  Lepton1_phi_ = p4l[il1].Phi();
+  Lepton2_pt_ = p4l[il2].Pt();
+  Lepton2_eta_ = p4l[il2].Eta();
+  Lepton2_phi_ = p4l[il2].Phi();
+
+  if (Lepton1_pt_ < 25. || Lepton2_pt_ < 10. || std::abs(Lepton1_eta_) > 2.5 || std::abs(Lepton2_eta_) > 2.5)
     return false;
 
-  TLorentzVector p4ll(p4ltmp[0] + p4ltmp[1]);
-  if (p4ll.M() < 12. || p4ll.Pt() < 30.)
+  TLorentzVector p4ll(p4l[0] + p4l[1]);
+  Dilepton_mass_ = p4ll.M();
+  Dilepton_pt_ = p4ll.Pt();
+  if (Dilepton_mass_ < 12. || Dilepton_pt_ < 30.)
     return false;
 
-  TVector2 ptll(p4ll.X(), p4ll.Y());
   TVector2 met;
   met.SetMagPhi(*GenMET_pt_->Get(), *GenMET_phi_->Get());
 
-  if (std::sqrt(2. * met.Mod() * ptll.Mod() * (1. - std::cos(ptll.Phi() - met.Phi()))) < 60.)
+  MtH_ = std::sqrt(2. * met.Mod() * p4ll.Pt() * (1. - std::cos(p4ll.Phi() - met.Phi())));
+
+  if (MtH_ < 60.)
     return false;
 
-  if (std::sqrt(2. * met.Mod() * p4l[1]->Pt() * (1. - std::cos(p4l[1]->Phi() -met.Phi()))) < 30.)
+  MtW2_ = std::sqrt(2. * met.Mod() * Lepton2_pt_ * (1. - std::cos(Lepton2_phi_ - met.Phi())));
+
+  if (MtW2_ < 30.)
     return false;
 
-  GenPtH_ = (ptll + met).Mod();
+  Lepton1_pdgId_ = lId[il1];
+  Lepton1_mass_ = p4l[il1].M();
+  Lepton2_pdgId_ = lId[il2];
+  Lepton2_mass_ = p4l[il2].M();
 
-  nGenJetClean_ = 0;
-  GenJetClean_eta_.clear();
-  GenJetClean_phi_.clear();
-  GenJetClean_pt_.clear();
+  Dilepton_pt_ = p4ll.Pt();
+  Dilepton_mass_ = p4ll.M();
+
+  TVector2 ptll(p4ll.X(), p4ll.Y());
+  
+  PtH_ = (ptll + met).Mod();
+
+  std::vector<unsigned> promptLeptons;
+
+  for (unsigned iG(0); iG != nG; ++iG) {
+    int statusFlags(GenPart_statusFlags_->At(iG));
+    if ((statusFlags & (1 << kIsPrompt)) == 0)
+      continue;
+
+    int status(GenPart_status_->At(iG));
+    unsigned absId(std::abs(GenPart_pdgId_->At(iG)));
+
+    // a prompt finalstate e or mu, or a prompt last-copy tau
+    if ((status == 1 && (absId == 11 || absId == 13)) || ((statusFlags & (1 << kIsLastCopy)) != 0 && absId == 15))
+      promptLeptons.push_back(iG);
+  }
+
+  nCleanJet_ = 0;
+  CleanJet_eta_.clear();
+  CleanJet_phi_.clear();
+  CleanJet_pt_.clear();
 
   unsigned nJ(*nGenJet_->Get());
   for (unsigned iJ(0); iJ != nJ; ++iJ) {
@@ -278,10 +425,10 @@ HWWFiducial::fiducial()
     if (matches)
       continue;
 
-    GenJetClean_eta_.push_back(jEta);
-    GenJetClean_phi_.push_back(jPhi);
-    GenJetClean_pt_.push_back(jPt);
-    ++nGenJetClean_;
+    CleanJet_eta_.push_back(jEta);
+    CleanJet_phi_.push_back(jPhi);
+    CleanJet_pt_.push_back(jPt);
+    ++nCleanJet_;
   }
 
   return true;

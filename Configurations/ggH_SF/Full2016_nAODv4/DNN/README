@@ -1,0 +1,39 @@
+#Submit shapesmulti in batch
+mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=workday
+
+#Hadd files
+mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files
+
+#mkplots 
+mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_
+
+#mkDYestim 0j
+mkDYestim.py --pycfg=configuration_0j_dymvaOptim.py --dycfg=dyestim_0j_dymvaOptim.py --inputFile=rootFile_0j_dymvaOptim/plots_ggH_SF_0j_dymvaOptim.root
+
+#mkDYestim SF
+mkDYestim.py --pycfg=configuration_mllOptim.py --dycfg=dyestim_SF_Optim.py --inputFile=rootFile_mllOptim/plots_ggH_SF_mllOptim.root
+
+#mkDatacards
+mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_ggH_SF_DYEstim.root --cardList=hww2l2v_13TeV_2016_0jee,hww2l2v_13TeV_2016_WW_0jee,hww2l2v_13TeV_2016_top_0jee,hww2l2v_13TeV_2016_0jmm,hww2l2v_13TeV_2016_WW_0jmm,hww2l2v_13TeV_2016_top_0jmm,hww2l2v_13TeV_2016_1jee,hww2l2v_13TeV_2016_WW_1jee,hww2l2v_13TeV_2016_top_1jee,hww2l2v_13TeV_2016_1jmm,hww2l2v_13TeV_2016_WW_1jmm,hww2l2v_13TeV_2016_top_1jmm,hww2l2v_13TeV_2016_2jee,hww2l2v_13TeV_2016_WW_2jee,hww2l2v_13TeV_2016_top_2jee,hww2l2v_13TeV_2016_2jmm,hww2l2v_13TeV_2016_WW_2jmm,hww2l2v_13TeV_2016_top_2jmm,hww2l2v_13TeV_2016_2jee_vbf,hww2l2v_13TeV_2016_WW_2jee_vbf,hww2l2v_13TeV_2016_top_2jee_vbf,hww2l2v_13TeV_2016_2jmm_vbf,hww2l2v_13TeV_2016_WW_2jmm_vbf,hww2l2v_13TeV_2016_top_2jmm_vbf
+
+mkDatacards.py --pycfg=configuration_mllOptim.py --inputFile=rootFile_mllOptim/plots_ggH_SF_mllOptim_DYEstim.root --cardList=hww2l2v_13TeV_2016_0jee,hww2l2v_13TeV_2016_WW_0jee,hww2l2v_13TeV_2016_top_0jee,hww2l2v_13TeV_2016_0jmm,hww2l2v_13TeV_2016_WW_0jmm,hww2l2v_13TeV_2016_top_0jmm,hww2l2v_13TeV_2016_1jee,hww2l2v_13TeV_2016_WW_1jee,hww2l2v_13TeV_2016_1jmm,hww2l2v_13TeV_2016_WW_1jmm,hww2l2v_13TeV_2016_top_1jsf
+
+mkDatacards.py --pycfg=configuration_mllOptim.py --inputFile=rootFile_mllOptim/plots_ggH_SF_mllOptim_DYEstim.root --cardList=hww2l2v_13TeV_2016_0jee,hww2l2v_13TeV_2016_WW_0jee,hww2l2v_13TeV_2016_top_0jee,hww2l2v_13TeV_2016_0jmm,hww2l2v_13TeV_2016_WW_0jmm,hww2l2v_13TeV_2016_top_0jmm,hww2l2v_13TeV_2016_1jee,hww2l2v_13TeV_2016_WW_1jee,hww2l2v_13TeV_2016_1jmm,hww2l2v_13TeV_2016_WW_1jmm,hww2l2v_13TeV_2016_top_1jsf
+
+mkDatacards.py --pycfg=configuration_splitpt2.py --inputFile=rootFile/plots_ggH_SF_split2_DYEstim.root --cardList=hww2l2v_13TeV_2016_0jee_pt2ge20,hww2l2v_13TeV_2016_0jee_pt2lt20,hww2l2v_13TeV_2016_WW_0jee,hww2l2v_13TeV_2016_top_0jee,hww2l2v_13TeV_2016_0jmm_pt2ge20,hww2l2v_13TeV_2016_0jmm_pt2lt20,hww2l2v_13TeV_2016_WW_0jmm,hww2l2v_13TeV_2016_top_0jmm,hww2l2v_13TeV_2016_1jee,hww2l2v_13TeV_2016_WW_1jee,hww2l2v_13TeV_2016_top_1jee,hww2l2v_13TeV_2016_1jmm,hww2l2v_13TeV_2016_WW_1jmm,hww2l2v_13TeV_2016_top_1jmm
+
+mkDatacards.py --pycfg=configuration_2j_mllOptim.py --inputFile=rootFile_2j_mllOptim/plots_ggH_SF_2j_mllOptim_DYEstim.root --cardList=hww2l2v_13TeV_2016_2jggHee,hww2l2v_13TeV_2016_WW_2jggHee,hww2l2v_13TeV_2016_top_2jggHee,hww2l2v_13TeV_2016_top_2jggHmm,hww2l2v_13TeV_2016_2jggHmm,hww2l2v_13TeV_2016_WW_2jggHmm,hww2l2v_13TeV_2016_2jVBFee,hww2l2v_13TeV_2016_WW_2jVBFee,hww2l2v_13TeV_2016_2jVBFmm,hww2l2v_13TeV_2016_WW_2jVBFmm,hww2l2v_13TeV_2016_top_2jVBFee,hww2l2v_13TeV_2016_top_2jVBFmm
+
+#mkComb (combine regions)
+mkComb.py --pycfg=configuration_ --combineLocation=/afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_10_2_13/src/ --combcfg=comb_
+
+#mkOptim (calculate the significance)
+mkOptim.py --pycfg=configuration_ --combineLocation=/afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_10_2_13/src/ --combcfg=comb_ --fomList=SExpPre,BestFit
+
+#see significance
+grep Significance: datacards/*/comb/SExpPre_*
+grep "fit r:" datacards/*/comb/BestFit_*
+
+#DYEST yield table
+grep "proc" datacards/hww2l2v_13TeV_2016_*/events/datacard.txt > yield.txt
+grep "rate " datacards/hww2l2v_13TeV_2016_*/events/datacard.txt >> yield.txt

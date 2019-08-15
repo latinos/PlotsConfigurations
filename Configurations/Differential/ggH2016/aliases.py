@@ -26,41 +26,20 @@ muWP='cut_Tight80x'
 
 ##############################
 
-## categorization
-#aliases['leade'] = {
-#    'expr': 'abs(std_vector_lepton_flavour[0]) == 11'
-#}
-#
-#aliases['leadm'] = {
-#    'expr': 'abs(std_vector_lepton_flavour[0]) == 13'
-#}
-
-#aliases['highptTrail'] = {
-#    'expr': 'std_vector_lepton_pt[1] > 20.'
-#}
-#
-#aliases['lowptTrail'] = {
-#    'expr': 'std_vector_lepton_pt[1] < 20.'
-#}
-
-# Trailing lepton is a muon (with pt > 10 GeV implied) or an electron with pt > 13 GeV
-aliases['trailingE13'] = {
-    'expr': 'abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13'
-}
-
-# Leading two leptons have opposite sign & flavor
-aliases['osof'] = {
-    'expr': 'std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13'
-}
-
-aliases['passConversionVeto'] = {
-    'expr': '(TMath::Abs(std_vector_lepton_flavour[0]) == 13 || std_vector_electron_passConversionVeto[0] == 1) && (TMath::Abs(std_vector_lepton_flavour[1]) == 13 || std_vector_electron_passConversionVeto[1] == 1)'
-}
-
 # Precompiled lepton cuts
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
     'samples': mc + ['DATA']
+}
+
+aliases['gstarLow'] = {
+    'expr': 'Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4',
+    'samples': 'VgS'
+}
+
+aliases['gstarHigh'] = {
+    'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
+    'samples': 'VgS'
 }
 
 # No jet with pt > 30 GeV
@@ -68,89 +47,38 @@ aliases['zeroJet'] = {
     'expr': 'std_vector_jet_pt[0] < 30.'
 }
 
-# ==1 jet with pt > 30 GeV
-aliases['oneJet'] = {
-    'expr': 'std_vector_jet_pt[0] >= 30. && std_vector_jet_pt[1] < 30.'
-}
-
-# ==2 jets with pt > 30 GeV
-aliases['twoJet'] = {
-    'expr': 'std_vector_jet_pt[0] >= 30. && std_vector_jet_pt[1] >= 30. && std_vector_jet_pt[2] < 30.'
-}
-
-# ==3 jets with pt > 30 GeV
-aliases['threeJet'] = {
-    'expr': 'std_vector_jet_pt[0] >= 30. && std_vector_jet_pt[1] >= 30. && std_vector_jet_pt[2] >= 30. && std_vector_jet_pt[3] < 30.'
-}
-
-# >=2 jets with pt > 30 GeV
-aliases['manyJets'] = {
-    'expr': 'std_vector_jet_pt[0] >= 30. && std_vector_jet_pt[1] >= 30. && std_vector_jet_pt[2] >= 30. && std_vector_jet_pt[3] >= 30.'
-}
-
-## >=2 jets with pt > 30 GeV limiting to "ggh" configuration
-#aliases['manyJetGGH'] = {
-#    'expr': 'manyJet && (mjj < 65. || (mjj > 105. && mjj < 400.))'
-#}
-
-## number of jets capped at 2
-#aliases['njetCapped'] = {
-#    'expr': 'njet * (njet < 3) + 2 * (njet > 2)'
-#}
-
-## number of bjets
-#aliases['nbjet'] = {
-#    'expr': 'Sum$(std_vector_jet_pt > 30. && std_vector_jet_cmvav2 > -0.5884)'
-#}
-
 # b-jet veto
 aliases['bVeto'] = {
     'expr': 'bveto_CMVA' + bWP
 }
 
-aliases['std_vector_jet_breq'] = {
-    'expr': 'std_vector_jet_cmvav2 > -0.5884'
+aliases['bReq'] = {
+    'expr': 'Sum$(std_vector_jet_pt > 30. && abs(std_vector_jet_eta) < 2.5 && std_vector_jet_cmvav2 > -0.5884) >= 1'
 }
 
+aliases['topcr'] = {
+    'expr': 'mtw2>30 && mll>50 && ((zeroJet && !bVeto) || bReq)'
+}
+
+aliases['dycr'] = {
+    'expr': 'mth<60 && mll>40 && mll<80 && bVeto'
+}
+
+aliases['wwcr'] = {
+    'expr': 'mth>60 && mtw2>30 && mll>100 && bVeto'
+}
+
+# SR definition
+
+aliases['sr'] = {
+    'expr': 'mth>60 && mtw2>30 && bVeto && std_vector_electron_passConversionVeto[1]' # this is how it's done in Full2016
+}
+
+# top reweighting
 aliases['toprwgt'] = {
     'expr': 'TMath::Sqrt(TMath::Exp(0.0615-0.0005*topLHEpt) * TMath::Exp(0.0615-0.0005*antitopLHEpt))',
     'samples': top
 }
-
-# Lepton px, py
-#aliases['px0'] = {
-#    'expr': 'std_vector_lepton_pt[0] * cos(std_vector_lepton_phi[0])'
-#}
-#aliases['py0'] = {
-#    'expr': 'std_vector_lepton_pt[0] * sin(std_vector_lepton_phi[0])'
-#}
-#aliases['px1'] = {
-#    'expr': 'std_vector_lepton_pt[1] * cos(std_vector_lepton_phi[1])'
-#}
-#aliases['py1'] = {
-#    'expr': 'std_vector_lepton_pt[1] * sin(std_vector_lepton_phi[1])'
-#}
-
-# pxll, pyll
-#aliases['pxll'] = {
-#    'expr': 'px0 + px1'
-#}
-#aliases['pyll'] = {
-#    'expr': 'py0 + py1'
-#}
-
-# pxH, pyH
-#aliases['pxH'] = {
-#    'expr': 'pxll + metPfType1 * cos(metPfType1Phi)'
-#}
-#aliases['pyH'] = {
-#    'expr': 'pyll + metPfType1 * sin(metPfType1Phi)'
-#}
-
-# pTH - identical to pTWW
-#aliases['ptH'] = {
-#    'expr': 'sqrt(pxH * pxH + pyH * pyH)'
-#}
 
 # Lepton & b-jet id efficiency scale factor
 aliases['sfWeight'] = {
@@ -230,18 +158,6 @@ aliases['fakeWeightStatMuDown'] = {
     'samples': ['Fake']
 }
 
-# Gen lepton match
-aliases['GenLepMatch'] = {
-    'expr': 'GenLepMatch2l',
-    'samples': mc
-}
-
-# Gen HT (includes leptons!)
-aliases['genHT'] = {
-    'expr': 'Sum$(std_vector_LHEparton_pt * (std_vector_LHEparton_pt > 0))',
-    'samples': mc
-}
-
 # Gen Mll
 aliases['genMll'] = {
     'expr': 'sqrt(2*std_vector_dressedLeptonGen_pt[0] * std_vector_dressedLeptonGen_pt[1] * (cosh(std_vector_dressedLeptonGen_eta[0]-std_vector_dressedLeptonGen_eta[1])-cos(std_vector_dressedLeptonGen_phi[0]-std_vector_dressedLeptonGen_phi[1])))',
@@ -307,30 +223,6 @@ aliases['genPtll'] = {
     'samples': mc
 }
 
-## Gen H pz
-#aliases['genPzH'] = {
-#    'expr': 'higgsGenpt * TMath::SinH(higgsGeneta)',
-#    'samples': mc
-#}
-#
-## Gen H energy
-#aliases['genEH'] = {
-#    'expr': 'TMath::Sqrt(higgsGenmass * higgsGenmass + TMath::Power(higgsGenpt * TMath::CosH(higgsGeneta), 2.))',
-#    'samples': mc
-#}
-#
-## Gen yH
-#aliases['genYH'] = {
-#    'expr': 'TMath::Log((genEH + genPzH) / (higgsGenmass * higgsGenmass + higgsGenpt * higgsGenpt))',
-#    'samples': mc
-#}
-#
-## Gen yH
-#aliases['absGenYH'] = {
-#    'expr': 'abs(genYH)',
-#    'samples': mc
-#}
-
 # Gen mth
 aliases['genMth'] = {
     'expr': 'sqrt(2 * metGenpt * (genPtll - genPxll * cos(metGenphi) - genPyll * sin(metGenphi)))',
@@ -363,73 +255,15 @@ aliases['genTrailingE13'] = {
     'samples': signals
 }
 
-#aliases['genMjj'] = {
-#    'expr': expr,
-#    'samples': mc
-#}
-#aliases['genDetajj'] = {
-#    'expr': 'abs(std_vector_jetGen_eta[0] - std_vector_jetGen_eta[1])',
-#    'samples': mc
-#}
-
 # Number of gen jets with pt > 30 GeV
 aliases['nCleanGenJet'] = {
     'expr': 'Sum$(std_vector_jetGen_pt > 30 && genJetClean)',
     'samples': mc
 }
 
-#aliases['nGenJetCapped'] = {
-#    'expr': 'nGenJet * (nGenJet < 3) + 2 * (nGenJet > 2)',
-#    'samples': mc
-#}
-
-#aliases['nGenJetGGH'] = {
-#    'expr': 'nGenJet * (nGenJet < 2) + nGenJet * (nGenJet >= 2 && (genMjj < 65. || (genMjj > 105. && genMjj < 400.)))',
-#    'samples': mc
-#}
-
 # Fiducial cut for differential measurements
 aliases['fiducial'] = {
     #'expr': 'genLeptonPt && genOSOF && genTrailingE13 && genMll>12 && metGenpt>20 && genPtll>30 && genMth>=60 && genMtw2>30'
-    'expr': 'genLeptonPt && genOSOF && genTrailingE13 && genMll>12 && genPtll>30 && genMth>=60 && genMtw2>30',
+    'expr': 'genLeptonPt && genOSOF && genMll>12 && genPtll>30 && genMth>=60 && genMtw2>30',
     'samples': signals
 }
-
-#aliases['gen_STXS_VBF'] = {
-#    'expr': 'higgsGenpt < 200. && genMjj > 400. && genDetajj > 2.8',
-#    'samples': signals
-#}
-#aliases['bin_njet_2_STXS_ggF_gg'] = {
-#    'expr': 'nGenJet >= 2 && !gen_STXS_VBF',
-#    'samples': signals
-#}
-#aliases['bin_njet_2_STXS_ggF_VBF'] = {
-#    'expr': 'nGenJet >= 2 && gen_STXS_VBF',
-#    'samples': signals
-#}
-#
-## Reco cuts for STXS
-#aliases['STXS_VBF'] = {
-#    'expr': 'pTWW < 200. && mjj > 400. && detajj > 2.8'
-#}
-#
-## Reco cuts used by HWW 2016
-#aliases['historical_gg'] = {
-#    'expr': 'mjj < 65. || (mjj > 105. && mjj < 400.)'
-#}
-#aliases['historical_VBF'] = {
-#    'expr': 'mjj > 400.'
-#}
-#aliases['historical_VBF'] = {
-#    'expr': 'mjj > 65. && mjj < 105.'
-#}
-#
-## >=2 jet with pt > 30 GeV, ggH tag
-#aliases['manyJet_STXS_ggF_gg'] = {
-#    'expr': 'manyJet && !STXS_VBF'
-#}
-#
-## >=2 jet with pt > 30 GeV, ggH tag
-#aliases['manyJet_STXS_ggF_VBF'] = {
-#    'expr': 'manyJet && STXS_VBF'
-#}

@@ -25,53 +25,66 @@ del sys.argv[1:]
 
 execfile(args.pycfg)
 
-if os.path.isdir('%s_%s' % (outputDir, args.out_suffix)):
-    sys.stderr.write('Directory %s_%s already exists.' % (outputDir, args.out_suffix))
-    sys.exit(2)
+inFullPath = os.path.realpath(outputDir)
+outFullPath = os.path.realpath('%s_%s' % (outputDir, args.out_suffix))
+
+#if os.path.isdir(outFullPath):
+#    sys.stderr.write('Directory %s already exists.\n' % outFullPath)
+#    sys.exit(2)
+
+try:
+    os.makedirs(outFullPath)
+except OSError:
+    pass
 
 samples = collections.OrderedDict()
 execfile(samplesFile)
-
-os.makedirs(outputDir + '_merged')
 
 try:
     os.mkdir('merge_log')
 except OSError:
     pass
 
-inFullPath = os.path.realpath(outputDir)
-outFullPath = os.path.realpath('%s_%s' % (outputDir, args.out_suffix))
-
-rootFiles = os.listdir(outputDir)
+rootFiles = os.listdir(inFullPath)
 need_merging = []
 
 for sname in samples:
+    if os.path.exists(outFullPath + '/plots_' + tag + '_ALL_' + sname + '.root'):
+        continue
+
     files = [f for f in rootFiles if f.startswith('plots_' + tag + '_ALL_' + sname + '.')]
-    if len(files) > 1:
-        need_merging.append(sname)
-    else:
+    if len(files) == 0:
+        print 'Sample', sname, 'has no ROOT file'
+    elif len(files) == 1:
         newname = 'plots_' + tag + '_ALL_' + sname + '.root'
-        shutil.copyfile('%s/%s' % (outputDir, files[0]), '%s_%s/%s' % (outputDir, args.out_suffix, newname))
+        if inFullPath.startswith('/eos/cms'):
+            subprocess.Popen(['xrdcp', 'root://eoscms.cern.ch/%s/%s' % (inFullPath, files[0]), '%s/%s' % (outFullPath, newname)]).communicate()
+        else:
+            shutil.copyfile('%s/%s' % (inFullPath, files[0]), '%s/%s' % (outFullPath, newname))
+    else:
+        need_merging.append(sname)
+
+print need_merging
 
 jds = 'executable = %s/merge_plots.sh\n' % os.path.dirname(os.path.realpath(__file__))
 jds += 'universe = vanilla\n'
 jds += 'arguments = "$(Sample) %s %s %s"\n' % (tag, inFullPath, outFullPath)
-jds += 'getenv = True\n'
+jds += 'environment = "CMSSW_BASE=%s"\n' % os.getenv('CMSSW_BASE')
 jds += 'output = merge_log/$(Sample).out\n'
 jds += 'error = merge_log/$(Sample).err\n'
 jds += 'log = merge_log/$(Sample).log\n'
-jds += 'request_cpus = 8\n'
+#jds += 'request_cpus = 8\n'
+jds += 'accounting_group = group_u_CMST3.all\n'
+jds += '+AccountingGroup = group_u_CMST3.all\n'
 jds += '+JobFlavour = "longlunch"\n'
 jds += 'queue Sample in (\n'
 for sname in need_merging:
     jds += sname + '\n'
 jds += ')\n'
 
-proc = subprocess.Popen(['condor_submit'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-out, err = proc.communicate(jds)
+proc = subprocess.Popen(['condor_submit'], stdin=subprocess.PIPE)
+proc.communicate(jds)
 
 if proc.returncode != 0:
     sys.stderr.write(err)
     raise RuntimeError('Job submission failed.')
-
-print out.strip()
