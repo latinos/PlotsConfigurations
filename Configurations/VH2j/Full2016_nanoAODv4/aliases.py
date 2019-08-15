@@ -64,8 +64,19 @@ aliases['btagSF'] = {
 systs = ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']
 
 for s in systs:
-  aliases['btagSF'+s+'up'] = { 'expr': 'bVeto*'+aliases['bVetoSF']['expr'].replace('shapeFix','shapeFix_up_'+s) + '+bVetoDY*'+aliases['bVetoSFDY']\
-['expr'].replace('shapeFix','shapeFix_up_'+s) + '+btag2*'+ aliases['btag2SF']['expr'].replace('shapeFix','shapeFix_up_'+s), 'samples':mc  }  
-  aliases['btagSF'+s+'down'] = { 'expr': 'bVeto*'+aliases['bVetoSF']['expr'].replace('shapeFix','shapeFix_down_'+s) + '+bVetoDY*'+aliases['bVetoSFDY']['expr'].replace('shapeFix','shapeFix_down_'+s) + '+btag2*'+ aliases['btag2SF']['expr'].replace('shapeFix','shapeFix_down_'+s), 'samples':mc  }
+    aliases['Jet_btagSF_shapeFix_up_%s' % s] = {
+        'class': 'BtagSF',
+        'args': (btagSFSource, 'up_' + s),
+        'samples': mc
+    }
+    aliases['Jet_btagSF_shapeFix_down_%s' % s] = {
+        'class': 'BtagSF',
+        'args': (btagSFSource, 'down_' + s),
+        'samples': mc
+    }
+    aliases['btagSF'+s+'up'] = { 'expr': 'bVeto*'+aliases['bVetoSF']['expr'].replace('shapeFix','shapeFix_up_'+s) + '+bVetoDY*'+aliases['bVetoSFDY']\
+                                ['expr'].replace('shapeFix','shapeFix_up_'+s) + '+btag2*'+ aliases['btag2SF']['expr'].replace('shapeFix','shapeFix_up_'+s), 'samples':mc  }  
+    aliases['btagSF'+s+'down'] = { 'expr': 'bVeto*'+aliases['bVetoSF']['expr'].replace('shapeFix','shapeFix_down_'+s) + '+bVetoDY*'+aliases['bVetoSFDY']\
+                                ['expr'].replace('shapeFix','shapeFix_down_'+s) + '+btag2*'+ aliases['btag2SF']['expr'].replace('shapeFix','shapeFix_down_'+s), 'samples':mc  }
 
 

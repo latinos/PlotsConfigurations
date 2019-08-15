@@ -1,5 +1,4 @@
 # nuisances
-#FIXME: TO BE UPDATED FOR 2017!
 
 #nuisances = {}
 
@@ -39,7 +38,7 @@ nuisances['fake_syst_em'] = {
     'samples': {
         'Fake_em': '1.3'
     },
-    'cuts': [cut for cut in cuts],
+    'cutspost': lambda self, cuts: [cut for cut in cuts if '20me' not in cut],
     'perRecoBin': True
 }
 
@@ -49,7 +48,7 @@ nuisances['fake_syst_me'] = {
     'samples': {
         'Fake_me': '1.3'
     },
-    'cuts': [cut for cut in cuts],
+    'cutspost': lambda self, cuts: [cut for cut in cuts if '20em' not in cut],
     'perRecoBin': True
 }
 
@@ -419,6 +418,13 @@ nuisances['QCDscale_ggVV'] = {
 }
 
 # NLL resummation variations
+
+wwcutsposts = {
+    'zeroJet': lambda self, cuts: [cut for cut in cuts if 'NJ_0' in cut or 'NJ' not in cut],
+    'oneJet': lambda self, cuts: [cut for cut in cuts if 'NJ_1' in cut or 'NJ' not in cut],
+    'multiJet': lambda self, cuts: [cut for cut in cuts if 'NJ_0' not in cut and 'NJ_1' not in cut]
+}
+
 for nj in ['zeroJet', 'oneJet', 'multiJet']:
     nuisances['Resumscale_WW_%s' % nj] = {
         'name': 'CMS_hww_WWresum_%s' % nj,
@@ -427,7 +433,8 @@ for nj in ['zeroJet', 'oneJet', 'multiJet']:
         'type': 'shape',
         'samples': {
             'WW': ['{0}*nllW_Rup/nllW + (!{0})'.format(nj), '{0}*nllW_Rdown/nllW + (!{0})'.format(nj)]
-        }
+        },
+        'cutspost': wwcutsposts[nj]
     }
     
     nuisances['QCDscale_WW_%s' % nj] = {
@@ -437,7 +444,8 @@ for nj in ['zeroJet', 'oneJet', 'multiJet']:
         'type': 'shape',
         'samples': {
           'WW': ['{0}*nllW_Qup/nllW + (!{0})'.format(nj), '{0}*nllW_Qdown/nllW + (!{0})'.format(nj)]
-        }
+        },
+        'cutspost': wwcutsposts[nj]
     }
 
 # Uncertainty on SR/CR ratio
@@ -447,7 +455,8 @@ nuisances['CRSR_accept_DY'] = {
     'samples': {'DY': '1.02'},
     #'samples': {'DY': '1.1'},
     'cuts': [cut for cut in cuts if '_CR_' in cut],
-    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut and cut in self['cuts']]),
+    #'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut and cut in self['cuts']]),
+    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut]),
     #'perRecoBin': True
 }
 
@@ -458,8 +467,7 @@ nuisances['CRSR_accept_top'] = {
     'samples': {'top': '1.01'},
     #'samples': {'top': '1.05'},
     'cuts': [cut for cut in cuts if '_CR_' in cut],
-    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut and cut in self['cuts']]),
-    #'perRecoBin': True
+    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut]),
 }
 
 # Theory uncertainty for ggH
