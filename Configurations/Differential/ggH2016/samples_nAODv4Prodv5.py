@@ -40,15 +40,16 @@ njetBinning = ['0', '1', '2', '3', 'GE4']
 ################# SKIMS ########################
 ################################################
 
-mcProduction = 'Summer16_102X_nAODv4_Full2016v4'
+mcProduction = 'Summer16_102X_nAODv4_Full2016v5'
+#mcProduction = 'Summer16_102X_nAODv5_SigOnly_Full2016v5'
 
-dataReco = 'Run2016_102X_nAODv4_Full2016v4'
+dataReco = 'Run2016_102X_nAODv4_Full2016v5'
 
-mcSteps = 'MCl1loose2016__MCCorr2016__l2loose__l2tightOR2016{var}__wwSel'
+mcSteps = 'MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5{var}'
 
-fakeSteps = 'DATAl1loose2016__l2loose__fakeW__wwSel'
+fakeSteps = 'DATAl1loose2016v5__l2loose__fakeW'
 
-dataSteps = 'DATAl1loose2016__l2loose__l2tightOR2016__wwSel'
+dataSteps = 'DATAl1loose2016v5__l2loose__l2tightOR2016v5'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -149,11 +150,11 @@ samples['WW'] = {
     'FilesPerJob': 8
 }
 
-#samples['WWewk'] = {
-#    'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK'),
-#    'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)', #filter tops and Higgs
-#    'FilesPerJob': 4
-#}
+samples['WWewk'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK'),
+    'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)', #filter tops and Higgs
+    'FilesPerJob': 4
+}
 
 samples['ggWW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluWWTo2L2Nu_MCFM'),
