@@ -104,7 +104,8 @@ DataTrig = {
 ###########################################
 
 ############ DY ############
-ptllDYW_NLO = '(0.87*(gen_ptll<10)+(0.379119+0.099744*gen_ptll-0.00487351*gen_ptll**2+9.19509e-05*gen_ptll**3-6.0212e-07*gen_ptll**4)*(gen_ptll>=10 && gen_ptll<45)+(9.12137e-01+1.11957e-04*gen_ptll-3.15325e-06*gen_ptll**2-4.29708e-09*gen_ptll**3+3.35791e-11*gen_ptll**4)*(gen_ptll>=45 && gen_ptll<200) + 1*(gen_ptll>200))'
+#ptllDYW_NLO = '(0.87*(gen_ptll<10)+(0.379119+0.099744*gen_ptll-0.00487351*gen_ptll**2+9.19509e-05*gen_ptll**3-6.0212e-07*gen_ptll**4)*(gen_ptll>=10 && gen_ptll<45)+(9.12137e-01+1.11957e-04*gen_ptll-3.15325e-06*gen_ptll**2-4.29708e-09*gen_ptll**3+3.35791e-11*gen_ptll**4)*(gen_ptll>=45 && gen_ptll<200) + 1*(gen_ptll>200))'
+ptllDYW_NLO = '((0.623108 + 0.0722934*gen_ptll - 0.00364918*gen_ptll*gen_ptll + 6.97227e-05*gen_ptll*gen_ptll*gen_ptll - 4.52903e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll<45)*(gen_ptll>0) + 1*(gen_ptll>=45))'
 ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
 
 useDYtt = False
@@ -293,15 +294,15 @@ else:
 ################## FAKE ###################
 ###########################################
 
-samples['Fake_em']  = {   'name': [ ] ,
-                         'weight' : METFilter_DATA+'*'+fakeW+'*(abs(Lepton_pdgId[0])==11 && abs(Lepton_pdgId[1])==13)',              #   weight/cut 
+samples['Fake_ee']  = {   'name': [ ] ,
+                         'weight' : METFilter_DATA+'*'+fakeW+'*(abs(Lepton_pdgId[0])==11 && abs(Lepton_pdgId[1])==11)',              #   weight/cut 
                          'weights' : [ ] ,
                          'isData': ['all'],
                          'FilesPerJob' : 15 ,
                       }
 
-samples['Fake_me']  = {   'name': [ ] ,
-                         'weight' : METFilter_DATA+'*'+fakeW+'*(abs(Lepton_pdgId[0])==13 && abs(Lepton_pdgId[1])==11)',              #   weight/cut 
+samples['Fake_mm']  = {   'name': [ ] ,
+                         'weight' : METFilter_DATA+'*'+fakeW+'*(abs(Lepton_pdgId[0])==13 && abs(Lepton_pdgId[1])==13)',              #   weight/cut 
                          'weights' : [ ] ,
                          'isData': ['all'],
                          'FilesPerJob' : 15 ,
@@ -312,10 +313,10 @@ for Run in DataRun :
         for DataSet in DataSets :
                 FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
                 for iFile in FileTarget:
-                        samples['Fake_em']['name'].append(iFile)
-                        samples['Fake_em']['weights'].append(DataTrig[DataSet])
-                        samples['Fake_me']['name'].append(iFile)
-                        samples['Fake_me']['weights'].append(DataTrig[DataSet])
+                        samples['Fake_ee']['name'].append(iFile)
+                        samples['Fake_ee']['weights'].append(DataTrig[DataSet])
+                        samples['Fake_mm']['name'].append(iFile)
+                        samples['Fake_mm']['weights'].append(DataTrig[DataSet])
 
 ###########################################
 ################## DATA ###################
