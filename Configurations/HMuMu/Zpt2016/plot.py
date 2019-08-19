@@ -10,9 +10,8 @@ groupPlot['top']  = {
                   'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
                   'color': 400,   # kYellow
-                  'samples'  : ['top','TTV']
+                  'samples'  : ['top']
               }
-
 
 groupPlot['Fakes']  = {  
                   'nameHR' : 'Non-prompt',
@@ -26,15 +25,16 @@ groupPlot['DY']  = {
                   'nameHR' : "DY",
                   'isSignal' : 0,
                   'color': 418,    # kGreen+2
-                  'samples'  : ['DY','EWK']
+                  'samples'  : ['DY']
               }
+
 
 
 groupPlot['VVV']  = {  
                   'nameHR' : 'VVV',
                   'isSignal' : 0,
                   'color': 857, # kAzure -3  
-                  'samples'  : ['VVV']
+                  'samples'  : ['VV']
               }
 
 
@@ -64,7 +64,7 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 1.12,
+                  'scale'    : 1.0,
               }
 
 
@@ -98,24 +98,6 @@ plot['VV']  = {
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-
-plot['TTV']  = {  
-                  'color': 849, # kAzure -9  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-              }
-
-
-plot['EWK']  = {  
-                  'color': 849, # kAzure -9  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-              }
-
-
-
 # H MuMu signal
 
 plot['ggH_hmm'] = {

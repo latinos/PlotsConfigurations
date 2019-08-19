@@ -19,14 +19,14 @@ groupPlot['WW']  = {
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  'samples'  : ['WW', 'ggWW']
+                  'samples'  : ['WW']
               }
 
 groupPlot['Fake']  = {  
                   'nameHR' : 'Non-prompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fake_em', 'Fake_me']
+                  'samples'  : ['Fake_ee', 'Fake_mm']
               }
 
 
@@ -39,13 +39,13 @@ groupPlot['DY']  = {
 
 
 
-groupPlot['VVV']  = {  
-                  'nameHR' : 'VVV',
-                  'isSignal' : 0,
-                  'color': 857, # kAzure -3  
-                  'samples'  : ['VVV']
-              }
-
+#groupPlot['VVV']  = {  
+#                  'nameHR' : 'VVV',
+#                  'isSignal' : 0,
+#                  'color': 857, # kAzure -3  
+#                  'samples'  : ['VVV']
+#              }
+#
 
 groupPlot['VZ']  = {  
                   'nameHR' : "VZ",
@@ -115,7 +115,7 @@ plot['Fake']  = {
               }
 '''
 
-plot['Fake_em']  = {  
+plot['Fake_ee']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -123,7 +123,7 @@ plot['Fake_em']  = {
               }
 
 
-plot['Fake_me']  = {  
+plot['Fake_mm']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -160,13 +160,13 @@ plot['WW']  = {
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
 
-plot['ggWW']  = {
-                  'color': 850, # kAzure -10
-                  'isSignal' : 0,
-                  'isData'   : 0,    
-                  'scale'    : 1.0
-                  }
-
+#plot['ggWW']  = {
+#                  'color': 850, # kAzure -10
+#                  'isSignal' : 0,
+#                  'isData'   : 0,    
+#                  'scale'    : 1.0
+#                  }
+#
 
 plot['Vg']  = { 
                   'color': 859, # kAzure -1  
@@ -189,13 +189,13 @@ plot['VZ']  = {
                   'scale'    : 1.0
                   }
 
-plot['VVV']  = { 
-                  'color': 857, # kAzure -3  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
-
+#plot['VVV']  = { 
+#                  'color': 857, # kAzure -3  
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1.0
+#                  }
+#
 #plot['WZgS']  = {
 #                  'color': 617, # kViolet + 1
 #                  'isSignal' : 0,

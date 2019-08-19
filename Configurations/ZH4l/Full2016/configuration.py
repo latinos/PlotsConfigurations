@@ -2,7 +2,7 @@
 treeName= 'Events'
 
 
-tag = 'hmm'
+tag = 'cut_2016_count'
 
 
 # used by mkShape to define output directory for root files
@@ -30,11 +30,11 @@ lumi = 35.9
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot'+tag
+outputDirPlots = 'plot_unblind'+tag
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'
+outputDirDatacard = 'datacards'+tag
 
 
 # structure file for datacard
@@ -42,6 +42,6 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-##nuisancesFile = 'nuisances.py'
+nuisancesFile = 'nuisances.py'
 
 

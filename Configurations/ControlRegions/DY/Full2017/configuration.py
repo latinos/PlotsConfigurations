@@ -1,7 +1,7 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = 'DY'
+tag = 'DY2017_final'
 
 
 # used by mkShape to define output directory for root files
@@ -30,7 +30,7 @@ lumi = 41.5
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
 # outputDirPlots = '~/www/plotCR'
-outputDirPlots = 'plotDY'
+outputDirPlots = 'plotDY_oldptll_fixfake'
 
 
 # used by mkDatacards to define output directory for datacards

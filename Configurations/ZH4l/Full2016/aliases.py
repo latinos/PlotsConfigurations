@@ -1,36 +1,31 @@
 #aliases = {}
 
-mc = [skey for skey in samples if skey not in ('Fake_ee', 'Fake_mm', 'DATA')]
+mc = [skey for skey in samples if skey not in ('Fake_em', 'Fake_me', 'DATA')]
 
 bAlgo = 'DeepB'
-bWP = '0.1241'
-
-aliases['PromptGenLepMatch2l'] = {
-    'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
-    'samples': mc
-}
+bWP = '0.2217'
 
 aliases['bVeto'] = {
-'expr': '(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) == 0)'
+'expr': '(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0)'
 }
 
 aliases['btag0'] = {
 'expr': '( Alt$(CleanJet_pt[0],0)<30  \
-           && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241)>0 \
+           && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217)>0 \
          )'
 }
 
 aliases['btag1'] = {
 'expr': '(    Alt$(CleanJet_pt[0],0)>30 && Alt$(abs(CleanJet_eta[0]),99)<2.5\
            && Alt$(CleanJet_pt[1],0)<30 \
-           && Alt$(Jet_btagDeepB[CleanJet_jetIdx[0]], 0) > 0.1241 )'
+           && Alt$(Jet_btagDeepB[CleanJet_jetIdx[0]], 0) > 0.2217 )'
 }
 
 aliases['btag2'] = {
 'expr': '(    Alt$(CleanJet_pt[0],0)>30 \
            && Alt$(CleanJet_pt[1],0)>30 \
-           && ( ( Alt$(abs(CleanJet_eta[0]),99)<2.5 && Alt$(Jet_btagDeepB[CleanJet_jetIdx[0]],0) > 0.1241 ) \
-             || ( Alt$(abs(CleanJet_eta[1]),99)<2.5 && Alt$(Jet_btagDeepB[CleanJet_jetIdx[1]],0) > 0.1241 ) ) \
+           && ( ( Alt$(abs(CleanJet_eta[0]),99)<2.5 && Alt$(Jet_btagDeepB[CleanJet_jetIdx[0]],0) > 0.2217 ) \
+             || ( Alt$(abs(CleanJet_eta[1]),99)<2.5 && Alt$(Jet_btagDeepB[CleanJet_jetIdx[1]],0) > 0.2217 ) ) \
          )' 
 }
 

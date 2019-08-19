@@ -1,36 +1,86 @@
 #aliases = {}
 
-mc = [skey for skey in samples if skey not in ('Fake_ee', 'Fake_mm', 'DATA')]
+if useEmbeddedDY:
+  mc = [skey for skey in samples if skey not in ('Fake_em', 'Fake_me', 'Fake_ee', 'Fake_mm', 'DATA', 'DY')]
+else:
+  mc = [skey for skey in samples if skey not in ('Fake_em', 'Fake_me', 'Fake_ee', 'Fake_mm', 'DATA')]
 
 bAlgo = 'DeepB'
-bWP = '0.1241'
+bWP = '0.1522'
 
-aliases['PromptGenLepMatch2l'] = {
-    'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
-    'samples': mc
+if EMorEEorMM == 'em':
+  print "Final state is ElMu!"
+  aliases['finalstate'] = {
+  'expr': '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13)'
+  }
+elif EMorEEorMM == 'ee':
+  print "Final state is ElEl!"
+  aliases['finalstate'] = {
+  'expr': '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11)'
+  }
+elif EMorEEorMM == 'mm':
+  print "Final state is MuMu!"
+  aliases['finalstate'] = {
+  'expr': '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13)'
+  }
+#elif EMorEEorMM == 'eemm':
+#  print "Final state is ElEl+MuMu!"
+#  aliases['finalstate'] = {
+#  'expr': '((Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) || (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13))'
+#  }
+
+aliases['HighMass'] = {
+'expr': '(    mll>140 \
+           && Lepton_pt[0]>60 \
+           && dphill>2.0 \
+           && dphilmet<1.9 \
+           && ht>250 \
+         )' 
+}
+
+aliases['VBFcut'] = {
+'expr': '(    mjj>400 \
+           && ((Alt$(CleanJet_eta[0],0)>1 && Alt$(CleanJet_eta[1],0)<-2) || (Alt$(CleanJet_eta[0],0)<-1 && Alt$(CleanJet_eta[1],0)>2) || (detajj>3.5)) \
+         )' 
+}
+
+aliases['HighVBFcut'] = {
+'expr': '(    mjj>500 \
+           && detajj>4.0 \
+         )' 
+}
+
+# I think this doesn't work here because it tries to compile also for non-related samples (Top,DY,...)
+#aliases['mjjGen'] = {
+#'expr': 'mjjGen(Alt$(GenJet_pt[Jet_genJetIdx[CleanJet_jetIdx[0]]],-1), Alt$(GenJet_eta[Jet_genJetIdx[CleanJet_jetIdx[0]]],-1), Alt$(GenJet_phi[Jet_genJetIdx[CleanJet_jetIdx[0]]],-1), Alt$(GenJet_pt[Jet_genJetIdx[CleanJet_jetIdx[1]]],-1), Alt$(GenJet_eta[Jet_genJetIdx[CleanJet_jetIdx[1]]],-1), Alt$(GenJet_phi[Jet_genJetIdx[CleanJet_jetIdx[1]]],-1))'
+#}
+
+aliases['GenLHE'] = {
+'expr': '(Sum$(LHEPart_pdgId == 21) == 0)',
+'samples': mc
 }
 
 aliases['bVeto'] = {
-'expr': '(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) == 0)'
+'expr': '(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0)'
 }
 
 aliases['btag0'] = {
 'expr': '( Alt$(CleanJet_pt[0],0)<30  \
-           && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241)>0 \
+           && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522)>0 \
          )'
 }
 
 aliases['btag1'] = {
 'expr': '(    Alt$(CleanJet_pt[0],0)>30 && Alt$(abs(CleanJet_eta[0]),99)<2.5\
            && Alt$(CleanJet_pt[1],0)<30 \
-           && Alt$(Jet_btagDeepB[CleanJet_jetIdx[0]], 0) > 0.1241 )'
+           && Alt$(Jet_btagDeepB[CleanJet_jetIdx[0]], 0) > 0.1522 )'
 }
 
 aliases['btag2'] = {
 'expr': '(    Alt$(CleanJet_pt[0],0)>30 \
            && Alt$(CleanJet_pt[1],0)>30 \
-           && ( ( Alt$(abs(CleanJet_eta[0]),99)<2.5 && Alt$(Jet_btagDeepB[CleanJet_jetIdx[0]],0) > 0.1241 ) \
-             || ( Alt$(abs(CleanJet_eta[1]),99)<2.5 && Alt$(Jet_btagDeepB[CleanJet_jetIdx[1]],0) > 0.1241 ) ) \
+           && ( ( Alt$(abs(CleanJet_eta[0]),99)<2.5 && Alt$(Jet_btagDeepB[CleanJet_jetIdx[0]],0) > 0.1522 ) \
+             || ( Alt$(abs(CleanJet_eta[1]),99)<2.5 && Alt$(Jet_btagDeepB[CleanJet_jetIdx[1]],0) > 0.1522 ) ) \
          )' 
 }
 

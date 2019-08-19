@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = '_ggH_Full2016'
+tag = '_ggH_CR2016_finalv3'
 
 
 # used by mkShape to define output directory for root files

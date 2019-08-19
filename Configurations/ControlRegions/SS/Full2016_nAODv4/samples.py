@@ -18,7 +18,8 @@ if    'iihe' in SITE :
 elif  'cern' in SITE :
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/'
 
-directory = treeBaseDir+'Summer16_102X_nAODv4_Full2016v4/MCl1loose2016__MCCorr2016__l2loose__l2tightOR2016'
+#directory = treeBaseDir+'Summer16_102X_nAODv4_Full2016v4/MCl1loose2016__MCCorr2016__l2loose__l2tightOR2016'
+directory = treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5'
 
 ################################################
 ############ NUMBER OF LEPTONS #################
@@ -31,11 +32,10 @@ Nlep='2'
 ################################################
 
 #... Electron:
-
 eleWP='mva_90p_Iso2016'
+#eleWP='cut_WP_Tight80X'
 
 #... Muon:
-
 muWP='cut_Tight80x'
 
 #... Build formula
@@ -202,7 +202,7 @@ addSampleWeight(samples,'VgS','WZTo3LNu_mllmin01', '(Gen_ZGstar_mass>=0.1 || Gen
 ###########################################
 ################## FAKES ##################
 ###########################################
- 
+
 
 
 samples['Fake']  = {   'name': [ ] ,
@@ -213,7 +213,8 @@ samples['Fake']  = {   'name': [ ] ,
                        }
 
 for Run in DataRun :
-  directory = treeBaseDir+'Run2016_102X_nAODv4_Full2016v4/DATAl1loose2016__l2loose__fakeW/'
+  #directory = treeBaseDir+'Run2016_102X_nAODv4_Full2016v4/DATAl1loose2016__l2loose__fakeW/'
+  directory = treeBaseDir+'Run2016_102X_nAODv4_Full2016v5/DATAl1loose2016v5__l2loose__fakeW/'
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
     for iFile in FileTarget:
@@ -232,8 +233,9 @@ samples['DATA']  = {   'name': [ ] ,
                   }
 
 for Run in DataRun :
-	directory = treeBaseDir+'Run2016_102X_nAODv4_Full2016v4/DATAl1loose2016__l2loose__l2tightOR2016'
-	for DataSet in DataSets :
+	#directory = treeBaseDir+'Run2016_102X_nAODv4_Full2016v4/DATAl1loose2016__l2loose__l2tightOR2016'
+	directory = treeBaseDir+'Run2016_102X_nAODv4_Full2016v5/DATAl1loose2016v5__l2loose__l2tightOR2016v5'
+        for DataSet in DataSets :
 		FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
 		for iFile in FileTarget:
 			print(iFile)

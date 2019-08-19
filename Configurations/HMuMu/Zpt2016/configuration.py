@@ -2,7 +2,7 @@
 treeName= 'Events'
 
 
-tag = 'hmm'
+tag = 'Zpt_hmm'
 
 
 # used by mkShape to define output directory for root files
