@@ -44,11 +44,11 @@ mcProduction = 'Autumn18_102X_nAODv5_Full2018v5'
 
 dataReco = 'Run2018_102X_nAODv5_Full2018v5'
 
-mcSteps = 'MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5{var}' #FIXME, no wwSel skim yet
+mcSteps = 'MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5{var}__wwSel' #FIXME, no wwSel skim yet
 
 fakeSteps = 'DATAl1loose2018v5__l2loose__fakeW'
 
-dataSteps = 'DATAl1loose2018v5__l2loose__l2tightOR2018v5' #FIXME, no wwSel skim yet
+dataSteps = 'DATAl1loose2018v5__l2loose__l2tightOR2018v5__wwSel' #FIXME, no wwSel skim yet
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -263,7 +263,7 @@ samples['ZH_hww'] = {
 signals.append('ZH_hww')
 
 samples['ggZH_hww'] = {
-    'name':   nanoGetSampleFiles(mcDirectory, 'GluGluZH_HToWW_M125'),
+    'name':   nanoGetSampleFiles(mcDirectory, 'GluGluZH_HToWWTo2L2Nu_M125'),
     'weight': mcCommonWeight,
     'FilesPerJob': 4
 }
