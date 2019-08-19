@@ -1,6 +1,11 @@
 import os
-import copy
+import inspect
 from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
+
+configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
+configurations = os.path.dirname(configurations) # ggH2016
+configurations = os.path.dirname(configurations) # Differential
+configurations = os.path.dirname(configurations) # Configurations
 
 def nanoGetSampleFiles(inputDir, sample):
     try:
@@ -44,11 +49,11 @@ mcProduction = 'Autumn18_102X_nAODv5_Full2018v5'
 
 dataReco = 'Run2018_102X_nAODv5_Full2018v5'
 
-mcSteps = 'MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5{var}' #FIXME, no wwSel skim yet
+mcSteps = 'MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5{var}__wwSel'
 
-fakeSteps = 'DATAl1loose2018v5__l2loose__fakeW'
+fakeSteps = 'DATAl1loose2018v5__l2loose__fakeW__wwSel'
 
-dataSteps = 'DATAl1loose2018v5__l2loose__l2tightOR2018v5' #FIXME, no wwSel skim yet
+dataSteps = 'DATAl1loose2018v5__l2loose__l2tightOR2018v5__wwSel'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -109,14 +114,14 @@ ptllDYW_NLO = '(0.87*(gen_ptll<10)+(0.379119+0.099744*gen_ptll-0.00487351*gen_pt
 ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
 
 files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO') #FIXME swithch to NLO M50 sample when abailable
+    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
 
 samples['DY'] = {
     'name': files,
     'weight': mcCommonWeight,
     'FilesPerJob': 4,
 }
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext',ptllDYW_NLO)  #FIXME... and remember to change this as well to NLO
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext',ptllDYW_NLO)
 addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 
 ###### Top #######
@@ -132,20 +137,16 @@ samples['top'] = {
     'name': files,
     'weight': mcCommonWeight,
     'FilesPerJob': 1,
-    #'EventsPerJob': 100000
 }
 
-Top_pTrw = "(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )"
-
-addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
+addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 ###### WW ########
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    #'weight': mcCommonWeight + '*nllW', # temporary
-    'weight': mcCommonWeight + '*nllWOTF', # temporary
-    'FilesPerJob': 8
+    'weight': mcCommonWeight + '*nllW',
+    'FilesPerJob': 3
 }
 
 samples['WWewk'] = {
@@ -187,7 +188,7 @@ files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
 
 samples['VgS'] = {
     'name': files,
-    'weight': mcCommonWeight,# + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
+    'weight': mcCommonWeight + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
     'FilesPerJob': 4,
     'subsamples': {
       'L': 'gstarLow',
@@ -234,11 +235,10 @@ signals = []
 #### ggH -> WW
 
 samples['ggH_hww'] = {
-    #'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125_PrivateNano'),
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125'),
     'weight': [mcCommonWeight, {'class': 'Weight2MINLO', 'args': '%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE')}],
     'FilesPerJob': 4,
-    'linesToAdd': ['.L %s/work/PlotsConfigurations/Configurations/Differential/weight2MINLO.cc+' % os.getenv('CMSSW_BASE')]
+    'linesToAdd': ['.L %s/Differential/weight2MINLO.cc+' % configurations]
 }
 
 signals.append('ggH_hww')
@@ -263,7 +263,7 @@ samples['ZH_hww'] = {
 signals.append('ZH_hww')
 
 samples['ggZH_hww'] = {
-    'name':   nanoGetSampleFiles(mcDirectory, 'GluGluZH_HToWW_M125'),
+    'name':   nanoGetSampleFiles(mcDirectory, 'GluGluZH_HToWWTo2L2Nu_M125'),
     'weight': mcCommonWeight,
     'FilesPerJob': 4
 }
@@ -290,15 +290,12 @@ samples['ttH_hww'] = {
 
 signals.append('ttH_hww')
 
-############ bbH ############
-#FIXME Missing samples
-
 ############ H->TauTau ############
 
 samples['ggH_htt'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125'),
     'weight': mcCommonWeight,
-    'FilesPerJob': 4
+    'FilesPerJob': 8
 }
 
 signals.append('ggH_htt')
@@ -336,16 +333,16 @@ for sname in signals:
     if pth.startswith('GT'):
       cut = 'higgsGenPt > %s' % pth[2:]
     else:
-      cut = 'higgsGenPt > %s && higgsGenPt < %s' % tuple(pth.split('_'))
+      cut = 'HTXS_Higgs_pt > %s && HTXS_Higgs_pt < %s' % tuple(pth.split('_'))
 
     sample['subsamples'][binName] = cut
 
   for nj in njetBinning:
     binName = 'NJ_%s' % nj
     if nj.startswith('GE'):
-      cut = 'nCleanGenJet >= %s' % nj[2:]
+      cut = 'HTXS_njets30 >= %s' % nj[2:]
     else:
-      cut = 'nCleanGenJet == %s' % nj
+      cut = 'HTXS_njets30 == %s' % nj
 
     sample['subsamples'][binName] = cut
 
@@ -409,4 +406,3 @@ for _, sd in DataRun:
     files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
-

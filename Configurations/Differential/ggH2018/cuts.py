@@ -14,7 +14,7 @@ _tmp = [
     'PuppiMET_pt > 20',
     'ptll>30',
     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
-    'abs(Lepton_pdgId[1]) == 13 || Lepton_pt[1] > 13.'
+    '(abs(Lepton_pdgId[1]) == 13 || Lepton_pt[1] > 13.)'
 ]
 supercut = ' && '.join(_tmp)
 
@@ -66,19 +66,19 @@ def addcr(name, binning, cutsMap, slist):
 
     topcat = []
     for bname in binning:
-        cuts[name]['categories'].append('%s_top_2016' % bname)
+        cuts[name]['categories'].append('%s_top_2018' % bname)
         if bname != binning[0]:
             topcat.append('(%s)' % cutsMap[bname])
     
     dycat = []
     for bname in binning:
-        cuts[name]['categories'].append('%s_DY_2016' % bname)
+        cuts[name]['categories'].append('%s_DY_2018' % bname)
         if bname != binning[0]:
             dycat.append('(%s)' % cutsMap[bname])
     
     wwcat = []
     for bname in binning:
-        cuts[name]['categories'].append('%s_WW_2016' % bname)
+        cuts[name]['categories'].append('%s_WW_2018' % bname)
         if bname != binning[0]:
             wwcat.append('(%s)' % cutsMap[bname])
     
@@ -112,7 +112,7 @@ def addsr(name, binning, cutsMap, slist):
         for pt2cat, _ in pt2cats:
             for flavcat, _ in flavcats:
                 for chargecat, _ in chargecats:
-                    cuts[name]['categories'].append('%s_cat%s%s%s_2016' % (bname, pt2cat, flavcat, chargecat))
+                    cuts[name]['categories'].append('%s_cat%s%s%s_2018' % (bname, pt2cat, flavcat, chargecat))
 
         if bname != binning[0]:
             cats.append('(%s)' % cutsMap[bname])
