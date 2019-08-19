@@ -19,8 +19,9 @@ elif  'cern' in SITE :
   #xrootdPath='root://eoscms.cern.ch/'
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/'
 
-directory = treeBaseDir+'Fall2017_nAOD_v1_Full2017v2/MCl1loose2017v2__MCCorr2017__btagPerEvent__l2loose__l2tightOR2017/'
 
+#directory = treeBaseDir+'Fall2017_nAOD_v1_Full2017v2/MCl1loose2017v2__MCCorr2017__btagPerEvent__l2loose__l2tightOR2017'
+directory = treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5'
 
 ################################################
 ############ NUMBER OF LEPTONS #################
@@ -36,8 +37,7 @@ Nlep='2'
 
 #... Electron:
 
-eleWP='mvaFall17Iso_WP90'
-#eleWP='mvaFall17Iso_WP90_SS'
+eleWP='mvaFall17V1Iso_WP90'
 
 #... Muon:
 
@@ -85,13 +85,13 @@ METFilter_DATA = 'METFilter_DATA'
 ############ DATA DECLARATION ##################
 ################################################
 
-DataRun = [ 
-            ['B','Run2017B-31Mar2018-v1'] ,
-            ['C','Run2017C-31Mar2018-v1'] ,
-            ['D','Run2017D-31Mar2018-v1'] ,
-            ['E','Run2017E-31Mar2018-v1'] ,
-            ['F','Run2017F-31Mar2018-v1']
-            
+
+DataRun = [
+            ['B','Run2017B-Nano14Dec2018-v1'] ,
+                                                ['C','Run2017C-Nano14Dec2018-v1'] ,
+                                                ['D','Run2017D-Nano14Dec2018-v1'] ,
+                                                ['E','Run2017E-Nano14Dec2018-v1'] ,
+                                                ['F','Run2017F-Nano14Dec2018-v1']
           ]
 
 DataSets = ['MuonEG','DoubleMuon','SingleMuon','DoubleEG','SingleElectron']
@@ -105,17 +105,9 @@ DataTrig = {
            }
 
 ###########################################
-#############  BACKGROUNDS  ###############
-###########################################
-
-ptllDYW_NLO = '((0.623108 + 0.0722934*gen_ptll - 0.00364918*gen_ptll*gen_ptll + 6.97227e-05*gen_ptll*gen_ptll*gen_ptll - 4.52903e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll<45)*(gen_ptll>0) + 1*(gen_ptll>=45))'
-ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
-
-
-###########################################
 ################## FAKES ##################
 ###########################################
- 
+
 
 
 samples['Fake']  = {   'name': [ ] ,
@@ -126,8 +118,8 @@ samples['Fake']  = {   'name': [ ] ,
                        }
 
 for Run in DataRun :
- # directory = treeBaseDir+'Run2017_nAOD_v1_Full2017v2/DATAl1loose2017v2__DATACorr2017__l2loose__fakeW_New/'
-  directory = treeBaseDir+'Run2017_nAOD_v1_Full2017v2/DATAl1loose2017v2__DATACorr2017__l2loose__fakeWp2NB/'
+  #directory = treeBaseDir+'Run2017_nAOD_v1_Full2017v2/DATAl1loose2017v2__DATACorr2017__l2loose__fakeW/'
+  directory = treeBaseDir+'Run2017_102X_nAODv4_Full2017v5/DATAl1loose2017v5__l2loose__fakeW/'
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
     for iFile in FileTarget:
@@ -148,12 +140,12 @@ samples['DATA']  = {   'name': [ ] ,
                        }
 
 for Run in DataRun :
-  directory = treeBaseDir+'Run2017_nAOD_v1_Full2017v2/DATAl1loose2017v2__DATACorr2017__l2loose__l2tightOR2017/'
-  for DataSet in DataSets :
-    FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
-    for iFile in FileTarget:
-      print(iFile)
-      samples['DATA']['name'].append(iFile)
-      samples['DATA']['weights'].append(DataTrig[DataSet])
-                  
-                  
+        #directory = treeBaseDir+'Run2017_nAOD_v1_Full2017v2/DATAl1loose2017v2__DATACorr2017__l2loose__l2tightOR2017/'
+        directory = treeBaseDir+'Run2017_102X_nAODv4_Full2017v5/DATAl1loose2017v5__l2loose__l2tightOR2017v5/'
+        for DataSet in DataSets :
+                FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
+                for iFile in FileTarget:
+#                        print(iFile)
+                        samples['DATA']['name'].append(iFile)
+                        samples['DATA']['weights'].append(DataTrig[DataSet])
+

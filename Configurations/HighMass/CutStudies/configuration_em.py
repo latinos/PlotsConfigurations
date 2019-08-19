@@ -1,22 +1,21 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = 'SS2016_nanov5'
+
+tag = 'Full2017_em'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = 'rootFile_'+tag
 
+# file with TTree aliases
+aliasesFile = 'aliases.py'
 
 # file with list of variables
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
-
-# file with TTree aliases
-aliasesFile = 'aliases.py'
-
+cutsFile = 'cuts_em.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 
@@ -27,12 +26,11 @@ plotFile = 'plot.py'
 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 35.867
+lumi = 41.5
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-# outputDirPlots = '~/www/plotCR'
-outputDirPlots = 'plot'
+outputDirPlots = 'plot_'+tag
 
 
 # used by mkDatacards to define output directory for datacards
@@ -40,10 +38,10 @@ outputDirDatacard = 'datacards'
 
 
 # structure file for datacard
-structureFile = 'structure.py'
+#structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+#nuisancesFile = 'nuisances.py'
 
 
