@@ -14,7 +14,7 @@ _tmp = [
     'PuppiMET_pt > 20',
     'ptll>30',
     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
-    'abs(Lepton_pdgId[1]) == 13 || Lepton_pt[1] > 13.'
+    '(abs(Lepton_pdgId[1]) == 13 || Lepton_pt[1] > 13.)'
 ]
 supercut = ' && '.join(_tmp)
 
