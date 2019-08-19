@@ -14,7 +14,7 @@ _tmp = [
     'PuppiMET_pt > 20',
     'ptll>30',
     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
-    'abs(Lepton_pdgId[1]) == 13 || Lepton_pt[1] > 13.'
+    '(abs(Lepton_pdgId[1]) == 13 || Lepton_pt[1] > 13.)'
 ]
 supercut = ' && '.join(_tmp)
 
@@ -38,10 +38,10 @@ for sname in signals:
             slist_pthsignal.append('%s/%s' % (sname, bname))
 
 njetCutsProgressive = {
-    '1': 'Alt$(ReCleanJet_pt[0], 0) > 30.',
-    '2': 'Alt$(ReCleanJet_pt[1], 0) > 30.',
-    '3': 'Alt$(ReCleanJet_pt[2], 0) > 30.',
-    'GE4': 'Alt$(ReCleanJet_pt[3], 0) > 30.',
+    '1': 'Alt$(CleanJet_pt[0], 0) > 30.',
+    '2': 'Alt$(CleanJet_pt[1], 0) > 30.',
+    '3': 'Alt$(CleanJet_pt[2], 0) > 30.',
+    'GE4': 'Alt$(CleanJet_pt[3], 0) > 30.',
 }
 
 pthCutsProgressive = {}

@@ -104,11 +104,12 @@ class HistogramMerger(object):
 
     recoBinMap = {}
     outBins = []
-    crCategories = []
 
     templateSpecs = []
     secondarySpecs = []
-    
+
+    asLnNPooling = None
+
     def addFromOneDirectory(self, inSample, outNominal, outHistograms):
         logging.debug('addFromOneDirectory %s %s', inSample, outNominal.GetName())
         # pick up the nominal input
@@ -203,7 +204,7 @@ class HistogramMerger(object):
         outVariationDown.SetTitle(outVariationName + 'Down')
 
         return outVariationUp, outVariationDown
-    
+
     def mergeSample(self, inSample, outSample, sourceDirectories, outCatDir, outHistograms):
         logging.debug('\n\nmergeSample %s, %s, %s', inSample, outSample, outCatDir.GetName())
         
@@ -244,6 +245,70 @@ class HistogramMerger(object):
                     secondary.SetBinError(ix + 1, math.sqrt(err2))
 
                 secondary.Write()
+
+    def poolAsLnN(self, inSample):
+        nominalpool = {}
+        varpool = {}
+        
+        for ckey in self._getter.getkeys():
+            cut = ckey.GetName()
+            for ipool, pats in enumerate(self.asLnNPooling):
+                for pat in pats:
+                    if re.match(pat, cut):
+                        break
+                else:
+                    continue
+                break
+            else:
+                continue
+            
+            self._getter.cd(cut)
+            
+            for vkey in self._getter.getkeys():
+                variable = vkey.GetName()
+
+                try:
+                    nominalpool[(ipool, variable)].append(cut)
+                except KeyError:
+                    nominalpool[(ipool, variable)] = [cut]
+                
+                for vname, variation in self.variations.iteritems():
+                    if variation['originalType'] == 'lnN' or variation['AsLnN'] <= 0. or inSample not in variation['inSamples']:
+                        continue
+
+                    if (ipool, variable) not in varpool:
+                        varpool[(ipool, variable)] = {}
+                    try:
+                        varpool[(ipool, variable)][vname].append(cut)
+                    except KeyError:
+                        varpool[(ipool, variable)][vname] = [cut]
+
+        self._getter.cd('')
+
+        for (ipool, variable), nominals in nominalpool.iteritems():
+            if (ipool, variable) not in varpool:
+                continue
+            
+            hnominal = {}
+            
+            total = 0.
+            for cut in nominals:
+                histo = self._getter.get('%s/%s/histo_%s' % (cut, variable, inSample))
+                hnominal[cut] = histo
+                total += histo.GetSumOfWeights()
+
+            for vname, cuts in varpool[(ipool, variable)].iteritems():
+                for vdir in ['Up', 'Down']:
+                    v = 0.
+                    for cut in cuts:
+                        histo = self._getter.get('%s/%s/histo_%s_%s%s' % (cut, variable, inSample, vname, vdir))
+                        v += histo.GetSumOfWeights()
+    
+                    for cut in cuts:
+                        histo = self._getter.get('%s/%s/histo_%s_%s%s' % (cut, variable, inSample, vname, vdir))
+                        histo.Reset()
+                        if total > 0.:
+                            histo.Add(hnominal[cut], variation['AsLnN'] * v / total)
     
     def restructure(self, output, inSample, outSample, outHistograms):
         # merge sample from one sample at each output cut
@@ -304,7 +369,7 @@ class HistogramMerger(object):
     
         for outSample, inSamples in targets:
             outHistograms = {}
-            
+
             for inSample in inSamples:
                 print '%s/%s -> %s/%s' % (sourcePath, inSample, outputPath, outSample)
 
@@ -315,6 +380,9 @@ class HistogramMerger(object):
                         sourceSample = inSample
 
                     self._getter.open(sourcePath, sourceSample)
+
+                if self.asLnNPooling is not None:
+                    self.poolAsLnN(inSample)
 
                 self.restructure(output, inSample, outSample, outHistograms)
 
@@ -367,8 +435,8 @@ class HistogramMerger(object):
 def makeCutMerging(cuts, outBins, recoBinMap, splitScheme):
     cutMerging = collections.defaultdict(list)
 
-    srpattern = '(.+_)((?:PTH|NJ)_[0-9GET]+)_cat(pt2(?:lt|ge)20)([em][em])([mp][mp])_([0-9]+)'
-    crpattern = '(.+_CR_cat)((?:PTH|NJ)_[0-9GET]+)_(.+_[0-9]+)'
+    srpattern = '(.+_)((?:PTH|NJ)_[0-9GET]+(?:_[0-9]+|))_cat(pt2(?:lt|ge)20)([em][em])([mp][mp])_([0-9]+)$'
+    crpattern = '(.+_CR_cat)((?:PTH|NJ)_[0-9GET]+(?:_[0-9]+|))_(.+_[0-9]+)$'
 
     recoBinRMap = {}
     for out, ins in recoBinMap.iteritems():
@@ -428,22 +496,23 @@ if __name__ == '__main__':
     import shutil
     from argparse import ArgumentParser
     
-    argParser = ArgumentParser(description = 'Restructure the input into a ROOT file containing only the plots needed for a differential measurement.')
-    argParser.add_argument('sourcePath', metavar = 'PATH', help = 'Input ROOT file / directory name.')
-    argParser.add_argument('outputPath', metavar = 'PATH', help = 'Output ROOT file name.')
-    argParser.add_argument('observable', metavar = 'OBS', help = 'Observable name.')
-    argParser.add_argument('--tag', '-t', metavar = 'TAG', dest = 'tag', default = '', help = 'Tag name when input is a directory.')
-    argParser.add_argument('--year', '-y', metavar = 'YEAR', dest = 'year', default = '', help = 'Year.')
-    argParser.add_argument('--signal-fiducial-only', action = 'store_true', dest = 'signal_fiducial_only', help = 'Signal is fiducial only.')
-    argParser.add_argument('--signal-no-fiducial', action = 'store_true', dest = 'signal_no_fiducial', help = 'No fiducial cut on signal.')
-    argParser.add_argument('--signal-ggH-separate', action = 'store_true', dest = 'signal_ggH_separate', help = 'Separate ggH and xH in signal.')
-    argParser.add_argument('--signal-separate', action = 'store_true', dest = 'signal_separate', help = 'Separate Higgs processes.')
-    argParser.add_argument('--signal-hww-only', action = 'store_true', dest = 'signal_hww_only', help = 'Signal is HWW only.')
-    argParser.add_argument('--background-minor-merge', action = 'store_true', dest = 'background_minor_merge', help = 'Merge minor backgrounds into one sample.')
-    argParser.add_argument('--input-fake-flavored', action = 'store_true', dest = 'input_fake_flavored', help = 'Input Fake sample is split into Fake_em and Fake_me.')
-    argParser.add_argument('--gen-inclusive', action = 'store_true', dest = 'gen_inclusive', help = 'Create an input for an inclusive cross section measurement.')
-    argParser.add_argument('--make-asimov-with-bias', metavar = 'SAMPLE=bias', nargs = '+', dest = 'make_asimov_with_bias', help = 'Replace histo_DATA with an Asimov dataset with biased sample scales')
-    argParser.add_argument('--num-processes', '-j', metavar = 'N', dest = 'num_processes', type = int, default = 1, help = 'Number of parallel processes.')
+    argParser = ArgumentParser(description='Restructure the input into a ROOT file containing only the plots needed for a differential measurement.')
+    argParser.add_argument('sourcePath', metavar='PATH', help='Input ROOT file / directory name.')
+    argParser.add_argument('outputPath', metavar='PATH', help='Output ROOT file name.')
+    argParser.add_argument('observable', metavar='OBS', help='Observable name.')
+    argParser.add_argument('--tag', '-t', metavar='TAG', dest='tag', default='', help='Tag name when input is a directory.')
+    argParser.add_argument('--year', '-y', metavar='YEAR', dest='year', default='', help='Year.')
+    argParser.add_argument('--signal-fiducial-only', action='store_true', dest='signal_fiducial_only', help='Signal is fiducial only.')
+    argParser.add_argument('--signal-no-fiducial', action='store_true', dest='signal_no_fiducial', help='No fiducial cut on signal.')
+    argParser.add_argument('--signal-ggH-separate', action='store_true', dest='signal_ggH_separate', help='Separate ggH and xH in signal.')
+    argParser.add_argument('--signal-separate', action='store_true', dest='signal_separate', help='Separate Higgs processes.')
+    argParser.add_argument('--signal-hww-only', action='store_true', dest='signal_hww_only', help='Signal is HWW only.')
+    argParser.add_argument('--background-minor-merge', action='store_true', dest='background_minor_merge', help='Merge minor backgrounds into one sample.')
+    argParser.add_argument('--input-fake-flavored', action='store_true', dest='input_fake_flavored', help='Input Fake sample is split into Fake_em and Fake_me.')
+    argParser.add_argument('--aslnn-category-pool', action='store_true', dest='aslnn_category_pool', help='Compute the lnN value for AsLnN shape uncertainties across categories.')
+    argParser.add_argument('--gen-inclusive', action='store_true', dest='gen_inclusive', help='Create an input for an inclusive cross section measurement.')
+    argParser.add_argument('--make-asimov-with-bias', metavar='SAMPLE=bias', nargs='+', dest='make_asimov_with_bias', help='Replace histo_DATA with an Asimov dataset with biased sample scales')
+    argParser.add_argument('--num-processes', '-j', metavar='N', dest='num_processes', type=int, default=1, help='Number of parallel processes.')
     
     args = argParser.parse_args()
 
@@ -555,13 +624,8 @@ if __name__ == '__main__':
             'PTH_GT350': ['PTH_GT350']
         }
     
-        HistogramMerger.split = [8, 8, 4, 3, 2, 2, 1]
+        HistogramMerger.split = [4, 4, 4, 3, 2, 2, 1]
         #HistogramMerger.split = [1, 1, 1, 1, 1, 1, 1]
-
-        HistogramMerger.crCategories = []
-        if not SRONLY:
-            for sel in ['top', 'DY', 'WW']:
-                HistogramMerger.crCategories.extend('%s_%s' % (outBin, sel) for outBin in HistogramMerger.outBins)
 
         #for sname in list(samples):
         #    if '_NJ_' in sname:
@@ -593,19 +657,6 @@ if __name__ == '__main__':
             HistogramMerger.split = [4, 4, 2, 1, 1]
             #HistogramMerger.split = [8, 8, 1]
     
-        if FIRENZE:
-            crs = ['top', 'DY']
-        else:
-            crs = ['top', 'DY', 'WW']
-
-        HistogramMerger.crCategories = []
-        if not SRONLY:
-            for sel in crs:
-                if FIRENZE:
-                    HistogramMerger.crCategories.extend('%s_%sj' % (sel, nj) for nj in ['0', '1', '2', '3', 'ge4'])
-                else:
-                    HistogramMerger.crCategories.extend('%s_%s' % (outBin, sel) for outBin in HistogramMerger.outBins)
-
     ### Sample merging
     
     sampleMerging = {}
@@ -620,8 +671,6 @@ if __name__ == '__main__':
         sampleMerging['Fake'] = ['Fake']
 
     minors = ['ggWW', 'WWewk', 'Vg', 'VgS_L', 'VgS_H', 'VZ', 'VVV']
-    if args.year == '2016':
-        minors.remove('WWewk')
     
     if args.background_minor_merge:
         sampleMerging['minor'] = minors
@@ -782,6 +831,13 @@ if __name__ == '__main__':
             variation['renormalization'][sname] = (sup, sdown)
     
     source.Close()
+
+    if args.aslnn_category_pool:
+        HistogramMerger.asLnNPooling = []
+        for outBin in HistogramMerger.outBins:
+            HistogramMerger.asLnNPooling.append(['hww_%s_.+' % outBin]),
+
+    ### Create jobs
 
     jobArgs = sampleMerging.items()
 

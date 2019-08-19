@@ -1,5 +1,11 @@
 import os
 import copy
+import inspect
+
+configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
+configurations = os.path.dirname(configurations) # ggH2016
+configurations = os.path.dirname(configurations) # Differential
+configurations = os.path.dirname(configurations) # Configurations
 
 #aliases = {}
 
@@ -71,10 +77,10 @@ aliases['PromptGenLepMatch2l'] = {
     'samples': mc
 }
 
-#aliases['Top_pTrw'] = {
-#    'expr': '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )',
-#    'samples': ['top']
-#}
+aliases['Top_pTrw'] = {
+    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
+    'samples': ['top']
+}
 
 # Jet bins
 # using Alt$(CleanJet_pt[n], 0) instead of Sum$(CleanJet_pt >= 30) because jet pt ordering is not strictly followed in JES-varied samples
@@ -130,8 +136,8 @@ aliases['Jet_btagSF_shapeFix'] = {
     'linesToAdd': [
         'gSystem->Load("libCondFormatsBTauObjects.so");',
         'gSystem->Load("libCondToolsBTau.so");',
-        'gSystem->AddIncludePath("-I%s/work");' % os.getenv('CMSSW_RELEASE_BASE'),
-        '.L %s/work/PlotsConfigurations/Configurations/btagsfpatch.cc+' % os.getenv('CMSSW_BASE')
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+        '.L %s/btagsfpatch.cc+' % configurations
     ],
     'class': 'BtagSF',
     'args': (btagSFSource,),
@@ -205,112 +211,23 @@ aliases['SFweightMuDown'] = {
     'samples': mc
 }
 
-aliases['nllWOTF'] = {
-    'linesToAdd': ['.L %s/work/PlotsConfigurations/Configurations/Differential/nllW.cc+' % os.getenv('CMSSW_BASE')],
-    'class': 'WWNLLW',
-    'args': ('central',),
-    'samples': ['WW']
-}
+# GGHUncertaintyProducer wasn't run for 2018 nAODv5 non-private
+thus = [
+    'ggH_mu',
+    'ggH_res',
+    'ggH_mig01',
+    'ggH_mig12',
+    'ggH_VBF2j',
+    'ggH_VBF3j',
+    'ggH_pT60',
+    'ggH_pT120',
+    'ggH_qmtop'
+]
 
-#aliases['nllW_Qup'] = {
-#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2016v4/nllW.cc+' % os.getenv('CMSSW_BASE')],
-#    'class': 'WWNLLW',
-#    'args': ('sup',),
-#    'samples': ['WW']
-#}
-#
-#aliases['nllW_Qdown'] = {
-#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2016v4/nllW.cc+' % os.getenv('CMSSW_BASE')],
-#    'class': 'WWNLLW',
-#    'args': ('sdown',),
-#    'samples': ['WW']
-#}
-#
-#aliases['nllW_Rup'] = {
-#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2016v4/nllW.cc+' % os.getenv('CMSSW_BASE')],
-#    'class': 'WWNLLW',
-#    'args': ('rup',),
-#    'samples': ['WW']
-#}
-#
-#aliases['nllW_Rdown'] = {
-#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ggH2016v4/nllW.cc+' % os.getenv('CMSSW_BASE')],
-#    'class': 'WWNLLW',
-#    'args': ('rdown',),
-#    'samples': ['WW']
-#}
-
-### Variables for fiducial region definition
-#
-## Gen pxll, pyll
-#aliases['genPxll'] = {
-#    'expr': 'GenDressedLepton_pt[0] * cos(GenDressedLepton_phi[0]) + GenDressedLepton_pt[1] * cos(GenDressedLepton_phi[1])',
-#    'samples': signals
-#}
-#aliases['genPyll'] = {
-#    'expr': 'GenDressedLepton_pt[0] * sin(GenDressedLepton_phi[0]) + GenDressedLepton_pt[1] * sin(GenDressedLepton_phi[1])',
-#    'samples': signals
-#}
-#
-## Gen pxH, pyH
-#aliases['genPxH'] = {
-#    'expr': 'genPxll + GenMET_pt * cos(GenMET_phi)',
-#    'samples': signals
-#}
-#aliases['genPyH'] = {
-#    'expr': 'genPyll + GenMET_pt * sin(GenMET_phi)',
-#    'samples': signals
-#}
-#
-#aliases['genPth'] = {
-#    'expr': 'sqrt(genPxH * genPxH + genPyH * genPyH)',
-#    'samples': signals
-#}
-#
-## Gen pTll
-#aliases['genPtll'] = {
-#    'expr': 'sqrt(genPxll * genPxll + genPyll * genPyll)',
-#    'samples': signals
-#}
-#
-### Overlap cleaning for gen jets
-#aliases['genJetClean'] = {
-#    'expr': 'TMath::Power(GenJet_eta - GenDressedLepton_eta[0], 2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[0]), 2.) > 0.16 && TMath::Power(GenJet_eta - GenDressedLepton_eta[1], 2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi - GenDressedLepton_phi[1]), 2.) > 0.16',
-#    'samples': signals
-#}
-
-#aliases['genJet0Clean'] = {
-#    'expr': 'TMath::Power(GenJet_eta[0] - GenDressedLepton_eta[0], 2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi[0] - GenDressedLepton_phi[0]), 2.) > 0.16 && TMath::Power(GenJet_eta[0] - GenDressedLepton_eta[1], 2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi[0] - GenDressedLepton_phi[1]), 2.) > 0.16',
-#    'samples': signals
-#}
-#
-#aliases['genJet1Clean'] = {
-#    'expr': 'TMath::Power(GenJet_eta[1] - GenDressedLepton_eta[0], 2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi[1] - GenDressedLepton_phi[0]), 2.) > 0.16 && TMath::Power(GenJet_eta[1] - GenDressedLepton_eta[1], 2.) + TMath::Power(TVector2::Phi_mpi_pi(GenJet_phi[1] - GenDressedLepton_phi[1]), 2.) > 0.16',
-#    'samples': signals
-#}
-
-#aliases['nCleanGenJet'] = {
-#    'expr': 'Sum$(GenJet_pt > 30 && genJetClean)',
-#    'samples': signals
-#}
-
-# use HTXS_njets30 when moving to NanoAODv5
-aliases['nCleanGenJet'] = {
-    'linesToAdd': ['.L %s/work/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')],
-    'class': 'CountGenJet',
-    'samples': signals
-}
-
-## Fiducial cut for differential measurements
-#fiducial = [
-#    'GenDressedLepton_pt[0]>25 && Sum$(GenDressedLepton_pt>10) == 2',
-#    'GenDressedLepton_pdgId[0] * GenDressedLepton_pdgId[1] == -11 * 13',
-#    'sqrt(2*GenDressedLepton_pt[0] * GenDressedLepton_pt[1] * (cosh(GenDressedLepton_eta[0]-GenDressedLepton_eta[1])-cos(GenDressedLepton_phi[0]-GenDressedLepton_phi[1]))) > 12.',
-#    'genPtll > 30.',
-#    'sqrt(2. * GenMET_pt * (genPtll - genPxll * cos(GenMET_phi) - genPyll * sin(GenMET_phi))) > 60.',
-#    'sqrt(2. * GenDressedLepton_pt[1] * GenMET_pt * (1-cos(GenDressedLepton_phi[1]-GenMET_phi))) > 30.',
-#]
-#aliases['fiducial'] = {
-#    'expr': ' && '.join(fiducial),
-#    'samples': signals
-#}
+for thu in thus:
+    aliases[thu] = {
+        'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
+        'class': 'GGHUncertainty',
+        'args': (thu,),
+        'samples': ['ggH_hww']
+    }

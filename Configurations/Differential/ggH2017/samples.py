@@ -4,11 +4,14 @@ from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSample
 def nanoGetSampleFiles(inputDir, sample):
     try:
         if _samples_noload:
-            return []
+            return [sample]
     except NameError:
         pass
 
-    return getSampleFiles(inputDir, sample, True, 'nanoLatino_')
+    return getSampleFiles(inputDir, sample, True, rootFilePrefix='nanoLatino_')
+
+def nanoGetBaseW(directory, samples):
+    return getBaseW(directory, samples, rootFilePrefix='nanoLatino_')
 
 # samples
 
@@ -39,15 +42,16 @@ njetBinning = ['0', '1', '2', '3', 'GE4']
 ################# SKIMS ########################
 ################################################
 
-mcProduction = 'Fall2017_nAOD_v1_Full2017v2LP19'
+#mcProduction = 'Fall2017_102X_nAODv4_Full2017v5'
+#mcProduction = 'Fall2017_102X_nAODv5_SigOnly_Full2017v5'
 
-dataReco = 'Run2017_nAOD_v1_Full2017v2LP19'
+dataReco = 'Run2017_102X_nAODv4_Full2017v5'
 
-mcSteps = 'MCl1loose2017__MCCorr2017LP19__l2loose__l2tightOR2017{var}__PUFIXLP19__wwSel'
+#mcSteps = 'MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5{var}__wwSel'
 
-fakeSteps = 'DATAl1loose2017LP19__l2loose__fakeWPUFIXLP19__wwSel'
+fakeSteps = 'DATAl1loose2017v5__l2loose__fakeW'
 
-dataSteps = 'DATAl1loose2017LP19__l2loose__l2tightOR2017__wwSel'
+dataSteps = 'DATAl1loose2017v5__l2loose__l2tightOR2017v5'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -61,9 +65,11 @@ elif  'cern' in SITE:
 
 def makeMCDirectory(var=''):
     if var:
-        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
+        #return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
+        return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Fall17/l2tightOR__{var}'.format(var=var)
     else:
-        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
+        #return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
+        return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Fall17/l2tightOR'
 
 mcDirectory = makeMCDirectory()
 fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
@@ -74,11 +80,11 @@ dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 ################################################
 
 DataRun = [
-    ['B','Run2017B-31Mar2018-v1'],
-    ['C','Run2017C-31Mar2018-v1'],
-    ['D','Run2017D-31Mar2018-v1'],
-    ['E','Run2017E-31Mar2018-v1'],
-    ['F','Run2017F-31Mar2018-v1']
+    ['B','Run2017B-Nano14Dec2018-v1'],
+    ['C','Run2017C-Nano14Dec2018-v1'],
+    ['D','Run2017D-Nano14Dec2018-v1'],
+    ['E','Run2017E-Nano14Dec2018-v1'],
+    ['F','Run2017F-Nano14Dec2018-v1']
 ]
 
 DataSets = ['MuonEG','SingleMuon','SingleElectron','DoubleMuon', 'DoubleEG']
@@ -159,15 +165,15 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 ###### WW ########
 
 samples['WW'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu_PrivateNano'),
+    'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
     'weight': mcCommonWeight + '*nllW',
-    'FilesPerJob': 3
+    'FilesPerJob': 1
 }
 
 samples['WWewk'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK'),
     'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)', #filter tops and Higgs
-    'FilesPerJob': 4
+    'FilesPerJob': 2
 }
 
 # k-factor 1.4 already taken into account in XSWeight
@@ -190,7 +196,7 @@ samples['ggWW'] = {
 ######## Vg ########
 
 files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
-    nanoGetSampleFiles(mcDirectory, 'Zg')
+    nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
 
 samples['Vg'] = {
     'name': files,
@@ -201,7 +207,7 @@ samples['Vg'] = {
 ######## VgS ########
 
 files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
-    nanoGetSampleFiles(mcDirectory, 'Zg') + \
+    nanoGetSampleFiles(mcDirectory, 'ZGToLLG') + \
     nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01')
 
 samples['VgS'] = {
@@ -252,7 +258,7 @@ signals = []
 #### ggH -> WW
 
 samples['ggH_hww'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125_PrivateNano'),
+    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125'),
     'weight': [mcCommonWeight, {'class': 'Weight2MINLO', 'args': '%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE')}],
     'FilesPerJob': 1,
     'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/weight2MINLO.cc+' % os.getenv('CMSSW_BASE')]
@@ -262,14 +268,14 @@ signals.append('ggH_hww')
 
 ############ VBF H->WW ############
 samples['qqH_hww'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2NuPowheg_M125_PrivateNano'),
+    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2NuPowheg_M125'),
     'weight': mcCommonWeight,
     'FilesPerJob': 3
 }
 
 signals.append('qqH_hww')
 
-############ ZH H->WW ############
+############# ZH H->WW ############
 
 samples['ZH_hww'] = {
     'name':   nanoGetSampleFiles(mcDirectory, 'HZJ_HToWWTo2L2Nu_M125'),
@@ -280,7 +286,7 @@ samples['ZH_hww'] = {
 signals.append('ZH_hww')
 
 samples['ggZH_hww'] = {
-    'name':   nanoGetSampleFiles(mcDirectory, 'GluGluZH_HToWW_M125'),
+    'name':   nanoGetSampleFiles(mcDirectory, 'GluGluZH_HToWWTo2L2Nu_M125'),
     'weight': mcCommonWeight,
     'FilesPerJob': 2
 }
@@ -307,18 +313,15 @@ samples['ttH_hww'] = {
 
 signals.append('ttH_hww')
 
-############ bbH ############
-#FIXME Missing samples
-
 ############ H->TauTau ############
 
 samples['ggH_htt'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125'),
+    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125_ext1'),
     'weight': mcCommonWeight,
     'FilesPerJob': 1
 }
 
-signals.append('ggH_htt')
+#signals.append('ggH_htt')
 
 samples['qqH_htt'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125'),
@@ -326,7 +329,7 @@ samples['qqH_htt'] = {
     'FilesPerJob': 2
 }
 
-signals.append('qqH_htt')
+#signals.append('qqH_htt')
 
 samples['ZH_htt'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125'),
@@ -334,7 +337,7 @@ samples['ZH_htt'] = {
     'FilesPerJob': 2
 }
 
-signals.append('ZH_htt')
+#signals.append('ZH_htt')
 
 samples['WH_htt'] = {
     'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125')
@@ -343,29 +346,27 @@ samples['WH_htt'] = {
     'FilesPerJob': 2
 }
 
-signals.append('WH_htt')
+#signals.append('WH_htt')
 
 for sname in signals:
   sample = samples[sname]
   sample['subsamples'] = {}
 
-  # use HTXS_Higgs_pt when moving to NanoAODv5
   for pth in pthBins:
     binName = 'PTH_%s' % pth
     if pth.startswith('GT'):
-      cut = 'higgsGenPt > %s' % pth[2:]
+      cut = 'HTXS_Higgs_pt > %s' % pth[2:]
     else:
-      cut = 'higgsGenPt > %s && higgsGenPt < %s' % tuple(pth.split('_'))
+      cut = 'HTXS_Higgs_pt > %s && HTXS_Higgs_pt < %s' % tuple(pth.split('_'))
 
     sample['subsamples'][binName] = cut
 
-  # use HTXS_njets30 when moving to NanoAODv5
   for nj in njetBinning:
     binName = 'NJ_%s' % nj
     if nj.startswith('GE'):
-      cut = 'nCleanGenJet >= %s' % nj[2:]
+      cut = 'HTXS_njets30 >= %s' % nj[2:]
     else:
-      cut = 'nCleanGenJet == %s' % nj
+      cut = 'HTXS_njets30 == %s' % nj
 
     sample['subsamples'][binName] = cut
 

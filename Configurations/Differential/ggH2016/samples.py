@@ -40,16 +40,16 @@ njetBinning = ['0', '1', '2', '3', 'GE4']
 ################# SKIMS ########################
 ################################################
 
-mcProduction = 'Summer16_102X_nAODv4_Full2016v5'
+#mcProduction = 'Summer16_102X_nAODv4_Full2016v5'
 #mcProduction = 'Summer16_102X_nAODv5_SigOnly_Full2016v5'
 
 dataReco = 'Run2016_102X_nAODv4_Full2016v5'
 
-mcSteps = 'MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5{var}'
+#mcSteps = 'MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5{var}'
 
-fakeSteps = 'DATAl1loose2016v5__l2loose__fakeW'
+fakeSteps = 'DATAl1loose2016v5__l2loose__fakeW__wwSel'
 
-dataSteps = 'DATAl1loose2016v5__l2loose__l2tightOR2016v5'
+dataSteps = 'DATAl1loose2016v5__l2loose__l2tightOR2016v5__wwSel'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -63,9 +63,11 @@ elif  'cern' in SITE:
 
 def makeMCDirectory(var=''):
     if var:
-        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
+        #return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
+        return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Summer16/l2tightOR__{var}'.format(var=var)
     else:
-        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
+        #return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
+        return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Summer16/l2tightOR'
 
 mcDirectory = makeMCDirectory()
 fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
@@ -109,8 +111,8 @@ mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 
 ###### DY #######
 
-ptllDYW_NLO = '(((0.623108 + 0.0722934*gen_ptll - 0.00364918*gen_ptll*gen_ptll + 6.97227e-05*gen_ptll*gen_ptll*gen_ptll - 4.52903e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll<45)*(gen_ptll>0) + 1*(gen_ptll>=45))*(abs(gen_mll-90)<3) + (abs(gen_mll-90)>3))'
-ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
+ptllDYW_NLO = '(0.876979+gen_ptll*(4.11598e-03)-(2.35520e-05)*gen_ptll*gen_ptll)*(1.10211 * (0.958512 - 0.131835*TMath::Erf((gen_ptll-14.1972)/10.1525)))*(gen_ptll<140)+0.891188*(gen_ptll>=140)'
+ptllDYW_LO  = '(8.61313e-01+gen_ptll*4.46807e-03-1.52324e-05*gen_ptll*gen_ptll)*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-11.)/5.51582)))*(gen_ptll<140)+1.141996*(gen_ptll>=140)'
 
 files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
     nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
@@ -145,9 +147,9 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    #'weight': mcCommonWeight + '*nllW', # temporary
+    #'weight': mcCommonWeight + '*nllW', # temporary - nllW module not run on PS and UE variation samples
     'weight': mcCommonWeight + '*nllWOTF', # temporary
-    'FilesPerJob': 8
+    'FilesPerJob': 1
 }
 
 samples['WWewk'] = {
@@ -228,7 +230,6 @@ signals = []
 #### ggH -> WW
 
 samples['ggH_hww'] = {
-    #'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125_PrivateNano'),
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125'),
     'weight': [mcCommonWeight, {'class': 'Weight2MINLO', 'args': '%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE')}],
     'FilesPerJob': 4,
@@ -284,9 +285,6 @@ signals.append('WH_hww')
 #
 #signals.append('ttH_hww')
 
-############ bbH ############
-#FIXME Missing samples
-
 ############ H->TauTau ############
 
 samples['ggH_htt'] = {
@@ -295,7 +293,7 @@ samples['ggH_htt'] = {
     'FilesPerJob': 4
 }
 
-signals.append('ggH_htt')
+#signals.append('ggH_htt')
 
 samples['qqH_htt'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125'),
@@ -303,7 +301,7 @@ samples['qqH_htt'] = {
     'FilesPerJob': 4
 }
 
-signals.append('qqH_htt')
+#signals.append('qqH_htt')
 
 samples['ZH_htt'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125'),
@@ -311,7 +309,7 @@ samples['ZH_htt'] = {
     'FilesPerJob': 4
 }
 
-signals.append('ZH_htt')
+#signals.append('ZH_htt')
 
 samples['WH_htt'] = {
     'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
@@ -319,7 +317,7 @@ samples['WH_htt'] = {
     'FilesPerJob': 4
 }
 
-signals.append('WH_htt')
+#signals.append('WH_htt')
 
 for sname in signals:
   sample = samples[sname]

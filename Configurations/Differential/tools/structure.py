@@ -7,7 +7,7 @@ import collections
 sys.path.append('%s/src/PlotsConfigurations/Configurations/Differential/tools' % os.getenv('CMSSW_BASE'))
 from update_nuisances import update_nuisances
 
-observable = 'NJ'
+observable = 'PTH'
 
 try:
     structure
@@ -68,15 +68,16 @@ for sname in ['ggWW', 'WWewk', 'Vg', 'VgS_L', 'VgS_H', 'VZ', 'VVV']:
         sample_merging['minor'].append(sname)
 
 sample_merging['htt'] = []
+for sname in samples.iterkeys():
+    if '_htt' in sname:
+        sample_merging['htt'].append(sname)
+
 for sub in subsamplemap['ggH_hww']:
     sample_merging['smH_hww_%s' % sub] = []
 
 # assuming signal subsamples are exactly the binning used in the fit
 # if gen-bins are merged in restructure_input, need to provide a mapping here externally
 for sname, subs in subsamplemap.iteritems():
-    if '_htt' in sname:
-        sample_merging['htt'].extend('%s_%s' % (sname, sub) for sub in subs)
-
     if '_hww' in sname:
         for sub in subs:
             sample_merging['smH_hww_%s' % sub].append('%s_%s' % (sname, sub))
@@ -104,7 +105,7 @@ for cut in cuts:
         cut_merging[matches.group(1) + matches.group(2)].append(cut)
         continue
 
-    matches = re.match('(.+_PTH_45_80_.+[em][em])[mp][mp](_[0-9]+)', cut)
+    matches = re.match('(.+_PTH_(?:0_20|20_45|45_80)_.+[em][em])[mp][mp](_[0-9]+)', cut)
     if matches:
         cut_merging[matches.group(1) + matches.group(2)].append(cut)
         continue

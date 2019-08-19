@@ -14,7 +14,14 @@ from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSample
 def nanoGetSampleFiles(inputDir, Sample):
     return getSampleFiles(inputDir, Sample, False, 'nanoLatino_')
 
-mc = [skey for skey in samples if skey != 'DATA' and not skey.startswith('Fake')]
+try:
+    mc = [skey for skey in samples if skey != 'DATA' and not skey.startswith('Fake')]
+except NameError:
+    mc = []
+    cuts = {}
+    nuisances = {}
+    def makeMCDirectory(x=''):
+        return ''
 
 from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
 HiggsXS = HiggsXSection()
@@ -202,7 +209,7 @@ nuisances['PU'] = {
 
 nuisances['PS']  = {
     'name': 'PS',
-    'kind': 'weight',
+    'kind': 'tree',
     'type': 'shape',
     'samples': {
         'WW': ['1.', '1.'],
@@ -212,7 +219,7 @@ nuisances['PS']  = {
     'folderUp': makeMCDirectory('PS'),
     'folderDown': makeMCDirectory(),
     'AsLnN': '1',
-    #'symmetrize': True
+    'synchronized': False
 }
 
 nuisances['UE'] = {
@@ -226,20 +233,9 @@ nuisances['UE'] = {
         'qqH_hww' : ['1', '1']
     },
     'AsLnN': '1',
-    #'filesUp': {
-    #  'WW': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu_CP5Up'),
-    #  'ggH_hww': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125_CP5Up'),
-    #  'qqH_hww': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2NuPowheg_M125_CP5Up'),
-    #},
-    #'filesDown': {
-    #  'WW': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu_CP5Up'),
-    #  'ggH_hww': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125_CP5Up'),
-    #  'qqH_hww': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2NuPowheg_M125_CP5Up'),
-    #},
     'folderUp': makeMCDirectory('UEup'),
     'folderDown': makeMCDirectory('UEdo'),
-    'synchronized': False,
-    'nominalAsAlt': True
+    'synchronized': False
 }
 
 ####### Generic "cross section uncertainties"
@@ -302,15 +298,15 @@ nuisances['pdf_Higgs_gg'] = {
     'type': 'lnN',
 }
 
-#values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','pdf','sm')
-#
-#nuisances['pdf_Higgs_ttH'] = {
-#    'name': 'pdf_Higgs_ttH',
-#    'samples': {
-#        'ttH_hww': values
-#    },
-#    'type': 'lnN',
-#}
+values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','pdf','sm')
+
+nuisances['pdf_Higgs_ttH'] = {
+    'name': 'pdf_Higgs_ttH',
+    'samples': {
+        'ttH_hww': values
+    },
+    'type': 'lnN',
+}
 
 valuesqqh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm')
 valueswh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','pdf','sm')
@@ -479,31 +475,31 @@ nuisances['CRSR_accept_top'] = {
 #
 #   see https://twiki.cern.ch/twiki/bin/viewauth/CMS/HiggsWG/SignalModelingTools
 
-#thus = [
-#    ('THU_ggH_Mu', 'ggH_mu'),
-#    ('THU_ggH_Res', 'ggH_res'),
-#    ('THU_ggH_Mig01', 'ggH_mig01'),
-#    ('THU_ggH_Mig12', 'ggH_mig12'),
-#    ('THU_ggH_VBF2j', 'ggH_VBF2j'),
-#    ('THU_ggH_VBF3j', 'ggH_VBF3j'),
-#    ('THU_ggH_PT60', 'ggH_pT60'),
-#    ('THU_ggH_PT120', 'ggH_pT120'),
-#    ('THU_ggH_qmtop', 'ggH_qmtop')
-#]
-#
-#for name, vname in thus:
-#    updown = [vname, '2.-%s' % vname]
-#    
-#    nuisances[name] = {
-#        'name': name,
-#        'skipCMS': 1,
-#        'kind': 'weight',
-#        'type': 'shape',
-#        'samples': {
-#          'ggH_hww': updown,
-#          #'ggH_htt': updown
-#        }
-#    }
+thus = [
+    ('THU_ggH_Mu', 'ggH_mu'),
+    ('THU_ggH_Res', 'ggH_res'),
+    ('THU_ggH_Mig01', 'ggH_mig01'),
+    ('THU_ggH_Mig12', 'ggH_mig12'),
+    ('THU_ggH_VBF2j', 'ggH_VBF2j'),
+    ('THU_ggH_VBF3j', 'ggH_VBF3j'),
+    ('THU_ggH_PT60', 'ggH_pT60'),
+    ('THU_ggH_PT120', 'ggH_pT120'),
+    ('THU_ggH_qmtop', 'ggH_qmtop')
+]
+
+for name, vname in thus:
+    updown = [vname, '2.-%s' % vname]
+    
+    nuisances[name] = {
+        'name': name,
+        'skipCMS': 1,
+        'kind': 'weight',
+        'type': 'shape',
+        'samples': {
+          'ggH_hww': updown,
+          #'ggH_htt': updown
+        }
+    }
 
 #### QCD scale uncertainties for Higgs signals other than ggH
 
@@ -552,23 +548,24 @@ nuisances['QCDscale_ggZH'] = {
 #  'type': 'lnN',
 #}
 
-#values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','scale','sm')
-#
-#nuisances['QCDscale_ttH'] = {
-#    'name': 'QCDscale_ttH',
-#    'samples': {
-#        'ttH_hww': values
-#    },
-#    'type': 'lnN',
-#}
+values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','scale','sm')
 
-#nuisances['QCDscale_WWewk'] = {
-#    'name': 'QCDscale_WWewk',
-#    'samples': {
-#        'WWewk': '1.11',
-#    },
-#    'type': 'lnN'
-#}
+nuisances['QCDscale_ttH'] = {
+    'name': 'QCDscale_ttH',
+    'samples': {
+        'ttH_hww': values
+    },
+    'type': 'lnN',
+}
+
+nuisances['QCDscale_WWewk'] = {
+    'name': 'QCDscale_WWewk',
+    'samples': {
+        'WWewk': '1.11',
+    },
+    'type': 'lnN'
+}
+
 
 #FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['QCDscale_qqbar_ACCEPT'] = {
@@ -616,3 +613,5 @@ for n in nuisances.values():
     n['skipCMS'] = 1
 
 #nuisances = {}
+
+#print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))

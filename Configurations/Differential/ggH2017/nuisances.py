@@ -14,7 +14,14 @@ from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSample
 def nanoGetSampleFiles(inputDir, Sample):
     return getSampleFiles(inputDir, Sample, False, 'nanoLatino_')
 
-mc = [skey for skey in samples if skey != 'DATA' and not skey.startswith('Fake')]
+try:
+    mc = [skey for skey in samples if skey != 'DATA' and not skey.startswith('Fake')]
+except NameError:
+    mc = []
+    cuts = {}
+    nuisances = {}
+    def makeMCDirectory(x=''):
+        return ''
 
 from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
 HiggsXS = HiggsXSection()
@@ -134,9 +141,8 @@ nuisances['electronpt'] = {
     'kind': 'tree',
     'type': 'shape',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('ElepTupLP19'),
-    'folderDown': makeMCDirectory('ElepTdoLP19'),
-    'nominalAsAlt': True,
+    'folderUp': makeMCDirectory('ElepTup'),
+    'folderDown': makeMCDirectory('ElepTdo'),
     'AsLnN': '1'
 }
 
@@ -154,8 +160,8 @@ nuisances['muonpt'] = {
     'kind': 'tree',
     'type': 'shape',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('MupTupLP19'),
-    'folderDown': makeMCDirectory('MupTdoLP19'),
+    'folderUp': makeMCDirectory('MupTup'),
+    'folderDown': makeMCDirectory('MupTdo'),
     'AsLnN': '1'
 }
 
@@ -166,8 +172,8 @@ nuisances['jes'] = {
     'kind': 'tree',
     'type': 'shape',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('JESupLP19'),
-    'folderDown': makeMCDirectory('JESdoLP19'),
+    'folderUp': makeMCDirectory('JESup'),
+    'folderDown': makeMCDirectory('JESdo'),
     'AsLnN': '1'
 }
 
@@ -178,8 +184,8 @@ nuisances['met'] = {
     'kind': 'tree',
     'type': 'shape',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('METupLP19'),
-    'folderDown': makeMCDirectory('METdoLP19'),
+    'folderUp': makeMCDirectory('METup'),
+    'folderDown': makeMCDirectory('METdo'),
     'AsLnN': '1'
 }
 
@@ -207,11 +213,8 @@ nuisances['PS']  = {
     'type': 'shape',
     'samples': {
         'WW': ['PSWeight[0]', 'PSWeight[3]'],
-        #'ggH_hww': ['PSWeight[0]', 'PSWeight[3]'], # broken in source
-        #'qqH_hww': ['PSWeight[0]', 'PSWeight[3]'] # broken in source
     },
     'AsLnN': '1',
-    #'symmetrize': True
 }
 
 nuisances['UE'] = {
@@ -225,16 +228,6 @@ nuisances['UE'] = {
         'qqH_hww' : ['1', '1']
     },
     'AsLnN': '1',
-    #'filesUp': {
-    #  'WW': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu_CP5Up'),
-    #  'ggH_hww': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125_CP5Up'),
-    #  'qqH_hww': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2NuPowheg_M125_CP5Up'),
-    #},
-    #'filesDown': {
-    #  'WW': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu_CP5Up'),
-    #  'ggH_hww': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125_CP5Up'),
-    #  'qqH_hww': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2NuPowheg_M125_CP5Up'),
-    #},
     'folderUp': makeMCDirectory('UEup'),
     'folderDown': makeMCDirectory('UEdo'),
     'synchronized': False
