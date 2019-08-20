@@ -19,8 +19,8 @@ elif  'cern' in SITE :
   #xrootdPath='root://eoscms.cern.ch/'
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/'
 
-directory = treeBaseDir+'Autumn18_102X_nAODv4_GTv16_Full2018v4/MCl1loose2018__MCCorr2018__l2loose__l2tightOR2018v4/'
-
+#directory = treeBaseDir+'Autumn18_102X_nAODv4_GTv16_Full2018v4/MCl1loose2018__MCCorr2018__l2loose__l2tightOR2018v4/'
+directory = treeBaseDir+'Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5/'
 
 ################################################
 ############ NUMBER OF LEPTONS #################
@@ -228,8 +228,9 @@ samples['Fake']  = {   'name': [ ] ,
                        }
 
 for Run in DataRun :
-  directory = treeBaseDir+'Run2018_102X_nAODv4_14Dec_Full2018v4/DATAl1loose2018__l2loose__fakeW/'
-  for DataSet in DataSets :
+  #directory = treeBaseDir+'Run2018_102X_nAODv4_14Dec_Full2018v4/DATAl1loose2018__l2loose__fakeW/'
+  directory = treeBaseDir+'Run2018_102X_nAODv4_Full2018v5/DATAl1loose2018v5__l2loose__fakeW/'
+ for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
     for iFile in FileTarget:
       samples['Fake']['name'].append(iFile)
@@ -249,8 +250,9 @@ samples['DATA']  = {   'name': [ ] ,
                        }
 
 for Run in DataRun :
-  directory = treeBaseDir+'Run2018_102X_nAODv4_14Dec_Full2018v4/DATAl1loose2018__l2loose__l2tightOR2018v4/'
-  for DataSet in DataSets :
+  #directory = treeBaseDir+'Run2018_102X_nAODv4_14Dec_Full2018v4/DATAl1loose2018__l2loose__l2tightOR2018v4/'
+  directory = treeBaseDir+'Run2018_102X_nAODv5_Full2018v5/DATAl1loose2018v5__l2loose__l2tightOR2018v5/' 
+ for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
     for iFile in FileTarget:
       print(iFile)
