@@ -25,12 +25,13 @@ samples = {}
 
 treeBaseDir='/gwteray/users/govoni/OneLeptonSkims/'
 
-postProcStepSig = 'signal'
+postProcStepSig = 'crtopvbs'
 sigDir = treeBaseDir + 'VBS_semileptonic_signal_summer16/'        + postProcStepSig + "/" 
-postProcStepBkg1  = 'bkgvbs'
+postProcStepBkg1  = 'crtopvbs'
 bkgDir1 = treeBaseDir + 'Apr2017_summer16_SingleLepton_hercules/' + postProcStepBkg1 +"/" 
-postProcStepBkg2  = 'bkgvbs'
-bkgDir2 = treeBaseDir + 'QCD_semileptonic_summe
+postProcStepBkg2  = 'crtopvbs'
+bkgDir2 = treeBaseDir + 'QCD_semileptonic_summer16/'              + postProcStepBkg2 + "/" 
+
 
 ################################################
 ############ NUMBER OF LEPTONS #################
@@ -213,21 +214,21 @@ samples['TT'] = {
 
 
 
-samples['QCD_Pt'] = {
-        'name': getSampleFiles(bkgDir1,'QCD_Pt-15to20_MuEnrichedPt5',     True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt-20to30_EMEnriched',        True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt-20toInf_MuEnrichedPt15',   True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt-30to50_EMEnriched',        True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt-30toInf_DoubleEMEnriched', True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt-50to80_EMEnriched',        True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt_170to250_bcToE',           True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt_20to30_bcToE',             True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt_250toInf_bcToE',           True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt_30to80_bcToE',             True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt_80to170_bcToE',            True),
-        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
-        'FilesPerJob' : 10 ,
-}
+# samples['QCD_Pt'] = {
+#         'name': getSampleFiles(bkgDir1,'QCD_Pt-15to20_MuEnrichedPt5',     True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt-20to30_EMEnriched',        True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt-20toInf_MuEnrichedPt15',   True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt-30to50_EMEnriched',        True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt-30toInf_DoubleEMEnriched', True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt-50to80_EMEnriched',        True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt_170to250_bcToE',           True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt_20to30_bcToE',             True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt_250toInf_bcToE',           True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt_30to80_bcToE',             True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt_80to170_bcToE',            True),
+#         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+#         'FilesPerJob' : 10 ,
+# }
 
 ###########################################
 #############   SIGNALS  ##################

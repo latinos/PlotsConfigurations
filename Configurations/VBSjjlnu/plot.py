@@ -103,12 +103,12 @@ groupPlot['TT']  = {
     'samples' : ['TT', 'ST']
 }
 
-groupPlot['QCD_Pt'] = {
-    'nameHR'   : 'QCD_Pt',
-    'isSignal' : 0,
-    'color'    : colors['kOrange']-3,
-    'samples'  : ['QCD_Pt']
-}
+# groupPlot['QCD_Pt'] = {
+#     'nameHR'   : 'QCD_Pt',
+#     'isSignal' : 0,
+#     'color'    : colors['kOrange']-3,
+#     'samples'  : ['QCD_Pt']
+# }
 
 
 
@@ -167,12 +167,12 @@ plot['ST'] = {
     'scale'    : 1.
 }
 
-plot['QCD_Pt'] = {
-    'color'    : colors['kMagenta']+4,
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1.
-}
+# plot['QCD_Pt'] = {
+#     'color'    : colors['kMagenta']+4,
+#     'isSignal' : 0,
+#     'isData'   : 0,
+#     'scale'    : 1.
+# }
 
 plot['QCD_WW']=  {
     'color'    : colors['kGreen']+3,

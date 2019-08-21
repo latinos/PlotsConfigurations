@@ -214,21 +214,21 @@ samples['TT'] = {
 
 
 
-samples['QCD_Pt'] = {
-        'name': getSampleFiles(bkgDir1,'QCD_Pt-15to20_MuEnrichedPt5',     True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt-20to30_EMEnriched',        True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt-20toInf_MuEnrichedPt15',   True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt-30to50_EMEnriched',        True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt-30toInf_DoubleEMEnriched', True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt-50to80_EMEnriched',        True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt_170to250_bcToE',           True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt_20to30_bcToE',             True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt_250toInf_bcToE',           True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt_30to80_bcToE',             True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt_80to170_bcToE',            True),
-        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
-        'FilesPerJob' : 10 ,
-}
+# samples['QCD_Pt'] = {
+#         'name': getSampleFiles(bkgDir1,'QCD_Pt-15to20_MuEnrichedPt5',     True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt-20to30_EMEnriched',        True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt-20toInf_MuEnrichedPt15',   True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt-30to50_EMEnriched',        True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt-30toInf_DoubleEMEnriched', True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt-50to80_EMEnriched',        True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt_170to250_bcToE',           True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt_20to30_bcToE',             True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt_250toInf_bcToE',           True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt_30to80_bcToE',             True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt_80to170_bcToE',            True),
+#         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+#         'FilesPerJob' : 10 ,
+# }
 
 ###########################################
 #############   SIGNALS  ##################
