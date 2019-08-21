@@ -5,6 +5,41 @@ mc = [skey for skey in samples if skey not in ('Fake_em', 'Fake_me', 'Fake', 'DA
 bAlgo = 'DeepB'
 bWP = '0.1241'
 
+aliases['pt2lt20'] = {
+    'expr': 'Lepton_pt[1]<20'
+}
+
+aliases['pt2ge20'] = {
+    'expr': '!pt2lt20'
+}
+
+aliases['me'] = {
+    'expr': 'Lepton_pdgId[0]*Lepton_pdgId[1]==13*11 && abs(Lepton_pdgId[0])==13   \
+             && Electron_lostHits[Lepton_electronIdx[1]]>=1' 
+}
+
+aliases['ee'] = {
+    'expr': 'Lepton_pdgId[0]*Lepton_pdgId[1]==11*11 && abs(Lepton_pdgId[0])==11   \
+             && Electron_lostHits[Lepton_electronIdx[1]]>=1'
+}
+
+aliases['me_pt2lt20'] = {
+    'expr': 'me && pt2lt20'
+}
+
+aliases['ee_pt2lt20'] = {
+    'expr': 'ee && pt2lt20'
+}
+
+aliases['me_pt2ge20'] = {
+    'expr': 'me && pt2ge20'
+}
+
+aliases['ee_pt2ge20'] = {
+    'expr': 'ee && pt2ge20'
+}
+
+
 aliases['PromptGenLepMatch2l'] = {
     'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
     'samples': mc
