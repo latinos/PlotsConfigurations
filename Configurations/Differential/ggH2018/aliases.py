@@ -160,7 +160,7 @@ aliases['Jet_btagSF_shapeFix'] = {
         'gSystem->Load("libCondFormatsBTauObjects.so");',
         'gSystem->Load("libCondToolsBTau.so");',
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
-        '.L %s/btagsfpatch.cc+' % configurations
+        '.L %s/patches/btagsfpatch.cc+' % configurations
     ],
     'class': 'BtagSF',
     'args': (btagSFSource,),
@@ -233,24 +233,3 @@ aliases['SFweightMuDown'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Do',
     'samples': mc
 }
-
-# GGHUncertaintyProducer wasn't run for 2018 nAODv5 non-private
-thus = [
-    'ggH_mu',
-    'ggH_res',
-    'ggH_mig01',
-    'ggH_mig12',
-    'ggH_VBF2j',
-    'ggH_VBF3j',
-    'ggH_pT60',
-    'ggH_pT120',
-    'ggH_qmtop'
-]
-
-for thu in thus:
-    aliases[thu] = {
-        'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
-        'class': 'GGHUncertainty',
-        'args': (thu,),
-        'samples': ['ggH_hww']
-    }
