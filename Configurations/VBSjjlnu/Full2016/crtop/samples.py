@@ -144,56 +144,56 @@ METFilter_DATA = 'METFilter_DATA'
 ###########################################
 
 #others minor backgrounds all inside Others
-samples['TTWJets']  = {  
-        'name': getSampleFiles(bkgDir1, 'TTWJetsToLNu', True) + \
-                getSampleFiles(bkgDir1, 'TTWJetsToQQ',  True),
-        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-        'FilesPerJob' : 10
-}
+# samples['TTWJets']  = {  
+#         'name': getSampleFiles(bkgDir1, 'TTWJetsToLNu', True) + \
+#                 getSampleFiles(bkgDir1, 'TTWJetsToQQ',  True),
+#         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+#         'FilesPerJob' : 10
+# }
 
-samples['DYJets']  = {
-        'name' : getSampleFiles(bkgDir1, 'DYJetsToLL_M-10to50', True) ,
-        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-        'FilesPerJob' : 10
-}
+# samples['DYJets']  = {
+#         'name' : getSampleFiles(bkgDir1, 'DYJetsToLL_M-10to50', True) ,
+#         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+#         'FilesPerJob' : 10
+# }
 
-samples['VV_VVV']  = {
-        'name': getSampleFiles(bkgDir1, 'WWTo2L2Nu',   True) + \
-                getSampleFiles(bkgDir1, 'WZTo1L1Nu2Q', True) + \
-                getSampleFiles(bkgDir1, 'WZTo1L3Nu',   True) + \
-                getSampleFiles(bkgDir1, 'WZTo2L2Q',    True) + \
-                getSampleFiles(bkgDir1, 'ZZTo2L2Q',    True) + \
-                getSampleFiles(bkgDir1, 'WWW',         True) + \
-                getSampleFiles(bkgDir1, 'WWZ',         True) ,
-        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-        'FilesPerJob' : 10
-}
+# samples['VV_VVV']  = {
+#         'name': getSampleFiles(bkgDir1, 'WWTo2L2Nu',   True) + \
+#                 getSampleFiles(bkgDir1, 'WZTo1L1Nu2Q', True) + \
+#                 getSampleFiles(bkgDir1, 'WZTo1L3Nu',   True) + \
+#                 getSampleFiles(bkgDir1, 'WZTo2L2Q',    True) + \
+#                 getSampleFiles(bkgDir1, 'ZZTo2L2Q',    True) + \
+#                 getSampleFiles(bkgDir1, 'WWW',         True) + \
+#                 getSampleFiles(bkgDir1, 'WWZ',         True) ,
+#         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+#         'FilesPerJob' : 10
+# }
 
-samples['QCD_WW'] = {
-        'name': getSampleFiles(bkgDir2, 'WmTo2J_ZTo2L_QCD',   True)+\
-                getSampleFiles(bkgDir2, 'WmToLNu_ZTo2J_QCD',  True)+\
-                getSampleFiles(bkgDir2, 'WpTo2J_WmToLNu_QCD', True)+\
-                getSampleFiles(bkgDir2, 'WpTo2J_ZTo2L_QCD',   True)+\
-                getSampleFiles(bkgDir2, 'WpToLNu_WmTo2J_QCD', True)+\
-                getSampleFiles(bkgDir2, 'WpToLNu_ZTo2J_QCD',  True)+\
-                getSampleFiles(bkgDir2, 'WmToLNu_WmTo2J_QCD', True)+\
-                getSampleFiles(bkgDir2, 'WpToLNu_WpTo2J_QCD', True)+\
-                getSampleFiles(bkgDir2, 'ZTo2L_ZTo2J_QCD', True),
-        'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-        'FilesPerJob' : 3
-}
+# samples['QCD_VV'] = {
+#         'name': getSampleFiles(bkgDir2, 'WmTo2J_ZTo2L_QCD',   True)+\
+#                 getSampleFiles(bkgDir2, 'WmToLNu_ZTo2J_QCD',  True)+\
+#                 getSampleFiles(bkgDir2, 'WpTo2J_WmToLNu_QCD', True)+\
+#                 getSampleFiles(bkgDir2, 'WpTo2J_ZTo2L_QCD',   True)+\
+#                 getSampleFiles(bkgDir2, 'WpToLNu_WmTo2J_QCD', True)+\
+#                 getSampleFiles(bkgDir2, 'WpToLNu_ZTo2J_QCD',  True)+\
+#                 getSampleFiles(bkgDir2, 'WmToLNu_WmTo2J_QCD', True)+\
+#                 getSampleFiles(bkgDir2, 'WpToLNu_WpTo2J_QCD', True)+\
+#                 getSampleFiles(bkgDir2, 'ZTo2L_ZTo2J_QCD', True),
+#         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+#         'FilesPerJob' : 3
+# }
 
-samples['Wjets'] = { 
-        'name': getSampleFiles(bkgDir1, 'WJetsToLNu_HT100_200',       True) + \
-                getSampleFiles(bkgDir1, 'WJetsToLNu_HT200_400',       True) + \
-                getSampleFiles(bkgDir1, 'WJetsToLNu_HT400_600',       True) + \
-                getSampleFiles(bkgDir1, 'WJetsToLNu_HT600_800',       True) + \
-                getSampleFiles(bkgDir1, 'WJetsToLNu_HT800_1200_ext1', True) + \
-                getSampleFiles(bkgDir1, 'WJetsToLNu_HT1200_2500',     True) + \
-                getSampleFiles(bkgDir1, 'WJetsToLNu_HT2500_inf',      True),
-        'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-        'FilesPerJob' : 3,
-}
+# samples['Wjets'] = { 
+#         'name': getSampleFiles(bkgDir1, 'WJetsToLNu_HT100_200',       True) + \
+#                 getSampleFiles(bkgDir1, 'WJetsToLNu_HT200_400',       True) + \
+#                 getSampleFiles(bkgDir1, 'WJetsToLNu_HT400_600',       True) + \
+#                 getSampleFiles(bkgDir1, 'WJetsToLNu_HT600_800',       True) + \
+#                 getSampleFiles(bkgDir1, 'WJetsToLNu_HT800_1200_ext1', True) + \
+#                 getSampleFiles(bkgDir1, 'WJetsToLNu_HT1200_2500',     True) + \
+#                 getSampleFiles(bkgDir1, 'WJetsToLNu_HT2500_inf',      True),
+#         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+#         'FilesPerJob' : 3,
+# }
 
 samples['ST'] = {
         'name': getSampleFiles(bkgDir1,'ST_s-channel',         True) + \
@@ -201,7 +201,8 @@ samples['ST'] = {
                 getSampleFiles(bkgDir1,'ST_t-channel_top',     True) + \
                 getSampleFiles(bkgDir1,'ST_tW_antitop',        True) + \
                 getSampleFiles(bkgDir1,'ST_tW_top',            True),
-        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+        # 'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+        'weight': '1',
         'FilesPerJob' : 10 ,
 }
 
@@ -245,9 +246,10 @@ samples['VBS']  = { 'name' :
                getSampleFiles(sigDir,'WpToLNu_WpTo2J', True) + \
                getSampleFiles(sigDir,'WpToLNu_ZTo2J',  True) + \
                getSampleFiles(sigDir,'ZTo2L_ZTo2J',    True) ,
-       'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
-       'suppressNegative' :['all'],
-       'suppressNegativeNuisances' :['all'],
+#        'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+        'weight': '1'
+#        'suppressNegative' :['all'],
+#        'suppressNegativeNuisances' :['all'],
 }
 
 
