@@ -137,7 +137,7 @@ aliases['Jet_btagSF_shapeFix'] = {
         'gSystem->Load("libCondFormatsBTauObjects.so");',
         'gSystem->Load("libCondToolsBTau.so");',
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
-        '.L %s/btagsfpatch.cc+' % configurations
+        '.L %s/patches/btagsfpatch.cc+' % configurations
     ],
     'class': 'BtagSF',
     'args': (btagSFSource,),
@@ -216,6 +216,18 @@ aliases['nllWOTF'] = {
     'class': 'WWNLLW',
     'args': ('central',),
     'samples': ['WW']
+}
+
+# In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
+aliases['lhe_mW1'] = {
+    'expr': 'TMath::Sqrt(2. * LHEPart_pt[0] * LHEPart_pt[1] * (TMath::CosH(LHEPart_eta[0] - LHEPart_eta[1]) - TMath::Cos(LHEPart_phi[0] - LHEPart_phi[1])))',
+    'samples': ['WWewk']
+}
+
+# and [2] [3] are the second W
+aliases['lhe_mW1'] = {
+    'expr': 'TMath::Sqrt(2. * LHEPart_pt[2] * LHEPart_pt[3] * (TMath::CosH(LHEPart_eta[2] - LHEPart_eta[3]) - TMath::Cos(LHEPart_phi[2] - LHEPart_phi[3])))',
+    'samples': ['WWewk']
 }
 
 # use HTXS_njets30 when moving to NanoAODv5 for all trees

@@ -538,16 +538,6 @@ nuisances['QCDscale_ggZH'] = {
     'type': 'lnN',
 }
 
-#values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','bbH','125.09','scale','sm')
-#
-#nuisances['QCDscale_bbH'] = {
-#  'name': 'QCDscale_bbH',
-#  'samples': {
-#    'bbH_hww': values
-#  },
-#  'type': 'lnN',
-#}
-
 values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','scale','sm')
 
 nuisances['QCDscale_ttH'] = {
@@ -565,7 +555,6 @@ nuisances['QCDscale_WWewk'] = {
     },
     'type': 'lnN'
 }
-
 
 #FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['QCDscale_qqbar_ACCEPT'] = {
@@ -604,14 +593,7 @@ nuisances['stat'] = {
     'samples': {}
 }
 
-#mynuisances = {}
-#mynuisances['electronpt'] = nuisances['electronpt']
-#mynuisances['lumi'] = nuisances['lumi']
-#nuisances = mynuisances
-
 for n in nuisances.values():
     n['skipCMS'] = 1
-
-#nuisances = {}
 
 #print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
