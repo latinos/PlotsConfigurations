@@ -14,13 +14,11 @@ aliases['pt2ge20'] = {
 }
 
 aliases['me'] = {
-    'expr': 'Lepton_pdgId[0]*Lepton_pdgId[1]==13*11 && abs(Lepton_pdgId[0])==13   \
-             && Electron_lostHits[Lepton_electronIdx[1]]>=1' 
+    'expr': 'Lepton_pdgId[0]*Lepton_pdgId[1]==13*11 && abs(Lepton_pdgId[0])==13'
 }
 
 aliases['ee'] = {
-    'expr': 'Lepton_pdgId[0]*Lepton_pdgId[1]==11*11 && abs(Lepton_pdgId[0])==11   \
-             && Electron_lostHits[Lepton_electronIdx[1]]>=1'
+    'expr': 'Lepton_pdgId[0]*Lepton_pdgId[1]==11*11 && abs(Lepton_pdgId[0])==11'
 }
 
 aliases['me_pt2lt20'] = {
