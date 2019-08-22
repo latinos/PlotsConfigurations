@@ -119,7 +119,7 @@ files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
 
 samples['DY'] = {
     'name': files,
-    'weight': mcCommonWeight,
+    'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)',
     'FilesPerJob': 4,
 }
 addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO)
@@ -154,7 +154,7 @@ samples['WW'] = {
 
 samples['WWewk'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK'),
-    'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)', #filter tops and Higgs
+    'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)*(lhe_mW1 > 60. && lhe_mW1 < 100. && lhe_mW2 > 60. && lhe_mW2 < 100.)', #filter tops and Higgs, limit w mass
     'FilesPerJob': 4
 }
 
@@ -174,6 +174,7 @@ samples['Vg'] = {
     'weight': mcCommonWeightNoMatch + '*!(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22)',
     'FilesPerJob': 4
 }
+addSampleWeight(samples, 'Vg', 'Zg', '(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)')
 
 ######## VgS ########
 
@@ -183,7 +184,7 @@ files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
 
 samples['VgS'] = {
     'name': files,
-    'weight': mcCommonWeight,# + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
+    'weight': mcCommonWeight + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
     'FilesPerJob': 4,
     'subsamples': {
       'L': 'gstarLow',
@@ -191,7 +192,7 @@ samples['VgS'] = {
     }
 }
 addSampleWeight(samples, 'VgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 && Gen_ZGstar_mass < 0.1)')
-addSampleWeight(samples, 'VgS', 'Zg', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22)')
+addSampleWeight(samples, 'VgS', 'Zg', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22)*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)')
 addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1 || Gen_ZGstar_mass < 0)')
 
 ############ VZ ############
@@ -277,13 +278,13 @@ signals.append('WH_hww')
 
 ############ ttH ############
 
-#samples['ttH_hww'] = {
-#    'name':   nanoGetSampleFiles(mcDirectory, 'ttHToNonbb_M125'),
-#    'weight': mcCommonWeight,
-#    'FilesPerJob': 1
-#}
-#
-#signals.append('ttH_hww')
+samples['ttH_hww'] = {
+    'name':   nanoGetSampleFiles(mcDirectory, 'ttHToNonbb_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 1
+}
+
+signals.append('ttH_hww')
 
 ############ H->TauTau ############
 

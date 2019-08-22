@@ -1,3 +1,10 @@
+import inspect
+
+configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
+configurations = os.path.dirname(configurations) # Full2016_nanoAODv4_CR
+configurations = os.path.dirname(configurations) # ggH
+configurations = os.path.dirname(configurations) # Configurations
+
 #aliases = {}
 
 mc = [skey for skey in samples if skey not in ('Fake_em', 'Fake_me', 'DATA')]
@@ -60,7 +67,7 @@ aliases['Jet_btagSF_shapeFix'] = {
         'gSystem->Load("libCondFormatsBTauObjects.so");',
         'gSystem->Load("libCondToolsBTau.so");',
         'gSystem->AddIncludePath("-I%s/work");' % os.getenv('CMSSW_RELEASE_BASE'),
-        '.L %s/src/PlotsConfigurations/Configurations/btagsfpatch.cc+' % os.getenv('CMSSW_BASE')
+        '.L %s/patches/btagsfpatch.cc+' % configurations
     ],
     'class': 'BtagSF',
     'args': (btagSFSource,),

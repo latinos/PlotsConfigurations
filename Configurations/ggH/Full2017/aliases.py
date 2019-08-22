@@ -1,3 +1,10 @@
+import inspect
+
+configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
+configurations = os.path.dirname(configurations) # Full2017
+configurations = os.path.dirname(configurations) # ggH
+configurations = os.path.dirname(configurations) # Configurations
+
 #aliases = {}
 
 if useEmbeddedDY:
@@ -41,7 +48,7 @@ aliases['Jet_btagSF_shapeFix'] = {
         'gSystem->Load("libCondFormatsBTauObjects.so");',
         'gSystem->Load("libCondToolsBTau.so");',
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
-        '.L %s/src/PlotsConfigurations/Configurations/btagsfpatch.cc+' % os.getenv('CMSSW_BASE')
+        '.L %s/patches/btagsfpatch.cc+' % configurations
     ],
     'class': 'BtagSF',
     'args': (btagSFSource,),
