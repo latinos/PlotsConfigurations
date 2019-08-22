@@ -130,7 +130,7 @@ variables['vbs_pt_low'] = {
 }
 variables['mjj_vbs'] = {
         'name' : 'mjj_vbs',
-        'range': (50,0,1200),
+        'range': (50,0,2500),
         'xaxis': 'm_{jj \ vbs} [GeV]',
         'fold' : 3
 }

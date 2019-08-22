@@ -25,11 +25,11 @@ samples = {}
 
 treeBaseDir='/gwteray/users/govoni/OneLeptonSkims/'
 
-postProcStepSig = 'crtopvbs'
+postProcStepSig = 'signal__wjetsCR'
 sigDir = treeBaseDir + 'VBS_semileptonic_signal_summer16/'        + postProcStepSig + "/" 
-postProcStepBkg1  = 'crtopvbs'
+postProcStepBkg1  = 'bkgvbs__wjetsCR'
 bkgDir1 = treeBaseDir + 'Apr2017_summer16_SingleLepton_hercules/' + postProcStepBkg1 +"/" 
-postProcStepBkg2  = 'crtopvbs'
+postProcStepBkg2  = 'bkgvbs__wjetsCR'
 bkgDir2 = treeBaseDir + 'QCD_semileptonic_summer16/'              + postProcStepBkg2 + "/" 
 
 
