@@ -59,6 +59,9 @@ void macroZpt(TString filename = "rootFileZpt_hmm/plots_Zpt_hmm.root"){
     }
   }
 
+  // set overflow
+  DATA2 -> SetBinContent(DATA -> GetNbinsX() + 1, DATA2 -> GetBinContent(DATA -> GetNbinsX()));
+
   DATA2 -> Draw();
   DATA2 -> Smooth();
   DATA2 -> Draw();
