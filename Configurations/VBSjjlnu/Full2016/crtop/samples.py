@@ -209,7 +209,8 @@ samples['ST'] = {
 samples['TT'] = { 
         'name'  :getSampleFiles(bkgDir1,'TTToSemiLepton',True) + \
                  getSampleFiles(bkgDir1,'TTTo2L2Nu',True),
-        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+        # 'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+        'weight': '1',
         'FilesPerJob' : 10 ,
 }
 

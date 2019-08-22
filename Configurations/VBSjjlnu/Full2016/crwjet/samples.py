@@ -191,8 +191,8 @@ samples['Wjets'] = {
                 getSampleFiles(bkgDir1, 'WJetsToLNu_HT800_1200_ext1', True) + \
                 getSampleFiles(bkgDir1, 'WJetsToLNu_HT1200_2500',     True) + \
                 getSampleFiles(bkgDir1, 'WJetsToLNu_HT2500_inf',      True),
-        # 'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-        'weight': '1',
+        'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+        # 'weight': '1',
         'FilesPerJob' : 10,
 }
 
@@ -245,8 +245,8 @@ samples['VBS']  = { 'name' :
                getSampleFiles(sigDir,'WpToLNu_WpTo2J', True) + \
                getSampleFiles(sigDir,'WpToLNu_ZTo2J',  True) + \
                getSampleFiles(sigDir,'ZTo2L_ZTo2J',    True) ,
-#        'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
-        'weight': '1'
+       'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+        # 'weight': '1'
 #        'suppressNegative' :['all'],
 #        'suppressNegativeNuisances' :['all'],
 }
