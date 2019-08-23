@@ -47,7 +47,7 @@ Then, install PlotsConfiguration
 
 # 1 - SET UP THE ENVIRONMENT
 
-    cd ~/work/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/HMuMu/Zpt2016/
+    cd ~/work/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/HMuMu/Zpt2016/ 
 
     cmsenv
 

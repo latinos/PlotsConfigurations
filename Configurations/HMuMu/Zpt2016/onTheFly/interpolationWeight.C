@@ -12,7 +12,7 @@ void initInterpolationWeight(TString histoName = "DATA2"){
 
   std::cout<<histoName<<std::endl;
 
-  TFile* f = new TFile("/afs/cern.ch/user/d/dkondrat/work/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/HMuMu/Zpt2016/DY_histo.root"); 
+  TFile* f = new TFile("/afs/cern.ch/user/d/dkondrat/work/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/HMuMu/Zpt2016/DY_histo.root");
 
   h = (TH1F*) f -> Get(histoName);
 
