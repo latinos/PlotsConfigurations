@@ -139,13 +139,13 @@ samples['VV']  = {    'name':  getSampleFiles(directory,'WWTo2L2Nu',False,'nanoL
                              + getSampleFiles(directory,'ZZTo2L2Q',False,'nanoLatino_')
                              + getSampleFiles(directory,'ZZTo4L',False,'nanoLatino_')
                              #
-                             # + getSampleFiles(directory,'ggZZ2m2t',False,'nanoLatino_'),
-                             # + getSampleFiles(directory,'ggZZ2m2n',False,'nanoLatino_'),
-                             # + getSampleFiles(directory,'ggZZ2e2t',False,'nanoLatino_'),
-                             # + getSampleFiles(directory,'ggZZ2e2m',False,'nanoLatino_'),
+                             + getSampleFiles(directory,'ggZZ2m2t',False,'nanoLatino_')
+                             + getSampleFiles(directory,'ggZZ2m2n',False,'nanoLatino_')
+                             + getSampleFiles(directory,'ggZZ2e2t',False,'nanoLatino_')
+                             + getSampleFiles(directory,'ggZZ2e2m',False,'nanoLatino_')
                              # #
-                             # + getSampleFiles(directory,'ggZZ4t',False,'nanoLatino_'),
-                             # + getSampleFiles(directory,'ggZZ4m',False,'nanoLatino_'),
+                             + getSampleFiles(directory,'ggZZ4t',False,'nanoLatino_')
+                             + getSampleFiles(directory,'ggZZ4m',False,'nanoLatino_')
                       ,
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                       'FilesPerJob' : 2 ,

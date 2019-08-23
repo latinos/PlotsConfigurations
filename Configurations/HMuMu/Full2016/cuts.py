@@ -1,16 +1,23 @@
 # cuts
 
-supercut = '   Lepton_pt[0]>26 \
-            && Lepton_pt[1]>20 \
+supercut = '   ((Lepton_isTightMuon_cut_Tight80x[0]==1 && Lepton_pt[0]>26) \
+            ||  (Lepton_isTightMuon_cut_Tight80x[1]==1 && Lepton_pt[1]>26)) \
             && (nLepton>=2 && (Alt$(Lepton_pt[2],0)<10) || Alt$(Lepton_pdgId[2],13)==13) \
             && abs(Lepton_eta[0])<2.4 && abs(Lepton_eta[1])<2.4 \
             && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) \
-           '
+            '
+
+# supercut = '   Lepton_pt[0]>26 \
+#             && Lepton_pt[1]>20 \
+#             && (nLepton>=2 && (Alt$(Lepton_pt[2],0)<10) || Alt$(Lepton_pdgId[2],13)==13) \
+#             && abs(Lepton_eta[0])<2.4 && abs(Lepton_eta[1])<2.4 \
+#             && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) \
+#           '
 
 ##&& ptll>30 \
 ##&& MET_pt > 20 \
 
-doCR = False
+doCR = True
 
 ## Signal regions
 

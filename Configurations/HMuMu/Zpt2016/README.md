@@ -77,3 +77,8 @@ Once they are done, merge all the rootfiles produced, and plot the distributions
 
     cp ~/www/index.php plotZpt_hmm/
 
+# 3 - EXTRACT PTLL CORRECTION FOR DY SAMPLE
+  
+    root -l -b -q macroZpt.C
+
+The correction will be stored in the rootfile called 'DY_histo.root', which contains the histogram 'DATA2'
