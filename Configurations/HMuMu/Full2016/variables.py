@@ -139,3 +139,18 @@ variables['nvtx']  = {
     'xaxis' : 'nvtx', 
     'fold' : 3
 }
+
+
+variables['puppimet']  = {
+    'name': 'PuppiMET_pt',
+    'range' : (20,0,200),
+    'xaxis' : 'puppimet [GeV]',
+    'fold'  : 3
+}
+
+variables['met']  = {  
+    'name': 'MET_pt',
+    'range' : (20,0,200),
+    'xaxis' : 'pfmet [GeV]',
+    'fold' : 0
+}

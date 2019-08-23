@@ -7,7 +7,7 @@ import collections
 sys.path.append('%s/src/PlotsConfigurations/Configurations/Differential/tools' % os.getenv('CMSSW_BASE'))
 from update_nuisances import update_nuisances
 
-observable = 'PTH'
+observable = 'NJ'
 
 try:
     structure
@@ -145,7 +145,9 @@ for nkey, nuisance in nuisances.items():
 
     # AsLnN nuisances are all converted to shape (nominal scaled to variation normalization) in restructure
     if 'AsLnN' in nuisance:
-        nuisance.pop('AsLnN')
+        # If the nuisance applies to compound (merged) samples, need to treat it as shape
+        if len(set(nuisance['samples'].iterkeys()) & set(sample_merging.iterkeys())) != 0:
+            nuisance.pop('AsLnN')
 
 merged_samples = set()
 for sources in sample_merging.itervalues():
