@@ -107,13 +107,42 @@ DataSets = ['SingleMuon']
 
 ### These weights were evaluated on ICHEP16 MC -> Update ?
 
-samples['DY'] = {    
-'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50_ext2',False,'nanoLatino_'),
-  'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  'suppressNegative' :['all'],
-  'suppressNegativeNuisances' :['all'],
-  'FilesPerJob' : 1,
-}
+#samples['DY'] = {    
+#'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50_ext2',False,'nanoLatino_'),
+#  'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+#  'suppressNegative' :['all'],
+#  'suppressNegativeNuisances' :['all'],
+#  'FilesPerJob' : 1,
+#}
+
+useDYInclusive = True
+useDYforHmumu  = False
+
+###### DY (105 < mll < 160) #######
+
+if useDYforHmumu :
+  samples['DY']  = {
+    'name'   : getSampleFiles(directory,'DYJetsToLL_M-105To160',False,'nanoLatino_') ,
+    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(gen_ptll)',
+    'FilesPerJob' : 1 ,
+    #'suppressNegative' :['all'],
+    #'suppressNegativeNuisances' :['all'],
+    'linesToAdd' : ['.L /afs/cern.ch/user/d/dkondrat/work/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/HMuMu/Zpt2016/onTheFly/interpolationWeight.C+', 'initInterp\
+olationWeight("DATA2")']
+  }
+
+###### DY (Standard) #######
+
+elif useDYInclusive:
+  samples['DY'] = {
+    'name'   : getSampleFiles(directory,'DYJetsToLL_M-50_ext2',False,'nanoLatino_'),
+    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(gen_ptll)',
+    'FilesPerJob' : 1,
+    #'suppressNegative' :['all'],
+    #'suppressNegativeNuisances' :['all'],
+    'linesToAdd' : ['.L /afs/cern.ch/user/d/dkondrat/work/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/HMuMu/Zpt2016/onTheFly/interpolationWeight.C+', 'initInterp\
+olationWeight("DATA2")']
+  }
 
 ###### Top #######
 Top_pTrw = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )'
