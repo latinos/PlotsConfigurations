@@ -307,18 +307,18 @@ DataTrig = {
 ################## DATA ###################
 ###########################################
 
-# samples['DATA']  = {   'name': [ ] ,     
-#                        'weight' : 'veto_EMTFBug'+'*'+METFilter_DATA+'*'+LepWPCut,
-#                        'weights' : [ ],
-#                        'isData': ['all'],                            
-#                        'FilesPerJob' : 6 ,
-#                   }
+samples['DATA']  = {   'name': [ ] ,     
+                       'weight' : 'veto_EMTFBug'+'*'+METFilter_DATA+'*'+LepWPCut,
+                       'weights' : [ ],
+                       'isData': ['all'],                            
+                       'FilesPerJob' : 6 ,
+                  }
 
-# for Run in DataRun :
-#   directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__hadd__l1tight_l2veto_btag_4jets__VBSjetpairAndVars__formulasDATA/'
-#   for DataSet in DataSets :
-#     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
-#     for iFile in FileTarget:
-#       samples['DATA']['name'].append(iFile)
-#       samples['DATA']['weights'].append(DataTrig[DataSet]) 
+for Run in DataRun :
+  directory = treeBaseDir+'Apr2017_Run2016'+Run[0]+'_RemAOD/lepSel__EpTCorr__TrigMakerData__cleanTauData__hadd__l1tight_l2veto_btag_4jets__VBSjetpairAndVars__formulasDATA/'
+  for DataSet in DataSets :
+    FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True)
+    for iFile in FileTarget:
+      samples['DATA']['name'].append(iFile)
+      samples['DATA']['weights'].append(DataTrig[DataSet]) 
 
