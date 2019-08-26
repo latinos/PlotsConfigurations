@@ -1,5 +1,12 @@
 import os
 import copy
+import inspect
+
+configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
+configurations = os.path.dirname(configurations) # ggH2016
+configurations = os.path.dirname(configurations) # Differential
+configurations = os.path.dirname(configurations) # Configurations
+
 from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
 
 def nanoGetSampleFiles(inputDir, sample):
@@ -234,7 +241,7 @@ samples['ggH_hww'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125'),
     'weight': [mcCommonWeight, {'class': 'Weight2MINLO', 'args': '%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE')}],
     'FilesPerJob': 4,
-    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/weight2MINLO.cc+' % os.getenv('CMSSW_BASE')]
+    'linesToAdd': ['.L %s/Differential/weight2MINLO.cc+' % configurations]
 }
 
 signals.append('ggH_hww')
