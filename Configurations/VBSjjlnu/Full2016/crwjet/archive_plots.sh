@@ -25,6 +25,7 @@ if [[ -d plotVBSjjlnu ]]; then
     fi
     mv plotVBSjjlnu plotVBSjjlnu-${config_name}
     cp configuration.py cuts.py nuisances.py plot.py samples.py structure.py variables.py plotVBSjjlnu-${config_name}/
+    cp -r datacards plotVBSjjlnu-${config_name}/
 fi
 
 if [[ -d datacards ]]; then

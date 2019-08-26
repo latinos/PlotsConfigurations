@@ -353,6 +353,14 @@ variables['A_vjet'] = {
         'fold' : 3
 }
 
+### trigger efficiency
+## FIXME
+variables['effTrigW1l'] = {
+        'name': 'effTrigW1l',
+        'range': (20, -3., 3.),
+        'xaxis': 'Trigger efficiency one lepton',
+        'fold': 3
+}
 
 ### btag cut efficiencies
 
