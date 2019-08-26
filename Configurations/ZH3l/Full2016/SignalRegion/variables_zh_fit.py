@@ -10,8 +10,8 @@ variables['events']  = {   'name': '1',
                          'fold' : 3
                         }
 
-# variables['mtw_fit'] = {   'name' : 'mtw_fit',
-#                             'range' : (8,0,160),
-#                             'xaxis' : 'mtw_notZ',
-#                             'fold' : 2
-#                         }
+variables['mtw_fit'] = {   'name' : 'mtw_notZ',
+                           'range' : (8,0,160),
+                           'xaxis' : 'mtw_notZ',
+                           'fold' : 2
+                       }
