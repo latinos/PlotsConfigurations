@@ -19,6 +19,7 @@ elif  'cern' in SITE :
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/'
 
 directory = treeBaseDir+'/Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5/'
+directoryWG = treeBaseDir+'/Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5__redoWGammaStarV2/'
 
 ################################################
 ############ NUMBER OF LEPTONS #################
@@ -172,7 +173,7 @@ samples['VZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo2L2Nu_ext1',False
 
 ############ Vg ############
 
-samples['Vg']  = {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',False,'nanoLatino_'),
+samples['Vg']  = {  'name'   :   getSampleFiles(directoryWG,'Wg_MADGRAPHMLM',False,'nanoLatino_'),
                                #+ getSampleFiles(directory,'Zg',False,'nanoLatino_'),
                     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*(!(Gen_ZGstar_mass > 0))',
                     'FilesPerJob': 5,
@@ -181,9 +182,9 @@ samples['Vg']  = {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',False
 
 ############ VgS ############
 
-samples['VgS']  =  {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',False,'nanoLatino_')
+samples['VgS']  =  {  'name'   :   getSampleFiles(directoryWG,'Wg_MADGRAPHMLM',False,'nanoLatino_')
                                  #+ getSampleFiles(directory,'Zg',False,'nanoLatino_')
-                                 + getSampleFiles(directory,'WZTo3LNu_mllmin01',False,'nanoLatino_'),
+                                 + getSampleFiles(directoryWG,'WZTo3LNu_mllmin01',False,'nanoLatino_'),
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
                       'FilesPerJob' : 20 ,
                    }
