@@ -89,31 +89,34 @@ DataSets = ['SingleMuon']
 #############  BACKGROUNDS  ###############
 ###########################################
 
+useDYInclusive = True
+useDYforHmumu  = False
 
-# ###### DY (105 < mll < 160) #######
+###### DY (105 < mll < 160) #######
 
-# ### ptllDYW_NLO = '((0.876979+gen_ptll*(4.11598e-03)-(2.35520e-05)*gen_ptll*gen_ptll)*(1.10211 * (0.958512 - 0.131835*TMath::Erf((gen_ptll-14.1972)/10.1525)))*(gen_ptll<140)+0.891188*(gen_ptll>=140))'
-# ### ptllDYW_LO  = '(8.61313e-01+gen_ptll*4.46807e-03-1.52324e-05*gen_ptll*gen_ptll)*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-11.)/5.51582)))*(gen_ptll<140)+1.141996*(gen_ptll>=140)'
-
-# samples['DY']  = {   
-#   'name'   : getSampleFiles(directory,'DYJetsToLL_M-105To160',False,'nanoLatino_') ,
-#   'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*((8.61313e-01+gen_ptll*4.46807e-03-1.52324e-05*gen_ptll*gen_ptll)*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-11.)/5.51582)))*(gen_ptll<140)+1.141996*(gen_ptll>=140))' ,
-#   'FilesPerJob' : 1 ,
-# }
-# ####addSampleWeight(samples,'DY','DYJetsToLL_M-105to160',ptllDYW_NLO)
-
+if useDYforHmumu :
+  samples['DY']  = {
+    'name'   : getSampleFiles(directory,'DYJetsToLL_M-105To160',False,'nanoLatino_') ,
+    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(gen_ptll)',
+    'FilesPerJob' : 1 ,
+    #'suppressNegative' :['all'],
+    #'suppressNegativeNuisances' :['all'],
+    'linesToAdd' : ['.L /afs/cern.ch/user/d/dkondrat/work/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/HMuMu/Zpt2016/onTheFly/interpolationWeight.C+', 'initInterp\
+olationWeight("DATA2")']
+  }
 
 ###### DY (Standard) #######
 
-### These weights were evaluated on ICHEP16 MC -> Update ?
-
-samples['DY'] = {    
-'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50_ext2',False,'nanoLatino_'),
-  'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-  'suppressNegative' :['all'],
-  'suppressNegativeNuisances' :['all'],
-  'FilesPerJob' : 1,
-}
+elif useDYInclusive:
+  samples['DY'] = {
+    'name'   : getSampleFiles(directory,'DYJetsToLL_M-50_ext2',False,'nanoLatino_'),
+    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*interpolationWeight(gen_ptll)',
+    'FilesPerJob' : 1,
+    #'suppressNegative' :['all'],
+    #'suppressNegativeNuisances' :['all'],
+    'linesToAdd' : ['.L /afs/cern.ch/user/d/dkondrat/work/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/HMuMu/Zpt2016/onTheFly/interpolationWeight.C+', 'initInterp\
+olationWeight("DATA2")']
+  }
 
 ###### Top #######
 Top_pTrw = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )'
@@ -139,13 +142,13 @@ samples['VV']  = {    'name':  getSampleFiles(directory,'WWTo2L2Nu',False,'nanoL
                              + getSampleFiles(directory,'ZZTo2L2Q',False,'nanoLatino_')
                              + getSampleFiles(directory,'ZZTo4L',False,'nanoLatino_')
                              #
-                             # + getSampleFiles(directory,'ggZZ2m2t',False,'nanoLatino_'),
-                             # + getSampleFiles(directory,'ggZZ2m2n',False,'nanoLatino_'),
-                             # + getSampleFiles(directory,'ggZZ2e2t',False,'nanoLatino_'),
-                             # + getSampleFiles(directory,'ggZZ2e2m',False,'nanoLatino_'),
+                             + getSampleFiles(directory,'ggZZ2m2t',False,'nanoLatino_')
+                             + getSampleFiles(directory,'ggZZ2m2n',False,'nanoLatino_')
+                             + getSampleFiles(directory,'ggZZ2e2t',False,'nanoLatino_')
+                             + getSampleFiles(directory,'ggZZ2e2m',False,'nanoLatino_')
                              # #
-                             # + getSampleFiles(directory,'ggZZ4t',False,'nanoLatino_'),
-                             # + getSampleFiles(directory,'ggZZ4m',False,'nanoLatino_'),
+                             + getSampleFiles(directory,'ggZZ4t',False,'nanoLatino_')
+                             + getSampleFiles(directory,'ggZZ4m',False,'nanoLatino_')
                       ,
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
                       'FilesPerJob' : 2 ,

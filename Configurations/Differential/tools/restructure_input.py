@@ -246,6 +246,54 @@ class HistogramMerger(object):
 
                 secondary.Write()
 
+    def renormalizeUEPS(self, inSample):
+        """
+        Renormalize UE and PS uncertainty variations to the signal region volume.
+        """
+
+        nominalTotal = 0.
+        varTotals = dict(('%s%s' % (n, v), 0.) for n in ['UE', 'PS'] for v in ['Up', 'Down'])
+
+        allSourceBins = set()
+        for outBin in self.outBins:
+            allSourceBins.update(self.recoBinMap[outBin])
+
+        self._getter.cd('')
+        for ckey in self._getter.getkeys():
+            cut = ckey.GetName()
+            region, recoBin, _ = self.parseDirectoryName(cut)
+            if region == 'CR' or recoBin not in allSourceBins:
+                continue
+
+            self._getter.cd('%s/events' % cut)
+
+            hnom = self._getter.get('histo_%s' % inSample)
+
+            nominalTotal += hnom.GetBinContent(1)
+
+            for var in varTotals.iterkeys():
+                hvar = self._getter.get('histo_%s_%s' % (inSample, var))
+                varTotals[var] += hvar.GetBinContent(1)
+
+        self._getter.cd('')
+        for ckey in self._getter.getkeys():
+            cut = ckey.GetName()
+            region, recoBin, _ = self.parseDirectoryName(cut)
+            if recoBin not in allSourceBins:
+                continue
+
+            self._getter.cd(cut)
+
+            for vkey in self._getter.getkeys():
+                variable = vkey.GetName()
+
+                for var, denom in varTotals.iteritems():
+                    if denom == 0.:
+                        continue
+
+                    hvar = self._getter.get('%s/histo_%s_%s' % (variable, inSample, var))
+                    hvar.Scale(nominalTotal / denom)
+
     def poolAsLnN(self, inSample):
         nominalpool = {}
         varpool = {}
@@ -380,6 +428,10 @@ class HistogramMerger(object):
                         sourceSample = inSample
 
                     self._getter.open(sourcePath, sourceSample)
+
+                if ('UE' in HistogramMerger.variations and inSample in HistogramMerger.variations['UE']['inSamples']) or \
+                        ('PS' in HistogramMerger.variations and inSample in HistogramMerger.variations['PS']['inSamples']):
+                    self.renormalizeUEPS(inSample)
 
                 if self.asLnNPooling is not None:
                     self.poolAsLnN(inSample)
@@ -521,6 +573,8 @@ if __name__ == '__main__':
             args.year = '2016'
         elif '2017' in args.tag:
             args.year = '2017'
+        elif '2018' in args.tag:
+            args.year = '2018'
         else:
             raise RuntimeError('Cannot determine year')
 
@@ -692,9 +746,6 @@ if __name__ == '__main__':
     ]
     ggH_htt = ['ggH_htt']
     xH_htt = ['qqH_htt', 'ZH_htt', 'WH_htt']
-    # temporary workaround - some missing samples
-    if args.year == '2016':
-        xH_hww.remove('ttH_hww')
 
     if not NOHIGGS:
         if args.signal_hww_only:
@@ -816,6 +867,9 @@ if __name__ == '__main__':
         else:
             sname = 'ggH_hww'
             nname = name
+            
+        if nname in ['PS', 'UE']:
+            continue
 
         try:
             variation = HistogramMerger.variations[nname]

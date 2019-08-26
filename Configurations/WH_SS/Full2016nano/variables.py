@@ -3,7 +3,7 @@
 #variables = {}
     
 
-'''
+
 variables['events']  = {   'name': '1',      
                         'range' : (1,0,2),  
                         'xaxis' : 'events', 
@@ -12,14 +12,13 @@ variables['events']  = {   'name': '1',
 
 
 variables['mlljj20_whss']  = {   'name': 'mlljj20_whss',
-                        'range' : (20,0,200),
+                        'range' : (25,50.,350),
                         'xaxis' : 'mlljj20_whss [GeV]',
                         'fold' : 0
                         }
-'''
 
 variables['mlljj20_whss_2j']  = {   'name': 'mlljj20_whss',
-                        'range' : ([50.,100.,110.,125.,130.,135.,140.,150.,160.,175.,200.,250.,300.],),
+                        'range' : ([50.,75.,100.,110.,120.,125.,130.,135.,140.,150.,160.,175.,200.,250.,350.],),
                         'xaxis' : 'mlljj20_whss [GeV]',
                         'fold' : 3
                         }
