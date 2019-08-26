@@ -8,10 +8,10 @@ def nanoGetSampleFiles(inputDir, sample):
     except NameError:
         pass
 
-    return getSampleFiles(inputDir, sample, True, rootFilePrefix='nanoLatino_')
+    return getSampleFiles(inputDir, sample, True, 'nanoLatino_')
 
 def nanoGetBaseW(directory, samples):
-    return getBaseW(directory, samples, rootFilePrefix='nanoLatino_')
+    return getBaseW(directory, samples, 'nanoLatino_')
 
 # samples
 
@@ -171,7 +171,7 @@ samples['WW'] = {
 }
 
 samples['WWewk'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK'),
+    'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK_noTop'),
     'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)', #filter tops and Higgs
     'FilesPerJob': 2
 }

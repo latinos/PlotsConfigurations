@@ -128,4 +128,3 @@ def addsr(name, binning, cutsMap, slist):
 addsr('hww_NJ', njetBinning, njetCutsProgressive, slist_njsignal)
 addsr('hww_PTH', pthBins, pthCutsProgressive, slist_pthsignal)
 
-#cuts = {'hww_NJ': cuts['hww_NJ']}
