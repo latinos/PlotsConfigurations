@@ -8,6 +8,7 @@ sys.path.append('%s/src/PlotsConfigurations/Configurations/Differential/tools' %
 from update_nuisances import update_nuisances
 
 observable = 'NJ'
+background_minor = True
 
 try:
     structure
@@ -62,10 +63,11 @@ for cname, cut in cuts.items():
         cuts.pop(cname)
 
 sample_merging = {}
-sample_merging['minor'] = []
-for sname in ['ggWW', 'WWewk', 'Vg', 'VgS_L', 'VgS_H', 'VZ', 'VVV']:
-    if sname in samples:
-        sample_merging['minor'].append(sname)
+if background_minor:
+    sample_merging['minor'] = []
+    for sname in ['ggWW', 'WWewk', 'Vg', 'VgS_L', 'VgS_H', 'VZ', 'VVV']:
+        if sname in samples:
+            sample_merging['minor'].append(sname)
 
 sample_merging['htt'] = []
 for sname in samples.iterkeys():

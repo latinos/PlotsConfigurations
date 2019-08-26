@@ -180,7 +180,10 @@ for cut in sorted(os.listdir(args.inpath)):
 
     if RATEPARAM_MU:
         for proc in ['WW', 'top', 'DY']:
-            nominalTemplates['histo_%s_%s' % (proc, obsBin)] = nominalTemplates.pop('histo_%s' % proc)
+            try:
+                nominalTemplates['histo_%s_%s' % (proc, obsBin)] = nominalTemplates.pop('histo_%s' % proc)
+            except KeyError: # if the nominal had 0 entries
+                pass
 
     usedProcs = []
     for histName in nominalTemplates:
