@@ -25,27 +25,30 @@ samples = {}
 
 treeBaseDir='/gwteray/users/govoni/OneLeptonSkims/'
 
-postProcStepSig = 'signal'
+postProcStepSig = 'signal__wjetsCR'
 sigDir = treeBaseDir + 'VBS_semileptonic_signal_summer16/'        + postProcStepSig + "/" 
-postProcStepBkg1  = 'bkgvbs'
+postProcStepBkg1  = 'bkgvbs__wjetsCR'
 bkgDir1 = treeBaseDir + 'Apr2017_summer16_SingleLepton_hercules/' + postProcStepBkg1 +"/" 
-postProcStepBkg2  = 'bkgvbs'
+postProcStepBkg2  = 'bkgvbs__wjetsCR'
 bkgDir2 = treeBaseDir + 'QCD_semileptonic_summer16/'              + postProcStepBkg2 + "/" 
 
+
+################################################################################
 
 ################################################
 ############ NUMBER OF LEPTONS #################
 ################################################
 
 Nlep='1'
-#Nlep='3'
-#Nlep='4'
 
 ################################################
 ############ BASIC MC WEIGHTS ##################
 ################################################
 
 XSWeight      = 'XSWeight'
+
+GenLepMatch   = 'GenLepMatch'+Nlep+'l'
+
 #SFweight      = 'SFweight'+Nlep+'l'
 SFweight      = 'puW \
                 *effTrigW1l \
@@ -53,25 +56,24 @@ SFweight      = 'puW \
                 *std_vector_lepton_etaW[0]*std_vector_lepton_ptW[0] \
                 *veto_EMTFBug'
 
-GenLepMatch   = 'GenLepMatch'+Nlep+'l'
 
 ################################################
 ############### B-Tag  WP ######################
 ################################################
 
-bAlgo='cmvav2'
+# bAlgo='cmvav2'
 #bAlgo='csvv2ivf'
-#bAlgo='DeepCSVB'
+bAlgo='DeepCSVB'
 
 bWP='L'
 #bWP='M'
-#bWP='T'
+# bWP='T'
 
-# ... bPog SF and b veto
-
+## bPog SF and b veto
+## TODO its is not really clear how to set these
 bSF='1.'
 bVeto='1'
-if   bAlgo == 'cmvav2' :
+if bAlgo == 'cmvav2' :
  bSF='bPogSF_CMVA'+bWP
  bVeto='bveto_CMVA'+bWP
 elif bAlgo == 'csvv2ivf' :
@@ -81,15 +83,14 @@ elif bAlgo == 'DeepCSVB' :
  bSF='bPogSF_deepCSV'+bWP
  bVeto='bveto_deepCSV'+bWP
 
-SFweight += '*'+bSF
+SFweight += '*'+bVeto
 
 
 ################################################
 ############### Lepton WP ######################
 ################################################
 
-#... Electron:
-
+## Electron:
 eleWP='cut_WP_Tight80X'
 #eleWP='cut_WP_Tight80X_SS'
 #eleWP='mva_80p_Iso2015'
@@ -97,23 +98,18 @@ eleWP='cut_WP_Tight80X'
 #eleWP='mva_90p_Iso2015'
 #eleWP='mva_90p_Iso2016'
 
-#... Muon:
-
+## Muon:
 muWP='cut_Tight80x'
 
-#... Build formula
-
+## Build formula
 #LepWPCut        = 'LepCut'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
 #LepWPweight     = 'LepSF'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
-
 LepWPCut     = '((std_vector_electron_isTightLepton_'+eleWP+'[0]>0.5) || (std_vector_muon_isTightLepton_'+muWP+'[0]>0.5))'
 LepWPweight = '(std_vector_electron_idisoW_'+eleWP+'[0]*std_vector_muon_idisoW_'+muWP+'[0])'
 
-
 SFweight += '*'+LepWPweight+'*'+LepWPCut
 
-# #... And the fakeW
-
+## And the fakeW
 # if Nlep == '2' :
 #   fakeW = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP
 # else:
@@ -124,7 +120,6 @@ SFweight += '*'+LepWPweight+'*'+LepWPCut
 ################################################
 
 METFilter_MC   = 'METFilter_MC'
-
 # no formulasDATA postprocessing on DATA
 METFilter_DATA = 'METFilter_DATA' 
 # METFilter_Common = '(event.std_vector_trigger_special[0]*\
@@ -138,6 +133,7 @@ METFilter_DATA = 'METFilter_DATA'
 #                                               event.std_vector_trigger_special[8]*\
 #                                               event.std_vector_trigger_special[9])'
 
+################################################################################
 
 ###########################################
 #############  BACKGROUNDS  ###############
@@ -148,12 +144,14 @@ samples['TTWJets']  = {
         'name': getSampleFiles(bkgDir1, 'TTWJetsToLNu', True) + \
                 getSampleFiles(bkgDir1, 'TTWJetsToQQ',  True),
         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+        # 'weight': '1',
         'FilesPerJob' : 10
 }
 
 samples['DYJets']  = {
         'name' : getSampleFiles(bkgDir1, 'DYJetsToLL_M-10to50', True) ,
         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+        # 'weight': '1',
         'FilesPerJob' : 10
 }
 
@@ -166,10 +164,11 @@ samples['VV_VVV']  = {
                 getSampleFiles(bkgDir1, 'WWW',         True) + \
                 getSampleFiles(bkgDir1, 'WWZ',         True) ,
         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+        # 'weight': '1',
         'FilesPerJob' : 10
 }
 
-samples['QCD_WW'] = {
+samples['QCD_VV'] = {
         'name': getSampleFiles(bkgDir2, 'WmTo2J_ZTo2L_QCD',   True)+\
                 getSampleFiles(bkgDir2, 'WmToLNu_ZTo2J_QCD',  True)+\
                 getSampleFiles(bkgDir2, 'WpTo2J_WmToLNu_QCD', True)+\
@@ -180,6 +179,7 @@ samples['QCD_WW'] = {
                 getSampleFiles(bkgDir2, 'WpToLNu_WpTo2J_QCD', True)+\
                 getSampleFiles(bkgDir2, 'ZTo2L_ZTo2J_QCD', True),
         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+        # 'weight': '1',
         'FilesPerJob' : 3
 }
 
@@ -192,7 +192,8 @@ samples['Wjets'] = {
                 getSampleFiles(bkgDir1, 'WJetsToLNu_HT1200_2500',     True) + \
                 getSampleFiles(bkgDir1, 'WJetsToLNu_HT2500_inf',      True),
         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-        'FilesPerJob' : 3,
+        # 'weight': '1',
+        'FilesPerJob' : 10,
 }
 
 samples['ST'] = {
@@ -202,6 +203,7 @@ samples['ST'] = {
                 getSampleFiles(bkgDir1,'ST_tW_antitop',        True) + \
                 getSampleFiles(bkgDir1,'ST_tW_top',            True),
         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+        # 'weight': '1',
         'FilesPerJob' : 10 ,
 }
 
@@ -209,26 +211,25 @@ samples['TT'] = {
         'name'  :getSampleFiles(bkgDir1,'TTToSemiLepton',True) + \
                  getSampleFiles(bkgDir1,'TTTo2L2Nu',True),
         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+        # 'weight': '1',
         'FilesPerJob' : 10 ,
 }
 
-
-
-samples['QCD_Pt'] = {
-        'name': getSampleFiles(bkgDir1,'QCD_Pt-15to20_MuEnrichedPt5',     True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt-20to30_EMEnriched',        True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt-20toInf_MuEnrichedPt15',   True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt-30to50_EMEnriched',        True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt-30toInf_DoubleEMEnriched', True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt-50to80_EMEnriched',        True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt_170to250_bcToE',           True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt_20to30_bcToE',             True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt_250toInf_bcToE',           True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt_30to80_bcToE',             True) + \
-                getSampleFiles(bkgDir1,'QCD_Pt_80to170_bcToE',            True),
-        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
-        'FilesPerJob' : 10 ,
-}
+# samples['QCD_Pt'] = {
+#         'name': getSampleFiles(bkgDir1,'QCD_Pt-15to20_MuEnrichedPt5',     True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt-20to30_EMEnriched',        True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt-20toInf_MuEnrichedPt15',   True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt-30to50_EMEnriched',        True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt-30toInf_DoubleEMEnriched', True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt-50to80_EMEnriched',        True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt_170to250_bcToE',           True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt_20to30_bcToE',             True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt_250toInf_bcToE',           True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt_30to80_bcToE',             True) + \
+#                 getSampleFiles(bkgDir1,'QCD_Pt_80to170_bcToE',            True),
+#         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+#         'FilesPerJob' : 10 ,
+# }
 
 ###########################################
 #############   SIGNALS  ##################
@@ -246,8 +247,9 @@ samples['VBS']  = { 'name' :
                getSampleFiles(sigDir,'WpToLNu_ZTo2J',  True) + \
                getSampleFiles(sigDir,'ZTo2L_ZTo2J',    True) ,
        'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
-       'suppressNegative' :['all'],
-       'suppressNegativeNuisances' :['all'],
+        # 'weight': '1'
+#        'suppressNegative' :['all'],
+#        'suppressNegativeNuisances' :['all'],
 }
 
 

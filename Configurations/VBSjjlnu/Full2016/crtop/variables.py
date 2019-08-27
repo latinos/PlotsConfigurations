@@ -130,7 +130,7 @@ variables['vbs_pt_low'] = {
 }
 variables['mjj_vbs'] = {
         'name' : 'mjj_vbs',
-        'range': (50,0,1200),
+        'range': (50,0,2500),
         'xaxis': 'm_{jj \ vbs} [GeV]',
         'fold' : 3
 }
@@ -353,6 +353,17 @@ variables['A_vjet'] = {
         'fold' : 3
 }
 
+### trigger efficiency
+
+## FIXME 
+## Error in <TTreeFormula::Compile>:  Bad numerical expression : "effTrigW1l"
+## Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {effTrigW1l,(((abs(std_vector_lepton_flavour[0]) == 11)) * (veto_EMTFBug*METFilter_DATA*((std_vector_electron_isTightLepton_cut_WP_Tight80X[0]>0.5) || (std_vector_muon_isTightLepton_cut_Tight80x[0]>0.5)))) * (trig_SnglMu)}
+# variables['effTrigW1l'] = {
+#         'name': 'effTrigW1l',
+#         'range': (20, -3., 3.),
+#         'xaxis': 'Trigger efficiency one lepton',
+#         'fold': 3
+# }
 
 ### btag cut efficiencies
 

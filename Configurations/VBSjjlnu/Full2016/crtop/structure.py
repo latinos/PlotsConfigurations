@@ -45,7 +45,7 @@ structure['QCD_Pt'] = {
       'isData'   : 0
 }
 
-structure['QCD_WW'] = {
+structure['QCD_VV'] = {
       'isSignal' : 0,
       'isData'   : 0
 }

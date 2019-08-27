@@ -41,66 +41,59 @@ groupPlot['VBS']  = {
 }
 
 # bkg
-
-# vbslike
-# | VBS     |      280038.7181 | 1.0688164e-5 |                                                                                                                 
-# | DYJets  |       40566.4109 | 1.5482875e-6 |                                                                                                                 
-# | TTWJets |       81244.4187 | 3.1008343e-6 |                                                                                                                 
-# | VV_VVV  |      155632.8318 | 5.9399972e-6 |                                                                                                                 
-# | QCD_WW  |      411841.6989 | 1.5718653e-5 |                                                                                                                 
-# | Wjets   |     3913300.6399 | 1.4935791e-4 |                                                                                                                 
-# | ST      |     4701211.1259 | 1.7942988e-4 |                                                                                                                 
-# | TT      |    64815821.5381 | 2.4738084e-3 |                                                                                                                 
-# | QCD_Pt  | 26200825730.3069 |           1. |   
-
-# groupPlot['DYJets']  = {
-#     'nameHR'   : 'DYJets',
-#     'isSignal' : 0,
-#     'color'    : colors['kMagenta']+1,
-#     'samples'  : ['DYJets']
-# }
+# CR wjet
+# | VBS     | 57109.7132139 |
+# | TTWJets | 2318.48238068 |
+# | VV_VVV  | 707041.421493 |
+# | QCD_VV  | 925695.329647 |
+# | DYJets  | 1776569.18116 |
+# | ST      | 599969.433875 |
+# | TT      | 2741140.55356 |
+# | Wjets   | 68538043.7307 |
 
 groupPlot['TTWJets']  = {  
-    'nameHR'   : 'TTWJets VV-VVV DYJets',
+    'nameHR'   : 'TTWJets',
     'isSignal' : 0,
-    'color'    : colors['kViolet']-1,
-    'samples'  : ['TTWJets', 'VV_VVV', 'DYJets']
+    'color'    : colors['kRed'],
+    'samples'  : ['TTWJets']
 }
-
-
-# groupPlot['VV_VVV']  = {
-#     'nameHR'   : 'VV_VVV',
-#     'isSignal' : 0,
-#     'color'    : colors['kRed'],
-#     'samples'  : ['VV_VVV']
-# }
-
-groupPlot['QCD_WW'] = {
-    'nameHR'   : 'QCD_WW',
+groupPlot['VV_VVV']  = {
+    'nameHR'   : 'VV_VVV',
+    'isSignal' : 0,
+    'color'    : colors['kOrange'],
+    'samples'  : ['VV_VVV']
+}
+groupPlot['QCD_VV'] = {
+    'nameHR'   : 'QCD_VV',
     'isSignal' : 0,
     'color'    : colors['kGreen']+3,
-    'samples'  : ['QCD_WW']
+    'samples'  : ['QCD_VV']
 }
+groupPlot['DYJets']  = {
+    'nameHR'   : 'DYJets',
+    'isSignal' : 0,
+    'color'    : colors['kMagenta']+1,
+    'samples'  : ['DYJets']
+}
+
+## groupPlot['ST'] = {
+##     'nameHR'   : 'ST',
+##     'isSignal' : 0,
+##     'color'    : colors['kBlue'],
+##     'samples'  : ['ST']
+## }
+groupPlot['TT']  = {    
+    'nameHR'   : 'ST TT',
+    'isSignal' : 0,
+    'color'    : colors['kAzure'],
+    'samples' : ['TT','ST']
+}
+
 groupPlot['Wjets']  = {
     'nameHR'   : 'W+Jets',
     'isSignal' : 0,
     'color'    : colors['kRed']-3,
     'samples'  : ['Wjets']
-}
-
-# groupPlot['ST'] = {
-#     'nameHR'   : 'ST',
-#     'isSignal' : 0,
-#     'color'    : colors['kAzure'],
-#     'samples'  : ['ST']
-# }
-
-
-groupPlot['TT']  = {    
-    'nameHR'   : 'ST TT',
-    'isSignal' : 0,
-    'color'    : colors['kAzure'],
-    'samples' : ['TT', 'ST']
 }
 
 # groupPlot['QCD_Pt'] = {
@@ -127,6 +120,13 @@ plot['VBS']  = {
 
 plot['TT']  = {
     'color'    : colors['kOrange']-3,
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.
+}
+
+plot['ST'] = {
+    'color'    : colors['kAzure'],
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.
@@ -160,11 +160,12 @@ plot['DYJets']  = {
     'scale'    : 1.
 }
 
-plot['ST'] = {
-    'color'    : colors['kAzure'],
+
+plot['QCD_VV']=  {
+    'color'    : colors['kGreen']+3,
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.
+    'scale'    : 1.,
 }
 
 # plot['QCD_Pt'] = {
@@ -174,13 +175,6 @@ plot['ST'] = {
 #     'scale'    : 1.
 # }
 
-plot['QCD_WW']=  {
-    'color'    : colors['kGreen']+3,
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1.,
-}
-
 # DATA
 
 plot['DATA']  = { 
@@ -188,6 +182,6 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1 ,
+                  'isBlind'  : 0 ,
 		          'scale'    : 1.0
               }
