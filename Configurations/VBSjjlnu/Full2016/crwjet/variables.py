@@ -130,7 +130,7 @@ variables['vbs_pt_low'] = {
 }
 variables['mjj_vbs'] = {
         'name' : 'mjj_vbs',
-        'range': (50,0,1200),
+        'range': (50,0,2500),
         'xaxis': 'm_{jj \ vbs} [GeV]',
         'fold' : 3
 }
@@ -353,6 +353,14 @@ variables['A_vjet'] = {
         'fold' : 3
 }
 
+### trigger efficiency
+## This works only without any data
+# variables['effTrigW1l'] = {
+#         'name': 'effTrigW1l',
+#         'range': (20, -3., 3.),
+#         'xaxis': 'Trigger efficiency one lepton',
+#         'fold': 3
+# }
 
 ### btag cut efficiencies
 
