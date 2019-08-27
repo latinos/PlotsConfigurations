@@ -32,26 +32,26 @@ variables['pt2']  = {   'name': 'Lepton_pt[1]',
                         }
 
 variables['eta1']  = {  'name': 'Lepton_eta[0]',     
-                        'range' : (20,-3,3),   
+                        'range' : (10,-3,3),   
                         'xaxis' : '#eta 1st lep',
                         'fold'  : 3                         
                         }
 
 variables['eta2']  = {  'name': 'Lepton_eta[1]',     
-                        'range' : (20,-3,3),   
+                        'range' : (10,-3,3),   
                         'xaxis' : '#eta 2nd lep',
                         'fold'  : 3                         
                         }
 
                         
 variables['phi1']  = {  'name': 'Lepton_phi[0]',
-                        'range' : (20,-3.2,3.2),
+                        'range' : (10,-3.2,3.2),
                         'xaxis' : '#phi 1st lep',
                         'fold'  : 3
                         }
 
 variables['phi2']  = {  'name': 'Lepton_phi[1]',
-                        'range' : (20,-3.2,3.2),
+                        'range' : (10,-3.2,3.2),
                         'xaxis' : '#phi 2nd lep',
                         'fold'  : 3
                         }

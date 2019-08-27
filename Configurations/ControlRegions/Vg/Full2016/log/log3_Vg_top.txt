@@ -1,0 +1,219 @@
+Error in <TProtoClass::FindDataMember>: data member with index 0 is not found in class tuple<multidraw::ReweightSource*,default_delete<multidraw::ReweightSource> >
+Error in <CreateRealData>: Cannot find data member # 0 of class tuple<multidraw::ReweightSource*,default_delete<multidraw::ReweightSource> > for parent multidraw::ExprFiller!
+Error in <TProtoClass::FindDataMember>: data member with index 1 is not found in class tuple<multidraw::ReweightSource*,default_delete<multidraw::ReweightSource> >
+Error in <CreateRealData>: Cannot find data member # 1 of class tuple<multidraw::ReweightSource*,default_delete<multidraw::ReweightSource> > for parent multidraw::ExprFiller!
+Error in <TProtoClass::FindDataMember>: data member with index 0 is not found in class tuple<multidraw::ReweightSource*,default_delete<multidraw::ReweightSource> >
+Error in <CreateRealData>: Cannot find data member # 0 of class tuple<multidraw::ReweightSource*,default_delete<multidraw::ReweightSource> > for parent multidraw::Plot1DFiller!
+Error in <TProtoClass::FindDataMember>: data member with index 1 is not found in class tuple<multidraw::ReweightSource*,default_delete<multidraw::ReweightSource> >
+Error in <CreateRealData>: Cannot find data member # 1 of class tuple<multidraw::ReweightSource*,default_delete<multidraw::ReweightSource> > for parent multidraw::Plot1DFiller!
+======================
+==== makeNominals ====
+======================
+ supercut =  Lepton_pt[0]>25 && Lepton_pt[1]>13 && (me || ee ) && drll < 0.5
+ outputFileName =  rootFile/plots_Vg2016_3.root
+
+  <cuts>
+cut =  Vg  ::  {'expr': '', 'categorization': '0+0*(me_pt2lt20)+1*(ee_pt2lt20)+2*(me_pt2ge20)+3*(ee_pt2ge20)', 'categories': ['me_pt2lt20', 'ee_pt2lt20', 'me_pt2ge20', 'ee_pt2ge20']}
+
+  <variables>
+    variable = nvtx :: PV_npvsGood
+      range: (20, 0, 100)
+    variable = mllpeak :: mll
+      range: (20, 80, 100)
+    variable = ptll :: ptll
+      range: (20, 0, 200)
+    variable = pt1 :: Lepton_pt[0]
+      range: (20, 0, 100)
+    variable = pt2 :: Lepton_pt[1]
+      range: (20, 0, 100)
+    variable = eta1 :: Lepton_eta[0]
+      range: (20, -3, 3)
+    variable = eta2 :: Lepton_eta[1]
+      range: (20, -3, 3)
+    variable = phi1 :: Lepton_phi[0]
+      range: (20, -3.2, 3.2)
+    variable = phi2 :: Lepton_phi[1]
+      range: (20, -3.2, 3.2)
+    variable = puppimet :: PuppiMET_pt
+      range: (20, 0, 200)
+    variable = njet :: Sum$(CleanJet_pt>30)
+      range: (5, 0, 5)
+    variable = jetpt1 :: (Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_pt[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99
+      range: (20, 0, 200)
+    variable = jetpt2 :: (Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_pt[1], 0)) - (Sum$(CleanJet_pt>30)==0)*99
+      range: (20, 0, 200)
+    variable = jeteta1 :: (Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_eta[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99
+      range: (20, -5.0, 5.0)
+    variable = jeteta2 :: (Sum$(CleanJet_pt>30)>1)*(Alt$(CleanJet_eta[1], 0)) - (Sum$(CleanJet_pt>30)<=1)*99
+      range: (20, -5.0, 5.0)
+    variable = trkMet :: TkMET_pt
+      range: (20, 0, 200)
+    variable = mpmet :: mpmet
+      range: (20, 0, 200)
+
+  <nuisances>
+    nuisance = lumi :: lumi_13TeV_2016
+      type: lnN
+    nuisance = stat
+      type: auto
+
+  <start histogram filling>
+    sample = top
+    name: ['###root://eoscms.cern.ch//eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5//nanoLatino_TTTo2L2Nu__part18.root', '###root://eoscms.cern.ch//eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5//nanoLatino_TTTo2L2Nu__part19.root', '###root://eoscms.cern.ch//eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5//nanoLatino_TTTo2L2Nu__part2.root', '###root://eoscms.cern.ch//eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5//nanoLatino_TTTo2L2Nu__part20.root', '###root://eoscms.cern.ch//eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5//nanoLatino_TTTo2L2Nu__part21.root']
+  connectInputs from ./data/
+  (5 files)
+
+    cut = Vg :: 
+    categorization = 0+0*(me_pt2lt20)+1*(ee_pt2lt20)+2*(me_pt2ge20)+3*(ee_pt2ge20)
+
+Start nominal histogram fill
+ Aliases pt2lt20, me, ee are singlets but are represented as arrays within MultiDraw. Use index [0] whenever using the alias to ensure we don't try to iterate over the values, especially in an expression used for cuts.
+      0 events      100000 events      200000 events      300000 events      400000 events      500000 events      600000 events      700000 events      800000 events      900000 events      1000000 events      1100000 events      1200000 events      1300000 events
+ Execution time: 0.667093 ms/evt
+        Time spent on tree input: 0.00807773 ms/evt
+        Time spent on event reweighting: 0.00172711 ms/evt
+        cut [Event filter]: 0.655269 ms/evt
+        cut Vg: 57.968 ms/evt
+      1349694 events
+        Cut [Event filter]: passed total 47
+        Cut Vg: passed total 47
+Postfill
+  cut =  Vg  ::  
+    Vg_me_pt2lt20/nvtx/histo_top
+    variable[fold] =  3
+    Vg_ee_pt2lt20/nvtx/histo_top
+    variable[fold] =  3
+    Vg_me_pt2ge20/nvtx/histo_top
+    variable[fold] =  3
+    Vg_ee_pt2ge20/nvtx/histo_top
+    variable[fold] =  3
+    Vg_me_pt2lt20/mllpeak/histo_top
+    variable[fold] =  0
+    Vg_ee_pt2lt20/mllpeak/histo_top
+    variable[fold] =  0
+    Vg_me_pt2ge20/mllpeak/histo_top
+    variable[fold] =  0
+    Vg_ee_pt2ge20/mllpeak/histo_top
+    variable[fold] =  0
+    Vg_me_pt2lt20/ptll/histo_top
+    variable[fold] =  0
+    Vg_ee_pt2lt20/ptll/histo_top
+    variable[fold] =  0
+    Vg_me_pt2ge20/ptll/histo_top
+    variable[fold] =  0
+    Vg_ee_pt2ge20/ptll/histo_top
+    variable[fold] =  0
+    Vg_me_pt2lt20/pt1/histo_top
+    variable[fold] =  3
+    Vg_ee_pt2lt20/pt1/histo_top
+    variable[fold] =  3
+    Vg_me_pt2ge20/pt1/histo_top
+    variable[fold] =  3
+    Vg_ee_pt2ge20/pt1/histo_top
+    variable[fold] =  3
+    Vg_me_pt2lt20/pt2/histo_top
+    variable[fold] =  3
+    Vg_ee_pt2lt20/pt2/histo_top
+    variable[fold] =  3
+    Vg_me_pt2ge20/pt2/histo_top
+    variable[fold] =  3
+    Vg_ee_pt2ge20/pt2/histo_top
+    variable[fold] =  3
+    Vg_me_pt2lt20/eta1/histo_top
+    variable[fold] =  3
+    Vg_ee_pt2lt20/eta1/histo_top
+    variable[fold] =  3
+    Vg_me_pt2ge20/eta1/histo_top
+    variable[fold] =  3
+    Vg_ee_pt2ge20/eta1/histo_top
+    variable[fold] =  3
+    Vg_me_pt2lt20/eta2/histo_top
+    variable[fold] =  3
+    Vg_ee_pt2lt20/eta2/histo_top
+    variable[fold] =  3
+    Vg_me_pt2ge20/eta2/histo_top
+    variable[fold] =  3
+    Vg_ee_pt2ge20/eta2/histo_top
+    variable[fold] =  3
+    Vg_me_pt2lt20/phi1/histo_top
+    variable[fold] =  3
+    Vg_ee_pt2lt20/phi1/histo_top
+    variable[fold] =  3
+    Vg_me_pt2ge20/phi1/histo_top
+    variable[fold] =  3
+    Vg_ee_pt2ge20/phi1/histo_top
+    variable[fold] =  3
+    Vg_me_pt2lt20/phi2/histo_top
+    variable[fold] =  3
+    Vg_ee_pt2lt20/phi2/histo_top
+    variable[fold] =  3
+    Vg_me_pt2ge20/phi2/histo_top
+    variable[fold] =  3
+    Vg_ee_pt2ge20/phi2/histo_top
+    variable[fold] =  3
+    Vg_me_pt2lt20/puppimet/histo_top
+    variable[fold] =  3
+    Vg_ee_pt2lt20/puppimet/histo_top
+    variable[fold] =  3
+    Vg_me_pt2ge20/puppimet/histo_top
+    variable[fold] =  3
+    Vg_ee_pt2ge20/puppimet/histo_top
+    variable[fold] =  3
+    Vg_me_pt2lt20/njet/histo_top
+    variable[fold] =  2
+    Vg_ee_pt2lt20/njet/histo_top
+    variable[fold] =  2
+    Vg_me_pt2ge20/njet/histo_top
+    variable[fold] =  2
+    Vg_ee_pt2ge20/njet/histo_top
+    variable[fold] =  2
+    Vg_me_pt2lt20/jetpt1/histo_top
+    variable[fold] =  2
+    Vg_ee_pt2lt20/jetpt1/histo_top
+    variable[fold] =  2
+    Vg_me_pt2ge20/jetpt1/histo_top
+    variable[fold] =  2
+    Vg_ee_pt2ge20/jetpt1/histo_top
+    variable[fold] =  2
+    Vg_me_pt2lt20/jetpt2/histo_top
+    variable[fold] =  2
+    Vg_ee_pt2lt20/jetpt2/histo_top
+    variable[fold] =  2
+    Vg_me_pt2ge20/jetpt2/histo_top
+    variable[fold] =  2
+    Vg_ee_pt2ge20/jetpt2/histo_top
+    variable[fold] =  2
+    Vg_me_pt2lt20/jeteta1/histo_top
+    variable[fold] =  0
+    Vg_ee_pt2lt20/jeteta1/histo_top
+    variable[fold] =  0
+    Vg_me_pt2ge20/jeteta1/histo_top
+    variable[fold] =  0
+    Vg_ee_pt2ge20/jeteta1/histo_top
+    variable[fold] =  0
+    Vg_me_pt2lt20/jeteta2/histo_top
+    variable[fold] =  0
+    Vg_ee_pt2lt20/jeteta2/histo_top
+    variable[fold] =  0
+    Vg_me_pt2ge20/jeteta2/histo_top
+    variable[fold] =  0
+    Vg_ee_pt2ge20/jeteta2/histo_top
+    variable[fold] =  0
+    Vg_me_pt2lt20/trkMet/histo_top
+    variable[fold] =  3
+    Vg_ee_pt2lt20/trkMet/histo_top
+    variable[fold] =  3
+    Vg_me_pt2ge20/trkMet/histo_top
+    variable[fold] =  3
+    Vg_ee_pt2ge20/trkMet/histo_top
+    variable[fold] =  3
+    Vg_me_pt2lt20/mpmet/histo_top
+    variable[fold] =  3
+    Vg_ee_pt2lt20/mpmet/histo_top
+    variable[fold] =  3
+    Vg_me_pt2ge20/mpmet/histo_top
+    variable[fold] =  3
+    Vg_ee_pt2ge20/mpmet/histo_top
+    variable[fold] =  3
+
+Copying /tmp/lenzip/tmpMA8CmY/plots_Vg2016_3.root to rootFile/plots_Vg2016_3.root
