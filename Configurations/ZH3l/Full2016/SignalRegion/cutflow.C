@@ -1,6 +1,5 @@
 {
-  // TFile *f0 = TFile::Open("rootFiles_ZH3lSR_1j/plots_ZH3lSR_1j.root");
-  TFile *f0 = TFile::Open("rootFiles_ZH3lSR_newWZ/plots_ZH3lSR_newWZ.root");
+  TFile *f0 = TFile::Open("rootFiles_ZH3lSR/plots_ZH3lSR.root");
 
   // Fragile, because it must match the name and ordering in cuts.py
   // TString cutslist[6] = {"preselection", "zmass_cut", "2jet_cut", "bveto", "z4lveto", "dphi_cut"};

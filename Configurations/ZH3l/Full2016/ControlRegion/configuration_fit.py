@@ -1,15 +1,15 @@
 # example of configuration file
 
-tag = 'ZH3lSR'
+tag = 'ZH3lCR_fit'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFiles_'+tag
 
 # file with list of variables
-variablesFile = 'variables_zh.py'
+variablesFile = 'variables_zh_fit.py'
 
 # file with list of cuts
-cutsFile = 'cuts_zh.py'
+cutsFile = 'cuts_zhCR_fit.py'
 
 # file with list of samples
 samplesFile = 'samples_zh.py' 

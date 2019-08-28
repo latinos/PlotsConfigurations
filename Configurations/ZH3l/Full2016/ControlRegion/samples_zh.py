@@ -52,8 +52,9 @@ Nlep='3'
 ################################################
 
 XSWeight      = 'XSWeight'
-wzSF = '1.108'
 zgSF = '1.34'
+wz1jSF = '1.16'
+wz2jSF = '1.09'
 #SFweight      = 'SFweight3l'
 #if Nlep == '2' :
 #  SFweight = 'puW * effTrigW * electron_etaW_'+Nlep+'l * electron_ptW_'+Nlep+'l * veto_EMTFBug '
@@ -203,15 +204,8 @@ samples['ZZ']  = {    'name': getSampleFiles(directory,'ZZTo4L'),
 #                       'suppressNegativeNuisances' :['all'],
 #                  }
 
-samples['WZ']  = {    'name': getSampleFiles(directory,'WZTo3LNu'),
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC ,
-                   #   'weight' : wzSF+'*'+XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC,
-                       'suppressNegativeNuisances' :['all'],
-                  }
-
 samples['WZ']  = {    'name': getSampleFiles(directory,'WZTo3LNu_mllmin01_ext1'),
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC ,
-                   #   'weight' : wzSF+'*'+XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC,
+                      'weight' : '(( std_vector_jet_pt[1] < 30 )*'+wz1jSF+'+( std_vector_jet_pt[1] >= 30 )*'+wz2jSF+')*'+XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC ,
                       'suppressNegativeNuisances' :['all'],
                   }
 
@@ -226,8 +220,7 @@ samples['VVV'] = {    'name': getSampleFiles(directory,'WZZ')
 samples['Vg']  = {    'name':  getSampleFiles(directory,'Zg')
                               +getSampleFiles(directory,'WgStarLNuEE')
                               +getSampleFiles(directory,'WgStarLNuMuMu'),      
-                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC ,      
-                   #    'weight' : zgSF+'*'+XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC ,
+                       'weight' : zgSF+'*'+XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC ,
                        'suppressNegativeNuisances' :['all'],
                  }
 

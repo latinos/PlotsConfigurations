@@ -1,34 +1,47 @@
 # example of configuration file
+treeName= 'Events'
 
-tag = 'ZH3lSR'
+tag = 'Vg2016'
+
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFiles_'+tag
+outputDir = 'rootFile'
+
+# file with TTree aliases
+aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables_zh.py'
+variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts_zh.py'
+cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples_zh.py' 
+samplesFile = 'samples.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
+
+
 
 # luminosity to normalize to (in 1/fb)
 lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot_'+tag
+# outputDirPlots = '~/www/plotCR'
+outputDirPlots = 'plotDY'
+
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards_'+tag
+outputDirDatacard = 'datacards'
+
 
 # structure file for datacard
 structureFile = 'structure.py'
 
+
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances_zh_noWZmuscale.py'
+nuisancesFile = 'nuisances.py'
+
+
