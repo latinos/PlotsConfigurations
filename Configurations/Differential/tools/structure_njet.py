@@ -10,6 +10,15 @@ from update_nuisances import update_nuisances
 observable = 'NJ'
 background_minor = True
 
+observable_bins = ['NJ_0', 'NJ_1', 'NJ_2', 'NJ_3', 'NJ_GE4']
+observable_bin_mapping = {
+    'NJ_0': ['NJ_0'],
+    'NJ_1': ['NJ_1'],
+    'NJ_2': ['NJ_2'],
+    'NJ_3': ['NJ_3'],
+    'NJ_GE4': ['NJ_GE4']
+}
+
 try:
     structure
 except NameError:
@@ -74,24 +83,14 @@ for sname in samples.iterkeys():
     if '_htt' in sname:
         sample_merging['htt'].append(sname)
 
-for sub in subsamplemap['ggH_hww']:
-    sample_merging['smH_hww_%s' % sub] = []
-
 # assuming signal subsamples are exactly the binning used in the fit
 # if gen-bins are merged in restructure_input, need to provide a mapping here externally
-for sname, subs in subsamplemap.iteritems():
-    if '_hww' in sname:
-        for sub in subs:
-            sample_merging['smH_hww_%s' % sub].append('%s_%s' % (sname, sub))
+for out_bin, in_bins in observable_bin_mapping.iteritems():
+    sample_merging['smH_hww_%s' % out_bin] = ['%s_%s' % (sname, in_bin) for in_bin in in_bins for sname in signals]
 
 cut_merging = collections.defaultdict(list)
-reco_bins = set()
 
 for cut in cuts:
-    matches = re.match('.+_((?:NJ|PTH)_[0-9GET]+).+', cut)
-    if matches:
-        reco_bins.add(matches.group(1))
-
     matches = re.match('(.+_NJ_[01]_.+[em][em])[mp][mp](_[0-9]+)', cut)
     if matches:
         cut_merging[matches.group(1) + matches.group(2)].append(cut)
@@ -107,38 +106,13 @@ for cut in cuts:
         cut_merging[matches.group(1) + matches.group(2)].append(cut)
         continue
 
-    matches = re.match('(.+_PTH_(?:0_20|20_45|45_80)_.+[em][em])[mp][mp](_[0-9]+)', cut)
-    if matches:
-        cut_merging[matches.group(1) + matches.group(2)].append(cut)
-        continue
-
-    matches = re.match('(.+_PTH_80_120_catpt2lt20[em][em])[mp][mp](_[0-9]+)', cut)
-    if matches:
-        cut_merging[matches.group(1) + matches.group(2)].append(cut)
-        continue
-
-    matches = re.match('(.+_PTH_80_120_catpt2ge20)[em][em][mp][mp](_[0-9]+)', cut)
-    if matches:
-        cut_merging[matches.group(1) + matches.group(2)].append(cut)
-        continue
-
-    matches = re.match('(.+_PTH_(?:120_200|200_350)_.+)[em][em][mp][mp](_[0-9]+)', cut)
-    if matches:
-        cut_merging[matches.group(1) + matches.group(2)].append(cut)
-        continue
-
-    matches = re.match('(.+_PTH_GT350)_.+[em][em][mp][mp](_[0-9]+)', cut)
-    if matches:
-        cut_merging[matches.group(1) + matches.group(2)].append(cut)
-        continue
-
 nuisances = update_nuisances(nuisances, samples, subsamplemap, cuts, categorymap, sample_merging, cut_merging)
 
 #pprint.pprint(nuisances)
 
 for nkey, nuisance in nuisances.items():
     if 'perRecoBin' in nuisance and nuisance['perRecoBin']:
-        for bin in reco_bins:
+        for bin in observable_bins:
             nuisances[nkey + '_' + bin] = copy.deepcopy(nuisance)
             nuisances[nkey + '_' + bin]['name'] += '_' + bin
             nuisances[nkey + '_' + bin]['cuts'] = [cut for cut in nuisance['cuts'] if bin in cut]
@@ -195,7 +169,10 @@ for cut in cuts:
     if '_CR_' in cut:
         variables['events']['cuts'].append(cut)
     elif 'pt2ge20' in cut:
-        variables['mllVSmth_8x9']['cuts'].append(cut)
+        if 'NJ_2' in cut:
+            variables['mllVSmth_6x6']['cuts'].append(cut)
+        else:
+            variables['mllVSmth_8x9']['cuts'].append(cut)
     else:
         variables['mllVSmth_6x6']['cuts'].append(cut)
 

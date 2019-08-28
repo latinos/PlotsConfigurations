@@ -30,17 +30,59 @@ HiggsXS = HiggsXSection()
 
 #### Luminosity
 
-nuisances['lumi'] = {
+#nuisances['lumi'] = {
+#    'name': 'lumi_13TeV_2017',
+#    'type': 'lnN',
+#    'samples': dict((skey, '1.023') for skey in mc if skey not in ['WW', 'top', 'DY'])
+#}
+
+nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2017',
     'type': 'lnN',
-    'samples': dict((skey, '1.023') for skey in mc if skey not in ['WW', 'top', 'DY'])
+    'samples': dict((skey, '1.02') for skey in mc if skey not in ['WW', 'top', 'DY'])
+}
+
+nuisances['lumi_XYFact'] = {
+    'name': 'lumi_13TeV_XYFact',
+    'type': 'lnN',
+    'samples': dict((skey, '1.008') for skey in mc if skey not in ['WW', 'top', 'DY'])
+}
+
+nuisances['lumi_LScale'] = {
+    'name': 'lumi_13TeV_LSCale',
+    'type': 'lnN',
+    'samples': dict((skey, '1.003') for skey in mc if skey not in ['WW', 'top', 'DY'])
+}
+
+nuisances['lumi_BBDefl'] = {
+    'name': 'lumi_13TeV_BBDefl',
+    'type': 'lnN',
+    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WW', 'top', 'DY'])
+}
+
+nuisances['lumi_DynBeta'] = {
+    'name': 'lumi_13TeV_DynBeta',
+    'type': 'lnN',
+    'samples': dict((skey, '1.005') for skey in mc if skey not in ['WW', 'top', 'DY'])
+}
+
+nuisances['lumi_CurrCalib'] = {
+    'name': 'lumi_13TeV_CurrCalib',
+    'type': 'lnN',
+    'samples': dict((skey, '1.003') for skey in mc if skey not in ['WW', 'top', 'DY'])
+}
+
+nuisances['lumi_Ghosts'] = {
+    'name': 'lumi_13TeV_Ghosts',
+    'type': 'lnN',
+    'samples': dict((skey, '1.001') for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
 #### FAKES
 
 ## FIXME: check the 30% lnN
 nuisances['fake_syst_em'] = {
-    'name': 'CMS_fake_syst_em_2017',
+    'name': 'CMS_fake_syst_em',
     'type': 'lnN',
     'samples': {
         'Fake_em': '1.3'
@@ -50,7 +92,7 @@ nuisances['fake_syst_em'] = {
 }
 
 nuisances['fake_syst_me'] = {
-    'name': 'CMS_fake_syst_me_2017',
+    'name': 'CMS_fake_syst_me',
     'type': 'lnN',
     'samples': {
         'Fake_me': '1.3'
@@ -100,8 +142,12 @@ nuisances['fake_mu_stat'] = {
 for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
     btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
 
+    name = 'CMS_btag_%s' % shift
+    if 'stats' in shift:
+        name += '_2017'
+
     nuisances['btag_shape_%s' % shift] = {
-        'name': 'CMS_btag_%s_2017' % shift,
+        'name': name,
         'kind': 'weight',
         'type': 'shape',
         'samples': dict((skey, btag_syst) for skey in mc),

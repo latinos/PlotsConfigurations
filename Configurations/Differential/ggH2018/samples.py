@@ -1,11 +1,12 @@
 import os
 import inspect
-from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
 configurations = os.path.dirname(configurations) # ggH2016
 configurations = os.path.dirname(configurations) # Differential
 configurations = os.path.dirname(configurations) # Configurations
+
+from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
 
 def nanoGetSampleFiles(inputDir, sample):
     try:
@@ -102,7 +103,7 @@ DataTrig = {
 
 # SFweight does not include btag weights
 mcCommonWeightNoMatch = 'XSWeight*SFweight*METFilter_MC'
-mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC' #FIXME include genMatch when we have data fakes
+mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 
 ###########################################
 #############  BACKGROUNDS  ###############
@@ -155,16 +156,19 @@ samples['WWewk'] = {
     'FilesPerJob': 4
 }
 
+# k-factor 1.4 already taken into account in XSWeight
+files = nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
+    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') + \
+    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENTN') + \
+    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNEN') + \
+    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNMN') + \
+    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNTN') + \
+    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNEN') + \
+    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
+    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN')
+
 samples['ggWW'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') \
-          + nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') \
-          + nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENTN') \
-          + nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNEN') \
-          + nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNMN') \
-          + nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNTN') \
-          + nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNEN') \
-          + nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') \
-          + nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN'),
+    'name': files,
     'weight': mcCommonWeight + '*1.53/1.4', # updating k-factor
     'FilesPerJob': 4
 }
@@ -179,6 +183,7 @@ samples['Vg'] = {
     'weight': mcCommonWeightNoMatch + '*!(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22)',
     'FilesPerJob': 4
 }
+addSampleWeight(samples, 'Vg', 'Zg', '(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)')
 
 ######## VgS ########
 
@@ -196,7 +201,7 @@ samples['VgS'] = {
     }
 }
 addSampleWeight(samples, 'VgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 && Gen_ZGstar_mass < 0.1)')
-addSampleWeight(samples, 'VgS', 'Zg', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22)')
+addSampleWeight(samples, 'VgS', 'Zg', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22)*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)')
 addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1 || Gen_ZGstar_mass < 0)')
 
 ############ VZ ############
@@ -237,7 +242,7 @@ signals = []
 samples['ggH_hww'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125'),
     'weight': [mcCommonWeight, {'class': 'Weight2MINLO', 'args': '%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE')}],
-    'FilesPerJob': 4,
+    'FilesPerJob': 1,
     'linesToAdd': ['.L %s/Differential/weight2MINLO.cc+' % configurations]
 }
 
@@ -252,7 +257,7 @@ samples['qqH_hww'] = {
 
 signals.append('qqH_hww')
 
-############ ZH H->WW ############
+############# ZH H->WW ############
 
 samples['ZH_hww'] = {
     'name':   nanoGetSampleFiles(mcDirectory, 'HZJ_HToWW_M125'),
@@ -295,18 +300,18 @@ signals.append('ttH_hww')
 samples['ggH_htt'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125'),
     'weight': mcCommonWeight,
-    'FilesPerJob': 8
+    'FilesPerJob': 12
 }
 
-signals.append('ggH_htt')
+#signals.append('ggH_htt')
 
 samples['qqH_htt'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125'),
     'weight': mcCommonWeight,
-    'FilesPerJob': 4
+    'FilesPerJob': 8
 }
 
-signals.append('qqH_htt')
+#signals.append('qqH_htt')
 #
 #samples['ZH_htt'] = {
 #    'name': nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125'),
@@ -331,7 +336,7 @@ for sname in signals:
   for pth in pthBins:
     binName = 'PTH_%s' % pth
     if pth.startswith('GT'):
-      cut = 'higgsGenPt > %s' % pth[2:]
+      cut = 'HTXS_Higgs_pt > %s' % pth[2:]
     else:
       cut = 'HTXS_Higgs_pt > %s && HTXS_Higgs_pt < %s' % tuple(pth.split('_'))
 
@@ -387,7 +392,6 @@ samples['Fake']['subsamples'] = {
   'em': 'abs(Lepton_pdgId[0]) == 11',
   'me': 'abs(Lepton_pdgId[0]) == 13'
 }
-
 
 ###########################################
 ################## DATA ###################

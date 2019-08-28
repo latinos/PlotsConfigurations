@@ -28,7 +28,7 @@ try:
 except OSError:
     pass
 
-RATEPARAM_MU = True
+RATEPARAM_MU = False
 
 cmd = ['combineCards.py']
 procIds = {} # it seems that we don't really need to have the process ids synched between the combined cards, but let's make them common
@@ -114,13 +114,13 @@ for cut in sorted(os.listdir(args.inpath)):
         if isSignal(name) and sumw > signalMax:
             signalMax = sumw
 
-    # Drop processes that contribute less than 0.1% of the max (super-off diagonal in the response matrix)
+    # Drop processes that contribute less than 1% of the max (super-off diagonal in the response matrix)
     for name, hist in nominalTemplates.items():
         if not isSignal(name):
             continue
         
         sumw = hist.GetSumOfWeights()
-        if sumw < 0.001 * signalMax and name != 'histo_Data':
+        if sumw < 0.01 * signalMax and name != 'histo_Data':
             print 'Dropping', name, 'from', cut, '(%f << %f)' % (sumw, signalMax)
             nominalTemplates.pop(name).Delete()
 
@@ -322,7 +322,7 @@ if proc.returncode != 0:
     sys.exit(1)
 
 # Write combined datacard
-with open('%s/fullmodel_unreg.txt' % args.outpath, 'w') as fullmodel:
+with open('%s/fullmodel.txt' % args.outpath, 'w') as fullmodel:
     outFullPath = os.path.realpath(args.outpath)
     binNames = None
     procNames = None
@@ -371,16 +371,15 @@ with open('%s/fullmodel_unreg.txt' % args.outpath, 'w') as fullmodel:
                 else:
                     fullmodel.write('CMS_hww_{sname}norm_{obsBin} rateParam *{obsBin}* {sname} 1.00\n'.format(sname = sname, obsBin = obsBin))
 
-with open('%s/fullmodel_reg.txt' % args.outpath, 'w') as fullmodel_reg:
-    with open('%s/fullmodel_unreg.txt' % args.outpath) as fullmodel:
-        fullmodel_reg.write(fullmodel.read())
+# combineCards cannot handle constr lines yet
+shutil.copyfile('%s/fullmodel.txt' % args.outpath, '%s/fullmodel_unreg.txt' % args.outpath)
 
+with open('%s/fullmodel.txt' % args.outpath, 'a') as fullmodel:
     if args.hdf5:
-        fullmodel_reg.write('regularization regGroup = {signalProcs}\n'.format(signalProcs = ' '.join(signalProcs)))
-
+        fullmodel.write('regularization regGroup = {signalProcs}\n'.format(signalProcs = ' '.join(signalProcs)))
     else:
         for ic in range(len(observableBins) - 2):
-            fullmodel_reg.write('constr{ic} constr @0+@2-2*@1 r_{low},r_{mid},r_{high} delta[10.]\n'.format(ic = ic, low = ic, mid = ic + 1, high = ic + 2))
+            fullmodel.write('constr{ic} constr @3*(@0+@2-2*@1) r_{low},r_{mid},r_{high},regularize[0.] delta[10.]\n'.format(ic = ic, low = ic, mid = ic + 1, high = ic + 2))
 
 if args.onlyFullModel:
     for cut in cuts:
@@ -390,17 +389,18 @@ if args.justCombine:
     sys.exit(0)
 
 if args.hdf5:
-    cmd = ['text2hdf5.py', '%s/fullmodel_unreg.txt' % args.outpath, '-o', '%s/fullmodel_unreg.hdf5' % args.outpath]
-
-    print ' '.join(cmd)
-    proc = subprocess.Popen(cmd)
-    proc.communicate()
-
-    cmd = ['text2hdf5.py', '%s/fullmodel_reg.txt' % args.outpath, '-o', '%s/fullmodel_reg.hdf5' % args.outpath]
-
-    print ' '.join(cmd)
-    proc = subprocess.Popen(cmd)
-    proc.communicate()
+    pass
+    #cmd = ['text2hdf5.py', '%s/fullmodel_unreg.txt' % args.outpath, '-o', '%s/fullmodel_unreg.hdf5' % args.outpath]
+    #
+    #print ' '.join(cmd)
+    #proc = subprocess.Popen(cmd)
+    #proc.communicate()
+    #
+    #cmd = ['text2hdf5.py', '%s/fullmodel_reg.txt' % args.outpath, '-o', '%s/fullmodel_reg.hdf5' % args.outpath]
+    #
+    #print ' '.join(cmd)
+    #proc = subprocess.Popen(cmd)
+    #proc.communicate()
 
 else:
     #text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO 'map=.*/smH.*_NJ_0:r_0[1, -5, 5]' --PO 'map=.*/smH.*_NJ_1:r_1[1, -5, 5]' --PO 'map=.*/smH.*_NJ_2:r_2[1, -5, 5]' --PO 'map=.*/smH.*_NJ_3:r_3[1, -5, 5]' --PO 'map=.*/smH.*_NJ_GE4:r_4[1, -5, 5]' Full2016.txt -o Full2016.root
@@ -411,15 +411,8 @@ else:
         cmdbase.append('map=.*/.*H_hww_%s:r_%d[1.,-10.,10.]' % (obsBin, ibin))
 
     cmd = list(cmdbase)
-    cmd.extend(['%s/fullmodel_unreg.txt' % args.outpath, '-o', '%s/fullmodel_unreg.root' % args.outpath])
+    cmd.extend(['%s/fullmodel.txt' % args.outpath, '-o', '%s/fullmodel.root' % args.outpath])
 
-    print ' '.join(cmd)
-    proc = subprocess.Popen(cmd)
-    proc.communicate()
-
-    cmd = list(cmdbase)
-    cmd.extend(['%s/fullmodel_reg.txt' % args.outpath, '-o', '%s/fullmodel_reg.root' % args.outpath])
-    
     print ' '.join(cmd)
     proc = subprocess.Popen(cmd)
     proc.communicate()

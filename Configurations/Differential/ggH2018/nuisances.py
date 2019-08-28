@@ -14,7 +14,14 @@ from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSample
 def nanoGetSampleFiles(inputDir, Sample):
     return getSampleFiles(inputDir, Sample, False, 'nanoLatino_')
 
-mc = [skey for skey in samples if skey != 'DATA' and not skey.startswith('Fake')]
+try:
+    mc = [skey for skey in samples if skey != 'DATA' and not skey.startswith('Fake')]
+except NameError:
+    mc = []
+    cuts = {}
+    nuisances = {}
+    def makeMCDirectory(x=''):
+        return ''
 
 from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
 HiggsXS = HiggsXSection()
@@ -23,30 +30,56 @@ HiggsXS = HiggsXSection()
 
 #### Luminosity
 
-nuisances['lumi'] = {
-    'name': 'lumi_13TeV_2016',
+#nuisances['lumi'] = {
+#    'name': 'lumi_13TeV_2018',
+#    'type': 'lnN',
+#    'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'top', 'DY'])
+#}
+
+nuisances['lumi_Uncorrelated'] = {
+    'name': 'lumi_13TeV_2018',
     'type': 'lnN',
-    'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'top', 'DY'])
+    'samples': dict((skey, '1.015') for skey in mc if skey not in ['WW', 'top', 'DY'])
+}
+
+nuisances['lumi_XYFact'] = {
+    'name': 'lumi_13TeV_XYFact',
+    'type': 'lnN',
+    'samples': dict((skey, '1.02') for skey in mc if skey not in ['WW', 'top', 'DY'])
+}
+
+nuisances['lumi_LScale'] = {
+    'name': 'lumi_13TeV_LSCale',
+    'type': 'lnN',
+    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WW', 'top', 'DY'])
+}
+
+nuisances['lumi_CurrCalib'] = {
+    'name': 'lumi_13TeV_CurrCalib',
+    'type': 'lnN',
+    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
 #### FAKES
 
 ## FIXME: check the 30% lnN
 nuisances['fake_syst_em'] = {
-    'name': 'CMS_fake_syst_em_2018',
+    'name': 'CMS_fake_syst_em',
     'type': 'lnN',
     'samples': {
         'Fake_em': '1.3'
     },
+    'cutspost': lambda self, cuts: [cut for cut in cuts if '20me' not in cut],
     'perRecoBin': True
 }
 
 nuisances['fake_syst_me'] = {
-    'name': 'CMS_fake_syst_me_2018',
+    'name': 'CMS_fake_syst_me',
     'type': 'lnN',
     'samples': {
         'Fake_me': '1.3'
     },
+    'cutspost': lambda self, cuts: [cut for cut in cuts if '20em' not in cut],
     'perRecoBin': True
 }
 
@@ -91,8 +124,12 @@ nuisances['fake_mu_stat'] = {
 for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
     btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
 
+    name = 'CMS_btag_%s' % shift
+    if 'stats' in shift:
+        name += '_2018'
+
     nuisances['btag_shape_%s' % shift] = {
-        'name': 'CMS_btag_%s_2018' % shift,
+        'name': name,
         'kind': 'weight',
         'type': 'shape',
         'samples': dict((skey, btag_syst) for skey in mc),
@@ -159,7 +196,7 @@ nuisances['jes'] = {
     'AsLnN': '1'
 }
 
-#### MET energy scale
+##### MET energy scale
 
 nuisances['met'] = {
     'name': 'CMS_scale_met_2018',
@@ -191,12 +228,12 @@ nuisances['PU'] = {
 
 nuisances['PS']  = {
     'name': 'PS',
-    'kind': 'weight',
     'type': 'shape',
+    'kind': 'weight_envelope',
     'samples': {
-        'WW': ['PSWeight[0]', 'PSWeight[3]'],
-        'ggH_hww': ['PSWeight[0]', 'PSWeight[3]'],
-        'qqH_hww': ['PSWeight[0]', 'PSWeight[3]'],
+        'WW': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],
+        'ggH_hww': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],
+        'qqH_hww': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]']
     },
     'AsLnN': '1'
 }
@@ -395,6 +432,13 @@ nuisances['QCDscale_ggVV'] = {
 }
 
 # NLL resummation variations
+
+wwcutsposts = {
+    'zeroJet': lambda self, cuts: [cut for cut in cuts if 'NJ_0' in cut or 'NJ' not in cut],
+    'oneJet': lambda self, cuts: [cut for cut in cuts if 'NJ_1' in cut or 'NJ' not in cut],
+    'multiJet': lambda self, cuts: [cut for cut in cuts if 'NJ_0' not in cut and 'NJ_1' not in cut]
+}
+
 for nj in ['zeroJet', 'oneJet', 'multiJet']:
     nuisances['Resumscale_WW_%s' % nj] = {
         'name': 'CMS_hww_WWresum_%s' % nj,
@@ -403,7 +447,8 @@ for nj in ['zeroJet', 'oneJet', 'multiJet']:
         'type': 'shape',
         'samples': {
             'WW': ['{0}*nllW_Rup/nllW + (!{0})'.format(nj), '{0}*nllW_Rdown/nllW + (!{0})'.format(nj)]
-        }
+        },
+        'cutspost': wwcutsposts[nj]
     }
     
     nuisances['QCDscale_WW_%s' % nj] = {
@@ -414,6 +459,7 @@ for nj in ['zeroJet', 'oneJet', 'multiJet']:
         'samples': {
           'WW': ['{0}*nllW_Qup/nllW + (!{0})'.format(nj), '{0}*nllW_Qdown/nllW + (!{0})'.format(nj)]
         },
+        'cutspost': wwcutsposts[nj]
     }
 
 # Uncertainty on SR/CR ratio
@@ -423,7 +469,8 @@ nuisances['CRSR_accept_DY'] = {
     'samples': {'DY': '1.02'},
     #'samples': {'DY': '1.1'},
     'cuts': [cut for cut in cuts if '_CR_' in cut],
-    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut and cut in self['cuts']]),
+    #'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut and cut in self['cuts']]),
+    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut]),
     #'perRecoBin': True
 }
 
@@ -434,8 +481,7 @@ nuisances['CRSR_accept_top'] = {
     'samples': {'top': '1.01'},
     #'samples': {'top': '1.05'},
     'cuts': [cut for cut in cuts if '_CR_' in cut],
-    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut and cut in self['cuts']]),
-    #'perRecoBin': True
+    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut]),
 }
 
 # Theory uncertainty for ggH
@@ -563,12 +609,7 @@ nuisances['stat'] = {
     'samples': {}
 }
 
-#mynuisances = {}
-#mynuisances['electronpt'] = nuisances['electronpt']
-#mynuisances['lumi'] = nuisances['lumi']
-#nuisances = mynuisances
-
 for n in nuisances.values():
     n['skipCMS'] = 1
 
-#nuisances = {}
+print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))

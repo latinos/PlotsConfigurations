@@ -17,9 +17,9 @@ argv = sys.argv
 sys.argv = argv[:1]
 import ROOT
 
-FIRENZE = False
 NOHIGGS = False
 SRONLY = False
+PTHGT200 = True
 
 logging.basicConfig(level=logging.WARNING)
 
@@ -336,7 +336,7 @@ class HistogramMerger(object):
         for (ipool, variable), nominals in nominalpool.iteritems():
             if (ipool, variable) not in varpool:
                 continue
-            
+
             hnominal = {}
             
             total = 0.
@@ -346,12 +346,14 @@ class HistogramMerger(object):
                 total += histo.GetSumOfWeights()
 
             for vname, cuts in varpool[(ipool, variable)].iteritems():
+                variation = self.variations[vname]
+
                 for vdir in ['Up', 'Down']:
                     v = 0.
                     for cut in cuts:
                         histo = self._getter.get('%s/%s/histo_%s_%s%s' % (cut, variable, inSample, vname, vdir))
                         v += histo.GetSumOfWeights()
-    
+
                     for cut in cuts:
                         histo = self._getter.get('%s/%s/histo_%s_%s%s' % (cut, variable, inSample, vname, vdir))
                         histo.Reset()
@@ -453,20 +455,11 @@ class HistogramMerger(object):
             category = matches.group(2)
             return 'SR', recoOutBin, category
 
-        if FIRENZE:
-            matches = re.match('hww_CR_cat(top|DY|WW)_((?:ge|)[0-4]j)_[0-9]+$', name)
-            if matches:
-                recoOutBin = matches.group(2)
-                recoOutBin = 'NJ_' + recoOutBin[:-1].upper()
-                cr = matches.group(1)
-                return 'CR', recoOutBin, cr
-
-        else:
-            matches = re.match('hww_CR_cat((?:PTH|NJ)_(?:[0-9]+|G[ET][0-9]+|[0-9]+_[0-9]+))_(top|DY|WW)_[0-9]+$', name)
-            if matches:
-                recoOutBin = matches.group(1)
-                cr = matches.group(2)
-                return 'CR', recoOutBin, cr
+        matches = re.match('hww_CR_cat((?:PTH|NJ)_(?:[0-9]+|G[ET][0-9]+|[0-9]+_[0-9]+))_(top|DY|WW)_[0-9]+$', name)
+        if matches:
+            recoOutBin = matches.group(1)
+            cr = matches.group(2)
+            return 'CR', recoOutBin, cr
 
         return '', '', ''
 
@@ -639,15 +632,15 @@ if __name__ == '__main__':
         ('mll', (31,0.,310.)),
         ('mth', (30, 0., 300.))
     ]
-    if FIRENZE:
-        HistogramMerger.templateSpecs.append(('events', (1, 0., 2.)))
-    else:
-        HistogramMerger.templateSpecs.append(('events', 1))
+    HistogramMerger.templateSpecs.append(('events', 1))
 
     HistogramMerger.secondarySpecs = [
         ('mllfit', [10., 25., 35., 40., 45., 50., 55., 70., 90., 210.], 'mllVSmth_8x9', [range(i + 1, i + 73, 9) for i in range(9)]),
         ('mthfit', [60., 80., 90., 100., 110., 120., 130., 150., 200.], 'mllVSmth_8x9', [range(i * 9 + 1, i * 9 + 10) for i in range(8)]),
         ('mthfitww', [60., 80., 90., 100., 110., 120., 130., 150., 200.], 'mllVSmth_8x9', [range(i * 9 + 9, i * 9 + 10) for i in range(8)]),
+        ('mllVSmth_4x3', 12, 'mllVSmth_8x9', [(range(i + j + 1, i + j + 4) + range(i + j + 10, i + j + 13)) for j in range(0, 72, 18) for i in range(0, 9, 3)]),
+        ('mllVSmth_3x3', 9, 'mllVSmth_6x6', [(range(i + j + 1, i + j + 3) + range(i + j + 7, i + j + 9)) for j in range(0, 36, 12) for i in range(0, 6, 2)]),
+        ('mllVSmth_2x2', 4, 'mllVSmth_6x6', [(range(i + j + 1, i + j + 4) + range(i + j + 7, i + j + 10) + range(i + j + 13, i + j + 16)) for j in range(0, 36, 18) for i in range(0, 6, 3)])
     ]
 
     HistogramMerger.observable = args.observable
@@ -656,60 +649,38 @@ if __name__ == '__main__':
         HistogramMerger.subsampleRmap.update(('%s_%s' % (sname, subsample), sname) for subsample in subsamples)
 
     if args.observable == 'ptH':
-        HistogramMerger.outBins = ['PTH_0_20', 'PTH_20_45', 'PTH_45_80', 'PTH_80_120', 'PTH_120_200', 'PTH_200_350', 'PTH_GT350']
-        #HistogramMerger.outBins = ['PTH_0_15', 'PTH_15_30', 'PTH_30_45', 'PTH_45_80', 'PTH_80_120', 'PTH_120_200', 'PTH_200_350', 'PTH_GT350']
-    
-        #HistogramMerger.recoBinMap = {
-        #    'PTH_0_20': ['PTH_0_10', 'PTH_10_15', 'PTH_15_20'],
-        #    'PTH_20_45': ['PTH_20_30', 'PTH_30_45'],
-        #    'PTH_45_80': ['PTH_45_60', 'PTH_60_80'],
-        #    'PTH_80_120': ['PTH_80_100', 'PTH_100_120'],
-        #    'PTH_120_200': ['PTH_120_155', 'PTH_155_200'],
-        #    'PTH_200_350': ['PTH_200_260', 'PTH_260_350'],
-        #    'PTH_GT350': ['PTH_GT350']
-        #}
+        if PTHGT200:
+            HistogramMerger.outBins = ['PTH_0_20', 'PTH_20_45', 'PTH_45_80', 'PTH_80_120', 'PTH_120_200', 'PTH_GT200']
+        else:
+            HistogramMerger.outBins = ['PTH_0_20', 'PTH_20_45', 'PTH_45_80', 'PTH_80_120', 'PTH_120_200', 'PTH_200_350', 'PTH_GT350']
+
         HistogramMerger.recoBinMap = {
             'PTH_0_20': ['PTH_0_20'],
             'PTH_20_45': ['PTH_20_45'],
             'PTH_45_80': ['PTH_45_80'],
             'PTH_80_120': ['PTH_80_120'],
-            'PTH_120_200': ['PTH_120_200'],
-            'PTH_200_350': ['PTH_200_350'],
-            'PTH_GT350': ['PTH_GT350']
+            'PTH_120_200': ['PTH_120_200']
         }
-    
-        HistogramMerger.split = [4, 4, 4, 3, 2, 2, 1]
-        #HistogramMerger.split = [1, 1, 1, 1, 1, 1, 1]
-
-        #for sname in list(samples):
-        #    if '_NJ_' in sname:
-        #        samples.remove(sname)
-        #
-        #for cname in list(cuts):
-        #    if 'catNJ' in cname:
-        #        cuts.remove(cname)
+        if PTHGT200:
+            HistogramMerger.recoBinMap['PTH_GT200'] = ['PTH_200_350', 'PTH_GT350']
+            HistogramMerger.split = [4, 4, 4, 3, 2, 2]
+        else:
+            HistogramMerger.recoBinMap['PTH_200_350'] = ['PTH_200_350']
+            HistogramMerger.recoBinMap['PTH_GT350'] = ['PTH_GT350']
+            HistogramMerger.split = [4, 4, 4, 3, 2, 2, 1]
     
     else:
         HistogramMerger.outBins = ['NJ_0', 'NJ_1', 'NJ_2', 'NJ_3', 'NJ_GE4']
-        #HistogramMerger.outBins = ['NJ_0', 'NJ_1', 'NJ_GE2']
-        #HistogramMerger.outBins = ['NJ_0']
         
         HistogramMerger.recoBinMap = {
             'NJ_0': ['NJ_0'],
             'NJ_1': ['NJ_1'],
-            #'NJ_GE2': ['NJ_2', 'NJ_3', 'NJ_GE4']
             'NJ_2': ['NJ_2'],
             'NJ_3': ['NJ_3'],
             'NJ_GE4': ['NJ_GE4']
         }
 
-        if FIRENZE:
-            HistogramMerger.split = [8, 8, 1, 1, 1]
-        else:
-            #HistogramMerger.split = [8, 8, 1, 1, 1]
-            #HistogramMerger.split = [8, 8, 2, 1, 1]
-            HistogramMerger.split = [4, 4, 2, 1, 1]
-            #HistogramMerger.split = [8, 8, 1]
+        HistogramMerger.split = [4, 4, 2, 1, 1]
     
     ### Sample merging
     
@@ -731,7 +702,7 @@ if __name__ == '__main__':
     else:
         for name in minors:
             sampleMerging[name] = [name]
-    
+
     sampleMerging['WW'] = ['WW']
     sampleMerging['top'] = ['top']
     sampleMerging['DY'] = ['DY']
@@ -745,7 +716,10 @@ if __name__ == '__main__':
         'ttH_hww'
     ]
     ggH_htt = ['ggH_htt']
-    xH_htt = ['qqH_htt', 'ZH_htt', 'WH_htt']
+    if args.year == '2018':
+        xH_htt = ['qqH_htt']
+    else:
+        xH_htt = ['qqH_htt', 'ZH_htt', 'WH_htt']
 
     if not NOHIGGS:
         if args.signal_hww_only:

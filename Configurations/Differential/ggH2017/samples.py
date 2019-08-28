@@ -161,7 +161,6 @@ samples['top'] = {
     'name': files,
     'weight': mcCommonWeight,
     'FilesPerJob': 1,
-    #'EventsPerJob': 100000
 }
 
 addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')

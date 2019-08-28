@@ -10,7 +10,10 @@
 
 defs = [
     ('top', 'tW and t#bar{t}', ['top'], ROOT.kYellow, 0),
-    ('WW', 'WW', ['WW', 'ggWW', 'WWewk'], ROOT.kAzure - 9, 0),
+    #('WW', 'WW', ['WW', 'ggWW', 'WWewk'], ROOT.kAzure - 9, 0),
+    ('WW', 'WW', ['WW'], ROOT.kAzure - 9, 0),
+    ('ggWW', 'ggWW', ['ggWW'], ROOT.kMagenta + 1, 0),
+    ('WWewk', 'WWewk', ['WWewk'], ROOT.kCyan + 1, 0),
     ('Fake', 'Non-prompt', ['Fake'], ROOT.kGray + 1, 0),
     ('DY', 'DY', ['DY'], ROOT.kGreen + 2, 0),
     ('VZ', 'VZ', ['VZ', 'VgS_H'], ROOT.kViolet + 1, 0),
@@ -72,8 +75,6 @@ plot['DATA']  = {
 }
 
 # additional options
-
-legend['lumi'] = 'L = 35.9/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

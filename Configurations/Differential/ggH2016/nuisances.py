@@ -30,17 +30,47 @@ HiggsXS = HiggsXSection()
 
 #### Luminosity
 
-nuisances['lumi'] = {
+#nuisances['lumi'] = {
+#    'name': 'lumi_13TeV_2016',
+#    'type': 'lnN',
+#    'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'top', 'DY'])
+#}
+
+nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2016',
     'type': 'lnN',
-    'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'top', 'DY'])
+    'samples': dict((skey, '1.022') for skey in mc if skey not in ['WW', 'top', 'DY'])
+}
+
+nuisances['lumi_XYFact'] = {
+    'name': 'lumi_13TeV_XYFact',
+    'type': 'lnN',
+    'samples': dict((skey, '1.009') for skey in mc if skey not in ['WW', 'top', 'DY'])
+}
+
+nuisances['lumi_BBDefl'] = {
+    'name': 'lumi_13TeV_BBDefl',
+    'type': 'lnN',
+    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WW', 'top', 'DY'])
+}
+
+nuisances['lumi_DynBeta'] = {
+    'name': 'lumi_13TeV_DynBeta',
+    'type': 'lnN',
+    'samples': dict((skey, '1.005') for skey in mc if skey not in ['WW', 'top', 'DY'])
+}
+
+nuisances['lumi_Ghosts'] = {
+    'name': 'lumi_13TeV_Ghosts',
+    'type': 'lnN',
+    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
 #### FAKES
 
 ## FIXME: check the 30% lnN
 nuisances['fake_syst_em'] = {
-    'name': 'CMS_fake_syst_em_2016',
+    'name': 'CMS_fake_syst_em',
     'type': 'lnN',
     'samples': {
         'Fake_em': '1.3'
@@ -50,7 +80,7 @@ nuisances['fake_syst_em'] = {
 }
 
 nuisances['fake_syst_me'] = {
-    'name': 'CMS_fake_syst_me_2016',
+    'name': 'CMS_fake_syst_me',
     'type': 'lnN',
     'samples': {
         'Fake_me': '1.3'
@@ -100,8 +130,12 @@ nuisances['fake_mu_stat'] = {
 for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
     btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
 
+    name = 'CMS_btag_%s' % shift
+    if 'stats' in shift:
+        name += '_2016'
+
     nuisances['btag_shape_%s' % shift] = {
-        'name': 'CMS_btag_%s_2016' % shift,
+        'name': name,
         'kind': 'weight',
         'type': 'shape',
         'samples': dict((skey, btag_syst) for skey in mc),
@@ -208,7 +242,7 @@ nuisances['PU'] = {
 ##### PS and UE
 
 nuisances['PS']  = {
-    'name': 'PS',
+    'name': 'PS_Herwig',
     'kind': 'tree',
     'type': 'shape',
     'samples': {
@@ -223,7 +257,7 @@ nuisances['PS']  = {
 }
 
 nuisances['UE'] = {
-    'name': 'UE', 
+    'name': 'UE_CUETP',
     'skipCMS': 1,
     'kind': 'tree',
     'type': 'shape',
@@ -567,7 +601,7 @@ nuisances['QCDscale_qqbar_ACCEPT'] = {
         'WH_htt': '1.05',
         'ZH_hww': '1.04',
         'ZH_htt': '1.04',
-        'VZ': '1.029',
+        'VZ': '1.029', # this shouldn't be here because we have full shape-based uncertainty for VZ
     }
 }
 
@@ -575,7 +609,7 @@ nuisances['QCDscale_qqbar_ACCEPT'] = {
 nuisances['QCDscale_gg_ACCEPT'] = {
     'name': 'QCDscale_gg_ACCEPT',
     'samples': {
-        'ggH_hww': '1.027',
+        'ggH_hww': '1.027', # shouldn't be here
         'ggH_htt': '1.027',
         'ggZH_hww': '1.027',
         'ggWW': '1.027',
@@ -596,4 +630,4 @@ nuisances['stat'] = {
 for n in nuisances.values():
     n['skipCMS'] = 1
 
-#print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
+print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
