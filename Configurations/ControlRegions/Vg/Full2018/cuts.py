@@ -1,8 +1,8 @@
 # cuts
 
-supercut = 'Lepton_pt[0]>25 && Lepton_pt[1]>13 && (me || ee ) && drll < 0.5'
+supercut = 'Lepton_pt[0]>25 && Lepton_pt[1]>13 && (me) && drll < 0.5'
 
-categories=['me_pt2lt20', 'ee_pt2lt20', 'me_pt2ge20', 'ee_pt2ge20',]
+categories=['me_pt2lt20', 'me_pt2ge20']
 
 
 

@@ -133,7 +133,7 @@ samples['Vg']  = {  'name'   :   getSampleFiles(directoryWG,'Wg_MADGRAPHMLM',Fal
 samples['VgS']  =  {  'name'   :   getSampleFiles(directoryWG,'Wg_MADGRAPHMLM',False,'nanoLatino_')
                                  #+ getSampleFiles(directory,'Zg',False,'nanoLatino_')
                                  + getSampleFiles(directoryWG,'WZTo3LNu_mllmin01',False,'nanoLatino_'),
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+"* (gstarLow * 0.94 + gstarHigh * 1.14)",
                       'FilesPerJob' : 5 ,
                    }
 addSampleWeight(samples,'VgS','Wg_MADGRAPHMLM',    '(Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 0.1)')

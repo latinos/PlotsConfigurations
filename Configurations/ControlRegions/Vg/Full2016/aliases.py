@@ -5,6 +5,17 @@ mc = [skey for skey in samples if skey not in ('Fake_em', 'Fake_me', 'Fake', 'DA
 bAlgo = 'DeepB'
 bWP = '0.2217'
 
+aliases['gstarLow'] = {
+    'expr': 'Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4',
+    'samples': 'VgS'
+}
+
+aliases['gstarHigh'] = {
+    'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
+    'samples': 'VgS'
+}
+
+
 aliases['pt2lt20'] = {
     'expr': 'Lepton_pt[1]<20'
 }
