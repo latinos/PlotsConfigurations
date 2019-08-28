@@ -196,10 +196,11 @@ samples['Wjets'] = { 'name' :
 				'FilesPerJob' : 1,
 		   }
 
+# Fix Wjets binned + LO 
 addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO', 'LHE_HT < 100')
 
 #
-samples['QCD-VV']  = { 'name' :  
+samples['VV']  = { 'name' :  
                getSampleFiles(directory,'WmTo2J_ZTo2L_QCD',   True, 'nanoLatino_') +
                getSampleFiles(directory,'WmToLNu_WmTo2J_QCD', True, 'nanoLatino_') +
                getSampleFiles(directory,'WmToLNu_ZTo2J_QCD',  True, 'nanoLatino_') +
@@ -213,63 +214,20 @@ samples['QCD-VV']  = { 'name' :
         'FilesPerJob' : 2,
 }
 
-############ WW ############
-
-# samples['WW'] = {    'name'   :   getSampleFiles(directory2,'WWTo2L2Nu_PrivateNano',False,'nanoLatino_') ,
-#                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto+'*nllW' ,
-#                  }
-
-# samples['WWewk'] = {   'name'  : getSampleFiles(directory2, 'WpWmJJ_EWK',False,'nanoLatino_'),
-#                        'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto + '*(Sum$(abs(GenPart_pdgId)==6)==0)' #filter tops
-#                    }
-
-# #FIXME Check if k-factor is already taken into account in XSWeight
-# samples['ggWW']  = {  'name'   :   getSampleFiles(directory2,'GluGluToWWToENEN',False,'nanoLatino_')
-#                                  + getSampleFiles(directory2,'GluGluToWWToENMN',False,'nanoLatino_') 
-#                                  + getSampleFiles(directory2,'GluGluToWWToENTN',False,'nanoLatino_')
-#                                  + getSampleFiles(directory2,'GluGluToWWToMNEN',False,'nanoLatino_')
-#                                  + getSampleFiles(directory2,'GluGluToWWToMNMN',False,'nanoLatino_')
-#                                  + getSampleFiles(directory2,'GluGluToWWToMNTN',False,'nanoLatino_')
-#                                  + getSampleFiles(directory2,'GluGluToWWToTNEN',False,'nanoLatino_')
-#                                  + getSampleFiles(directory2,'GluGluToWWToTNMN',False,'nanoLatino_')
-#                                  + getSampleFiles(directory2,'GluGluToWWToTNTN',False,'nanoLatino_'),
-#                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto ,
-#                    }
-
-
-############ Vg ############
-
-# samples['Vg']  = {  'name'   :   getSampleFiles(directory2,'Wg_MADGRAPHMLM',False,'nanoLatino_')
-#                                + getSampleFiles(directory2,'Zg',False,'nanoLatino_'),
-#                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto+'*(!(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 ))',
-#                     'FilesPerJob': 5,
-#                   }
-
-
-############ VgS ############
-
-# #FIXME Add normalization k-factor
-# samples['VgS']  =  {  'name'   :   getSampleFiles(directory2,'Wg_MADGRAPHMLM',False,'nanoLatino_')
-#                                  + getSampleFiles(directory2,'Zg',False,'nanoLatino_')
-#                                  + getSampleFiles(directory2,'WZTo3LNu_mllmin01',False,'nanoLatino_'),
-#                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto,
-#                       'FilesPerJob' : 5 ,
-#                    }
-# addSampleWeight(samples,'VgS','Wg_MADGRAPHMLM',    '(Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 0.1)')
-# addSampleWeight(samples,'VgS','Zg',                '(Gen_ZGstar_mass >0)')
-# addSampleWeight(samples,'VgS','WZTo3LNu_mllmin01', '(Gen_ZGstar_mass>=0.1 || Gen_ZGstar_mass<0)')
-
-############ VZ ############
-
-#FIXME Add normalization k-factor
-# samples['VZ']  = {  'name'   :   getSampleFiles(directory2,'ZZTo2L2Nu',False,'nanoLatino_')
-#                                + getSampleFiles(directory2,'ZZTo2L2Q',False,'nanoLatino_')
-#                                + getSampleFiles(directory2,'ZZTo4L',False,'nanoLatino_')
-#                                + getSampleFiles(directory2,'WZTo2L2Q',False,'nanoLatino_'),
-#                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto ,
-#                     'FilesPerJob' : 5,
-#                  }
-
+samples["FakeQCD"] = { 'name':
+        getSampleFiles(directory, 'QCD_Pt-15to20_MuEnrichedPt5', True, 'nanoLatino_') + 
+        getSampleFiles(directory, 'QCD_Pt-20to30_MuEnrichedPt5', True, 'nanoLatino_') +
+        getSampleFiles(directory, 'QCD_Pt-30to50_MuEnrichedPt5', True, 'nanoLatino_') +
+        getSampleFiles(directory, 'QCD_Pt-50to80_MuEnrichedPt5', True, 'nanoLatino_') +
+        getSampleFiles(directory, 'QCD_Pt-80to120_MuEnrichedPt5', True, 'nanoLatino_') +
+        getSampleFiles(directory, 'QCD_Pt-120to170_MuEnrichedPt5', True, 'nanoLatino_') +
+        getSampleFiles(directory, 'QCD_Pt-170to300_MuEnrichedPt5', True, 'nanoLatino_') +
+        getSampleFiles(directory, 'QCD_Pt-20to30_EMEnriched', True, 'nanoLatino_') +
+        getSampleFiles(directory, 'QCD_Pt-30to50_EMEnriched', True, 'nanoLatino_') +
+        getSampleFiles(directory, 'QCD_Pt-50to80_EMEnriched', True, 'nanoLatino_'),
+        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC,
+        'FilesPerJob' :10,
+}
 
 ############ VVV ############
 

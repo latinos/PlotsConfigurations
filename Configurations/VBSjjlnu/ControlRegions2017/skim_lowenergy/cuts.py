@@ -9,16 +9,26 @@ supercut = '(nLepton==1 && Lepton_pt[0]>30 ) \
             && vbs_pt_low >= 30 && vjet_pt_low >=30  \
            '
 
-cuts["ele_lowenergy"] = 'abs(Lepton_pdgId[0])==11 '
+cuts["ele_lowenergy"] = 'abs(Lepton_pdgId[0])==11 \
+                        && Lepton_pt[0] >= 40 '
 
-cuts["mu_lowenergy"] = 'abs(Lepton_pdgId[0])==13'
+cuts["mu_lowenergy"] =  'abs(Lepton_pdgId[0])==13  \
+                        && Lepton_pt[0] >= 30 '
 
+# No associated jets in the horn
 cuts["ele_lowenergy_nohorn"] = 'abs(Lepton_pdgId[0])==11 \
-                                && (abs(CleanJet_eta[0]) <= 2.5 || abs(CleanJet_eta[0]) >= 3.2) \
-                                && (abs(CleanJet_eta[1]) <= 2.5 || abs(CleanJet_eta[1]) >= 3.2)  \
+                                && Lepton_pt[0] >= 40   \
+                                && (abs(vbs_eta_high) <= 2.5 || abs(vbs_eta_high) >= 3.2) \
+                                && (abs(vbs_eta_low) <= 2.5 || abs(vbs_eta_low) >= 3.2)  \
+                                && (abs(vjet_eta_high) <= 2.5 || abs(vjet_eta_high) >= 3.2)       \
+                                && (abs(vjet_eta_low) <= 2.5 || abs(vjet_eta_low) >= 3.2)       \
                                 '
 
 cuts["mu_lowenergy_nohorn"] = 'abs(Lepton_pdgId[0])==13 \
-                         && (abs(CleanJet_eta[0]) <= 2.5 || abs(CleanJet_eta[0]) >= 3.2) \
-                         && (abs(CleanJet_eta[1]) <= 2.5 || abs(CleanJet_eta[1]) >= 3.2)  \
+                         && Lepton_pt[0] >= 30    \
+                         && (abs(vbs_eta_high) <= 2.5 || abs(vbs_eta_high) >= 3.2) \
+                        && (abs(vbs_eta_low) <= 2.5 || abs(vbs_eta_low) >= 3.2)  \
+                        && (abs(vjet_eta_high) <= 2.5 || abs(vjet_eta_high) >= 3.2)       \
+                        && (abs(vjet_eta_low) <= 2.5 || abs(vjet_eta_low) >= 3.2)       \
                         '
+

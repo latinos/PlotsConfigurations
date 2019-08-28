@@ -8,16 +8,20 @@ supercut = '(nLepton==1 && Lepton_pt[0]>30 ) \
             && CleanJet_pt[CleanJetNotFat_jetIdx[1]] >= 30      \
            '
 
-cuts["ele_fatjet"] = 'abs(Lepton_pdgId[0])==11 '
+cuts["ele_fatjet"] = 'abs(Lepton_pdgId[0])==11 \
+                        && Lepton_pt[0] >= 40 '
 
-cuts["mu_fatjet"] = 'abs(Lepton_pdgId[0])==13'
+cuts["mu_fatjet"] = 'abs(Lepton_pdgId[0])==13  \
+                        && Lepton_pt[0] >= 30 '
 
 cuts["ele_fatjet_nohorn"] = 'abs(Lepton_pdgId[0])==11 \
-                                && (abs(CleanJet_eta[CleanJetNotFat_jetIdx[0]]) <= 2.5 || abs(CleanJet_eta[CleanJetNotFat_jetIdx[0]]) >= 3.2) \
-                                && (abs(CleanJet_eta[CleanJetNotFat_jetIdx[1]]) <= 2.5 || abs(CleanJet_eta[CleanJetNotFat_jetIdx[1]]) >= 3.2)  \
-                                '
+                        && Lepton_pt[0] >= 40   \
+                        && (abs(CleanJet_eta[CleanJetNotFat_jetIdx[0]]) <= 2.5 || abs(CleanJet_eta[CleanJetNotFat_jetIdx[0]]) >= 3.2) \
+                        && (abs(CleanJet_eta[CleanJetNotFat_jetIdx[1]]) <= 2.5 || abs(CleanJet_eta[CleanJetNotFat_jetIdx[1]]) >= 3.2)  \
+                        '
 
 cuts["mu_fatjet_nohorn"] = 'abs(Lepton_pdgId[0])==13 \
+                        && Lepton_pt[0] >= 30    \
                         && (abs(CleanJet_eta[CleanJetNotFat_jetIdx[0]]) <= 2.5 || abs(CleanJet_eta[CleanJetNotFat_jetIdx[0]]) >= 3.2) \
                         && (abs(CleanJet_eta[CleanJetNotFat_jetIdx[1]]) <= 2.5 || abs(CleanJet_eta[CleanJetNotFat_jetIdx[1]]) >= 3.2)  \
                         '
