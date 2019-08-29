@@ -163,7 +163,12 @@ samples["ttbar"] =  {  'name': getSampleFiles(directory,'TTToSemiLeptonic',False
                         'FilesPerJob': 1,
 }
 
+addSampleWeight(samples,'ttbar','TTTo2L2Nu',Top_pTrw)addSampleWeight(samples,'ttbar','TTToSemiLeptonic',Top_pTrw)
 addSampleWeight(samples,'ttbar','TTTo2L2Nu',Top_pTrw)
+addSampleWeight(samples,'ttbar','TTWjets',Top_pTrw)
+addSampleWeight(samples,'ttbar','TTWjets_ext1',Top_pTrw)
+addSampleWeight(samples,'ttbar','TTZjets',Top_pTrw)
+addSampleWeight(samples,'ttbar','TTZjets_ext1',Top_pTrw)
 
 ############ WW ############
 
