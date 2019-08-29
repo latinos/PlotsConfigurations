@@ -69,7 +69,7 @@ variables['mjj_vbs'] = {   'name': 'mjj_vbs',
 
 variables['mjj_vjet'] = {   'name': 'mjj_vjet',      
                         'range' : (80,0,200),  
-                        'xaxis' : 'mjj_vbs', 
+                        'xaxis' : 'mjj_vjet', 
                         'fold' : 3
                         }
 
