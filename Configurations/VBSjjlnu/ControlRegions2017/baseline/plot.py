@@ -59,12 +59,12 @@ groupPlot['DY']  = {
 groupPlot['VBF-V']  = {  
                  'nameHR' : 'VBF-V',
                  'isSignal' : 0,
-                 'color':  colors['Yellow']+3,  
+                 'color':  colors['kYellow']+3,  
                  'samples'  : ['VBF-V']
               }
 
 groupPlot['FakeQCD']  = {  
-                'nameHR' : "FakeQCD",
+                'nameHR' : "Fake",
                 'isSignal' : 0,
                 'color': colors['kTeal'],   
                 'samples'  : ['FakeQCD']

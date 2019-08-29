@@ -222,6 +222,7 @@ samples["FakeQCD"] = { 'name':
         getSampleFiles(directory, 'QCD_Pt-80to120_MuEnrichedPt5', True, 'nanoLatino_') +
         getSampleFiles(directory, 'QCD_Pt-120to170_MuEnrichedPt5', True, 'nanoLatino_') +
         getSampleFiles(directory, 'QCD_Pt-170to300_MuEnrichedPt5', True, 'nanoLatino_') +
+        #getSampleFiles(directory, 'QCD_Pt-15to20_EMEnriched', True, 'nanoLatino_') + # missing sample (don't need this)
         getSampleFiles(directory, 'QCD_Pt-20to30_EMEnriched', True, 'nanoLatino_') +
         getSampleFiles(directory, 'QCD_Pt-30to50_EMEnriched', True, 'nanoLatino_') +
         getSampleFiles(directory, 'QCD_Pt-50to80_EMEnriched', True, 'nanoLatino_'),
@@ -230,17 +231,17 @@ samples["FakeQCD"] = { 'name':
 }
 
 # Filter efficiency for FakeQCD (https://twiki.cern.ch/twiki/bin/viewauth/CMS/SummaryTable1G25ns)
-addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-15to20_MuEnrichedPt5', '0.003')
-addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-20to30_MuEnrichedPt5', '0.0053')
-addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-30to50_MuEnrichedPt5', '0.01182')
-addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-50to80_MuEnrichedPt5', '0.02276')
-addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-80to120_MuEnrichedPt5', '0.03844')
-addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-120to170_MuEnrichedPt5', '0.05362')
-addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-170to300_MuEnrichedPt5', '0.07335')
-addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-20to30_EMEnriched', '0.0096')
-addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-30to50_EMEnriched', '0.073')
-addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-50to80_EMEnriched', '0.146')
-
+addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-15to20_MuEnrichedPt5', '0.0022')
+addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-20to30_MuEnrichedPt5', '0.0045')
+addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-30to50_MuEnrichedPt5', '0.00974')
+addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-50to80_MuEnrichedPt5', '0.0196')
+addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-80to120_MuEnrichedPt5', '0.0322')
+addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-120to170_MuEnrichedPt5', '0.04518')
+addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-170to300_MuEnrichedPt5', '0.0598')
+#addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-15to20_EMEnriched', '0.0096')  #missing sample
+addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-20to30_EMEnriched', '0.0088')
+addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-30to50_EMEnriched', '0.0470')
+addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-50to80_EMEnriched', '0.100')
 ############ VVV ############
 
 samples['VVV']  = {  'name'   :   getSampleFiles(directory,'ZZZ',False,'nanoLatino_')
