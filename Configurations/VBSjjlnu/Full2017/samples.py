@@ -252,7 +252,7 @@ samples['QCD-WW']  = { 'name' :
                getSampleFiles(directory,'WmTo2J_ZTo2L_QCD',   True, 'nanoLatino_') +
                getSampleFiles(directory,'WmToLNu_WmTo2J_QCD', True, 'nanoLatino_') +
                getSampleFiles(directory,'WmToLNu_ZTo2J_QCD',  True, 'nanoLatino_') +
-               getSampleFiles(directory,'WpTo2J_WmToLNu_QCD', True, 'nanoLatino_') +i
+               getSampleFiles(directory,'WpTo2J_WmToLNu_QCD', True, 'nanoLatino_') +
                getSampleFiles(directory,'WpTo2J_ZTo2L_QCD',   True, 'nanoLatino_') +
                getSampleFiles(directory,'WpToLNu_WmTo2J_QCD', True, 'nanoLatino_') +
                getSampleFiles(directory,'WpToLNu_WpTo2J_QCD', True, 'nanoLatino_') +
