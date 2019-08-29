@@ -37,7 +37,7 @@ groupPlot['VBS']  = {
 groupPlot['VVV']  = {  
                   'nameHR' : 'VVV',
                   'isSignal' : 0,
-                  'color': color["kAzure"] -3,  
+                  'color': colors["kAzure"] -3,  
                   'samples'  : ['VVV']
               }
 
@@ -118,7 +118,7 @@ plot['VBS']  = {
               }
 
 plot['VVV']  = { 
-                  'color': 857, # kAzure -3  
+                  'color': colors["kAzure"] -3,  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0

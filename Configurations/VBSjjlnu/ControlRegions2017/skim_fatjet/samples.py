@@ -151,7 +151,7 @@ samples['singleTop'] = {
                       + getSampleFiles(directory,'ST_tW_antitop',False,'nanoLatino_') 
                       + getSampleFiles(directory,'ST_tW_top',False,'nanoLatino_') ,
             'weight' :  XSWeight+'*'+SFweight+'*'+METFilter_MC ,
-            'FilesPerJob' : 1,
+            'FilesPerJob' : 3,
                  }
 
 samples["ttbar"] =  {  'name': getSampleFiles(directory,'TTToSemiLeptonic',False,'nanoLatino_') 
@@ -162,7 +162,7 @@ samples["ttbar"] =  {  'name': getSampleFiles(directory,'TTToSemiLeptonic',False
                            # +  getSampleFiles(directory,'TTZjets_ext1',False,'nanoLatino_' ),
                           #  +  getSampleFiles(directory,'TTWJetsToLNu',False,'nanoLatino_' ),
                         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC,
-                        'FilesPerJob': 1,
+                        'FilesPerJob': 3,
 }
 
 addSampleWeight(samples,'ttbar','TTToSemiLeptonic',Top_pTrw)
@@ -193,7 +193,7 @@ samples['Wjets'] = { 'name' :
           + getSampleFiles(directory, 'WJetsToLNu_HT2500_inf', True, 'nanoLatino_'),
           #+ getSampleFiles(directory, 'WJetsToLNu_HT2500_inf_ext1', True, 'nanoLatino_'),
 				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC ,
-				'FilesPerJob' : 1,
+				'FilesPerJob' : 2,
 		   }
 
 # Fix Wjets binned + LO 
@@ -211,17 +211,17 @@ samples['VV']  = { 'name' :
                getSampleFiles(directory,'WpToLNu_ZTo2J_QCD',  True, 'nanoLatino_') +
                getSampleFiles(directory,'ZTo2L_ZTo2J_QCD',    True, 'nanoLatino_') ,
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC,
-        'FilesPerJob' : 2,
+        'FilesPerJob' : 3,
 }
 
 samples["FakeQCD"] = { 'name':
-        getSampleFiles(directory, 'QCD_Pt-15to20_MuEnrichedPt', True, 'nanoLatino_') + 
-        getSampleFiles(directory, 'QCD_Pt-20to30_MuEnrichedPt', True, 'nanoLatino_') +
-        getSampleFiles(directory, 'QCD_Pt-30to50_MuEnrichedPt', True, 'nanoLatino_') +
-        getSampleFiles(directory, 'QCD_Pt-50to80_MuEnrichedPt', True, 'nanoLatino_') +
-        getSampleFiles(directory, 'QCD_Pt-80to120_MuEnrichedPt', True, 'nanoLatino_') +
-        getSampleFiles(directory, 'QCD_Pt-120to170_MuEnrichedPt', True, 'nanoLatino_') +
-        getSampleFiles(directory, 'QCD_Pt-170to300_MuEnrichedPt', True, 'nanoLatino_') +
+        getSampleFiles(directory, 'QCD_Pt-15to20_MuEnrichedPt5', True, 'nanoLatino_') + 
+        getSampleFiles(directory, 'QCD_Pt-20to30_MuEnrichedPt5', True, 'nanoLatino_') +
+        getSampleFiles(directory, 'QCD_Pt-30to50_MuEnrichedPt5', True, 'nanoLatino_') +
+        getSampleFiles(directory, 'QCD_Pt-50to80_MuEnrichedPt5', True, 'nanoLatino_') +
+        getSampleFiles(directory, 'QCD_Pt-80to120_MuEnrichedPt5', True, 'nanoLatino_') +
+        getSampleFiles(directory, 'QCD_Pt-120to170_MuEnrichedPt5', True, 'nanoLatino_') +
+        getSampleFiles(directory, 'QCD_Pt-170to300_MuEnrichedPt5', True, 'nanoLatino_') +
         getSampleFiles(directory, 'QCD_Pt-20to30_EMEnriched', True, 'nanoLatino_') +
         getSampleFiles(directory, 'QCD_Pt-30to50_EMEnriched', True, 'nanoLatino_') +
         getSampleFiles(directory, 'QCD_Pt-50to80_EMEnriched', True, 'nanoLatino_'),
@@ -258,7 +258,7 @@ samples['VBS']  = { 'name' :
        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC,
        'suppressNegative' :['all'],
        'suppressNegativeNuisances' :['all'],
-       'FilesPerJob' : 2,
+       'FilesPerJob' : 3,
 }
 
 
