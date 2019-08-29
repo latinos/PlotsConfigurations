@@ -37,7 +37,7 @@ groupPlot['VBS']  = {
 groupPlot['VVV']  = {  
                   'nameHR' : 'VVV',
                   'isSignal' : 0,
-                  'color': color["kAzure"] -3,  
+                  'color': colors["kAzure"] -3,  
                   'samples'  : ['VVV']
               }
 
@@ -55,6 +55,13 @@ groupPlot['DY']  = {
                 'color': colors['kMagenta']+1,    
                 'samples'  : ['DY']
             }
+
+groupPlot['VBF-V']  = {  
+                 'nameHR' : 'VBF-V',
+                 'isSignal' : 0,
+                 'color':  colors['Yellow']+3,  
+                 'samples'  : ['VBF-V']
+              }
 
 groupPlot['FakeQCD']  = {  
                 'nameHR' : "FakeQCD",
@@ -118,7 +125,7 @@ plot['VBS']  = {
               }
 
 plot['VVV']  = { 
-                  'color': 857, # kAzure -3  
+                  'color': colors["kAzure"] -3,    
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
@@ -130,7 +137,8 @@ plot['VV']  = {
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.   ,
-              }              
+              }   
+         
 
 
 plot['DY']  = {  
@@ -139,6 +147,13 @@ plot['DY']  = {
                 'isData'   : 0, 
                 'scale'    : 1.0,
             }
+
+plot['VBF-V']  = {
+                  'color': colors['kYellow']+3,  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.   ,
+              }
 
 
 plot['FakeQCD']  = {  

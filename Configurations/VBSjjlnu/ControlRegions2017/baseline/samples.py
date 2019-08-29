@@ -229,6 +229,19 @@ samples["FakeQCD"] = { 'name':
         'FilesPerJob' :10,
 }
 
+# Filter efficiency for FakeQCD (https://twiki.cern.ch/twiki/bin/viewauth/CMS/SummaryTable1G25ns)
+addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-15to20_MuEnrichedPt5', '0.003')
+addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-20to30_MuEnrichedPt5', '0.0053')
+addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-30to50_MuEnrichedPt5', '0.01182')
+addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-50to80_MuEnrichedPt5', '0.02276')
+addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-80to120_MuEnrichedPt5', '0.03844')
+addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-120to170_MuEnrichedPt5', '0.05362')
+addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-170to300_MuEnrichedPt5', '0.07335')
+addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-20to30_EMEnriched', '0.0096')
+addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-30to50_EMEnriched', '0.073')
+addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-50to80_EMEnriched', '0.146')
+
+
 ############ VVV ############
 
 samples['VVV']  = {  'name'   :   getSampleFiles(directory,'ZZZ',False,'nanoLatino_')
@@ -239,6 +252,11 @@ samples['VVV']  = {  'name'   :   getSampleFiles(directory,'ZZZ',False,'nanoLati
                     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC ,
                   }
 
+############## VBF-V ########
+samples['VBF-V']  = {  'name'   :   getSampleFiles(directory,'WLNuJJ_EWK',False,'nanoLatino_'),
+                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC ,
+                    'FilesPerJob' : 5
+                  }
 
 ##########################################
 ################ SIGNALS #################
