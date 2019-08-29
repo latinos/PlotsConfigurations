@@ -1,71 +1,19 @@
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # Full2016_nanoAODv4_CR
+configurations = os.path.dirname(configurations) # Full2018
 configurations = os.path.dirname(configurations) # ggH
 configurations = os.path.dirname(configurations) # Configurations
 
 #aliases = {}
 
-mc = [skey for skey in samples if skey not in ('Fakes', 'DATA')]
+mc = [skey for skey in samples if skey not in ('Fake', 'Fake_ee', 'Fake_mm', 'DATA')]
 
 bAlgo = 'DeepB'
 bWP = '0.1241'
 
 aliases['PromptGenLepMatch2l'] = {
     'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
-    'samples': mc
-}
-
-# And variations - already divided by central values in formulas !
-aliases['fakeWEleUp'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleUp',
-    'samples': ['Fake']
-}
-aliases['fakeWEleDown'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleDown',
-    'samples': ['Fake']
-}
-aliases['fakeWMuUp'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuUp',
-    'samples': ['Fake']
-}
-aliases['fakeWMuDown'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuDown',
-    'samples': ['Fake']
-}
-aliases['fakeWStatEleUp'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleUp',
-    'samples': ['Fake']
-}
-aliases['fakeWStatEleDown'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleDown',
-    'samples': ['Fake']
-}
-aliases['fakeWStatMuUp'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuUp',
-    'samples': ['Fake']
-}
-aliases['fakeWStatMuDown'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuDown',
-    'samples': ['Fake']
-}
-
-# variations
-aliases['SFweightEleUp'] = {
-    'expr': 'LepSF2l__ele_'+eleWP+'__Up',
-    'samples': mc
-}
-aliases['SFweightEleDown'] = {
-    'expr': 'LepSF2l__ele_'+eleWP+'__Do',
-    'samples': mc
-}
-aliases['SFweightMuUp'] = {
-    'expr': 'LepSF2l__mu_'+muWP+'__Up',
-    'samples': mc
-}
-aliases['SFweightMuDown'] = {
-    'expr': 'LepSF2l__mu_'+muWP+'__Do',
     'samples': mc
 }
 
@@ -89,6 +37,45 @@ aliases['twoJetOrMore'] = {
     'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) >= 30.'
 }
 
+aliases['sameFlavor'] = {
+'expr': '((Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) || (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11))'
+}
+
+aliases['0j'] = {
+'expr': '( Alt$(CleanJet_pt[0],0)<30 )'
+}
+
+aliases['1j'] = {
+'expr': 'Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)<30'
+}
+
+aliases['2jggH'] = {
+'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && ( abs(detajj)<3.5 || ( mjj<400 && abs(detajj)>=3.5 ) ) )'
+}
+
+aliases['2jVBF'] = {
+'expr': '(Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && (mjj>=400 && abs(detajj)>=3.5))'
+}
+
+aliases['Higgs0jetsf'] = {
+'expr': '(abs(dphill) < 1.70 && mll < 60 && mth > 50)'
+}
+
+aliases['Higgs1jetsf'] = {
+'expr': '(abs(dphill) < 1.70 && mll < 60 && mth > 50)'
+}
+
+aliases['Higgs2jetsf'] = {
+'expr': '(abs(dphill) < 1.70 && mll < 60 && mth > 50)'
+}
+
+aliases['Higgsvbfsf'] = {
+'expr': '(abs(dphill) < 1.70 && mll < 60 && mth > 50)'
+}
+
+aliases['ZVeto'] = {
+'expr': '(fabs(91.1876 - mll) > 15)'
+}
 
 aliases['bVeto'] = {
     'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0'
@@ -112,7 +99,7 @@ aliases['btag2'] = {
 
 # Temporary patch for BTV postprocessor bug (no SF for eta < 0, <= 102X_nAODv5_Full2018v5)
 
-btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_2016LegacySF_V1.csv' % os.getenv('CMSSW_BASE')
+btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_102XSF_V1.csv' % os.getenv('CMSSW_BASE')
 
 aliases['Jet_btagSF_shapeFix'] = {
     'linesToAdd': [
