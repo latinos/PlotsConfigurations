@@ -267,7 +267,7 @@ nuisances['UE']  = {
     'folderUp': makeMCDirectory('UEup'),
     'folderDown': makeMCDirectory('UEdo'),
     'AsLnN'      : '1',
-#    'synchronized': False
+    'synchronized': False
 }
 
 
