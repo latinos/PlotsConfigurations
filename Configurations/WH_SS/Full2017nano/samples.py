@@ -34,7 +34,8 @@ Nlep='2'
 ################################################
 
 
-eleWP='mvaFall17V1Iso_WP90'
+#eleWP='mvaFall17V1Iso_WP90'
+eleWP='mvaFall17V1Iso_WP90_SS'
 muWP='cut_Tight_HWWW'
 
 
@@ -118,7 +119,7 @@ samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50',Fal
                      'FilesPerJob' : 5,
                  }
 
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext2',ptllDYW_NLO)
+addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO)
 #addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO)
 addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 
