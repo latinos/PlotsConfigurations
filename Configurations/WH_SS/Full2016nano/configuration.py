@@ -2,7 +2,7 @@
 treeName= 'Events'
 
 
-tag = 'WH2016nano_withsystv1'
+tag = 'WH2016nano_withsyst_final'
 
 
 # used by mkShape to define output directory for root files

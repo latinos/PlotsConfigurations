@@ -141,7 +141,7 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
         'name': name,
         'kind': 'weight',
         'type': 'shape',
-        'samples': dict((skey, btag_syst) for skey in mc),
+        'samples': dict((skey, btag_syst) for skey in mc if skey not in ['DY']),
     }
 
 ##### Trigger Efficiency
@@ -496,29 +496,29 @@ nuisances['singleTopToTTbar'] = {
 
 ## Top pT reweighting uncertainty
 
-nuisances['TopPtRew'] = {
-    'name': 'CMS_topPtRew',   # Theory uncertainty
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {'top': ["1.", "1./Top_pTrw"]},
-    'symmetrize': True
-}
+#nuisances['TopPtRew'] = {
+#    'name': 'CMS_topPtRew',   # Theory uncertainty
+#    'kind': 'weight',
+#    'type': 'shape',
+#    'samples': {'top': ["1.", "1./Top_pTrw"]},
+#    'symmetrize': True
+#}
 
-nuisances['VgStar'] = {
-    'name': 'CMS_hww_VgStarScale',
-    'type': 'lnN',
-    'samples': {
-        'VgS': '1.25'
-    }
-}
-
-nuisances['VZ'] = {
-    'name': 'CMS_hww_VZScale',
-    'type': 'lnN',
-    'samples': {
-        'VZ': '1.16'
-    }
-}
+#nuisances['VgStar'] = {
+#    'name': 'CMS_hww_VgStarScale',
+#    'type': 'lnN',
+#    'samples': {
+#        'VgS': '1.25'
+#    }
+#}
+#
+#nuisances['VZ'] = {
+#    'name': 'CMS_hww_VZScale',
+#    'type': 'lnN',
+#    'samples': {
+#        'VZ': '1.16'
+#    }
+#}
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat']  = {
