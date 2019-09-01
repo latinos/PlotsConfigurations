@@ -37,12 +37,13 @@ variables['mlljj30_whss']  = {   'name': 'mlljj30_whss',
                         'fold' : 0
                         }
 
-'''
+
 #variables['nvtx']  = {   'name': 'PV_npvsGood',      
 #                        'range' : (50,0,100),  
 #                        'xaxis' : 'nvtx', 
 #                         'fold' : 3
 #                      }
+
 variables['mll']  = {   'name': 'mll',            #   variable name    
                         'range' : (40, 0,200),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
@@ -111,6 +112,8 @@ variables['njet']  = {
                         }
 
 
+
+
 variables['jetpt1']  = {
                         'name': 'CleanJet_pt[0]*(CleanJet_pt[0]>30)',     
                         'range' : (40,0,200),   
@@ -161,7 +164,7 @@ variables['mtw2']  = {  'name': 'mtw2',
                         'xaxis' : 'm_{T}^{W_{2}} [GeV]',
                          'fold' : 3
                         }
-'''
+
 variables['trkMet']  = {   'name': 'metTtrk',
                         'range' : (40,0,200),
                         'xaxis' : 'trk met [GeV]',

@@ -2,7 +2,7 @@
 treeName= 'Events'
 
 
-tag = 'WH2016nano_forPlotsv2'
+tag = 'WH2017nano'
 
 
 # used by mkShape to define output directory for root files
@@ -26,7 +26,7 @@ plotFile = 'plot.py'
 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 35.867
+lumi = 41.53
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy

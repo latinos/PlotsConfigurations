@@ -1,21 +1,23 @@
 # example of configuration file
-treeName= 'Events'
 
+treeName = 'Events'
 
-tag = 'WH2016nano_forPlotsv2'
+tag = '_btag_CR2016'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = 'rootFile'+tag
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
 
 # file with list of variables
 variablesFile = 'variables.py'
+#variablesFile = 'variables_forPlots.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
+cutsFile = 'cuts.py'
+#cutsFile = 'cuts_forPlots.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 
@@ -34,7 +36,7 @@ outputDirPlots = 'plot'+tag
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'+tag
+outputDirDatacard = 'datacards'
 
 
 # structure file for datacard
