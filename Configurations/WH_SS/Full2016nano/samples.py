@@ -112,11 +112,11 @@ DataTrig = {
 ptllDYW_NLO = '(0.876979+gen_ptll*(4.11598e-03)-(2.35520e-05)*gen_ptll*gen_ptll)*(1.10211 * (0.958512 - 0.131835*TMath::Erf((gen_ptll-14.1972)/10.1525)))*(gen_ptll<140)+0.891188*(gen_ptll>=140)'
 ptllDYW_LO  = '(8.61313e-01+gen_ptll*4.46807e-03-1.52324e-05*gen_ptll*gen_ptll)*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-11.)/5.51582)))*(gen_ptll<140)+1.141996*(gen_ptll>=140)'
 
-samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-10to50',False,'nanoLatino_')
+samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-10to50-LO',False,'nanoLatino_')
                                 + getSampleFiles(directory,'DYJetsToLL_M-50_ext2',False,'nanoLatino_'),
  #                               + getSampleFiles(directory,'DYJetsToTT_MuEle_M-50',False,'nanoLatino_'),
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 1,
+                     'FilesPerJob' : 5,
                  }
 
 addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext2',ptllDYW_NLO)
@@ -127,7 +127,7 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 
 ############ Top ############
 
-Top_pTrw = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )'
+#Top_pTrw = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )'
 
 samples['top'] = {    'name'   :   getSampleFiles(directory,'TTTo2L2Nu',False,'nanoLatino_') 
                                  + getSampleFiles(directory,'ST_s-channel',False,'nanoLatino_') 
@@ -136,10 +136,10 @@ samples['top'] = {    'name'   :   getSampleFiles(directory,'TTTo2L2Nu',False,'n
                                  + getSampleFiles(directory,'ST_tW_antitop',False,'nanoLatino_') 
                                  + getSampleFiles(directory,'ST_tW_top',False,'nanoLatino_') ,
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 1,
+                     'FilesPerJob' : 5,
                  }
 
-addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
+#addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
 
 ############ WW ############
 
@@ -186,7 +186,7 @@ samples['VZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo2L2Nu',False,'nan
                                + getSampleFiles(directory,'ZZTo4L',False,'nanoLatino_')
                                + getSampleFiles(directory,'WZTo2L2Q',False,'nanoLatino_'),
                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
-                    'FilesPerJob' : 2,
+                    'FilesPerJob' : 3,
                  }
 
 
@@ -300,10 +300,11 @@ else:
 #
 
 samples['Fakes']  = {   'name': [ ] ,
-                       'weight' : fakeW+'*'+METFilter_DATA+'*((Lepton_pdgId[0]*Lepton_pdgId[1]==11*13) || (Lepton_pdgId[0]*Lepton_pdgId[1]==11*11) || (Lepton_pdgId[0]*Lepton_pdgId[1]==13*13))',              #   weight/cut 
+                       #'weight' : fakeW+'*'+METFilter_DATA+'*((Lepton_pdgId[0]*Lepton_pdgId[1]==11*13) || (Lepton_pdgId[0]*Lepton_pdgId[1]==11*11) || (Lepton_pdgId[0]*Lepton_pdgId[1]==13*13))',              #   weight/cut 
+                       'weight' : fakeW+'*'+METFilter_DATA, 
                        'weights' : [ ] ,
                        'isData': ['all'],
-                       'FilesPerJob' : 6 ,
+                       'FilesPerJob' : 10 ,
                      }
 
 
