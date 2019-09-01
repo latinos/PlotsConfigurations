@@ -14,7 +14,7 @@ _tmp = [
     'PuppiMET_pt > 20',
     'ptll>30',
     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
-    '(abs(Lepton_pdgId[1]) == 13 || Lepton_pt[1] > 13.)'
+    'Lepton_pt[1] > 13.'
 ]
 supercut = ' && '.join(_tmp)
 
@@ -127,4 +127,3 @@ def addsr(name, binning, cutsMap, slist):
 
 addsr('hww_NJ', njetBinning, njetCutsProgressive, slist_njsignal)
 addsr('hww_PTH', pthBins, pthCutsProgressive, slist_pthsignal)
-

@@ -1,11 +1,13 @@
 #!/bin/bash
 
+THISDIR=$(dirname $(readlink -f $0))
+
 WORKDIR=$1
 OBSERVABLE=$2
 CARD_TAG=$3
 COMMAND=$4
 
-if ! [ $TARGET ]
+if ! [ $COMMAND ]
 then
   echo "Usage: dofit.sh WORKDIR OBSERVABLE CARD_TAG COMMAND [ARGS]"
   echo "  WORKDIR, OBSERVABLE, CARD_TAG: Workspace ROOT file is expected at ${WORKDIR}/${OBSERVABLE}_${CARD_TAG}/fullmodel.root"
@@ -14,15 +16,18 @@ then
   exit 0
 fi
 
-if ! [ $COMBINE_INSTALLATION ]
+if ! which combine > /dev/null 2>&1
 then
-  echo "Combine installation not found."
-  echo "export COMBINE_INSTALLATION=<Combine CMSSW workspace path>"
-  exit 1
+  if ! [ $COMBINE_INSTALLATION ]
+  then
+    echo "Combine installation not found."
+    echo "export COMBINE_INSTALLATION=<Combine CMSSW workspace path>"
+    exit 1
+  fi
+  
+  cd $COMBINE_INSTALLATION
+  eval `scram runtime -sh`
 fi
-
-cd $COMBINE_INSTALLATION
-eval `scram runtime -sh`
 
 ulimit -s 20480
 
@@ -33,15 +38,13 @@ cd $TMPDIR
 CARDDIR=$WORKDIR/${OBSERVABLE}_${CARD_TAG}
 RETURNDIR=$CARDDIR
 
-THISDIR=$(cd $(dirname $0); pwd)
-
 if [ $OBSERVABLE = njet ]
 then
   SETMU="r_0=1,r_1=1,r_2=1,r_3=1,r_4=1"
   SETDELTA="delta=9.52"
   OBSNAME="NJ"
 else
-  SETMU="r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1"
+  SETMU="r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1"
   SETDELTA="delta=2.5"
   OBSNAME="PTH"
 fi
