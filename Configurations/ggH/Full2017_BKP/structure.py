@@ -23,13 +23,31 @@ structure['Fake']  = {
 structure['Fake_em']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'removeFromCuts' : [ k for k in cuts if 'me' in k],
+                  'removeFromCuts' : [
+                                      'hww2l2v_13TeV_me_pm_0j_pt2ge20',
+                                      'hww2l2v_13TeV_me_pm_0j_pt2ge20', 
+                                      'hww2l2v_13TeV_me_pm_1j_pt2ge20', 
+                                      'hww2l2v_13TeV_me_mp_0j_pt2ge20',
+                                      'hww2l2v_13TeV_me_mp_1j_pt2ge20',
+                                      'hww2l2v_13TeV_me_pm_0j_pt2lt20',
+                                      'hww2l2v_13TeV_me_pm_1j_pt2lt20',
+                                      'hww2l2v_13TeV_me_mp_0j_pt2lt20',
+                                      'hww2l2v_13TeV_me_mp_1j_pt2lt20'],
               }
 
 structure['Fake_me']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'removeFromCuts' : [ k for k in cuts if 'em' in k],
+                  'removeFromCuts' : [
+                                      'hww2l2v_13TeV_em_pm_0j_pt2ge20',
+                                      'hww2l2v_13TeV_em_pm_0j_pt2ge20', 
+                                      'hww2l2v_13TeV_em_pm_1j_pt2ge20', 
+                                      'hww2l2v_13TeV_em_mp_0j_pt2ge20',
+                                      'hww2l2v_13TeV_em_mp_1j_pt2ge20',
+                                      'hww2l2v_13TeV_em_pm_0j_pt2lt20',
+                                      'hww2l2v_13TeV_em_pm_1j_pt2lt20',
+                                      'hww2l2v_13TeV_em_mp_0j_pt2lt20',
+                                      'hww2l2v_13TeV_em_mp_1j_pt2lt20'],
               }
 
 structure['ttbar'] = {   
