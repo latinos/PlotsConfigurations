@@ -2,7 +2,8 @@
 treeName= 'Events'
 
 
-tag = 'WH2018nano_try1:'
+tag = 'WH2018nano_forPlots'
+#tag = 'WH2018nano_try3'
 
 
 # used by mkShape to define output directory for root files

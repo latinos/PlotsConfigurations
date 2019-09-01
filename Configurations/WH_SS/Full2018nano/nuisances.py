@@ -46,6 +46,7 @@ nuisances['lumi_LScale'] = {
     'samples': dict((skey, '1.002') for skey in mc)
 }
 
+
 #### FAKES
 
 nuisances['fake_syst'] = {
@@ -192,7 +193,7 @@ nuisances['PS_whss']  = {
                    'ZH_hww'   : '1.037',
                    'WH_htt'    : '1.037',
                    'ggZH_hww'   : '1.037',
-              #     'ZH_htt'   : '1.037',
+                   'ZH_htt'   : '1.037',
                 },
 }
 
@@ -205,7 +206,7 @@ nuisances['UE_whss']  = {
                    'ZH_hww'   : '1.010',
                    'WH_htt'    : '1.010',
                    'ggZH_hww'   : '1.010',
- #                  'ZH_htt'   : '1.010',
+                   'ZH_htt'   : '1.010',
                },
                 }
 
@@ -433,20 +434,20 @@ nuisances['QCDscale_ggWW']  = {
 
 ####### Generic "cross section uncertainties"
 
-apply_on = {
-    'top': [
-        '(topGenPt * antitopGenPt <= 0.) * 1.0816 + (topGenPt * antitopGenPt > 0.)',
-        '(topGenPt * antitopGenPt <= 0.) * 0.9184 + (topGenPt * antitopGenPt > 0.)'
-    ]
-}
+#apply_on = {
+#    'top': [
+#        '(topGenPt * antitopGenPt <= 0.) * 1.0816 + (topGenPt * antitopGenPt > 0.)',
+#        '(topGenPt * antitopGenPt <= 0.) * 0.9184 + (topGenPt * antitopGenPt > 0.)'
+#    ]
+#}
 
-nuisances['singleTopToTTbar'] = {
-    'name': 'singleTopToTTbar',
-    'skipCMS': 1,
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': apply_on
-}
+#nuisances['singleTopToTTbar'] = {
+##    'name': 'singleTopToTTbar',
+#    'skipCMS': 1,
+#    'kind': 'weight',
+#    'type': 'shape',
+#    'samples': apply_on
+#}
 
 ## Top pT reweighting uncertainty
 
