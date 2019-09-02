@@ -13,6 +13,7 @@ shutil.copyfile(sys.argv[1], sys.argv[1] + '.backup')
 target = ROOT.TFile.Open(sys.argv[1], 'update')
 source = ROOT.TFile.Open(sys.argv[2])
 sample = sys.argv[3]
+nuisance = sys.argv[4]
 
 for ckey in source.GetListOfKeys():
     scut = ckey.GetName()
@@ -39,9 +40,9 @@ for ckey in source.GetListOfKeys():
             hnomtarget = tdir.Get('histo_%s' % sname)
 
             for v in ['Up', 'Down']:
-                hvarsource = sdir.Get('histo_%s_PS%s' % (sname, v))
+                hvarsource = sdir.Get('histo_%s_%s%s' % (sname, nuisance, v))
                 tdir.cd()
-                hvartarget = hnomtarget.Clone('histo_%s_PS%s' % (sname, v))
+                hvartarget = hnomtarget.Clone('histo_%s_%s%s' % (sname, nuisance, v))
                 if hnomsource.GetSumOfWeights() > 0.:
                     hvartarget.Scale(hvarsource.GetSumOfWeights() / hnomsource.GetSumOfWeights())
     

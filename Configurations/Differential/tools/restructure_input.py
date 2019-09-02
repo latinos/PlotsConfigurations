@@ -110,6 +110,9 @@ class HistogramMerger(object):
 
     asLnNPooling = None
 
+    psVariation = ''
+    ueVariation = ''
+
     def addFromOneDirectory(self, inSample, outNominal, outHistograms):
         logging.debug('addFromOneDirectory %s %s', inSample, outNominal.GetName())
         # pick up the nominal input
@@ -250,9 +253,8 @@ class HistogramMerger(object):
         """
         Renormalize UE and PS uncertainty variations to the signal region volume.
         """
-
         nominalTotal = 0.
-        varTotals = dict(('%s%s' % (n, v), 0.) for n in ['UE', 'PS'] for v in ['Up', 'Down'])
+        varTotals = dict(('%s%s' % (n, v), 0.) for n in [self.ueVariation, self.psVariation] for v in ['Up', 'Down'])
 
         allSourceBins = set()
         for outBin in self.outBins:
@@ -431,8 +433,8 @@ class HistogramMerger(object):
 
                     self._getter.open(sourcePath, sourceSample)
 
-                if ('UE' in HistogramMerger.variations and inSample in HistogramMerger.variations['UE']['inSamples']) or \
-                        ('PS' in HistogramMerger.variations and inSample in HistogramMerger.variations['PS']['inSamples']):
+                if (self.ueVariation in HistogramMerger.variations and inSample in HistogramMerger.variations[self.ueVariation]['inSamples']) or \
+                        (self.psVariation in HistogramMerger.variations and inSample in HistogramMerger.variations[self.psVariation]['inSamples']):
                     self.renormalizeUEPS(inSample)
 
                 if self.asLnNPooling is not None:
@@ -613,8 +615,8 @@ if __name__ == '__main__':
         if 'categories' in cut:
             categorymap[cname] = []
             for cat in cut['categories']:
-                if 'WW' in cat:
-                    continue
+                #if 'WW' in cat:
+                #    continue
     
                 cuts['%s_%s' % (cname, cat)] = cut
                 categorymap[cname].append(cat)
@@ -655,17 +657,17 @@ if __name__ == '__main__':
             HistogramMerger.outBins = ['PTH_0_20', 'PTH_20_45', 'PTH_45_80', 'PTH_80_120', 'PTH_120_200', 'PTH_200_350', 'PTH_GT350']
 
         HistogramMerger.recoBinMap = {
-            'PTH_0_20': ['PTH_0_20'],
-            'PTH_20_45': ['PTH_20_45'],
-            'PTH_45_80': ['PTH_45_80'],
-            'PTH_80_120': ['PTH_80_120'],
-            'PTH_120_200': ['PTH_120_200']
+            'PTH_0_20': ['PTH_0_10', 'PTH_10_15', 'PTH_15_20'],
+            'PTH_20_45': ['PTH_20_30', 'PTH_30_45'],
+            'PTH_45_80': ['PTH_45_60', 'PTH_60_80'],
+            'PTH_80_120': ['PTH_80_100', 'PTH_100_120'],
+            'PTH_120_200': ['PTH_120_155', 'PTH_155_200']
         }
         if PTHGT200:
-            HistogramMerger.recoBinMap['PTH_GT200'] = ['PTH_200_350', 'PTH_GT350']
+            HistogramMerger.recoBinMap['PTH_GT200'] = ['PTH_200_260', 'PTH_260_350', 'PTH_GT350']
             HistogramMerger.split = [4, 4, 4, 3, 2, 2]
         else:
-            HistogramMerger.recoBinMap['PTH_200_350'] = ['PTH_200_350']
+            HistogramMerger.recoBinMap['PTH_200_350'] = ['PTH_200_260', 'PTH_260_350']
             HistogramMerger.recoBinMap['PTH_GT350'] = ['PTH_GT350']
             HistogramMerger.split = [4, 4, 4, 3, 2, 2, 1]
     
@@ -829,6 +831,11 @@ if __name__ == '__main__':
         else:
             variation['AsLnN'] = float(nuisance['AsLnN']) if 'AsLnN' in nuisance else 0.
 
+        if nuisance['name'].startswith('PS'):
+            HistogramMerger.psVariation = nuisance['name']
+        elif nuisance['name'].startswith('UE'):
+            HistogramMerger.ueVariation = nuisance['name']
+
     source = ROOT.TFile.Open(os.path.dirname(__file__) + '/renormalize_theoretical_%s.root' % args.year)
     hup = source.Get('up')
     hdown = source.Get('down')
@@ -841,10 +848,10 @@ if __name__ == '__main__':
         else:
             sname = 'ggH_hww'
             nname = name
-            
+
         if nname in ['PS', 'UE']:
             continue
-
+            
         try:
             variation = HistogramMerger.variations[nname]
         except KeyError:
