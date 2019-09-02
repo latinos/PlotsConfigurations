@@ -24,10 +24,12 @@ if    'iihe' in SITE :
   xrootdPath  = 'dcap://maite.iihe.ac.be/'
   treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/'
 elif  'cern' in SITE :
-  #xrootdPath='root://eoscms.cern.ch/'
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/'
+elif  'hammer' in SITE :
+  treeBaseDir = '/mnt/hadoop/store/group/local/hmm/ntuples/2016/'
 
-directory = treeBaseDir+'Summer16_102X_nAODv5_Full2016v5_hmm/MCl2loose2016hmm__MCCorr2016hmm__l2tightOR2016hmm'+skim
+directory = treeBaseDir+'MCl2loose2016hmm__MCCorr2016hmm__l2tightOR2016hmm'+skim
+##directory = treeBaseDir+'DATAl2loose2016hmm__l2tightOR2016hmm/'+skim
 
 ################################################
 ############ NUMBER OF LEPTONS #################
@@ -84,6 +86,9 @@ DataRun = [
 
 DataSets = ['SingleMuon']
 
+DataTrig = {
+    'SingleMuon'     : '1' ,
+}
 
 #  f[15] = "WWToLNuQQ_2017.root";
 #  f[22] = "ttJets_DiLept_2017.root";
@@ -104,7 +109,7 @@ if useDYforHmumu :
     'FilesPerJob' : 1 ,
     #'suppressNegative' :['all'],
     #'suppressNegativeNuisances' :['all'],
-    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/HMuMu/Full2016/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("DATA2")'] 
+    'linesToAdd' : ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/HMuMu/Full2016/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("DATA2")'] 
   }
 
 ###### DY (Standard) #######
@@ -116,7 +121,7 @@ elif useDYInclusive:
     'FilesPerJob' : 1,
     #'suppressNegative' :['all'],
     #'suppressNegativeNuisances' :['all'],
-    'linesToAdd' : ['.L /afs/cern.ch/user/n/ntrevisa/work/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/HMuMu/Full2016/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("DATA2")'] 
+    'linesToAdd' : ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/HMuMu/Full2016/onTheFly/interpolationWeight.C+', 'initInterpolationWeight("DATA2")'] 
   }
 
 
@@ -244,17 +249,18 @@ samples['Fakes']  = {  'name'   :
 ###########################################
 
 samples['DATA']  = {   'name': [ ] ,     
-                       'weight' : METFilter_DATA+'*'+LepWPCut,
+                       'weight' : 'METFilter_DATA', ##METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],                            
                        'FilesPerJob' : 20 ,
                   }
 
+
 for Run in DataRun :
-  directory = treeBaseDir+'Run2016_102X_nAODv5_Full2016v5_hmm/DATAl2loose2016hmm__l2tightOR2016hmm/'
+  directory = treeBaseDir+'DATAl2loose2016hmm__l2tightOR2016hmm/'
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
     for iFile in FileTarget:
       samples['DATA']['name'].append(iFile)
-##      samples['DATA']['weights'].append(DataTrig[DataSet]) 
+      samples['DATA']['weights'].append(DataTrig[DataSet]) 
 
