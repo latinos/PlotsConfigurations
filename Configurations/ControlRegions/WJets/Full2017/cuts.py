@@ -8,7 +8,7 @@ supercut = 'nLepton==2 && Lepton_pt[0]>25 && Lepton_pt[1]>13 \
             && Alt$(Electron_jetIdx[Lepton_electronIdx[1]],-1)>0 \
            '
 ##Loose
-
+'''
 cuts['e_eloose_noiso']  = '(fabs(Lepton_pdgId[0]) == 11)   \
                       && Lepton_isTightElectron_mvaFall17Iso_WP90[0]==1 \
                       && Electron_pfRelIso03_all[Lepton_electronIdx[0]]<0.06 \
@@ -28,6 +28,60 @@ cuts['m_eloose_iso']  =  '(fabs(Lepton_pdgId[0]) == 13)   \
                       && Lepton_isTightMuon_cut_Tight_HWWW[0]==1 \
                       && Electron_pfRelIso03_all[Lepton_electronIdx[1]]<0.06  \
                      '
+'''
+##Cutbased
+
+cuts['e_eloose_cutbased']  = '(fabs(Lepton_pdgId[0]) == 11)   \
+                      && Lepton_isTightElectron_mvaFall17Iso_WP90[0]==1 \
+                      && Electron_pfRelIso03_all[Lepton_electronIdx[0]]<0.06 \
+                      && Electron_cutBased[Lepton_electronIdx[1]]>=3 \
+     '
+
+cuts['m_eloose_cutbased']  =  '(fabs(Lepton_pdgId[0]) == 13)   \
+                      && Lepton_isTightMuon_cut_Tight_HWWW[0]==1 \
+                      && Electron_cutBased[Lepton_electronIdx[1]]>=3 \
+                     '
+
+cuts['e_etight_cutbased']  = '(fabs(Lepton_pdgId[0]) == 11)   \
+                      && Lepton_isTightElectron_mvaFall17Iso_WP90[0]==1 \
+                      && Electron_pfRelIso03_all[Lepton_electronIdx[0]]<0.06 \
+                      && Electron_cutBased[Lepton_electronIdx[1]]>=3 \
+                      && Lepton_isTightElectron_mvaFall17Iso_WP90[1]==1\
+                     '
+
+cuts['m_etight_cutbased']  =  '(fabs(Lepton_pdgId[0]) == 13)   \
+                      && Lepton_isTightMuon_cut_Tight_HWWW[0]==1 \
+                      && Electron_cutBased[Lepton_electronIdx[1]]>=3 \
+                      && Lepton_isTightElectron_mvaFall17Iso_WP90[1]==1\
+                    '
+
+cuts['e_eloose_cutbased_convveto']  = '(fabs(Lepton_pdgId[0]) == 11)   \
+                      && Lepton_isTightElectron_mvaFall17Iso_WP90[0]==1 \
+                      && Electron_pfRelIso03_all[Lepton_electronIdx[0]]<0.06 \
+                      && Electron_cutBased[Lepton_electronIdx[1]]>=3 \
+                      && Electron_convVeto[Lepton_electronIdx[1]]==1 \
+'
+
+cuts['m_eloose_cutbased_convveto']  =  '(fabs(Lepton_pdgId[0]) == 13)   \
+                      && Lepton_isTightMuon_cut_Tight_HWWW[0]==1 \
+                      && Electron_cutBased[Lepton_electronIdx[1]]>=3 \
+                      && Electron_convVeto[Lepton_electronIdx[1]]==1 \
+                     '
+
+cuts['e_etight_cutbased_iso']  = '(fabs(Lepton_pdgId[0]) == 11)   \
+                      && Lepton_isTightElectron_mvaFall17Iso_WP90[0]==1 \
+                      && Electron_pfRelIso03_all[Lepton_electronIdx[0]]<0.06 \
+                      && Electron_cutBased[Lepton_electronIdx[1]]>=3 \
+                      && Lepton_isTightElectron_mvaFall17Iso_WP90[1]==1\
+                      && Electron_pfRelIso03_all[Lepton_electronIdx[1]]<0.06  \
+                     '
+
+cuts['m_etight_cutbased_iso']  =  '(fabs(Lepton_pdgId[0]) == 13)   \
+                      && Lepton_isTightMuon_cut_Tight_HWWW[0]==1 \
+                      && Electron_cutBased[Lepton_electronIdx[1]]>=3 \
+                      && Lepton_isTightElectron_mvaFall17Iso_WP90[1]==1\
+                      && Electron_pfRelIso03_all[Lepton_electronIdx[1]]<0.06  \
+                    '
 
 ##Tight
 '''

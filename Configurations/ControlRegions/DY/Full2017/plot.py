@@ -26,7 +26,7 @@ groupPlot['Fake']  = {
                   'nameHR' : 'Non-prompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fake_em', 'Fake_me']
+                  'samples'  : ['Fake_ee', 'Fake_mm']
               }
 
 
@@ -61,12 +61,12 @@ groupPlot['Vg']  = {
                   'samples'  : ['Vg', 'Wg']
               }
 
-groupPlot['VgS']  = {
-                  'nameHR' : "V#gamma*",
-                  'isSignal' : 0,
-                  'color'    : 409,   # kGreen - 9
-                  'samples'  : ['WZgS']
-              }
+#groupPlot['VgS']  = {
+#                  'nameHR' : "V#gamma*",
+#                  'isSignal' : 0,
+#                  'color'    : 409,   # kGreen - 9
+#                  'samples'  : ['WZgS']
+#              }
 
 
 '''
@@ -115,7 +115,7 @@ plot['Fake']  = {
               }
 '''
 
-plot['Fake_em']  = {  
+plot['Fake_ee']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -123,7 +123,7 @@ plot['Fake_em']  = {
               }
 
 
-plot['Fake_me']  = {  
+plot['Fake_mm']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -196,12 +196,12 @@ plot['VVV']  = {
                   'scale'    : 1.0
                   }
 
-plot['WZgS']  = {
-                  'color': 617, # kViolet + 1
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
+#plot['WZgS']  = {
+#                  'color': 617, # kViolet + 1
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1.0
+#                  }
 '''
 plot['WZgS_L']  = {
                   'color': 617, # kViolet + 1

@@ -11,7 +11,7 @@ outputDir = 'rootFile'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables_ALL.py'
+variablesFile = 'variables.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
@@ -20,7 +20,7 @@ cutsFile = 'cuts.py'
 samplesFile = 'samples.py' 
 
 # file with list of samples
-plotFile = 'plot_.py' 
+plotFile = 'plot.py' 
 
 
 

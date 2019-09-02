@@ -1,7 +1,7 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = 'SS2017_nanov4'
+tag = 'SS2016_nanov5'
 
 
 # used by mkShape to define output directory for root files
@@ -32,7 +32,7 @@ lumi = 35.867
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
 # outputDirPlots = '~/www/plotCR'
-outputDirPlots = 'plotDY'
+outputDirPlots = 'plot'
 
 
 # used by mkDatacards to define output directory for datacards

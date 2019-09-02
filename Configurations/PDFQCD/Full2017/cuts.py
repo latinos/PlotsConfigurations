@@ -36,7 +36,7 @@ cuts['hww2l2v_13TeV_of2j']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
                                && Alt$(CleanJet_pt[1],0)>30 \
                                && bVeto \
                               '
-
+'''
 
 ## Top control regions
 cuts['hww2l2v_13TeV_top_of0j']  = '    (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
@@ -87,3 +87,4 @@ cuts['hww2l2v_13TeV_dytt_of2j']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*1
                                     && bVeto \
                                    '
 
+'''

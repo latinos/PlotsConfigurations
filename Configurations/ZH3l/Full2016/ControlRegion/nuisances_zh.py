@@ -193,6 +193,7 @@ nuisances['UE_zh3l']  = {
 #                 ]
 #               }
 # 
+
 nuisances['WZ3l2jnorm']  = {
                'name'  : 'CMS_hww_WZ3l2jnorm',
                'samples'  : {
@@ -201,7 +202,17 @@ nuisances['WZ3l2jnorm']  = {
                'type'  : 'rateParam',
                'cuts'  : [
                  'zh3l_WZ_CR_cut',
-                 'zh3l_dphi_cut',
+                ]
+              }
+
+nuisances['WZ3l1jnorm']  = {
+               'name'  : 'CMS_hww_WZ3l1jnorm',
+               'samples'  : {
+                   'WZ' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                 'zh3l_WZ_CR_cut_1j',
                 ]
               }
 

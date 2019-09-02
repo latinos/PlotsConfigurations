@@ -19,7 +19,8 @@ elif  'cern' in SITE :
   #xrootdPath='root://eoscms.cern.ch/'
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/'
 
-directory = treeBaseDir+'Fall2017_nAOD_v1_Full2017v2/MCl1loose2017v2__MCCorr2017__btagPerEvent__l2loose__l2tightOR2017/'
+#directory = treeBaseDir+'Fall2017_nAOD_v1_Full2017v2/MCl1loose2017v2__MCCorr2017__btagPerEvent__l2loose__l2tightOR2017/'
+directory = treeBaseDir+'Fall2017_nAOD_v1_Full2017v2LP19/MCl1loose2017__MCCorr2017LP19__l2loose__l2tightOR2017/'
 
 
 ################################################
@@ -54,7 +55,7 @@ LepWPweight     = 'LepSF'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
 ################################################
 XSWeight      = 'XSWeight'
 SFweight      = 'SFweight'+Nlep+'l' + '*PrefireWeight' + '*'+LepWPweight + '*'+LepWPCut 
-GenLepMatch   = 'GenLepMatch'+Nlep+'l'
+PromptGenLepMatch   = 'PromptGenLepMatch'+Nlep+'l'
 
 ################################################
 ############## FAKE WEIGHTS ####################
@@ -115,12 +116,13 @@ ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397
 useDYtt = False
 
 # missing 10to50
-
+'''
+'''
 if useDYtt :
 
   samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToTT_MuEle_M-50',False,'nanoLatino_')
                                   + getSampleFiles(directory,'DYJetsToLL_M-10to50-LO',False,'nanoLatino_'),
-                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                       'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                        'FilesPerJob' : 5 ,
                        }
 
@@ -131,7 +133,7 @@ else:
 
   samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50',False,'nanoLatino_')
                                   + getSampleFiles(directory,'DYJetsToLL_M-10to50-LO',False,'nanoLatino_'),
-                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                       'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                        'FilesPerJob' : 5 ,
                        }
 
@@ -148,7 +150,7 @@ samples['top'] = {    'name'   :   getSampleFiles(directory,'TTTo2L2Nu',False,'n
                                  + getSampleFiles(directory,'ST_s-channel',False,'nanoLatino_') 
                                  + getSampleFiles(directory,'ST_t-channel_antitop',False,'nanoLatino_') 
                                  + getSampleFiles(directory,'ST_t-channel_top',False,'nanoLatino_'),
-                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                      'FilesPerJob' : 2 ,
                       }
 
@@ -165,7 +167,7 @@ samples['WW'] = {    'name'   :   getSampleFiles(directory,'WWTo2L2Nu',False,'na
                                 + getSampleFiles(directory,'GluGluToWWToMNTN',False,'nanoLatino_')
                                 + getSampleFiles(directory,'GluGluToWWToTNMN',False,'nanoLatino_')
                                 + getSampleFiles(directory,'GluGluToWWToTNTN',False,'nanoLatino_'),
-                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                      'FilesPerJob' : 4 ,                    
                      }
 
@@ -181,14 +183,14 @@ samples['Higgs'] = {    'name'   : getSampleFiles(directory,'GluGluHToWWTo2L2NuP
                         + getSampleFiles(directory,'HZJ_HToTauTau_M125',False,'nanoLatino_')
                         + getSampleFiles(directory,'HWplusJ_HToTauTau_M125',False,'nanoLatino_')
                         + getSampleFiles(directory,'HWminusJ_HToTauTau_M125',False,'nanoLatino_') ,
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                      'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                       'FilesPerJob' : 60 ,
                      }
 
 samples['VZ'] = {    'name'   : getSampleFiles(directory,'ZZTo2L2Nu',False,'nanoLatino_')
                      + getSampleFiles(directory,'WZTo2L2Q',False,'nanoLatino_')
                      + getSampleFiles(directory,'ZZTo2L2Q',False,'nanoLatino_'),
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                      'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                      'FilesPerJob' : 20 ,
                      }
 
@@ -196,7 +198,7 @@ samples['VVV'] = {    'name'   : getSampleFiles(directory,'WWW',False,'nanoLatin
                       + getSampleFiles(directory,'WWZ',False,'nanoLatino_') 
                       + getSampleFiles(directory,'WZZ',False,'nanoLatino_') 
                       + getSampleFiles(directory,'ZZZ',False,'nanoLatino_'),
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                      'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                       'FilesPerJob' : 5 ,
                       }
 
@@ -210,19 +212,21 @@ samples['Vg'] = {    'name'   : getSampleFiles(directory,'Wg_MADGRAPHMLM',False,
 
 
 ############ VgS ############
-
+'''
+'''
 #FIXME Use WZTo3LNu_mllmin01 sample (gstar mass > 100 MeV) when available. This one has gstar mass > 4 GeV
 #FIXME Add normalization k-factor
 samples['VgS']  =  {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',False,'nanoLatino_')
                                  + getSampleFiles(directory,'Zg',False,'nanoLatino_')
                                  + getSampleFiles(directory,'WZTo3LNu_mllmin01',False,'nanoLatino_'),
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+                      'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC,
                       'FilesPerJob' : 20 ,
                    }
 addSampleWeight(samples,'VgS','Wg_MADGRAPHMLM',    '(Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 0.1)')
 addSampleWeight(samples,'VgS','Zg',                '(Gen_ZGstar_mass >0)')
 addSampleWeight(samples,'VgS','WZTo3LNu_mllmin01', '(Gen_ZGstar_mass>=0.1 || Gen_ZGstar_mass<0)')
-
+'''
+'''
 
 
 ###########################################
@@ -239,8 +243,9 @@ samples['Fake']  = {   'name': [ ] ,
                        }
 
 for Run in DataRun :
- # directory = treeBaseDir+'Run2017_nAOD_v1_Full2017v2/DATAl1loose2017v2__DATACorr2017__l2loose__fakeW_New/'
-  directory = treeBaseDir+'Run2017_nAOD_v1_Full2017v2/DATAl1loose2017v2__DATACorr2017__l2loose__fakeWp2NB/'
+  
+  directory = treeBaseDir+'Run2017_nAOD_v1_Full2017v2LP19/DATAl1loose2017LP19__l2loose__fakeW/'
+  #directory = treeBaseDir+'Run2017_nAOD_v1_Full2017v2/DATAl1loose2017v2__DATACorr2017__l2loose__fakeWp2NB/'
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
     for iFile in FileTarget:
@@ -261,12 +266,14 @@ samples['DATA']  = {   'name': [ ] ,
                        }
 
 for Run in DataRun :
-  directory = treeBaseDir+'Run2017_nAOD_v1_Full2017v2/DATAl1loose2017v2__DATACorr2017__l2loose__l2tightOR2017/'
+  directory = treeBaseDir+'Run2017_nAOD_v1_Full2017v2LP19/DATAl1loose2017LP19__l2loose__l2tightOR2017/'
+  #directory = treeBaseDir+'Run2017_nAOD_v1_Full2017v2/DATAl1loose2017v2__DATACorr2017__l2loose__l2tightOR2017/'
   for DataSet in DataSets :
     FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
     for iFile in FileTarget:
       print(iFile)
       samples['DATA']['name'].append(iFile)
       samples['DATA']['weights'].append(DataTrig[DataSet])
+
                   
-                  
+               

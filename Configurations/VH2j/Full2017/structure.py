@@ -9,16 +9,17 @@ structure['DY']  = {
                   'isData'   : 0 
               }
 
+                                                                                                                                 
+structure['DYveto']  = {                                                                                                                
+                  'isSignal' : 0,                                                                                                   
+                  'isData'   : 0                                                                                                    
+              }  
 
 structure['Wjets']  = {  
                   'isSignal' : 0,
                   'isData'   : 0 
               }
 
-structure['Fake']  = {  
-                  'isSignal' : 0,
-                  'isData'   : 0 
-              }
 
 structure['top'] = {   
                   'isSignal' : 0,
@@ -31,6 +32,11 @@ structure['WW']  = {
                   'isData'   : 0    
                   }
 
+structure['WWewk']  = {                                                                                                                
+                  'isSignal' : 0,                                                                                                   
+                  'isData'   : 0                                                                                                    
+                  } 
+
 structure['ggWW']  = {
                   'isSignal' : 0,
                   'isData'   : 0    
@@ -42,7 +48,7 @@ structure['Vg']  = {
                   }
 
 
-structure['WZgS']  = { 
+structure['VgS']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
@@ -74,12 +80,12 @@ structure['Higgs'] = {
 #Added 11/4/19
 
 structure['ggH_hww']  = {  
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0 
               }
 
 structure['qqH_hww']  = {  
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0 
               }
 
@@ -99,19 +105,26 @@ structure['WH_hww']  = {
               }
 
 structure['ttH_hww']  = {  
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0 
               }
 
 structure['H_htt']  = {  
-                  'isSignal' : 1,
-                  'isData'   : 0 
-              }
-
-structure['Fake']  = {  
                   'isSignal' : 0,
                   'isData'   : 0 
               }
+
+structure['Fake_em']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0 
+              }
+
+structure['Fake_me']  = {                                                                                                           
+                  'isSignal' : 0,                                                                                                   
+                  'isData'   : 0                                                                                                    
+              }                                                                                                                      
+   
+
 # data
 
 
