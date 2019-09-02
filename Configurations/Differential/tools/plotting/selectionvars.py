@@ -1,3 +1,4 @@
+import os
 import sys
 import ROOT
 
@@ -16,6 +17,11 @@ ROOT.gStyle.SetFillStyle(0)
 source = ROOT.TFile.Open(sys.argv[1]) # output of mkShapes containing samples and variables listed below with cut "all"
 out_path = sys.argv[2]
 
+try:
+    os.makedirs(out_path)
+except OSError:
+    pass
+
 variables = [
     ('met', 'ptmiss', 'p_{T}^{miss} (GeV)'),
     ('ptll', 'ptll', 'p_{T}^{ll} (GeV)'),
@@ -28,9 +34,9 @@ variables = [
 samples = [
     ('ggH_hww', 'ggHWW', ROOT.kRed, 0),
     ('WW', 'WW', ROOT.kAzure - 9, 3003),
-    ('top', 'top', ROOT.kYellow, 3003),
+    ('top', 'top', ROOT.kOrange, 3003),
     ('DY', 'DY#tau#tau', ROOT.kGreen + 2, 3003),
-    ('Fake', 'Non-prompt', ROOT.kGray + 1, 3003)
+    ('WJets', 'W+jet (non-prompt)', ROOT.kGray + 1, 3003)
 ]
 
 canvas = ROOT.TCanvas('c1', 'c1', 600, 600)
@@ -52,7 +58,7 @@ cmssim.SetBorderSize(0)
 cmssim.AddText('CMS Simulation')
 
 for vname, pdfName, xtitle in variables:
-    legend = ROOT.TLegend(0.7, 0.7, 0.93, 0.93)
+    legend = ROOT.TLegend(0.6, 0.7, 0.93, 0.93)
     legend.SetFillStyle(0)
     legend.SetBorderSize(0)
 
@@ -63,6 +69,9 @@ for vname, pdfName, xtitle in variables:
     for sname, title, color, fill in samples:
         histo = source.Get('all/' + vname + '/histo_' + sname)
         histo.Scale(1. / histo.GetSumOfWeights())
+        if vname != 'njet':
+            histo.Rebin(2)
+
         histos.append(histo)
 
         histo.SetTitle('')
@@ -87,4 +96,5 @@ for vname, pdfName, xtitle in variables:
     legend.Draw()
     cmssim.Draw()
 
+    canvas.Print(out_path + '/' + pdfName + '.png')
     canvas.Print(out_path + '/' + pdfName + '.pdf')
