@@ -9,8 +9,8 @@ eleWP='mva_90p_Iso2016'
 
 #tag = 'WH3l_Signal_Final_'+eleWP
 #tag = 'WH3l_Signal_forPlots_'+eleWP
-tag = 'ZH3lSR_addvars'
-#tag = 'ZH3lSR_1j_addsys'
+#tag = 'ZH3lSR_fitMT_splitWcharge'
+tag = 'ZH3lSR_splitWcharge_plots'
 
 
 # used by mkShape to define output directory for root files
@@ -19,14 +19,14 @@ outputDir = 'rootFiles_'+tag
 
 
 # file with list of variables
-variablesFile = 'variables_test.py'
-#variablesFile = 'variables_zh.py'
+#variablesFile = 'variables_test.py'
+variablesFile = 'variables_zh.py'
 #variablesFile = 'variables_zh_fit.py'
 
 # file with list of cuts
 #cutsFile = 'cuts.py' 
-#cutsFile = 'cuts_zh_fit.py'
-cutsFile = 'cuts_zh.py'
+cutsFile = 'cuts_zh_fit.py'
+#cutsFile = 'cuts_zh.py'
 #cutsFile = 'cuts_test.py'
 
 # file with list of samples
@@ -52,6 +52,6 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-#nuisancesFile = 'nuisances_zh_noWZmuscale.py'
+nuisancesFile = 'nuisances_zh_noWZmuscale.py'
 #nuisancesFile = 'nuisances_noCR.py'
-nuisancesFile = 'nuisances_empty.py'
+#nuisancesFile = 'nuisances_empty.py'

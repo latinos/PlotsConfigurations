@@ -52,8 +52,10 @@ Nlep='3'
 ################################################
 
 XSWeight      = 'XSWeight'
-wzSF = '1.108'
+#wzSF = '1.09'
+wzSF = '1.16'
 zgSF = '1.34'
+
 #SFweight      = 'SFweight3l'
 #if Nlep == '2' :
 #  SFweight = 'puW * effTrigW * electron_etaW_'+Nlep+'l * electron_ptW_'+Nlep+'l * veto_EMTFBug '
@@ -203,11 +205,11 @@ samples['ZZ']  = {    'name': getSampleFiles(directory,'ZZTo4L'),
 #                       'suppressNegativeNuisances' :['all'],
 #                  }
 
-samples['WZ']  = {    'name': getSampleFiles(directory,'WZTo3LNu'),
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC ,
-                   #   'weight' : wzSF+'*'+XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC,
-                       'suppressNegativeNuisances' :['all'],
-                  }
+# samples['WZ']  = {    'name': getSampleFiles(directory,'WZTo3LNu'),
+#                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC ,
+#                    #   'weight' : wzSF+'*'+XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC,
+#                       'suppressNegativeNuisances' :['all'],
+#                   }
 
 samples['WZ']  = {    'name': getSampleFiles(directory,'WZTo3LNu_mllmin01_ext1'),
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC ,
@@ -226,13 +228,14 @@ samples['VVV'] = {    'name': getSampleFiles(directory,'WZZ')
 samples['Vg']  = {    'name':  getSampleFiles(directory,'Zg')
                               +getSampleFiles(directory,'WgStarLNuEE')
                               +getSampleFiles(directory,'WgStarLNuMuMu'),      
-                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC ,      
-                   #    'weight' : zgSF+'*'+XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC ,
+                   #    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC ,      
+                       'weight' : zgSF+'*'+XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC ,
                        'suppressNegativeNuisances' :['all'],
                  }
 
 samples['ttZ']  = {    'name': getSampleFiles(directory,'TTZToLLNuNu_M-10'),
                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC,
+                       'suppressNegativeNuisances' :['all'],
                   }
 
 ####################################

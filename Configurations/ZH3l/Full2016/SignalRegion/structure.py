@@ -2,11 +2,11 @@
 
 #structure = {}
 
-# keys here must match keys in samples.py    
-#                    
-structure['Fake']  = {  
+# keys here must match keys in samples.py
+#
+structure['Fake']  = {
                   'isSignal' : 0,
-                  'isData'   : 0 
+                  'isData'   : 0
               }
 
 #structure['DY']  = {
@@ -21,18 +21,18 @@ structure['Fake']  = {
 
 structure['WW']  = {
                   'isSignal' : 0,
-                  'isData'   : 0    
+                  'isData'   : 0
                   }
 
 structure['ggWW']  = {
                   'isSignal' : 0,
-                  'isData'   : 0    
+                  'isData'   : 0
                   }
 
 
-structure['Vg']  = { 
+structure['Vg']  = {
                   'isSignal' : 0,
-                  'isData'   : 0 
+                  'isData'   : 0
                   }
 
 structure['VgS']  = {
@@ -41,20 +41,20 @@ structure['VgS']  = {
                   }
 
 
-structure['WZ']  = { 
+structure['WZ']  = {
                   'isSignal' : 0,
-                  'isData'   : 0 
+                  'isData'   : 0
                   }
 
 
-structure['VVV']  = { 
+structure['VVV']  = {
                   'isSignal' : 0,
-                  'isData'   : 0 
+                  'isData'   : 0
                   }
 
 structure['ZZ']  = {
                   'isSignal' : 0,
-                  'isData'   : 0    
+                  'isData'   : 0
                   }
 
 structure['ttZ']  = {
@@ -84,31 +84,31 @@ structure['ttZ']  = {
 
 structure['WH_hww'] = {
                   'isSignal' : 1,
-                  'isData'   : 0    
+                  'isData'   : 0
                   }
 
 structure['ZH_hww'] = {
                   'isSignal' : 1,
-                  'isData'   : 0    
+                  'isData'   : 0
                   }
 
 structure['ggZH_hww'] = {
                   'isSignal' : 1,
-                  'isData'   : 0    
+                  'isData'   : 0
                   }
 
 structure['WH_htt'] = {
                   'isSignal' : 1,
-                  'isData'   : 0    
+                  'isData'   : 0
                   }
 
 
 # data
 
 
-structure['DATA']  = { 
+structure['DATA']  = {
                  'isSignal' : 0,
-                 'isData'   : 1 
+                 'isData'   : 1
              }
 
 

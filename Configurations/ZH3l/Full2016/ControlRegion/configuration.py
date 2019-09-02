@@ -8,8 +8,8 @@
 eleWP='mva_90p_Iso2016'
 
 #tag = 'ZH3lCRs_1j_addsys'
+#tag = 'ZH3lCR_fit_1j'
 tag = 'ZH3lCR_fit'
-#tag = 'ZH3lCR_newWZ_fit'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFiles_'+tag
@@ -18,8 +18,8 @@ outputDir = 'rootFiles_'+tag
 
 # file with list of variables
 #variablesFile = 'variables.py'
-variablesFile = 'variables_zh_fit.py'
 #variablesFile = 'variables_zh.py'
+variablesFile = 'variables_zh_fit.py'
 #variablesFile = 'variables_test.py'
 
 # file with list of cuts

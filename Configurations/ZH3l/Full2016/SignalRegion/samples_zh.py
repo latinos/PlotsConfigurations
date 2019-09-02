@@ -212,8 +212,8 @@ samples['ZZ']  = {    'name': getSampleFiles(directory,'ZZTo4L'),
 #                   }
 
 samples['WZ']  = {    'name': getSampleFiles(directory,'WZTo3LNu_mllmin01_ext1'),
-                   #   'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC ,
-                      'weight' : wzSF+'*'+XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC,
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC ,
+                   #   'weight' : wzSF+'*'+XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC,
                       'suppressNegativeNuisances' :['all'],
                   }
 
@@ -271,7 +271,7 @@ samples['WH_hww']  = { 'name': getSampleFiles(directory,'HWminusJ_HToWW_M125')
 ###########################################
 
 samples['Fake']  = {   'name': [ ] ,
-                       'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA,              #   weight/cut 
+                       'weight' : fakeW+'*veto_EMTFBug'+'*'+METFilter_DATA+'*'+((fakeW_muStatUp - 1) > 0.001),              #   weight/cut 
                        'weights' : [ ] ,
                        'isData': ['all'],
                        'FilesPerJob' : 5 ,
