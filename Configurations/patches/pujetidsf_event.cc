@@ -50,7 +50,7 @@ protected:
   static FloatArrayReader* Jet_eta;
   static IntArrayReader* Jet_genJetIdx;
 
-  typedef std::array<std::unique_ptr<TH1>, 3> SFMapSet;
+  typedef std::array<std::unique_ptr<TH1>, nWPs> SFMapSet;
   typedef std::array<SFMapSet, 2> SFMapSets;
   static SFMapSets sfMapSets;
 
@@ -104,8 +104,6 @@ PUJetIdEventSF::evaluate(unsigned)
 void
 PUJetIdEventSF::setValues(long long _iEntry)
 {
-  return;
-  
   if (_iEntry == currentEntry)
     return;
 
@@ -122,15 +120,14 @@ PUJetIdEventSF::setValues(long long _iEntry)
     if (pt < 30. || std::abs(eta) > 4.7)
       continue;
 
-    SFMapSet* mapSet{nullptr};
-
+    unsigned mapType{};
     if (Jet_genJetIdx->At(iJ) != -1)
-      mapSet = &sfMapSets[0];
+      mapType = 0;
     else
-      mapSet = &sfMapSets[1];
+      mapType = 1;
 
     for (unsigned iWP{0}; iWP != nWPs; ++iWP) {
-      auto& map{mapSet->at(iWP)};
+      auto& map{sfMapSets[mapType][iWP]};
 
       int iX{map->GetXaxis()->FindFixBin(pt)};
       if (iX == 0)
@@ -161,10 +158,10 @@ PUJetIdEventSF::bindTree_(multidraw::FunctionLibrary& _library)
       auto* source{TFile::Open(filename_.c_str())};
       std::string wps[nWPs] = {"L", "M", "T"};
       for (unsigned iwp{0}; iwp != nWPs; ++iwp) {
-        sfMapSets[iwp][0].reset(static_cast<TH1*>(source->Get(("SFrealjets_" + wps[iwp] + "_" + year).c_str())));
-        sfMapSets[iwp][1].reset(static_cast<TH1*>(source->Get(("SFpujets_" + wps[iwp] + "_" + year).c_str())));
-        sfMapSets[iwp][0]->SetDirectory(nullptr);
-        sfMapSets[iwp][1]->SetDirectory(nullptr);
+        sfMapSets[0][iwp].reset(static_cast<TH1*>(source->Get(("SFrealjets_" + wps[iwp] + "_" + year).c_str())));
+        sfMapSets[1][iwp].reset(static_cast<TH1*>(source->Get(("SFpujets_" + wps[iwp] + "_" + year).c_str())));
+        sfMapSets[0][iwp]->SetDirectory(nullptr);
+        sfMapSets[1][iwp]->SetDirectory(nullptr);
       }
       delete source;
     }

@@ -8,14 +8,16 @@ ROOT.gROOT.SetBatch(True)
 
 hdir = sys.argv[1]
 
-nperjob = 4
-ntoys = 125
-
 total = 0
 above = 0
 
-for itoyset in range(1, ntoys + 1):
+maxdiff = 0.
+
+itoyset = 1
+while True:
     freq_source = ROOT.TFile.Open('%s/higgsCombineFreqFit%d.GoodnessOfFit.mH120.%d.root' % (hdir, itoyset, itoyset + 12345))
+    if not freq_source:
+        break
     shift_source = ROOT.TFile.Open('%s/higgsCombineShift%d.GoodnessOfFit.mH120.root' % (hdir, itoyset))
 
     freq = freq_source.Get('limit')
@@ -24,9 +26,17 @@ for itoyset in range(1, ntoys + 1):
     freq.Draw('limit')
     shift.Draw('limit')
 
-    for itoy in range(nperjob):
+    for itoy in range(freq.GetEntries()):
         total += 1
         if freq.GetV1()[itoy] > shift.GetV1()[itoy]:
+            diff = freq.GetV1()[itoy] - shift.GetV1()[itoy]
+            if diff > maxdiff:
+                maxdiff = diff
+                imax = (itoyset, itoy)
             above += 1
 
+    itoyset += 1
+
 print above, total, float(above) / total
+
+print maxdiff, imax

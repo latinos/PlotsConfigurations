@@ -41,35 +41,16 @@ except NameError:
     with open('variables.py') as variablesfile:
         exec(variablesfile)
 
-subsamplemap = {}
-for sname, sample in samples.items():
-    if 'subsamples' in sample:
-        subsamplemap[sname] = []
-        for sub in sample['subsamples']:
-            if sname in signals and observable not in sub:
-                continue
+for cut in cuts.keys():
+    if observable not in cut:
+        cuts.pop(cut)
 
-            samples['%s_%s' % (sname, sub)] = sample
-            subsamplemap[sname].append(sub)
+    elif '_WW_' in cut:
+        cuts.pop(cut)
 
+for sname in samples.keys():
+    if '_hww' in sname and observable not in sname:
         samples.pop(sname)
-
-categorymap = {}
-for cname, cut in cuts.items():
-    if observable not in cname:
-        cuts.pop(cname)
-        continue
-
-    if 'categories' in cut:
-        categorymap[cname] = []
-        for cat in cut['categories']:
-            if 'WW' in cat:
-                continue
-
-            cuts['%s_%s' % (cname, cat)] = cut
-            categorymap[cname].append(cat)
-
-        cuts.pop(cname)
 
 sample_merging = {}
 if background_minor:
@@ -106,9 +87,7 @@ for cut in cuts:
         cut_merging[matches.group(1) + matches.group(2)].append(cut)
         continue
 
-nuisances = update_nuisances(nuisances, samples, subsamplemap, cuts, categorymap, sample_merging, cut_merging)
-
-#pprint.pprint(nuisances)
+nuisances = update_nuisances(nuisances, samples, cuts, sample_merging, cut_merging)
 
 for nkey, nuisance in nuisances.items():
     if 'perRecoBin' in nuisance and nuisance['perRecoBin']:
@@ -156,13 +135,11 @@ cuts = cut_list
 
 variables_tmp = {
     'events': variables['events'],
-    'mllVSmth_8x9': variables['mllVSmth_8x9'],
     'mllVSmth_6x6': variables['mllVSmth_6x6']
 }
 variables = variables_tmp
 
 variables['events']['cuts'] = []
-variables['mllVSmth_8x9']['cuts'] = []
 variables['mllVSmth_6x6']['cuts'] = []
 
 for cut in cuts:
@@ -172,7 +149,7 @@ for cut in cuts:
         if 'NJ_2' in cut:
             variables['mllVSmth_6x6']['cuts'].append(cut)
         else:
-            variables['mllVSmth_8x9']['cuts'].append(cut)
+            variables['mllVSmth_6x6']['cuts'].append(cut)
     else:
         variables['mllVSmth_6x6']['cuts'].append(cut)
 
@@ -195,4 +172,3 @@ for sname in samples:
   
 structure['Fake_em']['removeFromCuts'] = [cname for cname in cuts if '20me' in cname]
 structure['Fake_me']['removeFromCuts'] = [cname for cname in cuts if '20em' in cname]
-

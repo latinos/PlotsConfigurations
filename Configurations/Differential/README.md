@@ -23,7 +23,9 @@ If some jobs fail, `tools/resubmit.py` can automatically find them and resubmit 
 Merging histograms
 ==================
 
-Instead of `mkShapesMulti.py --doHadd=1`, use `tools/submit_merge_plots.py`. Because of the extreme number of histograms in the output root files, merging can be time consuming. This script submits a merge job per sample. There is no need to merge the output files further; for one thing there is no space gain when merging two files containing entirely different set of histograms (as is the case when merging per-sample ROOT files). mkPlot.py and mkDatacard.py will work with one ROOT file per sample (we won't be using mkDatacard directly on these files though).
+Instead of `mkShapesMulti.py --doHadd=1`, use `tools/submit_merge_plots.py`. Because of the extreme number of histograms in the output root files, merging can be time consuming. This script submits a merge job (`tools/merge_plots.sh`) per sample. There is no need to merge the output files further; for one thing there is no space gain when merging two files containing entirely different set of histograms (as is the case when merging per-sample ROOT files). mkPlot.py and mkDatacard.py will work with one ROOT file per sample (we won't be using mkDatacard directly on these files though).
+
+Because one ROOT file will be created per sample but the rest of the workflow (`restructure_input.py`, `mkDatacards.py`, and `mkPlot.py` if used) expects one file per *subsample*, you need to create symlinks representing subsamples in the `rootFile_merged` directory. The script `tools/mklinks.sh` takes care of this automatically.
 
 Preprocessing
 =============
@@ -53,7 +55,6 @@ mkDatacards.py --outputDirDatacard=unmerged_cards/${obs}_${card_tag} --inputFile
 
 Then switch to a `combine` environment (i.e. do `cmsenv` in the Combine-installed CMSSW workspace) and combine the cards from different categories with
 ```
-year=2018
 obs=njet
 card_tag=fullmodel
 
@@ -69,13 +70,36 @@ Running the fits
 
 Script `tools/fitting/dofit.sh` has the commands for various fit-related tasks.
 
+Creating the full combination workspace
+=======================================
+
+Constraint term is currently not supported by combineCards.py. Use the unregularized data cards and add the constraint term later:
+```
+cd combination
+mkdir ${obs}_${card_tag}
+
+combineCards.py hww2016=$PWD/../ggH2016/merged_cards/${obs}_${card_tag}/fullmodel_unreg.txt hww2017=$PWD/../ggH2017/merged_cards/${obs}_${card_tag}/fullmodel_unreg.txt hww2018=$PWD/../ggH2018/merged_cards/${obs}_${card_tag}/fullmodel_unreg.txt > ${obs}_${card_tag}/fullmodel.txt
+sed -i 's/kmax [0-9]*/kmax */' ${obs}_${card_tag}/fullmodel.txt 
+grep ' constr ' ../ggH2016/merged_cards/${obs}_${card_tag}/fullmodel.txt >> ${obs}_${card_tag}/fullmodel.txt
+
+cd ${obs}_${card_tag}
+if [ $obs = ptH ]
+then
+  # Make sure you are using the actual binning in the datacard!!
+  text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose --PO map=.*/.*H_hww_PTH_0_20:r_0[1.,-10.,10.] --PO map=.*/.*H_hww_PTH_20_45:r_1[1.,-10.,10.] --PO map=.*/.*H_hww_PTH_45_80:r_2[1.,-10.,10.] --PO map=.*/.*H_hww_PTH_80_120:r_3[1.,-10.,10.] --PO map=.*/.*H_hww_PTH_120_200:r_4[1.,-10.,10.] --PO map=.*/.*H_hww_PTH_GT200:r_5[1.,-10.,10.] fullmodel.txt -o fullmodel.root
+elif [ $obs = njet ]
+then
+  text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose --PO map=.*/.*H_hww_NJ_0:r_0[1.,-10.,10.] --PO map=.*/.*H_hww_NJ_1:r_1[1.,-10.,10.] --PO map=.*/.*H_hww_NJ_2:r_2[1.,-10.,10.] --PO map=.*/.*H_hww_NJ_3:r_3[1.,-10.,10.] --PO map=.*/.*H_hww_NJ_GE4:r_4[1.,-10.,10.] fullmodel.txt -o fullmodel.root
+fi
+```
+
 Making plots
 ============
 
 Directory `tools/plotting` contains scripts for plotting:
 
 - `dyreweight.py`: Draw the rather-obscure DY reweighting function.
-- `selectionvars.py`: Draw the distributions of variables used for event selection.
+- `selectionvars.py`: Draw the distributions of variables used for event selection. Used with `selectionvars` configuration subdirectory for Figure 3 of AN-2019/006.
 - `binyields.py`: Draw and print the prefit yields of signal and background in all CR and SR bins. Also draw the signal response matrix.
 - `plot_delta_scan.py`: Take the output of DeltaScan in dofit.sh and plot the mean of the global correlation coefficients as a function of the regularization strength delta.
 - `diffNuisances_mlfit.py`: Do what the standard diffNuisances script does for MultiDimFit output.
