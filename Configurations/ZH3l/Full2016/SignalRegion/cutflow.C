@@ -3,7 +3,10 @@
 
   // Fragile, because it must match the name and ordering in cuts.py
   // TString cutslist[6] = {"preselection", "zmass_cut", "2jet_cut", "bveto", "z4lveto", "dphi_cut"};
-  TString cutslist[6] = {"preselection", "zmass_cut", "1jet_cut", "bveto_1j", "z4lveto_1j", "dphi_cut_1j"};
+  // TString cutslist[6] = {"preselection", "zmass_cut", "1jet_cut", "bveto_1j", "z4lveto_1j", "dphi_cut_1j"};
+  TString cutslist[4] = {"dphi_cut_1j_Wm", "dphi_cut_1j_Wp", "zh3l_dphi_cut_Wm", "zh3l_dphi_cut_Wp"};
+
+  float  n 	= ((TH1F*) f0->Get(cutslist[0]+"/events/histo_ZH_hww"))->Integral();
 
   float n_ZH = 0.0;
   float n_ggZH = 0.0;
@@ -22,39 +25,40 @@
   float n_Higgs = 0.0;
   float n_BG = 0.0;
 
-  cout << "\t\t ,         WZ,  ";
-  cout << "    ZZ, ";
-  cout << "    WW, ";
-  cout << "    Vg, ";
-  cout << "   VVV, ";
-  cout << "  Fake, ";
-  cout << "   ttZ, ";
-  cout << "    BG, ";
-  cout << "    ZH, ";
-  cout << "  ggZH, ";
-  cout << " Higgs, ";
-  cout << "   S/B, ";
-  cout << "   S/sqrt(B)" << endl;
-
-  // cout << "\t\t           WZ  ";
-  // cout << "    ZZ  ";
-  // cout << "    WW  ";
-  // cout << "    Vg  ";
-  // cout << "   VVV  ";
-  // cout << "  Fake  ";
-  // cout << "   ttZ  ";
-  // cout << "    BG  ";
-  // cout << "    ZH  ";
-  // cout << "  ggZH  ";
-  // cout << " Higgs  ";
-  // cout << "   S/B  ";
+  // cout << "\t\t ,         WZ,  ";
+  // cout << "    ZZ, ";
+  // cout << "    WW, ";
+  // cout << "    Vg, ";
+  // cout << "   VVV, ";
+  // cout << "  Fake, ";
+  // cout << "   ttZ, ";
+  // cout << "    BG, ";
+  // cout << "    ZH, ";
+  // cout << "  ggZH, ";
+  // cout << " Higgs, ";
+  // cout << "   S/B, ";
   // cout << "   S/sqrt(B)" << endl;
 
-  for (int i = 0; i < 6; i++) {
+  cout << "\t\t           WZ  ";
+  cout << "    ZZ  ";
+  cout << "    WW  ";
+  cout << "    Vg  ";
+  cout << "   VVV  ";
+  cout << "  Fake  ";
+  cout << "   ttZ  ";
+  cout << "    BG  ";
+  cout << "    ZH  ";
+  cout << "  ggZH  ";
+  cout << " Higgs  ";
+  cout << "   S/B  ";
+  cout << "   S/sqrt(B)" << endl;
+
+  for (int i = 0; i < 4; i++) {
     n_ZH 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_ZH_hww"))->Integral();
     n_ggZH 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_ggZH_hww"))->Integral();
     n_ttZ 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_ttZ"))->Integral();
     n_Vg 	= 1.34*((TH1F*) f0->Get(cutslist[i]+"/events/histo_Vg"))->Integral();
+    // n_Vg 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_Vg"))->Integral();
     n_VVV 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_VVV"))->Integral();
     n_WH_htt 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_WH_htt"))->Integral();
     n_WW 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_WW"))->Integral();
@@ -62,8 +66,9 @@
     n_ZZ 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_ZZ"))->Integral();
     n_Fake 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_Fake"))->Integral();
     n_DATA 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_DATA"))->Integral();
-    // n_WZ 	= 1.09*((TH1F*) f0->Get(cutslist[i]+"/events/histo_WZ"))->Integral();
-    n_WZ 	= 1.16*((TH1F*) f0->Get(cutslist[i]+"/events/histo_WZ"))->Integral();
+    n_WZ 	= 1.09*((TH1F*) f0->Get(cutslist[i]+"/events/histo_WZ"))->Integral();
+    // n_WZ 	= 1.16*((TH1F*) f0->Get(cutslist[i]+"/events/histo_WZ"))->Integral();
+    // n_WZ 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_WZ"))->Integral();
 
     n_Higgs = n_ZH + n_ggZH + n_WH_htt  +  n_WH_hww;
     n_BG = n_ttZ + n_Vg + n_VVV + n_WW + n_ZZ + n_Fake + n_WZ;

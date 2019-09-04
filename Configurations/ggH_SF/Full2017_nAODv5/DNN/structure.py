@@ -20,16 +20,36 @@ structure['Fake']  = {
                   'isData'   : 0 
               }
 
-structure['Fake_em']  = {  
+structure['Fake_ee']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'removeFromCuts' : [ k for k in cuts if 'me' in k],
+                  'removeFromCuts' : [
+                                      'hww2l2v_13TeV_2016_0jmm',
+                                      'hww2l2v_13TeV_2016_0jmm_pt2ge20',
+                                      'hww2l2v_13TeV_2016_0jmm_pt2lt20',
+                                      'hww2l2v_13TeV_2016_1jmm',
+                                      'hww2l2v_13TeV_2016_1jmm_pt2ge20',
+                                      'hww2l2v_13TeV_2016_1jmm_pt2lt20',
+                                      'hww2l2v_13TeV_2016_WW_0jmm',
+                                      'hww2l2v_13TeV_2016_WW_1jmm',
+                                      'hww2l2v_13TeV_2016_top_0jmm',
+                                      ],
               }
 
-structure['Fake_me']  = {  
+structure['Fake_mm']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'removeFromCuts' : [ k for k in cuts if 'em' in k],
+                  'removeFromCuts' : [
+                                      'hww2l2v_13TeV_2016_0jee',
+                                      'hww2l2v_13TeV_2016_0jee_pt2ge20',
+                                      'hww2l2v_13TeV_2016_0jee_pt2lt20',
+                                      'hww2l2v_13TeV_2016_1jee',
+                                      'hww2l2v_13TeV_2016_1jee_pt2ge20',
+                                      'hww2l2v_13TeV_2016_1jee_pt2lt20',
+                                      'hww2l2v_13TeV_2016_WW_0jee',
+                                      'hww2l2v_13TeV_2016_WW_1jee',
+                                      'hww2l2v_13TeV_2016_top_0jee',
+                                      ],
               }
 
 structure['ttbar'] = {   
@@ -84,12 +104,12 @@ structure['VgS'] = {
                   'isData'   : 0 
                   }
 
-structure['VgS_L'] = {
+structure['WZgS_L'] = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
 
-structure['VgS_H'] = {
+structure['WZgS_H'] = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }

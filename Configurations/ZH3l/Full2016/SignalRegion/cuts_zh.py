@@ -63,6 +63,24 @@ cuts['dphi_cut_1j'] = ' ( std_vector_jet_pt[0] >= 30 ) \
                    && dphilmetj < 3.14159/2 \
                  '
 
+cuts['dphi_cut_1j_Wp'] = ' ( std_vector_jet_pt[0] >= 30 ) \
+                   && ( std_vector_jet_pt[1] < 30 ) \
+                   && zveto_3l < 25 \
+                   && bveto_CMVAL \
+                   && z4lveto > 20 \
+                   && dphilmetj < 3.14159/2 \
+		   && pdgid_notZ > 0 \
+                 '
+
+cuts['dphi_cut_1j_Wm'] = ' ( std_vector_jet_pt[0] >= 30 ) \
+                   && ( std_vector_jet_pt[1] < 30 ) \
+                   && zveto_3l < 25 \
+                   && bveto_CMVAL \
+                   && z4lveto > 20 \
+                   && dphilmetj < 3.14159/2 \
+		   && pdgid_notZ < 0 \
+                 '
+
 
 '''
 cuts['ZH_eee'] = ' ( std_vector_jet_pt[0] >= 30 ) \

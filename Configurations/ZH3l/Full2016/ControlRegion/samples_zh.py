@@ -55,6 +55,7 @@ XSWeight      = 'XSWeight'
 zgSF = '1.34'
 wz1jSF = '1.16'
 wz2jSF = '1.09'
+
 #SFweight      = 'SFweight3l'
 #if Nlep == '2' :
 #  SFweight = 'puW * effTrigW * electron_etaW_'+Nlep+'l * electron_ptW_'+Nlep+'l * veto_EMTFBug '
@@ -220,12 +221,14 @@ samples['VVV'] = {    'name': getSampleFiles(directory,'WZZ')
 samples['Vg']  = {    'name':  getSampleFiles(directory,'Zg')
                               +getSampleFiles(directory,'WgStarLNuEE')
                               +getSampleFiles(directory,'WgStarLNuMuMu'),      
+                   #    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC ,      
                        'weight' : zgSF+'*'+XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC ,
                        'suppressNegativeNuisances' :['all'],
                  }
 
 samples['ttZ']  = {    'name': getSampleFiles(directory,'TTZToLLNuNu_M-10'),
                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3L+'*'+METFilter_MC,
+                       'suppressNegativeNuisances' :['all'],
                   }
 
 ####################################
