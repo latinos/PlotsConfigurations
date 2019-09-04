@@ -31,8 +31,6 @@ fi
 
 ulimit -s 20480
 
-NTOYSPERJOB=4
-
 cd $TMPDIR
 
 CARDDIR=$WORKDIR/${OBSERVABLE}_${CARD_TAG}
@@ -129,36 +127,53 @@ elif [ $COMMAND = GOFGen ]
 then
   # Generate post-fit toys for goodness-of-fit tests.
 
-  ITOYSET=$5
+  NTOYSPERJOB=$5
+  ITOYSET=$6
   METHOD=GenerateOnly
-  NAME=PostfitFreq
+  NAME=PostfitFreq${ITOYSET}
   SEED=$(($ITOYSET+12345))
   combine $CARDDIR/higgsCombineUnreg.MultiDimFit.mH120.root --snapshotName MultiDimFit -M $METHOD -n $NAME -t $NTOYSPERJOB --toysFreq --expectSignal 1 --bypassFrequentistFit -s $SEED --saveToys
+  python $THISDIR/resample_mcstats.py $CARDDIR/fullmodel.root higgsCombine$NAME.GenerateOnly.mH120.$SEED.root tmp.root
+  mv tmp.root higgsCombine$NAME.GenerateOnly.mH120.$SEED.root
   RETURNDIR=$CARDDIR/gof
 
 elif [ $COMMAND = GOFFreqToy ]
 then
   # Perform frequentist toy fits.
 
-  ITOYSET=$5
+  NTOYSPERJOB=$5
+  ITOYSET=$6
   METHOD=GoodnessOfFit
   NAME=FreqFit${ITOYSET}
   SEED=$(($ITOYSET+12345))
-  combine $CARDDIR/fullmodel.root -M $METHOD --algo saturated --setParameters regularize=0 $FITOPT -n $NAME -t $NTOYSPERJOB --toysFreq --expectSignal 1 -s $SEED --toysFile $CARDDIR/gof/higgsCombinePostfitFreq.GenerateOnly.mH120.$SEED.root
+  combine $CARDDIR/fullmodel.root -M $METHOD --algo saturated --setParameters regularize=0 $FITOPT -n $NAME -t $NTOYSPERJOB --toysFreq --expectSignal 1 -s $SEED --toysFile $CARDDIR/gof/higgsCombinePostfitFreq${ITOYSET}.GenerateOnly.mH120.root
   RETURNDIR=$CARDDIR/gof
+
+elif [ $COMMAND = GOFKSToy ]
+then
+  # Perform frequentist toy fits.
+
+  NTOYSPERJOB=$5
+  ITOYSET=$6
+  METHOD=GoodnessOfFit
+  NAME=KSTest${ITOYSET}
+  SEED=$(($ITOYSET+12345))
+  combine $CARDDIR/fullmodel.root -M $METHOD --algo KS --setParameters $SETMU,regularize=0 $FITOPT -n $NAME -t $NTOYSPERJOB --expectSignal 1 -s $SEED
+  RETURNDIR=$CARDDIR/gof_ks
 
 elif [ $COMMAND = GOFNom ]
 then
   # Fit to post-fit toys with the nominal model.
 
-  ITOYSET=$5
+  NTOYSPERJOB=$5
+  ITOYSET=$6
   METHOD=GoodnessOfFit
   NAME=Nom${ITOYSET}
   TOYSEED=$(($ITOYSET+12345))
   for ITOY in $(seq 1 $NTOYSPERJOB)
   do
     TOYNAME=Nom${ITOYSET}_${ITOY}
-    combine $CARDDIR/fullmodel.root -M $METHOD --algo saturated --setParameters regularize=0 $FITOPT -n $TOYNAME -D $CARDDIR/gof/higgsCombinePostfitFreq.GenerateOnly.mH120.$TOYSEED.root:toys/toy_${ITOY}
+    combine $CARDDIR/fullmodel.root -M $METHOD --algo saturated --setParameters regularize=0 $FITOPT -n $TOYNAME -D $CARDDIR/gof/higgsCombinePostfitFreq${ITOYSET}.GenerateOnly.mH120.$TOYSEED.root:toys/toy_${ITOY}
     SOURCE=$SOURCE"higgsCombine${TOYNAME}.$METHOD.mH120.root "
   done
   hadd -f higgsCombine${NAME}.$METHOD.mH120.root $SOURCE
@@ -169,13 +184,14 @@ elif [ $COMMAND = GOFShift ]
 then
   # Fit to observed data with frequentist models (nuisance parameter constraint minima sampled around the best-fit values of the corresponding parameters).
 
-  ITOYSET=$5
+  NTOYSPERJOB=$5
+  ITOYSET=$6
   METHOD=GoodnessOfFit
   NAME=Shift${ITOYSET}
   TOYSEED=$(($ITOYSET+12345))
   for ITOY in $(seq 1 $NTOYSPERJOB)
   do
-    python $THISDIR/load_toy_snapshot.py $CARDDIR/fullmodel.root $CARDDIR/gof/higgsCombinePostfitFreq.GenerateOnly.mH120.$TOYSEED.root $ITOY tmp.root
+    python $THISDIR/load_toy_snapshot.py $CARDDIR/fullmodel.root $CARDDIR/gof/higgsCombinePostfitFreq${ITOYSET}.GenerateOnly.mH120.$TOYSEED.root $ITOY tmp.root
     TOYNAME=Shift${ITOYSET}_${ITOY}
     combine tmp.root --snapshotName toygen -M $METHOD --algo saturated --setParameters regularize=0 $FITOPT -n $TOYNAME
     SOURCE=$SOURCE"higgsCombine${TOYNAME}.$METHOD.mH120.root "
@@ -194,6 +210,9 @@ then
   combineTool.py -M Impacts -d $CARDDIR/fullmodel.root -m 120 --doFits --approx robust --setParameters ${SETMU},regularize=0 -t -1 $FITOPT --name Asimov
   ADDITIONAL=robustHesse${NAME}.root
 
+  #combineTool.py -M Impacts -d fullmodel.root -m 120 --approx robust --name Asimov -o Asimov.json
+  #plotImpacts.py -i Asimov.json -o Asimov
+
 elif [ $COMMAND = Impact ]
 then
   # Compute the best-fit Hessian matrix for approximate nuisance parameter impact calculation.
@@ -202,6 +221,9 @@ then
   NAME=_approxFit_Observed
   combineTool.py -M Impacts -d $CARDDIR/fullmodel.root -m 120 --doFits --approx robust --setParameters regularize=0 $FITOPT --name Observed
   ADDITIONAL=robustHesse${NAME}.root
+
+  #combineTool.py -M Impacts -d fullmodel.root -m 120 --approx robust --name Observed -o Observed.json
+  #plotImpacts.py -i Observed.json -o Observed
 
 elif [ $COMMAND = AsimovFullImpact ]
 then
@@ -225,12 +247,9 @@ then
 
 fi
 
-if [ $SEED ]
-then
-  OUTNAME=higgsCombine${NAME}.$METHOD.mH120.$SEED.root
-else
-  OUTNAME=higgsCombine${NAME}.$METHOD.mH120.root
-fi
+[ $SEED ] && mv higgsCombine${NAME}.$METHOD.mH120.$SEED.root higgsCombine${NAME}.$METHOD.mH120.root    
+
+OUTNAME=higgsCombine${NAME}.$METHOD.mH120.root
 
 mkdir -p $RETURNDIR
 

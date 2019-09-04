@@ -14,21 +14,23 @@ gt200 = True
 
 observable_bins = ['PTH_0_20', 'PTH_20_45', 'PTH_45_80', 'PTH_80_120', 'PTH_120_200']
 observable_bin_mapping = {
-    'PTH_0_20': ['PTH_0_20'],
-    'PTH_20_45': ['PTH_20_45'],
-    'PTH_45_80': ['PTH_45_80'],
-    'PTH_80_120': ['PTH_80_120'],
-    'PTH_120_200': ['PTH_120_200'],
+    'PTH_0_20': ['PTH_0_10', 'PTH_10_15', 'PTH_15_20'],
+    'PTH_20_45': ['PTH_20_30', 'PTH_30_45'],
+    'PTH_45_80': ['PTH_45_60', 'PTH_60_80'],
+    'PTH_80_120': ['PTH_80_100', 'PTH_100_120'],
+    'PTH_120_200': ['PTH_120_155', 'PTH_155_200']
 }
 
 if gt200:
     observable_bins.append('PTH_GT200')
-    observable_bin_mapping['PTH_GT200'] = ['PTH_200_350', 'PTH_GT350']
+    observable_bin_mapping['PTH_GT200'] = ['PTH_200_260', 'PTH_260_350', 'PTH_GT350']
+    category_scheme = [4, 4, 4, 3, 2, 2]
 else:
     observable_bins.append('PTH_200_350')
     observable_bins.append('PTH_GT350')
-    observable_bin_mapping['PTH_200_350'] = ['PTH_200_350']
+    observable_bin_mapping['PTH_200_350'] = ['PTH_200_260', 'PTH_260_350']
     observable_bin_mapping['PTH_GT350'] = ['PTH_GT350']
+    category_scheme = [4, 4, 4, 3, 2, 2, 1]
 
 try:
     structure
@@ -52,35 +54,16 @@ except NameError:
     with open('variables.py') as variablesfile:
         exec(variablesfile)
 
-subsamplemap = {}
-for sname, sample in samples.items():
-    if 'subsamples' in sample:
-        subsamplemap[sname] = []
-        for sub in sample['subsamples']:
-            if sname in signals and observable not in sub:
-                continue
+for cut in cuts.keys():
+    if observable not in cut:
+        cuts.pop(cut)
 
-            samples['%s_%s' % (sname, sub)] = sample
-            subsamplemap[sname].append(sub)
+    elif '_WW_' in cut:
+        cuts.pop(cut)
 
+for sname in samples.keys():
+    if '_hww' in sname and observable not in sname:
         samples.pop(sname)
-
-categorymap = {}
-for cname, cut in cuts.items():
-    if observable not in cname:
-        cuts.pop(cname)
-        continue
-
-    if 'categories' in cut:
-        categorymap[cname] = []
-        for cat in cut['categories']:
-            if 'WW' in cat:
-                continue
-
-            cuts['%s_%s' % (cname, cat)] = cut
-            categorymap[cname].append(cat)
-
-        cuts.pop(cname)
 
 sample_merging = {}
 if background_minor:
@@ -102,50 +85,46 @@ for out_bin, in_bins in observable_bin_mapping.iteritems():
 cut_merging = collections.defaultdict(list)
 
 for cut in cuts:
-    matches = re.match('(.+_PTH_(?:0_20|20_45|45_80)_.+[em][em])[mp][mp](_[0-9]+)', cut)
+    matches = re.match('(.+_)(PTH_(?:[0-9]+_[0-9]+|GT[0-9]+))(_catpt2(?:ge|lt)20)([em][em])[mp][mp](_[0-9]+)', cut)
     if matches:
-        cut_merging[matches.group(1) + matches.group(2)].append(cut)
+        for out_bin, in_bins in observable_bin_mapping.iteritems():
+            if matches.group(2) in in_bins:
+                break
+        else:
+            raise StopIteration('no matching bin for ' + matches.group(2))
+
+        ibin = observable_bins.index(out_bin)
+        ncat = category_scheme[ibin]
+
+        if ncat == 4:
+            cut_merging[matches.group(1) + out_bin + matches.group(3) + matches.group(4) + matches.group(5)].append(cut)
+        elif ncat == 3:
+            if matches.group(3) == '_catpt2ge20':
+                cut_merging[matches.group(1) + out_bin + matches.group(3) + matches.group(5)].append(cut)
+            else:
+                cut_merging[matches.group(1) + out_bin + matches.group(3) + matches.group(4) + matches.group(5)].append(cut)
+        elif ncat == 2:
+            cut_merging[matches.group(1) + out_bin + matches.group(3) + matches.group(5)].append(cut)
+        elif ncat == 1:
+            cut_merging[matches.group(1) + out_bin + matches.group(5)].append(cut)
+
         continue
 
-    matches = re.match('(.+_PTH_80_120_catpt2lt20[em][em])[mp][mp](_[0-9]+)', cut)
+    matches = re.match('(hww_CR_cat)(PTH_(?:[0-9]+_[0-9]+|GT[0-9]+))(_.+)', cut)
     if matches:
-        cut_merging[matches.group(1) + matches.group(2)].append(cut)
+        for out_bin, in_bins in observable_bin_mapping.iteritems():
+            if matches.group(2) in in_bins:
+                break
+        else:
+            raise StopIteration('no matching bin for ' + matches.group(2))
+
+        cut_merging[matches.group(1) + out_bin + matches.group(3)].append(cut)
+
         continue
 
-    matches = re.match('(.+_PTH_80_120_catpt2ge20)[em][em][mp][mp](_[0-9]+)', cut)
-    if matches:
-        cut_merging[matches.group(1) + matches.group(2)].append(cut)
-        continue
+    raise RuntimeError()
 
-    if gt200:
-        matches = re.match('(.+_PTH_120_200_.+)[em][em][mp][mp](_[0-9]+)', cut)
-        if matches:
-            cut_merging[matches.group(1) + matches.group(2)].append(cut)
-            continue
-    
-        matches = re.match('(.+_PTH)_(?:200_350|GT350)_(.+)[em][em][mp][mp](_[0-9]+)', cut)
-        if matches:
-            cut_merging[matches.group(1) + '_GT200_' + matches.group(2) + matches.group(3)].append(cut)
-            continue
-
-        matches = re.match('(hww_CR_catPTH)_(?:200_350|GT350)_(.+)', cut)
-        if matches:
-            cut_merging[matches.group(1) + '_GT200_' + matches.group(2)].append(cut)
-
-    else:
-        matches = re.match('(.+_PTH_(?:120_200|200_350)_.+)[em][em][mp][mp](_[0-9]+)', cut)
-        if matches:
-            cut_merging[matches.group(1) + matches.group(2)].append(cut)
-            continue
-
-        matches = re.match('(.+_PTH_GT350)_.+[em][em][mp][mp](_[0-9]+)', cut)
-        if matches:
-            cut_merging[matches.group(1) + matches.group(2)].append(cut)
-            continue
-
-nuisances = update_nuisances(nuisances, samples, subsamplemap, cuts, categorymap, sample_merging, cut_merging)
-
-#pprint.pprint(nuisances)
+nuisances = update_nuisances(nuisances, samples, cuts, sample_merging, cut_merging)
 
 for nkey, nuisance in nuisances.items():
     if 'perRecoBin' in nuisance and nuisance['perRecoBin']:
@@ -193,7 +172,6 @@ cuts = cut_list
 
 variables_tmp = {
     'events': variables['events'],
-    'mllVSmth_8x9': variables['mllVSmth_8x9'],
     'mllVSmth_6x6': variables['mllVSmth_6x6'],
     'mllVSmth_4x3': {'name': '', 'range': (12, 0., 12.)},
     'mllVSmth_3x3': {'name': '', 'range': (9, 0., 9.)},
@@ -202,7 +180,6 @@ variables_tmp = {
 variables = variables_tmp
 
 variables['events']['cuts'] = []
-variables['mllVSmth_8x9']['cuts'] = []
 variables['mllVSmth_6x6']['cuts'] = []
 variables['mllVSmth_4x3']['cuts'] = []
 variables['mllVSmth_3x3']['cuts'] = []
@@ -212,12 +189,14 @@ for cut in cuts:
     if '_CR_' in cut:
         variables['events']['cuts'].append(cut)
     elif 'pt2ge20' in cut:
-        if 'PTH_120_200' in cut or 'PTH_GT200' in cut:
+        if 'PTH_120_200' in cut or 'PTH_200_350' in cut or 'PTH_GT200' in cut:
             variables['mllVSmth_4x3']['cuts'].append(cut)
         else:
-            variables['mllVSmth_8x9']['cuts'].append(cut)
+            variables['mllVSmth_6x6']['cuts'].append(cut)
     else:
-        if 'PTH_80_120' in cut or 'PTH_120_200' in cut:
+        if 'PTH_45_80' in cut:
+            variables['mllVSmth_4x3']['cuts'].append(cut)
+        elif 'PTH_80_120' in cut or 'PTH_120_200' in cut:
             variables['mllVSmth_3x3']['cuts'].append(cut)
         elif 'PTH_200_350' in cut or 'PTH_GT350' in cut or 'PTH_GT200' in cut:
             variables['mllVSmth_2x2']['cuts'].append(cut)

@@ -1,16 +1,14 @@
 import collections
 import copy
 
-def update_nuisances(nuisances, samples, subsample_map, cuts, category_map, sample_merging=None, cut_merging=None):
+def update_nuisances(nuisances, samples, cuts, sample_merging=None, cut_merging=None):
     """
     Update the nuisance dictionary using flattened samples and cuts. During mkShapes, 'samples' and 'cuts' entries in
     each nuisance have to refer to the parent sample / uncategorized cut name. For plotting and datacard making, the
     subsamples and categories appear in the histogram file as if there were samples and cuts as <sample>_<subsample>
-    and <cut>_<category>. This function unrolls the samples and cuts specification of the nuisances.
+    and <cut>_<category>. 
     The arguments samples and cuts must already be flattened, i.e., there must be one entry per subsample and per category
-    in the dictionaries, respectively. The arguments subsample_map and category_map take structures
-    {sample_name: [subsample_names]} and {cut_name: [category_names]} in order to recover the pre-flattened structure.
-    Finally, if samples are being merged into smaller numbers of samples, nuisances will also be merged and in some cases
+    in the dictionaries, respectively. Finally, if samples are being merged into smaller numbers of samples, nuisances will also be merged and in some cases
     change their types. The function returns a new nuisance dictionary in terms of merged samples if sample_merging is provided
     with structure {new_sample: [merged_sample_names]}.
     """
@@ -37,38 +35,9 @@ def update_nuisances(nuisances, samples, subsample_map, cuts, category_map, samp
 
             continue
 
-        for sname, value in nuisance['samples'].items():
-            if sname in samples:
-                continue
-
-            try:
-                subsamples = subsample_map[sname]
-            except KeyError:
-                # this sname is really not in samples
-                pass
-            else:
-                # nuisance had the parent sample name -> unroll
-                nuisance['samples'].update(('%s_%s' % (sname, sub), value) for sub in subsamples)
-
-            nuisance['samples'].pop(sname)
-
         if 'samplespost' in nuisance:
             nuisance['samples'] = nuisance['samplespost'](nuisance, samples)
                 
-        if 'cuts' in nuisance:
-            for cname in list(nuisance['cuts']):
-                if cname in cuts:
-                    continue
-
-                try:
-                    categories = category_map[cname]
-                except KeyError:
-                    pass
-                else:
-                    nuisance['cuts'].extend('%s_%s' % (cname, cat) for cat in categories)
-
-                nuisance['cuts'].remove(cname)
-
         if 'cutspost' in nuisance:
             nuisance['cuts'] = nuisance['cutspost'](nuisance, cuts)
 

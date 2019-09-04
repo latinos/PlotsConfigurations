@@ -4,14 +4,13 @@ import math
 from argparse import ArgumentParser
 
 arg_parser = ArgumentParser(description='Plot nuisance pulls wrt prefit from MultiDimFit output (--saveFitResult).')
-arg_parser.add_argument('mlfit_output', metavar='PATH', help='multidimfit.root file.')
 arg_parser.add_argument('workspace', metavar='PATH', help='ROOT file containing the workspace with the bestfit snapshot.')
 arg_parser.add_argument('--out', '-o', metavar='PATH', dest='out_path', default='.', help='Output directory.')
 arg_parser.add_argument('--tag', '-t', metavar='TAG', dest='tag', default='', help='Output tag.')
 arg_parser.add_argument('--data', '-D', metavar='PATH', dest='data_file', help='Read observed data from file.')
 arg_parser.add_argument('--toy-file', '-y', metavar='PATH', dest='toy_file', help='File to load toys from (defaults to prefit_workspace).')
 arg_parser.add_argument('--toy-snapshot', metavar='ITOY', dest='toy_snapshot', type=int, help='Load given toy snapshot if reading from a toy workspace.')
-arg_parser.add_argument('--pulls', '-P', action='store_true', dest='do_pulls', help='Analyze pulls.')
+arg_parser.add_argument('--pulls', '-p', metavar='PATH', dest='mlfit_output', help='Analyze pulls (pass multidimfit.root file).')
 arg_parser.add_argument('--shapes', '-S', action='store_true', dest='do_shapes', help='Analyze postfit shapes.')
 
 args = arg_parser.parse_args()
@@ -28,10 +27,7 @@ ROOT.gStyle.SetOptStat(0)
 
 NPEROUT = 30
 
-mlfit_output = ROOT.TFile.Open(args.mlfit_output)
 workspace = ROOT.TFile.Open(args.workspace)
-
-fit_mdf = mlfit_output.Get('fit_mdf')
 w = workspace.Get('w')
 
 if args.toy_snapshot is not None:
@@ -52,7 +48,10 @@ canvas.SetGridx(True)
 dnll_nuis = 0.
 dnll_obs = 0.
 
-if args.do_pulls:
+if args.mlfit_output:
+    mlfit_output = ROOT.TFile.Open(args.mlfit_output)
+    fit_mdf = mlfit_output.Get('fit_mdf')
+
     fpf = fit_mdf.floatParsFinal()
     
     ymax = 5.
@@ -208,6 +207,15 @@ if args.do_shapes:
 
     dnll_obss = {}
 
+    _boxes = []
+    box3 = ROOT.TBox(0., 0., 0., 0.)
+    box3.SetFillColor(ROOT.kOrange)
+    box3.SetFillStyle(3003)
+    box7 = ROOT.TBox(0., 0., 0., 0.)
+    box7.SetFillColor(ROOT.kRed)
+    box7.SetFillStyle(3003)
+    nbins = 0.
+
     for index in range(categories.numBins('')):
         categories.setBin(index)
         pdf = model.getPdf(categories.getLabel())
@@ -254,10 +262,11 @@ if args.do_shapes:
         hist.Draw('HIST')
         dist.Draw('EP SAME')
 
-        canvas.Print('%s/dist%s_%s.png' % (args.out_path, args.tag, categories.getLabel()))
-        canvas.Print('%s/dist%s_%s.pdf' % (args.out_path, args.tag, categories.getLabel()))
+        hist.SetMaximum(max(hist.GetMaximum(), dist.GetMaximum()) * 1.2)
 
         dnll_obss[categories.getLabel()] = 0.
+
+        nbins += dist.GetNbinsX()
 
         for ix in range(1, dist.GetNbinsX()):
             d = dist.GetBinContent(ix)
@@ -275,6 +284,14 @@ if args.do_shapes:
             dnll_obs += y
             dnll_obss[categories.getLabel()] += y
 
+            if y > 7.:
+                _boxes.append(box7.DrawBox(hist.GetXaxis().GetBinLowEdge(ix), 0., hist.GetXaxis().GetBinUpEdge(ix), hist.GetBinContent(ix)))
+            elif y > 3.:
+                _boxes.append(box3.DrawBox(hist.GetXaxis().GetBinLowEdge(ix), 0., hist.GetXaxis().GetBinUpEdge(ix), hist.GetBinContent(ix)))
+
+        canvas.Print('%s/dist%s_%s.png' % (args.out_path, args.tag, categories.getLabel()))
+        canvas.Print('%s/dist%s_%s.pdf' % (args.out_path, args.tag, categories.getLabel()))                
+
         hist.Delete()
         dist.Delete()
 
@@ -291,6 +308,8 @@ if args.do_shapes:
 
     for cat in sorted(dnll_obss.iterkeys()):
         print cat, dnll_obss[cat]
+
+    print len(_boxes) / nbins, 'with >3 sigma'
 
 print 'dnll_nuis:', dnll_nuis
 print 'dnll_obs:', dnll_obs

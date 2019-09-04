@@ -11,6 +11,7 @@ import collections
 import tempfile
 import logging
 
+import LatinoAnalysis.ShapeAnalysis.utils as utils
 from update_nuisances import update_nuisances
 
 argv = sys.argv
@@ -593,35 +594,20 @@ if __name__ == '__main__':
     with open('nuisances.py') as nuisancesfile:
         exec(nuisancesfile)
 
-    subsamplemap = {}
-    for sname, sample in samples.items():
-        if 'subsamples' in sample:
-            subsamplemap[sname] = []
-            for sub in sample['subsamples']:
-                if sname in signals and obsname not in sub:
-                    continue
+    subsamplemap = dict(utils.flatten_samples(samples))
+    for sname in signals:
+        for sub in list(subsamplemap[sname]):
+            if obsname not in sub:
+                subsamplemap[sname].remove(sub)
+
+    for cut in cuts.keys():
+        if obsname not in cut:
+            cuts.pop(cut)
     
-                samples['%s_%s' % (sname, sub)] = sample
-                subsamplemap[sname].append(sub)
-    
-            samples.pop(sname)
-    
-    categorymap = {}
-    for cname, cut in cuts.items():
-        if obsname not in cname:
-            cuts.pop(cname)
-            continue
-    
-        if 'categories' in cut:
-            categorymap[cname] = []
-            for cat in cut['categories']:
-                #if 'WW' in cat:
-                #    continue
-    
-                cuts['%s_%s' % (cname, cat)] = cut
-                categorymap[cname].append(cat)
-    
-            cuts.pop(cname)
+    categorymap = dict(utils.flatten_cuts(cuts))
+
+    utils.update_nuisances_with_subsamples(nuisances, subsamplemap.items())
+    utils.update_nuisances_with_categories(nuisances, categorymap.items())
         
     ### How we merge the bins & categories
 
@@ -789,7 +775,7 @@ if __name__ == '__main__':
 
     ### Prepare nuisance editing
 
-    newNuisances = update_nuisances(nuisances, samples, subsamplemap, cuts, categorymap, sampleMerging, HistogramMerger.cutMerging)
+    newNuisances = update_nuisances(nuisances, samples, cuts, sampleMerging, HistogramMerger.cutMerging)
     
     HistogramMerger.variations = {}
 

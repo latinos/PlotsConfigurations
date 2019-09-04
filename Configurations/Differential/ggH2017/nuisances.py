@@ -274,6 +274,7 @@ nuisances['UE'] = {
         'ggH_hww' : ['1', '1'],
         'qqH_hww' : ['1', '1']
     },
+    'samplespost': lambda self, samples: dict([('WW', ['1.', '1.'])] + [(sname, ['1.', '1.']) for sname in samples if 'ggH_hww' in sname or 'qqH_hww' in sname]),
     'AsLnN': '1',
     'folderUp': makeMCDirectory('UEup'),
     'folderDown': makeMCDirectory('UEdo'),
