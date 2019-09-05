@@ -26,6 +26,18 @@ except NameError:
 from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
 HiggsXS = HiggsXSection()
 
+
+cuts0j = []
+cuts1j = []
+cuts2j = []
+
+for k in cuts:
+  for cat in cuts[k]['categories']:
+    if '0j' in cat: cuts0j.append(k+'_'+cat)
+    elif '1j' in cat: cuts1j.append(k+'_'+cat)
+    elif '2j' in cat: cuts2j.append(k+'_'+cat)
+    else: print 'WARNING: name of category does not contain on either 0j,1j,2j'
+
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
 #### Luminosity
@@ -449,74 +461,29 @@ nuisances['QCDscale_ggVV'] = {
 }
 
 # NLL resummation variations
-#  - WW shaping
-nuisances['WWresum0j']  = {
-                'name'  : 'CMS_hww_WWresum_0j',
-                'skipCMS' : 1,
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
-                   },
-               'cuts'  : [ k for k in cuts if '0j' in k ]
-                }
+for jetbin in ['0j','1j','2j']:
+  nuisances['WWresum'+jetbin]  = {
+     'name'  : 'CMS_hww_WWresum_'+jetbin,
+     'skipCMS' : 1,
+     'kind'  : 'weight',
+     'type'  : 'shape',
+     'samples'  : {
+        'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+      },
+     'cutspost'  : [cut for cut in cuts if jetbin in cut]
+   }
 
+   nuisances['WWqscale'+jetbin]  = {
+      'name'  : 'CMS_hww_WWqscale_'+jetbin,
+      'skipCMS' : 1,
+      'kind'  : 'weight',
+      'type'  : 'shape',
+      'samples'  : {
+         'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+       },
+      'cutspost'  : [cut for cut in cuts if jetbin in cut]
+   }
 
-nuisances['WWresum1j']  = {
-                'name'  : 'CMS_hww_WWresum_1j',
-                'skipCMS' : 1,
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
-                   },
-               'cuts'  : [ k for k in cuts if '1j' in k ]
-                }
-
-nuisances['WWqscale0j']  = {
-                'name'  : 'CMS_hww_WWqscale_0j',
-                'skipCMS' : 1,
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
-                   },
-               'cuts'  : [ k for k in cuts if '0j' in k ]
-                }
-
-
-nuisances['WWqscale1j']  = {
-                'name'  : 'CMS_hww_WWqscale_1j',
-                'skipCMS' : 1,
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
-                   },
-               'cuts'  : [ k for k in cuts if '1j' in k ]
-                }
-
-nuisances['WWresum2j']  = {
-                'name'  : 'CMS_hww_WWresum_2j',
-                'skipCMS' : 1,
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
-                },
-               'cuts'  : [ k for k in cuts if '2j' in k ]
-                }
-
-nuisances['WWqscale2j']  = {
-                'name'  : 'CMS_hww_WWqscale_2j',
-                'skipCMS' : 1,
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
-                },
-               'cuts'  : [ k for k in cuts if '2j' in k ]
-                }
 
 # Uncertainty on SR/CR ratio
 nuisances['CRSR_accept_DY'] = {
@@ -664,6 +631,93 @@ nuisances['stat'] = {
     #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
     'samples': {}
 }
+
+## rate parameters
+nuisances['DYttnorm0j']  = {
+               'name'  : 'CMS_hww_DYttnorm0j',
+               'samples'  : {
+                   'DY' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts0j
+              }
+
+nuisances['DYttnorm1j']  = {
+               'name'  : 'CMS_hww_DYttnorm1j',
+               'samples'  : {
+                   'DY' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts1j
+              }
+
+nuisances['DYttnorm2j']  = {
+                 'name'  : 'CMS_hww_DYttnorm2j',
+                 'samples'  : {
+                     'DY' : '1.00',
+                     },
+                 'type'  : 'rateParam',
+                 'cuts'  : cuts2j
+                }
+
+
+nuisances['WWnorm0j']  = {
+               'name'  : 'CMS_hww_WWnorm0j',
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts0j
+              }
+
+nuisances['WWnorm1j']  = {
+               'name'  : 'CMS_hww_WWnorm1j',
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts1j
+              }
+
+
+nuisances['WWnorm2j']  = {
+               'name'  : 'CMS_hww_WWnorm2j',
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j
+              }
+
+
+nuisances['Topnorm0j']  = {
+               'name'  : 'CMS_hww_Topnorm0j',
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts0j
+              }
+
+nuisances['Topnorm1j']  = {
+               'name'  : 'CMS_hww_Topnorm1j',
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts1j
+              }
+
+nuisances['Topnorm2j']  = {
+               'name'  : 'CMS_hww_Topnorm2j',
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j
+              }
+
+
 
 for n in nuisances.values():
     n['skipCMS'] = 1
