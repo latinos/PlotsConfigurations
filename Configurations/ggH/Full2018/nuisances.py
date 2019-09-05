@@ -456,7 +456,7 @@ nuisances['QCDscale_ggVV'] = {
 
 ##### Renormalization & factorization scales
 for jetbin in ['0j','1j','2j']:
-  nuisances['WWresum'+jetbin]  = {
+   nuisances['WWresum'+jetbin]  = {
      'name'  : 'CMS_hww_WWresum_'+jetbin,
      'skipCMS' : 1,
      'kind'  : 'weight',
