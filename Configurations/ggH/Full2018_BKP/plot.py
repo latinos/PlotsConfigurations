@@ -8,6 +8,21 @@
 # If not defined, normal plots is used
 #
 
+import copy
+
+origcuts=copy.deepcopy(cuts)
+
+print origcuts
+cuts = []
+
+
+for cut in origcuts:
+  print cut
+  for cat in origcuts[cut]['categories']:
+    cuts.append(cut+"_"+cat)
+
+print cuts
+
 
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bar{t}',
@@ -66,7 +81,7 @@ groupPlot['VgS']  = {
                   'nameHR' : "V#gamma*",
                   'isSignal' : 0,
                   'color'    : 409,   # kGreen - 9
-                  'samples'  : ['VgS_H','VgS_L']
+                  'samples'  : ['VgS']
               }
 
 
@@ -176,20 +191,12 @@ plot['Vg']  = {
                   'scale'    : 1.0
                   }
 
-plot['VgS_H'] = { 
+plot['VgS'] = { 
                   'color'    : 617,   # kViolet + 1  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-
-plot['VgS_L'] = {
-                  'color'    : 617,   # kViolet + 1  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
-
 
 plot['VZ']  = { 
                   'color': 858, # kAzure -2  
@@ -342,7 +349,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  'isBlind'  : 0
               }
 
 

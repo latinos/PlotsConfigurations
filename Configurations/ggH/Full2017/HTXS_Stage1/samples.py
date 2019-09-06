@@ -102,7 +102,7 @@ useDYtt = False
 
 ptllDYW_NLO = '(((0.623108 + 0.0722934*gen_ptll - 0.00364918*gen_ptll*gen_ptll + 6.97227e-05*gen_ptll*gen_ptll*gen_ptll - 4.52903e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll<45)*(gen_ptll>0) + 1*(gen_ptll>=45))*(abs(gen_mll-90)<3) + (abs(gen_mll-90)>3))'
 ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
-
+'''
 if useDYtt:
     files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
         nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
@@ -239,7 +239,7 @@ samples['VVV'] = {
 ###########################################
 #############   SIGNALS  ##################
 ###########################################
-
+'''
 signals = []
 
 if os.path.exists('HTXS_stage1_categories.py') :
@@ -247,24 +247,25 @@ if os.path.exists('HTXS_stage1_categories.py') :
   exec(handle)
   handle.close()
 
-for cat,num in HTXSStage1Categories.iteritems():
+for cat,num in HTXSStage1_1Categories.iteritems():
   ## ggH
   if 'GG2H_' in cat:
-    samples['ggH_hww_'+cat.replace('GG2H_','')]  = {  'name'  : getSampleFiles(mcDirectory,'GluGluHToWWTo2L2NuPowheg_M125',False,'nanoLatino_') ,
-                                                      'weight': mcCommonWeight+'*(HTXS_stage_1_pTjet30=='+str(num)+')',#+'*weight2MINLO' ,
+    samples['ggH_hww_'+cat.replace('GG2H_','')]  = {  'name': getSampleFiles(mcDirectory,'GluGluHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'),
+                                                      'weight': mcCommonWeight+'*(HTXS_stage_1_1_'+cat+'_pTjet30GeV=='+str(num)+')',
                                                       'suppressNegative' :['all'],
                                                       'suppressNegativeNuisances' :['all'],
                                                    }
+    signals.append('ggH_hww'+cat.replace('GG2H_',''))
 #    samples['ggH_htt_'+cat.replace('GG2H_','')]  = { 'name' :   getSampleFiles(directory,'GluGluHToTauTau_M125',False,'nanoLatino_') ,
 #                                                     'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage_1_pTjet30=='+str(num)+')' ,
 #                                                     'suppressNegative' :['all'],
 #                                                     'suppressNegativeNuisances' :['all'],
 #                                                   }
-    signals.append('ggH_hww'+cat.replace('GG2H_',''))
+
   ## VBF and VH had.
   elif 'QQ2HQQ_' in cat:
-    samples['qqH_hww_'+cat.replace('QQ2HQQ_','')]  = {  'name' : getSampleFiles(mcDirectory,'VBFHToWWTo2L2NuPowheg_M125',False,'nanoLatino_') ,
-                                                        'weight': mcCommonWeight+'*(HTXS_stage_1_pTjet30=='+str(num)+')' ,
+    samples['qqH_hww_'+cat.replace('QQ2HQQ_','')]  = {  'name' : getSampleFiles(mcDirectory,'VBFHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'),
+                                                        'weight': mcCommonWeight+'*(HTXS_stage_1_1_'+cat+'_pTjet30GeV=='+str(num)+')' ,
                                                         'suppressNegative' :['all'],
                                                         'suppressNegativeNuisances' :['all'],
                                                      }
@@ -369,7 +370,7 @@ for cat,num in HTXSStage1Categories.iteritems():
 #signals.append('qqH_hww')
 
 ############# ZH H->WW ############
-
+'''
 samples['ZH_hww'] = {
     'name':   nanoGetSampleFiles(mcDirectory, 'HZJ_HToWWTo2L2Nu_M125'),
     'weight': mcCommonWeight,
@@ -466,7 +467,7 @@ samples['Fake']['subsamples'] = {
 ###########################################
 ################## DATA ###################
 ###########################################
-
+'''
 samples['DATA'] = {
   'name': [],
   'weight': 'METFilter_DATA*LepWPCut',
@@ -480,3 +481,4 @@ for _, sd in DataRun:
     files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
+
