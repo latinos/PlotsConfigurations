@@ -46,7 +46,7 @@ This `restructure_input.py` is the most critical and most convoluted part of the
 Making datacards
 ================
 
-Standard `mkDatacard.py` will work, but with the output of preprocessing (`shapes/plots_${obs}_${card_tag}.root`) and the special structure file in `tools`. From a configuration directory, do
+Standard `mkDatacard.py` is used, but with the output of preprocessing (`shapes/plots_${obs}_${card_tag}.root`) and the special structure file in `tools`. From a configuration directory, do
 ```
 mkdir unmerged_cards
 
@@ -100,7 +100,8 @@ Directory `tools/plotting` contains scripts for plotting:
 
 - `dyreweight.py`: Draw the rather-obscure DY reweighting function.
 - `selectionvars.py`: Draw the distributions of variables used for event selection. Used with `selectionvars` configuration subdirectory for Figure 3 of AN-2019/006.
-- `binyields.py`: Draw and print the prefit yields of signal and background in all CR and SR bins. Also draw the signal response matrix.
+- `responsematrix.py`: Draw the signal response matrix.
+- `binyields.py`: (Not used) Draw and print the prefit yields of signal and background in all CR and SR bins.
 - `plot_delta_scan.py`: Take the output of DeltaScan in dofit.sh and plot the mean of the global correlation coefficients as a function of the regularization strength delta.
 - `diffNuisances_mlfit.py`: Do what the standard diffNuisances script does for MultiDimFit output.
 - `plot_mu.py`: Take the regularized and unregularized fit outputs and plot the mu values.

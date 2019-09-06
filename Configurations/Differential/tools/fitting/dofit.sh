@@ -55,7 +55,8 @@ then
 
   METHOD=MultiDimFit
   NAME=AsimovReg
-  combine $CARDDIR/fullmodel.root -M $METHOD --algo singles -t -1 --setParameters ${SETMU},regularize=1,${SETDELTA} $FITOPT -n $NAME
+  combine $CARDDIR/fullmodel.root -M $METHOD --algo singles -t -1 --setParameters ${SETMU},regularize=1,${SETDELTA} $FITOPT -n $NAME --saveFitResult
+  ADDITIONAL=multidimfit${NAME}.root
 
 elif [ $COMMAND = AsimovUnreg ]
 then
@@ -63,7 +64,8 @@ then
 
   METHOD=MultiDimFit
   NAME=AsimovUnreg
-  combine $CARDDIR/fullmodel.root -M $METHOD --algo singles -t -1 --setParameters ${SETMU},regularize=0 $FITOPT -n $NAME
+  combine $CARDDIR/fullmodel.root -M $METHOD --algo singles -t -1 --setParameters ${SETMU},regularize=0 $FITOPT -n $NAME --saveFitResult
+  ADDITIONAL=multidimfit${NAME}.root
 
 elif [ $COMMAND = AsimovUnregStat ]
 then

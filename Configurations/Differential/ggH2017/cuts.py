@@ -127,3 +127,13 @@ def addsr(name, binning, cutsMap, slist):
 
 addsr('hww_NJ', njetBinning, njetCutsProgressive, slist_njsignal)
 addsr('hww_PTH', pthBins, pthCutsProgressive, slist_pthsignal)
+
+addcut('hww_ggH2J', ['sr', 'multiJet', 'mjj < 65. || 105. < mjj < 400.'])
+cuts['hww_ggH2J']['categories'] = []
+cuts['hww_ggH2J']['samples'] = slist_njsignal
+
+for pt2cat, _ in pt2cats:
+    for flavcat, _ in flavcats:
+        cuts['hww_ggH2J']['categories'].append('cat%s%s_2017' % (pt2cat, flavcat))
+
+cuts['hww_ggH2J']['categorization'] = '2*(%s)+(%s)' % (pt2cats[1][1], flavcats[1][1])
