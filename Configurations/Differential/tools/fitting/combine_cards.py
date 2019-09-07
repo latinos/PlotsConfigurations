@@ -29,6 +29,7 @@ except OSError:
     pass
 
 RATEPARAM_MU = False
+ADD_GLOBALFIT = True
 
 cmd = ['combineCards.py']
 procIds = {} # it seems that we don't really need to have the process ids synched between the combined cards, but let's make them common
@@ -322,7 +323,8 @@ if proc.returncode != 0:
     sys.exit(1)
 
 # Write combined datacard
-with open('%s/fullmodel.txt' % args.outpath, 'w') as fullmodel:
+# We need a version without the regularization terms because combineCards cannot handle constr lines yet
+with open('%s/fullmodel_unreg.txt' % args.outpath, 'w') as card_out:
     outFullPath = os.path.realpath(args.outpath)
     binNames = None
     procNames = None
@@ -333,15 +335,15 @@ with open('%s/fullmodel.txt' % args.outpath, 'w') as fullmodel:
         # overwrite certain lines
         if line.startswith('kmax'):
             # will be adding rateParam and regularization terms
-            fullmodel.write('kmax * number of nuisance parameters\n')
-            fullmodel.write(('-' * 100) + '\n')
-            fullmodel.write('shapes *        * histos.root $CHANNEL/histo_$PROCESS $CHANNEL/histo_$PROCESS_$SYSTEMATIC\n')
-            fullmodel.write('shapes data_obs * histos.root $CHANNEL/histo_Data\n')
+            card_out.write('kmax * number of nuisance parameters\n')
+            card_out.write(('-' * 100) + '\n')
+            card_out.write('shapes *        * histos.root $CHANNEL/histo_$PROCESS $CHANNEL/histo_$PROCESS_$SYSTEMATIC\n')
+            card_out.write('shapes data_obs * histos.root $CHANNEL/histo_Data\n')
         elif line.startswith('shapes'):
             # take histograms from a single file - already taken care of above
             continue
         else:
-            fullmodel.write(line + '\n')
+            card_out.write(line + '\n')
 
         if line.startswith('bin'):
             if binNames is None:
@@ -364,22 +366,61 @@ with open('%s/fullmodel.txt' % args.outpath, 'w') as fullmodel:
                         else:
                             line += ' - '
         
-                    fullmodel.write(line + '\n')
+                    card_out.write(line + '\n')
             else:
                 if RATEPARAM_MU:
-                    fullmodel.write('CMS_hww_{sname}norm_{obsBin} rateParam *{obsBin}* {sname}_{obsBin} 1.00\n'.format(sname = sname, obsBin = obsBin))
+                    card_out.write('CMS_hww_{sname}norm_{obsBin} rateParam *{obsBin}* {sname}_{obsBin} 1.00 [0.,10.]\n'.format(sname = sname, obsBin = obsBin))
                 else:
-                    fullmodel.write('CMS_hww_{sname}norm_{obsBin} rateParam *{obsBin}* {sname} 1.00\n'.format(sname = sname, obsBin = obsBin))
+                    card_out.write('CMS_hww_{sname}norm_{obsBin} rateParam *{obsBin}* {sname} 1.00 [0.,10.]\n'.format(sname = sname, obsBin = obsBin))
 
-# combineCards cannot handle constr lines yet
-shutil.copyfile('%s/fullmodel.txt' % args.outpath, '%s/fullmodel_unreg.txt' % args.outpath)
+# Full model with regularization terms
+with open('%s/fullmodel.txt' % args.outpath, 'w') as card_out:
+    with open('%s/fullmodel_unreg.txt' % args.outpath) as card_unreg:
+        for line in card_unreg:
+            card_out.write(line)
 
-with open('%s/fullmodel.txt' % args.outpath, 'a') as fullmodel:
     if args.hdf5:
-        fullmodel.write('regularization regGroup = {signalProcs}\n'.format(signalProcs = ' '.join(signalProcs)))
+        card_out.write('regularization regGroup = {signalProcs}\n'.format(signalProcs = ' '.join(signalProcs)))
     else:
         for ic in range(len(observableBins) - 2):
-            fullmodel.write('constr{ic} constr @3*(@0+@2-2*@1) r_{low},r_{mid},r_{high},regularize[0.] delta[10.]\n'.format(ic = ic, low = ic, mid = ic + 1, high = ic + 2))
+            card_out.write('constr{ic} constr @3*(@0-2*@1+@2) r_{low},r_{mid},r_{high},regularize[0.] delta[10.]\n'.format(ic = ic, low = ic, mid = ic + 1, high = ic + 2))
+
+if ADD_GLOBALFIT:
+    if 'PTH' in observableBins[0]:
+        obs = 'ptH'
+    elif 'NJ' in observableBins[0]:
+        obs = 'njet'
+
+    fiducialFrac = [0.] * len(observableBins)
+
+    source = ROOT.TFile.Open('%s/fiducial/rootFile/plots_Fiducial.root' % os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
+    for proc in ['ggH_hww', 'qqH_hww', 'WH_hww', 'ZH_hww', 'ggZH_hww', 'ttH_hww']:
+        h = source.Get('fiducial/%s/histo_%s' % (obs, proc))
+        for ix in range(len(observableBins)):
+            fiducialFrac[ix] += h.GetBinContent(ix + 1)
+    
+    source.Close()
+
+    fiducialTotal = sum(fiducialFrac)
+    for ix in range(len(fiducialFrac)):
+        fiducialFrac[ix] /= fiducialTotal
+    
+    # Full global fit model with regularization terms
+    with open('%s/fullmodel_global.txt' % args.outpath, 'w') as card_out:
+        with open('%s/fullmodel_unreg.txt' % args.outpath) as card_unreg:
+            for line in card_unreg:
+                card_out.write(line)
+    
+        f0expr = '(1.'
+        for ibin in range(1, len(observableBins)):
+            card_out.write('f_%d rateParam * *H_hww_%s 1. [-10.,10.]\n' % (ibin, observableBins[ibin]))
+            f0expr += '-%f*@%d' % (fiducialFrac[ibin], ibin - 1)
+    
+        f0expr += ')/%f' % fiducialFrac[0]
+        card_out.write('f_0 rateParam * *H_hww_%s %s %s\n' % (observableBins[0], f0expr, ','.join('f_%d' % ibin for ibin in range(1, len(observableBins)))))
+    
+        for ic in range(len(observableBins) - 2):
+            card_out.write('constr{ic} constr @0*@3*(@1-2*@2+@3) r,f_{low},f_{mid},f_{high},regularize[0.] delta[10.]\n'.format(ic = ic, low = ic, mid = ic + 1, high = ic + 2))
 
 if args.onlyFullModel:
     for cut in cuts:

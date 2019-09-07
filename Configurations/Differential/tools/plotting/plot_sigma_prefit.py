@@ -32,14 +32,13 @@ productions = [
 histograms = {}
 if config == 'fiducial':
     source = ROOT.TFile.Open('%s/fiducial/rootFile/plots_Fiducial.root' % confdir)
-    used_lumi = 41.53 # lumi put in the fiducial configuration for whatever reason
 
     for obs in ['ptH', 'njet']:
         for prods, title, _ in productions:
             for prod in prods:
                 h = source.Get('fiducial/%s/histo_%s' % (obs, prod))
                 h.SetDirectory(0)
-                h.Scale(1.e-3 / used_lumi)
+                h.Scale(1.e-3) # fiducial configuration set to 1/fb lumi
                 if prod == prods[0]:
                     histograms[(obs, title)] = h
                 else:
