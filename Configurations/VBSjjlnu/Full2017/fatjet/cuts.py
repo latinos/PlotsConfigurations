@@ -7,7 +7,7 @@ supercut = 'nLepton>=1  && Lepton_pt[0]>30 \
                 || Lepton_isTightMuon_cut_Tight_HWWW[0] > 0.5 ) \
                 && Alt$(Lepton_pt[1],0)<=10 && Alt$(Lepton_isLoose[1],1)>0.5\
                 && ( Alt$(Lepton_isTightElectron_mvaFall17V2Iso_WP90[1], 0) < 0.5 \
-                || Alt$(Lepton_isTightMuon_cut_Tight_HWWW[1],0) < 0.5 ) \
+                && Alt$(Lepton_isTightMuon_cut_Tight_HWWW[1],0) < 0.5 ) \
             && VBS_category == 0  \
             && vbs_pt_high >= 30  \
             && vbs_pt_low >= 30    \
@@ -22,31 +22,27 @@ cuts["fatjet_mu"] = 'abs(Lepton_pdgId[0])==13  \
                         && Lepton_pt[0] >= 30 \
                         '
 
-cuts["fatjet_ele_nohorn"] = 'abs(Lepton_pdgId[0])==11 \
-                        && Lepton_pt[0] >= 40 \
-                        && (vbs_eta_high <= 2.5 || vbs_eta_high >= 3.2 )    \
-                        && (vbs_eta_low <= 2.5 || vbs_eta_low >= 3.2)   \
-                        '
+# cuts["fatjet_ele_nohorn"] = 'abs(Lepton_pdgId[0])==11 \
+#                         && Lepton_pt[0] >= 40 \
+#                         && (vbs_eta_high <= 2.5 || vbs_eta_high >= 3.2 )    \
+#                         && (vbs_eta_low <= 2.5 || vbs_eta_low >= 3.2)   \
+#                         '
 
-cuts["fatjet_mu_nohorn"] = 'abs(Lepton_pdgId[0])==13  \
-                        && Lepton_pt[0] >= 30 \
-                        && (vbs_eta_high <= 2.5 || vbs_eta_high >= 3.2 )    \
-                        && (vbs_eta_low <= 2.5 || vbs_eta_low >= 3.2)   \
-                        '
+# cuts["fatjet_mu_nohorn"] = 'abs(Lepton_pdgId[0])==13  \
+#                         && Lepton_pt[0] >= 30 \
+#                         && (vbs_eta_high <= 2.5 || vbs_eta_high >= 3.2 )    \
+#                         && (vbs_eta_low <= 2.5 || vbs_eta_low >= 3.2)   \
+#                         '
                        
 
 cuts["fatjet_ele_looseVBS"] = 'abs(Lepton_pdgId[0])==11 \
                         && Lepton_pt[0] >= 40 \
-                        && (vbs_eta_high <= 2.5 || vbs_eta_high >= 3.2 )    \
-                        && (vbs_eta_low <= 2.5 || vbs_eta_low >= 3.2)   \
                         && mjj_vbs >=300    \
                         && deltaeta_vbs >= 2  \
                         '
 
 cuts["fatjet_mu_looseVBS"] = 'abs(Lepton_pdgId[0])==13 \
                         && Lepton_pt[0] >= 30 \
-                        && (vbs_eta_high <= 2.5 || vbs_eta_high >= 3.2 )    \
-                        && (vbs_eta_low <= 2.5 || vbs_eta_low >= 3.2)   \
                         && mjj_vbs >=300    \
                         && deltaeta_vbs >= 2  \
                         '

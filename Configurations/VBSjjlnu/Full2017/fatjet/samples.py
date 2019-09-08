@@ -6,7 +6,7 @@ from LatinoAnalysis.Tools.commonTools import *
 samples={}
 
 #skim='__wwSel'
-skim='__VBSjjlnuSkim2017v2'
+skim='__VBSjjlnuSkim2017v3'
 
 ##############################################
 ###### Tree Directory according to site ######
