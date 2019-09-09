@@ -37,7 +37,13 @@ for ckey in source.GetListOfKeys():
 
         for hkey in sdir.GetListOfKeys():
             hname = hkey.GetName()
-            if sample not in hname or hname.endswith('Up') or hname.endswith('Down'):
+            if hname.endswith('Up') or hname.endswith('Down'):
+                continue
+
+            if not hname.startswith('histo_' + sample):
+                continue
+
+            if hname != 'histo_' + sample and hname.replace('histo_' + sample, '')[0] != '_':
                 continue
 
             sname = hname.replace('histo_', '')

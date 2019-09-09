@@ -101,6 +101,14 @@ then
   combine $CARDDIR/fullmodel.root -M $METHOD --algo singles --setParameters regularize=0 $FITOPT -n $NAME --saveFitResult --saveWorkspace
   ADDITIONAL=multidimfit${NAME}.root
 
+elif [ $COMMAND = Global ]
+then
+
+  METHOD=MultiDimFit
+  NAME=Global
+  combine $CARDDIR/fullmodel_global.root -M $METHOD --algo singles --setParameters regularize=1,${SETDELTA} $FITOPT -n $NAME --saveFitResult --saveWorkspace
+  ADDITIONAL=multidimfit${NAME}.root
+
 elif [ $COMMAND = DeltaScan ]
 then
   # Generate an Asimov dataset and perform a regularized fit with a test delta value. Compute the global correlation coefficients and save them in the combine output.

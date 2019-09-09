@@ -406,7 +406,7 @@ if ADD_GLOBALFIT:
         fiducialFrac[ix] /= fiducialTotal
     
     # Full global fit model with regularization terms
-    with open('%s/fullmodel_global.txt' % args.outpath, 'w') as card_out:
+    with open('%s/fullmodel_global_unreg.txt' % args.outpath, 'w') as card_out:
         with open('%s/fullmodel_unreg.txt' % args.outpath) as card_unreg:
             for line in card_unreg:
                 card_out.write(line)
@@ -418,7 +418,12 @@ if ADD_GLOBALFIT:
     
         f0expr += ')/%f' % fiducialFrac[0]
         card_out.write('f_0 rateParam * *H_hww_%s %s %s\n' % (observableBins[0], f0expr, ','.join('f_%d' % ibin for ibin in range(1, len(observableBins)))))
-    
+
+    with open('%s/fullmodel_global.txt' % args.outpath, 'w') as card_out:
+        with open('%s/fullmodel_global_unreg.txt' % args.outpath) as card_unreg:
+            for line in card_unreg:
+                card_out.write(line)
+
         for ic in range(len(observableBins) - 2):
             card_out.write('constr{ic} constr @0*@3*(@1-2*@2+@3) r,f_{low},f_{mid},f_{high},regularize[0.] delta[10.]\n'.format(ic = ic, low = ic, mid = ic + 1, high = ic + 2))
 
@@ -457,3 +462,10 @@ else:
     print ' '.join(cmd)
     proc = subprocess.Popen(cmd)
     proc.communicate()
+
+    if ADD_GLOBALFIT:
+        cmd = ['text2workspace.py', '%s/fullmodel_global.txt' % args.outpath, '-o', '%s/fullmodel_global.root' % args.outpath]
+
+        print ' '.join(cmd)
+        proc = subprocess.Popen(cmd)
+        proc.communicate()

@@ -7,22 +7,10 @@ import numpy as np
 import ROOT
 import root_numpy
 
-ROOT.gROOT.SetBatch(True)
-ROOT.gStyle.SetOptStat(0)
-ROOT.gStyle.SetTextFont(42)
-ROOT.gStyle.SetLabelSize(0.035, 'X')
-ROOT.gStyle.SetLabelSize(0.035, 'Y')
-ROOT.gStyle.SetTitleSize(0.035, 'X')
-ROOT.gStyle.SetTitleSize(0.035, 'Y')
-ROOT.gStyle.SetTitleOffset(1.4, 'X')
-ROOT.gStyle.SetTitleOffset(1.8, 'Y')
-ROOT.gStyle.SetNdivisions(208, 'X')
-ROOT.gStyle.SetFillStyle(0)
-ROOT.gStyle.SetHatchesLineWidth(2)
-ROOT.gStyle.SetHatchesSpacing(0.5)
+import common
 
-thisdir = os.path.dirname(os.path.realpath(__file__))
-confdir = os.path.dirname(os.path.dirname(thisdir))
+ROOT.gStyle.SetHatchesLineWidth(2)
+#ROOT.gStyle.SetHatchesSpacing(0.5)
 
 config = sys.argv[1] # fiducial, prefit, or postfit
 
@@ -31,22 +19,30 @@ config = sys.argv[1] # fiducial, prefit, or postfit
 # postfit: Observed differential cross sections in bins of gen-level observables
 
 productions = [
-    (['ggH_hww'], 'ggF', '1f77b4'),
-    (['qqH_hww'], 'VBF', 'ff7f0e'),
-    (['WH_hww'], 'WH', '2ca02c'),
-    (['ZH_hww', 'ggZH_hww'], 'ZH', 'd62728'),
-    (['ttH_hww'], 'ttH', '9467bd')
+    (['ggH_hww'], 'ggF'),
+    (['qqH_hww'], 'VBF'),
+    (['WH_hww'], 'WH'),
+    (['ZH_hww', 'ggZH_hww'], 'ZH'),
+    (['ttH_hww'], 'ttH')
 ]
 
-allprods = sum((prods for prods, _, _ in productions), [])
+prod_colors = {
+    'ggF': '#1f77b4',
+    'VBF': '#ff7f0e',
+    'WH': '#2ca02c',
+    'ZH': '#d62728',
+    'ttH': '#9467bd'
+}
+
+allprods = sum((prods for prods, _ in productions), [])
 
 histograms = {}
 htotals = {}
 
 if config in ['fiducial', 'postfit']:
-    source = ROOT.TFile.Open('%s/fiducial/rootFile/plots_Fiducial.root' % confdir)
+    source = ROOT.TFile.Open('%s/fiducial/rootFile/plots_Fiducial.root' % common.confdir)
 
-    sys.path.append('%s/fiducial' % confdir)
+    sys.path.append('%s/fiducial' % common.confdir)
     from nuisances import nuisances
 
     def get_histograms(obs, prods):
@@ -103,7 +99,7 @@ if config in ['fiducial', 'postfit']:
         nominals, htotal = get_histograms(obs, allprods)
         htotals[obs] = htotal
         
-        for prods, title, _ in productions:
+        for prods, title in productions:
             histograms[(obs, title)] = nominals[prods[0]].Clone('%s_%s' % (obs, title))
             histograms[(obs, title)].SetDirectory(0)
             for prod in prods[1:]:
@@ -121,9 +117,7 @@ if config in ['fiducial', 'postfit']:
     rebins = {}
 
     if config == 'postfit':
-        #altprods = ['ggH_hwwalt', 'qqH_hwwalt', 'WH_hww', 'ZH_hww', 'ggZH_hww', 'ttH_hww']
-        #altprods = ['ggH_hww', 'qqH_hww', 'WH_hww', 'ZH_hww', 'ggZH_hww', 'ttH_hww']
-        altprods = ['ggH_hww', 'qqH_hww']
+        altprods = ['ggH_hwwalt', 'qqH_hwwalt', 'WH_hww', 'ZH_hww', 'ggZH_hww', 'ttH_hww']
         althtotals = {}
 
         for obs in ['ptH', 'njet']:
@@ -147,7 +141,7 @@ elif config == 'prefit':
     for prod in allprods:
         nominals[prod] = {}
         
-        source = ROOT.TFile.Open('%s/ggH2018/rootFile_merged/plots_ggHDifferential2018_ALL_%s.root' % (confdir, prod))
+        source = ROOT.TFile.Open('%s/ggH2018/rootFile_merged/plots_ggHDifferential2018_ALL_%s.root' % (common.confdir, prod))
 
         for obs, binning, bnames in [('ptH', pthBinning, pthBins), ('njet', njetBinning, njetBins)]:
             nominals[prod][obs] = ROOT.TH1D('%s_%s' % (obs, prod), '', len(binning) - 1, array.array('d', binning))
@@ -177,7 +171,7 @@ elif config == 'prefit':
         source.Close()
 
     for obs in ['ptH', 'njet']:
-        for prods, title, _ in productions:
+        for prods, title in productions:
             histograms[(obs, title)] = nominals[prods[0]][obs].Clone('%s_%s' % (obs, title))
             histograms[(obs, title)].SetDirectory(0)
             for prod in prods[1:]:
@@ -185,7 +179,7 @@ elif config == 'prefit':
 
         htotals[obs] = histograms[(obs, productions[0][1])].Clone('total_%s' % obs)
         htotals[obs].SetDirectory(0)
-        for _, title, _ in productions[1:]:
+        for _, title in productions[1:]:
             htotals[obs].Add(histograms[(obs, title)])
 
     ytitles = {
@@ -203,7 +197,7 @@ if config == 'postfit':
     for obs in ['ptH', 'njet']:
         mus[obs] = []
         
-        source = ROOT.TFile.Open('%s/combination/%s_fullmodel/multidimfitReg.root' % (confdir, obs))
+        source = ROOT.TFile.Open('%s/combination/%s_fullmodel/multidimfitReg.root' % (common.confdir, obs))
         fitresult = source.Get('fit_mdf')
         pars = fitresult.floatParsFinal()
         imu = 0
@@ -220,24 +214,27 @@ if config == 'postfit':
 canvas = ROOT.TCanvas('c1', 'c1', 600, 600)
 canvas.Divide(1, 2)
 
-xmin = 0.15
-xmax = 0.95
-ydmin = 0.3
-yrmin = 0.15
-ymax = 0.95
+cmsLabel = common.makeCMS()
+lumiLabel = common.makeLumi()
+
+cmsLabel.AddText('#splitline{CMS}{#font[52]{Preliminary}}')
+lumiLabel.AddText('137.0 fb^{-1} (13 TeV)')
+
+ydmin = 0.305
+yrmax = 0.3
 
 distpad = canvas.cd(1)
 distpad.SetPad(0., 0., 1., 1.)
-distpad.SetMargin(xmin, 1. - xmax, ydmin, 1. - ymax)
+distpad.SetMargin(common.xmin, 1. - common.xmax, ydmin, 1. - common.ymax)
 distpad.SetLogy(True)
 
 ratiopad = canvas.cd(2)
-ratiopad.SetPad(xmin, yrmin, xmax, ydmin)
+ratiopad.SetPad(common.xmin, common.ymin, common.xmax, yrmax)
 ratiopad.SetMargin(0., 0., 0., 0.)
 if config == 'postfit':
     ratiopad.SetGridy(True)
 
-xaxis = ROOT.TGaxis(xmin, yrmin, xmax, yrmin, 0., 1., 210, 'S')
+xaxis = ROOT.TGaxis(common.xmin, common.ymin, common.xmax, common.ymin, 0., 1., 210, 'S')
 xaxis.SetTitleOffset(ROOT.gStyle.GetTitleOffset('X') * 0.8)
 xaxis.SetLabelFont(42)
 xaxis.SetTitleFont(42)
@@ -246,7 +243,7 @@ xaxis.SetLabelSize(0.875 * 0.048)
 xaxis.SetTickLength(0.01)
 xaxis.SetGridLength(0.)
 
-raxis = ROOT.TGaxis(xmin, yrmin, xmin, ydmin, 0., 1., 202, 'S')
+raxis = ROOT.TGaxis(common.xmin, common.ymin, common.xmin, yrmax, 0., 1., 205, 'S')
 raxis.SetTitleOffset(ROOT.gStyle.GetTitleOffset('Y') * 0.8)
 raxis.SetTitleSize(0.036)
 raxis.SetLabelFont(42)
@@ -257,12 +254,12 @@ raxis.SetGridLength(0.)
 
 for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
     stack = ROOT.THStack('dist', '')
-    legend = ROOT.TLegend(0.7, 0.7, 0.9, 0.94)
+    legend = ROOT.TLegend(0.7, 0.7, common.xmax, common.ymax)
     legend.SetBorderSize(0)
     legend.SetFillStyle(0)
     
-    for prods, title, ccode in productions:
-        color = ROOT.TColor.GetColor('#' + ccode)
+    for prods, title in productions:
+        color = ROOT.TColor.GetColor(prod_colors[title])
         tcolor = ROOT.gROOT.GetColor(color)
         lcolor = ROOT.TColor.GetColor(tcolor.GetRed() * 0.9, tcolor.GetGreen() * 0.9, tcolor.GetBlue() * 0.9)
 
@@ -285,7 +282,7 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
 
         stack.Add(hist)
 
-    for _, title, _ in reversed(productions):
+    for _, title in reversed(productions):
         legend.AddEntry(histograms[(obs, title)], title, 'LF')
 
     distpad.cd()
@@ -308,10 +305,17 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
     total.SetLineColor(ROOT.kBlack)
     total.SetLineWidth(1)
 
-    stack.Draw('HIST')
-    stack.GetXaxis().SetLabelSize(0.)
-    stack.GetYaxis().SetTitle(ytitles[obs])
-    stack.SetMinimum(histograms[(obs, 'ggF')].GetMinimum() * 0.8)
+    frame = total.Clone('frame')
+    frame.Reset()
+    frame.SetTitle('')
+
+    frame.SetMinimum(histograms[(obs, 'ggF')].GetMinimum() * 0.8)
+    frame.SetMaximum(stack.GetMaximum() * 2.5)
+    frame.GetXaxis().SetLabelSize(0.)
+    frame.GetYaxis().SetTitle(ytitles[obs])
+
+    frame.Draw()
+    stack.Draw('SAME HIST')
     total.Draw('SAME E2')
 
     distpad.Update()
@@ -338,6 +342,8 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
 
         gobs = ROOT.TGraphAsymmErrors(total)
 
+        table = ''
+
         ymin = histograms[(obs, 'ggF')].GetMinimum() * 0.8
         ymax = 0.
         for ip in range(total.GetNbinsX()):
@@ -350,10 +356,27 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
             gobs.SetPointEXlow(ip, 0.)
             gobs.SetPointEXhigh(ip, 0.)
 
+            # table for AN
+            if obs == 'ptH':
+                xmin = total.GetXaxis().GetBinLowEdge(ip + 1)
+                xmax = total.GetXaxis().GetBinUpEdge(ip + 1)
+                binw = xmax - xmin
+                if ip != total.GetNbinsX() - 1:
+                    table += '      $[%.0f, %.0f]$ & $%.2f^{%+.2f}_{%+.2f}$ \\\\\n' % (xmin, xmax, y * binw, errhi * binw, -errlo * binw)
+                else:
+                    table += '      $[%.0f, \\infty)$ & $%.2f^{%+.2f}_{%+.2f}$ \\\\\n' % (xmin, y * binw, errhi * binw, -errlo * binw)
+            elif obs == 'njet':
+                if ip != total.GetNbinsX() - 1:
+                    table += '      $%d$ & $%.2f^{%+.2f}_{%+.2f}$ \\\\\n' % (ip, y, errhi, -errlo)
+                else:
+                    table += '      $\geq %d$ & $%.2f^{%+.2f}_{%+.2f}$ \\\\\n' % (ip, y, errhi, -errlo)
+
             if y - errlo < ymin:
                 ymin = (y - errlo) * 0.8
             if y + errhi > ymax:
-                ymax = (y + errhi) * 1.2
+                ymax = (y + errhi) * 3.
+
+        print table
 
         gobs.SetMarkerColor(ROOT.kBlack)
         gobs.SetMarkerStyle(8)
@@ -365,8 +388,8 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
 
         legend.AddEntry(gobs, 'Observed', 'LP')
 
-        stack.SetMinimum(ymin)
-        stack.SetMaximum(ymax)
+        frame.SetMinimum(ymin)
+        frame.SetMaximum(ymax)
 
     legend.Draw()
     distpad.Update()
@@ -376,10 +399,21 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
 
     ratiopad.cd()
 
+    rframe = total.Clone('rframe')
+    rframe.Reset()
+    rframe.SetTitle('')
+
+    rframe.Draw('HIST')
+    rframe.SetTickLength(0., 'X')
+    rframe.SetTickLength(0., 'Y')
+    rframe.GetYaxis().SetLabelSize(0.)
+    rframe.GetYaxis().SetTitle('')
+    rframe.GetYaxis().SetTitle('')
+
     rstack = ROOT.THStack('ratio', '')
 
     _rhists = []
-    for _, title, _ in productions:
+    for _, title in productions:
         rhist = histograms[(obs, title)].Clone('ratio_' + histograms[(obs, title)].GetName())
         _rhists.append(rhist)
         
@@ -387,7 +421,7 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
 
         rstack.Add(rhist)
 
-    rstack.Draw('HIST')
+    rstack.Draw('SAME HIST')
 
     uncert = total.Clone('uncert')
     atotal = root_numpy.hist2array(total, copy=False)
@@ -401,8 +435,8 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
 
     if config in ['fiducial', 'prefit']:
         raxis.SetTitle('fractions')
-        rstack.SetMinimum(0.)
-        rstack.SetMaximum(1.)
+        rframe.SetMinimum(0.)
+        rframe.SetMaximum(1.)
 
     elif config == 'postfit':
         altrhist = althtotal.Clone('altrhist')
@@ -434,8 +468,8 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
 
         robs.Draw('EP')
 
-        rstack.SetMinimum(rmin)
-        rstack.SetMaximum(rmax)
+        rframe.SetMinimum(rmin)
+        rframe.SetMaximum(rmax)
 
         one = ROOT.TLine(altrhist.GetXaxis().GetXmin(), 1., altrhist.GetXaxis().GetXmax(), 1.)
         one.SetLineColor(ROOT.kBlack)
@@ -464,9 +498,9 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
         latex = ROOT.TLatex(0., 0., '')
         latex.SetTextFont(42)
         latex.SetTextSize(0.048)
-        latex.SetTextAlign(22)
+        latex.SetTextAlign(23)
         for il, label in enumerate(['0', '1', '2', '3', '#geq 4']):
-            latex.DrawLatex(xmin + (xmax - xmin) * (0.5 + il) / 5., 0.11, label)
+            latex.DrawLatex(common.xmin + (common.xmax - common.xmin) * (0.5 + il) / 5., common.ymin - 0.02, label)
 
     xaxis.SetWmin(uxmin)
     xaxis.SetWmax(uxmax)
@@ -475,9 +509,17 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
     raxis.Draw()
 
     canvas.Update()
+
+    canvas.cd()
+
+    cmsLabel.Draw()
+    lumiLabel.Draw()
+
+    canvas.Update()
+    
     if config == 'fiducial':
         canvas.Print('sigma_%s.pdf' % obs)
     elif config == 'prefit':
         canvas.Print('prefit_%s.pdf' % obs)
     elif config == 'postfit':
-        canvas.Print('postfit_%s.pdf' % obs)
+        canvas.Print('observed_sigma_%s.pdf' % obs)
