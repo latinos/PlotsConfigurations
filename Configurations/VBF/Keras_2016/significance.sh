@@ -15,6 +15,6 @@ echo "class0:" "">> significance_class0_06_09.txt
 combine -M Significance class0_06_09.root -t -1 --setParameters r_vbf=1 --redefineSignalPOIs=r_vbf >> significance_class0_06_09.txt
 
 
-echo "class0:" "">> significance_class0_06_09_multicut.txt
-combine -M Significance class0_06_09_multicut.root -t -1 --setParameters r_vbf=1 --redefineSignalPOIs=r_vbf >> significance_class0_06_09_multicut.txt
+#echo "class0:" "">> significance_class0_06_09_multicut.txt
+#combine -M Significance class0_06_09_multicut.root -t -1 --setParameters r_vbf=1 --redefineSignalPOIs=r_vbf >> significance_class0_06_09_multicut.txt
 

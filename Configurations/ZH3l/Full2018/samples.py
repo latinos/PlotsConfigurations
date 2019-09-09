@@ -29,7 +29,7 @@ treeBaseDir = "/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/"
 
 directoryMC     = os.path.join(treeBaseDir,"Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5/")
 directoryDATA   = os.path.join(treeBaseDir,"Run2018_102X_nAODv5_Full2018v5/DATAl1loose2018v5__l2loose__l2tightOR2018v5/")
-directoryFAKE   = os.path.join(treeBaseDir,"Run2018_102X_nAODv4_Full2018v5/DATAl1loose2018v5__l2loose__fakeW/")
+directoryFAKE   = os.path.join(treeBaseDir,"Run2018_102X_nAODv5_Full2018v5/DATAl1loose2018v5__l2loose__fakeW/")
 
 ################################################
 ############### WP #############################
@@ -50,7 +50,7 @@ fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_3l'
 ################################################
 
 XSweight  = 'XSWeight'
-SFweight  = 'SFweight3l*'+LepWPweight+'*'+LepWPCut+'*PrefireWeight*btagSF'
+SFweight  = 'SFweight3l*'+LepWPweight+'*'+LepWPCut+'*btagSF'
 
 GenLepMatch2l = 'GenLepMatch2l'
 GenLepMatch3l = 'GenLepMatch3l'
@@ -107,7 +107,7 @@ samples['ZZ']  = {    'name': getSampleFilesNano(directoryMC,'ZZTo4L_ext1')+getS
 samples['WZ']  = {    'name'   : getSampleFilesNano(directoryMC,'WZTo3LNu_mllmin01'),
                       #'name'   : getSampleFilesNano(directoryMC,'WZTo3LNu') #These all exist -- check which is better stats?
                       #          +getSampleFilesNano(directoryMC,'WZTo3LNu_ext1'),
-                      'weight' : '(( CleanJet_pt[1] < 30 )*'+wz1jSF+'+( CleanJet_pt[1] >= 30 )*'+wz2jSF+')*'+XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC ,
+                      'weight' : '(( Alt$(CleanJet_pt[1],0) < 30 )*'+wz1jSF+'+( Alt$(CleanJet_pt[1],0) >= 30 )*'+wz2jSF+')*'+XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC ,
                       'suppressNegativeNuisances' :['all'],
                       'FilesPerJob' : 5,
                   }

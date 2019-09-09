@@ -49,7 +49,7 @@ nuisances['QCDscale_VZ'] = {
     'samples': {
         'WZ': '1.03',
         'ZZ': '1.03',
-    }
+    },
     'type': 'lnN',
 }
 
@@ -419,28 +419,6 @@ nuisances['trigg']  = {
                    #'WH_htt'  : trig_syst ,
                 },
 }
-
-#### Prefiring
-
-#prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
-
-#nuisances['prefire'] = {
-#    'name': 'eff_prefiring_2018',
-#    'kind': 'weight',
-#    'type': 'shape',
-#    'samples'  : {
-#        'VVV'     : prefire_syst ,
-#        'WZ'      : prefire_syst ,
-#        'ZZ'      : prefire_syst ,
-#        'ttZ'     : prefire_syst ,
-#        'WW'      : prefire_syst ,
-#        'Vg'      : prefire_syst ,
-#        'WH_hww'  : prefire_syst ,
-#        'ZH_hww'  : prefire_syst ,
-#        'ggZH_hww': prefire_syst ,
-#        'WH_htt'  : prefire_syst ,
-#    },
-#}
 
 ##### Electron Efficiency and energy scale
 

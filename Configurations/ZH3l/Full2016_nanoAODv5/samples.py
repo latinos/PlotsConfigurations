@@ -111,7 +111,7 @@ samples['ZZ']  = {    'name': getSampleFilesNano(directoryMC,'ZZTo4L'),
 samples['WZ']  = {    'name'   : getSampleFilesNano(directoryMC,'WZTo3LNu_mllmin01'),
                       #'name'   : getSampleFilesNano(directoryMC,'WZTo3LNu') #These all exist -- check which is better stats?
                       #          +getSampleFilesNano(directoryMC,'WZTo3LNu_ext1'),
-                      'weight' : '(( CleanJet_pt[1] < 30 )*'+wz1jSF+'+( CleanJet_pt[1] >= 30 )*'+wz2jSF+')*'+XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC ,
+                      'weight' : '(( Alt$(CleanJet_pt[1],0) < 30 )*'+wz1jSF+'+( Alt$(CleanJet_pt[1],0) >= 30 )*'+wz2jSF+')*'+XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC ,
                       'suppressNegativeNuisances' :['all'],
                       'FilesPerJob' : 5,
                   }
