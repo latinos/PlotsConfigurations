@@ -32,11 +32,10 @@ cuts1j = []
 cuts2j = []
 
 for k in cuts:
-  for cat in cuts[k]['categories']:
-    if '0j' in cat: cuts0j.append(k+'_'+cat)
-    elif '1j' in cat: cuts1j.append(k+'_'+cat)
-    elif '2j' in cat: cuts2j.append(k+'_'+cat)
-    else: print 'WARNING: name of category does not contain on either 0j,1j,2j'
+  if '0j' in k  : cuts0j.append(k) 
+  elif '1j' in k: cuts1j.append(k)
+  elif '2j' in k: cuts2j.append(k)
+  else: print 'WARNING: name of category does not contain on either 0j,1j,2j'
 
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
@@ -689,67 +688,67 @@ nuisances['Topnorm2j']  = {
                'cuts'  : cuts2j
               }
 
-##### DY estimation (just create dummy histograms to be scaled by the DY Rin/out method)
-#
-#nuisances['DYeenorm0j'] = {
-#                'name'  : 'hww_DYeenorm0j',
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                    'DY' : ['1.','1.'] ,
-#                             },
-#                'cuts'  : [cut for cut in cuts0j if 'ee' in cut]
-#                }
-#
-#nuisances['DYeenorm1j'] = {
-#                'name'  : 'hww_DYeenorm1j',
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                    'DY' : ['1.','1.'] ,
-#                             },
-#                'cuts'  : [cut for cut in cuts1j if 'ee' in cut]
-#                }
-#
-#nuisances['DYeenorm2j'] = {
-#                'name'  : 'hww_DYeenorm2j',
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                    'DY' : ['1.','1.'] ,
-#                             },
-#                'cuts'  : [cut for cut in cuts2j if 'ee' in cut]
-#                }
-#
-#nuisances['DYmmnorm0j'] = {
-#                'name'  : 'hww_DYmmnorm0j',
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                    'DY' : ['1.','1.'] ,
-#                             },
-#                'cuts'  : [cut for cut in cuts0j if 'mm' in cut]
-#                }
-#
-#nuisances['DYmmnorm1j'] = {
-#                'name'  : 'hww_DYmmnorm1j',
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                    'DY' : ['1.','1.'] ,
-#                             },
-#                'cuts'  : [cut for cut in cuts1j if 'mm' in cut]
-#                }
-#
-#nuisances['DYmmnorm2j'] = {
-#                'name'  : 'hww_DYmmnorm2j',
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                    'DY' : ['1.','1.'] ,
-#                             },
-#                'cuts'  : [cut for cut in cuts2j if 'mm' in cut]
-#                }
+#### DY estimation (just create dummy histograms to be scaled by the DY Rin/out method)
+
+nuisances['DYeenorm0j'] = {
+                'name'  : 'hww_DYeenorm0j',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                    'DY' : ['1.','1.'] ,
+                             },
+                'cuts'  : [cut for cut in cuts0j if 'ee' in cut]
+                }
+
+nuisances['DYeenorm1j'] = {
+                'name'  : 'hww_DYeenorm1j',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                    'DY' : ['1.','1.'] ,
+                             },
+                'cuts'  : [cut for cut in cuts1j if 'ee' in cut]
+                }
+
+nuisances['DYeenorm2j'] = {
+                'name'  : 'hww_DYeenorm2j',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                    'DY' : ['1.','1.'] ,
+                             },
+                'cuts'  : [cut for cut in cuts2j if 'ee' in cut]
+                }
+
+nuisances['DYmmnorm0j'] = {
+                'name'  : 'hww_DYmmnorm0j',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                    'DY' : ['1.','1.'] ,
+                             },
+                'cuts'  : [cut for cut in cuts0j if 'mm' in cut]
+                }
+
+nuisances['DYmmnorm1j'] = {
+                'name'  : 'hww_DYmmnorm1j',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                    'DY' : ['1.','1.'] ,
+                             },
+                'cuts'  : [cut for cut in cuts1j if 'mm' in cut]
+                }
+
+nuisances['DYmmnorm2j'] = {
+                'name'  : 'hww_DYmmnorm2j',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                    'DY' : ['1.','1.'] ,
+                             },
+                'cuts'  : [cut for cut in cuts2j if 'mm' in cut]
+                }
 
 
 for n in nuisances.values():

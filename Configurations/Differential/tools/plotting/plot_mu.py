@@ -190,43 +190,43 @@ if args.observable == 'ptH':
     if args.observed:
         for ip in range(0, npoi - 1):
             table += indent
-            table += '& $[%.0f, %.0f]$ & %.2f & %+.2f/%+.2f & %.2f & %+.2f/%+.2f \\\\\n' % (binning[ip], binning[ip + 1], mugraphs[1].GetY()[ip], -mugraphs[1].GetErrorYlow(ip), mugraphs[1].GetErrorYhigh(ip), mugraphs[0].GetY()[ip], -mugraphs[0].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip))
+            table += '& $[%.0f, %.0f]$ & $%.2f_{%+.2f}^{%+.2f}$ & $%.2f_{%+.2f}^{%+.2f}$ \\\\\n' % (binning[ip], binning[ip + 1], mugraphs[1].GetY()[ip], -mugraphs[1].GetErrorYlow(ip), mugraphs[1].GetErrorYhigh(ip), mugraphs[0].GetY()[ip], -mugraphs[0].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip))
             indent = '                            '
 
         ip = npoi - 1
         table += indent
-        table += '& $[%.0f, \\infty]$ & %.2f & %+.2f/%+.2f & %.2f & %+.2f/%+.2f \\\\\n' % (binning[ip], mugraphs[1].GetY()[ip], -mugraphs[1].GetErrorYlow(ip), mugraphs[1].GetErrorYhigh(ip), mugraphs[0].GetY()[ip], -mugraphs[0].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip))
+        table += '& $[%.0f, \\infty)$ & $%.2f_{%+.2f}^{%+.2f}$ & $%.2f_{%+.2f}^{%+.2f}$ \\\\\n' % (binning[ip], mugraphs[1].GetY()[ip], -mugraphs[1].GetErrorYlow(ip), mugraphs[1].GetErrorYhigh(ip), mugraphs[0].GetY()[ip], -mugraphs[0].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip))
 
     else:
         for ip in range(0, npoi - 1):
             table += indent
-            table += '& $[%.0f, %.0f]$ & %+.2f/%+.2f & %+.2f/%+.2f \\\\\n' % (binning[ip], binning[ip + 1], -mugraphs[1].GetErrorYlow(ip), mugraphs[1].GetErrorYhigh(ip), -mugraphs[0].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip))
+            table += '& $[%.0f, %.0f]$ & %+.2f/%+.2f & %+.2f/%+.2f \\\\\n' % (binning[ip], binning[ip + 1], mugraphs[1].GetErrorYhigh(ip), -mugraphs[1].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip), -mugraphs[0].GetErrorYlow(ip))
             indent = '                            '
 
         ip = npoi - 1
         table += indent
-        table += '& $[%.0f, \\infty]$ & %+.2f/%+.2f & %+.2f/%+.2f \\\\\n' % (binning[ip], -mugraphs[1].GetErrorYlow(ip), mugraphs[1].GetErrorYhigh(ip), -mugraphs[0].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip))
+        table += '& $[%.0f, \\infty)$ & %+.2f/%+.2f & %+.2f/%+.2f \\\\\n' % (binning[ip], mugraphs[1].GetErrorYhigh(ip), -mugraphs[1].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip), -mugraphs[0].GetErrorYlow(ip))
 
 else:
     if args.observed:
         for ip in range(0, npoi - 1):
             table += indent
-            table += '& %.0f        & %.2f & %+.2f/%+.2f & %.2f & %+.2f/%+.2f \\\\\n' % ((binning[ip] + binning[ip + 1]) * 0.5, mugraphs[1].GetY()[ip], -mugraphs[1].GetErrorYlow(ip), mugraphs[1].GetErrorYhigh(ip), mugraphs[0].GetY()[ip], -mugraphs[0].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip))
+            table += '& %.0f        & $%.2f_{%+.2f}^{%+.2f}$ & $%.2f_{%+.2f}^{%+.2f}$ \\\\\n' % ((binning[ip] + binning[ip + 1]) * 0.5, mugraphs[1].GetY()[ip], -mugraphs[1].GetErrorYlow(ip), mugraphs[1].GetErrorYhigh(ip), mugraphs[0].GetY()[ip], -mugraphs[0].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip))
             indent = '                            '
 
         ip = npoi - 1
         table += indent
-        table += '& $\geq %.0f$ & %.2f & %+.2f/%+.2f & %.2f & %+.2f/%+.2f \\\\\n' % ((binning[ip] + binning[ip + 1]) * 0.5, mugraphs[1].GetY()[ip], -mugraphs[1].GetErrorYlow(ip), mugraphs[1].GetErrorYhigh(ip), mugraphs[0].GetY()[ip], -mugraphs[0].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip))
+        table += '& $\geq %.0f$ & $%.2f_{%+.2f}^{%+.2f}$ & $%.2f_{%+.2f}^{%+.2f}$ \\\\\n' % ((binning[ip] + binning[ip + 1]) * 0.5, mugraphs[1].GetY()[ip], -mugraphs[1].GetErrorYlow(ip), mugraphs[1].GetErrorYhigh(ip), mugraphs[0].GetY()[ip], -mugraphs[0].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip))
 
     else:
         for ip in range(0, npoi - 1):
             table += indent
-            table += '& %.0f        & %+.2f/%+.2f & %+.2f/%+.2f \\\\\n' % ((binning[ip] + binning[ip + 1]) * 0.5, -mugraphs[1].GetErrorYlow(ip), mugraphs[1].GetErrorYhigh(ip), -mugraphs[0].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip))
+            table += '& %.0f        & %+.2f/%+.2f & %+.2f/%+.2f \\\\\n' % ((binning[ip] + binning[ip + 1]) * 0.5, mugraphs[1].GetErrorYhigh(ip), -mugraphs[1].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip), -mugraphs[0].GetErrorYlow(ip))
             indent = '                            '
 
         ip = npoi - 1
         table += indent
-        table += '& $\geq %.0f$ & %+.2f/%+.2f & %+.2f/%+.2f \\\\\n' % ((binning[ip] + binning[ip + 1]) * 0.5, mugraphs[1].GetErrorYlow(ip), mugraphs[1].GetErrorYhigh(ip), -mugraphs[0].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip))
+        table += '& $\geq %.0f$ & %+.2f/%+.2f & %+.2f/%+.2f \\\\\n' % ((binning[ip] + binning[ip + 1]) * 0.5, mugraphs[1].GetErrorYhigh(ip), mugraphs[1].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip), -mugraphs[0].GetErrorYlow(ip))
 
 print table
 

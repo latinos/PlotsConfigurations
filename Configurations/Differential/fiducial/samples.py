@@ -31,6 +31,7 @@ except NameError:
 
 mcProduction = 'Autumn18_102X_nAODv5_Full2018v5'
 #mcProduction = 'Fall2017_102X_nAODv5_SigOnly_Full2017v5'
+altmcProduction = 'Summer16_102X_nAODv5_SigOnly_Full2016v5'
 
 mcSteps = 'MCGenOnly'
 
@@ -47,6 +48,7 @@ def makeMCDirectory(var=''):
         return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
 
 mcDirectory = makeMCDirectory()
+altmcDirectory = os.path.join(treeBaseDir, altmcProduction, mcSteps)
 
 #########################################
 ############ MC COMMON ##################
@@ -67,9 +69,21 @@ samples['ggH_hww'] = {
     'linesToAdd': ['.L %s/Differential/weight2MINLO.cc+' % configurations]
 }
 
+samples['ggH_hwwalt'] = {
+    'name': nanoGetSampleFiles(altmcDirectory, 'GluGluHToWWTo2L2NuAMCNLO_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 3
+}
+
 ############ VBF H->WW ############
 samples['qqH_hww'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2NuPowheg_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 3
+}
+
+samples['qqH_hwwalt'] = {
+    'name': nanoGetSampleFiles(altmcDirectory, 'VBFHToWWTo2L2NuAMCNLO_M125'),
     'weight': mcCommonWeight,
     'FilesPerJob': 3
 }
@@ -111,3 +125,5 @@ samples['ttH_hww'] = {
 #    'weight': mcCommonWeight,
 #    'FilesPerJob': 1
 #}
+
+samples = {'ggH_hwwalt': samples['ggH_hwwalt'], 'qqH_hwwalt': samples['qqH_hwwalt']}

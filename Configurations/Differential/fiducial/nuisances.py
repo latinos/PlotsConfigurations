@@ -1,5 +1,29 @@
-from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
-HiggsXS = HiggsXSection()
+try:
+    from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
+    HiggsXS = HiggsXSection()
+
+except ImportError:
+    import os
+    import sys
+
+    path = os.path.abspath(__file__)
+    for _ in range(6):
+        path = os.path.dirname(path)
+    cmssw_base = path
+
+    sys.path.append(cmssw_base + '/python')
+    current_cmssw_base = os.environ['CMSSW_BASE']
+    os.environ['CMSSW_BASE'] = cmssw_base
+
+    from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
+    HiggsXS = HiggsXSection()    
+
+    os.environ['CMSSW_BASE'] = current_cmssw_base
+
+try:
+    nuisances
+except NameError:
+    nuisances = {}
 
 #nuisances['PS']  = {
 #    'name': 'PS',
@@ -36,6 +60,7 @@ nuisances['pdf_Higgs_gg'] = {
     'name': 'pdf_Higgs_gg',
     'samples': {
         'ggH_hww': valuesggh,
+        'ggH_hwwalt': valuesggh,
         'ggZH_hww': valuesggzh,
         'bbH_hww': valuesbbh
     },
@@ -61,6 +86,7 @@ nuisances['pdf_Higgs_qqbar'] = {
     'type': 'lnN',
     'samples': {
         'qqH_hww': valuesqqh,
+        'qqH_hwwalt': valuesqqh,
         'WH_hww': valueswh,
         'ZH_hww': valueszh,
     },
@@ -95,6 +121,7 @@ for name, vname in thus:
         'type': 'shape',
         'samples': {
           'ggH_hww': updown,
+          'ggH_hwwalt': updown
         }
     }
 
@@ -106,6 +133,7 @@ nuisances['QCDscale_qqH'] = {
     'name': 'QCDscale_qqH', 
     'samples': {
         'qqH_hww': values,
+        'qqH_hwwalt': values,
     },
     'type': 'lnN'
 }
