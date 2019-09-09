@@ -43,6 +43,16 @@ mkdir shapes
 
 This `restructure_input.py` is the most critical and most convoluted part of the differential analysis configuration. It sets up the sample and category merging schemes and executes merging, propagating systematic variations of individual samples / categories into the merged products. The script is mostly self-contained. The only external dependency is to the signal renormalization factor files, which are generated with `tools/renormalize_theoretical.py` for each year separately.
 
+## Special hacks for 2017
+
+Some samples are too small in the 2017 configuration, making the fit unstable. Fortunately it is acceptable to just copy the corresponding histograms from the 2018 configurations for all of the problematic samples. Do the following before running the preprocessing command:
+```
+python add_ps_variation.py rootFile_merged/plots_ggHDifferential2017_ALL_WW.root ../ggH2018/rootFile_merged/plots_ggHDifferential2018_ALL_WW.root WW UE_CP5
+python add_ps_variation.py rootFile_merged/plots_ggHDifferential2017_ALL_ggH_hww.root ../ggH2018/rootFile_merged/plots_ggHDifferential2018_ALL_ggH_hww.root ggH_hww PS
+python add_ps_variation.py rootFile_merged/plots_ggHDifferential2017_ALL_qqH_hww.root ../ggH2018/rootFile_merged/plots_ggHDifferential2018_ALL_qqH_hww.root qqH_hww PS
+python copy_dy.py ../ggH2018/rootFile_merged/plots_ggHDifferential2018_ALL_DY.root rootFile_merged/plots_ggHDifferential2017_ALL_DY.root 59.74 41.53
+```
+
 Making datacards
 ================
 
@@ -92,6 +102,27 @@ then
   text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose --PO map=.*/.*H_hww_NJ_0:r_0[1.,-10.,10.] --PO map=.*/.*H_hww_NJ_1:r_1[1.,-10.,10.] --PO map=.*/.*H_hww_NJ_2:r_2[1.,-10.,10.] --PO map=.*/.*H_hww_NJ_3:r_3[1.,-10.,10.] --PO map=.*/.*H_hww_NJ_GE4:r_4[1.,-10.,10.] fullmodel.txt -o fullmodel.root
 fi
 ```
+
+Inclusive mu measurement (ggH tag)
+==================================
+
+The differential configurations include NJ>=2 cuts, to be combined with NJ=0 and =1 to perform the inclusive mu measurement. For this fit, we skip the preprocessing step and use the standard Latinos framework steps:
+```
+python ../tools/merge_for_inclusive.py $year shapes/plots_ggHInclusive${year}.root rootFile_merged/plots_ggHDifferential${year}_ALL_*.root
+mkDatacards.py --outputDirDatacard=unmerged_cards/inclusive --inputFile=shapes/plots_ggHInclusive${year}.root --structureFile=../tools/structure_inclusive.py
+../tools/fitting/make_inclusive_card.sh (2016|2017|2018|combination)
+```
+
+Inclusive mu measurement (no tag)
+==================================
+
+An inclusive mu fit without overlap resolution against VH and VBF tags can be constructed simply by running `text2workspace.py` with no options to the `fullmodel_unreg.txt` data card.
+
+Gen-only plots configuration
+============================
+
+For the cross section interpretation of the fit results and multiple other purposes, there is a `fiducial` plot configuration under this directory. The configuration is light-weight enough to not need batch splitting at all. Some of the plotting scripts below assume that this configuration has been run and there exists a ROOT file named `fiducial/rootFile/plots_Fiducial.root`.
+
 
 Making plots
 ============

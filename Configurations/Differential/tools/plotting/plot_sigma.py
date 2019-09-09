@@ -42,61 +42,8 @@ htotals = {}
 if config in ['fiducial', 'postfit']:
     source = ROOT.TFile.Open('%s/fiducial/rootFile/plots_Fiducial.root' % common.confdir)
 
-    sys.path.append('%s/fiducial' % common.confdir)
-    from nuisances import nuisances
-
-    def get_histograms(obs, prods):
-        nominals = {}
-        for prod in prods:
-            phist = source.Get('fiducial/%s/histo_%s' % (obs, prod))
-
-            nominals[prod] = phist
-            phist.SetDirectory(0)
-        
-        htotal = nominals[prods[0]].Clone('total_%s' % obs)
-        htotal.SetDirectory(0)
-        for prod in prods[1:]:
-            htotal.Add(nominals[prod])
-
-        uncert = root_numpy.array(htotal.GetSumw2()) # stat uncert squared
-        for nuis in nuisances.itervalues():
-            up = np.zeros_like(uncert)
-            down = np.zeros_like(uncert)
-            
-            if nuis['type'] == 'shape':
-                for prod in nuis['samples']:
-                    if prod not in prods:
-                        continue
-                    
-                    up += root_numpy.hist2array(source.Get('fiducial/%s/histo_%s_%sUp' % (obs, prod, nuis['name'])), include_overflow=True, copy=False)
-                    down += root_numpy.hist2array(source.Get('fiducial/%s/histo_%s_%sDown' % (obs, prod, nuis['name'])), include_overflow=True, copy=False)
-
-            elif nuis['type'] == 'lnN':
-                for prod, value in nuis['samples'].iteritems():
-                    if prod not in prods:
-                        continue
-                    
-                    nom = root_numpy.hist2array(nominals[prod], include_overflow=True, copy=False)
-                    if '/' in value:
-                        vdown, vup = map(float, value.split('/'))
-                        up += nom * vup
-                        down += nom * vdown
-                    else:
-                        value = float(value)
-                        up += nom * value
-                        down += nom / value
-    
-            up -= down
-            up *= 0.5
-            uncert += np.square(up)
-
-        htotal.GetSumw2().Set(len(uncert), array.array('d', uncert))
-
-        return nominals, htotal
-
-    
     for obs in ['ptH', 'njet']:
-        nominals, htotal = get_histograms(obs, allprods)
+        nominals, htotal = common.get_fiducial_histograms(source, obs, allprods)
         htotals[obs] = htotal
         
         for prods, title in productions:
@@ -121,7 +68,7 @@ if config in ['fiducial', 'postfit']:
         althtotals = {}
 
         for obs in ['ptH', 'njet']:
-            _, htotal = get_histograms(obs, altprods)
+            _, htotal = common.get_fiducial_histograms(source, obs, altprods)
             althtotals[obs] = htotal
             
     source.Close()

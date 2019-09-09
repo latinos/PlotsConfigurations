@@ -1,22 +1,20 @@
 import os
 import ROOT
 
+import common
+
 confdir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
 sigma = 0.
 
 source = ROOT.TFile.Open('%s/fiducial/rootFile/plots_Fiducial.root' % confdir)
 
-hdir = source.GetDirectory('fiducial/events')
+_, htotal = common.get_fiducial_histograms(source, 'events', ['ggH_hww', 'qqH_hww', 'WH_hww', 'ZH_hww', 'ggZH_hww', 'ttH_hww'])
 
-for hkey in hdir.GetListOfKeys():
-    hname = hkey.GetName()
-    if hname.endswith('Up') or hname.endswith('Down'):
-        continue
-    if 'hwwalt' in hname:
-        continue
+sigma = htotal.GetBinContent(1)
+sigmaerr = htotal.GetBinError(1)
 
-    sigma += hkey.ReadObj().GetBinContent(1)
+print '%.1f \pm %.1f' % (sigma, sigmaerr)
 
 source.Close()
 
