@@ -30,7 +30,7 @@ variables['FatJet_tau21'] = {   'name': 'CleanFatJet_tau21[0]',
                         }
 
 variables['nFatJet'] = {   'name': 'nCleanFatJet',      
-                        'range' : (5,0,4),  
+                        'range' : (5,0,5),  
                         'xaxis' : 'nCleanFatJet', 
                         'fold' : 3
                         }
@@ -38,7 +38,7 @@ variables['nFatJet'] = {   'name': 'nCleanFatJet',
 #jets 
 
 variables['nCleanJetNotFat'] = {   'name': 'nCleanJetNotFat',      
-                        'range' : (16,0,15),  
+                        'range' : (6,0,6),  
                         'xaxis' : 'nCleanJetNotFat', 
                         'fold' : 3
                         }

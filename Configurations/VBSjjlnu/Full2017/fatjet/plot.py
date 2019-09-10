@@ -164,8 +164,6 @@ plot['FakeQCD']  = {
             }
 
 
-
-
 plot['singleTop'] = {   
                  'nameHR' : 'singleTop',
                  'color': colors['kAzure']+1,   

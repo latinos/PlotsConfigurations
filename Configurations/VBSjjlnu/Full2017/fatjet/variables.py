@@ -13,13 +13,19 @@ variables['events']  = {   'name': '1',
 # FatJet variables
 variables['fatjet_pt'] = {   'name': 'CleanFatJet_pt[0]',      
                         'range' : (60,0,800),  
-                        'xaxis' : 'FatJet Pt GeV', 
+                        'xaxis' : 'FatJet Pt [GeV]', 
                         'fold' : 3
                         }
 
 variables['fatjet_eta'] = {   'name': 'abs(CleanFatJet_eta[0])',      
                         'range' : (50,0,2.5),  
                         'xaxis' : 'FatJet eta', 
+                        'fold' : 3
+                        }
+
+variables['fatjet_mass'] = {   'name': 'abs(CleanFatJet_mass[0])',      
+                        'range' : (60,50,150),  
+                        'xaxis' : 'FatJet mass [GeV]', 
                         'fold' : 3
                         }
 
@@ -53,7 +59,7 @@ variables['fatjet_minDRjets'] = {   'name': 'Min$(CleanJetNotFat_deltaR)',
                         }
 
 variables['fatjet_maxDRjets'] = {   'name': 'Max$(CleanJetNotFat_deltaR)',      
-                        'range' : (40,0,5),  
+                        'range' : (40,0,7),  
                         'xaxis' : 'FatJet max #DeltaR from jets', 
                         'fold' : 3
                         }
@@ -72,6 +78,20 @@ variables['nJets'] = {   'name': 'Sum$(CleanJet_pt[CleanJetNotFat_jetIdx] >= 30)
                         'xaxis' : 'nJets >= 30 GeV', 
                         'fold' : 3
                         }
+                        
+# Minimum pt 20 GeV in NanoGardening step
+variables['N_jets_central'] = {   'name': 'N_jets_central',      
+                        'range' : (10,0,10),  
+                        'xaxis' : '#jets between VBS jets', 
+                        'fold' : 3
+                        }
+
+
+variables['N_jets_forward'] = {   'name': 'Ht',      
+                        'range' : (10,0,10),  
+                        'xaxis' : '#jets outside VBS jets', 
+                        'fold' : 3
+                    }
 
 variables['Jet2_eta'] = {   'name': 'abs(CleanJet_eta[CleanJetNotFat_jetIdx[0]])',      
                         'range' : (50,0,5),  
@@ -164,16 +184,40 @@ variables['MET_pt'] = {   'name': 'MET_pt',
                         'fold' : 3
                         }
 
+variables['recoMET'] = {   'name': 'recoMET',      
+                        'range' : (60,0,300),  
+                        'xaxis' : 'recoMET', 
+                        'fold' : 3
+                        }
+
+variables['recoMET_pz'] = {   'name': 'recoMET_pz',      
+                        'range' : (60,-700,700),  
+                        'xaxis' : 'recoMET pz', 
+                        'fold' : 3
+                        }
+                        
+variables['recoMET_nearlep'] = {   'name': 'recoMET_nearlep',      
+                        'range' : (60,0,300),  
+                        'xaxis' : 'recoMET (close lep)', 
+                        'fold' : 3
+                        }
+
+variables['recoMET_pz_nearlep'] = {   'name': 'recoMET_pz_nearlep',      
+                        'range' : (60,-700,700),  
+                        'xaxis' : 'recoMET_pz (close lep)', 
+                        'fold' : 3
+                        }
+
 ################################
 #### VBS variables
 
-variables["vbs_index_high"] = {   'name': 'VBS_jets[0]',      
+variables["vbs_index_high"] = {   'name': 'VBS_jets_maxmjj[0]',      
                         'range' : (10,0,10),  
                         'xaxis' : 'Index leading VBS jet', 
                         'fold' : 3
                         }
 
-variables["vbs_index_low"] = {   'name': 'VBS_jets[1]',      
+variables["vbs_index_low"] = {   'name': 'VBS_jets_maxmjj[1]',      
                         'range' : (10,0,10),  
                         'xaxis' : 'Index trailing VBS jet', 
                         'fold' : 3
@@ -251,6 +295,18 @@ variables['Mww'] = {   'name': 'Mww',
                         'fold' : 3
                         }
 
+variables['Mw_lep_reco'] = {   'name': 'Mw_lep',      
+                        'range' : (50,0,200),  
+                        'xaxis' : 'Mass W leptonic', 
+                        'fold' : 3
+                        }
+
+variables['Mtw_lep'] = {   'name': 'Mtw_lep',      
+                        'range' : (60,0,300),  
+                        'xaxis' : 'Mass T W leptonic', 
+                        'fold' : 3
+                        }
+
 variables['R_ww'] = {   'name': 'R_ww',      
                         'range' : (80,0,80),  
                         'xaxis' : 'R_ww', 
@@ -285,5 +341,13 @@ variables['Centr_ww'] = {   'name': 'Centr_ww',
 variables['Ht'] = {   'name': 'Ht',      
                         'range' : (60,0,1800),  
                         'xaxis' : 'Ht', 
+                        'fold' : 3
+                        }
+
+# Check variables
+
+variables['mll'] = {   'name': 'mll',      
+                        'range' : (60,0,300),  
+                        'xaxis' : 'Invariant mass of two leptons', 
                         'fold' : 3
                         }
