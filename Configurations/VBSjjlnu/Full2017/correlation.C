@@ -68,9 +68,12 @@ TMVA::DataLoader* dataloader = new TMVA::DataLoader("dataset") ;
  Double_t signalWeight     = 1.0;
  Double_t backgroundWeight = 1.0;
 
- dataloader->SetInputTrees(signal1, background2, signalWeight, backgroundWeight );
- dataloader->SetSignalWeightExpression    ("XSWeight*SFweight*GenLepMatch*METFilter_MC");
- //dataloader->SetBackgroundWeightExpression("XSWeight*puWeight*                   TriggerEffWeight_1l*                   Lepton_RecoSF[0]*               EMTFbug_veto*Lepton_tightElectron_mvaFall17V2Iso_WP90_IdIsoSF[0]*                Lepton_tightMuon_cut_Tight_HWWW_IdIsoSF[0]*(Lepton_isTightElectron_mvaFall17V2Iso_WP90[0]>0.5 || Lepton_isTightMuon_cut_Tight_HWWW[0]>0.5)*PrefireWeight*btagSF*Lepton_genmatched[0]*METFilter_MC");
+ 
+ //dataloader->SetInputTrees(signal1, background2, signalWeight, backgroundWeight );
+ dataloader->SetSignalTree(signal1,signalWeight);
+ dataloader->SetBackgroundTree(background2,backgroundWeight);
+ dataloader->SetSignalWeightExpression    ("XSWeight*puWeight*TriggerEffWeight_1l*Lepton_RecoSF[0]*EMTFbug_veto*Lepton_tightElectron_mvaFall17V2Iso_WP90_IdIsoSF[0]*Lepton_tightMuon_cut_Tight_HWWW_IdIsoSF[0]*(Lepton_isTightElectron_mvaFall17V2Iso_WP90[0]>0.5 || Lepton_isTightMuon_cut_Tight_HWWW[0]>0.5)*PrefireWeight*btagSF*Lepton_genmatched[0]*METFilter_MC");
+ //dataloader->SetBackgroundWeightExpression("XSWeight*puWeight*                   TriggerEffWeight_1l*                   Lepton_RecoSF[0]*                   EMTFbug_veto*Lepton_tightElectron_mvaFall17V2Iso_WP90_IdIsoSF[0]*                Lepton_tightMuon_cut_Tight_HWWW_IdIsoSF[0]*(Lepton_isTightElectron_mvaFall17V2Iso_WP90[0]>0.5 || Lepton_isTightMuon_cut_Tight_HWWW[0]>0.5)*PrefireWeight*btagSF*Lepton_genmatched[0]*METFilter_MC");
 
 
 //si possono defire dei tagli (analoghi a quelli che applichi alle tue NTuple), ma anche questo è opzionale e puoi lasciare a 1
