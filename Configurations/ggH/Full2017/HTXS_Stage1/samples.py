@@ -250,8 +250,8 @@ if os.path.exists('HTXS_stage1_categories.py') :
 for cat,num in HTXSStage1_1Categories.iteritems():
   ## ggH
   if 'GG2H_' in cat:
-    samples['ggH_hww_'+cat.replace('GG2H_','')]  = {  'name': getSampleFiles(mcDirectory,'GluGluHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'),
-                                                      'weight': mcCommonWeight+'*(HTXS_stage_1_1_'+cat+'_pTjet30GeV=='+str(num)+')',
+    samples['ggH_hww_'+cat.replace('GG2H_','')]  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGluHToWWTo2L2NuPowheg_M125'),
+                                                      'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')',
                                                       'suppressNegative' :['all'],
                                                       'suppressNegativeNuisances' :['all'],
                                                    }
@@ -261,11 +261,11 @@ for cat,num in HTXSStage1_1Categories.iteritems():
 #                                                     'suppressNegative' :['all'],
 #                                                     'suppressNegativeNuisances' :['all'],
 #                                                   }
-
+'''
   ## VBF and VH had.
   elif 'QQ2HQQ_' in cat:
-    samples['qqH_hww_'+cat.replace('QQ2HQQ_','')]  = {  'name' : getSampleFiles(mcDirectory,'VBFHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'),
-                                                        'weight': mcCommonWeight+'*(HTXS_stage_1_1_'+cat+'_pTjet30GeV=='+str(num)+')' ,
+    samples['qqH_hww_'+cat.replace('QQ2HQQ_','')]  = {  'name' : nanoGetSampleFiles(mcDirectory,'VBFHToWWTo2L2NuPowheg_M125'),
+                                                        'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')' ,
                                                         'suppressNegative' :['all'],
                                                         'suppressNegativeNuisances' :['all'],
                                                      }
@@ -370,7 +370,7 @@ for cat,num in HTXSStage1_1Categories.iteritems():
 #signals.append('qqH_hww')
 
 ############# ZH H->WW ############
-'''
+
 samples['ZH_hww'] = {
     'name':   nanoGetSampleFiles(mcDirectory, 'HZJ_HToWWTo2L2Nu_M125'),
     'weight': mcCommonWeight,

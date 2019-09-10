@@ -158,46 +158,7 @@ if config == 'postfit':
 
         source.Close()
 
-canvas = ROOT.TCanvas('c1', 'c1', 600, 600)
-canvas.Divide(1, 2)
-
-cmsLabel = common.makeCMS()
-lumiLabel = common.makeLumi()
-
-cmsLabel.AddText('#splitline{CMS}{#font[52]{Preliminary}}')
-lumiLabel.AddText('137.0 fb^{-1} (13 TeV)')
-
-ydmin = 0.305
-yrmax = 0.3
-
-distpad = canvas.cd(1)
-distpad.SetPad(0., 0., 1., 1.)
-distpad.SetMargin(common.xmin, 1. - common.xmax, ydmin, 1. - common.ymax)
-distpad.SetLogy(True)
-
-ratiopad = canvas.cd(2)
-ratiopad.SetPad(common.xmin, common.ymin, common.xmax, yrmax)
-ratiopad.SetMargin(0., 0., 0., 0.)
-if config == 'postfit':
-    ratiopad.SetGridy(True)
-
-xaxis = ROOT.TGaxis(common.xmin, common.ymin, common.xmax, common.ymin, 0., 1., 210, 'S')
-xaxis.SetTitleOffset(ROOT.gStyle.GetTitleOffset('X') * 0.8)
-xaxis.SetLabelFont(42)
-xaxis.SetTitleFont(42)
-xaxis.SetTitleSize(0.048)
-xaxis.SetLabelSize(0.875 * 0.048)
-xaxis.SetTickLength(0.01)
-xaxis.SetGridLength(0.)
-
-raxis = ROOT.TGaxis(common.xmin, common.ymin, common.xmin, yrmax, 0., 1., 205, 'S')
-raxis.SetTitleOffset(ROOT.gStyle.GetTitleOffset('Y') * 0.8)
-raxis.SetTitleSize(0.036)
-raxis.SetLabelFont(42)
-raxis.SetTitleFont(42)
-raxis.SetLabelSize(0.875 * 0.036)
-raxis.SetTickLength(0.03)
-raxis.SetGridLength(0.)
+canvas = common.makeRatioCanvas(600, 600)
 
 for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
     stack = ROOT.THStack('dist', '')
@@ -207,8 +168,7 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
     
     for prods, title in productions:
         color = ROOT.TColor.GetColor(prod_colors[title])
-        tcolor = ROOT.gROOT.GetColor(color)
-        lcolor = ROOT.TColor.GetColor(tcolor.GetRed() * 0.9, tcolor.GetGreen() * 0.9, tcolor.GetBlue() * 0.9)
+        lcolor = common.get_line_color(color)
 
         hist = histograms[(obs, title)]
 
@@ -232,7 +192,7 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
     for _, title in reversed(productions):
         legend.AddEntry(histograms[(obs, title)], title, 'LF')
 
-    distpad.cd()
+    distpad = canvas.cd(1)
 
     # uncertainty
     total = htotals[obs]
@@ -341,10 +301,10 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
     legend.Draw()
     distpad.Update()
 
-    uxmin = distpad.GetUxmin()
-    uxmax = distpad.GetUxmax()
+    ratiopad = canvas.cd(2)
 
-    ratiopad.cd()
+    if config == 'postfit':
+        ratiopad.SetGridy(True)
 
     rframe = total.Clone('rframe')
     rframe.Reset()
@@ -381,7 +341,7 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
     ratiopad.Update()
 
     if config in ['fiducial', 'prefit']:
-        raxis.SetTitle('fractions')
+        canvas.raxis.SetTitle('fractions')
         rframe.SetMinimum(0.)
         rframe.SetMaximum(1.)
 
@@ -430,18 +390,17 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
             edge = altrhist.GetXaxis().GetBinUpEdge(ix)
             binbound.DrawLine(edge, rmin, edge, rmax)
         
-        raxis.SetTitle('Obs. / pred.')
-        raxis.SetWmin(rmin)
-        raxis.SetWmax(rmax)
+        canvas.raxis.SetTitle('Obs. / pred.')
+        canvas.raxis.SetWmin(rmin)
+        canvas.raxis.SetWmax(rmax)
 
-    distpad.cd()
-
-    canvas.cd()
-
-    xaxis.SetTitle(xtitle)
+    canvas.xaxis.SetTitle(xtitle)
     
     if obs == 'njet':
-        xaxis.SetLabelSize(0.)
+        canvas.xaxis.SetLabelSize(0.)
+
+        canvas.cd()
+
         latex = ROOT.TLatex(0., 0., '')
         latex.SetTextFont(42)
         latex.SetTextSize(0.048)
@@ -449,24 +408,9 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
         for il, label in enumerate(['0', '1', '2', '3', '#geq 4']):
             latex.DrawLatex(common.xmin + (common.xmax - common.xmin) * (0.5 + il) / 5., common.ymin - 0.02, label)
 
-    xaxis.SetWmin(uxmin)
-    xaxis.SetWmax(uxmax)
-    xaxis.Draw()
-
-    raxis.Draw()
-
-    canvas.Update()
-
-    canvas.cd()
-
-    cmsLabel.Draw()
-    lumiLabel.Draw()
-
-    canvas.Update()
-    
     if config == 'fiducial':
-        canvas.Print('sigma_%s.pdf' % obs)
+        canvas.printout('sigma_%s.pdf' % obs)
     elif config == 'prefit':
-        canvas.Print('prefit_%s.pdf' % obs)
+        canvas.printout('prefit_%s.pdf' % obs)
     elif config == 'postfit':
-        canvas.Print('observed_sigma_%s.pdf' % obs)
+        canvas.printout('observed_sigma_%s.pdf' % obs)
