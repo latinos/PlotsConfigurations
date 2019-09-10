@@ -1,6 +1,7 @@
 import os
 import sys
 import array
+import types
 import numpy as np
 import ROOT
 import root_numpy
@@ -134,3 +135,86 @@ def makeCMS():
 ## Lumi
 def makeLumi():
     return makeText(0.6, ymax, xmax, 1., align=33)
+
+## Canvas with two pads
+def makeRatioCanvas(width=600, height=600):
+    canvas = ROOT.TCanvas('c1', 'c1', width, height)
+    
+    canvas.cmsLabel = makeCMS()
+    canvas.lumiLabel = makeLumi()
+    
+    canvas.cmsLabel.AddText('#splitline{CMS}{#font[52]{Preliminary}}')
+    canvas.lumiLabel.AddText('137.0 fb^{-1} (13 TeV)')
+    
+    ydmin = 0.305
+    yrmax = 0.3
+
+    canvas.xaxis = ROOT.TGaxis(xmin, ymin, xmax, ymin, 0., 1., 210, 'S')
+    canvas.xaxis.SetTitleOffset(ROOT.gStyle.GetTitleOffset('X') * 0.8)
+    canvas.xaxis.SetLabelFont(42)
+    canvas.xaxis.SetTitleFont(42)
+    canvas.xaxis.SetTitleSize(0.048)
+    canvas.xaxis.SetLabelSize(0.875 * 0.048)
+    canvas.xaxis.SetTickLength(0.01)
+    canvas.xaxis.SetGridLength(0.)
+    
+    canvas.raxis = ROOT.TGaxis(xmin, ymin, xmin, yrmax, 0., 1., 205, 'S')
+    canvas.raxis.SetTitleOffset(ROOT.gStyle.GetTitleOffset('Y') * 0.8)
+    canvas.raxis.SetTitleSize(0.036)
+    canvas.raxis.SetLabelFont(42)
+    canvas.raxis.SetTitleFont(42)
+    canvas.raxis.SetLabelSize(0.875 * 0.036)
+    canvas.raxis.SetTickLength(0.03)
+    canvas.raxis.SetGridLength(0.)
+
+    def printout(self, path):
+        try:
+            os.makedirs(os.path.dirname(path))
+        except OSError:
+            pass
+
+        distpad = self.GetPad(1)
+
+        distpad.Update()
+        uxmin = distpad.GetUxmin()
+        uxmax = distpad.GetUxmax()
+
+        self.cd()
+
+        self.xaxis.SetWmin(uxmin)
+        self.xaxis.SetWmax(uxmax)
+        self.xaxis.Draw()
+
+        self.raxis.Draw()
+
+        self.cmsLabel.Draw()
+        self.lumiLabel.Draw()
+
+        self.Update()
+
+        self.Print(path)
+
+    def clear(self):
+        self.Clear()
+
+        self.Divide(1, 2)
+
+        distpad = self.GetPad(1)
+        distpad.SetPad(0., 0., 1., 1.)
+        distpad.SetMargin(xmin, 1. - xmax, ydmin, 1. - ymax)
+        
+        ratiopad = self.GetPad(2)
+        ratiopad.SetPad(xmin, ymin, xmax, yrmax)
+        ratiopad.SetMargin(0., 0., 0., 0.)
+
+    canvas.printout = types.MethodType(printout, canvas)
+    canvas.clear = types.MethodType(clear, canvas)
+
+    canvas.clear()
+
+    return canvas
+
+
+def get_line_color(color):
+    tcolor = ROOT.gROOT.GetColor(color)
+    return ROOT.TColor.GetColor(tcolor.GetRed() * 0.9, tcolor.GetGreen() * 0.9, tcolor.GetBlue() * 0.9)

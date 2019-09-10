@@ -131,6 +131,7 @@ Directory `tools/plotting` contains scripts for plotting:
 
 - `dyreweight.py`: Draw the rather-obscure DY reweighting function.
 - `selectionvars.py`: Draw the distributions of variables used for event selection. Used with `selectionvars` configuration subdirectory for Figure 3 of AN-2019/006.
+- `plot_distributions.py`: Draw the prefit and postfit distributions of fit shapes and other variables.
 - `responsematrix.py`: Draw the signal response matrix.
 - `binyields.py`: (Not used) Draw and print the prefit yields of signal and background in all CR and SR bins.
 - `plot_delta_scan.py`: Take the output of DeltaScan in dofit.sh and plot the mean of the global correlation coefficients as a function of the regularization strength delta.
