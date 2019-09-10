@@ -435,6 +435,7 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 }
 
 ##### Renormalization & factorization scales
+'''
 nuisances['WWresum0j']  = {
                 'name'  : 'CMS_hww_WWresum_0j',
                 'skipCMS' : 1,
@@ -502,7 +503,7 @@ nuisances['WWqscale2j']  = {
                 },
                'cuts'  : cuts2j
                 }
-
+'''
 ## Shape nuisance due to QCD scale variations for DY
 # LHE scale variation weights (w_var / w_nominal)
 # [0] is muR=0.50000E+00 muF=0.50000E+00

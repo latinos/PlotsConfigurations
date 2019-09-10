@@ -17,18 +17,19 @@ cuts['hww2l2v_13TeV'] = {
    'expr': 'sr',
     # Define the sub-categorization of sr
    'categories' : {
-       'hww2l2v_13TeV_of0j_pth0-10' : ' zeroJet && pTWW <= 10 ',
-       'hww2l2v_13TeV_of0j_pth10-200' : ' zeroJet && pTWW > 10 && pTWW <= 200 ',
-       'hww2l2v_13TeV_of1j_pth0-60' : ' oneJet && Alt$(CleanJet_pt[1],0)<30 && pTWW <= 60 ',
-       'hww2l2v_13TeV_of1j_pth60-120' : ' oneJet && Alt$(CleanJet_pt[1],0)<30 && pTWW > 60 && pTWW <= 120 ',
-       'hww2l2v_13TeV_of1j_pth120-200' : ' oneJet && Alt$(CleanJet_pt[1],0)<30 && pTWW > 120 && pTWW <= 200 ',
-       'hww2l2v_13TeV_of2j_lowmjj_pth0-60' : ' multiJet && mjj<350 && pTWW <= 60 ',
-       'hww2l2v_13TeV_of2j_lowmjj_pth60-120' : ' multiJet && mjj<350 && pTWW > 60 && pTWW <= 120 ',
-       'hww2l2v_13TeV_of2j_lowmjj_pth120-200' : ' multiJet && mjj<350 && pTWW > 120 && pTWW <= 200 ',
-       'hww2l2v_13TeV_of2j_mjj350-700' : ' multiJet && mjj > 350 && mjj < 700 ',
-       'hww2l2v_13TeV_of2j_mjjGT700' : ' multiJet && mjj > 700 ',
-    #   'hww2l2v_13TeV_of2j_mjjGT700_pthjj0-25' : ' multiJet && mjj > 700 && pthjj()<25',
-    #   'hww2l2v_13TeV_of2j_mjjGT700_pthjjGT25' : ' multiJet && mjj > 700 && pthjj()>25',
+  #     'hww2l2v_13TeV_of0j_pth0_10' : ' zeroJet && pTWW <= 10 ',
+  #     'hww2l2v_13TeV_of0j_pth10_200' : ' zeroJet && pTWW > 10 && pTWW <= 200 ',
+  #     'hww2l2v_13TeV_of1j_pth0_60' : ' oneJet && Alt$(CleanJet_pt[1],0)<30 && pTWW <= 60 ',
+  #     'hww2l2v_13TeV_of1j_pth60_120' : ' oneJet && Alt$(CleanJet_pt[1],0)<30 && pTWW > 60 && pTWW <= 120 ',
+  #     'hww2l2v_13TeV_of1j_pth120_200' : ' oneJet && Alt$(CleanJet_pt[1],0)<30 && pTWW > 120 && pTWW <= 200 ',
+  #     'hww2l2v_13TeV_of2j_lowmjj_pth0_60' : ' multiJet && mjj<350 && pTWW <= 60 ',
+  #     'hww2l2v_13TeV_of2j_lowmjj_pth60_120' : ' multiJet && mjj<=350 && pTWW > 60 && pTWW <= 120 ',
+       'hww2l2v_13TeV_of2j_lowmjj_pth120_200' : ' multiJet && mjj<=350 && pTWW > 120 && pTWW <= 200 ',
+  #     'hww2l2v_13TeV_of2j_mjj350_700_pthjj0_25' : ' multiJet && mjj > 350 && mjj <= 700 && pTHjjLT25',
+  #     'hww2l2v_13TeV_of2j_mjj350_700_pthjjGT25' : ' multiJet && mjj > 350 && mjj <= 700 && pTHjjGT25',
+  #      'hww2l2v_13TeV_of2j_mjjGT700_pthjj0_25' : ' multiJet && mjj > 700 && pTHjjLT25',
+  #     'hww2l2v_13TeV_of2j_mjjGT700_pthjjGT25' : ' multiJet && mjj > 700 && pTHjjGT25', 
+  #     'hww2l2v_13TeV_of_pthGT200' : ' pTWW > 200 ',
    }
 }
 

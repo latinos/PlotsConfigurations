@@ -126,12 +126,24 @@ structure['ggH'] = {
                   'isData'   : 0    
                   }
 
-structure['ggH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
+if os.path.exists('HTXS_stage1_categories.py') :
+  handle = open('HTXS_stage1_categories.py','r')
+  exec(handle)
+  handle.close()
 
-structure['qqH_hww'] = {
+for cat,num in HTXSStage1_1Categories.iteritems():
+
+    structure['ggH_hww_'+cat.replace('GG2H_','')] = {
+        'isSignal' : 1,
+        'isData'   : 0    
+    }
+
+    structure['qqH_hww_'+cat.replace('QQ2HQQ_','')] = {
+        'isSignal' : 1,
+        'isData'   : 0    
+    }
+
+structure['ggH_hww'] = {
                   'isSignal' : 1,
                   'isData'   : 0    
                   }

@@ -1,6 +1,7 @@
 import os
 import copy
 import inspect
+from ROOT import TLorentzVector
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
 configurations = os.path.dirname(configurations) # ggH2016
@@ -17,15 +18,15 @@ mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 eleWP = 'mvaFall17V1Iso_WP90'
 muWP = 'cut_Tight_HWWW'
 
-def pthjj():
-    "Calculate pT of the H +jj final state for the high mjj STXS bin"
-    lep1=SetPtEtaPhiM(Lepton_pt[0],0,Lepton_phi[0],0)
-    lep2=SetPtEtaPhiM(Lepton_pt[1],0,Lepton_phi[1],0)
-    jet1=SetPtEtaPhiM(CleanJet_pt[0],0,CleanJet_phi[0],0)
-    jet2=SetPtEtaPhiM(CleanJet_pt[1],0,CleanJet_phi[1],0)
-    MET=SetPtEtaPhiM(PuppiMET_pt,0,PuppiMET_phi,0)
-    hjj=lep1+lep2+jet1+jet2+MET
-    return hjj.Pt()
+aliases['pTHjjLT25'] = {
+    'expr': 'compute_pTHjj(Lepton_pt[0], Lepton_eta[0], Lepton_phi[0], Lepton_pdgId[0], Lepton_pt[1], Lepton_eta[1], Lepton_phi[1], Lepton_pdgId[1], CleanJet_pt[0], CleanJet_eta[0], CleanJet_phi[0], Jet_mass[CleanJet_jetIdx[0]], CleanJet_pt[1], CleanJet_eta[1], CleanJet_phi[1], Jet_mass[CleanJet_jetIdx[1]], PuppiMET_pt, PuppiMET_phi)<=25',
+    'linesToAdd' : ['.L /afs/cern.ch/work/a/alvareza/public/CMSSW_9_4_9/src/PlotsConfigurations/Configurations/ggH/Full2017/HTXS_Stage1/compute_pTHjj.C+']
+}
+
+aliases['pTHjjGT25'] = {
+    'expr': 'compute_pTHjj(Lepton_pt[0], Lepton_eta[0], Lepton_phi[0], Lepton_pdgId[0], Lepton_pt[1], Lepton_eta[1], Lepton_phi[1], Lepton_pdgId[1], CleanJet_pt[0], CleanJet_eta[0], CleanJet_phi[0], Jet_mass[CleanJet_jetIdx[0]], CleanJet_pt[1], CleanJet_eta[1], CleanJet_phi[1], Jet_mass[CleanJet_jetIdx[1]], PuppiMET_pt, PuppiMET_phi)>25',
+    'linesToAdd' : ['.L /afs/cern.ch/work/a/alvareza/public/CMSSW_9_4_9/src/PlotsConfigurations/Configurations/ggH/Full2017/HTXS_Stage1/compute_pTHjj.C+']
+}
 
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
