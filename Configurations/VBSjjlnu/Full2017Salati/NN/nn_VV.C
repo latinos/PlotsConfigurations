@@ -86,7 +86,7 @@ TMVA::DataLoader* dataloader = new TMVA::DataLoader("datasetVV") ;
 
 
 //TMVA ha diversi metodi per la classificazione, 
- factory->BookMethod( dataloader, TMVA::Types::kCFMlpANN, "CF_ANN", "HiddenLayers=10,10,10:NCycles=2000");
+ factory->BookMethod( dataloader, TMVA::Types::kCFMlpANN, "CF_ANN", "HiddenLayers=10,10,10:NCycles=3000");
  
  factory->TrainAllMethods();
 

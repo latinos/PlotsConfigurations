@@ -46,10 +46,10 @@ TMVA::DataLoader* dataloader = new TMVA::DataLoader("dataset_top") ;
  signal1->Add("/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv5_SigOnly_Full2017v5/MCl1loose2017v5__MCCorr2017v5__VBSjjlnuSkim2017v3__VBSjjlnuSkim2017v3_fatjet/nanoLatino_WpTo2J_ZTo2L__part*");
  signal1->Add("/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv5_SigOnly_Full2017v5/MCl1loose2017v5__MCCorr2017v5__VBSjjlnuSkim2017v3__VBSjjlnuSkim2017v3_fatjet/nanoLatino_WpTo2J_WmToLNu__part*");
  signal1->Add("/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv5_SigOnly_Full2017v5/MCl1loose2017v5__MCCorr2017v5__VBSjjlnuSkim2017v3__VBSjjlnuSkim2017v3_fatjet/nanoLatino_WmToLNu_ZTo2J__part*");
- /*signal1->Add("/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv5_SigOnly_Full2017v5/MCl1loose2017v5__MCCorr2017v5__VBSjjlnuSkim2017v3__VBSjjlnuSkim2017v3_fatjet/nanoLatino_WmToLNu_WmTo2J__part*");
+ signal1->Add("/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv5_SigOnly_Full2017v5/MCl1loose2017v5__MCCorr2017v5__VBSjjlnuSkim2017v3__VBSjjlnuSkim2017v3_fatjet/nanoLatino_WmToLNu_WmTo2J__part*");
  signal1->Add("/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv5_SigOnly_Full2017v5/MCl1loose2017v5__MCCorr2017v5__VBSjjlnuSkim2017v3__VBSjjlnuSkim2017v3_fatjet/nanoLatino_WmTo2J_ZTo2L__part*");
  signal1->Add("/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv5_SigOnly_Full2017v5/MCl1loose2017v5__MCCorr2017v5__VBSjjlnuSkim2017v3__VBSjjlnuSkim2017v3_fatjet/nanoLatino_WpToLNu_WpTo2J__part*");
-*/
+
 //Wjets
  TChain *background2 = new TChain("Events");
  background2->Add("/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__VBSjjlnuSkim2017v3__VBSjjlnuSkim2017v3_fatjet/nanoLatino_TTToSemiLeptonic__part*");
@@ -58,10 +58,10 @@ TMVA::DataLoader* dataloader = new TMVA::DataLoader("dataset_top") ;
  background2->Add("/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__VBSjjlnuSkim2017v3__VBSjjlnuSkim2017v3_fatjet/nanoLatino_TTZjets__part*");
  background2->Add("/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__VBSjjlnuSkim2017v3__VBSjjlnuSkim2017v3_fatjet/nanoLatino_ST_s-channel__part*");
  background2->Add("/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__VBSjjlnuSkim2017v3__VBSjjlnuSkim2017v3_fatjet/nanoLatino_ST_t-channel_antitop__part*");
- /*background2->Add("/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__VBSjjlnuSkim2017v3__VBSjjlnuSkim2017v3_fatjet/nanoLatino_ST_t-channel_top__part*");
+ background2->Add("/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__VBSjjlnuSkim2017v3__VBSjjlnuSkim2017v3_fatjet/nanoLatino_ST_t-channel_top__part*");
  background2->Add("/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__VBSjjlnuSkim2017v3__VBSjjlnuSkim2017v3_fatjet/nanoLatino_ST_tW_antitop__part*");
  background2->Add("/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__VBSjjlnuSkim2017v3__VBSjjlnuSkim2017v3_fatjet/nanoLatino_ST_tW_top__part*");
-*/
+
 
 //si possono definire dei pesi, ma è opzionale (puoi lasciare a 1)
  Double_t signalWeight     = 1.0;
@@ -84,7 +84,7 @@ TMVA::DataLoader* dataloader = new TMVA::DataLoader("dataset_top") ;
 
 //TMVA ha diersi metodi per la classificazione, io ho usato BDT. Non dovrebbe influenzare quello che ti interessa quindi lascia pure
  //factory->BookMethod( dataloader, TMVA::Types::kMLP, "MLP_ANN", "BatchSize=50:HiddenLayers=15,15:NCycles=200" );
-   factory->BookMethod( dataloader, TMVA::Types::kCFMlpANN, "CF_ANN", "HiddenLayers=16,8,4:NCycles=3000");
+   factory->BookMethod( dataloader, TMVA::Types::kCFMlpANN, "CF_ANN", "HiddenLayers=10,10,10:NCycles=3000");
  
  factory->TrainAllMethods();
 
