@@ -72,16 +72,14 @@ TMVA::DataLoader* dataloader = new TMVA::DataLoader("datasetW_BGFS") ;
  //dataloader->SetInputTrees(signal1, background2, signalWeight, backgroundWeight );
  dataloader->SetSignalTree(signal1,signalWeight);
  dataloader->SetBackgroundTree(background2,backgroundWeight);
- dataloader->SetSignalWeightExpression    ("XSWeight*puWeight*                   TriggerEffWeight_1l*                   Lepton_RecoSF[0]*                   EMTFbug_veto*Lepton_tightElectron_mvaFall17V2Iso_WP90_IdIsoSF[0]*                Lepton_tightMuon_cut_Tight_HWWW_IdIsoSF[0]*(Lepton_isTightElectron_mvaFall17V2Iso_WP90[0]>0.5 || Lepton_isTightMuon_cut_Tight_HWWW[0]>0.5)*PrefireWeight");
- dataloader->SetBackgroundWeightExpression("XSWeight*puWeight*                   TriggerEffWeight_1l*                   Lepton_RecoSF[0]*                   EMTFbug_veto*Lepton_tightElectron_mvaFall17V2Iso_WP90_IdIsoSF[0]*                Lepton_tightMuon_cut_Tight_HWWW_IdIsoSF[0]*(Lepton_isTightElectron_mvaFall17V2Iso_WP90[0]>0.5 || Lepton_isTightMuon_cut_Tight_HWWW[0]>0.5)*PrefireWeight");
-
+ dataloader->SetSignalWeightExpression    ("XSWeight*puWeight*                   TriggerEffWeight_1l*                   Lepton_RecoSF[0]*                   EMTFbug_veto*Lepton_tightElectron_mvaFall17V2Iso_WP90_IdIsoSF[0]*                Lepton_tightMuon_cut_Tight_HWWW_IdIsoSF[0]*(Lepton_isTightElectron_mvaFall17V2Iso_WP90[0]>0.5 || Lepton_isTightMuon_cut_Tight_HWWW[0]>0.5)*PrefireWeight*METFilter_MC");
+ dataloader->SetBackgroundWeightExpression("XSWeight*puWeight*                   TriggerEffWeight_1l*                   Lepton_RecoSF[0]*                   EMTFbug_veto*Lepton_tightElectron_mvaFall17V2Iso_WP90_IdIsoSF[0]*                Lepton_tightMuon_cut_Tight_HWWW_IdIsoSF[0]*(Lepton_isTightElectron_mvaFall17V2Iso_WP90[0]>0.5 || Lepton_isTightMuon_cut_Tight_HWWW[0]>0.5)*PrefireWeight*METFilter_MC");
+       
 
 //si possono defire dei tagli (analoghi a quelli che applichi alle tue NTuple), ma anche questo è opzionale e puoi lasciare a 1
  TCut mycuts = "(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0) && nLepton==1 && Lepton_pt[0]>30  && (  Lepton_isTightElectron_mvaFall17V2Iso_WP90[0] > 0.5  || Lepton_isTightMuon_cut_Tight_HWWW[0] > 0.5) && vbs_pt_high >= 30  && vbs_pt_low >= 30  && (vbs_eta_high <= 2.5 || vbs_eta_high >= 3.2 ) && (vbs_eta_low <= 2.5 || vbs_eta_low >= 3.2) && mjj_vbs >=300  && deltaeta_vbs >= 2  "; TCut mycutb = mycuts;
 //&& VBS_category == 0  
- dataloader->PrepareTrainingAndTestTree(mycuts, mycutb, "SplitMode=Random:NormMode=NumEvents:!V");
-
-
+ dataloader->PrepareTrainingAndTestTree(mycuts, mycutb, "nTrain_Signal=500:nTrain_Background=500:nTest_Signal=400:nTest_Background=500:SplitMode=Random:NormMode=NumEvents:!V");
 
 //METHODS
  factory->BookMethod( dataloader, TMVA::Types::kMLP, "MLP_ANN", "TrainingMethod=BFGS");
