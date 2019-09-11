@@ -22,6 +22,16 @@ cuts["fatjet_mu"] = 'abs(Lepton_pdgId[0])==13  \
                         && Lepton_pt[0] >= 30 \
                         '
 
+cuts["fatjet_ele_bveto"] = 'abs(Lepton_pdgId[0])==11 \
+                        && Lepton_pt[0] >= 40 \
+                        && bVeto    \
+                        '
+
+cuts["fatjet_mu_bveto"] = 'abs(Lepton_pdgId[0])==13  \
+                        && Lepton_pt[0] >= 30 \
+                        && bVeto   \
+                        '
+
 # cuts["fatjet_ele_nohorn"] = 'abs(Lepton_pdgId[0])==11 \
 #                         && Lepton_pt[0] >= 40 \
 #                         && (vbs_eta_high <= 2.5 || vbs_eta_high >= 3.2 )    \
@@ -39,10 +49,12 @@ cuts["fatjet_ele_looseVBS"] = 'abs(Lepton_pdgId[0])==11 \
                         && Lepton_pt[0] >= 40 \
                         && mjj_vbs >=300    \
                         && deltaeta_vbs >= 2  \
+                        && bVeto    \
                         '
 
 cuts["fatjet_mu_looseVBS"] = 'abs(Lepton_pdgId[0])==13 \
                         && Lepton_pt[0] >= 30 \
                         && mjj_vbs >=300    \
                         && deltaeta_vbs >= 2  \
+                        && bVeto    \
                         '

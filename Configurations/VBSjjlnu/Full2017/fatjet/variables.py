@@ -351,3 +351,10 @@ variables['mll'] = {   'name': 'mll',
                         'xaxis' : 'Invariant mass of two leptons', 
                         'fold' : 3
                         }
+
+variables['nvtx'] = {  'name': 'PV_npvs',
+                        'range': (60, 0,60),
+                        'xaxis': 'N. primary vertices',
+                        'fold': 3
+                }
+
