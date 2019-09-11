@@ -25,10 +25,10 @@ cuts['hww2l2v_13TeV'] = {
   #     'hww2l2v_13TeV_of2j_lowmjj_pth0_60' : ' multiJet && mjj<350 && pTWW <= 60 ',
   #     'hww2l2v_13TeV_of2j_lowmjj_pth60_120' : ' multiJet && mjj<=350 && pTWW > 60 && pTWW <= 120 ',
        'hww2l2v_13TeV_of2j_lowmjj_pth120_200' : ' multiJet && mjj<=350 && pTWW > 120 && pTWW <= 200 ',
-  #     'hww2l2v_13TeV_of2j_mjj350_700_pthjj0_25' : ' multiJet && mjj > 350 && mjj <= 700 && pTHjjLT25',
-  #     'hww2l2v_13TeV_of2j_mjj350_700_pthjjGT25' : ' multiJet && mjj > 350 && mjj <= 700 && pTHjjGT25',
-  #      'hww2l2v_13TeV_of2j_mjjGT700_pthjj0_25' : ' multiJet && mjj > 700 && pTHjjLT25',
-  #     'hww2l2v_13TeV_of2j_mjjGT700_pthjjGT25' : ' multiJet && mjj > 700 && pTHjjGT25', 
+  #     'hww2l2v_13TeV_of2j_mjj350_700_pthjj0_25' : ' multiJet && mjj > 350 && mjj <= 700 && pTHjj <=25',
+  #     'hww2l2v_13TeV_of2j_mjj350_700_pthjjGT25' : ' multiJet && mjj > 350 && mjj <= 700 && pTHjj  >25',
+  #     'hww2l2v_13TeV_of2j_mjjGT700_pthjj0_25' : ' multiJet && mjj > 700 && pTHjj <=25',
+  #     'hww2l2v_13TeV_of2j_mjjGT700_pthjjGT25' : ' multiJet && mjj > 700 && pTHjj > 25', 
   #     'hww2l2v_13TeV_of_pthGT200' : ' pTWW > 200 ',
    }
 }
