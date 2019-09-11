@@ -19,6 +19,9 @@ supercut = ' && '.join(_tmp)
 def addcut(name, exprs):
     cuts[name] = ' && '.join(exprs)
 
+
+## SIGNAL REGION
+
 _tmp = [
      'Sum$(CleanJet_pt>30.)>=2', #At least 2 jets
      'abs(CleanJet_eta[0])<2.5',
@@ -37,6 +40,8 @@ _tmp = [
 
 addcut('VH_2j_emu', _tmp)
 
+
+## CONTROL REGIONS 
 
 _tmp = [
      'Sum$(CleanJet_pt>30)>=2', #At least 2 jets
@@ -75,105 +80,9 @@ _tmp = [
 addcut('VH_2j_DYtautau', _tmp)
 
 
-################################
-# Jet_btagDeepB
-
-_tmp = [
-     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
-     'ptll > 30.',
-     'Alt$(CleanJet_pt[0],0)<30',
-     'bVeto',
-       ]
-
-#addcut('WW_0j_em', _tmp)
-
-_tmp = [
-     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
-     'ptll > 30.',
-     'Alt$(CleanJet_pt[0],0)>30',
-     'Alt$(CleanJet_pt[1],0)<30',
-      'bVeto',
-       ]
-
-#addcut('WW_1j_em', _tmp)
-
-_tmp = [
-     'Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13',
-     'ptll > 30.',
-     'Alt$(CleanJet_pt[0],0)<30',
-     'bVeto',
-       ]
-
-#addcut('SS_0j_em', _tmp)
-
-_tmp = [
-     'Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13',
-     'ptll > 30.',
-     'Alt$(CleanJet_pt[0],0)>30',
-     'Alt$(CleanJet_pt[1],0)<30',
-     'bVeto',
-        ]
-
-#addcut('SS_1j_em', _tmp)
-
-_tmp = [
-     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
-     'ptll > 30.',
-     'Alt$(CleanJet_pt[0],0)<30',
-     '!'+'bVeto',
-       ]
-
-#addcut('Top_0j_em', _tmp)
-
-_tmp = [
-     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
-     'ptll > 30.',
-     'Alt$(CleanJet_pt[0],0)>30',
-     'Alt$(CleanJet_pt[1],0)<30',
-     '!'+'bVeto',
-       ]
-
-#addcut('Top_1j_em', _tmp)
-
-_tmp = [
-     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
-     'ptll < 30.',
-     'mll<80.',
-     'Alt$(CleanJet_pt[0],0)<30',
-     'bVeto',
-       ]
-
-#addcut('DY_0j_em', _tmp)
-
-_tmp = [
-     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
-     'ptll < 30.',
-     'mll<80.',
-     'Alt$(CleanJet_pt[0],0)>30',
-     'Alt$(CleanJet_pt[1],0)<30',
-     'bVeto',
-        ]
-
-#addcut('DY_1j_em', _tmp)
 
 
-#_tmp = [
-#     'Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13', #Dos muones de carga opuesta
-#     'ptll > 30.', #DY>mm
-#     'Alt$(CleanJet_pt[0],0)<30', #Condicion de que no haya ningun jet (con pt mayor que 30)
-#     bVeto,
-#        ]
-#
-#addcut('DY_0j_mm', _tmp)
+#addcut('WW_2j_em', _tmp)
 
+#addcut('SS_2j_em', _tmp)
 
-###Synchronisation
-_tmp = [
-    'ptll>30.',
-    'Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13',
-    'fabs(mll - 91.1876) > 15.',
-    'Sum$(abs(CleanJet_eta)>2.5) == 0',
-    'bVeto',
-    ]
-
-#addcut('Control_Synch_DY_Incl_mm_out', _tmp)
