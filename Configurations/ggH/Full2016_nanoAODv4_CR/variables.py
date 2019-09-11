@@ -43,6 +43,20 @@ variables['pt2']  = {   'name': 'Lepton_pt[1]',
                         'fold'  : 0                         
                         }
 
+variables['pt1long']  = {   'name': 'Lepton_pt[0]',
+                        'range' : (20,20,200),
+                        'xaxis' : 'p_{T} 1st lep',
+                        'fold'  : 3
+                        }
+
+variables['pt2long']  = {   'name': 'Lepton_pt[1]',
+                        'range' : (20,10,200),
+                        'xaxis' : 'p_{T} 2nd lep',
+                        'fold'  : 3
+                        }
+
+
+
 variables['eta1']  = {  'name': 'Lepton_eta[0]',     
                         'range' : (20,-3,3),   
                         'xaxis' : '#eta 1st lep',

@@ -129,4 +129,26 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
     }
 
 
+# In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
+aliases['lhe_mW1'] = {
+    'expr': 'TMath::Sqrt(2. * LHEPart_pt[0] * LHEPart_pt[1] * (TMath::CosH(LHEPart_eta[0] - LHEPart_eta[1]) - TMath::Cos(LHEPart_phi[0] - LHEPart_phi[1])))',
+    'samples': ['WWewk']
+}
 
+# and [2] [3] are the second W
+aliases['lhe_mW2'] = {
+    'expr': 'TMath::Sqrt(2. * LHEPart_pt[2] * LHEPart_pt[3] * (TMath::CosH(LHEPart_eta[2] - LHEPart_eta[3]) - TMath::Cos(LHEPart_phi[2] - LHEPart_phi[3])))',
+    'samples': ['WWewk']
+}
+
+puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+
+aliases['PUJetIdSF'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L %s/patches/pujetidsf_event.cc+' % configurations
+    ],
+    'class': 'PUJetIdEventSF',
+    'args': (puidSFSource, '2016', 'loose'),
+    'samples': mc
+}
