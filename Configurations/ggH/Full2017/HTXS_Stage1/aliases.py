@@ -1,7 +1,6 @@
 import os
 import copy
 import inspect
-from ROOT import TLorentzVector
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
 configurations = os.path.dirname(configurations) # ggH2016
@@ -18,14 +17,11 @@ mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 eleWP = 'mvaFall17V1Iso_WP90'
 muWP = 'cut_Tight_HWWW'
 
-aliases['pTHjjLT25'] = {
-    'expr': 'compute_pTHjj(Lepton_pt[0], Lepton_eta[0], Lepton_phi[0], Lepton_pdgId[0], Lepton_pt[1], Lepton_eta[1], Lepton_phi[1], Lepton_pdgId[1], CleanJet_pt[0], CleanJet_eta[0], CleanJet_phi[0], Jet_mass[CleanJet_jetIdx[0]], CleanJet_pt[1], CleanJet_eta[1], CleanJet_phi[1], Jet_mass[CleanJet_jetIdx[1]], PuppiMET_pt, PuppiMET_phi)<=25',
-    'linesToAdd' : ['.L /afs/cern.ch/work/a/alvareza/public/CMSSW_9_4_9/src/PlotsConfigurations/Configurations/ggH/Full2017/HTXS_Stage1/compute_pTHjj.C+']
-}
-
-aliases['pTHjjGT25'] = {
-    'expr': 'compute_pTHjj(Lepton_pt[0], Lepton_eta[0], Lepton_phi[0], Lepton_pdgId[0], Lepton_pt[1], Lepton_eta[1], Lepton_phi[1], Lepton_pdgId[1], CleanJet_pt[0], CleanJet_eta[0], CleanJet_phi[0], Jet_mass[CleanJet_jetIdx[0]], CleanJet_pt[1], CleanJet_eta[1], CleanJet_phi[1], Jet_mass[CleanJet_jetIdx[1]], PuppiMET_pt, PuppiMET_phi)>25',
-    'linesToAdd' : ['.L /afs/cern.ch/work/a/alvareza/public/CMSSW_9_4_9/src/PlotsConfigurations/Configurations/ggH/Full2017/HTXS_Stage1/compute_pTHjj.C+']
+aliases['pTHjj'] = {
+    #'expr': 'compute_pTHjj(Lepton_pt[0], Lepton_eta[0], Lepton_phi[0], Lepton_pdgId[0], Lepton_pt[1], Lepton_eta[1], Lepton_phi[1], Lepton_pdgId[1], CleanJet_pt[0], CleanJet_eta[0], CleanJet_phi[0], Jet_mass[CleanJet_jetIdx[0]], CleanJet_pt[1], CleanJet_eta[1], CleanJet_phi[1], Jet_mass[CleanJet_jetIdx[1]], PuppiMET_pt, PuppiMET_phi)',
+#    'linesToAdd' : ['.L compute_pTHjj.C+']
+    'linesToAdd' : ['.L /afs/cern.ch/work/a/alvareza/public/CMSSW_9_4_9/src/PlotsConfigurations/Configurations/ggH/Full2017/HTXS_Stage1/macro_pTHjj.cc+'],
+    'class': 'Compute_pTHjj'
 }
 
 aliases['LepWPCut'] = {
