@@ -48,7 +48,7 @@ LepWPweight     = 'LepSF'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
 ################################################
 
 XSWeight      = 'XSWeight'
-SFweight      = 'SFweight'+Nlep+'l' + '*PrefireWeight*PUJetIdSF' + '*'+LepWPweight + '*'+LepWPCut 
+SFweight      = 'SFweight'+Nlep+'l' + '*PrefireWeight' + '*'+LepWPweight + '*'+LepWPCut 
 GenLepMatch   = 'PromptGenLepMatch'+Nlep+'l'
 
 ################################################
@@ -182,4 +182,5 @@ for Run in DataRun :
 			print(iFile)
 			samples['DATA']['name'].append(iFile)
 			samples['DATA']['weights'].append(DataTrig[DataSet])
+
 
