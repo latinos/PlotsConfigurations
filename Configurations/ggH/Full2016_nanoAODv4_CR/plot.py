@@ -8,21 +8,6 @@
 # If not defined, normal plots is used
 #
 
-import copy
-
-origcuts=copy.deepcopy(cuts)
-
-print origcuts
-cuts = []
-
-
-for cut in origcuts:
-  print cut
-  for cat in origcuts[cut]['categories']:
-    cuts.append(cut+"_"+cat)
-
-print cuts
-
 
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bar{t}',
@@ -357,7 +342,7 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 59.7/fb'
+legend['lumi'] = 'L = 36/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
