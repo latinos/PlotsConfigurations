@@ -3,7 +3,7 @@ import copy
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # ggH2016
+configurations = os.path.dirname(configurations) # ggH2017
 configurations = os.path.dirname(configurations) # Differential
 configurations = os.path.dirname(configurations) # Configurations
 
@@ -85,17 +85,22 @@ aliases['Top_pTrw'] = {
 # Jet bins
 # using Alt$(CleanJet_pt[n], 0) instead of Sum$(CleanJet_pt >= 30) because jet pt ordering is not strictly followed in JES-varied samples
 
+aliases['CleanJet_passPt'] = {
+    #'expr': '((TMath::Abs(CleanJet_eta) < 2.5 || TMath::Abs(CleanJet_eta) > 3.) && CleanJet_pt > 30.) || (TMath::Abs(CleanJet_eta) > 2.5 && TMath::Abs(CleanJet_eta) < 3. && CleanJet_pt > 60.)'
+    'expr': '((TMath::Abs(CleanJet_eta) < 2.5 || TMath::Abs(CleanJet_eta) > 3.) && CleanJet_pt > 30.)'
+}
+
 # No jet with pt > 30 GeV
 aliases['zeroJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
+    'expr': 'Alt$(!CleanJet_passPt[0], 1)'
 }
 
 aliases['oneJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
+    'expr': 'Alt$(CleanJet_passPt[0], 0)'
 }
 
 aliases['multiJet'] = {
-    'expr': 'Alt$(CleanJet_pt[1], 0) > 30.'
+    'expr': 'Alt$(CleanJet_passPt[1], 0)'
 }
 
 # B tagging
@@ -198,7 +203,7 @@ aliases['PUJetIdSF'] = {
         '.L %s/patches/pujetidsf_event.cc+' % configurations
     ],
     'class': 'PUJetIdEventSF',
-    'args': (puidSFSource, '2016', 'loose'),
+    'args': (puidSFSource, '2017', 'loose'),
     'samples': mc
 }
 

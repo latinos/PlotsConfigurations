@@ -134,29 +134,29 @@ elif config == 'prefit':
         'njet': 'events'
     }
 
-    rebins = {
-        'ptH': [0., 20., 45., 80., 120., 200., 260.],
-        'njet': [0., 1., 2., 3., 4., 5.]
-    }
+    rebins = common.binning
 
 if config == 'postfit':
-    mus = {}
-    for obs in ['ptH', 'njet']:
-        mus[obs] = []
-        
-        source = ROOT.TFile.Open('%s/combination/%s_fullmodel/multidimfitReg.root' % (common.confdir, obs))
-        fitresult = source.Get('fit_mdf')
-        pars = fitresult.floatParsFinal()
-        imu = 0
-        while True:
-            mu = pars.find('r_%d' % imu)
-            if not mu:
-                break
+    mus_reg = {}
+    mus_unreg = {}
 
-            mus[obs].append((mu.getVal(), -mu.getErrorLo(), mu.getErrorHi()))
-            imu += 1
-
-        source.Close()
+    for sname, mus in [('Reg', mus_reg), ('Unreg', mus_unreg)]:
+        for obs in ['ptH', 'njet']:
+            mus[obs] = []
+            
+            source = ROOT.TFile.Open('%s/combination/%s_fullmodel/multidimfit%s.root' % (common.confdir, obs, sname))
+            fitresult = source.Get('fit_mdf')
+            pars = fitresult.floatParsFinal()
+            imu = 0
+            while True:
+                mu = pars.find('r_%d' % imu)
+                if not mu:
+                    break
+    
+                mus[obs].append((mu.getVal(), -mu.getErrorLo(), mu.getErrorHi()))
+                imu += 1
+    
+            source.Close()
 
 canvas = common.makeRatioCanvas(600, 600)
 
@@ -254,9 +254,9 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
         ymin = histograms[(obs, 'ggF')].GetMinimum() * 0.8
         ymax = 0.
         for ip in range(total.GetNbinsX()):
-            y = gobs.GetY()[ip] * mus[obs][ip][0]
-            errlo = gobs.GetY()[ip] * mus[obs][ip][1]
-            errhi = gobs.GetY()[ip] * mus[obs][ip][2]
+            y = gobs.GetY()[ip] * mus_reg[obs][ip][0]
+            errlo = gobs.GetY()[ip] * mus_reg[obs][ip][1]
+            errhi = gobs.GetY()[ip] * mus_reg[obs][ip][2]
             gobs.SetPoint(ip, gobs.GetX()[ip], y)
             gobs.SetPointEYlow(ip, errlo)
             gobs.SetPointEYhigh(ip, errhi)
@@ -269,14 +269,27 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
                 xmax = total.GetXaxis().GetBinUpEdge(ip + 1)
                 binw = xmax - xmin
                 if ip != total.GetNbinsX() - 1:
-                    table += '      $[%.0f, %.0f]$ & $%.2f^{%+.2f}_{%+.2f}$ \\\\\n' % (xmin, xmax, y * binw, errhi * binw, -errlo * binw)
+                    line = '      $[%.0f, %.0f]$ ' % (xmin, xmax)
                 else:
-                    table += '      $[%.0f, \\infty)$ & $%.2f^{%+.2f}_{%+.2f}$ \\\\\n' % (xmin, y * binw, errhi * binw, -errlo * binw)
+                    line = '      $[%.0f, \\infty)$ ' % xmin
+
             elif obs == 'njet':
+                binw = 1.
                 if ip != total.GetNbinsX() - 1:
-                    table += '      $%d$ & $%.2f^{%+.2f}_{%+.2f}$ \\\\\n' % (ip, y, errhi, -errlo)
+                    line = '      $%d$ ' % ip
                 else:
-                    table += '      $\geq %d$ & $%.2f^{%+.2f}_{%+.2f}$ \\\\\n' % (ip, y, errhi, -errlo)
+                    line = '      $\geq %d$ ' % ip
+
+            line += '& $%.2f$ ' % total.GetBinContent(ip + 1)
+
+            line += ('& $%.2f^{%+.2f}_{%+.2f}$ ' * 3) % \
+                (mus_unreg[obs][ip][0], mus_unreg[obs][ip][1], mus_unreg[obs][ip][2],
+                    mus_reg[obs][ip][0], mus_reg[obs][ip][1], mus_reg[obs][ip][2], 
+                    y * binw, errhi * binw, -errlo * binw)
+
+            line += '\\\\\n'
+
+            table += line
 
             if y - errlo < ymin:
                 ymin = (y - errlo) * 0.8
@@ -363,7 +376,7 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
         rmin = 0.
         rmax = 2.
         for ip in range(robs.GetN()):
-            mu = mus[obs][ip]
+            mu = mus_reg[obs][ip]
             robs.SetPoint(ip, robs.GetX()[ip], mu[0])
             robs.SetPointEYlow(ip, mu[1])
             robs.SetPointEYhigh(ip, mu[2])

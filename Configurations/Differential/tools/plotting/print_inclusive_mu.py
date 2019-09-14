@@ -1,25 +1,11 @@
- import os
+import os
 import ROOT
 
 import common
 
 confdir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
-sigma = 0.
-
-source = ROOT.TFile.Open('%s/fiducial/rootFile/plots_Fiducial.root' % confdir)
-
-_, htotal = common.get_fiducial_histograms(source, 'events', ['ggH_hww', 'qqH_hww', 'WH_hww', 'ZH_hww', 'ggZH_hww', 'ttH_hww'])
-
-sigma = htotal.GetBinContent(1)
-sigmaerr = htotal.GetBinError(1)
-
-print '%.1f \pm %.1f' % (sigma, sigmaerr)
-
-source.Close()
-
-fitname = 'IntegratedUnregF0Dep'
-#fitname = 'IntegratedRegRPFix'
+fitname = 'Inclusive'
 
 table = ''
 
@@ -36,7 +22,6 @@ for year in ['2016', '2017', '2018']:
         source.Close()
 
         table += '& $%.2f^{+%.2f}_{-%.2f}$ ' % (r, (rup - r), (r - rdown))
-        table += '& $%.1f^{+%.1f}_{-%.1f}$ ' % (r * sigma, (rup - r) * sigma, (r - rdown) * sigma)
 
     table += '\\\\\n'
 
@@ -51,8 +36,7 @@ for obs in ['ptH', 'njet']:
     rup = limit.GetV1()[2]
     source.Close()
 
-    table += '& $%.1f^{+%.1f}_{-%.1f}$ ' % (r, (rup - r), (r - rdown))
-    table += '& $%.1f^{+%.1f}_{-%.1f}$ ' % (r * sigma, (rup - r) * sigma, (r - rdown) * sigma)
+    table += '& $%.2f^{+%.2f}_{-%.2f}$ ' % (r, (rup - r), (r - rdown))
 
 table += '\\\\\n'
 

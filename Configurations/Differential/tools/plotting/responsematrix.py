@@ -3,6 +3,8 @@ import sys
 import array
 import ROOT
 
+import common
+
 ROOT.gROOT.SetBatch(True)
 ROOT.gStyle.SetOptStat(0)
 ROOT.gStyle.SetTextFont(42)
@@ -36,23 +38,12 @@ if REDRAW:
     
     output = ROOT.TFile.Open('responsematrix.root', 'recreate')
     
-    pthBinning = ['0', '20', '45', '80', '120', '200', 'inf']
-    pthBins = []
-    for ibin in range(len(pthBinning) - 1):
-        low, high = pthBinning[ibin:ibin + 2]
-        if high == 'inf':
-          pthBins.append('[%s, #infty)' % low)
-        else:
-          pthBins.append('[%s, %s]' % (low, high))
-    
-    njetBins = ['0', '1', '2', '3', '#geq 4']
-    
-    ptH = ROOT.TH2D('ptH', '', len(pthBins) + 1, 0., float(len(pthBins)) + 1., len(pthBins) + 1, 0., float(len(pthBins)) + 1.)
+    ptH = ROOT.TH2D('ptH', '', len(common.binnames['ptH']) + 1, 0., float(len(common.binnames['ptH'])) + 1., len(common.binnames['ptH']) + 1, 0., float(len(common.binnames['ptH'])) + 1.)
     
     ptH.GetXaxis().SetTitle('p_{T;gen}^{H} (GeV)')
     ptH.GetYaxis().SetTitle('p_{T;reco}^{H} (GeV)')
     
-    for ix, label in enumerate(pthBins):
+    for ix, label in enumerate(common.bintitles['ptH']):
         ptH.GetXaxis().SetBinLabel(ix + 1, label)
         ptH.GetYaxis().SetBinLabel(ix + 1, label)
     
@@ -61,12 +52,12 @@ if REDRAW:
 
     ptH.SetLineColor(ROOT.kGray)
     
-    njet = ROOT.TH2D('njet', '', len(njetBins) + 1, 0., float(len(njetBins)) + 1., len(njetBins) + 1, 0., float(len(njetBins)) + 1.)
+    njet = ROOT.TH2D('njet', '', len(common.binnames['njet']) + 1, 0., float(len(common.binnames['njet'])) + 1., len(common.binnames['njet']) + 1, 0., float(len(common.binnames['njet'])) + 1.)
     
     njet.GetXaxis().SetTitle('N_{jet;gen}')
     njet.GetYaxis().SetTitle('N_{jet;reco}')
         
-    for ix, label in enumerate(njetBins):
+    for ix, label in enumerate(common.bintitles['njet']):
         njet.GetXaxis().SetBinLabel(ix + 1, label)
         njet.GetYaxis().SetBinLabel(ix + 1, label)
     
@@ -102,16 +93,16 @@ if REDRAW:
     drawer.addAlias('fiducial', fiducial)
     
     xexpr = 'fiducial * ('
-    xexpr += ' + '.join('(HTXS_Higgs_pt > %s)' % t for t in pthBinning[1:-1])
-    xexpr += ') + (!fiducial) * %d' % len(pthBins)
-    yexpr = ' + '.join('(pTWW > %s)' % t for t in pthBinning[1:-1])
+    xexpr += ' + '.join('(HTXS_Higgs_pt > %f)' % t for t in common.binning['ptH'][1:-1])
+    xexpr += ') + (!fiducial) * %d' % len(common.binnames['ptH'])
+    yexpr = ' + '.join('(pTWW > %f)' % t for t in common.binning['ptH'][1:-1])
     
     drawer.addPlot2D(ptH, xexpr, yexpr)
     
     xexpr = 'fiducial * ('
-    xexpr += ' + '.join('(HTXS_njets30 > %s)' % t for t in njetBins[:-1])
-    xexpr += ') + (!fiducial) * %d' % len(njetBins)
-    yexpr = ' + '.join('(Alt$(CleanJet_pt[%d], 0.) > 30.)' % i for i in range(len(njetBins) - 1))
+    xexpr += ' + '.join('(HTXS_njets30 > %f)' % t for t in common.binning['njet'][:-1])
+    xexpr += ') + (!fiducial) * %d' % len(common.binnames['njet'])
+    yexpr = ' + '.join('(Alt$(CleanJet_pt[%d], 0.) > 30.)' % i for i in range(len(common.binnames['njet']) - 1))
     
     drawer.addPlot2D(njet, xexpr, yexpr)
     
@@ -133,16 +124,16 @@ if REDRAW:
     drawer.addAlias('fiducial', fiducial)
     
     xexpr = 'fiducial * ('
-    xexpr += ' + '.join('(HTXS_Higgs_pt > %s)' % t for t in pthBinning[1:-1])
-    xexpr += ') + (!fiducial) * %d' % len(pthBins)
-    yexpr = str(len(pthBins))
+    xexpr += ' + '.join('(HTXS_Higgs_pt > %f)' % t for t in common.binning['ptH'][1:-1])
+    xexpr += ') + (!fiducial) * %d' % len(common.binnames['ptH'])
+    yexpr = str(len(common.binnames['ptH']))
     
     drawer.addPlot2D(ptH, xexpr, yexpr)
     
     xexpr = 'fiducial * ('
-    xexpr += ' + '.join('(HTXS_njets30 > %s)' % t for t in njetBins[:-1])
-    xexpr += ') + (!fiducial) * %d' % len(njetBins)
-    yexpr = str(len(njetBins))
+    xexpr += ' + '.join('(HTXS_njets30 > %f)' % t for t in common.binning['njet'][:-1])
+    xexpr += ') + (!fiducial) * %d' % len(common.binnames['njet'])
+    yexpr = str(len(common.binnames['njet']))
     
     drawer.addPlot2D(njet, xexpr, yexpr)
     

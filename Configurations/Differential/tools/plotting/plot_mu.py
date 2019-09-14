@@ -14,49 +14,31 @@ argParser.add_argument('--auxminos', '-x', metavar = 'MU=PATH[,PATH]', dest = 'a
 argParser.add_argument('--year', '-y', metavar='YEAR', dest='year', default='year', help='Dataset year.')
 
 args = argParser.parse_args()
-sys.argv = []    
+sys.argv = []
+
+import common
 
 import ROOT
 
-ROOT.gROOT.SetBatch(True)
-ROOT.gStyle.SetOptStat(0)
-ROOT.gStyle.SetTextFont(42)
-ROOT.gStyle.SetLabelSize(0.035, 'X')
-ROOT.gStyle.SetLabelSize(0.035, 'Y')
-ROOT.gStyle.SetTitleSize(0.035, 'X')
-ROOT.gStyle.SetTitleSize(0.035, 'Y')
-ROOT.gStyle.SetTitleOffset(1.4, 'X')
-ROOT.gStyle.SetTitleOffset(1.8, 'Y')
-ROOT.gStyle.SetNdivisions(208, 'X')
-ROOT.gStyle.SetFillStyle(0)
 ROOT.gStyle.SetNumberContours(128)
 ROOT.gStyle.SetPalette(ROOT.kTemperatureMap)
 
 if args.observable == 'ptH':
-    #binning = [0., 20., 45., 80., 120., 200., 350., 400.]
-    binning = [0., 20., 45., 80., 120., 200., 300.]
     xtitle = 'p_{T}^{H} (GeV)'
-    def binlabel(ip):
-        if ip == len(binning) - 2:
-            return 'PTH_GT%.0f' % binning[ip]
-        else:
-            return 'PTH_%.0f_%.0f' % (binning[ip], binning[ip+1])
 else:
-    binning = [-0.5, 0.5, 1.5, 2.5, 3.5, 4.5]
     xtitle = 'N_{jet}'
-    def binlabel(ip):
-        if ip == len(binning) - 2:
-            return 'NJ_GE4'
-        else:
-            return 'NJ_%d' % ip
+
+binnames = common.binnames[args.observable]
+binning = common.binning[args.observable]
+bintitles = common.bintitles[args.observable]
     
-npoi = len(binning) - 1
+npoi = len(binnames)
 
 matrix = ROOT.TH2D('correlation', '', npoi, 0., float(npoi), npoi, 0., float(npoi))
 
-for ip in range(npoi):
-    matrix.GetXaxis().SetBinLabel(ip + 1, binlabel(ip))
-    matrix.GetYaxis().SetBinLabel(ip + 1, binlabel(ip))
+for ip, label in enumerate(binnames):
+    matrix.GetXaxis().SetBinLabel(ip + 1, label)
+    matrix.GetYaxis().SetBinLabel(ip + 1, label)
 
 mugraphs = [ROOT.TGraphAsymmErrors(npoi), ROOT.TGraphAsymmErrors(npoi)]
 
@@ -70,15 +52,15 @@ if args.tf_input:
         results = source.Get('fitresults')
         branches = []
     
-        for ip in range(npoi):
+        for label in binnames:
             mu = array.array('f', [0.])
             up = array.array('f', [0.])
             down = array.array('f', [0.])
             err = array.array('f', [0.])
-            results.SetBranchAddress('smH_hww_%s_mu' % binlabel(ip), mu)
-            results.SetBranchAddress('smH_hww_%s_mu_minosup' % binlabel(ip), up)
-            results.SetBranchAddress('smH_hww_%s_mu_minosdown' % binlabel(ip), down)
-            results.SetBranchAddress('smH_hww_%s_mu_err' % binlabel(ip), err)
+            results.SetBranchAddress('smH_hww_%s_mu' % label, mu)
+            results.SetBranchAddress('smH_hww_%s_mu_minosup' % label, up)
+            results.SetBranchAddress('smH_hww_%s_mu_minosdown' % label, down)
+            results.SetBranchAddress('smH_hww_%s_mu_err' % label, err)
             branches.append((mu, up, down, err))
     
         results.GetEntry(0)
@@ -102,15 +84,15 @@ if args.tf_input:
                 muname, _, paths = aux.partition('=')
                 path = paths.split(',')[ireg]
 
-                ip = next(ip for ip in range(npoi) if binlabel(ip) == muname)
+                ip, label = next(x for x in enumerate(binnames) if x[1] == muname)
 
                 source = ROOT.TFile.Open(path)
         
                 results = source.Get('fitresults')
             
-                results.SetBranchAddress('smH_hww_%s_mu' % binlabel(ip), mu)
-                results.SetBranchAddress('smH_hww_%s_mu_minosup' % binlabel(ip), up)
-                results.SetBranchAddress('smH_hww_%s_mu_minosdown' % binlabel(ip), down)
+                results.SetBranchAddress('smH_hww_%s_mu' % label, mu)
+                results.SetBranchAddress('smH_hww_%s_mu_minosup' % label, up)
+                results.SetBranchAddress('smH_hww_%s_mu_minosdown' % label, down)
             
                 results.GetEntry(0)
             
@@ -124,10 +106,10 @@ if args.tf_input:
             correlation = source.Get('correlation_matrix_channelmu')
         
             for ip1 in range(npoi):
-                ix = correlation.GetXaxis().FindBin('smH_hww_%s' % binlabel(ip1))
+                ix = correlation.GetXaxis().FindBin('smH_hww_%s' % binnames[ip1])
                 print ix
                 for ip2 in range(npoi):
-                    iy = correlation.GetYaxis().FindBin('smH_hww_%s' % binlabel(ip2))
+                    iy = correlation.GetYaxis().FindBin('smH_hww_%s' % binnames[ip2])
                     print iy
                     print correlation.GetBinContent(ix, iy)
                     matrix.SetBinContent(ip1 + 1, ip2 + 1, correlation.GetBinContent(ix, iy))
@@ -188,45 +170,29 @@ indent = ' '
 
 if args.observable == 'ptH':
     if args.observed:
-        for ip in range(0, npoi - 1):
+        for ip in range(npoi):
             table += indent
-            table += '& $[%.0f, %.0f]$ & $%.2f_{%+.2f}^{%+.2f}$ & $%.2f_{%+.2f}^{%+.2f}$ \\\\\n' % (binning[ip], binning[ip + 1], mugraphs[1].GetY()[ip], -mugraphs[1].GetErrorYlow(ip), mugraphs[1].GetErrorYhigh(ip), mugraphs[0].GetY()[ip], -mugraphs[0].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip))
+            table += '& $%s$ & $%.2f_{%+.2f}^{%+.2f}$ & $%.2f_{%+.2f}^{%+.2f}$ \\\\\n' % (bintitles[ip].replace('#', '\\'), mugraphs[1].GetY()[ip], -mugraphs[1].GetErrorYlow(ip), mugraphs[1].GetErrorYhigh(ip), mugraphs[0].GetY()[ip], -mugraphs[0].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip))
             indent = '                            '
-
-        ip = npoi - 1
-        table += indent
-        table += '& $[%.0f, \\infty)$ & $%.2f_{%+.2f}^{%+.2f}$ & $%.2f_{%+.2f}^{%+.2f}$ \\\\\n' % (binning[ip], mugraphs[1].GetY()[ip], -mugraphs[1].GetErrorYlow(ip), mugraphs[1].GetErrorYhigh(ip), mugraphs[0].GetY()[ip], -mugraphs[0].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip))
 
     else:
-        for ip in range(0, npoi - 1):
+        for ip in range(npoi):
             table += indent
-            table += '& $[%.0f, %.0f]$ & %+.2f/%+.2f & %+.2f/%+.2f \\\\\n' % (binning[ip], binning[ip + 1], mugraphs[1].GetErrorYhigh(ip), -mugraphs[1].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip), -mugraphs[0].GetErrorYlow(ip))
+            table += '& $%s$ & %+.2f/%+.2f & %+.2f/%+.2f \\\\\n' % (bintitles[ip].replace('#', '\\'), mugraphs[1].GetErrorYhigh(ip), -mugraphs[1].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip), -mugraphs[0].GetErrorYlow(ip))
             indent = '                            '
-
-        ip = npoi - 1
-        table += indent
-        table += '& $[%.0f, \\infty)$ & %+.2f/%+.2f & %+.2f/%+.2f \\\\\n' % (binning[ip], mugraphs[1].GetErrorYhigh(ip), -mugraphs[1].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip), -mugraphs[0].GetErrorYlow(ip))
 
 else:
     if args.observed:
-        for ip in range(0, npoi - 1):
+        for ip in range(npoi):
             table += indent
-            table += '& %.0f        & $%.2f_{%+.2f}^{%+.2f}$ & $%.2f_{%+.2f}^{%+.2f}$ \\\\\n' % ((binning[ip] + binning[ip + 1]) * 0.5, mugraphs[1].GetY()[ip], -mugraphs[1].GetErrorYlow(ip), mugraphs[1].GetErrorYhigh(ip), mugraphs[0].GetY()[ip], -mugraphs[0].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip))
+            table += '& $%6s$ & $%.2f_{%+.2f}^{%+.2f}$ & $%.2f_{%+.2f}^{%+.2f}$ \\\\\n' % (bintitles[ip].replace('#', '\\'), mugraphs[1].GetY()[ip], -mugraphs[1].GetErrorYlow(ip), mugraphs[1].GetErrorYhigh(ip), mugraphs[0].GetY()[ip], -mugraphs[0].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip))
             indent = '                            '
-
-        ip = npoi - 1
-        table += indent
-        table += '& $\geq %.0f$ & $%.2f_{%+.2f}^{%+.2f}$ & $%.2f_{%+.2f}^{%+.2f}$ \\\\\n' % ((binning[ip] + binning[ip + 1]) * 0.5, mugraphs[1].GetY()[ip], -mugraphs[1].GetErrorYlow(ip), mugraphs[1].GetErrorYhigh(ip), mugraphs[0].GetY()[ip], -mugraphs[0].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip))
 
     else:
-        for ip in range(0, npoi - 1):
+        for ip in range(npoi):
             table += indent
-            table += '& %.0f        & %+.2f/%+.2f & %+.2f/%+.2f \\\\\n' % ((binning[ip] + binning[ip + 1]) * 0.5, mugraphs[1].GetErrorYhigh(ip), -mugraphs[1].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip), -mugraphs[0].GetErrorYlow(ip))
+            table += '& $%.6s$ & %+.2f/%+.2f & %+.2f/%+.2f \\\\\n' % (bintitles[ip].replace('#', '\\'), mugraphs[1].GetErrorYhigh(ip), -mugraphs[1].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip), -mugraphs[0].GetErrorYlow(ip))
             indent = '                            '
-
-        ip = npoi - 1
-        table += indent
-        table += '& $\geq %.0f$ & %+.2f/%+.2f & %+.2f/%+.2f \\\\\n' % ((binning[ip] + binning[ip + 1]) * 0.5, mugraphs[1].GetErrorYhigh(ip), mugraphs[1].GetErrorYlow(ip), mugraphs[0].GetErrorYhigh(ip), -mugraphs[0].GetErrorYlow(ip))
 
 print table
 

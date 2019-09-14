@@ -38,10 +38,10 @@ for sname in signals:
             slist_pthsignal.append('%s/%s' % (sname, bname))
 
 njetCutsProgressive = {
-    '1': 'Alt$(CleanJet_pt[0], 0) > 30.',
-    '2': 'Alt$(CleanJet_pt[1], 0) > 30.',
-    '3': 'Alt$(CleanJet_pt[2], 0) > 30.',
-    'GE4': 'Alt$(CleanJet_pt[3], 0) > 30.',
+    '1': 'Alt$(CleanJet_passPt[0], 0)',
+    '2': 'Alt$(CleanJet_passPt[1], 0)',
+    '3': 'Alt$(CleanJet_passPt[2], 0)',
+    'GE4': 'Alt$(CleanJet_passPt[3], 0)',
 }
 
 pthCutsProgressive = {}

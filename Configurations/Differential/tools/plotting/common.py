@@ -23,6 +23,51 @@ ROOT.gStyle.SetFillStyle(0)
 thisdir = os.path.dirname(os.path.realpath(__file__))
 confdir = os.path.dirname(os.path.dirname(thisdir))
 
+## Differential fiducial bin names
+binnames = {
+    'ptH': [
+        'PTH_0_20',
+        'PTH_20_45',
+        'PTH_45_80',
+        'PTH_80_120',
+        'PTH_120_200',
+        'PTH_GT200'
+    ],
+    'njet': [
+        'NJ_0',
+        'NJ_1',
+        'NJ_2',
+        'NJ_3',
+        'NJ_GE4'
+    ]
+}
+
+bintitles = {
+    'ptH': [
+        '[0, 20]',
+        '[20, 45]',
+        '[45, 80]',
+        '[80, 120]',
+        '[120, 200]',
+        '[200, #infty)',
+        #'[200, 350]',
+        #'[350, #infty)'
+    ],
+    'njet': [
+        '0',
+        '1',
+        '2',
+        '3',
+        '#geq 4'
+    ]
+}
+
+binning = {
+    'ptH': [0., 20., 45., 80., 120., 200., 260.],
+    #'ptH': [0., 20., 45., 80., 120., 200., 350., 400.],
+    'njet': [0., 1., 2., 3., 4., 5.]
+}
+
 ## Fiducial histograms with proper uncertainties
 
 def get_fiducial_histograms(source, obs, prods):
@@ -133,18 +178,25 @@ def makeCMS():
     return makeText(0.18, ymax - 0.12, 0.3, ymax - 0.01, align=11, font=62)
 
 ## Lumi
+lumis = {
+    '2016': 35.9,
+    '2017': 41.5,
+    '2018': 59.7,
+    'combination': 137.
+}
+
 def makeLumi():
     return makeText(0.6, ymax, xmax, 1., align=33)
 
 ## Canvas with two pads
-def makeRatioCanvas(width=600, height=600):
+def makeRatioCanvas(width=600, height=600, dataset='combination'):
     canvas = ROOT.TCanvas('c1', 'c1', width, height)
     
     canvas.cmsLabel = makeCMS()
     canvas.lumiLabel = makeLumi()
     
     canvas.cmsLabel.AddText('#splitline{CMS}{#font[52]{Preliminary}}')
-    canvas.lumiLabel.AddText('137.0 fb^{-1} (13 TeV)')
+    canvas.lumiLabel.AddText('%.1f fb^{-1} (13 TeV)' % lumis[dataset])
     
     ydmin = 0.305
     yrmax = 0.3
@@ -218,3 +270,21 @@ def makeRatioCanvas(width=600, height=600):
 def get_line_color(color):
     tcolor = ROOT.gROOT.GetColor(color)
     return ROOT.TColor.GetColor(tcolor.GetRed() * 0.9, tcolor.GetGreen() * 0.9, tcolor.GetBlue() * 0.9)
+
+
+def make_roofit_histogram(ws, bin, proc, name):
+    if 'hww' in proc:
+        f = ws.arg('shapeSig_%s_%s_morph' % (bin, proc))
+    else:
+        f = ws.arg('shapeBkg_%s_%s_morph' % (bin, proc))
+
+    if not f:
+        # some templates may be dropped
+        return None
+
+    n = ws.arg('n_exp_final_bin%s_proc_%s' % (bin, proc))
+
+    hist = f.createHistogram(name, ws.var('CMS_th1x'), ROOT.RooFit.Extended(False))
+    hist.Scale(n.getVal())
+
+    return hist

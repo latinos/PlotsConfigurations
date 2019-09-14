@@ -29,7 +29,6 @@ except OSError:
     pass
 
 RATEPARAM_MU = False
-ADD_GLOBALFIT = True
 
 cmd = ['combineCards.py']
 procIds = {} # it seems that we don't really need to have the process ids synched between the combined cards, but let's make them common
@@ -385,48 +384,6 @@ with open('%s/fullmodel.txt' % args.outpath, 'w') as card_out:
         for ic in range(len(observableBins) - 2):
             card_out.write('constr{ic} constr @3*(@0-2*@1+@2) r_{low},r_{mid},r_{high},regularize[0.] delta[10.]\n'.format(ic = ic, low = ic, mid = ic + 1, high = ic + 2))
 
-if ADD_GLOBALFIT:
-    if 'PTH' in observableBins[0]:
-        obs = 'ptH'
-    elif 'NJ' in observableBins[0]:
-        obs = 'njet'
-
-    fiducialFrac = [0.] * len(observableBins)
-
-    source = ROOT.TFile.Open('%s/fiducial/rootFile/plots_Fiducial.root' % os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
-    for proc in ['ggH_hww', 'qqH_hww', 'WH_hww', 'ZH_hww', 'ggZH_hww', 'ttH_hww']:
-        h = source.Get('fiducial/%s/histo_%s' % (obs, proc))
-        for ix in range(len(observableBins)):
-            fiducialFrac[ix] += h.GetBinContent(ix + 1)
-    
-    source.Close()
-
-    fiducialTotal = sum(fiducialFrac)
-    for ix in range(len(fiducialFrac)):
-        fiducialFrac[ix] /= fiducialTotal
-    
-    # Full global fit model with regularization terms
-    with open('%s/fullmodel_global_unreg.txt' % args.outpath, 'w') as card_out:
-        with open('%s/fullmodel_unreg.txt' % args.outpath) as card_unreg:
-            for line in card_unreg:
-                card_out.write(line)
-    
-        f0expr = '(1.'
-        for ibin in range(1, len(observableBins)):
-            card_out.write('f_%d rateParam * *H_hww_%s 1. [-10.,10.]\n' % (ibin, observableBins[ibin]))
-            f0expr += '-%f*@%d' % (fiducialFrac[ibin], ibin - 1)
-    
-        f0expr += ')/%f' % fiducialFrac[0]
-        card_out.write('f_0 rateParam * *H_hww_%s %s %s\n' % (observableBins[0], f0expr, ','.join('f_%d' % ibin for ibin in range(1, len(observableBins)))))
-
-    with open('%s/fullmodel_global.txt' % args.outpath, 'w') as card_out:
-        with open('%s/fullmodel_global_unreg.txt' % args.outpath) as card_unreg:
-            for line in card_unreg:
-                card_out.write(line)
-
-        for ic in range(len(observableBins) - 2):
-            card_out.write('constr{ic} constr @0*@3*(@1-2*@2+@3) r,f_{low},f_{mid},f_{high},regularize[0.] delta[10.]\n'.format(ic = ic, low = ic, mid = ic + 1, high = ic + 2))
-
 if args.onlyFullModel:
     for cut in cuts:
         shutil.rmtree('%s/%s' % (args.outpath, cut))
@@ -462,10 +419,3 @@ else:
     print ' '.join(cmd)
     proc = subprocess.Popen(cmd)
     proc.communicate()
-
-    if ADD_GLOBALFIT:
-        cmd = ['text2workspace.py', '%s/fullmodel_global.txt' % args.outpath, '-o', '%s/fullmodel_global.root' % args.outpath]
-
-        print ' '.join(cmd)
-        proc = subprocess.Popen(cmd)
-        proc.communicate()

@@ -287,9 +287,9 @@ class HistogramMerger(object):
 
             self._getter.cd(cut)
 
-            for vkey in self._getter.getkeys():
-                variable = vkey.GetName()
-
+            #for vkey in self._getter.getkeys():
+            #    variable = vkey.GetName()
+            for variable, _ in self.templateSpecs:
                 for var, denom in varTotals.iteritems():
                     if denom == 0.:
                         continue
@@ -315,9 +315,9 @@ class HistogramMerger(object):
             
             self._getter.cd(cut)
             
-            for vkey in self._getter.getkeys():
-                variable = vkey.GetName()
-
+            #for vkey in self._getter.getkeys():
+            #    variable = vkey.GetName()
+            for variable, _ in self.templateSpecs:
                 try:
                     nominalpool[(ipool, variable)].append(cut)
                 except KeyError:
