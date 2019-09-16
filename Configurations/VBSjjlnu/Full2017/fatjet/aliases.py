@@ -9,49 +9,49 @@ bAlgo = 'DeepB'
 bWP = '0.1522'
 
 aliases['bVeto'] = {
-'expr': '(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0)'
+'expr': '(Sum$(CleanJet_pt[CleanJetNotFat_jetIdx] > 20. && abs(CleanJet_eta[CleanJetNotFat_jetIdx])<2.5 && Jet_btagDeepB[CleanJet_jetIdx[CleanJetNotFat_jetIdx]] > 0.1522) == 0)'
 }
 
 aliases['btag0'] = {
-'expr': '( Alt$(CleanJet_pt[0],0)<30  \
-           && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522)>0 \
+'expr': '( Alt$(CleanJet_pt[CleanJetNotFat_jetIdx[0]],0)<30  \
+           && Sum$(CleanJet_pt[CleanJetNotFat_jetIdx] > 20. && abs(CleanJet_eta[CleanJetNotFat_jetIdx])<2.5 && Jet_btagDeepB[CleanJet_jetIdx[CleanJetNotFat_jetIdx]] > 0.1522)>0 \
          )'
 }
 
 aliases['btag1'] = {
-'expr': '(    Alt$(CleanJet_pt[0],0)>30 && Alt$(abs(CleanJet_eta[0]),99)<2.5\
-           && Alt$(CleanJet_pt[1],0)<30 \
-           && Alt$(Jet_btagDeepB[CleanJet_jetIdx[0]], 0) > 0.1522 )'
+'expr': '(    Alt$(CleanJet_pt[CleanJetNotFat_jetIdx[0]],0)>30 && Alt$(abs(CleanJet_eta[CleanJetNotFat_jetIdx[0]]),99)<2.5\
+           && Alt$(CleanJet_pt[CleanJetNotFat_jetIdx[1]],0)<30 \
+           && Alt$(Jet_btagDeepB[CleanJet_jetIdx[CleanJetNotFat_jetIdx[0]]], 0) > 0.1522 )'
 }
 
 aliases['btag2'] = {
-'expr': '(    Alt$(CleanJet_pt[0],0)>30 \
-           && Alt$(CleanJet_pt[1],0)>30 \
-           && ( ( Alt$(abs(CleanJet_eta[0]),99)<2.5 && Alt$(Jet_btagDeepB[CleanJet_jetIdx[0]],0) > 0.1522 ) \
-             || ( Alt$(abs(CleanJet_eta[1]),99)<2.5 && Alt$(Jet_btagDeepB[CleanJet_jetIdx[1]],0) > 0.1522 ) ) \
+'expr': '(    Alt$(CleanJet_pt[CleanJetNotFat_jetIdx[0]],0)>30 \
+           && Alt$(CleanJet_pt[CleanJetNotFat_jetIdx[1]],0)>30 \
+           && ( ( Alt$(abs(CleanJet_eta[CleanJetNotFat_jetIdx[0]]),99)<2.5 && Alt$(Jet_btagDeepB[CleanJet_jetIdx[CleanJetNotFat_jetIdx[0]]],0) > 0.1522 ) \
+             || ( Alt$(abs(CleanJet_eta[CleanJetNotFat_jetIdx[1]]),99)<2.5 && Alt$(Jet_btagDeepB[CleanJet_jetIdx[CleanJetNotFat_jetIdx[1]]],0) > 0.1522 ) ) \
          )' 
 }
 
 # NB These scale factors depend on the selections defined above, if different selections are used also the following expressions need to be changed!
 aliases['bVetoSF'] = {
-'expr': '( TMath::Exp(Sum$( TMath::Log( (CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5) ) ) ) )',
+'expr': '( TMath::Exp(Sum$( TMath::Log( (CleanJet_pt[CleanJetNotFat_jetIdx]>20 && abs(CleanJet_eta[CleanJetNotFat_jetIdx])<2.5)*Jet_btagSF_shape[CleanJet_jetIdx[CleanJetNotFat_jetIdx]]+1*(CleanJet_pt[CleanJetNotFat_jetIdx]<20 || abs(CleanJet_eta[CleanJetNotFat_jetIdx])>2.5) ) ) ) )',
 'samples': mc
 }
 
 
 aliases['btag0SF'] = {
-'expr': '( TMath::Exp(Sum$( TMath::Log( (CleanJet_pt>20 && CleanJet_pt<30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || CleanJet_pt>30 || abs(CleanJet_eta)>2.5) ) ) ) )',
+'expr': '( TMath::Exp(Sum$( TMath::Log( (CleanJet_pt[CleanJetNotFat_jetIdx]>20 && CleanJet_pt[CleanJetNotFat_jetIdx]<30 && abs(CleanJet_eta[CleanJetNotFat_jetIdx])<2.5)*Jet_btagSF_shape[CleanJet_jetIdx[CleanJetNotFat_jetIdx]]+1*(CleanJet_pt[CleanJetNotFat_jetIdx]<20 || CleanJet_pt[CleanJetNotFat_jetIdx]>30 || abs(CleanJet_eta[CleanJetNotFat_jetIdx])>2.5) ) ) ) )',
 'samples': mc
 }
 
 aliases['btag1SF'] = {
-'expr': '( ( Alt$(CleanJet_pt[0], 0)>30 && Alt$(abs(CleanJet_eta[0]),99)<2.5 )*( Alt$(Jet_btagSF_shape[CleanJet_jetIdx[0]], 1) ) + ( Alt$(CleanJet_pt[0], 0)<30 || Alt$(abs(CleanJet_eta[0]),99)>2.5 ) )',
+'expr': '( ( Alt$(CleanJet_pt[CleanJetNotFat_jetIdx[0]], 0)>30 && Alt$(abs(CleanJet_eta[CleanJetNotFat_jetIdx[0]]),99)<2.5 )*( Alt$(Jet_btagSF_shape[CleanJet_jetIdx[CleanJetNotFat_jetIdx[0]]], 1) ) + ( Alt$(CleanJet_pt[CleanJetNotFat_jetIdx[0]], 0)<30 || Alt$(abs(CleanJet_eta[CleanJetNotFat_jetIdx[0]]),99)>2.5 ) )',
 'samples': mc
 }
 
 aliases['btag2SF'] = {
-'expr': '( ( ( Alt$(CleanJet_pt[0], 0)>30 && Alt$(abs(CleanJet_eta[0]),99)<2.5 )*( Alt$(Jet_btagSF_shape[CleanJet_jetIdx[0]], 1) ) + ( Alt$(CleanJet_pt[0], 0)<30 || Alt$(abs(CleanJet_eta[0]),99)>2.5 ) )* \
-           ( ( Alt$(CleanJet_pt[1], 0)>30 && Alt$(abs(CleanJet_eta[1]),99)<2.5 )*( Alt$(Jet_btagSF_shape[CleanJet_jetIdx[1]], 1) ) + ( Alt$(CleanJet_pt[1], 0)<30 || Alt$(abs(CleanJet_eta[1]),99)>2.5 ) ) )\
+'expr': '( ( ( Alt$(CleanJet_pt[CleanJetNotFat_jetIdx[0]], 0)>30 && Alt$(abs(CleanJet_eta[CleanJetNotFat_jetIdx[0]]),99)<2.5 )*( Alt$(Jet_btagSF_shape[CleanJet_jetIdx[CleanJetNotFat_jetIdx[0]]], 1) ) + ( Alt$(CleanJet_pt[CleanJetNotFat_jetIdx[0]], 0)<30 || Alt$(abs(CleanJet_eta[CleanJetNotFat_jetIdx[0]]),99)>2.5 ) )* \
+           ( ( Alt$(CleanJet_pt[CleanJetNotFat_jetIdx[1]], 0)>30 && Alt$(abs(CleanJet_eta[CleanJetNotFat_jetIdx[1]]),99)<2.5 )*( Alt$(Jet_btagSF_shape[CleanJet_jetIdx[CleanJetNotFat_jetIdx[1]]], 1) ) + ( Alt$(CleanJet_pt[CleanJetNotFat_jetIdx[1]], 0)<30 || Alt$(abs(CleanJet_eta[CleanJetNotFat_jetIdx[1]]),99)>2.5 ) ) )\
         ',
 'samples': mc
 }

@@ -36,7 +36,7 @@ Nlep='1'
 ############### Lepton WP ######################
 ################################################
 
-eleWP='mvaFall17V2Iso_WP90'
+eleWP='mvaFall17V1Iso_WP90'
 muWP='cut_Tight_HWWW'
 
 
