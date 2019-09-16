@@ -4,13 +4,14 @@
 supercut = 'mll>12  \
             && Lepton_pt[0]>25 && Lepton_pt[1]>20 \
             && (nLepton>=2 && Alt$(Lepton_pt[2],0)<10) \
-            && MET_pt > 20 \
+            && PuppiMET_pt > 20 \
             && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 \
             '
 
 ## Signal regions
 
-cuts['hww2l2v_13TeV_of2j_WH_SS_ll_1j'] = '((Lepton_pdgId[0] * Lepton_pdgId[1] == 13*13) || (Lepton_pdgId[0] * Lepton_pdgId[1] == 11*11)) \
+cuts['hww2l2v_13TeV_of2j_WH_SS_ll_1j'] = '(Lepton_pdgId[0] * Lepton_pdgId[1] == 13*13) || (Lepton_pdgId[0] * Lepton_pdgId[1] == 11*11) \
+                                       && lepton_dz1cut \
                                        && bVeto \
                                        && abs(mll-91.2)>12 \
                                        && Alt$(CleanJet_pt[0],0)>30 \
@@ -18,7 +19,9 @@ cuts['hww2l2v_13TeV_of2j_WH_SS_ll_1j'] = '((Lepton_pdgId[0] * Lepton_pdgId[1] ==
                                        && Alt$(CleanJet_pt[1],0)<30 \
                                        && mlljj20_whss < 200 \
                                        '
+
 cuts['hww2l2v_13TeV_of2j_WH_SS_ll_2j'] = '((Lepton_pdgId[0] * Lepton_pdgId[1] == 13*13) || (Lepton_pdgId[0] * Lepton_pdgId[1] == 11*11)) \
+                                       && lepton_dz1cut \
                                        && bVeto \
                                        && abs(mll-91.2)>12 \
                                        && Alt$(CleanJet_pt[0],0)>30 \
@@ -26,6 +29,7 @@ cuts['hww2l2v_13TeV_of2j_WH_SS_ll_2j'] = '((Lepton_pdgId[0] * Lepton_pdgId[1] ==
                                        && mlljj20_whss < 200 \
                                        '
 cuts['hww2l2v_13TeV_of2j_WH_SS_eu_1j'] = '(Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13) \
+                                       && lepton_dz1cut \
                                        && bVeto \
                                        && Alt$(CleanJet_pt[0],0)>30 \
                                        && Alt$(CleanJet_pt[1],0)>20 \
@@ -33,6 +37,7 @@ cuts['hww2l2v_13TeV_of2j_WH_SS_eu_1j'] = '(Lepton_pdgId[0]*Lepton_pdgId[1] == 11
                                        && mlljj20_whss < 300 \
                                        '
 cuts['hww2l2v_13TeV_of2j_WH_SS_eu_2j'] = '(Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13) \
+                                       && lepton_dz1cut \
                                        && bVeto \
                                        && Alt$(CleanJet_pt[0],0)>30 \
                                        && Alt$(CleanJet_pt[1],0)>30 \
