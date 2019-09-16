@@ -1,6 +1,18 @@
+import os
+import copy
+import inspect
+
+
 #aliases = {}
 
-mc = [skey for skey in samples if skey not in ('Fake_em', 'Fake_me', 'DATA')]
+configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
+configurations = os.path.dirname(configurations) # ggH2016
+configurations = os.path.dirname(configurations) # ggH2016
+configurations = os.path.dirname(configurations) # Differential
+configurations = os.path.dirname(configurations) # Configurations
+
+
+mc = [skey for skey in samples if skey not in ('Fake_em', 'Fake_me', 'Fake', 'DATA')]
 
 bAlgo = 'DeepB'
 bWP = '0.1241'

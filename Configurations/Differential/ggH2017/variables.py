@@ -24,13 +24,19 @@ variables['mll'] = {
 
 variables['mth'] = {
     'name': 'mth',
-    'range': (30,0.,300.)
+    'range': (30,0.,300.),
 }
 
 variables['met'] = {
     'name': 'PuppiMET_pt',
     'range': (50, 20., 220.),
     'xaxis': 'E_{T}^{miss} [GeV]',
+}
+
+variables['metphi'] = {
+    'name': 'PuppiMET_phi',
+    'range': (50, -3.1416, 3.1416),
+    'xaxis': '#phi'
 }
 
 variables['ptll'] = {
@@ -43,6 +49,18 @@ variables['dphill'] = {
     'name': 'abs(dphill)',     
     'range': (20,0,3.14),   
     'xaxis': ' #Delta #phi_{ll}',
+}
+
+variables['jet1eta'] = {
+    'name': 'Alt$(CleanJet_eta[0], -10.)',
+    'range': (50, -5., 5.),
+    'xaxis': '#eta'
+}
+
+variables['jet2eta'] = {
+    'name': 'Alt$(CleanJet_eta[1], -10.)',
+    'range': (50, -5., 5.),
+    'xaxis': '#eta'
 }
 
 # make the unrolled mth:mll distributions by hand

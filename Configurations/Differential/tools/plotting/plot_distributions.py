@@ -9,7 +9,7 @@ from argparse import ArgumentParser
 
 argParser = ArgumentParser(description='Make pretty plots')
 argParser.add_argument('sourcePath', metavar='PATH', help='Input ROOT file name.')
-argParser.add_argument('--tag', '-t', metavar='TAG', dest='tag', default='', help='Tag for output plot directory')
+argParser.add_argument('dataset', metavar='DATASET', help='Dataset (2016, 2017, 2018, combination)')
 argParser.add_argument('--blind', '-B', action='store_true', dest='blind', help='Blind SR.')
 argParser.add_argument('--no-higgs', '-N', action='store_true', dest='noHiggs', help='Do not show Higgs contributions.')
 argParser.add_argument('--make-cr-spectra', '-a', metavar='OBSERVABLE', dest='makeCRSpectra', help='Make CR spectra for njet or ptH.')
@@ -146,23 +146,16 @@ for cut in cutnames:
             if name == 'DATA':
                 continue
 
-            if 'hww' in name:
-                f = ws.arg('shapeSig_%s%s_%s_morph' % (args.combination_tag, cut, name))
-            else:
-                f = ws.arg('shapeBkg_%s%s_%s_morph' % (args.combination_tag, cut, name))
-
-            if not f:
-                # some signal gen bins may be dropped
+            hist = common.make_roofit_histogram(ws, args.combination_tag + cut, name, 'histo_%s_%s' % (cut, name))
+            if hist is None:
                 continue
 
-            n = ws.arg('n_exp_final_bin%s%s_proc_%s' % (args.combination_tag, cut, name))
+            postfits[name] = hist
 
-            postfits[name] = f.createHistogram('histo_%s_%s' % (cut, name), x, ROOT.RooFit.Extended(False))
-            postfits[name].Scale(n.getVal())
             postfits[name].SetBins(nbins, 0., float(nbins))
             if 'hww' not in name:
-                for iX in range(1, nbins + 1):
-                    postfits[name].SetBinError(iX, 0.)
+                err2 = root_numpy.array(postfits[name].GetSumw2(), copy=False)
+                err2[:] = 0.
 
     if args.postfit:
         postfits['DATA'] = prefits['DATA']
@@ -217,7 +210,7 @@ mllVSmthBins = {
     'mllVSmth_8x9': ([10., 25., 35., 40., 45., 50., 55., 70., 90., 210.], [60., 80., 90., 100., 110., 120., 130., 150., 200.])
 }
 
-canvas = common.makeRatioCanvas(600, 680)
+canvas = common.makeRatioCanvas(600, 680, dataset=args.dataset)
 
 canvas.raxis.SetTitle('obs./pred.')
 canvas.raxis.SetWmin(0.5)
@@ -429,6 +422,8 @@ if not args.makeCRSpectra:
 
             if uncert is None:
                 uncert = shape.Clone('uncert')
+            else:
+                uncert.Add(shape)
 
             if name == 'DATA':
                 continue
@@ -446,7 +441,6 @@ if not args.makeCRSpectra:
                 shape.SetLineWidth(2)
 
             stack.Add(shape)
-            uncert.Add(shape)                
 
         obs = shapes['DATA']
         if isSR and args.blind:
@@ -505,16 +499,13 @@ if not args.makeCRSpectra:
         canvas.clear()
 
 else:
-    if args.makeCRSpectra == 'ptH':
-        #obsBins = ['PTH_0_20', 'PTH_20_45', 'PTH_45_80', 'PTH_80_120', 'PTH_120_200', 'PTH_200_350', 'PTH_GT350']
-        obsBins = ['PTH_0_20', 'PTH_20_45', 'PTH_45_80', 'PTH_80_120', 'PTH_120_200', 'PTH_GT200']
-        obsBinning = [0., 20., 45., 80., 120., 200., 260.]
+    observable = args.makeCRSpectra
+
+    if observable == 'ptH':
         canvas.xtitle = 'p_{T}^{H} (GeV)'
         canvas.ytitle = 'events / GeV'
         xlabels = None
     else:
-        obsBins = ['NJ_0', 'NJ_1', 'NJ_2', 'NJ_3', 'NJ_GE4']
-        obsBinning = [0., 1., 2., 3., 4., 5.]
         canvas.xtitle = 'N_{jet}'
         canvas.ytitle = 'events'
         xlabels = ['0', '1', '2', '3', '#geq 4']
@@ -527,11 +518,11 @@ else:
         uncert = None
 
         spectra = {}
-        for name, title, color, opt in plotconfigs:
-            hist = ROOT.TH1D(name, '', len(obsBins), array.array('d', obsBinning))
+        for name, _, color, opt in plotconfigs + [('DATA', 0, 0, '')]:
+            hist = ROOT.TH1D(name, '', len(common.binnames[observable]), array.array('d', common.binning[observable]))
             spectra[name] = hist
     
-            for ibin, obsBin in enumerate(obsBins):
+            for ibin, obsBin in enumerate(common.binnames[observable]):
                 shapes = next(ss for cut, ss in allshapes.iteritems() if cut.startswith('hww_CR_cat%s_%s' % (obsBin, cr)))
                 if name not in shapes:
                     continue
@@ -539,11 +530,16 @@ else:
                 hist.SetBinContent(ibin + 1, shapes[name].GetBinContent(1))
                 hist.SetBinError(ibin + 1, shapes[name].GetBinError(1))
 
+            if name == 'DATA':
+                continue
+
             if args.binWidthNorm:
                 hist.Scale(1., 'width')
 
             if uncert is None:
                 uncert = hist.Clone('uncert')
+            else:
+                uncert.Add(hist)
 
             if 'F' in opt:
                 lcolor = common.get_line_color(color)
@@ -559,8 +555,8 @@ else:
 
             stack.Add(hist)
 
-        obs = shapes['DATA']
-        gobs = ROOT.RooHist(obs)
+        obs = spectra['DATA']
+        gobs = ROOT.RooHist(obs, 1.)
 
         if not args.binWidthNorm:
             # roohist automatically normalizes by bin width, rescale
@@ -579,7 +575,7 @@ else:
 
         for name, title, _, opt in reversed(plotconfigs):
             try:
-                legend.AddEntry(shapes[name], title, opt)
+                legend.AddEntry(spectra[name], title, opt)
             except KeyError:
                 pass
 
@@ -598,8 +594,8 @@ else:
             for il, label in enumerate(['0', '1', '2', '3', '#geq 4']):
                 latex.DrawLatex(common.xmin + (common.xmax - common.xmin) * (0.5 + il) / 5., common.ymin - 0.02, label)
 
-        canvas.printout('%s/%s_%s.png' % (args.out_path, args.makeCRSpectr, cr))
-        canvas.printout('%s/%s_%s.pdf' % (args.out_path, args.makeCRSpectr, cr))
+        canvas.printout('%s/%s_%s.png' % (args.out_path, observable, cr))
+        canvas.printout('%s/%s_%s.pdf' % (args.out_path, observable, cr))
 
         canvas.clear()
     

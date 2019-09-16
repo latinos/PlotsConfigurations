@@ -273,7 +273,7 @@ signals.append('ggH_hww')
 samples['qqH_hww'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2NuPowheg_M125'),
     'weight': mcCommonWeight,
-    'FilesPerJob': 3
+    'FilesPerJob': 2
 }
 
 signals.append('qqH_hww')
@@ -311,7 +311,7 @@ signals.append('WH_hww')
 samples['ttH_hww'] = {
     'name':   nanoGetSampleFiles(mcDirectory, 'ttHToNonbb_M125'),
     'weight': mcCommonWeight,
-    'FilesPerJob': 1
+    'FilesPerJob': 2
 }
 
 signals.append('ttH_hww')

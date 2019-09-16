@@ -38,11 +38,13 @@ RETURNDIR=$CARDDIR
 
 if [ $OBSERVABLE = njet ]
 then
+  NPOI=5
   SETMU="r_0=1,r_1=1,r_2=1,r_3=1,r_4=1"
   SETDELTA="delta=9.52"
   OBSNAME="NJ"
 else
-  SETMU="r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1"
+  NPOI=6
+  SETMU="r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1"
   SETDELTA="delta=2.5"
   OBSNAME="PTH"
 fi
@@ -101,12 +103,61 @@ then
   combine $CARDDIR/fullmodel.root -M $METHOD --algo singles --setParameters regularize=0 $FITOPT -n $NAME --saveFitResult --saveWorkspace
   ADDITIONAL=multidimfit${NAME}.root
 
-elif [ $COMMAND = Global ]
+elif [ $COMMAND = IntegratedUnreg ] || [ $COMMAND = IntegratedReg ]
+then
+
+  DEPENDENT=$5
+  POIS=r
+  for I in $(seq 0 $(($NPOI-1)))
+  do
+    [ $I -ne $DEPENDENT ] && POIS=${POIS},f_${I}
+  done
+
+  if [ $COMMAND = IntegratedUnreg ]
+  then
+    NAME=IntegratedUnregF${DEPENDENT}Dep
+    REGULARIZE="--setParameters regularize=0"
+  elif [ $COMMAND = IntegratedReg ]
+  then
+    NAME=IntegratedRegF${DEPENDENT}Dep
+    REGULARIZE="--setParameters regularize=1,${SETDELTA}"
+  fi
+
+  METHOD=MultiDimFit
+
+  combine $CARDDIR/integrated/fullmodel_integrated_f${DEPENDENT}dep.root -M $METHOD --algo singles $REGULARIZE --redefineSignalPOIs $POIS $FITOPT -n $NAME --saveFitResult --saveWorkspace
+  ADDITIONAL=multidimfit${NAME}.root
+  RETURNDIR=$CARDDIR/integrated
+
+elif [ $COMMAND = IntegratedRegRPFix ]
+then
+
+  if [ $OBSERVABLE = njet ]
+  then
+    RPVALUES="CMS_hww_DYnorm_NJ_0=9.9029e-01,CMS_hww_DYnorm_NJ_1=9.2352e-01,CMS_hww_DYnorm_NJ_2=8.3777e-01,CMS_hww_DYnorm_NJ_3=8.0307e-01,CMS_hww_DYnorm_NJ_GE4=1.0546e+00,CMS_hww_WWnorm_NJ_0=1.0759e+00,CMS_hww_WWnorm_NJ_1=8.0400e-01,CMS_hww_WWnorm_NJ_2=6.7620e-01,CMS_hww_WWnorm_NJ_3=4.6647e-01,CMS_hww_WWnorm_NJ_GE4=-2.1399e-01,CMS_hww_topnorm_NJ_0=1.0670e+00,CMS_hww_topnorm_NJ_1=1.0253e+00,CMS_hww_topnorm_NJ_2=9.9943e-01,CMS_hww_topnorm_NJ_3=9.6874e-01,CMS_hww_topnorm_NJ_GE4=9.1328e-01"
+  elif [ $OBSERVABLE = ptH ]
+  then
+    RPVALUES="CMS_hww_DYnorm_PTH_0_20=1.2019e+00,CMS_hww_DYnorm_PTH_120_200=9.7657e-01,CMS_hww_DYnorm_PTH_20_45=9.1191e-01,CMS_hww_DYnorm_PTH_45_80=1.0040e+00,CMS_hww_DYnorm_PTH_80_120=9.9842e-01,CMS_hww_DYnorm_PTH_GT200=9.8090e-01,CMS_hww_WWnorm_PTH_0_20=1.2184e+00,CMS_hww_WWnorm_PTH_120_200=9.0063e-01,CMS_hww_WWnorm_PTH_20_45=8.9164e-01,CMS_hww_WWnorm_PTH_45_80=8.3227e-01,CMS_hww_WWnorm_PTH_80_120=7.6859e-01,CMS_hww_WWnorm_PTH_GT200=7.4628e-01,CMS_hww_topnorm_PTH_0_20=9.9039e-01,CMS_hww_topnorm_PTH_120_200=9.8518e-01,CMS_hww_topnorm_PTH_20_45=9.8428e-01,CMS_hww_topnorm_PTH_45_80=9.8055e-01,CMS_hww_topnorm_PTH_80_120=9.7224e-01,CMS_hww_topnorm_PTH_GT200=9.8455e-01"
+  fi
+
+  DEPENDENT=0
+  POIS=r
+  for I in $(seq 0 $(($NPOI-1)))
+  do
+    [ $I -ne $DEPENDENT ] && POIS=${POIS},f_${I}
+  done
+
+  METHOD=MultiDimFit
+  NAME=IntegratedRegRPFix
+  combine --datacard $CARDDIR/fullmodel_integrated.root -M $METHOD --algo singles --setParameters regularize=1,${SETDELTA},$RPVALUES --redefineSignalPOIs $POIS --freezeParameters 'var{CMS_hww_.*norm_.*}' $FITOPT -n $NAME --saveFitResult --saveWorkspace -v 1
+  ADDITIONAL=multidimfit${NAME}.root
+
+elif [ $COMMAND = Inclusive ]
 then
 
   METHOD=MultiDimFit
-  NAME=Global
-  combine $CARDDIR/fullmodel_global.root -M $METHOD --algo singles --setParameters regularize=1,${SETDELTA} $FITOPT -n $NAME --saveFitResult --saveWorkspace
+  NAME=Inclusive
+  combine $CARDDIR/fullmodel_inclusive.root -M $METHOD --algo singles $FITOPT -n $NAME --saveFitResult --saveWorkspace
   ADDITIONAL=multidimfit${NAME}.root
 
 elif [ $COMMAND = DeltaScan ]
