@@ -31,6 +31,11 @@ fi
 
 ulimit -s 20480
 
+function dofit() {
+  echo combine $CARD -M $METHOD $@ -n $NAME
+  combine $CARD -M $METHOD $@ -n $NAME
+}
+
 cd $TMPDIR
 
 CARDDIR=$WORKDIR/${OBSERVABLE}_${CARD_TAG}
@@ -50,57 +55,53 @@ else
 fi
 
 FITOPT="--X-rtd MINIMIZER_analytic"
+CARD=$CARDDIR/fullmodel.root
+METHOD=MultiDimFit
 
 if [ $COMMAND = AsimovReg ]
 then
   # Generate an Asimov dataset and perform a regularized fit.
 
-  METHOD=MultiDimFit
   NAME=AsimovReg
-  combine $CARDDIR/fullmodel.root -M $METHOD --algo singles -t -1 --setParameters ${SETMU},regularize=1,${SETDELTA} $FITOPT -n $NAME --saveFitResult
+  dofit --algo singles -t -1 --setParameters ${SETMU},regularize=1,${SETDELTA} $FITOPT --saveFitResult
   ADDITIONAL=multidimfit${NAME}.root
 
 elif [ $COMMAND = AsimovUnreg ]
 then
   # Generate an Asimov dataset and perform an unregularized fit.
 
-  METHOD=MultiDimFit
   NAME=AsimovUnreg
-  combine $CARDDIR/fullmodel.root -M $METHOD --algo singles -t -1 --setParameters ${SETMU},regularize=0 $FITOPT -n $NAME --saveFitResult
+  dofit --algo singles -t -1 --setParameters ${SETMU},regularize=0 $FITOPT --saveFitResult
   ADDITIONAL=multidimfit${NAME}.root
 
 elif [ $COMMAND = AsimovUnregStat ]
 then
   # Generate an Asimov dataset and perform an unregularized fit, freezing all nuisance parameters.
 
-  METHOD=MultiDimFit
   NAME=AsimovUnregStat
-  combine $CARDDIR/fullmodel.root -M $METHOD --algo singles -t -1 --setParameters ${SETMU},regularize=0 $FITOPT -n $NAME --freezeParameters allConstrainedNuisances,'rgx{CMS_hww_.*norm_'$OBSNAME'_.*}'
+  dofit --algo singles -t -1 --setParameters ${SETMU},regularize=0 $FITOPT --freezeParameters allConstrainedNuisances,'rgx{CMS_hww_.*norm_'$OBSNAME'_.*}'
 
 elif [ $COMMAND = AsimovUnregNoMCStat ]
 then
   # Generate an Asimov dataset and perform an unregularized fit, freezing bin-by-bin nuisance parameters for the template statistical uncertainty.
 
-  METHOD=MultiDimFit
   NAME=AsimovUnregNoMCStat
-  combine $CARDDIR/fullmodel.root -M $METHOD --algo singles -t -1 --setParameters ${SETMU},regularize=0 $FITOPT -n $NAME --freezeNuisanceGroups group_autoMCStats
+  dofit --algo singles -t -1 --setParameters ${SETMU},regularize=0 $FITOPT --freezeNuisanceGroups group_autoMCStats
 
 elif [ $COMMAND = Reg ]
 then
   # Perform a regularized fit. Save the fit results in multdimFitReg.root and the workspace containing the best-fit snapshot in higgsCombineReg.MultiDimFit.mH120.root.
 
-  METHOD=MultiDimFit
   NAME=Reg
-  combine $CARDDIR/fullmodel.root -M $METHOD --algo singles --setParameters regularize=1,${SETDELTA} $FITOPT -n $NAME --saveFitResult --saveWorkspace
+  dofit --algo singles --setParameters regularize=1,${SETDELTA} $FITOPT --saveFitResult --saveWorkspace
   ADDITIONAL=multidimfit${NAME}.root
 
 elif [ $COMMAND = Unreg ]
 then
   # Perform an unregularized fit. Save the fit results in multdimFitUnreg.root and the workspace containing the best-fit snapshot in higgsCombineUnreg.MultiDimFit.mH120.root.
 
-  METHOD=MultiDimFit
   NAME=Unreg
-  combine $CARDDIR/fullmodel.root -M $METHOD --algo singles --setParameters regularize=0 $FITOPT -n $NAME --saveFitResult --saveWorkspace
+  dofit --algo singles --setParameters regularize=0 $FITOPT --saveFitResult --saveWorkspace
   ADDITIONAL=multidimfit${NAME}.root
 
 elif [ $COMMAND = IntegratedUnreg ] || [ $COMMAND = IntegratedReg ]
@@ -123,9 +124,9 @@ then
     REGULARIZE="--setParameters regularize=1,${SETDELTA}"
   fi
 
-  METHOD=MultiDimFit
+  CARD=$CARDDIR/integrated/fullmodel_integrated_f${DEPENDENT}dep.root
 
-  combine $CARDDIR/integrated/fullmodel_integrated_f${DEPENDENT}dep.root -M $METHOD --algo singles $REGULARIZE --redefineSignalPOIs $POIS $FITOPT -n $NAME --saveFitResult --saveWorkspace
+  dofit --algo singles $REGULARIZE --redefineSignalPOIs $POIS $FITOPT --saveFitResult --saveWorkspace
   ADDITIONAL=multidimfit${NAME}.root
   RETURNDIR=$CARDDIR/integrated
 
@@ -147,17 +148,19 @@ then
     [ $I -ne $DEPENDENT ] && POIS=${POIS},f_${I}
   done
 
-  METHOD=MultiDimFit
+  CARD=$CARDDIR/fullmodel_integrated.root
+
   NAME=IntegratedRegRPFix
-  combine --datacard $CARDDIR/fullmodel_integrated.root -M $METHOD --algo singles --setParameters regularize=1,${SETDELTA},$RPVALUES --redefineSignalPOIs $POIS --freezeParameters 'var{CMS_hww_.*norm_.*}' $FITOPT -n $NAME --saveFitResult --saveWorkspace -v 1
+  dofit --algo singles --setParameters regularize=1,${SETDELTA},$RPVALUES --redefineSignalPOIs $POIS --freezeParameters 'var{CMS_hww_.*norm_.*}' $FITOPT --saveFitResult --saveWorkspace -v 1
   ADDITIONAL=multidimfit${NAME}.root
 
 elif [ $COMMAND = Inclusive ]
 then
 
-  METHOD=MultiDimFit
+  CARD=$CARDDIR/fullmodel_inclusive.root
+
   NAME=Inclusive
-  combine $CARDDIR/fullmodel_inclusive.root -M $METHOD --algo singles $FITOPT -n $NAME --saveFitResult --saveWorkspace
+  dofit --algo singles $FITOPT --saveFitResult --saveWorkspace
   ADDITIONAL=multidimfit${NAME}.root
 
 elif [ $COMMAND = DeltaScan ]
@@ -169,11 +172,13 @@ then
   NDELTA=$7
   IDELTA=$8
   DELTA=$(echo "scale=4; ($DELTAMAX - $DELTAMIN) / $NDELTA * $IDELTA + $DELTAMIN" | bc)
-  METHOD=MultiDimFit
+
   NAME=DeltaScan${IDELTA}
-  combine $CARDDIR/fullmodel.root -M $METHOD --algo none -t -1 --setParameters ${SETMU},regularize=1,delta=$DELTA $FITOPT -n $NAME --freezeNuisanceGroups group_autoMCStats --saveFitResult
-  RETURNDIR=$CARDDIR/deltascan
+  dofit --algo none -t -1 --setParameters ${SETMU},regularize=1,delta=$DELTA $FITOPT --freezeNuisanceGroups group_autoMCStats --saveFitResult
+
   python $THISDIR/compute_gcc.py multidimfit${NAME}.root higgsCombine${NAME}.${METHOD}.mH120.root $DELTA
+
+  RETURNDIR=$CARDDIR/deltascan
   ADDITIONAL=multidimfit${NAME}.root
 
 elif [ $COMMAND = GOFObs ]
@@ -181,8 +186,9 @@ then
   # Compute the saturated-model test statistic (-2lnlambda or "generalized chi square") for the observation.
 
   METHOD=GoodnessOfFit
+
   NAME=Obs
-  combine $CARDDIR/fullmodel.root -M $METHOD --algo saturated --setParameters regularize=0 $FITOPT -n $NAME
+  dofit --algo saturated --setParameters regularize=0 $FITOPT
 
 elif [ $COMMAND = GOFGen ]
 then
@@ -190,10 +196,14 @@ then
 
   NTOYSPERJOB=$5
   ITOYSET=$6
+
+  CARD=$CARDDIR/higgsCombineUnreg.MultiDimFit.mH120.root
   METHOD=GenerateOnly
+
   NAME=PostfitFreq${ITOYSET}
   SEED=$(($ITOYSET+12345))
-  combine $CARDDIR/higgsCombineUnreg.MultiDimFit.mH120.root --snapshotName MultiDimFit -M $METHOD -n $NAME -t $NTOYSPERJOB --toysFreq --expectSignal 1 --bypassFrequentistFit -s $SEED --saveToys
+  dofit --snapshotName MultiDimFit -t $NTOYSPERJOB --toysFreq --expectSignal 1 --bypassFrequentistFit -s $SEED --saveToys
+
   python $THISDIR/resample_mcstats.py $CARDDIR/fullmodel.root higgsCombine$NAME.GenerateOnly.mH120.$SEED.root tmp.root
   mv tmp.root higgsCombine$NAME.GenerateOnly.mH120.$SEED.root
   RETURNDIR=$CARDDIR/gof
@@ -204,10 +214,12 @@ then
 
   NTOYSPERJOB=$5
   ITOYSET=$6
+
   METHOD=GoodnessOfFit
+
   NAME=FreqFit${ITOYSET}
   SEED=$(($ITOYSET+12345))
-  combine $CARDDIR/fullmodel.root -M $METHOD --algo saturated --setParameters regularize=0 $FITOPT -n $NAME -t $NTOYSPERJOB --toysFreq --expectSignal 1 -s $SEED --toysFile $CARDDIR/gof/higgsCombinePostfitFreq${ITOYSET}.GenerateOnly.mH120.root
+  dofit --algo saturated --setParameters regularize=0 $FITOPT -t $NTOYSPERJOB --toysFreq --expectSignal 1 -s $SEED --toysFile $CARDDIR/gof/higgsCombinePostfitFreq${ITOYSET}.GenerateOnly.mH120.root
   RETURNDIR=$CARDDIR/gof
 
 elif [ $COMMAND = GOFKSToy ]
@@ -216,10 +228,12 @@ then
 
   NTOYSPERJOB=$5
   ITOYSET=$6
+
   METHOD=GoodnessOfFit
+
   NAME=KSTest${ITOYSET}
   SEED=$(($ITOYSET+12345))
-  combine $CARDDIR/fullmodel.root -M $METHOD --algo KS --setParameters $SETMU,regularize=0 $FITOPT -n $NAME -t $NTOYSPERJOB --expectSignal 1 -s $SEED
+  dofit --algo KS --setParameters $SETMU,regularize=0 $FITOPT -t $NTOYSPERJOB --expectSignal 1 -s $SEED
   RETURNDIR=$CARDDIR/gof_ks
 
 elif [ $COMMAND = GOFNom ]
@@ -228,13 +242,16 @@ then
 
   NTOYSPERJOB=$5
   ITOYSET=$6
+
   METHOD=GoodnessOfFit
+
   NAME=Nom${ITOYSET}
   TOYSEED=$(($ITOYSET+12345))
   for ITOY in $(seq 1 $NTOYSPERJOB)
   do
     TOYNAME=Nom${ITOYSET}_${ITOY}
-    combine $CARDDIR/fullmodel.root -M $METHOD --algo saturated --setParameters regularize=0 $FITOPT -n $TOYNAME -D $CARDDIR/gof/higgsCombinePostfitFreq${ITOYSET}.GenerateOnly.mH120.$TOYSEED.root:toys/toy_${ITOY}
+    dofit --algo saturated --setParameters regularize=0 $FITOPT -D $CARDDIR/gof/higgsCombinePostfitFreq${ITOYSET}.GenerateOnly.mH120.$TOYSEED.root:toys/toy_${ITOY}
+    mv higgsCombine{$NAME,$TOYNAME}.$METHOD.mH120.root
     SOURCE=$SOURCE"higgsCombine${TOYNAME}.$METHOD.mH120.root "
   done
   hadd -f higgsCombine${NAME}.$METHOD.mH120.root $SOURCE
@@ -247,14 +264,18 @@ then
 
   NTOYSPERJOB=$5
   ITOYSET=$6
+
   METHOD=GoodnessOfFit
+
   NAME=Shift${ITOYSET}
   TOYSEED=$(($ITOYSET+12345))
   for ITOY in $(seq 1 $NTOYSPERJOB)
   do
     python $THISDIR/load_toy_snapshot.py $CARDDIR/fullmodel.root $CARDDIR/gof/higgsCombinePostfitFreq${ITOYSET}.GenerateOnly.mH120.$TOYSEED.root $ITOY tmp.root
     TOYNAME=Shift${ITOYSET}_${ITOY}
-    combine tmp.root --snapshotName toygen -M $METHOD --algo saturated --setParameters regularize=0 $FITOPT -n $TOYNAME
+    CARD=tmp.root
+    dofit --snapshotName toygen --algo saturated --setParameters regularize=0 $FITOPT
+    mv higgsCombine{$NAME,$TOYNAME}.$METHOD.mH120.root
     SOURCE=$SOURCE"higgsCombine${TOYNAME}.$METHOD.mH120.root "
     rm tmp.root
   done
@@ -266,9 +287,8 @@ elif [ $COMMAND = AsimovImpact ]
 then
   # Compute the best-fit Hessian matrix for approximate nuisance parameter impact calculation with Asimov dataset.
 
-  METHOD=MultiDimFit
   NAME=_approxFit_Asimov
-  combineTool.py -M Impacts -d $CARDDIR/fullmodel.root -m 120 --doFits --approx robust --setParameters ${SETMU},regularize=0 -t -1 $FITOPT --name Asimov
+  combineTool.py -M Impacts -d $CARD -m 120 --doFits --approx robust --setParameters ${SETMU},regularize=0 -t -1 $FITOPT --name Asimov
   ADDITIONAL=robustHesse${NAME}.root
 
   #combineTool.py -M Impacts -d fullmodel.root -m 120 --approx robust --name Asimov -o Asimov.json
@@ -278,9 +298,8 @@ elif [ $COMMAND = Impact ]
 then
   # Compute the best-fit Hessian matrix for approximate nuisance parameter impact calculation.
 
-  METHOD=MultiDimFit
   NAME=_approxFit_Observed
-  combineTool.py -M Impacts -d $CARDDIR/fullmodel.root -m 120 --doFits --approx robust --setParameters regularize=0 $FITOPT --name Observed
+  combineTool.py -M Impacts -d $CARD -m 120 --doFits --approx robust --setParameters regularize=0 $FITOPT --name Observed
   ADDITIONAL=robustHesse${NAME}.root
 
   #combineTool.py -M Impacts -d fullmodel.root -m 120 --approx robust --name Observed -o Observed.json
@@ -290,20 +309,18 @@ elif [ $COMMAND = AsimovFullImpact ]
 then
   # Do the initial fit for full nuisance parameter impact calculation with Asimov dataset.
 
-  METHOD=MultiDimFit
   NAME=_initialFit_Asimov
-  combineTool.py -M Impacts -d $CARDDIR/fullmodel.root -m 120 --doInitialFit --setParameters ${SETMU},regularize=0 -t -1 $FITOPT --name Asimov
-  echo combineTool.py -M Impacts -d $CARDDIR/fullmodel.root -m 120 --doFits --setParameters ${SETMU},regularize=0 -t -1 $FITOPT --name Asimov --job-mode condor
+  combineTool.py -M Impacts -d $CARD -m 120 --doInitialFit --setParameters ${SETMU},regularize=0 -t -1 $FITOPT --name Asimov
+  echo combineTool.py -M Impacts -d $CARD -m 120 --doFits --setParameters ${SETMU},regularize=0 -t -1 $FITOPT --name Asimov --job-mode condor
   RETURNDIR=$CARDDIR/impact_asimov
 
 elif [ $COMMAND = FullImpact ]
 then
   # Do the initial fit for full nuisance parameter impact calculation.
 
-  METHOD=MultiDimFit
   NAME=_initialFit_Observed
-  combineTool.py -M Impacts -d $CARDDIR/fullmodel.root -m 120 --doInitialFit --setParameters regularize=0 $FITOPT --name Observed
-  echo combineTool.py -M Impacts -d $CARDDIR/fullmodel.root -m 120 --doFits --setParameters regularize=0 $FITOPT --name Observed --job-mode condor
+  combineTool.py -M Impacts -d $CARD -m 120 --doInitialFit --setParameters regularize=0 $FITOPT --name Observed
+  echo combineTool.py -M Impacts -d $CARD -m 120 --doFits --setParameters regularize=0 $FITOPT --name Observed --job-mode condor
   RETURNDIR=$CARDDIR/impact_obs
 
 fi

@@ -29,11 +29,15 @@ lines.append('      \\hline')
 for label in common.bintitles[obs]:
     lines.append('      $\\mufid\\rho_{%s}$ ' % label.replace('#', '\\'))
 
-print '\n'.join(lines)
-sys.exit(0)
-
 for idep in range(len(binnorms)):
-    integrated_source = ROOT.TFile.Open('%s/multidimfitIntegratedRegF%dDep.root' % (fitdir, idep))
+    integrated_source = ROOT.TFile.Open('%s/integrated/multidimfitIntegratedUnregF%dDep.root' % (fitdir, idep))
+    if not integrated_source:
+        lines[1] += '& \mdash '
+        for imu in range(len(binnorms)):
+            lines[imu + 4] += '& \mdash '
+    
+        continue
+        
     integrated_pars = integrated_source.Get('fit_mdf').floatParsFinal()
 
     mufid = integrated_pars.find('r')

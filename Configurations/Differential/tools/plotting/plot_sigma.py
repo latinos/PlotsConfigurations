@@ -13,6 +13,10 @@ ROOT.gStyle.SetHatchesLineWidth(2)
 #ROOT.gStyle.SetHatchesSpacing(0.5)
 
 config = sys.argv[1] # fiducial, prefit, or postfit
+try:
+    skip_unreg = sys.argv[2]
+except:
+    skip_unreg = ''
 
 # fiducial: Fiducial cross sections in bins of gen-level observables
 # prefit: Prefit signal yield predictions in bins of reco-level observables. Systematic uncertainties ignored
@@ -193,6 +197,7 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
         legend.AddEntry(histograms[(obs, title)], title, 'LF')
 
     distpad = canvas.cd(1)
+    distpad.SetLogy(True)
 
     # uncertainty
     total = htotals[obs]
@@ -263,7 +268,7 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
             gobs.SetPointEXlow(ip, 0.)
             gobs.SetPointEXhigh(ip, 0.)
 
-            # table for AN
+            # table for AN/PAS
             if obs == 'ptH':
                 xmin = total.GetXaxis().GetBinLowEdge(ip + 1)
                 xmax = total.GetXaxis().GetBinUpEdge(ip + 1)
@@ -282,10 +287,15 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
 
             line += '& $%.2f$ ' % total.GetBinContent(ip + 1)
 
-            line += ('& $%.2f^{%+.2f}_{%+.2f}$ ' * 3) % \
-                (mus_unreg[obs][ip][0], mus_unreg[obs][ip][1], mus_unreg[obs][ip][2],
-                    mus_reg[obs][ip][0], mus_reg[obs][ip][1], mus_reg[obs][ip][2], 
-                    y * binw, errhi * binw, -errlo * binw)
+            if skip_unreg:
+                line += ('& $%.2f^{%+.2f}_{%+.2f}$ ' * 2) % \
+                    (mus_reg[obs][ip][0], mus_reg[obs][ip][1], mus_reg[obs][ip][2], 
+                        y * binw, errhi * binw, -errlo * binw)
+            else:
+                line += ('& $%.2f^{%+.2f}_{%+.2f}$ ' * 3) % \
+                    (mus_unreg[obs][ip][0], mus_unreg[obs][ip][1], mus_unreg[obs][ip][2],
+                        mus_reg[obs][ip][0], mus_reg[obs][ip][1], mus_reg[obs][ip][2], 
+                        y * binw, errhi * binw, -errlo * binw)
 
             line += '\\\\\n'
 

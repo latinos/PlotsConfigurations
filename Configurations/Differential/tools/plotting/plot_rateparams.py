@@ -163,7 +163,7 @@ for observable in ['ptH', 'njet']:
     
         source.Close()
    
-    for name, hists in [('rnorm', postfit_rnorms), ('rate', postfit_rates)]:
+    for name, hists in [('postfit_norms', postfit_rnorms), ('postfit_rateparams', postfit_rates)]:
         for proc in ['WW', 'top', 'DY']:
             legend = ROOT.TLegend(0.17, 0.17, 0.4, 0.4)
             legend.SetFillStyle(0)
@@ -194,22 +194,22 @@ for observable in ['ptH', 'njet']:
     
             legend.Draw()
     
-            canvas.Print('%s_%s_%s.png' % (observable, name, proc))
-            canvas.Print('%s_%s_%s.pdf' % (observable, name, proc))
+            canvas.Print('%s_%s_%s.png' % (name, observable, proc))
+            canvas.Print('%s_%s_%s.pdf' % (name, observable, proc))
 
-canvas.SetGridy(False)
-
-for proc in ['WW', 'top', 'DY']:
-    for dataset in ['2016', '2017', '2018']:
-        nhist = postfit_norms[(dataset, proc)]
-        nhist.SetMinimum(0.)
-        nhist.SetLineColor(ROOT.kBlack)
-        nhist.SetLineWidth(2)
-        nhist.GetXaxis().SetBinLabel(1, 'ptH %s' % dataset)
-        nhist.GetXaxis().SetBinLabel(2, 'njet %s' % dataset)
-        nhist.GetXaxis().SetBinLabel(3, 'ptH combined')
-        nhist.GetXaxis().SetBinLabel(4, 'njet combined')
-
-        nhist.Draw('HIST')
-        canvas.Print('postfitnorm_%s_%s.png' % (dataset, proc))
-        canvas.Print('postfitnorm_%s_%s.pdf' % (dataset, proc))
+#canvas.SetGridy(False)
+#
+#for proc in ['WW', 'top', 'DY']:
+#    for dataset in ['2016', '2017', '2018']:
+#        nhist = postfit_norms[(dataset, proc)]
+#        nhist.SetMinimum(0.)
+#        nhist.SetLineColor(ROOT.kBlack)
+#        nhist.SetLineWidth(2)
+#        nhist.GetXaxis().SetBinLabel(1, 'ptH %s' % dataset)
+#        nhist.GetXaxis().SetBinLabel(2, 'njet %s' % dataset)
+#        nhist.GetXaxis().SetBinLabel(3, 'ptH combined')
+#        nhist.GetXaxis().SetBinLabel(4, 'njet combined')
+#
+#        nhist.Draw('HIST')
+#        canvas.Print('postfitnorm_%s_%s.png' % (dataset, proc))
+#        canvas.Print('postfitnorm_%s_%s.pdf' % (dataset, proc))
