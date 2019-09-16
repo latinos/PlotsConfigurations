@@ -25,7 +25,7 @@ protected:
   FloatArrayReader* Lepton_pt{};
   FloatArrayReader* Lepton_eta{};
   FloatArrayReader* Lepton_phi{};
-  IntArrayReader*   CleanJet_Idx{};
+  IntArrayReader*   CleanJet_jetIdx{};
   FloatArrayReader* CleanJet_pt{};
   FloatArrayReader* CleanJet_eta{};
   FloatArrayReader* CleanJet_phi{};
@@ -52,8 +52,8 @@ Compute_pTHjj::evaluate(unsigned)
 
   lep1.SetPtEtaPhiM(Lepton_pt->At(0),Lepton_eta->At(0),Lepton_phi->At(0),l1m);
   lep2.SetPtEtaPhiM(Lepton_pt->At(1),Lepton_eta->At(1),Lepton_phi->At(1),l2m);
-  jet1.SetPtEtaPhiM(CleanJet_pt->At(0),CleanJet_eta->At(0),CleanJet_phi->At(0),Jet_mass->At(CleanJet_Idx->At(0)));
-  jet2.SetPtEtaPhiM(CleanJet_pt->At(1),CleanJet_eta->At(1),CleanJet_phi->At(1),Jet_mass->At(CleanJet_Idx->At(1)));
+  jet1.SetPtEtaPhiM(CleanJet_pt->At(0),CleanJet_eta->At(0),CleanJet_phi->At(0),Jet_mass->At(CleanJet_jetIdx->At(0)));
+  jet2.SetPtEtaPhiM(CleanJet_pt->At(1),CleanJet_eta->At(1),CleanJet_phi->At(1),Jet_mass->At(CleanJet_jetIdx->At(1)));
   MET.SetPtEtaPhiM(*PuppiMET_pt->Get(),0,*PuppiMET_phi->Get(),0);
   Hjj=lep1+lep2+jet1+jet2+MET;
 
@@ -67,7 +67,7 @@ Compute_pTHjj::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(Lepton_pt, "Lepton_pt");
   _library.bindBranch(Lepton_eta, "Lepton_eta");
   _library.bindBranch(Lepton_phi, "Lepton_phi");
-  _library.bindBranch(CleanJet_Idx, "CleanJet_Idx");
+  _library.bindBranch(CleanJet_jetIdx, "CleanJet_jetIdx");
   _library.bindBranch(CleanJet_pt, "CleanJet_pt");
   _library.bindBranch(CleanJet_eta, "CleanJet_eta");
   _library.bindBranch(CleanJet_phi, "CleanJet_phi");
