@@ -183,7 +183,6 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
         'args': (btagSFSource, 'down_' + shift),
         'samples': mc
     }
-
     for targ in ['bVeto', 'bVetoDY', 'btag2']:
         alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
         alias['expr'] = alias['expr'].replace('btagSF_shapeFix', 'btagSF_shapeFix_up_%s' % shift)
