@@ -3,7 +3,8 @@
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
 #2017
-bWP = '0.1522'
+#bWP = '0.1522' #Loose
+bWP = '0.4941'
 
 aliases['bVeto'] = {
     'expr': '(Sum$( CleanJet_pt > 20.0 && Jet_btagDeepB[CleanJet_jetIdx] > '+bWP+' ) == 0)'
