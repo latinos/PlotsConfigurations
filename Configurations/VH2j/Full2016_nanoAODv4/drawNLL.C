@@ -3,7 +3,7 @@ void drawNLL()
   TCanvas* cc = new TCanvas("cc","", 800, 600);
   int n = 0;
   
-  n = limit->Draw("2*deltaNLL:r","deltaNLL<10 && deltaNLL>0","l");
+  n = limit->Draw("2*deltaNLL:CMS_btag_lf","deltaNLL<10 && deltaNLL>0","l");
   TGraph *graphScan = new TGraph(n,limit->GetV2(),limit->GetV1());
   graphScan->RemovePoint(0);
   
