@@ -60,7 +60,8 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  'samples'  : ['WH_htt', 'WH_hww', 'ZH_hww', 'ggZH_hww']
+                  #'samples'  : ['WH_htt', 'WH_hww', 'ZH_hww', 'ggZH_hww']
+                  'samples'  : ['WH_hww', 'ZH_hww', 'ggZH_hww']
               }
 
 # Individual plots               
@@ -83,7 +84,7 @@ plot['Vg']  = {
                   'color': 859, # kAzure -1  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.34
+                  'scale'    : 1.0
                   }
 
 plot['WZ']  = { 
@@ -91,7 +92,7 @@ plot['WZ']  = {
                   'color': 858, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.108
+                  'scale'    : 1.0
                   }
 
 plot['ZZ']  = { 
@@ -116,13 +117,13 @@ plot['VVV']  = {
                   'scale'    : 1.0
                   }
 
-plot['WH_htt'] = {
-                  'nameHR' : 'Htt',
-                  'color': 632+4, # kRed+4 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1
-                  }
+#plot['WH_htt'] = {
+#                  'nameHR' : 'Htt',
+#                  'color': 632+4, # kRed+4 
+#                  'isSignal' : 1,
+#                  'isData'   : 0,    
+#                  'scale'    : 1
+#                  }
 
 plot['ZH_hww'] = {
                   'nameHR' : 'ZH',
@@ -158,5 +159,5 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 35.9/fb'
+legend['lumi'] = 'L = 59.7/fb'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
