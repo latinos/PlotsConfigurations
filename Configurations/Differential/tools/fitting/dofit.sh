@@ -126,6 +126,8 @@ then
 
   CARD=$CARDDIR/integrated/fullmodel_integrated_f${DEPENDENT}dep.root
 
+  [ -e $CARD ] || $THISDIR/make_integrated_cards.py $OBSERVABLE $CARDDIR $DEPENDENT
+
   dofit --algo singles $REGULARIZE --redefineSignalPOIs $POIS $FITOPT --saveFitResult --saveWorkspace
   ADDITIONAL=multidimfit${NAME}.root
   RETURNDIR=$CARDDIR/integrated

@@ -9,7 +9,10 @@ import resource
 import subprocess
 import ROOT
 
-resource.setrlimit(resource.RLIMIT_STACK, (resource.RLIM_INFINITY, resource.RLIM_INFINITY))
+try:
+    resource.setrlimit(resource.RLIMIT_STACK, (resource.RLIM_INFINITY, resource.RLIM_INFINITY))
+except ValueError:
+    pass
 
 sys.path.append('%s/plotting' % os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 import common
@@ -69,26 +72,22 @@ except OSError:
     pass
 
 for idep in ideps:
-#    with open('%s/integrated/fullmodel_integrated_f%ddep_unreg.txt' % (outpath, idep), 'w') as card_out:
     with open('%s/integrated/fullmodel_integrated_f%ddep.txt' % (outpath, idep), 'w') as card_out:
         with open('%s/fullmodel_unreg.txt' % outpath) as card_unreg:
             for line in card_unreg:
                 card_out.write(line)
     
         fdexpr = '(1.'
+        islot = 0
         for ibin in range(npoi):
             if ibin == idep:
                 continue
             card_out.write('f_%d rateParam * *H_hww_%s 1. [-10.,10.]\n' % (ibin, common.binnames[obs][ibin]))
-            fdexpr += '-%f*@%d' % (fiducialFrac[ibin], ibin - 1)
+            fdexpr += '-%f*@%d' % (fiducialFrac[ibin], islot)
+            islot += 1
     
         fdexpr += ')/%f' % fiducialFrac[idep]
         card_out.write('f_%d rateParam * *H_hww_%s %s %s\n' % (idep, common.binnames[obs][idep], fdexpr, ','.join('f_%d' % ibin for ibin in range(npoi) if ibin != idep)))
-    
-#    with open('%s/integrated/fullmodel_integrated_f%ddep.txt' % (outpath, idep), 'w') as card_out:
-#        with open('%s/integrated/fullmodel_integrated_f%ddep_unreg.txt' % (outpath, idep)) as card_unreg:
-#            for line in card_unreg:
-#                card_out.write(line)
     
         for ic in range(npoi - 2):
             card_out.write('constr{ic} constr @0*@3*(@1-2*@2+@3) r,f_{low},f_{mid},f_{high},regularize[0.] delta[10.]\n'.format(ic = ic, low = ic, mid = ic + 1, high = ic + 2))
