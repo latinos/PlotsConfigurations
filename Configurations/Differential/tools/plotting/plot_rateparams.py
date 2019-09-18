@@ -80,7 +80,14 @@ for observable in ['ptH', 'njet']:
                     continue
 
                 # we don't really need the histogram but whatever
-                h = common.make_roofit_histogram(w, cat, proc, 'temp')
+                if 'hww' in proc:
+                    funcname = 'shapeSig_%s_%s_morph' % (bin, proc)
+                else:
+                    funcname = 'shapeBkg_%s_%s_morph' % (bin, proc)
+
+                normname = 'n_exp_final_bin%s_proc_%s' % (bin, proc)
+
+                h = common.make_roofit_histogram('temp', w, funcname, normname=normname)
                 if h is None:
                     continue
 

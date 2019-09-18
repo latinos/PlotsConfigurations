@@ -285,7 +285,7 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
                 else:
                     line = '      $\geq %d$ ' % ip
 
-            line += '& $%.2f$ ' % total.GetBinContent(ip + 1)
+            line += '& $%.2f$ ' % (total.GetBinContent(ip + 1) * binw)
 
             if skip_unreg:
                 line += ('& $%.2f^{%+.2f}_{%+.2f}$ ' * 2) % \

@@ -271,20 +271,52 @@ def get_line_color(color):
     tcolor = ROOT.gROOT.GetColor(color)
     return ROOT.TColor.GetColor(tcolor.GetRed() * 0.9, tcolor.GetGreen() * 0.9, tcolor.GetBlue() * 0.9)
 
+def set_postfit_uncertainty(hist, ws, fitresult, func, norm=None):
+    ntoys = 200
 
-def make_roofit_histogram(ws, bin, proc, name):
-    if 'hww' in proc:
-        f = ws.arg('shapeSig_%s_%s_morph' % (bin, proc))
-    else:
-        f = ws.arg('shapeBkg_%s_%s_morph' % (bin, proc))
+    x = ws.var('CMS_th1x')
+    ch = ws.cat('CMS_channel')
+    
+    err2 = root_numpy.array(hist.GetSumw2(), copy=False)
+    err2 *= 0.
 
+    anom = root_numpy.hist2array(hist, copy=False, include_overflow=True)
+
+    fparams = func.getParameters(ROOT.RooArgSet(x, ch))
+    if norm is not None:
+        nparams = norm.getParameters(ROOT.RooArgSet(x, ch))
+    
+    # evaluate postfit uncertainties
+    for _ in range(ntoys):
+        randomized = fitresult.randomizePars()
+        fparams.assignValueOnly(randomized)
+        htemp = func.createHistogram('tmp', x, ROOT.RooFit.Extended(False))
+        if norm is not None:
+            nparams.assignValueOnly(randomized)
+            htemp.Scale(norm.getVal())
+
+        atemp = root_numpy.hist2array(htemp, copy=False, include_overflow=True)
+        err2 += np.square(atemp - anom) / ntoys
+
+        htemp.Delete()
+
+def make_roofit_histogram(name, ws, funcname, normname='', fitresult=None):
+    f = ws.arg(funcname)
     if not f:
-        # some templates may be dropped
         return None
 
-    n = ws.arg('n_exp_final_bin%s_proc_%s' % (bin, proc))
+    x = ws.var('CMS_th1x')
 
-    hist = f.createHistogram(name, ws.var('CMS_th1x'), ROOT.RooFit.Extended(False))
-    hist.Scale(n.getVal())
+    hist = f.createHistogram(name, x, ROOT.RooFit.Extended(False))
+    hist.Sumw2()
+
+    if normname:
+        n = ws.arg(normname)
+        hist.Scale(n.getVal())
+    else:
+        n = None
+
+    if fitresult is not None:
+        set_postfit_uncertainty(hist, ws, fitresult, f, n)
 
     return hist

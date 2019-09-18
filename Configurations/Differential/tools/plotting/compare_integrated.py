@@ -2,11 +2,11 @@ import os
 import sys
 import math
 import ROOT
+import root_numpy
 
 import common
 
 fitdir = os.path.dirname(os.path.realpath(sys.argv[1]))
-differential_source = ROOT.TFile.Open(sys.argv[1])
 obs = sys.argv[2]
 
 sigma_fid = 82.5
@@ -17,58 +17,73 @@ if obs == 'njet':
 elif obs == 'ptH':
     binnorms = [0.332666, 0.300039, 0.185110, 0.093513, 0.063778, 0.024895]
 
-lines = []
-lines.append('      Parameter ')
-for label in common.bintitles[obs]:
-    lines[0] += '& $\\rho_{%s}$ ' % label.replace('#', '\\')
-lines[0] += '& Original fit $\\mu$ \\\\'
-lines.append('      \\hline')
+npoi = len(binnorms)
 
-lines.append('      $\\mufid$ ')
-lines.append('      \\hline')
-for label in common.bintitles[obs]:
-    lines.append('      $\\mufid\\rho_{%s}$ ' % label.replace('#', '\\'))
+def getentry(result, ir, scale=1.):
+    return '& $%.2f_{-%.2f}^{+%.2f}$ ' % (
+        result[0][ir] * scale,
+        (result[0][ir] - result[1 + ir * 2][ir]) * scale,
+        (result[2 + ir * 2][ir] - result[0][ir]) * scale
+    )
 
-for idep in range(len(binnorms)):
-    integrated_source = ROOT.TFile.Open('%s/integrated/multidimfitIntegratedUnregF%dDep.root' % (fitdir, idep))
-    if not integrated_source:
-        lines[1] += '& \mdash '
-        for imu in range(len(binnorms)):
-            lines[imu + 4] += '& \mdash '
+table = '      Dependent '
+table += '& $\\mufid$ '
+for label in common.bintitles[obs]:
+    table += '& $\\mufid\\rho_{%s}$ ' % label.replace('#', '\\')
+table += '\\\\\n'
+
+table += '      \\hline\n'
+
+for idep in range(npoi):
+    label = common.bintitles[obs][idep]
+    line = '      $\\rho_{%s}$ ' % label.replace('#', '\\')
     
+    source = ROOT.TFile.Open('%s/integrated/higgsCombineIntegratedUnregF%dDep.MultiDimFit.mH120.root' % (fitdir, idep))
+    if not source:
+        line += '& \mdash ' * npoi
+        line += '\\\\\n'
+        table += line
         continue
-        
-    integrated_pars = integrated_source.Get('fit_mdf').floatParsFinal()
 
-    mufid = integrated_pars.find('r')
+    limit = source.Get('limit')
+    try:
+        result = root_numpy.tree2array(limit, ['r'] + ['f_%d' % imu for imu in range(npoi) if imu != idep])
+    except:
+        print idep
+        limit.Print()
+        raise
 
-    lines[1] += '& $%.2f \\pm %.2f$ ' % (mufid.getVal(), mufid.getError())
+    line += getentry(result, 0)
 
     sigma_total = 0.
     independent_total = 0.
 
-    for imu in range(len(binnorms)):
+    ir = 1
+    for imu in range(npoi):
         if imu == idep:
-            lines[imu + 4] += '& $(%.2f)$ ' # will insert later
+            line += '& $(%.2f)$ ' # will insert later
         else:
-            rho = integrated_pars.find('f_%d' % imu)
+            line += getentry(result, ir, result[0][0])
+            independent_total += result[0][ir] * binnorms[imu]
+            ir += 1
 
-            rhomufid = rho.getVal() * mufid.getVal()
-            rhomufid_err = rhomufid * math.sqrt(math.pow(rho.getError() / rho.getVal(), 2.) + math.pow(mufid.getError() / mufid.getVal(), 2.))
-        
-            lines[imu + 4] += '& $%.2f \\pm %.2f$ ' % (rhomufid, rhomufid_err)
+    table += line % (result[0][0] * (1. - independent_total) / binnorms[idep])
+    table += '\\\\\n'
 
-            independent_total += rho.getVal() * binnorms[imu]
+    total_sigma = result[0][0] * (independent_total + (1. - independent_total) / binnorms[idep]) * sigma_fid
 
-    lines[idep + 4] = lines[idep + 4] % (mufid.getVal() * (1. - independent_total) / binnorms[idep])
+    source.Close()
 
-    total_sigma = mufid.getVal() * (independent_total + (1. - independent_total) / binnorms[idep]) * sigma_fid
+table += '      \\hline\n'
+table += '      Original fit $\\mu$ & \mdash '
 
-differential_pars = differential_source.Get('fit_mdf').floatParsFinal()
+source = ROOT.TFile.Open(sys.argv[1])
+limit = source.Get('limit')
+result = root_numpy.tree2array(limit, ['r_%d' % imu for imu in range(npoi)])
 
-for imu in range(len(binnorms)):
-    mu = differential_pars.find('r_%d' % imu)
+for imu in range(npoi):
+    table += getentry(result, imu)
 
-    lines[imu + 4] += '& $%.2f \\pm %.2f$ \\\\' % (mu.getVal(), mu.getError())
+table += '\\\\\n'
 
-print '\n'.join(lines)
+print table

@@ -61,11 +61,14 @@ xtitles = {
     'ptWW': ('p_{T}^{WW}', 'GeV'),
     'ht': ('H_{T}', 'GeV'),
     'ptll': ('p_{T}^{ll}', 'GeV'),
-    'dphill': ('#Delta#phi^{ll}', '')
+    'dphill': ('#Delta#phi^{ll}', ''),
+    'events': ('', '')
 }
 
 allprefit = {} # {cut: {proc: hist}}
 allpostfit = {}
+prefit_totals = {} # {cut: hist}
+postfit_totals = {} # {cut: hist}
 
 # shapes root file
 source = ROOT.TFile.Open(args.sourcePath)
@@ -89,12 +92,15 @@ if args.postfit:
 cutnames = sorted(k.GetName() for k in source.GetListOfKeys())
 
 for cut in cutnames:
-    cutdir = source.GetDirectory(cut)
-
     isSR = '_CR_' not in cut
 
     if args.postfit and '_WW_' in cut:
         continue
+
+    if args.makeCRSpectra and isSR:
+        continue
+
+    cutdir = source.GetDirectory(cut)
 
     if args.variable == 'fitshape':
         if not isSR:
@@ -135,72 +141,98 @@ for cut in cutnames:
     postfits = allpostfit[cut] = {}
 
     for key in plotsdir.GetListOfKeys():
-        name = key.GetName().replace('histo_', '')
+        proc = key.GetName().replace('histo_', '')
 
-        if name.endswith('Up') or name.endswith('Down'):
+        if proc.endswith('Up') or proc.endswith('Down'):
             continue
 
-        prefits[name] = key.ReadObj()
+        prefits[proc] = key.ReadObj()
 
         if args.postfit:
-            if name == 'DATA':
+            if proc == 'DATA':
                 continue
 
-            hist = common.make_roofit_histogram(ws, args.combination_tag + cut, name, 'histo_%s_%s' % (cut, name))
+            bin = args.combination_tag + cut
+            if 'hww' in proc:
+                funcname = 'shapeSig_%s_%s_morph' % (bin, proc)
+            else:
+                funcname = 'shapeBkg_%s_%s_morph' % (bin, proc)
+
+            normname = 'n_exp_final_bin%s_proc_%s' % (bin, proc)
+
+            hist = common.make_roofit_histogram('histo_%s_%s' % (cut, proc), ws, funcname, normname)
             if hist is None:
                 continue
 
-            postfits[name] = hist
+            hist.SetBins(nbins, 0., float(nbins))
+            err2 = root_numpy.array(hist.GetSumw2(), copy=False)
+            err2[:] = 0.
 
-            postfits[name].SetBins(nbins, 0., float(nbins))
-            if 'hww' not in name:
-                err2 = root_numpy.array(postfits[name].GetSumw2(), copy=False)
-                err2[:] = 0.
+            postfits[proc] = hist
 
     if args.postfit:
         postfits['DATA'] = prefits['DATA']
+        
+        funcname = 'prop_bin%s' % (args.combination_tag + cut)
+        hist = common.make_roofit_histogram('postfit_%s_total' % cut, ws, funcname, fitresult=fitresult)
+        if hist is not None:
+            hist.SetBins(nbins, 0., float(nbins))
+            postfit_totals[cut] = hist
+        else:
+            print funcname, 'missing'
 
     if not (args.postfit and not args.sideBySide):
-        # get the uncertainty variations
+        # get the uncertainty variations !!!not accounting for lnN variations!!!
         for key in plotsdir.GetListOfKeys():
-            name = key.GetName().replace('histo_', '')
-            if name == 'DATA':
+            proc = key.GetName().replace('histo_', '')
+            if proc == 'DATA':
                 continue
     
-            if not name.endswith('Up'):
+            if not proc.endswith('Up'):
                 continue
     
-            nomname, shape = next((n, s) for n, s in prefits.iteritems() if name.startswith(n))
+            nomname, shape = next((n, s) for n, s in prefits.iteritems() if proc.startswith(n + '_'))
     
             upper = key.ReadObj()
             downer = plotsdir.Get(key.GetName()[:-2] + 'Down')
-    
-            for iX in range(1, shape.GetNbinsX() + 1):
-                err = shape.GetBinError(iX)
-                add = (upper.GetBinContent(iX) - downer.GetBinContent(iX)) * 0.5
-                shape.SetBinError(iX, math.sqrt(err * err + add * add))
+
+            cupper = root_numpy.hist2array(upper, copy=False, include_overflow=True)
+            cdowner = root_numpy.hist2array(downer, copy=False, include_overflow=True)
+
+            err2 = root_numpy.array(shape.GetSumw2(), copy=False)
+            err2 += np.square((cupper - cdowner) * 0.5)
     
             upper.Delete()
             downer.Delete()
 
-    for name in prefits.keys():
-        if name.startswith('smH_hww'):
-            merge(prefits, 'smH_hww', name)
-        elif name.startswith('Fake'):
-            merge(prefits, 'Fake', name)
+    # we are treating all uncertainties as uncorrelated, which is wrong
+    # but we don't even have the lnN uncertainties here, so it doesn't really matter
+    prefit_totals[cut] = prefits['DATA'].Clone('%s_total' % cut)
+    prefit_totals[cut].Reset()
+    for proc, hist in prefits.iteritems():
+        if proc != 'DATA':
+            prefit_totals[cut].Add(hist)
 
-    for name in postfits.keys():
-        if name.startswith('smH_hww'):
-            merge(postfits, 'smH_hww', name)
-        elif name.startswith('Fake'):
-            merge(postfits, 'Fake', name)
+    for proc in prefits.keys():
+        if proc.startswith('smH_hww'):
+            merge(prefits, 'smH_hww', proc)
+        elif proc.startswith('Fake'):
+            merge(prefits, 'Fake', proc)
+
+    for proc in postfits.keys():
+        if proc.startswith('smH_hww'):
+            merge(postfits, 'smH_hww', proc)
+        elif proc.startswith('Fake'):
+            merge(postfits, 'Fake', proc)
 
 if args.postfit and args.sideBySide:
     pass
 elif args.postfit:
     allshapes = allpostfit
+    totals = postfit_totals
 else:
     allshapes = allprefit
+    totals = prefit_totals
 
 mllVSmthBins = {
     'mllVSmth_2x2': ([10., 50., 210.], [60., 110., 200.]),
@@ -351,7 +383,7 @@ def plotstack(stack, uncert, gobs, legend):
 if not args.makeCRSpectra:
     for cut, shapes in allshapes.iteritems():
         isSR = '_CR_' not in cut
-    
+
         if args.variable == 'fitshape':
             if not isSR:
                 vname = 'events'
@@ -387,9 +419,32 @@ if not args.makeCRSpectra:
             canvas.xaxis.SetTitle('')
             xunit = ''
 
-        uncert = None
+        def binWidthNorm(shape):
+            if args.variable == 'fitshape' and isSR:
+                mllbins, mthbins = mllVSmthBins[vname]
+                binarea = np.array([(mllbins[x + 1] - mllbins[x]) * (mthbins[y + 1] - mthbins[y]) for y in range(len(mthbins) - 1) for x in range(len(mllbins) - 1)], dtype=np.float)
+
+                cont = root_numpy.hist2array(shape, copy=False)
+                err2 = root_numpy.array(shape.GetSumw2(), copy=False)
+                cont /= binarea
+                err2[1:-1] /= np.square(binarea)
+
+            else:
+                shape.Scale(1., 'width')
+
         stack = ROOT.THStack('stack', '')
-    
+        uncert = totals[cut]
+
+        uncert.GetYaxis().SetTitle('events')
+        if args.binWidthNorm:
+            if args.variable == 'fitshape' and isSR:
+                uncert.GetYaxis().SetTitle('events / GeV^{2}')
+            elif xunit:
+                uncert.GetYaxis().SetTitle('events / %s' % xunit)
+
+        if args.binWidthNorm:
+            binWidthNorm(uncert)
+                            
         for name, _, color, opt in plotconfigs:
             try:
                 shape = shapes[name]
@@ -400,33 +455,8 @@ if not args.makeCRSpectra:
                 else:
                     raise
 
-            shape.GetYaxis().SetTitle('events')
-   
             if args.binWidthNorm:
-                if args.variable == 'fitshape' and isSR:
-                    mllbins, mthbins = mllVSmthBins[vname]
-  
-                    ix = 1
-                    for imth in range(len(mthbins) - 1):
-                        for imll in range(len(mllbins) - 1):
-                            shape.SetBinContent(ix, shape.GetBinContent(ix) / (mllbins[imll + 1] - mllbins[imll]) / (mthbins[imth + 1] - mthbins[imth]))
-                            shape.SetBinError(ix, shape.GetBinError(ix) / (mllbins[imll + 1] - mllbins[imll]) / (mthbins[imth + 1] - mthbins[imth]))
-                            ix += 1
-    
-                    shape.GetYaxis().SetTitle('events / GeV^{2}')
-    
-                else:
-                    shape.Scale(1., 'width')
-                    if xunit:
-                        shape.GetYaxis().SetTitle('events / %s' % xunit)
-
-            if uncert is None:
-                uncert = shape.Clone('uncert')
-            else:
-                uncert.Add(shape)
-
-            if name == 'DATA':
-                continue
+                binWidthNorm(shape)
 
             if 'F' in opt:
                 lcolor = common.get_line_color(color)
@@ -444,13 +474,10 @@ if not args.makeCRSpectra:
 
         obs = shapes['DATA']
         if isSR and args.blind:
-            for iX in range(1, obs.GetNbinsX() + 1):
-                #if (vname == 'mllVSmth_8x9' and (iX % 9) in range(8)) or \
-                #        (vname == 'mllVSmth_6x6' and (iX % 6) in range(5)):
-                #    continue
-
-                shape.SetBinContent(iX, 0.)
-                shape.SetBinError(iX, 0.)
+            cont = root_numpy.hist2array(obs, copy=False, include_overflow=True)
+            err2 = root_numpy.array(obs.GetSumw2(), copy=False)
+            cont *= 0.
+            err2 *= 0.
 
         gobs = ROOT.RooHist(obs, 1.)
         if not args.binWidthNorm:
@@ -479,7 +506,7 @@ if not args.makeCRSpectra:
                 gobs.SetPointEYlow(ip, errlo)
                 gobs.SetPointEYhigh(ip, errhi)
 
-        legend = ROOT.TLegend(0.5, 0.7, 0.9, 0.9)
+        legend = ROOT.TLegend(0.65, 0.7, 0.93, 0.9)
         legend.SetBorderSize(0)
         legend.SetFillStyle(0)
 
@@ -501,29 +528,30 @@ if not args.makeCRSpectra:
 else:
     observable = args.makeCRSpectra
 
-    if observable == 'ptH':
-        canvas.xtitle = 'p_{T}^{H} (GeV)'
-        canvas.ytitle = 'events / GeV'
-        xlabels = None
-    else:
-        canvas.xtitle = 'N_{jet}'
-        canvas.ytitle = 'events'
-        xlabels = ['0', '1', '2', '3', '#geq 4']
+    template = ROOT.TH1D('template', '', len(common.binnames[observable]), array.array('d', common.binning[observable]))
 
     for cr in ['WW', 'top', 'DY']:
         if args.postfit and cr == 'WW':
             continue
 
         stack = ROOT.THStack('stack', '')
-        uncert = None
 
+        uncert = template.Clone('uncert')
+        for ibin, obsBin in enumerate(common.binnames[observable]):
+            total = totals['hww_CR_cat%s_%s_%s' % (obsBin, cr, args.dataset)]
+            uncert.SetBinContent(ibin + 1, total.GetBinContent(1))
+            uncert.SetBinError(ibin + 1, total.GetBinError(1))
+
+        if args.binWidthNorm:
+            uncert.Scale(1., 'width')
+            
         spectra = {}
         for name, _, color, opt in plotconfigs + [('DATA', 0, 0, '')]:
-            hist = ROOT.TH1D(name, '', len(common.binnames[observable]), array.array('d', common.binning[observable]))
+            hist = template.Clone(name)
             spectra[name] = hist
     
             for ibin, obsBin in enumerate(common.binnames[observable]):
-                shapes = next(ss for cut, ss in allshapes.iteritems() if cut.startswith('hww_CR_cat%s_%s' % (obsBin, cr)))
+                shapes = allshapes['hww_CR_cat%s_%s_%s' % (obsBin, cr, args.dataset)]
                 if name not in shapes:
                     continue
 
@@ -535,11 +563,6 @@ else:
 
             if args.binWidthNorm:
                 hist.Scale(1., 'width')
-
-            if uncert is None:
-                uncert = hist.Clone('uncert')
-            else:
-                uncert.Add(hist)
 
             if 'F' in opt:
                 lcolor = common.get_line_color(color)
@@ -581,10 +604,18 @@ else:
 
         legend.AddEntry(gobs, 'Observed', 'PL')
 
+        if observable == 'ptH':
+            canvas.xaxis.SetTitle('p_{T}^{H} (GeV)')
+            uncert.GetYaxis().SetTitle('events / GeV')
+        elif observable == 'njet':
+            canvas.xaxis.SetTitle('N_{jet}')
+            uncert.GetYaxis().SetTitle('events')
+
         plotstack(stack, uncert, gobs, legend)
-    
-        if xlabels is not None:
+
+        if observable == 'njet':
             canvas.xaxis.SetLabelSize(0.)
+            canvas.cd()
 
             latex = ROOT.TLatex(0., 0., '')
             latex.SetTextFont(42)
@@ -594,8 +625,8 @@ else:
             for il, label in enumerate(['0', '1', '2', '3', '#geq 4']):
                 latex.DrawLatex(common.xmin + (common.xmax - common.xmin) * (0.5 + il) / 5., common.ymin - 0.02, label)
 
-        canvas.printout('%s/%s_%s.png' % (args.out_path, observable, cr))
-        canvas.printout('%s/%s_%s.pdf' % (args.out_path, observable, cr))
+        canvas.printout('%s/%scr_%s_spectrum_%s.png' % (args.out_path, cr, observable, args.dataset))
+        canvas.printout('%s/%scr_%s_spectrum_%s.pdf' % (args.out_path, cr, observable, args.dataset))
 
         canvas.clear()
     
