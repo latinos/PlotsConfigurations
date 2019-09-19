@@ -66,10 +66,14 @@ def wait_for_queue():
 
 try:
     os.makedirs('%s/integrated' % outpath)
-    if os.path.exists('%s/histos.root' % outpath):
-        os.symlink('%s/histos.root' % outpath, '%s/integrated/histos.root' % outpath)
 except OSError:
     pass
+
+if os.path.exists('%s/histos.root' % outpath):
+    try:
+        os.symlink('%s/histos.root' % outpath, '%s/integrated/histos.root' % outpath)
+    except OSError:
+        pass
 
 for idep in ideps:
     with open('%s/integrated/fullmodel_integrated_f%ddep.txt' % (outpath, idep), 'w') as card_out:
@@ -90,7 +94,7 @@ for idep in ideps:
         card_out.write('f_%d rateParam * *H_hww_%s %s %s\n' % (idep, common.binnames[obs][idep], fdexpr, ','.join('f_%d' % ibin for ibin in range(npoi) if ibin != idep)))
     
         for ic in range(npoi - 2):
-            card_out.write('constr{ic} constr @0*@3*(@1-2*@2+@3) r,f_{low},f_{mid},f_{high},regularize[0.] delta[10.]\n'.format(ic = ic, low = ic, mid = ic + 1, high = ic + 2))
+            card_out.write('constr{ic} constr @0*@4*(@1-2*@2+@3) r,f_{low},f_{mid},f_{high},regularize[0.] delta[10.]\n'.format(ic = ic, low = ic, mid = ic + 1, high = ic + 2))
 
     name = 'f%ddep' % idep
         

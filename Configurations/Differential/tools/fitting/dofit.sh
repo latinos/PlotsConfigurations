@@ -325,8 +325,37 @@ then
   echo combineTool.py -M Impacts -d $CARD -m 120 --doFits --setParameters regularize=0 $FITOPT --name Observed --job-mode condor
   RETURNDIR=$CARDDIR/impact_obs
 
-fi
+elif [ $COMMAND = IntegratedImpact ]
+then
 
+  # Compute the best-fit Hessian matrix for approximate nuisance parameter impact calculation.
+
+  CARD=$CARDDIR/integrated/fullmodel_integrated_f0dep.root
+
+  [ -e $CARD ] || $THISDIR/make_integrated_cards.py $OBSERVABLE $CARDDIR $DEPENDENT
+
+  NAME=_approxFit_ObservedIntegrated
+  combineTool.py -M Impacts -d $CARD -m 120 --doFits --approx robust --setParameters regularize=0 $FITOPT --name ObservedIntegrated
+  ADDITIONAL=robustHesse${NAME}.root
+
+  #combineTool.py -M Impacts -d integrated/fullmodel_integrated_f0dep.root -m 120 --approx robust --name ObservedIntegrated -o ObservedIntegrated.json
+  #plotImpacts.py -i ObservedIntegrated.json -o ObservedIntegrated
+
+elif [ $COMMAND = IntegratedFullImpact ]
+then
+    # Do the initial fit for full nuisance parameter impact calculation.
+
+  CARD=$CARDDIR/integrated/fullmodel_integrated_f0dep.root
+
+  [ -e $CARD ] || $THISDIR/make_integrated_cards.py $OBSERVABLE $CARDDIR $DEPENDENT
+
+  NAME=_initialFit_ObservedIntegrated
+  combineTool.py -M Impacts -d $CARD -m 120 --doInitialFit --setParameters regularize=0 $FITOPT --name ObservedIntegrated
+  echo combineTool.py -M Impacts -d $CARD -m 120 --doFits --setParameters regularize=0 $FITOPT --name ObservedIntegrated --job-mode condor
+  RETURNDIR=$CARDDIR/impact_obs
+
+fi
+  
 [ $SEED ] && mv higgsCombine${NAME}.$METHOD.mH120.$SEED.root higgsCombine${NAME}.$METHOD.mH120.root    
 
 OUTNAME=higgsCombine${NAME}.$METHOD.mH120.root

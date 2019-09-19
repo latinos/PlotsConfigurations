@@ -40,7 +40,7 @@ for idep in range(npoi):
     
     source = ROOT.TFile.Open('%s/integrated/higgsCombineIntegratedUnregF%dDep.MultiDimFit.mH120.root' % (fitdir, idep))
     if not source:
-        line += '& \mdash ' * npoi
+        line += '& \mdash ' * (npoi + 1)
         line += '\\\\\n'
         table += line
         continue

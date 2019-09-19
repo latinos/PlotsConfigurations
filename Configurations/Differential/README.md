@@ -103,6 +103,15 @@ then
 fi
 ```
 
+Integrated mu measurement
+=========================
+
+Integrated (normalized) fit can be performed choosing which `f_i` to be made dependent on other `f`s. The last argument to dofit is the index of dependent `f`.
+```
+tools/fitting/dofit.sh combination ptH fullmodel IntegratedUnreg 0
+```
+Makes the datacard and workspace (if not yet made with `tools/fitting/make_integrated_cards.py`) and performs the fit. Results are stored in `combination/ptH_fullmodel/integrated`.
+
 Inclusive mu measurement (ggH tag)
 ==================================
 
