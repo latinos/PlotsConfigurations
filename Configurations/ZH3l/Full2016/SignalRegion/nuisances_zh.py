@@ -178,21 +178,6 @@ nuisances['UE_zh3l']  = {
                },
                 }
 
-
-# nuisances['Zg3lnorm']  = {
-#                'name'  : 'CMS_hww_Zg3lnorm',
-#                'samples'  : {
-#                    'Vg' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : [
-#                  'wh3l_zg_13TeV',
-#                  'wh3l_13TeV_ossf',
-#                  'wh3l_13TeV_sssf',
-#                  'wh3l_wz_13TeV',
-#                 ]
-#               }
-# 
 nuisances['WZ3l2jnorm']  = {
                'name'  : 'CMS_hww_WZ3l2jnorm',
                'samples'  : {
@@ -200,8 +185,18 @@ nuisances['WZ3l2jnorm']  = {
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                 'zh3l_WZ_CR_cut',
                  'zh3l_dphi_cut',
+                ]
+              }
+
+nuisances['WZ3l1jnorm']  = {
+               'name'  : 'CMS_hww_WZ3l1jnorm',
+               'samples'  : {
+                   'WZ' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                 'zh3l_dphi_cut_1j',
                 ]
               }
 

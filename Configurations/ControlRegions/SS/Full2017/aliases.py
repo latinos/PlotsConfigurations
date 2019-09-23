@@ -22,3 +22,8 @@ bSF='bPogSF_CMVA'+bWP
 eleWP='mva_90p_Iso2016'
 
 muWP='cut_Tight80x'
+
+aliases['PromptGenLepMatch2l'] = {
+  'expr': 'Alt$((nLepton>1)*Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1],0)',
+  'samples': mc
+}

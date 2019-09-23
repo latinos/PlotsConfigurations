@@ -10,8 +10,8 @@
 nuisances['lumi']  = {
                'name'  : 'lumi_13TeV_2018',
                'samples'  : {
-                   'DY'       : '1.025',
-                   'top'      : '1.025',
+                   #'DY'       : '1.025',
+                   #'top'      : '1.025',
                    'WW'       : '1.025',
                    'WWewk'    : '1.025',
                    'ggWW'     : '1.025',
@@ -949,7 +949,7 @@ nuisances['stat']  = {
               'maxPoiss'  : '10',
               'includeSignal'  : '1',
               #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
-              #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
+              #nuisance ['includeSignal'] = 1, # Include MC stat nuisances on signal processes (1=True, 0=False)
               'samples' : {}
              }
 
@@ -963,6 +963,7 @@ nuisances['Topnorm']  = {
     'cuts'  : [
         'VH_2j_emu',
         'VH_2j_topemu',
+        'VH_2j_DYtautau',
         #                                                                                                                         
         ]
     }
@@ -974,8 +975,9 @@ nuisances['DYnorm']  = {
         'top' : '1.00',                                                                                                            
         },                                                                                                                         
     'type'  : 'rateParam',                                                                                                         
-    'cuts'  : [                                                                                                                    
-        'VH_2j_emu',                                                                                                               
+   'cuts'  : [                                                                                                                    
+        'VH_2j_emu',
+        'VH_2j_topemu',                                                                                                            # 
         'VH_2j_DYtautau',                                                                                                          
         #                                                                                                                          
         ]                                                                                                                          

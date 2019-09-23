@@ -1,435 +1,274 @@
+import os
+import copy
+import inspect
+
+configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
+configurations = os.path.dirname(configurations) # ggH2016
+configurations = os.path.dirname(configurations) # Differential
+configurations = os.path.dirname(configurations) # Configurations
+
 #aliases = {}
 
 # imported from samples.py:
 # samples, signals
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
-top = [skey for skey in samples if skey.startswith('top')]
 
-##############################
+eleWP = 'mva_90p_Iso2016'
+muWP = 'cut_Tight80x'
 
-bWP='L'
-#bWP='M'
-#bWP='T'
-bSF='bPogSF_CMVA'+bWP
-#bSF='bPogSF_CSV'+bWP
-#bSF='bPogSF_deepCSV'+bWP
-
-#eleWP='cut_WP_Tight80X'
-#eleWP='cut_WP_Tight80X_SS'
-#eleWP='mva_80p_Iso2015'
-#eleWP='mva_80p_Iso2016'
-#eleWP='mva_90p_Iso2015'
-eleWP='mva_90p_Iso2016'
-
-muWP='cut_Tight80x'
-
-##############################
-
-## categorization
-#aliases['leade'] = {
-#    'expr': 'abs(std_vector_lepton_flavour[0]) == 11'
-#}
-#
-#aliases['leadm'] = {
-#    'expr': 'abs(std_vector_lepton_flavour[0]) == 13'
-#}
-
-#aliases['highptTrail'] = {
-#    'expr': 'std_vector_lepton_pt[1] > 20.'
-#}
-#
-#aliases['lowptTrail'] = {
-#    'expr': 'std_vector_lepton_pt[1] < 20.'
-#}
-
-# Trailing lepton is a muon (with pt > 10 GeV implied) or an electron with pt > 13 GeV
-aliases['trailingE13'] = {
-    'expr': 'abs(std_vector_lepton_flavour[1]) == 13 || std_vector_lepton_pt[1]>13'
-}
-
-# Leading two leptons have opposite sign & flavor
-aliases['osof'] = {
-    'expr': 'std_vector_lepton_flavour[0] * std_vector_lepton_flavour[1] == -11*13'
-}
-
-aliases['passConversionVeto'] = {
-    'expr': '(TMath::Abs(std_vector_lepton_flavour[0]) == 13 || std_vector_electron_passConversionVeto[0] == 1) && (TMath::Abs(std_vector_lepton_flavour[1]) == 13 || std_vector_electron_passConversionVeto[1] == 1)'
-}
-
-# Precompiled lepton cuts
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
     'samples': mc + ['DATA']
 }
 
-# No jet with pt > 30 GeV
-aliases['zeroJet'] = {
-    'expr': 'std_vector_jet_pt[0] < 30.'
+aliases['gstarLow'] = {
+    'expr': 'Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4',
+    'samples': 'VgS'
 }
 
-# ==1 jet with pt > 30 GeV
-aliases['oneJet'] = {
-    'expr': 'std_vector_jet_pt[0] >= 30. && std_vector_jet_pt[1] < 30.'
-}
-
-# ==2 jets with pt > 30 GeV
-aliases['twoJet'] = {
-    'expr': 'std_vector_jet_pt[0] >= 30. && std_vector_jet_pt[1] >= 30. && std_vector_jet_pt[2] < 30.'
-}
-
-# ==3 jets with pt > 30 GeV
-aliases['threeJet'] = {
-    'expr': 'std_vector_jet_pt[0] >= 30. && std_vector_jet_pt[1] >= 30. && std_vector_jet_pt[2] >= 30. && std_vector_jet_pt[3] < 30.'
-}
-
-# >=2 jets with pt > 30 GeV
-aliases['manyJets'] = {
-    'expr': 'std_vector_jet_pt[0] >= 30. && std_vector_jet_pt[1] >= 30. && std_vector_jet_pt[2] >= 30. && std_vector_jet_pt[3] >= 30.'
-}
-
-## >=2 jets with pt > 30 GeV limiting to "ggh" configuration
-#aliases['manyJetGGH'] = {
-#    'expr': 'manyJet && (mjj < 65. || (mjj > 105. && mjj < 400.))'
-#}
-
-## number of jets capped at 2
-#aliases['njetCapped'] = {
-#    'expr': 'njet * (njet < 3) + 2 * (njet > 2)'
-#}
-
-## number of bjets
-#aliases['nbjet'] = {
-#    'expr': 'Sum$(std_vector_jet_pt > 30. && std_vector_jet_cmvav2 > -0.5884)'
-#}
-
-# b-jet veto
-aliases['bVeto'] = {
-    'expr': 'bveto_CMVA' + bWP
-}
-
-aliases['std_vector_jet_breq'] = {
-    'expr': 'std_vector_jet_cmvav2 > -0.5884'
-}
-
-aliases['toprwgt'] = {
-    'expr': 'TMath::Sqrt(TMath::Exp(0.0615-0.0005*topLHEpt) * TMath::Exp(0.0615-0.0005*antitopLHEpt))',
-    'samples': top
-}
-
-# Lepton px, py
-#aliases['px0'] = {
-#    'expr': 'std_vector_lepton_pt[0] * cos(std_vector_lepton_phi[0])'
-#}
-#aliases['py0'] = {
-#    'expr': 'std_vector_lepton_pt[0] * sin(std_vector_lepton_phi[0])'
-#}
-#aliases['px1'] = {
-#    'expr': 'std_vector_lepton_pt[1] * cos(std_vector_lepton_phi[1])'
-#}
-#aliases['py1'] = {
-#    'expr': 'std_vector_lepton_pt[1] * sin(std_vector_lepton_phi[1])'
-#}
-
-# pxll, pyll
-#aliases['pxll'] = {
-#    'expr': 'px0 + px1'
-#}
-#aliases['pyll'] = {
-#    'expr': 'py0 + py1'
-#}
-
-# pxH, pyH
-#aliases['pxH'] = {
-#    'expr': 'pxll + metPfType1 * cos(metPfType1Phi)'
-#}
-#aliases['pyH'] = {
-#    'expr': 'pyll + metPfType1 * sin(metPfType1Phi)'
-#}
-
-# pTH - identical to pTWW
-#aliases['ptH'] = {
-#    'expr': 'sqrt(pxH * pxH + pyH * pyH)'
-#}
-
-# Lepton & b-jet id efficiency scale factor
-aliases['sfWeight'] = {
-    'expr': ' * '.join(['SFweight2l', bSF, 'LepSF2l__ele_'+eleWP+'__mu_'+muWP, 'LepWPCut']),
-    'samples': mc
-}
-# And variations
-aliases['sfWeightEleUp'] = {
-    'expr': 'LepSF2l__ele_'+eleWP+'__Up',
-    'samples': mc
-}
-aliases['sfWeightEleDown'] = {
-    'expr': 'LepSF2l__ele_'+eleWP+'__Do',
-    'samples': mc
-}
-aliases['sfWeightMuUp'] = {
-    'expr': 'LepSF2l__mu_'+muWP+'__Up',
-    'samples': mc
-}
-aliases['sfWeightMuDown'] = {
-    'expr': 'LepSF2l__mu_'+muWP+'__Do',
-    'samples': mc
-}
-aliases['sfWeightBtagBCUp'] = {
-    'expr': '('+bSF+'_bc_up)/('+bSF+')',
-    'samples': mc
-}
-aliases['sfWeightBtagBCDown'] = {
-    'expr': '('+bSF+'_bc_down)/('+bSF+')',
-    'samples': mc
-}
-aliases['sfWeightBtagUDSGUp'] = {
-    'expr': '('+bSF+'_udsg_up)/('+bSF+')',
-    'samples': mc
-}
-aliases['sfWeightBtagUDSGDown'] = {
-    'expr': '('+bSF+'_udsg_down)/('+bSF+')',
-    'samples': mc
+aliases['gstarHigh'] = {
+    'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
+    'samples': 'VgS'
 }
 
 # Fake leptons transfer factor
-aliases['fakeWeight'] = {
+aliases['fakeW'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP,
     'samples': ['Fake']
 }
 # And variations - already divided by central values in formulas !
-aliases['fakeWeightEleUp'] = {
+aliases['fakeWEleUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleUp',
     'samples': ['Fake']
 }
-aliases['fakeWeightEleDown'] = {
+aliases['fakeWEleDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleDown',
     'samples': ['Fake']
 }
-aliases['fakeWeightMuUp'] = {
+aliases['fakeWMuUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuUp',
     'samples': ['Fake']
 }
-aliases['fakeWeightMuDown'] = {
+aliases['fakeWMuDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuDown',
     'samples': ['Fake']
 }
-aliases['fakeWeightStatEleUp'] = {
+aliases['fakeWStatEleUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleUp',
     'samples': ['Fake']
 }
-aliases['fakeWeightStatEleDown'] = {
+aliases['fakeWStatEleDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleDown',
     'samples': ['Fake']
 }
-aliases['fakeWeightStatMuUp'] = {
+aliases['fakeWStatMuUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuUp',
     'samples': ['Fake']
 }
-aliases['fakeWeightStatMuDown'] = {
+aliases['fakeWStatMuDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuDown',
     'samples': ['Fake']
 }
 
-# Gen lepton match
-aliases['GenLepMatch'] = {
-    'expr': 'GenLepMatch2l',
+# gen-matching to prompt only (GenLepMatch2l matches to *any* gen lepton)
+aliases['PromptGenLepMatch2l'] = {
+    'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
     'samples': mc
 }
 
-# Gen HT (includes leptons!)
-aliases['genHT'] = {
-    'expr': 'Sum$(std_vector_LHEparton_pt * (std_vector_LHEparton_pt > 0))',
+aliases['Top_pTrw'] = {
+    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
+    'samples': ['top']
+}
+
+# Jet bins
+# using Alt$(CleanJet_pt[n], 0) instead of Sum$(CleanJet_pt >= 30) because jet pt ordering is not strictly followed in JES-varied samples
+
+# No jet with pt > 30 GeV
+aliases['zeroJet'] = {
+    'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
+}
+
+aliases['oneJet'] = {
+    'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
+}
+
+aliases['multiJet'] = {
+    'expr': 'Alt$(CleanJet_pt[1], 0) > 30.'
+}
+
+# B tagging
+
+aliases['bVeto'] = {
+    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0'
+}
+
+aliases['bReq'] = {
+    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) >= 1'
+}
+
+# CR definitions
+
+aliases['topcr'] = {
+    'expr': 'mtw2>30 && mll>50 && ((zeroJet && !bVeto) || bReq)'
+}
+
+aliases['dycr'] = {
+    'expr': 'mth<60 && mll>40 && mll<80 && bVeto'
+}
+
+aliases['wwcr'] = {
+    'expr': 'mth>60 && mtw2>30 && mll>100 && bVeto'
+}
+
+# SR definition
+
+aliases['sr'] = {
+    'expr': 'mth>60 && mtw2>30 && bVeto'
+}
+
+# B tag scale factors
+
+btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_2016LegacySF_V1.csv' % os.getenv('CMSSW_BASE')
+
+aliases['Jet_btagSF_shapeFix'] = {
+    'linesToAdd': [
+        'gSystem->Load("libCondFormatsBTauObjects.so");',
+        'gSystem->Load("libCondToolsBTau.so");',
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+        '.L %s/patches/btagsfpatch.cc+' % configurations
+    ],
+    'class': 'BtagSF',
+    'args': (btagSFSource,),
     'samples': mc
 }
 
-# Gen Mll
-aliases['genMll'] = {
-    'expr': 'sqrt(2*std_vector_dressedLeptonGen_pt[0] * std_vector_dressedLeptonGen_pt[1] * (cosh(std_vector_dressedLeptonGen_eta[0]-std_vector_dressedLeptonGen_eta[1])-cos(std_vector_dressedLeptonGen_phi[0]-std_vector_dressedLeptonGen_phi[1])))',
+aliases['bVetoSF'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shapeFix[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
     'samples': mc
 }
 
-# Gen px, py
-aliases['genPx0'] = {
-    'expr': 'std_vector_dressedLeptonGen_pt[0] * cos(std_vector_dressedLeptonGen_phi[0])',
-    'samples': mc
-}
-aliases['genPy0'] = {
-    'expr': 'std_vector_dressedLeptonGen_pt[0] * sin(std_vector_dressedLeptonGen_phi[0])',
-    'samples': mc
-}
-aliases['genPx1'] = {
-    'expr': 'std_vector_dressedLeptonGen_pt[1] * cos(std_vector_dressedLeptonGen_phi[1])',
-    'samples': mc
-}
-aliases['genPy1'] = {
-    'expr': 'std_vector_dressedLeptonGen_pt[1] * sin(std_vector_dressedLeptonGen_phi[1])',
+aliases['bReqSF'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shapeFix[CleanJet_jetIdx]+1*(CleanJet_pt<30 || abs(CleanJet_eta)>2.5))))',
     'samples': mc
 }
 
-# Gen pxll, pyll
-aliases['genPxll'] = {
-    'expr': 'genPx0 + genPx1',
-    'samples': mc
-}
-aliases['genPyll'] = {
-    'expr': 'genPy0 + genPy1',
+aliases['btagSF'] = {
+    'expr': '(bVeto || (topcr && zeroJet))*bVetoSF + (topcr && !zeroJet)*bReqSF',
     'samples': mc
 }
 
-# Gen met x, y
-aliases['genMetx'] = {
-    'expr': 'metGenpt * cos(metGenphi)',
-    'samples': mc
-}
-aliases['genMety'] = {
-    'expr': 'metGenpt * sin(metGenphi)',
-    'samples': mc
-}
+for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
+    aliases['Jet_btagSF_shapeFix_up_%s' % shift] = {
+        'class': 'BtagSF',
+        'args': (btagSFSource, 'up_' + shift),
+        'samples': mc
+    }
+    aliases['Jet_btagSF_shapeFix_down_%s' % shift] = {
+        'class': 'BtagSF',
+        'args': (btagSFSource, 'down_' + shift),
+        'samples': mc
+    }
 
-# Gen pxH, pyH
-aliases['genPxH'] = {
-    'expr': 'genPxll + genMetx',
-    'samples': mc
-}
-aliases['genPyH'] = {
-    'expr': 'genPyll + genMety',
-    'samples': mc
-}
+    for targ in ['bVeto', 'bReq']:
+        alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
+        alias['expr'] = alias['expr'].replace('btagSF_shapeFix', 'btagSF_shapeFix_up_%s' % shift)
 
-aliases['genPth'] = {
-    'expr': 'sqrt(genPxH * genPxH + genPyH * genPyH)',
-    'samples': mc
-}
+        alias = aliases['%sSF%sdown' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
+        alias['expr'] = alias['expr'].replace('btagSF_shapeFix', 'btagSF_shapeFix_down_%s' % shift)
 
-# Gen pTll
-aliases['genPtll'] = {
-    'expr': 'sqrt(genPxll * genPxll + genPyll * genPyll)',
-    'samples': mc
-}
+    aliases['btagSF%sup' % shift] = {
+        'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'up'),
+        'samples': mc
+    }
 
-## Gen H pz
-#aliases['genPzH'] = {
-#    'expr': 'higgsGenpt * TMath::SinH(higgsGeneta)',
-#    'samples': mc
-#}
-#
-## Gen H energy
-#aliases['genEH'] = {
-#    'expr': 'TMath::Sqrt(higgsGenmass * higgsGenmass + TMath::Power(higgsGenpt * TMath::CosH(higgsGeneta), 2.))',
-#    'samples': mc
-#}
-#
-## Gen yH
-#aliases['genYH'] = {
-#    'expr': 'TMath::Log((genEH + genPzH) / (higgsGenmass * higgsGenmass + higgsGenpt * higgsGenpt))',
-#    'samples': mc
-#}
-#
-## Gen yH
-#aliases['absGenYH'] = {
-#    'expr': 'abs(genYH)',
-#    'samples': mc
-#}
+    aliases['btagSF%sdown' % shift] = {
+        'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'down'),
+        'samples': mc
+    }
 
-# Gen mth
-aliases['genMth'] = {
-    'expr': 'sqrt(2 * metGenpt * (genPtll - genPxll * cos(metGenphi) - genPyll * sin(metGenphi)))',
+# PU jet Id SF
+
+puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+
+aliases['PUJetIdSF'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L %s/patches/pujetidsf_event.cc+' % configurations
+    ],
+    'class': 'PUJetIdEventSF',
+    'args': (puidSFSource, '2016', 'loose'),
     'samples': mc
 }
 
-# Gen mtw2
-aliases['genMtw2'] = {
-    'expr': 'sqrt(2 * std_vector_dressedLeptonGen_pt[1] * metGenpt * (1-cos(std_vector_dressedLeptonGen_phi[1]-metGenphi)))',
+# data/MC scale factors
+aliases['SFweight'] = {
+    'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut', 'btagSF', 'PrefireWeight', 'PUJetIdSF']),
+    'samples': mc
+}
+# variations
+aliases['SFweightEleUp'] = {
+    'expr': 'LepSF2l__ele_'+eleWP+'__Up',
+    'samples': mc
+}
+aliases['SFweightEleDown'] = {
+    'expr': 'LepSF2l__ele_'+eleWP+'__Do',
+    'samples': mc
+}
+aliases['SFweightMuUp'] = {
+    'expr': 'LepSF2l__mu_'+muWP+'__Up',
+    'samples': mc
+}
+aliases['SFweightMuDown'] = {
+    'expr': 'LepSF2l__mu_'+muWP+'__Do',
     'samples': mc
 }
 
-# Overlap cleaning for gen jets
-aliases['genJetClean'] = {
-    'expr': 'TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[0], 2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[0]), 2.) > 0.16 && TMath::Power(std_vector_jetGen_eta - std_vector_dressedLeptonGen_eta[1], 2.) + TMath::Power(TVector2::Phi_mpi_pi(std_vector_jetGen_phi - std_vector_dressedLeptonGen_phi[1]), 2.) > 0.16',
-    'samples': mc
+aliases['nllWOTF'] = {
+    'linesToAdd': ['.L %s/Differential/nllW.cc+' % configurations],
+    'class': 'WWNLLW',
+    'args': ('central',),
+    'samples': ['WW']
 }
 
-# Components for the fiducial cut
-aliases['genLeptonPt'] = {
-    'expr': 'std_vector_dressedLeptonGen_pt[0]>25 && std_vector_dressedLeptonGen_pt[1]>10 && std_vector_dressedLeptonGen_pt[2]<10',
-    'samples': signals
-}
-aliases['genOSOF'] = {
-    'expr': 'std_vector_dressedLeptonGen_pid[0] * std_vector_dressedLeptonGen_pid[1] == -11 * 13',
-    'samples': signals
-}
-aliases['genTrailingE13'] = {
-    'expr': '(abs(std_vector_dressedLeptonGen_pid[1]) == 13 || std_vector_dressedLeptonGen_pt[1]>13)',
-    'samples': signals
+# In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
+aliases['lhe_mW1'] = {
+    'expr': 'TMath::Sqrt(2. * LHEPart_pt[0] * LHEPart_pt[1] * (TMath::CosH(LHEPart_eta[0] - LHEPart_eta[1]) - TMath::Cos(LHEPart_phi[0] - LHEPart_phi[1])))',
+    'samples': ['WWewk']
 }
 
-#aliases['genMjj'] = {
-#    'expr': expr,
-#    'samples': mc
-#}
-#aliases['genDetajj'] = {
-#    'expr': 'abs(std_vector_jetGen_eta[0] - std_vector_jetGen_eta[1])',
-#    'samples': mc
-#}
+# and [2] [3] are the second W
+aliases['lhe_mW2'] = {
+    'expr': 'TMath::Sqrt(2. * LHEPart_pt[2] * LHEPart_pt[3] * (TMath::CosH(LHEPart_eta[2] - LHEPart_eta[3]) - TMath::Cos(LHEPart_phi[2] - LHEPart_phi[3])))',
+    'samples': ['WWewk']
+}
 
-# Number of gen jets with pt > 30 GeV
+# use HTXS_njets30 when moving to NanoAODv5 for all trees
 aliases['nCleanGenJet'] = {
-    'expr': 'Sum$(std_vector_jetGen_pt > 30 && genJetClean)',
-    'samples': mc
-}
-
-#aliases['nGenJetCapped'] = {
-#    'expr': 'nGenJet * (nGenJet < 3) + 2 * (nGenJet > 2)',
-#    'samples': mc
-#}
-
-#aliases['nGenJetGGH'] = {
-#    'expr': 'nGenJet * (nGenJet < 2) + nGenJet * (nGenJet >= 2 && (genMjj < 65. || (genMjj > 105. && genMjj < 400.)))',
-#    'samples': mc
-#}
-
-# Fiducial cut for differential measurements
-aliases['fiducial'] = {
-    #'expr': 'genLeptonPt && genOSOF && genTrailingE13 && genMll>12 && metGenpt>20 && genPtll>30 && genMth>=60 && genMtw2>30'
-    'expr': 'genLeptonPt && genOSOF && genTrailingE13 && genMll>12 && genPtll>30 && genMth>=60 && genMtw2>30',
+    'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
+    'class': 'CountGenJet',
     'samples': signals
 }
 
-#aliases['gen_STXS_VBF'] = {
-#    'expr': 'higgsGenpt < 200. && genMjj > 400. && genDetajj > 2.8',
-#    'samples': signals
-#}
-#aliases['bin_njet_2_STXS_ggF_gg'] = {
-#    'expr': 'nGenJet >= 2 && !gen_STXS_VBF',
-#    'samples': signals
-#}
-#aliases['bin_njet_2_STXS_ggF_VBF'] = {
-#    'expr': 'nGenJet >= 2 && gen_STXS_VBF',
-#    'samples': signals
-#}
-#
-## Reco cuts for STXS
-#aliases['STXS_VBF'] = {
-#    'expr': 'pTWW < 200. && mjj > 400. && detajj > 2.8'
-#}
-#
-## Reco cuts used by HWW 2016
-#aliases['historical_gg'] = {
-#    'expr': 'mjj < 65. || (mjj > 105. && mjj < 400.)'
-#}
-#aliases['historical_VBF'] = {
-#    'expr': 'mjj > 400.'
-#}
-#aliases['historical_VBF'] = {
-#    'expr': 'mjj > 65. && mjj < 105.'
-#}
-#
-## >=2 jet with pt > 30 GeV, ggH tag
-#aliases['manyJet_STXS_ggF_gg'] = {
-#    'expr': 'manyJet && !STXS_VBF'
-#}
-#
-## >=2 jet with pt > 30 GeV, ggH tag
-#aliases['manyJet_STXS_ggF_VBF'] = {
-#    'expr': 'manyJet && STXS_VBF'
-#}
+# GGHUncertaintyProducer wasn't run for 2016 nAODv5 non-private
+thus = [
+    'ggH_mu',
+    'ggH_res',
+    'ggH_mig01',
+    'ggH_mig12',
+    'ggH_VBF2j',
+    'ggH_VBF3j',
+    'ggH_pT60',
+    'ggH_pT120',
+    'ggH_qmtop'
+]
+
+for thu in thus:
+    aliases[thu] = {
+        'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
+        'class': 'GGHUncertainty',
+        'args': (thu,),
+        'samples': ['ggH_hww'],
+        'nominalOnly': True
+    }

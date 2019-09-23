@@ -1,9 +1,7 @@
 # example of configuration file
 treeName= 'Events'
 
-
-tag = 'ggH'
-
+tag = 'VH2j_2017'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -12,7 +10,7 @@ outputDir = 'rootFile'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables_ALL.py'
+variablesFile = 'variables.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
@@ -30,7 +28,7 @@ lumi = 41.5
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot_ggH'
+outputDirPlots = 'plotVH2j_2017'
 
 # used by mkDatacards to define output directory for datacards
 outputDirDatacard = 'datacards'

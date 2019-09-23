@@ -4,24 +4,40 @@
     
 
 
-variables['events']  = {   'name': '1',      
-                        'range' : (1,0,2),  
-                        'xaxis' : 'events', 
-                        'fold' : 3
-                        }
+#variables['events']  = {   'name': '1',      
+#                        'range' : (1,0,2),  
+#                        'xaxis' : 'events', 
+#                        'fold' : 3
+#                        }
+#
 
 variables['mlljj20_whss']  = {   'name': 'mlljj20_whss',
-                        'range' : (20,0,200),
+                        'range' : (25,50.,300),
                         'xaxis' : 'mlljj20_whss [GeV]',
                         'fold' : 0
                         }
 
+variables['mlljj20_ll_whss']  = {   'name': 'mlljj20_whss',
+                        'range' : (15,50.,200),
+                        'xaxis' : 'mlljj20_whss [GeV]',
+                        'fold' : 0
+                        }
+
+'''
+variables['mlljj20_whss_2j']  = {   'name': 'mlljj20_whss',
+                        'range' : ([50.,100.,110.,120.,125.,130.,135.,140.,150.,160.,175.,200.,250.,300.],),
+                        'xaxis' : 'mlljj20_whss [GeV]',
+                        'fold' : 0
+                        }
+
+
 variables['mlljj30_whss']  = {   'name': 'mlljj30_whss',
-                        'range' : (40,0,200),
+                        'range' : (25,50,300),
                         'xaxis' : 'mlljj30_whss [GeV]',
                         'fold' : 0
                         }
 
+'''
 #variables['nvtx']  = {   'name': 'PV_npvsGood',      
 #                        'range' : (50,0,100),  
 #                        'xaxis' : 'nvtx', 
@@ -95,8 +111,6 @@ variables['njet']  = {
                         }
 
 
-
-
 variables['jetpt1']  = {
                         'name': 'CleanJet_pt[0]*(CleanJet_pt[0]>30)',     
                         'range' : (40,0,200),   
@@ -135,7 +149,7 @@ variables['jetpt2']  = {
 #                        'fold'  : 0
 #                        }
 
-'''
+
 variables['mtw1']  = {  'name': 'mtw1',
                         'range' : (40,0,200),
                         'xaxis' : 'm_{T}^{W_{1}} [GeV]',
@@ -147,7 +161,7 @@ variables['mtw2']  = {  'name': 'mtw2',
                         'xaxis' : 'm_{T}^{W_{2}} [GeV]',
                          'fold' : 3
                         }
-
+'''
 variables['trkMet']  = {   'name': 'metTtrk',
                         'range' : (40,0,200),
                         'xaxis' : 'trk met [GeV]',

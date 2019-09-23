@@ -12,10 +12,6 @@ cuts['Zmm']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -13*13)   \
                  && mll>60 && mll<120 \
                '
 
-#for iPer in [ ['B','1'] , ['C','2'] , ['D','3'] , ['E','4'], ['F','5'] ] :
-#  cuts['Zee_Run'+iPer[0]] = cuts['Zee'] + '&& run_period=='+iPer[1]
-#  cuts['Zmm_Run'+iPer[0]] = cuts['Zmm'] + '&& run_period=='+iPer[1] 
-
 '''
 cuts['Zee0j']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*11)   \
                    && Lepton_pt[0]>25 && Lepton_pt[1]>13 \
@@ -40,6 +36,4 @@ cuts['Zmm1j']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -13*13)   \
                    && ( Jet_pt[0] >= 30 ) \
                    && ( Jet_pt[1] < 30 ) \
                  '
-
-
 '''

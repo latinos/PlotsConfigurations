@@ -2,11 +2,11 @@
 treeName= 'Events'
 
 
-tag = '_WH_2016nano_11_fixFakes'
+tag = 'WH2016nano_forPlotsv2'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'+tag
+outputDir = 'rootFile'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
@@ -15,7 +15,7 @@ aliasesFile = 'aliases.py'
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts_new.py' 
+cutsFile = 'cuts.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 
@@ -26,7 +26,7 @@ plotFile = 'plot.py'
 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 41.5
+lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy

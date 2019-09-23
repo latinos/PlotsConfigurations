@@ -1,13 +1,15 @@
+## Compute renormalization factors for signal theoretical uncertainties
+## Each signal variation must preserve the total signal prediction in the fiducial region
+## -> Each renormalization factor is applied to all signals (or rather to the combined signal sample)
+
 import os
 import sys
 import ROOT
 
 ROOT.gROOT.SetBatch(True)
 
-year = sys.argv[1]
-
 from setupfiducial import setupfiducial
-from LatinoAnalysis.Tools.HiggsXSection import *
+from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
 HiggsXS = HiggsXSection()
 
 ROOT.gSystem.Load('libLatinoAnalysisMultiDraw.so')

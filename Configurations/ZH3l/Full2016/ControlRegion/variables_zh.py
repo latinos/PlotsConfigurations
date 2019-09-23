@@ -67,7 +67,7 @@ variables['mtw_notZ'] = {   'name' : 'mtw_notZ',
 
 variables['pdgid_notZ'] = { 'name' : 'pdgid_notZ',
                             'range' : (32,-16,16),
-                            'xaxis' : 'mtw_notZ',
+                            'xaxis' : 'pdgid_notZ',
                             'fold' : 0
                         }
 

@@ -47,13 +47,13 @@ variables['pt2']  = {   'name': 'Lepton_pt[1]',
                         }
 
 variables['eta1']  = {  'name': 'Lepton_eta[0]',     
-                        'range' : (40,-3,3),   
+                        'range' : (20,-3,3),   
                         'xaxis' : '#eta 1st lep',
                         'fold'  : 3                         
                         }
 
 variables['eta2']  = {  'name': 'Lepton_eta[1]',     
-                        'range' : (40,-3,3),   
+                        'range' : (20,-3,3),   
                         'xaxis' : '#eta 2nd lep',
                         'fold'  : 3                         
                         }

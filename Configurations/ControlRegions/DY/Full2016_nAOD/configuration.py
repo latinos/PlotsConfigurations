@@ -8,6 +8,9 @@ tag = 'DY'
 outputDir = 'rootFile'
 
 
+# file with TTree aliases
+aliasesFile = 'aliases.py'
+
 # file with list of variables
 variablesFile = 'variables.py'
 
@@ -40,6 +43,6 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-# nuisancesFile = 'nuisances.py'
+nuisancesFile = 'nuisances.py'
 
 

@@ -9,16 +9,18 @@
 
 void PDF_uncertainty(TString channel)
 {
-  //How to use: root -b -q "PDF_uncertainty.C(\"hww2l2v_13TeV_of0j\")"                                                                        
-  if(channel==""){cout<<"No input channel -> Assuming channel = hww2l2v_13TeV_of0j"<<endl;channel="hww2l2v_13TeV_of0j";}
+  //How to use: root -b -q "PDF_uncertainty.C(\"hww2l2v_13TeV_of0j\")"
+  TString namehist="";                               
+  if(channel==""||channel=="WW"){cout<<"No input channel -> Assuming channel = hww2l2v_13TeV_of0j"<<endl;channel="hww2l2v_13TeV_of0j";namehist="WW";}
+  if(channel=="top"){cout<<"Top channel -> Assuming channel = hww2l2v_13TeV_of1j"<<endl;channel="hww2l2v_13TeV_of1j";namehist="top";}
 
   TFile* inputfile= new TFile("rootFile_WW_PDFandScale/plots_PDFandScale.root");
   gStyle->SetOptStat(0);
 
   TH1F* h_PDFweight_mll[103];
-  for(int i=0;i<103;i++){h_PDFweight_mll[i] = new TH1F(Form("weight%d_mll",i),Form("weight%d_mll",i),50,0,400); h_PDFweight_mll[i]= (TH1F*)inputfile->Get(Form(channel+"/mll_pdfweight%d/histo_WW",i));}
+  for(int i=0;i<103;i++){h_PDFweight_mll[i] = new TH1F(Form("weight%d_mll",i),Form("weight%d_mll",i),50,0,400); h_PDFweight_mll[i]= (TH1F*)inputfile->Get(Form(channel+"/mll_pdfweight%d/histo_%s",i,namehist.Data()));}
   TH1F* h_PDFweight_mth[103];
-  for(int i=0;i<103;i++){h_PDFweight_mth[i] = new TH1F(Form("weight%d_mth",i),Form("weight%d_mth",i),50,50,400); h_PDFweight_mth[i]= (TH1F*)inputfile->Get(Form(channel+"/mth_pdfweight%d/histo_WW",i));}
+  for(int i=0;i<103;i++){h_PDFweight_mth[i] = new TH1F(Form("weight%d_mth",i),Form("weight%d_mth",i),50,50,400); h_PDFweight_mth[i]= (TH1F*)inputfile->Get(Form(channel+"/mth_pdfweight%d/histo_%s",i,namehist.Data()));}
 
   float integralmth[103];  float integralmll[103];
   for(int i=0;i<103;i++){integralmth[i]=h_PDFweight_mth[i]->Integral();integralmll[i]=h_PDFweight_mll[i]->Integral();}
@@ -48,7 +50,7 @@ void PDF_uncertainty(TString channel)
   ////////////////////////////// mth binned //////////////////////////////////
   TH1F* h_PDFweight_mll_mthbin[103][3];
   for(int b=0;b<3;b++){
-    for(int i=0;i<103;i++){h_PDFweight_mll_mthbin[i][b] = new TH1F(Form("weight%d_mll_bin%d",i,b*50+50),Form("weight%d_mll_bin%d",i,b*50+50),50,0,400); h_PDFweight_mll_mthbin[i][b]= (TH1F*)inputfile->Get(Form(channel+"/mll_pdfweight%d_bin%d/histo_WW",i,b*50+50));}//top",i,b*50+50));}
+    for(int i=0;i<103;i++){h_PDFweight_mll_mthbin[i][b] = new TH1F(Form("weight%d_mll_bin%d",i,b*50+50),Form("weight%d_mll_bin%d",i,b*50+50),50,0,400); h_PDFweight_mll_mthbin[i][b]= (TH1F*)inputfile->Get(Form(channel+"/mll_pdfweight%d_bin%d/histo_%s",i,b*50+50,namehist.Data()));}
   }
 
 
@@ -163,7 +165,7 @@ void PDF_uncertainty(TString channel)
   TCanvas *mll_bands=  new TCanvas(); mll_bands->cd(); auto pad4 =new TPad();
   mll_mean->SetTitle("mll with all the weights"); mll_mean->GetXaxis()->SetTitle("mll [GeV]"); mll_mean->GetXaxis()->SetTitleOffset(1.4); 
   mll_bands->SetGridx(1); mll_bands->SetGridy(1); mll_mean->GetXaxis()->SetRangeUser(0,400);
-  mll_mean->SetLineColor(2); mll_mean->SetLineWidth(2); mll_mean->Draw();
+  mll_mean->SetLineColor(2); mll_mean->SetLineWidth(2); mll_mean->Draw("");
   mll_plus->SetLineColor(3); mll_plus->SetLineWidth(2); mll_plus->Draw("same");
   mll_minus->SetLineColor(3);mll_minus->SetLineWidth(2); mll_minus->Draw("same");
   pad4->GetFrame()->SetLineWidth(4);
@@ -252,12 +254,14 @@ void PDF_uncertainty(TString channel)
     rat3->SaveAs(Form("ratio_mll_PDF_mthbin%dto%d.png",b*50+50,b*50+100));
     mllratioupbin[b]->GetYaxis()->SetRangeUser(0.5,1.5);
     rat3->SaveAs(Form("ratio_mll_PDF_mthbin%dto%d_unzoomed.png",b*50+50,b*50+100));
+    mllratiodownbin[b]->Fit("pol2","","",20,350);  mllratioupbin[b]->Fit("pol2","","",20,350);
+    rat3->SaveAs(Form("ratio_mll_PDF_mthbin%dto%d_fit.png",b*50+50,b*50+100));
     rat4->cd(); mllratioupbin[b]->SetLineColor(b+1); mllratiodownbin[b]->SetLineColor(b+1); 
     if(b==0){mllratioupbin[b]->Draw();mllratiodownbin[b]->Draw("same"); mllratioupbin[b]->SetTitle("ratios for each mth bin");}
     else{mllratioupbin[b]->Draw("same");mllratiodownbin[b]->Draw("same");}
-    leg->Draw(); rat4->SaveAs("ratio_mll_PDF_mthbin_unzoomed_ALL.png");
   }
-
+  leg->Draw(); rat4->SaveAs("ratio_mll_PDF_mthbin_unzoomed_ALL.png");
+ 
   cout<<" The End "<<endl;
 }
 

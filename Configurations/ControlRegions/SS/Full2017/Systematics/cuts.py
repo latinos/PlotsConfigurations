@@ -36,3 +36,14 @@ _tmp = [
        ]
 
 addcut('WW_1j_em', _tmp)
+
+_tmp = [
+     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
+     'ptll > 30.',
+     'Alt$(CleanJet_pt[0],0)>30',
+     'Alt$(CleanJet_pt[1],0)>30',
+     'Alt$(CleanJet_pt[2],0)<30',
+     'bVeto',
+       ]
+
+addcut('WW_2j_em', _tmp)

@@ -12,80 +12,54 @@ supercut = '   mll>12 \
             && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
            '
 
-### Unsplitted signal regions
 
-cuts['hww2l2v_13TeV_of0j']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
-                               && mth>60 \
-                               && mtw2>30 \
-                               && Alt$(CleanJet_pt[0],0)<30 \
-                               && bVeto \
-                              '
-
-cuts['hww2l2v_13TeV_of1j']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
-                               && mth>60 \
-                               && mtw2>30 \
-                               && Alt$(CleanJet_pt[0],0)>30 \
-                               && Alt$(CleanJet_pt[1],0)<30 \
-                               && bVeto \
-                              '
-
-cuts['hww2l2v_13TeV_of2j']  = '   mth>60 \
-                               && mtw2>30 \
-                               && Alt$(CleanJet_pt[0],0)>30 \
-                               && Alt$(CleanJet_pt[1],0)>30 \
-                               && bVeto \
-                              '
-
-cuts['hww2l2v_13TeV_incl']  = '   (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
-                               && mth>60 \
-                               && mtw2>30 \
-                               && bVeto \
-                              '
-
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## Signal regions
+cuts['hww2l2v_13TeV'] = {
+   'expr': 'sr',
+    # Define the sub-categorization of sr
+   'categories' : {
+      'em_pm_0j_pt2ge20' : ' Lepton_pdgId[0]==-11 && Lepton_pt[1]>=20 && zeroJet',
+      'em_mp_0j_pt2ge20' : ' Lepton_pdgId[0]==11 && Lepton_pt[1]>=20 && zeroJet',
+      'me_mp_0j_pt2ge20' : ' Lepton_pdgId[0]==-13 && Lepton_pt[1]>=20 && zeroJet',
+      'me_pm_0j_pt2ge20' : ' Lepton_pdgId[0]==13 && Lepton_pt[1]>=20 && zeroJet',
+      #
+      'em_pm_0j_pt2lt20' : ' Lepton_pdgId[0]==-11 && Lepton_pt[1]<20 && zeroJet',
+      'em_mp_0j_pt2lt20' : ' Lepton_pdgId[0]==11 && Lepton_pt[1]<20 && zeroJet',
+      'me_mp_0j_pt2lt20' : ' Lepton_pdgId[0]==-13 && Lepton_pt[1]<20 && zeroJet',
+      'me_pm_0j_pt2lt20' : ' Lepton_pdgId[0]==13 && Lepton_pt[1]<20 && zeroJet',
+      #
+      'em_pm_1j_pt2ge20' : ' Lepton_pdgId[0]==-11 && Lepton_pt[1]>=20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
+      'em_mp_1j_pt2ge20' : ' Lepton_pdgId[0]==11 && Lepton_pt[1]>=20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
+      'me_mp_1j_pt2ge20' : ' Lepton_pdgId[0]==-13 && Lepton_pt[1]>=20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
+      'me_pm_1j_pt2ge20' : ' Lepton_pdgId[0]==13 && Lepton_pt[1]>=20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
+      #
+      'em_pm_1j_pt2lt20' : ' Lepton_pdgId[0]==-11 && Lepton_pt[1]<20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
+      'em_mp_1j_pt2lt20' : ' Lepton_pdgId[0]==11 && Lepton_pt[1]<20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
+      'me_mp_1j_pt2lt20' : ' Lepton_pdgId[0]==-13 && Lepton_pt[1]<20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
+      'me_pm_1j_pt2lt20' : ' Lepton_pdgId[0]==13 && Lepton_pt[1]<20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
+      # FIXME fix the mjj or additional cuts to make this orthogonal to VH2j and VBF
+      '2j'               : ' mjj<400 && multiJet', 
+   }
+}
 
 ## Top control regions
-cuts['hww2l2v_13TeV_top_of0j']  = '    mll>50 \
-                                    && mtw2>30 \
-                                    && Alt$(CleanJet_pt[0],0)<30 \
-                                    && btag0 \
-                                  '
-
-cuts['hww2l2v_13TeV_top_of1j']  = '    mll>50 \
-                                    && mtw2>30 \
-                                    && Alt$(CleanJet_pt[0],0)>30 \
-                                    && Alt$(CleanJet_pt[1],0)<30 \
-                                    && btag1 \
-                                  '
-
-cuts['hww2l2v_13TeV_top_of2j']  = '    mll>50 \
-                                    && mtw2>30 \
-                                    && Alt$(CleanJet_pt[0],0)>30 \
-                                    && Alt$(CleanJet_pt[1],0)>30 \
-                                    && btag2 \
-                                  '
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cuts['hww2l2v_13TeV_top']  = { 
+   'expr' : 'topcr',
+    # Define the sub-categorization of topcr
+   'categories' : {
+      '0j' : 'zeroJet',
+      '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
+      '2j' : 'mjj<400 && multiJet',
+   }
+}
 
 ## DYtt control regions
-cuts['hww2l2v_13TeV_dytt_of0j']  = '   mth<60 \
-                                    && mll>40 && mll<80 \
-                                    && Alt$(CleanJet_pt[0],0)<30 \
-                                    && bVeto \
-                                   '
-
-cuts['hww2l2v_13TeV_dytt_of1j']  = '   mth<60 \
-                                    && mll>40 && mll<80 \
-                                    && Alt$(CleanJet_pt[0],0)>30 \
-                                    && Alt$(CleanJet_pt[1],0)<30 \
-                                    && bVeto \
-                                   '
-
-cuts['hww2l2v_13TeV_dytt_of2j']  = '   mth<60 \
-                                    && mll>40 && mll<80 \
-                                    && Alt$(CleanJet_pt[0],0)>30 \
-                                    && Alt$(CleanJet_pt[1],0)>30 \
-                                    && bVeto \
-                                   '
-
+cuts['hww2l2v_13TeV_dytt']  = { 
+   'expr' : 'dycr',
+   # Define the sub-categorization of dycr
+   'categories' : { 
+      '0j' : 'zeroJet',
+      '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
+      '2j' : 'mjj<400 && multiJet',
+   }
+}
