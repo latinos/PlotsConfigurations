@@ -85,10 +85,6 @@ float hww_cosTheta1(int entry){
                     const TVector3 w1 = W1.Vect().Unit();
                     const TVector3 w2 = W2.Vect().Unit();
      
-	            float cosTheta1 = TMath::Cos( p.Angle( w1 ) );
-	            cout << "cosTheta1 = " << cosTheta1 << endl;
-
-
                     // Boost the fermions into the Higgs rest frame:
                     TLorentzVector vl1( l1 );
                     vl1.Boost( -( H.BoostVector() ) ); // go to Higgs RFR
