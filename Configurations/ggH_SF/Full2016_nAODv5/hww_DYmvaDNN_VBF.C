@@ -1,11 +1,19 @@
-#include <TMVA/Reader.h>
+// To compile 
+// root -l
+// gSystem->Load("libLatinoAnalysisMultiDraw.so")
+// .L hww_VBF_MYmvaDNNG.C+ 
+
+//#include "TMVA/Factory.h"
+#include "TMVA/Reader.h"
+//#include "TMVA/DataLoader.h"
+#include "TMVA/PyMethodBase.h"
 #include "TLorentzVector.h"
 #include <TTree.h>
 #include "TSystem.h"
 #include "TROOT.h"
 #include "TString.h"
 #include "TFile.h"
-
+#include "stdlib.h"
 
 using namespace std;
 
@@ -92,7 +100,7 @@ float hww_DYmvaDNN_VBF(int entry){
         l_VBF_uperp = l_VBF__uperp;
 
 	float classifier = readerDNN_VBF->EvaluateMVA("PyKeras");
-        std::cout << "[DNN VBF]    score: " << classifier << std::endl;
+        //std::cout << "[DNN VBF]    score: " << classifier << std::endl;
 	return classifier;
 
 }

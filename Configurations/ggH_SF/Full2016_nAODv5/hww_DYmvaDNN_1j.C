@@ -7,7 +7,7 @@
 //#include "TMVA/Factory.h"
 #include "TMVA/Reader.h"
 //#include "TMVA/DataLoader.h"
-//#include "TMVA/PyMethodBase.h"
+#include "TMVA/PyMethodBase.h"
 #include "TLorentzVector.h"
 #include <TTree.h>
 #include "TSystem.h"
@@ -22,7 +22,7 @@ namespace multidraw {
   extern thread_local TTree* currentTree;
 }
 
-//TMVA::Reader* readerDNN_1j = new TMVA::Reader();
+TMVA::Reader* readerDNN_1j = new TMVA::Reader();
 bool initialized_1j = false;
 TString name_temp_1j = "";
 
@@ -48,21 +48,21 @@ void init_hww_DYmvaDNN_1j(TTree* tree){
     tree->SetBranchAddress("mth", &l_1j__mth);
     tree->SetBranchAddress("mTOT_cut", &l_1j__mTOT_cut);
 
-    //readerDNN_1j->AddVariable("PV_npvsGood", &l_1j_PV_npvsGood);
-    //readerDNN_1j->AddVariable("ptll", &l_1j_ptll);
-    //readerDNN_1j->AddVariable("mpmet", &l_1j_mpmet);
-    //readerDNN_1j->AddVariable("upara", &l_1j_upara);
-    //readerDNN_1j->AddVariable("PfMetDivSumMet", &l_1j_PfMetDivSumMet);
-    //readerDNN_1j->AddVariable("mtw1", &l_1j_mtw1);
-    //readerDNN_1j->AddVariable("dphilmet1", &l_1j_dphilmet1);
-    //readerDNN_1j->AddVariable("dphilljet_cut", &l_1j_dphilljet_cut);
-    //readerDNN_1j->AddVariable("dphijet1met_cut", &l_1j_dphijet1met_cut);
-    //readerDNN_1j->AddVariable("dphijet2met_cut", &l_1j_dphijet2met_cut);
-    //readerDNN_1j->AddVariable("MET_pt", &l_1j_MET_pt);
-    //readerDNN_1j->AddVariable("mth", &l_1j_mth);
-    //readerDNN_1j->AddVariable("mTOT_cut", &l_1j_mTOT_cut);
+    readerDNN_1j->AddVariable("PV_npvsGood", &l_1j_PV_npvsGood);
+    readerDNN_1j->AddVariable("ptll", &l_1j_ptll);
+    readerDNN_1j->AddVariable("mpmet", &l_1j_mpmet);
+    readerDNN_1j->AddVariable("upara", &l_1j_upara);
+    readerDNN_1j->AddVariable("PfMetDivSumMet", &l_1j_PfMetDivSumMet);
+    readerDNN_1j->AddVariable("mtw1", &l_1j_mtw1);
+    readerDNN_1j->AddVariable("dphilmet1", &l_1j_dphilmet1);
+    readerDNN_1j->AddVariable("dphilljet_cut", &l_1j_dphilljet_cut);
+    readerDNN_1j->AddVariable("dphijet1met_cut", &l_1j_dphijet1met_cut);
+    readerDNN_1j->AddVariable("dphijet2met_cut", &l_1j_dphijet2met_cut);
+    readerDNN_1j->AddVariable("MET_pt", &l_1j_MET_pt);
+    readerDNN_1j->AddVariable("mth", &l_1j_mth);
+    readerDNN_1j->AddVariable("mTOT_cut", &l_1j_mTOT_cut);
     
-    //readerDNN_1j->BookMVA("PyKeras","/afs/cern.ch/work/d/ddicroce/Latinos/CMSSW_11_0_0_pre7/src/LatinoAnalysis/NanoGardener/python/data/DYSFmva/2016_v5/TMVAClassification_PyKeras_2016_1j.weights.xml"); 
+    readerDNN_1j->BookMVA("PyKeras","/afs/cern.ch/work/d/ddicroce/Latinos/CMSSW_11_0_0_pre7/src/LatinoAnalysis/NanoGardener/python/data/DYSFmva/2016_v5/TMVAClassification_PyKeras_2016_1j.weights.xml"); 
 
 }
 
@@ -78,8 +78,8 @@ float hww_DYmvaDNN_1j(int entry){
 
 	
         if (!initialized_1j){
-		//delete readerDNN_1j;
-		//readerDNN_1j = new TMVA::Reader();
+		delete readerDNN_1j;
+		readerDNN_1j = new TMVA::Reader();
 		init_hww_DYmvaDNN_1j(multidraw::currentTree);
 		cout << "check init" << endl;	
 		initialized_1j = true;		
@@ -101,9 +101,8 @@ float hww_DYmvaDNN_1j(int entry){
         l_1j_mth = l_1j__mth;
         l_1j_mTOT_cut = l_1j__mTOT_cut;
 
-	//float classifier = readerDNN_1j->EvaluateMVA("PyKeras");
-	float classifier = 0;
-        std::cout << "[DNN 1j]    score: " << classifier << std::endl;
+	float classifier = readerDNN_1j->EvaluateMVA("PyKeras");
+        //std::cout << "[DNN 1j]    score: " << classifier << std::endl;
 	return classifier;
 
 }
