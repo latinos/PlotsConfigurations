@@ -11,16 +11,12 @@ import collections
 import tempfile
 import logging
 
-import LatinoAnalysis.ShapeAnalysis.utils as utils
-from update_nuisances import update_nuisances
-
 argv = sys.argv
 sys.argv = argv[:1]
 import ROOT
 
 NOHIGGS = False
 SRONLY = False
-PTHGT200 = True
 
 logging.basicConfig(level=logging.WARNING)
 
@@ -555,14 +551,18 @@ if __name__ == '__main__':
     argParser.add_argument('--signal-ggH-separate', action='store_true', dest='signal_ggH_separate', help='Separate ggH and xH in signal.')
     argParser.add_argument('--signal-separate', action='store_true', dest='signal_separate', help='Separate Higgs processes.')
     argParser.add_argument('--signal-hww-only', action='store_true', dest='signal_hww_only', help='Signal is HWW only.')
-    argParser.add_argument('--background-minor-merge', action='store_true', dest='background_minor_merge', help='Merge minor backgrounds into one sample.')
-    argParser.add_argument('--input-fake-flavored', action='store_true', dest='input_fake_flavored', help='Input Fake sample is split into Fake_em and Fake_me.')
+    argParser.add_argument('--background-merging', dest='background_merging', nargs='+', default=['minor=ggWW,WWewk,Vg,VgS_L,VgS_H,VZ,VVV'], help='Background merging scheme. Set to "none" for no merging.')
     argParser.add_argument('--aslnn-category-pool', action='store_true', dest='aslnn_category_pool', help='Compute the lnN value for AsLnN shape uncertainties across categories.')
     argParser.add_argument('--gen-inclusive', action='store_true', dest='gen_inclusive', help='Create an input for an inclusive cross section measurement.')
     argParser.add_argument('--make-asimov-with-bias', metavar='SAMPLE=bias', nargs='+', dest='make_asimov_with_bias', help='Replace histo_DATA with an Asimov dataset with biased sample scales')
     argParser.add_argument('--num-processes', '-j', metavar='N', dest='num_processes', type=int, default=1, help='Number of parallel processes.')
     
     args = argParser.parse_args()
+    del sys.argv[1:]
+
+    import LatinoAnalysis.ShapeAnalysis.utils as utils
+    from update_nuisances import update_nuisances
+    import binning
 
     if not args.year:
         if '2016' in args.tag:
@@ -578,6 +578,9 @@ if __name__ == '__main__':
         obsname = 'PTH'
     elif args.observable == 'njet':
         obsname = 'NJ'
+
+    if len(args.background_merging) == 1 and args.background_merging[0] == 'none':
+        del args.background_merging[:]
         
     ### Load the configuration
 
@@ -598,6 +601,7 @@ if __name__ == '__main__':
     for sname in signals:
         for sub in list(subsamplemap[sname]):
             if obsname not in sub:
+                samples.pop(sub)
                 subsamplemap[sname].remove(sub)
 
     for cut in cuts.keys():
@@ -634,66 +638,31 @@ if __name__ == '__main__':
     HistogramMerger.observable = args.observable
 
     for sname, subsamples in subsamplemap.iteritems():
-        HistogramMerger.subsampleRmap.update(('%s_%s' % (sname, subsample), sname) for subsample in subsamples)
+        HistogramMerger.subsampleRmap.update((subsample, sname) for subsample in subsamples)
 
-    if args.observable == 'ptH':
-        if PTHGT200:
-            HistogramMerger.outBins = ['PTH_0_20', 'PTH_20_45', 'PTH_45_80', 'PTH_80_120', 'PTH_120_200', 'PTH_GT200']
-        else:
-            HistogramMerger.outBins = ['PTH_0_20', 'PTH_20_45', 'PTH_45_80', 'PTH_80_120', 'PTH_120_200', 'PTH_200_350', 'PTH_GT350']
-
-        HistogramMerger.recoBinMap = {
-            'PTH_0_20': ['PTH_0_10', 'PTH_10_15', 'PTH_15_20'],
-            'PTH_20_45': ['PTH_20_30', 'PTH_30_45'],
-            'PTH_45_80': ['PTH_45_60', 'PTH_60_80'],
-            'PTH_80_120': ['PTH_80_100', 'PTH_100_120'],
-            'PTH_120_200': ['PTH_120_155', 'PTH_155_200']
-        }
-        if PTHGT200:
-            HistogramMerger.recoBinMap['PTH_GT200'] = ['PTH_200_260', 'PTH_260_350', 'PTH_GT350']
-            HistogramMerger.split = [4, 4, 4, 3, 2, 2]
-        else:
-            HistogramMerger.recoBinMap['PTH_200_350'] = ['PTH_200_260', 'PTH_260_350']
-            HistogramMerger.recoBinMap['PTH_GT350'] = ['PTH_GT350']
-            HistogramMerger.split = [4, 4, 4, 3, 2, 2, 1]
-    
-    else:
-        HistogramMerger.outBins = ['NJ_0', 'NJ_1', 'NJ_2', 'NJ_3', 'NJ_GE4']
-        
-        HistogramMerger.recoBinMap = {
-            'NJ_0': ['NJ_0'],
-            'NJ_1': ['NJ_1'],
-            'NJ_2': ['NJ_2'],
-            'NJ_3': ['NJ_3'],
-            'NJ_GE4': ['NJ_GE4']
-        }
-
-        HistogramMerger.split = [4, 4, 2, 1, 1]
+    HistogramMerger.outBins = binning.bins[args.observable]
+    HistogramMerger.recoBinMap = binning.bin_mapping[args.observable]
+    HistogramMerger.split = binning.category_scheme[args.observable]
     
     ### Sample merging
     
     sampleMerging = {}
+    _merged_samples = set(['DATA'])
 
     if not args.make_asimov_with_bias:
         sampleMerging['DATA'] = ['DATA']
 
-    if args.input_fake_flavored:
-        sampleMerging['Fake_em'] = ['Fake_em']
-        sampleMerging['Fake_me'] = ['Fake_me']
-    else:
-        sampleMerging['Fake'] = ['Fake']
+    for merge_expr in args.background_merging:
+        newname, snames = merge_expr.split('=')
+        sampleMerging[newname] = snames.split(',')
+        _merged_samples.update(snames.split(','))
 
-    minors = ['ggWW', 'WWewk', 'Vg', 'VgS_L', 'VgS_H', 'VZ', 'VVV']
-    
-    if args.background_minor_merge:
-        sampleMerging['minor'] = minors
-    else:
-        for name in minors:
-            sampleMerging[name] = [name]
-
-    sampleMerging['WW'] = ['WW']
-    sampleMerging['top'] = ['top']
-    sampleMerging['DY'] = ['DY']
+    for sname in samples:
+        if sname in _merged_samples:
+            continue
+        if '_hww' in sname or '_htt' in sname:
+            continue
+        sampleMerging[sname] = [sname]
 
     ggH_hww = ['ggH_hww']
     xH_hww = [
@@ -775,8 +744,20 @@ if __name__ == '__main__':
 
     ### Prepare nuisance editing
 
+    # remove samples merged into WW, top, and DY from lumi uncertainties
+    for nname, nuis in nuisances.iteritems():
+        if nname == 'stat' or not nuis['name'].startswith('lumi'):
+            continue
+
+        for newname in ['WW', 'top', 'DY']:
+            for sname in sampleMerging[newname]:
+                try:
+                    nuis['samples'].pop(sname)
+                except KeyError:
+                    pass
+
     newNuisances = update_nuisances(nuisances, samples, cuts, sampleMerging, HistogramMerger.cutMerging)
-    
+
     HistogramMerger.variations = {}
 
     for nuisanceName, nuisance in newNuisances.iteritems():

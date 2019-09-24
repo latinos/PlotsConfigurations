@@ -102,7 +102,7 @@ float hww_DYmvaDNN_0j(int entry){
 
 	float classifier = readerDNN_0j->EvaluateMVA("PyKeras");
 	
-        std::cout << "[DNN 0j]    score: " << classifier << std::endl;
+        //std::cout << "[DNN 0j]    score: " << classifier << std::endl;
 	return classifier;
 
 }

@@ -1,7 +1,9 @@
 import os
 import sys
 import array
+import numpy as np
 import ROOT
+import root_numpy
 
 import common
 
@@ -25,6 +27,7 @@ confdir = os.path.dirname(confdir) # tools
 confdir = os.path.dirname(confdir) # Differential
 
 REDRAW = True
+DATASET='2017'
 
 if REDRAW:
     ROOT.gSystem.Load('libLatinoAnalysisMultiDraw.so')
@@ -36,7 +39,7 @@ if REDRAW:
     
     ### Set up the histograms
     
-    output = ROOT.TFile.Open('responsematrix.root', 'recreate')
+    output = ROOT.TFile.Open('responsematrix_%s.root' % DATASET, 'recreate')
     
     ptH = ROOT.TH2D('ptH', '', len(common.binnames['ptH']) + 1, 0., float(len(common.binnames['ptH'])) + 1., len(common.binnames['ptH']) + 1, 0., float(len(common.binnames['ptH'])) + 1.)
     
@@ -66,10 +69,15 @@ if REDRAW:
 
     njet.SetLineColor(ROOT.kGray)
     
-    ### Fill the in-acceptance part from 2018 wwSel
+    ### Fill the in-acceptance part from wwSel
     
     drawer = ROOT.multidraw.MultiDraw('Events')
-    drawer.addInputPath('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5__wwSel/nanoLatino_GluGluHToWWTo2L2NuPowheg_M125__part*.root')
+    if DATASET == '2016':
+        drawer.addInputPath('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv5_SigOnly_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__wwSel/nanoLatino_GluGluHToWWTo2L2NuPowheg_M125__part*.root')
+    elif DATASET == '2017':
+        drawer.addInputPath('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv5_SigOnly_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__wwSel/nanoLatino_GluGluHToWWTo2L2NuPowheg_M125__part*.root')
+    elif DATASET == '2018':
+        drawer.addInputPath('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5__wwSel/nanoLatino_GluGluHToWWTo2L2NuPowheg_M125__part*.root')
     drawer.setWeightBranch('XSWeight')
     
     drawer.setReweight(ROOT.multidraw.ReweightSource(ROOT.multidraw.CompiledExprSource(weight2MINLO)))
@@ -111,13 +119,21 @@ if REDRAW:
     ### Fill the out-of-acceptance part from genonly minus in-acceptance
     
     drawer = ROOT.multidraw.MultiDraw('Events')
-    drawer.addInputPath('/eos/cms/store/user/yiiyama/HWWNano/Autumn18_102X_nAODv5_Full2018v5/MCGenOnly/nanoLatino_GluGluHToWWTo2L2NuPowheg_M125__part*.root')
+    if DATASET == '2016':
+        drawer.addInputPath('/eos/cms/store/user/yiiyama/HWWNano/Summer16_102X_nAODv5_SigOnly_Full2016v5/MCGenOnly/nanoLatino_GluGluHToWWTo2L2NuPowheg_M125__part*.root')
+    elif DATASET == '2017':
+        drawer.addInputPath('/eos/cms/store/user/yiiyama/HWWNano/Fall2017_102X_nAODv5_SigOnly_Full2017v5/MCGenOnly/nanoLatino_GluGluHToWWTo2L2NuPowheg_M125__part*.root')
+    elif DATASET == '2018':
+        drawer.addInputPath('/eos/cms/store/user/yiiyama/HWWNano/Autumn18_102X_nAODv5_Full2018v5/MCGenOnly/nanoLatino_GluGluHToWWTo2L2NuPowheg_M125__part*.root')
     drawer.setWeightBranch('baseW')
     
     weight2MINLOWeight = ROOT.multidraw.ReweightSource(ROOT.multidraw.CompiledExprSource(weight2MINLO))
-    genWeight = ROOT.multidraw.ReweightSource('genWeight')
-    
-    drawer.setReweight(ROOT.multidraw.ReweightSource(weight2MINLOWeight, genWeight))
+    # temporary
+    if DATASET != '2017':
+        genWeight = ROOT.multidraw.ReweightSource('genWeight')
+        drawer.setReweight(ROOT.multidraw.ReweightSource(weight2MINLOWeight, genWeight))
+    else:
+        drawer.setReweight(weight2MINLOWeight)
 
     drawer.setFilter('Sum$(TMath::Abs(DressedLepton_pdgId) == 11 && LeptonGen_isPrompt) * Sum$(TMath::Abs(DressedLepton_pdgId) == 13 && LeptonGen_isPrompt) == 1')
     
@@ -139,21 +155,17 @@ if REDRAW:
     
     drawer.execute()
 
-    iy = ptH.GetNbinsY()
-    for ix in range(1, ptH.GetNbinsX() + 1):
-        inacc = sum(ptH.GetBinContent(ix, k) for k in range(1, iy))
-        ptH.SetBinContent(ix, iy, ptH.GetBinContent(ix, iy) - inacc)
-    
-    iy = njet.GetNbinsY()
-    for ix in range(1, njet.GetNbinsX() + 1):
-        inacc = sum(njet.GetBinContent(ix, k) for k in range(1, iy))
-        njet.SetBinContent(ix, iy, njet.GetBinContent(ix, iy) - inacc)
+    ptH_cont = root_numpy.hist2array(ptH, copy=False)
+    ptH_cont[:,-1] -= np.sum(ptH_cont[:,0:-1], axis=1)
+
+    njet_cont = root_numpy.hist2array(njet, copy=False)
+    njet_cont[:,-1] -= np.sum(njet_cont[:,0:-1], axis=1)
     
     output.cd()
     output.Write()
 
 else:
-    output = ROOT.TFile.Open('responsematrix.root')
+    output = ROOT.TFile.Open('responsematrix_%s.root' % DATASET)
     ptH = output.Get('ptH')
     njet = output.Get('njet')
 
@@ -164,6 +176,10 @@ canvas.SetBottomMargin(0.15)
 canvas.SetTopMargin(0.05)
 
 ptH_colnorm = ptH.Clone('ptH_colnorm')
+#cont = root_numpy.hist2array(ptH_colnorm, copy=False)
+#orig = root_numpy.hist2array(ptH, copy=False)
+#
+#cont[:,:] /= np.sum(orig[:,0:-1], axis=1)
 for ix in range(1, ptH.GetNbinsX() + 1):
     inacc = sum(ptH.GetBinContent(ix, k) for k in range(1, ptH.GetNbinsY()))
     for iy in range(1, ptH.GetNbinsY() + 1):

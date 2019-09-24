@@ -38,7 +38,9 @@ card_tag=fullmodel
 
 mkdir shapes
 
-../tools/restructure_input.py --tag ggHDifferential${year} --signal-hww-only --signal-no-fiducial --input-fake-flavored --background-minor-merge --aslnn-category-pool -j 8 rootFile_merged shapes/plots_${obs}_${card_tag}.root $obs
+../tools/restructure_input.py --tag ggHDifferential${year} --signal-hww-only --signal-no-fiducial --aslnn-category-pool -j 8 rootFile_merged shapes/plots_${obs}_${card_tag}.root $obs
+# for WW+ggWW merged input
+#../tools/restructure_input.py --tag ggHDifferential${year} --signal-hww-only --signal-no-fiducial --aslnn-category-pool --background-merging WW=WW,ggWW minor=WWewk,Vg,VgS_L,VgS_H,VZ,VVV -j 8 rootFile_merged shapes/plots_${obs}_${card_tag}.root $obs
 ```
 
 This `restructure_input.py` is the most critical and most convoluted part of the differential analysis configuration. It sets up the sample and category merging schemes and executes merging, propagating systematic variations of individual samples / categories into the merged products. The script is mostly self-contained. The only external dependency is to the signal renormalization factor files, which are generated with `tools/renormalize_theoretical.py` for each year separately.
