@@ -9,7 +9,11 @@ from update_nuisances import update_nuisances
 import binning
 
 observable = 'PTH'
-background_minor = True
+sample_merging = {
+    'WW': ['WW', 'ggWW'],
+    'minor': ['WWewk', 'Vg', 'VgS_L', 'VgS_H', 'VZ', 'VVV'],
+    'htt': []
+}
 
 try:
     structure
@@ -43,13 +47,6 @@ for cut in cuts.keys():
 for sname in samples.keys():
     if '_hww' in sname and observable not in sname:
         samples.pop(sname)
-
-sample_merging = {}
-if background_minor:
-    sample_merging['minor'] = []
-    for sname in ['ggWW', 'WWewk', 'Vg', 'VgS_L', 'VgS_H', 'VZ', 'VVV']:
-        if sname in samples:
-            sample_merging['minor'].append(sname)
 
 sample_merging['htt'] = []
 for sname in samples.iterkeys():
@@ -102,6 +99,21 @@ for cut in cuts:
         continue
 
     raise RuntimeError()
+
+# remove samples merged into WW, top, and DY from lumi uncertainties
+for nname, nuis in nuisances.iteritems():
+    if nname == 'stat' or not nuis['name'].startswith('lumi'):
+        continue
+
+    for newname in ['WW', 'top', 'DY']:
+        if newname not in sample_merging:
+            continue
+
+        for sname in sample_merging[newname]:
+            try:
+                nuis['samples'].pop(sname)
+            except KeyError:
+                pass
 
 nuisances = update_nuisances(nuisances, samples, cuts, sample_merging, cut_merging)
 
