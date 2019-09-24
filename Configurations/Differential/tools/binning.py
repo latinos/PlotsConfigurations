@@ -78,7 +78,7 @@ def _variables_ptH(cut):
 
 def _variables_njet(cut):
     if '_CR_' in cut:
-        variables['events']['cuts'].append(cut)
+        return 'events'
     else:
         return 'mllVSmth_6x6'
 
