@@ -9,15 +9,21 @@ import common
 fitdir = os.path.dirname(os.path.realpath(sys.argv[1]))
 obs = sys.argv[2]
 
-sigma_fid = 82.5
+npoi = len(common.binnames[obs])
 
-if obs == 'njet':
-    binnorms = [0.553843, 0.263424, 0.121090, 0.039476, 0.022167]
+fiducialFrac = [0.] * npoi
 
-elif obs == 'ptH':
-    binnorms = [0.332666, 0.300039, 0.185110, 0.093513, 0.063778, 0.024895]
+source = ROOT.TFile.Open('%s/fiducial/rootFile/plots_Fiducial.root' % os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
+for proc in ['ggH_hww', 'qqH_hww', 'WH_hww', 'ZH_hww', 'ggZH_hww', 'ttH_hww']:
+    h = source.Get('fiducial/%s/histo_%s' % (obs, proc))
+    for ix in range(npoi):
+        fiducialFrac[ix] += h.GetBinContent(ix + 1)
 
-npoi = len(binnorms)
+source.Close()
+
+fiducialTotal = sum(fiducialFrac)
+for ix in range(len(fiducialFrac)):
+    fiducialFrac[ix] /= fiducialTotal
 
 def getentry(result, ir, scale=1.):
     return '& $%.2f_{-%.2f}^{+%.2f}$ ' % (
@@ -55,7 +61,6 @@ for idep in range(npoi):
 
     line += getentry(result, 0)
 
-    sigma_total = 0.
     independent_total = 0.
 
     ir = 1
@@ -64,13 +69,11 @@ for idep in range(npoi):
             line += '& $(%.2f)$ ' # will insert later
         else:
             line += getentry(result, ir, result[0][0])
-            independent_total += result[0][ir] * binnorms[imu]
+            independent_total += result[0][ir] * fiducialFrac[imu]
             ir += 1
 
-    table += line % (result[0][0] * (1. - independent_total) / binnorms[idep])
+    table += line % (result[0][0] * (1. - independent_total) / fiducialFrac[idep])
     table += '\\\\\n'
-
-    total_sigma = result[0][0] * (independent_total + (1. - independent_total) / binnorms[idep]) * sigma_fid
 
     source.Close()
 

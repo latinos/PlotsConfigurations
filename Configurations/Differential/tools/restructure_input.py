@@ -11,16 +11,12 @@ import collections
 import tempfile
 import logging
 
-import LatinoAnalysis.ShapeAnalysis.utils as utils
-from update_nuisances import update_nuisances
-
 argv = sys.argv
 sys.argv = argv[:1]
 import ROOT
 
 NOHIGGS = False
 SRONLY = False
-PTHGT200 = True
 
 logging.basicConfig(level=logging.WARNING)
 
@@ -563,6 +559,11 @@ if __name__ == '__main__':
     argParser.add_argument('--num-processes', '-j', metavar='N', dest='num_processes', type=int, default=1, help='Number of parallel processes.')
     
     args = argParser.parse_args()
+    del sys.argv[1:]
+
+    import LatinoAnalysis.ShapeAnalysis.utils as utils
+    from update_nuisances import update_nuisances
+    import binning
 
     if not args.year:
         if '2016' in args.tag:
@@ -636,39 +637,9 @@ if __name__ == '__main__':
     for sname, subsamples in subsamplemap.iteritems():
         HistogramMerger.subsampleRmap.update(('%s_%s' % (sname, subsample), sname) for subsample in subsamples)
 
-    if args.observable == 'ptH':
-        if PTHGT200:
-            HistogramMerger.outBins = ['PTH_0_20', 'PTH_20_45', 'PTH_45_80', 'PTH_80_120', 'PTH_120_200', 'PTH_GT200']
-        else:
-            HistogramMerger.outBins = ['PTH_0_20', 'PTH_20_45', 'PTH_45_80', 'PTH_80_120', 'PTH_120_200', 'PTH_200_350', 'PTH_GT350']
-
-        HistogramMerger.recoBinMap = {
-            'PTH_0_20': ['PTH_0_10', 'PTH_10_15', 'PTH_15_20'],
-            'PTH_20_45': ['PTH_20_30', 'PTH_30_45'],
-            'PTH_45_80': ['PTH_45_60', 'PTH_60_80'],
-            'PTH_80_120': ['PTH_80_100', 'PTH_100_120'],
-            'PTH_120_200': ['PTH_120_155', 'PTH_155_200']
-        }
-        if PTHGT200:
-            HistogramMerger.recoBinMap['PTH_GT200'] = ['PTH_200_260', 'PTH_260_350', 'PTH_GT350']
-            HistogramMerger.split = [4, 4, 4, 3, 2, 2]
-        else:
-            HistogramMerger.recoBinMap['PTH_200_350'] = ['PTH_200_260', 'PTH_260_350']
-            HistogramMerger.recoBinMap['PTH_GT350'] = ['PTH_GT350']
-            HistogramMerger.split = [4, 4, 4, 3, 2, 2, 1]
-    
-    else:
-        HistogramMerger.outBins = ['NJ_0', 'NJ_1', 'NJ_2', 'NJ_3', 'NJ_GE4']
-        
-        HistogramMerger.recoBinMap = {
-            'NJ_0': ['NJ_0'],
-            'NJ_1': ['NJ_1'],
-            'NJ_2': ['NJ_2'],
-            'NJ_3': ['NJ_3'],
-            'NJ_GE4': ['NJ_GE4']
-        }
-
-        HistogramMerger.split = [4, 4, 2, 1, 1]
+    HistogramMerger.outBins = binning.bins[args.observable]
+    HistogramMerger.recoBinMap = binning.bin_mapping[args.observable]
+    HistogramMerger.split = binning.category_scheme[args.observable]
     
     ### Sample merging
     

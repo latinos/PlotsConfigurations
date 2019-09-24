@@ -23,50 +23,14 @@ ROOT.gStyle.SetFillStyle(0)
 thisdir = os.path.dirname(os.path.realpath(__file__))
 confdir = os.path.dirname(os.path.dirname(thisdir))
 
+## Import binning from tools
+sys.path.append(os.path.dirname(thisdir))
+import binning
+
 ## Differential fiducial bin names
-binnames = {
-    'ptH': [
-        'PTH_0_20',
-        'PTH_20_45',
-        'PTH_45_80',
-        'PTH_80_120',
-        'PTH_120_200',
-        'PTH_GT200'
-    ],
-    'njet': [
-        'NJ_0',
-        'NJ_1',
-        'NJ_2',
-        'NJ_3',
-        'NJ_GE4'
-    ]
-}
-
-bintitles = {
-    'ptH': [
-        '[0, 20]',
-        '[20, 45]',
-        '[45, 80]',
-        '[80, 120]',
-        '[120, 200]',
-        '[200, #infty)',
-        #'[200, 350]',
-        #'[350, #infty)'
-    ],
-    'njet': [
-        '0',
-        '1',
-        '2',
-        '3',
-        '#geq 4'
-    ]
-}
-
-binning = {
-    'ptH': [0., 20., 45., 80., 120., 200., 260.],
-    #'ptH': [0., 20., 45., 80., 120., 200., 350., 400.],
-    'njet': [0., 1., 2., 3., 4., 5.]
-}
+binnames = binning.bins
+bintitles = binning.bintitles
+binning = binning.binning
 
 ## Fiducial histograms with proper uncertainties
 
