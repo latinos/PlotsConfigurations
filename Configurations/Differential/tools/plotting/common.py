@@ -138,8 +138,14 @@ ymin = 0.12
 ymax = 0.92
 
 ## CMS Preliminary
-def makeCMS():
-    return makeText(0.18, ymax - 0.12, 0.3, ymax - 0.01, align=11, font=62)
+def makeCMS(prelim=True):
+    text = makeText(0.18, ymax - 0.12, 0.3, ymax - 0.01, align=11, font=62)
+    if prelim:
+        text.AddText('#splitline{CMS}{#font[52]{Preliminary}}')
+    else:
+        text.AddText('CMS')
+
+    return text
 
 ## Lumi
 lumis = {
@@ -149,18 +155,45 @@ lumis = {
     'combination': 137.
 }
 
-def makeLumi():
-    return makeText(0.6, ymax, xmax, 1., align=33)
+def makeLumi(lumi):
+    text = makeText(0.6, ymax, xmax, 1., align=33)
+    if lumi >= 100.:
+        slumi = '%.0f' % lumi
+    else:
+        slumi = '%.1f' % lumi
+    text.AddText('%s fb^{-1} (13 TeV)' % slumi)
+
+    return text
+
+def showOvershoots(rgr, rmin, rmax):
+    arrow = ROOT.TArrow(0., 0., 0., 0., rgr.GetMarkerSize() * 0.015, '|>')
+    arrow.SetLineColor(rgr.GetLineColor())
+    arrow.SetLineWidth(rgr.GetLineWidth())
+    errbar = ROOT.TLine(0., 0., 0., 0.)
+    errbar.SetLineColor(rgr.GetLineColor())
+    errbar.SetLineWidth(rgr.GetLineWidth())    
+    for ip in range(rgr.GetN()):
+        x = rgr.GetX()[ip]
+        y = rgr.GetY()[ip]
+        errhi = rgr.GetErrorYhigh(ip)
+        errlo = rgr.GetErrorYlow(ip)
+        if y > rmax:
+            if y - errlo > rmax:
+                arrow.DrawArrow(x, 1., x, rmax - 0.05)
+            else:
+                errbar.DrawLine(x, y - errlo, x, rmax)
+        elif y < rmin:
+            if y + errhi > rmin:
+                arrow.DrawArrow(x, 1., x, rmin + 0.05)
+            else:
+                errbar.DrawLine(x, y + errhi, x, rmin)
 
 ## Canvas with two pads
 def makeRatioCanvas(width=600, height=600, dataset='combination'):
     canvas = ROOT.TCanvas('c1', 'c1', width, height)
     
-    canvas.cmsLabel = makeCMS()
-    canvas.lumiLabel = makeLumi()
-    
-    canvas.cmsLabel.AddText('#splitline{CMS}{#font[52]{Preliminary}}')
-    canvas.lumiLabel.AddText('%.1f fb^{-1} (13 TeV)' % lumis[dataset])
+    canvas.cmsLabel = makeCMS(prelim=True)
+    canvas.lumiLabel = makeLumi(lumis[dataset])
     
     ydmin = 0.305
     yrmax = 0.3

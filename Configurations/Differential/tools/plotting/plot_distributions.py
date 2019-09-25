@@ -344,27 +344,7 @@ def plotstack(stack, uncert, gobs, legend):
     robs.Draw('PZ')
 
     # draw out-of-bounds error bars and arrows
-    arrow = ROOT.TArrow(0., 0., 0., 0., robs.GetMarkerSize() * 0.015, '|>')
-    arrow.SetLineColor(ROOT.kBlack)
-    arrow.SetLineWidth(1)
-    errbar = ROOT.TLine(0., 0., 0., 0.)
-    errbar.SetLineColor(ROOT.kBlack)
-    errbar.SetLineWidth(1)    
-    for ip in range(robs.GetN()):
-        x = robs.GetX()[ip]
-        y = robs.GetY()[ip]
-        errhi = robs.GetErrorYhigh(ip)
-        errlo = robs.GetErrorYlow(ip)
-        if y > rmax:
-            if y - errlo > rmax:
-                _temporaries.append(arrow.DrawArrow(x, 1., x, rmax - 0.05))
-            else:
-                _temporaries.append(errbar.DrawLine(x, y - errlo, x, rmax))
-        elif y < rmin:
-            if y + errhi > rmin:
-                _temporaries.append(arrow.DrawArrow(x, 1., x, rmin + 0.05))
-            else:
-                _temporaries.append(errbar.DrawLine(x, y + errhi, x, rmin))
+    common.showOvershoots(robs, rmin, rmax)
 
     # hatch mask bins with no base
     box = ROOT.TBox(0., rmin, 0., rmax)

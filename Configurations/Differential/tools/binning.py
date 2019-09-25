@@ -45,6 +45,11 @@ bin_mapping = {
     }
 }
 
+for obs, mapping in bin_mapping.iteritems():
+    for key in mapping.keys():
+        if key not in bins[obs]:
+            mapping.pop(key)
+
 bintitles = {}
 
 bintitles['ptH'] = ['[0, 20]', '[20, 45]', '[45, 80]', '[80, 120]', '[120, 200]', '[200, #infty)']
