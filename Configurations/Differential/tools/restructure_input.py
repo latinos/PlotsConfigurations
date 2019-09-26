@@ -16,7 +16,6 @@ sys.argv = argv[:1]
 import ROOT
 
 NOHIGGS = False
-SRONLY = False
 
 logging.basicConfig(level=logging.WARNING)
 
@@ -110,8 +109,8 @@ class HistogramMerger(object):
     psVariation = ''
     ueVariation = ''
 
-    def addFromOneDirectory(self, inSample, outNominal, outHistograms):
-        logging.debug('addFromOneDirectory %s %s', inSample, outNominal.GetName())
+    def addFromOneDirectory(self, inSample, scale, outNominal, outHistograms):
+        logging.debug('addFromOneDirectory %s %f %s', inSample, scale, outNominal.GetName())
         # pick up the nominal input
         inNominal = self._getter.get('histo_%s' % inSample)
 
@@ -174,15 +173,15 @@ class HistogramMerger(object):
                     inVariationUp.Scale(variation['renormalization'][inSample][0])
                     inVariationDown.Scale(variation['renormalization'][inSample][1])
 
-                outVariationUp.Add(inVariationUp)
-                outVariationDown.Add(inVariationDown)
+                outVariationUp.Add(inVariationUp, scale)
+                outVariationDown.Add(inVariationDown, scale)
             else:
                 logging.debug('No variation from input %s', inSample)
-                outVariationUp.Add(inNominal)
-                outVariationDown.Add(inNominal)
+                outVariationUp.Add(inNominal, scale)
+                outVariationDown.Add(inNominal, scale)
 
         # finally update out nominal
-        outNominal.Add(inNominal)
+        outNominal.Add(inNominal, scale)
         logging.debug('outNominal sumw %f', outNominal.GetSumOfWeights())
         inNominal.Delete()
 
@@ -205,8 +204,8 @@ class HistogramMerger(object):
 
         return outVariationUp, outVariationDown
 
-    def mergeSample(self, inSample, outSample, sourceDirectories, outCatDir, outHistograms):
-        logging.debug('\n\nmergeSample %s, %s, %s', inSample, outSample, outCatDir.GetName())
+    def mergeSample(self, inSample, scale, outSample, sourceDirectories, outCatDir, outHistograms):
+        logging.debug('\n\nmergeSample %s, %f, %s, %s', inSample, scale, outSample, outCatDir.GetName())
         
         outCatName = outCatDir.GetName()
         
@@ -221,7 +220,7 @@ class HistogramMerger(object):
 
             for sourceDirectory in sourceDirectories:
                 self._getter.cd('%s/%s' % (sourceDirectory, templateName))
-                self.addFromOneDirectory(inSample, outNominal, outHistograms)
+                self.addFromOneDirectory(inSample, scale, outNominal, outHistograms)
 
     def createSecondaries(self, outCatDir):
         for secondaryName, secondaryBinning, primaryName, primaryBins in self.secondarySpecs:
@@ -359,7 +358,7 @@ class HistogramMerger(object):
                         if total > 0.:
                             histo.Add(hnominal[cut], variation['AsLnN'] * v / total)
     
-    def restructure(self, output, inSample, outSample, outHistograms):
+    def restructure(self, output, inSample, scale, outSample, outHistograms):
         # merge sample from one sample at each output cut
 
         for catkey in output.GetListOfKeys():
@@ -367,7 +366,7 @@ class HistogramMerger(object):
             
             outCatDir = output.GetDirectory(catkey.GetName())
            
-            self.mergeSample(inSample, outSample, sourceDirectories, outCatDir, outHistograms)
+            self.mergeSample(inSample, scale, outSample, sourceDirectories, outCatDir, outHistograms)
 
     def writePrimaries(self, outHistograms):
         """
@@ -419,15 +418,11 @@ class HistogramMerger(object):
         for outSample, inSamples in targets:
             outHistograms = {}
 
-            for inSample in inSamples:
-                print '%s/%s -> %s/%s' % (sourcePath, inSample, outputPath, outSample)
+            for inSample, scale in inSamples:
+                print '%s/%s x %f -> %s/%s' % (sourcePath, inSample, scale, outputPath, outSample)
 
                 if os.path.isdir(sourcePath):
-                    if inSample in self.subsampleRmap:
-                        sourceSample = self.subsampleRmap[inSample]
-                    else:
-                        sourceSample = inSample
-
+                    sourceSample = self.subsampleRmap[inSample]
                     self._getter.open(sourcePath, sourceSample)
 
                 if (self.ueVariation in HistogramMerger.variations and inSample in HistogramMerger.variations[self.ueVariation]['inSamples']) or \
@@ -437,7 +432,7 @@ class HistogramMerger(object):
                 if self.asLnNPooling is not None:
                     self.poolAsLnN(inSample)
 
-                self.restructure(output, inSample, outSample, outHistograms)
+                self.restructure(output, inSample, scale, outSample, outHistograms)
 
             self.writePrimaries(outHistograms)
 
@@ -551,6 +546,7 @@ if __name__ == '__main__':
     argParser.add_argument('--signal-ggH-separate', action='store_true', dest='signal_ggH_separate', help='Separate ggH and xH in signal.')
     argParser.add_argument('--signal-separate', action='store_true', dest='signal_separate', help='Separate Higgs processes.')
     argParser.add_argument('--signal-hww-only', action='store_true', dest='signal_hww_only', help='Signal is HWW only.')
+    argParser.add_argument('--custom-scale', metavar='PROC=SCALE', dest='custom_scale', nargs='+', default=[], help='Custom process scale factors.')
     argParser.add_argument('--background-merging', dest='background_merging', nargs='+', default=['minor=ggWW,WWewk,Vg,VgS_L,VgS_H,VZ,VVV'], help='Background merging scheme. Set to "none" for no merging.')
     argParser.add_argument('--aslnn-category-pool', action='store_true', dest='aslnn_category_pool', help='Compute the lnN value for AsLnN shape uncertainties across categories.')
     argParser.add_argument('--gen-inclusive', action='store_true', dest='gen_inclusive', help='Create an input for an inclusive cross section measurement.')
@@ -639,6 +635,9 @@ if __name__ == '__main__':
 
     for sname, subsamples in subsamplemap.iteritems():
         HistogramMerger.subsampleRmap.update((subsample, sname) for subsample in subsamples)
+    for sname in samples.iterkeys():
+        if sname not in HistogramMerger.subsampleRmap:
+            HistogramMerger.subsampleRmap[sname] = sname
 
     HistogramMerger.outBins = binning.bins[args.observable]
     HistogramMerger.recoBinMap = binning.bin_mapping[args.observable]
@@ -649,12 +648,23 @@ if __name__ == '__main__':
     sampleMerging = {}
     _merged_samples = set(['DATA'])
 
+    custom_scales = {}
+    for expr in args.custom_scale:
+        proc, scale = expr.split('=')
+        custom_scales[proc] = float(scale)
+
     if not args.make_asimov_with_bias:
-        sampleMerging['DATA'] = ['DATA']
+        sampleMerging['DATA'] = [('DATA', 1.)]
 
     for merge_expr in args.background_merging:
         newname, snames = merge_expr.split('=')
-        sampleMerging[newname] = snames.split(',')
+        sampleMerging[newname] = []
+        for proc in snames.split(','):
+            try:
+                sampleMerging[newname].append((proc, custom_scales[proc]))
+            except KeyError:
+                sampleMerging[newname].append((proc, 1.))
+
         _merged_samples.update(snames.split(','))
 
     for sname in samples:
@@ -662,7 +672,13 @@ if __name__ == '__main__':
             continue
         if '_hww' in sname or '_htt' in sname:
             continue
-        sampleMerging[sname] = [sname]
+
+        sname_orig = HistogramMerger.subsampleRmap[sname]
+
+        try:
+            sampleMerging[sname] = [(sname, custom_scales[sname_orig])]
+        except KeyError:
+            sampleMerging[sname] = [(sname, 1.)]
 
     ggH_hww = ['ggH_hww']
     xH_hww = [
@@ -681,18 +697,52 @@ if __name__ == '__main__':
     if not NOHIGGS:
         if args.signal_hww_only:
             if args.signal_separate:
-                sampleMerging['ggH_htt'] = [sname for sname in samples if sname.startswith('ggH_htt')]
+                try:
+                    scale = custom_scales['ggH_htt']
+                except KeyError:
+                    scale = 1.
+
+                sampleMerging['ggH_htt'] = [(sname, scale) for sname in samples if sname.startswith('ggH_htt')]
                 for proc in xH_htt:
-                    sampleMerging[proc] = [sname for sname in samples if sname.startswith(proc)]
+                    try:
+                        scale = custom_scales[proc]
+                    except KeyError:
+                        scale = 1.
+
+                    sampleMerging[proc] = [(sname, scale) for sname in samples if sname.startswith(proc)]
             else:
                 sampleMerging['htt'] = []
                 for proc in ggH_htt + xH_htt:
-                    sampleMerging['htt'].extend(sname for sname in samples if sname.startswith(proc))
+                    try:
+                        scale = custom_scales[proc]
+                    except KeyError:
+                        scale = 1.
+
+                    sampleMerging['htt'].extend((sname, scale) for sname in samples if sname.startswith(proc))
+
                 if args.signal_fiducial_only:
-                    sampleMerging['nonfid'] = [sname for sname in samples if 'nonfid_' in sname and 'hww' in sname]
+                    sampleMerging['nonfid'] = []
+                    for sname in samples:
+                        if 'nonfid_' in sname and 'hww' in sname:
+                            sname_orig = HistogramMerger.subsampleRmap[sname]
+                            try:
+                                scale = custom_scales[sname_orig]
+                            except KeyError:
+                                scale = 1.
+
+                            sampleMerging['nonfid'].append((sname, scale))
 
         elif args.signal_fiducial_only:
-            sampleMerging['nonfid'] = [sname for sname in samples if 'nonfid_' in sname]
+            sampleMerging['nonfid'] = []
+            for sname in samples:
+                if 'nonfid_' in sname:
+                    sname_orig = HistogramMerger.subsampleRmap[sname]
+                    try:
+                        scale = custom_scales[sname_orig]
+                    except KeyError:
+                        scale = 1.
+
+                    sampleMerging['nonfid'].append((sname, scale))
 
     # Set signal sample merging
 
@@ -733,7 +783,14 @@ if __name__ == '__main__':
             else:
                 subsamples = ['fid_' + bin for bin in genSourceBins] + ['nonfid_' + bin for bin in genSourceBins]
 
-            sampleMerging['%s_%s' % (target, genOutBin)] = ['%s_%s' % (sname, sub) for sname in snames for sub in subsamples]
+            sm = sampleMerging['%s_%s' % (target, genOutBin)] = []
+            for sname in snames:
+                try:
+                    scale = custom_scales[sname]
+                except KeyError:
+                    scale = 1.
+
+                sm.extend(('%s_%s' % (sname, sub), scale) for sub in subsamples)
 
     ### Cut merging
 
@@ -750,13 +807,17 @@ if __name__ == '__main__':
             continue
 
         for newname in ['WW', 'top', 'DY']:
-            for sname in sampleMerging[newname]:
+            for sname, _ in sampleMerging[newname]:
                 try:
                     nuis['samples'].pop(sname)
                 except KeyError:
                     pass
 
-    newNuisances = update_nuisances(nuisances, samples, cuts, sampleMerging, HistogramMerger.cutMerging)
+    sampleMergingJustSamples = {}
+    for newname, sources in sampleMerging.iteritems():
+        sampleMergingJustSamples[newname] = [sname for sname, _ in sources]
+
+    newNuisances = update_nuisances(nuisances, samples, cuts, sampleMergingJustSamples, HistogramMerger.cutMerging)
 
     HistogramMerger.variations = {}
 
