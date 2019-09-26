@@ -7,15 +7,16 @@ import numpy as np
 
 from argparse import ArgumentParser
 
+### NOTE: prefit lnN type uncertainties are not considered
+
 argParser = ArgumentParser(description='Make pretty plots')
-argParser.add_argument('sourcePath', metavar='PATH', help='Input ROOT file name.')
+argParser.add_argument('sourcePaths', metavar='PATH', nargs='+', help='Input ROOT file name.')
 argParser.add_argument('dataset', metavar='DATASET', help='Dataset (2016, 2017, 2018, combination)')
 argParser.add_argument('--blind', '-B', action='store_true', dest='blind', help='Blind SR.')
 argParser.add_argument('--no-higgs', '-N', action='store_true', dest='noHiggs', help='Do not show Higgs contributions.')
 argParser.add_argument('--make-cr-spectra', '-a', metavar='OBSERVABLE', dest='makeCRSpectra', help='Make CR spectra for njet or ptH.')
 argParser.add_argument('--postfit', '-p', metavar='PATH', dest='postfit', help='MultiDimFit output file containing the workspace with best-fit snapshot.')
-argParser.add_argument('--combination-tag', '-g', metavar='PATH', dest='combination_tag', default='', help='Prefix to cut (bin name used in combineCards) for postfit distributions.')
-argParser.add_argument('--side-by-side', '-S', action='store_true', dest='sideBySide', help='Plot postfit histograms side-by-side with prefit (broken at the moment).')
+argParser.add_argument('--combination-tag', '-g', metavar='PATH', dest='combination_tags', nargs='+', default=[''], help='Prefix to cut (bin name used in combineCards) for postfit distributions.')
 argParser.add_argument('--variable', '-v', metavar='VARIABLE', dest='variable', default='fitshape', help='Variable to plot. If not specified, variables used for the signal extraction fit will be plotted.')
 argParser.add_argument('--bin-width-norm', '-W', action='store_true', dest='binWidthNorm', help='Bin-width normalize the plots.')
 argParser.add_argument('--out', '-o', metavar='PATH', dest='out_path', default='.', help='Output directory.')
@@ -65,14 +66,6 @@ xtitles = {
     'events': ('', '')
 }
 
-allprefit = {} # {cut: {proc: hist}}
-allpostfit = {}
-prefit_totals = {} # {cut: hist}
-postfit_totals = {} # {cut: hist}
-
-# shapes root file
-source = ROOT.TFile.Open(args.sourcePath)
-
 if args.postfit:
     wssource = ROOT.TFile.Open(args.postfit)
     ws = wssource.Get('w')
@@ -87,101 +80,109 @@ if args.postfit:
         mdfitsource = ROOT.TFile.Open(os.path.dirname(os.path.realpath(args.postfit)) + '/multidimfit%s.root' % combine_name)
     fitresult = mdfitsource.Get('fit_mdf')
 
-# lnN type uncertainties are not considered
+allprefit = {} # {cut: {proc: hist}}
+allpostfit = {}
+prefit_totals = {} # {cut: hist}
+postfit_totals = {} # {cut: hist}
+cutname_map = {} # {(cut_nodataset, combination_tag): cut}
 
-cutnames = sorted(k.GetName() for k in source.GetListOfKeys())
+sum_byhandindiv = 0.
+sum_individual = 0.
 
-for cut in cutnames:
-    isSR = '_CR_' not in cut
-
-    if args.postfit and '_WW_' in cut:
-        continue
-
-    if args.makeCRSpectra and isSR:
-        continue
-
-    cutdir = source.GetDirectory(cut)
-
-    if args.variable == 'fitshape':
-        if not isSR:
-            dname = 'events'
-            nbins = 1
-        elif 'pt2ge20' in cut:
-            if 'PTH_120_200' in cut or 'PTH_GT200' in cut:
-                dname = 'mllVSmth_4x3'
-                nbins = 12
-            elif 'NJ_2' in cut:
-                dname = 'mllVSmth_6x6'
-                nbins = 36
-            else:
-                dname = 'mllVSmth_6x6'
-                nbins = 36
-                #dname = 'mllVSmth_8x9'
-                #nbins = 72
-        else:
-            if 'PTH_45_80' in cut:
-                dname = 'mllVSmth_4x3'
-                nbins = 12
-            elif 'PTH_80_120' in cut or 'PTH_120_200' in cut:
-                dname = 'mllVSmth_3x3'
-                nbins = 9
-            elif 'PTH_200_350' in cut or 'PTH_GT350' in cut or 'PTH_GT200' in cut:
-                dname = 'mllVSmth_2x2'
-                nbins = 4
-            else:
-                dname = 'mllVSmth_6x6'
-                nbins = 36
-
-        plotsdir = cutdir.GetDirectory(dname)
-    else:
-        plotsdir = cutdir.GetDirectory(args.variable)
-
-    # get the nominal shapes
-    prefits = allprefit[cut] = {}
-    postfits = allpostfit[cut] = {}
-
-    for key in plotsdir.GetListOfKeys():
-        proc = key.GetName().replace('histo_', '')
-
-        if proc.endswith('Up') or proc.endswith('Down'):
-            continue
-
-        prefits[proc] = key.ReadObj()
-
+# shapes root file
+for isource, sourcePath in enumerate(args.sourcePaths):
+    source = ROOT.TFile.Open(sourcePath)
+    
+    cutnames = sorted(k.GetName() for k in source.GetListOfKeys())
+    
+    for cut in cutnames:
+        # because cut names are suffixed with _year
+        cut_nodataset = cut[:-5]
         if args.postfit:
-            if proc == 'DATA':
-                continue
-
-            bin = args.combination_tag + cut
-            if 'hww' in proc:
-                funcname = 'shapeSig_%s_%s_morph' % (bin, proc)
-            else:
-                funcname = 'shapeBkg_%s_%s_morph' % (bin, proc)
-
-            normname = 'n_exp_final_bin%s_proc_%s' % (bin, proc)
-
-            hist = common.make_roofit_histogram('histo_%s_%s' % (cut, proc), ws, funcname, normname)
-            if hist is None:
-                continue
-
-            hist.SetBins(nbins, 0., float(nbins))
-            err2 = root_numpy.array(hist.GetSumw2(), copy=False)
-            err2[:] = 0.
-
-            postfits[proc] = hist
-
-    if args.postfit:
-        postfits['DATA'] = prefits['DATA']
+            cutname_map[(cut_nodataset, args.combination_tags[isource])] = cut
         
-        funcname = 'prop_bin%s' % (args.combination_tag + cut)
-        hist = common.make_roofit_histogram('postfit_%s_total' % cut, ws, funcname, fitresult=fitresult)
-        if hist is not None:
-            hist.SetBins(nbins, 0., float(nbins))
-            postfit_totals[cut] = hist
+        isSR = '_CR_' not in cut
+    
+        if args.postfit and '_WW_' in cut:
+            continue
+    
+        if args.makeCRSpectra and isSR:
+            continue
+    
+        cutdir = source.GetDirectory(cut)
+    
+        if args.variable == 'fitshape':
+            if not isSR:
+                dname = 'events'
+                nbins = 1
+            elif 'pt2ge20' in cut:
+                if 'PTH_120_200' in cut or 'PTH_GT200' in cut:
+                    dname = 'mllVSmth_4x3'
+                    nbins = 12
+                elif 'NJ_2' in cut:
+                    dname = 'mllVSmth_6x6'
+                    nbins = 36
+                else:
+                    dname = 'mllVSmth_6x6'
+                    nbins = 36
+                    #dname = 'mllVSmth_8x9'
+                    #nbins = 72
+            else:
+                if 'PTH_45_80' in cut:
+                    dname = 'mllVSmth_4x3'
+                    nbins = 12
+                elif 'PTH_80_120' in cut or 'PTH_120_200' in cut:
+                    dname = 'mllVSmth_3x3'
+                    nbins = 9
+                elif 'PTH_200_350' in cut or 'PTH_GT350' in cut or 'PTH_GT200' in cut:
+                    dname = 'mllVSmth_2x2'
+                    nbins = 4
+                else:
+                    dname = 'mllVSmth_6x6'
+                    nbins = 36
+    
+            plotsdir = cutdir.GetDirectory(dname)
         else:
-            print funcname, 'missing'
+            plotsdir = cutdir.GetDirectory(args.variable)
+    
+        # get the nominal shapes
+        prefits = {}
+        postfits = {}
+    
+        for key in plotsdir.GetListOfKeys():
+            proc = key.GetName().replace('histo_', '')
+    
+            if proc.endswith('Up') or proc.endswith('Down'):
+                continue
 
-    if not (args.postfit and not args.sideBySide):
+            hist = key.ReadObj()
+            hist.SetDirectory(0)
+            prefits[proc] = hist
+    
+            if args.postfit:
+                # get the corresponding postfit shape
+                if proc == 'DATA':
+                    continue
+
+                bin = args.combination_tags[isource] + cut
+                if 'hww' in proc:
+                    funcname = 'shapeSig_%s_%s_morph_wrapper' % (bin, proc)
+                else:
+                    funcname = 'shapeBkg_%s_%s_morph_wrapper' % (bin, proc)
+    
+                normname = 'n_exp_final_bin%s_proc_%s' % (bin, proc)
+
+                hist = common.make_roofit_histogram('histo_%s_%s' % (cut, proc), ws, funcname, normname)
+                if hist is None:
+                    continue
+
+                hist.SetDirectory(0)
+                hist.SetBins(nbins, 0., float(nbins))
+                err2 = root_numpy.array(hist.GetSumw2(), copy=False)
+                err2[:] = 0.
+
+                postfits[proc] = hist
+   
         # get the uncertainty variations !!!not accounting for lnN variations!!!
         for key in plotsdir.GetListOfKeys():
             proc = key.GetName().replace('histo_', '')
@@ -205,29 +206,89 @@ for cut in cutnames:
             upper.Delete()
             downer.Delete()
 
-    # we are treating all uncertainties as uncorrelated, which is wrong
-    # but we don't even have the lnN uncertainties here, so it doesn't really matter
-    prefit_totals[cut] = prefits['DATA'].Clone('%s_total' % cut)
-    prefit_totals[cut].Reset()
-    for proc, hist in prefits.iteritems():
-        if proc != 'DATA':
-            prefit_totals[cut].Add(hist)
+        for proc in prefits.keys():
+            if proc.startswith('smH_hww'):
+                merge(prefits, 'smH_hww', proc)
+            elif proc.startswith('Fake'):
+                merge(prefits, 'Fake', proc)
+    
+        for proc in postfits.keys():
+            if proc.startswith('smH_hww'):
+                merge(postfits, 'smH_hww', proc)
+            elif proc.startswith('Fake'):
+                merge(postfits, 'Fake', proc)
 
-    for proc in prefits.keys():
-        if proc.startswith('smH_hww'):
-            merge(prefits, 'smH_hww', proc)
-        elif proc.startswith('Fake'):
-            merge(prefits, 'Fake', proc)
+        # make totals histograms
 
-    for proc in postfits.keys():
-        if proc.startswith('smH_hww'):
-            merge(postfits, 'smH_hww', proc)
-        elif proc.startswith('Fake'):
-            merge(postfits, 'Fake', proc)
+        # we are treating all uncertainties as uncorrelated, which is wrong
+        # but we don't even have the lnN uncertainties here, so it doesn't really matter
+        if cut_nodataset not in prefit_totals:
+            prefit_totals[cut_nodataset] = prefits['DATA'].Clone('%s_total' % cut_nodataset)
+            prefit_totals[cut_nodataset].SetDirectory(0)
+            prefit_totals[cut_nodataset].Reset()
+                        
+        for proc, hist in prefits.iteritems():
+            if proc != 'DATA':
+                prefit_totals[cut_nodataset].Add(hist)
 
-if args.postfit and args.sideBySide:
-    pass
-elif args.postfit:
+        if args.postfit and args.dataset != 'combination':
+            # make a total postfit distribution with full uncertainties
+            funcname = 'prop_bin%s%s' % (args.combination_tags[isource], cut)
+            hist = common.make_roofit_histogram('postfit_%s_total' % cut_nodataset, ws, funcname, fitresult=fitresult)
+        
+            hist.SetBins(nbins, 0., float(nbins))
+
+            if cut_nodataset not in postfit_totals:
+                postfit_totals[cut_nodataset] = hist
+            else:
+                postfit_totals[cut_nodataset].Add(hist)
+
+        # save individual histograms
+
+        if cut_nodataset in allprefit:
+            for proc, hist in prefits.iteritems():
+                try:
+                    allprefit[cut_nodataset][proc].Add(hist)
+                    hist.Delete()
+                except KeyError:
+                    allprefit[cut_nodataset][proc] = hist
+        else:
+            allprefit[cut_nodataset] = prefits
+
+        if cut_nodataset in allpostfit:
+            for proc, hist in postfits.iteritems():
+                try:
+                    allpostfit[cut_nodataset][proc].Add(hist)
+                    hist.Delete()
+                except KeyError:
+                    allpostfit[cut_nodataset][proc] = hist
+        else:
+            allpostfit[cut_nodataset] = postfits
+
+        # copy observed
+        allpostfit[cut_nodataset]['DATA'] = allprefit[cut_nodataset]['DATA']
+
+if args.postfit and args.dataset == 'combination':
+    # make a total postfit distribution with full uncertainties
+    for cut_nodataset, prefit in prefit_totals.iteritems():
+        funcs = ROOT.RooArgList()
+        coeffs = ROOT.RooArgList()
+        for tag in args.combination_tags:
+            cut = cutname_map[(cut_nodataset, tag)]
+            prop = ws.arg('prop_bin%s%s' % (tag, cut))
+            funcs.add(prop.wrapperList())
+            coeffs.add(prop.coefList())
+
+        funcname = 'postfit_%s_total' % cut_nodataset
+        combfunc = ROOT.RooRealSumFunc(funcname, 'tmp', funcs, coeffs)
+        getattr(ws, 'import')(combfunc)
+
+        hist = common.make_roofit_histogram(funcname, ws, funcname, fitresult=fitresult)
+
+        hist.SetBins(prefit.GetNbinsX(), prefit.GetXaxis().GetXmin(), prefit.GetXaxis().GetXmax())
+        postfit_totals[cut_nodataset] = hist
+
+if args.postfit:
     allshapes = allpostfit
     totals = postfit_totals
 else:
@@ -244,12 +305,12 @@ mllVSmthBins = {
 
 canvas = common.makeRatioCanvas(600, 680, dataset=args.dataset)
 
-canvas.raxis.SetTitle('obs./pred.')
+canvas.raxis.SetTitle('obs. / pred.')
 canvas.raxis.SetWmin(0.5)
 canvas.raxis.SetWmax(1.5)
 
 _temporaries = []
-def plotstack(stack, uncert, gobs, legend):
+def plotstack(stack, uncert, gobs, legend, prefit=None):
     del _temporaries[:]
 
     uncert.SetFillColor(ROOT.kBlack)
@@ -292,6 +353,47 @@ def plotstack(stack, uncert, gobs, legend):
     runcert = uncert.Clone('runcert')
     _temporaries.append(runcert)
     runcert.SetTitle('')
+
+    if prefit:
+        norm = root_numpy.hist2array(prefit, copy=False)
+        idx_nonpositive = np.where(norm <= 0.)[0]
+        # just set to 1
+        norm[idx_nonpositive] = 1.
+
+        obsarray = root_numpy.array(ROOT.TArrayD(gobs.GetN(), gobs.GetY()))
+        obsarray /= norm
+        obserrhi = root_numpy.array(ROOT.TArrayD(gobs.GetN(), gobs.GetEYhigh()))
+        obserrhi /= norm
+        obserrlo = root_numpy.array(ROOT.TArrayD(gobs.GetN(), gobs.GetEYlow()))
+        obserrlo /= norm
+
+        prefit_robs = gobs.Clone('prefit_robs')
+        prefit_robs.Set(gobs.GetN() - len(idx_nonpositive))
+        _temporaries.append(prefit_robs)
+
+        irp = 0
+        for ip in range(gobs.GetN()):
+            if ip in idx_nonpositive:
+                continue
+    
+            prefit_robs.SetPoint(irp, gobs.GetX()[ip], obsarray[ip])
+            prefit_robs.SetPointEYhigh(irp, obserrhi[ip])
+            prefit_robs.SetPointEYlow(irp, obserrlo[ip])
+            irp += 1
+
+        prefit_robs.SetMarkerStyle(4)
+        prefit_robs.SetMarkerSize(1.5)
+        prefit_robs.SetMarkerColor(ROOT.kAzure)
+        prefit_robs.SetLineColor(ROOT.kAzure)
+
+        rlegend = ROOT.TLegend(0.85, 0.03, 0.99, 0.3)
+        _temporaries.append(rlegend)
+        rlegend.SetBorderSize(0)
+        rlegend.SetFillStyle(1001)
+        rlegend.SetFillColor(ROOT.kWhite)
+
+        rlegend.AddEntry(prefit_robs, 'Prefit', 'PL')
+
     norm = root_numpy.hist2array(runcert, copy=False)
     idx_nonpositive = np.where(norm <= 0.)[0]
     # just set to 1
@@ -341,6 +443,9 @@ def plotstack(stack, uncert, gobs, legend):
     one.SetLineStyle(ROOT.kSolid)
     one.Draw()
 
+    if prefit:
+        prefit_robs.Draw('PZ')
+
     robs.Draw('PZ')
 
     # draw out-of-bounds error bars and arrows
@@ -357,10 +462,15 @@ def plotstack(stack, uncert, gobs, legend):
         xmax = runcert.GetXaxis().GetBinUpEdge(ip + 1)
         _temporaries.append(box.DrawBox(xmin, box.GetY1(), xmax, box.GetY2()))
 
+    if prefit:
+        rlegend.AddEntry(robs, 'Postfit', 'PL')
+        rlegend.Draw()
+
     ratiopad.Update()
 
 
 if not args.makeCRSpectra:
+    # cut here is cut_nodataset
     for cut, shapes in allshapes.iteritems():
         isSR = '_CR_' not in cut
 
@@ -430,7 +540,7 @@ if not args.makeCRSpectra:
                 shape = shapes[name]
             except KeyError:
                 print 'Plot for %s missing from %s' % (name, cut)
-                if args.postfit and not args.sideBySide:
+                if args.postfit:
                     print ' Assuming the shape was not included in the fit because sumw = 0'
                 else:
                     raise
@@ -500,8 +610,8 @@ if not args.makeCRSpectra:
 
         plotstack(stack, uncert, gobs, legend)
 
-        canvas.printout('%s/%s_%s.png' % (args.out_path, args.variable, cut))
-        canvas.printout('%s/%s_%s.pdf' % (args.out_path, args.variable, cut))
+        canvas.printout('%s/%s_%s_%s.png' % (args.out_path, args.variable, cut, args.dataset))
+        canvas.printout('%s/%s_%s_%s.pdf' % (args.out_path, args.variable, cut, args.dataset))
 
         canvas.clear()
 
@@ -518,12 +628,24 @@ else:
 
         uncert = template.Clone('uncert')
         for ibin, obsBin in enumerate(common.binnames[observable]):
-            total = totals['hww_CR_cat%s_%s_%s' % (obsBin, cr, args.dataset)]
+            total = totals['hww_CR_cat%s_%s' % (obsBin, cr)]
             uncert.SetBinContent(ibin + 1, total.GetBinContent(1))
             uncert.SetBinError(ibin + 1, total.GetBinError(1))
 
         if args.binWidthNorm:
             uncert.Scale(1., 'width')
+
+        prefit = None
+        if args.postfit:
+            prefit = template.Clone('prefit')
+
+            for ibin, obsBin in enumerate(common.binnames[observable]):
+                total = prefit_totals['hww_CR_cat%s_%s' % (obsBin, cr)]
+                prefit.SetBinContent(ibin + 1, total.GetBinContent(1))
+                prefit.SetBinError(ibin + 1, total.GetBinError(1))
+    
+            if args.binWidthNorm:
+                prefit.Scale(1., 'width')
             
         spectra = {}
         for name, _, color, opt in plotconfigs + [('DATA', 0, 0, '')]:
@@ -531,7 +653,7 @@ else:
             spectra[name] = hist
     
             for ibin, obsBin in enumerate(common.binnames[observable]):
-                shapes = allshapes['hww_CR_cat%s_%s_%s' % (obsBin, cr, args.dataset)]
+                shapes = allshapes['hww_CR_cat%s_%s' % (obsBin, cr)]
                 if name not in shapes:
                     continue
 
@@ -591,7 +713,7 @@ else:
             canvas.xaxis.SetTitle('N_{jet}')
             uncert.GetYaxis().SetTitle('events')
 
-        plotstack(stack, uncert, gobs, legend)
+        plotstack(stack, uncert, gobs, legend, prefit=prefit)
 
         if observable == 'njet':
             canvas.xaxis.SetLabelSize(0.)

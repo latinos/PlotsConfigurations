@@ -10,7 +10,7 @@ import root_numpy
 import common
 
 ROOT.gStyle.SetHatchesLineWidth(2)
-#ROOT.gStyle.SetHatchesSpacing(0.5)
+ROOT.gStyle.SetHatchesSpacing(1.5)
 
 config = sys.argv[1] # fiducial, prefit, or postfit
 try:
@@ -31,11 +31,11 @@ productions = [
 ]
 
 prod_colors = {
-    'ggF': '#1f77b4',
-    'VBF': '#ff7f0e',
-    'WH': '#2ca02c',
-    'ZH': '#d62728',
-    'ttH': '#9467bd'
+    'ggF': '#b3d472',
+    'VBF': '#edbe5e',
+    'WH':  '#ffa178',
+    'ZH':  '#ff8db2',
+    'ttH': '#ff94f4',
 }
 
 allprods = sum((prods for prods, _ in productions), [])
@@ -166,7 +166,7 @@ canvas = common.makeRatioCanvas(600, 600)
 
 for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
     stack = ROOT.THStack('dist', '')
-    legend = ROOT.TLegend(0.7, 0.7, common.xmax, common.ymax)
+    legend = ROOT.TLegend(0.62, 0.65, common.xmax, common.ymax)
     legend.SetBorderSize(0)
     legend.SetFillStyle(0)
     
@@ -213,9 +213,11 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
         
     total.Scale(1., 'width')
     total.SetFillColor(ROOT.kBlack)
-    total.SetFillStyle(3003)
+    total.SetFillStyle(3002)
     total.SetLineColor(ROOT.kBlack)
-    total.SetLineWidth(1)
+    total.SetLineWidth(0)
+
+    legend.AddEntry(total, 'Uncertainty', 'F')
 
     frame = total.Clone('frame')
     frame.Reset()
@@ -224,6 +226,8 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
     frame.SetMinimum(histograms[(obs, 'ggF')].GetMinimum() * 0.8)
     frame.SetMaximum(stack.GetMaximum() * 2.5)
     frame.GetXaxis().SetLabelSize(0.)
+    frame.GetXaxis().SetNdivisions(canvas.xaxis.GetNdiv())
+    frame.GetXaxis().SetTickLength(canvas.xaxis.GetTickSize())
     frame.GetYaxis().SetTitle(ytitles[obs])
 
     frame.Draw()
@@ -235,16 +239,16 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
     if config == 'postfit':
         althtotal = althtotals[obs]
         althtotal.Scale(1., 'width')
-        althtotal.SetLineColor(ROOT.kGray)
+        althtotal.SetLineColor(ROOT.kAzure + 7)
         althtotal.SetLineWidth(2)
-        althtotal.SetFillColor(ROOT.kGray)
+        althtotal.SetFillColor(ROOT.kAzure + 7)
         althtotal.SetFillStyle(3395) # vertical hatch
         althtotal.Draw('SAME E2')
 
-        legend.AddEntry(althtotal, 'Alternative pred.', 'LF')
+        legend.AddEntry(althtotal, 'Madgraph5_aMC@NLO', 'LF')
 
         althtotal_line = ROOT.TLine(0., 0., 0., 0.)
-        althtotal_line.SetLineColor(ROOT.kGray)
+        althtotal_line.SetLineColor(ROOT.kAzure + 7)
         althtotal_line.SetLineWidth(2)
         for ix in range(1, althtotal.GetNbinsX() + 1):
             xmin = althtotal.GetXaxis().GetBinLowEdge(ix)
@@ -314,7 +318,7 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
         gobs.SetLineColor(ROOT.kBlack)
         gobs.SetLineWidth(2)
         
-        gobs.Draw('EP')
+        gobs.Draw('EPZ')
 
         legend.AddEntry(gobs, 'Observed', 'LP')
 
@@ -339,6 +343,7 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
     rframe.GetYaxis().SetLabelSize(0.)
     rframe.GetYaxis().SetTitle('')
     rframe.GetYaxis().SetTitle('')
+    rframe.GetYaxis().SetNdivisions(208, False)
 
     rstack = ROOT.THStack('ratio', '')
 
@@ -391,15 +396,19 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
             robs.SetPointEYlow(ip, mu[1])
             robs.SetPointEYhigh(ip, mu[2])
 
-            if mu[0] - mu[1] < rmin:
-                rmin = math.floor(mu[0] - mu[1])
-            if mu[0] + mu[2] > rmax:
-                rmax = math.ceil(mu[0] + mu[2])
+            # ARC suggestion: fix the ratio plot range to [0, 2]
+            #if mu[0] - mu[1] < rmin:
+            #    rmin = math.floor(mu[0] - mu[1])
+            #if mu[0] + mu[2] > rmax:
+            #    rmax = math.ceil(mu[0] + mu[2])
 
-        robs.Draw('EP')
+        robs.Draw('EPZ')
 
         rframe.SetMinimum(rmin)
         rframe.SetMaximum(rmax)
+
+        # show an arrow for overshoots?
+        common.showOvershoots(robs, rmin, rmax)
 
         one = ROOT.TLine(altrhist.GetXaxis().GetXmin(), 1., altrhist.GetXaxis().GetXmax(), 1.)
         one.SetLineColor(ROOT.kBlack)
@@ -407,17 +416,32 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
         one.Draw()
 
         binbound = ROOT.TLine(0., 0., 0., 0.)
-        binbound.SetLineColor(ROOT.kGray)
+        binbound.SetLineColor(ROOT.kGray + 3)
+        binbound.SetLineStyle(ROOT.kDotted)
         binbound.SetLineWidth(1)
         for ix in range(1, altrhist.GetNbinsX()):
             edge = altrhist.GetXaxis().GetBinUpEdge(ix)
             binbound.DrawLine(edge, rmin, edge, rmax)
         
-        canvas.raxis.SetTitle('Obs. / pred.')
+        #canvas.raxis.SetTitle('Obs. / pred.')
+        canvas.raxis.SetTitle('Ratio to #sigma^{SM}')
         canvas.raxis.SetWmin(rmin)
         canvas.raxis.SetWmax(rmax)
 
     canvas.xaxis.SetTitle(xtitle)
+
+    #caxis = ROOT.TGaxis(common.xmax, common.ymin, common.xmax, (canvas.raxis.GetY2() + common.ymin) * 0.5, 0., 1., 205, '+LS')
+    #caxis.SetTitleOffset(ROOT.gStyle.GetTitleOffset('Y') * 0.5)
+    #caxis.SetTitleSize(0.036)
+    #caxis.SetLabelFont(42)
+    #caxis.SetTitleFont(42)
+    #caxis.SetLabelSize(0.875 * 0.036)
+    #caxis.SetTickLength(0.03)
+    #caxis.SetGridLength(0.)
+    #caxis.SetTitle('Fractions')
+    #
+    #canvas.cd()
+    #caxis.Draw()
     
     if obs == 'njet':
         canvas.xaxis.SetLabelSize(0.)

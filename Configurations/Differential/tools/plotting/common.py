@@ -138,8 +138,15 @@ ymin = 0.12
 ymax = 0.92
 
 ## CMS Preliminary
-def makeCMS(prelim=True):
-    text = makeText(0.18, ymax - 0.12, 0.3, ymax - 0.01, align=11, font=62)
+def makeCMS(prelim=True, out=False):
+    if out:
+        ybottom = ymax + 0.01
+        align=13
+    else:
+        ybottom = ymax - 0.12
+        align=11
+    
+    text = makeText(0.18, ybottom, 0.3, ybottom + 0.11, align=align, font=62)
     if prelim:
         text.AddText('#splitline{CMS}{#font[52]{Preliminary}}')
     else:
@@ -198,7 +205,7 @@ def makeRatioCanvas(width=600, height=600, dataset='combination'):
     ydmin = 0.305
     yrmax = 0.3
 
-    canvas.xaxis = ROOT.TGaxis(xmin, ymin, xmax, ymin, 0., 1., 210, 'S')
+    canvas.xaxis = ROOT.TGaxis(xmin, ymin, xmax, ymin, 0., 1., 110, 'S')
     canvas.xaxis.SetTitleOffset(ROOT.gStyle.GetTitleOffset('X') * 0.8)
     canvas.xaxis.SetLabelFont(42)
     canvas.xaxis.SetTitleFont(42)
@@ -223,6 +230,7 @@ def makeRatioCanvas(width=600, height=600, dataset='combination'):
             pass
 
         distpad = self.GetPad(1)
+        ratiopad = self.GetPad(2)
 
         distpad.Update()
         uxmin = distpad.GetUxmin()
@@ -238,6 +246,9 @@ def makeRatioCanvas(width=600, height=600, dataset='combination'):
 
         self.cmsLabel.Draw()
         self.lumiLabel.Draw()
+
+        distpad.RedrawAxis()
+        ratiopad.RedrawAxis()
 
         self.Update()
 
@@ -280,8 +291,10 @@ def set_postfit_uncertainty(hist, ws, fitresult, func, norm=None):
     anom = root_numpy.hist2array(hist, copy=False, include_overflow=True)
 
     fparams = func.getParameters(ROOT.RooArgSet(x, ch))
+    fcentral = fparams.snapshot()
     if norm is not None:
         nparams = norm.getParameters(ROOT.RooArgSet(x, ch))
+        ncentral = nparams.snapshot()
     
     # evaluate postfit uncertainties
     for _ in range(ntoys):
@@ -296,6 +309,10 @@ def set_postfit_uncertainty(hist, ws, fitresult, func, norm=None):
         err2 += np.square(atemp - anom) / ntoys
 
         htemp.Delete()
+
+    fparams.assignValueOnly(fcentral)
+    if norm is not None:
+        nparams.assignValueOnly(ncentral)
 
 def make_roofit_histogram(name, ws, funcname, normname='', fitresult=None):
     f = ws.arg(funcname)
