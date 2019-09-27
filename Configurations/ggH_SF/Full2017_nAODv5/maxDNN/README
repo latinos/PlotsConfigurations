@@ -1,0 +1,33 @@
+#Submit shapesmulti in batch
+mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=workday
+
+#Hadd files
+mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
+
+#mkplots 
+mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_
+
+#mkDYestim 0j
+mkDYestim.py --pycfg=configuration_0j_dymvaOptim.py --dycfg=dyestim_0j_dymvaOptim.py --inputFile=rootFile_0j_dymvaOptim/plots_ggH_SF_0j_dymvaOptim.root
+
+#mkDatacards
+mkDatacards.py --pycfg=configuration_0j_dymvaOptim.py --inputFile=rootFile_0j_dymvaOptim/plots_ggH_SF_0j_dymvaOptim_DYEstim.root --cardList=hww2l2v_13TeV_0jee,hww2l2v_13TeV_WW_0jee,hww2l2v_13TeV_top_0jee,hww2l2v_13TeV_0jmm,hww2l2v_13TeV_WW_0jmm,hww2l2v_13TeV_top_0jmm
+
+mkDatacards.py --pycfg=configuration_1j_dymvaOptim.py --inputFile=rootFile_1j_dymvaOptim/plots_ggH_SF_1j_dymvaOptim_DYEstim.root --cardList=hww2l2v_13TeV_1jee,hww2l2v_13TeV_WW_1jee,hww2l2v_13TeV_top_1jee,hww2l2v_13TeV_1jmm,hww2l2v_13TeV_WW_1jmm,hww2l2v_13TeV_top_1jmm
+
+mkDatacards.py --pycfg=configuration_2j_dymvaOptim.py --inputFile=rootFile_2j_dymvaOptim/plots_ggH_SF_2j_dymvaOptim_DYEstim.root --cardList=hww2l2v_13TeV_2jee,hww2l2v_13TeV_WW_2jee,hww2l2v_13TeV_top_2jee,hww2l2v_13TeV_2jmm,hww2l2v_13TeV_WW_2jmm,hww2l2v_13TeV_top_2jmm
+
+mkDatacards.py --pycfg=configuration_VBF_dymvaOptim.py --inputFile=rootFile_VBF_dymvaOptim/plots_ggH_SF_VBF_dymvaOptim_DYEstim.root --cardList=hww2l2v_13TeV_2jee_vbf,hww2l2v_13TeV_WW_2jee_vbf,hww2l2v_13TeV_top_2jee_vbf,hww2l2v_13TeV_2jmm_vbf,hww2l2v_13TeV_WW_2jmm_vbf,hww2l2v_13TeV_top_2jmm_vbf
+
+#mkComb (combine regions)
+mkComb.py --pycfg=configuration_ --combineLocation=/afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_10_2_13/src/ --combcfg=comb_
+
+#mkOptim (calculate the significance)
+mkOptim.py --pycfg=configuration_ --combineLocation=/afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_10_2_13/src/ --combcfg=comb_
+
+#see significance
+grep Sign datacards/*/comb/SExpPre_*
+
+#DYEST yield table
+grep "proc" datacards/hww2l2v_13TeV_*/events/datacard.txt > yield.txt
+grep "rate " datacards/hww2l2v_13TeV_*/events/datacard.txt >> yield.txt
