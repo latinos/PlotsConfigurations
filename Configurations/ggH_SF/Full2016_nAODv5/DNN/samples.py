@@ -128,7 +128,7 @@ else:
     samples['DY'] = {
         'name': files,
         'weight': mcCommonWeight,
-        'FilesPerJob': 5,
+        'FilesPerJob': 4,
         'suppressNegative' :['all'],
         'suppressNegativeNuisances' :['all'],
 
@@ -414,7 +414,7 @@ samples['Fake'] = {
   'suppressNegative' :['all'],
   'suppressNegativeNuisances' :['all'],
   'isData': ['all'],
-  'FilesPerJob': 50
+  'FilesPerJob': 10
 }
 
 for _, sd in DataRun:
@@ -437,7 +437,7 @@ samples['DATA'] = {
   'weight': 'METFilter_DATA*LepWPCut',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 100
+  'FilesPerJob': 10
 }
 
 for _, sd in DataRun:
