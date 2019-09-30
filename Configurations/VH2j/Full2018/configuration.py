@@ -11,7 +11,7 @@ outputDir = 'rootFile'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = 'variables_ALL.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
@@ -42,6 +42,6 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances_ALL.py'
+nuisancesFile = 'nuisances.py'
 
 
