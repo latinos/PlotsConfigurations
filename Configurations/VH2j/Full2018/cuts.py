@@ -20,8 +20,9 @@ def addcut(name, exprs):
     cuts[name] = ' && '.join(exprs)
 
 _tmp = [
-     'Sum$(CleanJet_pt>30.)>=2', #At least 2 jets
-     'abs(CleanJet_eta[0])<2.5',
+    # 'Sum$(CleanJet_pt>30.)>=2', #At least 2 jets
+    'Alt$(CleanJet_pt[1], 0) > 30.',
+    'abs(CleanJet_eta[0])<2.5',
      'abs(CleanJet_eta[1])<2.5',
      'mth>60.',
      'mth<125.',
@@ -39,8 +40,9 @@ addcut('VH_2j_emu', _tmp)
 
 
 _tmp = [
-     'Sum$(CleanJet_pt>30)>=2', #At least 2 jets
-     'abs(CleanJet_eta[0])<2.5',
+     #'Sum$(CleanJet_pt>30)>=2', #At least 2 jets
+    'Alt$(CleanJet_pt[1], 0) > 30.', 
+    'abs(CleanJet_eta[0])<2.5',
      'abs(CleanJet_eta[1])<2.5',
     # 'mth>60',
     # 'mth<125',
@@ -50,7 +52,7 @@ _tmp = [
      'mjj<105',
      'detajj<3.5', 
      'mll>50',
-     'btag1',
+     'btag2',
      #'((Jet_btagDeepB[CleanJet_jetIdx[0]] > 0.1522) || (Jet_btagDeepB[CleanJet_jetIdx[1]] > 0.1522))',   # At least one of the 2 lead jets is btagged
        ]
 
@@ -58,8 +60,9 @@ addcut('VH_2j_topemu', _tmp)
 
 
 _tmp = [
-     'Sum$(CleanJet_pt>30)>=2', #At least 2 jets
-     'abs(CleanJet_eta[0])<2.5',
+     #'Sum$(CleanJet_pt>30)>=2', #At least 2 jets
+    'Alt$(CleanJet_pt[1], 0) > 30.', 
+    'abs(CleanJet_eta[0])<2.5',
      'abs(CleanJet_eta[1])<2.5',
      'mth<60',
      'drll<2', #DeltaRll<2
