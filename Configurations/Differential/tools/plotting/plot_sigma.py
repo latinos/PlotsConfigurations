@@ -18,6 +18,8 @@ try:
 except:
     skip_unreg = ''
 
+card_tag = 'postapproval'
+
 # fiducial: Fiducial cross sections in bins of gen-level observables
 # prefit: Prefit signal yield predictions in bins of reco-level observables. Systematic uncertainties ignored
 # postfit: Observed differential cross sections in bins of gen-level observables
@@ -148,7 +150,7 @@ if config == 'postfit':
         for obs in ['ptH', 'njet']:
             mus[obs] = []
             
-            source = ROOT.TFile.Open('%s/combination/%s_fullmodel/multidimfit%s.root' % (common.confdir, obs, sname))
+            source = ROOT.TFile.Open('%s/combination/%s_%s/multidimfit%s.root' % (common.confdir, obs, card_tag, sname))
             fitresult = source.Get('fit_mdf')
             pars = fitresult.floatParsFinal()
             imu = 0
@@ -166,7 +168,7 @@ canvas = common.makeRatioCanvas(600, 600)
 
 for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
     stack = ROOT.THStack('dist', '')
-    legend = ROOT.TLegend(0.62, 0.65, common.xmax, common.ymax)
+    legend = ROOT.TLegend(0.62, 0.7, common.xmax, common.ymax)
     legend.SetBorderSize(0)
     legend.SetFillStyle(0)
     

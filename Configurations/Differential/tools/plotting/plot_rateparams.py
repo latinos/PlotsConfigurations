@@ -8,6 +8,8 @@ import root_numpy
 import common
 
 confdir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+card_tag = 'postapproval'
+DYseparate = True
 
 ntemplate = ROOT.TH1D('ntemplate', '', 4, 0., 4.) # ptH indiv, njet indiv, ptH comb, njet comb
 
@@ -50,7 +52,14 @@ for observable in ['ptH', 'njet']:
         for proc in ['WW', 'top', 'DY']:
             prefit_rnorms[(fit, proc)] = template.Clone('prefit_rnorms_%s_%s' % (fit, proc))
             postfit_rnorms[(fit, proc)] = template.Clone('postfit_rnorms_%s_%s' % (fit, proc))
-            postfit_rates[(fit, proc)] = template.Clone('postfit_rates_%s_%s' % (fit, proc))
+            if proc == 'DY' and DYseparate:
+                if fit == 'combination':
+                    for dataset in ['2016', '2017', '2018']:
+                        postfit_rates[(fit, proc + dataset)] = template.Clone('postfit_rates_%s_%s%s' % (fit, proc, dataset))
+                else:
+                    postfit_rates[(fit, proc + fit)] = template.Clone('postfit_rates_%s_%s%s' % (fit, proc, fit))
+            else:
+                postfit_rates[(fit, proc)] = template.Clone('postfit_rates_%s_%s' % (fit, proc))
 
         if observable == 'ptH':
             normbin = 1
@@ -60,12 +69,13 @@ for observable in ['ptH', 'njet']:
             normbin += 2
     
         if fit == 'combination':
-            source = ROOT.TFile.Open('%s/combination/%s_fullmodel/higgsCombineUnreg.MultiDimFit.mH120.root' % (confdir, observable))
+            source = ROOT.TFile.Open('%s/combination/%s_%s/higgsCombineUnreg.MultiDimFit.mH120.root' % (confdir, observable, card_tag))
         else:
-            source = ROOT.TFile.Open('%s/ggH%s/merged_cards/%s_fullmodel/higgsCombineUnreg.MultiDimFit.mH120.root' % (confdir, fit, observable))
+            source = ROOT.TFile.Open('%s/ggH%s/merged_cards/%s_%s/higgsCombineUnreg.MultiDimFit.mH120.root' % (confdir, fit, observable, card_tag))
     
         w = source.Get('w')
-        
+
+        x = w.var('CMS_th1x')
         model = w.pdf('model_s')
         categories = model.indexCat().Clone()
     
@@ -80,19 +90,15 @@ for observable in ['ptH', 'njet']:
                     continue
 
                 # we don't really need the histogram but whatever
-                if 'hww' in proc:
-                    funcname = 'shapeSig_%s_%s_morph' % (bin, proc)
-                else:
-                    funcname = 'shapeBkg_%s_%s_morph' % (bin, proc)
+                funcname = 'shapeBkg_%s_%s_morph' % (cat, proc)
+                normname = 'n_exp_final_bin%s_proc_%s' % (cat, proc)
 
-                normname = 'n_exp_final_bin%s_proc_%s' % (bin, proc)
-
-                h = common.make_roofit_histogram('temp', w, funcname, normname=normname)
-                if h is None:
+                func = w.arg(funcname)
+                if not func:
                     continue
-
-                n = h.GetSumOfWeights()
-                h.Delete()
+                
+                integ = func.createIntegral(ROOT.RooArgSet(x), ROOT.RooArgSet())
+                n = integ.getVal() * w.arg(normname).getVal()
     
                 if fit == 'combination':
                     bin = cat[12:]
@@ -121,15 +127,16 @@ for observable in ['ptH', 'njet']:
                     continue
 
                 # we don't really need the histogram but whatever
-                h = common.make_roofit_histogram(w, cat, proc, 'temp')
-                if h is None:
+                funcname = 'shapeBkg_%s_%s_morph' % (cat, proc)
+                normname = 'n_exp_final_bin%s_proc_%s' % (cat, proc)
+
+                func = w.arg(funcname)
+                if not func:
                     continue
 
-                n = h.GetSumOfWeights()
-                h.Delete()
+                integ = func.createIntegral(ROOT.RooArgSet(x), ROOT.RooArgSet())
+                n = integ.getVal() * w.arg(normname).getVal()
 
-                print observable, fit, 'n_exp_final_bin%s_proc_%s' % (cat, proc), n
-    
                 if fit == 'combination':
                     bin = cat[12:]
                 else:
@@ -148,7 +155,7 @@ for observable in ['ptH', 'njet']:
     
                 nhist = postfit_norms[(dataset, proc)]
                 nhist.SetBinContent(normbin, nhist.GetBinContent(normbin) + n)
-    
+
             hist.Divide(prefit_rnorms[(fit, proc)])
             for ix in range(1, hist.GetNbinsX() + 1):
                 if prefit_rnorms[(fit, proc)].GetBinContent(ix) == 0.:
@@ -157,11 +164,30 @@ for observable in ['ptH', 'njet']:
             # give a small uncert so that EP renders a line
             err = root_numpy.array(hist.GetSumw2(), copy=False)
             err[:] = 1.e-6
+
+            if proc == 'DY' and DYseparate:
+                if fit == 'combination':
+                    for dataset in ['2016', '2017', '2018']:
+                        hist = postfit_rates[(fit, proc + dataset)]
+
+                        for ibin, bin in enumerate(binnames):
+                            rate = w.var('CMS_hww_%s%snorm_%s' % (proc, dataset, bin))
+                            hist.SetBinContent(ibin + 1, rate.getVal())
+                            if rate.getError() == 0.:
+                                hist.SetBinError(ibin + 1, 1.e-3)
+                            else:
+                                hist.SetBinError(ibin + 1, rate.getError())
+                    continue
+
+                else:
+                    procds = proc + fit
+            else:
+                procds = proc
     
-            hist = postfit_rates[(fit, proc)]
+            hist = postfit_rates[(fit, procds)]
     
             for ibin, bin in enumerate(binnames):
-                rate = w.var('CMS_hww_%snorm_%s' % (proc, bin))
+                rate = w.var('CMS_hww_%snorm_%s' % (procds, bin))
                 hist.SetBinContent(ibin + 1, rate.getVal())
                 if rate.getError() == 0.:
                     hist.SetBinError(ibin + 1, 1.e-3)
@@ -169,6 +195,8 @@ for observable in ['ptH', 'njet']:
                     hist.SetBinError(ibin + 1, rate.getError())
     
         source.Close()
+
+    template.Delete()
    
     for name, hists in [('postfit_norms', postfit_rnorms), ('postfit_rateparams', postfit_rates)]:
         for proc in ['WW', 'top', 'DY']:
@@ -178,7 +206,15 @@ for observable in ['ptH', 'njet']:
     
             drawopt = 'EP'
             for fit in ['2016', '2017', '2018', 'combination']:
-                hist = hists[(fit, proc)]
+                if name == 'postfit_rateparams' and proc == 'DY' and DYseparate:
+                    if fit == 'combination':
+                        continue
+                    else:
+                        procds = proc + fit
+                else:
+                    procds = proc
+                
+                hist = hists[(fit, procds)]
                 hist.SetLineColor(colors[fit])
                 hist.SetMarkerColor(colors[fit])
                 hist.SetLineWidth(2)
@@ -198,6 +234,18 @@ for observable in ['ptH', 'njet']:
                 drawopt = 'EP SAME'
                 
                 legend.AddEntry(hist, fit, 'LP')
+
+            if name == 'postfit_rateparams' and proc == 'DY' and DYseparate:
+                for dataset in ['2016', '2017', '2018']:
+                    hist = hists[('combination', proc + dataset)]
+                    hist.SetLineColor(colors[dataset])
+                    hist.SetMarkerColor(colors[dataset])
+                    hist.SetLineWidth(2)
+                    hist.SetMarkerSize(0)
+
+                    hist.Draw('EP SAME')
+                
+                    legend.AddEntry(hist, 'Combined ' + dataset, 'LP')
     
             legend.Draw()
     

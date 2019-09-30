@@ -29,7 +29,7 @@ then
   eval `scram runtime -sh`
 fi
 
-ulimit -s 20480
+ulimit -s unlimited
 
 function dofit() {
   echo combine $CARD -M $METHOD $@ -n $NAME
@@ -104,6 +104,26 @@ then
   dofit --algo singles --setParameters regularize=0 $FITOPT --saveFitResult --saveWorkspace
   ADDITIONAL=multidimfit${NAME}.root
 
+elif [ $COMMAND = AltUnreg ]
+then
+
+  DATASOURCE=$5
+  TAG=$6 
+
+  NAME=AltUnreg_${TAG}
+  dofit --algo singles -D $DATASOURCE $FITOPT --saveFitResult
+  ADDITIONAL=multidimfit${NAME}.root
+
+elif [ $COMMAND = AltReg ]
+then
+
+  DATASOURCE=$5
+  TAG=$6 
+
+  NAME=AltReg_${TAG}
+  dofit --algo singles --setParameters regularize=1,${SETDELTA} -D $DATASOURCE $FITOPT --saveFitResult
+  ADDITIONAL=multidimfit${NAME}.root
+
 elif [ $COMMAND = IntegratedUnreg ] || [ $COMMAND = IntegratedReg ]
 then
 
@@ -129,6 +149,37 @@ then
   [ -e $CARD ] || $THISDIR/make_integrated_cards.py $OBSERVABLE $CARDDIR $DEPENDENT
 
   dofit --algo singles $REGULARIZE --redefineSignalPOIs $POIS $FITOPT --saveFitResult --saveWorkspace
+  ADDITIONAL=multidimfit${NAME}.root
+  RETURNDIR=$CARDDIR/integrated
+
+elif [ $COMMAND = AltIntegratedUnreg ] || [ $COMMAND = AltIntegratedReg ]
+then
+
+  DEPENDENT=$5
+  DATASOURCE=$6
+  TAG=$7
+    
+  POIS=r
+  for I in $(seq 0 $(($NPOI-1)))
+  do
+    [ $I -ne $DEPENDENT ] && POIS=${POIS},f_${I}
+  done
+
+  if [ $COMMAND = AltIntegratedUnreg ]
+  then
+    NAME=AltIntegratedUnregF${DEPENDENT}Dep_${TAG}
+    REGULARIZE="--setParameters regularize=0"
+  elif [ $COMMAND = AltIntegratedReg ]
+  then
+    NAME=AltIntegratedRegF${DEPENDENT}Dep_${TAG}
+    REGULARIZE="--setParameters regularize=1,${SETDELTA}"
+  fi
+
+  CARD=$CARDDIR/integrated/fullmodel_integrated_f${DEPENDENT}dep.root
+
+  [ -e $CARD ] || $THISDIR/make_integrated_cards.py $OBSERVABLE $CARDDIR $DEPENDENT
+
+  dofit --algo none $REGULARIZE --redefineSignalPOIs $POIS -D $DATASOURCE $FITOPT --saveFitResult --saveWorkspace
   ADDITIONAL=multidimfit${NAME}.root
   RETURNDIR=$CARDDIR/integrated
 
@@ -161,9 +212,23 @@ then
 
   CARD=$CARDDIR/fullmodel_inclusive.root
 
+  if ! [ -e $CARD ]
+  then
+    text2workspace.py $CARDDIR/fullmodel_unreg.txt -o $CARD
+  fi
+
   NAME=Inclusive
   dofit --algo singles $FITOPT --saveFitResult --saveWorkspace
   ADDITIONAL=multidimfit${NAME}.root
+
+elif [ $COMMAND = AsimovGen ]
+then
+
+  METHOD=GenerateOnly
+  SEED=123456
+
+  NAME=Asimov
+  dofit -t -1 --expectSignal 1 --saveToys -s $SEED
 
 elif [ $COMMAND = DeltaScan ]
 then
