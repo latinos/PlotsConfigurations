@@ -26,7 +26,7 @@ groupPlot['Fake']  = {
                   'nameHR' : 'Non-prompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fakes']
+                  'samples'  : ['Fakes_em','Fakes_ee','Fakes_mm']
               }
 
 
@@ -107,7 +107,22 @@ plot['DY']  = {
               }
 
 
-plot['Fakes']  = {  
+#plot['Fakes']  = {  
+#                  'color': 921,    # kGray + 1
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1.0                  
+#              }
+#
+
+plot['Fakes_em']  = {  
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0                  
+              }
+
+plot['Fakes_ee']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -115,14 +130,16 @@ plot['Fakes']  = {
               }
 
 
-#plot['Fake_em']  = {  
-#                  'color': 921,    # kGray + 1
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.0                  
-#              }
-#
-#
+plot['Fakes_mm']  = {  
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0                  
+              }
+
+
+
+
 #plot['Fake_me']  = {  
 #                  'color': 921,    # kGray + 1
 #                  'isSignal' : 0,
@@ -370,7 +387,7 @@ plot['DATA']  = {
                   'nameHR' : 'Data',
                   'color': 1 ,  
                   'isSignal' : 0,
-                  'isData'   : 1 ,
+                  'isData'   : 1,
                   'isBlind'  : 1
               }
 
