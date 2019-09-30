@@ -20,6 +20,21 @@ structure['Fakes']  = {
                   'isData'   : 0 
               }
 
+structure['Fakes_ee']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+              }
+
+structure['Fakes_mm']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+              }
+
+structure['Fakes_em']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+              }
+
 #structure['Fake_em']  = {  
 #                  'isSignal' : 0,
 #                  'isData'   : 0,
@@ -184,10 +199,10 @@ structure['ggZH_hww'] = {
 #                  'isData'   : 0
 #                  }
 
-#structure['ttH_hww'] = {
-#                  'isSignal' : 1,
-#                  'isData'   : 0
-#                  }
+structure['ttH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
 
 structure['ggH_htt'] = {
                   'isSignal' : 1,

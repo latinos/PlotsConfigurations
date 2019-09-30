@@ -2,7 +2,12 @@
 treeName= 'Events'
 
 
-tag = 'WH2017nano'
+#tag = 'WH2017nano_forPlots'
+#tag = 'WH2017nano_try7' #old fakes with MVAWP90 id
+#tag = 'WH2017nano_try8' # new fakes with cut based tight id
+#tag = 'WH2017nano_try9' #splitted fakes and no upper bound on mtw1
+#tag = 'WH2017nano_try10' #no mtw1 and mllThird
+tag = 'WH2017nano_try11' #tree systematics open
 
 
 # used by mkShape to define output directory for root files
