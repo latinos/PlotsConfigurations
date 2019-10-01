@@ -246,9 +246,9 @@ nuisances['PU'] = {
         'WW': ['1.0033022059*(puWeightUp/puWeight)', '0.997085330608*(puWeightDown/puWeight)'],
         'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
         'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
-        'ZH_hww': ['(puWeightUp/puWeight)', '(puWeightDown/puWeight)'], 
-        'ggZH_hww': ['(puWeightUp/puWeight)', '(puWeightDown/puWeight)'], 
-        'WH_hww': ['(puWeightUp/puWeight)', '(puWeightDown/puWeight)']
+        'ZH_hww': ['1.0018542*(puWeightUp/puWeight)', '0.99848361*(puWeightDown/puWeight)'], 
+        'ggZH_hww': ['1.0032337*(puWeightUp/puWeight)', '0.99617843*(puWeightDown/puWeight)'], 
+        'WH_hww': ['1.0035114*(puWeightUp/puWeight)', '0.99720012*(puWeightDown/puWeight)']
     },
     'AsLnN': '1',
 }
