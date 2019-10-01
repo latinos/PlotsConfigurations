@@ -35,7 +35,7 @@ HiggsXS = HiggsXSection()
 nuisances['lumi'] = {
     'name': 'lumi_13TeV_2018',
     'type': 'lnN',
-    'samples': dict((skey, '1.025') for skey in mc if skey not in ['top', 'DY'])
+    'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
 #nuisances['lumi_Uncorrelated'] = {
@@ -218,6 +218,9 @@ nuisances['PU'] = {
         'WW': ['1.0033022059*(puWeightUp/puWeight)', '0.997085330608*(puWeightDown/puWeight)'],
         'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
         'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
+        'ZH_hww': ['1.0024702*(puWeightUp/puWeight)', '0.99717619*(puWeightDown/puWeight)'],
+        'ggZH_hww': ['1.0024006*(puWeightUp/puWeight)', '0.99740647*(puWeightDown/puWeight)'],
+        'WH_hww': ['1.0014311*(puWeightUp/puWeight)', '0.99822709*(puWeightDown/puWeight)']
     },
     'AsLnN': '1',
 }
@@ -233,6 +236,8 @@ nuisances['PS']  = {
         'ZH_hww': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],
         'ggZH_hww': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],
         'WH_hww': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],  
+        'ggH_hww': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],
+        'qqH_hww': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]']
     },
     'AsLnN': '1'
 }
