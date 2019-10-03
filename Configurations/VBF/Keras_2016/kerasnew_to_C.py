@@ -8,7 +8,7 @@ import sys
 from keras.models import Sequential, Model
 from keras.layers import Input, Activation, Dense, Convolution2D, MaxPooling2D, Dropout, Flatten
 from keras.utils import np_utils
-from keras.constraints import maxnorm
+from keras.constraints import max_norm
 from keras import initializers
 from keras.regularizers import l2
 from keras.callbacks import EarlyStopping
@@ -24,7 +24,7 @@ from sklearn.metrics import roc_curve, auc
 VARS = ['mjj','mll','ptll','detajj', 'dphill', 'PuppiMET_pt', 'PuppiMET_phi', 'mTi', 'dphilljet', 'dphillmet', 'drll', 'dphilmet', 'mR', 'Lepton_pt[0]', 'Lepton_pt[1]', 'Lepton_eta[0]', 'Lepton_eta[1]', 'Lepton_phi[0]', 'Lepton_phi[1]', 'CleanJet_pt[0]', 'CleanJet_pt[1]', 'CleanJet_eta[0]', 'CleanJet_eta[1]', 'CleanJet_phi[0]', 'CleanJet_phi[1]']
 
 
-NDIM = len(VARS)+4
+NDIM = len(VARS)+2
 
 df = {}
 
@@ -37,42 +37,42 @@ dataset_ggh = load_dataset_ggh ( max_entries=-1 )
 jetidx0_vbf = dataset_vbf ["CleanJet_jetIdx[0]"]
 jetidx1_vbf = dataset_vbf ["CleanJet_jetIdx[1]"]
 jetqgl_vbf = dataset_vbf ["Jet_qgl"]
-jetbtag_vbf = dataset_vbf ["Jet_btagDeepB"]
+#jetbtag_vbf = dataset_vbf ["Jet_btagDeepB"]
 
 jetqgl0_vbf = []
 jetqgl1_vbf = [] 
-jetbtag0_vbf = []
-jetbtag1_vbf = []
+#jetbtag0_vbf = []
+#jetbtag1_vbf = []
 
 jetidx0_top = dataset_top ["CleanJet_jetIdx[0]"]
 jetidx1_top = dataset_top ["CleanJet_jetIdx[1]"]
 jetqgl_top = dataset_top ["Jet_qgl"]
-jetbtag_top = dataset_top ["Jet_btagDeepB"]
+#jetbtag_top = dataset_top ["Jet_btagDeepB"]
 
 jetqgl0_top = []
 jetqgl1_top = [] 
-jetbtag0_top = []
-jetbtag1_top = []
+#jetbtag0_top = []
+#jetbtag1_top = []
 
 jetidx0_ww = dataset_ww ["CleanJet_jetIdx[0]"]
 jetidx1_ww = dataset_ww ["CleanJet_jetIdx[1]"]
 jetqgl_ww = dataset_ww ["Jet_qgl"]
-jetbtag_ww = dataset_ww ["Jet_btagDeepB"]
+#jetbtag_ww = dataset_ww ["Jet_btagDeepB"]
 
 jetqgl0_ww = []
 jetqgl1_ww = [] 
-jetbtag0_ww = []
-jetbtag1_ww = []
+#jetbtag0_ww = []
+#jetbtag1_ww = []
 
 jetidx0_ggh = dataset_ggh ["CleanJet_jetIdx[0]"]
 jetidx1_ggh = dataset_ggh ["CleanJet_jetIdx[1]"]
 jetqgl_ggh = dataset_ggh ["Jet_qgl"]
-jetbtag_ggh = dataset_ggh ["Jet_btagDeepB"]
+#jetbtag_ggh = dataset_ggh ["Jet_btagDeepB"]
 
 jetqgl0_ggh = []
 jetqgl1_ggh = [] 
-jetbtag0_ggh = []
-jetbtag1_ggh = []
+#jetbtag0_ggh = []
+#jetbtag1_ggh = []
 
 
 print len(jetqgl_vbf)
@@ -81,7 +81,7 @@ print len(jetqgl_ww)
 print len(jetqgl_ggh)
 
 for i in range (0,len(jetqgl_vbf)):
-
+        '''
         if not len(jetidx0_vbf[i]) == 0:
                 jetbtag0_vbf.append(jetbtag_vbf[i][jetidx0_vbf[i][0]])
         else:
@@ -90,6 +90,7 @@ for i in range (0,len(jetqgl_vbf)):
                 jetbtag1_vbf.append(jetbtag_vbf[i][jetidx1_vbf[i][0]])
         else:
                 jetbtag1_vbf.append(-1)
+        '''
         if not len(jetidx0_vbf[i]) == 0:
                 jetqgl0_vbf.append(jetqgl_vbf[i][jetidx0_vbf[i][0]])
         else:   
@@ -101,7 +102,7 @@ for i in range (0,len(jetqgl_vbf)):
                 
 
 for i in range (0,len(jetqgl_top)):
-
+        '''
         if not len(jetidx0_top[i]) == 0:
                 jetbtag0_top.append(jetbtag_top[i][jetidx0_top[i][0]])
         else:
@@ -110,6 +111,7 @@ for i in range (0,len(jetqgl_top)):
                 jetbtag1_top.append(jetbtag_top[i][jetidx1_top[i][0]])
         else:
                 jetbtag1_top.append(-1)
+        '''
         if not len(jetidx0_top[i]) == 0:
                 jetqgl0_top.append(jetqgl_top[i][jetidx0_top[i][0]])
         else:
@@ -120,7 +122,7 @@ for i in range (0,len(jetqgl_top)):
                 jetqgl1_top.append(-1)
 
 for i in range (0,len(jetqgl_ww)):
-
+        '''
         if not len(jetidx0_ww[i]) == 0:
                 jetbtag0_ww.append(jetbtag_ww[i][jetidx0_ww[i][0]])
         else:
@@ -129,6 +131,7 @@ for i in range (0,len(jetqgl_ww)):
                 jetbtag1_ww.append(jetbtag_ww[i][jetidx1_ww[i][0]])
         else:
                 jetbtag1_ww.append(-1)
+        '''
         if not len(jetidx0_ww[i]) == 0:
                 jetqgl0_ww.append(jetqgl_ww[i][jetidx0_ww[i][0]])
         else:   
@@ -139,7 +142,7 @@ for i in range (0,len(jetqgl_ww)):
                 jetqgl1_ww.append(-1)
 
 for i in range (0,len(jetqgl_ggh)):
-
+        '''
         if not len(jetidx0_ggh[i]) == 0:
                 jetbtag0_ggh.append(jetbtag_ggh[i][jetidx0_ggh[i][0]])
         else:
@@ -148,6 +151,7 @@ for i in range (0,len(jetqgl_ggh)):
                 jetbtag1_ggh.append(jetbtag_ggh[i][jetidx1_ggh[i][0]])
         else:
                 jetbtag1_ggh.append(-1)
+        '''
         if not len(jetidx0_ggh[i]) == 0:
                 jetqgl0_ggh.append(jetqgl_ggh[i][jetidx0_ggh[i][0]])
         else:   
@@ -161,22 +165,22 @@ for i in range (0,len(jetqgl_ggh)):
 del dataset_vbf["CleanJet_jetIdx[0]"]
 del dataset_vbf["CleanJet_jetIdx[1]"]
 del dataset_vbf["Jet_qgl"]
-del dataset_vbf["Jet_btagDeepB"]
+#del dataset_vbf["Jet_btagDeepB"]
 
 del dataset_top["CleanJet_jetIdx[0]"]
 del dataset_top["CleanJet_jetIdx[1]"]
 del dataset_top["Jet_qgl"]
-del dataset_top["Jet_btagDeepB"]
+#del dataset_top["Jet_btagDeepB"]
 
 del dataset_ww["CleanJet_jetIdx[0]"]
 del dataset_ww["CleanJet_jetIdx[1]"]
 del dataset_ww["Jet_qgl"]
-del dataset_ww["Jet_btagDeepB"]
+#del dataset_ww["Jet_btagDeepB"]
 
 del dataset_ggh["CleanJet_jetIdx[0]"]
 del dataset_ggh["CleanJet_jetIdx[1]"]
 del dataset_ggh["Jet_qgl"]
-del dataset_ggh["Jet_btagDeepB"]
+#del dataset_ggh["Jet_btagDeepB"]
 
 
 df['vbf'] = pd.DataFrame(dataset_vbf,columns=VARS)
@@ -186,23 +190,23 @@ df['ggh'] = pd.DataFrame(dataset_ggh,columns=VARS)
 
 df['vbf']['jetqgl[0]']= np.asarray(jetqgl0_vbf)
 df['vbf']['jetqgl[1]']= np.asarray(jetqgl1_vbf)
-df['vbf']['jetbtag[0]']= np.asarray(jetbtag0_vbf)
-df['vbf']['jetbtag[1]']= np.asarray(jetbtag1_vbf)
+#df['vbf']['jetbtag[0]']= np.asarray(jetbtag0_vbf)
+#df['vbf']['jetbtag[1]']= np.asarray(jetbtag1_vbf)
 
 df['top']['jetqgl[0]']= np.asarray(jetqgl0_top)
 df['top']['jetqgl[1]']= np.asarray(jetqgl1_top)
-df['top']['jetbtag[0]']= np.asarray(jetbtag0_top)
-df['top']['jetbtag[1]']= np.asarray(jetbtag1_top)
+#df['top']['jetbtag[0]']= np.asarray(jetbtag0_top)
+#df['top']['jetbtag[1]']= np.asarray(jetbtag1_top)
 
 df['ww']['jetqgl[0]']= np.asarray(jetqgl0_ww)
 df['ww']['jetqgl[1]']= np.asarray(jetqgl1_ww)
-df['ww']['jetbtag[0]']= np.asarray(jetbtag0_ww)
-df['ww']['jetbtag[1]']= np.asarray(jetbtag1_ww)
+#df['ww']['jetbtag[0]']= np.asarray(jetbtag0_ww)
+#df['ww']['jetbtag[1]']= np.asarray(jetbtag1_ww)
 
 df['ggh']['jetqgl[0]']= np.asarray(jetqgl0_ggh)
 df['ggh']['jetqgl[1]']= np.asarray(jetqgl1_ggh)
-df['ggh']['jetbtag[0]']= np.asarray(jetbtag0_ggh)
-df['ggh']['jetbtag[1]']= np.asarray(jetbtag1_ggh)
+#df['ggh']['jetbtag[0]']= np.asarray(jetbtag0_ggh)
+#df['ggh']['jetbtag[1]']= np.asarray(jetbtag1_ggh)
 
 
 df['vbf']['isVBF'] = np.ones(len(df['vbf']))
@@ -230,8 +234,9 @@ df['ggh']['isGGH'] = np.ones(len(df['ggh']))
 
 model = Sequential()
 
-model.add(Dense(100, init='glorot_normal', activation='relu', input_dim=NDIM))
-model.add(Dense(100, init='glorot_normal', activation='relu', W_constraint=maxnorm(1)))
+model.add(Dense(240, init='glorot_normal', activation='relu', input_dim=NDIM))
+model.add(Dense(120, init='glorot_normal', activation='relu', kernel_constraint=max_norm(1.)))
+model.add(Dense(60, init='glorot_normal', activation='relu', kernel_constraint=max_norm(1.)))
 model.add(Dense(4, init='glorot_normal', activation='softmax'))
 
 
@@ -254,7 +259,7 @@ X_train_val = scaler.transform(X_train_val)
 X_test = scaler.transform(X_test)
 '''
 
-early_stopping = EarlyStopping(monitor='val_loss', patience=100)
+early_stopping = EarlyStopping(monitor='val_loss', patience=50)
 
 model_checkpoint = ModelCheckpoint('dense_model.h5', monitor='val_loss',
                                    verbose=0, save_best_only=True,
@@ -263,8 +268,8 @@ model_checkpoint = ModelCheckpoint('dense_model.h5', monitor='val_loss',
 
 history = model.fit(X_train_val,
                     Y_train_val,
-                    epochs=800,
-                    batch_size=1000,
+                    epochs=500,
+                    batch_size=500,
                     verbose=1,
                     callbacks=[early_stopping, model_checkpoint],
                     validation_split=0.25)
@@ -372,7 +377,8 @@ print ("""
     return buffer_in[2];
   else if (flag==3)
     return buffer_in[3];
-  
+  else
+    return -1;
   //return i;
 """.format(n_out = last_kernel.shape[1]))
 
