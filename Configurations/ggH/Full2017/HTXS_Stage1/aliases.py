@@ -3,9 +3,9 @@ import copy
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # ggH2016
-configurations = os.path.dirname(configurations) # Differential
-configurations = os.path.dirname(configurations) # Configurations
+configurations = os.path.dirname(configurations) # HTXS_Stage1
+configurations = os.path.dirname(configurations) # Full2017
+configurations = os.path.dirname(configurations) # ggH
 configurations = os.path.dirname(configurations) # Configurations
 
 #aliases = {}
