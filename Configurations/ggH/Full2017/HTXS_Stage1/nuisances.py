@@ -38,7 +38,7 @@ for k in cuts:
     elif '1j' in cat: cuts1j.append(k+'_'+cat)
     elif '2j' in cat: cuts2j.append(k+'_'+cat)
     elif 'GT200' in cat: cutsGT200.append(k+'_'+cat)
-    else: print 'WARNING: name of category does not contain on either 0j,1j,2j,GT200', cat
+else: print 'WARNING: name of category does not contain on either 0j,1j,2j,GT200', cat
 
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
