@@ -1,25 +1,10 @@
 import os
 
 global getSampleFiles
-from LatinoAnalysis.Tools.commonTools import getSampleFiles
+from LatinoAnalysis.Tools.commonTools import getSampleFiles, addSampleWeight, getBaseWnAOD
 
 def getSampleFilesNano(inputDir,Sample,absPath=False):
     return getSampleFiles(inputDir,Sample,absPath,'nanoLatino_')
-
-# Can use in place of addSampleWeight when reweighting samples
-def addSampleWeightNano(sampleDic,key,Sample,Weight):
-    """ Modified from LatinoAnalysis/Tools/python/commonTools.py """
-    if not 'weights' in sampleDic[key] :
-      sampleDic[key]['weights'] = []
-    if len(sampleDic[key]['weights']) == 0 :
-      for iEntry in range(len(sampleDic[key]['name'])) : sampleDic[key]['weights'].append('(1.)')
-
-    ### Now add the actual weight
-    for iEntry in range(len(sampleDic[key]['name'])):
-      name = sampleDic[key]['name'][iEntry].replace('nanoLatino_','').replace('.root','').split('__part')[0]
-      if '/' in name : name = os.path.basename(name)
-      if name == Sample:
-        sampleDic[key]['weights'][iEntry] += '*(' + Weight + ')'
 
 ##############################################
 ###### Tree Directory according to site ######
@@ -108,13 +93,17 @@ samples['ZZ']  = {    'name': getSampleFilesNano(directoryMC,'ZZTo4L'),
                       'FilesPerJob' : 5,
                   }
 
-samples['WZ']  = {    'name'   : getSampleFilesNano(directoryMC,'WZTo3LNu_mllmin01'),
-                      #'name'   : getSampleFilesNano(directoryMC,'WZTo3LNu') #These all exist -- check which is better stats?
-                      #          +getSampleFilesNano(directoryMC,'WZTo3LNu_ext1'),
+samples['WZ']  = {    #'name'   : getSampleFilesNano(directoryMC,'WZTo3LNu_mllmin01'),
+                      'name'   : getSampleFilesNano(directoryMC,'WZTo3LNu')
+                                +getSampleFilesNano(directoryMC,'WZTo3LNu_ext1'),
                       'weight' : '(( Alt$(CleanJet_pt[1],0) < 30 )*'+wz1jSF+'+( Alt$(CleanJet_pt[1],0) >= 30 )*'+wz2jSF+')*'+XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC ,
                       'suppressNegativeNuisances' :['all'],
-                      'FilesPerJob' : 5,
+                      'FilesPerJob' : 3,
                   }
+
+WZbaseW = getBaseWnAOD(directoryMC,'Summer16_102X_nAODv4_Full2016v5',['WZTo3LNu','WZTo3LNu_ext1'])
+addSampleWeight(samples,'WZ','WZTo3LNu',     WZbaseW+'/baseW')
+addSampleWeight(samples,'WZ','WZTo3LNu_ext1',WZbaseW+'/baseW')
 
 samples['VVV'] = {    'name': getSampleFilesNano(directoryMC,'WZZ')
                              +getSampleFilesNano(directoryMC,'ZZZ')
@@ -180,7 +169,7 @@ samples['Fake']  = {   'name': [] ,
                        'weight' : fakeW+'*EMTFbug_veto*'+METFilter_DATA, #TODO maybe drop EMTFbug_veto? WH3l uses, ggH does not
                        'weights' : [],
                        'isData': ['all'],
-                       'FilesPerJob' : 10 ,
+                       'FilesPerJob' : 20 ,
                    }
 
 ###########################################
@@ -191,7 +180,7 @@ samples['DATA']  = {   'name': [] ,
                        'weight' : 'EMTFbug_veto*'+METFilter_DATA+'*'+LepWPCut,  #TODO maybe drop EMTFbug_veto? WH3l uses, ggH does not
                        'weights' : [],
                        'isData': ['all'],
-                       'FilesPerJob' : 10 ,
+                       'FilesPerJob' : 20 ,
                    }
 
 for Run in DataRun :
@@ -207,3 +196,7 @@ for Run in DataRun :
             samples['Fake']['name']   .append(iFile)
             samples['Fake']['weights'].append(DataTrig[DataSet])
                 
+samples['Fake']['subsamples'] = {
+    'em': 'abs(ZH3l_pdgid_l) == 11',
+    'me': 'abs(ZH3l_pdgid_l) == 13'
+}
