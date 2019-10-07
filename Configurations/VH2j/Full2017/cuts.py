@@ -78,6 +78,15 @@ _tmp = [
 addcut('VH_2j_DYtautau', _tmp)
 
 
+### Jonatan
+
+_tmp = [
+    '(mjj < 400.) && (Alt$(CleanJet_pt[1], 0) > 30.) && (mth < 60.) && (mll > 40.) && (mll < 80.)',
+    'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0',
+]
+addcut('VH_2j_DYtautau_ggH', _tmp)
+
+
 ################################
 # Jet_btagDeepB
 

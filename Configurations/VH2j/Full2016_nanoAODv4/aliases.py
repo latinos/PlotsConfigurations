@@ -109,8 +109,7 @@ aliases['bVeto'] = {
 
 
 aliases['bVetoDY'] = {                                                                                                              
-'expr': '(Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0) && mth < 60'                       
-}
+'expr': '(Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0) && mth < 60' }
 
 
 aliases['btag2'] = {
