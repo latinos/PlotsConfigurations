@@ -463,6 +463,44 @@ for i in range (0, len(Y_predict)):
         ggh_pred_ggh.Fill(Y_predict[i][3])
 
 
+
+count=0.
+norm=0.
+
+for i in range (0, len(Y_predict)):
+    if(Y_test[i][0]==1.):
+        norm=norm+1.        
+        if (Y_predict[i][0] > Y_predict[i][1] and Y_predict[i][0] > Y_predict[i][2] and Y_predict[i][0] > Y_predict[i][3]):
+            count=count+1.
+
+eff = count / norm
+
+print norm
+print count
+print eff
+
+count=0.
+countvbf=0.
+
+for i in range (0, len(Y_predict)):
+    if(Y_test[i][0]==1.):
+        if (Y_predict[i][0] > Y_predict[i][1] and Y_predict[i][0] > Y_predict[i][2] and Y_predict[i][0] > Y_predict[i][3]):
+            countvbf=countvbf+1.
+            count=count+1.
+    if(Y_test[i][1]==1.):
+        if (Y_predict[i][0] > Y_predict[i][1] and Y_predict[i][0] > Y_predict[i][2] and Y_predict[i][0] > Y_predict[i][3]):
+            count=count+1.
+    if(Y_test[i][2]==1.):
+        if (Y_predict[i][0] > Y_predict[i][1] and Y_predict[i][0] > Y_predict[i][2] and Y_predict[i][0] > Y_predict[i][3]):
+            count=count+1.
+    if(Y_test[i][3]==1.):
+        if (Y_predict[i][0] > Y_predict[i][1] and Y_predict[i][0] > Y_predict[i][2] and Y_predict[i][0] > Y_predict[i][3]):
+            count=count+1.
+
+purezza = countvbf / count
+
+print purezza
+
 vbf_pred_vbf.SetStats(0)
 vbf_pred_top.SetStats(0)
 vbf_pred_ww.SetStats(0)
