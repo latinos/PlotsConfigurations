@@ -38,11 +38,17 @@ variables['events'] = {'name'  : '1',
                        'fold'  : 3
                       }
 
-variables['mll']  = {'name'  : 'mll',           # variable name
-                     'range' : (8, 0., 200.),   # variable range
-                     'xaxis' : 'm_{ll} [GeV]',  # variable label
-                     'fold'  : 0
-                    }
+variables['mll'] = {'name'  : 'mll',           # variable name
+                    'range' : (8, 0., 200.),   # variable range
+                    'xaxis' : 'm_{ll} [GeV]',  # variable label
+                    'fold'  : 0
+                   }
+
+variables['detal1j1'] = {'name'  : 'Lepton_Eta[0]-CleanJet_Eta[0]',
+                         'range' : (40, -3.2, 3.2),
+                         'xaxis' : '#Delta#eta_{l1j1}',
+                         'fold'  : 0
+                        }
 
 #variables['nvtx']  = {   'name': 'PV_npvsGood',      
 #                        'range' : (50,0,50),  
@@ -207,4 +213,3 @@ variables['qgl0']  = {'name': 'Jet_qgl[CleanJet_jetIdx[0]]',
 #                        'xaxis' : '#Delta#phi_{} j j met',
 #                        'fold' : 3
 #}
-
