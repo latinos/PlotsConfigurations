@@ -9,7 +9,7 @@ def nanoGetSampleFiles(inputDir, sample):
 samples={}
 
 # Steps
-mcSteps   = 'MCl1loose2017v5__MCCorr2017v5__VBSjjlnuSkim2017v3' 
+mcSteps = 'MCl1loose2017v5__MCCorr2017v5__VBSjjlnuSkim2017v3' 
 dataSteps = 'DATAl1loose2017v5__VBSjjlnuSkim2017v3'
 fakeSteps = 'DATAl1loose2017v5__VBSjjlnuSkim2017v3_fakesv2'
 
@@ -65,8 +65,6 @@ SFweight1l =       'puWeight*\
 SFweight      = SFweight1l+'*'+LepWPWeight_1l+'*'+LepWPCut_1l+'*PrefireWeight'
      
 GenLepMatch   = 'Lepton_genmatched[0]'
-
-
 
 
 ################################################
@@ -300,8 +298,8 @@ samples['VBS']  = { 'name' :
        'FilesPerJob' : 4,
 }
 
-fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP + '_mu10_ele35'
 
+fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP + '_mu10_ele35'
 #### Fakes
 samples['Fake'] = {
   'name': [],

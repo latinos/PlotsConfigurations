@@ -290,23 +290,26 @@ for _, sd in DataRun:
     fake_files.extend(files)
     fake_weights.extend([DataTrig[pd]] * len(files))
 
-for mupt in [10,20,35,45]:
+for mupt in [10]:
+#for mupt in [45]:
   fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP + '_mu{}_ele{}'.format(mupt, 25)
   
   samples['Fake_mu{}'.format(mupt)] = {
     'name': fake_files,
-    'weight': METFilter_DATA+'*'+fakeW,
+    'weight': METFilter_DATA+'*'+fakeW+"*(4.97)",
     'weights': fake_weights,
     'isData': ['all'],
     'FilesPerJob': 10
   }
 
-for elept in [25,35,45]:
+
+for elept in [35]:
+#for elept in [45]:
   fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP + '_mu{}_ele{}'.format(25, elept)
   
   samples['Fake_ele{}'.format(elept)] = {
     'name': fake_files,
-    'weight': METFilter_DATA+'*'+fakeW,
+    'weight': METFilter_DATA+'*'+fakeW+"*(3.12)",
     'weights': fake_weights,
     'isData': ['all'],
     'FilesPerJob': 10

@@ -179,8 +179,8 @@ FourJetsVars::setValues(UInt_t _run, UInt_t _luminosityBlock, ULong64_t _event)
   met.SetPtEtaPhiM(*MET_pt->Get(), 0., *MET_phi->Get(), 0.);
 
   returnValues[fourjet_pt] = fourj.Pt();
-  returnValues[fourjet_lep_deltaphi] = fourj.DeltaPhi(lep);
-  returnValues[fourjet_met_deltaphi] = fourj.DeltaPhi(met);
+  returnValues[fourjet_lep_deltaphi] = abs(fourj.DeltaPhi(lep));
+  returnValues[fourjet_met_deltaphi] = abs(fourj.DeltaPhi(met));
   returnValues[fourjet_lep_ptratio] = fourj.Pt() / lep.Pt();
 
   float dphi_fjmet = fourj.DeltaPhi(met);

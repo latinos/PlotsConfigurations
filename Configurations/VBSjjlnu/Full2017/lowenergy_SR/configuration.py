@@ -2,7 +2,7 @@
 treeName= 'Events'
 
 
-tag = 'checkfakes_mu10'
+tag = 'lowenergy_SR'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'+tag
@@ -20,7 +20,7 @@ cutsFile = 'cuts.py'
 samplesFile = 'samples.py' 
 
 # file with list of samples
-plotFile = 'plot_mufake.py' 
+plotFile = 'plot.py' 
 
 
 

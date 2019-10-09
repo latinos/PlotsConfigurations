@@ -199,7 +199,6 @@ variables['Lepton_Zep'] = {
                         ],
                     }                     
 
-
 #MET
 
 variables['PuppiMET'] = {   'name': 'PuppiMET_pt',      
@@ -225,8 +224,7 @@ variables['recoMET_pz'] = {   'name': 'recoMET_pz',
                         'xaxis' : 'recoMET pz', 
                         'fold' : 3
                         }
-
-
+                        
 ################################
 #### VBS variables
 
@@ -273,15 +271,21 @@ variables['vbs_pt_low'] = {   'name': 'vbs_pt_low',
                         } 
 
 variables['mjj_vbs'] = {   'name': 'mjj_vbs',      
-                        'range' : (50,200,2500),  
+                        'range' : (10,600,3000),  
                         'xaxis' : 'mjj_vbs', 
                         'fold' : 3
                         }
 
 
+variables['Mww'] = {   'name': 'Mww',      
+                        'range' : (15,0,1500),  
+                        'xaxis' : 'Mww', 
+                        'fold' : 3
+                        }
+
 #delta angles between the VBS jets
 variables['deltaeta_vbs'] = {   'name': 'deltaeta_vbs',      
-                        'range' : (40,0,9),  
+                        'range' : (20,3.5,9),  
                         'xaxis' : '#Delta#eta VBS jets', 
                         'fold' : 3
                         }
@@ -308,11 +312,6 @@ variables['Asym_vbs'] = {   'name': 'Asym_vbs',
                         }
 
 
-variables['Mww'] = {   'name': 'Mww',      
-                        'range' : (40,0,1800),  
-                        'xaxis' : 'Mww', 
-                        'fold' : 3
-                        }
 
 variables['Mw_lep_reco'] = {   'name': 'Mw_lep',      
                         'range' : (40,0,200),  

@@ -82,8 +82,22 @@ variables['recoMET_pz'] = {   'name': 'recoMET_pz',
 
 # VBS vars
 variables['mjj_vbs'] = {   'name': 'mjj_vbs',      
-                        'range' : (40,200,2700),  
-                        'xaxis' : 'mjj VBS jets', 
+                        'range' : (10,600,3000),  
+                        'xaxis' : 'mjj_vbs', 
+                        'fold' : 3
+                        }
+
+
+variables['Mww'] = {   'name': 'Mww',      
+                        'range' : (15,0,1500),  
+                        'xaxis' : 'Mww', 
+                        'fold' : 3
+                        }
+
+#delta angles between the VBS jets
+variables['deltaeta_vbs'] = {   'name': 'deltaeta_vbs',      
+                        'range' : (20,3.5,9),  
+                        'xaxis' : '#Delta#eta VBS jets', 
                         'fold' : 3
                         }
 
@@ -152,14 +166,7 @@ variables['vjet_eta_low'] = {   'name': 'vjet_eta_low',
                         'xaxis' : 'trailing Vjet #eta', 
                         'fold' : 3
                         }
-
-#delta angles between the VBS jets
-variables['deltaeta_vbs'] = {   'name': 'deltaeta_vbs',      
-                        'range' : (40,0,9),  
-                        'xaxis' : '#Delta#eta VBS jets', 
-                        'fold' : 3
-                        }
-
+                        
 variables['deltaphi_vbs'] = {   'name': 'deltaphi_vbs',      
                         'range' : (40,0,3.5),  
                         'xaxis' : '#Delta#phi VBS jets', 
@@ -243,11 +250,6 @@ variables['w_lep_pt'] = {   'name': 'w_lep_pt',
                         'fold' : 3
                         }
 
-variables['Mww'] = {   'name': 'Mww',      
-                        'range' : (40,0,1800),  
-                        'xaxis' : 'Mww', 
-                        'fold' : 3
-                        }
 
 variables['R_ww'] = {   'name': 'R_ww',      
                         'range' : (40,0,80),  

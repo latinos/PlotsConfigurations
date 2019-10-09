@@ -48,11 +48,11 @@ groupPlot['VV']  = {
                  'samples'  : ['VV']
               }    
 
-groupPlot['FakeQCD']  = {  
+groupPlot['Fake']  = {  
                 'nameHR' : "Fake",
                 'isSignal' : 0,
                 'color': colors['kTeal'],   
-                'samples'  : ['FakeQCD']
+                'samples'  : ['Fake']
             }
 
 groupPlot['VBF-V']  = {  
@@ -159,7 +159,7 @@ plot['VBF-V']  = {
               }
 
 
-plot['FakeQCD']  = {  
+plot['Fake']  = {  
                 'color': colors['kTeal'],
                 'isSignal' : 0,
                 'isData'   : 0, 

@@ -54,6 +54,12 @@ variables['PuppiMET'] = {   'name': 'PuppiMET_pt',
                         'fold' : 3
                         }
 
+variables['PuppiMET_phi'] = {   'name': 'PuppiMET_phi',      
+                        'range' : (40,0,360),  
+                        'xaxis' : 'PuppiMET_phi', 
+                        'fold' : 3
+                        }
+
 variables['MET_pt'] = {   'name': 'MET_pt',      
                         'range' : (40,0,500),  
                         'xaxis' : 'MET_pt', 
@@ -71,13 +77,7 @@ variables['recoMET_pz'] = {   'name': 'recoMET_pz',
                         'xaxis' : 'recoMET pz', 
                         'fold' : 3
                         }
-                        
-variables['recoMET_nearlep'] = {   'name': 'recoMET_nearlep',      
-                        'range' : (40,0,300),  
-                        'xaxis' : 'recoMET (close lep)', 
-                        'fold' : 3
-                        }
-
+  
 variables['recoMET_pz_nearlep'] = {   'name': 'recoMET_pz_nearlep',      
                         'range' : (40,-700,700),  
                         'xaxis' : 'recoMET_pz (close lep)', 
@@ -305,89 +305,52 @@ variables['nvtx'] = {  'name': 'PV_npvs',
                 }
 
 variables['fourj_lep_deltaphi'] = {
-            'class': 'FourJetsVars',
-            'args': ("fourjet_lep_deltaphi"),
+            'name': "fourj_lep_deltaphi",
             'range': (40, 0, 3.5),
             'xaxis': '#Delta#phi (lepton, sum 4 jets)',
-            'fold': 3,
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L /afs/cern.ch/work/d/dvalsecc/private/CMSSW_10_2_0/src/PlotsConfigurations/Configurations/VBSjjlnu/ControlRegions2017/check_fakes/fourjet_class.cc+'
-            ]            
+            'fold': 3      
 }
 
 variables['fourj_met_deltaphi'] = {
-            'class': 'FourJetsVars',
-            'args': ("fourjet_met_deltaphi"),
+            'name': "fourj_met_deltaphi",
             'range': (40, 0, 3.5),
             'xaxis': '#Delta#phi (lepton, sum 4 jets)',
-            'fold': 3,
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L /afs/cern.ch/work/d/dvalsecc/private/CMSSW_10_2_0/src/PlotsConfigurations/Configurations/VBSjjlnu/ControlRegions2017/check_fakes/fourjet_class.cc+'
-            ]  
+            'fold': 3
 }
 
 variables['fourj_lep_ptratio'] = {
-            'class': 'FourJetsVars',
-            'args': ("fourjet_lep_ptratio"),
+            'name': "fourj_lep_ptratio",
             'range': (40, 0, 3.5),
             'xaxis': '#Delta#phi (met, sum 4 jets)',
-            'fold': 3,
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L /afs/cern.ch/work/d/dvalsecc/private/CMSSW_10_2_0/src/PlotsConfigurations/Configurations/VBSjjlnu/ControlRegions2017/check_fakes/fourjet_class.cc+'
-            ]  
+            'fold': 3
 }
 
 variables['fourj_pmet'] = {
-            'class': 'FourJetsVars',
-            'args': ("fourjet_pmet"),
+            'name': "fourj_pmet",
             'range': (40, 0, 200),
             'xaxis': 'PMET with (sum 4 jets)',
-            'fold': 3,
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L /afs/cern.ch/work/d/dvalsecc/private/CMSSW_10_2_0/src/PlotsConfigurations/Configurations/VBSjjlnu/ControlRegions2017/check_fakes/fourjet_class.cc+'
-            ]  
+            'fold': 3
 }
 
-
 variables['lep_pmet'] = {
-            'class': 'FourJetsVars',
-            'args': ("lep_pmet"),
+            'name': "lep_pmet",
             'range': (40, 0, 200),
             'xaxis': 'lepton pmet',
-            'fold': 3,
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L /afs/cern.ch/work/d/dvalsecc/private/CMSSW_10_2_0/src/PlotsConfigurations/Configurations/VBSjjlnu/ControlRegions2017/check_fakes/fourjet_class.cc+'
-            ]  
+            'fold': 3
 }
 
 variables['fourj_lep_ptratio'] = {
-            'class': 'FourJetsVars',
-            'args': ("fourjet_lep_ptratio"),
+            'name': "fourj_lep_ptratio",
             'range': (40, 0, 10),
             'xaxis': 'Pt (sum 4 jets) / Pt lepton',
-            'fold': 3,
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L /afs/cern.ch/work/d/dvalsecc/private/CMSSW_10_2_0/src/PlotsConfigurations/Configurations/VBSjjlnu/ControlRegions2017/check_fakes/fourjet_class.cc+'
-            ]  
+            'fold': 3 
 }
 
-
 variables['fourj_pt'] = {
-            'class': 'FourJetsVars',
-            'args': ("fourjet_pt"),
+            'name': "fourj_pt",
             'range': (40, 0, 800),
             'xaxis': 'Pt (sum 4 jets)',
-            'fold': 3,
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L /afs/cern.ch/work/d/dvalsecc/private/CMSSW_10_2_0/src/PlotsConfigurations/Configurations/VBSjjlnu/ControlRegions2017/check_fakes/fourjet_class.cc+'
-            ]  
+            'fold': 3
 }
 
 variables['lep_jet_ptratio1'] = {

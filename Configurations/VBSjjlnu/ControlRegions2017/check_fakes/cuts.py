@@ -11,29 +11,36 @@ supercut = 'Lepton_pt[0]>30 \
             && vjet_pt_low >= 30    \
            '
 
-cuts["lowen_ele"] = 'abs(Lepton_pdgId[0])==11 \
-                        && Lepton_pt[0] >= 40 \
-                        '
 
-cuts["lowen_mu"] =  'abs(Lepton_pdgId[0])==13  \
+cuts["lowen_ele_fakenrich_loose"] =  'abs(Lepton_pdgId[0])==11  \
                         && Lepton_pt[0] >= 30 \
-                        '
+                        && PuppiMET_pt <= 100 \
+                        && w_lep_pt <= 200 '
+                       
 
-cuts["lowen_ele_fakenrich"] = 'abs(Lepton_pdgId[0])==11 \
-                        && Lepton_pt[0] >= 40 \
-                        && Lepton_pt[0] <=100\
-                        && PuppiMET_pt <= 100  \
-                        && w_lep_pt <= 200  \
-                        '
-
-cuts["lowen_mu_fakenrich"] =  'abs(Lepton_pdgId[0])==13  \
+cuts["lowen_ele_fakenrich_tight"] =  'abs(Lepton_pdgId[0])==11  \
                         && Lepton_pt[0] >= 30 \
-                        && Lepton_pt[0] <=100\
-                        && PuppiMET_pt <= 100  \
+                        && Lepton_pt[0] <= 50 \
+                        && PuppiMET_pt <= 100 \
                         && w_lep_pt <= 200  \
-                        '
+                        && Mtw_lep < 50 \
+                        && fourj_lep_ptratio > 1.5'
 
-# No associated jets in the horn
+cuts["lowen_mu_fakenrich_loose"] =  'abs(Lepton_pdgId[0])==13  \
+                        && Lepton_pt[0] >= 30 \
+                        && PuppiMET_pt <= 100 \
+                        && w_lep_pt <= 200 '
+                       
+
+cuts["lowen_mu_fakenrich_tight"] =  'abs(Lepton_pdgId[0])==13  \
+                        && Lepton_pt[0] >= 30 \
+                        && Lepton_pt[0] <= 50 \
+                        && PuppiMET_pt <= 100 \
+                        && w_lep_pt <= 200  \
+                        && Mtw_lep < 50 \
+                        && fourj_lep_ptratio > 1.5'
+
+
 cuts["lowen_ele_looseVBS"] = 'abs(Lepton_pdgId[0])==11 \
                                 && Lepton_pt[0] >= 40   \
                                 && mjj_vbs >=300    \

@@ -34,7 +34,8 @@ for file in files:
             # Since cuts can be like  (looseVBS,looseVBS_bveto ) we check the longest
             # matched cut
             if len(cut) >= l : 
-                c = cut          
+                c = cut
+                l = len(cut)          
     if c != None:  lists[c].append(file)
 jobs = []
 
@@ -52,8 +53,16 @@ def do_rsync(args):
     os.system("mkdir -p {}/{}/{}/{}".format(prefix, outputdir, name, cut))
     os.system("rsync -a --info=progress2 --files-from={0} {1}/ {2}/{3}/{4}/{5}/".format(
                         file, inputdir, prefix, outputdir, name, cut))
+    os.system("cp {0}/index.php {0}/{1}/{2}/{3}/".format(prefix, outputdir, name, cut))
+    # Write out the cut in a txt file
     with open("{}/{}/{}/{}/cut.txt".format(prefix, outputdir, name, cut), "w") as f:
-        f.write(cuts[cut])
+        f.write("Supercut:\n")
+        f.write(supercut.replace("     ", " ")+"\n\n\n")
+        f.write("Cut:\n")
+        f.write(cuts[cut].replace("     ", " "))
+    # remove list of files file
+    os.system("rm {}".format(file))
+    print("{:<20} >>> https://dvalsecc.web.cern.ch/dvalsecc/{}/{}/{}".format(cut,outputdir,name, cut))
             
 
 print(jobs)
