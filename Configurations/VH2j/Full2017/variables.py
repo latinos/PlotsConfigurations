@@ -44,7 +44,7 @@ variables['mll'] = {'name'  : 'mll',           # variable name
                     'fold'  : 0
                    }
 
-variables['detal1j1'] = {'name'  : 'Lepton_Eta[0]-CleanJet_Eta[0]',
+variables['detal1j1'] = {'name'  : 'Lepton_eta[0]-CleanJet_eta[0]',
                          'range' : (40, -3.2, 3.2),
                          'xaxis' : '#Delta#eta_{l1j1}',
                          'fold'  : 0
