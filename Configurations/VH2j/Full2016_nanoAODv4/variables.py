@@ -2,12 +2,52 @@
 
 #variables = {}
     
+variables['jeteta1'] = {'name'  : 'CleanJet_eta[0]',
+                        'range' : (80, -5., 5.),
+                        'xaxis' : '#eta 1st jet',
+                        'fold'  : 0
+                       }
 
+variables['jeteta2'] = {'name'  : 'CleanJet_eta[1]',
+                        'range' : (80, -5., 5.),
+                        'xaxis' : '#eta 2nd jet',
+                        'fold'  : 0
+                       }
 
-variables['events']  = {'name': '1',      
-                        'range' : (1,0,2),  
-                        'xaxis' : 'events', 
-                        'fold' : 3
+variables['drll'] = {'name'  : 'drll',
+                     'range' : (30, 0., 5.),
+                     'xaxis' : '#DeltaR_{ll}',
+                     'fold'  : 2
+                    }
+
+variables['detajj'] = {'name'  : 'detajj',
+                       'range' : (40, -3.2, 3.2),
+                       'xaxis' : '#Delta#eta_{jj} [GeV]',
+                       'fold'  : 0
+                      }
+
+variables['mjj'] = {'name'  : 'mjj',
+                    'range' : (50, 0., 400.),
+                    'xaxis' : 'm_{jj} [GeV]',
+                    'fold'  : 0
+                   }
+
+variables['events'] = {'name'  : '1',
+                       'range' : (1, 0, 2),
+                       'xaxis' : 'events',
+                       'fold'  : 3
+                      }
+
+variables['mll'] = {'name'  : 'mll',           # variable name
+                    'range' : (8, 0., 200.),   # variable range
+                    'xaxis' : 'm_{ll} [GeV]',  # variable label
+                    'fold'  : 0
+                   }
+
+variables['detal1j1'] = {'name'  : 'Lepton_eta[0]-CleanJet_eta[0]',
+                         'range' : (40, -3.2, 3.2),
+                         'xaxis' : '#Delta#eta_{l1j1}',
+                         'fold'  : 0
                         }
 
 #variables['nvtx']  = {   'name': 'PV_npvsGood',      
@@ -15,19 +55,6 @@ variables['events']  = {'name': '1',
 #                        'xaxis' : 'nvtx', 
 #                         'fold' : 3
 #                      }
-
-#MODIFIED
-#variables['mjj']  = {   'name': 'mjj',            #   variable name    
-#                        'range' : (18, 0,180),    #   variable range
-#                        'xaxis' : 'm_{jj} [GeV]',  #   x axis name
-#                         'fold' : 0
-#                        }
-
-variables['mll']  = {  'name': 'mll',            #   variable name
-                       'range' : (8, 0,200),    #   variable range
-                       'xaxis' : 'm_{ll} [GeV]',  #   x axis name
-                       'fold' : 0
-                        }
 
 #variables['mllpeak'] = {   'name': 'mll',            #   variable name
 #                           'range' : (20,80,100),    #   variable range
@@ -143,12 +170,6 @@ variables['njet']  = {
 #                        }
 
 
-#variables['jeteta1']  = {  'name': 'CleanJet_eta[0]',
-#                        'range' : (80,-5.0,5.0),
-#                        'xaxis' : '#eta 1st jet',
-#                        'fold'  : 0
-#                        }
-
 
 #variables['mth']  = {   'name': 'mth',            #   variable name    
 #                        'range' : (40,0,200),    #   variable range
@@ -192,4 +213,3 @@ variables['qgl0']  = {'name': 'Jet_qgl[CleanJet_jetIdx[0]]',
 #                        'xaxis' : '#Delta#phi_{} j j met',
 #                        'fold' : 3
 #}
-
