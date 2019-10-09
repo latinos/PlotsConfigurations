@@ -1,9 +1,4 @@
 # example of configuration file
-# tagName = "03Oct_v1"
-# tagName = "03Oct_v2"
-# tagName = "2017_v1"
-tagName = "2018_v2"
-tagName = "2018_v3"
 tagName = "2018_v4"
 
 treeName= 'Events'
