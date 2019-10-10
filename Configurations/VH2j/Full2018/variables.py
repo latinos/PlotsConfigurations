@@ -21,11 +21,16 @@ variables['drll'] = {'name'  : 'drll',
                     }
 
 variables['detajj'] = {'name'  : 'detajj',
-                       'range' : (40, -3.2, 3.2),
-                       'xaxis' : '#Delta#eta_{jj} [GeV]',
+                       'range' : (40, 0., 4.),
+                       'xaxis' : '|#Delta#eta_{jj}|',
                        'fold'  : 0
                       }
 
+variables['detal1j1'] = {'name'  : 'abs(Lepton_eta[0]-CleanJet_eta[0])',
+                         'range' : (40, 0., 4.),
+                         'xaxis' : '|#Delta#eta_{l1j1}|',
+                         'fold'  : 0
+                        }
 variables['mjj'] = {'name'  : 'mjj',
                     'range' : (50, 0., 400.),
                     'xaxis' : 'm_{jj} [GeV]',
@@ -43,12 +48,6 @@ variables['mll'] = {'name'  : 'mll',           # variable name
                     'xaxis' : 'm_{ll} [GeV]',  # variable label
                     'fold'  : 0
                    }
-
-variables['detal1j1'] = {'name'  : 'Lepton_eta[0]-CleanJet_eta[0]',
-                         'range' : (40, -3.2, 3.2),
-                         'xaxis' : '#Delta#eta_{l1j1}',
-                         'fold'  : 0
-                        }
 
 #variables['nvtx']  = {   'name': 'PV_npvsGood',      
 #                        'range' : (50,0,50),  

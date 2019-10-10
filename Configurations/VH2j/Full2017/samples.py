@@ -111,7 +111,7 @@ if useDYtt:
 
     samples['DY'] = {
         'name': files,
-        'weight': mcCommonWeight,
+        'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)',
         'FilesPerJob': 5,
     }
     addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO)
