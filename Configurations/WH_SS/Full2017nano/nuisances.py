@@ -107,7 +107,7 @@ nuisances['fake_mu'] = {
     'samples': {
         #'Fakes': ['fakeWMuUp', 'fakeWMuDown'],
         'Fakes_mm': ['fakeWMuUp', 'fakeWMuDown'],
-        'Fakes_em': ['fakeWMuUp', 'fakeWMuDown'],
+        'Fakes_em': ['fakeWMuUp', 'fakeWMuDown']
     }
 }
 
@@ -118,7 +118,7 @@ nuisances['fake_mu_stat'] = {
     'samples': {
         #'Fakes': ['fakeWStatMuUp', 'fakeWStatMuDown'],
         'Fakes_mm': ['fakeWStatMuUp', 'fakeWStatMuDown'],
-        'Fakes_em': ['fakeWStatMuUp', 'fakeWStatMuDown'],
+        'Fakes_em': ['fakeWStatMuUp', 'fakeWStatMuDown']
     }
 }
 ###### B-tagger
