@@ -85,8 +85,8 @@ addcut('VH_2j_DYtautau', _tmp)
 #-------------------------------------------------------------------------------
 # Test
 #-------------------------------------------------------------------------------
-addcut('Test_em', 'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13')
+#addcut('Test_em', 'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13')
 
-addcut('Test_ee', 'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11')
+#addcut('Test_ee', 'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11')
 
-addcut('Test_mm', 'Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13')
+#addcut('Test_mm', 'Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13')
