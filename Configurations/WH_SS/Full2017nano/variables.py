@@ -22,6 +22,18 @@ variables['mlljj20_whss_bin4']  = {   'name': 'mlljj20_whss',
                         'xaxis' : 'mlljj20_whss [GeV]',
                         'fold' : 0
                         }
+
+#variables['mlljj20_whss_bin5']  = {   'name': 'mlljj20_whss',
+#                        'range' : ([60.,100.,110.,120.,130.,140.,150.,175.,200.,250.,300.],),
+#                        'xaxis' : 'mlljj20_whss [GeV]',
+#                        'fold' : 0
+#                        }
+
+variables['mlljj20_whss_bin5']  = {   'name': 'mlljj20_whss',
+                        'range' : (10,50.,300.),
+                        'xaxis' : 'mlljj20_whss [GeV]',
+                        'fold' : 0
+                        }
 '''
 variables['puppimet']  = {
                         'name': 'PuppiMET_pt',    

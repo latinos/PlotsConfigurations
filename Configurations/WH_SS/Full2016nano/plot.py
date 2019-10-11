@@ -26,17 +26,17 @@ groupPlot['Fake']  = {
                   'nameHR' : 'Non-prompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fakes']
+                  #'samples'  : ['Fakes']
+                  'samples'  : ['Fakes_ee','Fakes_mm','Fakes_em']
               }
 
-
-groupPlot['DY']  = {  
-                  'nameHR' : "DY",
-                  'isSignal' : 0,
-                  'color': 418,    # kGreen+2
-                  'samples'  : ['DY']
-              }
-
+#groupPlot['DY']  = {  
+#                  'nameHR' : "DY",
+#                  'isSignal' : 0,
+#                  'color': 418,    # kGreen+2
+#                  'samples'  : ['DY']
+#              }
+#
 
 
 groupPlot['VVV']  = {  
@@ -75,6 +75,7 @@ groupPlot['Higgs']  = {
                   'isSignal' : 1,
                   'color': 632, # kRed 
 		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
+		#  'samples'  : ['WH_hww']
               }
 
 
@@ -84,7 +85,8 @@ groupPlot['Higgs']  = {
 #plot = {}
 
 # keys here must match keys in samples.py    
-#                    
+#     
+'''               
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
@@ -105,24 +107,37 @@ plot['DY']  = {
                         #},
 
               }
+'''
+
+#plot['Fakes']  = {  
+#                  'color': 921,    # kGray + 1
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1.0                  
+#              }
 
 
-plot['Fakes']  = {  
+plot['Fakes_em']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0                  
               }
 
+plot['Fakes_ee']  = { 
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0                  
+              }
 
-#plot['Fake_em']  = {  
-#                  'color': 921,    # kGray + 1
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.0                  
-#              }
-#
-#
+plot['Fakes_mm']  = { 
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0                  
+              }
+
 #plot['Fake_me']  = {  
 #                  'color': 921,    # kGray + 1
 #                  'isSignal' : 0,
