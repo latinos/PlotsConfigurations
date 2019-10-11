@@ -9,7 +9,7 @@ variables['events']  = {   'name': '1',
                         'xaxis' : 'events', 
                         'fold' : 3
                         }
-
+'''
 variables['pt1']  = {   'name': 'Lepton_pt[0]',            #   variable name    
                         'range' : (50,0.,500),    #   variable range
                         'xaxis' : 'lept1_p_{T} [GeV]',  #   x axis name
@@ -52,23 +52,28 @@ variables['z0Mass_zh4l']  = {   'name': 'z0Mass_zh4l',            #   variable n
                         'xaxis' : 'z0Mass [GeV]',  #   x axis name
                        'fold' : 0
                              }
-     
+'''     
 variables['z1Mass_zh4l']  = {   'name': 'z1Mass_zh4l',            #   variable name    
                        'range' : (9,10,100),    #   variable range
                       'xaxis' : 'XMass [GeV]',  #   x axis name
                     'fold' : 0
                     }
-
-variables['z1DeltaPhi_zh4l']  = {   'name': 'z1DeltaPhi_zh4l',            #   variable name    
-                        'range' : (14,-3.5,3.5),    #   variable range
+'''
+variables['z1DeltaPhi_zh4l']  = {   'name': 'abs(z1DeltaPhi_zh4l)',            #   variable name    
+                        'range' : (7,0,3.5),    #   variable range
                        'xaxis' : 'XDeltaPhi [GeV]',  #   x axis name
                      'fold' : 0
                   }
 
-variables['z1DeltaR_zh4l']  = {   'name': 'z1DeltaR_zh4l',            #   variable name    
-                        'range' : (12,0,6),    #   variable range
-                         'xaxis' : 'XDeltaR [GeV]',  #   x axis name
-                        'fold' : 0
-                      }
+variables['njet']  = {  'name': 'njet',      
+                        'range' : (5,0,5),  
+                        'xaxis' : 'njet', 
+                        'fold' : 3
+                        }
+#variables['z1DeltaR_zh4l']  = {   'name': 'z1DeltaR_zh4l',            #   variable name    
+#                        'range' : (12,0,6),    #   variable range
+#                         'xaxis' : 'XDeltaR [GeV]',  #   x axis name
+#                        'fold' : 0
+#                      }
 
-   
+'''   

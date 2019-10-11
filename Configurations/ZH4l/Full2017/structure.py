@@ -66,7 +66,18 @@ structure['top'] = {
                   'isData'   : 0 
                   }
 
-
+structure['ttW']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0    
+                  }
+structure['ttZ']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0    
+                  }
+structure['ggH_hzz'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                 }    
 structure['WW']  = {
                   'isSignal' : 0,
                   'isData'   : 0    
@@ -131,6 +142,10 @@ structure['WZ']  = {
 structure['VVV']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
+                  }
+structure['WWW']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
                   }
 
 structure['ZZ']  = {
