@@ -4,7 +4,8 @@
 #-------------------------------------------------------------------------------
 # supercut
 #-------------------------------------------------------------------------------
-_tmp = [ 
+_tmp = [
+     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
      'Lepton_pt[0] > 25.',
      'Lepton_pt[1] > 10.',
      '(abs(Lepton_pdgId[1]) == 13 || Lepton_pt[1] > 13.)',
@@ -25,7 +26,6 @@ def addcut(name, exprs):
 # VH_2j_em
 #-------------------------------------------------------------------------------
 _tmp = [
-     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
      'Alt$(CleanJet_pt[1], 0) > 30.', 
      'abs(CleanJet_eta[0]) < 2.5',
      'abs(CleanJet_eta[1]) < 2.5',
@@ -47,7 +47,6 @@ addcut('VH_2j_emu', _tmp)
 # VH_2j_top
 #-------------------------------------------------------------------------------
 _tmp = [
-     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
      'Alt$(CleanJet_pt[1], 0) > 30.',  
      'abs(CleanJet_eta[0]) < 2.5',
      'abs(CleanJet_eta[1]) < 2.5',
@@ -65,7 +64,6 @@ addcut('VH_2j_topemu', _tmp)
 # VH_2j_DYtautau
 #-------------------------------------------------------------------------------
 _tmp = [
-     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
      'Alt$(CleanJet_pt[1], 0) > 30.',  
      'abs(CleanJet_eta[0]) < 2.5',
      'abs(CleanJet_eta[1]) < 2.5',
@@ -85,8 +83,8 @@ addcut('VH_2j_DYtautau', _tmp)
 #-------------------------------------------------------------------------------
 # Test
 #-------------------------------------------------------------------------------
-#addcut('Test_em', 'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13')
+_tmp = [
+     'VH2j_TMVAReader(Entry$) > 0.1',
+     ]
 
-#addcut('Test_ee', 'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11')
-
-#addcut('Test_mm', 'Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13')
+addcut('VH_2j_test', _tmp);

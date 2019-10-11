@@ -1,7 +1,12 @@
 # variables
 
-#variables = {}
-    
+variables['bdt'] = {'name': 'VH2j_TMVAReader(Entry$)',
+                    'range' : (20, -1., 1.),
+                    'xaxis' : 'BDT discriminant VH2j',
+                    'fold' : 3,
+                    'linesToAdd' : ['.L /afs/cern.ch/user/p/piedra/work/VH2jBDT/VH2j_TMVAReader.C+']
+                   }
+
 variables['jeteta1'] = {'name'  : 'CleanJet_eta[0]',
                         'range' : (80, -5., 5.),
                         'xaxis' : '#eta 1st jet',
