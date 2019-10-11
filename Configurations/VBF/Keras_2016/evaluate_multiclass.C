@@ -1,6 +1,6 @@
 // gSystem->Load("libLatinoAnalysisMultiDraw.so")
 
-#include "generated_code.h"
+#include "generated_code_5.h"
 
 #include "TTree.h"
 #include "TSystem.h"
@@ -28,11 +28,11 @@ float loc0_ptl [100];
 float loc0_etal [100];
 float loc0_phil [100];
 float loc0_qgl [100];
-float loc0_btag [100];
+//float loc0_btag [100];
 
 int loc0_id [100];
 
-float input[29];
+float input[27];
 
 void init(TTree* tree){
 
@@ -49,7 +49,7 @@ void init(TTree* tree){
         tree->SetBranchAddress("Lepton_phi", loc0_phil);
         tree->SetBranchAddress("Jet_qgl", loc0_qgl);
         tree->SetBranchAddress("CleanJet_jetIdx", loc0_id);
-        tree->SetBranchAddress("Jet_btagDeepB", loc0_btag);
+        //tree->SetBranchAddress("Jet_btagDeepB", loc0_btag);
         tree->SetBranchAddress("PuppiMET_pt", &loc0_metpt);
         tree->SetBranchAddress("PuppiMET_phi", &loc0_metphi);
         tree->SetBranchAddress("mTi", &loc0_mti);
@@ -105,8 +105,8 @@ float evaluate_multiclass(int entry, int nclass){
 
         input[25] = loc0_qgl[loc0_id[0]];
         input[26] = loc0_qgl[loc0_id[1]];                
-        input[27] = loc0_btag[loc0_id[0]];
-        input[28] = loc0_btag[loc0_id[1]];
+        //input[27] = loc0_btag[loc0_id[0]];
+        //input[28] = loc0_btag[loc0_id[1]];
 
         float classificator = guess_digit(input, nclass);       
 

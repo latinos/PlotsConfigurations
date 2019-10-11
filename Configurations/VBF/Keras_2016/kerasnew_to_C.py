@@ -234,10 +234,10 @@ df['ggh']['isGGH'] = np.ones(len(df['ggh']))
 
 model = Sequential()
 
-model.add(Dense(240, init='glorot_normal', activation='relu', input_dim=NDIM))
-model.add(Dense(120, init='glorot_normal', activation='relu', kernel_constraint=max_norm(1.)))
-model.add(Dense(60, init='glorot_normal', activation='relu', kernel_constraint=max_norm(1.)))
-model.add(Dense(4, init='glorot_normal', activation='softmax'))
+model.add(Dense(240, kernel_initializer='glorot_normal', activation='relu', input_dim=NDIM))
+model.add(Dense(120, kernel_initializer='glorot_normal', activation='relu', kernel_constraint=max_norm(1.)))
+model.add(Dense(60, kernel_initializer='glorot_normal', activation='relu', kernel_constraint=max_norm(1.)))
+model.add(Dense(4, kernel_initializer='glorot_normal', activation='softmax'))
 
 
 
