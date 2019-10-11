@@ -2,11 +2,11 @@
 treeName= 'Events'
 
 
-tag = 'ZH4l'
+tag = '8Oct19_2017'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile01'+tag
+outputDir = 'rootFile'+tag
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
@@ -30,11 +30,11 @@ lumi = 41.5
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot01'+tag
+outputDirPlots = 'plot'+tag
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards01'+tag
+outputDirDatacard = 'datacards'+tag
 
 
 # structure file for datacard
