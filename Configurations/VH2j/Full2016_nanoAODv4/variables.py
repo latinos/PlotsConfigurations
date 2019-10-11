@@ -7,6 +7,13 @@ variables['bdt'] = {'name': 'VH2j_TMVAReader(Entry$)',
                     'linesToAdd' : ['.L /afs/cern.ch/user/p/piedra/work/VH2jBDT/VH2j_TMVAReader.C+']
                    }
 
+variables['detaljmin'] = {'name': 'detaljmin(Lepton_eta[0], Lepton_eta[1], CleanJet_eta[0], CleanJet_eta[1])',
+                          'range' : (40, 0., 4.),
+                          'xaxis' : 'min |#Delta#eta_{lj}|',
+                          'fold' : 0,
+                          'linesToAdd' : ['.L /afs/cern.ch/user/p/piedra/work/CMSSW_projects/CMSSW_10_2_15_patch2/src/PlotsConfigurations/Configurations/VH2j/Full2016_nanoAODv4/detaljmin.C+']
+                         }
+
 variables['jeteta1'] = {'name'  : 'CleanJet_eta[0]',
                         'range' : (80, -5., 5.),
                         'xaxis' : '#eta 1st jet',
