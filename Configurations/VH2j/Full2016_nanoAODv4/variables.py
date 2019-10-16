@@ -7,9 +7,15 @@ variables['bdt'] = {'name': 'VH2j_TMVAReader(Entry$)',
                     'linesToAdd' : ['.L /afs/cern.ch/user/p/piedra/work/VH2jBDT/VH2j_TMVAReader.C+']
                    }
 
+variables['detal1j1'] = {'name'  : 'Lepton_eta[0]-CleanJet_eta[0]',
+                         'range' : (40, -4., 4.),
+                         'xaxis' : '#Delta#eta_{l1j1}',
+                         'fold'  : 0
+                        }
+
 variables['detaljmin'] = {'name': 'detaljmin(Lepton_eta[0], Lepton_eta[1], CleanJet_eta[0], CleanJet_eta[1])',
-                          'range' : (40, 0., 4.),
-                          'xaxis' : 'min |#Delta#eta_{lj}|',
+                          'range' : (40, -4., 4.),
+                          'xaxis' : 'min #Delta#eta_{lj}',
                           'fold' : 0,
                           'linesToAdd' : ['.L /afs/cern.ch/user/p/piedra/work/CMSSW_projects/CMSSW_10_2_15_patch2/src/PlotsConfigurations/Configurations/VH2j/Full2016_nanoAODv4/detaljmin.C+']
                          }
@@ -38,11 +44,6 @@ variables['detajj'] = {'name'  : 'detajj',
                        'fold'  : 0
                       }
 
-variables['detal1j1'] = {'name'  : 'abs(Lepton_eta[0]-CleanJet_eta[0])',
-                         'range' : (40, 0., 4.),
-                         'xaxis' : '|#Delta#eta_{l1j1}|',
-                         'fold'  : 0
-                        }
 variables['mjj'] = {'name'  : 'mjj',
                     'range' : (50, 0., 400.),
                     'xaxis' : 'm_{jj} [GeV]',
