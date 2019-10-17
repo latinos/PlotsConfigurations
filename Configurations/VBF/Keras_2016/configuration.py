@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'vbf_2016_06_09'
+tag = 'vbf_2016_01_10'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -14,13 +14,13 @@ aliasesFile = 'aliases.py'
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
+cutsFile = 'cuts.py'
 
 # file with list of samples
-samplesFile = 'samples.py' 
+samplesFile = 'samples.py'
 
 # file with list of samples
-#plotFile = 'plot.py' 
+plotFile = 'plot.py'
 
 # luminosity to normalize to (in 1/fb)
 lumi = 35.867

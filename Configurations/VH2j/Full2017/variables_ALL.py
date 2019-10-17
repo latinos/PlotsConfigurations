@@ -1,27 +1,22 @@
 # variables
 
-#variables = {}
-    
-
-
-variables['events']  = {   'name': '1',      
+variables['events'] = { 'name': '1',      
                         'range' : (1,0,2),  
                         'xaxis' : 'events', 
                         'fold' : 3
-                        }
-
-variables['nvtx']  = {   'name': 'PV_npvsGood',      
-                        'range' : (50,0,50),  
-                        'xaxis' : 'nvtx', 
-                         'fold' : 3
                       }
 
-#MODIFIED
-variables['mjj']  = {   'name': 'mjj',            #   variable name    
+variables['nvtx'] = { 'name': 'PV_npvsGood',      
+                      'range' : (50,0,50),  
+                      'xaxis' : 'nvtx', 
+                      'fold' : 3
+                    }
+
+variables['mjj']    = { 'name': 'mjj',            #   variable name    
                         'range' : (18, 0,180),    #   variable range
                         'xaxis' : 'm_{jj} [GeV]',  #   x axis name
-                         'fold' : 0
-                        }
+                        'fold' : 0
+                      }
 
 variables['mll']  = {   'name': 'mll',            #   variable name    
                         'range' : (8, 0,200),    #   variable range

@@ -1,5 +1,6 @@
-# example of configuration file
-treeName= 'Events'
+# VH2j configuration file
+
+treeName = 'Events'
 
 tag = 'VH2j_2016'
 

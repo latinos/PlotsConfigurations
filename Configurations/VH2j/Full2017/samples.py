@@ -53,10 +53,12 @@ elif  'cern' in SITE:
 def makeMCDirectory(var=''):
     if var:
         #return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
-        return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Fall17/l2tightOR__{var}'.format(var=var)
+        #return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Fall17/l2tightOR__{var}'.format(var=var)
+        return '/afs/cern.ch/user/d/ddicroce/public/Fall17/l2tightOR__{var}'.format(var=var)
     else:
         #return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
-        return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Fall17/l2tightOR'
+        #return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Fall17/l2tightOR'
+        return '/afs/cern.ch/user/d/ddicroce/public/Fall17/l2tightOR'
 
 mcDirectory = makeMCDirectory()
 fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
@@ -109,7 +111,7 @@ if useDYtt:
 
     samples['DY'] = {
         'name': files,
-        'weight': mcCommonWeight,
+        'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)',
         'FilesPerJob': 5,
     }
     addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO)

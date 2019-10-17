@@ -11,15 +11,22 @@
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
-                  'color': 400,   # kYellow
+                  'color': 401,   # kYellow
                   'samples'  : ['top']
+              }
+
+groupPlot['ttV']  = {  
+                  'nameHR' : 'ttV',
+                  'isSignal' : 0,
+                  'color': 418,    # kGreen+3
+                  'samples'  : ['ttW','ttZ']
               }
 
 groupPlot['WW']  = {  
                   'nameHR' : 'WW',
                   'isSignal' : 0,
-                  'color': 851, # kAzure -9 
-                  'samples'  : ['WW', 'ggWW', 'WWewk']
+                  'color': 431, # kAzure -9 
+                  'samples'  : ['WW','WWewk']
               }
 
 #groupPlot['Fake']  = {  
@@ -33,7 +40,7 @@ groupPlot['WW']  = {
 groupPlot['DY']  = {  
                   'nameHR' : "DY",
                   'isSignal' : 0,
-                  'color': 418,    # kGreen+2
+                  'color': 635,    # kGreen+2
                   'samples'  : ['DY']
               }
 
@@ -42,30 +49,30 @@ groupPlot['DY']  = {
 groupPlot['VVV']  = {  
                   'nameHR' : 'VVV',
                   'isSignal' : 0,
-                  'color': 857, # kAzure -3  
-                  'samples'  : ['VVV']
+                  'color': 618, # kAzure -3  
+                  'samples'  : ['VVV','WWW']
               }
 
 
 groupPlot['VZ']  = {  
                   'nameHR' : "VZ",
                   'isSignal' : 0,
-                  'color'    : 617,   # kViolet + 1  
+                  'color'    :603,   # kViolet + 1  
                   'samples'  : ['VZ', 'WZ']
               }
 
 groupPlot['ZZ']  = {
                   'nameHR' : "ZZ",
                   'isSignal' : 0,
-                  'color'    : 870,   # kViolet + 1  
+                  'color'    : 857,   # kViolet + 1  
                   'samples'  : ['ZZ']
               }
 
 groupPlot['Vg']  = {  
                   'nameHR' : "V#gamma",
                   'isSignal' : 0,
-                  'color'    : 810,   # kOrange + 10
-                  'samples'  : ['Vg', 'Wg']
+                  'color'    : 922,   # kOrange + 10
+                  'samples'  : ['Vg']
               }
 
 #groupPlot['VgS']  = {
@@ -77,11 +84,11 @@ groupPlot['Vg']  = {
 #
 
 
-groupPlot['Higgs']  = {  
+groupPlot['ZH4l']  = {  
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
+		  'samples'  : ['ZH_hww','ggZH_hww','WH_hww','qqH_hww','ggH_hww','H_htt']
               }
 
 
@@ -113,6 +120,19 @@ plot['DY']  = {
 
               }
 
+plot['ttZ']  = {
+                  'color': 419,    # kGreen+3
+                  'isSignal' : 0,
+                  'isData'   : 0,    
+                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+                  }
+
+plot['ttW']  = {
+                  'color': 419,    # kGreen+3
+                  'isSignal' : 0,
+                  'isData'   : 0,    
+                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+                  }
 
 #plot['Fake_em']  = {  
 #                  'color': 921,    # kGray + 1
@@ -132,7 +152,7 @@ plot['DY']  = {
               
 plot['top'] = {   
                   'nameHR' : 'tW and t#bar{t}',
-                  'color': 400,   # kYellow
+                  'color': 401,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
                   'scale'    : 1.0,
@@ -153,14 +173,14 @@ plot['top'] = {
 
 
 plot['WW']  = {
-                  'color': 851, # kAzure -9 
+                  'color': 419, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
 
 plot['ggWW']  = {
-                  'color': 850, # kAzure -10
+                  'color': 851, # kAzure -10
                   'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1.0
@@ -169,13 +189,13 @@ plot['ggWW']  = {
 plot['WWewk']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
-                  'isData'   : 0,
+                 'isData'   : 0,
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
 
 
 plot['Vg']  = { 
-                  'color': 859, # kAzure -1  
+                  'color': 922, # kAzure -1  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
@@ -189,25 +209,38 @@ plot['Vg']  = {
 #                  }
 #
 plot['VZ']  = { 
-                  'color': 858, # kAzure -2  
+                  'color': 612, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
 
 plot['ZZ']  = {
-                  'color': 858, # kAzure -2  
+                  'color': 857, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
 
 plot['VVV']  = { 
-                  'color': 857, # kAzure -3  
+                  'color': 618, # kAzure -3  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
+plot['WWW']  = {
+                  'color': 618, # kAzure -3  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+plot['WZ']  = {
+                  'color': 612, # kAzure -2  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
 
 # Htautau
 
@@ -219,63 +252,63 @@ plot['H_htt'] = {
                   'scale'    : 1    #
                   }
 
-
+#
 #plot['ZH_htt'] = {
 #                  'nameHR' : 'ZHtt',
 #                  'color': 632+3, # kRed+3 
 #                  'isSignal' : 1,
 #                  'isData'   : 0,    
 #                  'scale'    : 1    #
-#                  }
-#
-#plot['bbH_htt'] = {
-#                  'nameHR' : 'bbHtt',
-#                  'color': 632-1, # kRed-1 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,
-#                  'scale'    : 1    #
-#                  }
-#
-#plot['ttH_htt'] = {
-#                  'nameHR' : 'bbHtt',
-#                  'color': 632-2, # kRed-1 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,
-#                  'scale'    : 1    #
-#                  }
-#
-#
-#plot['ggZH_htt'] = {
-#                  'nameHR' : 'ggZHtt',
-#                  'color': 632+4, # kRed+4
-#                  'isSignal' : 1,
-#                  'isData'   : 0,    
-#                  'scale'    : 1    #
-#                  }
-#
+#                 }
+##
+###plot['bbH_htt'] = {
+###                  'nameHR' : 'bbHtt',
+###                  'color': 632-1, # kRed-1 
+###                  'isSignal' : 1,
+###                  'isData'   : 0,
+###                  'scale'    : 1    #
+###                  }
+###
+###plot['ttH_htt'] = {
+###                  'nameHR' : 'bbHtt',
+###                  'color': 632-2, # kRed-1 
+###                  'isSignal' : 1,
+###                  'isData'   : 0,
+###                  'scale'    : 1    #
+###                  }
+###
+###
+###plot['ggZH_htt'] = {
+###                  'nameHR' : 'ggZHtt',
+###                  'color': 632+4, # kRed+4
+###                  'isSignal' : 1,
+###                  'isData'   : 0,    
+###                  'scale'    : 1    #
+###                  }
+###
 #plot['WH_htt'] = {
 #                  'nameHR' : 'WHtt',
 #                  'color': 632+2, # kRed+2 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,    
+#                 'isSignal' : 1,
+#                 'isData'   : 0,    
 #                  'scale'    : 1    #
 #                  }
-#
-#
+##
+###
 #plot['qqH_htt'] = {
 #                  'nameHR' : 'qqHtt',
 #                  'color': 632+1, # kRed+1 
 #                  'isSignal' : 1,
-#                  'isData'   : 0,    
+#                'isData'   : 0,    
 #                  'scale'    : 1    #
 #                  }
-#
-#
+##
+###
 #plot['ggH_htt'] = {
-#                  'nameHR' : 'ggHtt',
+##                  'nameHR' : 'ggHtt',
 #                  'color': 632, # kRed 
 #                  'isSignal' : 1,
-#                  'isData'   : 0,    
+#                 'isData'   : 0,    
 #                  'scale'    : 1    #
 #                  }
 
@@ -318,7 +351,7 @@ plot['qqH_hww'] = {
                   'nameHR' : 'qqH',
                   'color': 632+1, # kRed+1 
                   'isSignal' : 1,
-                  'isData'   : 0,    
+                'isData'   : 0,    
                   'scale'    : 1    #
                   }
 
@@ -339,13 +372,13 @@ plot['ggH_hww'] = {
 #                  'scale'    : 1    #
 #                  }
 
-plot['ttH_hww'] = {
-                  'nameHR' : 'ttH',
-                  'color': 632+6, # kRed+6
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1    #
-                  }
+#plot['ttH_hww'] = {
+#                  'nameHR' : 'ttH',
+#                  'color': 632+6, # kRed+6
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  'scale'    : 1    #
+#                  }
 
 
 # data
@@ -354,8 +387,8 @@ plot['DATA']  = {
                   'nameHR' : 'Data',
                   'color': 1 ,  
                   'isSignal' : 0,
-                  'isData'   : 1
-               #   'isBlind'  : 1
+                  'isData'   : 1,
+                 'isBlind'  : 1
               }
 
 
