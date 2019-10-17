@@ -1,10 +1,10 @@
 # variables
 
-#variables['bdt'] = {     'name'  : 'VH2j_TMVAReader(Entry$)',# variable name
-#                         'range' : (20, -1., 1.),            # variable range
-#                         'xaxis' : 'BDT discriminant VH2j',  # x-axis name
-#                         'fold'  : 3,                        # 0 = not fold (default), 1 = fold underflow bin, 2 = fold overflow bin, 3 = fold underflow and overflow
-#                         'linesToAdd' : ['.L /afs/cern.ch/user/p/piedra/work/VH2jBDT/VH2j_TMVAReader.C+']}
+#variables['bdt'] = {      'name'  : 'VH2j_TMVAReader(Entry$)',# variable name
+#                          'range' : (20, -1., 1.),            # variable range
+#                          'xaxis' : 'BDT discriminant VH2j',  # x-axis name
+#                          'fold'  : 3,                        # 0 = not fold (default), 1 = fold underflow bin, 2 = fold overflow bin, 3 = fold underflow and overflow
+#                          'linesToAdd' : ['.L /afs/cern.ch/user/p/piedra/work/VH2jBDT/VH2j_TMVAReader.C+']}
 
 variables['detajj'] = {   'name'  : 'detajj',
                           'range' : (40, 0., 4.),
@@ -72,15 +72,15 @@ variables['jeteta2'] = {  'name'  : 'CleanJet_eta[1]',
                           'xaxis' : '#eta 2nd jet',
                           'fold'  : 0}
 
-variables['jetphi1'] = {  'name'  : 'CleanJet_phi[0]',
-                          'range' : (40, -3.2, 3.2),
-                          'xaxis' : '#phi 1st jet',
-                          'fold'  : 0}
+#variables['jetphi1'] = {  'name'  : 'CleanJet_phi[0]',
+#                          'range' : (40, -3.2, 3.2),
+#                          'xaxis' : '#phi 1st jet',
+#                          'fold'  : 0}
 
-variables['jetphi2'] = {  'name'  : 'CleanJet_phi[1]',
-                          'range' : (40, -3.2, 3.2),
-                          'xaxis' : '#phi 2nd jet',
-                          'fold'  : 0}
+#variables['jetphi2'] = {  'name'  : 'CleanJet_phi[1]',
+#                          'range' : (40, -3.2, 3.2),
+#                          'xaxis' : '#phi 2nd jet',
+#                          'fold'  : 0}
 
 variables['jetpt1'] = {   'name'  : 'CleanJet_pt[0]*(CleanJet_pt[0]>30)',     
                           'range' : (40, 30., 190.),   
@@ -112,10 +112,10 @@ variables['mll5GeV'] = {  'name'  : 'mll',
                           'xaxis' : 'm_{ll} [GeV]',
                           'fold'  : 0}
 
-#variables['mllpeak'] = { 'name'  : 'mll',
-#                         'range' : (20, 80., 100.),
-#                         'xaxis' : 'm_{ll} [GeV]',
-#                         'fold'  : 0}
+#variables['mllpeak'] = {  'name'  : 'mll',
+#                          'range' : (20, 80., 100.),
+#                          'xaxis' : 'm_{ll} [GeV]',
+#                          'fold'  : 0}
 
 variables['mpmet'] = {    'name'  : 'mpmet',      
                           'range' : (50, 0., 150.),  
@@ -132,20 +132,20 @@ variables['njet'] = {     'name'  : 'Sum$(CleanJet_pt>30)',
                           'xaxis' : 'number of jets',
                           'fold'  : 2}
 
-variables['nvtx'] = {     'name'  : 'PV_npvsGood',      
-                          'range' : (50, 0, 50),  
-                          'xaxis' : 'number of vertices', 
-                          'fold'  : 3}
+#variables['nvtx'] = {     'name'  : 'PV_npvsGood',      
+#                          'range' : (50, 0, 50),  
+#                          'xaxis' : 'number of vertices', 
+#                          'fold'  : 3}
 
-variables['phi1'] = {     'name'  : 'Lepton_phi[0]',
-                          'range' : (40, -3.2, 3.2),
-                          'xaxis' : '#phi 1st lepton',
-                          'fold'  : 3}
+#variables['phi1'] = {     'name'  : 'Lepton_phi[0]',
+#                          'range' : (40, -3.2, 3.2),
+#                          'xaxis' : '#phi 1st lepton',
+#                          'fold'  : 3}
 
-variables['phi2'] = {     'name'  : 'Lepton_phi[1]',
-                          'range' : (40, -3.2, 3.2),
-                          'xaxis' : '#phi 2nd lepton',
-                          'fold'  : 3}
+#variables['phi2'] = {     'name'  : 'Lepton_phi[1]',
+#                          'range' : (40, -3.2, 3.2),
+#                          'xaxis' : '#phi 2nd lepton',
+#                          'fold'  : 3}
 
 variables['pfmet'] = {    'name'  : 'MET_pt',     
                           'range' : (50, 0., 150.),   
@@ -182,12 +182,12 @@ variables['qgl1'] = {     'name'  : 'Jet_qgl[CleanJet_jetIdx[1]]',
                           'xaxis' : '2nd jet quark-gluon likelihood',
                           'fold'  : 0}
 
-#variables['rawmet'] = {  'name'  : 'RawMET_pt',     
-#                         'range' : (50, 0., 150.),   
-#                         'xaxis' : 'raw MET [GeV]',
-#                         'fold'  : 3}
+#variables['rawmet'] = {   'name'  : 'RawMET_pt',     
+#                          'range' : (50, 0., 150.),   
+#                          'xaxis' : 'raw MET [GeV]',
+#                          'fold'  : 3}
 
-variables['TkMET'] = {    'name'  : 'TkMET_pt',     
-                          'range' : (50, 0., 150.),   
-                          'xaxis' : 'tracker MET [GeV]',
-                          'fold'  : 3}
+#variables['TkMET'] = {    'name'  : 'TkMET_pt',     
+#                          'range' : (50, 0., 150.),   
+#                          'xaxis' : 'tracker MET [GeV]',
+#                          'fold'  : 3}
