@@ -11,10 +11,10 @@ variables['detajj'] = {   'name'  : 'detajj',
                           'xaxis' : '|#Delta#eta_{jj}|',
                           'fold'  : 0}
 
-variables['detal1j1'] = { 'name'  : 'Lepton_eta[0]-CleanJet_eta[0]',
-                          'range' : (40, -4., 4.),
-                          'xaxis' : '#Delta#eta_{l1j1}',
-                          'fold'  : 0}
+#variables['detal1j1'] = { 'name'  : 'Lepton_eta[0]-CleanJet_eta[0]',
+#                          'range' : (40, -4., 4.),
+#                          'xaxis' : '#Delta#eta_{l1j1}',
+#                          'fold'  : 0}
 
 variables['detaljmin'] = {'name'  : 'detaljmin(Lepton_eta[0], Lepton_eta[1], CleanJet_eta[0], CleanJet_eta[1])',
                           'range' : (40, -4., 4.),
@@ -47,30 +47,30 @@ variables['drll'] = {     'name'  : 'drll',
                           'xaxis' : '#DeltaR_{ll}',
                           'fold'  : 2}
 
-variables['eta1'] = {     'name'  : 'Lepton_eta[0]',     
-                          'range' : (40, -3.2, 3.2),   
-                          'xaxis' : '#eta 1st lepton',
-                          'fold'  : 3}
+#variables['eta1'] = {     'name'  : 'Lepton_eta[0]',     
+#                          'range' : (40, -3.2, 3.2),   
+#                          'xaxis' : '#eta 1st lepton',
+#                          'fold'  : 3}
 
-variables['eta2'] = {     'name'  : 'Lepton_eta[1]',     
-                          'range' : (40, -3.2, 3.2),
-                          'xaxis' : '#eta 2nd lepton',
-                          'fold'  : 3}
+#variables['eta2'] = {     'name'  : 'Lepton_eta[1]',     
+#                          'range' : (40, -3.2, 3.2),
+#                          'xaxis' : '#eta 2nd lepton',
+#                          'fold'  : 3}
 
 variables['events'] = {   'name'  : '1',
                           'range' : (1, 0, 2),
                           'xaxis' : 'events',
                           'fold'  : 3}
 
-variables['jeteta1'] = {  'name'  : 'CleanJet_eta[0]',
-                          'range' : (80, -5., 5.),
-                          'xaxis' : '#eta 1st jet',
-                          'fold'  : 0}
+#variables['jeteta1'] = {  'name'  : 'CleanJet_eta[0]',
+#                          'range' : (80, -5., 5.),
+#                          'xaxis' : '#eta 1st jet',
+#                          'fold'  : 0}
 
-variables['jeteta2'] = {  'name'  : 'CleanJet_eta[1]',
-                          'range' : (80, -5., 5.),
-                          'xaxis' : '#eta 2nd jet',
-                          'fold'  : 0}
+#variables['jeteta2'] = {  'name'  : 'CleanJet_eta[1]',
+#                          'range' : (80, -5., 5.),
+#                          'xaxis' : '#eta 2nd jet',
+#                          'fold'  : 0}
 
 #variables['jetphi1'] = {  'name'  : 'CleanJet_phi[0]',
 #                          'range' : (40, -3.2, 3.2),
@@ -82,10 +82,10 @@ variables['jeteta2'] = {  'name'  : 'CleanJet_eta[1]',
 #                          'xaxis' : '#phi 2nd jet',
 #                          'fold'  : 0}
 
-variables['jetpt1'] = {   'name'  : 'CleanJet_pt[0]*(CleanJet_pt[0]>30)',     
-                          'range' : (40, 30., 190.),   
-                          'xaxis' : 'p_{T} 1st jet',
-                          'fold'  : 2}
+#variables['jetpt1'] = {   'name'  : 'CleanJet_pt[0]*(CleanJet_pt[0]>30)',     
+#                          'range' : (40, 30., 190.),   
+#                          'xaxis' : 'p_{T} 1st jet',
+#                          'fold'  : 2}
 
 #variables['jetpt1_0j'] = {'name'  : 'CleanJet_pt[0]*(CleanJet_pt[0]<30)',     
 #                          'range' : (30, 0., 30.),   
@@ -117,10 +117,10 @@ variables['mll5GeV'] = {  'name'  : 'mll',
 #                          'xaxis' : 'm_{ll} [GeV]',
 #                          'fold'  : 0}
 
-variables['mpmet'] = {    'name'  : 'mpmet',      
-                          'range' : (50, 0., 150.),  
-                          'xaxis' : 'min. (proj. tk. E_{T}^{miss}, proj. E_{T}^{miss}) [GeV]', 
-                          'fold'  : 3}
+#variables['mpmet'] = {    'name'  : 'mpmet',      
+#                          'range' : (50, 0., 150.),  
+#                          'xaxis' : 'min. (proj. tk. E_{T}^{miss}, proj. E_{T}^{miss}) [GeV]', 
+#                          'fold'  : 3}
 
 variables['mth'] = {      'name'  : 'mth',
                           'range' : (40, 0., 200.),
@@ -147,20 +147,20 @@ variables['njet'] = {     'name'  : 'Sum$(CleanJet_pt>30)',
 #                          'xaxis' : '#phi 2nd lepton',
 #                          'fold'  : 3}
 
-variables['pfmet'] = {    'name'  : 'MET_pt',     
-                          'range' : (50, 0., 150.),   
-                          'xaxis' : 'PF MET [GeV]',
-                          'fold'  : 3}
+#variables['pfmet'] = {    'name'  : 'MET_pt',     
+#                          'range' : (50, 0., 150.),   
+#                          'xaxis' : 'PF MET [GeV]',
+#                          'fold'  : 3}
 
-variables['pt1'] = {      'name'  : 'Lepton_pt[0]',     
-                          'range' : (40, 0., 200.),   
-                          'xaxis' : 'p_{T} 1st lepton [GeV]',
-                          'fold'  : 3}
+#variables['pt1'] = {      'name'  : 'Lepton_pt[0]',     
+#                          'range' : (40, 0., 200.),   
+#                          'xaxis' : 'p_{T} 1st lepton [GeV]',
+#                          'fold'  : 3}
 
-variables['pt2'] = {      'name'  : 'Lepton_pt[1]',     
-                          'range' : (40, 0., 200.),   
-                          'xaxis' : 'p_{T} 2nd lepton [GeV]',
-                          'fold'  : 3}
+#variables['pt2'] = {      'name'  : 'Lepton_pt[1]',     
+#                          'range' : (40, 0., 200.),   
+#                          'xaxis' : 'p_{T} 2nd lepton [GeV]',
+#                          'fold'  : 3}
 
 variables['ptll'] = {     'name'  : 'ptll',
                           'range' : (40, 0., 200.),
@@ -172,15 +172,15 @@ variables['puppimet'] = { 'name'  : 'PuppiMET_pt',
                           'xaxis' : 'puppi MET [GeV]',
                           'fold'  : 3}
 
-variables['qgl0'] = {     'name'  : 'Jet_qgl[CleanJet_jetIdx[0]]',
-                          'range' : (10, 0., 1.),
-                          'xaxis' : '1st jet quark-gluon likelihood',
-                          'fold'  : 0}
+#variables['qgl0'] = {     'name'  : 'Jet_qgl[CleanJet_jetIdx[0]]',
+#                          'range' : (10, 0., 1.),
+#                          'xaxis' : '1st jet quark-gluon likelihood',
+#                          'fold'  : 0}
 
-variables['qgl1'] = {     'name'  : 'Jet_qgl[CleanJet_jetIdx[1]]',
-                          'range' : (10, 0., 1.),
-                          'xaxis' : '2nd jet quark-gluon likelihood',
-                          'fold'  : 0}
+#variables['qgl1'] = {     'name'  : 'Jet_qgl[CleanJet_jetIdx[1]]',
+#                          'range' : (10, 0., 1.),
+#                          'xaxis' : '2nd jet quark-gluon likelihood',
+#                          'fold'  : 0}
 
 #variables['rawmet'] = {   'name'  : 'RawMET_pt',     
 #                          'range' : (50, 0., 150.),   
