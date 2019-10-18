@@ -1,6 +1,6 @@
 # VH2j
 
-The following instructions and configurations correspond to the VH2j analysis. The target is the associated Higgs production (VH) in which the V boson (W or Z) decays hadronically and the Higgs boson decays to WW, with both W boson decaying leptonically. This analysis is focused on events with missing transverse energy, an electron-muon pair and two jets.
+The following instructions and configurations correspond to the VH2j analysis. The target is the associated Higgs production (VH) in which the V boson (W or Z) decays hadronically and the Higgs boson decays to WW, with both W bosons decaying leptonically. This analysis is focused on events with missing transverse energy, an electron-muon pair and two jets.
 
 
 # Produce a valid VOMS proxy
