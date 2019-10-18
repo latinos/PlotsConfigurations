@@ -107,11 +107,6 @@ variables['mll10GeV'] = { 'name'  : 'mll',
                           'xaxis' : 'm_{ll} [GeV]',
                           'fold'  : 0}
 
-variables['mll5GeV'] = {  'name'  : 'mll',
-                          'range' : (40, 0., 200.),
-                          'xaxis' : 'm_{ll} [GeV]',
-                          'fold'  : 0}
-
 variables['mllpeak'] = {  'name'  : 'mll',
                           'range' : (20, 80., 100.),
                           'xaxis' : 'm_{ll} [GeV]',
