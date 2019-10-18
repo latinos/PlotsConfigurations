@@ -90,11 +90,6 @@ To produce blinded distributions (no data) open `plot.py` and set the variable `
     combine -M Significance --expectSignal=1 -t -1 -m 125 datacards/datacard_combined.txt
 
 
-# Signal strength
-
-    combine -M FitDiagnostics --rMin=-4 --rMax=7 --expectSignal=1 -t -1 datacards/datacard_combined.txt -m 125 -n mytest > result.txt
-
-
 # Likelihood scan
 
     combine -M MultiDimFit datacards/datacard_combined.txt -m 125 --expectSignal=1 -t -1 --algo=grid --points 100 --setParameterRanges r=-4,7 -n "_MyScan"
@@ -120,3 +115,8 @@ To produce blinded distributions (no data) open `plot.py` and set the variable `
     combineTool.py -M Impacts -d datacards/datacard_combined.root -m 125 --doFits --robustFit 1
     combineTool.py -M Impacts -d datacards/datacard_combined.root -m 125 -o impacts.json
     plotImpacts.py -i impacts.json -o impacts
+
+
+# Signal strength
+
+    combine -M FitDiagnostics --rMin=-4 --rMax=7 --expectSignal=1 -t -1 datacards/datacard_combined.txt -m 125 -n mytest > result.txt
