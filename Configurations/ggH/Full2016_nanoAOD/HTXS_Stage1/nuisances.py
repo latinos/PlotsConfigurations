@@ -432,24 +432,34 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 ## Shape nuisance due to QCD scale variations for DY
 # LHE scale variation weights (w_var / w_nominal)
 # [0] is muR=0.50000E+00 muF=0.50000E+00
+# [1] is muR=0.50000E+00 muF=0.10000E+01                                      
+# [2] is muR=0.50000E+00 muF=0.20000E+01                                      
+# [3] is muR=0.10000E+01 muF=0.50000E+00                                      
+# [4] is muR=0.10000E+01 muF=0.10000E+01                                      
+# [5] is muR=0.10000E+01 muF=0.20000E+01                                      
+# [6] is muR=0.20000E+01 muF=0.50000E+00
+# [7] is muR=0.20000E+01 muF=0.10000E+01
 # [8] is muR=0.20000E+01 muF=0.20000E+01
+
+variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 5, 7, 8]]
+
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
     'skipCMS': 1,
-    'kind': 'weight',
+    'kind': 'weight_envelope',
     'type': 'shape',
-    'samples': {'DY': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]']},
+    'samples': {'DY': variations},
     'AsLnN': '1'
 }
 
 nuisances['QCDscale_VV'] = {
     'name': 'QCDscale_VV',
-    'kind': 'weight',
+    'kind': 'weight_envelope',
     'type': 'shape',
     'samples': {
-        'Vg': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-        'VZ': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-        'VgS': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
+        'Vg': variations,
+        'VZ': variations,
+        'VgS': variations,
     }
 }
 
@@ -463,6 +473,7 @@ nuisances['QCDscale_ggVV'] = {
 }
 
 # NLL resummation variations
+'''
 nuisances['WWresum0j']  = {
   'name'  : 'CMS_hww_WWresum_0j',
   'skipCMS' : 1,
@@ -550,7 +561,7 @@ nuisances['WWqscaleGE200']  = {
                 },
                'cuts'  : cutsGT200
                 }
-
+'''
 # Uncertainty on SR/CR ratio
 nuisances['CRSR_accept_DY'] = {
     'name': 'CMS_hww_CRSR_accept_DY',

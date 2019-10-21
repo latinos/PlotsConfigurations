@@ -31,7 +31,7 @@ variables['mllVSmth_pt2lt20'] = {   'name': 'mll:mth',            #   variable n
                              'binY'     : 6
                              #
                              }
-
+'''
 
 variables['mllVSmth_4x3bins'] = {   'name': 'mll:mth',            #   variable name    
                                     'range' : ([60, 90, 110, 130, 200],[10, 40, 55, 210],),            #   variable range
@@ -65,3 +65,4 @@ variables['mllVSmth_2x2bins'] = {   'name': 'mll:mth',            #   variable n
                                     'binY'     : 2
                                     #
                                 }
+'''
