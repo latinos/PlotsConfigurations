@@ -6,11 +6,7 @@ variables['events']  = {'name': '1',
                         'range' : (1,0,2),  
                         'xaxis' : 'events', 
                          'fold' : 3,
-                   'linesToAdd' : ['.L /afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_11_0_0_pre7/src/PlotsConfigurations/Configurations/ggH_SF/Full2016_nAODv5/hww_DYmvaDNN_0j.C+',
-                                   '.L /afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_11_0_0_pre7/src/PlotsConfigurations/Configurations/ggH_SF/Full2016_nAODv5/hww_DYmvaDNN_1j.C+',
-                                   '.L /afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_11_0_0_pre7/src/PlotsConfigurations/Configurations/ggH_SF/Full2016_nAODv5/hww_DYmvaDNN_2j.C+',
-                                   '.L /afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_11_0_0_pre7/src/PlotsConfigurations/Configurations/ggH_SF/Full2016_nAODv5/hww_DYmvaDNN_VH.C+',
-                                   '.L /afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_11_0_0_pre7/src/PlotsConfigurations/Configurations/ggH_SF/Full2016_nAODv5/hww_DYmvaDNN_VBF.C+']
+                   'linesToAdd' : ['.L /afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_11_0_0_pre7/src/PlotsConfigurations/Configurations/ggH_SF/Full2016_nAODv5/hww_DYmvaDNN_VH.C+']
 
                         }
 '''   
@@ -234,13 +230,13 @@ variables['mpmet']  = { 'name': 'mpmet',
                         'fold' : 3
                         }
 
-variables['dymva_bdt'] = { 'name'  : '(dymva_bdt_0j*0j)+(dymva_bdt_1j*1j)+(dymva_bdt_2j*2jggH)+(dymva_bdt_VBF*2jVBF)',
+variables['dymva_bdt'] = { 'name'  : '(dymva_bdt_0j*0j)+(dymva_bdt_1j*1j)+(dymva_bdt_2j*2jggH)+(dymva_bdt_VH*2jVH)',
                            'range' : ([-1,0,0.3,0.6,0.7,0.8,0.9,1.001],),
                            'xaxis' : 'DYMVA_{BDT}',
                            'fold' : 3
                         }
 
-variables['dymva_dnn'] = { 'name'  : '(dymva_dnn_0j*0j)+(dymva_dnn_1j*1j)+(dymva_dnn_2j*2jggH)+(dymva_dnn_VBF*2jVBF)',
+variables['dymva_dnn'] = { 'name'  : '(dymva_dnn_0j*0j)+(dymva_dnn_1j*1j)+(dymva_dnn_2j*2jggH)+(dymva_dnn_VH*2jVH)',
                            'range' : ([0,0.5,0.6,0.7,0.8,0.9,0.95,1.001],),
                            'xaxis' : 'DYMVA_{DNN}',
                            'fold' : 3

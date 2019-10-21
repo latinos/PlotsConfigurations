@@ -4,7 +4,10 @@
 
 optim={}
 
-optim['dymva0p81']  = ' && hww_DYmvaDNN_0j(Entry$) > 0.81 '
+optim={}
+#optim['dymva0p80']  = ' && hww_DYmvaDNN_0j(Entry$) > 0.80 ' 
+optim['dymva0p805']  = ' && hww_DYmvaDNN_0j(Entry$) > 0.805 '
+#optim['dymva0p81']  = ' && hww_DYmvaDNN_0j(Entry$) > 0.81 ' 
 #optim['dymva0p815']  = ' && hww_DYmvaDNN_0j(Entry$) > 0.815 ' 
 optim['dymva0p825']  = ' && hww_DYmvaDNN_0j(Entry$) > 0.825 '
 #optim['dymva0p83']  = ' && hww_DYmvaDNN_0j(Entry$) > 0.83 ' 
