@@ -9,6 +9,39 @@
 # imported from cuts.py
 # cuts
 
+import os
+
+if os.path.exists('HTXS_stage1_categories.py') :
+  handle = open('HTXS_stage1_categories.py','r')
+  exec(handle)
+  handle.close()
+
+sampleNames = []
+for cat in HTXSStage1_1Categories:
+  if 'GG2H_' in cat:
+    sampleNames.append(cat.replace('GG2H','ggH_hww'))
+    sampleNames.append(cat.replace('GG2H','ggH_htt'))
+  elif 'QQ2HQQ_' in cat:
+    sampleNames.append(cat.replace('QQ2HQQ','qqH_hww'))
+    sampleNames.append(cat.replace('QQ2HQQ','qqH_htt'))
+    sampleNames.append(cat.replace('QQ2HQQ','WH_had_hww'))
+    sampleNames.append(cat.replace('QQ2HQQ','WH_had_htt'))
+    sampleNames.append(cat.replace('QQ2HQQ','ZH_had_hww'))
+    sampleNames.append(cat.replace('QQ2HQQ','ZH_had_htt'))
+  elif 'QQ2HLNU_' in cat:
+    sampleNames.append(cat.replace('QQ2HLNU','WH_lep_hww'))
+    sampleNames.append(cat.replace('QQ2HLNU','WH_lep_htt'))
+  elif 'QQ2HLL_' in cat:
+    sampleNames.append(cat.replace('QQ2HLL','ZH_lep_hww'))
+    sampleNames.append(cat.replace('QQ2HLL','ZH_lep_htt'))
+  elif 'GG2HLL_' in cat:
+    sampleNames.append(cat.replace('GG2HLL','ggZH_lep_hww'))
+  elif 'TTH' in cat:
+    sampleNames.append(cat.replace('TTH','ttH_hww'))
+  elif 'BBH' in cat:
+    sampleNames.append(cat.replace('BBH','bbH_hww'))
+
+
 from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
 
 def nanoGetSampleFiles(inputDir, Sample):
@@ -265,6 +298,12 @@ nuisances['PU'] = {
     'AsLnN': '1',
 }
 
+for name in sampleNames:
+  if 'ggH_hww' in name:
+    nuisances['PU']['samples'].update({name: ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)']})
+  elif 'qqH_hww' in name:
+    nuisances['PU']['samples'].update({name: ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)']})
+
 ##### PS and UE
 
 nuisances['PS']  = {
@@ -353,6 +392,9 @@ nuisances['pdf_Higgs_gg'] = {
     },
     'type': 'lnN',
 }
+for name in sampleNames:
+  if 'ggH' in name:
+    nuisances['pdf_Higgs_gg']['samples'].update({name: HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH' ,'125.09','pdf','sm')})
 
 values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','pdf','sm')
 
@@ -380,6 +422,9 @@ nuisances['pdf_Higgs_qqbar'] = {
         'ZH_htt': valueszh
     },
 }
+for name in sampleNames:
+  if 'qqH' in name:
+    nuisances['pdf_Higgs_qqbar']['samples'].update({name: HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH' ,'125.09','pdf','sm')})
 
 #FIXME: check this 4%
 nuisances['pdf_qqbar'] = {
@@ -403,6 +448,9 @@ nuisances['pdf_Higgs_gg_ACCEPT'] = {
     },
     'type': 'lnN',
 }
+for name in sampleNames:
+  if 'ggH' in name:
+    nuisances['pdf_Higgs_gg_ACCEPT']['samples'].update({name : '1.005'})
 
 #FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['pdf_gg_ACCEPT'] = {
@@ -426,6 +474,9 @@ nuisances['pdf_Higgs_qqbar_ACCEPT'] = {
         'ZH_htt': '1.012',
     },
 }
+for name in sampleNames:
+  if 'qqH' in name:
+    nuisances['pdf_Higgs_qqbar_ACCEPT']['samples'].update({name : '1.011'})
 
 #FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['pdf_qqbar_ACCEPT'] = {
@@ -446,7 +497,7 @@ nuisances['WWresum0j']  = {
                 'samples'  : {
                    'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
                    },
-               'cuts'  : cuts0j
+                'cutspost'  : lambda self, cuts: [cut for cut in cuts if '0j' in cut]
                 }
 
 
@@ -458,8 +509,8 @@ nuisances['WWresum1j']  = {
                 'samples'  : {
                    'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
                    },
-               'cuts'  : cuts1j
-                }
+                'cutspost'  : lambda self, cuts: [cut for cut in cuts if '1j' in cut]
+               }
 
 nuisances['WWqscale0j']  = {
                 'name'  : 'CMS_hww_WWqscale_0j',
@@ -469,7 +520,7 @@ nuisances['WWqscale0j']  = {
                 'samples'  : {
                    'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
                    },
-               'cuts'  : cuts0j 
+               'cutspost'  : lambda self, cuts: [cut for cut in cuts if '0j' in cut]
                 }
 
 
@@ -481,7 +532,7 @@ nuisances['WWqscale1j']  = {
                 'samples'  : {
                    'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
                    },
-               'cuts'  : cuts1j 
+               'cutspost'  : lambda self, cuts: [cut for cut in cuts if '1j' in cut]
                 }
 
 nuisances['WWresum2j']  = {
@@ -492,7 +543,7 @@ nuisances['WWresum2j']  = {
                 'samples'  : {
                 'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
                 },
-               'cuts'  : cuts2j
+               'cutspost'  : lambda self, cuts: [cut for cut in cuts if '2j' in cut]
                 }
 
 nuisances['WWqscale2j']  = {
@@ -503,7 +554,7 @@ nuisances['WWqscale2j']  = {
                 'samples'  : {
                 'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
                 },
-               'cuts'  : cuts2j
+               'cutspost'  :  lambda self, cuts: [cut for cut in cuts if '2j' in cut]
                 }
 nuisances['WWresumGE200']  = {
                 'name'  : 'CMS_hww_WWresum_GE200',
@@ -513,7 +564,7 @@ nuisances['WWresumGE200']  = {
                 'samples'  : {
                 'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
                 },
-               'cuts'  : cutsGT200
+               'cutspost'  :   lambda self, cuts: [cut for cut in cuts if 'GE200' in cut]
                 }
 
 nuisances['WWqscaleGE200']  = {
@@ -524,7 +575,7 @@ nuisances['WWqscaleGE200']  = {
                 'samples'  : {
                 'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
                 },
-               'cuts'  : cutsGT200
+               'cutspost'  :   lambda self, cuts: [cut for cut in cuts if 'GE200' in cut]
                 }
 
 ## Shape nuisance due to QCD scale variations for DY
@@ -627,6 +678,21 @@ for name, vname in thus:
           #'ggH_htt': updown
         }
     }
+    for name in sampleNames:
+        if 'ggH_hww' in name:
+            nuisances[vname]['samples'].update({name : [vname, '1+(1.-'+vname+')']})
+
+nuisances['QCDscale_ggH_STXS_ACCEPT'] = {
+               'name'  : 'QCDscale_ggH_STXS_ACCEPT',
+               'samples'  : { },
+               'type'  : 'shape',
+               'kind'  : 'weight',
+              }
+for name in sampleNames:
+  if 'ggH_hww' in name:
+    scale2d0 = QCDScaleFactors[name.replace('ggH_hww','GG2H')][0]
+    scale0d5 = QCDScaleFactors[name.replace('ggH_hww','GG2H')][1]
+    nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/'+scale2d0, 'LHEScaleWeight[0]/'+scale0d5]})
 
 #### QCD scale uncertainties for Higgs signals other than ggH
 
@@ -640,6 +706,9 @@ nuisances['QCDscale_qqH'] = {
     },
     'type': 'lnN'
 }
+for name in sampleNames:
+  if 'qqH' in name:
+    nuisances['QCDscale_qqH']['samples'].update({name : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm')})
 
 valueswh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm')
 valueszh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm')
@@ -697,6 +766,9 @@ nuisances['QCDscale_qqbar_ACCEPT'] = {
         'VZ': '1.029',
     }
 }
+for name in sampleNames:
+  if 'qqH' in name:
+    nuisances['QCDscale_qqbar_ACCEPT']['samples'].update({name : '1.007'})
 
 #FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['QCDscale_gg_ACCEPT'] = {
