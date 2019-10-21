@@ -1,17 +1,19 @@
 # example of configuration file
+treeName= 'Events'
 
-tag = 'Test'
-
+tag = 'ggH_SF_2016_VH_dymvaOptim'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = 'rootFile_VH_dymvaOptim'
 
+# file with TTree aliases
+aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = 'variables_VH.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
+cutsFile = 'cuts_VH_dymvaOptim.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 
@@ -22,12 +24,11 @@ plotFile = 'plot.py'
 
 
 # luminosity to normalize to (in 1/fb)
-#lumi = 4.3
-lumi = 12.2950
+lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'figures'
+outputDirPlots = 'plotGGH_SF_SR'+tag
 
 
 # used by mkDatacards to define output directory for datacards
@@ -40,3 +41,4 @@ structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
 nuisancesFile = 'nuisances.py'
+
