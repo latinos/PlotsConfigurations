@@ -92,7 +92,7 @@ aliases['zeroJet'] = {
 }
 
 aliases['oneJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) < 30.'
 }
 
 aliases['multiJet'] = {
@@ -108,36 +108,48 @@ aliases['2jVBF'] = {
 }
 
 #SF cuts
+#datacards/hww2l2v_13TeV_0jsf_mlllt45/comb/SExpPre_comb_hww2l2v_13TeV_0jsf_mlllt45:Significance: 2.04504
+#datacards/hww2l2v_13TeV_0jsf_mthgt90/comb/SExpPre_comb_hww2l2v_13TeV_0jsf_mthgt90:Significance: 2.04504
+#datacards/hww2l2v_13TeV_0jsf_dphilllNO/comb/SExpPre_comb_hww2l2v_13TeV_0jsf_dphilllNO:Significance: 2.04222
 aliases['Higgs0jetee'] = {
-'expr': '(mll < 45 && mth > 90 && (abs(dphill)) < 2.50)'
+'expr': '(mll < 45 && mth > 90)'
 }
 
 aliases['Higgs0jetmm'] = {
-'expr': '(mll < 45 && mth > 90 && (abs(dphill)) < 2.50)'
+'expr': '(mll < 45 && mth > 90)'
 }
 
+#datacards/hww2l2v_13TeV_1jsf_mlllt70/comb/SExpPre_comb_hww2l2v_13TeV_1jsf_mlllt70:Significance: 0.749071
+#datacards/hww2l2v_13TeV_1jsf_mthgt90/comb/SExpPre_comb_hww2l2v_13TeV_1jsf_mthgt90:Significance: 0.839966
+#datacards/hww2l2v_13TeV_1jsf_dphilllt3p00/comb/SExpPre_comb_hww2l2v_13TeV_1jsf_dphilllt3p00:Significance: 0.849549
 aliases['Higgs1jetee'] = {
-'expr': '(mll < 70 && mth > 75 && (abs(dphill)) < 1.90)'
+'expr': '(mll < 70 && mth > 90 && (abs(dphill)) < 3.00)'
 }
 
 aliases['Higgs1jetmm'] = {
-'expr': '(mll < 70 && mth > 75 && (abs(dphill)) < 1.90)'
+'expr': '(mll < 70 && mth > 90 && (abs(dphill)) < 3.00)'
 }
 
+#datacards/hww2l2v_13TeV_2jsf_mlllt45/comb/SExpPre_comb_hww2l2v_13TeV_2jsf_mlllt45:Significance: 0.565756
+#datacards/hww2l2v_13TeV_2jsf_mthgt50/comb/SExpPre_comb_hww2l2v_13TeV_2jsf_mthgt50:Significance: 0.595776
+#datacards/hww2l2v_13TeV_2jsf_dphilllNO/comb/SExpPre_comb_hww2l2v_13TeV_2jsf_dphilllNO:Significance: 0.596076
 aliases['Higgs2jetee'] = {
-'expr': '(mll < 55 && mth > 70 && (abs(dphill)) < 1.75)'
+'expr': '(mll < 45 && mth > 50)'
 }
 
 aliases['Higgs2jetmm'] = {
-'expr': '(mll < 55 && mth > 70 && (abs(dphill)) < 1.75)'
+'expr': '(mll < 45 && mth > 50)'
 }
 
+#datacards/hww2l2v_13TeV_2jsf_vbfmlllt55/comb/SExpPre_comb_hww2l2v_13TeV_2jsf_vbfmlllt55:Significance: 0.982647
+#datacards/hww2l2v_13TeV_2jsf_vbfmthgt30/comb/SExpPre_comb_hww2l2v_13TeV_2jsf_vbfmthgt30:Significance: 0.999888
+#datacards/hww2l2v_13TeV_2jsf_vbfdphilllNO/comb/SExpPre_comb_hww2l2v_13TeV_2jsf_vbfdphilllNO:Significance: 1.00051
 aliases['Higgsvbfee'] = {
-'expr': '(mll < 50 && mth > 20 && (abs(dphill)) < 2.10)'
+'expr': '(mll < 55 && mth > 40)'
 }
 
 aliases['Higgsvbfmm'] = {
-'expr': '(mll < 50 && mth > 20 && (abs(dphill)) < 2.10)'
+'expr': '(mll < 55 && mth > 40)'
 }
 
 aliases['ZVeto'] = {

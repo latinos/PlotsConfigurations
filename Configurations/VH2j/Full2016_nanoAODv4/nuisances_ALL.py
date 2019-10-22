@@ -221,7 +221,7 @@ nuisances['met'] = {
     'AsLnN': '1'
 }
 
-##### Pileup --> NEED TO BE UPDATED FOR VH2j  
+##### Pileup -->ALREADY COMPUTED FOR VH2j
 
 nuisances['PU'] = {
     'name': 'CMS_PU_2016',
@@ -230,9 +230,12 @@ nuisances['PU'] = {
     'samples': {
         'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
         'top': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
-        'WW': ['1.0033022059*(puWeightUp/puWeight)', '0.997085330608*(puWeightDown/puWeight)'],
+     #   'WW': ['1.0033022059*(puWeightUp/puWeight)', '0.997085330608*(puWeightDown/puWeight)'],
         'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
         'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
+        'ZH_hww': ['1.0003692*(puWeightUp/puWeight)', '0.99914429*(puWeightDown/puWeight)'], 
+        'ggZH_hww': ['1.0057469*(puWeightUp/puWeight)', '0.99359465*(puWeightDown/puWeight)'], 
+        'WH_hww': ['1.0044472*(puWeightUp/puWeight)', '0.99574167*(puWeightDown/puWeight)']
     },
     'AsLnN': '1',
 }

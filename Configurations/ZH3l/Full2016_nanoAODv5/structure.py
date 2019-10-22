@@ -7,6 +7,16 @@ structure['Fake']  = {
                   'isData'   : 0 
               }
 
+structure['Fake_em']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+              }
+
+structure['Fake_me']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+              }
+
 structure['WW']  = {
                   'isSignal' : 0,
                   'isData'   : 0    

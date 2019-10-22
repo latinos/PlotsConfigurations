@@ -30,13 +30,15 @@ HiggsXS = HiggsXSection()
 cuts0j = []
 cuts1j = []
 cuts2j = []
+cutsGT200 = []
 
 for k in cuts:
   for cat in cuts[k]['categories']:
     if '0j' in cat: cuts0j.append(k+'_'+cat)
     elif '1j' in cat: cuts1j.append(k+'_'+cat)
     elif '2j' in cat: cuts2j.append(k+'_'+cat)
-    else: print 'WARNING: name of category does not contain on either 0j,1j,2j'
+    elif 'GT200' in cat: cutsGT200.append(k+'_'+cat)
+else: print 'WARNING: name of category does not contain on either 0j,1j,2j,GT200', cat
 
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
@@ -150,7 +152,7 @@ nuisances['fake_mu_stat'] = {
 }
 
 ##### B-tagger
-'''
+
 for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
     btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
 
@@ -164,7 +166,7 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
         'type': 'shape',
         'samples': dict((skey, btag_syst) for skey in mc if 'DY' not in skey), #FIXME Add DY
     }
-'''
+
 ##### Trigger Efficiency
 
 trig_syst = ['((TriggerEffWeight_2l_u)/(TriggerEffWeight_2l))*(TriggerEffWeight_2l>0.02) + (TriggerEffWeight_2l<=0.02)', '(TriggerEffWeight_2l_d)/(TriggerEffWeight_2l)']
@@ -435,7 +437,7 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 }
 
 ##### Renormalization & factorization scales
-'''
+
 nuisances['WWresum0j']  = {
                 'name'  : 'CMS_hww_WWresum_0j',
                 'skipCMS' : 1,
@@ -503,7 +505,28 @@ nuisances['WWqscale2j']  = {
                 },
                'cuts'  : cuts2j
                 }
-'''
+
+nuisances['WWresumGE200']  = {
+                'name'  : 'CMS_hww_WWresum_GE200',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+                },
+               'cuts'  : cutsGT200
+                }
+
+nuisances['WWqscaleGE200']  = {
+                'name'  : 'CMS_hww_WWqscale_GE200',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+                },
+               'cuts'  : cutsGT200
+                }
 ## Shape nuisance due to QCD scale variations for DY
 # LHE scale variation weights (w_var / w_nominal)
 # [0] is muR=0.50000E+00 muF=0.50000E+00
@@ -703,7 +726,7 @@ nuisances['DYttnorm1j']  = {
                    'DY' : '1.00',
                    },
                'type'  : 'rateParam',
-               'cuts'  : cuts1j
+               'cuts'  : cuts1j+cutsGT200
               }
 
 nuisances['DYttnorm2j']  = {
@@ -731,7 +754,7 @@ nuisances['WWnorm1j']  = {
                    'WW' : '1.00',
                    },
                'type'  : 'rateParam',
-               'cuts'  : cuts1j
+               'cuts'  : cuts1j+cutsGT200
               }
 
 
@@ -760,7 +783,7 @@ nuisances['Topnorm1j']  = {
                    'top' : '1.00',
                    },
                'type'  : 'rateParam',
-               'cuts'  : cuts1j
+               'cuts'  : cuts1j+cutsGT200
               }
 
 nuisances['Topnorm2j']  = {
