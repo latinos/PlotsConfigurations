@@ -41,6 +41,9 @@ mkdir shapes
 ../tools/restructure_input.py --tag ggHDifferential${year} --signal-hww-only --signal-no-fiducial --aslnn-category-pool -j 8 rootFile_merged shapes/plots_${obs}_${card_tag}.root $obs
 # for WW+ggWW merged input
 #../tools/restructure_input.py --tag ggHDifferential${year} --signal-hww-only --signal-no-fiducial --aslnn-category-pool --background-merging WW=WW,ggWW minor=WWewk,Vg,VgS_L,VgS_H,VZ,VVV -j 8 rootFile_merged shapes/plots_${obs}_${card_tag}.root $obs
+# for qqH_hww turned off / scaled up
+#../tools/restructure_input.py --tag ggHDifferential${year} --signal-hww-only --signal-no-fiducial --aslnn-category-pool --custom-scale qqH_hww=0 -j 8 rootFile_merged shapes/plots_${obs}_${card_tag}.root $obs
+#../tools/restructure_input.py --tag ggHDifferential${year} --signal-hww-only --signal-no-fiducial --aslnn-category-pool --custom-scale qqH_hww=2 -j 8 rootFile_merged shapes/plots_${obs}_${card_tag}.root $obs
 ```
 
 This `restructure_input.py` is the most critical and most convoluted part of the differential analysis configuration. It sets up the sample and category merging schemes and executes merging, propagating systematic variations of individual samples / categories into the merged products. The script is mostly self-contained. The only external dependency is to the signal renormalization factor files, which are generated with `tools/renormalize_theoretical.py` for each year separately.
@@ -93,6 +96,8 @@ mkdir ${obs}_${card_tag}
 combineCards.py hww2016=$PWD/../ggH2016/merged_cards/${obs}_${card_tag}/fullmodel_unreg.txt hww2017=$PWD/../ggH2017/merged_cards/${obs}_${card_tag}/fullmodel_unreg.txt hww2018=$PWD/../ggH2018/merged_cards/${obs}_${card_tag}/fullmodel_unreg.txt > ${obs}_${card_tag}/fullmodel_unreg.txt
 sed 's/kmax [0-9]*/kmax */' ${obs}_${card_tag}/fullmodel_unreg.txt > ${obs}_${card_tag}/fullmodel.txt 
 grep ' constr ' ../ggH2016/merged_cards/${obs}_${card_tag}/fullmodel.txt >> ${obs}_${card_tag}/fullmodel.txt
+
+ulimit -s unlimited
 
 cd ${obs}_${card_tag}
 if [ $obs = ptH ]
