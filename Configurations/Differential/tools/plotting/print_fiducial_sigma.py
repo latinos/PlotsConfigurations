@@ -1,5 +1,6 @@
 import os
 import sys
+import math
 import ROOT
 
 import common
@@ -17,12 +18,13 @@ sigma = 0.
 
 source = ROOT.TFile.Open('%s/fiducial/rootFile/plots_Fiducial.root' % confdir)
 
-_, htotal = common.get_fiducial_histograms(source, 'events', ['ggH_hww', 'qqH_hww', 'WH_hww', 'ZH_hww', 'ggZH_hww', 'ttH_hww'])
+_, htotal, statonly = common.get_fiducial_histograms(source, 'events', ['ggH_hww', 'qqH_hww', 'WH_hww', 'ZH_hww', 'ggZH_hww', 'ttH_hww'], add_stat_only=True)
 
 sigma = htotal.GetBinContent(1)
-sigmaerr = htotal.GetBinError(1)
+sigmastat = statonly.GetBinError(1)
+sigmaerr = math.sqrt(math.pow(htotal.GetBinError(1), 2.) - sigmastat * sigmastat)
 
-print '%.1f \pm %.1f' % (sigma, sigmaerr)
+print '%.1f \pm %.1f (theo.) \pm %.1f (stat.)' % (sigma, sigmaerr, sigmastat)
 
 source.Close()
 
