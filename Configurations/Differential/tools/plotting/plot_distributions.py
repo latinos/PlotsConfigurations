@@ -42,7 +42,7 @@ def merge(histlist, mergedname, name):
         histlist[mergedname].SetName('histo_' + mergedname)
 
 plotconfigs = [
-    ('minor', 'Minor SM', ROOT.kGray, 'LF'),
+    ('minor', 'other SM', ROOT.kGray, 'LF'),
     ('DY', '#tau#tau', 418, 'LF'),
     ('Fake', 'nonprompt', 921, 'LF'),
     ('top', 'tW and t#bar{t}', 400, 'LF'),
@@ -451,8 +451,8 @@ def plotstack(stack, uncert, gobs, prefit=None, ivert=0):
         obserrlo /= norm
 
         prefit_robs = gobs.Clone('prefit_robs')
-        prefit_robs.Set(gobs.GetN() - len(idx_nonpositive))
         _temporaries.append(prefit_robs)
+        prefit_robs.Set(gobs.GetN() - len(idx_nonpositive))
 
         irp = 0
         for ip in range(gobs.GetN()):
@@ -465,7 +465,7 @@ def plotstack(stack, uncert, gobs, prefit=None, ivert=0):
             irp += 1
 
         prefit_robs.SetMarkerStyle(4)
-        prefit_robs.SetMarkerSize(1.5)
+        prefit_robs.SetMarkerSize(1.)
         prefit_robs.SetMarkerColor(ROOT.kAzure)
         prefit_robs.SetLineColor(ROOT.kAzure)
 
@@ -792,6 +792,7 @@ else:
         obs = spectra['DATA']
         gobs = ROOT.RooHist(obs, 1.)
         _temporaries.append(gobs)
+        gobs.SetMarkerSize(0.6)
 
         if not args.binWidthNorm:
             # roohist automatically normalizes by bin width, rescale
@@ -847,25 +848,14 @@ else:
 
         if observable == 'ptH':
             canvas.xaxis.SetTitle('p_{T}^{H} (GeV)')
-            canvas.xaxis.SetNdivisions(120)
+            canvas.xaxis.SetNdivisions(105)
+            if args.combination_sideways:
+                canvas.xaxis.ChangeLabel(-1, -1, -1, -1, -1, -1, ' ')
         elif observable == 'njet':
             canvas.xaxis.SetTitle('N_{jet}')
-            canvas.xaxis.SetNdivisions(120)
+            canvas.xaxis.SetNdivisions(105)
             canvas.xaxis.CenterLabels(True)
             canvas.xaxis.ChangeLabel(5, -1, -1, -1, -1, -1, '#geq 4')
-
-        if args.combination_sideways:
-            if observable == 'ptH':
-                for ids in range(1, len(args.sourcePaths)):
-                    for ix in range(5):
-                        canvas.xaxis.ChangeLabel(ix + 5 * ids + 1, -1, -1, -1, -1, -1, '%d' % (50 * ix))
-                canvas.xaxis.ChangeLabel(-1, -1, -1, -1, -1, uncert.GetNbinsX() + 1, ' ')
-
-            elif observable == 'njet':
-                for ids in range(1, len(args.sourcePaths)):
-                    for ix in range(1, 5):
-                        canvas.xaxis.ChangeLabel(ix + 5 * ids, -1, -1, -1, -1, -1, '%d' % (ix - 1))
-                    canvas.xaxis.ChangeLabel(5 + 5 * ids, -1, -1, -1, -1, -1, '#geq 4')
 
         canvas.cd()
         legend.Draw()
@@ -875,7 +865,7 @@ else:
                 canvas.printout('%scr_%s_spectrum_%s' % (cr, observable, args.dataset), canvas_output_file)
             else:
                 canvas.printout('%s/%scr_%s_spectrum_%s.png' % (args.out_path, cr, observable, args.dataset))
-                canvas.printout('%s/%scr_%s_spectrum_%s.pdf' % (args.out_path, cr, observable, args.dataset))
+                canvas.Print('%s/%scr_%s_spectrum_%s.pdf' % (args.out_path, cr, observable, args.dataset))
     
             canvas.clear()
 
@@ -884,7 +874,7 @@ else:
             canvas.printout('cr_%s_spectrum_%s' % (observable, args.dataset), canvas_output_file)
         else:
             canvas.printout('%s/cr_%s_spectrum_%s.png' % (args.out_path, observable, args.dataset))
-            canvas.printout('%s/cr_%s_spectrum_%s.pdf' % (args.out_path, observable, args.dataset))
+            canvas.Print('%s/cr_%s_spectrum_%s.pdf' % (args.out_path, observable, args.dataset))
     
 if args.save_canvas:
     canvas_output_file.Close()
