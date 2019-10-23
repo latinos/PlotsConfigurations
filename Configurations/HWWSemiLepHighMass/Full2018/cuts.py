@@ -1,47 +1,65 @@
 # cuts
-
-supercut = '   mll>12 \
-            && Lepton_pt[0]>20 \
-            && Lepton_pt[1]>10 \
-            && (abs(Lepton_pdgId[0])==13 || Lepton_pt[0]>25) \
-            && (abs(Lepton_pdgId[1])==13 || Lepton_pt[1]>13) \
-            && (nLepton>=2 && Alt$(Lepton_pt[2],0)<10) \
-            && abs(Lepton_eta[0])<2.5 && abs(Lepton_eta[1])<2.5 \
-            && ptll>30 \
-            && PuppiMET_pt > 20 \
-            && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
-           '
+supercut = 'Lepton_pt[0]>30 \
+         && (nLepton>=1 && Alt$(Lepton_pt[1],0)<=15) \
+         && (abs(Lepton_pdgId[0])==11 || Lepton_pt_[1]<10) \
+         && abs(Lepton_eta[0])<2.4 \
+         && (abs(Lepton_pdgId[0])==13 || abs(Lepton_eta[0])<2.1) \
+         && PuppiMET_pt > 30 \
+         && bVeto \
+         '
 
 
 ## Signal regions
-cuts['hww2l2v_13TeV'] = {
+cuts['hwwlv2q_13TeV'] = {
    'expr': 'sr',
-    # Define the sub-categorization of sr
+   # Define the sub-categorization of sr
    'categories' : {
-      'em_pm_0j_pt2ge20' : ' Lepton_pdgId[0]==-11 && Lepton_pt[1]>=20 && zeroJet',
-      'em_mp_0j_pt2ge20' : ' Lepton_pdgId[0]==11 && Lepton_pt[1]>=20 && zeroJet',
-      'me_mp_0j_pt2ge20' : ' Lepton_pdgId[0]==-13 && Lepton_pt[1]>=20 && zeroJet',
-      'me_pm_0j_pt2ge20' : ' Lepton_pdgId[0]==13 && Lepton_pt[1]>=20 && zeroJet',
       #
-      'em_pm_0j_pt2lt20' : ' Lepton_pdgId[0]==-11 && Lepton_pt[1]<20 && zeroJet',
-      'em_mp_0j_pt2lt20' : ' Lepton_pdgId[0]==11 && Lepton_pt[1]<20 && zeroJet',
-      'me_mp_0j_pt2lt20' : ' Lepton_pdgId[0]==-13 && Lepton_pt[1]<20 && zeroJet',
-      'me_pm_0j_pt2lt20' : ' Lepton_pdgId[0]==13 && Lepton_pt[1]<20 && zeroJet',
+      'VBF_boosted'  : 'VBFtagged \
+                     && 65 < FatJet_msoftdrop[0] && FatJet_msoftdrop[0] < 105 \
+                     && boostedWtagged \
+                     ',
+      'VBF_resolved' : 'VBFtagged \
+                     && not boostedWtagged \
+                     && 65 < Wmjj < 105 \
+                     && resolvedWtagged \
+                     ',
       #
-      'em_pm_1j_pt2ge20' : ' Lepton_pdgId[0]==-11 && Lepton_pt[1]>=20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
-      'em_mp_1j_pt2ge20' : ' Lepton_pdgId[0]==11 && Lepton_pt[1]>=20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
-      'me_mp_1j_pt2ge20' : ' Lepton_pdgId[0]==-13 && Lepton_pt[1]>=20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
-      'me_pm_1j_pt2ge20' : ' Lepton_pdgId[0]==13 && Lepton_pt[1]>=20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
+      'ggF_boosted'  : 'not VBFtagged \
+                     && ggFKinematicDiscriminant>0.5 \
+                     && 65 < FatJet_msoftdrop[0] && FatJet_msoftdrop[0] < 105 \
+                     &&  boostedWtagged \
+                     ',
+      'ggF_resolved' : 'not VBFtagged \
+                     && ggFKinematicDiscriminant>0.5 \
+                     && not boostedWtagged \
+                     && 65 < Wmjj && Wmjj < 105 \
+                     && resolvedWtagged \
+                     ',
       #
-      'em_pm_1j_pt2lt20' : ' Lepton_pdgId[0]==-11 && Lepton_pt[1]<20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
-      'em_mp_1j_pt2lt20' : ' Lepton_pdgId[0]==11 && Lepton_pt[1]<20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
-      'me_mp_1j_pt2lt20' : ' Lepton_pdgId[0]==-13 && Lepton_pt[1]<20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
-      'me_pm_1j_pt2lt20' : ' Lepton_pdgId[0]==13 && Lepton_pt[1]<20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
-      # FIXME fix the mjj or additional cuts to make this orthogonal to VH2j and VBF
-      '2j'               : ' mjj<400 && multiJet', 
+      'untagged_boosted' :'not VBFtagged \
+                        && ggFKinematicDiscriminant<=0.5 \
+                        && 65 < FatJet_msoftdrop[0] < 105 \
+                        && boostedWtagged \
+                        ',
+      'untagged_resolved':'not VBFtagged \
+                        && ggFKinematicDiscriminant<=0.5 \
+                        && not boostedWtagged \
+                        && 65 < Wmjj && Wmjj < 105 \
+                        &&  resolvedWtagged \
+                        '
    }
 }
 
+## Top control region --> FIXME: definition of region?
+cuts['hwwlv2q_13TeV_top'] = {
+   'expr' : 'topcr',
+   'categories' : {
+      # FIXME --> to be like above
+   }
+}
+
+"""
 ## Top control regions
 cuts['hww2l2v_13TeV_top']  = { 
    'expr' : 'topcr',
@@ -63,4 +81,4 @@ cuts['hww2l2v_13TeV_dytt']  = {
       '2j' : 'mjj<400 && multiJet',
    }
 }
-
+"""

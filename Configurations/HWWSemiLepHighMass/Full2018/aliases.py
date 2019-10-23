@@ -17,6 +17,60 @@ mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 eleWP='mvaFall17V1Iso_WP90'
 muWP='cut_Tight_HWWW'
 
+
+# pt of W boson candidates
+aliases['leptonicWpt'] = {
+    'expr': 'TMath::Sqrt( TMath::Pow(Lepton_pt[0], 2) + TMath::Pow(PuppiMET_pt, 2) \
+              + 2*Lepton_pt[0]*PuppiMET_pt*TMath::Cos(Lepton_phi[0] - PuppiMET_phi) )'
+}
+
+aliases['boostedHadrW_pt'] = {
+    'expr': 'FatJet_pt[0]'
+}
+
+aliases['resolvedHadr_Wpt'] = {
+    'expr': 'Whad_pt'
+    #'expr': 'TMath::Sqrt( TMath::Pow(CleanJet_pt[0], 2) + TMath::Pow(CleanJet_pt[1], 2) \
+    #         +2*CleanJet_pt[0]*CleanJet_pt[1]*TMath::Cos(CleanJet_phi[0]-CleanJet_phi[1]) )'
+}
+
+aliases['leptonicWmt'] = {
+    'expr': 'TMath::Sqrt( 2*Lepton_pt[0]*PuppiMET_pt*(1-TMath::Cos(Lepton_phi[0]-PuppiMET_phi)) )'
+}
+
+aliases['Wmjj'] = {
+    'expr': '(ROOT::Math::PtEtaPhiMVector(Jet_pt[idx_j1], Jet_eta[idx_j1]\
+            , Jet_phi[idx_j1], Jet_mass[idx_j1])\
+            + ROOT::Math::PtEtaPhiMVector(Jet_pt[idx_j2], Jet_eta[idx_j2]\
+            , Jet_phi[idx_j2], Jet_mass[idx_j2]))\
+            .M()'
+}
+
+# tagging for the six categories
+# FIXME ?
+aliases['VBFtagged'] = {
+    'expr': '(mj>500 && multiJet && abs(CleanJet_eta[0]-CleanJet_eta[1])>3.5)'
+}
+# FIXME: tag not yet produced
+aliases['ggFtagged'] = {
+    'expr': ''
+}
+# FIXME W(W) quantities will be defined in future versions, no point in manually defining now
+aliases['boostedWtagged'] = {
+    'expr': '(PuppiMET_pt > 40 \
+            && leptonicWpt / mWW > 0.4 && boostedHadrW_pt / mWW > 0.4 \
+            && FatJet_tau2 / FatJet_tau1 < 0.4)'
+}
+# FIXME: again, W quantity not yet here, also X transverse mass
+aliases['resolvedWtagged'] = {
+    'expr': '(PuppiMET_pt > 30 && leptonicWmt > 50 \
+            && leptonicWpt / mWW > 0.35 && resolvedHadrW_pt / mWW > 0.35 \
+            && mtH > 60)'
+}
+
+##############################################
+# FIXME definitions from SM ggH following
+##############################################
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
     'samples': mc + ['DATA']
@@ -122,7 +176,7 @@ aliases['multiJet'] = {
 }
 
 # B tagging
-
+# FIXME does this continue to work like this?
 aliases['bVeto'] = {
     'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) == 0'
 }

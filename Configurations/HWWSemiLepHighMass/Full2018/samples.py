@@ -33,11 +33,9 @@ mcProduction = 'Autumn18_102X_nAODv5_Full2018v5'
 
 dataReco = 'Run2018_102X_nAODv5_Full2018v5'
 
-mcSteps = 'MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5{var}__wwSel'
+mcSteps = 'MCl1loose2018v5__MCCorr2018v5'
 
-fakeSteps = 'DATAl1loose2018v5__l2loose__fakeW__wwSel'
-
-dataSteps = 'DATAl1loose2018v5__l2loose__l2tightOR2018v5__wwSel'
+dataSteps = 'DATAl1loose2018v5'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -312,28 +310,6 @@ samples['qqH_htt'] = {
 #
 #signals.append('WH_htt')
 
-###########################################
-################## FAKE ###################
-###########################################
-
-samples['Fake'] = {
-  'name': [],
-  'weight': 'METFilter_DATA*fakeW',
-  'weights': [],
-  'isData': ['all'],
-  'FilesPerJob': 80
-}
-
-for _, sd in DataRun:
-  for pd in DataSets:
-    files = nanoGetSampleFiles(fakeDirectory, pd + '_' + sd)
-    samples['Fake']['name'].extend(files)
-    samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
-
-samples['Fake']['subsamples'] = {
-  'em': 'abs(Lepton_pdgId[0]) == 11',
-  'me': 'abs(Lepton_pdgId[0]) == 13'
-}
 
 ###########################################
 ################## DATA ###################
