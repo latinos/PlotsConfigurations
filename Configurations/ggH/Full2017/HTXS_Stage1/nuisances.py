@@ -333,6 +333,12 @@ nuisances['UE']  = {
                 'synchronized': False
 }
 
+for name in sampleNames:
+  if 'ggH_hww' in name:
+    nuisances['UE']['samples'].update({name: ['1.00211385568', '0.994966378288']})
+  elif 'qqH_hww' in name:
+    nuisances['UE']['samples'].update({name: ['1.00367895901', '0.994831373195']})
+
 ####### Generic "cross section uncertainties"
 
 apply_on = {
@@ -678,9 +684,9 @@ for name, vname in thus:
           #'ggH_htt': updown
         }
     }
-    for name in sampleNames:
-        if 'ggH_hww' in name:
-            nuisances[vname]['samples'].update({name : [vname, '1+(1.-'+vname+')']})
+    for sname in sampleNames:
+        if 'ggH_hww' in sname:
+            nuisances[name]['samples'].update({sname : [vname, '2.-%s' % vname]})
 
 nuisances['QCDscale_ggH_STXS_ACCEPT'] = {
                'name'  : 'QCDscale_ggH_STXS_ACCEPT',
@@ -781,6 +787,10 @@ nuisances['QCDscale_gg_ACCEPT'] = {
     },
     'type': 'lnN',
 }
+
+for name in sampleNames:
+  if 'ggH' in name:
+    nuisances['QCDscale_gg_ACCEPT']['samples'].update({name : '1.027'})
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat'] = {

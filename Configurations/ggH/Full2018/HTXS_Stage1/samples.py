@@ -234,7 +234,8 @@ for cat,num in HTXSStage1_1Categories.iteritems():
                                                       'suppressNegativeNuisances' :['all'],
                                                    }
         signals.append('ggH_hww'+cat.replace('GG2H_',''))
-    ## VBF and VH had.                                                                                                                         
+    ## VBF and VH had.                                                                                                                        
+''' 
     elif 'QQ2HQQ_' in cat:
         samples['qqH_hww_'+cat.replace('QQ2HQQ_','')]  = {  'name' : nanoGetSampleFiles(mcDirectory,'VBFHToWWTo2L2NuPowheg_M125'),
                                                         'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')' ,
@@ -243,7 +244,7 @@ for cat,num in HTXSStage1_1Categories.iteritems():
                                                      }
         signals.append('qqH_hww'+cat.replace('QQ2HQQ_',''))
 
-'''
+
 #### ggH -> WW
 
 samples['ggH_hww'] = {
@@ -254,7 +255,7 @@ samples['ggH_hww'] = {
 }
 
 signals.append('ggH_hww')
-
+'''
 ############ VBF H->WW ############
 samples['qqH_hww'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2NuPowheg_M125'),
@@ -263,7 +264,7 @@ samples['qqH_hww'] = {
 }
 
 signals.append('qqH_hww')
-'''
+
 ############ ZH H->WW ############
 
 samples['ZH_hww'] = {
