@@ -312,6 +312,10 @@ with open('%s/fullmodel_unreg.txt' % args.outpath, 'w') as card_out:
     outFullPath = os.path.realpath(args.outpath)
     binNames = None
     procNames = None
+    inNuisances = False
+    theoretical = []
+    luminosity = []
+    experimental = []
     
     for line in out.strip().split('\n'):
         line = line.replace(outFullPath + '/', '')
@@ -339,6 +343,19 @@ with open('%s/fullmodel_unreg.txt' % args.outpath, 'w') as card_out:
         if line.startswith('process') and procNames is None:
             procNames = line.split()[1:]
 
+        if line.startswith('rate'):
+            inNuisances = True
+            continue
+
+        if inNuisances and not line.startswith('-') and 'autoMCStats' not in line:
+            nuis = line.split()[0]
+            if nuis.startswith('CMS_'):
+                experimental.append(nuis)
+            elif nuis.startswith('lumi'):
+                luminosity.append(nuis)
+            else:
+                theoretical.append(nuis)
+
     for pname, procs in floatingBackgrounds:
         for obsBin in observableBins:
             if args.hdf5:
@@ -351,8 +368,14 @@ with open('%s/fullmodel_unreg.txt' % args.outpath, 'w') as card_out:
     
                 card_out.write(line + '\n')
             else:
+                nuis = 'CMS_hww_{pname}norm_{obsBin}'.format(pname=pname, obsBin=obsBin)
+                theoretical.append(nuis)
                 for proc in procs:
-                    card_out.write('CMS_hww_{pname}norm_{obsBin} rateParam *{obsBin}* {proc} 1.00 [0.,10.]\n'.format(pname=pname, obsBin=obsBin, proc=proc))
+                    card_out.write('{nuis} rateParam *{obsBin}* {proc} 1.00 [0.,10.]\n'.format(nuis=nuis, obsBin=obsBin, proc=proc))
+
+    card_out.write('theoretical group = %s\n' % (' '.join(theoretical)))
+    card_out.write('luminosity group = %s\n' % (' '.join(luminosity)))
+    card_out.write('experimental group = %s\n' % (' '.join(experimental)))
 
 # Full model with regularization terms
 with open('%s/fullmodel.txt' % args.outpath, 'w') as card_out:
