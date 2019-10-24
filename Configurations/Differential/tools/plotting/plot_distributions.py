@@ -19,14 +19,19 @@ argParser.add_argument('--postfit', '-p', metavar='PATH', dest='postfit', help='
 argParser.add_argument('--combination-tag', '-g', metavar='PATH', dest='combination_tags', nargs='+', default=[''], help='Prefix to cut (bin name used in combineCards) for postfit distributions.')
 argParser.add_argument('--variable', '-v', metavar='VARIABLE', dest='variable', default='fitshape', help='Variable to plot. If not specified, variables used for the signal extraction fit will be plotted.')
 argParser.add_argument('--bin-width-norm', '-W', action='store_true', dest='binWidthNorm', help='Bin-width normalize the plots.')
-argParser.add_argument('--out', '-o', metavar='PATH', dest='out_path', default='.', help='Output directory.')
+argParser.add_argument('--out', '-o', metavar='PATH', dest='out_path', default='.', help='Output directory or file name if saving TCanvases.')
+argParser.add_argument('--save-canvas', '-C', action='store_true', dest='save_canvas', help='Save TCanvases instead of images.')
+argParser.add_argument('--combination-sideways', '-A', action='store_true', dest='combination_sideways', help='Sideways combination.')
+argParser.add_argument('--single-cr-plot', '-R', action='store_true', dest='single_cr_plot', help='Stack all CR spectra in one plot')
 
 args = argParser.parse_args()
 sys.argv = []
 
 import common
 import ROOT
-import root_numpy
+import root_numpy as rnp
+
+ROOT.TH1.SetDefaultSumw2(True)
 
 def merge(histlist, mergedname, name):
     if mergedname in histlist:
@@ -37,7 +42,7 @@ def merge(histlist, mergedname, name):
         histlist[mergedname].SetName('histo_' + mergedname)
 
 plotconfigs = [
-    ('minor', 'Minor SM', ROOT.kGray, 'LF'),
+    ('minor', 'other SM', ROOT.kGray, 'LF'),
     ('DY', '#tau#tau', 418, 'LF'),
     ('Fake', 'nonprompt', 921, 'LF'),
     ('top', 'tW and t#bar{t}', 400, 'LF'),
@@ -45,8 +50,11 @@ plotconfigs = [
 ]
 
 if not args.noHiggs:
-    plotconfigs.append(('htt', 'H#rightarrow#tau#tau', ROOT.kRed + 2, 'L'))
-    plotconfigs.append(('smH_hww', 'H#rightarrowWW', ROOT.kRed, 'L'))
+    if args.makeCRSpectra:
+        plotconfigs.append(('smH', 'Higgs', ROOT.kRed, 'LF'))
+    else:
+        plotconfigs.append(('htt', 'H#rightarrow#tau#tau', ROOT.kRed + 2, 'L'))
+        plotconfigs.append(('smH_hww', 'H#rightarrowWW', ROOT.kRed, 'L'))
 
 xtitles = {
     'mllVSmth_6x6': ('i_{mTH}#times6 + i_{mll}', ''),
@@ -79,27 +87,61 @@ if args.postfit:
     else:
         mdfitsource = ROOT.TFile.Open(os.path.dirname(os.path.realpath(args.postfit)) + '/multidimfit%s.root' % combine_name)
     fitresult = mdfitsource.Get('fit_mdf')
+    floatpars = ROOT.RooArgSet(fitresult.floatParsFinal())
 
+    randomized_parameters = ROOT.RooDataSet('randomized_parameters', 'randomized_parameters', floatpars)
+    for _ in range(common.n_postfit_unc_toys):
+        randomized_parameters.add(ROOT.RooArgSet(fitresult.randomizePars()))
+
+if args.save_canvas:
+    canvas_output_file = ROOT.TFile.Open(args.out_path, 'recreate')
+
+def make_sideways_combination(name, temp):
+    ncopy = len(args.sourcePaths)
+    if temp.GetXaxis().GetXbins().GetSize() == 0:
+        # uniform binning
+        xmin = temp.GetXaxis().GetXmin()
+        xmax = temp.GetXaxis().GetXmax()
+        return ROOT.TH1D(name, '', temp.GetNbinsX() * ncopy, xmin, xmin + (xmax - xmin) * ncopy)
+    else:
+        # variable binning
+        xbins = rnp.array(temp.GetXaxis().GetXbins(), copy=False)
+        nx = temp.GetNbinsX()
+        binning = np.zeros(nx * ncopy + 1, dtype=np.double)
+        binning[:nx + 1] = xbins
+        for icopy in range(1, ncopy):
+            binning[nx * icopy + 1:nx * (icopy + 1) + 1] = (xbins[1:] - xbins[0] + binning[nx * icopy])
+        return ROOT.TH1D(name, '', nx * ncopy, array.array('d', binning))
+        
 allprefit = {} # {cut: {proc: hist}}
 allpostfit = {}
 prefit_totals = {} # {cut: hist}
 postfit_totals = {} # {cut: hist}
 cutname_map = {} # {(cut_nodataset, combination_tag): cut}
 
-sum_byhandindiv = 0.
-sum_individual = 0.
-
 # shapes root file
 for isource, sourcePath in enumerate(args.sourcePaths):
+
+    def add_hist(total, hist):
+        if args.combination_sideways:
+            nx = hist.GetNbinsX()
+            first, last = nx * isource, nx * (isource + 1)
+            tc = rnp.hist2array(total, copy=False)
+            tc[first:last] += rnp.hist2array(hist, copy=False)
+            te2 = rnp.array(total.GetSumw2(), copy=False)[1:-1]
+            te2[first:last] += rnp.array(hist.GetSumw2(), copy=False)[1:-1]
+        else:
+            total.Add(hist)
+
     source = ROOT.TFile.Open(sourcePath)
     
     cutnames = sorted(k.GetName() for k in source.GetListOfKeys())
     
     for cut in cutnames:
         # because cut names are suffixed with _year
-        cut_nodataset = cut[:-5]
+        cut_key = cut[:-5]
         if args.postfit:
-            cutname_map[(cut_nodataset, args.combination_tags[isource])] = cut
+            cutname_map[(cut_key, args.combination_tags[isource])] = cut
         
         isSR = '_CR_' not in cut
     
@@ -172,13 +214,13 @@ for isource, sourcePath in enumerate(args.sourcePaths):
     
                 normname = 'n_exp_final_bin%s_proc_%s' % (bin, proc)
 
-                hist = common.make_roofit_histogram('histo_%s_%s' % (cut, proc), ws, funcname, normname)
+                hist = common.make_roofit_histogram('histo_%s_%s' % (cut, proc), ws, funcname, normname=normname)
                 if hist is None:
                     continue
 
                 hist.SetDirectory(0)
                 hist.SetBins(nbins, 0., float(nbins))
-                err2 = root_numpy.array(hist.GetSumw2(), copy=False)
+                err2 = rnp.array(hist.GetSumw2(), copy=False)
                 err2[:] = 0.
 
                 postfits[proc] = hist
@@ -197,10 +239,10 @@ for isource, sourcePath in enumerate(args.sourcePaths):
             upper = key.ReadObj()
             downer = plotsdir.Get(key.GetName()[:-2] + 'Down')
 
-            cupper = root_numpy.hist2array(upper, copy=False, include_overflow=True)
-            cdowner = root_numpy.hist2array(downer, copy=False, include_overflow=True)
+            cupper = rnp.hist2array(upper, copy=False, include_overflow=True)
+            cdowner = rnp.hist2array(downer, copy=False, include_overflow=True)
 
-            err2 = root_numpy.array(shape.GetSumw2(), copy=False)
+            err2 = rnp.array(shape.GetSumw2(), copy=False)
             err2 += np.square((cupper - cdowner) * 0.5)
     
             upper.Delete()
@@ -218,75 +260,104 @@ for isource, sourcePath in enumerate(args.sourcePaths):
             elif proc.startswith('Fake'):
                 merge(postfits, 'Fake', proc)
 
+        if args.makeCRSpectra:
+            merge(prefits, 'smH', 'smH_hww')
+            merge(prefits, 'smH', 'htt')
+            if args.postfit:
+                merge(postfits, 'smH', 'smH_hww')
+                merge(postfits, 'smH', 'htt')
+
         # make totals histograms
 
         # we are treating all uncertainties as uncorrelated, which is wrong
         # but we don't even have the lnN uncertainties here, so it doesn't really matter
-        if cut_nodataset not in prefit_totals:
-            prefit_totals[cut_nodataset] = prefits['DATA'].Clone('%s_total' % cut_nodataset)
-            prefit_totals[cut_nodataset].SetDirectory(0)
-            prefit_totals[cut_nodataset].Reset()
+        if cut_key not in prefit_totals:
+            if args.combination_sideways:
+                prefit_totals[cut_key] = make_sideways_combination('%s_total' % cut_key, prefits['DATA'])
+            else:
+                prefit_totals[cut_key] = prefits['DATA'].Clone('%s_total' % cut_key)
+
+            prefit_totals[cut_key].SetDirectory(0)
+            prefit_totals[cut_key].Reset()
                         
         for proc, hist in prefits.iteritems():
-            if proc != 'DATA':
-                prefit_totals[cut_nodataset].Add(hist)
+            if proc == 'DATA':
+                continue
 
-        if args.postfit and args.dataset != 'combination':
+            add_hist(prefit_totals[cut_key], hist)
+
+        if args.postfit and (args.combination_sideways or args.dataset != 'combination'):
             # make a total postfit distribution with full uncertainties
             funcname = 'prop_bin%s%s' % (args.combination_tags[isource], cut)
-            hist = common.make_roofit_histogram('postfit_%s_total' % cut_nodataset, ws, funcname, fitresult=fitresult)
+            hist = common.make_roofit_histogram('postfit_%s_total' % cut_key, ws, funcname, fitresult=fitresult, randomized_parameters=randomized_parameters)
         
             hist.SetBins(nbins, 0., float(nbins))
 
-            if cut_nodataset not in postfit_totals:
-                postfit_totals[cut_nodataset] = hist
-            else:
-                postfit_totals[cut_nodataset].Add(hist)
+            if cut_key not in postfit_totals:
+                postfit_totals[cut_key] = prefit_totals[cut_key].Clone('%s_total_postfit' % cut_key)
+                postfit_totals[cut_key].SetDirectory(0)
+                postfit_totals[cut_key].Reset()
+
+            add_hist(postfit_totals[cut_key], hist)
 
         # save individual histograms
 
-        if cut_nodataset in allprefit:
+        if cut_key in allprefit:
             for proc, hist in prefits.iteritems():
-                try:
-                    allprefit[cut_nodataset][proc].Add(hist)
-                    hist.Delete()
-                except KeyError:
-                    allprefit[cut_nodataset][proc] = hist
+                add_hist(allprefit[cut_key][proc], hist)
+                hist.Delete()
         else:
-            allprefit[cut_nodataset] = prefits
+            if args.combination_sideways:
+                allprefit[cut_key] = {}
+                for proc, hist in prefits.iteritems():
+                    name = hist.GetName()
+                    hist.SetName('tmp')
+                    allprefit[cut_key][proc] = make_sideways_combination(name, hist)
+                    allprefit[cut_key][proc].SetDirectory(0)
+                    add_hist(allprefit[cut_key][proc], hist)
+                    hist.Delete()
+            else:
+                allprefit[cut_key] = prefits
 
-        if cut_nodataset in allpostfit:
+        if cut_key in allpostfit:
             for proc, hist in postfits.iteritems():
-                try:
-                    allpostfit[cut_nodataset][proc].Add(hist)
-                    hist.Delete()
-                except KeyError:
-                    allpostfit[cut_nodataset][proc] = hist
+                add_hist(allpostfit[cut_key][proc], hist)
+                hist.Delete()
         else:
-            allpostfit[cut_nodataset] = postfits
+            if args.combination_sideways:
+                allpostfit[cut_key] = {}
+                for proc, hist in postfits.iteritems():
+                    name = hist.GetName()
+                    hist.SetName('tmp')
+                    allpostfit[cut_key][proc] = make_sideways_combination(name, hist)
+                    allpostfit[cut_key][proc].SetDirectory(0)
+                    add_hist(allpostfit[cut_key][proc], hist)
+                    hist.Delete()
+            else:
+                allpostfit[cut_key] = postfits
 
         # copy observed
-        allpostfit[cut_nodataset]['DATA'] = allprefit[cut_nodataset]['DATA']
+        allpostfit[cut_key]['DATA'] = allprefit[cut_key]['DATA']
 
-if args.postfit and args.dataset == 'combination':
+if args.postfit and args.dataset == 'combination' and not args.combination_sideways:
     # make a total postfit distribution with full uncertainties
-    for cut_nodataset, prefit in prefit_totals.iteritems():
+    for cut_key, prefit in prefit_totals.iteritems():
         funcs = ROOT.RooArgList()
         coeffs = ROOT.RooArgList()
         for tag in args.combination_tags:
-            cut = cutname_map[(cut_nodataset, tag)]
+            cut = cutname_map[(cut_key, tag)]
             prop = ws.arg('prop_bin%s%s' % (tag, cut))
             funcs.add(prop.wrapperList())
             coeffs.add(prop.coefList())
 
-        funcname = 'postfit_%s_total' % cut_nodataset
+        funcname = 'postfit_%s_total' % cut_key
         combfunc = ROOT.RooRealSumFunc(funcname, 'tmp', funcs, coeffs)
         getattr(ws, 'import')(combfunc)
 
-        hist = common.make_roofit_histogram(funcname, ws, funcname, fitresult=fitresult)
+        hist = common.make_roofit_histogram(funcname, ws, funcname, fitresult=fitresult, randomized_parameters=randomized_parameters)
 
         hist.SetBins(prefit.GetNbinsX(), prefit.GetXaxis().GetXmin(), prefit.GetXaxis().GetXmax())
-        postfit_totals[cut_nodataset] = hist
+        postfit_totals[cut_key] = hist
 
 if args.postfit:
     allshapes = allpostfit
@@ -303,22 +374,36 @@ mllVSmthBins = {
     'mllVSmth_8x9': ([10., 25., 35., 40., 45., 50., 55., 70., 90., 210.], [60., 80., 90., 100., 110., 120., 130., 150., 200.])
 }
 
-canvas = common.makeRatioCanvas(600, 680, dataset=args.dataset)
+if args.dataset == 'combination' and args.combination_sideways:
+    if args.single_cr_plot:
+        #nvert = (2 if args.postfit else 3)
+        nvert = 2
+    else:
+        nvert = 1
 
-canvas.raxis.SetTitle('obs. / pred.')
-canvas.raxis.SetWmin(0.5)
-canvas.raxis.SetWmax(1.5)
+    canvas = common.makeRatioCanvas(900, 680, dataset='combination_comp', wide_labels=['2016', '2017', '2018'], nvert=nvert, make_yaxes=True, legend_inside=False, prelim=False)
+else:
+    canvas = common.makeRatioCanvas(600, 680, dataset=args.dataset, prelim=False)
+
+for raxis in canvas.raxes:
+    raxis.SetTitle('obs./pred.')
+    raxis.SetWmin(0.5)
+    raxis.SetWmax(1.5)
 
 _temporaries = []
-def plotstack(stack, uncert, gobs, legend, prefit=None):
-    del _temporaries[:]
+def plotstack(stack, uncert, gobs, prefit=None, ivert=0):
+    #del _temporaries[:]
 
+    uncert.SetTickLength(0.05, 'X')
+    uncert.SetTickLength(0., 'Y')
     uncert.SetFillColor(ROOT.kBlack)
     uncert.SetFillStyle(3003)
     uncert.SetLineColor(ROOT.kBlack)
     uncert.SetLineWidth(1)
+    uncert.GetXaxis().SetNdivisions(120)
+    uncert.GetYaxis().SetNdivisions(110)
 
-    distpad = canvas.cd(1)
+    distpad = canvas.cd(ivert * 2 + 1)
 
     distpad.SetLogy(False)
 
@@ -331,22 +416,20 @@ def plotstack(stack, uncert, gobs, legend, prefit=None):
     frame.GetXaxis().SetTitle('')
     obsmax = max(gobs.GetY()[ip] + gobs.GetErrorYhigh(ip) for ip in range(gobs.GetN()))
     frame.SetMinimum(0.)
-    frame.SetMaximum(max(obsmax, uncert.GetMaximum()) * 1.8)
+    frame.SetMaximum(max(obsmax, uncert.GetMaximum()) * 1.22)
 
     frame.Draw('HIST')
     stack.Draw('SAME HIST')
     uncert.Draw('SAME E2')
     gobs.Draw('PZ')
 
-    legend.Draw()
-
     distpad.Update()
 
     ## Make ratio plot
-    rmax = canvas.raxis.GetWmax()
-    rmin = canvas.raxis.GetWmin()
+    rmax = canvas.raxes[ivert].GetWmax()
+    rmin = canvas.raxes[ivert].GetWmin()
 
-    ratiopad = canvas.cd(2)
+    ratiopad = canvas.cd(ivert * 2 + 2)
 
     ratiopad.SetGridy(True)
 
@@ -355,21 +438,21 @@ def plotstack(stack, uncert, gobs, legend, prefit=None):
     runcert.SetTitle('')
 
     if prefit:
-        norm = root_numpy.hist2array(prefit, copy=False)
+        norm = rnp.hist2array(prefit, copy=False)
         idx_nonpositive = np.where(norm <= 0.)[0]
         # just set to 1
         norm[idx_nonpositive] = 1.
 
-        obsarray = root_numpy.array(ROOT.TArrayD(gobs.GetN(), gobs.GetY()))
+        obsarray = rnp.array(ROOT.TArrayD(gobs.GetN(), gobs.GetY()))
         obsarray /= norm
-        obserrhi = root_numpy.array(ROOT.TArrayD(gobs.GetN(), gobs.GetEYhigh()))
+        obserrhi = rnp.array(ROOT.TArrayD(gobs.GetN(), gobs.GetEYhigh()))
         obserrhi /= norm
-        obserrlo = root_numpy.array(ROOT.TArrayD(gobs.GetN(), gobs.GetEYlow()))
+        obserrlo = rnp.array(ROOT.TArrayD(gobs.GetN(), gobs.GetEYlow()))
         obserrlo /= norm
 
         prefit_robs = gobs.Clone('prefit_robs')
-        prefit_robs.Set(gobs.GetN() - len(idx_nonpositive))
         _temporaries.append(prefit_robs)
+        prefit_robs.Set(gobs.GetN() - len(idx_nonpositive))
 
         irp = 0
         for ip in range(gobs.GetN()):
@@ -382,32 +465,24 @@ def plotstack(stack, uncert, gobs, legend, prefit=None):
             irp += 1
 
         prefit_robs.SetMarkerStyle(4)
-        prefit_robs.SetMarkerSize(1.5)
+        prefit_robs.SetMarkerSize(1.)
         prefit_robs.SetMarkerColor(ROOT.kAzure)
         prefit_robs.SetLineColor(ROOT.kAzure)
 
-        rlegend = ROOT.TLegend(0.85, 0.03, 0.99, 0.3)
-        _temporaries.append(rlegend)
-        rlegend.SetBorderSize(0)
-        rlegend.SetFillStyle(1001)
-        rlegend.SetFillColor(ROOT.kWhite)
-
-        rlegend.AddEntry(prefit_robs, 'Prefit', 'PL')
-
-    norm = root_numpy.hist2array(runcert, copy=False)
+    norm = rnp.hist2array(runcert, copy=False)
     idx_nonpositive = np.where(norm <= 0.)[0]
     # just set to 1
     norm[idx_nonpositive] = 1.
 
-    err2s = root_numpy.array(runcert.GetSumw2(), copy=False)[1:-1]
+    err2s = rnp.array(runcert.GetSumw2(), copy=False)[1:-1]
     err2s /= np.square(norm)
     err2s[idx_nonpositive] = 0.
 
-    obsarray = root_numpy.array(ROOT.TArrayD(gobs.GetN(), gobs.GetY()))
+    obsarray = rnp.array(ROOT.TArrayD(gobs.GetN(), gobs.GetY()))
     obsarray /= norm
-    obserrhi = root_numpy.array(ROOT.TArrayD(gobs.GetN(), gobs.GetEYhigh()))
+    obserrhi = rnp.array(ROOT.TArrayD(gobs.GetN(), gobs.GetEYhigh()))
     obserrhi /= norm
-    obserrlo = root_numpy.array(ROOT.TArrayD(gobs.GetN(), gobs.GetEYlow()))
+    obserrlo = rnp.array(ROOT.TArrayD(gobs.GetN(), gobs.GetEYlow()))
     obserrlo /= norm
 
     robs = gobs.Clone('robs')
@@ -423,14 +498,15 @@ def plotstack(stack, uncert, gobs, legend, prefit=None):
         robs.SetPointEYlow(irp, obserrlo[ip])
         irp += 1
 
-    root_numpy.array2hist(np.ones_like(norm), runcert)
+    rnp.array2hist(np.ones_like(norm), runcert)
 
-    runcert.SetTickLength(0., 'X')
+    runcert.SetTickLength(0.1, 'X')
     runcert.SetTickLength(0., 'Y')
     runcert.GetXaxis().SetLabelSize(0.)
     runcert.GetXaxis().SetTitle('')
     runcert.GetYaxis().SetLabelSize(0.)
     runcert.GetYaxis().SetTitle('')
+    runcert.GetYaxis().SetNdivisions(502)
     runcert.SetMinimum(rmin)
     runcert.SetMaximum(rmax)
 
@@ -462,35 +538,30 @@ def plotstack(stack, uncert, gobs, legend, prefit=None):
         xmax = runcert.GetXaxis().GetBinUpEdge(ip + 1)
         _temporaries.append(box.DrawBox(xmin, box.GetY1(), xmax, box.GetY2()))
 
-    if prefit:
-        rlegend.AddEntry(robs, 'Postfit', 'PL')
-        rlegend.Draw()
-
     ratiopad.Update()
 
 
 if not args.makeCRSpectra:
-    # cut here is cut_nodataset
-    for cut, shapes in allshapes.iteritems():
-        isSR = '_CR_' not in cut
+    for cut_key, shapes in allshapes.iteritems():
+        isSR = '_CR_' not in cut_key
 
         if args.variable == 'fitshape':
             if not isSR:
                 vname = 'events'
-            elif 'pt2ge20' in cut:
-                if 'PTH_120_200' in cut or 'PTH_GT200' in cut:
+            elif 'pt2ge20' in cut_key:
+                if 'PTH_120_200' in cut_key or 'PTH_GT200' in cut_key:
                     vname = 'mllVSmth_4x3'
-                elif 'NJ_2' in cut:
+                elif 'NJ_2' in cut_key:
                     vname = 'mllVSmth_6x6'
                 else:
                     #vname = 'mllVSmth_8x9'
                     vname = 'mllVSmth_6x6'
             else:
-                if 'PTH_45_80' in cut:
+                if 'PTH_45_80' in cut_key:
                     vname = 'mllVSmth_4x3'
-                elif 'PTH_80_120' in cut or 'PTH_120_200' in cut:
+                elif 'PTH_80_120' in cut_key or 'PTH_120_200' in cut_key:
                     vname = 'mllVSmth_3x3'
-                elif 'PTH_200_350' in cut or 'PTH_GT350' in cut or 'PTH_GT200' in cut:
+                elif 'PTH_200_350' in cut_key or 'PTH_GT350' in cut_key or 'PTH_GT200' in cut_key:
                     vname = 'mllVSmth_2x2'
                 else:
                     vname = 'mllVSmth_6x6'
@@ -514,8 +585,8 @@ if not args.makeCRSpectra:
                 mllbins, mthbins = mllVSmthBins[vname]
                 binarea = np.array([(mllbins[x + 1] - mllbins[x]) * (mthbins[y + 1] - mthbins[y]) for y in range(len(mthbins) - 1) for x in range(len(mllbins) - 1)], dtype=np.float)
 
-                cont = root_numpy.hist2array(shape, copy=False)
-                err2 = root_numpy.array(shape.GetSumw2(), copy=False)
+                cont = rnp.hist2array(shape, copy=False)
+                err2 = rnp.array(shape.GetSumw2(), copy=False)
                 cont /= binarea
                 err2[1:-1] /= np.square(binarea)
 
@@ -523,7 +594,7 @@ if not args.makeCRSpectra:
                 shape.Scale(1., 'width')
 
         stack = ROOT.THStack('stack', '')
-        uncert = totals[cut]
+        uncert = totals[cut_key]
 
         uncert.GetYaxis().SetTitle('events')
         if args.binWidthNorm:
@@ -539,7 +610,7 @@ if not args.makeCRSpectra:
             try:
                 shape = shapes[name]
             except KeyError:
-                print 'Plot for %s missing from %s' % (name, cut)
+                print 'Plot for %s missing from %s' % (name, cut_key)
                 if args.postfit:
                     print ' Assuming the shape was not included in the fit because sumw = 0'
                 else:
@@ -564,8 +635,8 @@ if not args.makeCRSpectra:
 
         obs = shapes['DATA']
         if isSR and args.blind:
-            cont = root_numpy.hist2array(obs, copy=False, include_overflow=True)
-            err2 = root_numpy.array(obs.GetSumw2(), copy=False)
+            cont = rnp.hist2array(obs, copy=False, include_overflow=True)
+            err2 = rnp.array(obs.GetSumw2(), copy=False)
             cont *= 0.
             err2 *= 0.
 
@@ -608,29 +679,52 @@ if not args.makeCRSpectra:
 
         legend.AddEntry(gobs, 'Observed', 'PL')
 
-        plotstack(stack, uncert, gobs, legend)
+        plotstack(stack, uncert, gobs)
 
-        canvas.printout('%s/%s_%s_%s.png' % (args.out_path, args.variable, cut, args.dataset))
-        canvas.printout('%s/%s_%s_%s.pdf' % (args.out_path, args.variable, cut, args.dataset))
+        canvas.cd()
+        legend.Draw()
+
+        if args.save_canvas:
+            canvas.printout('%s_%s_%s' % (args.variable, cut_key, args.dataset), canvas_output_file)
+        else:
+            canvas.printout('%s/%s_%s_%s.png' % (args.out_path, args.variable, cut_key, args.dataset))
+            canvas.printout('%s/%s_%s_%s.pdf' % (args.out_path, args.variable, cut_key, args.dataset))
 
         canvas.clear()
 
 else:
     observable = args.makeCRSpectra
 
+    if observable == 'ptH':
+        common.binning[observable][-1] = 250. # set to a round number
+
     template = ROOT.TH1D('template', '', len(common.binnames[observable]), array.array('d', common.binning[observable]))
+    if args.combination_sideways:
+        tmp = template
+        tmp.SetName('tmp')
+        template = make_sideways_combination('template', tmp)
+        tmp.Delete()
 
-    for cr in ['WW', 'top', 'DY']:
-        if args.postfit and cr == 'WW':
-            continue
+    nbin_ds = len(common.binnames[observable])
 
-        stack = ROOT.THStack('stack', '')
+    if args.postfit:
+        crs = ['top', 'DY']
+    else:
+        #crs = ['WW', 'top', 'DY']
+        crs = ['top', 'DY']
 
+    for icr, cr in enumerate(crs):
         uncert = template.Clone('uncert')
+        _temporaries.append(uncert)
         for ibin, obsBin in enumerate(common.binnames[observable]):
             total = totals['hww_CR_cat%s_%s' % (obsBin, cr)]
-            uncert.SetBinContent(ibin + 1, total.GetBinContent(1))
-            uncert.SetBinError(ibin + 1, total.GetBinError(1))
+            if args.combination_sideways:
+                for ids in range(len(args.sourcePaths)):
+                    uncert.SetBinContent(nbin_ds * ids + ibin + 1, total.GetBinContent(ids + 1))
+                    uncert.SetBinError(nbin_ds * ids + ibin + 1, total.GetBinError(ids + 1))
+            else:
+                uncert.SetBinContent(ibin + 1, total.GetBinContent(1))
+                uncert.SetBinError(ibin + 1, total.GetBinError(1))
 
         if args.binWidthNorm:
             uncert.Scale(1., 'width')
@@ -638,16 +732,26 @@ else:
         prefit = None
         if args.postfit:
             prefit = template.Clone('prefit')
+            _temporaries.append(prefit)
 
             for ibin, obsBin in enumerate(common.binnames[observable]):
                 total = prefit_totals['hww_CR_cat%s_%s' % (obsBin, cr)]
-                prefit.SetBinContent(ibin + 1, total.GetBinContent(1))
-                prefit.SetBinError(ibin + 1, total.GetBinError(1))
+                if args.combination_sideways:
+                    for ids in range(len(args.sourcePaths)):
+                        prefit.SetBinContent(nbin_ds * ids + ibin + 1, total.GetBinContent(ids + 1))
+                        prefit.SetBinError(nbin_ds * ids + ibin + 1, total.GetBinError(ids + 1))
+                else:
+                    prefit.SetBinContent(ibin + 1, total.GetBinContent(1))
+                    prefit.SetBinError(ibin + 1, total.GetBinError(1))
     
             if args.binWidthNorm:
                 prefit.Scale(1., 'width')
-            
+
+        stack = ROOT.THStack('stack', '')
+        _temporaries.append(stack)
+
         spectra = {}
+        _temporaries.append(spectra)
         for name, _, color, opt in plotconfigs + [('DATA', 0, 0, '')]:
             hist = template.Clone(name)
             spectra[name] = hist
@@ -657,8 +761,13 @@ else:
                 if name not in shapes:
                     continue
 
-                hist.SetBinContent(ibin + 1, shapes[name].GetBinContent(1))
-                hist.SetBinError(ibin + 1, shapes[name].GetBinError(1))
+                if args.combination_sideways:
+                    for ids in range(len(args.sourcePaths)):
+                        hist.SetBinContent(nbin_ds * ids + ibin + 1, shapes[name].GetBinContent(ids + 1))
+                        hist.SetBinError(nbin_ds * ids + ibin + 1, shapes[name].GetBinError(ids + 1))
+                else:
+                    hist.SetBinContent(ibin + 1, shapes[name].GetBinContent(1))
+                    hist.SetBinError(ibin + 1, shapes[name].GetBinError(1))
 
             if name == 'DATA':
                 continue
@@ -682,6 +791,8 @@ else:
 
         obs = spectra['DATA']
         gobs = ROOT.RooHist(obs, 1.)
+        _temporaries.append(gobs)
+        gobs.SetMarkerSize(0.6)
 
         if not args.binWidthNorm:
             # roohist automatically normalizes by bin width, rescale
@@ -694,7 +805,28 @@ else:
                 gobs.SetPointEYlow(ip, errlo)
                 gobs.SetPointEYhigh(ip, errhi)
 
-        legend = ROOT.TLegend(0.65, 0.7, 0.93, 0.9)
+        if args.single_cr_plot:
+            ivert = icr
+        else:
+            ivert = 0
+            
+        plotstack(stack, uncert, gobs, prefit=prefit, ivert=ivert)
+
+        if observable == 'ptH':
+            canvas.yaxes[icr].SetTitle('events / GeV  ')
+        elif observable == 'njet':
+            canvas.yaxes[icr].SetTitle('events  ')
+
+        if not args.single_cr_plot:
+            legend = ROOT.TLegend(0.65, 0.7, 0.93, 0.9)
+        elif icr == 0:
+            legend = ROOT.TLegend(0.4, common.ymax - canvas.hlegend + 0.01, common.xmax - 0.01, common.ymax - 0.01)
+            legend.SetNColumns(4)
+        else:
+            continue
+
+        _temporaries.append(legend)
+
         legend.SetBorderSize(0)
         legend.SetFillStyle(0)
 
@@ -706,31 +838,43 @@ else:
 
         legend.AddEntry(gobs, 'Observed', 'PL')
 
+        if args.postfit:
+            prefit_robs = ROOT.TGraph(1)
+            prefit_robs.SetMarkerStyle(4)
+            prefit_robs.SetMarkerSize(1.5)
+            prefit_robs.SetMarkerColor(ROOT.kAzure)
+            prefit_robs.SetLineColor(ROOT.kAzure)
+            legend.AddEntry(prefit_robs, 'Prefit ratio', 'PL')
+
         if observable == 'ptH':
             canvas.xaxis.SetTitle('p_{T}^{H} (GeV)')
-            uncert.GetYaxis().SetTitle('events / GeV')
+            canvas.xaxis.SetNdivisions(105)
+            if args.combination_sideways:
+                canvas.xaxis.ChangeLabel(-1, -1, -1, -1, -1, -1, ' ')
         elif observable == 'njet':
             canvas.xaxis.SetTitle('N_{jet}')
-            uncert.GetYaxis().SetTitle('events')
+            canvas.xaxis.SetNdivisions(105)
+            canvas.xaxis.CenterLabels(True)
+            canvas.xaxis.ChangeLabel(5, -1, -1, -1, -1, -1, '#geq 4')
 
-        plotstack(stack, uncert, gobs, legend, prefit=prefit)
+        canvas.cd()
+        legend.Draw()
 
-        if observable == 'njet':
-            canvas.xaxis.SetLabelSize(0.)
-            canvas.cd()
-
-            latex = ROOT.TLatex(0., 0., '')
-            latex.SetTextFont(42)
-            latex.SetTextSize(0.048)
-            latex.SetTextAlign(23)
-
-            for il, label in enumerate(['0', '1', '2', '3', '#geq 4']):
-                latex.DrawLatex(common.xmin + (common.xmax - common.xmin) * (0.5 + il) / 5., common.ymin - 0.02, label)
-
-        canvas.printout('%s/%scr_%s_spectrum_%s.png' % (args.out_path, cr, observable, args.dataset))
-        canvas.printout('%s/%scr_%s_spectrum_%s.pdf' % (args.out_path, cr, observable, args.dataset))
-
-        canvas.clear()
+        if not args.single_cr_plot:
+            if args.save_canvas:
+                canvas.printout('%scr_%s_spectrum_%s' % (cr, observable, args.dataset), canvas_output_file)
+            else:
+                canvas.printout('%s/%scr_%s_spectrum_%s.png' % (args.out_path, cr, observable, args.dataset))
+                canvas.Print('%s/%scr_%s_spectrum_%s.pdf' % (args.out_path, cr, observable, args.dataset))
     
-        for hist in spectra.itervalues():
-            hist.Delete()
+            canvas.clear()
+
+    if args.single_cr_plot:
+        if args.save_canvas:
+            canvas.printout('cr_%s_spectrum_%s' % (observable, args.dataset), canvas_output_file)
+        else:
+            canvas.printout('%s/cr_%s_spectrum_%s.png' % (args.out_path, observable, args.dataset))
+            canvas.Print('%s/cr_%s_spectrum_%s.pdf' % (args.out_path, observable, args.dataset))
+    
+if args.save_canvas:
+    canvas_output_file.Close()

@@ -6,6 +6,7 @@ import root_numpy
 
 import common
 
+unregularized_path = sys.argv[1]
 fitdir = os.path.dirname(os.path.realpath(sys.argv[1]))
 obs = sys.argv[2]
 
@@ -80,7 +81,7 @@ for idep in range(npoi):
 table += '      \\hline\n'
 table += '      Original fit $\\mu$ & \mdash '
 
-source = ROOT.TFile.Open(sys.argv[1])
+source = ROOT.TFile.Open(unregularized_path)
 limit = source.Get('limit')
 result = root_numpy.tree2array(limit, ['r_%d' % imu for imu in range(npoi)])
 
