@@ -17,28 +17,31 @@ mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 eleWP='mvaFall17V1Iso_WP90'
 muWP='cut_Tight_HWWW'
 
+bWP = '0.1241'
 
-# pt of W boson candidates
-aliases['leptonicWpt'] = {
-    'expr': 'TMath::Sqrt( TMath::Pow(Lepton_pt[0], 2) + TMath::Pow(PuppiMET_pt, 2) \
-              + 2*Lepton_pt[0]*PuppiMET_pt*TMath::Cos(Lepton_phi[0] - PuppiMET_phi) )'
+
+aliases['LepWPCut'] = {
+    'expr': '(Lepton_isTightElectron_'+eleWP+'[0]>0.5 \
+           || Lepton_isTightMuon_'+muWP+'[0]>0.5)',
+    'samples': mc + ['DATA']
 }
 
+
+# will be called GenW_Ak8_mass
 aliases['boostedHadrW_pt'] = {
     'expr': 'FatJet_pt[0]'
 }
 
-aliases['resolvedHadr_Wpt'] = {
+# will be called Whad_pt
+aliases['resolvedHadrW_pt'] = {
     'expr': 'Whad_pt'
-    #'expr': 'TMath::Sqrt( TMath::Pow(CleanJet_pt[0], 2) + TMath::Pow(CleanJet_pt[1], 2) \
-    #         +2*CleanJet_pt[0]*CleanJet_pt[1]*TMath::Cos(CleanJet_phi[0]-CleanJet_phi[1]) )'
 }
 
 aliases['leptonicWmt'] = {
     'expr': 'TMath::Sqrt( 2*Lepton_pt[0]*PuppiMET_pt*(1-TMath::Cos(Lepton_phi[0]-PuppiMET_phi)) )'
 }
-
-aliases['Wmjj'] = {
+# mass of W as reconstructed in resolved category will be called GenW_Ak4_mass
+aliases['GenW_Ak4_mass'] = {
     'expr': '(ROOT::Math::PtEtaPhiMVector(Jet_pt[idx_j1], Jet_eta[idx_j1]\
             , Jet_phi[idx_j1], Jet_mass[idx_j1])\
             + ROOT::Math::PtEtaPhiMVector(Jet_pt[idx_j2], Jet_eta[idx_j2]\
@@ -47,7 +50,7 @@ aliases['Wmjj'] = {
 }
 
 # tagging for the six categories
-# FIXME ?
+# FIXME ???
 aliases['VBFtagged'] = {
     'expr': '(mj>500 && multiJet && abs(CleanJet_eta[0]-CleanJet_eta[1])>3.5)'
 }
@@ -58,23 +61,52 @@ aliases['ggFtagged'] = {
 # FIXME W(W) quantities will be defined in future versions, no point in manually defining now
 aliases['boostedWtagged'] = {
     'expr': '(PuppiMET_pt > 40 \
-            && leptonicWpt / mWW > 0.4 && boostedHadrW_pt / mWW > 0.4 \
+            && GenW_Lept_pt / mWW > 0.4 && boostedHadrW_pt / mWW > 0.4 \
             && FatJet_tau2 / FatJet_tau1 < 0.4)'
 }
 # FIXME: again, W quantity not yet here, also X transverse mass
 aliases['resolvedWtagged'] = {
     'expr': '(PuppiMET_pt > 30 && leptonicWmt > 50 \
-            && leptonicWpt / mWW > 0.35 && resolvedHadrW_pt / mWW > 0.35 \
+            && GenW_Lept_pt / mWW > 0.35 && resolvedHadrW_pt / mWW > 0.35 \
             && mtH > 60)'
 }
 
-##############################################
-# FIXME definitions from SM ggH following
-##############################################
-aliases['LepWPCut'] = {
-    'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
-    'samples': mc + ['DATA']
+
+# Jet bins
+# using Alt$(CleanJet_pt[n], 0) instead of Sum$(CleanJet_pt >= 30) because jet pt ordering is not strictly followed in JES-varied samples
+
+# No jet with pt > 30 GeV
+aliases['zeroJet'] = {
+    'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
 }
+
+aliases['oneJet'] = {
+    'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
+}
+
+aliases['multiJet'] = {
+    'expr': 'Alt$(CleanJet_pt[1], 0) > 30.'
+}
+
+# B tagging
+# FIXME does this continue to work like this?
+aliases['bVeto'] = {
+    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 \
+          && Jet_btagDeepB[CleanJet_jetIdx] > '+bWP+') == 0'
+}
+
+aliases['bReq'] = {
+    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 \
+          && Jet_btagDeepB[CleanJet_jetIdx] > '+bWP+') >= 1'
+}
+
+
+
+
+##############################################
+# FIXME unused definitions from SM ggH following
+##############################################
+
 
 aliases['gstarLow'] = {
     'expr': 'Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4',
@@ -159,36 +191,11 @@ aliases['Top_pTrw'] = {
     'samples': ['top']
 }
 
-# Jet bins
-# using Alt$(CleanJet_pt[n], 0) instead of Sum$(CleanJet_pt >= 30) because jet pt ordering is not strictly followed in JES-varied samples
-
-# No jet with pt > 30 GeV
-aliases['zeroJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
-}
-
-aliases['oneJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
-}
-
-aliases['multiJet'] = {
-    'expr': 'Alt$(CleanJet_pt[1], 0) > 30.'
-}
-
-# B tagging
-# FIXME does this continue to work like this?
-aliases['bVeto'] = {
-    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) == 0'
-}
-
-aliases['bReq'] = {
-    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) >= 1'
-}
 
 # CR definitions
 
 aliases['topcr'] = {
-    'expr': 'mtw2>30 && mll>50 && ((zeroJet && !bVeto) || bReq)'
+    'expr': '((zeroJet && !bVeto) || bReq)'
 }
 
 aliases['dycr'] = {
@@ -196,14 +203,9 @@ aliases['dycr'] = {
 }
 
 aliases['wwcr'] = {
-    'expr': 'mth>60 && mtw2>30 && mll>100 && bVeto'
+    'expr': 'bVeto'
 }
 
-# SR definition
-
-aliases['sr'] = {
-    'expr': 'mth>60 && mtw2>30 && bVeto'
-}
 
 # B tag scale factors
 
