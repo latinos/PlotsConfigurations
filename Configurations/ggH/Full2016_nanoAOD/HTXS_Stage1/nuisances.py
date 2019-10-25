@@ -305,11 +305,12 @@ nuisances['PS']  = {
     'AsLnN'      : '1',
     'synchronized': False
 }
-for name in sampleNames:
-  if 'ggH_hww' in name:
-    nuisances['PS']['samples'].update({name: ['1.0078', '1.']})
-  elif 'qqH_hww' in name:
-    nuisances['PS']['samples'].update({name: ['0.9398', '1.']})
+
+#for name in sampleNames:
+#  if 'ggH_hww' in name:
+#    nuisances['PS']['samples'].update({name: ['1.0078', '1.']})
+#  elif 'qqH_hww' in name:
+#    nuisances['PS']['samples'].update({name: ['0.9398', '1.']})
 
 nuisances['UE']  = {
     'name'  : 'UE_CUETP',
@@ -326,9 +327,10 @@ nuisances['UE']  = {
     'synchronized': False
 }
 for name in sampleNames:
-  if 'ggH_hww' in name:
-    nuisances['UE']['samples'].update({name: ['1.0739', '1.0211']})
-  elif 'qqH_hww' in name:
+  #if 'ggH_hww' in name:
+  #  nuisances['UE']['samples'].update({name: ['1.0739', '1.0211']})
+  #elif 'qqH_hww' in name:
+  if 'qqH_hww' in name:
     nuisances['UE']['samples'].update({name: ['1.0137', '0.9781']})
 
 
