@@ -24,12 +24,12 @@ import common
 ROOT.TH1.SetDefaultSumw2(True)
 
 plotconfigs = [
-    ('minor', ['minor'], 'other SM', ROOT.kGray, 'LF'),
-    ('DY', ['DY'], '#tau#tau', 418, 'LF'),
-    ('Fake', ['Fake_em', 'Fake_me'], 'nonprompt', 921, 'LF'),
-    ('top', ['top'], 'tW and t#bar{t}', 400, 'LF'),
-    ('WW', ['WW'], 'WW', 851, 'LF'),
-    ('smH', ['htt'], 'Higgs', ROOT.kRed, 'L')
+    ('minor', ['minor'], 'other background', ROOT.kGray, 'LF'),
+    ('DY', ['DY'], '#tau^{+}#tau^{-}', 418, 'LF'),
+    ('Fake', ['Fake_em', 'Fake_me'], 'non-prompt', 921, 'LF'),
+    ('top', ['top'], 't#bar{t}+tW', 400, 'LF'),
+    ('WW', ['WW'], 'W^{+}W^{-}', 851, 'LF'),
+    ('smH', ['htt'], 'H(125)', ROOT.kRed, 'L')
 ]
 plotconfigs[-1][1].extend('smH_hww_%s' % bin_name for bin_name in common.binnames[args.observable])
 
@@ -320,9 +320,6 @@ def plotstack(stack, signal, uncert, gobs, ivert):
     rmax = 0.
     while rmax < obsarray.max() * 1.1:
         rmax += 10.
-
-    canvas.raxes[ivert].SetWmin(rmin)
-    canvas.raxes[ivert].SetWmax(rmax)
 
     runcert.SetMaximum(rmax)
     runcert.SetMinimum(rmin)

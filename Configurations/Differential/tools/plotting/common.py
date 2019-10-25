@@ -248,12 +248,8 @@ def makeRatioCanvas(width=600, height=600, dataset='combination', wide_labels=No
         canvas.ydmax = 0.97
         
     canvas.yrmin = 0.
-    if nvert == 1:
-        canvas.ydmin = 0.31
-        canvas.yrmax = 0.3
-    else:
-        canvas.ydmin = 0.32
-        canvas.yrmax = 0.27
+    canvas.ydmin = 0.31
+    canvas.yrmax = 0.3
 
     canvas.xaxis = ROOT.TGaxis(xmin, ymin, xmax, ymin, 0., 1., 404, 'S')
     canvas.xaxis.SetTitleOffset(ROOT.gStyle.GetTitleOffset('X') * 0.8)
@@ -298,7 +294,7 @@ def makeRatioCanvas(width=600, height=600, dataset='combination', wide_labels=No
             yaxis.SetNoExponent(True)
             canvas.yaxes.append(yaxis)
 
-        raxis = ROOT.TGaxis(xmin, yoffset + hvert * canvas.yrmin, xmin, yoffset + hvert * canvas.yrmax, 0., 1., 204, 'S')
+        raxis = ROOT.TGaxis(xmin, yoffset + hvert * canvas.yrmin, xmin, yoffset + hvert * (canvas.yrmin + (canvas.yrmax - canvas.yrmin) * 0.95), 0., 1., 204, 'S')
         raxis.SetTitleFont(42)
         raxis.SetTitleOffset(ROOT.gStyle.GetTitleOffset('Y') * 0.85)
         raxis.SetTitleSize(0.048 / nvert)
@@ -403,7 +399,12 @@ def makeRatioCanvas(width=600, height=600, dataset='combination', wide_labels=No
                 self.yaxes[iv].SetWmin(uymin)
                 self.yaxes[iv].SetWmax(uymax)
                 self.yaxes[iv].Draw()
-               
+
+            urmin = ratiopad.GetUymin()
+            urmax = ratiopad.GetUymax()
+
+            self.raxes[iv].SetWmin(urmin)
+            self.raxes[iv].SetWmax(urmin + (urmax - urmin) * 0.95)
             self.raxes[iv].Draw()
 
             distpad.RedrawAxis()
@@ -537,6 +538,7 @@ def make_roofit_histogram(name, ws, funcname, normname='', fitresult=None, rando
     x = ws.var('CMS_th1x')
 
     hist = f.createHistogram(name, x, ROOT.RooFit.Extended(False))
+    hist.SetName(hist.GetName().replace('__CMS_th1x', ''))
     hist.Sumw2()
 
     if normname:
