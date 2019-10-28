@@ -79,7 +79,8 @@ XSWeight      = 'XSWeight'
 SFweight = 'puWeight*\
 TriggerEffWeight_1l*\
 Lepton_RecoSF[0]*\
-EMTFbug_veto'
+EMTFbug_veto*\
+PrefireWeight'
 SFweight=SFweight+'*'+LepWPweight+'*'+LepWPCut
 
 #GenLepMatch   = 'GenLepMatch'+Nlep+'l'
