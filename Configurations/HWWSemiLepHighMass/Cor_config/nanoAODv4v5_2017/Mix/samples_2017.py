@@ -77,7 +77,7 @@ SFweight = 'puWeight*\
 TriggerEffWeight_1l*\
 Lepton_RecoSF[0]*\
 EMTFbug_veto*\
-PrefireWeight''
+PrefireWeight'
 SFweight=SFweight+'*'+LepWPweight+'*'+LepWPCut
 
 #GenLepMatch   = 'GenLepMatch'+Nlep+'l'
