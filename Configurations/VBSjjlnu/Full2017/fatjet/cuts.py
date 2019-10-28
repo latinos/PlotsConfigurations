@@ -11,13 +11,13 @@ supercut = "Lepton_pt[0]>30  \
             && vbs_pt_low >= 30 "
 # Vbs jets are the jets extracted by MaxMjj association from the CleanJet after FatJet cleaning
 
-cuts["fatjet_ele_incl"] = 'abs(Lepton_pdgId[0])==11 \
-                        && Lepton_pt[0] >= 40 \
-                        '
+# cuts["fatjet_ele_incl"] = 'abs(Lepton_pdgId[0])==11 \
+#                         && Lepton_pt[0] >= 40 \
+#                         '
 
-cuts["fatjet_mu_incl"] = 'abs(Lepton_pdgId[0])==13  \
-                        && Lepton_pt[0] >= 30 \
-                        '               
+# cuts["fatjet_mu_incl"] = 'abs(Lepton_pdgId[0])==13  \
+#                         && Lepton_pt[0] >= 30 \
+#                         '               
 
 cuts["fatjet_ele_looseVBS"] = 'abs(Lepton_pdgId[0])==11 \
                         && Lepton_pt[0] >= 40 \

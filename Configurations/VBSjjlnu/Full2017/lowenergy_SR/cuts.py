@@ -13,23 +13,23 @@ supercut = 'Lepton_pt[0]>30 \
 
 
 # No associated jets in the horn
-cuts["lowen_ele_tightVBS"] = 'abs(Lepton_pdgId[0])==11 \
-                                && Lepton_pt[0] >= 40   \
-                                && mjj_vbs >=600    \
-                                && deltaeta_vbs >= 3.5  \
-                                && PuppiMET_pt > 30 \
-                                && bVeto \
-                                && mjj_vjet > 65 && mjj_vjet < 105 \
-                                '
+#cuts["lowen_ele_tightVBS"] = 'abs(Lepton_pdgId[0])==11 \
+#                                && Lepton_pt[0] >= 40   \
+#                                && mjj_vbs >=600    \
+#                                && deltaeta_vbs >= 3.5  \
+#                                && PuppiMET_pt > 30 \
+#                                && bVeto \
+#                                && mjj_vjet > 65 && mjj_vjet < 105 \
+#                                '
 
-cuts["lowen_mu_tightVBS"] = 'abs(Lepton_pdgId[0])==13 \
-                         && Lepton_pt[0] >= 30    \
-                         && mjj_vbs >=600    \
-                         && deltaeta_vbs >= 3.5  \
-                         && PuppiMET_pt > 30 \
-                         && bVeto \
-                         && mjj_vjet > 65 && mjj_vjet < 105 \
-                        '
+#cuts["lowen_mu_tightVBS"] = 'abs(Lepton_pdgId[0])==13 \
+#                         && Lepton_pt[0] >= 30    \
+#                         && mjj_vbs >=600    \
+#                         && deltaeta_vbs >= 3.5  \
+#                         && PuppiMET_pt > 30 \
+#                         && bVeto \
+#                         && mjj_vjet > 65 && mjj_vjet < 105 \
+#                        '
 
 cuts["lowen_ele_topCR"] = 'abs(Lepton_pdgId[0])==11 \
                                 && Lepton_pt[0] >= 40   \

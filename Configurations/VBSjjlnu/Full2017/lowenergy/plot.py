@@ -1,6 +1,6 @@
 # plot configuration
 
-
+from ROOT import TColor
 
 # groupPlot = {}
 # 
@@ -23,60 +23,62 @@ colors = {
     'kTeal'    : 840,
     'kAzure'   : 860,
     'kViolet'  : 880,
-    'kPink'    : 900
+    'kPink'    : 900, 
+}
+
+palette = {
+    "Wjets": (229, 94, 41), #e55e29
+    "Wjets+1": (211, 87, 38), #d34912 
+    "top": (247, 195, 7), #f7c307
+    "Fake": (153, 204, 255), #99ccff
+    "DY": (72, 145, 234),  #4891ea
+    "VVV+VV": (47, 181, 85), #2fb555
+    "VBF-V": (242, 67, 114), #f24372
+    "VBS": (8, 103, 136) #086788
 }
 
 #
 groupPlot['VBS']  = {  
                  'nameHR' : 'VBS',
                  'isSignal' : 1,
-                 'color': colors["kCyan"]+1,   
+                 'color': palette["VBS"],   
                  'samples'  : ['VBS']
               } 
 
-groupPlot['VVV']  = {  
-                  'nameHR' : 'VVV',
-                  'isSignal' : 0,
-                  'color': colors["kAzure"] -3,  
-                  'samples'  : ['VVV']
-              }
-
-groupPlot['VV']  = {  
-                 'nameHR' : 'VV',
-                 'isSignal' : 0,
-                 'color':  colors['kGreen']+3,  
-                 'samples'  : ['VV']
-              }    
-
-groupPlot['Fake']  = {  
-                'nameHR' : "Fake",
-                'isSignal' : 0,
-                'color': colors['kTeal'],   
-                'samples'  : ['Fake']
-            }
 
 groupPlot['VBF-V']  = {  
                  'nameHR' : 'VBF-V',
                  'isSignal' : 0,
-                 'color':  colors['kYellow']+3,  
+                 'color':  palette["VBF-V"],  
                  'samples'  : ['VBF-V']
               }
 
 
+groupPlot['VVV+VV']  = {  
+                  'nameHR' : 'VVV+VV',
+                  'isSignal' : 0,
+                  'color': palette["VVV+VV"],  
+                  'samples'  : ['VVV','VV']
+              }
+
+groupPlot['Fake']  = {  
+                'nameHR' : "Fake",
+                'isSignal' : 0,
+                'color': palette["Fake"],   
+                'samples'  : ['Fake']
+            }
+
 groupPlot['DY']  = {  
                 'nameHR' : "DY",
                 'isSignal' : 0,
-                'color': colors['kMagenta']+1,    
+                'color': palette["DY"],    
                 'samples'  : ['DY']
             }
-
-
-
 
 groupPlot['top']  = {  
                  'nameHR' : 'top',
                  'isSignal' : 0,
-                 'color':  colors['kAzure'],  
+                 'color':  palette["top"],  
                  'samples'  : ['singleTop', 'ttbar']
              }
 
@@ -84,7 +86,7 @@ groupPlot['top']  = {
 groupPlot['Wjets']  = {  
                   'nameHR' : 'W+Jets',
                   'isSignal' : 0,
-                  'color': colors['kRed']-3,  
+                  'color':   palette["Wjets"],
                   'samples'  : ['Wjets']
               }
 
@@ -188,7 +190,7 @@ plot['Wjets']  = {
                   'color':  colors['kRed']-3,
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.   ,
+                  'scale'    : 1.0   ,
               }
 
 

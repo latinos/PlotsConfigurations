@@ -66,3 +66,70 @@ for s in systs:
   aliases['btagSF'+s+'down'] = { 'expr': '( bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_down_'+s)+'+btag0*'+aliases['btag0SF']['expr'].replace('shape','shape_down_'+s)+'+btag1*'+aliases['btag1SF']['expr'].replace('shape','shape_down_'+s)+'+btag2*'+aliases['btag2SF']['expr'].replace('shape','shape_down_'+s)+' + ( (!bVeto) && (!btag0) && (!btag1) && (!btag2) ) )', 'samples':mc  }
 
 
+
+
+
+aliases['fourj_lep_deltaphi'] = {
+            'class': 'FourJetsVars',
+            'args': ("fourjet_lep_deltaphi"),
+            'linesToAdd' : [
+                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+                '.L /afs/cern.ch/work/d/dvalsecc/private/CMSSW_10_2_0/src/PlotsConfigurations/Configurations/VBSjjlnu/ControlRegions2017/check_fakes/fourjet_class.cc+'
+            ]           
+}
+
+aliases['fourj_met_deltaphi'] = {
+            'class': 'FourJetsVars',
+            'args': ("fourjet_met_deltaphi"),
+            'linesToAdd' : [
+                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+                '.L /afs/cern.ch/work/d/dvalsecc/private/CMSSW_10_2_0/src/PlotsConfigurations/Configurations/VBSjjlnu/ControlRegions2017/check_fakes/fourjet_class.cc+'
+            ]  
+}
+
+aliases['fourj_lep_ptratio'] = {
+            'class': 'FourJetsVars',
+            'args': ("fourjet_lep_ptratio"),
+            'linesToAdd' : [
+                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+                '.L /afs/cern.ch/work/d/dvalsecc/private/CMSSW_10_2_0/src/PlotsConfigurations/Configurations/VBSjjlnu/ControlRegions2017/check_fakes/fourjet_class.cc+'
+            ]  
+}
+
+aliases['fourj_pmet'] = {
+            'class': 'FourJetsVars',
+            'args': ("fourjet_pmet"),
+            'linesToAdd' : [
+                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+                '.L /afs/cern.ch/work/d/dvalsecc/private/CMSSW_10_2_0/src/PlotsConfigurations/Configurations/VBSjjlnu/ControlRegions2017/check_fakes/fourjet_class.cc+'
+            ]  
+}
+
+
+aliases['lep_pmet'] = {
+            'class': 'FourJetsVars',
+            'args': ("lep_pmet"),
+            'linesToAdd' : [
+                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+                '.L /afs/cern.ch/work/d/dvalsecc/private/CMSSW_10_2_0/src/PlotsConfigurations/Configurations/VBSjjlnu/ControlRegions2017/check_fakes/fourjet_class.cc+'
+            ]  
+}
+
+aliases['fourj_lep_ptratio'] = {
+            'class': 'FourJetsVars',
+            'args': ("fourjet_lep_ptratio"),
+            'linesToAdd' : [
+                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+                '.L /afs/cern.ch/work/d/dvalsecc/private/CMSSW_10_2_0/src/PlotsConfigurations/Configurations/VBSjjlnu/ControlRegions2017/check_fakes/fourjet_class.cc+'
+            ]  
+}
+
+
+aliases['fourj_pt'] = {
+            'class': 'FourJetsVars',
+            'args': ("fourjet_pt"),
+            'linesToAdd' : [
+                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+                '.L /afs/cern.ch/work/d/dvalsecc/private/CMSSW_10_2_0/src/PlotsConfigurations/Configurations/VBSjjlnu/ControlRegions2017/check_fakes/fourjet_class.cc+'
+            ]  
+}
