@@ -147,10 +147,8 @@ if REDRAW:
     drawer = ROOT.multidraw.MultiDraw('Events')
     drawer.setWeightBranch('baseW')
 
-    # temporary - I forgot why
-    if DATASET == '2018':
-        genWeight = ROOT.multidraw.ReweightSource('genWeight')
-        drawer.setReweight(genWeight)
+    genWeight = ROOT.multidraw.ReweightSource('genWeight')
+    drawer.setReweight(genWeight)
 
     treedir = '/eos/cms/store/user/yiiyama/HWWNano/%s/MCGenOnly' % productions[DATASET]
     ifile = 0

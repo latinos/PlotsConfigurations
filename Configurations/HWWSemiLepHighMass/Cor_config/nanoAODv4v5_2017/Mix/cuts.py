@@ -46,7 +46,7 @@ BoostProcCats['vbf']='IsVbfFat'
 ResolveCats={}
 ResolveCats['ResolvedSR']='IsResolvedSR'
 ResolveCats['ResolvedSB']='IsResolvedSB'
-ResolveCats['ResolvedTop']='IsResolvedTop'
+ResolveCats['ResolvedTop']='IsResolvedTopCR'
     
 ResolveProcCats={}
 ResolveProcCats['']='1'

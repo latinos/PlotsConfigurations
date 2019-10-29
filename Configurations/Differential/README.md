@@ -139,6 +139,12 @@ Gen-only plots configuration
 
 For the cross section interpretation of the fit results and multiple other purposes, there is a `fiducial` plot configuration under this directory. The configuration is light-weight enough to not need batch splitting at all. Some of the plotting scripts below assume that this configuration has been run and there exists a ROOT file named `fiducial/rootFile/plots_Fiducial.root`.
 
+Other fit-related tasks
+=======================
+
+Directory `tools/fitting` contains script for fit-related tasks:
+
+- `bias_estimate.py`: Compute the regularization bias as dmu/dn (nu - n) where dmu/dn is the rate of change of mu wrt SR event yield n and nu is the postfit prediction of nu. Requires an postfit Asimov from unregularized best-fit model and the result of a regularized fit result on it (Both can be done with dofit.sh).
 
 Making plots
 ============
@@ -154,4 +160,7 @@ Directory `tools/plotting` contains scripts for plotting:
 - `diffNuisances_mlfit.py`: Do what the standard diffNuisances script does for MultiDimFit output.
 - `plot_mu.py`: Take the regularized and unregularized fit outputs and plot the mu values.
 - `plot_correlation_matrix.py`: Take a fit result and plot the signal strength correlation matrix.
+- `plot_correlation_matrix_2.py`: Paper version of correlation matrix.
+- `bias_estimate_vbfshift.py`: Use VBF0 and VBF2 shifted fits (see above) to assess the model dependency of unfolding.
 - `plot_sigma.py`: Make the "money plot".
+- `plot_postfit_sr.py`: Make post-fit mll distributions from a workspace with possibly different mll:mtH binning from the actual fit model.

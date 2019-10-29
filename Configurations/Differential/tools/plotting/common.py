@@ -4,7 +4,7 @@ import array
 import types
 import numpy as np
 import ROOT
-import root_numpy
+import root_numpy as rnp
 
 ## ROOT styling
 ROOT.gROOT.SetBatch(True)
@@ -31,6 +31,7 @@ import binning
 binnames = binning.bins
 bintitles = binning.bintitles
 xtitles = binning.xtitles
+variables = binning.variables
 binning = binning.binning
 
 ## Fiducial histograms with proper uncertainties
@@ -60,7 +61,7 @@ def get_fiducial_histograms(source, obs, prods, add_stat_only=False, scaling={})
     if add_stat_only:
         statonly = htotal.Clone()
 
-    uncert = root_numpy.array(htotal.GetSumw2()) # stat uncert squared
+    uncert = rnp.array(htotal.GetSumw2()) # stat uncert squared
 
     for nuis in nuisances.itervalues():
         up = np.zeros_like(uncert)
@@ -71,8 +72,8 @@ def get_fiducial_histograms(source, obs, prods, add_stat_only=False, scaling={})
                 if prod not in prods:
                     continue
 
-                dup = root_numpy.hist2array(source.Get('fiducial/%s/histo_%s_%sUp' % (obs, prod, nuis['name'])), include_overflow=True, copy=False)
-                ddown = root_numpy.hist2array(source.Get('fiducial/%s/histo_%s_%sDown' % (obs, prod, nuis['name'])), include_overflow=True, copy=False)
+                dup = rnp.hist2array(source.Get('fiducial/%s/histo_%s_%sUp' % (obs, prod, nuis['name'])), include_overflow=True, copy=False)
+                ddown = rnp.hist2array(source.Get('fiducial/%s/histo_%s_%sDown' % (obs, prod, nuis['name'])), include_overflow=True, copy=False)
                 try:
                     dup *= scaling[prod]
                     ddown *= scaling[prod]
@@ -87,7 +88,7 @@ def get_fiducial_histograms(source, obs, prods, add_stat_only=False, scaling={})
                 if prod not in prods:
                     continue
                 
-                nom = root_numpy.hist2array(nominals[prod], include_overflow=True, copy=False)
+                nom = rnp.hist2array(nominals[prod], include_overflow=True, copy=False)
                 if '/' in value:
                     vdown, vup = map(float, value.split('/'))
                     up += nom * vup
@@ -247,21 +248,29 @@ def makeRatioCanvas(width=600, height=600, dataset='combination', wide_labels=No
         canvas.ydmax = 0.97
         
     canvas.yrmin = 0.
-    if nvert == 1:
-        canvas.ydmin = 0.31
-        canvas.yrmax = 0.3
-    else:
-        canvas.ydmin = 0.32
-        canvas.yrmax = 0.27
+    canvas.ydmin = 0.31
+    canvas.yrmax = 0.3
 
-    canvas.xaxis = ROOT.TGaxis(xmin, ymin, xmax, ymin, 0., 1., 110, 'S')
+    canvas.xaxis = ROOT.TGaxis(xmin, ymin, xmax, ymin, 0., 1., 404, 'S')
     canvas.xaxis.SetTitleOffset(ROOT.gStyle.GetTitleOffset('X') * 0.8)
     canvas.xaxis.SetLabelFont(42)
     canvas.xaxis.SetTitleFont(42)
     canvas.xaxis.SetTitleSize(0.048)
     canvas.xaxis.SetLabelSize(0.875 * 0.048)
-    canvas.xaxis.SetTickLength(0.)
+    canvas.xaxis.SetTickLength(0.02)
     canvas.xaxis.SetGridLength(0.)
+
+    def change_label(self, *args):
+        self._ChangeLabel(*args)
+        self._label_mods.append(args)
+
+    canvas.xaxis._ChangeLabel = canvas.xaxis.ChangeLabel
+    canvas.xaxis._label_mods = []
+    canvas.xaxis.ChangeLabel = types.MethodType(change_label, canvas.xaxis)
+
+    if wide_labels is not None:
+        if type(wide_labels[0]) is not list:
+            wide_labels = [wide_labels] * nvert
 
     canvas.wide_labels = wide_labels
     canvas.nvert = nvert
@@ -285,7 +294,7 @@ def makeRatioCanvas(width=600, height=600, dataset='combination', wide_labels=No
             yaxis.SetNoExponent(True)
             canvas.yaxes.append(yaxis)
 
-        raxis = ROOT.TGaxis(xmin, yoffset + hvert * canvas.yrmin, xmin, yoffset + hvert * canvas.yrmax, 0., 1., 502, 'S')
+        raxis = ROOT.TGaxis(xmin, yoffset + hvert * canvas.yrmin, xmin, yoffset + hvert * (canvas.yrmin + (canvas.yrmax - canvas.yrmin) * 0.95), 0., 1., 204, 'S')
         raxis.SetTitleFont(42)
         raxis.SetTitleOffset(ROOT.gStyle.GetTitleOffset('Y') * 0.85)
         raxis.SetTitleSize(0.048 / nvert)
@@ -296,11 +305,23 @@ def makeRatioCanvas(width=600, height=600, dataset='combination', wide_labels=No
         canvas.raxes.append(raxis)
 
     def finalize(self):
+        self.cd()
+
         for iv in range(self.nvert):
             distpad = self.GetPad(iv * 2 + 1)
             ratiopad = self.GetPad(iv * 2 + 2)
     
             distpad.Update()
+
+            frame = distpad.GetListOfPrimitives().At(1)
+            rframe = ratiopad.GetListOfPrimitives().At(1)
+
+            if not frame or not rframe:
+                continue
+            
+            xaxis = frame.GetXaxis()
+            uxmin = xaxis.GetXmin()
+            disty1 = distpad.GetYlowNDC()
 
             if self.wide_labels is not None:
                 dataset_divider = ROOT.TLine(0., 0., 0., 0.)
@@ -308,23 +329,66 @@ def makeRatioCanvas(width=600, height=600, dataset='combination', wide_labels=No
                 dataset_divider.SetLineWidth(1)
                 dataset_divider.SetLineColor(ROOT.kBlack)
 
-                dataset_label = ROOT.TText(0., 0., '')
+                dataset_label = ROOT.TLatex(0., 0., '')
                 dataset_label.SetTextFont(42)
                 dataset_label.SetTextAlign(11)
                 dataset_label.SetTextSize(0.05 * self.nvert)
 
-                frame = distpad.GetListOfPrimitives().At(1)
-                rframe = ratiopad.GetListOfPrimitives().At(1)
-                xaxis = frame.GetXaxis()
-                xwidth = xaxis.GetBinUpEdge(xaxis.GetNbins() / len(self.wide_labels)) - xaxis.GetXmin()
-                for il, label in enumerate(self.wide_labels):
-                    xdiv = xaxis.GetBinUpEdge(xaxis.GetNbins() / len(self.wide_labels) * il)
+                uxmax = xaxis.GetBinUpEdge(xaxis.GetNbins() / len(self.wide_labels[iv]))
+                xwidth = uxmax - uxmin
+
+                x1 = distpad.GetXlowNDC()
+                xlen = distpad.GetWNDC() / len(self.wide_labels[iv])
+
+                for il, label in enumerate(self.wide_labels[iv]):
+                    xdiv = xaxis.GetBinUpEdge(xaxis.GetNbins() / len(self.wide_labels[iv]) * il)
                     distpad.cd()
-                    dataset_label.DrawText(xdiv + 0.05 * xwidth, frame.GetMaximum() * 0.85, label)
+                    dataset_label.DrawLatex(xdiv + 0.05 * xwidth, frame.GetMaximum() * 0.85, label)
                     if il != 0:
                         dataset_divider.DrawLine(xdiv, frame.GetMinimum(), xdiv, frame.GetMaximum())
                         ratiopad.cd()
                         dataset_divider.DrawLine(xdiv, rframe.GetMinimum(), xdiv, rframe.GetMaximum())
+
+                    self.cd()
+
+                    # dist pad
+                    self.xaxis.DrawAxis(x1, disty1, x1 + xlen, disty1, uxmin, uxmax, self.xaxis.GetNdiv(), self.xaxis.GetOption(), self.xaxis.GetGridLength())
+                    newaxis = self.GetListOfPrimitives().Last()
+                    newaxis.SetLabelSize(0.)
+                    newaxis.SetTitle('')
+
+                    # ratio pad
+                    self.xaxis.DrawAxis(x1, self.raxes[iv].GetY1(), x1 + xlen, self.raxes[iv].GetY1(), uxmin, uxmax, self.xaxis.GetNdiv(), self.xaxis.GetOption(), self.xaxis.GetGridLength())
+                    newaxis = self.GetListOfPrimitives().Last()
+                    if iv != 0:
+                        newaxis.SetLabelSize(0.)
+                    else:
+                        newaxis.SetBit(ROOT.TAxis.kCenterLabels, self.xaxis.TestBit(ROOT.TAxis.kCenterLabels))
+                        for args in self.xaxis._label_mods:
+                            newaxis.ChangeLabel(*args)
+
+                    if iv != 0 or il != len(self.wide_labels[iv]) - 1:
+                        newaxis.SetTitle('')
+
+                    x1 += xlen
+
+            else:
+                uxmax = xaxis.GetBinUpEdge(xaxis.GetNbins() / len(self.wide_labels[iv]))
+
+                # dist pad
+                self.xaxis.DrawAxis(self.xaxis.GetX1(), disty1, self.xaxis.GetX2(), disty1, uxmin, uxmax, self.xaxis.GetNdiv(), self.xaxis.GetOption(), self.xaxis.GetGridLength())
+                newaxis = self.GetListOfPrimitives().Last()
+                newaxis.SetLabelSize(0.)
+                newaxis.SetTitle('')
+
+                # ratio pad
+                self.xaxis.DrawAxis(x1, self.raxes[iv].GetY1(), x1 + xlen, self.raxes[iv].GetY1(), uxmin, uxmax, self.xaxis.GetNdiv(), self.xaxis.GetOption(), self.xaxis.GetGridLength())
+                if iv != 0:
+                    newaxis.SetLabelSize(0.)
+                else:
+                    newaxis.SetBit(ROOT.TAxis.kCenterLabels, self.xaxis.TestBit(ROOT.TAxis.kCenterLabels))
+                if iv != 0 or il != len(self.wide_labels[iv]) - 1:
+                    newaxis.SetTitle('')
 
             self.cd()
 
@@ -335,20 +399,18 @@ def makeRatioCanvas(width=600, height=600, dataset='combination', wide_labels=No
                 self.yaxes[iv].SetWmin(uymin)
                 self.yaxes[iv].SetWmax(uymax)
                 self.yaxes[iv].Draw()
-                
+
+            urmin = ratiopad.GetUymin()
+            urmax = ratiopad.GetUymax()
+
+            self.raxes[iv].SetWmin(urmin)
+            self.raxes[iv].SetWmax(urmin + (urmax - urmin) * 0.95)
             self.raxes[iv].Draw()
 
             distpad.RedrawAxis()
             ratiopad.RedrawAxis()
 
         self.cd()
-
-        uxmin = distpad.GetUxmin()
-        uxmax = distpad.GetUxmax()
-
-        self.xaxis.SetWmin(uxmin)
-        self.xaxis.SetWmax(uxmax)
-        self.xaxis.Draw()
 
         self.cmsLabel.Draw()
         self.lumiLabel.Draw()
@@ -414,14 +476,27 @@ def get_line_color(color):
 
 n_postfit_unc_toys = 200
 
-def set_postfit_uncertainty(hist, ws, fitresult, func, norm=None, randomized_parameters=None):
+def fold_hist(hist, fold):
+    tmp = hist
+    name = tmp.GetName()
+    tmp.SetName('tmp')
+    hist = ROOT.TH1D(name, '', len(fold), 0., float(len(fold)))
+    hist.Sumw2()
+    indices = np.array(fold)
+    arr = np.sum(rnp.hist2array(tmp, copy=False)[indices], axis=1)
+    tmp.Delete()
+    rnp.array2hist(arr, hist)
+
+    return hist
+
+def set_postfit_uncertainty(hist, ws, fitresult, func, norm=None, randomized_parameters=None, fold=None):
     x = ws.var('CMS_th1x')
     ch = ws.cat('CMS_channel')
     
-    err2 = root_numpy.array(hist.GetSumw2(), copy=False)
+    err2 = rnp.array(hist.GetSumw2(), copy=False)
     err2 *= 0.
 
-    anom = root_numpy.hist2array(hist, copy=False, include_overflow=True)
+    anom = rnp.hist2array(hist, copy=False, include_overflow=True)
 
     fparams = func.getParameters(ROOT.RooArgSet(x, ch))
     fcentral = fparams.snapshot()
@@ -431,7 +506,6 @@ def set_postfit_uncertainty(hist, ws, fitresult, func, norm=None, randomized_par
     
     # evaluate postfit uncertainties
     for itoy in range(n_postfit_unc_toys):
-        print 'pftoy', itoy
         if randomized_parameters is None:
             randomized = fitresult.randomizePars()
             fparams.assignValueOnly(randomized)
@@ -443,7 +517,11 @@ def set_postfit_uncertainty(hist, ws, fitresult, func, norm=None, randomized_par
             nparams.assignValueOnly(randomized)
             htemp.Scale(norm.getVal())
 
-        atemp = root_numpy.hist2array(htemp, copy=False, include_overflow=True)
+        if fold is not None:
+            htemp = fold_hist(htemp, fold)
+
+        atemp = rnp.hist2array(htemp, copy=False, include_overflow=True)
+
         err2 += np.square(atemp - anom) / n_postfit_unc_toys
 
         htemp.Delete()
@@ -452,7 +530,7 @@ def set_postfit_uncertainty(hist, ws, fitresult, func, norm=None, randomized_par
     if norm is not None:
         nparams.assignValueOnly(ncentral)
 
-def make_roofit_histogram(name, ws, funcname, normname='', fitresult=None, randomized_parameters=None):
+def make_roofit_histogram(name, ws, funcname, normname='', fitresult=None, randomized_parameters=None, fold=None):
     f = ws.arg(funcname)
     if not f:
         return None
@@ -460,6 +538,7 @@ def make_roofit_histogram(name, ws, funcname, normname='', fitresult=None, rando
     x = ws.var('CMS_th1x')
 
     hist = f.createHistogram(name, x, ROOT.RooFit.Extended(False))
+    hist.SetName(hist.GetName().replace('__CMS_th1x', ''))
     hist.Sumw2()
 
     if normname:
@@ -468,7 +547,10 @@ def make_roofit_histogram(name, ws, funcname, normname='', fitresult=None, rando
     else:
         n = None
 
+    if fold is not None:
+        hist = fold_hist(hist, fold)
+
     if fitresult is not None:
-        set_postfit_uncertainty(hist, ws, fitresult, f, n, randomized_parameters=randomized_parameters)
+        set_postfit_uncertainty(hist, ws, fitresult, f, n, randomized_parameters=randomized_parameters, fold=fold)
 
     return hist
