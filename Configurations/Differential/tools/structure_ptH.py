@@ -10,9 +10,9 @@ import binning
 
 observable = 'PTH'
 sample_merging = {
-    #'WW': ['WW', 'ggWW'],
-    #'minor': ['WWewk', 'Vg', 'VgS_L', 'VgS_H', 'VZ', 'VVV'],
-    'minor': ['ggWW', 'WWewk', 'Vg', 'VgS_L', 'VgS_H', 'VZ', 'VVV'],
+    'WW': ['WW', 'ggWW'],
+    'minor': ['WWewk', 'Vg', 'VgS_L', 'VgS_H', 'VZ', 'VVV'],
+    #'minor': ['ggWW', 'WWewk', 'Vg', 'VgS_L', 'VgS_H', 'VZ', 'VVV'],
     'htt': []
 }
 
