@@ -107,7 +107,7 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 
 ###### Top #######
 
-files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
+files = nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic') + \
     nanoGetSampleFiles(mcDirectory, 'ST_s-channel_ext1') + \
     nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
     nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
@@ -119,11 +119,10 @@ samples['top'] = {
     'weight': mcCommonWeight,
     'FilesPerJob': 1,
 }
-
-addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
+# FIXME: ???
+addSampleWeight(samples,'top','TTToSemiLeptonic','Top_pTrw')
 
 ###### WW ########
-
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
     'weight': mcCommonWeight + '*nllW',
@@ -211,6 +210,13 @@ samples['VVV'] = {
     'FilesPerJob': 5
 }
 
+########## W+jets #########
+samples['Wjets'] = {
+    'name'   :   nanoGetSampleFiles(mcDirectory,'WJetsToLNu-LO'),
+    'weight' : mcCommonWeight,
+    'FilesPerJob' : 5,
+}
+
 ########### QCD ###########
 
 files = nanoGetSampleFiles(mcDirectory,'QCD_Pt-15to20_MuEnrichedPt5') + \
@@ -238,7 +244,7 @@ samples['QCD'] = {
     'name'   :   files,
     'weight' : mcCommonWeight,
     'FilesPerJob' : 5,
-                    }
+}
 
 ###########################################
 #############   SIGNALS  ##################
@@ -249,7 +255,7 @@ List_MX=[125,200,500,900,2500,4000,5000]
 
 signals = []
 
-#### ggH -> WW
+####### ggH -> WW #################
 for MX in List_MX:
     samples['ggHWWlnuqq_M'+str(MX)] = {
         'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToLNuQQ_M'+str(MX)),
@@ -266,44 +272,78 @@ for MX in List_MX:
         'FilesPerJob': 5
     }
     signals.append('qqHWWlnuqq_M'+str(MX))
-
+nanoGetSampleFiles
 ############ ZH H->WW ############
-# FIXME: does (will) this exist for semileptonic?
-for MX in List_MX:
-    samples['ZH_HWWlnuqq_M'+str(MX)] = {
-        'name':   nanoGetSampleFiles(mcDirectory, 'HZJ_HToWWToLNuQQ_M'+str(MX)),
-        'weight': mcCommonWeight,
-        'FilesPerJob': 5
-    }
-    signals.append('ZH_HWWlnuqq'+str(MX))
 
-    samples['ggZH_HWWlnuqq_M'+str(MX)] = {
-        'name':   nanoGetSampleFiles(mcDirectory, 'GluGluZH_HToWWToLNuQQ_M'+str(MX)),
-        'weight': mcCommonWeight,
-        'FilesPerJob': 5
-    }
-    signals.append('ggZH_hww')
+samples['ZH_hww'] = {
+    'name':   nanoGetSampleFiles(mcDirectory, 'HZJ_HToWW_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4
+}
+
+signals.append('ZH_hww')
+
+samples['ggZH_hww'] = {
+    'name':   nanoGetSampleFiles(mcDirectory, 'GluGluZH_HToWWTo2L2Nu_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4
+}
+
+signals.append('ggZH_hww')
 
 ############ WH H->WW ############
-# FIXME: does (will) this exist for HM semileptonic?
-for MX in List_MX:
-    samples['WH_HWWlnuqq_M'+str(MX)] = {
-        'name':   nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWWToLNuQQ_M'+str(MX)) +\
-                  nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWWToLNuQQ_M'+str(MX)),
-        'weight': mcCommonWeight,
-        'FilesPerJob': 5
-    }
-    signals.append('WH_HWWlnuqq_M'+str(MX))
 
-############ ttH H->WW ############
-# FIXME: same as above
-for MX in List_MX:
-    samples['ttH_HWWlnuqq_M'+str(MX)] = {
-        'name':   nanoGetSampleFiles(mcDirectory, 'ttH_HToWWToLNuQQ_M'+str(MX)),
-        'weight': mcCommonWeight,
-        'FilesPerJob': 1
-    }
-    signals.append('ttH_HWWlnuqq_M'+str(MX))
+samples['WH_hww'] = {
+    'name':   nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4
+}
+
+signals.append('WH_hww')
+
+############ ttH ############
+
+samples['ttH_hww'] = {
+    'name':   nanoGetSampleFiles(mcDirectory, 'ttHToNonbb_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 1
+}
+
+signals.append('ttH_hww')
+
+############ H->TauTau ############
+
+samples['ggH_htt'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 20
+}
+
+#signals.append('ggH_htt')
+
+samples['qqH_htt'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 12
+}
+
+#signals.append('qqH_htt')
+#
+#samples['ZH_htt'] = {
+#    'name': nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125'),
+#    'weight': mcCommonWeight,
+#    'FilesPerJob': 4
+#}
+#
+#signals.append('ZH_htt')
+#
+#samples['WH_htt'] = {
+#    'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
+#    'weight': mcCommonWeight,
+#    'FilesPerJob': 4
+#}
+#
+#signals.append('WH_htt')
 
 
 ###########################################

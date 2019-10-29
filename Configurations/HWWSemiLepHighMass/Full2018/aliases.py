@@ -27,7 +27,7 @@ aliases['LepWPCut'] = {
 }
 
 
-# will be called GenW_Ak8_mass
+# will be called ???
 aliases['boostedHadrW_pt'] = {
     'expr': 'FatJet_pt[0]'
 }
@@ -40,8 +40,8 @@ aliases['resolvedHadrW_pt'] = {
 aliases['leptonicWmt'] = {
     'expr': 'TMath::Sqrt( 2*Lepton_pt[0]*PuppiMET_pt*(1-TMath::Cos(Lepton_phi[0]-PuppiMET_phi)) )'
 }
-# mass of W as reconstructed in resolved category will be called GenW_Ak4_mass
-aliases['GenW_Ak4_mass'] = {
+# mass of W as reconstructed in resolved category will be called Whad_mass
+aliases['W_Ak4_mass'] = {
     'expr': '(ROOT::Math::PtEtaPhiMVector(Jet_pt[idx_j1], Jet_eta[idx_j1]\
             , Jet_phi[idx_j1], Jet_mass[idx_j1])\
             + ROOT::Math::PtEtaPhiMVector(Jet_pt[idx_j2], Jet_eta[idx_j2]\
@@ -61,13 +61,13 @@ aliases['ggFtagged'] = {
 # FIXME W(W) quantities will be defined in future versions, no point in manually defining now
 aliases['boostedWtagged'] = {
     'expr': '(PuppiMET_pt > 40 \
-            && GenW_Lept_pt / mWW > 0.4 && boostedHadrW_pt / mWW > 0.4 \
+            && Wlep_pt / mWW > 0.4 && boostedHadrW_pt / mWW > 0.4 \
             && FatJet_tau2 / FatJet_tau1 < 0.4)'
 }
 # FIXME: again, W quantity not yet here, also X transverse mass
 aliases['resolvedWtagged'] = {
     'expr': '(PuppiMET_pt > 30 && leptonicWmt > 50 \
-            && GenW_Lept_pt / mWW > 0.35 && resolvedHadrW_pt / mWW > 0.35 \
+            && Wlep_pt / mWW > 0.35 && resolvedHadrW_pt / mWW > 0.35 \
             && mtH > 60)'
 }
 
@@ -99,6 +99,22 @@ aliases['bReq'] = {
     'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 \
           && Jet_btagDeepB[CleanJet_jetIdx] > '+bWP+') >= 1'
 }
+
+
+# CR definitions
+
+aliases['topcr'] = {
+    'expr': '((zeroJet && !bVeto) || bReq)'
+}
+
+aliases['dycr'] = {
+    'expr': 'mth<60 && mll>40 && mll<80 && bVeto'
+}
+
+aliases['wwcr'] = {
+    'expr': 'bVeto'
+}
+
 
 
 
@@ -189,21 +205,6 @@ aliases['antitopGenPtOTF'] = {
 aliases['Top_pTrw'] = {
     'expr': 'isTTbar * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPtOTF) * TMath::Exp(0.0615 - 0.0005 * antitopGenPtOTF))) + isSingleTop',
     'samples': ['top']
-}
-
-
-# CR definitions
-
-aliases['topcr'] = {
-    'expr': '((zeroJet && !bVeto) || bReq)'
-}
-
-aliases['dycr'] = {
-    'expr': 'mth<60 && mll>40 && mll<80 && bVeto'
-}
-
-aliases['wwcr'] = {
-    'expr': 'bVeto'
 }
 
 
