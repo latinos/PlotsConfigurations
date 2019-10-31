@@ -37,6 +37,21 @@ groupPlot['DY']  = {
                   'samples'  : ['DY']
               }
 
+groupPlot['DMPseudo']  = {  
+                  'nameHR' : "PS-100GeV (x10^4)",
+                  'isSignal' : 2,
+                  'color': 632,    # kRed
+                  'samples'  : ['DMPseudo_100GeV']
+              }
+
+groupPlot['DMScalar']  = {  
+                  'nameHR' : "S-100GeV (x10^4)",
+                  'isSignal' : 2,
+                  'color': 635,    # kRed+3
+                  'samples'  : ['DMScalar_100GeV']
+              }
+
+
 
 #groupPlot['VVV']  = {  
 #                  'nameHR' : 'VVV',
@@ -141,6 +156,20 @@ plot['WW']  = {
                   'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+                  }
+
+plot['DMPseudo_100GeV']  = {
+                  'color': 632, # kRed
+                  'isSignal' : 2,
+                  'isData'   : 0,    
+                  'scale'    : 10000.0
+                  }
+
+plot['DMScalar_100GeV']  = {
+                  'color': 635, # kRed+3
+                  'isSignal' : 2,
+                  'isData'   : 0,    
+                  'scale'    : 10000.0
                   }
 
 
@@ -356,7 +385,7 @@ plot['DATA']  = {
 #legend['lumi'] = 'L = 4.3/fb'
 #legend['lumi'] = 'L = 6.3/fb'
 #legend['lumi'] = 'L = 12.9/fb'
-legend['lumi'] = 'L = 41.5/fb'
+legend['lumi'] = 'L = 35.9/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

@@ -27,6 +27,7 @@ _tmp = [
      'Alt$(CleanJet_pt[1],0)>30.',
      'PuppiMET_pt > 50.',
      '(mll < 76. || mll > 106.)',
+     'btag1'
      ]
 
 addcut('Control_Top_ll', _tmp)
@@ -38,6 +39,7 @@ _tmp = [
     'Alt$(CleanJet_pt[1],0)>30.',
     'PuppiMET_pt > 50.',
     '(mll < 76. || mll > 106.)',
+    'btag1'
      ]
 
 addcut('Control_Top_ee', _tmp)
@@ -49,6 +51,7 @@ _tmp = [
      'Alt$(CleanJet_pt[1],0)>30.',
      'PuppiMET_pt > 50.',
      '(mll < 76. || mll > 106.)',
+     'btag1'
      ]
 
 addcut('Control_Top_mm', _tmp)
@@ -61,6 +64,7 @@ _tmp = [
      'Alt$(CleanJet_pt[1],0)>30.',
      'PuppiMET_pt > 50.',
      '(mll < 76. || mll > 106.)',
+     'btag1'
     ]
 
 addcut('Control_Top_df', _tmp)

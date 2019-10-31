@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'ttDM-Full2017-blinded'
+tag = 'ttDM-Full2016-blinded'
 
 
 # used by mkShape to define output directory for root files
@@ -26,7 +26,7 @@ plotFile = 'plot.py'
 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 10.4
+lumi = 9
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
