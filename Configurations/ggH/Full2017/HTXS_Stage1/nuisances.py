@@ -70,8 +70,9 @@ for k in cuts:
     if '0j' in cat: cuts0j.append(k+'_'+cat)
     elif '1j' in cat: cuts1j.append(k+'_'+cat)
     elif '2j' in cat: cuts2j.append(k+'_'+cat)
-    elif 'GT200' in cat: cutsGT200.append(k+'_'+cat)
-    else: print 'WARNING: name of category does not contain either 0j,1j,2j,GT200', cat
+    #elif 'PTH200' in cat: cutsGT200.append(k+'_'+cat)
+    else : cutsGT200.append(k+'_'+cat)
+    #else: print 'WARNING: name of category does not contain either 0j,1j,2j,GT200', cat
 
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
@@ -696,9 +697,15 @@ nuisances['QCDscale_ggH_STXS_ACCEPT'] = {
               }
 for name in sampleNames:
   if 'ggH_hww' in name:
-    scale2d0 = QCDScaleFactors[name.replace('ggH_hww','GG2H')][0]
-    scale0d5 = QCDScaleFactors[name.replace('ggH_hww','GG2H')][1]
-    nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/'+scale2d0, 'LHEScaleWeight[0]/'+scale0d5]})
+    if 'GT200' not in name:
+      scale2d0 = QCDScaleFactors[name.replace('ggH_hww','GG2H')][0]
+      scale0d5 = QCDScaleFactors[name.replace('ggH_hww','GG2H')][1]
+      nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/'+scale2d0, 'LHEScaleWeight[0]/'+scale0d5]})
+    else:
+      nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/QCDScaleFactors[GG2H_PTH_200_300][0], LHEScaleWeight[0]/QCDScaleFactors[GG2H_PTH_200_300][1]']})
+      nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/QCDScaleFactors[GG2H_PTH_300_450][0], LHEScaleWeight[0]/QCDScaleFactors[GG2H_PTH_300_450][1]']})
+      nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/QCDScaleFactors[GG2H_PTH_450_650][0], LHEScaleWeight[0]/QCDScaleFactors[GG2H_PTH_450_650][1]']})
+      nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/QCDScaleFactors[GG2H_PTH_GT650][0], LHEScaleWeight[0]/QCDScaleFactors[GG2H_PTH_GT650][1]']})
 
 #### QCD scale uncertainties for Higgs signals other than ggH
 
