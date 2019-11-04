@@ -19,6 +19,7 @@ Make a copy and edit the following python file (`userConfig.py`) to specify your
 
     cd LatinoAnalysis/Tools/python/
     cp userConfig_TEMPLATE.py userConfig.py
+    cd -
 
 Prepare your configuration, you can use the following configuration as a template (this is based on 2018 data and MC):
 
