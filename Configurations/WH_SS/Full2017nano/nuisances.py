@@ -70,7 +70,10 @@ nuisances['fake_syst'] = {
     'name': 'CMS_fake_syst',
     'type': 'lnN',
     'samples': {
-        'Fakes': '1.3'
+        #'Fakes': '1.3'
+        'Fakes_ee': '1.3',
+        'Fakes_mm': '1.3',
+        'Fakes_em': '1.3'
     },
 }
 
@@ -79,7 +82,10 @@ nuisances['fake_ele'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': {
-        'Fakes': ['fakeWEleUp', 'fakeWEleDown'],
+        #'Fakes': ['fakeWEleUp', 'fakeWEleDown'],
+        'Fakes_ee': ['fakeWEleUp', 'fakeWEleDown'],
+        'Fakes_em': ['fakeWEleUp', 'fakeWEleDown']
+        
     }
 }
 
@@ -88,7 +94,9 @@ nuisances['fake_ele_stat'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': {
-        'Fakes': ['fakeWStatEleUp', 'fakeWStatEleDown']
+        #'Fakes': ['fakeWStatEleUp', 'fakeWStatEleDown']
+        'Fakes_ee': ['fakeWStatEleUp', 'fakeWStatEleDown'],
+        'Fakes_em': ['fakeWStatEleUp', 'fakeWStatEleDown']
     }
 }
 
@@ -97,7 +105,9 @@ nuisances['fake_mu'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': {
-        'Fakes': ['fakeWMuUp', 'fakeWMuDown'],
+        #'Fakes': ['fakeWMuUp', 'fakeWMuDown'],
+        'Fakes_mm': ['fakeWMuUp', 'fakeWMuDown'],
+        'Fakes_em': ['fakeWMuUp', 'fakeWMuDown']
     }
 }
 
@@ -106,7 +116,9 @@ nuisances['fake_mu_stat'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': {
-        'Fakes': ['fakeWStatMuUp', 'fakeWStatMuDown'],
+        #'Fakes': ['fakeWStatMuUp', 'fakeWStatMuDown'],
+        'Fakes_mm': ['fakeWStatMuUp', 'fakeWStatMuDown'],
+        'Fakes_em': ['fakeWStatMuUp', 'fakeWStatMuDown']
     }
 }
 ###### B-tagger

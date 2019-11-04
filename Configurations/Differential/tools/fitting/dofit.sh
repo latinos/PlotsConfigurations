@@ -29,7 +29,7 @@ then
   eval `scram runtime -sh`
 fi
 
-ulimit -s 20480
+ulimit -s unlimited
 
 function dofit() {
   echo combine $CARD -M $METHOD $@ -n $NAME
@@ -45,11 +45,13 @@ if [ $OBSERVABLE = njet ]
 then
   NPOI=5
   SETMU="r_0=1,r_1=1,r_2=1,r_3=1,r_4=1"
+  ZEROMU="r_0=0,r_1=0,r_2=0,r_3=0,r_4=0"
   SETDELTA="delta=9.52"
   OBSNAME="NJ"
 else
   NPOI=6
   SETMU="r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1"
+  ZEROMU="r_0=0,r_1=0,r_2=0,r_3=0,r_4=0,r_5=0"
   SETDELTA="delta=2.5"
   OBSNAME="PTH"
 fi
@@ -93,7 +95,8 @@ then
   # Perform a regularized fit. Save the fit results in multdimFitReg.root and the workspace containing the best-fit snapshot in higgsCombineReg.MultiDimFit.mH120.root.
 
   NAME=Reg
-  dofit --algo singles --setParameters regularize=1,${SETDELTA} $FITOPT --saveFitResult --saveWorkspace
+  #dofit --algo singles --setParameters regularize=1,${SETDELTA} $FITOPT --saveFitResult --saveWorkspace
+  dofit --algo none --setParameters regularize=1,${SETDELTA} $FITOPT --saveFitResult --saveWorkspace
   ADDITIONAL=multidimfit${NAME}.root
 
 elif [ $COMMAND = Unreg ]
@@ -103,6 +106,49 @@ then
   NAME=Unreg
   dofit --algo singles --setParameters regularize=0 $FITOPT --saveFitResult --saveWorkspace
   ADDITIONAL=multidimfit${NAME}.root
+
+elif [ $COMMAND = AltUnreg ]
+then
+
+  DATASOURCE=$5
+  TAG=$6 
+
+  NAME=AltUnreg_${TAG}
+  dofit --algo none -D $DATASOURCE $FITOPT --saveFitResult --saveWorkspace
+  ADDITIONAL=multidimfit${NAME}.root
+
+elif [ $COMMAND = AltReg ]
+then
+
+  DATASOURCE=$5
+  TAG=$6 
+
+  NAME=AltReg_${TAG}
+  dofit --algo none --setParameters regularize=1,${SETDELTA} -D $DATASOURCE $FITOPT --saveFitResult --saveWorkspace
+  ADDITIONAL=multidimfit${NAME}.root
+
+elif [ $COMMAND = RegUncert ] || [ $COMMAND = RegStatOnly ]
+then
+
+  if [ $COMMAND = RegUncert ]
+  then
+    UNCERT=$5
+    NAME=RegUncert_${UNCERT}
+    if [ $UNCERT = "experimental" ]
+    then
+      # float experimental AND autoMCStats
+      FREEZENUISANCES="--freezeNuisanceGroups luminosity,theoretical"
+    else
+      FREEZENUISANCES="--freezeNuisanceGroups ^$UNCERT"
+    fi
+  else
+    NAME=RegStatOnly
+    FREEZENUISANCES="--freezeParameters allConstrainedNuisances"
+  fi
+
+  CARD=$CARDDIR/higgsCombineReg.MultiDimFit.mH120.root
+
+  dofit --snapshotName MultiDimFit --algo singles --setParameters regularize=0 $FREEZENUISANCES $FITOPT
 
 elif [ $COMMAND = IntegratedUnreg ] || [ $COMMAND = IntegratedReg ]
 then
@@ -132,6 +178,37 @@ then
   ADDITIONAL=multidimfit${NAME}.root
   RETURNDIR=$CARDDIR/integrated
 
+elif [ $COMMAND = AltIntegratedUnreg ] || [ $COMMAND = AltIntegratedReg ]
+then
+
+  DEPENDENT=$5
+  DATASOURCE=$6
+  TAG=$7
+    
+  POIS=r
+  for I in $(seq 0 $(($NPOI-1)))
+  do
+    [ $I -ne $DEPENDENT ] && POIS=${POIS},f_${I}
+  done
+
+  if [ $COMMAND = AltIntegratedUnreg ]
+  then
+    NAME=AltIntegratedUnregF${DEPENDENT}Dep_${TAG}
+    REGULARIZE="--setParameters regularize=0"
+  elif [ $COMMAND = AltIntegratedReg ]
+  then
+    NAME=AltIntegratedRegF${DEPENDENT}Dep_${TAG}
+    REGULARIZE="--setParameters regularize=1,${SETDELTA}"
+  fi
+
+  CARD=$CARDDIR/integrated/fullmodel_integrated_f${DEPENDENT}dep.root
+
+  [ -e $CARD ] || $THISDIR/make_integrated_cards.py $OBSERVABLE $CARDDIR $DEPENDENT
+
+  dofit --algo none $REGULARIZE --redefineSignalPOIs $POIS -D $DATASOURCE $FITOPT --saveFitResult --saveWorkspace
+  ADDITIONAL=multidimfit${NAME}.root
+  RETURNDIR=$CARDDIR/integrated
+
 elif [ $COMMAND = IntegratedRegRPFix ]
 then
 
@@ -156,14 +233,70 @@ then
   dofit --algo singles --setParameters regularize=1,${SETDELTA},$RPVALUES --redefineSignalPOIs $POIS --freezeParameters 'var{CMS_hww_.*norm_.*}' $FITOPT --saveFitResult --saveWorkspace -v 1
   ADDITIONAL=multidimfit${NAME}.root
 
+elif [ $COMMAND = IntegratedUnregUncert ] || [ $COMMAND = IntegratedUnregStatOnly ]
+then
+
+  if [ $COMMAND = IntegratedUnregUncert ]
+  then
+    UNCERT=$5
+    NAME=IntegratedUnregUncert_${UNCERT}
+    if [ $UNCERT = "experimental" ]
+    then
+      # float experimental AND autoMCStats
+      FREEZENUISANCES="--freezeNuisanceGroups luminosity,theoretical"
+    else
+      FREEZENUISANCES="--freezeNuisanceGroups ^$UNCERT"
+    fi
+  else
+    NAME=IntegratedUnregStatOnly
+    FREEZENUISANCES="--freezeParameters allConstrainedNuisances"
+  fi
+
+  CARD=$CARDDIR/integrated/higgsCombineIntegratedUnregF0Dep.MultiDimFit.mH120.root
+
+  dofit --snapshotName MultiDimFit --algo singles --setParameters regularize=0 --redefineSignalPOIs r $FREEZENUISANCES $FITOPT
+
 elif [ $COMMAND = Inclusive ]
 then
 
   CARD=$CARDDIR/fullmodel_inclusive.root
 
+  if ! [ -e $CARD ]
+  then
+    text2workspace.py $CARDDIR/fullmodel_unreg.txt -o $CARD
+  fi
+
   NAME=Inclusive
   dofit --algo singles $FITOPT --saveFitResult --saveWorkspace
   ADDITIONAL=multidimfit${NAME}.root
+
+elif [ $COMMAND = AsimovGen ]
+then
+
+  METHOD=GenerateOnly
+  SEED=123456
+
+  NAME=Asimov
+  dofit -t -1 --expectSignal 1 --saveToys -s $SEED
+
+elif [ $COMMAND = BestFitUnregAsimovGen ]
+then
+
+  BKGONLY=$5
+
+  METHOD=GenerateOnly
+  SEED=123456
+
+  CARD=$CARDDIR/higgsCombineUnreg.MultiDimFit.mH120.root
+
+  if [ $BKGONLY -eq 1 ]
+  then
+    NAME=BestFitUnregAsimovBkgOnly
+    dofit --snapshotName MultiDimFit -t -1 --setParameters $ZEROMU --saveToys -s $SEED
+  else
+    NAME=BestFitUnregAsimov
+    dofit --snapshotName MultiDimFit -t -1 --expectSignal 1 --saveToys -s $SEED
+  fi
 
 elif [ $COMMAND = DeltaScan ]
 then
@@ -248,11 +381,31 @@ then
   METHOD=GoodnessOfFit
 
   NAME=Nom${ITOYSET}
-  TOYSEED=$(($ITOYSET+12345))
   for ITOY in $(seq 1 $NTOYSPERJOB)
   do
     TOYNAME=Nom${ITOYSET}_${ITOY}
-    dofit --algo saturated --setParameters regularize=0 $FITOPT -D $CARDDIR/gof/higgsCombinePostfitFreq${ITOYSET}.GenerateOnly.mH120.$TOYSEED.root:toys/toy_${ITOY}
+    dofit --algo saturated --setParameters regularize=0 $FITOPT -D $CARDDIR/gof/higgsCombinePostfitFreq${ITOYSET}.GenerateOnly.mH120.root:toys/toy_${ITOY}
+    mv higgsCombine{$NAME,$TOYNAME}.$METHOD.mH120.root
+    SOURCE=$SOURCE"higgsCombine${TOYNAME}.$METHOD.mH120.root "
+  done
+  hadd -f higgsCombine${NAME}.$METHOD.mH120.root $SOURCE
+  rm $SOURCE
+  RETURNDIR=$CARDDIR/gof
+
+elif [ $COMMAND = GOFNomMDF ]
+then
+  # Fit to post-fit toys with the nominal model and report the mu values.
+
+  NTOYSPERJOB=$5
+  ITOYSET=$6
+
+  METHOD=MultiDimFit
+
+  NAME=Nom${ITOYSET}
+  for ITOY in $(seq 1 $NTOYSPERJOB)
+  do
+    TOYNAME=Nom${ITOYSET}_${ITOY}
+    dofit --algo none --setParameters regularize=0 $FITOPT -D $CARDDIR/gof/higgsCombinePostfitFreq${ITOYSET}.GenerateOnly.mH120.root:toys/toy_${ITOY}
     mv higgsCombine{$NAME,$TOYNAME}.$METHOD.mH120.root
     SOURCE=$SOURCE"higgsCombine${TOYNAME}.$METHOD.mH120.root "
   done
@@ -270,10 +423,9 @@ then
   METHOD=GoodnessOfFit
 
   NAME=Shift${ITOYSET}
-  TOYSEED=$(($ITOYSET+12345))
   for ITOY in $(seq 1 $NTOYSPERJOB)
   do
-    python $THISDIR/load_toy_snapshot.py $CARDDIR/fullmodel.root $CARDDIR/gof/higgsCombinePostfitFreq${ITOYSET}.GenerateOnly.mH120.$TOYSEED.root $ITOY tmp.root
+    python $THISDIR/load_toy_snapshot.py $CARDDIR/fullmodel.root $CARDDIR/gof/higgsCombinePostfitFreq${ITOYSET}.GenerateOnly.mH120.root $ITOY tmp.root
     TOYNAME=Shift${ITOYSET}_${ITOY}
     CARD=tmp.root
     dofit --snapshotName toygen --algo saturated --setParameters regularize=0 $FITOPT

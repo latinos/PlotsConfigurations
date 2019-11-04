@@ -1,5 +1,6 @@
-# example of configuration file
-treeName= 'Events'
+# VH2j configuration file
+
+treeName = 'Events'
 
 tag = 'VH2j_2017'
 
@@ -18,10 +19,8 @@ cutsFile = 'cuts.py'
 # file with list of samples
 samplesFile = 'samples.py' 
 
-# file with list of samples
+# file with plot configuration
 plotFile = 'plot.py' 
-
-
 
 # luminosity to normalize to (in 1/fb)
 lumi = 41.5
@@ -33,12 +32,8 @@ outputDirPlots = 'plotVH2j_2017'
 # used by mkDatacards to define output directory for datacards
 outputDirDatacard = 'datacards'
 
-
 # structure file for datacard
 structureFile = 'structure.py'
 
-
 # nuisances file for mkDatacards and for mkShape
 nuisancesFile = 'nuisances_ALL.py'
-
-

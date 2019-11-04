@@ -26,6 +26,18 @@ except NameError:
 from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
 HiggsXS = HiggsXSection()
 
+'''
+cuts0j = []
+cuts1j = []
+cuts2j = []
+
+for k in cuts:
+  for cat in cuts[k]['categories']:
+    if '0j' in cat: cuts0j.append(k+'_'+cat)
+    elif '1j' in cat: cuts1j.append(k+'_'+cat)
+    elif '2j' in cat: cuts2j.append(k+'_'+cat)
+    else: print 'WARNING: name of category does not contain on either 0j,1j,2j'
+'''
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
 #### Luminosity
@@ -75,7 +87,7 @@ nuisances['fake_syst_em'] = {
     'samples': {
         'Fake_em': '1.3'
     },
-    'cutspost': lambda self, cuts: [cut for cut in cuts if '20me' not in cut],
+    #'cutspost': lambda self, cuts: [cut for cut in cuts if '20me' not in cut],
     #'perRecoBin': True
 }
 
@@ -85,11 +97,10 @@ nuisances['fake_syst_me'] = {
     'samples': {
         'Fake_me': '1.3'
     },
-    'cutspost': lambda self, cuts: [cut for cut in cuts if '20em' not in cut],
+    #'cutspost': lambda self, cuts: [cut for cut in cuts if '20em' not in cut],
     #'perRecoBin': True
 }
 
-'''
 nuisances['fake_ele'] = {
     'name': 'CMS_fake_e_2016',
     'kind': 'weight',
@@ -268,10 +279,10 @@ nuisances['UE']  = {
     'folderUp': makeMCDirectory('UEup'),
     'folderDown': makeMCDirectory('UEdo'),
     'AsLnN'      : '1',
-#    'synchronized': False
+    'synchronized': False
 }
 
-'''
+
 ####### Generic "cross section uncertainties"
 
 apply_on = {
@@ -280,7 +291,7 @@ apply_on = {
         '(topGenPt * antitopGenPt <= 0.) * 0.9184 + (topGenPt * antitopGenPt > 0.)'
     ]
 }
-'''
+
 nuisances['singleTopToTTbar'] = {
     'name': 'singleTopToTTbar',
     'skipCMS': 1,
@@ -298,7 +309,7 @@ nuisances['TopPtRew'] = {
     'samples': {'top': ["1.", "1./Top_pTrw"]},
     'symmetrize': True
 }
-'''
+
 nuisances['VgStar'] = {
     'name': 'CMS_hww_VgStarScale',
     'type': 'lnN',
@@ -415,7 +426,7 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 }
 
 ##### Renormalization & factorization scales
-'''
+
 ## Shape nuisance due to QCD scale variations for DY
 # LHE scale variation weights (w_var / w_nominal)
 # [0] is muR=0.50000E+00 muF=0.50000E+00
@@ -439,7 +450,7 @@ nuisances['QCDscale_VV'] = {
         'VgS': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
     }
 }
-'''
+
 # ggww and interference
 nuisances['QCDscale_ggVV'] = {
     'name': 'QCDscale_ggVV',
@@ -448,97 +459,50 @@ nuisances['QCDscale_ggVV'] = {
         'ggWW': '1.15',
     },
 }
-'''
+
 # NLL resummation variations
-#  - WW shaping
-nuisances['WWresum0j']  = {
-                'name'  : 'CMS_hww_WWresum_0j',
-                'skipCMS' : 1,
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
-                   },
-               'cuts'  : [ k for k in cuts if '0j' in k ]
-                }
 
-
-nuisances['WWresum1j']  = {
-                'name'  : 'CMS_hww_WWresum_1j',
-                'skipCMS' : 1,
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
-                   },
-               'cuts'  : [ k for k in cuts if '1j' in k ]
-                }
-
-nuisances['WWqscale0j']  = {
-                'name'  : 'CMS_hww_WWqscale_0j',
-                'skipCMS' : 1,
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
-                   },
-               'cuts'  : [ k for k in cuts if '0j' in k ]
-                }
-
-
-nuisances['WWqscale1j']  = {
-                'name'  : 'CMS_hww_WWqscale_1j',
-                'skipCMS' : 1,
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                   'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
-                   },
-               'cuts'  : [ k for k in cuts if '1j' in k ]
-                }
 
 nuisances['WWresum2j']  = {
-                'name'  : 'CMS_hww_WWresum_2j',
-                'skipCMS' : 1,
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
-                },
-               'cuts'  : [ k for k in cuts if '2j' in k ]
-                }
+  'name'  : 'CMS_hww_WWresum_2j',
+  'skipCMS' : 1,
+  'kind'  : 'weight',
+  'type'  : 'shape',
+  'samples'  : {
+     'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+   },
+  #'cutspost'  : lambda self, cuts: [cut for cut in cuts if '2j' in cut]
+} 
 
 nuisances['WWqscale2j']  = {
-                'name'  : 'CMS_hww_WWqscale_2j',
-                'skipCMS' : 1,
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
-                },
-               'cuts'  : [ k for k in cuts if '2j' in k ]
-                }
-'''
+   'name'  : 'CMS_hww_WWqscale_2j',
+   'skipCMS' : 1,
+   'kind'  : 'weight',
+   'type'  : 'shape',
+   'samples'  : {
+      'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+    },
+   #'cutspost'  : lambda self, cuts: [cut for cut in cuts if '2j' in cut]
+}
 # Uncertainty on SR/CR ratio
 nuisances['CRSR_accept_DY'] = {
     'name': 'CMS_hww_CRSR_accept_DY',
     'type': 'lnN',
     'samples': {'DY': '1.02'},
     #'samples': {'DY': '1.1'},
-    'cuts': [cut for cut in cuts if '_CR_' in cut],
-    #'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut and cut in self['cuts']]),
-    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut]),
-    #'perRecoBin': True
+    'cuts': [
+        'hww2l2v_13TeV_dytt_of2j'
+    ]
 }
 
 # Uncertainty on SR/CR ratio
 nuisances['CRSR_accept_top'] = {
     'name': 'CMS_hww_CRSR_accept_top',
     'type': 'lnN',
-    'samples': {'top': '1.01'},
-    #'samples': {'top': '1.05'},
-    'cuts': [cut for cut in cuts if '_CR_' in cut],
-    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut]),
+    'samples': {'top': '1.01'},    
+    'cuts': [
+        'hww2l2v_13TeV_top_of2j'
+    ]
 }
 
 # Theory uncertainty for ggH
@@ -547,7 +511,7 @@ nuisances['CRSR_accept_top'] = {
 #   THU_ggH_Mu, THU_ggH_Res, THU_ggH_Mig01, THU_ggH_Mig12, THU_ggH_VBF2j, THU_ggH_VBF3j, THU_ggH_PT60, THU_ggH_PT120, THU_ggH_qmtop
 #
 #   see https://twiki.cern.ch/twiki/bin/viewauth/CMS/HiggsWG/SignalModelingTools
-'''
+
 thus = [
     ('THU_ggH_Mu', 'ggH_mu'),
     ('THU_ggH_Res', 'ggH_res'),
@@ -573,7 +537,7 @@ for name, vname in thus:
           #'ggH_htt': updown
         }
     }
-'''
+
 #### QCD scale uncertainties for Higgs signals other than ggH
 
 values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm')
@@ -665,6 +629,44 @@ nuisances['stat'] = {
     #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
     'samples': {}
 }
+
+## rate parameters
+
+
+nuisances['DYttnorm2j']  = {
+               'name'  : 'CMS_hww_DYttnorm2j_vbf',
+               'samples'  : {
+                   'DY' : '1.00',
+                   },
+               'type'  : 'rateParam'
+              }
+
+nuisances['WWnorm2j']  = {
+               'name'  : 'CMS_hww_WWnorm2j_vbf',
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam'
+              }
+
+nuisances['ggWWnorm2j']  = {
+               'name'  : 'CMS_hww_WWnorm2j_vbf',
+               'samples'  : {
+                   'ggWW' : '1.00',
+                   },
+               'type'  : 'rateParam'
+              }
+
+
+nuisances['Topnorm2j']  = {
+               'name'  : 'CMS_hww_Topnorm2ji_vbf',
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam'
+              }
+
+
 
 for n in nuisances.values():
     n['skipCMS'] = 1

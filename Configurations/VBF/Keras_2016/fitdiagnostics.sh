@@ -11,5 +11,5 @@ workdir=/afs/cern.ch/work/r/rceccare/VBF/CMSSW_10_2_15_patch2/src/PlotsConfigura
 cd $workdir
 
 
-echo "events:" "">> diagnostics_class0_06_09.txt
-combine -M FitDiagnostics class0_06_09.root -t -1 --setParameters r_vbf=1,r_ggH=1 --redefineSignalPOIs=r_vbf --saveNormalizations --saveWithUncertainties >> diagnostics_class0_06_09.txt
+echo "events:" "">> diagnostics_class0_27_09_multicut.txt
+combine -M FitDiagnostics class0_27_09_multicut.root -t -1 --setParameters r_vbf=1,r_ggH=1 --redefineSignalPOIs=r_vbf --saveNormalizations --saveWithUncertainties >> diagnostics_class0_27_09_multicut.txt

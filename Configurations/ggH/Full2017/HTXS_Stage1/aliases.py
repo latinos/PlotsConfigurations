@@ -3,8 +3,9 @@ import copy
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # ggH2016
-configurations = os.path.dirname(configurations) # Differential
+configurations = os.path.dirname(configurations) # HTXS_Stage1
+configurations = os.path.dirname(configurations) # Full2017
+configurations = os.path.dirname(configurations) # ggH
 configurations = os.path.dirname(configurations) # Configurations
 
 #aliases = {}
@@ -18,9 +19,7 @@ eleWP = 'mvaFall17V1Iso_WP90'
 muWP = 'cut_Tight_HWWW'
 
 aliases['pTHjj'] = {
-    #'expr': 'compute_pTHjj(Lepton_pt[0], Lepton_eta[0], Lepton_phi[0], Lepton_pdgId[0], Lepton_pt[1], Lepton_eta[1], Lepton_phi[1], Lepton_pdgId[1], CleanJet_pt[0], CleanJet_eta[0], CleanJet_phi[0], Jet_mass[CleanJet_jetIdx[0]], CleanJet_pt[1], CleanJet_eta[1], CleanJet_phi[1], Jet_mass[CleanJet_jetIdx[1]], PuppiMET_pt, PuppiMET_phi)',
-#    'linesToAdd' : ['.L compute_pTHjj.C+']
-    'linesToAdd' : ['.L /afs/cern.ch/work/a/alvareza/public/CMSSW_9_4_9/src/PlotsConfigurations/Configurations/ggH/Full2017/HTXS_Stage1/macro_pTHjj.cc+'],
+    'linesToAdd' : ['.L %s/ggH/Full2017/HTXS_Stage1/macro_pTHjj.cc+' %configurations],
     'class': 'Compute_pTHjj'
 }
 
@@ -136,7 +135,7 @@ aliases['sr'] = {
 }
 
 # B tag scale factors
-'''
+
 btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_94XSF_V2_B_F.csv' % os.getenv('CMSSW_BASE')
 
 aliases['Jet_btagSF_shapeFix'] = {
@@ -194,11 +193,10 @@ for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2',
         'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'down'),
         'samples': mc
     }
-'''
+
 # data/MC scale factors
 aliases['SFweight'] = {
-    #'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut', 'btagSF', 'PrefireWeight']),
-    'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut', 'PrefireWeight']),
+    'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut', 'btagSF', 'PrefireWeight']),
     'samples': mc
 }
 # variations
@@ -219,6 +217,7 @@ aliases['SFweightMuDown'] = {
     'samples': mc
 }
 
+
 # GGHUncertaintyProducer wasn't run for 2017 nAODv5 non-private
 thus = [
     'ggH_mu',
@@ -232,12 +231,21 @@ thus = [
     'ggH_qmtop'
 ]
 
-'''
 for thu in thus:
     aliases[thu] = {
         'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
         'class': 'GGHUncertainty',
         'args': (thu,),
-        'samples': ['ggH_hww']
+        'samples': [ #'ggH_hww',                                                                                                              
+                     'ggH_hww_0J_PTH_0_10'        ,'ggH_hww_GE2J_MJJ_0_350_PTH_60_120'
+                    ,'ggH_hww_0J_PTH_GT10'                 ,'ggH_hww_GE2J_MJJ_350_700_PTHJJ_0_25'
+                    ,'ggH_hww_1J_PTH_0_60'                 ,'ggH_hww_GE2J_MJJ_350_700_PTHJJ_GT25'
+                    ,'ggH_hww_1J_PTH_120_200'              ,'ggH_hww_GE2J_MJJ_GT700_PTHJJ_0_25'
+                    ,'ggH_hww_1J_PTH_60_120'               ,'ggH_hww_GE2J_MJJ_GT700_PTHJJ_GT25'
+                    ,'ggH_hww_GE2J_MJJ_0_350_PTH_0_60'     ,'ggH_hww_PTH_GT200'
+                    ,'ggH_hww_GE2J_MJJ_0_350_PTH_120_200'],
+        'nominalOnly': True
     }
-'''
+
+
+
