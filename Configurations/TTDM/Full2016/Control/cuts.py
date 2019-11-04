@@ -115,17 +115,28 @@ _tmp = [
 
 addcut('Control_DY_sf', _tmp)
 
+#Without MET cut
+_tmp = [
+     'Sum$(abs(CleanJet_eta)>2.5) == 0',
+     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
+     'Alt$(CleanJet_pt[0],0)>30.',
+     'Alt$(CleanJet_pt[1],0)>30.',
+     'mll>60.',
+     'mll<120.'
+     ]
 
-#_tmp = [
-#     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11 || Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13',
-#     'Alt$(CleanJet_pt[0],0)>30.',
-#     'Alt$(CleanJet_pt[1],0)>30.',
-#     'PuppiMET_pt < 50.',
-#     'mll>60.',
-#     'mll<120.'
-#     ]
+addcut('Control_DY_df_allMET', _tmp)
 
-#addcut('Control_DY_sf', _tmp)
+_tmp = [
+     'Sum$(abs(CleanJet_eta)>2.5) == 0',
+     '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11 || Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13)',
+     'Alt$(CleanJet_pt[0],0)>30.',
+     'Alt$(CleanJet_pt[1],0)>30.',
+     'mll>60.',
+     'mll<120.'
+     ]
+
+addcut('Control_DY_sf_allMET', _tmp)
 
 #Top control region
 _tmp = [

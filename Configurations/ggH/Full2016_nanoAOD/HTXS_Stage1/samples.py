@@ -225,14 +225,14 @@ if os.path.exists('HTXS_stage1_categories.py') :
 ## ggH STXS
 
 for cat,num in HTXSStage1_1Categories.iteritems():
-
     if 'GG2H_' in cat:
-        samples['ggH_hww_'+cat.replace('GG2H_','')]  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGluHToWWTo2L2NuPowheg_M125'),
-                                                      'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')',
-                                                      'suppressNegative' :['all'],
-                                                      'suppressNegativeNuisances' :['all'],
-                                                   }
-        signals.append('ggH_hww'+cat.replace('GG2H_',''))
+        if 'PTH_GT200' not in cat:
+            samples['ggH_hww_'+cat.replace('GG2H_','')]  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGluHToWWTo2L2NuPowheg_M125'),
+                                                              'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')',
+                                                              'suppressNegative' :['all'],
+                                                              'suppressNegativeNuisances' :['all'],
+                                                          }
+            signals.append('ggH_hww'+cat.replace('GG2H_',''))
 
 # Stage 1.2 binning for high pTH bin                                                                                                          
 
@@ -286,6 +286,7 @@ samples['ggH_hww'] = {
 
 signals.append('ggH_hww')
 '''
+
 ############ VBF H->WW ############
 samples['qqH_hww'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2NuPowheg_M125'),
@@ -408,4 +409,5 @@ for _, sd in DataRun:
     files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
+
 

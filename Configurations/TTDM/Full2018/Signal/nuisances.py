@@ -10,7 +10,7 @@
 #### Luminosity
 
 nuisances['lumi']  = {
-               'name'  : 'lumi_13TeV_2017',
+               'name'  : 'lumi_13TeV_2018',
                'samples'  : {
                    #'DY'       : '1.025',    |
                    #'top'      : '1.025',    | These 3 backgrounds are data driven, no need to include the luminosity uncertainty

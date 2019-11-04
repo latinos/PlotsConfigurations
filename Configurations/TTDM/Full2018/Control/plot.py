@@ -143,7 +143,6 @@ plot['WW']  = {
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
 
-
 plot['Vg']  = { 
                   'color': 859, # kAzure -1  
                   'isSignal' : 0,
@@ -356,7 +355,7 @@ plot['DATA']  = {
 #legend['lumi'] = 'L = 4.3/fb'
 #legend['lumi'] = 'L = 6.3/fb'
 #legend['lumi'] = 'L = 12.9/fb'
-legend['lumi'] = 'L = 41.5/fb'
+legend['lumi'] = 'L = 59.5/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
