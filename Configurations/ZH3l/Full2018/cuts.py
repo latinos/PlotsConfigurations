@@ -30,6 +30,13 @@ cuts['z4lveto'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                  && ZH3l_Z4lveto > 20 \
                  '
 
+cuts['zh3l_Zg_CR_2j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
+                       && Alt$( CleanJet_pt[1], 0) >= 30 \
+                       && WH3l_ZVeto < 25 \
+                       && bVeto \
+                       && ZH3l_Z4lveto < 10 \
+                       '
+
 cuts['zh3l_SR_2j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                     && Alt$( CleanJet_pt[1], 0) >= 30 \
                     && WH3l_ZVeto < 25 \
@@ -63,6 +70,13 @@ cuts['z4lveto_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                     && bVeto \
                     && ZH3l_Z4lveto > 20 \
                     '
+
+cuts['zh3l_Zg_CR_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
+                       && Alt$( CleanJet_pt[1], 0) < 30 \
+                       && WH3l_ZVeto < 25 \
+                       && bVeto \
+                       && ZH3l_Z4lveto < 10 \
+                       '
 
 cuts['zh3l_SR_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                     && Alt$( CleanJet_pt[1], 0) < 30 \
