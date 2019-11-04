@@ -68,6 +68,22 @@ and datacards (`mkDatacards.py --help` to see all available options):
 
 Congratulations! You have done the analysis, or at least a very first step...
 
-For fits and combine general info check the following:
 
+# Useful information
+
+ - For fits and combine general info check the following:
+ 
     http://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/
+    
+ - The current Latinos framework is based on the NanoAOD format. The list of available `nanoLatino` trees can be found here:
+ 
+    https://twiki.cern.ch/twiki/bin/view/CMS/LatinosTreesRun2
+
+ - The NanoAOD-nanoLatino MC sample mapping is defined in the following python dictionaries:
+ 
+    https://github.com/latinos/LatinoAnalysis/blob/master/NanoGardener/python/framework/samples/Summer16_102X_nAODv5.py
+    
+    https://github.com/latinos/LatinoAnalysis/blob/master/NanoGardener/python/framework/samples/fall17_102X_nAODv5.py
+    
+    https://github.com/latinos/LatinoAnalysis/blob/master/NanoGardener/python/framework/samples/Autumn18_102X_nAODv5.py
+     
