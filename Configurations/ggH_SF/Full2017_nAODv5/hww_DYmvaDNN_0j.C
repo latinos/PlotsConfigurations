@@ -61,7 +61,8 @@ void init_hww_DYmvaDNN_0j(TTree* tree){
     readerDNN_0j->AddVariable("upara", &l_0j_upara);
     readerDNN_0j->AddVariable("PV_npvsGood", &l_0j_PV_npvsGood);
     
-    readerDNN_0j->BookMVA("PyKeras","/afs/cern.ch/work/d/ddicroce/Latinos/CMSSW_11_0_0_pre7/src/LatinoAnalysis/NanoGardener/python/data/DYSFmva/2017_v5/TMVAClassification_PyKeras_2017_0j.weights.xml"); 
+    //readerDNN_0j->BookMVA("PyKeras","/afs/cern.ch/work/d/ddicroce/Latinos/CMSSW_11_0_0_pre7/src/LatinoAnalysis/NanoGardener/python/data/DYSFmva/2017_v5/TMVAClassification_PyKeras_2017_0j.weights.xml"); 
+    //readerDNN_0j->BookMVA("PyKeras",TString::Format("%s/src/LatinoAnalysis/NanoGardener/python/data/DYSFmva/2017_v5/TMVAClassification_PyKeras_2017_0j.weights.xml", gSystem->Getenv("CMSSW_BASE"))); 
 
 }
 
@@ -76,13 +77,13 @@ float hww_DYmvaDNN_0j(int entry){
 	}
 
 	
-        if (!initialized_0j){
-		delete readerDNN_0j;
-		readerDNN_0j = new TMVA::Reader();
-		init_hww_DYmvaDNN_0j(multidraw::currentTree);
-		cout << "check init" << endl;	
-		initialized_0j = true;		
-        }
+        // if (!initialized_0j){
+	// 	delete readerDNN_0j;
+	// 	readerDNN_0j = new TMVA::Reader();
+	// 	init_hww_DYmvaDNN_0j(multidraw::currentTree);
+	// 	cout << "check init" << endl;	
+	// 	initialized_0j = true;		
+        // }
 
 	multidraw::currentTree->GetEntry(entry);
         
@@ -100,7 +101,8 @@ float hww_DYmvaDNN_0j(int entry){
         l_0j_upara = l_0j__upara;
         l_0j_PV_npvsGood = l_0j__PV_npvsGood;
 
-	float classifier = readerDNN_0j->EvaluateMVA("PyKeras");
+	//float classifier = readerDNN_0j->EvaluateMVA("PyKeras");
+        float classifier = 1.0;
 	
         //std::cout << "[DNN 0j]    score: " << classifier << std::endl;
 	return classifier;
