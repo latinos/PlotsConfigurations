@@ -10,9 +10,9 @@ import binning
 
 observable = 'PTH'
 sample_merging = {
-    #'WW': ['WW', 'ggWW'],
-    #'minor': ['WWewk', 'Vg', 'VgS_L', 'VgS_H', 'VZ', 'VVV'],
-    'minor': ['ggWW', 'WWewk', 'Vg', 'VgS_L', 'VgS_H', 'VZ', 'VVV'],
+    'WW': ['WW', 'ggWW'],
+    'minor': ['WWewk', 'Vg', 'VgS_L', 'VgS_H', 'VZ', 'VVV'],
+    #'minor': ['ggWW', 'WWewk', 'Vg', 'VgS_L', 'VgS_H', 'VZ', 'VVV'],
     'htt': []
 }
 
@@ -47,6 +47,9 @@ for cut in cuts.keys():
 
 for sname in samples.keys():
     if '_hww' in sname and observable not in sname:
+        samples.pop(sname)
+
+    elif '_UE' in sname or '_PS' in sname:
         samples.pop(sname)
 
 sample_merging['htt'] = []

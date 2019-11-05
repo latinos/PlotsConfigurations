@@ -18,7 +18,7 @@ mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 eleWP='mvaFall17V1Iso_WP90'
 muWP='cut_Tight_HWWW'
 aliases['pTHjj'] = {
-    'linesToAdd' : ['.L /afs/cern.ch/work/a/alvareza/public/CMSSW_9_4_9/src/PlotsConfigurations/Configurations/ggH/Full2017/HTXS_Stage1/macro_pTHjj.cc+'],
+    'linesToAdd' : ['.L %s/ggH/Full2017/HTXS_Stage1/macro_pTHjj.cc+' %configurations],
     'class': 'Compute_pTHjj'
 }
 
@@ -157,7 +157,7 @@ aliases['sr'] = {
 }
 
 # B tag scale factors
-'''
+
 btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_102XSF_V1.csv' % os.getenv('CMSSW_BASE')
 
 aliases['Jet_btagSF_shapeFix'] = {
@@ -215,7 +215,7 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
         'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'down'),
         'samples': mc
     }
-'''
+
 # PU jet Id SF
 
 puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
@@ -232,8 +232,8 @@ aliases['PUJetIdSF'] = {
 
 # data/MC scale factors
 aliases['SFweight'] = {
-    #'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut', 'btagSF', 'PUJetIdSF']),
-    'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut']),
+    'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut', 'btagSF', 'PUJetIdSF']),
+    #'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut']),
     'samples': mc
 }
 # variations
@@ -253,3 +253,7 @@ aliases['SFweightMuDown'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Do',
     'samples': mc
 }
+
+
+
+
