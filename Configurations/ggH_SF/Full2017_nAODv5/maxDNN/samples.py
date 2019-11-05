@@ -450,3 +450,5 @@ for _, sd in DataRun:
     files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
+
+samples = {'DY': samples['DY']}

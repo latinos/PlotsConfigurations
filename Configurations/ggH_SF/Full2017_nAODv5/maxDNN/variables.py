@@ -1,3 +1,10 @@
+import os
+import inspect
+
+configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
+configurations = os.path.dirname(configurations) # maxDNN
+configurations = os.path.dirname(configurations) # Full2017_nAODv5
+
 # variables
 
 #variables = {}
@@ -6,10 +13,11 @@ variables['events']  = {'name': '1',
                         'range' : (1,0,2),  
                         'xaxis' : 'events', 
                          'fold' : 3,
-                   'linesToAdd' : ['.L /afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_11_0_0_pre7/src/PlotsConfigurations/Configurations/ggH_SF/Full2017_nAODv5/hww_DYmvaDNN_0j.C+',
-                                   '.L /afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_11_0_0_pre7/src/PlotsConfigurations/Configurations/ggH_SF/Full2017_nAODv5/hww_DYmvaDNN_1j.C+',
-                                   '.L /afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_11_0_0_pre7/src/PlotsConfigurations/Configurations/ggH_SF/Full2017_nAODv5/hww_DYmvaDNN_2j.C+',
-                                   '.L /afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_11_0_0_pre7/src/PlotsConfigurations/Configurations/ggH_SF/Full2017_nAODv5/hww_DYmvaDNN_VBF.C+']
+                   'linesToAdd' : ['.L %s/hww_DYmvaDNN_0j.C+' % configurations]
+#                   'linesToAdd' : ['.L %s/hww_DYmvaDNN_0j.C+' % configurations,
+#                                   '.L %s/hww_DYmvaDNN_1j.C+' % configurations,
+#                                   '.L %s/hww_DYmvaDNN_2j.C+' % configurations,
+#                                   '.L %s/hww_DYmvaDNN_VBF.C+' % configurations]
                         }
 '''   
 variables['pt1VSeta1'] = {   'name': 'Lepton_pt[0]:Lepton_eta[0]',            #   variable name    
