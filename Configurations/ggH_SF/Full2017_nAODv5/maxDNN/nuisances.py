@@ -544,9 +544,9 @@ nuisances['CRSR_accept_WW'] = {
     'type': 'lnN',
     'samples': {'WW': '1.01'},
     #'samples': {'DY': '1.1'},
-    'cuts': [cut for cut in cuts if '_CR_' in cut],
+    'cuts': [cut for cut in cuts if '_WW_' in cut],
     #'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut and cut in self['cuts']]),
-    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_WW_' in cut]),
+    #'cutspost': (lambda self, cuts: [cut for cut in cuts if '_WW_' in cut]),
     #'perRecoBin': True
 }
 
@@ -556,8 +556,8 @@ nuisances['CRSR_accept_top'] = {
     'type': 'lnN',
     'samples': {'top': '1.01'},
     #'samples': {'top': '1.05'},
-    'cuts': [cut for cut in cuts if '_CR_' in cut],
-    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut]),
+    'cuts': [cut for cut in cuts if '_top_' in cut],
+    #'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut]),
 }
 
 # Theory uncertainty for ggH
@@ -737,7 +737,7 @@ nuisances['Topnorm2j']  = {
 #### DY estimation (just create dummy histograms to be scaled by the DY Rin/out method)
 
 nuisances['DYeenorm0j'] = {
-                'name'  : 'hww_DYeenorm0j',
+                'name'  : 'DYeenorm0j',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -747,7 +747,7 @@ nuisances['DYeenorm0j'] = {
                 }
 
 nuisances['DYeenorm1j'] = {
-                'name'  : 'hww_DYeenorm1j',
+                'name'  : 'DYeenorm1j',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -757,7 +757,7 @@ nuisances['DYeenorm1j'] = {
                 }
 
 nuisances['DYeenorm2j'] = {
-                'name'  : 'hww_DYeenorm2j',
+                'name'  : 'DYeenorm2j',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -767,7 +767,7 @@ nuisances['DYeenorm2j'] = {
                 }
 
 nuisances['DYmmnorm0j'] = {
-                'name'  : 'hww_DYmmnorm0j',
+                'name'  : 'DYmmnorm0j',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -777,7 +777,7 @@ nuisances['DYmmnorm0j'] = {
                 }
 
 nuisances['DYmmnorm1j'] = {
-                'name'  : 'hww_DYmmnorm1j',
+                'name'  : 'DYmmnorm1j',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -787,7 +787,7 @@ nuisances['DYmmnorm1j'] = {
                 }
 
 nuisances['DYmmnorm2j'] = {
-                'name'  : 'hww_DYmmnorm2j',
+                'name'  : 'DYmmnorm2j',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -818,7 +818,7 @@ try:
       newCuts = []
       for iCut in nuisances[iNP]['cuts']:
         for iOptim in optim:
-           newCuts.append(iCut+'_'+iOptim)
+           newCuts.append(iCut)
       nuisances[iNP]['cuts'] = newCuts
 except:
   print "No optim dictionary"
