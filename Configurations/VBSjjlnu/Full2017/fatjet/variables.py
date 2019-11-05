@@ -12,19 +12,19 @@ variables['events']  = {   'name': '1',
 
 # FatJet variables
 variables['fatjet_pt'] = {   'name': 'CleanFatJet_pt[0]',      
-                        'range' : (30,0,800),  
+                        'range' : (25,0,800),  
                         'xaxis' : 'FatJet Pt [GeV]', 
                         'fold' : 3
                         }
 
 variables['fatjet_eta'] = {   'name': 'abs(CleanFatJet_eta[0])',      
-                        'range' : (30,0,2.5),  
+                        'range' : (25,0,2.5),  
                         'xaxis' : 'FatJet eta', 
                         'fold' : 3
                         }
 
 variables['fatjet_mass'] = {   'name': 'CleanFatJet_mass[0]',      
-                        'range' : (40,50,150),  
+                        'range' : (30,50,150),  
                         'xaxis' : 'FatJet mass [GeV]', 
                         'fold' : 3
                         }
@@ -176,14 +176,14 @@ variables['Jet4_Zep'] = {
 #leptons
 
 variables['Lepton_eta'] = {   'name': 'abs(Lepton_eta[0])',      
-                        'range' : (30,0,2.5),  
+                        'range' : (20,0,2.5),  
                         'xaxis' : 'Lepton #eta', 
                         'fold' : 3
                         }
 
 
 variables['Lepton_pt'] = {   'name': 'Lepton_pt[0]',      
-                        'range' : (30,0,500),  
+                        'range' : (20,0,500),  
                         'xaxis' : 'Lepton_pt', 
                         'fold' : 3
                         }  
@@ -203,7 +203,7 @@ variables['Lepton_Zep'] = {
 #MET
 
 variables['PuppiMET'] = {   'name': 'PuppiMET_pt',      
-                        'range': (30,0, 500),  
+                        'range': (25,0, 500),  
                         'xaxis' : 'PuppiMET_pt', 
                         'fold' : 3
                         }
@@ -215,7 +215,7 @@ variables['PuppiMET_phi'] = {   'name': 'PuppiMET_phi',
                         }
 
 variables['MET_pt'] = {   'name': 'MET_pt',      
-                        'range' : (30,0,500),  
+                        'range' : (25,0,500),  
                         'xaxis' : 'MET_pt', 
                         'fold' : 3
                         }
@@ -273,17 +273,29 @@ variables['vbs_pt_low'] = {   'name': 'vbs_pt_low',
                         } 
 
 variables['mjj_vbs'] = {   'name': 'mjj_vbs',      
-                        'range' : (40,200,3000),  
-                        'xaxis' : 'mjj_vbs', 
+                        'range' : ([200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,4000],) , 
+                        'xaxis' : 'M_{jj} VBS', 
+                        'blind' : {
+                            "SR_ele_tightVBS" : (1000,4000),
+                            "SR_mu_tightVBS" : (1000, 4000),
+                            "CR_ele_looseVBS" : (1000,4000),
+                            "CR_mu_looseVBS" : (1000, 4000),
+                        },
                         'fold' : 3
                         }
 
 
 #delta angles between the VBS jets
 variables['deltaeta_vbs'] = {   'name': 'deltaeta_vbs',      
-                        'range' : (30,0,9),  
+                        'range' : (20,2,8),  
                         'xaxis' : '#Delta#eta VBS jets', 
-                        'fold' : 3
+                        'fold' : 3,
+                        'blind': {
+                            "SR_ele_tightVBS" : (4,9),
+                            "SR_mu_tightVBS" :  (4,9),
+                            "CR_ele_looseVBS" : (5,9),
+                            "CR_mu_looseVBS" :  (5,9),
+                            }
                         }
 
 variables['deltaphi_vbs'] = {   'name': 'deltaphi_vbs',      
@@ -311,7 +323,11 @@ variables['Asym_vbs'] = {   'name': 'Asym_vbs',
 variables['Mww'] = {   'name': 'Mww',      
                         'range' : (30,0,2000),  
                         'xaxis' : 'Mww', 
-                        'fold' : 3
+                        'fold' : 3,
+                        'blind' : {
+                            "SR_ele_tightVBS" : (1000,2000),
+                            "SR_mu_tightVBS" : (1000, 2000)
+                            }
                         }
 
 variables['Mw_lep_reco'] = {   'name': 'Mw_lep',      
