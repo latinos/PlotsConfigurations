@@ -103,7 +103,7 @@ variables['deltaeta_vbs'] = {   'name': 'deltaeta_vbs',
 
 
 
-variables['mjj_vjet'] = {   'name': 'M_{jj} V jets',      
+variables['mjj_vjet'] = {   'name': 'mjj_vjet',      
                         'range' : (25,65,105),  
                         'xaxis' : 'mjj V-jets', 
                         'fold' : 3
@@ -393,3 +393,18 @@ variables['lep_jet_ptratio4'] = {
             'xaxis': 'Pt lepton / Pt Jet4',
             'fold': 3
 }
+
+
+# variables["fake_weight_tight"] = {
+#             'name': 'fake_weight_corrected*(Lepton_isTightElectron_mvaFall17V1Iso_WP90[0]==1)',
+#             'range': (30,-2,2),
+#             'xaxis': 'Corrected fake weight',
+#             'fold' : 3
+# }
+
+# variables["fake_weight_loose"] = {
+#             'name': 'fake_weight_corrected*(Lepton_isTightElectron_mvaFall17V1Iso_WP90[0]==0)',
+#             'range': (30,-2,2),
+#             'xaxis': 'Corrected fake weight',
+#             'fold' : 3
+# }

@@ -66,7 +66,26 @@ for s in systs:
   aliases['btagSF'+s+'down'] = { 'expr': '( bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_down_'+s)+'+btag0*'+aliases['btag0SF']['expr'].replace('shape','shape_down_'+s)+'+btag1*'+aliases['btag1SF']['expr'].replace('shape','shape_down_'+s)+'+btag2*'+aliases['btag2SF']['expr'].replace('shape','shape_down_'+s)+' + ( (!bVeto) && (!btag0) && (!btag1) && (!btag2) ) )', 'samples':mc  }
 
 
+aliases['fake_weight_corrected'] = {
+            'class': 'FakeWeightCorrector',
+            'args': (os.getenv('CMSSW_BASE') +"/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017/lowenergy/fakeweight_correction.root", 
+                        "mvaFall17V1Iso_WP90", "fakeW_ele_mvaFall17V1Iso_WP90_mu_cut_Tight_HWWW_mu10_ele35", 
+                     os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v5/mvaFall17V1Iso_WP90/ElePR.root"),
+            'linesToAdd' : [
+                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+                '.L '+os.getenv('CMSSW_BASE')+'/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017/fakeweight_corrector.cc+'
+            ],
+            'samples': "Fake"           
+}
 
+aliases['nvtx_reweighting'] = {
+            'class': 'NvtxReweight',
+            'args': (os.getenv('CMSSW_BASE') +"/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017/lowenergy/nvtx_weights.txt"),
+            'linesToAdd' : [
+                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+                '.L '+os.getenv('CMSSW_BASE')+'/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017/nvtx_reweight.cc+'
+            ]         
+}
 
 
 aliases['fourj_lep_deltaphi'] = {

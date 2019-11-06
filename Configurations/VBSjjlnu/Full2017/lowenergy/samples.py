@@ -77,8 +77,7 @@ GenLepMatch   = 'Lepton_genmatched[0]'
 # Definitions in aliases.py
 
 # Not using any btagging yet
-SFweight += '*btagSF'
-
+SFweight += '*btagSF*nvtx_reweighting'
 ################################################
 ############   MET  FILTERS  ###################
 ################################################
@@ -300,7 +299,9 @@ samples['VBS']  = { 'name' :
        'FilesPerJob' : 4,
 }
 
-fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP + '_mu10_ele35'
+#fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP + '_mu10_ele35'
+# from alias
+fakeW = 'fake_weight_corrected'
 
 #### Fakes
 samples['Fake'] = {
