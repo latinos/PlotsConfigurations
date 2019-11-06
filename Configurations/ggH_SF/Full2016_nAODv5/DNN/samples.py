@@ -114,7 +114,7 @@ if useDYtt:
     samples['DY'] = {
         'name': files,
         'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)',
-        'FilesPerJob': 4,
+        'FilesPerJob': 2,
         'suppressNegative' :['all'],
         'suppressNegativeNuisances' :['all'],
     }
@@ -128,7 +128,7 @@ else:
     samples['DY'] = {
         'name': files,
         'weight': mcCommonWeight,
-        'FilesPerJob': 4,
+        'FilesPerJob': 2,
         'suppressNegative' :['all'],
         'suppressNegativeNuisances' :['all'],
 
@@ -207,7 +207,7 @@ samples['WWewk'] = {
     'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)*(lhe_mW1[0] > 60. && lhe_mW1[0] < 100. && lhe_mW2[0] > 60. && lhe_mW2[0] < 100.)', #filter tops and Higgs, limit w mass
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 4
+    'FilesPerJob': 2
 }
 
 samples['ggWW'] = {
@@ -225,10 +225,10 @@ files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
 
 samples['Vg'] = {
     'name': files,
-    'weight': mcCommonWeightNoMatch + '*!(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22)',
+    'weight': mcCommonWeightNoMatch + '*(!(Gen_ZGstar_mass > 0))',
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 4
+    'FilesPerJob': 2
 }
 addSampleWeight(samples, 'Vg', 'Zg', '(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)')
 
@@ -241,7 +241,7 @@ files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
 samples['VgS'] = {
     'name': files,
     'weight': mcCommonWeight + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
-    'FilesPerJob': 4,
+    'FilesPerJob': 2,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
     'subsamples': {
@@ -249,9 +249,9 @@ samples['VgS'] = {
       'H': 'gstarHigh'
     }
 }
-addSampleWeight(samples, 'VgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 && Gen_ZGstar_mass < 0.1)')
+addSampleWeight(samples, 'VgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
 addSampleWeight(samples, 'VgS', 'Zg', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22)*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)')
-addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1 || Gen_ZGstar_mass < 0)')
+addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
 
 ############ VZ ############
 
@@ -265,7 +265,7 @@ samples['VZ'] = {
     'weight': mcCommonWeight + '*1.11',
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 4
+    'FilesPerJob': 2
 }
 
 ########## VVV #########
@@ -295,7 +295,7 @@ signals = []
 samples['ggH_hww'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125'),
     'weight': [mcCommonWeight, {'class': 'Weight2MINLO', 'args': '%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE')}],
-    'FilesPerJob': 4,
+    'FilesPerJob': 2,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
     'linesToAdd': ['.L %s/Differential/weight2MINLO.cc+' % configurations]
@@ -367,10 +367,10 @@ samples['ggH_htt'] = {
     'weight': mcCommonWeight,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 4
+    'FilesPerJob': 2
 }
 
-#signals.append('ggH_htt')
+signals.append('ggH_htt')
 
 samples['qqH_htt'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125'),
@@ -380,7 +380,7 @@ samples['qqH_htt'] = {
     'FilesPerJob': 4
 }
 
-#signals.append('qqH_htt')
+signals.append('qqH_htt')
 
 samples['ZH_htt'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125'),
@@ -390,7 +390,7 @@ samples['ZH_htt'] = {
     'FilesPerJob': 4
 }
 
-#signals.append('ZH_htt')
+signals.append('ZH_htt')
 
 samples['WH_htt'] = {
     'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
@@ -400,7 +400,7 @@ samples['WH_htt'] = {
     'FilesPerJob': 4
 }
 
-#signals.append('WH_htt')
+signals.append('WH_htt')
 
 
 ###########################################
