@@ -2,26 +2,26 @@
 treeName= 'Events'
 
 
-tag = 'ggH_0j_0PH'
+tag = 'ggH_0M'
 
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'+tag
 
 # file with TTree aliases
-#aliasesFile = 'aliases.py'
+aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = 'variables_ggH.py'
 
 # file with list of cuts
-cutsFile = 'cuts_0j.py' 
+cutsFile = 'cuts_ggH.py' 
 
 # file with list of samples
-samplesFile = 'samples_0PH.py' 
+samplesFile = 'samples_ggH.py' 
 
 # file with list of samples
-plotFile = 'plot_0PH.py' 
+plotFile = 'plot_ggH.py' 
 
 
 
@@ -34,7 +34,7 @@ outputDirPlots = 'plot'+tag
 
 
 # used by mkDatacards to define output directory for datacards
-#outputDirDatacard = 'datacards'
+outputDirDatacard = 'datacards'
 
 
 # structure file for datacard
@@ -42,6 +42,6 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-#nuisancesFile = 'nuisances.py'
+nuisancesFile = 'nuisances.py'
 
 

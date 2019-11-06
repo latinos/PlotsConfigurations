@@ -79,21 +79,21 @@ groupPlot['Higgs']  = {
               }
 
 
-groupPlot['ggH_hww_0L1']  = {
-                      'nameHR' : 'ggH0L1',
+groupPlot['ggH_hww_ALT']  = {
+                      'nameHR' : 'ggH_ALT',
                       'color' : 851,
                       'isSignal' : 1,
                       'isData'   : 0,
                       'scale'    : 1,
-                      'samples'  : ['ggH_hww_0L1']
+                      'samples'  : ['ggH_hww_ALT']
                     }
-groupPlot['qqH_hww_0L1']  = {
-                      'nameHR' : 'qqH0L1',
+groupPlot['qqH_hww_ALT']  = {
+                      'nameHR' : 'qqH_ALT',
                       'color' : 617,
                       'isSignal' : 1,
                       'isData'   : 0,
                       'scale'    : 1,
-                      'samples'  : ['qqH_hww_0L1']
+                      'samples'  : ['qqH_hww_ALT']
                     }
 
 #plot = {}
@@ -118,16 +118,16 @@ plot['qqH_hww_0PH']  = {
                     }
 
 '''
-plot['ggH_hww_0L1']  = {
-                      'nameHR' : 'ggH0L1', 
-                      'color' : 999,
+plot['ggH_hww_ALT']  = {
+                      'nameHR' : 'ggH_ALT', 
+                      'color' : 851,
                       'isSignal' : 1,
                       'isData'   : 0,
                       'scale'    : 1 
                     }
 
-plot['qqH_hww_0L1']  = {
-                      'nameHR' : 'qqH0L1',
+plot['qqH_hww_ALT']  = {
+                      'nameHR' : 'qqH_ALT',
                       'color' : 617,
                       'isSignal' : 1,
                       'isData'   : 0,
