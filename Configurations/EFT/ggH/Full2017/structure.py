@@ -3,8 +3,7 @@
 #structure = {}
 
 # keys here must match keys in samples.py    
-#
-'''                    
+#                    
 structure['DY']  = {  
                   'isSignal' : 0,
                   'isData'   : 0
@@ -24,31 +23,13 @@ structure['Fake']  = {
 structure['Fake_em']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'removeFromCuts' : [
-                                      'hww2l2v_13TeV_me_pm_0j_pt2ge20',
-                                      'hww2l2v_13TeV_me_pm_0j_pt2ge20', 
-                                      'hww2l2v_13TeV_me_pm_1j_pt2ge20', 
-                                      'hww2l2v_13TeV_me_mp_0j_pt2ge20',
-                                      'hww2l2v_13TeV_me_mp_1j_pt2ge20',
-                                      'hww2l2v_13TeV_me_pm_0j_pt2lt20',
-                                      'hww2l2v_13TeV_me_pm_1j_pt2lt20',
-                                      'hww2l2v_13TeV_me_mp_0j_pt2lt20',
-                                      'hww2l2v_13TeV_me_mp_1j_pt2lt20'],
+                  'removeFromCuts' : [ k for k in cuts if 'me' in k],
               }
 
 structure['Fake_me']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'removeFromCuts' : [
-                                      'hww2l2v_13TeV_em_pm_0j_pt2ge20',
-                                      'hww2l2v_13TeV_em_pm_0j_pt2ge20', 
-                                      'hww2l2v_13TeV_em_pm_1j_pt2ge20', 
-                                      'hww2l2v_13TeV_em_mp_0j_pt2ge20',
-                                      'hww2l2v_13TeV_em_mp_1j_pt2ge20',
-                                      'hww2l2v_13TeV_em_pm_0j_pt2lt20',
-                                      'hww2l2v_13TeV_em_pm_1j_pt2lt20',
-                                      'hww2l2v_13TeV_em_mp_0j_pt2lt20',
-                                      'hww2l2v_13TeV_em_mp_1j_pt2lt20'],
+                  'removeFromCuts' : [ k for k in cuts if 'em' in k],
               }
 
 structure['ttbar'] = {   
@@ -103,12 +84,12 @@ structure['VgS'] = {
                   'isData'   : 0 
                   }
 
-structure['WZgS_L'] = {
+structure['VgS_L'] = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
 
-structure['WZgS_H'] = {
+structure['VgS_H'] = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
@@ -144,43 +125,47 @@ structure['ggH'] = {
                   'isSignal' : 1,
                   'isData'   : 0    
                   }
-'''
-structure['ggH_hww_0PH'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0
-                  }
-
-structure['qqH_hww_0PH'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0
-                  }
 
 structure['ggH_hww'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0    
                   }
 
 structure['qqH_hww'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0    
                   }
 
+structure['qqH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['ggH_hww_ALT'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
+
+structure['qqH_hww_ALT'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
 
 structure['WH_hww'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0    
                   }
 
 structure['ZH_hww'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0    
                   }
 
 structure['ggZH_hww'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0    
                   }
-'''
+
 structure['H_hww'] = {
                   'isSignal' : 1,
                   'isData'   : 0    
@@ -190,34 +175,34 @@ structure['bbH_hww'] = {
                   'isSignal' : 1,
                   'isData'   : 0
                   }
-'''
+
 structure['ttH_hww'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0
                   }
 
 structure['ggH_htt'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0,
                   }
-'''
+
 structure['qqH_htt'] = {
                   'isSignal' : 1,
                   'isData'   : 0,
                   }
-'''
+
 structure['WH_htt'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0,
                   }
 
 structure['ZH_htt'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0,
                   }
 
 structure['H_htt'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0    
                   }
 
@@ -229,6 +214,17 @@ structure['DATA']  = {
                   'isSignal' : 0,
                   'isData'   : 1 
               }
+
+print "INSTRUCTURE"
+print cuts
+print nuisances['WWresum0j']
+print "OK"
+
+for nuis in nuisances.itervalues():
+  if 'cutspost' in nuis:
+    nuis['cuts'] = nuis['cutspost'](nuis, cuts)
+
+    print nuis
 
 
 

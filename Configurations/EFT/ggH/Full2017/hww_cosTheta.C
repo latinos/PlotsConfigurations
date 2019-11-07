@@ -91,6 +91,8 @@ float hww_cosTheta(int entry, int angle){
      
                         const TVector3 w1 = W1.Vect().Unit();
                         const TVector3 w2 = W2.Vect().Unit();
+                        const TVector3 l1 = L1.Vect().Unit();
+                        const TVector3 l2 = L2.Vect().Unit();
                         
                         TLorentzVector W2_in_rfrW1( W2 ); //not yet
                         TLorentzVector W1_in_rfrW2( W1 ); //not yet    
@@ -107,8 +109,10 @@ float hww_cosTheta(int entry, int angle){
                         const TVector3 l1_in_rfrW2 = L1_in_rfrW2.Vect().Unit();
      
 	                float cosThetaS = TMath::Cos( p.Angle( w1 ) );
-                        float cosThetaOne = TMath::Cos( w1_in_rfrW2.Angle( l1_in_rfrW2 ) );
-                        float cosThetaTwo = TMath::Cos( w2_in_rfrW1.Angle( l2_in_rfrW1 ) );
+                        //float cosThetaOne = TMath::Cos( w1_in_rfrW2.Angle( l1_in_rfrW2 ) );
+                        //float cosThetaTwo = TMath::Cos( w2_in_rfrW1.Angle( l2_in_rfrW1 ) );
+                        float cosThetaOne = TMath::Cos( w1.Angle( l1 ) );
+                        float cosThetaTwo = TMath::Cos( w2.Angle( l2 ) ); 
 
                         if (angle == 0) {  
 		            cout << "cosThetaS = " << cosThetaS << endl;

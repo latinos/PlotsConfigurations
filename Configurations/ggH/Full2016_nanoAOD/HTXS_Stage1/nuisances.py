@@ -694,10 +694,10 @@ for name in sampleNames:
       scale0d5 = QCDScaleFactors[name.replace('ggH_hww','GG2H')][1]
       nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/'+scale2d0, 'LHEScaleWeight[0]/'+scale0d5]})
     else:
-      nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/QCDScaleFactors[GG2H_PTH_200_300][0], LHEScaleWeight[0]/QCDScaleFactors[GG2H_PTH_200_300][1]']})
-      nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/QCDScaleFactors[GG2H_PTH_300_450][0], LHEScaleWeight[0]/QCDScaleFactors[GG2H_PTH_300_450][1]']})
-      nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/QCDScaleFactors[GG2H_PTH_450_650][0], LHEScaleWeight[0]/QCDScaleFactors[GG2H_PTH_450_650][1]']})
-      nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/QCDScaleFactors[GG2H_PTH_GT650][0], LHEScaleWeight[0]/QCDScaleFactors[GG2H_PTH_GT650][1]']})
+      nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/QCDScaleFactors[GG2H_PTH_200_300][0]','LHEScaleWeight[0]/QCDScaleFactors[GG2H_PTH_200_300][1]']})
+      nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/QCDScaleFactors[GG2H_PTH_300_450][0]','LHEScaleWeight[0]/QCDScaleFactors[GG2H_PTH_300_450][1]']})
+      nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/QCDScaleFactors[GG2H_PTH_450_650][0]','LHEScaleWeight[0]/QCDScaleFactors[GG2H_PTH_450_650][1]']})
+      nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/QCDScaleFactors[GG2H_PTH_GT650][0]','LHEScaleWeight[0]/QCDScaleFactors[GG2H_PTH_GT650][1]']})
 
 
 #### QCD scale uncertainties for Higgs signals other than ggH

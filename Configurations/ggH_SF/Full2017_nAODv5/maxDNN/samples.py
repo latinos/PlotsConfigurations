@@ -113,7 +113,7 @@ if useDYtt:
     samples['DY'] = {
         'name': files,
         'weight': mcCommonWeight,
-        'FilesPerJob': 4,
+        'FilesPerJob': 2,
         'suppressNegative' :['all'],
         'suppressNegativeNuisances' :['all'],
     }
@@ -127,7 +127,7 @@ else:
     samples['DY'] = {
         'name': files,
         'weight': mcCommonWeight,
-        'FilesPerJob': 4,
+        'FilesPerJob': 2,
         'suppressNegative' :['all'],
         'suppressNegativeNuisances' :['all'],
 
@@ -248,7 +248,7 @@ files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
 samples['VgS'] = {
     'name': files,
     'weight': mcCommonWeight + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
-    'FilesPerJob': 15,
+    'FilesPerJob': 4,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
     'subsamples': {
