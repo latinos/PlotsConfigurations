@@ -29,12 +29,12 @@ except NameError:
 ################# SKIMS ########################
 ################################################
 
-#mcProduction = 'Fall2017_102X_nAODv4_Full2017v5'
-#mcProduction = 'Fall2017_102X_nAODv5_SigOnly_Full2017v5'
+mcProduction = 'Fall2017_102X_nAODv4_Full2017v5'
 
 dataReco = 'Run2017_102X_nAODv4_Full2017v5'
 
 #mcSteps = 'MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5{var}__wwSel'
+mcSteps = 'MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5{var}'
 
 fakeSteps = 'DATAl1loose2017v5__l2loose__fakeW'
 
@@ -52,13 +52,13 @@ elif  'cern' in SITE:
 
 def makeMCDirectory(var=''):
     if var:
-        #return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
+        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
         #return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Fall17/l2tightOR__{var}'.format(var=var)
-        return '/afs/cern.ch/user/d/ddicroce/public/Fall17/l2tightOR__{var}'.format(var=var)
+        #return '/afs/cern.ch/user/d/ddicroce/public/Fall17/l2tightOR__{var}'.format(var=var)
     else:
-        #return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
+        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
         #return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Fall17/l2tightOR'
-        return '/afs/cern.ch/user/d/ddicroce/public/Fall17/l2tightOR'
+        #return '/afs/cern.ch/user/d/ddicroce/public/Fall17/l2tightOR'
 
 mcDirectory = makeMCDirectory()
 fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
@@ -119,10 +119,10 @@ if useDYtt:
 
     ## Remove OF from inclusive sample (is it needed?)
     #cutSF = '(abs(Lepton_pdgId[0]*Lepton_pdgId[1]) == 11*11)||(Lepton_pdgId[0]*Lepton_pdgId[1]) == 13*13)'
-    #addSampleWeight(samples,'DY','DYJetsToLL_M-50',cutSF)
+    #addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext1',cutSF)
 
 else:
-    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50') + \
+    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext1') + \
         nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
     
     samples['DY'] = {
@@ -130,7 +130,7 @@ else:
         'weight': mcCommonWeight,
         'FilesPerJob': 8,
     }
-    addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO)
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext1',ptllDYW_NLO)
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 
 ###### Top #######
