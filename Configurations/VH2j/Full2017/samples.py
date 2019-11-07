@@ -33,8 +33,8 @@ mcProduction = 'Fall2017_102X_nAODv4_Full2017v5'
 
 dataReco = 'Run2017_102X_nAODv4_Full2017v5'
 
-#mcSteps = 'MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5{var}__wwSel'
-mcSteps = 'MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5{var}'
+mcSteps = 'MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5{var}__wwSel'
+#mcSteps = 'MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5{var}'
 
 fakeSteps = 'DATAl1loose2017v5__l2loose__fakeW'
 
