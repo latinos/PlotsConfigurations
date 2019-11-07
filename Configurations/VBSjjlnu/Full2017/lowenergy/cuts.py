@@ -37,28 +37,29 @@ cuts["CR_ele_fake"] = 'abs(Lepton_pdgId[0])==11 \
                                 && bVeto \
                                 && mjj_vjet > 65 && mjj_vjet < 105 \
                                 && PuppiMET_pt < 100 \
-                                && w_lep_pt <= 200 \
+                                && w_lep_pt <= 150 \
+                                && vbs_pt_high <= 200 \
                                 '
 
-cuts["CR_mu_looseVBS"] = 'abs(Lepton_pdgId[0])==13 \
-                         && Lepton_pt[0] >= 30    \
-                         && mjj_vbs >=300    \
-                         && deltaeta_vbs >= 2  \
-                         && PuppiMET_pt > 30 \
-                         && bVeto \
-                         && mjj_vjet > 65 && mjj_vjet < 105 \
-                        '
+# cuts["CR_mu_looseVBS"] = 'abs(Lepton_pdgId[0])==13 \
+#                          && Lepton_pt[0] >= 30    \
+#                          && mjj_vbs >=300    \
+#                          && deltaeta_vbs >= 2  \
+#                          && PuppiMET_pt > 30 \
+#                          && bVeto \
+#                          && mjj_vjet > 65 && mjj_vjet < 105 \
+#                         '
 
-cuts["CR_mu_fake"] = 'abs(Lepton_pdgId[0])==13 \
-                         && Lepton_pt[0] >= 30    \
-                         && mjj_vbs >=300    \
-                         && deltaeta_vbs >= 2  \
-                         && PuppiMET_pt > 30 \
-                         && bVeto \
-                         && mjj_vjet > 65 && mjj_vjet < 105 \
-                         && PuppiMET_pt < 100 \
-                        && w_lep_pt <= 200 \
-                        '
+# cuts["CR_mu_fake"] = 'abs(Lepton_pdgId[0])==13 \
+#                          && Lepton_pt[0] >= 30    \
+#                          && mjj_vbs >=300    \
+#                          && deltaeta_vbs >= 2  \
+#                          && PuppiMET_pt > 30 \
+#                          && bVeto \
+#                          && mjj_vjet > 65 && mjj_vjet < 105 \
+#                          && PuppiMET_pt < 100 \
+#                         && w_lep_pt <= 200 \
+#                         '
 
 cuts["CR_ele_topCR"] = 'abs(Lepton_pdgId[0])==11 \
                                 && Lepton_pt[0] >= 40   \
@@ -69,14 +70,14 @@ cuts["CR_ele_topCR"] = 'abs(Lepton_pdgId[0])==11 \
                                 && mjj_vjet > 65 && mjj_vjet < 105 \
                                 '
 
-cuts["CR_mu_topCR"] = 'abs(Lepton_pdgId[0])==13 \
-                         && Lepton_pt[0] >= 30    \
-                         && mjj_vbs >=300    \
-                         && deltaeta_vbs >= 2  \
-                         && PuppiMET_pt > 30 \
-                         && !bVeto \
-                         && mjj_vjet > 65 && mjj_vjet < 105 \
-                        '
+# cuts["CR_mu_topCR"] = 'abs(Lepton_pdgId[0])==13 \
+#                          && Lepton_pt[0] >= 30    \
+#                          && mjj_vbs >=300    \
+#                          && deltaeta_vbs >= 2  \
+#                          && PuppiMET_pt > 30 \
+#                          && !bVeto \
+#                          && mjj_vjet > 65 && mjj_vjet < 105 \
+#                         '
 
 cuts["CR_ele_WjetsCR"] = 'abs(Lepton_pdgId[0])==11 \
                                 && Lepton_pt[0] >= 40   \
@@ -87,14 +88,14 @@ cuts["CR_ele_WjetsCR"] = 'abs(Lepton_pdgId[0])==11 \
                                 && ( mjj_vjet < 65 || mjj_vjet > 105 300 ) \
                                 '
 
-cuts["CR_mu_WjetsCR"] = 'abs(Lepton_pdgId[0])==13 \
-                         && Lepton_pt[0] >= 30    \
-                         && mjj_vbs >=300    \
-                         && deltaeta_vbs >= 2  \
-                         && PuppiMET_pt > 30 \
-                         && bVeto \
-                         && ( mjj_vjet < 65 || mjj_vjet > 105 ) \
-                        '
+# cuts["CR_mu_WjetsCR"] = 'abs(Lepton_pdgId[0])==13 \
+#                          && Lepton_pt[0] >= 30    \
+#                          && mjj_vbs >=300    \
+#                          && deltaeta_vbs >= 2  \
+#                          && PuppiMET_pt > 30 \
+#                          && bVeto \
+#                          && ( mjj_vjet < 65 || mjj_vjet > 105 ) \
+#                         '
 
 
 cuts["SR_ele_tightVBS"] = 'abs(Lepton_pdgId[0])==11 \
@@ -106,14 +107,14 @@ cuts["SR_ele_tightVBS"] = 'abs(Lepton_pdgId[0])==11 \
                                && mjj_vjet > 65 && mjj_vjet < 105 \
                                '
 
-cuts["SR_mu_tightVBS"] = 'abs(Lepton_pdgId[0])==13 \
-                        && Lepton_pt[0] >= 30    \
-                        && mjj_vbs >=600    \
-                        && deltaeta_vbs >= 3.5  \
-                        && PuppiMET_pt > 30 \
-                        && bVeto \
-                        && mjj_vjet > 65 && mjj_vjet < 105 \
-                       '
+# cuts["SR_mu_tightVBS"] = 'abs(Lepton_pdgId[0])==13 \
+#                         && Lepton_pt[0] >= 30    \
+#                         && mjj_vbs >=600    \
+#                         && deltaeta_vbs >= 3.5  \
+#                         && PuppiMET_pt > 30 \
+#                         && bVeto \
+#                         && mjj_vjet > 65 && mjj_vjet < 105 \
+#                        '
 
 
 
@@ -126,14 +127,14 @@ cuts["SR_ele_topCR"] = 'abs(Lepton_pdgId[0])==11 \
                                 && mjj_vjet > 65 && mjj_vjet < 105 \
                                 '
 
-cuts["SR_mu_topCR"] = 'abs(Lepton_pdgId[0])==13 \
-                         && Lepton_pt[0] >= 30    \
-                         && mjj_vbs >=600    \
-                         && deltaeta_vbs >= 3.5  \
-                         && PuppiMET_pt > 30 \
-                         && !bVeto \
-                         && mjj_vjet > 65 && mjj_vjet < 105 \
-                        '
+# cuts["SR_mu_topCR"] = 'abs(Lepton_pdgId[0])==13 \
+#                          && Lepton_pt[0] >= 30    \
+#                          && mjj_vbs >=600    \
+#                          && deltaeta_vbs >= 3.5  \
+#                          && PuppiMET_pt > 30 \
+#                          && !bVeto \
+#                          && mjj_vjet > 65 && mjj_vjet < 105 \
+#                         '
 
 cuts["SR_ele_WjetsCR"] = 'abs(Lepton_pdgId[0])==11 \
                                 && Lepton_pt[0] >= 40   \
@@ -144,11 +145,11 @@ cuts["SR_ele_WjetsCR"] = 'abs(Lepton_pdgId[0])==11 \
                                 && ( mjj_vjet < 65 || mjj_vjet > 105 300 ) \
                                 '
 
-cuts["SR_mu_WjetsCR"] = 'abs(Lepton_pdgId[0])==13 \
-                         && Lepton_pt[0] >= 30    \
-                         && mjj_vbs >=600    \
-                         && deltaeta_vbs >= 3.5  \
-                         && PuppiMET_pt > 30 \
-                         && bVeto \
-                         && ( mjj_vjet < 65 || mjj_vjet > 105 ) \
-                        '
+# cuts["SR_mu_WjetsCR"] = 'abs(Lepton_pdgId[0])==13 \
+#                          && Lepton_pt[0] >= 30    \
+#                          && mjj_vbs >=600    \
+#                          && deltaeta_vbs >= 3.5  \
+#                          && PuppiMET_pt > 30 \
+#                          && bVeto \
+#                          && ( mjj_vjet < 65 || mjj_vjet > 105 ) \
+#                         '

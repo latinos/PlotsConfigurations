@@ -77,7 +77,7 @@ GenLepMatch   = 'Lepton_genmatched[0]'
 # Definitions in aliases.py
 
 # Not using any btagging yet
-SFweight += '*btagSF*nvtx_reweighting'
+SFweight += '*btagSF'
 ################################################
 ############   MET  FILTERS  ###################
 ################################################
@@ -309,7 +309,7 @@ samples['Fake'] = {
   'weight': METFilter_DATA+'*'+fakeW,
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 15
+  'FilesPerJob': 14
 }
 
 for _, sd in DataRun:
