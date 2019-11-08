@@ -1,0 +1,66 @@
+## Combinations to use
+#
+##comb = {}
+#
+##
+
+combs['hww2l2v_13TeV_2018_ggH'] = {
+                  'hww2l2v_13TeV_2018_0jee_pt2lt20' : 'events' ,
+                  'hww2l2v_13TeV_2018_0jee_pt2ge20' : 'events' ,
+                  'hww2l2v_13TeV_2018_WW_0jee' : 'events' ,
+                  'hww2l2v_13TeV_2018_top_0jee' : 'events' ,
+                  'hww2l2v_13TeV_2018_0jmm_pt2lt20' : 'events' ,
+                  'hww2l2v_13TeV_2018_0jmm_pt2ge20' : 'events' ,
+                  'hww2l2v_13TeV_2018_WW_0jmm' : 'events' ,
+                  'hww2l2v_13TeV_2018_top_0jmm' : 'events' ,
+                  'hww2l2v_13TeV_2018_1jee' : 'events' ,
+                  'hww2l2v_13TeV_2018_WW_1jee' : 'events' ,
+                  'hww2l2v_13TeV_2018_1jmm' : 'events' ,
+                  'hww2l2v_13TeV_2018_WW_1jmm' : 'events' ,
+                  'hww2l2v_13TeV_2018_top_1jee' : 'events' ,
+                  'hww2l2v_13TeV_2018_top_1jmm' : 'events' ,
+                  'hww2l2v_13TeV_2018_2jee' : 'events' ,
+                  'hww2l2v_13TeV_2018_WW_2jee' : 'events' ,
+                  'hww2l2v_13TeV_2018_2jmm' : 'events' ,
+                  'hww2l2v_13TeV_2018_WW_2jmm' : 'events' ,
+                  'hww2l2v_13TeV_2018_top_2jee' : 'events' ,
+                  'hww2l2v_13TeV_2018_top_2jmm' : 'events' ,
+                }
+
+combs['hww2l2v_13TeV_2018_HWW'] = {
+                  'hww2l2v_13TeV_2018_0jee_pt2lt20' : 'events' ,
+                  'hww2l2v_13TeV_2018_0jee_pt2ge20' : 'events' ,
+                  'hww2l2v_13TeV_2018_WW_0jee' : 'events' ,
+                  'hww2l2v_13TeV_2018_top_0jee' : 'events' ,
+                  'hww2l2v_13TeV_2018_0jmm_pt2lt20' : 'events' ,
+                  'hww2l2v_13TeV_2018_0jmm_pt2ge20' : 'events' ,
+                  'hww2l2v_13TeV_2018_WW_0jmm' : 'events' ,
+                  'hww2l2v_13TeV_2018_top_0jmm' : 'events' ,
+                  'hww2l2v_13TeV_2018_1jee' : 'events' ,
+                  'hww2l2v_13TeV_2018_WW_1jee' : 'events' ,
+                  'hww2l2v_13TeV_2018_1jmm' : 'events' ,
+                  'hww2l2v_13TeV_2018_WW_1jmm' : 'events' ,
+                  'hww2l2v_13TeV_2018_top_1jee' : 'events' ,
+                  'hww2l2v_13TeV_2018_top_1jmm' : 'events' ,
+                  'hww2l2v_13TeV_2018_2jee' : 'events' ,
+                  'hww2l2v_13TeV_2018_2jee_vh2j' : 'events' ,
+                  'hww2l2v_13TeV_2018_WW_2jee' : 'events' ,
+                  'hww2l2v_13TeV_2018_WW_2jee_vh2j' : 'events' ,
+                  'hww2l2v_13TeV_2018_2jmm' : 'events' ,
+                  'hww2l2v_13TeV_2018_2jmm_vh2j' : 'events' ,
+                  'hww2l2v_13TeV_2018_WW_2jmm' : 'events' ,
+                  'hww2l2v_13TeV_2018_WW_2jmm_vh2j' : 'events' ,
+                  'hww2l2v_13TeV_2018_top_2jee' : 'events' ,
+                  'hww2l2v_13TeV_2018_top_2jee_vh2j' : 'events' ,
+                  'hww2l2v_13TeV_2018_top_2jmm' : 'events' ,
+                  'hww2l2v_13TeV_2018_top_2jmm_vh2j' : 'events' ,
+                  'hww2l2v_13TeV_2018_2jee_vbf_lowmjj' : 'events' ,
+                  'hww2l2v_13TeV_2018_2jee_vbf_highmjj' : 'events' ,
+                  'hww2l2v_13TeV_2018_2jmm_vbf_lowmjj' : 'events' ,
+                  'hww2l2v_13TeV_2018_2jmm_vbf_highmjj' : 'events' ,
+                  'hww2l2v_13TeV_2018_WW_2jee_vbf' : 'events' ,
+                  'hww2l2v_13TeV_2018_WW_2jmm_vbf' : 'events' ,
+                  'hww2l2v_13TeV_2018_top_2jee_vbf' : 'events' ,
+                  'hww2l2v_13TeV_2018_top_2jmm_vbf' : 'events' ,
+                }
+

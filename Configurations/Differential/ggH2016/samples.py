@@ -325,47 +325,6 @@ samples['WH_htt'] = {
 
 #signals.append('WH_htt')
 
-for sname in signals:
-  sample = samples[sname]
-  sample['subsamples'] = {}
-
-  for pth in pthBins:
-    binName = 'PTH_%s' % pth
-    if pth.startswith('GT'):
-      cut = 'higgsGenPt > %s' % pth[2:]
-    else:
-      cut = 'higgsGenPt > %s && higgsGenPt < %s' % tuple(pth.split('_'))
-
-    sample['subsamples'][binName] = cut
-
-  for nj in njetBinning:
-    binName = 'NJ_%s' % nj
-    if nj.startswith('GE'):
-      cut = 'nCleanGenJet >= %s' % nj[2:]
-    else:
-      cut = 'nCleanGenJet == %s' % nj
-
-    sample['subsamples'][binName] = cut
-
-#  for flabel, fidcut in [('fid', 'fiducial'), ('nonfid', '!fiducial')]:
-#    for pth in pthBins:
-#      binName = '%s_PTH_%s' % (flabel, pth)
-#      if pth.startswith('GT'):
-#        cut = '%s && genPth > %s' % (fidcut, pth[2:])
-#      else:
-#        cut = '%s && genPth > %s && genPth < %s' % ((fidcut,) + tuple(pth.split('_')))
-#  
-#      sample['subsamples'][binName] = cut
-#  
-#    for nj in njetBinning:
-#      binName = '%s_NJ_%s' % (flabel, nj)
-#      if nj.startswith('GE'):
-#        cut = '%s && nCleanGenJet >= %s' % (fidcut, nj[2:])
-#      else:
-#        cut = '%s && nCleanGenJet == %s' % (fidcut, nj)
-#  
-#      sample['subsamples'][binName] = cut
-
 ###########################################
 ################## FAKE ###################
 ###########################################
@@ -406,3 +365,63 @@ for _, sd in DataRun:
     files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
+
+##########################################
+######## PS and UE Variation #############
+##########################################
+
+for sname, tname in [('WW', 'WWTo2L2Nu'), ('ggH_hww', 'GluGluHToWWTo2L2NuPowheg_M125'), ('qqH_hww', 'VBFHToWWTo2L2NuPowheg_M125')]:
+    for vname, dsuffix in [('PS_HerwigUp', 'PS'), ('UE_CUETPUp', 'UEup'), ('UE_CUETPDown', 'UEdo')]:
+        ssname = sname + '_' + vname
+        samples[ssname] = {
+            'name': nanoGetSampleFiles(makeMCDirectory(dsuffix), tname),
+            'weight': samples[sname]['weight'],
+            'FilesPerJob': samples[sname]['FilesPerJob'],
+            'outputFormat': '%s{subsample}_%s' % (sname, vname)
+        }
+        if 'linesToAdd' in samples[sname]:
+            samples[ssname]['linesToAdd'] = samples[sname]['linesToAdd']
+
+        if sname in signals:
+            signals.append(ssname)
+
+for sname in signals:
+  sample = samples[sname]
+  sample['subsamples'] = {}
+
+  for pth in pthBins:
+    binName = 'PTH_%s' % pth
+    if pth.startswith('GT'):
+      cut = 'higgsGenPt > %s' % pth[2:]
+    else:
+      cut = 'higgsGenPt > %s && higgsGenPt < %s' % tuple(pth.split('_'))
+
+    sample['subsamples'][binName] = cut
+
+  for nj in njetBinning:
+    binName = 'NJ_%s' % nj
+    if nj.startswith('GE'):
+      cut = 'nCleanGenJet >= %s' % nj[2:]
+    else:
+      cut = 'nCleanGenJet == %s' % nj
+
+    sample['subsamples'][binName] = cut
+
+#  for flabel, fidcut in [('fid', 'fiducial'), ('nonfid', '!fiducial')]:
+#    for pth in pthBins:
+#      binName = '%s_PTH_%s' % (flabel, pth)
+#      if pth.startswith('GT'):
+#        cut = '%s && genPth > %s' % (fidcut, pth[2:])
+#      else:
+#        cut = '%s && genPth > %s && genPth < %s' % ((fidcut,) + tuple(pth.split('_')))
+#  
+#      sample['subsamples'][binName] = cut
+#  
+#    for nj in njetBinning:
+#      binName = '%s_NJ_%s' % (flabel, nj)
+#      if nj.startswith('GE'):
+#        cut = '%s && nCleanGenJet >= %s' % (fidcut, nj[2:])
+#      else:
+#        cut = '%s && nCleanGenJet == %s' % (fidcut, nj)
+#  
+#      sample['subsamples'][binName] = cut

@@ -31,6 +31,13 @@ cuts['z4lveto'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                  && ZH3l_Z4lveto > 20 \
                  '
 
+cuts['zh3l_Zg_CR_2j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
+                       && Alt$( CleanJet_pt[1], 0) >= 30 \
+                       && WH3l_ZVeto < 25 \
+                       && bVeto \
+                       && ZH3l_Z4lveto < 10 \
+                       '
+
 cuts['zh3l_WZ_CR_2j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                        && Alt$( CleanJet_pt[1], 0) >= 30 \
                        && WH3l_ZVeto < 25 \
@@ -57,6 +64,13 @@ cuts['z4lveto_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                     && ZH3l_Z4lveto > 20 \
                     '
 
+cuts['zh3l_Vg_CR_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
+                       && Alt$( CleanJet_pt[1], 0) < 30 \
+                       && WH3l_ZVeto < 25 \
+                       && bVeto \
+                       && ZH3l_Z4lveto < 10 \
+                       '
+
 cuts['zh3l_WZ_CR_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                        && Alt$( CleanJet_pt[1], 0) < 30 \
                        && WH3l_ZVeto < 25 \
@@ -64,6 +78,20 @@ cuts['zh3l_WZ_CR_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                        && ZH3l_Z4lveto > 20 \
                        && ZH3l_dphilmetj > 3.14159/2 \
                        '
+
+cuts['zh3l_Zg_CR_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
+                       && Alt$( CleanJet_pt[1], 0) < 30 \
+                       && WH3l_ZVeto < 25 \
+                       && bVeto \
+                       && ZH3l_Z4lveto < 10 \
+                       '
+
+cuts['zh3l_Zg_CR_0j'] = ' Alt$( CleanJet_pt[0], 0) < 30 \
+                       && WH3l_ZVeto < 25 \
+                       && bVeto \
+                       && ZH3l_Z4lveto < 10 \
+                       '
+
 
 '''
  #11 = e

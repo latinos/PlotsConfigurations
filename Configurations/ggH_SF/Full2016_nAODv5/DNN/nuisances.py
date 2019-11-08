@@ -641,6 +641,15 @@ nuisances['WWnorm0j']  = {
                'cuts'  : cuts0j
               }
 
+nuisances['ggWWnorm0j']  = {
+               'name'  : 'CMS_hww_WWnorm0j',
+               'samples'  : {
+                   'ggWW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts0j
+              }
+
 nuisances['WWnorm1j']  = {
                'name'  : 'CMS_hww_WWnorm1j',
                'samples'  : {
@@ -650,11 +659,28 @@ nuisances['WWnorm1j']  = {
                'cuts'  : cuts1j
               }
 
+nuisances['ggWWnorm1j']  = {
+               'name'  : 'CMS_hww_WWnorm1j',
+               'samples'  : {
+                   'ggWW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts1j
+              }
 
 nuisances['WWnorm2j']  = {
                'name'  : 'CMS_hww_WWnorm2j',
                'samples'  : {
                    'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j
+              }
+
+nuisances['ggWWnorm2j']  = {
+               'name'  : 'CMS_hww_WWnorm2j',
+               'samples'  : {
+                   'ggWW' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : cuts2j
@@ -762,8 +788,8 @@ try:
       newCuts = []
       for iCut in nuisances[iNP]['cuts']:
         for iOptim in optim:
-           newCuts.append(iCut+'_'+iOptim)
+           #newCuts.append(iCut+'_'+iOptim)
+           newCuts.append(iCut)
       nuisances[iNP]['cuts'] = newCuts
 except:
   print "No optim dictionary"
-
