@@ -11,14 +11,14 @@ variables['events']  = {
     'fold' : 3
 }
 
-variables['firstLeptonpt']  = {   
+variables['firstLeptonPt']  = {   
     'name' : 'Lepton_pt[0]',
     'range': (40,0,500),
     'xaxis': '1st lep pt', 
     'fold' : 0
 }
 
-variables['firstLeptonpt_pass']  = {   
+variables['firstLeptonPt_pass']  = {   
     'name' : 'Lepton_pt[0] * LepWPCut',
     'range': (40,0,500),
     'xaxis': '1st lep pt', 

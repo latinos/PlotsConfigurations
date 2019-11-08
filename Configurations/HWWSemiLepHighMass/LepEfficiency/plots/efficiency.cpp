@@ -20,7 +20,7 @@ void efficiency()
     string filename = string("../rootFile/plots_HM2l2n_")+year+".root";
     TFile file(filename.c_str());
     auto dir = dynamic_cast<TDirectoryFile*>(
-        file.GetKey("tag_el")->ReadObj()
+        file.GetKey("first_el")->ReadObj()
     );
     
     auto tagDir = dynamic_cast<TDirectoryFile*>(
@@ -69,7 +69,7 @@ void efficiency()
         histQuotient->SetStats(0);
         histQuotient->SetMinimum(0.75);
         histQuotient->SetMaximum(1.03);
-        histQuotient->SetAxisRange(0., 90.,"X");
+        histQuotient->SetAxisRange(0., 190.,"X");
         histQuotient->GetXaxis()->SetTitle(xlabel.c_str());
 
         if (mass == "200") {

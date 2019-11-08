@@ -9,8 +9,8 @@ supercut = 'nLepton>=2 \
 cuts['first'] = {
     'expr': '1',
     'categories': {
-        'el': 'abs(Lepton_pdgId[1])==11',
-        'mu': 'abs(Lepton_pdgId[1])==13'
+        'el': 'abs(Lepton_pdgId[0])==11',
+        'mu': 'abs(Lepton_pdgId[0])==13'
     }
 }
 
