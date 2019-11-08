@@ -1,7 +1,7 @@
 # Configuration file to produce initial root files
 
 treeName = 'Events'
-year = '17'
+year = '18'
 tag = 'HM2l2n_20'+year
 
 # used by mkShape to define output directory for root files

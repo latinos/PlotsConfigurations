@@ -13,7 +13,14 @@ variables['events']  = {
 
 variables['firstLeptonpt']  = {   
     'name' : 'Lepton_pt[0]',
-    'range': (30,0,600),
+    'range': (40,0,500),
+    'xaxis': '1st lep pt', 
+    'fold' : 0
+}
+
+variables['firstLeptonpt_pass']  = {   
+    'name' : 'Lepton_pt[0] * LepWPCut',
+    'range': (40,0,500),
     'xaxis': '1st lep pt', 
     'fold' : 0
 }

@@ -11,7 +11,7 @@ void efficiency()
 {
     TH1::AddDirectory(kFALSE);
     string year = "2018";
-    string title = "efficiency ele "+year;
+    string title = "test efficiency ele "+year;
     string xlabel= "pT [GeV]";
     array<string, 3> arrayMX = {"200", "800", "3000"};
 
@@ -24,10 +24,10 @@ void efficiency()
     );
     
     auto tagDir = dynamic_cast<TDirectoryFile*>(
-        dir->GetKey("secondLeptonPt_tag")->ReadObj()
+        dir->GetKey("firstLeptonPt")->ReadObj()
     );
     auto probeDir = dynamic_cast<TDirectoryFile*>(
-        dir->GetKey("secondLeptonPt_probe")->ReadObj()
+        dir->GetKey("firstLeptonPt_pass")->ReadObj()
     );
 
     auto c1 = new TCanvas("c1","c1",500,500);
