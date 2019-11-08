@@ -9,6 +9,8 @@ supercut = 'MinIf$( WH3l_mOSll[], WH3l_mOSll[Iteration$] > 0) > 12 \
             && abs(WH3l_chlll) == 1 \
            '
 
+            # && abs(Lepton_pdgId[0] * Lepton_pdgId[1] * Lepton_pdgId[2]) == 13*13*13 \
+
 cuts['preselection']   = '1'
 
 cuts['zmass_cut'] = ' WH3l_ZVeto < 25 '
@@ -30,6 +32,13 @@ cuts['z4lveto'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                  && bVeto \
                  && ZH3l_Z4lveto > 20 \
                  '
+
+cuts['zh3l_Zg_CR_2j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
+                       && Alt$( CleanJet_pt[1], 0) >= 30 \
+                       && WH3l_ZVeto < 25 \
+                       && bVeto \
+                       && ZH3l_Z4lveto < 10 \
+                       '
 
 cuts['zh3l_WZ_CR_2j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                        && Alt$( CleanJet_pt[1], 0) >= 30 \
@@ -57,6 +66,13 @@ cuts['z4lveto_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                     && ZH3l_Z4lveto > 20 \
                     '
 
+cuts['zh3l_Zg_CR_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
+                       && Alt$( CleanJet_pt[1], 0) < 30 \
+                       && WH3l_ZVeto < 25 \
+                       && bVeto \
+                       && ZH3l_Z4lveto < 10 \
+                       '
+
 cuts['zh3l_WZ_CR_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                        && Alt$( CleanJet_pt[1], 0) < 30 \
                        && WH3l_ZVeto < 25 \
@@ -64,6 +80,20 @@ cuts['zh3l_WZ_CR_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                        && ZH3l_Z4lveto > 20 \
                        && ZH3l_dphilmetj > 3.14159/2 \
                        '
+
+cuts['zh3l_Zg_CR_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
+                       && Alt$( CleanJet_pt[1], 0) < 30 \
+                       && WH3l_ZVeto < 25 \
+                       && bVeto \
+                       && ZH3l_Z4lveto < 10 \
+                       '
+
+cuts['zh3l_Zg_CR_0j'] = ' Alt$( CleanJet_pt[0], 0) < 30 \
+                       && WH3l_ZVeto < 25 \
+                       && bVeto \
+                       && ZH3l_Z4lveto < 10 \
+                       '
+
 
 '''
  #11 = e

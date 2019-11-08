@@ -8,6 +8,10 @@
 
 # plot = {}
 
+for sname in samples.keys():
+    if '_UE' in sname or '_PS' in sname:
+        samples.pop(sname)
+
 defs = [
     ('top', 'tW and t#bar{t}', ['top'], ROOT.kYellow, 0),
     #('WW', 'WW', ['WW', 'ggWW', 'WWewk'], ROOT.kAzure - 9, 0),

@@ -243,17 +243,12 @@ nuisances['PU'] = {
 
 nuisances['PS']  = {
     'name': 'PS_Herwig',
-    'kind': 'tree',
+    'kind': 'weight',
     'type': 'shape',
-    'samples': {
-        'WW': ['1.', '1.'],
-        'ggH_hww': ['1.', '1.'],
-        'qqH_hww': ['1.', '1.']
-    },
-    'folderUp': makeMCDirectory('PS'),
-    'folderDown': makeMCDirectory(),
+    'samples': {'WW': ['0.'], 'ggH_hww': ['0.'], 'qqH_hww': ['0.']},
+    'samplespost': lambda self, samples: dict([('WW', ['1.'])] + [(sname, ['1.']) for sname in samples if 'ggH_hww' in sname or 'qqH_hww' in sname]),
     'AsLnN': '1',
-    'synchronized': False
+    'OneSided': True
 }
 
 nuisances['UE'] = {
@@ -261,15 +256,9 @@ nuisances['UE'] = {
     'skipCMS': 1,
     'kind': 'tree',
     'type': 'shape',
-    'samples': {
-        'WW'      : ['1', '1'],
-        'ggH_hww' : ['1', '1'],
-        'qqH_hww' : ['1', '1']
-    },
-    'AsLnN': '1',
-    'folderUp': makeMCDirectory('UEup'),
-    'folderDown': makeMCDirectory('UEdo'),
-    'synchronized': False
+    'samples': {},
+    'samplespost': lambda self, samples: dict([('WW', ['1.', '1.'])] + [(sname, ['1.', '1.']) for sname in samples if 'ggH_hww' in sname or 'qqH_hww' in sname]),
+    'AsLnN': '1'
 }
 
 ####### Generic "cross section uncertainties"
