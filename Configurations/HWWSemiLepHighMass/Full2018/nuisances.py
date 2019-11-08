@@ -36,7 +36,7 @@ for k in cuts:
     if '0j' in cat: cuts0j.append(k+'_'+cat)
     elif '1j' in cat: cuts1j.append(k+'_'+cat)
     elif '2j' in cat: cuts2j.append(k+'_'+cat)
-    else: print 'WARNING: name of category does not contain either 0j,1j,2j'
+    else: print('WARNING: name of category does not contain either 0j,1j,2j')
 
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
@@ -781,4 +781,4 @@ nuisances['Topnorm2j']  = {
 for n in nuisances.values():
     n['skipCMS'] = 1
 
-print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
+print(' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat')))
