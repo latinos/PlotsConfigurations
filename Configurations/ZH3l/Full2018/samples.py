@@ -105,22 +105,11 @@ ZZbaseW = getBaseWnAOD(directoryMC,'Autumn18_102X_nAODv5_Full2018v5',['ZZTo4L_ex
 addSampleWeight(samples,'ZZ','ZZTo4L_ext1',ZZbaseW+'/baseW')
 addSampleWeight(samples,'ZZ','ZZTo4L_ext2',ZZbaseW+'/baseW')
 
-samples['WZ']  = {    'name'   : getSampleFilesNano(directoryMC,'WZTo3LNu')
-                                +getSampleFilesNano(directoryMC,'WZTo3LNu_ext1'),
-                      'weight' : '(( Alt$(CleanJet_pt[1],0) < 30 )*'+wz1jSF+'+( Alt$(CleanJet_pt[1],0) >= 30 )*'+wz2jSF+')*'+XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC ,
-                      'suppressNegativeNuisances' :['all'],
-                      'FilesPerJob' : 2,
-                  }
-
-WZbaseW = getBaseWnAOD(directoryMC,'Autumn18_102X_nAODv5_Full2018v5',['WZTo3LNu','WZTo3LNu_ext1'])
-addSampleWeight(samples,'WZ','WZTo3LNu',     WZbaseW+'/baseW')
-addSampleWeight(samples,'WZ','WZTo3LNu_ext1',WZbaseW+'/baseW')
-
-samples['WZ_mll01']  = {   'name'   : getSampleFilesNano(directoryMC,'WZTo3LNu_mllmin01'),
-                           'weight' : '(( Alt$(CleanJet_pt[1],0) < 30 )*'+wz1jSF+'+( Alt$(CleanJet_pt[1],0) >= 30 )*'+wz2jSF+')*'+XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC ,
-                           'suppressNegativeNuisances' :['all'],
-                           'FilesPerJob' : 2,
-                       }
+samples['WZ']  = {   'name'   : getSampleFilesNano(directoryMC,'WZTo3LNu_mllmin01'),
+                     'weight' : '(( Alt$(CleanJet_pt[1],0) < 30 )*'+wz1jSF+'+( Alt$(CleanJet_pt[1],0) >= 30 )*'+wz2jSF+')*'+XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC ,
+                     'suppressNegativeNuisances' :['all'],
+                     'FilesPerJob' : 2,
+                 }
 
 samples['VVV'] = {    'name': getSampleFilesNano(directoryMC,'WZZ')
                              +getSampleFilesNano(directoryMC,'ZZZ')

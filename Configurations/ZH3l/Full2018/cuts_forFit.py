@@ -16,7 +16,7 @@ cuts['zh3l_SR_2j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                     && ZH3l_dphilmetjj < 3.14159/2 \
                     '
 
-cuts['zh3l_Vg_CR_2j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
+cuts['zh3l_Zg_CR_2j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                        && Alt$( CleanJet_pt[1], 0) >= 30 \
                        && WH3l_ZVeto < 25 \
                        && bVeto \
@@ -39,7 +39,7 @@ cuts['zh3l_SR_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                     && ZH3l_dphilmetj < 3.14159/2 \
                     '
 
-cuts['zh3l_Vg_CR_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
+cuts['zh3l_Zg_CR_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                        && Alt$( CleanJet_pt[1], 0) < 30 \
                        && WH3l_ZVeto < 25 \
                        && bVeto \

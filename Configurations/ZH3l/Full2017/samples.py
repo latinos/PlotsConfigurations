@@ -107,13 +107,7 @@ ZZbaseW = getBaseWnAOD(directoryMC,'Fall2017_102X_nAODv4_Full2017v5',['ZZTo4L','
 addSampleWeight(samples,'ZZ','ZZTo4L',     ZZbaseW+'/baseW')
 addSampleWeight(samples,'ZZ','ZZTo4L_ext1',ZZbaseW+'/baseW')
 
-samples['WZ_mll01']  = {    'name'   : getSampleFilesNano(directoryMC,'WZTo3LNu_mllmin01'),
-                      'weight' : '(( Alt$(CleanJet_pt[1],0) < 30 )*'+wz1jSF+'+( Alt$(CleanJet_pt[1],0) >= 30 )*'+wz2jSF+')*'+XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC ,
-                      'suppressNegativeNuisances' :['all'],
-                      'FilesPerJob' : 2,
-                  }
-
-samples['WZ']  = {    'name'   : getSampleFilesNano(directoryMC,'WZTo3LNu'),
+samples['WZ']  = {    'name'   : getSampleFilesNano(directoryMC,'WZTo3LNu_mllmin01'),
                       'weight' : '(( Alt$(CleanJet_pt[1],0) < 30 )*'+wz1jSF+'+( Alt$(CleanJet_pt[1],0) >= 30 )*'+wz2jSF+')*'+XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC ,
                       'suppressNegativeNuisances' :['all'],
                       'FilesPerJob' : 2,

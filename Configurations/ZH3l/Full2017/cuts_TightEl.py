@@ -1,5 +1,4 @@
 # cuts
-# No SR cut -- use this cuts file when running mkPlots.py to produce unblinded plots
 
 supercut = 'MinIf$( WH3l_mOSll[], WH3l_mOSll[Iteration$] > 0) > 12 \
             && Alt$(Lepton_pt[0],0)>25 \
@@ -7,6 +6,7 @@ supercut = 'MinIf$( WH3l_mOSll[], WH3l_mOSll[Iteration$] > 0) > 12 \
             && Alt$(Lepton_pt[2],0)>15 \
             && Alt$(Lepton_pt[3],0)<10 \
             && abs(WH3l_chlll) == 1 \
+            && EleWPTight \
            '
 
 cuts['preselection']   = '1'
@@ -37,6 +37,14 @@ cuts['zh3l_Zg_CR_2j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                        && bVeto \
                        && ZH3l_Z4lveto < 10 \
                        '
+
+cuts['zh3l_SR_2j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
+                    && Alt$( CleanJet_pt[1], 0) >= 30 \
+                    && WH3l_ZVeto < 25 \
+                    && bVeto \
+                    && ZH3l_Z4lveto > 20 \
+                    && ZH3l_dphilmetjj < 3.14159/2 \
+                    '
 
 cuts['zh3l_WZ_CR_2j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                        && Alt$( CleanJet_pt[1], 0) >= 30 \
@@ -71,18 +79,20 @@ cuts['zh3l_Zg_CR_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                        && ZH3l_Z4lveto < 10 \
                        '
 
+cuts['zh3l_SR_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
+                    && Alt$( CleanJet_pt[1], 0) < 30 \
+                    && WH3l_ZVeto < 25 \
+                    && bVeto \
+                    && ZH3l_Z4lveto > 20 \
+                    && ZH3l_dphilmetj < 3.14159/2 \
+                    '
+
 cuts['zh3l_WZ_CR_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                        && Alt$( CleanJet_pt[1], 0) < 30 \
                        && WH3l_ZVeto < 25 \
                        && bVeto \
                        && ZH3l_Z4lveto > 20 \
                        && ZH3l_dphilmetj > 3.14159/2 \
-                       '
-
-cuts['zh3l_Zg_CR_0j'] = ' Alt$( CleanJet_pt[0], 0) < 30 \
-                       && WH3l_ZVeto < 25 \
-                       && bVeto \
-                       && ZH3l_Z4lveto < 10 \
                        '
 
 '''

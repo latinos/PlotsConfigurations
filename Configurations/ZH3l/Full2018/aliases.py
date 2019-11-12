@@ -2,9 +2,9 @@
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-#2018
-#bWP = '0.1241' #Loose
-bWP = '0.4184'
+#2017
+#bWP = '0.1522' #Loose
+bWP = '0.4941'
 
 aliases['bVeto'] = {
     'expr': '(Sum$( CleanJet_pt > 20.0 && Jet_btagDeepB[CleanJet_jetIdx] > '+bWP+' ) == 0)'
@@ -20,8 +20,8 @@ aliases['pt_e_mme'] = {
 
 # Temporary patch for BTV postprocessor bug (no SF for eta < 0, <= 102X_nAODv5_Full2018v5)
 
-#2018
-btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_102XSF_V1.csv' % os.getenv('CMSSW_BASE')
+#2017
+btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_94XSF_V2_B_F.csv' % os.getenv('CMSSW_BASE')
 
 aliases['Jet_btagSF_shapeFix'] = {
     'linesToAdd': [
@@ -65,3 +65,8 @@ for s in systs:
         'samples':mc  
     }
 
+aliases['EleWPTight'] = {
+    'expr' : '(abs(Lepton_pdgId[0])==13 || Electron_cutBased[Lepton_electronIdx[0]]>=4) \
+           && (abs(Lepton_pdgId[1])==13 || Electron_cutBased[Lepton_electronIdx[1]]>=4) \
+           && (abs(Lepton_pdgId[2])==13 || Electron_cutBased[Lepton_electronIdx[2]]>=4)',
+}
