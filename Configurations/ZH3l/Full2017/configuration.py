@@ -13,7 +13,6 @@ aliasesFile = 'aliases.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
-#cutsFile = 'cuts_TightEl.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 

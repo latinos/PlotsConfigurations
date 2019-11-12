@@ -1,5 +1,5 @@
 {
-  TFile *f0 = TFile::Open("rootFiles_ZH3l_2017_CR_noNF/plots_ZH3l_2017_CR_noNF.root");
+  TFile *f0 = TFile::Open("rootFiles_ZH3l_2018_CR_noNF/plots_ZH3l_2018_CR_noNF.root");
 
   // Fragile, because it must match the name and ordering in cuts.py
   TString cutslist[12] = {"preselection", "zmass_cut", "1jet_cut", "bveto_1j", "z4lveto_1j", "zh3l_WZ_CR_1j", "zh3l_Zg_CR_1j", "2jet_cut", "bveto", "z4lveto", "zh3l_WZ_CR_2j", "zh3l_Zg_CR_2j"};
@@ -24,12 +24,12 @@
   float n_BG = 0.0;
   float n_Pred = 0.0;
 
-  // float WZ_1j_NF = 1.00;		// really
-  // float WZ_2j_NF = 1.34;
-  // float Zg_1j_NF = 0.44;
-  // float Zg_2j_NF = 0.92;
+//   float WZ_1j_NF = 1.02;
+//   float WZ_2j_NF = 1.22;
+//   float Zg_1j_NF = 0.49;
+//   float Zg_2j_NF = 0.71;
 
-  float WZ_1j_NF = 1.0;		// really
+  float WZ_1j_NF = 1.0;
   float WZ_2j_NF = 1.0;
   float Zg_1j_NF = 1.0;
   float Zg_2j_NF = 1.0;

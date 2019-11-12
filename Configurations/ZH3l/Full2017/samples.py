@@ -55,13 +55,10 @@ SFweight  = 'SFweight3l*'+LepWPweight+'*'+LepWPCut+'*PrefireWeight*btagSF'
 GenLepMatch2l = 'GenLepMatch2l'
 GenLepMatch3l = 'GenLepMatch3l'
 
-#wz1jSF = '1.16'
-#wz2jSF = '1.09'
-#zgSF = '1.34'
-wz1jSF = '1.0'
-wz2jSF = '1.0'
-zg1jSF = '1.0'
-zg2jSF = '1.0'
+wz1jSF = '1.00'
+wz2jSF = '1.34'
+zg1jSF = '0.44'
+zg2jSF = '0.92'
 
 ################################################
 ############   MET  FILTERS  ###################
