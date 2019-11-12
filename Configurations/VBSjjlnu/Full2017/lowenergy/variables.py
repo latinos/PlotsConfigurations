@@ -311,7 +311,7 @@ variables['mll'] = {   'name': 'mll',
 
 
 variables['nvtx'] = {  'name': 'PV_npvs',
-                        'range': (60, 0,60),
+                        'range': (100, 0,100),
                         'xaxis': 'N. primary vertices',
                         'fold': 3
                 }

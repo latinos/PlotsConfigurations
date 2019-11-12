@@ -66,7 +66,9 @@ SFweight      = SFweight1l+'*'+LepWPWeight_1l+'*'+LepWPCut_1l+'*PrefireWeight'
      
 GenLepMatch   = 'Lepton_genmatched[0]'
 
-
+####
+# NVTX reweighting
+SFweight += '*nvtx_reweighting'
 
 
 ################################################
@@ -167,7 +169,7 @@ samples['singleTop'] = {
                       + nanoGetSampleFiles(directory_bkg,'ST_tW_antitop') 
                       + nanoGetSampleFiles(directory_bkg,'ST_tW_top') ,
             'weight' :  XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch ,
-            'FilesPerJob' : 3,
+            'FilesPerJob' : 2,
                  }
 
 samples["ttbar"] =  {  'name': nanoGetSampleFiles(directory_bkg,'TTToSemiLeptonic') 
@@ -178,7 +180,7 @@ samples["ttbar"] =  {  'name': nanoGetSampleFiles(directory_bkg,'TTToSemiLeptoni
                            # +  nanoGetSampleFiles(directory_bkg,'TTZjets_ext1'),
                           #  +  nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu'),
                         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-                        'FilesPerJob': 3,
+                        'FilesPerJob': 2,
 }
 
 addSampleWeight(samples,'ttbar','TTToSemiLeptonic',Top_pTrw)
@@ -208,7 +210,7 @@ samples['Wjets'] = { 'name' :
           #+ nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500_ext1')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
           #+ nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf_ext1'),
-				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch ,
+				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*V_EWK_correction',
 				'FilesPerJob' : 2,
 		   }
 
@@ -230,35 +232,6 @@ samples['VV']  = { 'name' :
         'FilesPerJob' : 3,
 }
 
-# samples["FakeQCD"] = { 'name':
-#         nanoGetSampleFiles(directory, 'QCD_Pt-15to20_MuEnrichedPt5') + 
-#         nanoGetSampleFiles(directory, 'QCD_Pt-20to30_MuEnrichedPt5') +
-#         nanoGetSampleFiles(directory, 'QCD_Pt-30to50_MuEnrichedPt5') +
-#         nanoGetSampleFiles(directory, 'QCD_Pt-50to80_MuEnrichedPt5') +
-#         nanoGetSampleFiles(directory, 'QCD_Pt-80to120_MuEnrichedPt5') +
-#         nanoGetSampleFiles(directory, 'QCD_Pt-120to170_MuEnrichedPt5') +
-#         nanoGetSampleFiles(directory, 'QCD_Pt-170to300_MuEnrichedPt5') +
-#         #nanoGetSampleFiles(directory, 'QCD_Pt-15to20_EMEnriched') + # missing sample (don't need this)
-#         nanoGetSampleFiles(directory, 'QCD_Pt-20to30_EMEnriched') +
-#         nanoGetSampleFiles(directory, 'QCD_Pt-30to50_EMEnriched') +
-#         nanoGetSampleFiles(directory, 'QCD_Pt-50to80_EMEnriched'),
-#         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC,
-#         'FilesPerJob' :10,
-# }
-
-# # Filter efficiency for FakeQCD 
-# # with new weight calculate to correct XS, to be fixed at next iteration
-# addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-15to20_MuEnrichedPt5', '0.0022')
-# addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-20to30_MuEnrichedPt5', '0.0045')
-# addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-30to50_MuEnrichedPt5', '0.00974')
-# addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-50to80_MuEnrichedPt5', '0.0196')
-# addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-80to120_MuEnrichedPt5', '0.0322')
-# addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-120to170_MuEnrichedPt5', '0.04518')
-# addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-170to300_MuEnrichedPt5', '0.0598')
-# #addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-15to20_EMEnriched', '0.0096')  #missing sample
-# addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-20to30_EMEnriched', '0.0088')
-# addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-30to50_EMEnriched', '0.0470')
-# addSampleWeight(samples, 'FakeQCD', 'QCD_Pt-50to80_EMEnriched', '0.100')
 ############ VVV ############
 
 samples['VVV']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'ZZZ')
@@ -338,3 +311,7 @@ for Run in DataRun :
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
+
+# samples = {
+#   "Wjets" : samples["Wjets"]
+# }

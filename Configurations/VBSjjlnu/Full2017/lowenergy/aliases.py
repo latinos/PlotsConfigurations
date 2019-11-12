@@ -66,28 +66,6 @@ for s in systs:
   aliases['btagSF'+s+'down'] = { 'expr': '( bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_down_'+s)+'+btag0*'+aliases['btag0SF']['expr'].replace('shape','shape_down_'+s)+'+btag1*'+aliases['btag1SF']['expr'].replace('shape','shape_down_'+s)+'+btag2*'+aliases['btag2SF']['expr'].replace('shape','shape_down_'+s)+' + ( (!bVeto) && (!btag0) && (!btag1) && (!btag2) ) )', 'samples':mc  }
 
 
-aliases['fake_weight_corrected'] = {
-            'class': 'FakeWeightCorrector',
-            'args': (os.getenv('CMSSW_BASE') +"/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017/lowenergy/fakeweight_correction.root", 
-                        "mvaFall17V1Iso_WP90", "fakeW_ele_mvaFall17V1Iso_WP90_mu_cut_Tight_HWWW_mu10_ele35", 
-                     os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v5/mvaFall17V1Iso_WP90/EleFR_jet35.root",
-                     os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v5/mvaFall17V1Iso_WP90/ElePR.root"),
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L '+os.getenv('CMSSW_BASE')+'/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017/fakeweight_corrector.cc+'
-            ],
-            'samples': "Fake"           
-}
-
-# aliases['nvtx_reweighting'] = {
-#             'class': 'NvtxReweight',
-#             'args': (os.getenv('CMSSW_BASE') +"/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017/lowenergy/nvtx_weights.txt"),
-#             'linesToAdd' : [
-#                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#                 '.L '+os.getenv('CMSSW_BASE')+'/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017/nvtx_reweight.cc+'
-#             ]         
-# }
-
 
 aliases['fourj_lep_deltaphi'] = {
             'class': 'FourJetsVars',
@@ -152,4 +130,43 @@ aliases['fourj_pt'] = {
                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
                 '.L /afs/cern.ch/work/d/dvalsecc/private/CMSSW_10_2_0/src/PlotsConfigurations/Configurations/VBSjjlnu/ControlRegions2017/check_fakes/fourjet_class.cc+'
             ]  
+}
+
+
+
+
+aliases['fake_weight_corrected'] = {
+    'class': 'FakeWeightCorrector',
+    'args': (os.getenv('CMSSW_BASE') +"/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017/lowenergy/fakeweight_correction.root", 
+                "mvaFall17V1Iso_WP90", "fakeW_ele_mvaFall17V1Iso_WP90_mu_cut_Tight_HWWW_mu10_ele35", 
+                os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v5/mvaFall17V1Iso_WP90/EleFR_jet35.root",
+                os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v5/mvaFall17V1Iso_WP90/ElePR.root"),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L '+os.getenv('CMSSW_BASE')+'/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017/fakeweight_corrector.cc+'
+    ],
+    'samples': "Fake"           
+}
+
+
+aliases["V_EWK_correction"] = {
+    'class': 'V_EWKcorrection',
+    'args': (os.getenv('CMSSW_BASE') +"/src/LatinoAnalysis/Gardener/python/data/ewk/kewk_w_for_python.txt", 1),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L '+os.getenv('CMSSW_BASE')+'/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017/V_EWK_NLO_weights.cc+'
+    ],
+    'samples': "Wjets" 
+}
+
+
+aliases['nvtx_reweighting'] = {
+    'class': 'NvtxReweight',
+    'args': (os.getenv('CMSSW_BASE') +"/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017/lowenergy/nvtx_weights_ele_Zeefit.txt",
+            os.getenv('CMSSW_BASE') +"/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017/lowenergy/nvtx_weights_mu_Zmmfit.txt"),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L '+os.getenv('CMSSW_BASE')+'/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017/nvtx_reweight.cc+'
+    ],
+    'samples' : mc      
 }
