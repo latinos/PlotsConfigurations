@@ -53,10 +53,10 @@ elif  'cern' in SITE:
 def makeMCDirectory(var=''):
     if var:
         #return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
-        return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Fall17/l2tightOR__{var}'.format(var=var)
+        return '/afs/cern.ch/user/l/lviliani/public/Fall17/wwSel__{var}'.format(var=var)
     else:
         #return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
-        return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Fall17/l2tightOR'
+        return '/afs/cern.ch/user/l/lviliani/public/Fall17/wwSel'
 
 mcDirectory = makeMCDirectory()
 fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
@@ -98,13 +98,13 @@ mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 
 ###### DY #######
 
-useDYtt = False
+useDYtt = True
 
 ptllDYW_NLO = '(((0.623108 + 0.0722934*gen_ptll - 0.00364918*gen_ptll*gen_ptll + 6.97227e-05*gen_ptll*gen_ptll*gen_ptll - 4.52903e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll<45)*(gen_ptll>0) + 1*(gen_ptll>=45))*(abs(gen_mll-90)<3) + (abs(gen_mll-90)>3))'
 ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
 
 if useDYtt:
-    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
+    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50_fix') + \
         nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
 
     samples['DY'] = {
@@ -112,7 +112,7 @@ if useDYtt:
         'weight': mcCommonWeight,
         'FilesPerJob': 5,
     }
-    addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO)
+    addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50_fix',ptllDYW_NLO)
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 
     ## Remove OF from inclusive sample (is it needed?)
