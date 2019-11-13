@@ -58,10 +58,10 @@ GenLepMatch3l = 'GenLepMatch3l'
 #wz1jSF = '1.16'
 #wz2jSF = '1.09'
 #zgSF = '1.34'
-wz1jSF = '1.0'
-wz2jSF = '1.0'
-zg1jSF = '1.0'
-zg2jSF = '1.0'
+wz1jSF = '1.02'
+wz2jSF = '1.22'
+zg1jSF = '0.49'
+zg2jSF = '0.71'
 
 ################################################
 ############   MET  FILTERS  ###################
