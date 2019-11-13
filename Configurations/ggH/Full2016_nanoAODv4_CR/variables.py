@@ -43,6 +43,20 @@ variables['pt2']  = {   'name': 'Lepton_pt[1]',
                         'fold'  : 0                         
                         }
 
+variables['pt1long']  = {   'name': 'Lepton_pt[0]',
+                        'range' : (20,20,200),
+                        'xaxis' : 'p_{T} 1st lep',
+                        'fold'  : 3
+                        }
+
+variables['pt2long']  = {   'name': 'Lepton_pt[1]',
+                        'range' : (20,10,200),
+                        'xaxis' : 'p_{T} 2nd lep',
+                        'fold'  : 3
+                        }
+
+
+
 variables['eta1']  = {  'name': 'Lepton_eta[0]',     
                         'range' : (20,-3,3),   
                         'xaxis' : '#eta 1st lep',
@@ -86,14 +100,14 @@ variables['jetpt1']  = {
                         'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_pt[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99',
                         'range' : (20,0,200),
                         'xaxis' : 'p_{T} 1st jet',
-                        'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+                        'fold' : 0   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
 
 variables['jetpt2']  = {
-                        'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_pt[1], 0)) - (Sum$(CleanJet_pt>30)==0)*99',
+                        'name': '(Sum$(CleanJet_pt>30)>1)*(Alt$(CleanJet_pt[1], 0)) - (Sum$(CleanJet_pt>30)<=1)*99',
                         'range' : (20,0,200),
                         'xaxis' : 'p_{T} 2nd jet',
-                        'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+                        'fold' : 0   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
 
 variables['jeteta1']  = {  'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_eta[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99',

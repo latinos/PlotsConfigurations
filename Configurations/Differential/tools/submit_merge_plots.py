@@ -49,10 +49,15 @@ rootFiles = os.listdir(inFullPath)
 need_merging = []
 
 for sname in samples:
+    if ('_UE' in sname or '_PS' in sname) and (sname.endswith('Up') or sname.endswith('Down')):
+        continue
+
     if os.path.exists(outFullPath + '/plots_' + tag + '_ALL_' + sname + '.root'):
         continue
 
     files = [f for f in rootFiles if f.startswith('plots_' + tag + '_ALL_' + sname + '.')]
+    files += [f for f in rootFiles if f.startswith('plots_' + tag + '_ALL_' + sname + '_UE')]
+    files += [f for f in rootFiles if f.startswith('plots_' + tag + '_ALL_' + sname + '_PS')]
     if len(files) == 0:
         print 'Sample', sname, 'has no ROOT file'
     elif len(files) == 1:

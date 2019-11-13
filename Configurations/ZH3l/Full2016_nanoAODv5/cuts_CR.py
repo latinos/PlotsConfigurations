@@ -11,25 +11,32 @@ supercut = 'MinIf$( WH3l_mOSll[], WH3l_mOSll[Iteration$] > 0) > 12 \
 
 cuts['preselection']   = '1'
 
-cuts['zmass_cut'] = ' WH3l_ZVeto < 25 '
+cuts['zmass_cut'] = 'WH3l_ZVeto < 25'
 
-cuts['2jet_cut'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
+cuts['jet_cut_2j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
+                    && Alt$( CleanJet_pt[1], 0) >= 30 \
+                    && WH3l_ZVeto < 25 \
+                    '
+
+cuts['bveto_2j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                   && Alt$( CleanJet_pt[1], 0) >= 30 \
                   && WH3l_ZVeto < 25 \
+                  && bVeto \
                   '
 
-cuts['bveto'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
-               && Alt$( CleanJet_pt[1], 0) >= 30 \
-               && WH3l_ZVeto < 25 \
-               && bVeto \
-               '
+cuts['z4lveto_2j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
+                    && Alt$( CleanJet_pt[1], 0) >= 30 \
+                    && WH3l_ZVeto < 25 \
+                    && bVeto \
+                    && ZH3l_Z4lveto > 20 \
+                    '
 
-cuts['z4lveto'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
-                 && Alt$( CleanJet_pt[1], 0) >= 30 \
-                 && WH3l_ZVeto < 25 \
-                 && bVeto \
-                 && ZH3l_Z4lveto > 20 \
-                 '
+cuts['zh3l_Zg_CR_2j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
+                       && Alt$( CleanJet_pt[1], 0) >= 30 \
+                       && WH3l_ZVeto < 25 \
+                       && bVeto \
+                       && ZH3l_Z4lveto < 10 \
+                       '
 
 cuts['zh3l_WZ_CR_2j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                        && Alt$( CleanJet_pt[1], 0) >= 30 \
@@ -39,10 +46,10 @@ cuts['zh3l_WZ_CR_2j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                        && ZH3l_dphilmetjj > 3.14159/2 \
                        '
 
-cuts['1jet_cut'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
-                  && Alt$( CleanJet_pt[1], 0) < 30 \
-                  && WH3l_ZVeto < 25 \
-                  '
+cuts['jet_cut_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
+                    && Alt$( CleanJet_pt[1], 0) < 30 \
+                    && WH3l_ZVeto < 25 \
+                    '
 
 cuts['bveto_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                   && Alt$( CleanJet_pt[1], 0) < 30 \
@@ -57,6 +64,13 @@ cuts['z4lveto_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                     && ZH3l_Z4lveto > 20 \
                     '
 
+cuts['zh3l_Zg_CR_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
+                       && Alt$( CleanJet_pt[1], 0) < 30 \
+                       && WH3l_ZVeto < 25 \
+                       && bVeto \
+                       && ZH3l_Z4lveto < 10 \
+                       '
+
 cuts['zh3l_WZ_CR_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                        && Alt$( CleanJet_pt[1], 0) < 30 \
                        && WH3l_ZVeto < 25 \
@@ -65,6 +79,46 @@ cuts['zh3l_WZ_CR_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                        && ZH3l_dphilmetj > 3.14159/2 \
                        '
 
+<<<<<<< Updated upstream
+=======
+cuts['zh3l_Zg_CR_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
+                       && Alt$( CleanJet_pt[1], 0) < 30 \
+                       && WH3l_ZVeto < 25 \
+                       && bVeto \
+                       && ZH3l_Z4lveto < 10 \
+                       '
+
+cuts['zh3l_Zg_CR_0j'] = ' Alt$( CleanJet_pt[0], 0) < 30 \
+                       && WH3l_ZVeto < 25 \
+                       && bVeto \
+                       && ZH3l_Z4lveto < 10 \
+                       '
+
+cuts['zh3l_Zg_mme_CR_2j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
+                       && Alt$( CleanJet_pt[1], 0) >= 30 \
+                       && WH3l_ZVeto < 25 \
+                       && bVeto \
+                       && ZH3l_Z4lveto < 10 \
+                       && abs(Lepton_pdgId[0] * Lepton_pdgId[1] * Lepton_pdgId[2]) == 13*13*11 \
+                       '
+
+
+cuts['zh3l_Zg_mme_CR_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
+                       && Alt$( CleanJet_pt[1], 0) < 30 \
+                       && WH3l_ZVeto < 25 \
+                       && bVeto \
+                       && ZH3l_Z4lveto < 10 \
+                       && abs(Lepton_pdgId[0] * Lepton_pdgId[1] * Lepton_pdgId[2]) == 13*13*11 \
+                       '
+
+cuts['zh3l_Zg_mme_CR_0j'] = ' Alt$( CleanJet_pt[0], 0) < 30 \
+                       && WH3l_ZVeto < 25 \
+                       && bVeto \
+                       && ZH3l_Z4lveto < 10 \
+                       && abs(Lepton_pdgId[0] * Lepton_pdgId[1] * Lepton_pdgId[2]) == 13*13*11 \
+                       '
+
+>>>>>>> Stashed changes
 '''
  #11 = e
 # 13 = mu

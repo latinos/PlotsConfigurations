@@ -9,6 +9,39 @@
 # imported from cuts.py
 # cuts
 
+import os
+
+if os.path.exists('HTXS_stage1_categories.py') :
+  handle = open('HTXS_stage1_categories.py','r')
+  exec(handle)
+  handle.close()
+
+sampleNames = []
+for cat in HTXSStage1_1Categories:
+  if 'GG2H_' in cat:
+    sampleNames.append(cat.replace('GG2H','ggH_hww'))
+    sampleNames.append(cat.replace('GG2H','ggH_htt'))
+  elif 'QQ2HQQ_' in cat:
+    sampleNames.append(cat.replace('QQ2HQQ','qqH_hww'))
+    sampleNames.append(cat.replace('QQ2HQQ','qqH_htt'))
+    sampleNames.append(cat.replace('QQ2HQQ','WH_had_hww'))
+    sampleNames.append(cat.replace('QQ2HQQ','WH_had_htt'))
+    sampleNames.append(cat.replace('QQ2HQQ','ZH_had_hww'))
+    sampleNames.append(cat.replace('QQ2HQQ','ZH_had_htt'))
+  elif 'QQ2HLNU_' in cat:
+    sampleNames.append(cat.replace('QQ2HLNU','WH_lep_hww'))
+    sampleNames.append(cat.replace('QQ2HLNU','WH_lep_htt'))
+  elif 'QQ2HLL_' in cat:
+    sampleNames.append(cat.replace('QQ2HLL','ZH_lep_hww'))
+    sampleNames.append(cat.replace('QQ2HLL','ZH_lep_htt'))
+  elif 'GG2HLL_' in cat:
+    sampleNames.append(cat.replace('GG2HLL','ggZH_lep_hww'))
+  elif 'TTH' in cat:
+    sampleNames.append(cat.replace('TTH','ttH_hww'))
+  elif 'BBH' in cat:
+    sampleNames.append(cat.replace('BBH','bbH_hww'))
+
+
 from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
 
 def nanoGetSampleFiles(inputDir, Sample):
@@ -30,13 +63,16 @@ HiggsXS = HiggsXSection()
 cuts0j = []
 cuts1j = []
 cuts2j = []
+cutsGT200 = []
 
 for k in cuts:
   for cat in cuts[k]['categories']:
     if '0j' in cat: cuts0j.append(k+'_'+cat)
     elif '1j' in cat: cuts1j.append(k+'_'+cat)
     elif '2j' in cat: cuts2j.append(k+'_'+cat)
-    else: print 'WARNING: name of category does not contain on either 0j,1j,2j'
+    #elif 'PTH200' in cat: cutsGT200.append(k+'_'+cat)
+    else : cutsGT200.append(k+'_'+cat)
+    #else: print 'WARNING: name of category does not contain either 0j,1j,2j,GT200', cat
 
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
@@ -150,7 +186,7 @@ nuisances['fake_mu_stat'] = {
 }
 
 ##### B-tagger
-'''
+
 for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
     btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
 
@@ -164,7 +200,7 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
         'type': 'shape',
         'samples': dict((skey, btag_syst) for skey in mc if 'DY' not in skey), #FIXME Add DY
     }
-'''
+
 ##### Trigger Efficiency
 
 trig_syst = ['((TriggerEffWeight_2l_u)/(TriggerEffWeight_2l))*(TriggerEffWeight_2l>0.02) + (TriggerEffWeight_2l<=0.02)', '(TriggerEffWeight_2l_d)/(TriggerEffWeight_2l)']
@@ -263,6 +299,12 @@ nuisances['PU'] = {
     'AsLnN': '1',
 }
 
+for name in sampleNames:
+  if 'ggH_hww' in name:
+    nuisances['PU']['samples'].update({name: ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)']})
+  elif 'qqH_hww' in name:
+    nuisances['PU']['samples'].update({name: ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)']})
+
 ##### PS and UE
 
 nuisances['PS']  = {
@@ -291,6 +333,12 @@ nuisances['UE']  = {
                 'AsLnN'      : '1',
                 'synchronized': False
 }
+
+for name in sampleNames:
+  if 'ggH_hww' in name:
+    nuisances['UE']['samples'].update({name: ['1.00211385568', '0.994966378288']})
+  elif 'qqH_hww' in name:
+    nuisances['UE']['samples'].update({name: ['1.00367895901', '0.994831373195']})
 
 ####### Generic "cross section uncertainties"
 
@@ -351,6 +399,9 @@ nuisances['pdf_Higgs_gg'] = {
     },
     'type': 'lnN',
 }
+for name in sampleNames:
+  if 'ggH' in name:
+    nuisances['pdf_Higgs_gg']['samples'].update({name: HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH' ,'125.09','pdf','sm')})
 
 values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','pdf','sm')
 
@@ -378,6 +429,9 @@ nuisances['pdf_Higgs_qqbar'] = {
         'ZH_htt': valueszh
     },
 }
+for name in sampleNames:
+  if 'qqH' in name:
+    nuisances['pdf_Higgs_qqbar']['samples'].update({name: HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH' ,'125.09','pdf','sm')})
 
 #FIXME: check this 4%
 nuisances['pdf_qqbar'] = {
@@ -401,6 +455,9 @@ nuisances['pdf_Higgs_gg_ACCEPT'] = {
     },
     'type': 'lnN',
 }
+for name in sampleNames:
+  if 'ggH' in name:
+    nuisances['pdf_Higgs_gg_ACCEPT']['samples'].update({name : '1.005'})
 
 #FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['pdf_gg_ACCEPT'] = {
@@ -424,6 +481,9 @@ nuisances['pdf_Higgs_qqbar_ACCEPT'] = {
         'ZH_htt': '1.012',
     },
 }
+for name in sampleNames:
+  if 'qqH' in name:
+    nuisances['pdf_Higgs_qqbar_ACCEPT']['samples'].update({name : '1.011'})
 
 #FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['pdf_qqbar_ACCEPT'] = {
@@ -435,6 +495,7 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 }
 
 ##### Renormalization & factorization scales
+
 nuisances['WWresum0j']  = {
                 'name'  : 'CMS_hww_WWresum_0j',
                 'skipCMS' : 1,
@@ -443,7 +504,7 @@ nuisances['WWresum0j']  = {
                 'samples'  : {
                    'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
                    },
-               'cuts'  : cuts0j
+                'cutspost'  : lambda self, cuts: [cut for cut in cuts if '0j' in cut]
                 }
 
 
@@ -455,8 +516,8 @@ nuisances['WWresum1j']  = {
                 'samples'  : {
                    'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
                    },
-               'cuts'  : cuts1j
-                }
+                'cutspost'  : lambda self, cuts: [cut for cut in cuts if '1j' in cut]
+               }
 
 nuisances['WWqscale0j']  = {
                 'name'  : 'CMS_hww_WWqscale_0j',
@@ -466,7 +527,7 @@ nuisances['WWqscale0j']  = {
                 'samples'  : {
                    'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
                    },
-               'cuts'  : cuts0j 
+               'cutspost'  : lambda self, cuts: [cut for cut in cuts if '0j' in cut]
                 }
 
 
@@ -478,7 +539,7 @@ nuisances['WWqscale1j']  = {
                 'samples'  : {
                    'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
                    },
-               'cuts'  : cuts1j 
+               'cutspost'  : lambda self, cuts: [cut for cut in cuts if '1j' in cut]
                 }
 
 nuisances['WWresum2j']  = {
@@ -489,7 +550,7 @@ nuisances['WWresum2j']  = {
                 'samples'  : {
                 'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
                 },
-               'cuts'  : cuts2j
+               'cutspost'  : lambda self, cuts: [cut for cut in cuts if '2j' in cut]
                 }
 
 nuisances['WWqscale2j']  = {
@@ -500,30 +561,61 @@ nuisances['WWqscale2j']  = {
                 'samples'  : {
                 'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
                 },
-               'cuts'  : cuts2j
+               'cutspost'  :  lambda self, cuts: [cut for cut in cuts if '2j' in cut]
+                }
+nuisances['WWresumGE200']  = {
+                'name'  : 'CMS_hww_WWresum_GE200',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+                },
+               'cutspost'  :   lambda self, cuts: [cut for cut in cuts if 'GE200' in cut]
+                }
+
+nuisances['WWqscaleGE200']  = {
+                'name'  : 'CMS_hww_WWqscale_GE200',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+                },
+               'cutspost'  :   lambda self, cuts: [cut for cut in cuts if 'GE200' in cut]
                 }
 
 ## Shape nuisance due to QCD scale variations for DY
 # LHE scale variation weights (w_var / w_nominal)
 # [0] is muR=0.50000E+00 muF=0.50000E+00
+# [1] is muR=0.50000E+00 muF=0.10000E+01
+# [2] is muR=0.50000E+00 muF=0.20000E+01                                     
+# [3] is muR=0.10000E+01 muF=0.50000E+00                                      
+# [4] is muR=0.10000E+01 muF=0.10000E+01                                      
+# [5] is muR=0.10000E+01 muF=0.20000E+01                                      
+# [6] is muR=0.20000E+01 muF=0.50000E+00                                      
+# [7] is muR=0.20000E+01 muF=0.10000E+01
 # [8] is muR=0.20000E+01 muF=0.20000E+01
+
+variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 5, 7, 8]]
+
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
     'skipCMS': 1,
-    'kind': 'weight',
+    'kind': 'weight_envelope',
     'type': 'shape',
-    'samples': {'DY': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]']},
+    'samples': {'DY': variations},
     'AsLnN': '1'
 }
 
 nuisances['QCDscale_VV'] = {
     'name': 'QCDscale_VV',
-    'kind': 'weight',
+    'kind': 'weight_envelope',
     'type': 'shape',
     'samples': {
-        'Vg': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-        'VZ': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-        'VgS': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
+        'Vg': variations,
+        'VZ': variations,
+        'VgS': variations,
     }
 }
 
@@ -593,6 +685,27 @@ for name, vname in thus:
           #'ggH_htt': updown
         }
     }
+    for sname in sampleNames:
+        if 'ggH_hww' in sname:
+            nuisances[name]['samples'].update({sname : [vname, '2.-%s' % vname]})
+
+nuisances['QCDscale_ggH_STXS_ACCEPT'] = {
+               'name'  : 'QCDscale_ggH_STXS_ACCEPT',
+               'samples'  : { },
+               'type'  : 'shape',
+               'kind'  : 'weight',
+              }
+for name in sampleNames:
+  if 'ggH_hww' in name:
+    if 'GT200' not in name:
+      scale2d0 = QCDScaleFactors[name.replace('ggH_hww','GG2H')][0]
+      scale0d5 = QCDScaleFactors[name.replace('ggH_hww','GG2H')][1]
+      nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/'+scale2d0, 'LHEScaleWeight[0]/'+scale0d5]})
+    else:
+      nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/QCDScaleFactors[GG2H_PTH_200_300][0]',' LHEScaleWeight[0]/QCDScaleFactors[GG2H_PTH_200_300][1]']})
+      nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/QCDScaleFactors[GG2H_PTH_300_450][0]',' LHEScaleWeight[0]/QCDScaleFactors[GG2H_PTH_300_450][1]']})
+      nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/QCDScaleFactors[GG2H_PTH_450_650][0]',' LHEScaleWeight[0]/QCDScaleFactors[GG2H_PTH_450_650][1]']})
+      nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/QCDScaleFactors[GG2H_PTH_GT650][0]',' LHEScaleWeight[0]/QCDScaleFactors[GG2H_PTH_GT650][1]']})
 
 #### QCD scale uncertainties for Higgs signals other than ggH
 
@@ -606,6 +719,9 @@ nuisances['QCDscale_qqH'] = {
     },
     'type': 'lnN'
 }
+for name in sampleNames:
+  if 'qqH' in name:
+    nuisances['QCDscale_qqH']['samples'].update({name : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm')})
 
 valueswh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm')
 valueszh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm')
@@ -663,6 +779,9 @@ nuisances['QCDscale_qqbar_ACCEPT'] = {
         'VZ': '1.029',
     }
 }
+for name in sampleNames:
+  if 'qqH' in name:
+    nuisances['QCDscale_qqbar_ACCEPT']['samples'].update({name : '1.007'})
 
 #FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['QCDscale_gg_ACCEPT'] = {
@@ -675,6 +794,10 @@ nuisances['QCDscale_gg_ACCEPT'] = {
     },
     'type': 'lnN',
 }
+
+for name in sampleNames:
+  if 'ggH' in name:
+    nuisances['QCDscale_gg_ACCEPT']['samples'].update({name : '1.027'})
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat'] = {
@@ -702,7 +825,7 @@ nuisances['DYttnorm1j']  = {
                    'DY' : '1.00',
                    },
                'type'  : 'rateParam',
-               'cuts'  : cuts1j
+               'cuts'  : cuts1j+cutsGT200
               }
 
 nuisances['DYttnorm2j']  = {
@@ -730,7 +853,7 @@ nuisances['WWnorm1j']  = {
                    'WW' : '1.00',
                    },
                'type'  : 'rateParam',
-               'cuts'  : cuts1j
+               'cuts'  : cuts1j+cutsGT200
               }
 
 
@@ -738,6 +861,35 @@ nuisances['WWnorm2j']  = {
                'name'  : 'CMS_hww_WWnorm2j',
                'samples'  : {
                    'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j
+              }
+
+
+nuisances['ggWWnorm0j']  = {
+               'name'  : 'CMS_hww_WWnorm0j',
+               'samples'  : {
+                   'ggWW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts0j
+              }
+
+nuisances['ggWWnorm1j']  = {
+               'name'  : 'CMS_hww_WWnorm1j',
+               'samples'  : {
+                   'ggWW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts1j+cutsGT200
+              }
+
+
+nuisances['ggWWnorm2j']  = {
+               'name'  : 'CMS_hww_WWnorm2j',
+               'samples'  : {
+                   'ggWW' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : cuts2j
@@ -759,7 +911,7 @@ nuisances['Topnorm1j']  = {
                    'top' : '1.00',
                    },
                'type'  : 'rateParam',
-               'cuts'  : cuts1j
+               'cuts'  : cuts1j+cutsGT200
               }
 
 nuisances['Topnorm2j']  = {

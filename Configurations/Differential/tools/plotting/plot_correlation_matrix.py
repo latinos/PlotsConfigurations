@@ -1,17 +1,11 @@
 import sys
+
+import common
+
 import ROOT
 
-ROOT.gROOT.SetBatch(True)
-ROOT.gStyle.SetOptStat(0)
-ROOT.gStyle.SetTextFont(42)
-ROOT.gStyle.SetLabelSize(0.04, 'X')
-ROOT.gStyle.SetLabelSize(0.04, 'Y')
-ROOT.gStyle.SetTitleSize(0.035, 'X')
-ROOT.gStyle.SetTitleSize(0.035, 'Y')
-ROOT.gStyle.SetTitleOffset(1.4, 'X')
-ROOT.gStyle.SetTitleOffset(1.8, 'Y')
-ROOT.gStyle.SetNdivisions(208, 'X')
-ROOT.gStyle.SetFillStyle(0)
+ROOT.gStyle.SetLabelSize(0.05, 'X')
+ROOT.gStyle.SetLabelSize(0.05, 'Y')
 ROOT.gStyle.SetNumberContours(128)
 ROOT.gStyle.SetPalette(ROOT.kTemperatureMap)
 ROOT.gStyle.SetPaintTextFormat('.3f')
@@ -23,10 +17,7 @@ pars = fitres.floatParsFinal()
 obs = sys.argv[2]
 outname = sys.argv[3]
 
-if obs == 'ptH':
-    npoi = 6
-elif obs == 'njet':
-    npoi = 5
+npoi = len(common.binnames[obs])
 
 matrix = ROOT.TH2D('correlation', '', npoi, 0., float(npoi), npoi, 0., float(npoi))
 
@@ -36,8 +27,8 @@ for ip in range(npoi):
 
     pois.append(poi)
 
-    matrix.GetXaxis().SetBinLabel(ip + 1, '#mu_{%d}' % ip)
-    matrix.GetYaxis().SetBinLabel(ip + 1, '#mu_{%d}' % ip)
+    matrix.GetXaxis().SetBinLabel(ip + 1, '#mu_{%s}' % common.bintitles[obs][ip])
+    matrix.GetYaxis().SetBinLabel(ip + 1, '#mu_{%s}' % common.bintitles[obs][ip])
 
 for ip1 in range(npoi):
     for ip2 in range(npoi):
@@ -45,8 +36,18 @@ for ip1 in range(npoi):
 
 matrix.SetMaximum(1.)
 matrix.SetMinimum(-1.)
+matrix.SetMarkerSize(1.5)
 
 canvas = ROOT.TCanvas('c1', 'c1', 600, 600)
+canvas.SetLeftMargin(0.15)
+canvas.SetBottomMargin(0.12)
+canvas.SetTopMargin(0.08)
+canvas.SetRightMargin(0.05)
 matrix.Draw('COL TEXT')
+
+cmsLabel = common.makeCMS(prelim=True, out=True)
+lumiLabel = common.makeLumi(137.)
+cmsLabel.Draw()
+lumiLabel.Draw()
 
 canvas.Print(outname)

@@ -102,17 +102,13 @@ aliases['multiJet'] = {
 
 
 aliases['bVeto'] = {
-    'expr': '(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) == 0) && mth > 60' }
+    'expr': '(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0) && mth > 60' }
 
+aliases['bVetoDY'] = {
+    'expr': '(Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0) && mth < 60' }
 
-aliases['bVetoDY'] = {                                                                                                              
-    'expr': '(Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) == 0) && mth < 60'                       
-}
-
-aliases['btag2'] = {    
-    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) >= 1'
-}
-
+aliases['bReq'] = {
+    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) >= 1' }
 
 
 # B tag scale factors
@@ -132,28 +128,24 @@ aliases['Jet_btagSF_shapeFix'] = {
 }
 
 
-
 aliases['bVetoSF'] = {
-'expr': '( TMath::Exp(Sum$( TMath::Log( (CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shapeFix[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5) ) ) ) )',
-'samples': mc
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5)*Jet_btagSF_shapeFix[CleanJet_jetIdx]+1*(CleanJet_pt < 20. || abs(CleanJet_eta) > 2.5))))',
+    'samples': mc
 }
 
-
-aliases['bVetoDYSF'] = {                                                                                                            
-'expr': '( TMath::Exp(Sum$( TMath::Log( (CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shapeFix[CleanJet_jetIdx]+1*(CleanJet_pt<30 || abs(CleanJet_eta)>2.5) ) ) ) )',
-'samples': mc
-}                                                                                                                                    
-aliases['btag2SF'] = {
-'expr': '( ( ( Alt$(CleanJet_pt[0], 0)>30 && Alt$(abs(CleanJet_eta[0]),99)<2.5 )*( Alt$(Jet_btagSF_shapeFix[CleanJet_jetIdx[0]], 1) ) + ( Alt$(CleanJet_pt[0], 0)<30 || Alt$(abs(CleanJet_eta[0]),99)>2.5 ) )* \
-           ( ( Alt$(CleanJet_pt[1], 0)>30 && Alt$(abs(CleanJet_eta[1]),99)<2.5 )*( Alt$(Jet_btagSF_shapeFix[CleanJet_jetIdx[1]], 1) ) + ( Alt$(CleanJet_pt[1], 0)<30 || Alt$(abs(CleanJet_eta[1]),99)>2.5 ) ) )\
-        ',
-'samples': mc
+aliases['bVetoDYSF'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5)*Jet_btagSF_shapeFix[CleanJet_jetIdx]+1*(CleanJet_pt < 30. || abs(CleanJet_eta) > 2.5))))',
+    'samples': mc
 }
 
+aliases['bReqSF'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5)*Jet_btagSF_shapeFix[CleanJet_jetIdx]+1*(CleanJet_pt < 30. || abs(CleanJet_eta) > 2.5))))',
+    'samples': mc
+}
 
 aliases['btagSF'] = {
-  'expr': '( bVetoSF*bVeto +  bVetoDYSF*bVetoDY + btag2SF*btag2  + ( (!bVeto) && (!bVetoDY) &&  (!btag2) ) )',
-'samples': mc
+    'expr': 'bVetoSF*bVeto + bVetoDYSF*bVetoDY + bReqSF*bReq + ((!bVeto) && (!bVetoDY) && (!bReq))',
+    'samples': mc
 }
 
 
@@ -169,7 +161,7 @@ for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2',
         'samples': mc
     }
     
-    for targ in ['bVeto', 'bVetoDY', 'btag2']:
+    for targ in ['bVeto', 'bVetoDY', 'bReq']:
         alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
         alias['expr'] = alias['expr'].replace('btagSF_shapeFix', 'btagSF_shapeFix_up_%s' % shift)
 

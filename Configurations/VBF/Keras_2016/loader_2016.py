@@ -54,7 +54,7 @@ def load_dataset_vbf ( max_entries = -1 ):
   chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_VBFHToWWTo2L2Nu_M125_CUETUp__part1.root')
   _dataset = root_numpy.tree2array (chain,
       branches = _branches,
-      selection = '(mth>=60 && mth<125) && Lepton_pt[0]>25 && Lepton_pt[1]>10 && Alt$(Lepton_pt[2],0)<10 && ptll > 30 && Sum$(CleanJet_pt>30)>=2 && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0',
+      selection = 'mll>12 && PuppiMET_pt>20 && (mth>=60 && mth<125) && Lepton_pt[0]>25 && Lepton_pt[1]>10 && Alt$(Lepton_pt[2],0)<10 && ptll>30 && Sum$(CleanJet_pt>30)==2 && mjj>200 && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0',
       stop = max_entries
      )
 
@@ -107,7 +107,6 @@ def load_dataset_top ( max_entries = -1 ):
   chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_TTTo2L2Nu__part5.root')
   chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_TTTo2L2Nu__part6.root')
   chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_TTTo2L2Nu__part7.root')
-  '''
   chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_TTTo2L2Nu__part8.root')
   chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_TTTo2L2Nu__part9.root')
   chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_TTTo2L2Nu__part10.root')
@@ -121,9 +120,18 @@ def load_dataset_top ( max_entries = -1 ):
   chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_TTTo2L2Nu__part18.root')
   chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_TTTo2L2Nu__part19.root')
   chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_TTTo2L2Nu__part20.root')
-  '''
+
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_TTTo2L2Nu_PSWeights__part0.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_TTTo2L2Nu_PSWeights__part1.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_TTTo2L2Nu_PSWeights__part2.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_TTTo2L2Nu_PSWeights__part3.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_TTTo2L2Nu_PSWeights__part4.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_TTTo2L2Nu_PSWeights__part5.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_TTTo2L2Nu_PSWeights__part6.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_TTTo2L2Nu_PSWeights__part7.root')
   _dataset = root_numpy.tree2array (chain, 
-      selection = '(mth>=60 && mth<125) && Lepton_pt[0]>25 && Lepton_pt[1]>10 && Alt$(Lepton_pt[2],0)<10 && ptll > 30 && Sum$(CleanJet_pt>30)>=2 && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0',
+      #selection = 'mll>12 && PuppiMET_pt>20 && (abs(Lepton_pdgId[0] == 13) || Lepton_pt[1]>13) && Lepton_pdgId[0]*Lepton_pdgId[1]==-11*13 && (mth>=60 && mth<125) && Lepton_pt[0]>25 && Lepton_pt[1]>10 && Alt$(Lepton_pt[2],0)<10 && ptll>30 && Sum$(CleanJet_pt>30)==2 && mjj>200 && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0',
+      selection = 'mll>12 && PuppiMET_pt>20 && (mth>=60 && mth<125) && Lepton_pt[0]>25 && Lepton_pt[1]>10 && Alt$(Lepton_pt[2],0)<10 && ptll>30 && Sum$(CleanJet_pt>30)==2 && mjj>200 && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0',
       branches = _branches,
       stop = max_entries
      )
@@ -177,8 +185,24 @@ def load_dataset_ww ( max_entries = -1 ):
   chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_WWTo2L2NuHerwigPS__part0.root')
   chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_WWTo2L2NuHerwigPS__part1.root')
   chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_WWTo2L2NuHerwigPS__part2.root')
+
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_WWTo2L2Nu_CP5Down__part0.root') 
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_WWTo2L2Nu_CP5Up__part0.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_WWTo2L2Nu_CP5Up__part1.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_WWTo2L2Nu_CP5Up__part2.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_WWTo2L2Nu_CP5Up__part3.root')
+ 
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5/nanoLatino_WWTo2L2Nu_CP5Up__part0.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5/nanoLatino_WWTo2L2Nu_CP5Up__part1.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5/nanoLatino_WWTo2L2Nu_CP5Up__part2.root')
+  #chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5/nanoLatino_WWTo2L2Nu_CP5Up__part3.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5/nanoLatino_WWTo2L2Nu_CP5Down__part0.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5/nanoLatino_WWTo2L2Nu_CP5Down__part1.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5/nanoLatino_WWTo2L2Nu_CP5Down__part2.root')
+  #chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5/nanoLatino_WWTo2L2Nu_CP5Down__part3.root')
   _dataset = root_numpy.tree2array (chain, 
-      selection = '(mth>=60 && mth<125) && Lepton_pt[0]>25 && Lepton_pt[1]>10 && Alt$(Lepton_pt[2],0)<10 && ptll > 30 && Sum$(CleanJet_pt>30)>=2 && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0',
+      #selection = 'mll>12 && PuppiMET_pt>20 && (abs(Lepton_pdgId[0] == 13) || Lepton_pt[1]>13) && Lepton_pdgId[0]*Lepton_pdgId[1]==-11*13 && (mth>=60 && mth<125) && Lepton_pt[0]>25 && Lepton_pt[1]>10 && Alt$(Lepton_pt[2],0)<10 && ptll>30 && Sum$(CleanJet_pt>30)==2 && mjj>200 && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0',
+      selection = 'mll>12 && PuppiMET_pt>20 && (mth>=60 && mth<125) && Lepton_pt[0]>25 && Lepton_pt[1]>10 && Alt$(Lepton_pt[2],0)<10 && ptll>30 && Sum$(CleanJet_pt>30)==2 && mjj>200 && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0',
       branches = _branches,
       stop = max_entries
      )
@@ -236,8 +260,63 @@ def load_dataset_ggh ( max_entries = -1 ):
   chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2Nu_M125_herwigpp_PrivateNano__part7.root') 
   chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2Nu_M125_CUETDown__part0.root')
   chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2Nu_M125_CUETUp__part0.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2NuAMCNLO_M125__part0.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2NuAMCNLO_M125__part1.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2NuAMCNLO_M125_PrivateNano__part0.root') 
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2NuAMCNLO_M125_PrivateNano__part1.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2NuAMCNLO_M125_PrivateNano__part2.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2NuAMCNLO_M125_PrivateNano__part3.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2NuAMCNLO_M125_PrivateNano__part4.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2NuAMCNLO_M125_PrivateNano__part5.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2NuAMCNLO_M125_PrivateNano__part6.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2NuAMCNLO_M125_PrivateNano__part7.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2NuAMCNLO_M125_PrivateNano__part8.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2NuAMCNLO_M125_PrivateNano__part9.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2NuAMCNLO_M125_PrivateNano__part10.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2NuAMCNLO_M125_PrivateNano__part11.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2NuAMCNLO_M125_PrivateNano__part12.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2NuAMCNLO_M125_PrivateNano__part13.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2NuAMCNLO_M125_PrivateNano__part14.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2NuAMCNLO_M125_PrivateNano__part15.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2NuAMCNLO_M125_PrivateNano__part16.root') 
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2NuAMCNLO_M125_PrivateNano__part17.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2NuAMCNLO_M125_PrivateNano__part18.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2NuAMCNLO_M125_PrivateNano__part19.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2NuAMCNLO_M125_PrivateNano__part20.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/nanoLatino_GluGluHToWWTo2L2NuAMCNLO_M125_PrivateNano__part21.root')
+   
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2NuPowheg_M125_CP5Down__part0.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2NuPowheg_M125_CP5Up__part0.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2NuPowheg_M125__part0.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2NuPowheg_M125__part1.root') 
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2Nu_M125_PrivateNano__part0.root')
+
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2Nu_M125_PrivateNano__part0.root') 
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2Nu_M125_PrivateNano__part1.root') 
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2Nu_M125_PrivateNano__part2.root') 
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2Nu_M125_PrivateNano__part3.root') 
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2Nu_M125_PrivateNano__part4.root') 
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2Nu_M125_PrivateNano__part5.root') 
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2Nu_M125_PrivateNano__part6.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2Nu_M125_PrivateNano__part7.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2Nu_M125_PrivateNano__part8.root') 
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2Nu_M125_PrivateNano__part9.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2Nu_M125_PrivateNano__part10.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2Nu_M125_PrivateNano__part11.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2Nu_M125_PrivateNano__part12.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2Nu_M125_PrivateNano__part13.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2Nu_M125_PrivateNano__part14.root')
+  '''
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2Nu_M125_PrivateNano__part15.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2Nu_M125_PrivateNano__part16.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2Nu_M125_PrivateNano__part17.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2Nu_M125_PrivateNano__part18.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2Nu_M125_PrivateNano__part19.root')
+  chain.Add('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/nanoLatino_GluGluHToWWTo2L2Nu_M125_PrivateNano__part20.root')
+  '''
   _dataset = root_numpy.tree2array (chain, 
-      selection = '(mth>=60 && mth<125) && Lepton_pt[0]>25 && Lepton_pt[1]>10 && Alt$(Lepton_pt[2],0)<10 && ptll > 30 && Sum$(CleanJet_pt>30)>=2 && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0',
+      #selection = 'mll>12 && PuppiMET_pt>20 && (abs(Lepton_pdgId[0] == 13) || Lepton_pt[1]>13) && Lepton_pdgId[0]*Lepton_pdgId[1]==-11*13 && (mth>=60 && mth<125) && Lepton_pt[0]>25 && Lepton_pt[1]>10 && Alt$(Lepton_pt[2],0)<10 && ptll>30 && Sum$(CleanJet_pt>30)==2 && mjj>200 && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0',
+      selection = 'mll>12 && PuppiMET_pt>20 && (mth>=60 && mth<125) && Lepton_pt[0]>25 && Lepton_pt[1]>10 && Alt$(Lepton_pt[2],0)<10 && ptll>30 && Sum$(CleanJet_pt>30)==2 && mjj>200 && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0',
       branches = _branches,
       stop = max_entries
      )

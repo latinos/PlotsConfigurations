@@ -7,7 +7,8 @@ configurations = os.path.dirname(configurations) # Configurations
 
 #aliases = {}
 
-mc = [skey for skey in samples if skey not in ('Fakes', 'DATA')]
+#mc = [skey for skey in samples if skey not in ('Fakes', 'DATA')]
+mc = [skey for skey in samples if skey not in ('Fakes_ee','Fakes_mm','Fakes_em', 'DATA')]
 
 bAlgo = 'DeepB'
 bWP = '0.1522'
@@ -20,35 +21,35 @@ aliases['PromptGenLepMatch2l'] = {
 # And variations - already divided by central values in formulas !
 aliases['fakeWEleUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleUp',
-    'samples': ['Fakes']
+    'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
 }
 aliases['fakeWEleDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleDown',
-    'samples': ['Fakes']
+    'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
 }
 aliases['fakeWMuUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuUp',
-    'samples': ['Fakes']
+    'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
 }
 aliases['fakeWMuDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuDown',
-    'samples': ['Fakes']
+    'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
 }
 aliases['fakeWStatEleUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleUp',
-    'samples': ['Fakes']
+    'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
 }
 aliases['fakeWStatEleDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleDown',
-    'samples': ['Fakes']
+    'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
 }
 aliases['fakeWStatMuUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuUp',
-    'samples': ['Fakes']
+    'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
 }
 aliases['fakeWStatMuDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuDown',
-    'samples': ['Fakes']
+    'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
 }
 
 # variations
