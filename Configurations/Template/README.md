@@ -1,6 +1,6 @@
 # Template configuration files
 
-Last update: 07/11/2019
+Last update: 13/11/2019
 
 `samples.py` and `nuisances.py` template files for different years. These include all standard sample and uncertainties used in HWW legacy analysis.
 

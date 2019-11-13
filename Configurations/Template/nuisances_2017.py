@@ -438,13 +438,13 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 ## Shape nuisance due to QCD scale variations for DY
 # LHE scale variation weights (w_var / w_nominal)
 # [0] is muR=0.50000E+00 muF=0.50000E+00
-# [8] is muR=0.20000E+01 muF=0.20000E+01
+# [7] is muR=0.20000E+01 muF=0.20000E+01
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
     'skipCMS': 1,
     'kind': 'weight',
     'type': 'shape',
-    'samples': {'DY': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]']},
+    'samples': {'DY': ['LHEScaleWeight[7]', 'LHEScaleWeight[0]']},
     'AsLnN': '1'
 }
 
