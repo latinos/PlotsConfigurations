@@ -10,10 +10,9 @@
   float n_ZH = 0.0;
   float n_ggZH = 0.0;
   float n_ttZ = 0.0;
-  float n_Vg = 0.0;
+  float n_Zg = 0.0;
   float n_VVV = 0.0;
   float n_WH_htt = 0.0;
-  float n_WW = 0.0;
   float n_WH_hww = 0.0;
   float n_ZZ = 0.0;
   float n_Fake = 0.0;
@@ -25,10 +24,24 @@
   float n_BG = 0.0;
   float n_Pred = 0.0;
 
+  // float WZ_1j_NF = 1.00;		// really
+  // float WZ_2j_NF = 1.34;
+  // float Zg_1j_NF = 0.44;
+  // float Zg_2j_NF = 0.92;
+
+  float WZ_1j_NF = 1.0;		// really
+  float WZ_2j_NF = 1.0;
+  float Zg_1j_NF = 1.0;
+  float Zg_2j_NF = 1.0;
+
+  cout << "Applying NFs Zg 1j " <<  Zg_1j_NF  << endl;
+  cout << "Applying NFs Zg 2j " <<  Zg_2j_NF  << endl;
+  cout << "Applying NFs WZ 1j " <<  WZ_1j_NF  << endl;
+  cout << "Applying NFs WZ 2j " <<  WZ_2j_NF  << endl << endl;
+
   cout << "\t\t ,       WZ,  ";
   cout << "     ZZ, ";
-  cout << "     WW, ";
-  cout << "     Vg, ";
+  cout << "     Zg, ";
   cout << "    VVV, ";
   cout << "   Fake, ";
   cout << "    ttZ, ";
@@ -40,40 +53,39 @@
   cout << "  Npred, ";
   cout << "   DATA " << endl;
 
-  TString table_format = "%18s,%8.1f,%8.1f,%8.1f,%8.1f,%8.1f,%8.1f,%8.1f,%8.1f,%8.1f,%8.1f,%8.1f,%8.4f,%8.1f,%7.f,\n";
-  if (do_ratios) table_format = "%18s,%8.2f,%8.2f,%8.2f,%8.2f,%8.2f,%8.2f,%8.2f,%8.2f,%8.2f,%8.2f,%8.2f,%8.4f,%8.2f,%7.2f,\n"; 
+  TString table_format = "%18s,%8.1f,%8.1f,%8.1f,%8.1f,%8.1f,%8.1f,%8.1f,%8.1f,%8.1f,%8.1f,%8.4f,%8.1f,%7.f,\n";
+  if (do_ratios) table_format = "%18s,%8.2f,%8.2f,%8.2f,%8.2f,%8.2f,%8.2f,%8.2f,%8.2f,%8.2f,%8.2f,%8.4f,%8.2f,%7.2f,\n"; 
 
   for (int i = 0; i < 12; i++) {
     n_ZH 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_ZH_hww"))->Integral();
     n_ggZH 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_ggZH_hww"))->Integral();
     n_ttZ 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_ttZ"))->Integral();
-    if (i < 7) // ugh
-      n_Vg 	= 0.44*((TH1F*) f0->Get(cutslist[i]+"/events/histo_Vg"))->Integral();
+    if (i < 7) // ugh -- rename cuts?
+      n_Zg 	= Zg_1j_NF * ((TH1F*) f0->Get(cutslist[i]+"/events/histo_Zg"))->Integral();
     else 
-      n_Vg 	= 0.92*((TH1F*) f0->Get(cutslist[i]+"/events/histo_Vg"))->Integral();
-    // n_Vg 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_Vg"))->Integral();
+      n_Zg 	= Zg_2j_NF * ((TH1F*) f0->Get(cutslist[i]+"/events/histo_Zg"))->Integral();
+
     n_VVV 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_VVV"))->Integral();
-    n_WH_htt 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_WH_htt"))->Integral();
-    n_WW 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_WW"))->Integral();
     n_WH_hww 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_WH_hww"))->Integral();
     n_ZZ 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_ZZ"))->Integral();
-    n_Fake 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_Fake"))->Integral();
+    n_Fake 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_Fake_me"))->Integral();
+    n_Fake 	+= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_Fake_em"))->Integral();
     n_DATA 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_DATA"))->Integral();
-    // n_WZ 	= (1/1.16)*((TH1F*) f0->Get(cutslist[i]+"/events/histo_WZ"))->Integral();
-    n_WZ 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_WZ"))->Integral();
-    if (i == 0) cout << "WZ scale factor not applied" << endl;
+    if (i < 7) // ugh -- rename cuts?
+      n_WZ 	= WZ_1j_NF * ((TH1F*) f0->Get(cutslist[i]+"/events/histo_WZ"))->Integral();
+    else 
+      n_WZ 	= WZ_2j_NF * ((TH1F*) f0->Get(cutslist[i]+"/events/histo_WZ"))->Integral();
 
     n_Higgs = n_ZH + n_ggZH + n_WH_htt  +  n_WH_hww;
-    n_BG = n_ttZ + n_Vg + n_VVV + n_WW + n_ZZ + n_Fake + n_WZ;
+    n_BG = n_ttZ + n_Zg + n_VVV + n_ZZ + n_Fake + n_WZ;
     n_Pred = n_Higgs + n_BG;
 
     if (do_ratios) {
       n_ZH 	= n_ZH	   / n_Pred * 100;
       n_ggZH 	= n_ggZH   / n_Pred * 100;
       n_ttZ 	= n_ttZ    / n_Pred * 100;
-      n_Vg 	= n_Vg 	   / n_Pred * 100;
+      n_Zg 	= n_Zg 	   / n_Pred * 100;
       n_VVV 	= n_VVV    / n_Pred * 100;
-      n_WW 	= n_WW 	   / n_Pred * 100;
       n_Higgs 	= n_Higgs  / n_Pred * 100;
       n_ZZ 	= n_ZZ 	   / n_Pred * 100;
       n_Fake 	= n_Fake   / n_Pred * 100;
@@ -90,8 +102,7 @@
     printf(table_format.Data(), cutslist[i].Data(),
     n_WZ , 
     n_ZZ , 
-    n_WW , 
-    n_Vg , 
+    n_Zg , 
     n_VVV , 
     n_Fake , 
     n_ttZ , 
@@ -107,16 +118,18 @@
     if (!do_ratios && cutslist[i].Contains("_WZ_CR_")) {
       float n_notWZ = n_BG - n_WZ;
       float NF = (n_DATA - n_notWZ) / n_WZ;
-      float dNF = n_DATA/pow(n_WZ,2) + pow((0.3*n_Fake)/n_WZ,2);
-      dNF = sqrt(dNF);
-      cout << endl << cutslist[i].Data() << " WZ NF = " << NF << " +/- " << dNF << " (stat+fake)\n" << endl;
+      // float dNF = n_DATA/pow(n_WZ,2) + pow((0.3*n_Fake)/n_WZ,2);
+      // dNF = sqrt(dNF);
+      float dNF = sqrt(n_DATA)/n_WZ;
+      cout << endl << cutslist[i].Data() << " WZ NF = " << NF << " +/- " << dNF << " (stat)\n" << endl;
     }
     if (!do_ratios && cutslist[i].Contains("_Zg_CR_")) {
-      float n_notVg = n_BG - n_Vg;
-      float NF = (n_DATA - n_notVg) / n_Vg;
-      float dNF = n_DATA/pow(n_Vg,2) + pow((0.3*n_Fake)/n_Vg,2);
-      dNF = sqrt(dNF);
-      cout << endl << cutslist[i].Data() << " Zg NF = " << NF << " +/- " << dNF << " (stat+fake)\n" << endl;
+      float n_notZg = n_BG - n_Zg;
+      float NF = (n_DATA - n_notZg) / n_Zg;
+      // float dNF = n_DATA/pow(n_Zg,2) + pow((0.3*n_Fake)/n_Zg,2);
+      // dNF = sqrt(dNF);
+      float dNF = sqrt(n_DATA)/n_Zg;
+      cout << endl << cutslist[i].Data() << " Zg NF = " << NF << " +/- " << dNF << " (stat)\n" << endl;
     }
 
 

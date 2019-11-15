@@ -65,3 +65,8 @@ for s in systs:
         'samples':mc  
     }
 
+aliases['EleWPTight'] = {
+    'expr' : '(abs(Lepton_pdgId[0])==13 || Electron_cutBased[Lepton_electronIdx[0]]>=4) \
+           && (abs(Lepton_pdgId[1])==13 || Electron_cutBased[Lepton_electronIdx[1]]>=4) \
+           && (abs(Lepton_pdgId[2])==13 || Electron_cutBased[Lepton_electronIdx[2]]>=4)',
+}

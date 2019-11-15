@@ -22,6 +22,6 @@ mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_VH2j_2016.roo
 
 cd ../../../../../../combine/CMSSW_10_2_13/src/HiggsAnalysis/CombinedLimit/
 
-combineCards.py datacards/VH_2j_emu/events/datacard.txt datacards/VH_2j_topemu/events/datacard.txt datacards/VH_2j_DYtautau/events/datacard.txt > datacards_combine.txt
+combineCards.py datacards/VH_2j_emu/mll/datacard.txt datacards/VH_2j_topemu/events/datacard.txt datacards/VH_2j_DYtautau/events/datacard.txt > datacards_mll.txt
 
-text2workspace.py datacards_combine.txt -m 125
+text2workspace.py datacards_mll.txt -m 125
