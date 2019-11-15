@@ -241,6 +241,9 @@ nuisances['PU'] = {
 }
 
 ##### PS and UE --> NO AVAILABLE FOR VH2j! 
+
+## Take PS uncertainties from 2018 for signal
+
 nuisances['PS']  = {
     'name'  : 'PS_Herwig',
     'kind'  : 'tree',
@@ -249,6 +252,9 @@ nuisances['PS']  = {
       'WW'      : ['0.9760', '1.'], # was 0.92657
       'ggH_hww' : ['1.0078', '1.'], # was 0.98554 These numbers are used to normalize the PS variation to the same integral as the nominal after the wwSel skim
       'qqH_hww' : ['0.9398', '1.'], # was 0.92511
+      'ZH_hww': ['1.0311', '0.9694'], # --> normalized to the total number of events at 2lepton level                               
+      'ggZH_hww': ['1.0391','0.9523'],                                                                                            
+      'WH_hww': ['1.04' , '0.947'],
      },
     'folderUp': makeMCDirectory('PS'),
     'folderDown': makeMCDirectory(),
