@@ -40,8 +40,8 @@ canvas.SetTicky(0)
 
 graph = TGraphAsymmErrors()
 
-#file = open("ggH_HTXS_mu.txt","r")
-file = open("fitresults2018_stage1p2.txt","r")
+
+file = open("fitresults2018_1p2_QCDfix.txt","r")
 
 categories = []
 

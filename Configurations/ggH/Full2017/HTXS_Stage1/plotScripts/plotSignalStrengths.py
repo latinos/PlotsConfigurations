@@ -39,10 +39,9 @@ canvas.SetTickx(0)
 canvas.SetTicky(0)
 
 graph = TGraphAsymmErrors()
-#file = open("fitresults2017_stage1p2.txt","r")
-file = open("fitresults2017_stage1p2_unmerged.txt","r")
-#file = open("ggH_HTXS_mu_v2.txt","r")
-#file = open("../Combination/Full2017_ggH_HTXS_Stage1.txt","r")
+file = open("fitresults2017_1p2_QCDfix.txt","r")
+#file = open("fitresults2017_stage1p2_unmerged.txt","r")
+
 
 categories = []
 

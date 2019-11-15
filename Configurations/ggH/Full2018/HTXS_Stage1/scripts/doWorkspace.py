@@ -38,7 +38,7 @@ sampleNames.append('ggH_hww_PTH_200_300')
 sampleNames.append('ggH_hww_PTH_300_450')
 sampleNames.append('ggH_hww_PTH_450_650')
 sampleNames.append('ggH_hww_PTH_GT650')
-
+'''
 #No merging
 command="text2workspace.py Full2018_ggH_HTXS_Stage1p2.txt -o Full2018_ggH_HTXS_Stage1p2.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose "
 for sample in sampleNames:
@@ -49,7 +49,7 @@ for sample in sampleNames:
 
 print command
 os.system(command)
-
+'''
 #Merge some bins
 command="text2workspace.py Full2018_ggH_HTXS_Stage1p2.txt -o Full2018_ggH_HTXS_Stage1p2_merged.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose "
 poi=''

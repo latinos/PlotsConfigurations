@@ -38,7 +38,7 @@ sampleNames.append('ggH_hww_PTH_200_300')
 sampleNames.append('ggH_hww_PTH_300_450')
 sampleNames.append('ggH_hww_PTH_450_650')
 sampleNames.append('ggH_hww_PTH_GT650')
-
+'''
 #No merging
 command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2018_ggH_HTXS_Stage1p2.root -t -1  --setParameters "
 for sample in sampleNames:
@@ -54,7 +54,7 @@ command = command[:-1]
 print command
 os.system(command)
 
-
+'''
 #Merge some bins
 command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2018_ggH_HTXS_Stage1p2_merged.root -t -1 --setParameters "
 poi = ''

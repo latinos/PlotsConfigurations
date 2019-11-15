@@ -15,6 +15,11 @@ if os.path.exists('HTXS_stage1_categories.py') :
   exec(handle)
   handle.close()
 
+if os.path.exists('thuNormFactors.py') :
+  handle = open('thuNormFactors.py','r')
+  exec(handle)
+  handle.close()
+
 sampleNames = []
 for cat in HTXSStage1_1Categories:
   if 'GG2H_' in cat:
@@ -288,8 +293,6 @@ nuisances['PU'] = {
 for name in sampleNames:
   if 'ggH_hww' in name:
     nuisances['PU']['samples'].update({name: ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)']})
-  elif 'qqH_hww' in name:
-    nuisances['PU']['samples'].update({name: ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)']})
 
 ##### PS and UE
 nuisances['PS']  = {
@@ -310,8 +313,6 @@ nuisances['PS']  = {
 #for name in sampleNames:
 #  if 'ggH_hww' in name:
 #    nuisances['PS']['samples'].update({name: ['1.0078', '1.']})
-#  elif 'qqH_hww' in name:
-#    nuisances['PS']['samples'].update({name: ['0.9398', '1.']})
 
 nuisances['UE']  = {
     'name'  : 'UE_CUETP',
@@ -319,7 +320,7 @@ nuisances['UE']  = {
     'type'  : 'shape',
     'samples'  : {
       'WW'      : ['1.0240', '0.9916'], # was 1.0226 0.9897
-      #'ggH_hww' : ['1.0739', '1.0211'], # These numbers are used to normalize the UE up/down variations to the same integral as the nominal after the wwSel skim
+      'ggH_hww' : ['1.0739', '1.0211'], # These numbers are used to normalize the UE up/down variations to the same integral as the nominal after the wwSel skim
       'qqH_hww' : ['1.0137', '0.9781'], # was 1.0560 0.9992
     },
     'folderUp': makeMCDirectory('UEup'),
@@ -328,11 +329,8 @@ nuisances['UE']  = {
     'synchronized': False
 }
 for name in sampleNames:
-  #if 'ggH_hww' in name:
-  #  nuisances['UE']['samples'].update({name: ['1.0739', '1.0211']})
-  #elif 'qqH_hww' in name:
-  if 'qqH_hww' in name:
-    nuisances['UE']['samples'].update({name: ['1.0137', '0.9781']})
+  if 'ggH_hww' in name:
+    nuisances['UE']['samples'].update({name: ['1.0739', '1.0211']})
 
 
 ####### Generic "cross section uncertainties"
@@ -679,7 +677,19 @@ for name, vname in thus:
     }
     for sname in sampleNames:
         if 'ggH_hww' in sname:
-            nuisances[name]['samples'].update({sname : [vname, '2.-%s' % vname]})
+          if 'GT200' not in sname:
+            #print globals()                                                                                                                   
+            normthu = globals()[name.replace("THU_","thuNormFactors_")][sname.replace('ggH_hww','GG2H')][0]
+            nuisances[name]['samples'].update({sname : [vname+'/'+normthu,'2.-'+vname+'/'+normthu]})
+          else:
+            nuisances[name]['samples'].update({name : [vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_200_300'][0]
+            ,'2.-'+vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_200_300'][0]]})
+            nuisances[name]['samples'].update({name : [vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_300_450'][0]
+            ,'2.-'+vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_300_450'][0]]})
+            nuisances[name]['samples'].update({name : [vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_450_650'][0]
+            ,'2.-'+vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_450_650'][0]]})
+            nuisances[name]['samples'].update({name : [vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_GT650'][0]
+            ,'2.-'+vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_GT650'][0]]})
 
 nuisances['QCDscale_ggH_STXS_ACCEPT'] = {
                'name'  : 'QCDscale_ggH_STXS_ACCEPT',
