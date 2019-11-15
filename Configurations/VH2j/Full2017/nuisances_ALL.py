@@ -246,25 +246,38 @@ nuisances['PU'] = {
         'WW': ['1.0033022059*(puWeightUp/puWeight)', '0.997085330608*(puWeightDown/puWeight)'],
         'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
         'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
-        'ZH_hww': ['(puWeightUp/puWeight)', '(puWeightDown/puWeight)'], 
-        'ggZH_hww': ['(puWeightUp/puWeight)', '(puWeightDown/puWeight)'], 
-        'WH_hww': ['(puWeightUp/puWeight)', '(puWeightDown/puWeight)']
+        'ZH_hww': ['1.0018542*(puWeightUp/puWeight)', '0.99848361*(puWeightDown/puWeight)'], 
+        'ggZH_hww': ['1.0032337*(puWeightUp/puWeight)', '0.99617843*(puWeightDown/puWeight)'], 
+        'WH_hww': ['1.0035114*(puWeightUp/puWeight)', '0.99720012*(puWeightDown/puWeight)']
     },
     'AsLnN': '1',
 }
 
 ##### PS and UE --> NEDD TO UNDERSTAND FOR VH2j
+### Take numbers from 2018 weights !!! 
 
-nuisances['PS']  = {
-    'name': 'PS',
-    'type': 'shape',
-    'kind': 'weight_envelope',
-    'samples': {
-        'WW': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],
-    },
-    'AsLnN': '1',
-    'samplespost': lambda self, samples: dict([('WW', ['1.', '1.'])] + [(sname, ['1.', '1.']) for sname in samples if 'ggH_hww' in sname or 'qqH_hww' in sname])
-}
+nuisances['PS'] = {                                                                               
+    'name': 'PS',                                                                                           
+    'kind': 'weight',                                                                                        
+    'type': 'shape',                                                                                                        
+    'samples': {                                                                                                           
+        'ZH_hww': ['1.0311', '0.9694'],
+        'ggZH_hww': ['1.0391','0.9523'],
+        'WH_hww': ['1.04' , '0.947'],
+    },                                                                                                         
+    'AsLnN': '1',                                                                                                        
+} 
+
+#nuisances['PS']  = {
+#    'name': 'PS',
+#    'type': 'shape',
+#    'kind': 'weight_envelope',
+#    'samples': {
+#        'WW': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],
+#    },
+#    'AsLnN': '1',
+#    'samplespost': lambda self, samples: dict([('WW', ['1.', '1.'])] + [(sname, ['1.', '1.']) for sname in samples if 'ggH_hww' in sname or 'qqH_hww' in sname])
+#}
 
 nuisances['UE']  = {
                 'name'  : 'UE',
