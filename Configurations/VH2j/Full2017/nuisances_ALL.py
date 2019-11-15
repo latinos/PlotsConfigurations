@@ -254,17 +254,30 @@ nuisances['PU'] = {
 }
 
 ##### PS and UE --> NEDD TO UNDERSTAND FOR VH2j
+### Take numbers from 2018 weights !!! 
 
-nuisances['PS']  = {
-    'name': 'PS',
-    'type': 'shape',
-    'kind': 'weight_envelope',
-    'samples': {
-        'WW': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],
-    },
-    'AsLnN': '1',
-    'samplespost': lambda self, samples: dict([('WW', ['1.', '1.'])] + [(sname, ['1.', '1.']) for sname in samples if 'ggH_hww' in sname or 'qqH_hww' in sname])
-}
+nuisances['PS'] = {                                                                               
+    'name': 'PS',                                                                                           
+    'kind': 'weight',                                                                                        
+    'type': 'shape',                                                                                                        
+    'samples': {                                                                                                           
+        'ZH_hww': ['1.0311', '0.9694'],
+        'ggZH_hww': ['1.0391','0.9523'],
+        'WH_hww': ['1.04' , '0.947'],
+    },                                                                                                         
+    'AsLnN': '1',                                                                                                        
+} 
+
+#nuisances['PS']  = {
+#    'name': 'PS',
+#    'type': 'shape',
+#    'kind': 'weight_envelope',
+#    'samples': {
+#        'WW': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],
+#    },
+#    'AsLnN': '1',
+#    'samplespost': lambda self, samples: dict([('WW', ['1.', '1.'])] + [(sname, ['1.', '1.']) for sname in samples if 'ggH_hww' in sname or 'qqH_hww' in sname])
+#}
 
 nuisances['UE']  = {
                 'name'  : 'UE',
