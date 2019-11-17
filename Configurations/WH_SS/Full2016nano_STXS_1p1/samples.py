@@ -256,7 +256,7 @@ directorySig='/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_1
 #                                                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')',
 #                                                    }
 
-genWPt='Sum$(GenPart_pt*(abs(GenPart_pdgId)==24&&((GenPart_statusFlags&128)==128)&&(abs(GenPart_pdgId[GenPart_genPartIdxMother])!=25)))'
+#genWPt='Sum$(GenPart_pt*(abs(GenPart_pdgId)==24&&((GenPart_statusFlags&128)==128)&&(abs(GenPart_pdgId[GenPart_genPartIdxMother])!=25)))'
 
 categorization_wh = { 'FWDH' : 'abs(HTXS_Higgs_y) > 2.5',
                       'PTV_0_75' : 'abs(HTXS_Higgs_y) < 2.5 && genWPt <= 75',
@@ -270,10 +270,10 @@ for cat,cut in categorization_wh.iteritems():
   samples['WH_hww_%s' %cat] = { 'name'   :
                              getSampleFiles(directorySig,'HWplusJ_HToWW_M125',False,'nanoLatino_')
                              + getSampleFiles(directorySig,'HWminusJ_HToWW_M125',False,'nanoLatino_'),
-                             'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+                             'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+cut,
                            }
-  addSampleWeight(samples,'WH_hww_%s' %cat,'HWplusJ_HToWW_M125',    cut)
-  addSampleWeight(samples,'WH_hww_%s' %cat,'HWminusJ_HToWW_M125',   cut)
+  #addSampleWeight(samples,'WH_hww_%s' %cat,'HWplusJ_HToWW_M125',    cut)
+  #addSampleWeight(samples,'WH_hww_%s' %cat,'HWminusJ_HToWW_M125',   cut)
 
 ############ ttH ############
 
