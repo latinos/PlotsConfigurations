@@ -23,8 +23,8 @@ categorization_wh = {
     'FWDH' : '1==1',
     'PTV_0_75' : 'WlepPt_whssv1>0 && WlepPt_whssv1 <= 75',
     'PTV_75_150' : 'WlepPt_whssv1 > 75 && WlepPt_whssv1 <= 150',
-    'PTV_150_250_0J' : 'WlepPt_whssv1 > 150 && WlepPt_whssv1 <= 250',
-    'PTV_150_250_GE1J' : 'WlepPt_whssv1 > 150 && WlepPt_whssv1 <= 250',
+    'PTV_150_250_0J' : 'WlepPt_whssv1 > 150 && WlepPt_whssv1 <= 250 && Sum$(CleanJet_pt>30)==2',
+    'PTV_150_250_GE1J' : 'WlepPt_whssv1 > 150 && WlepPt_whssv1 <= 250 && Sum$(CleanJet_pt>30)>=3',
     'PTV_GT250' : 'WlepPt_whssv1 > 250',
     }
 
