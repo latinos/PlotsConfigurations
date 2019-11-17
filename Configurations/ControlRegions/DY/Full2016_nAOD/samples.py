@@ -122,22 +122,19 @@ samples['WW'] = {    'name'   :   getSampleFiles(directory,'WWTo2L2Nu',False,'na
                  }
 
 
-samples['Vg']  = {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',False,'nanoLatino_')
-                               + getSampleFiles(directory,'Zg',False,'nanoLatino_'),
-                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*(!(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 ))',
+samples['Vg']  = {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',False,'nanoLatino_'),
+                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*(!(Gen_ZGstar_mass > 0))',
                     'FilesPerJob': 5,
                   }
 
 
 samples['VgS']  =  {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',False,'nanoLatino_')
-                                 + getSampleFiles(directory,'Zg',False,'nanoLatino_')
                                  + getSampleFiles(directory,'WZTo3LNu_mllmin01',False,'nanoLatino_'),
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
                       'FilesPerJob' : 5 ,
                    }
 addSampleWeight(samples,'VgS','Wg_MADGRAPHMLM',    '(Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 0.1)')
-addSampleWeight(samples,'VgS','Zg',                '(Gen_ZGstar_mass >0)')
-addSampleWeight(samples,'VgS','WZTo3LNu_mllmin01', '(Gen_ZGstar_mass>=0.1 || Gen_ZGstar_mass<0)')
+addSampleWeight(samples,'VgS','WZTo3LNu_mllmin01', '(Gen_ZGstar_mass>=0.1)')
 
 samples['VZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo2L2Nu',False,'nanoLatino_')
                                + getSampleFiles(directory,'ZZTo2L2Q',False,'nanoLatino_')
@@ -152,15 +149,8 @@ samples['VZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo2L2Nu',False,'nan
 ################## DATA ###################
 ###########################################
 
-samples['Fake_em']  = {   'name': [ ] ,
+samples['Fake']  = {   'name': [ ] ,
                          'weight' : METFilter_DATA+'*'+fakeW+'*(abs(Lepton_pdgId[0])==11 && abs(Lepton_pdgId[1])==13)',              #   weight/cut 
-                         'weights' : [ ] ,
-                         'isData': ['all'],
-                         'FilesPerJob' : 15 ,
-                      }
-
-samples['Fake_me']  = {   'name': [ ] ,
-                         'weight' : METFilter_DATA+'*'+fakeW+'*(abs(Lepton_pdgId[0])==13 && abs(Lepton_pdgId[1])==11)',              #   weight/cut 
                          'weights' : [ ] ,
                          'isData': ['all'],
                          'FilesPerJob' : 15 ,
@@ -171,10 +161,8 @@ for Run in DataRun :
         for DataSet in DataSets :
                 FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
                 for iFile in FileTarget:
-                        samples['Fake_em']['name'].append(iFile)
-                        samples['Fake_em']['weights'].append(DataTrig[DataSet])
-                        samples['Fake_me']['name'].append(iFile)
-                        samples['Fake_me']['weights'].append(DataTrig[DataSet])
+                        samples['Fake']['name'].append(iFile)
+                        samples['Fake']['weights'].append(DataTrig[DataSet])
 
 
 
@@ -194,4 +182,5 @@ for Run in DataRun :
 			print(iFile)
 			samples['DATA']['name'].append(iFile)
 			samples['DATA']['weights'].append(DataTrig[DataSet])
+
 

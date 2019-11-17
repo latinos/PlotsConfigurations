@@ -92,7 +92,7 @@ aliases['zeroJet'] = {
 }
 
 aliases['oneJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) < 30.'
 }
 
 aliases['multiJet'] = {
@@ -100,7 +100,11 @@ aliases['multiJet'] = {
 }
 
 aliases['2jggH'] = {
-'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && ( abs(detajj)<3.5 || ( mjj<400 && abs(detajj)>=3.5 ) ) )'
+'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && ( abs(detajj)<3.5 || ( mjj<400 && abs(detajj)>=3.5 ) ) && ( mjj <  65 || mjj >  105 ) )'
+}
+
+aliases['2jVH'] = {
+'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && ( abs(detajj)<3.5 || ( mjj<400 && abs(detajj)>=3.5 ) ) && ( mjj >= 65 && mjj <= 105 ) )'
 }
 
 aliases['2jVBF'] = {
@@ -109,37 +113,31 @@ aliases['2jVBF'] = {
 
 #SF cuts
 aliases['Higgs0jetee'] = {
-'expr': '(mll < 45 && mth > 90 && (abs(dphill)) < 2.50)'
+'expr': '(mll < 50 && mth > 80)'
 }
-
 aliases['Higgs0jetmm'] = {
-'expr': '(mll < 45 && mth > 90 && (abs(dphill)) < 2.50)'
+'expr': '(mll < 50 && mth > 80)'
 }
-
 aliases['Higgs1jetee'] = {
-'expr': '(mll < 70 && mth > 75 && (abs(dphill)) < 1.90)'
+'expr': '(mll < 70 && mth > 80)'
 }
-
 aliases['Higgs1jetmm'] = {
-'expr': '(mll < 70 && mth > 75 && (abs(dphill)) < 1.90)'
+'expr': '(mll < 70 && mth > 80)'
 }
-
 aliases['Higgs2jetee'] = {
-'expr': '(mll < 55 && mth > 70 && (abs(dphill)) < 1.75)'
+'expr': '(mll < 70 && abs(dphill) < 2.50)'
 }
-
 aliases['Higgs2jetmm'] = {
-'expr': '(mll < 55 && mth > 70 && (abs(dphill)) < 1.75)'
+'expr': '(mll < 70 && abs(dphill) < 2.50)'
 }
-
 aliases['Higgsvbfee'] = {
-'expr': '(mll < 50 && mth > 20 && (abs(dphill)) < 2.10)'
+'expr': '(mll < 70 && abs(dphill) < 3.00)'
 }
-
 aliases['Higgsvbfmm'] = {
-'expr': '(mll < 50 && mth > 20 && (abs(dphill)) < 2.10)'
+'expr': '(mll < 70 && abs(dphill) < 3.00)'
 }
 
+#Z veto
 aliases['ZVeto'] = {
 'expr': '(fabs(91.1876 - mll) > 15)'
 }
@@ -187,6 +185,11 @@ aliases['dycr'] = {
 aliases['wwcr'] = {
     'expr': 'mth>60 && mtw2>30 && mll>100 && bVeto && ZVeto'
 }
+
+aliases['Zpeak'] = {
+    'expr': 'fabs(91.1876 - mll) < 7.5'
+}
+
 
 # SR definition
 

@@ -76,4 +76,14 @@ variables['checkmZ']    = { 'name' : 'ZH3l_checkmZ',
                             'fold' : 0
                         }
 
+variables['ptjet0']     = { 'name' : 'CleanJet_pt[0]',
+                            'range' : (20,0,200),
+                            'xaxis' : 'Leading jet p_{T}',
+                            'fold' : 0
+                        }
 
+variables['WlepId']     = { 'name' : 'ZH3l_pdgid_l',
+                            'range' : (31,-15.5,15.5),
+                            'xaxis' : 'W lepton ID',
+                            'fold' : 0
+                        }

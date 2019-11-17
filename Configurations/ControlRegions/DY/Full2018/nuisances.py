@@ -15,7 +15,7 @@ nuisances['lumi']  = {
                'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'top', 'DY']), 
                'type'  : 'lnN',
               }
-
+'''
 ##### B-tagger
 nuisances['btag_shape_jes']  = {
                 'name'  : 'btag_shape_jes_2018',
@@ -79,7 +79,7 @@ nuisances['btag_shape_cferr2']  = {
                 'type'  : 'shape',
                 'samples'  : dict((skey, ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)']) for skey in mc),
 }
-
+'''
 
 ##### Trigger Efficiency
 

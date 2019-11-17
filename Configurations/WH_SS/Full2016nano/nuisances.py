@@ -52,44 +52,17 @@ nuisances['lumi_Ghosts'] = {
     'samples': dict((skey, '1.004') for skey in mc)
 }
 
-'''
-nuisances['lumi']  = {
-               'name'  : 'lumi_13TeV',
-               'samples'  : {
-                   #'DY'       : '1.023',    |
-                   #'top'      : '1.023',    | These 3 backgrounds are data driven, no need to include the luminosity uncertainty
-                   #'WW'       : '1.023',    |
-                   'ggWW'     : '1.023',
-                   'Vg'       : '1.023',
-                   'VgS'      : '1.023',
-                   'WZgS'     : '1.023',
-                   'WZgS_L'   : '1.023',
-                   'WZgS_H'   : '1.023',
-                   'VZ'       : '1.023',
-                   'VVV'      : '1.023',
-                   'ggH_hww'  : '1.023',
-                   'qqH_hww'  : '1.023',
-                   'ZH_hww'   : '1.023',
-                   'ggZH_hww' : '1.023',
-                   'WH_hww'   : '1.023',
-                   'bbH_hww'  : '1.023',
-                   'ttH_hww'  : '1.023',
-                   'ggH_htt'  : '1.023',
-                   'qqH_htt'  : '1.023',
-                   'ZH_htt'   : '1.023',
-                   'WH_htt'   : '1.023',
-                   'H_htt'    : '1.023',
-                   },
-               'type'  : 'lnN',
-              }
-'''
+
 #### FAKES
 
 nuisances['fake_syst'] = {
     'name': 'CMS_fake_syst',
     'type': 'lnN',
     'samples': {
-        'Fakes': '1.3'
+#        'Fakes': '1.3'
+        'Fakes_ee': '1.3',
+        'Fakes_mm': '1.3',
+        'Fakes_em': '1.3'
     },
 }
 
@@ -98,7 +71,9 @@ nuisances['fake_ele'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': {
-        'Fakes': ['fakeWEleUp', 'fakeWEleDown'],
+#        'Fakes': ['fakeWEleUp', 'fakeWEleDown'],
+        'Fakes_ee': ['fakeWEleUp', 'fakeWEleDown'],
+        'Fakes_em': ['fakeWEleUp', 'fakeWEleDown']
     }
 }
 
@@ -107,7 +82,9 @@ nuisances['fake_ele_stat'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': {
-        'Fakes': ['fakeWStatEleUp', 'fakeWStatEleDown']
+#        'Fakes': ['fakeWStatEleUp', 'fakeWStatEleDown']
+        'Fakes_ee': ['fakeWStatEleUp', 'fakeWStatEleDown'],
+        'Fakes_em': ['fakeWStatEleUp', 'fakeWStatEleDown']
     }
 }
 
@@ -116,7 +93,9 @@ nuisances['fake_mu'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': {
-        'Fakes': ['fakeWMuUp', 'fakeWMuDown'],
+#        'Fakes': ['fakeWMuUp', 'fakeWMuDown'],
+        'Fakes_mm': ['fakeWMuUp', 'fakeWMuDown'],
+        'Fakes_em': ['fakeWMuUp', 'fakeWMuDown']
     }
 }
 
@@ -125,9 +104,12 @@ nuisances['fake_mu_stat'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': {
-        'Fakes': ['fakeWStatMuUp', 'fakeWStatMuDown'],
+#        'Fakes': ['fakeWStatMuUp', 'fakeWStatMuDown'],
+        'Fakes_mm': ['fakeWStatMuUp', 'fakeWStatMuDown'],
+        'Fakes_em': ['fakeWStatMuUp', 'fakeWStatMuDown']
     }
 }
+'''
 ###### B-tagger
 
 for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
@@ -519,7 +501,7 @@ nuisances['singleTopToTTbar'] = {
 #        'VZ': '1.16'
 #    }
 #}
-
+'''
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat']  = {
               'type'  : 'auto',

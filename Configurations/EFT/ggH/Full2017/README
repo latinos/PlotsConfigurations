@@ -1,0 +1,26 @@
+ggH EFT analysis
+==============
+
+Produce shapes:
+
+    mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=workday 
+
+Add root files:
+
+    mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files
+    mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
+
+Make plots (just one ALT signal):
+
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFileTAG/plots_TAG_ALL.root
+
+Make datacards:
+
+    mkDatacards.py --pycfg=configuration.py --inputFile=rootFileTAG/plots_TAG_ALL.root
+
+Make combination of datacards and workspaces by editing the script 'scripts/doCombination.sh' and running:
+
+    ./doCombination.sh
+
+
+SAMPLES AT: /eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Fall2017_102X_nAODv5_SigOnly_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5

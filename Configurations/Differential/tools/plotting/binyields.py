@@ -4,6 +4,8 @@ import array
 import re
 import ROOT
 
+import common
+
 ROOT.gROOT.SetBatch(True)
 ROOT.gStyle.SetOptStat(0)
 ROOT.gStyle.SetTextFont(42)
@@ -24,42 +26,10 @@ observable = sys.argv[3]
 year = '2018'
 
 if observable == 'ptH':
-    binNames = [
-        'PTH_0_20',
-        'PTH_20_45',
-        'PTH_45_80',
-        'PTH_80_120',
-        'PTH_120_200',
-        'PTH_GT200'
-    ]
-    binTitles = [
-        '[0, 20]',
-        '[20, 45]',
-        '[45, 80]',
-        '[80, 120]',
-        '[120, 200]',
-        '[200, #infty)',
-        #'[200, 350]',
-        #'[350, #infty)'
-    ]
     split = [4, 4, 4, 3, 2, 2]
     xtitle = 'p_{T}^{H} (GeV)'
 
 elif observable == 'njet':
-    binNames = [
-        'NJ_0',
-        'NJ_1',
-        'NJ_2',
-        'NJ_3',
-        'NJ_GE4'
-    ]
-    binTitles = [
-        '0',
-        '1',
-        '2',
-        '3',
-        '#geq 4'
-    ]
     split = [4, 4, 2, 1, 1]
     xtitle = 'N_{jet}'
 
@@ -75,9 +45,9 @@ categoryOrder = [
 
 def fillDist(dist, sample):
     ix = 1
-    for ireco in range(len(binNames)):
+    for ireco in range(len(common.binnames[observable])):
         for category in categoryOrder:
-            events = source.Get('hww_%s%s_%s/events/histo_%s' % (binNames[ireco], category, year, sample))
+            events = source.Get('hww_%s%s_%s/events/histo_%s' % (common.binnames[observable][ireco], category, year, sample))
             if not events:
                 continue
 
@@ -87,20 +57,20 @@ def fillDist(dist, sample):
             events.Delete()
             ix += 1
 
-xbins = array.array('d', map(float, range(len(binNames) + 1)))
+xbins = array.array('d', map(float, range(len(common.binnames[observable]) + 1)))
 fullbins = array.array('d', [0.])
-for ibin in range(len(binNames)):
+for ibin in range(len(common.binnames[observable])):
     fullbins.extend([ibin + 1./split[ibin] * (x + 1) for x in range(split[ibin])])
 
 frame = ROOT.TH1D('frame', '', len(xbins) - 1, xbins)
 template = ROOT.TH1D('template', '', len(fullbins) - 1, fullbins)
 
 frame.GetXaxis().SetTitle(xtitle)
-for ibin in range(len(binNames)):
-    frame.GetXaxis().SetBinLabel(ibin + 1, binTitles[ibin])
+for ibin in range(len(common.binnames[observable])):
+    frame.GetXaxis().SetBinLabel(ibin + 1, common.bintitles[observable][ibin])
 
 signal = template.Clone('signal')
-for bname in binNames:
+for bname in common.binnames[observable]:
     fillDist(signal, 'smH_hww_' + bname)
 
 background = template.Clone('background')

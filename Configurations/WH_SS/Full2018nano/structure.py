@@ -4,11 +4,11 @@
 
 # keys here must match keys in samples.py    
 #                    
-structure['DY']  = {  
-                  'isSignal' : 0,
-                  'isData'   : 0
-              }
-
+#structure['DY']  = {  
+#                  'isSignal' : 0,
+#                  'isData'   : 0
+#              }
+#
 
 #structure['Wjets']  = {  
 #                  'isSignal' : 0,
@@ -19,7 +19,20 @@ structure['Fakes']  = {
                   'isSignal' : 0,
                   'isData'   : 0 
               }
+structure['Fakes_ee']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+              }
 
+structure['Fakes_mm']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+              }
+
+structure['Fakes_em']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+              }
 #structure['Fake_em']  = {  
 #                  'isSignal' : 0,
 #                  'isData'   : 0,
@@ -184,10 +197,10 @@ structure['ggZH_hww'] = {
 #                  'isData'   : 0
 #                  }
 
-#structure['ttH_hww'] = {
-#                  'isSignal' : 1,
-#                  'isData'   : 0
-#                  }
+structure['ttH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
 
 structure['ggH_htt'] = {
                   'isSignal' : 1,
@@ -199,16 +212,16 @@ structure['qqH_htt'] = {
                   'isData'   : 0,
                   }
 
-structure['WH_htt'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  }
-
-structure['ZH_htt'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  }
-
+#structure['WH_htt'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  }
+#
+#structure['ZH_htt'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  }
+#
 structure['H_htt'] = {
                   'isSignal' : 1,
                   'isData'   : 0    

@@ -26,6 +26,17 @@ except NameError:
 from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
 HiggsXS = HiggsXSection()
 
+cuts0j = []
+cuts1j = []
+cuts2j = []
+
+for k in cuts:
+  if '0j' in k  : cuts0j.append(k)
+  elif '1j' in k: cuts1j.append(k)
+  elif '2j' in k: cuts2j.append(k)
+  else: print 'WARNING: name of category does not contain on either 0j,1j,2j'
+
+
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
 #### Luminosity
@@ -85,7 +96,7 @@ nuisances['fake_syst_ee'] = {
     'name': 'CMS_fake_syst_ee',
     'type': 'lnN',
     'samples': {
-        'Fake': '1.3'
+        'Fake_ee': '1.3'
     },
     'cutspost': lambda self, cuts: [cut for cut in cuts if 'mm' not in cut],
     'perRecoBin': True
@@ -95,7 +106,7 @@ nuisances['fake_syst_mm'] = {
     'name': 'CMS_fake_syst_mm',
     'type': 'lnN',
     'samples': {
-        'Fake': '1.3'
+        'Fake_mm': '1.3'
     },
     'cutspost': lambda self, cuts: [cut for cut in cuts if 'ee' not in cut],
     'perRecoBin': True
@@ -422,7 +433,40 @@ nuisances['pdf_qqbar_ACCEPT'] = {
     },
 }
 
-##### Renormalization & factorization scales
+## Shape nuisance due to QCD scale variations for DY
+# LHE scale variation weights (w_var / w_nominal)
+# [0] is muR=0.50000E+00 muF=0.50000E+00
+# [8] is muR=0.20000E+01 muF=0.20000E+01
+nuisances['QCDscale_V'] = {
+    'name': 'QCDscale_V',
+    'skipCMS': 1,
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {'DY': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]']},
+    'AsLnN': '1'
+}
+
+nuisances['QCDscale_VV'] = {
+    'name': 'QCDscale_VV',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+        'Vg': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
+        'VZ': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
+        'VgS': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
+    }
+}
+
+# ggww and interference
+nuisances['QCDscale_ggVV'] = {
+    'name': 'QCDscale_ggVV',
+    'type': 'lnN',
+    'samples': {
+        'ggWW': '1.15',
+    },
+}
+
+# NLL resummation variations
 nuisances['WWresum0j']  = {
                 'name'  : 'CMS_hww_WWresum_0j',
                 'skipCMS' : 1,
@@ -491,51 +535,15 @@ nuisances['WWqscale2j']  = {
                'cuts'  : [ k for k in cuts if '2j' in k ]
                 }
 
-## Shape nuisance due to QCD scale variations for DY
-# LHE scale variation weights (w_var / w_nominal)
-# [0] is muR=0.50000E+00 muF=0.50000E+00
-# [8] is muR=0.20000E+01 muF=0.20000E+01
-nuisances['QCDscale_V'] = {
-    'name': 'QCDscale_V',
-    'skipCMS': 1,
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {'DY': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]']},
-    'AsLnN': '1'
-}
-
-nuisances['QCDscale_VV'] = {
-    'name': 'QCDscale_VV',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {
-        'Vg': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-        'VZ': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-        'VgS': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-    }
-}
-
-# ggww and interference
-nuisances['QCDscale_ggVV'] = {
-    'name': 'QCDscale_ggVV',
-    'type': 'lnN',
-    'samples': {
-        'ggWW': '1.15',
-    },
-}
-
-# NLL resummation variations
-
-
 # Uncertainty on SR/CR ratio
-nuisances['CRSR_accept_DY'] = {
-    'name': 'CMS_hww_CRSR_accept_DY',
+nuisances['CRSR_accept_WW'] = {
+    'name': 'CMS_hww_CRSR_accept_WW',
     'type': 'lnN',
-    'samples': {'DY': '1.02'},
+    'samples': {'WW': '1.01'},
     #'samples': {'DY': '1.1'},
-    'cuts': [cut for cut in cuts if '_CR_' in cut],
+    'cuts': [cut for cut in cuts if '_WW_' in cut],
     #'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut and cut in self['cuts']]),
-    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut]),
+    #'cutspost': (lambda self, cuts: [cut for cut in cuts if '_WW_' in cut]),
     #'perRecoBin': True
 }
 
@@ -545,8 +553,8 @@ nuisances['CRSR_accept_top'] = {
     'type': 'lnN',
     'samples': {'top': '1.01'},
     #'samples': {'top': '1.05'},
-    'cuts': [cut for cut in cuts if '_CR_' in cut],
-    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut]),
+    'cuts': [cut for cut in cuts if '_top_' in cut],
+    #'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut]),
 }
 
 # Theory uncertainty for ggH
@@ -664,281 +672,6 @@ nuisances['QCDscale_gg_ACCEPT'] = {
     'type': 'lnN',
 }
 
-################################ DATA DRIVEN BACKGROUND UNCERTAINTIES  #################################
-
-#### WW fit
-
-nuisances['WWnorm0jsf']  = {
-               'name'  : 'CMS_hww_WWnorm0jsf',
-               'samples'  : {
-                   'WW' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [
-                            'hww2l2v_13TeV_2017_0jee',
-                            'hww2l2v_13TeV_2017_0jee_pt2ge20',
-                            'hww2l2v_13TeV_2017_0jee_pt2lt20',
-                            'hww2l2v_13TeV_2017_WW_0jee',
-                            'hww2l2v_13TeV_2017_top_0jee',
-                            'hww2l2v_13TeV_2017_0jmm',
-                            'hww2l2v_13TeV_2017_0jmm_pt2ge20',
-                            'hww2l2v_13TeV_2017_0jmm_pt2lt20',
-                            'hww2l2v_13TeV_2017_WW_0jmm',
-                            'hww2l2v_13TeV_2017_top_0jmm',
-                         ],
-              }
-
-nuisances['WWnorm1jsf']  = {
-               'name'  : 'CMS_hww_WWnorm1jsf',
-               'samples'  : {
-                   'WW' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [
-                            'hww2l2v_13TeV_2017_1jee',
-                            'hww2l2v_13TeV_2017_WW_1jee',
-                            'hww2l2v_13TeV_2017_top_1jee',
-                            'hww2l2v_13TeV_2017_1jmm',
-                            'hww2l2v_13TeV_2017_WW_1jmm',
-                            'hww2l2v_13TeV_2017_top_1jmm',
-                         ],
-              }
-
-nuisances['WWnorm2jsf']  = {
-               'name'  : 'CMS_hww_WWnorm2jsf',
-               'samples'  : {
-                   'WW' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [
-                            'hww2l2v_13TeV_2017_2jee',
-                            'hww2l2v_13TeV_2017_WW_2jee',
-                            'hww2l2v_13TeV_2017_top_2jee',
-                            'hww2l2v_13TeV_2017_2jmm',
-                            'hww2l2v_13TeV_2017_WW_2jmm',
-                            'hww2l2v_13TeV_2017_top_2jmm',
-                            'hww2l2v_13TeV_2017_2jee_vh2j',
-                            'hww2l2v_13TeV_2017_WW_2jee_vh2j',
-                            'hww2l2v_13TeV_2017_top_2jee_vh2j',
-                            'hww2l2v_13TeV_2017_2jmm_vh2j',
-                            'hww2l2v_13TeV_2017_WW_2jmm_vh2j',
-                            'hww2l2v_13TeV_2017_top_2jmm_vh2j',
-                         ],
-              }
-
-nuisances['WWnorm2jvbfsf']  = {
-               'name'  : 'CMS_hww_WWnorm2jvbfsf',
-               'samples'  : {
-                   'WW' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [
-                            'hww2l2v_13TeV_2017_2jee_vbf',
-                            'hww2l2v_13TeV_2017_WW_2jee_vbf',
-                            'hww2l2v_13TeV_2017_top_2jee_vbf',
-                            'hww2l2v_13TeV_2017_2jmm_vbf',
-                            'hww2l2v_13TeV_2017_WW_2jmm_vbf',
-                            'hww2l2v_13TeV_2017_top_2jmm_vbf',
-                         ],
-              }
-
-
-#### Top fit
-
-nuisances['Topnorm0jsf']  = {
-               'name'  : 'CMS_hww_Topnorm0jsf',
-               'samples'  : {
-                   'top' : '1.00',
-                   },  
-               'type'  : 'rateParam',
-               'cuts'  : [
-                            'hww2l2v_13TeV_2017_0jee',
-                            'hww2l2v_13TeV_2017_0jee_pt2ge20',
-                            'hww2l2v_13TeV_2017_0jee_pt2lt20',
-                            'hww2l2v_13TeV_2017_WW_0jee',
-                            'hww2l2v_13TeV_2017_top_0jee',
-                            'hww2l2v_13TeV_2017_0jmm',
-                            'hww2l2v_13TeV_2017_0jmm_pt2ge20',
-                            'hww2l2v_13TeV_2017_0jmm_pt2lt20',
-                            'hww2l2v_13TeV_2017_WW_0jmm',
-                            'hww2l2v_13TeV_2017_top_0jmm',
-                         ],
-              }
-
-nuisances['Topnorm1jsf']  = {
-               'name'  : 'CMS_hww_Topnorm1jsf',
-               'samples'  : {
-                   'top' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [
-                            'hww2l2v_13TeV_2017_1jee',
-                            'hww2l2v_13TeV_2017_WW_1jee',
-                            'hww2l2v_13TeV_2017_top_1jee',
-                            'hww2l2v_13TeV_2017_1jmm',
-                            'hww2l2v_13TeV_2017_WW_1jmm',
-                            'hww2l2v_13TeV_2017_top_1jmm',
-                         ],
-              }
-
-nuisances['Topnorm2jsf']  = {
-               'name'  : 'CMS_hww_Topnorm2jsf',
-               'samples'  : {
-                   'top' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [
-                            'hww2l2v_13TeV_2017_2jee',
-                            'hww2l2v_13TeV_2017_WW_2jee',
-                            'hww2l2v_13TeV_2017_top_2jee',
-                            'hww2l2v_13TeV_2017_2jmm',
-                            'hww2l2v_13TeV_2017_WW_2jmm',
-                            'hww2l2v_13TeV_2017_top_2jmm',
-                            'hww2l2v_13TeV_2017_2jee_vh2j',
-                            'hww2l2v_13TeV_2017_WW_2jee_vh2j',
-                            'hww2l2v_13TeV_2017_top_2jee_vh2j',
-                            'hww2l2v_13TeV_2017_2jmm_vh2j',
-                            'hww2l2v_13TeV_2017_WW_2jmm_vh2j',
-                            'hww2l2v_13TeV_2017_top_2jmm_vh2j',
-                         ],
-              }
-
-nuisances['Topnorm2jvbfsf']  = {
-               'name'  : 'CMS_hww_Topnorm2jvbfsf',
-               'samples'  : {
-                   'top' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [
-                            'hww2l2v_13TeV_2017_2jee_vbf',
-                            'hww2l2v_13TeV_2017_WW_2jee_vbf',
-                            'hww2l2v_13TeV_2017_top_2jee_vbf',
-                            'hww2l2v_13TeV_2017_2jmm_vbf',
-                            'hww2l2v_13TeV_2017_WW_2jmm_vbf',
-                            'hww2l2v_13TeV_2017_top_2jmm_vbf',
-                         ],
-              }
-
-#### DY estimation (just create dummy histograms to be scaled by the DY Rin/out method)
-
-nuisances['DYeenorm0j'] = {
-                'name'  : 'hww_DYeenorm0j',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                    'DY' : ['1.','1.'] ,
-                             },
-                'cuts'  : [ 
-                            'hww2l2v_13TeV_2017_0jee', 
-                            'hww2l2v_13TeV_2017_0jee_pt2ge20', 
-                            'hww2l2v_13TeV_2017_0jee_pt2lt20', 
-                            'hww2l2v_13TeV_2017_WW_0jee', 
-                            'hww2l2v_13TeV_2017_top_0jee', 
-                          ] ,
-                }
-
-nuisances['DYeenorm1j'] = {
-                'name'  : 'hww_DYeenorm1j',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                    'DY' : ['1.','1.'] ,
-                             },
-                'cuts'  : [ 
-                            'hww2l2v_13TeV_2017_1jee', 
-                            'hww2l2v_13TeV_2017_WW_1jee',
-                          ] ,
-                }
-
-nuisances['DYeenorm2j'] = {
-                'name'  : 'hww_DYeenorm2j',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                    'DY' : ['1.','1.'] ,
-                             },
-                'cuts'  : [
-                            'hww2l2v_13TeV_2017_2jee',
-                            'hww2l2v_13TeV_2017_WW_2jee',
-                            'hww2l2v_13TeV_2017_2jee_vh2j',
-                            'hww2l2v_13TeV_2017_WW_2jee_vh2j',
-                          ] ,
-                }
-
-nuisances['DYeenorm2jvbf'] = {
-                'name'  : 'hww_DYeenorm2jvbf',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                    'DY' : ['1.','1.'] ,
-                             },
-                'cuts'  : [
-                            'hww2l2v_13TeV_2017_2jee_vbf',
-                            'hww2l2v_13TeV_2017_WW_vbf_2jee',
-                            'hww2l2v_13TeV_2017_top_vbf_2jee',
-                          ] ,
-                }
-
-
-nuisances['DYmmnorm0j'] = {
-                'name'  : 'hww_DYmmnorm0j',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                    'DY' : ['1.','1.'] ,
-                             },
-                'cuts'  : [ 
-                            'hww2l2v_13TeV_2017_0jmm', 
-                            'hww2l2v_13TeV_2017_0jmm_pt2ge20', 
-                            'hww2l2v_13TeV_2017_0jmm_pt2lt20', 
-                            'hww2l2v_13TeV_2017_WW_0jmm',
-                            'hww2l2v_13TeV_2017_top_0jmm',
-                          ] ,
-                }
-
-nuisances['DYmmnorm1j'] = {
-                'name'  : 'hww_DYmmnorm1j',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                    'DY' : ['1.','1.'] ,
-                             },
-                'cuts'  : [ 
-                            'hww2l2v_13TeV_2017_1jmm', 
-                            'hww2l2v_13TeV_2017_WW_1jmm',
-                          ] ,
-                }
-
-nuisances['DYmmnorm2j'] = {
-                'name'  : 'hww_DYmmnorm2j',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                    'DY' : ['1.','1.'] ,
-                             },
-                'cuts'  : [
-                            'hww2l2v_13TeV_2017_2jmm',
-                            'hww2l2v_13TeV_2017_WW_2jmm',
-                            'hww2l2v_13TeV_2017_2jee_vh2j',
-                            'hww2l2v_13TeV_2017_2jmm_vh2j',
-                            'hww2l2v_13TeV_2017_WW_2jmm_vh2j',
-                          ] ,
-                }
-
-nuisances['DYmmnorm2jvbf'] = {
-                'name'  : 'hww_DYmmnorm2jvbf',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                    'DY' : ['1.','1.'] ,
-                             },
-                'cuts'  : [
-                            'hww2l2v_13TeV_2017_2jmm_vbf',
-                            'hww2l2v_13TeV_2017_WW_2jmm_vbf',
-                            'hww2l2v_13TeV_2017_top_2jmm_vbf',
-                          ] ,
-                }
-
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat']  = {
               'type'  : 'auto',
@@ -948,6 +681,154 @@ nuisances['stat']  = {
               #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
               'samples' : {}
              }
+
+################################ DATA DRIVEN BACKGROUND UNCERTAINTIES  #################################
+
+#### WW fit
+nuisances['WWnorm0j']  = {
+               'name'  : 'CMS_hww_WWnorm0j',
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts0j
+              }
+
+nuisances['ggWWnorm0j']  = {
+               'name'  : 'CMS_hww_WWnorm0j',
+               'samples'  : {
+                   'ggWW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts0j
+              }
+
+nuisances['WWnorm1j']  = {
+               'name'  : 'CMS_hww_WWnorm1j',
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts1j
+              }
+
+nuisances['ggWWnorm1j']  = {
+               'name'  : 'CMS_hww_WWnorm1j',
+               'samples'  : {
+                   'ggWW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts1j
+              }
+
+nuisances['WWnorm2j']  = {
+               'name'  : 'CMS_hww_WWnorm2j',
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j
+              }
+
+nuisances['ggWWnorm2j']  = {
+               'name'  : 'CMS_hww_WWnorm2j',
+               'samples'  : {
+                   'ggWW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j
+              }
+
+#Top fit
+nuisances['Topnorm0j']  = {
+               'name'  : 'CMS_hww_Topnorm0j',
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts0j
+              }
+
+nuisances['Topnorm1j']  = {
+               'name'  : 'CMS_hww_Topnorm1j',
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts1j
+              }
+
+nuisances['Topnorm2j']  = {
+               'name'  : 'CMS_hww_Topnorm2j',
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j
+              }
+
+#### DY estimation (just create dummy histograms to be scaled by the DY Rin/out method)
+
+nuisances['DYeenorm0j'] = {
+                'name'  : 'DYeenorm0j',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                    'DY' : ['1.','1.'] ,
+                             },
+                'cuts'  : [cut for cut in cuts0j if 'ee' in cut]
+                }
+
+nuisances['DYeenorm1j'] = {
+                'name'  : 'DYeenorm1j',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                    'DY' : ['1.','1.'] ,
+                             },
+                'cuts'  : [cut for cut in cuts1j if 'ee' in cut]
+                }
+
+nuisances['DYeenorm2j'] = {
+                'name'  : 'DYeenorm2j',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                    'DY' : ['1.','1.'] ,
+                             },
+                'cuts'  : [cut for cut in cuts2j if 'ee' in cut]
+                }
+
+nuisances['DYmmnorm0j'] = {
+                'name'  : 'DYmmnorm0j',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                    'DY' : ['1.','1.'] ,
+                             },
+                'cuts'  : [cut for cut in cuts0j if 'mm' in cut]
+                }
+
+nuisances['DYmmnorm1j'] = {
+                'name'  : 'DYmmnorm1j',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                    'DY' : ['1.','1.'] ,
+                             },
+                'cuts'  : [cut for cut in cuts1j if 'mm' in cut]
+                }
+
+nuisances['DYmmnorm2j'] = {
+                'name'  : 'DYmmnorm2j',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                    'DY' : ['1.','1.'] ,
+                             },
+                'cuts'  : [cut for cut in cuts2j if 'mm' in cut]
+                }
+
 
 for n in nuisances.values():
     n['skipCMS'] = 1
@@ -960,7 +841,7 @@ try:
       newCuts = []
       for iCut in nuisances[iNP]['cuts']:
         for iOptim in optim:
-           newCuts.append(iCut+'_'+iOptim)
+           newCuts.append(iCut)
       nuisances[iNP]['cuts'] = newCuts
 except:
   print "No optim dictionary"

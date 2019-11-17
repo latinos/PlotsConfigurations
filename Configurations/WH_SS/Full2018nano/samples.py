@@ -104,7 +104,7 @@ DataTrig = {
 ###########################################
 
 ############ DY ############
-
+'''
 ptllDYW_NLO = '(0.87*(gen_ptll<10)+(0.379119+0.099744*gen_ptll-0.00487351*gen_ptll**2+9.19509e-05*gen_ptll**3-6.0212e-07*gen_ptll**4)*(gen_ptll>=10 && gen_ptll<45)+(9.12137e-01+1.11957e-04*gen_ptll-3.15325e-06*gen_ptll**2-4.29708e-09*gen_ptll**3+3.35791e-11*gen_ptll**4)*(gen_ptll>=45 && gen_ptll<200) + 1*(gen_ptll>200))'
 ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
 
@@ -118,7 +118,7 @@ samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50_ext'
 addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext',ptllDYW_NLO)
 #addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO)
 addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
-
+'''
 
 
 ############ Top ############
@@ -249,7 +249,7 @@ samples['ttH_hww']  = {  'name'   :   getSampleFiles(directory,'ttHToNonbb_M125'
 
 
 ############ H->TauTau ############
-
+'''
 splitHtt=False
 if not splitHtt:
 
@@ -289,7 +289,7 @@ else:
                            'suppressNegativeNuisances' :['all'],
                         }
 
-
+'''
 ###########################################
 ################## FAKE ###################
 ###########################################
@@ -302,7 +302,7 @@ else:
 #                       'FilesPerJob': 3,
 #                    }
 #
-
+'''
 samples['Fakes']  = {   'name': [ ] ,
                        'weight' : fakeW+'*'+METFilter_DATA+'*((Lepton_pdgId[0]*Lepton_pdgId[1]==11*13) || (Lepton_pdgId[0]*Lepton_pdgId[1]==11*11) || (Lepton_pdgId[0]*Lepton_pdgId[1]==13*13))',              #   weight/cut 
                        'weights' : [ ] ,
@@ -318,6 +318,43 @@ for Run in DataRun :
     for iFile in FileTarget:
       samples['Fakes']['name'].append(iFile)
       samples['Fakes']['weights'].append(DataTrig[DataSet])
+'''
+
+samples['Fakes_ee']  = {   'name': [ ] ,
+                       'weight' : fakeW+'*'+METFilter_DATA+'*(Lepton_pdgId[0]*Lepton_pdgId[1]==11*11)',              #   weight/cut 
+                       'weights' : [ ] ,
+                       'isData': ['all'],
+                       'FilesPerJob' : 15 ,
+                     }
+
+samples['Fakes_mm']  = {   'name': [ ] ,
+                       'weight' : fakeW+'*'+METFilter_DATA+'*(Lepton_pdgId[0]*Lepton_pdgId[1]==13*13)',              #   weight/cut 
+                       'weights' : [ ] ,
+                       'isData': ['all'],
+                       'FilesPerJob' : 15 ,
+                     }
+
+
+samples['Fakes_em']  = {   'name': [ ] ,
+                       'weight' : fakeW+'*'+METFilter_DATA+'*(Lepton_pdgId[0]*Lepton_pdgId[1]==11*13)',              #   weight/cut 
+                       'weights' : [ ] ,
+                       'isData': ['all'],
+                       'FilesPerJob' : 15 ,
+                     }
+
+for Run in DataRun :
+  directory = treeBaseDir+'Run2018_102X_nAODv5_Full2018v5/DATAl1loose2018v5__l2loose__fakeW/'
+  for DataSet in DataSets :
+    FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
+    for iFile in FileTarget:
+    #  samples['Fakes']['name'].append(iFile)
+    #  samples['Fakes']['weights'].append(DataTrig[DataSet])
+      samples['Fakes_ee']['name'].append(iFile)
+      samples['Fakes_ee']['weights'].append(DataTrig[DataSet])
+      samples['Fakes_mm']['name'].append(iFile)
+      samples['Fakes_mm']['weights'].append(DataTrig[DataSet])
+      samples['Fakes_em']['name'].append(iFile)
+      samples['Fakes_em']['weights'].append(DataTrig[DataSet])
 
 ###########################################
 ################## DATA ###################

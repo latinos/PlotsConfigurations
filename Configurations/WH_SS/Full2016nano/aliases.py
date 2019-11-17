@@ -7,7 +7,8 @@ configurations = os.path.dirname(configurations) # Configurations
 
 #aliases = {}
 
-mc = [skey for skey in samples if skey not in ('Fakes', 'DATA')]
+#mc = [skey for skey in samples if skey not in ('Fakes', 'DATA')]
+mc = [skey for skey in samples if skey not in ('Fakes_ee','Fakes_mm','Fakes_em', 'DATA')]
 
 bAlgo = 'DeepB'
 bWP = '0.1241'
@@ -20,35 +21,48 @@ aliases['PromptGenLepMatch2l'] = {
 # And variations - already divided by central values in formulas !
 aliases['fakeWEleUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleUp',
-    'samples': ['Fakes']
+#    'samples': ['Fakes']
+    'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
+
 }
 aliases['fakeWEleDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleDown',
-    'samples': ['Fakes']
+#    'samples': ['Fakes']
+    'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
+
 }
 aliases['fakeWMuUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuUp',
-    'samples': ['Fakes']
+#    'samples': ['Fakes']
+    'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
+
 }
 aliases['fakeWMuDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuDown',
-    'samples': ['Fakes']
+#    'samples': ['Fakes']
+    'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
+
 }
 aliases['fakeWStatEleUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleUp',
-    'samples': ['Fakes']
+#    'samples': ['Fakes']
+    'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
 }
 aliases['fakeWStatEleDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleDown',
-    'samples': ['Fakes']
+#    'samples': ['Fakes']
+    'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
 }
 aliases['fakeWStatMuUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuUp',
-    'samples': ['Fakes']
+#    'samples': ['Fakes']
+    'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
+
 }
 aliases['fakeWStatMuDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuDown',
-    'samples': ['Fakes']
+#    'samples': ['Fakes']
+    'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
 }
 
 # variations
@@ -181,4 +195,14 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
     }
 
 
+# In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
+aliases['lhe_mW1'] = {
+    'expr': 'TMath::Sqrt(2. * LHEPart_pt[0] * LHEPart_pt[1] * (TMath::CosH(LHEPart_eta[0] - LHEPart_eta[1]) - TMath::Cos(LHEPart_phi[0] - LHEPart_phi[1])))',
+    'samples': ['WWewk']
+}
 
+# and [2] [3] are the second W
+aliases['lhe_mW2'] = {
+    'expr': 'TMath::Sqrt(2. * LHEPart_pt[2] * LHEPart_pt[3] * (TMath::CosH(LHEPart_eta[2] - LHEPart_eta[3]) - TMath::Cos(LHEPart_phi[2] - LHEPart_phi[3])))',
+    'samples': ['WWewk']
+}
