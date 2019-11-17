@@ -134,11 +134,11 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 
 Top_pTrw = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )'
 
-samples['top'] = {    'name'   :   getSampleFiles(directory,'TTTo2L2Nu',False,'nanoLatino_') 
-                                 + getSampleFiles(directory,'ST_s-channel',False,'nanoLatino_') 
-                                 + getSampleFiles(directory,'ST_t-channel_antitop',False,'nanoLatino_') 
-                                 + getSampleFiles(directory,'ST_t-channel_top',False,'nanoLatino_') 
-                                 + getSampleFiles(directory,'ST_tW_antitop',False,'nanoLatino_') 
+samples['top'] = {    'name'   :   getSampleFiles(directory,'TTTo2L2Nu',False,'nanoLatino_')
+                                 + getSampleFiles(directory,'ST_s-channel',False,'nanoLatino_')
+                                 + getSampleFiles(directory,'ST_t-channel_antitop',False,'nanoLatino_')
+                                 + getSampleFiles(directory,'ST_t-channel_top',False,'nanoLatino_')
+                                 + getSampleFiles(directory,'ST_tW_antitop',False,'nanoLatino_')
                                  + getSampleFiles(directory,'ST_tW_top',False,'nanoLatino_') ,
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                      'FilesPerJob' : 5,
@@ -158,9 +158,9 @@ samples['WWewk'] = {   'name'  : getSampleFiles(directory, 'WpWmJJ_EWK',False,'n
                        'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+ '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)*(lhe_mW1[0] > 60. && lhe_mW1[0] < 100. && lhe_mW2[0] > 60. && lhe_mW2[0] < 100.)', #filter tops and Higgs, limit w mass
                    }
 
-samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM',False,'nanoLatino_'),      
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,  
-                      'isData': ['0'],                            
+samples['ggWW']  = {  'name'   : getSampleFiles(directory,'GluGluWWTo2L2Nu_MCFM',False,'nanoLatino_'),
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                      'isData': ['0'],
                    }
 
 ############ Vg ############
@@ -245,12 +245,12 @@ samples['ggZH_hww']  = {  'name'   :   getSampleFiles(directory,'ggZH_HToWW_M125
 #  exec(handle)
 #  handle.close()
 directorySig='/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv5_SigOnly_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__l2Kin/'
-  
+
 #for cat,num in HTXSStage1_1Categories.iteritems():
 #for cat,num in HTXSStage1_1_fineCategories.iteritems():
 #  if 'QQ2HLNU_' in cat:
 #    if '_FWDH' in cat: continue
-#    samples['WH_hww_'+cat.replace('QQ2HLNU_','')] = { 'name'   :   
+#    samples['WH_hww_'+cat.replace('QQ2HLNU_','')] = { 'name'   :
 #                                                      getSampleFiles(directorySig,'HWplusJ_HToWW_M125',False,'nanoLatino_')
 #                                                      + getSampleFiles(directorySig,'HWminusJ_HToWW_M125',False,'nanoLatino_'),
 #                                                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')',
@@ -300,12 +300,12 @@ if not splitHtt:
                          'suppressNegativeNuisances' :['all'],
                      }
 else:
-  
+
   samples['ggH_htt']  = {  'name'   : getSampleFiles(directory,'GluGluHToTauTau_M125',False,'nanoLatino_'),
                            'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                            'suppressNegative' :['all'],
                            'suppressNegativeNuisances' :['all'],
-                        } 
+                        }
 
   samples['qqH_htt']  = {  'name'   : getSampleFiles(directory,'VBFHToTauTau_M125',False,'nanoLatino_'),
                            'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
@@ -341,8 +341,8 @@ else:
 #
 '''
 samples['Fakes']  = {   'name': [ ] ,
-                       #'weight' : fakeW+'*'+METFilter_DATA+'*((Lepton_pdgId[0]*Lepton_pdgId[1]==11*13) || (Lepton_pdgId[0]*Lepton_pdgId[1]==11*11) || (Lepton_pdgId[0]*Lepton_pdgId[1]==13*13))',              #   weight/cut 
-                       'weight' : fakeW+'*'+METFilter_DATA, 
+                       #'weight' : fakeW+'*'+METFilter_DATA+'*((Lepton_pdgId[0]*Lepton_pdgId[1]==11*13) || (Lepton_pdgId[0]*Lepton_pdgId[1]==11*11) || (Lepton_pdgId[0]*Lepton_pdgId[1]==13*13))',              #   weight/cut
+                       'weight' : fakeW+'*'+METFilter_DATA,
                        'weights' : [ ] ,
                        'isData': ['all'],
                        'FilesPerJob' : 10 ,
@@ -350,21 +350,21 @@ samples['Fakes']  = {   'name': [ ] ,
 '''
 
 samples['Fakes_ee']  = {   'name': [ ] ,
-                       'weight' : fakeW+'*'+METFilter_DATA+'*(Lepton_pdgId[0]*Lepton_pdgId[1]==11*11)',              #   weight/cut 
+                       'weight' : fakeW+'*'+METFilter_DATA+'*(Lepton_pdgId[0]*Lepton_pdgId[1]==11*11)',              #   weight/cut
                        'weights' : [ ] ,
                        'isData': ['all'],
                        'FilesPerJob' : 15 ,
                      }
 
 samples['Fakes_mm']  = {   'name': [ ] ,
-                       'weight' : fakeW+'*'+METFilter_DATA+'*(Lepton_pdgId[0]*Lepton_pdgId[1]==13*13)',              #   weight/cut 
+                       'weight' : fakeW+'*'+METFilter_DATA+'*(Lepton_pdgId[0]*Lepton_pdgId[1]==13*13)',              #   weight/cut
                        'weights' : [ ] ,
                        'isData': ['all'],
                        'FilesPerJob' : 15 ,
                      }
 
 samples['Fakes_em']  = {   'name': [ ] ,
-                       'weight' : fakeW+'*'+METFilter_DATA+'*(Lepton_pdgId[0]*Lepton_pdgId[1]==11*13)',              #   weight/cut 
+                       'weight' : fakeW+'*'+METFilter_DATA+'*(Lepton_pdgId[0]*Lepton_pdgId[1]==11*13)',              #   weight/cut
                        'weights' : [ ] ,
                        'isData': ['all'],
                        'FilesPerJob' : 15 ,
