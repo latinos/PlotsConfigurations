@@ -23,8 +23,8 @@ categorization_wh = {
     'FWDH' : '1==1',
     'PTV_0_75' : 'WlepPt_whssv1>0 && WlepPt_whssv1 <= 75',
     'PTV_75_150' : 'WlepPt_whssv1 > 75 && WlepPt_whssv1 <= 150',
-    'PTV_150_250_0J' : 'WlepPt_whssv1 > 150 && WlepPt_whssv1 <= 250 && Sum$(CleanJet_pt>30)==2',
-    'PTV_150_250_GE1J' : 'WlepPt_whssv1 > 150 && WlepPt_whssv1 <= 250 && Sum$(CleanJet_pt>30)>=3',
+    'PTV_150_250_0J' : 'WlepPt_whssv1 > 150 && WlepPt_whssv1 <= 250',
+    'PTV_150_250_GE1J' : 'WlepPt_whssv1 > 150 && WlepPt_whssv1 <= 250',
     'PTV_GT250' : 'WlepPt_whssv1 > 250',
     }
 
@@ -40,4 +40,14 @@ whcuts['hww2l2v_13TeV_of2j_WH_SS_eu_1j'] = 'eu[0] && oneJet'
 
 for key,value in whcuts.iteritems():
     for cat,val in categorization_wh.iteritems():
-        cuts['%s_%s' %(key,cat)] = '%s && %s' %(value,val)
+        if '_2j' in key:
+            if '_0J' in cat:
+                njet='Sum$(CleanJet_pt>30)==2'
+            elif '_GE1J' in cat:
+                njet='Sum$(CleanJet_pt>30)>=3'
+        elif '_1j' in key:
+            if '_0J' in cat:
+                njet='Sum$(CleanJet_pt>30)==1'
+            elif '_GE1J' in cat:
+                njet='Sum$(CleanJet_pt>30)>=2'
+        cuts['%s_%s' %(key,cat)] = '%s && %s && %s' %(value,val,njet)
