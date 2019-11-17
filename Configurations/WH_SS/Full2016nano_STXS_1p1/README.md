@@ -1,4 +1,4 @@
-Intructions to run the ggH HTXS analysis for 2017
+Intructions to run the WHSS STXS analysis for 2016
 
 Make the shapes:
 
@@ -11,7 +11,7 @@ Add root files:
 If this is too slow try to hadd manually (TAG is the one in configuration.py)
 
     cd rootFileTAG
-    hadd -j 5 -f plots_ggH_TAG_ALL.root plots_ggH_TAG_ALL_*
+    hadd -j 5 -f plots__WH2016nano_HTXS1p1_ALL.root plots__WH2016nano_HTXS1p1_ALL_*
 
 Make plots:
 
@@ -28,6 +28,8 @@ Combine datacards:
     cd PATH_TO_COMBINE_INSTALL; cmsenv; cd -;
     # You need to edit the following script manually before running
     ./scripts/doCombination.sh
+
+===================== DEVEL ======================
 
 Make the workspace:
    
