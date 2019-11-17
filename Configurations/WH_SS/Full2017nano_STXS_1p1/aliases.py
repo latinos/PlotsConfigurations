@@ -100,7 +100,7 @@ aliases['genWPt'] = {
 
 aliases['WlepPt_whssv1'] = {
     'linesToAdd': [
-        '.L %s/WH_SS/Full2017nano_STXS_1p1/proxyVar/wlep1pt.cc+' % configurations
+        '.L %s/WH_SS/Full2016nano_STXS_1p1/proxyVar/wlep1pt.cc+' % configurations
     ],
     'class': 'WHlepv1',
     'args': (),
