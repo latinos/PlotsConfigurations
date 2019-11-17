@@ -166,15 +166,15 @@ nuisances['eff_e'] = {
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
 }
 
-nuisances['electronpt'] = {
-    'name': 'CMS_scale_e_2017',
-    'kind': 'tree',
-    'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp'   : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__ElepTup',
-    'folderDown' : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__ElepTdo',
-    'AsLnN': '1'
-}
+#nuisances['electronpt'] = {
+#    'name': 'CMS_scale_e_2017',
+#    'kind': 'tree',
+#    'type': 'shape',
+#    'samples': dict((skey, ['1', '1']) for skey in mc),
+#    'folderUp'   : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__ElepTup',
+#    'folderDown' : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__ElepTdo',
+#    'AsLnN': '1'
+#}
 
 ##### Muon Efficiency and energy scale
 
@@ -185,39 +185,39 @@ nuisances['eff_m'] = {
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
 }
 
-nuisances['muonpt'] = {
-    'name': 'CMS_scale_m_2017',
-    'kind': 'tree',
-    'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp'   : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__MupTup',
-    'folderDown' : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__MupTdo',
-    'AsLnN': '1'
-}
+#nuisances['muonpt'] = {
+#    'name': 'CMS_scale_m_2017',
+#    'kind': 'tree',
+#    'type': 'shape',
+#    'samples': dict((skey, ['1', '1']) for skey in mc),
+#    'folderUp'   : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__MupTup',
+#    'folderDown' : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__MupTdo',
+#    'AsLnN': '1'
+#}
 
 ##### Jet energy scale
 
-nuisances['jes'] = {
-    'name': 'CMS_scale_j_2017',
-    'kind': 'tree',
-    'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp'   : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__JESup',
-    'folderDown' : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__JESdo',
-    'AsLnN': '1'
-}
+#nuisances['jes'] = {
+#    'name': 'CMS_scale_j_2017',
+#    'kind': 'tree',
+#    'type': 'shape',
+#    'samples': dict((skey, ['1', '1']) for skey in mc),
+#    'folderUp'   : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__JESup',
+#    'folderDown' : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__JESdo',
+#    'AsLnN': '1'
+#}
 
 ##### MET energy scale
 
-nuisances['met'] = {
-    'name': 'CMS_scale_met_2017',
-    'kind': 'tree',
-    'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp'   : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__METup',
-    'folderDown' : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__METdo',
-    'AsLnN': '1'
-}
+#nuisances['met'] = {
+#    'name': 'CMS_scale_met_2017',
+#    'kind': 'tree',
+#    'type': 'shape',
+#    'samples': dict((skey, ['1', '1']) for skey in mc),
+#    'folderUp'   : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__METup',
+#    'folderDown' : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__METdo',
+#    'AsLnN': '1'
+#}
 
 # PS and UE
 #FIXME: Add PS uncertainty
