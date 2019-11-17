@@ -44,12 +44,12 @@ for key,value in whcuts.iteritems():
     for cat,val in categorization_wh.iteritems():
         njet='1==1'
         if '_2j' in key:
-            if '_0J' incat:
+            if '_0J' in cat:
                 njet='Sum$(CleanJet_pt>30)==2'
             elif '_GE1J' in cat:
                 njet='Sum$(CleanJet_pt>30)>=3'
         elif '_1j' in key:
-            if '_0J' incat:
+            if '_0J' in cat:
                 njet='Sum$(CleanJet_pt>30)==1'
             elif '_GE1J' in cat:
                 njet='Sum$(CleanJet_pt>30)>=2'
