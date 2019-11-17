@@ -83,11 +83,6 @@ aliases['SFweightMuDown'] = {
     'samples': mc
 }
 
-#SR cut
-aliases['sr'] = {
-    'expr' : '1==1'
-}
-
 aliases['uu'] = {
     'expr': '(Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13)'
 }
@@ -101,6 +96,15 @@ aliases['eu'] = {
 #genPTW
 aliases['genWPt'] = {
     'expr' : 'Sum$(GenPart_pt*(abs(GenPart_pdgId)==24&&((GenPart_statusFlags&128)==128)&&(abs(GenPart_pdgId[GenPart_genPartIdxMother])!=25)))'
+}
+
+aliases['WlepPt_whssv1'] = {
+    'linesToAdd': [
+        '.L %s/WH_SS/Full2016nano_STXS_1p1/proxyVar/wlep1pt.cc+' % configurations
+    ],
+    'class': 'WHlepv1',
+    'args': (),
+    'samples': mc
 }
 
 # No jet with pt > 30 GeV
@@ -157,15 +161,6 @@ aliases['Jet_btagSF_shapeFix'] = {
     ],
     'class': 'BtagSF',
     'args': (btagSFSource,),
-    'samples': mc
-}
-
-aliases['WlepPt_whssv1'] = {
-    'linesToAdd': [
-        '.L %s/WH_SS/Full2016nano_STXS_1p1/proxyVar/wlep1pt.cc+' % configurations
-    ],
-    'class': 'WHlepv1',
-    'args': (),
     'samples': mc
 }
 

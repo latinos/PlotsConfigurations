@@ -8,11 +8,11 @@ variables['events']  = {   'name': '1',
                            'fold' : 3
                        }
 
-variables['WlepPt_whss'] = { 'name': 'WlepPt_whss',
-                             'range' : (100,0,500),
-                             'xaxis' : 'Lepton from W1 [GeV]',
-                             'fold' : 1
-                         }
+#variables['WlepPt_whss'] = { 'name': 'WlepPt_whss',
+#                             'range' : (100,0,500),
+#                             'xaxis' : 'Lepton from W1 [GeV]',
+#                             'fold' : 1
+#                         }
 
 variables['WlepPt_whssv1'] = { 'name': 'WlepPt_whssv1',
                              'range' : (100,0,500),
