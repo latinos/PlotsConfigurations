@@ -18,15 +18,11 @@ supercut = 'mll>12  \
             && mlljj20_whss > 50. \
             && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 \
             '
-
-categorization_wh = {
-    'FWDH' : '1==1',
-    'PTV_0_75' : 'WlepPt_whssv1>0 && WlepPt_whssv1 <= 75',
-    'PTV_75_150' : 'WlepPt_whssv1 > 75 && WlepPt_whssv1 <= 150',
-    'PTV_150_250_0J' : 'WlepPt_whssv1 > 150 && WlepPt_whssv1 <= 250',
-    'PTV_150_250_GE1J' : 'WlepPt_whssv1 > 150 && WlepPt_whssv1 <= 250',
-    'PTV_GT250' : 'WlepPt_whssv1 > 250',
-    }
+            
+if os.path.exists('HTXS_stage1_categories.py'):
+  handle = open('HTXS_stage1_categories.py','r')
+  exec(handle)
+  handle.close()
 
 ## 2jets
 whcuts['hww2l2v_13TeV_of2j_WH_SS_uu_2j'] = 'uu[0] && twoJetOrMore && mjj < 100'
