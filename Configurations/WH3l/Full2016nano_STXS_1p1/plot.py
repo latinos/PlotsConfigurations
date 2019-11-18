@@ -4,6 +4,18 @@
 # Groups of samples to improve the plots.
 # If not defined, normal plots is used
 
+import os
+
+if os.path.exists('HTXS_stage1_categories.py') :
+    handle = open('HTXS_stage1_categories.py','r')
+    exec(handle)
+    handle.close()
+
+sampleNames = []
+for cat in categorization_wh:
+    sampleNames.append('WH_hww_%s'%cat)
+    sampleNames.append('WH_htt_%s'%cat)
+
 
 #groupPlot['DY']  = {  
 #                  'nameHR' : "DY",
@@ -81,6 +93,17 @@ groupPlot['Higgs']  = {
                   'color': 632, # kRed 
                   'samples'  : ['WH_htt', 'WH_hww', 'ZH_hww']
               }
+
+for s in sampleNames:
+    groupPlot['Higgs']['samples'].append(s)
+
+for s in sampleNames:
+    plot[s]  = {
+        'nameHR' : s,
+        'color': 632, # kRed,  
+        'isSignal' : 1,
+        'isData'   : 0
+    }
 
 #plot = {}
 

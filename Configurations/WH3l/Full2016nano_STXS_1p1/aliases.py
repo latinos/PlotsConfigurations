@@ -21,11 +21,11 @@ aliases['genWPt'] = {
     'expr' : 'Sum$(GenPart_pt*(abs(GenPart_pdgId)==24&&((GenPart_statusFlags&128)==128)&&(abs(GenPart_pdgId[GenPart_genPartIdxMother])!=25)))'
 }
 
-aliases['WlepPt_whssv1'] = {
+aliases['WlepPt_wh3l'] = {
     'linesToAdd': [
-        '.L %s/WH_SS/Full2016nano_STXS_1p1/proxyVar/wlep1pt.cc+' % configurations
+        '.L %s/WH31/Full2016nano_STXS_1p1/proxyVar/wleph3l.cc+' % configurations
     ],
-    'class': 'WHlepv1',
+    'class': 'WlepH3l',
     'args': (),
     'samples': mc
 }
