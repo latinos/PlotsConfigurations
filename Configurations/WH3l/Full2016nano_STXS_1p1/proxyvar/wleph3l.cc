@@ -115,9 +115,9 @@ WlepH3l::setValues(long long _iEntry)
   float maxdphi = -9999.;
   float dr;
   float dphi;
-  int leptonIdx1=-1;
-  int leptonIdx2=-1;
-  int leptonIdx3=-1;
+  unsigned int leptonIdx1=999;
+  unsigned int leptonIdx2=999;
+  unsigned int leptonIdx3=999;
 
   for (unsigned i=0; i != nlep; i++){
     for (unsigned j=0; j != nlep; j++){
@@ -135,7 +135,7 @@ WlepH3l::setValues(long long _iEntry)
     }
   }
   //Identify the third lepton
-  if ( (leptonIdx1!=-1 && leptonIdx2!=-1) && nlep>2 ){
+  if ( (leptonIdx1!=999 && leptonIdx2!=999) && nlep>2 ){
       Slepton1.SetPtEtaPhiM( Lepton_pt->At(leptonIdx1) , Lepton_eta->At(leptonIdx1) , Lepton_phi->At(leptonIdx1) , 0. );
       Slepton2.SetPtEtaPhiM( Lepton_pt->At(leptonIdx2) , Lepton_eta->At(leptonIdx2) , Lepton_phi->At(leptonIdx2) , 0. );
       SSlepton=Slepton1+Slepton2;
