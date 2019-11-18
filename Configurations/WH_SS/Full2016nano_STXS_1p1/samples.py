@@ -233,8 +233,8 @@ samples['ggZH_hww']  = {  'name'   :   getSampleFiles(directory,'ggZH_HToWW_M125
                      }
 ############ WH H->WW ############
 
-samples['WH_hww']  = {  'name'   :   getSampleFiles(directory,'HWplusJ_HToWW_M125',False,'nanoLatino_')
-                                   + getSampleFiles(directory,'HWminusJ_HToWW_M125',False,'nanoLatino_'),
+samples['WH_hww']  = {  'name'   :   getSampleFiles(directory,'HWplusJ_HToWW_M125_PrivateNano',False,'nanoLatino_')
+                                   + getSampleFiles(directory,'HWminusJ_HToWW_M125_PrivateNano',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                      }
 
@@ -243,12 +243,12 @@ if os.path.exists('HTXS_stage1_categories.py'):
   exec(handle)
   handle.close()
 
-directorySig='/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv5_SigOnly_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__l2Kin/'
+#directorySig='/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv5_SigOnly_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__l2Kin/'
 
 for cat,cut in categorization_wh.iteritems():
   samples['WH_hww_%s' %cat] = { 'name'   :
-                                getSampleFiles(directorySig,'HWplusJ_HToWW_M125',False,'nanoLatino_')
-                                + getSampleFiles(directorySig,'HWminusJ_HToWW_M125',False,'nanoLatino_'),
+                                getSampleFiles(directory,'HWplusJ_HToWW_M125_PrivateNano',False,'nanoLatino_')
+                                + getSampleFiles(directory,'HWminusJ_HToWW_M125_PrivateNano',False,'nanoLatino_'),
                                 'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*('+cut+')',
                               }
 
