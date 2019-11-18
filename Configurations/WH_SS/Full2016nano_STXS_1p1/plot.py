@@ -30,13 +30,13 @@ groupPlot['Fake']  = {
                   'samples'  : ['Fakes_ee','Fakes_mm','Fakes_em']
               }
 
-#groupPlot['DY']  = {  
-#                  'nameHR' : "DY",
-#                  'isSignal' : 0,
-#                  'color': 418,    # kGreen+2
-#                  'samples'  : ['DY']
-#              }
-#
+groupPlot['DY']  = {  
+                  'nameHR' : "DY",
+                  'isSignal' : 0,
+                  'color': 418,    # kGreen+2
+                  'samples'  : ['DY']
+              }
+
 
 
 groupPlot['VVV']  = {  
@@ -68,25 +68,36 @@ groupPlot['VgS']  = {
                   'samples'  : ['VgS','WZgS']
               }
 
-
+categorization_wh = { 'FWDH' : 'abs(HTXS_Higgs_y) > 2.5',
+                      'PTV_0_75' : 'abs(HTXS_Higgs_y) < 2.5 && genWPt <= 75',
+                      'PTV_75_150' : 'abs(HTXS_Higgs_y) < 2.5 && genWPt > 75 && genWPt <= 150',
+                      'PTV_150_250_0J' : 'abs(HTXS_Higgs_y) < 2.5 && genWPt > 150 && genWPt <= 250 && HTXS_njets30==0',
+                      'PTV_150_250_GE1J' : 'abs(HTXS_Higgs_y) < 2.5 && genWPt > 150 && genWPt <= 250 && HTXS_njets30>=1',
+                      'PTV_GT250' : 'abs(HTXS_Higgs_y) < 2.5 && genWPt > 250',
+                    }
 
 groupPlot['Higgs']  = {  
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
+                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
 		#  'samples'  : ['WH_hww']
               }
 
+if os.path.exists('HTXS_stage1_categories.py') :
+    handle = open('HTXS_stage1_categories.py','r')
+    exec(handle)
+    handle.close()
 
-
+for cat in categorization_wh:
+    groupPlot['Higgs']['samples'].append('WH_hww_%s'%cat)
 
 
 #plot = {}
 
 # keys here must match keys in samples.py    
 #     
-'''               
+   
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
@@ -107,7 +118,6 @@ plot['DY']  = {
                         #},
 
               }
-'''
 
 #plot['Fakes']  = {  
 #                  'color': 921,    # kGray + 1

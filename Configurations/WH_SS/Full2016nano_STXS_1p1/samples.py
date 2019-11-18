@@ -213,7 +213,6 @@ samples['VVV']  = {  'name'   :   getSampleFiles(directory,'ZZZ',False,'nanoLati
 
 ############ ggH H->WW ############
 #FIXME Add reweighting to MiNLO NNLOPS or use NNLOPS sample when available
-'''
 samples['ggH_hww']  = {  'name'   :   getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                      }
@@ -232,48 +231,26 @@ samples['ZH_hww']  = {  'name'   :   getSampleFiles(directory,'HZJ_HToWW_M125',F
 samples['ggZH_hww']  = {  'name'   :   getSampleFiles(directory,'ggZH_HToWW_M125',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                      }
-'''
 ############ WH H->WW ############
 
-#samples['WH_hww']  = {  'name'   :   getSampleFiles(directory,'HWplusJ_HToWW_M125',False,'nanoLatino_')
-#                                   + getSampleFiles(directory,'HWminusJ_HToWW_M125',False,'nanoLatino_'),
-#                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-#                     }
+samples['WH_hww']  = {  'name'   :   getSampleFiles(directory,'HWplusJ_HToWW_M125',False,'nanoLatino_')
+                                   + getSampleFiles(directory,'HWminusJ_HToWW_M125',False,'nanoLatino_'),
+                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                     }
 
-#if os.path.exists('HTXS_stage1_categories.py'):
-#  handle = open('HTXS_stage1_categories.py','r')
-#  exec(handle)
-#  handle.close()
+if os.path.exists('HTXS_stage1_categories.py'):
+  handle = open('HTXS_stage1_categories.py','r')
+  exec(handle)
+  handle.close()
+
 directorySig='/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv5_SigOnly_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__l2Kin/'
-
-#for cat,num in HTXSStage1_1Categories.iteritems():
-#for cat,num in HTXSStage1_1_fineCategories.iteritems():
-#  if 'QQ2HLNU_' in cat:
-#    if '_FWDH' in cat: continue
-#    samples['WH_hww_'+cat.replace('QQ2HLNU_','')] = { 'name'   :
-#                                                      getSampleFiles(directorySig,'HWplusJ_HToWW_M125',False,'nanoLatino_')
-#                                                      + getSampleFiles(directorySig,'HWminusJ_HToWW_M125',False,'nanoLatino_'),
-#                                                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')',
-#                                                    }
-
-#genWPt='Sum$(GenPart_pt*(abs(GenPart_pdgId)==24&&((GenPart_statusFlags&128)==128)&&(abs(GenPart_pdgId[GenPart_genPartIdxMother])!=25)))'
-
-categorization_wh = { 'FWDH' : 'abs(HTXS_Higgs_y) > 2.5',
-                      'PTV_0_75' : 'abs(HTXS_Higgs_y) < 2.5 && genWPt <= 75',
-                      'PTV_75_150' : 'abs(HTXS_Higgs_y) < 2.5 && genWPt > 75 && genWPt <= 150',
-                      'PTV_150_250_0J' : 'abs(HTXS_Higgs_y) < 2.5 && genWPt > 150 && genWPt <= 250 && HTXS_njets30==0',
-                      'PTV_150_250_GE1J' : 'abs(HTXS_Higgs_y) < 2.5 && genWPt > 150 && genWPt <= 250 && HTXS_njets30>=1',
-                      'PTV_GT250' : 'abs(HTXS_Higgs_y) < 2.5 && genWPt > 250',
-                    }
 
 for cat,cut in categorization_wh.iteritems():
   samples['WH_hww_%s' %cat] = { 'name'   :
-                             getSampleFiles(directorySig,'HWplusJ_HToWW_M125',False,'nanoLatino_')
-                             + getSampleFiles(directorySig,'HWminusJ_HToWW_M125',False,'nanoLatino_'),
-                             'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+cut,
-                           }
-  #addSampleWeight(samples,'WH_hww_%s' %cat,'HWplusJ_HToWW_M125',    cut)
-  #addSampleWeight(samples,'WH_hww_%s' %cat,'HWminusJ_HToWW_M125',   cut)
+                                getSampleFiles(directorySig,'HWplusJ_HToWW_M125',False,'nanoLatino_')
+                                + getSampleFiles(directorySig,'HWminusJ_HToWW_M125',False,'nanoLatino_'),
+                                'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*('+cut+')',
+                              }
 
 ############ ttH ############
 

@@ -130,7 +130,7 @@ samples['top'] = {    'name'   :   getSampleFiles(directory,'TTTo2L2Nu',False,'n
                                  + getSampleFiles(directory,'ST_tW_antitop_ext1',False,'nanoLatino_') 
                                  + getSampleFiles(directory,'ST_tW_top_ext1',False,'nanoLatino_') ,
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 1,
+                     'FilesPerJob' : 4,
                  }
 
 addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
@@ -188,7 +188,7 @@ samples['VZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo2L2Nu_ext1',False
                                + getSampleFiles(directory,'ZZTo4L_ext1',False,'nanoLatino_')
                                + getSampleFiles(directory,'WZTo2L2Q',False,'nanoLatino_'),
                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*1.11',
-                    'FilesPerJob' : 2,
+                    'FilesPerJob' : 4,
                  }
 
 
