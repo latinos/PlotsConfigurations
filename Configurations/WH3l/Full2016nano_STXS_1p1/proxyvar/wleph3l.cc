@@ -1,5 +1,5 @@
 /*
-  Temporary on-the-fly wlep1pt var for nanoLatino trees nAODv5_2016/2017/2018v5 or earlier.
+  Temporary on-the-fly wh3l_wlep for nanoLatino trees nAODv5_2016/2017/2018v5 or earlier.
 */
 
 #include "LatinoAnalysis/MultiDraw/interface/TTreeFunction.h"
@@ -13,12 +13,12 @@
 #include "TLorentzVector.h"
 #include "TMath.h"
 
-class WHlepv1 : public multidraw::TTreeFunction {
+class WlepH31 : public multidraw::TTreeFunction {
 public:
-  WHlepv1();
+  WlepH31();
 
-  char const* getName() const override { return "WHlepv1"; }
-  TTreeFunction* clone() const override { return new WHlepv1(); }
+  char const* getName() const override { return "WlepH31"; }
+  TTreeFunction* clone() const override { return new WlepH31(); }
   //TTreeFunction* clone() const override;
 
   void beginEvent(long long) override;
@@ -30,53 +30,47 @@ protected:
   void bindTree_(multidraw::FunctionLibrary&) override;
 
   static void setValues(long long);
-  
+
   static long long currentEntry;
-  static UIntValueReader* nCleanJet;
-  static FloatArrayReader* CleanJet_pt;
-  static FloatArrayReader* CleanJet_eta;
-  static FloatArrayReader* CleanJet_phi;
   static UIntValueReader* nLepton;
   static FloatArrayReader* Lepton_pt;
   static FloatArrayReader* Lepton_eta;
   static FloatArrayReader* Lepton_phi;
-
-  static std::vector<float> wlep1pt;
+  static IntArrayReader* Lepton_pdgId;
+  static std::vector<float> wleph3l;
 
 };
 
 /*static*/
-long long WHlepv1::currentEntry{-2};
-UIntValueReader* WHlepv1::nCleanJet{};
-FloatArrayReader* WHlepv1::CleanJet_pt{};
-FloatArrayReader* WHlepv1::CleanJet_eta{};
-FloatArrayReader* WHlepv1::CleanJet_phi{};
-UIntValueReader* WHlepv1::nLepton{};
-FloatArrayReader* WHlepv1::Lepton_pt{};
-FloatArrayReader* WHlepv1::Lepton_eta{};
-FloatArrayReader* WHlepv1::Lepton_phi{};
-std::vector<float> WHlepv1::wlep1pt{};
+long long WlepH31::currentEntry{-2};
+UIntValueReader* WlepH31::nLepton{};
+FloatArrayReader* WlepH31::Lepton_pt{};
+FloatArrayReader* WlepH31::Lepton_eta{};
+FloatArrayReader* WlepH31::Lepton_phi{};
+IntArrayReader* WlepH3l::Lepton_pdgId{};
 
-WHlepv1::WHlepv1() :
+std::vector<float> WlepH31::wleph3l{};
+
+WlepH31::WlepH31() :
   TTreeFunction()
 {}
 
 void
-WHlepv1::beginEvent(long long _iEntry)
+WlepH31::beginEvent(long long _iEntry)
 {
   setValues(_iEntry);
 }
 
 unsigned
-WHlepv1::getNdata()
+WlepH31::getNdata()
 {
-  return wlep1pt.size();
+  return wleph3l.size();
 }
 
 double
-WHlepv1::evaluate(unsigned ij)
+WlepH31::evaluate(unsigned ij)
 {
-  return wlep1pt[ij];
+  return wleph3l[ij];
 }
 
 // --- Helper
@@ -103,71 +97,82 @@ deltaEta(float eta1, float eta2) {
 // Helper ---
 
 void
-WHlepv1::setValues(long long _iEntry)
+WlepH31::setValues(long long _iEntry)
 {
   if (_iEntry == currentEntry)
     return;
 
   currentEntry = _iEntry;
 
-  wlep1pt.clear();
+  wleph3l.clear();
 
-  float mindr = 9999.;
-  int leptonIdx1=-1;
-  float maxdphi = -9999.;
-  float dphi;
-
-  TLorentzVector Whad(0.,0.,0.,0.);
-  TLorentzVector jets(0.,0.,0.,0.);
-
-  unsigned njet{*nCleanJet->Get()};
+  TLorentzVector Slepton1(0.,0.,0.,0.);
+  TLorentzVector Slepton2(0.,0.,0.,0.);
+  TLorentzVector SSlepton(0.,0.,0.,0.);
   unsigned nlep{*nLepton->Get()};
-
-  if (njet==0 or nlep==0)
-    wlep1pt.push_back(-9999.);
-  
-  for (unsigned i{0}; i != njet; i++){
-    jets.SetPtEtaPhiM(0.,0.,0.,0.);
-    jets.SetPtEtaPhiM( CleanJet_pt->At(i) , CleanJet_eta->At(i) , CleanJet_phi->At(i) , 0. );
-    Whad+=jets;
-    if (i==1)
-      break;
-  }
+  float mindr = 9999.;
+  float maxdr = -9999.;
+  float maxdphi = -9999.;
+  float dr;
+  float dphi;
+  int leptonIdx1=-1;
+  int leptonIdx2=-1;
+  int leptonIdx3=-1;
 
   for (unsigned i=0; i != nlep; i++){
-    dphi = deltaPhi( Lepton_phi->At(i) , Whad.Phi());
-    if (maxdphi < dphi){
-      maxdphi=dphi;
-      leptonIdx1=i;
+    for (unsigned j=0; j != nlep; j++){
+      if (i==j) continue;
+      //take same sign, its ok to be different flavour
+      if ( ( Lepton_pdgId->At(i)>0 && Lepton_pdgId->At(j)>0 ) || ( Lepton_pdgId->At(i)<0 && Lepton_pdgId->At(j)<0 ) ){
+        dr = deltaR( Lepton_phi->At(i) , Lepton_eta->At(i) , Lepton_phi->At(j) , Lepton_eta->At(j) );
+        //find the minimum dr of dilepton same sign
+        if (mindr>dr){
+          mindr=dr;
+          leptonIdx1=i;
+          leptonIdx2=j;
+        }
+      }
     }
   }
-  wlep1pt.push_back(Lepton_pt->At(leptonIdx1));
+  //Identify the third lepton
+  if ( (leptonIdx1!=-1 && leptonIdx2!=-1) && nlep>2 ){
+      Slepton1.SetPtEtaPhiM( Lepton_pt->At(leptonIdx1) , Lepton_eta->At(leptonIdx1) , Lepton_phi->At(leptonIdx1) , 0. );
+      Slepton2.SetPtEtaPhiM( Lepton_pt->At(leptonIdx2) , Lepton_eta->At(leptonIdx2) , Lepton_phi->At(leptonIdx2) , 0. );
+      SSlepton=Slepton1+Slepton2;
+      for (unsigned i=0; i != nlep; i++){
+        if (i==leptonIdx1) continue;
+        if (i==leptonIdx2) continue;
+        dphi = deltaPhi( Lepton_phi->At(i) , SSlepton.Phi() );
+        if (maxdphi<dphi){
+          maxdphi = dphi;
+          leptonIdx3 = i;
+        }
+      }
+      wleph3l.push_back(Lepton_pt->At(leptonIdx3));
+  }
+  else{
+    wleph3l.push_back(-9999.);
+  }
 }
 
 void
-WHlepv1::bindTree_(multidraw::FunctionLibrary& _library)
+WlepH31::bindTree_(multidraw::FunctionLibrary& _library)
 {
   if (currentEntry == -2) {
     currentEntry = -1;
-    _library.bindBranch(nCleanJet, "nCleanJet");
-    _library.bindBranch(CleanJet_pt, "CleanJet_pt");
-    _library.bindBranch(CleanJet_eta, "CleanJet_eta");
-    _library.bindBranch(CleanJet_phi, "CleanJet_phi");
     _library.bindBranch(nLepton, "nLepton");
     _library.bindBranch(Lepton_pt, "Lepton_pt");
     _library.bindBranch(Lepton_eta, "Lepton_eta");
     _library.bindBranch(Lepton_phi, "Lepton_phi");
+    _library.bindBranch(Lepton_pdgId, "Lepton_pdgId");
 
     _library.addDestructorCallback([]() {
         currentEntry = -2;
-        nCleanJet = nullptr;
-        CleanJet_pt = nullptr;
-        CleanJet_eta = nullptr;
-        CleanJet_phi = nullptr;
         nLepton = nullptr;
         Lepton_pt = nullptr;
         Lepton_eta = nullptr;
         Lepton_phi = nullptr;
+        Lepton_pdgId = nullptr;
       });
   }
 }
