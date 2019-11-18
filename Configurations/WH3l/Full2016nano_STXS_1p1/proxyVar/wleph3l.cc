@@ -75,7 +75,7 @@ WlepH3l::evaluate(unsigned ij)
 
 // --- Helper
 float
-deltaPhi(float phi1, float phi2)
+deltaPhiv(float phi1, float phi2)
 {
   float PHI = std::abs(phi1-phi2);
 if (PHI<=3.14159265)
@@ -85,13 +85,13 @@ else
 }
 
 float
-deltaR(float phi1, float eta1, float phi2, float eta2) {
+deltaRv(float phi1, float eta1, float phi2, float eta2) {
   //return sqrt((eta2-eta1)**2+deltaPhi(phi1,phi2)**2);
-  return sqrt( pow((eta2-eta1),2) + pow(deltaPhi(phi1,phi2),2) );
+  return sqrt( pow((eta2-eta1),2) + pow(deltaPhiv(phi1,phi2),2) );
 }
 
 float
-deltaEta(float eta1, float eta2) {
+deltaEtav(float eta1, float eta2) {
   return std::abs(eta1 - eta2);
 }
 // Helper ---
@@ -124,7 +124,7 @@ WlepH3l::setValues(long long _iEntry)
       if (i==j) continue;
       //take same sign, its ok to be different flavour
       if ( ( Lepton_pdgId->At(i)>0 && Lepton_pdgId->At(j)>0 ) || ( Lepton_pdgId->At(i)<0 && Lepton_pdgId->At(j)<0 ) ){
-        dr = deltaR( Lepton_phi->At(i) , Lepton_eta->At(i) , Lepton_phi->At(j) , Lepton_eta->At(j) );
+        dr = deltaRv( Lepton_phi->At(i) , Lepton_eta->At(i) , Lepton_phi->At(j) , Lepton_eta->At(j) );
         //find the minimum dr of dilepton same sign
         if (mindr>dr){
           mindr=dr;
@@ -142,7 +142,7 @@ WlepH3l::setValues(long long _iEntry)
       for (unsigned i=0; i != nlep; i++){
         if (i==leptonIdx1) continue;
         if (i==leptonIdx2) continue;
-        dphi = deltaPhi( Lepton_phi->At(i) , SSlepton.Phi() );
+        dphi = deltaPhiv( Lepton_phi->At(i) , SSlepton.Phi() );
         if (maxdphi<dphi){
           maxdphi = dphi;
           leptonIdx3 = i;

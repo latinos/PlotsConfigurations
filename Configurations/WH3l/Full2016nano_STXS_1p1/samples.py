@@ -197,12 +197,12 @@ directorySig='/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_1
 
 for cat,cut in categorization_wh.iteritems():
     samples['WH_hww_%s' %cat] = { 'name'   :
-                                  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125'),
+                                  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125_PrivateNano') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125_PrivateNano'),
                                   'weight' : mcCommonWeight+'*('+cut+')',
                               }
     
     samples['WH_htt_%s' %cat] = { 'name'   :
-                                  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
+                                  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125_PrivateNano') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125_PrivateNano'),
                                   'weight' : mcCommonWeight+'*('+cut+')',
                               }
 

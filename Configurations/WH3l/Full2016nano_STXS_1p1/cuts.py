@@ -58,10 +58,11 @@ wh3lcuts['wh3l_zg_13TeV'] = 'WH3l_njet == 0\
                         '
 for key,value in wh3lcuts.iteritems():
     for cat,val in categorization_wh.iteritems():
+        njet='1==1'
         if '_0J' in cat:
             njet='Sum$(CleanJet_pt>30)==0'
         elif '_GE1J' in cat:
-                njet='Sum$(CleanJet_pt>30)>=1'
+            njet='Sum$(CleanJet_pt>30)>=1'
         cuts['%s_%s' %(key,cat)] = '%s && %s && %s' %(value,val,njet)
 
 # 11 = e
