@@ -13,12 +13,12 @@
 #include "TLorentzVector.h"
 #include "TMath.h"
 
-class WlepH31 : public multidraw::TTreeFunction {
+class WlepH3l : public multidraw::TTreeFunction {
 public:
-  WlepH31();
+  WlepH3l();
 
-  char const* getName() const override { return "WlepH31"; }
-  TTreeFunction* clone() const override { return new WlepH31(); }
+  char const* getName() const override { return "WlepH3l"; }
+  TTreeFunction* clone() const override { return new WlepH3l(); }
   //TTreeFunction* clone() const override;
 
   void beginEvent(long long) override;
@@ -42,33 +42,33 @@ protected:
 };
 
 /*static*/
-long long WlepH31::currentEntry{-2};
-UIntValueReader* WlepH31::nLepton{};
-FloatArrayReader* WlepH31::Lepton_pt{};
-FloatArrayReader* WlepH31::Lepton_eta{};
-FloatArrayReader* WlepH31::Lepton_phi{};
+long long WlepH3l::currentEntry{-2};
+UIntValueReader* WlepH3l::nLepton{};
+FloatArrayReader* WlepH3l::Lepton_pt{};
+FloatArrayReader* WlepH3l::Lepton_eta{};
+FloatArrayReader* WlepH3l::Lepton_phi{};
 IntArrayReader* WlepH3l::Lepton_pdgId{};
 
-std::vector<float> WlepH31::wleph3l{};
+std::vector<float> WlepH3l::wleph3l{};
 
-WlepH31::WlepH31() :
+WlepH3l::WlepH3l() :
   TTreeFunction()
 {}
 
 void
-WlepH31::beginEvent(long long _iEntry)
+WlepH3l::beginEvent(long long _iEntry)
 {
   setValues(_iEntry);
 }
 
 unsigned
-WlepH31::getNdata()
+WlepH3l::getNdata()
 {
   return wleph3l.size();
 }
 
 double
-WlepH31::evaluate(unsigned ij)
+WlepH3l::evaluate(unsigned ij)
 {
   return wleph3l[ij];
 }
@@ -97,7 +97,7 @@ deltaEta(float eta1, float eta2) {
 // Helper ---
 
 void
-WlepH31::setValues(long long _iEntry)
+WlepH3l::setValues(long long _iEntry)
 {
   if (_iEntry == currentEntry)
     return;
@@ -156,7 +156,7 @@ WlepH31::setValues(long long _iEntry)
 }
 
 void
-WlepH31::bindTree_(multidraw::FunctionLibrary& _library)
+WlepH3l::bindTree_(multidraw::FunctionLibrary& _library)
 {
   if (currentEntry == -2) {
     currentEntry = -1;
