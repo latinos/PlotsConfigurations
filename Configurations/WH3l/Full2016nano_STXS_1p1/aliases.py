@@ -23,7 +23,7 @@ aliases['genWPt'] = {
 
 aliases['WlepPt_wh3l'] = {
     'linesToAdd': [
-        '.L %s/WH31/Full2016nano_STXS_1p1/proxyVar/wleph3l.cc+' % configurations
+        '.L %s/WH3l/Full2016nano_STXS_1p1/proxyVar/wleph3l.cc+' % configurations
     ],
     'class': 'WlepH3l',
     'args': (),

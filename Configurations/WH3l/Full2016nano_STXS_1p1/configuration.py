@@ -1,6 +1,5 @@
 # example of configuration file
-tagName = "03Oct_v1"
-# tagName = "03Oct_v2"
+tagName = "_WH31_2016nano_HTXS1p1"
 
 treeName= 'Events'
 
