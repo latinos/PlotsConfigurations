@@ -11,7 +11,7 @@ configurations = os.path.dirname(configurations) # Configurations
 mc = [skey for skey in samples if skey not in ('Fakes_ee','Fakes_mm','Fakes_em', 'DATA')]
 
 bAlgo = 'DeepB'
-bWP = '0.1522'
+bWP = '0.1241'
 
 aliases['PromptGenLepMatch2l'] = {
     'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
@@ -21,34 +21,47 @@ aliases['PromptGenLepMatch2l'] = {
 # And variations - already divided by central values in formulas !
 aliases['fakeWEleUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleUp',
+#    'samples': ['Fakes']
     'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
+
 }
 aliases['fakeWEleDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleDown',
+#    'samples': ['Fakes']
     'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
+
 }
 aliases['fakeWMuUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuUp',
+#    'samples': ['Fakes']
     'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
+
 }
 aliases['fakeWMuDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuDown',
+#    'samples': ['Fakes']
     'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
+
 }
 aliases['fakeWStatEleUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleUp',
+#    'samples': ['Fakes']
     'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
 }
 aliases['fakeWStatEleDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleDown',
+#    'samples': ['Fakes']
     'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
 }
 aliases['fakeWStatMuUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuUp',
+#    'samples': ['Fakes']
     'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
+
 }
 aliases['fakeWStatMuDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuDown',
+#    'samples': ['Fakes']
     'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
 }
 
@@ -67,6 +80,30 @@ aliases['SFweightMuUp'] = {
 }
 aliases['SFweightMuDown'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Do',
+    'samples': mc
+}
+
+aliases['uu'] = {
+    'expr': '(Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13)'
+}
+aliases['ee'] = {
+    'expr': '(Lepton_pdgId[0]*Lepton_pdgId[1] == 11*11)'
+}
+aliases['eu'] = {
+    'expr': '(Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13)'
+}
+
+#genPTW
+aliases['genWPt'] = {
+    'expr' : 'Sum$(GenPart_pt*(abs(GenPart_pdgId)==24&&((GenPart_statusFlags&128)==128)&&(abs(GenPart_pdgId[GenPart_genPartIdxMother])!=25)))'
+}
+
+aliases['WlepPt_whssv1'] = {
+    'linesToAdd': [
+        '.L %s/WH_SS/Full2016nano_STXS_1p1/proxyVar/wlep1pt.cc+' % configurations
+    ],
+    'class': 'WHlepv1',
+    'args': (),
     'samples': mc
 }
 
@@ -111,13 +148,9 @@ aliases['btag2'] = {
     'expr': 'twoJet && bReq'
 }
 
-aliases['lepton_dz1cut'] = {
-    'expr': '(Lepton_muonIdx[0]!=-1 && TMath::Abs(Muon_dz[Lepton_muonIdx[0]]) < 0.01 ) || (Lepton_electronIdx[0]!=-1 && TMath::Abs(Electron_dz[Lepton_electronIdx[0]]) < 0.01 )'
-}
-
 # Temporary patch for BTV postprocessor bug (no SF for eta < 0, <= 102X_nAODv5_Full2018v5)
 
-btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_94XSF_V2_B_F.csv' % os.getenv('CMSSW_BASE')
+btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_2016LegacySF_V1.csv' % os.getenv('CMSSW_BASE')
 
 aliases['Jet_btagSF_shapeFix'] = {
     'linesToAdd': [
@@ -186,4 +219,14 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
     }
 
 
+# In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
+aliases['lhe_mW1'] = {
+    'expr': 'TMath::Sqrt(2. * LHEPart_pt[0] * LHEPart_pt[1] * (TMath::CosH(LHEPart_eta[0] - LHEPart_eta[1]) - TMath::Cos(LHEPart_phi[0] - LHEPart_phi[1])))',
+    'samples': ['WWewk']
+}
 
+# and [2] [3] are the second W
+aliases['lhe_mW2'] = {
+    'expr': 'TMath::Sqrt(2. * LHEPart_pt[2] * LHEPart_pt[3] * (TMath::CosH(LHEPart_eta[2] - LHEPart_eta[3]) - TMath::Cos(LHEPart_phi[2] - LHEPart_phi[3])))',
+    'samples': ['WWewk']
+}
