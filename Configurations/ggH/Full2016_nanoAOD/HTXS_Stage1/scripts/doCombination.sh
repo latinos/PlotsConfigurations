@@ -12,7 +12,7 @@ if [ ! -d $outputDir ]; then
   mkdir $outputDir
 fi
 
-datacardDir=/afs/cern.ch/work/a/alvareza/public/CMSSW_9_4_9/src/PlotsConfigurations/Configurations/ggH/Full2016_nanoAOD/HTXS_Stage1/datacards_ggH2016_STXS_stage1p2
+datacardDir=/afs/cern.ch/work/a/alvareza/public/CMSSW_9_4_9/src/PlotsConfigurations/Configurations/ggH/Full2016_nanoAOD/HTXS_Stage1/datacards_ggH2016_STXS_thunorm
 
 
 ## variable used for the signal regions fit
@@ -31,9 +31,9 @@ combineCards.py   of_0j_pth0_10=${datacardDir}/hww2l2v_13TeV_of0j_pth0_10/${vari
                   of_2j_lowmjj_pth60_120=${datacardDir}/hww2l2v_13TeV_of2j_lowmjj_pth60_120/${variable_bin}/datacard.txt \
                   of_2j_lowmjj_pth120_200=${datacardDir}/hww2l2v_13TeV_of2j_lowmjj_pth120_200/${variable_bin}/datacard.txt \
                   of_2j_mjj350_700_pthjj0_25=${datacardDir}/hww2l2v_13TeV_of2j_mjj350_700_pthjj0_25/${variable_bin}/datacard.txt \
-                  of_2j_mjj350_700_pthjjGT25=${datacardDir}/hww2l2v_13TeV_of2j_mjj350_700_pthjjGT25/${variable_bin}/datacard.txt \
-                  of_2j_mjjGT700_pthjj0_25=${datacardDir}/hww2l2v_13TeV_of2j_mjjGT700_pthjj0_25/${variable_bin}/datacard.txt \
-                  of_2j_mjjGT700_pthjjGT25=${datacardDir}/hww2l2v_13TeV_of2j_mjjGT700_pthjjGT25/${variable_bin}/datacard.txt \
+                  of_2j_mjj350_700_pthjjGT25=${datacardDir}/hww2l2v_13TeV_of2j_mjj350_700_pthjjGT25/${variable_bin4}/datacard.txt \
+                  of_2j_mjjGT700_pthjj0_25=${datacardDir}/hww2l2v_13TeV_of2j_mjjGT700_pthjj0_25/${variable_bin4}/datacard.txt \
+                  of_2j_mjjGT700_pthjjGT25=${datacardDir}/hww2l2v_13TeV_of2j_mjjGT700_pthjjGT25/${variable_bin4}/datacard.txt \
                   of_pth200_300=${datacardDir}/hww2l2v_13TeV_of_pth200_300/${variable_bin}/datacard.txt \
                   of_pth300_450=${datacardDir}/hww2l2v_13TeV_of_pth300_450/${variable_bin2}/datacard.txt \
                   of_pth450_650=${datacardDir}/hww2l2v_13TeV_of_pth450_650/${variable_bin3}/datacard.txt \
@@ -70,4 +70,4 @@ echo "nuisance edit drop Fake_em of_pthGT650 CMS_fake_stat_e_2016" >> ${outputDi
 echo "nuisance edit drop Fake_me of_pthGT650 CMS_fake_stat_m_2016" >> ${outputDir}/Full2016_ggH_HTXS_Stage1p2.txt
 echo "nuisance edit drop Fake_em of_pthGT650 CMS_fake_stat_m_2016" >> ${outputDir}/Full2016_ggH_HTXS_Stage1p2.txt
 
-echo "nuisance edit freeze UE_CUETP" >> ${outputDir}/Full2016_ggH_HTXS_Stage1p2.txt
+#echo "nuisance edit freeze UE_CUETP" >> ${outputDir}/Full2016_ggH_HTXS_Stage1p2.txt

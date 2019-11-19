@@ -39,8 +39,8 @@ canvas.SetTickx(0)
 canvas.SetTicky(0)
 
 graph = TGraphAsymmErrors()
-file = open("fitresults2017_1p2_QCDfix.txt","r")
-#file = open("fitresults2017_stage1p2_unmerged.txt","r")
+#file = open("fitresults2017_1p2_QCDfix.txt","r")
+file = open("fitresults2017_thunorm.txt","r")
 
 
 categories = []
@@ -169,6 +169,6 @@ CMS_lumi.CMS_lumi(canvas, 4, iPos)
 
 gPad.RedrawAxis()
 canvas.Update()
-canvas.SaveAs("signalstrength2017_1p2.png")
+canvas.SaveAs("signalstrength2017_1p2_thu.png")
 a = raw_input()
 
