@@ -110,7 +110,7 @@ WlepH3l::setValues(long long _iEntry)
   TLorentzVector Slepton2(0.,0.,0.,0.);
   TLorentzVector SSlepton(0.,0.,0.,0.);
   unsigned nlep{*nLepton->Get()};
-  float mindr = 9999.;
+  //float mindr = 9999.;
   float maxdr = -9999.;
   float maxdphi = -9999.;
   float dr;
@@ -126,8 +126,8 @@ WlepH3l::setValues(long long _iEntry)
       if ( ( Lepton_pdgId->At(i)>0 && Lepton_pdgId->At(j)>0 ) || ( Lepton_pdgId->At(i)<0 && Lepton_pdgId->At(j)<0 ) ){
         dr = deltaRv( Lepton_phi->At(i) , Lepton_eta->At(i) , Lepton_phi->At(j) , Lepton_eta->At(j) );
         //find the minimum dr of dilepton same sign
-        if (mindr>dr){
-          mindr=dr;
+        if (maxdr<dr){
+          maxdr=dr;
           leptonIdx1=i;
           leptonIdx2=j;
         }
