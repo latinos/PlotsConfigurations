@@ -94,9 +94,9 @@ aliases['eu'] = {
 }
 
 #genPTW
-aliases['genWPt'] = {
-    'expr' : 'Sum$(GenPart_pt*(abs(GenPart_pdgId)==24&&((GenPart_statusFlags&128)==128)&&(abs(GenPart_pdgId[GenPart_genPartIdxMother])!=25)))'
-}
+#aliases['genWPt'] = {
+#    'expr' : 'Sum$(GenPart_pt*(abs(GenPart_pdgId)==24&&((GenPart_statusFlags&128)==128)&&(abs(GenPart_pdgId[GenPart_genPartIdxMother])!=25)))'
+#}
 
 aliases['WlepPt_whssv1'] = {
     'linesToAdd': [

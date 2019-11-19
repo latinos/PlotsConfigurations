@@ -1,11 +1,14 @@
 #Temp scheme stage 1p1
+
+genWPt='Sum$(GenPart_pt*(abs(GenPart_pdgId)==24&&((GenPart_statusFlags&128)==128)&&(abs(GenPart_pdgId[GenPart_genPartIdxMother])!=25)))'
+
 categorization_wh = { 
     'FWDH' : 'abs(HTXS_Higgs_y) > 2.5',
-    'PTV_0_75' : 'abs(HTXS_Higgs_y) < 2.5 && genWPt <= 75',
-    'PTV_75_150' : 'abs(HTXS_Higgs_y) < 2.5 && genWPt > 75 && genWPt <= 150',
-    'PTV_150_250_0J' : 'abs(HTXS_Higgs_y) < 2.5 && genWPt > 150 && genWPt <= 250 && HTXS_njets30==0',
-    'PTV_150_250_GE1J' : 'abs(HTXS_Higgs_y) < 2.5 && genWPt > 150 && genWPt <= 250 && HTXS_njets30>=1',
-    'PTV_GT250' : 'abs(HTXS_Higgs_y) < 2.5 && genWPt > 250',
+    'PTV_0_75' : 'abs(HTXS_Higgs_y) < 2.5 && '+genWPt+' <= 75',
+    'PTV_75_150' : 'abs(HTXS_Higgs_y) < 2.5 && '+genWPt+' > 75 && '+genWPt+' <= 150',
+    'PTV_150_250_0J' : 'abs(HTXS_Higgs_y) < 2.5 && '+genWPt+' > 150 && '+genWPt+' <= 250 && HTXS_njets30==0',
+    'PTV_150_250_GE1J' : 'abs(HTXS_Higgs_y) < 2.5 && '+genWPt+' > 150 && '+genWPt+' <= 250 && HTXS_njets30>=1',
+    'PTV_GT250' : 'abs(HTXS_Higgs_y) < 2.5 && '+genWPt+' > 250',
 }
 
 

@@ -20,7 +20,7 @@ supercut = 'mll>12  \
             '
 
 #Reco level            
-categorization_wh = {
+cat_wh = {
     'FWDH' : '1==1',
     'PTV_0_75' : 'WlepPt_whssv1>0 && WlepPt_whssv1 <= 75',
     'PTV_75_150' : 'WlepPt_whssv1 > 75 && WlepPt_whssv1 <= 150',
@@ -41,7 +41,7 @@ whcuts['hww2l2v_13TeV_of2j_WH_SS_eu_1j'] = 'eu[0] && oneJet'
 
 
 for key,value in whcuts.iteritems():
-    for cat,val in categorization_wh.iteritems():
+    for cat,val in cat_wh.iteritems():
         njet='1==1'
         if '_2j' in key:
             if '_0J' in cat:
@@ -54,3 +54,4 @@ for key,value in whcuts.iteritems():
             elif '_GE1J' in cat:
                 njet='Sum$(CleanJet_pt>30)>=2'
         cuts['%s_%s' %(key,cat)] = '%s && %s && %s' %(value,val,njet)
+

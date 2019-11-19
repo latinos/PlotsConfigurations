@@ -15,7 +15,13 @@ If this is too slow try to hadd manually (TAG is the one in configuration.py)
 
 Make plots:
 
-    mkPlot.py --pycfg=configuration.py --inputFile=rootFileTAG/plots_TAG_ALL.root
+    mkPlot.py \
+    --inputFile=rootFileTAG/plots_TAG_ALL.root \
+    --showIntegralLegend=1 \
+    --minLogCratio=0.1 \
+    --minLogC=0.1 \
+    --logOnly \
+    --onlyPlot=c
 
 For unblinding the control regions, comment out the signal regions in cuts.py and set isBlind=0 in plot.py. Then rerun mkPlot.py as above.
 
