@@ -37,6 +37,7 @@
 
 # Draw the Higgs fractions
 
-    python multiSignalStrengthPlot.py datacard_mll_2016.txt -l 35.9 -y 2016
-    python multiSignalStrengthPlot.py datacard_mll_2017.txt -l 41.5 -y 2017
-    python multiSignalStrengthPlot.py datacard_mll_2018.txt -l 58.8 -y 2018
+    python multiSignalStrengthPlot.py datacard_mll_2016.txt --lumi=35.9 --year=2016
+    python multiSignalStrengthPlot.py datacard_mll_2017.txt --lumi=41.5 --year=2017
+    python multiSignalStrengthPlot.py datacard_mll_2018.txt --lumi=58.8 --year=2018
+
