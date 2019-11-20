@@ -1,6 +1,6 @@
-The following code and instructions are needed to produce HWW Higgs fractions distributions.
+The following code and instructions are needed to produce VH2j Higgs fractions distributions.
 
-# Get the source material
+# Original material
 
     cp /afs/cern.ch/user/l/lviliani/public/Full2016.txt .
 
@@ -9,25 +9,14 @@ The following code and instructions are needed to produce HWW Higgs fractions di
     wget https://raw.githubusercontent.com/latinos/PlotsConfigurations/master/Configurations/Template/plotScripts/plot.py
     wget https://raw.githubusercontent.com/latinos/PlotsConfigurations/master/Configurations/Template/plotScripts/multiSignalStrengthPlot.py
 
+Notice that the `multiSignalStrengthPlot.py` macro has been adapted to properly read the VH2j datacards.
+
 
 # Get the datacards
 
-    cmsenv
-
-    pushd ../Full2016_nanoAODv4
-    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_VH2j_2016.root
-    cp datacards/VH_2j_emu/mll/datacard.txt ../scripts/datacard_mll_2016.txt
-    popd
-
-    pushd ../Full2017
-    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_VH2j_2017.root
-    cp datacards/VH_2j_emu/mll/datacard.txt ../scripts/datacard_mll_2017.txt
-    popd
-
-    pushd ../Full2018
-    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_VH2j_2018.root
-    cp datacards/VH_2j_emu/mll/datacard.txt ../scripts/datacard_mll_2018.txt
-    popd
+    cp /eos/user/c/calderon/HWW_Run2/VH2j_legacyDataCards/2016/VH_2j_emu/mll/datacard.txt datacard_mll_2016.txt
+    cp /eos/user/c/calderon/HWW_Run2/VH2j_legacyDataCards/2017/VH_2j_emu/mll/datacard.txt datacard_mll_2017.txt
+    cp /eos/user/c/calderon/HWW_Run2/VH2j_legacyDataCards/2018/VH_2j_emu/mll/datacard.txt datacard_mll_2018.txt
 
 
 # Prepare the combine environment
