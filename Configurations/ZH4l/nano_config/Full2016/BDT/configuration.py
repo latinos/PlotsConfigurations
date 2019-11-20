@@ -1,8 +1,12 @@
 # example of configuration file
-
-tag = 'WH_3l_2016nano_HTXS1p1'
-
 treeName= 'Events'
+
+
+tag = '15nov19_2016_event'
+
+
+# used by mkShape to define output directory for root files
+outputDir = 'rootFile'+tag
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
@@ -16,24 +20,28 @@ cutsFile = 'cuts.py'
 # file with list of samples
 samplesFile = 'samples.py' 
 
-# file with plot configuration
+# file with list of samples
 plotFile = 'plot.py' 
 
+
+
 # luminosity to normalize to (in 1/fb)
-lumi = 35.867
+lumi = 35.9
+
+# used by mkPlot to define output directory for plots
+# different from "outputDir" to do things more tidy
+outputDirPlots = 'blind_plot'+tag
+
+
+# used by mkDatacards to define output directory for datacards
+outputDirDatacard = 'datacards'+tag
+
 
 # structure file for datacard
 structureFile = 'structure.py'
 
+
 # nuisances file for mkDatacards and for mkShape
 nuisancesFile = 'nuisances.py'
 
-# used by mkShape to define output directory for root files
-outputDir = 'rootFiles'
 
-# used by mkPlot to define output directory for plots
-# different from "outputDir" to do things more tidy
-outputDirPlots = 'plot'+tag
-
-# used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'+tag
