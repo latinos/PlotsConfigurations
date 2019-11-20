@@ -68,7 +68,7 @@ variables['mlljj20_whss_bin5']  = {   'name': 'mlljj20_whss',
 #                        'fold' : 0
 #                    }
 
-#variables['genWPt'] = { 'name': 'Sum$(GenPart_pt*(abs(GenPart_pdgId)==24&&((GenPart_statusFlags&128)==128)&&(abs(GenPart_pdgId[GenPart_genPartIdxMother])!=25)))',
+#variables['genWPt'] = { 'name': 'genWPt',
 #                        'range': (100,0,500),
 #                        'xaxis': 'genWPt [GeV]',
 #                        'fold': 0
