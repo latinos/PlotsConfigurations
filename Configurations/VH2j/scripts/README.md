@@ -1,3 +1,5 @@
+The following code and instructions are needed to produce HWW Higgs fractions distributions.
+
 # Get the source material
 
     cp /afs/cern.ch/user/l/lviliani/public/Full2016.txt .
