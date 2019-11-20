@@ -231,11 +231,10 @@ samples['VVV']  = {  'name'   :   getSampleFiles(directory,'ZZZ',False,'nanoLati
 #                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
 #                     }
 ############ WH H->WW ############
-
-samples['WH_hww']  = {  'name'   :   getSampleFiles(directory,'HWplusJ_HToWW_M125_PrivateNano',False,'nanoLatino_')
-                                   + getSampleFiles(directory,'HWminusJ_HToWW_M125_PrivateNano',False,'nanoLatino_'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     }
+#samples['WH_hww']  = {  'name'   :   getSampleFiles(directory,'HWplusJ_HToWW_M125_PrivateNano',False,'nanoLatino_')
+#                                   + getSampleFiles(directory,'HWminusJ_HToWW_M125_PrivateNano',False,'nanoLatino_'),
+#                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+#                     }
 
 if os.path.exists('HTXS_stage1_categories.py'):
   handle = open('HTXS_stage1_categories.py','r')
@@ -248,7 +247,7 @@ for cat,num in HTXSStage1_1Categories.iteritems():
     samples['WH_hww_'+cat.replace('QQ2HLNU_','')] = { 'name'   :
                                                       getSampleFiles(SigOnly,'HWplusJ_HToWW_M125',False,'nanoLatino_')
                                                       + getSampleFiles(SigOnly,'HWminusJ_HToWW_M125',False,'nanoLatino_'),
-                                                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage1_pTjet30GeV=='+str(num)+')',
+                                                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')',
                                                     }
 
 ############ ttH ############
