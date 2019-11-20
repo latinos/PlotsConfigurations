@@ -362,15 +362,15 @@ signals.append('ttH_hww')
 
 ############ H->TauTau ############
 
-samples['ggH_htt'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125'),
-    'weight': mcCommonWeight,
-    'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 2
-}
-
-signals.append('ggH_htt')
+#samples['ggH_htt'] = {
+#    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125'),
+#    'weight': mcCommonWeight,
+#    'suppressNegative' :['all'],
+#    'suppressNegativeNuisances' :['all'],
+#    'FilesPerJob': 2
+#}
+#
+#signals.append('ggH_htt')
 
 samples['qqH_htt'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125'),

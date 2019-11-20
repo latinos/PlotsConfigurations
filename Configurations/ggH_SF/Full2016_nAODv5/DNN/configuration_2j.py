@@ -17,7 +17,8 @@ variablesFile = 'variables_2j.py'
 cutsFile = 'cuts_2j.py' 
 
 # file with list of samples
-samplesFile = 'samples.py' 
+#samplesFile = 'samples.py' 
+samplesFile = 'samples_NoGGHtt.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
@@ -30,7 +31,7 @@ lumi = 35.867
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
 # outputDirPlots = '~/www/plotCR'
-outputDirPlots = 'plot_'+tag+'_DNN_cr'
+outputDirPlots = 'plot_'+tag+'_DNN_signal'
 
 
 # used by mkDatacards to define output directory for datacards
