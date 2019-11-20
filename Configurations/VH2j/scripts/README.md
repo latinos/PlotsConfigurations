@@ -1,11 +1,4 @@
-# Higgs fractions
-
-Prepare the `scripts` directory.
-
-    mkdir scripts
-    cd scripts
-
-Get the source material.
+# Get the source material
 
     cp /afs/cern.ch/user/l/lviliani/public/Full2016.txt .
 
@@ -14,7 +7,8 @@ Get the source material.
     wget https://raw.githubusercontent.com/latinos/PlotsConfigurations/master/Configurations/Template/plotScripts/plot.py
     wget https://raw.githubusercontent.com/latinos/PlotsConfigurations/master/Configurations/Template/plotScripts/multiSignalStrengthPlot.py
 
-Produce the datacards.
+
+# Get the datacards
 
     cmsenv
 
@@ -33,13 +27,15 @@ Produce the datacards.
     cp datacards/VH_2j_emu/mll/datacard.txt ../scripts/datacard_mll_2018.txt
     popd
 
-Prepare the environment.
+
+# Prepare the `combine` environment
 
     pushd ~piedra/combine/CMSSW_10_2_13/src/
     cmsenv
     popd
 
-Produce the Higgs fractions distributions.
+
+# Draw the Higgs fractions
 
     python multiSignalStrengthPlot.py datacard_mll_2016.txt -p plot.py -l 35.9 -y 2016
     python multiSignalStrengthPlot.py datacard_mll_2017.txt -p plot.py -l 41.5 -y 2017
