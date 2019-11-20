@@ -148,6 +148,7 @@ void
 WHlepv1::bindTree_(multidraw::FunctionLibrary& _library)
 {
   if (currentEntry == -2) {
+    std::cout << "Loading WHlepv1" << std::endl;
     currentEntry = -1;
     _library.bindBranch(nCleanJet, "nCleanJet");
     _library.bindBranch(CleanJet_pt, "CleanJet_pt");
