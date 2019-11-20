@@ -109,7 +109,7 @@ nuisances['fake_mu_stat'] = {
         'Fakes_em': ['fakeWStatMuUp', 'fakeWStatMuDown']
     }
 }
-'''
+
 ###### B-tagger
 
 for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
@@ -155,15 +155,15 @@ nuisances['eff_e'] = {
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
 }
 
-nuisances['electronpt'] = {
-    'name': 'CMS_scale_e_2016',
-    'kind': 'tree',
-    'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp'   : treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__ElepTup',
-    'folderDown' : treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__ElepTdo',
-    'AsLnN': '1'
-}
+#nuisances['electronpt'] = {
+#    'name': 'CMS_scale_e_2016',
+#    'kind': 'tree',
+#    'type': 'shape',
+#    'samples': dict((skey, ['1', '1']) for skey in mc),
+#    'folderUp'   : treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__ElepTup',
+#    'folderDown' : treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__ElepTdo',
+#    'AsLnN': '1'
+#}
 
 ##### Muon Efficiency and energy scale
 
@@ -174,39 +174,39 @@ nuisances['eff_m'] = {
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
 }
 
-nuisances['muonpt'] = {
-    'name': 'CMS_scale_m_2016',
-    'kind': 'tree',
-    'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp'   : treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__MupTup',
-    'folderDown' : treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__MupTdo',
-    'AsLnN': '1'
-}
+#nuisances['muonpt'] = {
+#    'name': 'CMS_scale_m_2016',
+#    'kind': 'tree',
+#    'type': 'shape',
+#    'samples': dict((skey, ['1', '1']) for skey in mc),
+#    'folderUp'   : treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__MupTup',
+#    'folderDown' : treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__MupTdo',
+#    'AsLnN': '1'
+#}
 
 ##### Jet energy scale
 
-nuisances['jes'] = {
-    'name': 'CMS_scale_j_2016',
-    'kind': 'tree',
-    'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp'   : treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__JESup',
-    'folderDown' : treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__JESdo',
-    'AsLnN': '1'
-}
+#nuisances['jes'] = {
+#    'name': 'CMS_scale_j_2016',
+#    'kind': 'tree',
+#    'type': 'shape',
+#    'samples': dict((skey, ['1', '1']) for skey in mc),
+#    'folderUp'   : treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__JESup',
+#    'folderDown' : treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__JESdo',
+#    'AsLnN': '1'
+#}
 
 ##### MET energy scale
 
-nuisances['met'] = {
-    'name': 'CMS_scale_met_2016',
-    'kind': 'tree',
-    'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp'   : treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__METup',
-    'folderDown' : treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__METdo',
-    'AsLnN': '1'
-}
+#nuisances['met'] = {
+#    'name': 'CMS_scale_met_2016',
+#    'kind': 'tree',
+#    'type': 'shape',
+#    'samples': dict((skey, ['1', '1']) for skey in mc),
+#    'folderUp'   : treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__METup',
+#    'folderDown' : treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__METdo',
+#    'AsLnN': '1'
+#}
 
 # PS and UE
 #FIXME: Add PS uncertainty
@@ -501,7 +501,7 @@ nuisances['singleTopToTTbar'] = {
 #        'VZ': '1.16'
 #    }
 #}
-'''
+
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat']  = {
               'type'  : 'auto',
