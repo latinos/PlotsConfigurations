@@ -1,7 +1,7 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = '_WH2016nano_HTXS1p1'
+tag = 'WH_SS_2016nano_HTXS1p1'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
