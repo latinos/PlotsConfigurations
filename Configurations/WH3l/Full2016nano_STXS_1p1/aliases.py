@@ -18,16 +18,12 @@ eleWP = 'mva_90p_Iso2016'
 muWP = 'cut_Tight80x'
 
 aliases['genWPt'] = {
-    'expr' : 'Sum$(GenPart_pt*(abs(GenPart_pdgId)==24&&((GenPart_statusFlags&128)==128)&&(abs(GenPart_pdgId[GenPart_genPartIdxMother])!=25)))'
+    'expr' : 'Sum$(GenPart_pt*(abs(GenPart_pdgId)==24&&((GenPart_statusFlags&128)==128)&&(abs(GenPart_pdgId[GenPart_genPartIdxMother])!=25)))',
+    'samples' : mc
 }
 
 aliases['WlepPt_wh3l'] = {
-    'linesToAdd': [
-        '.L %s/WH3l/Full2016nano_STXS_1p1/proxyVar/wleph3l.cc+' % configurations
-    ],
-    'class': 'WlepH3l',
-    'args': (),
-    'samples': mc
+    'expr' : 'Lepton_pt[0]*(WH3l_drOSll[2]==MinIf$(WH3l_drOSll,WH3l_drOSll>0))+Lepton_pt[1]*(WH3l_drOSll[1]==MinIf$(WH3l_drOSll,WH3l_drOSll>0))+Lepton_pt[2]*(WH3l_drOSll[0]==MinIf$(WH3l_drOSll,WH3l_drOSll>0))'
 }
 
 aliases['LepWPCut'] = {
@@ -105,6 +101,10 @@ aliases['zeroJet'] = {
 }
 
 aliases['oneJet'] = {
+    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) < 30.'
+}
+
+aliases['oneJetOrMore'] = {
     'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
 }
 
