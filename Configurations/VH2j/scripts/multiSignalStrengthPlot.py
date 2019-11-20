@@ -15,7 +15,8 @@ tdrstyle.setTDRStyle()
 parser = OptionParser()
 parser.add_option("-s", "--stat",     dest="stat",     default=False, action="store_true")
 parser.add_option("-p", "--plotFile", dest="plotFile", default="")
-parser.add_option("-l", "--cmsLumi",  dest="cmsLumi",  default="0.0")
+parser.add_option("-l", "--cmsLumi",  dest="cmsLumi",  default="35.9")
+parser.add_option("-y", "--year",     dest="year",     default="2016")
 
 (options, args) = parser.parse_args()
 options.bin = True # fake that is a binary output, so that we parse shape lines
@@ -58,9 +59,9 @@ for c in combChannels:
   overallSignalRate[c]['qqH_hww'] = 0.
   overallSignalRate[c]['WH_hww'] = 0.
   overallSignalRate[c]['ZH_hww'] = 0.
-  overallSignalRate[c]['bbH_hww'] = 0.
+ #overallSignalRate[c]['bbH_hww'] = 0.
   overallSignalRate[c]['ttH_hww'] = 0.
-#  overallSignalRate[c]['ggZH_hww'] = 0.
+ #overallSignalRate[c]['ggZH_hww'] = 0.
 
   overallTotalSignal[c] = 0.
 
@@ -75,15 +76,15 @@ for channel in DC.exp:
   elif 'of_0j' in channel: c='0-jet DF ggH-tagged' 
   elif 'of1j' in channel: c='1-jet DF ggH-tagged'
   elif 'of_1j' in channel: c='1-jet DF ggH-tagged'
-  elif 'of2j' in channel and not ('vbf' in channel or 'vh' in channel): c='2-jet DF ggH-tagged'
-  elif 'of_2j' in channel and not ('vbf' in channel or 'vh' in channel): c='2-jet DF ggH-tagged'
+  elif 'of2j' in channel and not ('vbf' in channel or 'VH_2j_emu' in channel): c='2-jet DF ggH-tagged'
+  elif 'of_2j' in channel and not ('vbf' in channel or 'VH_2j_emu' in channel): c='2-jet DF ggH-tagged'
   elif 'vbf' in channel:
     if splitVBF:
       if 'lowmjj'  in channel: c='2-jet DF VBF-tagged low mjj'
       elif 'highmjj'  in channel: c='2-jet DF VBF-tagged high mjj'
     else:
       c='2-jet DF VBF-tagged'
-  elif 'vh' in channel: c='2-jet DF VH-tagged'
+  elif 'VH_2j_emu' in channel: c='2-jet DF VH-tagged'
   elif 'sf0j' in channel: c='0-jet SF ggH-tagged'
   elif 'sf1j' in channel: c='1-jet SF ggH-tagged'
   elif 'wh3l' in channel: c='3-lepton WH-tagged'
@@ -154,9 +155,6 @@ for s in overallSignalRate['0-jet DF ggH-tagged']: #used just to preserve the or
   stack.Add(histos[s])
   leg.AddEntry(histos[s], " " + plot[s]['nameHR'], "f")
 
-
-
-# Change the CMS_lumi variables (see CMS_lumi.py)
 CMS_lumi.lumi_13TeV = options.cmsLumi + " fb^{-1}"
 CMS_lumi.writeExtraText = 1
 CMS_lumi.extraText = "Simulation"
@@ -210,4 +208,4 @@ ROOT.gPad.RedrawAxis()
 
 canvas.GetFrame().DrawClone()
 
-canvas.SaveAs("multiSignalStrengthPlot.png")
+canvas.SaveAs("multiSignalStrengthPlot_" + options.year + ".png")
