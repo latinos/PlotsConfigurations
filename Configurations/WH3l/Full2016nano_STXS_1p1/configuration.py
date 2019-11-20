@@ -1,6 +1,6 @@
 # example of configuration file
 
-tag = '_WH3l2016nano_HTXS1p1'
+tag = 'WH_3l_2016nano_HTXS1p1'
 
 treeName= 'Events'
 

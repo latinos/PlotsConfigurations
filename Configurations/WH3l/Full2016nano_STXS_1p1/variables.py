@@ -17,11 +17,11 @@ variables['WlepPt_wh3l'] = {'name' : 'WlepPt_wh3l',
                             'fold' : 1
                         }
 
-variables['genWPt'] = { 'name': 'Sum$(GenPart_pt*(abs(GenPart_pdgId)==24&&((GenPart_statusFlags&128)==128)&&(abs(GenPart_pdgId[GenPart_genPartIdxMother])!=25)))',
-                        'range': (10,0,200),
-                        'xaxis': 'genWPt [GeV]',
-                        'fold': 0
-                    }
+#variables['genWPt'] = { 'name': 'Sum$(GenPart_pt*(abs(GenPart_pdgId)==24&&((GenPart_statusFlags&128)==128)&&(abs(GenPart_pdgId[GenPart_genPartIdxMother])!=25)))',
+#                        'range': (10,0,200),
+#                        'xaxis': 'genWPt [GeV]',
+#                        'fold': 0
+#                    }
 
 variables['nElectron']  = {'name'  : 'nElectron',
                         'range' : (5,0,5),
