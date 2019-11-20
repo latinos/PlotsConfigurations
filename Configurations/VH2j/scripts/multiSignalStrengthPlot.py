@@ -14,7 +14,7 @@ tdrstyle.setTDRStyle()
 
 parser = OptionParser()
 parser.add_option("-s", "--stat",     dest="stat",     default=False, action="store_true")
-parser.add_option("-p", "--plotFile", dest="plotFile", default="")
+parser.add_option("-p", "--plotFile", dest="plotFile", default="plot.py")
 parser.add_option("-l", "--cmsLumi",  dest="cmsLumi",  default="35.9")
 parser.add_option("-y", "--year",     dest="year",     default="2016")
 

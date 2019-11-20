@@ -28,7 +28,7 @@
     popd
 
 
-# Prepare the `combine` environment
+# Prepare the combine environment
 
     pushd ~piedra/combine/CMSSW_10_2_13/src/
     cmsenv
@@ -37,6 +37,6 @@
 
 # Draw the Higgs fractions
 
-    python multiSignalStrengthPlot.py datacard_mll_2016.txt -p plot.py -l 35.9 -y 2016
-    python multiSignalStrengthPlot.py datacard_mll_2017.txt -p plot.py -l 41.5 -y 2017
-    python multiSignalStrengthPlot.py datacard_mll_2018.txt -p plot.py -l 58.8 -y 2018
+    python multiSignalStrengthPlot.py datacard_mll_2016.txt -l 35.9 -y 2016
+    python multiSignalStrengthPlot.py datacard_mll_2017.txt -l 41.5 -y 2017
+    python multiSignalStrengthPlot.py datacard_mll_2018.txt -l 58.8 -y 2018
