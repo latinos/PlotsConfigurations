@@ -111,6 +111,10 @@ aliases['btag2'] = {
     'expr': 'twoJet && bReq'
 }
 
+aliases['lepton_dz1cut'] = {
+    'expr': '(Lepton_muonIdx[0]!=-1 && TMath::Abs(Muon_dz[Lepton_muonIdx[0]]) < 0.01 ) || (Lepton_electronIdx[0]!=-1 && TMath::Abs(Electron_dz[Lepton_electronIdx[0]]) < 0.01 )'
+}
+
 # Temporary patch for BTV postprocessor bug (no SF for eta < 0, <= 102X_nAODv5_Full2018v5)
 
 btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_94XSF_V2_B_F.csv' % os.getenv('CMSSW_BASE')

@@ -23,7 +23,7 @@ RAndKff['DYmva0p8'] = {
 DYestim['hww2l2v_13TeV_2016_2jee'] = {
                                  'rinout'  : 'DYmva0p8' ,
                                  'rsyst'   : 0.03 ,
-                                 'ksyst'   : 0.01 ,
+                                 'ksyst'   : 0.02 ,
                                  'njet'    : '2j'    ,
                                  'flavour' : 'ee' ,
                                  'DYProc'  : 'DY' ,
@@ -36,13 +36,13 @@ DYestim['hww2l2v_13TeV_2016_2jee'] = {
                                  'NPname'  : 'DYeenorm2j' ,
                                  'AccNum'  : 'hww2l2v_13TeV_2016_2jee_HAccNum/events/histo_DY',
                                  'AccDen'  : 'hww2l2v_13TeV_2016_2jee_AccDen/events/histo_DY',
-                                 'asyst'   : 0.01 ,
+                                 'asyst'   : 0.09 ,
                                 }
 
 DYestim['hww2l2v_13TeV_2016_2jmm'] = {
                                  'rinout'  : 'DYmva0p8' ,
-                                 'rsyst'   : 0.02 ,
-                                 'ksyst'   : 0.01 ,
+                                 'rsyst'   : 0.08 ,
+                                 'ksyst'   : 0.04 ,
                                  'njet'    : '2j'    ,
                                  'flavour' : 'mm' ,
                                  'DYProc'  : 'DY' ,
@@ -55,7 +55,7 @@ DYestim['hww2l2v_13TeV_2016_2jmm'] = {
                                  'NPname'  : 'DYmmnorm2j' ,
                                  'AccNum'  : 'hww2l2v_13TeV_2016_2jmm_HAccNum/events/histo_DY',
                                  'AccDen'  : 'hww2l2v_13TeV_2016_2jmm_AccDen/events/histo_DY',
-                                 'asyst'   : 0.02 ,
+                                 'asyst'   : 0.03 ,
                                 }
 
 DYestim['hww2l2v_13TeV_2016_WW_2jee'] = {
@@ -72,7 +72,7 @@ DYestim['hww2l2v_13TeV_2016_WW_2jee'] = {
                                  'NPname'  : 'DYeenorm2j' ,
                                  'AccNum'  : 'hww2l2v_13TeV_2016_WW_2jee_WWAccNum/events/histo_DY',
                                  'AccDen'  : 'hww2l2v_13TeV_2016_2jee_AccDen/events/histo_DY',
-                                 'asyst'   : 0.01 ,
+                                 'asyst'   : 0.03 ,
                                    }
 
 DYestim['hww2l2v_13TeV_2016_WW_2jmm'] = {

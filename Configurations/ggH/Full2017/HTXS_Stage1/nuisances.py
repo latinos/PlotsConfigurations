@@ -406,9 +406,10 @@ nuisances['pdf_Higgs_gg'] = {
     },
     'type': 'lnN',
 }
-for name in sampleNames:
-  if 'ggH' in name:
-    nuisances['pdf_Higgs_gg']['samples'].update({name: HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH' ,'125.09','pdf','sm')})
+
+#for name in sampleNames:          #Adrian: this is not needed for STXS
+#  if 'ggH' in name:
+#    nuisances['pdf_Higgs_gg']['samples'].update({name: HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH' ,'125.09','pdf','sm')})
 
 values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','pdf','sm')
 
@@ -462,9 +463,9 @@ nuisances['pdf_Higgs_gg_ACCEPT'] = {
     },
     'type': 'lnN',
 }
-for name in sampleNames:
-  if 'ggH' in name:
-    nuisances['pdf_Higgs_gg_ACCEPT']['samples'].update({name : '1.005'})
+#for name in sampleNames: #Adrian: this is not needed for STXS
+#  if 'ggH' in name:
+#    nuisances['pdf_Higgs_gg_ACCEPT']['samples'].update({name : '1.005'})
 
 #FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['pdf_gg_ACCEPT'] = {
@@ -488,9 +489,6 @@ nuisances['pdf_Higgs_qqbar_ACCEPT'] = {
         'ZH_htt': '1.012',
     },
 }
-for name in sampleNames:
-  if 'qqH' in name:
-    nuisances['pdf_Higgs_qqbar_ACCEPT']['samples'].update({name : '1.011'})
 
 #FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['pdf_qqbar_ACCEPT'] = {
@@ -679,6 +677,7 @@ thus = [
     ('THU_ggH_qmtop', 'ggH_qmtop')
 ]
 
+# Adrian: some of these could be removed
 for name, vname in thus:
     updown = [vname, '2.-%s' % vname]
     
@@ -738,9 +737,6 @@ nuisances['QCDscale_qqH'] = {
     },
     'type': 'lnN'
 }
-for name in sampleNames:
-  if 'qqH' in name:
-    nuisances['QCDscale_qqH']['samples'].update({name : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm')})
 
 valueswh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm')
 valueszh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm')
@@ -798,9 +794,6 @@ nuisances['QCDscale_qqbar_ACCEPT'] = {
         'VZ': '1.029',
     }
 }
-for name in sampleNames:
-  if 'qqH' in name:
-    nuisances['QCDscale_qqbar_ACCEPT']['samples'].update({name : '1.007'})
 
 #FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['QCDscale_gg_ACCEPT'] = {
@@ -814,9 +807,10 @@ nuisances['QCDscale_gg_ACCEPT'] = {
     'type': 'lnN',
 }
 
-for name in sampleNames:
-  if 'ggH' in name:
-    nuisances['QCDscale_gg_ACCEPT']['samples'].update({name : '1.027'})
+#for name in sampleNames:     # Adrian: this is not needed for STXS
+#  if 'ggH' in name:
+#    nuisances['QCDscale_gg_ACCEPT']['samples'].update({name : '1.027'})
+
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat'] = {

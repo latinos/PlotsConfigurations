@@ -40,7 +40,7 @@ RAndKff['DYmva0p8top'] = {
 #DYestim = {}
 DYestim['hww2l2v_13TeV_2016_0jee_pt2ge20'] = {
                                  'rinout'  : 'DYmva0p8' ,
-                                 'rsyst'   : 0.20 ,
+                                 'rsyst'   : 0.10 ,
                                  'ksyst'   : 0.01 ,
                                  'njet'    : '0j' ,
                                  'flavour' : 'ee' ,
@@ -54,12 +54,12 @@ DYestim['hww2l2v_13TeV_2016_0jee_pt2ge20'] = {
                                  'NPname'  : 'DYeenorm0j' ,
                                  'AccNum'  : 'hww2l2v_13TeV_2016_0jee_HAccNum_pt2ge20/events/histo_DY',
                                  'AccDen'  : 'hww2l2v_13TeV_2016_0jee_AccDen/events/histo_DY',
-                                 'asyst'   : 0.07 ,
+                                 'asyst'   : 0.05 ,
                                 }
 
 DYestim['hww2l2v_13TeV_2016_0jee_pt2lt20'] = {
                                  'rinout'  : 'DYmva0p8' ,
-                                 'rsyst'   : 0.20 , 
+                                 'rsyst'   : 0.10 , 
                                  'ksyst'   : 0.01 , 
                                  'njet'    : '0j' , 
                                  'flavour' : 'ee' ,
@@ -73,12 +73,12 @@ DYestim['hww2l2v_13TeV_2016_0jee_pt2lt20'] = {
                                  'NPname'  : 'DYeenorm0j' , 
                                  'AccNum'  : 'hww2l2v_13TeV_2016_0jee_HAccNum_pt2lt20/events/histo_DY',
                                  'AccDen'  : 'hww2l2v_13TeV_2016_0jee_AccDen/events/histo_DY',
-                                 'asyst'   : 0.07 , 
+                                 'asyst'   : 0.05 , 
                                 } 
 
 DYestim['hww2l2v_13TeV_2016_0jmm_pt2ge20'] = {
                                  'rinout'  : 'DYmva0p8' ,
-                                 'rsyst'   : 0.27 , 
+                                 'rsyst'   : 0.20 , 
                                  'ksyst'   : 0.01 , 
                                  'njet'    : '0j'    ,
                                  'flavour' : 'mm' ,
@@ -97,7 +97,7 @@ DYestim['hww2l2v_13TeV_2016_0jmm_pt2ge20'] = {
 
 DYestim['hww2l2v_13TeV_2016_0jmm_pt2lt20'] = {
                                  'rinout'  : 'DYmva0p8' ,
-                                 'rsyst'   : 0.27 ,
+                                 'rsyst'   : 0.20 ,
                                  'ksyst'   : 0.01 ,
                                  'njet'    : '0j'    ,
                                  'flavour' : 'mm' ,
@@ -146,35 +146,35 @@ DYestim['hww2l2v_13TeV_2016_WW_0jmm'] = {
                                  'NPname'  : 'DYmmnorm0j' ,
                                  'AccNum'  : 'hww2l2v_13TeV_2016_WW_0jmm_WWAccNum/events/histo_DY',
                                  'AccDen'  : 'hww2l2v_13TeV_2016_0jmm_AccDen/events/histo_DY',
-                                 'asyst'   : 0.02 , 
+                                 'asyst'   : 0.03 , 
                                    }
 
-DYestim['hww2l2v_13TeV_2016_top_0jee'] = {
-                                 'rinout'  : 'DYmva0p8top' ,
-                                 'njet'    : '0j'    ,
-                                 'flavour' : 'ee' ,
-                                 'DYProc'  : 'DY' ,
-                                 'SFin'    : 'hww2l2v_13TeV_2016_DYin_btag_0jee' ,
-                                 'SFinDa'  : 'DATA',
-                                 'SFinMC'  : ['VZ','Vg','VgS_L','VgS_H'],
-                                 'DFin'    : 'hww2l2v_13TeV_2016_DYin_btag_0jdf' ,
-                                 'DFinDa'  : 'DATA' ,
-                                 'DFinMC'  : ['VZ','Vg','VgS_L','VgS_H'],
-                                 'NPname'  : 'DYeenorm0j' ,
-                                 'asyst'   : 0.01 ,
-                                   }
-
-DYestim['hww2l2v_13TeV_2016_top_0jmm'] = {
-                                 'rinout'  : 'DYmva0p8top' ,
-                                 'njet'    : '0j'    ,
-                                 'flavour' : 'mm' ,
-                                 'DYProc'  : 'DY' ,
-                                 'SFin'    : 'hww2l2v_13TeV_2016_DYin_btag_0jmm' ,
-                                 'SFinDa'  : 'DATA',
-                                 'SFinMC'  : ['VZ','Vg','VgS_L','VgS_H'],
-                                 'DFin'    : 'hww2l2v_13TeV_2016_DYin_btag_0jdf' ,
-                                 'DFinDa'  : 'DATA' ,
-                                 'DFinMC'  : ['VZ','Vg','VgS_L','VgS_H'],
-                                 'NPname'  : 'DYmmnorm0j' ,
-                                 'asyst'   : 0.01 ,
-                                   }
+#DYestim['hww2l2v_13TeV_2016_top_0jee'] = {
+#                                 'rinout'  : 'DYmva0p8top' ,
+#                                 'njet'    : '0j'    ,
+#                                 'flavour' : 'ee' ,
+#                                 'DYProc'  : 'DY' ,
+#                                 'SFin'    : 'hww2l2v_13TeV_2016_DYin_btag_0jee' ,
+#                                 'SFinDa'  : 'DATA',
+#                                 'SFinMC'  : ['VZ','Vg','VgS_L','VgS_H'],
+#                                 'DFin'    : 'hww2l2v_13TeV_2016_DYin_btag_0jdf' ,
+#                                 'DFinDa'  : 'DATA' ,
+#                                 'DFinMC'  : ['VZ','Vg','VgS_L','VgS_H'],
+#                                 'NPname'  : 'DYeenorm0j' ,
+#                                 'asyst'   : 0.01 ,
+#                                   }
+#
+#DYestim['hww2l2v_13TeV_2016_top_0jmm'] = {
+#                                 'rinout'  : 'DYmva0p8top' ,
+#                                 'njet'    : '0j'    ,
+#                                 'flavour' : 'mm' ,
+#                                 'DYProc'  : 'DY' ,
+#                                 'SFin'    : 'hww2l2v_13TeV_2016_DYin_btag_0jmm' ,
+#                                 'SFinDa'  : 'DATA',
+#                                 'SFinMC'  : ['VZ','Vg','VgS_L','VgS_H'],
+#                                 'DFin'    : 'hww2l2v_13TeV_2016_DYin_btag_0jdf' ,
+#                                 'DFinDa'  : 'DATA' ,
+#                                 'DFinMC'  : ['VZ','Vg','VgS_L','VgS_H'],
+#                                 'NPname'  : 'DYmmnorm0j' ,
+#                                 'asyst'   : 0.01 ,
+#                                   }
