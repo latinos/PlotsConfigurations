@@ -208,4 +208,7 @@ ROOT.gPad.RedrawAxis()
 
 canvas.GetFrame().DrawClone()
 
-canvas.SaveAs("multiSignalStrengthPlot_" + options.year + ".png")
+if not os.path.exists("png") :
+  os.mkdir("png")
+
+canvas.SaveAs("png/multiSignalStrengthPlot_" + options.year + ".png")
