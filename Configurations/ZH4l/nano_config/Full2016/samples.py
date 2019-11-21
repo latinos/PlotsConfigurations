@@ -20,7 +20,7 @@ elif  'cern' in SITE :
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/'
 
 directory = treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/'+skim
-
+directory1= treeBaseDir+'Summer16_102X_nAODv5_SigOnly_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/'+skim
 ################################################
 ############ NUMBER OF LEPTONS #################
 ################################################
@@ -249,29 +249,29 @@ samples['WWW'] = {'name'   :getSampleFiles(directory,'WWW',False,'nanoLatino_'),
 
 ############ ggH H->WW ############
 #FIXME Add reweighting to MiNLO NNLOPS or use NNLOPS sample when available
-samples['ggH_hww']  = {  'name'   :   getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'),
+samples['ggH_hww']  = {  'name'   :   getSampleFiles(directory1,'GluGluHToWWTo2L2Nu_M125',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                      }
 
 ############ VBF H->WW ############
-samples['qqH_hww']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2Nu_M125',False,'nanoLatino_'),
+samples['qqH_hww']  = {  'name'   :   getSampleFiles(directory1,'VBFHToWWTo2L2Nu_M125',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                      }
 
 ############ ZH H->WW ############
 
-samples['ZH_hww']  = {  'name'   :   getSampleFiles(directory,'HZJ_HToWW_M125',False,'nanoLatino_'), #FIXME replace with 125 GeV sample when available
+samples['ZH_hww']  = {  'name'   :   getSampleFiles(directory1,'HZJ_HToWW_M125',False,'nanoLatino_'), #FIXME replace with 125 GeV sample when available
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                      }
 
-samples['ggZH_hww']  = {  'name'   :   getSampleFiles(directory,'ggZH_HToWW_M125',False,'nanoLatino_'),
+samples['ggZH_hww']  = {  'name'   :   getSampleFiles(directory1,'ggZH_HToWW_M125',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                      }
 
 ############ WH H->WW ############
 
-samples['WH_hww']  = {  'name'   :   getSampleFiles(directory,'HWplusJ_HToWW_M125',False,'nanoLatino_')
-                                   + getSampleFiles(directory,'HWminusJ_HToWW_M125',False,'nanoLatino_'),
+samples['WH_hww']  = {  'name'   :   getSampleFiles(directory1,'HWplusJ_HToWW_M125',False,'nanoLatino_')
+                                   + getSampleFiles(directory1,'HWminusJ_HToWW_M125',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                      }
 
@@ -290,37 +290,37 @@ samples['WH_hww']  = {  'name'   :   getSampleFiles(directory,'HWplusJ_HToWW_M12
 splitHtt=False
 if not splitHtt:
 
-  samples['H_htt'] = {  'name'   :   getSampleFiles(directory,'GluGluHToTauTau_M125',False,'nanoLatino_')
-                                   + getSampleFiles(directory,'VBFHToTauTau_M125',False,'nanoLatino_')
-                                   + getSampleFiles(directory,'HZJ_HToTauTau_M125',False,'nanoLatino_')
-                                   + getSampleFiles(directory,'HWplusJ_HToTauTau_M125',False,'nanoLatino_')
-                                   + getSampleFiles(directory,'HWminusJ_HToTauTau_M125',False,'nanoLatino_'),
+  samples['H_htt'] = {  'name'   :   getSampleFiles(directory1,'GluGluHToTauTau_M125',False,'nanoLatino_')
+                                   + getSampleFiles(directory1,'VBFHToTauTau_M125',False,'nanoLatino_')
+                                   + getSampleFiles(directory1,'HZJ_HToTauTau_M125',False,'nanoLatino_')
+                                   + getSampleFiles(directory1,'HWplusJ_HToTauTau_M125',False,'nanoLatino_')
+                                   + getSampleFiles(directory1,'HWminusJ_HToTauTau_M125',False,'nanoLatino_'),
                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                          'suppressNegative' :['all'],
                          'suppressNegativeNuisances' :['all'],
                      }
 else:
   
-  samples['ggH_htt']  = {  'name'   : getSampleFiles(directory,'GluGluHToTauTau_M125',False,'nanoLatino_'),
+  samples['ggH_htt']  = {  'name'   : getSampleFiles(directory1,'GluGluHToTauTau_M125',False,'nanoLatino_'),
                            'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                            'suppressNegative' :['all'],
                            'suppressNegativeNuisances' :['all'],
                         } 
 
-  samples['qqH_htt']  = {  'name'   : getSampleFiles(directory,'VBFHToTauTau_M125',False,'nanoLatino_'),
+  samples['qqH_htt']  = {  'name'   : getSampleFiles(directory1,'VBFHToTauTau_M125',False,'nanoLatino_'),
                            'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                            'suppressNegative' :['all'],
                            'suppressNegativeNuisances' :['all'],
                         }
 
-  samples['ZH_htt']  = {  'name'   : getSampleFiles(directory,'HZJ_HToTauTau_M125',False,'nanoLatino_'),
+  samples['ZH_htt']  = {  'name'   : getSampleFiles(directory1,'HZJ_HToTauTau_M125',False,'nanoLatino_'),
                            'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                            'suppressNegative' :['all'],
                            'suppressNegativeNuisances' :['all'],
                         }
 
-  samples['WH_htt']  = {  'name'   :  getSampleFiles(directory,'HWplusJ_HToTauTau_M125',False,'nanoLatino_')
-                                    + getSampleFiles(directory,'HWminusJ_HToTauTau_M125',False,'nanoLatino_'),
+  samples['WH_htt']  = {  'name'   :  getSampleFiles(directory1,'HWplusJ_HToTauTau_M125',False,'nanoLatino_')
+                                    + getSampleFiles(directory1,'HWminusJ_HToTauTau_M125',False,'nanoLatino_'),
                            'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                            'suppressNegative' :['all'],
                            'suppressNegativeNuisances' :['all'],
