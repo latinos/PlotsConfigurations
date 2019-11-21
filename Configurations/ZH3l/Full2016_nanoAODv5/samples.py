@@ -40,10 +40,10 @@ SFweight  = 'SFweight3l*'+LepWPweight+'*'+LepWPCut+'*PrefireWeight*btagSF'
 GenLepMatch2l = 'GenLepMatch2l'
 GenLepMatch3l = 'GenLepMatch3l'
 
-wz1jSF = '1.0'
-wz2jSF = '1.0'
-zg1jSF = '1.0'
-zg2jSF = '1.0'
+wz1jSF = '1.19'
+wz2jSF = '1.42'
+zg1jSF = '1.38'
+zg2jSF = '2.72'
 
 ################################################
 ############   MET  FILTERS  ###################
@@ -123,8 +123,7 @@ samples['ttZ']  = {    'name': getSampleFilesNano(directoryMC,'TTZjets'),
 ####################################
 
 samples['WH_htt']  = {  'name': getSampleFilesNano(directoryMC,'HWminusJ_HToTauTau_M125')
-                               +getSampleFilesNano(directoryMC,'HWplusJ_HToTauTau_M125')
-                               +getSampleFilesNano(directoryMC,'HZJ_HToTauTau_M125'),
+                               +getSampleFilesNano(directoryMC,'HWplusJ_HToTauTau_M125'),
                         'weight' : XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
                         'suppressNegativeNuisances' :['all'],
                         'FilesPerJob' : 5,
@@ -144,6 +143,12 @@ samples['ZH_hww']  = {  'name': getSampleFilesNano(directoryMC,'HZJ_HToWW_M125')
                     }
 
 samples['ggZH_hww'] = {  'name': getSampleFilesNano(directoryMC,'ggZH_HToWW_M125'),
+                         'weight' : XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
+                         'suppressNegativeNuisances' :['all'],
+                         'FilesPerJob' : 5,
+                     }
+
+samples['ZH_htt'] = {  'name': getSampleFilesNano(directoryMC,'HZJ_HToTauTau_M125'),
                          'weight' : XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
                          'suppressNegativeNuisances' :['all'],
                          'FilesPerJob' : 5,

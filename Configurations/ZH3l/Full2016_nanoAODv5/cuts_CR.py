@@ -79,15 +79,6 @@ cuts['zh3l_WZ_CR_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
                        && ZH3l_dphilmetj > 3.14159/2 \
                        '
 
-<<<<<<< Updated upstream
-=======
-cuts['zh3l_Zg_CR_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
-                       && Alt$( CleanJet_pt[1], 0) < 30 \
-                       && WH3l_ZVeto < 25 \
-                       && bVeto \
-                       && ZH3l_Z4lveto < 10 \
-                       '
-
 cuts['zh3l_Zg_CR_0j'] = ' Alt$( CleanJet_pt[0], 0) < 30 \
                        && WH3l_ZVeto < 25 \
                        && bVeto \
@@ -118,7 +109,6 @@ cuts['zh3l_Zg_mme_CR_0j'] = ' Alt$( CleanJet_pt[0], 0) < 30 \
                        && abs(Lepton_pdgId[0] * Lepton_pdgId[1] * Lepton_pdgId[2]) == 13*13*11 \
                        '
 
->>>>>>> Stashed changes
 '''
  #11 = e
 # 13 = mu

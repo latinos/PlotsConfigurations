@@ -55,10 +55,13 @@ SFweight  = 'SFweight3l*'+LepWPweight+'*'+LepWPCut+'*PrefireWeight*btagSF'
 GenLepMatch2l = 'GenLepMatch2l'
 GenLepMatch3l = 'GenLepMatch3l'
 
-wz1jSF = '1.00'
-wz2jSF = '1.34'
-zg1jSF = '0.44'
-zg2jSF = '0.92'
+wz1jSF = '1.02'
+wz2jSF = '1.61'
+zg1jSF = '0.98'
+zg2jSF = '2.09'
+
+# zgXSscale = (55.5 * 1.06)/ 131.3;	# from Yutaro, Nov 12 2019
+zgXSscale = '0.448'
 
 ################################################
 ############   MET  FILTERS  ###################
@@ -120,7 +123,7 @@ samples['VVV'] = {    'name': getSampleFilesNano(directoryMC,'WZZ')
                   }
 
 samples['Zg']  = {    'name':  getSampleFilesNano(directoryMC,'ZGToLLG'),
-                      'weight' : '(( Alt$(CleanJet_pt[1],0) < 30 )*'+zg1jSF+'+( Alt$(CleanJet_pt[1],0) >= 30 )*'+zg2jSF+')*'+XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC ,
+                      'weight' : '(( Alt$(CleanJet_pt[1],0) < 30 )*'+zg1jSF+'+( Alt$(CleanJet_pt[1],0) >= 30 )*'+zg2jSF+')*'+XSweight+'*'+zgXSscale+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC ,
                       'suppressNegativeNuisances' :['all'],
                       'FilesPerJob' : 5,
                   }
@@ -142,8 +145,7 @@ addSampleWeight(samples,'ttZ','TTZjets_ext1',ttZbaseW+'/baseW')
 
 #These samples all exist, but might not be complete?
 samples['WH_htt']  = {  'name': getSampleFilesNano(directoryMC,'HWminusJ_HToTauTau_M125')
-                               +getSampleFilesNano(directoryMC,'HWplusJ_HToTauTau_M125')
-                               +getSampleFilesNano(directoryMC,'HZJ_HToTauTau_M125'),
+                               +getSampleFilesNano(directoryMC,'HWplusJ_HToTauTau_M125'),
                         'weight' : XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
                         'suppressNegativeNuisances' :['all'],
                         'FilesPerJob' : 5,
@@ -167,6 +169,13 @@ samples['ggZH_hww'] = {  'name': getSampleFilesNano(directoryMC,'GluGluZH_HToWWT
                          'suppressNegativeNuisances' :['all'],
                          'FilesPerJob' : 5,
                      }
+
+samples['ZH_htt']  = {  'name': getSampleFilesNano(directoryMC,'HZJ_HToTauTau_M125'),
+                        'weight' : XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
+                        'suppressNegativeNuisances' :['all'],
+                        'FilesPerJob' : 5,
+                    }
+
 
 ###########################################
 ################## FAKE ###################

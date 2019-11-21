@@ -2,10 +2,12 @@
   TFile *f0 = TFile::Open("rootFiles_ZH3l_2017_CR_noNF/plots_ZH3l_2017_CR_noNF.root");
 
   // Fragile, because it must match the name and ordering in cuts.py
-  TString cutslist[12] = {"preselection", "zmass_cut", "1jet_cut", "bveto_1j", "z4lveto_1j", "zh3l_WZ_CR_1j", "zh3l_Zg_CR_1j", "2jet_cut", "bveto", "z4lveto", "zh3l_WZ_CR_2j", "zh3l_Zg_CR_2j"};
+  // TString cutslist[12] = {"preselection", "zmass_cut", "1jet_cut", "bveto_1j", "z4lveto_1j", "zh3l_Zg_CR_1j", "zh3l_WZ_CR_1j", "2jet_cut", "bveto", "z4lveto", "zh3l_Zg_CR_2j", "zh3l_WZ_CR_2j"};
+  TString cutslist[12] = {"preselection", "zmass_cut", "zh3l_Zg_CR_1j", "zh3l_WZ_CR_1j", "jet_cut_1j", "bveto_1j", "z4lveto_1j", "zh3l_Zg_CR_2j", "zh3l_WZ_CR_2j", "jet_cut_2j", "bveto_2j", "z4lveto_2j"};
   // TString cutslist[6] = {"preselection", "zmass_cut"};
   //
   bool do_ratios = false;
+  bool apply_NFs = false;
 
   float n_ZH = 0.0;
   float n_ggZH = 0.0;
@@ -24,20 +26,10 @@
   float n_BG = 0.0;
   float n_Pred = 0.0;
 
-  // float WZ_1j_NF = 1.00;		// really
-  // float WZ_2j_NF = 1.34;
-  // float Zg_1j_NF = 0.44;
-  // float Zg_2j_NF = 0.92;
-
-  float WZ_1j_NF = 1.0;		// really
+  float WZ_1j_NF = 1.0;
   float WZ_2j_NF = 1.0;
   float Zg_1j_NF = 1.0;
   float Zg_2j_NF = 1.0;
-
-  cout << "Applying NFs Zg 1j " <<  Zg_1j_NF  << endl;
-  cout << "Applying NFs Zg 2j " <<  Zg_2j_NF  << endl;
-  cout << "Applying NFs WZ 1j " <<  WZ_1j_NF  << endl;
-  cout << "Applying NFs WZ 2j " <<  WZ_2j_NF  << endl << endl;
 
   cout << "\t\t ,       WZ,  ";
   cout << "     ZZ, ";
@@ -60,10 +52,12 @@
     n_ZH 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_ZH_hww"))->Integral();
     n_ggZH 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_ggZH_hww"))->Integral();
     n_ttZ 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_ttZ"))->Integral();
-    if (i < 7) // ugh -- rename cuts?
+    if (cutslist[i].Contains("1j") && apply_NFs) 
       n_Zg 	= Zg_1j_NF * ((TH1F*) f0->Get(cutslist[i]+"/events/histo_Zg"))->Integral();
-    else 
+    else if (cutslist[i].Contains("2j") && apply_NFs) 
       n_Zg 	= Zg_2j_NF * ((TH1F*) f0->Get(cutslist[i]+"/events/histo_Zg"))->Integral();
+    else
+      n_Zg 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_Zg"))->Integral();
 
     n_VVV 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_VVV"))->Integral();
     n_WH_hww 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_WH_hww"))->Integral();
@@ -71,10 +65,12 @@
     n_Fake 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_Fake_me"))->Integral();
     n_Fake 	+= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_Fake_em"))->Integral();
     n_DATA 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_DATA"))->Integral();
-    if (i < 7) // ugh -- rename cuts?
+    if (cutslist[i].Contains("1j") && apply_NFs) 
       n_WZ 	= WZ_1j_NF * ((TH1F*) f0->Get(cutslist[i]+"/events/histo_WZ"))->Integral();
-    else 
+    else if (cutslist[i].Contains("2j") && apply_NFs) 
       n_WZ 	= WZ_2j_NF * ((TH1F*) f0->Get(cutslist[i]+"/events/histo_WZ"))->Integral();
+    else
+      n_WZ 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_WZ"))->Integral();
 
     n_Higgs = n_ZH + n_ggZH + n_WH_htt  +  n_WH_hww;
     n_BG = n_ttZ + n_Zg + n_VVV + n_ZZ + n_Fake + n_WZ;
@@ -114,15 +110,7 @@
     n_Pred,
     n_DATA);
 
-    // more terrible code
-    if (!do_ratios && cutslist[i].Contains("_WZ_CR_")) {
-      float n_notWZ = n_BG - n_WZ;
-      float NF = (n_DATA - n_notWZ) / n_WZ;
-      // float dNF = n_DATA/pow(n_WZ,2) + pow((0.3*n_Fake)/n_WZ,2);
-      // dNF = sqrt(dNF);
-      float dNF = sqrt(n_DATA)/n_WZ;
-      cout << endl << cutslist[i].Data() << " WZ NF = " << NF << " +/- " << dNF << " (stat)\n" << endl;
-    }
+    // less terrible code
     if (!do_ratios && cutslist[i].Contains("_Zg_CR_")) {
       float n_notZg = n_BG - n_Zg;
       float NF = (n_DATA - n_notZg) / n_Zg;
@@ -130,8 +118,26 @@
       // dNF = sqrt(dNF);
       float dNF = sqrt(n_DATA)/n_Zg;
       cout << endl << cutslist[i].Data() << " Zg NF = " << NF << " +/- " << dNF << " (stat)\n" << endl;
+
+      if (cutslist[i].Contains("1j")) Zg_1j_NF = NF;
+      else if (cutslist[i].Contains("2j")) Zg_2j_NF = NF;
+
     }
 
+
+    if (!do_ratios && cutslist[i].Contains("_WZ_CR_")) {
+      if (cutslist[i].Contains("1j")) 		n_BG = n_BG - n_Zg + n_Zg*Zg_1j_NF;
+      else if (cutslist[i].Contains("2j")) 	n_BG = n_BG - n_Zg + n_Zg*Zg_2j_NF;
+      float n_notWZ = n_BG - n_WZ;
+      float NF = (n_DATA - n_notWZ) / n_WZ;
+      // float dNF = n_DATA/pow(n_WZ,2) + pow((0.3*n_Fake)/n_WZ,2);
+      // dNF = sqrt(dNF);
+      float dNF = sqrt(n_DATA)/n_WZ;
+      cout << endl << cutslist[i].Data() << " WZ NF = " << NF << " +/- " << dNF << " (stat)\n" << endl;
+
+      if (cutslist[i].Contains("1j")) WZ_1j_NF = NF;
+      else if (cutslist[i].Contains("2j")) WZ_2j_NF = NF;
+    }
 
   }
 

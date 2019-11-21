@@ -55,13 +55,13 @@ SFweight  = 'SFweight3l*'+LepWPweight+'*'+LepWPCut+'*btagSF'
 GenLepMatch2l = 'GenLepMatch2l'
 GenLepMatch3l = 'GenLepMatch3l'
 
-#wz1jSF = '1.16'
-#wz2jSF = '1.09'
-#zgSF = '1.34'
-wz1jSF = '1.02'
-wz2jSF = '1.22'
-zg1jSF = '0.49'
-zg2jSF = '0.71'
+wz1jSF = '1.07'
+wz2jSF = '1.41'
+zg1jSF = '1.09'
+zg2jSF = '1.61'
+
+# zgXSscale = (55.5 * 1.06)/ 131.3;	# from Yutaro, Nov 12 2019
+zgXSscale = '0.448'
 
 ################################################
 ############   MET  FILTERS  ###################
@@ -121,7 +121,7 @@ samples['VVV'] = {    'name': getSampleFilesNano(directoryMC,'WZZ')
                   }
 
 samples['Zg']  = {    'name':  getSampleFilesNano(directoryMC,'Zg'),
-                      'weight' : '(( Alt$(CleanJet_pt[1],0) < 30 )*'+zg1jSF+'+( Alt$(CleanJet_pt[1],0) >= 30 )*'+zg2jSF+')*'+XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC ,
+                      'weight' : '(( Alt$(CleanJet_pt[1],0) < 30 )*'+zg1jSF+'+( Alt$(CleanJet_pt[1],0) >= 30 )*'+zg2jSF+')*'+XSweight+'*'+zgXSscale+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC ,
                       'suppressNegativeNuisances' :['all'],
                       'FilesPerJob' : 5,
                   }
