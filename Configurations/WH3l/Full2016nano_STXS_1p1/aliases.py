@@ -259,11 +259,11 @@ aliases['lhe_mW2'] = {
 }
 
 # use HTXS_njets30 when moving to NanoAODv5 for all trees
-aliases['nCleanGenJet'] = {
-    'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
-    'class': 'CountGenJet',
-    'samples': signals
-}
+#aliases['nCleanGenJet'] = {
+#    'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
+#    'class': 'CountGenJet',
+#    'samples': signals
+#}
 
 # GGHUncertaintyProducer wasn't run for 2016 nAODv5 non-private
 thus = [

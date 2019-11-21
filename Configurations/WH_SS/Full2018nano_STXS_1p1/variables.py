@@ -62,17 +62,17 @@ variables['mlljj20_whss_bin5']  = {   'name': 'mlljj20_whss',
 #                             'fold': 0
 #                       }
 
-variables['genZPt'] = { 'name': 'Sum$(GenPart_pt*(abs(GenPart_pdgId)==23&&((GenPart_statusFlags&8192)==8192)))',
-                        'range' : (100,0,500),
-                        'xaxis' : 'genZpt [GeV]',
-                        'fold' : 0
-                    }
+#variables['genZPt'] = { 'name': 'Sum$(GenPart_pt*(abs(GenPart_pdgId)==23&&((GenPart_statusFlags&8192)==8192)))',
+#                        'range' : (100,0,500),
+#                        'xaxis' : 'genZpt [GeV]',
+#                        'fold' : 0
+#                    }
 
-variables['genWPt'] = { 'name': 'Sum$(GenPart_pt*(abs(GenPart_pdgId)==24&&((GenPart_statusFlags&128)==128)&&(abs(GenPart_pdgId[GenPart_genPartIdxMother])!=25)))',
-                        'range': (100,0,500),
-                        'xaxis': 'genWPt [GeV]',
-                        'fold': 0
-}
+#variables['genWPt'] = { 'name': 'genWPt',
+#                        'range': (100,0,500),
+#                        'xaxis': 'genWPt [GeV]',
+#                        'fold': 0
+#}
 
 #variables['mlljj20_whss_bin5']  = {   'name': 'mlljj20_whss',
 #                        'range' : (10,50.,300.),

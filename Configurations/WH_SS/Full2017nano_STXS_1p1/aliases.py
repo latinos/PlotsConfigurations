@@ -95,16 +95,16 @@ aliases['eu'] = {
 
 #genPTW
 aliases['genWPt'] = {
-    'expr' : 'Sum$(GenPart_pt*(abs(GenPart_pdgId)==24&&((GenPart_statusFlags&128)==128)&&(abs(GenPart_pdgId[GenPart_genPartIdxMother])!=25)))'
+    'expr' : 'Sum$(GenPart_pt*(abs(GenPart_pdgId)==24&&((GenPart_statusFlags&128)==128)&&(abs(GenPart_pdgId[GenPart_genPartIdxMother])!=25)))',
+    'samples' : mc
 }
 
 aliases['WlepPt_whssv1'] = {
     'linesToAdd': [
-        '.L %s/WH_SS/Full2016nano_STXS_1p1/proxyVar/wlep1pt.cc+' % configurations
+        '.L %s/macros/wlep1pt.cc+' % configurations
     ],
     'class': 'WHlepv1',
-    'args': (),
-    'samples': mc
+    'args': ()
 }
 
 # No jet with pt > 30 GeV
@@ -114,19 +114,33 @@ aliases['zeroJet'] = {
 
 # ==1 jet with pt > 30 GeV
 aliases['oneJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) < 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) < 30.'
+}
+
+# >=1 jet with pt > 30 GeV
+aliases['oneJetOrMore'] = {
+    'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
 }
 
 # ==2 jets with pt > 30 GeV
 aliases['twoJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) >= 30. && Alt$(CleanJet_pt[2], 0) < 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) > 30. && Alt$(CleanJet_pt[2], 0) < 30.'
 }
 
 # >=2 jets with pt > 30 GeV
 aliases['twoJetOrMore'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) >= 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) > 30.'
 }
 
+# ==3 with pt > 30 GeV
+aliases['threeJet'] = {
+    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) > 30. && Alt$(CleanJet_pt[2], 0) > 30. && Alt$(CleanJet_pt[3], 0) < 30.'
+}
+
+# >=3 jet with pt > 30 GeV
+aliases['threeJetOrMore'] = {
+    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) > 30. && Alt$(CleanJet_pt[2], 0) > 30.'
+}
 
 aliases['bVeto'] = {
     'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0'
@@ -150,7 +164,7 @@ aliases['btag2'] = {
 
 # Temporary patch for BTV postprocessor bug (no SF for eta < 0, <= 102X_nAODv5_Full2018v5)
 
-btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_2016LegacySF_V1.csv' % os.getenv('CMSSW_BASE')
+btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_94XSF_V2_B_F.csv' % os.getenv('CMSSW_BASE')
 
 aliases['Jet_btagSF_shapeFix'] = {
     'linesToAdd': [

@@ -15,7 +15,7 @@ def nanoGetSampleFiles(inputDir, sample):
     except NameError:
         pass
 
-    return getSampleFiles(inputDir, sample, True, 'nanoLatino_')
+    return getSampleFiles(inputDir, sample, False, 'nanoLatino_')
 
 # samples
 
@@ -189,23 +189,24 @@ if os.path.exists('HTXS_stage1_categories.py'):
   handle = open('HTXS_stage1_categories.py','r')
   exec(handle)
   handle.close()
-  SigOnly=treeBaseDir+'Summer16_102X_nAODv5_SigOnly_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/'
 
-for cat,cut in HTXSStage1_1Categories.iteritems():
+SigOnly=treeBaseDir+'/Summer16_102X_nAODv5_SigOnly_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/'
+
+for cat,num in HTXSStage1_1Categories.iteritems():
     if 'QQ2HLNU_' in cat:
         samples['WH_hww_'+cat.replace('QQ2HLNU_','')] = { 'name'   :
-                                                          nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125')
-                                                          + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125'),
-                                                          'weight' : mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')',
-                                                          'FilesPerJob': 4
+                                                          nanoGetSampleFiles(SigOnly, 'HWplusJ_HToWW_M125')
+                                                          + nanoGetSampleFiles(SigOnly, 'HWminusJ_HToWW_M125'),
+                                                          'weight' : mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')'
                                                       }
+        signals.append('WH_hww_'+cat.replace('QQ2HLNU_',''))
     
         samples['WH_htt_'+cat.replace('QQ2HLNU_','')] = { 'name'   :
-                                                          nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') 
-                                                          + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
-                                                          'weight' : mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')',
-                                                          'FilesPerJob': 4
+                                                          nanoGetSampleFiles(SigOnly, 'HWplusJ_HToTauTau_M125') 
+                                                          + nanoGetSampleFiles(SigOnly, 'HWminusJ_HToTauTau_M125'),
+                                                          'weight' : mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')'
                                                       }
+        signals.append('WH_htt_'+cat.replace('QQ2HLNU_',''))
 
 ###########################################
 ################## FAKE ###################
