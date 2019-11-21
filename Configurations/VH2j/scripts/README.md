@@ -41,6 +41,8 @@ Notice that the `prepareTables.py` macro has been adapted to properly read the V
 
 # Make the yield tables
 
+The script below will produce three tables for each data-taking period, corresponding to the DYtautau, top and signal regions. This means a total of nine tables in latex format, for 2016, 2017 and 2018.
+
     python prepareTables.py
 
 
