@@ -1,4 +1,8 @@
-The following code and instructions are needed to draw VH2j Higgs fractions and make yield tables.
+The following code and instructions are needed to:
+..* draw Higgs fractions;
+..* make yield tables;
+..* make prefit and posfit plots.
+
 
 # Original material for drawing Higgs fractions
 
@@ -40,7 +44,7 @@ Notice that the `prepareTables.py` macro has been adapted to properly read the V
     python prepareTables.py
 
 
-# Make pre- post- fit plots 
+# Make prefit and postfit plots 
 
 After creating the datacards, you should run the following command to get the file `fitDiagnostics.root`.
 
