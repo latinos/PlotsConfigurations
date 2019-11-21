@@ -10,6 +10,7 @@ configurations = os.path.dirname(configurations) # Configurations
 #mc = [skey for skey in samples if skey not in ('Fakes', 'DATA')]
 mc = [skey for skey in samples if skey not in ('Fakes_ee','Fakes_mm','Fakes_em', 'DATA')]
 
+
 bAlgo = 'DeepB'
 bWP = '0.1241'
 
@@ -21,47 +22,34 @@ aliases['PromptGenLepMatch2l'] = {
 # And variations - already divided by central values in formulas !
 aliases['fakeWEleUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleUp',
-#    'samples': ['Fakes']
     'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
-
 }
 aliases['fakeWEleDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleDown',
-#    'samples': ['Fakes']
     'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
-
 }
 aliases['fakeWMuUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuUp',
-#    'samples': ['Fakes']
     'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
-
 }
 aliases['fakeWMuDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuDown',
-#    'samples': ['Fakes']
     'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
-
 }
 aliases['fakeWStatEleUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleUp',
-#    'samples': ['Fakes']
     'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
 }
 aliases['fakeWStatEleDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleDown',
-#    'samples': ['Fakes']
     'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
 }
 aliases['fakeWStatMuUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuUp',
-#    'samples': ['Fakes']
     'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
-
 }
 aliases['fakeWStatMuDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuDown',
-#    'samples': ['Fakes']
     'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
 }
 
@@ -114,7 +102,7 @@ aliases['zeroJet'] = {
 
 # ==1 jet with pt > 30 GeV
 aliases['oneJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) < 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) < 30.'
 }
 
 # >=1 jet with pt > 30 GeV
@@ -124,12 +112,12 @@ aliases['oneJetOrMore'] = {
 
 # ==2 jets with pt > 30 GeV
 aliases['twoJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) > 30. && Alt$(CleanJet_pt[2], 0) < 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) >= 30. && Alt$(CleanJet_pt[2], 0) < 30.'
 }
 
 # >=2 jets with pt > 30 GeV
 aliases['twoJetOrMore'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) > 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) >= 30.'
 }
 
 # ==3 with pt > 30 GeV
@@ -143,11 +131,11 @@ aliases['threeJetOrMore'] = {
 }
 
 aliases['bVeto'] = {
-    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0'
+    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) == 0'
 }
 
 aliases['bReq'] = {
-    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) >= 1'
+    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) >= 1'
 }
 
 aliases['btag0'] = {
@@ -232,15 +220,30 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
         'samples': mc
     }
 
+# PostProcessing did not create (anti)topGenPt for ST samples with _ext1
+lastcopy = (1 << 13)
 
-# In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
-aliases['lhe_mW1'] = {
-    'expr': 'TMath::Sqrt(2. * LHEPart_pt[0] * LHEPart_pt[1] * (TMath::CosH(LHEPart_eta[0] - LHEPart_eta[1]) - TMath::Cos(LHEPart_phi[0] - LHEPart_phi[1])))',
-    'samples': ['WWewk']
+aliases['isTTbar'] = {
+    'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 2' % lastcopy,
+    'samples': ['top']
 }
 
-# and [2] [3] are the second W
-aliases['lhe_mW2'] = {
-    'expr': 'TMath::Sqrt(2. * LHEPart_pt[2] * LHEPart_pt[3] * (TMath::CosH(LHEPart_eta[2] - LHEPart_eta[3]) - TMath::Cos(LHEPart_phi[2] - LHEPart_phi[3])))',
-    'samples': ['WWewk']
+aliases['isSingleTop'] = {
+    'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 1' % lastcopy,
+    'samples': ['top']
+}
+
+aliases['topGenPtOTF'] = {
+    'expr': 'Sum$((GenPart_pdgId == 6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
+    'samples': ['top']
+}
+
+aliases['antitopGenPtOTF'] = {
+    'expr': 'Sum$((GenPart_pdgId == -6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
+    'samples': ['top']
+}
+
+aliases['Top_pTrw'] = {
+    'expr': 'isTTbar * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPtOTF) * TMath::Exp(0.0615 - 0.0005 * antitopGenPtOTF))) + isSingleTop',
+    'samples': ['top']
 }
