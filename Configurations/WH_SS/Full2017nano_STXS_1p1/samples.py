@@ -19,7 +19,15 @@ elif  'cern' in SITE :
   #xrootdPath='root://eoscms.cern.ch/'
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/'
 
-directory = treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/'+skim
+def makeMCDirectory(var=''):
+  if var:
+    #nAODv5_SigOnly                                                                                                                                                                                         
+    directory = treeBaseDir+'Fall2017_102X_XXXX_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/'+skim
+    return directory.replace('XXXX',var)
+  else:
+    directory = treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/'+skim
+    return directory
+
 
 ################################################
 ############ NUMBER OF LEPTONS #################
@@ -113,8 +121,8 @@ DataTrig = {
 ptllDYW_NLO = '((0.623108 + 0.0722934*gen_ptll - 0.00364918*gen_ptll*gen_ptll + 6.97227e-05*gen_ptll*gen_ptll*gen_ptll - 4.52903e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll<45)*(gen_ptll>0) + 1*(gen_ptll>=45))'
 ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
 
-samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50',False,'nanoLatino_')
-                                + getSampleFiles(directory,'DYJetsToLL_M-10to50-LO',False,'nanoLatino_'),
+samples['DY'] = {    'name'   :   getSampleFiles(makeMCDirectory,'DYJetsToLL_M-50',False,'nanoLatino_')
+                                + getSampleFiles(makeMCDirectory,'DYJetsToLL_M-10to50-LO',False,'nanoLatino_'),
  #                               + getSampleFiles(directory,'DYJetsToTT_MuEle_M-50',False,'nanoLatino_'),
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                      'FilesPerJob' : 5,
@@ -130,12 +138,12 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 
 Top_pTrw = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )'
 
-samples['top'] = {    'name'   :   getSampleFiles(directory,'TTTo2L2Nu',False,'nanoLatino_') 
-                                 + getSampleFiles(directory,'ST_s-channel',False,'nanoLatino_') 
-                                 + getSampleFiles(directory,'ST_t-channel_antitop',False,'nanoLatino_') 
-                                 + getSampleFiles(directory,'ST_t-channel_top',False,'nanoLatino_') 
-                                 + getSampleFiles(directory,'ST_tW_antitop',False,'nanoLatino_') 
-                                 + getSampleFiles(directory,'ST_tW_top',False,'nanoLatino_') ,
+samples['top'] = {    'name'   :   getSampleFiles(makeMCDirectory,'TTTo2L2Nu',False,'nanoLatino_') 
+                                 + getSampleFiles(makeMCDirectory,'ST_s-channel',False,'nanoLatino_') 
+                                 + getSampleFiles(makeMCDirectory,'ST_t-channel_antitop',False,'nanoLatino_') 
+                                 + getSampleFiles(makeMCDirectory,'ST_t-channel_top',False,'nanoLatino_') 
+                                 + getSampleFiles(makeMCDirectory,'ST_tW_antitop',False,'nanoLatino_') 
+                                 + getSampleFiles(makeMCDirectory,'ST_tW_top',False,'nanoLatino_') ,
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                      'FilesPerJob' : 1,
                  }
@@ -145,7 +153,7 @@ addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
 ############ WW ############
 
 #FIXME Add nllW weight to WW
-samples['WW'] = {    'name'   :   getSampleFiles(directory,'WWTo2L2Nu',False,'nanoLatino_') ,
+samples['WW'] = {    'name'   :   getSampleFiles(makeMCDirectory,'WWTo2L2Nu',False,'nanoLatino_') ,
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*nllW' ,
                  }
 
