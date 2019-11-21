@@ -251,20 +251,19 @@ samples['VVV']  = {  'name'   :   getSampleFiles(makeMCDirectory(),'ZZZ',False,'
 #                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
 #                     }
 
-categorization_wh = { 'FWDH' : 'abs(HTXS_Higgs_y) > 2.5',
-                      'PTV_0_75' : 'abs(HTXS_Higgs_y) < 2.5 && genWPt <= 75',
-                      'PTV_75_150' : 'abs(HTXS_Higgs_y) < 2.5 && genWPt > 75 && genWPt <= 150',
-                      'PTV_150_250_0J' : 'abs(HTXS_Higgs_y) < 2.5 && genWPt > 150 && genWPt <= 250 && HTXS_njets30==0',
-                      'PTV_150_250_GE1J' : 'abs(HTXS_Higgs_y) < 2.5 && genWPt > 150 && genWPt <= 250 && HTXS_njets30>=1',
-                      'PTV_GT250' : 'abs(HTXS_Higgs_y) < 2.5 && genWPt > 250',
-                    }
+if os.path.exists('HTXS_stage1_categories.py'):
+  handle = open('HTXS_stage1_categories.py','r')
+  exec(handle)
+  handle.close()
+  SigOnly=treeBaseDir+'Summer16_102X_nAODv5_SigOnly_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/'
 
-for cat,cut in categorization_wh.iteritems():
-  samples['WH_hww_%s' %cat] = { 'name'   :
-                                getSampleFiles(makeMCDirectory('nAODv5_SigOnly'),'HWplusJ_HToWW_M125_PrivateNano',False,'nanoLatino_')
-                                + getSampleFiles(makeMCDirectory('nAODv5_SigOnly'),'HWminusJ_HToWW_M125_PrivateNano',False,'nanoLatino_'),
-                                'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+cut,
-                              }
+for cat,num in HTXSStage1_1Categories.iteritems():
+    if 'QQ2HLNU_' in cat:
+        samples['WH_hww_'+cat.replace('QQ2HLNU_','')] = { 'name'   :
+                                    getSampleFiles(makeMCDirectory('nAODv5_SigOnly'),'HWplusJ_HToWW_M125_PrivateNano',False,'nanoLatino_')
+                                    + getSampleFiles(makeMCDirectory('nAODv5_SigOnly'),'HWminusJ_HToWW_M125_PrivateNano',False,'nanoLatino_'),
+                                    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')',
+                                    }
 
 ############ ttH ############
 
