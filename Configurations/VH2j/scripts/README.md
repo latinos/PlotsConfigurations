@@ -1,7 +1,7 @@
 The following code and instructions are needed to:
-..* draw Higgs fractions;
-..* make yield tables;
-..* make prefit and posfit plots.
+* draw Higgs fractions;
+* make yield tables;
+* make prefit and posfit plots.
 
 
 # Original material for drawing Higgs fractions
