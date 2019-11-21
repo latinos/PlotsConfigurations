@@ -131,15 +131,15 @@ nuisances['eff_e'] = {
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
 }
 
-nuisances['electronpt'] = {
-    'name': 'CMS_scale_e_2017',
-    'kind': 'tree',
-    'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('ElepTup'),
-    'folderDown': makeMCDirectory('ElepTdo'),
-    'AsLnN': '1'
-}
+#nuisances['electronpt'] = {
+#    'name': 'CMS_scale_e_2017',
+#    'kind': 'tree',
+#    'type': 'shape',
+#    'samples': dict((skey, ['1', '1']) for skey in mc),
+#    'folderUp': makeMCDirectory('ElepTup'),
+#    'folderDown': makeMCDirectory('ElepTdo'),
+#    'AsLnN': '1'
+#}
 
 ##### Muon Efficiency and energy scale
 
@@ -150,68 +150,68 @@ nuisances['eff_m'] = {
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
 }
 
-nuisances['muonpt'] = {
-    'name': 'CMS_scale_m_2017',
-    'kind': 'tree',
-    'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('MupTup'),
-    'folderDown': makeMCDirectory('MupTdo'),
-    'AsLnN': '1'
-}
+#nuisances['muonpt'] = {
+#    'name': 'CMS_scale_m_2017',
+#    'kind': 'tree',
+#    'type': 'shape',
+#    'samples': dict((skey, ['1', '1']) for skey in mc),
+#    'folderUp': makeMCDirectory('MupTup'),
+#    'folderDown': makeMCDirectory('MupTdo'),
+#    'AsLnN': '1'
+#}
 
 ##### Jet energy scale
 
-nuisances['jes'] = {
-    'name': 'CMS_scale_j_2017',
-    'kind': 'tree',
-    'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('JESup'),
-    'folderDown': makeMCDirectory('JESdo'),
-    'AsLnN': '1'
-}
+#nuisances['jes'] = {
+#    'name': 'CMS_scale_j_2017',
+#    'kind': 'tree',
+#    'type': 'shape',
+#    'samples': dict((skey, ['1', '1']) for skey in mc),
+#    'folderUp': makeMCDirectory('JESup'),
+#    'folderDown': makeMCDirectory('JESdo'),
+#    'AsLnN': '1'
+#}
 
 ##### MET energy scale
 
-nuisances['met'] = {
-    'name': 'CMS_scale_met_2017',
-    'kind': 'tree',
-    'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('METup'),
-    'folderDown': makeMCDirectory('METdo'),
-    'AsLnN': '1'
-}
+#nuisances['met'] = {
+#    'name': 'CMS_scale_met_2017',
+#    'kind': 'tree',
+#    'type': 'shape',
+#    'samples': dict((skey, ['1', '1']) for skey in mc),
+#    'folderUp': makeMCDirectory('METup'),
+#    'folderDown': makeMCDirectory('METdo'),
+#    'AsLnN': '1'
+#}
 
 ##### PS and UE --> NO AVAILABLE FOR VH2j! 
-nuisances['PS_wh3l']  = {
-    'name'  : 'PS_wh3l',
-    'kind'  : 'tree',
-    'type'  : 'shape',
-    'samples'  : {
-       'WH_hww' : ['1.037','1.'],
-       'WH_htt' : ['1.037','1.'],
-     },
-    'folderUp': makeMCDirectory('PS'),
-    'folderDown': makeMCDirectory(),
-    'AsLnN'      : '1',
-    'synchronized': False
-}
+#nuisances['PS_wh3l']  = {
+#    'name'  : 'PS_wh3l',
+#    'kind'  : 'tree',
+#    'type'  : 'shape',
+#    'samples'  : {
+#       'WH_hww' : ['1.037','1.'],
+#       'WH_htt' : ['1.037','1.'],
+#     },
+#    'folderUp': makeMCDirectory('PS'),
+#    'folderDown': makeMCDirectory(),
+#    'AsLnN'      : '1',
+#    'synchronized': False
+#}
 
-nuisances['UE_wh3l']  = {
-    'name'  : 'UE_wh3l',
-    'kind'  : 'tree',
-    'type'  : 'shape',
-    'samples'  : {
-       'WH_hww' : ['1.01','1.'],
-       'WH_htt' : ['1.01','1.'],
-     },
-    'folderUp': makeMCDirectory('UEup'),
-    'folderDown': makeMCDirectory('UEdo'),
-    'AsLnN'      : '1',
-    'synchronized': False
-}
+#nuisances['UE_wh3l']  = {
+#    'name'  : 'UE_wh3l',
+#    'kind'  : 'tree',
+#    'type'  : 'shape',
+#    'samples'  : {
+#       'WH_hww' : ['1.01','1.'],
+#       'WH_htt' : ['1.01','1.'],
+#     },
+#    'folderUp': makeMCDirectory('UEup'),
+#    'folderDown': makeMCDirectory('UEdo'),
+#    'AsLnN'      : '1',
+#    'synchronized': False
+#}
 
 ###### pdf uncertainties
 

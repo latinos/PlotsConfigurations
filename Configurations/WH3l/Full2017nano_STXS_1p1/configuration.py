@@ -1,5 +1,5 @@
 # example of configuration file
-tagName = "2017_v4"
+tagName = 'WH_3l_2017nano_HTXS1p1'
 
 treeName= 'Events'
 
@@ -10,13 +10,13 @@ aliasesFile = 'aliases.py'
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
+cutsFile = 'cuts.py'
 
 # file with list of samples
-samplesFile = 'samples.py' 
+samplesFile = 'samples.py'
 
 # file with plot configuration
-plotFile = 'plot.py' 
+plotFile = 'plot.py'
 
 # luminosity to normalize to (in 1/fb)
 lumi = 41.86

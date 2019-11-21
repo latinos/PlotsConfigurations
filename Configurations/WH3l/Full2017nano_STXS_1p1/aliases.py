@@ -17,6 +17,15 @@ mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 eleWP = 'mvaFall17V1Iso_WP90'
 muWP = 'cut_Tight_HWWW'
 
+aliases['genWPt'] = {
+    'expr' : 'Sum$(GenPart_pt*(abs(GenPart_pdgId)==24&&((GenPart_statusFlags&128)==128)&&(abs(GenPart_pdgId[GenPart_genPartIdxMother])!=25)))',
+    'samples' : mc
+}
+
+aliases['WlepPt_wh3l'] = {
+    'expr' : 'Lepton_pt[0]*(WH3l_drOSll[2]==MinIf$(WH3l_drOSll,WH3l_drOSll>0))+Lepton_pt[1]*(WH3l_drOSll[1]==MinIf$(WH3l_drOSll,WH3l_drOSll>0))+Lepton_pt[2]*(WH3l_drOSll[0]==MinIf$(WH3l_drOSll,WH3l_drOSll>0))'
+}
+
 aliases['LepWPCut'] = {
     'expr': 'LepCut3l__ele_'+eleWP+'__mu_'+muWP,
     'samples': mc + ['DATA']

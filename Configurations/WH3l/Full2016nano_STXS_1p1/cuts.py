@@ -45,23 +45,23 @@ Anacat['wh3l_13TeV_ossf']  = 'WH3l_njet == 0 \
                        && WH3l_ptlll > 20\
                        '
 
-Anacat['wh3l_wz_13TeV'] = 'WH3l_njet == 0\
+for key,value in Anacat.iteritems():
+    for cat,val in HTSXReco.iteritems():
+        cuts['%s_%s' %(key,cat)] = '%s && %s' %(value,val)
+
+cuts['wh3l_wz_13TeV'] = 'WH3l_njet == 0\
                          && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0\
                          && MET_pt > 45\
                          && WH3l_ZVeto < 20\
                          && WH3l_mlll > 100\
                         '
 
-Anacat['wh3l_zg_13TeV'] = 'WH3l_njet == 0\
+cuts['wh3l_zg_13TeV'] = 'WH3l_njet == 0\
                          && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0\
                          && MET_pt < 40\
                          && WH3l_mlll > 80\
                          && WH3l_mlll < 100\
                         '
-
-for key,value in Anacat.iteritems():
-    for cat,val in HTSXReco.iteritems():
-        cuts['%s_%s' %(key,cat)] = '%s && %s' %(value,val)
 
 
 # 11 = e

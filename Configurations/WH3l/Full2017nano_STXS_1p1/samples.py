@@ -167,23 +167,45 @@ signals = []
 
 ############ WH H->WW ############
 
-samples['WH_hww'] = {
-    'name':   nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125'),
-    'weight': mcCommonWeight,
-    'FilesPerJob': 4
-}
+#samples['WH_hww'] = {
+#    'name':   nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125'),
+#    'weight': mcCommonWeight,
+#    'FilesPerJob': 4
+#}
 
-signals.append('WH_hww')
+#signals.append('WH_hww')
 
 ############ H->TauTau ############
 
-samples['WH_htt'] = {
-    'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
-    'weight': mcCommonWeight,
-    'FilesPerJob': 4
-}
-signals.append('WH_htt')
+#samples['WH_htt'] = {
+#    'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
+#    'weight': mcCommonWeight,
+#    'FilesPerJob': 4
+#}
+#signals.append('WH_htt')
 
+if os.path.exists('HTXS_stage1_categories.py'):
+  handle = open('HTXS_stage1_categories.py','r')
+  exec(handle)
+  handle.close()
+
+SigOnly=treeBaseDir+'/Fall2017_102X_nAODv5_SigOnly_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/'
+
+for cat,num in HTXSStage1_1Categories.iteritems():
+    if 'QQ2HLNU_' in cat:
+        samples['WH_hww_'+cat.replace('QQ2HLNU_','')] = { 'name'   :
+                                                          nanoGetSampleFiles(SigOnly, 'HWplusJ_HToWW_M125')
+                                                          + nanoGetSampleFiles(SigOnly, 'HWminusJ_HToWW_M125'),
+                                                          'weight' : mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')'
+                                                      }
+        signals.append('WH_hww_'+cat.replace('QQ2HLNU_',''))
+
+        samples['WH_htt_'+cat.replace('QQ2HLNU_','')] = { 'name'   :
+                                                          nanoGetSampleFiles(SigOnly, 'HWplusJ_HToTauTau_M125')
+                                                          + nanoGetSampleFiles(SigOnly, 'HWminusJ_HToTauTau_M125'),
+                                                          'weight' : mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')'
+                                                      }
+        signals.append('WH_htt_'+cat.replace('QQ2HLNU_',''))
 
 ###########################################
 ################## FAKE ###################
@@ -222,4 +244,3 @@ for _, sd in DataRun:
     files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
-

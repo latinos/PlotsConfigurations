@@ -1,5 +1,5 @@
 # example of configuration file
-tagName = "2018_v4"
+tagName = 'WH_3l_2018nano_HTXS1p1'
 
 treeName= 'Events'
 
