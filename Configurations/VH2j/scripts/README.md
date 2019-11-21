@@ -45,11 +45,11 @@ Notice that the `prepareTables.py` macro has been adapted to properly read the V
 
 After creating the datacards, you should run the following command to get the file `fitDiagnostics.root`
 
-   combine -M FitDiagnostics -d datacards_mll.root  --X-rtd MINIMIZER_analytic --saveShapes --saveNormalizations --saveWithUncertainties
+    combine -M FitDiagnostics -d datacards_mll.root  --X-rtd MINIMIZER_analytic --saveShapes --saveNormalizations --saveWithUncertainties
 
 The output should be prepare to have the final root file and plot it
 
-   mkPostFitPlot.py --inputFileCombine fitDiagnostics.root --outputFile out.root --variable mll --cut ch1 --cutNameInOriginal VH_2j_emu --inputFile rootFile/plots_VH2j_2017.root --kind b
+    mkPostFitPlot.py --inputFileCombine fitDiagnostics.root --outputFile out.root --variable mll --cut ch1 --cutNameInOriginal VH_2j_emu --inputFile rootFile/plots_VH2j_2017.root --kind b
 
 You can plot with mkPlot.py
 
