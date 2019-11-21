@@ -1,0 +1,47 @@
+#STEP 0: Check if the dymva variables are proper configured in variable configuration, e.g. in variable_0j.py:
+'linesToAdd' : ['.L /afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_11_0_0_pre7/src/PlotsConfigurations/Configurations/ggH_SF/Full2016_nAODv5/hww_DYmvaDNN_0j.C+']
+
+#STEP 1: Submit shapesmulti in batch
+mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
+
+#STEP 2: Hadd files
+mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
+
+#STEP 3: DY estimate from data-driven
+mkDYestim.py --pycfg=configuration --dycfg=dyestim --inputFile=rootFile/plots_
+
+#STEP 4: Create datacards
+mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_ggH_SF_DYEstim.root --cardList=hww2l2v_13TeV_2016_0jee,hww2l2v_13TeV_2016_WW_0jee,hww2l2v_13TeV_2016_top_0jee,hww2l2v_13TeV_2016_0jmm,hww2l2v_13TeV_2016_WW_0jmm,hww2l2v_13TeV_2016_top_0jmm,hww2l2v_13TeV_2016_1jee,hww2l2v_13TeV_2016_WW_1jee,hww2l2v_13TeV_2016_top_1jee,hww2l2v_13TeV_2016_1jmm,hww2l2v_13TeV_2016_WW_1jmm,hww2l2v_13TeV_2016_top_1jmm,hww2l2v_13TeV_2016_2jee,hww2l2v_13TeV_2016_WW_2jee,hww2l2v_13TeV_2016_top_2jee,hww2l2v_13TeV_2016_2jmm,hww2l2v_13TeV_2016_WW_2jmm,hww2l2v_13TeV_2016_top_2jmm,hww2l2v_13TeV_2016_2jee_vbf,hww2l2v_13TeV_2016_WW_2jee_vbf,hww2l2v_13TeV_2016_top_2jee_vbf,hww2l2v_13TeV_2016_2jmm_vbf,hww2l2v_13TeV_2016_WW_2jmm_vbf,hww2l2v_13TeV_2016_top_2jmm_vbf
+
+mkDatacards.py --pycfg=configuration_0j.py --inputFile=rootFile/plots_ggH_SF_0j_DYEstim.root --cardList=hww2l2v_13TeV_2016_0jee_pt2ge20,hww2l2v_13TeV_2016_0jee_pt2lt20,hww2l2v_13TeV_2016_WW_0jee,hww2l2v_13TeV_2016_top_0jee,hww2l2v_13TeV_2016_0jmm_pt2ge20,hww2l2v_13TeV_2016_0jmm_pt2lt20,hww2l2v_13TeV_2016_WW_0jmm,hww2l2v_13TeV_2016_top_0jmm
+
+mkDatacards.py --pycfg=configuration_1j.py --inputFile=rootFile/plots_ggH_SF_1j_DYEstim.root --cardList=hww2l2v_13TeV_2016_1jee,hww2l2v_13TeV_2016_WW_1jee,hww2l2v_13TeV_2016_top_1jee,hww2l2v_13TeV_2016_1jmm,hww2l2v_13TeV_2016_WW_1jmm,hww2l2v_13TeV_2016_top_1jmm
+
+mkDatacards.py --pycfg=configuration_2j.py --inputFile=rootFile/plots_ggH_SF_2j_DYEstim.root --cardList=hww2l2v_13TeV_2016_2jee,hww2l2v_13TeV_2016_WW_2jee,hww2l2v_13TeV_2016_top_2jee,hww2l2v_13TeV_2016_2jmm,hww2l2v_13TeV_2016_WW_2jmm,hww2l2v_13TeV_2016_top_2jmm
+
+#STEP 5: Combine channels/categories
+mkComb.py --pycfg=configuration_ --combineLocation=/afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_10_2_13/src/ --combcfg=comb_
+
+#STEP 6: Significance and best fit
+#mkOptim (calculate the significance)
+mkOptim.py --pycfg=configuration_ --combineLocation=/afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_10_2_13/src/ --combcfg=comb_ --fomList=SExpPre,BestFit
+
+#TO check the significance value and best fit 
+grep Significance: datacards/*/comb/SExpPre_*
+grep "fit r:" datacards/*/comb/BestFit_*
+
+#Create yield table
+grep "proc" datacards/hww2l2v_13TeV_2016_*/events/datacard.txt > yield.txt
+grep "rate " datacards/hww2l2v_13TeV_2016_*/events/datacard.txt >> yield.txt
+:%!column -t #to organize the table
+
+STEP 7: Plot
+mkPlot.py --pycfg=configuration --inputFile=rootFile/plots_ --minLogCratio=0.1 --maxLogCratio=1000 --logOnly --fileFormats=png --onlyPlot=cratio
+mkPlot.py --pycfg=configuration --inputFile=rootFile/plots_ --linearOnly --fileFormats=png --onlyPlot=cratio
+
+#Make impacts
+text2workspace.py datacard.txt -o workspace.root
+combineTool.py -M Impacts -d workspace_0j.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1
+combineTool.py -M Impacts -d workspace_0j.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits
+combineTool.py -M Impacts -d workspace_0j.root -m 125 -o impacts_0j.json -t -1
+plotImpacts.py -i impacts_0j.json -o Impact_0j
