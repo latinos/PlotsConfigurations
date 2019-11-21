@@ -9,57 +9,18 @@ structure['DY']  = {
                   'isData'   : 0
               }
 
-
-structure['Wjets']  = {  
-                  'isSignal' : 0,
-                  'isData'   : 0 
-              }
-
-structure['Fake']  = {  
-                  'isSignal' : 0,
-                  'isData'   : 0 
-              }
-
 structure['Fake_em']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'removeFromCuts' : [
-                                      'hww2l2v_13TeV_me_pm_0j_pt2ge20',
-                                      'hww2l2v_13TeV_me_pm_0j_pt2ge20', 
-                                      'hww2l2v_13TeV_me_pm_1j_pt2ge20', 
-                                      'hww2l2v_13TeV_me_mp_0j_pt2ge20',
-                                      'hww2l2v_13TeV_me_mp_1j_pt2ge20',
-                                      'hww2l2v_13TeV_me_pm_0j_pt2lt20',
-                                      'hww2l2v_13TeV_me_pm_1j_pt2lt20',
-                                      'hww2l2v_13TeV_me_mp_0j_pt2lt20',
-                                      'hww2l2v_13TeV_me_mp_1j_pt2lt20'],
+                  'removeFromCuts' : [ k for k in cuts if 'me' in k],
               }
 
 structure['Fake_me']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'removeFromCuts' : [
-                                      'hww2l2v_13TeV_em_pm_0j_pt2ge20',
-                                      'hww2l2v_13TeV_em_pm_0j_pt2ge20', 
-                                      'hww2l2v_13TeV_em_pm_1j_pt2ge20', 
-                                      'hww2l2v_13TeV_em_mp_0j_pt2ge20',
-                                      'hww2l2v_13TeV_em_mp_1j_pt2ge20',
-                                      'hww2l2v_13TeV_em_pm_0j_pt2lt20',
-                                      'hww2l2v_13TeV_em_pm_1j_pt2lt20',
-                                      'hww2l2v_13TeV_em_mp_0j_pt2lt20',
-                                      'hww2l2v_13TeV_em_mp_1j_pt2lt20'],
+                  'removeFromCuts' : [ k for k in cuts if 'em' in k],
               }
 
-structure['ttbar'] = {   
-                  'isSignal' : 0,
-                  'isData'   : 0 
-                  }
-
-
-structure['singletop'] = {   
-                  'isSignal' : 0,
-                  'isData'   : 0 
-                  }
 
 structure['top'] = {   
                   'isSignal' : 0,
@@ -73,23 +34,13 @@ structure['WW']  = {
                   }
 
 structure['WWewk']  = {
-                      'isSignal' : 0,
-                      'isData'   : 0
-                      }
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
 
 structure['ggWW']  = {
                   'isSignal' : 0,
                   'isData'   : 0    
-                  }
-
-structure['ggWW_Int']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0    
-                  }
-
-structure['Wg']  = { 
-                  'isSignal' : 0,
-                  'isData'   : 0 
                   }
 
 structure['Vg']  = { 
@@ -97,24 +48,14 @@ structure['Vg']  = {
                   'isData'   : 0 
                   }
 
-structure['VgS'] = { 
-                  'isSignal' : 0,
-                  'isData'   : 0 
-                  }
-
-structure['WZgS_L'] = {
+structure['VgS_L'] = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
 
-structure['WZgS_H'] = {
+structure['VgS_H'] = {
                   'isSignal' : 0,
                   'isData'   : 0
-                  }
-
-structure['Zg']  = { 
-                  'isSignal' : 0,
-                  'isData'   : 0 
                   }
 
 structure['VZ']  = { 
@@ -122,26 +63,9 @@ structure['VZ']  = {
                   'isData'   : 0 
                   }
 
-structure['WZ']  = { 
-                  'isSignal' : 0,
-                  'isData'   : 0 
-                  }
-
-
 structure['VVV']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
-                  }
-
-structure['ZZ']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0    
-                  }
-
-
-structure['ggH'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
                   }
 
 structure['ggH_hww'] = {
@@ -154,10 +78,6 @@ structure['qqH_hww'] = {
                   'isData'   : 0    
                   }
 
-structure['qqH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
 
 structure['WH_hww'] = {
                   'isSignal' : 1,
@@ -172,16 +92,6 @@ structure['ZH_hww'] = {
 structure['ggZH_hww'] = {
                   'isSignal' : 1,
                   'isData'   : 0    
-                  }
-
-structure['H_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
-
-structure['bbH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0
                   }
 
 structure['ttH_hww'] = {
@@ -208,12 +118,6 @@ structure['ZH_htt'] = {
                   'isSignal' : 1,
                   'isData'   : 0,
                   }
-
-structure['H_htt'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
-
 
 # data
 
