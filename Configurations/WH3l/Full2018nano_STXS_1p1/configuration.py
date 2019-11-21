@@ -1,5 +1,5 @@
 # example of configuration file
-tagName = 'WH_3l_2018nano_HTXS1p1'
+tag = 'WH_3l_2018nano_HTXS1p1'
 
 treeName= 'Events'
 
@@ -28,11 +28,11 @@ structureFile = 'structure.py'
 nuisancesFile = 'nuisances.py'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFiles'+tagName
+outputDir = 'rootFiles_'+tag
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot'+tagName
+outputDirPlots = 'plot_'+tag
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'+tagName
+outputDirDatacard = 'datacards_'+tag

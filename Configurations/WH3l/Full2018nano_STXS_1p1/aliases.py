@@ -104,6 +104,10 @@ aliases['oneJet'] = {
     'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
 }
 
+aliases['oneJetOrMore'] = {
+    'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
+}
+
 aliases['multiJet'] = {
     'expr': 'Alt$(CleanJet_pt[1], 0) > 30.'
 }
