@@ -11,7 +11,7 @@ configurations = os.path.dirname(configurations) # Configurations
 mc = [skey for skey in samples if skey not in ('Fakes_ee','Fakes_mm','Fakes_em', 'DATA')]
 
 bAlgo = 'DeepB'
-bWP = '0.1241'
+bWP = '0.1522'
 
 aliases['PromptGenLepMatch2l'] = {
     'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
@@ -21,47 +21,34 @@ aliases['PromptGenLepMatch2l'] = {
 # And variations - already divided by central values in formulas !
 aliases['fakeWEleUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleUp',
-#    'samples': ['Fakes']
     'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
-
 }
 aliases['fakeWEleDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleDown',
-#    'samples': ['Fakes']
     'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
-
 }
 aliases['fakeWMuUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuUp',
-#    'samples': ['Fakes']
     'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
-
 }
 aliases['fakeWMuDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuDown',
-#    'samples': ['Fakes']
     'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
-
 }
 aliases['fakeWStatEleUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleUp',
-#    'samples': ['Fakes']
     'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
 }
 aliases['fakeWStatEleDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleDown',
-#    'samples': ['Fakes']
     'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
 }
 aliases['fakeWStatMuUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuUp',
-#    'samples': ['Fakes']
     'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
-
 }
 aliases['fakeWStatMuDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuDown',
-#    'samples': ['Fakes']
     'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
 }
 
@@ -114,7 +101,7 @@ aliases['zeroJet'] = {
 
 # ==1 jet with pt > 30 GeV
 aliases['oneJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) < 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) < 30.'
 }
 
 # >=1 jet with pt > 30 GeV
@@ -124,12 +111,12 @@ aliases['oneJetOrMore'] = {
 
 # ==2 jets with pt > 30 GeV
 aliases['twoJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) > 30. && Alt$(CleanJet_pt[2], 0) < 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) >= 30. && Alt$(CleanJet_pt[2], 0) < 30.'
 }
 
 # >=2 jets with pt > 30 GeV
 aliases['twoJetOrMore'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) > 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) >= 30.'
 }
 
 # ==3 with pt > 30 GeV
@@ -160,6 +147,10 @@ aliases['btag1'] = {
 
 aliases['btag2'] = {
     'expr': 'twoJet && bReq'
+}
+
+aliases['lepton_dz1cut'] = {
+    'expr': '(Lepton_muonIdx[0]!=-1 && TMath::Abs(Muon_dz[Lepton_muonIdx[0]]) < 0.01 ) || (Lepton_electronIdx[0]!=-1 && TMath::Abs(Electron_dz[Lepton_electronIdx[0]]) < 0.01 )'
 }
 
 # Temporary patch for BTV postprocessor bug (no SF for eta < 0, <= 102X_nAODv5_Full2018v5)
@@ -231,16 +222,3 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
         'expr': 'bVetoSF{shift}down*bVeto + btag0SF{shift}down*btag0 + btagnSF{shift}down*(btag1 + btag2) + (!bVeto && !btag0 && !btag1 && !btag2)'.format(shift = shift),
         'samples': mc
     }
-
-
-# In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
-aliases['lhe_mW1'] = {
-    'expr': 'TMath::Sqrt(2. * LHEPart_pt[0] * LHEPart_pt[1] * (TMath::CosH(LHEPart_eta[0] - LHEPart_eta[1]) - TMath::Cos(LHEPart_phi[0] - LHEPart_phi[1])))',
-    'samples': ['WWewk']
-}
-
-# and [2] [3] are the second W
-aliases['lhe_mW2'] = {
-    'expr': 'TMath::Sqrt(2. * LHEPart_pt[2] * LHEPart_pt[3] * (TMath::CosH(LHEPart_eta[2] - LHEPart_eta[3]) - TMath::Cos(LHEPart_phi[2] - LHEPart_phi[3])))',
-    'samples': ['WWewk']
-}
