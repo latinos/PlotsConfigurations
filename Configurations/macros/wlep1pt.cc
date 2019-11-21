@@ -21,67 +21,43 @@ public:
   TTreeFunction* clone() const override { return new WHlepv1(); }
   //TTreeFunction* clone() const override;
 
-  void beginEvent(long long) override;
-  int getMultiplicity() override { return 1; }
-  unsigned getNdata() override;
+  unsigned getNdata() override { return 1; }
+  float deltaPhi(float, float);
+  float deltaR(float, float, float, float);
+  float deltaEta(float, float);
   double evaluate(unsigned) override;
 
 protected:
   void bindTree_(multidraw::FunctionLibrary&) override;
-
-  static void setValues(long long);
   
-  static long long currentEntry;
-  static UIntValueReader* nCleanJet;
-  static FloatArrayReader* CleanJet_pt;
-  static FloatArrayReader* CleanJet_eta;
-  static FloatArrayReader* CleanJet_phi;
-  static UIntValueReader* nLepton;
-  static FloatArrayReader* Lepton_pt;
-  static FloatArrayReader* Lepton_eta;
-  static FloatArrayReader* Lepton_phi;
-
-  static std::vector<float> wlep1pt;
-
+  UIntValueReader* nCleanJet;
+  FloatArrayReader* CleanJet_pt;
+  FloatArrayReader* CleanJet_eta;
+  FloatArrayReader* CleanJet_phi;
+  UIntValueReader* nLepton;
+  FloatArrayReader* Lepton_pt;
+  FloatArrayReader* Lepton_eta;
+  FloatArrayReader* Lepton_phi;
 };
 
 /*static*/
-long long WHlepv1::currentEntry{-2};
-UIntValueReader* WHlepv1::nCleanJet{};
-FloatArrayReader* WHlepv1::CleanJet_pt{};
-FloatArrayReader* WHlepv1::CleanJet_eta{};
-FloatArrayReader* WHlepv1::CleanJet_phi{};
-UIntValueReader* WHlepv1::nLepton{};
-FloatArrayReader* WHlepv1::Lepton_pt{};
-FloatArrayReader* WHlepv1::Lepton_eta{};
-FloatArrayReader* WHlepv1::Lepton_phi{};
-std::vector<float> WHlepv1::wlep1pt{};
+//UIntValueReader* WHlepv1::nCleanJet{};
+//FloatArrayReader* WHlepv1::CleanJet_pt{};
+//FloatArrayReader* WHlepv1::CleanJet_eta{};
+//FloatArrayReader* WHlepv1::CleanJet_phi{};
+//UIntValueReader* WHlepv1::nLepton{};
+//FloatArrayReader* WHlepv1::Lepton_pt{};
+//FloatArrayReader* WHlepv1::Lepton_eta{};
+//FloatArrayReader* WHlepv1::Lepton_phi{};
+//std::vector<float> WHlepv1::wlep1pt{};
 
 WHlepv1::WHlepv1() :
   TTreeFunction()
 {}
 
-void
-WHlepv1::beginEvent(long long _iEntry)
-{
-  setValues(_iEntry);
-}
-
-unsigned
-WHlepv1::getNdata()
-{
-  return wlep1pt.size();
-}
-
-double
-WHlepv1::evaluate(unsigned ij)
-{
-  return wlep1pt[ij];
-}
-
 // --- Helper
 float
-deltaPhi(float phi1, float phi2)
+WHlepv1::deltaPhi(float phi1, float phi2)
 {
   float PHI = std::abs(phi1-phi2);
 if (PHI<=3.14159265)
@@ -91,31 +67,26 @@ else
 }
 
 float
-deltaR(float phi1, float eta1, float phi2, float eta2) {
+WHlepv1::deltaR(float phi1, float eta1, float phi2, float eta2) {
   //return sqrt((eta2-eta1)**2+deltaPhi(phi1,phi2)**2);
   return sqrt( pow((eta2-eta1),2) + pow(deltaPhi(phi1,phi2),2) );
 }
 
 float
-deltaEta(float eta1, float eta2) {
+WHlepv1::deltaEta(float eta1, float eta2) {
   return std::abs(eta1 - eta2);
 }
 // Helper ---
 
-void
-WHlepv1::setValues(long long _iEntry)
+double
+WHlepv1::evaluate(unsigned)
 {
-  if (_iEntry == currentEntry)
-    return;
-
-  currentEntry = _iEntry;
-
-  wlep1pt.clear();
 
   float mindr = 9999.;
   int leptonIdx1=-1;
   float maxdphi = -9999.;
   float dphi;
+  //double wlep1pt;
 
   TLorentzVector Whad(0.,0.,0.,0.);
   TLorentzVector jets(0.,0.,0.,0.);
@@ -124,7 +95,7 @@ WHlepv1::setValues(long long _iEntry)
   unsigned nlep{*nLepton->Get()};
 
   if (njet==0 or nlep==0)
-    wlep1pt.push_back(-9999.);
+    return -9999.;
   
   for (unsigned i{0}; i != njet; i++){
     jets.SetPtEtaPhiM(0.,0.,0.,0.);
@@ -141,34 +112,20 @@ WHlepv1::setValues(long long _iEntry)
       leptonIdx1=i;
     }
   }
-  wlep1pt.push_back(Lepton_pt->At(leptonIdx1));
+  return Lepton_pt->At(leptonIdx1);
 }
 
 void
 WHlepv1::bindTree_(multidraw::FunctionLibrary& _library)
 {
-  if (currentEntry == -2) {
-    std::cout << "Loading WHlepv1" << std::endl;
-    currentEntry = -1;
-    _library.bindBranch(nCleanJet, "nCleanJet");
-    _library.bindBranch(CleanJet_pt, "CleanJet_pt");
-    _library.bindBranch(CleanJet_eta, "CleanJet_eta");
-    _library.bindBranch(CleanJet_phi, "CleanJet_phi");
-    _library.bindBranch(nLepton, "nLepton");
-    _library.bindBranch(Lepton_pt, "Lepton_pt");
-    _library.bindBranch(Lepton_eta, "Lepton_eta");
-    _library.bindBranch(Lepton_phi, "Lepton_phi");
-
-    _library.addDestructorCallback([]() {
-        currentEntry = -2;
-        nCleanJet = nullptr;
-        CleanJet_pt = nullptr;
-        CleanJet_eta = nullptr;
-        CleanJet_phi = nullptr;
-        nLepton = nullptr;
-        Lepton_pt = nullptr;
-        Lepton_eta = nullptr;
-        Lepton_phi = nullptr;
-      });
-  }
+  std::cout << "Loading WHlepv1" << std::endl;
+  _library.bindBranch(nCleanJet, "nCleanJet");
+  _library.bindBranch(CleanJet_pt, "CleanJet_pt");
+  _library.bindBranch(CleanJet_eta, "CleanJet_eta");
+  _library.bindBranch(CleanJet_phi, "CleanJet_phi");
+  _library.bindBranch(nLepton, "nLepton");
+  _library.bindBranch(Lepton_pt, "Lepton_pt");
+  _library.bindBranch(Lepton_eta, "Lepton_eta");
+  _library.bindBranch(Lepton_phi, "Lepton_phi");
+  
 }
