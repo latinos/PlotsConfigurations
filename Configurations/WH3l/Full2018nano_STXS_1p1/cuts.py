@@ -8,7 +8,7 @@ supercut = 'MinIf$( WH3l_mOSll[], WH3l_mOSll[Iteration$] > 0) > 12 \
             && Alt$(Lepton_pt[1],0)>15 \
             && Alt$(Lepton_pt[2],0)>10 \
             && Alt$(Lepton_pt[3],0)<10 \
-            && (nLepton==3 && Alt$(Lepton_pt[3],0)<10) \
+            && (nLepton>=3 && Alt$(Lepton_pt[3],0)<10) \
             && Alt$(Lepton_eta[0],0)<2.5 \
             && Alt$(Lepton_eta[1],0)<2.5 \
             && Alt$(Lepton_eta[2],0)<2.5 \
@@ -26,14 +26,16 @@ HTSXReco = {
     'PTV_GT250' : 'WlepPt_wh3l[0] > 250',
     }
 
+
+
 Anacat['wh3l_13TeV_sssf']  = 'WH3l_njet == 0 \
                        && Alt$( CleanJet_pt[0], 0) < 30 \
                        && Sum$( CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0\
                        && WH3l_dphilllmet > 2.5 \
                        && MinIf$(WH3l_mOSll[], WH3l_mOSll[Iteration$] > 0) < 100\
                        && WH3l_flagOSSF == 0\
+                       && nLepton == 3 \
                        '
-
 Anacat['wh3l_13TeV_ossf']  = 'WH3l_njet == 0 \
                        && Alt$( CleanJet_pt[0], 0) < 30 \
                        && Sum$( CleanJet_pt[] < 20 || Jet_btagDeepB[CleanJet_jetIdx[]] < 0.1522 ) == nCleanJet  \
@@ -42,7 +44,7 @@ Anacat['wh3l_13TeV_ossf']  = 'WH3l_njet == 0 \
                        && WH3l_ZVeto > 25\
                        && MinIf$(WH3l_mOSll[], WH3l_mOSll[Iteration$] > 0) < 100\
                        && WH3l_flagOSSF == 1\
-                       && WH3l_ptlll > 20\
+                       && nLepton == 3 \
                        '
 
 for key,value in Anacat.iteritems():
@@ -63,7 +65,7 @@ cuts['wh3l_zg_13TeV'] = 'WH3l_njet == 0\
                          && WH3l_mlll < 100\
                         '
 
-
 # 11 = e
 # 13 = mu
 # 15 = tau
+
