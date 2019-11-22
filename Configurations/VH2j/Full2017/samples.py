@@ -185,7 +185,7 @@ files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
 
 samples['Vg'] = {
     'name': files,
-    'weight': mcCommonWeightNoMatch + '(55.5*1.06/131.3)*!(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22)',
+    'weight': mcCommonWeightNoMatch + '*(55.5*1.06/131.3)*!(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22)',
     'FilesPerJob': 10
 }
 addSampleWeight(samples, 'Vg', 'ZGToLLG', '(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)')
