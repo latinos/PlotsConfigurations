@@ -1,7 +1,8 @@
 The following code and instructions are needed to:
 * draw Higgs fractions;
 * make yield tables;
-* make prefit and posfit plots.
+* make prefit and posfit plots;
+* make mjj plot.
 
 
 # Original material for drawing Higgs fractions
@@ -59,4 +60,15 @@ The output should be prepared to have the final root file and plot it.
 You can plot with `mkPlot.py`.
 
     mkPlot.py --pycfg=configuration.py --inputFile=out.root --onlyCut=VH_2j_emu --onlyVariable=mll --postFit y
+
+
+# Make mjj plot
+
+Produce histograms.
+
+    root -l -b -q mjj.C\(0\)
+
+Draw histograms.
+
+    root -l -b -q mjj.C\(1\)
 
