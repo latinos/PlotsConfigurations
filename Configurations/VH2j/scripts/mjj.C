@@ -158,9 +158,11 @@ void DrawHistograms()
   
   // Save the money
   //----------------------------------------------------------------------------
+  gSystem->mkdir("png", kTRUE);
+
   c1->GetFrame()->DrawClone();
 
-  c1->SaveAs("vh2j_mjj.png");
+  c1->SaveAs("png/vh2j_mjj.png");
 }
 
 
