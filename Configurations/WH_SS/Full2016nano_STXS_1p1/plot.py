@@ -12,8 +12,9 @@ if os.path.exists('HTXS_stage1_categories.py') :
     handle.close()
 
 sampleNames = []
-for cat in categorization_wh:
-    sampleNames.append('WH_hww_%s'%cat)
+for cat in HTXSStage1_1Categories:
+    if 'QQ2HLNU_' in cat:
+        sampleNames.append('WH_hww_'+cat.replace('QQ2HLNU_',''))
 
 groupPlot['top']  = {
                   'nameHR' : 'tW and t#bar{t}',
@@ -37,13 +38,12 @@ groupPlot['Fake']  = {
                   'samples'  : ['Fakes_ee','Fakes_mm','Fakes_em']
               }
 
-groupPlot['DY']  = {
-                  'nameHR' : "DY",
-                  'isSignal' : 0,
-                  'color': 418,    # kGreen+2
-                  'samples'  : ['DY']
-              }
-
+#groupPlot['DY']  = {
+#                  'nameHR' : "DY",
+#                  'isSignal' : 0,
+#                  'color': 418,    # kGreen+2
+#                  'samples'  : ['DY']
+#              }
 
 
 groupPlot['VVV']  = {
@@ -80,12 +80,13 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed
-                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
+                  'samples' : []
+                #  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
 		#  'samples'  : ['WH_hww']
               }
 
 for s in sampleNames:
-    groupPlot['Higgs']['samples'].append('WH_hww_%s'%cat)
+    groupPlot['Higgs']['samples'].append(s)
 
 for s in sampleNames:
     plot[s]  = {
@@ -100,26 +101,26 @@ for s in sampleNames:
 # keys here must match keys in samples.py
 #
 
-plot['DY']  = {
-                  'color': 418,    # kGreen+2
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0,
-                  #'cuts'  : {
-                       #'hww2l2v_13TeV_of0j'      : 0.95 ,
-                       #'hww2l2v_13TeV_top_of0j'  : 0.95 ,
-                       #'hww2l2v_13TeV_dytt_of0j' : 0.95 ,
-                       #'hww2l2v_13TeV_em_0j'     : 0.95 ,
-                       #'hww2l2v_13TeV_me_0j'     : 0.95 ,
-                       ##
-                       #'hww2l2v_13TeV_of1j'      : 1.08 ,
-                       #'hww2l2v_13TeV_top_of1j'  : 1.08 ,
-                       #'hww2l2v_13TeV_dytt_of1j' : 1.08 ,
-                       #'hww2l2v_13TeV_em_1j'     : 1.08 ,
-                       #'hww2l2v_13TeV_me_1j'     : 1.08 ,
-                        #},
-
-              }
+#plot['DY']  = {
+#                  'color': 418,    # kGreen+2
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1.0,
+#                  #'cuts'  : {
+#                       #'hww2l2v_13TeV_of0j'      : 0.95 ,
+#                       #'hww2l2v_13TeV_top_of0j'  : 0.95 ,
+#                       #'hww2l2v_13TeV_dytt_of0j' : 0.95 ,
+#                       #'hww2l2v_13TeV_em_0j'     : 0.95 ,
+#                       #'hww2l2v_13TeV_me_0j'     : 0.95 ,
+#                       ##
+#                       #'hww2l2v_13TeV_of1j'      : 1.08 ,
+#                       #'hww2l2v_13TeV_top_of1j'  : 1.08 ,
+#                       #'hww2l2v_13TeV_dytt_of1j' : 1.08 ,
+#                       #'hww2l2v_13TeV_em_1j'     : 1.08 ,
+#                       #'hww2l2v_13TeV_me_1j'     : 1.08 ,
+#                        #},
+#
+#              }
 
 #plot['Fakes']  = {
 #                  'color': 921,    # kGray + 1
@@ -332,47 +333,47 @@ plot['H_htt'] = {
 #                  'scale'    : 1    #
 #                  }
 
-plot['ZH_hww'] = {
-                  'nameHR' : 'ZH',
-                  'color': 632+3, # kRed+3
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1    #
-                  }
+#plot['ZH_hww'] = {
+#                  'nameHR' : 'ZH',
+#                  'color': 632+3, # kRed+3
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  'scale'    : 1    #
+#                  }
 
-plot['ggZH_hww'] = {
-                  'nameHR' : 'ggZH',
-                  'color': 632+4, # kRed+4
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1    #
-                  }
+#plot['ggZH_hww'] = {
+#                  'nameHR' : 'ggZH',
+#                  'color': 632+4, # kRed+4
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  'scale'    : 1    #
+#                  }
 
-plot['WH_hww'] = {
-                  'nameHR' : 'WH',
-                  'color': 632+2, # kRed+2
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1    #
-                  }
-
-
-plot['qqH_hww'] = {
-                  'nameHR' : 'qqH',
-                  'color': 632+1, # kRed+1
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1    #
-                  }
+#plot['WH_hww'] = {
+#                  'nameHR' : 'WH',
+#                  'color': 632+2, # kRed+2
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                 'scale'    : 1    #
+#                  }
 
 
-plot['ggH_hww'] = {
-                  'nameHR' : 'ggH',
-                  'color': 632, # kRed
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1    #
-                  }
+#plot['qqH_hww'] = {
+#                  'nameHR' : 'qqH',
+#                  'color': 632+1, # kRed+1
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  'scale'    : 1    #
+#                  }
+
+
+#plot['ggH_hww'] = {
+#                  'nameHR' : 'ggH',
+#                  'color': 632, # kRed
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  'scale'    : 1    #
+#                  }
 
 #plot['bbH_hww'] = {
 #                  'nameHR' : 'bbH',
