@@ -29,7 +29,7 @@ public:
 
 protected:
   void bindTree_(multidraw::FunctionLibrary&) override;
-  
+
   UIntValueReader* nCleanJet;
   FloatArrayReader* CleanJet_pt;
   FloatArrayReader* CleanJet_eta;
@@ -39,17 +39,6 @@ protected:
   FloatArrayReader* Lepton_eta;
   FloatArrayReader* Lepton_phi;
 };
-
-/*static*/
-//UIntValueReader* WHlepv1::nCleanJet{};
-//FloatArrayReader* WHlepv1::CleanJet_pt{};
-//FloatArrayReader* WHlepv1::CleanJet_eta{};
-//FloatArrayReader* WHlepv1::CleanJet_phi{};
-//UIntValueReader* WHlepv1::nLepton{};
-//FloatArrayReader* WHlepv1::Lepton_pt{};
-//FloatArrayReader* WHlepv1::Lepton_eta{};
-//FloatArrayReader* WHlepv1::Lepton_phi{};
-//std::vector<float> WHlepv1::wlep1pt{};
 
 WHlepv1::WHlepv1() :
   TTreeFunction()
@@ -86,7 +75,6 @@ WHlepv1::evaluate(unsigned)
   int leptonIdx1=-1;
   float maxdphi = -9999.;
   float dphi;
-  //double wlep1pt;
 
   TLorentzVector Whad(0.,0.,0.,0.);
   TLorentzVector jets(0.,0.,0.,0.);
@@ -96,7 +84,7 @@ WHlepv1::evaluate(unsigned)
 
   if (njet==0 or nlep==0)
     return -9999.;
-  
+
   for (unsigned i{0}; i != njet; i++){
     jets.SetPtEtaPhiM(0.,0.,0.,0.);
     jets.SetPtEtaPhiM( CleanJet_pt->At(i) , CleanJet_eta->At(i) , CleanJet_phi->At(i) , 0. );
@@ -127,5 +115,5 @@ WHlepv1::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(Lepton_pt, "Lepton_pt");
   _library.bindBranch(Lepton_eta, "Lepton_eta");
   _library.bindBranch(Lepton_phi, "Lepton_phi");
-  
+
 }
