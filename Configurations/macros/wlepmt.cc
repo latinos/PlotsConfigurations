@@ -36,7 +36,7 @@ protected:
   FloatArrayReader* Lepton_pt;
   FloatArrayReader* Lepton_eta;
   FloatArrayReader* Lepton_phi;
-  FloatValueReader* pfmet;
+  FloatValueReader* MET_pt;
   FloatValueReader* dphilmet1;
   FloatValueReader* dphilmet2;
 };
@@ -66,7 +66,7 @@ WHlepMt::evaluate(unsigned)
 
   unsigned njet{*nCleanJet->Get()};
   unsigned nlep{*nLepton->Get()};
-  float Pfmet{*pfmet->Get()};
+  float Pfmet{*MET_pt->Get()};
   float Dphilmet1{*dphilmet1->Get()};
   float Dphilmet2{*dphilmet2->Get()};
 
@@ -112,7 +112,7 @@ WHlepMt::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(Lepton_pt, "Lepton_pt");
   _library.bindBranch(Lepton_eta, "Lepton_eta");
   _library.bindBranch(Lepton_phi, "Lepton_phi");
-  _library.bindBranch(pfmet, "pfmet");
+  _library.bindBranch(MET_pt, "MET_pt");
   _library.bindBranch(dphilmet1, "dphilmet1");
   _library.bindBranch(dphilmet2, "dphilmet2");
 }

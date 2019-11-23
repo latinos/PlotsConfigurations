@@ -15,10 +15,23 @@ variables['events']  = {   'name': '1',
 #                         }
 
 variables['WlepPt_whssv1'] = { 'name': 'WlepPt_whssv1',
-                             'range' : (100,0,500),
-                             'xaxis' : 'Lepton from W1 [GeV]',
+                               'range' : (60,0,300),
+                             'xaxis' : 'Wlep Pt [GeV]',
                              'fold' : 1
                          }
+
+variables['WlepPt_whssv2'] = { 'name': 'WlepPt_whssv2',
+                             'range' : (60,0,300),
+                             'xaxis' : 'Wlep Pt [GeV]',
+                             'fold' : 1
+                         }
+
+variables['WlepMt_whss'] = { 'name': 'WlepMt_whss',
+                             'range' : (60,0,300),
+                             'xaxis' : 'Wlep Mt [GeV]',
+                             'fold' : 1
+                         }
+
 
 #variables['HTXS_Higgs_pt'] = { 'name': 'HTXS_Higgs_pt',
 #                               'range' : (100,0,500),
