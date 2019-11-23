@@ -81,7 +81,8 @@ WHlepv2::evaluate(unsigned)
   int jet30=0;
 
   TLorentzVector Whad(0.,0.,0.,0.);
-  TLorentzVector jets(0.,0.,0.,0.);
+  TLorentzVector jet1(0.,0.,0.,0.);
+  TLorentzVector jet2(0.,0.,0.,0.);
 
   unsigned njet{*nCleanJet->Get()};
   unsigned nlep{*nLepton->Get()};
@@ -118,8 +119,8 @@ WHlepv2::evaluate(unsigned)
     return -9999.;
   }
 
-  for (Int_t i=0; i<=nlep; i++){
-    dphi = deltaPhi( Lepton_phi[i] , Whad.Phi());
+  for (unsigned i{0}; i != nlep; i++){
+    dphi = deltaPhi( Lepton_phi->At(i) , Whad.Phi());
     if (maxdphi < dphi){
       maxdphi=dphi;
       leptonIdx1=i;
@@ -129,7 +130,7 @@ WHlepv2::evaluate(unsigned)
     return -9999.;
   }
   else{
-    return Lepton_pt[leptonIdx1];
+    return Lepton_pt->At(leptonIdx1);
   }
 }
 

@@ -66,9 +66,9 @@ WHlepMt::evaluate(unsigned)
 
   unsigned njet{*nCleanJet->Get()};
   unsigned nlep{*nLepton->Get()};
-  float pfmet{*pfmet->Get()};
-  float dphilmet1{*dphilmet1->Get()};
-  float dphilmet2{*dphilmet2->Get()};
+  float Pfmet{*pfmet->Get()};
+  float Dphilmet1{*dphilmet1->Get()};
+  float Dphilmet2{*dphilmet2->Get()};
 
   if (njet>=2 && nlep>=2){
 
@@ -77,10 +77,10 @@ WHlepMt::evaluate(unsigned)
     Whad=jet1+jet2;
 
     if ( deltaPhi( Lepton_phi->At(0) , Whad.Phi() ) > deltaPhi( Lepton_phi->At(1) , Whad.Phi() ) ){
-      return sqrt(2*Lepton_pt->At(0)*pfmet*(1-cos(dphilmet1)));
+      return sqrt(2*Lepton_pt->At(0)*Pfmet*(1-cos(Dphilmet1)));
     }
     else{
-      return sqrt(2*Lepton_pt->At(1)*pfmet*(1-cos(dphilmet2)));
+      return sqrt(2*Lepton_pt->At(1)*Pfmet*(1-cos(Dphilmet2)));
     }
 
   }
@@ -89,10 +89,10 @@ WHlepMt::evaluate(unsigned)
     Whad.SetPtEtaPhiM( CleanJet_pt->At(0), CleanJet_eta->At(0), CleanJet_phi->At(0), 0. );
 
     if ( deltaPhi( Lepton_phi->At(0) , Whad.Phi() ) > deltaPhi( Lepton_phi->At(1) , Whad.Phi() ) ){
-      return sqrt(2*Lepton_pt->At(0)*pfmet*(1-cos(dphilmet1)));
+      return sqrt(2*Lepton_pt->At(0)*Pfmet*(1-cos(Dphilmet1)));
     }
     else{
-      return sqrt(2*Lepton_pt->At(1)*pfmet*(1-cos(dphilmet2)));
+      return sqrt(2*Lepton_pt->At(1)*Pfmet*(1-cos(Dphilmet2)));
     }
   }
   else{
