@@ -1,4 +1,9 @@
-The following code and instructions are needed to draw VH2j Higgs fractions and make yield tables.
+The following code and instructions are needed to:
+* draw Higgs fractions;
+* make yield tables;
+* make prefit and posfit plots;
+* make mjj plot.
+
 
 # Original material for drawing Higgs fractions
 
@@ -37,5 +42,33 @@ Notice that the `prepareTables.py` macro has been adapted to properly read the V
 
 # Make the yield tables
 
+The script below will produce three tables for each data-taking period, corresponding to the DYtautau, top and signal regions. This means a total of nine tables in latex format, for 2016, 2017 and 2018.
+
     python prepareTables.py
+
+
+# Make prefit and postfit plots 
+
+After creating the datacards, you should run the following command to get the file `fitDiagnostics.root`.
+
+    combine -M FitDiagnostics -d datacards_mll.root --X-rtd MINIMIZER_analytic --saveShapes --saveNormalizations --saveWithUncertainties
+
+The output should be prepared to have the final root file and plot it.
+
+    mkPostFitPlot.py --inputFileCombine fitDiagnostics.root --outputFile out.root --variable mll --cut ch1 --cutNameInOriginal VH_2j_emu --inputFile rootFile/plots_VH2j_2017.root --kind b
+
+You can plot with `mkPlot.py`.
+
+    mkPlot.py --pycfg=configuration.py --inputFile=out.root --onlyCut=VH_2j_emu --onlyVariable=mll --postFit y
+
+
+# Make mjj plot
+
+Produce histograms.
+
+    root -l -b -q mjj.C\(0\)
+
+Draw histograms.
+
+    root -l -b -q mjj.C\(1\)
 

@@ -72,7 +72,7 @@ groupPlot['Vg']  = {
                   'nameHR' : "V#gamma",
                   'isSignal' : 0,
                   'color'    : 922,   # kOrange + 10
-                  'samples'  : ['Vg', 'Wg']
+                  'samples'  : ['Vg']
               }
 
 #groupPlot['VgS']  = {
@@ -214,14 +214,6 @@ plot['VZ']  = {
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-plot['WZ']  = {
-                  'color': 612, # kAzure -2  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
-
-
 
 plot['ZZ']  = {
                   'color': 857, # kAzure -2  
@@ -236,9 +228,14 @@ plot['VVV']  = {
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-
 plot['WWW']  = {
                   'color': 618, # kAzure -3  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+plot['WZ']  = {
+                  'color': 612, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
@@ -391,7 +388,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1,
-                  'isBlind'  : 1
+               #  'isBlind'  : 1
               }
 
 

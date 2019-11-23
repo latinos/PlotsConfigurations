@@ -1,0 +1,47 @@
+#STEP 0: Check if the dymva variables are proper configured in variable configuration, e.g. in variable_VH.py:
+'linesToAdd' : ['.L /afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_11_0_0_pre7/src/PlotsConfigurations/Configurations/ggH_SF/Full2017_nAODv5/hww_DYmvaDNN_VH.C+']
+
+#STEP 1: Submit shapesmulti in batch
+mkShapesMulti.py --pycfg=configuration_VH.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
+
+#STEP 2: Hadd files
+mkShapesMulti.py --pycfg=configuration_VH.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
+
+
+#STEP 3: DY estimate from data-driven
+mkDYestim.py --pycfg=configuration_VH.py --dycfg=dyestim_VH.py --inputFile=rootFile/plots_VH_SF_2017.root
+
+#STEP 4: Create datacards
+mkDatacards.py --pycfg=configuration_VH.py --inputFile=rootFile/plots_VH_SF_2017_DYEstim.root --cardList=hww2l2v_13TeV_2017_2jee_vh2j,hww2l2v_13TeV_2017_2jmm_vh2j,hww2l2v_13TeV_2017_2jee_vh2j,hww2l2v_13TeV_2017_WW_2jee_vh2j,hww2l2v_13TeV_2017_top_2jee_vh2j,hww2l2v_13TeV_2017_2jmm_vh2j,hww2l2v_13TeV_2017_WW_2jmm_vh2j,hww2l2v_13TeV_2017_top_2jmm_vh2j
+
+#STEP 5: Combine channels/categories
+mkComb.py --pycfg=configuration_VH.py --combineLocation=/afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_10_2_13/src/ --combcfg=comb_VH.py
+
+
+#STEP 6: Significance and best fit
+mkOptim.py --pycfg=configuration_VH.py --combineLocation=/afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_10_2_13/src/ --combcfg=comb_VH.py --fomList=SExpPre,BestFit
+
+
+#TO check the significance value and best fit 
+grep Significance: datacards/*/comb/SExpPre_*
+grep "fit r:" datacards/*/comb/BestFit_*
+
+
+#Create yield table
+grep "proc" datacards/hww2l2v_13TeV_2016_*/events/datacard.txt > yield.txt
+grep "rate " datacards/hww2l2v_13TeV_2016_*/events/datacard.txt >> yield.txt
+:%!column -t #to organize the table
+
+
+STEP 7: Plot!!
+mkPlot.py --pycfg=configuration --inputFile=rootFile/plots_ --minLogCratio=0.1 --maxLogCratio=1000 --logOnly --fileFormats=png --onlyPlot=cratio #LOG PLOTS
+
+mkPlot.py --pycfg=configuration --inputFile=rootFile/plots_ --linearOnly --fileFormats=png --onlyPlot=cratio #LINEAR PLOTS
+
+
+#Example to make impacts
+text2workspace.py datacard.txt -o workspace.root
+combineTool.py -M Impacts -d workspace_VH.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1
+combineTool.py -M Impacts -d workspace_VH.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits
+combineTool.py -M Impacts -d workspace_VH.root -m 125 -o impacts_VH.json -t -1
+plotImpacts.py -i impacts_VH.json -o Impact_VH
