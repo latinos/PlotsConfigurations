@@ -1,6 +1,6 @@
 # structure configuration for datacard
 
-#structure = {}
+structure = {}
 
 if os.path.exists('HTXS_stage1_categories.py') :
     handle = open('HTXS_stage1_categories.py','r')
