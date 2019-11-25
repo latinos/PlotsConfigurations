@@ -16,7 +16,7 @@ lumi=41.5
 
 #outputDirPlots='plots_'+tag+'Blined'
 outputDirPlots='plots_'+tag
-outputDir =           'rootFile_'+tag
+outputDir = 'rootFile_'+tag
 treeName='Events'
 aliasesFile='aliases.py'
 nuisancesFile = 'nuisances.py'
