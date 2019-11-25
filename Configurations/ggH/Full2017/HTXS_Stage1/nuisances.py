@@ -16,6 +16,11 @@ if os.path.exists('HTXS_stage1_categories.py') :
   exec(handle)
   handle.close()
 
+if os.path.exists('UENormFactors.py') :
+  handle = open('UENormFactors.py','r')
+  exec(handle)
+  handle.close()
+
 if os.path.exists('thuNormFactors.py') :
   handle = open('thuNormFactors.py','r')
   exec(handle)
@@ -327,15 +332,19 @@ for name in sampleNames:
   if 'ggH_hww' in name:
     nuisances['PS']['samples'].update({name: ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]']})
 
+#These numbers have been updated 
 nuisances['UE']  = {
                 'name'  : 'UE',
                 'skipCMS' : 1,
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                  #'WW'      : ['1.12720771849', '1.13963144574'], #this was commented because it is missing, check
-                  'ggH_hww' : ['1.00211385568', '0.994966378288'],
-                  'qqH_hww' : ['1.00367895901', '0.994831373195']
+                  'WW'      : ['UEWWNormFactors[0]','UEWWNormFactors[1]'],
+                  #new:['0.974123217122', '0.00764355789067'] old:['1.12720771849', '1.13963144574'], 
+                  'ggH_hww' : ['UEggHNormFactors[0]','UEggHNormFactors[1]'],
+                  #new:['0.994216746291', '1.020025863']      old:['1.00211385568', '0.994966378288'],
+                  'qqH_hww' : ['UEqqHNormFactors[0]','UEqqHNormFactors[1]']
+                  #new:['0.980501317842', '1.00876768329']    old:['1.00367895901', '0.994831373195']
                 },
                 'folderUp': makeMCDirectory('UEup'),
                 'folderDown': makeMCDirectory('UEdo'),
@@ -345,7 +354,16 @@ nuisances['UE']  = {
 
 for name in sampleNames:
   if 'ggH_hww' in name:
-    nuisances['UE']['samples'].update({name: ['1.00211385568', '0.994966378288']})
+    if 'GT200' not in name:
+      scaleUp   = UEggHSTXSNormFactors[name.replace('ggH_hww','GG2H')][0]
+      scaleDown = UEggHSTXSNormFactors[name.replace('ggH_hww','GG2H')][1]
+      nuisances['UE']['samples'].update({name : [scaleUp, scaleDown]})
+    else:
+      nuisances['UE']['samples'].update({name : ['UEggHSTXSNormFactors[GG2H_PTH_200_300][0]',' UEggHSTXSNormFactors[GG2H_PTH_200_300][1]']})
+      nuisances['UE']['samples'].update({name : ['UEggHSTXSNormFactors[GG2H_PTH_300_450][0]',' UEggHSTXSNormFactors[GG2H_PTH_300_450][1]']})
+      nuisances['UE']['samples'].update({name : ['UEggHSTXSNormFactors[GG2H_PTH_450_650][0]',' UEggHSTXSNormFactors[GG2H_PTH_450_650][1]']})
+      nuisances['UE']['samples'].update({name : ['UEggHSTXSNormFactors[GG2H_PTH_GT650][0]'  ,' UEggHSTXSNormFactors[GG2H_PTH_GT650][1]']})
+
 
 ####### Generic "cross section uncertainties"
 
