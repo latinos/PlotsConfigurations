@@ -2,12 +2,14 @@
 
 tag = 'ZH3l_2017'
 #tag = 'ZH3l_2017_TightEl'
+#tag = 'ZH3l_2017_CR_jetplots'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFiles_'+tag
 
 # file with list of variables
 variablesFile = 'variables.py'
+#variablesFile = 'variables_jets.py'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
@@ -36,4 +38,4 @@ outputDirDatacard = 'datacards_'+tag
 structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+# nuisancesFile = 'nuisances.py'
