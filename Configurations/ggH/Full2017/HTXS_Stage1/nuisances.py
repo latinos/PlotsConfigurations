@@ -339,7 +339,7 @@ nuisances['UE']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                  'WW'      : ['UEWWNormFactors[0]','UEWWNormFactors[1]'],
+                  #'WW'      : ['UEWWNormFactors[0]','UEWWNormFactors[1]'],     #The WW down file is buggy  
                   #new:['0.974123217122', '0.00764355789067'] old:['1.12720771849', '1.13963144574'], 
                   'ggH_hww' : ['UEggHNormFactors[0]','UEggHNormFactors[1]'],
                   #new:['0.994216746291', '1.020025863']      old:['1.00211385568', '0.994966378288'],
@@ -681,8 +681,8 @@ nuisances['CRSR_accept_top'] = {
 #   see https://twiki.cern.ch/twiki/bin/viewauth/CMS/HiggsWG/SignalModelingTools
 
 thus = [
-    ('THU_ggH_Mu', 'ggH_mu'),
-    ('THU_ggH_Res', 'ggH_res'),
+#    ('THU_ggH_Mu', 'ggH_mu'),
+#    ('THU_ggH_Res', 'ggH_res'),
     ('THU_ggH_Mig01', 'ggH_mig01'),
     ('THU_ggH_Mig12', 'ggH_mig12'),
     ('THU_ggH_VBF2j', 'ggH_VBF2j'),
