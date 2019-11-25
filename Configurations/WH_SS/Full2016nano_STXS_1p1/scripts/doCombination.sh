@@ -30,46 +30,9 @@ datacardDir=$PWD/$1
 #mlljj20_whss_bin5
 vars="mlljj20_whss_bin4"
 
-##ee 2j
-#hww2l2v_13TeV_of2j_WH_SS_ee_2j_FWDH=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_2j_FWDH/$vars/datacard.txt \
-#    hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_0_75=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_0_75/$vars/datacard.txt \
-#    hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_75_150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_75_150/$vars/datacard.txt \
-#    hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_150_250_0J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_150_250_0J/$vars/datacard.txt \
-#    hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_150_250_GE1J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_150_250_GE1J/$vars/datacard.txt \
-#    hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_GT250=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_GT250/$vars/datacard.txt \
-
-##ee 1j
-#hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_0_75=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_0_75/$vars/datacard.txt \
-#    hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_75_150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_75_150/$vars/datacard.txt \
-#    hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_150_250_0J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_150_250_0J/$vars/datacard.txt \
-#    hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_150_250_GE1J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_150_250_GE1J/$vars/datacard.txt \
-#    hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_GT250=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_GT250/$vars/datacard.txt \
-
-##eu 2j
-#  hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_0_75=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_0_75/$vars/datacard.txt \
-#    hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_75_150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_75_150/$vars/datacard.txt \
-#    hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_150_250_0J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_150_250_0J/$vars/datacard.txt \
-#    hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_150_250_GE1J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_150_250_GE1J/$vars/datacard.txt \
-#    hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_GT250=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_GT250/$vars/datacard.txt \
-
-##eu 1j
-# hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_0_75=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_0_75/$vars/datacard.txt \
-#    hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_75_150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_75_150/$vars/datacard.txt \
-#    hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_150_250_0J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_150_250_0J/$vars/datacard.txt \
-#    hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_150_250_GE1J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_150_250_GE1J/$vars/datacard.txt \
-#    hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_GT250=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_GT250/$vars/datacard.txt \
-
-#FEDW
-#    hww2l2v_13TeV_of2j_WH_SS_uu_2j_FWDH=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_2j_FWDH/$vars/datacard.txt \
-#    hww2l2v_13TeV_of2j_WH_SS_eu_2j_FWDH=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_FWDH/$vars/datacard.txt \
-#    hww2l2v_13TeV_of2j_WH_SS_ee_1j_FWDH=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_1j_FWDH/$vars/datacard.txt \
-#    hww2l2v_13TeV_of2j_WH_SS_uu_1j_FWDH=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_1j_FWDH/$vars/datacard.txt \
-#    hww2l2v_13TeV_of2j_WH_SS_eu_1j_FWDH=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_1j_FWDH/$vars/datacard.txt \
-
-
-
 # combine the datacards
 combineCards.py \
+    hww2l2v_13TeV_of2j_WH_SS_ee_2j_FWDH=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_2j_FWDH/$vars/datacard.txt \
     hww2l2v_13TeV_of2j_WH_SS_uu_2j_FWDH=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_2j_FWDH/$vars/datacard.txt \
     hww2l2v_13TeV_of2j_WH_SS_eu_2j_FWDH=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_FWDH/$vars/datacard.txt \
     hww2l2v_13TeV_of2j_WH_SS_ee_1j_FWDH=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_1j_FWDH/$vars/datacard.txt \
@@ -87,19 +50,79 @@ combineCards.py \
     hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_150_250_0J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_150_250_0J/$vars/datacard.txt \
     hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_150_250_GE1J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_150_250_GE1J/$vars/datacard.txt \
     hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_GT250=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_GT250/$vars/datacard.txt \
+    \
+    hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_0_75=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_0_75/$vars/datacard.txt \
+    hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_75_150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_75_150/$vars/datacard.txt \
+    hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_150_250_0J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_150_250_0J/$vars/datacard.txt \
+    hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_150_250_GE1J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_150_250_GE1J/$vars/datacard.txt \
+    hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_GT250=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_GT250/$vars/datacard.txt \
+    \
+    hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_0_75=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_0_75/$vars/datacard.txt \
+    hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_75_150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_75_150/$vars/datacard.txt \
+    hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_150_250_0J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_150_250_0J/$vars/datacard.txt \
+    hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_150_250_GE1J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_150_250_GE1J/$vars/datacard.txt \
+    hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_GT250=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_GT250/$vars/datacard.txt \
+    \
+    hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_0_75=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_0_75/$vars/datacard.txt \
+    hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_75_150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_75_150/$vars/datacard.txt \
+    hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_150_250_0J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_150_250_0J/$vars/datacard.txt \
+    hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_150_250_GE1J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_150_250_GE1J/$vars/datacard.txt \
+    hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_GT250=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_GT250/$vars/datacard.txt \
+    \
+    hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_0_75=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_0_75/$vars/datacard.txt \
+    hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_75_150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_75_150/$vars/datacard.txt \
+    hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_150_250_0J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_150_250_0J/$vars/datacard.txt \
+    hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_150_250_GE1J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_150_250_GE1J/$vars/datacard.txt \
+    hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_GT250=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_GT250/$vars/datacard.txt \
     > ${outputDir}/Full2016_WH_SS_HTXS_Stage1.txt
 
-#combineCards.py \
-#    hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_0_75=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_0_75/$vars/datacard.txt \
-#    hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_75_150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_75_150/$vars/datacard.txt \
-#    > ${outputDir}/Full2016_WH_SS_HTXS_Stage1.txt
 
 echo "Combination folder is created"
 
-#of2j_WH_SS_ee_2j_PTV_150_250_0J
-#RuntimeError: Bogus norm -0.08831159305282821 for channel of2j_WH_SS_ee_2j_PTV_150_250_0J, process Fakes_ee, systematic CMS_CMS_fake_e_2016 Up
-#echo "nuisance edit drop Fakes_ee of2j_WH_SS_ee_2j_PTV_150_250_0J CMS_CMS_fake_e_2016" >> ${outputDir}/Full2016_WH_SS_HTXS_Stage1.txt
-#echo "nuisance edit drop Fakes_ee of2j_WH_SS_ee_2j_PTV_150_250_0J CMS_CMS_fake_stat_e_2016" >> ${outputDir}/Full2016_WH_SS_HTXS_Stage1.txt
+#remove ee
+#combineCards.py \
+#    hww2l2v_13TeV_of2j_WH_SS_ee_2j_FWDH=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_2j_FWDH/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_uu_2j_FWDH=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_2j_FWDH/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_eu_2j_FWDH=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_FWDH/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_uu_1j_FWDH=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_1j_FWDH/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_eu_1j_FWDH=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_1j_FWDH/$vars/datacard.txt \
+#    \
+#    hww2l2v_13TeV_of2j_WH_SS_uu_2j_PTV_0_75=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_2j_PTV_0_75/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_uu_2j_PTV_75_150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_2j_PTV_75_150/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_uu_2j_PTV_150_250_0J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_2j_PTV_150_250_0J/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_uu_2j_PTV_150_250_GE1J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_2j_PTV_150_250_GE1J/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_uu_2j_PTV_GT250=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_2j_PTV_GT250/$vars/datacard.txt \
+#    \
+#    hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_0_75=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_0_75/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_75_150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_75_150/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_150_250_0J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_150_250_0J/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_150_250_GE1J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_150_250_GE1J/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_GT250=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_GT250/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_0_75=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_0_75/$vars/datacard.txt \
+#    \
+#    hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_75_150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_75_150/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_150_250_0J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_150_250_0J/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_150_250_GE1J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_150_250_GE1J/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_GT250=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_GT250/$vars/datacard.txt \
+#    \
+#    hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_0_75=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_0_75/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_75_150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_75_150/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_150_250_0J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_150_250_0J/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_150_250_GE1J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_150_250_GE1J/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_GT250=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_GT250/$vars/datacard.txt \
+#    \
+#    hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_0_75=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_0_75/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_150_250_0J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_150_250_0J/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_150_250_GE1J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_150_250_GE1J/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_GT250=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_1j_PTV_GT250/$vars/datacard.txt \
+#    \
+#    hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_0_75=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_0_75/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_75_150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_75_150/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_150_250_0J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_150_250_0J/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_150_250_GE1J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_150_250_GE1J/$vars/datacard.txt \
+#    hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_GT250=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_GT250/$vars/datacard.txt \
+#    > ${outputDir}/Full2016_WH_SS_HTXS_Stage1.txt
+
 
 #Btag
 #RuntimeError: Bogus norm -0.4695537986470998 for channel of2j_WH_SS_eu_2j_PTV_150_250_0J, process Vg, systematic CMS_CMS_btag_cferr1 Up
