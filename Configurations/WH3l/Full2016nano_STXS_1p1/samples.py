@@ -177,13 +177,13 @@ signals = []
 #signals.append('WH_hww')
 
 ############ H->TauTau ############
-#samples['WH_htt'] = {
-#    'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
-#    'weight': mcCommonWeight,
-#    'FilesPerJob': 4
-#}
+samples['WH_htt'] = {
+    'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4
+}
 
-#signals.append('WH_htt')
+signals.append('WH_htt')
 
 if os.path.exists('HTXS_stage1_categories.py'):
   handle = open('HTXS_stage1_categories.py','r')
@@ -201,13 +201,6 @@ for cat,num in HTXSStage1_1Categories.iteritems():
                                                       }
         signals.append('WH_hww_'+cat.replace('QQ2HLNU_',''))
     
-        samples['WH_htt_'+cat.replace('QQ2HLNU_','')] = { 'name'   :
-                                                          nanoGetSampleFiles(SigOnly, 'HWplusJ_HToTauTau_M125') 
-                                                          + nanoGetSampleFiles(SigOnly, 'HWminusJ_HToTauTau_M125'),
-                                                          'weight' : mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')'
-                                                      }
-        signals.append('WH_htt_'+cat.replace('QQ2HLNU_',''))
-
 ###########################################
 ################## FAKE ###################
 ###########################################

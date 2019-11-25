@@ -13,8 +13,6 @@ sampleNames = []
 for cat in HTXSStage1_1Categories:
     if 'QQ2HLNU_' in cat:
         sampleNames.append('WH_hww_'+cat.replace('QQ2HLNU_',''))
-        sampleNames.append('WH_htt_'+cat.replace('QQ2HLNU_',''))
-
 
 #groupPlot['DY']  = {  
 #                  'nameHR' : "DY",
@@ -37,12 +35,12 @@ groupPlot['Fake']  = {
 #                  'samples'  : ['top']
 #              }
 
-#groupPlot['WW']  = {  
-#                  'nameHR' : 'WW',
-#                  'isSignal' : 0,
-#                  'color': 851, # kAzure -9 
-#                  'samples'  : ['WW']
-#              }
+groupPlot['WW']  = {  
+                  'nameHR' : 'WW',
+                  'isSignal' : 0,
+                  'color': 851, # kAzure -9 
+                  'samples'  : ['WW']
+              }
 
 groupPlot['VVV']  = {  
                   'nameHR' : 'VVV',
@@ -90,8 +88,8 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  'samples': []
                   #'samples'  : ['WH_htt', 'WH_hww', 'ZH_hww']
+                  'samples' : ['WH_htt']
               }
 
 for s in sampleNames:
@@ -148,12 +146,12 @@ plot['VVV']  = {
                   'scale'    : 1.0
                   }
 
-#plot['WW']  = {
-#                  'color': 850, # kAzure -10
-#                  'isSignal' : 0,
-#                  'isData'   : 0,    
-#                  'scale'    : 1.0
-#                  }
+plot['WW']  = {
+                  'color': 850, # kAzure -10
+                  'isSignal' : 0,
+                  'isData'   : 0,    
+                  'scale'    : 1.0
+                  }
 
 
 plot['Vg']  = { 
@@ -228,13 +226,13 @@ plot['VVV']  = {
 
 # Htautau
 
-#plot['WH_htt'] = {
-#                  'nameHR' : 'Htt',
-#                  'color': 632+4, # kRed+4 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,    
-#                  'scale'    : 1
-#                  }
+plot['WH_htt'] = {
+                  'nameHR' : 'Htt',
+                  'color': 632+4, # kRed+4 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1
+                  }
 
 # HWW 
 

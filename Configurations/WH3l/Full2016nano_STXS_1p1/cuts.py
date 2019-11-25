@@ -49,41 +49,8 @@ for key,value in Anacat.iteritems():
     for cat,val in HTSXReco.iteritems():
         cuts['%s_%s' %(key,cat)] = '%s && %s' %(value,val)
 
-#cuts['wh3l_wz_13TeV'] = 'WH3l_njet == 0 && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0 && MET_pt > 45 && WH3l_ZVeto < 20 && WH3l_mlll > 100'
-#cuts['wh3l_zg_13TeV'] = 'WH3l_njet == 0 && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0 && MET_pt < 40 && WH3l_mlll > 80 && WH3l_mlll < 100'
-
-cuts['wh3l_wz_13TeV_0j'] = 'WH3l_njet == 0\
-                         && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0\
-                         && MET_pt > 45\
-                         && WH3l_ZVeto < 20\
-                         && WH3l_mlll > 100\
-                         && zeroJet \
-                        '
-
-cuts['wh3l_wz_13TeV_1j'] = 'WH3l_njet == 0\
-                         && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0\
-                         && MET_pt > 45\
-                         && WH3l_ZVeto < 20\
-                         && WH3l_mlll > 100\
-                         && oneJetOrMore \
-                         '
-
-cuts['wh3l_zg_13TeV_0j'] = 'WH3l_njet == 0\
-                         && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0\
-                         && MET_pt < 40\
-                         && WH3l_mlll > 80\
-                         && WH3l_mlll < 100\
-                         && zeroJet \
-                        '
-
-cuts['wh3l_zg_13TeV_1j'] = 'WH3l_njet == 0\
-                         && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0\
-                         && MET_pt < 40\
-                         && WH3l_mlll > 80\
-                         && WH3l_mlll < 100\
-                         && oneJetOrMore\
-                         '
-
+cuts['wh3l_wz_13TeV'] = 'WH3l_njet == 0 && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0 && MET_pt > 45 && WH3l_ZVeto < 20 && WH3l_mlll > 100'
+cuts['wh3l_zg_13TeV'] = 'WH3l_njet == 0 && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0 && MET_pt < 40 && WH3l_mlll > 80 && WH3l_mlll < 100'
 
 # 11 = e
 # 13 = mu

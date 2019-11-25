@@ -14,11 +14,6 @@ for cat,num in HTXSStage1_1Categories.iteritems():
             'isData'   : 0
         }
 
-        structure['WH_htt_'+cat.replace('QQ2HLNU_','')] = {
-            'isSignal' : 1,
-            'isData'   : 0
-        }
-
 # keys here must match keys in samples.py
 #
 structure['Fake']  = {
@@ -36,10 +31,10 @@ structure['Fake']  = {
 #                  'isData'   : 0
 #                  }
 
-#structure['WW']  = {
-#                  'isSignal' : 0,
-#                  'isData'   : 0
-#                  }
+structure['WW']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
 
 structure['ggWW']  = {
                   'isSignal' : 0,
@@ -109,10 +104,10 @@ structure['ZZ']  = {
 #                  'isData'   : 0
 #                  }
 
-#structure['WH_htt'] = {
-#                  'isSignal' : 1,
-#                  'isData'   : 0
-#                  }
+structure['WH_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
 
 
 # data
