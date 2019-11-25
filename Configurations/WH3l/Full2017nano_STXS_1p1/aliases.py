@@ -115,7 +115,7 @@ aliases['multiJet'] = {
 # B tagging
 
 bAlgo = 'DeepB'
-bWP = '0.2217'
+bWP = '0.1522'
 
 aliases['bVeto'] = {
 'expr': '(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0) && mth > 60' }
@@ -239,7 +239,7 @@ aliases['SFweightMuDown'] = {
 }
 
 aliases['nllWOTF'] = {
-    'linesToAdd': ['.L %s/Differential/nllW.cc+' % configurations],
+    'linesToAdd': ['.L %s/macros/nllW.cc+' % configurations],
     'class': 'WWNLLW',
     'args': ('central',),
     'samples': ['WW']

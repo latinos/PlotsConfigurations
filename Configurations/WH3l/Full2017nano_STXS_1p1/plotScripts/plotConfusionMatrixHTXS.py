@@ -31,8 +31,6 @@ options.stat = False
 DC = parseCard(file(args[0]), options)
 
 signals_orig     = DC.list_of_signals()
-print(signals_orig)
-#sys.exit()
 signals = []
 totalSignal = OrderedDict()
 
@@ -44,7 +42,7 @@ for s in signals_orig:
   signals.append(s)
   totalSignal[s] = 0.
 
-print totalSignal
+#print totalSignal
 
 signals = sorted(signals, key=lambda s: s.lower())
 
@@ -57,7 +55,6 @@ channels = OrderedDict()
 for i in sorted(channels_orig):
   channels[i] = channels_orig[i]
 
-
 for c in channels:
   if "Top" in c or "DYtt" in c or "WW" in c or "wh3l_wz" in c or "wh3l_zg" in c or "zh4l_ZZ" in c: continue
   overallSignalRate[c] = OrderedDict()
@@ -65,17 +62,16 @@ for c in channels:
   for s in signals:
     overallSignalRate[c][s] = 0.
     if s not in channels[c].keys(): continue
-    overallSignalRate[c][s] +=  channels[c][s]
-    overallTotalSignal[c] += channels[c][s]
-    totalSignal[s] += channels[c][s]
+    overallSignalRate[c][s] +=  channels[c][s] # overall signal rate in one each STXS bin in a reco bin
+    overallTotalSignal[c] += channels[c][s] # overall signal rate of SUM(all STXS bin) in a reco bin
+    totalSignal[s] += channels[c][s] # overall signal rate in each STXS bin over ALL reco bin
 
 ncat=0
 combChannelsToConsider = []
 for k in channels:
-  print k
   if "Top" in k or "DYtt" in k or "WW" in k or "wh3l_wz" in k or "wh3l_zg" in k or "zh4l_ZZ" in k: continue
   if 'FWDH' in k or 'ossf_' in k: continue
-  #if overallTotalSignal[k] == 0: continue
+  if overallTotalSignal[k] == 0: continue
   ncat+=1
   combChannelsToConsider.append(k)
   print k
@@ -148,7 +144,7 @@ for i,c in enumerate(combChannelsToConsider):
     print "category ", c," ", " signal ",s," signal fraction = ",overallSignalRate[c][s]/overallTotalSignal[c], " events = ", overallSignalRate[c][s]
 
 #change the CMS_lumi variables (see CMS_lumi.py)
-CMS_lumi.lumi_13TeV = "35.9 fb^{-1}"
+CMS_lumi.lumi_13TeV = "41.86 fb^{-1}"
 CMS_lumi.writeExtraText = 1
 CMS_lumi.extraText = "Preliminary"
 ROOT.gStyle.SetPaintTextFormat("4.2f")
@@ -186,7 +182,7 @@ matrixByCol.Draw("colz text")
 CMS_lumi.CMS_lumi(canvas, 4, iPos)
 
 ROOT.gPad.RedrawAxis()
-canvas.SaveAs("confusionmatrix_bycol_2016_1p2.png")
+canvas.SaveAs("confusionmatrix_bycol_2017_1.png")
 
 canvas2 = ROOT.TCanvas("row","row",50,50,W,H)
 canvas2.SetFillColor(0)
@@ -206,7 +202,7 @@ matrixByRow.Draw("colz text")
 CMS_lumi.CMS_lumi(canvas2, 4, iPos)
 
 ROOT.gPad.RedrawAxis()
-canvas2.SaveAs("confusionmatrix_byrow_2016_1p2.png")
+canvas2.SaveAs("confusionmatrix_byrow_2017_1.png")
 
 canvas3 = ROOT.TCanvas("prod","prod",50,50,W,H)
 canvas3.SetFillColor(0)
@@ -226,7 +222,7 @@ matrixProduct.Draw("colz text")
 CMS_lumi.CMS_lumi(canvas3, 4, iPos)
 
 ROOT.gPad.RedrawAxis()
-canvas3.SaveAs("confusionmatrix_product_2016_1p2.png")
+canvas3.SaveAs("confusionmatrix_product_2017_1.png")
 
 
 a = raw_input()
