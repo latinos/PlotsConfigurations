@@ -20,7 +20,7 @@ directoryFAKE   = os.path.join(treeBaseDir,"Run2018_102X_nAODv5_Full2018v5/DATAl
 ############### WP #############################
 ################################################
 
-#2018
+#2017
 eleWP = 'mvaFall17V1Iso_WP90'
 muWP = 'cut_Tight_HWWW'
 
@@ -39,11 +39,11 @@ SFweight  = 'SFweight3l*'+LepWPweight+'*'+LepWPCut+'*btagSF'
 
 GenLepMatch3l = 'GenLepMatch3l'
 
-#Nominal
-wz1jSF = '1.03'
-wz2jSF = '1.35'
-zg1jSF = '1.08'
-zg2jSF = '1.70'
+#TightEl
+wz1jSF = '1.14'
+wz2jSF = '1.39'
+zg1jSF = '1.40'
+zg2jSF = '2.38'
 
 # zgXSscale = (55.5 * 1.06)/ 131.3;	# from Yutaro, Nov 12 2019
 zgXSscale = '0.448'

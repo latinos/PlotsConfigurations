@@ -6,6 +6,7 @@ supercut = 'MinIf$( WH3l_mOSll[], WH3l_mOSll[Iteration$] > 0) > 12 \
             && Alt$(Lepton_pt[2],0)>15 \
             && Alt$(Lepton_pt[3],0)<10 \
             && abs(WH3l_chlll) == 1 \
+            && EleWPTight \
            '
 
 cuts['preselection']   = '1'
