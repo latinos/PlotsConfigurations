@@ -15,6 +15,11 @@ if os.path.exists('HTXS_stage1_categories.py') :
   exec(handle)
   handle.close()
 
+if os.path.exists('UENormFactors.py') :
+  handle = open('UENormFactors.py','r')
+  exec(handle)
+  handle.close()
+
 if os.path.exists('thuNormFactors.py') :
   handle = open('thuNormFactors.py','r')
   exec(handle)
@@ -659,8 +664,8 @@ nuisances['CRSR_accept_top'] = {
 #   see https://twiki.cern.ch/twiki/bin/viewauth/CMS/HiggsWG/SignalModelingTools
 
 thus = [
-    ('THU_ggH_Mu', 'ggH_mu'),
-    ('THU_ggH_Res', 'ggH_res'),
+#    ('THU_ggH_Mu', 'ggH_mu'),
+#    ('THU_ggH_Res', 'ggH_res'),
     ('THU_ggH_Mig01', 'ggH_mig01'),
     ('THU_ggH_Mig12', 'ggH_mig12'),
     ('THU_ggH_VBF2j', 'ggH_VBF2j'),
