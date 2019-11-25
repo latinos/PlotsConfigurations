@@ -46,9 +46,9 @@ dataSteps = 'DATAl1loose2017v5__l2loose__l2tightOR2017v5'
 
 SITE=os.uname()[1]
 if    'iihe' in SITE:
-  treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015'
+    treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015'
 elif  'cern' in SITE:
-  treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
+    treeBaseDir ='/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
 
 def makeMCDirectory(var=''):
     if var:
@@ -112,7 +112,7 @@ if useDYtt:
         'weight': mcCommonWeight,
         'FilesPerJob': 5,
     }
-    addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50_fix',ptllDYW_NLO)
+    addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO)
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 
     ## Remove OF from inclusive sample (is it needed?)
@@ -189,7 +189,7 @@ samples['Vg'] = {
     'weight': mcCommonWeightNoMatch + '*!(Gen_ZGstar_mass > 0)',
     'FilesPerJob': 10
 }
-addSampleWeight(samples, 'Vg', 'ZGToLLG', '(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)*0.448')
+addSampleWeight(samples, 'Vg', 'ZGToLLG', '(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)*(55.5 * 1.06 / 131.3)')
 
 ######## VgS ########
 
@@ -207,8 +207,8 @@ samples['VgS'] = {
     }
 }
 addSampleWeight(samples, 'VgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
-addSampleWeight(samples, 'VgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22)*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)*0.448')
-addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
+addSampleWeight(samples, 'VgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22)*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)*(55.5 * 1.06 / 131.3)')
+addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1 )')
 
 ############ VZ ############
 
@@ -242,53 +242,112 @@ samples['VVV'] = {
 
 signals = []
 
-#### ggH -> WW
+if os.path.exists('HTXS_stage1_categories.py') :
+  handle = open('HTXS_stage1_categories.py','r')
+  exec(handle)
+  handle.close()
 
-samples['ggH_hww'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125'),
-    'weight': [mcCommonWeight, {'class': 'Weight2MINLO', 'args': '%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE')}],
-    'FilesPerJob': 4,
-    'linesToAdd': ['.L %s/Differential/weight2MINLO.cc+' % configurations]
-}
+files = nanoGetSampleFiles(mcDirectory,'HWminusJ_HToWW_M125') + \
+        nanoGetSampleFiles(mcDirectory,'HWplusJ_HToWW_M125') + \
+        nanoGetSampleFiles(mcDirectory,'HZJ_HToWW_M125') + \
+        nanoGetSampleFiles(mcDirectory,'GluGluZH_HToWWTo2L2Nu_M125') 
 
-signals.append('ggH_hww')
-
-############ VBF H->WW ############
-samples['qqH_hww'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2NuPowheg_M125'),
+samples['VHlep_hww'] = {
+    'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 3
+    'filesPerJob' : 5,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
 }
 
-signals.append('qqH_hww')
+## ggH STXS
+for cat,num in HTXSStage1_1Categories.iteritems():
+  if 'GG2H_' in cat:
+      if 'PTH_GT200' not in cat:
+          samples['ggH_hww_'+cat.replace('GG2H_','')]  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGluHToWWTo2L2NuPowheg_M125')
+                                                                  + nanoGetSampleFiles(mcDirectory,'GluGluZH_HToWWTo2L2Nu_M125'),
+                                                            'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')',
+                                                            'suppressNegative' :['all'],
+                                                            'suppressNegativeNuisances' :['all'],
+                                                        }
+          signals.append('ggH_hww'+cat.replace('GG2H_',''))
 
-############# ZH H->WW ############
 
-samples['ZH_hww'] = {
-    'name':   nanoGetSampleFiles(mcDirectory, 'HZJ_HToWWTo2L2Nu_M125'),
-    'weight': mcCommonWeight,
-    'FilesPerJob': 1
-}
+  ## VBF and VH had.
+  elif 'QQ2HQQ_' in cat:
+    if 'MJJ_GT350' in cat or 'MJJ_350' in cat:
+      samples['qqH_hww_'+cat.replace('QQ2HQQ_','')]  = {  'name' : nanoGetSampleFiles(mcDirectory,'VBFHToWWTo2L2NuPowheg_M125'),
+                                                          'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')' ,
+                                                          'suppressNegative' :['all'],
+                                                          'suppressNegativeNuisances' :['all'],
+                                                       }
+      signals.append('qqH_hww'+cat.replace('QQ2HQQ_',''))
 
-signals.append('ZH_hww')
+    elif 'MJJ_0_60' in cat or 'MJJ_60_120' in cat or 'MJJ_120_350' in cat:
+      samples['WH_had_hww_'+cat.replace('QQ2HQQ_','')]   = {  'name' :   nanoGetSampleFiles(mcDirectory,'HWminusJ_HToWW_M125')
+                                                                       + nanoGetSampleFiles(mcDirectory,'HWplusJ_HToWW_M125')  ,
+                                                              'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')' ,
+                                                              'suppressNegative' :['all'],
+                                                              'suppressNegativeNuisances' :['all'],
+                                                           }
+      signals.append('WH_had_hww_'+cat.replace('QQ2HQQ_',''))
+  
+      samples['ZH_had_hww_'+cat.replace('QQ2HQQ_','')]  = { 'name' :  nanoGetSampleFiles(mcDirectory,'HZJ_HToWW_M125') ,
+                                                            'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')' ,
+                                                            'suppressNegative' :['all'],
+                                                            'suppressNegativeNuisances' :['all'],
+                                                          }
+      signals.append('ZH_had_hww_'+cat.replace('QQ2HQQ_',''))
 
-samples['ggZH_hww'] = {
-    'name':   nanoGetSampleFiles(mcDirectory, 'GluGluZH_HToWWTo2L2Nu_M125'),
-    'weight': mcCommonWeight,
-    'FilesPerJob': 2
-}
+  ## WH lep.
+  elif 'QQ2HLNU_' in cat:
+    addSampleWeight(samples, 'VHlep_hww', 'HWminusJ_HToWW_M125', '(HTXS_stage_1_pTjet30=='+str(num)+')')
+    addSampleWeight(samples, 'VHlep_hww', 'HWplusJ_HToWW_M125', '(HTXS_stage_1_pTjet30=='+str(num)+')')
 
-signals.append('ggZH_hww')
+  ## qqZH lep.
+  elif 'QQ2HLL_' in cat:
+    addSampleWeight(samples, 'VHlep_hww', 'HZJ_HToWW_M125', '(HTXS_stage_1_pTjet30=='+str(num)+')')
 
-############ WH H->WW ############
+  ## ggZH lep
+  elif 'GG2HLL_' in cat:
+    addSampleWeight(samples, 'VHlep_hww', 'GluGluZH_HToWWTo2L2Nu_M125', '(HTXS_stage_1_pTjet30=='+str(num)+')')
 
-samples['WH_hww'] = {
-    'name':   nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125'),
-    'weight': mcCommonWeight,
-    'FilesPerJob': 2
-}
 
-signals.append('WH_hww')
+
+# Stage 1.2 binning for high pTH bin
+
+samples['ggH_hww_PTH_200_300']  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGluHToWWTo2L2NuPowheg_M125')
+                                           + nanoGetSampleFiles(mcDirectory,'GluGluZH_HToWWTo2L2Nu_M125'), 
+                                     'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV==101)*(HTXS_Higgs_pt>200)*(HTXS_Higgs_pt<=300)',
+                                     'suppressNegative' :['all'],
+                                     'suppressNegativeNuisances' :['all'],
+                                  }
+signals.append('ggH_hww_PTH_200_300')
+
+samples['ggH_hww_PTH_300_450']  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGluHToWWTo2L2NuPowheg_M125')
+                                           + nanoGetSampleFiles(mcDirectory,'GluGluZH_HToWWTo2L2Nu_M125'), 
+                                     'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV==101)*(HTXS_Higgs_pt>300)*(HTXS_Higgs_pt<=450)',
+                                     'suppressNegative' :['all'],
+                                     'suppressNegativeNuisances' :['all'],
+                                  }
+signals.append('ggH_hww_PTH_300_450')
+
+samples['ggH_hww_PTH_450_650']  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGluHToWWTo2L2NuPowheg_M125')
+                                           + nanoGetSampleFiles(mcDirectory,'GluGluZH_HToWWTo2L2Nu_M125'),
+                                     'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV==101)*(HTXS_Higgs_pt>450)*(HTXS_Higgs_pt<=650)',
+                                     'suppressNegative' :['all'],
+                                     'suppressNegativeNuisances' :['all'],
+                                  }
+signals.append('ggH_hww_PTH_450_650')
+
+samples['ggH_hww_PTH_GT650']  = {    'name': nanoGetSampleFiles(mcDirectory,'GluGluHToWWTo2L2NuPowheg_M125')
+                                           + nanoGetSampleFiles(mcDirectory,'GluGluZH_HToWWTo2L2Nu_M125'), 
+                                     'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV==101)*(HTXS_Higgs_pt>650)',
+                                     'suppressNegative' :['all'],
+                                     'suppressNegativeNuisances' :['all'],
+                                  }
+signals.append('ggH_hww_PTH_GT650')
+          
 
 ############ ttH ############
 
@@ -301,38 +360,16 @@ samples['ttH_hww'] = {
 signals.append('ttH_hww')
 
 ############ H->TauTau ############
-
-samples['ggH_htt'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125_ext1'),
-    'weight': mcCommonWeight,
-    'FilesPerJob': 1
-}
-
-#signals.append('ggH_htt')
-
-samples['qqH_htt'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125'),
-    'weight': mcCommonWeight,
-    'FilesPerJob': 2
-}
-
-#signals.append('qqH_htt')
-
-samples['ZH_htt'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125'),
-    'weight': mcCommonWeight,
-    'FilesPerJob': 2
-}
-
-#signals.append('ZH_htt')
-
-samples['WH_htt'] = {
-    'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
-    'weight': mcCommonWeight,
-    'FilesPerJob': 2
-}
-
-#signals.append('WH_htt')
+samples['H_htt']    = {   'name' :   nanoGetSampleFiles(mcDirectory,'GluGluHToTauTau_M125_ext1')
+                                   + nanoGetSampleFiles(mcDirectory,'VBFHToTauTau_M125')
+                                   + nanoGetSampleFiles(mcDirectory,'HZJ_HToTauTau_M125')
+                                   + nanoGetSampleFiles(mcDirectory,'HWplusJ_HToTauTau_M125')
+                                   + nanoGetSampleFiles(mcDirectory,'HWminusJ_HToTauTau_M125') ,
+                         'weight': mcCommonWeight ,
+                         'suppressNegative' :['all'],
+                         'suppressNegativeNuisances' :['all'],
+                         'filesPerJob' : 5,
+                      }
 
 ###########################################
 ################## FAKE ###################
