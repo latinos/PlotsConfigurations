@@ -150,7 +150,7 @@ mA_list = ['1200', '600', '500', '400', '300', '200']
 for mA in mA_list:
     samples['2HDMa_mA_'+mA+'_ma_150'] = {  
                                          'name'  : 
-                                         getSampleFiles(directory,'2HDMa_SemiLep_MH3_'+mA+'_MH4_150_neg',False,'nanoLatino_') ,  
+                                         getSampleFiles(directory,'2HDMa_SemiLep_MH3_'+mA+'_MH4_150_neg',False,'nanoLatino_')  
                                          +getSampleFiles(directory,'2HDMa_SemiLep_MH3_'+mA+'_MH4_150_pos',False,'nanoLatino_') ,  
                                          'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,  
                                         }
