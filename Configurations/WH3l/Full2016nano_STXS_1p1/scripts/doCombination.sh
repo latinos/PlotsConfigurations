@@ -29,6 +29,7 @@ datacardDir=$PWD/$1
 ## variable used for the signal regions fit
 vars="WH3l_drOSll_min"
 
+# no contribution
 #sssf_PTV_150_250_GE1J=$datacardDir/wh3l_13TeV_sssf_PTV_150_250_GE1J/$vars/datacard.txt \
 #ossf_PTV_150_250_GE1J=$datacardDir/wh3l_13TeV_ossf_PTV_150_250_GE1J/$vars/datacard.txt \
 
