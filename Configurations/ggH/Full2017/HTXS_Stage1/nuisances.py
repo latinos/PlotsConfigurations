@@ -437,9 +437,6 @@ nuisances['pdf_Higgs_qqbar'] = {
         'ZH_htt': valueszh
     },
 }
-for name in sampleNames:
-  if 'qqH' in name:
-    nuisances['pdf_Higgs_qqbar']['samples'].update({name: HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH' ,'125.09','pdf','sm')})
 
 #FIXME: check this 4%
 nuisances['pdf_qqbar'] = {
