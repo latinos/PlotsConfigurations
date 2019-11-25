@@ -15,8 +15,8 @@ if os.path.exists('HTXS_stage1_categories.py') :
   exec(handle)
   handle.close()
 
-if os.path.exists('UENormFactors.py') :
-  handle = open('UENormFactors.py','r')
+if os.path.exists('UEnormfactors.py') :
+  handle = open('UEnormfactors.py','r')
   exec(handle)
   handle.close()
 

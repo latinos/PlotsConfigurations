@@ -79,7 +79,6 @@ hup = ROOT.TH1F("hup","hup",1,0,2)
 hdown = ROOT.TH1F("hdown","hdown",1,0,2)
 
 UEggHSTXSNormFactors = {}
-print "UEggHSTXSNormFactors=" 
 for cat,num in HTXSStage1_1Categories.iteritems():
   if not 'GG2H_' in cat: continue
   if not 'PTH_GT200' in cat:
@@ -105,33 +104,30 @@ for cat,num in HTXSStage1_1Categories.iteritems():
     chainggHUp.Draw("1>>hup","(HTXS_stage1_1_cat_pTjet30GeV=="+str(num)+"*(HTXS_Higgs_pt>650))","goff")
     chainggHDown.Draw("1>>hdown","(HTXS_stage1_1_cat_pTjet30GeV=="+str(num)+"*(HTXS_Higgs_pt>650))","goff")
     UEggHSTXSNormFactors[cat.replace('GT200','GT650')] = [str(hup.Integral()/hnom.Integral()),str(hdown.Integral()/hnom.Integral())]
-print UEggHSTXSNormFactors
+print "UEggHSTXSNormFactors=" , UEggHSTXSNormFactors
 
 UEggHNormFactors = {}
-print "UEggHNormFactors=" 
 chainggHNom.Draw("1>>hnom","","goff")
 chainggHUp.Draw("1>>hup","","goff")
 chainggHDown.Draw("1>>hdown","","goff")
 #  print cat, "mur=muf=2 --> ", hup.Integral(),hnom.Integral(), "mur=muf=0.5 --> ", h2.Integral(),hnom.Integral()
 UEggHNormFactors = [str(hup.Integral()/hnom.Integral()),str(hdown.Integral()/hnom.Integral())]
-print UEggHNormFactors
+print "UEggHNormFactors=" , UEggHNormFactors
 
 UEWWNormFactors = {}
-print "UEWWNormFactors=" 
 chainWWNom.Draw("1>>hnom","","goff")
 chainWWUp.Draw("1>>hup","","goff")
 chainWWDown.Draw("1>>hdown","","goff")
 #  print cat, "mur=muf=2 --> ", hup.Integral(),hnom.Integral(), "mur=muf=0.5 --> ", h2.Integral(),hnom.Integral()
 UEWWNormFactors = [str(hup.Integral()/hnom.Integral()),str(hdown.Integral()/hnom.Integral())]
-print UEWWNormFactors
+print "UEWWNormFactors=" , UEWWNormFactors
 
 UEqqHNormFactors = {}
-print "UEqqHNormFactors=" 
 chainqqHNom.Draw("1>>hnom","","goff")
 chainqqHUp.Draw("1>>hup","","goff")
 chainqqHDown.Draw("1>>hdown","","goff")
 #  print cat, "mur=muf=2 --> ", hup.Integral(),hnom.Integral(), "mur=muf=0.5 --> ", h2.Integral(),hnom.Integral()
 UEqqHNormFactors = [str(hup.Integral()/hnom.Integral()),str(hdown.Integral()/hnom.Integral())]
-print UEqqHNormFactors
+print "UEqqHNormFactors=" , UEqqHNormFactors
 
 

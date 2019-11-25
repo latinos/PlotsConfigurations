@@ -85,30 +85,27 @@ print UEggHSTXSNormFactors
 '''
 
 UEggHNormFactors = {}
-print "UEggHNormFactors=" 
 chainggHNom.Draw("1>>hnom","","goff")
 chainggHUp.Draw("1>>hup","","goff")
 chainggHDown.Draw("1>>hdown","","goff")
 #  print cat, "mur=muf=2 --> ", hup.Integral(),hnom.Integral(), "mur=muf=0.5 --> ", h2.Integral(),hnom.Integral()
 UEggHNormFactors = [str(hup.Integral()/hnom.Integral()),str(hdown.Integral()/hnom.Integral())]
-print UEggHNormFactors
+print "UEggHNormFactors=" , UEggHNormFactors
 
 UEWWNormFactors = {}
-print "UEWWNormFactors=" 
 chainWWNom.Draw("1>>hnom","","goff")
 chainWWUp.Draw("1>>hup","","goff")
 chainWWDown.Draw("1>>hdown","","goff")
 #  print cat, "mur=muf=2 --> ", hup.Integral(),hnom.Integral(), "mur=muf=0.5 --> ", h2.Integral(),hnom.Integral()
 UEWWNormFactors = [str(hup.Integral()/hnom.Integral()),str(hdown.Integral()/hnom.Integral())]
-print UEWWNormFactors
+print "UEWWNormFactors=" , UEWWNormFactors
 
 UEqqHNormFactors = {}
-print "UEqqHNormFactors=" 
 chainqqHNom.Draw("1>>hnom","","goff")
 chainqqHUp.Draw("1>>hup","","goff")
 chainqqHDown.Draw("1>>hdown","","goff")
 #  print cat, "mur=muf=2 --> ", hup.Integral(),hnom.Integral(), "mur=muf=0.5 --> ", h2.Integral(),hnom.Integral()
 UEqqHNormFactors = [str(hup.Integral()/hnom.Integral()),str(hdown.Integral()/hnom.Integral())]
-print UEqqHNormFactors
+print "UEqqHNormFactors=" , UEqqHNormFactors
 
 
