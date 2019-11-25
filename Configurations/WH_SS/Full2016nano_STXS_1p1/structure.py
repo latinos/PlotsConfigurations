@@ -16,10 +16,10 @@ for cat,num in HTXSStage1_1Categories.iteritems():
 
 # keys here must match keys in samples.py    
 #                    
-structure['DY']  = {  
-                  'isSignal' : 0,
-                  'isData'   : 0
-              }
+#structure['DY']  = {  
+#                  'isSignal' : 0,
+#                  'isData'   : 0
+#              }
 
 
 #structure['Wjets']  = {  

@@ -19,12 +19,11 @@ MERGE=False
 command=''
 
 if not MERGE:
-
   #No merging, 
   command="text2workspace.py Full2016_WH_SS_HTXS_Stage1.txt -o Full2016_WH_SS_HTXS_Stage1.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose "
   poi=''
   for sample in sampleNames:
-    #if 'FWDH' in sample: continue
+    if 'FWDH' in sample: continue
     #if 'GT250' in sample: continue
     #if 'PTV_150_250_GE1J' in sample: continue
     poi = 'r_'+sample
