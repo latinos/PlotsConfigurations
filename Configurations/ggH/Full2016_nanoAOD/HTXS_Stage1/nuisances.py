@@ -15,6 +15,11 @@ if os.path.exists('HTXS_stage1_categories.py') :
   exec(handle)
   handle.close()
 
+if os.path.exists('UEnormfactors.py') :
+  handle = open('UEnormfactors.py','r')
+  exec(handle)
+  handle.close()
+
 if os.path.exists('thuNormFactors.py') :
   handle = open('thuNormFactors.py','r')
   exec(handle)
@@ -310,6 +315,7 @@ nuisances['PS']  = {
     'synchronized': False
 }
 
+#FIXME:Missing information!
 #for name in sampleNames:
 #  if 'ggH_hww' in name:
 #    nuisances['PS']['samples'].update({name: ['1.0078', '1.']})
@@ -319,9 +325,12 @@ nuisances['UE']  = {
     'kind'  : 'tree',
     'type'  : 'shape',
     'samples'  : {
-      'WW'      : ['1.0240', '0.9916'], # was 1.0226 0.9897
-      'ggH_hww' : ['1.0739', '1.0211'], # These numbers are used to normalize the UE up/down variations to the same integral as the nominal after the wwSel skim
-      'qqH_hww' : ['1.0137', '0.9781'], # was 1.0560 0.9992
+      'WW'      : ['UEWWNormFactors[0]','UEWWNormFactors[1]'],
+      # new:['0.96858435682', '1.00390617786']    old:['1.0240', '0.9916'], 
+      'ggH_hww' : ['UEggHNormFactors[0]','UEggHNormFactors[1]'],
+      # new:['0.929425888608', '0.981263130815']  old:['1.0739', '1.0211'], 
+      'qqH_hww' : ['UEqqHNormFactors[0]','UEqqHormFactors[1]'],
+      # new:['0.967541914923', '1.01489538589']   old:['1.0137', '0.9781'], 
     },
     'folderUp': makeMCDirectory('UEup'),
     'folderDown': makeMCDirectory('UEdo'),
@@ -329,10 +338,18 @@ nuisances['UE']  = {
     'synchronized': False
 }
 
+#FIXME:Missing information!
 #for name in sampleNames:
 #  if 'ggH_hww' in name:
-#    nuisances['UE']['samples'].update({name: ['1.0739', '1.0211']})
-
+#    if 'GT200' not in name:
+#      scaleUp   = UEggHSTXSNormFactors[name.replace('ggH_hww','GG2H')][0]
+#      scaleDown = UEggHSTXSNormFactors[name.replace('ggH_hww','GG2H')][1]
+#      nuisances['UE']['samples'].update({name : [scaleUp, scaleDown]})
+#    else:
+#      nuisances['UE']['samples'].update({name : ['UEggHSTXSNormFactors[GG2H_PTH_200_300][0]',' UEggHSTXSNormFactors[GG2H_PTH_200_300][1]']})
+#      nuisances['UE']['samples'].update({name : ['UEggHSTXSNormFactors[GG2H_PTH_300_450][0]',' UEggHSTXSNormFactors[GG2H_PTH_300_450][1]']})
+#      nuisances['UE']['samples'].update({name : ['UEggHSTXSNormFactors[GG2H_PTH_450_650][0]',' UEggHSTXSNormFactors[GG2H_PTH_450_650][1]']})
+#      nuisances['UE']['samples'].update({name : ['UEggHSTXSNormFactors[GG2H_PTH_GT650][0]'  ,' UEggHSTXSNormFactors[GG2H_PTH_GT650][1]']})
 
 ####### Generic "cross section uncertainties"
 
@@ -647,8 +664,8 @@ nuisances['CRSR_accept_top'] = {
 #   see https://twiki.cern.ch/twiki/bin/viewauth/CMS/HiggsWG/SignalModelingTools
 
 thus = [
-    ('THU_ggH_Mu', 'ggH_mu'),
-    ('THU_ggH_Res', 'ggH_res'),
+#    ('THU_ggH_Mu', 'ggH_mu'),
+#    ('THU_ggH_Res', 'ggH_res'),
     ('THU_ggH_Mig01', 'ggH_mig01'),
     ('THU_ggH_Mig12', 'ggH_mig12'),
     ('THU_ggH_VBF2j', 'ggH_VBF2j'),

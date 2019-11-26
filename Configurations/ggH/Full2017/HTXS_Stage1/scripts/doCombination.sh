@@ -89,5 +89,5 @@ echo "nuisance edit drop Fake_em of_pthGT650 CMS_fake_stat_e_2017" >> ${outputDi
 echo "nuisance edit drop Fake_em of_pthGT650 CMS_fake_stat_m_2017" >> ${outputDir}/Full2017_ggH_HTXS_Stage1p2.txt
 
 #echo "nuisance edit freeze QCDscale_ggH_STXS_ACCEPT" >> ${outputDir}/Full2017_ggH_HTXS_Stage1p2.txt
-echo "nuisance edit freeze UE" >> ${outputDir}/Full2017_ggH_HTXS_Stage1p2.txt
+#echo "nuisance edit freeze UE" >> ${outputDir}/Full2017_ggH_HTXS_Stage1p2.txt
 #echo "nuisance edit freeze PS" >> ${outputDir}/Full2017_ggH_HTXS_Stage1p2.txt

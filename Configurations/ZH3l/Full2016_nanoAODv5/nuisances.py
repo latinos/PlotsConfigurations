@@ -8,7 +8,6 @@ nuisances['lumi']  = {
   'samples'  : { 
     'Zg'       : '1.025',
     'WZ'       : '1.025',
-    'WZ_mll01' : '1.025',
     'ZZ'       : '1.025',
     'ttZ'      : '1.025',
     'VVV'      : '1.025',
@@ -16,6 +15,7 @@ nuisances['lumi']  = {
     'ggZH_hww' : '1.025',
     'WH_hww'   : '1.025',
     'WH_htt'   : '1.025',
+    'ZH_htt'   : '1.025',
   },  
   'type'  : 'lnN',
 }
@@ -32,6 +32,7 @@ nuisances['QCDscale_VH']  = {
     'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
     'ZH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm'),
     'WH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
+    'ZH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm'),
   },
   'type'  : 'lnN',
 }
@@ -51,7 +52,6 @@ nuisances['QCDscale_VV'] = {
     'samples': {
         'Zg'      : ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
         'WZ'      : ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-        'WZ_mll01': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
         'ZZ'      : ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
     }
 }
@@ -64,8 +64,8 @@ nuisances['QCDscale_qqbar_ACCEPT']  = {
     'WH_hww'  : '1.05',
     'WH_htt'  : '1.05',
     'ZH_hww'  : '1.04',
+    'ZH_htt'  : '1.04',
     'WZ'      : '1.029',
-    'WZ_mll01': '1.029',
     'ZZ'      : '1.029'
   },
 }
@@ -95,6 +95,7 @@ nuisances['pdf_Higgs_qqbar']  = {
                    'WH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
                    'WH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
                    'ZH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH' ,'125.09','pdf','sm'),
+                   'ZH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH' ,'125.09','pdf','sm'),
                    },
               }
 
@@ -115,6 +116,7 @@ nuisances['pdf_Higgs_qqbar_ACCEPT']  = {
                    'WH_hww'  : '1.007',
                    'WH_htt'  : '1.007',
                    'ZH_hww'  : '1.012',
+                   'ZH_htt'  : '1.012',
                    },
               }
 
@@ -124,7 +126,6 @@ nuisances['pdf_qqbar_ACCEPT']  = {
                'type'  : 'lnN',
                'samples'  : {
                    'WZ'      : '1.005',
-                   'WZ_mll01': '1.005',
                    'ZZ'      : '1.005',
                    },
               }
@@ -164,7 +165,6 @@ nuisances['WZ3l2jnorm']  = {
                'name'  : 'CMS_hww_WZ3l2jnorm',
                'samples'  : {
                    'WZ'       : '1.00',
-                   'WZ_mll01' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
@@ -178,7 +178,6 @@ nuisances['WZ3l1jnorm']  = {
                'name'  : 'CMS_hww_WZ3l1jnorm',
                'samples'  : {
                    'WZ'       : '1.00',
-                   'WZ_mll01' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
@@ -285,7 +284,6 @@ nuisances['btag_shape_jes']  = {
                 'type'  : 'shape',
                 'samples'  : {
                    'WZ'      : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
-                   'WZ_mll01': ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
                    'ZZ'      : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
                    'VVV'     : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
                    'Zg'      : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
@@ -294,6 +292,7 @@ nuisances['btag_shape_jes']  = {
                    'ZH_hww'  : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
                    'ggZH_hww': ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
                    'WH_htt'  : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
+                   'ZH_htt'  : ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)'],
                 }
 }
 
@@ -303,7 +302,6 @@ nuisances['btag_shape_lf']  = {
                 'type'  : 'shape',
                 'samples'  : {
                    'WZ'      : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
-                   'WZ_mll01': ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
                    'ZZ'      : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
                    'VVV'     : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
                    'Zg'      : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
@@ -312,6 +310,7 @@ nuisances['btag_shape_lf']  = {
                    'ZH_hww'  : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
                    'ggZH_hww': ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
                    'WH_htt'  : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
+                   'ZH_htt'  : ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)'],
                 }
 }
 
@@ -321,7 +320,6 @@ nuisances['btag_shape_hf']  = {
                 'type'  : 'shape',
                 'samples'  : {
                    'WZ'      : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
-                   'WZ_mll01': ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
                    'ZZ'      : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
                    'VVV'     : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
                    'Zg'      : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
@@ -330,6 +328,7 @@ nuisances['btag_shape_hf']  = {
                    'ZH_hww'  : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
                    'ggZH_hww': ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
                    'WH_htt'  : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
+                   'ZH_htt'  : ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)'],
                 }
 }
 
@@ -339,7 +338,6 @@ nuisances['btag_shape_hfstats1']  = {
                 'type'  : 'shape',
                 'samples'  : {
                    'WZ'      : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
-                   'WZ_mll01': ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
                    'ZZ'      : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
                    'VVV'     : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
                    'Zg'      : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
@@ -348,6 +346,7 @@ nuisances['btag_shape_hfstats1']  = {
                    'ZH_hww'  : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
                    'ggZH_hww': ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
                    'WH_htt'  : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
+                   'ZH_htt'  : ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)'],
                 }
 }
 
@@ -357,7 +356,6 @@ nuisances['btag_shape_hfstats2']  = {
                 'type'  : 'shape',
                 'samples'  : {
                    'WZ'      : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
-                   'WZ_mll01': ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
                    'ZZ'      : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
                    'VVV'     : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
                    'Zg'      : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
@@ -366,6 +364,7 @@ nuisances['btag_shape_hfstats2']  = {
                    'ZH_hww'  : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
                    'ggZH_hww': ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
                    'WH_htt'  : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
+                   'ZH_htt'  : ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)'],
                 }
 }
 
@@ -375,7 +374,6 @@ nuisances['btag_shape_lfstats1']  = {
                 'type'  : 'shape',
                 'samples'  : {
                    'WZ'      : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
-                   'WZ_mll01': ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
                    'ZZ'      : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
                    'VVV'     : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
                    'Zg'      : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
@@ -384,6 +382,7 @@ nuisances['btag_shape_lfstats1']  = {
                    'ZH_hww'  : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
                    'ggZH_hww': ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
                    'WH_htt'  : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
+                   'ZH_htt'  : ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)'],
                 }
 }
 
@@ -393,7 +392,6 @@ nuisances['btag_shape_lfstats2']  = {
                 'type'  : 'shape',
                 'samples'  : {
                    'WZ'      : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
-                   'WZ_mll01': ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
                    'ZZ'      : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
                    'VVV'     : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
                    'Zg'      : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
@@ -402,6 +400,7 @@ nuisances['btag_shape_lfstats2']  = {
                    'ZH_hww'  : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
                    'ggZH_hww': ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
                    'WH_htt'  : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
+                   'ZH_htt'  : ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)'],
                 }
 }
 
@@ -411,7 +410,6 @@ nuisances['btag_shape_cferr1']  = {
                 'type'  : 'shape',
                 'samples'  : {
                    'WZ'      : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
-                   'WZ_mll01': ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
                    'ZZ'      : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
                    'VVV'     : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
                    'Zg'      : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
@@ -420,6 +418,7 @@ nuisances['btag_shape_cferr1']  = {
                    'ZH_hww'  : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
                    'ggZH_hww': ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
                    'WH_htt'  : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
+                   'ZH_htt'  : ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)'],
                 }
 }
 
@@ -429,7 +428,6 @@ nuisances['btag_shape_cferr2']  = {
                 'type'  : 'shape',
                 'samples'  : {
                    'WZ'      : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
-                   'WZ_mll01': ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
                    'ZZ'      : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
                    'VVV'     : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
                    'Zg'      : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
@@ -438,6 +436,7 @@ nuisances['btag_shape_cferr2']  = {
                    'ZH_hww'  : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
                    'ggZH_hww': ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
                    'WH_htt'  : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
+                   'ZH_htt'  : ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)'],
                 }
 }
 
@@ -452,7 +451,6 @@ nuisances['trigg']  = {
                 'samples'  : {
                    'VVV'     : trig_syst ,
                    'WZ'      : trig_syst ,
-                   'WZ_mll01': trig_syst ,
                    'ZZ'      : trig_syst ,
                    'ttZ'     : trig_syst ,
                    'Zg'      : trig_syst ,
@@ -460,6 +458,7 @@ nuisances['trigg']  = {
                    'ZH_hww'  : trig_syst ,
                    'ggZH_hww': trig_syst ,
                    'WH_htt'  : trig_syst ,
+                   'ZH_htt'  : trig_syst ,
                 },
 }
 
@@ -474,7 +473,6 @@ nuisances['prefire'] = {
     'samples'  : {
         'VVV'     : prefire_syst ,
         'WZ'      : prefire_syst ,
-        'WZ_mll01': prefire_syst ,
         'ZZ'      : prefire_syst ,
         'ttZ'     : prefire_syst ,
         'Zg'      : prefire_syst ,
@@ -482,6 +480,7 @@ nuisances['prefire'] = {
         'ZH_hww'  : prefire_syst ,
         'ggZH_hww': prefire_syst ,
         'WH_htt'  : prefire_syst ,
+        'ZH_htt'  : prefire_syst ,
     },
 }
 
@@ -496,7 +495,6 @@ nuisances['eff_e']  = {
                 'samples'  : {
                    'VVV'     : id_syst_ele ,
                    'WZ'      : id_syst_ele ,
-                   'WZ_mll01': id_syst_ele ,
                    'ZZ'      : id_syst_ele ,
                    'ttZ'     : id_syst_ele ,
                    'Zg'      : id_syst_ele ,
@@ -504,6 +502,7 @@ nuisances['eff_e']  = {
                    'ZH_hww'  : id_syst_ele ,
                    'ggZH_hww': id_syst_ele ,
                    'WH_htt'  : id_syst_ele ,
+                   'ZH_htt'  : id_syst_ele ,
                 },
 }
 
@@ -513,7 +512,6 @@ nuisances['electronpt']  = {
                 'type'  : 'shape',
                 'samples'  : {
                    'WZ'       : ['1', '1'],
-                   'WZ_mll01' : ['1', '1'],
                    'ZZ'       : ['1', '1'],
                    'ttZ'      : ['1', '1'],
                    'VVV'      : ['1', '1'],
@@ -522,6 +520,7 @@ nuisances['electronpt']  = {
                    'ZH_hww'   : ['1', '1'],
                    'ggZH_hww' : ['1', '1'],
                    'WH_htt'   : ['1', '1'],
+                   'ZH_htt'   : ['1', '1'],
                  },
                 'folderUp'   : treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__ElepTup', 
                 'folderDown' : treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__ElepTdo', 
@@ -538,7 +537,6 @@ nuisances['eff_m']  = {
                 'samples'  : {
                    'VVV'     : id_syst_mu ,
                    'WZ'      : id_syst_mu ,
-                   'WZ_mll01': id_syst_mu ,
                    'ZZ'      : id_syst_mu ,
                    'ttZ'     : id_syst_mu ,
                    'Zg'      : id_syst_mu ,
@@ -546,6 +544,7 @@ nuisances['eff_m']  = {
                    'ZH_hww'  : id_syst_mu ,
                    'ggZH_hww': id_syst_mu ,
                    'WH_htt'  : id_syst_mu ,
+                   'ZH_htt'  : id_syst_mu ,
                 },
 }
 
@@ -555,7 +554,6 @@ nuisances['muonpt']  = {
                 'type'  : 'shape',
                 'samples'  : {
                    'WZ'       : ['1', '1'],
-                   'WZ_mll01' : ['1', '1'],
                    'ZZ'       : ['1', '1'],
                    'ttZ'      : ['1', '1'],
                    'VVV'      : ['1', '1'],
@@ -564,6 +562,7 @@ nuisances['muonpt']  = {
                    'ZH_hww'   : ['1', '1'],
                    'ggZH_hww' : ['1', '1'],
                    'WH_htt'   : ['1', '1'],
+                   'ZH_htt'   : ['1', '1'],
                 },
                 'folderUp'   : treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__MupTup',
                 'folderDown' : treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__MupTdo',
@@ -577,7 +576,6 @@ nuisances['jes']  = {
                 'type'  : 'shape',
                 'samples'  : {
                    'WZ'       : ['1', '1'],
-                   'WZ_mll01' : ['1', '1'],
                    'ZZ'       : ['1', '1'],
                    'ttZ'      : ['1', '1'],
                    'VVV'      : ['1', '1'],
@@ -586,6 +584,7 @@ nuisances['jes']  = {
                    'ZH_hww'   : ['1', '1'],
                    'ggZH_hww' : ['1', '1'],
                    'WH_htt'   : ['1', '1'],
+                   'ZH_htt'   : ['1', '1'],
                 },
                 'folderUp'   : treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__JESup',
                 'folderDown' : treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__JESdo',
@@ -600,7 +599,6 @@ nuisances['met']  = {
                 'type'  : 'shape',
                 'samples'  : {
                    'WZ'       : ['1', '1'],
-                   'WZ_mll01' : ['1', '1'],
                    'ZZ'       : ['1', '1'],
                    'ttZ'      : ['1', '1'],
                    'VVV'      : ['1', '1'],
@@ -609,6 +607,7 @@ nuisances['met']  = {
                    'ZH_hww'   : ['1', '1'],
                    'ggZH_hww' : ['1', '1'],
                    'WH_htt'   : ['1', '1'],
+                   'ZH_htt'   : ['1', '1'],
                 },
                 'folderUp'   : treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__METup',
                 'folderDown' : treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__METdo',

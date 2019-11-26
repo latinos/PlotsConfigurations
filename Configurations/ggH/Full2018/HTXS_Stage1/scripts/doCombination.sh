@@ -62,7 +62,7 @@ combineCards.py   of_0j_pth0_10=${datacardDir}/hww2l2v_13TeV_of0j_pth0_10/${vari
 #echo "nuisance edit drop Vg of_2j_mjjGT700_pthjjGT25 QCDscale_VV" >> ${outputDir}/Full2018_ggH_HTXS_Stage1p2.txt
 #echo "nuisance edit drop Vg of_2j_mjjGT700_pthjjGT25 CMS_eff_e_2018" >> ${outputDir}/Full2018_ggH_HTXS_Stage1p2.txt
 
-echo "nuisance edit freeze UE_CP5">> ${outputDir}/Full2018_ggH_HTXS_Stage1p2.txt
+#echo "nuisance edit freeze UE_CP5">> ${outputDir}/Full2018_ggH_HTXS_Stage1p2.txt
 #echo "nuisance edit freeze PS">> ${outputDir}/Full2018_ggH_HTXS_Stage1p2.txt
 #echo "nuisance edit freeze QCDscale_ggH_STXS_ACCEPT">> ${outputDir}/Full2018_ggH_HTXS_Stage1p2.txt
 
