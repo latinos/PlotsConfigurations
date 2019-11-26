@@ -43,6 +43,9 @@ aliases['Top_pTrw'] = {
     'samples': ['top']
 }
 
+aliases['zeroJet'] = {
+    'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
+}
 
 aliases['bVeto'] = {
     'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0'
@@ -54,7 +57,7 @@ aliases['bReq'] = {
 
 
 aliases['topcr'] = {
-    'expr': 'mth>40 && mll<76 && drll<2.5 && ((zeroJet && !bVeto) || bReq)'
+    'expr': 'fabs(Whad_mass - 80.4) < 15. && bReq'
 }
 
 btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_94XSF_V2_B_F.csv' % os.getenv('CMSSW_BASE')
