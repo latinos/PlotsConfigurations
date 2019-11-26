@@ -121,14 +121,12 @@ samples['ttZ']  = {    'name': getSampleFilesNano(directoryMC,'TTZjets'),
 ############# Signal ###############
 ####################################
 
-# Not yet available for 2018
-#samples['WH_htt']  = {  'name': getSampleFilesNano(directoryMC,'HWminusJ_HToTauTau_M125')
-#                               +getSampleFilesNano(directoryMC,'HWplusJ_HToTauTau_M125')
-#                               +getSampleFilesNano(directoryMC,'HZJ_HToTauTau_M125'),
-#                        'weight' : XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
-#                        'suppressNegativeNuisances' :['all'],
-#                        'FilesPerJob' : 5,
-#                    }
+samples['WH_htt']  = {  'name': getSampleFilesNano(directoryMC,'HWminusJ_HToTauTau_M125')
+                               +getSampleFilesNano(directoryMC,'HWplusJ_HToTauTau_M125'),
+                        'weight' : XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
+                        'suppressNegativeNuisances' :['all'],
+                        'FilesPerJob' : 5,
+                    }
 
 samples['WH_hww']  = { 'name': getSampleFilesNano(directoryMC,'HWminusJ_HToWW_M125')
                               +getSampleFilesNano(directoryMC,'HWplusJ_HToWW_M125'),
@@ -148,6 +146,12 @@ samples['ggZH_hww'] = {  'name': getSampleFilesNano(directoryMC,'GluGluZH_HToWW_
                          'suppressNegativeNuisances' :['all'],
                          'FilesPerJob' : 3,
                      }
+
+samples['ZH_htt']  = {  'name': getSampleFilesNano(directoryMC,'HZJ_HToTauTau_M125'),
+                        'weight' : XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
+                        'suppressNegativeNuisances' :['all'],
+                        'FilesPerJob' : 5,
+                    }
 
 ###########################################
 ################## FAKE ###################

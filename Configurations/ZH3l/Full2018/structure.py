@@ -63,6 +63,11 @@ structure['WH_htt'] = {
                   'isData'   : 0    
                   }
 
+structure['ZH_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
 # Data
 structure['DATA']  = { 
                  'isSignal' : 0,

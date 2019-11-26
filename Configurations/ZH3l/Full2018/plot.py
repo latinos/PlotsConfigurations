@@ -53,8 +53,7 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  #'samples'  : ['WH_htt', 'WH_hww', 'ZH_hww', 'ggZH_hww']
-                  'samples'  : ['WH_hww', 'ZH_hww', 'ggZH_hww']
+                  'samples'  : ['WH_htt', 'ZH_htt', 'WH_hww', 'ZH_hww', 'ggZH_hww']
               }
 
 # Individual plots               
@@ -110,13 +109,21 @@ plot['VVV']  = {
                   'scale'    : 1.0
                   }
 
-#plot['WH_htt'] = {
-#                  'nameHR' : 'Htt',
-#                  'color': 632+4, # kRed+4 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,    
-#                  'scale'    : 1
-#                  }
+plot['WH_htt'] = {
+                  'nameHR' : 'WH htt',
+                  'color': 632+4, # kRed+4 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1
+                  }
+
+plot['ZH_htt'] = {
+                  'nameHR' : 'ZH htt',
+                  'color': 632+4, # kRed+4 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1
+                  }
 
 plot['ZH_hww'] = {
                   'nameHR' : 'ZH',
