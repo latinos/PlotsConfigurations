@@ -70,7 +70,7 @@ ncat=0
 combChannelsToConsider = []
 for k in channels:
   if "Top" in k or "DYtt" in k or "WW" in k or "wh3l_wz" in k or "wh3l_zg" in k or "zh4l_ZZ" in k: continue
-  if 'FWDH' in k or 'ossf_' in k: continue
+  if 'FWDH' in k or 'sssf_' in k: continue
   if overallTotalSignal[k] == 0: continue
   ncat+=1
   combChannelsToConsider.append(k)
