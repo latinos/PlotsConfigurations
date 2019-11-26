@@ -4,18 +4,15 @@
 # Groups of samples to improve the plots.
 # If not defined, normal plots is used
 
-import os
-
 if os.path.exists('HTXS_stage1_categories.py') :
     handle = open('HTXS_stage1_categories.py','r')
     exec(handle)
     handle.close()
 
 sampleNames = []
-for cat in categorization_wh:
-    sampleNames.append('WH_hww_%s'%cat)
-    sampleNames.append('WH_htt_%s'%cat)
-
+for cat in HTXSStage1_1Categories:
+    if 'QQ2HLNU_' in cat:
+        sampleNames.append('WH_hww_'+cat.replace('QQ2HLNU_',''))
 
 #groupPlot['DY']  = {  
 #                  'nameHR' : "DY",
@@ -91,7 +88,8 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  'samples'  : ['WH_htt', 'WH_hww', 'ZH_hww']
+                  #'samples'  : ['WH_htt', 'WH_hww', 'ZH_hww']
+                  'samples' : ['WH_htt']
               }
 
 for s in sampleNames:
@@ -254,13 +252,13 @@ plot['WH_htt'] = {
 #                  'scale'    : 1
 #                  }
 
-plot['WH_hww'] = {
-                  'nameHR' : 'WH',
-                  'color': 632+2, # kRed+2 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1
-                  }
+#plot['WH_hww'] = {
+#                  'nameHR' : 'WH',
+#                  'color': 632+2, # kRed+2 
+#                  'isSignal' : 1,
+#                  'isData'   : 0,    
+#                  'scale'    : 1
+#                  }
 
 # data
 
@@ -269,8 +267,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0
-                  # 'isBlind'  : 1
+                  'isBlind'  : 1
               }
 
 # additional options

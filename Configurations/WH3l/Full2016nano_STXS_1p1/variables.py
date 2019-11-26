@@ -13,7 +13,7 @@ variables['events']  = {'name'  : '1',
 
 variables['WlepPt_wh3l'] = {'name' : 'WlepPt_wh3l',
                             'range' : (10,0.,200),
-                            'xaxis' : 'WlepPt_wh31 [GeV]',
+                            'xaxis' : 'WlepPt_wh3l [GeV]',
                             'fold' : 1
                         }
 

@@ -240,7 +240,7 @@ aliases['SFweightMuDown'] = {
 }
 
 aliases['nllWOTF'] = {
-    'linesToAdd': ['.L %s/Differential/nllW.cc+' % configurations],
+    'linesToAdd': ['.L %s/macros/nllW.cc+' % configurations],
     'class': 'WWNLLW',
     'args': ('central',),
     'samples': ['WW']
