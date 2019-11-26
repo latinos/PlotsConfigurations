@@ -1,24 +1,40 @@
-##Just set below things##
+# Configuration file to produce initial root files -- has both merged and binned ggH samples
 
+treeName = 'Events'
 
-#tag='simple2017'
-tag='2017'
+tag = '2HDMaSemlep_2017'
 
+# used by mkShape to define output directory for root files
+outputDir = 'rootFile'
 
+# file with TTree aliases
+aliasesFile = 'aliases.py'
 
-variablesFile='variables.py' ##what variables to draw
-cutsFile='cuts.py' ## event selection##region selection
-plotFile='plot.py' ##color code and some format-related things
-#samplesFile = 'samples_missing.py'
-samplesFile = 'samples_'+tag+'.py'
+# file with list of variables
+variablesFile = 'variables.py'
 
-lumi=41.5
+# file with list of cuts
+cutsFile = 'cuts.py' 
 
-#outputDirPlots='plots_'+tag+'Blined'
-outputDirPlots='plots_'+tag
-outputDir = 'rootFile_'+tag
-treeName='Events'
-aliasesFile='aliases.py'
+# file with list of samples
+samplesFile = 'samples.py' 
+
+# file with list of samples
+plotFile = 'plot.py' 
+
+# luminosity to normalize to (in 1/fb)
+lumi = 41.53
+
+# used by mkPlot to define output directory for plots
+# different from "outputDir" to do things more tidy
+outputDirPlots = 'plots'
+
+# used by mkDatacards to define output directory for datacards
+outputDirDatacard = 'datacards'
+
+# structure file for datacard
+structureFile = 'structure.py'
+
+# nuisances file for mkDatacards and for mkShape
 nuisancesFile = 'nuisances.py'
-
 
