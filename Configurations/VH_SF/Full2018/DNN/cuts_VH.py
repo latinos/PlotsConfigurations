@@ -12,8 +12,8 @@ supercut = '    mll>12 \
 
 # Some cuts
 
-dymvaVHee   = 'hww_DYmvaDNN_VH(Entry$)> 0.805'
-dymvaVHmm   = 'hww_DYmvaDNN_VH(Entry$)> 0.805'
+dymvaVHee   = 'hww_DYmvaDNN_VH(Entry$)> 0.880'
+dymvaVHmm   = 'hww_DYmvaDNN_VH(Entry$)> 0.880'
 
 # Higgs Signal Regions: ee/uu * 0/1 jet
 

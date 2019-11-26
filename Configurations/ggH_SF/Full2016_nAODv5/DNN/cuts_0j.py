@@ -12,8 +12,8 @@ supercut = '    mll>12 \
 
 # Some cuts
 
-dymva0jetee = 'hww_DYmvaDNN_0j(Entry$) > 0.970'
-dymva0jetmm = 'hww_DYmvaDNN_0j(Entry$) > 0.970'
+dymva0jetee = 'hww_DYmvaDNN_0j(Entry$) > 0.975'
+dymva0jetmm = 'hww_DYmvaDNN_0j(Entry$) > 0.975'
 
 # Higgs Signal Regions: ee/uu * 0/1 jet
 cuts['hww2l2v_13TeV_2016_0jee_pt2ge20'] = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && sr && Lepton_pt[1]>=20 \
