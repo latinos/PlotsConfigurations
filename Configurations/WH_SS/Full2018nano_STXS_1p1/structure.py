@@ -2,6 +2,19 @@
 
 #structure = {}
 
+if os.path.exists('HTXS_stage1_categories.py') :
+    handle = open('HTXS_stage1_categories.py','r')
+    exec(handle)
+    handle.close()
+
+for cat,num in HTXSStage1_1Categories.iteritems():
+  if 'QQ2HLNU_' in cat:
+      structure['WH_hww_'+cat.replace('QQ2HLNU_','')] = {
+          'isSignal' : 1,
+          'isData'   : 0
+      }
+
+
 # keys here must match keys in samples.py    
 #                    
 #structure['DY']  = {  

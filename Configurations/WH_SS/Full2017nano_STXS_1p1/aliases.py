@@ -94,6 +94,22 @@ aliases['WlepPt_whssv1'] = {
     'args': ()
 }
 
+aliases['WlepPt_whssv2'] = {
+    'linesToAdd': [
+        '.L %s/macros/wlep1pt2.cc+' % configurations
+    ],
+    'class': 'WHlepv2',
+    'args': ()
+}
+
+aliases['WlepMt_whss'] = {
+    'linesToAdd': [
+        '.L %s/macros/wlepmt.cc+' % configurations
+    ],
+    'class': 'WHlepMt',
+    'args': ()
+}
+
 # No jet with pt > 30 GeV
 aliases['zeroJet'] = {
     'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
@@ -101,7 +117,7 @@ aliases['zeroJet'] = {
 
 # ==1 jet with pt > 30 GeV
 aliases['oneJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) < 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) < 30.'
 }
 
 # >=1 jet with pt > 30 GeV
@@ -111,12 +127,12 @@ aliases['oneJetOrMore'] = {
 
 # ==2 jets with pt > 30 GeV
 aliases['twoJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) >= 30. && Alt$(CleanJet_pt[2], 0) < 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) >= 30. && Alt$(CleanJet_pt[2], 0) < 30.'
 }
 
 # >=2 jets with pt > 30 GeV
 aliases['twoJetOrMore'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) >= 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) >= 30.'
 }
 
 # ==3 with pt > 30 GeV

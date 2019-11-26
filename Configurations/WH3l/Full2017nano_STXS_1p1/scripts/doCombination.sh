@@ -1,9 +1,9 @@
 #!/bin/bash
 
-if [ -e $PWD/Combination/Full2016_WH_SS_HTXS_Stage1.txt ]
+if [ -e $PWD/Combination ]
     then
-    echo "deleting $PWD/Combination/Full2016_WH_SS_HTXS_Stage1.txt"
-    rm $PWD/Combination/Full2016_WH_SS_HTXS_Stage1.txt
+    echo "deleting $PWD/Combination/"
+    rm -r $PWD/Combination
 fi
 
 if [ -z $1 ]
@@ -48,7 +48,7 @@ combineCards.py \
     ossf_PTV_GT250=$datacardDir/wh3l_13TeV_ossf_PTV_GT250/$vars/datacard.txt \
     wh3l_zg=$datacardDir/wh3l_zg_13TeV/events/datacard.txt \
     wh3l_wz=$datacardDir/wh3l_wz_13TeV/events/datacard.txt \
-    > ${outputDir}/Full2016_WH3l_HTXS_Stage1.txt
+    > ${outputDir}/Full2017_WH3l_HTXS_Stage1.txt
 
 #combineCards.py \
 #    hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_0_75=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_0_75/$vars/datacard.txt \
