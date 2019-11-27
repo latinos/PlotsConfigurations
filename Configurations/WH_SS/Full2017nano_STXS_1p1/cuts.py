@@ -58,5 +58,11 @@ for key,value in Anacat.iteritems():
             #Reco bin 3 or more jets
             elif '_2j' in key:
                 Njet='threeJetOrMore'
+        #FWDH
+        elif 'FWDH' in cat:
+            if '_1j' in key:
+                Njet='oneJet'
+        else:
+            Njet='1==1'
         cuts['%s_%s' %(key,cat)] = '%s && %s && %s' %(value,val,Njet)
 
