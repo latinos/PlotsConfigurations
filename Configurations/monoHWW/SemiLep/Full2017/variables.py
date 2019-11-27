@@ -26,6 +26,12 @@ variables['Puppimet']  = {
                         'fold'  : 3
                         }
 
+variables['mtw1']  = {
+                        'name': 'mtw1',
+                        'range' : (40,0,300),
+                        'xaxis' : 'mtw1 [GeV]',
+                        'fold'  : 3
+                        }
 
 variables['Whad_mass']  = {
                         'name': 'Whad_mass',
