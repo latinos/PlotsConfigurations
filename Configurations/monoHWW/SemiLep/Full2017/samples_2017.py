@@ -133,6 +133,7 @@ samples['top'] = {    'name'   :   nanoGetSampleFiles(mcDirectory,'TTToSemiLepto
                     }
 
 addSampleWeight(samples,'top','TTToSemiLeptonic','Top_pTrw')
+addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 # MISSING: WWToLNuQQ
 
