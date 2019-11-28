@@ -40,3 +40,23 @@ addcut('Resolved_TopCR', _tmp)
 
 
 
+_tmp = [
+    'bVeto',
+    'fabs(Whad_mass - 80.4) > 15.',
+    'Whad_mass > 0.'
+]
+
+addcut('Resolved_SB', _tmp)
+
+
+
+_tmp = [
+    'bReq',
+    'fabs(Whad_mass - 80.4) > 15.',
+    'Whad_mass > 0.'
+]
+
+addcut('Resolved_SB_Top', _tmp)
+
+
+
