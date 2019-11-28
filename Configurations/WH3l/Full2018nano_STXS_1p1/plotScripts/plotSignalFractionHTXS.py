@@ -176,7 +176,7 @@ for i,c in enumerate(combChannelsToConsider):
   events.DrawLatex(x,y,"#color[10]{ "+" {0:.1f}".format(overallTotalSignal[c])+" events}")
 
 ROOT.gPad.RedrawAxis()
-canvas.SaveAs("signalfraction2016_1p2.png")
+canvas.SaveAs("signalfraction2018_1p2.png")
 
 a = raw_input()
 

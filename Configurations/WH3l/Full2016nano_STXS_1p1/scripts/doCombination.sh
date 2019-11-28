@@ -38,10 +38,12 @@ vars="WH3l_drOSll_min"
 
 # combine the datacards
 combineCards.py \
+    sssf_FWDH=$datacardDir/wh3l_13TeV_sssf_FWDH/$vars/datacard.txt \
     sssf_PTV_0_75=$datacardDir/wh3l_13TeV_sssf_PTV_0_75/$vars/datacard.txt \
     sssf_PTV_75_150=$datacardDir/wh3l_13TeV_sssf_PTV_75_150/$vars/datacard.txt \
     sssf_PTV_150_250_0J=$datacardDir/wh3l_13TeV_sssf_PTV_150_250_0J/$vars/datacard.txt \
     sssf_PTV_GT250=$datacardDir/wh3l_13TeV_sssf_PTV_GT250/$vars/datacard.txt \
+    ossf_FWDH=$datacardDir/wh3l_13TeV_ossf_FWDH/$vars/datacard.txt \
     ossf_PTV_0_75=$datacardDir/wh3l_13TeV_ossf_PTV_0_75/$vars/datacard.txt \
     ossf_PTV_75_150=$datacardDir/wh3l_13TeV_ossf_PTV_75_150/$vars/datacard.txt \
     ossf_PTV_150_250_0J=$datacardDir/wh3l_13TeV_ossf_PTV_150_250_0J/$vars/datacard.txt \

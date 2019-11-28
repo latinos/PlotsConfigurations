@@ -113,29 +113,29 @@ echo "Combination folder is created"
 #Btag
 #RuntimeError: Bogus norm -0.004624382553444436 for channel uu_2j_PTV_GT250, process VZ, systematic CMS_CMS_btag_cferr1 Up
 #CMS_CMS_eff_e_2018
-for nu in cferr1 cferr2 hf hfstats1_2018 hfstats2_2018 jes lf lfstats1_2018 lfstats2_2018
-do
-    for bin in uu_2j_PTV_GT250
-    do
-	echo "nuisance edit drop VZ $bin CMS_CMS_btag_$nu" >> ${outputDir}/Full2018_WH_SS_HTXS_Stage1.txt
-    done
+#for nu in cferr1 cferr2 hf hfstats1_2018 hfstats2_2018 jes lf lfstats1_2018 lfstats2_2018
+#do
+#    for bin in uu_2j_PTV_GT250
+#    do
+#	echo "nuisance edit drop VZ $bin CMS_CMS_btag_$nu" >> ${outputDir}/Full2018_WH_SS_HTXS_Stage1.txt
+#    done
 #
 #    for bin in eu_2j_PTV_150_250_GE1J eu_1j_PTV_150_250_GE1J
 #    do
 #        echo "nuisance edit drop VVV $bin CMS_CMS_btag_$nu" >> ${outputDir}/Full2016_WH_SS_HTXS_Stage1.txt
 #    done
-done
+#done
 
 #Eff
-for nu in e_2018 m_2018 hwwtrigger_2018
-do
-    for bin in uu_2j_PTV_GT250
-    do
-	echo "nuisance edit drop VZ $bin CMS_CMS_eff_$nu" >> ${outputDir}/Full2018_WH_SS_HTXS_Stage1.txt
-    done
+#for nu in e_2018 m_2018 hwwtrigger_2018
+#do
+#    for bin in uu_2j_PTV_GT250
+#    do
+#	echo "nuisance edit drop VZ $bin CMS_CMS_eff_$nu" >> ${outputDir}/Full2018_WH_SS_HTXS_Stage1.txt
+#    done
 #
 #    for bin in eu_2j_PTV_150_250_GE1J eu_1j_PTV_150_250_GE1J
 #    do
 #        echo "nuisance edit drop VVV $bin CMS_CMS_eff_$nu" >> ${outputDir}/Full2016_WH_SS_HTXS_Stage1.txt
 #    done
-done
+#done

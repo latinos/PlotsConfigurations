@@ -173,12 +173,12 @@ signals = []
 
 ############ H->TauTau ############
 
-#samples['WH_htt'] = {
-#     'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
-#     'weight': mcCommonWeight,
-#     'FilesPerJob': 4
-# }
-#signals.append('WH_htt')
+samples['WH_htt'] = {
+     'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
+     'weight': mcCommonWeight,
+     'FilesPerJob': 4
+ }
+signals.append('WH_htt')
 
 if os.path.exists('HTXS_stage1_categories.py'):
     handle = open('HTXS_stage1_categories.py','r')
