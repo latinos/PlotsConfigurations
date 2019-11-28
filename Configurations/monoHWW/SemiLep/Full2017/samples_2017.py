@@ -122,6 +122,7 @@ samples['DY'] = {    'name'   :   nanoGetSampleFiles(mcDirectory,'DYJetsToLL_M-5
 }
 
 samples['top'] = {    'name'   :   nanoGetSampleFiles(mcDirectory,'TTToSemiLeptonic')
+                      + nanoGetSampleFiles(mcDirectory,'TTTo2L2Nu')
                       + nanoGetSampleFiles(mcDirectory,'ST_t-channel_top')
                       + nanoGetSampleFiles(mcDirectory,'ST_t-channel_antitop')
                       + nanoGetSampleFiles(mcDirectory,'ST_tW_antitop')
