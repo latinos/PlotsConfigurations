@@ -39,8 +39,8 @@ sampleNames.append('ggH_hww_PTH_300_450')
 sampleNames.append('ggH_hww_PTH_450_650')
 sampleNames.append('ggH_hww_PTH_GT650')
 
-#almost no merging                                                                                                                            
-command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic allyears_ggH_HTXS_Stage1p2.root -t -1  --setParameters "
+
+command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic allyears_ggH_HTXS_Stage1p2_merged.root -t -1  --setParameters "
 poi = ''
 for sample in sampleNames:
   if 'ggH_hww' not in sample: continue
@@ -84,9 +84,9 @@ command = command[:-1]
 print command
 os.system(command)
 '''
-'''
+
 #Merge all bins
-command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic allyears_ggH_HTXS_Stage1p2_merged.root -t -1 --setParameters "
+command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic allyears_ggH_HTXS_Stage1p2_onePOI.root -t -1 --setParameters "
 poi = ''
 for sample in sampleNames:
   if 'FWDH' in sample: continue
@@ -97,5 +97,5 @@ for sample in sampleNames:
 command = command[:-1]
 print command
 os.system(command)
-'''
+
 

@@ -308,11 +308,11 @@ nuisances['UE']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-                  'WW'      : ['UEWWNormFactors[0]','UEWWNormFactors[1]'],
+                  'WW'      : [UEWWNormFactors[0],UEWWNormFactors[1]],
                   # new: ['1.02963742701', '1.00534389668']  old:['1.12720771849', '1.13963144574']
-                  'ggH_hww' : ['UEggHNormFactors[0]','UEggHNormFactors[1]'],
+                  'ggH_hww' : [UEggHNormFactors[0],UEggHNormFactors[1]],
                   # new: ['0.949039088454', '1.00604178956'] old:['1.00211385568', '0.994966378288']
-                  'qqH_hww' : ['UEqqHNormFactors[0]','UEqqHormFactors[1]'],
+                  'qqH_hww' : [UEqqHNormFactors[0],UEqqHNormFactors[1]],
                   # new: ['0.996426044615', '1.00037976527'] old:['1.00367895901', '0.994831373195']
                 },
                 'folderUp': makeMCDirectory('UEup'),
