@@ -94,8 +94,8 @@ mA_list = ['1200', '600', '500', '400', '300', '200']
 for mA in mA_list:
     samples['2HDMa_mA_'+mA+'_ma_150'] = {  
                                          'name'  : 
-                                         nanoGetSampleFiles(directory,'2HDMa_SemiLep_MH3_'+mA+'_MH4_150_neg')  
-                                         +nanoGetSampleFiles(directory,'2HDMa_SemiLep_MH3_'+mA+'_MH4_150_pos') ,  
+                                         nanoGetSampleFiles(mcDirectory,'2HDMa_SemiLep_MH3_'+mA+'_MH4_150_neg')  
+                                         +nanoGetSampleFiles(mcDirectory,'2HDMa_SemiLep_MH3_'+mA+'_MH4_150_pos') ,  
                                          'weight': mcCommonWeight,
                                         }
 
@@ -104,9 +104,9 @@ for mA in mA_list:
 ###########################################                                                                                                  
 
 samples['Wjets'] = {    'name'   :   
-                        nanoGetSampleFiles(directory,'WJetsToLNu-0J')
-                        + nanoGetSampleFiles(directory,'WJetsToLNu-1J')
-                        + nanoGetSampleFiles(directory,'WJetsToLNu-2J')
+                        nanoGetSampleFiles(mcDirectory,'WJetsToLNu-0J')
+                        + nanoGetSampleFiles(mcDirectory,'WJetsToLNu-1J')
+                        + nanoGetSampleFiles(mcDirectory,'WJetsToLNu-2J')
                         ,
                         'weight' : mcCommonWeight,
                         'FilesPerJob' : 5,
@@ -115,17 +115,17 @@ samples['Wjets'] = {    'name'   :
 
 ############ DY ############                                                                                                   
 
-samples['DY'] = {    'name'   :   nanoGetSampleFiles(directory,'DYJetsToLL_M-50_ext1')
-                     + nanoGetSampleFiles(directory,'DYJetsToLL_M-10to50-LO'),
+samples['DY'] = {    'name'   :   nanoGetSampleFiles(mcDirectory,'DYJetsToLL_M-50_ext1')
+                     + nanoGetSampleFiles(mcDirectory,'DYJetsToLL_M-10to50-LO'),
                      'weight' : mcCommonWeight,
                      'FilesPerJob' : 5,
 }
 
-samples['top'] = {    'name'   :   nanoGetSampleFiles(directory,'TTToSemiLeptonic')
-                      + nanoGetSampleFiles(directory,'ST_t-channel_top')
-                      + nanoGetSampleFiles(directory,'ST_t-channel_antitop')
-                      + nanoGetSampleFiles(directory,'ST_tW_antitop')
-                      + nanoGetSampleFiles(directory,'ST_tW_top') 
+samples['top'] = {    'name'   :   nanoGetSampleFiles(mcDirectory,'TTToSemiLeptonic')
+                      + nanoGetSampleFiles(mcDirectory,'ST_t-channel_top')
+                      + nanoGetSampleFiles(mcDirectory,'ST_t-channel_antitop')
+                      + nanoGetSampleFiles(mcDirectory,'ST_tW_antitop')
+                      + nanoGetSampleFiles(mcDirectory,'ST_tW_top') 
                       ,
                       'weight' : mcCommonWeight,
                       'FilesPerJob' : 5,
@@ -135,35 +135,35 @@ addSampleWeight(samples,'top','TTToSemiLeptonic','Top_pTrw')
 
 # MISSING: WWToLNuQQ
 
-samples['VV'] = {    'name'   :   nanoGetSampleFiles(directory,'WZ')
-                     + nanoGetSampleFiles(directory,'ZZTo2L2Q')
-                     + nanoGetSampleFiles(directory,'WW-LO')
+samples['VV'] = {    'name'   :   nanoGetSampleFiles(mcDirectory,'WZ')
+                     + nanoGetSampleFiles(mcDirectory,'ZZTo2L2Q')
+                     + nanoGetSampleFiles(mcDirectory,'WW-LO')
                     ,
                     'weight' : mcCommonWeight,
                     'FilesPerJob' : 5,
                    }
 
 #Was commented out
-samples['QCD'] = {    'name'   :   nanoGetSampleFiles(directory,'QCD_Pt-15to20_MuEnrichedPt5')
-                      +nanoGetSampleFiles(directory,'QCD_Pt-20to30_MuEnrichedPt5')
-                      +nanoGetSampleFiles(directory,'QCD_Pt-30to50_MuEnrichedPt5')
-                      +nanoGetSampleFiles(directory,'QCD_Pt-50to80_MuEnrichedPt5')
-                      +nanoGetSampleFiles(directory,'QCD_Pt-80to120_MuEnrichedPt5')
-                      +nanoGetSampleFiles(directory,'QCD_Pt-120to170_MuEnrichedPt5')
-                      +nanoGetSampleFiles(directory,'QCD_Pt-170to300_MuEnrichedPt5')
-                      +nanoGetSampleFiles(directory,'QCD_Pt-300to470_MuEnrichedPt5')
-                      +nanoGetSampleFiles(directory,'QCD_Pt-470to600_MuEnrichedPt5')
-                      #+nanoGetSampleFiles(directory,'QCD_Pt-600to800_MuEnrichedPt5')
-                      #+nanoGetSampleFiles(directory,'QCD_Pt-800to1000_MuEnrichedPt5')
-                      +nanoGetSampleFiles(directory,'QCD_Pt-1000toInf_MuEnrichedPt5')
-                      +nanoGetSampleFiles(directory,'QCD_Pt-15to20_EMEnriched')
-                      +nanoGetSampleFiles(directory,'QCD_Pt-20to30_EMEnriched')
-                      +nanoGetSampleFiles(directory,'QCD_Pt-30to50_EMEnriched')
-                      +nanoGetSampleFiles(directory,'QCD_Pt-50to80_EMEnriched')
-                      +nanoGetSampleFiles(directory,'QCD_Pt-80to120_EMEnriched')
-                      +nanoGetSampleFiles(directory,'QCD_Pt-120to170_EMEnriched')
-                      #+nanoGetSampleFiles(directory,'QCD_Pt-170to300_EMEnriched')
-                      +nanoGetSampleFiles(directory,'QCD_Pt-300toInf_EMEnriched')
+samples['QCD'] = {    'name'   :   nanoGetSampleFiles(mcDirectory,'QCD_Pt-15to20_MuEnrichedPt5')
+                      +nanoGetSampleFiles(mcDirectory,'QCD_Pt-20to30_MuEnrichedPt5')
+                      +nanoGetSampleFiles(mcDirectory,'QCD_Pt-30to50_MuEnrichedPt5')
+                      +nanoGetSampleFiles(mcDirectory,'QCD_Pt-50to80_MuEnrichedPt5')
+                      +nanoGetSampleFiles(mcDirectory,'QCD_Pt-80to120_MuEnrichedPt5')
+                      +nanoGetSampleFiles(mcDirectory,'QCD_Pt-120to170_MuEnrichedPt5')
+                      +nanoGetSampleFiles(mcDirectory,'QCD_Pt-170to300_MuEnrichedPt5')
+                      +nanoGetSampleFiles(mcDirectory,'QCD_Pt-300to470_MuEnrichedPt5')
+                      +nanoGetSampleFiles(mcDirectory,'QCD_Pt-470to600_MuEnrichedPt5')
+                      #+nanoGetSampleFiles(mcDirectory,'QCD_Pt-600to800_MuEnrichedPt5')
+                      #+nanoGetSampleFiles(mcDirectory,'QCD_Pt-800to1000_MuEnrichedPt5')
+                      +nanoGetSampleFiles(mcDirectory,'QCD_Pt-1000toInf_MuEnrichedPt5')
+                      +nanoGetSampleFiles(mcDirectory,'QCD_Pt-15to20_EMEnriched')
+                      +nanoGetSampleFiles(mcDirectory,'QCD_Pt-20to30_EMEnriched')
+                      +nanoGetSampleFiles(mcDirectory,'QCD_Pt-30to50_EMEnriched')
+                      +nanoGetSampleFiles(mcDirectory,'QCD_Pt-50to80_EMEnriched')
+                      +nanoGetSampleFiles(mcDirectory,'QCD_Pt-80to120_EMEnriched')
+                      +nanoGetSampleFiles(mcDirectory,'QCD_Pt-120to170_EMEnriched')
+                      #+nanoGetSampleFiles(mcDirectory,'QCD_Pt-170to300_EMEnriched')
+                      +nanoGetSampleFiles(mcDirectory,'QCD_Pt-300toInf_EMEnriched')
                       ,
                      'weight' : mcCommonWeight,
                      'FilesPerJob' : 5,

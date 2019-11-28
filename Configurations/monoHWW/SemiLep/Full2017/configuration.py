@@ -17,7 +17,7 @@ variablesFile = 'variables.py'
 cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples.py' 
+samplesFile = 'samples_2017.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
