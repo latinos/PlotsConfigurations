@@ -248,22 +248,47 @@ for thu in thus:
     }
 
 
-aliases['vbfdnn'] = {
-    'linesToAdd': ['.L %s/ggH/Full2017/HTXS_Stage2_ggHVBFVH/evaluate_multiclass.cc+' %configurations],
-    'class': 'evaluate_multiclass',
+aliases['vbfdnn_mjjhigh'] = {
+    'linesToAdd': ['.L %s/ggH/Full2017/HTXS_Stage2_ggHVBFVH/evaluate_multiclass_mjjhigh.cc+' %configurations],
+    'class': 'evaluate_multiclass_mjjhigh',
     'args': 0,
 }
 
-aliases['gghdnn'] = {
-    'linesToAdd': ['.L %s/ggH/Full2017/HTXS_Stage2_ggHVBFVH/evaluate_multiclass.cc+' %configurations],
-    'class': 'evaluate_multiclass',
+aliases['gghdnn_mjjhigh'] = {
+    'linesToAdd': ['.L %s/ggH/Full2017/HTXS_Stage2_ggHVBFVH/evaluate_multiclass_mjjhigh.cc+' %configurations],
+    'class': 'evaluate_multiclass_mjjhigh',
     'args': 3,
 }
 
-aliases['gghlike'] = {
-    'expr': 'gghdnn>vbfdnn',
+
+aliases['vbfdnn_mjjlow'] = {
+    'linesToAdd': ['.L %s/ggH/Full2017/HTXS_Stage2_ggHVBFVH/evaluate_multiclass_mjjlow.cc+' %configurations],
+    'class': 'evaluate_multiclass_mjjlow',
+    'args': 0,
 }
 
-aliases['vbflike'] = {
-    'expr': 'gghdnn<vbfdnn',
+aliases['gghdnn_mjjlow'] = {
+    'linesToAdd': ['.L %s/ggH/Full2017/HTXS_Stage2_ggHVBFVH/evaluate_multiclass_mjjlow.cc+' %configurations],
+    'class': 'evaluate_multiclass_mjjlow',
+    'args': 3,
+}
+
+
+
+
+aliases['gghlike_mjjlow'] = {
+    'expr': 'gghdnn_mjjlow>vbfdnn_mjjlow',
+}
+
+aliases['gghlike_mjjhigh'] = {
+    'expr': 'gghdnn_mjjhigh>vbfdnn_mjjhigh',
+}
+
+aliases['vbflike_mjjlow'] = {
+    'expr': 'gghdnn_mjjlow<vbfdnn_mjjlow',
+}
+
+
+aliases['vbflike_mjjhigh'] = {
+    'expr': 'gghdnn_mjjhigh<vbfdnn_mjjhigh',
 }

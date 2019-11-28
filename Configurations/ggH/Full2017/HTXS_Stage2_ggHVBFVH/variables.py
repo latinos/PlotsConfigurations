@@ -10,6 +10,16 @@ variables['events']  = {   'name': '1',
                         'fold' : 3
                         }
 
+
+
+
+variables['mll']  = {   'name': 'mll',      
+                        'range' : (5,12,210),  
+                        'xaxis' : 'mll', 
+                        'fold' : 3
+                        }
+
+
 variables['mllVSmth_pt2ge20'] = {   'name': 'mll:mth',            #   variable name    
                              'range' : ([60,80,90,100,110,120,130,150,200],[12,25,35,40,45,50,55,70,90,210],),            #   variable range
                              'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
