@@ -81,27 +81,28 @@ WlepH3l::evaluate(unsigned)
   unsigned int leptonIdx2=-1;
   unsigned int leptonIdx3=-1;
 
-  for (unsigned i=0; i != nlep; i++){
-    for (unsigned j=0; j != nlep; j++){
-      if (i==j) continue;
-      //take same flavor, opposite sign
-      if ( abs(Lepton_pdgId->At(i)) == abs(Lepton_pdgId->At(j)) ){
-	//muon, same sign
-	if ( abs(Lepton_pdgId->At(i) + Lepton_pdgId->At(j)) == 26 ) continue;
-	//electron, same sign
-	if ( abs(Lepton_pdgId->At(i) + Lepton_pdgId->At(j)) == 22 ) continue;
-	//find the minimum dr between same flavor lepton pair
-        dr = deltaR( Lepton_phi->At(i) , Lepton_eta->At(i) , Lepton_phi->At(j) , Lepton_eta->At(j) );
-        if (mindr>dr){
-          mindr=dr;
-          leptonIdx1=i;
-          leptonIdx2=j;
-        }
+  if (nlep>=3){
+    for (unsigned i=0; i != nlep; i++){
+      for (unsigned j=0; j != nlep; j++){
+	if (i==j) continue;
+	//take same flavor, opposite sign
+	if ( abs(Lepton_pdgId->At(i)) == abs(Lepton_pdgId->At(j)) ){
+	  //muon, same sign
+	  if ( abs(Lepton_pdgId->At(i) + Lepton_pdgId->At(j)) == 26 ) continue;
+	  //electron, same sign
+	  if ( abs(Lepton_pdgId->At(i) + Lepton_pdgId->At(j)) == 22 ) continue;
+	  //find the minimum dr between same flavor lepton pair
+	  dr = deltaR( Lepton_phi->At(i) , Lepton_eta->At(i) , Lepton_phi->At(j) , Lepton_eta->At(j) );
+	  if (mindr>dr){
+	    mindr=dr;
+	    leptonIdx1=i;
+	    leptonIdx2=j;
+	  }
+	}
       }
     }
-  }
-  //Identify the third lepton
-  if ( (leptonIdx1>0 && leptonIdx2>0) && nlep>2 ){
+    //Identify the third lepton
+    if ( leptonIdx1!=-1 && leptonIdx2!=-1 ){
       lepton1.SetPtEtaPhiM( Lepton_pt->At(leptonIdx1) , Lepton_eta->At(leptonIdx1) , Lepton_phi->At(leptonIdx1) , 0. );
       lepton2.SetPtEtaPhiM( Lepton_pt->At(leptonIdx2) , Lepton_eta->At(leptonIdx2) , Lepton_phi->At(leptonIdx2) , 0. );
       dilepton=lepton1+lepton2;
@@ -116,6 +117,10 @@ WlepH3l::evaluate(unsigned)
         }
       }
       return Lepton_pt->At(leptonIdx3);
+    }
+    else{
+      return -9999.;
+    }
   }
   else{
     return -9999.;
