@@ -26,6 +26,14 @@ aliases['WlepPt_wh3l'] = {
     'expr' : 'Lepton_pt[0]*(WH3l_drOSll[2]==MinIf$(WH3l_drOSll,WH3l_drOSll>0))+Lepton_pt[1]*(WH3l_drOSll[1]==MinIf$(WH3l_drOSll,WH3l_drOSll>0))+Lepton_pt[2]*(WH3l_drOSll[0]==MinIf$(WH3l_drOSll,WH3l_drOSll>0))'
 }
 
+aliases['WlepPt_wh3l_v2'] = {
+    'linesToAdd': [
+        '.L %s/macros/wleph3l.cc+' % configurations
+    ],
+    'class': 'WlepH3l',
+    'args': ()
+}
+
 aliases['LepWPCut'] = {
     'expr': 'LepCut3l__ele_'+eleWP+'__mu_'+muWP,
     'samples': mc + ['DATA']

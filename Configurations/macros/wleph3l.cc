@@ -21,61 +21,30 @@ public:
   TTreeFunction* clone() const override { return new WlepH3l(); }
   //TTreeFunction* clone() const override;
 
-  void beginEvent(long long) override;
-  int getMultiplicity() override { return 1; }
-  unsigned getNdata() override;
+  unsigned getNdata() override { return 1; }
+  float deltaPhi(float, float);
+  float deltaR(float, float, float, float);
+  float deltaEta(float, float);
   double evaluate(unsigned) override;
 
 protected:
   void bindTree_(multidraw::FunctionLibrary&) override;
 
-  static void setValues(long long);
-
-  static long long currentEntry;
-  static UIntValueReader* nLepton;
-  static FloatArrayReader* Lepton_pt;
-  static FloatArrayReader* Lepton_eta;
-  static FloatArrayReader* Lepton_phi;
-  static IntArrayReader* Lepton_pdgId;
-  static std::vector<float> wleph3l;
+  UIntValueReader* nLepton;
+  FloatArrayReader* Lepton_pt;
+  FloatArrayReader* Lepton_eta;
+  FloatArrayReader* Lepton_phi;
+  IntArrayReader* Lepton_pdgId;
 
 };
-
-/*static*/
-long long WlepH3l::currentEntry{-2};
-UIntValueReader* WlepH3l::nLepton{};
-FloatArrayReader* WlepH3l::Lepton_pt{};
-FloatArrayReader* WlepH3l::Lepton_eta{};
-FloatArrayReader* WlepH3l::Lepton_phi{};
-IntArrayReader* WlepH3l::Lepton_pdgId{};
-
-std::vector<float> WlepH3l::wleph3l{};
 
 WlepH3l::WlepH3l() :
   TTreeFunction()
 {}
 
-void
-WlepH3l::beginEvent(long long _iEntry)
-{
-  setValues(_iEntry);
-}
-
-unsigned
-WlepH3l::getNdata()
-{
-  return wleph3l.size();
-}
-
-double
-WlepH3l::evaluate(unsigned ij)
-{
-  return wleph3l[ij];
-}
-
 // --- Helper
 float
-deltaPhiv(float phi1, float phi2)
+WlepH3l::deltaPhi(float phi1, float phi2)
 {
   float PHI = std::abs(phi1-phi2);
 if (PHI<=3.14159265)
@@ -85,49 +54,46 @@ else
 }
 
 float
-deltaRv(float phi1, float eta1, float phi2, float eta2) {
+WlepH3l::deltaR(float phi1, float eta1, float phi2, float eta2) {
   //return sqrt((eta2-eta1)**2+deltaPhi(phi1,phi2)**2);
-  return sqrt( pow((eta2-eta1),2) + pow(deltaPhiv(phi1,phi2),2) );
+  return sqrt( pow((eta2-eta1),2) + pow(deltaPhi(phi1,phi2),2) );
 }
 
 float
-deltaEtav(float eta1, float eta2) {
+WlepH3l::deltaEta(float eta1, float eta2) {
   return std::abs(eta1 - eta2);
 }
 // Helper ---
 
-void
-WlepH3l::setValues(long long _iEntry)
+double
+WlepH3l::evaluate(unsigned)
 {
-  if (_iEntry == currentEntry)
-    return;
 
-  currentEntry = _iEntry;
-
-  wleph3l.clear();
-
-  TLorentzVector Slepton1(0.,0.,0.,0.);
-  TLorentzVector Slepton2(0.,0.,0.,0.);
-  TLorentzVector SSlepton(0.,0.,0.,0.);
+  TLorentzVector lepton1(0.,0.,0.,0.);
+  TLorentzVector lepton2(0.,0.,0.,0.);
+  TLorentzVector dilepton(0.,0.,0.,0.);
   unsigned nlep{*nLepton->Get()};
-  //float mindr = 9999.;
-  float maxdr = -9999.;
+  float mindr = 9999.;
   float maxdphi = -9999.;
   float dr;
   float dphi;
-  unsigned int leptonIdx1=999;
-  unsigned int leptonIdx2=999;
-  unsigned int leptonIdx3=999;
+  unsigned int leptonIdx1=-1;
+  unsigned int leptonIdx2=-1;
+  unsigned int leptonIdx3=-1;
 
   for (unsigned i=0; i != nlep; i++){
     for (unsigned j=0; j != nlep; j++){
       if (i==j) continue;
-      //take same sign, its ok to be different flavour
-      if ( ( Lepton_pdgId->At(i)>0 && Lepton_pdgId->At(j)>0 ) || ( Lepton_pdgId->At(i)<0 && Lepton_pdgId->At(j)<0 ) ){
-        dr = deltaRv( Lepton_phi->At(i) , Lepton_eta->At(i) , Lepton_phi->At(j) , Lepton_eta->At(j) );
-        //find the minimum dr of dilepton same sign
-        if (maxdr<dr){
-          maxdr=dr;
+      //take same flavor, opposite sign
+      if ( abs(Lepton_pdgId->At(i)) == abs(Lepton_pdgId->At(j)) ){
+	//muon, same sign
+	if ( abs(Lepton_pdgId->At(i) + Lepton_pdgId->At(j)) == 26 ) continue;
+	//electron, same sign
+	if ( abs(Lepton_pdgId->At(i) + Lepton_pdgId->At(j)) == 22 ) continue;
+	//find the minimum dr between same flavor lepton pair
+        dr = deltaR( Lepton_phi->At(i) , Lepton_eta->At(i) , Lepton_phi->At(j) , Lepton_eta->At(j) );
+        if (mindr>dr){
+          mindr=dr;
           leptonIdx1=i;
           leptonIdx2=j;
         }
@@ -135,44 +101,35 @@ WlepH3l::setValues(long long _iEntry)
     }
   }
   //Identify the third lepton
-  if ( (leptonIdx1!=999 && leptonIdx2!=999) && nlep>2 ){
-      Slepton1.SetPtEtaPhiM( Lepton_pt->At(leptonIdx1) , Lepton_eta->At(leptonIdx1) , Lepton_phi->At(leptonIdx1) , 0. );
-      Slepton2.SetPtEtaPhiM( Lepton_pt->At(leptonIdx2) , Lepton_eta->At(leptonIdx2) , Lepton_phi->At(leptonIdx2) , 0. );
-      SSlepton=Slepton1+Slepton2;
+  if ( (leptonIdx1>0 && leptonIdx2>0) && nlep>2 ){
+      lepton1.SetPtEtaPhiM( Lepton_pt->At(leptonIdx1) , Lepton_eta->At(leptonIdx1) , Lepton_phi->At(leptonIdx1) , 0. );
+      lepton2.SetPtEtaPhiM( Lepton_pt->At(leptonIdx2) , Lepton_eta->At(leptonIdx2) , Lepton_phi->At(leptonIdx2) , 0. );
+      dilepton=lepton1+lepton2;
       for (unsigned i=0; i != nlep; i++){
         if (i==leptonIdx1) continue;
         if (i==leptonIdx2) continue;
-        dphi = deltaPhiv( Lepton_phi->At(i) , SSlepton.Phi() );
+	//find the maximum dphi between dilepton system and third lepton
+        dphi = deltaPhi( Lepton_phi->At(i) , dilepton.Phi() );
         if (maxdphi<dphi){
           maxdphi = dphi;
           leptonIdx3 = i;
         }
       }
-      wleph3l.push_back(Lepton_pt->At(leptonIdx3));
+      return Lepton_pt->At(leptonIdx3);
   }
   else{
-    wleph3l.push_back(-9999.);
+    return -9999.;
   }
 }
 
 void
 WlepH3l::bindTree_(multidraw::FunctionLibrary& _library)
 {
-  if (currentEntry == -2) {
-    currentEntry = -1;
-    _library.bindBranch(nLepton, "nLepton");
-    _library.bindBranch(Lepton_pt, "Lepton_pt");
-    _library.bindBranch(Lepton_eta, "Lepton_eta");
-    _library.bindBranch(Lepton_phi, "Lepton_phi");
-    _library.bindBranch(Lepton_pdgId, "Lepton_pdgId");
-
-    _library.addDestructorCallback([]() {
-        currentEntry = -2;
-        nLepton = nullptr;
-        Lepton_pt = nullptr;
-        Lepton_eta = nullptr;
-        Lepton_phi = nullptr;
-        Lepton_pdgId = nullptr;
-      });
-  }
+  std::cout << "Loading Wlep for WH3l" << std::endl;
+  _library.bindBranch(nLepton, "nLepton");
+  _library.bindBranch(Lepton_pt, "Lepton_pt");
+  _library.bindBranch(Lepton_eta, "Lepton_eta");
+  _library.bindBranch(Lepton_phi, "Lepton_phi");
+  _library.bindBranch(Lepton_pdgId, "Lepton_pdgId");
+  
 }
