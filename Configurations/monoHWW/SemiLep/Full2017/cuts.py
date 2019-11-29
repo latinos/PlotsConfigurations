@@ -31,7 +31,7 @@ addcut('Supercut_Control_mu', _tmp)
 _tmp = [
     'abs(Lepton_pdgId[0])==11',
     'bVeto',
-    'fabs(Whad_mass - 80.4) < 15.'
+    'Whad_mass > 65. && Whad_mass < 105.'
 ]
 
 addcut('Resolved_SR_ele', _tmp)
@@ -40,7 +40,7 @@ addcut('Resolved_SR_ele', _tmp)
 _tmp = [
     'abs(Lepton_pdgId[0])==13',
     'bVeto',
-    'fabs(Whad_mass - 80.4) < 15.'
+    'Whad_mass > 65. && Whad_mass < 105.'
 ]
 
 addcut('Resolved_SR_mu', _tmp)
@@ -50,7 +50,7 @@ addcut('Resolved_SR_mu', _tmp)
 _tmp = [
     'abs(Lepton_pdgId[0])==11',
     'bReq',
-    'fabs(Whad_mass - 80.4) < 15.'
+    'Whad_mass > 65. && Whad_mass < 105.'
 ]
 
 addcut('Resolved_TopCR_ele', _tmp)
@@ -59,7 +59,7 @@ addcut('Resolved_TopCR_ele', _tmp)
 _tmp = [
     'abs(Lepton_pdgId[0])==13',
     'bReq',
-    'fabs(Whad_mass - 80.4) < 15.'
+    'Whad_mass > 65. && Whad_mass < 105.'
 ]
 
 addcut('Resolved_TopCR_mu', _tmp)
@@ -69,8 +69,9 @@ addcut('Resolved_TopCR_mu', _tmp)
 _tmp = [
     'abs(Lepton_pdgId[0])==11',
     'bVeto',
-    'fabs(Whad_mass - 80.4) > 15.',
-    'Whad_mass > 0.'
+    'Whad_mass < 65. && Whad_mass > 105.',
+    'Whad_mass > 0.' # CHECK HMlnuVar module! 
+    # Remove !isWFat from https://github.com/latinos/LatinoAnalysis/blob/80d20d1499c6810c55156722541308a3460a3b44/NanoGardener/python/modules/HMlnjjVars.py#L227
 ]
 
 addcut('Resolved_SB_ele', _tmp)
@@ -79,7 +80,7 @@ addcut('Resolved_SB_ele', _tmp)
 _tmp = [
     'abs(Lepton_pdgId[0])==13',
     'bVeto',
-    'fabs(Whad_mass - 80.4) > 15.',
+    'Whad_mass < 65. && Whad_mass > 105.',
     'Whad_mass > 0.'
 ]
 
