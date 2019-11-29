@@ -128,12 +128,12 @@ aliases['oneJetOrMore'] = {
 
 # ==2 jets with pt > 30 GeV
 aliases['twoJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) >= 30. && Alt$(CleanJet_pt[2], 0) < 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) > 30. && Alt$(CleanJet_pt[2], 0) < 30.'
 }
 
 # >=2 jets with pt > 30 GeV
 aliases['twoJetOrMore'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) >= 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) > 30.'
 }
 
 # ==3 with pt > 30 GeV

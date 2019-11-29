@@ -225,24 +225,24 @@ samples['VVV']  = {  'name'   :   getSampleFiles(makeMCDirectory(),'ZZZ',False,'
 
 ############ ggH H->WW ############
 #FIXME Add reweighting to MiNLO NNLOPS or use NNLOPS sample when available
-#samples['ggH_hww']  = {  'name'   :   getSampleFiles(makeMCDirectory(),'GluGluHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'),
-#                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-#                     }
+samples['ggH_hww']  = {  'name'   :   getSampleFiles(makeMCDirectory(),'GluGluHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'),
+                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                     }
 
 ############ VBF H->WW ############
-#samples['qqH_hww']  = {  'name'   :   getSampleFiles(makeMCDirectory(),'VBFHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'),
-#                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-#                     }
+samples['qqH_hww']  = {  'name'   :   getSampleFiles(makeMCDirectory(),'VBFHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'),
+                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                     }
 
 ############ ZH H->WW ############
 
-#samples['ZH_hww']  = {  'name'   :   getSampleFiles(makeMCDirectory(),'HZJ_HToWWTo2L2Nu_M125',False,'nanoLatino_'), #FIXME replace with 125 GeV sample when available
-#                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-#                     }
+samples['ZH_hww']  = {  'name'   :   getSampleFiles(makeMCDirectory(),'HZJ_HToWWTo2L2Nu_M125',False,'nanoLatino_'), #FIXME replace with 125 GeV sample when available
+                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                     }
 
-#samples['ggZH_hww']  = {  'name'   :   getSampleFiles(makeMCDirectory(),'GluGluZH_HToWW_M125',False,'nanoLatino_'),
-#                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-#                     }
+samples['ggZH_hww']  = {  'name'   :   getSampleFiles(makeMCDirectory(),'GluGluZH_HToWW_M125',False,'nanoLatino_'),
+                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                     }
 
 ############ WH H->WW ############
 

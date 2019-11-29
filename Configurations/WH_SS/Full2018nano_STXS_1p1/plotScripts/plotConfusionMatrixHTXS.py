@@ -14,6 +14,7 @@ ROOT.gSystem.Load("libHiggsAnalysisCombinedLimit")
 
 from HiggsAnalysis.CombinedLimit.DatacardParser import *
 
+sr='uu_1j'
 
 ## Style features
 tdrstyle.setTDRStyle()
@@ -31,9 +32,6 @@ options.stat = False
 DC = parseCard(file(args[0]), options)
 
 signals_orig     = DC.list_of_signals()
-signals_orig.remove('H_htt')
-print(signals_orig)
-#sys.exit()
 signals = []
 totalSignal = OrderedDict()
 
@@ -75,9 +73,9 @@ combChannelsToConsider = []
 for k in channels:
   if "Top" in k or "DYtt" in k or "WW" in k or "wh3l_wz" in k or "wh3l_zg" in k or "zh4l_ZZ" in k: continue
   if "FWDH" in k: continue
-  if "_2j" in k: continue
-  if "ee" in k or "eu" in k: continue
-  if overallTotalSignal[k] == 0: continue
+  if sr not in k: continue
+  if "ee" in k: continue
+  #if overallTotalSignal[k] == 0: continue
   ncat+=1
   combChannelsToConsider.append(k)
   print k
@@ -188,7 +186,7 @@ matrixByCol.Draw("colz text")
 CMS_lumi.CMS_lumi(canvas, 4, iPos)
 
 ROOT.gPad.RedrawAxis()
-canvas.SaveAs("confusionmatrix_bycol_2016_1p05.png")
+canvas.SaveAs("confusionmatrix_bycol_2016_%s_1p5.png" %sr)
 
 '''
 canvas2 = ROOT.TCanvas("row","row",50,50,W,H)

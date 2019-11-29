@@ -112,7 +112,7 @@ if useDYtt:
         'weight': mcCommonWeight,
         'FilesPerJob': 5,
     }
-    addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO)
+    addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50_fix',ptllDYW_NLO)
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 
     ## Remove OF from inclusive sample (is it needed?)
@@ -275,7 +275,7 @@ for cat,num in HTXSStage1_1Categories.iteritems():
 
   ## VBF and VH had.
   elif 'QQ2HQQ_' in cat:
-    if 'MJJ_GT350' in cat or 'MJJ_350' in cat:
+    if '0J'  not in cat or '1J' not in cat:
       samples['qqH_hww_'+cat.replace('QQ2HQQ_','')]  = {  'name' : nanoGetSampleFiles(mcDirectory,'VBFHToWWTo2L2NuPowheg_M125'),
                                                           'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')' ,
                                                           'suppressNegative' :['all'],

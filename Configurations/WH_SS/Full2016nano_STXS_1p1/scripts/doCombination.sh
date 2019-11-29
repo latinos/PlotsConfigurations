@@ -113,32 +113,32 @@ echo "Combination folder is created"
 #Btag
 #RuntimeError: Bogus norm -0.4695537986470998 for channel of2j_WH_SS_eu_2j_PTV_150_250_0J, process Vg, systematic CMS_CMS_btag_cferr1 Up
 #RuntimeError: Bogus norm -0.4695537986470998 for channel hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_150_250_0J, process Vg, systematic CMS_CMS_btag_cferr1 Up
-for nu in cferr1 cferr2 hf hfstats1_2016 hfstats2_2016 jes lf lfstats1_2016 lfstats2_2016
-do
-    for bin in uu_1j_PTV_0_75 uu_1j_FWDH eu_2j_PTV_150_250_0J eu_1j_PTV_GT250
-    do
-	echo "nuisance edit drop Vg $bin CMS_CMS_btag_$nu" >> ${outputDir}/Full2016_WH_SS_HTXS_Stage1.txt
-    done
+#for nu in cferr1 cferr2 hf hfstats1_2016 hfstats2_2016 jes lf lfstats1_2016 lfstats2_2016
+#do
+#    for bin in uu_1j_PTV_0_75 uu_1j_FWDH eu_2j_PTV_150_250_0J eu_1j_PTV_GT250
+#    do
+#	echo "nuisance edit drop Vg $bin CMS_CMS_btag_$nu" >> ${outputDir}/Full2016_WH_SS_HTXS_Stage1.txt
+#    done
 
-    for bin in eu_2j_PTV_150_250_GE1J eu_1j_PTV_150_250_GE1J
-    do
-        echo "nuisance edit drop VVV $bin CMS_CMS_btag_$nu" >> ${outputDir}/Full2016_WH_SS_HTXS_Stage1.txt
-    done
-done
+#    for bin in eu_2j_PTV_150_250_GE1J eu_1j_PTV_150_250_GE1J
+#    do
+#        echo "nuisance edit drop VVV $bin CMS_CMS_btag_$nu" >> ${outputDir}/Full2016_WH_SS_HTXS_Stage1.txt
+#    done
+#done
 
 #Eff
-for nu in e_2016 m_2016 hwwtrigger_2016 prefiring_2016
-do
-    for bin in uu_1j_PTV_0_75 uu_1j_FWDH eu_2j_PTV_150_250_0J eu_1j_PTV_GT250
-    do
-	echo "nuisance edit drop Vg $bin CMS_CMS_eff_$nu" >> ${outputDir}/Full2016_WH_SS_HTXS_Stage1.txt
-    done
+#for nu in e_2016 m_2016 hwwtrigger_2016 prefiring_2016
+#do
+#    for bin in uu_1j_PTV_0_75 uu_1j_FWDH eu_2j_PTV_150_250_0J eu_1j_PTV_GT250
+#    do
+#	echo "nuisance edit drop Vg $bin CMS_CMS_eff_$nu" >> ${outputDir}/Full2016_WH_SS_HTXS_Stage1.txt
+#    done
 
-    for bin in eu_2j_PTV_150_250_GE1J eu_1j_PTV_150_250_GE1J
-    do
-        echo "nuisance edit drop VVV $bin CMS_CMS_eff_$nu" >> ${outputDir}/Full2016_WH_SS_HTXS_Stage1.txt
-    done
-done
+#    for bin in eu_2j_PTV_150_250_GE1J eu_1j_PTV_150_250_GE1J
+#    do
+#        echo "nuisance edit drop VVV $bin CMS_CMS_eff_$nu" >> ${outputDir}/Full2016_WH_SS_HTXS_Stage1.txt
+#    done
+#done
 
 #fake
 #RuntimeError: Bogus norm -0.08831159305282821 for channel hww2l2v_13TeV_of2j_WH_SS_ee_2j_PTV_150_250_0J, process Fakes_ee, systematic CMS_CMS_fake_e_2016 Up

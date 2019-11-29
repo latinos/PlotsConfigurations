@@ -12,7 +12,7 @@ if [ ! -d $outputDir ]; then
   mkdir $outputDir
 fi
 
-datacardDir=/afs/cern.ch/work/a/alvareza/public/CMSSW_9_4_9/src/PlotsConfigurations/Configurations/ggH/Full2018/HTXS_Stage1/datacards_ggH2018_STXS_stage1p2_thunorm
+datacardDir=/afs/cern.ch/work/a/alvareza/public/CMSSW_9_4_9/src/PlotsConfigurations/Configurations/ggH/Full2018/HTXS_Stage1/datacards_ggH2018_STXS_stage1p2_UEfix
 
 
 ## variable used for the signal regions fit

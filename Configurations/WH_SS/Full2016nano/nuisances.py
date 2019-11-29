@@ -109,7 +109,7 @@ nuisances['fake_mu_stat'] = {
         'Fakes_em': ['fakeWStatMuUp', 'fakeWStatMuDown']
     }
 }
-'''
+
 ###### B-tagger
 
 for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
@@ -208,6 +208,23 @@ nuisances['met'] = {
     'AsLnN': '1'
 }
 
+##### Pileup
+'''
+nuisances['PU'] = {
+    'name': 'CMS_PU_2016',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+#        'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
+        'top': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
+        'WW': ['1.0033022059*(puWeightUp/puWeight)', '0.997085330608*(puWeightDown/puWeight)'],
+        'WH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
+        #'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
+       # 'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
+    },
+    'AsLnN': '1',
+}
+'''
 # PS and UE
 #FIXME: Add PS uncertainty
 
@@ -501,7 +518,32 @@ nuisances['singleTopToTTbar'] = {
 #        'VZ': '1.16'
 #    }
 #}
-'''
+#nuisances['VgS2l1jnorm']  = {
+#               'name'  : 'CMS_hww_VgS2l1jnorm',
+#               'samples'  : {
+#                   'VgS' : '1.00',
+#                   },
+#               'type'  : 'rateParam',
+#               'cuts'  : [
+#                 'hww2l2v_13TeV_of2j_WH_SS_uu_1j',
+#                 'hww2l2v_13TeV_of2j_WH_SS_eu_1j',
+#                 'hww2l2v_13TeV_of2j_WH_SS_WZ_1j',
+#                ]
+#              }
+#
+#nuisances['VgS2l2jnorm']  = {
+#               'name'  : 'CMS_hww_VgS2l2jnorm',
+#               'samples'  : {
+#                   'VgS' : '1.00',
+#                   },
+#               'type'  : 'rateParam',
+#               'cuts'  : [
+#                 'hww2l2v_13TeV_of2j_WH_SS_uu_2j',
+#                 'hww2l2v_13TeV_of2j_WH_SS_eu_2j',
+#                 'hww2l2v_13TeV_of2j_WH_SS_WZ_2j',
+#                ]
+#              }
+#
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat']  = {
               'type'  : 'auto',

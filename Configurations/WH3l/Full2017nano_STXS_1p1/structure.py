@@ -105,10 +105,10 @@ structure['ggZH_hww'] = {
                   'isData'   : 0
                   }
 
-#structure['WH_htt'] = {
-#                  'isSignal' : 1,
-#                  'isData'   : 0
-#                  }
+structure['WH_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
 
 
 # data

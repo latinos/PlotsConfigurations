@@ -1,9 +1,9 @@
 #!/bin/bash
 
-if [ -e $PWD/Combination ]
+if [ -e $PWD/Combination/Full2016_WH_SS_HTXS_Stage1.txt ]
     then
-    echo "deleting $PWD/Combination/"
-    rm -r $PWD/Combination
+    echo "deleting $PWD/Combination/Full2016_WH_SS_HTXS_Stage1.txt"
+    rm $PWD/Combination/Full2016_WH_SS_HTXS_Stage1.txt
 fi
 
 if [ -z $1 ]
@@ -29,19 +29,17 @@ datacardDir=$PWD/$1
 ## variable used for the signal regions fit
 vars="WH3l_drOSll_min"
 
-# no contribution
 #sssf_PTV_150_250_GE1J=$datacardDir/wh3l_13TeV_sssf_PTV_150_250_GE1J/$vars/datacard.txt \
 #ossf_PTV_150_250_GE1J=$datacardDir/wh3l_13TeV_ossf_PTV_150_250_GE1J/$vars/datacard.txt \
 
-#sssf_FWDH=$datacardDir/wh3l_13TeV_sssf_FWDH/$vars/datacard.txt \
-#ossf_FWDH=$datacardDir/wh3l_13TeV_ossf_FWDH/$vars/datacard.txt \
-
 # combine the datacards
 combineCards.py \
+    sssf_FWDH=$datacardDir/wh3l_13TeV_sssf_FWDH/$vars/datacard.txt \
     sssf_PTV_0_75=$datacardDir/wh3l_13TeV_sssf_PTV_0_75/$vars/datacard.txt \
     sssf_PTV_75_150=$datacardDir/wh3l_13TeV_sssf_PTV_75_150/$vars/datacard.txt \
     sssf_PTV_150_250_0J=$datacardDir/wh3l_13TeV_sssf_PTV_150_250_0J/$vars/datacard.txt \
     sssf_PTV_GT250=$datacardDir/wh3l_13TeV_sssf_PTV_GT250/$vars/datacard.txt \
+    ossf_FWDH=$datacardDir/wh3l_13TeV_ossf_FWDH/$vars/datacard.txt \
     ossf_PTV_0_75=$datacardDir/wh3l_13TeV_ossf_PTV_0_75/$vars/datacard.txt \
     ossf_PTV_75_150=$datacardDir/wh3l_13TeV_ossf_PTV_75_150/$vars/datacard.txt \
     ossf_PTV_150_250_0J=$datacardDir/wh3l_13TeV_ossf_PTV_150_250_0J/$vars/datacard.txt \

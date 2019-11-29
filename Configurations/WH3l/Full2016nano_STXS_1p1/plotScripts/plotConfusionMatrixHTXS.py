@@ -14,6 +14,7 @@ ROOT.gSystem.Load("libHiggsAnalysisCombinedLimit")
 
 from HiggsAnalysis.CombinedLimit.DatacardParser import *
 
+sr='sssf'
 
 ## Style features
 tdrstyle.setTDRStyle()
@@ -42,7 +43,7 @@ for s in signals_orig:
   signals.append(s)
   totalSignal[s] = 0.
 
-#print totalSignal
+print totalSignal
 
 signals = sorted(signals, key=lambda s: s.lower())
 
@@ -70,7 +71,7 @@ ncat=0
 combChannelsToConsider = []
 for k in channels:
   if "Top" in k or "DYtt" in k or "WW" in k or "wh3l_wz" in k or "wh3l_zg" in k or "zh4l_ZZ" in k: continue
-  if 'FWDH' in k or 'sssf_' in k: continue
+  if 'FWDH' in k or sr not in k: continue
   if overallTotalSignal[k] == 0: continue
   ncat+=1
   combChannelsToConsider.append(k)
@@ -134,6 +135,9 @@ for i,c in enumerate(combChannelsToConsider):
     matrixProduct.GetYaxis().SetBinLabel(num+1,s)
     #if ratio < 0.005: ratio=0
     print c, s, overallSignalRate[c][s], overallTotalSignal[c], totalSignal[s]
+    #if overallSignalRate[c][s]==0:
+    #  ratioByCol = 0
+    #else:
     ratioByCol = overallSignalRate[c][s]/overallTotalSignal[c]
     if (totalSignal[s]>0):
       ratioByRow = overallSignalRate[c][s]/totalSignal[s]
@@ -182,8 +186,9 @@ matrixByCol.Draw("colz text")
 CMS_lumi.CMS_lumi(canvas, 4, iPos)
 
 ROOT.gPad.RedrawAxis()
-canvas.SaveAs("confusionmatrix_bycol_2016_1.png")
+canvas.SaveAs('confusionmatrix_bycol_2016_%s_1p5.png' %sr)
 
+'''
 canvas2 = ROOT.TCanvas("row","row",50,50,W,H)
 canvas2.SetFillColor(0)
 canvas2.SetBorderMode(0)
@@ -223,7 +228,7 @@ CMS_lumi.CMS_lumi(canvas3, 4, iPos)
 
 ROOT.gPad.RedrawAxis()
 canvas3.SaveAs("confusionmatrix_product_2016_1.png")
-
+'''
 
 a = raw_input()
 
