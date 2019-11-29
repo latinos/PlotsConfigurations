@@ -49,6 +49,7 @@ elif  'cern' in SITE:
 elif  'ifca' in SITE:
   treeBaseDir = '/gpfs/projects/cms/data/LatinosSkims/nanoAOD/'
 
+
 def makeMCDirectory(var=''):
     if var:
         return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
@@ -116,6 +117,7 @@ samples['Wjets'] = {    'name'   :
 ############ DY ############                                                                                                   
 
 samples['DY'] = {    'name'   :   nanoGetSampleFiles(mcDirectory,'DYJetsToLL_M-50_ext1')
+                     # ADDME: 'name'   :   nanoGetSampleFiles(mcDirectory,'DYJetsToLL_M-50_ext1')
                      + nanoGetSampleFiles(mcDirectory,'DYJetsToLL_M-10to50-LO'),
                      'weight' : mcCommonWeight,
                      'FilesPerJob' : 5,
@@ -129,7 +131,7 @@ samples['top'] = {    'name'   :   nanoGetSampleFiles(mcDirectory,'TTToSemiLepto
                       + nanoGetSampleFiles(mcDirectory,'ST_tW_top') 
                       ,
                       'weight' : mcCommonWeight,
-                      'FilesPerJob' : 5,
+                      'FilesPerJob' : 3,
                     }
 
 addSampleWeight(samples,'top','TTToSemiLeptonic','Top_pTrw')
@@ -142,7 +144,7 @@ samples['VV'] = {    'name'   :   nanoGetSampleFiles(mcDirectory,'WZ')
                      + nanoGetSampleFiles(mcDirectory,'WW-LO')
                     ,
                     'weight' : mcCommonWeight,
-                    'FilesPerJob' : 5,
+                    'FilesPerJob' : 3,
                    }
 
 #Was commented out
@@ -168,21 +170,21 @@ samples['QCD'] = {    'name'   :   nanoGetSampleFiles(mcDirectory,'QCD_Pt-15to20
                       +nanoGetSampleFiles(mcDirectory,'QCD_Pt-300toInf_EMEnriched')
                       ,
                      'weight' : mcCommonWeight,
-                     'FilesPerJob' : 5,
+                     'FilesPerJob' : 10,
                     }
 
 
 
-###########################################
-################## DATA ###################
-###########################################
+
+################### DATA ###################
+
 
 samples['DATA'] = {
   'name': [],
   'weight': 'METFilter_DATA*LepWPCut',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 25
+  'FilesPerJob': 15
 }
 
 for _, sd in DataRun:

@@ -1,5 +1,4 @@
 
-
 plot['DY']  = {
                   'nameHR' : 'DY',
                   'isSignal' : 0,
@@ -21,7 +20,7 @@ plot['top']  = {
 plot['Wjets']  = {
                   'nameHR' : 'Wjets',
                   'isSignal' : 0,
-                  'color': 851,
+                  'color': 611,
                   'isData'   : 0,
                   'samples'  : ['Wjets']
               }
