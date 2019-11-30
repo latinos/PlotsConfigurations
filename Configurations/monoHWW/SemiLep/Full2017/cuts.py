@@ -73,7 +73,7 @@ addcut('Resolved_TopCR_mu', _tmp)
 _tmp = [
     'abs(Lepton_pdgId[0])==11',
     'bVeto',
-    'Whad_mass < 65. && Whad_mass > 105.',
+    'Whad_mass < 65. || Whad_mass > 105.',
     'Whad_mass > 0.' 
 ]
 
@@ -83,7 +83,7 @@ addcut('Resolved_SB_ele', _tmp)
 _tmp = [
     'abs(Lepton_pdgId[0])==13',
     'bVeto',
-    'Whad_mass < 65. && Whad_mass > 105.',
+    'Whad_mass < 65. || Whad_mass > 105.',
     'Whad_mass > 0.'
 ]
 
