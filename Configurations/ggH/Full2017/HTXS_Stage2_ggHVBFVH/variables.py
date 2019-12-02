@@ -2,14 +2,14 @@
 
 #variables = {}
     
-
+'''
 
 variables['events']  = {   'name': '1',      
                         'range' : (1,0,2),  
                         'xaxis' : 'events', 
                         'fold' : 3
                         }
-
+'''
 
 
 
@@ -19,7 +19,7 @@ variables['mll']  = {   'name': 'mll',
                         'fold' : 3
                         }
 
-
+'''
 variables['mllVSmth_pt2ge20'] = {   'name': 'mll:mth',            #   variable name    
                              'range' : ([60,80,90,100,110,120,130,150,200],[12,25,35,40,45,50,55,70,90,210],),            #   variable range
                              'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
@@ -30,6 +30,7 @@ variables['mllVSmth_pt2ge20'] = {   'name': 'mll:mth',            #   variable n
                              'binY'     : 9
                              #
                              }
+'''
 
 variables['mllVSmth_pt2lt20'] = {   'name': 'mll:mth',            #   variable name    
                              'range' : ([60,80,90,110,130,150,200],[12,25,40,50,70,90,210],),            #   variable range
@@ -42,7 +43,7 @@ variables['mllVSmth_pt2lt20'] = {   'name': 'mll:mth',            #   variable n
                              #
                              }
 
-
+'''
 variables['mllVSmth_4x3bins'] = {   'name': 'mll:mth',            #   variable name    
                                     'range' : ([60, 90, 110, 130, 200],[10, 40, 55, 210],),            #   variable range
                                     'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
@@ -75,4 +76,4 @@ variables['mllVSmth_2x2bins'] = {   'name': 'mll:mth',            #   variable n
                                     'binY'     : 2
                                     #
                                 }
-
+'''

@@ -55,7 +55,7 @@ HTXSStage1_1Categories = {
       'GG2H_GE2J_MJJ_GT700_PTHJJ_0_25' : 112,
       'GG2H_GE2J_MJJ_GT700_PTHJJ_GT25' : 113,
       # "VBF"
-      #'QQ2HQQ_FWDH' : 200,
+      'QQ2HQQ_FWDH' : 200,
       'QQ2HQQ_0J' : 201,
       'QQ2HQQ_1J' : 202,
       'QQ2HQQ_MJJ_0_60' : 203,
