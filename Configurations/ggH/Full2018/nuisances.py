@@ -15,7 +15,8 @@ def nanoGetSampleFiles(inputDir, Sample):
     return getSampleFiles(inputDir, Sample, False, 'nanoLatino_')
 
 try:
-    mc = [skey for skey in samples if skey != 'DATA' and not skey.startswith('Fake')]
+    mc_emb = [skey for skey in samples if skey != 'DATA' and not skey.startswith('Fake')]
+    mc = [skey for skey in mc_emb if skey != 'Dyemb']
 except NameError:
     mc = []
     cuts = {}
@@ -155,7 +156,7 @@ nuisances['trigg'] = {
     'name': 'CMS_eff_hwwtrigger_2018',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, trig_syst) for skey in mc)
+    'samples': dict((skey, trig_syst) for skey in mc_emb)
 }
 
 ##### Electron Efficiency and energy scale
@@ -164,7 +165,7 @@ nuisances['eff_e'] = {
     'name': 'CMS_eff_e_2018',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
+    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb)
 }
 
 nuisances['electronpt'] = {
@@ -177,13 +178,26 @@ nuisances['electronpt'] = {
     'AsLnN': '1'
 }
 
+if useEmbeddedDY:
+  nuisances['electronpt_emb'] = {
+    'name': 'CMS_scale_e_2018',
+    'kind': 'tree',
+    'type': 'shape',
+    'samples': {
+        'Dyemb': ['1', '1'],
+    },
+    'folderUp': treeBaseDir+'/Embedding2018_102X_nAODv5_Full2018v5/DATAl1loose2018v5__l2loose__l2tightOR2018v5__Embedding__EmbElepTup/',
+    'folderDown': treeBaseDir+'/Embedding2018_102X_nAODv5_Full2018v5/DATAl1loose2018v5__l2loose__l2tightOR2018v5__Embedding__EmbElepTdo/',
+    'AsLnN': '1'
+  }
+
 ##### Muon Efficiency and energy scale
 
 nuisances['eff_m'] = {
     'name': 'CMS_eff_m_2018',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
+    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb)
 }
 
 nuisances['muonpt'] = {
@@ -195,6 +209,19 @@ nuisances['muonpt'] = {
     'folderDown': makeMCDirectory('MupTdo'),
     'AsLnN': '1'
 }
+
+if useEmbeddedDY:
+  nuisances['muonpt_emb'] = {
+    'name': 'CMS_scale_m_2018',
+    'kind': 'tree',
+    'type': 'shape',
+    'samples': {
+        'Dyemb': ['1', '1'],
+    },
+    'folderUp': treeBaseDir+'/Embedding2018_102X_nAODv5_Full2018v5/DATAl1loose2018v5__l2loose__l2tightOR2018v5__Embedding__EmbMupTup/',
+    'folderDown': treeBaseDir+'/Embedding2018_102X_nAODv5_Full2018v5/DATAl1loose2018v5__l2loose__l2tightOR2018v5__Embedding__EmbMupTdo/',
+    'AsLnN': '1'
+  }
 
 ##### Jet energy scale
 
@@ -219,6 +246,18 @@ nuisances['met'] = {
     'folderDown': makeMCDirectory('METdo'),
     'AsLnN': '1'
 }
+
+##### Di-Tau vetoing for embedding
+if useEmbeddedDY: 
+  nuisances['embedveto']  = {
+                  'name'  : 'CMS_embed_veto',
+                  'kind'  : 'weight',
+                  'type'  : 'shape',
+                  'samples'  : {
+                     'Dyemb'    : ['1', '1'],
+                     'Dyveto'   : ['0.1', '-0.1'],
+                  }
+  }
 
 ##### Pileup
 
