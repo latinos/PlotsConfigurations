@@ -33,8 +33,14 @@ aliases['LepSF1l'] = {
     'samples': mc
 }
 
+
+aliases['FixedTriggEff_1l'] = {
+    'expr':'(TriggerEffWeight_1l*(1*abs(Lepton_pdgId[0])==13 + 0.934*(run_period == 1 && abs(Lepton_pdgId[0])==11) + 0.992*(run_period == 2 && abs(Lepton_pdgId[0])==11) + 1*(run_period > 2 && abs(Lepton_pdgId[0])==11)))',
+    'samples': mc
+}
+
 aliases['SFweight1l'] = {
-    'expr':'puWeight * TriggerEffWeight_1l * Lepton_RecoSF[0] * EMTFbug_veto',
+    'expr':'puWeight * FixedTriggEff_1l * Lepton_RecoSF[0] * EMTFbug_veto', 
     'samples': mc
 }
 
@@ -115,19 +121,19 @@ aliases['SFweight'] = {
     'samples': mc
 }
 # variations
-aliases['SFweightEleUp'] = {
-    'expr': 'LepSF2l__ele_'+eleWP+'__Up',
-    'samples': mc
-}
-aliases['SFweightEleDown'] = {
-    'expr': 'LepSF2l__ele_'+eleWP+'__Do',
-    'samples': mc
-}
-aliases['SFweightMuUp'] = {
-    'expr': 'LepSF2l__mu_'+muWP+'__Up',
-    'samples': mc
-}
-aliases['SFweightMuDown'] = {
-    'expr': 'LepSF2l__mu_'+muWP+'__Do',
-    'samples': mc
-}
+# aliases['SFweightEleUp'] = {
+#     'expr': 'LepSF2l__ele_'+eleWP+'__Up',
+#     'samples': mc
+# }
+# aliases['SFweightEleDown'] = {
+#     'expr': 'LepSF2l__ele_'+eleWP+'__Do',
+#     'samples': mc
+# }
+# aliases['SFweightMuUp'] = {
+#     'expr': 'LepSF2l__mu_'+muWP+'__Up',
+#     'samples': mc
+# }
+# aliases['SFweightMuDown'] = {
+#     'expr': 'LepSF2l__mu_'+muWP+'__Do',
+#     'samples': mc
+# }
