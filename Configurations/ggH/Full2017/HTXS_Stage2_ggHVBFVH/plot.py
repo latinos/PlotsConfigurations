@@ -205,7 +205,7 @@ for cat,num in HTXSStage1_1Categories.iteritems():
                   'scale'    : 1    #
                   }
   elif 'QQ2HQQ_' in cat:
-    if 'MJJ_GT350' in cat or 'MJJ_350' in cat:
+    if '0J'  not in cat or '1J' not in cat:
       plot['qqH_hww_'+cat.replace('QQ2HQQ_','')] = {
                     'nameHR' : 'qqH_hww_'+cat.replace('QQ2HQQ_',''),
                     'color': 632, # kRed
