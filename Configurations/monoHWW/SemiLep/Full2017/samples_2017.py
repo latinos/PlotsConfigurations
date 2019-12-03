@@ -33,9 +33,9 @@ mcProduction = 'Fall2017_102X_nAODv4_Full2017v5'
 
 dataReco = 'Run2017_102X_nAODv4_Full2017v5'
 
-mcSteps = 'MCl1loose2017v5__MCCorr2017v5__Semilep2017__HMlnjjSel'
+mcSteps = 'MCl1loose2017v5__MCCorr2017v5__Semilep2017'
 
-dataSteps = 'DATAl1loose2017v5__Semilep2017__HMlnjjSel'
+dataSteps = 'DATAl1loose2017v5__Semilep2017'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -131,7 +131,7 @@ samples['top'] = {    'name'   :   nanoGetSampleFiles(mcDirectory,'TTToSemiLepto
                       + nanoGetSampleFiles(mcDirectory,'ST_tW_top') 
                       ,
                       'weight' : mcCommonWeight,
-                      'FilesPerJob' : 3,
+                      'FilesPerJob' : 2,
                     }
 
 addSampleWeight(samples,'top','TTToSemiLeptonic','Top_pTrw')
@@ -144,7 +144,7 @@ samples['VV'] = {    'name'   :   nanoGetSampleFiles(mcDirectory,'WZ')
                      + nanoGetSampleFiles(mcDirectory,'WW-LO')
                     ,
                     'weight' : mcCommonWeight,
-                    'FilesPerJob' : 3,
+                    'FilesPerJob' : 2,
                    }
 
 #Was commented out
@@ -184,7 +184,7 @@ samples['DATA'] = {
   'weight': 'METFilter_DATA*LepWPCut',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 15
+  'FilesPerJob': 1
 }
 
 for _, sd in DataRun:
