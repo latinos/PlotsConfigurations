@@ -49,6 +49,9 @@ for sname in samples.keys():
     if '_hww' in sname and observable not in sname:
         samples.pop(sname)
 
+    elif '_UE' in sname or '_PS' in sname:
+        samples.pop(sname)
+
 for sname in samples.iterkeys():
     if '_htt' in sname:
         sample_merging['htt'].append(sname)

@@ -7,7 +7,7 @@ mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 bWP = '0.4184'
 
 aliases['bVeto'] = {
-    'expr': '(Sum$( CleanJet_pt > 20.0 && Jet_btagDeepB[CleanJet_jetIdx] > '+bWP+' ) == 0)'
+    'expr': '(Sum$( CleanJet_pt > 20.0 && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+bWP+' ) == 0)'
 }
 
 # Temporary patch for BTV postprocessor bug (no SF for eta < 0, <= 102X_nAODv5_Full2018v5)
@@ -57,3 +57,8 @@ for s in systs:
         'samples':mc  
     }
 
+aliases['EleWPTight'] = {
+    'expr' : '(abs(Lepton_pdgId[0])==13 || Electron_cutBased[Lepton_electronIdx[0]]>=4) \
+           && (abs(Lepton_pdgId[1])==13 || Electron_cutBased[Lepton_electronIdx[1]]>=4) \
+           && (abs(Lepton_pdgId[2])==13 || Electron_cutBased[Lepton_electronIdx[2]]>=4)',
+}

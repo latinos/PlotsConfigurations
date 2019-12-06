@@ -17,12 +17,7 @@ structure['Fake_me']  = {
                   'isData'   : 0,
               }
 
-structure['WW']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0    
-                  }
-
-structure['Vg']  = { 
+structure['Zg']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
@@ -64,6 +59,11 @@ structure['ggZH_hww'] = {
                   }
 
 structure['WH_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['ZH_htt'] = {
                   'isSignal' : 1,
                   'isData'   : 0    
                   }

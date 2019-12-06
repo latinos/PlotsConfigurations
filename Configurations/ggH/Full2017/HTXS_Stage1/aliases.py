@@ -3,9 +3,9 @@ import copy
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # ggH2016
-configurations = os.path.dirname(configurations) # Differential
-configurations = os.path.dirname(configurations) # Configurations
+configurations = os.path.dirname(configurations) # HTXS_Stage1
+configurations = os.path.dirname(configurations) # Full2017
+configurations = os.path.dirname(configurations) # ggH
 configurations = os.path.dirname(configurations) # Configurations
 
 #aliases = {}
@@ -217,6 +217,7 @@ aliases['SFweightMuDown'] = {
     'samples': mc
 }
 
+
 # GGHUncertaintyProducer wasn't run for 2017 nAODv5 non-private
 thus = [
     'ggH_mu',
@@ -230,11 +231,22 @@ thus = [
     'ggH_qmtop'
 ]
 
-
 for thu in thus:
     aliases[thu] = {
         'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
         'class': 'GGHUncertainty',
         'args': (thu,),
-        'samples': ['ggH_hww']
+        'samples': [ #'ggH_hww',                                                                                                              
+                     'ggH_hww_0J_PTH_0_10'                 ,'ggH_hww_GE2J_MJJ_0_350_PTH_60_120'
+                    ,'ggH_hww_0J_PTH_GT10'                 ,'ggH_hww_GE2J_MJJ_350_700_PTHJJ_0_25'
+                    ,'ggH_hww_1J_PTH_0_60'                 ,'ggH_hww_GE2J_MJJ_350_700_PTHJJ_GT25'
+                    ,'ggH_hww_1J_PTH_120_200'              ,'ggH_hww_GE2J_MJJ_GT700_PTHJJ_0_25'
+                    ,'ggH_hww_1J_PTH_60_120'               ,'ggH_hww_GE2J_MJJ_GT700_PTHJJ_GT25'
+                    ,'ggH_hww_GE2J_MJJ_0_350_PTH_0_60'     ,'ggH_hww_GE2J_MJJ_0_350_PTH_120_200'
+                    ,'ggH_hww_PTH_200_300'                 ,'ggH_hww_PTH_300_450'
+                    ,'ggH_hww_PTH_450_650'                 ,'ggH_hww_PTH_GT650'],
+        'nominalOnly': True
     }
+
+
+

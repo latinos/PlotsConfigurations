@@ -30,7 +30,6 @@ except NameError:
 ################################################
 
 #mcProduction = 'Fall2017_102X_nAODv4_Full2017v5'
-#mcProduction = 'Fall2017_102X_nAODv5_SigOnly_Full2017v5'
 
 dataReco = 'Run2017_102X_nAODv4_Full2017v5'
 
@@ -53,12 +52,10 @@ elif  'cern' in SITE:
 def makeMCDirectory(var=''):
     if var:
         #return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
-        #return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Fall17/l2tightOR__{var}'.format(var=var)
-        return '/afs/cern.ch/user/d/ddicroce/public/Fall17/l2tightOR__{var}'.format(var=var)
+        return '/afs/cern.ch/user/l/lviliani/public/Fall17/wwSel__{var}'.format(var=var)
     else:
         #return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
-        #return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Fall17/l2tightOR'
-        return '/afs/cern.ch/user/d/ddicroce/public/Fall17/l2tightOR'
+        return '/afs/cern.ch/user/l/lviliani/public/Fall17/wwSel'
 
 mcDirectory = makeMCDirectory()
 fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
@@ -100,47 +97,47 @@ mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 
 ###### DY #######
 
-useDYtt = False
+useDYtt = True
 
 ptllDYW_NLO = '(((0.623108 + 0.0722934*gen_ptll - 0.00364918*gen_ptll*gen_ptll + 6.97227e-05*gen_ptll*gen_ptll*gen_ptll - 4.52903e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll<45)*(gen_ptll>0) + 1*(gen_ptll>=45))*(abs(gen_mll-90)<3) + (abs(gen_mll-90)>3))'
 ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
 
 if useDYtt:
-    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
-        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
+    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50_fix') + \
+            nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
 
     samples['DY'] = {
         'name': files,
         'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)',
         'FilesPerJob': 5,
     }
-    addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO)
-    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
+    addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50_fix', ptllDYW_NLO)
+    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',    ptllDYW_LO)
 
     ## Remove OF from inclusive sample (is it needed?)
     #cutSF = '(abs(Lepton_pdgId[0]*Lepton_pdgId[1]) == 11*11)||(Lepton_pdgId[0]*Lepton_pdgId[1]) == 13*13)'
-    #addSampleWeight(samples,'DY','DYJetsToLL_M-50',cutSF)
+    #addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext1',cutSF)
 
 else:
-    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50') + \
-        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
+    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext1') + \
+            nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
     
     samples['DY'] = {
         'name': files,
         'weight': mcCommonWeight,
         'FilesPerJob': 8,
     }
-    addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO)
-    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext1',   ptllDYW_NLO)
+    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO', ptllDYW_LO)
 
 ###### Top #######
 
 files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
+        nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
 
 samples['top'] = {
     'name': files,
@@ -188,7 +185,7 @@ files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
 
 samples['Vg'] = {
     'name': files,
-    'weight': mcCommonWeightNoMatch + '*!(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22)',
+    'weight': mcCommonWeightNoMatch + '*(55.5*1.06/131.3)*!(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22)',
     'FilesPerJob': 10
 }
 addSampleWeight(samples, 'Vg', 'ZGToLLG', '(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)')

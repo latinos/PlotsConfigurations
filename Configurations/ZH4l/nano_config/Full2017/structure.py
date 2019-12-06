@@ -4,11 +4,11 @@
 
 # keys here must match keys in samples.py    
 #                    
-structure['DY']  = {  
+'''structure['DY']  = {  
                   'isSignal' : 0,
                   'isData'   : 0
               }
-
+'''
 
 structure['Wjets']  = {  
                   'isSignal' : 0,

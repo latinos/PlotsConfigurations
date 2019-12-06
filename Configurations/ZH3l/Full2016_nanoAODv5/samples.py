@@ -37,12 +37,12 @@ fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_3l'
 XSweight  = 'XSWeight'
 SFweight  = 'SFweight3l*'+LepWPweight+'*'+LepWPCut+'*PrefireWeight*btagSF'
 
-GenLepMatch2l = 'GenLepMatch2l'
 GenLepMatch3l = 'GenLepMatch3l'
 
-wz1jSF = '1.16'
-wz2jSF = '1.09'
-zgSF = '1.34'
+wz1jSF = '1.18'
+wz2jSF = '1.38'
+zg1jSF = '1.42'
+zg2jSF = '2.64'
 
 ################################################
 ############   MET  FILTERS  ###################
@@ -79,26 +79,17 @@ DataTrig = {
 #############  BACKGROUNDS  ###############
 ###########################################
 
-
-samples['WW']  = {    'name'   : getSampleFilesNano(directoryMC,'WWTo2L2Nu'),
-                      'weight' : XSweight+'*'+SFweight+'*'+GenLepMatch2l+'*'+METFilter_MC+'*nllW',
-                      'suppressNegativeNuisances' :['all'],
-                      'FilesPerJob' : 5,
-                  }
-
-
 samples['ZZ']  = {    'name': getSampleFilesNano(directoryMC,'ZZTo4L'),
                       'weight' : XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
                       'suppressNegativeNuisances' :['all'],
-                      'FilesPerJob' : 5,
+                      'FilesPerJob' : 3,
                   }
 
-samples['WZ']  = {    #'name'   : getSampleFilesNano(directoryMC,'WZTo3LNu_mllmin01'),
-                      'name'   : getSampleFilesNano(directoryMC,'WZTo3LNu')
+samples['WZ']  = {    'name'   : getSampleFilesNano(directoryMC,'WZTo3LNu')
                                 +getSampleFilesNano(directoryMC,'WZTo3LNu_ext1'),
                       'weight' : '(( Alt$(CleanJet_pt[1],0) < 30 )*'+wz1jSF+'+( Alt$(CleanJet_pt[1],0) >= 30 )*'+wz2jSF+')*'+XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC ,
                       'suppressNegativeNuisances' :['all'],
-                      'FilesPerJob' : 3,
+                      'FilesPerJob' : 1,
                   }
 
 WZbaseW = getBaseWnAOD(directoryMC,'Summer16_102X_nAODv4_Full2016v5',['WZTo3LNu','WZTo3LNu_ext1'])
@@ -114,29 +105,24 @@ samples['VVV'] = {    'name': getSampleFilesNano(directoryMC,'WZZ')
                       'FilesPerJob' : 5,
                   }
 
-samples['Vg']  = {    'name':  getSampleFilesNano(directoryMC,'Zg')
-                             #+getSampleFilesNano(directoryMC,'WgStarLNuEE') #These exist, but maybe MG sample is better?
-                             #+getSampleFilesNano(directoryMC,'WgStarLNuMuMu'),
-                              +getSampleFilesNano(directoryMC,'Wg_MADGRAPHMLM'),
-                      'weight' : zgSF+'*'+XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC , #Might need to drop GenLepMatch3l? WH3l uses, ggH does not
+samples['Zg']  = {    'name':  getSampleFilesNano(directoryMC,'Zg'),
+                      'weight' : '(( Alt$(CleanJet_pt[1],0) < 30 )*'+zg1jSF+'+( Alt$(CleanJet_pt[1],0) >= 30 )*'+zg2jSF+')*'+XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC ,
                       'suppressNegativeNuisances' :['all'],
-                      'FilesPerJob' : 5,
+                      'FilesPerJob' : 3,
                   }
 
 samples['ttZ']  = {    'name': getSampleFilesNano(directoryMC,'TTZjets'),
-                       'weight' : XSweight+'*'+SFweight+'*'+GenLepMatch2l+'*'+METFilter_MC,
+                       'weight' : XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
                        'suppressNegativeNuisances' :['all'],
-                       'FilesPerJob' : 5,
+                       'FilesPerJob' : 3,
                    }
 
 ####################################
 ############# Signal ###############
 ####################################
 
-#These samples all exist, but might not be complete?
 samples['WH_htt']  = {  'name': getSampleFilesNano(directoryMC,'HWminusJ_HToTauTau_M125')
-                               +getSampleFilesNano(directoryMC,'HWplusJ_HToTauTau_M125')
-                               +getSampleFilesNano(directoryMC,'HZJ_HToTauTau_M125'),
+                               +getSampleFilesNano(directoryMC,'HWplusJ_HToTauTau_M125'),
                         'weight' : XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
                         'suppressNegativeNuisances' :['all'],
                         'FilesPerJob' : 5,
@@ -152,10 +138,16 @@ samples['WH_hww']  = { 'name': getSampleFilesNano(directoryMC,'HWminusJ_HToWW_M1
 samples['ZH_hww']  = {  'name': getSampleFilesNano(directoryMC,'HZJ_HToWW_M125'),
                         'weight' : XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
                         'suppressNegativeNuisances' :['all'],
-                        'FilesPerJob' : 5,
+                        'FilesPerJob' : 3,
                     }
 
 samples['ggZH_hww'] = {  'name': getSampleFilesNano(directoryMC,'ggZH_HToWW_M125'),
+                         'weight' : XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
+                         'suppressNegativeNuisances' :['all'],
+                         'FilesPerJob' : 3,
+                     }
+
+samples['ZH_htt'] = {  'name': getSampleFilesNano(directoryMC,'HZJ_HToTauTau_M125'),
                          'weight' : XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
                          'suppressNegativeNuisances' :['all'],
                          'FilesPerJob' : 5,
@@ -166,10 +158,10 @@ samples['ggZH_hww'] = {  'name': getSampleFilesNano(directoryMC,'ggZH_HToWW_M125
 ###########################################
 
 samples['Fake']  = {   'name': [] ,
-                       'weight' : fakeW+'*EMTFbug_veto*'+METFilter_DATA, #TODO maybe drop EMTFbug_veto? WH3l uses, ggH does not
+                       'weight' : fakeW+'*EMTFbug_veto*'+METFilter_DATA,
                        'weights' : [],
                        'isData': ['all'],
-                       'FilesPerJob' : 20 ,
+                       'FilesPerJob' : 30 ,
                    }
 
 ###########################################
@@ -177,10 +169,10 @@ samples['Fake']  = {   'name': [] ,
 ###########################################
 
 samples['DATA']  = {   'name': [] ,
-                       'weight' : 'EMTFbug_veto*'+METFilter_DATA+'*'+LepWPCut,  #TODO maybe drop EMTFbug_veto? WH3l uses, ggH does not
+                       'weight' : 'EMTFbug_veto*'+METFilter_DATA+'*'+LepWPCut,
                        'weights' : [],
                        'isData': ['all'],
-                       'FilesPerJob' : 20 ,
+                       'FilesPerJob' : 30 ,
                    }
 
 for Run in DataRun :

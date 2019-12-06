@@ -2,7 +2,7 @@
 treeName= 'Events'
 
 
-tag = '13Oct19_2018'
+tag = '16Nov19_2018_events'
 
 
 # used by mkShape to define output directory for root files
@@ -18,7 +18,7 @@ variablesFile = 'variables.py'
 cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples.py' 
+samplesFile = 'samples1.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
@@ -30,7 +30,7 @@ lumi = 59.74
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot'+tag
+outputDirPlots = 'blindplot'+tag
 
 
 # used by mkDatacards to define output directory for datacards

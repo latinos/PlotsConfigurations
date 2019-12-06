@@ -91,7 +91,7 @@ void init_hww_DYmvaDNN_VBF(TTree* tree){
     readerDNN_VBF->AddVariable("Ceta_cut", &l_VBF_Ceta_cut);
     readerDNN_VBF->AddVariable("PV_npvsGood", &l_VBF_PV_npvsGood);
 
-    readerDNN_VBF->BookMVA("PyKeras","/afs/cern.ch/work/d/ddicroce/Latinos/CMSSW_11_0_0_pre7/src/LatinoAnalysis/NanoGardener/python/data/DYSFmva/2016_v5/TMVAClassification_PyKeras_2016_VBF.weights.xml"); 
+    readerDNN_VBF->BookMVA("PyKeras","/afs/cern.ch/user/d/ddicroce/public/DYSFmva/2016_v5/TMVAClassification_PyKeras_2016_VBF.weights.xml"); 
 
 }
 
