@@ -1,21 +1,26 @@
 # example of configuration file
 
 tag = 'ZH3l_2017'
+#tag = 'ZH3l_2017_TightEl'
+#tag = 'ZH3l_2017_CR_jetplots'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFiles_'+tag
 
 # file with list of variables
 variablesFile = 'variables.py'
+#variablesFile = 'variables_jets.py'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
+#cutsFile = 'cuts_TightEl.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 
+#samplesFile = 'samples_TightEl.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
@@ -33,4 +38,4 @@ outputDirDatacard = 'datacards_'+tag
 structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+# nuisancesFile = 'nuisances.py'

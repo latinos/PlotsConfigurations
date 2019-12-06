@@ -1,0 +1,107 @@
+/*
+  Temporary on-the-fly higgsGenRap var for nanoLatino trees nAODv5_2016/2017/2018v5 or earlier.
+*/
+
+#include "LatinoAnalysis/MultiDraw/interface/TTreeFunction.h"
+#include "LatinoAnalysis/MultiDraw/interface/FunctionLibrary.h"
+
+#include "TSystem.h"
+
+#include <iostream>
+#include <vector>
+
+#include "TLorentzVector.h"
+#include "TMath.h"
+
+class higgsGenRap : public multidraw::TTreeFunction {
+public:
+  higgsGenRap();
+
+  char const* getName() const override { return "higgsGenRap"; }
+  TTreeFunction* clone() const override { return new higgsGenRap(); }
+  //TTreeFunction* clone() const override;
+
+  void beginEvent(long long) override;
+  int getMultiplicity() override { return 1; }
+  unsigned getNdata() override;
+  double evaluate(unsigned) override;
+
+protected:
+  void bindTree_(multidraw::FunctionLibrary&) override;
+
+  static void setValues(long long);
+
+  static long long currentEntry;
+  static FloatValueReader* higgsGenPt;
+  static FloatValueReader* higgsGenEta;
+  static FloatValueReader* higgsGenPhi;
+  static FloatValueReader* higgsGenMass;
+
+  static std::vector<float> higgsgenrap;
+
+};
+
+/*static*/
+long long higgsGenRap::currentEntry{-2};
+FloatValueReader* higgsGenRap::higgsGenPt{};
+FloatValueReader* higgsGenRap::higgsGenEta{};
+FloatValueReader* higgsGenRap::higgsGenPhi{};
+FloatValueReader* higgsGenRap::higgsGenMass{};
+std::vector<float> higgsGenRap::higgsgenrap{};
+
+higgsGenRap::higgsGenRap() :
+  TTreeFunction()
+{}
+
+void
+higgsGenRap::beginEvent(long long _iEntry)
+{
+  setValues(_iEntry);
+}
+
+unsigned
+higgsGenRap::getNdata()
+{
+  return higgsgenrap.size();
+}
+
+double
+higgsGenRap::evaluate(unsigned ij)
+{
+  return higgsgenrap[ij];
+}
+
+void
+higgsGenRap::setValues(long long _iEntry)
+{
+  if (_iEntry == currentEntry)
+    return;
+
+  currentEntry = _iEntry;
+  higgsgenrap.clear();
+
+  TLorentzVector higgs(0.,0.,0.,0.);
+  higgs.SetPtEtaPhiM( higgsGenPt->Get() , higgsGenEta->Get() , higgsGenPhi->Get() , higgsGenMass->Get()  );
+
+  higgsgenrap.push_back(higgs.Rapidity());
+}
+
+void
+higgsGenRap::bindTree_(multidraw::FunctionLibrary& _library)
+{
+  if (currentEntry == -2) {
+    currentEntry = -1;
+    _library.bindBranch(higgsGenPt, "higgsGenPt");
+    _library.bindBranch(higgsGenEta, "higgsGenEta");
+    _library.bindBranch(higgsGenPhi, "higgsGenPhi");
+    _library.bindBranch(higgsGenMass, "higgsGenMass");
+
+    _library.addDestructorCallback([]() {
+        currentEntry = -2;
+        higgsGenPt = nullptr;
+        higgsGenEta = nullptr;
+        higgsGenPhi = nullptr;
+        higgsGenMass = nullptr;
+      });
+  }
+}

@@ -15,6 +15,8 @@ supercut = 'mll>12  \
             && PuppiMET_pt > 30 \
             && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 \
             && mlljj20_whss > 50. \
+            && mtw2 > 55 \
+            && mtw2 < 155 \
             '
             #&& mllThird < 10 \
             #&& mtw2 > 40 \

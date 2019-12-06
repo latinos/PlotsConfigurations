@@ -89,7 +89,7 @@ void init_hww_DYmvaDNN_2j(TTree* tree){
     readerDNN_2j->AddVariable("mTOT_cut", &l_2j_mTOT_cut);
     readerDNN_2j->AddVariable("PV_npvsGood", &l_2j_PV_npvsGood);
 
-    readerDNN_2j->BookMVA("PyKeras","/afs/cern.ch/work/d/ddicroce/Latinos/CMSSW_11_0_0_pre7/src/LatinoAnalysis/NanoGardener/python/data/DYSFmva/2016_v5/TMVAClassification_PyKeras_2016_2j.weights.xml"); 
+    readerDNN_2j->BookMVA("PyKeras","/afs/cern.ch/user/d/ddicroce/public/DYSFmva/2016_v5/TMVAClassification_PyKeras_2016_2j.weights.xml"); 
 
 }
 

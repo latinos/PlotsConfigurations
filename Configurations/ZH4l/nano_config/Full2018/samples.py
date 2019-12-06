@@ -385,10 +385,10 @@ splitHtt=False
 if not splitHtt:
 
   samples['H_htt'] = {  'name'   :   getSampleFiles(directory,'GluGluHToTauTau_M125',False,'nanoLatino_')
-                                   + getSampleFiles(directory,'VBFHToTauTau_M125',False,'nanoLatino_'),
-                              #     + getSampleFiles(directory,'HZJ_HToTauTau_M125',False,'nanoLatino_')
-                              #     + getSampleFiles(directory,'HWplusJ_HToTauTau_M125',False,'nanoLatino_')
-                              #     + getSampleFiles(directory,'HWminusJ_HToTauTau_M125',False,'nanoLatino_'),
+                                   + getSampleFiles(directory,'VBFHToTauTau_M125',False,'nanoLatino_')
+                                   + getSampleFiles(directory,'HZJ_HToTauTau_M125',False,'nanoLatino_')
+                                   + getSampleFiles(directory,'HWplusJ_HToTauTau_M125',False,'nanoLatino_')
+                                   + getSampleFiles(directory,'HWminusJ_HToTauTau_M125',False,'nanoLatino_'),
                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                          'suppressNegative' :['all'],
                          'suppressNegativeNuisances' :['all'],
@@ -407,18 +407,18 @@ else:
                          'suppressNegativeNuisances' :['all'],
                          }
 
-#  samples['ZH_htt']  = {  'name'   : getSampleFiles(directory,'HZJ_HToTauTau_M125',False,'nanoLatino_'),
-#                           'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-#                          'suppressNegative' :['all'],
-#                         'suppressNegativeNuisances' :['all'],
-#                        }
-#
-#  samples['WH_htt']  = {  'name'   :  getSampleFiles(directory,'HWplusJ_HToTauTau_M125',False,'nanoLatino_')
-#                                    + getSampleFiles(directory,'HWminusJ_HToTauTau_M125',False,'nanoLatino_'),
-#                           'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-#                          'suppressNegative' :['all'],
-#                         'suppressNegativeNuisances' :['all'],  
-#                        }
+  samples['ZH_htt']  = {  'name'   : getSampleFiles(directory,'HZJ_HToTauTau_M125',False,'nanoLatino_'),
+                           'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                          'suppressNegative' :['all'],
+                         'suppressNegativeNuisances' :['all'],
+                        }
+
+  samples['WH_htt']  = {  'name'   :  getSampleFiles(directory,'HWplusJ_HToTauTau_M125',False,'nanoLatino_')
+                                   + getSampleFiles(directory,'HWminusJ_HToTauTau_M125',False,'nanoLatino_'),
+                           'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                          'suppressNegative' :['all'],
+                         'suppressNegativeNuisances' :['all'],  
+                        }
 #
 
 ############################################

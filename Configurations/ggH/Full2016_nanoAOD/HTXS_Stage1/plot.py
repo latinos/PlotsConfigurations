@@ -76,10 +76,9 @@ groupPlot['Higgs']  = {
                   'isSignal' : 1,
                   'color': 632, # kRed 
 		  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
-		  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww', 'qqH_htt', 'ggH_htt' ]
                    'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'bbH_hww','ttH_hww', 'qqH_htt', 'ggH_htt', 'ZH_htt', 'WH_htt',
-  'ggH_hww_FWDH', 'ggH_hww_PTH_GT200', 'ggH_hww_0J_PTH_0_10', 'ggH_hww_0J_PTH_GT10', 'ggH_hww_1J_PTH_0_60', 'ggH_hww_1J_PTH_60_120', 'ggH_hww_1J_PTH_120_200', 'ggH_hww_GE2J_MJJ_0_350_PTH_0_60', 'ggH_hww_GE2J_MJJ_0_350_PTH_60_120', 'ggH_hww_GE2J_MJJ_0_350_PTH_120_200', 'ggH_hww_GE2J_MJJ_350_700_PTHJJ_0_25', 'ggH_hww_GE2J_MJJ_350_700_PTHJJ_GT25', 'ggH_hww_GE2J_MJJ_GT700_PTHJJ_0_25', 'ggH_hww_GE2J_MJJ_GT700_PTHJJ_GT25',
-    'qqH_hww_FWDH', 'qqH_hww_0J', 'qqH_hww_1J', 'qqH_hww_MJJ_0_60', 'qqH_hww_MJJ_60_120', 'qqH_hww_MJJ_120_350', 'qqH_hww_MJJ_GT350_PTH_GT200', 'qqH_hww_MJJ_350_700_PTHJJ_0_25', 'qqH_hww_MJJ_350_700_PTHJJ_GT25', 'qqH_hww_MJJ_GT700_PTHJJ_0_25', 'qqH_hww_MJJ_GT700_PTHJJ_GT25']
+  'ggH_hww_FWDH', 'ggH_hww_0J_PTH_0_10', 'ggH_hww_0J_PTH_GT10', 'ggH_hww_1J_PTH_0_60', 'ggH_hww_1J_PTH_60_120', 'ggH_hww_1J_PTH_120_200', 'ggH_hww_GE2J_MJJ_0_350_PTH_0_60', 'ggH_hww_GE2J_MJJ_0_350_PTH_60_120', 'ggH_hww_GE2J_MJJ_0_350_PTH_120_200', 'ggH_hww_GE2J_MJJ_350_700_PTHJJ_0_25', 'ggH_hww_GE2J_MJJ_350_700_PTHJJ_GT25', 'ggH_hww_GE2J_MJJ_GT700_PTHJJ_0_25', 'ggH_hww_GE2J_MJJ_GT700_PTHJJ_GT25',
+      'ggH_hww_PTH_200_300', 'ggH_hww_PTH_300_450', 'ggH_hww_PTH_450_650', 'ggH_hww_PTH_GT650', 'qqH_hww']
               }
 
 
@@ -304,7 +303,7 @@ plot['WH_hww'] = {
 
 
 for cat,num in HTXSStage1_1Categories.iteritems():
-  if 'GG2H_' in cat:
+  if 'GG2H_' in cat and 'GT200' not in cat:
     plot['ggH_hww_'+cat.replace('GG2H_','')] = {
                   'nameHR' : 'ggH_hww_'+cat.replace('GG2H_',''),
                   'color': 632, # kRed
@@ -312,6 +311,41 @@ for cat,num in HTXSStage1_1Categories.iteritems():
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
+
+plot['ggH_hww_PTH_200_300'] = {
+                  'nameHR' : 'ggH_hww_PTH_200_300',
+                  'color': 632, # kRed
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                 }
+
+plot['ggH_hww_PTH_300_450'] = {
+                  'nameHR' : 'ggH_hww_PTH_300_450',
+                  'color': 632, # kRed
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                 }
+
+plot['ggH_hww_PTH_450_650'] = {
+                  'nameHR' : 'ggH_hww_PTH_450_650',
+                  'color': 632, # kRed
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                 }
+
+plot['ggH_hww_PTH_GT650'] = {
+                  'nameHR' : 'ggH_hww_PTH_GT650',
+                  'color': 632, # kRed
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                 }
+
+
+'''
   elif 'QQ2HQQ_' in cat:
     plot['qqH_hww_'+cat.replace('QQ2HQQ_','')] = {
                   'nameHR' : 'qqH_hww_'+cat.replace('QQ2HQQ_',''),
@@ -329,7 +363,7 @@ plot['qqH_hww'] = {
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
-
+'''
 
 plot['ggH_hww'] = {
                   'nameHR' : 'ggH',

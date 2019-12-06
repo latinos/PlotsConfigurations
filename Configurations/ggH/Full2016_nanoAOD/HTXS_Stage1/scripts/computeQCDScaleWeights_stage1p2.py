@@ -33,7 +33,7 @@ for cat,num in HTXSStage1_1Categories.iteritems():
     chain.Draw("1>>h1","(LHEScaleWeight[8])*(HTXS_stage1_1_cat_pTjet30GeV=="+str(num)+")","goff")
     chain.Draw("1>>h2","(LHEScaleWeight[0])*(HTXS_stage1_1_cat_pTjet30GeV=="+str(num)+")","goff")
     chain.Draw("1>>hnom","(HTXS_stage1_1_cat_pTjet30GeV=="+str(num)+")","goff")
-    #  print cat, "mur=muf=2 --> ", h1.Integral(),hnom.Integral(), "mur=muf=0.5 --> ", h2.Integral(),hnom.Integral()                           
+    #  print cat, "mur=muf=2 --> ", h1.Integral(),hnom.Integral(), "mur=muf=0.5 --> ", h2.Integral(),hnom.Integral()                          
     qcdScaleFactors[cat] = [str(h1.Integral()/hnom.Integral()),str(h2.Integral()/hnom.Integral())]
   else:
     chain.Draw("1>>h1","(LHEScaleWeight[8])*(HTXS_stage1_1_cat_pTjet30GeV=="+str(num)+"*(HTXS_Higgs_pt>200)*(HTXS_Higgs_pt<=300))","goff")

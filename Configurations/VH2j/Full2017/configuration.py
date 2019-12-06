@@ -36,4 +36,4 @@ outputDirDatacard = 'datacards'
 structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances_ALL.py'
+nuisancesFile = 'nuisances.py'

@@ -16,6 +16,16 @@ if os.path.exists('HTXS_stage1_categories.py') :
   exec(handle)
   handle.close()
 
+if os.path.exists('UEnormfactors.py') :
+  handle = open('UEnormfactors.py','r')
+  exec(handle)
+  handle.close()
+
+if os.path.exists('thuNormFactors.py') :
+  handle = open('thuNormFactors.py','r')
+  exec(handle)
+  handle.close()
+
 sampleNames = []
 for cat in HTXSStage1_1Categories:
   if 'GG2H_' in cat:
@@ -302,8 +312,6 @@ nuisances['PU'] = {
 for name in sampleNames:
   if 'ggH_hww' in name:
     nuisances['PU']['samples'].update({name: ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)']})
-  elif 'qqH_hww' in name:
-    nuisances['PU']['samples'].update({name: ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)']})
 
 ##### PS and UE
 
@@ -313,20 +321,30 @@ nuisances['PS']  = {
     'kind': 'weight_envelope',
     'samples': {
         'WW': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],
+        'ggH_hww': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],
+        'qqH_hww': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],
     },
     'AsLnN': '1',
     'samplespost': lambda self, samples: dict([('WW', ['1.', '1.'])] + [(sname, ['1.', '1.']) for sname in samples if 'ggH_hww' in sname or 'qqH_hww' in sname])
 }
 
+for name in sampleNames:
+  if 'ggH_hww' in name:
+    nuisances['PS']['samples'].update({name: ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]']})
+
+#These numbers have been updated 
 nuisances['UE']  = {
                 'name'  : 'UE',
                 'skipCMS' : 1,
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-#                  'WW'      : ['1.12720771849', '1.13963144574'],
-                  'ggH_hww' : ['1.00211385568', '0.994966378288'],
-                  'qqH_hww' : ['1.00367895901', '0.994831373195']
+                  #'WW'      : [UEWWNormFactors[0],UEWWNormFactors[1]],     #The WW down file is buggy  
+                  #new:['0.974123217122', '0.00764355789067'] old:['1.12720771849', '1.13963144574'], 
+                  'ggH_hww' : [UEggHNormFactors[0],UEggHNormFactors[1]],
+                  #new:['0.994216746291', '1.020025863']      old:['1.00211385568', '0.994966378288'],
+                  'qqH_hww' : [UEqqHNormFactors[0],UEqqHNormFactors[1]]
+                  #new:['0.980501317842', '1.00876768329']    old:['1.00367895901', '0.994831373195']
                 },
                 'folderUp': makeMCDirectory('UEup'),
                 'folderDown': makeMCDirectory('UEdo'),
@@ -336,9 +354,16 @@ nuisances['UE']  = {
 
 for name in sampleNames:
   if 'ggH_hww' in name:
-    nuisances['UE']['samples'].update({name: ['1.00211385568', '0.994966378288']})
-  elif 'qqH_hww' in name:
-    nuisances['UE']['samples'].update({name: ['1.00367895901', '0.994831373195']})
+    if 'GT200' not in name:
+      scaleUp   = UEggHSTXSNormFactors[name.replace('ggH_hww','GG2H')][0]
+      scaleDown = UEggHSTXSNormFactors[name.replace('ggH_hww','GG2H')][1]
+      nuisances['UE']['samples'].update({name : [scaleUp, scaleDown]})
+    else:
+      nuisances['UE']['samples'].update({name : ['UEggHSTXSNormFactors[GG2H_PTH_200_300][0]',' UEggHSTXSNormFactors[GG2H_PTH_200_300][1]']})
+      nuisances['UE']['samples'].update({name : ['UEggHSTXSNormFactors[GG2H_PTH_300_450][0]',' UEggHSTXSNormFactors[GG2H_PTH_300_450][1]']})
+      nuisances['UE']['samples'].update({name : ['UEggHSTXSNormFactors[GG2H_PTH_450_650][0]',' UEggHSTXSNormFactors[GG2H_PTH_450_650][1]']})
+      nuisances['UE']['samples'].update({name : ['UEggHSTXSNormFactors[GG2H_PTH_GT650][0]'  ,' UEggHSTXSNormFactors[GG2H_PTH_GT650][1]']})
+
 
 ####### Generic "cross section uncertainties"
 
@@ -399,9 +424,10 @@ nuisances['pdf_Higgs_gg'] = {
     },
     'type': 'lnN',
 }
-for name in sampleNames:
-  if 'ggH' in name:
-    nuisances['pdf_Higgs_gg']['samples'].update({name: HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH' ,'125.09','pdf','sm')})
+
+#for name in sampleNames:          #Adrian: this is not needed for STXS
+#  if 'ggH' in name:
+#    nuisances['pdf_Higgs_gg']['samples'].update({name: HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH' ,'125.09','pdf','sm')})
 
 values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','pdf','sm')
 
@@ -429,9 +455,6 @@ nuisances['pdf_Higgs_qqbar'] = {
         'ZH_htt': valueszh
     },
 }
-for name in sampleNames:
-  if 'qqH' in name:
-    nuisances['pdf_Higgs_qqbar']['samples'].update({name: HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH' ,'125.09','pdf','sm')})
 
 #FIXME: check this 4%
 nuisances['pdf_qqbar'] = {
@@ -455,9 +478,9 @@ nuisances['pdf_Higgs_gg_ACCEPT'] = {
     },
     'type': 'lnN',
 }
-for name in sampleNames:
-  if 'ggH' in name:
-    nuisances['pdf_Higgs_gg_ACCEPT']['samples'].update({name : '1.005'})
+#for name in sampleNames: #Adrian: this is not needed for STXS
+#  if 'ggH' in name:
+#    nuisances['pdf_Higgs_gg_ACCEPT']['samples'].update({name : '1.005'})
 
 #FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['pdf_gg_ACCEPT'] = {
@@ -481,9 +504,6 @@ nuisances['pdf_Higgs_qqbar_ACCEPT'] = {
         'ZH_htt': '1.012',
     },
 }
-for name in sampleNames:
-  if 'qqH' in name:
-    nuisances['pdf_Higgs_qqbar_ACCEPT']['samples'].update({name : '1.011'})
 
 #FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['pdf_qqbar_ACCEPT'] = {
@@ -661,8 +681,8 @@ nuisances['CRSR_accept_top'] = {
 #   see https://twiki.cern.ch/twiki/bin/viewauth/CMS/HiggsWG/SignalModelingTools
 
 thus = [
-    ('THU_ggH_Mu', 'ggH_mu'),
-    ('THU_ggH_Res', 'ggH_res'),
+#    ('THU_ggH_Mu', 'ggH_mu'),
+#    ('THU_ggH_Res', 'ggH_res'),
     ('THU_ggH_Mig01', 'ggH_mig01'),
     ('THU_ggH_Mig12', 'ggH_mig12'),
     ('THU_ggH_VBF2j', 'ggH_VBF2j'),
@@ -672,6 +692,7 @@ thus = [
     ('THU_ggH_qmtop', 'ggH_qmtop')
 ]
 
+# Adrian: some of these could be removed
 for name, vname in thus:
     updown = [vname, '2.-%s' % vname]
     
@@ -687,7 +708,19 @@ for name, vname in thus:
     }
     for sname in sampleNames:
         if 'ggH_hww' in sname:
-            nuisances[name]['samples'].update({sname : [vname, '2.-%s' % vname]})
+          if 'GT200' not in sname:
+            #print globals()
+            normthu = globals()[name.replace("THU_","thuNormFactors_")][sname.replace('ggH_hww','GG2H')][0]
+            nuisances[name]['samples'].update({sname : [vname+'/'+normthu,'2.-'+vname+'/'+normthu]})
+          else:
+            nuisances[name]['samples'].update({name : [vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_200_300'][0]
+            ,'2.-'+vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_200_300'][0]]})
+            nuisances[name]['samples'].update({name : [vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_300_450'][0]
+            ,'2.-'+vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_300_450'][0]]})
+            nuisances[name]['samples'].update({name : [vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_450_650'][0]
+            ,'2.-'+vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_450_650'][0]]})
+            nuisances[name]['samples'].update({name : [vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_GT650'][0]
+            ,'2.-'+vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_GT650'][0]]})
 
 nuisances['QCDscale_ggH_STXS_ACCEPT'] = {
                'name'  : 'QCDscale_ggH_STXS_ACCEPT',
@@ -719,9 +752,6 @@ nuisances['QCDscale_qqH'] = {
     },
     'type': 'lnN'
 }
-for name in sampleNames:
-  if 'qqH' in name:
-    nuisances['QCDscale_qqH']['samples'].update({name : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm')})
 
 valueswh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm')
 valueszh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm')
@@ -779,9 +809,6 @@ nuisances['QCDscale_qqbar_ACCEPT'] = {
         'VZ': '1.029',
     }
 }
-for name in sampleNames:
-  if 'qqH' in name:
-    nuisances['QCDscale_qqbar_ACCEPT']['samples'].update({name : '1.007'})
 
 #FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['QCDscale_gg_ACCEPT'] = {
@@ -795,9 +822,10 @@ nuisances['QCDscale_gg_ACCEPT'] = {
     'type': 'lnN',
 }
 
-for name in sampleNames:
-  if 'ggH' in name:
-    nuisances['QCDscale_gg_ACCEPT']['samples'].update({name : '1.027'})
+#for name in sampleNames:     # Adrian: this is not needed for STXS
+#  if 'ggH' in name:
+#    nuisances['QCDscale_gg_ACCEPT']['samples'].update({name : '1.027'})
+
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat'] = {

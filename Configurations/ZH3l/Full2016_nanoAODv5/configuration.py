@@ -1,18 +1,18 @@
 # example of configuration file
 
-tag = 'ZH3l_2016'
+tag = 'ZH3l_2016_CR_sys'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFiles_'+tag
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = 'variables_test.py'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
+cutsFile = 'cuts_CR.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 

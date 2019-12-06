@@ -15,7 +15,7 @@ def nanoGetSampleFiles(inputDir, Sample):
     return getSampleFiles(inputDir, Sample, False, 'nanoLatino_')
 
 try:
-    mc = [skey for skey in samples if skey != 'DATA' and not skey.startswith('Fake')]
+    mc = [skey for skey in samples if skey != 'DATA' and not skey.startswith('Fake') and skey != 'DY'] #FIXME add DY
 except NameError:
     mc = []
     cuts = {}
@@ -100,7 +100,6 @@ nuisances['fake_syst_em'] = {
         'Fake_em': '1.3'
     },
     'cutspost': lambda self, cuts: [cut for cut in cuts if '20me' not in cut],
-    'perRecoBin': True
 }
 
 nuisances['fake_syst_me'] = {
@@ -110,7 +109,6 @@ nuisances['fake_syst_me'] = {
         'Fake_me': '1.3'
     },
     'cutspost': lambda self, cuts: [cut for cut in cuts if '20em' not in cut],
-    'perRecoBin': True
 }
 
 nuisances['fake_ele'] = {
@@ -162,7 +160,7 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
         'name': name,
         'kind': 'weight',
         'type': 'shape',
-        'samples': dict((skey, btag_syst) for skey in mc if 'DY' not in skey), #FIXME Add DY
+        'samples': dict((skey, btag_syst) for skey in mc),
     }
 
 ##### Trigger Efficiency
@@ -173,7 +171,7 @@ nuisances['trigg'] = {
     'name': 'CMS_eff_hwwtrigger_2017',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, trig_syst) for skey in mc if 'DY' not in skey), #FIXME Add DY
+    'samples': dict((skey, trig_syst) for skey in mc),
 }
 
 prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
@@ -182,7 +180,7 @@ nuisances['prefire'] = {
     'name': 'CMS_eff_prefiring_2017',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, prefire_syst) for skey in mc if 'DY' not in skey), #FIXME Add DY
+    'samples': dict((skey, prefire_syst) for skey in mc),
 }
 
 ##### Electron Efficiency and energy scale
@@ -191,14 +189,14 @@ nuisances['eff_e'] = {
     'name': 'CMS_eff_e_2017',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc if 'DY' not in skey), #FIXME Add DY
+    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc),
 }
 
 nuisances['electronpt'] = {
     'name': 'CMS_scale_e_2017',
     'kind': 'tree',
     'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc if 'DY' not in skey), #FIXME Add DY
+    'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': makeMCDirectory('ElepTup'),
     'folderDown': makeMCDirectory('ElepTdo'),
     'AsLnN': '1'
@@ -210,14 +208,14 @@ nuisances['eff_m'] = {
     'name': 'CMS_eff_m_2017',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc if 'DY' not in skey), #FIXME Add DY
+    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc),
 }
 
 nuisances['muonpt'] = {
     'name': 'CMS_scale_m_2017',
     'kind': 'tree',
     'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc if 'DY' not in skey), #FIXME Add DY
+    'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': makeMCDirectory('MupTup'),
     'folderDown': makeMCDirectory('MupTdo'),
     'AsLnN': '1'
@@ -229,7 +227,7 @@ nuisances['jes'] = {
     'name': 'CMS_scale_j_2017',
     'kind': 'tree',
     'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc if 'DY' not in skey), #FIXME Add DY
+    'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': makeMCDirectory('JESup'),
     'folderDown': makeMCDirectory('JESdo'),
     'AsLnN': '1'
@@ -241,7 +239,7 @@ nuisances['met'] = {
     'name': 'CMS_scale_met_2017',
     'kind': 'tree',
     'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc if 'DY' not in skey), #FIXME Add DY
+    'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': makeMCDirectory('METup'),
     'folderDown': makeMCDirectory('METdo'),
     'AsLnN': '1'
@@ -271,6 +269,8 @@ nuisances['PS']  = {
     'kind': 'weight_envelope',
     'samples': {
         'WW': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],
+        'ggH_hww': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],
+        'qqH_hww': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],
     },
     'AsLnN': '1',
     'samplespost': lambda self, samples: dict([('WW', ['1.', '1.'])] + [(sname, ['1.', '1.']) for sname in samples if 'ggH_hww' in sname or 'qqH_hww' in sname])
@@ -541,11 +541,8 @@ nuisances['CRSR_accept_DY'] = {
     'name': 'CMS_hww_CRSR_accept_DY',
     'type': 'lnN',
     'samples': {'DY': '1.02'},
-    #'samples': {'DY': '1.1'},
     'cuts': [cut for cut in cuts if '_CR_' in cut],
-    #'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut and cut in self['cuts']]),
     'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut]),
-    #'perRecoBin': True
 }
 
 # Uncertainty on SR/CR ratio
@@ -553,7 +550,6 @@ nuisances['CRSR_accept_top'] = {
     'name': 'CMS_hww_CRSR_accept_top',
     'type': 'lnN',
     'samples': {'top': '1.01'},
-    #'samples': {'top': '1.05'},
     'cuts': [cut for cut in cuts if '_CR_' in cut],
     'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut]),
 }

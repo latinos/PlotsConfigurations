@@ -12,14 +12,13 @@ if [ ! -d $outputDir ]; then
   mkdir $outputDir
 fi
 
-datacardDir=/afs/cern.ch/work/a/alvareza/public/CMSSW_9_4_9/src/PlotsConfigurations/Configurations/ggH/Full2017/HTXS_Stage1/datacards_ggH2017_STXS_stage1p2
-
+datacardDir=/afs/cern.ch/work/a/alvareza/public/CMSSW_9_4_9/src/PlotsConfigurations/Configurations/ggH/Full2017/HTXS_Stage1/datacards_ggH2017_STXS_stage1p2_UEfix
 
 ## variable used for the signal regions fit
 variable_bins=mllVSmth_pt2lt20
-#variable_bins=mllVSmth_4x3bins
-#variable_bins=mllVSmth_3x3bins
-#variable_bins=mllVSmth_2x2bins
+variable_bins2=mllVSmth_4x3bins
+variable_bins3=mllVSmth_3x3bins
+variable_bins4=mllVSmth_2x2bins
 
 # combine the datacards
 combineCards.py   of_0j_pth0_10=${datacardDir}/hww2l2v_13TeV_of0j_pth0_10/${variable_bins}/datacard.txt \
@@ -31,13 +30,13 @@ combineCards.py   of_0j_pth0_10=${datacardDir}/hww2l2v_13TeV_of0j_pth0_10/${vari
                   of_2j_lowmjj_pth60_120=${datacardDir}/hww2l2v_13TeV_of2j_lowmjj_pth60_120/${variable_bins}/datacard.txt \
                   of_2j_lowmjj_pth120_200=${datacardDir}/hww2l2v_13TeV_of2j_lowmjj_pth120_200/${variable_bins}/datacard.txt \
                   of_2j_mjj350_700_pthjj0_25=${datacardDir}/hww2l2v_13TeV_of2j_mjj350_700_pthjj0_25/${variable_bins}/datacard.txt \
-                  of_2j_mjj350_700_pthjjGT25=${datacardDir}/hww2l2v_13TeV_of2j_mjj350_700_pthjjGT25/${variable_bins}/datacard.txt \
-                  of_2j_mjjGT700_pthjj0_25=${datacardDir}/hww2l2v_13TeV_of2j_mjjGT700_pthjj0_25/${variable_bins}/datacard.txt \
-                  of_2j_mjjGT700_pthjjGT25=${datacardDir}/hww2l2v_13TeV_of2j_mjjGT700_pthjjGT25/${variable_bins}/datacard.txt \
+                  of_2j_mjj350_700_pthjjGT25=${datacardDir}/hww2l2v_13TeV_of2j_mjj350_700_pthjjGT25/${variable_bins4}/datacard.txt \
+                  of_2j_mjjGT700_pthjj0_25=${datacardDir}/hww2l2v_13TeV_of2j_mjjGT700_pthjj0_25/${variable_bins4}/datacard.txt \
+                  of_2j_mjjGT700_pthjjGT25=${datacardDir}/hww2l2v_13TeV_of2j_mjjGT700_pthjjGT25/${variable_bins4}/datacard.txt \
                   of_pth200_300=${datacardDir}/hww2l2v_13TeV_of_pth200_300/${variable_bins}/datacard.txt \
-                  of_pth300_450=${datacardDir}/hww2l2v_13TeV_of_pth300_450/${variable_bins}/datacard.txt \
-                  of_pth450_650=${datacardDir}/hww2l2v_13TeV_of_pth450_650/${variable_bins}/datacard.txt \
-                  of_pthGT650=${datacardDir}/hww2l2v_13TeV_of_pthGT650/${variable_bins}/datacard.txt \
+                  of_pth300_450=${datacardDir}/hww2l2v_13TeV_of_pth300_450/${variable_bins2}/datacard.txt \
+                  of_pth450_650=${datacardDir}/hww2l2v_13TeV_of_pth450_650/${variable_bins3}/datacard.txt \
+                  of_pthGT650=${datacardDir}/hww2l2v_13TeV_of_pthGT650/${variable_bins4}/datacard.txt \
                   of0j_Top=${datacardDir}/hww2l2v_13TeV_top_0j/events/datacard.txt \
                   of1j_Top=${datacardDir}/hww2l2v_13TeV_top_1j/events/datacard.txt \
                   of2j_Top=${datacardDir}/hww2l2v_13TeV_top_2j/events/datacard.txt \
@@ -88,3 +87,7 @@ echo "nuisance edit drop Fake_me of_pthGT650 CMS_fake_stat_e_2017" >> ${outputDi
 echo "nuisance edit drop Fake_me of_pthGT650 CMS_fake_stat_m_2017" >> ${outputDir}/Full2017_ggH_HTXS_Stage1p2.txt
 echo "nuisance edit drop Fake_em of_pthGT650 CMS_fake_stat_e_2017" >> ${outputDir}/Full2017_ggH_HTXS_Stage1p2.txt
 echo "nuisance edit drop Fake_em of_pthGT650 CMS_fake_stat_m_2017" >> ${outputDir}/Full2017_ggH_HTXS_Stage1p2.txt
+
+#echo "nuisance edit freeze QCDscale_ggH_STXS_ACCEPT" >> ${outputDir}/Full2017_ggH_HTXS_Stage1p2.txt
+#echo "nuisance edit freeze UE" >> ${outputDir}/Full2017_ggH_HTXS_Stage1p2.txt
+#echo "nuisance edit freeze PS" >> ${outputDir}/Full2017_ggH_HTXS_Stage1p2.txt
