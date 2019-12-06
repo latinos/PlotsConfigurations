@@ -231,13 +231,4 @@ aliases['nllWOTF'] = {
     'args': ('central',),
     'samples': ['WW']
 }
-aliases['Jet_btagSF_shapeFix'] = {
-    'linesToAdd': [
-        'gSystem->Load("libCondFormatsBTauObjects.so");',
-        'gSystem->Load("libCondToolsBTau.so");',
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
-        # '.L %s/patches/btagsfpatch.cc+' % configurations
-        '.L %s/src/PlotsConfigurations/Configurations/patches/btagsfpatch.cc+' % os.getenv('CMSSW_BASE'),
-    ],
-}
 
