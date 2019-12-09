@@ -41,7 +41,7 @@ fakeSteps = 'DATAl1loose2018v5__l2loose__fakeW__wwSel'
 
 dataSteps = 'DATAl1loose2018v5__l2loose__l2tightOR2018v5__wwSel'
 
-embedSteps = 'DATAl1loose2018v5__l2loose__l2tightOR2018v5__Embedding'
+embedSteps = 'DATAl1loose2018v5__l2loose__l2tightOR2018v5__Embedding__wwSel'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -112,7 +112,7 @@ if useEmbeddedDY:
   # Actual embedded data
   samples['Dyemb'] = {
     'name': [],
-    'weight': 'METFilter_DATA*LepWPCut*genWeight*embedtotal',
+    'weight': 'METFilter_DATA*LepWPCut*embedtotal*genWeight',
     'weights': [],
     'isData': ['all'],
     'FilesPerJob': 20

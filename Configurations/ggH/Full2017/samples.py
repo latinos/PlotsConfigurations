@@ -42,7 +42,7 @@ fakeSteps = 'DATAl1loose2017v5__l2loose__fakeW'
 
 dataSteps = 'DATAl1loose2017v5__l2loose__l2tightOR2017v5'
 
-embedSteps = 'DATAl1loose2017v5__l2loose__l2tightOR2017v5__Embedding'
+embedSteps = 'DATAl1loose2017v5__l2loose__l2tightOR2017v5__Embedding__wwSel'
 
 ##############################################
 ###### Tree base directory for the site ######

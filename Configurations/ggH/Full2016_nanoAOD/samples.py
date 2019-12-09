@@ -34,7 +34,7 @@ except NameError:
 
 dataReco = 'Run2016_102X_nAODv4_Full2016v5'
 
-embedReco = 'Embedding2016_102X_nAODv4_Full2016v5'
+embedReco = 'Embedding2016_102X_nAODv5_Full2016v5'
 
 #mcSteps = 'MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5{var}'
 
@@ -42,7 +42,7 @@ fakeSteps = 'DATAl1loose2016v5__l2loose__fakeW__wwSel'
 
 dataSteps = 'DATAl1loose2016v5__l2loose__l2tightOR2016v5__wwSel'
 
-embedSteps = 'DATAl1loose2016v5__l2loose__l2tightOR2016v5__Embedding'
+embedSteps = 'DATAl1loose2016v5__l2loose__l2tightOR2016v5__Embedding__wwSel'
 
 ##############################################
 ###### Tree base directory for the site ######
