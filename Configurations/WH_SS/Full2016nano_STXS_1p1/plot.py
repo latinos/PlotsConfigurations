@@ -1,6 +1,7 @@
 # plot configuration
-
-# groupPlot = {}
+import os
+groupPlot = {}
+plot ={}
 #
 # Groups of samples to improve the plots.
 # If not defined, normal plots is used
@@ -402,7 +403,7 @@ plot['DATA']  = {
 
 
 
-
+legend={}
 # additional options
 
 # legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1

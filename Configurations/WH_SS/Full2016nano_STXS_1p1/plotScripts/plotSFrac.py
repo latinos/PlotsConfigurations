@@ -17,9 +17,6 @@ from HiggsAnalysis.CombinedLimit.DatacardParser import *
 ## Style features
 tdrstyle.setTDRStyle()
 
-
-
-
 parser = OptionParser()
 #parser.add_option("-s", "--stat",   dest="stat",          default=False, action="store_true")  # ignore systematic uncertainties to consider statistical uncertainties only
 
@@ -35,10 +32,25 @@ DC = parseCard(file(args[0]), options)
 signals_orig     = DC.list_of_signals()
 signals = []
 
-for s in signals_orig:
-  if not 'htt' in s: signals.append(s)
+STXSbins=[
+      'QQ2HLNU_FWDH',
+      'QQ2HLNU_PTV_0_75',
+      'QQ2HLNU_PTV_75_150',
+      'QQ2HLNU_PTV_150_250_0J',
+      'QQ2HLNU_PTV_150_250_GE1J',
+      'QQ2HLNU_PTV_GT250',
+]
 
-signals = sorted(signals, key=lambda s: s.lower())
+sampleNames = OrderedDict()
+for cat in STXSbins:
+    if 'QQ2HLNU_' in cat:
+        sampleNames['WH_hww_'+cat.replace('QQ2HLNU_','')] = 0.
+
+#for j,value in sampleNames.items():
+for s in signals_orig:
+    #if j!=s: continue
+    #if 'htt' in s: continue
+    signals.append(s)
 
 overallSignalRate = OrderedDict()
 overallTotalSignal = OrderedDict()
@@ -49,16 +61,18 @@ channels = OrderedDict()
 for i in sorted(channels_orig, reverse=True):
   channels[i] = channels_orig[i]
 
-
-for c in channels:
-  if "Top" in c or "DYtt" in c or "WW" in c or "wh3l_wz" in c or "wh3l_zg" in c or "zh4l_ZZ" in c: continue
-  overallSignalRate[c] = OrderedDict()
-  overallTotalSignal[c] = 0.
-  for s in signals:
-    overallSignalRate[c][s] = 0.
-    if s not in channels[c].keys(): continue
-    overallSignalRate[c][s] +=  channels[c][s]
-    overallTotalSignal[c] += channels[c][s]
+for j,value in sampleNames.items():
+  q=j.split('WH_hww_')[1]
+  for c in channels:
+    if "Top" in c or "DYtt" in c or "WW" in c or "wh3l_wz" in c or "wh3l_zg" in c or "zh4l_ZZ" in c: continue
+    if q not in c: continue
+    overallSignalRate[c] = OrderedDict()
+    overallTotalSignal[c] = 0.
+    for s in signals:
+      overallSignalRate[c][s] = 0.
+      if s not in channels[c].keys(): continue
+      overallSignalRate[c][s] +=  channels[c][s]
+      overallTotalSignal[c] += channels[c][s]
 
 
 stack = ROOT.THStack()
@@ -68,11 +82,14 @@ color = 0.
 
 ncat=0
 combChannelsToConsider = []
-for k in channels:
-  if "Top" in k or "DYtt" in k or "WW" in k or "wh3l_wz" in k or "wh3l_zg" in k or "zh4l_ZZ" in k: continue
-  if overallTotalSignal[k] == 0: continue
-  ncat+=1
-  combChannelsToConsider.append(k)
+for j,value in sampleNames.items():
+  q=j.split('WH_hww_')[1]
+  for k in channels:
+    if q not in k: continue
+    if "Top" in k or "DYtt" in k or "WW" in k or "wh3l_wz" in k or "wh3l_zg" in k or "zh4l_ZZ" in k: continue
+    if overallTotalSignal[k] == 0: continue
+    ncat+=1
+    combChannelsToConsider.append(k)
   print k
 
 for s in signals:
@@ -176,7 +193,7 @@ for i,c in enumerate(combChannelsToConsider):
   events.DrawLatex(x,y,"#color[10]{ "+" {0:.1f}".format(overallTotalSignal[c])+" events}")
 
 ROOT.gPad.RedrawAxis()
-canvas.SaveAs("signalfraction2016_1p2.png")
+canvas.SaveAs("signalfraction2016_1p1.png")
 
 a = raw_input()
 
