@@ -252,13 +252,13 @@ plot['WH_htt'] = {
 #                  'scale'    : 1
 #                  }
 
-plot['WH_hww'] = {
-                  'nameHR' : 'WH',
-                  'color': 632+2, # kRed+2 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1
-                  }
+#plot['WH_hww'] = {
+#                  'nameHR' : 'WH',
+#                  'color': 632+2, # kRed+2 
+#                  'isSignal' : 1,
+#                  'isData'   : 0,    
+#                  'scale'    : 1
+#                  }
 
 # data
 
@@ -267,8 +267,8 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0
-                  # 'isBlind'  : 1
+                  #'isBlind'  : 0
+                  'isBlind'  : 1
               }
 
 # additional options

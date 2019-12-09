@@ -99,19 +99,24 @@ aliases['genWPt'] = {
     'samples' : mc
 }
 
-aliases['WlepPt_whssv1'] = {
+aliases['ngenjet'] = {
+    'expr' : 'Sum$(GenJet_pt>30)',
+    'samples' : mc
+}
+
+aliases['WlepPt_v1'] = {
     'linesToAdd': [
-        '.L %s/macros/wlep1pt.cc+' % configurations
+        '.L %s/macros/whss_wlep_v1.cc+' % configurations
     ],
-    'class': 'WHlepv1',
+    'class': 'WHSS_wpt_v1',
     'args': ()
 }
 
-aliases['WlepPt_whssv2'] = {
+aliases['WlepPt_v2'] = {
     'linesToAdd': [
-        '.L %s/macros/wlep1pt2.cc+' % configurations
+        '.L %s/macros/whss_wlep_v2.cc+' % configurations
     ],
-    'class': 'WHlepv2',
+    'class': 'WHSS_wpt_v2',
     'args': ()
 }
 

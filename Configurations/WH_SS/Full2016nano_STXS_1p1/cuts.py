@@ -22,11 +22,11 @@ supercut = 'mll>12  \
 #Reco level            
 HTSXReco = {
     'FWDH' : '1==1',
-    'PTV_0_75' : 'WlepPt_whssv1>0 && WlepPt_whssv1 <= 75',
-    'PTV_75_150' : 'WlepPt_whssv1 > 75 && WlepPt_whssv1 <= 150',
-    'PTV_150_250_0J' : 'WlepPt_whssv1 > 150 && WlepPt_whssv1 <= 250',
-    'PTV_150_250_GE1J' : 'WlepPt_whssv1 > 150 && WlepPt_whssv1 <= 250',
-    'PTV_GT250' : 'WlepPt_whssv1 > 250',
+    'PTV_0_75' : 'WlepPt_v1>0 && WlepPt_v1 <= 75',
+    'PTV_75_150' : 'WlepPt_v1 > 75 && WlepPt_v1 <= 150',
+    'PTV_150_250_0J' : 'WlepPt_v1 > 150 && WlepPt_v1 <= 250',
+    'PTV_150_250_GE1J' : 'WlepPt_v1 > 150 && WlepPt_v1 <= 250',
+    'PTV_GT250' : 'WlepPt_v2 > 250',
     }
 
 ## 2jets
