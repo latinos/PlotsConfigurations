@@ -15,14 +15,14 @@ cuts['wh3l_13TeV_ossf']  = 'WH3l_flagOSSF == 1\
                             && Sum$( CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0\
                        '
 cuts['wh3l_wz_13TeV'] = 'WH3l_njet == 0\
-                         && MET_pt > 45\
+                         && PuppiMET_pt > 45\
                          && WH3l_ZVeto < 20\
                          && WH3l_mlll > 100\
                          && Sum$( CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0\
                         '
 
 cuts['wh3l_zg_13TeV'] = 'WH3l_njet == 0\
-                         && MET_pt < 40\
+                         && PuppiMET_pt < 40\
                          && WH3l_mlll > 80\
                          && WH3l_mlll < 100\
                          && Sum$( CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0\

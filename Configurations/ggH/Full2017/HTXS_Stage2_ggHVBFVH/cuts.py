@@ -42,7 +42,7 @@ cuts['hww2l2v_13TeV'] = {
        'of2j_vbflike_mjjGT700_pthjj0_25' : ' Sum$(CleanJet_pt>30)==2 && mjj > 700 && pTHjj <=25 && pTWW<200 && vbflike_mjjhigh',
        
        'of2j_gghlike_mjjGT700_pthjjGT25' : ' multiJet && mjj > 700 && pTHjj > 25 && pTWW<200 && gghlike_mjjhigh', 
-       'of2j_vbflike_mjjGT700_pthjjGT25' : 'Sum$(CleanJet_pt>30)==2 && mjj > 350 && mjj <= 700 && pTHjj >25 && pTWW<200 && vbflike_mjjhigh',
+       'of2j_vbflike_mjjGT700_pthjjGT25' : 'Sum$(CleanJet_pt>30)==2 && mjj > 700 && pTHjj >25 && pTWW<200 && vbflike_mjjhigh',
 
        'of2j_vbflike_mjjGT350_pthGT200' : ' Sum$(CleanJet_pt>30)==2  && mjj > 350 && pTWW > 200 && vbflike_mjjhigh',
        #
@@ -53,7 +53,7 @@ cuts['hww2l2v_13TeV'] = {
    }
 }
 
-
+'''
 ## Top control regions
 cuts['hww2l2v_13TeV_top']  = { 
    'expr' : 'topcr',
@@ -79,4 +79,4 @@ cuts['hww2l2v_13TeV_dytt']  = {
       '2j_vh' : 'multiJet && mjj>60 && mjj<120'
    }
 }
-
+'''

@@ -1,5 +1,4 @@
 
-
 plot['DY']  = {
                   'nameHR' : 'DY',
                   'isSignal' : 0,
@@ -21,7 +20,7 @@ plot['top']  = {
 plot['Wjets']  = {
                   'nameHR' : 'Wjets',
                   'isSignal' : 0,
-                  'color': 851,
+                  'color': 611,
                   'isData'   : 0,
                   'samples'  : ['Wjets']
               }
@@ -47,7 +46,7 @@ plot['QCD']  = {
 
 
 plot['2HDMa_mA_1200_ma_150'] = {
-                  'nameHR' : '2HDMa_mA1200_ma150',
+                  'nameHR' : 'S_1200_150',
                   'isSignal' : 1,
                   'isData'   : 0,
                   'color': 632,   
@@ -55,7 +54,7 @@ plot['2HDMa_mA_1200_ma_150'] = {
                   #'scale'    : 120
 }
 plot['2HDMa_mA_600_ma_150'] = {
-                  'nameHR' : '2HDMa_mA600_ma150',
+                  'nameHR' : 'S_600_150',
                   'isSignal' : 1,
                   'isData'   : 0,
                   'color': 632+1,   
@@ -63,7 +62,7 @@ plot['2HDMa_mA_600_ma_150'] = {
                   #'scale'    : 120
 }
 plot['2HDMa_mA_500_ma_150'] = {
-                  'nameHR' : '2HDMa_mA500_ma150',
+                  'nameHR' : 'S_500_150',
                   'isSignal' : 1,
                   'isData'   : 0,
                   'color': 632+2,   
@@ -71,7 +70,7 @@ plot['2HDMa_mA_500_ma_150'] = {
                   #'scale'    : 120
 }
 plot['2HDMa_mA_400_ma_150'] = {
-                  'nameHR' : '2HDMa_mA400_ma150',
+                  'nameHR' : 'S_400_150',
                   'isSignal' : 1,
                   'isData'   : 0,
                   'color': 632+3,   
@@ -79,7 +78,7 @@ plot['2HDMa_mA_400_ma_150'] = {
                   #'scale'    : 120
 }
 plot['2HDMa_mA_300_ma_150'] = {
-                  'nameHR' : '2HDMa_mA300_ma150',
+                  'nameHR' : 'S_300_150',
                   'isSignal' : 1,
                   'isData'   : 0,
                   'color': 632+4,   
@@ -87,7 +86,7 @@ plot['2HDMa_mA_300_ma_150'] = {
                   #'scale'    : 120
 }
 plot['2HDMa_mA_200_ma_150'] = {
-                  'nameHR' : '2HDMa_mA200_ma150',
+                  'nameHR' : 'S_200_150',
                   'isSignal' : 1,
                   'isData'   : 0,
                   'color': 632+5,   

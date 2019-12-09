@@ -33,8 +33,14 @@ aliases['LepSF1l'] = {
     'samples': mc
 }
 
+
+aliases['FixedTriggEff_1l'] = {
+    'expr':'(TriggerEffWeight_1l*(1*abs(Lepton_pdgId[0])==13 + 0.934*(run_period == 1 && abs(Lepton_pdgId[0])==11) + 0.992*(run_period == 2 && abs(Lepton_pdgId[0])==11) + 1*(run_period > 2 && abs(Lepton_pdgId[0])==11)))',
+    'samples': mc
+}
+
 aliases['SFweight1l'] = {
-    'expr':'puWeight * TriggerEffWeight_1l * Lepton_RecoSF[0] * EMTFbug_veto',
+    'expr':'puWeight * FixedTriggEff_1l * Lepton_RecoSF[0] * EMTFbug_veto', 
     'samples': mc
 }
 
@@ -43,21 +49,12 @@ aliases['Top_pTrw'] = {
     'samples': ['top']
 }
 
-aliases['zeroJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
-}
-
 aliases['bVeto'] = {
     'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0'
 }
 
 aliases['bReq'] = {
     'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) >= 1'
-}
-
-
-aliases['topcr'] = {
-    'expr': 'fabs(Whad_mass - 80.4) < 15. && bReq'
 }
 
 btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_94XSF_V2_B_F.csv' % os.getenv('CMSSW_BASE')
@@ -85,7 +82,7 @@ aliases['bReqSF'] = {
 }
 
 aliases['btagSF'] = {
-    'expr': '(bVeto || (topcr && zeroJet))*bVetoSF + (topcr && !zeroJet)*bReqSF',
+    'expr': 'bVeto*bVetoSF + bReq*bReqSF',
     'samples': mc
 }
 
@@ -124,19 +121,19 @@ aliases['SFweight'] = {
     'samples': mc
 }
 # variations
-aliases['SFweightEleUp'] = {
-    'expr': 'LepSF2l__ele_'+eleWP+'__Up',
-    'samples': mc
-}
-aliases['SFweightEleDown'] = {
-    'expr': 'LepSF2l__ele_'+eleWP+'__Do',
-    'samples': mc
-}
-aliases['SFweightMuUp'] = {
-    'expr': 'LepSF2l__mu_'+muWP+'__Up',
-    'samples': mc
-}
-aliases['SFweightMuDown'] = {
-    'expr': 'LepSF2l__mu_'+muWP+'__Do',
-    'samples': mc
-}
+# aliases['SFweightEleUp'] = {
+#     'expr': 'LepSF2l__ele_'+eleWP+'__Up',
+#     'samples': mc
+# }
+# aliases['SFweightEleDown'] = {
+#     'expr': 'LepSF2l__ele_'+eleWP+'__Do',
+#     'samples': mc
+# }
+# aliases['SFweightMuUp'] = {
+#     'expr': 'LepSF2l__mu_'+muWP+'__Up',
+#     'samples': mc
+# }
+# aliases['SFweightMuDown'] = {
+#     'expr': 'LepSF2l__mu_'+muWP+'__Do',
+#     'samples': mc
+# }

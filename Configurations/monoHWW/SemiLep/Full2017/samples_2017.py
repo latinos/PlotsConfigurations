@@ -33,9 +33,9 @@ mcProduction = 'Fall2017_102X_nAODv4_Full2017v5'
 
 dataReco = 'Run2017_102X_nAODv4_Full2017v5'
 
-mcSteps = 'MCl1loose2017v5__MCCorr2017v5__Semilep2017__HMlnjjSel'
+mcSteps = 'MCl1loose2017v5__MCCorr2017v5__Semilep2017'
 
-dataSteps = 'DATAl1loose2017v5__Semilep2017__HMlnjjSel'
+dataSteps = 'DATAl1loose2017v5__Semilep2017'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -48,6 +48,7 @@ elif  'cern' in SITE:
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
 elif  'ifca' in SITE:
   treeBaseDir = '/gpfs/projects/cms/data/LatinosSkims/nanoAOD/'
+
 
 def makeMCDirectory(var=''):
     if var:
@@ -116,6 +117,7 @@ samples['Wjets'] = {    'name'   :
 ############ DY ############                                                                                                   
 
 samples['DY'] = {    'name'   :   nanoGetSampleFiles(mcDirectory,'DYJetsToLL_M-50_ext1')
+                     # ADDME: 'name'   :   nanoGetSampleFiles(mcDirectory,'DYJetsToLL_M-50_ext1')
                      + nanoGetSampleFiles(mcDirectory,'DYJetsToLL_M-10to50-LO'),
                      'weight' : mcCommonWeight,
                      'FilesPerJob' : 5,
@@ -129,7 +131,7 @@ samples['top'] = {    'name'   :   nanoGetSampleFiles(mcDirectory,'TTToSemiLepto
                       + nanoGetSampleFiles(mcDirectory,'ST_tW_top') 
                       ,
                       'weight' : mcCommonWeight,
-                      'FilesPerJob' : 5,
+                      'FilesPerJob' : 2,
                     }
 
 addSampleWeight(samples,'top','TTToSemiLeptonic','Top_pTrw')
@@ -142,7 +144,7 @@ samples['VV'] = {    'name'   :   nanoGetSampleFiles(mcDirectory,'WZ')
                      + nanoGetSampleFiles(mcDirectory,'WW-LO')
                     ,
                     'weight' : mcCommonWeight,
-                    'FilesPerJob' : 5,
+                    'FilesPerJob' : 2,
                    }
 
 #Was commented out
@@ -168,21 +170,21 @@ samples['QCD'] = {    'name'   :   nanoGetSampleFiles(mcDirectory,'QCD_Pt-15to20
                       +nanoGetSampleFiles(mcDirectory,'QCD_Pt-300toInf_EMEnriched')
                       ,
                      'weight' : mcCommonWeight,
-                     'FilesPerJob' : 5,
+                     'FilesPerJob' : 10,
                     }
 
 
 
-###########################################
-################## DATA ###################
-###########################################
+
+################### DATA ###################
+
 
 samples['DATA'] = {
   'name': [],
   'weight': 'METFilter_DATA*LepWPCut',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 25
+  'FilesPerJob': 1
 }
 
 for _, sd in DataRun:
