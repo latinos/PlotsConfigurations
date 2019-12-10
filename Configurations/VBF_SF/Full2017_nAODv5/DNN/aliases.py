@@ -99,16 +99,16 @@ aliases['multiJet'] = {
     'expr': 'Alt$(CleanJet_pt[1], 0) >= 30.'
 }
 
-aliases['2jggH'] = {
-'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && ( abs(detajj)<3.5 || ( mjj<400 && abs(detajj)>=3.5 ) ) && ( mjj <  65 || mjj >  105 ) )'
-}
-
 aliases['2jVH'] = {
-'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && ( abs(detajj)<3.5 || ( mjj<400 && abs(detajj)>=3.5 ) ) && ( mjj >= 65 && mjj <= 105 ) )'
+'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && ( abs(detajj)< 3.5 && ( mjj >= 65 && mjj <= 105 ) ) )'
 }
 
 aliases['2jVBF'] = {
-'expr': '(Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && (mjj>=400 && abs(detajj)>=3.5))'
+'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && (mjj>=400 && abs(detajj)>=3.5) )'
+}
+
+aliases['2jggH'] = {
+'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && (!2jVH && !2jVBF ) )'
 }
 
 #SF cuts
@@ -185,6 +185,11 @@ aliases['dycr'] = {
 aliases['wwcr'] = {
     'expr': 'mth>60 && mtw2>30 && mll>100 && bVeto && ZVeto'
 }
+
+aliases['Zpeak'] = {
+    'expr': 'fabs(91.1876 - mll) < 7.5'
+}
+
 
 # SR definition
 
