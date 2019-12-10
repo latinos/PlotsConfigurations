@@ -69,6 +69,7 @@ cuts['hww2l2v_13TeV_AccDen']  = {
       '0j_ee' : 'zeroJet && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && hww_DYmvaDNN_0j(Entry$) > 0.8',
       '0j_mm' : 'zeroJet && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && hww_DYmvaDNN_0j(Entry$) > 0.8',
    }
+}
 
 ## WW Acc Numerator: loose dymva + WW sel
 cuts['hww2l2v_13TeV_wwAcc']  = {
@@ -77,3 +78,4 @@ cuts['hww2l2v_13TeV_wwAcc']  = {
       '0j_ee' : 'zeroJet && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && hww_DYmvaDNN_0j(Entry$) > 0.8',
       '0j_mm' : 'zeroJet && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && hww_DYmvaDNN_0j(Entry$) > 0.8',
    }
+} 

@@ -10,7 +10,7 @@ outputDir = 'rootFile_0j_dymvaOptim'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = 'variables_0j.py'
 
 # file with list of cuts
 cutsFile = 'cuts_0j_dymvaOptim.py' 

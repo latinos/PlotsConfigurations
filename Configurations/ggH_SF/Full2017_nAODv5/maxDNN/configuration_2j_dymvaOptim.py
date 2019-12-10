@@ -1,7 +1,7 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = 'ggH_SF_2j_dymvaOptim'
+tag = 'ggH_SF_2017_2j_dymvaOptim'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_2j_dymvaOptim'
@@ -10,7 +10,7 @@ outputDir = 'rootFile_2j_dymvaOptim'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = 'variables_2j.py'
 
 # file with list of cuts
 cutsFile = 'cuts_2j_dymvaOptim.py' 

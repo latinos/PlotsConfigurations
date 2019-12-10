@@ -1,22 +1,23 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = 'ggH_SF_1j_dymvaOptim'
+tag = 'STXS_ggH_SF_2016_0j'
+
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_1j_dymvaOptim'
+outputDir = 'rootFile'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = 'variables_0j.py'
 
 # file with list of cuts
-cutsFile = 'cuts_1j_dymvaOptim.py' 
+cutsFile = 'cuts_stxs_0j.py' 
 
 # file with list of samples
-samplesFile = 'samples.py' 
+samplesFile = 'samples_ggH.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
@@ -28,7 +29,8 @@ lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotGGH_SF_signal'
+# outputDirPlots = '~/www/plotCR'
+outputDirPlots = 'plot_'+tag+'_DNN_sign'
 
 
 # used by mkDatacards to define output directory for datacards
@@ -41,4 +43,3 @@ structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
 nuisancesFile = 'nuisances.py'
-
