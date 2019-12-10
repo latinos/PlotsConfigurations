@@ -5,15 +5,18 @@
 optim={}
 
 optim={}
+optim['dymva0p875']  = ' && hww_DYmvaDNN_0j(Entry$) > 0.875 '
+optim['dymva0p88']  = ' && hww_DYmvaDNN_0j(Entry$) > 0.88 '
+optim['dymva0p885']  = ' && hww_DYmvaDNN_0j(Entry$) > 0.885 '
+optim['dymva0p89']  = ' && hww_DYmvaDNN_0j(Entry$) > 0.89 '
+optim['dymva0p895']  = ' && hww_DYmvaDNN_0j(Entry$) > 0.895 '
+optim['dymva0p90']  = ' && hww_DYmvaDNN_0j(Entry$) > 0.90 '
 optim['dymva0p905']  = ' && hww_DYmvaDNN_0j(Entry$) > 0.905 '
 optim['dymva0p91']  = ' && hww_DYmvaDNN_0j(Entry$) > 0.91 '
 optim['dymva0p915']  = ' && hww_DYmvaDNN_0j(Entry$) > 0.915 '
 optim['dymva0p92']  = ' && hww_DYmvaDNN_0j(Entry$) > 0.92 '
-##optim['dymva0p925']  = ' && hww_DYmvaDNN_0j(Entry$) > 0.925 ' 
+optim['dymva0p925']  = ' && hww_DYmvaDNN_0j(Entry$) > 0.925 '
 optim['dymva0p93']  = ' && hww_DYmvaDNN_0j(Entry$) > 0.93 '
-optim['dymva0p935']  = ' && hww_DYmvaDNN_0j(Entry$) > 0.935 '
-optim['dymva0p94']  = ' && hww_DYmvaDNN_0j(Entry$) > 0.94 '
-optim['dymva0p945'] = ' && hww_DYmvaDNN_0j(Entry$) > 0.945 '
 
 for iCut in optim:
 
