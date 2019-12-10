@@ -12,6 +12,8 @@ fi
 #    exit 1
 #fi
 
+analysis="Full2016_WH3l"
+
 ## FIXME this is where the Combine framework is installed
 cd $CMSSW_BASE/src/
 eval `scramv1 runtime -sh`
@@ -52,7 +54,7 @@ combineCards.py \
     ossf_PTV_GT250=$DC_OS_Dir/wh3l_13TeV_ossf_PTV_GT250/$varOS/datacard.txt \
     wh3l_zg=$DC_OS_Dir/wh3l_zg_13TeV/events/datacard.txt \
     wh3l_wz=$DC_OS_Dir/wh3l_wz_13TeV/events/datacard.txt \
-    > ${outputDir}/Full2016_WH3l_HTXS_Stage1.txt
+    > ${outputDir}/${analysis}_HTXS_Stage1.txt
 
 #combineCards.py \
 #    hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_0_75=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_0_75/$vars/datacard.txt \
@@ -69,30 +71,34 @@ echo "Combination folder is created"
 #Btag
 #RuntimeError: Bogus norm -0.4695537986470998 for channel of2j_WH_SS_eu_2j_PTV_150_250_0J, process Vg, systematic CMS_CMS_btag_cferr1 Up
 #RuntimeError: Bogus norm -0.4695537986470998 for channel hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_150_250_0J, process Vg, systematic CMS_CMS_btag_cferr1 Up
-#for nu in cferr1 cferr2 hf hfstats1_2016 hfstats2_2016 jes lf lfstats1_2016 lfstats2_2016
-#do
-#    for bin in hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_150_250_0J
-#    do
-#	echo "nuisance edit drop Vg $bin CMS_CMS_btag_$nu" >> ${outputDir}/Full2016_WH_SS_HTXS_Stage1.txt
-#    done
+for nu in cferr1 cferr2 hf hfstats1_2016 hfstats2_2016 jes lf lfstats1_2016 lfstats2_2016
+do
+    for bin in sssf_PTV_75_150
+    do
+	echo "nuisance edit drop Vg $bin CMS_btag_$nu" >> ${outputDir}/${analysis}_HTXS_Stage1.txt
+    done
+
+    echo "nuisance edit drop VgS wh3l_wz CMS_btag_$nu" >> ${outputDir}/${analysis}_HTXS_Stage1.txt
 
 #    for bin in hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_150_250_GE1J
 #    do
 #        echo "nuisance edit drop VVV $bin CMS_CMS_btag_$nu" >> ${outputDir}/Full2016_WH_SS_HTXS_Stage1.txt
 #    done
-#done
+done
 
 #Eff
-#for nu in e_2016 m_2016 hwwtrigger_2016 prefiring_2016
-#do
-#    for bin in hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_150_250_0J
-#    do
-#	echo "nuisance edit drop Vg $bin CMS_CMS_eff_$nu" >> ${outputDir}/Full2016_WH_SS_HTXS_Stage1.txt
-#    done
+for nu in e_2016 m_2016 hwwtrigger_2016 prefiring_2016
+do
+    for bin in sssf_PTV_75_150
+    do
+	echo "nuisance edit drop Vg $bin CMS_eff_$nu" >> ${outputDir}/${analysis}_HTXS_Stage1.txt
+    done
+
+    echo "nuisance edit drop VgS wh3l_wz CMS_eff_$nu" >> ${outputDir}/${analysis}_HTXS_Stage1.txt
 
 #    for bin in hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_150_250_GE1J
 #    do
 #        echo "nuisance edit drop VVV $bin CMS_CMS_eff_$nu" >> ${outputDir}/Full2016_WH_SS_HTXS_Stage1.txt
 #    done
 
-#done
+done

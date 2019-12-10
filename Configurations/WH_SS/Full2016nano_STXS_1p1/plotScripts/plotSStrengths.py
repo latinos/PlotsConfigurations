@@ -42,7 +42,7 @@ graph = TGraphAsymmErrors()
 
 #file = open("fitresults2016_stage1p2.txt","r")
 #file = open("ggH_HTXS_mu_v2.txt","r")
-file = open("../Combination/fitresult2016.txt","r")
+file = open("../Combination/fit_ready.txt","r")
 
 categories = []
 
@@ -170,6 +170,6 @@ CMS_lumi.CMS_lumi(canvas, 4, iPos)
 
 gPad.RedrawAxis()
 canvas.Update()
-canvas.SaveAs("signalstrength2016_1.png")
+canvas.SaveAs("signalstrength2016_WH_SS_1.png")
 a = raw_input()
 
