@@ -329,7 +329,7 @@ nuisances['UE']  = {
       # new:['0.96858435682', '1.00390617786']    old:['1.0240', '0.9916'], 
       'ggH_hww' : [UEggHNormFactors[0],UEggHNormFactors[1]],
       # new:['0.929425888608', '0.981263130815']  old:['1.0739', '1.0211'], 
-      'qqH_hww' : [UEqqHNormFactors[0],UEqqHormFactors[1]],
+      'qqH_hww' : [UEqqHNormFactors[0],UEqqHNormFactors[1]],
       # new:['0.967541914923', '1.01489538589']   old:['1.0137', '0.9781'], 
     },
     'folderUp': makeMCDirectory('UEup'),

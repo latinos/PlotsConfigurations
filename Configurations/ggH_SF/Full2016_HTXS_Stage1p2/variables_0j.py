@@ -1,3 +1,11 @@
+import os
+import copy
+import inspect
+
+configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file                                                        
+configurations = os.path.dirname(configurations) # Full2016_HTXS_Stage1p2                                                                     
+configurations = os.path.dirname(configurations) # ggH_SF                                                             
+configurations = os.path.dirname(configurations) # Configurations       
 # variables
 
 #variables = {}
@@ -6,8 +14,7 @@ variables['events']  = {'name': '1',
                         'range' : (1,0,2),  
                         'xaxis' : 'events', 
                          'fold' : 3,
-                   'linesToAdd' : ['.L /afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_11_0_0_pre7/src/PlotsConfigurations/Configurations/ggH_SF/Full2016_nAODv5/hww_DYmvaDNN_0j.C+']
-
+                        'linesToAdd' : ['.L %s/ggH_SF/Full2016_nAODv5/hww_DYmvaDNN_0j.C+' %configurations]
                         }
 '''   
 variables['pt1VSeta1'] = {   'name': 'Lepton_pt[0]:Lepton_eta[0]',            #   variable name    
