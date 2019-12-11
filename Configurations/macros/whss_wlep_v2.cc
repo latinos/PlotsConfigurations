@@ -56,8 +56,8 @@ protected:
   FloatArrayReader* Lepton_pt;
   FloatArrayReader* Lepton_eta;
   FloatArrayReader* Lepton_phi;
-  FloatValueReader* MET_pt;
-  FloatValueReader* MET_phi;
+  FloatValueReader* PuppiMET_pt;
+  FloatValueReader* PuppiMET_phi;
   
 };
 
@@ -138,8 +138,8 @@ WHSS_wpt_v2::evaluate(unsigned)
     
   unsigned int njet{*nCleanJet->Get()};
   unsigned int nlep{*nLepton->Get()};
-  float metpt{*MET_pt->Get()};
-  float metphi{*MET_phi->Get()};
+  float metpt{*PuppiMET_pt->Get()};
+  float metphi{*PuppiMET_phi->Get()};
 
   if (njet==0)
     return -9999.;
@@ -207,7 +207,7 @@ WHSS_wpt_v2::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(Lepton_eta, "Lepton_eta");
   _library.bindBranch(Lepton_phi, "Lepton_phi");
   _library.bindBranch(Lepton_phi, "Lepton_phi");
-  _library.bindBranch(MET_pt, "MET_pt");
-  _library.bindBranch(MET_phi, "MET_phi");
+  _library.bindBranch(PuppiMET_pt, "PuppiMET_pt");
+  _library.bindBranch(PuppiMET_phi, "PuppiMET_phi");
 
 }
