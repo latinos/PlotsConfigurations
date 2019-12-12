@@ -41,11 +41,6 @@ variables['PuppiMET'] = {   'name': 'PuppiMET_pt',
                         'fold' : 3
                         }
 
-variables['MET_pt'] = {   'name': 'MET_pt',      
-                        'range' : (60,0,500),  
-                        'xaxis' : 'MET_pt', 
-                        'fold' : 3
-                        }
 
 variables['Jet1_pt'] = {   'name': 'CleanJet_pt[0]',      
                         'range' : (50,0,600),  
