@@ -131,6 +131,38 @@ structure['ggH_hww'] = {
                   'isData'   : 0    
                   }
 
+if os.path.exists('HTXS_stage1_categories.py') :
+  handle = open('HTXS_stage1_categories.py','r')
+  exec(handle)
+  handle.close()
+
+for cat,num in HTXSStage1_1Categories.iteritems():
+  if 'GT200' not in cat:
+    structure['ggH_hww_'+cat.replace('GG2H_','')] = {
+        'isSignal' : 1,
+        'isData'   : 0
+    }
+
+structure['ggH_hww_PTH_200_300'] = {
+  'isSignal' : 1,
+  'isData'   : 0
+}
+
+structure['ggH_hww_PTH_300_450'] = {
+  'isSignal' : 1,
+  'isData'   : 0
+}
+
+structure['ggH_hww_PTH_450_650'] = {
+  'isSignal' : 1,
+  'isData'   : 0
+}
+
+structure['ggH_hww_PTH_GT650'] = {
+  'isSignal' : 1,
+  'isData'   : 0
+}
+
 structure['qqH_hww'] = {
                   'isSignal' : 1,
                   'isData'   : 0    
