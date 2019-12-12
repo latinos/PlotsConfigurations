@@ -15,6 +15,7 @@ argParser.add_argument('--drop-mcstats', '-M', metavar='PATTERN', dest='dropMCSt
 argParser.add_argument('--drop-nuisance', '-N', metavar='PARAM', dest='dropNuisance', nargs='+', help='Drop specific nuisances.')
 argParser.add_argument('--only-fullmodel', '-O', action='store_true', dest='onlyFullModel', help='Keep only the full model card.')
 argParser.add_argument('--just-combine', '-C', action='store_true', dest='justCombine', help='Do not run text2workspace.')
+argParser.add_argument('--float-background', '-f', metavar='NAME=BKG[,BKG]', dest='floatingBackgrounds', nargs='+', default=['WW=WW', 'top=top', 'DY=DY'], help='Backgrounds to float.')
 argParser.add_argument('--exclude', '-x', metavar='PATTERN', dest='exclude', nargs='+', help='Exclude cards matching regular expression patterns.')
 argParser.add_argument('--hdf5', '-H', action='store_true', dest='hdf5', help='Use text2hdf5.py.')
 
@@ -28,8 +29,6 @@ try:
 except OSError:
     pass
 
-RATEPARAM_MU = False
-
 cmd = ['combineCards.py']
 procIds = {} # it seems that we don't really need to have the process ids synched between the combined cards, but let's make them common
 
@@ -42,12 +41,14 @@ def isSignal(name):
 def isPOI(name):
     if isSignal(name):
         return True
-    if RATEPARAM_MU and args.hdf5 and (name.startswith('WW') or name.startswith('top') or name.startswith('DY')):
-        # treat the split major background as signal instead of using rateParams
-        return True
     return False
 
 os.makedirs(args.outpath)
+
+floatingBackgrounds = []
+for expr in args.floatingBackgrounds:
+    pname, procs = expr.split('=')
+    floatingBackgrounds.append((pname, procs.split(',')))
 
 # Copy the histograms applying adjustments
 targetFullHistRepo = ROOT.TFile.Open('%s/histos.root' % args.outpath, 'recreate')
@@ -155,10 +156,6 @@ for cut in sorted(os.listdir(args.inpath)):
                 hist = nominalTemplates[nominal].Clone(name)
                 hist.Scale(1.5e-4)
 
-        if RATEPARAM_MU and nominal.replace('histo_', '') in ['WW', 'top', 'DY']:
-            hist.SetName('%s_%s%s' % (nominal, obsBin, varsuffix))
-            hist.SetTitle('%s_%s%s' % (nominal, obsBin, varsuffix))
-
         targetFullHistDir.cd()
         hist.SetDirectory(targetFullHistDir)
         hist.Write()
@@ -177,13 +174,6 @@ for cut in sorted(os.listdir(args.inpath)):
     colw = 30
     if len(cut) >= (colw - 5):
         colw = len(cut) + 7
-
-    if RATEPARAM_MU:
-        for proc in ['WW', 'top', 'DY']:
-            try:
-                nominalTemplates['histo_%s_%s' % (proc, obsBin)] = nominalTemplates.pop('histo_%s' % proc)
-            except KeyError: # if the nominal had 0 entries
-                pass
 
     usedProcs = []
     for histName in nominalTemplates:
@@ -213,11 +203,6 @@ for cut in sorted(os.listdir(args.inpath)):
             target.write('bin'.ljust(80) + ''.join([cut.ljust(colw) * len(usedProcs)]) + '\n')
 
             procNames = source.readline().split()[1:]
-
-            if RATEPARAM_MU:
-                for proc in ['WW', 'top', 'DY']:
-                    idx = procNames.index(proc)
-                    procNames[idx] = '%s_%s' % (proc, obsBin)
 
             for name in procNames:
                 if name not in usedProcs:
@@ -327,6 +312,10 @@ with open('%s/fullmodel_unreg.txt' % args.outpath, 'w') as card_out:
     outFullPath = os.path.realpath(args.outpath)
     binNames = None
     procNames = None
+    inNuisances = False
+    theoretical = []
+    luminosity = []
+    experimental = []
     
     for line in out.strip().split('\n'):
         line = line.replace(outFullPath + '/', '')
@@ -354,23 +343,39 @@ with open('%s/fullmodel_unreg.txt' % args.outpath, 'w') as card_out:
         if line.startswith('process') and procNames is None:
             procNames = line.split()[1:]
 
-    for sname in ['WW', 'top', 'DY']:
+        if line.startswith('rate'):
+            inNuisances = True
+            continue
+
+        if inNuisances and not line.startswith('-') and 'autoMCStats' not in line:
+            nuis = line.split()[0]
+            if nuis.startswith('CMS_'):
+                experimental.append(nuis)
+            elif nuis.startswith('lumi'):
+                luminosity.append(nuis)
+            else:
+                theoretical.append(nuis)
+
+    for pname, procs in floatingBackgrounds:
         for obsBin in observableBins:
             if args.hdf5:
-                if not RATEPARAM_MU:
-                    line = 'CMS_hww_%snorm_%s   lnN   ' % (sname, obsBin)
-                    for bin, proc in zip(binNames, procNames):
-                        if obsBin in bin and proc == sname:
-                            line += ' 6.00 '
-                        else:
-                            line += ' - '
-        
-                    card_out.write(line + '\n')
+                line = 'CMS_hww_%snorm_%s   lnN   ' % (pname, obsBin)
+                for bin, proc in zip(binNames, procNames):
+                    if obsBin in bin and proc in procs:
+                        line += ' 6.00 '
+                    else:
+                        line += ' - '
+    
+                card_out.write(line + '\n')
             else:
-                if RATEPARAM_MU:
-                    card_out.write('CMS_hww_{sname}norm_{obsBin} rateParam *{obsBin}* {sname}_{obsBin} 1.00 [0.,10.]\n'.format(sname = sname, obsBin = obsBin))
-                else:
-                    card_out.write('CMS_hww_{sname}norm_{obsBin} rateParam *{obsBin}* {sname} 1.00 [0.,10.]\n'.format(sname = sname, obsBin = obsBin))
+                nuis = 'CMS_hww_{pname}norm_{obsBin}'.format(pname=pname, obsBin=obsBin)
+                theoretical.append(nuis)
+                for proc in procs:
+                    card_out.write('{nuis} rateParam *{obsBin}* {proc} 1.00 [0.,10.]\n'.format(nuis=nuis, obsBin=obsBin, proc=proc))
+
+    card_out.write('theoretical group = %s\n' % (' '.join(theoretical)))
+    card_out.write('luminosity group = %s\n' % (' '.join(luminosity)))
+    card_out.write('experimental group = %s\n' % (' '.join(experimental)))
 
 # Full model with regularization terms
 with open('%s/fullmodel.txt' % args.outpath, 'w') as card_out:

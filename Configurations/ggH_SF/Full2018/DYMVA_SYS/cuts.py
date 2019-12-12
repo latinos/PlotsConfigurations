@@ -34,19 +34,19 @@ cuts['0j_df_in']  = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
 
 cuts['btag_0j_ee_in']  = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) \
                        && Alt$(CleanJet_pt[0],0)<30 \
-                       && btag0 \
+                       && topcr \
                        && fabs(91.1876 - mll) < 7.5  \
                               '
 
 cuts['btag_0j_mm_in']  = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) \
                        && Alt$(CleanJet_pt[0],0)<30 \
-                       && btag0 \
+                       && topcr \
                        && fabs(91.1876 - mll) < 7.5  \
                               '
 
 cuts['btag_0j_df_in']  = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
                        && Alt$(CleanJet_pt[0],0)<30 \
-                       && btag0 \
+                       && topcr \
                        && fabs(91.1876 - mll) < 7.5  \
                               '
 
@@ -70,19 +70,19 @@ cuts['0j_df_out']  = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
 
 cuts['btag_0j_ee_out'] = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) \
                        && Alt$(CleanJet_pt[0],0)<30 \
-                       && btag0 \
+                       && topcr \
                        && ZVeto \
                               '
 
 cuts['btag_0j_mm_out'] = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) \
                        && Alt$(CleanJet_pt[0],0)<30 \
-                       && btag0 \
+                       && topcr \
                        && ZVeto \
                               '
 
 cuts['btag_0j_df_out'] = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
                        && Alt$(CleanJet_pt[0],0)<30 \
-                       && btag0 \
+                       && topcr \
                        && ZVeto \
                               '
 
@@ -90,28 +90,24 @@ cuts['H_0j_ee_out']  = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) \
                        && Alt$(CleanJet_pt[0],0)<30 \
                        && bVeto \
                        && ZVeto \
-                       && Higgs0jetsf \
+                       && Higgs0jetee \
                               '
 
 cuts['H_0j_mm_out']  = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) \
                        && Alt$(CleanJet_pt[0],0)<30 \
                        && bVeto \
                        && ZVeto \
-                       && Higgs0jetsf \
+                       && Higgs0jetee \
                               '
 
 cuts['ww_0j_ee_out']  = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) \
                        && Alt$(CleanJet_pt[0],0)<30 \
-                       && bVeto \
-                       && ZVeto \
-                       && mll>80 \
+                       && wwcr \
                               '
 
 cuts['ww_0j_mm_out']  = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) \
                        && Alt$(CleanJet_pt[0],0)<30 \
-                       && bVeto \
-                       && ZVeto \
-                       && mll>80 \
+                       && wwcr \
                               '
 
 ## 1j
@@ -140,21 +136,21 @@ cuts['1j_df_in']  = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
 cuts['btag_1j_ee_in']  = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) \
                        && Alt$(CleanJet_pt[0],0)>=30 \
                        && Alt$(CleanJet_pt[1],0)<30 \
-                       && btag1 \
+                       && topcr \
                        && fabs(91.1876 - mll) < 7.5  \
                               '
 
 cuts['btag_1j_mm_in']  = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) \
                        && Alt$(CleanJet_pt[0],0)>=30 \
                        && Alt$(CleanJet_pt[1],0)<30 \
-                       && btag1 \
+                       && topcr \
                        && fabs(91.1876 - mll) < 7.5  \
                               '
 
 cuts['btag_1j_df_in']  = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
                        && Alt$(CleanJet_pt[0],0)>=30 \
                        && Alt$(CleanJet_pt[1],0)<30 \
-                       && btag1 \
+                       && topcr \
                        && fabs(91.1876 - mll) < 7.5  \
                               '
 
@@ -182,21 +178,21 @@ cuts['1j_df_out']  = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
 cuts['btag_1j_ee_out'] = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) \
                        && Alt$(CleanJet_pt[0],0)>=30 \
                        && Alt$(CleanJet_pt[1],0)<30 \
-                       && btag1 \
+                       && topcr \
                        && ZVeto \
                               '
 
 cuts['btag_1j_mm_out'] = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) \
                        && Alt$(CleanJet_pt[0],0)>=30 \
                        && Alt$(CleanJet_pt[1],0)<30 \
-                       && btag1 \
+                       && topcr \
                        && ZVeto \
                               '
 
 cuts['btag_1j_df_out'] = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
                        && Alt$(CleanJet_pt[0],0)>=30 \
                        && Alt$(CleanJet_pt[1],0)<30 \
-                       && btag1 \
+                       && topcr \
                        && ZVeto \
                               '
 
@@ -206,7 +202,7 @@ cuts['H_1j_ee_out']  = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) \
                        && Alt$(CleanJet_pt[1],0)<30 \
                        && bVeto \
                        && ZVeto \
-                       && Higgs1jetsf \
+                       && Higgs1jetee \
                               '
 
 cuts['H_1j_mm_out']  = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) \
@@ -214,23 +210,19 @@ cuts['H_1j_mm_out']  = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) \
                        && Alt$(CleanJet_pt[1],0)<30 \
                        && bVeto \
                        && ZVeto \
-                       && Higgs1jetsf \
+                       && Higgs1jetee \
                               '
 
 cuts['ww_1j_ee_out']  = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) \
                        && Alt$(CleanJet_pt[0],0)>=30 \
                        && Alt$(CleanJet_pt[1],0)<30 \
-                       && bVeto \
-                       && ZVeto \
-                       && mll>80 \
+                       && wwcr \
                               '
 
 cuts['ww_1j_mm_out']  = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) \
                        && Alt$(CleanJet_pt[0],0)>=30 \
                        && Alt$(CleanJet_pt[1],0)<30 \
-                       && bVeto \
-                       && ZVeto \
-                       && mll>80 \
+                       && wwcr \
                               '
 
 ## 2j
@@ -255,19 +247,19 @@ cuts['2j_df_in']  = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
 
 cuts['btag_2j_ee_in']  = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) \
                        && 2jggH \
-                       && btag2 \
+                       && topcr \
                        && fabs(91.1876 - mll) < 7.5  \
                               '
 
 cuts['btag_2j_mm_in']  = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) \
                        && 2jggH \
-                       && btag2 \
+                       && topcr \
                        && fabs(91.1876 - mll) < 7.5  \
                               '
 
 cuts['btag_2j_df_in']  = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
                        && 2jggH \
-                       && btag2 \
+                       && topcr \
                        && fabs(91.1876 - mll) < 7.5  \
                               '
 
@@ -291,19 +283,19 @@ cuts['2j_df_out']  = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
 
 cuts['btag_2j_ee_out'] = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) \
                        && 2jggH \
-                       && btag2 \
+                       && topcr \
                        && ZVeto \
                               '
 
 cuts['btag_2j_mm_out'] = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) \
                        && 2jggH \
-                       && btag2 \
+                       && topcr \
                        && ZVeto \
                               '
 
 cuts['btag_2j_df_out'] = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
                        && 2jggH \
-                       && btag2 \
+                       && topcr \
                        && ZVeto \
                               '
 
@@ -311,28 +303,24 @@ cuts['H_2j_ee_out']  = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) \
                        && 2jggH \
                        && bVeto \
                        && ZVeto \
-                       && Higgs2jetsf \
+                       && Higgs2jetee \
                               '
 
 cuts['H_2j_mm_out']  = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) \
                        && 2jggH \
                        && bVeto \
                        && ZVeto \
-                       && Higgs2jetsf \
+                       && Higgs2jetee \
                               '
 
 cuts['ww_2j_ee_out']  = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) \
                        && 2jggH \
-                       && bVeto \
-                       && ZVeto \
-                       && mll>80 \
+                       && wwcr \
                               '
 
 cuts['ww_2j_mm_out']  = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) \
                        && 2jggH \
-                       && bVeto \
-                       && ZVeto \
-                       && mll>80 \
+                       && wwcr \
                               '
 
 ## VBF
@@ -357,19 +345,19 @@ cuts['VBF_df_in']  = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
 
 cuts['btag_VBF_ee_in']  = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) \
                        && 2jVBF \
-                       && btag2 \
+                       && topcr \
                        && fabs(91.1876 - mll) < 7.5  \
                               '
 
 cuts['btag_VBF_mm_in']  = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) \
                        && 2jVBF \
-                       && btag2 \
+                       && topcr \
                        && fabs(91.1876 - mll) < 7.5  \
                               '
 
 cuts['btag_VBF_df_in']  = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
                        && 2jVBF \
-                       && btag2 \
+                       && topcr \
                        && fabs(91.1876 - mll) < 7.5  \
                               '
 
@@ -393,19 +381,19 @@ cuts['VBF_df_out']  = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
 
 cuts['btag_VBF_ee_out'] = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) \
                        && 2jVBF \
-                       && btag2 \
+                       && topcr \
                        && ZVeto \
                               '
 
 cuts['btag_VBF_mm_out'] = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) \
                        && 2jVBF \
-                       && btag2 \
+                       && topcr \
                        && ZVeto \
                               '
 
 cuts['btag_VBF_df_out'] = '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
                        && 2jVBF \
-                       && btag2 \
+                       && topcr \
                        && ZVeto \
                               '
 
@@ -413,26 +401,22 @@ cuts['H_VBF_ee_out']  = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) \
                        && 2jVBF \
                        && bVeto \
                        && ZVeto \
-                       && Higgsvbfsf \
+                       && Higgsvbfee \
                               '
 
 cuts['H_VBF_mm_out']  = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) \
                        && 2jVBF \
                        && bVeto \
                        && ZVeto \
-                       && Higgsvbfsf \
+                       && Higgsvbfee \
                               '
 
 cuts['ww_VBF_ee_out']  = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) \
                        && 2jVBF \
-                       && bVeto \
-                       && ZVeto \
-                       && mll>80 \
+                       && wwcr \
                               '
 
 cuts['ww_VBF_mm_out']  = ' (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) \
                        && 2jVBF \
-                       && bVeto \
-                       && ZVeto \
-                       && mll>80 \
+                       && wwcr \
                               '

@@ -46,9 +46,9 @@ dataSteps = 'DATAl1loose2017v5__l2loose__l2tightOR2017v5'
 
 SITE=os.uname()[1]
 if    'iihe' in SITE:
-  treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015'
+    treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015'
 elif  'cern' in SITE:
-  treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
+    treeBaseDir ='/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
 
 def makeMCDirectory(var=''):
     if var:
@@ -186,7 +186,7 @@ files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
 
 samples['Vg'] = {
     'name': files,
-    'weight': mcCommonWeightNoMatch + '*!(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22)',
+    'weight': mcCommonWeightNoMatch + '*!(Gen_ZGstar_mass > 0)',
     'FilesPerJob': 10
 }
 addSampleWeight(samples, 'Vg', 'ZGToLLG', '(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)')
@@ -206,9 +206,9 @@ samples['VgS'] = {
       'H': 'gstarHigh'
     }
 }
-addSampleWeight(samples, 'VgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 && Gen_ZGstar_mass < 0.1)')
+addSampleWeight(samples, 'VgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
 addSampleWeight(samples, 'VgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22)*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)')
-addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1 || Gen_ZGstar_mass < 0)')
+addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1 )')
 
 ############ VZ ############
 
@@ -247,21 +247,56 @@ if os.path.exists('HTXS_stage1_categories.py') :
   exec(handle)
   handle.close()
 
+## ggH STXS
+
 for cat,num in HTXSStage1_1Categories.iteritems():
-  ## ggH
   if 'GG2H_' in cat:
-    samples['ggH_hww_'+cat.replace('GG2H_','')]  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGluHToWWTo2L2NuPowheg_M125'),
-                                                      'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')',
-                                                      'suppressNegative' :['all'],
-                                                      'suppressNegativeNuisances' :['all'],
-                                                   }
-    signals.append('ggH_hww'+cat.replace('GG2H_',''))
+      if 'PTH_GT200' not in cat:
+          samples['ggH_hww_'+cat.replace('GG2H_','')]  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGluHToWWTo2L2NuPowheg_M125'),
+                                                            'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')',
+                                                            'suppressNegative' :['all'],
+                                                            'suppressNegativeNuisances' :['all'],
+                                                        }
+          signals.append('ggH_hww'+cat.replace('GG2H_',''))
+
+# Stage 1.2 binning for high pTH bin
+
+samples['ggH_hww_PTH_200_300']  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGluHToWWTo2L2NuPowheg_M125'),
+                                     'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV==101)*(HTXS_Higgs_pt>200)*(HTXS_Higgs_pt<=300)',
+                                     'suppressNegative' :['all'],
+                                     'suppressNegativeNuisances' :['all'],
+                                  }
+signals.append('ggH_hww_PTH_200_300')
+
+samples['ggH_hww_PTH_300_450']  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGluHToWWTo2L2NuPowheg_M125'),
+                                     'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV==101)*(HTXS_Higgs_pt>300)*(HTXS_Higgs_pt<=450)',
+                                     'suppressNegative' :['all'],
+                                     'suppressNegativeNuisances' :['all'],
+                                  }
+signals.append('ggH_hww_PTH_300_450')
+
+samples['ggH_hww_PTH_450_650']  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGluHToWWTo2L2NuPowheg_M125'),
+                                     'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV==101)*(HTXS_Higgs_pt>450)*(HTXS_Higgs_pt<=650)',
+                                     'suppressNegative' :['all'],
+                                     'suppressNegativeNuisances' :['all'],
+                                  }
+signals.append('ggH_hww_PTH_450_650')
+
+samples['ggH_hww_PTH_GT650']  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGluHToWWTo2L2NuPowheg_M125'),
+                                     'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV==101)*(HTXS_Higgs_pt>650)',
+                                     'suppressNegative' :['all'],
+                                     'suppressNegativeNuisances' :['all'],
+                                  }
+signals.append('ggH_hww_PTH_GT650')
+          
+#############   
+
 #    samples['ggH_htt_'+cat.replace('GG2H_','')]  = { 'name' :   getSampleFiles(directory,'GluGluHToTauTau_M125',False,'nanoLatino_') ,
 #                                                     'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage_1_pTjet30=='+str(num)+')' ,
 #                                                     'suppressNegative' :['all'],
 #                                                     'suppressNegativeNuisances' :['all'],
 #                                                   }
-
+'''
   ## VBF and VH had.
   elif 'QQ2HQQ_' in cat:
     samples['qqH_hww_'+cat.replace('QQ2HQQ_','')]  = {  'name' : nanoGetSampleFiles(mcDirectory,'VBFHToWWTo2L2NuPowheg_M125'),
@@ -276,7 +311,9 @@ for cat,num in HTXSStage1_1Categories.iteritems():
 #                                                        'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage_1_pTjet30=='+str(num)+')' ,
 #                                                        'suppressNegative' :['all'],
 #                                                        'suppressNegativeNuisances' :['all'],
-#                                                     }
+#                                                     } 
+
+
 #    samples['WH_had_hww_'+cat.replace('QQ2HQQ_','')]   = {  'name' :   getSampleFiles(directory,'HWminusJ_HToWW_M125',False,'nanoLatino_')
 #                                                                      + getSampleFiles(directory,'HWplusJ_HToWW_M125',False,'nanoLatino_')  ,
 #                                                            'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage_1_pTjet30=='+str(num)+')' ,
@@ -359,15 +396,15 @@ for cat,num in HTXSStage1_1Categories.iteritems():
 #}
 
 #signals.append('ggH_hww')
-
+'''
 ############ VBF H->WW ############
-#samples['qqH_hww'] = {
-#    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2NuPowheg_M125'),
-#    'weight': mcCommonWeight,
-#    'FilesPerJob': 3
-#}
+samples['qqH_hww'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2NuPowheg_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 3
+}
 
-#signals.append('qqH_hww')
+signals.append('qqH_hww')
 
 ############# ZH H->WW ############
 
@@ -481,4 +518,3 @@ for _, sd in DataRun:
     files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
-

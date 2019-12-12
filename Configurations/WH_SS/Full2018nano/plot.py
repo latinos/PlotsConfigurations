@@ -26,17 +26,17 @@ groupPlot['Fake']  = {
                   'nameHR' : 'Non-prompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fakes']
+                  'samples'  : ['Fakes_em','Fakes_ee','Fakes_mm']
               }
 
 
-groupPlot['DY']  = {  
-                  'nameHR' : "DY",
-                  'isSignal' : 0,
-                  'color': 418,    # kGreen+2
-                  'samples'  : ['DY']
-              }
-
+#groupPlot['DY']  = {  
+#                  'nameHR' : "DY",
+#                  'isSignal' : 0,
+#                  'color': 418,    # kGreen+2
+#                  'samples'  : ['DY']
+#              }
+#
 
 
 groupPlot['VVV']  = {  
@@ -74,7 +74,8 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
+		  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
+		  'samples'  : ['H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww']
               }
 
 
@@ -84,7 +85,8 @@ groupPlot['Higgs']  = {
 #plot = {}
 
 # keys here must match keys in samples.py    
-#                    
+#
+'''                    
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
@@ -105,9 +107,24 @@ plot['DY']  = {
                         #},
 
               }
+'''
 
+#plot['Fakes']  = {  
+#                  'color': 921,    # kGray + 1
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1.0                  
+#              }
+#
 
-plot['Fakes']  = {  
+plot['Fakes_em']  = {  
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0                  
+              }
+
+plot['Fakes_ee']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -115,14 +132,16 @@ plot['Fakes']  = {
               }
 
 
-#plot['Fake_em']  = {  
-#                  'color': 921,    # kGray + 1
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.0                  
-#              }
-#
-#
+plot['Fakes_mm']  = {  
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0                  
+              }
+
+
+
+
 #plot['Fake_me']  = {  
 #                  'color': 921,    # kGray + 1
 #                  'isSignal' : 0,
@@ -226,7 +245,7 @@ plot['VVV']  = {
 
 
 # Htautau
-
+'''
 plot['H_htt'] = {
                   'nameHR' : 'Htt',
                   'color': 632+4, # kRed+4 
@@ -234,7 +253,7 @@ plot['H_htt'] = {
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
-
+'''
 
 #plot['ZH_htt'] = {
 #                  'nameHR' : 'ZHtt',
@@ -370,7 +389,7 @@ plot['DATA']  = {
                   'nameHR' : 'Data',
                   'color': 1 ,  
                   'isSignal' : 0,
-                  'isData'   : 1 ,
+                  'isData'   : 1,
                   'isBlind'  : 1
               }
 
@@ -386,7 +405,7 @@ plot['DATA']  = {
 #legend['lumi'] = 'L = 4.3/fb'
 #legend['lumi'] = 'L = 6.3/fb'
 #legend['lumi'] = 'L = 12.9/fb'
-legend['lumi'] = 'L = 59.7/fb'
+legend['lumi'] = 'L = 59.74/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

@@ -1,7 +1,7 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = 'ggH_SF_VBF_dymvaOptim'
+tag = 'ggH_SF_2017_VBF_dymvaOptim'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_VBF_dymvaOptim'
@@ -10,7 +10,7 @@ outputDir = 'rootFile_VBF_dymvaOptim'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = 'variables_VBF.py'
 
 # file with list of cuts
 cutsFile = 'cuts_VBF_dymvaOptim.py' 
@@ -28,7 +28,7 @@ lumi = 41.5
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plotGGH_SF_SR'+tag
+outputDirPlots = 'plotGGH_SF'+tag
 
 
 # used by mkDatacards to define output directory for datacards

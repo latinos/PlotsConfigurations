@@ -52,44 +52,17 @@ nuisances['lumi_Ghosts'] = {
     'samples': dict((skey, '1.004') for skey in mc)
 }
 
-'''
-nuisances['lumi']  = {
-               'name'  : 'lumi_13TeV',
-               'samples'  : {
-                   #'DY'       : '1.023',    |
-                   #'top'      : '1.023',    | These 3 backgrounds are data driven, no need to include the luminosity uncertainty
-                   #'WW'       : '1.023',    |
-                   'ggWW'     : '1.023',
-                   'Vg'       : '1.023',
-                   'VgS'      : '1.023',
-                   'WZgS'     : '1.023',
-                   'WZgS_L'   : '1.023',
-                   'WZgS_H'   : '1.023',
-                   'VZ'       : '1.023',
-                   'VVV'      : '1.023',
-                   'ggH_hww'  : '1.023',
-                   'qqH_hww'  : '1.023',
-                   'ZH_hww'   : '1.023',
-                   'ggZH_hww' : '1.023',
-                   'WH_hww'   : '1.023',
-                   'bbH_hww'  : '1.023',
-                   'ttH_hww'  : '1.023',
-                   'ggH_htt'  : '1.023',
-                   'qqH_htt'  : '1.023',
-                   'ZH_htt'   : '1.023',
-                   'WH_htt'   : '1.023',
-                   'H_htt'    : '1.023',
-                   },
-               'type'  : 'lnN',
-              }
-'''
+
 #### FAKES
 
 nuisances['fake_syst'] = {
     'name': 'CMS_fake_syst',
     'type': 'lnN',
     'samples': {
-        'Fakes': '1.3'
+#        'Fakes': '1.3'
+        'Fakes_ee': '1.3',
+        'Fakes_mm': '1.3',
+        'Fakes_em': '1.3'
     },
 }
 
@@ -98,7 +71,9 @@ nuisances['fake_ele'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': {
-        'Fakes': ['fakeWEleUp', 'fakeWEleDown'],
+#        'Fakes': ['fakeWEleUp', 'fakeWEleDown'],
+        'Fakes_ee': ['fakeWEleUp', 'fakeWEleDown'],
+        'Fakes_em': ['fakeWEleUp', 'fakeWEleDown']
     }
 }
 
@@ -107,7 +82,9 @@ nuisances['fake_ele_stat'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': {
-        'Fakes': ['fakeWStatEleUp', 'fakeWStatEleDown']
+#        'Fakes': ['fakeWStatEleUp', 'fakeWStatEleDown']
+        'Fakes_ee': ['fakeWStatEleUp', 'fakeWStatEleDown'],
+        'Fakes_em': ['fakeWStatEleUp', 'fakeWStatEleDown']
     }
 }
 
@@ -116,7 +93,9 @@ nuisances['fake_mu'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': {
-        'Fakes': ['fakeWMuUp', 'fakeWMuDown'],
+#        'Fakes': ['fakeWMuUp', 'fakeWMuDown'],
+        'Fakes_mm': ['fakeWMuUp', 'fakeWMuDown'],
+        'Fakes_em': ['fakeWMuUp', 'fakeWMuDown']
     }
 }
 
@@ -125,9 +104,12 @@ nuisances['fake_mu_stat'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': {
-        'Fakes': ['fakeWStatMuUp', 'fakeWStatMuDown'],
+#        'Fakes': ['fakeWStatMuUp', 'fakeWStatMuDown'],
+        'Fakes_mm': ['fakeWStatMuUp', 'fakeWStatMuDown'],
+        'Fakes_em': ['fakeWStatMuUp', 'fakeWStatMuDown']
     }
 }
+
 ###### B-tagger
 
 for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
@@ -226,6 +208,23 @@ nuisances['met'] = {
     'AsLnN': '1'
 }
 
+##### Pileup
+'''
+nuisances['PU'] = {
+    'name': 'CMS_PU_2016',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+#        'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
+        'top': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
+        'WW': ['1.0033022059*(puWeightUp/puWeight)', '0.997085330608*(puWeightDown/puWeight)'],
+        'WH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
+        #'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
+       # 'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
+    },
+    'AsLnN': '1',
+}
+'''
 # PS and UE
 #FIXME: Add PS uncertainty
 
@@ -519,7 +518,32 @@ nuisances['singleTopToTTbar'] = {
 #        'VZ': '1.16'
 #    }
 #}
-
+#nuisances['VgS2l1jnorm']  = {
+#               'name'  : 'CMS_hww_VgS2l1jnorm',
+#               'samples'  : {
+#                   'VgS' : '1.00',
+#                   },
+#               'type'  : 'rateParam',
+#               'cuts'  : [
+#                 'hww2l2v_13TeV_of2j_WH_SS_uu_1j',
+#                 'hww2l2v_13TeV_of2j_WH_SS_eu_1j',
+#                 'hww2l2v_13TeV_of2j_WH_SS_WZ_1j',
+#                ]
+#              }
+#
+#nuisances['VgS2l2jnorm']  = {
+#               'name'  : 'CMS_hww_VgS2l2jnorm',
+#               'samples'  : {
+#                   'VgS' : '1.00',
+#                   },
+#               'type'  : 'rateParam',
+#               'cuts'  : [
+#                 'hww2l2v_13TeV_of2j_WH_SS_uu_2j',
+#                 'hww2l2v_13TeV_of2j_WH_SS_eu_2j',
+#                 'hww2l2v_13TeV_of2j_WH_SS_WZ_2j',
+#                ]
+#              }
+#
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat']  = {
               'type'  : 'auto',

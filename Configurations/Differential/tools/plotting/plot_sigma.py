@@ -2,48 +2,77 @@ import os
 import sys
 import array
 import math
-import importlib
+
+from argparse import ArgumentParser
+
+argParser = ArgumentParser(description='Plot and print differential cross sections')
+argParser.add_argument('config', metavar='CONFIG', help='fiducial, prefit, or postfit')
+argParser.add_argument('--skip-unreg', '-U', action='store_true', dest='skip_unreg', help='Do not print unregularized cross sections.')
+argParser.add_argument('--add-bias', '-B', action='store_true', dest='add_bias', help='Add estimated bias.')
+argParser.add_argument('--card-tag', '-t', metavar='TAG', dest='card_tag', default='postapproval', help='Data card tag.')
+argParser.add_argument('--out', '-o', metavar='DIRECTORY', dest='out_path', help='Directory to write the output plot pdf files to.')
+
+args = argParser.parse_args()
+sys.argv = []
+
 import numpy as np
 import ROOT
-import root_numpy
+import root_numpy as rnp
+import uproot
 
 import common
 
 ROOT.gStyle.SetHatchesLineWidth(2)
-#ROOT.gStyle.SetHatchesSpacing(0.5)
-
-config = sys.argv[1] # fiducial, prefit, or postfit
-try:
-    skip_unreg = sys.argv[2]
-except:
-    skip_unreg = ''
+ROOT.gStyle.SetHatchesSpacing(1.5)
 
 # fiducial: Fiducial cross sections in bins of gen-level observables
 # prefit: Prefit signal yield predictions in bins of reco-level observables. Systematic uncertainties ignored
 # postfit: Observed differential cross sections in bins of gen-level observables
 
+#productions = [
+#    (['ggH_hww'], 'ggF'),
+#    (['qqH_hww'], 'VBF'),
+#    (['WH_hww'], 'WH'),
+#    (['ZH_hww', 'ggZH_hww'], 'ZH'),
+#    (['ttH_hww'], 'ttH')
+#]
+
 productions = [
-    (['ggH_hww'], 'ggF'),
+    (['ttH_hww'], 'ttH'),
+    (['ZH_hww', 'ggZH_hww', 'WH_hww'], 'ZH+WH'),
     (['qqH_hww'], 'VBF'),
-    (['WH_hww'], 'WH'),
-    (['ZH_hww', 'ggZH_hww'], 'ZH'),
-    (['ttH_hww'], 'ttH')
+    (['ggH_hww'], 'ggF')
 ]
 
 prod_colors = {
-    'ggF': '#1f77b4',
-    'VBF': '#ff7f0e',
-    'WH': '#2ca02c',
-    'ZH': '#d62728',
-    'ttH': '#9467bd'
+    'ttH': ROOT.TColor.GetColor('#b86bb0'),
+    'ZH+WH': ROOT.TColor.GetColor('#ed7880'),
+    'VBF': ROOT.TColor.GetColor('#e6a45a'),
+    'ggF': ROOT.TColor.GetColor('#b3d472'),
 }
+
+uncs = [
+    'statistical',
+    'experimental',
+    'theoretical',
+    'luminosity'
+]
+
+unc_colors = {
+    'statistical': ROOT.TColor.GetColor('#1dc1ef'),
+    'experimental': ROOT.TColor.GetColor('#1d8ad2'),
+    'theoretical': ROOT.TColor.GetColor('#4c50a1'),
+    'luminosity': ROOT.TColor.GetColor('#59035c')
+}
+
+alt_color = ROOT.kGreen + 3
 
 allprods = sum((prods for prods, _ in productions), [])
 
 histograms = {}
 htotals = {}
 
-if config in ['fiducial', 'postfit']:
+if args.config in ['fiducial', 'postfit']:
     source = ROOT.TFile.Open('%s/fiducial/rootFile/plots_Fiducial.root' % common.confdir)
 
     for obs in ['ptH', 'njet']:
@@ -57,7 +86,7 @@ if config in ['fiducial', 'postfit']:
                 histograms[(obs, title)].Add(nominals[prod])
 
             # zero out the bin errors
-            err2s = root_numpy.array(histograms[(obs, title)].GetSumw2(), copy=False)
+            err2s = rnp.array(histograms[(obs, title)].GetSumw2(), copy=False)
             err2s *= 0.
 
     ytitles = {
@@ -67,7 +96,7 @@ if config in ['fiducial', 'postfit']:
 
     rebins = {}
 
-    if config == 'postfit':
+    if args.config == 'postfit':
         altprods = ['ggH_hwwalt', 'qqH_hwwalt', 'WH_hww', 'ZH_hww', 'ggZH_hww', 'ttH_hww']
         althtotals = {}
 
@@ -77,7 +106,7 @@ if config in ['fiducial', 'postfit']:
             
     source.Close()
 
-elif config == 'prefit':
+elif args.config == 'prefit':
     pthBinning = [0., 10., 15., 20., 30., 45., 60., 80., 100., 120., 155., 200., 260., 350.]
     pthBins = []
     for ibin in range(len(pthBinning) - 1):
@@ -140,38 +169,91 @@ elif config == 'prefit':
 
     rebins = common.binning
 
-if config == 'postfit':
+if args.config == 'postfit':
     mus_reg = {}
     mus_unreg = {}
 
     for sname, mus in [('Reg', mus_reg), ('Unreg', mus_unreg)]:
+        if args.skip_unreg and sname == 'Unreg':
+            continue
+        
         for obs in ['ptH', 'njet']:
             mus[obs] = []
+
+            source = ROOT.TFile.Open('%s/combination/%s_%s/higgsCombine%s.MultiDimFit.mH120.root' % (common.confdir, obs, args.card_tag, sname))
+            limit = source.Get('limit')
+            for imu in range(len(common.binnames[obs])):
+                amu = array.array('f', [0.])
+                limit.SetBranchAddress('r_%d' % imu, amu)
+                limit.GetEntry(0)
+                cent = amu[0]
+                limit.GetEntry(1 + imu * 2)
+                errlo = cent - amu[0]
+                limit.GetEntry(2 + imu * 2)
+                errhi = amu[0] - cent
+                mus[obs].append((cent, errlo, errhi))
+                limit.ResetBranchAddresses()
             
-            source = ROOT.TFile.Open('%s/combination/%s_fullmodel/multidimfit%s.root' % (common.confdir, obs, sname))
-            fitresult = source.Get('fit_mdf')
-            pars = fitresult.floatParsFinal()
-            imu = 0
-            while True:
-                mu = pars.find('r_%d' % imu)
-                if not mu:
-                    break
-    
-                mus[obs].append((mu.getVal(), -mu.getErrorLo(), mu.getErrorHi()))
-                imu += 1
-    
             source.Close()
 
-canvas = common.makeRatioCanvas(600, 600)
+    # Reg uncertainty decomposition
+    for obs in ['ptH', 'njet']:
+        source = ROOT.TFile.Open('%s/combination/%s_%s/higgsCombineRegStatOnly.MultiDimFit.mH120.root' % (common.confdir, obs, args.card_tag))
+        limit = source.Get('limit')
+        for imu in range(len(common.binnames[obs])):
+            amu = array.array('f', [0.])
+            limit.SetBranchAddress('r_%d' % imu, amu)
+            limit.GetEntry(0)
+            cent = amu[0]
+            limit.GetEntry(1 + imu * 2)
+            errlo = cent - amu[0]
+            limit.GetEntry(2 + imu * 2)
+            errhi = amu[0] - cent
+            mus_reg[obs][imu] += (errlo, errhi)
+            limit.ResetBranchAddresses()
+        
+        source.Close()
 
-for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
+        for unc in uncs[1:4]:
+            source = ROOT.TFile.Open('%s/combination/%s_%s/higgsCombineRegUncert_%s.MultiDimFit.mH120.root' % (common.confdir, obs, args.card_tag, unc))
+            limit = source.Get('limit')
+            for imu in range(len(common.binnames[obs])):
+                amu = array.array('f', [0.])
+                limit.SetBranchAddress('r_%d' % imu, amu)
+                limit.GetEntry(0)
+                cent = amu[0]
+                limit.GetEntry(1 + imu * 2)
+                errlo = cent - amu[0]
+                limit.GetEntry(2 + imu * 2)
+                errhi = amu[0] - cent
+                statlo, stathi = mus_reg[obs][imu][3:5]
+                mus_reg[obs][imu] += (math.sqrt(errlo * errlo - statlo * statlo), math.sqrt(errhi * errhi - stathi * stathi))
+                limit.ResetBranchAddresses()
+            
+            source.Close()
+
+        if args.add_bias:
+            source = uproot.open('%s/combination/%s_%s/regularization_bias.root' % (common.confdir, obs, args.card_tag))
+            biases = source['bias'].arrays()
+
+            rs = ['r_%d' % imu for imu in range(len(common.binnames[obs]))]
+
+            for imu, r in enumerate(rs):
+                mus_reg[obs][imu] += (-np.sum(biases[r]),)
+            
+canvas = common.makeRatioCanvas(600, 600, prelim=False)
+
+for obs in ['ptH', 'njet']:
     stack = ROOT.THStack('dist', '')
-    legend = ROOT.TLegend(0.7, 0.7, common.xmax, common.ymax)
-    legend.SetBorderSize(0)
-    legend.SetFillStyle(0)
+    genlegend = ROOT.TLegend(0.6, 0.63, 0.8, 0.98)
+    genlegend.SetBorderSize(0)
+    genlegend.SetFillStyle(0)
+    obslegend = ROOT.TLegend(0.8, 0.73, common.xmax - 0.01, 0.98)
+    obslegend.SetBorderSize(0)
+    obslegend.SetFillStyle(0)
     
     for prods, title in productions:
-        color = ROOT.TColor.GetColor(prod_colors[title])
+        color = prod_colors[title]
         lcolor = common.get_line_color(color)
 
         hist = histograms[(obs, title)]
@@ -194,7 +276,7 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
         stack.Add(hist)
 
     for _, title in reversed(productions):
-        legend.AddEntry(histograms[(obs, title)], title, 'LF')
+        genlegend.AddEntry(histograms[(obs, title)], title, 'LF')
 
     distpad = canvas.cd(1)
     distpad.SetLogy(True)
@@ -213,9 +295,11 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
         
     total.Scale(1., 'width')
     total.SetFillColor(ROOT.kBlack)
-    total.SetFillStyle(3003)
+    total.SetFillStyle(3002)
     total.SetLineColor(ROOT.kBlack)
-    total.SetLineWidth(1)
+    total.SetLineWidth(0)
+
+    genlegend.AddEntry(total, 'Uncertainty', 'F')
 
     frame = total.Clone('frame')
     frame.Reset()
@@ -224,7 +308,12 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
     frame.SetMinimum(histograms[(obs, 'ggF')].GetMinimum() * 0.8)
     frame.SetMaximum(stack.GetMaximum() * 2.5)
     frame.GetXaxis().SetLabelSize(0.)
+    frame.GetXaxis().SetNdivisions(canvas.xaxis.GetNdiv())
+    frame.GetXaxis().SetTickLength(canvas.xaxis.GetTickSize())
     frame.GetYaxis().SetTitle(ytitles[obs])
+    frame.GetYaxis().SetLabelSize(0.08)
+    frame.GetYaxis().SetTitleSize(0.08)
+    frame.GetYaxis().SetTitleOffset(0.9)
 
     frame.Draw()
     stack.Draw('SAME HIST')
@@ -232,19 +321,21 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
 
     distpad.Update()
 
-    if config == 'postfit':
+    framewidth = frame.GetXaxis().GetXmax() - frame.GetXaxis().GetXmin()
+
+    if args.config == 'postfit':
         althtotal = althtotals[obs]
         althtotal.Scale(1., 'width')
-        althtotal.SetLineColor(ROOT.kGray)
+        althtotal.SetLineColor(alt_color)
         althtotal.SetLineWidth(2)
-        althtotal.SetFillColor(ROOT.kGray)
+        althtotal.SetFillColor(alt_color)
         althtotal.SetFillStyle(3395) # vertical hatch
         althtotal.Draw('SAME E2')
 
-        legend.AddEntry(althtotal, 'Alternative pred.', 'LF')
+        genlegend.AddEntry(althtotal, 'Madgraph5_aMC@NLO', 'LF')
 
         althtotal_line = ROOT.TLine(0., 0., 0., 0.)
-        althtotal_line.SetLineColor(ROOT.kGray)
+        althtotal_line.SetLineColor(alt_color)
         althtotal_line.SetLineWidth(2)
         for ix in range(1, althtotal.GetNbinsX() + 1):
             xmin = althtotal.GetXaxis().GetBinLowEdge(ix)
@@ -253,20 +344,52 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
             althtotal_line.DrawLine(xmin, y, xmax, y)
 
         gobs = ROOT.TGraphAsymmErrors(total)
+        if args.add_bias:
+            gobs_bias = ROOT.TGraphAsymmErrors(total)
+        gobs_uncs = dict((unc, ROOT.TGraphAsymmErrors(total)) for unc in uncs)
 
         table = ''
 
         ymin = histograms[(obs, 'ggF')].GetMinimum() * 0.8
         ymax = 0.
         for ip in range(total.GetNbinsX()):
-            y = gobs.GetY()[ip] * mus_reg[obs][ip][0]
-            errlo = gobs.GetY()[ip] * mus_reg[obs][ip][1]
-            errhi = gobs.GetY()[ip] * mus_reg[obs][ip][2]
-            gobs.SetPoint(ip, gobs.GetX()[ip], y)
+            width = framewidth * 0.006
+
+            mu = mus_reg[obs][ip]
+            
+            ynom = total.GetBinContent(ip + 1)
+            x = gobs.GetX()[ip]
+            y = ynom * mu[0]
+            errlo = ynom * mu[1]
+            errhi = ynom * mu[2]
+            gobs.SetPoint(ip, x, y)
             gobs.SetPointEYlow(ip, errlo)
             gobs.SetPointEYhigh(ip, errhi)
-            gobs.SetPointEXlow(ip, 0.)
-            gobs.SetPointEXhigh(ip, 0.)
+            gobs.SetPointEXlow(ip, width)
+            gobs.SetPointEXhigh(ip, width)
+
+            if args.add_bias:
+                gobs_bias.SetPoint(ip, x, y)
+                gobs_bias.SetPointEXlow(ip, 0.)
+                gobs_bias.SetPointEXhigh(ip, 0.)
+                if mu[-1] > 0.:
+                    gobs_bias.SetPointEYhigh(ip, ynom * mu[-1])
+                    gobs_bias.SetPointEYlow(ip, 0.)
+                else:
+                    gobs_bias.SetPointEYhigh(ip, 0.)
+                    gobs_bias.SetPointEYlow(ip, -ynom * mu[-1])
+
+            for iunc, unc in enumerate(uncs):
+                width += framewidth * 0.006
+                
+                gobs_unc = gobs_uncs[unc]
+                elo = ynom * mu[3 + iunc * 2]
+                ehi = ynom * mu[4 + iunc * 2]
+                gobs_unc.SetPoint(ip, x, y)
+                gobs_unc.SetPointEYlow(ip, elo)
+                gobs_unc.SetPointEYhigh(ip, ehi)
+                gobs_unc.SetPointEXlow(ip, width)
+                gobs_unc.SetPointEXhigh(ip, width)
 
             # table for AN/PAS
             if obs == 'ptH':
@@ -287,15 +410,18 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
 
             line += '& $%.2f$ ' % (total.GetBinContent(ip + 1) * binw)
 
-            if skip_unreg:
-                line += ('& $%.2f^{%+.2f}_{%+.2f}$ ' * 2) % \
-                    (mus_reg[obs][ip][0], mus_reg[obs][ip][1], mus_reg[obs][ip][2], 
-                        y * binw, errhi * binw, -errlo * binw)
+            if args.skip_unreg:
+                line += '& $%.2f^{%+.2f}_{%+.2f}$ ' % (mu[0], mu[1], mu[2])
+
             else:
-                line += ('& $%.2f^{%+.2f}_{%+.2f}$ ' * 3) % \
+                line += ('& $%.2f^{%+.2f}_{%+.2f}$ ' * 2) % \
                     (mus_unreg[obs][ip][0], mus_unreg[obs][ip][1], mus_unreg[obs][ip][2],
-                        mus_reg[obs][ip][0], mus_reg[obs][ip][1], mus_reg[obs][ip][2], 
-                        y * binw, errhi * binw, -errlo * binw)
+                        mu[0], mu[1], mu[2])
+
+            if args.add_bias:
+                line += '& $%+.2f$ ' % mu[-1]
+
+            line += '& $%.2f^{%+.2f}_{%+.2f}$ ' % (y * binw, errhi * binw, -errlo * binw)
 
             line += '\\\\\n'
 
@@ -310,23 +436,54 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
 
         gobs.SetMarkerColor(ROOT.kBlack)
         gobs.SetMarkerStyle(8)
-        gobs.SetMarkerSize(0.8)
+        gobs.SetMarkerSize(0.6)
         gobs.SetLineColor(ROOT.kBlack)
         gobs.SetLineWidth(2)
+        gobs.SetFillStyle(0)
         
-        gobs.Draw('EP')
+        obslegend.AddEntry(gobs, 'Observed', 'LP')
 
-        legend.AddEntry(gobs, 'Observed', 'LP')
+        if args.add_bias:
+            #gobs_bias.SetLineColor(ROOT.kRed)
+            #gobs_bias.SetLineWidth(2)
+            gobs_bias.SetMarkerStyle(8)
+            gobs_bias.SetMarkerColor(ROOT.kBlack)
+            gobs_bias.SetMarkerSize(0.6)
+            gobs_bias.SetLineColor(ROOT.kRed)
+            gobs_bias.SetLineWidth(4)
+            gobs_bias.SetFillStyle(0)
+
+            bias_legend_entry = ROOT.TLine(0., 0., 0., 0.)
+            bias_legend_entry.SetLineColor(gobs_bias.GetLineColor())
+            bias_legend_entry.SetLineWidth(2)
+
+            obslegend.AddEntry(bias_legend_entry, 'regularization', 'L')
+
+        for unc in uncs:
+            gobs_unc = gobs_uncs[unc]
+            color = unc_colors[unc]
+            gobs_unc.SetLineWidth(2)
+            gobs_unc.SetLineColor(color)
+            gobs_unc.SetFillStyle(0)
+            gobs_unc.Draw('2')
+            obslegend.AddEntry(gobs_unc, unc, 'L')
+
+        #gobs.Draw('2P')
+        gobs.Draw('PZ')
+
+        if args.add_bias:
+            gobs_bias.Draw('PZ')
 
         frame.SetMinimum(ymin)
         frame.SetMaximum(ymax)
 
-    legend.Draw()
+    genlegend.Draw()
+    obslegend.Draw()
     distpad.Update()
 
     ratiopad = canvas.cd(2)
 
-    if config == 'postfit':
+    if args.config == 'postfit':
         ratiopad.SetGridy(True)
 
     rframe = total.Clone('rframe')
@@ -339,6 +496,7 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
     rframe.GetYaxis().SetLabelSize(0.)
     rframe.GetYaxis().SetTitle('')
     rframe.GetYaxis().SetTitle('')
+    rframe.GetYaxis().SetNdivisions(208, False)
 
     rstack = ROOT.THStack('ratio', '')
 
@@ -354,21 +512,21 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
     rstack.Draw('SAME HIST')
 
     uncert = total.Clone('uncert')
-    atotal = root_numpy.hist2array(total, copy=False)
-    err2s = root_numpy.array(uncert.GetSumw2(), copy=False)
+    atotal = rnp.hist2array(total, copy=False)
+    err2s = rnp.array(uncert.GetSumw2(), copy=False)
     err2s[1:-1] /= np.square(atotal)
-    root_numpy.array2hist(np.ones_like(atotal), uncert)
+    rnp.array2hist(np.ones_like(atotal), uncert)
 
     uncert.Draw('SAME E2')
 
     ratiopad.Update()
 
-    if config in ['fiducial', 'prefit']:
-        canvas.raxis.SetTitle('fractions')
+    if args.config in ['fiducial', 'prefit']:
+        canvas.raxes[0].SetTitle('fractions')
         rframe.SetMinimum(0.)
         rframe.SetMaximum(1.)
 
-    elif config == 'postfit':
+    elif args.config == 'postfit':
         altrhist = althtotal.Clone('altrhist')
         altrhist.SetTitle('')
         altrhist.Divide(total)
@@ -382,24 +540,59 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
             althtotal_line.DrawLine(xmin, y, xmax, y)
         
         robs = gobs.Clone()
+        if args.add_bias:
+            robs_bias = gobs_bias.Clone()
+        robs_uncs = dict((unc, gobs_uncs[unc].Clone()) for unc in uncs)
 
         rmin = 0.
         rmax = 2.
         for ip in range(robs.GetN()):
+            x = robs.GetX()[ip]
             mu = mus_reg[obs][ip]
-            robs.SetPoint(ip, robs.GetX()[ip], mu[0])
+            robs.SetPoint(ip, x, mu[0])
             robs.SetPointEYlow(ip, mu[1])
             robs.SetPointEYhigh(ip, mu[2])
 
-            if mu[0] - mu[1] < rmin:
-                rmin = math.floor(mu[0] - mu[1])
-            if mu[0] + mu[2] > rmax:
-                rmax = math.ceil(mu[0] + mu[2])
+            if args.add_bias:
+                robs_bias.SetPoint(ip, x, mu[0])
+                if mu[-1] > 0.:
+                    robs_bias.SetPointEYhigh(ip, mu[-1])
+                else:
+                    robs_bias.SetPointEYlow(ip, -mu[-1])
 
-        robs.Draw('EP')
+            for iunc, unc in enumerate(uncs):
+                robs_unc = robs_uncs[unc]
+                r = mu[0]
+                errlo = mu[3 + iunc * 2]
+                errhi = mu[4 + iunc * 2]
+                if (r > rmax and r - errlo < rmax) or (r < rmin and r + errhi > rmin):
+                    box = ROOT.TBox(0., 0., 0., 0.)
+                    for att in ['LineColor', 'LineWidth', 'FillStyle']:
+                        getattr(box, 'Set' + att)(getattr(robs_unc, 'Get' + att)())
+                        
+                    box.DrawBox(x - robs_unc.GetErrorXlow(ip), r - errlo, x + robs_unc.GetErrorXhigh(ip), r + errhi)
+                else:
+                    robs_unc.SetPoint(ip, robs.GetX()[ip], mu[0])
+                    robs_unc.SetPointEYlow(ip, mu[3 + iunc * 2])
+                    robs_unc.SetPointEYhigh(ip, mu[4 + iunc * 2])
+                    robs_unc.Draw('2')
+
+            # ARC suggestion: fix the ratio plot range to [0, 2]
+            #if mu[0] - mu[1] < rmin:
+            #    rmin = math.floor(mu[0] - mu[1])
+            #if mu[0] + mu[2] > rmax:
+            #    rmax = math.ceil(mu[0] + mu[2])
+
+        robs.Draw('PZ')
+
+        if args.add_bias:
+            robs_bias.Draw('PZ')
 
         rframe.SetMinimum(rmin)
         rframe.SetMaximum(rmax)
+
+        # show an arrow for overshoots?
+        common.showOvershoots(robs, rmin, rmax)
 
         one = ROOT.TLine(altrhist.GetXaxis().GetXmin(), 1., altrhist.GetXaxis().GetXmax(), 1.)
         one.SetLineColor(ROOT.kBlack)
@@ -407,17 +600,32 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
         one.Draw()
 
         binbound = ROOT.TLine(0., 0., 0., 0.)
-        binbound.SetLineColor(ROOT.kGray)
+        binbound.SetLineColor(ROOT.kGray + 3)
+        binbound.SetLineStyle(ROOT.kDotted)
         binbound.SetLineWidth(1)
         for ix in range(1, altrhist.GetNbinsX()):
             edge = altrhist.GetXaxis().GetBinUpEdge(ix)
             binbound.DrawLine(edge, rmin, edge, rmax)
         
-        canvas.raxis.SetTitle('Obs. / pred.')
-        canvas.raxis.SetWmin(rmin)
-        canvas.raxis.SetWmax(rmax)
+        #canvas.raxis.SetTitle('Obs. / pred.')
+        canvas.raxes[0].SetTitle('Ratio to #sigma^{SM}')
+        canvas.raxes[0].SetWmin(rmin)
+        canvas.raxes[0].SetWmax(rmax)
 
-    canvas.xaxis.SetTitle(xtitle)
+    canvas.xaxis.SetTitle(common.xtitles[obs])
+
+    #caxis = ROOT.TGaxis(common.xmax, common.ymin, common.xmax, (canvas.raxis.GetY2() + common.ymin) * 0.5, 0., 1., 205, '+LS')
+    #caxis.SetTitleOffset(ROOT.gStyle.GetTitleOffset('Y') * 0.5)
+    #caxis.SetTitleSize(0.036)
+    #caxis.SetLabelFont(42)
+    #caxis.SetTitleFont(42)
+    #caxis.SetLabelSize(0.875 * 0.036)
+    #caxis.SetTickLength(0.03)
+    #caxis.SetGridLength(0.)
+    #caxis.SetTitle('Fractions')
+    #
+    #canvas.cd()
+    #caxis.Draw()
     
     if obs == 'njet':
         canvas.xaxis.SetLabelSize(0.)
@@ -431,9 +639,9 @@ for obs, xtitle in [('ptH', 'p_{T}^{H} (GeV)'), ('njet', 'N_{jet}')]:
         for il, label in enumerate(['0', '1', '2', '3', '#geq 4']):
             latex.DrawLatex(common.xmin + (common.xmax - common.xmin) * (0.5 + il) / 5., common.ymin - 0.02, label)
 
-    if config == 'fiducial':
-        canvas.printout('sigma_%s.pdf' % obs)
-    elif config == 'prefit':
-        canvas.printout('prefit_%s.pdf' % obs)
-    elif config == 'postfit':
-        canvas.printout('observed_sigma_%s.pdf' % obs)
+    if args.config == 'fiducial':
+        canvas.printout('%s/sigma_%s.pdf' % (args.out_path, obs))
+    elif args.config == 'prefit':
+        canvas.printout('%s/prefit_%s.pdf' % (args.out_path, obs))
+    elif args.config == 'postfit':
+        canvas.printout('%s/observed_sigma_%s.pdf' % (args.out_path, obs))

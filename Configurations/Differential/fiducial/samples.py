@@ -126,4 +126,3 @@ samples['ttH_hww'] = {
 #    'FilesPerJob': 1
 #}
 
-samples = {'ggH_hwwalt': samples['ggH_hwwalt'], 'qqH_hwwalt': samples['qqH_hwwalt']}

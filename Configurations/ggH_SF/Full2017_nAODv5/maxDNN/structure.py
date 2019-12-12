@@ -23,33 +23,13 @@ structure['Fake']  = {
 structure['Fake_ee']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'removeFromCuts' : [
-                                      'hww2l2v_13TeV_0jmm',
-                                      'hww2l2v_13TeV_0jmm_pt2ge20',
-                                      'hww2l2v_13TeV_0jmm_pt2lt20',
-                                      'hww2l2v_13TeV_1jmm',
-                                      'hww2l2v_13TeV_1jmm_pt2ge20',
-                                      'hww2l2v_13TeV_1jmm_pt2lt20',
-                                      'hww2l2v_13TeV_WW_0jmm',
-                                      'hww2l2v_13TeV_WW_1jmm',
-                                      'hww2l2v_13TeV_top_0jmm',
-                                      ],
+                  'removeFromCuts' : [ k for k in cuts if 'mm' in k],
               }
 
 structure['Fake_mm']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'removeFromCuts' : [
-                                      'hww2l2v_13TeV_0jee',
-                                      'hww2l2v_13TeV_0jee_pt2ge20',
-                                      'hww2l2v_13TeV_0jee_pt2lt20',
-                                      'hww2l2v_13TeV_1jee',
-                                      'hww2l2v_13TeV_1jee_pt2ge20',
-                                      'hww2l2v_13TeV_1jee_pt2lt20',
-                                      'hww2l2v_13TeV_WW_0jee',
-                                      'hww2l2v_13TeV_WW_1jee',
-                                      'hww2l2v_13TeV_top_0jee',
-                                      ],
+                  'removeFromCuts' : [ k for k in cuts if 'ee' in k],
               }
 
 structure['ttbar'] = {   
@@ -104,12 +84,12 @@ structure['VgS'] = {
                   'isData'   : 0 
                   }
 
-structure['WZgS_L'] = {
+structure['VgS_L'] = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
 
-structure['WZgS_H'] = {
+structure['VgS_H'] = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
