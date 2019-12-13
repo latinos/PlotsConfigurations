@@ -23,11 +23,11 @@ groupPlot['Wjets'] = {
     'samples'  : ['Wjets']
 }
 
-groupPlot['FakeQCD'] = {
+groupPlot['QCD'] = {
     'nameHR' : "QCD",
     'isSignal' : 0,
     'color'    : 617,   # kViolet + 1
-    'samples'  : ['FakeQCD']
+    'samples'  : ['QCD']
 }
 
 groupPlot['DY']  = {
@@ -41,7 +41,7 @@ groupPlot['multiboson']  = {
     'nameHR' : 'multiboson',
     'isSignal' : 0,
     'color': 857, # kAzure -3
-    'samples'  : ['WW', 'WWewk', 'ggWW']
+    'samples'  : ['WW', 'WWewk', 'ggWW', 'VZ', 'VVV']
 }
 
 # groupPlot['Fake']  = {
@@ -51,32 +51,32 @@ groupPlot['multiboson']  = {
 #                   'samples'  : ['Fake_me', 'Fake_em']
 # }
 
-# groupPlot['WW']  = {
-#     'nameHR' : 'WW',
-#     'isSignal' : 0,
-#     'color': 851, # kAzure -9
-#     'samples'  : ['WW', 'ggWW', 'WWewk']
-# }
-
-# groupPlot['Vg']  = {
-#     'nameHR' : "V#gamma",
-#     'isSignal' : 0,
-#     'color'    : 810,   # kOrange + 10
-#     'samples'  : ['Vg']
-# }
+groupPlot['Vg']  = {
+    'nameHR' : "V#gamma(*)",
+    'isSignal' : 0,
+    'color'    : 810,   # kOrange + 10
+    'samples'  : ['Vg', 'VgS_H', 'VgS_L']
+}
 
 # groupPlot['VgS']  = {
 #     'nameHR' : "V#gamma*",
 #     'isSignal' : 0,
 #     'color'    : 409,   # kGreen - 9
-#     'samples'  : ['VgS_H','VgS_L']
+#     'samples'  : ['VgS_H', 'VgS_L']
 # }
 
-groupPlot['Higgs']  = {
-    'nameHR' : 'Higgs',
+groupPlot['Higgs400']  = {
+    'nameHR' : 'Higgs 400',
     'isSignal' : 1,
     'color': 632, # kRed
     'samples' : ['ggHWWlnuqq_M400', 'qqHWWlnuqq_M400']
+}
+
+groupPlot['Higgs1500']  = {
+    'nameHR' : 'Higgs 1500',
+    'isSignal' : 1,
+    'color': 600, # kBlue
+    'samples' : ['ggHWWlnuqq_M1500', 'qqHWWlnuqq_M1500']
 }
 
 
@@ -125,21 +125,38 @@ groupPlot['Higgs']  = {
 
 
 plot['qqHWWlnuqq_M400'] = {
-                  'nameHR' : 'qqH',
+                  'nameHR' : 'qqH400',
                   'color': 632+1, # kRed+1
                   'isSignal' : 1,
                   'isData'   : 0,
                   'scale'    : 1    #
-                  }
+}
 
 
 plot['ggHWWlnuqq_M400'] = {
-                  'nameHR' : 'ggH',
+                  'nameHR' : 'ggH400',
                   'color': 632, # kRed
                   'isSignal' : 1,
                   'isData'   : 0,
                   'scale'    : 1    #
-                  }
+}
+
+plot['qqHWWlnuqq_M1500'] = {
+                  'nameHR' : 'qqH1500',
+                  'color': 600+1, # kBlue+1
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+}
+
+
+plot['ggHWWlnuqq_M1500'] = {
+                  'nameHR' : 'ggH1500',
+                  'color': 600, # kBlue
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+}
 
 plot['DY']  = {
     'color': 418,    # kGreen+2
@@ -196,41 +213,41 @@ plot['WWewk']  = {
 }
 
 
-# plot['Vg']  = {
-#     'color': 859, # kAzure -1
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1.0
-# }
+plot['Vg']  = {
+    'color': 859, # kAzure -1
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0
+}
 
-# plot['VgS_H'] = {
-#     'color'    : 617,   # kViolet + 1
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1.0
-# }
+plot['VgS_H'] = {
+    'color'    : 617,   # kViolet + 1
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0
+}
 
-# plot['VgS_L'] = {
-#     'color'    : 617,   # kViolet + 1
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1.0
-# }
+plot['VgS_L'] = {
+    'color'    : 617,   # kViolet + 1
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0
+}
 
 
-# plot['VZ']  = {
-#     'color': 858, # kAzure -2
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1.0
-# }
-#
-# plot['VVV']  = {
-#     'color': 857, # kAzure -3
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1.0
-# }
+plot['VZ']  = {
+    'color': 858, # kAzure -2
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0
+}
+
+plot['VVV']  = {
+    'color': 857, # kAzure -3
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0
+}
 
 plot['Wjets']  = {
     'color': 856, # kAzure -4
@@ -239,7 +256,7 @@ plot['Wjets']  = {
     'scale'    : 1.0
 }
 
-plot['FakeQCD']  = {
+plot['QCD']  = {
     'color': 855, # kAzure -5
     'isSignal' : 0,
     'isData'   : 0,
@@ -260,14 +277,14 @@ plot['FakeQCD']  = {
 #
 # # data
 #
-# plot['DATA']  = {
-#                   'nameHR' : 'Data',
-#                   'color': 1 ,
-#                   'isSignal' : 0,
-#                   'isData'   : 1 ,
-#                   'isBlind'  : 0
-#               }
-#
+plot['DATA']  = {
+                  'nameHR' : 'Data',
+                  'color': 1 ,
+                  'isSignal' : 0,
+                  'isData'   : 1 ,
+                  'isBlind'  : 1
+              }
+
 
 
 

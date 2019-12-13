@@ -33,7 +33,7 @@ outputDirPlots = 'plots'
 outputDirDatacard = 'datacards'
 
 # structure file for datacard
-structureFile = 'structure.py'
+# structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
 nuisancesFile = 'nuisances.py'
