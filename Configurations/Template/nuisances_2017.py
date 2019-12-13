@@ -213,8 +213,8 @@ if useEmbeddedDY:
     'samples': {
         'Dyemb': ['1', '1'],
     },
-    'folderUp': treeBaseDir+'/Embedding2017_102X_nAODv4_Full2017v5/DATAl1loose2017v5__l2loose__l2tightOR2017v5__Embedding__EmbElepTup/',
-    'folderDown': treeBaseDir+'/Embedding2017_102X_nAODv4_Full2017v5/DATAl1loose2017v5__l2loose__l2tightOR2017v5__Embedding__EmbElepTdo/',
+    'folderUp': treeBaseDir+'/Embedding2017_102X_nAODv4_Full2017v5/DATAl1loose2017v5__l2loose__l2tightOR2017v5__Embedding__wwSel__EmbElepTup/',
+    'folderDown': treeBaseDir+'/Embedding2017_102X_nAODv4_Full2017v5/DATAl1loose2017v5__l2loose__l2tightOR2017v5__Embedding__wwSel__EmbElepTdo/',
     'AsLnN': '1'
   }
 
@@ -245,8 +245,8 @@ if useEmbeddedDY:
     'samples': {
         'Dyemb': ['1', '1'],
     },
-    'folderUp': treeBaseDir+'/Embedding2017_102X_nAODv4_Full2017v5/DATAl1loose2017v5__l2loose__l2tightOR2017v5__Embedding__EmbMupTup/',
-    'folderDown': treeBaseDir+'/Embedding2017_102X_nAODv4_Full2017v5/DATAl1loose2017v5__l2loose__l2tightOR2017v5__Embedding__EmbMupTdo/',
+    'folderUp': treeBaseDir+'/Embedding2017_102X_nAODv4_Full2017v5/DATAl1loose2017v5__l2loose__l2tightOR2017v5__Embedding__wwSel__EmbMupTup/',
+    'folderDown': treeBaseDir+'/Embedding2017_102X_nAODv4_Full2017v5/DATAl1loose2017v5__l2loose__l2tightOR2017v5__Embedding__wwSel__EmbMupTdo/',
     'AsLnN': '1'
   }
 
