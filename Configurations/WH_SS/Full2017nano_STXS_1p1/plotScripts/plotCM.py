@@ -14,7 +14,7 @@ ROOT.gSystem.Load("libHiggsAnalysisCombinedLimit")
 
 from HiggsAnalysis.CombinedLimit.DatacardParser import *
 
-sr='ossf'
+sr='eu_1j'
 
 ## Style features
 tdrstyle.setTDRStyle()
@@ -56,7 +56,6 @@ for j,value in sampleNames.items():
         if j!=s: continue
         if 'WH_hww' in s:
             if 'FWDH' in s: continue
-            if 'GE1J' in s: continue
             if 'htt' in s: continue
             signals.append(j)
             totalSignal[j] = value
@@ -99,8 +98,8 @@ for j,value in sampleNames.items():
         if q not in k: continue
         if "Top" in k or "DYtt" in k or "WW" in k or "wh3l_wz" in k or "wh3l_zg" in k or "zh4l_ZZ" in k: continue
         if "FWDH" in k: continue
-        if "GE1J" in k: continue
         if sr not in k: continue
+        if "ee" in k: continue
         if overallTotalSignal[k] == 0: continue
         ncat+=1
         combChannelsToConsider.append(k)
@@ -145,7 +144,7 @@ for i,c in enumerate(combChannelsToConsider):
     print "category ", c," ", " signal ",s," signal fraction = ",overallSignalRate[c][s]/overallTotalSignal[c], " events = ", overallSignalRate[c][s]
 
 #change the CMS_lumi variables (see CMS_lumi.py)
-CMS_lumi.lumi_13TeV = "35.9 fb^{-1}"
+CMS_lumi.lumi_13TeV = "41.53 fb^{-1}"
 CMS_lumi.writeExtraText = 1
 CMS_lumi.extraText = "Preliminary"
 ROOT.gStyle.SetPaintTextFormat("4.2f")
@@ -183,6 +182,6 @@ matrixByCol.Draw("colz text")
 CMS_lumi.CMS_lumi(canvas, 4, iPos)
 
 ROOT.gPad.RedrawAxis()
-canvas.SaveAs("confusionmatrix_WH3l_bycol_2016_%s_1p5.png" %sr)
+canvas.SaveAs("confusionmatrix_bycol_2017_%s_1p5.png" %sr)
 
 a = raw_input()

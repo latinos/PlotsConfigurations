@@ -14,7 +14,7 @@ ROOT.gSystem.Load("libHiggsAnalysisCombinedLimit")
 
 from HiggsAnalysis.CombinedLimit.DatacardParser import *
 
-sr='uu_1j'
+sr='eu_1j'
 
 ## Style features
 tdrstyle.setTDRStyle()

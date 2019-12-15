@@ -120,6 +120,14 @@ aliases['WlepPt_v2'] = {
     'args': ()
 }
 
+aliases['WlepPt_v3'] = {
+    'linesToAdd': [
+        '.L %s/macros/whss_wlep_v3.cc+' % configurations
+    ],
+    'class': 'WHSS_wpt_v3',
+    'args': ()
+}
+
 aliases['WlepMt_whss'] = {
     'linesToAdd': [
         '.L %s/macros/wlepmt.cc+' % configurations

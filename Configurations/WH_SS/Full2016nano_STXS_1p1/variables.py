@@ -20,6 +20,12 @@ variables['WlepPt_v2'] = { 'name': 'WlepPt_v2',
                              'fold' : 1
                          }
 
+variables['WlepPt_v3'] = { 'name': 'WlepPt_v3',
+                             'range' : (60,0,300),
+                             'xaxis' : 'Wlep Pt [GeV]',
+                             'fold' : 1
+                         }
+
 variables['WlepMt_whss'] = { 'name': 'WlepMt_whss',
                              'range' : (60,0,300),
                              'xaxis' : 'Wlep Mt [GeV]',
