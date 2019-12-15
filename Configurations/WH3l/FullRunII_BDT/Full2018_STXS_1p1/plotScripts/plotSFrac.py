@@ -140,7 +140,7 @@ for s in overallSignalRate[combChannelsToConsider[0]]: #used just to preserve th
 
 
 #change the CMS_lumi variables (see CMS_lumi.py)
-CMS_lumi.lumi_13TeV = "35.9 fb^{-1}"
+CMS_lumi.lumi_13TeV = "59.74 fb^{-1}"
 CMS_lumi.writeExtraText = 1
 CMS_lumi.extraText = "Preliminary"
 
@@ -193,7 +193,7 @@ for i,c in enumerate(combChannelsToConsider):
   events.DrawLatex(x,y,"#color[10]{ "+" {0:.1f}".format(overallTotalSignal[c])+" events}")
 
 ROOT.gPad.RedrawAxis()
-canvas.SaveAs("signalfraction2016_WH3l_1p1.png")
+canvas.SaveAs("signalfraction2018_WH3l_1p1.png")
 
 a = raw_input()
 

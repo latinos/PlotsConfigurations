@@ -7,7 +7,7 @@ tdrstyle.setTDRStyle()
 
 import CMS_lumi
 #change the CMS_lumi variables (see CMS_lumi.py)
-CMS_lumi.lumi_13TeV = "35.9 fb^{-1}"
+CMS_lumi.lumi_13TeV = "59.74 fb^{-1}"
 CMS_lumi.writeExtraText = 1
 CMS_lumi.extraText = "Preliminary"
 #CMS_lumi.extraText = ""
@@ -170,6 +170,6 @@ CMS_lumi.CMS_lumi(canvas, 4, iPos)
 
 gPad.RedrawAxis()
 canvas.Update()
-canvas.SaveAs("signalstrength2016_1.png")
+canvas.SaveAs("signalstrength2018_1.png")
 a = raw_input()
 
