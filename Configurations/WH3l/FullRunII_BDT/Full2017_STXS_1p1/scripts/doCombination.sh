@@ -12,7 +12,7 @@ fi
 #    exit 1
 #fi
 
-analysis="Full2016_WH3l"
+analysis="Full2017_WH3l"
 
 ## FIXME this is where the Combine framework is installed
 cd $CMSSW_BASE/src/
