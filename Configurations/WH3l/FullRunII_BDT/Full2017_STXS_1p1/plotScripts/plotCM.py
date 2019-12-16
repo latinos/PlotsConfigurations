@@ -185,6 +185,6 @@ matrixByCol.Draw("colz text")
 CMS_lumi.CMS_lumi(canvas, 4, iPos)
 
 ROOT.gPad.RedrawAxis()
-canvas.SaveAs("confusionmatrix_WH3l_bycol_2017_%s_1p1.png" %sr)
+canvas.SaveAs("confusionmatrix_WH3l_bycol_2017_%s_1p5.png" %sr)
 
 a = raw_input()
