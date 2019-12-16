@@ -130,24 +130,24 @@ nuisances['lumi'] = {
 #         'type': 'shape',
 #         'samples': dict((skey, btag_syst) for skey in mc),
 #     }
-
-
-
-
-
-
-##### Trigger Efficiency
-
-trig_syst = ['((TriggerEffWeight_2l_u)/(TriggerEffWeight_2l))*(TriggerEffWeight_2l>0.02) + (TriggerEffWeight_2l<=0.02)', '(TriggerEffWeight_2l_d)/(TriggerEffWeight_2l)']
-
-nuisances['trigg'] = {
-    'name': 'eff_hwwtrigger_2016',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': dict((skey, trig_syst) for skey in mc)
-}
-
-##### Electron Efficiency and energy scale
+#
+#
+#
+#
+#
+#
+# ##### Trigger Efficiency
+#
+# trig_syst = ['((TriggerEffWeight_1l_u)/(TriggerEffWeight_1l))*(TriggerEffWeight_1l>0.02) + (TriggerEffWeight_1l<=0.02)', '(TriggerEffWeight_1l_d)/(TriggerEffWeight_1l)']
+#
+# nuisances['trigg'] = {
+#     'name': 'eff_hwwtrigger_2016',
+#     'kind': 'weight',
+#     'type': 'shape',
+#     'samples': dict((skey, trig_syst) for skey in mc)
+# }
+#
+# ##### Electron Efficiency and energy scale
 
 # nuisances['eff_e'] = {
 #     'name': 'eff_e_2016',
@@ -155,18 +155,18 @@ nuisances['trigg'] = {
 #     'type': 'shape',
 #     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
 # }
-
-nuisances['electronpt'] = {
-    'name': 'scale_e_2016',
-    'kind': 'tree',
-    'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('ElepTup'),
-    'folderDown': makeMCDirectory('ElepTdo'),
-    'AsLnN': '1'
-}
-
-##### Muon Efficiency and energy scale
+#
+# nuisances['electronpt'] = {
+#     'name': 'scale_e_2016',
+#     'kind': 'tree',
+#     'type': 'shape',
+#     'samples': dict((skey, ['1', '1']) for skey in mc),
+#     'folderUp': makeMCDirectory('ElepTup'),
+#     'folderDown': makeMCDirectory('ElepTdo'),
+#     'AsLnN': '1'
+# }
+#
+# ##### Muon Efficiency and energy scale
 
 # nuisances['eff_m'] = {
 #     'name': 'eff_m_2016',
@@ -174,57 +174,57 @@ nuisances['electronpt'] = {
 #     'type': 'shape',
 #     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
 # }
-
-nuisances['muonpt'] = {
-    'name': 'scale_m_2016',
-    'kind': 'tree',
-    'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('MupTup'),
-    'folderDown': makeMCDirectory('MupTdo'),
-    'AsLnN': '1'
-}
-
-##### Jet energy scale
-
-nuisances['jes'] = {
-    'name': 'scale_j_2016',
-    'kind': 'tree',
-    'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('JESup'),
-    'folderDown': makeMCDirectory('JESdo'),
-    'AsLnN': '1'
-}
-
-##### MET energy scale
-
-nuisances['met'] = {
-    'name': 'scale_met_2016',
-    'kind': 'tree',
-    'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('METup'),
-    'folderDown': makeMCDirectory('METdo'),
-    'AsLnN': '1'
-}
-
-##### Pileup
-
-nuisances['PU'] = {
-    'name': 'PU_2016',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {
-        'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
-        'top': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
-        'WW': ['1.0033022059*(puWeightUp/puWeight)', '0.997085330608*(puWeightDown/puWeight)'],
-        # 'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
-        # 'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
-    },
-    'AsLnN': '1',
-}
-
+#
+# nuisances['muonpt'] = {
+#     'name': 'scale_m_2016',
+#     'kind': 'tree',
+#     'type': 'shape',
+#     'samples': dict((skey, ['1', '1']) for skey in mc),
+#     'folderUp': makeMCDirectory('MupTup'),
+#     'folderDown': makeMCDirectory('MupTdo'),
+#     'AsLnN': '1'
+# }
+#
+# ##### Jet energy scale
+#
+# nuisances['jes'] = {
+#     'name': 'scale_j_2016',
+#     'kind': 'tree',
+#     'type': 'shape',
+#     'samples': dict((skey, ['1', '1']) for skey in mc),
+#     'folderUp': makeMCDirectory('JESup'),
+#     'folderDown': makeMCDirectory('JESdo'),
+#     'AsLnN': '1'
+# }
+#
+# ##### MET energy scale
+#
+# nuisances['met'] = {
+#     'name': 'scale_met_2016',
+#     'kind': 'tree',
+#     'type': 'shape',
+#     'samples': dict((skey, ['1', '1']) for skey in mc),
+#     'folderUp': makeMCDirectory('METup'),
+#     'folderDown': makeMCDirectory('METdo'),
+#     'AsLnN': '1'
+# }
+#
+# ##### Pileup
+#
+# nuisances['PU'] = {
+#     'name': 'PU_2016',
+#     'kind': 'weight',
+#     'type': 'shape',
+#     'samples': {
+#         'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
+#         'top': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
+#         'WW': ['1.0033022059*(puWeightUp/puWeight)', '0.997085330608*(puWeightDown/puWeight)'],
+#         # 'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
+#         # 'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
+#     },
+#     'AsLnN': '1',
+# }
+#
 # ##### PS and UE
 # psweights = ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]']
 #
@@ -241,73 +241,73 @@ nuisances['PU'] = {
 #     nuisances['PS']['samples']['ggHWWlnuqq_M'+str(MX)] = psweights
 # for MX in massvbf:
 #     nuisances['PS']['samples']['qqHWWlnuqq_M'+str(MX)] = psweights
-
-
-#FIXME normalization factors need to be recomputed for 2016
-# FIXME: HIGH MASS
-nuisances['UE']  = {
-                'name'  : 'UE_CP5',
-                'skipCMS' : 1,
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : {
-#                  'WW'      : ['1.12720771849', '1.13963144574'],
-                },
-                'folderUp': makeMCDirectory('UEup'),
-                'folderDown': makeMCDirectory('UEdo'),
-                'AsLnN'      : '1',
-                'synchronized': False
-}
-for MX in massggh:
-    # FIXME: is this right, same weights for all masses? given weights are taken from SM
-    nuisances['UE']['samples']['ggHWWlnuqq_M'+str(MX)] = ['1.00211385568', '0.994966378288']
-for MX in massvbf:
-    nuisances['UE']['samples']['qqHWWlnuqq_M'+str(MX)] = ['1.00367895901', '0.994831373195']
-
-
-####### Generic "cross section uncertainties"
-
-apply_on = {
-    'top': [
-        'isSingleTop * 1.0816 + isTTbar',
-        'isSingleTop * 0.9184 + isTTbar'
-    ]
-}
-
-nuisances['singleTopToTTbar'] = {
-    'name': 'singleTopToTTbar',
-    'skipCMS': 1,
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': apply_on
-}
-
-## Top pT reweighting uncertainty
-
-nuisances['TopPtRew'] = {
-    'name': 'topPtRew',   # Theory uncertainty
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {'top': ["1.", "1./Top_pTrw"]},
-    'symmetrize': True
-}
-
-# nuisances['VgStar'] = {
-#     'name': 'hww_VgStarScale',
-#     'type': 'lnN',
-#     'samples': {
-#         'VgS_L': '1.25'
-#     }
+#
+#
+# #FIXME normalization factors need to be recomputed for 2016
+# # FIXME: HIGH MASS
+# nuisances['UE']  = {
+#                 'name'  : 'UE_CP5',
+#                 'skipCMS' : 1,
+#                 'kind'  : 'tree',
+#                 'type'  : 'shape',
+#                 'samples'  : {
+# #                  'WW'      : ['1.12720771849', '1.13963144574'],
+#                 },
+#                 'folderUp': makeMCDirectory('UEup'),
+#                 'folderDown': makeMCDirectory('UEdo'),
+#                 'AsLnN'      : '1',
+#                 'synchronized': False
 # }
+# for MX in massggh:
+#     # FIXME: is this right, same weights for all masses? given weights are taken from SM
+#     nuisances['UE']['samples']['ggHWWlnuqq_M'+str(MX)] = ['1.00211385568', '0.994966378288']
+# for MX in massvbf:
+#     nuisances['UE']['samples']['qqHWWlnuqq_M'+str(MX)] = ['1.00367895901', '0.994831373195']
+#
+#
+# ####### Generic "cross section uncertainties"
+#
+# apply_on = {
+#     'top': [
+#         'isSingleTop * 1.0816 + isTTbar',
+#         'isSingleTop * 0.9184 + isTTbar'
+#     ]
+# }
+#
+# nuisances['singleTopToTTbar'] = {
+#     'name': 'singleTopToTTbar',
+#     'skipCMS': 1,
+#     'kind': 'weight',
+#     'type': 'shape',
+#     'samples': apply_on
+# }
+#
+# ## Top pT reweighting uncertainty
+#
+# nuisances['TopPtRew'] = {
+#     'name': 'topPtRew',   # Theory uncertainty
+#     'kind': 'weight',
+#     'type': 'shape',
+#     'samples': {'top': ["1.", "1./Top_pTrw"]},
+#     'symmetrize': True
+# }
+#
+nuisances['VgStar'] = {
+    'name': 'hww_VgStarScale',
+    'type': 'lnN',
+    'samples': {
+        'VgS_L': '1.25'
+    }
+}
 
 # FIXME: is this right?
-# nuisances['VZ'] = {
-#     'name': 'hww_VZScale',
-#     'type': 'lnN',
-#     'samples': {
-#         'VZ': '1.16'
-#     }
-# }
+nuisances['VZ'] = {
+    'name': 'hww_VZScale',
+    'type': 'lnN',
+    'samples': {
+        'VZ': '1.16'
+    }
+}
 
 ###### pdf uncertainties
 
@@ -318,7 +318,7 @@ valuesbbh  = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','bbH', '125.09','pdf','sm')
 nuisances['pdf_Higgs_gg'] = {
     'name': 'pdf_Higgs_gg',
     'samples': {
-        # 'ggH_hww' : valuesggh,
+        'ggH_hww' : valuesggh,
         # 'ggH_htt' : valuesggh,
         # 'ggZH_hww': valuesggzh,
         # 'bbH_hww' : valuesbbh # FIXME: included in QCDscale?
@@ -343,11 +343,11 @@ nuisances['pdf_Higgs_qqbar'] = {
     'name': 'pdf_Higgs_qqbar',
     'type': 'lnN',
     'samples': {
-        # 'qqH_hww': valuesqqh,
+        'qqH_hww': valuesqqh,
         # 'qqH_htt': valuesqqh,
-        # 'WH_hww': valueswh,
+        'WH_hww': valueswh,
         # 'WH_htt': valueswh,
-        # 'ZH_hww': valueszh,
+        'ZH_hww': valueszh,
         # 'ZH_htt': valueszh
     },
 }
@@ -386,7 +386,7 @@ nuisances['pdf_qqbar'] = {
 nuisances['pdf_Higgs_gg_ACCEPT'] = {
     'name': 'pdf_Higgs_gg_ACCEPT',
     'samples': {
-        # 'ggH_hww': '1.005',
+        'ggH_hww': '1.005',
         # 'ggH_htt': '1.005',
         # 'ggZH_hww': '1.005',
         # 'bbH_hww': '1.005'
@@ -419,9 +419,9 @@ nuisances['pdf_Higgs_qqbar_ACCEPT'] = {
     'name': 'pdf_Higgs_qqbar_ACCEPT',
     'type': 'lnN',
     'samples': {
-        # 'qqH_hww': '1.011',
+        'qqH_hww': '1.011',
         # 'qqH_htt': '1.011',
-        # 'WH_hww': '1.007',
+        'WH_hww': '1.007',
         # 'WH_htt': '1.007',
         # 'ZH_hww': '1.012',
         # 'ZH_htt': '1.012',
@@ -536,31 +536,31 @@ nuisances['CRSR_accept_top'] = {
 #
 #   see https://twiki.cern.ch/twiki/bin/viewauth/CMS/HiggsWG/SignalModelingTools
 
-thus = [
-    ('THU_ggH_Mu', 'ggH_mu'),
-    ('THU_ggH_Res', 'ggH_res'),
-    ('THU_ggH_Mig01', 'ggH_mig01'),
-    ('THU_ggH_Mig12', 'ggH_mig12'),
-    ('THU_ggH_VBF2j', 'ggH_VBF2j'),
-    ('THU_ggH_VBF3j', 'ggH_VBF3j'),
-    ('THU_ggH_PT60', 'ggH_pT60'),
-    ('THU_ggH_PT120', 'ggH_pT120'),
-    ('THU_ggH_qmtop', 'ggH_qmtop')
-]
-
-for name, vname in thus:
-    updown = [vname, '2.-%s' % vname]
-
-    nuisances[name] = {
-        'name': name,
-        'skipCMS': 1,
-        'kind': 'weight',
-        'type': 'shape',
-        'samples': {
-          # 'ggH_hww': updown,
-          #'ggH_htt': updown
-        }
-    }
+# thus = [
+#     ('THU_ggH_Mu', 'ggH_mu'),
+#     ('THU_ggH_Res', 'ggH_res'),
+#     ('THU_ggH_Mig01', 'ggH_mig01'),
+#     ('THU_ggH_Mig12', 'ggH_mig12'),
+#     ('THU_ggH_VBF2j', 'ggH_VBF2j'),
+#     ('THU_ggH_VBF3j', 'ggH_VBF3j'),
+#     ('THU_ggH_PT60', 'ggH_pT60'),
+#     ('THU_ggH_PT120', 'ggH_pT120'),
+#     ('THU_ggH_qmtop', 'ggH_qmtop')
+# ]
+#
+# for name, vname in thus:
+#     updown = [vname, '2.-%s' % vname]
+#
+#     nuisances[name] = {
+#         'name': name,
+#         'skipCMS': 1,
+#         'kind': 'weight',
+#         'type': 'shape',
+#         'samples': {
+#           # 'ggH_hww': updown,
+#           #'ggH_htt': updown
+#         }
+#     }
 
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.

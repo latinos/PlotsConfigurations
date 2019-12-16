@@ -37,9 +37,9 @@ if os.path.exists(massesAndModelsFile) :
 else:
     print "!!! ERROR file ", massesAndModelsFile, " does not exist."
 
-model_I_MSSM = '(cprime1.0BRnew0.0_I/cprime1.0BRnew0.0)' # For MSSM -> No Ewk singlet interpretation # TODO: Do this differently # 'MSSModel_I'
-model_I = model+'_I'
-model_name = '_'+model.replace("cprime","c").replace(".","").replace("BRnew","brn")
+# model_I_MSSM = '(cprime1.0BRnew0.0_I/cprime1.0BRnew0.0)' # For MSSM -> No Ewk singlet interpretation # TODO: Do this differently # 'MSSModel_I'
+# model_I = model+'_I'
+# model_name = '_'+model.replace("cprime","c").replace(".","").replace("BRnew","brn")
 
 ################################################
 ################# SKIMS ########################
@@ -293,12 +293,86 @@ samples['QCD'] = {
 
 
 
+############## SM Higgs ############
+#### ggH -> WW
+
+samples['ggH_hww'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToLNuQQ_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4,
+}
+
+############ VBF H->WW ############
+samples['qqH_hww'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWToLNuQQ_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4
+}
+
+############ ZH H->WW ############
+
+samples['ZH_hww'] = {
+    'name':   nanoGetSampleFiles(mcDirectory, 'HZJ_HToWW_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4
+}
+# FIXME missing sample
+# samples['ggZH_hww'] = {
+#     'name':   nanoGetSampleFiles(mcDirectory, 'GluGluZH_HToWWTo2L2Nu_M125'),
+#     'weight': mcCommonWeight,
+#     'FilesPerJob': 4
+# }
+
+############ WH H->WW ############
+
+samples['WH_hww'] = {
+    'name':   nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4
+}
+
+############ ttH ############
+
+# samples['ttH_hww'] = {
+#     'name':   nanoGetSampleFiles(mcDirectory, 'ttHToNonbb_M125'),
+#     'weight': mcCommonWeight,
+#     'FilesPerJob': 1
+# }
+
+# ############ H->TauTau ############
+#
+# samples['ggH_htt'] = {
+#     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125'),
+#     'weight': mcCommonWeight,
+#     'FilesPerJob': 10
+# }
+#
+# samples['qqH_htt'] = {
+#     'name': nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125'),
+#     'weight': mcCommonWeight,
+#     'FilesPerJob': 10
+# }
+#
+# samples['ZH_htt'] = {
+#    'name': nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125'),
+#    'weight': mcCommonWeight,
+#    'FilesPerJob': 4
+# }
+#
+# samples['WH_htt'] = {
+#    'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
+#    'weight': mcCommonWeight,
+#    'FilesPerJob': 4
+# }
+
+
+
+
 ###########################################
 #############   SIGNALS  ##################
 ###########################################
 
 #List_MX=[115,125,200,210,230,250,300,350,400,500,550,600,650,700,750,800,900,1500,2000,2500,3000,4000,5000]
-List_MX=[500]
 
 signals = []
 
@@ -322,84 +396,6 @@ for MX in massvbf:
 
 
 
-# ############## SM Higgs ############
-# #### ggH -> WW
-#
-# samples['ggH_hww'] = {
-#     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125'),
-#     'weight': [mcCommonWeight, {'class': 'Weight2MINLO', 'args': '%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE')}],
-#     'FilesPerJob': 1,
-#     'linesToAdd': ['.L %s/Differential/weight2MINLO.cc+' % configurations]
-# }
-#
-# ############ VBF H->WW ############
-# samples['qqH_hww'] = {
-#     'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2NuPowheg_M125'),
-#     'weight': mcCommonWeight,
-#     'FilesPerJob': 4
-# }
-#
-# ############ ZH H->WW ############
-#
-# samples['ZH_hww'] = {
-#     'name':   nanoGetSampleFiles(mcDirectory, 'HZJ_HToWW_M125'),
-#     'weight': mcCommonWeight,
-#     'FilesPerJob': 4
-# }
-#
-# samples['ggZH_hww'] = {
-#     'name':   nanoGetSampleFiles(mcDirectory, 'GluGluZH_HToWWTo2L2Nu_M125'),
-#     'weight': mcCommonWeight,
-#     'FilesPerJob': 4
-# }
-#
-# ############ WH H->WW ############
-#
-# samples['WH_hww'] = {
-#     'name':   nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125'),
-#     'weight': mcCommonWeight,
-#     'FilesPerJob': 4
-# }
-#
-# ############ ttH ############
-#
-# samples['ttH_hww'] = {
-#     'name':   nanoGetSampleFiles(mcDirectory, 'ttHToNonbb_M125'),
-#     'weight': mcCommonWeight,
-#     'FilesPerJob': 1
-# }
-#
-# ############ H->TauTau ############
-#
-# samples['ggH_htt'] = {
-#     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125'),
-#     'weight': mcCommonWeight,
-#     'FilesPerJob': 20
-# }
-#
-# samples['qqH_htt'] = {
-#     'name': nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125'),
-#     'weight': mcCommonWeight,
-#     'FilesPerJob': 12
-# }
-
-#signals.append('qqH_htt')
-#
-#samples['ZH_htt'] = {
-#    'name': nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125'),
-#    'weight': mcCommonWeight,
-#    'FilesPerJob': 4
-#}
-#
-#signals.append('ZH_htt')
-#
-#samples['WH_htt'] = {
-#    'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
-#    'weight': mcCommonWeight,
-#    'FilesPerJob': 4
-#}
-#
-#signals.append('WH_htt')
 
 
 
