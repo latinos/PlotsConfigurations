@@ -21,15 +21,15 @@ parser = OptionParser()
 #parser.add_option("-s", "--stat",   dest="stat",          default=False, action="store_true")  # ignore systematic uncertainties to consider statistical uncertainties only
 parser.add_option("-s", "--sr", action="store", type="string", dest="sr", default="uu_1j")
 
-sr = options.sr
-print('sr : ', sr)
-
 (options, args) = parser.parse_args()
 options.bin = True # fake that is a binary output, so that we parse shape lines
 options.noJMax = False
 options.nuisancesToExclude = ''
 options.verbose = False
 options.stat = False
+
+sr = options.sr
+print('sr : ', sr)
 
 STXSbins=[
       'QQ2HLNU_FWDH',
@@ -184,6 +184,6 @@ matrixByCol.Draw("colz text")
 CMS_lumi.CMS_lumi(canvas, 4, iPos)
 
 ROOT.gPad.RedrawAxis()
-canvas.SaveAs("confusionmatrix_bycol_2016_%s_1p5_v2.png" %sr)
+canvas.SaveAs("confusionmatrix_bycol_2016_%s_1p5.png" %sr)
 
 a = raw_input()
