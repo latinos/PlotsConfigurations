@@ -9,10 +9,31 @@ variables['events']  = {   'name': '1',
                         'fold' : 3
                         }
 
-
 #jets 
 
-variables['nJets'] = {   'name': 'Sum$(CleanJet_pt >= 30)',      
+variables['nJets_30'] = {   'name': 'Sum$(CleanJet_pt >= 30)',      
+                        'range' : (10,0,10),  
+                        'xaxis' : 'nJets >= 30 GeV', 
+                        'fold' : 3
+                        }
+
+
+variables['nJets_40'] = {   'name': 'Sum$(CleanJet_pt >= 40)',      
+                        'range' : (10,0,10),  
+                        'xaxis' : 'nJets >= 30 GeV', 
+                        'fold' : 3
+                        }
+
+
+variables['nJets_50'] = {   'name': 'Sum$(CleanJet_pt >= 50)',      
+                        'range' : (10,0,10),  
+                        'xaxis' : 'nJets >= 30 GeV', 
+                        'fold' : 3
+                        }
+
+
+
+variables['nJets_60'] = {   'name': 'Sum$(CleanJet_pt >= 60)',      
                         'range' : (10,0,10),  
                         'xaxis' : 'nJets >= 30 GeV', 
                         'fold' : 3
@@ -66,26 +87,26 @@ variables['Jet4_pt'] = {   'name': 'CleanJet_pt[3]',
                         'fold' : 3
                         } 
 
-variables['Jet1_eta'] = {   'name': 'CleanJet_eta[0]',      
-                        'range' : (50,0,5),  
+variables['Jet1_eta'] = {   'name': 'abs(CleanJet_eta[0])',      
+                        'range' : (60,0,5),  
                         'xaxis' : 'Jet 1 eta', 
                         'fold' : 3
                         } 
 
-variables['Jet2_eta'] = {   'name': 'CleanJet_eta[1]',      
-                        'range' : (50,0,5),  
+variables['Jet2_eta'] = {   'name': 'abs(CleanJet_eta[1])',      
+                        'range' : (60,0,5),  
                         'xaxis' : 'Jet 2 eta', 
                         'fold' : 3
                         } 
 
-variables['Jet3_eta'] = {   'name': 'CleanJet_eta[2]',      
-                        'range' : (50,0,5),  
+variables['Jet3_eta'] = {   'name': 'abs(CleanJet_eta[2])',      
+                        'range' : (60,0,5),  
                         'xaxis' : 'Jet 3 eta', 
                         'fold' : 3
                         } 
 
-variables['Jet4_eta'] = {   'name': 'CleanJet_eta[3]',      
-                        'range' : (50,0,5),  
+variables['Jet4_eta'] = {   'name': 'abs(CleanJet_eta[3])',      
+                        'range' : (60,0,5),  
                         'xaxis' : 'Jet 4 eta', 
                         'fold': 3
                         }
