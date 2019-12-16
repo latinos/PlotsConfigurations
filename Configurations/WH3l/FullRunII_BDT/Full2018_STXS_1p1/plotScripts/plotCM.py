@@ -14,13 +14,12 @@ ROOT.gSystem.Load("libHiggsAnalysisCombinedLimit")
 
 from HiggsAnalysis.CombinedLimit.DatacardParser import *
 
-sr='sssf'
-
 ## Style features
 tdrstyle.setTDRStyle()
 
 parser = OptionParser()
 #parser.add_option("-s", "--stat",   dest="stat",          default=False, action="store_true")  # ignore systematic uncertainties to consider statistical uncertainties only
+parser.add_option("-s", "--sr", action="store", type="string", dest="sr", default="ossf")
 
 (options, args) = parser.parse_args()
 options.bin = True # fake that is a binary output, so that we parse shape lines
@@ -28,6 +27,9 @@ options.noJMax = False
 options.nuisancesToExclude = ''
 options.verbose = False
 options.stat = False
+
+sr = options.sr
+print('sr : ', sr)
 
 STXSbins=[
       'QQ2HLNU_FWDH',

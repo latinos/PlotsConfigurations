@@ -16,7 +16,7 @@ for cat in HTXSStage1_1Categories:
 os.chdir('Combination')
 '''
 #No merging
-command="text2workspace.py Full2016_WH3l_HTXS_Stage1.txt -o Full2016_WH3l_HTXS_Stage1.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose "
+command="text2workspace.py Full2017_WH3l_HTXS_Stage1.txt -o Full2017_WH3l_HTXS_Stage1.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose "
 for sample in sampleNames:
   if 'WH_hww' not in sample: continue
   if 'PTV_150_250_GE1J' in sample: continue
@@ -29,7 +29,7 @@ print command
 '''
 
 #Merge some bins
-command="text2workspace.py Full2016_WH3l_HTXS_Stage1.txt -o Full2016_WH3l_HTXS_Stage1_merged.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose "
+command="text2workspace.py Full2017_WH_3l_HTXS_Stage1.txt -o Full2017_WH_3l_HTXS_Stage1_merged.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose "
 poi=''
 for sample in sampleNames:
   if 'WH_hww' not in sample: continue
