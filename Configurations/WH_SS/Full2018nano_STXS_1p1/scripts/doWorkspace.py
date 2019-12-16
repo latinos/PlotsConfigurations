@@ -20,7 +20,7 @@ command=''
 
 if not MERGE:
   #No merging, 
-  command="text2workspace.py Full2016_WH_SS_HTXS_Stage1.txt -o Full2016_WH_SS_HTXS_Stage1.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose "
+  command="text2workspace.py Full2018_WH_SS_HTXS_Stage1.txt -o Full2018_WH_SS_HTXS_Stage1.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose "
   poi=''
   for sample in sampleNames:
     if 'FWDH' in sample: continue
@@ -30,7 +30,7 @@ if not MERGE:
     command+="--PO 'map=.*/{}:{}[1,-10,10]' ".format(sample,poi)
 else:
   #Merge bin
-  command="text2workspace.py Full2016_WH_SS_HTXS_Stage1.txt -o Full2016_WH_SS_HTXS_Stage1_merged.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose "
+  command="text2workspace.py Full2018_WH_SS_HTXS_Stage1.txt -o Full2018_WH_SS_HTXS_Stage1_merged.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose "
   poi=''
   for sample in sampleNames:
     if 'WH_hww' not in sample: continue
