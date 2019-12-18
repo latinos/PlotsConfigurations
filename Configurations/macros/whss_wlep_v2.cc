@@ -1,5 +1,5 @@
 /*
-  (v2): Building W pt proxy assuming second neutrino is collinear wrt to second neutirno.
+  (v2): Building W pt proxy assuming second neutrino is collinear wrt to second lepton.
   identifying the first neutrino by subtraction with the second neutrino, recover the pz of first neutrino
   by using invariant mass of W mass, and compute the corrected first neutrino's kinematics.
 */

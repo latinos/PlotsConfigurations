@@ -42,7 +42,7 @@ graph = TGraphAsymmErrors()
 
 #file = open("fitresults2016_stage1p2.txt","r")
 #file = open("ggH_HTXS_mu_v2.txt","r")
-file = open("../Combination/fitresult2016.txt","r")
+file = open("../Combination/fit_ready.txt","r")
 
 categories = []
 

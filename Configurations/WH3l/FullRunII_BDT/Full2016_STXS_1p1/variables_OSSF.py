@@ -6,11 +6,18 @@
 
 configDir = os.path.expandvars("${CMSSW_BASE}/src/PlotsConfigurations/Configurations/WH3l/Full2016_nanoAODv4_BDT/")
 
-variables['WlepPt_wh3l_v2'] = {'name' : 'WlepPt_wh3l_v2',
+variables['WlepPt_wh3l_v1'] = {'name' : 'WlepPt_wh3l_v1',
                                'range' : (40,0.,400),
-                               'xaxis' : 'WlepPt_wh31 [GeV]',
+                               'xaxis' : 'WlepPt_wh31_v1 [GeV]',
                                'fold' : 1
                            }
+
+variables['WlepPt_wh3l_v2'] = {'name' : 'WlepPt_wh3l_v2',
+                               'range' : (40,0.,400),
+                               'xaxis' : 'WlepPt_wh31_v2 [GeV]',
+                               'fold' : 1
+                           }
+
 variables['events']  = {'name'  : '1',
                         'range' : (1,0,2),
                         'xaxis' : 'events',
