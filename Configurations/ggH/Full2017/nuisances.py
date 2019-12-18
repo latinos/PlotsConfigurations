@@ -8,6 +8,12 @@
 # samples, treeBaseDir, mcProduction, mcSteps
 # imported from cuts.py
 # cuts
+import os
+
+if os.path.exists('HTXS_Stage1/UEnormfactors.py') :
+  handle = open('HTXS_Stage1/UEnormfactors.py','r')
+  exec(handle)
+  handle.close()
 
 from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
 
@@ -282,9 +288,12 @@ nuisances['UE']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : {
-#                  'WW'      : ['1.12720771849', '1.13963144574'],
-                  'ggH_hww' : ['1.00211385568', '0.994966378288'],
-                  'qqH_hww' : ['1.00367895901', '0.994831373195']
+                  #'WW'      : [UEWWNormFactors[0],UEWWNormFactors[1]],     #The WW down file is buggy                                                                                                            
+                  #new:['0.974123217122', '0.00764355789067'] old:['1.12720771849', '1.13963144574'],                                                                                                             
+                  'ggH_hww' : [UEggHNormFactors[0],UEggHNormFactors[1]],
+                  #new:['0.994216746291', '1.020025863']      old:['1.00211385568', '0.994966378288'],                                                                                                            
+                  'qqH_hww' : [UEqqHNormFactors[0],UEqqHNormFactors[1]]
+                  #new:['0.980501317842', '1.00876768329']    old:['1.00367895901', '0.994831373195']                                                                                                             
                 },
                 'folderUp': makeMCDirectory('UEup'),
                 'folderDown': makeMCDirectory('UEdo'),
@@ -434,28 +443,37 @@ nuisances['pdf_qqbar_ACCEPT'] = {
     },
 }
 
+## Shape nuisance due to QCD scale variations for DY                                                                                                                                                             
+# LHE scale variation weights (w_var / w_nominal)                                                                                                                                                                 
+# [0] is muR=0.50000E+00 muF=0.50000E+00                                                                                                                                                                          
+# [1] is muR=0.50000E+00 muF=0.10000E+01                                                                                                                                                                          
+# [2] is muR=0.50000E+00 muF=0.20000E+01                                                                                                                                                                          
+# [3] is muR=0.10000E+01 muF=0.50000E+00                                                                                                                                                                          
+# [4] is muR=0.10000E+01 muF=0.10000E+01                                                                                                                                                                          
+# [5] is muR=0.10000E+01 muF=0.20000E+01                                                                                                                                                                          
+# [6] is muR=0.20000E+01 muF=0.50000E+00                                                                                                                                                                          
+# [7] is muR=0.20000E+01 muF=0.10000E+01                                                                                                                                                                          
+# [8] is muR=0.20000E+01 muF=0.20000E+01   
 
-## Shape nuisance due to QCD scale variations for DY
-# LHE scale variation weights (w_var / w_nominal)
-# [0] is muR=0.50000E+00 muF=0.50000E+00
-# [7] is muR=0.20000E+01 muF=0.20000E+01
+variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 5, 7, 8]]
+
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
     'skipCMS': 1,
-    'kind': 'weight',
+    'kind': 'weight_envelope',
     'type': 'shape',
-    'samples': {'DY': ['LHEScaleWeight[7]', 'LHEScaleWeight[0]']},
+    'samples': {'DY': variations}, 
     'AsLnN': '1'
 }
 
 nuisances['QCDscale_VV'] = {
     'name': 'QCDscale_VV',
-    'kind': 'weight',
+    'kind': 'weight_envelope',
     'type': 'shape',
     'samples': {
-        'Vg': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-        'VZ': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-        'VgS': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
+        'Vg': variations,
+        'VZ': variations,
+        'VgS': variations,
     }
 }
 
