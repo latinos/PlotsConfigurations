@@ -42,12 +42,10 @@ varSS="BDTG_SSSF_bin3"
 
 # combine the datacards
 combineCards.py \
-    sssf_FWDH=$DC_SS_Dir/wh3l_13TeV_sssf_FWDH/$varSS/datacard.txt \
     sssf_PTV_0_75=$DC_SS_Dir/wh3l_13TeV_sssf_PTV_0_75/$varSS/datacard.txt \
     sssf_PTV_75_150=$DC_SS_Dir/wh3l_13TeV_sssf_PTV_75_150/$varSS/datacard.txt \
     sssf_PTV_150_250_0J=$DC_SS_Dir/wh3l_13TeV_sssf_PTV_150_250_0J/$varSS/datacard.txt \
     sssf_PTV_GT250=$DC_SS_Dir/wh3l_13TeV_sssf_PTV_GT250/$varSS/datacard.txt \
-    ossf_FWDH=$DC_OS_Dir/wh3l_13TeV_ossf_FWDH/$varOS/datacard.txt \
     ossf_PTV_0_75=$DC_OS_Dir/wh3l_13TeV_ossf_PTV_0_75/$varOS/datacard.txt \
     ossf_PTV_75_150=$DC_OS_Dir/wh3l_13TeV_ossf_PTV_75_150/$varOS/datacard.txt \
     ossf_PTV_150_250_0J=$DC_OS_Dir/wh3l_13TeV_ossf_PTV_150_250_0J/$varOS/datacard.txt \
