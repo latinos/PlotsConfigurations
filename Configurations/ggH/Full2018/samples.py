@@ -97,14 +97,25 @@ mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 ptllDYW_NLO = '(0.87*(gen_ptll<10)+(0.379119+0.099744*gen_ptll-0.00487351*gen_ptll**2+9.19509e-05*gen_ptll**3-6.0212e-07*gen_ptll**4)*(gen_ptll>=10 && gen_ptll<45)+(9.12137e-01+1.11957e-04*gen_ptll-3.15325e-06*gen_ptll**2-4.29708e-09*gen_ptll**3+3.35791e-11*gen_ptll**4)*(gen_ptll>=45 && gen_ptll<200) + 1*(gen_ptll>200))'
 ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
 
-files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
+useDYtt = True
+
+files=[]
+if useDYtt:
+  files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50_private') + \
+          nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
+
+else:
+  files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext') + \
+          nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
+
+
 
 samples['DY'] = {
     'name': files,
     'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)',
     'FilesPerJob': 6,
 }
+addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50_private',ptllDYW_NLO)
 addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext',ptllDYW_NLO)
 addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 
@@ -120,7 +131,7 @@ files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
 samples['top'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 1,
+    'FilesPerJob': 2,
 }
 
 addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
