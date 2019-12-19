@@ -16,7 +16,7 @@ for cat in HTXSStage1_1Categories:
 os.chdir('Combination')
 '''
 #No merging
-command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2016_WH3l_HTXS_Stage1.root -t -1 --setParameters "
+command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2017_WH_3l_HTXS_Stage1_merged.root -t -1 --setParameters "
 poi =''
 for sample in sampleNames:
   if 'WH_hww' not in sample: continue
@@ -30,7 +30,7 @@ print(command)
 '''
 
 #Merge some bins
-command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2016_WH3l_HTXS_Stage1_merged.root -t -1 --setParameters "
+command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2017_WH_3l_HTXS_Stage1_merged.root -t -1 --setParameters "
 poi = ''
 for sample in sampleNames:
   if 'WH_hww' not in sample: continue

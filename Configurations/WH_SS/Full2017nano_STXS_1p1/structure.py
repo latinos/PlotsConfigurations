@@ -9,6 +9,7 @@ if os.path.exists('HTXS_stage1_categories.py') :
 
 for cat,num in HTXSStage1_1Categories.iteritems():
   if 'QQ2HLNU_' in cat:
+      #if 'FWDH' in cat: continue
       structure['WH_hww_'+cat.replace('QQ2HLNU_','')] = {
           'isSignal' : 1,
           'isData'   : 0
@@ -187,10 +188,10 @@ structure['qqH_hww'] = {
 #                  'isData'   : 0    
 #                  }
 
-structure['WH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
+#structure['WH_hww'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0    
+#                  }
 
 structure['ZH_hww'] = {
                   'isSignal' : 1,

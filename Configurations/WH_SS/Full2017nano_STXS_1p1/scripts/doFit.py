@@ -19,7 +19,7 @@ MERGE=True
 
 if not MERGE:
   #No merging
-  command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2016_WH_SS_HTXS_Stage1.root -t -1 --setParameters "
+  command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2017_WH_SS_HTXS_Stage1.root -t -1 --setParameters "
   poi =''
   for sample in sampleNames:
     if 'FWDH' in sample: continue
@@ -27,7 +27,7 @@ if not MERGE:
 
 else:
   #MERGE ALL BIN STXS
-  command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2016_WH_SS_HTXS_Stage1_merged.root -t -1 --setParameters "
+  command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2017_WH_SS_HTXS_Stage1_merged.root -t -1 --setParameters "
   poi = ''
   for sample in sampleNames:
       if 'WH_hww' not in sample: continue
