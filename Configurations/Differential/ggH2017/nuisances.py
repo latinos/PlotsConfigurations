@@ -269,16 +269,9 @@ nuisances['UE'] = {
     'skipCMS': 1,
     'kind': 'tree',
     'type': 'shape',
-    'samples': {
-#        'WW'      : ['1', '1'], # stats too low
-        'ggH_hww' : ['1', '1'],
-        'qqH_hww' : ['1', '1']
-    },
+    'samples': {}
     'samplespost': lambda self, samples: dict([('WW', ['1.', '1.'])] + [(sname, ['1.', '1.']) for sname in samples if 'ggH_hww' in sname or 'qqH_hww' in sname]),
-    'AsLnN': '1',
-    'folderUp': makeMCDirectory('UEup'),
-    'folderDown': makeMCDirectory('UEdo'),
-    'synchronized': False
+    'AsLnN': '1'
 }
 
 ####### Generic "cross section uncertainties"

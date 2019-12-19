@@ -2,27 +2,13 @@
 
 #variables = {}
  
-#variables['mll']  = {   'name': 'mll',            #   variable name    
-#                        'range' : (40, 0,200),    #   variable range
-#                        'xaxis' : 'm_{ll} [GeV]',  #   x axis name
-#                         'fold' : 0
-#                        }
-#
-#variables['puppimet']  = {
-#                        'name': 'PuppiMET_pt',
-#                        'range' : (40,0,200),
-#                        'xaxis' : 'pfmet [GeV]',
-#                        'fold'  : 3
-#                        }
-   
-variables['dymva_bdt']  = {  'name'  : '(dymva_bdt_0j*0j)+(dymva_bdt_1j*1j)+(dymva_bdt_2j*2jggH)+(dymva_bdt_VBF*2jVBF)',
-                                'range' : ([-1,0,0.6,0.8,1.001],),
-                                'xaxis' : 'DYMVA_{BDT}^{0j}',
-                                'fold' : 3
-                             }
-
-variables['dymva_dnn']  = {  'name'  : '(dymva_dnn_0j*0j)+(dymva_dnn_1j*1j)+(dymva_dnn_2j*2jggH)+(dymva_dnn_VBF*2jVBF)',
-                                'range' : ([0,0.5,0.8,0.9,1.001],),
-                                'xaxis' : 'DYMVA_{DNN}^{0j}',
-                                'fold' : 3
-                             }
+variables['dymva_dnn'] = {  'name' : '(hww_DYmvaDNN_0j(Entry$)*zeroJet)+(hww_DYmvaDNN_1j(Entry$)*oneJet)+(hww_DYmvaDNN_2j(Entry$)*2jggH)+(hww_DYmvaDNN_VH(Entry$)*2jVH)+(hww_DYmvaDNN_VBF(Entry$)*2jVBF)',
+                           'range' : ([0,0.5,0.6,0.8,0.9,0.95,1.001],),
+                           'xaxis' : 'DYMVA_{DNN}',
+                            'fold' : 3,
+                      'linesToAdd' : ['.L /afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_11_0_0_pre7/src/PlotsConfigurations/Configurations/ggH_SF/Full2018/hww_DYmvaDNN_0j.C+', 
+                                      '.L /afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_11_0_0_pre7/src/PlotsConfigurations/Configurations/ggH_SF/Full2018/hww_DYmvaDNN_1j.C+', 
+                                      '.L /afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_11_0_0_pre7/src/PlotsConfigurations/Configurations/ggH_SF/Full2018/hww_DYmvaDNN_2j.C+', 
+                                      '.L /afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_11_0_0_pre7/src/PlotsConfigurations/Configurations/ggH_SF/Full2018/hww_DYmvaDNN_VH.C+', 
+                                      '.L /afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_11_0_0_pre7/src/PlotsConfigurations/Configurations/ggH_SF/Full2018/hww_DYmvaDNN_VBF.C+']
+                          }

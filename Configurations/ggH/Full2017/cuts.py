@@ -37,8 +37,8 @@ cuts['hww2l2v_13TeV'] = {
       'em_mp_1j_pt2lt20' : ' Lepton_pdgId[0]==11 && Lepton_pt[1]<20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
       'me_mp_1j_pt2lt20' : ' Lepton_pdgId[0]==-13 && Lepton_pt[1]<20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
       'me_pm_1j_pt2lt20' : ' Lepton_pdgId[0]==13 && Lepton_pt[1]<20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
-      # FIXME fix the mjj or additional cuts to make this orthogonal to VH2j and VBF
-      '2j'               : ' mjj<400 && multiJet', 
+      #
+      '2j'               : ' (mjj<65 || mjj>105) && mjj<200 && multiJet', 
    }
 }
 
@@ -49,7 +49,7 @@ cuts['hww2l2v_13TeV_top']  = {
    'categories' : {
       '0j' : 'zeroJet',
       '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-      '2j' : 'mjj<400 && multiJet',
+      '2j' : '(mjj<65 || mjj>105) && mjj<200 && multiJet',
    }
 }
 
@@ -60,6 +60,7 @@ cuts['hww2l2v_13TeV_dytt']  = {
    'categories' : { 
       '0j' : 'zeroJet',
       '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-      '2j' : 'mjj<400 && multiJet',
+      '2j' : '(mjj<65 || mjj>105) && mjj<200 && multiJet',
    }
 }
+

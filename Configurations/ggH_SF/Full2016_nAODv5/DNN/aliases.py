@@ -99,13 +99,18 @@ aliases['multiJet'] = {
     'expr': 'Alt$(CleanJet_pt[1], 0) >= 30.'
 }
 
-aliases['2jggH'] = {
-'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && ( abs(detajj)<3.5 || ( mjj<400 && abs(detajj)>=3.5 ) ) )'
+aliases['2jVH'] = {
+'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && ( abs(detajj)<3.5 && ( mjj >= 65 && mjj <= 105 ) ) )'
 }
 
 aliases['2jVBF'] = {
-'expr': '(Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && (mjj>=400 && abs(detajj)>=3.5))'
+'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && (mjj>=400 && abs(detajj)>=3.5) )'
 }
+
+aliases['2jggH'] = {
+'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && (!2jVH && !2jVBF ) )'
+}
+
 
 # B tagging
 aliases['bVeto'] = {
@@ -128,35 +133,28 @@ aliases['sr'] = {
 }
 
 aliases['Higgs0jetee'] = {
-'expr': '(mll < 45 && mth > 90)'
+'expr': '(mll < 50 && mth > 80)'
 }
-
-aliases['Higgs1jetee'] = {
-'expr': '(abs(dphill) < 2.50 && mll < 55)'
-}
-
-aliases['Higgs2jetee'] = {
-'expr': '(abs(dphill) < 2.00 && mll < 65)'
-}
-
-aliases['Higgsvbfee'] = {
-'expr': '(abs(dphill) < 2.30 && mll < 60)'
-}
-
 aliases['Higgs0jetmm'] = {
-'expr': '(mll < 45 && mth > 90)'
+'expr': '(mll < 50 && mth > 80)'
 }
-
+aliases['Higgs1jetee'] = {
+'expr': '(mll < 70 && mth > 80)'
+}
 aliases['Higgs1jetmm'] = {
-'expr': '(abs(dphill) < 2.50 && mll < 55)'
+'expr': '(mll < 70 && mth > 80)'
 }
-
+aliases['Higgs2jetee'] = {
+'expr': '(mll < 70 && abs(dphill) < 2.50)'
+}
 aliases['Higgs2jetmm'] = {
-'expr': '(abs(dphill) < 2.00 && mll < 65)'
+'expr': '(mll < 70 && abs(dphill) < 2.50)'
 }
-
+aliases['Higgsvbfee'] = {
+'expr': '(mll < 70 && abs(dphill) < 3.00)'
+}
 aliases['Higgsvbfmm'] = {
-'expr': '(abs(dphill) < 2.30 && mll < 60)'
+'expr': '(mll < 70 && abs(dphill) < 3.00)'
 }
 
 # CR definitions

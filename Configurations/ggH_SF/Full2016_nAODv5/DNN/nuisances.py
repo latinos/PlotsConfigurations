@@ -149,7 +149,7 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
         'name': name,
         'kind': 'weight',
         'type': 'shape',
-        'samples': dict((skey, btag_syst) for skey in mc),
+        'samples': dict((skey, btag_syst) for skey in mc if skey not in ['DY']),
     }
 
 ##### Trigger Efficiency
@@ -160,7 +160,7 @@ nuisances['trigg'] = {
     'name': 'CMS_eff_hwwtrigger_2016',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, trig_syst) for skey in mc)
+    'samples': dict((skey, trig_syst) for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
 prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
@@ -169,7 +169,7 @@ nuisances['prefire'] = {
     'name': 'CMS_eff_prefiring_2016',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, prefire_syst) for skey in mc)
+    'samples': dict((skey, prefire_syst) for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
 ##### Electron Efficiency and energy scale
@@ -178,14 +178,14 @@ nuisances['eff_e'] = {
     'name': 'CMS_eff_e_2016',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
+    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
 nuisances['electronpt'] = {
     'name': 'CMS_scale_e_2016',
     'kind': 'tree',
     'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['WW', 'top', 'DY']),
     'folderUp': makeMCDirectory('ElepTup'),
     'folderDown': makeMCDirectory('ElepTdo'),
     'AsLnN': '1'
@@ -197,14 +197,14 @@ nuisances['eff_m'] = {
     'name': 'CMS_eff_m_2016',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
+    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
 nuisances['muonpt'] = {
     'name': 'CMS_scale_m_2016',
     'kind': 'tree',
     'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['WW', 'top', 'DY']),
     'folderUp': makeMCDirectory('MupTup'),
     'folderDown': makeMCDirectory('MupTdo'),
     'AsLnN': '1'
@@ -216,7 +216,7 @@ nuisances['jes'] = {
     'name': 'CMS_scale_j_2016',
     'kind': 'tree',
     'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['WW', 'top', 'DY']),
     'folderUp': makeMCDirectory('JESup'),
     'folderDown': makeMCDirectory('JESdo'),
     'AsLnN': '1'
@@ -228,7 +228,7 @@ nuisances['met'] = {
     'name': 'CMS_scale_met_2016',
     'kind': 'tree',
     'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['WW', 'top', 'DY']),
     'folderUp': makeMCDirectory('METup'),
     'folderDown': makeMCDirectory('METdo'),
     'AsLnN': '1'
@@ -469,7 +469,7 @@ for jetbin in ['0j','1j','2j']:
      'samples'  : {
         'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
       },
-     'cutspost'  : [cut for cut in cuts if jetbin in cut]
+     'cuts'  : [cut for cut in cuts if jetbin in cut]
    }
 
    nuisances['WWqscale'+jetbin]  = {
@@ -480,7 +480,7 @@ for jetbin in ['0j','1j','2j']:
       'samples'  : {
          'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
        },
-      'cutspost'  : [cut for cut in cuts if jetbin in cut]
+      'cuts'  : [cut for cut in cuts if jetbin in cut]
    }
 
 
@@ -490,9 +490,9 @@ nuisances['CRSR_accept_WW'] = {
     'type': 'lnN',
     'samples': {'WW': '1.01'},
     #'samples': {'DY': '1.1'},
-    'cuts': [cut for cut in cuts if '_CR_' in cut],
+    'cuts': [cut for cut in cuts if '_WW_' in cut],
     #'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut and cut in self['cuts']]),
-    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_WW_' in cut]),
+    #'cutspost': (lambda self, cuts: [cut for cut in cuts if '_WW_' in cut]),
     #'perRecoBin': True
 }
 
@@ -502,8 +502,8 @@ nuisances['CRSR_accept_top'] = {
     'type': 'lnN',
     'samples': {'top': '1.01'},
     #'samples': {'top': '1.05'},
-    'cuts': [cut for cut in cuts if '_CR_' in cut],
-    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut]),
+    'cuts': [cut for cut in cuts if '_top_' in cut],
+    #'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut]),
 }
 
 # Theory uncertainty for ggH
@@ -660,6 +660,34 @@ nuisances['WWnorm2j']  = {
                'cuts'  : cuts2j
               }
 
+nuisances['ggWWnorm0j']  = {
+               'name'  : 'CMS_hww_WWnorm0j',
+               'samples'  : {
+                   'ggWW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts0j
+              }
+
+nuisances['ggWWnorm1j']  = {
+               'name'  : 'CMS_hww_WWnorm1j',
+               'samples'  : {
+                   'ggWW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts1j
+              }
+
+nuisances['ggWWnorm2j']  = {
+               'name'  : 'CMS_hww_WWnorm2j',
+               'samples'  : {
+                   'ggWW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j
+              }
+
+
 
 nuisances['Topnorm0j']  = {
                'name'  : 'CMS_hww_Topnorm0j',
@@ -691,7 +719,7 @@ nuisances['Topnorm2j']  = {
 #### DY estimation (just create dummy histograms to be scaled by the DY Rin/out method)
 
 nuisances['DYeenorm0j'] = {
-                'name'  : 'hww_DYeenorm0j',
+                'name'  : 'DYeenorm0j',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -701,7 +729,7 @@ nuisances['DYeenorm0j'] = {
                 }
 
 nuisances['DYeenorm1j'] = {
-                'name'  : 'hww_DYeenorm1j',
+                'name'  : 'DYeenorm1j',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -711,7 +739,7 @@ nuisances['DYeenorm1j'] = {
                 }
 
 nuisances['DYeenorm2j'] = {
-                'name'  : 'hww_DYeenorm2j',
+                'name'  : 'DYeenorm2j',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -721,7 +749,7 @@ nuisances['DYeenorm2j'] = {
                 }
 
 nuisances['DYmmnorm0j'] = {
-                'name'  : 'hww_DYmmnorm0j',
+                'name'  : 'DYmmnorm0j',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -731,7 +759,7 @@ nuisances['DYmmnorm0j'] = {
                 }
 
 nuisances['DYmmnorm1j'] = {
-                'name'  : 'hww_DYmmnorm1j',
+                'name'  : 'DYmmnorm1j',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -741,7 +769,7 @@ nuisances['DYmmnorm1j'] = {
                 }
 
 nuisances['DYmmnorm2j'] = {
-                'name'  : 'hww_DYmmnorm2j',
+                'name'  : 'DYmmnorm2j',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -762,8 +790,8 @@ try:
       newCuts = []
       for iCut in nuisances[iNP]['cuts']:
         for iOptim in optim:
-           newCuts.append(iCut+'_'+iOptim)
+           #newCuts.append(iCut+'_'+iOptim)
+           newCuts.append(iCut)
       nuisances[iNP]['cuts'] = newCuts
 except:
   print "No optim dictionary"
-

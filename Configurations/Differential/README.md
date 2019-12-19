@@ -38,7 +38,12 @@ card_tag=fullmodel
 
 mkdir shapes
 
-../tools/restructure_input.py --tag ggHDifferential${year} --signal-hww-only --signal-no-fiducial --input-fake-flavored --background-minor-merge --aslnn-category-pool -j 8 rootFile_merged shapes/plots_${obs}_${card_tag}.root $obs
+../tools/restructure_input.py --tag ggHDifferential${year} --signal-hww-only --signal-no-fiducial --aslnn-category-pool -j 8 rootFile_merged shapes/plots_${obs}_${card_tag}.root $obs
+# for WW+ggWW merged input
+#../tools/restructure_input.py --tag ggHDifferential${year} --signal-hww-only --signal-no-fiducial --aslnn-category-pool --background-merging WW=WW,ggWW minor=WWewk,Vg,VgS_L,VgS_H,VZ,VVV -j 8 rootFile_merged shapes/plots_${obs}_${card_tag}.root $obs
+# for qqH_hww turned off / scaled up
+#../tools/restructure_input.py --tag ggHDifferential${year} --signal-hww-only --signal-no-fiducial --aslnn-category-pool --custom-scale qqH_hww=0 -j 8 rootFile_merged shapes/plots_${obs}_${card_tag}.root $obs
+#../tools/restructure_input.py --tag ggHDifferential${year} --signal-hww-only --signal-no-fiducial --aslnn-category-pool --custom-scale qqH_hww=2 -j 8 rootFile_merged shapes/plots_${obs}_${card_tag}.root $obs
 ```
 
 This `restructure_input.py` is the most critical and most convoluted part of the differential analysis configuration. It sets up the sample and category merging schemes and executes merging, propagating systematic variations of individual samples / categories into the merged products. The script is mostly self-contained. The only external dependency is to the signal renormalization factor files, which are generated with `tools/renormalize_theoretical.py` for each year separately.
@@ -92,6 +97,8 @@ combineCards.py hww2016=$PWD/../ggH2016/merged_cards/${obs}_${card_tag}/fullmode
 sed 's/kmax [0-9]*/kmax */' ${obs}_${card_tag}/fullmodel_unreg.txt > ${obs}_${card_tag}/fullmodel.txt 
 grep ' constr ' ../ggH2016/merged_cards/${obs}_${card_tag}/fullmodel.txt >> ${obs}_${card_tag}/fullmodel.txt
 
+ulimit -s unlimited
+
 cd ${obs}_${card_tag}
 if [ $obs = ptH ]
 then
@@ -132,6 +139,12 @@ Gen-only plots configuration
 
 For the cross section interpretation of the fit results and multiple other purposes, there is a `fiducial` plot configuration under this directory. The configuration is light-weight enough to not need batch splitting at all. Some of the plotting scripts below assume that this configuration has been run and there exists a ROOT file named `fiducial/rootFile/plots_Fiducial.root`.
 
+Other fit-related tasks
+=======================
+
+Directory `tools/fitting` contains script for fit-related tasks:
+
+- `bias_estimate.py`: Compute the regularization bias as dmu/dn (nu - n) where dmu/dn is the rate of change of mu wrt SR event yield n and nu is the postfit prediction of nu. Requires an postfit Asimov from unregularized best-fit model and the result of a regularized fit result on it (Both can be done with dofit.sh).
 
 Making plots
 ============
@@ -147,4 +160,7 @@ Directory `tools/plotting` contains scripts for plotting:
 - `diffNuisances_mlfit.py`: Do what the standard diffNuisances script does for MultiDimFit output.
 - `plot_mu.py`: Take the regularized and unregularized fit outputs and plot the mu values.
 - `plot_correlation_matrix.py`: Take a fit result and plot the signal strength correlation matrix.
+- `plot_correlation_matrix_2.py`: Paper version of correlation matrix.
+- `bias_estimate_vbfshift.py`: Use VBF0 and VBF2 shifted fits (see above) to assess the model dependency of unfolding.
 - `plot_sigma.py`: Make the "money plot".
+- `plot_postfit_sr.py`: Make post-fit mll distributions from a workspace with possibly different mll:mtH binning from the actual fit model.

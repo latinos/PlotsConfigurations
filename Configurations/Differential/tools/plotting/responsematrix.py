@@ -1,7 +1,10 @@
 import os
 import sys
 import array
+import glob
+import numpy as np
 import ROOT
+import root_numpy as rnp
 
 import common
 
@@ -25,6 +28,9 @@ confdir = os.path.dirname(confdir) # tools
 confdir = os.path.dirname(confdir) # Differential
 
 REDRAW = True
+DATASET = '2016'
+STYLE = 'HIG-17-025'
+#STYLE = ''
 
 if REDRAW:
     ROOT.gSystem.Load('libLatinoAnalysisMultiDraw.so')
@@ -32,13 +38,33 @@ if REDRAW:
     ROOT.gROOT.LoadMacro('%s/fiducial/fiducial.cc+' % confdir)
     
     weight2MINLO = ROOT.Weight2MINLO('%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE'))
+    weight2MINLOReweight = ROOT.multidraw.ReweightSource(ROOT.multidraw.CompiledExprSource(weight2MINLO))
     fiducial = ROOT.FiducialRegion()
-    
+
+    productions = {
+        '2016': 'Summer16_102X_nAODv5_SigOnly_Full2016v5',
+        '2017': 'Fall2017_102X_nAODv5_SigOnly_Full2017v5',
+        '2018': 'Autumn18_102X_nAODv5_Full2018v5'
+    }
+
+    steps = {
+        '2016': 'MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__wwSel',
+        '2017': 'MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__wwSel',
+        '2018': 'MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5__wwSel'
+    }
+
+    trees = {
+        '2016': ['GluGluHToWWTo2L2NuPowheg_M125', 'VBFHToWWTo2L2NuPowheg_M125', 'HWminusJ_HToWW_M125', 'HWplusJ_HToWW_M125', 'HZJ_HToWW_M125', 'ggZH_HToWW_M125', 'ttHToNonbb_M125'],
+        '2017': ['GluGluHToWWTo2L2NuPowheg_M125', 'VBFHToWWTo2L2NuPowheg_M125', 'HWminusJ_HToWW_M125', 'HWplusJ_HToWW_M125', 'HZJ_HToWWTo2L2Nu_M125', 'GluGluZH_HToWWTo2L2Nu_M125', 'ttHToNonbb_M125'],
+        '2018': ['GluGluHToWWTo2L2NuPowheg_M125', 'VBFHToWWTo2L2NuPowheg_M125', 'HWminusJ_HToWW_M125', 'HWplusJ_HToWW_M125', 'HZJ_HToWW_M125', 'GluGluZH_HToWWTo2L2Nu_M125', 'ttHToNonbb_M125']
+    }
+  
     ### Set up the histograms
     
-    output = ROOT.TFile.Open('responsematrix.root', 'recreate')
-    
-    ptH = ROOT.TH2D('ptH', '', len(common.binnames['ptH']) + 1, 0., float(len(common.binnames['ptH'])) + 1., len(common.binnames['ptH']) + 1, 0., float(len(common.binnames['ptH'])) + 1.)
+    output = ROOT.TFile.Open('responsematrix_%s.root' % DATASET, 'recreate')
+
+    nbins = len(common.binnames['ptH'])
+    ptH = ROOT.TH2D('ptH', '', nbins + 1, 0., float(nbins) + 1., nbins + 1, 0., float(nbins) + 1.)
     
     ptH.GetXaxis().SetTitle('p_{T;gen}^{H} (GeV)')
     ptH.GetYaxis().SetTitle('p_{T;reco}^{H} (GeV)')
@@ -51,8 +77,9 @@ if REDRAW:
     ptH.GetYaxis().SetBinLabel(ptH.GetNbinsX(), 'OOA')
 
     ptH.SetLineColor(ROOT.kGray)
-    
-    njet = ROOT.TH2D('njet', '', len(common.binnames['njet']) + 1, 0., float(len(common.binnames['njet'])) + 1., len(common.binnames['njet']) + 1, 0., float(len(common.binnames['njet'])) + 1.)
+
+    nbins = len(common.binnames['njet'])
+    njet = ROOT.TH2D('njet', '', nbins + 1, 0., float(nbins) + 1., nbins + 1, 0., float(nbins) + 1.)
     
     njet.GetXaxis().SetTitle('N_{jet;gen}')
     njet.GetYaxis().SetTitle('N_{jet;reco}')
@@ -66,13 +93,19 @@ if REDRAW:
 
     njet.SetLineColor(ROOT.kGray)
     
-    ### Fill the in-acceptance part from 2018 wwSel
+    ### Fill the in-acceptance part from wwSel
     
     drawer = ROOT.multidraw.MultiDraw('Events')
-    drawer.addInputPath('/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5__wwSel/nanoLatino_GluGluHToWWTo2L2NuPowheg_M125__part*.root')
     drawer.setWeightBranch('XSWeight')
-    
-    drawer.setReweight(ROOT.multidraw.ReweightSource(ROOT.multidraw.CompiledExprSource(weight2MINLO)))
+
+    treedir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/%s/%s' % (productions[DATASET], steps[DATASET])
+    ifile = 0
+    for sample in trees[DATASET]:
+        for fname in glob.glob('%s/nanoLatino_%s__part*.root' % (treedir, sample)):
+            drawer.addInputPath(fname)
+            if 'GluGluHToWW' in sample:
+                drawer.setTreeReweight(ifile, False, weight2MINLOReweight)
+            ifile += 1
     
     _tmp = [
         'mll>12',
@@ -105,19 +138,26 @@ if REDRAW:
     yexpr = ' + '.join('(Alt$(CleanJet_pt[%d], 0.) > 30.)' % i for i in range(len(common.binnames['njet']) - 1))
     
     drawer.addPlot2D(njet, xexpr, yexpr)
-    
+
+    drawer.setAbortOnReadError(True)
     drawer.execute()
     
     ### Fill the out-of-acceptance part from genonly minus in-acceptance
     
     drawer = ROOT.multidraw.MultiDraw('Events')
-    drawer.addInputPath('/eos/cms/store/user/yiiyama/HWWNano/Autumn18_102X_nAODv5_Full2018v5/MCGenOnly/nanoLatino_GluGluHToWWTo2L2NuPowheg_M125__part*.root')
     drawer.setWeightBranch('baseW')
-    
-    weight2MINLOWeight = ROOT.multidraw.ReweightSource(ROOT.multidraw.CompiledExprSource(weight2MINLO))
+
     genWeight = ROOT.multidraw.ReweightSource('genWeight')
-    
-    drawer.setReweight(ROOT.multidraw.ReweightSource(weight2MINLOWeight, genWeight))
+    drawer.setReweight(genWeight)
+
+    treedir = '/eos/cms/store/user/yiiyama/HWWNano/%s/MCGenOnly' % productions[DATASET]
+    ifile = 0
+    for sample in trees[DATASET]:
+        for fname in glob.glob('%s/nanoLatino_%s__part*.root' % (treedir, sample)):
+            drawer.addInputPath(fname)
+            if 'GluGluHToWW' in sample:
+                drawer.setTreeReweight(ifile, False, weight2MINLOReweight)
+            ifile += 1
 
     drawer.setFilter('Sum$(TMath::Abs(DressedLepton_pdgId) == 11 && LeptonGen_isPrompt) * Sum$(TMath::Abs(DressedLepton_pdgId) == 13 && LeptonGen_isPrompt) == 1')
     
@@ -139,82 +179,96 @@ if REDRAW:
     
     drawer.execute()
 
-    iy = ptH.GetNbinsY()
-    for ix in range(1, ptH.GetNbinsX() + 1):
-        inacc = sum(ptH.GetBinContent(ix, k) for k in range(1, iy))
-        ptH.SetBinContent(ix, iy, ptH.GetBinContent(ix, iy) - inacc)
-    
-    iy = njet.GetNbinsY()
-    for ix in range(1, njet.GetNbinsX() + 1):
-        inacc = sum(njet.GetBinContent(ix, k) for k in range(1, iy))
-        njet.SetBinContent(ix, iy, njet.GetBinContent(ix, iy) - inacc)
+    ptH_cont = rnp.hist2array(ptH, copy=False)
+    ptH_cont[:,-1] -= np.sum(ptH_cont[:,0:-1], axis=1)
+
+    njet_cont = rnp.hist2array(njet, copy=False)
+    njet_cont[:,-1] -= np.sum(njet_cont[:,0:-1], axis=1)
     
     output.cd()
     output.Write()
 
 else:
-    output = ROOT.TFile.Open('responsematrix.root')
+    output = ROOT.TFile.Open('responsematrix_%s.root' % DATASET)
     ptH = output.Get('ptH')
     njet = output.Get('njet')
 
-canvas = ROOT.TCanvas('c1', 'c1', 600, 600)
-canvas.SetLeftMargin(0.15)
-canvas.SetRightMargin(0.05)
-canvas.SetBottomMargin(0.15)
-canvas.SetTopMargin(0.05)
+if STYLE == 'HIG-17-025':
+    red = array.array('d', [1., 0.9, 0.8])
+    green = array.array('d', [1., 0.45, 0.])
+    blue = array.array('d', [1., 0.45, 0.])
+    points = array.array('d', [0., 0.5, 1.])
 
-ptH_colnorm = ptH.Clone('ptH_colnorm')
-for ix in range(1, ptH.GetNbinsX() + 1):
-    inacc = sum(ptH.GetBinContent(ix, k) for k in range(1, ptH.GetNbinsY()))
-    for iy in range(1, ptH.GetNbinsY() + 1):
-        ptH_colnorm.SetBinContent(ix, iy, ptH.GetBinContent(ix, iy) / inacc)
+    ROOT.TColor.CreateGradientColorTable(3, points, red, green, blue, 128)
 
-ptH_colnorm_box = ptH_colnorm.Clone('ptH_colnorm_box')
-ptH_colnorm_box.SetBinContent(ptH.GetNbinsX(), ptH.GetNbinsY(), 0.)
+    cw = 650
+    canvas = ROOT.TCanvas('c1', 'c1', cw, 600)
+    canvas.SetLeftMargin(90. / cw)
+    canvas.SetBottomMargin(0.12)
+    canvas.SetTopMargin(0.08)
+    canvas.SetRightMargin((cw - 600 * 0.95) / cw)
 
-ptH_colnorm_box.Draw('BOX')
-ptH_colnorm.Draw('TEXT SAME')
+    cmsLabel = common.makeCMS(prelim=False, out=True)
+    cmsLabel.SetX1NDC(0.18 * 600. / cw)
+    cmsLabel.SetX2NDC(0.3 * 600. / cw)
+    suppl = common.makeText(0.24, common.ymax, 0.6, 0.98, 'simulation supplementary', align=13, font=52)
+    com = common.makeText(0.7, common.ymax, 0.9, 1., '(13 TeV)', align=33)
 
-canvas.Print('ptH_colnorm.pdf')
+    for obs, source in [('ptH', ptH), ('njet', njet)]:
+        source_arr = rnp.hist2array(source, copy=False)
 
-ptH_rownorm = ptH.Clone('ptH_rownorm')
-for iy in range(1, ptH.GetNbinsY() + 1):
-    infid = sum(ptH.GetBinContent(k, iy) for k in range(1, ptH.GetNbinsX()))
-    for ix in range(1, ptH.GetNbinsX() + 1):
-        ptH_rownorm.SetBinContent(ix, iy, ptH.GetBinContent(ix, iy) / infid)
+        gen_total = np.sum(source_arr, axis=1)
 
-ptH_rownorm_box = ptH_rownorm.Clone('ptH_rownorm_box')
-ptH_rownorm_box.SetBinContent(ptH.GetNbinsX(), ptH.GetNbinsY(), 0.)
+        colnorm_arr = np.transpose(np.transpose(source_arr, (1, 0)) / gen_total, (1, 0))
 
-ptH_rownorm_box.Draw('BOX')
-ptH_rownorm.Draw('TEXT SAME')
+        matrix = source.Clone('matrix')
+        matrix.SetBins(source.GetNbinsX() - 1, 0., float(source.GetNbinsX()), source.GetNbinsY() - 1, 0., float(source.GetNbinsY()))
+        rnp.array2hist(colnorm_arr[:-1, :-1], matrix)
+
+        matrix.Draw('COLZ TEXT')
+
+        cmsLabel.Draw()
+        suppl.Draw()
+        com.Draw()
+
+        canvas.RedrawAxis()
         
-canvas.Print('ptH_rownorm.pdf')
+        canvas.Print('response_%s_%s.pdf' % (obs, DATASET))
 
-njet_colnorm = njet.Clone('njet_colnorm')
-for ix in range(1, njet.GetNbinsX() + 1):
-    inacc = sum(njet.GetBinContent(ix, k) for k in range(1, njet.GetNbinsY()))
-    for iy in range(1, njet.GetNbinsY() + 1):
-        njet_colnorm.SetBinContent(ix, iy, njet.GetBinContent(ix, iy) / inacc)
+else:
+    canvas = ROOT.TCanvas('c1', 'c1', 600, 600)
+    canvas.SetLeftMargin(0.15)
+    canvas.SetRightMargin(0.05)
+    canvas.SetBottomMargin(0.15)
+    canvas.SetTopMargin(0.05)
 
-njet_colnorm_box = njet_colnorm.Clone('njet_colnorm_box')
-njet_colnorm_box.SetBinContent(njet.GetNbinsX(), njet.GetNbinsY(), 0.)
+    for obs, source in [('ptH', ptH), ('njet', njet)]:
+        source_arr = rnp.hist2array(source, copy=False)
 
-njet_colnorm_box.Draw('BOX')
-njet_colnorm.Draw('TEXT SAME')
+        in_acceptance = np.sum(source_arr[:, :-1], axis=1)
+        in_fiducial = np.sum(source_arr[:-1, :], axis=0)
 
-canvas.Print('njet_colnorm.pdf')
+        colnorm = source.Clone('%s_colnorm' % obs)
+        colnorm_arr = np.transpose(np.transpose(source_arr, (1, 0)) / in_acceptance, (1, 0))
+        rnp.array2hist(colnorm_arr, colnorm)
+        
+        colnorm_box = colnorm.Clone('%s_colnorm_box' % obs)
+        colnorm_box.SetBinContent(source.GetNbinsX(), source.GetNbinsY(), 0.)
+        
+        colnorm_box.Draw('BOX')
+        colnorm.Draw('TEXT SAME')
+        
+        canvas.Print('%s_colnorm_%s.pdf' % (obs, DATASET))
+        
+        rownorm = source.Clone('%s_rownorm' % obs)
+        rownorm_arr = source_arr / in_fiducial
+        rnp.array2hist(rownorm_arr, rownorm)
 
-njet_rownorm = njet.Clone('njet_rownorm')
-for iy in range(1, njet.GetNbinsY() + 1):
-    infid = sum(njet.GetBinContent(k, iy) for k in range(1, njet.GetNbinsX()))
-    for ix in range(1, njet.GetNbinsX() + 1):
-        njet_rownorm.SetBinContent(ix, iy, njet.GetBinContent(ix, iy) / infid)
-
-njet_rownorm_box = njet_rownorm.Clone('njet_rownorm_box')
-njet_rownorm_box.SetBinContent(njet.GetNbinsX(), njet.GetNbinsY(), 0.)
-
-njet_rownorm_box.Draw('BOX')
-njet_rownorm.Draw('TEXT SAME')
-
-canvas.Print('njet_rownorm.pdf')
+        rownorm_box = rownorm.Clone('%s_rownorm_box' % obs)
+        rownorm_box.SetBinContent(source.GetNbinsX(), source.GetNbinsY(), 0.)
+        
+        rownorm_box.Draw('BOX')
+        rownorm.Draw('TEXT SAME')
+                
+        canvas.Print('%s_rownorm_%s.pdf' % (obs, DATASET))
+    

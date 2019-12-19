@@ -15,7 +15,7 @@ def nanoGetSampleFiles(inputDir, Sample):
     return getSampleFiles(inputDir, Sample, False, 'nanoLatino_')
 
 try:
-    mc = [skey for skey in samples if skey != 'DATA' and not skey.startswith('Fake')]
+    mc = [skey for skey in samples if skey != 'DATA' and not skey.startswith('Fake') and '_UE_' not in skey]
 except NameError:
     mc = []
     cuts = {}
@@ -241,17 +241,11 @@ nuisances['PS']  = {
 nuisances['UE'] = {
     'name': 'UE_CP5', 
     'skipCMS': 1,
-    'kind': 'tree',
     'type': 'shape',
-    'samples': {
-        'WW'      : ['1', '1'],
-        'ggH_hww' : ['1', '1'],
-        'qqH_hww' : ['1', '1']
-    },
+    'kind': 'tree',
+    'samples': {},
+    'samplespost': lambda self, samples: dict([('WW', ['1.', '1.'])] + [(sname, ['1.', '1.']) for sname in samples if 'ggH_hww' in sname or 'qqH_hww' in sname]),
     'AsLnN': '1',
-    'folderUp': makeMCDirectory('UEup'),
-    'folderDown': makeMCDirectory('UEdo'),
-    'synchronized': False
 }
 
 ####### Generic "cross section uncertainties"

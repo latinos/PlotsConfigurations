@@ -2,7 +2,16 @@
 treeName= 'Events'
 
 
-tag = 'WH2016nano_forPlotsv2'
+#tag = 'WH2016nano_forPlotsv2'
+#tag = '_WH2016nano_try1'
+#tag = '_WH2016nano_try2' #mtw2 < 80
+#tag = '_WH2016nano_try3' #DY LO
+#tag = '_WH2016nano_try4' #DY LO with Susan tech
+#tag = '_WH2016nano_try6' #include deta(ll)
+#tag = '_WH2016nano_try7' #include ll categories
+#tag = '_WH2016nano_HigPAG' #include ll categories
+tag = '_WH2016nano_HigPAG_v1' #include ll categories
+#tag = 'WH2016nano_CR' #include ll categories
 
 
 # used by mkShape to define output directory for root files
@@ -16,6 +25,7 @@ variablesFile = 'variables.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
+#cutsFile = 'cuts_CR.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 
