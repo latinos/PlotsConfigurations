@@ -65,7 +65,7 @@ else:
 
 #FIXME b-tagging to be optimized
 # Definitions in aliases.py
-#SFweight += '*nvtx_reweighting'
+SFweight += '*nvtx_reweighting'
 
 #SFweight += '*btagSF'
 
