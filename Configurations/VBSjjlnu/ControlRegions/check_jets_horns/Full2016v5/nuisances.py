@@ -115,33 +115,33 @@ nuisances['lumi']  = {
 # }
 
 
-#  nuisances['electronpt_embveto']  = {
-#                  'name'  : 'scale_e_2016',
-#                  'kind'  : 'tree',
-#                  'type'  : 'shape',
-#                  'samples'  : {
-#                     'ggWW'    : ['1', '1'],
-#                     'WW'      : ['1', '1'],
-#                     'WWewk'   : ['1', '1'],
-#                     'top'     : ['1', '1'],
-#                     'VZ'      : ['1', '1'],
-#                     'Vg'      : ['1', '1'],
-#                     'VgS'     : ['1', '1'],
-#                   },
-#                  'folderUp'   : treeBaseDir+'Fall2016_nAOD_v1_Full2016v2/MCl1loose2016v2__MCCorr2016__btagPerEvent__l2loose__l2tightOR2016__EmbeddingVeto__ElepTup', #xrootdPath+treeBaseDir
-#                  'folderDown' : treeBaseDir+'Fall2016_nAOD_v1_Full2016v2/MCl1loose2016v2__MCCorr2016__btagPerEvent__l2loose__l2tightOR2016__EmbeddingVeto__ElepTdo',
-#  }
-#
-#  nuisances['electronpt_emb']  = {
-#                  'name'  : 'scale_e_2016',
-#                  'kind'  : 'tree',
-#                  'type'  : 'shape',
-#                  'samples'  : {
-#                     'DY'      : ['1', '1'],
-#                   },
-#                  'folderUp'   : treeBaseDir+'Embedding2016_nAOD_v1_Full2016v2/DATAl1loose2016v2__DATACorr2016__l2loose__l2tightOR2016__Embedding2016__hadd__EmbElepTup', #xrootdPath+treeBaseDir
-#                  'folderDown' : treeBaseDir+'Embedding2016_nAOD_v1_Full2016v2/DATAl1loose2016v2__DATACorr2016__l2loose__l2tightOR2016__Embedding2016__hadd__EmbElepTdo',
-#  }
+# #  nuisances['electronpt_embveto']  = {
+# #                  'name'  : 'scale_e_2016',
+# #                  'kind'  : 'tree',
+# #                  'type'  : 'shape',
+# #                  'samples'  : {
+# #                     'ggWW'    : ['1', '1'],
+# #                     'WW'      : ['1', '1'],
+# #                     'WWewk'   : ['1', '1'],
+# #                     'top'     : ['1', '1'],
+# #                     'VZ'      : ['1', '1'],
+# #                     'Vg'      : ['1', '1'],
+# #                     'VgS'     : ['1', '1'],
+# #                   },
+# #                  'folderUp'   : treeBaseDir+'Fall2016_nAOD_v1_Full2016v2/MCl1loose2016v2__MCCorr2016__btagPerEvent__l2loose__l2tightOR2016__EmbeddingVeto__ElepTup', #xrootdPath+treeBaseDir
+# #                  'folderDown' : treeBaseDir+'Fall2016_nAOD_v1_Full2016v2/MCl1loose2016v2__MCCorr2016__btagPerEvent__l2loose__l2tightOR2016__EmbeddingVeto__ElepTdo',
+# #  }
+# #
+# #  nuisances['electronpt_emb']  = {
+# #                  'name'  : 'scale_e_2016',
+# #                  'kind'  : 'tree',
+# #                  'type'  : 'shape',
+# #                  'samples'  : {
+# #                     'DY'      : ['1', '1'],
+# #                   },
+# #                  'folderUp'   : treeBaseDir+'Embedding2016_nAOD_v1_Full2016v2/DATAl1loose2016v2__DATACorr2016__l2loose__l2tightOR2016__Embedding2016__hadd__EmbElepTup', #xrootdPath+treeBaseDir
+# #                  'folderDown' : treeBaseDir+'Embedding2016_nAOD_v1_Full2016v2/DATAl1loose2016v2__DATACorr2016__l2loose__l2tightOR2016__Embedding2016__hadd__EmbElepTdo',
+# #  }
 
 # ##### Muon Efficiency and energy scale
 
@@ -430,12 +430,12 @@ nuisances['lumi']  = {
 
 
 
-# ## Use the following if you want to apply the automatic combine MC stat nuisances.
-# nuisances['stat']  = {
-#               'type'  : 'auto',
-#               'maxPoiss'  : '10',
-#               'includeSignal'  : '1',
-#               #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
-#               #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
-#               'samples' : {}
-#              }
+## Use the following if you want to apply the automatic combine MC stat nuisances.
+nuisances['stat']  = {
+              'type'  : 'auto',
+              'maxPoiss'  : '10',
+              'includeSignal'  : '1',
+              #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
+              #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
+              'samples' : {}
+             }
