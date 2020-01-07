@@ -1,4 +1,5 @@
 datacards*/
 rootFile*/
 plot*
+!plot.py
 temp/

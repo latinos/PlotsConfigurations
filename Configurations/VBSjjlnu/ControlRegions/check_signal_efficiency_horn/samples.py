@@ -27,7 +27,7 @@ elif  'cern' in SITE :
 
 directory_bkg = treeBaseDir+'Fall2017_102X_nAODv5_Full2017v6/'+ mcSteps
 directory_signal = treeBaseDir + 'Fall2017_102X_nAODv5_Full2017v6/' + mcSteps
-directory_fakes = treeBaseDir + 'Run2017_102X_nAODv5_Full2017v6/'+ fakeSteps
+# directory_fakes = treeBaseDir + 'Run2017_102X_nAODv5_Full2017v6/'+ fakeSteps
 directory_data = treeBaseDir + 'Run2017_102X_nAODv5_Full2017v6/'+ dataSteps
 
 ################################################
@@ -63,7 +63,7 @@ SFweight1l =       'puWeight*\
                    EMTFbug_veto'
 SFweight      = SFweight1l+'*'+LepWPWeight_1l+'*'+LepWPCut_1l+'*PrefireWeight'
      
-#GenLepMatch   = 'Lepton_genmatched[0]'
+GenLepMatch   = 'Lepton_genmatched[0]'
 
 ####
 # NVTX reweighting
@@ -83,7 +83,7 @@ SFweight      = SFweight1l+'*'+LepWPWeight_1l+'*'+LepWPCut_1l+'*PrefireWeight'
 ############   MET  FILTERS  ###################
 ################################################
 
-# METFilter_MC   = 'METFilter_MC'
+METFilter_MC   = 'METFilter_MC'
 # METFilter_DATA = 'METFilter_DATA'
 
 # ################################################
@@ -263,11 +263,11 @@ samples['VBS']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpTo2J_ZTo2L', ) +
                nanoGetSampleFiles(directory_signal,'WpToLNu_WmTo2J') +
                nanoGetSampleFiles(directory_signal,'WpToLNu_WpTo2J') +
-               nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J',) +
-               nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J',  ) ,
+               nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J',) ,
+              #  nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J',  ) ,
        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-       'suppressNegative' :['all'],
-       'suppressNegativeNuisances' :['all'],
+      #  'suppressNegative' :['all'],
+      #  'suppressNegativeNuisances' :['all'],
        'FilesPerJob' : 4,
 }
 

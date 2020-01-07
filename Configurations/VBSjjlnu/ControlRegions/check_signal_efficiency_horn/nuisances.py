@@ -7,20 +7,20 @@
 
 # #### Luminosity
 
-nuisances['lumi']  = {
-               'name'  : 'lumi_13TeV_2017',
-               'samples'  : {
-                #    'Wjets'    : '1.023',
-                #    'VV'       : '1.023',
-                #    'VVV'    : '1.023',
-                #    'VBF-V'       : '1.023',
-                #    'ttbar'    : '1.023',
-                #    'DY'       : '1.023',
-                #    'singleTop'    : '1.023',
-                   'VBS'       : '1.023',
-                   },
-               'type'  : 'lnN',
-              }
+# nuisances['lumi']  = {
+#                'name'  : 'lumi_13TeV_2017',
+#                'samples'  : {
+#                 #    'Wjets'    : '1.023',
+#                 #    'VV'       : '1.023',
+#                 #    'VVV'    : '1.023',
+#                 #    'VBF-V'       : '1.023',
+#                 #    'ttbar'    : '1.023',
+#                 #    'DY'       : '1.023',
+#                 #    'singleTop'    : '1.023',
+#                    'VBS'       : '1.023',
+#                    },
+#                'type'  : 'lnN',
+#               }
 
 # #### FAKES
 

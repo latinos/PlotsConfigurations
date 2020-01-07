@@ -323,82 +323,82 @@ variables["qgl"] = { 'name': 'Jet_qgl[CleanJet_jetIdx[0]]',
 }
 
 
-variables['fourj_lep_deltaphi'] = {
-            'name': "fourj_lep_deltaphi",
-            'range': (30, 0, 3.5),
-            'xaxis': '#Delta#phi (lepton, sum 4 jets)',
-            'fold': 3      
-}
+# variables['fourj_lep_deltaphi'] = {
+#             'name': "fourj_lep_deltaphi",
+#             'range': (30, 0, 3.5),
+#             'xaxis': '#Delta#phi (lepton, sum 4 jets)',
+#             'fold': 3      
+# }
 
-variables['fourj_met_deltaphi'] = {
-            'name': "fourj_met_deltaphi",
-            'range': (30, 0, 3.5),
-            'xaxis': '#Delta#phi (met, sum 4 jets)',
-            'fold': 3
-}
+# variables['fourj_met_deltaphi'] = {
+#             'name': "fourj_met_deltaphi",
+#             'range': (30, 0, 3.5),
+#             'xaxis': '#Delta#phi (met, sum 4 jets)',
+#             'fold': 3
+# }
 
-variables['fourj_lep_ptratio'] = {
-            'name': "fourj_lep_ptratio",
-            'range': (30, 0, 3.5),
-            'xaxis': '#Delta#phi (met, sum 4 jets)',
-            'fold': 3
-}
+# variables['fourj_lep_ptratio'] = {
+#             'name': "fourj_lep_ptratio",
+#             'range': (30, 0, 3.5),
+#             'xaxis': '#Delta#phi (met, sum 4 jets)',
+#             'fold': 3
+# }
 
-variables['fourj_pmet'] = {
-            'name': "fourj_pmet",
-            'range': (30, 0, 200),
-            'xaxis': 'PMET with (sum 4 jets)',
-            'fold': 3
-}
+# variables['fourj_pmet'] = {
+#             'name': "fourj_pmet",
+#             'range': (30, 0, 200),
+#             'xaxis': 'PMET with (sum 4 jets)',
+#             'fold': 3
+# }
 
-variables['lep_pmet'] = {
-            'name': "lep_pmet",
-            'range': (30, 0, 200),
-            'xaxis': 'lepton pmet',
-            'fold': 3
-}
+# variables['lep_pmet'] = {
+#             'name': "lep_pmet",
+#             'range': (30, 0, 200),
+#             'xaxis': 'lepton pmet',
+#             'fold': 3
+# }
 
-variables['fourj_lep_ptratio'] = {
-            'name': "fourj_lep_ptratio",
-            'range': (30, 0, 10),
-            'xaxis': 'Pt (sum 4 jets) / Pt lepton',
-            'fold': 3 
-}
+# variables['fourj_lep_ptratio'] = {
+#             'name': "fourj_lep_ptratio",
+#             'range': (30, 0, 10),
+#             'xaxis': 'Pt (sum 4 jets) / Pt lepton',
+#             'fold': 3 
+# }
 
-variables['fourj_pt'] = {
-            'name': "fourj_pt",
-            'range': (30, 0, 800),
-            'xaxis': 'Pt (sum 4 jets)',
-            'fold': 3
-}
+# variables['fourj_pt'] = {
+#             'name': "fourj_pt",
+#             'range': (30, 0, 800),
+#             'xaxis': 'Pt (sum 4 jets)',
+#             'fold': 3
+# }
 
-variables['lep_jet_ptratio1'] = {
-            'name': 'Lepton_pt[0] / CleanJet_pt[0]',
-            'range': (30, 0, 10),
-            'xaxis': 'Pt lepton / Pt Jet1',
-            'fold': 3
-}
+# variables['lep_jet_ptratio1'] = {
+#             'name': 'Lepton_pt[0] / CleanJet_pt[0]',
+#             'range': (30, 0, 10),
+#             'xaxis': 'Pt lepton / Pt Jet1',
+#             'fold': 3
+# }
 
-variables['lep_jet_ptratio2'] = {
-            'name': 'Lepton_pt[0] / CleanJet_pt[1]',
-            'range': (30, 0, 10),
-            'xaxis': 'Pt lepton / Pt Jet2',
-            'fold': 3
-}
+# variables['lep_jet_ptratio2'] = {
+#             'name': 'Lepton_pt[0] / CleanJet_pt[1]',
+#             'range': (30, 0, 10),
+#             'xaxis': 'Pt lepton / Pt Jet2',
+#             'fold': 3
+# }
 
-variables['lep_jet_ptratio3'] = {
-            'name': 'Lepton_pt[0] / Alt$(CleanJet_pt[2], -1)',
-            'range': (30, 0, 10),
-            'xaxis': 'Pt lepton / Pt Jet3',
-            'fold': 3
-}
+# variables['lep_jet_ptratio3'] = {
+#             'name': 'Lepton_pt[0] / Alt$(CleanJet_pt[2], -1)',
+#             'range': (30, 0, 10),
+#             'xaxis': 'Pt lepton / Pt Jet3',
+#             'fold': 3
+# }
 
-variables['lep_jet_ptratio4'] = {
-            'name': 'Lepton_pt[0] / Alt$(CleanJet_pt[3],-1)',
-            'range': (30, 0, 10),
-            'xaxis': 'Pt lepton / Pt Jet4',
-            'fold': 3
-}
+# variables['lep_jet_ptratio4'] = {
+#             'name': 'Lepton_pt[0] / Alt$(CleanJet_pt[3],-1)',
+#             'range': (30, 0, 10),
+#             'xaxis': 'Pt lepton / Pt Jet4',
+#             'fold': 3
+# }
 
 
 # variables["fake_weight_tight"] = {
