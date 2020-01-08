@@ -64,7 +64,8 @@ else:
 
 # Definitions in aliases.py
 
-SFweight += '*btagSF'
+# FIXME (dario) is it not so necessary in DY?
+# SFweight += '*btagSF'
 
 ################################################
 ############### AD Hoc### ######################
@@ -273,6 +274,14 @@ for Run in DataRun :
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
+
+
+
+
+###########################################
+################## QUICK CHECK ############
+###########################################
+
 samples = {
-  'DY': samples['DY']
+  'WW': samples['WW']
 }
