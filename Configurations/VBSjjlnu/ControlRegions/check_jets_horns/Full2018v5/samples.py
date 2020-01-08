@@ -32,7 +32,7 @@ Nlep='2'
 ############### Lepton WP ######################
 ################################################
 
-eleWP='mvaFall17V2Iso_WP90'
+eleWP='mvaFall17V2Iso_WP90' # FIXME (dario) should we change this to v1 ?
 muWP='cut_Tight_HWWW'
 
 LepWPCut        = 'LepCut'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
@@ -45,7 +45,7 @@ LepWPweight     = 'LepSF'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
 
 XSWeight      = 'XSWeight'
 SFweight      = 'SFweight'+Nlep+'l*'+LepWPweight+'*'+LepWPCut
-GenLepMatch   = 'PromptGenLepMatch'+Nlep+'l' # FIXME change when we use real fakes
+GenLepMatch   = 'PromptGenLepMatch'+Nlep+'l' # is this a real FIXME (dario)? "FIXME change when we use real fakes"
 
 
 ################################################
@@ -67,6 +67,12 @@ else:
 SFweight += '*btagSF'
 
 ################################################
+############### AD Hoc### ######################
+################################################
+
+# SFweight += '*nvtx_reweighting'
+
+################################################
 ############   MET  FILTERS  ###################
 ################################################
 
@@ -84,7 +90,7 @@ DataRun = [
             ['D','Run2018D-Nano1June2019_ver2-v1'] ,
           ]
 
-DataSets = ['MuonEG','DoubleMuon','SingleMuon','EGamma']
+DataSets = ['MuonEG','DoubleMuon','SingleMuon','EGamma'] # FIXME (dario): different dataset in 2018? 
 
 DataTrig = {
             'MuonEG'         : 'Trigger_ElMu' ,
@@ -114,7 +120,7 @@ if useDYtt :
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
     
 else:
-    samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50_ext',False,'nanoLatino_')
+    samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50_ext',False,'nanoLatino_') # FIXME (dario) whyt is this using _ext ?
                                     + getSampleFiles(directory,'DYJetsToLL_M-10to50-LO',False,'nanoLatino_'),
                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                          'FilesPerJob' : 5,
@@ -129,11 +135,11 @@ else:
 Top_pTrw = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )'
 
 samples['top'] = {    'name'   :   getSampleFiles(directory,'TTTo2L2Nu',False,'nanoLatino_') 
-                                 + getSampleFiles(directory,'ST_s-channel_ext1',False,'nanoLatino_') 
+                                 + getSampleFiles(directory,'ST_s-channel_ext1',False,'nanoLatino_') # FIXME (dario) whyt is this using _ext ?
                                  + getSampleFiles(directory,'ST_t-channel_antitop',False,'nanoLatino_') 
                                  + getSampleFiles(directory,'ST_t-channel_top',False,'nanoLatino_') 
-                                 + getSampleFiles(directory,'ST_tW_antitop_ext1',False,'nanoLatino_') 
-                                 + getSampleFiles(directory,'ST_tW_top_ext1',False,'nanoLatino_') ,
+                                 + getSampleFiles(directory,'ST_tW_antitop_ext1',False,'nanoLatino_') # FIXME (dario) whyt is this using _ext ?
+                                 + getSampleFiles(directory,'ST_tW_top_ext1',False,'nanoLatino_') , # FIXME (dario) whyt is this using _ext ?
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                      'FilesPerJob' : 1,
                  }
@@ -159,22 +165,11 @@ samples['ggWW']  = {  'name'   :   getSampleFiles(directory,'GluGluToWWToENEN',F
                    }
 
 
-
-############ VZ ############
-
-samples['VZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo2L2Nu_ext1',False,'nanoLatino_')
-                               + getSampleFiles(directory,'ZZTo2L2Q',False,'nanoLatino_')
-                               + getSampleFiles(directory,'ZZTo4L_ext1',False,'nanoLatino_') 
-                               + getSampleFiles(directory,'WZTo2L2Q',False,'nanoLatino_'),
-                    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                    'FilesPerJob' : 5,
-                 }
-
 ############ Vg ############
 
 samples['Vg']  = {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',False,'nanoLatino_')
-                               + getSampleFiles(directory,'Zg',False,'nanoLatino_'),
-                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*(!(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 ))',
+                               + getSampleFiles(directory,'Zg',False,'nanoLatino_'), # FIXME `Zg` or `ZGToLLG` ?
+                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* (!(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 ))',
                     'FilesPerJob': 5,
                   }
 
@@ -183,20 +178,50 @@ samples['Vg']  = {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',False
 
 samples['VgS']  =  {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',False,'nanoLatino_')
                                  + getSampleFiles(directory,'Zg',False,'nanoLatino_')
-                                 + getSampleFiles(directory,'WZTo3LNu_mllmin01',False,'nanoLatino_'),
+                                 + getSampleFiles(directory,'WZTo3LNu_mllmin01',False,'nanoLatino_'), # FIXME (dario) `Zg` or `ZGToLLG` ? # (dario) FIXME consider WZTo3LNu_mllmin01 ?
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
                       'FilesPerJob' : 20 ,
                    }
 addSampleWeight(samples,'VgS','Wg_MADGRAPHMLM',    '(Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 0.1)')
-addSampleWeight(samples,'VgS','Zg',                '(Gen_ZGstar_mass >0)')
+addSampleWeight(samples,'VgS','Zg',                '(Gen_ZGstar_mass >0)') # FIXME `Zg` or `ZGToLLG` ?
 addSampleWeight(samples,'VgS','WZTo3LNu_mllmin01', '(Gen_ZGstar_mass>=0.1 || Gen_ZGstar_mass<0)')
 
+############ VZ ############
+
+#FIXME Add normalization k-factor
+# Is this a true FIXME? (dario)
+samples['VZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo2L2Nu_ext1',False,'nanoLatino_')
+                               + getSampleFiles(directory,'ZZTo2L2Q',False,'nanoLatino_')
+                               + getSampleFiles(directory,'ZZTo4L_ext1',False,'nanoLatino_') 
+                               + getSampleFiles(directory,'WZTo2L2Q',False,'nanoLatino_'),
+                    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                    'FilesPerJob' : 5,
+                 }
+
+
+############ VVV ############
+
+samples['VVV']  = {  'name'   :   getSampleFiles(directory,'ZZZ',False,'nanoLatino_')
+                                + getSampleFiles(directory,'WZZ',False,'nanoLatino_')
+                                + getSampleFiles(directory,'WWZ',False,'nanoLatino_')
+                                + getSampleFiles(directory,'WWW',False,'nanoLatino_'),
+                                #+ getSampleFiles(directory,'WWG',False,'nanoLatino_'), #should this be included? or is it already taken into account in the WW sample?
+                    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                  }
+
 ###########################################
-################## DATA ###################
+################## FAKE ###################
 ###########################################
 
-samples['Fake']  = {   'name': [ ] ,
-                         'weight' : METFilter_DATA+'*'+fakeW,              #   weight/cut 
+samples['Fake_ee']  = {   'name': [ ] ,
+                         'weight' : METFilter_DATA+'*'+fakeW+'*(abs(Lepton_pdgId[0])==11 && abs(Lepton_pdgId[1])==11)',              #   weight/cut 
+                         'weights' : [ ] ,
+                         'isData': ['all'],
+                         'FilesPerJob' : 15 ,
+                      }
+
+samples['Fake_mm']  = {   'name': [ ] ,
+                         'weight' : METFilter_DATA+'*'+fakeW+'*(abs(Lepton_pdgId[0])==13 && abs(Lepton_pdgId[1])==13)',              #   weight/cut 
                          'weights' : [ ] ,
                          'isData': ['all'],
                          'FilesPerJob' : 15 ,
@@ -207,10 +232,30 @@ for Run in DataRun :
         for DataSet in DataSets :
                 FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
                 for iFile in FileTarget:
-                        samples['Fake']['name'].append(iFile)
-                        samples['Fake']['weights'].append(DataTrig[DataSet])
+                        samples['Fake_ee']['name'].append(iFile)
+                        samples['Fake_ee']['weights'].append(DataTrig[DataSet])
+                        samples['Fake_mm']['name'].append(iFile)
+                        samples['Fake_mm']['weights'].append(DataTrig[DataSet])
 
+# Not split Fake (dario)
+# samples['Fake']  = {   'name': [ ] ,
+#                          'weight' : METFilter_DATA+'*'+fakeW,              #   weight/cut 
+#                          'weights' : [ ] ,
+#                          'isData': ['all'],
+#                          'FilesPerJob' : 15 ,
+#                       }
 
+# for Run in DataRun :
+#         directory = treeBaseDir+'Run2018_102X_nAODv5_Full2018v5/DATAl1loose2018v5__l2loose__fakeW/'
+#         for DataSet in DataSets :
+#                 FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
+#                 for iFile in FileTarget:
+#                         samples['Fake']['name'].append(iFile)
+#                         samples['Fake']['weights'].append(DataTrig[DataSet])
+
+###########################################
+################## DATA ###################
+###########################################
 
 samples['DATA']  = {   'name': [ ] ,
                        'weight' : METFilter_DATA+'*'+LepWPCut,
@@ -228,3 +273,6 @@ for Run in DataRun :
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
+samples = {
+  'DY': samples['DY']
+}
