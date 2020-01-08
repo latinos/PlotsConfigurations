@@ -91,10 +91,12 @@ NvtxReweight::evaluate(unsigned)
 
   if (abs(Lepton_pdgId->At(0))== 11 ){
     if (NV > max_nvtx_ele) NV = max_nvtx_ele;
+    // cout << "apply weight ele: " << weights_ele[NV] << endl ;
     return weights_ele[NV];
   }
   else if (abs(Lepton_pdgId->At(0))== 13 ){
     if (NV > max_nvtx_mu) NV = max_nvtx_mu;
+    // cout << "apply weight mu: " << weights_ele[NV] << endl ;
     return weights_mu[NV];
   }
   else {
