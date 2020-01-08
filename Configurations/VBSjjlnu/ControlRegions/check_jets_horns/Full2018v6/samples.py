@@ -1,58 +1,90 @@
 import os
-import inspect
+import subprocess
+import string
+from LatinoAnalysis.Tools.commonTools import *
 
-configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # ggH2016
-configurations = os.path.dirname(configurations) # Differential
-configurations = os.path.dirname(configurations) # Configurations
+samples={}
 
-from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
-
-def nanoGetSampleFiles(inputDir, sample):
-    try:
-        if _samples_noload:
-            return []
-    except NameError:
-        pass
-
-    return getSampleFiles(inputDir, sample, True, 'nanoLatino_')
-
-# samples
-
-try:
-    len(samples)
-except NameError:
-    import collections
-    samples = collections.OrderedDict()
-
-################################################
-################# SKIMS ########################
-################################################
-
-mcProduction = 'Autumn18_102X_nAODv6_Full2018v6'
-
-dataReco = 'Run2018_102X_nAODv6_Full2018v6'
-
-mcSteps = 'MCl1loose2018v6__MCCorr2018v6__l2loose__l2tightOR2018v6'
-
-fakeSteps = 'DATAl1loose2018v6__l2loose__fakeW'
-
-dataSteps = 'DATAl1loose2018v6__l2loose__l2tightOR2018v6'
+skim=''
 
 ##############################################
 ###### Tree base directory for the site ######
 ##############################################
 
 SITE=os.uname()[1]
+xrootdPath=''
 if    'iihe' in SITE:
-  treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015'
+  xrootdPath  = 'dcap://maite.iihe.ac.be/'
+  treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015/'
 elif  'cern' in SITE:
-  treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
+  #xrootdPath='root://eoscms.cern.ch/'
+  treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/'
 
+mcProduction = 'Autumn18_102X_nAODv5_Full2018v5'
+mcSteps      = 'MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5'
 
-mcDirectory = os.path.join(treeBaseDir, mcProduction, mcSteps)
+dataReco  = 'Run2018_102X_nAODv5_Full2018v5'
+fakeSteps = 'DATAl1loose2018v5__l2loose__fakeW'
+dataSteps = 'DATAl1loose2018v5__l2loose__l2tightOR2018v5'
+
+mcDirectory   = os.path.join(treeBaseDir, mcProduction, mcSteps)
 fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
 dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
+
+################################################
+############ NUMBER OF LEPTONS #################
+################################################
+
+Nlep='2'
+
+################################################
+############### Lepton WP ######################
+################################################
+
+eleWP='mvaFall17V1Iso_WP90'
+muWP='cut_Tight_HWWW'
+
+LepWPCut        = 'LepCut'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
+LepWPweight     = 'LepSF'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
+
+
+################################################
+############ BASIC MC WEIGHTS ##################
+################################################
+
+XSWeight      = 'XSWeight'
+SFweight      = 'SFweight'+Nlep+'l*'+LepWPweight+'*'+LepWPCut+'*PrefireWeight'
+GenLepMatch   = 'PromptGenLepMatch'+Nlep+'l'
+
+################################################
+############## FAKE WEIGHTS ####################
+################################################
+
+if Nlep == '2' :
+  fakeW = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP
+else:
+  fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l'
+
+################################################
+############### B-Tag  WP ######################
+################################################
+
+# Definitions in aliases.py
+# No btag necessary for DY
+#SFweight += '*btagSF'
+
+################################################
+############### Ad Hoc #########################
+################################################
+
+SFweight += '*nvtx_reweighting'
+
+################################################
+############   MET  FILTERS  ###################
+################################################
+
+METFilter_MC   = 'METFilter_MC'
+METFilter_DATA = 'METFilter_DATA'
 
 ################################################
 ############ DATA DECLARATION ##################
@@ -65,93 +97,81 @@ DataRun = [
             ['D','Run2018D-Nano25Oct2019_ver2-v1'] ,
           ]
 
-DataSets = ['MuonEG','DoubleMuon','SingleMuon','EGamma']
+DataSets = ['MuonEG','DoubleMuon','SingleMuon','DoubleEG','SingleElectron']
 
 DataTrig = {
             'MuonEG'         : 'Trigger_ElMu' ,
             'DoubleMuon'     : '!Trigger_ElMu && Trigger_dblMu' ,
             'SingleMuon'     : '!Trigger_ElMu && !Trigger_dblMu && Trigger_sngMu' ,
-            'EGamma'         : '!Trigger_ElMu && !Trigger_dblMu && !Trigger_sngMu && (Trigger_sngEl || Trigger_dblEl)' ,
+            'DoubleEG'       : '!Trigger_ElMu && !Trigger_dblMu && !Trigger_sngMu && Trigger_dblEl' ,
+            'SingleElectron' : '!Trigger_ElMu && !Trigger_dblMu && !Trigger_sngMu && !Trigger_dblEl && Trigger_sngEl' ,
            }
-
-
-#########################################
-############ MC COMMON ##################
-#########################################
-
-# SFweight does not include btag weights
-mcCommonWeightNoMatch = 'XSWeight*SFweight2l*METFilter_MC'
-mcCommonWeight = 'XSWeight*SFweight2l*PromptGenLepMatch2l*METFilter_MC'
 
 ###########################################
 #############  BACKGROUNDS  ###############
 ###########################################
 
-###### DY #######
-
+############ DY ############
 ptllDYW_NLO = '(0.87*(gen_ptll<10)+(0.379119+0.099744*gen_ptll-0.00487351*gen_ptll**2+9.19509e-05*gen_ptll**3-6.0212e-07*gen_ptll**4)*(gen_ptll>=10 && gen_ptll<45)+(9.12137e-01+1.11957e-04*gen_ptll-3.15325e-06*gen_ptll**2-4.29708e-09*gen_ptll**3+3.35791e-11*gen_ptll**4)*(gen_ptll>=45 && gen_ptll<200) + 1*(gen_ptll>200))'
 ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
 
-files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext2') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
-
 samples['DY'] = {
-    'name': files,
-    'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)',
-    'FilesPerJob': 6,
+    'name'   :  getSampleFiles(mcDirectory,'DYJetsToLL_M-50',False,'nanoLatino_')
+              + getSampleFiles(mcDirectory,'DYJetsToLL_M-10to50-LO',False,'nanoLatino_'),
+    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+    'FilesPerJob' : 2,
 }
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext',ptllDYW_NLO)
 addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
+addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO)
 
-###### Top #######
+############ Top ############
 
-files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_s-channel_ext1') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop_ext1') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_tW_top_ext1')
+samples['top'] = {    'name'   :   getSampleFiles(mcDirectory,'TTTo2L2Nu',False,'nanoLatino_') 
+                                 + getSampleFiles(mcDirectory,'ST_s-channel',False,'nanoLatino_') 
+                                 + getSampleFiles(mcDirectory,'ST_t-channel_antitop',False,'nanoLatino_') 
+                                 + getSampleFiles(mcDirectory,'ST_t-channel_top',False,'nanoLatino_') 
+                                 + getSampleFiles(mcDirectory,'ST_tW_antitop',False,'nanoLatino_') 
+                                 + getSampleFiles(mcDirectory,'ST_tW_top',False,'nanoLatino_') ,
+                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                     'FilesPerJob' : 1,
+                 }
 
-samples['top'] = {
-    'name': files,
-    'weight': mcCommonWeight,
-    'FilesPerJob': 1,
-}
+Top_pTrw = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )'
+addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
 
-addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
-
-###### WW ########
+############ WW ############
 
 samples['WW'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    'weight': mcCommonWeight + '*nllW',
+    'name'   : getSampleFiles(mcDirectory,'WWTo2L2Nu',False,'nanoLatino_') ,
+    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*nllW' ,
     'FilesPerJob': 3
 }
 
-samples['WWewk'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK'),
-    'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)', #filter tops and Higgs
+samples['ggWW']  = {  
+    'name'   :   getSampleFiles(mcDirectory,'GluGluToWWToENEN',False,'nanoLatino_')
+               + getSampleFiles(mcDirectory,'GluGluToWWToENMN',False,'nanoLatino_') 
+               + getSampleFiles(mcDirectory,'GluGluToWWToENTN',False,'nanoLatino_')
+               + getSampleFiles(mcDirectory,'GluGluToWWToMNEN',False,'nanoLatino_')
+               + getSampleFiles(mcDirectory,'GluGluToWWToMNMN',False,'nanoLatino_')
+               + getSampleFiles(mcDirectory,'GluGluToWWToMNTN',False,'nanoLatino_')
+               + getSampleFiles(mcDirectory,'GluGluToWWToTNEN',False,'nanoLatino_')
+               + getSampleFiles(mcDirectory,'GluGluToWWToTNMN',False,'nanoLatino_')
+               + getSampleFiles(mcDirectory,'GluGluToWWToTNTN',False,'nanoLatino_'),
+    # k-factor 1.4 already taken into account in XSWeight
+    # FIXME check if this is true
+    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC  + '*1.53/1.4', # updating k-factor ,
     'FilesPerJob': 4
 }
 
-# k-factor 1.4 already taken into account in XSWeight
-files = nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENTN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNEN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNMN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNTN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNEN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN')
 
-samples['ggWW'] = {
-    'name': files,
-    'weight': mcCommonWeight + '*1.53/1.4', # updating k-factor
-    'FilesPerJob': 4
+############ Vg ############
+
+samples['Vg']  = {
+    'name'   :  getSampleFiles(mcDirectory,'Wg_MADGRAPHMLM',False,'nanoLatino_')
+              + getSampleFiles(mcDirectory,'ZGToLLG',False,'nanoLatino_'),
+    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
+    'FilesPerJob': 5,
 }
-
-######## Vg ########
 
 files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
     nanoGetSampleFiles(mcDirectory, 'Zg')
@@ -335,10 +355,10 @@ signals = []
 ###########################################
 
 samples['DATA'] = {
-  'name': [],
-  'weight': 'METFilter_DATA*LepWPCut',
-  'weights': [],
-  'isData': ['all'],
+  'name'    : [],
+  'weight'  : 'METFilter_DATA*LepWPCut',
+  'weights' : [],
+  'isData'  : ['all'],
   'FilesPerJob': 120
 }
 
