@@ -337,3 +337,4 @@ for Run in DataRun :
                         print(iFile)
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
+

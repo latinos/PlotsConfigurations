@@ -71,6 +71,7 @@ for s in systs:
 
 
 nvtx_reweight_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/ControlRegions/check_jets_horns/Full2017/nvtx_reweight/'
+
 aliases['nvtx_reweighting'] = {
     'class': 'NvtxReweight',
     'args': (nvtx_reweight_path + "reweighting_Zee_jpt50_fit_nofakes.txt",
