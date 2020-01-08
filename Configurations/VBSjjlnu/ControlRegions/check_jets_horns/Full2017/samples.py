@@ -65,9 +65,14 @@ else:
 
 #FIXME b-tagging to be optimized
 # Definitions in aliases.py
-SFweight += '*nvtx_reweighting'
 
-#SFweight += '*btagSF'
+#SFweight += '*btagSF' # FIXME if this is not useful, why it is not commented in the official DY CR?
+
+################################################
+############### AD Hoc### ######################
+################################################
+
+SFweight += '*nvtx_reweighting'
 
 ################################################
 ############   MET  FILTERS  ###################
@@ -174,12 +179,13 @@ samples['ggWW']  = {  'name'   :   getSampleFiles(directory,'GluGluToWWToENEN',F
 
 samples['Vg']  = {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',False,'nanoLatino_')
                                + getSampleFiles(directory,'ZGToLLG',False,'nanoLatino_'),
-                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
+                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* (!(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 ))',
                     'FilesPerJob': 5,
                   }
 
 
 ############ VgS ############
+
 samples['VgS']  =  {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',False,'nanoLatino_')
                                  + getSampleFiles(directory,'ZGToLLG',False,'nanoLatino_'),
                                  #+ getSampleFiles(directory,'WZTo3LNu_mllmin01',False,'nanoLatino_'),
@@ -190,11 +196,10 @@ addSampleWeight(samples,'VgS','Wg_MADGRAPHMLM',    '(Gen_ZGstar_mass >0 && Gen_Z
 addSampleWeight(samples,'VgS','ZGToLLG',                '(Gen_ZGstar_mass >0)')
 addSampleWeight(samples,'VgS','WZTo3LNu_mllmin01', '(Gen_ZGstar_mass>=0.1 || Gen_ZGstar_mass<0)')
 
-
-
 ############ VZ ############
 
 #FIXME Add normalization k-factor
+# Is this a true FIXME? (dario)
 samples['VZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo2L2Nu',False,'nanoLatino_')
                                + getSampleFiles(directory,'ZZTo2L2Q',False,'nanoLatino_')
                                + getSampleFiles(directory,'ZZTo4L',False,'nanoLatino_')
@@ -210,7 +215,7 @@ samples['VVV']  = {  'name'   :   getSampleFiles(directory,'ZZZ',False,'nanoLati
                                 + getSampleFiles(directory,'WZZ',False,'nanoLatino_')
                                 + getSampleFiles(directory,'WWZ',False,'nanoLatino_')
                                 + getSampleFiles(directory,'WWW',False,'nanoLatino_'),
-                                #+ getSampleFiles(directory,'WWG',False,'nanoLatino_'), #should this be included? or is it already taken into account in the WW sample?
+                                #+ getSampleFiles(directory,'WWG',False,'nanoLatino_'), #FIXME "should this be included? or is it already taken into account in the WW sample?": is this a real problem? (dario)
                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                   }
 
