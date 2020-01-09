@@ -282,6 +282,6 @@ for Run in DataRun :
 ################## QUICK CHECK ############
 ###########################################
 
-samples = {
-  'WW': samples['WW']
-}
+# samples = {
+#   'Fake_ee': samples['Fake_ee']
+# }

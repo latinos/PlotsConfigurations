@@ -1,6 +1,6 @@
 #aliases = {}
 
-mc = [skey for skey in samples if skey not in ('Fake_em', 'Fake_me', 'Fake', 'DATA')]
+mc = [skey for skey in samples if skey not in ('Fake_ee', 'Fake_mm', 'Fake', 'DATA')]
 
 bAlgo = 'DeepB'
 bWP = '0.1241'

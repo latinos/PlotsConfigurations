@@ -1,8 +1,14 @@
 # variables
-
 #variables = {}
+
+variables['events']  = {   'name': '1',      
+                        'range' : (1,0,2),  
+                        'xaxis' : 'events', 
+                        'fold' : 3
+                        }
+                        
 variables['nvtx']  = {   'name': 'PV_npvsGood',      
-                        'range' : (20,0,100),  
+                        'range' : (100,0,100),  
                         'xaxis' : 'nvtx', 
                          'fold' : 3
                       }
@@ -13,11 +19,11 @@ variables['mllpeak'] = {   'name': 'mll',            #   variable name
                            'fold' : 0
                         }
 
-variables['ptll']  = {   'name': 'ptll',     
-                        'range' : (20, 0,200),   
-                        'xaxis' : 'p_{T}^{ll} [GeV]',
-                        'fold' : 0
-                        }
+# variables['ptll']  = {   'name': 'ptll',     
+#                         'range' : (20, 0,200),   
+#                         'xaxis' : 'p_{T}^{ll} [GeV]',
+#                         'fold' : 0
+#                         }
 
 variables['pt1']  = {   'name': 'Lepton_pt[0]',     
                         'range' : (20,0,100),   
@@ -44,17 +50,17 @@ variables['eta2']  = {  'name': 'Lepton_eta[1]',
                         }
 
                         
-variables['phi1']  = {  'name': 'Lepton_phi[0]',
-                        'range' : (20,-3.2,3.2),
-                        'xaxis' : '#phi 1st lep',
-                        'fold'  : 3
-                        }
+# variables['phi1']  = {  'name': 'Lepton_phi[0]',
+#                         'range' : (20,-3.2,3.2),
+#                         'xaxis' : '#phi 1st lep',
+#                         'fold'  : 3
+#                         }
 
-variables['phi2']  = {  'name': 'Lepton_phi[1]',
-                        'range' : (20,-3.2,3.2),
-                        'xaxis' : '#phi 2nd lep',
-                        'fold'  : 3
-                        }
+# variables['phi2']  = {  'name': 'Lepton_phi[1]',
+#                         'range' : (20,-3.2,3.2),
+#                         'xaxis' : '#phi 2nd lep',
+#                         'fold'  : 3
+#                         }
 
 variables['puppimet']  = {
                         'name': 'PuppiMET_pt',
@@ -70,40 +76,53 @@ variables['njet']  = {
                         'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
 
-variables['jetpt1']  = {
-                        'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_pt[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99',     
-                        'range' : (20,0,200),   
+variables['jetpt']  = {
+                        'name': 'CleanJet_pt[0]',     
+                        'range' : (50,0,500),   
                         'xaxis' : 'p_{T} 1st jet',
-                        'fold' : 0   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+                        'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
 
-variables['jetpt2']  = {
-                        'name': '(Sum$(CleanJet_pt>30)>1)*(Alt$(CleanJet_pt[1], 0)) - (Sum$(CleanJet_pt>30)<=1)*99',     
-                        'range' : (20,0,200),   
-                        'xaxis' : 'p_{T} 2nd jet',
-                        'fold' : 0   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
-                        }
-
-variables['jeteta1']  = {  'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_eta[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99',
-                        'range' : (20,-5.0,5.0),
+variables['jeteta']  = {  'name': 'CleanJet_eta[0]',
+                        'range' : (50,-5.0,5.0),
                         'xaxis' : '#eta 1st jet',
-                        'fold'  : 0
+                        'fold'  : 2
                         }
 
-variables['jeteta2']  = {  'name': '(Sum$(CleanJet_pt>30)>1)*(Alt$(CleanJet_eta[1], 0)) - (Sum$(CleanJet_pt>30)<=1)*99',
-                        'range' : (20,-5.0,5.0),
-                        'xaxis' : '#eta 2nd jet',
-                        'fold'  : 0
-                        }
+# variables['jetpt1']  = {
+#                         'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_pt[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99',     
+#                         'range' : (20,0,200),   
+#                         'xaxis' : 'p_{T} 1st jet',
+#                         'fold' : 0   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+#                         }
 
-variables['trkMet']  = {   'name': 'TkMET_pt',
-                        'range' : (20,0,200),
-                        'xaxis' : 'trk met [GeV]',
-                         'fold' : 3
-                        }
+# variables['jetpt2']  = {
+#                         'name': '(Sum$(CleanJet_pt>30)>1)*(Alt$(CleanJet_pt[1], 0)) - (Sum$(CleanJet_pt>30)<=1)*99',     
+#                         'range' : (20,0,200),   
+#                         'xaxis' : 'p_{T} 2nd jet',
+#                         'fold' : 0   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+#                         }
 
-variables['mpmet']  = { 'name': 'mpmet',
-                        'range' : (20,0,200),
-                        'xaxis' : 'min proj met [GeV]',
-                        'fold' : 3
-                        }
+# variables['jeteta1']  = {  'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_eta[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99',
+#                         'range' : (20,-5.0,5.0),
+#                         'xaxis' : '#eta 1st jet',
+#                         'fold'  : 0
+                        # }
+
+# variables['jeteta2']  = {  'name': '(Sum$(CleanJet_pt>30)>1)*(Alt$(CleanJet_eta[1], 0)) - (Sum$(CleanJet_pt>30)<=1)*99',
+#                         'range' : (20,-5.0,5.0),
+#                         'xaxis' : '#eta 2nd jet',
+#                         'fold'  : 0
+#                         }
+
+# variables['trkMet']  = {   'name': 'TkMET_pt',
+#                         'range' : (20,0,200),
+#                         'xaxis' : 'trk met [GeV]',
+#                          'fold' : 3
+#                         }
+
+# variables['mpmet']  = { 'name': 'mpmet',
+#                         'range' : (20,0,200),
+#                         'xaxis' : 'min proj met [GeV]',
+#                         'fold' : 3
+#                         }
