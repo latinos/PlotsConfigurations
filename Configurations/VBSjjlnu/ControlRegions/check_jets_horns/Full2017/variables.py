@@ -1,4 +1,5 @@
 # variables
+#variables = {}
 
 variables['events']  = {   'name': '1',      
                         'range' : (1,0,2),  
@@ -6,7 +7,6 @@ variables['events']  = {   'name': '1',
                         'fold' : 3
                         }
 
-#variables = {}
 variables['nvtx']  = {   'name': 'PV_npvsGood',      
                         'range' : (100,0,100),  
                         'xaxis' : 'nvtx', 
@@ -65,7 +65,6 @@ variables['jetpt']  = {
                         'xaxis' : 'p_{T} 1st jet',
                         'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
-
 
 variables['jeteta']  = {  'name': 'CleanJet_eta[0]',
                         'range' : (50,-5.0,5.0),
