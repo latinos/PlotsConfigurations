@@ -10,12 +10,12 @@ aliases['PromptGenLepMatch2l'] = {
     'samples': mc
 }
 
-nvtx_reweight_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/ControlRegions/check_jets_horns/Full2017/nvtx_reweight/'
+nvtx_reweight_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/ControlRegions/check_jets_horns/Full2018v5_nvtxreweight/nvtx_reweight/'
 
 aliases['nvtx_reweighting'] = {
     'class': 'NvtxReweight',
-    'args': (nvtx_reweight_path + "reweighting_Zee_fit_nofakes.txt",
-             nvtx_reweight_path + "reweighting_Zmm_fit_nofakes.txt"),
+    'args': (nvtx_reweight_path + "reweighting_Zee_fit.txt",
+             nvtx_reweight_path + "reweighting_Zmm_fit.txt"),
     'linesToAdd' : [
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         '.L ' + nvtx_reweight_path + 'nvtx_reweight.cc+'
