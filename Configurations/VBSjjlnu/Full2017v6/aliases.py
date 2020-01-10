@@ -1,9 +1,6 @@
 #aliases = {}
 
-if useEmbeddedDY:
-  mc = [skey for skey in samples if skey not in ('Fake', 'DATA', 'DY')]
-else:
-  mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
+mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
 bAlgo = 'DeepB'
 bWP = '0.1522'
@@ -67,3 +64,29 @@ systs = ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','c
 for s in systs:
   aliases['btagSF'+s+'up'] = { 'expr': '( bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_up_'+s)+'+btag0*'+aliases['btag0SF']['expr'].replace('shape','shape_up_'+s)+'+btag1*'+aliases['btag1SF']['expr'].replace('shape','shape_up_'+s)+'+btag2*'+aliases['btag2SF']['expr'].replace('shape','shape_up_'+s)+' + ( (!bVeto) && (!btag0) && (!btag1) && (!btag2) ) )', 'samples':mc  }
   aliases['btagSF'+s+'down'] = { 'expr': '( bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_down_'+s)+'+btag0*'+aliases['btag0SF']['expr'].replace('shape','shape_down_'+s)+'+btag1*'+aliases['btag1SF']['expr'].replace('shape','shape_down_'+s)+'+btag2*'+aliases['btag2SF']['expr'].replace('shape','shape_down_'+s)+' + ( (!bVeto) && (!btag0) && (!btag1) && (!btag2) ) )', 'samples':mc  }
+
+
+aliases['fake_weight_corrected'] = {
+    'class': 'FakeWeightCorrector',
+    'args': (os.getenv('CMSSW_BASE') +"/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017v6/macro/fakeweight_correction.root", 
+                "mvaFall17V1Iso_WP90", "fakeW_ele_mvaFall17V1Iso_WP90_mu_cut_Tight_HWWW_mu10_ele35", 
+                os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v5/mvaFall17V1Iso_WP90/EleFR_jet35.root",
+                os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v5/mvaFall17V1Iso_WP90/ElePR.root"),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L '+os.getenv('CMSSW_BASE')+'/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017v6/macro/fakeweight_corrector.cc+'
+    ],
+    'samples': "Fake"           
+}
+
+
+# aliases['nvtx_reweighting'] = {
+#     'class': 'NvtxReweight',
+#     'args': (os.getenv('CMSSW_BASE') +"/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017/lowenergy/nvtx_weights_ele_Zeefit.txt",
+#             os.getenv('CMSSW_BASE') +"/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017/lowenergy/nvtx_weights_mu_Zmmfit.txt"),
+#     'linesToAdd' : [
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         '.L '+os.getenv('CMSSW_BASE')+'/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017/nvtx_reweight.cc+'
+#     ],
+#     'samples' : mc      
+# }
