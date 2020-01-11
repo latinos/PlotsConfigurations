@@ -9,11 +9,13 @@ args = parser.parse_args()
 c1 = R.TCanvas( 'c1', 'rew', 0, 60, 800, 600 )
 g = R.TGraphErrors(args.input)
 
-func1 = R.TF1("wf1", "pol1", 5, 35)
-func2 = R.TF1("wf2", "pol2", 35, 60)
-g.Fit("wf1", "+","", 5,35)
-g.Fit("wf2", "+","", 35,60)
+ranges=[(5,65)]
 
+func1 = R.TF1("wf1", "pol5", ranges[0][0], ranges[0][1])
+# func2 = R.TF1("wf2", "pol3", ranges[1][0], ranges[1][1])
+g.Fit("wf1", "+","", ranges[0][0], ranges[0][1])
+# g.Fit("wf2", "+","", ranges[1][0], ranges[1][1])
+g.GetYaxis().SetRangeUser(0,7)
 g.Draw("APL")
 c1.Print(args.output + ".root", "root")
 
@@ -21,10 +23,10 @@ xs = []
 ys = []
 # estrapolate from 0 to 100
 for x in range(0, 101):
-    if x < 40:
-        ys.append(func1.Eval(x))
-    else: 
-        ys.append(func2.Eval(x))
+    # if x < ranges[1][0]:
+    ys.append(func1.Eval(x))
+    # else: 
+    #     ys.append(func2.Eval(x))
     xs.append(x)
 
 

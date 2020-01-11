@@ -1,3 +1,7 @@
+'''
+Ratio normalized( Data - Fake ) / normalized( MC )
+'''
+
 import ROOT as R
 import sys
 import argparse
@@ -32,10 +36,11 @@ for s in samples:
         tot_mc.SetName("totMC") 
 
 data_hist = f.Get(cat+ "/"+args.var+"/histo_DATA")
-######## AGGIUNGERE IN FAKE
-#fake_hist =  f.Get(cat+ "/"+args.var+"/histo_Fake_mm")
-#data_hist.Add(fake_hist, -1)
+fake_sample = '/histo_Fake'
+fake_hist =  f.Get(cat+ "/" + args.var + fake_sample)
+data_hist.Add(fake_hist, -1)
 
+# Ratio: normalized distribution!
 tot_mc.Scale(1/ tot_mc.Integral())
 data_hist.Scale(1/data_hist.Integral())
 
