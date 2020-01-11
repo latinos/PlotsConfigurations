@@ -50,7 +50,7 @@ for s in samples:
     else:
         tot_mc = h.Clone()
         tot_mc.SetName("totMC") 
-# tot_mc.Scale(1/ tot_mc.Integral())
+tot_mc_integral = tot_mc.Integral()
 
 nbins = data_hist.GetNbinsX()
 print('apply weights')
@@ -59,6 +59,8 @@ for ibin in range(1, nbins+1):
     # print(ibin, xs[ibin-1])
     bin_content = tot_mc.GetBinContent(ibin)
     tot_mc.SetBinContent(ibin, bin_content * ys[ibin-1]) 
+tot_mc_integral_rew = tot_mc.Integral()
+print(tot_mc_integral_rew / tot_mc_integral)
 tot_mc.SetLineColor(R.kRed)
 tot_mc.GetYaxis().SetTitleSize(20)
 tot_mc.GetYaxis().SetTitleFont(43)
