@@ -64,6 +64,7 @@ errw = []
 for ibin in range(1, nbins+1):
     x.append(tot_mc.GetXaxis().GetBinLowEdge(ibin))
     if tot_mc.GetBinContent(ibin) == 0: 
+        # used for ibin == 1 case
         weights.append(1.)
         continue
     weights.append(data_hist.GetBinContent(ibin) / tot_mc.GetBinContent(ibin))

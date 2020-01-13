@@ -55,10 +55,12 @@ tot_mc_integral = tot_mc.Integral()
 nbins = data_hist.GetNbinsX()
 print('apply weights')
 print(tot_mc)
-for ibin in range(1, nbins+1):
-    # print(ibin, xs[ibin-1])
+for ibin in range(1, nbins):
     bin_content = tot_mc.GetBinContent(ibin)
+    # print(ibin, xs[ibin-1], ys[ibin-1])
     tot_mc.SetBinContent(ibin, bin_content * ys[ibin-1]) 
+    # print(ibin, xs[ibin], ys[ibin])
+    # tot_mc.SetBinContent(ibin, bin_content * ys[ibin+1]) 
 tot_mc_integral_rew = tot_mc.Integral()
 print(tot_mc_integral_rew / tot_mc_integral)
 tot_mc.SetLineColor(R.kRed)
@@ -134,9 +136,9 @@ axis.SetLabelSize(15)
 axis.Draw()
 pad2.cd()
 h3.Draw("ep")
-line = R.TLine(0,1,100,1);
-line.SetLineColor(R.kBlack);
-line.Draw();
+line = R.TLine(0,1,100,1)
+line.SetLineColor(R.kBlack)
+line.Draw()
 
 # weights = []
 # x = []
