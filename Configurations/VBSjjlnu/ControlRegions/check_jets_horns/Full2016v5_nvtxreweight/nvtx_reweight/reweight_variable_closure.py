@@ -29,6 +29,17 @@ with open(args.file_weight, "r") as f:
         xs.append(x)
         ys.append(y)
 
+if 'Zmm' in args.file_weight:
+    print('read zmmnorm weights from textfile')
+    xs_zmmnorm = []
+    ys_zmmnorm = []
+    with open("zmmnorm_" + args.file_weight, "r") as f:
+        for line in f:
+            x,y = line.split()
+            x, y = int(x), float(y)
+            xs_zmmnorm.append(x)
+            ys_zmmnorm.append(y)
+
 print('import histo from rootfile')
 f = R.TFile(file)
 
@@ -53,23 +64,42 @@ for s in samples:
 tot_mc_integral = tot_mc.Integral()
 
 nbins = data_hist.GetNbinsX()
+nvtx_uncorrected={}
 print('apply weights')
-print(tot_mc)
-for ibin in range(1, nbins+1):
-    # print(ibin, xs[ibin-1])
+for ibin in range(1, nbins):
     bin_content = tot_mc.GetBinContent(ibin)
+    nvtx_uncorrected[str(ibin)] = bin_content
+    # print(ibin, xs[ibin-1], ys[ibin-1])
     tot_mc.SetBinContent(ibin, bin_content * ys[ibin-1]) 
 tot_mc_integral_rew = tot_mc.Integral()
-print(tot_mc_integral_rew / tot_mc_integral)
+integral_ratio = tot_mc_integral_rew / tot_mc_integral
+print(integral_ratio)
+
+if 'Zmm' in args.file_weight:
+    print('apply normalized weights')
+    print(tot_mc)
+    for ibin in range(1, nbins):
+        # bin_content = tot_mc.GetBinContent(ibin)
+        bin_content = nvtx_uncorrected[str(ibin)]
+        # print(ibin, xs[ibin-1], ys[ibin-1])
+        tot_mc.SetBinContent(ibin, bin_content * ys_zmmnorm[ibin-1]) 
+    print(tot_mc.Integral() / tot_mc_integral)
+
 tot_mc.SetLineColor(R.kRed)
 tot_mc.GetYaxis().SetTitleSize(20)
 tot_mc.GetYaxis().SetTitleFont(43)
 tot_mc.GetYaxis().SetTitleOffset(1.55)
 tot_mc.SetStats(0)
 
-fake_sample = '/histo_Fake'
-fake_hist =  f.Get(cat+ "/" + args.var + fake_sample)
-tot_mc.Add(fake_hist, +1)
+# No fake in DY under Z peak
+# if 'mm' in args.cat:
+#     fake_sample = '/histo_Fake_mm'
+# elif 'ee' in args.cat:
+#     fake_sample = '/histo_Fake_ee'
+# else:
+#     print 'no fake sample selected, exit 1'
+# fake_hist =  f.Get(cat+ "/" + args.var + fake_sample)
+# tot_mc.Add(fake_hist, +1)
 
 # def ratio - h3
 # https://root.cern.ch/doc/v608/ratioplot_8py_source.html
@@ -129,9 +159,14 @@ axis.SetLabelSize(15)
 axis.Draw()
 pad2.cd()
 h3.Draw("ep")
-line = R.TLine(0,1,100,1);
-line.SetLineColor(R.kBlack);
-line.Draw();
+line = R.TLine(0,1,100,1)
+line.SetLineColor(R.kBlack)
+line.Draw()
+
+if 'Zmm' in args.file_weight and 'mm' in args.cat :
+    print ('writing file with nvtx Zmm normalization correction factor')
+    with open('nvtx_zmm_integralratio.txt', 'w') as f:
+        f.write(str(integral_ratio))
 
 # weights = []
 # x = []

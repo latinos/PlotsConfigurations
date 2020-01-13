@@ -155,20 +155,22 @@ samples['VZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo2L2Nu',False,'nan
 ################## DATA ###################
 ###########################################
 
-samples['Fake']  = {   'name': [ ] ,
-                         'weight' : METFilter_DATA+'*'+fakeW+'*(abs(Lepton_pdgId[0])==11 && abs(Lepton_pdgId[1])==13)',              #   weight/cut 
-                         'weights' : [ ] ,
-                         'isData': ['all'],
-                         'FilesPerJob' : 15 ,
-                      }
+# no Fake (non-prompt) under the DY Z peak
 
-for Run in DataRun :
-        directory = treeBaseDir+'Run2016_102X_nAODv4_Full2016v5/DATAl1loose2016v5__l2loose__fakeW/'
-        for DataSet in DataSets :
-                FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
-                for iFile in FileTarget:
-                        samples['Fake']['name'].append(iFile)
-                        samples['Fake']['weights'].append(DataTrig[DataSet])
+# samples['Fake']  = {   'name': [ ] ,
+#                          'weight' : METFilter_DATA+'*'+fakeW+'*(abs(Lepton_pdgId[0])==11 && abs(Lepton_pdgId[1])==13)',              #   weight/cut 
+#                          'weights' : [ ] ,
+#                          'isData': ['all'],
+#                          'FilesPerJob' : 15 ,
+#                       }
+
+# for Run in DataRun :
+#         directory = treeBaseDir+'Run2016_102X_nAODv4_Full2016v5/DATAl1loose2016v5__l2loose__fakeW/'
+#         for DataSet in DataSets :
+#                 FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
+#                 for iFile in FileTarget:
+#                         samples['Fake']['name'].append(iFile)
+#                         samples['Fake']['weights'].append(DataTrig[DataSet])
 
 
 
