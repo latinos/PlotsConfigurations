@@ -2,35 +2,35 @@
 #RAndKff  = {}
 
 RAndKff['DYmva0p8'] = {
-                      'RFile'   : '../DNN/rootFile/plots_BG_DY_NOHR_MVA080.root' ,
-                      'KffFile' : '../DNN/rootFile/plots_BG_DY_NOHR_MVA080.root' ,             
+                      'RFile'   : '../DNN/rootFile/plots_BG_DY_NOHR_MVA080_VBF.root' ,
+                      'KffFile' : '../DNN/rootFile/plots_BG_DY_NOHR_MVA080_VBF.root' ,             
                       'Regions' : { '2jVBFee' : { 
-                                               'kNum' : '2j_VBF_ee_in/events/histo_DY' ,
-                                               'kDen' : '2j_VBF_uu_in/events/histo_DY' ,
-                                               'RNum' : '2j_VBF_ee_out/events/histo_DY' , 
-                                               'RDen' : '2j_VBF_ee_in/events/histo_DY' , 
+                                               'kNum' : 'VBF_ee_in/events/histo_DY' ,
+                                               'kDen' : 'VBF_uu_in/events/histo_DY' ,
+                                               'RNum' : 'VBF_ee_out/events/histo_DY' , 
+                                               'RDen' : 'VBF_ee_in/events/histo_DY' , 
                                              } ,
                                     '2jVBFmm' : { 
-                                               'kNum' : '2j_VBF_uu_in/events/histo_DY' ,
-                                               'kDen' : '2j_VBF_ee_in/events/histo_DY' ,
-                                               'RNum' : '2j_VBF_uu_out/events/histo_DY' , 
-                                               'RDen' : '2j_VBF_uu_in/events/histo_DY' , 
+                                               'kNum' : 'VBF_uu_in/events/histo_DY' ,
+                                               'kDen' : 'VBF_ee_in/events/histo_DY' ,
+                                               'RNum' : 'VBF_uu_out/events/histo_DY' , 
+                                               'RDen' : 'VBF_uu_in/events/histo_DY' , 
                                              } ,
                                    } , 
                      }
  
 RAndKff['DYmva0p8top'] = {
-                      'RFile'   : '../DNN/rootFile/plots_BG_DY_NOHR_btag.root' ,
-                      'KffFile' : '../DNN/rootFile/plots_BG_DY_NOHR_MVA080.root' ,
+                      'RFile'   : '../DNN/rootFile/plots_BG_DY_NOHR_btag_VBF.root' ,
+                      'KffFile' : '../DNN/rootFile/plots_BG_DY_NOHR_MVA080_VBF.root' ,
                       'Regions' : { '2jVBFee' : {
-                                               'kNum' : '2j_VBF_ee_in/events/histo_DY' ,
-                                               'kDen' : '2j_VBF_uu_in/events/histo_DY' ,
+                                               'kNum' : 'VBF_ee_in/events/histo_DY' ,
+                                               'kDen' : 'VBF_uu_in/events/histo_DY' ,
                                                'RNum' : '2j_VBF_ee_out/events/histo_DY' ,       
                                                'RDen' : '2j_VBF_ee_in/events/histo_DY' ,       
                                              } ,
                                     '2jVBFmm' : { 
-                                               'kNum' : '2j_VBF_uu_in/events/histo_DY' ,
-                                               'kDen' : '2j_VBF_ee_in/events/histo_DY' ,
+                                               'kNum' : 'VBF_uu_in/events/histo_DY' ,
+                                               'kDen' : 'VBF_ee_in/events/histo_DY' ,
                                                'RNum' : '2j_VBF_uu_out/events/histo_DY' ,
                                                'RDen' : '2j_VBF_uu_in/events/histo_DY' ,
                                              } ,
@@ -44,8 +44,8 @@ for iCut in optim:
 
   DYestim['hww2l2v_13TeV_2jee_vbf_'+iCut] = {
                                    'rinout'  : 'DYmva0p8' ,
-                                   'rsyst'   : 0.10 , 
-                                   'ksyst'   : 0.02 , 
+                                   'rsyst'   : 0.01 , 
+                                   'ksyst'   : 0.01 , 
                                    'njet'    : '2jVBF' , 
                                    'flavour' : 'ee' ,
                                    'DYProc'  : 'DY' ,
@@ -63,8 +63,8 @@ for iCut in optim:
   
   DYestim['hww2l2v_13TeV_2jmm_vbf_'+iCut] = {
                                    'rinout'  : 'DYmva0p8' ,
-                                   'rsyst'   : 0.07 , 
-                                   'ksyst'   : 0.05 , 
+                                   'rsyst'   : 0.03 , 
+                                   'ksyst'   : 0.01 , 
                                    'njet'    : '2jVBF'    ,
                                    'flavour' : 'mm' ,
                                    'DYProc'  : 'DY' ,
@@ -77,7 +77,7 @@ for iCut in optim:
                                    'NPname'  : 'DYmmnorm2j' ,
                                    'AccNum'  : 'hww2l2v_13TeV_2jmm_vbf_HAccNum/events/histo_DY',
                                    'AccDen'  : 'hww2l2v_13TeV_2jmm_vbf_AccDen/events/histo_DY',
-                                   'asyst'   : 0.04 , 
+                                   'asyst'   : 0.01 , 
                                   } 
   
   DYestim['hww2l2v_13TeV_WW_2jee_vbf_'+iCut] = {
@@ -126,7 +126,7 @@ for iCut in optim:
                                    'DFinDa'  : 'DATA' ,
                                    'DFinMC'  : ['VZ','Vg','VgS_L','VgS_H'],
                                    'NPname'  : 'DYeenorm2j' ,
-                                   'asyst'   : 0.04 ,
+                                   'asyst'   : 0.01 ,
                                      }
   
   DYestim['hww2l2v_13TeV_top_2jmm_vbf_'+iCut] = {
@@ -141,5 +141,5 @@ for iCut in optim:
                                    'DFinDa'  : 'DATA' ,
                                    'DFinMC'  : ['VZ','Vg','VgS_L','VgS_H'],
                                    'NPname'  : 'DYmmnorm2j' ,
-                                   'asyst'   : 0.05 ,
+                                   'asyst'   : 0.02 ,
                                      }

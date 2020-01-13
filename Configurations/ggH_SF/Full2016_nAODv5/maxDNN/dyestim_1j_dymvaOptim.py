@@ -2,8 +2,8 @@
 #RAndKff  = {}
 
 RAndKff['DYmva0p8'] = {
-                      'RFile'   : '../DNN/rootFile/plots_BG_DY_NOHR_MVA080.root' ,
-                      'KffFile' : '../DNN/rootFile/plots_BG_DY_NOHR_MVA080.root' ,             
+                      'RFile'   : '../DNN/rootFile/plots_BG_DY_NOHR_MVA080_1j.root' ,
+                      'KffFile' : '../DNN/rootFile/plots_BG_DY_NOHR_MVA080_1j.root' ,             
                       'Regions' : { '1jee' : { 
                                                'kNum' : '1j_ee_in/events/histo_DY' ,
                                                'kDen' : '1j_uu_in/events/histo_DY' ,

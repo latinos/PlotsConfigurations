@@ -18,23 +18,23 @@ RAndKff['DYmva0p8'] = {
                                    } ,
                      }
 
-RAndKff['DYmva0p8top'] = {
-                      'RFile'   : '../DNN/rootFile/plots_BG_DY_NOHR_btag_0j.root' ,
-                      'KffFile' : '../DNN/rootFile/plots_BG_DY_NOHR_MVA080_0j.root' ,
-                      'Regions' : { '0jee' : {
-                                               'kNum' : '0j_ee_in/events/histo_DY' ,
-                                               'kDen' : '0j_uu_in/events/histo_DY' ,
-                                               'RNum' : '0j_ee_out/events/histo_DY' ,
-                                               'RDen' : '0j_ee_in/events/histo_DY' ,
-                                             } ,
-                                    '0jmm' : {
-                                               'kNum' : '0j_uu_in/events/histo_DY' ,
-                                               'kDen' : '0j_ee_in/events/histo_DY' ,
-                                               'RNum' : '0j_uu_out/events/histo_DY' ,
-                                               'RDen' : '0j_uu_in/events/histo_DY' ,
-                                             } ,
-                                   } ,
-                     }
+#RAndKff['DYmva0p8top'] = {
+#                      'RFile'   : '../DNN/rootFile/plots_BG_DY_NOHR_btag_0j.root' ,
+#                      'KffFile' : '../DNN/rootFile/plots_BG_DY_NOHR_MVA080_0j.root' ,
+#                      'Regions' : { '0jee' : {
+#                                               'kNum' : '0j_ee_in/events/histo_DY' ,
+#                                               'kDen' : '0j_uu_in/events/histo_DY' ,
+#                                               'RNum' : '0j_ee_out/events/histo_DY' ,
+#                                               'RDen' : '0j_ee_in/events/histo_DY' ,
+#                                             } ,
+#                                    '0jmm' : {
+#                                               'kNum' : '0j_uu_in/events/histo_DY' ,
+#                                               'kDen' : '0j_ee_in/events/histo_DY' ,
+#                                               'RNum' : '0j_uu_out/events/histo_DY' ,
+#                                               'RDen' : '0j_uu_in/events/histo_DY' ,
+#                                             } ,
+#                                   } ,
+#                     }
 
 
 #DYestim = {}

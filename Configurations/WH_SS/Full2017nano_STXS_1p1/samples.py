@@ -255,7 +255,6 @@ if os.path.exists('HTXS_stage1_categories.py'):
   handle = open('HTXS_stage1_categories.py','r')
   exec(handle)
   handle.close()
-  SigOnly=treeBaseDir+'Summer16_102X_nAODv5_SigOnly_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/'
 
 for cat,num in HTXSStage1_1Categories.iteritems():
     if 'QQ2HLNU_' in cat:

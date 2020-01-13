@@ -132,7 +132,8 @@ aliases['btag2'] = {
 
 # B tag scale factors
 
-btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_2016LegacySF_V1.csv' % os.getenv('CMSSW_BASE')
+btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_102XSF_V1.csv' % os.getenv('CMSSW_BASE')
+
 
 
 aliases['Jet_btagSF_shapeFix'] = {
@@ -140,7 +141,8 @@ aliases['Jet_btagSF_shapeFix'] = {
         'gSystem->Load("libCondFormatsBTauObjects.so");',
         'gSystem->Load("libCondToolsBTau.so");',
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
-        '.L %s/patches/btagsfpatch.cc+' % configurations
+        # '.L %s/patches/btagsfpatch.cc+' % configurations
+        '.L %s/src/PlotsConfigurations/Configurations/patches/btagsfpatch.cc+' % os.getenv('CMSSW_BASE'),
     ],
     'class': 'BtagSF',
     'args': (btagSFSource,),

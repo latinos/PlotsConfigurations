@@ -81,7 +81,7 @@ for k in cuts:
     elif '1j' in cat: cuts1j.append(k+'_'+cat)
     elif '2j' in cat: cuts2j.append(k+'_'+cat)
     #elif 'GT200' in cat: cutsGT200.append(k+'_'+cat)                                                                                         
-    else : cutsGT200.append(k+'_'+cat)
+    #else : cutsGT200.append(k+'_'+cat)
     #else: print 'WARNING: name of category does not contain on either 0j,1j,2j,GT200', cat                                                   
 
 
@@ -197,7 +197,7 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
         'name': name,
         'kind': 'weight',
         'type': 'shape',
-        'samples': dict((skey, btag_syst) for skey in mc),
+        'samples': dict((skey, btag_syst) for skey in mc if skey not in ['DY']),
     }
 
 ##### Trigger Efficiency
@@ -208,7 +208,7 @@ nuisances['trigg'] = {
     'name': 'CMS_eff_hwwtrigger_2016',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, trig_syst) for skey in mc)
+    'samples': dict((skey, trig_syst) for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
 prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
@@ -217,7 +217,7 @@ nuisances['prefire'] = {
     'name': 'CMS_eff_prefiring_2016',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, prefire_syst) for skey in mc)
+    'samples': dict((skey, prefire_syst) for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
 ##### Electron Efficiency and energy scale
@@ -226,14 +226,14 @@ nuisances['eff_e'] = {
     'name': 'CMS_eff_e_2016',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
+    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
 nuisances['electronpt'] = {
     'name': 'CMS_scale_e_2016',
     'kind': 'tree',
     'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['WW', 'top', 'DY']),
     'folderUp': makeMCDirectory('ElepTup'),
     'folderDown': makeMCDirectory('ElepTdo'),
     'AsLnN': '1'
@@ -245,14 +245,14 @@ nuisances['eff_m'] = {
     'name': 'CMS_eff_m_2016',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
+    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
 nuisances['muonpt'] = {
     'name': 'CMS_scale_m_2016',
     'kind': 'tree',
     'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['WW', 'top', 'DY']),
     'folderUp': makeMCDirectory('MupTup'),
     'folderDown': makeMCDirectory('MupTdo'),
     'AsLnN': '1'
@@ -264,7 +264,7 @@ nuisances['jes'] = {
     'name': 'CMS_scale_j_2016',
     'kind': 'tree',
     'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['WW', 'top', 'DY']),
     'folderUp': makeMCDirectory('JESup'),
     'folderDown': makeMCDirectory('JESdo'),
     'AsLnN': '1'
@@ -276,7 +276,7 @@ nuisances['met'] = {
     'name': 'CMS_scale_met_2016',
     'kind': 'tree',
     'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['WW', 'top', 'DY']),
     'folderUp': makeMCDirectory('METup'),
     'folderDown': makeMCDirectory('METdo'),
     'AsLnN': '1'

@@ -77,6 +77,7 @@ void init_hww_DYmvaDNN_0j(TTree* tree){
     readerDNN_0j->AddVariable("dphilmet2", &l_0j_dphilmet2);
     readerDNN_0j->AddVariable("PV_npvsGood", &l_0j_PV_npvsGood);
 
+  //readerDNN_0j->BookMVA("PyKeras","/afs/cern.ch/user/d/ddicroce/public/DYSFmva/2016_v5/TMVAClassification_PyKeras_2016_0j.weights.xml"); 
     readerDNN_0j->BookMVA("PyKeras","/afs/cern.ch/user/d/ddicroce/public/DYSFmva/2016_v5/TMVAClassification_PyKeras_2016_0j.weights.xml"); 
 
 }

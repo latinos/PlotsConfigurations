@@ -225,7 +225,7 @@ files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
 
 samples['Vg'] = {
     'name': files,
-    'weight': mcCommonWeightNoMatch + '*!(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22)',
+    'weight': mcCommonWeightNoMatch + '*(!(Gen_ZGstar_mass > 0))',
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 2
@@ -249,9 +249,9 @@ samples['VgS'] = {
       'H': 'gstarHigh'
     }
 }
-addSampleWeight(samples, 'VgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 && Gen_ZGstar_mass < 0.1)')
+addSampleWeight(samples, 'VgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
 addSampleWeight(samples, 'VgS', 'Zg', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22)*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)')
-addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1 || Gen_ZGstar_mass < 0)')
+addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
 
 ############ VZ ############
 
@@ -362,14 +362,14 @@ signals.append('ttH_hww')
 
 ############ H->TauTau ############
 
-samples['ggH_htt'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125'),
-    'weight': mcCommonWeight,
-    'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 2
-}
-
+#samples['ggH_htt'] = {
+#    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125'),
+#    'weight': mcCommonWeight,
+#    'suppressNegative' :['all'],
+#    'suppressNegativeNuisances' :['all'],
+#    'FilesPerJob': 2
+#}
+#
 #signals.append('ggH_htt')
 
 samples['qqH_htt'] = {
@@ -380,7 +380,7 @@ samples['qqH_htt'] = {
     'FilesPerJob': 4
 }
 
-#signals.append('qqH_htt')
+signals.append('qqH_htt')
 
 samples['ZH_htt'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125'),
@@ -390,7 +390,7 @@ samples['ZH_htt'] = {
     'FilesPerJob': 4
 }
 
-#signals.append('ZH_htt')
+signals.append('ZH_htt')
 
 samples['WH_htt'] = {
     'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
@@ -400,7 +400,7 @@ samples['WH_htt'] = {
     'FilesPerJob': 4
 }
 
-#signals.append('WH_htt')
+signals.append('WH_htt')
 
 
 ###########################################
