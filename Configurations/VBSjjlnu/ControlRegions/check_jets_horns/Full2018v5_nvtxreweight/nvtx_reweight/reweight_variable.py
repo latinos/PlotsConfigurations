@@ -36,14 +36,16 @@ for s in samples:
         tot_mc.SetName("totMC") 
 
 data_hist = f.Get(cat+ "/"+args.var+"/histo_DATA")
-if 'mm' in args.cat:
-    fake_sample = '/histo_Fake_mm'
-elif 'ee' in args.cat:
-    fake_sample = '/histo_Fake_ee'
-else:
-    print 'no fake sample selected, ERROR'
-fake_hist =  f.Get(cat+ "/" + args.var + fake_sample)
-data_hist.Add(fake_hist, -1)
+
+# No fake in DY under Z peak
+# if 'mm' in args.cat:
+#     fake_sample = '/histo_Fake_mm'
+# elif 'ee' in args.cat:
+#     fake_sample = '/histo_Fake_ee'
+# else:
+#     print 'no fake sample selected, ERROR'
+# fake_hist =  f.Get(cat+ "/" + args.var + fake_sample)
+# data_hist.Add(fake_hist, -1)
 
 # Ratio: normalized distribution!
 tot_mc.Scale(1/ tot_mc.Integral())

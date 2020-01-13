@@ -16,7 +16,7 @@ aliases['nvtx_reweighting'] = {
     'class': 'NvtxReweight',
     # 'args': (nvtx_reweight_path + "reweighting_Zee_fit.txt",
     #          nvtx_reweight_path + "reweighting_Zmm_fit.txt"),
-    'args': (nvtx_reweight_path + "reweighting_Zmm_fit.txt"),
+    'args': (nvtx_reweight_path + "zmmnorm_reweighting_Zmm_fit.txt"),
     'linesToAdd' : [
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         '.L ' + nvtx_reweight_path + 'nvtx_reweight.cc+'

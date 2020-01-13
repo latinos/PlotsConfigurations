@@ -22,10 +22,12 @@ using namespace std;
 
 class NvtxReweight : public multidraw::TTreeFunction {
 public:
-  NvtxReweight(char * file_ele, char* file_mu);
+  // NvtxReweight(char * file_ele, char* file_mu);
+  NvtxReweight(char* file_mu);
 
   char const* getName() const override { return "NvtxReweight"; }
-  TTreeFunction* clone() const override { return new NvtxReweight(file_ele, file_mu); }
+  // TTreeFunction* clone() const override { return new NvtxReweight(file_ele, file_mu); }
+  TTreeFunction* clone() const override { return new NvtxReweight(file_mu); }
 
   unsigned getNdata() override { return 1; }
   double evaluate(unsigned) override;
@@ -46,8 +48,10 @@ protected:
 
 };
 
-NvtxReweight::NvtxReweight(char * file_ele, char* file_mu) :
-  TTreeFunction(), file_ele(file_ele), file_mu(file_mu)
+// NvtxReweight::NvtxReweight(char * file_ele, char* file_mu) :
+  // TTreeFunction(), file_ele(file_ele), file_mu(file_mu)
+NvtxReweight::NvtxReweight(char* file_mu) :
+  TTreeFunction(), file_mu(file_mu)
 {
   // ifstream inputfile_ele {file_ele};
   // cout << "Reading file: "<< file_ele << endl;

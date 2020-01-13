@@ -23,14 +23,22 @@ xs = []
 ys = []
 # estrapolate from 0 to 100
 for x in range(0, 101):
-    # if x < ranges[1][0]:
     ys.append(func1.Eval(x))
-    # else: 
-    #     ys.append(func2.Eval(x))
     xs.append(x)
 
-
 with open(args.output, "w") as out:
+    for x,y in zip(xs, ys):
+        out.write("{:.0f} {}\n".format(x,y)) 
+
+try:
+    with open('nvtx_zmm_integralratio.txt', 'r') as f:
+        k = float( f.read() )
+except:
+    k = 1.
+print (k)
+ys = [y / k for y in ys]
+
+with open("zmmnorm_" + args.output, "w") as out:
     for x,y in zip(xs, ys):
         out.write("{:.0f} {}\n".format(x,y)) 
 
