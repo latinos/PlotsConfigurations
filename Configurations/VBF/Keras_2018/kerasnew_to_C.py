@@ -1,4 +1,5 @@
-from loader_2016 import *
+from __future__ import print_function
+from loader_2018 import *
 import ROOT 
 import numpy as np  
 import pandas as pd
@@ -75,10 +76,10 @@ jetqgl1_ggh = []
 #jetbtag1_ggh = []
 
 
-print len(jetqgl_vbf)
-print len(jetqgl_top)
-print len(jetqgl_ww)
-print len(jetqgl_ggh)
+print (len(jetqgl_vbf))
+print (len(jetqgl_top))
+print (len(jetqgl_ww))
+print (len(jetqgl_ggh))
 
 for i in range (0,len(jetqgl_vbf)):
         '''
@@ -278,112 +279,112 @@ history = model.fit(X_train_val,
 #CONVERT TO C++
 
 
-print ("""
-// Select all (Ctrl+A), Copy (Ctrl+C), paste to an empty text file (Ctrl+V) and save that file as 'generated_code.h'
-// 
-// Auto-generated header file. Assumes img to be a floating point array
-// of 64 elements (corresponding to an 8x8 b&w image)
+with open('generated_code_new.h', 'w') as f:
 
-#include <math.h>
 
-""")
+    print ("""
+    // Select all (Ctrl+A), Copy (Ctrl+C), paste to an empty text file (Ctrl+V) and save that file as 'generated_code.h'
+    // 
+    // Auto-generated header file. Assumes img to be a floating point array
+    // of 64 elements (corresponding to an 8x8 b&w image)
 
-for iLayer, layer in enumerate(model.layers):
-  kernel, bias = layer.get_weights()
-  print ("inline float activation_%d (float x, float n) " % iLayer);
-  activation =  layer.get_config()['activation'] 
-  if activation == 'sigmoid':
-    print ("{ return 1./(1 + exp(-x)); }")
-  elif activation == 'tanh':
-    print ("{ return tanh(x);}")
-  elif activation == 'relu':
-    print ("{ return x > 0 ? x : 0;}")
-  elif activation == 'linear':
-    print ("{ return x;}")
-  elif activation == 'softmax':
-    print ("{ return exp(x)/n ; }")
-  else:
-    raise KeyError ("Unexpected activation %s"%activation)
-  
+    #include <math.h>
 
-  
-print ("""
+    float norma;
+    """, file=f)
 
-float guess_digit (const float *img, int flag)
-{
+    for iLayer, layer in enumerate(model.layers):
+      kernel, bias = layer.get_weights()
+      print ("inline float activation_%d (float x, float n) " % iLayer, file=f);
+      activation =  layer.get_config()['activation'] 
+      if activation == 'sigmoid':
+        print ("{ return 1./(1 + exp(-x)); }", file=f)
+      elif activation == 'tanh':
+        print ("{ return tanh(x);}")
+      elif activation == 'relu':
+        print ("{ return x > 0 ? x : 0;}", file=f)
+      elif activation == 'linear':
+        print ("{ return x;}")
+      elif activation == 'softmax':
+        print ("{ return exp(x)/n;  }", file=f)
+      else:
+        raise KeyError ("Unexpected activation %s"%activation)
+      
 
-float norma=0;
-""")
+      
+    print ("""
+    float guess_digit (const float *img, int flag)
+    {
+    """, file=f)
 
-max_out = 100
-for iLayer, layer in enumerate(model.layers):
-  print ("  // Declare the arrays in the stack")
-  kernel, bias = layer.get_weights()
-   
-  max_out = max(kernel.shape[1], max_out)
-  #print ("  //",bias.shape)
-  kernel_values = "{%s}"%(',\n   '.join(["{%s}"%(','.join(["%18.13f"%x for x in row])) for row in kernel]))
-  bias_values   = "{%s}"% ( ",".join(["%18.13f"%x for x in bias]))
-  print ("  const float kernel_%d[%d][%d] = \n  %s;" % (iLayer, kernel.shape[0], kernel.shape[1],kernel_values))
-  print ("  const float bias_%d[%d] = %s;" % (iLayer, bias.shape[0], bias_values))
-  
-print ("  float buffer_in[%d];" % max_out)
-print ("  float buffer_out[%d];" % max_out)
+    max_out = 100
+    for iLayer, layer in enumerate(model.layers):
+      print ("  // Declare the arrays in the stack", file=f)
+      kernel, bias = layer.get_weights()
+       
+      max_out = max(kernel.shape[1], max_out)
+      #print ("  //",bias.shape)
+      kernel_values = "{%s}"%(',\n   '.join(["{%s}"%(','.join(["%18.13f"%x for x in row])) for row in kernel]))
+      bias_values   = "{%s}"% ( ",".join(["%18.13f"%x for x in bias]))
+      print ("  const float kernel_%d[%d][%d] = \n  %s;" % (iLayer, kernel.shape[0], kernel.shape[1],kernel_values), file=f)
+      print ("  const float bias_%d[%d] = %s;" % (iLayer, bias.shape[0], bias_values), file=f)
+      
+    print ("  float buffer_in[%d];" % max_out, file=f)
+    print ("  float buffer_out[%d];" % max_out, file=f)
 
-print ("  unsigned int i,j,c; ")
+    print ("  unsigned int i,j,c; ", file=f)
 
-print ("\n\n\n")
-print ("  // Load the input in the buffer")
-print ("  for (c = 0; c < 64; ++c) \n  buffer_in[c] = img[c];")
+    print ("\n\n\n", file=f)
+    print ("  // Load the input in the buffer", file=f)
+    print ("  for (c = 0; c < 64; ++c) \n  buffer_in[c] = img[c];", file=f)
 
-for iLayer, layer in enumerate(model.layers):
-  kernel, bias = layer.get_weights()
+    for iLayer, layer in enumerate(model.layers):
+      kernel, bias = layer.get_weights()
 
-  print ( "  // Processing layer %i " % iLayer )
-  print ( """
-  for (c = 0; c < {n_out}; ++c ) 
-    buffer_out[c] = bias_{iLayer}[c];
-    
-  for (c = 0; c < {n_out}; ++c )
-    for (i = 0; i < {n_in}; ++i)
-      buffer_out[c] += buffer_in[i] * kernel_{iLayer}[i][c];
- 
-  norma=0;
-  for(c=0;c<4;++c)
-    norma+=exp(buffer_out[c]); 
+      print ( "  // Processing layer %i " % iLayer , file=f)
+      print ( """
+      for (c = 0; c < {n_out}; ++c ) 
+        buffer_out[c] = bias_{iLayer}[c];
+        
+      for (c = 0; c < {n_out}; ++c )
+        for (i = 0; i < {n_in}; ++i)
+          buffer_out[c] += buffer_in[i] * kernel_{iLayer}[i][c];
+      
+      norma = 0;
+      
+      for(c=0;c<4;++c)
+        norma+=exp(buffer_out[c]);
 
-  // Prepares for next layer 
-  for (c = 0; c < {n_out}; ++c )
-    buffer_in[c] = activation_{iLayer}(buffer_out[c], norma);
-    
-  """.format (
-      n_in = kernel.shape[0],
-      n_out = kernel.shape[1],
-      iLayer = iLayer,
-  ))
-  
-last_kernel, last_bias = model.layers[-1].get_weights()
-print ("""
-  //i = 0;
-  //for (c = 0; c < {n_out}; ++c)
-  //  if (buffer_in[c] > buffer_in[i])
-  //    i = c;
-  
-  if (flag==0)
-    return buffer_in[0];
-  else if (flag==1)
-    return buffer_in[1];
-  else if (flag==2)
-    return buffer_in[2];
-  else if (flag==3)
-    return buffer_in[3];
-  else
-    return -1;
-  //return i;
-""".format(n_out = last_kernel.shape[1]))
+      // Prepares for next layer 
+      for (c = 0; c < {n_out}; ++c )
+        buffer_in[c] = activation_{iLayer}(buffer_out[c], norma);
+        
+      """.format (
+          n_in = kernel.shape[0],
+          n_out = kernel.shape[1],
+          iLayer = iLayer,
+      ), file=f)
+      
+    last_kernel, last_bias = model.layers[-1].get_weights()
+    print ("""
+      //i = 0;
+      //for (c = 0; c < {n_out}; ++c)
+      //  if (buffer_in[c] > buffer_in[i])
+      //    i = c;
+      
+      if (flag==0)
+        return buffer_in[0];
+      else if (flag==1)
+        return buffer_in[1];
+      else if (flag==2)
+        return buffer_in[2];
+      else if (flag==3)
+        return buffer_in[3];
+      
+      //return i;
+    """.format(n_out = last_kernel.shape[1]), file=f)
 
-print ("}")
-
+    print ("}", file=f)
 
 #PLOTS#
 
@@ -415,6 +416,39 @@ leg.AddEntry(g_val_loss,'Validation sample')
 leg.Draw('same')
 
 c1.Draw()
+
+
+###
+
+g_acc = ROOT.TGraph(len(history.history['categorical_accuracy']))
+for i,val in enumerate(history.history['categorical_accuracy']):
+  g_acc.SetPoint(i,i,val)
+
+c2 = ROOT.TCanvas()
+c2.cd()
+
+g_acc.SetTitle('Categorical Accuracy')
+g_acc.GetXaxis().SetTitle('Epoch')
+g_acc.GetYaxis().SetTitle('Accuracy')
+g_acc.SetLineColor(ROOT.kRed)
+g_acc.SetLineWidth(3)
+g_acc.Draw()
+
+g_val_acc = ROOT.TGraph(len(history.history['val_categorical_accuracy']))
+for i,val in enumerate(history.history['val_categorical_accuracy']):
+  g_val_acc.SetPoint(i,i,val)
+
+g_val_acc.SetLineColor(ROOT.kBlue)
+g_val_acc.SetLineWidth(3)
+g_val_acc.Draw('same')
+
+leg1 = ROOT.TLegend(0.6,0.7,0.9,0.9)
+leg1.AddEntry(g_acc,'Training sample')
+leg1.AddEntry(g_val_acc,'Validation sample')
+leg1.Draw('same')
+
+c2.Draw()
+
 
 Y_predict = model.predict(X_test)
 
@@ -463,7 +497,7 @@ for i in range (0, len(Y_predict)):
         ggh_pred_ggh.Fill(Y_predict[i][3])
 
 
-
+'''
 count=0.
 norm=0.
 
@@ -500,6 +534,7 @@ for i in range (0, len(Y_predict)):
 purezza = countvbf / count
 
 print purezza
+'''
 
 vbf_pred_vbf.SetStats(0)
 vbf_pred_top.SetStats(0)
@@ -608,6 +643,7 @@ c_ggh.Draw()
 
 f = ROOT.TFile("dnn_plots.root","RECREATE")
 c1.Write()
+c2.Write()
 c_vbf.Write()
 c_top.Write()
 c_ww.Write()
