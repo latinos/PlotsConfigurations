@@ -8,6 +8,9 @@ args = parser.parse_args()
 
 c1 = R.TCanvas( 'c1', 'rew', 0, 60, 800, 600 )
 g_ele = R.TGraphErrors(args.input_ele)
+g_ele.SetTitle("ratio data/MC")
+g_ele.GetXaxis().SetTitle("nvtx")
+g_ele.GetYaxis().SetTitle("data/MC")
 g_mu = R.TGraphErrors(args.input_mu)
 
 ranges=[(5,65)]
@@ -18,10 +21,19 @@ func_ele.SetLineColor(R.kRed)
 func_mu.SetLineColor(R.kBlue)
 g_ele.Fit("wf_ele", "+","", ranges[0][0], ranges[0][1])
 g_mu.Fit( "wf_mu", "+","", ranges[0][0], ranges[0][1])
+
 g_ele.GetYaxis().SetRangeUser(0,7)
 g_mu.GetYaxis().SetRangeUser(0,7)
 g_ele.Draw("APL")
 g_mu.Draw("same")
+
+legend = R.TLegend(0.1,0.7,0.48,0.9)
+legend.AddEntry(g_ele, "data/MC - Zee", "lep")
+legend.AddEntry(g_mu,  "data/MC - Zmm", "lep")
+legend.AddEntry("wf_ele", "data/MC - Zee fit function", "l")
+legend.AddEntry("wf_mu",  "data/MC - Zmm fit function", "l")
+legend.Draw()
+
 line = R.TLine(0,1,100,1)
 line.SetLineColor(R.kBlack)
 line.Draw()
