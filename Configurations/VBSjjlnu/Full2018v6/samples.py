@@ -68,7 +68,7 @@ GenLepMatch   = 'Lepton_genmatched[0]'
 
 ####
 # NVTX reweighting
-#SFweight += '*nvtx_reweighting'
+SFweight += '*nvtx_reweighting'
 
 
 

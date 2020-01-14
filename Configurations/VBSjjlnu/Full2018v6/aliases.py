@@ -96,13 +96,14 @@ aliases['PUJetIdSF'] = {
     'samples': mc
 }
 
-# aliases['nvtx_reweighting'] = {
-#     'class': 'NvtxReweight',
-#     'args': (os.getenv('CMSSW_BASE') +"/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017/lowenergy/nvtx_weights_ele_Zeefit.txt",
-#             os.getenv('CMSSW_BASE') +"/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017/lowenergy/nvtx_weights_mu_Zmmfit.txt"),
-#     'linesToAdd' : [
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         '.L '+os.getenv('CMSSW_BASE')+'/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017/nvtx_reweight.cc+'
-#     ],
-#     'samples' : mc      
-# }
+aliases['nvtx_reweighting'] = {
+    'class': 'NvtxReweight',
+    # Using Z->mm factors for both electron and muon regions
+    'args':("%s/VBSjjlnu/Full2018v6/corrections/zmmnorm_reweighting_Zmm_fit.txt" % configurations,
+            "%s/VBSjjlnu/Full2018v6/corrections/zmmnorm_reweighting_Zmm_fit.txt" % configurations,),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L %s/patches/nvtx_reweight.cc+' % configurations
+   ],
+    'samples' : mc      
+}
