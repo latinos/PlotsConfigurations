@@ -1,13 +1,14 @@
-
-
+# example of configuration file
 treeName= 'Events'
 
-tag = '2018v6'
 
+tag = '2018v6'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'+tag
 
+# file with TTree aliases
+aliasesFile = 'aliases.py'
 
 # file with list of variables
 variablesFile = 'variables.py'
@@ -20,6 +21,8 @@ samplesFile = 'samples.py'
 
 # file with list of samples
 plotFile = 'plot.py' 
+
+
 
 # luminosity to normalize to (in 1/fb)
 lumi = 59.74

@@ -123,7 +123,7 @@ samples['DY'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M
                                 + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-2500toInf')
                                 + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50')
                                 ,
-                      'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*' + DY_photon_filter + "* ewknloW",
+                      'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*' + DY_photon_filter , ###### ADD ewkNLO!!!
                       'FilesPerJob' : 3,
                   }
 
@@ -145,7 +145,6 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toInf',ptllDYW_LO)
 
 
 ############ Top ############
-Top_pTrw = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )'
 
 samples['singleTop'] = {    
             'name'   :  
@@ -155,8 +154,8 @@ samples['singleTop'] = {
                       + nanoGetSampleFiles(directory_bkg,'ST_tW_antitop_ext1') 
                       + nanoGetSampleFiles(directory_bkg,'ST_tW_top_ext1') 
                    ,
-            'weight' :  XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch ,
-            'FilesPerJob' : 2,
+            'weight' :  XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch +"* Top_pTrw" ,
+            'FilesPerJob' : 4,
                  }
 
 samples["ttbar"] =  {  'name': nanoGetSampleFiles(directory_bkg,'TTToSemiLeptonic') 
@@ -166,16 +165,9 @@ samples["ttbar"] =  {  'name': nanoGetSampleFiles(directory_bkg,'TTToSemiLeptoni
                             +  nanoGetSampleFiles(directory_bkg,'TTZjets'),
                             #+  nanoGetSampleFiles(directory_bkg,'TTZjets_ext1'), 
                             #+  nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu'),
-                        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-                        'FilesPerJob': 2,
+                        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch +"* Top_pTrw",
+                        'FilesPerJob': 4,
 }
-
-addSampleWeight(samples,'ttbar','TTToSemiLeptonic',Top_pTrw)
-addSampleWeight(samples,'ttbar','TTTo2L2Nu',Top_pTrw)
-addSampleWeight(samples,'ttbar','TTWjets',Top_pTrw)
-#addSampleWeight(samples,'ttbar','TTWjets_ext1',Top_pTrw)
-addSampleWeight(samples,'ttbar','TTZjets',Top_pTrw)
-#addSampleWeight(samples,'ttbar','TTZjets_ext1',Top_pTrw)
 
 
 samples['Wjets'] = { 'name' :   
@@ -231,14 +223,14 @@ samples['VV']  = { 'name' :
 
 ############ VVV ############
   
-# samples['VVV']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'ZZZ')
-#                                 + nanoGetSampleFiles(directory_bkg,'WZZ')
-#                                 + nanoGetSampleFiles(directory_bkg,'WWZ')
-#                                 + nanoGetSampleFiles(directory_bkg,'WWW'),
-#                                 #+ nanoGetSampleFiles(directory,'WWG'), #should this be included? or is it already taken into account in the WW sample?
-#                     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch ,
-#                     'FilesPerJob' : 5,
-#                   }
+samples['VVV']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'ZZZ')
+                                + nanoGetSampleFiles(directory_bkg,'WZZ')
+                                + nanoGetSampleFiles(directory_bkg,'WWZ')
+                                + nanoGetSampleFiles(directory_bkg,'WWW'),
+                                #+ nanoGetSampleFiles(directory,'WWG'), #should this be included? or is it already taken into account in the WW sample?
+                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch  ,
+                    'FilesPerJob' : 5,
+                  }
 
  ############## VBF-V ########
 

@@ -2,6 +2,9 @@ import os
 import copy
 import inspect
 
+configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
+configurations = os.path.dirname(configurations) # ggH2016
+configurations = os.path.dirname(configurations) # Differential
 configurations = os.path.dirname(configurations) # Configurations
 
 #aliases = {}
@@ -15,11 +18,11 @@ mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 # B tagging
 
 aliases['bVeto'] = {
-    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) == 0'
+    'expr': '(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) == 0)'
 }
 
 aliases['bReq'] = {
-    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) >= 1'
+    'expr': '(Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) >= 1)'
 }
 
 # B tag scale factors
@@ -49,8 +52,37 @@ aliases['bReqSF'] = {
 }
 
 aliases['btagSF'] = {
-    'expr': 'bVeto*bVetoSF + bReq*bReqSF',
+    'expr': 'bVeto*bVetoSF + bReq*bReqSF + ( (!bVeto) && (!bReq) )',
     'samples': mc
+}
+
+
+# PostProcessing did not create (anti)topGenPt for ST samples with _ext1
+lastcopy = (1 << 13)
+
+aliases['isTTbar'] = {
+    'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 2' % lastcopy,
+    'samples': ['singleTop', 'ttbar']
+}
+
+aliases['isSingleTop'] = {
+    'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 1' % lastcopy,
+     'samples': ['singleTop', 'ttbar']
+}
+
+aliases['topGenPtOTF'] = {
+    'expr': 'Sum$((GenPart_pdgId == 6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
+     'samples': ['singleTop', 'ttbar']
+}
+
+aliases['antitopGenPtOTF'] = {
+    'expr': 'Sum$((GenPart_pdgId == -6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
+     'samples': ['singleTop', 'ttbar']
+}
+
+aliases['Top_pTrw'] = {
+    'expr': 'isTTbar * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPtOTF) * TMath::Exp(0.0615 - 0.0005 * antitopGenPtOTF))) + isSingleTop',
+     'samples': ['singleTop', 'ttbar']
 }
 
 # for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
@@ -99,8 +131,7 @@ aliases['PUJetIdSF'] = {
 aliases['nvtx_reweighting'] = {
     'class': 'NvtxReweight',
     # Using Z->mm factors for both electron and muon regions
-    'args':("%s/VBSjjlnu/Full2018v6/corrections/zmmnorm_reweighting_Zmm_fit.txt" % configurations,
-            "%s/VBSjjlnu/Full2018v6/corrections/zmmnorm_reweighting_Zmm_fit.txt" % configurations,),
+    'args':("%s/VBSjjlnu/Full2018v6/corrections/zmmnorm_reweighting_Zmm_fit.txt" % configurations),
     'linesToAdd' : [
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         '.L %s/patches/nvtx_reweight.cc+' % configurations

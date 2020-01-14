@@ -58,7 +58,7 @@ cuts["lowen_CR_top_ele"] = 'VBS_category==1 \
                                 && mjj_vbs >=300    \
                                 && deltaeta_vbs >= 2  \
                                 && PuppiMET_pt > 30 \
-                                && !bVeto \
+                                && bReq \
                                 && mjj_vjet > 65 && mjj_vjet < 105 \
                                 '
 
@@ -70,7 +70,7 @@ cuts["lowen_CR_top_mu"] = 'VBS_category==1 \
                                 && mjj_vbs >=300    \
                                 && deltaeta_vbs >= 2  \
                                 && PuppiMET_pt > 30 \
-                                && !bVeto \
+                                && bReq \
                                 && mjj_vjet > 65 && mjj_vjet < 105 \
                                 '
 
@@ -132,7 +132,7 @@ cuts["lowen_SR_top_ele"] = 'VBS_category==1 \
                                 && vbs_0_pt > 30 && vbs_1_pt > 30  \
                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
                                 && PuppiMET_pt > 30 \
-                                && !bVeto \
+                                && bReq \
                                 && mjj_vjet > 65 && mjj_vjet < 105 \
                                 && mjj_vbs >=600    \
                                 && deltaeta_vbs >= 3.5  \
@@ -144,7 +144,7 @@ cuts["lowen_SR_top_mu"] = 'VBS_category==1 \
                                 && vbs_0_pt > 30 && vbs_1_pt > 30  \
                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
                                 && PuppiMET_pt > 30 \
-                                && !bVeto \
+                                && bReq \
                                 && mjj_vjet > 65 && mjj_vjet < 105 \
                                 && mjj_vbs >=600    \
                                 && deltaeta_vbs >= 3.5  \
@@ -225,7 +225,7 @@ cuts["boost_CR_top_ele"] = 'VBS_category==0 \
                                 && mjj_vbs >=300    \
                                 && deltaeta_vbs >= 2  \
                                 && PuppiMET_pt > 30 \
-                                && !bVeto \
+                                && bReq \
                                 && mjj_vjet > 65 && mjj_vjet < 105 \
                                 '
 
@@ -237,7 +237,7 @@ cuts["boost_CR_top_mu"] = 'VBS_category==0 \
                                 && mjj_vbs >=300    \
                                 && deltaeta_vbs >= 2  \
                                 && PuppiMET_pt > 30 \
-                                && !bVeto \
+                                && bReq \
                                 && mjj_vjet > 65 && mjj_vjet < 105 \
                                 '
 
@@ -299,7 +299,7 @@ cuts["boost_SR_top_ele"] = 'VBS_category==0 \
                                 && vbs_0_pt > 30 && vbs_1_pt > 30  \
                                 && vjet_0_pt > 200 \
                                 && PuppiMET_pt > 30 \
-                                && !bVeto \
+                                && bReq \
                                 && mjj_vjet > 65 && mjj_vjet < 105 \
                                 && mjj_vbs >=600    \
                                 && deltaeta_vbs >= 3.5  \
@@ -311,7 +311,7 @@ cuts["boost_SR_top_mu"] = 'VBS_category==0 \
                                 && vbs_0_pt > 30 && vbs_1_pt > 30  \
                                 && vjet_0_pt > 200 \
                                 && PuppiMET_pt > 30 \
-                                && !bVeto \
+                                && bReq \
                                 && mjj_vjet > 65 && mjj_vjet < 105 \
                                 && mjj_vbs >=600    \
                                 && deltaeta_vbs >= 3.5  \
