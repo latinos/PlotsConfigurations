@@ -36,16 +36,9 @@ for s in samples:
         tot_mc.SetName("totMC") 
 
 data_hist = f.Get(cat+ "/"+args.var+"/histo_DATA")
-
-# No fake in DY under Z peak
-# if 'mm' in args.cat:
-#     fake_sample = '/histo_Fake_mm'
-# elif 'ee' in args.cat:
-#     fake_sample = '/histo_Fake_ee'
-# else:
-#     print 'no fake sample selected, ERROR'
-# fake_hist =  f.Get(cat+ "/" + args.var + fake_sample)
-# data_hist.Add(fake_hist, -1)
+fake_sample = '/histo_Fake'
+fake_hist =  f.Get(cat+ "/" + args.var + fake_sample)
+data_hist.Add(fake_hist, -1)
 
 # Ratio: normalized distribution!
 tot_mc.Scale(1/ tot_mc.Integral())
@@ -66,7 +59,6 @@ errw = []
 for ibin in range(1, nbins+1):
     x.append(tot_mc.GetXaxis().GetBinLowEdge(ibin))
     if tot_mc.GetBinContent(ibin) == 0: 
-        # used for ibin == 1 case
         weights.append(1.)
         continue
     weights.append(data_hist.GetBinContent(ibin) / tot_mc.GetBinContent(ibin))

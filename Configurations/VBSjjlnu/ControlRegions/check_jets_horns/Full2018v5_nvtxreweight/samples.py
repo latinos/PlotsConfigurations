@@ -68,7 +68,7 @@ else:
 # SFweight += '*btagSF'
 
 ################################################
-############### AD Hoc### ######################
+############### AD Hoc #########################
 ################################################
 
 SFweight += '*nvtx_reweighting'
@@ -214,31 +214,34 @@ samples['VVV']  = {  'name'   :   getSampleFiles(directory,'ZZZ',False,'nanoLati
 ################## FAKE ###################
 ###########################################
 
-samples['Fake_ee']  = {   'name': [ ] ,
-                         'weight' : METFilter_DATA+'*'+fakeW+'*(abs(Lepton_pdgId[0])==11 && abs(Lepton_pdgId[1])==11)',              #   weight/cut 
-                         'weights' : [ ] ,
-                         'isData': ['all'],
-                         'FilesPerJob' : 15 ,
-                      }
+# No Fake (nonpropmpt) under DY Z peak
 
-samples['Fake_mm']  = {   'name': [ ] ,
-                         'weight' : METFilter_DATA+'*'+fakeW+'*(abs(Lepton_pdgId[0])==13 && abs(Lepton_pdgId[1])==13)',              #   weight/cut 
-                         'weights' : [ ] ,
-                         'isData': ['all'],
-                         'FilesPerJob' : 15 ,
-                      }
+## Way1: split fake
+# samples['Fake_ee']  = {   'name': [ ] ,
+#                          'weight' : METFilter_DATA+'*'+fakeW+'*(abs(Lepton_pdgId[0])==11 && abs(Lepton_pdgId[1])==11)',              #   weight/cut 
+#                          'weights' : [ ] ,
+#                          'isData': ['all'],
+#                          'FilesPerJob' : 15 ,
+#                       }
 
-for Run in DataRun :
-        directory = treeBaseDir+'Run2018_102X_nAODv5_Full2018v5/DATAl1loose2018v5__l2loose__fakeW/'
-        for DataSet in DataSets :
-                FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
-                for iFile in FileTarget:
-                        samples['Fake_ee']['name'].append(iFile)
-                        samples['Fake_ee']['weights'].append(DataTrig[DataSet])
-                        samples['Fake_mm']['name'].append(iFile)
-                        samples['Fake_mm']['weights'].append(DataTrig[DataSet])
+# samples['Fake_mm']  = {   'name': [ ] ,
+#                          'weight' : METFilter_DATA+'*'+fakeW+'*(abs(Lepton_pdgId[0])==13 && abs(Lepton_pdgId[1])==13)',              #   weight/cut 
+#                          'weights' : [ ] ,
+#                          'isData': ['all'],
+#                          'FilesPerJob' : 15 ,
+#                       }
 
-# Not split Fake (dario)
+# for Run in DataRun :
+#         directory = treeBaseDir+'Run2018_102X_nAODv5_Full2018v5/DATAl1loose2018v5__l2loose__fakeW/'
+#         for DataSet in DataSets :
+#                 FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
+#                 for iFile in FileTarget:
+#                         samples['Fake_ee']['name'].append(iFile)
+#                         samples['Fake_ee']['weights'].append(DataTrig[DataSet])
+#                         samples['Fake_mm']['name'].append(iFile)
+#                         samples['Fake_mm']['weights'].append(DataTrig[DataSet])
+
+## Way2: not split fake
 # samples['Fake']  = {   'name': [ ] ,
 #                          'weight' : METFilter_DATA+'*'+fakeW,              #   weight/cut 
 #                          'weights' : [ ] ,

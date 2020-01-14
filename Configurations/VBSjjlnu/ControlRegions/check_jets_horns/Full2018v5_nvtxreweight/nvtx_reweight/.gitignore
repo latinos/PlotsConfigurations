@@ -1,1 +1,4 @@
 plots_fit
+*.d
+*.so
+*.pcm
