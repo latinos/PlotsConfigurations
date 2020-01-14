@@ -10,7 +10,7 @@ aliases['PromptGenLepMatch2l'] = {
     'samples': mc
 }
 
-nvtx_reweight_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/ControlRegions/check_jets_horns/Full2018v5_nvtxreweight/nvtx_reweight/'
+nvtx_reweight_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/ControlRegions/nvtx_reweight/DY2018v5_nvtxreweight/nvtx_reweight/'
 
 aliases['nvtx_reweighting'] = {
     'class': 'NvtxReweight',
