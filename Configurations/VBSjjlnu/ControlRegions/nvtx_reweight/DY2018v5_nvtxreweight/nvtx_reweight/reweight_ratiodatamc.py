@@ -1,5 +1,7 @@
 '''
-Ratio normalized( Data - Fake ) / normalized( MC )
+Ratio normalized( Data ) / normalized( MC )
+
+
 '''
 
 import ROOT as R
@@ -9,10 +11,11 @@ from math import sqrt
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--file", type=str, help="File")
-parser.add_argument("--var",type=str, help="Variable")
-parser.add_argument("--samples",nargs="+", type=str, help="Samples")
-parser.add_argument("--cat", type=str, help="Category")
+parser.add_argument("--file", type=str, help="mkShape rootFile")
+parser.add_argument("--output", type=str, help="Path to file containing the ratios")
+parser.add_argument("--var",type=str, help="Variable whose disrtibution is used to compute the new set of weights")
+parser.add_argument("--samples",nargs="+", type=str, help="Samples (space-separated list)")
+parser.add_argument("--cat", type=str, help="Category (only a single category is considered!)")
 args = parser.parse_args()
 
 file = args.file
@@ -77,7 +80,7 @@ for ibin in range(1, nbins+1):
 #wsum = sum(weights)
 #norm_weights = [w / wsum for w in weights]
 
-with open("output_reweighting_{}.txt".format(cat), "w") as out:
+with open(args.output , "w") as out:
     for x,w,err in zip(x,weights, errw):
         out.write("{:.0f} {} 0. {}\n".format(x,w, err)) 
 

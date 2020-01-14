@@ -1,9 +1,15 @@
+'''
+
+'''
+
 import ROOT as R 
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--input", type=str, help="Input File")
-parser.add_argument("--output", type=str, help="Output File")
+parser.add_argument("--input", type=str, help="Input File (output of `reweight_ratiodatamc.py`)")
+parser.add_argument("--constscale", type=str, help="Constant scale factor File (output of `reweight_closure.py`)")
+parser.add_argument("--output", type=str, help="Output File: Unsafe normalization weights")
+parser.add_argument("--output_scaled", type=str, help="Output File: Correct normalization weights")
 args = parser.parse_args()
 
 c1 = R.TCanvas( 'c1', 'rew', 0, 60, 800, 600 )
@@ -17,7 +23,7 @@ g.Fit("wf1", "+","", ranges[0][0], ranges[0][1])
 # g.Fit("wf2", "+","", ranges[1][0], ranges[1][1])
 g.GetYaxis().SetRangeUser(0,7)
 g.Draw("APL")
-c1.Print(args.output + ".root", "root")
+# c1.Print(args.output + ".root", "root")
 
 xs = []
 ys = []
@@ -31,15 +37,15 @@ with open(args.output, "w") as out:
         out.write("{:.0f} {}\n".format(x,y)) 
 
 try:
-    with open('nvtx_zmm_integralratio.txt', 'r') as f:
+    with open(args.constscale, 'r') as f:
         k = float( f.read() )
-except:
-    k = 1.
-print (k)
-ys = [y / k for y in ys]
+    print ("const scale factor for normalization: " + str(k))
+    ys = [y / k for y in ys]
 
-with open("zmmnorm_" + args.output, "w") as out:
-    for x,y in zip(xs, ys):
-        out.write("{:.0f} {}\n".format(x,y)) 
+    with open(args.output_scaled, "w") as out:
+        for x,y in zip(xs, ys):
+            out.write("{:.0f} {}\n".format(x,y)) 
+except Exception as e:
+    print ("Not saved correctly-normalized weights: " + str(e))
 
 
