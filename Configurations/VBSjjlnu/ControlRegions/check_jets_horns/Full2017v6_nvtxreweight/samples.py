@@ -299,29 +299,31 @@ samples['VVV']  = {  'name'   :   getSampleFiles(directory,'ZZZ',False,'nanoLati
 ################## FAKE ###################
 ###########################################
 
-samples['Fake_ee']  = {   'name': [ ] ,
-                         'weight' : METFilter_DATA+'*'+fakeW+'*(abs(Lepton_pdgId[0])==11 && abs(Lepton_pdgId[1])==11)',              #   weight/cut 
-                         'weights' : [ ] ,
-                         'isData': ['all'],
-                         'FilesPerJob' : 15 ,
-                      }
+## no fake (non-prompt) for DY Z peak phase space
 
-samples['Fake_mm']  = {   'name': [ ] ,
-                         'weight' : METFilter_DATA+'*'+fakeW+'*(abs(Lepton_pdgId[0])==13 && abs(Lepton_pdgId[1])==13)',              #   weight/cut 
-                         'weights' : [ ] ,
-                         'isData': ['all'],
-                         'FilesPerJob' : 15 ,
-                      }
+# samples['Fake_ee']  = {   'name': [ ] ,
+#                          'weight' : METFilter_DATA+'*'+fakeW+'*(abs(Lepton_pdgId[0])==11 && abs(Lepton_pdgId[1])==11)',              #   weight/cut 
+#                          'weights' : [ ] ,
+#                          'isData': ['all'],
+#                          'FilesPerJob' : 15 ,
+#                       }
 
-for Run in DataRun :
-        directory = treeBaseDir+'Run2017_102X_nAODv5_Full2017v6/DATAl1loose2017v6__l2loose__fakeW/'
-        for DataSet in DataSets :
-                FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
-                for iFile in FileTarget:
-                        samples['Fake_ee']['name'].append(iFile)
-                        samples['Fake_ee']['weights'].append(DataTrig[DataSet])
-                        samples['Fake_mm']['name'].append(iFile)
-                        samples['Fake_mm']['weights'].append(DataTrig[DataSet])
+# samples['Fake_mm']  = {   'name': [ ] ,
+#                          'weight' : METFilter_DATA+'*'+fakeW+'*(abs(Lepton_pdgId[0])==13 && abs(Lepton_pdgId[1])==13)',              #   weight/cut 
+#                          'weights' : [ ] ,
+#                          'isData': ['all'],
+#                          'FilesPerJob' : 15 ,
+#                       }
+
+# for Run in DataRun :
+#         directory = treeBaseDir+'Run2017_102X_nAODv5_Full2017v6/DATAl1loose2017v6__l2loose__fakeW/'
+#         for DataSet in DataSets :
+#                 FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
+#                 for iFile in FileTarget:
+#                         samples['Fake_ee']['name'].append(iFile)
+#                         samples['Fake_ee']['weights'].append(DataTrig[DataSet])
+#                         samples['Fake_mm']['name'].append(iFile)
+#                         samples['Fake_mm']['weights'].append(DataTrig[DataSet])
 
 ###########################################
 ################## DATA ###################
@@ -343,3 +345,14 @@ for Run in DataRun :
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
+###########################################
+################## QUICK CHECK ############
+###########################################
+
+# samples = {
+#   'Fake_ee': samples['Fake_ee']
+# }
+
+# samples = {
+#   'WW': samples['WW']
+# }

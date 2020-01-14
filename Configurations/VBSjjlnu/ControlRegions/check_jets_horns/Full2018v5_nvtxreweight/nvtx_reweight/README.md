@@ -1,6 +1,11 @@
 ## Reproduce these weights
 
 ```
+## configuration-dependent parameters
+## rootFilePath = ../../Full2018v5/rootFile/plots_DY2018v5.root
+## samples = ggWW Vg top WW VVV DY VgS VZ
+
+
 # Zmm weights
 python -i reweight_variable.py --file ../../Full2018v5/rootFile/plots_DY2018v5.root --var nvtx --cat Zmm --samples ggWW Vg top WW VVV DY VgS VZ
 python -i fit_reweighting.py --input output_reweighting_Zmm.txt --output reweighting_Zmm_fit.txt
