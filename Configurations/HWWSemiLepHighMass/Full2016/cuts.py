@@ -38,9 +38,9 @@ ResolveCats={}
 # ResolveCats['Resolved']='resolved[0]'
 ResolveCats['ResolvedSR']='resolved[0] && resolvedSignalWMass[0] && !IsBTopTagged'
 ResolveCats['ResolvedSB']='resolved[0] \
-                            && !resolvedSignalWMass[0] \
-                            && resolvedSidebandWMass[0] \
-                            && !IsBTopTagged'
+                        && !resolvedSignalWMass[0] \
+                        && resolvedSidebandWMass[0] \
+                        && !IsBTopTagged'
 ResolveCats['ResolvedTopCR']='resolved[0] && resolvedSignalWMass[0] && IsBTopTagged'
 
 ResolveProcCats={}

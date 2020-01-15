@@ -125,7 +125,49 @@ aliases['gstarHigh'] = {
 }
 
 
-# # B-Stuff
+#
+# aliases['oldmjjGen'] = {
+#     'linesToAdd': [
+#         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+#         '.L %s/src/PlotsConfigurations/Configurations/HighMass/oldmjjGen/deltaRMatch.C+' % os.getenv('CMSSW_BASE'),
+#         '.L %s/src/PlotsConfigurations/Configurations/HighMass/oldmjjGen/mjjGen.C+' % os.getenv('CMSSW_BASE')
+#     ],
+#     'expr': 'mjjGen(  Alt$(GenJet_pt[abs(Jet_genJetIdx[CleanJet_jetIdx[0]])],-1), \
+#                       Alt$(GenJet_eta[abs(Jet_genJetIdx[CleanJet_jetIdx[0]])],-1), \
+#                       Alt$(GenJet_phi[abs(Jet_genJetIdx[CleanJet_jetIdx[0]])],-1), \
+#                       Alt$(GenJet_pt[abs(Jet_genJetIdx[CleanJet_jetIdx[1]])],-1), \
+#                       Alt$(GenJet_eta[abs(Jet_genJetIdx[CleanJet_jetIdx[1]])],-1), \
+#                       Alt$(GenJet_phi[abs(Jet_genJetIdx[CleanJet_jetIdx[1]])],-1), \
+#                       Jet_genJetIdx[CleanJet_jetIdx[0]], \
+#                       Jet_genJetIdx[CleanJet_jetIdx[1]])',
+#     'samples': ['qqWWqq', 'WW2J'] + [skey for skey in samples if 'QQHSBI' in skey]
+# }
+
+aliases['GenLHE'] = {
+'expr': '(Sum$(LHEPart_pdgId == 21) == 0)',
+'samples': ['qqWWqq', 'WW2J']
+}
+
+
+
+
+# B-Stuff
+# Temporary patch for BTV postprocessor bug (no SF for eta < 0, <= 102X_nAODv5_Full2018v5)
+
+# btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_102XSF_V1.csv' % os.getenv('CMSSW_BASE')
+#
+# aliases['Jet_btagSF_shapeFix'] = {
+#     'linesToAdd': [
+#         'gSystem->Load("libCondFormatsBTauObjects.so");',
+#         'gSystem->Load("libCondToolsBTau.so");',
+#         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+#         '.L %s/src/PlotsConfigurations/Configurations/patches/btagsfpatch.cc+' % os.getenv('CMSSW_BASE')
+#     ],
+#     'class': 'BtagSF',
+#     'args': (btagSFSource,),
+#     'samples': mc
+# }
+#
 # aliases['bVeto'] = {
 #     'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0'
 # }
@@ -240,21 +282,6 @@ aliases['Top_pTrw'] = {
     'samples': ['top']
 }
 
-# # Temporary patch for BTV postprocessor bug (no SF for eta < 0, <= 102X_nAODv5_Full2018v5)
-#
-# btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_102XSF_V1.csv' % os.getenv('CMSSW_BASE')
-#
-# aliases['Jet_btagSF_shapeFix'] = {
-#     'linesToAdd': [
-#         'gSystem->Load("libCondFormatsBTauObjects.so");',
-#         'gSystem->Load("libCondToolsBTau.so");',
-#         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
-#         '.L %s/src/PlotsConfigurations/Configurations/patches/btagsfpatch.cc+' % os.getenv('CMSSW_BASE')
-#     ],
-#     'class': 'BtagSF',
-#     'args': (btagSFSource,),
-#     'samples': mc
-# }
 
 
 # PU jet Id SF

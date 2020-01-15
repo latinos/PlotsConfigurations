@@ -50,8 +50,8 @@ nuisances['lumi'] = {
    'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
-
-
+##############################################################################################
+#
 # ##### B-tagger
 #
 # nuisances['btag_shape_jes']  = {
@@ -116,7 +116,7 @@ nuisances['lumi'] = {
 #                 'type'  : 'shape',
 #                 'samples'  : dict((skey, ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)']) for skey in mc),
 # }
-
+#
 # for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
 #     btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
 #
@@ -148,7 +148,7 @@ nuisances['lumi'] = {
 # }
 #
 # ##### Electron Efficiency and energy scale
-
+#
 # nuisances['eff_e'] = {
 #     'name': 'eff_e_2016',
 #     'kind': 'weight',
@@ -167,7 +167,7 @@ nuisances['lumi'] = {
 # }
 #
 # ##### Muon Efficiency and energy scale
-
+#
 # nuisances['eff_m'] = {
 #     'name': 'eff_m_2016',
 #     'kind': 'weight',
@@ -292,6 +292,16 @@ nuisances['lumi'] = {
 #     'symmetrize': True
 # }
 #
+
+
+
+###############################################################################################
+
+
+
+
+
+
 nuisances['VgStar'] = {
     'name': 'hww_VgStarScale',
     'type': 'lnN',

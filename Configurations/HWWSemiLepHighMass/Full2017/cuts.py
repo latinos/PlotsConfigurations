@@ -6,7 +6,7 @@
 #          && (abs(Alt$(Lepton_pdgId[1], 11))==11 || Alt$(Lepton_pt[1],0)<10) \
 #          && abs(Lepton_eta[0])<2.5 \
 #          '
-supercut = 'LepWPCut[0] && Lepton_pt[0]>27 \
+supercut = 'LepWPCut[0] && Lepton_pt[0]>35 \
          && Alt$(Lepton_pt[1],0)<=10 \
          && abs(Lepton_eta[0])<2.5 \
          '
@@ -21,7 +21,7 @@ LepCats['']='1'
 
 BoostCats={}
 # BoostCats['Boosted']='boosted[0]'
-BoostCats['BoostedSR']='boosted[0] && boostedSignalWMass[0] && !IsBTopTagged'
+# BoostCats['BoostedSR']='boosted[0] && boostedSignalWMass[0] && !IsBTopTagged'
 BoostCats['BoostedSB']='boosted[0] \
                         && !boostedSignalWMass[0] \
                         && boostedSidebandWMass[0] \
@@ -36,7 +36,7 @@ BoostProcCats['']='1'
 
 ResolveCats={}
 # ResolveCats['Resolved']='resolved[0]'
-ResolveCats['ResolvedSR']='resolved[0] && resolvedSignalWMass[0] && !IsBTopTagged'
+# ResolveCats['ResolvedSR']='resolved[0] && resolvedSignalWMass[0] && !IsBTopTagged'
 ResolveCats['ResolvedSB']='resolved[0] \
                             && !resolvedSignalWMass[0] \
                             && resolvedSidebandWMass[0] \
