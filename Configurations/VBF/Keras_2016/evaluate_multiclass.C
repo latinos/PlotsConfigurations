@@ -1,6 +1,6 @@
 // gSystem->Load("libLatinoAnalysisMultiDraw.so")
 
-#include "generated_code_5.h"
+#include "generated_code_new.h"
 
 #include "TTree.h"
 #include "TSystem.h"
@@ -72,7 +72,12 @@ float evaluate_multiclass(int entry, int nclass){
                 init(multidraw::currentTree);
                 initialized = true;
         }
- 
+        //azzera vettori jet pt 
+        //Funziona? 
+        //loc0_ptj[2]=-1.;
+        //loc0_etaj[2]=-1.;
+        //loc0_phij[2]=-1.;
+
         multidraw::currentTree->GetEntry(entry);
 
         input[0] = loc0_mjj;
@@ -102,6 +107,18 @@ float evaluate_multiclass(int entry, int nclass){
         input[22] = loc0_etaj[1];
         input[23] = loc0_phij[0];
         input[24] = loc0_phij[1];
+
+        //chiedi pt terzo vettore > 30
+        //if(loc0_ptj[2]>30){
+        //    input[25]=loc0_ptj[2];
+        //    input[26]=loc0_etaj[2];
+        //    input[27]=loc0_phij[2];
+        //}
+        //else{
+        //    input[25]=-1.;
+        //    input[26]=-1.;
+        //    input[27]=-1.;
+        //}
 
         input[25] = loc0_qgl[loc0_id[0]];
         input[26] = loc0_qgl[loc0_id[1]];                
