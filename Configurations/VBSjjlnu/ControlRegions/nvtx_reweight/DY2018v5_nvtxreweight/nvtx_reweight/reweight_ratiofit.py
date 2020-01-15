@@ -14,16 +14,32 @@ args = parser.parse_args()
 
 c1 = R.TCanvas( 'c1', 'rew', 0, 60, 800, 600 )
 g = R.TGraphErrors(args.input)
+g.SetTitle("data-MC ratio")
+g.SetMarkerStyle(7)
+g.SetMarkerSize(3)
+g.GetXaxis().SetTitle("nvtx")
+g.GetYaxis().SetTitle("data-MC ratio")
+g.GetYaxis().SetRangeUser(0,200)
+g.Draw("AP")
 
 ranges=[(5,65)]
 
 func1 = R.TF1("wf1", "pol5", ranges[0][0], ranges[0][1])
-# func2 = R.TF1("wf2", "pol3", ranges[1][0], ranges[1][1])
+func1.SetLineWidth(3)
 g.Fit("wf1", "+","", ranges[0][0], ranges[0][1])
-# g.Fit("wf2", "+","", ranges[1][0], ranges[1][1])
-g.GetYaxis().SetRangeUser(0,7)
-g.Draw("APL")
-# c1.Print(args.output + ".root", "root")
+func_extrapolate = func1.Clone()
+func_extrapolate.SetRange(0,100)
+func_extrapolate.SetLineStyle(9)
+func_extrapolate.SetLineWidth(3)
+func_extrapolate.Draw("same")
+
+line1 = R.TLine(ranges[0][0],0,ranges[0][0],200)
+line1.SetLineColor(R.kBlack)
+line1.Draw()
+line2 = R.TLine(ranges[0][1],0,ranges[0][1],200)
+line2.SetLineColor(R.kBlack)
+line2.Draw()
+
 
 xs = []
 ys = []
