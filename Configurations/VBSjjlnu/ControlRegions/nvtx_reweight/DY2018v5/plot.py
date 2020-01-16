@@ -8,6 +8,13 @@
 # If not defined, normal plots is used
 #
 
+groupPlot['DY']  = {  
+                  'nameHR' : "DY",
+                  'isSignal' : 1,
+                  'color': 418,    # kGreen+2
+                  'samples'  : ['DY']
+              }
+
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
@@ -29,16 +36,10 @@ groupPlot['WW']  = {
 #                   'samples'  : ['Fake_ee', 'Fake_mm']
 #               }
 
-groupPlot['DY']  = {  
-                  'nameHR' : "DY",
-                  'isSignal' : 0,
-                  'color': 418,    # kGreen+2
-                  'samples'  : ['DY']
-              }
 
 groupPlot['VVV']  = {  
                   'nameHR' : 'VVV',
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'color': 857, # kAzure -3  
                   'samples'  : ['VVV']
               }
@@ -83,7 +84,7 @@ groupPlot['Higgs']  = {
 #                    
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0, 
                   'scale'    : 1.0,
                   #'cuts'  : {
@@ -176,7 +177,7 @@ plot['VZ']  = {
 
 plot['VVV']  = { 
                   'color': 857, # kAzure -3  
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }

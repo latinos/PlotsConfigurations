@@ -4,6 +4,11 @@
 
 # keys here must match keys in samples.py    
 #                    
+structure['DY']  = {  
+                  'isSignal' : 1,
+                  'isData'   : 0 
+              }
+
 structure['top'] = {   
                   'isSignal' : 0,
                   'isData'   : 0 
@@ -24,13 +29,9 @@ structure['ggWW']  = {
 #                   'isData'   : 0 
 #               }
 
-structure['DY']  = {  
-                  'isSignal' : 0,
-                  'isData'   : 0 
-              }
 
 structure['VVV']  = { 
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0 
                   }
 
