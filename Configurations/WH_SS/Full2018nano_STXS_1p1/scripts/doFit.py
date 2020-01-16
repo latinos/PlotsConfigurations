@@ -15,7 +15,7 @@ for cat in HTXSStage1_1Categories:
 
 os.chdir('Combination')
 
-MERGE=False
+MERGE=True
 
 if not MERGE:
   #No merging
@@ -27,16 +27,20 @@ if not MERGE:
 
 else:
   #MERGE ALL BIN STXS
-  command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2018_ggH_HTXS_Stage1p2_merged.root -t -1 --setParameters "
+  command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2018_WH_SS_HTXS_Stage1_merged.root -t -1 --setParameters "
   poi = ''
   for sample in sampleNames:
-    if 'FWDH' in sample: 
-      continue
-    else: 
-      poi = 'r_wH_hww'
-  
-  command+="{}=1,".format(poi)
+      if 'WH_hww' not in sample: continue
+      if 'FWDH' in sample: continue
+      if ('PTV_0_75' in sample or 'PTV_75_150' in sample): poi = 'r_WH_hww_LE150'
+      if ('PTV_150_250_0J' in sample or 'PTV_150_250_GE1J' in sample or 'PTV_GT250' in sample): poi = 'r_WH_hww_GE150'
+      command+="{}=1,".format(poi)
 
 command = command[:-1]
+command+=' > fitresults.txt'
 print(command)
 os.system(command)
+os.system('cat fitresults.txt |grep 68% | sed \'s/(68%)/ /g\' |tr -d \'-\'| tr -d \'/\' | tr -d ":" | sed \'s/+/ /g\' > fit.txt')
+os.system('awk \'{ print $0 $1 }\' < fit.txt | sed \'s/r_ggH_hww/ggH/g\' | sort -b > fit_ready.txt')
+os.system('cat fit_ready.txt')
+

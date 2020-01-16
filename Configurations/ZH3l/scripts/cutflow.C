@@ -1,17 +1,17 @@
 {
-  TFile *f0 = TFile::Open("rootFiles_ZH3l_2017_SR/plots_ZH3l_2017_SR.root");
+  TFile *f0 = TFile::Open("rootFiles_ZH3l_2016_CR_noNF/plots_ZH3l_2016_CR_noNF.root");
 
   // Fragile, because it must match the name and ordering in cuts.py
-  // TString cutslist[12] = {"preselection", "zmass_cut", "zh3l_Zg_CR_1j", "zh3l_WZ_CR_1j", "jet_cut_1j", "bveto_1j", "z4lveto_1j", "zh3l_Zg_CR_2j", "zh3l_WZ_CR_2j", "jet_cut_2j", "bveto_2j", "z4lveto_2j"};
-  // int ncut = 12;
-  TString cutslist[14] = {"preselection", "zmass_cut", "zh3l_Zg_CR_1j", "zh3l_WZ_CR_1j", "jet_cut_1j", "bveto_1j", "z4lveto_1j", "zh3l_SR_1j", "zh3l_Zg_CR_2j", "zh3l_WZ_CR_2j", "jet_cut_2j", "bveto_2j", "z4lveto_2j", "zh3l_SR_2j"};
-  int ncut = 14;
+  TString cutslist[12] = {"preselection", "zmass_cut", "zh3l_Zg_CR_1j", "zh3l_WZ_CR_1j", "jet_cut_1j", "bveto_1j", "z4lveto_1j", "zh3l_Zg_CR_2j", "zh3l_WZ_CR_2j", "jet_cut_2j", "bveto_2j", "z4lveto_2j"};
+  int ncut = 12;
+  // TString cutslist[14] = {"preselection", "zmass_cut", "zh3l_Zg_CR_1j", "zh3l_WZ_CR_1j", "jet_cut_1j", "bveto_1j", "z4lveto_1j", "zh3l_SR_1j", "zh3l_Zg_CR_2j", "zh3l_WZ_CR_2j", "jet_cut_2j", "bveto_2j", "z4lveto_2j", "zh3l_SR_2j"};
+  // int ncut = 14;
 
   // Would be good to split out so that NFs are calculated separately and you don't have to
   // print them at an awkward point in the cutflow.
 
   bool do_ratios = false;
-  bool apply_NFs = false;
+  bool apply_NFs = true;
   bool tex_mode = false;
   bool signal_region = false;
 
@@ -170,8 +170,10 @@
     }
 
     if (!do_ratios && cutslist[i].Contains("_WZ_CR_")) {
-      if (cutslist[i].Contains("1j")) 		n_BG = n_BG - n_Zg + n_Zg*Zg_1j_NF;
-      else if (cutslist[i].Contains("2j")) 	n_BG = n_BG - n_Zg + n_Zg*Zg_2j_NF;
+      if (!apply_NFs) {		// we still want to apply them here
+	if (cutslist[i].Contains("1j")) 		n_BG = n_BG - n_Zg + n_Zg*Zg_1j_NF;
+	else if (cutslist[i].Contains("2j")) 	n_BG = n_BG - n_Zg + n_Zg*Zg_2j_NF;
+      }
       float n_notWZ = n_BG - n_WZ;
       float NF = (n_DATA - n_notWZ) / n_WZ;
       // float dNF = n_DATA/pow(n_WZ,2) + pow((0.3*n_Fake)/n_WZ,2);
@@ -193,15 +195,15 @@
   if (tex_mode) {
     cout << endl << endl;
     printf("WZ,  1-jet 	 %.2f $\\pm$ %.2f \n", WZ_1j_NF, WZ_1j_dNF);
-    printf("WZ,  2-jet 	 %.2f $\\pm$ %.2f \n", WZ_1j_NF, WZ_1j_dNF);
+    printf("WZ,  2-jet 	 %.2f $\\pm$ %.2f \n", WZ_2j_NF, WZ_2j_dNF);
     printf("Zg,  1-jet 	 %.2f $\\pm$ %.2f \n", Zg_1j_NF, Zg_1j_dNF);
-    printf("Zg,  2-jet 	 %.2f $\\pm$ %.2f \n", Zg_1j_NF, Zg_1j_dNF);
+    printf("Zg,  2-jet 	 %.2f $\\pm$ %.2f \n", Zg_2j_NF, Zg_2j_dNF);
   } else {
     cout << endl << endl;
     printf("WZ,  1-jet 	 %.2f +/- %.2f \n", WZ_1j_NF, WZ_1j_dNF);
-    printf("WZ,  2-jet 	 %.2f +/- %.2f \n", WZ_1j_NF, WZ_1j_dNF);
+    printf("WZ,  2-jet 	 %.2f +/- %.2f \n", WZ_2j_NF, WZ_2j_dNF);
     printf("Zg,  1-jet 	 %.2f +/- %.2f \n", Zg_1j_NF, Zg_1j_dNF);
-    printf("Zg,  2-jet 	 %.2f +/- %.2f \n", Zg_1j_NF, Zg_1j_dNF);
+    printf("Zg,  2-jet 	 %.2f +/- %.2f \n", Zg_2j_NF, Zg_2j_dNF);
   }
 
 //   TH1F* h_ggZH = (TH1F*) f0->Get("zh3l_13TeV/ptz/histo_ggZH_hww");

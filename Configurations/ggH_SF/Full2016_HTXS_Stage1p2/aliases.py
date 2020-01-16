@@ -98,16 +98,16 @@ aliases['multiJet'] = {
     'expr': 'Alt$(CleanJet_pt[1], 0) >= 30.'
 }
 
-aliases['2jggH'] = {
-'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && ( abs(detajj)<3.5 || ( mjj<400 && abs(detajj)>=3.5 ) ) && ( mjj <  65 || mjj >  105 ) )'
-}
-
 aliases['2jVH'] = {
-'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && ( abs(detajj)<3.5 || ( mjj<400 && abs(detajj)>=3.5 ) ) && ( mjj >= 65 && mjj <= 105 ) )'
+'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && ( abs(detajj)< 3.5 && ( mjj >= 65 && mjj <= 105 ) ) )'
 }
 
 aliases['2jVBF'] = {
-'expr': '(Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && (mjj>=400 && abs(detajj)>=3.5))'
+'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && (mjj>=400 && abs(detajj)>=3.5) )'
+}
+
+aliases['2jggH'] = {
+'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && (!2jVH && !2jVBF ) )'
 }
 
 # B tagging
@@ -288,6 +288,14 @@ for thu in thus:
         'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
         'class': 'GGHUncertainty',
         'args': (thu,),
-        'samples': ['ggH_hww'],
+        'samples': [ #'ggH_hww',                                                                                                              
+                     'ggH_hww_0J_PTH_0_10'                 ,'ggH_hww_GE2J_MJJ_0_350_PTH_60_120'
+                    ,'ggH_hww_0J_PTH_GT10'                 ,'ggH_hww_GE2J_MJJ_350_700_PTHJJ_0_25'
+                    ,'ggH_hww_1J_PTH_0_60'                 ,'ggH_hww_GE2J_MJJ_350_700_PTHJJ_GT25'
+                    ,'ggH_hww_1J_PTH_120_200'              ,'ggH_hww_GE2J_MJJ_GT700_PTHJJ_0_25'
+                    ,'ggH_hww_1J_PTH_60_120'               ,'ggH_hww_GE2J_MJJ_GT700_PTHJJ_GT25'
+                    ,'ggH_hww_GE2J_MJJ_0_350_PTH_0_60'     ,'ggH_hww_GE2J_MJJ_0_350_PTH_120_200'
+                    ,'ggH_hww_PTH_200_300'                 ,'ggH_hww_PTH_300_450'
+                    ,'ggH_hww_PTH_450_650'                 ,'ggH_hww_PTH_GT650'],
         'nominalOnly': True
     }

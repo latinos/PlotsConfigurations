@@ -40,7 +40,7 @@ canvas.SetTicky(0)
 
 graph = TGraphAsymmErrors()
 
-file = open("signal-strengths-obs-fixBR.txt","r")
+file = open("signal-strengths-exp.txt","r")
 
 
 categories = []

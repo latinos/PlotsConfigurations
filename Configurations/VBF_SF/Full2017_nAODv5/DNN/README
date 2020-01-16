@@ -1,5 +1,5 @@
 #STEP 0: Check if the dymva variables are proper configured in variable configuration, e.g. in variable_VBF.py:
-'linesToAdd' : ['.L /afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_11_0_0_pre7/src/PlotsConfigurations/Configurations/ggH_SF/Full2017_nAODv5/hww_DYmvaDNN_VBF.C+']
+'linesToAdd' : ['.L /afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_11_0_0_pre7/src/PlotsConfigurations/Configurations/ggH_SF/Full2016_nAODv5/hww_DYmvaDNN_VBF.C+']
 
 #STEP 1: Submit shapesmulti in batch
 mkShapesMulti.py --pycfg=configuration_VBF.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch

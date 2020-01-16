@@ -2,8 +2,8 @@
 #RAndKff  = {}
 
 RAndKff['DYmva0p8'] = {
-                      'RFile'   : '../DNN/rootFile/plots_BG_DY_NOHR_MVA080.root' ,
-                      'KffFile' : '../DNN/rootFile/plots_BG_DY_NOHR_MVA080.root' ,             
+                      'RFile'   : '../DNN/rootFile/plots_BG_DY_NOHR_2018_MVA080_1j.root' ,
+                      'KffFile' : '../DNN/rootFile/plots_BG_DY_NOHR_2018_MVA080_1j.root' ,             
                       'Regions' : { '1jee' : { 
                                                'kNum' : '1j_ee_in/events/histo_DY' ,
                                                'kDen' : '1j_uu_in/events/histo_DY' ,
@@ -25,8 +25,8 @@ for iCut in optim:
 
   DYestim['hww2l2v_13TeV_1jee_'+iCut] = {
                                    'rinout'  : 'DYmva0p8' ,
-                                   'rsyst'   : 0.03 , 
-                                   'ksyst'   : 0.30 , 
+                                   'rsyst'   : 0.01 , 
+                                   'ksyst'   : 0.02 , 
                                    'njet'    : '1j' , 
                                    'flavour' : 'ee' ,
                                    'DYProc'  : 'DY' ,
@@ -39,13 +39,13 @@ for iCut in optim:
                                    'NPname'  : 'DYeenorm1j' , 
                                    'AccNum'  : 'hww2l2v_13TeV_1jee_HAccNum/events/histo_DY',
                                    'AccDen'  : 'hww2l2v_13TeV_1jee_AccDen/events/histo_DY',
-                                   'asyst'   : 0.07 , 
+                                   'asyst'   : 0.01 , 
                                   } 
   
   DYestim['hww2l2v_13TeV_1jmm_'+iCut] = {
                                    'rinout'  : 'DYmva0p8' ,
-                                   'rsyst'   : 0.03 , 
-                                   'ksyst'   : 0.50 , 
+                                   'rsyst'   : 0.10 , 
+                                   'ksyst'   : 0.04 , 
                                    'njet'    : '1j'    ,
                                    'flavour' : 'mm' ,
                                    'DYProc'  : 'DY' ,
@@ -58,7 +58,7 @@ for iCut in optim:
                                    'NPname'  : 'DYmmnorm1j' ,
                                    'AccNum'  : 'hww2l2v_13TeV_1jmm_HAccNum/events/histo_DY',
                                    'AccDen'  : 'hww2l2v_13TeV_1jmm_AccDen/events/histo_DY',
-                                   'asyst'   : 0.10 , 
+                                   'asyst'   : 0.02 , 
                                   } 
   
   DYestim['hww2l2v_13TeV_WW_1jee_'+iCut] = {
@@ -75,7 +75,7 @@ for iCut in optim:
                                    'NPname'  : 'DYeenorm1j' ,
                                    'AccNum'  : 'hww2l2v_13TeV_WW_1jee_WWAccNum/events/histo_DY',
                                    'AccDen'  : 'hww2l2v_13TeV_1jee_AccDen/events/histo_DY',
-                                   'asyst'   : 0.10 , 
+                                   'asyst'   : 0.02 , 
                                      }
   
   DYestim['hww2l2v_13TeV_WW_1jmm_'+iCut] = {
@@ -92,5 +92,5 @@ for iCut in optim:
                                    'NPname'  : 'DYmmnorm1j' ,
                                    'AccNum'  : 'hww2l2v_13TeV_WW_1jmm_WWAccNum/events/histo_DY',
                                    'AccDen'  : 'hww2l2v_13TeV_1jmm_AccDen/events/histo_DY',
-                                   'asyst'   : 0.10 , 
+                                   'asyst'   : 0.01 , 
                                      }
