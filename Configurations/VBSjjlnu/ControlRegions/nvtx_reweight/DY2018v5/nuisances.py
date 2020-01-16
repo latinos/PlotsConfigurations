@@ -326,7 +326,7 @@ nuisances['PU']  = {
                   'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
                   'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
                 },
-                'AsLnN'      : '1',
+#                'AsLnN'      : '1',
 }
 
 # #
