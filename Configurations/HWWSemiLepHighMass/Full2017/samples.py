@@ -45,14 +45,14 @@ model_name = '_'+model.replace("cprime","c").replace(".","").replace("BRnew","br
 ################# SKIMS ########################
 ################################################
 
-mcProduction = 'Autumn18_102X_nAODv5_Full2018v5'
+mcProduction = 'Fall2017_102X_nAODv5_Full2017v6'
 
-dataReco = 'Run2018_102X_nAODv5_Full2018v5'
+dataReco = 'Run2017_102X_nAODv5_Full2017v6'
 
 # mcSteps = 'MCl1loose2018v5__MCCorr2018v5'
-mcSteps = 'MCl1loose2018v5__HMlnjjSel'
+mcSteps = 'MCl1loose2017v6__MCCorr2017v6__Semilep2017'
 
-dataSteps = 'DATAl1loose2018v5'
+dataSteps = 'DATAl1loose2017v6__Semilep2017'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -62,8 +62,8 @@ SITE=os.uname()[1]
 if    'iihe' in SITE:
   treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015'
 elif  'cern' in SITE:
-  # treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
-  treeBaseDir = '/eos/user/s/ssiebert/HWWNano'
+  treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
+  # treeBaseDir = '/eos/user/s/ssiebert/HWWNano'
 
 def makeMCDirectory(var=''):
     if var:
@@ -79,21 +79,21 @@ dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 ################################################
 
 DataRun = [
-            ['A','Run2018A-Nano1June2019-v1'] ,
-            ['B','Run2018B-Nano1June2019-v1'] ,
-            ['C','Run2018C-Nano1June2019-v1'] ,
-            ['D','Run2018D-Nano1June2019_ver2-v1'] ,
-          ]
+  ['B','Run2017B-Nano1June2019-v1'] ,
+  ['C','Run2017C-Nano1June2019-v1'],
+  ['D','Run2017D-Nano1June2019-v1'],
+  ['E','Run2017E-Nano1June2019-v1'],
+  ['F','Run2017F-Nano1June2019-v1']
+]
 
-DataSets = [
-    'SingleMuon',
-    'SingleElectron'
+DataSets = ['SingleMuon',\
+'SingleElectron'
 ]
 
 DataTrig = {
-    'SingleMuon'     : 'Trigger_sngMu' ,
-    'SingleElectron' : 'Trigger_sngEl' ,
-}
+            'SingleMuon'     : 'Trigger_sngMu' ,
+            'SingleElectron' : 'Trigger_sngEl' ,
+           }
 
 
 #########################################
@@ -108,21 +108,15 @@ mcCommonWeight = 'XSWeight*SFweight*Lepton_genmatched[0]*METFilter_MC'
 #############  BACKGROUNDS  ###############
 ###########################################
 
-# Test TTWjets
-
-files = nanoGetSampleFiles(mcDirectory, 'TTWjets_ext1')
-
-samples['TTWjets'] = {
-    'name': files,
-    'weight': mcCommonWeight,
-    'FilesPerJob': 3
-}
-
 
 ###### DY #######
-
-ptllDYW_NLO = '(0.87*(gen_ptll<10)+(0.379119+0.099744*gen_ptll-0.00487351*gen_ptll**2+9.19509e-05*gen_ptll**3-6.0212e-07*gen_ptll**4)*(gen_ptll>=10 && gen_ptll<45)+(9.12137e-01+1.11957e-04*gen_ptll-3.15325e-06*gen_ptll**2-4.29708e-09*gen_ptll**3+3.35791e-11*gen_ptll**4)*(gen_ptll>=45 && gen_ptll<200) + 1*(gen_ptll>200))'
+# from high mass (fully leptonic) 2017 config
+ptllDYW_NLO = '(((0.623108 + 0.0722934*gen_ptll - 0.00364918*gen_ptll*gen_ptll + 6.97227e-05*gen_ptll*gen_ptll*gen_ptll - 4.52903e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll<45)*(gen_ptll>0) + 1*(gen_ptll>=45))*(abs(gen_mll-90)<3) + (abs(gen_mll-90)>3))'
 ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
+
+# old?
+# ptllDYW_NLO = '(0.87*(gen_ptll<10)+(0.379119+0.099744*gen_ptll-0.00487351*gen_ptll**2+9.19509e-05*gen_ptll**3-6.0212e-07*gen_ptll**4)*(gen_ptll>=10 && gen_ptll<45)+(9.12137e-01+1.11957e-04*gen_ptll-3.15325e-06*gen_ptll**2-4.29708e-09*gen_ptll**3+3.35791e-11*gen_ptll**4)*(gen_ptll>=45 && gen_ptll<200) + 1*(gen_ptll>200))'
+# ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
 
 files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50') + \
     nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
@@ -137,12 +131,12 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 
 ###### Top #######
 
-files = nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic_ext3') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_s-channel_ext1') + \
+files = nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic') + \
+    nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
     nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
     nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop_ext1') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_tW_top_ext1')
+    nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop') + \
+    nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
 
 samples['top'] = {
     'name': files,
@@ -200,13 +194,13 @@ samples['ggWW'] = {
 
 
 samples['qqWWqq'] = {
-    'name'   :   nanoGetSampleFiles(mcDirectory,'WpWmJJ_QCD_noTop_ext1') ,
+    'name'   :   nanoGetSampleFiles(mcDirectory,'WpWmJJ_QCD_noTop') ,
     'weight' : mcCommonWeight+'*(GenLHE)',
     'FilesPerJob': 3
 }
 
 samples['WW2J'] = {
-    'name'   :   nanoGetSampleFiles(mcDirectory,'WpWmJJ_QCD_noTop_ext1') ,
+    'name'   :   nanoGetSampleFiles(mcDirectory,'WpWmJJ_QCD_noTop') ,
     'weight' : mcCommonWeight +'*(!GenLHE)',
     'FilesPerJob': 3
 }
@@ -319,15 +313,15 @@ files = nanoGetSampleFiles(mcDirectory,'QCD_Pt-15to20_MuEnrichedPt5') + \
     nanoGetSampleFiles(mcDirectory,'QCD_Pt-470to600_MuEnrichedPt5') + \
     nanoGetSampleFiles(mcDirectory,'QCD_Pt-600to800_MuEnrichedPt5') + \
     nanoGetSampleFiles(mcDirectory,'QCD_Pt-800to1000_MuEnrichedPt5') + \
-    nanoGetSampleFiles(mcDirectory,'QCD_Pt-1000toInf_MuEnrichedPt5') + \
-    nanoGetSampleFiles(mcDirectory,'QCD_Pt-15to20_EMEnriched') + \
-    nanoGetSampleFiles(mcDirectory,'QCD_Pt-20to30_EMEnriched') + \
+    nanoGetSampleFiles(mcDirectory,'QCD_Pt-1000toInf_MuEnrichedPt5')# + \
+    # nanoGetSampleFiles(mcDirectory,'QCD_Pt-15to20_EMEnriched') + \
+files+=    nanoGetSampleFiles(mcDirectory,'QCD_Pt-20to30_EMEnriched') + \
     nanoGetSampleFiles(mcDirectory,'QCD_Pt-30to50_EMEnriched') + \
     nanoGetSampleFiles(mcDirectory,'QCD_Pt-50to80_EMEnriched') + \
     nanoGetSampleFiles(mcDirectory,'QCD_Pt-80to120_EMEnriched') + \
-    nanoGetSampleFiles(mcDirectory,'QCD_Pt-120to170_EMEnriched') + \
-    nanoGetSampleFiles(mcDirectory,'QCD_Pt-170to300_EMEnriched') + \
-    nanoGetSampleFiles(mcDirectory,'QCD_Pt-300toInf_EMEnriched')
+    nanoGetSampleFiles(mcDirectory,'QCD_Pt-120to170_EMEnriched') #+ \
+    # nanoGetSampleFiles(mcDirectory,'QCD_Pt-170to300_EMEnriched') + \
+files+=    nanoGetSampleFiles(mcDirectory,'QCD_Pt-300toInf_EMEnriched')
 
 
 samples['QCD'] = {

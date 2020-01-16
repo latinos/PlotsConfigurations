@@ -44,85 +44,85 @@ HiggsXS = HiggsXSection()
 #### Luminosity
 
 nuisances['lumi'] = {
-   'name': 'lumi_13TeV_2018',
+   'name': 'lumi_13TeV_2016',
    'type': 'lnN',
    # FIXME: also WWewk and ggWW excluded?
    'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
-
-
+##############################################################################################
+#
 # ##### B-tagger
 #
 # nuisances['btag_shape_jes']  = {
-#                 'name'  : 'btag_shape_jes_2018',
+#                 'name'  : 'btag_shape_jes_2016',
 #                 'kind'  : 'weight',
 #                 'type'  : 'shape',
 #                 'samples'  : dict((skey, ['(btagSFjesup/btagSF)', '(btagSFjesdown/btagSF)']) for skey in mc),
 # }
 #
 # nuisances['btag_shape_lf']  = {
-#                 'name'  : 'btag_shape_lf_2018',
+#                 'name'  : 'btag_shape_lf_2016',
 #                 'kind'  : 'weight',
 #                 'type'  : 'shape',
 #                 'samples'  : dict((skey, ['(btagSFlfup/btagSF)', '(btagSFlfdown/btagSF)']) for skey in mc),
 # }
 #
 # nuisances['btag_shape_hf']  = {
-#                 'name'  : 'btag_shape_hf_2018',
+#                 'name'  : 'btag_shape_hf_2016',
 #                 'kind'  : 'weight',
 #                 'type'  : 'shape',
 #                 'samples'  : dict((skey, ['(btagSFhfup/btagSF)', '(btagSFhfdown/btagSF)']) for skey in mc),
 # }
 #
 # nuisances['btag_shape_hfstats1']  = {
-#                 'name'  : 'btag_shape_hfstats1_2018',
+#                 'name'  : 'btag_shape_hfstats1_2016',
 #                 'kind'  : 'weight',
 #                 'type'  : 'shape',
 #                 'samples'  : dict((skey, ['(btagSFhfstats1up/btagSF)', '(btagSFhfstats1down/btagSF)']) for skey in mc),
 # }
 #
 # nuisances['btag_shape_hfstats2']  = {
-#                 'name'  : 'btag_shape_hfstats2_2018',
+#                 'name'  : 'btag_shape_hfstats2_2016',
 #                 'kind'  : 'weight',
 #                 'type'  : 'shape',
 #                 'samples'  : dict((skey, ['(btagSFhfstats2up/btagSF)', '(btagSFhfstats2down/btagSF)']) for skey in mc),
 # }
 #
 # nuisances['btag_shape_lfstats1']  = {
-#                 'name'  : 'btag_shape_lfstats1_2018',
+#                 'name'  : 'btag_shape_lfstats1_2016',
 #                 'kind'  : 'weight',
 #                 'type'  : 'shape',
 #                 'samples'  : dict((skey, ['(btagSFlfstats1up/btagSF)', '(btagSFlfstats1down/btagSF)']) for skey in mc),
 # }
 #
 # nuisances['btag_shape_lfstats2']  = {
-#                 'name'  : 'btag_shape_lfstats2_2018',
+#                 'name'  : 'btag_shape_lfstats2_2016',
 #                 'kind'  : 'weight',
 #                 'type'  : 'shape',
 #                 'samples'  : dict((skey, ['(btagSFlfstats2up/btagSF)', '(btagSFlfstats2down/btagSF)']) for skey in mc),
 # }
 #
 # nuisances['btag_shape_cferr1']  = {
-#                 'name'  : 'btag_shape_cferr1_2018',
+#                 'name'  : 'btag_shape_cferr1_2016',
 #                 'kind'  : 'weight',
 #                 'type'  : 'shape',
 #                 'samples'  : dict((skey, ['(btagSFcferr1up/btagSF)', '(btagSFcferr1down/btagSF)']) for skey in mc),
 # }
 #
 # nuisances['btag_shape_cferr2']  = {
-#                 'name'  : 'btag_shape_cferr2_2018',
+#                 'name'  : 'btag_shape_cferr2_2016',
 #                 'kind'  : 'weight',
 #                 'type'  : 'shape',
 #                 'samples'  : dict((skey, ['(btagSFcferr2up/btagSF)', '(btagSFcferr2down/btagSF)']) for skey in mc),
 # }
-
+#
 # for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
 #     btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
 #
 #     name = 'btag_%s' % shift
 #     if 'stats' in shift:
-#         name += '_2018'
+#         name += '_2016'
 #
 #     nuisances['btag_shape_%s' % shift] = {
 #         'name': name,
@@ -141,23 +141,23 @@ nuisances['lumi'] = {
 # trig_syst = ['((TriggerEffWeight_1l_u)/(TriggerEffWeight_1l))*(TriggerEffWeight_1l>0.02) + (TriggerEffWeight_1l<=0.02)', '(TriggerEffWeight_1l_d)/(TriggerEffWeight_1l)']
 #
 # nuisances['trigg'] = {
-#     'name': 'eff_hwwtrigger_2018',
+#     'name': 'eff_hwwtrigger_2016',
 #     'kind': 'weight',
 #     'type': 'shape',
 #     'samples': dict((skey, trig_syst) for skey in mc)
 # }
 #
 # ##### Electron Efficiency and energy scale
-
+#
 # nuisances['eff_e'] = {
-#     'name': 'eff_e_2018',
+#     'name': 'eff_e_2016',
 #     'kind': 'weight',
 #     'type': 'shape',
 #     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
 # }
 #
 # nuisances['electronpt'] = {
-#     'name': 'scale_e_2018',
+#     'name': 'scale_e_2016',
 #     'kind': 'tree',
 #     'type': 'shape',
 #     'samples': dict((skey, ['1', '1']) for skey in mc),
@@ -167,16 +167,16 @@ nuisances['lumi'] = {
 # }
 #
 # ##### Muon Efficiency and energy scale
-
+#
 # nuisances['eff_m'] = {
-#     'name': 'eff_m_2018',
+#     'name': 'eff_m_2016',
 #     'kind': 'weight',
 #     'type': 'shape',
 #     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
 # }
 #
 # nuisances['muonpt'] = {
-#     'name': 'scale_m_2018',
+#     'name': 'scale_m_2016',
 #     'kind': 'tree',
 #     'type': 'shape',
 #     'samples': dict((skey, ['1', '1']) for skey in mc),
@@ -188,7 +188,7 @@ nuisances['lumi'] = {
 # ##### Jet energy scale
 #
 # nuisances['jes'] = {
-#     'name': 'scale_j_2018',
+#     'name': 'scale_j_2016',
 #     'kind': 'tree',
 #     'type': 'shape',
 #     'samples': dict((skey, ['1', '1']) for skey in mc),
@@ -200,7 +200,7 @@ nuisances['lumi'] = {
 # ##### MET energy scale
 #
 # nuisances['met'] = {
-#     'name': 'scale_met_2018',
+#     'name': 'scale_met_2016',
 #     'kind': 'tree',
 #     'type': 'shape',
 #     'samples': dict((skey, ['1', '1']) for skey in mc),
@@ -212,7 +212,7 @@ nuisances['lumi'] = {
 # ##### Pileup
 #
 # nuisances['PU'] = {
-#     'name': 'PU_2018',
+#     'name': 'PU_2016',
 #     'kind': 'weight',
 #     'type': 'shape',
 #     'samples': {
@@ -243,7 +243,7 @@ nuisances['lumi'] = {
 #     nuisances['PS']['samples']['qqHWWlnuqq_M'+str(MX)] = psweights
 #
 #
-# #FIXME normalization factors need to be recomputed for 2018
+# #FIXME normalization factors need to be recomputed for 2016
 # # FIXME: HIGH MASS
 # nuisances['UE']  = {
 #                 'name'  : 'UE_CP5',
@@ -292,6 +292,16 @@ nuisances['lumi'] = {
 #     'symmetrize': True
 # }
 #
+
+
+
+###############################################################################################
+
+
+
+
+
+
 nuisances['VgStar'] = {
     'name': 'hww_VgStarScale',
     'type': 'lnN',

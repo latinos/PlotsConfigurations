@@ -60,6 +60,7 @@ groupPlot['Higgs400']  = {
 
 
 
+
 #plot = {}
 
 # keys here must match keys in samples.py
@@ -167,63 +168,63 @@ plot['QCD']  = {
 
 # HWW
 
-# plot['H_hww'] = {
-#     'nameHR' : 'Hww',
-#     'color': 632, # kRed
-#     'isSignal' : 1,
-#     'isData'   : 0,
-#     'scale'    : 1    #
-# }
+#plot['H_hww'] = {
+#                  'nameHR' : 'Hww',
+#                  'color': 632, # kRed
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  'scale'    : 1    #
+#                  }
 
 plot['ZH_hww'] = {
-    'nameHR' : 'ZH',
-    'color': 632+3, # kRed+3
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1    #
-}
+                  'nameHR' : 'ZH',
+                  'color': 632+3, # kRed+3
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
 
 plot['ggZH_hww'] = {
-    'nameHR' : 'ggZH',
-    'color': 632+4, # kRed+4
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1    #
-}
+                  'nameHR' : 'ggZH',
+                  'color': 632+4, # kRed+4
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
 
 plot['WH_hww'] = {
-    'nameHR' : 'WH',
-    'color': 632+2, # kRed+2
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1    #
-}
+                  'nameHR' : 'WH',
+                  'color': 632+2, # kRed+2
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
 
 
 plot['qqH_hww'] = {
-    'nameHR' : 'qqH',
-    'color': 632+1, # kRed+1
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1    #
-}
+                  'nameHR' : 'qqH',
+                  'color': 632+1, # kRed+1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
 
 
 plot['ggH_hww'] = {
-    'nameHR' : 'ggH',
-    'color': 632, # kRed
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1    #
-}
+                  'nameHR' : 'ggH',
+                  'color': 632, # kRed
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
 
 plot['ttH_hww'] = {
-    'nameHR' : 'ttH',
-    'color': 632+6, # kRed+6
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1    #
-}
+                 'nameHR' : 'ttH',
+                 'color': 632+6, # kRed+6
+                 'isSignal' : 0,
+                 'isData'   : 0,
+                 'scale'    : 1    #
+                 }
 
 plot['ggH_htt']  = {
     'color': 428,    # kGreen+12
@@ -250,12 +251,8 @@ plot['WH_htt']  = {
     'scale'    : 1.0,
 }
 
-plot['ggZH_htt'] = {
-    'color': 428,
-    'isSignal': 0,
-    'isData'  : 0,
-    
-}
+
+
 
 # Signal
 plot['qqHWWlnuqq_M400'] = {
@@ -295,6 +292,6 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 59.7/fb'
+legend['lumi'] = 'L = 41.5/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'

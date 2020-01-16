@@ -6,7 +6,7 @@
 #          && (abs(Alt$(Lepton_pdgId[1], 11))==11 || Alt$(Lepton_pt[1],0)<10) \
 #          && abs(Lepton_eta[0])<2.5 \
 #          '
-supercut = 'LepWPCut[0] && Lepton_pt[0]>32 \
+supercut = 'LepWPCut[0] && Lepton_pt[0]>27 \
          && Alt$(Lepton_pt[1],0)<=10 \
          && abs(Lepton_eta[0])<2.5 \
          '
@@ -38,9 +38,9 @@ ResolveCats={}
 # ResolveCats['Resolved']='resolved[0]'
 ResolveCats['ResolvedSR']='resolved[0] && resolvedSignalWMass[0] && !IsBTopTagged'
 ResolveCats['ResolvedSB']='resolved[0] \
-                            && !resolvedSignalWMass[0] \
-                            && resolvedSidebandWMass[0] \
-                            && !IsBTopTagged'
+                        && !resolvedSignalWMass[0] \
+                        && resolvedSidebandWMass[0] \
+                        && !IsBTopTagged'
 ResolveCats['ResolvedTopCR']='resolved[0] && resolvedSignalWMass[0] && IsBTopTagged'
 
 ResolveProcCats={}

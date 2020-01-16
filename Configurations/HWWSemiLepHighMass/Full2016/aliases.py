@@ -15,8 +15,8 @@ configurations = os.path.dirname(configurations) # Configurations
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
 
-eleWP    = 'mvaFall17V1Iso_WP90'
-muWP     = 'cut_Tight_HWWW'
+eleWP    = 'mva_90p_Iso2016'
+muWP     = 'cut_Tight80x'
 LepWPCut='(Lepton_isTightElectron_'+eleWP+'[0] > 0.5 \
             || Lepton_isTightMuon_'+muWP+'[0] > 0.5)'
 
@@ -125,6 +125,7 @@ aliases['gstarHigh'] = {
 }
 
 
+#
 # aliases['oldmjjGen'] = {
 #     'linesToAdd': [
 #         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
@@ -148,7 +149,25 @@ aliases['GenLHE'] = {
 }
 
 
-# # B-Stuff
+
+
+# B-Stuff
+# Temporary patch for BTV postprocessor bug (no SF for eta < 0, <= 102X_nAODv5_Full2018v5)
+
+# btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_102XSF_V1.csv' % os.getenv('CMSSW_BASE')
+#
+# aliases['Jet_btagSF_shapeFix'] = {
+#     'linesToAdd': [
+#         'gSystem->Load("libCondFormatsBTauObjects.so");',
+#         'gSystem->Load("libCondToolsBTau.so");',
+#         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+#         '.L %s/src/PlotsConfigurations/Configurations/patches/btagsfpatch.cc+' % os.getenv('CMSSW_BASE')
+#     ],
+#     'class': 'BtagSF',
+#     'args': (btagSFSource,),
+#     'samples': mc
+# }
+#
 # aliases['bVeto'] = {
 #     'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0'
 # }
@@ -263,21 +282,6 @@ aliases['Top_pTrw'] = {
     'samples': ['top']
 }
 
-# # Temporary patch for BTV postprocessor bug (no SF for eta < 0, <= 102X_nAODv5_Full2018v5)
-#
-# btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_102XSF_V1.csv' % os.getenv('CMSSW_BASE')
-#
-# aliases['Jet_btagSF_shapeFix'] = {
-#     'linesToAdd': [
-#         'gSystem->Load("libCondFormatsBTauObjects.so");',
-#         'gSystem->Load("libCondToolsBTau.so");',
-#         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
-#         '.L %s/src/PlotsConfigurations/Configurations/patches/btagsfpatch.cc+' % os.getenv('CMSSW_BASE')
-#     ],
-#     'class': 'BtagSF',
-#     'args': (btagSFSource,),
-#     'samples': mc
-# }
 
 
 # PU jet Id SF

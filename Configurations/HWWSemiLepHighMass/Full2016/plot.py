@@ -47,7 +47,7 @@ groupPlot['multiboson']  = {
     'nameHR' : 'multiboson',
     'isSignal' : 0,
     'color': 857, # kAzure -3
-    'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L','ggH_hww', 'qqH_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ttH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']
+    'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L', 'ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ttH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']
 }
 
 groupPlot['Higgs400']  = {
@@ -56,6 +56,7 @@ groupPlot['Higgs400']  = {
     'color': 632, # kRed
     'samples' : ['ggHWWlnuqq_M400', 'qqHWWlnuqq_M400']
 }
+
 
 
 
@@ -167,63 +168,65 @@ plot['QCD']  = {
 
 # HWW
 
-# plot['H_hww'] = {
-#     'nameHR' : 'Hww',
-#     'color': 632, # kRed
-#     'isSignal' : 1,
-#     'isData'   : 0,
-#     'scale'    : 1    #
-# }
+#plot['H_hww'] = {
+#                  'nameHR' : 'Hww',
+#                  'color': 632, # kRed
+#                  'isSignal' : 1,
+#                  'isData'   : 0,
+#                  'scale'    : 1    #
+#                  }
 
 plot['ZH_hww'] = {
-    'nameHR' : 'ZH',
-    'color': 632+3, # kRed+3
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1    #
-}
+                  'nameHR' : 'ZH',
+                  'color': 632+3, # kRed+3
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
 
-plot['ggZH_hww'] = {
-    'nameHR' : 'ggZH',
-    'color': 632+4, # kRed+4
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1    #
-}
+# plot['ggZH_hww'] = {
+#                   'nameHR' : 'ggZH',
+#                   'color': 632+4, # kRed+4
+#                   'isSignal' : 0,
+#                   'isData'   : 0,
+#                   'scale'    : 1    #
+#                   }
 
 plot['WH_hww'] = {
-    'nameHR' : 'WH',
-    'color': 632+2, # kRed+2
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1    #
-}
+                  'nameHR' : 'WH',
+                  'color': 632+2, # kRed+2
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
 
 
 plot['qqH_hww'] = {
-    'nameHR' : 'qqH',
-    'color': 632+1, # kRed+1
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1    #
-}
+                  'nameHR' : 'qqH',
+                  'color': 632+1, # kRed+1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
 
 
 plot['ggH_hww'] = {
-    'nameHR' : 'ggH',
-    'color': 632, # kRed
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1    #
-}
+                  'nameHR' : 'ggH',
+                  'color': 632, # kRed
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
 
-plot['ttH_hww'] = {
-    'nameHR' : 'ttH',
-    'color': 632+6, # kRed+6
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1    #
-}
+# plot['ttH_hww'] = {
+#                  'nameHR' : 'ttH',
+#                  'color': 632+6, # kRed+6
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1    #
+#                  }
+
+# H tautau
 
 plot['ggH_htt']  = {
     'color': 428,    # kGreen+12
@@ -250,12 +253,7 @@ plot['WH_htt']  = {
     'scale'    : 1.0,
 }
 
-plot['ggZH_htt'] = {
-    'color': 428,
-    'isSignal': 0,
-    'isData'  : 0,
-    
-}
+
 
 # Signal
 plot['qqHWWlnuqq_M400'] = {
@@ -287,7 +285,7 @@ plot['DATA']  = {
                   'color': 1 ,
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0
+                  'isBlind'  : 1
               }
 
 
@@ -295,6 +293,6 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 59.7/fb'
+legend['lumi'] = 'L = 35.9/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
