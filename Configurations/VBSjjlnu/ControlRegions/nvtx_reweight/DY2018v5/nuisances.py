@@ -320,7 +320,7 @@ nuisances['PU']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                  'DY':  ['(puWeightUp/puWeight)', '(puWeightDown/puWeight)'],
+                  'DY':  ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
                   'top': ['(puWeightUp/puWeight)', '(puWeightDown/puWeight)'],
                   'WW':  ['(puWeightUp/puWeight)', '(puWeightDown/puWeight)'],
                   # 'ggH_hww': ['(puWeightUp/puWeight)', '(puWeightDown/puWeight)'],
