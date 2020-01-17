@@ -131,84 +131,84 @@ else:
 
 
 
-# ############ Top ############
+############ Top ############
 
-# Top_pTrw = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )'
+Top_pTrw = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )'
 
-# samples['top'] = {    'name'   :   getSampleFiles(directory,'TTTo2L2Nu',False,'nanoLatino_') 
-#                                  + getSampleFiles(directory,'ST_s-channel_ext1',False,'nanoLatino_') # FIXME (dario) whyt is this using _ext ?
-#                                  + getSampleFiles(directory,'ST_t-channel_antitop',False,'nanoLatino_') 
-#                                  + getSampleFiles(directory,'ST_t-channel_top',False,'nanoLatino_') 
-#                                  + getSampleFiles(directory,'ST_tW_antitop_ext1',False,'nanoLatino_') # FIXME (dario) whyt is this using _ext ?
-#                                  + getSampleFiles(directory,'ST_tW_top_ext1',False,'nanoLatino_') , # FIXME (dario) whyt is this using _ext ?
-#                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-#                      'FilesPerJob' : 1,
-#                  }
+samples['top'] = {    'name'   :   getSampleFiles(directory,'TTTo2L2Nu',False,'nanoLatino_') 
+                                 + getSampleFiles(directory,'ST_s-channel_ext1',False,'nanoLatino_') # FIXME (dario) whyt is this using _ext ?
+                                 + getSampleFiles(directory,'ST_t-channel_antitop',False,'nanoLatino_') 
+                                 + getSampleFiles(directory,'ST_t-channel_top',False,'nanoLatino_') 
+                                 + getSampleFiles(directory,'ST_tW_antitop_ext1',False,'nanoLatino_') # FIXME (dario) whyt is this using _ext ?
+                                 + getSampleFiles(directory,'ST_tW_top_ext1',False,'nanoLatino_') , # FIXME (dario) whyt is this using _ext ?
+                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                     'FilesPerJob' : 1,
+                 }
 
-# #addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
+#addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
 
-# ############ WW ############
+############ WW ############
 
 samples['WW'] = {    'name'   :   getSampleFiles(directory,'WWTo2L2Nu',False,'nanoLatino_') ,
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*nllW' ,
                  }
 
-# samples['ggWW']  = {  'name'   :   getSampleFiles(directory,'GluGluToWWToENEN',False,'nanoLatino_')
-#                                  + getSampleFiles(directory,'GluGluToWWToENMN',False,'nanoLatino_') 
-#                                  + getSampleFiles(directory,'GluGluToWWToENTN',False,'nanoLatino_')
-#                                  + getSampleFiles(directory,'GluGluToWWToMNEN',False,'nanoLatino_')
-#                                  + getSampleFiles(directory,'GluGluToWWToMNMN',False,'nanoLatino_')
-#                                  + getSampleFiles(directory,'GluGluToWWToMNTN',False,'nanoLatino_')
-#                                  + getSampleFiles(directory,'GluGluToWWToTNEN',False,'nanoLatino_')
-#                                  + getSampleFiles(directory,'GluGluToWWToTNMN',False,'nanoLatino_')
-#                                  + getSampleFiles(directory,'GluGluToWWToTNTN',False,'nanoLatino_'),
-#                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-#                    }
+samples['ggWW']  = {  'name'   :   getSampleFiles(directory,'GluGluToWWToENEN',False,'nanoLatino_')
+                                 + getSampleFiles(directory,'GluGluToWWToENMN',False,'nanoLatino_') 
+                                 + getSampleFiles(directory,'GluGluToWWToENTN',False,'nanoLatino_')
+                                 + getSampleFiles(directory,'GluGluToWWToMNEN',False,'nanoLatino_')
+                                 + getSampleFiles(directory,'GluGluToWWToMNMN',False,'nanoLatino_')
+                                 + getSampleFiles(directory,'GluGluToWWToMNTN',False,'nanoLatino_')
+                                 + getSampleFiles(directory,'GluGluToWWToTNEN',False,'nanoLatino_')
+                                 + getSampleFiles(directory,'GluGluToWWToTNMN',False,'nanoLatino_')
+                                 + getSampleFiles(directory,'GluGluToWWToTNTN',False,'nanoLatino_'),
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                   }
 
 
-# ############ Vg ############
+############ Vg ############
 
-# samples['Vg']  = {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',False,'nanoLatino_')
-#                                + getSampleFiles(directory,'Zg',False,'nanoLatino_'), # FIXME `Zg` or `ZGToLLG` ?
-#                     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* (!(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 ))',
-#                     'FilesPerJob': 5,
-#                   }
-
-
-# ############ VgS ############
-
-# samples['VgS']  =  {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',False,'nanoLatino_')
-#                                  + getSampleFiles(directory,'Zg',False,'nanoLatino_')
-#                                  + getSampleFiles(directory,'WZTo3LNu_mllmin01',False,'nanoLatino_'), # FIXME (dario) `Zg` or `ZGToLLG` ? # (dario) FIXME consider WZTo3LNu_mllmin01 ?
-#                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
-#                       'FilesPerJob' : 20 ,
-#                    }
-# addSampleWeight(samples,'VgS','Wg_MADGRAPHMLM',    '(Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 0.1)')
-# addSampleWeight(samples,'VgS','Zg',                '(Gen_ZGstar_mass >0)') # FIXME `Zg` or `ZGToLLG` ?
-# addSampleWeight(samples,'VgS','WZTo3LNu_mllmin01', '(Gen_ZGstar_mass>=0.1 || Gen_ZGstar_mass<0)')
-
-# ############ VZ ############
-
-# #FIXME Add normalization k-factor
-# # Is this a true FIXME? (dario)
-# samples['VZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo2L2Nu_ext1',False,'nanoLatino_')
-#                                + getSampleFiles(directory,'ZZTo2L2Q',False,'nanoLatino_')
-#                                + getSampleFiles(directory,'ZZTo4L_ext1',False,'nanoLatino_') 
-#                                + getSampleFiles(directory,'WZTo2L2Q',False,'nanoLatino_'),
-#                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-#                     'FilesPerJob' : 5,
-#                  }
+samples['Vg']  = {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',False,'nanoLatino_')
+                               + getSampleFiles(directory,'Zg',False,'nanoLatino_'), # FIXME `Zg` or `ZGToLLG` ?
+                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* (!(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 ))',
+                    'FilesPerJob': 5,
+                  }
 
 
-# ############ VVV ############
+############ VgS ############
 
-# samples['VVV']  = {  'name'   :   getSampleFiles(directory,'ZZZ',False,'nanoLatino_')
-#                                 + getSampleFiles(directory,'WZZ',False,'nanoLatino_')
-#                                 + getSampleFiles(directory,'WWZ',False,'nanoLatino_')
-#                                 + getSampleFiles(directory,'WWW',False,'nanoLatino_'),
-#                                 #+ getSampleFiles(directory,'WWG',False,'nanoLatino_'), #should this be included? or is it already taken into account in the WW sample?
-#                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-#                   }
+samples['VgS']  =  {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',False,'nanoLatino_')
+                                 + getSampleFiles(directory,'Zg',False,'nanoLatino_')
+                                 + getSampleFiles(directory,'WZTo3LNu_mllmin01',False,'nanoLatino_'), # FIXME (dario) `Zg` or `ZGToLLG` ? # (dario) FIXME consider WZTo3LNu_mllmin01 ?
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+                      'FilesPerJob' : 20 ,
+                   }
+addSampleWeight(samples,'VgS','Wg_MADGRAPHMLM',    '(Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 0.1)')
+addSampleWeight(samples,'VgS','Zg',                '(Gen_ZGstar_mass >0)') # FIXME `Zg` or `ZGToLLG` ?
+addSampleWeight(samples,'VgS','WZTo3LNu_mllmin01', '(Gen_ZGstar_mass>=0.1 || Gen_ZGstar_mass<0)')
+
+############ VZ ############
+
+#FIXME Add normalization k-factor
+# Is this a true FIXME? (dario)
+samples['VZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo2L2Nu_ext1',False,'nanoLatino_')
+                               + getSampleFiles(directory,'ZZTo2L2Q',False,'nanoLatino_')
+                               + getSampleFiles(directory,'ZZTo4L_ext1',False,'nanoLatino_') 
+                               + getSampleFiles(directory,'WZTo2L2Q',False,'nanoLatino_'),
+                    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                    'FilesPerJob' : 5,
+                 }
+
+
+############ VVV ############
+
+samples['VVV']  = {  'name'   :   getSampleFiles(directory,'ZZZ',False,'nanoLatino_')
+                                + getSampleFiles(directory,'WZZ',False,'nanoLatino_')
+                                + getSampleFiles(directory,'WWZ',False,'nanoLatino_')
+                                + getSampleFiles(directory,'WWW',False,'nanoLatino_'),
+                                #+ getSampleFiles(directory,'WWG',False,'nanoLatino_'), #should this be included? or is it already taken into account in the WW sample?
+                    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                  }
 
 ###########################################
 ################## FAKE ###################
