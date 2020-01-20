@@ -121,14 +121,12 @@ samples['ttZ']  = {    'name': getSampleFilesNano(directoryMC,'TTZjets'),
 ############# Signal ###############
 ####################################
 
-# Not yet available for 2018
-#samples['WH_htt']  = {  'name': getSampleFilesNano(directoryMC,'HWminusJ_HToTauTau_M125')
-#                               +getSampleFilesNano(directoryMC,'HWplusJ_HToTauTau_M125')
-#                               +getSampleFilesNano(directoryMC,'HZJ_HToTauTau_M125'),
-#                        'weight' : XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
-#                        'suppressNegativeNuisances' :['all'],
-#                        'FilesPerJob' : 5,
-#                    }
+samples['WH_htt']  = {  'name': getSampleFilesNano(directoryMC,'HWminusJ_HToTauTau_M125')
+                               +getSampleFilesNano(directoryMC,'HWplusJ_HToTauTau_M125'),
+                        'weight' : XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
+                        'suppressNegativeNuisances' :['all'],
+                        'FilesPerJob' : 5,
+                    }
 
 samples['WH_hww']  = { 'name': getSampleFilesNano(directoryMC,'HWminusJ_HToWW_M125')
                               +getSampleFilesNano(directoryMC,'HWplusJ_HToWW_M125'),
@@ -141,28 +139,42 @@ samples['ZH_hww']  = {  'name': getSampleFilesNano(directoryMC,'HZJ_HToWW_M125')
                         'weight' : XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
                         'suppressNegativeNuisances' :['all'],
                         'FilesPerJob' : 3,
+                        'subsamples' : { 'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==401 || HTXS_stage1_1_cat_pTjet30GeV==402',
+                                         'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==403 || HTXS_stage1_1_cat_pTjet30GeV==404 || HTXS_stage1_1_cat_pTjet30GeV==405',
+                                         'FWDH'      : 'HTXS_stage1_1_cat_pTjet30GeV==400'
+                                       }
                     }
 
 samples['ggZH_hww'] = {  'name': getSampleFilesNano(directoryMC,'GluGluZH_HToWW_M125'),
                          'weight' : XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
                          'suppressNegativeNuisances' :['all'],
                          'FilesPerJob' : 3,
+                        'subsamples' : { 'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==501 || HTXS_stage1_1_cat_pTjet30GeV==502',
+                                         'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==503 || HTXS_stage1_1_cat_pTjet30GeV==504 || HTXS_stage1_1_cat_pTjet30GeV==505',
+                                         'FWDH'      : 'HTXS_stage1_1_cat_pTjet30GeV==500'
+                                       }
                      }
 
-if os.path.exists('HTXS_stage1_categories.py') :
-    handle = open('HTXS_stage1_categories.py','r')
-    exec(handle)
-    handle.close()
+#if os.path.exists('HTXS_stage1_categories.py') :
+#    handle = open('HTXS_stage1_categories.py','r')
+#    exec(handle)
+#    handle.close()
  
-samples['ZH_hww']['subsamples'] = {}
-for cat,num in HTXSStage1_1Categories.iteritems():
-    if 'QQ2HLL' in cat:
-        samples['ZH_hww']['subsamples'][cat.replace('QQ2HLL_','')] = 'HTXS_stage1_1_cat_pTjet30GeV=='+str(num)
+#samples['ZH_hww']['subsamples'] = {}
+#for cat,num in HTXSStage1_1Categories.iteritems():
+#    if 'QQ2HLL' in cat:
+#        samples['ZH_hww']['subsamples'][cat.replace('QQ2HLL_','')] = 'HTXS_stage1_1_cat_pTjet30GeV=='+str(num)
  
-samples['ggZH_hww']['subsamples'] = {}
-for cat,num in HTXSStage1_1Categories.iteritems():
-    if 'GG2HLL' in cat:
-        samples['ggZH_hww']['subsamples'][cat.replace('GG2HLL_','')] = 'HTXS_stage1_1_cat_pTjet30GeV=='+str(num)
+#samples['ggZH_hww']['subsamples'] = {}
+#for cat,num in HTXSStage1_1Categories.iteritems():
+#    if 'GG2HLL' in cat:
+#        samples['ggZH_hww']['subsamples'][cat.replace('GG2HLL_','')] = 'HTXS_stage1_1_cat_pTjet30GeV=='+str(num)
+
+samples['ZH_htt']  = {  'name': getSampleFilesNano(directoryMC,'HZJ_HToTauTau_M125'),
+                        'weight' : XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
+                        'suppressNegativeNuisances' :['all'],
+                        'FilesPerJob' : 5,
+                    }
 
 ###########################################
 ################## FAKE ###################

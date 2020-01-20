@@ -224,6 +224,7 @@ samples['ttZ']  = {    'name': getSampleFiles(directory,'TTZjets',False,'nanoLat
 
 samples['WW'] = {    'name'   :   getSampleFiles(directory,'WWTo2L2Nu',False,'nanoLatino_') ,
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch2l+'*'+METFilter_MC+'*nllW' ,
+                     'FilesPerJob' : 3,
                  }
 
 samples['WWewk'] = {   'name'  : getSampleFiles(directory, 'WpWmJJ_EWK',False,'nanoLatino_'),
@@ -264,7 +265,7 @@ samples['ZZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo4L_ext1',False,'n
                          #     +getSampleFiles(directory,'ggZZ4e',False,'nanoLatino_')
                               +getSampleFiles(directory,'ggZZ4m',False,'nanoLatino_'),
                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                    'FilesPerJob' : 5,
+                    'FilesPerJob' : 3,
                  }
 
 addSampleWeight(samples,'ZZ','ZZTo4L_ext1',"1.1654") ## The NNLO/NLO k-factor, cited from https://arxiv.org/abs/1405.2219v1
@@ -280,7 +281,7 @@ samples['VZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo2L2Nu_ext1',False
                                + getSampleFiles(directory,'ZZTo2L2Q',False,'nanoLatino_')
                                + getSampleFiles(directory,'WZTo2L2Q',False,'nanoLatino_'),
                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch2l+'*'+METFilter_MC ,
-                    'FilesPerJob' : 5,
+                    'FilesPerJob' : 3,
                  }
 
 samples['WZ'] = {'name'   :getSampleFiles(directory,'WZTo3LNu_mllmin01',False,'nanoLatino_'),
@@ -320,28 +321,36 @@ samples['qqH_hww']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2NuP
 
 samples['ZH_hww']  = {  'name'   :   getSampleFiles(directory,'HZJ_HToWWTo2L2Nu_M125',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                        'FilesPerJob' : 1
+                        'FilesPerJob' : 1,
+                        'subsamples' : { 'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==401 || HTXS_stage1_1_cat_pTjet30GeV==402',
+                                         'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==403 || HTXS_stage1_1_cat_pTjet30GeV==404 || HTXS_stage1_1_cat_pTjet30GeV==405',
+                                         'FWDH'      : 'HTXS_stage1_1_cat_pTjet30GeV==400'
+                                       }
                      }
 
-samples['ggZH_hww']  = {  'name'   :   getSampleFiles(directory,'GluGluZH_HToWW_M125',False,'nanoLatino_'),
+samples['ggZH_hww'] = { 'name'   :   getSampleFiles(directory,'GluGluZH_HToWW_M125',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                          'FilesPerJob' : 1
+                        'FilesPerJob' : 1,
+                        'subsamples' : { 'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==501 || HTXS_stage1_1_cat_pTjet30GeV==502',
+                                         'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==503 || HTXS_stage1_1_cat_pTjet30GeV==504 || HTXS_stage1_1_cat_pTjet30GeV==505',
+                                         'FWDH'      : 'HTXS_stage1_1_cat_pTjet30GeV==500'
+                                       }
                      }
 
-if os.path.exists('HTXS_stage1_categories.py') :
-    handle = open('HTXS_stage1_categories.py','r')
-    exec(handle)
-    handle.close()
+#if os.path.exists('HTXS_stage1_categories.py') :
+#    handle = open('HTXS_stage1_categories.py','r')
+#    exec(handle)
+#    handle.close()
  
-samples['ZH_hww']['subsamples'] = {}
-for cat,num in HTXSStage1_1Categories.iteritems():
-    if 'QQ2HLL' in cat:
-        samples['ZH_hww']['subsamples'][cat.replace('QQ2HLL_','')] = 'HTXS_stage1_1_cat_pTjet30GeV=='+str(num)
+#samples['ZH_hww']['subsamples'] = {}
+#for cat,num in HTXSStage1_1Categories.iteritems():
+#    if 'QQ2HLL' in cat:
+#        samples['ZH_hww']['subsamples'][cat.replace('QQ2HLL_','')] = 'HTXS_stage1_1_cat_pTjet30GeV=='+str(num)
  
-samples['ggZH_hww']['subsamples'] = {}
-for cat,num in HTXSStage1_1Categories.iteritems():
-    if 'GG2HLL' in cat:
-        samples['ggZH_hww']['subsamples'][cat.replace('GG2HLL_','')] = 'HTXS_stage1_1_cat_pTjet30GeV=='+str(num)
+#samples['ggZH_hww']['subsamples'] = {}
+#for cat,num in HTXSStage1_1Categories.iteritems():
+#    if 'GG2HLL' in cat:
+#        samples['ggZH_hww']['subsamples'][cat.replace('GG2HLL_','')] = 'HTXS_stage1_1_cat_pTjet30GeV=='+str(num)
 
 ############ WH H->WW ############
 
@@ -363,6 +372,7 @@ if not splitHtt:
                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                          'suppressNegative' :['all'],
                          'suppressNegativeNuisances' :['all'],
+                        'FilesPerJob' : 3,
                           }
 else:
   

@@ -53,7 +53,7 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  'samples'  : ['WH_htt', 'WH_hww', 'ZH_hww', 'ggZH_hww']
+                  'samples'  : ['WH_htt', 'WH_hww', 'ZH_hww_PTV_LT150', 'ZH_hww_PTV_GT150', 'ZH_hww_FWDH', 'ggZH_hww_PTV_LT150', 'ggZH_hww_PTV_GT150', 'ggZH_hww_FWDH', 'ZH_htt']
               }
 
 # Individual plots               
@@ -110,14 +110,22 @@ plot['VVV']  = {
                   }
 
 plot['WH_htt'] = {
-                  'nameHR' : 'Htt',
-                  'color': 632+4, # kRed+4 
+                  'nameHR' : 'WH htt',
+                  'color': 632, # kRed+4 
                   'isSignal' : 1,
                   'isData'   : 0,    
                   'scale'    : 1
                   }
 
-plot['ZH_hww'] = {
+plot['ZH_htt'] = {
+                  'nameHR' : 'ZH htt',
+                  'color': 632+1, # kRed+4 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1
+                  }
+
+plot['ZH_hww_PTV_LT150'] = {
                   'nameHR' : 'ZH',
                   'color': 632+3, # kRed+3 
                   'isSignal' : 1,
@@ -125,7 +133,39 @@ plot['ZH_hww'] = {
                   'scale'    : 1
                   }
 
-plot['ggZH_hww'] = {
+plot['ZH_hww_PTV_GT150'] = {
+                  'nameHR' : 'ZH',
+                  'color': 632+3, # kRed+3 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1
+                  }
+
+plot['ZH_hww_FWDH'] = {
+                  'nameHR' : 'ZH',
+                  'color': 632+3, # kRed+3 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1
+                  }
+
+plot['ggZH_hww_PTV_LT150'] = {
+                  'nameHR' : 'ggZH',
+                  'color': 632+4, # kRed+4
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1
+                  }
+
+plot['ggZH_hww_PTV_GT150'] = {
+                  'nameHR' : 'ggZH',
+                  'color': 632+4, # kRed+4
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1
+                  }
+
+plot['ggZH_hww_FWDH'] = {
                   'nameHR' : 'ggZH',
                   'color': 632+4, # kRed+4
                   'isSignal' : 1,
@@ -146,10 +186,10 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0
+                  'isBlind'  : 1
               }
 
 # additional options
 
-legend['lumi'] = 'L = 35.9/fb'
+legend['lumi'] = 'L = 59.7/fb'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'

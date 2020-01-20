@@ -8,10 +8,8 @@ supercut = ' Lepton_pt[0]>25 \
           && chllll_zh4l == 0 \
           && z0Mass_zh4l>12 \
           && z1Mass_zh4l>12\
-          && bVeto \
+          && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0 \
           '
-
-## Signal regions
 
 cuts['zh4l_XSF_13TeV']  = {
     'expr' : 'flagZ1SF_zh4l == 1 \
@@ -19,11 +17,13 @@ cuts['zh4l_XSF_13TeV']  = {
            && abs(z0Mass_zh4l-91.1876) < 15 \
            ',
     'categories' : {
-        'ptv_0_75'         : 'recoZPt <= 75',
-        'ptv_75_150'       : 'recoZPt >  75 && recoZPt <= 150',
-        'ptv_150_250_0j'   : 'Alt$(CleanJet_pt[0], 0) < 30  && recoZPt > 150 && recoZPt <= 250',
-        'ptv_150_250_ge1j' : 'Alt$(CleanJet_pt[0], 0) >= 30 && recoZPt > 150 && recoZPt <= 250',
-        'ptv_gt250'        : 'recoZPt > 250',
+#        'ptv_0_75'         : 'recoZPt <= 75',
+#        'ptv_75_150'       : 'recoZPt >  75 && recoZPt <= 150',
+#        'ptv_150_250_0j'   : 'Alt$(CleanJet_pt[0], 0) < 30  && recoZPt > 150 && recoZPt <= 250',
+#        'ptv_150_250_ge1j' : 'Alt$(CleanJet_pt[0], 0) >= 30 && recoZPt > 150 && recoZPt <= 250',
+#        'ptv_gt250'        : 'recoZPt > 250',
+        'ptv_lt150'        : 'recoZPt < 150',
+        'ptv_gt150'        : 'recoZPt > 150',
     }
 }
 
@@ -32,11 +32,13 @@ cuts['zh4l_XDF_13TeV']  = {
            && abs(z0Mass_zh4l-91.1876) < 15 \
            ',
     'categories' : {
-        'ptv_0_75'         : 'recoZPt <= 75',
-        'ptv_75_150'       : 'recoZPt >  75 && recoZPt <= 150',
-        'ptv_150_250_0j'   : 'Alt$(CleanJet_pt[0], 0) < 30  && recoZPt > 150 && recoZPt <= 250',
-        'ptv_150_250_ge1j' : 'Alt$(CleanJet_pt[0], 0) >= 30 && recoZPt > 150 && recoZPt <= 250',
-        'ptv_gt250'        : 'recoZPt > 250',
+        #'ptv_0_75'         : 'recoZPt <= 75',
+        #'ptv_75_150'       : 'recoZPt >  75 && recoZPt <= 150',
+        #'ptv_150_250_0j'   : 'Alt$(CleanJet_pt[0], 0) < 30  && recoZPt > 150 && recoZPt <= 250',
+        #'ptv_150_250_ge1j' : 'Alt$(CleanJet_pt[0], 0) >= 30 && recoZPt > 150 && recoZPt <= 250',
+        #'ptv_gt250'        : 'recoZPt > 250',
+        'ptv_lt150'        : 'recoZPt < 150',
+        'ptv_gt150'        : 'recoZPt > 150',
     }
 }
 
