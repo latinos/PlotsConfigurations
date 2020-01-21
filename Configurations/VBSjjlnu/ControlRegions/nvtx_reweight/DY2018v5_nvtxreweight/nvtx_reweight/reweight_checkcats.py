@@ -33,7 +33,7 @@ for s in samples:
         tot_mc_ele.Add(h)
     else:
         tot_mc_ele = h.Clone()
-        tot_mc_ele.SetName("totMC") 
+        tot_mc_ele.SetName("MC Zee") 
 
 tot_mc_mu = None
 for s in samples:
@@ -44,21 +44,24 @@ for s in samples:
         tot_mc_mu.Add(h)
     else:
         tot_mc_mu = h.Clone()
-        tot_mc_mu.SetName("totMC") 
+        tot_mc_mu.SetName("MC Zmm") 
 
 
 c = R.TCanvas()
+tot_mc_ele.SetTitle("Compare nvtx in Zmm and Zee - MC")
 tot_mc_ele.SetLineColor(R.kRed)
 tot_mc_mu.SetLineColor(R.kBlue)
 tot_mc_ele.DrawNormalized("")
 tot_mc_mu.DrawNormalized("same")
+c.BuildLegend()
 c.Draw()
 
 c2 = R.TCanvas()
 data_ele = f.Get('Zee'+ "/"+args.var+"/histo_DATA")
-data_ele.SetTitle("nvtx data")
+data_ele.SetTitle("Compare nvtx in Zmm and Zee - MC")
 data_mu  = f.Get('Zmm'+ "/"+args.var+"/histo_DATA")
 data_ele.SetLineColor(R.kRed)
 data_mu.SetLineColor(R.kBlue)
 data_ele.DrawNormalized("")
 data_mu.DrawNormalized("same")
+c2-BuildLegend()

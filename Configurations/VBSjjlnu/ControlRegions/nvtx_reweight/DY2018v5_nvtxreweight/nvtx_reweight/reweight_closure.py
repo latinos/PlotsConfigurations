@@ -9,42 +9,40 @@ from math import sqrt
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--file", type=str, help="File")
-parser.add_argument("--file_weight", type=str, help="Weights File")
+parser.add_argument("--input_weight", type=str, help="Weights file input")
+parser.add_argument("--input_weight_scaled", type=str, help="Correctly scaled weights file input")
+parser.add_argument("--output_norm", type=str, help="Const scale factor file")
 parser.add_argument("--var",type=str, help="Variable")
 parser.add_argument("--samples",nargs="+", type=str, help="Samples")
 parser.add_argument("--cat", type=str, help="Category")
 args = parser.parse_args()
 
-file = args.file
-samples = args.samples
-cat = args.cat
-
 print('read weights from textfile')
 xs = []
 ys = []
-with open(args.file_weight, "r") as f:
+with open(args.input_weight, "r") as f:
     for line in f:
         x,y = line.split()
         x, y = int(x), float(y)
         xs.append(x)
         ys.append(y)
 
-if 'Zmm' in args.file_weight:
-    print('read zmmnorm weights from textfile')
-    xs_zmmnorm = []
-    ys_zmmnorm = []
-    with open("zmmnorm_" + args.file_weight, "r") as f:
+if args.input_weight_scaled:
+    print('read scaled weights from textfile')
+    xs_scaled = []
+    ys_scaled = []
+    with open(args.input_weight_scaled, "r") as f:
         for line in f:
             x,y = line.split()
             x, y = int(x), float(y)
-            xs_zmmnorm.append(x)
-            ys_zmmnorm.append(y)
+            xs_scaled.append(x)
+            ys_scaled.append(y)
 
 print('import histo from rootfile')
-f = R.TFile(file)
+f = R.TFile(args.file)
 
 # def data_hist - h2
-data_hist = f.Get(cat+ "/"+args.var+"/histo_DATA")
+data_hist = f.Get(args.cat+ "/"+args.var+"/histo_DATA")
 # data_hist.Scale(1/data_hist.Integral())
 data_hist.SetLineColor(R.kRed)
 data_hist.SetLineWidth(2)
@@ -52,8 +50,8 @@ data_hist.SetLineWidth(2)
 # def tot_mc - h1
 hs = {}
 tot_mc = None
-for s in samples:
-    h = f.Get(cat+ "/"+args.var+"/histo_"+s)
+for s in args.samples:
+    h = f.Get(args.cat+ "/"+args.var+"/histo_"+s)
     print (h)
     hs[s] = h
     if tot_mc:
@@ -75,14 +73,14 @@ tot_mc_integral_rew = tot_mc.Integral()
 integral_ratio = tot_mc_integral_rew / tot_mc_integral
 print(integral_ratio)
 
-if 'Zmm' in args.file_weight:
+if args.input_weight_scaled:
     print('apply normalized weights')
     print(tot_mc)
     for ibin in range(1, nbins):
         # bin_content = tot_mc.GetBinContent(ibin)
         bin_content = nvtx_uncorrected[str(ibin)]
         # print(ibin, xs[ibin-1], ys[ibin-1])
-        tot_mc.SetBinContent(ibin, bin_content * ys_zmmnorm[ibin-1]) 
+        tot_mc.SetBinContent(ibin, bin_content * ys_scaled[ibin-1]) 
     print(tot_mc.Integral() / tot_mc_integral)
 
 tot_mc.SetLineColor(R.kRed)
@@ -98,7 +96,7 @@ tot_mc.SetStats(0)
 #     fake_sample = '/histo_Fake_ee'
 # else:
 #     print 'no fake sample selected, exit 1'
-# fake_hist =  f.Get(cat+ "/" + args.var + fake_sample)
+# fake_hist =  f.Get(args.cat+ "/" + args.var + fake_sample)
 # tot_mc.Add(fake_hist, +1)
 
 # def ratio - h3
@@ -163,9 +161,9 @@ line = R.TLine(0,1,100,1)
 line.SetLineColor(R.kBlack)
 line.Draw()
 
-if 'Zmm' in args.file_weight and 'mm' in args.cat :
+if args.output_norm:
     print ('writing file with nvtx Zmm normalization correction factor')
-    with open('nvtx_zmm_integralratio.txt', 'w') as f:
+    with open(args.output_norm, 'w') as f:
         f.write(str(integral_ratio))
 
 # weights = []
@@ -185,7 +183,7 @@ if 'Zmm' in args.file_weight and 'mm' in args.cat :
 #wsum = sum(weights)
 #norm_weights = [w / wsum for w in weights]
 
-# with open("output_reweighting_{}.txt".format(cat), "w") as out:
+# with open("output_reweighting_{}.txt".format(args.cat), "w") as out:
 #     for x,w,err in zip(x,weights, errw):
 #         out.write("{:.0f} {} 0. {}\n".format(x,w, err)) 
 
