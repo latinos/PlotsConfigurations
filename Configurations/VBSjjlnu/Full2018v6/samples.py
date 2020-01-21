@@ -109,7 +109,7 @@ useEmbeddedDY = False
 DY_photon_filter = '(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)'
 
 samples['DY'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-10to50-LO')
-                                 #+ nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-100to200')  ######## Missing!!!!
+                                + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-100to200') 
                                 + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-200to400')
                                 + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-400to600')
                                 + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-600toInf')
@@ -129,7 +129,7 @@ samples['DY'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M
 
 addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO +'*(LHE_HT<100)')
 addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO +'*(LHE_HT<100)')
-#addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-100to200',ptllDYW_LO) ## TO BE ADDED AGAIN
+addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-100to200',ptllDYW_LO) 
 addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-200to400',ptllDYW_LO)
 addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-400to600',ptllDYW_LO)
 addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-600toInf',ptllDYW_LO)
