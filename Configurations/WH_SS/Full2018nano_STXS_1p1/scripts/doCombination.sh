@@ -30,41 +30,27 @@ datacardDir=$PWD/$1
 
 ## variable used for the signal regions fit
 #mlljj20_whss_bin5
-vars="mlljj20_whss_bin4"
+vars="mlljj20_whss_bin5"
 
 #uu_2j_FWDH=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_2j_FWDH/$vars/datacard.txt
 #eu_2j_FWDH=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_FWDH/$vars/datacard.txt
 #uu_1j_FWDH=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_1j_FWDH/$vars/datacard.txt
 #eu_1j_FWDH=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_1j_FWDH/$vars/datacard.txt
 
-
-# combine the datacards
+# combine the datacards                    
 combineCards.py \
-    uu_2j_PTV_0_75=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_2j_PTV_0_75/$vars/datacard.txt \
-    uu_2j_PTV_75_150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_2j_PTV_75_150/$vars/datacard.txt \
-    uu_2j_PTV_150_250_0J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_2j_PTV_150_250_0J/$vars/datacard.txt \
-    uu_2j_PTV_150_250_GE1J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_2j_PTV_150_250_GE1J/$vars/datacard.txt \
-    uu_2j_PTV_GT250=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_2j_PTV_GT250/$vars/datacard.txt \
+    uu_2j_PTV_LE150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_2j_PTV_LE150/$vars/datacard.txt \
+    uu_2j_PTV_GT150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_2j_PTV_GT150/$vars/datacard.txt \
     \
-    uu_1j_PTV_0_75=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_0_75/$vars/datacard.txt \
-    uu_1j_PTV_75_150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_75_150/$vars/datacard.txt \
-    uu_1j_PTV_150_250_0J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_150_250_0J/$vars/datacard.txt \
-    uu_1j_PTV_150_250_GE1J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_150_250_GE1J/$vars/datacard.txt \
-    uu_1j_PTV_GT250=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_GT250/$vars/datacard.txt \
+    uu_1j_PTV_LE150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_LE150/$vars/datacard.txt \
+    uu_1j_PTV_GT150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_GT150/$vars/datacard.txt \
     \
-    eu_2j_PTV_0_75=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_0_75/$vars/datacard.txt \
-    eu_2j_PTV_75_150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_75_150/$vars/datacard.txt \
-    eu_2j_PTV_150_250_0J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_150_250_0J/$vars/datacard.txt \
-    eu_2j_PTV_150_250_GE1J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_150_250_GE1J/$vars/datacard.txt \
-    eu_2j_PTV_GT250=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_GT250/$vars/datacard.txt \
+    eu_2j_PTV_LE150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_LE150/$vars/datacard.txt \
+    eu_2j_PTV_GT150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_2j_PTV_GT150/$vars/datacard.txt \
     \
-    eu_1j_PTV_0_75=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_0_75/$vars/datacard.txt \
-    eu_1j_PTV_75_150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_75_150/$vars/datacard.txt \
-    eu_1j_PTV_150_250_0J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_150_250_0J/$vars/datacard.txt \
-    eu_1j_PTV_150_250_GE1J=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_150_250_GE1J/$vars/datacard.txt \
-    eu_1j_PTV_GT250=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_GT250/$vars/datacard.txt \
+    eu_1j_PTV_LE150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_LE150/$vars/datacard.txt \
+    eu_1j_PTV_GT150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_eu_1j_PTV_GT150/$vars/datacard.txt \
     > ${outputDir}/${analysis}_HTXS_Stage1.txt
-
 
 echo "Combination folder is created"
 

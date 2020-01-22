@@ -11,15 +11,11 @@ supercut = 'MinIf$( WH3l_mOSll[], WH3l_mOSll[Iteration$] > 0) > 12 \
             && abs(WH3l_chlll) == 1 \
            '
 
-#Reco-bin corresponding to STXS-bin
+#Reco level            
 HTSXReco = {
-    'FWDH' : '1==1',
-    'PTV_0_75' : 'WlepPt_wh3l_v1[0] >0 && WlepPt_wh3l_v1[0] <= 75',
-    'PTV_75_150' : 'WlepPt_wh3l_v1[0] > 75 && WlepPt_wh3l_v1[0] <= 150',
-    'PTV_150_250_0J' : 'WlepPt_wh3l_v1[0] > 150 && WlepPt_wh3l_v1[0] <= 250 && zeroJet',
-    'PTV_150_250_GE1J' : 'WlepPt_wh3l_v1[0] > 150 && WlepPt_wh3l_v1[0] <= 250 && Alt$(CleanJet_pt[0], 0) > 30.',
-    'PTV_GT250' : 'WlepPt_wh3l_v1[0] > 250',
-    }
+    'PTV_LE150' : 'WlepPt_wh3l_v1[0] >0 && WlepPt_wh3l_v1[0] <= 150',
+    'PTV_GT150' : 'WlepPt_wh3l_v1[0] >150',
+}
 
 Anacat['wh3l_13TeV_sssf']  = 'WH3l_flagOSSF == 0\
                             && Alt$( CleanJet_pt[0], 0) < 40 \
@@ -52,4 +48,3 @@ cuts['wh3l_zg_13TeV'] = 'WH3l_njet == 0\
 # 11 = e
 # 13 = mu
 # 15 = tau
-

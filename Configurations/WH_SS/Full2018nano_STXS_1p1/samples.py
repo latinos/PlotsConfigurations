@@ -28,6 +28,7 @@ def makeMCDirectory(var=''):
     directory = treeBaseDir+'Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5/'+skim
     return directory
 
+mcDirectory = makeMCDirectory()
 
 ################################################
 ############ NUMBER OF LEPTONS #################
@@ -138,7 +139,7 @@ samples['top'] = {    'name'   :   getSampleFiles(makeMCDirectory(),'TTTo2L2Nu',
                                  + getSampleFiles(makeMCDirectory(),'ST_tW_antitop_ext1',False,'nanoLatino_')
                                  + getSampleFiles(makeMCDirectory(),'ST_tW_top_ext1',False,'nanoLatino_') ,
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 4,
+                     'FilesPerJob' : 5,
                  }
 
 addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
@@ -244,19 +245,17 @@ samples['ggZH_hww']  = {  'name'   :   getSampleFiles(makeMCDirectory(),'GluGluZ
 #                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
 #                     }
 
-
-if os.path.exists('HTXS_stage1_categories.py'):
-  handle = open('HTXS_stage1_categories.py','r')
-  exec(handle)
-  handle.close()
-
-for cat,num in HTXSStage1_1Categories.iteritems():
-    if 'QQ2HLNU_' in cat:
-        samples['WH_hww_'+cat.replace('QQ2HLNU_','')] = { 'name'   :
-                                    getSampleFiles(makeMCDirectory(),'HWplusJ_HToWW_M125',False,'nanoLatino_')
-                                    + getSampleFiles(makeMCDirectory(),'HWminusJ_HToWW_M125',False,'nanoLatino_'),
-                                    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')',
-                                    }
+samples['WH_hww'] = { 'name'   :
+                      getSampleFiles(makeMCDirectory(),'HWplusJ_HToWW_M125',True,'nanoLatino_')
+                      + getSampleFiles(makeMCDirectory(),'HWminusJ_HToWW_M125',True,'nanoLatino_'),
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+                      'suppressNegativeNuisances' :['all'],
+                      'subsamples' : { 
+                        'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==301 || HTXS_stage1_1_cat_pTjet30GeV==302',
+                        'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==303 || HTXS_stage1_1_cat_pTjet30GeV==304 || HTXS_stage1_1_cat_pTjet30GeV==305',
+                        'FWDH'      : 'HTXS_stage1_1_cat_pTjet30GeV==300'
+                      }
+                    }
 
 ############ ttH ############
 
@@ -308,8 +307,8 @@ else:
                            'suppressNegative' :['all'],
                            'suppressNegativeNuisances' :['all'],
                         }
-
 '''
+
 ###########################################
 ################## FAKE ###################
 ###########################################

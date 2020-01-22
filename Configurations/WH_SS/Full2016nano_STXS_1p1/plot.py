@@ -7,15 +7,15 @@ plot ={}
 # If not defined, normal plots is used
 #
 
-if os.path.exists('HTXS_stage1_categories.py') :
-    handle = open('HTXS_stage1_categories.py','r')
-    exec(handle)
-    handle.close()
+#if os.path.exists('HTXS_stage1_categories.py') :
+#    handle = open('HTXS_stage1_categories.py','r')
+#    exec(handle)
+#    handle.close()
 
-sampleNames = []
-for cat in HTXSStage1_1Categories:
-    if 'QQ2HLNU_' in cat:
-        sampleNames.append('WH_hww_'+cat.replace('QQ2HLNU_',''))
+#sampleNames = []
+#for cat in HTXSStage1_1Categories:
+#    if 'QQ2HLNU_' in cat:
+#        sampleNames.append('WH_hww_'+cat.replace('QQ2HLNU_',''))
 
 groupPlot['top']  = {
                   'nameHR' : 'tW and t#bar{t}',
@@ -81,20 +81,36 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed
-                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
+                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt','WH_hww_PTV_GT150','WH_hww_PTV_LT150' ]
                   #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
               }
 
-for s in sampleNames:
-    groupPlot['Higgs']['samples'].append(s)
+#for s in sampleNames:
+#    groupPlot['Higgs']['samples'].append(s)
 
-for s in sampleNames:
-    plot[s]  = {
-        'nameHR' : s,
-        'color': 632, # kRed,
-        'isSignal' : 1,
-        'isData'   : 0
-    }
+#for s in sampleNames:
+#    plot[s]  = {
+#        'nameHR' : s,
+#        'color': 632, # kRed,
+#        'isSignal' : 1,
+#        'isData'   : 0
+#    }
+
+plot['WH_hww_PTV_LT150'] = {
+                  'nameHR' : 'WH',
+                  'color': 632+3, # kRed+3                                                                                                                    
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1
+                  }
+
+plot['WH_hww_PTV_GT150'] = {
+                  'nameHR' : 'WH',
+                  'color': 632+3, # kRed+3                                                                                                                    
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1
+                  }
 
 #plot = {}
 
