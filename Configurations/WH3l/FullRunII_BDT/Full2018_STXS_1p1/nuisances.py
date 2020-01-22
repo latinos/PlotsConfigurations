@@ -131,15 +131,15 @@ nuisances['eff_e'] = {
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
 }
 
-#nuisances['electronpt'] = {
-#    'name': 'CMS_scale_e_2018',
-#    'kind': 'tree',
-#    'type': 'shape',
-#    'samples': dict((skey, ['1', '1']) for skey in mc),
-#    'folderUp': makeMCDirectory('ElepTup'),
-#    'folderDown': makeMCDirectory('ElepTdo'),
-#    'AsLnN': '1'
-#}
+nuisances['electronpt'] = {
+    'name': 'CMS_scale_e_2018',
+    'kind': 'tree',
+    'type': 'shape',
+    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'folderUp': makeMCDirectory('ElepTup'),
+    'folderDown': makeMCDirectory('ElepTdo'),
+    'AsLnN': '1'
+}
 
 ##### Muon Efficiency and energy scale
 
@@ -150,39 +150,39 @@ nuisances['eff_m'] = {
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
 }
 
-#nuisances['muonpt'] = {
-#    'name': 'CMS_scale_m_2018',
-#    'kind': 'tree',
-#    'type': 'shape',
-#    'samples': dict((skey, ['1', '1']) for skey in mc),
-#    'folderUp': makeMCDirectory('MupTup'),
-#    'folderDown': makeMCDirectory('MupTdo'),
-#    'AsLnN': '1'
-#}
+nuisances['muonpt'] = {
+    'name': 'CMS_scale_m_2018',
+    'kind': 'tree',
+    'type': 'shape',
+    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'folderUp': makeMCDirectory('MupTup'),
+    'folderDown': makeMCDirectory('MupTdo'),
+    'AsLnN': '1'
+}
 
 ##### Jet energy scale
 
-#nuisances['jes'] = {
-#    'name': 'CMS_scale_j_2018',
-#    'kind': 'tree',
-#    'type': 'shape',
-#    'samples': dict((skey, ['1', '1']) for skey in mc),
-#    'folderUp': makeMCDirectory('JESup'),
-#    'folderDown': makeMCDirectory('JESdo'),
-#    'AsLnN': '1'
-#}
+nuisances['jes'] = {
+    'name': 'CMS_scale_j_2018',
+    'kind': 'tree',
+    'type': 'shape',
+    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'folderUp': makeMCDirectory('JESup'),
+    'folderDown': makeMCDirectory('JESdo'),
+    'AsLnN': '1'
+}
 
 ##### MET energy scale
 
-#nuisances['met'] = {
-#    'name': 'CMS_scale_met_2018',
-#    'kind': 'tree',
-#    'type': 'shape',
-#    'samples': dict((skey, ['1', '1']) for skey in mc),
-#    'folderUp': makeMCDirectory('METup'),
-#    'folderDown': makeMCDirectory('METdo'),
-#    'AsLnN': '1'
-#}
+nuisances['met'] = {
+    'name': 'CMS_scale_met_2018',
+    'kind': 'tree',
+    'type': 'shape',
+    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'folderUp': makeMCDirectory('METup'),
+    'folderDown': makeMCDirectory('METdo'),
+    'AsLnN': '1'
+}
 
 ##### PS and UE --> NO AVAILABLE FOR VH2j! 
 #nuisances['PS_wh3l']  = {
@@ -215,14 +215,14 @@ nuisances['eff_m'] = {
 
 ###### pdf uncertainties
 
-nuisances['pdf_Higgs_qqbar_wh3l']  = {
-               'name'  : 'pdf_Higgs_qqbar',
-               'type'  : 'lnN',
-               'samples'  : {
-                   'WH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
-                   'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
-                   },
-              }
+#nuisances['pdf_Higgs_qqbar_wh3l']  = {
+#               'name'  : 'pdf_Higgs_qqbar',
+#               'type'  : 'lnN',
+#               'samples'  : {
+#                   'WH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
+#                   'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
+#                   },
+#              }
 
 
 nuisances['pdf_Higgs_qqbar_ACCEPT_wh3l']  = {
@@ -243,14 +243,14 @@ nuisances['pdf_Higgs_qqbar_ACCEPT_wh3l']  = {
 # [0] is muR=0.50000E+00 muF=0.50000E+00
 # [8] is muR=0.20000E+01 muF=0.20000E+01
 
-nuisances['QCDscale_WH']  = {
-               'name'  : 'QCDscale_WH',
-               'samples'  : {
-                   'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
-                   'WH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
-                   },
-               'type'  : 'lnN',
-              }
+#nuisances['QCDscale_WH']  = {
+#               'name'  : 'QCDscale_WH',
+#               'samples'  : {
+#                   'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
+#                   'WH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
+#                   },
+#               'type'  : 'lnN',
+#              }
 
 
 nuisances['QCDscale_qqbar_ACCEPT']  = {
