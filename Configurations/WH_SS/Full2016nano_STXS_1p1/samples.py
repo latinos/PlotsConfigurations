@@ -153,7 +153,7 @@ samples['top'] = {    'name'   :   getSampleFiles(makeMCDirectory(),'TTTo2L2Nu',
                                  + getSampleFiles(makeMCDirectory(),'ST_tW_antitop',True,'nanoLatino_')
                                  + getSampleFiles(makeMCDirectory(),'ST_tW_top',True,'nanoLatino_') ,
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 5,
+                     'FilesPerJob' : 6,
                  }
 
 addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)

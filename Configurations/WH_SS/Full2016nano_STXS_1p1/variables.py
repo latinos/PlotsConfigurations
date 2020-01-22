@@ -39,7 +39,7 @@ variables['events']  = {   'name': '1',
 #                        }
 
 variables['mlljj20_whss_bin5']  = {   'name': 'mlljj20_whss',
-                        'range' : ([60.,100.,110.,120.,130.,140.,150.,175.,200.,250.,300.],),
+                        'range' : ([60.,100.,110.,120.,130.,140.,150.,200.,250.,300.],),
                         'xaxis' : 'mlljj20_whss [GeV]',
                         'fold' : 0
                         }

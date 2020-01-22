@@ -166,15 +166,15 @@ nuisances['eff_e'] = {
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
 }
 
-#nuisances['electronpt'] = {
-#    'name': 'CMS_scale_e_2017',
-#    'kind': 'tree',
-#    'type': 'shape',
-#    'samples': dict((skey, ['1', '1']) for skey in mc),
-#    'folderUp'   : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__ElepTup',
-#    'folderDown' : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__ElepTdo',
-#    'AsLnN': '1'
-#}
+nuisances['electronpt'] = {
+    'name': 'CMS_scale_e_2017',
+    'kind': 'tree',
+    'type': 'shape',
+    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'folderUp'   : mcDirectory+'__ElepTup',
+    'folderDown' : mcDirectory+'__ElepTdo',
+    'AsLnN': '1'
+}
 
 ##### Muon Efficiency and energy scale
 
@@ -185,39 +185,39 @@ nuisances['eff_m'] = {
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
 }
 
-#nuisances['muonpt'] = {
-#    'name': 'CMS_scale_m_2017',
-#    'kind': 'tree',
-#    'type': 'shape',
-#    'samples': dict((skey, ['1', '1']) for skey in mc),
-#    'folderUp'   : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__MupTup',
-#    'folderDown' : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__MupTdo',
-#    'AsLnN': '1'
-#}
+nuisances['muonpt'] = {
+    'name': 'CMS_scale_m_2017',
+    'kind': 'tree',
+    'type': 'shape',
+    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'folderUp'   : mcDirectory+'__MupTup',
+    'folderDown' : mcDirectory+'__MupTdo',
+    'AsLnN': '1'
+}
 
 ##### Jet energy scale
 
-#nuisances['jes'] = {
-#    'name': 'CMS_scale_j_2017',
-#    'kind': 'tree',
-#    'type': 'shape',
-#    'samples': dict((skey, ['1', '1']) for skey in mc),
-#    'folderUp'   : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__JESup',
-#    'folderDown' : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__JESdo',
-#    'AsLnN': '1'
-#}
+nuisances['jes'] = {
+    'name': 'CMS_scale_j_2017',
+    'kind': 'tree',
+    'type': 'shape',
+    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'folderUp'   : mcDirectory+'__JESup',
+    'folderDown' : mcDirectory+'__JESdo',
+    'AsLnN': '1'
+}
 
 ##### MET energy scale
 
-#nuisances['met'] = {
-#    'name': 'CMS_scale_met_2017',
-#    'kind': 'tree',
-#    'type': 'shape',
-#    'samples': dict((skey, ['1', '1']) for skey in mc),
-#    'folderUp'   : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__METup',
-#    'folderDown' : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__METdo',
-#    'AsLnN': '1'
-#}
+nuisances['met'] = {
+    'name': 'CMS_scale_met_2017',
+    'kind': 'tree',
+    'type': 'shape',
+    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'folderUp'   : mcDirectory+'__METup',
+    'folderDown' : mcDirectory+'__METdo',
+    'AsLnN': '1'
+}
 
 # PS and UE
 #FIXME: Add PS uncertainty
@@ -307,16 +307,16 @@ nuisances['QCDscale_qqH']  = {
                'type'  : 'lnN',
               }
 
-nuisances['QCDscale_VH']  = {
-               'name'  : 'QCDscale_VH', 
-               'samples'  : {
-                   'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
-                   'WH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
-                   'ZH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm'),
-                   'ZH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm'),
-                   },
-               'type'  : 'lnN',
-              }
+#nuisances['QCDscale_VH']  = {
+#               'name'  : 'QCDscale_VH', 
+#               'samples'  : {
+#                   'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
+#                   'WH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
+#                   'ZH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm'),
+#                   'ZH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm'),
+#                   },
+#               'type'  : 'lnN',
+#              }
 
 nuisances['QCDscale_ggZH']  = {
                'name'  : 'QCDscale_ggZH', 
@@ -398,10 +398,10 @@ nuisances['pdf_Higgs_qqbar']  = {
                'samples'  : {
                    'qqH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm'),
                    'qqH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm'),
-                   'WH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
-                   'WH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
-                   'ZH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH' ,'125.09','pdf','sm'),
-                   'ZH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH' ,'125.09','pdf','sm'),
+                   #'WH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
+                   #'WH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
+                   #'ZH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH' ,'125.09','pdf','sm'),
+                   #'ZH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH' ,'125.09','pdf','sm'),
                    },
               }
 
@@ -462,13 +462,13 @@ nuisances['pdf_qqbar_ACCEPT']  = {
 
 # ggww and interference
 
-nuisances['QCDscale_ggWW']  = {
-               'name'  : 'QCDscale_ggWW',
-               'type'  : 'lnN',
-               'samples'  : {
-                   'ggWW' : '1.15',
-                   },
-              }
+#nuisances['QCDscale_ggWW']  = {
+#               'name'  : 'QCDscale_ggWW',
+#               'type'  : 'lnN',
+#               'samples'  : {
+#                   'ggWW' : '1.15',
+#                   },
+#              }
 
 ####### Generic "cross section uncertainties"
 
