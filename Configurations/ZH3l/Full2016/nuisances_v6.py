@@ -159,8 +159,8 @@ nuisances['pdf_qqbar_ACCEPT']  = {
 #                    'WH_htt'   : ['1', '1'],
 #                    'ggZH_hww' : ['1', '1'],
 #                },
-#                'folderUp'   : directoryMC+'__PS',
-#                'folderDown' : directoryMC+'',
+#                'folderUp'   : treeBaseDir+'Summer16_102X_nAODv5_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__PS',
+#                'folderDown' : treeBaseDir+'Summer16_102X_nAODv5_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6',
 #                'AsLnN'      : '1',
 #}
 
@@ -174,8 +174,8 @@ nuisances['pdf_qqbar_ACCEPT']  = {
 #                    'WH_htt'   : ['1', '1'],
 #                    'ggZH_hww' : ['1', '1'],
 #               },
-#                'folderUp'   : directoryMC+'__UEup',
-#                'folderDown' : directoryMC+'__UEdo',
+#                'folderUp'   : treeBaseDir+'Summer16_102X_nAODv5_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__UEup',
+#                'folderDown' : treeBaseDir+'Summer16_102X_nAODv5_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__UEdo',
 #                'AsLnN'      : '1',
 #                }
 
@@ -185,14 +185,11 @@ nuisances['WZ3l2jnorm']  = {
                    'WZ'       : '1.00',
                    },
                'type'  : 'rateParam',
-               'cuts'  : ['zh3l_Zg_CR_2j',
-                          'zh3l_WZ_CR_2j',
-                          #'zh3l_SR_ptv_0_75_2j',
-                          #'zh3l_SR_ptv_75_150_2j',
-                          #'zh3l_SR_ptv_150_250_2j',
-                          #'zh3l_SR_ptv_gt250_2j'
-                          'zh3l_SR_ptv_lt150_2j',
-                          'zh3l_SR_ptv_gt150_2j']
+               'cuts'  : [
+                   'zh3l_Zg_CR_2j',
+                   'zh3l_WZ_CR_2j',
+                   'zh3l_SR_2j',
+                ]
               }
 
 nuisances['WZ3l1jnorm']  = {
@@ -201,14 +198,11 @@ nuisances['WZ3l1jnorm']  = {
                    'WZ'       : '1.00',
                    },
                'type'  : 'rateParam',
-               'cuts'  : ['zh3l_Zg_CR_1j',
-                          'zh3l_WZ_CR_1j',
-                          #'zh3l_SR_ptv_0_75_1j',
-                          #'zh3l_SR_ptv_75_150_1j',
-                          #'zh3l_SR_ptv_150_250_1j',
-                          #'zh3l_SR_ptv_gt250_1j'
-                          'zh3l_SR_ptv_lt150_1j',
-                          'zh3l_SR_ptv_gt150_1j']
+               'cuts'  : [
+                   'zh3l_Zg_CR_1j',
+                   'zh3l_WZ_CR_1j',
+                   'zh3l_SR_1j',
+                ]
               }
 
 nuisances['Zg3l2jnorm']  = {
@@ -217,14 +211,11 @@ nuisances['Zg3l2jnorm']  = {
                    'Zg'       : '1.00',
                    },
                'type'  : 'rateParam',
-               'cuts'  : ['zh3l_Zg_CR_2j',
-                          'zh3l_WZ_CR_2j',
-                          #'zh3l_SR_ptv_0_75_2j',
-                          #'zh3l_SR_ptv_75_150_2j',
-                          #'zh3l_SR_ptv_150_250_2j',
-                          #'zh3l_SR_ptv_gt250_2j'
-                          'zh3l_SR_ptv_lt150_2j',
-                          'zh3l_SR_ptv_gt150_2j']
+               'cuts'  : [
+                   'zh3l_Zg_CR_2j',
+                   'zh3l_WZ_CR_2j',
+                   'zh3l_SR_2j',
+                ]
               }
 
 nuisances['Zg3l1jnorm']  = {
@@ -233,14 +224,11 @@ nuisances['Zg3l1jnorm']  = {
                    'Zg'       : '1.00',
                    },
                'type'  : 'rateParam',
-               'cuts'  : ['zh3l_Zg_CR_1j',
-                          'zh3l_WZ_CR_1j',
-                          #'zh3l_SR_ptv_0_75_1j',
-                          #'zh3l_SR_ptv_75_150_1j',
-                          #'zh3l_SR_ptv_150_250_1j',
-                          #'zh3l_SR_ptv_gt250_1j'
-                          'zh3l_SR_ptv_lt150_1j',
-                          'zh3l_SR_ptv_gt150_1j']
+               'cuts'  : [
+                   'zh3l_Zg_CR_1j',
+                   'zh3l_WZ_CR_1j',
+                   'zh3l_SR_1j',
+                ]
               }
 
 #### FAKES
@@ -355,14 +343,14 @@ nuisances['eff_e']  = {
                 'samples'  : dict((skey, id_syst_ele) for skey in mc),
 }
 
-nuisances['electronpt']  = {
-                'name'  : 'CMS_scale_e_2016',
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc),
-                'folderUp'   : directoryMC+'__ElepTup', 
-                'folderDown' : directoryMC+'__ElepTdo', 
-}
+#nuisances['electronpt']  = {
+#                'name'  : 'CMS_scale_e_2016',
+#                'kind'  : 'tree',
+#                'type'  : 'shape',
+#                'samples'  : dict((skey, ['1', '1']) for skey in mc),
+#                'folderUp'   : treeBaseDir+'Summer16_102X_nAODv5_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__ElepTup_suffix', 
+#                'folderDown' : treeBaseDir+'Summer16_102X_nAODv5_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__ElepTdo_suffix', 
+#}
 
 ###### Muon Efficiency and energy scale
 
@@ -375,37 +363,37 @@ nuisances['eff_m']  = {
                 'samples'  : dict((skey, id_syst_mu) for skey in mc),
 }
 
-nuisances['muonpt']  = {
-                'name'  : 'CMS_scale_m_2016',
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc),
-                'folderUp'   : directoryMC+'__MupTup',
-                'folderDown' : directoryMC+'__MupTdo',
-}
+#nuisances['muonpt']  = {
+#                'name'  : 'CMS_scale_m_2016',
+#                'kind'  : 'tree',
+#                'type'  : 'shape',
+#                'samples'  : dict((skey, ['1', '1']) for skey in mc),
+#                'folderUp'   : treeBaseDir+'Summer16_102X_nAODv5_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__MupTup_suffix',
+#                'folderDown' : treeBaseDir+'Summer16_102X_nAODv5_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__MupTdo_suffix',
+#}
 
 # ###### Jet energy scale
 
-nuisances['jes']  = {
-                'name'  : 'CMS_scale_j_2016',
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc),
-                'folderUp'   : directoryMC+'__JESup',
-                'folderDown' : directoryMC+'__JESdo',
-}
+#nuisances['jes']  = {
+#                'name'  : 'CMS_scale_j_2016',
+#                'kind'  : 'tree',
+#                'type'  : 'shape',
+#                'samples'  : dict((skey, ['1', '1']) for skey in mc),
+#                'folderUp'   : treeBaseDir+'Summer16_102X_nAODv5_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__JESup_suffix',
+#                'folderDown' : treeBaseDir+'Summer16_102X_nAODv5_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__JESdo_suffix',
+#}
 
 
 ##### MET energy scale
 
-nuisances['met']  = {
-                'name'  : 'CMS_scale_met_2016',
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc),
-                'folderUp'   : directoryMC+'__METup',
-                'folderDown' : directoryMC+'__METdo',
-}
+#nuisances['met']  = {
+#                'name'  : 'CMS_scale_met_2016',
+#                'kind'  : 'tree',
+#                'type'  : 'shape',
+#                'samples'  : dict((skey, ['1', '1']) for skey in mc),
+#                'folderUp'   : treeBaseDir+'Summer16_102X_nAODv5_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__METup_suffix',
+#                'folderDown' : treeBaseDir+'Summer16_102X_nAODv5_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__METdo_suffix',
+#}
 
 # Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat']  = {

@@ -3,7 +3,7 @@ import subprocess
 import string
 from LatinoAnalysis.Tools.commonTools import *
 
-#samples={}
+samples={}
 
 ##############################################
 ###### Tree Directory according to site ######
@@ -19,7 +19,7 @@ elif  'cern' in SITE :
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/'
 
 directoryMC = treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5'
-directory1= treeBaseDir+'Summer16_102X_nAODv5_SigOnly_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5'
+
 ################################################
 ############ NUMBER OF LEPTONS #################
 ################################################
@@ -205,102 +205,6 @@ samples['WWW'] = {'name'   :getSampleFiles(directoryMC,'WWW',False,'nanoLatino_'
                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC ,
                    
 }
-
-##########################################
-################ SIGNALS #################
-##########################################
-
-############ ggH H->WW ############
-#FIXME Add reweighting to MiNLO NNLOPS or use NNLOPS sample when available
-samples['ggH_hww']  = {  'name'   :   getSampleFiles(directory1,'GluGluHToWWTo2L2Nu_M125',False,'nanoLatino_'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     }
-
-############ VBF H->WW ############
-samples['qqH_hww']  = {  'name'   :   getSampleFiles(directory1,'VBFHToWWTo2L2Nu_M125',False,'nanoLatino_'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     }
-
-############ ZH H->WW ############
-
-samples['ZH_hww']  = {  'name'   :   getSampleFiles(directory1,'HZJ_HToWW_M125',False,'nanoLatino_'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                        'subsamples' : { 'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==401 || HTXS_stage1_1_cat_pTjet30GeV==402',
-                                         'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==403 || HTXS_stage1_1_cat_pTjet30GeV==404 || HTXS_stage1_1_cat_pTjet30GeV==405',
-                                         'FWDH'      : 'HTXS_stage1_1_cat_pTjet30GeV==400'
-                                       }
-                     }
-
-samples['ggZH_hww'] = { 'name'   :   getSampleFiles(directory1,'ggZH_HToWW_M125',False,'nanoLatino_'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                        'subsamples' : { 'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==501 || HTXS_stage1_1_cat_pTjet30GeV==502',
-                                         'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==503 || HTXS_stage1_1_cat_pTjet30GeV==504 || HTXS_stage1_1_cat_pTjet30GeV==505',
-                                         'FWDH'      : 'HTXS_stage1_1_cat_pTjet30GeV==500'
-                                       }
-                     }
-
-#if os.path.exists('HTXS_stage1_categories.py') :
-#    handle = open('HTXS_stage1_categories.py','r')
-#    exec(handle)
-#    handle.close()
- 
-#samples['ZH_hww']['subsamples'] = {}
-#for cat,num in HTXSStage1_1Categories.iteritems():
-#    if 'QQ2HLL' in cat:
-#        samples['ZH_hww']['subsamples'][cat.replace('QQ2HLL_','')] = 'HTXS_stage1_1_cat_pTjet30GeV=='+str(num)
- 
-#samples['ggZH_hww']['subsamples'] = {}
-#for cat,num in HTXSStage1_1Categories.iteritems():
-#    if 'GG2HLL' in cat:
-#        samples['ggZH_hww']['subsamples'][cat.replace('GG2HLL_','')] = 'HTXS_stage1_1_cat_pTjet30GeV=='+str(num)
-
-############ WH H->WW ############
-
-samples['WH_hww']  = {  'name'   :   getSampleFiles(directory1,'HWplusJ_HToWW_M125',False,'nanoLatino_')
-                                   + getSampleFiles(directory1,'HWminusJ_HToWW_M125',False,'nanoLatino_'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     }
-
-############ H->TauTau ############
-
-splitHtt=False
-if not splitHtt:
-
-  samples['H_htt'] = {  'name'   :   getSampleFiles(directory1,'GluGluHToTauTau_M125',False,'nanoLatino_')
-                                   + getSampleFiles(directory1,'VBFHToTauTau_M125',False,'nanoLatino_')
-                                   + getSampleFiles(directory1,'HZJ_HToTauTau_M125',False,'nanoLatino_')
-                                   + getSampleFiles(directory1,'HWplusJ_HToTauTau_M125',False,'nanoLatino_')
-                                   + getSampleFiles(directory1,'HWminusJ_HToTauTau_M125',False,'nanoLatino_'),
-                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                         'suppressNegative' :['all'],
-                         'suppressNegativeNuisances' :['all'],
-                     }
-else:
-  
-  samples['ggH_htt']  = {  'name'   : getSampleFiles(directory1,'GluGluHToTauTau_M125',False,'nanoLatino_'),
-                           'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                           'suppressNegative' :['all'],
-                           'suppressNegativeNuisances' :['all'],
-                        } 
-
-  samples['qqH_htt']  = {  'name'   : getSampleFiles(directory1,'VBFHToTauTau_M125',False,'nanoLatino_'),
-                           'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                           'suppressNegative' :['all'],
-                           'suppressNegativeNuisances' :['all'],
-                        }
-
-  samples['ZH_htt']  = {  'name'   : getSampleFiles(directory1,'HZJ_HToTauTau_M125',False,'nanoLatino_'),
-                           'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                           'suppressNegative' :['all'],
-                           'suppressNegativeNuisances' :['all'],
-                        }
-
-  samples['WH_htt']  = {  'name'   :  getSampleFiles(directory1,'HWplusJ_HToTauTau_M125',False,'nanoLatino_')
-                                    + getSampleFiles(directory1,'HWminusJ_HToTauTau_M125',False,'nanoLatino_'),
-                           'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                           'suppressNegative' :['all'],
-                           'suppressNegativeNuisances' :['all'],
-                        }
 
 ###########################################
 ################## DATA ###################
