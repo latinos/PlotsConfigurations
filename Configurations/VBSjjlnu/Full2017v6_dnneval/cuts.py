@@ -11,19 +11,19 @@ supercut = 'Lepton_pt[0]>30'
 ###############|----------------------------------|######################
 #########################################################################
 
-cuts["lowen_incl_ele"] = 'VBS_category==1 \
-                        && abs(Lepton_pdgId[0])==11 \
-                        && Lepton_pt[0] >= 40 \
-                        && vbs_0_pt > 30 && vbs_1_pt > 30  \
-                        && vjet_0_pt > 30 && vjet_1_pt > 30 \
-                        '
+# cuts["lowen_incl_ele"] = 'VBS_category==1 \
+#                         && abs(Lepton_pdgId[0])==11 \
+#                         && Lepton_pt[0] >= 40 \
+#                         && vbs_0_pt > 30 && vbs_1_pt > 30  \
+#                         && vjet_0_pt > 30 && vjet_1_pt > 30 \
+#                         '
 
-cuts["lowen_incl_mu"] =  'VBS_category==1 \
-                        && abs(Lepton_pdgId[0])==13 \
-                        && Lepton_pt[0] >= 30 \
-                        && vbs_0_pt > 30 && vbs_1_pt > 30  \
-                        && vjet_0_pt > 30 && vjet_1_pt > 30 \
-                        '
+# cuts["lowen_incl_mu"] =  'VBS_category==1 \
+#                         && abs(Lepton_pdgId[0])==13 \
+#                         && Lepton_pt[0] >= 30 \
+#                         && vbs_0_pt > 30 && vbs_1_pt > 30  \
+#                         && vjet_0_pt > 30 && vjet_1_pt > 30 \
+#                         '
 
 
 cuts["lowen_CR_looseVBS_ele"] = 'VBS_category==1 \

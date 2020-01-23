@@ -14,13 +14,13 @@ using namespace NNEvaluation;
 class MVAReader : public multidraw::TTreeFunction {
 public:
   
-  MVAReader(string model_path);
+  MVAReader(char* model_path);
 
   char const* getName() const override { return "MVAReader"; }
   // TTreeFunction* clone() const override { return new MVAReader(file_ele, file_mu); }
-  TTreeFunction* clone() const override { return new MVAReader(model_path); }
+  TTreeFunction* clone() const override { return new MVAReader(model_path_); }
 
-  string model_path;
+  char* model_path_;
   unsigned getNdata() override { return 1; }
   double evaluate(unsigned) override;
 
@@ -68,11 +68,10 @@ protected:
   FloatValueReader* mjj_vbs{};
 };
 
-MVAReader::MVAReader(string model_path):
-    model_path(model_path)
+MVAReader::MVAReader(char* model_path):
+    model_path_(model_path)
 {
-    dnn_tensorflow = new DNNEvaluator(model_path);
-
+    dnn_tensorflow = new DNNEvaluator(model_path_);
 }
 
 
@@ -80,6 +79,46 @@ double
 MVAReader::evaluate(unsigned)
 {
   // fixme
+  std::vector<float> input{};
+  input.push_back( *(mjj_vbs->Get()) );
+  input.push_back( *(vbs_0_pt->Get()) );
+  input.push_back( *(vbs_1_pt->Get()) );
+  input.push_back( *(vbs_0_eta->Get()) );
+  input.push_back( *(vbs_1_eta->Get()) );
+  input.push_back( (float) *(vbs_index_0->Get()) );
+  input.push_back( (float) *(vbs_index_1->Get()) );
+  input.push_back( *(deltaeta_vbs->Get()) );
+  input.push_back( *(deltaphi_vbs->Get()) );
+  input.push_back( *(mjj_vjet->Get()) );
+  input.push_back( *(vjet_0_pt->Get()) );
+  input.push_back( *(vjet_1_pt->Get()) );
+  input.push_back( *(vjet_0_eta->Get()) );
+  input.push_back( *(vjet_1_eta->Get()) );
+  input.push_back( (float) *(vjet_index_0->Get()) ); // check
+  input.push_back( (float) *(vjet_index_1->Get()) ); // check
+  input.push_back( Lepton_pt->At(0) );
+  input.push_back( Lepton_eta->At(0) );
+  input.push_back( (float) Lepton_flavour->At(0) ); // check
+  input.push_back( *(PuppiMET->Get()) );
+  input.push_back( (float) *(nJets->Get()) ); // check
+  input.push_back( (float) *(N_jets_central->Get()) );
+  input.push_back( (float) *(N_jets_forward->Get()) );
+  input.push_back( *(Zvjets_0 -> Get()) ) ;
+  input.push_back( *(Zlep -> Get()) ) ;
+  input.push_back( *(Asym_vbs -> Get()) ) ;
+  input.push_back( *(Asym_vjet -> Get()) ) ;
+  input.push_back( *(A_ww -> Get()) ) ;
+  input.push_back( *(Mw_lep_reco -> Get()) ) ; // check
+  input.push_back( *(Mtw_lep -> Get()) ) ;
+  input.push_back( *(w_lep_pt -> Get()) ) ;
+  input.push_back( *(Mww -> Get()) ) ;
+  input.push_back( *(R_ww -> Get()) ) ;
+  input.push_back( *(R_mw -> Get()) ) ;
+  input.push_back( *(Centr_vbs -> Get()) ) ;
+  input.push_back( *(Centr_ww -> Get()) ) ;
+
+  // fixme
+  return dnn_tensorflow->analyze(input);
   
 }
 
@@ -100,11 +139,11 @@ MVAReader::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch (Zvjets_0, "Zvjets_0");
   _library.bindBranch (Zlep, "Zlep");
   _library.bindBranch (nJets, "nJets");
-  _library.bindReader (N_jets_central, "N_jets_central");
-  _library.bindReader (N_jets_forward, "N_jets_forward");
-  _library.bindReader (PuppiMET, "PuppiMET");
-  _library.bindReader (Lepton_pt, "Lepton_pt");
-  _library.bindReader (Lepton_eta, "Lepton_eta");
+  _library.bindBranch (N_jets_central, "N_jets_central");
+  _library.bindBranch (N_jets_forward, "N_jets_forward");
+  _library.bindBranch (PuppiMET, "PuppiMET");
+  _library.bindBranch (Lepton_pt, "Lepton_pt");
+  _library.bindBranch (Lepton_eta, "Lepton_eta");
   _library.bindBranch (Lepton_flavour, "Lepton_flavour");
   _library.bindBranch (vjet_index_0, "vjet_index_0");
   _library.bindBranch (vjet_index_1, "vjet_index_1");
