@@ -43,15 +43,15 @@ protected:
   FloatValueReader* Asym_vjet{};
   FloatValueReader* Zvjets_0{};
   FloatValueReader* Zlep{};
-  IntValueReader*   nJets{}; // check
+  FloatArrayReader* CleanJet_pt{}; // check
   IntValueReader*   N_jets_central{};
   IntValueReader*   N_jets_forward{};
-  FloatValueReader* PuppiMET{};
+  FloatArrayReader* PuppiMET{};
   FloatArrayReader* Lepton_pt{};
   FloatArrayReader* Lepton_eta{};
-  FloatArrayReader* Lepton_flavour{}; // check
-  IntValueReader*   vjet_index_0{}; // check
-  IntValueReader*   vjet_index_1{}; // check
+  IntArrayReader* Lepton_flavour{}; // check
+  IntArrayReader*   vjet_indexes{}; // check
+  IntArrayReader*   vbs_indexes{}; // check
   FloatValueReader* vjet_0_pt{};
   FloatValueReader* vjet_1_pt{};
   FloatValueReader* vjet_0_eta{};
@@ -59,8 +59,6 @@ protected:
   FloatValueReader* mjj_vjet{};
   FloatValueReader* deltaeta_vbs{};
   FloatValueReader* deltaphi_vbs{};
-  FloatValueReader* vbs_index_0{};
-  FloatValueReader* vbs_index_1{};
   FloatValueReader* vbs_0_pt{};
   FloatValueReader* vbs_1_pt{};
   FloatValueReader* vbs_0_eta{};
@@ -85,8 +83,8 @@ MVAReader::evaluate(unsigned)
   input.push_back( *(vbs_1_pt->Get()) );
   input.push_back( *(vbs_0_eta->Get()) );
   input.push_back( *(vbs_1_eta->Get()) );
-  input.push_back( (float) *(vbs_index_0->Get()) );
-  input.push_back( (float) *(vbs_index_1->Get()) );
+  input.push_back( (float) (vbs_indexes->At(0)) );
+  input.push_back( (float) (vbs_indexes->At(1)) );
   input.push_back( *(deltaeta_vbs->Get()) );
   input.push_back( *(deltaphi_vbs->Get()) );
   input.push_back( *(mjj_vjet->Get()) );
@@ -94,13 +92,16 @@ MVAReader::evaluate(unsigned)
   input.push_back( *(vjet_1_pt->Get()) );
   input.push_back( *(vjet_0_eta->Get()) );
   input.push_back( *(vjet_1_eta->Get()) );
-  input.push_back( (float) *(vjet_index_0->Get()) ); // check
-  input.push_back( (float) *(vjet_index_1->Get()) ); // check
+  input.push_back( (float) (vjet_indexes->At(0)) );
+  input.push_back( (float) (vjet_indexes->At(1)) );
   input.push_back( Lepton_pt->At(0) );
   input.push_back( Lepton_eta->At(0) );
   input.push_back( (float) Lepton_flavour->At(0) ); // check
-  input.push_back( *(PuppiMET->Get()) );
-  input.push_back( (float) *(nJets->Get()) ); // check
+  input.push_back( PuppiMET->At(0) );
+
+  int nJets = std::accumulate(CleanJet_pt->begin(), CleanJet_pt->end(),0, [](auto a, auto b){return b>=30.;} );
+
+  input.push_back( (float) (nJets)); // check
   input.push_back( (float) *(N_jets_central->Get()) );
   input.push_back( (float) *(N_jets_forward->Get()) );
   input.push_back( *(Zvjets_0 -> Get()) ) ;
@@ -129,7 +130,7 @@ MVAReader::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch (Centr_ww, "Centr_ww");
   _library.bindBranch (R_ww, "R_ww");
   _library.bindBranch (R_mw, "R_mw");
-  _library.bindBranch (Mw_lep_reco, "Mw_lep_reco");
+  _library.bindBranch (Mw_lep_reco, "Mw_lep");
   _library.bindBranch (Mtw_lep, "Mtw_lep");
   _library.bindBranch (w_lep_pt, "w_lep_pt");
   _library.bindBranch (Mww, "Mww");
@@ -138,15 +139,13 @@ MVAReader::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch (Asym_vjet, "Asym_vjet");
   _library.bindBranch (Zvjets_0, "Zvjets_0");
   _library.bindBranch (Zlep, "Zlep");
-  _library.bindBranch (nJets, "nJets");
+  _library.bindBranch (CleanJet_pt, "CleanJet_pt");
   _library.bindBranch (N_jets_central, "N_jets_central");
   _library.bindBranch (N_jets_forward, "N_jets_forward");
-  _library.bindBranch (PuppiMET, "PuppiMET");
+  _library.bindBranch (PuppiMET, "PuppiMET_pt");
   _library.bindBranch (Lepton_pt, "Lepton_pt");
   _library.bindBranch (Lepton_eta, "Lepton_eta");
-  _library.bindBranch (Lepton_flavour, "Lepton_flavour");
-  _library.bindBranch (vjet_index_0, "vjet_index_0");
-  _library.bindBranch (vjet_index_1, "vjet_index_1");
+  _library.bindBranch (Lepton_flavour, "Lepton_pdgId");
   _library.bindBranch (vjet_0_pt, "vjet_0_pt");
   _library.bindBranch (vjet_1_pt, "vjet_1_pt");
   _library.bindBranch (vjet_0_eta, "vjet_0_eta");
@@ -154,8 +153,8 @@ MVAReader::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch (mjj_vjet, "mjj_vjet");
   _library.bindBranch (deltaeta_vbs, "deltaeta_vbs");
   _library.bindBranch (deltaphi_vbs, "deltaphi_vbs");
-  _library.bindBranch (vbs_index_0, "vbs_index_0");
-  _library.bindBranch (vbs_index_1, "vbs_index_1");
+  _library.bindBranch (vbs_indexes, "VBS_jets_maxmjj_massWZ");
+  _library.bindBranch (vjet_indexes, "V_jets_maxmjj_massWZ");
   _library.bindBranch (vbs_0_pt, "vbs_0_pt");
   _library.bindBranch (vbs_1_pt, "vbs_1_pt");
   _library.bindBranch (vbs_0_eta, "vbs_0_eta");

@@ -12,7 +12,7 @@ variables['events']  = {   'name': '1',
 
 variables['DNNoutput'] = {
     'name': 'DNNoutput',
-    'range': '(100,0,1)',
+    'range': (100,0,1),
     'xaxis': 'DNN output',
     'fold': 3 ,
 }
