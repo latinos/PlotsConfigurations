@@ -51,8 +51,6 @@ protected:
   FloatArrayReader* Lepton_pt{};
   FloatArrayReader* Lepton_eta{};
   IntArrayReader* Lepton_flavour{}; // check
-  IntArrayReader*   vjet_indexes{}; // check
-  IntArrayReader*   vbs_indexes{}; // check
   FloatValueReader* vjet_0_pt{};
   FloatValueReader* vjet_1_pt{};
   FloatValueReader* vjet_0_eta{};
@@ -85,8 +83,6 @@ MVAReader::evaluate(unsigned)
   input.push_back( *(vbs_1_pt->Get()) );
   input.push_back( *(vbs_0_eta->Get()) );
   input.push_back( *(vbs_1_eta->Get()) );
-  input.push_back( (float) (vbs_indexes->At(0)) );
-  input.push_back( (float) (vbs_indexes->At(1)) );
   input.push_back( *(deltaeta_vbs->Get()) );
   input.push_back( *(deltaphi_vbs->Get()) );
   input.push_back( *(mjj_vjet->Get()) );
@@ -94,8 +90,6 @@ MVAReader::evaluate(unsigned)
   input.push_back( *(vjet_1_pt->Get()) );
   input.push_back( *(vjet_0_eta->Get()) );
   input.push_back( *(vjet_1_eta->Get()) );
-  input.push_back( (float) (vjet_indexes->At(0)) );
-  input.push_back( (float) (vjet_indexes->At(1)) );
   input.push_back( Lepton_pt->At(0) );
   input.push_back( TMath::Abs(Lepton_eta->At(0)) );
   input.push_back( (float) TMath::Abs(Lepton_flavour->At(0)) ); // check
@@ -155,8 +149,6 @@ MVAReader::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch (mjj_vjet, "mjj_vjet");
   _library.bindBranch (deltaeta_vbs, "deltaeta_vbs");
   _library.bindBranch (deltaphi_vbs, "deltaphi_vbs");
-  _library.bindBranch (vbs_indexes, "VBS_jets_maxmjj_massWZ");
-  _library.bindBranch (vjet_indexes, "V_jets_maxmjj_massWZ");
   _library.bindBranch (vbs_0_pt, "vbs_0_pt");
   _library.bindBranch (vbs_1_pt, "vbs_1_pt");
   _library.bindBranch (vbs_0_eta, "vbs_0_eta");
