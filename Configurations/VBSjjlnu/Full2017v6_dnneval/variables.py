@@ -222,7 +222,7 @@ variables['Zvjets_0'] = {   'name': 'Zvjets_0',
                         'fold' : 3
                         }
 
-variables['Zvjets_0'] = {   'name': 'Zvjets_0',      
+variables['Zvjets_1'] = {   'name': 'Zvjets_1',      
                         'range' : (30,-3,3),  
                         'xaxis' : 'Zep. trailing V-jet ', 
                         'fold' : 3

@@ -14,11 +14,11 @@ using namespace NNEvaluation;
 class MVAReader : public multidraw::TTreeFunction {
 public:
   
-  MVAReader(char* model_path);
+  MVAReader(char* model_path, bool verbose);
 
   char const* getName() const override { return "MVAReader"; }
   // TTreeFunction* clone() const override { return new MVAReader(file_ele, file_mu); }
-  TTreeFunction* clone() const override { return new MVAReader(model_path_); }
+  TTreeFunction* clone() const override { return new MVAReader(model_path_, verbose); }
 
   char* model_path_;
   unsigned getNdata() override { return 1; }
@@ -26,6 +26,7 @@ public:
 
 protected:  
  
+  bool verbose;
   void bindTree_(multidraw::FunctionLibrary&) override;
   
   DNNEvaluator* dnn_tensorflow;
@@ -66,10 +67,11 @@ protected:
   FloatValueReader* mjj_vbs{};
 };
 
-MVAReader::MVAReader(char* model_path):
-    model_path_(model_path)
+MVAReader::MVAReader(char* model_path, bool verbose):
+    model_path_(model_path), 
+    verbose(verbose)
 {
-    dnn_tensorflow = new DNNEvaluator(model_path_);
+    dnn_tensorflow = new DNNEvaluator(model_path_, verbose);
 }
 
 
@@ -95,8 +97,8 @@ MVAReader::evaluate(unsigned)
   input.push_back( (float) (vjet_indexes->At(0)) );
   input.push_back( (float) (vjet_indexes->At(1)) );
   input.push_back( Lepton_pt->At(0) );
-  input.push_back( Lepton_eta->At(0) );
-  input.push_back( (float) Lepton_flavour->At(0) ); // check
+  input.push_back( TMath::Abs(Lepton_eta->At(0)) );
+  input.push_back( (float) TMath::Abs(Lepton_flavour->At(0)) ); // check
   input.push_back( PuppiMET->At(0) );
 
   int nJets = std::accumulate(CleanJet_pt->begin(), CleanJet_pt->end(),0, [](auto a, auto b){return b>=30.;} );
