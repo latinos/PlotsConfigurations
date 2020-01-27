@@ -195,7 +195,7 @@ samples['Wjets'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
           #+ nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf_ext1'),
 				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,  #####ADD ewknloW 
-				'FilesPerJob' : 2,
+				'FilesPerJob' : 4,
 		   }
 
 # Fix Wjets binned + LO 
@@ -257,9 +257,9 @@ samples['VBS']  = { 'name' :
        'FilesPerJob' : 4,
 }
 
-fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP + '_mu10_ele35'
+#fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP + '_mu10_ele35'
 # from alias
-#fakeW = 'fake_weight_corrected'
+fakeW = 'fake_weight_corrected'
 
 #### Fakes
 samples['Fake'] = {
