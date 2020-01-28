@@ -103,7 +103,7 @@ mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurat
 
 aliases['DNNoutput'] = {
     'class': 'MVAReader',
-    'args': ('/eos/home-d/dmapelli/public/latino/Full2017v6/lowen_looseVBS/models/v3/', False),
+    'args': ('/eos/home-d/dmapelli/public/latino/Full2017v6/lowen_looseVBS/models/v5/', False),
     'linesToAdd':[
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         'gSystem->Load("libDNNEvaluator.so")',
