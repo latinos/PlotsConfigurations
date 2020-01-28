@@ -49,15 +49,6 @@ Colors
 '''
 #
  
-
-
-# groupPlot['VBF-V']  = {  
-#                  'nameHR' : 'VBF-V',
-#                  'isSignal' : 0,
-#                  'color':  palette["VBF-V"],  
-#                  'samples'  : ['VBF-V']
-#               }
-
 groupPlot['Fake']  = {  
                 'nameHR' : "Fake",
                 'isSignal' : 0,
@@ -67,10 +58,10 @@ groupPlot['Fake']  = {
             }
 
 groupPlot['vbfV+VV+VVV']  = {  
-                  'nameHR' : 'vbfV+VV+VVV',
+                  'nameHR' : 'vbfV+VVV',
                   'isSignal' : 0,
                   'color': palette["MediumBlue2"],  
-                  'samples'  : ['VBF-F','VVV'],  # !!!!!!!!!!!!!!!!!!!!!!! MISSING VV
+                  'samples'  : ['VBF-F','VVV'], #'VV' #MISSING
                   'fill': 1001
               }
 
@@ -124,12 +115,12 @@ plot['VVV']  = {
                   }
 
 
-# plot['VV']  = {
-#                   'color': colors['kGreen']+3,  
-#                   'isSignal' : 0,
-#                   'isData'   : 0,
-#                   'scale'    : 1.   ,
-#               }   
+plot['VV']  = {
+                  'color': colors['kGreen']+3,  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.   ,
+              }   
          
 
 
@@ -144,7 +135,7 @@ plot['VBF-V']  = {
                   'color': colors['kYellow']+3,  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.   ,
+                  'scale'    : 1.0,
               }
 
 

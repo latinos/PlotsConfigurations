@@ -646,7 +646,7 @@ nuisances['TopPtRew']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples' : {
-                     'top'  : ["1.","((1./Top_pTrw - 1)*(topGenPt>0 && antitopGenPt>0) + 1)"]
+                     'top'  : ["1.","((1./Top_pTrw - 1)*(topGenPtOTF>0 && antitopGenPtOTF>0) + 1)"]
                 }
          }
 

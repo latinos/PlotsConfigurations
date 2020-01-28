@@ -1,4 +1,4 @@
-# variabeadines
+## variabeadines
 
 #variables = {}
     
@@ -9,6 +9,13 @@ variables['events']  = {   'name': '1',
                         'fold' : 3
                         }
 
+
+variables['DNNoutput'] = {
+    'name': 'DNNoutput',
+    'range': (25,0,1),
+    'xaxis': 'DNN output',
+    'fold': 3 ,
+}
 
 #leptons
 
@@ -112,7 +119,7 @@ variables['deltaeta_vbs'] = {   'name': 'deltaeta_vbs',
 
 
 variables['mjj_vjet'] = {   'name': 'mjj_vjet',      
-                        'range' : (25,65,105),  
+                        'range' : (40,0,150),  
                         'xaxis' : 'Whad reco mass', 
                         'fold' : 3
                         }
@@ -215,7 +222,7 @@ variables['Zvjets_0'] = {   'name': 'Zvjets_0',
                         'fold' : 3
                         }
 
-variables['Zvjets_0'] = {   'name': 'Zvjets_0',      
+variables['Zvjets_1'] = {   'name': 'Zvjets_1',      
                         'range' : (30,-3,3),  
                         'xaxis' : 'Zep. trailing V-jet ', 
                         'fold' : 3
@@ -341,33 +348,33 @@ variables["qgl"] = { 'name': 'Jet_qgl[CleanJet_jetIdx[0]]',
 #             'range': (30,-2,2),
 #             'xaxis': 'Corrected fake weight',
 #             'fold' : 3
-# 
-
-
-# variables['deltaphi_lep_whad'] = {
-#             'name': "deltaphi_lep_whad",
-#             'range': (30, 0, 3.5),
-#             'xaxis': '#Delta#phi (lepton, W had)',
-#             'fold': 3      
 # }
 
-# variables['deltaphi_lep_jet0'] = {
-#             'name': "deltaphi_lep_jet0",
-#             'range': (30, 0, 3.5),
-#             'xaxis': '#Delta#phi (lepton, leading jet)',
-#             'fold': 3      
-# }
 
-# variables['deltaphi_lep_vbsjets'] = {
-#             'name': "deltaphi_lep_vbsjets",
-#             'range': (30, 0, 3.5),
-#             'xaxis': '#Delta#phi (lepton, VBS jets syst.)',
-#             'fold': 3      
-# }
+variables['deltaphi_lep_whad'] = {
+            'name': "deltaphi_lep_whad",
+            'range': (30, 0, 3.5),
+            'xaxis': '#Delta#phi (lepton, W had)',
+            'fold': 3      
+}
 
-# variables['deltaphi_lep_ww'] = {
-#             'name': "deltaphi_lep_ww",
-#             'range': (30, 0, 3.5),
-#             'xaxis': '#Delta#phi (lepton, WW syst.)',
-#             'fold': 3      
-# }
+variables['deltaphi_lep_jet0'] = {
+            'name': "deltaphi_lep_jet0",
+            'range': (30, 0, 3.5),
+            'xaxis': '#Delta#phi (lepton, leading jet)',
+            'fold': 3      
+}
+
+variables['deltaphi_lep_vbsjets'] = {
+            'name': "deltaphi_lep_vbsjets",
+            'range': (30, 0, 3.5),
+            'xaxis': '#Delta#phi (lepton, VBS jets syst.)',
+            'fold': 3      
+}
+
+variables['deltaphi_lep_ww'] = {
+            'name': "deltaphi_lep_ww",
+            'range': (30, 0, 3.5),
+            'xaxis': '#Delta#phi (lepton, WW syst.)',
+            'fold': 3      
+}
