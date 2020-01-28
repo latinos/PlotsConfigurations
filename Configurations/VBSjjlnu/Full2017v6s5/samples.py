@@ -62,24 +62,15 @@ SFweight1l =       'puWeight*\
                    TriggerEffWeight_1l*\
                    Lepton_RecoSF[0]*\
                    EMTFbug_veto'
-SFweight      = SFweight1l+'*'+LepWPWeight_1l+'*'+LepWPCut_1l+'*PrefireWeight'
+SFweight      = SFweight1l+'*'+LepWPWeight_1l+'*'+LepWPCut_1l+'* PrefireWeight * btagSF'
      
 GenLepMatch   = 'Lepton_genmatched[0]'
+
 
 ####
 # NVTX reweighting
 #SFweight += '*nvtx_reweighting'
 
-
-################################################
-############### B-Tag  WP ######################
-################################################
-
-#FIXME b-tagging to be optimized
-# Definitions in aliases.py
-
-# Not using any btagging yet
-SFweight += '*btagSF'
 ################################################
 ############   MET  FILTERS  ###################
 ################################################
@@ -155,26 +146,19 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toInf',        ptllDYW_LO  
 
 ############ Top ############
 
-samples['singleTop'] = {    
+samples['top'] = {    
             'name'   : nanoGetSampleFiles(directory_bkg,'ST_s-channel') 
                       + nanoGetSampleFiles(directory_bkg,'ST_t-channel_antitop') 
                       + nanoGetSampleFiles(directory_bkg,'ST_t-channel_top') 
                       + nanoGetSampleFiles(directory_bkg,'ST_tW_antitop') 
-                      + nanoGetSampleFiles(directory_bkg,'ST_tW_top') ,
+                      + nanoGetSampleFiles(directory_bkg,'ST_tW_top') 
+                      + nanoGetSampleFiles(directory_bkg,'TTToSemiLeptonic') 
+                      +  nanoGetSampleFiles(directory_bkg,'TTTo2L2Nu') 
+                      +  nanoGetSampleFiles(directory_bkg,'TTWjets_ext1')
+                      +  nanoGetSampleFiles(directory_bkg,'TTZjets_ext1'),  
             'weight' :  XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + "* Top_pTrw",
             'FilesPerJob' : 4,
                  }
-
-samples["ttbar"] =  {  'name': nanoGetSampleFiles(directory_bkg,'TTToSemiLeptonic') 
-                            +  nanoGetSampleFiles(directory_bkg,'TTTo2L2Nu') 
-                            +  nanoGetSampleFiles(directory_bkg,'TTWjets_ext1')
-                            #+  nanoGetSampleFiles(directory_bkg,'TTWjets_ext1')
-                            #+  nanoGetSampleFiles(directory_bkg,'TTZjets'),
-                            +  nanoGetSampleFiles(directory_bkg,'TTZjets_ext1'),  
-                          #  +  nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu'),
-                        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + "* Top_pTrw",
-                        'FilesPerJob': 4,
-}
 
 
 samples['Wjets'] = { 'name' :   

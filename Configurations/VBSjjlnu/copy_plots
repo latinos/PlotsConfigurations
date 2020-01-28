@@ -74,7 +74,7 @@ pool.map(do_rsync, jobs)
 os.system("rsync -a --exclude '*.png' --exclude 'plot*/*.root' {}/../ {}/{}/{}/configuration/".format(args.inputdir,args.prefix, args.outputdir, args.name))
 # and copy the index.php everywhere
 
-os.system("cp {0}/index.php {0}/{1}/;cp {0}/index.php {0}/{1}/{2}; cp {0}/index.php {0}/{1}/{2}/configuration/;".format(args.prefix, args.outputdir, args.name))
+os.system("cp {0}/index.php {0}/{1}/;cp {0}/index.php {0}/{1}/{2}; cp {0}/index.php {0}/{1}/{2}/configuration/; cp {0}/index.php {0}/{1}/{2}/configuration/rootFile/;".format(args.prefix, args.outputdir, args.name))
 
 for cut in sorted(cuts):
     print("{:<20} >>> https://dvalsecc.web.cern.ch/dvalsecc/{}/{}/{}".format(cut,args.outputdir, args.name, cut))

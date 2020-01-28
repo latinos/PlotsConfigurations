@@ -87,7 +87,7 @@ groupPlot['top']  = {
                  'nameHR' : 'top',
                  'isSignal' : 0,
                  'color':  palette["Orange"],  
-                 'samples'  : ['singleTop', 'ttbar'],
+                 'samples'  : ['top'],
                  'fill': 1001
              }
 
@@ -156,16 +156,8 @@ plot['Fake']  = {
             }
 
 
-plot['singleTop'] = {   
-                 'nameHR' : 'singleTop',
-                 'color': colors['kAzure']+1,   
-                 'isSignal' : 0,
-                 'isData'   : 0, 
-                 'scale'    : 1.0,
-                 }
-
-plot['ttbar'] = {   
-                 'nameHR' : 'ttbar',
+plot['top'] = {   
+                 'nameHR' : 'top',
                  'color': colors['kAzure']-1,
                  'isSignal' : 0,
                  'isData'   : 0, 

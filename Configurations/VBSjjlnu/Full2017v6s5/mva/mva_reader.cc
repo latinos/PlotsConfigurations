@@ -14,13 +14,13 @@ using namespace NNEvaluation;
 class MVAReader : public multidraw::TTreeFunction {
 public:
   
-  MVAReader(char* model_path, bool verbose);
+  MVAReader(const char* model_path, bool verbose);
 
   char const* getName() const override { return "MVAReader"; }
-  // TTreeFunction* clone() const override { return new MVAReader(file_ele, file_mu); }
-  TTreeFunction* clone() const override { return new MVAReader(model_path_, verbose); }
+  TTreeFunction* clone() const override { return new MVAReader(model_path_.c_str(), verbose); }
 
-  char* model_path_;
+  bool initialized = false;
+  std::string model_path_;
   unsigned getNdata() override { return 1; }
   double evaluate(unsigned) override;
 
@@ -65,11 +65,12 @@ protected:
   FloatValueReader* mjj_vbs{};
 };
 
-MVAReader::MVAReader(char* model_path, bool verbose):
+MVAReader::MVAReader(const char* model_path, bool verbose):
     model_path_(model_path), 
     verbose(verbose)
 {
     dnn_tensorflow = new DNNEvaluator(model_path_, verbose);
+    initialized = true;
 }
 
 
