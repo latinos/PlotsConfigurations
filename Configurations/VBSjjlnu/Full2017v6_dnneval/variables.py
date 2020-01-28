@@ -12,7 +12,7 @@ variables['events']  = {   'name': '1',
 
 variables['DNNoutput'] = {
     'name': 'DNNoutput',
-    'range': (100,0,1),
+    'range': (25,0,1),
     'xaxis': 'DNN output',
     'fold': 3 ,
 }
@@ -119,7 +119,7 @@ variables['deltaeta_vbs'] = {   'name': 'deltaeta_vbs',
 
 
 variables['mjj_vjet'] = {   'name': 'mjj_vjet',      
-                        'range' : (25,65,105),  
+                        'range' : (40,0,150),  
                         'xaxis' : 'Whad reco mass', 
                         'fold' : 3
                         }
