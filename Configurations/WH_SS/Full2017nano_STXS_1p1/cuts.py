@@ -21,8 +21,8 @@ supercut = 'mll>12  \
 
 #Reco level            
 HTSXReco = {
-    'PTV_LE150' : 'WlepPt_v3>0 && WlepPt_v3 <= 150',
-    'PTV_GT150' : 'WlepPt_v3>150',
+    'PTV_LT150' : 'WlepPt_v3 < 150',
+    'PTV_GT150' : 'WlepPt_v3 > 150',
 }
 
 ## 2jets
