@@ -64,11 +64,11 @@ cuts['hww2l2v_13TeV_dytt']  = {
    }
 }
 
-cuts['hww2l2v_13TeV_WW'] = {
+cuts['hww2l2v_13TeV_ww'] = {
   'expr' : 'wwcr',
   'categories' : {
     '0j' : 'zeroJet',
-    '1j' : 'oneJet $$ Alt$(CleanJet_pt[1],0)<30',
+    '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
     '2j' : 'mjj<400 && multiJet'
   }
 }
