@@ -143,7 +143,7 @@ if useDYtt:
 
     samples['DY'] = {
         'name': files,
-        'weight': 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC',
+        'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
         'FilesPerJob': 2,
         'suppressNegative' :['all'],
         'suppressNegativeNuisances' :['all'],
@@ -157,7 +157,7 @@ else:
 
     samples['DY'] = {
         'name': files,
-        'weight': 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC',
+        'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
         'FilesPerJob': 2,
         'suppressNegative' :['all'],
         'suppressNegativeNuisances' :['all'],
@@ -263,6 +263,7 @@ samples['Vg']  =  {     'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',F
                         'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
                         'FilesPerJob' : 5 ,
                   }
+addSampleWeight(samples, 'Vg', 'ZGToLLG', '(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)*(55.5 * 1.06 / 131.3)')
 
 ######## VgS ########
 #FIXME: k-factor?
@@ -283,7 +284,7 @@ samples['VZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo2L2Nu',False,'nan
                                + getSampleFiles(directory,'ZZTo2L2Q',False,'nanoLatino_')
                                + getSampleFiles(directory,'ZZTo4L',False,'nanoLatino_')
                                + getSampleFiles(directory,'WZTo2L2Q',False,'nanoLatino_'),
-                    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+                    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+ '*1.11',
                     'FilesPerJob' : 2,
                  }
 
