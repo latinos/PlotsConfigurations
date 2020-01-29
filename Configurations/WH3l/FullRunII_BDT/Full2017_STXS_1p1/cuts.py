@@ -13,8 +13,8 @@ supercut = 'MinIf$( WH3l_mOSll[], WH3l_mOSll[Iteration$] > 0) > 12 \
 
 #Reco level            
 HTSXReco = {
-    'PTV_LE150' : 'WlepPt_wh3l_v1[0] >0 && WlepPt_wh3l_v1[0] <= 150',
-    'PTV_GT150' : 'WlepPt_wh3l_v1[0] >150',
+    'PTV_LT150' : 'WlepPt_wh3l_v1[0] < 150',
+    'PTV_GT150' : 'WlepPt_wh3l_v1[0] > 150',
 }
 
 Anacat['wh3l_13TeV_sssf']  = 'WH3l_flagOSSF == 0\
@@ -30,6 +30,7 @@ for key,value in Anacat.iteritems():
     for cat,val in HTSXReco.iteritems():
         cuts['%s_%s' %(key,cat)] = '%s && %s' %(value,val)
 
+cuts['wh3l_13TeV_merged_PTV_GT150'] = '( ( %s ) || ( %s ) ) && WlepPt_wh3l_v1[0] >150' %(Anacat['wh3l_13TeV_sssf'],Anacat['wh3l_13TeV_ossf'])
 
 cuts['wh3l_wz_13TeV'] = 'WH3l_njet == 0\
                          && PuppiMET_pt > 45\
