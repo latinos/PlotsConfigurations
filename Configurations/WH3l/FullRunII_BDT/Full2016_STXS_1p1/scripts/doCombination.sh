@@ -41,19 +41,22 @@ varSS="BDTG_SSSF_bin4"
 #ossf_FWDH=$datacardDir/wh3l_13TeV_ossf_FWDH/$vars/datacard.txt \
 
 # combine the datacards
+#combineCards.py \
+#    sssf_PTV_LE150=$DC_SS_Dir/wh3l_13TeV_sssf_PTV_LE150/$varSS/datacard.txt \
+#    sssf_PTV_GT150=$DC_SS_Dir/wh3l_13TeV_sssf_PTV_GT150/$varSS/datacard.txt \
+#    ossf_PTV_LE150=$DC_OS_Dir/wh3l_13TeV_ossf_PTV_LE150/$varOS/datacard.txt \
+#    ossf_PTV_GT150=$DC_OS_Dir/wh3l_13TeV_ossf_PTV_GT150/$varOS/datacard.txt \
+#    wh3l_zg=$DC_OS_Dir/wh3l_zg_13TeV/events/datacard.txt \
+#    wh3l_wz=$DC_OS_Dir/wh3l_wz_13TeV/events/datacard.txt \
+#    > ${outputDir}/${analysis}_HTXS_Stage1.txt
+
 combineCards.py \
     sssf_PTV_LE150=$DC_SS_Dir/wh3l_13TeV_sssf_PTV_LE150/$varSS/datacard.txt \
-    sssf_PTV_GT150=$DC_SS_Dir/wh3l_13TeV_sssf_PTV_GT150/$varSS/datacard.txt \
     ossf_PTV_LE150=$DC_OS_Dir/wh3l_13TeV_ossf_PTV_LE150/$varOS/datacard.txt \
     ossf_PTV_GT150=$DC_OS_Dir/wh3l_13TeV_ossf_PTV_GT150/$varOS/datacard.txt \
     wh3l_zg=$DC_OS_Dir/wh3l_zg_13TeV/events/datacard.txt \
     wh3l_wz=$DC_OS_Dir/wh3l_wz_13TeV/events/datacard.txt \
     > ${outputDir}/${analysis}_HTXS_Stage1.txt
-
-#combineCards.py \
-#    hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_0_75=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_0_75/$vars/datacard.txt \
-#    hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_75_150=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_75_150/$vars/datacard.txt \
-#    > ${outputDir}/Full2016_WH_SS_HTXS_Stage1.txt
 
 echo "Combination folder is created"
 
@@ -69,8 +72,8 @@ echo "Combination folder is created"
 
 for nu in cferr1 cferr2 hf hfstats1_2016 hfstats2_2016 jes lf lfstats1_2016 lfstats2_2016
 do
-    echo "nuisance edit drop Vg sssf_PTV_GT150 CMS_btag_$nu" >> ${outputDir}/${analysis}_HTXS_Stage1.txt
-    echo "nuisance edit drop VVV sssf_PTV_GT150 CMS_btag_$nu" >> ${outputDir}/${analysis}_HTXS_Stage1.txt
+    #echo "nuisance edit drop Vg sssf_PTV_GT150 CMS_btag_$nu" >> ${outputDir}/${analysis}_HTXS_Stage1.txt
+    #echo "nuisance edit drop VVV sssf_PTV_GT150 CMS_btag_$nu" >> ${outputDir}/${analysis}_HTXS_Stage1.txt
     echo "nuisance edit drop VgS ossf_PTV_GT150 CMS_btag_$nu" >> ${outputDir}/${analysis}_HTXS_Stage1.txt
     echo "nuisance edit drop VgS wh3l_wz CMS_btag_$nu" >> ${outputDir}/${analysis}_HTXS_Stage1.txt
 done
@@ -78,8 +81,8 @@ done
 #Eff
 for nu in e_2016 m_2016 hwwtrigger_2016 prefiring_2016
 do
-    echo "nuisance edit drop Vg sssf_PTV_GT150 CMS_eff_$nu" >>${outputDir}/${analysis}_HTXS_Stage1.txt
-    echo "nuisance edit drop VVV sssf_PTV_GT150 CMS_eff_$nu" >> ${outputDir}/${analysis}_HTXS_Stage1.txt
+    #echo "nuisance edit drop Vg sssf_PTV_GT150 CMS_eff_$nu" >>${outputDir}/${analysis}_HTXS_Stage1.txt
+    #echo "nuisance edit drop VVV sssf_PTV_GT150 CMS_eff_$nu" >> ${outputDir}/${analysis}_HTXS_Stage1.txt
     echo "nuisance edit drop VgS ossf_PTV_GT150 CMS_eff_$nu" >> ${outputDir}/${analysis}_HTXS_Stage1.txt
     echo "nuisance edit drop VgS wh3l_wz CMS_eff_$nu" >> ${outputDir}/${analysis}_HTXS_Stage1.txt
 done
