@@ -1,7 +1,8 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = 'WH_SS_2017nano_HTXS1p1'
+tag = 'WH_SS_2017nano_STXS_1p1'
+
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -13,13 +14,13 @@ aliasesFile = 'aliases.py'
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py'
+cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples.py'
+samplesFile = 'samples.py' 
 
 # file with list of samples
-plotFile = 'plot.py'
+plotFile = 'plot.py' 
 
 
 
@@ -41,3 +42,5 @@ structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
 nuisancesFile = 'nuisances.py'
+
+
