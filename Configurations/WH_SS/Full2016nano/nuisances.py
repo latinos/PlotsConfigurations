@@ -55,7 +55,7 @@ nuisances['lumi_Ghosts'] = {
 
 #### FAKES
 
-nuisances['fake_syst'] = {
+nuisances['fake_syst_mm'] = {
     'name': 'CMS_fake_syst_mm',
     'type': 'lnN',
     'samples': {
@@ -64,7 +64,7 @@ nuisances['fake_syst'] = {
     },
 }
 
-nuisances['fake_syst'] = {
+nuisances['fake_syst_em'] = {
     'name': 'CMS_fake_syst_em',
     'type': 'lnN',
     'samples': {
