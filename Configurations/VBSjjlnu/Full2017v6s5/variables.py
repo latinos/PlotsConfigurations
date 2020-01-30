@@ -16,8 +16,8 @@ variables['DNNoutput'] = {
     'xaxis': 'DNN output',
     'fold': 3 ,
     'blind': {
-        "lowen_CR_looseVBS_ele": [0.7,1],
-        "lowen_CR_looseVBS_mu": [0.7,1],
+        # "lowen_CR_looseVBS_ele": [0.7,1],
+        # "lowen_CR_looseVBS_mu": [0.7,1],
     }
 }
 
@@ -106,13 +106,8 @@ variables['mjj_vbs'] = {   'name': 'mjj_vbs',
                         'xaxis' : 'M_{jj} VBS', 
                         'fold' : 3,
                         'blind' : {
-                            "res_wonshell_bveto_mjjhigh_ele" : (1000,4000),
-                            "res_wonshell_btag_mjjhigh_mu" : (1000,4000),
-                            "res_wonshell_btag_mjjhigh_ele" :(1000,4000),
-                            "res_wonshell_btag_mjjhigh_mu" : (1000,4000),
-                            "res_w_mjjhigh_mu" : (1000,4000),
-                            "res_w_mjjhigh_ele" :(1000,4000),
-                            "res_w_mjjhigh_mu" : (1000,4000),
+                            "res_sig_mjjhigh_ele" :(1000,4000),
+                            "res_sig_mjjhigh_mu" : (1000,4000),
                             }
                         }
 
@@ -122,16 +117,8 @@ variables['deltaeta_vbs'] = {   'name': 'deltaeta_vbs',
                         'xaxis' : '#Delta#eta VBS jets', 
                         'fold' : 3,
                         'blind': {
-                            "lowen_SR_tightVBS_ele" : (4,9),
-                            "lowen_CR_looseVBS_ele" : (4,9),
-                            "lowen_SR_tightVBS_mu" : (4,9),
-                            "lowen_CR_looseVBS_mu" : (4,9),
-                            "boost_SR_tightVBS_ele" : (4,9),
-                            "boost_CR_looseVBS_ele" : (4,9),
-                            "boost_SR_tightVBS_mu" : (4,9),
-                            "boost_CR_looseVBS_mu" : (4,9),
-                            "lowen_cutDNN_signal_mu" : (4,9),
-                            "lowen_cutDNN_signal_ele" : (4,9),
+                            "res_sig_mjjhigh_ele" :(4,9),
+                            "res_sig_mjjhigh_mu" : (4,9),
                             }
                         }
 
@@ -291,16 +278,8 @@ variables['Mww'] = {   'name': 'Mww',
                         'xaxis' : 'Mww', 
                         'fold' : 3,
                         'blind' : {
-                            "lowen_SR_tightVBS_ele" : (1000,2000),
-                            "lowen_CR_looseVBS_ele" : (1000,2000),
-                            "lowen_SR_tightVBS_mu" : (1000,2000),
-                            "lowen_CR_looseVBS_mu" : (1000,2000),
-                            "boost_SR_tightVBS_ele" : (1000,2000),
-                            "boost_CR_looseVBS_ele" : (1000,2000),
-                            "boost_SR_tightVBS_mu" : (1000,2000),
-                            "boost_CR_looseVBS_mu" : (1000,2000),
-                            "lowen_cutDNN_signal_mu" : (1000,2000),
-                            "lowen_cutDNN_signal_ele" : (1000,2000),
+                            "res_sig_mjjhigh_ele" :(1000,2000),
+                            "res_sig_mjjhigh_mu" : (1000,2000),
                             }
                         }
 
@@ -385,13 +364,6 @@ variables['deltaphi_lep_ww'] = {
 }
 
 ## BTag shape
-variables['deltaphi_lep_ww'] = {
-            'name': "deltaphi_lep_ww",
-            'range': (30, 0, 3.5),
-            'xaxis': '#Delta#phi (lepton, WW syst.)',
-            'fold': 3      
-}
-
 
 variable['Jet_btagDeepB'] = {
     'name': 'Jet_btagDeepB[CleanJet_jetIdx]'
