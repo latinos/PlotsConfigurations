@@ -61,7 +61,7 @@ groupPlot['vbfV+VV+VVV']  = {
                   'nameHR' : 'vbfV+VVV',
                   'isSignal' : 0,
                   'color': palette["MediumBlue2"],  
-                  'samples'  : ['VBF-F','VVV'], #'VV' #MISSING
+                  'samples'  : ['VBF-F','VVV', 'VV'], 
                   'fill': 1001
               }
 

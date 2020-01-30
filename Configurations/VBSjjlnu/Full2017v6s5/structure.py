@@ -20,10 +20,10 @@ structure['Wjets']  = {
                   'isData'   : 0 
               }
 
-# structure['VV']  = {  
-#                   'isSignal' : 0,
-#                   'isData'   : 0
-#               }
+structure['VV']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0
+              }
 
 structure['Fake']  = {  
                   'isSignal' : 0,

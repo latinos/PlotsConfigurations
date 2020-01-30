@@ -186,19 +186,19 @@ addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT800_1200',  'ewknloW')
 addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT1200_2500', 'ewknloW')
 addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT2500_inf',  'ewknloW')
 
-# samples['VV']  = { 'name' :  
-#                nanoGetSampleFiles(directory_bkg,'WmTo2J_ZTo2L_QCD', ) +
-#                nanoGetSampleFiles(directory_bkg,'WmToLNu_WmTo2J_QCD') +
-#                nanoGetSampleFiles(directory_bkg,'WmToLNu_ZTo2J_QCD',) +
-#                nanoGetSampleFiles(directory_bkg,'WpTo2J_WmToLNu_QCD') +
-#                nanoGetSampleFiles(directory_bkg,'WpTo2J_ZTo2L_QCD', ) +
-#                nanoGetSampleFiles(directory_bkg,'WpToLNu_WmTo2J_QCD') +
-#                nanoGetSampleFiles(directory_bkg,'WpToLNu_WpTo2J_QCD') +
-#                nanoGetSampleFiles(directory_bkg,'WpToLNu_ZTo2J_QCD',) ,
-#               #  nanoGetSampleFiles(directory_bkg,'ZTo2L_ZTo2J_QCD',  ) , #admin, ADD ME
-#         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + "* ewknloW",
-#         'FilesPerJob' : 3,
-# }
+samples['VV']  = { 'name' :  
+               nanoGetSampleFiles(directory_bkg,'WmTo2J_ZTo2L_QCD', ) +
+               nanoGetSampleFiles(directory_bkg,'WmToLNu_WmTo2J_QCD') +
+               nanoGetSampleFiles(directory_bkg,'WmToLNu_ZTo2J_QCD',) +
+               nanoGetSampleFiles(directory_bkg,'WpTo2J_WmToLNu_QCD') +
+               nanoGetSampleFiles(directory_bkg,'WpTo2J_ZTo2L_QCD', ) +
+               nanoGetSampleFiles(directory_bkg,'WpToLNu_WmTo2J_QCD') +
+               nanoGetSampleFiles(directory_bkg,'WpToLNu_WpTo2J_QCD') +
+               nanoGetSampleFiles(directory_bkg,'WpToLNu_ZTo2J_QCD',) ,
+              #  nanoGetSampleFiles(directory_bkg,'ZTo2L_ZTo2J_QCD',  ) , #admin, ADD ME
+        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
+        'FilesPerJob' : 3,
+}
 
 ############ VVV ############
 

@@ -14,13 +14,14 @@ using namespace NNEvaluation;
 class MVAReader : public multidraw::TTreeFunction {
 public:
   
-  MVAReader(const char* model_path, bool verbose);
+  MVAReader(const char* model_path, bool verbose, int category);
 
   char const* getName() const override { return "MVAReader"; }
-  TTreeFunction* clone() const override { return new MVAReader(model_path_.c_str(), verbose); }
+  TTreeFunction* clone() const override { return new MVAReader(model_path_.c_str(), verbose, category_); }
 
-  bool initialized = false;
+  bool initialized_ = false;
   std::string model_path_;
+  int category_;
   unsigned getNdata() override { return 1; }
   double evaluate(unsigned) override;
 
@@ -31,6 +32,7 @@ protected:
   
   DNNEvaluator* dnn_tensorflow;
 
+  IntValueReader* VBS_category{};
   FloatValueReader* Centr_vbs{};
   FloatValueReader* Centr_ww{};
   FloatValueReader* R_ww{};
@@ -65,19 +67,24 @@ protected:
   FloatValueReader* mjj_vbs{};
 };
 
-MVAReader::MVAReader(const char* model_path, bool verbose):
+MVAReader::MVAReader(const char* model_path, bool verbose, int category):
     model_path_(model_path), 
-    verbose(verbose)
+    verbose(verbose),
+    category_(category)
 {
     dnn_tensorflow = new DNNEvaluator(model_path_, verbose);
-    initialized = true;
+    initialized_ = true;
 }
 
 
 double
 MVAReader::evaluate(unsigned)
 {
-  // fixme
+  // Run only if 
+  if ( *(VBS_category->Get()) != category_) {
+    return -999.;
+  }
+
   std::vector<float> input{};
   input.push_back( *(mjj_vbs->Get()) );
   input.push_back( *(vbs_0_pt->Get()) );
@@ -122,39 +129,40 @@ MVAReader::evaluate(unsigned)
 
 void
 MVAReader::bindTree_(multidraw::FunctionLibrary& _library)
-{   
-  _library.bindBranch( Centr_vbs, "Centr_vbs" );
-  _library.bindBranch (Centr_ww, "Centr_ww");
-  _library.bindBranch (R_ww, "R_ww");
-  _library.bindBranch (R_mw, "R_mw");
-  _library.bindBranch (Mw_lep_reco, "Mw_lep");
-  _library.bindBranch (Mtw_lep, "Mtw_lep");
-  _library.bindBranch (w_lep_pt, "w_lep_pt");
-  _library.bindBranch (Mww, "Mww");
-  _library.bindBranch (A_ww, "A_ww");
-  _library.bindBranch (Asym_vbs, "Asym_vbs");
-  _library.bindBranch (Asym_vjet, "Asym_vjet");
-  _library.bindBranch (Zvjets_0, "Zvjets_0");
-  _library.bindBranch (Zlep, "Zlep");
-  _library.bindBranch (CleanJet_pt, "CleanJet_pt");
-  _library.bindBranch (N_jets_central, "N_jets_central");
-  _library.bindBranch (N_jets_forward, "N_jets_forward");
-  _library.bindBranch (PuppiMET, "PuppiMET_pt");
-  _library.bindBranch (Lepton_pt, "Lepton_pt");
-  _library.bindBranch (Lepton_eta, "Lepton_eta");
-  _library.bindBranch (Lepton_flavour, "Lepton_pdgId");
-  _library.bindBranch (vjet_0_pt, "vjet_0_pt");
-  _library.bindBranch (vjet_1_pt, "vjet_1_pt");
-  _library.bindBranch (vjet_0_eta, "vjet_0_eta");
-  _library.bindBranch (vjet_1_eta, "vjet_1_eta");
-  _library.bindBranch (mjj_vjet, "mjj_vjet");
-  _library.bindBranch (deltaeta_vbs, "deltaeta_vbs");
-  _library.bindBranch (deltaphi_vbs, "deltaphi_vbs");
-  _library.bindBranch (vbs_0_pt, "vbs_0_pt");
-  _library.bindBranch (vbs_1_pt, "vbs_1_pt");
-  _library.bindBranch (vbs_0_eta, "vbs_0_eta");
-  _library.bindBranch (vbs_1_eta, "vbs_1_eta");
-  _library.bindBranch (mjj_vbs, "mjj_vbs");
+{  
+  _library.bindBranch(VBS_category, "VBS_category");
+  _library.bindBranch(Centr_vbs, "Centr_vbs");
+  _library.bindBranch(Centr_ww, "Centr_ww");
+  _library.bindBranch(R_ww, "R_ww");
+  _library.bindBranch(R_mw, "R_mw");
+  _library.bindBranch(Mw_lep_reco, "Mw_lep");
+  _library.bindBranch(Mtw_lep, "Mtw_lep");
+  _library.bindBranch(w_lep_pt, "w_lep_pt");
+  _library.bindBranch(Mww, "Mww");
+  _library.bindBranch(A_ww, "A_ww");
+  _library.bindBranch(Asym_vbs, "Asym_vbs");
+  _library.bindBranch(Asym_vjet, "Asym_vjet");
+  _library.bindBranch(Zvjets_0, "Zvjets_0");
+  _library.bindBranch(Zlep, "Zlep");
+  _library.bindBranch(CleanJet_pt, "CleanJet_pt");
+  _library.bindBranch(N_jets_central, "N_jets_central");
+  _library.bindBranch(N_jets_forward, "N_jets_forward");
+  _library.bindBranch(PuppiMET, "PuppiMET_pt");
+  _library.bindBranch(Lepton_pt, "Lepton_pt");
+  _library.bindBranch(Lepton_eta, "Lepton_eta");
+  _library.bindBranch(Lepton_flavour, "Lepton_pdgId");
+  _library.bindBranch(vjet_0_pt, "vjet_0_pt");
+  _library.bindBranch(vjet_1_pt, "vjet_1_pt");
+  _library.bindBranch(vjet_0_eta, "vjet_0_eta");
+  _library.bindBranch(vjet_1_eta, "vjet_1_eta");
+  _library.bindBranch(mjj_vjet, "mjj_vjet");
+  _library.bindBranch(deltaeta_vbs, "deltaeta_vbs");
+  _library.bindBranch(deltaphi_vbs, "deltaphi_vbs");
+  _library.bindBranch(vbs_0_pt, "vbs_0_pt");
+  _library.bindBranch(vbs_1_pt, "vbs_1_pt");
+  _library.bindBranch(vbs_0_eta, "vbs_0_eta");
+  _library.bindBranch(vbs_1_eta, "vbs_1_eta");
+  _library.bindBranch(mjj_vbs, "mjj_vbs");
 
 }
 

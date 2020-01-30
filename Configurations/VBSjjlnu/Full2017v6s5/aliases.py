@@ -3,20 +3,33 @@ import copy
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # ggH2016
-configurations = os.path.dirname(configurations) # Differential
+configurations = os.path.dirname(configurations) # Full2017v6s5
+configurations = os.path.dirname(configurations) # VBSjjlnu
 configurations = os.path.dirname(configurations) # Configurations
 
 #aliases = {}
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
+############################################
+# DNN reader
 
 mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017v6s5/mva/'
+models_path = '/eos/home-d/dmapelli/public/latino/Full2017v6/lowen_looseVBS/models'
 
-aliases['DNNoutput'] = {
+aliases['DNNoutput_boosted'] = {
     'class': 'MVAReader',
-    'args': ('/eos/home-d/dmapelli/public/latino/Full2017v6/lowen_looseVBS/models/v7/', False),
+    'args': ( models_path +'/v8/boosted', False, 0),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L ' + mva_reader_path + 'mva_reader.cc+', 
+    ],
+}
+
+aliases['DNNoutput_resolved'] = {
+    'class': 'MVAReader',
+    'args': ( models_path+ '/v8/resolved', False, 1),
     'linesToAdd':[
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         'gSystem->Load("libDNNEvaluator.so")',
@@ -25,41 +38,8 @@ aliases['DNNoutput'] = {
 }
 
 
-aliases['deltaphi_lep_whad'] = {
-            'class': 'DeltaPhiVars',
-            'args': ("deltaphi_lep_whad"),
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L {}/VBSjjlnu/Full2017v6s5/macros/deltaphivars_class.cc+'.format(configurations)
-            ]           
-}
-
-aliases['deltaphi_lep_jet0'] = {
-            'class': 'DeltaPhiVars',
-            'args': ("deltaphi_lep_jet0"),
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L {}/VBSjjlnu/Full2017v6s5/macros/deltaphivars_class.cc+'.format(configurations)
-                ]  
-}
-
-aliases['deltaphi_lep_vbsjets'] = {
-            'class': 'DeltaPhiVars',
-            'args': ("deltaphi_lep_vbsjets"),
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L {}/VBSjjlnu/Full2017v6s5/macros/deltaphivars_class.cc+'.format(configurations)
-            ]  
-}
-
-aliases['deltaphi_lep_ww'] = {
-            'class': 'DeltaPhiVars',
-            'args': ("deltaphi_lep_ww"),
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L {}/VBSjjlnu/Full2017v6s5/macros/deltaphivars_class.cc+'.format(configurations)
-            ]  
-}
+############################################
+# BTag
 
 bAlgo = 'DeepB'
 bWP = '0.1522'
@@ -69,7 +49,7 @@ aliases['bVeto'] = {
 }
 
 aliases['bReq'] = {
-    'expr': '(Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) >= 1)'
+    'expr': '(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) >= 1)'
 }
 
 
@@ -79,7 +59,7 @@ aliases['bVetoSF'] = {
 }
 
 aliases['bReqSF'] = {
-    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<=30 || abs(CleanJet_eta)>=2.5))))',
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<=20 || abs(CleanJet_eta)>=2.5))))',
     'samples': mc
 }
 
@@ -154,3 +134,41 @@ aliases['fake_weight_corrected'] = {
 #     'samples' : mc      
 # }
 
+##############################################################
+#### Additional variables
+
+aliases['deltaphi_lep_whad'] = {
+            'class': 'DeltaPhiVars',
+            'args': ("deltaphi_lep_whad"),
+            'linesToAdd' : [
+                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+                '.L {}/VBSjjlnu/Full2017v6s5/macros/deltaphivars_class.cc+'.format(configurations)
+            ]           
+}
+
+aliases['deltaphi_lep_jet0'] = {
+            'class': 'DeltaPhiVars',
+            'args': ("deltaphi_lep_jet0"),
+            'linesToAdd' : [
+                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+                '.L {}/VBSjjlnu/Full2017v6s5/macros/deltaphivars_class.cc+'.format(configurations)
+                ]  
+}
+
+aliases['deltaphi_lep_vbsjets'] = {
+            'class': 'DeltaPhiVars',
+            'args': ("deltaphi_lep_vbsjets"),
+            'linesToAdd' : [
+                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+                '.L {}/VBSjjlnu/Full2017v6s5/macros/deltaphivars_class.cc+'.format(configurations)
+            ]  
+}
+
+aliases['deltaphi_lep_ww'] = {
+            'class': 'DeltaPhiVars',
+            'args': ("deltaphi_lep_ww"),
+            'linesToAdd' : [
+                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+                '.L {}/VBSjjlnu/Full2017v6s5/macros/deltaphivars_class.cc+'.format(configurations)
+            ]  
+}
