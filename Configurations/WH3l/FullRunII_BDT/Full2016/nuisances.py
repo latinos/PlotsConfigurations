@@ -221,50 +221,32 @@ nuisances['met'] = {
     'AsLnN': '1'
 }
 
-##### Pileup
-
-nuisances['PU'] = {
-    'name': 'CMS_PU_2016',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {
-        'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
-        'top': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
-        'WW': ['1.0033022059*(puWeightUp/puWeight)', '0.997085330608*(puWeightDown/puWeight)'],
-        'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
-        'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
-    },
-    'AsLnN': '1',
-}
-
 ##### PS and UE --> NO AVAILABLE FOR VH2j! 
-nuisances['PS']  = {
-    'name'  : 'PS_Herwig',
-    'kind'  : 'tree',
-    'type'  : 'shape',
-    'samples'  : {
-       'WH_hww' : ['1.037','1.'],
-       'WH_htt' : ['1.037','1.'],
-     },
-    'folderUp': makeMCDirectory('PS'),
-    'folderDown': makeMCDirectory(),
-    'AsLnN'      : '1',
-    'synchronized': False
+nuisances['PS_whss']  = {
+                'name'  : 'PS_whss',
+                'skipCMS' : 1,
+                'type'  : 'lnN',
+                'samples'  : {
+                   'WH_hww'   : '1.037',
+                   'ZH_hww'   : '1.037',
+                   'H_htt'    : '1.037',
+                   'ggZH_hww'   : '1.037',
+              #     'ZH_htt'   : '1.037',
+                },
 }
 
-nuisances['UE']  = {
-    'name'  : 'UE_CUETP',
-    'kind'  : 'tree',
-    'type'  : 'shape',
-    'samples'  : {
-       'WH_hww' : ['1.01','1.'],
-       'WH_htt' : ['1.01','1.'],
-     },
-    'folderUp': makeMCDirectory('UEup'),
-    'folderDown': makeMCDirectory('UEdo'),
-    'AsLnN'      : '1',
-    'synchronized': False
-}
+nuisances['UE_whss']  = {
+                'name'  : 'UE_whss',
+                'skipCMS' : 1,
+                'type'  : 'lnN',
+                'samples'  : {
+                   'WH_hww'   : '1.010',
+                   'ZH_hww'   : '1.010',
+                   'H_htt'    : '1.010',
+                   'ggZH_hww'   : '1.010',
+ #                  'ZH_htt'   : '1.010',
+               },
+                }
 
 ###### pdf uncertainties
 
