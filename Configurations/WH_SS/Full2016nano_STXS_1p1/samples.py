@@ -155,8 +155,8 @@ if useDYtt:
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 
 else:
-    files = getSampleFiles(directory, 'DYJetsToLL_M-50_ext2',True,'nanoLatino_') + \
-            getSampleFiles(directory, 'DYJetsToLL_M-10to50-LO',True,'nanoLatino_')
+    files = getSampleFiles(mcStxs, 'DYJetsToLL_M-50_ext2',True,'nanoLatino_') + \
+            getSampleFiles(mcStxs, 'DYJetsToLL_M-10to50-LO',True,'nanoLatino_')
 
     samples['DY'] = {
         'name': files,
