@@ -1,4 +1,4 @@
-tag = "2017_WH_3l_OSSF_STXS_1p1"
+tag = "WH_3l_OSSF_2017nano_STXS_1p1"
 
 treeName= 'Events'
 
@@ -6,7 +6,7 @@ treeName= 'Events'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables_%s.py' % tag.split('_')[3]
+variablesFile = 'variables_%s.py' % tag.split('_')[2]
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
@@ -27,11 +27,11 @@ structureFile = 'structure.py'
 nuisancesFile = 'nuisances.py'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFiles'+tag
+outputDir = 'rootFiles_'+tag
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot'+tag
+outputDirPlots = 'plot_'+tag
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'+tag
+outputDirDatacard = 'datacards_'+tag
