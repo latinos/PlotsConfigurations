@@ -140,36 +140,30 @@ nuisances['pdf_qqbar_ACCEPT']  = {
                    },
               }
 
-# PS / UE -- variant samples not available for ZH3l signals
-#nuisances['PS_zh3l']  = {
-#                'name'  : 'PS_zh3l',
-#                'kind'  : 'tree',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                    'WH_hww'   : ['1', '1'], #Assuming no normalization factor since no skim applied
-#                    'ZH_hww'   : ['1', '1'],
-#                    'WH_htt'   : ['1', '1'],
-#                    'ggZH_hww' : ['1', '1'],
-#                },
-#                'folderUp'   : treeBaseDir+'Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5__PS',
-#                'folderDown' : treeBaseDir+'Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5',
-#                'AsLnN'      : '1',
-#}
+#TODO update with measurement from PSweights
+nuisances['PS_whss']  = {
+                'name'  : 'PS_whss',
+                'skipCMS' : 1,
+                'type'  : 'lnN',
+                'samples'  : {
+                   'WH_hww'   : '1.037',
+                   'ZH_hww'   : '1.037',
+                   'WH_htt'   : '1.037',
+                   'ggZH_hww' : '1.037',
+                },
+}
 
-#nuisances['UE_zh3l']  = {
-#                'name'  : 'UE_zh3l',
-#                'kind'  : 'tree',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                    'WH_hww'   : ['1', '1'], #Assuming no normalization factor since no skim applied
-#                    'ZH_hww'   : ['1', '1'],
-#                    'WH_htt'   : ['1', '1'],
-#                    'ggZH_hww' : ['1', '1'], 
-#               },
-#                'folderUp'   : treeBaseDir+'Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5__UEup',
-#                'folderDown' : treeBaseDir+'Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5__UEdo',
-#                'AsLnN'      : '1',
-#                }
+nuisances['UE_whss']  = {
+                'name'  : 'UE_whss',
+                'skipCMS' : 1,
+                'type'  : 'lnN',
+                'samples'  : {
+                   'WH_hww'   : '1.010',
+                   'ZH_hww'   : '1.010',
+                   'WH_htt'   : '1.010',
+                   'ggZH_hww' : '1.010',
+               },
+}
 
 nuisances['WZ3l2jnorm']  = {
                'name'  : 'CMS_hww_WZ3l2jnorm',
