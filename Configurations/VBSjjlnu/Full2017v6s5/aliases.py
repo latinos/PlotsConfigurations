@@ -134,6 +134,17 @@ aliases['fake_weight_corrected'] = {
 #     'samples' : mc      
 # }
 
+aliases['deltaetavbs_reweighting'] = {
+    'class': 'DeltaEtaVbsReweight',
+    # Using Z->mm factors for both electron and muon regions
+    'args':("%s/VBSjjlnu/Full2017v6/corrections/zmmnorm_reweighting_Zmm_fit_2017.txt" % configurations),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L %s/patches/nvtx_reweight.cc+' % configurations
+   ],
+    'samples' : mc      
+}
+
 ##############################################################
 #### Additional variables
 
