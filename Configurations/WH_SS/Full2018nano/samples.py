@@ -343,19 +343,20 @@ samples['ttH_hww']  = {  'name'   :   getSampleFiles(directory,'ttHToNonbb_M125'
 
 
 ############ H->TauTau ############
-'''
+
 splitHtt=False
 if not splitHtt:
 
   samples['H_htt'] = {  'name'   :   getSampleFiles(directory,'GluGluHToTauTau_M125',False,'nanoLatino_')
-                                   + getSampleFiles(directory,'VBFHToTauTau_M125',False,'nanoLatino_'),
-                        #           + getSampleFiles(directory,'HZJ_HToTauTau_M125',False,'nanoLatino_')
-                       #            + getSampleFiles(directory,'HWplusJ_HToTauTau_M125',False,'nanoLatino_')
-                       #            + getSampleFiles(directory,'HWminusJ_HToTauTau_M125',False,'nanoLatino_'),
+                                   + getSampleFiles(directory,'VBFHToTauTau_M125',False,'nanoLatino_')
+                                   + getSampleFiles(directory,'HZJ_HToTauTau_M125',False,'nanoLatino_')
+                                   + getSampleFiles(directory,'HWplusJ_HToTauTau_M125',False,'nanoLatino_')
+                                   + getSampleFiles(directory,'HWminusJ_HToTauTau_M125',False,'nanoLatino_'),
                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                          'suppressNegative' :['all'],
                          'suppressNegativeNuisances' :['all'],
-                     }
+                          }
+
 else:
   
   samples['ggH_htt']  = {  'name'   : getSampleFiles(directory,'GluGluHToTauTau_M125',False,'nanoLatino_'),
@@ -383,7 +384,7 @@ else:
                            'suppressNegativeNuisances' :['all'],
                         }
 
-'''
+
 ###########################################
 ################## FAKE ###################
 ###########################################
