@@ -125,7 +125,7 @@ variables['deltaeta_vbs'] = {   'name': 'deltaeta_vbs',
 
 
 variables['mjj_vjet'] = {   'name': 'mjj_vjet',      
-                        'range' : (40,0,150),  
+                        'range' : (50,40,250),  
                         'xaxis' : 'Whad reco mass', 
                         'fold' : 3
                         }
