@@ -355,6 +355,7 @@ if not splitHtt:
                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                          'suppressNegative' :['all'],
                          'suppressNegativeNuisances' :['all'],
+                         'FilesPerJob' : 5,
                           }
 
 else:
@@ -390,37 +391,12 @@ else:
 ###########################################
 
 
-
-#samples['Fakes']  = {  'name'   :   getSampleFiles(directory,'WJetsToLNu-LO',False,'nanoLatino_')
-#                                  + getSampleFiles(directory,'TTToSemiLeptonic',False,'nanoLatino_'),
-#                       'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC,
-#                       'FilesPerJob': 3,
-#                    }
-#
-'''
-samples['Fakes']  = {   'name': [ ] ,
-                       'weight' : fakeW+'*'+METFilter_DATA+'*((Lepton_pdgId[0]*Lepton_pdgId[1]==11*13) || (Lepton_pdgId[0]*Lepton_pdgId[1]==11*11) || (Lepton_pdgId[0]*Lepton_pdgId[1]==13*13))',              #   weight/cut 
-                       'weights' : [ ] ,
-                       'isData': ['all'],
-                       'FilesPerJob' : 15 ,
-                     }
-
-
-for Run in DataRun :
-  directory = treeBaseDir+'Run2018_102X_nAODv5_Full2018v5/DATAl1loose2018v5__l2loose__fakeW/'
-  for DataSet in DataSets :
-    FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
-    for iFile in FileTarget:
-      samples['Fakes']['name'].append(iFile)
-      samples['Fakes']['weights'].append(DataTrig[DataSet])
-'''
-
-samples['Fakes_ee']  = {   'name': [ ] ,
-                       'weight' : fakeW+'*'+METFilter_DATA+'*(Lepton_pdgId[0]*Lepton_pdgId[1]==11*11)',              #   weight/cut 
-                       'weights' : [ ] ,
-                       'isData': ['all'],
-                       'FilesPerJob' : 15 ,
-                     }
+#samples['Fakes_ee']  = {   'name': [ ] ,
+#                       'weight' : fakeW+'*'+METFilter_DATA+'*(Lepton_pdgId[0]*Lepton_pdgId[1]==11*11)',              #   weight/cut 
+#                       'weights' : [ ] ,
+#                       'isData': ['all'],
+#                       'FilesPerJob' : 15 ,
+#                     }
 
 samples['Fakes_mm']  = {   'name': [ ] ,
                        'weight' : fakeW+'*'+METFilter_DATA+'*(Lepton_pdgId[0]*Lepton_pdgId[1]==13*13)',              #   weight/cut 
@@ -444,8 +420,8 @@ for Run in DataRun :
     for iFile in FileTarget:
     #  samples['Fakes']['name'].append(iFile)
     #  samples['Fakes']['weights'].append(DataTrig[DataSet])
-      samples['Fakes_ee']['name'].append(iFile)
-      samples['Fakes_ee']['weights'].append(DataTrig[DataSet])
+ #     samples['Fakes_ee']['name'].append(iFile)
+ #     samples['Fakes_ee']['weights'].append(DataTrig[DataSet])
       samples['Fakes_mm']['name'].append(iFile)
       samples['Fakes_mm']['weights'].append(DataTrig[DataSet])
       samples['Fakes_em']['name'].append(iFile)
@@ -469,3 +445,4 @@ for Run in DataRun :
     for iFile in FileTarget:
       samples['DATA']['name'].append(iFile)
       samples['DATA']['weights'].append(DataTrig[DataSet])
+
