@@ -172,7 +172,7 @@ samples['Wjets'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
-        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
+        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch+"*deltaetavbs_reweighting",
         'FilesPerJob' : 2,
        }
 

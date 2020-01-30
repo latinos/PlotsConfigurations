@@ -365,9 +365,9 @@ variables["qgl"] = { 'name': 'Jet_qgl[CleanJet_jetIdx[0]]',
 
 ## BTag shape
 
-variable['Jet_btagDeepB'] = {
-    'name': 'Jet_btagDeepB[CleanJet_jetIdx]'
-    'range' (30,0,1),
+variables['Jet_btagDeepB'] = {
+    'name': 'Jet_btagDeepB[CleanJet_jetIdx]',
+    'range': (30,0,1),
     'xaxis': "DeepCSV bTag shape", 
     'fold': 0
 }

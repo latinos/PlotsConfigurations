@@ -11,6 +11,9 @@
 using namespace std;
 using namespace NNEvaluation;
 
+#ifndef MVAREADER_H
+#define MVAREADER_H
+
 class MVAReader : public multidraw::TTreeFunction {
 public:
   
@@ -62,6 +65,7 @@ protected:
   FloatValueReader* vbs_1_eta{};
   FloatValueReader* mjj_vbs{};
 };
+
 
 MVAReader::MVAReader(const char* model_path, bool verbose, int category):
     model_path_(model_path), 
@@ -140,7 +144,6 @@ MVAReader::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(Asym_vbs, "Asym_vbs");
   _library.bindBranch(Asym_vjet, "Asym_vjet");
   _library.bindBranch(A_ww, "A_ww");
-  _library.bindBranch(Mw_lep_reco, "Mw_lep");
   _library.bindBranch(Mtw_lep, "Mtw_lep");
   _library.bindBranch(w_lep_pt, "w_lep_pt");
   _library.bindBranch(Mww, "Mww");
@@ -150,3 +153,5 @@ MVAReader::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(Centr_ww, "Centr_ww");
 }
 
+
+#endif 

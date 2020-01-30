@@ -15,11 +15,11 @@ mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 # DNN reader
 
 mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017v6s5/mva/'
-models_path = '/eos/home-d/dmapelli/public/latino/Full2017v6s5/res_sig_mjjincl/models'
+models_path = '/eos/home-d/dmapelli/public/latino/Full2017v6s5/'
 
 aliases['DNNoutput_boosted'] = {
     'class': 'MVAReader',
-    'args': ( models_path +'/v11/boosted', False, 0),
+    'args': ( models_path +'boos_sig_mjjincl/models/v10/', False, 0),
     'linesToAdd':[
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         'gSystem->Load("libDNNEvaluator.so")',
@@ -29,7 +29,7 @@ aliases['DNNoutput_boosted'] = {
 
 aliases['DNNoutput_resolved'] = {
     'class': 'MVAReader',
-    'args': ( models_path+ '/v11/resolved', False, 1),
+    'args': ( models_path+ '/res_sig_mjjincl/models/v11/', False, 1),
     'linesToAdd':[
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         'gSystem->Load("libDNNEvaluator.so")',
@@ -136,13 +136,12 @@ aliases['fake_weight_corrected'] = {
 
 aliases['deltaetavbs_reweighting'] = {
     'class': 'DeltaEtaVbsReweight',
-    # Using Z->mm factors for both electron and muon regions
-    'args':("%s/VBSjjlnu/Full2017v6/corrections/zmmnorm_reweighting_Zmm_fit_2017.txt" % configurations),
+    'args':("%s/VBSjjlnu/Full2017v6s5/corrections/reweight_ratiodatamc_wjets_deltaetavbs_mu_fit_scaled.txt" % configurations),
     'linesToAdd' : [
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        '.L %s/patches/nvtx_reweight.cc+' % configurations
+        '.L %s/VBSjjlnu/Full2017v6s5/corrections/deltaetavbs_reweight.cc+' % configurations
    ],
-    'samples' : mc      
+    'samples' : "Wjets"
 }
 
 ##############################################################
