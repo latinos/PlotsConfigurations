@@ -177,7 +177,7 @@ samples['Wjets'] = { 'name' :
        }
 
 # Fix Wjets binned + LO 
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO_ext1', 'LHE_HT < 100') # no ewknloW here!
+addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO_ext1', 'LHE_HT < 100') # to be add ewknloW here!
 addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT100_200',   'ewknloW')
 addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT200_400',   'ewknloW')
 addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT400_600',   'ewknloW')

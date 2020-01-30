@@ -45,10 +45,10 @@ nuisances['lumi']  = {
 #   fakeW_statMuDown  = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lstatMuDown / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
 
 nuisances['fake_syst']  = {
-               'name'  : 'CMS_fake_syst_2017',
+               'name'  : 'CMS_vbsjjlnu_fake_syst_2017',
                'type'  : 'lnN',
                'samples'  : {
-                             'Fake' : '1.30',
+                             'Fake_me' : '1.30',
                              },
                }
 
@@ -490,48 +490,13 @@ nuisances['jes']  = {
                    'VV'      : ['1','1'],
                    'VVV'     : ['1','1'],
                    'VBF-V'   : ['1','1'],
-                   'top'     : ['1','1'],
+                   'top'   : ['1','1'],
                    'VBS'     : ['1','1'],
                    'Wjets'   : ['1','1']
                 },
                 'folderUp'   : directory_bkg +"_JESup",
                 'folderDown' : directory_bkg +"_JESdo",
 }
-
-nuisances['fatjet_jes']  = {
-                'name'  : 'scale_fatj_2017',
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : {
-                   'DY'      : ['1','1'],
-                   'VV'      : ['1','1'],
-                   'VVV'     : ['1','1'],
-                   'VBF-V'   : ['1','1'],
-                   'top'     : ['1','1'],
-                   'VBS'     : ['1','1'],
-                   'Wjets'   : ['1','1']
-                },
-                'folderUp'   : directory_bkg +"_fatjet_JESup",
-                'folderDown' : directory_bkg +"_fatjet_JESdo",
-}
-
-nuisances['fatjet_jms']  = {
-                'name'  : 'mass_fatj_2017',
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : {
-                   'DY'      : ['1','1'],
-                   'VV'      : ['1','1'],
-                   'VVV'     : ['1','1'],
-                   'VBF-V'   : ['1','1'],
-                   'top'     : ['1','1'],
-                   'VBS'     : ['1','1'],
-                   'Wjets'   : ['1','1']
-                },
-                'folderUp'   : directory_bkg +"_fatjet_JMSup",
-                'folderDown' : directory_bkg +"_fatjet_JMSdo",
-}
-
 
 
 # ##### MET energy scale
@@ -571,6 +536,20 @@ nuisances['prefire']  = {
                 }
 }
 # if useEmbeddedDY: del nuisances['prefire']['samples']['DY']
+
+
+# # Di-Tau vetoing for embedding
+# if useEmbeddedDY: 
+#   nuisances['embedveto']  = {
+#                   'name'  : 'CMS_embed_veto',
+#                   'kind'  : 'weight',
+#                   'type'  : 'shape',
+#                   'samples'  : {
+#                      'DY'       : ['1', '1'],
+#                      'DYveto'   : ['0.1', '-0.1'],
+#                   }
+#   }
+
 
 # #
 # # PS and UE
@@ -615,6 +594,52 @@ nuisances['PU']  = {
                 'AsLnN'      : '1',
 }
 
+
+
+nuisances['Top_norm']  = {
+               'name'  : 'CMS_Top_norm',
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                 'lowen_CR_looseVBS_ele',
+                 'lowen_CR_looseVBS_mu',
+                 'lowen_CR_top_ele',
+                 'lowen_CR_top_mu',
+                 'lowen_SR_tightVBS_ele',
+                 'lowen_SR_tightVBS_mu',
+                 'lowen_SR_top_ele',
+                 'lowen_SR_top_mu',
+                 'lowen_cutDNN_signal_ele',
+                 'lowen_cutDNN_signal_mu',
+                 'lowen_cutDNN_top_ele',
+                 'lowen_cutDNN_top_mu',
+                ]
+              }
+
+nuisances['Wjets_norm']  = {
+               'name'  : 'CMS_Wjets_norm',
+               'samples'  : {
+                   'Wjets' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                 'lowen_CR_looseVBS_ele',
+                 'lowen_CR_looseVBS_mu',
+                 'lowen_CR_wjets_ele',
+                 'lowen_CR_wjets_mu',
+                 'lowen_SR_tightVBS_ele',
+                 'lowen_SR_tightVBS_mu',
+                 'lowen_SR_wjets_ele',
+                 'lowen_SR_wjets_mu',
+                 'lowen_cutDNN_signal_ele',
+                 'lowen_cutDNN_signal_mu',
+                 'lowen_cutDNN_wjets_ele',
+                 'lowen_cutDNN_wjets_mu',
+                ]
+              }
+
 ## Top pT reweighting uncertainty
 nuisances['TopPtRew']  = {
                 'name'  : 'TopPtRew',   # Theory uncertainty
@@ -624,45 +649,6 @@ nuisances['TopPtRew']  = {
                      'top'  : ["1.","((1./Top_pTrw - 1)*(topGenPtOTF>0 && antitopGenPtOTF>0) + 1)"]
                 }
          }
-
-
-phase_spaces = [
-   'res_sig_mjjincl','res_sig_mjjlow','res_sig_mjjhigg',
-   'res_topcr_mjjincl','res_topcr_mjjlow','res_topcr_mjjhigg',
-   'res_wjetcr_mjjincl','res_wjetcr_mjjlow','res_wjetcr_mjjhigg',
-   'res_sig_mjjincl','res_sig_mjjlow','res_sig_mjjhigg',
-   'res_topcr_mjjincl','res_topcr_mjjlow','res_topcr_mjjhigg',
-   'res_wjetcr_mjjincl','res_wjetcr_mjjlow','res_wjetcr_mjjhigg',
-
-   'boost_sig_mjjincl','boost_sig_mjjlow','boost_sig_mjjhigg',
-   'boost_topcr_mjjincl','boost_topcr_mjjlow','boost_topcr_mjjhigg',
-   'boost_wjetcr_mjjincl','boost_wjetcr_mjjlow','boost_wjetcr_mjjhigg',
-   'boost_sig_mjjincl','boost_sig_mjjlow','boost_sig_mjjhigg',
-   'boost_topcr_mjjincl','boost_topcr_mjjlow','boost_topcr_mjjhigg',
-   'boost_wjetcr_mjjincl','boost_wjetcr_mjjlow','boost_wjetcr_mjjhigg'
-]
-phase_spaces_fl = []
-for ph in phase_spaces: phase_spaces_fl+= [ph+"_ele", ph+"_mu"]
-
-nuisances['Top_norm']  = {
-               'name'  : 'CMS_Top_norm',
-               'samples'  : {
-                   'top' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : phase_spaces_fl
-              }
-
-nuisances['Wjets_norm']  = {
-               'name'  : 'CMS_Wjets_norm',
-               'samples'  : {
-                   'Wjets' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : phase_spaces_fl
-              }
-
-
 
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.

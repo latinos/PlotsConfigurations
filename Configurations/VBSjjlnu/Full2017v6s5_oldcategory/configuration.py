@@ -2,11 +2,10 @@
 treeName= 'Events'
 
 
-tag = 'VBSjjlnu_2017'
-
+tag = '2017v6s5'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'+tag
+outputDir = 'rootFile'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'

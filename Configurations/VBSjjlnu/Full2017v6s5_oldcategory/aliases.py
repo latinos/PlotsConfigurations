@@ -11,6 +11,56 @@ configurations = os.path.dirname(configurations) # Configurations
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
+
+mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017v6s5/mva/'
+
+aliases['DNNoutput'] = {
+    'class': 'MVAReader',
+    'args': ('/eos/home-d/dmapelli/public/latino/Full2017v6/lowen_looseVBS/models/v7/', False),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L ' + mva_reader_path + 'mva_reader.cc+', 
+    ],
+}
+
+
+aliases['deltaphi_lep_whad'] = {
+            'class': 'DeltaPhiVars',
+            'args': ("deltaphi_lep_whad"),
+            'linesToAdd' : [
+                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+                '.L {}/VBSjjlnu/Full2017v6s5/macros/deltaphivars_class.cc+'.format(configurations)
+            ]           
+}
+
+aliases['deltaphi_lep_jet0'] = {
+            'class': 'DeltaPhiVars',
+            'args': ("deltaphi_lep_jet0"),
+            'linesToAdd' : [
+                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+                '.L {}/VBSjjlnu/Full2017v6s5/macros/deltaphivars_class.cc+'.format(configurations)
+                ]  
+}
+
+aliases['deltaphi_lep_vbsjets'] = {
+            'class': 'DeltaPhiVars',
+            'args': ("deltaphi_lep_vbsjets"),
+            'linesToAdd' : [
+                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+                '.L {}/VBSjjlnu/Full2017v6s5/macros/deltaphivars_class.cc+'.format(configurations)
+            ]  
+}
+
+aliases['deltaphi_lep_ww'] = {
+            'class': 'DeltaPhiVars',
+            'args': ("deltaphi_lep_ww"),
+            'linesToAdd' : [
+                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+                '.L {}/VBSjjlnu/Full2017v6s5/macros/deltaphivars_class.cc+'.format(configurations)
+            ]  
+}
+
 bAlgo = 'DeepB'
 bWP = '0.1522'
 
@@ -34,46 +84,47 @@ aliases['bReqSF'] = {
 }
 
 aliases['btagSF'] = {
-    'expr': 'bVeto*bVetoSF + bReq*bReqSF + ( (!bVeto) && (!bReq) )',
+    'expr': '(bVeto*bVetoSF + bReq*bReqSF + ( (!bVeto) && (!bReq) ))',
     'samples': mc
 }
 
 
-
-systs = ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']
+#systs = ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']
+systs = ['jes']
 
 for s in systs:
-  aliases['btagSF'+s+'up'] = { 'expr': '( bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_up_'+s)+'+btagReq*'+aliases['btagReqSF']['expr'].replace('shape','shape_up_'+s)+'+ ( (!bVeto) && (!bReq) )', 'samples':mc  }
-  aliases['btagSF'+s+'down'] = { 'expr': '( bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_down_'+s)+'+btagReq*'+aliases['btagReqSF']['expr'].replace('shape','shape_down_'+s)+'+ ( (!bVeto) && (!bReq) )', 'samples':mc  }
+  aliases['btagSF'+s+'up'] = { 'expr': '(bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_up_'+s)+'+bReq*'+aliases['bReqSF']['expr'].replace('shape','shape_up_'+s)+'+ ( (!bVeto) && (!bReq) ))', 'samples':mc  }
+  aliases['btagSF'+s+'down'] = { 'expr': '(bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_down_'+s)+'+bReq*'+aliases['bReqSF']['expr'].replace('shape','shape_down_'+s)+'+ ( (!bVeto) && (!bReq) ))', 'samples':mc  }
 
 ################################################################################################
+
 
 # LastProcessing did not create (anti)topGenPt for ST samples with _ext1
 lastcopy = (1 << 13)
 
 aliases['isTTbar'] = {
     'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 2' % lastcopy,
-    'samples': ['singleTop', 'ttbar']
+    'samples': ['top']
 }
 
 aliases['isSingleTop'] = {
     'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 1' % lastcopy,
-     'samples': ['singleTop', 'ttbar']
+     'samples': ['top']
 }
 
 aliases['topGenPtOTF'] = {
     'expr': 'Sum$((GenPart_pdgId == 6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
-     'samples': ['singleTop', 'ttbar']
+     'samples': ['top']
 }
 
 aliases['antitopGenPtOTF'] = {
     'expr': 'Sum$((GenPart_pdgId == -6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
-     'samples': ['singleTop', 'ttbar']
+     'samples': ['top']
 }
 
 aliases['Top_pTrw'] = {
     'expr': 'isTTbar * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPtOTF) * TMath::Exp(0.0615 - 0.0005 * antitopGenPtOTF))) + isSingleTop',
-     'samples': ['singleTop', 'ttbar']
+     'samples': ['top']
 }
 
 
@@ -103,14 +154,3 @@ aliases['fake_weight_corrected'] = {
 #     'samples' : mc      
 # }
 
-mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017v6_dnneval/mva/'
-
-aliases['DNNoutput'] = {
-    'class': 'MVAReader',
-    'args': ('/eos/home-d/dmapelli/public/latino/Full2017v6/lowen_looseVBS/models/v5/', False),
-    'linesToAdd':[
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L ' + mva_reader_path + 'mva_reader.cc+', 
-    ],
-}
