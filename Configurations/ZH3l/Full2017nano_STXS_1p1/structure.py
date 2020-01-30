@@ -7,12 +7,12 @@ structure['Fake']  = {
                   'isData'   : 0 
               }
 
-structure['Fake_em']  = {  
+structure['Fake_e']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
               }
 
-structure['Fake_me']  = {  
+structure['Fake_m']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
               }
