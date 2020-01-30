@@ -68,7 +68,7 @@ GenLepMatch   = 'Lepton_genmatched[0]'
 
 ####
 # NVTX reweighting
-SFweight += '*nvtx_reweighting'
+#SFweight += '*nvtx_reweighting'
 
 
 ################################################
@@ -257,9 +257,9 @@ samples['VBS']  = { 'name' :
        'FilesPerJob' : 4,
 }
 
-#fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP + '_mu10_ele35'
+fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP + '_mu10_ele35'
 # from alias
-fakeW = 'fake_weight_corrected'
+#fakeW = 'fake_weight_corrected'
 
 #### Fakes
 samples['Fake'] = {

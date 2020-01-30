@@ -137,38 +137,38 @@ aliases['fake_weight_corrected'] = {
 ##############################################################
 #### Additional variables
 
-aliases['deltaphi_lep_whad'] = {
-            'class': 'DeltaPhiVars',
-            'args': ("deltaphi_lep_whad"),
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L {}/VBSjjlnu/Full2017v6s5/macros/deltaphivars_class.cc+'.format(configurations)
-            ]           
-}
+# aliases['deltaphi_lep_whad'] = {
+#             'class': 'DeltaPhiVars',
+#             'args': ("deltaphi_lep_whad"),
+#             'linesToAdd' : [
+#                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#                 '.L {}/VBSjjlnu/Full2017v6s5/macros/deltaphivars_class.cc+'.format(configurations)
+#             ]           
+# }
 
-aliases['deltaphi_lep_jet0'] = {
-            'class': 'DeltaPhiVars',
-            'args': ("deltaphi_lep_jet0"),
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L {}/VBSjjlnu/Full2017v6s5/macros/deltaphivars_class.cc+'.format(configurations)
-                ]  
-}
+# aliases['deltaphi_lep_jet0'] = {
+#             'class': 'DeltaPhiVars',
+#             'args': ("deltaphi_lep_jet0"),
+#             'linesToAdd' : [
+#                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#                 '.L {}/VBSjjlnu/Full2017v6s5/macros/deltaphivars_class.cc+'.format(configurations)
+#                 ]  
+# }
 
-aliases['deltaphi_lep_vbsjets'] = {
-            'class': 'DeltaPhiVars',
-            'args': ("deltaphi_lep_vbsjets"),
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L {}/VBSjjlnu/Full2017v6s5/macros/deltaphivars_class.cc+'.format(configurations)
-            ]  
-}
+# aliases['deltaphi_lep_vbsjets'] = {
+#             'class': 'DeltaPhiVars',
+#             'args': ("deltaphi_lep_vbsjets"),
+#             'linesToAdd' : [
+#                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#                 '.L {}/VBSjjlnu/Full2017v6s5/macros/deltaphivars_class.cc+'.format(configurations)
+#             ]  
+# }
 
-aliases['deltaphi_lep_ww'] = {
-            'class': 'DeltaPhiVars',
-            'args': ("deltaphi_lep_ww"),
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L {}/VBSjjlnu/Full2017v6s5/macros/deltaphivars_class.cc+'.format(configurations)
-            ]  
-}
+# aliases['deltaphi_lep_ww'] = {
+#             'class': 'DeltaPhiVars',
+#             'args': ("deltaphi_lep_ww"),
+#             'linesToAdd' : [
+#                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#                 '.L {}/VBSjjlnu/Full2017v6s5/macros/deltaphivars_class.cc+'.format(configurations)
+#             ]  
+# }
