@@ -37,13 +37,13 @@ def makeMCDirectory(var=''):
     if var:
         #return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
         #return '/afs/cern.ch/user/d/ddicroce/public/Summer16/l2tightOR__{var}'.format(var=var)
-        return '/afs/cern.ch/user/s/shoh/public/'+var+'/WH2l/2016/wwSel'
+        return '/afs/cern.ch/user/s/shoh/public/latino_STXS/WH2l/'+var+'/wwSel'
     else:
         #return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
         return '/afs/cern.ch/user/d/ddicroce/public/Summer16/l2tightOR'
 
 #mcDirectory   = makeMCDirectory()
-mcStxs        = makeMCDirectory('latino_STXS')
+mcStxs        = makeMCDirectory('2016')
 
 ################################################
 ############ NUMBER OF LEPTONS #################
