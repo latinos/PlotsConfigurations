@@ -234,22 +234,6 @@ nuisances['met'] = {
 }
 
 
-##### Pileup
-
-nuisances['PU'] = {
-    'name': 'CMS_PU_2017',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {
-        'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
-        'top': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
-        'WW': ['1.0033022059*(puWeightUp/puWeight)', '0.997085330608*(puWeightDown/puWeight)'],
-        'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
-        'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
-    },
-    'AsLnN': '1',
-}
-
 ##### PS and UE --> NO AVAILABLE FOR VH2j! 
 nuisances['PS']  = {
     'name'  : 'PS',
