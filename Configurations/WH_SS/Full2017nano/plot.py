@@ -26,17 +26,17 @@ groupPlot['Fake']  = {
                   'nameHR' : 'Non-prompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fakes_em','Fakes_ee','Fakes_mm']
+                  'samples'  : ['Fakes_em','Fakes_mm']
               }
 
 
-#groupPlot['DY']  = {  
-#                  'nameHR' : "DY",
-#                  'isSignal' : 0,
-#                  'color': 418,    # kGreen+2
-#                  'samples'  : ['DY']
-#              }
-#
+groupPlot['DY']  = {  
+                  'nameHR' : "DY",
+                  'isSignal' : 0,
+                  'color': 418,    # kGreen+2
+                  'samples'  : ['DY']
+              }
+
 
 
 groupPlot['VVV']  = {  
@@ -85,7 +85,7 @@ groupPlot['Higgs']  = {
 
 # keys here must match keys in samples.py    
 #
-'''                    
+                    
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
@@ -106,7 +106,7 @@ plot['DY']  = {
                         #},
 
               }
-'''
+
 
 #plot['Fakes']  = {  
 #                  'color': 921,    # kGray + 1
