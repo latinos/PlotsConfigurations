@@ -1,7 +1,7 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = 'WH_SS_2016nano_STXS_1p1' #include ll categories
+tag = 'WH_SS_2016nano_STXS_1p1'
 
 
 # used by mkShape to define output directory for root files
