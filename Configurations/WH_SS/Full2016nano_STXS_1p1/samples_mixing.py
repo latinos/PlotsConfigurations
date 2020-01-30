@@ -36,14 +36,12 @@ directory = treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr
 def makeMCDirectory(var=''):
     if var:
         #return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
-        #return '/afs/cern.ch/user/d/ddicroce/public/Summer16/l2tightOR__{var}'.format(var=var)
-        return '/afs/cern.ch/user/s/shoh/public/latino_STXS/WH2l/2016/wwSel'
+        return '/afs/cern.ch/user/d/ddicroce/public/Summer16/l2tightOR__{var}'.format(var=var)
     else:
         #return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
         return '/afs/cern.ch/user/d/ddicroce/public/Summer16/l2tightOR'
 
 mcDirectory   = makeMCDirectory()
-mcStxs        = makeMCDirectory('stxs')
 
 ################################################
 ############ NUMBER OF LEPTONS #################
@@ -128,7 +126,7 @@ DataTrig = {
            }
 
 
-#mcCommonWeight = 'XSWeight*SFweight*GenLepMatch*METFilter_MC'
+mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 
 ###########################################
 #############  BACKGROUNDS  ###############
@@ -136,8 +134,8 @@ DataTrig = {
 
 ############ DY ############
 
-useDYtt = False
-useDYHT = True
+useDYtt = True
+useDYHT = False
 
 ptllDYW_NLO = '(0.876979+gen_ptll*(4.11598e-03)-(2.35520e-05)*gen_ptll*gen_ptll)*(1.10211 * (0.958512 - 0.131835*TMath::Erf((gen_ptll-14.1972)/10.1525)))*(gen_ptll<140)+0.891188*(gen_ptll>=140)'
 ptllDYW_LO  = '(8.61313e-01+gen_ptll*4.46807e-03-1.52324e-05*gen_ptll*gen_ptll)*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-11.)/5.51582)))*(gen_ptll<140)+1.141996*(gen_ptll>=140)'
@@ -148,7 +146,7 @@ if useDYtt:
 
     samples['DY'] = {
         'name': files,
-        'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+        'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)',
         'FilesPerJob': 2,
     }
     addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO)
@@ -160,7 +158,7 @@ else:
 
     samples['DY'] = {
         'name': files,
-        'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+        'weight': mcCommonWeight,
         'FilesPerJob': 2,
         'suppressNegative' :['all'],
         'suppressNegativeNuisances' :['all'],
@@ -271,7 +269,6 @@ samples['Vg']  =  {     'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',F
                         'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '*(Gen_ZGstar_mass <= 0)',
                         'FilesPerJob' : 5 ,
                   }
-addSampleWeight(samples, 'Vg', 'Zg', '(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)') 
 
 ######## VgS ########
 #FIXME: k-factor?
@@ -292,7 +289,7 @@ samples['VZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo2L2Nu',False,'nan
                                + getSampleFiles(directory,'ZZTo2L2Q',False,'nanoLatino_')
                                + getSampleFiles(directory,'ZZTo4L',False,'nanoLatino_')
                                + getSampleFiles(directory,'WZTo2L2Q',False,'nanoLatino_'),
-                    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*1.11',
+                    'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
                     'FilesPerJob' : 3,
                  }
 
@@ -336,23 +333,10 @@ samples['ggZH_hww']  = {  'name'   :   getSampleFiles(directory,'ggZH_HToWW_M125
 
 ############ WH H->WW ############
 
-#samples['WH_hww']  = {  'name'   :   getSampleFiles(directory,'HWplusJ_HToWW_M125',False,'nanoLatino_')
-#                                   + getSampleFiles(directory,'HWminusJ_HToWW_M125',False,'nanoLatino_'),
-#                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-#                     }
-
-samples['WH_hww'] = { 'name'   :
-                      getSampleFiles(mcStxs,'HWplusJ_HToWW_M125',True,'nanoLatino_')
-                      + getSampleFiles(mcStxs,'HWminusJ_HToWW_M125',True,'nanoLatino_'),
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
-                      'suppressNegativeNuisances' :['all'],
-                      'subsamples' : {
-                          'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==301 || HTXS_stage1_1_cat_pTjet30GeV==302',
-                          'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==303 || HTXS_stage1_1_cat_pTjet30GeV==304 || HTXS_stage1_1_cat_pTjet30GeV==305',
-                          'FWDH'      : 'HTXS_stage1_1_cat_pTjet30GeV==300'
-                      }
-                  }
-
+samples['WH_hww']  = {  'name'   :   getSampleFiles(directory,'HWplusJ_HToWW_M125',False,'nanoLatino_')
+                                   + getSampleFiles(directory,'HWminusJ_HToWW_M125',False,'nanoLatino_'),
+                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                     }
 
 ############ ttH ############
 
@@ -428,12 +412,12 @@ samples['Fakes']  = {   'name': [ ] ,
                      }
 '''
 
-#samples['Fakes_ee']  = {   'name': [ ] ,
-#                       'weight' : fakeW+'*'+METFilter_DATA+'*(Lepton_pdgId[0]*Lepton_pdgId[1]==11*11)',              #   weight/cut 
-#                       'weights' : [ ] ,
-#                       'isData': ['all'],
-#                       'FilesPerJob' : 15 ,
-#                     }
+samples['Fakes_ee']  = {   'name': [ ] ,
+                       'weight' : fakeW+'*'+METFilter_DATA+'*(Lepton_pdgId[0]*Lepton_pdgId[1]==11*11)',              #   weight/cut 
+                       'weights' : [ ] ,
+                       'isData': ['all'],
+                       'FilesPerJob' : 15 ,
+                     }
 
 samples['Fakes_mm']  = {   'name': [ ] ,
                        'weight' : fakeW+'*'+METFilter_DATA+'*(Lepton_pdgId[0]*Lepton_pdgId[1]==13*13)',              #   weight/cut 
@@ -458,6 +442,8 @@ for Run in DataRun :
 #      samples['Fakes']['name'].append(iFile)
 #      samples['Fakes']['weights'].append(DataTrig[DataSet])
 
+      samples['Fakes_ee']['name'].append(iFile)
+      samples['Fakes_ee']['weights'].append(DataTrig[DataSet])
       samples['Fakes_mm']['name'].append(iFile)
       samples['Fakes_mm']['weights'].append(DataTrig[DataSet])
       samples['Fakes_em']['name'].append(iFile)
