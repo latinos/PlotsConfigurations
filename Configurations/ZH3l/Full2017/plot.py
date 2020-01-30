@@ -15,7 +15,7 @@ groupPlot['Fake']  = {
 groupPlot['VVV']  = {  
                   'nameHR' : 'VVV',
                   'isSignal' : 0,
-                  'color': 857, # kAzure -3  
+                  'color': 806, # kOrange + 6
                   'samples'  : ['VVV']
               }
 

@@ -212,6 +212,6 @@ for Run in DataRun :
             samples['Fake']['weights'].append(DataTrig[DataSet])
                 
 samples['Fake']['subsamples'] = {
-    'em': 'abs(ZH3l_pdgid_l) == 11',
-    'me': 'abs(ZH3l_pdgid_l) == 13'
+    'e': 'abs(ZH3l_pdgid_l) == 11',
+    'm': 'abs(ZH3l_pdgid_l) == 13'
 }

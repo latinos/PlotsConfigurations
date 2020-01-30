@@ -3,7 +3,7 @@ import os
 global getSampleFiles
 from LatinoAnalysis.Tools.commonTools import getSampleFiles, addSampleWeight, getBaseWnAOD
 
-def getSampleFilesNano(inputDir,Sample,absPath=False):
+def getSampleFilesNano(inputDir,Sample,absPath=True):
     return getSampleFiles(inputDir,Sample,absPath,'nanoLatino_')
 
 ##############################################
@@ -12,8 +12,7 @@ def getSampleFilesNano(inputDir,Sample,absPath=False):
 
 treeBaseDir = "/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/"
 
-directoryMC     = os.path.join(treeBaseDir,"Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5")
-directoryHIGGS  = os.path.join(treeBaseDir,"Fall2017_102X_nAODv5_SigOnly_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5")
+directoryMC     = "/afs/cern.ch/user/d/dittmer/public/Fall2017/nom"
 directoryDATA   = os.path.join(treeBaseDir,"Run2017_102X_nAODv4_Full2017v5/DATAl1loose2017v5__l2loose__l2tightOR2017v5/")
 directoryFAKE   = os.path.join(treeBaseDir,"Run2017_102X_nAODv4_Full2017v5/DATAl1loose2017v5__l2loose__fakeW/")
 
@@ -144,7 +143,7 @@ samples['WH_hww']  = { 'name': getSampleFilesNano(directoryMC,'HWminusJ_HToWW_M1
                        'FilesPerJob' : 5,
 }
 
-samples['ZH_hww']  = {  'name': getSampleFilesNano(directoryHIGGS,'HZJ_HToWW_M125'),
+samples['ZH_hww']  = {  'name': getSampleFilesNano(directoryMC,'HZJ_HToWW_M125'),
                         'weight' : XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
                         'suppressNegativeNuisances' :['all'],
                         'FilesPerJob' : 3,
@@ -154,7 +153,7 @@ samples['ZH_hww']  = {  'name': getSampleFilesNano(directoryHIGGS,'HZJ_HToWW_M12
                                        }
                     }
 
-samples['ggZH_hww'] = {  'name': getSampleFilesNano(directoryHIGGS,'GluGluZH_HToWW_M125'),
+samples['ggZH_hww'] = {  'name': getSampleFilesNano(directoryMC,'GluGluZH_HToWW_M125'),
                          'weight' : XSweight+'*'+SFweight+'*'+GenLepMatch3l+'*'+METFilter_MC,
                          'suppressNegativeNuisances' :['all'],
                          'FilesPerJob' : 3,
@@ -222,6 +221,6 @@ for Run in DataRun :
             samples['Fake']['weights'].append(DataTrig[DataSet])
                 
 samples['Fake']['subsamples'] = {
-    'em': 'abs(ZH3l_pdgid_l) == 11',
-    'me': 'abs(ZH3l_pdgid_l) == 13'
+    'e': 'abs(ZH3l_pdgid_l) == 11',
+    'm': 'abs(ZH3l_pdgid_l) == 13'
 }

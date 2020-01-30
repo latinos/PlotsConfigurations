@@ -67,6 +67,9 @@ variables['mtw_notZ']   = { 'name' : 'ZH3l_mTlmet',
 variables['mtw_fit']    = { 'name' : 'ZH3l_mTlmet',
                             'range' : (8,0,160),
                             'xaxis' : 'mTlmet',
+                            'doWeight' : 1,
+                            'binX' : 1,
+                            'binY' : 8,
                             'fold' : 2
                         }
 

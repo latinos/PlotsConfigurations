@@ -32,24 +32,73 @@ HiggsXS = HiggsXSection()
 
 #### Luminosity
 
-nuisances['lumi'] = {
+#### Luminosity
+nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2017',
     'type': 'lnN',
-    'samples': dict((skey, '1.025') for skey in mc if skey not in ['top', 'DY'])
+    'samples': dict((skey, '1.02') for skey in mc if skey not in ['Vg','WZ'])
+}
+
+nuisances['lumi_XYFact'] = {
+    'name': 'lumi_13TeV_XYFact',
+    'type': 'lnN',
+    'samples': dict((skey, '1.008') for skey in mc if skey not in ['Vg','WZ'])
+}
+
+nuisances['lumi_LScale'] = {
+    'name': 'lumi_13TeV_LSCale',
+    'type': 'lnN',
+    'samples': dict((skey, '1.003') for skey in mc if skey not in ['Vg','WZ'])
+}
+
+nuisances['lumi_BBDefl'] = {
+    'name': 'lumi_13TeV_BBDefl',
+    'type': 'lnN',
+    'samples': dict((skey, '1.004') for skey in mc if skey not in ['Vg','WZ'])
+}
+
+nuisances['lumi_DynBeta'] = {
+    'name': 'lumi_13TeV_DynBeta',
+    'type': 'lnN',
+    'samples': dict((skey, '1.005') for skey in mc if skey not in ['Vg','WZ'])
+}
+
+nuisances['lumi_CurrCalib'] = {
+    'name': 'lumi_13TeV_CurrCalib',
+    'type': 'lnN',
+    'samples': dict((skey, '1.003') for skey in mc if skey not in ['Vg','WZ'])
+}
+
+nuisances['lumi_Ghosts'] = {
+    'name': 'lumi_13TeV_Ghosts',
+    'type': 'lnN',
+    'samples': dict((skey, '1.001') for skey in mc if skey not in ['Vg','WZ'])
 }
 
 #### FAKES
 
-nuisances['fake_syst_wh3l']  = {
-               'name'  : 'fake_syst_2017',
-               'type'  : 'lnN',
-               'samples'  : {
-                             'Fake' : '1.30',
-                             },
+nuisances['fake_syst_em'] = {
+    'name': 'CMS_fake_syst_em',
+    'type': 'lnN',
+    'samples': {
+        'Fake_em': '1.3'
+    },
+    'cutspost': lambda self, cuts: [cut for cut in cuts if '20me' not in cut],
+    #'perRecoBin': True
+}
+
+nuisances['fake_syst_me'] = {
+    'name': 'CMS_fake_syst_me',
+    'type': 'lnN',
+    'samples': {
+        'Fake_me': '1.3'
+    },
+    'cutspost': lambda self, cuts: [cut for cut in cuts if '20em' not in cut],
+    #'perRecoBin': True
 }
 
 nuisances['fake_ele']  = {
-                'name'  : 'fake_ele_2017',
+                'name'  : 'CMS_fake_e_2017',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -58,7 +107,7 @@ nuisances['fake_ele']  = {
 }
 
 nuisances['fake_ele_stat']  = {
-                'name'  : 'fake_ele_stat_2017',
+                'name'  : 'CMS_fake_stat_e_2017',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -67,7 +116,7 @@ nuisances['fake_ele_stat']  = {
 }
 
 nuisances['fake_mu']  = {
-                'name'  : 'fake_mu_2017',
+                'name'  : 'CMS_fake_m_2017',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -76,7 +125,7 @@ nuisances['fake_mu']  = {
 }
 
 nuisances['fake_mu_stat']  = {
-                'name'  : 'fake_mu_stat_2017',
+                'name'  : 'CMS_fake_stat_m_2017',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -106,7 +155,7 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
 
 trig_syst = ['((TriggerEffWeight_3l_u)/(TriggerEffWeight_3l))*(TriggerEffWeight_3l>0.02) + (TriggerEffWeight_3l<=0.02)', '(TriggerEffWeight_3l_d)/(TriggerEffWeight_3l)']
 
-nuisances['trigg_wh3l']  = {
+nuisances['trigg']  = {
     'name': 'CMS_eff_hwwtrigger_2017',
     'kind': 'weight',
     'type': 'shape',
@@ -184,9 +233,26 @@ nuisances['met'] = {
     'AsLnN': '1'
 }
 
+
+##### Pileup
+
+nuisances['PU'] = {
+    'name': 'CMS_PU_2017',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+        'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
+        'top': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
+        'WW': ['1.0033022059*(puWeightUp/puWeight)', '0.997085330608*(puWeightDown/puWeight)'],
+        'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
+        'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
+    },
+    'AsLnN': '1',
+}
+
 ##### PS and UE --> NO AVAILABLE FOR VH2j! 
-nuisances['PS_wh3l']  = {
-    'name'  : 'PS_wh3l',
+nuisances['PS']  = {
+    'name'  : 'PS',
     'kind'  : 'tree',
     'type'  : 'shape',
     'samples'  : {
@@ -199,8 +265,8 @@ nuisances['PS_wh3l']  = {
     'synchronized': False
 }
 
-nuisances['UE_wh3l']  = {
-    'name'  : 'UE_wh3l',
+nuisances['UE']  = {
+    'name'  : 'UE',
     'kind'  : 'tree',
     'type'  : 'shape',
     'samples'  : {
@@ -243,8 +309,8 @@ nuisances['pdf_Higgs_qqbar_ACCEPT_wh3l']  = {
 # [0] is muR=0.50000E+00 muF=0.50000E+00
 # [8] is muR=0.20000E+01 muF=0.20000E+01
 
-nuisances['QCDscale_WH']  = {
-               'name'  : 'QCDscale_WH',
+nuisances['QCDscale_VH']  = {
+               'name'  : 'QCDscale_VH',
                'samples'  : {
                    'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
                    'WH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
@@ -290,11 +356,11 @@ nuisances['Zg3lnorm']  = {
               }
 
 nuisances['wz3lnorm']  = {
-               'name'  : 'cms_hww_wz3lnorm',
+               'name'  : 'CMS_hww_WZ3lnorm',
                'samples'  : {
                    'wz' : '1.00',
                    },
-               'type'  : 'rateparam',
+               'type'  : 'rateParam',
                'cuts'  : [
                  'wh3l_wz_13tev',
                  'wh3l_13tev_ossf',
@@ -302,19 +368,6 @@ nuisances['wz3lnorm']  = {
                  'wh3l_zg_13tev',
                 ]
               }
-
-# nuisances['wz3lnorm']  = {
-               # 'name'  : 'cms_hww_wz3lnorm',
-               # 'samples'  : {
-                   # 'wz' : '1.00',
-                   # },
-               # 'type'  : 'rateparam',
-               # 'cuts'  : [
-                 # 'wh3l_wz_13tev',
-                 # 'wh3l_13tev_ossf',
-                 # 'wh3l_13tev_sssf',
-                # ]
-              # }
 
 
 for n in nuisances.values():
