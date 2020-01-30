@@ -123,10 +123,7 @@ nuisances['PS_whss']  = {
                 'skipCMS' : 1,
                 'type'  : 'lnN',
                 'samples'  : {
-                   'WH_hww'   : '1.037',
-                   'ZH_hww'   : '1.037',
                    'WH_htt'   : '1.037',
-                   'ggZH_hww' : '1.037',
                 },
 }
 
@@ -135,10 +132,7 @@ nuisances['UE_whss']  = {
                 'skipCMS' : 1,
                 'type'  : 'lnN',
                 'samples'  : {
-                   'WH_hww'   : '1.010',
-                   'ZH_hww'   : '1.010',
                    'WH_htt'   : '1.010',
-                   'ggZH_hww' : '1.010',
                },
 }
 
