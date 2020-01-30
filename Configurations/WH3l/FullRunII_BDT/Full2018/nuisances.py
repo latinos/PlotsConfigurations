@@ -206,33 +206,31 @@ nuisances['met'] = {
 }
 
 ##### PS and UE --> NO AVAILABLE FOR VH2j! 
-nuisances['PS']  = {
-    'name'  : 'PS',
-    'kind'  : 'tree',
-    'type'  : 'shape',
-    'samples'  : {
-       'WH_hww' : ['1.037','1.'],
-       'WH_htt' : ['1.037','1.'],
-     },
-    'folderUp': makeMCDirectory('PS'),
-    'folderDown': makeMCDirectory(),
-    'AsLnN'      : '1',
-    'synchronized': False
+nuisances['PS_whss']  = {
+                'name'  : 'PS_whss',
+                'skipCMS' : 1,
+                'type'  : 'lnN',
+                'samples'  : {
+                   'WH_hww'   : '1.037',
+                   'ZH_hww'   : '1.037',
+                   'H_htt'    : '1.037',
+                   'ggZH_hww'   : '1.037',
+                   'ZH_htt'   : '1.037',
+                },
 }
 
-nuisances['UE']  = {
-    'name'  : 'UE',
-    'kind'  : 'tree',
-    'type'  : 'shape',
-    'samples'  : {
-       'WH_hww' : ['1.01','1.'],
-       'WH_htt' : ['1.01','1.'],
-     },
-    'folderUp': makeMCDirectory('UEup'),
-    'folderDown': makeMCDirectory('UEdo'),
-    'AsLnN'      : '1',
-    'synchronized': False
-}
+nuisances['UE_whss']  = {
+                'name'  : 'UE_whss',
+                'skipCMS' : 1,
+                'type'  : 'lnN',
+                'samples'  : {
+                   'WH_hww'   : '1.010',
+                   'ZH_hww'   : '1.010',
+                   'H_htt'    : '1.010',
+                   'ggZH_hww'   : '1.010',
+                   'ZH_htt'   : '1.010',
+               },
+                }
 
 ###### pdf uncertainties
 
