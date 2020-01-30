@@ -405,12 +405,12 @@ samples['Fakes']  = {   'name': [ ] ,
                        'FilesPerJob' : 15 ,
                      }
 '''
-samples['Fakes_ee']  = {   'name': [ ] ,
-                       'weight' : fakeW+'*'+METFilter_DATA+'*(Lepton_pdgId[0]*Lepton_pdgId[1]==11*11)',              #   weight/cut 
-                       'weights' : [ ] ,
-                       'isData': ['all'],
-                       'FilesPerJob' : 15 ,
-                     }
+#samples['Fakes_ee']  = {   'name': [ ] ,
+#                       'weight' : fakeW+'*'+METFilter_DATA+'*(Lepton_pdgId[0]*Lepton_pdgId[1]==11*11)',              #   weight/cut 
+#                       'weights' : [ ] ,
+#                       'isData': ['all'],
+#                       'FilesPerJob' : 15 ,
+#                     }
 
 samples['Fakes_mm']  = {   'name': [ ] ,
                        'weight' : fakeW+'*'+METFilter_DATA+'*(Lepton_pdgId[0]*Lepton_pdgId[1]==13*13)',              #   weight/cut 
@@ -437,8 +437,6 @@ for Run in DataRun :
     for iFile in FileTarget:
     #  samples['Fakes']['name'].append(iFile)
     #  samples['Fakes']['weights'].append(DataTrig[DataSet])
-      samples['Fakes_ee']['name'].append(iFile)
-      samples['Fakes_ee']['weights'].append(DataTrig[DataSet])
       samples['Fakes_mm']['name'].append(iFile)
       samples['Fakes_mm']['weights'].append(DataTrig[DataSet])
       samples['Fakes_em']['name'].append(iFile)
