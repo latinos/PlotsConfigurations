@@ -223,27 +223,27 @@ nuisances['met'] = {
 # PS and UE
 #FIXME: Add PS uncertainty
 
-nuisances['PS_whss']  = {
-                'name'  : 'PS_whss',
+nuisances['PS_zh4l']  = {
+                'name'  : 'PS_zh4l',
                 'skipCMS' : 1,
                 'type'  : 'lnN',
                 'samples'  : {
                    'WH_hww'   : '1.037',
                    'ZH_hww'   : '1.037',
-                   'WH_htt'    : '1.037',
+                   'ZH_htt'    : '1.037',
                    'ggZH_hww'   : '1.037',
               #     'ZH_htt'   : '1.037',
                 },
 }
 
-nuisances['UE_whss']  = {
-                'name'  : 'UE_whss',
+nuisances['UE_zh4l']  = {
+                'name'  : 'UE_zh4l',
                 'skipCMS' : 1,
                 'type'  : 'lnN',
                 'samples'  : {
                    'WH_hww'   : '1.010',
                    'ZH_hww'   : '1.010',
-                   'WH_htt'    : '1.010',
+                   'ZH_htt'    : '1.010',
                    'ggZH_hww'   : '1.010',
  #                  'ZH_htt'   : '1.010',
                },
@@ -379,6 +379,7 @@ nuisances['QCDscale_gg_ACCEPT']  = {
                    'ggH_hww' : '1.027',
                    'ggH_htt' : '1.027',
                    'H_htt'   : '1.027',
+                   'ZH_htt'  : '1.027',
                    'ggZH_hww': '1.027',                   
                    },
                'type'  : 'lnN',
@@ -392,6 +393,7 @@ nuisances['pdf_Higgs_gg']  = {
                    'ggH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH' ,'125.09','pdf','sm'),
                    'ggH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH' ,'125.09','pdf','sm'),
                    'H_htt'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH' ,'125.09','pdf','sm'),
+                   'ZH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH' ,'125.09','pdf','sm'),
                    'ggZH_hww': HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggZH','125.09','pdf','sm'), 
                    'bbH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','bbH' ,'125.09','pdf','sm'),
                    },
@@ -435,6 +437,7 @@ nuisances['pdf_Higgs_gg_ACCEPT']  = {
                    'ggH_hww' : '1.005',
                    'ggH_htt' : '1.005',
                    'H_htt'   : '1.005',
+                   'ZH_htt' : '1.005',
                    'ggZH_hww': '1.005', 
                    },
                'type'  : 'lnN',
@@ -536,3 +539,7 @@ nuisances['stat']  = {
               #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
               'samples' : {}
              }
+
+
+for n in nuisances.values():
+    n['skipCMS'] = 1
