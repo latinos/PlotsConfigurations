@@ -44,12 +44,20 @@ varSS="BDTG_SSSF_bin3"
 
 combineCards.py \
     sssf_PTV_LE150=$DC_SS_Dir/wh3l_13TeV_sssf_PTV_LE150/$varSS/datacard.txt \
-    sssf_PTV_GT150=$DC_SS_Dir/wh3l_13TeV_sssf_PTV_GT150/$varSS/datacard.txt \
     ossf_PTV_LE150=$DC_OS_Dir/wh3l_13TeV_ossf_PTV_LE150/$varOS/datacard.txt \
     ossf_PTV_GT150=$DC_OS_Dir/wh3l_13TeV_ossf_PTV_GT150/$varOS/datacard.txt \
     wh3l_zg=$DC_OS_Dir/wh3l_zg_13TeV/events/datacard.txt \
     wh3l_wz=$DC_OS_Dir/wh3l_wz_13TeV/events/datacard.txt \
     > ${outputDir}/${analysis}_HTXS_Stage1.txt
+
+#combineCards.py \
+#    sssf_PTV_LE150=$DC_SS_Dir/wh3l_13TeV_sssf_PTV_LE150/$varSS/datacard.txt \
+#    ossf_PTV_LE150=$DC_OS_Dir/wh3l_13TeV_ossf_PTV_LE150/$varOS/datacard.txt \
+#    ossf_PTV_GT150=$DC_OS_Dir/wh3l_13TeV_ossf_PTV_GT150/$varOS/datacard.txt \
+#    wh3l_zg=$DC_OS_Dir/wh3l_zg_13TeV/events/datacard.txt \
+#    wh3l_wz=$DC_OS_Dir/wh3l_wz_13TeV/events/datacard.txt \
+#    > ${outputDir}/${analysis}_HTXS_Stage1.txt
+
 
 #combineCards.py \
 #    hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_0_75=$datacardDir/hww2l2v_13TeV_of2j_WH_SS_uu_1j_PTV_0_75/$vars/datacard.txt \
