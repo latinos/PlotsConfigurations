@@ -31,7 +31,7 @@ variables['Lepton_eta'] = {   'name': 'abs(Lepton_eta[0])',
 
 
 variables['Lepton_pt'] = {   'name': 'Lepton_pt[0]',      
-                        'range' : (50,0,500),  
+                        'range' : (40,0,500),  
                         'xaxis' : 'Lepton pt', 
                         'fold' : 3
                         }                       
@@ -64,9 +64,9 @@ variables['METFixEE2017'] = {
 }
 
 variables['PuppiMet_METFixEE2017_diff'] = {
-            'name': "PuppiMET_pt - METFixEE2017_pt",
+            'name': "abs(PuppiMET_pt - METFixEE2017_pt)",
             'range': (40, 0, 100),
-            'xaxis': 'PuppiMET - METfixed2017',
+            'xaxis': '|PuppiMET - METfixed2017|',
             'fold': 3      
 }
 

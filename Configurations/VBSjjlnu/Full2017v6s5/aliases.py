@@ -107,8 +107,6 @@ aliases['Top_pTrw'] = {
      'samples': ['top']
 }
 
-
-
 aliases['fake_weight_corrected'] = {
     'class': 'FakeWeightCorrector',
     'args': ("%s/VBSjjlnu/Full2017v6/corrections/fakeweight_correction.root" % configurations, 
@@ -119,7 +117,7 @@ aliases['fake_weight_corrected'] = {
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         '.L %s/patches/fakeweight_corrector.cc+' % configurations
      ],
-    'samples': "Fake"           
+    'samples': ["Fake"]
 }
 
 
@@ -134,15 +132,15 @@ aliases['fake_weight_corrected'] = {
 #     'samples' : mc      
 # }
 
-aliases['deltaetavbs_reweighting'] = {
-    'class': 'DeltaEtaVbsReweight',
-    'args':("%s/VBSjjlnu/Full2017v6s5/corrections/reweight_ratiodatamc_wjets_deltaetavbs_mu_fit_scaled.txt" % configurations),
-    'linesToAdd' : [
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        '.L %s/VBSjjlnu/Full2017v6s5/corrections/deltaetavbs_reweight.cc+' % configurations
-   ],
-    'samples' : "Wjets"
-}
+# aliases['deltaetavbs_reweighting'] = {
+#     'class': 'DeltaEtaVbsReweight',
+#     'args':("%s/VBSjjlnu/Full2017v6s5/corrections/reweight_ratiodatamc_wjets_deltaetavbs_mu_fit_scaled.txt" % configurations),
+#     'linesToAdd' : [
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         '.L %s/VBSjjlnu/Full2017v6s5/corrections/deltaetavbs_reweight.cc+' % configurations
+#    ],
+#     'samples' : ["Wjets"]
+# }
 
 ##############################################################
 #### Additional variables

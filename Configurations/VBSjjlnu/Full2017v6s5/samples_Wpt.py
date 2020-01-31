@@ -162,30 +162,16 @@ samples['top'] = {
 
 
 samples['Wjets'] = { 'name' :   
-          # nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
-          nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_ext1')
-          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT70_100') # BROKEN
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT200_400')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT400_600')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT600_800')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
-        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
+           nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_Pt50to100')
+          +nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_Pt100to250')
+          +nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_Pt250to400')
+          +nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_Pt400to600')
+          +nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_Pt600toInf'),
+        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch, ######### ADD ewkNLO weight
                     #"* ( (VBS_category==1)*(deltaetavbs_reweighting) + (VBS_category==0) )",
-        'FilesPerJob' : 2,
+        'FilesPerJob' : 4,
        }
 
-# Fix Wjets binned + LO 
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO_ext1', '(LHE_HT < 100)') # to be add ewknloW here!
-addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT100_200',   '(ewknloW)')
-addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT200_400',   '(ewknloW)')
-addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT400_600',   '(ewknloW)')
-addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT600_800',   '(ewknloW)')
-addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT800_1200',  '(ewknloW)')
-addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT1200_2500', '(ewknloW)')
-addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT2500_inf',  '(ewknloW)')
 
 samples['VV']  = { 'name' :  
                nanoGetSampleFiles(directory_bkg,'WmTo2J_ZTo2L_QCD', ) +
