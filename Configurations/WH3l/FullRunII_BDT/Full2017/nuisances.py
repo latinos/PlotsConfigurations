@@ -337,17 +337,17 @@ nuisances['Zg3lnorm']  = {
                 ]
               }
 
-nuisances['wz3lnorm']  = {
+nuisances['WZ3lnorm']  = {
                'name'  : 'CMS_hww_WZ3lnorm',
                'samples'  : {
-                   'wz' : '1.00',
+                   'WZ' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                 'wh3l_wz_13tev',
-                 'wh3l_13tev_ossf',
-                 'wh3l_13tev_sssf',
-                 'wh3l_zg_13tev',
+                 'wh3l_zg_13TeV',
+                 'wh3l_13TeV_ossf',
+                 'wh3l_13TeV_sssf',
+                 'wh3l_wz_13TeV',
                 ]
               }
 
