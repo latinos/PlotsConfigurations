@@ -177,14 +177,14 @@ samples['Wjets'] = { 'name' :
        }
 
 # Fix Wjets binned + LO 
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO_ext1', 'LHE_HT < 100') # to be add ewknloW here!
-addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT100_200',   'ewknloW')
-addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT200_400',   'ewknloW')
-addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT400_600',   'ewknloW')
-addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT600_800',   'ewknloW')
-addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT800_1200',  'ewknloW')
-addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT1200_2500', 'ewknloW')
-addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT2500_inf',  'ewknloW')
+addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO_ext1', '(LHE_HT < 100)') # to be add ewknloW here!
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT100_200',   '(ewknloW)')
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT200_400',   '(ewknloW)')
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT400_600',   '(ewknloW)')
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT600_800',   '(ewknloW)')
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT800_1200',  '(ewknloW)')
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT1200_2500', '(ewknloW)')
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT2500_inf',  '(ewknloW)')
 
 samples['VV']  = { 'name' :  
                nanoGetSampleFiles(directory_bkg,'WmTo2J_ZTo2L_QCD', ) +
@@ -279,3 +279,7 @@ for Run in DataRun :
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
+
+# samples = {
+#   "Wjets": samples["Wjets"]
+# }

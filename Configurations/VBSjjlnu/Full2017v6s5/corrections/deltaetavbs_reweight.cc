@@ -38,7 +38,7 @@ protected:
   string file_mu;
   vector<pair<float, float>> weights_mu; 
 
-  IntValueReader*  deltaEtaVbs{};
+  FloatValueReader*  deltaEtaVbs{};
   IntArrayReader*  Lepton_pdgId{};
 
 };
