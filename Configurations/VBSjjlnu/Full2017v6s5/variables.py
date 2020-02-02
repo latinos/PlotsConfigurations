@@ -64,8 +64,15 @@ variables['METFixEE2017'] = {
 }
 
 variables['PuppiMet_METFixEE2017_diff'] = {
-            'name': "abs(PuppiMET_pt - METFixEE2017_pt)",
-            'range': (40, 0, 100),
+            'name': "PuppiMET_pt - METFixEE2017_pt",
+            'range': (50, -200, 200),
+            'xaxis': '|PuppiMET - METfixed2017|',
+            'fold': 3      
+}
+
+variables['PuppiMet_MET_diff'] = {
+            'name': "PuppiMET_pt - MET_pt",
+            'range': (50, -200, 200),
             'xaxis': '|PuppiMET - METfixed2017|',
             'fold': 3      
 }
@@ -221,38 +228,38 @@ variables['deltaphi_vbs'] = {   'name': 'deltaphi_vbs',
 #                         'fold' : 3
 #                         }
 
-#Zvjets_high
-variables['Zvjets_0'] = {   'name': 'Zvjets_0',      
-                        'range' : (30,-3,3),  
-                        'xaxis' : 'Zep. leading V-jet ', 
-                        'fold' : 3
-                        }
+# #Zvjets_high
+# variables['Zvjets_0'] = {   'name': 'Zvjets_0',      
+#                         'range' : (30,-3,3),  
+#                         'xaxis' : 'Zep. leading V-jet ', 
+#                         'fold' : 3
+#                         }
 
-variables['Zvjets_1'] = {   'name': 'Zvjets_1',      
-                        'range' : (30,-3,3),  
-                        'xaxis' : 'Zep. trailing V-jet ', 
-                        'fold' : 3
-                        }
+# variables['Zvjets_1'] = {   'name': 'Zvjets_1',      
+#                         'range' : (30,-3,3),  
+#                         'xaxis' : 'Zep. trailing V-jet ', 
+#                         'fold' : 3
+#                         }
 
-#Zlep
-variables['Zlep'] = {   'name': 'Zlep',      
-                        'range' : (30,-3,3),  
-                        'xaxis' : 'Zepp. lepton', 
-                        'fold' : 3
-                        }
+# #Zlep
+# variables['Zlep'] = {   'name': 'Zlep',      
+#                         'range' : (30,-3,3),  
+#                         'xaxis' : 'Zepp. lepton', 
+#                         'fold' : 3
+#                         }
 
-#Asym
-variables['Asym_vbs'] = {   'name': 'Asym_vbs',      
-                        'range' : (30,0,1),  
-                        'xaxis' : 'Pt asymmetry VBS jets', 
-                        'fold' : 3
-                        }
+# #Asym
+# variables['Asym_vbs'] = {   'name': 'Asym_vbs',      
+#                         'range' : (30,0,1),  
+#                         'xaxis' : 'Pt asymmetry VBS jets', 
+#                         'fold' : 3
+#                         }
 
-variables['Asym_vjet'] = {   'name': 'Asym_vjet',      
-                        'range' : (30,0,1),  
-                        'xaxis' : 'Pt asymmetry V-jets', 
-                        'fold' : 3
-                        }
+# variables['Asym_vjet'] = {   'name': 'Asym_vjet',      
+#                         'range' : (30,0,1),  
+#                         'xaxis' : 'Pt asymmetry V-jets', 
+#                         'fold' : 3
+#                         }
 
 #Mw_lep 
 # variables['Mw_lep_reco'] = {   'name': 'Mw_lep',      
@@ -273,46 +280,46 @@ variables['w_lep_pt'] = {   'name': 'w_lep_pt',
                         'fold' : 3
                         }
 
-variables['Mww'] = {   'name': 'Mww',      
-                        'range' : (30,0,2000),  
-                        'xaxis' : 'Mww', 
-                        'fold' : 3,
-                        'blind' : {
-                            "res_sig_mjjhigh_ele" :(1000,2000),
-                            "res_sig_mjjhigh_mu" : (1000,2000),
-                            }
-                        }
+# variables['Mww'] = {   'name': 'Mww',      
+#                         'range' : (30,0,2000),  
+#                         'xaxis' : 'Mww', 
+#                         'fold' : 3,
+#                         'blind' : {
+#                             "res_sig_mjjhigh_ele" :(1000,2000),
+#                             "res_sig_mjjhigh_mu" : (1000,2000),
+#                             }
+#                         }
 
-variables['R_ww'] = {   'name': 'R_ww',      
-                        'range' : (30,0,80),  
-                        'xaxis' : 'R_ww', 
-                        'fold' : 3
-                        }
+# variables['R_ww'] = {   'name': 'R_ww',      
+#                         'range' : (30,0,80),  
+#                         'xaxis' : 'R_ww', 
+#                         'fold' : 3
+#                         }
 
-variables['R_mw'] = {   'name': 'R_mw',      
-                        'range' : (30,0,0.6),  
-                        'xaxis' : 'R_mw', 
-                        'fold' : 3
-                        }
+# variables['R_mw'] = {   'name': 'R_mw',      
+#                         'range' : (30,0,0.6),  
+#                         'xaxis' : 'R_mw', 
+#                         'fold' : 3
+#                         }
 
-variables['A_ww'] = {   'name': 'A_ww',      
-                        'range' : (30,0,1.1),  
-                        'xaxis' : 'A_ww', 
-                        'fold' : 3
-                        }
+# variables['A_ww'] = {   'name': 'A_ww',      
+#                         'range' : (30,0,1.1),  
+#                         'xaxis' : 'A_ww', 
+#                         'fold' : 3
+#                         }
 
-#Centrality variables
-variables['Centr_vbs'] = {   'name': 'Centr_vbs',      
-                        'range' : (30,0,3),  
-                        'xaxis' : 'VBS centrality', 
-                        'fold' : 3
-                        }
+# #Centrality variables
+# variables['Centr_vbs'] = {   'name': 'Centr_vbs',      
+#                         'range' : (30,0,3),  
+#                         'xaxis' : 'VBS centrality', 
+#                         'fold' : 3
+#                         }
 
-variables['Centr_ww'] = {   'name': 'Centr_ww',      
-                        'range' : (30,-6,5),  
-                        'xaxis' : 'W boson centrality', 
-                        'fold' : 3
-                        }
+# variables['Centr_ww'] = {   'name': 'Centr_ww',      
+#                         'range' : (30,-6,5),  
+#                         'xaxis' : 'W boson centrality', 
+#                         'fold' : 3
+#                         }
 
 
 # variables['mll'] = {   'name': 'mll',      

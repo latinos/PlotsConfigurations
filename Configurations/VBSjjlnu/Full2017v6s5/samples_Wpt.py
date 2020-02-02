@@ -162,7 +162,8 @@ samples['top'] = {
 
 
 samples['Wjets'] = { 'name' :   
-           nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_Pt50to100')
+          nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_ext1')
+          +nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_Pt50to100')
           +nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_Pt100to250')
           +nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_Pt250to400')
           +nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_Pt400to600')
@@ -171,6 +172,8 @@ samples['Wjets'] = { 'name' :
                     #"* ( (VBS_category==1)*(deltaetavbs_reweighting) + (VBS_category==0) )",
         'FilesPerJob' : 4,
        }
+
+addSampleWeight(samples, "Wjets","WJetsToLNu-LO_ext1",  "Wpt_lhe < 50" )
 
 
 samples['VV']  = { 'name' :  
