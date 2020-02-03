@@ -5,3 +5,4 @@ plot*
 temp/
 dmapelli.cc
 dvalsecc.cc
+*.pyc
