@@ -160,7 +160,7 @@ plot['Wjets']  = {
                   'color':  colors['kRed']-3,
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0   ,
+                  'scale'    : 1.40915   ,
               }
 
 plot['VBS']  = {

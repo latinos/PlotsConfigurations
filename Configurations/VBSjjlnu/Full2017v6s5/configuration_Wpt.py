@@ -8,7 +8,7 @@ tag = 'Wpt'
 outputDir = 'rootFile_'+ tag
 
 # file with TTree aliases
-aliasesFile = 'aliases.py'
+aliasesFile = 'aliases_{}.py'.format(tag)
 
 # file with list of variables
 variablesFile = 'variables.py'
