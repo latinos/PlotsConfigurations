@@ -2,10 +2,10 @@ import os
 import copy
 import inspect
 
-configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # Full2017v6s5
-configurations = os.path.dirname(configurations) # VBSjjlnu
-configurations = os.path.dirname(configurations) # Configurations
+thisfile = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
+conf_folder = os.path.dirname(thisfile) # Full2017v6s5
+vbsjjlnu_folder = os.path.dirname(conf_folder) # VBSjjlnu
+configurations = os.path.dirname(vbsjjlnu_folder) # Configurations
 
 #aliases = {}
 
@@ -14,28 +14,28 @@ mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 ############################################
 # DNN reader
 
-# mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017v6s5/mva/'
-# models_path = '/eos/home-d/dmapelli/public/latino/Full2017v6s5/'
+mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017v6s5/mva/'
+models_path = '/eos/home-d/dmapelli/public/latino/Full2017v6s5/'
 
-# aliases['DNNoutput_boosted'] = {
-#     'class': 'MVAReader',
-#     'args': ( models_path +'boos_sig_mjjincl/models/v10/', False, 0),
-#     'linesToAdd':[
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         'gSystem->Load("libDNNEvaluator.so")',
-#         '.L ' + mva_reader_path + 'mva_reader.cc+', 
-#     ],
-# }
+aliases['DNNoutput_boosted'] = {
+    'class': 'MVAReaderBoosted',
+    'args': ( models_path +'boos_sig_mjjincl/models/v12/', False, 0),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L ' + mva_reader_path + 'mva_reader_boosted.cc+', 
+    ],
+}
 
-# aliases['DNNoutput_resolved'] = {
-#     'class': 'MVAReader',
-#     'args': ( models_path+ '/res_sig_mjjincl/models/v11/', False, 1),
-#     'linesToAdd':[
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         'gSystem->Load("libDNNEvaluator.so")',
-#         '.L ' + mva_reader_path + 'mva_reader.cc+', 
-#     ],
-# }
+aliases['DNNoutput_resolved'] = {
+    'class': 'MVAReaderResolved',
+    'args': ( models_path+ '/res_sig_mjjincl/models/v11/', False, 1),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L ' + mva_reader_path + 'mva_reader_resolved.cc+', 
+    ],
+}
 
 
 ############################################
@@ -109,7 +109,7 @@ aliases['Top_pTrw'] = {
 
 aliases['fake_weight_corrected'] = {
     'class': 'FakeWeightCorrector',
-    'args': ("%s/VBSjjlnu/Full2017v6/corrections/fakeweight_correction.root" % configurations, 
+    'args': ("%s/corrections/fakeweight_correction.root" % conf_folder, 
                 "mvaFall17V1Iso_WP90", "fakeW_ele_mvaFall17V1Iso_WP90_mu_cut_Tight_HWWW_mu10_ele35", 
                 os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v5/mvaFall17V1Iso_WP90/EleFR_jet35.root",
                 os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v5/mvaFall17V1Iso_WP90/ElePR.root"),
@@ -132,62 +132,25 @@ aliases['fake_weight_corrected'] = {
 #     'samples' : mc      
 # }
 
-# aliases['deltaetavbs_reweighting'] = {
-#     'class': 'DeltaEtaVbsReweight',
-#     'args':("%s/VBSjjlnu/Full2017v6s5/corrections/reweight_ratiodatamc_wjets_deltaetavbs_mu_fit_scaled.txt" % configurations),
-#     'linesToAdd' : [
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         '.L %s/VBSjjlnu/Full2017v6s5/corrections/deltaetavbs_reweight.cc+' % configurations
-#    ],
-#     'samples' : ["Wjets"]
-# }
+reweight_path = conf_folder+"/corrections/corr_factors/reweight_wjets_nohorns_"
 
+aliases['deltaetavbs_reweight'] = {
+    'class': 'ReweightDeltaEta',
+    'args':(reweight_path+"deltaetavbs_ele.root", reweight_path+"deltaetavbs_mu.root", "wf_norm", 7.6),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L %s/corrections/reweight_deltaetavbs.cc+' % conf_folder
+   ],
+    'samples' : ["Wjets"]
+}
 
-# aliases['Wpt_lhe'] = {
-#     'class': 'WptLHE',
-#     'args':(),
-#     'linesToAdd' : [
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         '.L %s/VBSjjlnu/Full2017v6s5/macros/Wpt_lhe.cc+' % configurations
-#    ],
-#     'samples' : ["Wjets"]
-# }
+aliases['leptonpt_reweight'] = {
+    'class': 'ReweightLeptonPt',
+    'args':(reweight_path+"leptonpt_ele.root", reweight_path+"leptonpt_mu.root", "wf_norm", 500),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L %s/corrections/reweight_leptonpt.cc+' % conf_folder
+   ],
+    'samples' : ["Wjets"]
+}
 
-##############################################################
-#### Additional variables
-
-# aliases['deltaphi_lep_whad'] = {
-#             'class': 'DeltaPhiVars',
-#             'args': ("deltaphi_lep_whad"),
-#             'linesToAdd' : [
-#                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#                 '.L {}/VBSjjlnu/Full2017v6s5/macros/deltaphivars_class.cc+'.format(configurations)
-#             ]           
-# }
-
-# aliases['deltaphi_lep_jet0'] = {
-#             'class': 'DeltaPhiVars',
-#             'args': ("deltaphi_lep_jet0"),
-#             'linesToAdd' : [
-#                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#                 '.L {}/VBSjjlnu/Full2017v6s5/macros/deltaphivars_class.cc+'.format(configurations)
-#                 ]  
-# }
-
-# aliases['deltaphi_lep_vbsjets'] = {
-#             'class': 'DeltaPhiVars',
-#             'args': ("deltaphi_lep_vbsjets"),
-#             'linesToAdd' : [
-#                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#                 '.L {}/VBSjjlnu/Full2017v6s5/macros/deltaphivars_class.cc+'.format(configurations)
-#             ]  
-# }
-
-# aliases['deltaphi_lep_ww'] = {
-#             'class': 'DeltaPhiVars',
-#             'args': ("deltaphi_lep_ww"),
-#             'linesToAdd' : [
-#                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#                 '.L {}/VBSjjlnu/Full2017v6s5/macros/deltaphivars_class.cc+'.format(configurations)
-#             ]  
-# }

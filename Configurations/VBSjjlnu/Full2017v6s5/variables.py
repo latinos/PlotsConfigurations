@@ -16,8 +16,14 @@ variables['DNNoutput'] = {
     'xaxis': 'DNN output',
     'fold': 3 ,
     'blind': {
-        # "lowen_CR_looseVBS_ele": [0.7,1],
-        # "lowen_CR_looseVBS_mu": [0.7,1],
+        "res_sig_mjjhigh_ele": [0.7,1],
+        "res_sig_mjjhigh_mu": [0.7,1],
+        "res_sig_mjjincl_ele": [0.7,1],
+        "res_sig_mjjincl_mu": [0.7,1], 
+        "boos_sig_mjjhigh_ele": [0.7,1],
+        "boos_sig_mjjhigh_mu": [0.7,1],
+        "boos_sig_mjjincl_ele": [0.7,1],
+        "boos_sig_mjjincl_mu": [0.7,1],
     }
 }
 
@@ -56,26 +62,26 @@ variables['MET_pt'] = {   'name': 'MET_pt',
                         'fold' : 3
                         }
 
-variables['METFixEE2017'] = {
-            'name': "METFixEE2017_pt",
-            'range': (30, 0, 300),
-            'xaxis': 'MET fixed 2017',
-            'fold': 3      
-}
+# variables['METFixEE2017'] = {
+#             'name': "METFixEE2017_pt",
+#             'range': (30, 0, 300),
+#             'xaxis': 'MET fixed 2017',
+#             'fold': 3      
+# }
 
-variables['PuppiMet_METFixEE2017_diff'] = {
-            'name': "PuppiMET_pt - METFixEE2017_pt",
-            'range': (50, -200, 200),
-            'xaxis': '|PuppiMET - METfixed2017|',
-            'fold': 3      
-}
+# variables['PuppiMet_METFixEE2017_diff'] = {
+#             'name': "PuppiMET_pt - METFixEE2017_pt",
+#             'range': (50, -200, 200),
+#             'xaxis': '|PuppiMET - METfixed2017|',
+#             'fold': 3      
+# }
 
-variables['PuppiMet_MET_diff'] = {
-            'name': "PuppiMET_pt - MET_pt",
-            'range': (50, -200, 200),
-            'xaxis': '|PuppiMET - METfixed2017|',
-            'fold': 3      
-}
+# variables['PuppiMet_MET_diff'] = {
+#             'name': "PuppiMET_pt - MET_pt",
+#             'range': (50, -200, 200),
+#             'xaxis': '|PuppiMET - METfixed2017|',
+#             'fold': 3      
+# }
 
 
 # variables['recoMET_pz'] = {   'name': 'recoMET_pz',      
@@ -87,24 +93,24 @@ variables['PuppiMet_MET_diff'] = {
 
 #jets 
 variables['nJets'] = {   'name': 'Sum$(CleanJet_pt >= 30)',      
-                        'range' : (10,0,10),  
+                        'range' : (6,4,10),  
                         'xaxis' : 'nJets >= 30 GeV', 
                         'fold' : 3
                         }
 
-# Minimum pt 20 GeV in NanoGardening step
-variables['N_jets_central'] = {   'name': 'N_jets_central',      
-                        'range' : (10,0,10),  
-                        'xaxis' : '#jets between VBS jets', 
-                        'fold' : 3
-                        }
+# # Minimum pt 20 GeV in NanoGardening step
+# variables['N_jets_central'] = {   'name': 'N_jets_central',      
+#                         'range' : (10,0,10),  
+#                         'xaxis' : '#jets between VBS jets', 
+#                         'fold' : 3
+#                         }
 
 
-variables['N_jets_forward'] = {   'name': 'N_jets_forward',      
-                        'range' : (10,0,10),  
-                        'xaxis' : '#jets outside VBS jets', 
-                        'fold' : 3
-                    }
+# variables['N_jets_forward'] = {   'name': 'N_jets_forward',      
+#                         'range' : (10,0,10),  
+#                         'xaxis' : '#jets outside VBS jets', 
+#                         'fold' : 3
+#                     }
 
 
 # VBS vars
@@ -150,6 +156,7 @@ variables['vjet_1_pt'] = {   'name': 'vjet_1_pt',
                         'xaxis' : 'trailing V-jet pt', 
                         'fold' : 3
                         }
+
 
 # variables['vbs_etaprod'] = {   'name': 'vbs_0_eta*vbs_1_eta',      
 #                         'range' : (30,-10,10),  
@@ -335,11 +342,11 @@ variables['nvtx'] = {  'name': 'PV_npvs',
                         'fold': 3
                 }
 
-variables["qgl"] = { 'name': 'Jet_qgl[CleanJet_jetIdx[0]]',
-                    'range': (40, 0,1),
-                    'xaxis': 'Quark/gluon discriminator',
-                    'fold': 3
-}
+# variables["qgl"] = { 'name': 'Jet_qgl[CleanJet_jetIdx[0]]',
+#                     'range': (40, 0,1),
+#                     'xaxis': 'Quark/gluon discriminator',
+#                     'fold': 3
+# }
 
 
 # variables['deltaphi_lep_whad'] = {

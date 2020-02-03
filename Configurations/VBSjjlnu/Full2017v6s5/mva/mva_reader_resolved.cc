@@ -11,16 +11,16 @@
 using namespace std;
 using namespace NNEvaluation;
 
-#ifndef MVAREADER_H
-#define MVAREADER_H
+#ifndef MVAREADERResolved_H
+#define MVAREADERResolved_H
 
-class MVAReader : public multidraw::TTreeFunction {
+class MVAReaderResolved : public multidraw::TTreeFunction {
 public:
   
-  MVAReader(const char* model_path, bool verbose, int category);
+  MVAReaderResolved(const char* model_path, bool verbose, int category);
 
-  char const* getName() const override { return "MVAReader"; }
-  TTreeFunction* clone() const override { return new MVAReader(model_path_.c_str(), verbose, category_); }
+  char const* getName() const override { return "MVAReaderResolved"; }
+  TTreeFunction* clone() const override { return new MVAReaderResolved(model_path_.c_str(), verbose, category_); }
 
   bool initialized_ = false;
   std::string model_path_;
@@ -67,7 +67,7 @@ protected:
 };
 
 
-MVAReader::MVAReader(const char* model_path, bool verbose, int category):
+MVAReaderResolved::MVAReaderResolved(const char* model_path, bool verbose, int category):
     model_path_(model_path), 
     verbose(verbose),
     category_(category)
@@ -78,7 +78,7 @@ MVAReader::MVAReader(const char* model_path, bool verbose, int category):
 
 
 double
-MVAReader::evaluate(unsigned)
+MVAReaderResolved::evaluate(unsigned)
 {
   // Run only if 
   if ( *(VBS_category->Get()) != category_) {
@@ -120,7 +120,7 @@ MVAReader::evaluate(unsigned)
 }
 
 void
-MVAReader::bindTree_(multidraw::FunctionLibrary& _library)
+MVAReaderResolved::bindTree_(multidraw::FunctionLibrary& _library)
 {  
   _library.bindBranch(VBS_category, "VBS_category");
   _library.bindBranch(mjj_vbs, "mjj_vbs");

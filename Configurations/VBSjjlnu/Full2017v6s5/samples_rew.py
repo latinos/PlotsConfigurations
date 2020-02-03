@@ -124,7 +124,7 @@ samples['DY'] = {    'name'   :
   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-2500toInf')
                                 ,
         'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*' + DY_photon_filter, # ewknloW ADD ME, admin
-        'FilesPerJob' : 3,
+        'FilesPerJob' : 6,
                   }
 
 addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-100to200_ext1', ptllDYW_LO  )
@@ -162,19 +162,31 @@ samples['top'] = {
 
 
 samples['Wjets'] = { 'name' :   
+          # nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
           nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_ext1')
-          +nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_Pt50to100')
-          +nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_Pt100to250')
-          +nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_Pt250to400')
-          +nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_Pt400to600')
-          +nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_Pt600toInf'),
-        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch, ######### ADD ewkNLO weight
-                    #"* ( (VBS_category==1)*(deltaetavbs_reweighting) + (VBS_category==0) )",
-        'FilesPerJob' : 6,
+          #+ nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT70_100') # add me
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT200_400')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT400_600')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT600_800')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf')
+        ,
+        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch
+                 +'*( (VBS_category==1)*(deltaetavbs_reweight*leptonpt_reweight) + (VBS_category==0) )', # reweight lowenergy
+        'FilesPerJob' : 8,
        }
-
-addSampleWeight(samples, "Wjets","WJetsToLNu-LO_ext1",  "Wpt_lhe < 50" )
-
+#
+# Fix Wjets binned + LO 
+addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO_ext1', '(LHE_HT < 100)') # to be add ewknloW here!
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT100_200',   'ewknloW')
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT200_400',   'ewknloW')
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT400_600',   'ewknloW')
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT600_800',   'ewknloW')
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT800_1200',  'ewknloW')
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT1200_2500', 'ewknloW')
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT2500_inf',  'ewknloW')
 
 samples['VV']  = { 'name' :  
                nanoGetSampleFiles(directory_bkg,'WmTo2J_ZTo2L_QCD', ) +
@@ -187,7 +199,7 @@ samples['VV']  = { 'name' :
                nanoGetSampleFiles(directory_bkg,'WpToLNu_ZTo2J_QCD',) ,
               #  nanoGetSampleFiles(directory_bkg,'ZTo2L_ZTo2J_QCD',  ) , #admin, ADD ME
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-        'FilesPerJob' : 3,
+        'FilesPerJob' : 6,
 }
 
 ############ VVV ############
@@ -198,7 +210,7 @@ samples['VVV']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'ZZZ')
                                 + nanoGetSampleFiles(directory_bkg,'WWW'),
                                 #+ nanoGetSampleFiles(directory,'WWG'), #should this be included? or is it already taken into account in the WW sample?
                     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch  ,
-                    'FilesPerJob' : 5,
+                    'FilesPerJob' : 6,
                   }
 
 ############## VBF-V ########
@@ -228,7 +240,7 @@ samples['VBS']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J'),
                #nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J' ),
        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-       'FilesPerJob' : 4,
+       'FilesPerJob' : 5,
 }
 
 #fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP + '_mu10_ele35'
@@ -241,7 +253,7 @@ samples['Fake'] = {
   'weight': METFilter_DATA+'*'+fakeW,
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 14
+  'FilesPerJob': 20
 }
 
 for _, sd in DataRun:
@@ -259,7 +271,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'weight' : METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],
-                       'FilesPerJob' : 15,
+                       'FilesPerJob' : 20,
                   }
 
 for Run in DataRun :
@@ -271,5 +283,6 @@ for Run in DataRun :
 
 
 # samples = {
-#   "Wjets": samples["Wjets"]
+#   "Wjets": samples["Wjets"], 
+#   #"Fake": samples["Fake"]
 # }

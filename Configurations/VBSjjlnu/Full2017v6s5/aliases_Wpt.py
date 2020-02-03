@@ -143,15 +143,15 @@ aliases['fake_weight_corrected'] = {
 # }
 
 
-# aliases['Wpt_lhe'] = {
-#     'class': 'WptLHE',
-#     'args':(),
-#     'linesToAdd' : [
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         '.L %s/VBSjjlnu/Full2017v6s5/macros/Wpt_lhe.cc+' % configurations
-#    ],
-#     'samples' : ["Wjets"]
-# }
+aliases['Wpt_lhe'] = {
+    'class': 'WptLHE',
+    'args':(),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L %s/VBSjjlnu/Full2017v6s5/macros/Wpt_lhe.cc+' % configurations
+   ],
+    'samples' : ["Wjets"]
+}
 
 ##############################################################
 #### Additional variables

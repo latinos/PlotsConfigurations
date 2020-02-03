@@ -1,23 +1,23 @@
 # example of configuration file
 treeName= 'Events'
 
-
-tag = '2017v6s5'
+# Reweight deltaeta_vbs variables for Wjets
+tag = 'rew'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_'+tag
+outputDir = 'rootFile_'+ tag
 
 # file with TTree aliases
-aliasesFile = 'aliases.py'
+aliasesFile = 'aliases_{}.py'.format(tag)
 
 # file with list of variables
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
+cutsFile = 'cuts_{}.py'.format(tag) 
 
 # file with list of samples
-samplesFile = 'samples.py' 
+samplesFile = 'samples_{}.py'.format(tag) 
 
 # file with list of samples
 plotFile = 'plot.py' 
@@ -33,7 +33,7 @@ outputDirPlots = 'plot_'+tag
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'
+outputDirDatacard = 'datacards_'+tag
 
 
 # structure file for datacard
