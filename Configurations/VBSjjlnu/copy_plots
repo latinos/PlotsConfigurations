@@ -2,6 +2,7 @@
 
 from __future__ import print_function
 import os
+import pwd
 import sys
 import argparse
 from collections import defaultdict
@@ -97,7 +98,14 @@ os.system("cp {0}/index.php {0}/{1}/;\
             cp {0}/index.php {0}/{1}/{2}/configuration/rootFile*/;  \
             cp {0}/index.php {0}/{1}/{2}/configuration/datacards*/;".format(args.prefix, args.outputdir, args.name))
 
+web_path = {
+    "dvalsecc": "https://dvalsecc.web.cern.ch/dvalsecc",
+    "dmapelli": "https://dmapelli.web.cern.ch/dmapelli/latinos/VBSjjlnu",
+}
+
+username = pwd.getpwuid( os.getuid() )[ 0 ]
+
 for cut in sorted(cuts):
-    print("{:<20} >>> https://dvalsecc.web.cern.ch/dvalsecc/{}/{}/{}".format(cut,args.outputdir, args.name, cut))
+    print("{:<20} >>> {}/{}/{}/{}".format(cut, username,args.outputdir, args.name, cut))
 
 print("DONE!")
