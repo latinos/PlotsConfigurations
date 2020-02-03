@@ -627,19 +627,19 @@ nuisances['TopPtRew']  = {
 
 
 phase_spaces = [
-   'res_sig_mjjincl','res_sig_mjjlow','res_sig_mjjhigg',
-   'res_topcr_mjjincl','res_topcr_mjjlow','res_topcr_mjjhigg',
-   'res_wjetcr_mjjincl','res_wjetcr_mjjlow','res_wjetcr_mjjhigg',
-   'res_sig_mjjincl','res_sig_mjjlow','res_sig_mjjhigg',
-   'res_topcr_mjjincl','res_topcr_mjjlow','res_topcr_mjjhigg',
-   'res_wjetcr_mjjincl','res_wjetcr_mjjlow','res_wjetcr_mjjhigg',
+   'res_sig_mjjincl','res_sig_mjjlow','res_sig_mjjhigh',
+   'res_topcr_mjjincl','res_topcr_mjjlow','res_topcr_mjjhigh',
+   'res_wjetcr_mjjincl','res_wjetcr_mjjlow','res_wjetcr_mjjhigh',
+   'res_sig_mjjincl','res_sig_mjjlow','res_sig_mjjhigh',
+   'res_topcr_mjjincl','res_topcr_mjjlow','res_topcr_mjjhigh',
+   'res_wjetcr_mjjincl','res_wjetcr_mjjlow','res_wjetcr_mjjhigh',
 
-   'boost_sig_mjjincl','boost_sig_mjjlow','boost_sig_mjjhigg',
-   'boost_topcr_mjjincl','boost_topcr_mjjlow','boost_topcr_mjjhigg',
-   'boost_wjetcr_mjjincl','boost_wjetcr_mjjlow','boost_wjetcr_mjjhigg',
-   'boost_sig_mjjincl','boost_sig_mjjlow','boost_sig_mjjhigg',
-   'boost_topcr_mjjincl','boost_topcr_mjjlow','boost_topcr_mjjhigg',
-   'boost_wjetcr_mjjincl','boost_wjetcr_mjjlow','boost_wjetcr_mjjhigg'
+   'boost_sig_mjjincl','boost_sig_mjjlow','boost_sig_mjjhigh',
+   'boost_topcr_mjjincl','boost_topcr_mjjlow','boost_topcr_mjjhigh',
+   'boost_wjetcr_mjjincl','boost_wjetcr_mjjlow','boost_wjetcr_mjjhigh',
+   'boost_sig_mjjincl','boost_sig_mjjlow','boost_sig_mjjhigh',
+   'boost_topcr_mjjincl','boost_topcr_mjjlow','boost_topcr_mjjhigh',
+   'boost_wjetcr_mjjincl','boost_wjetcr_mjjlow','boost_wjetcr_mjjhigh'
 ]
 phase_spaces_fl = []
 for ph in phase_spaces: phase_spaces_fl+= [ph+"_ele", ph+"_mu"]

@@ -57,7 +57,7 @@ DeltaEtaVbsReweight::DeltaEtaVbsReweight(const char* file_mu) :
     float w; 
     pair<float, float> p;
     while (inputfile_mu >> bin_lowedge >> w){
-      cout << bin_lowedge << " " << w << endl;
+      //cout << bin_lowedge << " " << w << endl;
       p.first = bin_lowedge;
       p.second = w;
       weights_mu.push_back(p);
