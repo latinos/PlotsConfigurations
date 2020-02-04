@@ -626,14 +626,15 @@ nuisances['TopPtRew']  = {
          }
 
 
-phase_spaces = [
+phase_spaces_res = [
    'res_sig_mjjincl','res_sig_mjjlow','res_sig_mjjhigh',
    'res_topcr_mjjincl','res_topcr_mjjlow','res_topcr_mjjhigh',
    'res_wjetcr_mjjincl','res_wjetcr_mjjlow','res_wjetcr_mjjhigh',
    'res_sig_mjjincl','res_sig_mjjlow','res_sig_mjjhigh',
    'res_topcr_mjjincl','res_topcr_mjjlow','res_topcr_mjjhigh',
    'res_wjetcr_mjjincl','res_wjetcr_mjjlow','res_wjetcr_mjjhigh',
-
+]
+phase_spaces_boost = [
    'boost_sig_mjjincl','boost_sig_mjjlow','boost_sig_mjjhigh',
    'boost_topcr_mjjincl','boost_topcr_mjjlow','boost_topcr_mjjhigh',
    'boost_wjetcr_mjjincl','boost_wjetcr_mjjlow','boost_wjetcr_mjjhigh',
@@ -642,7 +643,8 @@ phase_spaces = [
    'boost_wjetcr_mjjincl','boost_wjetcr_mjjlow','boost_wjetcr_mjjhigh'
 ]
 phase_spaces_fl = []
-for ph in phase_spaces: phase_spaces_fl+= [ph+"_ele", ph+"_mu"]
+for ph in phase_spaces_res: phase_spaces_fl+= [ph+"_ele", ph+"_mu"]
+for ph in phase_spaces_boost: phase_spaces_fl+= [ph+"_ele", ph+"_mu"]
 
 nuisances['Top_norm']  = {
                'name'  : 'CMS_Top_norm',
@@ -653,16 +655,23 @@ nuisances['Top_norm']  = {
                'cuts'  : phase_spaces_fl
               }
 
-nuisances['Wjets_norm']  = {
-               'name'  : 'CMS_Wjets_norm',
+nuisances['Wjets_norm_e']  = {
+               'name'  : 'CMS_Wjets_norm_e',
                'samples'  : {
                    'Wjets' : '1.00',
                    },
                'type'  : 'rateParam',
-               'cuts'  : phase_spaces_fl
+               'cuts'  : [f+"_ele" for f in phase_spaces]
               }
 
-
+nuisances['Wjets_norm_m']  = {
+               'name'  : 'CMS_Wjets_norm_m',
+               'samples'  : {
+                   'Wjets' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [f+"_mu" for f in phase_spaces]
+              }
 
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
