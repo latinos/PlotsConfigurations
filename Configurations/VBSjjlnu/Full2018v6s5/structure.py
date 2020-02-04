@@ -9,12 +9,7 @@ structure['DY']  = {
                   'isData'   : 0
               }
 
-structure['singleTop']  = {  
-                  'isSignal' : 0,
-                  'isData'   : 0
-              }
-
-structure['ttbar']  = {  
+structure['top']  = {  
                   'isSignal' : 0,
                   'isData'   : 0
               }
