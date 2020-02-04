@@ -16,6 +16,12 @@ parser.add_argument("-n", "--name", type=str, help="Production name")
 parser.add_argument("-th", "--threads", type=int, default=4, help="Number of threads")
 args = parser.parse_args()
 
+web_path = {
+    "dvalsecc": "https://dvalsecc.web.cern.ch/dvalsecc",
+    "dmapelli": "https://dmapelli.web.cern.ch/dmapelli/latinos/VBSjjlnu",
+}
+username = pwd.getpwuid( os.getuid() )[ 0 ]
+
 cuts = {}
 exec(open(args.config).read())
 exec(open(cutsFile).read())
@@ -64,7 +70,7 @@ def do_rsync(args):
         f.write(cuts[cut].replace("     ", " "))
     # remove list of files file
     os.system("rm {}".format(file))
-    print("{:<20} >>> https://dvalsecc.web.cern.ch/dvalsecc/{}/{}/{}".format(cut,outputdir,name, cut))
+    print("{:<20} >>> {}/{}/{}/{}".format(cut, web_path[username] ,outputdir,name, cut))
             
 
 print(jobs)
@@ -98,14 +104,7 @@ os.system("cp {0}/index.php {0}/{1}/;\
             cp {0}/index.php {0}/{1}/{2}/configuration/rootFile*/;  \
             cp {0}/index.php {0}/{1}/{2}/configuration/datacards*/;".format(args.prefix, args.outputdir, args.name))
 
-web_path = {
-    "dvalsecc": "https://dvalsecc.web.cern.ch/dvalsecc",
-    "dmapelli": "https://dmapelli.web.cern.ch/dmapelli/latinos/VBSjjlnu",
-}
-
-username = pwd.getpwuid( os.getuid() )[ 0 ]
-
 for cut in sorted(cuts):
-    print("{:<20} >>> {}/{}/{}/{}".format(cut, username,args.outputdir, args.name, cut))
+    print("{:<20} >>> {}/{}/{}/{}".format(cut, web_path[username] ,args.outputdir, args.name, cut))
 
 print("DONE!")
