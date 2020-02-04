@@ -9,15 +9,52 @@ import CMS_lumi, tdrstyle
 import numpy as np
 
 import ROOT
+
+def setPalette(signals,color='r'):
+   initialized = False
+   stops = [0.00, 0.5, 1.00]
+   if color == 'r':
+     red   = [0.50, 0.75, 1.00]
+     green = [0.00, 0.00, 0.00]
+     blue  = [0.00, 0.00, 0.00]
+   elif color == 'b':
+     red   = [0.00, 0.00, 0.00]
+     green = [0.00, 0.00, 0.00]
+     blue  = [0.50, 0.75, 1.00]
+   elif color == 'g':
+     red   = [0.00, 0.00, 0.00]
+     green = [0.50, 0.75, 1.00]
+     blue  = [0.00, 0.00, 0.00]
+   else:
+     red   = [1.00, 0., 0.00]
+     green = [0.00, 1.0, 0.00]
+     blue  = [0.00, 0., 1.00]
+
+   s = np.array(stops)
+   r = np.array(red)
+   g = np.array(green)
+   b = np.array(blue)
+   colors = []
+   if not initialized:
+      icolor = ROOT.TColor.CreateGradientColorTable(len(s), s, r, g, b, len(signals))
+      ROOT.gStyle.SetNumberContours(len(signals))
+      initialized = True
+#      for i in range(len(signals)): 
+#        colors.append(icolor+i)
+#      initialized = True
+#
+#   cols = np.array(colors)
+#   ROOT.gStyle.SetPalette(len(signals),cols)
+
+
+
+
 ROOT.gSystem.Load("libHiggsAnalysisCombinedLimit")
 
 from HiggsAnalysis.CombinedLimit.DatacardParser import *
 
-
 ## Style features
 tdrstyle.setTDRStyle()
-
-
 
 
 parser = OptionParser()
@@ -34,9 +71,17 @@ DC = parseCard(file(args[0]), options)
 
 signals_orig     = DC.list_of_signals()
 signals = []
+signals_ggH = []
+signals_qqH = []
+signals_VH = []
+
 
 for s in signals_orig:
-  if not 'htt' in s: signals.append(s)
+  signals.append(s)
+  #if not 'htt' in s or 'ttH' in s or 'VHlep' in s: signals.append(s)
+  if 'ggH' in s: signals_ggH.append(s)
+  elif 'qqH' in s: signals_qqH.append(s)
+  elif 'WH' in s or 'ZH' in s: signals_VH.append(s)
 
 signals = sorted(signals, key=lambda s: s.lower())
 
@@ -52,6 +97,7 @@ for i in sorted(channels_orig, reverse=True):
 
 for c in channels:
   if "Top" in c or "DYtt" in c or "WW" in c or "wh3l_wz" in c or "wh3l_zg" in c or "zh4l_ZZ" in c: continue
+  if not "2j" in c: continue
   overallSignalRate[c] = OrderedDict()
   overallTotalSignal[c] = 0.
   for s in signals:
@@ -70,6 +116,7 @@ ncat=0
 combChannelsToConsider = []
 for k in channels:
   if "Top" in k or "DYtt" in k or "WW" in k or "wh3l_wz" in k or "wh3l_zg" in k or "zh4l_ZZ" in k: continue
+  if not "2j" in k: continue
   if overallTotalSignal[k] == 0: continue
   ncat+=1
   combChannelsToConsider.append(k)
@@ -81,8 +128,8 @@ for s in signals:
 frame = histos[list(histos)[0]].Clone()# histos.items()[0].Clone()
 frame.GetYaxis().SetRangeUser(0,1)
 frame.GetYaxis().SetTitle("Signal fraction")
-frame.GetXaxis().SetLabelSize(0.05)
-frame.GetYaxis().SetLabelSize(0.05)
+frame.GetXaxis().SetLabelSize(0.03)
+frame.GetYaxis().SetLabelSize(0.04)
 frame.GetYaxis().SetTitleSize(0.05)
 frame.GetYaxis().SetTitleOffset(1.1)
 frame.SetTitle("")
@@ -91,22 +138,25 @@ frame.SetStats(0)
 events = {}
 #ROOT.TColor.SetPalette(51)
 #cols = ROOT.TColor.GetPalette()
-stops = [0.00, 0.5, 1.00]
-red   = [1.00, 0., 0.00]
-green = [0.00, 1.0, 0.00]
-blue  = [0.00, 0., 1.00]
-s = np.array(stops)
-r = np.array(red)
-g = np.array(green)
-b = np.array(blue)
-ROOT.TColor.CreateGradientColorTable(len(s), s, r, g, b, len(signals))
-ROOT.gStyle.SetNumberContours(len(signals))
+#stops = [0.00, 0.5, 1.00]
+#red   = [1.00, 0., 0.00]
+#green = [0.00, 1.0, 0.00]
+#blue  = [0.00, 0., 1.00]
+#s = np.array(stops)
+#r = np.array(red)
+#g = np.array(green)
+#b = np.array(blue)
+#ROOT.TColor.CreateGradientColorTable(len(s), s, r, g, b, len(signals))
+#ROOT.gStyle.SetNumberContours(len(signals))
 
 
 for i,c in enumerate(combChannelsToConsider):
 #  if overallTotalSignal[c] == 0: continue
   frame.GetXaxis().SetBinLabel(i+1,c)
   for num,s in enumerate(overallSignalRate[c]):
+    if 'ggH' in s: setPalette(signals_ggH,'r')
+    elif 'qqH' in s: setPalette(signals_qqH,'b')
+    elif 'WH' in s or 'ZH' in s: setPalette(signals_VH,'g')
     histos[s].SetBinContent(i+1,overallSignalRate[c][s]/overallTotalSignal[c])
     histos[s].SetFillColor(ROOT.TColor.GetColorPalette(num))
     histos[s].SetLineColor(ROOT.TColor.GetColorPalette(num))
@@ -165,7 +215,7 @@ CMS_lumi.CMS_lumi(canvas, 4, iPos)
 
 
 events = ROOT.TLatex()
-events.SetTextSize(0.033)
+events.SetTextSize(0.03)
 events.SetTextAngle(0)
 events.SetTextAlign(22)
 

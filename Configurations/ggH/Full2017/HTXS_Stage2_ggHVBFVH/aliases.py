@@ -117,7 +117,7 @@ aliases['bReq'] = {
 # CR definitions
 
 aliases['topcr'] = {
-    'expr': 'mtw2>30 && mll>50 && ((zeroJet && !bVeto) || bReq)'
+    'expr': 'mtw2>30 && mll>50 && ((zeroJet && !bVeto) || bReq)' #mtw2>30??
 }
 
 aliases['dycr'] = {
@@ -131,7 +131,7 @@ aliases['wwcr'] = {
 # SR definition
 
 aliases['sr'] = {
-    'expr': 'mth>60 && mtw2>30 && bVeto'
+    'expr': 'mth>60 && mth<125 && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) && mtw2>30 && bVeto'
 }
 
 # B tag scale factors
