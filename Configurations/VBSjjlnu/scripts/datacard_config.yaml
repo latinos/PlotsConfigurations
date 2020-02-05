@@ -1,6 +1,10 @@
 
 -   datacard_name: "DNN"
-    basedir:  "Full2017v6s5/datacards_rew"
+    folders:  
+        - name: 2017
+          basedir: "Full2017v6s5/datacards_rew"
+        - name: 2018
+          basedir: "Full2018v6s5/datacards_rew"
     phase_spaces:
         -   name: SR_res_ele
             cut: res_sig_mjjincl_ele

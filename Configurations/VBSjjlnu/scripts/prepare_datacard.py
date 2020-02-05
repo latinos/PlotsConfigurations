@@ -20,9 +20,12 @@ for datac in config:
         os.makedirs(outdir)
 
     cards= []
-    for card in datac["phase_spaces"] :
-        cards.append("{0}={1}/{2}/{3}/datacard.txt".format(card["name"], args.basedir + "/"+ datac["basedir"],
-                                                            card["cut"], card["var"]))
+    for folder in datac["folders"]:
+        for card in datac["phase_spaces"] :
+            cards.append("{0}_{1}={2}/{3}/{4}/datacard.txt".format(
+                                card["name"], folder["name"],  args.basedir + "/" + folder["basedir"],
+                                                                card["cut"], card["var"]))
+    print(cards)
 
     os.system("combineCards.py {} > {}/combined_{}.txt".format(" ".join(cards), outdir, datac["datacard_name"]))
     
@@ -30,7 +33,9 @@ for datac in config:
 
     os.system("text2workspace.py {0}/combined_{1}.txt -o {0}/combined_{1}.root".format(outdir, datac["datacard_name"]))
 
-    print(">Running combine")
-    os.system("combine -M Significance -t -1 --expectSignal=1 {0}/combined_{1}.root".format(outdir, datac["datacard_name"]))
+    print(">Running combine (Asimov + pre-fit nuisances)")
+    os.system("combine -M Significance -t -1  --expectSignal=1 {0}/combined_{1}.root".format(outdir, datac["datacard_name"]))
 
+    print(">Running combine (Asimov + post-fit nuisances)")
+    os.system("combine -M Significance -t -1  --expectSignal=1 --toyFreq {0}/combined_{1}.root".format(outdir, datac["datacard_name"]))
     print(">Done")
