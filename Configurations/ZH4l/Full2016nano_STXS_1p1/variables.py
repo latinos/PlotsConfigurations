@@ -9,7 +9,7 @@ configurations = os.path.dirname(configurations) # Configurations
 
 variables['BDT'] = {
      'name': 'hww_ZH_newBDT(Entry$,0)',
-     'range' : ([-0.95,-0.9,-0.85,-0.75,-0.50,-0.25,0.,0.15,0.25,0.50,0.75],),
+     'range' : ([-0.50,-0.25,-0.15,0.,0.15,0.25,0.35,0.50,0.75],),
      'xaxis' : 'MVA discriminant ZH',
      'fold' : 3,
      'linesToAdd' : ['.L %s/ZH4l/nano_config/Full2016/hww_ZH_newBDT.C+' % configurations]

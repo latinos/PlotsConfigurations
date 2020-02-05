@@ -25,43 +25,25 @@ HiggsXS = HiggsXSection()
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2018',
     'type': 'lnN',
-    'samples': dict((skey, '1.02') for skey in mc)
+    'samples': dict((skey, '1.015') for skey in mc if skey is not 'ZZ')
 }
 
 nuisances['lumi_XYFact'] = {
     'name': 'lumi_13TeV_XYFact',
     'type': 'lnN',
-    'samples': dict((skey, '1.008') for skey in mc)
-}
-
-nuisances['lumi_BBDefl'] = {
-    'name': 'lumi_13TeV_BBDefl',
-    'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc)
-}
-
-nuisances['lumi_DynBeta'] = {
-    'name': 'lumi_13TeV_DynBeta',
-    'type': 'lnN',
-    'samples': dict((skey, '1.005') for skey in mc)
-}
-
-nuisances['lumi_Ghosts'] = {
-    'name': 'lumi_13TeV_Ghosts',
-    'type': 'lnN',
-    'samples': dict((skey, '1.001') for skey in mc)
-}
-
-nuisances['lumi_CurrCalib'] = {
-    'name': 'lumi_13TeV_CurrCalib',
-    'type': 'lnN',
-    'samples': dict((skey, '1.003') for skey in mc)
+    'samples': dict((skey, '1.02') for skey in mc if skey is not 'ZZ')
 }
 
 nuisances['lumi_LScale'] = {
     'name': 'lumi_13TeV_LSCale',
     'type': 'lnN',
-    'samples': dict((skey, '1.003') for skey in mc)
+    'samples': dict((skey, '1.002') for skey in mc if skey is not 'ZZ')
+}
+
+nuisances['lumi_CurrCalib'] = {
+    'name': 'lumi_13TeV_CurrCalib',
+    'type': 'lnN',
+    'samples': dict((skey, '1.002') for skey in mc if skey is not 'ZZ')
 }
 
 ###### B-tagger
@@ -158,26 +140,18 @@ nuisances['met'] = {
 
 nuisances['PS_whss']  = {
                 'name'  : 'PS_whss',
-                'skipCMS' : 1,
                 'type'  : 'lnN',
                 'samples'  : {
-                   'WH_hww'   : '1.037',
-                   'ZH_hww'   : '1.037',
                    'WH_htt'    : '1.037',
-                   'ggZH_hww'   : '1.037',
               #     'ZH_htt'   : '1.037',
                 },
 }
 
 nuisances['UE_whss']  = {
                 'name'  : 'UE_whss',
-                'skipCMS' : 1,
                 'type'  : 'lnN',
                 'samples'  : {
-                   'WH_hww'   : '1.010',
-                   'ZH_hww'   : '1.010',
                    'WH_htt'    : '1.010',
-                   'ggZH_hww'   : '1.010',
  #                  'ZH_htt'   : '1.010',
                },
                 }
@@ -190,8 +164,30 @@ nuisances['CMS_hww_ZZ4lnorm']  = {
         'type'  : 'rateParam',
         }
 
-##### QCD scale uncertainties for Higgs signals other than ggH
-#
+##### QCD scale uncertainties
+
+variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 5, 7, 8]]
+
+nuisances['QCDscale_V'] = {
+    'name': 'QCDscale_V',
+    'kind': 'weight_envelope',
+    'type': 'shape',
+    'samples': {'DY': variations},
+    'AsLnN': '1'
+}
+
+nuisances['QCDscale_VV'] = {
+    'name': 'QCDscale_VV',
+    'kind': 'weight_envelope',
+    'type': 'shape',
+    'samples': {
+        'Vg': variations,
+        'VZ': variations,
+        'WZ': variations,
+        'ZZ': variations,
+    }
+}
+
 from LatinoAnalysis.Tools.HiggsXSection  import *
 HiggsXS = HiggsXSection()
 
@@ -216,35 +212,9 @@ nuisances['QCDscale_qqH']  = {
 nuisances['QCDscale_VH']  = {
                'name'  : 'QCDscale_VH', 
                'samples'  : {
-                   'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
                    'WH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
-                   'ZH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm'),
                    'ZH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm'),
                     'H_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm'),
-                   },
-               'type'  : 'lnN',
-              }
-
-nuisances['QCDscale_ggZH']  = {
-               'name'  : 'QCDscale_ggZH', 
-               'samples'  : {
-                   'ggZH_hww': HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggZH','125.09','scale','sm'),                  
-                   },
-               'type'  : 'lnN',
-              }
-
-nuisances['QCDscale_bbH']  = {
-               'name'  : 'QCDscale_bbH',
-               'samples'  : {
-                   'bbH_hww': HiggsXS.GetHiggsProdXSNP('YR4','13TeV','bbH','125.09','scale','sm'),
-                   },
-               'type'  : 'lnN',
-              }
-
-nuisances['QCDscale_ttH']  = {
-               'name'  : 'QCDscale_ttH',
-               'samples'  : {
-                   'ttH_hww': HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','scale','sm'),
                    },
                'type'  : 'lnN',
               }
@@ -256,12 +226,12 @@ nuisances['QCDscale_qqbar_ACCEPT']  = {
                'samples'  : {
                    'qqH_hww' : '1.007',
                    'qqH_htt' : '1.007',
-                   'WH_hww'  : '1.05',
                    'WH_htt'  : '1.05',
-                   'ZH_hww'  : '1.04',
                    'ZH_htt'  : '1.04',
                    'H_htt'   : '1.04',
                    'VZ'      : '1.029',
+                   'WZ'      : '1.029',
+                   'ZZ'      : '1.029',
                    },
               }
 
@@ -272,7 +242,6 @@ nuisances['QCDscale_gg_ACCEPT']  = {
                    'ggWW'    : '1.027',
                    'ggH_hww' : '1.027',
                    'ggH_htt' : '1.027',
-                   'ggZH_hww': '1.027',                   
                    },
                'type'  : 'lnN',
               }
@@ -284,16 +253,6 @@ nuisances['pdf_Higgs_gg']  = {
                'samples'  : {
                    'ggH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH' ,'125.09','pdf','sm'),
                    'ggH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH' ,'125.09','pdf','sm'),
-                   'ggZH_hww': HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggZH','125.09','pdf','sm'), 
-                   'bbH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','bbH' ,'125.09','pdf','sm'),
-                   },
-               'type'  : 'lnN',
-              }
-
-nuisances['pdf_Higgs_ttH']  = {
-               'name'  : 'pdf_Higgs_ttH',
-               'samples'  : {
-                   'ttH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH' ,'125.09','pdf','sm'),
                    },
                'type'  : 'lnN',
               }
@@ -304,9 +263,7 @@ nuisances['pdf_Higgs_qqbar']  = {
                'samples'  : {
                    'qqH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm'),
                    'qqH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm'),
-                   'WH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
                    'WH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
-                   'ZH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH' ,'125.09','pdf','sm'),
                    'ZH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH' ,'125.09','pdf','sm'),
                    'H_htt'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH' ,'125.09','pdf','sm'),
                    },
@@ -317,7 +274,10 @@ nuisances['pdf_qqbar']  = {
                'name'  : 'pdf_qqbar',
                'type'  : 'lnN',
                'samples'  : {
-                   'VZ'      : '1.04',  # PDF: 0.0064 / 0.1427 = 0.0448493
+                   'Vg'      : '1.04',
+                   'VZ'      : '1.04',
+                   'WZ'      : '1.04',
+                   'ZZ'      : '1.04',
                    },
               }
 
@@ -327,7 +287,6 @@ nuisances['pdf_Higgs_gg_ACCEPT']  = {
                'samples'  : {
                    'ggH_hww' : '1.005',
                    'ggH_htt' : '1.005',
-                   'ggZH_hww': '1.005', 
                    },
                'type'  : 'lnN',
               }
@@ -348,9 +307,7 @@ nuisances['pdf_Higgs_qqbar_ACCEPT']  = {
                'samples'  : {
                    'qqH_hww' : '1.011',
                    'qqH_htt' : '1.011',
-                   'WH_hww'  : '1.007',
                    'WH_htt'  : '1.007',
-                   'ZH_hww'  : '1.012',
                    'ZH_htt'  : '1.012',
                    'H_htt'   : '1.012',
                    },
@@ -362,6 +319,8 @@ nuisances['pdf_qqbar_ACCEPT']  = {
                'type'  : 'lnN',
                'samples'  : {
                    'VZ'      : '1.005',
+                   'WZ'      : '1.005',
+                   'ZZ'      : '1.005',
                    },
               }
 
@@ -384,3 +343,6 @@ nuisances['stat']  = {
               #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
               'samples' : {}
              }
+
+for n in nuisances.values():
+    n['skipCMS'] = 1
