@@ -121,7 +121,7 @@ aliases['topcr'] = {
 
 aliases['dycr'] = {
     #'expr': 'mth<60 && mll>40 && mll<80 && bVeto'
-    'expr': 'PuppiMET_pt < 50. && mll>60. && mll<120. && bVeto'
+    'expr': 'PuppiMET_pt < 50. && mll>60. && mll<120.'
 }
 
 aliases['wwcr'] = {
@@ -147,7 +147,7 @@ aliases['bReqSF'] = {
 }
 
 aliases['btagSF'] = {
-    'expr': '(bVeto || (topcr && zeroJet))*bVetoSF + (topcr && !zeroJet)*bReqSF',
+    'expr': '1',
     'samples': mc
 }
 

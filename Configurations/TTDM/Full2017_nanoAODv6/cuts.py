@@ -19,7 +19,7 @@ cuts['inclusiveCR_ll']  = {
    }
 }
 
-cuts['inclusive_ee']  = { 
+cuts['inclusiveCR_ee']  = { 
     'expr' : 'inclusivecr && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11)',
     # Define the sub-categorization of topcr
     'categories' : {
@@ -29,7 +29,7 @@ cuts['inclusive_ee']  = {
     }
 }
 
-cuts['inclusive_mm']  = { 
+cuts['inclusiveCR_mm']  = { 
     'expr' : 'inclusivecr && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13)',
     # Define the sub-categorization of topcr
     'categories' : {
@@ -39,7 +39,7 @@ cuts['inclusive_mm']  = {
     }
 }
 
-cuts['inclusive_df']  = { 
+cuts['inclusiveCR_df']  = { 
     'expr' : 'inclusivecr && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13)',
     # Define the sub-categorization of topcr
     'categories' : {

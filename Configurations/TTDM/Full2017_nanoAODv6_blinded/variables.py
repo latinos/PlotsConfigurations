@@ -130,6 +130,12 @@ variables['dphill']  = {   'name': 'abs(dphill)',
                     'fold' : 3
                         }
 
+variables['dphillmet']  = {   'name': 'abs(dphillmet)',
+                              'range' : (20,0,3.14),
+                              'xaxis' : '#Delta#phi_{ll, MET}',
+                              'fold' : 3
+                        }
+
 variables['trkMet']  = {   'name': 'TkMET_pt',
                     'range' : (20,0,200),
                         'xaxis' : 'trk met [GeV]',
