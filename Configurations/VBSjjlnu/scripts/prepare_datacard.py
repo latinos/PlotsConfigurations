@@ -37,5 +37,5 @@ for datac in config:
     os.system("combine -M Significance -t -1  --expectSignal=1 {0}/combined_{1}.root".format(outdir, datac["datacard_name"]))
 
     print(">Running combine (Asimov + post-fit nuisances)")
-    os.system("combine -M Significance -t -1  --expectSignal=1 --toyFreq {0}/combined_{1}.root".format(outdir, datac["datacard_name"]))
+    os.system("combine -M Significance -t -1  --expectSignal=1 --toysFreq {0}/combined_{1}.root".format(outdir, datac["datacard_name"]))
     print(">Done")
