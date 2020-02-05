@@ -1,5 +1,8 @@
 #### FAKES
 
+
+#### FAKES
+
 ## FIXME: check the 30% lnN
 nuisances['fake_syst'] = {
     'name': 'CMS_fake_syst',
@@ -10,7 +13,7 @@ nuisances['fake_syst'] = {
 }
 
 nuisances['fake_ele'] = {
-    'name': 'CMS_fake_e_2018',
+    'name': 'CMS_fake_e_2016',
     'kind': 'weight',
     'type': 'shape',
     'samples': {
@@ -19,7 +22,7 @@ nuisances['fake_ele'] = {
 }
 
 nuisances['fake_ele_stat'] = {
-    'name': 'CMS_fake_stat_e_2018',
+    'name': 'CMS_fake_stat_e_2016',
     'kind': 'weight',
     'type': 'shape',
     'samples': {
@@ -28,7 +31,7 @@ nuisances['fake_ele_stat'] = {
 }
 
 nuisances['fake_mu'] = {
-    'name': 'CMS_fake_m_2018',
+    'name': 'CMS_fake_m_2016',
     'kind': 'weight',
     'type': 'shape',
     'samples': {
@@ -37,7 +40,7 @@ nuisances['fake_mu'] = {
 }
 
 nuisances['fake_mu_stat'] = {
-    'name': 'CMS_fake_stat_m_2018',
+    'name': 'CMS_fake_stat_m_2016',
     'kind': 'weight',
     'type': 'shape',
     'samples': {
