@@ -655,22 +655,42 @@ nuisances['Top_norm']  = {
                'cuts'  : phase_spaces_fl
               }
 
-nuisances['Wjets_norm_e']  = {
-               'name'  : 'CMS_Wjets_norm_e',
+nuisances['Wjets_norm_e_boos']  = {
+               'name'  : 'CMS_Wjets_norm_e_boos_2017',
                'samples'  : {
                    'Wjets' : '1.00',
                    },
                'type'  : 'rateParam',
-               'cuts'  : [f+"_ele" for f in phase_spaces]
+               'cuts'  : [f+"_ele" for f in phase_spaces_boost]
               }
 
-nuisances['Wjets_norm_m']  = {
-               'name'  : 'CMS_Wjets_norm_m',
+
+nuisances['Wjets_norm_e_res']  = {
+               'name'  : 'CMS_Wjets_norm_e_res_2017',
                'samples'  : {
                    'Wjets' : '1.00',
                    },
                'type'  : 'rateParam',
-               'cuts'  : [f+"_mu" for f in phase_spaces]
+               'cuts'  : [f+"_ele" for f in phase_spaces_res]
+              }
+
+nuisances['Wjets_norm_mu_boos']  = {
+               'name'  : 'CMS_Wjets_norm_mu_boos_2017',
+               'samples'  : {
+                   'Wjets' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [f+"_mu" for f in phase_spaces_boost]
+              }
+
+
+nuisances['Wjets_norm_mu_res']  = {
+               'name'  : 'CMS_Wjets_norm_mu_res_2017',
+               'samples'  : {
+                   'Wjets' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [f+"_mu" for f in phase_spaces_res]
               }
 
 
