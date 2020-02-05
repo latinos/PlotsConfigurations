@@ -15,8 +15,8 @@ configurations = os.path.dirname(configurations) # Configurations
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-eleWP = 'mvaFall17V1Iso_WP90'
-muWP = 'cut_Tight_HWWW'
+eleWP = 'mva_90p_Iso2016'
+muWP = 'cut_Tight80x'
 
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
@@ -102,11 +102,11 @@ aliases['multiJet'] = {
 # B tagging
 
 aliases['bVeto'] = {
-    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0'
+    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0'
 }
 
 aliases['bReq'] = {
-    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) >= 1'
+    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) >= 1'
 }
 
 # CR definitions
@@ -131,7 +131,7 @@ aliases['sr'] = {
 
 # B tag scale factors
 
-btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_94XSF_V2_B_F.csv' % os.getenv('CMSSW_BASE')
+btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_2016LegacySF_V1.csv' % os.getenv('CMSSW_BASE')
 
 aliases['Jet_btagSF_shapeFix'] = {
     'linesToAdd': [
@@ -160,7 +160,7 @@ aliases['btagSF'] = {
     'samples': mc
 }
 
-for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
+for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
     aliases['Jet_btagSF_shapeFix_up_%s' % shift] = {
         'class': 'BtagSF',
         'args': (btagSFSource, 'up_' + shift),
@@ -171,7 +171,7 @@ for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2',
         'args': (btagSFSource, 'down_' + shift),
         'samples': mc
     }
-    
+
     for targ in ['bVeto', 'bReq']:
         alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
         alias['expr'] = alias['expr'].replace('btagSF_shapeFix', 'btagSF_shapeFix_up_%s' % shift)
@@ -212,7 +212,33 @@ aliases['SFweightMuDown'] = {
     'samples': mc
 }
 
-# GGHUncertaintyProducer wasn't run for 2017 nAODv5 non-private
+aliases['nllWOTF'] = {
+    'linesToAdd': ['.L %s/Differential/nllW.cc+' % configurations],
+    'class': 'WWNLLW',
+    'args': ('central',),
+    'samples': ['WW']
+}
+
+# In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
+aliases['lhe_mW1'] = {
+    'expr': 'TMath::Sqrt(2. * LHEPart_pt[0] * LHEPart_pt[1] * (TMath::CosH(LHEPart_eta[0] - LHEPart_eta[1]) - TMath::Cos(LHEPart_phi[0] - LHEPart_phi[1])))',
+    'samples': ['WWewk']
+}
+
+# and [2] [3] are the second W
+aliases['lhe_mW2'] = {
+    'expr': 'TMath::Sqrt(2. * LHEPart_pt[2] * LHEPart_pt[3] * (TMath::CosH(LHEPart_eta[2] - LHEPart_eta[3]) - TMath::Cos(LHEPart_phi[2] - LHEPart_phi[3])))',
+    'samples': ['WWewk']
+}
+
+# use HTXS_njets30 when moving to NanoAODv5 for all trees
+aliases['nCleanGenJet'] = {
+    'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
+    'class': 'CountGenJet',
+    'samples': signals
+}
+
+# GGHUncertaintyProducer wasn't run for 2016 nAODv5 non-private
 thus = [
     'ggH_mu',
     'ggH_res',
@@ -230,5 +256,6 @@ for thu in thus:
         'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
         'class': 'GGHUncertainty',
         'args': (thu,),
-        'samples': ['ggH_hww']
+        'samples': ['ggH_hww'],
+        'nominalOnly': True
     }

@@ -104,7 +104,6 @@ plot['Fake']  = {
                   'scale'    : 1.0                  
               }
 
-
 plot['top'] = {   
                   'nameHR' : 'tW and t#bar{t}',
                   'color': 400,   # kYellow
@@ -288,7 +287,7 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 41.5/fb'
+legend['lumi'] = 'L = 35.9/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
