@@ -335,19 +335,17 @@ nuisances['met']  = {
 
 ## Top pT reweighting uncertainty
 
-apply_on = {
-    'top': [
-        '(topGenPtOTF * antitopGenPtOTF <= 0.) * 1.0816 + (topGenPtOTF * antitopGenPtOTF > 0.)',
-        '(topGenPtOTF * antitopGenPtOTF <= 0.) * 0.9184 + (topGenPtOTF * antitopGenPtOTF > 0.)'
-    ]
-}
 
 nuisances['singleTopToTTbar'] = {
     'name': 'singleTopToTTbar',
     'skipCMS': 1,
     'kind': 'weight',
     'type': 'shape',
-    'samples': apply_on
+    'samples': { 
+       'top': [
+        'isSingleTop * 1.0816 + isTTbar',
+        'isSingleTop * 0.9184 + isTTbar']
+      }
 }
 
 ## Top pT reweighting uncertainty
