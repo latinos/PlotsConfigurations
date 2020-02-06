@@ -33,9 +33,9 @@ Nlep='2'
 ############### Lepton WP ######################
 ################################################
 
-eleWP='mva_90p_Iso2016_SS'
+#eleWP='mva_90p_Iso2016_SS'
 #eleWP='cut_WP_Tight80X'
-#eleWP='cut_WP_Tight80X_SS'
+eleWP='cut_WP_Tight80X_SS'
 #eleWP='mva_90p_Iso2016'
 #eleWP='mvaFall17V2Iso_WP90_SS'
 muWP='cut_Tight80x'
@@ -173,13 +173,13 @@ samples['top'] = {    'name'   :   getSampleFiles(directory,'TTTo2L2Nu',False,'n
                  }
 
 addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
-
+'''
 samples['ttV'] = {    'name'   :   getSampleFiles(directory,'TTWJetsToLNu',False,'nanoLatino_')
                                  + getSampleFiles(directory,'TTZjets',False,'nanoLatino_'),
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                      'FilesPerJob' : 5,
                  }
-
+'''
 ############ WW ############
 
 #FIXME Add nllW weight to WW
@@ -188,8 +188,8 @@ samples['WW'] = {    'name'   :   getSampleFiles(directory,'WWTo2L2Nu',False,'na
                  }
 
 
-samples['WWewk'] = {   'name'  : getSampleFiles(directory, 'WpWmJJ_EWK',False,'nanoLatino_')
-                               + getSampleFiles(directory, 'WpWpJJ_EWK_QCD',False,'nanoLatino_'),
+samples['WWewk'] = {   'name'  : getSampleFiles(directory, 'WpWmJJ_EWK',False,'nanoLatino_'),
+         #                      + getSampleFiles(directory, 'WpWpJJ_EWK_QCD',False,'nanoLatino_'),
                        'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+ '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)*(lhe_mW1[0] > 60. && lhe_mW1[0] < 100. && lhe_mW2[0] > 60. && lhe_mW2[0] < 100.)', #filter tops and Higgs, limit w mass
                    }
 

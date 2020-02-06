@@ -8,14 +8,14 @@
 # If not defined, normal plots is used
 #
 
-
+'''
 groupPlot['ttV']  = {
                   'nameHR' : 'ttV',
                   'isSignal' : 0,
                   'color': 400,   # kYellow
                   'samples'  : ['ttV']
               }
-
+'''
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
@@ -91,14 +91,14 @@ groupPlot['Higgs']  = {
 
 # keys here must match keys in samples.py    
 #     
-          
+'''          
 plot['ttV']  = {
                   'color': 400,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0,
               }
-     
+ '''    
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
