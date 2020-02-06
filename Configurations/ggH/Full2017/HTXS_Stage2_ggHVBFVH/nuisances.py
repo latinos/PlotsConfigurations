@@ -432,17 +432,17 @@ nuisances['pdf_Higgs_qqbar'] = {
     'name': 'pdf_Higgs_qqbar',
     'type': 'lnN',
     'samples': {
-        'qqH_hww': valuesqqh,
+         #'qqH_hww': valuesqqh, #Removed for STXS
         'qqH_htt': valuesqqh,
-        'WH_hww': valueswh,
+         #'WH_hww': valueswh,
         'WH_htt': valueswh,
-        'ZH_hww': valueszh,
+         #'ZH_hww': valueszh,
         'ZH_htt': valueszh
     },
 }
-for name in sampleNames:
-  if 'qqH' in name:
-    nuisances['pdf_Higgs_qqbar']['samples'].update({name: HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH' ,'125.09','pdf','sm')})
+#for name in sampleNames:
+#  if 'qqH' in name:
+#    nuisances['pdf_Higgs_qqbar']['samples'].update({name: HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH' ,'125.09','pdf','sm')})
 
 #FIXME: check this 4%
 nuisances['pdf_qqbar'] = {
@@ -730,7 +730,7 @@ values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm')
 nuisances['QCDscale_qqH'] = {
     'name': 'QCDscale_qqH', 
     'samples': {
-        'qqH_hww': values,
+         #'qqH_hww': values,
         'qqH_htt': values
     },
     'type': 'lnN'
@@ -742,9 +742,9 @@ valueszh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm')
 nuisances['QCDscale_VH'] = {
     'name': 'QCDscale_VH', 
     'samples': {
-        'WH_hww': valueswh,
+        #'WH_hww': valueswh,
         'WH_htt': valueswh,
-        'ZH_hww': valueszh,
+        #'ZH_hww': valueszh,
         'ZH_htt': valueszh
     },
     'type': 'lnN',
@@ -755,7 +755,7 @@ values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggZH','125.09','scale','sm')
 nuisances['QCDscale_ggZH'] = {
     'name': 'QCDscale_ggZH', 
     'samples': {
-        'ggZH_hww': values
+         #'ggZH_hww': values
     },
     'type': 'lnN',
 }
