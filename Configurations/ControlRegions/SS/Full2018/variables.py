@@ -3,6 +3,7 @@
 #variables = {}
     
 
+
 variables['events']  = {   'name': '1',      
                         'range' : (1,0,2),  
                         'xaxis' : 'events', 
@@ -46,15 +47,17 @@ variables['pt2']  = {   'name': 'Lepton_pt[1]',
                         }
 
 variables['eta1']  = {  'name': 'Lepton_eta[0]',     
-                        'range' : (40,-3,3),   
+                        'range' : (20,-3,3),   
                         'xaxis' : '#eta 1st lep',
                         'fold'  : 3                         
                         }
+
 variables['eta2']  = {  'name': 'Lepton_eta[1]',     
-                        'range' : (40,-3,3),   
+                        'range' : (20,-3,3),   
                         'xaxis' : '#eta 2nd lep',
                         'fold'  : 3                         
                         }
+                        
 variables['phi1']  = {  'name': 'Lepton_phi[0]',
                         'range' : (40,-3.2,3.2),
                         'xaxis' : '#phi 1st lep',
@@ -124,76 +127,6 @@ variables['jetpt1_0j']  = {
                         'xaxis' : 'p_{T} 1st jet (p_{T} < 30 GeV) ',
                         'fold' : 0  # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
-
-variables['ctag'] = {
-                    'name': 'Alt$(Jet_btagDeepC[CleanJet_jetIdx[0]], -9)',
-                    'range' : (10,0,1),
-                    'xaxis' :  "ctag 1st jet",
-                    "fold"  : 2
-}
-
-variables['btag'] = {
-                    'name': 'Alt$(Jet_btagDeepB[CleanJet_jetIdx[0]], -9)',
-                    'range' : (10,0,1),
-                    'xaxis' :  "ctag 1st jet",
-                    "fold"  : 2
-}
-
-variables['ctag_jetoverlappingWithLeadingElectron'] = {
-                    'name': 'Alt$(Jet_btagDeepC[max(Electron_jetIdx[max(Lepton_electronIdx[0],0)],0)]*(Lepton_electronIdx[0]>=0)-1*(Lepton_electronIdx[0]<0), -9)',
-                    'range' : (10,0,1),
-                    'xaxis' :  "ctag jet overlapping with leading electron",
-                    "fold"  : 2
-}
-
-variables['ctag_jetoverlappingWithSubleadingElectron'] = {
-                    'name': 'Alt$(Jet_btagDeepC[max(Electron_jetIdx[max(Lepton_electronIdx[1],0)],0)]*(Lepton_electronIdx[1]>=0)-1*(Lepton_electronIdx[1]<0), -9)',
-                    'range' : (10,0,1),
-                    'xaxis' :  "ctag jet overlapping with subleading electron",
-                    "fold"  : 2
-}
-
-variables['ctag_jetoverlappingWithLeadingMuon'] = {
-                    'name': 'Alt$(Jet_btagDeepC[max(Muon_jetIdx[max(Lepton_muonIdx[0],0)],0)]*(Lepton_muonIdx[0]>=0)-1*(Lepton_muonIdx[0]<0), -9)',
-                    'range' : (10,0,1),
-                    'xaxis' :  "ctag jet overlapping with leading electron",
-                    "fold"  : 2
-}
-
-variables['ctag_jetoverlappingWithSubleadingMuon'] = {
-                    'name': 'Alt$(Jet_btagDeepC[max(Muon_jetIdx[max(Lepton_muonIdx[1],0)],0)]*(Lepton_muonIdx[1]>=0)-1*(Lepton_muonIdx[1]<0), -9)',
-                    'range' : (10,0,1),
-                    'xaxis' :  "ctag jet overlapping with subleading electron",
-                    "fold"  : 2
-}
-
-variables['btag_jetoverlappingWithLeadingElectron'] = {
-                    'name': 'Alt$(Jet_btagDeepB[max(Electron_jetIdx[max(Lepton_electronIdx[0],0)],0)]*(Lepton_electronIdx[0]>=0)-1*(Lepton_electronIdx[0]<0), -9)',
-                    'range' : (10,0,1),
-                    'xaxis' :  "btag jet overlapping with leading electron",
-                    "fold"  : 2
-}
-
-variables['btag_jetoverlappingWithSubleadingElectron'] = {
-                    'name': 'Alt$(Jet_btagDeepB[max(Electron_jetIdx[max(Lepton_electronIdx[1],0)],0)]*(Lepton_electronIdx[1]>=0)-1*(Lepton_electronIdx[1]<0), -9)',
-                    'range' : (10,0,1),
-                    'xaxis' :  "btag jet overlapping with subleading electron",
-                    "fold"  : 2
-}
-
-variables['btag_jetoverlappingWithLeadingMuon'] = { 
-                    'name': 'Alt$(Jet_btagDeepB[max(Muon_jetIdx[max(Lepton_muonIdx[0],0)],0)]*(Lepton_muonIdx[0]>=0)-1*(Lepton_muonIdx[0]<0), -9)',
-                    'range' : (10,0,1),
-                    'xaxis' :  "btag jet overlapping with leading electron",
-                    "fold"  : 2
-}
-
-variables['btag_jetoverlappingWithSubleadingMuon'] = { 
-                    'name': 'Alt$(Jet_btagDeepB[max(Muon_jetIdx[max(Lepton_muonIdx[1],0)],0)]*(Lepton_muonIdx[1]>=0)-1*(Lepton_muonIdx[1]<0), -9)',
-                    'range' : (10,0,1),
-                    'xaxis' :  "btag jet overlapping with subleading electron",
-                    "fold"  : 2
-}
 
 
 variables['jetphi1']  = {  'name': 'CleanJet_phi[0]',
