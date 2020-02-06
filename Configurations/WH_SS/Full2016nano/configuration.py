@@ -21,7 +21,8 @@ treeName= 'Events'
 #tag = 'postfreeze_try3' #running only DY
 #tag = 'postfreeze_try4' #remove DY and add Z veto in mm, cut based tight SS id for electron
 #tag = 'postfreeze_try5' #remove DY and add Z veto in mm + change electron id to MVASS
-tag = 'postfreeze_try6' #remove DY and add Z veto in mm + change electron id to MVASS
+#tag = 'postfreeze_try6' #remove DY and add Z veto in mm + change electron id to MVASS
+tag = 'postfreeze_try7' #for preapproval
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
