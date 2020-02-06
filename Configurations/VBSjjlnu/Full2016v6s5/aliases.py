@@ -14,28 +14,29 @@ mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 ############################################
 # DNN reader
 
-# mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017v6s5/mva/'
-# models_path = '/eos/home-d/dmapelli/public/latino/Full2017v6s5/'
+mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017v6s5/mva/'
+models_path = '/eos/home-d/dmapelli/public/latino/Full2017v6s5/'
 
-# aliases['DNNoutput_boosted'] = {
-#     'class': 'MVAReader',
-#     'args': ( models_path +'boos_sig_mjjincl/models/v10/', False, 0),
-#     'linesToAdd':[
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         'gSystem->Load("libDNNEvaluator.so")',
-#         '.L ' + mva_reader_path + 'mva_reader.cc+', 
-#     ],
-# }
+aliases['DNNoutput_boosted'] = {
+    'class': 'MVAReaderBoosted',
+    'args': ( models_path +'boos_sig_mjjincl/models/v12/', False, 0),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L ' + mva_reader_path + 'mva_reader_boosted.cc+', 
+    ],
+}
 
-# aliases['DNNoutput_resolved'] = {
-#     'class': 'MVAReader',
-#     'args': ( models_path+ '/res_sig_mjjincl/models/v11/', False, 1),
-#     'linesToAdd':[
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         'gSystem->Load("libDNNEvaluator.so")',
-#         '.L ' + mva_reader_path + 'mva_reader.cc+', 
-#     ],
-# }
+aliases['DNNoutput_resolved'] = {
+    'class': 'MVAReaderResolved',
+    'args': ( models_path+ '/res_sig_mjjincl/models/v11/', False, 1),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L ' + mva_reader_path + 'mva_reader_resolved.cc+', 
+    ],
+}
+
 
 
 ############################################
@@ -143,14 +144,14 @@ aliases['Top_pTrw'] = {
 # }
 
 
-aliases['Wpt_lhe'] = {
-    'class': 'WptLHE',
-    'args':(),
-    'linesToAdd' : [
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        '.L %s/VBSjjlnu/Full2016v6s5/macros/Wpt_lhe.cc+' % configurations
-   ],
-    'samples' : ["Wjets"]
-}
+# aliases['Wpt_lhe'] = {
+#     'class': 'WptLHE',
+#     'args':(),
+#     'linesToAdd' : [
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         '.L %s/VBSjjlnu/Full2016v6s5/macros/Wpt_lhe.cc+' % configurations
+#    ],
+#     'samples' : ["Wjets"]
+# }
 
 

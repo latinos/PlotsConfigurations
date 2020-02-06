@@ -27,6 +27,42 @@ variables['DNNoutput'] = {
     }
 }
 
+
+variables['DNNoutput_doublebin'] = {
+    'name': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)',
+    'range': (50,0,1),
+    'xaxis': 'DNN output',
+    'fold': 3 ,
+    'blind': {
+        "res_sig_mjjhigh_ele": [0.7,1],
+        "res_sig_mjjhigh_mu": [0.7,1],
+        "res_sig_mjjincl_ele": [0.7,1],
+        "res_sig_mjjincl_mu": [0.7,1], 
+        "boos_sig_mjjhigh_ele": [0.7,1],
+        "boos_sig_mjjhigh_mu": [0.7,1],
+        "boos_sig_mjjincl_ele": [0.7,1],
+        "boos_sig_mjjincl_mu": [0.7,1],
+    }
+}
+
+
+variables['DNNoutput_lessbins'] = {
+    'name': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)',
+    'range': ([0.1,0.2,0.3,0.4,0.5,0.6,0.65,0.7,0.74,0.78,0.82,0.86,0.9,0.95,1],),
+    'xaxis': 'DNN output',
+    'fold': 3 ,
+    'blind': {
+        "res_sig_mjjhigh_ele": [0.7,1],
+        "res_sig_mjjhigh_mu": [0.7,1],
+        "res_sig_mjjincl_ele": [0.7,1],
+        "res_sig_mjjincl_mu": [0.7,1], 
+        "boos_sig_mjjhigh_ele": [0.7,1],
+        "boos_sig_mjjhigh_mu": [0.7,1],
+        "boos_sig_mjjincl_ele": [0.7,1],
+        "boos_sig_mjjincl_mu": [0.7,1],
+    }
+}
+
 #leptons
 
 variables['Lepton_eta'] = {   'name': 'abs(Lepton_eta[0])',      
@@ -98,19 +134,19 @@ variables['nJets'] = {   'name': 'Sum$(CleanJet_pt >= 30)',
                         'fold' : 3
                         }
 
-# # Minimum pt 20 GeV in NanoGardening step
-# variables['N_jets_central'] = {   'name': 'N_jets_central',      
-#                         'range' : (10,0,10),  
-#                         'xaxis' : '#jets between VBS jets', 
-#                         'fold' : 3
-#                         }
+# Minimum pt 20 GeV in NanoGardening step
+variables['N_jets_central'] = {   'name': 'N_jets_central',      
+                        'range' : (10,0,10),  
+                        'xaxis' : '#jets between VBS jets', 
+                        'fold' : 3
+                        }
 
 
-# variables['N_jets_forward'] = {   'name': 'N_jets_forward',      
-#                         'range' : (10,0,10),  
-#                         'xaxis' : '#jets outside VBS jets', 
-#                         'fold' : 3
-#                     }
+variables['N_jets_forward'] = {   'name': 'N_jets_forward',      
+                        'range' : (10,0,10),  
+                        'xaxis' : '#jets outside VBS jets', 
+                        'fold' : 3
+                    }
 
 
 # VBS vars
@@ -235,40 +271,40 @@ variables['deltaphi_vbs'] = {   'name': 'deltaphi_vbs',
 #                         'fold' : 3
 #                         }
 
-# #Zvjets_high
-# variables['Zvjets_0'] = {   'name': 'Zvjets_0',      
-#                         'range' : (30,-3,3),  
-#                         'xaxis' : 'Zep. leading V-jet ', 
-#                         'fold' : 3
-#                         }
+#Zvjets_high
+variables['Zvjets_0'] = {   'name': 'Zvjets_0',      
+                        'range' : (30,-3,3),  
+                        'xaxis' : 'Zep. leading V-jet ', 
+                        'fold' : 3
+                        }
 
-# variables['Zvjets_1'] = {   'name': 'Zvjets_1',      
-#                         'range' : (30,-3,3),  
-#                         'xaxis' : 'Zep. trailing V-jet ', 
-#                         'fold' : 3
-#                         }
+variables['Zvjets_1'] = {   'name': 'Zvjets_1',      
+                        'range' : (30,-3,3),  
+                        'xaxis' : 'Zep. trailing V-jet ', 
+                        'fold' : 3
+                        }
 
-# #Zlep
-# variables['Zlep'] = {   'name': 'Zlep',      
-#                         'range' : (30,-3,3),  
-#                         'xaxis' : 'Zepp. lepton', 
-#                         'fold' : 3
-#                         }
+#Zlep
+variables['Zlep'] = {   'name': 'Zlep',      
+                        'range' : (30,-3,3),  
+                        'xaxis' : 'Zepp. lepton', 
+                        'fold' : 3
+                        }
 
-# #Asym
-# variables['Asym_vbs'] = {   'name': 'Asym_vbs',      
-#                         'range' : (30,0,1),  
-#                         'xaxis' : 'Pt asymmetry VBS jets', 
-#                         'fold' : 3
-#                         }
+#Asym
+variables['Asym_vbs'] = {   'name': 'Asym_vbs',      
+                        'range' : (30,0,1),  
+                        'xaxis' : 'Pt asymmetry VBS jets', 
+                        'fold' : 3
+                        }
 
-# variables['Asym_vjet'] = {   'name': 'Asym_vjet',      
-#                         'range' : (30,0,1),  
-#                         'xaxis' : 'Pt asymmetry V-jets', 
-#                         'fold' : 3
-#                         }
+variables['Asym_vjet'] = {   'name': 'Asym_vjet',      
+                        'range' : (30,0,1),  
+                        'xaxis' : 'Pt asymmetry V-jets', 
+                        'fold' : 3
+                        }
 
-#Mw_lep 
+# Mw_lep 
 # variables['Mw_lep_reco'] = {   'name': 'Mw_lep',      
 #                         'range' : (40,0,250),  
 #                         'xaxis' : 'Mass W leptonic', 
@@ -287,46 +323,46 @@ variables['w_lep_pt'] = {   'name': 'w_lep_pt',
                         'fold' : 3
                         }
 
-# variables['Mww'] = {   'name': 'Mww',      
-#                         'range' : (30,0,2000),  
-#                         'xaxis' : 'Mww', 
-#                         'fold' : 3,
-#                         'blind' : {
-#                             "res_sig_mjjhigh_ele" :(1000,2000),
-#                             "res_sig_mjjhigh_mu" : (1000,2000),
-#                             }
-#                         }
+variables['Mww'] = {   'name': 'Mww',      
+                        'range' : (30,0,2000),  
+                        'xaxis' : 'Mww', 
+                        'fold' : 3,
+                        'blind' : {
+                            "res_sig_mjjhigh_ele" :(1000,2000),
+                            "res_sig_mjjhigh_mu" : (1000,2000),
+                            }
+                        }
 
-# variables['R_ww'] = {   'name': 'R_ww',      
-#                         'range' : (30,0,80),  
-#                         'xaxis' : 'R_ww', 
-#                         'fold' : 3
-#                         }
+variables['R_ww'] = {   'name': 'R_ww',      
+                        'range' : (30,0,80),  
+                        'xaxis' : 'R_ww', 
+                        'fold' : 3
+                        }
 
-# variables['R_mw'] = {   'name': 'R_mw',      
-#                         'range' : (30,0,0.6),  
-#                         'xaxis' : 'R_mw', 
-#                         'fold' : 3
-#                         }
+variables['R_mw'] = {   'name': 'R_mw',      
+                        'range' : (30,0,0.6),  
+                        'xaxis' : 'R_mw', 
+                        'fold' : 3
+                        }
 
-# variables['A_ww'] = {   'name': 'A_ww',      
-#                         'range' : (30,0,1.1),  
-#                         'xaxis' : 'A_ww', 
-#                         'fold' : 3
-#                         }
+variables['A_ww'] = {   'name': 'A_ww',      
+                        'range' : (30,0,1.1),  
+                        'xaxis' : 'A_ww', 
+                        'fold' : 3
+                        }
 
-# #Centrality variables
-# variables['Centr_vbs'] = {   'name': 'Centr_vbs',      
-#                         'range' : (30,0,3),  
-#                         'xaxis' : 'VBS centrality', 
-#                         'fold' : 3
-#                         }
+#Centrality variables
+variables['Centr_vbs'] = {   'name': 'Centr_vbs',      
+                        'range' : (30,0,3),  
+                        'xaxis' : 'VBS centrality', 
+                        'fold' : 3
+                        }
 
-# variables['Centr_ww'] = {   'name': 'Centr_ww',      
-#                         'range' : (30,-6,5),  
-#                         'xaxis' : 'W boson centrality', 
-#                         'fold' : 3
-#                         }
+variables['Centr_ww'] = {   'name': 'Centr_ww',      
+                        'range' : (30,-6,5),  
+                        'xaxis' : 'W boson centrality', 
+                        'fold' : 3
+                        }
 
 
 # variables['mll'] = {   'name': 'mll',      

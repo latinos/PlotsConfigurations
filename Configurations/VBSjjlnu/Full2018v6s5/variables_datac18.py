@@ -48,7 +48,7 @@ variables['DNNoutput_doublebin'] = {
 
 variables['DNNoutput_lessbins'] = {
     'name': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)',
-    'range': ([0.1,0.2,0.3,0.4,0.5,0.54,0.58,0.62,0.66,0.7,0.74,0.78,0.82,0.86,0.9,0.94, 0.98,1],),
+     'range': ([0.1,0.2,0.3,0.4,0.5,0.6,0.64,0.68,0.72,0.76,0.8,0.84,0.88,0.92,0.96,1],),
     'xaxis': 'DNN output',
     'fold': 3 ,
     'blind': {

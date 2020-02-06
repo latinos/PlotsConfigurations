@@ -57,11 +57,11 @@ groupPlot['Fake']  = {
                 'fill': 1001
             }
 
-groupPlot['vbfV+VV+VVV']  = {  
-                  'nameHR' : 'vbfV+VVV',
+groupPlot['VVV']  = {  
+                  'nameHR' : 'VVV',
                   'isSignal' : 0,
                   'color': palette["MediumBlue2"],  
-                  'samples'  : [,'VVV', 'VV'], # ADD back 'VBF-F'
+                  'samples'  : ['VVV'], # ADD back 'VBF-F' and 'VV
                   'fill': 1001
               }
 
@@ -115,12 +115,12 @@ plot['VVV']  = {
                   }
 
 
-plot['VV']  = {
-                  'color': colors['kGreen']+3,  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.   ,
-              }   
+# plot['VV']  = {
+#                   'color': colors['kGreen']+3,  
+#                   'isSignal' : 0,
+#                   'isData'   : 0,
+#                   'scale'    : 1.   ,
+#               }   
          
 
 
