@@ -10,25 +10,18 @@ variables['events']  = {   'name': '1',
                         'fold' : 3
                        }
 
-
 variables['mlljj20_whss']  = {   'name': 'mlljj20_whss',
                         'range' : ([60.,70.,80.,90.,100.,110.,120.,130.,140.,150.,160.,170.,180.,190.,200.,250.,300.],),
                         'xaxis' : 'mlljj20_whss [GeV]',
                         'fold' : 0
                         }
+'''
+variables['mlljj20_whss_bin5']  = {   'name': 'mlljj20_whss',
+                        'range' : (10,50.,300.),
+                        'xaxis' : 'mlljj20_whss [GeV]',
+                        'fold' : 0
+                        }
 
-#variables['mlljj20_whss_bin5']  = {   'name': 'mlljj20_whss',
-#                        'range' : ([60.,100.,110.,120.,130.,140.,150.,175.,200.,250.,300.],),
-#                        'xaxis' : 'mlljj20_whss [GeV]',
-#                        'fold' : 0
-#                        }
-
-#variables['mlljj20_whss_bin5']  = {   'name': 'mlljj20_whss',
-#                        'range' : (10,50.,300.),
-#                        'xaxis' : 'mlljj20_whss [GeV]',
-#                        'fold' : 0
-#                        }
-#
 variables['mjj']  = {  'name': 'mjj*(CleanJet_pt[1]>30)',
                         'range' : (50,0,400),
                         'xaxis' : 'm_{jj} [GeV]',
@@ -52,7 +45,7 @@ variables['detall']  = {   'name': 'abs(Lepton_eta[0] - Lepton_eta[1])',        
                         'xaxis' : 'detall',  #   x axis name
                         'fold' : 3
                         }
-'''
+
 
 variables['mth']  = {   'name': 'mth',            #   variable name    
                         'range' : (40,0,200),    #   variable range
@@ -66,7 +59,7 @@ variables['dphill']  = {   'name': 'abs(dphill)',
                         'fold' : 3
                         }
 
-'''
+
 variables['ptll']  = {   'name': 'ptll',     
                         'range' : (40, 0,200),   
                         'xaxis' : 'p_{T}^{ll} [GeV]',
@@ -95,14 +88,14 @@ variables['eta2']  = {  'name': 'Lepton_eta[1]',
                         'fold'  : 3                         
                         }
 
-'''
-variables['njet']  = {
-                        'name': 'Sum$(CleanJet_pt>30)',     
-                        'range' : (5,0,5),   
-                        'xaxis' : 'Number of jets',
-                        'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
-                        }
-'''
+
+#variables['njet']  = {
+#                        'name': 'Sum$(CleanJet_pt>30)',     
+#                        'range' : (5,0,5),   
+#                        'xaxis' : 'Number of jets',
+#                        'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+#                        }
+
 
 variables['jetpt1']  = {
                         'name': 'CleanJet_pt[0]*(CleanJet_pt[0]>30)',     
@@ -117,13 +110,13 @@ variables['jetpt2']  = {
                         'xaxis' : 'p_{T} 2nd jet',
                         'fold' : 0   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
-'''
+
 variables['mtw1']  = {  'name': 'mtw1',
                         'range' : (40,0,200),
                         'xaxis' : 'm_{T}^{W_{1}} [GeV]',
                          'fold' : 3
                         }
-'''
+
 #
 #variables['mtw2']  = {  'name': 'mtw2',
 #                        'range' : (40,0,200),
@@ -131,7 +124,7 @@ variables['mtw1']  = {  'name': 'mtw1',
 #                         'fold' : 3
 #                        }
 #
-#'''
+
 #variables['dphilljet']  = {  'name': 'dphilljet',
 #                        'range' : (20,0,3.2),
 #                        'xaxis' : 'dphilljet',
@@ -154,12 +147,6 @@ variables['mtw1']  = {  'name': 'mtw1',
 #variables['dphillmet']  = {  'name': 'dphillmet',
 #                        'range' : (20,0,3.2),
 #                        'xaxis' : 'dphillmet',
-#                         'fold' : 3
-#                        }
-#
-#variables['mjj']  = {  'name': 'mjj*(CleanJet_pt[1]>30)',
-#                        'range' : (40,0,200),
-#                        'xaxis' : 'm_{jj} [GeV]',
 #                         'fold' : 3
 #                        }
 #
@@ -204,3 +191,4 @@ variables['mtw1']  = {  'name': 'mtw1',
 #                        'xaxis' : 'mllThird [GeV]',
 #                         'fold' : 3
 #                        }
+'''
