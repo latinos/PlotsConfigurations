@@ -8,6 +8,13 @@
 # If not defined, normal plots is used
 #
 
+groupPlot['ttV']  = {
+                  'nameHR' : 'ttV',
+                  'isSignal' : 0,
+                  'color': 400,   # kYellow
+                  'samples'  : ['ttV']
+              }
+
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
@@ -30,13 +37,13 @@ groupPlot['Fake']  = {
               }
 
 
-groupPlot['DY']  = {  
-                  'nameHR' : "DY",
-                  'isSignal' : 0,
-                  'color': 418,    # kGreen+2
-                  'samples'  : ['DY']
-              }
-
+#groupPlot['DY']  = {  
+#                  'nameHR' : "DY",
+#                  'isSignal' : 0,
+#                  'color': 418,    # kGreen+2
+#                  'samples'  : ['DY']
+#              }
+#
 
 
 groupPlot['VVV']  = {  
@@ -85,27 +92,34 @@ groupPlot['Higgs']  = {
 
 # keys here must match keys in samples.py    
 #
-                    
-plot['DY']  = {  
-                  'color': 418,    # kGreen+2
+          
+plot['ttV']  = {
                   'isSignal' : 0,
-                  'isData'   : 0, 
-                  'scale'    : 1.0,
-                  #'cuts'  : {
-                       #'hww2l2v_13TeV_of0j'      : 0.95 ,
-                       #'hww2l2v_13TeV_top_of0j'  : 0.95 , 
-                       #'hww2l2v_13TeV_dytt_of0j' : 0.95 ,
-                       #'hww2l2v_13TeV_em_0j'     : 0.95 , 
-                       #'hww2l2v_13TeV_me_0j'     : 0.95 , 
-                       ##
-                       #'hww2l2v_13TeV_of1j'      : 1.08 ,
-                       #'hww2l2v_13TeV_top_of1j'  : 1.08 , 
-                       #'hww2l2v_13TeV_dytt_of1j' : 1.08 ,
-                       #'hww2l2v_13TeV_em_1j'     : 1.08 , 
-                       #'hww2l2v_13TeV_me_1j'     : 1.08 , 
-                        #},
-
+                  'color': 400,   # kYellow
+                  'isData'   : 0,
+                  'scale'    : 1.0                  
               }
+          
+#plot['DY']  = {  
+#                  'color': 418,    # kGreen+2
+#                  'isSignal' : 0,
+#                  'isData'   : 0, 
+#                  'scale'    : 1.0,
+#                  #'cuts'  : {
+#                       #'hww2l2v_13TeV_of0j'      : 0.95 ,
+#                       #'hww2l2v_13TeV_top_of0j'  : 0.95 , 
+#                       #'hww2l2v_13TeV_dytt_of0j' : 0.95 ,
+#                       #'hww2l2v_13TeV_em_0j'     : 0.95 , 
+#                       #'hww2l2v_13TeV_me_0j'     : 0.95 , 
+#                       ##
+#                       #'hww2l2v_13TeV_of1j'      : 1.08 ,
+#                       #'hww2l2v_13TeV_top_of1j'  : 1.08 , 
+#                       #'hww2l2v_13TeV_dytt_of1j' : 1.08 ,
+#                       #'hww2l2v_13TeV_em_1j'     : 1.08 , 
+#                       #'hww2l2v_13TeV_me_1j'     : 1.08 , 
+#                        #},
+#
+#              }
 
 
 #plot['Fakes']  = {  
@@ -123,13 +137,13 @@ plot['Fakes_em']  = {
                   'scale'    : 1.0                  
               }
 
-plot['Fakes_ee']  = {  
-                  'color': 921,    # kGray + 1
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0                  
-              }
-
+#plot['Fakes_ee']  = {  
+#                  'color': 921,    # kGray + 1
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1.0                  
+#              }
+#
 
 plot['Fakes_mm']  = {  
                   'color': 921,    # kGray + 1
@@ -389,7 +403,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1,
-                  'isBlind'  : 1
+                  'isBlind'  : 0
               }
 
 

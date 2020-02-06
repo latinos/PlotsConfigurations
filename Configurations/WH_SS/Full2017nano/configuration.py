@@ -8,8 +8,10 @@ treeName= 'Events'
 #tag = 'WH2017nano_try9' #splitted fakes and no upper bound on mtw1
 #tag = 'WH2017nano_try10' #no mtw1 and mllThird
 #tag = 'WH2017nano_try11' #tree systematics open
-tag = 'WH2017nano_try12' #mjj > 100 & mlljj20 > 50.
-
+#tag = 'WH2017nano_try12' #mjj > 100 & mlljj20 > 50.
+#tag = 'fromSarah'
+#tag = 'WH2017nano_postfreeze_try1' #add z veto in mm and remove DY
+tag = 'WH2017nano_forpreapp' #add z veto in mm and remove DY
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
