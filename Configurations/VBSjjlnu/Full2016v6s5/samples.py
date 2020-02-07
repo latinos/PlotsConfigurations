@@ -131,44 +131,53 @@ samples['DY'] = {    'name'   :
   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-1200to2500')
   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-2500toinf')
                                 ,
-        'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*' + DY_photon_filter, # ewknloW ADD ME, admin
+        'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch, # ewknloW ADD ME, admin
+        # 'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*' + DY_photon_filter, # ewknloW ADD ME, admin
         'FilesPerJob' : 5,
                   }
 
-addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-70to100', ptllDYW_LO  )
-addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-100to200_ext1', ptllDYW_LO  )
-addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-200to400_ext1', ptllDYW_LO  )
-addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-400to600_ext1', ptllDYW_LO  )
-addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-600toinf_ext1', ptllDYW_LO  )
-addSampleWeight(samples,'DY','DYJetsToLL_M-10to50',               ptllDYW_NLO  +'*(LHE_HT<100)') # ewknloW not yet processed
-addSampleWeight(samples,'DY','DYJetsToLL_M-50',                   ptllDYW_NLO +'*(LHE_HT<100)')
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-70to100',         ptllDYW_LO  )
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200_ext1',         ptllDYW_LO  )
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400_ext1',    ptllDYW_LO  )
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-400to600_ext1',    ptllDYW_LO  )
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-600to800',         ptllDYW_LO  )
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-800to1200',        ptllDYW_LO  )
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-1200to2500',       ptllDYW_LO  )
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toinf',        ptllDYW_LO  )
+# addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-70to100', ptllDYW_LO  )
+# addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-100to200_ext1', ptllDYW_LO  )
+# addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-200to400_ext1', ptllDYW_LO  )
+# addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-400to600_ext1', ptllDYW_LO  )
+# addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-600toinf_ext1', ptllDYW_LO  )
+# addSampleWeight(samples,'DY','DYJetsToLL_M-10to50',               ptllDYW_NLO  +'*(LHE_HT<100)') # ewknloW not yet processed
+# addSampleWeight(samples,'DY','DYJetsToLL_M-50',                   ptllDYW_NLO +'*(LHE_HT<100)')
+# addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-70to100',         ptllDYW_LO  )
+# addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200_ext1',         ptllDYW_LO  )
+# addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400_ext1',    ptllDYW_LO  )
+# addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-400to600_ext1',    ptllDYW_LO  )
+# addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-600to800',         ptllDYW_LO  )
+# addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-800to1200',        ptllDYW_LO  )
+# addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-1200to2500',       ptllDYW_LO  )
+# addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toinf',        ptllDYW_LO  )
 
 
 
 ############ Top ############
 
 samples['top'] = {    
-            'name'   : nanoGetSampleFiles(directory_bkg,'ST_s-channel') 
+            'name'   :  
+                        nanoGetSampleFiles(directory_bkg,'ST_s-channel') 
                       + nanoGetSampleFiles(directory_bkg,'ST_t-channel_antitop') 
                       + nanoGetSampleFiles(directory_bkg,'ST_t-channel_top') 
                       + nanoGetSampleFiles(directory_bkg,'ST_tW_antitop') 
                       + nanoGetSampleFiles(directory_bkg,'ST_tW_top') 
                       + nanoGetSampleFiles(directory_bkg,'TTToSemiLeptonic') 
-                      +  nanoGetSampleFiles(directory_bkg,'TTTo2L2Nu') 
+                      + nanoGetSampleFiles(directory_bkg,'TTTo2L2Nu') 
                       #+  nanoGetSampleFiles(directory_bkg,'TTWjetsToLNu_ext1')  ########## ADD ME BACK
-                      +  nanoGetSampleFiles(directory_bkg,'TTZjets'),  
-            'weight' :  XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + "* Top_pTrw",
+                      + nanoGetSampleFiles(directory_bkg,'TTZjets'),  
+            'weight' :  XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
             'FilesPerJob' : 4,
                  }
-
+# ACHTUNG! NO topGenPt in TTZjets!                 
+# addSampleWeight(samples,'top','ST_s-channel', 'Top_pTrw' )
+# addSampleWeight(samples,'top','ST_t-channel_antitop', 'Top_pTrw' )
+# addSampleWeight(samples,'top','ST_t-channel_top', 'Top_pTrw' )
+# addSampleWeight(samples,'top','ST_tW_antitop', 'Top_pTrw' )
+# addSampleWeight(samples,'top','ST_tW_top', 'Top_pTrw' )
+# addSampleWeight(samples,'top','TTToSemiLeptonic', 'Top_pTrw' )
+# addSampleWeight(samples,'top','TTTo2L2Nu', 'Top_pTrw' )
 
 samples['Wjets'] = { 'name' :   
           # nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
@@ -284,4 +293,3 @@ for Run in DataRun :
                 for iFile in FileTarget:
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
-
