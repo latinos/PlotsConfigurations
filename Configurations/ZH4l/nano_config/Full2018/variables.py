@@ -66,12 +66,24 @@ variables['class5'] = {
 }
 '''
 variables['class0'] = {
-     'name': 'hww_ZH_newBDT(Entry$,0)',
+     'name': 'hww_ZH_newBDTnew(Entry$,0)',
      'range' :  ([-0.50,-0.25,-0.15,0.,0.15,0.25,0.35,0.50,0.75],),
      'xaxis' : 'MVA discriminant ZH',
      'fold' : 3,
-     'linesToAdd' : ['.L /afs/cern.ch/work/k/kaura/NewLatino_v2/CMSSW_10_2_5/src/PlotsConfigurations/Configurations/ZH4l/nano_config/Full2017/BDT/new_macros/init_var/hww_ZH_newBDT.C+']
+    # 'doWeight' : 1,
+    # 'binX' : 1,
+    # 'binY' : 8,
+     'linesToAdd' : ['.L /afs/cern.ch/work/k/kaura/NewLatino_v2/CMSSW_10_2_5/src/PlotsConfigurations/Configurations/ZH4l/nano_config/Full2018/BDT/new_macros/init_var/hww_ZH_newBDTnew.C+']
 }
+
+variables['class1'] = {
+     'name': 'hww_ZH_newBDTnew(Entry$,0)',
+     'range' :  ([-1.0,-0.75,-0.50,-0.25,-0.15,0.,0.15,0.25,0.35,0.50,0.75,1.0],),
+     'xaxis' : 'MVA discriminant ZH',
+     'fold' : 3,
+     'linesToAdd' : ['.L /afs/cern.ch/work/k/kaura/NewLatino_v2/CMSSW_10_2_5/src/PlotsConfigurations/Configurations/ZH4l/nano_config/Full2018/BDT/new_macros/init_var/hww_ZH_newBDTnew.C+']
+}
+
 '''
 variables['class1'] = {
      'name': 'hww_ZH_newBDT(Entry$,0)',

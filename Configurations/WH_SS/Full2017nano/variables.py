@@ -22,7 +22,7 @@ variables['mlljj20_whss']  = {   'name': 'mlljj20_whss',
                         'xaxis' : 'mlljj20_whss [GeV]',
                         'fold' : 0
                         }
-
+'''
 #variables['mlljj20_whss_bin5']  = {   'name': 'mlljj20_whss',
 #                        'range' : ([60.,100.,110.,120.,130.,140.,150.,175.,200.,250.,300.],),
 #                        'xaxis' : 'mlljj20_whss [GeV]',
@@ -53,7 +53,7 @@ variables['detall']  = {   'name': 'abs(Lepton_eta[0] - Lepton_eta[1])',        
                         'fold' : 3
                         }
 
-'''
+
 variables['mth']  = {   'name': 'mth',            #   variable name    
                         'range' : (40,0,200),    #   variable range
                         'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
@@ -66,7 +66,7 @@ variables['dphill']  = {   'name': 'abs(dphill)',
                         'fold' : 3
                         }
 
-'''
+
 variables['ptll']  = {   'name': 'ptll',     
                         'range' : (40, 0,200),   
                         'xaxis' : 'p_{T}^{ll} [GeV]',
@@ -201,3 +201,4 @@ variables['mjj']  = {  'name': 'mjj*(CleanJet_pt[1]>30)',
 #                        'xaxis' : 'mllThird [GeV]',
 #                         'fold' : 3
 #                        }
+'''

@@ -255,41 +255,6 @@ nuisances['UE_whss']  = {
                },
                 }
 
-#nuisances['PS']  = {
-#                'name'  : 'PS',
-#                'skipCMS' : 1,
-#                'kind'  : 'tree',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                  'WW'      : ['1.', '1.'], #
-#                  'ggH_hww' : ['1.', '1.'], # These numbers are used to normalize the PS variation to the same integral as the nominal after the wwSel skim
-#                  'qqH_hww' : ['1.', '1.'], #
-#                  'WH_hww' : ['1.', '1.'], #
-#                  'ZH_hww' : ['1.', '1.'], #
-#                },
-#                'folderUp'   : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__PS',
-#                'folderDown' : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5',
-#                'AsLnN'      : '1',
-#                }
-#
-##FIXME: Add UE uncertainty
-#nuisances['UE']  = {
-#                'name'  : 'UE', 
-#                'skipCMS' : 1,
-#                'kind'  : 'tree',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                  'WW'      : ['1.', '1.'], #
-#                  'ggH_hww' : ['1.', '1.'], # These numbers are used to normalize the UE up/down variations to the same integral as the nominal after the wwSel skim
-#                  'qqH_hww' : ['1.', '1.'], #
-#                  'WH_hww' : ['1.', '1.'], #
-#                  'ZH_hww' : ['1.', '1.'], #
-#                },
-#                'folderUp'   : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__UEup',
-#                'folderDown' : treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5__UEdo',
-#                'AsLnN'      : '1',
-#                }
-#
 
 ##### QCD scale uncertainties for Higgs signals other than ggH
 #
@@ -521,7 +486,33 @@ nuisances['singleTopToTTbar'] = {
 #        'VZ': '1.16'
 #    }
 #}
+'''
+nuisances['WZ3l2jnorm']  = {
+               'name'  : 'CMS_hww_WZ3l2jnorm',
+               'samples'  : {
+                   'WZ'       : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                   'hww2l2v_13TeV_of2j_WH_SS_uu_2j',
+                   'hww2l2v_13TeV_of2j_WH_SS_eu_2j',
+                   'zh3l_WZ_CR_2j',
+                ]
+              }
 
+nuisances['WZ3l1jnorm']  = {
+               'name'  : 'CMS_hww_WZ3l1jnorm',
+               'samples'  : {
+                   'WZ'       : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                   'hww2l2v_13TeV_of2j_WH_SS_uu_1j',
+                   'hww2l2v_13TeV_of2j_WH_SS_eu_1j',
+                   'zh3l_WZ_CR_1j',
+                ]
+              }
+'''
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat']  = {
               'type'  : 'auto',
