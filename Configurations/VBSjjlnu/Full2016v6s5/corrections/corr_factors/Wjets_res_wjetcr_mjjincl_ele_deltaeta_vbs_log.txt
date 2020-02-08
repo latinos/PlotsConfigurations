@@ -1,0 +1,8 @@
+Samples: Data,DY,top,VVV,Fake
+Sample to reweight: Wjets
+Cat: res_wjetcr_mjjincl_ele
+Var: deltaeta_vbs
+Fit func: pol3
+Fit range: [2.0, 7.5]
+Integral ratio after 1st iteration: 0.999264277044
+Integral ratio after 2st iteration (normalization): 0.99999232457
