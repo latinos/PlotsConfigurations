@@ -4,8 +4,10 @@ treeName= 'Events'
 
 #tag = 'WH2018nano_forPlots'
 #tag = 'WH2018nano_try4'
-tag = 'WH2018nano_try5'
-
+#tag = 'WH2018nano_try6'
+#tag = 'fromSarah'
+tag = 'WH2018nano_postfreeze_try1' #add Zveto in mm and remove DY
+#tag = 'WH2018nano_forpreapp' #add Zveto in mm and remove DY
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'

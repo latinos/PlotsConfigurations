@@ -10,11 +10,11 @@ structure['DY']  = {
               }
 
 
-#structure['Wjets']  = {  
-#                  'isSignal' : 0,
-#                  'isData'   : 0 
-#              }
-#
+structure['ttV']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0 
+              }
+
 structure['Fakes']  = {  
                   'isSignal' : 0,
                   'isData'   : 0 

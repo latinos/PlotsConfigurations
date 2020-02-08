@@ -65,25 +65,13 @@ nuisances['lumi_Ghosts'] = {
 
 #### FAKES
 
-nuisances['fake_syst_em'] = {
-    'name': 'CMS_fake_syst_em',
-    'type': 'lnN',
-    'samples': {
-        'Fake_em': '1.3'
-    },
-    'cutspost': lambda self, cuts: [cut for cut in cuts if '20me' not in cut],
-    #'perRecoBin': True
-}
-
-nuisances['fake_syst_me'] = {
-    'name': 'CMS_fake_syst_me',
-    'type': 'lnN',
-    'samples': {
-        'Fake_me': '1.3'
-    },
-    'cutspost': lambda self, cuts: [cut for cut in cuts if '20em' not in cut],
-    #'perRecoBin': True
-}
+nuisances['fake_syst']  = {
+               'name'  : 'CMS_fake_syst',
+               'type'  : 'lnN',
+               'samples'  : {
+                             'Fake' : '1.30',
+                             },
+               }
 
 nuisances['fake_ele']  = {
                 'name'  : 'CMS_fake_e_2016',

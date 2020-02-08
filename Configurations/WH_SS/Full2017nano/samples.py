@@ -188,13 +188,13 @@ samples['top'] = {    'name'   :   getSampleFiles(directory,'TTTo2L2Nu',False,'n
 
 addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
 
-
+'''
 samples['ttV'] = { 'name' : getSampleFiles(directory,'TTWjets_ext1',False,'nanoLatino_')
                           + getSampleFiles(directory,'TTZjets_ext1',False,'nanoLatino_'),
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                      'FilesPerJob' : 5,
                     }
-
+'''
 ############ WW ############
 
 #FIXME Add nllW weight to WW
@@ -203,8 +203,8 @@ samples['WW'] = {    'name'   :   getSampleFiles(directory,'WWTo2L2Nu',False,'na
                  }
 
 
-samples['WWewk'] = {   'name'  : getSampleFiles(directory, 'WpWmJJ_EWK',False,'nanoLatino_')
-                               + getSampleFiles(directory, 'WpWpJJ_EWK',False,'nanoLatino_'), 
+samples['WWewk'] = {   'name'  : getSampleFiles(directory, 'WpWmJJ_EWK',False,'nanoLatino_'),
+  #                             + getSampleFiles(directory, 'WpWpJJ_EWK',False,'nanoLatino_'), 
                        'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+ '*(Sum$(abs(GenPart_pdgId)==6)==0)' #filter tops
                    }
 

@@ -7,7 +7,14 @@
 # Groups of samples to improve the plots.
 # If not defined, normal plots is used
 #
-
+'''
+groupPlot['ttV']  = {
+                  'nameHR' : 'ttV',
+                  'isSignal' : 0,
+                  'color': 400,   # kYellow
+                  'samples'  : ['ttV']
+              }
+'''
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
@@ -26,17 +33,17 @@ groupPlot['Fake']  = {
                   'nameHR' : 'Non-prompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fakes_em','Fakes_ee','Fakes_mm']
+                  'samples'  : ['Fakes_em','Fakes_mm']
               }
 
 
-groupPlot['DY']  = {  
-                  'nameHR' : "DY",
-                  'isSignal' : 0,
-                  'color': 418,    # kGreen+2
-                  'samples'  : ['DY']
-              }
-
+#groupPlot['DY']  = {  
+#                  'nameHR' : "DY",
+#                  'isSignal' : 0,
+#                  'color': 418,    # kGreen+2
+#                  'samples'  : ['DY']
+#              }
+#
 
 
 groupPlot['VVV']  = {  
@@ -86,7 +93,14 @@ groupPlot['Higgs']  = {
 
 # keys here must match keys in samples.py    
 #
-             
+'''
+plot['ttV']  = {
+                  'isSignal' : 0,
+                  'color': 400,   # kYellow
+                  'isData'   : 0, 
+                  'scale'    : 1.0,
+              }
+   '''
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
@@ -118,13 +132,6 @@ plot['DY']  = {
 #
 
 plot['Fakes_em']  = {  
-                  'color': 921,    # kGray + 1
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0                  
-              }
-
-plot['Fakes_ee']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -390,7 +397,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1,
-                  'isBlind'  : 1
+                  'isBlind'  : 0
               }
 
 
