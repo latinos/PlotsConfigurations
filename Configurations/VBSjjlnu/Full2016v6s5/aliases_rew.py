@@ -2,10 +2,10 @@ import os
 import copy
 import inspect
 
-configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # Full2016v6s5
-configurations = os.path.dirname(configurations) # VBSjjlnu
-configurations = os.path.dirname(configurations) # Configurations
+thisfile = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
+conf_folder = os.path.dirname(thisfile) # Full2017v6s5
+vbsjjlnu_folder = os.path.dirname(conf_folder) # VBSjjlnu
+configurations = os.path.dirname(vbsjjlnu_folder) # Configurations
 
 #aliases = {}
 
@@ -36,7 +36,6 @@ aliases['DNNoutput_resolved'] = {
         '.L ' + mva_reader_path + 'mva_reader_resolved.cc+', 
     ],
 }
-
 
 
 ############################################
@@ -70,8 +69,8 @@ aliases['btagSF'] = {
 }
 
 
-#systs = ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']
-systs = ['jes']
+systs = ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']
+#systs = ['jes']
 
 for s in systs:
   aliases['btagSF'+s+'up'] = { 'expr': '(bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_up_'+s)+'+bReq*'+aliases['bReqSF']['expr'].replace('shape','shape_up_'+s)+'+ ( (!bVeto) && (!bReq) ))', 'samples':mc  }
@@ -162,4 +161,26 @@ lastcopy = (1 << 13)
 #     'samples' : ["Wjets"]
 # }
 
+# reweight_path = conf_folder+"/corrections/corr_factors/reweight_wjets_nohorns_"
+reweight_path = conf_folder+"/corrections/corr_factors/reweight_wjets_"
+
+aliases['deltaetavbs_reweight'] = {
+    'class': 'ReweightDeltaEta',
+    'args':(reweight_path+"deltaetavbs_ele.root", reweight_path+"deltaetavbs_mu.root", "wf_norm", 7.6),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L %s/corrections/reweight_deltaetavbs.cc+' % conf_folder
+   ],
+    'samples' : ["Wjets"]
+}
+
+aliases['leptonpt_reweight'] = {
+    'class': 'ReweightLeptonPt',
+    'args':(reweight_path+"leptonpt_ele.root", reweight_path+"leptonpt_mu.root", "wf_norm", 500),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L %s/corrections/reweight_leptonpt.cc+' % conf_folder
+   ],
+    'samples' : ["Wjets"]
+}
 

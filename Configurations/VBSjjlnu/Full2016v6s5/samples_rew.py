@@ -115,7 +115,7 @@ useEmbeddedDY = False
 DY_photon_filter = '(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)'
 
 samples['DY'] = {    'name'   :   
-     nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-70to100')
+    nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-70to100')
   +  nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-100to200_ext1')
   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-200to400_ext1')
   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-400to600_ext1')
@@ -133,7 +133,7 @@ samples['DY'] = {    'name'   :
                                 ,
         'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch, # ewknloW ADD ME, admin
         # 'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*' + DY_photon_filter, # ewknloW ADD ME, admin
-        'FilesPerJob' : 1,
+        'FilesPerJob' : 5,
                   }
 
 # addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-70to100', ptllDYW_LO  )
@@ -168,7 +168,7 @@ samples['top'] = {
                       #+  nanoGetSampleFiles(directory_bkg,'TTWjetsToLNu_ext1')  ########## ADD ME BACK
                       + nanoGetSampleFiles(directory_bkg,'TTZjets'),  
             'weight' :  XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-            'FilesPerJob' : 1,
+            'FilesPerJob' : 4,
                  }
 # ACHTUNG! NO topGenPt in TTZjets!                 
 # addSampleWeight(samples,'top','ST_s-channel', 'Top_pTrw' )
@@ -190,8 +190,9 @@ samples['Wjets'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500_ext1')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf_ext1')
         ,
-        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-        'FilesPerJob' : 1,
+        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch
+                         +'*( (VBS_category==1)*(deltaetavbs_reweight*leptonpt_reweight) + (VBS_category==0) )', # reweight resolved
+        'FilesPerJob' : 5,
        }
 #
 # Fix Wjets binned + LO 
@@ -294,3 +295,4 @@ for Run in DataRun :
                 for iFile in FileTarget:
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
+

@@ -1,0 +1,8 @@
+Samples: Data,DY,top,VVV,Fake
+Sample to reweight: Wjets
+Cat: res_wjetcr_mjjincl_mu
+Var: Lepton_pt
+Fit func: pol3(0) + expo(4)
+Fit range: [30.0, 300.0]
+Integral ratio after 1st iteration: 0.998071554941
+Integral ratio after 2st iteration (normalization): 0.999999032985
