@@ -12,14 +12,14 @@ configurations = os.path.dirname(vbsjjlnu_folder) # Configurations
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
 ############################################
-# DNN reader - UPDATE TO 2018 WHEN READY FIXME
+# DNN reader - Updated to 2018 specific
 
-mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017v6s5/mva/'
-models_path = '/eos/home-d/dmapelli/public/latino/Full2017v6s5/'
+mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2018v6s5/mva/'
+models_path = '/eos/home-d/dmapelli/public/latino/Full2018v6s5/'
 
 aliases['DNNoutput_boosted'] = {
     'class': 'MVAReaderBoosted',
-    'args': ( models_path +'boos_sig_mjjincl/models/v12/', False, 0),
+    'args': ( models_path +'boos_sig_mjjincl/models/v13/', False, 0),
     'linesToAdd':[
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         'gSystem->Load("libDNNEvaluator.so")',
@@ -29,7 +29,7 @@ aliases['DNNoutput_boosted'] = {
 
 aliases['DNNoutput_resolved'] = {
     'class': 'MVAReaderResolved',
-    'args': ( models_path+ '/res_sig_mjjincl/models/v11/', False, 1),
+    'args': ( models_path+ '/res_sig_mjjincl/models/v18/', False, 1),
     'linesToAdd':[
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         'gSystem->Load("libDNNEvaluator.so")',

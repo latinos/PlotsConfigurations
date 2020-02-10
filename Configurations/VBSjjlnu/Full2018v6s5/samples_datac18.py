@@ -121,7 +121,7 @@ samples['DY'] = {
           + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-2500toInf')
           ,
     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*' + DY_photon_filter , ###### ADD ewkNLO!!!
-    'FilesPerJob' : 6,
+    'FilesPerJob' : 5,
 }
 
 addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-100to200',ptllDYW_LO) 
@@ -159,7 +159,7 @@ samples['top'] = {
                        + nanoGetSampleFiles(directory_bkg,'TTZjets') 
                        +  nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu'),
             'weight' :  XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch +"* Top_pTrw" ,
-            'FilesPerJob' : 5,
+            'FilesPerJob' : 4,
 }
 
 samples['Wjets'] = { 'name' :   
@@ -241,7 +241,7 @@ samples['VBS']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J',) +
                nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J',  ) ,
        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-       'FilesPerJob' : 5,
+       'FilesPerJob' :4,
 }
 
 #fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP + '_mu10_ele35'
