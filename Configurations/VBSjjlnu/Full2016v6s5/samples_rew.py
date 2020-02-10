@@ -295,3 +295,4 @@ for Run in DataRun :
                 for iFile in FileTarget:
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
+

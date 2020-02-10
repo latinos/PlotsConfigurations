@@ -161,7 +161,8 @@ lastcopy = (1 << 13)
 #     'samples' : ["Wjets"]
 # }
 
-reweight_path = conf_folder+"/corrections/corr_factors/reweight_wjets_nohorns_"
+# reweight_path = conf_folder+"/corrections/corr_factors/reweight_wjets_nohorns_"
+reweight_path = conf_folder+"/corrections/corr_factors/reweight_wjets_"
 
 aliases['deltaetavbs_reweight'] = {
     'class': 'ReweightDeltaEta',
