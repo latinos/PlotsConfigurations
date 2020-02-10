@@ -115,7 +115,7 @@ useEmbeddedDY = False
 DY_photon_filter = '(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)'
 
 samples['DY'] = {    'name'   :   
-    nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-70to100')
+     nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-70to100')
   +  nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-100to200_ext1')
   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-200to400_ext1')
   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-400to600_ext1')
