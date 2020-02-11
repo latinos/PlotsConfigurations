@@ -11,7 +11,7 @@ The following instructions and configurations correspond to the VH2j analysis. T
 
 # Produce histograms
 
-    cd $CMSSW_BASE/src/PlotsConfigurations/Configurations/VH2j/Full2016_nanoAODv4
+    cd $CMSSW_BASE/src/PlotsConfigurations/Configurations/VH2j/Full2016
     cd $CMSSW_BASE/src/PlotsConfigurations/Configurations/VH2j/Full2017
     cd $CMSSW_BASE/src/PlotsConfigurations/Configurations/VH2j/Full2018
 
@@ -57,7 +57,7 @@ To produce blinded distributions (no data) open `plot.py` and set the variable `
     cd $CMSSW_BASE/src
     cmsenv
 
-    cd $CMSSW_BASE/src/PlotsConfigurations/Configurations/VH2j/Full2016_nanoAODv4
+    cd $CMSSW_BASE/src/PlotsConfigurations/Configurations/VH2j/Full2016
     mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_VH2j_2016.root
 
     cd $CMSSW_BASE/src/PlotsConfigurations/Configurations/VH2j/Full2017
