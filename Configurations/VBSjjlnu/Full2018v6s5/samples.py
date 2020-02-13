@@ -121,7 +121,7 @@ samples['DY'] = {
           + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-2500toInf')
           ,
     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*' + DY_photon_filter , ###### ADD ewkNLO!!!
-    'FilesPerJob' : 6,
+    'FilesPerJob' : 4,
 }
 
 addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-100to200',ptllDYW_LO) 
@@ -174,7 +174,7 @@ samples['Wjets'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
 				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-				'FilesPerJob' : 8,
+				'FilesPerJob' : 4,
 		   }
 
 # Fix Wjets binned + LO 
