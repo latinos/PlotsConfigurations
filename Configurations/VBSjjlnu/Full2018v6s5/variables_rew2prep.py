@@ -10,22 +10,22 @@ variables['events']  = {   'name': '1',
                         }
 
 
-variables['DNNoutput'] = {
-    'name': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)',
-    'range': (25,0,1),
-    'xaxis': 'DNN output',
-    'fold': 3 ,
-    'blind': {
-        "res_sig_mjjhigh_ele": [0.7,1],
-        "res_sig_mjjhigh_mu": [0.7,1],
-        "res_sig_mjjincl_ele": [0.7,1],
-        "res_sig_mjjincl_mu": [0.7,1], 
-        "boos_sig_mjjhigh_ele": [0.7,1],
-        "boos_sig_mjjhigh_mu": [0.7,1],
-        "boos_sig_mjjincl_ele": [0.7,1],
-        "boos_sig_mjjincl_mu": [0.7,1],
-    }
-}
+# variables['DNNoutput'] = {
+#     'name': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)',
+#     'range': (25,0,1),
+#     'xaxis': 'DNN output',
+#     'fold': 3 ,
+#     'blind': {
+#         "res_sig_mjjhigh_ele": [0.7,1],
+#         "res_sig_mjjhigh_mu": [0.7,1],
+#         "res_sig_mjjincl_ele": [0.7,1],
+#         "res_sig_mjjincl_mu": [0.7,1], 
+#         "boos_sig_mjjhigh_ele": [0.7,1],
+#         "boos_sig_mjjhigh_mu": [0.7,1],
+#         "boos_sig_mjjincl_ele": [0.7,1],
+#         "boos_sig_mjjincl_mu": [0.7,1],
+#     }
+# }
 
 #leptons
 
@@ -113,16 +113,16 @@ variables['Lepton_pt'] = {   'name': 'Lepton_pt[0]',
 #                     }
 
 
-# VBS vars
-variables['mjj_vbs'] = {   'name': 'mjj_vbs',      
-                        'range' : ([200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,4000],) , 
-                        'xaxis' : 'M_{jj} VBS', 
-                        'fold' : 3,
-                        'blind' : {
-                            "res_sig_mjjhigh_ele" :(1000,4000),
-                            "res_sig_mjjhigh_mu" : (1000,4000),
-                            }
-                        }
+# # VBS vars
+# variables['mjj_vbs'] = {   'name': 'mjj_vbs',      
+#                         'range' : ([200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,4000],) , 
+#                         'xaxis' : 'M_{jj} VBS', 
+#                         'fold' : 3,
+#                         'blind' : {
+#                             "res_sig_mjjhigh_ele" :(1000,4000),
+#                             "res_sig_mjjhigh_mu" : (1000,4000),
+#                             }
+#                         }
 
 #delta angles between the VBS jets
 variables['deltaeta_vbs'] = {   'name': 'deltaeta_vbs',      
@@ -135,13 +135,21 @@ variables['deltaeta_vbs'] = {   'name': 'deltaeta_vbs',
                             }
                         }
 
-
-
-variables['mjj_vjet'] = {   'name': 'mjj_vjet',      
-                        'range' : (50,40,250),  
-                        'xaxis' : 'Whad reco mass', 
-                        'fold' : 3
+variables['deltaeta_vbs_rebin'] = {   'name': 'deltaeta_vbs',      
+                        'range' : ([2. , 2.4, 2.8, 3.2, 3.6, 4. , 4.4, 4.8, 5.2, 5.6, 6. , 6.4, 8. ],),  
+                        'xaxis' : '#Delta#eta VBS jets', 
+                        'fold' : 3,
+                        'blind': {
+                            "res_sig_mjjhigh_ele" :(4,9),
+                            "res_sig_mjjhigh_mu" : (4,9),
+                            }
                         }
+
+# variables['mjj_vjet'] = {   'name': 'mjj_vjet',      
+#                         'range' : (50,40,250),  
+#                         'xaxis' : 'Whad reco mass', 
+#                         'fold' : 3
+#                         }
 
 
 # # vjet jets
