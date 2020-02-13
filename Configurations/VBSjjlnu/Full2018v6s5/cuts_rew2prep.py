@@ -367,63 +367,63 @@ cuts["res_wjetcr_mjjincl_mjjvjethigh_mu"] = 'VBS_category==1 \
 
 
 
-# # ##################################
-# # # Woff shell, bveto ---> WJet region
+# ##################################
+# # Woff shell, bveto ---> WJet region
 
 
-# cuts["boost_wjetcr_mjjincl_ele"] = 'VBS_category==0 \
-#                                 && abs(Lepton_pdgId[0])==11 \
-#                                 && Lepton_pt[0] >= 40 \
-#                                 && vjet_0_pt > 200 \
-#                                 && ( mjj_vjet <= 65 || mjj_vjet >= 105) \
-#                                 && bVeto \
-#                                 && mjj_vbs >=250 \
-#                                 '
+cuts["boost_wjetcr_mjjincl_ele"] = 'VBS_category==0 \
+                                && abs(Lepton_pdgId[0])==11 \
+                                && Lepton_pt[0] >= 40 \
+                                && vjet_0_pt > 200 \
+                                && ( mjj_vjet <= 65 || mjj_vjet >= 105) \
+                                && bVeto \
+                                && mjj_vbs >=250 \
+                                '
 
-# cuts["boost_wjetcr_mjjincl_mu"] = 'VBS_category==0 \
-#                                 && abs(Lepton_pdgId[0])==13 \
-#                                 && Lepton_pt[0] >= 30 \
-#                                 && vjet_0_pt > 200 \
-#                                 && ( mjj_vjet <= 65 || mjj_vjet >= 105) \
-#                                 && bVeto \
-#                                 && mjj_vbs >=250 \
-#                                 '
+cuts["boost_wjetcr_mjjincl_mu"] = 'VBS_category==0 \
+                                && abs(Lepton_pdgId[0])==13 \
+                                && Lepton_pt[0] >= 30 \
+                                && vjet_0_pt > 200 \
+                                && ( mjj_vjet <= 65 || mjj_vjet >= 105) \
+                                && bVeto \
+                                && mjj_vbs >=250 \
+                                '
 
-# cuts["boost_wjetcr_mjjincl_mjjvjetlow_ele"] = 'VBS_category==0 \
-#                                 && abs(Lepton_pdgId[0])==11 \
-#                                 && Lepton_pt[0] >= 40 \
-#                                 && vjet_0_pt > 200 \
-#                                 && ( mjj_vjet <= 65 ) \
-#                                 && bVeto \
-#                                 && mjj_vbs >=250 \
-#                                 '
+cuts["boost_wjetcr_mjjincl_mjjvjetlow_ele"] = 'VBS_category==0 \
+                                && abs(Lepton_pdgId[0])==11 \
+                                && Lepton_pt[0] >= 40 \
+                                && vjet_0_pt > 200 \
+                                && ( mjj_vjet <= 65 ) \
+                                && bVeto \
+                                && mjj_vbs >=250 \
+                                '
 
-# cuts["boost_wjetcr_mjjincl_mjjvjethigh_ele"] = 'VBS_category==0 \
-#                                 && abs(Lepton_pdgId[0])==11 \
-#                                 && Lepton_pt[0] >= 40 \
-#                                 && vjet_0_pt > 200 \
-#                                 && ( mjj_vjet >= 105) \
-#                                 && bVeto \
-#                                 && mjj_vbs >=250 \
-#                                 '
+cuts["boost_wjetcr_mjjincl_mjjvjethigh_ele"] = 'VBS_category==0 \
+                                && abs(Lepton_pdgId[0])==11 \
+                                && Lepton_pt[0] >= 40 \
+                                && vjet_0_pt > 200 \
+                                && ( mjj_vjet >= 105) \
+                                && bVeto \
+                                && mjj_vbs >=250 \
+                                '
 
-# cuts["boost_wjetcr_mjjincl_mjjvjetlow_mu"] = 'VBS_category==0 \
-#                                 && abs(Lepton_pdgId[0])==13 \
-#                                 && Lepton_pt[0] >= 30 \
-#                                 && vjet_0_pt > 200 \
-#                                 && ( mjj_vjet <= 65 ) \
-#                                 && bVeto \
-#                                 && mjj_vbs >=250 \
-#                                 '
+cuts["boost_wjetcr_mjjincl_mjjvjetlow_mu"] = 'VBS_category==0 \
+                                && abs(Lepton_pdgId[0])==13 \
+                                && Lepton_pt[0] >= 30 \
+                                && vjet_0_pt > 200 \
+                                && ( mjj_vjet <= 65 ) \
+                                && bVeto \
+                                && mjj_vbs >=250 \
+                                '
 
-# cuts["boost_wjetcr_mjjincl_mjjvjethigh_mu"] = 'VBS_category==0 \
-#                                 && abs(Lepton_pdgId[0])==13 \
-#                                 && Lepton_pt[0] >= 30 \
-#                                 && vjet_0_pt > 200 \
-#                                 && ( mjj_vjet >= 105) \
-#                                 && bVeto \
-#                                 && mjj_vbs >=250 \
-#                                 '
+cuts["boost_wjetcr_mjjincl_mjjvjethigh_mu"] = 'VBS_category==0 \
+                                && abs(Lepton_pdgId[0])==13 \
+                                && Lepton_pt[0] >= 30 \
+                                && vjet_0_pt > 200 \
+                                && ( mjj_vjet >= 105) \
+                                && bVeto \
+                                && mjj_vbs >=250 \
+                                '
 
 # cuts["boost_wjetcr_mjjlow_ele"] = 'VBS_category==0 \
 #                                 && abs(Lepton_pdgId[0])==11 \
