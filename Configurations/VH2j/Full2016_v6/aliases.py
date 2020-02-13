@@ -244,30 +244,30 @@ aliases['lhe_mW2'] = {
 }
 
 # use HTXS_njets30 when moving to NanoAODv5 for all trees
-aliases['nCleanGenJet'] = {
-    'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
-    'class': 'CountGenJet',
-    'samples': signals
-}
-
-# GGHUncertaintyProducer wasn't run for 2016 nAODv5 non-private
-thus = [
-    'ggH_mu',
-    'ggH_res',
-    'ggH_mig01',
-    'ggH_mig12',
-    'ggH_VBF2j',
-    'ggH_VBF3j',
-    'ggH_pT60',
-    'ggH_pT120',
-    'ggH_qmtop'
-]
-
-for thu in thus:
-    aliases[thu] = {
-        'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
-        'class': 'GGHUncertainty',
-        'args': (thu,),
-        'samples': ['ggH_hww'],
-        'nominalOnly': True
-    }
+#aliases['nCleanGenJet'] = {
+#    'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
+#    'class': 'CountGenJet',
+#    'samples': signals
+#}
+#
+## GGHUncertaintyProducer wasn't run for 2016 nAODv5 non-private
+#thus = [
+#    'ggH_mu',
+#    'ggH_res',
+#    'ggH_mig01',
+#    'ggH_mig12',
+#    'ggH_VBF2j',
+#    'ggH_VBF3j',
+#    'ggH_pT60',
+#    'ggH_pT120',
+#    'ggH_qmtop'
+#]
+#
+#for thu in thus:
+#    aliases[thu] = {
+#        'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
+#        'class': 'GGHUncertainty',
+#        'args': (thu,),
+#        'samples': ['ggH_hww'],
+#        'nominalOnly': True
+#    }
