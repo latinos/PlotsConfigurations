@@ -13,6 +13,8 @@ parser.add_argument("--dry", action="store_true", help="Do not run, only create 
 args = parser.parse_args()
 
 
+fitter_options=  "--robustFit=1 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND"
+toysf = "--toysFreq" if args.data_asimov else ""
 
 def prepare_rateParams(years):
     rps = []
@@ -26,21 +28,22 @@ def prepare_rateParams(years):
                         rps.append("CMS_Top_norm_{}".format(y))
     return rps
 
-fitter_options=  "--robustFit=1 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND"
+
+rate_params = prepare_rateParams(args.years)
+rparam_names = ",".join(rate_params)
+rparam_ranges = ":".join([r+"=-2,4" for r in rate_params])
+
+if not os.path.exists(args.outputdir):
+        os.makedirs(args.outputdir)
+  
+cmd = []   
+cmd.append("cp {} {}/combined.root".format(args.inputfile, args.outputdir))
+cmd.append("cd "+ args.outputdir)
+cmd.append("echo '{}' > log.txt".format("Initial dir: "+ args.inputfile))
 
 
 if not args.plot:
 # Prepare the script to create the impacts
-    cmd = []
-    if not os.path.exists(args.outputdir):
-        os.makedirs(args.outputdir)
-        
-    cmd.append("cp {} {}/combined.root".format(args.inputfile, args.outputdir))
-    cmd.append("cd "+ args.outputdir)
-    cmd.append("echo '{}' > log.txt".format("Initial dir: "+ args.inputfile))
-
-    toysf = "--toysFreq" if args.data_asimov else ""
-
     cmd.append("""combineTool.py -M Impacts -d combined.root -m 125 --doInitialFit \\
                 -t -1 --expectSignal=1 {} -n nuis.125 \\
                 {}""".format(toysf, fitter_options))
@@ -48,11 +51,7 @@ if not args.plot:
     cmd.append("""combineTool.py -M Impacts -d combined.root -m 125 --doFits \\
                 -t -1 --expectSignal=1 {} --job-mode condor --task-name nuis -n nuis.125 \\
                 {}""".format(toysf, fitter_options))
-    
 
-    rate_params = prepare_rateParams(args.years)
-    rparam_names = ",".join(rate_params)
-    rparam_ranges = ":".join([r+"=-2,4" for r in rate_params])
 
     cmd.append("""combineTool.py -M Impacts -d combined.root -m 125 --doInitialFit \\
                 -t -1 --expectSignal=1 {} -n rateParams.125 \\
@@ -83,16 +82,29 @@ if args.plot:
                 --setParameterRanges {} \\
                 -o impacts.rateParams.json -n rateParams.125  """.format(toysf,rparam_names,rparam_ranges))
 
-    result_nuis =  json.load(open("{}/impacts.nuis.json".format(args.outputdir)))
-    result_rateparam =  json.load(open("{}/impacts.rateParams.json".format(args.outputdir)))
+    with open("{}/script_preparation_plots.sh".format(args.outputdir), "w") as of:
+        of.write("\n".join(cmd))
 
-    results = {}
-    results["POIs"] = result_nuis["POIs"]
-    results["params"] = result_nuis["params"]
-    results["params"].update(result_rateparam["params"])
-    json.dump(results, open("{}/impacts.json".format(args.outputdir)), indent=2)
+    if not args.dry:
+        os.system("sh {}/script_preparation_plots.sh".format(args.outputdir))
 
-    # Create pdf
-    os.system("plotImpacts.py -i {0}/impacts.json -o {0}/impacts")
+        result_nuis =  json.load(open("{}/impacts.nuis.json".format(args.outputdir)))
+        result_rateparam =  json.load(open("{}/impacts.rateParams.json".format(args.outputdir)))
+
+        results = {}
+        results["POIs"] = result_nuis["POIs"]
+        results["params"] = result_rateparam["params"]
+        names = [pr["name"] for pr in results["params"]]
+        
+        for pr in result_nuis["params"]:
+            if pr["name"] not in names:
+                results["params"].append(pr)
+
+        json.dump(results, open("{}/impacts.json".format(args.outputdir), "w"), indent=2)
+
+        # Create pdf
+        os.system("plotImpacts.py -i {0}/impacts.json -o {0}/impacts".format(args.outputdir))
 
     
+
+
