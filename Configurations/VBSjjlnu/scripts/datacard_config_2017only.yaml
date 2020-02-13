@@ -1,5 +1,5 @@
 
--   datacard_name: "DNNv2_lessbins"
+-   datacard_name: "DNN_all"
     folders:  
         - name: 2017
           basedir: "Full2017v6s5/datacards_datac"
@@ -52,26 +52,19 @@
             cut: boost_topcr_mjjincl_mu
             var: events
 
--   datacard_name: "DNN_v2"
+
+-   datacard_name: "DNN_res"
     folders:  
-    - name: 2017
-      basedir: "Full2017v6s5/datacards_datac"
+        - name: 2017
+          basedir: "Full2017v6s5/datacards_datac"
     phase_spaces:
         -   name: SR_res_ele
             cut: res_sig_mjjincl_ele
-            var: DNNoutput
+            var: DNNoutput_lessbins
 
         -   name: SR_res_mu
             cut: res_sig_mjjincl_mu
-            var: DNNoutput
-
-        -   name: SR_boost_ele
-            cut: boost_sig_mjjincl_ele
-            var: DNNoutput
-
-        -   name: SR_boost_mu
-            cut: boost_sig_mjjincl_mu
-            var: DNNoutput
+            var: DNNoutput_lessbins
 
         -   name: wjetCR_res_ele
             cut: res_wjetcr_mjjincl_ele
@@ -89,6 +82,20 @@
             cut: res_topcr_mjjincl_mu
             var: events
 
+
+-   datacard_name: "DNN_boost"
+    folders:  
+        -   name: 2017
+            basedir: "Full2017v6s5/datacards_datac"
+    phase_spaces:
+        -   name: SR_boost_ele
+            cut: boost_sig_mjjincl_ele
+            var: DNNoutput_lessbins
+
+        -   name: SR_boost_mu
+            cut: boost_sig_mjjincl_mu
+            var: DNNoutput_lessbins
+
         -   name: wjetCR_boost_ele
             cut: boost_wjetcr_mjjincl_ele
             var: events
@@ -104,3 +111,6 @@
         -   name: topCR_boost_mu
             cut: boost_topcr_mjjincl_mu
             var: events
+        
+        
+        

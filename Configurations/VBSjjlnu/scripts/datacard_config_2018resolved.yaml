@@ -1,0 +1,30 @@
+
+-   datacard_name: "DNNresolved"
+    folders:  
+        -  name: 2018
+           basedir: "Full2018v6s5/datacards_datac18"
+
+    phase_spaces:
+        -   name: SR_res_ele
+            cut: res_sig_mjjincl_ele
+            var: DNNoutput_lessbins
+
+        -   name: SR_res_mu
+            cut: res_sig_mjjincl_mu
+            var: DNNoutput_lessbins
+
+        -   name: wjetCR_res_ele
+            cut: res_wjetcr_mjjincl_ele
+            var: events
+
+        -   name: wjetCR_res_mu
+            cut: res_wjetcr_mjjincl_mu
+            var: events
+
+        -   name: topCR_res_ele
+            cut: res_topcr_mjjincl_ele
+            var: events
+
+        -   name: topCR_res_mu
+            cut: res_topcr_mjjincl_mu
+            var: events

@@ -34,8 +34,16 @@ for datac in config:
     os.system("text2workspace.py {0}/combined_{1}.txt -o {0}/combined_{1}.root".format(outdir, datac["datacard_name"]))
 
     print(">Running combine (Asimov + pre-fit nuisances)")
-    os.system("combine -M Significance -t -1  --expectSignal=1 {0}/combined_{1}.root".format(outdir, datac["datacard_name"]))
+    os.system("combine -M Significance -t -1  --expectSignal=1 {0}/combined_{1}.root > {0}/logSignificance_MCasimov.txt".format(outdir, datac["datacard_name"]))
+
+    with open("{0}/logSignificance_MCasimov.txt".format(outdir)) as f: 
+        print(f.read())
+        print(">>>>>")
 
     print(">Running combine (Asimov + post-fit nuisances)")
-    os.system("combine -M Significance -t -1  --expectSignal=1 --toysFreq {0}/combined_{1}.root".format(outdir, datac["datacard_name"]))
+    os.system("combine -M Significance -t -1  --expectSignal=1 --toysFreq {0}/combined_{1}.root > {0}/logSignificance_data_asimov.txt".format(outdir, datac["datacard_name"]))
     print(">Done")
+
+    with open("{0}/logSignificance_data_asimov.txt".format(outdir)) as f: 
+        print(f.read())
+        print(">>>>>")

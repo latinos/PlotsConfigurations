@@ -133,7 +133,7 @@ samples['DY'] = {    'name'   :
                                 ,
         'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch, # ewknloW ADD ME, admin
         # 'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*' + DY_photon_filter, # ewknloW ADD ME, admin
-        'FilesPerJob' : 5,
+        'FilesPerJob' : 3,
                   }
 
 # addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-70to100', ptllDYW_LO  )
@@ -168,7 +168,7 @@ samples['top'] = {
                       #+  nanoGetSampleFiles(directory_bkg,'TTWjetsToLNu_ext1')  ########## ADD ME BACK
                       + nanoGetSampleFiles(directory_bkg,'TTZjets'),  
             'weight' :  XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-            'FilesPerJob' : 4,
+            'FilesPerJob' : 3,
                  }
 # ACHTUNG! NO topGenPt in TTZjets!                 
 # addSampleWeight(samples,'top','ST_s-channel', 'Top_pTrw' )
@@ -192,7 +192,7 @@ samples['Wjets'] = { 'name' :
         ,
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch
                          +'*( (VBS_category==1)*(deltaetavbs_reweight*leptonpt_reweight) + (VBS_category==0) )', # reweight resolved
-        'FilesPerJob' : 5,
+        'FilesPerJob' : 3,
        }
 #
 # Fix Wjets binned + LO 
@@ -254,7 +254,7 @@ samples['VBS']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J'),
                #nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J' ),
        'weight': XSWeight+'*'+SFweight_signal+'*'+METFilter_MC+'*'+GenLepMatch,
-       'FilesPerJob' : 5,
+       'FilesPerJob' : 4,
 }
 
 
