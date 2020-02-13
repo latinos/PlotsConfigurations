@@ -26,7 +26,7 @@ groupPlot['Fake']  = {
                   'nameHR' : 'Non-prompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fake_ee', 'Fake_mm']
+                  'samples'  : ['Fake']
               }
 
 
@@ -61,12 +61,12 @@ groupPlot['Vg']  = {
                   'samples'  : ['Vg', 'Wg']
               }
 
-#groupPlot['VgS']  = {
-#                  'nameHR' : "V#gamma*",
-#                  'isSignal' : 0,
-#                  'color'    : 409,   # kGreen - 9
-#                  'samples'  : ['WZgS']
-#              }
+groupPlot['VgS']  = {
+                  'nameHR' : "V#gamma*",
+                  'isSignal' : 0,
+                  'color'    : 409,   # kGreen - 9
+                  'samples'  : ['VgS_L', 'VgS_H']
+              }
 
 
 '''
@@ -106,24 +106,7 @@ plot['DY']  = {
 
               }
 
-'''
 plot['Fake']  = {  
-                  'color': 921,    # kGray + 1
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0                  
-              }
-'''
-
-plot['Fake_ee']  = {  
-                  'color': 921,    # kGray + 1
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0                  
-              }
-
-
-plot['Fake_mm']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -172,16 +155,9 @@ plot['Vg']  = {
                   'color': 859, # kAzure -1  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0
+                  'scale'    : (55.5 * 1.06 / 131.3) 
                   }
-'''
-plot['VgS'] = { 
-                  'color'    : 617,   # kViolet + 1  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
-'''
+                  
 plot['VZ']  = { 
                   'color': 858, # kAzure -2  
                   'isSignal' : 0,
@@ -196,28 +172,19 @@ plot['VVV']  = {
                   'scale'    : 1.0
                   }
 
-#plot['WZgS']  = {
-#                  'color': 617, # kViolet + 1
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.0
-#                  }
-'''
-plot['WZgS_L']  = {
+plot['VgS_L']  = {
                   'color': 617, # kViolet + 1
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
 
-plot['WZgS_H']  = {
+plot['VgS_H']  = {
                   'color': 617, # kViolet + 1
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-'''
-
 # Htautau
 
 '''
