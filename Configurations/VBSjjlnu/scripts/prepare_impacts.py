@@ -18,14 +18,14 @@ toysf = "--toysFreq" if args.data_asimov else ""
 
 def prepare_rateParams(years):
     rps = []
-    for fl in ["e", "mu"]:
-        for s in ["Wjets", "Top"]:
-            for c in ["boos", "res"]:
-                for y in years:
-                    if s == "Wjets":
+    for s in ["Wjets", "Top"]:
+        for c in ["boos", "res"]:
+            for y in years:
+                if s == "Wjets":
+                    for fl in ["e", "mu"]:
                         rps.append("CMS_Wjets_norm_{}_{}_{}".format(fl,c,y))
-                    if s == "Top":
-                        rps.append("CMS_Top_norm_{}".format(y))
+                if s == "Top":
+                    rps.append("CMS_Top_norm_{}".format(y))
     return rps
 
 
@@ -67,7 +67,7 @@ if not args.plot:
                 {}""".format(toysf, rparam_names, rparam_ranges, fitter_options))
 
     with open("{}/script_preparation.sh".format(args.outputdir), "w") as of:
-        of.write("\n".join(cmd))
+        of.write("\n\n".join(cmd))
 
     if not args.dry:
         os.system("sh {}/script_preparation.sh".format(args.outputdir))
@@ -83,7 +83,7 @@ if args.plot:
                 -o impacts.rateParams.json -n rateParams.125  """.format(toysf,rparam_names,rparam_ranges))
 
     with open("{}/script_preparation_plots.sh".format(args.outputdir), "w") as of:
-        of.write("\n".join(cmd))
+        of.write("\n\n".join(cmd))
 
     if not args.dry:
         os.system("sh {}/script_preparation_plots.sh".format(args.outputdir))
