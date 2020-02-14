@@ -35,33 +35,42 @@ for ph in phase_spaces_boost:
 phase_spaces_tot = phase_spaces_tot_ele + phase_spaces_tot_mu
 
 
-# ################################ EXPERIMENTAL UNCERTAINTIES  #################################
+# # ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
-# #### Luminosity
-
-nuisances['lumi_Uncorrelated'] = {
-    'name': 'lumi_13TeV_2018',
-    'type': 'lnN',
-    'samples': dict((skey, '1.015') for skey in mc if skey not in ['Wjets', 'top'])
+nuisances['deltaeta_vbs_rew']  = {
+                'name'  : 'deltaeta_vbs_rew',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                              'Wjets'     : [ "(deltaetavbs_reweight_high) / (deltaetavbs_reweight)", "(deltaetavbs_reweight_low) / (deltaetavbs_reweight)"],
+                             },
 }
 
-nuisances['lumi_XYFact'] = {
-    'name': 'lumi_13TeV_XYFact',
-    'type': 'lnN',
-    'samples': dict((skey, '1.02') for skey in mc if skey not in ['Wjets', 'top'])
-}
+# # #### Luminosity
 
-nuisances['lumi_LScale'] = {
-    'name': 'lumi_13TeV_LSCale',
-    'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['Wjets', 'top'])
-}
+# nuisances['lumi_Uncorrelated'] = {
+#     'name': 'lumi_13TeV_2018',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.015') for skey in mc if skey not in ['Wjets', 'top'])
+# }
 
-nuisances['lumi_CurrCalib'] = {
-    'name': 'lumi_13TeV_CurrCalib',
-    'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['Wjets', 'top'])
-}
+# nuisances['lumi_XYFact'] = {
+#     'name': 'lumi_13TeV_XYFact',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.02') for skey in mc if skey not in ['Wjets', 'top'])
+# }
+
+# nuisances['lumi_LScale'] = {
+#     'name': 'lumi_13TeV_LSCale',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.002') for skey in mc if skey not in ['Wjets', 'top'])
+# }
+
+# nuisances['lumi_CurrCalib'] = {
+#     'name': 'lumi_13TeV_CurrCalib',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.002') for skey in mc if skey not in ['Wjets', 'top'])
+# }
 
 
 
@@ -88,13 +97,13 @@ nuisances['lumi_CurrCalib'] = {
 #   fakeW_statMuUp    = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lstatMuUp   / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
 #   fakeW_statMuDown  = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lstatMuDown / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
 
-nuisances['fake_syst']  = {
-               'name'  : 'CMS_fake_syst',
-               'type'  : 'lnN',
-               'samples'  : {
-                             'Fake' : '1.30',
-                             },
-               }
+# nuisances['fake_syst']  = {
+#                'name'  : 'CMS_fake_syst',
+#                'type'  : 'lnN',
+#                'samples'  : {
+#                              'Fake' : '1.30',
+#                              },
+#                }
 
 # nuisances['fake_ele']  = {
 #                 'name'  : 'hww_fake_ele_2018',
@@ -136,15 +145,6 @@ nuisances['fake_syst']  = {
 #                               'Fake_me'     : [ fakeW_statMuUp , fakeW_statMuDown ],
 #                              },
 # }
-
-nuisances['deltaeta_vbs_rew']  = {
-                'name'  : 'deltaeta_vbs_rew',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                              'Wjets'     : [ "(deltaetavbs_reweight_high) / (deltaetavbs_reweight)", "(deltaetavbs_reweight_low) / (deltaetavbs_reweight)"],
-                             },
-}
 
 ##### Btag nuisances
 
