@@ -2,13 +2,13 @@
 treeName= 'Events'
 
 
-tag = 'wbin'
+tag = 'wbindeta'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_'+tag
 
 # file with TTree aliases
-aliasesFile = 'aliases_datac18.py'
+aliasesFile = 'aliases_{}.py'.format(tag)
 
 # file with list of variables
 variablesFile = 'variables_{}.py'.format(tag)
@@ -20,7 +20,7 @@ cutsFile = 'cuts_{}.py'.format(tag)
 samplesFile = 'samples_{}.py'.format(tag) 
 
 # file with list of samples
-plotFile = 'plot{}.py'.format(tag) 
+plotFile = 'plot_{}.py'.format(tag) 
 
 
 
@@ -37,10 +37,10 @@ outputDirDatacard = 'datacards_'+tag
 
 
 # structure file for datacard
-structureFile = 'structure.py'
+structureFile = 'structure_{}.py'.format(tag)
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+nuisancesFile = 'nuisances_{}.py'.format(tag)
 
 
