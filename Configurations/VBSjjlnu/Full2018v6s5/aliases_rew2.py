@@ -176,7 +176,7 @@ aliases['deltaetavbs_reweight_high'] = {
 
 aliases['leptonpt_reweight'] = {
     'class': 'ReweightLeptonPt',
-    'args':(reweight_path+"leptonpt_ele.root", reweight_path+"leptonpt_mu.root", "wf_norm", 500),
+    'args':(reweight_path+"reweight2018_wjets_leptonpt_ele.root", reweight_path+"reweight2018_wjets_leptonpt_mu.root", "wf_norm", 500),
     'linesToAdd' : [
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         '.L %s/corrections/reweight_leptonpt.cc+' % conf_folder
