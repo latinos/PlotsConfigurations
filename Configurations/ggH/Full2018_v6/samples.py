@@ -111,7 +111,8 @@ else:
 
 samples['DY'] = {
     'name': files,
-    'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)',
+    'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 &&\
+                                     Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )',
     'FilesPerJob': 6,
 }
 addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO)
@@ -176,7 +177,8 @@ samples['Vg'] = {
     'weight': mcCommonWeightNoMatch + '*(Gen_ZGstar_mass <= 0)',
     'FilesPerJob': 4
 }
-addSampleWeight(samples, 'Vg', 'Zg', '(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)')
+# the following is needed in both v5 and v6
+addSampleWeight(samples, 'Vg', 'Zg', '0.448')
 
 ######## VgS ########
 
@@ -194,7 +196,7 @@ samples['VgS'] = {
     }
 }
 addSampleWeight(samples, 'VgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
-addSampleWeight(samples, 'VgS', 'Zg', '(Gen_ZGstar_mass > 0)*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)')
+addSampleWeight(samples, 'VgS', 'Zg', '(Gen_ZGstar_mass > 0)*0.448')
 addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
 
 ############ VZ ############
