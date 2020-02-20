@@ -112,8 +112,7 @@ DataTrig = {
 
 #################### ZZ ##############
 
-samples['ZZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo4L_ext1',False,'nanoLatino_')
-                              +getSampleFiles(directory,'ZZ',False,'nanoLatino_')    
+samples['ZZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo4L_AMCNLOFXFX',False,'nanoLatino_')
                               +getSampleFiles(directory,'ggZZ2e2t',False,'nanoLatino_')
                               +getSampleFiles(directory,'ggZZ2m2t',False,'nanoLatino_')
                               +getSampleFiles(directory,'ggZZ2e2m',False,'nanoLatino_')
@@ -124,7 +123,7 @@ samples['ZZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo4L_ext1',False,'n
                     'FilesPerJob' : 5,
                  }
 
-addSampleWeight(samples,'ZZ','ZZTo4L',"1.17") ## The NNLO/NLO k-factor, cited from https://arxiv.org/abs/1405.2219v1
+addSampleWeight(samples,'ZZ','ZZTo4L_AMCNLOFXFX',"1.17") ## The NNLO/NLO k-factor, cited from https://arxiv.org/abs/1405.2219v1
 addSampleWeight(samples,'ZZ','ggZZ2e2t',"1.68") ## The NLO/LO k-factor, cited from https://arxiv.org/abs/1509.06734v1
 addSampleWeight(samples,'ZZ','ggZZ2m2t',"1.68") 
 addSampleWeight(samples,'ZZ','ggZZ2e2m',"1.68")
