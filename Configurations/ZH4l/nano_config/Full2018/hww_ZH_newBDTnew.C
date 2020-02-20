@@ -60,7 +60,7 @@ void initmyreaderBDT(TTree* tree){
         myreaderBDT->AddVariable("PuppiMET_pt", &loc_PuppiMET_pt); 
  
                 
- //change the path of weight file, xml file is in weight folder .
+ //change the path of weight file, xml file is in "BDT_config/weight" folder .
         myreaderBDT->BookMVA("BDT","/afs/cern.ch/user/k/kaura/public/updatedconfig/2018/TMVAClassification_BDT.weights.xml"); 
 
 }
