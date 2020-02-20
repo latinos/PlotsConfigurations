@@ -2,7 +2,7 @@
 
 import os
 
-configDir = os.path.expandvars("/afs/cern.ch/work/k/kaura/NewLatino_v2/CMSSW_10_2_5/src/newPlotConfigurations/PlotsConfigurations/Configurations/ZH4l/nano_config/Full2016")
+configDir = os.path.expandvars("/afs/cern.ch/work/k/kaura/NewLatino_v2/CMSSW_10_2_5/src/newPlotConfigurations/PlotsConfigurations/Configurations/ZH4l/nano_config/Full2016") #chnage the path to where  cuts_BDT.py , samples_BDT.py and structure.py files for training  are present 
 
 tagName = ''
 
