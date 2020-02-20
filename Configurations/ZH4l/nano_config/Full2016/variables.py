@@ -10,8 +10,8 @@ variables['class0'] = {
      'range' : ([-0.50,-0.25,-0.15,0.,0.15,0.25,0.35,0.50,0.75],),
      'xaxis' : 'MVA discriminant ZH',
      'fold' : 3,
-     'linesToAdd' : ['.L /afs/cern.ch/work/k/kaura/NewLatino_v2/CMSSW_10_2_5/src/PlotsConfigurations/Configurations/ZH4l/nano_config/Full2016/BDT/new_macros/init_var/hww_ZH_newBDTnew.C+']    #chnage the path of macro
-}
+     'linesToAdd' : ['.L /afs/cern.ch/work/k/kaura/NewLatino_v2/CMSSW_10_2_5/src/PlotsConfigurations/Configurations/ZH4l/nano_config/Full2016/BDT/new_macros/init_var/hww_ZH_newBDTnew.C+']   
+}  #change the path of macro
 
 
 variables['events']  = {   'name': '1',      
