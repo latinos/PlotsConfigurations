@@ -20,7 +20,7 @@ variables['detaljmin'] = {'name'  : 'detaljmin(Lepton_eta[0], Lepton_eta[1], Cle
                           'range' : (40, -4., 4.),
                           'xaxis' : 'min #Delta#eta_{lj}',
                           'fold'  : 0,
-                          'linesToAdd' : ['.L /afs/cern.ch/user/p/piedra/work/CMSSW_projects/CMSSW_10_2_15_patch2/src/PlotsConfigurations/Configurations/VH2j/Full2016/detaljmin.C+']}
+                          'linesToAdd' : ['.L /afs/cern.ch/user/p/piedra/work/latinos/CMSSW_10_2_15_patch2/src/PlotsConfigurations/Configurations/VH2j/Full2016_v6/detaljmin.C+']}
 
 variables['dphijjmet'] = {'name'  : 'abs(dphijjmet)',     
                           'range' : (20, 0., 3.2),   
