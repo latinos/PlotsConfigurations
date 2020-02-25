@@ -17,6 +17,11 @@
         "var": "DNNoutput_lessbins", 
         "name": "wjetCR_mjjvhigh_res_mu",
         "cut": "res_wjetcr_mjjincl_mjjvhigh_mu"
+      },
+      {
+        "var": "events", 
+        "cut": "res_topcr_mjjincl_mu", 
+        "name": "topCR_res_mu"
       }
     ]
   },
@@ -38,6 +43,11 @@
         "var": "DNNoutput_lessbins", 
         "name": "wjetCR_mjjvlow_res_mu",
         "cut": "res_wjetcr_mjjincl_mjjvlow_mu"
+      },
+      {
+        "var": "events", 
+        "cut": "res_topcr_mjjincl_mu", 
+        "name": "topCR_res_mu"
       }
     ]
   },
@@ -69,6 +79,11 @@
         "var": "DNNoutput_lessbins", 
         "name": "wjetCR_mjjvhigh2_res_mu",
         "cut": "res_wjetcr_mjjincl_mjjvhigh2_mu"
+      },
+      {
+        "var": "events", 
+        "cut": "res_topcr_mjjincl_mu", 
+        "name": "topCR_res_mu"
       }
     ]
   },
@@ -100,6 +115,11 @@
         "var": "DNNoutput_lessbins", 
         "name": "wjetCR_mjjvhigh1_res_mu",
         "cut": "res_wjetcr_mjjincl_mjjvhigh1_mu"
+      },
+      {
+        "var": "events", 
+        "cut": "res_topcr_mjjincl_mu", 
+        "name": "topCR_res_mu"
       }
     ]
   }
