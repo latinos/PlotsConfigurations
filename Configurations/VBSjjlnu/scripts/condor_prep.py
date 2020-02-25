@@ -21,7 +21,7 @@ def cmssw_template(user, cmssw):
     return script
 
 
-def jds_template(exe, output, n_jobs, lines):
+def jds_template(exe, output, n_jobs, lines=[]):
     jds = []
     jds.append("executable = {0}".format(exe))
     jds.append("arguments = $(ProcId)")
