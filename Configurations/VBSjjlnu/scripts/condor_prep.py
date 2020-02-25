@@ -21,7 +21,7 @@ def cmssw_template(user, cmssw):
     return script
 
 
-def jds_template(exe, output, n_jobs):
+def jds_template(exe, output, n_jobs, lines):
     jds = []
     jds.append("executable = {0}".format(exe))
     jds.append("arguments = $(ProcId)")
@@ -30,5 +30,6 @@ def jds_template(exe, output, n_jobs):
     jds.append("error = {}/gof_$(ProcId).err".format(output))
     jds.append("log = {}/gof_$(ClusterId).log".format(output))
     jds.append("+JobFlavour = 'espresso'")
+    jds += lines
     jds.append("queue {}".format(n_jobs))
     return "\n".join(jds)

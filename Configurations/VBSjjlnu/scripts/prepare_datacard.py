@@ -10,8 +10,10 @@ import random
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-c","--config", help="configuration file", type=str)
+parser.add_argument("-d","--datacards", help="Datacard names", type=str)
 parser.add_argument("-b","--basedir", help="Baseline folder", type=str)
 parser.add_argument("-o","--outputdir", help="Output folder", type=str)
+parser.add_argument("-rw","--redo-workspace", help="Redo workspace", action="store_true")
 parser.add_argument("-p","--process", help="Process to run", type=str)
 args = parser.parse_args()
 
@@ -26,11 +28,16 @@ else:
 FIT_OPTIONS = "--robustFit=1 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND"
 
 def prepare_workspace(datac):
-    outdir = args.outputdir + "/" + datac["datacard_name"]
-    datac["outputdir"] = outdir 
-
+    outdir = datac["outputdir"] 
     if not os.path.exists(outdir):
         os.makedirs(outdir)
+    else:
+        if os.path.exists("{0}/combined_{1}.root".format(outdir, datac["datacard_name"])):
+            if not args.redo_workspace:
+                print(">Workspace already exists!")
+                return
+            else:
+                print(">Recreate workspace...")
 
     cards= []
     for folder in datac["folders"]:
@@ -64,23 +71,27 @@ def significance(datac):
         print(f.read())
         print(">>>>>")
 
+##################################################################################
 
 def fit_and_pulls(datac):
     outdir = datac["outputdir"] 
     print(">Running maximum likelihood fit")
-    os.system("""combineTool.py -M FitDiagnostics -d {0}/combined_{1}.root -n .{0}  \\
-         --saveShapes --saveNormalizations --saveWithUncertainties {2} > {0}/logFit.txt""".format(
+    os.system("""combineTool.py -M FitDiagnostics -d {0}/combined_{1}.root -n .{1}  \\
+         --saveShapes --saveNormalizations --saveWithUncertainties {2} > {0}/logFit.txt; \\
+             mv fitDiagnostics.{1}.root {0}/""".format(
              outdir, datac["datacard_name"], FIT_OPTIONS))
     with open("{0}/logFit.txt".format(outdir)) as f: 
         print(f.read())
         print(">>>>>")
 
     print(">Printing Pulls and fit diagnostic")
-    os.system("python {0}/src/HiggsAnalysis/CombinedLimit/test/diffNuisances.py --all --abs --format html  fitDiagnostics.{1}.root > {2}/fit_diagnostic.html".format(
+    os.system("""python {0}/src/HiggsAnalysis/CombinedLimit/test/diffNuisances.py --all --abs --format html \\
+             {2}/fitDiagnostics.{1}.root > {2}/fit_diagnostic.html""".format(
                 os.environ["CMSSW_BASE"], datac["datacard_name"], outdir))
 
     print(">>> DONE!")
 
+################################################################################## 
 
 def compatibility(datac):
     outdir = datac["outputdir"] 
@@ -94,18 +105,23 @@ def compatibility(datac):
     with open(script, "w") as ws:
         ws.write(condor_prep.cmssw_template(os.environ["USER"],os.environ["CMSSW_BASE"]))
         ws.write("\ncombine -M GoodnessOfFit {0}/combined_{1}.root --algo=saturated --toysFreq -t 200 -s $1 > {0}/gof_data_$1.txt".format(
-                    outdir, datac["datacard_name"]))
+                    os.chdir() +"/"+outdir, datac["datacard_name"]))
 
-    jds = condor_prep.jds_template(script, outdir, 10)
+    jds = condor_prep.jds_template(script, outdir, 10, ["transfer_output_files = higgsCombineTest.GoodnessOfFit..$(ProcId).mH120.root"])
     proc = subprocess.Popen(['condor_submit'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
     out, err = proc.communicate(jds)
     print(">>>", out)
-    print(">>> ERROR: ", err)
+    if len(err):
+        print(">>> ERROR: ", err)
     print(">Submitted condor jobs")
 
-
+################################################################################## 
 
 for datac in config:
+    if args.datacards and datac["datacard_name"] not in args.datacards: continue
+    outdir = args.outputdir + "/" + datac["datacard_name"]
+    datac["outputdir"] = outdir 
+
     print("Preparing datacard: "+ datac["datacard_name"])
 
     prepare_workspace(datac)
