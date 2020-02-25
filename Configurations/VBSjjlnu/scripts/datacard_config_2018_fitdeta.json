@@ -19,26 +19,6 @@
         "name": "topCR_res_mu"
       }
     ]
-  },
-  { 
-    "datacard_name": "DNNoutput",
-    "folders": [
-      {
-        "basedir": "Full2018v6s5/datacards_wbindeta", 
-        "name": 2018
-      }
-    ], 
-    "phase_spaces": [
-      {
-        "var": "DNNoutput_lessbins", 
-        "cut": "res_wjetcr_mjjincl_mu", 
-        "name": "wjetCR_res_mu"
-      },
-      {
-        "var": "events", 
-        "cut": "res_topcr_mjjincl_mu", 
-        "name": "topCR_res_mu"
-      }
-    ]
   }
+  
 ]
