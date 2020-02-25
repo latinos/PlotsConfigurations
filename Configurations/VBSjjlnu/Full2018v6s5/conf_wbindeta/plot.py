@@ -187,7 +187,6 @@ plot['DATA']  = {
 
 
 
-
 # additional options
 
 legend['lumi'] = 'L = 59.74/fb'

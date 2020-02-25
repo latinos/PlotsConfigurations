@@ -12,6 +12,11 @@
         "var": "deltaeta_vbs_CR", 
         "cut": "res_wjetcr_mjjincl_mu", 
         "name": "wjetCR_res_mu"
+      },
+      {
+        "var": "events", 
+        "cut": "res_topcr_mjjincl_mu", 
+        "name": "topCR_res_mu"
       }
     ]
   },
