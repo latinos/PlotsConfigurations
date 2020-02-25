@@ -2,10 +2,8 @@ import os
 import copy
 import inspect
 
-thisfile = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-conf_folder = os.path.dirname(thisfile) # Full2017v6s5
-vbsjjlnu_folder = os.path.dirname(conf_folder) # VBSjjlnu
-configurations = os.path.dirname(vbsjjlnu_folder) # Configurations
+configurations = os.getenv("CMSSW_BASE") + "/src/PlotsConfigurations/Configurations/"
+conf_folder = configurations +"/VBSjjlnu/Full2018v6s5"
 
 #aliases = {}
 
@@ -141,25 +139,34 @@ aliases['PUJetIdSF'] = {
 #     'samples' : mc      
 # }
 
+reweight_path = conf_folder+"/corrections/corr_factors/"
 
-# reweight_path = conf_folder+"/corrections/corr_factors/reweight2018_wjets_"
+aliases['deltaetavbs_reweight'] = {
+    'class': 'ReweightDeltaEta',
+    'args':(reweight_path+"reweight_wjets_deltaetavbs_ele_nlh_res_wjetcr_mjjincl_ele.root", reweight_path+"reweight_wjets_deltaetavbs_mu_nlh_res_wjetcr_mjjincl_mu.root", "wf_norm", 8.0),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L %s/corrections/reweight_deltaetavbs.cc+' % conf_folder
+   ],
+    'samples' : ["Wjets"]
+}
 
-# aliases['deltaetavbs_reweight'] = {
-#     'class': 'ReweightDeltaEta',
-#     'args':(reweight_path+"deltaeta_ele.root", reweight_path+"deltaeta_mu.root", "wf_norm", 7.6),
-#     'linesToAdd' : [
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         '.L %s/corrections/reweight_deltaetavbs.cc+' % conf_folder
-#    ],
-#     'samples' : ["Wjets"]
-# }
+aliases['deltaetavbs_reweight_low'] = {
+    'class': 'ReweightDeltaEta',
+    'args':(reweight_path+"reweight_wjets_deltaetavbs_ele_nlh_res_wjetcr_mjjincl_mjjvjetlow_ele.root", reweight_path+"reweight_wjets_deltaetavbs_mu_nlh_res_wjetcr_mjjincl_mjjvjetlow_mu.root", "wf_norm", 8.0),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L %s/corrections/reweight_deltaetavbs.cc+' % conf_folder
+   ],
+    'samples' : ["Wjets"]
+}
 
-# aliases['leptonpt_reweight'] = {
-#     'class': 'ReweightLeptonPt',
-#     'args':(reweight_path+"leptonpt_ele.root", reweight_path+"leptonpt_mu.root", "wf_norm", 500),
-#     'linesToAdd' : [
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         '.L %s/corrections/reweight_leptonpt.cc+' % conf_folder
-#    ],
-#     'samples' : ["Wjets"]
-# }
+aliases['deltaetavbs_reweight_high'] = {
+    'class': 'ReweightDeltaEta',
+    'args':(reweight_path+"reweight_wjets_deltaetavbs_ele_nlh_res_wjetcr_mjjincl_mjjvjethigh_ele.root", reweight_path+"reweight_wjets_deltaetavbs_mu_nlh_res_wjetcr_mjjincl_mjjvjethigh_mu.root", "wf_norm", 8.0),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L %s/corrections/reweight_deltaetavbs.cc+' % conf_folder
+   ],
+    'samples' : ["Wjets"]
+}

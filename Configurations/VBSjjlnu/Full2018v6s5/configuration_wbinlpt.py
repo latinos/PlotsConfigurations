@@ -2,8 +2,8 @@
 treeName= 'Events'
 
 
-tag = 'wbindeta'
-direc = "conf_wbindeta"
+tag = 'wbinlpt'
+direc = "conf_wbinlpt"
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_'+tag
@@ -42,6 +42,6 @@ structureFile = direc+'/structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-#nuisancesFile = direc+'/nuisances.py'
-#nuisancesFile = direc+'/nuisances_datacard.py'
+nuisancesFile = direc+'/nuisances.py'
+
 

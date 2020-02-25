@@ -91,7 +91,13 @@ variables['Lepton_pt'] = {   'name': 'Lepton_pt[0]',
                         'range' : (40,0,500),  
                         'xaxis' : 'Lepton pt', 
                         'fold' : 3
-                        }                       
+                        }         
+
+variables['Lepton_pt_CR'] = {   'name': 'Lepton_pt[0]',      
+                        'range' : ([30,70,100,150,250,350,500],),  
+                        'xaxis' : 'Lepton pt', 
+                        'fold' : 3
+                        }                 
 
 #MET
 # variables['PuppiMET'] = {   'name': 'PuppiMET_pt',      

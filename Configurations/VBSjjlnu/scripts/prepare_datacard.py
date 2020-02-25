@@ -1,4 +1,5 @@
 import yaml
+import json
 import argparse
 import os
 
@@ -7,9 +8,16 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-c","--config", help="configuration file", type=str)
 parser.add_argument("-b","--basedir", help="Baseline folder", type=str)
 parser.add_argument("-o","--outputdir", help="Output folder", type=str)
+parser.add_argument("-p","--process", help="Process to run", type=str)
 args = parser.parse_args()
 
-config = yaml.load(open(args.config))
+if args.config.endswith(".yaml"):
+    config = yaml.load(open(args.config))
+elif args.config.endswith(".json"):
+    config = json.load(open(args.config))
+else: 
+    print("Error! No valid input file")
+    exi(1)
 
 
 for datac in config:
@@ -33,17 +41,21 @@ for datac in config:
 
     os.system("text2workspace.py {0}/combined_{1}.txt -o {0}/combined_{1}.root".format(outdir, datac["datacard_name"]))
 
-    print(">Running combine (Asimov + pre-fit nuisances)")
-    os.system("combine -M Significance -t -1  --expectSignal=1 {0}/combined_{1}.root > {0}/logSignificance_MCasimov.txt".format(outdir, datac["datacard_name"]))
 
-    with open("{0}/logSignificance_MCasimov.txt".format(outdir)) as f: 
-        print(f.read())
-        print(">>>>>")
+    if args.process == "significance":
+        print(">Running combine (Asimov + pre-fit nuisances)")
+        os.system("combine -M Significance -t -1  --expectSignal=1 {0}/combined_{1}.root > {0}/logSignificance_MCasimov.txt".format(outdir, datac["datacard_name"]))
 
-    print(">Running combine (Asimov + post-fit nuisances)")
-    os.system("combine -M Significance -t -1  --expectSignal=1 --toysFreq {0}/combined_{1}.root > {0}/logSignificance_data_asimov.txt".format(outdir, datac["datacard_name"]))
-    print(">Done")
+        with open("{0}/logSignificance_MCasimov.txt".format(outdir)) as f: 
+            print(f.read())
+            print(">>>>>")
 
-    with open("{0}/logSignificance_data_asimov.txt".format(outdir)) as f: 
-        print(f.read())
-        print(">>>>>")
+        print(">Running combine (Asimov + post-fit nuisances)")
+        os.system("combine -M Significance -t -1  --expectSignal=1 --toysFreq {0}/combined_{1}.root > {0}/logSignificance_data_asimov.txt".format(outdir, datac["datacard_name"]))
+        print(">Done")
+
+        with open("{0}/logSignificance_data_asimov.txt".format(outdir)) as f: 
+            print(f.read())
+            print(">>>>>")
+    else: 
+        print("Please specify something to do with the datacard")

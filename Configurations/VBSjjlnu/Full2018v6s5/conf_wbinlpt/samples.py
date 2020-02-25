@@ -121,7 +121,7 @@ samples['DY'] = {
           + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-2500toInf')
           ,
     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*' + DY_photon_filter , ###### ADD ewkNLO!!!
-    'FilesPerJob' : 3,
+    'FilesPerJob' : 2,
 }
 
 addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-100to200',ptllDYW_LO) 
@@ -173,15 +173,16 @@ samples['Wjets'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
-				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-                  #+'*( (VBS_category==1)*(deltaetavbs_reweight*leptonpt_reweight) + (VBS_category==0) )', # reweight lowenergy
+				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch
+                 +'*( (VBS_category==1)*(deltaetavbs_reweight) + (VBS_category==0) )', # reweight lowenergy
 				'FilesPerJob' : 2,
         'subsamples': {
-          "deta1": "deltaeta_vbs < 3",
-          "deta2": "deltaeta_vbs >= 3 && deltaeta_vbs < 4",
-          "deta3": "deltaeta_vbs >= 4 && deltaeta_vbs < 5",
-          "deta4": "deltaeta_vbs >= 5 && deltaeta_vbs < 6",
-          "deta5": "deltaeta_vbs >= 6"
+          "lpt1": "Lepton_pt[0] < 70",
+          "lpt2": "Lepton_pt[0] >= 70 && Lepton_pt[0] < 100",
+          "lpt3": "Lepton_pt[0] >= 100 && Lepton_pt[0] < 150",
+          "lpt4": "Lepton_pt[0] >= 150 && Lepton_pt[0] < 250",
+          "lpt5": "Lepton_pt[0] >= 250 && Lepton_pt[0] < 350",
+          "lpt6": "Lepton_pt[0] >= 350"
         }
 		   }
 
@@ -290,7 +291,3 @@ for Run in DataRun :
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
-
-# samples = {
-#   "Wjets": samples["Wjets"]
-# }
