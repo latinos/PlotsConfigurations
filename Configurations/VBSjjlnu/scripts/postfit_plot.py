@@ -36,7 +36,7 @@ def post_fit_plots(datac):
         print("> ERROR: Missing --plot-config!")
         return
     plotbasedir = os.path.dirname(args.plot_config)
-    outdir = os.getcwd() +"/"+ datac["outputdir"] 
+    basedircomb = os.getcwd() +"/"+ args.basedir + "/" + datac["datacard_name"]
     cmds = ["cd "+ plotbasedir]
 
     combconf = None
@@ -50,8 +50,8 @@ def post_fit_plots(datac):
     cmds.append("""mkPostFitPlot.py --inputFileCombine={} \\
         --outputFile={}/postfit_latino_{}.root --variable {} \\
         --cutNameInOriginal={} --cut={} \\
-        --inputFile={}/{} --kind b --pycfg={}""".format(
-            outdir+"/fitDiagnostics."+datac["datacard_name"]+".root",
+        --inputFile={}/{} --kind=p --pycfg={}""".format(
+            basedircomb+"/fitDiagnostics."+datac["datacard_name"]+".root",
             outputDir,
             datac["datacard_name"],
             args.plot_var,
@@ -63,12 +63,12 @@ def post_fit_plots(datac):
     cmds.append("""mkPlot.py  --pycfg={} \\
         --inputFile={}/postfit_latino_{}.root \\
         --showIntegralLegend=1 --showRelativeRatio --plotNormalizedDistributions=True --minLogC 0.3 --maxLogC 1e2 \\
-        --minLogCratio 0.3 --maxLogCratio 1e2 --postFit=0 --outputDirPlots={} \\
+        --minLogCratio 0.3 --maxLogCratio 1e2 --postFit=b --outputDirPlots={} \\
         --onlyVariable={} --onlyCut={}""".format(
             args.plot_config.split("/")[-1],
             outputDir, 
             datac["datacard_name"],
-            outputDirPlots,
+            args.outputdir,
             combconf["var"], combconf["cut"]
         ))
 
