@@ -105,9 +105,9 @@ def compatibility(datac):
     with open(script, "w") as ws:
         ws.write(condor_prep.cmssw_template(os.environ["USER"],os.environ["CMSSW_BASE"]))
         ws.write("\ncombine -M GoodnessOfFit {0}/combined_{1}.root --algo=saturated --toysFreq -t 200 -s $1 > {0}/gof_data_$1.txt".format(
-                    os.chdir() +"/"+outdir, datac["datacard_name"]))
+                    os.getcwd() +"/"+outdir, datac["datacard_name"]))
 
-    jds = condor_prep.jds_template(script, outdir, 10, ["transfer_output_files = higgsCombineTest.GoodnessOfFit..$(ProcId).mH120.root"])
+    jds = condor_prep.jds_template(script, outdir, 10, ["transfer_output_files = higgsCombineTest.GoodnessOfFit.$(ProcId).mH120.root"])
     proc = subprocess.Popen(['condor_submit'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
     out, err = proc.communicate(jds)
     print(">>>", out)
