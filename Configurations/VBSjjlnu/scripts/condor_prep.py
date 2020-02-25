@@ -1,3 +1,4 @@
+import random
 
 def cmssw_template(user, cmssw):
     script = '''#!/bin/sh -e
@@ -24,12 +25,12 @@ def cmssw_template(user, cmssw):
 def jds_template(exe, output, n_jobs, lines=[]):
     jds = []
     jds.append("executable = {0}".format(exe))
-    jds.append("arguments = $(ProcId)")
     jds.append("universe = vanilla")
     jds.append("output = {}/gof_$(ProcId).out".format(output))
     jds.append("error = {}/gof_$(ProcId).err".format(output))
     jds.append("log = {}/gof_$(ClusterId).log".format(output))
     jds.append("+JobFlavour = 'espresso'")
     jds += lines
-    jds.append("queue {}".format(n_jobs))
+    seeds = [str(random.randint(1000,10000)) for _ in range(n_jobs)]
+    jds.append("queue arguments in (\n{}\n)".format("\n".join(seeds)))
     return "\n".join(jds)

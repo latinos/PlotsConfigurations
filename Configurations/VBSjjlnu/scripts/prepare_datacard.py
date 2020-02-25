@@ -45,11 +45,17 @@ def prepare_workspace(datac):
             cards.append("{0}_{1}={2}/{3}/{4}/datacard.txt".format(
                                 card["name"], folder["name"],  args.basedir + "/" + folder["basedir"],
                                                                 card["cut"], card["var"]))
-   
-    os.system("combineCards.py {} > {}/combined_{}.txt".format(" ".join(cards), outdir, datac["datacard_name"])) 
+    
+    cmds = [
+        "combineCards.py {} > {}/combined_{}.txt".format(" ".join(cards), outdir, datac["datacard_name"]),
+        "text2workspace.py {0}/combined_{1}.txt -o {0}/combined_{1}.root".format(outdir, datac["datacard_name"])
+    ]
+    os.system(cmds[0])
     print(">Preparing workspace")
-    os.system("text2workspace.py {0}/combined_{1}.txt -o {0}/combined_{1}.root".format(outdir, datac["datacard_name"]))
+    os.system(cmds[1])
     print(">Workspace ready")
+    with open("{}/log_workspace.txt".format(outdir), "w") as wf:
+        wf.write("\n".join(cmds))
 
 '''
 Available functions to run on datacards
@@ -99,12 +105,15 @@ def compatibility(datac):
     print(">> GoodnessOfFit on data")
     os.system("combine -M GoodnessOfFit {0}/combined_{1}.root --algo=saturated > {0}/gof_data.txt".format(
         outdir, datac["datacard_name"]))
+    with open("{0}/gof_data.txt".format(outdir)) as f: 
+        print(f.read())
+        print(">>>>>")
 
     print(">> GoodnessOfFit on toys")
     script = "{0}/gof_script.sh".format(outdir)
     with open(script, "w") as ws:
         ws.write(condor_prep.cmssw_template(os.environ["USER"],os.environ["CMSSW_BASE"]))
-        ws.write("\ncombine -M GoodnessOfFit {0}/combined_{1}.root --algo=saturated --toysFreq -t 200 -s $1 > {0}/gof_data_$1.txt".format(
+        ws.write("\ncombine -M GoodnessOfFit {0}/combined_{1}.root --algo=saturated --toysFreq -t 200 -s $1 > {0}/gof_toys_$1.txt".format(
                     os.getcwd() +"/"+outdir, datac["datacard_name"]))
         ws.write("\n cp higgsCombineTest.GoodnessOfFit.mH120.$1.root {0}/higgsCombineTest.GoodnessOfFit.mH120.$1.root".format(os.getcwd() +"/"+outdir))
 

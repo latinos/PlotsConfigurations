@@ -290,7 +290,7 @@ for Run in DataRun :
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
-samples['total_postfit_b'] = {
+samples['total_prefit'] = {
   'name' : [],
   'weight': "1.0"
 

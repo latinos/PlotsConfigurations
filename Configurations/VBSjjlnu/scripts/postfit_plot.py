@@ -50,7 +50,7 @@ def post_fit_plots(datac):
     cmds.append("""mkPostFitPlot.py --inputFileCombine={} \\
         --outputFile={}/postfit_latino_{}.root --variable {} \\
         --cutNameInOriginal={} --cut={} \\
-        --inputFile={}/{} --kind=p --pycfg={}""".format(
+        --inputFile={}/{} --kind=b --pycfg={}""".format(
             basedircomb+"/fitDiagnostics."+datac["datacard_name"]+".root",
             outputDir,
             datac["datacard_name"],
@@ -63,7 +63,7 @@ def post_fit_plots(datac):
     cmds.append("""mkPlot.py  --pycfg={} \\
         --inputFile={}/postfit_latino_{}.root \\
         --showIntegralLegend=1 --showRelativeRatio --plotNormalizedDistributions=True --minLogC 0.3 --maxLogC 1e2 \\
-        --minLogCratio 0.3 --maxLogCratio 1e2 --postFit=b --outputDirPlots={} \\
+        --minLogCratio 0.3 --maxLogCratio 1e2 --postFit=p --outputDirPlots={} \\
         --onlyVariable={} --onlyCut={}""".format(
             args.plot_config.split("/")[-1],
             outputDir, 
@@ -73,6 +73,9 @@ def post_fit_plots(datac):
         ))
 
     os.system("\n".join(cmds))
+
+    with open("{}/log_postfit_plots.txt".format(basedircomb), "w") as wf:
+        wf.write("\n".join(cmds))
     print("DONE!")
 
 
