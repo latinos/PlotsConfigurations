@@ -12,7 +12,7 @@ outputDir = 'rootFile_'+tag
 aliasesFile = direc+'/aliases.py'
 
 # file with list of variables
-variablesFile = direc+'/variables.py'
+variablesFile = direc+'/variables_detalpt.py'
 
 # file with list of cuts
 cutsFile = direc +'/cuts.py' 

@@ -6,7 +6,7 @@ tag = 'wbindeta'
 direc = "conf_wbindeta"
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_'+tag
+outputDir = 'rootFile_'+tag 
 
 # file with TTree aliases
 aliasesFile = direc+'/aliases.py'
