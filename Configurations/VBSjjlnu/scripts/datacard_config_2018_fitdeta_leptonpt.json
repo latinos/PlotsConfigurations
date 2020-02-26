@@ -1,0 +1,28 @@
+[
+  { 
+    "datacard_name": "deta_mjjvlow__leppt_mjjvhigh",
+    "folders": [
+      {
+        "basedir": "Full2018v6s5/datacards_wbindeta", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deltaeta_vbs_CR", 
+        "name": "wjetCR_mjjvlow_res_mu",
+        "cut": "res_wjetcr_mjjincl_mjjvlow_mu"
+      },
+      {
+        "var": "Lepton_pt", 
+        "name": "wjetCR_mjjvhigh_res_mu",
+        "cut": "res_wjetcr_mjjincl_mjjvhigh_mu"
+      },
+      {
+        "var": "events", 
+        "cut": "res_topcr_mjjincl_mu", 
+        "name": "topCR_res_mu"
+      }
+    ]
+  }
+]
