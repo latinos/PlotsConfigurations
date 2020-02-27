@@ -47,15 +47,17 @@ groupPlot['multiboson']  = {
     'nameHR' : 'multiboson',
     'isSignal' : 0,
     'color': 857, # kAzure -3
-    'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L','ggH_hww', 'qqH_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ttH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']
+    'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L','ggH_hww', 'qqH_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ttH_hww']
 }
 
-groupPlot['Higgs400']  = {
-    'nameHR' : 'Higgs 400',
+
+groupPlot['Higgs300']  = {
+    'nameHR' : 'Higgs 300',
     'isSignal' : 1,
     'color': 632, # kRed
-    'samples' : ['ggHWWlnuqq_M400', 'qqHWWlnuqq_M400']
+    'samples' : ['ggHWWlnuqq_M300', 'qqHWWlnuqq_M300']
 }
+
 
 
 
@@ -64,6 +66,7 @@ groupPlot['Higgs400']  = {
 
 # keys here must match keys in samples.py
 #
+
 plot['DY']  = {
     'color': 418,    # kGreen+2
     'isSignal' : 0,
@@ -250,29 +253,30 @@ plot['WH_htt']  = {
     'scale'    : 1.0,
 }
 
-plot['ggZH_htt'] = {
-    'color': 428,
-    'isSignal': 0,
-    'isData'  : 0,
-    
-}
+# plot['ggZH_htt'] = {
+#     'color': 428,
+#     'isSignal': 0,
+#     'isData'  : 0,
+# }
+
+
 
 # Signal
-plot['qqHWWlnuqq_M400'] = {
-                  'nameHR' : 'qqH400',
-                  'color': 632+1, # kRed+1
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1    #
+plot['qqHWWlnuqq_M300'] = {
+    'nameHR' : 'qqH300',
+    'color': 632+1, # kRed+1
+    'isSignal' : 1,
+    'isData'   : 0,
+    'scale'    : 1    #
 }
 
 
-plot['ggHWWlnuqq_M400'] = {
-                  'nameHR' : 'ggH400',
-                  'color': 632, # kRed
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1    #
+plot['ggHWWlnuqq_M300'] = {
+    'nameHR' : 'ggH300',
+    'color': 632, # kRed
+    'isSignal' : 1,
+    'isData'   : 0,
+    'scale'    : 1    #
 }
 
 
@@ -283,12 +287,12 @@ plot['ggHWWlnuqq_M400'] = {
 # data
 
 plot['DATA']  = {
-                  'nameHR' : 'Data',
-                  'color': 1 ,
-                  'isSignal' : 0,
-                  'isData'   : 1 ,
-                  'isBlind'  : 0
-              }
+    'nameHR' : 'Data',
+    'color': 1 ,
+    'isSignal' : 0,
+    'isData'   : 1 ,
+    'isBlind'  : 0
+}
 
 
 

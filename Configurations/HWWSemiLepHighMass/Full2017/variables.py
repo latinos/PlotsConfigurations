@@ -97,12 +97,12 @@ variables['jet0_pt'] = {
 #     'fold' : 3
 # }
 
-variables['jet1_pt'] = {
-   'name' : 'Alt$(CleanJet_pt[1], -1)',
-   'range': (50, 0, 1000),
-   'xaxis': 'clJet[1] pt',
-   'fold' : 3
-}
+# variables['jet1_pt'] = {
+#    'name' : 'Alt$(CleanJet_pt[1], -1)',
+#    'range': (50, 0, 1000),
+#    'xaxis': 'clJet[1] pt',
+#    'fold' : 3
+# }
 # variables['jet1_eta'] = {
 #     'name' : 'Alt$(CleanJet_eta[1], -99)',
 #     'range': ([-2.5, -2.1, -1.6, -1.4, 0.0, 1.4, 1.6, 2.1, 2.5],),

@@ -20,22 +20,24 @@ muWP     = 'cut_Tight80x'
 LepWPCut='(Lepton_isTightElectron_'+eleWP+'[0] > 0.5 \
             || Lepton_isTightMuon_'+muWP+'[0] > 0.5)'
 
+Lep1WPCut='(Alt$(Lepton_isTightElectron_'+eleWP+'[1], 0) > 0.5 \
+            || Alt$(Lepton_isTightMuon_'+muWP+'[1], 0) > 0.5)'
+
+aliases['bWP'] = {
+    'expr': '0.2217'
+}
+
 aliases['LepWPCut'] = {
     'expr': LepWPCut
+}
+aliases['Lep1WPCut'] = {
+    'expr': Lep1WPCut
 }
 
 aliases['LepWPSF'] = {
     'expr': 'Lepton_tightElectron_'+eleWP+'_IdIsoSF[0]*Lepton_tightMuon_'+muWP+'_IdIsoSF[0]',
     'samples': mc
 }
-
-# aliases['l1tightOR2016'] = {
-#     'expr': '(  Lepton_isTightElectron_cut_WP_Tight80X[0] > 0.5        \
-#              || Lepton_isTightElectron_cut_WP_Tight80X_SS[0] > 0.5     \
-#              || Lepton_isTightElectron_mva_90p_Iso2016[0] > 0.5        \
-#              || Lepton_isTightElectron_mva_90p_Iso2016_SS[0] > 0.5     \
-#              || Lepton_isTightMuon_cut_Tight80x[0] > 0.5             )'
-# }
 
 aliases['boosted'] = {
     'expr': 'PuppiMET_pt > 40 \
@@ -69,9 +71,29 @@ aliases['boostedSidebandWMass'] = {
             && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 250)'
 }
 
+aliases['lowBoostedSidebandWMass'] = {
+    'expr': '(40 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
+            && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 65)'
+}
+
+aliases['highBoostedSidebandWMass'] = {
+    'expr': '(105 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
+            && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 250)'
+}
+
+
 aliases['resolvedSidebandWMass'] = {
     'expr': '(40 < Whad_mass && Whad_mass < 250)'
 }
+
+aliases['lowResolvedSidebandWMass'] = {
+    'expr': '(40 < Whad_mass && Whad_mass < 65)'
+}
+
+aliases['highResolvedSidebandWMass'] = {
+    'expr': '(105 < Whad_mass && Whad_mass < 250)'
+}
+
 
 # aliases['resolvedQCDcr'] = {
 #     'expr': '(   65 < Whad_mass && Whad_mass < 105 \
@@ -94,23 +116,23 @@ aliases['SFweight'] = {
     'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'Lepton_RecoSF[0]', 'EMTFbug_veto','PrefireWeight','LepWPSF[0]']), #FIXME: btagSF missing
     'samples': mc
 }
-# # variations
-# aliases['SFweightEleUp'] = {
-#     'expr': 'LepSF1l__ele_'+eleWP+'__Up',
-#     'samples': mc
-# }
-# aliases['SFweightEleDown'] = {
-#     'expr': 'LepSF1l__ele_'+eleWP+'__Do',
-#     'samples': mc
-# }
-# aliases['SFweightMuUp'] = {
-#     'expr': 'LepSF1l__mu_'+muWP+'__Up',
-#     'samples': mc
-# }
-# aliases['SFweightMuDown'] = {
-#     'expr': 'LepSF1l__mu_'+muWP+'__Do',
-#     'samples': mc
-# }
+# # variations of tight lepton WP
+aliases['SFweightEleUp'] = {
+    'expr': 'Lepton_tightElectron_'+eleWP+'_IdIsoSF_Up[0]',
+    'samples': mc
+}
+aliases['SFweightEleDown'] = {
+    'expr': 'Lepton_tightElectron_'+eleWP+'_IdIsoSF_Down[0]',
+    'samples': mc
+}
+aliases['SFweightMuUp'] = {
+    'expr': 'Lepton_tightMuon_'+muWP+'_IdIsoSF_Up[0]',
+    'samples': mc
+}
+aliases['SFweightMuDown'] = {
+    'expr': 'Lepton_tightMuon_'+muWP+'_IdIsoSF_Down[0]',
+    'samples': mc
+}
 
 
 
@@ -152,104 +174,89 @@ aliases['GenLHE'] = {
 
 
 # B-Stuff
+aliases['bVetoBoosted'] = {
+    'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx[CleanJetNotFat_jetIdx]] > bWP[0] \
+                    && CleanJet_pt[CleanJetNotFat_jetIdx] > 20 \
+                    && abs(CleanJet_eta[CleanJetNotFat_jetIdx]) < 2.5 \
+                ) == 0'
+}
+aliases['bVetoResolved'] = {
+    'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] \
+                    && CleanJet_pt > 20 \
+                    && abs(CleanJet_eta) < 2.5 \
+                    && CleanJet_jetIdx != idx_j1 \
+                    && CleanJet_jetIdx != idx_j2 \
+                ) == 0'
+}
+aliases['bVeto'] = {
+    'expr': '((boosted[0] && bVetoBoosted) || (!boosted[0] && bVetoResolved))'
+    # 'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0'
+}
+
+aliases['bReq'] = {
+    'expr': '!bVeto[0]'
+    # 'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) >= 1'
+}
+
 # Temporary patch for BTV postprocessor bug (no SF for eta < 0, <= 102X_nAODv5_Full2018v5)
 
-# btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_102XSF_V1.csv' % os.getenv('CMSSW_BASE')
-#
-# aliases['Jet_btagSF_shapeFix'] = {
-#     'linesToAdd': [
-#         'gSystem->Load("libCondFormatsBTauObjects.so");',
-#         'gSystem->Load("libCondToolsBTau.so");',
-#         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
-#         '.L %s/src/PlotsConfigurations/Configurations/patches/btagsfpatch.cc+' % os.getenv('CMSSW_BASE')
-#     ],
-#     'class': 'BtagSF',
-#     'args': (btagSFSource,),
-#     'samples': mc
-# }
-#
-# aliases['bVeto'] = {
-#     'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0'
-# }
-#
-# aliases['bReq'] = {
-#     'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) >= 1'
-# }
-#
-# aliases['bReq2j'] = {
-#     'expr': '(CleanJet_pt[0] > 30. && abs(CleanJet_eta[0]) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx[0]] > 0.1522) && (CleanJet_pt[1] > 30. && abs(CleanJet_eta[1]) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx[1]] > 0.1522)'
-# }
-#
-# aliases['btag0'] = {
-#     'expr': '(Alt$(CleanJet_pt[0], 0) < 30.) && !bVeto'
-# }
-#
-# aliases['btag1'] = {
-#     'expr': '(Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) < 30.) && bReq'
-# }
-#
-# aliases['btag2'] = {
-#     'expr': '(Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) >= 30.) && bReq'
-# }
-#
-# aliases['btagvbf'] = {
-#     'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && bReq'
-# }
-#
-# aliases['bVetoSF'] = {
-#     #'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
-#     'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shapeFix[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
-#     'samples': mc
-# }
-#
-# aliases['btag0SF'] = {
-#     #'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && CleanJet_pt<30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || CleanJet_pt>30 || abs(CleanJet_eta)>2.5))))',
-#     'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && CleanJet_pt<30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shapeFix[CleanJet_jetIdx]+1*(CleanJet_pt<20 || CleanJet_pt>30 || abs(CleanJet_eta)>2.5))))',
-#     'samples': mc
-# }
-#
-# aliases['btagnSF'] = {
-#     #'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx] + (CleanJet_pt<30 || abs(CleanJet_eta)>2.5))))',
-#     'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shapeFix[CleanJet_jetIdx] + (CleanJet_pt<30 || abs(CleanJet_eta)>2.5))))',
-#     'samples': mc
-# }
-#
-# aliases['btagSF'] = {
-#     'expr': '1',
-#     #'expr': 'bVetoSF*bVeto + btag0SF*btag0 + btagnSF*(btag1 + btag2) + (!bVeto && !btag0 && !btag1 && !btag2)',
-#     'samples': mc
-# }
-#
-# for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
-#     aliases['Jet_btagSF_shapeFix_up_%s' % shift] = {
-#         'class': 'BtagSF',
-#         'args': (btagSFSource, 'up_' + shift),
-#         'samples': mc
-#     }
-#     aliases['Jet_btagSF_shapeFix_down_%s' % shift] = {
-#         'class': 'BtagSF',
-#         'args': (btagSFSource, 'down_' + shift),
-#         'samples': mc
-#     }
-#
-#     for targ in ['bVeto', 'btag0', 'btagn']:
-#         alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
-#         #alias['expr'] = alias['expr'].replace('btagSF_shape', 'btagSF_shape_up_%s' % shift)
-#         alias['expr'] = alias['expr'].replace('btagSF_shapeFix', 'btagSF_shapeFix_up_%s' % shift)
-#
-#         alias = aliases['%sSF%sdown' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
-#         #alias['expr'] = alias['expr'].replace('btagSF_shape', 'btagSF_shape_down_%s' % shift)
-#         alias['expr'] = alias['expr'].replace('btagSF_shapeFix', 'btagSF_shapeFix_down_%s' % shift)
-#
-#     aliases['btagSF%sup' % shift] = {
-#         'expr': 'bVetoSF{shift}up*bVeto + btag0SF{shift}up*btag0 + btagnSF{shift}up*(btag1 + btag2) + (!bVeto && !btag0 && !btag1 && !btag2)'.format(shift = shift),
-#         'samples': mc
-#     }
-#
-#     aliases['btagSF%sdown' % shift] = {
-#         'expr': 'bVetoSF{shift}down*bVeto + btag0SF{shift}down*btag0 + btagnSF{shift}down*(btag1 + btag2) + (!bVeto && !btag0 && !btag1 && !btag2)'.format(shift = shift),
-#         'samples': mc
-#     }
+btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_102XSF_V1.csv' % os.getenv('CMSSW_BASE')
+
+aliases['Jet_btagSF_shapeFix'] = {
+    'linesToAdd': [
+        'gSystem->Load("libCondFormatsBTauObjects.so");',
+        'gSystem->Load("libCondToolsBTau.so");',
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/patches/btagsfpatch.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'BtagSF',
+    'args': (btagSFSource,),
+    'samples': mc
+}
+
+aliases['bVetoSF'] = {
+    #'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shapeFix[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
+    'samples': mc
+}
+
+aliases['btagSF'] = {
+    'expr': 'bVetoSF[0]*bVeto[0] + !bVeto[0]',
+    'samples': mc
+}
+
+for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
+    aliases['Jet_btagSF_shapeFix_up_%s' % shift] = {
+        'class': 'BtagSF',
+        'args': (btagSFSource, 'up_' + shift),
+        'samples': mc
+    }
+    aliases['Jet_btagSF_shapeFix_down_%s' % shift] = {
+        'class': 'BtagSF',
+        'args': (btagSFSource, 'down_' + shift),
+        'samples': mc
+    }
+
+    for targ in ['bVeto']:
+        alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
+        #alias['expr'] = alias['expr'].replace('btagSF_shape', 'btagSF_shape_up_%s' % shift)
+        alias['expr'] = alias['expr'].replace('btagSF_shapeFix', 'btagSF_shapeFix_up_%s' % shift)
+
+        alias = aliases['%sSF%sdown' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
+        #alias['expr'] = alias['expr'].replace('btagSF_shape', 'btagSF_shape_down_%s' % shift)
+        alias['expr'] = alias['expr'].replace('btagSF_shapeFix', 'btagSF_shapeFix_down_%s' % shift)
+
+    aliases['btagSF%sup' % shift] = {
+        'expr': '(bVetoSF{shift}up*bVeto + !bVeto[0])'.format(shift = shift),
+        'samples': mc
+    }
+
+    aliases['btagSF%sdown' % shift] = {
+        'expr': '(bVetoSF{shift}down*bVeto + !bVeto)'.format(shift = shift),
+        'samples': mc
+    }
+
+
 
 
 
@@ -294,6 +301,6 @@ aliases['PUJetIdSF'] = {
         '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event.cc+' % os.getenv('CMSSW_BASE')
     ],
     'class': 'PUJetIdEventSF',
-    'args': (puidSFSource, '2018', 'loose'),
+    'args': (puidSFSource, '2016', 'loose'),
     'samples': mc
 }
