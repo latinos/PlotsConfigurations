@@ -7,7 +7,13 @@
 # Groups of samples to improve the plots.
 # If not defined, normal plots is used
 #
-
+#groupPlot['Fake']  = {  
+#                  'nameHR' : 'Non-prompt',
+#                  'isSignal' : 0,
+#                  'color': 635,
+#                  'samples'  : ['Fake']
+#              }
+#
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
@@ -21,14 +27,14 @@ groupPlot['ttV']  = {
                   'color': 418,    # kGreen+3
                   'samples'  : ['ttW','ttZ']
               }
-
+'''
 groupPlot['WW']  = {  
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 431, # kAzure -9 
                   'samples'  : ['WW','WWewk']
               }
-
+'''
 #groupPlot['Fake']  = {  
 #                  'nameHR' : 'Non-prompt',
 #                  'isSignal' : 0,
@@ -53,28 +59,28 @@ groupPlot['VVV']  = {
                   'samples'  : ['VVV','WWW']
               }
 
-
+'''
 groupPlot['VZ']  = {  
                   'nameHR' : "VZ",
                   'isSignal' : 0,
                   'color'    :603,   # kViolet + 1  
                   'samples'  : ['VZ', 'WZ']
               }
-
+'''
 groupPlot['ZZ']  = {
                   'nameHR' : "ZZ",
                   'isSignal' : 0,
                   'color'    : 857,   # kViolet + 1  
                   'samples'  : ['ZZ']
               }
-
+'''
 groupPlot['Vg']  = {  
                   'nameHR' : "V#gamma",
                   'isSignal' : 0,
                   'color'    : 922,   # kOrange + 10
                   'samples'  : ['Vg']
               }
-
+'''
 #groupPlot['VgS']  = {
 #                  'nameHR' : "V#gamma*",
 #                  'isSignal' : 0,
@@ -170,7 +176,7 @@ plot['top'] = {
                        #'hww2l2v_13TeV_me_1j'     : 0.86 , 
                         #},
                   }
-
+'''
 
 plot['WW']  = {
                   'color': 419, # kAzure -9 
@@ -178,29 +184,29 @@ plot['WW']  = {
                   'isData'   : 0,    
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
-
+'''
 plot['ggWW']  = {
                   'color': 851, # kAzure -10
                   'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1.0
                   }
-
+'''
 plot['WWewk']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                  'isData'   : 0,
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
-
-
+'''
+'''
 plot['Vg']  = { 
                   'color': 922, # kAzure -1  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-
+'''
 #plot['VgS'] = { 
 #                  'color'    : 617,   # kViolet + 1  
 #                  'isSignal' : 0,
@@ -208,13 +214,20 @@ plot['Vg']  = {
 #                  'scale'    : 1.0
 #                  }
 #
+#plot['Fake']  = {  
+#                  'color': 635,    # kGray + 1
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1.0                  
+#              }
+'''
 plot['VZ']  = { 
                   'color': 612, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-
+'''
 plot['ZZ']  = {
                   'color': 857, # kAzure -2  
                   'isSignal' : 0,
@@ -388,7 +401,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1,
-#                 'isBlind'  : 1
+                 'isBlind'  : 1
               }
 
 

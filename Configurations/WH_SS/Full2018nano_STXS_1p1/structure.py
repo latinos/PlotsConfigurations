@@ -2,26 +2,20 @@
 
 #structure = {}
 
-if os.path.exists('HTXS_stage1_categories.py') :
-    handle = open('HTXS_stage1_categories.py','r')
-    exec(handle)
-    handle.close()
-
-for cat,num in HTXSStage1_1Categories.iteritems():
-  if 'QQ2HLNU_' in cat:
-      structure['WH_hww_'+cat.replace('QQ2HLNU_','')] = {
-          'isSignal' : 1,
-          'isData'   : 0
-      }
-
-
 # keys here must match keys in samples.py    
 #                    
-#structure['DY']  = {  
-#                  'isSignal' : 0,
-#                  'isData'   : 0
-#              }
-#
+for bin in ['PTV_LT150','PTV_GT150','FWDH']:
+    structure['WH_hww_'+bin] = {
+        'isSignal' : 1,
+        'isData'   : 0
+    }
+
+
+structure['DY']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0
+              }
+
 
 #structure['Wjets']  = {  
 #                  'isSignal' : 0,
@@ -32,10 +26,10 @@ structure['Fakes']  = {
                   'isSignal' : 0,
                   'isData'   : 0 
               }
-structure['Fakes_ee']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-              }
+#structure['Fakes_ee']  = {
+##                  'isSignal' : 0,
+#                  'isData'   : 0
+#              }
 
 structure['Fakes_mm']  = {
                   'isSignal' : 0,
@@ -185,10 +179,10 @@ structure['qqH_hww'] = {
 #                  'isData'   : 0    
 #                  }
 
-#structure['WH_hww'] = {
-#                  'isSignal' : 1,
-#                  'isData'   : 0    
-#                  }
+structure['WH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
 
 structure['ZH_hww'] = {
                   'isSignal' : 1,

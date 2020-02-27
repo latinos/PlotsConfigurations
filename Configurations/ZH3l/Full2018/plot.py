@@ -15,7 +15,7 @@ groupPlot['Fake']  = {
 groupPlot['VVV']  = {  
                   'nameHR' : 'VVV',
                   'isSignal' : 0,
-                  'color': 857, # kAzure -3  
+                  'color': 806, # kOrange + 6
                   'samples'  : ['VVV']
               }
 
@@ -53,7 +53,7 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  'samples'  : ['WH_htt', 'ZH_htt', 'WH_hww', 'ZH_hww', 'ggZH_hww']
+                  'samples'  : ['WH_htt', 'WH_hww', 'ZH_hww', 'ggZH_hww', 'ZH_htt']
               }
 
 # Individual plots               
@@ -111,7 +111,7 @@ plot['VVV']  = {
 
 plot['WH_htt'] = {
                   'nameHR' : 'WH htt',
-                  'color': 632+4, # kRed+4 
+                  'color': 632, # kRed+4 
                   'isSignal' : 1,
                   'isData'   : 0,    
                   'scale'    : 1
@@ -119,7 +119,7 @@ plot['WH_htt'] = {
 
 plot['ZH_htt'] = {
                   'nameHR' : 'ZH htt',
-                  'color': 632+4, # kRed+4 
+                  'color': 632+1, # kRed+4 
                   'isSignal' : 1,
                   'isData'   : 0,    
                   'scale'    : 1

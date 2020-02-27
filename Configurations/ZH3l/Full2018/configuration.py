@@ -1,8 +1,6 @@
 # example of configuration file
 
 tag = 'ZH3l_2018'
-#tag = 'ZH3l_2018_TightEl'
-# tag = 'ZH3l_2018_wzsys'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFiles_'+tag
@@ -15,12 +13,9 @@ aliasesFile = 'aliases.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
-#cutsFile = 'cuts_TightEl.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 
-#samplesFile = 'samples_TightEl.py' 
-# samplesFile = 'samples_wzonly.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
@@ -38,4 +33,4 @@ outputDirDatacard = 'datacards_'+tag
 structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
-#nuisancesFile = 'nuisances.py'
+nuisancesFile = 'nuisances.py'

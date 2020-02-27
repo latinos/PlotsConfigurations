@@ -63,7 +63,7 @@ TString hname[nprocess] = {
 TH1D* histo[nprocess];
 
 
-void getHistogramContent(TString folder = "Full2016_nanoAODv4",
+void getHistogramContent(TString folder = "Full2016",
 			 TString year   = "2016",
 			 Int_t   bin    = -1)
 {

@@ -11,8 +11,8 @@ workdir=/afs/cern.ch/work/r/rceccare/VBF/CMSSW_10_2_15_patch2/src/PlotsConfigura
 cd $workdir
 
 
-echo "class0:" "">> significance_class0_11_10_multicut.txt
-combine -M Significance class0_11_10_multicut.root -t -1 --setParameters r_vbf=1 --redefineSignalPOIs=r_vbf >> significance_class0_11_10_multicut.txt
+echo "class0:" "">> significance_class0_03_03_multicut.txt
+combine -M Significance class0_03_02_multicut.root -t -1 --setParameters r_vbf=1 --redefineSignalPOIs=r_vbf >> significance_class0_03_02_multicut.txt
 
 
 #echo "class0:" "">> significance_class0_01_10_cuts.txt

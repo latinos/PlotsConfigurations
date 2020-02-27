@@ -11,7 +11,8 @@ def addcut(name, cut, categories):
     cuts[name]["categories"] = categories
     cuts[name]["categorization"] = '0'
     for i,cat in enumerate(categories):
-       cuts[name]["categorization"] += "+%d*(%s)" % (i, cat)
+       cuts[name]["categorization"] += "+%d*(%s[0])" % (i, cat)
 
 
-addcut('Vg', '', categories)
+addcut('Vg', '1', categories)
+

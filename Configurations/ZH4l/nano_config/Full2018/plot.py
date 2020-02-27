@@ -21,14 +21,14 @@ groupPlot['ttV']  = {
                   'color': 418,    # kGreen+3
                   'samples'  : ['ttW','ttZ']
               }
-
+'''
 groupPlot['WW']  = {  
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 431, # kAzure -9 
                   'samples'  : ['WW','WWewk']
               }
-
+'''
 #groupPlot['Fake']  = {  
 #                  'nameHR' : 'Non-prompt',
 #                  'isSignal' : 0,
@@ -36,14 +36,14 @@ groupPlot['WW']  = {
 #                  'samples'  : ['Fake_em', 'Fake_me']
 #              }
 #
-
+'''
 groupPlot['DY']  = {  
                   'nameHR' : "DY",
                   'isSignal' : 0,
                   'color': 635,    # kGreen+2
                   'samples'  : ['DY']
               }
-
+'''
 
 
 groupPlot['VVV']  = {  
@@ -53,28 +53,28 @@ groupPlot['VVV']  = {
                   'samples'  : ['VVV','WWW']
               }
 
-
+'''
 groupPlot['VZ']  = {  
                   'nameHR' : "VZ",
                   'isSignal' : 0,
                   'color'    :603,   # kViolet + 1  
                   'samples'  : ['VZ', 'WZ']
               }
-
+'''
 groupPlot['ZZ']  = {
                   'nameHR' : "ZZ",
                   'isSignal' : 0,
                   'color'    : 857,   # kViolet + 1  
                   'samples'  : ['ZZ']
               }
-
+'''
 groupPlot['Vg']  = {  
                   'nameHR' : "V#gamma",
                   'isSignal' : 0,
                   'color'    : 922,   # kOrange + 10
                   'samples'  : ['Vg']
               }
-
+'''
 #groupPlot['VgS']  = {
 #                  'nameHR' : "V#gamma*",
 #                  'isSignal' : 0,
@@ -98,7 +98,8 @@ groupPlot['ZH4l']  = {
 #plot = {}
 
 # keys here must match keys in samples.py    
-#                    
+#  
+'''                  
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
@@ -119,7 +120,7 @@ plot['DY']  = {
                         #},
 
               }
-
+'''
 plot['ttZ']  = {
                   'color': 419,    # kGreen+3
                   'isSignal' : 0,
@@ -171,36 +172,36 @@ plot['top'] = {
                         #},
                   }
 
-
+'''
 plot['WW']  = {
                   'color': 419, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
-
+'''
 plot['ggWW']  = {
                   'color': 851, # kAzure -10
                   'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1.0
                   }
-
+'''
 plot['WWewk']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                  'isData'   : 0,
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
-
-
+'''
+'''
 plot['Vg']  = { 
                   'color': 922, # kAzure -1  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-
+'''
 #plot['VgS'] = { 
 #                  'color'    : 617,   # kViolet + 1  
 #                  'isSignal' : 0,
@@ -208,13 +209,14 @@ plot['Vg']  = {
 #                  'scale'    : 1.0
 #                  }
 #
+'''
 plot['VZ']  = { 
                   'color': 612, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-
+'''
 plot['ZZ']  = {
                   'color': 857, # kAzure -2  
                   'isSignal' : 0,
@@ -388,7 +390,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1,
-               #  'isBlind'  : 1
+#                 'isBlind'  : 1
               }
 
 

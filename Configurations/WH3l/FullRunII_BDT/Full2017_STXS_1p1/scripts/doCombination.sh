@@ -41,15 +41,20 @@ varSS="BDTG_SSSF_10bins"
 #ossf_FWDH=$datacardDir/wh3l_13TeV_ossf_FWDH/$vars/datacard.txt \
 
 # combine the datacards
+
+#combineCards.py \
+#    sssf_PTV_LE150=$DC_SS_Dir/wh3l_13TeV_sssf_PTV_LE150/$varSS/datacard.txt \
+#    sssf_PTV_GT150=$DC_SS_Dir/wh3l_13TeV_sssf_PTV_GT150/$varSS/datacard.txt \
+ #   ossf_PTV_LE150=$DC_OS_Dir/wh3l_13TeV_ossf_PTV_LE150/$varOS/datacard.txt \
+#    ossf_PTV_GT150=$DC_OS_Dir/wh3l_13TeV_ossf_PTV_GT150/$varOS/datacard.txt \
+#    wh3l_zg=$DC_OS_Dir/wh3l_zg_13TeV/events/datacard.txt \
+#    wh3l_wz=$DC_OS_Dir/wh3l_wz_13TeV/events/datacard.txt \
+#    > ${outputDir}/${analysis}_HTXS_Stage1.txt
+
 combineCards.py \
-    sssf_PTV_0_75=$DC_SS_Dir/wh3l_13TeV_sssf_PTV_0_75/$varSS/datacard.txt \
-    sssf_PTV_75_150=$DC_SS_Dir/wh3l_13TeV_sssf_PTV_75_150/$varSS/datacard.txt \
-    sssf_PTV_150_250_0J=$DC_SS_Dir/wh3l_13TeV_sssf_PTV_150_250_0J/$varSS/datacard.txt \
-    sssf_PTV_GT250=$DC_SS_Dir/wh3l_13TeV_sssf_PTV_GT250/$varSS/datacard.txt \
-    ossf_PTV_0_75=$DC_OS_Dir/wh3l_13TeV_ossf_PTV_0_75/$varOS/datacard.txt \
-    ossf_PTV_75_150=$DC_OS_Dir/wh3l_13TeV_ossf_PTV_75_150/$varOS/datacard.txt \
-    ossf_PTV_150_250_0J=$DC_OS_Dir/wh3l_13TeV_ossf_PTV_150_250_0J/$varOS/datacard.txt \
-    ossf_PTV_GT250=$DC_OS_Dir/wh3l_13TeV_ossf_PTV_GT250/$varOS/datacard.txt \
+    sssf_PTV_LE150=$DC_SS_Dir/wh3l_13TeV_sssf_PTV_LE150/$varSS/datacard.txt \
+    ossf_PTV_LE150=$DC_OS_Dir/wh3l_13TeV_ossf_PTV_LE150/$varOS/datacard.txt \
+    ossf_PTV_GT150=$DC_OS_Dir/wh3l_13TeV_ossf_PTV_GT150/$varOS/datacard.txt \
     wh3l_zg=$DC_OS_Dir/wh3l_zg_13TeV/events/datacard.txt \
     wh3l_wz=$DC_OS_Dir/wh3l_wz_13TeV/events/datacard.txt \
     > ${outputDir}/${analysis}_HTXS_Stage1.txt
@@ -65,11 +70,11 @@ echo "Combination folder is created"
 #btag
 for nu in cferr1 cferr2 hf hfstats1_2017 hfstats2_2017 jes lf lfstats1_2017 lfstats2_2017
 do
-    echo "nuisance edit drop Vg sssf_PTV_75_150 CMS_btag_$nu" >> ${outputDir}/${analysis}_HTXS_Stage1.txt
+    echo "nuisance edit drop Vg sssf_PTV_LE150 CMS_btag_$nu" >> ${outputDir}/${analysis}_HTXS_Stage1.txt
 done
 
 #Eff
 for nu in e_2017 m_2017 hwwtrigger_2017 prefiring_2017
 do
-    echo "nuisance edit drop Vg sssf_PTV_75_150 CMS_eff_$nu" >> ${outputDir}/${analysis}_HTXS_Stage1.txt
+    echo "nuisance edit drop Vg sssf_PTV_LE150 CMS_eff_$nu" >> ${outputDir}/${analysis}_HTXS_Stage1.txt
 done
