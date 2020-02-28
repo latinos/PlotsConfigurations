@@ -164,7 +164,7 @@ samples['top'] = {
 
 samples['Wjets'] = { 'name' :   
           # nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_ext1')
-          nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
+            nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT70_100')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT200_400')
@@ -177,11 +177,21 @@ samples['Wjets'] = { 'name' :
                   #+'*( (VBS_category==1)*(deltaetavbs_reweight*leptonpt_reweight) + (VBS_category==0) )', # reweight lowenergy
 				'FilesPerJob' : 2,
         'subsamples': {
-          "deta1": "deltaeta_vbs < 3",
-          "deta2": "deltaeta_vbs >= 3 && deltaeta_vbs < 4",
-          "deta3": "deltaeta_vbs >= 4 && deltaeta_vbs < 5",
-          "deta4": "deltaeta_vbs >= 5 && deltaeta_vbs < 6",
-          "deta5": "deltaeta_vbs >= 6"
+          "deta1_lpt1": "(deltaeta_vbs < 3 ) && Lepton_pt[0]< 150",
+          "deta2_lpt1": "(deltaeta_vbs >= 3 && deltaeta_vbs < 4) && Lepton_pt[0]< 150",
+          "deta3_lpt1": "(deltaeta_vbs >= 4 && deltaeta_vbs < 5) && Lepton_pt[0]< 150",
+          "deta4_lpt1": "(deltaeta_vbs >= 5 && deltaeta_vbs < 6) && Lepton_pt[0]< 150",
+          "deta5_lpt1": "(deltaeta_vbs >= 6 ) && Lepton_pt[0]< 150",
+          "deta1_lpt2": "(deltaeta_vbs < 3 ) &&  ( Lepton_pt[0]>= 150 && Lepton_pt[0]<300)",
+          "deta2_lpt2": "(deltaeta_vbs >= 3 && deltaeta_vbs < 4) &&  ( Lepton_pt[0]>= 150 && Lepton_pt[0]<300)",
+          "deta3_lpt2": "(deltaeta_vbs >= 4 && deltaeta_vbs < 5) &&  ( Lepton_pt[0]>= 150 && Lepton_pt[0]<300)",
+          "deta4_lpt2": "(deltaeta_vbs >= 5 && deltaeta_vbs < 6) &&  ( Lepton_pt[0]>= 150 && Lepton_pt[0]<300)",
+          "deta5_lpt2": "(deltaeta_vbs >= 6) &&  ( Lepton_pt[0]>= 150 && Lepton_pt[0]<300)",
+          "deta1_lpt3": "(deltaeta_vbs < 3 ) &&  ( Lepton_pt[0]>= 300 )",
+          "deta2_lpt3": "(deltaeta_vbs >= 3 && deltaeta_vbs < 4) &&  ( Lepton_pt[0]>= 300 )",
+          "deta3_lpt3": "(deltaeta_vbs >= 4 && deltaeta_vbs < 5) &&  ( Lepton_pt[0]>= 300 )",
+          "deta4_lpt3": "(deltaeta_vbs >= 5 && deltaeta_vbs < 6) &&  ( Lepton_pt[0]>= 300 )",
+          "deta5_lpt3": "(deltaeta_vbs >= 6) &&  ( Lepton_pt[0]>= 300 )",
         }
 		   }
 

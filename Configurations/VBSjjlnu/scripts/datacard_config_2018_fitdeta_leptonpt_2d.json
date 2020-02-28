@@ -1,15 +1,36 @@
 [
   { 
-    "datacard_name": "deta_mjjvlow__dnn_mjjvhigh",
+    "datacard_name": "only_detalp",
     "folders": [
       {
-        "basedir": "Full2018v6s5/datacards_wbindeta", 
+        "basedir": "Full2018v6s5/datacards_wbindetalpt", 
         "name": 2018
       }
     ], 
     "phase_spaces": [
       {
-        "var": "deltaeta_vbs_CR", 
+        "var": "deta_lpt_CR", 
+        "name": "wjetCR_mjjinl_res_mu",
+        "cut": "res_wjetcr_mjjincl_mu"
+      },
+      {
+        "var": "events", 
+        "cut": "res_topcr_mjjincl_mu", 
+        "name": "topCR_res_mu"
+      }
+    ]
+  },
+  { 
+    "datacard_name": "detalp_low_dnn_high",
+    "folders": [
+      {
+        "basedir": "Full2018v6s5/datacards_wbindetalpt", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deta_lpt_CR", 
         "name": "wjetCR_mjjvlow_res_mu",
         "cut": "res_wjetcr_mjjincl_mjjvlow_mu"
       },
@@ -26,18 +47,44 @@
     ]
   },
   { 
-    "datacard_name": "deta_mjjvhigh__dnn_mjjvlow",
+    "datacard_name": "detalp_low_lept_high",
     "folders": [
       {
-        "basedir": "Full2018v6s5/datacards_wbindeta", 
+        "basedir": "Full2018v6s5/datacards_wbindetalpt", 
         "name": 2018
       }
     ], 
     "phase_spaces": [
       {
-        "var": "deltaeta_vbs_CR", 
+        "var": "deta_lpt_CR", 
+        "name": "wjetCR_mjjvlow_res_mu",
+        "cut": "res_wjetcr_mjjincl_mjjvlow_mu"
+      },
+      {
+        "var": "Lepton_pt", 
         "name": "wjetCR_mjjvhigh_res_mu",
         "cut": "res_wjetcr_mjjincl_mjjvhigh_mu"
+      },
+      {
+        "var": "events", 
+        "cut": "res_topcr_mjjincl_mu", 
+        "name": "topCR_res_mu"
+      }
+    ]
+  },
+  { 
+    "datacard_name": "detalp_high_dnn_low",
+    "folders": [
+      {
+        "basedir": "Full2018v6s5/datacards_wbindetalpt", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deta_lpt_CR", 
+        "name": "wjetCR_mjjvhigh_res_mu",
+        "cut": "res_wjetcr_mjjincl__mjjvhigh_mu"
       },
       {
         "var": "DNNoutput_lessbins", 
@@ -52,57 +99,21 @@
     ]
   },
   { 
-    "datacard_name": "deta_mjjvint__dnn_mjjvext",
+    "datacard_name": "detalp_ext_dnn_int",
     "folders": [
       {
-        "basedir": "Full2018v6s5/datacards_wbindeta", 
+        "basedir": "Full2018v6s5/datacards_wbindetalpt", 
         "name": 2018
       }
     ], 
     "phase_spaces": [
       {
-        "var": "deltaeta_vbs_CR", 
-        "name": "wjetCR_mjjvhigh1_res_mu",
-        "cut": "res_wjetcr_mjjincl_mjjvhigh1_mu"
-      },
-      {
-        "var": "deltaeta_vbs_CR", 
-        "name": "wjetCR_mjjvlow2_res_mu",
-        "cut": "res_wjetcr_mjjincl_mjjvlow2_ele"
-      },
-      {
-        "var": "DNNoutput_lessbins", 
-        "name": "wjetCR_mjjvlow1_res_mu",
-        "cut": "res_wjetcr_mjjincl_mjjvlow1_mu"
-      },
-      {
-        "var": "DNNoutput_lessbins", 
+        "var": "deta_lpt_CR", 
         "name": "wjetCR_mjjvhigh2_res_mu",
         "cut": "res_wjetcr_mjjincl_mjjvhigh2_mu"
       },
       {
-        "var": "events", 
-        "cut": "res_topcr_mjjincl_mu", 
-        "name": "topCR_res_mu"
-      }
-    ]
-  },
-  { 
-    "datacard_name": "deta_mjjvext__dnn_mjjvint",
-    "folders": [
-      {
-        "basedir": "Full2018v6s5/datacards_wbindeta", 
-        "name": 2018
-      }
-    ], 
-    "phase_spaces": [
-      {
-        "var": "deltaeta_vbs_CR", 
-        "name": "wjetCR_mjjvhigh2_res_mu",
-        "cut": "res_wjetcr_mjjincl_mjjvhigh2_mu"
-      },
-      {
-        "var": "deltaeta_vbs_CR", 
+        "var": "deta_lpt_CR", 
         "name": "wjetCR_mjjvlow1_res_mu",
         "cut": "res_wjetcr_mjjincl_mjjvlow1_mu"
       },
@@ -123,5 +134,4 @@
       }
     ]
   }
-
 ]

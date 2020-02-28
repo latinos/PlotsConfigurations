@@ -35,11 +35,17 @@ if args.robust_fit:
 else: 
     FIT_OPTIONS= ""
 
-logging.basicConfig( level = logging.INFO, format = '%(asctime)s - %(levelname)s: %(message)s',\
+
+logging.basicConfig(level=logging.DEBUG, format = '%(asctime)s - %(levelname)s: %(message)s',\
                      datefmt = '%m/%d/%Y %I:%M:%S %p')
 
 def create_logger(name, file):
     l = logging.getLogger(name)
+    # Console logger to INFO
+    # ch = logging.StreamHandler()
+    # ch.setLevel(logging.INFO)
+    # l.addHandler(ch)
+    # File handler Debug
     logfile = logging.FileHandler(file, 'a')
     logfile.setLevel(logging.DEBUG)
     form = logging.Formatter(fmt = '%(asctime)s - %(levelname)s: %(message)s',
@@ -108,7 +114,7 @@ def fit_and_pulls(datac):
     outdir = datac["outputdir"] 
     log.info("Running maximum likelihood fit")
     cmd = """combineTool.py -M FitDiagnostics -d {0}/combined_{1}.root -n .{1}  \\
-         --saveShapes --saveNormalizations --saveWithUncertainties {2} > {0}/logFit.txt; \\
+         --saveShapes --saveNormalizations --saveWithUncertainties {2}  > {0}/logFit.txt; \\
              mv fitDiagnostics.{1}.root {0}/""".format(
              outdir, datac["datacard_name"], FIT_OPTIONS)
     log.debug(cmd)

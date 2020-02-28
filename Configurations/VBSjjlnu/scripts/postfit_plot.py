@@ -68,7 +68,7 @@ def post_fit_plots(datac):
             args.plot_config.split("/")[-1],
             outputDir, 
             datac["datacard_name"],
-            args.outputdir,
+            datac["outputdir"],
             combconf["var"], combconf["cut"]
         ))
 

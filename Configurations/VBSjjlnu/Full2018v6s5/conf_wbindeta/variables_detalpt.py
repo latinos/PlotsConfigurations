@@ -92,7 +92,7 @@ variables['deltaeta_vbs_CR'] = {   'name': 'deltaeta_vbs',
 
 variables["deta_lpt_CR"] = {
             'name': 'deltaeta_vbs:Lepton_pt[0]',
-            'range': ([2,3,4,5,6,8],[30,150,300,500]),
+            'range': ([30,150,300,500],[2,3,4,5,6,8]),
             'axis': '#Delta#eta VBS jets : Lepton Pt',
             'fold': 3
 }
@@ -299,7 +299,7 @@ variables['mjj_vjet'] = {   'name': 'mjj_vjet',
 #                         'fold' : 3
 #                         }
 
-# #Asym
+# # #Asym
 # variables['Asym_vbs'] = {   'name': 'Asym_vbs',      
 #                         'range' : (30,0,1),  
 #                         'xaxis' : 'Pt asymmetry VBS jets', 

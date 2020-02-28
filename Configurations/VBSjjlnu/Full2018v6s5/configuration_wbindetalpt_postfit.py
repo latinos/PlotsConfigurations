@@ -18,10 +18,10 @@ variablesFile = direc+'/variables_detalpt.py'
 cutsFile = direc +'/cuts.py' 
 
 # file with list of samples
-samplesFile = direc+'/samples_detalpt.py' 
+samplesFile = direc+'/samples_detalpt_postfit.py' 
 
 # file with list of samples
-plotFile = direc+'/plot_detalpt.py' 
+plotFile = direc+'/plot_detalpt_postfit.py' 
 
 
 
@@ -30,7 +30,7 @@ lumi = 59.74
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot_'+tag
+outputDirPlots = 'plot_'+tag +"_postfit"
 
 
 # used by mkDatacards to define output directory for datacards
@@ -42,6 +42,6 @@ structureFile = direc+'/structure_detalpt.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = direc+'/nuisances.py'
-#nuisancesFile = direc+'/nuisances_datacard_detalpt.py'
+#nuisancesFile = direc+'/nuisances.py'
+nuisancesFile = direc+'/nuisances_postfit.py'
 
