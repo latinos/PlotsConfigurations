@@ -3,7 +3,7 @@ treeName= 'Events'
 
 
 tag = 'wbindetalpt'
-direc = "conf_wbindeta"
+direc = "conf_wbindetalpt"
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_'+tag 
@@ -12,16 +12,16 @@ outputDir = 'rootFile_'+tag
 aliasesFile = direc+'/aliases.py'
 
 # file with list of variables
-variablesFile = direc+'/variables_detalpt.py'
+variablesFile = direc+'/variables.py'
 
 # file with list of cuts
 cutsFile = direc +'/cuts.py' 
 
 # file with list of samples
-samplesFile = direc+'/samples_detalpt.py' 
+samplesFile = direc+'/samples.py' 
 
 # file with list of samples
-plotFile = direc+'/plot_detalpt.py' 
+plotFile = direc+'/plot.py' 
 
 
 
@@ -38,10 +38,10 @@ outputDirDatacard = 'datacards_'+tag
 
 
 # structure file for datacard
-structureFile = direc+'/structure_detalpt.py'
+structureFile = direc+'/structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
 nuisancesFile = direc+'/nuisances.py'
-#nuisancesFile = direc+'/nuisances_datacard_detalpt.py'
+#nuisancesFile = direc+'/nuisances_datacard.py'
 

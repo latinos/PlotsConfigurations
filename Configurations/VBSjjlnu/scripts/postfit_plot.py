@@ -64,7 +64,9 @@ def post_fit_plots(datac):
                 plotbasedir
             )
 
-        os.makedirs(datac["outputdir"]+"/"+combconf["name"])
+        if not os.path.exists(datac["outputdir"]+"/"+combconf["name"]):
+            os.makedirs(datac["outputdir"]+"/"+combconf["name"])
+        
         cmdpost2 = """mkPlot.py  --pycfg={0} \\
             --inputFile={1}/postfit_latino_{2}.root \\
             --showIntegralLegend=1 --showRelativeRatio --plotNormalizedDistributions=True --minLogC 0.3 --maxLogC 1e2 \\

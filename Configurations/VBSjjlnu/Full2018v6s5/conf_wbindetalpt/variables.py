@@ -10,33 +10,54 @@ variables['events']  = {   'name': '1',
                         }
 
 
-variables['DNNoutput'] = {
-    'name': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)',
-    'range': (25,0,1),
-    'xaxis': 'DNN output',
-    'fold': 3 ,
-    'blind': {
-        "res_sig_mjjhigh_ele": [0.8,1],
-        "res_sig_mjjhigh_mu": [0.8,1],
-        "res_sig_mjjincl_ele": [0.8,1],
-        "res_sig_mjjincl_mu": [0.8,1], 
-        "res_sig_mjjlow_ele": [0.8,1],
-        "res_sig_mjjlow_mu": [0.8,1], 
-        "boos_sig_mjjhigh_ele": [0.8,1],
-        "boos_sig_mjjhigh_mu": [0.8,1],
-        "boos_sig_mjjincl_ele": [0.8,1],
-        "boos_sig_mjjincl_mu": [0.8,1],
-        "boos_sig_mjjlow_ele": [0.8,1],
-        "boos_sig_mjjlow_mu": [0.8,1],
-    }
-}
+# variables['DNNoutput_v18'] = {
+#     'name': 'DNNoutput_v18',
+#     'range': (25,0,1),
+#     'xaxis': 'DNN output (v18)',
+#     'fold': 3 ,
+#     'blind': {
+#         "res_sig_mjjhigh_ele": [0.8,1],
+#         "res_sig_mjjhigh_mu": [0.8,1],
+#         "res_sig_mjjincl_ele": [0.8,1],
+#         "res_sig_mjjincl_mu": [0.8,1], 
+#         "res_sig_mjjlow_ele": [0.8,1],
+#         "res_sig_mjjlow_mu": [0.8,1], 
+#         "boos_sig_mjjhigh_ele": [0.8,1],
+#         "boos_sig_mjjhigh_mu": [0.8,1],
+#         "boos_sig_mjjincl_ele": [0.8,1],
+#         "boos_sig_mjjincl_mu": [0.8,1],
+#         "boos_sig_mjjlow_ele": [0.8,1],
+#         "boos_sig_mjjlow_mu": [0.8,1],
+#     }
+# }
+
+# variables['DNNoutput_v32'] = {
+#     'name': 'DNNoutput_v32',
+#     'range': (25,0,1),
+#     'xaxis': 'DNN output (v32)',
+#     'fold': 3 ,
+#     'blind': {
+#         "res_sig_mjjhigh_ele": [0.8,1],
+#         "res_sig_mjjhigh_mu": [0.8,1],
+#         "res_sig_mjjincl_ele": [0.8,1],
+#         "res_sig_mjjincl_mu": [0.8,1], 
+#         "res_sig_mjjlow_ele": [0.8,1],
+#         "res_sig_mjjlow_mu": [0.8,1], 
+#         "boos_sig_mjjhigh_ele": [0.8,1],
+#         "boos_sig_mjjhigh_mu": [0.8,1],
+#         "boos_sig_mjjincl_ele": [0.8,1],
+#         "boos_sig_mjjincl_mu": [0.8,1],
+#         "boos_sig_mjjlow_ele": [0.8,1],
+#         "boos_sig_mjjlow_mu": [0.8,1],
+#     }
+# }
 
 
 
-variables['DNNoutput_lessbins'] = {
-    'name': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)',
+variables['DNNoutput_v18'] = {
+    'name': 'DNNoutput_v18',
     'range': ([0.1,0.2,0.3,0.4,0.5,0.6,0.64,0.68,0.72,0.76,0.8,0.84,0.88,0.92,0.96,1],),
-    'xaxis': 'DNN output',
+    'xaxis': 'DNN output (v18)',
     'fold': 3 ,
     'blind': {
         "res_sig_mjjhigh_ele": [0.8,1],
@@ -54,40 +75,71 @@ variables['DNNoutput_lessbins'] = {
     }
 }
 
-
+variables['DNNoutput_v32'] = {
+    'name': 'DNNoutput_v32',
+    'range': ([0.1,0.2,0.3,0.4,0.5,0.6,0.64,0.68,0.72,0.76,0.8,0.84,0.88,0.92,0.96,1],),
+    'xaxis': 'DNN output (v32)',
+    'fold': 3 ,
+    'blind': {
+        "res_sig_mjjhigh_ele": [0.8,1],
+        "res_sig_mjjhigh_mu": [0.8,1],
+        "res_sig_mjjincl_ele": [0.8,1],
+        "res_sig_mjjincl_mu": [0.8,1], 
+        "res_sig_mjjlow_ele": [0.8,1],
+        "res_sig_mjjlow_mu": [0.8,1], 
+        "boos_sig_mjjhigh_ele": [0.8,1],
+        "boos_sig_mjjhigh_mu": [0.8,1],
+        "boos_sig_mjjincl_ele": [0.8,1],
+        "boos_sig_mjjincl_mu": [0.8,1],
+        "boos_sig_mjjlow_ele": [0.8,1],
+        "boos_sig_mjjlow_mu": [0.8,1],
+    }
+}
 
 # #leptons
 
-# variables['Lepton_eta'] = {   'name': 'abs(Lepton_eta[0])',      
-#                         'range' : (30,0,2.5),  
-#                         'xaxis' : 'Lepton #eta', 
-#                         'fold' : 3
-#                         }
+variables['Lepton_eta'] = {   'name': 'abs(Lepton_eta[0])',      
+                        'range' : (30,0,2.5),  
+                        'xaxis' : 'Lepton #eta', 
+                        'fold' : 3
+                        }
 
 
 variables['Lepton_pt'] = {   'name': 'Lepton_pt[0]',      
                         'range' : (40,0,500),  
                         'xaxis' : 'Lepton pt', 
                         'fold' : 3
-                        }        
+                        }    
 
 
-variables['Lepton_pt_CR'] = {   'name': 'Lepton_pt[0]',      
-                        'range' : ([30,150,300,500],),  
-                        'xaxis' : 'Lepton pt', 
-                        'fold' : 3
-                        }                
-
-
-variables['deltaeta_vbs_CR'] = {   'name': 'deltaeta_vbs',      
-                        'range' : ([2,3,4,5,6,8],),  
+#delta angles between the VBS jets
+variables['deltaeta_vbs'] = {   'name': 'deltaeta_vbs',      
+                        'range' : (16,2,8),  
                         'xaxis' : '#Delta#eta VBS jets', 
                         'fold' : 3,
                         'blind': {
-                            "res_sig_mjjhigh_ele" :(4,9),
-                            "res_sig_mjjhigh_mu" : (4,9),
+                            "res_sig_mjjincl_ele" :(4,9),
+                            "res_sig_mjjincl_mu" : (4,9),
                             }
-                        }
+                        }    
+
+
+# variables['Lepton_pt_CR'] = {   'name': 'Lepton_pt[0]',      
+#                         'range' : ([30,150,300,500],),  
+#                         'xaxis' : 'Lepton pt', 
+#                         'fold' : 3
+#                         }                
+
+
+# variables['deltaeta_vbs_CR'] = {   'name': 'deltaeta_vbs',      
+#                         'range' : ([2,3,4,5,6,8],),  
+#                         'xaxis' : '#Delta#eta VBS jets', 
+#                         'fold' : 3,
+#                         'blind': {
+#                             "res_sig_mjjhigh_ele" :(4,9),
+#                             "res_sig_mjjhigh_mu" : (4,9),
+#                             }
+#                         }
 
 
 variables["deta_lpt_CR"] = {
@@ -106,34 +158,23 @@ variables['PuppiMET'] = {   'name': 'PuppiMET_pt',
 
 
 # VBS vars
-variables['mjj_vbs_morebins'] = {   'name': 'mjj_vbs',      
-                        'range' : (50,200,3000) , 
-                        'xaxis' : 'M_{jj} VBS', 
-                        'fold' : 3,
-                        'blind' : {
-                            "res_sig_mjjhigh_ele" :(1000,4000),
-                            "res_sig_mjjhigh_mu" : (1000,4000),
-                            }
-                        }
+# variables['mjj_vbs_morebins'] = {   'name': 'mjj_vbs',      
+#                         'range' : (40,200,3000) , 
+#                         'xaxis' : 'M_{jj} VBS', 
+#                         'fold' : 3,
+#                         'blind' : {
+#                             "res_sig_mjjincl_ele" :(1000,4000),
+#                             "res_sig_mjjincl_mu" : (1000,4000),
+#                             }
+#                         }
 
 variables['mjj_vbs'] = {   'name': 'mjj_vbs',      
                         'range' : ([200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,4000],) , 
                         'xaxis' : 'M_{jj} VBS', 
                         'fold' : 3,
                         'blind' : {
-                            "res_sig_mjjhigh_ele" :(1000,4000),
-                            "res_sig_mjjhigh_mu" : (1000,4000),
-                            }
-                        }
-
-#delta angles between the VBS jets
-variables['deltaeta_vbs'] = {   'name': 'deltaeta_vbs',      
-                        'range' : (16,2,8),  
-                        'xaxis' : '#Delta#eta VBS jets', 
-                        'fold' : 3,
-                        'blind': {
-                            "res_sig_mjjhigh_ele" :(4,9),
-                            "res_sig_mjjhigh_mu" : (4,9),
+                            "res_sig_mjjincl_ele" :(1000,4000),
+                            "res_sig_mjjincl_mu" : (1000,4000),
                             }
                         }
 
@@ -192,18 +233,30 @@ variables['mjj_vjet'] = {   'name': 'mjj_vjet',
 #                     }
 
 
-# vjet jets
-# variables['vjet_0_pt'] = {   'name': 'vjet_0_pt',      
-#                         'range' : (30,30,400),  
-#                         'xaxis' : 'leading V-jet pt', 
-#                         'fold' : 3
-#                         }
+variables['vjet_0_pt'] = {   'name': 'vjet_0_pt',      
+                        'range' : (30,30,400),  
+                        'xaxis' : 'leading V-jet pt', 
+                        'fold' : 3
+                        }
 
-# variables['vjet_1_pt'] = {   'name': 'vjet_1_pt',      
-#                         'range' : (30,30,200),  
-#                         'xaxis' : 'trailing V-jet pt', 
-#                         'fold' : 3
-#                         }
+variables['vjet_1_pt'] = {   'name': 'vjet_1_pt',      
+                        'range' : (30,30,200),  
+                        'xaxis' : 'trailing V-jet pt', 
+                        'fold' : 3
+                        }
+
+
+variables['vjet_0_eta'] = {   'name': 'vjet_0_eta',      
+                        'range' : (30,0,5),  
+                        'xaxis' : 'leading Vjet #eta', 
+                        'fold' : 3
+                        }
+
+variables['vjet_1_eta'] = {   'name': 'vjet_1_eta',      
+                        'range' : (30,0,5),  
+                        'xaxis' : 'trailing Vjet #eta', 
+                        'fold' : 3
+                        }
 
 
 # variables['vbs_etaprod'] = {   'name': 'vbs_0_eta*vbs_1_eta',      
@@ -212,44 +265,32 @@ variables['mjj_vjet'] = {   'name': 'mjj_vjet',
 #                         'fold' : 3
 # #                         }
 
-# variables['vbs_0_pt'] = {   'name': 'vbs_0_pt',      
-#                         'range' : (30,0,500),  
-#                         'xaxis' : 'leading VBS jet pt', 
-#                         'fold' : 3
-#                         }
+variables['vbs_0_pt'] = {   'name': 'vbs_0_pt',      
+                        'range' : (30,0,500),  
+                        'xaxis' : 'leading VBS jet pt', 
+                        'fold' : 3
+                        }
 
 
-# variables['vbs_1_pt'] = {   'name': 'vbs_1_pt',      
-#                         'range' : (30,0,500),  
-#                         'xaxis' : 'trailing VBS jet pt', 
-#                         'fold' : 3
-#                         } 
+variables['vbs_1_pt'] = {   'name': 'vbs_1_pt',      
+                        'range' : (30,0,500),  
+                        'xaxis' : 'trailing VBS jet pt', 
+                        'fold' : 3
+                        } 
 
-# # #
-# variables['vbs_0_eta'] = {   'name': 'vbs_0_eta',      
-#                         'range' : (30,0,5),  
-#                         'xaxis' : 'leading VBS jet #eta', 
-#                         'fold' : 3
-#                         }
+# #
+variables['vbs_0_eta'] = {   'name': 'vbs_0_eta',      
+                        'range' : (30,0,5),  
+                        'xaxis' : 'leading VBS jet #eta', 
+                        'fold' : 3
+                        }
 
-# variables['vbs_1_eta'] = {   'name': 'vbs_1_eta',      
-#                         'range' : (30,0,5),  
-#                         'xaxis' : 'trailing VBS jet #eta', 
-#                         'fold' : 3
-#                         }
+variables['vbs_1_eta'] = {   'name': 'vbs_1_eta',      
+                        'range' : (30,0,5),  
+                        'xaxis' : 'trailing VBS jet #eta', 
+                        'fold' : 3
+                        }
 
-
-# variables['vjet_0_eta'] = {   'name': 'vjet_0_eta',      
-#                         'range' : (30,0,5),  
-#                         'xaxis' : 'leading Vjet #eta', 
-#                         'fold' : 3
-#                         }
-
-# variables['vjet_1_eta'] = {   'name': 'vjet_1_eta',      
-#                         'range' : (30,0,5),  
-#                         'xaxis' : 'trailing Vjet #eta', 
-#                         'fold' : 3
-#                         }
 
 
 
