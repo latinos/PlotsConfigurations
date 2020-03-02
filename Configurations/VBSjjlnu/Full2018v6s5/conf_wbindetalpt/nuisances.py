@@ -16,9 +16,9 @@ phase_spaces_res = [
    'res_wjetcr_mjjincl_mvhigh','res_wjetcr_mjjincl_mvhigh1','res_wjetcr_mjjincl_mvhigh2',
    'res_wjetcr_mjjincl_mvlow','res_wjetcr_mjjincl_mvlow1','res_wjetcr_mjjincl_mvlow2'
    
-   'res_wjetcr_mjjincl_mvint','res_wjetcr_mjjincl_mvext'
+   'res_wjetcr_mjjincl_mvint','res_wjetcr_mjjincl_mvext',
 
-  # 'res_wjetcr_mjjincl_mvhigh_dnnhigh', 'res_wjetcr_mjjincl_mvlow_dnnhigh'
+   'res_wjetcr_mjjincl_mvhigh_dnnhigh', 'res_wjetcr_mjjincl_mvlow_dnnhigh'
 ]
 phase_spaces_boost = [
    'boost_sig_mjjincl','boost_sig_mjjlow','boost_sig_mjjhigh',

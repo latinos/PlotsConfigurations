@@ -22,7 +22,6 @@ public:
   char const* getName() const override { return "MVAReaderResolved_v32"; }
   TTreeFunction* clone() const override { return new MVAReaderResolved_v32(model_path_.c_str(), verbose, category_); }
 
-  bool initialized_ = false;
   std::string model_path_;
   int category_;
   unsigned getNdata() override { return 1; }
@@ -49,7 +48,7 @@ protected:
   FloatValueReader* vbs_0_eta{};
   FloatValueReader* vbs_1_eta{};
   FloatValueReader* mjj_vbs{};
-  UIntArrayReader* Lepton_flavour{};
+  IntArrayReader* Lepton_flavour{};
 };
 
 
@@ -59,7 +58,6 @@ MVAReaderResolved_v32::MVAReaderResolved_v32(const char* model_path, bool verbos
     category_(category)
 {
     dnn_tensorflow = new DNNEvaluator(model_path_, verbose);
-    initialized_ = true;
 }
 
 
@@ -83,7 +81,7 @@ MVAReaderResolved_v32::evaluate(unsigned)
   input.push_back( *(vjet_1_eta->Get()) );
   input.push_back( Lepton_pt->At(0) );
   input.push_back( TMath::Abs(Lepton_eta->At(0)) );
-  input.push_back( Lepton_flavour->At(0) );
+  input.push_back( (float) Lepton_flavour->At(0) );
 
   return dnn_tensorflow->analyze(input);
   
@@ -105,6 +103,23 @@ MVAReaderResolved_v32::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(Lepton_pt, "Lepton_pt");
   _library.bindBranch(Lepton_eta, "Lepton_eta");
   _library.bindBranch(Lepton_flavour, "Lepton_pdgId");
+
+  // _library.addDestructorCallback([&]() {
+  //       VBS_category = nullptr;
+  //       mjj_vbs = nullptr;
+  //       vbs_0_pt = nullptr;
+  //       vbs_1_pt = nullptr;
+  //       deltaeta_vbs = nullptr;
+  //       deltaphi_vbs = nullptr;
+  //       vjet_0_eta= nullptr;
+  //       vjet_1_eta = nullptr;
+  //       vjet_0_pt = nullptr;
+  //       vjet_1_pt = nullptr;
+  //       Lepton_pt = nullptr;
+  //       Lepton_eta = nullptr;
+  //       Lepton_flavour = nullptr;
+  //       delete dnn_tensorflow;
+  //     });
 }
 
 

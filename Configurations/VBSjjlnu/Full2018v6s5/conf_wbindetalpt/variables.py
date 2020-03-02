@@ -191,6 +191,63 @@ variables['mjj_vjet'] = {   'name': 'mjj_vjet',
                         'fold' : 3
                         }
 
+
+
+variables['vjet_0_pt'] = {   'name': 'vjet_0_pt',      
+                        'range' : (30,30,400),  
+                        'xaxis' : 'leading V-jet pt', 
+                        'fold' : 3
+                        }
+
+variables['vjet_1_pt'] = {   'name': 'vjet_1_pt',      
+                        'range' : (30,30,200),  
+                        'xaxis' : 'trailing V-jet pt', 
+                        'fold' : 3
+                        }
+
+
+variables['vjet_0_eta'] = {   'name': 'vjet_0_eta',      
+                        'range' : (30,0,5),  
+                        'xaxis' : 'leading Vjet #eta', 
+                        'fold' : 3
+                        }
+
+variables['vjet_1_eta'] = {   'name': 'vjet_1_eta',      
+                        'range' : (30,0,5),  
+                        'xaxis' : 'trailing Vjet #eta', 
+                        'fold' : 3
+                        }
+
+variables['vbs_0_pt'] = {   'name': 'vbs_0_pt',      
+                        'range' : (30,0,500),  
+                        'xaxis' : 'leading VBS jet pt', 
+                        'fold' : 3
+                        }
+
+
+variables['vbs_1_pt'] = {   'name': 'vbs_1_pt',      
+                        'range' : (30,0,500),  
+                        'xaxis' : 'trailing VBS jet pt', 
+                        'fold' : 3
+                        } 
+
+# #
+variables['vbs_0_eta'] = {   'name': 'vbs_0_eta',      
+                        'range' : (30,0,5),  
+                        'xaxis' : 'leading VBS jet #eta', 
+                        'fold' : 3
+                        }
+
+variables['vbs_1_eta'] = {   'name': 'vbs_1_eta',      
+                        'range' : (30,0,5),  
+                        'xaxis' : 'trailing VBS jet #eta', 
+                        'fold' : 3
+                        }
+
+
+
+
+
 # variables['PuppiMET_phi'] = {   'name': 'PuppiMET_phi',      
 #                         'range': (30,-3.14, 3.14),  
 #                         'xaxis' : 'PuppiMET #phi', 
@@ -233,30 +290,7 @@ variables['mjj_vjet'] = {   'name': 'mjj_vjet',
 #                     }
 
 
-variables['vjet_0_pt'] = {   'name': 'vjet_0_pt',      
-                        'range' : (30,30,400),  
-                        'xaxis' : 'leading V-jet pt', 
-                        'fold' : 3
-                        }
 
-variables['vjet_1_pt'] = {   'name': 'vjet_1_pt',      
-                        'range' : (30,30,200),  
-                        'xaxis' : 'trailing V-jet pt', 
-                        'fold' : 3
-                        }
-
-
-variables['vjet_0_eta'] = {   'name': 'vjet_0_eta',      
-                        'range' : (30,0,5),  
-                        'xaxis' : 'leading Vjet #eta', 
-                        'fold' : 3
-                        }
-
-variables['vjet_1_eta'] = {   'name': 'vjet_1_eta',      
-                        'range' : (30,0,5),  
-                        'xaxis' : 'trailing Vjet #eta', 
-                        'fold' : 3
-                        }
 
 
 # variables['vbs_etaprod'] = {   'name': 'vbs_0_eta*vbs_1_eta',      
@@ -264,32 +298,6 @@ variables['vjet_1_eta'] = {   'name': 'vjet_1_eta',
 #                         'xaxis' : 'VBS jets #eta1#eta2', 
 #                         'fold' : 3
 # #                         }
-
-variables['vbs_0_pt'] = {   'name': 'vbs_0_pt',      
-                        'range' : (30,0,500),  
-                        'xaxis' : 'leading VBS jet pt', 
-                        'fold' : 3
-                        }
-
-
-variables['vbs_1_pt'] = {   'name': 'vbs_1_pt',      
-                        'range' : (30,0,500),  
-                        'xaxis' : 'trailing VBS jet pt', 
-                        'fold' : 3
-                        } 
-
-# #
-variables['vbs_0_eta'] = {   'name': 'vbs_0_eta',      
-                        'range' : (30,0,5),  
-                        'xaxis' : 'leading VBS jet #eta', 
-                        'fold' : 3
-                        }
-
-variables['vbs_1_eta'] = {   'name': 'vbs_1_eta',      
-                        'range' : (30,0,5),  
-                        'xaxis' : 'trailing VBS jet #eta', 
-                        'fold' : 3
-                        }
 
 
 

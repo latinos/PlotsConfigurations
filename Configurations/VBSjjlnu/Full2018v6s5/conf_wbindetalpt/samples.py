@@ -164,18 +164,20 @@ samples['top'] = {
 
 samples['Wjets'] = { 'name' :   
           # nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_ext1')
-            nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT70_100')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT200_400')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT400_600')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT600_800')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
+          #   nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
+          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT70_100')
+          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200')
+          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT200_400')
+          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT400_600')
+          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT600_800')
+          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200')
+          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
+          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
+          ["root://eoscms.cern.ch//eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Autumn18_102X_nAODv6_Full2018v6/MCl1loose2018v6__MCCorr2018v6__VBSjjlnuSkim2018v5/nanoLatino_WJetsToLNu_HT600_800__part15.root",
+          ],
 				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
                   #+'*( (VBS_category==1)*(deltaetavbs_reweight*leptonpt_reweight) + (VBS_category==0) )', # reweight lowenergy
-				'FilesPerJob' : 2,
+				'FilesPerJob' : 1,
         'subsamples': {
           "deta1_lpt1": "(deltaeta_vbs < 3 ) && Lepton_pt[0]< 150",
           "deta2_lpt1": "(deltaeta_vbs >= 3 && deltaeta_vbs < 4) && Lepton_pt[0]< 150",
@@ -301,6 +303,6 @@ for Run in DataRun :
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
 
-# samples = {
-#   "Wjets": samples["Wjets"]
-# }
+samples = {
+  "Wjets": samples["Wjets"]
+}

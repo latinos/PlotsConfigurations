@@ -22,7 +22,6 @@ public:
   char const* getName() const override { return "MVAReaderResolved"; }
   TTreeFunction* clone() const override { return new MVAReaderResolved(model_path_.c_str(), verbose, category_); }
 
-  bool initialized_ = false;
   std::string model_path_;
   int category_;
   unsigned getNdata() override { return 1; }
@@ -60,7 +59,6 @@ MVAReaderResolved::MVAReaderResolved(const char* model_path, bool verbose, int c
     category_(category)
 {
     dnn_tensorflow = new DNNEvaluator(model_path_, verbose);
-    initialized_ = true;
 }
 
 
@@ -108,6 +106,25 @@ MVAReaderResolved::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(Lepton_pt, "Lepton_pt");
   _library.bindBranch(Lepton_eta, "Lepton_eta");
   _library.bindBranch(PuppiMET, "PuppiMET_pt");
+  
+
+  //  _library.addDestructorCallback([&]() {
+  //       VBS_category = nullptr;
+  //       mjj_vbs = nullptr;
+  //       vbs_0_pt = nullptr;
+  //       vbs_1_pt = nullptr;
+  //       deltaeta_vbs = nullptr;
+  //       deltaphi_vbs = nullptr;
+  //       mjj_vjet  = nullptr;
+  //       vjet_0_eta= nullptr;
+  //       vjet_1_eta = nullptr;
+  //       vjet_0_pt = nullptr;
+  //       vjet_1_pt = nullptr;
+  //       Lepton_pt = nullptr;
+  //       Lepton_eta = nullptr;
+  //       PuppiMET = nullptr;
+  //       delete dnn_tensorflow;
+  //     });
 }
 
 
