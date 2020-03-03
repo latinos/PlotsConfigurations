@@ -27,7 +27,7 @@ aliases['DNNoutput_resolved_v18'] = {
 
 aliases['DNNoutput_resolved_v32'] = {
     'class': 'MVAReaderResolved_v32',
-    'args': ( models_path+ '/res_sig_mjjincl/models/v32/', True, 1),
+    'args': ( models_path+ '/res_sig_mjjincl/models/v32/', False, 1),
     'linesToAdd':[
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         'gSystem->Load("libDNNEvaluator.so")',

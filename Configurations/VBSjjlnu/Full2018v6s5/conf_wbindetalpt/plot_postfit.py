@@ -107,6 +107,14 @@ groupPlot['VBS']  = {
                  'fill': 1001
               }
 
+groupPlot['total_prefit'] = {
+    'nameHR' : 'pre-fit',
+    'isSignal' : 2,
+    'color': 616,   
+    'samples'  : ['total_prefit'],
+    'fill': 1001
+}
+
 
 
 #plot = {}
@@ -158,65 +166,8 @@ plot['top'] = {
                  'color': colors['kAzure']-1,
                  'isSignal' : 0,
                  'isData'   : 0, 
-                 'scale'    : 1.08 #####> Rescaled (1.08 for ext and inclusive), (1.07 for low)
+                 'scale'    : 1.0,
                  }
-
-# detalpt_ext
-wfactors = {
-    (1,1): 0.93,
-    (1,2): 0.72,
-    (1,3): 0.51,
-    (2,1): 1.09,
-    (2,2): 0.83,
-    (2,3): 0.61,
-    (3,1): 1.19,
-    (3,2): 0.87,
-    (3,3): 0.38,
-    (4,1): 1.29,
-    (4,2): 0.93,
-    (4,3): 0.96,
-    (5,1): 1.36,
-    (5,2): 0.93,
-    (5,3): 0.50 
-}
-
-# detalpt inclusive
-# wfactors = {
-#     (1,1): 0.93,
-#     (1,2): 0.71,
-#     (1,3): 0.58,
-#     (2,1): 1.09,
-#     (2,2): 0.83,
-#     (2,3): 0.56,
-#     (3,1): 1.19,
-#     (3,2): 0.90,
-#     (3,3): 0.44,
-#     (4,1): 1.29,
-#     (4,2): 0.95,
-#     (4,3): 0.91,
-#     (5,1): 1.40,
-#     (5,2): 0.96,
-#     (5,3): 0.51 
-# }
-
-#detalpt low
-# wfactors = {
-#     (1,1): 0.96,
-#     (1,2): 0.76,
-#     (1,3): 0.62,
-#     (2,1): 1.16,
-#     (2,2): 0.80,
-#     (2,3): 0.64,
-#     (3,1): 1.21,
-#     (3,2): 1.00,
-#     (3,3): 0.75,
-#     (4,1): 1.31,
-#     (4,2): 0.94,
-#     (4,3): 0.85,
-#     (5,1): 1.57,
-#     (5,2): 1.18,
-#     (5,3): 0.87 
-# }
 
 
 for  j,i in product(range(3,0,-1), range(1,6)): 
@@ -225,7 +176,7 @@ for  j,i in product(range(3,0,-1), range(1,6)):
                     'color':  colors['kRed']-3,
                     'isSignal' : 0,
                     'isData'   : 0,
-                    'scale'    : wfactors[(i,j)] ,
+                    'scale'    : 1.0 ,
                 }
 
 # plot['Wjets']  = {
@@ -250,6 +201,13 @@ plot['DATA']  = {
                  'isBlind'  : 0
              }
 
+plot['total_prefit'] = {
+     'nameHR' : 'pre-fit',
+     'color': 616, 
+     'isSignal' : 2,
+     'isData'   : 0,
+     'scale'    : 1.   ,
+}
 
 
 # additional options

@@ -20,8 +20,12 @@ phase_spaces_res = [
    'res_topcr_mjjincl','res_topcr_mjjlow','res_topcr_mjjhigh',
    'res_wjetcr_mjjincl','res_wjetcr_mjjlow','res_wjetcr_mjjhigh',
 
-   'res_wjetcr_mjjincl_mjjvhigh','res_wjetcr_mjjincl_mjjvhigh1','res_wjetcr_mjjincl_mjjvhigh2',
-   'res_wjetcr_mjjincl_mjjvlow','res_wjetcr_mjjincl_mjjvlow1','res_wjetcr_mjjincl_mjjvlow2'
+    'res_wjetcr_mjjincl_mvhigh','res_wjetcr_mjjincl_mvhigh1','res_wjetcr_mjjincl_mvhigh2',
+   'res_wjetcr_mjjincl_mvlow','res_wjetcr_mjjincl_mvlow1','res_wjetcr_mjjincl_mvlow2'
+   
+   'res_wjetcr_mjjincl_mvint','res_wjetcr_mjjincl_mvext',
+
+   'res_wjetcr_mjjincl_mvhigh_dnnhigh', 'res_wjetcr_mjjincl_mvlow_dnnhigh'
 ]
 phase_spaces_boost = [
    'boost_sig_mjjincl','boost_sig_mjjlow','boost_sig_mjjhigh',
