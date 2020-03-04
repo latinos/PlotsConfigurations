@@ -175,8 +175,7 @@ samples['Wjets'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
 
 				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-                  #+'*( (VBS_category==1)*(deltaetavbs_reweight*leptonpt_reweight) + (VBS_category==0) )', # reweight lowenergy
-				'FilesPerJob' : 2,
+				'FilesPerJob' : 1,
         'subsamples': {
           "deta1_jpt1": "(deltaeta_vbs < 3 ) && vbs_1_pt < 75",
           "deta2_jpt1": "(deltaeta_vbs >= 3 && deltaeta_vbs < 4) && vbs_1_pt < 75",
@@ -196,7 +195,7 @@ samples['Wjets'] = { 'name' :
 		}
 
 # Fix Wjets binned + LO 
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO', 'LHE_HT < 100')
+addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO', '(LHE_HT < 70)*ewknloW')
 ############
 # N.B XS correction! It was 1.0 in the sampleCrossSection in postprocessing --> this should be fixed
 addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT70_100', '(1292.0)') #######ADD ME ewknloW
