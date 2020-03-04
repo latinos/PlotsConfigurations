@@ -35,7 +35,9 @@ aliases['Lep1WPCut'] = {
 }
 
 aliases['LepWPSF'] = {
-    'expr': 'Lepton_tightElectron_'+eleWP+'_IdIsoSF[0]*Lepton_tightMuon_'+muWP+'_IdIsoSF[0]',
+    'expr': 'Lepton_tightElectron_'+eleWP+'_IdIsoSF[0]*Lepton_tightMuon_'+muWP+'_IdIsoSF[0] * '
+    +'Alt$(Lepton_tightElectron_'+eleWP+'_IdIsoSF[1], 1)*'
+    +'Alt$(Lepton_tightMuon_'+muWP+'_IdIsoSF[1], 1)',
     'samples': mc
 }
 

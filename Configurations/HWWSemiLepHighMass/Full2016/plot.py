@@ -54,7 +54,7 @@ groupPlot['Higgs400']  = {
     'nameHR' : 'Higgs 400',
     'isSignal' : 1,
     'color': 632, # kRed
-    'samples' : ['ggHWWlnuqq_M400', 'qqHWWlnuqq_M400']
+    'samples' : ['GGH_400_'+model, 'QQH_400_'+model]
 }
 
 
@@ -256,7 +256,7 @@ plot['WH_htt']  = {
 
 
 # Signal
-plot['qqHWWlnuqq_M400'] = {
+plot['QQH_400_'+model] = {
                   'nameHR' : 'qqH400',
                   'color': 632+1, # kRed+1
                   'isSignal' : 1,
@@ -265,7 +265,7 @@ plot['qqHWWlnuqq_M400'] = {
 }
 
 
-plot['ggHWWlnuqq_M400'] = {
+plot['GGH_400_'+model] = {
                   'nameHR' : 'ggH400',
                   'color': 632, # kRed
                   'isSignal' : 1,

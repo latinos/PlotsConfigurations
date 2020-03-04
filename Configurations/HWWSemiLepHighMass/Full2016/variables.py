@@ -4,41 +4,10 @@
 
 
 
-variables['events']  = {
-    'name' : '1',
-    'range': (1,0,2),
-    'xaxis': 'events',
-    'fold' : 3
-}
-
-# variables['XSWeight']  = {
-#     'name' : 'XSWeight',
-#     'range': (100,0,1000),
-#     'xaxis': 'XSWeight',
-#     'fold' : 3
-# }
-# variables['SFweight']  = {
-#     'name' : 'SFweight[0]',
-#     'range': (100,0,1000),
-#     'xaxis': 'SFweight',
-#     'fold' : 3
-# }
-# variables['Lepton_genmatched']  = {
-#     'name' : 'Lepton_genmatched[0]',
-#     'range': (100,0,1000),
-#     'xaxis': 'Lepton_genmatched',
-#     'fold' : 3
-# }
-# variables['METFilter_MC']  = {
-#     'name' : 'METFilter_MC',
-#     'range': (100,0,1000),
-#     'xaxis': 'METFilter_MC',
-#     'fold' : 3
-# }
-# variables['btagSF']  = {
-#     'name' : 'btagSF[0]',
-#     'range': (100,0,1000),
-#     'xaxis': 'btagSF',
+# variables['events']  = {
+#     'name' : '1',
+#     'range': (1,0,2),
+#     'xaxis': 'events',
 #     'fold' : 3
 # }
 
@@ -46,12 +15,12 @@ variables['events']  = {
 ##################  Lepton 0  #######################
 #####################################################
 
-# variables['lepton0_pt']  = {
-#     'name' : 'Lepton_pt[0]',
-#     'range': (50,0,1000),
-#     'xaxis': 'lepton[0] pt',
-#     'fold' : 3
-# }
+variables['lepton0_pt']  = {
+    'name' : 'Lepton_pt[0]',
+    'range': (50,0,1000),
+    'xaxis': 'lepton[0] pt',
+    'fold' : 3
+}
 # variables['lepton0_eta'] = {
 #     'name' : 'Lepton_eta[0]',
 #     'range': ([-2.5, -2.1, -1.6, -1.4, 0.0, 1.4, 1.6, 2.1, 2.5],),
@@ -90,18 +59,18 @@ variables['events']  = {
 #     'xaxis': 'lepton[1] phi',
 #     'fold' : 0
 # }
-#
+
 
 #####################################################
 ######################  MET  ########################
 #####################################################
 
-# variables['met_pt']  = {
-#     'name' : 'PuppiMET_pt',
-#     'range': (50,0,500),
-#     'xaxis': 'MET pt',
-#     'fold' : 3
-# }
+variables['met_pt']  = {
+    'name' : 'PuppiMET_pt',
+    'range': (50,0,500),
+    'xaxis': 'MET pt',
+    'fold' : 3
+}
 # variables['met_phi'] = {
 #     'name' : 'PuppiMET_phi',
 #     'range': (12, -3.142, 3.142),
@@ -114,12 +83,12 @@ variables['events']  = {
 ######################  Jets  #######################
 #####################################################
 
-# variables['jet0_pt'] = {
-#    'name' : 'Alt$(CleanJet_pt[0], -1)',
-#    'range': (50, 0, 1000),
-#    'xaxis': 'clJet[0] pt',
-#    'fold' : 3
-# }
+variables['jet0_pt'] = {
+   'name' : 'Alt$(CleanJet_pt[0], -1)',
+   'range': (50, 0, 1000),
+   'xaxis': 'clJet[0] pt',
+   'fold' : 3
+}
 # variables['jet0_eta'] = {
 #     'name' : 'Alt$(CleanJet_eta[0], -99)',
 #     'range': ([-2.5, -2.1, -1.6, -1.4, 0.0, 1.4, 1.6, 2.1, 2.5],),
@@ -156,16 +125,30 @@ variables['events']  = {
 
 variables['resolvHiggsMass'] = {
     'name' : 'Hlnjj_mass',
-    'range': (15, 0, 1500),
+    'range': ([0, 100, 150, 250, 275, 300, 325, 350, 375, 400, 440, 500, 600, 750, 900, 1100, 1500, 2500, 5000],),#(30, 0, 1500),
     'xaxis': 'reconstr. H mass',
     'fold' : 3
 }
 variables['boostHigssMass'] = {
     'name' : 'CleanFatJetPassMBoosted_HlnFat_mass[0]',
-    'range': (15, 0, 1500),
+    'range': ([0, 100, 150, 250, 275, 300, 325, 350, 375, 400, 440, 500, 600, 750, 900, 1100, 1500, 2500, 5000],),#(30, 0, 1500),
     'xaxis': 'reconstr. H mass',
     'fold' : 3
 }
+
+variables['resolvWhadMass'] = {
+    'name' : 'Whad_mass',
+    'range': (30, 0, 1500),
+    'xaxis': 'resolv W had mass',
+    'fold' : 3
+}
+variables['boostWhadMass'] = {
+    'name' : 'CleanFatJetPassMBoosted_mass[0]',
+    'range': (30, 0, 1500),
+    'xaxis': 'boosted W had mass',
+    'fold' : 3
+}
+
 
 # variables['higgsMt'] = {
 #     'name' : 'Hlnjj_mt',
@@ -199,7 +182,6 @@ variables['boostHigssMass'] = {
 #     'fold' : 0
 # }
 
-
 # variables['IsVbfjj'] = {
 #     'name' : 'IsVbfjj',
 #     'range': (2, -0.5, 1.5),
@@ -212,7 +194,6 @@ variables['boostHigssMass'] = {
 #     'xaxis': 'tagged VbfFat',
 #     'fold' : 0
 # }
-
 
 # variables['nCleanFatJetPassMBoosted'] = {
 #     'name' : 'nCleanFatJetPassMBoosted',

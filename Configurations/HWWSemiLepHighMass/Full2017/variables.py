@@ -125,16 +125,30 @@ variables['jet0_pt'] = {
 
 variables['resolvHiggsMass'] = {
     'name' : 'Hlnjj_mass',
-    'range': (30, 0, 1500),
+    'range': ([0, 100, 150, 250, 275, 300, 325, 350, 375, 400, 440, 500, 600, 750, 900, 1100, 1500, 2500, 5000],),#(30, 0, 1500),
     'xaxis': 'reconstr. H mass',
     'fold' : 3
 }
 variables['boostHigssMass'] = {
     'name' : 'CleanFatJetPassMBoosted_HlnFat_mass[0]',
-    'range': (30, 0, 1500),
+    'range': ([0, 100, 150, 250, 275, 300, 325, 350, 375, 400, 440, 500, 600, 750, 900, 1100, 1500, 2500, 5000],),#(30, 0, 1500),
     'xaxis': 'reconstr. H mass',
     'fold' : 3
 }
+
+variables['resolvWhadMass'] = {
+    'name' : 'Whad_mass',
+    'range': (30, 0, 1500),
+    'xaxis': 'resolv W had mass',
+    'fold' : 3
+}
+variables['boostWhadMass'] = {
+    'name' : 'CleanFatJetPassMBoosted_mass[0]',
+    'range': (30, 0, 1500),
+    'xaxis': 'boosted W had mass',
+    'fold' : 3
+}
+
 
 # variables['higgsMt'] = {
 #     'name' : 'Hlnjj_mt',

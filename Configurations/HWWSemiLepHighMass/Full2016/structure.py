@@ -117,11 +117,6 @@ structure['ZH_hww'] = {
 #                   'isData'   : 0
 #                   }
 
-structure['H_hww'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
-
 # structure['bbH_hww'] = {
 #                   'isSignal' : 0,
 #                   'isData'   : 0
@@ -152,20 +147,24 @@ structure['ZH_htt'] = {
                   'isData'   : 0,
                   }
 
-# structure['H_htt'] = {
-#                   'isSignal' : 0,
-#                   'isData'   : 0
-#                   }
 
-structure['ggHWWlnuqq_M400'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
 
-structure['qqHWWlnuqq_M400'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
+
+for MX in ['400']:
+    structure['GGH_'+MX+'_'+model] = {
+        'isSignal': 1,
+        'isData'  : 0
+    }
+
+
+
+
+for MX in ['400']:
+    structure['QQH_'+MX+'_'+model] = {
+        'isSignal': 1,
+        'isData'  : 0
+    }
+
 
 
 
