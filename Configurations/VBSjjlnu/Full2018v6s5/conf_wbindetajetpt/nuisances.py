@@ -167,15 +167,6 @@ nuisances['trigg']  = {
                 'samples'  :   dict((skey, trig_syst) for skey in mc)
 }
 
-# # Prefire correction
-prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
-
-nuisances['prefire']  = {
-                'name'  : 'CMS_eff_prefiring_2018',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : dict((skey, trig_syst) for skey in mc)
-}
 
 # ##### Electron Efficiency and energy scale
 
@@ -275,6 +266,17 @@ nuisances['met']  = {
                 'folderDown' : directory_bkg +"_METdo",
 }
 
+######################
+# Theory nuisance
+
+nuisances['QCD_scale_Wjets'] = {
+     'name'  : 'QCDscal_wjets',
+     'kind'  : 'weight',
+     'type'  : 'shape',
+     'samples'  :   {
+         "Wjets" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
+     }
+}
 ##################################
 #### Custom nuisances
 

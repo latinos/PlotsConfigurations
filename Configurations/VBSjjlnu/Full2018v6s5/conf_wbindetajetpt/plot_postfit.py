@@ -41,18 +41,18 @@ palette = {
 }
 
 '''
-    "Wjets_deta5": (247, 155, 7),#f79b07
+ "Wjets_deta5": (247, 155, 7),#f79b07
     "Wjets_deta4": (247, 175, 7), #f7af07
     "Wjets_deta3": (247, 195, 7), #f7c307
     "Wjets_deta2": (247, 215, 7), #f7d707
     "Wjets_deta1": (247, 235, 7), #f7eb07
 '''
 
-for il, lptc in enumerate([[247, 135, 7],[247, 235, 7],[247, 211, 223]]):
-    for j in range(1,5):
+for il, lptc in enumerate([[247, 135, 7],[247, 235, 7],[211, 247, 7]]):
+    for j in range(1,6):
         color = lptc
         color[1] -= 20 * (j-1)
-        palette["Wjets_deta{}_jpt{}".format(j, il+1)] = tuple(color)
+        palette["Wjets_deta{}_lpt{}".format(j, il+1)] = tuple(color)
         
 
 
@@ -89,8 +89,8 @@ groupPlot['top']  = {
                  'fill': 1001
              }
 
-for  j,i in product(range(3,0,-1), range(1,5)): 
-    wname = "Wjets_deta{}_jpt{}".format(i,j)
+for  j,i in product(range(3,0,-1), range(1,6)): 
+    wname = "Wjets_deta{}_lpt{}".format(i,j)
     groupPlot[wname]  = {  
                     'nameHR' : 'W+Jets_{}_{}'.format(i,j),
                     'isSignal' : 0,
@@ -106,6 +106,14 @@ groupPlot['VBS']  = {
                  'samples'  : ['VBS'],
                  'fill': 1001
               }
+
+groupPlot['total_prefit'] = {
+    'nameHR' : 'pre-fit',
+    'isSignal' : 2,
+    'color': 616,   
+    'samples'  : ['total_prefit'],
+    'fill': 1001
+}
 
 
 
@@ -158,18 +166,17 @@ plot['top'] = {
                  'color': colors['kAzure']-1,
                  'isSignal' : 0,
                  'isData'   : 0, 
-                 'scale'    : 1 
+                 'scale'    : 1.0,
                  }
 
 
-for  j,i in product(range(3,0,-1), range(1,5)): 
-    wname = "Wjets_deta{}_jpt{}".format(i,j)
+for  j,i in product(range(3,0,-1), range(1,6)): 
+    wname = "Wjets_deta{}_lpt{}".format(i,j)
     plot[wname] = {  
                     'color':  colors['kRed']-3,
                     'isSignal' : 0,
                     'isData'   : 0,
-                    'scale': 1.0
-                    #'scale'    : wfactors[(i,j)] ,
+                    'scale'    : 1.0 ,
                 }
 
 # plot['Wjets']  = {
@@ -194,6 +201,13 @@ plot['DATA']  = {
                  'isBlind'  : 0
              }
 
+plot['total_prefit'] = {
+     'nameHR' : 'pre-fit',
+     'color': 616, 
+     'isSignal' : 2,
+     'isData'   : 0,
+     'scale'    : 1.   ,
+}
 
 
 # additional options

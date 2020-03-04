@@ -164,7 +164,7 @@ samples['top'] = {
 
 samples['Wjets'] = { 'name' :   
           # nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_ext1')
-            nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
+          nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT70_100')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT200_400')
@@ -182,28 +182,24 @@ samples['Wjets'] = { 'name' :
           "deta2_jpt1": "(deltaeta_vbs >= 3 && deltaeta_vbs < 4) && vbs_1_pt < 75",
           "deta3_jpt1": "(deltaeta_vbs >= 4 && deltaeta_vbs < 5) && vbs_1_pt < 75",
           "deta4_jpt1": "(deltaeta_vbs >= 5 && deltaeta_vbs < 6) && vbs_1_pt < 75",
-          "deta5_jpt1": "(deltaeta_vbs >= 6 ) && vbs_1_pt < 75",
+          "deta5_jpt1": "(deltaeta_vbs >= 6) && vbs_1_pt < 75",
+
           "deta1_jpt2": "(deltaeta_vbs < 3 ) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
           "deta2_jpt2": "(deltaeta_vbs >= 3 && deltaeta_vbs < 4) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
-          "deta3_jpt2": "(deltaeta_vbs >= 4 && deltaeta_vbs < 5) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
-          "deta4_jpt2": "(deltaeta_vbs >= 5 && deltaeta_vbs < 6) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
-          "deta5_jpt2": "(deltaeta_vbs >= 6) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
-          "deta1_jpt3": "(deltaeta_vbs < 3 ) &&  ( vbs_1_pt >= 150 && vbs_1_pt < 300 )",
-          "deta2_jpt3": "(deltaeta_vbs >= 3 && deltaeta_vbs < 4) &&  ( vbs_1_pt >= 150 && vbs_1_pt < 300 )",
-          "deta3_jpt3": "(deltaeta_vbs >= 4 && deltaeta_vbs < 5) &&  ( vbs_1_pt >= 150 && vbs_1_pt < 300 )",
-          "deta4_jpt3": "(deltaeta_vbs >= 5 && deltaeta_vbs < 6) &&  ( vbs_1_pt >= 150 && vbs_1_pt < 300 )",
-          "deta5_jpt3": "(deltaeta_vbs >= 6) &&  ( vbs_1_pt >= 150 && vbs_1_pt < 300 )",
-          "deta1_jpt4": "(deltaeta_vbs < 3 ) &&  ( vbs_1_pt >= 300 )",
-          "deta2_jpt4": "(deltaeta_vbs >= 3 && deltaeta_vbs < 4) &&  ( vbs_1_pt >= 300 )",
-          "deta3_jpt4": "(deltaeta_vbs >= 4 && deltaeta_vbs < 5) &&  ( vbs_1_pt >= 300 )",
-          "deta4_jpt4": "(deltaeta_vbs >= 5 && deltaeta_vbs < 6) &&  ( vbs_1_pt >= 300 )",
-          "deta5_jpt4": "(deltaeta_vbs >= 6) &&  ( vbs_1_pt >= 300 )",
+          "deta3_jpt2": "(deltaeta_vbs >= 4 ) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
+  
+          "deta1_jpt3": "(deltaeta_vbs < 3.5 ) &&  ( vbs_1_pt >= 150)",
+          "deta2_jpt3": "(deltaeta_vbs >= 3.5) &&  ( vbs_1_pt >= 150)",
+                    
         }
-		   }
+      
+		}
 
 # Fix Wjets binned + LO 
 addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO', 'LHE_HT < 100')
-#addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT70_100', 'ewknloW') #######ADD ME
+############
+# N.B XS correction! It was 1.0 in the sampleCrossSection in postprocessing --> this should be fixed
+addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT70_100', '(1292.0)') #######ADD ME ewknloW
 addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT100_200', 'ewknloW')
 addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT200_400', 'ewknloW')
 addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT400_600', 'ewknloW')

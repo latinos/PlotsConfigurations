@@ -31,6 +31,27 @@ variables['DNNoutput_v32'] = {
     }
 }
 
+variables['DNNoutput_high_v32'] = {
+    'name': 'DNNoutput_v32',
+    'range': ([0.6,0.64,0.68,0.72,0.76,0.8,0.84,0.88,0.92,0.96,1],),
+    'xaxis': 'DNN output (v32), high region',
+    'fold': 0 ,
+    'blind': {
+        "res_sig_mjjhigh_ele": [0.8,1],
+        "res_sig_mjjhigh_mu": [0.8,1],
+        "res_sig_mjjincl_ele": [0.8,1],
+        "res_sig_mjjincl_mu": [0.8,1], 
+        "res_sig_mjjlow_ele": [0.8,1],
+        "res_sig_mjjlow_mu": [0.8,1], 
+        "boos_sig_mjjhigh_ele": [0.8,1],
+        "boos_sig_mjjhigh_mu": [0.8,1],
+        "boos_sig_mjjincl_ele": [0.8,1],
+        "boos_sig_mjjincl_mu": [0.8,1],
+        "boos_sig_mjjlow_ele": [0.8,1],
+        "boos_sig_mjjlow_mu": [0.8,1],
+    }
+}
+
 # #leptons
 
 variables['Lepton_eta'] = {   'name': 'abs(Lepton_eta[0])',      
@@ -78,10 +99,10 @@ variables['deltaeta_vbs'] = {   'name': 'deltaeta_vbs',
 
 
 variables["deta_jetpt_CR"] = {
-            'name': 'deltaeta_vbs:vbs_1_pt',
-            'range': ([30,75,150,300,500],[2,3,4,5,6,8]),
-            'axis': '#Delta#eta VBS jets : VBS trailing jet Pt',
-            'fold': 3
+            'name': 'detavbs_jetpt_bin',
+            'range': (10, 0.5, 10.5),
+            'axis': '#Delta#eta VBS jets : VBS trailing jet Pt bins',
+            'fold': 0
 }
 
 # #MET
