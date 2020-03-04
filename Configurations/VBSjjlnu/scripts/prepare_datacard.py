@@ -13,7 +13,7 @@ import logging
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-c","--config", help="configuration file", type=str)
-parser.add_argument("-d","--datacards", help="Datacard names", type=str)
+parser.add_argument("-d","--datacards", help="Datacard names", nargs="+", type=str)
 parser.add_argument("-b","--basedir", help="Baseline folder", type=str)
 parser.add_argument("-o","--outputdir", help="Output folder", type=str)
 parser.add_argument("-rw","--redo-workspace", help="Redo workspace", action="store_true")

@@ -10,7 +10,7 @@ import random
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-c","--config", help="configuration file", type=str)
-parser.add_argument("-d","--datacards", help="Datacard names", type=str)
+parser.add_argument("-d","--datacards", help="Datacard names", type=str, nargs="+")
 parser.add_argument("-b","--basedir", help="Baseline folder", type=str)
 parser.add_argument("-o","--outputdir", help="Output folder", type=str)
 parser.add_argument("--plot-config", help="Path of plot configuration.py", required=True, type=str)
