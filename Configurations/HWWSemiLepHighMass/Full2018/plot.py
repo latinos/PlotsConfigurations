@@ -47,7 +47,7 @@ groupPlot['multiboson']  = {
     'nameHR' : 'multiboson',
     'isSignal' : 0,
     'color': 857, # kAzure -3
-    'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L','ggH_hww', 'qqH_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ttH_hww']
+    'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L','ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ttH_hww']
 }
 
 
@@ -186,13 +186,13 @@ plot['ZH_hww'] = {
     'scale'    : 1    #
 }
 
-plot['ggZH_hww'] = {
-    'nameHR' : 'ggZH',
-    'color': 632+4, # kRed+4
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1    #
-}
+# plot['ggZH_hww'] = {
+#     'nameHR' : 'ggZH',
+#     'color': 632+4, # kRed+4
+#     'isSignal' : 0,
+#     'isData'   : 0,
+#     'scale'    : 1    #
+# }
 
 plot['WH_hww'] = {
     'nameHR' : 'WH',
