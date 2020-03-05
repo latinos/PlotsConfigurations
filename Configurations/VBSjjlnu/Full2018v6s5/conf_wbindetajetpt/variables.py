@@ -12,7 +12,7 @@ variables['events']  = {   'name': '1',
 
 variables['DNNoutput_v32'] = {
     'name': 'DNNoutput_v32',
-    'range': ([0.1,0.2,0.3,0.4,0.5,0.6,0.64,0.68,0.72,0.76,0.8,0.84,0.88,0.92,0.96,1],),
+    'range': ([0.1,0.2,0.3,0.4,0.5,0.55, 0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1],),
     'xaxis': 'DNN output (v32)',
     'fold': 3 ,
     'blind': {
@@ -22,6 +22,7 @@ variables['DNNoutput_v32'] = {
         "res_sig_mjjincl_mu": [0.8,1], 
         "res_sig_mjjlow_ele": [0.8,1],
         "res_sig_mjjlow_mu": [0.8,1], 
+        "res_sig_mjjincl_dnnhigh_mu": [0.8,1], 
         "boos_sig_mjjhigh_ele": [0.8,1],
         "boos_sig_mjjhigh_mu": [0.8,1],
         "boos_sig_mjjincl_ele": [0.8,1],
@@ -33,7 +34,7 @@ variables['DNNoutput_v32'] = {
 
 variables['DNNoutput_high_v32'] = {
     'name': 'DNNoutput_v32',
-    'range': ([0.6,0.64,0.68,0.72,0.76,0.8,0.84,0.88,0.92,0.96,1],),
+    'range': ([0.5, 0.55, 0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1],),
     'xaxis': 'DNN output (v32), high region',
     'fold': 0 ,
     'blind': {
@@ -43,6 +44,7 @@ variables['DNNoutput_high_v32'] = {
         "res_sig_mjjincl_mu": [0.8,1], 
         "res_sig_mjjlow_ele": [0.8,1],
         "res_sig_mjjlow_mu": [0.8,1], 
+        "res_sig_mjjincl_dnnhigh_mu": [0.8,1],
         "boos_sig_mjjhigh_ele": [0.8,1],
         "boos_sig_mjjhigh_mu": [0.8,1],
         "boos_sig_mjjincl_ele": [0.8,1],
@@ -100,7 +102,7 @@ variables['deltaeta_vbs'] = {   'name': 'deltaeta_vbs',
 
 variables["deta_jetpt_CR"] = {
             'name': 'detavbs_jetpt_bin',
-            'range': (10, 0.5, 10.5),
+            'range': (8, 0.5, 8.5),
             'axis': '#Delta#eta VBS jets : VBS trailing jet Pt bins',
             'fold': 0
 }
@@ -121,6 +123,7 @@ variables['mjj_vbs_morebins'] = {   'name': 'mjj_vbs',
                         'blind' : {
                             "res_sig_mjjincl_ele" :(1000,4000),
                             "res_sig_mjjincl_mu" : (1000,4000),
+                            "res_sig_mjjincl_dnn_high_mu" : (1000,4000),
                             }
                          }
 

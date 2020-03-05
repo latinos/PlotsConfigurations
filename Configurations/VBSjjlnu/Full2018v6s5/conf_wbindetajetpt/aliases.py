@@ -44,18 +44,16 @@ aliases['DNNoutput_v32'] = {
 }
 
 aliases['detavbs_jetpt_bin'] = {
-    'expr': '1* ((deltaeta_vbs < 3)  && vbs_1_pt < 75) + \
-             2* ((deltaeta_vbs >= 3 && deltaeta_vbs < 4)  && vbs_1_pt < 75) + \
-             3* ((deltaeta_vbs >= 4 && deltaeta_vbs < 5)  && vbs_1_pt < 75) + \
-             4* ((deltaeta_vbs >= 5 && deltaeta_vbs < 6)  && vbs_1_pt < 75) + \
-             5* ((deltaeta_vbs >= 6)  && vbs_1_pt < 75) + \
+    'expr': '1* ((deltaeta_vbs < 3.5)  && vbs_1_pt < 75) + \
+             2* ((deltaeta_vbs >= 3.5 && deltaeta_vbs < 5.5)  && vbs_1_pt < 75) + \
+             3* ((deltaeta_vbs >= 5.5)  && vbs_1_pt < 75) + \
             \
-             6* ((deltaeta_vbs < 3)  &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)  ) + \
-             7* ((deltaeta_vbs >= 3 && deltaeta_vbs < 4)  &&  ( vbs_1_pt >= 75 && vbs_1_pt <150) ) + \
-             8* ((deltaeta_vbs >= 4)  &&  ( vbs_1_pt >= 75 && vbs_1_pt <150) ) + \
+             4* ((deltaeta_vbs < 3)  &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)  ) + \
+             5* ((deltaeta_vbs >= 3 && deltaeta_vbs < 4)  &&  ( vbs_1_pt >= 75 && vbs_1_pt <150) ) + \
+             6* ((deltaeta_vbs >= 4)  &&  ( vbs_1_pt >= 75 && vbs_1_pt <150) ) + \
             \
-             9*  ((deltaeta_vbs < 3.5)  &&  ( vbs_1_pt >= 150)  ) + \
-             10* ((deltaeta_vbs >= 3.5 )  &&  ( vbs_1_pt >= 150) )'
+             7  ((deltaeta_vbs < 3.5)  &&  ( vbs_1_pt >= 150)  ) + \
+             8* ((deltaeta_vbs >= 3.5 )  &&  ( vbs_1_pt >= 150) )'
 }
 
 
@@ -151,37 +149,3 @@ aliases['PUJetIdSF'] = {
     'args': (puidSFSource, '2018', 'loose'),
     'samples': mc
 }
-
-# aliases['nvtx_reweighting'] = {
-#     'class': 'NvtxReweight',
-#     # Using Z->mm factors for both electron and muon regions
-#     'args':("%s/VBSjjlnu/Full2018v6/corrections/zmmnorm_reweighting_Zmm_fit.txt" % configurations),
-#     'linesToAdd' : [
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         '.L %s/patches/nvtx_reweight.cc+' % configurations
-#    ],
-#     'samples' : mc      
-# }
-
-
-# reweight_path = conf_folder+"/corrections/corr_factors/reweight2018_wjets_"
-
-# aliases['deltaetavbs_reweight'] = {
-#     'class': 'ReweightDeltaEta',
-#     'args':(reweight_path+"deltaeta_ele.root", reweight_path+"deltaeta_mu.root", "wf_norm", 7.6),
-#     'linesToAdd' : [
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         '.L %s/corrections/reweight_deltaetavbs.cc+' % conf_folder
-#    ],
-#     'samples' : ["Wjets"]
-# }
-
-# aliases['leptonpt_reweight'] = {
-#     'class': 'ReweightLeptonPt',
-#     'args':(reweight_path+"leptonpt_ele.root", reweight_path+"leptonpt_mu.root", "wf_norm", 500),
-#     'linesToAdd' : [
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         '.L %s/corrections/reweight_leptonpt.cc+' % conf_folder
-#    ],
-#     'samples' : ["Wjets"]
-# }

@@ -6,8 +6,8 @@
 mc =["DY", "top", "VV", "VVV", "VBF-V", "top", "VBS", "Wjets"]
 
 phase_spaces_res = [
-   'res_sig_mjjincl','res_sig_mjjlow','res_sig_mjjhigh',
-   'res_topcr_mjjincl','res_topcr_mjjlow','res_topcr_mjjhigh',
+   'res_sig_mjjincl','res_sig_mjjlow','res_sig_mjjhigh', 'res_sig_mjjincl_dnnhigh',
+   'res_topcr_mjjincl','res_topcr_mjjlow','res_topcr_mjjhigh','res_topcr_mjjincl_dnnhigh',
    'res_wjetcr_mjjincl','res_wjetcr_mjjlow','res_wjetcr_mjjhigh',
    'res_sig_mjjincl','res_sig_mjjlow','res_sig_mjjhigh',
    'res_topcr_mjjincl','res_topcr_mjjlow','res_topcr_mjjhigh',
@@ -17,7 +17,7 @@ phase_spaces_res = [
    
    'res_wjetcr_mjjincl_mvint','res_wjetcr_mjjincl_mvext',
 
-   'res_wjetcr_mjjincl_dnnhigh'
+   'res_wjetcr_mjjincl_dnnhigh','res_wjetcr_mjjincl_mvint_dnnhigh','res_wjetcr_mjjincl_mvext_dnnhigh'
 ]
 phase_spaces_boost = [
    'boost_sig_mjjincl','boost_sig_mjjlow','boost_sig_mjjhigh',
