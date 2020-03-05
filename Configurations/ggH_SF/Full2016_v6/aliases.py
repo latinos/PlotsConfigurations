@@ -164,7 +164,7 @@ aliases['wwcr'] = {
 # B tag scale factors
 
 #btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_2016LegacySF_V1.csv' % os.getenv('CMSSW_BASE')
-
+#
 #aliases['Jet_btagSF_shapeFix'] = {
 #    'linesToAdd': [
 #        'gSystem->Load("libCondFormatsBTauObjects.so");',
@@ -193,6 +193,17 @@ aliases['btagSF'] = {
 }
 
 for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
+
+#    aliases['Jet_btagSF_shapeFix_up_%s' % shift] = {
+#        'class': 'BtagSF',
+#        'args': (btagSFSource, 'up_' + shift),
+#        'samples': mc
+#    }
+#    aliases['Jet_btagSF_shapeFix_down_%s' % shift] = {
+#        'class': 'BtagSF',
+#        'args': (btagSFSource, 'down_' + shift),
+#        'samples': mc
+#    }
 
     for targ in ['bVeto', 'bReq']:
         alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
@@ -234,6 +245,12 @@ aliases['SFweightMuDown'] = {
     'samples': mc
 }
 
+aliases['nllWOTF'] = {
+    'linesToAdd': ['.L %s/Differential/nllW.cc+' % configurations],
+    'class': 'WWNLLW',
+    'args': ('central',),
+    'samples': ['WW']
+}
 
 # In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
 aliases['lhe_mW1'] = {
