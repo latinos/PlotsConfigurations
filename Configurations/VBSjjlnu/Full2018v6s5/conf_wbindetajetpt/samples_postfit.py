@@ -121,7 +121,7 @@ samples['DY'] = {
           + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-2500toInf')
           ,
     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*' + DY_photon_filter , ###### ADD ewkNLO!!!
-    'FilesPerJob' : 2,
+    'FilesPerJob' : 3,
 }
 
 addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-100to200',ptllDYW_LO) 
@@ -164,7 +164,7 @@ samples['top'] = {
 
 samples['Wjets'] = { 'name' :   
           # nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_ext1')
-            nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
+          nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT70_100')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT200_400')
@@ -173,31 +173,32 @@ samples['Wjets'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
+
 				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-                  #+'*( (VBS_category==1)*(deltaetavbs_reweight*leptonpt_reweight) + (VBS_category==0) )', # reweight lowenergy
-				'FilesPerJob' : 2,
+				'FilesPerJob' : 1,
         'subsamples': {
-          "deta1_lpt1": "(deltaeta_vbs < 3 ) && Lepton_pt[0]< 150",
-          "deta2_lpt1": "(deltaeta_vbs >= 3 && deltaeta_vbs < 4) && Lepton_pt[0]< 150",
-          "deta3_lpt1": "(deltaeta_vbs >= 4 && deltaeta_vbs < 5) && Lepton_pt[0]< 150",
-          "deta4_lpt1": "(deltaeta_vbs >= 5 && deltaeta_vbs < 6) && Lepton_pt[0]< 150",
-          "deta5_lpt1": "(deltaeta_vbs >= 6 ) && Lepton_pt[0]< 150",
-          "deta1_lpt2": "(deltaeta_vbs < 3 ) &&  ( Lepton_pt[0]>= 150 && Lepton_pt[0]<300)",
-          "deta2_lpt2": "(deltaeta_vbs >= 3 && deltaeta_vbs < 4) &&  ( Lepton_pt[0]>= 150 && Lepton_pt[0]<300)",
-          "deta3_lpt2": "(deltaeta_vbs >= 4 && deltaeta_vbs < 5) &&  ( Lepton_pt[0]>= 150 && Lepton_pt[0]<300)",
-          "deta4_lpt2": "(deltaeta_vbs >= 5 && deltaeta_vbs < 6) &&  ( Lepton_pt[0]>= 150 && Lepton_pt[0]<300)",
-          "deta5_lpt2": "(deltaeta_vbs >= 6) &&  ( Lepton_pt[0]>= 150 && Lepton_pt[0]<300)",
-          "deta1_lpt3": "(deltaeta_vbs < 3 ) &&  ( Lepton_pt[0]>= 300 )",
-          "deta2_lpt3": "(deltaeta_vbs >= 3 && deltaeta_vbs < 4) &&  ( Lepton_pt[0]>= 300 )",
-          "deta3_lpt3": "(deltaeta_vbs >= 4 && deltaeta_vbs < 5) &&  ( Lepton_pt[0]>= 300 )",
-          "deta4_lpt3": "(deltaeta_vbs >= 5 && deltaeta_vbs < 6) &&  ( Lepton_pt[0]>= 300 )",
-          "deta5_lpt3": "(deltaeta_vbs >= 6) &&  ( Lepton_pt[0]>= 300 )",
+          "deta1_jpt1": "(deltaeta_vbs < 3 ) && vbs_1_pt < 75",
+          "deta2_jpt1": "(deltaeta_vbs >= 3 && deltaeta_vbs < 4) && vbs_1_pt < 75",
+          "deta3_jpt1": "(deltaeta_vbs >= 4 && deltaeta_vbs < 5) && vbs_1_pt < 75",
+          "deta4_jpt1": "(deltaeta_vbs >= 5 && deltaeta_vbs < 6) && vbs_1_pt < 75",
+          "deta5_jpt1": "(deltaeta_vbs >= 6) && vbs_1_pt < 75",
+
+          "deta1_jpt2": "(deltaeta_vbs < 3 ) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
+          "deta2_jpt2": "(deltaeta_vbs >= 3 && deltaeta_vbs < 4) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
+          "deta3_jpt2": "(deltaeta_vbs >= 4 ) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
+  
+          "deta1_jpt3": "(deltaeta_vbs < 3.5 ) &&  ( vbs_1_pt >= 150)",
+          "deta2_jpt3": "(deltaeta_vbs >= 3.5) &&  ( vbs_1_pt >= 150)",
+                    
         }
-		   }
+      
+		}
 
 # Fix Wjets binned + LO 
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO', 'LHE_HT < 100')
-#addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT70_100', 'ewknloW') #######ADD ME
+addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO', '(LHE_HT < 70)*ewknloW')
+############
+# N.B XS correction! It was 1.0 in the sampleCrossSection in postprocessing --> this should be fixed
+addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT70_100', '(1292.0)') #######ADD ME ewknloW
 addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT100_200', 'ewknloW')
 addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT200_400', 'ewknloW')
 addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT400_600', 'ewknloW')
@@ -230,7 +231,7 @@ samples['VVV']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'ZZZ')
                                 + nanoGetSampleFiles(directory_bkg,'WWW'),
                                 #+ nanoGetSampleFiles(directory,'WWG'), #should this be included? or is it already taken into account in the WW sample?
                     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch  ,
-                    'FilesPerJob' : 4,
+                    'FilesPerJob' : 8,
                   }
 
  ############## VBF-V ########
@@ -238,7 +239,7 @@ samples['VVV']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'ZZZ')
 samples['VBF-V']  = {  'name'   :  nanoGetSampleFiles(directory_bkg,'WLNuJJ_EWK') +
                                   nanoGetSampleFiles(directory_bkg,'EWKZ2Jets_ZToLL_M-50'),
                     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch ,
-                    'FilesPerJob' : 6
+                    'FilesPerJob' : 8
                   }
 
 
@@ -258,7 +259,7 @@ samples['VBS']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J',) +
                nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J',  ) ,
        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-       'FilesPerJob' :4,
+       'FilesPerJob' : 8,
 }
 
 #fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP + '_mu10_ele35'
@@ -271,7 +272,7 @@ samples['Fake'] = {
   'weight': METFilter_DATA+'*'+fakeW,
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 20
+  'FilesPerJob': 25
 }
 
 for _, sd in DataRun:
@@ -290,7 +291,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'weight' : METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],
-                       'FilesPerJob' : 20,
+                       'FilesPerJob' : 25,
                   }
 
 for Run in DataRun :

@@ -2,10 +2,15 @@
 from itertools import product
 #structure = {}
 
-detabins = ["deta{}_jpt{}".format(i,j) for i, j in product(range(1,6), range(1,5))]
+jetbin_detabins = [3,3,2]
+# # name of samples here must match keys in samples.py 
+Wjets_bins = []
+for jetbin in range(3):
+    for detabin in range(jetbin_detabins[jetbin]):
+        Wjets_bins.append("Wjets_deta{}_jpt{}".format(detabin+1, jetbin+1))
 
-for detabin in detabins:
-    structure['Wjets_'+detabin] = {
+for wbin in Wjets_bins:
+    structure[wbin] = {
                   'isSignal' : 0,
                   'isData'   : 0 
     }

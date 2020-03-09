@@ -48,11 +48,11 @@ aliases['detavbs_jetpt_bin'] = {
              2* ((deltaeta_vbs >= 3.5 && deltaeta_vbs < 5.5)  && vbs_1_pt < 75) + \
              3* ((deltaeta_vbs >= 5.5)  && vbs_1_pt < 75) + \
             \
-             4* ((deltaeta_vbs < 3)  &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)  ) + \
-             5* ((deltaeta_vbs >= 3 && deltaeta_vbs < 4)  &&  ( vbs_1_pt >= 75 && vbs_1_pt <150) ) + \
-             6* ((deltaeta_vbs >= 4)  &&  ( vbs_1_pt >= 75 && vbs_1_pt <150) ) + \
+             4* ((deltaeta_vbs < 3)                        &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)  ) + \
+             5* ((deltaeta_vbs >= 3  && deltaeta_vbs < 4)  &&  ( vbs_1_pt >= 75 && vbs_1_pt <150) ) + \
+             6* ((deltaeta_vbs >= 4)                       &&  ( vbs_1_pt >= 75 && vbs_1_pt <150) ) + \
             \
-             7  ((deltaeta_vbs < 3.5)  &&  ( vbs_1_pt >= 150)  ) + \
+             7* ((deltaeta_vbs < 3.5)  &&  ( vbs_1_pt >= 150)  ) + \
              8* ((deltaeta_vbs >= 3.5 )  &&  ( vbs_1_pt >= 150) )'
 }
 

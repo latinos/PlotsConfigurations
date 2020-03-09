@@ -59,7 +59,7 @@ cuts["res_topcr_mjjincl_mu"] = 'VBS_category==1 \
                                 && bReq \
                                 '
 
-cuts["res_topcr_mjjincl_dnnohigh_mu"] = 'VBS_category==1 \
+cuts["res_topcr_mjjincl_dnnhigh_mu"] = 'VBS_category==1 \
                                 && abs(Lepton_pdgId[0])==13 \
                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
                                 && mjj_vjet > 65 && mjj_vjet < 105 \

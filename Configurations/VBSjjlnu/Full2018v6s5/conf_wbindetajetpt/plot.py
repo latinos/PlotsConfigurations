@@ -48,8 +48,10 @@ palette = {
     "Wjets_deta1": (247, 235, 7), #f7eb07
 '''
 
+jetbin_detabins = [3,3,2]
+
 for il, lptc in enumerate([[247, 135, 7],[247, 235, 7],[247, 211, 223]]):
-    for j in range(1,5):
+    for j in range(1,jetbin_detabins[il]+1):
         color = lptc
         color[1] -= 20 * (j-1)
         palette["Wjets_deta{}_jpt{}".format(j, il+1)] = tuple(color)
@@ -89,14 +91,15 @@ groupPlot['top']  = {
                  'fill': 1001
              }
 
-for  j,i in product(range(3,0,-1), range(1,5)): 
-    wname = "Wjets_deta{}_jpt{}".format(i,j)
-    groupPlot[wname]  = {  
-                    'nameHR' : 'W+Jets_{}_{}'.format(i,j),
-                    'isSignal' : 0,
-                    'color':   palette[wname],
-                    'samples'  : [wname],
-                    'fill': 1001
+for  jbin in range(3,0,-1): 
+    for dbin in range(jetbin_detabins[jbin-1]):
+        wname = "Wjets_deta{}_jpt{}".format(dbin+1,jbin)
+        groupPlot[wname]  = {  
+                        'nameHR' : 'W+Jets_{}_{}'.format(dbin+1,jbin),
+                        'isSignal' : 0,
+                        'color':   palette[wname],
+                        'samples'  : [wname],
+                        'fill': 1001
                 }
 
 groupPlot['VBS']  = {  
@@ -158,19 +161,33 @@ plot['top'] = {
                  'color': colors['kAzure']-1,
                  'isSignal' : 0,
                  'isData'   : 0, 
-                 'scale'    : 1 
+                 'scale'    : 1.0 #1.08
                  }
 
 
-for  j,i in product(range(3,0,-1), range(1,5)): 
-    wname = "Wjets_deta{}_jpt{}".format(i,j)
-    plot[wname] = {  
-                    'color':  colors['kRed']-3,
-                    'isSignal' : 0,
-                    'isData'   : 0,
-                    'scale': 1.0
-                    #'scale'    : wfactors[(i,j)] ,
-                }
+wfactors = {
+    (1,1): 0.99,
+    (1,2): 0.89,
+    (1,3): 0.67,
+    (2,1): 1.14,
+    (2,2): 0.96,
+    (2,3): 0.65,
+    (3,1): 1.22,
+    (3,2): 1.06,
+    (4,1): 1.31,
+    (5,1): 1.40
+}
+
+for  jbin in range(3,0,-1): 
+    for dbin in range(jetbin_detabins[jbin-1]):
+        wname = "Wjets_deta{}_jpt{}".format(dbin+1,jbin)
+        plot[wname] = {  
+                        'color':  colors['kRed']-3,
+                        'isSignal' : 0,
+                        'isData'   : 0,
+                        'scale': 1.0
+                        #'scale'    : wfactors[(dbin+1,jbin)] ,
+                    }
 
 # plot['Wjets']  = {
 #                   

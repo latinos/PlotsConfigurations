@@ -2,8 +2,12 @@
 # #FIXME: TO BE UPDATED FOR 2018!
 from itertools import product
 
+jetbin_detabins = [3,3,2]
 # # name of samples here must match keys in samples.py 
-Wjets_bins = ["Wjets_deta{}_lpt{}".format(i,j) for i , j in product(range(1,6), range(1,4))]
+Wjets_bins = []
+for jetbin in range(3):
+    for detabin in range(jetbin_detabins[jetbin]):
+        Wjets_bins.append("Wjets_deta{}_jpt{}".format(detabin+1, jetbin+1))
 
 # # nuisances
 # #FIXME: TO BE UPDATED FOR 2018!
@@ -13,19 +17,18 @@ Wjets_bins = ["Wjets_deta{}_lpt{}".format(i,j) for i , j in product(range(1,6), 
 mc =["DY", "top", "VV", "VVV", "VBF-V", "top", "VBS", "Wjets"]
 
 phase_spaces_res = [
-   'res_sig_mjjincl','res_sig_mjjlow','res_sig_mjjhigh',
-   'res_topcr_mjjincl','res_topcr_mjjlow','res_topcr_mjjhigh',
+   'res_sig_mjjincl','res_sig_mjjlow','res_sig_mjjhigh', 'res_sig_mjjincl_dnnhigh',
+   'res_topcr_mjjincl','res_topcr_mjjlow','res_topcr_mjjhigh','res_topcr_mjjincl_dnnhigh',
    'res_wjetcr_mjjincl','res_wjetcr_mjjlow','res_wjetcr_mjjhigh',
    'res_sig_mjjincl','res_sig_mjjlow','res_sig_mjjhigh',
    'res_topcr_mjjincl','res_topcr_mjjlow','res_topcr_mjjhigh',
    'res_wjetcr_mjjincl','res_wjetcr_mjjlow','res_wjetcr_mjjhigh',
 
-    'res_wjetcr_mjjincl_mvhigh','res_wjetcr_mjjincl_mvhigh1','res_wjetcr_mjjincl_mvhigh2',
-   'res_wjetcr_mjjincl_mvlow','res_wjetcr_mjjincl_mvlow1','res_wjetcr_mjjincl_mvlow2'
+   'res_wjetcr_mjjincl_mvhigh', 'res_wjetcr_mjjincl_mvlow',
    
    'res_wjetcr_mjjincl_mvint','res_wjetcr_mjjincl_mvext',
 
-   'res_wjetcr_mjjincl_mvhigh_dnnhigh', 'res_wjetcr_mjjincl_mvlow_dnnhigh'
+   'res_wjetcr_mjjincl_dnnhigh','res_wjetcr_mjjincl_mvint_dnnhigh','res_wjetcr_mjjincl_mvext_dnnhigh'
 ]
 phase_spaces_boost = [
    'boost_sig_mjjincl','boost_sig_mjjlow','boost_sig_mjjhigh',
@@ -272,6 +275,18 @@ nuisances['met']  = {
                  'samples'  : dict((skey, ['1', '1']) for skey in mc),
                 'folderUp'   : directory_bkg +"_METup",
                 'folderDown' : directory_bkg +"_METdo",
+}
+
+######################
+# Theory nuisance
+
+nuisances['QCD_scale_Wjets'] = {
+     'name'  : 'QCDscal_wjets',
+     'kind'  : 'weight',
+     'type'  : 'shape',
+     'samples'  :   {
+         "Wjets" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
+     }
 }
 
 ##################################
