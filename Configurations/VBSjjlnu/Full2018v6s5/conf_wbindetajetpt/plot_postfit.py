@@ -48,7 +48,7 @@ palette = {
     "Wjets_deta1": (247, 235, 7), #f7eb07
 '''
 
-jetbin_detabins = [5,3,2]
+jetbin_detabins = [3,3,2]
 
 for il, lptc in enumerate([[247, 135, 7],[247, 235, 7],[247, 211, 223]]):
     for j in range(1,jetbin_detabins[il]+1):
@@ -169,22 +169,9 @@ plot['top'] = {
                  'color': colors['kAzure']-1,
                  'isSignal' : 0,
                  'isData'   : 0, 
-                 'scale'    : 1.08
+                 'scale'    : 1.00
                  }
 
-
-wfactors = {
-    (1,1): 0.99,
-    (1,2): 0.89,
-    (1,3): 0.67,
-    (2,1): 1.14,
-    (2,2): 0.96,
-    (2,3): 0.65,
-    (3,1): 1.22,
-    (3,2): 1.06,
-    (4,1): 1.31,
-    (5,1): 1.40
-}
 
 for  jbin in range(3,0,-1): 
     for dbin in range(jetbin_detabins[jbin-1]):
@@ -193,7 +180,8 @@ for  jbin in range(3,0,-1):
                         'color':  colors['kRed']-3,
                         'isSignal' : 0,
                         'isData'   : 0,
-                        'scale'    : wfactors[(dbin+1,jbin)] ,
+                        'scale': 1.0
+                        #'scale'    : wfactors[(dbin+1,jbin)] ,
                     }
 
 # plot['Wjets']  = {

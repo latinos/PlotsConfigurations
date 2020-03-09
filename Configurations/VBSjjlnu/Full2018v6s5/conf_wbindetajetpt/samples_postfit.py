@@ -177,11 +177,9 @@ samples['Wjets'] = { 'name' :
 				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
 				'FilesPerJob' : 1,
         'subsamples': {
-          "deta1_jpt1": "(deltaeta_vbs < 3 ) && vbs_1_pt < 75",
-          "deta2_jpt1": "(deltaeta_vbs >= 3 && deltaeta_vbs < 4) && vbs_1_pt < 75",
-          "deta3_jpt1": "(deltaeta_vbs >= 4 && deltaeta_vbs < 5) && vbs_1_pt < 75",
-          "deta4_jpt1": "(deltaeta_vbs >= 5 && deltaeta_vbs < 6) && vbs_1_pt < 75",
-          "deta5_jpt1": "(deltaeta_vbs >= 6) && vbs_1_pt < 75",
+          "deta1_jpt1": "(deltaeta_vbs < 3.5 ) && vbs_1_pt < 75",
+          "deta2_jpt1": "(deltaeta_vbs >= 3.5 && deltaeta_vbs < 5.5) && vbs_1_pt < 75",
+          "deta3_jpt1": "(deltaeta_vbs >= 5.5 ) && vbs_1_pt < 75",
 
           "deta1_jpt2": "(deltaeta_vbs < 3 ) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
           "deta2_jpt2": "(deltaeta_vbs >= 3 && deltaeta_vbs < 4) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",

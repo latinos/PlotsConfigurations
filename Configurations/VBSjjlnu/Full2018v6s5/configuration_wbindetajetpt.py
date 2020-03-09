@@ -30,7 +30,7 @@ lumi = 59.74
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot_'+tag
+outputDirPlots = 'plot_'+tag +"_rescaled/detajpt_ext"
 
 # used by mkDatacards to define output directory for datacards
 outputDirDatacard = 'datacards_'+tag
@@ -41,6 +41,6 @@ structureFile = direc+'/structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = direc+'/nuisances.py'
-#nuisancesFile = direc+'/nuisances_datacard.py'
+#nuisancesFile = direc+'/nuisances.py'
+nuisancesFile = direc+'/nuisances_datacard.py'
 

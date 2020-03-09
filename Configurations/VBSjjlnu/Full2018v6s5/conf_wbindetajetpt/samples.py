@@ -218,7 +218,7 @@ samples['VV']  = { 'name' :
                nanoGetSampleFiles(directory_bkg,'WpToLNu_ZTo2J_QCD',) +
                nanoGetSampleFiles(directory_bkg,'ZTo2L_ZTo2J_QCD',  ) ,
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch, # TO BE CORRECTED: + '* ewknloW',
-        'FilesPerJob' : 6,
+        'FilesPerJob' : 5,
 }
 
 ############ VVV ############
@@ -257,7 +257,7 @@ samples['VBS']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J',) +
                nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J',  ) ,
        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-       'FilesPerJob' : 8,
+       'FilesPerJob' : 7,
 }
 
 #fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP + '_mu10_ele35'
