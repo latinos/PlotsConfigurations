@@ -33,7 +33,7 @@ mcProduction = 'Fall2017_102X_nAODv4_Full2017v5'
 
 dataReco = 'Run2017_102X_nAODv4_Full2017v5'
 
-mcSteps = 'MCl1loose2017v5__MCCorr2017v5__Semilep2017'
+mcSteps = 'MCl1loose2017v5__MCCorr2017v5__Semilep2017__MHSemiLepVars'
 
 dataSteps = 'DATAl1loose2017v5__Semilep2017'
 
@@ -91,13 +91,14 @@ mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch1l*METFilter_MC'
 ###########################################
 
 #2HDM+a
-mA_list = ['1200', '600', '500', '400', '300', '200']
+#mA_list = ['1200', '600', '500', '400', '300', '200']
+mZ_list = ['1500', '1200', '1000', '500', '300', '295', '200', '195']
 
-for mA in mA_list:
-    samples['2HDMa_mA_'+mA+'_ma_150'] = {  
+for mZ in mZ_list:
+    samples['darkHiggs_mhs_160_mx_150_mZp_'+mZ] = {  
                                          'name'  : 
-                                         nanoGetSampleFiles(mcDirectory,'2HDMa_SemiLep_MH3_'+mA+'_MH4_150_neg')  
-                                         +nanoGetSampleFiles(mcDirectory,'2HDMa_SemiLep_MH3_'+mA+'_MH4_150_pos') ,  
+                                         nanoGetSampleFiles(mcDirectory,'darkHiggsWmjj_mhs_160_mx_150_mZp_'+mZ)  
+                                         +nanoGetSampleFiles(mcDirectory,'darkHiggsWpjj_mhs_160_mx_150_mZp_'+mZ) ,  
                                          'weight': mcCommonWeight,
                                         }
 
@@ -117,9 +118,10 @@ samples['Wjets'] = {    'name'   :
 
 ############ DY ############                                                                                                   
 
-samples['DY'] = {    'name'   :   nanoGetSampleFiles(mcDirectory,'DYJetsToLL_M-50_ext1')
+samples['DY'] = {    'name'   :   
                      # ADDME: 'name'   :   nanoGetSampleFiles(mcDirectory,'DYJetsToLL_M-50_ext1')
-                     + nanoGetSampleFiles(mcDirectory,'DYJetsToLL_M-10to50-LO'),
+                     #+ nanoGetSampleFiles(mcDirectory,'DYJetsToLL_M-10to50-LO'),
+                     nanoGetSampleFiles(mcDirectory,'DYJetsToLL_M-10to50-LO'),
                      'weight' : mcCommonWeight,
                      'FilesPerJob' : 5,
 }
@@ -180,17 +182,17 @@ samples['QCD'] = {    'name'   :   nanoGetSampleFiles(mcDirectory,'QCD_Pt-15to20
 ################### DATA ###################
 
 
-samples['DATA'] = {
-  'name': [],
-  'weight': 'METFilter_DATA*LepWPCut',
-  'weights': [],
-  'isData': ['all'],
-  'FilesPerJob': 1
-}
-
-for _, sd in DataRun:
-  for pd in DataSets:
-    files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
-    samples['DATA']['name'].extend(files)
-    samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
+#samples['DATA'] = {
+#  'name': [],
+#  'weight': 'METFilter_DATA*LepWPCut',
+#  'weights': [],
+#  'isData': ['all'],
+#  'FilesPerJob': 1
+#}
+#
+#for _, sd in DataRun:
+#  for pd in DataSets:
+#    files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
+#    samples['DATA']['name'].extend(files)
+#    samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
                         

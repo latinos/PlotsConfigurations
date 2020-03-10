@@ -33,7 +33,7 @@ mcProduction = 'Fall2017_102X_nAODv4_Full2017v5'
 
 dataReco = 'Run2017_102X_nAODv4_Full2017v5'
 
-mcSteps = 'MCl1loose2017v5__MCCorr2017v5__Semilep2017'
+mcSteps = 'MCl1loose2017v5__MCCorr2017v5__Semilep2017__MHSemiLepVars'
 
 dataSteps = 'DATAl1loose2017v5__Semilep2017'
 
@@ -117,9 +117,10 @@ samples['Wjets'] = {    'name'   :
 
 ############ DY ############                                                                                                   
 
-samples['DY'] = {    'name'   :   nanoGetSampleFiles(mcDirectory,'DYJetsToLL_M-50_ext1')
+samples['DY'] = {    'name'   :   
                      # ADDME: 'name'   :   nanoGetSampleFiles(mcDirectory,'DYJetsToLL_M-50_ext1')
-                     + nanoGetSampleFiles(mcDirectory,'DYJetsToLL_M-10to50-LO'),
+                     #+ nanoGetSampleFiles(mcDirectory,'DYJetsToLL_M-10to50-LO'),
+                     nanoGetSampleFiles(mcDirectory,'DYJetsToLL_M-10to50-LO'),
                      'weight' : mcCommonWeight,
                      'FilesPerJob' : 5,
 }
@@ -180,17 +181,17 @@ samples['QCD'] = {    'name'   :   nanoGetSampleFiles(mcDirectory,'QCD_Pt-15to20
 ################### DATA ###################
 
 
-samples['DATA'] = {
-  'name': [],
-  'weight': 'METFilter_DATA*LepWPCut',
-  'weights': [],
-  'isData': ['all'],
-  'FilesPerJob': 1
-}
-
-for _, sd in DataRun:
-  for pd in DataSets:
-    files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
-    samples['DATA']['name'].extend(files)
-    samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
+#samples['DATA'] = {
+#  'name': [],
+#  'weight': 'METFilter_DATA*LepWPCut',
+#  'weights': [],
+#  'isData': ['all'],
+#  'FilesPerJob': 1
+#}
+#
+#for _, sd in DataRun:
+#  for pd in DataSets:
+#    files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
+#    samples['DATA']['name'].extend(files)
+#    samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
                         
