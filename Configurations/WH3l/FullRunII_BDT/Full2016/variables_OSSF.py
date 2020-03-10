@@ -4,8 +4,6 @@
     
 #'fold' : # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
 
-configDir = os.path.expandvars("${CMSSW_BASE}/src/PlotsConfigurations/Configurations/WH3l/Full2016_nanoAODv4_BDT/")
-
 
 variables['events']  = {'name'  : '1',
                         'range' : (1,0,2),
