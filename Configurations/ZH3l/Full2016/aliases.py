@@ -55,3 +55,8 @@ for s in systs:
         'samples':mc  
     }
 
+aliases['PromptGenLepMatch3l'] = {
+    'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1]*Lepton_promptgenmatched[2], 0)',
+    'samples': mc
+}
+
