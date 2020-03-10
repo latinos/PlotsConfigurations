@@ -97,20 +97,36 @@ mcCommonWeightNoMatch = 'XSWeight*SFweight*METFilter_MC'
 mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 
 ###########################################
-#############   SIGNALS  ##################
+#############  BACKGROUNDS  ###############
 ###########################################
 
-signals = []
+###### DY #######
+useDYtt = True
 
-#### ggH -> WW
+ptllDYW_NLO = '(0.876979+gen_ptll*(4.11598e-03)-(2.35520e-05)*gen_ptll*gen_ptll)*(1.10211 * (0.958512 - 0.131835*TMath::Erf((gen_ptll-14.1972)/10.1525)))*(gen_ptll<140)+0.891188*(gen_ptll>=140)'
+ptllDYW_LO  = '(8.61313e-01+gen_ptll*4.46807e-03-1.52324e-05*gen_ptll*gen_ptll)*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-11.)/5.51582)))*(gen_ptll<140)+1.141996*(gen_ptll>=140)'
 
-samples['ggH_hww'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125'),
-    'weight': [mcCommonWeight, {'class': 'Weight2MINLO', 'args': '%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE')}],
-    'FilesPerJob': 4,
+if useDYtt:
+    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50') 
+
+    samples['DY'] = {
+        'name': files,
+        'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))',
+        #'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)',
+        'FilesPerJob': 4,
+        'suppressNegative' :['all'],
+        'suppressNegativeNuisances' :['all'],
+    }
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50'       ,ptllDYW_NLO)
+
+samples['WW'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
+    #'weight': mcCommonWeight + '*nllW', # temporary - nllW module not run on PS and UE variation samples
+    'weight': mcCommonWeight + '*nllWOTF', # temporary
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
-    'linesToAdd': ['.L %s/Differential/weight2MINLO.cc+' % configurations]
+    'FilesPerJob': 1
 }
 
-signals.append('ggH_hww')
+
+signals = []

@@ -8,7 +8,7 @@
 # samples, treeBaseDir, mcProduction, mcSteps
 # imported from cuts.py
 # cuts
-                                                                                                                                        
+
 import os
 
 if os.path.exists('HTXS_stage1_categories.py') :
@@ -70,20 +70,18 @@ from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
 HiggsXS = HiggsXSection()
 
 
-cuts0j = []
-cuts1j = []
-cuts2j = []
-cutsGT200 = []
+cuts0j  = []
+cuts1j  = []
+cuts2j  = []
+cutshpt = []
 
 for k in cuts:
   for cat in cuts[k]['categories']:
-    if '0j' in cat: cuts0j.append(k+'_'+cat)
-    elif '1j' in cat: cuts1j.append(k+'_'+cat)
-    elif '2j' in cat: cuts2j.append(k+'_'+cat)
-    #elif 'GT200' in cat: cutsGT200.append(k+'_'+cat)                                                                                         
-    #else : cutsGT200.append(k+'_'+cat)
-    #else: print 'WARNING: name of category does not contain on either 0j,1j,2j,GT200', cat                                                   
-
+    if   '0j'  in cat:  cuts0j.append(k+'_'+cat)
+    elif '1j'  in cat:  cuts1j.append(k+'_'+cat)
+    elif '2j'  in cat:  cuts2j.append(k+'_'+cat)
+    elif 'hpt' in cat: cutshpt.append(k+'_'+cat)
+    else: print 'WARNING: name of category does not contain on either 0j,1j,2j'
 
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
@@ -231,11 +229,13 @@ nuisances['eff_e'] = {
 
 nuisances['electronpt'] = {
     'name': 'CMS_scale_e_2016',
-    'kind': 'tree',
+    'kind': 'suffix',
     'type': 'shape',
+    'mapUp' : 'ElepTup',
+    'mapDown': 'ElepTdo',
     'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['WW', 'top', 'DY']),
-    'folderUp': makeMCDirectory('ElepTup'),
-    'folderDown': makeMCDirectory('ElepTdo'),
+    'folderUp': makeMCDirectory('ElepTup_suffix'),
+    'folderDown': makeMCDirectory('ElepTdo_suffix'),
     'AsLnN': '1'
 }
 
@@ -250,35 +250,41 @@ nuisances['eff_m'] = {
 
 nuisances['muonpt'] = {
     'name': 'CMS_scale_m_2016',
-    'kind': 'tree',
+    'kind': 'suffix',
     'type': 'shape',
+    'mapUp': 'MupTup',
+    'mapDown': 'MupTdo',
     'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['WW', 'top', 'DY']),
-    'folderUp': makeMCDirectory('MupTup'),
-    'folderDown': makeMCDirectory('MupTdo'),
+    'folderUp': makeMCDirectory('MupTup_suffix'),
+    'folderDown': makeMCDirectory('MupTdo_suffix'),
     'AsLnN': '1'
 }
 
 ##### Jet energy scale
 
-nuisances['jes'] = {
-    'name': 'CMS_scale_j_2016',
-    'kind': 'tree',
-    'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['WW', 'top', 'DY']),
-    'folderUp': makeMCDirectory('JESup'),
-    'folderDown': makeMCDirectory('JESdo'),
-    'AsLnN': '1'
-}
+#nuisances['jes'] = {
+#    'name': 'CMS_scale_j_2016',
+#    'kind': 'suffix',
+#    'type': 'shape',
+#    'mapUp': 'JESup',
+#    'mapDown': 'JESdo',
+#    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['WW', 'top', 'DY']),
+#    'folderUp': makeMCDirectory('JESup_suffix'),
+#    'folderDown': makeMCDirectory('JESdo_suffix'),
+#    'AsLnN': '1'
+#}
 
 ##### MET energy scale
 
 nuisances['met'] = {
     'name': 'CMS_scale_met_2016',
-    'kind': 'tree',
+    'kind': 'suffix',
     'type': 'shape',
+    'mapUp': 'METup',
+    'mapDown': 'METdo',
     'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['WW', 'top', 'DY']),
-    'folderUp': makeMCDirectory('METup'),
-    'folderDown': makeMCDirectory('METdo'),
+    'folderUp': makeMCDirectory('METup_suffix'),
+    'folderDown': makeMCDirectory('METdo_suffix'),
     'AsLnN': '1'
 }
 
@@ -298,11 +304,6 @@ nuisances['PU'] = {
     'AsLnN': '1',
 }
 
-for name in sampleNames:
-  if 'ggH_hww' in name:
-    nuisances['PU']['samples'].update({name: ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)']})
-
-
 ##### PS and UE
 nuisances['PS']  = {
     'name'  : 'PS_Herwig',
@@ -318,40 +319,23 @@ nuisances['PS']  = {
     'AsLnN'      : '1',
     'synchronized': False
 }
-#FIXME:Missing information!                                                                                                                   
-#for name in sampleNames:                                                                                                                     
-#  if 'ggH_hww' in name:                                                                                                                      
-#    nuisances['PS']['samples'].update({name: ['1.0078', '1.']})                                                                              
 
 nuisances['UE']  = {
     'name'  : 'UE_CUETP',
     'kind'  : 'tree',
     'type'  : 'shape',
     'samples'  : {
-      'WW'      : [UEWWNormFactors[0],UEWWNormFactors[1]],
-      # new:['0.96858435682', '1.00390617786']    old:['1.0240', '0.9916'],                                                                   
-      'ggH_hww' : [UEggHNormFactors[0],UEggHNormFactors[1]],
-      # new:['0.929425888608', '0.981263130815']  old:['1.0739', '1.0211'],                                                                   
-      'qqH_hww' : [UEqqHNormFactors[0],UEqqHNormFactors[1]],
-      # new:['0.967541914923', '1.01489538589']   old:['1.0137', '0.9781'],                                                                   
+      'WW'      : ['1.0240', '0.9916'], # was 1.0226 0.9897
+      #'ggH_hww' : ['1.0739', '1.0211'], # These numbers are used to normalize the UE up/down variations to the same integral as the nominal after the wwSel skim
+      'qqH_hww' : ['1.0137', '0.9781'], # was 1.0560 0.9992
     },
     'folderUp': makeMCDirectory('UEup'),
     'folderDown': makeMCDirectory('UEdo'),
     'AsLnN'      : '1',
     'synchronized': False
 }
-#FIXME:Missing information!                                                                                                                   
-#for name in sampleNames:                                                                                                                     
-#  if 'ggH_hww' in name:                                                                                                                      
-#    if 'GT200' not in name:                                                                                                                  
-#      scaleUp   = UEggHSTXSNormFactors[name.replace('ggH_hww','GG2H')][0]                                                                    
-#      scaleDown = UEggHSTXSNormFactors[name.replace('ggH_hww','GG2H')][1]                                                                    
-#      nuisances['UE']['samples'].update({name : [scaleUp, scaleDown]})                                                                       
-#    else:                                                                                                                                    
-#      nuisances['UE']['samples'].update({name : ['UEggHSTXSNormFactors[GG2H_PTH_200_300][0]',' UEggHSTXSNormFactors[GG2H_PTH_200_300][1]']}) 
-#      nuisances['UE']['samples'].update({name : ['UEggHSTXSNormFactors[GG2H_PTH_300_450][0]',' UEggHSTXSNormFactors[GG2H_PTH_300_450][1]']}) 
-#      nuisances['UE']['samples'].update({name : ['UEggHSTXSNormFactors[GG2H_PTH_450_650][0]',' UEggHSTXSNormFactors[GG2H_PTH_450_650][1]']}) 
-#      nuisances['UE']['samples'].update({name : ['UEggHSTXSNormFactors[GG2H_PTH_GT650][0]'  ,' UEggHSTXSNormFactors[GG2H_PTH_GT650][1]']}) 
+
+
 ####### Generic "cross section uncertainties"
 
 apply_on = {
@@ -530,29 +514,71 @@ nuisances['QCDscale_ggVV'] = {
 }
 
 # NLL resummation variations
-for jetbin in ['0j','1j','2j']:
-   nuisances['WWresum'+jetbin]  = {
-     'name'  : 'CMS_hww_WWresum_'+jetbin,
-     'skipCMS' : 1,
-     'kind'  : 'weight',
-     'type'  : 'shape',
-     'samples'  : {
-        'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
-      },
-     'cuts'  : [cut for cut in cuts if jetbin in cut]
-   }
+nuisances['WWresum0j']  = {
+  'name'  : 'CMS_hww_WWresum_0j',
+  'skipCMS' : 1,
+  'kind'  : 'weight',
+  'type'  : 'shape',
+  'samples'  : {
+     'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+   },
+  'cutspost'  : lambda self, cuts: [cut for cut in cuts if '0j' in cut]
+}
 
-   nuisances['WWqscale'+jetbin]  = {
-      'name'  : 'CMS_hww_WWqscale_'+jetbin,
-      'skipCMS' : 1,
-      'kind'  : 'weight',
-      'type'  : 'shape',
-      'samples'  : {
-         'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
-       },
-      'cuts'  : [cut for cut in cuts if jetbin in cut]
-   }
+nuisances['WWqscale0j']  = {
+   'name'  : 'CMS_hww_WWqscale_0j',
+   'skipCMS' : 1,
+   'kind'  : 'weight',
+   'type'  : 'shape',
+   'samples'  : {
+      'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+    },
+   'cutspost'  : lambda self, cuts: [cut for cut in cuts if '0j' in cut]
+}
 
+nuisances['WWresum1j']  = {
+  'name'  : 'CMS_hww_WWresum_1j',
+  'skipCMS' : 1,
+  'kind'  : 'weight',
+  'type'  : 'shape',
+  'samples'  : {
+     'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+   },
+  'cutspost'  : lambda self, cuts: [cut for cut in cuts if '1j' in cut]
+}
+
+nuisances['WWqscale1j']  = {
+   'name'  : 'CMS_hww_WWqscale_1j',
+   'skipCMS' : 1,
+   'kind'  : 'weight',
+   'type'  : 'shape',
+   'samples'  : {
+      'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+    },
+   'cutspost'  : lambda self, cuts: [cut for cut in cuts if '1j' in cut]
+}
+
+nuisances['WWresum2j']  = {
+  'name'  : 'CMS_hww_WWresum_2j',
+  'skipCMS' : 1,
+  'kind'  : 'weight',
+  'type'  : 'shape',
+  'samples'  : {
+     'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+   },
+  'cutspost'  : lambda self, cuts: [cut for cut in cuts if '2j' in cut]
+}
+
+nuisances['WWqscale2j']  = {
+   'name'  : 'CMS_hww_WWqscale_2j',
+   'skipCMS' : 1,
+   'kind'  : 'weight',
+   'type'  : 'shape',
+   'samples'  : {
+      'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+    },
+   'cutspost'  : lambda self, cuts: [cut for cut in cuts if '2j' in cut]
+}
 
 # Uncertainty on SR/CR ratio
 nuisances['CRSR_accept_WW'] = {
@@ -560,9 +586,8 @@ nuisances['CRSR_accept_WW'] = {
     'type': 'lnN',
     'samples': {'WW': '1.01'},
     #'samples': {'DY': '1.1'},
-    'cuts': [cut for cut in cuts if '_WW_' in cut],
-    #'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut and cut in self['cuts']]),
-    #'cutspost': (lambda self, cuts: [cut for cut in cuts if '_WW_' in cut]),
+    'cuts': [cut for cut in cuts if '_CR_' in cut],
+    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_WW_' in cut]),
     #'perRecoBin': True
 }
 
@@ -572,8 +597,8 @@ nuisances['CRSR_accept_top'] = {
     'type': 'lnN',
     'samples': {'top': '1.01'},
     #'samples': {'top': '1.05'},
-    'cuts': [cut for cut in cuts if '_top_' in cut],
-    #'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut]),
+    'cuts': [cut for cut in cuts if '_CR_' in cut],
+    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut]),
 }
 
 # Theory uncertainty for ggH
@@ -584,8 +609,8 @@ nuisances['CRSR_accept_top'] = {
 #   see https://twiki.cern.ch/twiki/bin/viewauth/CMS/HiggsWG/SignalModelingTools
 
 thus = [
-#    ('THU_ggH_Mu', 'ggH_mu'),
-#    ('THU_ggH_Res', 'ggH_res'),
+    ('THU_ggH_Mu', 'ggH_mu'),
+    ('THU_ggH_Res', 'ggH_res'),
     ('THU_ggH_Mig01', 'ggH_mig01'),
     ('THU_ggH_Mig12', 'ggH_mig12'),
     ('THU_ggH_VBF2j', 'ggH_VBF2j'),
@@ -597,7 +622,7 @@ thus = [
 
 for name, vname in thus:
     updown = [vname, '2.-%s' % vname]
-    
+
     nuisances[name] = {
         'name': name,
         'skipCMS': 1,
@@ -609,40 +634,20 @@ for name, vname in thus:
         }
     }
     for sname in sampleNames:
-      if 'ggH_hww' in sname:
-        if 'GT200' not in sname:
-          #print globals()                                                                                                                 
-                                                                                                                                      
-          normthu = globals()[name.replace("THU_","thuNormFactors_")][sname.replace('ggH_hww','GG2H')][0]
-          nuisances[name]['samples'].update({sname : [vname+'/'+normthu,'2.-'+vname+'/'+normthu]})
-        else:
-          nuisances[name]['samples'].update({name : [vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_200_300'][0]
-          ,'2.-'+vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_200_300'][0]]})
-          nuisances[name]['samples'].update({name : [vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_300_450'][0]
-          ,'2.-'+vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_300_450'][0]]})
-          nuisances[name]['samples'].update({name : [vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_450_650'][0]
-          ,'2.-'+vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_450_650'][0]]})
-          nuisances[name]['samples'].update({name : [vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_GT650'][0]
-          ,'2.-'+vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_GT650'][0]]})
-
-
-nuisances['QCDscale_ggH_STXS_ACCEPT'] = {
-            'name'  : 'QCDscale_ggH_STXS_ACCEPT',
-            'samples'  : { },
-            'type'  : 'shape',
-            'kind'  : 'weight',
-              }
-for name in sampleNames:
-  if 'ggH_hww' in name:
-    if 'GT200' not in name:
-      scale2d0 = QCDScaleFactors[name.replace('ggH_hww','GG2H')][0]
-      scale0d5 = QCDScaleFactors[name.replace('ggH_hww','GG2H')][1]
-      nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/'+scale2d0, 'LHEScaleWeight[0]/'+scale0d5]})
-    else:
-      nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/QCDScaleFactors[GG2H_PTH_200_300][0]','LHEScaleWeight[0]/QCDScaleFactors[GG2H_PTH_200_300][1]']})
-      nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/QCDScaleFactors[GG2H_PTH_300_450][0]','LHEScaleWeight[0]/QCDScaleFactors[GG2H_PTH_300_450][1]']})
-      nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/QCDScaleFactors[GG2H_PTH_450_650][0]','LHEScaleWeight[0]/QCDScaleFactors[GG2H_PTH_450_650][1]']})
-      nuisances['QCDscale_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/QCDScaleFactors[GG2H_PTH_GT650][0]','LHEScaleWeight[0]/QCDScaleFactors[GG2H_PTH_GT650][1]']})
+        if 'ggH_hww' in sname:
+            if 'GT200' not in sname:
+              #print globals()                                                                                                                 
+              normthu = globals()[name.replace("THU_","thuNormFactors_")][sname.replace('ggH_hww','GG2H')][0]
+              nuisances[name]['samples'].update({sname : [vname+'/'+normthu,'2.-'+vname+'/'+normthu]})
+            else:
+              nuisances[name]['samples'].update({name : [vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_200_300'][0]
+              ,'2.-'+vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_200_300'][0]]})
+              nuisances[name]['samples'].update({name : [vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_300_450'][0]
+              ,'2.-'+vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_300_450'][0]]})
+              nuisances[name]['samples'].update({name : [vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_450_650'][0]
+              ,'2.-'+vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_450_650'][0]]})
+              nuisances[name]['samples'].update({name : [vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_GT650'][0]
+              ,'2.-'+vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_GT650'][0]]})
 
 
 #### QCD scale uncertainties for Higgs signals other than ggH
@@ -738,157 +743,191 @@ nuisances['stat'] = {
 }
 
 ## rate parameters
+
 nuisances['WWnorm0j']  = {
-               'name'  : 'CMS_hww_WWnorm0j',
-               'samples'  : {
-                   'WW' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts0j
-              }
+   'name'     : 'CMS_hww_WWnorm0j',
+   'samples'  : {
+      'WW'    : '1.00',
+      },
+   'type'     : 'rateParam',
+   'cutspost' : lambda self, cuts: [cut for cut in cuts if '0j' in cut]
+   #'cuts'     : cuts0j
+}
 
 nuisances['WWnorm1j']  = {
-               'name'  : 'CMS_hww_WWnorm1j',
-               'samples'  : {
-                   'WW' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts1j+cutsGT200
-              }
-
+   'name'     : 'CMS_hww_WWnorm1j',
+   'samples'  : {
+      'WW'    : '1.00',
+      },
+   'type'     : 'rateParam',
+   'cutspost' : lambda self, cuts: [cut for cut in cuts if '1j' in cut]
+   #'cuts'     : cuts1j
+}
 
 nuisances['WWnorm2j']  = {
-               'name'  : 'CMS_hww_WWnorm2j',
-               'samples'  : {
-                   'WW' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts2j
-              }
+   'name'     : 'CMS_hww_WWnorm2j',
+   'samples'  : {
+      'WW'    : '1.00',
+      },
+   'type'     : 'rateParam',
+   'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut]
+   #'cuts'     : cuts2j
+}
 
-nuisances['ggWWnorm0j']  = {
-               'name'  : 'CMS_hww_WWnorm0j',
-               'samples'  : {
-                   'ggWW' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts0j
-              }
-
-nuisances['ggWWnorm1j']  = {
-               'name'  : 'CMS_hww_WWnorm1j',
-               'samples'  : {
-                   'ggWW' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts1j+cutsGT200
-              }
-
-nuisances['ggWWnorm2j']  = {
-               'name'  : 'CMS_hww_WWnorm2j',
-               'samples'  : {
-                   'ggWW' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts2j
-              }
-
-
+#DC#nuisances['ggWWnorm0j']  = {
+#DC#   'name'     : 'CMS_hww_ggWWnorm0j',
+#DC#   'samples'  : {
+#DC#      'ggWW'  : '1.00',
+#DC#      },
+#DC#   'type'     : 'rateParam', 
+#DC#   'cutspost' : lambda self, cuts: [cut for cut in cuts if '0j' in cut]
+#DC#   #'cuts'     : cuts0j
+#DC#}
+#DC#
+#DC#nuisances['ggWWnorm1j']  = {
+#DC#   'name'     : 'CMS_hww_ggWWnorm1j',
+#DC#   'samples'  : {
+#DC#      'ggWW'  : '1.00',
+#DC#      },
+#DC#   'type'     : 'rateParam',
+#DC#   'cutspost' : lambda self, cuts: [cut for cut in cuts if '1j' in cut]
+#DC#   #'cuts'     : cuts1j
+#DC#}
+#DC#
+#DC#nuisances['ggWWnorm2j']  = {
+#DC#   'name'     : 'CMS_hww_ggWWnorm2j',
+#DC#   'samples'  : {
+#DC#      'ggWW'  : '1.00',
+#DC#      },
+#DC#   'type'     : 'rateParam',
+#DC#   'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut]
+#DC#   #'cuts'     : cuts2j
+#DC#}
 
 nuisances['Topnorm0j']  = {
-               'name'  : 'CMS_hww_Topnorm0j',
-               'samples'  : {
-                   'top' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts0j
-              }
+   'name'     : 'CMS_hww_Topnorm0j',
+   'samples'  : {
+      'top'   : '1.00',
+      },
+   'type'     : 'rateParam',
+   'cutspost' : lambda self, cuts: [cut for cut in cuts if '0j' in cut]
+   #'cuts'     : cuts0j
+}
+
 
 nuisances['Topnorm1j']  = {
-               'name'  : 'CMS_hww_Topnorm1j',
-               'samples'  : {
-                   'top' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts1j+cutsGT200
-              }
+   'name'     : 'CMS_hww_Topnorm1j',
+   'samples'  : {
+      'top'   : '1.00',
+      },
+   'type'     : 'rateParam',
+   'cutspost' : lambda self, cuts: [cut for cut in cuts if '1j' in cut]
+   #'cuts'     : cuts1j
+}
 
 nuisances['Topnorm2j']  = {
-               'name'  : 'CMS_hww_Topnorm2j',
-               'samples'  : {
-                   'top' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts2j
-              }
+   'name'     : 'CMS_hww_Topnorm2j',
+   'samples'  : {
+      'top'   : '1.00',
+      },
+   'type'     : 'rateParam',
+   'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut]
+   #'cuts'     : cuts2j
+}
 
-#### DY estimation (just create dummy histograms to be scaled by the DY Rin/out method)
+nuisances['DYeenorm0j']  = {
+   'name'     : 'DYeenorm0j',
+   'kind'     : 'weight',
+   'type'     : 'shape',
+   'samples'  : {
+      'DY'    : ['1.','1.'] ,
+      },
+   'cutspost' : lambda self, cuts: [cut for cut in cuts if '0j' in cut and 'ee' in cut]
+   #'cuts'     : [cut for cut in cuts0j if 'ee' in cut]
+}
 
-nuisances['DYeenorm0j'] = {
-                'name'  : 'DYeenorm0j',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                    'DY' : ['1.','1.'] ,
-                             },
-                'cuts'  : [cut for cut in cuts0j if 'ee' in cut]
-                }
+nuisances['DYmmnorm0j']  = {
+   'name'     : 'DYmmnorm0j',
+   'kind'     : 'weight',
+   'type'     : 'shape',
+   'samples'  : {
+      'DY'    : ['1.','1.'] ,
+      },
+   'cutspost' : lambda self, cuts: [cut for cut in cuts if '0j' in cut and 'mm' in cut]
+   #'cuts'     : [cut for cut in cuts0j if 'mm' in cut]
+}
 
-nuisances['DYeenorm1j'] = {
-                'name'  : 'DYeenorm1j',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                    'DY' : ['1.','1.'] ,
-                             },
-                'cuts'  : [cut for cut in cuts1j if 'ee' in cut]
-                }
+nuisances['DYeenorm1j']  = {
+   'name'     : 'DYeenorm1j',
+   'kind'     : 'weight',
+   'type'     : 'shape',
+   'samples'  : {
+      'DY'    : ['1.','1.'] ,
+      },
+   'cutspost' : lambda self, cuts: [cut for cut in cuts if '1j' in cut and 'ee' in cut]
+   #'cuts'     : [cut for cut in cuts1j if 'ee' in cut]
+}
 
-nuisances['DYeenorm2j'] = {
-                'name'  : 'DYeenorm2j',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                    'DY' : ['1.','1.'] ,
-                             },
-                'cuts'  : [cut for cut in cuts2j if 'ee' in cut]
-                }
+nuisances['DYmmnorm1j']  = {
+   'name'     : 'DYmmnorm1j',
+   'kind'     : 'weight',
+   'type'     : 'shape',
+   'samples'  : {
+      'DY'    : ['1.','1.'] ,
+      },
+   'cutspost' : lambda self, cuts: [cut for cut in cuts if '1j' in cut and 'mm' in cut]
+   #'cuts'     : [cut for cut in cuts1j if 'mm' in cut]
+}
 
-nuisances['DYmmnorm0j'] = {
-                'name'  : 'DYmmnorm0j',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                    'DY' : ['1.','1.'] ,
-                             },
-                'cuts'  : [cut for cut in cuts0j if 'mm' in cut]
-                }
+nuisances['DYeenorm2j']  = {
+   'name'     : 'DYeenorm2j',
+   'kind'     : 'weight',
+   'type'     : 'shape',
+   'samples'  : {
+      'DY'    : ['1.','1.'] ,
+      },
+   'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut and 'ee' in cut and 'vh' not in cut and 'vbf' not in cut]
+   #'cuts'     : [cut for cut in cuts2j if 'ee' in cut]
+}
 
-nuisances['DYmmnorm1j'] = {
-                'name'  : 'DYmmnorm1j',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                    'DY' : ['1.','1.'] ,
-                             },
-                'cuts'  : [cut for cut in cuts1j if 'mm' in cut]
-                }
+nuisances['DYmmnorm2j']  = {
+   'name'     : 'DYmmnorm2j',
+   'kind'     : 'weight',
+   'type'     : 'shape',
+   'samples'  : {
+      'DY'    : ['1.','1.'] ,
+      },
+   'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut and 'mm' in cut and 'vh' not in cut and 'vbf' not in cut]
+   #'cuts'     : [cut for cut in cuts2j if 'mm' in cut]
+}
 
-nuisances['DYmmnorm2j'] = {
-                'name'  : 'DYmmnorm2j',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                    'DY' : ['1.','1.'] ,
-                             },
-                'cuts'  : [cut for cut in cuts2j if 'mm' in cut]
-                }
-
+#nuisances['DYeenormhpt']  = {
+#   'name'     : 'DYeenormhpt',
+#   'kind'     : 'weight',
+#   'type'     : 'shape',
+#   'samples'  : {
+#      'DY'    : ['1.','1.'] ,
+#      },
+#   'cutspost' : lambda self, cuts: [cut for cut in cuts if 'hpt' in cut and 'ee' in cut]
+#   #'cuts'     : [cut for cut in cutsvh if 'ee' in cut]
+#}
+#
+#nuisances['DYmmnormhpt']  = {
+#   'name'     : 'DYmmnormhpt',
+#   'kind'     : 'weight',
+#   'type'     : 'shape',
+#   'samples'  : {
+#      'DY'    : ['1.','1.'] ,
+#      },
+#   'cutspost' : lambda self, cuts: [cut for cut in cuts if 'hpt' in cut and 'mm' in cut]
+#   #'cuts'     : [cut for cut in cutsvh if 'mm' in cut]
+#}
 
 for n in nuisances.values():
     n['skipCMS'] = 1
 
 print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
+
 
 try:
   for iNP in nuisances:
@@ -901,3 +940,4 @@ try:
       nuisances[iNP]['cuts'] = newCuts
 except:
   print "No optim dictionary"
+

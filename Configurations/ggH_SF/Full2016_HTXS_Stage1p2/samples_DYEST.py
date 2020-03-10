@@ -2,9 +2,8 @@ import os
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # DNN
-configurations = os.path.dirname(configurations) # Full2016
-configurations = os.path.dirname(configurations) # ggH SF
+configurations = os.path.dirname(configurations) # ggH2016
+configurations = os.path.dirname(configurations) # Differential
 configurations = os.path.dirname(configurations) # Configurations
 
 from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
@@ -32,14 +31,16 @@ except NameError:
 
 #mcProduction = 'Summer16_102X_nAODv4_Full2016v5'
 #mcProduction = 'Summer16_102X_nAODv5_SigOnly_Full2016v5'
+mcProduction = 'Summer16_102X_nAODv5_Full2016v6'
 
-dataReco = 'Run2016_102X_nAODv4_Full2016v5'
+dataReco = 'Run2016_102X_nAODv5_Full2016v6'
 
 #mcSteps = 'MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5{var}'
+mcSteps = 'MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6{var}'
 
-fakeSteps = 'DATAl1loose2016v5__l2loose__fakeW'
+fakeSteps = 'DATAl1loose2016v6__l2loose__fakeW'
 
-dataSteps = 'DATAl1loose2016v5__l2loose__l2tightOR2016v5'
+dataSteps = 'DATAl1loose2016v6__l2loose__l2tightOR2016v6'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -53,14 +54,13 @@ elif  'cern' in SITE:
 
 def makeMCDirectory(var=''):
     if var:
-        #return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
-        return '/afs/cern.ch/user/d/ddicroce/public/Summer16/l2tightOR__{var}'.format(var=var)
+        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
+        #return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Summer16/l2tightOR__{var}'.format(var=var)
     else:
-        #return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
-        return '/afs/cern.ch/user/d/ddicroce/public/Summer16/l2tightOR'
+        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
+        #return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Summer16/l2tightOR'
 
-mcDirectory   = makeMCDirectory()
-
+mcDirectory = makeMCDirectory()
 fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
 dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 
@@ -69,13 +69,13 @@ dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 ################################################
 
 DataRun = [
-    ['B','Run2016B-Nano14Dec2018_ver2-v1'],
-    ['C','Run2016C-Nano14Dec2018-v1'],
-    ['D','Run2016D-Nano14Dec2018-v1'],
-    ['E','Run2016E-Nano14Dec2018-v1'],
-    ['F','Run2016F-Nano14Dec2018-v1'],
-    ['G','Run2016G-Nano14Dec2018-v1'],
-    ['H','Run2016H-Nano14Dec2018-v1']
+    ['B','Run2016B-Nano1June2019_ver2-v1'],
+    ['C','Run2016C-Nano1June2019-v1'],
+    ['D','Run2016D-Nano1June2019-v1'],
+    ['E','Run2016E-Nano1June2019-v1'],
+    ['F','Run2016F-Nano1June2019-v1'],
+    ['G','Run2016G-Nano1June2019-v1'],
+    ['H','Run2016H-Nano1June2019-v1']
 ]
 
 DataSets = ['MuonEG','SingleMuon','SingleElectron','DoubleMuon', 'DoubleEG']
@@ -113,7 +113,8 @@ if useDYtt:
 
     samples['DY'] = {
         'name': files,
-        'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)',
+        'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))',
+        #'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)',
         'FilesPerJob': 4,
         'suppressNegative' :['all'],
         'suppressNegativeNuisances' :['all'],
@@ -122,12 +123,13 @@ if useDYtt:
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO,False,'nanoLatino_')
 
 else:
-    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext2') + \
+    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50') + \
             nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
 
     samples['DY'] = {
         'name': files,
         'weight': mcCommonWeight,
+        #'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))',
         'FilesPerJob': 4,
         'suppressNegative' :['all'],
         'suppressNegativeNuisances' :['all'],
@@ -149,7 +151,7 @@ else:
                                  + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-1200to2500') \
                                  + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-2500toinf')
 
-    addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext2',ptllDYW_NLO)
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50'       ,ptllDYW_NLO)
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 
     if useDYHT :
@@ -170,5 +172,6 @@ else:
         addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-800to1200'        ,ptllDYW_LO)
         addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-1200to2500'       ,ptllDYW_LO)
         addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toinf'        ,ptllDYW_LO)
+
 
 signals = []

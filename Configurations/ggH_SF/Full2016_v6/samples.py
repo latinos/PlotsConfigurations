@@ -151,7 +151,7 @@ else:
                                  + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-1200to2500') \
                                  + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-2500toinf')
 
-    addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext2',ptllDYW_NLO)
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50'       ,ptllDYW_NLO)
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 
     if useDYHT :
