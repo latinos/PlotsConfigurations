@@ -236,7 +236,7 @@ samples['ZgS']  = {    'name'   :   getSampleFilesNano(directory,'Zg'),
 #####  WZ
 
 samples['WZ']  = {    'name':   getSampleFilesNano(directory,'WZTo3LNu_mllmin01')
-                              + getSampleFilesNano(directory,'WZTo2L2Q')
+                              + getSampleFilesNano(directory,'WZTo2L2Q'),
                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC+'*(Gen_ZGstar_mass > 0.1)' ,
                        'FilesPerJob' : 2 ,
                   }

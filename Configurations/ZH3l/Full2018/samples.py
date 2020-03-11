@@ -243,16 +243,16 @@ samples['ZZ'] = {  'name'  :   getSampleFilesNano(directory,'ZZTo2L2Nu_ext1')
 ZZ2LbaseW   = getBaseWnAOD(directory,'Autumn18_102X_nAODv5_Full2018v5',['ZZTo2L2Nu_ext1','ZZTo2L2Nu_ext2'])
 ZZ4LbaseW   = getBaseWnAOD(directory,'Autumn18_102X_nAODv5_Full2018v5',['ZZTo4L_ext1',   'ZZTo4L_ext2'])
 
-addSampleWeight(samples,'ZZ2l','ZZTo2L2Nu_ext1',"1.17*"+ZZ2LbaseW+"/baseW") ## The NNLO/NLO k-factor, cited from https://arxiv.org/abs/1405.2219v1 
-addSampleWeight(samples,'ZZ2l','ZZTo2L2Nu_ext2',"1.17*"+ZZ2LbaseW+"/baseW") 
-addSampleWeight(samples,'ZZ2l','ZZTo2L2Q',      "1.17") 
-addSampleWeight(samples,'ZZ'  ,'ZZTo4L_ext1',   "1.17*"+ZZ4LbaseW+"/baseW")
-addSampleWeight(samples,'ZZ'  ,'ZZTo4L_ext2',   "1.17*"+ZZ4LbaseW+"/baseW") 
-addSampleWeight(samples,'ZZ'  ,'ggZZ2e2t',      "1.68") ## The NLO/LO k-factor, cited from https://arxiv.org/abs/1509.06734v1
-addSampleWeight(samples,'ZZ'  ,'ggZZ2m2t',      "1.68")
-addSampleWeight(samples,'ZZ'  ,'ggZZ2e2m',      "1.68")
-addSampleWeight(samples,'ZZ'  ,'ggZZ4m',        "1.68")
-addSampleWeight(samples,'ZZ'  ,'ggZZ4t',        "1.68")
+addSampleWeight(samples,'ZZ','ZZTo2L2Nu_ext1',"1.17*"+ZZ2LbaseW+"/baseW") ## The NNLO/NLO k-factor, cited from https://arxiv.org/abs/1405.2219v1 
+addSampleWeight(samples,'ZZ','ZZTo2L2Nu_ext2',"1.17*"+ZZ2LbaseW+"/baseW") 
+addSampleWeight(samples,'ZZ','ZZTo2L2Q',      "1.17") 
+addSampleWeight(samples,'ZZ','ZZTo4L_ext1',   "1.17*"+ZZ4LbaseW+"/baseW")
+addSampleWeight(samples,'ZZ','ZZTo4L_ext2',   "1.17*"+ZZ4LbaseW+"/baseW") 
+addSampleWeight(samples,'ZZ','ggZZ2e2t',      "1.68") ## The NLO/LO k-factor, cited from https://arxiv.org/abs/1509.06734v1
+addSampleWeight(samples,'ZZ','ggZZ2m2t',      "1.68")
+addSampleWeight(samples,'ZZ','ggZZ2e2m',      "1.68")
+addSampleWeight(samples,'ZZ','ggZZ4m',        "1.68")
+addSampleWeight(samples,'ZZ','ggZZ4t',        "1.68")
 
 ############ VVV ############
 
