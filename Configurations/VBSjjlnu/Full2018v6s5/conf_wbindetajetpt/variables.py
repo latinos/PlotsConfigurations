@@ -56,8 +56,14 @@ variables['DNNoutput_high_v32'] = {
 
 # #leptons
 
-variables['Lepton_eta'] = {   'name': 'abs(Lepton_eta[0])',      
+variables['Lepton_eta_abs'] = {   'name': 'abs(Lepton_eta[0])',      
                         'range' : (30,0,2.5),  
+                        'xaxis' : 'Lepton #eta', 
+                        'fold' : 3
+                        }
+
+variables['Lepton_eta'] = {   'name': 'Lepton_eta[0]',      
+                        'range' : (40,-2.5,2.5),  
                         'xaxis' : 'Lepton #eta', 
                         'fold' : 3
                         }

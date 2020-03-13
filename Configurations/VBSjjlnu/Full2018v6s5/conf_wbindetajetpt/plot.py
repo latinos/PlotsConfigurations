@@ -161,20 +161,21 @@ plot['top'] = {
                  'color': colors['kAzure']-1,
                  'isSignal' : 0,
                  'isData'   : 0, 
-                 'scale'    : 1.06 #1.08
+                 'scale'    : 1.0 #1.08
                  }
 
 
-wfactors = {
-    (1,1): 0.89,
-    (1,2): 0.88,
-    (1,3): 0.66,
-    (2,1): 1.08,
-    (2,2): 0.92,
-    (2,3): 0.65,
-    (3,1): 1.36,
-    (3,2): 1.00,
-}
+#wfactors = {
+#    (1,1): 0.89,
+#    (1,2): 0.88,
+#    (1,3): 0.66,
+#    (2,1): 1.08,
+#    (2,2): 0.92,
+#    (2,3): 0.65,
+#    (3,1): 1.36,
+#    (3,2): 1.00,
+#}
+
 
 for  jbin in range(3,0,-1): 
     for dbin in range(jetbin_detabins[jbin-1]):
@@ -183,14 +184,10 @@ for  jbin in range(3,0,-1):
                         'color':  colors['kRed']-3,
                         'isSignal' : 0,
                         'isData'   : 0,
-                        #'scale': 1.0
-                        'scale'    : wfactors[(dbin+1,jbin)] ,
+                        'scale': 1.0
                     }
 
-# plot['Wjets']  = {
-#                   
-                 
-#               }
+
 
 plot['VBS']  = {
                   'color': colors["kCyan"]+1, 

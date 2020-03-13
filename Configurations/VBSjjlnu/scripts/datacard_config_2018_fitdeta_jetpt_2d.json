@@ -42,6 +42,27 @@
     ]
   },
   { 
+    "datacard_name": "detajetpt_ext_dnnhigh_ele",
+    "folders": [
+      {
+        "basedir": "Full2018v6s5/datacards_wbindetajetpt", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deta_jetpt_CR", 
+        "name": "wjetcr_mvext_dnnhigh_deta_ele",
+        "cut": "res_wjetcr_mjjincl_mvext_dnnhigh_ele"
+      },
+      {
+        "var": "events", 
+        "name": "topCR_res_mu_dnnhigh_ele",
+        "cut": "res_topcr_mjjincl_dnnhigh_ele"
+      }
+    ]
+  },
+  { 
     "datacard_name": "detajetpt_ext_dnn_int_dnnhigh",
     "folders": [
       {
