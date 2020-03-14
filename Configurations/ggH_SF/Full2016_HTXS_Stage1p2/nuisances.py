@@ -901,27 +901,27 @@ nuisances['DYmmnorm2j']  = {
    #'cuts'     : [cut for cut in cuts2j if 'mm' in cut]
 }
 
-#nuisances['DYeenormhpt']  = {
-#   'name'     : 'DYeenormhpt',
-#   'kind'     : 'weight',
-#   'type'     : 'shape',
-#   'samples'  : {
-#      'DY'    : ['1.','1.'] ,
-#      },
-#   'cutspost' : lambda self, cuts: [cut for cut in cuts if 'hpt' in cut and 'ee' in cut]
-#   #'cuts'     : [cut for cut in cutsvh if 'ee' in cut]
-#}
-#
-#nuisances['DYmmnormhpt']  = {
-#   'name'     : 'DYmmnormhpt',
-#   'kind'     : 'weight',
-#   'type'     : 'shape',
-#   'samples'  : {
-#      'DY'    : ['1.','1.'] ,
-#      },
-#   'cutspost' : lambda self, cuts: [cut for cut in cuts if 'hpt' in cut and 'mm' in cut]
-#   #'cuts'     : [cut for cut in cutsvh if 'mm' in cut]
-#}
+nuisances['DYeenormhpt']  = {
+   'name'     : 'DYeenormhpt',
+   'kind'     : 'weight',
+   'type'     : 'shape',
+   'samples'  : {
+      'DY'    : ['1.','1.'] ,
+      },
+   'cutspost' : lambda self, cuts: [cut for cut in cuts if 'hpt' in cut and 'ee' in cut]
+   #'cuts'     : [cut for cut in cutsvh if 'ee' in cut]
+}
+
+nuisances['DYmmnormhpt']  = {
+   'name'     : 'DYmmnormhpt',
+   'kind'     : 'weight',
+   'type'     : 'shape',
+   'samples'  : {
+      'DY'    : ['1.','1.'] ,
+      },
+   'cutspost' : lambda self, cuts: [cut for cut in cuts if 'hpt' in cut and 'mm' in cut]
+   #'cuts'     : [cut for cut in cutsvh if 'mm' in cut]
+}
 
 for n in nuisances.values():
     n['skipCMS'] = 1

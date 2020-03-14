@@ -34,10 +34,10 @@ for cat in HTXSStage1_1Categories:
 
 os.chdir('./Combination')
 
-sampleNames.append('ggH_hww_PTH_200_300')
-sampleNames.append('ggH_hww_PTH_300_450')
-sampleNames.append('ggH_hww_PTH_450_650')
-sampleNames.append('ggH_hww_PTH_GT650')
+#sampleNames.append('ggH_hww_PTH_200_300')
+#sampleNames.append('ggH_hww_PTH_300_450')
+#sampleNames.append('ggH_hww_PTH_450_650')
+#sampleNames.append('ggH_hww_PTH_GT650')
 '''
 #No merging
 command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2016_SF_ggH_HTXS_Stage1p2.root -t -1  --setParameters "
@@ -64,9 +64,9 @@ for sample in sampleNames:
   if 'GT200' in sample: continue
 
   #if (sample in ['ggH_hww_PTH_300_450','ggH_hww_PTH_450_650','ggH_hww_PTH_GT650']): poi = 'r_ggH_hww_PTH_GT300'
-  if ('MJJ_0_350_PTH_0_60' in sample or 'MJJ_0_350_PTH_60_120' in sample): poi = 'r_ggH_hww_GE2J_MJJ_0_350_PTH_LT120'
-  elif ('MJJ_350_700' in sample): poi = 'r_ggH_hww_GE2J_MJJ_350_700'
-  elif ('MJJ_GT700' in sample): poi = 'r_ggH_hww_GE2J_MJJ_GT700'
+  #if ('MJJ_0_350_PTH_0_60' in sample or 'MJJ_0_350_PTH_60_120' in sample): poi = 'r_ggH_hww_GE2J_MJJ_0_350_PTH_LT120'
+  #elif ('MJJ_350_700' in sample): poi = 'r_ggH_hww_GE2J_MJJ_350_700'
+  #elif ('MJJ_GT700' in sample): poi = 'r_ggH_hww_GE2J_MJJ_GT700'
   else: poi = 'r_'+sample
 
   #if '0J' in sample: poi = 'r_ggH_hww_0J'
