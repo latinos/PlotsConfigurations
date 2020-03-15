@@ -62,7 +62,7 @@ aliases['DNNoutput_v32'] = {
 }
 
 aliases['DNNoutput_v67'] = {
-    'expr': '(VBS_category==0)*(-999) + (VBS_category==1)*(DNNoutput_boosted_v67)'
+    'expr': '(VBS_category==0)*(DNNoutput_boosted_v67) + (VBS_category==1)*(-999)'
 }
 
 aliases['detavbs_jetpt_bin'] = {
