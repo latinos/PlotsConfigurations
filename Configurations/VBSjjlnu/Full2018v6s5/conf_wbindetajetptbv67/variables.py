@@ -119,12 +119,12 @@ variables['deltaeta_vbs'] = {   'name': 'deltaeta_vbs',
 #                         }
 
 
-variables["deta_jetpt_CR"] = {
-            'name': 'detavbs_jetpt_bin',
-            'range': (8, 0.5, 8.5),
-            'axis': '#Delta#eta VBS jets : VBS trailing jet Pt bins',
-            'fold': 0
-}
+# variables["deta_jetpt_CR"] = {
+#             'name': 'detavbs_jetpt_bin',
+#             'range': (8, 0.5, 8.5),
+#             'axis': '#Delta#eta VBS jets : VBS trailing jet Pt bins',
+#             'fold': 0
+# }
 
 # #MET
 # variables['PuppiMET'] = {   'name': 'PuppiMET_pt',      
