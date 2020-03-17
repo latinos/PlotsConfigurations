@@ -15,13 +15,13 @@ if os.path.exists('HTXS_stage1_categories.py') :
   exec(handle)
   handle.close()
 
-if os.path.exists('HTXS_Stage1/UEnormfactors.py') :
-  handle = open('HTXS_Stage1/UEnormfactors.py','r')
+if os.path.exists('UEnormfactors.py') :
+  handle = open('UEnormfactors.py','r')
   exec(handle)
   handle.close()
 
-if os.path.exists('HTXS_Stage1/thuNormFactors.py') :
-  handle = open('HTXS_Stage1/thuNormFactors.py','r')
+if os.path.exists('thuNormFactors.py') :
+  handle = open('thuNormFactors.py','r')
   exec(handle)
   handle.close()
 
@@ -338,7 +338,9 @@ nuisances['PS2jet']  = {
 
 for name in sampleNames:
   if 'ggH_hww' in name:
-    nuisances['PS']['samples'].update({name: ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]']})
+    nuisances['PS0jet']['samples'].update({name: ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]']})
+    nuisances['PS1jet']['samples'].update({name: ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]']})
+    nuisances['PS2jet']['samples'].update({name: ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]']})
 
 #Normalization factors have been recomputed for 2018
 nuisances['UE']  = {
@@ -764,7 +766,7 @@ nuisances['QCDscale_highpt_ggH_STXS_ACCEPT'] = {
 nuisances['QCDscale_highpt_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/QCDScaleFactors[GG2H_PTH_200_300][0]',' LHEScaleWeight[0]/QCDScaleFactors[GG2H_PTH_200_300][1]']})
 nuisances['QCDscale_highpt_ggH_STXS_ACCEPT']['samples'].update({name : ['LHEScaleWeight[8]/QCDScaleFactors[GG2H_PTH_300_450][0]',' LHEScaleWeight[0]/QCDScaleFactors[GG2H_PTH_300_450][1]']})
 
-nuisances['QCDscale_veryhighpt_ggH_STXS_ACCEPT'] = {                                                                                          
+nuisances['QCDscale_very_highpt_ggH_STXS_ACCEPT'] = {                                                                                        
                'name'  : 'QCDscale_very_highpt_ggH_STXS_ACCEPT',                                                                             
                'samples'  : { },                                                                                                              
                'type'  : 'shape',                                                                                                             
