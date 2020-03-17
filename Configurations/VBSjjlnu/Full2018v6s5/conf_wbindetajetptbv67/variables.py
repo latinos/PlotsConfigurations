@@ -16,19 +16,10 @@ variables['DNNoutput_v67'] = {
     'xaxis': 'DNN output (v67)',
     'fold': 3 ,
     'blind': {
-        "res_sig_mjjhigh_ele": [0.8,1],
-        "res_sig_mjjhigh_mu": [0.8,1],
-        "res_sig_mjjincl_ele": [0.8,1],
-        "res_sig_mjjincl_mu": [0.8,1], 
-        "res_sig_mjjlow_ele": [0.8,1],
-        "res_sig_mjjlow_mu": [0.8,1], 
-        "res_sig_mjjincl_dnnhigh_mu": [0.8,1], 
-        "boos_sig_mjjhigh_ele": [0.8,1],
-        "boos_sig_mjjhigh_mu": [0.8,1],
-        "boos_sig_mjjincl_ele": [0.8,1],
-        "boos_sig_mjjincl_mu": [0.8,1],
-        "boos_sig_mjjlow_ele": [0.8,1],
-        "boos_sig_mjjlow_mu": [0.8,1],
+        "boost_sig_mjjincl_ele": [0.8,1],
+        "boost_sig_mjjincl_mu": [0.8,1],
+        "boost_sig_mjjincl_dnnhigh_ele": [0.8,1],
+        "boost_sig_mjjincl_dnnhigh_mu": [0.8,1],
     }
 }
 
@@ -38,36 +29,56 @@ variables['DNNoutput_high_v67'] = {
     'xaxis': 'DNN output (v67), high region',
     'fold': 0 ,
     'blind': {
-        "res_sig_mjjhigh_ele": [0.8,1],
-        "res_sig_mjjhigh_mu": [0.8,1],
-        "res_sig_mjjincl_ele": [0.8,1],
-        "res_sig_mjjincl_mu": [0.8,1], 
-        "res_sig_mjjlow_ele": [0.8,1],
-        "res_sig_mjjlow_mu": [0.8,1], 
-        "res_sig_mjjincl_dnnhigh_mu": [0.8,1],
-        "boos_sig_mjjhigh_ele": [0.8,1],
-        "boos_sig_mjjhigh_mu": [0.8,1],
-        "boos_sig_mjjincl_ele": [0.8,1],
-        "boos_sig_mjjincl_mu": [0.8,1],
-        "boos_sig_mjjlow_ele": [0.8,1],
-        "boos_sig_mjjlow_mu": [0.8,1],
+        "boost_sig_mjjincl_ele": [0.8,1],
+        "boost_sig_mjjincl_mu": [0.8,1],
+        "boost_sig_mjjincl_dnnhigh_ele": [0.8,1],
+        "boost_sig_mjjincl_dnnhigh_mu": [0.8,1],
     }
 }
 
 # #leptons
 
-variables['Lepton_eta_abs'] = {   'name': 'abs(Lepton_eta[0])',      
-                        'range' : (30,0,2.5),  
-                        'xaxis' : 'Lepton #eta', 
-                        'fold' : 3
-                        }
+variables['Lepton_eta'] = {
+    'name': 'Lepton_eta[0]',      
+    'range' : (20,-2.5,2.5),  
+    'xaxis' : 'Lepton #eta', 
+    'fold' : 3
+}
 
-variables['Lepton_eta'] = {   'name': 'Lepton_eta[0]',      
-                        'range' : (40,-2.5,2.5),  
-                        'xaxis' : 'Lepton #eta', 
-                        'fold' : 3
-                        }
+variables['Lepton_eta_40'] = {
+    'name': 'Lepton_eta[0]',      
+    'range' : (40,-2.5,2.5),  
+    'xaxis' : 'Lepton #eta', 
+    'fold' : 3
+}
 
+variables['Lepton_eta_abs'] = {   
+    'name': 'abs(Lepton_eta[0])',      
+    'range' : (20,0,2.5),  
+    'xaxis' : 'Lepton #eta', 
+    'fold' : 3
+}
+
+variables['Lepton_eta_abs_30'] = {   
+    'name': 'abs(Lepton_eta[0])',      
+    'range' : (30,0,2.5),  
+    'xaxis' : 'Lepton #eta', 
+    'fold' : 3
+}
+
+variables['Lepton_eta_abs_50'] = {   
+    'name': 'abs(Lepton_eta[0])',      
+    'range' : (50,0,2.5),  
+    'xaxis' : 'Lepton #eta', 
+    'fold' : 3
+}
+
+variables['Lepton_eta_abs_mix'] = {   
+    'name': 'abs(Lepton_eta[0])',      
+    'range' : ([0.0, 0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5],),  
+    'xaxis' : 'Lepton #eta', 
+    'fold' : 3
+}
 
 # variables['Lepton_pt'] = {   'name': 'Lepton_pt[0]',      
 #                         'range' : (40,0,500),  
@@ -82,8 +93,10 @@ variables['deltaeta_vbs'] = {   'name': 'deltaeta_vbs',
                         'xaxis' : '#Delta#eta VBS jets', 
                         'fold' : 3,
                         'blind': {
-                            "res_sig_mjjincl_ele" :(4,9),
-                            "res_sig_mjjincl_mu" : (4,9),
+                            "boost_sig_mjjincl_ele" :(4,9),
+                            "boost_sig_mjjincl_mu" : (4,9),
+                            "boost_sig_mjjincl_dnnhigh_ele" :(4,9),
+                            "boost_sig_mjjincl_dnnhigh_mu" : (4,9),
                             }
                         }    
 
@@ -127,9 +140,10 @@ variables['mjj_vbs_morebins'] = {   'name': 'mjj_vbs',
                         'xaxis' : 'M_{jj} VBS', 
                         'fold' : 3,
                         'blind' : {
-                            "res_sig_mjjincl_ele" :(1000,4000),
-                            "res_sig_mjjincl_mu" : (1000,4000),
-                            "res_sig_mjjincl_dnn_high_mu" : (1000,4000),
+                            "boost_sig_mjjincl_ele" :(1000,4000),
+                            "boost_sig_mjjincl_mu" : (1000,4000),
+                            "boost_sig_mjjincl_dnnhigh_ele" :(1000,4000),
+                            "boost_sig_mjjincl_dnnhigh_mu" : (1000,4000),
                             }
                          }
 
