@@ -14,13 +14,12 @@ ROOT.gSystem.Load("libHiggsAnalysisCombinedLimit")
 
 from HiggsAnalysis.CombinedLimit.DatacardParser import *
 
-sr='sssf'
-
 ## Style features
 tdrstyle.setTDRStyle()
 
 parser = OptionParser()
 #parser.add_option("-s", "--stat",   dest="stat",          default=False, action="store_true")  # ignore systematic uncertainties to consider statistical uncertainties only
+parser.add_option("-s", "--sr", action="store", type="string", dest="sr", default="sssf")
 
 (options, args) = parser.parse_args()
 options.bin = True # fake that is a binary output, so that we parse shape lines
@@ -29,19 +28,16 @@ options.nuisancesToExclude = ''
 options.verbose = False
 options.stat = False
 
+sr = options.sr
+print('sr : ',sr)
+
 STXSbins=[
-      'QQ2HLNU_FWDH',
-      'QQ2HLNU_PTV_0_75',
-      'QQ2HLNU_PTV_75_150',
-      'QQ2HLNU_PTV_150_250_0J',
-      'QQ2HLNU_PTV_150_250_GE1J',
-      'QQ2HLNU_PTV_GT250',
+    'WH_hww_PTV_LT150','WH_hww_PTV_GT150'
 ]
 
 sampleNames = OrderedDict()
 for cat in STXSbins:
-    if 'QQ2HLNU_' in cat:
-        sampleNames['WH_hww_'+cat.replace('QQ2HLNU_','')] = 0.
+    sampleNames[cat] = 0.
 
 DC = parseCard(file(args[0]), options)
 
@@ -78,6 +74,8 @@ for j,value in sampleNames.items():
     for c in channels:
         #filter chunck of list
         if "Top" in c or "DYtt" in c or "WW" in c or "wh3l_wz" in c or "wh3l_zg" in c or "zh4l_ZZ" in c: continue
+        if 'LT' in q:
+            q='PTV_LE150'
         if q not in c: continue
         overallSignalRate[c] = OrderedDict()
         overallTotalSignal[c] = 0.
@@ -96,6 +94,8 @@ combChannelsToConsider = []
 for j,value in sampleNames.items():
     q=j.split('WH_hww_')[1]
     for k in channels:
+        if 'LT' in q:
+            q='PTV_LE150'
         if q not in k: continue
         if "Top" in k or "DYtt" in k or "WW" in k or "wh3l_wz" in k or "wh3l_zg" in k or "zh4l_ZZ" in k: continue
         if "FWDH" in k: continue
@@ -183,6 +183,6 @@ matrixByCol.Draw("colz text")
 CMS_lumi.CMS_lumi(canvas, 4, iPos)
 
 ROOT.gPad.RedrawAxis()
-canvas.SaveAs("confusionmatrix_WH3l_bycol_2017_%s_1p1.png" %sr)
+canvas.SaveAs("confusionmatrix_WH3l_bycol_2017_%s_1p5.png" %sr)
 
 a = raw_input()

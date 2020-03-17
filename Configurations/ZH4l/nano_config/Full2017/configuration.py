@@ -2,7 +2,7 @@
 treeName= 'Events'
 
 
-tag = '16Nov19_2017_events'
+tag = '31Jan20_allvar17'
 
 
 # used by mkShape to define output directory for root files
@@ -30,11 +30,11 @@ lumi = 41.5
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot'+tag
+outputDirPlots = 'plot_blind'+tag
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards_new'+tag
+outputDirDatacard = 'datacards'+tag
 
 
 # structure file for datacard

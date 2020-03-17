@@ -20,11 +20,11 @@ structure['Fakes']  = {
                   'isData'   : 0 
               }
 
-structure['Fakes_ee']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-              }
-
+#structure['Fakes_ee']  = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0
+#              }
+#
 structure['Fakes_mm']  = {
                   'isSignal' : 0,
                   'isData'   : 0

@@ -162,6 +162,24 @@ float ComputeVars(int entry, int selector){
   case 12: 
     output = TMath::Abs(lep1.Eta()-Wjj.Eta());
     break;
+
+  case 21: //Angular variables Senne
+    output = ljj.DeltaR(MET);
+    break;
+  case 22:
+    output = TMath::Abs(ljj.Eta()-MET.Eta());
+    break;
+  case 31: 
+    output = lep1.DeltaR(MET);
+    break;
+  case 32:
+    output = TMath::Abs(lep1.Eta()-MET.Eta());
+    break;
+  case 33:
+    output = TMath::Abs(lep1.DeltaPhi(MET));
+    break;
+
+
   }
 
   return output;

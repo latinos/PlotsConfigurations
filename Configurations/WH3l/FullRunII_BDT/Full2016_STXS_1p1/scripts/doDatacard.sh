@@ -8,4 +8,5 @@ fi
 
 tag=$(echo "$1" | awk -F '_' '{print $4}')
 
+echo "mkDatacards.py --pycfg=configuration_$tag.py --inputFile=$1"
 mkDatacards.py --pycfg=configuration_$tag.py --inputFile=$1

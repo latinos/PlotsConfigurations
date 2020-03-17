@@ -52,12 +52,7 @@ elif  'cern' in SITE:
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
 
 def makeMCDirectory(var=''):
-    if var:
-        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
-        # return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Summer16/l2tightOR__{var}'.format(var=var)
-    else:
-        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
-        # return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Summer16/l2tightOR'
+    return '/afs/cern.ch/user/s/shoh/public/latino_STXS/WH2l/2016/wwSel'
 
 mcDirectory = makeMCDirectory()
 fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
@@ -193,21 +188,19 @@ signals = []
 
 #signals.append('WH_hww')
 
-if os.path.exists('HTXS_stage1_categories.py'):
-  handle = open('HTXS_stage1_categories.py','r')
-  exec(handle)
-  handle.close()
+samples['WH_hww'] = { 'name'   :
+                      getSampleFiles(makeMCDirectory(),'HWplusJ_HToWW_M125',True,'nanoLatino_')
+                      + getSampleFiles(makeMCDirectory(),'HWminusJ_HToWW_M125',True,'nanoLatino_'),
+                      'weight' : mcCommonWeight,
+                      'suppressNegativeNuisances' :['all'],
+                      'subsamples' : { 
+                        'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==301 || HTXS_stage1_1_cat_pTjet30GeV==302',
+                        'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==303 || HTXS_stage1_1_cat_pTjet30GeV==304 || HTXS_stage1_1_cat_pTjet30GeV==305',
+                        'FWDH'      : 'HTXS_stage1_1_cat_pTjet30GeV==300'
+                      }
+                    }
 
-SigOnly=treeBaseDir+'/Summer16_102X_nAODv5_SigOnly_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/'
-
-for cat,num in HTXSStage1_1Categories.iteritems():
-    if 'QQ2HLNU_' in cat:
-        samples['WH_hww_'+cat.replace('QQ2HLNU_','')] = { 'name'   :
-                                                          nanoGetSampleFiles(SigOnly, 'HWplusJ_HToWW_M125')
-                                                          + nanoGetSampleFiles(SigOnly, 'HWminusJ_HToWW_M125'),
-                                                          'weight' : mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')'
-                                                      }
-        signals.append('WH_hww_'+cat.replace('QQ2HLNU_',''))
+signals.append('WH_hww')
 
 
 ############ H->TauTau ############

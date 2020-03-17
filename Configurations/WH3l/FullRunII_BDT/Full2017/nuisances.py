@@ -32,24 +32,60 @@ HiggsXS = HiggsXSection()
 
 #### Luminosity
 
-nuisances['lumi'] = {
+#### Luminosity
+nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2017',
     'type': 'lnN',
-    'samples': dict((skey, '1.025') for skey in mc if skey not in ['top', 'DY'])
+    'samples': dict((skey, '1.02') for skey in mc if skey not in ['Vg','WZ'])
+}
+
+nuisances['lumi_XYFact'] = {
+    'name': 'lumi_13TeV_XYFact',
+    'type': 'lnN',
+    'samples': dict((skey, '1.008') for skey in mc if skey not in ['Vg','WZ'])
+}
+
+nuisances['lumi_LScale'] = {
+    'name': 'lumi_13TeV_LSCale',
+    'type': 'lnN',
+    'samples': dict((skey, '1.003') for skey in mc if skey not in ['Vg','WZ'])
+}
+
+nuisances['lumi_BBDefl'] = {
+    'name': 'lumi_13TeV_BBDefl',
+    'type': 'lnN',
+    'samples': dict((skey, '1.004') for skey in mc if skey not in ['Vg','WZ'])
+}
+
+nuisances['lumi_DynBeta'] = {
+    'name': 'lumi_13TeV_DynBeta',
+    'type': 'lnN',
+    'samples': dict((skey, '1.005') for skey in mc if skey not in ['Vg','WZ'])
+}
+
+nuisances['lumi_CurrCalib'] = {
+    'name': 'lumi_13TeV_CurrCalib',
+    'type': 'lnN',
+    'samples': dict((skey, '1.003') for skey in mc if skey not in ['Vg','WZ'])
+}
+
+nuisances['lumi_Ghosts'] = {
+    'name': 'lumi_13TeV_Ghosts',
+    'type': 'lnN',
+    'samples': dict((skey, '1.001') for skey in mc if skey not in ['Vg','WZ'])
 }
 
 #### FAKES
 
-nuisances['fake_syst_wh3l']  = {
-               'name'  : 'fake_syst_2017',
+nuisances['fake_syst']  = {
+               'name'  : 'CMS_fake_syst',
                'type'  : 'lnN',
                'samples'  : {
                              'Fake' : '1.30',
                              },
-}
-
+               }
 nuisances['fake_ele']  = {
-                'name'  : 'fake_ele_2017',
+                'name'  : 'CMS_fake_e_2017',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -58,7 +94,7 @@ nuisances['fake_ele']  = {
 }
 
 nuisances['fake_ele_stat']  = {
-                'name'  : 'fake_ele_stat_2017',
+                'name'  : 'CMS_fake_stat_e_2017',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -67,7 +103,7 @@ nuisances['fake_ele_stat']  = {
 }
 
 nuisances['fake_mu']  = {
-                'name'  : 'fake_mu_2017',
+                'name'  : 'CMS_fake_m_2017',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -76,7 +112,7 @@ nuisances['fake_mu']  = {
 }
 
 nuisances['fake_mu_stat']  = {
-                'name'  : 'fake_mu_stat_2017',
+                'name'  : 'CMS_fake_stat_m_2017',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
@@ -106,7 +142,7 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
 
 trig_syst = ['((TriggerEffWeight_3l_u)/(TriggerEffWeight_3l))*(TriggerEffWeight_3l>0.02) + (TriggerEffWeight_3l<=0.02)', '(TriggerEffWeight_3l_d)/(TriggerEffWeight_3l)']
 
-nuisances['trigg_wh3l']  = {
+nuisances['trigg']  = {
     'name': 'CMS_eff_hwwtrigger_2017',
     'kind': 'weight',
     'type': 'shape',
@@ -184,34 +220,33 @@ nuisances['met'] = {
     'AsLnN': '1'
 }
 
+
 ##### PS and UE --> NO AVAILABLE FOR VH2j! 
-nuisances['PS_wh3l']  = {
-    'name'  : 'PS_wh3l',
-    'kind'  : 'tree',
-    'type'  : 'shape',
-    'samples'  : {
-       'WH_hww' : ['1.037','1.'],
-       'WH_htt' : ['1.037','1.'],
-     },
-    'folderUp': makeMCDirectory('PS'),
-    'folderDown': makeMCDirectory(),
-    'AsLnN'      : '1',
-    'synchronized': False
+nuisances['PS_whss']  = {
+                'name'  : 'PS_whss',
+                'skipCMS' : 1,
+                'type'  : 'lnN',
+                'samples'  : {
+                   'WH_hww'   : '1.037',
+                   'ZH_hww'   : '1.037',
+                   'H_htt'    : '1.037',
+                   'ggZH_hww'   : '1.037',
+              #     'ZH_htt'   : '1.037',
+                },
 }
 
-nuisances['UE_wh3l']  = {
-    'name'  : 'UE_wh3l',
-    'kind'  : 'tree',
-    'type'  : 'shape',
-    'samples'  : {
-       'WH_hww' : ['1.01','1.'],
-       'WH_htt' : ['1.01','1.'],
-     },
-    'folderUp': makeMCDirectory('UEup'),
-    'folderDown': makeMCDirectory('UEdo'),
-    'AsLnN'      : '1',
-    'synchronized': False
-}
+nuisances['UE_whss']  = {
+                'name'  : 'UE_whss',
+                'skipCMS' : 1,
+                'type'  : 'lnN',
+                'samples'  : {
+                   'WH_hww'   : '1.010',
+                   'ZH_hww'   : '1.010',
+                   'H_htt'    : '1.010',
+                   'ggZH_hww'   : '1.010',
+ #                  'ZH_htt'   : '1.010',
+               },
+                }
 
 ###### pdf uncertainties
 
@@ -243,8 +278,8 @@ nuisances['pdf_Higgs_qqbar_ACCEPT_wh3l']  = {
 # [0] is muR=0.50000E+00 muF=0.50000E+00
 # [8] is muR=0.20000E+01 muF=0.20000E+01
 
-nuisances['QCDscale_WH']  = {
-               'name'  : 'QCDscale_WH',
+nuisances['QCDscale_VH']  = {
+               'name'  : 'QCDscale_VH',
                'samples'  : {
                    'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
                    'WH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
@@ -289,32 +324,19 @@ nuisances['Zg3lnorm']  = {
                 ]
               }
 
-nuisances['wz3lnorm']  = {
-               'name'  : 'cms_hww_wz3lnorm',
+nuisances['WZ3lnorm']  = {
+               'name'  : 'CMS_hww_WZ3lnorm',
                'samples'  : {
-                   'wz' : '1.00',
+                   'WZ' : '1.00',
                    },
-               'type'  : 'rateparam',
+               'type'  : 'rateParam',
                'cuts'  : [
-                 'wh3l_wz_13tev',
-                 'wh3l_13tev_ossf',
-                 'wh3l_13tev_sssf',
-                 'wh3l_zg_13tev',
+                 'wh3l_zg_13TeV',
+                 'wh3l_13TeV_ossf',
+                 'wh3l_13TeV_sssf',
+                 'wh3l_wz_13TeV',
                 ]
               }
-
-# nuisances['wz3lnorm']  = {
-               # 'name'  : 'cms_hww_wz3lnorm',
-               # 'samples'  : {
-                   # 'wz' : '1.00',
-                   # },
-               # 'type'  : 'rateparam',
-               # 'cuts'  : [
-                 # 'wh3l_wz_13tev',
-                 # 'wh3l_13tev_ossf',
-                 # 'wh3l_13tev_sssf',
-                # ]
-              # }
 
 
 for n in nuisances.values():

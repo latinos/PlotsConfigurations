@@ -2,13 +2,10 @@
 
 supercut = '   mll>12 \
             && Lepton_pt[0]>25 \
-            && Lepton_pt[1]>10 \
-            && (abs(Lepton_pdgId[0])==13 || Lepton_pt[0]>25) \
-            && (abs(Lepton_pdgId[1])==13 || Lepton_pt[1]>13) \
+            && Lepton_pt[1]>13 \
             && (nLepton>=2 && Alt$(Lepton_pt[2],0)<10) \
             && abs(Lepton_eta[0])<2.5 && abs(Lepton_eta[1])<2.5 \
             && ptll>30 \
-            && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) \
             && PuppiMET_pt > 20 \
             && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
            '
@@ -39,16 +36,16 @@ cuts['hww2l2v_13TeV'] = {
        'of_pth450_650'                    : ' pTWW > 450 && pTWW <= 650 && ( zeroJet || oneJet || ( multiJet &&  mjj < 350 && (mjj<65 || mjj>105) ) )',
        'of_pthGT650'                      : ' pTWW > 650 && ( zeroJet || oneJet || ( multiJet &&  mjj < 350 && (mjj<65 || mjj>105) ) )', 
        # mjj < 200 && VH veto && pTWW < 200
-       'of2j_pth0_60'                     : ' multiJet && (mjj<=60 || mjj>120) && mjj<200 && pTWW <= 60 ',
-       'of2j_pth60_120'                   : ' multiJet && (mjj<=60 || mjj>120) && mjj<200 && pTWW > 60  && pTWW <= 120 ',
-       'of2j_pth120_200'                  : ' multiJet && (mjj<=60 || mjj>120) && mjj<200 && pTWW > 120 && pTWW <= 200 ',
+       'of2j_pth0_60'                     : ' multiJet && (mjj<65 || mjj>105) && mjj<350 && pTWW <= 60 ',
+       'of2j_pth60_120'                   : ' multiJet && (mjj<65 || mjj>105) && mjj<350 && pTWW > 60  && pTWW <= 120 ',
+       'of2j_pth120_200'                  : ' multiJet && (mjj<65 || mjj>105) && mjj<350 && pTWW > 120 && pTWW <= 200 ',
        # 200 < mjj < 350
-       'of2j_vbflike_mjj200_350'          : 'multiJet && mjj>200 && mjj<350 && vbflike_mjjlow',
-       'of2j_gghlike_mjj200_350'          : 'multiJet && mjj>200 && mjj<350 && gghlike_mjjlow',
-       'of2j_toplike_mjj200_350'          : 'multiJet && mjj>200 && mjj<350 && toplike_mjjlow',
-       'of2j_wwlike_mjj200_350'           : 'multiJet && mjj>200 && mjj<350 && wwlike_mjjlow',
+       #'of2j_vbflike_mjj200_350'          : 'multiJet && mjj>200 && mjj<350 && vbflike_mjjlow',
+       #'of2j_gghlike_mjj200_350'          : 'multiJet && mjj>200 && mjj<350 && gghlike_mjjlow',
+       #'of2j_toplike_mjj200_350'          : 'multiJet && mjj>200 && mjj<350 && toplike_mjjlow',
+       #'of2j_wwlike_mjj200_350'           : 'multiJet && mjj>200 && mjj<350 && wwlike_mjjlow',
        # VH
-       'of2j_mjj65_105' : ' multiJet && mjj>65 && mjj<=105 && drll < 2. && detajj < 3.5',
+       'of2j_mjj65_105' : ' multiJet && mjj>=65 && mjj<=105 && drll < 2. && detajj < 3.5',
    }
 }
 
@@ -60,9 +57,9 @@ cuts['hww2l2v_13TeV_top']  = {
    'categories' : {
       '0j' : 'zeroJet',
       '1j' : 'oneJet',
-      '2j' : 'multiJet && mjj<200 && (mjj<=65 || mjj>105)',
-      '2j_vbf' : 'multiJet && mjj>200',
-      '2j_vh' : 'multiJet && mjj>65 && mjj<105'
+      '2j' : 'multiJet && mjj<350 && (mjj<=65 || mjj>105)',
+      '2j_vbf' : 'multiJet && mjj>350',
+      '2j_vh' : 'multiJet && mjj>=65 && mjj<=105'
    }
 }
 
@@ -73,8 +70,9 @@ cuts['hww2l2v_13TeV_dytt']  = {
    'categories' : { 
       '0j' : 'zeroJet',
       '1j' : 'oneJet',
-      '2j' : 'multiJet && mjj<200 && (mjj<=65 || mjj>105)',
-      '2j_vbf' : 'multiJet && mjj>200',
-      '2j_vh' : 'multiJet && mjj>65 && mjj<105'
+      '2j' : 'multiJet && mjj<350 && (mjj<=65 || mjj>105)',
+      '2j_vbf' : 'multiJet && mjj>350',
+      '2j_vh' : 'multiJet && mjj>=65 && mjj<=105'
    }
 }
+
