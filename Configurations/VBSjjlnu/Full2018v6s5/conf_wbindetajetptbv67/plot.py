@@ -170,7 +170,23 @@ plot['top'] = {
                  'color': colors['kAzure']-1,
                  'isSignal' : 0,
                  'isData'   : 0, 
-                 'scale'    : 1.0 #1.08
+                 'scale'    : 1.0,
+                  'cuts': {
+                      # mu 1.057095262323634
+                      # ele 1.168960624334871 
+                      'boost_sig_mjjincl_ele': 1.168960624334871,
+                      'boost_sig_mjjincl_dnnhigh_ele': 1.168960624334871,
+                      'boost_topcr_mjjincl_ele': 1.168960624334871,
+                      'boost_topcr_mjjincl_dnnhigh_ele': 1.168960624334871,
+                      'boost_wjetcr_mjjincl_ele': 1.168960624334871,
+                      'boost_wjetcr_mjjincl_dnnhigh_ele': 1.168960624334871,
+                      'boost_sig_mjjincl_mu': 1.057095262323634,
+                      'boost_sig_mjjincl_dnnhigh_mu': 1.057095262323634,
+                      'boost_topcr_mjjincl_mu': 1.057095262323634,
+                      'boost_topcr_mjjincl_dnnhigh_mu': 1.057095262323634,
+                      'boost_wjetcr_mjjincl_mu': 1.057095262323634,
+                      'boost_wjetcr_mjjincl_dnnhigh_mu': 1.057095262323634,
+                  }
                  }
 
 
@@ -200,8 +216,23 @@ plot['Wjets']  = {
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0   ,
+                  'cuts': {
+                      # mu 0.67927
+                      # ele 0.85945
+                      'boost_sig_mjjincl_ele': 0.85945,
+                      'boost_sig_mjjincl_dnnhigh_ele': 0.85945,
+                      'boost_topcr_mjjincl_ele': 0.85945,
+                      'boost_topcr_mjjincl_dnnhigh_ele': 0.85945,
+                      'boost_wjetcr_mjjincl_ele': 0.85945,
+                      'boost_wjetcr_mjjincl_dnnhigh_ele': 0.85945,
+                      'boost_sig_mjjincl_mu': 0.67927,
+                      'boost_sig_mjjincl_dnnhigh_mu': 0.67927,
+                      'boost_topcr_mjjincl_mu': 0.67927,
+                      'boost_topcr_mjjincl_dnnhigh_mu': 0.67927,
+                      'boost_wjetcr_mjjincl_mu': 0.67927,
+                      'boost_wjetcr_mjjincl_dnnhigh_mu': 0.67927,
+                  }
               }
-
 
 plot['VBS']  = {
                   'color': colors["kCyan"]+1, 
