@@ -121,7 +121,7 @@ samples['DY'] = {
           + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-2500toInf')
           ,
     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*' + DY_photon_filter , ###### ADD ewkNLO!!!
-    'FilesPerJob' : 4,
+    'FilesPerJob' : 3,
 }
 
 addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-100to200',ptllDYW_LO) 
@@ -159,7 +159,7 @@ samples['top'] = {
                        + nanoGetSampleFiles(directory_bkg,'TTZjets') 
                        +  nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu'),
             'weight' :  XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch +"* Top_pTrw" ,
-            'FilesPerJob' : 4,
+            'FilesPerJob' : 2,
 }
 
 samples['Wjets'] = { 'name' :   
@@ -173,13 +173,17 @@ samples['Wjets'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
+
 				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-				'FilesPerJob' : 4,
-		   }
+				'FilesPerJob' : 2,
+     
+		}
 
 # Fix Wjets binned + LO 
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO', 'LHE_HT < 100')
-#addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT70_100', 'ewknloW') #######ADD ME
+addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO', '(LHE_HT < 70)*ewknloW')
+############
+# N.B XS correction! It was 1.0 in the sampleCrossSection in postprocessing --> this should be fixed
+addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT70_100', '(1292.0)') #######ADD ME ewknloW
 addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT100_200', 'ewknloW')
 addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT200_400', 'ewknloW')
 addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT400_600', 'ewknloW')
@@ -201,7 +205,7 @@ samples['VV']  = { 'name' :
                nanoGetSampleFiles(directory_bkg,'WpToLNu_ZTo2J_QCD',) +
                nanoGetSampleFiles(directory_bkg,'ZTo2L_ZTo2J_QCD',  ) ,
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch, # TO BE CORRECTED: + '* ewknloW',
-        'FilesPerJob' : 6,
+        'FilesPerJob' : 5,
 }
 
 ############ VVV ############
@@ -212,7 +216,7 @@ samples['VVV']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'ZZZ')
                                 + nanoGetSampleFiles(directory_bkg,'WWW'),
                                 #+ nanoGetSampleFiles(directory,'WWG'), #should this be included? or is it already taken into account in the WW sample?
                     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch  ,
-                    'FilesPerJob' : 5,
+                    'FilesPerJob' : 8,
                   }
 
  ############## VBF-V ########
@@ -220,7 +224,7 @@ samples['VVV']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'ZZZ')
 samples['VBF-V']  = {  'name'   :  nanoGetSampleFiles(directory_bkg,'WLNuJJ_EWK') +
                                   nanoGetSampleFiles(directory_bkg,'EWKZ2Jets_ZToLL_M-50'),
                     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch ,
-                    'FilesPerJob' : 6
+                    'FilesPerJob' : 8
                   }
 
 
@@ -240,7 +244,7 @@ samples['VBS']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J',) +
                nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J',  ) ,
        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-       'FilesPerJob' : 5,
+       'FilesPerJob' : 7,
 }
 
 #fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP + '_mu10_ele35'
@@ -250,10 +254,10 @@ fakeW = 'fakeW_ele_mvaFall17V1Iso_WP90_mu_cut_Tight_HWWW_mu10_ele35'
 #### Fakes
 samples['Fake'] = {
   'name': [],
-  'weight': METFilter_DATA+'*'+fakeW,
+  'weight': METFilter_DATA+'*'+fakeW+'* fake_weight_corrected',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 20
+  'FilesPerJob': 25
 }
 
 for _, sd in DataRun:
@@ -272,7 +276,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'weight' : METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],
-                       'FilesPerJob' : 20,
+                       'FilesPerJob' : 25,
                   }
 
 for Run in DataRun :
@@ -282,7 +286,7 @@ for Run in DataRun :
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
+
 # samples = {
-#   "top": samples["top"], 
-#   # "Fake": samples["Fake"]
+#   "Fake": samples["Fake"]
 # }

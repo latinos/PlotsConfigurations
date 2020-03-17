@@ -3,15 +3,16 @@
 
 # # name of samples here must match keys in samples.py 
 
-mc =["Wjets", "DY", "top", "VV", "VVV", "VBF-V", "top", "VBS"]
+mc =["DY", "top", "VV", "VVV", "VBF-V", "top", "VBS", "Wjets"]
 
 phase_spaces_res = [
-   'res_sig_mjjincl','res_sig_mjjlow','res_sig_mjjhigh',
-   'res_topcr_mjjincl','res_topcr_mjjlow','res_topcr_mjjhigh',
+   'res_sig_mjjincl','res_sig_mjjlow','res_sig_mjjhigh', 'res_sig_mjjincl_dnnhigh',
+   'res_topcr_mjjincl','res_topcr_mjjlow','res_topcr_mjjhigh','res_topcr_mjjincl_dnnhigh',
    'res_wjetcr_mjjincl','res_wjetcr_mjjlow','res_wjetcr_mjjhigh',
    'res_sig_mjjincl','res_sig_mjjlow','res_sig_mjjhigh',
    'res_topcr_mjjincl','res_topcr_mjjlow','res_topcr_mjjhigh',
    'res_wjetcr_mjjincl','res_wjetcr_mjjlow','res_wjetcr_mjjhigh',
+   'res_wjetcr_mjjincl_dnnhigh',
 ]
 phase_spaces_boost = [
    'boost_sig_mjjincl','boost_sig_mjjlow','boost_sig_mjjhigh',
@@ -21,17 +22,18 @@ phase_spaces_boost = [
    'boost_topcr_mjjincl','boost_topcr_mjjlow','boost_topcr_mjjhigh',
    'boost_wjetcr_mjjincl','boost_wjetcr_mjjlow','boost_wjetcr_mjjhigh'
 ]
-phase_spaces_tot = []
-phase_spaces_tot_ele = []
-phase_spaces_tot_mu = []
-for ph in phase_spaces_res: 
-   phase_spaces_tot_ele.append(ph+"_ele")
-   phase_spaces_tot_mu.append(ph+"_mu")
 
-for ph in phase_spaces_boost: 
-   phase_spaces_tot_ele.append(ph+"_ele")
-   phase_spaces_tot_mu.append(ph+"_mu")
+phase_spaces_res_ele = [ ph+"_ele" for ph in phase_spaces_res]
+phase_spaces_res_mu = [ ph+"_mu" for ph in phase_spaces_res]
+phase_spaces_boost_ele = [ ph+"_ele" for ph in phase_spaces_boost]
+phase_spaces_boost_mu = [ ph+"_mu" for ph in phase_spaces_boost]
 
+phase_spaces_tot_ele = phase_spaces_res_ele + phase_spaces_boost_ele
+phase_spaces_tot_mu = phase_spaces_res_mu + phase_spaces_boost_mu
+phase_spaces_tot_res = phase_spaces_res_ele + phase_spaces_res_mu
+phase_spaces_tot_boost = phase_spaces_boost_ele + phase_spaces_boost_mu
+
+phase_spaces_dict = {"boost": phase_spaces_boost, "res": phase_spaces_res}
 phase_spaces_tot = phase_spaces_tot_ele + phase_spaces_tot_mu
 
 
@@ -42,25 +44,25 @@ phase_spaces_tot = phase_spaces_tot_ele + phase_spaces_tot_mu
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2018',
     'type': 'lnN',
-    'samples': dict((skey, '1.015') for skey in mc if skey not in ['Wjets', 'top'])
+    'samples': dict((skey, '1.015') for skey in mc if skey not in ['top', 'Wjets'])
 }
 
 nuisances['lumi_XYFact'] = {
     'name': 'lumi_13TeV_XYFact',
     'type': 'lnN',
-    'samples': dict((skey, '1.02') for skey in mc if skey not in ['Wjets', 'top'])
+    'samples': dict((skey, '1.02') for skey in mc if skey not in ['top','Wjets'])
 }
 
 nuisances['lumi_LScale'] = {
     'name': 'lumi_13TeV_LSCale',
     'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['Wjets', 'top'])
+    'samples': dict((skey, '1.002') for skey in mc if skey not in ['top','Wjets'])
 }
 
 nuisances['lumi_CurrCalib'] = {
     'name': 'lumi_13TeV_CurrCalib',
     'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['Wjets', 'top'])
+    'samples': dict((skey, '1.002') for skey in mc if skey not in ['top','Wjets'])
 }
 
 
@@ -101,8 +103,7 @@ nuisances['fake_syst']  = {
 #                 'kind'  : 'weight',
 #                 'type'  : 'shape',
 #                 'samples'  : {
-#                               'Fake_em'     : [ fakeW_EleUp , fakeW_EleDown ],
-#                               'Fake_me'     : [ fakeW_EleUp , fakeW_EleDown ],
+#                               'Fake'     : [ fakeW_EleUp , fakeW_EleDown ],
 #                              },
 # }
 
@@ -111,8 +112,7 @@ nuisances['fake_syst']  = {
 #                 'kind'  : 'weight',
 #                 'type'  : 'shape',
 #                 'samples'  : {
-#                               'Fake_em'      : [ fakeW_statEleUp , fakeW_statEleDown ],
-#                               'Fake_me'      : [ fakeW_statEleUp , fakeW_statEleDown ],
+#                               'Fake'      : [ fakeW_statEleUp , fakeW_statEleDown ],
 #                              },
 # }
 
@@ -121,8 +121,7 @@ nuisances['fake_syst']  = {
 #                 'kind'  : 'weight',
 #                 'type'  : 'shape',
 #                 'samples'  : {
-#                               'Fake_em'     : [ fakeW_MuUp , fakeW_MuDown ],
-#                               'Fake_me'     : [ fakeW_MuUp , fakeW_MuDown ],
+#                               'Fake'     : [ fakeW_MuUp , fakeW_MuDown ],
 #                              },
 # }
 
@@ -132,8 +131,7 @@ nuisances['fake_syst']  = {
 #                 'kind'  : 'weight',
 #                 'type'  : 'shape',
 #                 'samples'  : {
-#                               'Fake_em'     : [ fakeW_statMuUp , fakeW_statMuDown ],
-#                               'Fake_me'     : [ fakeW_statMuUp , fakeW_statMuDown ],
+#                               'Fake'     : [ fakeW_statMuUp , fakeW_statMuDown ],
 #                              },
 # }
 
@@ -164,15 +162,6 @@ nuisances['trigg']  = {
                 'samples'  :   dict((skey, trig_syst) for skey in mc)
 }
 
-# # Prefire correction
-prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
-
-nuisances['prefire']  = {
-                'name'  : 'CMS_eff_prefiring_2018',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : dict((skey, trig_syst) for skey in mc)
-}
 
 # ##### Electron Efficiency and energy scale
 
@@ -193,6 +182,7 @@ nuisances['eff_e']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  :   dict((skey, id_syst_ele) for skey in mc),
+                'cuts': phase_spaces_tot_ele
 }
 
 nuisances['electronpt']  = {
@@ -202,7 +192,7 @@ nuisances['electronpt']  = {
                 'samples'  : dict((skey, ['1', '1']) for skey in mc),
                 'folderUp'   :  directory_bkg +"_ElepTup",
                 'folderDown' : directory_bkg +"_ElepTdo",
-                'AsLnN': '1'
+                'cuts': phase_spaces_tot_ele
 }
 
 
@@ -214,7 +204,8 @@ nuisances['eff_m']  = {
                 'name'  : 'CMS_eff_m_2018',
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'samples'  : dict((skey, id_syst_mu) for skey in mc)
+                'samples'  : dict((skey, id_syst_mu) for skey in mc),
+                'cuts': phase_spaces_tot_mu
 }
 
 nuisances['muonpt']  = {
@@ -224,6 +215,7 @@ nuisances['muonpt']  = {
                 'samples'  : dict((skey, ['1', '1']) for skey in mc),
                 'folderUp'   : directory_bkg +"_MupTup",
                 'folderDown' : directory_bkg +"_MupTdo",
+                'cuts': phase_spaces_tot_mu
 }
 
 
@@ -268,6 +260,21 @@ nuisances['met']  = {
                 'folderUp'   : directory_bkg +"_METup",
                 'folderDown' : directory_bkg +"_METdo",
 }
+
+######################
+# Theory nuisance
+
+nuisances['QCD_scale_Wjets'] = {
+     'name'  : 'QCDscale_wjets',
+     'kind'  : 'weight',
+     'type'  : 'shape',
+     'samples'  :   {
+         "Wjets" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
+     }
+}
+##################################
+#### Custom nuisances
+
 
 
 # if useEmbeddedDY: del nuisances['prefire']['samples']['DY']
@@ -351,43 +358,16 @@ nuisances['Top_norm']  = {
                'cuts'  : phase_spaces_tot
               }
 
-nuisances['Wjets_norm_e_boos']  = {
-               'name'  : 'CMS_Wjets_norm_e_boos_2018',
-               'samples'  : {
-                   'Wjets' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [f+"_ele" for f in phase_spaces_boost]
-              }
 
-
-nuisances['Wjets_norm_e_res']  = {
-               'name'  : 'CMS_Wjets_norm_e_res_2018',
-               'samples'  : {
-                   'Wjets' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [f+"_ele" for f in phase_spaces_res]
-              }
-
-nuisances['Wjets_norm_mu_boos']  = {
-               'name'  : 'CMS_Wjets_norm_mu_boos_2018',
-               'samples'  : {
-                   'Wjets' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [f+"_mu" for f in phase_spaces_boost]
-              }
-
-
-nuisances['Wjets_norm_mu_res']  = {
-               'name'  : 'CMS_Wjets_norm_mu_res_2018',
-               'samples'  : {
-                   'Wjets' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [f+"_mu" for f in phase_spaces_res]
-              }
+# for wjbin in Wjets_lptbins:
+#     for fl in ["ele", "mu"]:
+#         for phs in ["res", "boost"]:
+#             nuisances["{}_norm_{}_{}_2018".format(wjbin, fl, phs )] = {
+#                 'name'  : 'CMS{}_norm_{}_{}_2018'.format(wjbin, fl, phs),
+#                 'samples'  : { wjbin: '1.00' },
+#                 'type'  : 'rateParam',
+#                 'cuts'  : [f+"_"+fl for f in phase_spaces_dict[phs]]
+#             }
 
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
