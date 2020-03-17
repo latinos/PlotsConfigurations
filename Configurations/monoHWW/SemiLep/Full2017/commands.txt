@@ -16,3 +16,6 @@ mkPlot.py --pycfg=configurationNoData.py --inputFile=rootFileNoData/plots_2HDMaS
 
 # End all jobs
 for j in $(qselect -u $USER);do timeout 3 qdel -a $j;done
+
+# Monitor 
+watch -n 5 'qstat -u svanputt | grep svanputt | wc -l; qstat -u svanputt | grep svanputt | grep R | wc -l; qstat -u svanputt | grep svanputt | grep Q | wc -l'

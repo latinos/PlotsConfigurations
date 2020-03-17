@@ -33,7 +33,7 @@ mcProduction = 'Fall2017_102X_nAODv4_Full2017v5'
 
 dataReco = 'Run2017_102X_nAODv4_Full2017v5'
 
-mcSteps = 'MCl1loose2017v5__MCCorr2017v5__Semilep2017__MHSemiLepVars'
+mcSteps = 'MCl1loose2017v5__MCCorr2017v5__Semilep2017__MHSemiLepVars__MHSemiLepBDT_2HDMa'
 
 dataSteps = 'DATAl1loose2017v5__Semilep2017'
 
