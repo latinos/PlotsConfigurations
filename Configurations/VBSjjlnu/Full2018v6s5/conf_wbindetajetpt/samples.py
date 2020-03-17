@@ -267,7 +267,7 @@ fakeW = 'fakeW_ele_mvaFall17V1Iso_WP90_mu_cut_Tight_HWWW_mu10_ele35'
 #### Fakes
 samples['Fake'] = {
   'name': [],
-  'weight': METFilter_DATA+'*'+fakeW,
+  'weight': METFilter_DATA+'*'+fakeW+'* fake_weight_corrected',
   'weights': [],
   'isData': ['all'],
   'FilesPerJob': 25
@@ -300,6 +300,6 @@ for Run in DataRun :
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
 
-# samples = {
-#   "Wjets": samples["Wjets"]
-# }
+samples = {
+  "Fake": samples["Fake"]
+}

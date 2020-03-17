@@ -123,18 +123,18 @@ aliases['Top_pTrw'] = {
     'samples': ['top']
 }
 
-# aliases['fake_weight_corrected'] = {
-#     'class': 'FakeWeightCorrector',
-#     'args': ("%s/corrections/fakeweight_correction.root" % conf_folder, 
-#                 "mvaFall17V1Iso_WP90", "fakeW_ele_mvaFall17V1Iso_WP90_mu_cut_Tight_HWWW_mu10_ele35", 
-#                 os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v5/mvaFall17V1Iso_WP90/EleFR_jet35.root",
-#                 os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v5/mvaFall17V1Iso_WP90/ElePR.root"),
-#     'linesToAdd' : [
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         '.L %s/patches/fakeweight_corrector.cc+' % configurations
-#      ],
-#     'samples': ["Fake"]
-# }
+aliases['fake_weight_corrected'] = {
+    'class': 'FakeWeightCorrector',
+    'args': ("%s/corrections/fakeweight_correction_2018.root" % conf_folder, 
+                "mvaFall17V1Iso_WP90", "fakeW_ele_mvaFall17V1Iso_WP90_mu_cut_Tight_HWWW_mu10_ele35", 
+                os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v6/mvaFall17V1IsoWP90/EleFR_jet35.root",
+                os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v6/mvaFall17V1IsoWP90/ElePR.root"),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L %s/patches/fakeweight_corrector.cc+' % configurations
+     ],
+    'samples': ["Fake"]
+}
 
 # PU jet Id SF
 
