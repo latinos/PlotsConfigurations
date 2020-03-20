@@ -41,6 +41,7 @@ eleWP='mvaFall17V1Iso_WP90'
 muWP ='cut_Tight_HWWW'
 
 LepWPCut        = 'LepCut'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP+'*LepWPCutNew' #Cut for new WPs, defined in aliases 
+#LepWPCut        = 'LepCut'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
 LepWPweight     = 'LepSF'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
 
 ################################################
@@ -60,8 +61,10 @@ muWP_new  = 'cut_Tight_HWWW_tthmva_80'
 
 if Nlep == '2' :
   fakeW = 'fakeW2l_ele_'+eleWP_new+'_mu_'+muWP_new
+  #fakeW = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP
 else:
   fakeW = 'fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_'+Nlep+'l'
+  #fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l'
 
 ################################################
 ############### B-Tag  WP ######################
@@ -172,8 +175,6 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toInf'        ,ptllDYW_LO)
 
 ############ Top ############
 
-Top_pTrw = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )'
-
 samples['top'] = {    'name'   :   getSampleFilesNano(directory,'TTTo2L2Nu') 
                                  + getSampleFilesNano(directory,'ST_s-channel') 
                                  + getSampleFilesNano(directory,'ST_t-channel_antitop') 
@@ -184,7 +185,7 @@ samples['top'] = {    'name'   :   getSampleFilesNano(directory,'TTTo2L2Nu')
                      'FilesPerJob' : 5,
                  }
 
-addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
+addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 samples['ttV'] = {    'name'   :   getSampleFilesNano(directory,'TTWJetsToLNu')
                                  + getSampleFilesNano(directory,'TTZjets')
