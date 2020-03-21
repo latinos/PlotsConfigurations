@@ -30,7 +30,7 @@ lumi = 59.74
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
 # outputDirPlots = '~/www/plotCR'
-outputDirPlots = 'plotDY_'+tag
+outputDirPlots = 'plot_'+tag
 
 
 # used by mkDatacards to define output directory for datacards

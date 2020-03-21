@@ -47,7 +47,7 @@ variables['events']  = {   'name': '1',
 # #leptons
 
 variables['Lepton_eta_abs'] = {   'name': 'abs(Lepton_eta[0])',      
-                        'range' : (30,0,3),  
+                        'range' : (40,0,3),  
                         'xaxis' : 'Lepton #eta', 
                         'fold' : 3
                         }
@@ -104,11 +104,11 @@ variables["deta_jetpt_CR"] = {
 }
 
 # #MET
-# variables['PuppiMET'] = {   'name': 'PuppiMET_pt',      
-#                         'range' : (30,0,300),  
-#                         'xaxis' : 'PuppiMET_pt', 
-#                         'fold' : 3
-#                         }
+variables['PuppiMET'] = {   'name': 'PuppiMET_pt',      
+                        'range' : (30,0,300),  
+                        'xaxis' : 'PuppiMET_pt', 
+                        'fold' : 3
+                        }
 
 
 # VBS vars
@@ -118,6 +118,7 @@ variables['mjj_vbs_morebins'] = {   'name': 'mjj_vbs',
                         'fold' : 3,
                         'blind' : {
                             "res_sig_mjjincl_ele" :(1000,4000),
+                            "res_sig_mjjincl_ele_cuteta" :(1000,4000),
                             "res_sig_mjjincl_mu" : (1000,4000),
                             "res_sig_mjjincl_dnnhigh_mu" : (1000,4000),
                             "res_sig_mjjincl_dnnhigh_mu" : (1000,4000),

@@ -36,7 +36,7 @@ Nlep='2'
 ############### Lepton WP ######################
 ################################################
 
-eleWP='mvaFall17V2Iso_WP90' # FIXME (dario) should we change this to v1 ?
+eleWP='mvaFall17V1Iso_WP90' 
 muWP='cut_Tight_HWWW'
 
 LepWPCut        = 'LepCut'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
@@ -263,21 +263,21 @@ samples['VVV']  = {  'name'   :   getSampleFiles(directory,'ZZZ',False,'nanoLati
 #                         samples['Fake_mm']['name'].append(iFile)
 #                         samples['Fake_mm']['weights'].append(DataTrig[DataSet])
 
-#Not split Fake (dario)
-samples['Fake']  = {   'name': [ ] ,
-                         'weight' : METFilter_DATA+'*'+fakeW,              #   weight/cut 
-                         'weights' : [ ] ,
-                         'isData': ['all'],
-                         'FilesPerJob' : 20 ,
-                      }
+# #Not split Fake (dario)
+# samples['Fake']  = {   'name': [ ] ,
+#                          'weight' : METFilter_DATA+'*'+fakeW,              #   weight/cut 
+#                          'weights' : [ ] ,
+#                          'isData': ['all'],
+#                          'FilesPerJob' : 20 ,
+#                       }
 
-for Run in DataRun :
-        directory = treeBaseDir+'Run2018_102X_nAODv6_Full2018v6/DATAl1loose2018v6__l2loose__fakeW/'
-        for DataSet in DataSets :
-                FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
-                for iFile in FileTarget:
-                        samples['Fake']['name'].append(iFile)
-                        samples['Fake']['weights'].append(DataTrig[DataSet])
+# for Run in DataRun :
+#         directory = treeBaseDir+'Run2018_102X_nAODv6_Full2018v6/DATAl1loose2018v6__l2loose__fakeW/'
+#         for DataSet in DataSets :
+#                 FileTarget = getSampleFiles(directory,DataSet+'_'+Run[1],True,'nanoLatino_')
+#                 for iFile in FileTarget:
+#                         samples['Fake']['name'].append(iFile)
+#                         samples['Fake']['weights'].append(DataTrig[DataSet])
 
 ###########################################
 ################## DATA ###################

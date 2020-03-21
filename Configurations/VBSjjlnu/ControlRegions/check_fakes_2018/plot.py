@@ -57,12 +57,12 @@ groupPlot['VgS']  = {
                   'samples'  : ['VgS']
               }
 
-groupPlot['Fake']  = {  
-                  'nameHR' : 'Non-prompt',
-                  'isSignal' : 0,
-                  'color': 921,    # kGray + 1
-                  'samples'  : ['Fake']
-              }
+# groupPlot['Fake']  = {  
+#                   'nameHR' : 'Non-prompt',
+#                   'isSignal' : 0,
+#                   'color': 921,    # kGray + 1
+#                   'samples'  : ['Fake']
+#               }
 
 
 '''
@@ -102,12 +102,12 @@ plot['DY']  = {
 
               }
 
-plot['Fake']  = {  
-                  'color': 921,    # kGray + 1
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0                  
-              }
+# plot['Fake']  = {  
+#                   'color': 921,    # kGray + 1
+#                   'isSignal' : 0,
+#                   'isData'   : 0,
+#                   'scale'    : 1.0                  
+#               }
 
 
 plot['top'] = {   

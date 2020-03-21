@@ -38,16 +38,36 @@ variables['mtw2']  = {   'name': 'mtw2',
                         }
 
 variables['pt1']  = {   'name': 'Lepton_pt[0]',     
-                        'range' : (25,0,200),   
+                        'range' :(40,0,500),   
                         'xaxis' : 'p_{T} 1st lep',
                         'fold'  : 3                         
                         }
 
 variables['pt2']  = {   'name': 'Lepton_pt[1]',     
-                        'range' : (25,0,200),   
+                        'range' : (40,0,500),   
                         'xaxis' : 'p_{T} 2nd lep',
                         'fold'  : 3                         
                         }
+
+
+variables['pt+']  = {   'name': '(Lepton_pdgId[0]>0)*(Lepton_pt[0]) + (Lepton_pdgId[1]>0)*(Lepton_pt[1])',     
+                        'range' :(40,0,500),   
+                        'xaxis' : 'p_{T} lep+',
+                        'fold'  : 3                         
+                        }
+
+variables['pt-']  = {   'name': '(Lepton_pdgId[0]<0)*(Lepton_pt[0]) + (Lepton_pdgId[1]<0)*(Lepton_pt[1])',     
+                        'range' : (40,0,500),   
+                        'xaxis' : 'p_{T} lep-',
+                        'fold'  : 3                         
+                        }
+
+variables['ptll']  = {   'name': 'ptll',     
+                        'range' : (40,0,500),   
+                        'xaxis' : 'p_{T}ll',
+                        'fold'  : 3                         
+                        }
+
 
 variables['eta1']  = {  'name': 'Lepton_eta[0]',     
                         'range' : (30,-3,3),   
