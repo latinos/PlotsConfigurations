@@ -15,6 +15,16 @@ mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2018v6s5/mva/'
 models_path = '/eos/home-d/dmapelli/public/latino/Full2018v6s5/'
 
+# aliases['DNNoutput_boosted_v67'] = {
+#     'class': 'MVAReaderBoosted_v67',
+#     'args': ( models_path +'boos_sig_mjjincl/models/v67/', False, 0),
+#     'linesToAdd':[
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         'gSystem->Load("libDNNEvaluator.so")',
+#         '.L ' + mva_reader_path + 'mva_reader_boosted_v67.cc+', 
+#     ],
+# }
+
 # aliases['DNNoutput_resolved_v18'] = {
 #     'class': 'MVAReaderResolved',
 #     'args': ( models_path+ '/res_sig_mjjincl/models/v18/', False, 1),
@@ -25,23 +35,23 @@ models_path = '/eos/home-d/dmapelli/public/latino/Full2018v6s5/'
 #     ],
 # }
 
-aliases['DNNoutput_resolved_v32'] = {
-    'class': 'MVAReaderResolved_v32',
-    'args': ( models_path+ '/res_sig_mjjincl/models/v32/', False, 1),
-    'linesToAdd':[
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L ' + mva_reader_path + 'mva_reader_resolved_v32.cc+', 
-    ],
-}
+# aliases['DNNoutput_resolved_v32'] = {
+#     'class': 'MVAReaderResolved_v32',
+#     'args': ( models_path+ '/res_sig_mjjincl/models/v32/', False, 1),
+#     'linesToAdd':[
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         'gSystem->Load("libDNNEvaluator.so")',
+#         '.L ' + mva_reader_path + 'mva_reader_resolved_v32.cc+', 
+#     ],
+# }
 
 # # aliases['DNNoutput_v18'] = {
 # #     'expr': '(VBS_category==0)*(-999) + (VBS_category==1)*(DNNoutput_resolved_v18)'
 # # }
 
-aliases['DNNoutput_v32'] = {
-    'expr': '(VBS_category==0)*(-999) + (VBS_category==1)*(DNNoutput_resolved_v32)'
-}
+# aliases['DNNoutput_v32'] = {
+#     'expr': '(VBS_category==0)*(-999) + (VBS_category==1)*(DNNoutput_resolved_v32)'
+# }
 
 aliases['detavbs_jetpt_bin'] = {
     'expr': '1* ((deltaeta_vbs < 3.5)  && vbs_1_pt < 75) + \
@@ -125,7 +135,7 @@ aliases['Top_pTrw'] = {
 
 aliases['fake_weight_corrected'] = {
     'class': 'FakeWeightCorrector',
-    'args': ("%s/corrections/fakeweight_correction_2018.root" % conf_folder, 
+    'args': ("%s/corrections/fakeweight_correction_2018_v2.root" % conf_folder, 
                 "mvaFall17V1Iso_WP90", "fakeW_ele_mvaFall17V1Iso_WP90_mu_cut_Tight_HWWW_mu10_ele35", 
                 os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v6/mvaFall17V1IsoWP90/EleFR_jet35.root",
                 os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v6/mvaFall17V1IsoWP90/ElePR.root"),
@@ -148,4 +158,15 @@ aliases['PUJetIdSF'] = {
     'class': 'PUJetIdEventSF',
     'args': (puidSFSource, '2018', 'loose'),
     'samples': mc
+}
+
+
+aliases['gstarLow'] = {
+    'expr': 'Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4',
+    'samples': 'VgS'
+}
+
+aliases['gstarHigh'] = {
+    'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
+    'samples': 'VgS'
 }

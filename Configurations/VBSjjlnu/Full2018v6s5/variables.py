@@ -10,39 +10,39 @@ variables['events']  = {   'name': '1',
                         }
 
 
-variables['DNNoutput_v32'] = {
-    'name': 'DNNoutput_v32',
-    'range': ([0.1,0.2,0.3,0.4,0.5,0.55, 0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1],),
-    'xaxis': 'DNN output (v32)',
-    'fold': 3 ,
-    'blind': {
-        "res_sig_mjjincl_ele": [0.8,1],
-        "res_sig_mjjincl_mu": [0.8,1], 
-        "res_sig_mjjincl_dnnhigh_mu": [0.8,1],
-        "res_sig_mjjincl_dnnhigh_ele": [0.8,1],
-        "boos_sig_mjjincl_ele": [0.8,1],
-        "boos_sig_mjjincl_mu": [0.8,1],
-        "boos_sig_mjjincl_dnnhigh_ele": [0.8,1],
-        "boos_sig_mjjincl_dnnhigh_mu": [0.8,1]
-    }
-}
+# variables['DNNoutput_v32'] = {
+#     'name': 'DNNoutput_v32',
+#     'range': ([0.1,0.2,0.3,0.4,0.5,0.55, 0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1],),
+#     'xaxis': 'DNN output (v32)',
+#     'fold': 3 ,
+#     'blind': {
+#         "res_sig_mjjincl_ele": [0.8,1],
+#         "res_sig_mjjincl_mu": [0.8,1], 
+#         "res_sig_mjjincl_dnnhigh_mu": [0.8,1],
+#         "res_sig_mjjincl_dnnhigh_ele": [0.8,1],
+#         "boos_sig_mjjincl_ele": [0.8,1],
+#         "boos_sig_mjjincl_mu": [0.8,1],
+#         "boos_sig_mjjincl_dnnhigh_ele": [0.8,1],
+#         "boos_sig_mjjincl_dnnhigh_mu": [0.8,1]
+#     }
+# }
 
-variables['DNNoutput_high_v32'] = {
-    'name': 'DNNoutput_v32',
-    'range': ([0.5, 0.55, 0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1],),
-    'xaxis': 'DNN output (v32), high region',
-    'fold': 0 ,
-    'blind': {
-        "res_sig_mjjincl_ele": [0.8,1],
-        "res_sig_mjjincl_mu": [0.8,1], 
-        "res_sig_mjjincl_dnnhigh_mu": [0.8,1],
-        "res_sig_mjjincl_dnnhigh_ele": [0.8,1],
-        "boos_sig_mjjincl_ele": [0.8,1],
-        "boos_sig_mjjincl_mu": [0.8,1],
-        "boos_sig_mjjincl_dnnhigh_ele": [0.8,1],
-        "boos_sig_mjjincl_dnnhigh_mu": [0.8,1]
-    }
-}
+# variables['DNNoutput_high_v32'] = {
+#     'name': 'DNNoutput_v32',
+#     'range': ([0.5, 0.55, 0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1],),
+#     'xaxis': 'DNN output (v32), high region',
+#     'fold': 0 ,
+#     'blind': {
+#         "res_sig_mjjincl_ele": [0.8,1],
+#         "res_sig_mjjincl_mu": [0.8,1], 
+#         "res_sig_mjjincl_dnnhigh_mu": [0.8,1],
+#         "res_sig_mjjincl_dnnhigh_ele": [0.8,1],
+#         "boos_sig_mjjincl_ele": [0.8,1],
+#         "boos_sig_mjjincl_mu": [0.8,1],
+#         "boos_sig_mjjincl_dnnhigh_ele": [0.8,1],
+#         "boos_sig_mjjincl_dnnhigh_mu": [0.8,1]
+#     }
+# }
 
 # #leptons
 

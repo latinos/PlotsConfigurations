@@ -59,6 +59,9 @@ groupPlot['Fake']  = {
                 'fill': 1001
             }
 
+
+
+
 groupPlot['vbfV+VV+VVV']  = {  
                   'nameHR' : 'vbfV+VV+VVV',
                   'isSignal' : 0,
@@ -67,6 +70,12 @@ groupPlot['vbfV+VV+VVV']  = {
                   'fill': 1001
               }
 
+groupPlot['Vg']  = {  
+                  'nameHR' : "V#gamma+V#gamma*",
+                  'isSignal' : 0,
+                  'color'    : 409,   # kOrange + 10
+                  'samples'  : ['Vg','VgS']
+              }
 
 groupPlot['DY']  = {  
                 'nameHR' : "DY",
@@ -75,6 +84,10 @@ groupPlot['DY']  = {
                 'samples'  : ['DY'],
                 'fill': 1001
             }
+
+
+
+
 
 groupPlot['top']  = {  
                  'nameHR' : 'top',
@@ -130,8 +143,22 @@ plot['DY']  = {
                 'color': colors['kMagenta']+1,
                 'isSignal' : 0,
                 'isData'   : 0, 
-                'scale'    : 1.0,
+                'scale'    : 1,
             }
+
+plot['Vg']  = { 
+                  'color': 859, # kAzure -1  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+plot['VgS'] = { 
+                  'color'    : 617,   # kViolet + 1  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
 
 plot['VBF-V']  = {
                   'color': colors['kYellow']+3,  
@@ -153,15 +180,43 @@ plot['top'] = {
                  'color': colors['kAzure']-1,
                  'isSignal' : 0,
                  'isData'   : 0, 
-                 'scale'    : 1.0,
-                 }
+                 #'scale'    : 1.0,
+                #  'cuts': {
+                #     "res_wjetcr_mjjincl_mu": 1.065,
+                #     "res_wjetcr_mjjincl_ele": 1.122,
+                #     "res_wjetcr_mjjincl_dnnhigh_mu":1.065,
+                #     "res_wjetcr_mjjincl_dnnhigh_ele":1.122,
+                #     "res_sig_mjjincl_mu":1.065,
+                #     "res_sig_mjjincl_ele":1.122,
+                #     "res_sig_mjjincl_dnnhigh_mu":1.065,
+                #     "res_sig_mjjincl_dnnhigh_ele":1.122,
+                #     "res_topcr_mjjincl_mu":1.065,
+                #     "res_topcr_mjjincl_ele":1.122,
+                #     "res_topcr_mjjincl_dnnhigh_mu":1.065,
+                #     "res_topcr_mjjincl_dnnhigh_ele":1.122,
+                #  }
+        }
 
 
 plot['Wjets']  = {
                   'color':  colors['kRed']-3,
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0   ,
+                  #'scale'    : 1.0,
+                #   'cuts': {
+                #       "res_wjetcr_mjjincl_mu": 1.149,
+                #       "res_wjetcr_mjjincl_ele": 1.413,
+                #       "res_wjetcr_mjjincl_dnnhigh_mu":1.149,
+                #       "res_wjetcr_mjjincl_dnnhigh_ele":1.413,
+                #       "res_sig_mjjincl_mu":1.149,
+                #       "res_sig_mjjincl_ele":1.413,
+                #       "res_sig_mjjincl_dnnhigh_mu":1.149,
+                #       "res_sig_mjjincl_dnnhigh_ele":1.413,
+                #       "res_topcr_mjjincl_mu":1.149,
+                #       "res_topcr_mjjincl_ele":1.413,
+                #       "res_topcr_mjjincl_dnnhigh_mu":1.149,
+                #       "res_topcr_mjjincl_dnnhigh_ele":1.413,
+                #   }
               }
 
 plot['VBS']  = {

@@ -55,8 +55,7 @@ LepWPWeight = LepWPWeight_1l
 XSWeight   = 'XSWeight'
 SFweight1l = 'puWeight*\
               TriggerEffWeight_1l*\
-              Lepton_RecoSF[0]*\
-              EMTFbug_veto'
+              Lepton_RecoSF[0]'
 SFweight  = SFweight1l+'*'+LepWPWeight_1l+'*'+LepWPCut_1l
 SFweight += '* btagSF * PUJetIdSF'
 
@@ -120,7 +119,7 @@ samples['DY'] = {
           + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-1200to2500')
           + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-2500toInf')
           ,
-    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*' + DY_photon_filter , ###### ADD ewkNLO!!!
+    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch +"*"+DY_photon_filter , ###### ADD ewkNLO!!!
     'FilesPerJob' : 3,
 }
 
@@ -228,6 +227,34 @@ samples['VBF-V']  = {  'name'   :  nanoGetSampleFiles(directory_bkg,'WLNuJJ_EWK'
                   }
 
 
+############## Vg ###################################
+files = nanoGetSampleFiles(directory_bkg, 'Wg_AMCNLOFXFX') + \
+        nanoGetSampleFiles(directory_bkg, 'Zg')
+
+samples['Vg'] = {
+    'name': files,
+    # No gen matching because the converting gamma can be our single lepton 
+    'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC + '*(Gen_ZGstar_mass <= 0)',
+    'FilesPerJob': 4
+}
+addSampleWeight(samples, 'Vg', 'Zg', '(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)')
+
+######## VgS ########
+
+files = nanoGetSampleFiles(directory_bkg, 'Wg_AMCNLOFXFX') + \
+    nanoGetSampleFiles(directory_bkg, 'Zg') + \
+    nanoGetSampleFiles(directory_bkg, 'WZTo3LNu_mllmin01')
+
+samples['VgS'] = {
+    'name': files,
+    'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
+    'FilesPerJob': 4
+}
+addSampleWeight(samples, 'VgS', 'Wg_AMCNLOFXFX', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
+addSampleWeight(samples, 'VgS', 'Zg', '(Gen_ZGstar_mass > 0)*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)')
+addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
+
+
 ##########################################
 ################ SIGNALS #################
 ##########################################
@@ -249,12 +276,12 @@ samples['VBS']  = { 'name' :
 
 #fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP + '_mu10_ele35'
 # from alias
-fakeW = 'fakeW_ele_mvaFall17V1Iso_WP90_mu_cut_Tight_HWWW_mu10_ele35'
+#fakeW = 'fakeW_ele_mvaFall17V1Iso_WP90_mu_cut_Tight_HWWW_mu10_ele35'
 
 #### Fakes
 samples['Fake'] = {
   'name': [],
-  'weight': METFilter_DATA+'*'+fakeW+'* fake_weight_corrected',
+  'weight': METFilter_DATA+'* fake_weight_corrected',
   'weights': [],
   'isData': ['all'],
   'FilesPerJob': 25
@@ -287,6 +314,9 @@ for Run in DataRun :
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
 
-# samples = {
-#   "Fake": samples["Fake"]
-# }
+samples = {
+#  "DY": samples["DY"]
+  #  "Vg": samples["Vg"],
+  #  "VgS": samples["VgS"],
+  "Fake": samples["Fake"]
+ }
