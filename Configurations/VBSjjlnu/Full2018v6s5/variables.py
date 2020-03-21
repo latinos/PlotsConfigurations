@@ -142,11 +142,13 @@ variables['mjj_vbs_morebins'] = {   'name': 'mjj_vbs',
 #                         'fold' : 3
 #                         }
 
-# variables['mjj_vjet'] = {   'name': 'mjj_vjet',      
-#                         'range' : (50,0,500),  
-#                         'xaxis' : 'Whad reco mass', 
-#                         'fold' : 3
-#                         }
+variables['mjj_vjet'] = {   'name': 'mjj_vjet',      
+                        'range' : (60,0,300),  
+                        'xaxis' : 'Whad reco mass', 
+                        'fold' : 3
+                        }
+
+
 
 
 variables['vjet_0_pt'] = {   'name': 'vjet_0_pt',      
