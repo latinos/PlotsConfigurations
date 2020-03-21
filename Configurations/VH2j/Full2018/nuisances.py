@@ -641,7 +641,7 @@ nuisances['Topnorm']  = {
 nuisances['DYnorm']  = {                                                                                                           
     'name'  : 'DYnorm',                                                                                                            
     'samples'  : {                                                                                                                 
-        'top' : '1.00',                                                                                                            
+        'DY' : '1.00',                                                                                                            
         },                                                                                                                         
     'type'  : 'rateParam',                                                                                                         
    'cuts'  : [                                                                                                                    

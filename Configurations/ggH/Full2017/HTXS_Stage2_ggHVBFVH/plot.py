@@ -71,13 +71,33 @@ groupPlot['VgS']  = {
 
 
 
-groupPlot['Higgs']  = {  
-                  'nameHR' : 'Higgs',
-                  'isSignal' : 1,
+#groupPlot['Higgs']  = {  
+#                  'nameHR' : 'Higgs',
+#                  'isSignal' : 1,
+#                  'color': 632, # kRed 
+#                   'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'bbH_hww','ttH_hww', 'qqH_htt', 'ggH_htt', 'ZH_htt', 'WH_htt', 'H_htt',  'ggH_hww_FWDH', 'ggH_hww_0J_PTH_0_10', 'ggH_hww_0J_PTH_GT10', 'ggH_hww_1J_PTH_0_60', 'ggH_hww_1J_PTH_60_120', 'ggH_hww_1J_PTH_120_200', 'ggH_hww_GE2J_MJJ_0_350_PTH_0_60', 'ggH_hww_GE2J_MJJ_0_350_PTH_60_120', 'ggH_hww_GE2J_MJJ_0_350_PTH_120_200', 'ggH_hww_GE2J_MJJ_350_700_PTHJJ_0_25', 'ggH_hww_GE2J_MJJ_350_700_PTHJJ_GT25', 'ggH_hww_GE2J_MJJ_GT700_PTHJJ_0_25', 'ggH_hww_GE2J_MJJ_GT700_PTHJJ_GT25',      'ggH_hww_PTH_200_300', 'ggH_hww_PTH_300_450', 'ggH_hww_PTH_450_650', 'ggH_hww_PTH_GT650', 'qqH_hww_FWDH', 'qqH_hww_0J', 'qqH_hww_1J' ,       'qqH_hww_MJJ_0_60',       'qqH_hww_MJJ_60_120' ,       'qqH_hww_MJJ_120_350',       'qqH_hww_MJJ_GT350_PTH_GT200' ,       'qqH_hww_MJJ_350_700_PTHJJ_0_25' ,       'qqH_hww_MJJ_350_700_PTHJJ_GT25' ,       'qqH_hww_MJJ_GT700_PTHJJ_0_25' ,       'qqH_hww_MJJ_GT700_PTHJJ_GT25' ,       'ZH_had_hww_FWDH' ,       'ZH_had_hww_0J' ,       'ZH_had_hww_1J' ,       'ZH_had_hww_MJJ_0_60' ,       'ZH_had_hww_MJJ_60_120' ,       'ZH_had_hww_MJJ_120_350' ,       'ZH_had_hww_MJJ_GT350_PTH_GT200' ,       'ZH_had_hww_MJJ_350_700_PTHJJ_0_25' ,       'ZH_had_hww_MJJ_350_700_PTHJJ_GT25' ,       'ZH_had_hww_MJJ_GT700_PTHJJ_0_25' ,       'ZH_had_hww_MJJ_GT700_PTHJJ_GT25' ,       'WH_had_hww_FWDH' ,       'WH_had_hww_0J' ,       'WH_had_hww_1J' ,       'WH_had_hww_MJJ_0_60' ,       'WH_had_hww_MJJ_60_120' ,       'WH_had_hww_MJJ_120_350' ,       'WH_had_hww_MJJ_GT350_PTH_GT200' ,       'WH_had_hww_MJJ_350_700_PTHJJ_0_25' ,       'WH_had_hww_MJJ_350_700_PTHJJ_GT25' ,       'WH_had_hww_MJJ_GT700_PTHJJ_0_25' ,       'WH_had_hww_MJJ_GT700_PTHJJ_GT25', 'VHlep_hww']
+#              }
+
+groupPlot['ggH_comb']  = {
+                  'nameHR' : 'ggH',
+                  'isSignal' : 2,
                   'color': 632, # kRed 
-                   'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'bbH_hww','ttH_hww', 'qqH_htt', 'ggH_htt', 'ZH_htt', 'WH_htt', 'H_htt',  'ggH_hww_FWDH', 'ggH_hww_0J_PTH_0_10', 'ggH_hww_0J_PTH_GT10', 'ggH_hww_1J_PTH_0_60', 'ggH_hww_1J_PTH_60_120', 'ggH_hww_1J_PTH_120_200', 'ggH_hww_GE2J_MJJ_0_350_PTH_0_60', 'ggH_hww_GE2J_MJJ_0_350_PTH_60_120', 'ggH_hww_GE2J_MJJ_0_350_PTH_120_200', 'ggH_hww_GE2J_MJJ_350_700_PTHJJ_0_25', 'ggH_hww_GE2J_MJJ_350_700_PTHJJ_GT25', 'ggH_hww_GE2J_MJJ_GT700_PTHJJ_0_25', 'ggH_hww_GE2J_MJJ_GT700_PTHJJ_GT25',      'ggH_hww_PTH_200_300', 'ggH_hww_PTH_300_450', 'ggH_hww_PTH_450_650', 'ggH_hww_PTH_GT650', 'qqH_hww_FWDH', 'qqH_hww_0J', 'qqH_hww_1J' ,       'qqH_hww_MJJ_0_60',       'qqH_hww_MJJ_60_120' ,       'qqH_hww_MJJ_120_350',       'qqH_hww_MJJ_GT350_PTH_GT200' ,       'qqH_hww_MJJ_350_700_PTHJJ_0_25' ,       'qqH_hww_MJJ_350_700_PTHJJ_GT25' ,       'qqH_hww_MJJ_GT700_PTHJJ_0_25' ,       'qqH_hww_MJJ_GT700_PTHJJ_GT25' ,       'ZH_had_hww_FWDH' ,       'ZH_had_hww_0J' ,       'ZH_had_hww_1J' ,       'ZH_had_hww_MJJ_0_60' ,       'ZH_had_hww_MJJ_60_120' ,       'ZH_had_hww_MJJ_120_350' ,       'ZH_had_hww_MJJ_GT350_PTH_GT200' ,       'ZH_had_hww_MJJ_350_700_PTHJJ_0_25' ,       'ZH_had_hww_MJJ_350_700_PTHJJ_GT25' ,       'ZH_had_hww_MJJ_GT700_PTHJJ_0_25' ,       'ZH_had_hww_MJJ_GT700_PTHJJ_GT25' ,       'WH_had_hww_FWDH' ,       'WH_had_hww_0J' ,       'WH_had_hww_1J' ,       'WH_had_hww_MJJ_0_60' ,       'WH_had_hww_MJJ_60_120' ,       'WH_had_hww_MJJ_120_350' ,       'WH_had_hww_MJJ_GT350_PTH_GT200' ,       'WH_had_hww_MJJ_350_700_PTHJJ_0_25' ,       'WH_had_hww_MJJ_350_700_PTHJJ_GT25' ,       'WH_had_hww_MJJ_GT700_PTHJJ_0_25' ,       'WH_had_hww_MJJ_GT700_PTHJJ_GT25', 'VHlep_hww']
+                  'samples'  : ['ggH_htt', 'ggH_hww_FWDH', 'ggH_hww_0J_PTH_0_10', 'ggH_hww_0J_PTH_GT10', 'ggH_hww_1J_PTH_0_60', 'ggH_hww_1J_PTH_60_120', 'ggH_hww_1J_PTH_120_200', 'ggH_hww_GE2J_MJJ_0_350_PTH_0_60', 'ggH_hww_GE2J_MJJ_0_350_PTH_60_120', 'ggH_hww_GE2J_MJJ_0_350_PTH_120_200', 'ggH_hww_GE2J_MJJ_350_700_PTHJJ_0_25', 'ggH_hww_GE2J_MJJ_350_700_PTHJJ_GT25', 'ggH_hww_GE2J_MJJ_GT700_PTHJJ_0_25', 'ggH_hww_GE2J_MJJ_GT700_PTHJJ_GT25',      'ggH_hww_PTH_200_300', 'ggH_hww_PTH_300_450', 'ggH_hww_PTH_450_650', 'ggH_hww_PTH_GT650']
               }
 
+groupPlot['qqH_comb']  = {
+                  'nameHR' : 'VBF',
+                  'isSignal' : 2,
+                  'color': 417, # kRed 
+                  'samples'  : ['qqH_htt', 'qqH_hww_FWDH', 'qqH_hww_0J', 'qqH_hww_1J' ,       'qqH_hww_MJJ_0_60',       'qqH_hww_MJJ_60_120' ,       'qqH_hww_MJJ_120_350',       'qqH_hww_MJJ_GT350_PTH_GT200' ,       'qqH_hww_MJJ_350_700_PTHJJ_0_25' ,       'qqH_hww_MJJ_350_700_PTHJJ_GT25' ,       'qqH_hww_MJJ_GT700_PTHJJ_0_25' ,       'qqH_hww_MJJ_GT700_PTHJJ_GT25' ]
+              }
+
+groupPlot['Higgs_oth']  = {
+                  'nameHR' : 'Higgs other',
+                  'isSignal' : 2,
+                  'color': 853, # kRed 
+                   'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'bbH_hww','ttH_hww', 'ZH_htt', 'WH_htt', 'H_htt', 'ZH_had_hww_FWDH' ,       'ZH_had_hww_0J' ,       'ZH_had_hww_1J' ,       'ZH_had_hww_MJJ_0_60' ,       'ZH_had_hww_MJJ_60_120' ,       'ZH_had_hww_MJJ_120_350' ,       'ZH_had_hww_MJJ_GT350_PTH_GT200' ,       'ZH_had_hww_MJJ_350_700_PTHJJ_0_25' ,       'ZH_had_hww_MJJ_350_700_PTHJJ_GT25' ,       'ZH_had_hww_MJJ_GT700_PTHJJ_0_25' ,       'ZH_had_hww_MJJ_GT700_PTHJJ_GT25' ,       'WH_had_hww_FWDH' ,       'WH_had_hww_0J' ,       'WH_had_hww_1J' ,       'WH_had_hww_MJJ_0_60' ,       'WH_had_hww_MJJ_60_120' ,       'WH_had_hww_MJJ_120_350' ,       'WH_had_hww_MJJ_GT350_PTH_GT200' ,       'WH_had_hww_MJJ_350_700_PTHJJ_0_25' ,       'WH_had_hww_MJJ_350_700_PTHJJ_GT25' ,       'WH_had_hww_MJJ_GT700_PTHJJ_0_25' ,       'WH_had_hww_MJJ_GT700_PTHJJ_GT25', 'VHlep_hww']
+              }
 
 
 #plot = {}

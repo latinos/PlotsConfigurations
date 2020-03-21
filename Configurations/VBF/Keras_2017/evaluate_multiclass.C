@@ -1,6 +1,6 @@
 // gSystem->Load("libLatinoAnalysisMultiDraw.so")
 
-#include "generated_code_6.h"
+#include "generated_code_new.h"
 
 #include "TTree.h"
 #include "TSystem.h"

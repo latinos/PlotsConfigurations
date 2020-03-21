@@ -78,7 +78,7 @@ myreaderBDTGOSSF->AddVariable("Alt$(Lepton_pt[0],0)",&loc_Lepton_pt_0);
 myreaderBDTGOSSF->AddVariable("Alt$(Lepton_pt[1],0)",&loc_Lepton_pt_1);
 myreaderBDTGOSSF->AddVariable("Alt$(Lepton_pt[2],0)",&loc_Lepton_pt_2);
 
-myreaderBDTGOSSF->BookMVA("BDTG4F07","/afs/cern.ch/user/p/pyu/public/HWWAnalysis/FullRunII_WH3l/BDT_xmlfile/21Nov2019/TMVAClassification_2016OSSF.weights.xml");
+myreaderBDTGOSSF->BookMVA("BDTG4F07","/afs/cern.ch/user/p/pyu/public/HWWAnalysis/FullRunII25Feb/TMVAClassification_BDTG4F07.OSSFMET40.weights.xml");
 
 }
 

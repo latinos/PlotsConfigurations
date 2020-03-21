@@ -21,6 +21,10 @@ Notice that the `multiSignalStrengthPlot.py` macro has been adapted to properly 
 
     git clone https://github.com/latinos/PlayWithDatacards
 
+Overwrite the original `systematicsAnalyzer.py` script.
+
+    cp systematicsAnalyzer.py PlayWithDatacards/.
+
 Notice that the `prepareTables.py` macro has been adapted to properly read the VH2j datacards.
 
 

@@ -49,13 +49,10 @@ You can also run interactively but submitting jobs in parallel with the command 
 Once all your jobs are done (you can check job status with `condor_q`), you will find a `rootFile` directory in your area containing all the histograms specified in your configuration. 
 You can proceed by h-adding all the files to get a single one containing everything:
 
-    mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files
+    mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=10
 
-If the step above takes too much time (can happen if you have too many variables and/or cuts), you can try to h-add by hand with the following command (TAG is defined in `configuration.py`):
- 
-    cd rootFile
-    hadd -f -j 4 plots_TAG.root plots_TAG*
-    cd -
+The `--nThreads=10` option allows for running the Hadd step in multithreading mode (with 10 threads in this case), and is especially useful when your configuration contains many cuts and variables.
+The `--doNotCleanup` option is used to keep the input root files. Without this option the input files will be deleted after the hadd step and only the final root file will be kept.
 
 You can now proceed making plots (`mkPlot.py --help` to see all available options):
 

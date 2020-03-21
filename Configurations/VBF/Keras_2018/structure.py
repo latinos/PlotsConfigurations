@@ -209,12 +209,13 @@ structure['DATA']  = {
 
 print "INSTRUCTURE"
 print cuts
-print nuisances['WWresum0j']
+#print nuisances['WWresum0j']
 print "OK"
 
+'''
 for nuis in nuisances.itervalues():
   if 'cutspost' in nuis:
     nuis['cuts'] = nuis['cutspost'](nuis, cuts)
 
     print nuis
-
+'''

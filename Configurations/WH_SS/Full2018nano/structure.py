@@ -4,25 +4,25 @@
 
 # keys here must match keys in samples.py    
 #                    
-#structure['DY']  = {  
-#                  'isSignal' : 0,
-#                  'isData'   : 0
-#              }
-#
+structure['DY']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0
+              }
 
-#structure['Wjets']  = {  
-#                  'isSignal' : 0,
-#                  'isData'   : 0 
-#              }
-#
+
+structure['ttV']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0 
+              }
+
 structure['Fakes']  = {  
                   'isSignal' : 0,
                   'isData'   : 0 
               }
-structure['Fakes_ee']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-              }
+#structure['Fakes_ee']  = {
+##                  'isSignal' : 0,
+#                  'isData'   : 0
+#              }
 
 structure['Fakes_mm']  = {
                   'isSignal' : 0,

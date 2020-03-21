@@ -26,7 +26,7 @@ plotFile = 'CR_plot.py'
 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 59.74
+lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy

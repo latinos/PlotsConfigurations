@@ -13,6 +13,14 @@ mc = [skey for skey in samples if skey not in ('Fakes_ee','Fakes_mm','Fakes_em',
 bAlgo = 'DeepB'
 bWP = '0.1522'
 
+aliases['WH2l_pTW'] = {
+    'linesToAdd': [
+        '.L %s/macros/whss_wlep_v3.cc+' % configurations
+    ],
+    'class': 'WHSS_wpt_v3',
+    'args': ()
+}
+
 aliases['PromptGenLepMatch2l'] = {
     'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
     'samples': mc
@@ -70,46 +78,6 @@ aliases['SFweightMuDown'] = {
     'samples': mc
 }
 
-aliases['uu'] = {
-    'expr': '(Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13)'
-}
-aliases['ee'] = {
-    'expr': '(Lepton_pdgId[0]*Lepton_pdgId[1] == 11*11)'
-}
-aliases['eu'] = {
-    'expr': '(Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13)'
-}
-
-#genPTW
-aliases['genWPt'] = {
-    'expr' : 'Sum$(GenPart_pt*(abs(GenPart_pdgId)==24&&((GenPart_statusFlags&128)==128)&&(abs(GenPart_pdgId[GenPart_genPartIdxMother])!=25)))',
-    'samples' : mc
-}
-
-aliases['WlepPt_whssv1'] = {
-    'linesToAdd': [
-        '.L %s/macros/wlep1pt.cc+' % configurations
-    ],
-    'class': 'WHlepv1',
-    'args': ()
-}
-
-aliases['WlepPt_whssv2'] = {
-    'linesToAdd': [
-        '.L %s/macros/wlep1pt2.cc+' % configurations
-    ],
-    'class': 'WHlepv2',
-    'args': ()
-}
-
-aliases['WlepMt_whss'] = {
-    'linesToAdd': [
-        '.L %s/macros/wlepmt.cc+' % configurations
-    ],
-    'class': 'WHlepMt',
-    'args': ()
-}
-
 # No jet with pt > 30 GeV
 aliases['zeroJet'] = {
     'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
@@ -117,33 +85,19 @@ aliases['zeroJet'] = {
 
 # ==1 jet with pt > 30 GeV
 aliases['oneJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) < 30.'
-}
-
-# >=1 jet with pt > 30 GeV
-aliases['oneJetOrMore'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) < 30.'
 }
 
 # ==2 jets with pt > 30 GeV
 aliases['twoJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) > 30. && Alt$(CleanJet_pt[2], 0) < 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) >= 30. && Alt$(CleanJet_pt[2], 0) < 30.'
 }
 
 # >=2 jets with pt > 30 GeV
 aliases['twoJetOrMore'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) > 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) >= 30.'
 }
 
-# ==3 with pt > 30 GeV
-aliases['threeJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) > 30. && Alt$(CleanJet_pt[2], 0) > 30. && Alt$(CleanJet_pt[3], 0) < 30.'
-}
-
-# >=3 jet with pt > 30 GeV
-aliases['threeJetOrMore'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) > 30. && Alt$(CleanJet_pt[2], 0) > 30.'
-}
 
 aliases['bVeto'] = {
     'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0'
@@ -238,3 +192,6 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
         'expr': 'bVetoSF{shift}down*bVeto + btag0SF{shift}down*btag0 + btagnSF{shift}down*(btag1 + btag2) + (!bVeto && !btag0 && !btag1 && !btag2)'.format(shift = shift),
         'samples': mc
     }
+
+
+

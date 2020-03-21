@@ -1,7 +1,6 @@
 #aliases = {}
 
 mc = [skey for skey in samples if skey not in ('Fake_em', 'Fake_me', 'Fake_ee', 'Fake_mm', 'DATA', 'DYemb')]
-mc_todo = [skey for skey in mc if skey not in ('ggWW')]
 
 bAlgo = 'DeepB'
 bWP = '0.1241'
@@ -24,10 +23,10 @@ elif EMorEEorMM == 'mm':
 
 aliases['HighMass'] = {
     'expr': '(    mll>140 \
-               && Lepton_pt[0]>60 \
                && dphill>2.0 \
-               && dphilmet<1.9 \
-               && ht>250 \
+               && dphilmet<1.6 \
+               && (Lepton_pt[0]+Lepton_pt[1]+PuppiMET_pt)>250 \
+               && back2back<3.0 \
          )' 
 }
 
@@ -43,26 +42,30 @@ aliases['HighVBFcut'] = {
          )' 
 }
 
-aliases['oldmjjGen'] = {
-    'linesToAdd': [
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
-        '.L %s/src/PlotsConfigurations/Configurations/HighMass/oldmjjGen/deltaRMatch.C+' % os.getenv('CMSSW_BASE'),
-        '.L %s/src/PlotsConfigurations/Configurations/HighMass/oldmjjGen/mjjGen.C+' % os.getenv('CMSSW_BASE')
-    ],
-    'expr': 'mjjGen(  Alt$(GenJet_pt[abs(Jet_genJetIdx[CleanJet_jetIdx[0]])],-1), \
-                      Alt$(GenJet_eta[abs(Jet_genJetIdx[CleanJet_jetIdx[0]])],-1), \
-                      Alt$(GenJet_phi[abs(Jet_genJetIdx[CleanJet_jetIdx[0]])],-1), \
-                      Alt$(GenJet_pt[abs(Jet_genJetIdx[CleanJet_jetIdx[1]])],-1), \
-                      Alt$(GenJet_eta[abs(Jet_genJetIdx[CleanJet_jetIdx[1]])],-1), \
-                      Alt$(GenJet_phi[abs(Jet_genJetIdx[CleanJet_jetIdx[1]])],-1), \
-                      Jet_genJetIdx[CleanJet_jetIdx[0]], \
-                      Jet_genJetIdx[CleanJet_jetIdx[1]])',
-    'samples': ['WW', 'qqWWqq', 'WW2J'] + [skey for skey in samples if 'QQHSBI' in skey]
+aliases['DYmva'] = {
+    'expr': '(Alt$(CleanJet_pt[0], 0) < 30 && dymva_bdt_0j>0.0) || (Alt$(CleanJet_pt[0], 0) >= 30 && Alt$(CleanJet_pt[1], 0) < 30 && dymva_bdt_1j>0.0) || (Alt$(CleanJet_pt[1], 0) >= 30 && (detajj < 3.5 || mjj < 400) && dymva_bdt_2j>0.0) || (Alt$(CleanJet_pt[1], 0) >= 30 && (detajj > 3.5 && mjj > 400) && dymva_bdt_VBF>0.0)'
 }
+
+#aliases['oldmjjGen'] = {
+#    'linesToAdd': [
+#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+#        '.L %s/src/PlotsConfigurations/Configurations/HighMass/oldmjjGen/deltaRMatch.C+' % os.getenv('CMSSW_BASE'),
+#        '.L %s/src/PlotsConfigurations/Configurations/HighMass/oldmjjGen/mjjGen.C+' % os.getenv('CMSSW_BASE')
+#    ],
+#    'expr': 'mjjGen(  Alt$(GenJet_pt[abs(Jet_genJetIdx[CleanJet_jetIdx[0]])],-1), \
+#                      Alt$(GenJet_eta[abs(Jet_genJetIdx[CleanJet_jetIdx[0]])],-1), \
+#                      Alt$(GenJet_phi[abs(Jet_genJetIdx[CleanJet_jetIdx[0]])],-1), \
+#                      Alt$(GenJet_pt[abs(Jet_genJetIdx[CleanJet_jetIdx[1]])],-1), \
+#                      Alt$(GenJet_eta[abs(Jet_genJetIdx[CleanJet_jetIdx[1]])],-1), \
+#                      Alt$(GenJet_phi[abs(Jet_genJetIdx[CleanJet_jetIdx[1]])],-1), \
+#                      Jet_genJetIdx[CleanJet_jetIdx[0]], \
+#                      Jet_genJetIdx[CleanJet_jetIdx[1]])',
+#    'samples': ['WW', 'qqWWqq', 'WW2J'] + [skey for skey in samples if 'QQHSBI' in skey]
+#}
 
 aliases['GenLHE'] = {
 'expr': '(Sum$(LHEPart_pdgId == 21) == 0)',
-'samples': mc_todo
+'samples': mc
 }
 
 # gen-matching to prompt only (GenLepMatch2l matches to *any* gen lepton)
@@ -81,20 +84,54 @@ aliases['nllWOTF'] = {
     'linesToAdd': ['.L /afs/cern.ch/work/d/dmroy/CMSSW_9_4_9/src/PlotsConfigurations/Configurations/HighMass/Full2016/nllW.cc+'],
     'class': 'WWNLLW',
     'args': ('central',),
-    'samples': ['WW']
+    'samples': ['WW', 'DYveto']
+}
+
+# In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
+aliases['lhe_mW1'] = {
+    'expr': 'TMath::Sqrt(2. * LHEPart_pt[0] * LHEPart_pt[1] * (TMath::CosH(LHEPart_eta[0] - LHEPart_eta[1]) - TMath::Cos(LHEPart_phi[0] - LHEPart_phi[1])))',
+    'samples': ['WWewk', 'DYveto']
+}
+
+# and [2] [3] are the second W
+aliases['lhe_mW2'] = {
+    'expr': 'TMath::Sqrt(2. * LHEPart_pt[2] * LHEPart_pt[3] * (TMath::CosH(LHEPart_eta[2] - LHEPart_eta[3]) - TMath::Cos(LHEPart_phi[2] - LHEPart_phi[3])))',
+    'samples': ['WWewk', 'DYveto']
+}
+
+# For SM ggHWW
+aliases['MINLO'] = {
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/weight2MINLO.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'Weight2MINLO',
+    'args': ('%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE'),),
+    'samples': ['ggH_hww']
+}
+for mass in massggh:
+  aliases['MINLO']['samples'].append('GGHSBI_'+mass+model_name)
+  aliases['MINLO']['samples'].append('MSSMGGHSBI_'+mass+model_name)
+
+# For VgS
+aliases['gstarLow'] = {
+    'expr': 'Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4',
+    'samples': 'VgS'
+}
+
+aliases['gstarHigh'] = {
+    'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
+    'samples': 'VgS'
 }
 
 # B-Stuff
 aliases['bVeto'] = {
-    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0'
+    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0'
 }
 
 aliases['bReq'] = {
-    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) >= 1'
+    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) >= 1'
 }
 
 aliases['bReq2j'] = {
-    'expr': '(CleanJet_pt[0] > 30. && abs(CleanJet_eta[0]) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx[0]] > 0.1522) && (CleanJet_pt[1] > 30. && abs(CleanJet_eta[1]) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx[1]] > 0.1522)'
+    'expr': '(CleanJet_pt[0] > 30. && abs(CleanJet_eta[0]) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx[0]] > 0.2217) && (CleanJet_pt[1] > 30. && abs(CleanJet_eta[1]) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx[1]] > 0.2217)'
 }
 
 aliases['btag0'] = {

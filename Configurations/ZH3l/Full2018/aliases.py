@@ -57,8 +57,26 @@ for s in systs:
         'samples':mc  
     }
 
-aliases['EleWPTight'] = {
-    'expr' : '(abs(Lepton_pdgId[0])==13 || Electron_cutBased[Lepton_electronIdx[0]]>=4) \
-           && (abs(Lepton_pdgId[1])==13 || Electron_cutBased[Lepton_electronIdx[1]]>=4) \
-           && (abs(Lepton_pdgId[2])==13 || Electron_cutBased[Lepton_electronIdx[2]]>=4)',
+aliases['PromptGenLepMatch3l'] = {
+    'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1]*Lepton_promptgenmatched[2], 0)',
+    'samples': mc
+}
+
+aliases['LepWPCutNew'] = { 'expr': '(((abs(Lepton_pdgId[0])==13 && Muon_mvaTTH[Lepton_muonIdx[0]]>0.8) || (abs(Lepton_pdgId[0])==11 && Electron_mvaTTH[Lepton_electronIdx[0]]>0.7)) && ((abs(Lepton_pdgId[1])==13 && Muon_mvaTTH[Lepton_muonIdx[1]]>0.8) || (abs(Lepton_pdgId[1])==11 && Electron_mvaTTH[Lepton_electronIdx[1]]>0.7)) && ((abs(Lepton_pdgId[2])==13 && Muon_mvaTTH[Lepton_muonIdx[2]]>0.8) || (abs(Lepton_pdgId[2])==11 && Electron_mvaTTH[Lepton_electronIdx[2]]>0.7)))', 
+                           'samples': mc + ['DATA'] 
+}
+
+aliases['AntitopGenPt'] = {
+    'expr': 'Sum$(GenPart_pt*(GenPart_pdgId == -6 && (GenPart_statusFlags & 8192)))',
+    'samples' : ['top']
+}
+
+aliases['TopGenPt'] = {
+    'expr': 'Sum$(GenPart_pt*(GenPart_pdgId == 6 && (GenPart_statusFlags & 8192)))',
+    'samples' : ['top']
+}
+
+aliases['Top_pTrw'] = {
+    'expr': '(TopGenPt * AntitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * TopGenPt) * TMath::Exp(0.0615 - 0.0005 * AntitopGenPt))) + (TopGenPt * AntitopGenPt <= 0.)',
+    'samples': ['top']
 }

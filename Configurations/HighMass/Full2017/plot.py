@@ -19,7 +19,7 @@ groupPlot['WW']  = {
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  'samples'  : ['WW', 'ggWW', 'WWewk']
+                  'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J']
               }
 
 groupPlot['Fake']  = {
@@ -58,14 +58,14 @@ groupPlot['Vg']  = {
                   'nameHR' : "V#gamma",
                   'isSignal' : 0,
                   'color'    : 810,   # kOrange + 10
-                  'samples'  : ['Vg', 'Wg']
+                  'samples'  : ['Vg']
               }
 
 groupPlot['VgS']  = {
                   'nameHR' : "V#gamma*",
                   'isSignal' : 0,
                   'color'    : 409,   # kGreen - 9
-                  'samples'  : ['VgS']
+                  'samples'  : ['VgS_L', 'VgS_H']
               }
 
 groupPlot['SMHiggs']  = {  
@@ -117,28 +117,31 @@ if useEmbeddedDY:
                     'scale'    : 1.0,
                 }
 
-plot['Fake_me']  = {  
+if EMorEEorMM == 'em':
+  plot['Fake_me']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0                  
               }
 
-plot['Fake_em']  = {  
+  plot['Fake_em']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0                  
               }
 
-plot['Fake_ee']  = {  
+if EMorEEorMM == 'ee':
+  plot['Fake_ee']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0                  
               }
 
-plot['Fake_mm']  = {  
+if EMorEEorMM == 'mm':
+  plot['Fake_mm']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -174,20 +177,19 @@ plot['WWewk']  = {
                   'scale'    : 1.0
                   }
 
-# TODO
-#plot['WW2J']  = {
-#                  'color': 851, # kAzure -9 
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.0
-#                  }
-#
-#plot['qqWWqq']  = {
-#                  'color': 851, # kAzure -9 
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.0
-#                  }
+plot['WW2J']  = {
+                  'color': 851, # kAzure -9 
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+plot['qqWWqq']  = {
+                  'color': 851, # kAzure -9 
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
 
 plot['Vg']  = { 
                   'color': 859, # kAzure -1  
@@ -196,7 +198,14 @@ plot['Vg']  = {
                   'scale'    : 1.0
                   }
 
-plot['VgS'] = { 
+plot['VgS_L'] = { 
+                  'color'    : 617,   # kViolet + 1  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+plot['VgS_H'] = { 
                   'color'    : 617,   # kViolet + 1  
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -218,7 +227,6 @@ plot['VVV']  = {
                   }
 
 # Htautau
-
 plot['ZH_htt'] = {
                   'nameHR' : 'ZHtt',
                   'color': 632+3, # kRed+3 
@@ -304,14 +312,14 @@ plot['ggH_hww'] = {
                   'scale'    : 1    #
                   }
 
-# TODO
-#plot['bbH_hww'] = {
-#                  'nameHR' : 'bbH',
-#                  'color': 632+5, # kRed+5 
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1    #
-#                  }
+if False: #TODO
+  plot['bbH_hww'] = {
+                  'nameHR' : 'bbH',
+                  'color': 632+5, # kRed+5 
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
 
 plot['ttH_hww'] = {
                   'nameHR' : 'ttH',
@@ -375,7 +383,7 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 59.7/fb'
+legend['lumi'] = 'L = 41.5/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

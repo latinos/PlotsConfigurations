@@ -94,95 +94,7 @@ DataTrig = {
 ############ DY ############
 ptllDYW_NLO = '(0.87*(gen_ptll<10)+(0.379119+0.099744*gen_ptll-0.00487351*gen_ptll**2+9.19509e-05*gen_ptll**3-6.0212e-07*gen_ptll**4)*(gen_ptll>=10 && gen_ptll<45)+(9.12137e-01+1.11957e-04*gen_ptll-3.15325e-06*gen_ptll**2-4.29708e-09*gen_ptll**3+3.35791e-11*gen_ptll**4)*(gen_ptll>=45 && gen_ptll<200) + 1*(gen_ptll>200))'
 ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
-#
-#useEmbeddedDY = False
-#useDYtt = False
-#
-#if useEmbeddedDY: #Setup
-#  # Temporarily in a different directory:
-#  directory2 = treeBaseDir+'Fall2017_nAOD_v1_Full2017v2/MCl1loose2017v2__MCCorr2017__btagPerEvent__l2loose__l2tightOR2017__EmbeddingVeto'+skim
-#  embed_tautauveto = '*embed_tautauveto'
-#else:
-#  directory2 = directory
-#  embed_tautauveto = ''
-#
-#if useEmbeddedDY:
-#
-#  # Actual embedded data
-#  samples['DY']  = {   'name': [ ] ,
-#                         'weight' : METFilter_DATA+'*'+LepWPCut+'*embed_total*genWeight',
-#                         'weights' : [ ] ,
-#                         'isData': ['all'],
-#                         'FilesPerJob' : 5,
-#                      }
-#
-#  for Run in DataRun :
-#          directoryEmb = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Embedding2017_nAOD_v1_Full2017v2/DATAl1loose2017v2__DATACorr2017__l2loose__l2tightOR2017__Embedding2017__hadd/'
-#          FileTarget = getSampleFiles(directoryEmb,'DYToTT_MuEle_Embedded_Run2017'+Run[0],True,'nanoLatino_')
-#          for iFile in FileTarget:
-#                  samples['DY']['name'].append(iFile)
-#                  samples['DY']['weights'].append('Trigger_ElMu || Trigger_dblMu || Trigger_sngMu || Trigger_dblEl || Trigger_sngEl')
-#
-#  # Vetoed MC: Needed for uncertainty
-#  samples['DYveto']  = {   'name': getSampleFiles(directory2,'TTTo2L2Nu',False,'nanoLatino_') 
-#                                 + getSampleFiles(directory2,'ST_tW_antitop',False,'nanoLatino_') 
-#                                 + getSampleFiles(directory2,'ST_tW_top',False,'nanoLatino_') 
-#
-#                                 + getSampleFiles(directory2,'WWTo2L2Nu_PrivateNano',False,'nanoLatino_') 
-#
-#                                 + getSampleFiles(directory2,'WpWmJJ_EWK',False,'nanoLatino_') 
-#
-#                                 + getSampleFiles(directory2,'GluGluToWWToTNTN',False,'nanoLatino_') 
-#
-#                                 + getSampleFiles(directory2,'Zg',False,'nanoLatino_') 
-#                                 + getSampleFiles(directory2,'WZTo3LNu_mllmin01',False,'nanoLatino_') 
-#
-#                                 + getSampleFiles(directory2,'ZZTo2L2Nu',False,'nanoLatino_') 
-#                                 + getSampleFiles(directory2,'ZZTo2L2Q',False,'nanoLatino_') 
-#                                 + getSampleFiles(directory2,'ZZTo4L',False,'nanoLatino_') 
-#                                 + getSampleFiles(directory2,'WZTo2L2Q',False,'nanoLatino_') ,
-#
-#                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+'(1-embed_tautauveto)',
-#                         'FilesPerJob' : 1, # There's some error about not finding sample-specific variables like "nllW" when mixing different samples into a single job; so split them all up instead
-#                      }
-#
-#  veto_dict = {'TTTo2L2Nu'            : '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )' ,
-#               'ST_tW_antitop'        : '1' ,
-#               'ST_tW_top'            : '1' ,
-#
-#               'WWTo2L2Nu_PrivateNano' : 'nllW' ,
-#
-#               'WpWmJJ_EWK' : '(Sum$(abs(GenPart_pdgId)==6)==0)',
-#
-#               'GluGluToWWToTNTN' : '1' ,
-#
-#               'Zg'                : '((!(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )) || (Gen_ZGstar_mass >0))' ,
-#               'WZTo3LNu_mllmin01' : '(Gen_ZGstar_mass>=0.1 || Gen_ZGstar_mass<0)' ,
-#
-#               'ZZTo2L2Nu' : '1' ,
-#               'ZZTo2L2Q'  : '1' ,
-#               'ZZTo4L'    : '1' ,
-#               'WZTo2L2Q'  : '1'
-#              }
-#
-#  for v_samp,v_weight in veto_dict.items():
-#          if v_weight != '1': addSampleWeight(samples,'DYveto',v_samp,v_weight)
-#
-#else:
-#  if useDYtt :
-#    samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToTT_MuEle_M-50_PSWeights',False,'nanoLatino_')
-#                                    + getSampleFiles(directory,'DYJetsToLL_M-10to50-LO',False,'nanoLatino_'),
-#                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-#                         'FilesPerJob' : 5,
-#                    }
-#    addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO)
-#    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
-#    
-#    ## Remove OF from inclusive sample (is it needed?)
-#    #cutSF = '(abs(Lepton_pdgId[0]*Lepton_pdgId[1]) == 11*11)||(Lepton_pdgId[0]*Lepton_pdgId[1]) == 13*13)'
-#    #addSampleWeight(samples,'DY','DYJetsToLL_M-50',cutSF)
-#
-#  else:
+
 samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50_ext',False,'nanoLatino_')
                                     + getSampleFiles(directory,'DYJetsToLL_M-10to50-LO',False,'nanoLatino_'),
                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch2l+'*'+METFilter_MC ,
@@ -224,6 +136,7 @@ samples['ttZ']  = {    'name': getSampleFiles(directory,'TTZjets',False,'nanoLat
 
 samples['WW'] = {    'name'   :   getSampleFiles(directory,'WWTo2L2Nu',False,'nanoLatino_') ,
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch2l+'*'+METFilter_MC+'*nllW' ,
+                     'FilesPerJob' : 3,
                  }
 
 samples['WWewk'] = {   'name'  : getSampleFiles(directory, 'WpWmJJ_EWK',False,'nanoLatino_'),
@@ -264,7 +177,7 @@ samples['ZZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo4L_ext1',False,'n
                          #     +getSampleFiles(directory,'ggZZ4e',False,'nanoLatino_')
                               +getSampleFiles(directory,'ggZZ4m',False,'nanoLatino_'),
                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                    'FilesPerJob' : 5,
+                    'FilesPerJob' : 3,
                  }
 
 addSampleWeight(samples,'ZZ','ZZTo4L_ext1',"1.1654") ## The NNLO/NLO k-factor, cited from https://arxiv.org/abs/1405.2219v1
@@ -280,7 +193,7 @@ samples['VZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo2L2Nu_ext1',False
                                + getSampleFiles(directory,'ZZTo2L2Q',False,'nanoLatino_')
                                + getSampleFiles(directory,'WZTo2L2Q',False,'nanoLatino_'),
                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch2l+'*'+METFilter_MC ,
-                    'FilesPerJob' : 5,
+                    'FilesPerJob' : 3,
                  }
 
 samples['WZ'] = {'name'   :getSampleFiles(directory,'WZTo3LNu_mllmin01',False,'nanoLatino_'),
@@ -320,28 +233,36 @@ samples['qqH_hww']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2NuP
 
 samples['ZH_hww']  = {  'name'   :   getSampleFiles(directory,'HZJ_HToWWTo2L2Nu_M125',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                        'FilesPerJob' : 1
+                        'FilesPerJob' : 1,
+                        'subsamples' : { 'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==401 || HTXS_stage1_1_cat_pTjet30GeV==402',
+                                         'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==403 || HTXS_stage1_1_cat_pTjet30GeV==404 || HTXS_stage1_1_cat_pTjet30GeV==405',
+                                         'FWDH'      : 'HTXS_stage1_1_cat_pTjet30GeV==400'
+                                       }
                      }
 
-samples['ggZH_hww']  = {  'name'   :   getSampleFiles(directory,'GluGluZH_HToWW_M125',False,'nanoLatino_'),
+samples['ggZH_hww'] = { 'name'   :   getSampleFiles(directory,'GluGluZH_HToWW_M125',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                          'FilesPerJob' : 1
+                        'FilesPerJob' : 1,
+                        'subsamples' : { 'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==501 || HTXS_stage1_1_cat_pTjet30GeV==502',
+                                         'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==503 || HTXS_stage1_1_cat_pTjet30GeV==504 || HTXS_stage1_1_cat_pTjet30GeV==505',
+                                         'FWDH'      : 'HTXS_stage1_1_cat_pTjet30GeV==500'
+                                       }
                      }
 
-if os.path.exists('HTXS_stage1_categories.py') :
-    handle = open('HTXS_stage1_categories.py','r')
-    exec(handle)
-    handle.close()
+#if os.path.exists('HTXS_stage1_categories.py') :
+#    handle = open('HTXS_stage1_categories.py','r')
+#    exec(handle)
+#    handle.close()
  
-samples['ZH_hww']['subsamples'] = {}
-for cat,num in HTXSStage1_1Categories.iteritems():
-    if 'QQ2HLL' in cat:
-        samples['ZH_hww']['subsamples'][cat.replace('QQ2HLL_','')] = 'HTXS_stage1_1_cat_pTjet30GeV=='+str(num)
+#samples['ZH_hww']['subsamples'] = {}
+#for cat,num in HTXSStage1_1Categories.iteritems():
+#    if 'QQ2HLL' in cat:
+#        samples['ZH_hww']['subsamples'][cat.replace('QQ2HLL_','')] = 'HTXS_stage1_1_cat_pTjet30GeV=='+str(num)
  
-samples['ggZH_hww']['subsamples'] = {}
-for cat,num in HTXSStage1_1Categories.iteritems():
-    if 'GG2HLL' in cat:
-        samples['ggZH_hww']['subsamples'][cat.replace('GG2HLL_','')] = 'HTXS_stage1_1_cat_pTjet30GeV=='+str(num)
+#samples['ggZH_hww']['subsamples'] = {}
+#for cat,num in HTXSStage1_1Categories.iteritems():
+#    if 'GG2HLL' in cat:
+#        samples['ggZH_hww']['subsamples'][cat.replace('GG2HLL_','')] = 'HTXS_stage1_1_cat_pTjet30GeV=='+str(num)
 
 ############ WH H->WW ############
 
@@ -363,6 +284,7 @@ if not splitHtt:
                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                          'suppressNegative' :['all'],
                          'suppressNegativeNuisances' :['all'],
+                        'FilesPerJob' : 3,
                           }
 else:
   

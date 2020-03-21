@@ -10,21 +10,6 @@
 
 import copy
 
-origcuts=copy.deepcopy(cuts)
-
-print origcuts
-cuts = []
-
-
-for cut in origcuts:
-  print cut
-  for cat in origcuts[cut]['categories']:
-    cuts.append(cut+"_"+cat)
-
-print cuts
-
-
-
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
@@ -36,14 +21,14 @@ groupPlot['WW']  = {
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  'samples'  : ['WW', 'ggWW']
+                  'samples'  : ['WW']
               }
 
 groupPlot['Fake']  = {  
                   'nameHR' : 'Non-prompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fake']
+                  'samples'  : ['Fake_me', 'Fake_em']
               }
 
 
@@ -74,7 +59,7 @@ groupPlot['VgS']  = {
                   'nameHR' : "V#gamma*",
                   'isSignal' : 0,
                   'color'    : 409,   # kGreen - 9
-                  'samples'  : ['VgS']
+                  'samples'  : ['VgS_L', 'VgS_H']
               }
 
 '''
@@ -123,7 +108,14 @@ plot['Fake']  = {
               }
 '''
 
-plot['Fake']  = {  
+plot['Fake_em']  = {  
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0                  
+              }
+
+plot['Fake_me']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -159,12 +151,6 @@ plot['WW']  = {
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
 
-plot['ggWW']  = {
-                  'color': 850, # kAzure -10
-                  'isSignal' : 0,
-                  'isData'   : 0,    
-                  'scale'    : 1.0
-                  }
 
 plot['Vg']  = { 
                   'color': 859, # kAzure -1  
@@ -173,13 +159,19 @@ plot['Vg']  = {
                   'scale'    : 1.0
                   }
 
-plot['VgS'] = { 
+plot['VgS_L'] = { 
                   'color'    : 617,   # kViolet + 1  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
                  
+plot['VgS_H'] = { 
+                  'color'    : 617,   # kViolet + 1  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
                  
 plot['VZ']  = { 
                   'color': 858, # kAzure -2  

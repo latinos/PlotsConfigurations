@@ -11,13 +11,16 @@ workdir=/afs/cern.ch/work/r/rceccare/VBF/CMSSW_10_2_15_patch2/src/PlotsConfigura
 cd $workdir
 
 
-echo "class0:" "">> significance_class0_27_09_multicut.txt
-combine -M Significance class0_27_09_multicut.root -t -1 --setParameters r_vbf=1 --redefineSignalPOIs=r_vbf >> significance_class0_27_09_multicut.txt
 
+#echo "class0:" "">> significance_class0_30_10_fdm_vbf.txt
+#combine -M Significance class0_30_10_fdm_vbf.root -t -1 --setParameters r_vbf=1 --redefineSignalPOIs=r_vbf >> significance_class0_30_10_fdm_vbf.txt
 
-echo "class0:" "">> significance_class0_27_09_cuts.txt
-combine -M Significance class0_27_09_cuts.root -t -1 --setParameters r_vbf=1 --redefineSignalPOIs=r_vbf >> significance_class0_27_09_cuts.txt
+#echo "class0:" "">> significance_class0_30_10_multicut_cat_cross.txt
+#combine -M Significance class0_30_10_multicut_cat_cross.root -t -1 --setParameters r_vbf=1 --redefineSignalPOIs=r_vbf >> significance_class0_30_10_multicut_cat_cross.txt
 
-#echo "class0:" "">> significance_class0_06_09_multicut.txt
-#combine -M Significance class0_06_09_multicut.root -t -1 --setParameters r_vbf=1 --redefineSignalPOIs=r_vbf >> significance_class0_06_09_multicut.txt
+#echo "class0:" "">> significance_class0_27_09_cuts.txt
+#combine -M Significance class0_27_09_cuts.root -t -1 --setParameters r_vbf=1 --redefineSignalPOIs=r_vbf >> significance_class0_27_09_cuts.txt
+
+echo "class0:" "">> significance_class0_04_02_multicut.txt
+combine -M Significance class0_04_02_multicut.root -t -1 --setParameters r_vbf=1 --redefineSignalPOIs=r_vbf >> significance_class0_04_02_multicut.txt
 

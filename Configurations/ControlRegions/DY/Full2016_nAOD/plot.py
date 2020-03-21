@@ -19,7 +19,7 @@ groupPlot['WW']  = {
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  'samples'  : ['WW']
+                  'samples'  : ['WW', 'ggWW']
               }
 
 groupPlot['Fake']  = {  
@@ -39,13 +39,13 @@ groupPlot['DY']  = {
 
 
 
-#groupPlot['VVV']  = {  
-#                  'nameHR' : 'VVV',
-#                  'isSignal' : 0,
-#                  'color': 857, # kAzure -3  
-#                  'samples'  : ['VVV']
-#              }
-#
+groupPlot['VVV']  = {  
+                  'nameHR' : 'VVV',
+                  'isSignal' : 0,
+                  'color': 857, # kAzure -3  
+                  'samples'  : ['VVV']
+              }
+
 
 groupPlot['VZ']  = {  
                   'nameHR' : "VZ",
@@ -61,12 +61,12 @@ groupPlot['Vg']  = {
                   'samples'  : ['Vg', 'Wg']
               }
 
-#groupPlot['VgS']  = {
-#                  'nameHR' : "V#gamma*",
-#                  'isSignal' : 0,
-#                  'color'    : 409,   # kGreen - 9
-#                  'samples'  : ['WZgS']
-#              }
+groupPlot['VgS']  = {
+                  'nameHR' : "V#gamma*",
+                  'isSignal' : 0,
+                  'color'    : 409,   # kGreen - 9
+                  'samples'  : ['VgS_L', 'VgS_H']
+              }
 
 
 '''
@@ -106,7 +106,6 @@ plot['DY']  = {
 
               }
 
-
 plot['Fake']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
@@ -144,28 +143,21 @@ plot['WW']  = {
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
 
-#plot['ggWW']  = {
-#                  'color': 850, # kAzure -10
-#                  'isSignal' : 0,
-#                  'isData'   : 0,    
-#                  'scale'    : 1.0
-#                  }
-#
+plot['ggWW']  = {
+                  'color': 850, # kAzure -10
+                  'isSignal' : 0,
+                  'isData'   : 0,    
+                  'scale'    : 1.0
+                  }
+
 
 plot['Vg']  = { 
                   'color': 859, # kAzure -1  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0
+                  'scale'    : (55.5 * 1.06 / 131.3) 
                   }
-'''
-plot['VgS'] = { 
-                  'color'    : 617,   # kViolet + 1  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
-'''
+                  
 plot['VZ']  = { 
                   'color': 858, # kAzure -2  
                   'isSignal' : 0,
@@ -173,35 +165,26 @@ plot['VZ']  = {
                   'scale'    : 1.0
                   }
 
-#plot['VVV']  = { 
-#                  'color': 857, # kAzure -3  
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.0
-#                  }
-#
-#plot['WZgS']  = {
-#                  'color': 617, # kViolet + 1
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.0
-#                  }
-'''
-plot['WZgS_L']  = {
+plot['VVV']  = { 
+                  'color': 857, # kAzure -3  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+plot['VgS_L']  = {
                   'color': 617, # kViolet + 1
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
 
-plot['WZgS_H']  = {
+plot['VgS_H']  = {
                   'color': 617, # kViolet + 1
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-'''
-
 # Htautau
 
 '''
@@ -364,7 +347,7 @@ plot['DATA']  = {
 #legend['lumi'] = 'L = 4.3/fb'
 #legend['lumi'] = 'L = 6.3/fb'
 #legend['lumi'] = 'L = 12.9/fb'
-legend['lumi'] = 'L = 36/fb'
+legend['lumi'] = 'L = 35.9/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

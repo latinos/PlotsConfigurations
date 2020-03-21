@@ -7,17 +7,58 @@ configurations = os.path.dirname(configurations) # Configurations
 
 #aliases = {}
 
-mc = [skey for skey in samples if skey not in ('Fakes', 'DATA')]
+mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 #mc = [skey for skey in samples if skey not in ('Fakes_ee','Fakes_mm','Fakes_em', 'DATA')]
 
 bAlgo = 'DeepB'
-bWP = '0.2217'
+bWP = '0.1522'
 
 aliases['PromptGenLepMatch2l'] = {
     'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
     'samples': mc
 }
 
+
+# Fake leptons transfer factor
+aliases['fakeW'] = {
+    'expr': 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_4l',
+    'samples': ['Fake']
+}
+
+# And variations - already divided by central values in formulas !
+aliases['fakeWEleUp'] = {
+    'expr': 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_4lElUp/fakeW_ele_'+eleWP+'_mu_'+muWP+'_4l',
+    'samples': ['Fake']
+}
+aliases['fakeWEleDown'] = {
+    'expr': 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_4lElDown/fakeW_ele_'+eleWP+'_mu_'+muWP+'_4l',
+    'samples': ['Fake']
+}
+aliases['fakeWMuUp'] = {
+    'expr': 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_4lMuUp/fakeW_ele_'+eleWP+'_mu_'+muWP+'_4l',
+    'samples': ['Fake']
+}
+aliases['fakeWMuDown'] = {
+    'expr': 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_4lMuDown/fakeW_ele_'+eleWP+'_mu_'+muWP+'_4l',
+    'samples': ['Fake']
+}
+aliases['fakeWStatEleUp'] = {
+    'expr': 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_4lstatElUp/fakeW_ele_'+eleWP+'_mu_'+muWP+'_4l',
+    'samples': ['Fake']
+}
+aliases['fakeWStatEleDown'] = {
+    'expr': 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_4lstatElDown/fakeW_ele_'+eleWP+'_mu_'+muWP+'_4l',
+    'samples': ['Fake']
+}
+aliases['fakeWStatMuUp'] = {
+    'expr': 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_4lstatMuUp/fakeW_ele_'+eleWP+'_mu_'+muWP+'_4l',
+    'samples': ['Fake']
+}
+aliases['fakeWStatMuDown'] = {
+    'expr': 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_4lstatMuDown/fakeW_ele_'+eleWP+'_mu_'+muWP+'_4l',
+    'samples': ['Fake']
+}
+'''
 # And variations - already divided by central values in formulas !
 aliases['fakeWEleUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleUp',
@@ -51,7 +92,7 @@ aliases['fakeWStatMuDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuDown',
     'samples': ['Fakes_ee','Fakes_mm','Fakes_em']
 }
-
+'''
 # variations
 aliases['SFweightEleUp'] = {
     'expr': 'LepSF4l__ele_'+eleWP+'__Up',
@@ -92,11 +133,11 @@ aliases['twoJetOrMore'] = {
 
 
 aliases['bVeto'] = {
-    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0'
+    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0'
 }
 
 aliases['bReq'] = {
-    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) >= 1'
+    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) >= 1'
 }
 
 aliases['btag0'] = {
