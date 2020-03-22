@@ -55,8 +55,7 @@ LepWPWeight = LepWPWeight_1l
 XSWeight   = 'XSWeight'
 SFweight1l = 'puWeight*\
               TriggerEffWeight_1l*\
-              Lepton_RecoSF[0]*\
-              EMTFbug_veto'
+              Lepton_RecoSF[0]'
 SFweight  = SFweight1l+'*'+LepWPWeight_1l+'*'+LepWPCut_1l
 SFweight += '* btagSF * PUJetIdSF'
 
@@ -100,7 +99,6 @@ DataTrig = {
 ptllDYW_NLO = '(0.87*(gen_ptll<10)+(0.379119+0.099744*gen_ptll-0.00487351*gen_ptll**2+9.19509e-05*gen_ptll**3-6.0212e-07*gen_ptll**4)*(gen_ptll>=10 && gen_ptll<45)+(9.12137e-01+1.11957e-04*gen_ptll-3.15325e-06*gen_ptll**2-4.29708e-09*gen_ptll**3+3.35791e-11*gen_ptll**4)*(gen_ptll>=45 && gen_ptll<200) + 1*(gen_ptll>200))'
 ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
 
-useEmbeddedDY = False
 DY_photon_filter = '(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)'
 
 samples['DY'] = {    
@@ -175,9 +173,9 @@ samples['Wjets'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
 
 				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-				'FilesPerJob' : 2,
+				'FilesPerJob' : 1,
         'subsamples': {
-          "boost" : "VBS_category==0"
+          "boost" : "VBS_category==0",
           "deta1_jpt1": "(VBS_category==1) && (deltaeta_vbs < 3.5 ) && vbs_1_pt < 75",
           "deta2_jpt1": "(VBS_category==1) && (deltaeta_vbs >= 3.5 && deltaeta_vbs < 5.5) && vbs_1_pt < 75",
           "deta3_jpt1": "(VBS_category==1) && (deltaeta_vbs >= 5.5 ) && vbs_1_pt < 75",
@@ -268,7 +266,7 @@ samples['VBS']  = { 'name' :
 #### Fakes
 samples['Fake'] = {
   'name': [],
-  'weight': METFilter_DATA+'*'+fakeW+'* fake_weight_corrected',
+  'weight': METFilter_DATA+'* fake_weight_corrected',
   'weights': [],
   'isData': ['all'],
   'FilesPerJob': 25
@@ -299,3 +297,4 @@ for Run in DataRun :
                 for iFile in FileTarget:
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
+
