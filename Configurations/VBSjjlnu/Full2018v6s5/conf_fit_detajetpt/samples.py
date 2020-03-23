@@ -240,6 +240,33 @@ samples['VBF-V']  = {  'name'   :  nanoGetSampleFiles(directory_bkg,'WLNuJJ_EWK'
                   }
 
 
+############## Vg ###################################
+# files = nanoGetSampleFiles(directory_bkg, 'Wg_AMCNLOFXFX') + \
+#         nanoGetSampleFiles(directory_bkg, 'Zg')
+
+# samples['Vg'] = {
+#     'name': files,
+#     # No gen matching because the converting gamma can be our single lepton 
+#     'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC + '*(Gen_ZGstar_mass <= 0)',
+#     'FilesPerJob': 4
+# }
+# addSampleWeight(samples, 'Vg', 'Zg', '(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)')
+
+# ######## VgS ########
+
+# files = nanoGetSampleFiles(directory_bkg, 'Wg_AMCNLOFXFX') + \
+#     nanoGetSampleFiles(directory_bkg, 'Zg') + \
+#     nanoGetSampleFiles(directory_bkg, 'WZTo3LNu_mllmin01')
+
+# samples['VgS'] = {
+#     'name': files,
+#     'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
+#     'FilesPerJob': 4
+# }
+# addSampleWeight(samples, 'VgS', 'Wg_AMCNLOFXFX', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
+# addSampleWeight(samples, 'VgS', 'Zg', '(Gen_ZGstar_mass > 0)*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)')
+# addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
+
 ##########################################
 ################ SIGNALS #################
 ##########################################

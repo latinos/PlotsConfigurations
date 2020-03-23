@@ -159,7 +159,7 @@ samples['top'] = {
 samples['Wjets'] = { 'name' :   
           # nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
           nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_ext1')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT70_100') 
+         # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT70_100') 
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT200_400')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT400_600')
@@ -187,8 +187,8 @@ samples['Wjets'] = { 'name' :
        }
 #
 # Fix Wjets binned + LO 
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO_ext1', '(LHE_HT < 70)') # to be add ewknloW here!
-addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT70_100',   'ewknloW')  # in 2017 the XS is correct
+addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO_ext1', '(LHE_HT < 100)') # to be add ewknloW here!
+#addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT70_100',   'ewknloW')  # in 2017 the XS is correct
 addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT100_200',   'ewknloW')
 addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT200_400',   'ewknloW')
 addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT400_600',   'ewknloW')
@@ -290,3 +290,6 @@ for Run in DataRun :
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
+# samples = {
+#   "Wjets" : samples["Wjets"]
+# }

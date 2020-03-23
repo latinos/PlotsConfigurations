@@ -148,3 +148,14 @@ aliases['PUJetIdSF'] = {
     'args': (puidSFSource, '2018', 'loose'),
     'samples': mc
 }
+
+
+aliases['gstarLow'] = {
+    'expr': 'Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4',
+    'samples': 'VgS'
+}
+
+aliases['gstarHigh'] = {
+    'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
+    'samples': 'VgS'
+}

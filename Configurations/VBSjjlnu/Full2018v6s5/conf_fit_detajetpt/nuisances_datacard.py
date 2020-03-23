@@ -4,7 +4,7 @@ from itertools import product
 
 jetbin_detabins = [3,3,2]
 # # name of samples here must match keys in samples.py 
-Wjets_bins = []
+Wjets_bins = ["Wjets_boost"]
 for jetbin in range(3):
     for detabin in range(jetbin_detabins[jetbin]):
         Wjets_bins.append("Wjets_deta{}_jpt{}".format(detabin+1, jetbin+1))
@@ -17,26 +17,14 @@ for jetbin in range(3):
 mc =["DY", "top", "VV", "VVV", "VBF-V", "top", "VBS", "Wjets"]
 
 phase_spaces_res = [
-   'res_sig_mjjincl','res_sig_mjjlow','res_sig_mjjhigh', 'res_sig_mjjincl_dnnhigh',
-   'res_topcr_mjjincl','res_topcr_mjjlow','res_topcr_mjjhigh','res_topcr_mjjincl_dnnhigh',
-   'res_wjetcr_mjjincl','res_wjetcr_mjjlow','res_wjetcr_mjjhigh',
-   'res_sig_mjjincl','res_sig_mjjlow','res_sig_mjjhigh',
-   'res_topcr_mjjincl','res_topcr_mjjlow','res_topcr_mjjhigh',
-   'res_wjetcr_mjjincl','res_wjetcr_mjjlow','res_wjetcr_mjjhigh',
-
-   'res_wjetcr_mjjincl_mvhigh', 'res_wjetcr_mjjincl_mvlow',
-   
-   'res_wjetcr_mjjincl_mvint','res_wjetcr_mjjincl_mvext',
-
-   'res_wjetcr_mjjincl_dnnhigh','res_wjetcr_mjjincl_mvint_dnnhigh','res_wjetcr_mjjincl_mvext_dnnhigh'
+   'res_sig_mjjincl', 'res_sig_mjjincl_dnnhigh',
+   'res_topcr_mjjincl','res_topcr_mjjincl_dnnhigh',
+   'res_wjetcr_mjjincl','res_wjetcr_mjjincl_dnnhigh',
 ]
 phase_spaces_boost = [
-   'boost_sig_mjjincl','boost_sig_mjjlow','boost_sig_mjjhigh',
-   'boost_topcr_mjjincl','boost_topcr_mjjlow','boost_topcr_mjjhigh',
-   'boost_wjetcr_mjjincl','boost_wjetcr_mjjlow','boost_wjetcr_mjjhigh',
-   'boost_sig_mjjincl','boost_sig_mjjlow','boost_sig_mjjhigh',
-   'boost_topcr_mjjincl','boost_topcr_mjjlow','boost_topcr_mjjhigh',
-   'boost_wjetcr_mjjincl','boost_wjetcr_mjjlow','boost_wjetcr_mjjhigh'
+   'boost_sig_mjjincl','boost_sig_mjjincl_dnnhigh',
+   'boost_topcr_mjjincl','boost_topcr_mjjincl_dnnhigh',
+   'boost_wjetcr_mjjincl','boost_wjetcr_mjjincl_dnnhigh',
 ]
 
 phase_spaces_res_ele = [ ph+"_ele" for ph in phase_spaces_res]
@@ -281,7 +269,7 @@ nuisances['met']  = {
 # Theory nuisance
 
 nuisances['QCD_scale_Wjets'] = {
-     'name'  : 'QCDscal_wjets',
+     'name'  : 'QCDscale_wjets',
      'kind'  : 'weight',
      'type'  : 'shape',
      'samples'  :   {
@@ -378,12 +366,19 @@ nuisances['Top_norm']  = {
 
 for wjbin in Wjets_bins:
     for fl in ["ele", "mu"]:
-        for phs in ["res", "boost"]:
-            nuisances["{}_norm_{}_{}_2018".format(wjbin, fl, phs )] = {
-                'name'  : 'CMS_{}_norm_{}_{}_2018'.format(wjbin, fl, phs),
+        if "boost" in wjbin:
+            nuisances["{}_norm_{}_boost_2018".format(wjbin, fl)] = {
+                'name'  : 'CMS_{}_norm_{}_boost_2018'.format(wjbin, fl),
                 'samples'  : { wjbin: '1.00' },
                 'type'  : 'rateParam',
-                'cuts'  : [f+"_"+fl for f in phase_spaces_dict[phs]]
+                'cuts'  : [f+"_"+fl for f in phase_spaces_dict["boost"]]
+            }
+        else:
+            nuisances["{}_norm_{}_res_2018".format(wjbin, fl)] = {
+                'name'  : 'CMS_{}_norm_{}_res_2018'.format(wjbin, fl),
+                'samples'  : { wjbin: '1.00' },
+                'type'  : 'rateParam',
+                'cuts'  : [f+"_"+fl for f in phase_spaces_dict["res"]]
             }
 
 

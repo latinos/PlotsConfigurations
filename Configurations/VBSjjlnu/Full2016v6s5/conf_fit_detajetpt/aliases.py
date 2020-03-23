@@ -2,10 +2,8 @@ import os
 import copy
 import inspect
 
-configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # Full2016v6s5
-configurations = os.path.dirname(configurations) # VBSjjlnu
-configurations = os.path.dirname(configurations) # Configurations
+configurations = os.getenv("CMSSW_BASE") + "/src/PlotsConfigurations/Configurations/"
+conf_folder = configurations +"/VBSjjlnu/Full2016v6s5"
 
 #aliases = {}
 

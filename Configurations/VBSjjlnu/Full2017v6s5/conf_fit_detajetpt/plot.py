@@ -55,7 +55,6 @@ for il, lptc in enumerate([[247, 135, 7],[247, 235, 7],[247, 211, 223]]):
         color = lptc
         color[1] -= 20 * (j-1)
         palette["Wjets_deta{}_jpt{}".format(j, il+1)] = tuple(color)
-        
 
 
 groupPlot['Fake']  = {  
@@ -99,6 +98,14 @@ for  jbin in range(3,0,-1):
                         'isSignal' : 0,
                         'color':   palette[wname],
                         'samples'  : [wname],
+                        'fill': 1001
+                }
+
+groupPlot["Wjets_boost"]  = {  
+                        'nameHR' : 'W+Jets_boost",
+                        'isSignal' : 0,
+                        'color':   palette["Yellow"],
+                        'samples'  : ["Wjets_boost"],
                         'fill': 1001
                 }
 
@@ -187,6 +194,12 @@ for  jbin in range(3,0,-1):
                         'scale': 1.0
                     }
 
+plot['Wjets_boost'] ={
+                'color':  palette["Yellow"],
+                'isSignal' : 0,
+                'isData'   : 0,
+                'scale': 1.0
+}
 
 
 plot['VBS']  = {
