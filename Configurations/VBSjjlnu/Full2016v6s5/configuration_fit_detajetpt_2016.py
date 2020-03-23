@@ -1,26 +1,26 @@
 # example of configuration file
 treeName= 'Events'
 
-
-tag = '2016v6s5'
+tag = 'fit_detajetpt_2016'
+direc = 'conf_fit_detajetpt'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_'+tag
 
 # file with TTree aliases
-aliasesFile = 'aliases.py'
+aliasesFile = direc+'/aliases.py'
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = direc+'/variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
+cutsFile = direc+'/cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples.py' 
+samplesFile = direc+'/samples.py' 
 
 # file with list of samples
-plotFile = 'plot.py' 
+plotFile = direc+'/plot.py' 
 
 
 
@@ -37,10 +37,10 @@ outputDirDatacard = 'datacards'
 
 
 # structure file for datacard
-structureFile = 'structure.py'
+structureFile = direc+'/structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+nuisancesFile = direc+'/nuisances.py'
 
 

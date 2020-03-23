@@ -10,7 +10,7 @@ conf_folder = configurations +"/VBSjjlnu/Full2017v6s5"
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
 ############################################
-# DNN reader - Updated to 2018 specific
+# DNN reader - Updated to 2017 specific
 
 mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017v6s5/mva/'
 models_path = '/eos/home-d/dmapelli/public/latino/Full2017v6s5/'

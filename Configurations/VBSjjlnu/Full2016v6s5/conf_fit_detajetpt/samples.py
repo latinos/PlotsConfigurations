@@ -63,7 +63,7 @@ SFweight1l =       'puWeight*\
                    TriggerEffWeight_1l*\
                    Lepton_RecoSF[0]*\
                    EMTFbug_veto'
-SFweight      = SFweight1l+'*'+LepWPWeight_1l+'*'+LepWPCut_1l+'* PrefireWeight * btagSF'
+SFweight      = SFweight1l+'*'+LepWPWeight_1l+'*'+LepWPCut_1l+'* PrefireWeight * btagSF * PUJetIdSF'
      
 GenLepMatch   = 'Lepton_genmatched[0]'
 
@@ -132,7 +132,7 @@ samples['DY'] = {    'name'   :
                                 ,
         'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch , # ewknloW ADD ME, admin
         # 'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*' + DY_photon_filter, # ewknloW ADD ME, admin
-        'FilesPerJob' : 1,
+        'FilesPerJob' : 4,
                   }
 
 # addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-70to100', ptllDYW_LO  )
@@ -168,7 +168,7 @@ samples['top'] = {
                       #+  nanoGetSampleFiles(directory_bkg,'TTWjetsToLNu_ext1')  ########## ADD ME BACK
                       + nanoGetSampleFiles(directory_bkg,'TTZjets'),  
             'weight' :  XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-            'FilesPerJob' : 1,
+            'FilesPerJob' : 3,
                  }
 # ACHTUNG! NO topGenPt in TTZjets!                 
 addSampleWeight(samples,'top','ST_s-channel', Top_pTrw )
@@ -183,6 +183,7 @@ addSampleWeight(samples,'top','TTTo2L2Nu', Top_pTrw )
 samples['Wjets'] = { 'name' :   
           # nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
           nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_ext2')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT70_100')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200_ext2')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT200_400_ext2')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT400_600_ext1')
@@ -192,11 +193,25 @@ samples['Wjets'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf_ext1')
         ,
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-        'FilesPerJob' : 1,
+        'FilesPerJob' : 2,
+        'subsamples': {
+          "boost" : "VBS_category==0",
+          "deta1_jpt1": "(VBS_category==1) && (deltaeta_vbs < 3.5 ) && vbs_1_pt < 75",
+          "deta2_jpt1": "(VBS_category==1) && (deltaeta_vbs >= 3.5 && deltaeta_vbs < 5.5) && vbs_1_pt < 75",
+          "deta3_jpt1": "(VBS_category==1) && (deltaeta_vbs >= 5.5 ) && vbs_1_pt < 75",
+
+          "deta1_jpt2": "(VBS_category==1) && (deltaeta_vbs < 3 ) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
+          "deta2_jpt2": "(VBS_category==1) && (deltaeta_vbs >= 3 && deltaeta_vbs < 4) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
+          "deta3_jpt2": "(VBS_category==1) && (deltaeta_vbs >= 4 ) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
+  
+          "deta1_jpt3": "(VBS_category==1) && (deltaeta_vbs < 3.5 ) &&  ( vbs_1_pt >= 150)",
+          "deta2_jpt3": "(VBS_category==1) && (deltaeta_vbs >= 3.5) &&  ( vbs_1_pt >= 150)",
+                    
+        }
        }
 #
 # Fix Wjets binned + LO 
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO_ext2', '(LHE_HT < 100)') # to be add ewknloW here!
+addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO_ext2', '(LHE_HT < 70)') # to be add ewknloW here!
 
 
 ## FIND AND ADD THESE! FIXME
@@ -295,7 +310,3 @@ for Run in DataRun :
                 for iFile in FileTarget:
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
-
-samples = {
-  "DY": samples["DY"]
-}

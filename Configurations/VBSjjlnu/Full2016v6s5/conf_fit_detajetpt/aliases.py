@@ -10,47 +10,51 @@ configurations = os.path.dirname(configurations) # Configurations
 #aliases = {}
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
-
 ############################################
-# DNN reader
+# DNN reader - Updated to 2016 specific
 
-mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017v6s5/mva/'
-models_path = '/eos/home-d/dmapelli/public/latino/Full2017v6s5/'
+mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2016v6s5/mva/'
+models_path = '/eos/home-d/dmapelli/public/latino/Full2016v6s5/'
 
-# aliases['DNNoutput_boosted'] = {
-#     'class': 'MVAReaderBoosted',
-#     'args': ( models_path +'boos_sig_mjjincl/models/v12/', False, 0),
-#     'linesToAdd':[
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         'gSystem->Load("libDNNEvaluator.so")',
-#         '.L ' + mva_reader_path + 'mva_reader_boosted.cc+', 
-#     ],
-# }
-
-# aliases['DNNoutput_resolved'] = {
-#     'class': 'MVAReaderResolved',
-#     'args': ( models_path+ '/res_sig_mjjincl/models/v11/', False, 1),
-#     'linesToAdd':[
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         'gSystem->Load("libDNNEvaluator.so")',
-#         '.L ' + mva_reader_path + 'mva_reader_resolved.cc+', 
-#     ],
-# }
-
-aliases['detavbs_jetpt_bin'] = {
-    'expr': '1* ((deltaeta_vbs < 3.5)  && vbs_1_pt < 75) + \
-             2* ((deltaeta_vbs >= 3.5 && deltaeta_vbs < 5.5)  && vbs_1_pt < 75) + \
-             3* ((deltaeta_vbs >= 5.5)  && vbs_1_pt < 75) + \
-            \
-             4* ((deltaeta_vbs < 3)                        &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)  ) + \
-             5* ((deltaeta_vbs >= 3  && deltaeta_vbs < 4)  &&  ( vbs_1_pt >= 75 && vbs_1_pt <150) ) + \
-             6* ((deltaeta_vbs >= 4)                       &&  ( vbs_1_pt >= 75 && vbs_1_pt <150) ) + \
-            \
-             7* ((deltaeta_vbs < 3.5)  &&  ( vbs_1_pt >= 150)  ) + \
-             8* ((deltaeta_vbs >= 3.5 )  &&  ( vbs_1_pt >= 150) )'
+aliases['DNNoutput_boosted'] = {
+    'class': 'MVAReaderBoosted_v72',
+    'args': ( models_path +'/boos_sig_mjjincl/models/v72/', False, 0),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L ' + mva_reader_path + 'mva_reader_boosted_v72.cc+', 
+    ],
 }
 
+aliases['DNNoutput_resolved'] = {
+    'class': 'MVAReaderResolved_v70',
+    'args': ( models_path+ '/res_sig_mjjincl/models/v70/', False, 1),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L ' + mva_reader_path + 'mva_reader_resolved_v70.cc+', 
+    ],
+}
 
+aliases['DNNoutput'] = {
+    'expr': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)'
+}
+
+aliases['detavbs_jetpt_bin'] = {
+    'expr':'(VBS_category==0)*1 + \
+            (VBS_category==1) * \
+                (   2* ((deltaeta_vbs < 3.5)  && vbs_1_pt < 75) + \
+                    3* ((deltaeta_vbs >= 3.5 && deltaeta_vbs < 5.5)  && vbs_1_pt < 75) + \
+                    4* ((deltaeta_vbs >= 5.5)  && vbs_1_pt < 75) + \
+                    \
+                    5* ((deltaeta_vbs < 3)                        &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)  ) + \
+                    6* ((deltaeta_vbs >= 3  && deltaeta_vbs < 4)  &&  ( vbs_1_pt >= 75 && vbs_1_pt <150) ) + \
+                    7* ((deltaeta_vbs >= 4)                       &&  ( vbs_1_pt >= 75 && vbs_1_pt <150) ) + \
+                    \
+                    8* ((deltaeta_vbs < 3.5)  &&  ( vbs_1_pt >= 150)  ) + \
+                    9* ((deltaeta_vbs >= 3.5 )  &&  ( vbs_1_pt >= 150) ) \
+                )'
+}
 
 ############################################
 # BTag
@@ -83,8 +87,8 @@ aliases['btagSF'] = {
 }
 
 
-#systs = ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']
-systs = ['jes']
+systs = ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']
+#systs = ['jes']
 
 for s in systs:
   aliases['btagSF'+s+'up'] = { 'expr': '(bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_up_'+s)+'+bReq*'+aliases['bReqSF']['expr'].replace('shape','shape_up_'+s)+'+ ( (!bVeto) && (!bReq) ))', 'samples':mc  }
@@ -92,20 +96,33 @@ for s in systs:
 
 ################################################################################################
 
+puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
 
-# LastProcessing did not create (anti)topGenPt for ST samples with _ext1
-# lastcopy = (1 << 13)
+aliases['PUJetIdSF'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L %s/patches/pujetidsf_event.cc+' % configurations
+    ],
+    'class': 'PUJetIdEventSF',
+    'args': (puidSFSource, '2016', 'loose'),
+    'samples': mc
+}
 
-## top weight from 2017/2018
-# aliases['isTTbar'] = {
-#     'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 2' % lastcopy,
-#     'samples': ['top']
-# }
 
-# aliases['isSingleTop'] = {
-#     'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 1' % lastcopy,
-#      'samples': ['top']
-# }
+#LastProcessing did not create (anti)topGenPt for ST samples with _ext1
+
+
+# top weight from 2017/2018
+lastcopy = (1 << 13)
+aliases['isTTbar'] = {
+    'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 2' % lastcopy,
+    'samples': ['top']
+}
+
+aliases['isSingleTop'] = {
+    'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 1' % lastcopy,
+     'samples': ['top']
+}
 
 # aliases['topGenPtOTF'] = {
 #     'expr': 'Sum$((GenPart_pdgId == 6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
