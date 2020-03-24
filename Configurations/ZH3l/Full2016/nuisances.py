@@ -80,7 +80,7 @@ nuisances['QCDscale_VV'] = {
         'Zg'      : ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
         'ZgS'     : ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
         'WZ'      : ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-        'ZZ'      : ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
+        #'ZZ'      : ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'], #LHEScaleWeight not stored for ggZZ sample (which is non-negligible)
     }
 }
 
