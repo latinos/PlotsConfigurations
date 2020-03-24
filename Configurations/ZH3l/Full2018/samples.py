@@ -314,10 +314,11 @@ samples['Fake']  = {   'name': [ ] ,
                        'weight' : fakeW+'*'+METFilter_DATA,
                        'weights' : [ ] ,
                        'isData': ['all'],
-                       'FilesPerJob' : 15 ,
+                       'FilesPerJob' : 50 ,
                      }
 
 directory = treeBaseDir+'Run2018_102X_nAODv5_Full2018v5_ForNewWPs/DATAl1loose2018v5__l2loose__fakeW/'
+#directory = treeBaseDir+'Run2018_102X_nAODv5_Full2018v5/DATAl1loose2018v5__l2loose__fakeW/'
 for Run in DataRun :
   for DataSet in DataSets :
     FileTarget = getSampleFilesNano(directory,DataSet+'_'+Run[1],True)
@@ -339,7 +340,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'weight' : METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],
-                       'FilesPerJob' : 10 ,
+                       'FilesPerJob' : 50 ,
                   }
 
 directory = treeBaseDir+'/Run2018_102X_nAODv5_Full2018v5/DATAl1loose2018v5__l2loose__l2tightOR2018v5/'
