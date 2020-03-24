@@ -468,28 +468,45 @@ nuisances['WWqscale']  = {
     }
 
 
+##### Renormalization & factorization scales
 
 ## Shape nuisance due to QCD scale variations for DY
 # LHE scale variation weights (w_var / w_nominal)
-# [0] is muR=0.50000E+00 muF=0.50000E+00
-# [8] is muR=0.20000E+01 muF=0.20000E+01
+# [0] is muR=0.5 muF=0.5
+# [1] is muR=0.5 muF=1.0
+# [2] is muR=0.5 muF=2.0
+# [3] is muR=1.0 muF=0.5
+# [4] is muR=1.0 muF=1.0
+# [5] is muR=1.0 muF=2.0
+# [6] is muR=2.0 muF=0.5
+# [7] is muR=2.0 muF=1.0
+# [8] is muR=2.0 muF=2.0
+
+# LHEScaleWeight nominal length is 9
+# LHEScaleWeight length is 8 for DYJetsToTT_MuEle_M-50 in 2017 and 2018
+
+variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 5, 7, 8]]
+
+if 'Length$(LHEScaleWeight)' is '8':
+    variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 4, 6, 7]]
+
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
     'skipCMS': 1,
-    'kind': 'weight',
+    'kind': 'weight_envelope',
     'type': 'shape',
-    'samples': {'DY': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]']},
+    'samples': {'DY': variations},
     'AsLnN': '1'
 }
 
 nuisances['QCDscale_VV'] = {
     'name': 'QCDscale_VV',
-    'kind': 'weight',
+    'kind': 'weight_envelope',
     'type': 'shape',
     'samples': {
-        'Vg': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-        'VZ': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-        'VgS': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
+        'Vg': variations,
+        'VZ': variations,
+        'VgS': variations
     }
 }
 

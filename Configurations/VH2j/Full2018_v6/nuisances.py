@@ -407,6 +407,7 @@ nuisances['pdf_qqbar_ACCEPT'] = {
     },
 }
 
+
 ##### Renormalization & factorization scales
 
 ## Shape nuisance due to QCD scale variations for DY
@@ -420,6 +421,9 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 # [6] is muR=2.0 muF=0.5
 # [7] is muR=2.0 muF=1.0
 # [8] is muR=2.0 muF=2.0
+
+# LHEScaleWeight nominal length is 9
+# LHEScaleWeight length is 8 for DYJetsToTT_MuEle_M-50 in 2017 and 2018
 
 variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 5, 7, 8]]
 

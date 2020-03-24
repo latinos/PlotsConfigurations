@@ -427,40 +427,42 @@ nuisances['pdf_qqbar_ACCEPT'] = {
     },
 }
 
+
 ##### Renormalization & factorization scales
 
 ## Shape nuisance due to QCD scale variations for DY
 # LHE scale variation weights (w_var / w_nominal)
-# Summer16_102X_nAODv5_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6/nanoLatino_DYJetsToTT_MuEle_M-50__part0.root
-# Summer16_102X_nAODv5_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6/nanoLatino_DYJetsToLL_M-10to50-LO__part0.root
-# Events->Print(" LHEScaleWeight*")
-# [0] is mur=0.5 muf=0.5
-# [1] is mur=0.5 muf=1.0
-# [2] is mur=0.5 muf=2.0
-# [3] is mur=1.0 muf=0.5
-# [4] is mur=1.0 muf=1.0
-# [5] is mur=1.0 muf=2.0
-# [6] is mur=2.0 muf=0.5
-# [7] is mur=2.0 muf=1.0
-# [8] is mur=2.0 muf=2.0
+# [0] is muR=0.5 muF=0.5
+# [1] is muR=0.5 muF=1.0
+# [2] is muR=0.5 muF=2.0
+# [3] is muR=1.0 muF=0.5
+# [4] is muR=1.0 muF=1.0
+# [5] is muR=1.0 muF=2.0
+# [6] is muR=2.0 muF=0.5
+# [7] is muR=2.0 muF=1.0
+# [8] is muR=2.0 muF=2.0
+
+# LHEScaleWeight nominal length is 9
+
+variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 5, 7, 8]]
 
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
     'skipCMS': 1,
-    'kind': 'weight',
+    'kind': 'weight_envelope',
     'type': 'shape',
-    'samples': {'DY': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]']},
+    'samples': {'DY': variations},
     'AsLnN': '1'
 }
 
 nuisances['QCDscale_VV'] = {
     'name': 'QCDscale_VV',
-    'kind': 'weight',
+    'kind': 'weight_envelope',
     'type': 'shape',
     'samples': {
-        'Vg': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-        'VZ': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-        'VgS': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
+        'Vg': variations,
+        'VZ': variations,
+        'VgS': variations
     }
 }
 
