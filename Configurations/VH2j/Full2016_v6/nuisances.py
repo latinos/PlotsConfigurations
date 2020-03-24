@@ -431,8 +431,18 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 
 ## Shape nuisance due to QCD scale variations for DY
 # LHE scale variation weights (w_var / w_nominal)
-# [0] is muR=0.50000E+00 muF=0.50000E+00
-# [8] is muR=0.20000E+01 muF=0.20000E+01
+# Summer16_102X_nAODv5_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6/nanoLatino_DYJetsToTT_MuEle_M-50__part0.root
+# Summer16_102X_nAODv5_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6/nanoLatino_DYJetsToLL_M-10to50-LO__part0.root
+# Events->Print(" LHEScaleWeight*")
+# [0] is mur=0.5 muf=0.5
+# [1] is mur=0.5 muf=1.0
+# [2] is mur=0.5 muf=2.0
+# [3] is mur=1.0 muf=0.5
+# [4] is mur=1.0 muf=1.0
+# [5] is mur=1.0 muf=2.0
+# [6] is mur=2.0 muf=0.5
+# [7] is mur=2.0 muf=1.0
+# [8] is mur=2.0 muf=2.0
 
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
@@ -459,7 +469,7 @@ nuisances['QCDscale_ggVV'] = {
     'name': 'QCDscale_ggVV',
     'type': 'lnN',
     'samples': {
-        'ggWW': '1.15', ## from where is comming? 
+        'ggWW': '1.15',  # Where is this value coming from?
     },
 }
 

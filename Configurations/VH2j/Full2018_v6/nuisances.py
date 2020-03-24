@@ -421,7 +421,7 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 # [7] is muR=2.0 muF=1.0
 # [8] is muR=2.0 muF=2.0
 
-variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 5, 7, 8]]
+variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, Length$(LHEScaleWeight)-4, Length$(LHEScaleWeight)-2, Length$(LHEScaleWeight)-1]]
 
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
