@@ -66,3 +66,17 @@ aliases['LepWPCutNew'] = { 'expr': '(((abs(Lepton_pdgId[0])==13 && Muon_mvaTTH[L
                            'samples': mc + ['DATA'] 
 }
 
+aliases['AntitopGenPt'] = {
+    'expr': 'Sum$(GenPart_pt*(GenPart_pdgId == -6 && (GenPart_statusFlags & 8192)))',
+    'samples' : ['top']
+}
+
+aliases['TopGenPt'] = {
+    'expr': 'Sum$(GenPart_pt*(GenPart_pdgId == 6 && (GenPart_statusFlags & 8192)))',
+    'samples' : ['top']
+}
+
+aliases['Top_pTrw'] = {
+    'expr': '(TopGenPt * AntitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * TopGenPt) * TMath::Exp(0.0615 - 0.0005 * AntitopGenPt))) + (TopGenPt * AntitopGenPt <= 0.)',
+    'samples': ['top']
+}

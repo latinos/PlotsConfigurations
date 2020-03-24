@@ -244,8 +244,8 @@ nuisances['Zg3l1jnorm']  = {
 
 apply_on = {
     'top': [
-        '(topGenPt * antitopGenPt <= 0.) * 1.0816 + (topGenPt * antitopGenPt > 0.)',
-        '(topGenPt * antitopGenPt <= 0.) * 0.9184 + (topGenPt * antitopGenPt > 0.)'
+        '(TopGenPt * AntitopGenPt <= 0.) * 1.0816 + (TopGenPt * AntitopGenPt > 0.)',
+        '(TopGenPt * AntitopGenPt <= 0.) * 0.9184 + (TopGenPt * AntitopGenPt > 0.)'
     ]
 }
 

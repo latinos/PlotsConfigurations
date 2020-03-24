@@ -22,6 +22,7 @@ typedef std::map<std::string, std::map<std::string, std::map<std::string, std::m
 
 class compute_SF : public multidraw::TTreeFunction {
 
+    // Commented functions include additional argument for the choice of working poin at run time, hardcoded for now
     public:
         // compute_SF(const char* working_point, const char* year, const int nLeptons, std::string requested_SF, const int requested_lepton=0);
         compute_SF(const char* year, const int nLeptons, std::string requested_SF, const int requested_lepton=0);
@@ -45,6 +46,9 @@ class compute_SF : public multidraw::TTreeFunction {
         FloatArrayReader* lepton_eta{};
         IntArrayReader* lepton_pdgId{};
         IntValueReader* run_period_{};
+        FloatArrayReader* reco_SF_{};
+        FloatArrayReader* reco_SF_up_{};
+        FloatArrayReader* reco_SF_do_{};
         nested_dict SF_files_map_;
 
 
@@ -58,7 +62,7 @@ class compute_SF : public multidraw::TTreeFunction {
 compute_SF::compute_SF(const char* year, const int nLeptons, std::string requested_SF, const int requested_lepton) : TTreeFunction() {
 
     nLeptons_ = nLeptons;
-    working_point_ = "TightObjWP";
+    working_point_ = "TightObjWP";  // WP is hardcoded for now, thinking of passing it at run time for more flexibility
     year_ = year;
     requested_SF_ = requested_SF;
     requested_lepton_ = requested_lepton;
@@ -95,13 +99,18 @@ void compute_SF::bindTree_(multidraw::FunctionLibrary& _library){
     _library.bindBranch(lepton_eta, "Lepton_eta");
     _library.bindBranch(lepton_pdgId, "Lepton_pdgId");
     _library.bindBranch(run_period_, "run_period");
+    _library.bindBranch(reco_SF_, "Lepton_RecoSF");
+    _library.bindBranch(reco_SF_up_, "Lepton_RecoSF_Up");
+    _library.bindBranch(reco_SF_do_, "Lepton_RecoSF_Down");
 
 }
 
 double compute_SF::evaluate(unsigned){
 
-    std::vector<double> SF_vect = {};
-    std::vector<double> SF_err_vect = {};
+    std::vector<double> SF_vect {};
+    std::vector<double> SF_err_vect {};
+    std::vector<double> SF_up {};
+    std::vector<double> SF_do {};
 
     for(unsigned i=0;i<nLeptons_;i++){
 
@@ -128,7 +137,7 @@ double compute_SF::evaluate(unsigned){
             double SF_iso = std::get<0>(res_iso);
 
             SF_vect.push_back(SF_id * SF_iso);
-            SF_err_vect.push_back((SF_id * SF_iso) * TMath::Sqrt( TMath::Power(std::get<1>(res_id)/SF_id, 2) + TMath::Power(std::get<1>(res_iso)/SF_iso, 2) ));   
+            SF_err_vect.push_back((SF_id * SF_iso) * TMath::Sqrt( TMath::Power(std::get<1>(res_id)/SF_id, 2) + TMath::Power(std::get<1>(res_iso)/SF_iso, 2) ));
 
 
         }
@@ -138,11 +147,20 @@ double compute_SF::evaluate(unsigned){
     double SF = 1.;
     double SF_err = 0.;
 
+    // Calculate product of IsIso_SFs for all leptons in the event --> central value of SF to be returned
     for(auto x : SF_vect) SF *= x;
 
+    // Now for the variations, these also have to account for the recoSF
+    for(int i=0;i<nLeptons_;i++){
+
+        SF_up.push_back( ((SF_vect[i] * reco_SF_->At(i)) + TMath::Sqrt(TMath::Power(SF_err_vect[i], 2) + TMath::Power(reco_SF_up_->At(i) - reco_SF_->At(i), 2) ))/(SF_vect[i] * reco_SF_->At(i)) );
+        SF_do.push_back( ((SF_vect[i] * reco_SF_->At(i)) - TMath::Sqrt(TMath::Power(SF_err_vect[i], 2) + TMath::Power(reco_SF_do_->At(i) - reco_SF_->At(i), 2) ))/(SF_vect[i] * reco_SF_->At(i)) );
+
+    }
+
     if(requested_SF_.compare("total_SF") == 0) { return SF; }
-    else if(requested_SF_.compare("single_SF_up") == 0) { return requested_lepton_<SF_vect.size() ? SF_vect[requested_lepton_] + SF_err_vect[requested_lepton_] : 0.; }
-    else if(requested_SF_.compare("single_SF_down") == 0) { return requested_lepton_<SF_vect.size() ? SF_vect[requested_lepton_] - SF_err_vect[requested_lepton_] : 0.; }
+    else if(requested_SF_.compare("single_SF_up") == 0) { return requested_lepton_<SF_vect.size() ? SF_up[requested_lepton_] : 0.; }
+    else if(requested_SF_.compare("single_SF_down") == 0) { return requested_lepton_<SF_vect.size() ? SF_do[requested_lepton_] : 0.; }
     else if(requested_SF_.compare("single_SF") == 0) { return requested_lepton_<SF_vect.size() ? SF_vect[requested_lepton_] : 0.; }
     else{ std::cout << "invalid option: please choose from [total_SF, single_SF, single_SF_up, single_SF_down]" << std::endl; return 0; }
 
