@@ -20,10 +20,10 @@ variables['DNNoutput'] = {
         "res_sig_mjjincl_mu": [0.8,1], 
         "res_sig_mjjincl_dnnhigh_mu": [0.8,1], 
         "res_sig_mjjincl_dnnhigh_ele": [0.8,1],
-        "boos_sig_mjjincl_ele": [0.8,1],
-        "boos_sig_mjjincl_mu": [0.8,1],
-        "boos_sig_mjjincl_dnnhigh_ele": [0.8,1],
-        "boos_sig_mjjincl_dnnhigh_mu": [0.8,1],
+        "boost_sig_mjjincl_ele": [0.8,1],
+        "boost_sig_mjjincl_mu": [0.8,1],
+        "boost_sig_mjjincl_dnnhigh_ele": [0.8,1],
+        "boost_sig_mjjincl_dnnhigh_mu": [0.8,1],
     }
 }
 
@@ -37,10 +37,10 @@ variables['DNNoutput_high'] = {
         "res_sig_mjjincl_mu": [0.8,1], 
         "res_sig_mjjincl_dnnhigh_mu": [0.8,1], 
         "res_sig_mjjincl_dnnhigh_ele": [0.8,1],
-        "boos_sig_mjjincl_ele": [0.8,1],
-        "boos_sig_mjjincl_mu": [0.8,1],
-        "boos_sig_mjjincl_dnnhigh_ele": [0.8,1],
-        "boos_sig_mjjincl_dnnhigh_mu": [0.8,1],
+        "boost_sig_mjjincl_ele": [0.8,1],
+        "boost_sig_mjjincl_mu": [0.8,1],
+        "boost_sig_mjjincl_dnnhigh_ele": [0.8,1],
+        "boost_sig_mjjincl_dnnhigh_mu": [0.8,1],
     }
 }
 

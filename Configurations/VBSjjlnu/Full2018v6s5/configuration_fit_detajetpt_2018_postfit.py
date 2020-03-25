@@ -2,7 +2,7 @@
 treeName= 'Events'
 
 
-tag = 'fit_detajetpt'
+tag = 'fit_detajetpt_2018'
 direc = "conf_fit_detajetpt"
 
 # used by mkShape to define output directory for root files
@@ -18,10 +18,10 @@ variablesFile = direc+'/variables.py'
 cutsFile = direc +'/cuts.py' 
 
 # file with list of samples
-samplesFile = direc+'/samples.py' 
+samplesFile = direc+'/samples_postfit.py' 
 
 # file with list of samples
-plotFile = direc+'/plot.py' 
+plotFile = direc+'/plot' # it will be completed by postfit_plot script 
 #plotFile = direc +'/plot_rescaled_ele.py'
 
 
@@ -32,7 +32,7 @@ lumi = 59.74
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
 #outputDirPlots = 'plot_'+tag +"_rescaled/detajpt_ext"
-outputDirPlots = 'plot_'+tag
+outputDirPlots = 'plot_'+tag +"_postfit"
 
 # used by mkDatacards to define output directory for datacards
 outputDirDatacard = 'datacards_'+tag
@@ -44,5 +44,5 @@ structureFile = direc+'/structure.py'
 
 # nuisances file for mkDatacards and for mkShape
 #nuisancesFile = direc+'/nuisances.py'
-nuisancesFile = direc+'/nuisances_datacard.py'
-
+#nuisancesFile = direc+'/nuisances_datacard.py'
+nuisancesFile = direc+'/nuisances_postfit.py'

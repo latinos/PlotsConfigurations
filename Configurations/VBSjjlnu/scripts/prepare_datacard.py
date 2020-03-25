@@ -8,6 +8,8 @@ import subprocess
 import condor_prep
 import random
 import logging
+from copy import copy
+from multiprocessing import Pool
 
 
 
@@ -31,7 +33,8 @@ else:
     exi(1)
 
 if args.robust_fit:
-    FIT_OPTIONS = "--robustFit=1 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND"
+    FIT_OPTIONS = "--robustFit=1 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND -v 1"
+    #FIT_OPTIONS = "--cminFallbackAlgo Minuit2,Simplex,0:0.1"
 else: 
     FIT_OPTIONS= ""
 
@@ -113,22 +116,33 @@ def fit_and_pulls(datac):
     log = logging.getLogger(datac["datacard_name"])
     outdir = datac["outputdir"] 
     log.info("Running maximum likelihood fit")
-    cmd = """combineTool.py -M FitDiagnostics -d {0}/combined_{1}.root -n .{1}  \\
-         --saveShapes --saveNormalizations --saveWithUncertainties {2}  > {0}/logFit.txt; \\
-             mv fitDiagnostics.{1}.root {0}/""".format(
-             outdir, datac["datacard_name"], FIT_OPTIONS)
+    
+    toys_opts = datac["toys_opts"]
+    result_name = datac["datacard_name"]+"_"+datac["result_name"]
+
+    cmd = """combineTool.py -M FitDiagnostics -d {0}/combined_{1}.root {2} -n .{3}  \\
+         --saveShapes --saveNormalizations --saveWithUncertainties --ignoreCovWarning {4}  > {0}/logFit_{3}.txt; \\
+             mv fitDiagnostics.{3}.root {0}/""".format(
+             outdir, datac["datacard_name"], toys_opts, result_name, FIT_OPTIONS)
     log.debug(cmd)
     if not args.dry:
-        os.system(cmd)
-        with open("{0}/logFit.txt".format(outdir)) as f: 
-            log.info(f.read())
+        try:
+            os.system(cmd)
+            with open("{0}/logFit_{1}.txt".format(outdir, result_name)) as f: 
+                log.info(f.read())
+        except e:
+            log.error(e)
+            
 
     log.info("Printing Pulls and fit diagnostic")
     cmd = """python {0}/src/HiggsAnalysis/CombinedLimit/test/diffNuisances.py --all --abs --format html \\
-             {2}/fitDiagnostics.{1}.root > {2}/fit_diagnostic.html""".format(
-                os.environ["CMSSW_BASE"], datac["datacard_name"], outdir)
+             {2}/fitDiagnostics.{1}.root > {2}/fit_diagnostic_{1}.html""".format(
+                os.environ["CMSSW_BASE"], result_name, outdir)
     log.debug(cmd)
-    if not args.dry: os.system(cmd)
+    try: 
+        if not args.dry: os.system(cmd)
+    except e:
+        log.error(e)
     log.info("DONE!")
 
 ################################################################################## 
@@ -190,11 +204,26 @@ for datac in config:
 
     log.info("Preparing datacard: "+ datac["datacard_name"])
 
-
-    if args.process == "significance":
+   
+    if args.process == "workspace":
+        print("DONE")
+    elif args.process == "significance":
         significance(datac)    
     elif args.process == "fit_and_pulls":
-        fit_and_pulls(datac)
+
+        datacs = []
+        d = copy(datac)
+        d["toys_opts"] = "-t -1 --expectSignal 0"
+        d["result_name"] = "MC_asimov"
+        datacs.append(d)
+        d = copy(datac)
+        d["toys_opts"] = "-t -1 --expectSignal 0 --toysFreq"
+        d["result_name"] = "data_asimov"
+        datacs.append(d)
+        
+        pool = Pool(2)
+        pool.map(fit_and_pulls, datacs)
+        
     elif args.process == "compatibility":
         compatibility(datac)    
     else: 

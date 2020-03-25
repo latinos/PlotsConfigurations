@@ -37,8 +37,8 @@ palette = {
     "Green": (47, 181, 85), #2fb555
     "Green2": (55, 183, 76),  #37b74c
     "LightGreen" : (82, 221, 135), #52dd87
-    "Violet": (242, 67, 114), #f24372  
-    "Pink": (247, 191, 223)
+    "Violet": (242, 67, 114), #f24372 
+    "Pink": (247, 191, 223) 
 }
 
 '''
@@ -121,7 +121,13 @@ groupPlot['VBS']  = {
                  'fill': 1001
               }
 
-
+groupPlot['total_prefit'] = {
+    'nameHR' : 'pre-fit',
+    'isSignal' : 2,
+    'color': 616,   
+    'samples'  : ['total_prefit'],
+    'fill': 1001
+}
 
 #plot = {}
 
@@ -222,6 +228,14 @@ plot['DATA']  = {
                  'isData'   : 1 ,
                  'isBlind'  : 0
              }
+
+plot['total_prefit'] = {
+     'nameHR' : 'pre-fit',
+     'color': 616, 
+     'isSignal' : 2,
+     'isData'   : 0,
+     'scale'    : 1.   ,
+}
 
 
 

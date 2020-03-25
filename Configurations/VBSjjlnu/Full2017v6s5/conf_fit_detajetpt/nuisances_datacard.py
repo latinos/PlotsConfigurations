@@ -1,5 +1,4 @@
 # # nuisances
-# #FIXME: TO BE UPDATED FOR 2018!
 from itertools import product
 
 jetbin_detabins = [3,3,2]
@@ -10,7 +9,6 @@ for jetbin in range(3):
         Wjets_bins.append("Wjets_deta{}_jpt{}".format(detabin+1, jetbin+1))
 
 # # nuisances
-# #FIXME: TO BE UPDATED FOR 2018!
 
 # # name of samples here must match keys in samples.py 
 
@@ -40,9 +38,6 @@ phase_spaces_tot_boost = phase_spaces_boost_ele + phase_spaces_boost_mu
 phase_spaces_dict = {"boost": phase_spaces_boost, "res": phase_spaces_res}
 phase_spaces_tot = phase_spaces_tot_ele + phase_spaces_tot_mu
 
-# ################################ EXPERIMENTAL UNCERTAINTIES  #################################
-
-# ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
 # ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
@@ -297,7 +292,7 @@ nuisances['met']  = {
 }
 
 
-nuisances['QCD_scale_Wjets'] = {
+nuisances['QCD_scale_wjets'] = {
      'name'  : 'QCDscale_wjets',
      'kind'  : 'weight',
      'type'  : 'shape',
@@ -306,6 +301,14 @@ nuisances['QCD_scale_Wjets'] = {
      }
 }
 
+nuisances['QCD_scale_top'] = {
+     'name'  : 'QCDscale_top',
+     'kind'  : 'weight',
+     'type'  : 'shape',
+     'samples'  :   {
+         "top" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
+     }
+}
 
 # if useEmbeddedDY: del nuisances['prefire']['samples']['DY']
 
@@ -425,5 +428,5 @@ for n in nuisances.values():
     n['skipCMS'] = 1
 
    
-print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
+#print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
 

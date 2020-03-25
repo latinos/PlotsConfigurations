@@ -277,12 +277,21 @@ nuisances['met']  = {
                 'folderDown' : directory_bkg +"_METdo",
 }
 
-nuisances['QCD_scale_Wjets'] = {
+nuisances['QCD_scale_wjets'] = {
      'name'  : 'QCDscale_wjets',
      'kind'  : 'weight',
      'type'  : 'shape',
      'samples'  :   {
          "Wjets" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
+     }
+}
+
+nuisances['QCD_scale_top'] = {
+     'name'  : 'QCDscale_top',
+     'kind'  : 'weight',
+     'type'  : 'shape',
+     'samples'  :   {
+         "top" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
      }
 }
 
@@ -362,7 +371,7 @@ nuisances['singleTopToTTbar'] = {
 # #################
 # ## Samples normalizations
 nuisances['Top_norm']  = {
-               'name'  : 'CMS_Top_norm_2017',
+               'name'  : 'CMS_Top_norm_2016',
                'samples'  : {
                    'top' : '1.00',
                    },
@@ -373,15 +382,15 @@ nuisances['Top_norm']  = {
 for wjbin in Wjets_bins:
     for fl in ["ele", "mu"]:
         if "boost" in wjbin:
-            nuisances["{}_norm_{}_boost_2018".format(wjbin, fl)] = {
-                'name'  : 'CMS_{}_norm_{}_boost_2018'.format(wjbin, fl),
+            nuisances["{}_norm_{}_boost_2016".format(wjbin, fl)] = {
+                'name'  : 'CMS_{}_norm_{}_boost_2016'.format(wjbin, fl),
                 'samples'  : { wjbin: '1.00' },
                 'type'  : 'rateParam',
                 'cuts'  : [f+"_"+fl for f in phase_spaces_dict["boost"]]
             }
         else:
-            nuisances["{}_norm_{}_res_2018".format(wjbin, fl)] = {
-                'name'  : 'CMS_{}_norm_{}_res_2018'.format(wjbin, fl),
+            nuisances["{}_norm_{}_res_2016".format(wjbin, fl)] = {
+                'name'  : 'CMS_{}_norm_{}_res_2016'.format(wjbin, fl),
                 'samples'  : { wjbin: '1.00' },
                 'type'  : 'rateParam',
                 'cuts'  : [f+"_"+fl for f in phase_spaces_dict["res"]]
@@ -404,4 +413,4 @@ for n in nuisances.values():
     n['skipCMS'] = 1
 
    
-print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
+#print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))

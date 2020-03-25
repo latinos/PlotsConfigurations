@@ -18,14 +18,24 @@ toysf = "--toysFreq" if args.data_asimov else ""
 
 def prepare_rateParams(years):
     rps = []
-    for s in ["Wjets", "Top"]:
-        for c in ["boos", "res"]:
-            for y in years:
-                if s == "Wjets":
-                    for fl in ["e", "mu"]:
-                        rps.append("CMS_Wjets_norm_{}_{}_{}".format(fl,c,y))
-                if s == "Top":
-                    rps.append("CMS_Top_norm_{}".format(y))
+
+    jetbin_detabins = [3,3,2]
+    # # name of samples here must match keys in samples.py 
+    Wjets_bins = ["Wjets_boost"]
+    for jetbin in range(3):
+        for detabin in range(jetbin_detabins[jetbin]):
+            Wjets_bins.append("Wjets_deta{}_jpt{}".format(detabin+1, jetbin+1))
+    for y in years:
+        for wjbin in Wjets_bins:
+            for fl in ["ele", "mu"]:
+                if "boost" in wjbin:
+                    rps.append('CMS_{}_norm_{}_boost_{}'.format(wjbin, fl,y))
+                else:
+                    rps.append('CMS_{}_norm_{}_res_{}'.format(wjbin, fl,y))
+
+    for c in ["boos", "res"]:
+        for y in years:
+            rps.append("CMS_Top_norm_{}".format(y))
     return rps
 
 

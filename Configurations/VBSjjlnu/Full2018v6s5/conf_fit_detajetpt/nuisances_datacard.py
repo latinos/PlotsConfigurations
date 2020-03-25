@@ -235,7 +235,7 @@ nuisances['jes']  = {
 }
 
 nuisances['fatjet_jes']  = {
-                'name'  : 'CMS_scale_fatj_2018',
+                '#'  : 'CMS_scale_fatj_2018',
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : dict((skey, ['1', '1']) for skey in mc),
@@ -268,12 +268,21 @@ nuisances['met']  = {
 ######################
 # Theory nuisance
 
-nuisances['QCD_scale_Wjets'] = {
+nuisances['QCD_scale_wjets'] = {
      'name'  : 'QCDscale_wjets',
      'kind'  : 'weight',
      'type'  : 'shape',
      'samples'  :   {
          "Wjets" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
+     }
+}
+
+nuisances['QCD_scale_top'] = {
+     'name'  : 'QCDscale_top',
+     'kind'  : 'weight',
+     'type'  : 'shape',
+     'samples'  :   {
+         "top" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
      }
 }
 
@@ -398,4 +407,4 @@ for n in nuisances.values():
     n['skipCMS'] = 1
 
    
-print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
+#print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
