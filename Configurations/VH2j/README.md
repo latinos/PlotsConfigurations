@@ -11,9 +11,9 @@ The following instructions and configurations correspond to the VH2j analysis. T
 
 # Produce histograms
 
-    cd $CMSSW_BASE/src/PlotsConfigurations/Configurations/VH2j/Full2016
-    cd $CMSSW_BASE/src/PlotsConfigurations/Configurations/VH2j/Full2017
-    cd $CMSSW_BASE/src/PlotsConfigurations/Configurations/VH2j/Full2018
+    cd $CMSSW_BASE/src/PlotsConfigurations/Configurations/VH2j/Full2016_v6
+    cd $CMSSW_BASE/src/PlotsConfigurations/Configurations/VH2j/Full2017_v6
+    cd $CMSSW_BASE/src/PlotsConfigurations/Configurations/VH2j/Full2018_v6
 
     mkShapesMulti.py \
         --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/ \
