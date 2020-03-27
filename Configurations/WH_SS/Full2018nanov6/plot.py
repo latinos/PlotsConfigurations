@@ -33,17 +33,17 @@ groupPlot['Fake']  = {
                   'nameHR' : 'Non-prompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
+                  #'samples'  : ['Fake_em','Fake_mm','Fake_ee']
                   'samples'  : ['Fake_em','Fake_mm']
               }
 
 
-#groupPlot['DY']  = {  
-#                  'nameHR' : "DY",
-#                  'isSignal' : 0,
-#                  'color': 418,    # kGreen+2
-#                  'samples'  : ['DY']
-#              }
-#
+groupPlot['DY']  = {  
+                  'nameHR' : "DY",
+                  'isSignal' : 0,
+                  'color': 418,    # kGreen+2
+                  'samples'  : ['DY']
+              }
 
 
 groupPlot['VVV']  = {  
@@ -68,13 +68,19 @@ groupPlot['Vg']  = {
                   'samples'  : ['Vg', 'Wg']
               }
 
-groupPlot['VgS']  = {
-                  'nameHR' : "V#gamma*",
+groupPlot['VgS_L']  = {
+                  'nameHR' : "V#gamma*_L",
                   'isSignal' : 0,
                   'color'    : 409,   # kGreen - 9
-                  'samples'  : ['VgS_H','VgS_L']
+                  'samples'  : ['VgS_L']
               }
 
+groupPlot['VgS_H']  = {
+                  'nameHR' : "V#gamma*_H",
+                  'isSignal' : 0,
+                  'color'    : 409,   # kGreen - 9
+                  'samples'  : ['VgS_H']
+              }
 
 
 groupPlot['Higgs']  = {  
@@ -84,9 +90,6 @@ groupPlot['Higgs']  = {
 		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
 #		  'samples'  : ['H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww']
               }
-
-
-
 
 
 #plot = {}
@@ -146,7 +149,12 @@ plot['Fake_mm']  = {
                   'scale'    : 1.0                  
               }
 
-
+plot['Fake_ee']  = {
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+              }
 
 
 #plot['Fake_me']  = {  

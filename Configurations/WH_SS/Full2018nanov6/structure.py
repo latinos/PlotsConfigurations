@@ -19,10 +19,10 @@ structure['Fake']  = {
                   'isSignal' : 0,
                   'isData'   : 0 
               }
-#structure['Fakes_ee']  = {
-##                  'isSignal' : 0,
-#                  'isData'   : 0
-#              }
+structure['Fake_ee']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+              }
 
 structure['Fake_mm']  = {
                   'isSignal' : 0,
