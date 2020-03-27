@@ -20,10 +20,10 @@ structure['DY']  = {
 #                  'isData'   : 0 
 #              }
 
-#structure['Fake_ee']  = {
-#                  'isSignal' : 0,
-#                  'isData'   : 0
-#              }
+structure['Fake_ee']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+              }
 
 structure['Fake_mm']  = {
                   'isSignal' : 0,
@@ -220,6 +220,11 @@ structure['WH_htt'] = {
                   }
 
 structure['ZH_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['H_htt'] = {
                   'isSignal' : 1,
                   'isData'   : 0,
                   }

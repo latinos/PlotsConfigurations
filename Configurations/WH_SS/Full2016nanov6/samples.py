@@ -190,7 +190,7 @@ files = nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu') + \
 
 samples['VZ'] = {
     'name': files,
-    'weight': mcCommonWeight + '*1.11',
+    'weight': mcCommonWeight,
     'FilesPerJob': 4
 }
 
@@ -263,50 +263,13 @@ samples['WH_hww'] = {
 
 signals.append('WH_hww')
 
-############ ttH ############
-
-#FIXME ttH sample missing in v6
-#samples['ttH_hww'] = {
-#    'name':   nanoGetSampleFiles(mcDirectory, 'ttHToNonbb_M125'),
-#    'weight': mcCommonWeight,
-#    'FilesPerJob': 1
-#}
-
-#signals.append('ttH_hww')
-
 ############ H->TauTau ############
 
-samples['ggH_htt'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125'),
+samples['H_htt'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
     'weight': mcCommonWeight,
     'FilesPerJob': 4
 }
-
-signals.append('ggH_htt')
-
-samples['qqH_htt'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125'),
-    'weight': mcCommonWeight,
-    'FilesPerJob': 4
-}
-
-signals.append('qqH_htt')
-
-samples['ZH_htt'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125'),
-    'weight': mcCommonWeight,
-    'FilesPerJob': 4
-}
-
-signals.append('ZH_htt')
-
-samples['WH_htt'] = {
-    'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
-    'weight': mcCommonWeight,
-    'FilesPerJob': 4
-}
-
-signals.append('WH_htt')
 
 ###########################################
 ################## FAKE ###################
@@ -334,7 +297,8 @@ for _, sd in DataRun:
 
 samples['Fake']['subsamples'] = {
   'em': 'Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13',
-  'mm': 'Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13'
+  'mm': 'Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13',
+  'ee': 'Lepton_pdgId[0]*Lepton_pdgId[1] == 11*11'
 }
 
 ###########################################
