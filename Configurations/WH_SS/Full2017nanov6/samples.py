@@ -327,7 +327,8 @@ for _, sd in DataRun:
 
 samples['Fake']['subsamples'] = {
   'em': 'Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13',
-  'mm': 'Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13'
+  'mm': 'Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13',
+  'ee': 'Lepton_pdgId[0]*Lepton_pdgId[1] == 11*11'
 }
 
 ###########################################
