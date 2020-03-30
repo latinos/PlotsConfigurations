@@ -10,7 +10,7 @@ variables['class0_XSF'] = {
      'range' : ([-0.50,-0.25,-0.15,0.,0.15,0.25,0.35,0.50,0.80],),
      'xaxis' : 'MVA discriminant ZH',
      'fold' : 3,
-     'linesToAdd' : ['.L /afs/cern.ch/work/k/kaura/NewLatino_v6/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ZH4l/nano_config/Full2017/hww_ZH_newBDTnew.C+']
+     'linesToAdd' : ['.L /afs/cern.ch/work/k/kaura/NewLatino_v6/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ZH4l/nano_config/Full2018/hww_ZH_newBDTnew.C+']
 }  #change the path of macro
 
 variables['class1_XDF'] = {
@@ -19,7 +19,7 @@ variables['class1_XDF'] = {
      'range' : ([-0.50,-0.25,0.,0.25,0.50,0.80],),
      'xaxis' : 'MVA discriminant ZH',
      'fold' : 3,
-     'linesToAdd' : ['.L /afs/cern.ch/work/k/kaura/NewLatino_v6/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ZH4l/nano_config/Full2017/hww_ZH_newBDTnew.C+']
+     'linesToAdd' : ['.L /afs/cern.ch/work/k/kaura/NewLatino_v6/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ZH4l/nano_config/Full2018/hww_ZH_newBDTnew.C+']
 } #change the path of macro
 
 
