@@ -1,6 +1,20 @@
 ## variabeadines
+from itertools import chain
 
 #variables = {}
+boost_cuts = list(chain(
+                    *[ [t+"_ele", t+"_mu"] for t in 
+                               ['boost_sig_mjjincl','boost_sig_mjjincl_dnnhigh',
+                                'boost_topcr_mjjincl','boost_topcr_mjjincl_dnnhigh',
+                                'boost_wjetcr_mjjincl','boost_wjetcr_mjjincl_dnnhigh']
+                    ]))
+
+res_cuts = list(chain(
+                    *[ [t+"_ele", t+"_mu"] for t in 
+                        ['res_sig_mjjincl', 'res_sig_mjjincl_dnnhigh',
+                        'res_topcr_mjjincl','res_topcr_mjjincl_dnnhigh',
+                        'res_wjetcr_mjjincl','res_wjetcr_mjjincl_dnnhigh']
+                    ]))
     
 
 variables['events']  = {   'name': '1',      
@@ -71,10 +85,10 @@ variables['deltaeta_vbs'] = {   'name': 'deltaeta_vbs',
                         'range' : (16,2,8),  
                         'xaxis' : '#Delta#eta VBS jets', 
                         'fold' : 3,
-                        'blind': {
-                            "res_sig_mjjincl_ele" :(4,9),
-                            "res_sig_mjjincl_mu" : (4,9),
-                            }
+                        # 'blind': {
+                        #     "res_sig_mjjincl_ele" :(4,9),
+                        #     "res_sig_mjjincl_mu" : (4,9),
+                        #     }
                         }    
 
 
@@ -98,12 +112,13 @@ variables['deltaeta_vbs'] = {   'name': 'deltaeta_vbs',
 
 variables["deta_jetpt_CR"] = {
             'name': 'detavbs_jetpt_bin',
-            'range': (9, 0.5, 9.5),
+            'range': (8, 0.5, 8.5),
             'axis': '#Delta#eta VBS jets : VBS trailing jet Pt bins',
-            'fold': 0
+            'fold': 0,
+            'cuts': res_cuts
 }
 
-# #MET
+#MET
 variables['PuppiMET'] = {   'name': 'PuppiMET_pt',      
                         'range' : (30,0,300),  
                         'xaxis' : 'PuppiMET_pt', 
@@ -117,10 +132,14 @@ variables['mjj_vbs_morebins'] = {   'name': 'mjj_vbs',
                         'xaxis' : 'M_{jj} VBS', 
                         'fold' : 3,
                         'blind' : {
-                            "res_sig_mjjincl_ele" :(1000,4000),
-                            "res_sig_mjjincl_mu" : (1000,4000),
-                            "res_sig_mjjincl_dnn_high_mu" : (1000,4000),
-                            "res_sig_mjjincl_dnn_high_ele" : (1000,4000),
+                            "res_sig_mjjincl_ele" :(3000,4000),
+                            "res_sig_mjjincl_mu" : (3000,4000),
+                            "res_sig_mjjincl_dnnhigh_mu" : (3000,4000),
+                            "res_sig_mjjincl_dnnhigh_ele" : (3000,4000),
+                            "boost_sig_mjjincl_ele" :(3000,4000),
+                            "boost_sig_mjjincl_mu" : (3000,4000),
+                            "boost_sig_mjjincl_dnnhigh_mu" : (3000,4000),
+                            "boost_sig_mjjincl_dnnhigh_ele" : (3000,4000),
                             }
                          }
 

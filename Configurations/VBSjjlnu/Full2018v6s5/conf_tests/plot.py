@@ -38,7 +38,7 @@ palette = {
     "Green2": (55, 183, 76),  #37b74c
     "LightGreen" : (82, 221, 135), #52dd87
     "Violet": (242, 67, 114), #f24372  
-     "Pink": (247, 191, 223)
+    "Pink": (247, 191, 223)
 }
 
 '''
@@ -49,6 +49,18 @@ palette = {
     "Wjets_deta1": (247, 235, 7), #f7eb07
 '''
 
+jetbin_detabins = [3,3,2]
+wjets_palette = ['#FFF59D', '#FFEE58', '#FFD54F', '#FFB300', '#FF8F00', '#F57C00', '#E65100','#BF360C']
+wjets_palette = ['#DD2C00', '#FF3D00',  '#FF6D00','#F57C00', '#FFAB00', '#FFC400', '#FFEA00', '#FFFF00']
+
+icw = 0
+for il in range(1,4):
+    for j in range(1,jetbin_detabins[il-1]+1):
+        color = wjets_palette[icw]
+        icw+=1
+        palette["Wjets_deta{}_jpt{}".format(j, il)] = color
+
+
 groupPlot['Fake']  = {  
                 'nameHR' : "Fake",
                 'isSignal' : 0,
@@ -56,13 +68,6 @@ groupPlot['Fake']  = {
                 'samples'  : ['Fake'],
                 'fill': 1001
             }
-
-# groupPlot['Vg']  = {  
-#                   'nameHR' : "V#gamma+V#gamma*",
-#                   'isSignal' : 0,
-#                   'color'    : 409,   # kOrange + 10
-#                   'samples'  : ['Vg','VgS']
-#               }
 
 groupPlot['vbfV+VV+VVV']  = {  
                   'nameHR' : 'vbfV+VV+VVV',
@@ -90,11 +95,12 @@ groupPlot['top']  = {
              }
 
 
-groupPlot["Wjets_boost"]  = {  
-                        'nameHR' : 'W+Jets_boost',
+
+groupPlot["Wjets"]  = {  
+                        'nameHR' : 'W+Jets',
                         'isSignal' : 0,
                         'color':   palette["Yellow"],
-                        'samples'  : ["Wjets_boost"],
+                        'samples'  : ["Wjets"],
                         'fill': 1001
                 }
 
@@ -161,12 +167,25 @@ plot['top'] = {
                  }
 
 
-plot['Wjets_boost'] ={
-                'color':  palette["Yellow"],
+#wfactors = {
+#    (1,1): 0.89,
+#    (1,2): 0.88,
+#    (1,3): 0.66,
+#    (2,1): 1.08,
+#    (2,2): 0.92,
+#    (2,3): 0.65,
+#    (3,1): 1.36,
+#    (3,2): 1.00,
+#}
+
+
+plot["Wjets"] = {  
+                'color':  colors['kRed']-3,
                 'isSignal' : 0,
                 'isData'   : 0,
                 'scale': 1.0
-}
+            }
+
 
 
 plot['VBS']  = {
@@ -189,9 +208,8 @@ plot['DATA']  = {
 
 
 # additional options
-# additional options
 
-legend['lumi'] = 'L = 41.5/fb'
+legend['lumi'] = 'L = 59.74/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

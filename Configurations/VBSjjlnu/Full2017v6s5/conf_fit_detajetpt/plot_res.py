@@ -77,11 +77,11 @@ groupPlot['Fake']  = {
 #                   'samples'  : ['Vg','VgS']
 #               }
 
-groupPlot['VVV']  = {  
-                  'nameHR' : 'VVV',
+groupPlot['vbfV+VV+VVV']  = {  
+                  'nameHR' : 'vbfV+VV+VVV',
                   'isSignal' : 0,
                   'color': palette["Pink"],  
-                  'samples'  : ['VVV'],
+                  'samples'  : ['VBF-F','VVV', 'VV'],
                   'fill': 1001
               }
 
@@ -136,26 +136,13 @@ plot['VVV']  = {
                   }
 
 
-# plot['VV']  = {
-#                   'color': colors['kGreen']+3,  
-#                   'isSignal' : 0,
-#                   'isData'   : 0,
-#                   'scale'    : 1.   ,
-#               }   
+plot['VV']  = {
+                  'color': colors['kGreen']+3,  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.   ,
+              }   
          
-# plot['Vg']  = { 
-#                   'color': 859, # kAzure -1  
-#                   'isSignal' : 0,
-#                   'isData'   : 0,
-#                   'scale'    : 1.0
-#                   }
-
-# plot['VgS'] = { 
-#                   'color'    : 617,   # kViolet + 1  
-#                   'isSignal' : 0,
-#                   'isData'   : 0,
-#                   'scale'    : 1.0
-#                   }
 
 
 plot['DY']  = {  
@@ -165,12 +152,12 @@ plot['DY']  = {
                 'scale'    : 1.0,
             }
 
-# plot['VBF-V']  = {
-#                   'color': colors['kYellow']+3,  
-#                   'isSignal' : 0,
-#                   'isData'   : 0,
-#                   'scale'    : 1.   ,
-#               }
+plot['VBF-V']  = {
+                  'color': colors['kYellow']+3,  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.   ,
+              }
 
 
 plot['Fake']  = {  

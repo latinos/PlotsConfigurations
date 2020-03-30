@@ -10,7 +10,10 @@ for k in f.GetListOfKeys():
     for z in R.gDirectory.GetListOfKeys():
         print(z)
         R.gDirectory.Cd(z.GetName())
-        R.gDirectory.Delete("histo_DY;1")
+        if z.GetName() == "whad_pt":
+            for l in R.gDirectory.GetListOfKeys():
+                if "top" in l.GetName():
+                    R.gDirectory.Delete(l.GetName()+";1")
         R.gDirectory.Cd("../")
 
     R.gDirectory.Cd("../")

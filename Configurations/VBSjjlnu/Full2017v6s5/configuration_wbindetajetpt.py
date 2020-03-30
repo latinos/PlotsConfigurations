@@ -2,8 +2,8 @@
 treeName= 'Events'
 
 
-tag = 'fit_detajetpt_2017'
-direc ='conf_fit_detajetpt'
+tag = 'wbindetajetpt'
+direc ='conf_wbindetajetpt'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_'+tag 
