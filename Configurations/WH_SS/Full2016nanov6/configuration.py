@@ -1,0 +1,53 @@
+# example of configuration file:wq
+
+treeName= 'Events'
+
+#tag = 'WHSS2016_v6ntuples' #remove DY and add Z veto in mm, cut based tight SS id for electron
+#tag = 'WHSS2016_v6ntuples_try2'
+#tag = 'WHSS2016_v6ntuples_try3'
+#tag = 'WHSS2016_v6ntuples_try4'
+#tag = 'WHSS2016_v6ntuples_try6'
+tag = 'WHSS2016_v6ntuples_try7'
+#tag = 'WHSS2016_WZCR'
+
+# used by mkShape to define output directory for root files
+outputDir = 'rootFile'
+
+# file with TTree aliases
+aliasesFile = 'aliases.py'
+
+# file with list of variables
+variablesFile = 'variables.py'
+
+# file with list of cuts
+cutsFile = 'cuts.py' 
+#cutsFile = 'cuts_CR.py' 
+
+# file with list of samples
+samplesFile = 'samples.py' 
+
+# file with list of samples
+plotFile = 'plot.py' 
+
+
+
+# luminosity to normalize to (in 1/fb)
+lumi = 35.867
+
+# used by mkPlot to define output directory for plots
+# different from "outputDir" to do things more tidy
+outputDirPlots = 'plot'+tag
+
+
+# used by mkDatacards to define output directory for datacards
+outputDirDatacard = 'datacards'+tag
+
+
+# structure file for datacard
+structureFile = 'structure.py'
+
+
+# nuisances file for mkDatacards and for mkShape
+nuisancesFile = 'nuisances.py'
+
+

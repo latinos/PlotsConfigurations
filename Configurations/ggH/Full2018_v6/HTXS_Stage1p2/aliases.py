@@ -17,10 +17,6 @@ mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
 eleWP='mvaFall17V1Iso_WP90'
 muWP='cut_Tight_HWWW'
-aliases['pTHjj'] = {
-    'linesToAdd' : ['.L %s/ggH/Full2017/HTXS_Stage1/macro_pTHjj.cc+' %configurations],
-    'class': 'Compute_pTHjj'
-}
 
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
@@ -148,20 +144,6 @@ aliases['sr'] = {
 
 # B tag scale factors
 
-btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_102XSF_V1.csv' % os.getenv('CMSSW_BASE')
-
-aliases['Jet_btagSF_shape'] = {
-    'linesToAdd': [
-        'gSystem->Load("libCondFormatsBTauObjects.so");',
-        'gSystem->Load("libCondToolsBTau.so");',
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
-        '.L %s/patches/btagsfpatch.cc+' % configurations
-    ],
-    'class': 'BtagSF',
-    'args': (btagSFSource,),
-    'samples': mc
-}
-
 aliases['bVetoSF'] = {
     'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
     'samples': mc
@@ -178,17 +160,7 @@ aliases['btagSF'] = {
 }
 
 for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
-    aliases['Jet_btagSF_shape_up_%s' % shift] = {
-        'class': 'BtagSF',
-        'args': (btagSFSource, 'up_' + shift),
-        'samples': mc
-    }
-    aliases['Jet_btagSF_shape_down_%s' % shift] = {
-        'class': 'BtagSF',
-        'args': (btagSFSource, 'down_' + shift),
-        'samples': mc
-    }
-
+   
     for targ in ['bVeto', 'bReq']:
         alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
         alias['expr'] = alias['expr'].replace('btagSF_shape', 'btagSF_shape_up_%s' % shift)
@@ -222,8 +194,7 @@ aliases['PUJetIdSF'] = {
 
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut', 'btagSF', 'PUJetIdSF']),
-    #'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut']),
+    'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut', 'btagSF','PUJetIdSF']),
     'samples': mc
 }
 # variations

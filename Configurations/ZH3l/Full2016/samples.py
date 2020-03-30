@@ -169,28 +169,17 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toinf'        ,ptllDYW_LO)
 
 ############ Top ############
 
-Top_pTrw = '(TMath::Sqrt( TMath::Exp(0.0615-0.0005*topGenPt) * TMath::Exp(0.0615-0.0005*antitopGenPt) ) )'
-
 samples['top'] = {    'name'   :   getSampleFilesNano(directory,'TTTo2L2Nu') 
                                  + getSampleFilesNano(directory,'ST_s-channel') 
                                  + getSampleFilesNano(directory,'ST_t-channel_antitop') 
                                  + getSampleFilesNano(directory,'ST_t-channel_top') 
-                                 + getSampleFilesNano(directory,'ST_tW_antitop_noHad') 
-                                 + getSampleFilesNano(directory,'ST_tW_antitop_noHad_ext1') 
-                                 + getSampleFilesNano(directory,'ST_tW_top_noHad')
-                                 + getSampleFilesNano(directory,'ST_tW_top_noHad_ext1') ,
+                                 + getSampleFilesNano(directory,'ST_tW_antitop') 
+                                 + getSampleFilesNano(directory,'ST_tW_top'),
                      'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                      'FilesPerJob' : 5,
                  }
 
-antibaseW = getBaseWnAOD(directory,'Summer16_102X_nAODv4_Full2016v5',['ST_tW_antitop_noHad','ST_tW_antitop_noHad_ext1'])
-topbaseW  = getBaseWnAOD(directory,'Summer16_102X_nAODv4_Full2016v5',['ST_tW_top_noHad','ST_tW_top_noHad_ext1'])
-
-addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)
-addSampleWeight(samples,'top','ST_tW_antitop_noHad'     ,antibaseW+'/baseW')
-addSampleWeight(samples,'top','ST_tW_antitop_noHad_ext1',antibaseW+'/baseW')
-addSampleWeight(samples,'top','ST_tW_top_noHad'         ,topbaseW+'/baseW')
-addSampleWeight(samples,'top','ST_tW_top_noHad_ext1'    ,topbaseW+'/baseW')
+addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 samples['ttV'] = {    'name'   :   getSampleFilesNano(directory,'TTWJetsToLNu')
                                  + getSampleFilesNano(directory,'TTWJetsToLNu_ext1')

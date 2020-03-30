@@ -60,3 +60,28 @@ aliases['PromptGenLepMatch3l'] = {
     'samples': mc
 }
 
+aliases['Top_pTrw'] = {
+    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
+    'samples': ['top']
+}
+
+#aliases['Lepton_firstParent'] = {
+#    'linesToAdd': [
+#        '.L %s/src/PlotsConfigurations/Configurations/ZH3l/tracelep.cc+' % os.getenv('CMSSW_BASE')
+#    ],
+#    'class': 'tracelep',
+#    'args': ('first'),
+#    'samples': mc
+#}
+
+#aliases['Lepton_promptParent'] = {
+#    'class': 'tracelep',
+#    'args': ('prompt'),
+#    'samples': mc
+#}
+
+#aliases['Lepton_hardParent'] = {
+#    'class': 'tracelep',
+#    'args': ('hard'),
+#    'samples': mc
+#}

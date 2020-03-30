@@ -291,56 +291,108 @@ for name in sampleNames:
     nuisances['PU']['samples'].update({name: ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)']})
 
 ##### PS and UE
-nuisances['PS0jet']  = {
-    'name': 'PS',
+nuisances['PS_ISR_0jet']  = {
+    'name': 'PS_ISR',
     'type': 'lnN',
     'samples': {
-        'WW'     : '1.0051/0.9968',
-        'top'    : '1.0474/0.9705',
-        'DY'     : '1.0048/0.9947',
-        'ggH_hww': '1.0059/0.9955',
-        'qqH_hww': '1.0241/0.9866',
-        'WH_hww' : '1.0213/0.9891',
-        'ZH_hww' : '1.0171/0.9897',
+        'WW'     : '1.0004147/0.9990865',
+        'top'    : '1.0038372/0.9949470',
+        'DY'     : '1.0040364/0.9947131',
+        'ggH_hww': '1.0024342/0.9966181',
+        'qqH_hww': '1.0004923/0.9995787',
+      'WH_hww' : '1.0012062/0.9985316',
+        'ZH_hww' : '1.0007957/0.9989884',
     },
     'cuts'  : cuts0j,
 }
 
-nuisances['PS1jet']  = {
-    'name': 'PS',
+nuisances['PS_ISR_1jet']  = {
+    'name': 'PS_ISR',
     'type': 'lnN',
     'samples': {
-        'WW'     : '1.0160/0.9801',
-        'top'    : '1.0216/0.9871',
-        'DY'     : '1.0079/0.9900',
-        'ggH_hww': '1.0170/0.9790',
-        'qqH_hww': '1.0116/0.9938',
-        'WH_hww' : '1.0066/0.9978',
-        'ZH_hww' : '1.0145/0.9937',
+        'WW'     : '1.0160460/0.9801447',
+        'top'    : '1.0051215/0.9934017',
+        'DY'     : '1.0079131/0.9900890',
+        'ggH_hww': '1.0170139/0.9790389',
+        'qqH_hww': '1.0022875/0.9970339',
+        'WH_hww' : '1.0017547/0.9978214',
+        'ZH_hww' : '1.0015857/0.9980180',
     },
     'cuts'  : cuts1j,
 }
 
-nuisances['PS2jet']  = {
-    'name': 'PS',
+nuisances['PS_ISR_2jet']  = {
+    'name': 'PS_ISR',
     'type': 'lnN',
     'samples': {
-        'WW'     : '1.0472/0.9619',
-        'top'    : '1.0075/0.9876' ,
-        'DY'     : '1.0169/0.9717',
-        'ggH_hww': '1.0481/0.9607',
-        'qqH_hww': '1.0057/0.9888',
-        'WH_hww' : '1.0174/0.9737',
-        'ZH_hww' : '1.0079/0.9854',
+        'WW'     : '0.9619687/1.0472157',
+        'top'    : '1.0000271/0.9999406',
+        'DY'     : '0.9984594/1.0020964',
+        'ggH_hww': '0.9607736/1.0481858',
+        'qqH_hww': '0.9998172/1.0001610',
+        'WH_hww' : '0.9993065/1.0007548',
+        'ZH_hww' : '0.9995627/1.0005501',
+    },
+    'cuts'  : cuts2j,
+}
+nuisances['PS_FSR_0jet']  = {
+    'name': 'PS_FSR',
+    'type': 'lnN',
+    'samples': {
+        'WW'     : '0.9968231/1.0051404',
+        'top'    : '0.9705783/1.0474730',
+        'DY'     : '0.9974074/1.0048384',
+        'ggH_hww': '0.9955678/1.0060251',
+        'qqH_hww': '0.9866768/1.0239547',
+        'WH_hww' : '0.9891188/1.0215866',
+        'ZH_hww' : '0.9896471/1.0173018',
+    },
+    'cuts'  : cuts0j,
+}
+nuisances['PS_FSR_1jet']  = {
+    'name': 'PS_FSR',
+    'type': 'lnN',
+    'samples': {
+        'WW'     : '1.0049297/0.9915376',
+        'top'    : '0.9871745/1.0215966',
+        'DY'     : '1.0049659/0.9909187',
+        'ggH_hww': '1.0097427/0.9839139',
+        'qqH_hww': '0.9939033/1.0115130',
+        'WH_hww' : '0.9990734/1.0065910',
+        'ZH_hww' : '0.9936971/1.0145482',
+    },
+    'cuts'  : cuts1j,
+}
+
+nuisances['PS_FSR_2jet']  = {
+    'name': 'PS_FSR',
+    'type': 'lnN',
+    'samples': {
+        'WW'     : '1.0084263/0.9843947',
+        'top'    : '1.0075607/0.9876902',
+        'DY'     : '1.0169378/0.9717602',
+        'ggH_hww': '1.0168108/0.9673918',
+        'qqH_hww': '1.0057013/0.9888023',
+        'WH_hww' : '1.0174174/0.9737212',
+        'ZH_hww' : '1.0079410/0.9854651',
     },
     'cuts'  : cuts2j,
 }
 
 for name in sampleNames:
   if 'ggH_hww' in name:
-    nuisances['PS0jet']['samples'].update({name: ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]']})
-    nuisances['PS1jet']['samples'].update({name: ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]']})
-    nuisances['PS2jet']['samples'].update({name: ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]']})
+    nuisances['PS_ISR_0jet']['samples'].update({name: '1.0024342/0.9966181'})
+    nuisances['PS_ISR_0jet']['samples'].update({'cuts': cuts0j})
+    nuisances['PS_ISR_1jet']['samples'].update({name: '1.0170139/0.9790389'})
+    nuisances['PS_ISR_1jet']['samples'].update({'cuts': cuts1j})
+    nuisances['PS_ISR_2jet']['samples'].update({name: '0.9607736/1.0481858'})
+    nuisances['PS_ISR_2jet']['samples'].update({'cuts': cuts2j})
+    nuisances['PS_FSR_0jet']['samples'].update({name: '0.9955678/1.0060251'})
+    nuisances['PS_FSR_0jet']['samples'].update({'cuts': cuts0j})
+    nuisances['PS_FSR_1jet']['samples'].update({name: '1.0097427/0.9839139'})
+    nuisances['PS_FSR_1jet']['samples'].update({'cuts': cuts1j})
+    nuisances['PS_FSR_2jet']['samples'].update({name: '1.0168108/0.9673918'})
+    nuisances['PS_FSR_2jet']['samples'].update({'cuts': cuts2j})
 
 #Normalization factors have been recomputed for 2018
 nuisances['UE']  = {
@@ -513,18 +565,18 @@ nuisances['pdf_qqbar_ACCEPT'] = {
     },
 }
 
-##### Renormalization & factorization scales                                                                                                   
+##### Renormalization & factorization scales                                                                                                  
 
-## Shape nuisance due to QCD scale variations for DY                                                                                           
-# LHE scale variation weights (w_var / w_nominal)                                                                                              
-#[0] is MUR="0.5" MUF="0.5";                                                                                                                   
-#[1] is MUR="0.5" MUF="1.0";                                                                                                                   
-#[2] is MUR="0.5" MUF="2.0";                                                                                                                   
-#[3] is MUR="1.0" MUF="0.5";                                                                                                                   
-#[4] is MUR="1.0" MUF="2.0";                                                                                                                   
-#[5] is MUR="2.0" MUF="0.5";                                                                                                                   
-#[6] is MUR="2.0" MUF="1.0";                                                                                                                   
-#[7] is MUR="2.0" MUF="2.0"*                                                                                                                   
+## Shape nuisance due to QCD scale variations for DY                                                                                          
+# LHE scale variation weights (w_var / w_nominal)                                                                                             
+#[0] is MUR="0.5" MUF="0.5";                                                                                                                  
+#[1] is MUR="0.5" MUF="1.0";                                                                                                                  
+#[2] is MUR="0.5" MUF="2.0";                                                                                                                  
+#[3] is MUR="1.0" MUF="0.5";                                                                                                                  
+#[4] is MUR="1.0" MUF="2.0";                                                                                                                  
+#[5] is MUR="2.0" MUF="0.5";                                                                                                                  
+#[6] is MUR="2.0" MUF="1.0";                                                                                                                  
+#[7] is MUR="2.0" MUF="2.0"*                                                                                                                  
 
 variationsDY = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 4, 6, 7]]
 
@@ -536,20 +588,19 @@ nuisances['QCDscale_V'] = {
     'samples': {'DY': variationsDY},
     'AsLnN': '1'
 }
-## Shape nuisance due to QCD scale variations for other samples                                                                                
-# LHE scale variation weights (w_var / w_nominal)                                                                                              
-# [0] is muR=0.50000E+00 muF=0.50000E+00                                                                                                       
-# [1] is muR=0.50000E+00 muF=0.10000E+01                                                                                                       
-# [2] is muR=0.50000E+00 muF=0.20000E+01                                                                                                       
-# [3] is muR=0.10000E+01 muF=0.50000E+00                                                                                                       
-# [4] is muR=0.10000E+01 muF=0.10000E+01                                                                                                       
-# [5] is muR=0.10000E+01 muF=0.20000E+01                                                                                                       
-# [6] is muR=0.20000E+01 muF=0.50000E+00                                                                                                       
-# [7] is muR=0.20000E+01 muF=0.10000E+01                                                                                                       
-# [8] is muR=0.20000E+01 muF=0.20000E+01                                                                                                       
+## Shape nuisance due to QCD scale variations for other samples                                                                               
+# LHE scale variation weights (w_var / w_nominal)                                                                                             
+# [0] is muR=0.50000E+00 muF=0.50000E+00                                                                                                      
+# [1] is muR=0.50000E+00 muF=0.10000E+01                                                                                                      
+# [2] is muR=0.50000E+00 muF=0.20000E+01                                                                                                      
+# [3] is muR=0.10000E+01 muF=0.50000E+00                                                                                                      
+# [4] is muR=0.10000E+01 muF=0.10000E+01                                                                                                      
+# [5] is muR=0.10000E+01 muF=0.20000E+01                                                                                                      
+# [6] is muR=0.20000E+01 muF=0.50000E+00                                                                                                      
+# [7] is muR=0.20000E+01 muF=0.10000E+01                                                                                                      
+# [8] is muR=0.20000E+01 muF=0.20000E+01                                                                                                      
 
 variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 5, 7, 8]]
-
 
 nuisances['QCDscale_VV'] = {
     'name': 'QCDscale_VV',
@@ -569,7 +620,7 @@ nuisances['QCDscale_ggVV'] = {
     },
 }
 
-##### Renormalization & factorization scales                                                                                                   
+##### Renormalization & factorization scales                                                                                                  
 nuisances['WWresum0j']  = {
   'name'  : 'CMS_hww_WWresum_0j',
   'skipCMS' : 1,
