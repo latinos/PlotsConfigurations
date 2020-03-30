@@ -49,8 +49,7 @@ nuisances['QCDscale_VH']  = {
   'samples'  : {
     'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
     'ZH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm'),
-    'WH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
-    'ZH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm'),
+     'H_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm'),
   },
   'type'  : 'lnN',
 }
@@ -63,36 +62,42 @@ nuisances['QCDscale_ggZH']  = {
   'type'  : 'lnN',
 }
 
+nuisances['QCDscale_V'] = {
+    'name': 'QCDscale_V',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+        'DY'      : ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
+    }
+}
+
 nuisances['QCDscale_VV'] = {
     'name': 'QCDscale_VV',
     'kind': 'weight',
     'type': 'shape',
     'samples': {
+        'WW'      : ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
         'Zg'      : ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
+        'ZgS'     : ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
         'WZ'      : ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-        'ZZ'      : ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
+        #'ZZ'      : ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'], #LHEScaleWeight not stored for ggZZ sample (which is non-negligible)
     }
 }
 
-#TODO update?
 nuisances['QCDscale_qqbar_ACCEPT']  = {
   'name'  : 'QCDscale_qqbar_ACCEPT', 
   'type'  : 'lnN',
   'samples'  : {
-    'WH_hww'  : '1.05',
-    'WH_htt'  : '1.05',
-    'ZH_hww'  : '1.04',
-    'ZH_htt'  : '1.04',
-    'WZ'      : '1.029',
-    'ZZ'      : '1.029'
+    'WH_hww'  : '1.010',
+    'ZH_hww'  : '1.015',
+    'H_htt'   : '1.015',
   },
 }
 
-#TODO update?
 nuisances['QCDscale_gg_ACCEPT']  = {
   'name'  : 'QCDscale_gg_ACCEPT', 
   'samples'  : {
-    'ggZH_hww': '1.027',                   
+    'ggZH_hww': '1.012',                   
   },
   'type'  : 'lnN',
 }
@@ -111,40 +116,46 @@ nuisances['pdf_Higgs_qqbar']  = {
                'type'  : 'lnN',
                'samples'  : {
                    'WH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
-                   'WH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
                    'ZH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH' ,'125.09','pdf','sm'),
-                   'ZH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH' ,'125.09','pdf','sm'),
+                    'H_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH' ,'125.09','pdf','sm'),
                    },
               }
 
-#TODO update?
+nuisances['pdf_qqbar'] = {
+              'name': 'pdf_qqbar',
+              'type': 'lnN',
+              'samples': {
+                  'Zg':  '1.04',
+                  'ZgS': '1.04',
+                  'WZ':  '1.04',
+                  'ZZ':  '1.04',
+                  },
+              }
+
 nuisances['pdf_Higgs_gg_ACCEPT']  = {
                'name'  : 'pdf_Higgs_gg_ACCEPT', 
                'samples'  : {
-                   'ggZH_hww': '1.005', 
+                   'ggZH_hww': '1.006', 
                    },
                'type'  : 'lnN',
               }
 
-#TODO update?
 nuisances['pdf_Higgs_qqbar_ACCEPT']  = {
                'name'  : 'pdf_Higgs_qqbar_ACCEPT',
                'type'  : 'lnN',
                'samples'  : {
-                   'WH_hww'  : '1.007',
-                   'WH_htt'  : '1.007',
-                   'ZH_hww'  : '1.012',
-                   'ZH_htt'  : '1.012',
+                   'WH_hww'  : '1.003',
+                   'ZH_hww'  : '1.002',
+                    'H_htt'  : '1.002',
                    },
               }
 
-#TODO update?
 nuisances['pdf_qqbar_ACCEPT']  = {
                'name'  : 'pdf_qqbar_ACCEPT',
                'type'  : 'lnN',
                'samples'  : {
-                   'WZ'      : '1.005',
-                   'ZZ'      : '1.005',
+                   'WZ'      : '1.001',
+                   'ZZ'      : '1.001',
                    },
               }
 
@@ -156,8 +167,8 @@ nuisances['PS_whss']  = {
                 'samples'  : {
                    'WH_hww'   : '1.037',
                    'ZH_hww'   : '1.037',
-                   'WH_htt'   : '1.037',
                    'ggZH_hww' : '1.037',
+                   'H_htt'    : '1.037',
                 },
 }
 
@@ -168,8 +179,8 @@ nuisances['UE_whss']  = {
                 'samples'  : {
                    'WH_hww'   : '1.010',
                    'ZH_hww'   : '1.010',
-                   'WH_htt'   : '1.010',
                    'ggZH_hww' : '1.010',
+                   'H_htt'    : '1.010',
                },
 }
 
@@ -225,6 +236,31 @@ nuisances['Zg3l1jnorm']  = {
                 ]
               }
 
+#### Top
+
+apply_on = {
+    'top': [
+        '(topGenPt * antitopGenPt <= 0.) * 1.0816 + (topGenPt * antitopGenPt > 0.)',
+        '(topGenPt * antitopGenPt <= 0.) * 0.9184 + (topGenPt * antitopGenPt > 0.)'
+    ]
+}
+
+nuisances['singleTopToTTbar'] = {
+    'name': 'singleTopToTTbar',
+    'skipCMS': 1,
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': apply_on
+}
+
+nuisances['TopPtRew'] = {
+    'name': 'CMS_topPtRew',   # Theory uncertainty
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {'top': ["1.", "1./Top_pTrw"]},
+    'symmetrize': True
+}
+
 #### FAKES
 
 fakeW_EleUp       = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_3lElUp       / fakeW_ele_'+eleWP+'_mu_'+muWP+'_3l )'
@@ -236,19 +272,19 @@ fakeW_statEleDown = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_3lstatElDown / fakeW_ele_
 fakeW_statMuUp    = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_3lstatMuUp   / fakeW_ele_'+eleWP+'_mu_'+muWP+'_3l )'
 fakeW_statMuDown  = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_3lstatMuDown / fakeW_ele_'+eleWP+'_mu_'+muWP+'_3l )'
 
-nuisances['fake_syst_em']  = {
-               'name'  : 'CMS_fake_syst_em',
+nuisances['fake_syst_e']  = {
+               'name'  : 'CMS_fake_syst_e',
                'type'  : 'lnN',
                'samples'  : {
-                   'Fake_em' : '1.30',
+                   'Fake_e' : '1.30',
                },
 }
 
-nuisances['fake_syst_me']  = {
-               'name'  : 'CMS_fake_syst_me',
+nuisances['fake_syst_m']  = {
+               'name'  : 'CMS_fake_syst_m',
                'type'  : 'lnN',
                'samples'  : {
-                   'Fake_me' : '1.30',
+                   'Fake_m' : '1.30',
                },
 }
 
@@ -366,7 +402,7 @@ nuisances['muonpt']  = {
                 'folderDown' : treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5__MupTdo',
 }
 
-# ###### Jet energy scale
+####### Jet energy scale
 
 nuisances['jes']  = {
                 'name'  : 'CMS_scale_j_2016',

@@ -3,8 +3,8 @@ import copy
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # ggH2016
-configurations = os.path.dirname(configurations) # Differential
+configurations = os.path.dirname(configurations) # Full2017_v6
+configurations = os.path.dirname(configurations) # VH2j
 configurations = os.path.dirname(configurations) # Configurations
 
 #aliases = {}
@@ -202,22 +202,22 @@ aliases['SFweightMuDown'] = {
 }
 
 # GGHUncertaintyProducer wasn't run for 2017 nAODv5 non-private
-thus = [
-    'ggH_mu',
-    'ggH_res',
-    'ggH_mig01',
-    'ggH_mig12',
-    'ggH_VBF2j',
-    'ggH_VBF3j',
-    'ggH_pT60',
-    'ggH_pT120',
-    'ggH_qmtop'
-]
-
-for thu in thus:
-    aliases[thu] = {
-        'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
-        'class': 'GGHUncertainty',
-        'args': (thu,),
-        'samples': ['ggH_hww']
-    }
+#thus = [
+#    'ggH_mu',
+#    'ggH_res',
+#    'ggH_mig01',
+#    'ggH_mig12',
+#    'ggH_VBF2j',
+#    'ggH_VBF3j',
+#    'ggH_pT60',
+#    'ggH_pT120',
+#    'ggH_qmtop'
+#]
+#
+#for thu in thus:
+#    aliases[thu] = {
+#        'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
+#        'class': 'GGHUncertainty',
+#        'args': (thu,),
+#        'samples': ['ggH_hww']
+#    }

@@ -2,7 +2,7 @@ import os
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # ggH2016
+configurations = os.path.dirname(configurations) # ggH2018
 configurations = os.path.dirname(configurations) # Differential
 configurations = os.path.dirname(configurations) # Configurations
 
@@ -83,7 +83,6 @@ DataTrig = {
 ############ MC COMMON ##################
 #########################################
 
-# SFweight does not include btag weights
 mcCommonWeightNoMatch = 'XSWeight*SFweight*METFilter_MC'
 mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 
@@ -106,7 +105,6 @@ if useDYtt:
 else:
   files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext') + \
           nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
-
 
 
 samples['DY'] = {
@@ -218,7 +216,6 @@ files = nanoGetSampleFiles(mcDirectory, 'ZZZ') + \
     nanoGetSampleFiles(mcDirectory, 'WZZ') + \
     nanoGetSampleFiles(mcDirectory, 'WWZ') + \
     nanoGetSampleFiles(mcDirectory, 'WWW')
-#+ nanoGetSampleFiles(mcDirectory, 'WWG'), #should this be included? or is it already taken into account in the WW sample?
 
 samples['VVV'] = {
     'name': files,
@@ -233,7 +230,6 @@ samples['VVV'] = {
 signals = []
 
 #### ggH -> WW
-
 samples['ggH_hww'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125'),
     'weight': [mcCommonWeight, {'class': 'Weight2MINLO', 'args': '%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE')}],
@@ -292,37 +288,37 @@ signals.append('ttH_hww')
 
 ############ H->TauTau ############
 
-#samples['ggH_htt'] = {
-#    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125'),
-#    'weight': mcCommonWeight,
-#    'FilesPerJob': 20
-#}
+samples['ggH_htt'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 20
+}
 
-#signals.append('ggH_htt')
+signals.append('ggH_htt')
 
-#samples['qqH_htt'] = {
-#    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125'),
-#    'weight': mcCommonWeight,
-#    'FilesPerJob': 12
-#}
+samples['qqH_htt'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 10
+}
 
-#signals.append('qqH_htt')
-#
-#samples['ZH_htt'] = {
-#    'name': nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125'),
-#    'weight': mcCommonWeight,
-#    'FilesPerJob': 4
-#}
-#
-#signals.append('ZH_htt')
-#
-#samples['WH_htt'] = {
-#    'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
-#    'weight': mcCommonWeight,
-#    'FilesPerJob': 4
-#}
-#
-#signals.append('WH_htt')
+signals.append('qqH_htt')
+
+samples['ZH_htt'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4
+}
+
+signals.append('ZH_htt')
+
+samples['WH_htt'] = {
+    'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4
+}
+
+signals.append('WH_htt')
 
 ###########################################
 ################## FAKE ###################
@@ -333,7 +329,7 @@ samples['Fake'] = {
   'weight': 'METFilter_DATA*fakeW',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 80
+  'FilesPerJob': 50
 }
 
 for _, sd in DataRun:
@@ -356,7 +352,7 @@ samples['DATA'] = {
   'weight': 'METFilter_DATA*LepWPCut',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 120
+  'FilesPerJob': 50
 }
 
 for _, sd in DataRun:
@@ -364,3 +360,4 @@ for _, sd in DataRun:
     files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
+

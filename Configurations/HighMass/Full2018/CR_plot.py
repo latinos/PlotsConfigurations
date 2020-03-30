@@ -19,7 +19,7 @@ groupPlot['WW']  = {
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  'samples'  : ['WW', 'ggWW', 'WWewk']
+                  'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J']
               }
 
 groupPlot['Fake']  = {
@@ -58,14 +58,14 @@ groupPlot['Vg']  = {
                   'nameHR' : "V#gamma",
                   'isSignal' : 0,
                   'color'    : 810,   # kOrange + 10
-                  'samples'  : ['Vg', 'Wg']
+                  'samples'  : ['Vg']
               }
 
 groupPlot['VgS']  = {
                   'nameHR' : "V#gamma*",
                   'isSignal' : 0,
                   'color'    : 409,   # kGreen - 9
-                  'samples'  : ['VgS']
+                  'samples'  : ['VgS_L', 'VgS_H']
               }
 
 groupPlot['SMHiggs']  = {  
@@ -87,11 +87,11 @@ groupPlot['HM_800']  = {
                   'color': 3, # kRed 
                   'samples'  : ['GGH_800'+model_name, 'QQH_800'+model_name]
               }
-groupPlot['HM_2000']  = {  
-                  'nameHR' : '2000 GeV (x50)',
+groupPlot['HM_3000']  = {  
+                  'nameHR' : '3000 GeV (x50)',
                   'isSignal' : 2,
                   'color': 4, # kRed 
-                  'samples'  : ['GGH_2000'+model_name, 'QQH_2000'+model_name]
+                  'samples'  : ['GGH_3000'+model_name, 'QQH_3000'+model_name]
               }
 
 
@@ -117,28 +117,31 @@ if useEmbeddedDY:
                     'scale'    : 1.0,
                 }
 
-plot['Fake_me']  = {  
+if EMorEEorMM == 'em':
+  plot['Fake_me']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0                  
               }
 
-plot['Fake_em']  = {  
+  plot['Fake_em']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0                  
               }
 
-plot['Fake_ee']  = {  
+if EMorEEorMM == 'ee':
+  plot['Fake_ee']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0                  
               }
 
-plot['Fake_mm']  = {  
+if EMorEEorMM == 'mm':
+  plot['Fake_mm']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -174,20 +177,19 @@ plot['WWewk']  = {
                   'scale'    : 1.0
                   }
 
-# TODO
-#plot['WW2J']  = {
-#                  'color': 851, # kAzure -9 
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.0
-#                  }
-#
-#plot['qqWWqq']  = {
-#                  'color': 851, # kAzure -9 
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.0
-#                  }
+plot['WW2J']  = {
+                  'color': 851, # kAzure -9 
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+plot['qqWWqq']  = {
+                  'color': 851, # kAzure -9 
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
 
 plot['Vg']  = { 
                   'color': 859, # kAzure -1  
@@ -196,7 +198,14 @@ plot['Vg']  = {
                   'scale'    : 1.0
                   }
 
-plot['VgS'] = { 
+plot['VgS_L'] = { 
+                  'color'    : 617,   # kViolet + 1  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+plot['VgS_H'] = { 
                   'color'    : 617,   # kViolet + 1  
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -218,7 +227,6 @@ plot['VVV']  = {
                   }
 
 # Htautau
-
 plot['ZH_htt'] = {
                   'nameHR' : 'ZHtt',
                   'color': 632+3, # kRed+3 
@@ -304,14 +312,13 @@ plot['ggH_hww'] = {
                   'scale'    : 1    #
                   }
 
-# TODO
-#plot['bbH_hww'] = {
-#                  'nameHR' : 'bbH',
-#                  'color': 632+5, # kRed+5 
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1    #
-#                  }
+plot['bbH_hww'] = {
+                  'nameHR' : 'bbH',
+                  'color': 632+5, # kRed+5 
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
 
 plot['ttH_hww'] = {
                   'nameHR' : 'ttH',
@@ -322,12 +329,12 @@ plot['ttH_hww'] = {
                   }
 
 
-massplot = ['200','800','2000']
+massplot = ['200','800','3000']
 
 for m in massplot:
   if m == '200': mult = 1.0
   elif m == '800': mult = 10.0
-  elif m == '2000': mult = 50.0
+  elif m == '3000': mult = 50.0
 
   plot['GGH_'+m+model_name] = {
                   'nameHR' : 'GGH'+m,
