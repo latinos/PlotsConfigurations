@@ -15,11 +15,9 @@ variables['WH3l_drOSll_min']  = {   'name': 'MinIf$( WH3l_drOSll[], WH3l_drOSll[
                          'xaxis' : 'min #Delta R_{ll}',  #   x axis name
                          'fold' : 0
                         }
-
-variables['BDTG_SSSF_bin3'] = { 'name': 'hww_WH3l_SSSF_mvaBDTG(Entry$,0)',
-                        'range' : ([-1.0,-0.5,-0.2,0.,0.2,0.4,0.6,0.75,0.9,1.0],),    #   variable range
+variables['BDTG_SSSF_10bin'] = { 'name': 'hww_WH3l_SSSF_mvaBDTG(Entry$,0)',
+                        'range' : (10,-1,1),
                         'xaxis' : 'MVA discriminant',
                         'fold' : 3,
                         'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/WH3l/FullRunII_BDT/Full2018/hww_WH3l_SSSF_mvaBDTG.C+' % os.getenv('CMSSW_BASE')]
                       }
-

@@ -41,24 +41,57 @@ groupPlot['VVV']  = {
               }
 
 
-groupPlot['Vg']  = {
-                  'nameHR' : 'Vg',
+groupPlot['Zg']  = {
+                  'nameHR' : 'Zg',
                   'color': 859, # kAzure -1  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0,
-                  'samples'  : ['Vg']
+                  'samples'  : ['Zg']
                   }
 
-groupPlot['VgS']  = {
-                  'nameHR' : "V#gamma*",
+groupPlot['ZgS']  = {
+                  'nameHR' : "Z#gamma*",
                   'color'    : 409,   # kGreen - 9
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0,
-                  'samples'  : ['VgS']
+                  'samples'  : ['ZgS']
               }
+groupPlot['Wg']  = {
+                  'nameHR' : 'Wg',
+                  'color': 635,
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0,
+                  'samples'  : ['Wg']
+                  }
 
+groupPlot['WgS']  = {
+                  'nameHR' : "W#gamma*",
+                  'color'    : 636,
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0,
+                  'samples'  : ['WgS']
+              }
+# groupPlot['Vg']  = {
+                  # 'nameHR' : 'Vg',
+                  # 'color': 859, # kAzure -1  
+                  # 'isSignal' : 0,
+                  # 'isData'   : 0,
+                  # 'scale'    : 1.0,
+                  # 'samples'  : ['Vg']
+                  # }
+
+# groupPlot['VgS']  = {
+                  # 'nameHR' : "V#gamma*",
+                  # 'color'    : 409,   # kGreen - 9
+                  # 'isSignal' : 0,
+                  # 'isData'   : 0,
+                  # 'scale'    : 1.0,
+                  # 'samples'  : ['VgS']
+              # }
 
 groupPlot['ZZ']  = {
                   'nameHR' : "ZZ",
@@ -79,7 +112,7 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  'samples'  : ['WH_htt', 'WH_hww', 'ZH_hww']
+                  'samples'  : ['H_htt', 'WH_hww', 'ZH_hww']
               }
 
 #plot = {}
@@ -133,21 +166,52 @@ plot['WW']  = {
                   }
 
 
-plot['Vg']  = { 
+# plot['Vg']  = { 
+                  # 'nameHR' : 'Zg',
+                  # 'color': 859, # kAzure -1  
+                  # 'isSignal' : 0,
+                  # 'isData'   : 0,
+                  # 'scale'    : 1.0
+                  # }
+
+# plot['VgS'] = { 
+                 # 'color'    : 617,   # kViolet + 1  
+                 # 'isSignal' : 0,
+                 # 'isData'   : 0,
+                 # 'scale'    : 1.0
+                 # }
+
+plot['Zg']  = {
                   'nameHR' : 'Zg',
                   'color': 859, # kAzure -1  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
+
                   }
 
-plot['VgS'] = { 
-                 'color'    : 617,   # kViolet + 1  
-                 'isSignal' : 0,
-                 'isData'   : 0,
-                 'scale'    : 1.0
-                 }
+plot['ZgS']  = {
+                  'nameHR' : "Z#gamma*",
+                  'color'    : 409,   # kGreen - 9
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+              }
+plot['Wg']  = {
+                  'nameHR' : 'Wg',
+                  'color': 635,
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
 
+plot['WgS']  = {
+                  'nameHR' : "W#gamma*",
+                  'color'    : 636,
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+              }
 plot['WZ']  = { 
                   'nameHR' : 'WZ',
                   'color': 858, # kAzure -2  
@@ -205,7 +269,7 @@ plot['VVV']  = {
 
 # Htautau
 
-plot['WH_htt'] = {
+plot['H_htt'] = {
                   'nameHR' : 'Htt',
                   'color': 632+4, # kRed+4 
                   'isSignal' : 1,
@@ -246,8 +310,8 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0
-                  # 'isBlind'  : 1
+                  # 'isBlind'  : 0
+                  'isBlind'  : 1
               }
 
 # additional options

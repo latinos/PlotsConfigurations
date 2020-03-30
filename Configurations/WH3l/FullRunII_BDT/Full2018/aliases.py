@@ -18,7 +18,8 @@ eleWP = 'mvaFall17V1Iso_WP90'
 muWP = 'cut_Tight_HWWW'
 
 aliases['LepWPCut'] = {
-    'expr': 'LepCut3l__ele_'+eleWP+'__mu_'+muWP,
+    'expr': 'LepCut3l__ele_'+eleWP+'__mu_'+muWP+'*(((abs(Lepton_pdgId[0])==13 && Muon_mvaTTH[Lepton_muonIdx[0]]>0.8) || (abs(Lepton_pdgId[0])==11 && Electron_mvaTTH[Lepton_electronIdx[0]]>0.7)) && ((abs(Lepton_pdgId[1])==13 && Muon_mvaTTH[Lepton_muonIdx[1]]>0.8) || (abs(Lepton_pdgId[1])==11 && Electron_mvaTTH[Lepton_electronIdx[1]]>0.7)) && ((abs(Lepton_pdgId[2])==13 && Muon_mvaTTH[Lepton_muonIdx[2]]>0.8) || (abs(Lepton_pdgId[2])==11 && Electron_mvaTTH[Lepton_electronIdx[2]]>0.7)))',
+    # 'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP+'*( (abs(Lepton_pdgId[0])==11 || Muon_mvaTTH[Lepton_muonIdx[0]]>0.8) && (abs(Lepton_pdgId[1])==11 || Muon_mvaTTH[Lepton_muonIdx[1]]>0.8) )',
     'samples': mc + ['DATA']
 }
 
@@ -33,42 +34,47 @@ aliases['gstarHigh'] = {
 }
 
 # Fake leptons transfer factor
+eleFWP = 'mvaFall17V1Iso_WP90_tthmva_70'
+muFWP = 'cut_Tight_HWWW_tthmva_80'
+# eleFWP = 'mvaFall17V1Iso_WP90'
+# muFWP = 'cut_Tight_HWWW'
+
 aliases['fakeW'] = {
-    'expr': 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_3l',
+    'expr': 'fakeW_ele_'+eleFWP+'_mu_'+muFWP+'_3l',
     'samples': ['Fake']
 }
 
 # And variations - already divided by central values in formulas !
 aliases['fakeWEleUp'] = {
-    'expr': 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_3lElUp/fakeW_ele_'+eleWP+'_mu_'+muWP+'_3l',
+    'expr': 'fakeW_ele_'+eleFWP+'_mu_'+muFWP+'_3lElUp/fakeW_ele_'+eleFWP+'_mu_'+muFWP+'_3l',
     'samples': ['Fake']
 }
 aliases['fakeWEleDown'] = {
-    'expr': 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_3lElDown/fakeW_ele_'+eleWP+'_mu_'+muWP+'_3l',
+    'expr': 'fakeW_ele_'+eleFWP+'_mu_'+muFWP+'_3lElDown/fakeW_ele_'+eleFWP+'_mu_'+muFWP+'_3l',
     'samples': ['Fake']
 }
 aliases['fakeWMuUp'] = {
-    'expr': 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_3lMuUp/fakeW_ele_'+eleWP+'_mu_'+muWP+'_3l',
+    'expr': 'fakeW_ele_'+eleFWP+'_mu_'+muFWP+'_3lMuUp/fakeW_ele_'+eleFWP+'_mu_'+muFWP+'_3l',
     'samples': ['Fake']
 }
 aliases['fakeWMuDown'] = {
-    'expr': 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_3lMuDown/fakeW_ele_'+eleWP+'_mu_'+muWP+'_3l',
+    'expr': 'fakeW_ele_'+eleFWP+'_mu_'+muFWP+'_3lMuDown/fakeW_ele_'+eleFWP+'_mu_'+muFWP+'_3l',
     'samples': ['Fake']
 }
 aliases['fakeWStatEleUp'] = {
-    'expr': 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_3lstatElUp/fakeW_ele_'+eleWP+'_mu_'+muWP+'_3l',
+    'expr': 'fakeW_ele_'+eleFWP+'_mu_'+muFWP+'_3lstatElUp/fakeW_ele_'+eleFWP+'_mu_'+muFWP+'_3l',
     'samples': ['Fake']
 }
 aliases['fakeWStatEleDown'] = {
-    'expr': 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_3lstatElDown/fakeW_ele_'+eleWP+'_mu_'+muWP+'_3l',
+    'expr': 'fakeW_ele_'+eleFWP+'_mu_'+muFWP+'_3lstatElDown/fakeW_ele_'+eleFWP+'_mu_'+muFWP+'_3l',
     'samples': ['Fake']
 }
 aliases['fakeWStatMuUp'] = {
-    'expr': 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_3lstatMuUp/fakeW_ele_'+eleWP+'_mu_'+muWP+'_3l',
+    'expr': 'fakeW_ele_'+eleFWP+'_mu_'+muFWP+'_3lstatMuUp/fakeW_ele_'+eleFWP+'_mu_'+muFWP+'_3l',
     'samples': ['Fake']
 }
 aliases['fakeWStatMuDown'] = {
-    'expr': 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_3lstatMuDown/fakeW_ele_'+eleWP+'_mu_'+muWP+'_3l',
+    'expr': 'fakeW_ele_'+eleFWP+'_mu_'+muFWP+'_3lstatMuDown/fakeW_ele_'+eleFWP+'_mu_'+muFWP+'_3l',
     'samples': ['Fake']
 }
 
@@ -102,22 +108,22 @@ aliases['multiJet'] = {
 # B tagging
 
 bAlgo = 'DeepB'
-bWP = '0.1241'
+bWP = '0.4184'
 
 aliases['bVeto'] = {
-'expr': '(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) == 0) && mth > 60' }
+'expr': '(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.4184) == 0) && mth > 60' }
 
 
 aliases['bVetoDY'] = {                                                                                                              
-'expr': '(Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) == 0) && mth < 60'                       
+'expr': '(Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.4184) == 0) && mth < 60'                       
 }
 
 
 aliases['btag2'] = {
 'expr': '(   Alt$(CleanJet_pt[0],0) > 30. \
           && Alt$(CleanJet_pt[1],0) > 30. \
-          && ( ( Alt$(abs(CleanJet_eta[0]),99)<2.5 && Alt$(Jet_btagDeepB[CleanJet_jetIdx[0]],0) > 0.1241 ) \
-            || ( Alt$(abs(CleanJet_eta[1]),99)<2.5 && Alt$(Jet_btagDeepB[CleanJet_jetIdx[1]],0) > 0.1241 ) ) \
+          && ( ( Alt$(abs(CleanJet_eta[0]),99)<2.5 && Alt$(Jet_btagDeepB[CleanJet_jetIdx[0]],0) > 0.4184 ) \
+            || ( Alt$(abs(CleanJet_eta[1]),99)<2.5 && Alt$(Jet_btagDeepB[CleanJet_jetIdx[1]],0) > 0.4184 ) ) \
          )' 
 }
 
