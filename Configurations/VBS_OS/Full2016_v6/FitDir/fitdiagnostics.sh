@@ -6,7 +6,7 @@ eval `scramv1 runtime -sh`
 cd -
 
 ## work directory
-workdir=/afs/cern.ch/work/m/mlizzo/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBS_OS/Full2016_v6
+workdir=/afs/cern.ch/work/m/mlizzo/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBS_OS/Full2016_v6/FitDir
 workspaceDir=workspaces
 
 cd $workdir

@@ -5,7 +5,7 @@ eval `scramv1 runtime -sh`
 cd -
 
 ## work directory
-workDir=/afs/cern.ch/user/m/mlizzo/work/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBS_OS/Full2016_v6 
+workDir=/afs/cern.ch/user/m/mlizzo/work/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBS_OS/Full2016_v6/FitDir 
 
 datacardDir=datacards
 combinedcardsDir=combinedcards
