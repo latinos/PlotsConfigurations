@@ -163,11 +163,11 @@ aliases['gstarHigh'] = {
 
 ## Remove matching for electrons in the endcap
 
-aliases['gen_lep_matching_custom']= {
-    'expr': '(abs(Lepton_pdgId[0])==11)*( (abs(Lepton_eta[0])<1.5)*Lepton_genmatched[0] + (abs(Lepton_eta[0])>=1.5)*1 ) \
-            +(abs(Lepton_pdgId[0])==13)*Lepton_genmatched[0]',
-    'samples': mc
-}
+# aliases['gen_lep_matching_custom']= {
+#     'expr': '(abs(Lepton_pdgId[0])==11)*( (abs(Lepton_eta[0])<1.5)*Lepton_genmatched[0] + (abs(Lepton_eta[0])>=1.5)*1 ) \
+#             +(abs(Lepton_pdgId[0])==13)*Lepton_genmatched[0]',
+#     'samples': mc
+# }
 
 #######################################################
 # Custom lepton - jets distance variables
@@ -181,75 +181,75 @@ aliases['whad_pt'] = {
             ]           
 }
 
-aliases['deltaphi_lep_whad'] = {
-            'class': 'LeptonJetsVars',
-            'args': ("deltaphi_lep_whad"),
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L {}/VBSjjlnu/Full2018v6s5/macros/leptonjetsvars_class.cc+'.format(configurations)
-            ]           
-}
+# aliases['deltaphi_lep_whad'] = {
+#             'class': 'LeptonJetsVars',
+#             'args': ("deltaphi_lep_whad"),
+#             'linesToAdd' : [
+#                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#                 '.L {}/VBSjjlnu/Full2018v6s5/macros/leptonjetsvars_class.cc+'.format(configurations)
+#             ]           
+# }
 
-aliases['deltaphi_lep_jet0'] = {
-            'class': 'LeptonJetsVars',
-            'args': ("deltaphi_lep_jet0"),
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L {}/VBSjjlnu/Full2018v6s5/macros/leptonjetsvars_class.cc+'.format(configurations)
-                ]  
-}
+# aliases['deltaphi_lep_jet0'] = {
+#             'class': 'LeptonJetsVars',
+#             'args': ("deltaphi_lep_jet0"),
+#             'linesToAdd' : [
+#                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#                 '.L {}/VBSjjlnu/Full2018v6s5/macros/leptonjetsvars_class.cc+'.format(configurations)
+#                 ]  
+# }
 
-aliases['deltaphi_lep_vbsjets'] = {
-            'class': 'LeptonJetsVars',
-            'args': ("deltaphi_lep_vbsjets"),
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L {}/VBSjjlnu/Full2018v6s5/macros/leptonjetsvars_class.cc+'.format(configurations)
-            ]  
-}
+# aliases['deltaphi_lep_vbsjets'] = {
+#             'class': 'LeptonJetsVars',
+#             'args': ("deltaphi_lep_vbsjets"),
+#             'linesToAdd' : [
+#                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#                 '.L {}/VBSjjlnu/Full2018v6s5/macros/leptonjetsvars_class.cc+'.format(configurations)
+#             ]  
+# }
 
-aliases['deltaphi_lep_ww'] = {
-            'class': 'LeptonJetsVars',
-            'args': ("deltaphi_lep_ww"),
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L {}/VBSjjlnu/Full2018v6s5/macros/leptonjetsvars_class.cc+'.format(configurations)
-            ]  
-}
+# aliases['deltaphi_lep_ww'] = {
+#             'class': 'LeptonJetsVars',
+#             'args': ("deltaphi_lep_ww"),
+#             'linesToAdd' : [
+#                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#                 '.L {}/VBSjjlnu/Full2018v6s5/macros/leptonjetsvars_class.cc+'.format(configurations)
+#             ]  
+# }
 
 
-aliases['deltaR_lep_whad'] = {
-            'class': 'LeptonJetsVars',
-            'args': ("deltaR_lep_whad"),
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L {}/VBSjjlnu/Full2018v6s5/macros/leptonjetsvars_class.cc+'.format(configurations)
-            ]           
-}
+# aliases['deltaR_lep_whad'] = {
+#             'class': 'LeptonJetsVars',
+#             'args': ("deltaR_lep_whad"),
+#             'linesToAdd' : [
+#                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#                 '.L {}/VBSjjlnu/Full2018v6s5/macros/leptonjetsvars_class.cc+'.format(configurations)
+#             ]           
+# }
 
-aliases['deltaR_lep_jet0'] = {
-            'class': 'LeptonJetsVars',
-            'args': ("deltaR_lep_jet0"),
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L {}/VBSjjlnu/Full2018v6s5/macros/leptonjetsvars_class.cc+'.format(configurations)
-                ]  
-}
+# aliases['deltaR_lep_jet0'] = {
+#             'class': 'LeptonJetsVars',
+#             'args': ("deltaR_lep_jet0"),
+#             'linesToAdd' : [
+#                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#                 '.L {}/VBSjjlnu/Full2018v6s5/macros/leptonjetsvars_class.cc+'.format(configurations)
+#                 ]  
+# }
 
-aliases['deltaR_lep_vbsjets'] = {
-            'class': 'LeptonJetsVars',
-            'args': ("deltaR_lep_vbsjets"),
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L {}/VBSjjlnu/Full2018v6s5/macros/leptonjetsvars_class.cc+'.format(configurations)
-            ]  
-}
+# aliases['deltaR_lep_vbsjets'] = {
+#             'class': 'LeptonJetsVars',
+#             'args': ("deltaR_lep_vbsjets"),
+#             'linesToAdd' : [
+#                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#                 '.L {}/VBSjjlnu/Full2018v6s5/macros/leptonjetsvars_class.cc+'.format(configurations)
+#             ]  
+# }
 
-aliases['deltaR_lep_ww'] = {
-            'class': 'LeptonJetsVars',
-            'args': ("deltaR_lep_ww"),
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L {}/VBSjjlnu/Full2018v6s5/macros/leptonjetsvars_class.cc+'.format(configurations)
-            ]  
-}
+# aliases['deltaR_lep_ww'] = {
+#             'class': 'LeptonJetsVars',
+#             'args': ("deltaR_lep_ww"),
+#             'linesToAdd' : [
+#                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#                 '.L {}/VBSjjlnu/Full2018v6s5/macros/leptonjetsvars_class.cc+'.format(configurations)
+#             ]  
+# }

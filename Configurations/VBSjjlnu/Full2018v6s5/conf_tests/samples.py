@@ -59,7 +59,7 @@ SFweight1l = 'puWeight*\
 SFweight  = SFweight1l+'*'+LepWPWeight_1l+'*'+LepWPCut_1l
 SFweight += '* btagSF * PUJetIdSF'
 
-GenLepMatch   = 'gen_lep_matching_custom'
+GenLepMatch   = 'Lepton_genmatched[0]'
 
 ####
 # NVTX reweighting
@@ -158,7 +158,7 @@ samples['top'] = {
                        +  nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu')
                     ,
             'weight' :  XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch , # Rimosso +"* Top_pTrw" 
-            'FilesPerJob' : 3,
+            'FilesPerJob' : 2,
 }
 
 samples['Wjets'] = { 'name' :   
@@ -327,6 +327,6 @@ for Run in DataRun :
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
 
-samples = {
-  "top": samples["top"]
-}
+# samples = {
+#   "top": samples["top"]
+# }
