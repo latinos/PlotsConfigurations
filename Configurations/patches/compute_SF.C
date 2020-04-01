@@ -86,8 +86,8 @@ compute_SF::compute_SF(const char* year, const int nLeptons, std::string request
     SF_files_map["electron"]["TightObjWP"]["2016"]["wpSF"] = {cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2016v2/egammaEffi_passingTight80XHWW.txt"};
     SF_files_map["muon"]["TightObjWP"]["2016"]["idSF"] = {cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2016v2/muonID_TH2_SFs_pt_eta.root"};
     SF_files_map["muon"]["TightObjWP"]["2016"]["isoSF"] = {cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2016v2/muonISO_TH2_SFs_pt_eta.root"};
-    SF_files_map["muon"]["ttHMVA0p8"]["2016"]["ttHMVA"] = {};
-    SF_files_map["muon"]["ttHMVA0p8"]["2016"]["ttHMVA_SYS"] = {};
+    SF_files_map["muon"]["ttHMVA0p8"]["2016"]["ttHMVA"] = {"/afs/cern.ch/user/r/rseidita/public/ttH_SFs/ttHMVA0p8_TightHWWCut_SFs_2016.root"};
+    SF_files_map["muon"]["ttHMVA0p8"]["2016"]["ttHMVA_SYS"] = {"/afs/cern.ch/user/r/rseidita/public/ttH_SFs/ttHMVA0p8_TightHWWCut_SFs_SYS_2016.root"};
 
     SF_files_map["electron"]["TightObjWP"]["2017"]["wpSF"] = {  cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2017v6/egammaEffi_passingMVA102Xwp90isoHWWiso0p06_2017runB.txt",
                                                                 cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2017v6/egammaEffi_passingMVA102Xwp90isoHWWiso0p06_2017runC.txt",
