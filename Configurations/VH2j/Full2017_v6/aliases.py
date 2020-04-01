@@ -6,6 +6,7 @@ configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # thi
 configurations = os.path.dirname(configurations) # Full2017_v6
 configurations = os.path.dirname(configurations) # VH2j
 configurations = os.path.dirname(configurations) # Configurations
+configurations = '/afs/cern.ch/user/p/piedra/work/latinos/CMSSW_10_2_15_patch2/src/PlotsConfigurations/Configurations' # compute_SF.C
 
 #aliases = {}
 
@@ -17,16 +18,17 @@ mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 eleWP = 'mvaFall17V1Iso_WP90'
 muWP = 'cut_Tight_HWWW'
 
-newEleWP = 'mvaFall17V1Iso_WP90_tthmva_70'
+newEleWP = 'mvaFall17V1Iso_WP90' # same as nominal
+#newEleWP = 'mvaFall17V1Iso_WP90_tthmva_70'
 newMuWP = 'cut_Tight_HWWW_tthmva_80'
 
 aliases['LepWPCut'] = {
-    ## eleWP + muWP combination
+    ### eleWP + muWP combination
     #'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
-    ## eleWP + newMuWP combination
-    #'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP+'*((abs(Lepton_pdgId[0])==11 || Muon_mvaTTH[Lepton_muonIdx[0]]>0.8) && (abs(Lepton_pdgId[1])==11 || Muon_mvaTTH[Lepton_muonIdx[1]]>0.8))',
-    ## newEleWP + newMuWP combination
-    'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP+'*((abs(Lepton_pdgId[0])==11 || Muon_mvaTTH[Lepton_muonIdx[0]]>0.8) && (abs(Lepton_pdgId[1])==11 || Muon_mvaTTH[Lepton_muonIdx[1]]>0.8) && (abs(Lepton_pdgId[0])==13 || Electron_mvaTTH[Lepton_electronIdx[0]]>0.70) && (abs(Lepton_pdgId[1])==13 || Electron_mvaTTH[Lepton_electronIdx[1]]>0.70))',
+    ### eleWP + newMuWP combination
+    'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP+'*((abs(Lepton_pdgId[0])==11 || Muon_mvaTTH[Lepton_muonIdx[0]]>0.8) && (abs(Lepton_pdgId[1])==11 || Muon_mvaTTH[Lepton_muonIdx[1]]>0.8))',
+    ### newEleWP + newMuWP combination
+    #'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP+'*((abs(Lepton_pdgId[0])==11 || Muon_mvaTTH[Lepton_muonIdx[0]]>0.8) && (abs(Lepton_pdgId[1])==11 || Muon_mvaTTH[Lepton_muonIdx[1]]>0.8) && (abs(Lepton_pdgId[0])==13 || Electron_mvaTTH[Lepton_electronIdx[0]]>0.70) && (abs(Lepton_pdgId[1])==13 || Electron_mvaTTH[Lepton_electronIdx[1]]>0.70))',
     'samples': mc + ['DATA']
 }
 
@@ -187,8 +189,15 @@ for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2',
     }
 
 # data/MC scale factors
+aliases['new_SF'] = {   'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
+                        'class': 'compute_SF',
+                        'args' : ('2017', 2, 'total_SF'),
+                        'samples': mc
+}
+
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut', 'btagSF', 'PrefireWeight']),
+    #'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut', 'btagSF', 'PrefireWeight']),
+    'expr': ' * '.join(['SFweight2l', 'new_SF', 'LepWPCut', 'btagSF', 'PrefireWeight']),
     'samples': mc
 }
 # variations
