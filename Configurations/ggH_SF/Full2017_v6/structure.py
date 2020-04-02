@@ -23,13 +23,19 @@ structure['Fake']  = {
 structure['Fake_ee']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'removeFromCuts' : [ k for k in cuts if 'mm' in k],
+                  'removeFromCuts' : [ k for k in cuts if 'ee' not in k],
               }
 
 structure['Fake_mm']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'removeFromCuts' : [ k for k in cuts if 'ee' in k],
+                  'removeFromCuts' : [ k for k in cuts if 'mm' not in k],
+              }
+
+structure['Fake_df']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'removeFromCuts' : [ k for k in cuts if 'df' not in k],
               }
 
 structure['ttbar'] = {   
@@ -215,6 +221,3 @@ for nuis in nuisances.itervalues():
     nuis['cuts'] = nuis['cutspost'](nuis, cuts)
 
     print nuis
-
-
-
