@@ -2,7 +2,8 @@
 treeName= 'Events'
 
 
-tag = 'WH2018nano_v6ntuples' #add Zveto in mm and remove DY
+#tag = 'WH2018nano_v6ntuples_final' #add Zveto in mm and remove DY
+tag = 'WH2018nano_v6ntuples_3rdlep' #add Zveto in mm and remove DY
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -15,6 +16,7 @@ variablesFile = 'variables.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
+#cutsFile = 'cuts_CR.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 

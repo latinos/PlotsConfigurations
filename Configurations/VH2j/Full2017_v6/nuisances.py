@@ -485,10 +485,7 @@ nuisances['WWqscale']  = {
 # LHEScaleWeight nominal length is 9
 # LHEScaleWeight length is 8 for DYJetsToTT_MuEle_M-50 in 2017 and 2018
 
-variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 5, 7, 8]]
-
-if 'Length$(LHEScaleWeight)' is '8':
-    variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 4, 6, 7]]
+variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
 
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',

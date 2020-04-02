@@ -2,8 +2,9 @@
 treeName= 'Events'
 
 
-tag = 'WHSS2017_v6ntuples' #add z veto in mm and remove DY
-#tag = 'WH2017nano_forpreapp' #add z veto in mm and remove DY
+#tag = 'WHSS2017_v6ntuples_final' #add z veto in mm and remove DY
+tag = 'WHSS2017_v6ntuples_3rdlep' #add z veto in mm and remove DY
+#tag = 'WHSS2017_v6ntuples_3rdlep_pt25' #add z veto in mm and remove DY
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -16,6 +17,7 @@ variablesFile = 'variables.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
+#cutsFile = 'cuts_CR.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 

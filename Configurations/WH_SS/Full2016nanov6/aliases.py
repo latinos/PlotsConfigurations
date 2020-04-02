@@ -14,8 +14,8 @@ configurations = os.path.dirname(configurations) # Configurations
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-#eleWP = 'mva_90p_Iso2016'
-eleWP = 'cut_WP_Tight80X_SS'
+eleWP = 'mva_90p_Iso2016'
+#eleWP = 'cut_WP_Tight80X_SS'
 muWP = 'cut_Tight80x'
 
 aliases['LepWPCut'] = {

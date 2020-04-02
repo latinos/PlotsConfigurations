@@ -58,6 +58,9 @@ class compute_SF : public multidraw::TTreeFunction {
         std::vector<TH2D> h_SF_mu_Iso_;
         std::vector<TH2D> h_SF_mu_Iso_err_;
         std::vector<TH2D> h_SF_mu_Iso_sys_;
+        std::vector<TH2D> h_SF_mu_ttHMVA_;
+        std::vector<TH2D> h_SF_mu_ttHMVA_err_;
+        std::vector<TH2D> h_SF_mu_ttHMVA_sys_;
 
 
     private:
@@ -83,6 +86,8 @@ compute_SF::compute_SF(const char* year, const int nLeptons, std::string request
     SF_files_map["electron"]["TightObjWP"]["2016"]["wpSF"] = {cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2016v2/egammaEffi_passingTight80XHWW.txt"};
     SF_files_map["muon"]["TightObjWP"]["2016"]["idSF"] = {cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2016v2/muonID_TH2_SFs_pt_eta.root"};
     SF_files_map["muon"]["TightObjWP"]["2016"]["isoSF"] = {cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2016v2/muonISO_TH2_SFs_pt_eta.root"};
+    SF_files_map["muon"]["ttHMVA0p8"]["2016"]["ttHMVA"] = {"/afs/cern.ch/user/r/rseidita/public/ttH_SFs/ttHMVA0p8_TightHWWCut_SFs_2016.root"};
+    SF_files_map["muon"]["ttHMVA0p8"]["2016"]["ttHMVA_SYS"] = {"/afs/cern.ch/user/r/rseidita/public/ttH_SFs/ttHMVA0p8_TightHWWCut_SFs_SYS_2016.root"};
 
     SF_files_map["electron"]["TightObjWP"]["2017"]["wpSF"] = {  cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2017v6/egammaEffi_passingMVA102Xwp90isoHWWiso0p06_2017runB.txt",
                                                                 cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2017v6/egammaEffi_passingMVA102Xwp90isoHWWiso0p06_2017runC.txt",
@@ -92,24 +97,22 @@ compute_SF::compute_SF(const char* year, const int nLeptons, std::string request
                                                             };
     SF_files_map["muon"]["TightObjWP"]["2017"]["idSF"] = {cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2017/muonID_cut_Tight_HWW_combined.root"};
     SF_files_map["muon"]["TightObjWP"]["2017"]["isoSF"] = {cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2017/muonISO_cut_Tight_HWW_combined.root"};
+    SF_files_map["muon"]["ttHMVA0p8"]["2017"]["ttHMVA"] = {"/afs/cern.ch/user/r/rseidita/public/ttH_SFs/ttHMVA0p8_TightHWWCut_SFs_2017.root"};
+    SF_files_map["muon"]["ttHMVA0p8"]["2017"]["ttHMVA_SYS"] = {"/afs/cern.ch/user/r/rseidita/public/ttH_SFs/ttHMVA0p8_TightHWWCut_SFs_SYS_2017.root"};
 
     SF_files_map["electron"]["TightObjWP"]["2018"]["wpSF"] = {cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2018v6/egammaEffi_passingTight102XHWW_runABCD.txt"};
     SF_files_map["muon"]["TightObjWP"]["2018"]["idSF"] = {cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2018/ID_TH2_SFs_pt_eta.root"};
     SF_files_map["muon"]["TightObjWP"]["2018"]["isoSF"] = {cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2018/ISO_TH2_SFs_pt_eta.root"};
+    SF_files_map["muon"]["ttHMVA0p8"]["2018"]["ttHMVA"] = {"/afs/cern.ch/user/r/rseidita/public/ttH_SFs/ttHMVA0p8_TightHWWCut_SFs_2018.root"};
+    SF_files_map["muon"]["ttHMVA0p8"]["2018"]["ttHMVA_SYS"] = {"/afs/cern.ch/user/r/rseidita/public/ttH_SFs/ttHMVA0p8_TightHWWCut_SFs_SYS_2018.root"};
 
     SF_files_map_ = SF_files_map;
 
     int ele_nbins_eta = 10;
     int ele_nbins_pt = 6;
-    // int mu_nbins_eta = 16;
-    // int mu_nbins_eta = 14;
-    // int mu_nbins_pt = 6;
 
     float ele_eta_bins[] {-2.5, -2., -1.566, -1.444,  -0.8, 0., 0.8, 1.444, 1.566, 2.0, 2.5};
     float ele_pt_bins[] {10., 20., 35., 50., 90., 150., 500.};
-    // float mu_eta_bins[] {-2.74286, -2.4, -2.1, -1.6, -1.2, -0.8, -0.3, -0.2, 0., 0.2, 0.3, 0.8, 1.2, 1.6, 2.1, 2.4, 2.74286};
-    // float mu_eta_bins[] {-2.4, -2.1, -1.6, -1.2, -0.8, -0.3, -0.2, 0., 0.2, 0.3, 0.8, 1.2, 1.6, 2.1, 2.4};
-    // float mu_pt_bins[] {20., 25., 30., 40., 60., 100., 200.};
 
     // Load electron SFs in memory, in order of run period
 
@@ -201,6 +204,9 @@ compute_SF::compute_SF(const char* year, const int nLeptons, std::string request
     std::vector<TH2D> h_SF_mu_Iso {};
     std::vector<TH2D> h_SF_mu_Iso_err {};
     std::vector<TH2D> h_SF_mu_Iso_sys {};
+    std::vector<TH2D> h_SF_mu_ttHMVA {};
+    std::vector<TH2D> h_SF_mu_ttHMVA_err {};
+    std::vector<TH2D> h_SF_mu_ttHMVA_sys {};
 
     // Loop on run periods - IdSF
     for( auto f : SF_files_map_["muon"][working_point_][year_]["idSF"]){
@@ -252,7 +258,7 @@ compute_SF::compute_SF(const char* year, const int nLeptons, std::string request
             for(int j=1; j<=mu_nbins_pt;j++){
                 h_SF.SetBinContent(i, j, htemp->GetBinContent(i, j));
                 h_SF_err.SetBinContent(i, j, htemp->GetBinError(i, j));
-                h_SF_sys.SetBinContent(i, j, 1.); // FIXME this is here as a placeholder: old SF files only have total error, in the new ones it is split
+                h_SF_sys.SetBinContent(i, j, 0.); // FIXME this is here as a placeholder: old SF files only have total error, in the new ones it is split
             }
         }
 
@@ -262,12 +268,66 @@ compute_SF::compute_SF(const char* year, const int nLeptons, std::string request
 
     }
 
+    // Loop on run periods - ttHMVA SF
+    for( auto f : SF_files_map_["muon"]["ttHMVA0p8"][year_]["ttHMVA"] ){
+
+        TFile rootfile(f.c_str());
+        TH2D* htemp = (TH2D*)rootfile.Get("ttHMVA0p8_TightHWWCut");
+
+        int mu_nbins_eta = htemp->GetNbinsX(), mu_nbins_pt = htemp->GetNbinsY();
+        double mu_eta_bins[mu_nbins_eta + 1], mu_pt_bins[mu_nbins_pt + 1];
+
+        for(int k=0;k<=mu_nbins_eta;k++) { mu_eta_bins[k] = htemp->GetXaxis()->GetXbins()->At(k); }
+        for(int k=0;k<=mu_nbins_pt;k++) { mu_pt_bins[k] = htemp->GetYaxis()->GetXbins()->At(k); }
+
+        TH2D h_SF = TH2D("", "", mu_nbins_eta, mu_eta_bins, mu_nbins_pt, mu_pt_bins);
+        TH2D h_SF_err = TH2D("", "", mu_nbins_eta, mu_eta_bins, mu_nbins_pt, mu_pt_bins);
+
+        for(int i=1; i<=mu_nbins_eta;i++){
+            for(int j=1; j<=mu_nbins_pt;j++){
+                h_SF.SetBinContent(i, j, htemp->GetBinContent(i, j));
+                h_SF_err.SetBinContent(i, j, htemp->GetBinError(i, j));
+            }
+        }
+
+        h_SF_mu_ttHMVA.push_back(h_SF);
+        h_SF_mu_ttHMVA_err.push_back(h_SF_err);
+
+    }
+
+    // Loop on run periods - ttHMVA SF SYST
+    for( auto f : SF_files_map_["muon"]["ttHMVA0p8"][year_]["ttHMVA_SYS"] ){
+
+        TFile rootfile(f.c_str());
+        TH2D* htemp = (TH2D*)rootfile.Get("ttHMVA0p8_TightHWWCut");
+
+        int mu_nbins_eta = htemp->GetNbinsX(), mu_nbins_pt = htemp->GetNbinsY();
+        double mu_eta_bins[mu_nbins_eta + 1], mu_pt_bins[mu_nbins_pt + 1];
+
+        for(int k=0;k<=mu_nbins_eta;k++) { mu_eta_bins[k] = htemp->GetXaxis()->GetXbins()->At(k); }
+        for(int k=0;k<=mu_nbins_pt;k++) { mu_pt_bins[k] = htemp->GetYaxis()->GetXbins()->At(k); }
+
+        TH2D h_SF_sys = TH2D("", "", mu_nbins_eta, mu_eta_bins, mu_nbins_pt, mu_pt_bins);
+
+        for(int i=1; i<=mu_nbins_eta;i++){
+            for(int j=1; j<=mu_nbins_pt;j++){
+                h_SF_sys.SetBinContent(i, j, htemp->GetBinError(i, j));
+            }
+        }
+
+        h_SF_mu_ttHMVA_sys.push_back(h_SF_sys);
+
+    }
+
     h_SF_mu_Id_ = h_SF_mu_Id;
     h_SF_mu_Id_err_ = h_SF_mu_Id_err;
     h_SF_mu_Id_sys_ = h_SF_mu_Id_sys;
     h_SF_mu_Iso_ = h_SF_mu_Iso;
     h_SF_mu_Iso_err_ = h_SF_mu_Iso_err;
     h_SF_mu_Iso_sys_ = h_SF_mu_Iso_sys;
+    h_SF_mu_ttHMVA_ = h_SF_mu_ttHMVA;
+    h_SF_mu_ttHMVA_err_ = h_SF_mu_ttHMVA_err;
+    h_SF_mu_ttHMVA_sys_ = h_SF_mu_ttHMVA_sys;
 
 }
 
@@ -310,13 +370,18 @@ double compute_SF::evaluate(unsigned){
             
             std::tuple<double, double, double> res_id = GetSF(13, lepton_eta->At(i), lepton_pt->At(i), SF_path_id.size()==1 ? 0 : *run_period_->Get() - 1, "Id");
             std::tuple<double, double, double> res_iso = GetSF(13, lepton_eta->At(i), lepton_pt->At(i), SF_path_iso.size()==1 ? 0 : *run_period_->Get() - 1, "Iso");
+            std::tuple<double, double, double> res_ttHMVA = GetSF(13, lepton_eta->At(i), lepton_pt->At(i), SF_path_iso.size()==1 ? 0 : *run_period_->Get() - 1, "ttHMVA");
 
             double SF_id = std::get<0>(res_id);
             double SF_iso = std::get<0>(res_iso);
+            double SF_ttHMVA = std::get<0>(res_ttHMVA);
 
-            SF_vect.push_back(SF_id * SF_iso);
-            SF_err_vect.push_back((SF_id * SF_iso) * TMath::Sqrt( TMath::Power(std::get<1>(res_id)/SF_id, 2) + TMath::Power(std::get<1>(res_iso)/SF_iso, 2) ));
-
+            SF_vect.push_back(SF_id * SF_iso * SF_ttHMVA);
+            // SF_err_vect.push_back((SF_id * SF_iso) * TMath::Sqrt( TMath::Power(std::get<1>(res_id)/SF_id, 2) + TMath::Power(std::get<1>(res_iso)/SF_iso, 2) )); // Old formula for debugging
+            SF_err_vect.push_back((SF_id * SF_iso * SF_ttHMVA) * TMath::Sqrt( TMath::Power(std::get<1>(res_id)/SF_id, 2)
+                                                                            + TMath::Power(std::get<1>(res_iso)/SF_iso, 2)
+                                                                            + (TMath::Power(std::get<1>(res_ttHMVA), 2) + TMath::Power(std::get<2>(res_ttHMVA), 2))/SF_ttHMVA/SF_ttHMVA )
+                                                                            );
 
         }
 
@@ -371,8 +436,6 @@ std::tuple<double, double, double> compute_SF::GetSF(int flavor, double eta, dou
 
     else if((flavor == 13) && (type == "Id")){
 
-        // double eta_max = 2.74286;
-        // double eta_min = -2.74286;
         double eta_max = 2.4;
         double eta_min = -2.4;
         double pt_max = 200.;
@@ -404,6 +467,24 @@ std::tuple<double, double, double> compute_SF::GetSF(int flavor, double eta, dou
         SF = h_SF_mu_Iso_[run_period].GetBinContent(h_SF_mu_Iso_[run_period].FindBin(eta_temp, pt_temp));
         SF_err = h_SF_mu_Iso_err_[run_period].GetBinContent(h_SF_mu_Iso_err_[run_period].FindBin(eta_temp, pt_temp));
         SF_sys = h_SF_mu_Iso_sys_[run_period].GetBinContent(h_SF_mu_Iso_sys_[run_period].FindBin(eta_temp, pt_temp));
+    
+    }
+
+    else if((flavor == 13) && (type == "ttHMVA")){
+
+        double eta_max = 2.4;
+        double eta_min = -2.4;
+        double pt_max = 200.;
+        double pt_min = 10.;
+
+        if(eta_temp < eta_min){eta_temp = eta_min;}
+        if(eta_temp > eta_max){eta_temp = eta_max;}
+        if(pt_temp < pt_min){pt_temp = pt_min;}
+        if(pt_temp > pt_max){pt_temp = pt_max;}
+
+        SF = h_SF_mu_ttHMVA_[run_period].GetBinContent(h_SF_mu_ttHMVA_[run_period].FindBin(eta_temp, pt_temp));
+        SF_err = h_SF_mu_ttHMVA_err_[run_period].GetBinContent(h_SF_mu_ttHMVA_err_[run_period].FindBin(eta_temp, pt_temp));
+        SF_sys = h_SF_mu_ttHMVA_sys_[run_period].GetBinContent(h_SF_mu_ttHMVA_sys_[run_period].FindBin(eta_temp, pt_temp));
     
     }
 

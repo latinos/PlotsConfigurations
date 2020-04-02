@@ -30,6 +30,26 @@ structure['ggWW']  = {
                   }
 
 
+structure['Wg']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
+structure['WgS']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
+structure['Zg']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
+structure['ZgS']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
 structure['Vg']  = {
                   'isSignal' : 0,
                   'isData'   : 0
@@ -92,7 +112,7 @@ structure['ggZH_hww'] = {
                   'isData'   : 0
                   }
 
-structure['WH_htt'] = {
+structure['H_htt'] = {
                   'isSignal' : 1,
                   'isData'   : 0
                   }

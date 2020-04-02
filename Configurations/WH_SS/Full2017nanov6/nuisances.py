@@ -70,7 +70,6 @@ nuisances['fake_syst_mm'] = {
     'name': 'CMS_fake_syst_mm',
     'type': 'lnN',
     'samples': {
-        #'Fake': '1.3'
         'Fake_mm': '1.3'
     },
 }
@@ -79,8 +78,15 @@ nuisances['fake_syst_em'] = {
     'name': 'CMS_fake_syst_em',
     'type': 'lnN',
     'samples': {
-        #'Fake': '1.3'
         'Fake_em': '1.3'
+    },
+}
+
+nuisances['fake_syst_ee'] = {
+    'name': 'CMS_fake_syst_ee',
+    'type': 'lnN',
+    'samples': {
+        'Fake_ee': '1.3'
     },
 }
 
@@ -90,8 +96,6 @@ nuisances['fake_ele'] = {
     'type': 'shape',
     'samples': {
         'Fake': ['fakeWEleUp', 'fakeWEleDown'],
-        #'Fake_ee': ['fakeWEleUp', 'fakeWEleDown'],
-        #'Fake_em': ['fakeWEleUp', 'fakeWEleDown']
         
     }
 }
@@ -102,8 +106,6 @@ nuisances['fake_ele_stat'] = {
     'type': 'shape',
     'samples': {
         'Fake': ['fakeWStatEleUp', 'fakeWStatEleDown']
-        #'Fake_ee': ['fakeWStatEleUp', 'fakeWStatEleDown'],
-        #'Fake_em': ['fakeWStatEleUp', 'fakeWStatEleDown']
     }
 }
 
@@ -113,8 +115,6 @@ nuisances['fake_mu'] = {
     'type': 'shape',
     'samples': {
         'Fake': ['fakeWMuUp', 'fakeWMuDown'],
-        #'Fake_mm': ['fakeWMuUp', 'fakeWMuDown'],
-        #'Fake_em': ['fakeWMuUp', 'fakeWMuDown']
     }
 }
 
@@ -124,8 +124,6 @@ nuisances['fake_mu_stat'] = {
     'type': 'shape',
     'samples': {
         'Fake': ['fakeWStatMuUp', 'fakeWStatMuDown'],
-        #'Fake_mm': ['fakeWStatMuUp', 'fakeWStatMuDown'],
-        #'Fake_em': ['fakeWStatMuUp', 'fakeWStatMuDown']
     }
 }
 
@@ -208,17 +206,20 @@ nuisances['muonpt'] = {
 }
 
 ##### Jet energy scale
-nuisances['jes'] = {
-    'name': 'CMS_scale_j_2017',
-    'kind': 'suffix',
-    'type': 'shape',
-    'mapUp': 'JESup',
-    'mapDown': 'JESdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('JESup_suffix'),
-    'folderDown': makeMCDirectory('JESdo_suffix'),
-    'AsLnN': '1'
-}
+jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal','JESRelativeSample_2017']
+
+for js in jes_systs:
+  nuisances[js] = {
+      'name': 'CMS_scale_'+js,
+      'kind': 'suffix',
+      'type': 'shape',
+      'mapUp': js+'up',
+      'mapDown': js+'do',
+      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VZ','Vg','VgS']),
+      'folderUp': makeMCDirectory('JESup_suffix'),
+      'folderDown': makeMCDirectory('JESdo_suffix'),
+      'AsLnN': '1'
+  }
 
 ##### MET energy scale
 
@@ -235,19 +236,86 @@ nuisances['met'] = {
 }
 
 # PS and UE
-#FIXME: Add PS uncertainty
 
-nuisances['PS_whss']  = {
-                'name'  : 'PS_whss',
-                'skipCMS' : 1,
-                'type'  : 'lnN',
-                'samples'  : {
-                   'WH_hww'   : '1.037',
-                   'ZH_hww'   : '1.037',
-                   'H_htt'    : '1.037',
-                   'ggZH_hww'   : '1.037',
-              #     'ZH_htt'   : '1.037',
-                },
+nuisances['PS_ISR_1jet']  = {
+    'name': 'PS_ISR',
+    'type': 'lnN',
+    'samples': {
+        'WW'     : '1.0160460/0.9801447',
+        'top'    : '1.0051215/0.9934017',
+        'DY'     : '1.0079131/0.9900890',
+        'ggH_hww': '1.0170139/0.9790389',
+        'qqH_hww': '1.0022875/0.9970339',
+        'WH_hww' : '1.0017547/0.9978214',
+        'ZH_hww' : '1.0015857/0.9980180',
+    },
+    'cuts'  : [
+          'hww2l2v_13TeV_of2j_WH_SS_uu_1j',
+          'hww2l2v_13TeV_of2j_WH_SS_ee_1j',
+          'hww2l2v_13TeV_of2j_WH_SS_eu_1j',
+          'hww2l2v_13TeV_of2j_WH_SS_WZ_1j',
+     ]
+}
+
+nuisances['PS_ISR_2jet']  = {
+    'name': 'PS_ISR',
+    'type': 'lnN',
+    'samples': {
+        'WW'     : '0.9619687/1.0472157',
+        'top'    : '1.0000271/0.9999406',
+        'DY'     : '0.9984594/1.0020964',
+        'ggH_hww': '0.9607736/1.0481858',
+        'qqH_hww': '0.9998172/1.0001610',
+        'WH_hww' : '0.9993065/1.0007548',
+        'ZH_hww' : '0.9995627/1.0005501',
+    },
+    'cuts'  : [
+          'hww2l2v_13TeV_of2j_WH_SS_uu_2j',
+          'hww2l2v_13TeV_of2j_WH_SS_eu_2j',
+          'hww2l2v_13TeV_of2j_WH_SS_ee_2j',
+          'hww2l2v_13TeV_of2j_WH_SS_WZ_2j',
+     ]
+
+}
+
+nuisances['PS_FSR_1jet']  = {
+    'name': 'PS_FSR',
+    'type': 'lnN',
+    'samples': {
+        'WW'     : '1.0049297/0.9915376',
+        'top'    : '0.9871745/1.0215966',
+        'DY'     : '1.0049659/0.9909187',
+        'ggH_hww': '1.0097427/0.9839139',
+        'qqH_hww': '0.9939033/1.0115130',
+        'WH_hww' : '0.9990734/1.0065910',
+        'ZH_hww' : '0.9936971/1.0145482',
+    },
+    'cuts'  : [  
+          'hww2l2v_13TeV_of2j_WH_SS_uu_1j',
+          'hww2l2v_13TeV_of2j_WH_SS_eu_1j',
+          'hww2l2v_13TeV_of2j_WH_SS_ee_1j',
+          'hww2l2v_13TeV_of2j_WH_SS_WZ_1j',
+     ]
+}   
+          
+nuisances['PS_FSR_2jet']  = {
+    'name': 'PS_FSR',
+    'type': 'lnN',
+    'samples': {
+        'WW'     : '1.0084263/0.9843947',
+        'top'    : '1.0075607/0.9876902',
+        'DY'     : '1.0169378/0.9717602',
+        'ggH_hww': '1.0168108/0.9673918',
+        'qqH_hww': '1.0057013/0.9888023',
+        'WH_hww' : '1.0174174/0.9737212',
+        'ZH_hww' : '1.0079410/0.9854651',
+    },
+    'cuts'  : [
+          'hww2l2v_13TeV_of2j_WH_SS_uu_2j',
+          'hww2l2v_13TeV_of2j_WH_SS_eu_2j',
+          'hww2l2v_13TeV_of2j_WH_SS_ee_2j',
+          'hww2l2v_13TeV_of2j_WH_SS_WZ_2j',
+     ]
 }
 
 nuisances['UE_whss']  = {
@@ -444,8 +512,8 @@ nuisances['pdf_qqbar_ACCEPT']  = {
 
 # ggww and interference
 
-nuisances['QCDscale_ggWW']  = {
-               'name'  : 'QCDscale_ggWW',
+nuisances['QCDscale_ggVV']  = {
+               'name'  : 'QCDscale_ggVV',
                'type'  : 'lnN',
                'samples'  : {
                    'ggWW' : '1.15',
@@ -477,7 +545,7 @@ nuisances['TopPtRew'] = {
     'samples': {'top': ["1.", "1./Top_pTrw"]},
     'symmetrize': True
 }
-'''
+
 nuisances['VgStar'] = {
     'name': 'CMS_hww_VgStarScale',
     'type': 'lnN',
@@ -486,40 +554,34 @@ nuisances['VgStar'] = {
     }
 }
 
-nuisances['VZ'] = {
-    'name': 'CMS_hww_VZScale',
-    'type': 'lnN',
-    'samples': {
-        'VgS_H': '1.16'
-    }
-}
-
-nuisances['WZ3l2jnorm']  = {
-               'name'  : 'CMS_hww_WZ3l2jnorm',
+nuisances['VgSH2jnorm']  = {
+               'name'  : 'CMS_hww_VgSH_WHSS2j_norm',
                'samples'  : {
-                   'WZ'       : '1.00',
+                   'VgS_H'       : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
                    'hww2l2v_13TeV_of2j_WH_SS_uu_2j',
+                   'hww2l2v_13TeV_of2j_WH_SS_ee_2j',
                    'hww2l2v_13TeV_of2j_WH_SS_eu_2j',
-                   'zh3l_WZ_CR_2j',
+                   'hww2l2v_13TeV_of2j_WH_SS_WZ_2j',
                 ]
               }
 
-nuisances['WZ3l1jnorm']  = {
-               'name'  : 'CMS_hww_WZ3l1jnorm',
+nuisances['VgSH1jnorm']  = {
+               'name'  : 'CMS_hww_VgSH_WHSS1j_norm',
                'samples'  : {
-                   'WZ'       : '1.00',
+                   'VgS_H'       : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
                    'hww2l2v_13TeV_of2j_WH_SS_uu_1j',
+                   'hww2l2v_13TeV_of2j_WH_SS_ee_1j',
                    'hww2l2v_13TeV_of2j_WH_SS_eu_1j',
-                   'zh3l_WZ_CR_1j',
+                   'hww2l2v_13TeV_of2j_WH_SS_WZ_1j',
                 ]
               }
-'''
+
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat']  = {
               'type'  : 'auto',
