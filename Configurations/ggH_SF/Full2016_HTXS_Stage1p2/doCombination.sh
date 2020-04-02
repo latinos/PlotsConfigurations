@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## FIXME this is where the Combine framework is installed
+# this is where the Combine framework is installed
 cd /afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_10_2_13/src/
 eval `scramv1 runtime -sh`
 cd -
@@ -32,7 +32,7 @@ combineCards.py   sf_0j_ee_pth0_10=${datacardDir}/hww2l2v_13TeV_0j_ee_pth0_10/ev
                   sf_2j_mm_mjj0_350_pth60_120=${datacardDir}/hww2l2v_13TeV_2j_mm_mjj0_350_pth60_120/events/datacard.txt \
                   sf_2j_ee_mjj0_350_pth120_200=${datacardDir}/hww2l2v_13TeV_2j_ee_mjj0_350_pth120_200/events/datacard.txt \
                   sf_2j_mm_mjj0_350_pth120_200=${datacardDir}/hww2l2v_13TeV_2j_mm_mjj0_350_pth120_200/events/datacard.txt \
-                  #sf_2j_ee_mjj350_700_pthjj0_25=${datacardDir}/hww2l2v_13TeV_2j_ee_mjj350_700_pthjj0_25/events/datacard.txt \
+                  sf_2j_ee_mjj350_700_pthjj0_25=${datacardDir}/hww2l2v_13TeV_2j_ee_mjj350_700_pthjj0_25/events/datacard.txt \
                   sf_2j_mm_mjj350_700_pthjj0_25=${datacardDir}/hww2l2v_13TeV_2j_mm_mjj350_700_pthjj0_25/events/datacard.txt \
                   sf_2j_ee_mjj350_700_pthjj25=${datacardDir}/hww2l2v_13TeV_2j_ee_mjj350_700_pthjj25/events/datacard.txt \
                   sf_2j_mm_mjj350_700_pthjj25=${datacardDir}/hww2l2v_13TeV_2j_mm_mjj350_700_pthjj25/events/datacard.txt \
