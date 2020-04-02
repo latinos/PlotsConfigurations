@@ -616,6 +616,7 @@ nuisances['VgSH2jnorm']  = {
                'type'  : 'rateParam',
                'cuts'  : [
                    'hww2l2v_13TeV_of2j_WH_SS_uu_2j',
+                   'hww2l2v_13TeV_of2j_WH_SS_ee_2j',
                    'hww2l2v_13TeV_of2j_WH_SS_eu_2j',
                    'hww2l2v_13TeV_of2j_WH_SS_WZ_2j',
                 ]
@@ -629,6 +630,7 @@ nuisances['VgSH1jnorm']  = {
                'type'  : 'rateParam',
                'cuts'  : [
                    'hww2l2v_13TeV_of2j_WH_SS_uu_1j',
+                   'hww2l2v_13TeV_of2j_WH_SS_ee_1j',
                    'hww2l2v_13TeV_of2j_WH_SS_eu_1j',
                    'hww2l2v_13TeV_of2j_WH_SS_WZ_1j',
                 ]
