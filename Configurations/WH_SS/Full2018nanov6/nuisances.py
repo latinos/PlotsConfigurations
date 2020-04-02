@@ -322,20 +322,7 @@ nuisances['PS_FSR_2jet']  = {
 
 
 
-'''
-nuisances['PS_whss']  = {
-                'name'  : 'PS_whss',
-                'skipCMS' : 1,
-                'type'  : 'lnN',
-                'samples'  : {
-                   'WH_hww'   : '1.037',
-                   'ZH_hww'   : '1.037',
-                   'H_htt'    : '1.037',
-                   'ggZH_hww'   : '1.037',
-                   'ZH_htt'   : '1.037',
-                },
-}
-'''
+
 nuisances['UE_whss']  = {
                 'name'  : 'UE_whss',
                 'skipCMS' : 1,
@@ -412,13 +399,12 @@ nuisances['QCDscale_qqbar_ACCEPT']  = {
                'name'  : 'QCDscale_qqbar_ACCEPT', 
                'type'  : 'lnN',
                'samples'  : {
-                   'qqH_hww' : '1.007',
-                   'qqH_htt' : '1.007',
-                   'WH_hww'  : '1.05',
-                   'H_htt'  : '1.05',
-                   'ZH_hww'  : '1.04',
-                   'ZH_htt'  : '1.04',
-                   'VZ'      : '1.029',
+                   'qqH_hww' : '1.003',
+                   'qqH_htt' : '1.003',
+                   'WH_hww'  : '1.010',
+                   'H_htt'  : '1.010',
+                   'ZH_hww'  : '1.015',
+                   'ZH_htt'  : '1.015',
                    },
               }
 
@@ -426,11 +412,11 @@ nuisances['QCDscale_qqbar_ACCEPT']  = {
 nuisances['QCDscale_gg_ACCEPT']  = {
                'name'  : 'QCDscale_gg_ACCEPT', 
                'samples'  : {
-                   'ggWW'    : '1.027',
-                   'ggH_hww' : '1.027',
-                   'ggH_htt' : '1.027',
-                   'H_htt'   : '1.027',
-                   'ggZH_hww': '1.027',                   
+                   'ggWW'    : '1.012',
+                   'ggH_hww' : '1.012',
+                   'ggH_htt' : '1.012',
+                   'H_htt'   : '1.012',
+                   'ggZH_hww': '1.012',                   
                    },
                'type'  : 'lnN',
               }
@@ -481,14 +467,13 @@ nuisances['pdf_qqbar']  = {
                    },
               }
 
-#FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['pdf_Higgs_gg_ACCEPT']  = {
                'name'  : 'pdf_Higgs_gg_ACCEPT', 
                'samples'  : {
-                   'ggH_hww' : '1.005',
-                   'ggH_htt' : '1.005',
-                   'H_htt'   : '1.005',
-                   'ggZH_hww': '1.005', 
+                   'ggH_hww' : '1.006',
+                   'ggH_htt' : '1.006',
+                   'H_htt'   : '1.006',
+                   'ggZH_hww': '1.006', 
                    },
                'type'  : 'lnN',
               }
@@ -497,7 +482,7 @@ nuisances['pdf_Higgs_gg_ACCEPT']  = {
 nuisances['pdf_gg_ACCEPT']  = {
                'name'  : 'pdf_gg_ACCEPT',
                'samples'  : {
-                   'ggWW'    : '1.005',
+                   'ggWW'    : '1.006',
                    },
                'type'  : 'lnN',
               }
@@ -508,12 +493,12 @@ nuisances['pdf_Higgs_qqbar_ACCEPT']  = {
                'type'  : 'lnN',
                'samples'  : {
                    #
-                   'qqH_hww' : '1.011',
-                   'qqH_htt' : '1.011',
-                   'WH_hww'  : '1.007',
-                   'H_htt'  : '1.007',
-                   'ZH_hww'  : '1.012',
-                   'ZH_htt'  : '1.012',
+                   'qqH_hww' : '1.002',
+                   'qqH_htt' : '1.002',
+                   'WH_hww'  : '1.003',
+                   'H_htt'  : '1.003',
+                   'ZH_hww'  : '1.002',
+                   'ZH_htt'  : '1.002',
                    },
               }
 
@@ -523,19 +508,20 @@ nuisances['pdf_qqbar_ACCEPT']  = {
                'type'  : 'lnN',
                'samples'  : {
                    #
-                   'VZ'      : '1.005',
+                   'VZ'      : '1.001',
                    },
               }
 
 # ggww and interference
 
-nuisances['QCDscale_ggWW']  = {
-               'name'  : 'QCDscale_ggWW',
+nuisances['QCDscale_ggVV']  = {
+               'name'  : 'QCDscale_ggVV',
                'type'  : 'lnN',
                'samples'  : {
                    'ggWW' : '1.15',
                    },
               }
+
 
 '''
 ##### Renormalization & factorization scales
@@ -561,8 +547,8 @@ nuisances['QCDscale_VV'] = {
         'VgS': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
     }
 }
-'''
 
+'''
 ####### Generic "cross section uncertainties"
 
 apply_on = {
