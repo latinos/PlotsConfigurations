@@ -10,7 +10,7 @@ supercut = '   mll>12 \
             && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
            '
 
-
+'''
 ## Signal regions
 cuts['hww2l2v_13TeV'] = {
    'expr': 'sr',
@@ -39,7 +39,7 @@ cuts['hww2l2v_13TeV'] = {
       '2j'               : ' (mjj<65 || mjj>105) && mjj<200 && multiJet', 
    }
 }
-
+'''
 ## Top control regions
 cuts['hww2l2v_13TeV_top']  = { 
    'expr' : 'topcr',
