@@ -25,25 +25,25 @@ HiggsXS = HiggsXSection()
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2018',
     'type': 'lnN',
-    'samples': dict((skey, '1.015') for skey in mc)
+    'samples': dict((skey, '1.015') for skey in mc if skey not in ['VgS'])
 }
 
 nuisances['lumi_XYFact'] = {
     'name': 'lumi_13TeV_XYFact',
     'type': 'lnN',
-    'samples': dict((skey, '1.02') for skey in mc)
+    'samples': dict((skey, '1.02') for skey in mc if skey not in ['VgS'])
 }
 
 nuisances['lumi_CurrCalib'] = {
     'name': 'lumi_13TeV_CurrCalib',
     'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc)
+    'samples': dict((skey, '1.002') for skey in mc if skey not in ['VgS'])
 }
 
 nuisances['lumi_LScale'] = {
     'name': 'lumi_13TeV_LSCale',
     'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc)
+    'samples': dict((skey, '1.002') for skey in mc if skey not in ['VgS'])
 }
 
 
@@ -62,15 +62,6 @@ nuisances['fake_syst_em'] = {
     'samples': {
         #'Fake': '1.3'
         'Fake_em': '1.3'
-    },
-}
-
-nuisances['fake_syst_ee'] = {
-    'name': 'CMS_fake_syst_ee',
-    'type': 'lnN',
-    'samples': {
-        #'Fake': '1.3'
-        'Fake_ee': '1.3'
     },
 }
 
@@ -321,234 +312,222 @@ nuisances['PS_FSR_2jet']  = {
 }
 
 
-
-
 nuisances['UE_whss']  = {
                 'name'  : 'UE_whss',
                 'skipCMS' : 1,
-                'type'  : 'lnN',
-                'samples'  : {
-                   'WH_hww'   : '1.010',
-                   'ZH_hww'   : '1.010',
-                   'H_htt'    : '1.010',
-                   'ggZH_hww'   : '1.010',
-                   'ZH_htt'   : '1.010',
-               },
-                }
+                'type': 'lnN',
+                'samples': dict((skey, '1.015') for skey in mc),
+}
 
-##### QCD scale uncertainties for Higgs signals other than ggH
-#
-from LatinoAnalysis.Tools.HiggsXSection  import *
-HiggsXS = HiggsXSection()
+###### pdf uncertainties
 
-nuisances['QCDscale_ggH']  = {
-               'name'  : 'QCDscale_ggH', 
-               'samples'  : {
-                   'H_htt'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','scale','sm'),
-                   },
-               'type'  : 'lnN',
-              }
+valuesggh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','pdf','sm')
+valuesggzh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggZH','125.09','pdf','sm')
+valuesbbh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','bbH','125.09','pdf','sm')
 
+nuisances['pdf_Higgs_gg'] = {
+    'name': 'pdf_Higgs_gg',
+    'samples': {
+        'ggH_hww': valuesggh,
+        'ggH_htt': valuesggh,
+        'ggZH_hww': valuesggzh,
+        'bbH_hww': valuesbbh
+    },
+    'type': 'lnN',
+}
 
-nuisances['QCDscale_qqH']  = {
-               'name'  : 'QCDscale_qqH', 
-               'samples'  : {
-                   'qqH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm'),
-                   'qqH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm'),
-                   },
-               'type'  : 'lnN',
-              }
+values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','pdf','sm')
 
-nuisances['QCDscale_VH']  = {
-               'name'  : 'QCDscale_VH', 
-               'samples'  : {
-                   'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
-                   'H_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
-                   'ZH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm'),
-                   'ZH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm'),
-                   },
-               'type'  : 'lnN',
-              }
+nuisances['pdf_Higgs_ttH'] = {
+    'name': 'pdf_Higgs_ttH',
+    'samples': {
+        'ttH_hww': values
+    },
+    'type': 'lnN',
+}
 
-nuisances['QCDscale_ggZH']  = {
-               'name'  : 'QCDscale_ggZH', 
-               'samples'  : {
-                   'ggZH_hww': HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggZH','125.09','scale','sm'),                  
-                   },
-               'type'  : 'lnN',
-              }
+valuesqqh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm')
+valueswh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','pdf','sm')
+valueszh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','pdf','sm')
 
-nuisances['QCDscale_bbH']  = {
-               'name'  : 'QCDscale_bbH',
-               'samples'  : {
-                   'bbH_hww': HiggsXS.GetHiggsProdXSNP('YR4','13TeV','bbH','125.09','scale','sm'),
-                   },
-               'type'  : 'lnN',
-              }
+nuisances['pdf_Higgs_qqbar'] = {
+    'name': 'pdf_Higgs_qqbar',
+    'type': 'lnN',
+    'samples': {
+        'qqH_hww': valuesqqh,
+        'qqH_htt': valuesqqh,
+        'WH_hww': valueswh,
+        'WH_htt': valueswh,
+        'ZH_hww': valueszh,
+        'ZH_htt': valueszh
+    },
+}
 
-nuisances['QCDscale_ttH']  = {
-               'name'  : 'QCDscale_ttH',
-               'samples'  : {
-                   'ttH_hww': HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','scale','sm'),
-                   },
-               'type'  : 'lnN',
-              }
+nuisances['pdf_qqbar'] = {
+    'name': 'pdf_qqbar',
+    'type': 'lnN',
+    'samples': {
+        'Vg': '1.04',
+        'VZ': '1.04',  # PDF: 0.0064 / 0.1427 = 0.0448493
+        'VgS': '1.04', # PDF: 0.0064 / 0.1427 = 0.0448493
+    },
+}
 
-##FIXME: these come from HIG-16-042, maybe should be recomputed?
-nuisances['QCDscale_qqbar_ACCEPT']  = {
-               'name'  : 'QCDscale_qqbar_ACCEPT', 
-               'type'  : 'lnN',
-               'samples'  : {
-                   'qqH_hww' : '1.003',
-                   'qqH_htt' : '1.003',
-                   'WH_hww'  : '1.010',
-                   'H_htt'  : '1.010',
-                   'ZH_hww'  : '1.015',
-                   'ZH_htt'  : '1.015',
-                   },
-              }
+nuisances['pdf_Higgs_gg_ACCEPT'] = {
+    'name': 'pdf_Higgs_gg_ACCEPT',
+    'samples': {
+        'ggH_hww': '1.006',
+        'ggH_htt': '1.006',
+        'ggZH_hww': '1.006',
+        'bbH_hww': '1.006'
+    },
+    'type': 'lnN',
+}
+nuisances['pdf_gg_ACCEPT'] = {
+    'name': 'pdf_gg_ACCEPT',
+    'samples': {
+        'ggWW': '1.006',
+    },
+    'type': 'lnN',
+}
 
-##FIXME: these come from HIG-16-042, maybe should be recomputed?
-nuisances['QCDscale_gg_ACCEPT']  = {
-               'name'  : 'QCDscale_gg_ACCEPT', 
-               'samples'  : {
-                   'ggWW'    : '1.012',
-                   'ggH_hww' : '1.012',
-                   'ggH_htt' : '1.012',
-                   'H_htt'   : '1.012',
-                   'ggZH_hww': '1.012',                   
-                   },
-               'type'  : 'lnN',
-              }
+nuisances['pdf_Higgs_qqbar_ACCEPT'] = {
+    'name': 'pdf_Higgs_qqbar_ACCEPT',
+    'type': 'lnN',
+    'samples': {
+        'qqH_hww': '1.002',
+        'qqH_htt': '1.002',
+        'WH_hww': '1.003',
+        'WH_htt': '1.003',
+        'ZH_hww': '1.002',
+        'ZH_htt': '1.002',
+    },
+}
 
-####### pdf uncertainty
+nuisances['pdf_qqbar_ACCEPT'] = {
+    'name': 'pdf_qqbar_ACCEPT',
+    'type': 'lnN',
+    'samples': {
+        'VZ': '1.001',
+    },
+}
 
-nuisances['pdf_Higgs_gg']  = {
-               'name'  : 'pdf_Higgs_gg', 
-               'samples'  : {
-                   'ggH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH' ,'125.09','pdf','sm'),
-                   'ggH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH' ,'125.09','pdf','sm'),
-                   'H_htt'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH' ,'125.09','pdf','sm'),
-                   'ggZH_hww': HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggZH','125.09','pdf','sm'), 
-                   'bbH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','bbH' ,'125.09','pdf','sm'),
-                   },
-               'type'  : 'lnN',
-              }
-
-nuisances['pdf_Higgs_ttH']  = {
-               'name'  : 'pdf_Higgs_ttH',
-               'samples'  : {
-                   'ttH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH' ,'125.09','pdf','sm'),
-                   },
-               'type'  : 'lnN',
-              }
-
-nuisances['pdf_Higgs_qqbar']  = {
-               'name'  : 'pdf_Higgs_qqbar', 
-               'type'  : 'lnN',
-               'samples'  : {
-                   'qqH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm'),
-                   'qqH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm'),
-                   'WH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
-                   'H_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
-                   'ZH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH' ,'125.09','pdf','sm'),
-                   'ZH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH' ,'125.09','pdf','sm'),
-                   },
-              }
-
-#FIXME: check this 4%
-nuisances['pdf_qqbar']  = {
-               'name'  : 'pdf_qqbar',
-               'type'  : 'lnN',
-               'samples'  : {
-                   'VZ'      : '1.04',  # PDF: 0.0064 / 0.1427 = 0.0448493
-                   'Vg'      : '1.04',  
-                   'VgS'      : '1.04',
-                   },
-              }
-
-nuisances['pdf_Higgs_gg_ACCEPT']  = {
-               'name'  : 'pdf_Higgs_gg_ACCEPT', 
-               'samples'  : {
-                   'ggH_hww' : '1.006',
-                   'ggH_htt' : '1.006',
-                   'H_htt'   : '1.006',
-                   'ggZH_hww': '1.006', 
-                   },
-               'type'  : 'lnN',
-              }
-
-##FIXME: these come from HIG-16-042, maybe should be recomputed?
-nuisances['pdf_gg_ACCEPT']  = {
-               'name'  : 'pdf_gg_ACCEPT',
-               'samples'  : {
-                   'ggWW'    : '1.006',
-                   },
-               'type'  : 'lnN',
-              }
-
-#FIXME: these come from HIG-16-042, maybe should be recomputed?
-nuisances['pdf_Higgs_qqbar_ACCEPT']  = {
-               'name'  : 'pdf_Higgs_qqbar_ACCEPT',
-               'type'  : 'lnN',
-               'samples'  : {
-                   #
-                   'qqH_hww' : '1.002',
-                   'qqH_htt' : '1.002',
-                   'WH_hww'  : '1.003',
-                   'H_htt'  : '1.003',
-                   'ZH_hww'  : '1.002',
-                   'ZH_htt'  : '1.002',
-                   },
-              }
-
-##FIXME: these come from HIG-16-042, maybe should be recomputed?
-nuisances['pdf_qqbar_ACCEPT']  = {
-               'name'  : 'pdf_qqbar_ACCEPT',
-               'type'  : 'lnN',
-               'samples'  : {
-                   #
-                   'VZ'      : '1.001',
-                   },
-              }
-
-# ggww and interference
-
-nuisances['QCDscale_ggVV']  = {
-               'name'  : 'QCDscale_ggVV',
-               'type'  : 'lnN',
-               'samples'  : {
-                   'ggWW' : '1.15',
-                   },
-              }
-
-
-'''
 ##### Renormalization & factorization scales
+
 ## Shape nuisance due to QCD scale variations for DY
 # LHE scale variation weights (w_var / w_nominal)
-# [0] is muR=0.50000E+00 muF=0.50000E+00
-# [8] is muR=0.20000E+01 muF=0.20000E+01
+
+## This should work for samples with either 8 or 9 LHE scale weights (Length$(LHEScaleWeight) == 8 or 9)
+variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
+
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
     'skipCMS': 1,
-    'kind': 'weight',
+    'kind': 'weight_envelope',
     'type': 'shape',
-    'samples': {'DY': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]']},
+    'samples': {'DY': variations},
     'AsLnN': '1'
 }
+
 nuisances['QCDscale_VV'] = {
     'name': 'QCDscale_VV',
-    'kind': 'weight',
+    'kind': 'weight_envelope',
     'type': 'shape',
     'samples': {
-        'Vg': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-        'VZ': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-        'VgS': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
+        'WW':variations,
+        'Vg': variations,
+        'VZ': variations,
+        'VgS': variations
     }
 }
 
-'''
+nuisances['QCDscale_ggVV'] = {
+    'name': 'QCDscale_ggVV',
+    'type': 'lnN',
+    'samples': {
+        'ggWW': '1.15',
+    },
+}
+
+#### QCD scale uncertainties for Higgs signals other than ggH
+
+values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm')
+
+nuisances['QCDscale_qqH'] = {
+    'name': 'QCDscale_qqH',
+    'samples': {
+        'qqH_hww': values,
+        'qqH_htt': values
+    },
+    'type': 'lnN'
+}
+
+valueswh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm')
+valueszh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm')
+
+nuisances['QCDscale_VH'] = {
+    'name': 'QCDscale_VH',
+    'samples': {
+        'WH_hww': valueswh,
+        'WH_htt': valueswh,
+        'ZH_hww': valueszh,
+        'ZH_htt': valueszh
+    },
+    'type': 'lnN',
+}
+
+values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggZH','125.09','scale','sm')
+
+nuisances['QCDscale_ggZH'] = {
+    'name': 'QCDscale_ggZH',
+    'samples': {
+        'ggZH_hww': values
+    },
+    'type': 'lnN',
+}
+
+values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','scale','sm')
+
+nuisances['QCDscale_ttH'] = {
+    'name': 'QCDscale_ttH',
+    'samples': {
+        'ttH_hww': values
+    },
+    'type': 'lnN',
+}
+
+nuisances['QCDscale_WWewk'] = {
+    'name': 'QCDscale_WWewk',
+    'samples': {
+        'WWewk': '1.11',
+    },
+    'type': 'lnN'
+}
+
+nuisances['QCDscale_qqbar_ACCEPT'] = {
+    'name': 'QCDscale_qqbar_ACCEPT',
+    'type': 'lnN',
+    'samples': {
+        'qqH_hww': '1.003',
+        'qqH_htt': '1.003',
+        'WH_hww': '1.010',
+        'WH_htt': '1.010',
+        'ZH_hww': '1.015',
+        'ZH_htt': '1.015',
+    }
+}
+
+#FIXME: these come from HIG-16-042, maybe should be recomputed?
+nuisances['QCDscale_gg_ACCEPT'] = {
+    'name': 'QCDscale_gg_ACCEPT',
+    'samples': {
+        'ggH_htt': '1.012',
+        'ggH_hww': '1.012',
+        'ggZH_hww': '1.012',
+        'ggWW': '1.012',
+    },
+    'type': 'lnN',
+}
 ####### Generic "cross section uncertainties"
 
 apply_on = {
