@@ -156,7 +156,7 @@ samples['DY'] = {    'name'   :
 
 
 ############ Top ############
-Top_pTrw = '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)'
+#Top_pTrw = '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)'
 
 samples['top'] = {    
             'name'   :  
@@ -173,13 +173,14 @@ samples['top'] = {
             'FilesPerJob' : 3,
                  }
 # ACHTUNG! NO topGenPt in TTZjets!                 
-addSampleWeight(samples,'top','ST_s-channel', Top_pTrw )
-addSampleWeight(samples,'top','ST_t-channel_antitop', Top_pTrw )
-addSampleWeight(samples,'top','ST_t-channel_top', Top_pTrw )
-addSampleWeight(samples,'top','ST_tW_antitop', Top_pTrw )
-addSampleWeight(samples,'top','ST_tW_top', Top_pTrw )
-addSampleWeight(samples,'top','TTToSemiLeptonic', Top_pTrw )
-addSampleWeight(samples,'top','TTTo2L2Nu', Top_pTrw )
+# No Top Pt reweighting
+# addSampleWeight(samples,'top','ST_s-channel', Top_pTrw )
+# addSampleWeight(samples,'top','ST_t-channel_antitop', Top_pTrw )
+# addSampleWeight(samples,'top','ST_t-channel_top', Top_pTrw )
+# addSampleWeight(samples,'top','ST_tW_antitop', Top_pTrw )
+# addSampleWeight(samples,'top','ST_tW_top', Top_pTrw )
+# addSampleWeight(samples,'top','TTToSemiLeptonic', Top_pTrw )
+# addSampleWeight(samples,'top','TTTo2L2Nu', Top_pTrw )
 
 
 samples['Wjets'] = { 'name' :   
@@ -196,20 +197,20 @@ samples['Wjets'] = { 'name' :
         ,
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
         'FilesPerJob' : 2,
-        'subsamples': {
-          "boost" : "VBS_category==0",
-          "deta1_jpt1": "(VBS_category==1) && (deltaeta_vbs < 3.5 ) && vbs_1_pt < 75",
-          "deta2_jpt1": "(VBS_category==1) && (deltaeta_vbs >= 3.5 && deltaeta_vbs < 5.5) && vbs_1_pt < 75",
-          "deta3_jpt1": "(VBS_category==1) && (deltaeta_vbs >= 5.5 ) && vbs_1_pt < 75",
+        # 'subsamples': {
+        #   "boost" : "VBS_category==0",
+        #   "deta1_jpt1": "(VBS_category==1) && (deltaeta_vbs < 3.5 ) && vbs_1_pt < 75",
+        #   "deta2_jpt1": "(VBS_category==1) && (deltaeta_vbs >= 3.5 && deltaeta_vbs < 5.5) && vbs_1_pt < 75",
+        #   "deta3_jpt1": "(VBS_category==1) && (deltaeta_vbs >= 5.5 ) && vbs_1_pt < 75",
 
-          "deta1_jpt2": "(VBS_category==1) && (deltaeta_vbs < 3 ) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
-          "deta2_jpt2": "(VBS_category==1) && (deltaeta_vbs >= 3 && deltaeta_vbs < 4) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
-          "deta3_jpt2": "(VBS_category==1) && (deltaeta_vbs >= 4 ) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
+        #   "deta1_jpt2": "(VBS_category==1) && (deltaeta_vbs < 3 ) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
+        #   "deta2_jpt2": "(VBS_category==1) && (deltaeta_vbs >= 3 && deltaeta_vbs < 4) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
+        #   "deta3_jpt2": "(VBS_category==1) && (deltaeta_vbs >= 4 ) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
   
-          "deta1_jpt3": "(VBS_category==1) && (deltaeta_vbs < 3.5 ) &&  ( vbs_1_pt >= 150)",
-          "deta2_jpt3": "(VBS_category==1) && (deltaeta_vbs >= 3.5) &&  ( vbs_1_pt >= 150)",
+        #   "deta1_jpt3": "(VBS_category==1) && (deltaeta_vbs < 3.5 ) &&  ( vbs_1_pt >= 150)",
+        #   "deta2_jpt3": "(VBS_category==1) && (deltaeta_vbs >= 3.5) &&  ( vbs_1_pt >= 150)",
                     
-        }
+        # }
        }
 #
 # Fix Wjets binned + LO 
@@ -285,7 +286,7 @@ samples['Fake'] = {
   'weight': METFilter_DATA+'*'+fakeW,
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 20
+  'FilesPerJob': 25
 }
 
 for _, sd in DataRun:
@@ -303,7 +304,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'weight' : METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],
-                       'FilesPerJob' : 20,
+                       'FilesPerJob' : 25,
                   }
 
 for Run in DataRun :

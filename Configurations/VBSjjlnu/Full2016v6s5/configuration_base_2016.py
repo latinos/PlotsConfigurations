@@ -1,26 +1,26 @@
 # example of configuration file
 treeName= 'Events'
 
-
-tag = 'base'
+tag = 'base_2016'
+direc = 'conf_base'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_'+tag
 
 # file with TTree aliases
-aliasesFile = 'aliases.py'
+aliasesFile = direc+'/aliases.py'
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = direc+'/variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
+cutsFile = direc+'/cuts_res.py'
 
 # file with list of samples
-samplesFile = 'samples.py' 
+samplesFile = direc+'/samples.py' 
 
 # file with list of samples
-plotFile = 'plot.py' 
+plotFile = direc+'/plot_res.py'
 
 
 
@@ -33,14 +33,14 @@ outputDirPlots = 'plot_'+tag
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'
+outputDirDatacard = 'datacards_' +tag 
 
 
 # structure file for datacard
-structureFile = 'structure.py'
+structureFile = direc+'/structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
-
+nuisancesFile = direc+'/nuisances.py'
+#nuisancesFile = direc+'/nuisances_datacard.py'
 

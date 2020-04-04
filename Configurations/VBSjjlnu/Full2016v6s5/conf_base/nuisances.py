@@ -204,6 +204,7 @@ nuisances['electronpt']  = {
                 'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in ["VBS","VV", "VBF-V"]),
                 'folderUp'   :  directory_bkg +"_ElepTup",
                 'folderDown' : directory_bkg +"_ElepTdo",
+                'AsLnN': '1'
 }
 
 
@@ -317,6 +318,15 @@ nuisances['QCD_scale_Wjets'] = {
      }
 }
 
+nuisances['QCD_scale_top'] = {
+     'name'  : 'QCDscale_top',
+     'kind'  : 'weight',
+     'type'  : 'shape',
+     'samples'  :   {
+         "top" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
+     }
+}
+
 # if useEmbeddedDY: del nuisances['prefire']['samples']['DY']
 
 # #
@@ -391,39 +401,32 @@ nuisances['singleTopToTTbar'] = {
 
 
 # #################
-## Samples normalizations
-nuisances['Top_norm']  = {
-               'name'  : 'CMS_Top_norm_2016',
-               'samples'  : {
-                   'top' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : phase_spaces_tot
-              }
+# ## Samples normalizations
+# nuisances['Top_norm']  = {
+#                'name'  : 'CMS_Top_norm_2016',
+#                'samples'  : {
+#                    'top' : '1.00',
+#                    },
+#                'type'  : 'rateParam',
+#                'cuts'  : phase_spaces_tot
+#               }
 
-jetbin_detabins = [3,3,2]
-# # name of samples here must match keys in samples.py 
-Wjets_bins = []
-for jetbin in range(3):
-    for detabin in range(jetbin_detabins[jetbin]):
-        Wjets_bins.append("Wjets_deta{}_jpt{}".format(detabin+1, jetbin+1))
-
-for wjbin in Wjets_bins:
-    for fl in ["ele", "mu"]:
-        if "boost" in wjbin:
-            nuisances["{}_norm_{}_boost_2016".format(wjbin, fl)] = {
-                'name'  : 'CMS_{}_norm_{}_boost_2016'.format(wjbin, fl),
-                'samples'  : { wjbin: '1.00' },
-                'type'  : 'rateParam',
-                'cuts'  : [f+"_"+fl for f in phase_spaces_dict["boost"]]
-            }
-        else:
-            nuisances["{}_norm_{}_res_2016".format(wjbin, fl)] = {
-                'name'  : 'CMS_{}_norm_{}_res_2016'.format(wjbin, fl),
-                'samples'  : { wjbin: '1.00' },
-                'type'  : 'rateParam',
-                'cuts'  : [f+"_"+fl for f in phase_spaces_dict["res"]]
-            }
+# #for wjbin in Wjets_bins:
+#     for fl in ["ele", "mu"]:
+#         if "boost" in wjbin:
+#             nuisances["{}_norm_{}_boost_2016".format(wjbin, fl)] = {
+#                 'name'  : 'CMS_{}_norm_{}_boost_2016'.format(wjbin, fl),
+#                 'samples'  : { wjbin: '1.00' },
+#                 'type'  : 'rateParam',
+#                 'cuts'  : [f+"_"+fl for f in phase_spaces_dict["boost"]]
+#             }
+#         else:
+#             nuisances["{}_norm_{}_res_2016".format(wjbin, fl)] = {
+#                 'name'  : 'CMS_{}_norm_{}_res_2016'.format(wjbin, fl),
+#                 'samples'  : { wjbin: '1.00' },
+#                 'type'  : 'rateParam',
+#                 'cuts'  : [f+"_"+fl for f in phase_spaces_dict["res"]]
+#             }
 
 
 

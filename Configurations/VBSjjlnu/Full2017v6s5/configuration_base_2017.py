@@ -2,25 +2,27 @@
 treeName= 'Events'
 
 
-tag = 'base'
+tag = 'base_2017'
+direc ='conf_base'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_'+tag
+outputDir = 'rootFile_'+tag 
 
 # file with TTree aliases
-aliasesFile = 'aliases.py'
+aliasesFile = direc+'/aliases.py'
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = direc+'/variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
+cutsFile = direc +'/cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples.py' 
+samplesFile = direc+'/samples.py' 
 
 # file with list of samples
-plotFile = 'plot.py' 
+plotFile = direc+'/plot.py' 
+#plotFile = direc +'/plot_rescaled_ele.py'
 
 
 
@@ -29,7 +31,7 @@ lumi = 41.5
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot_'+tag
+outputDirPlots = 'plot_'+tag 
 
 
 # used by mkDatacards to define output directory for datacards
@@ -37,10 +39,10 @@ outputDirDatacard = 'datacards'
 
 
 # structure file for datacard
-structureFile = 'structure.py'
+structureFile = direc + '/structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-#nuisancesFile = 'nuisances.py'
-
+nuisancesFile = direc + '/nuisances.py'
+#nuisancesFile = direc + '/nuisances_datacard.py'
 

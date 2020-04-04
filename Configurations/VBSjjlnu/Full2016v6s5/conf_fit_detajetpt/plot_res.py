@@ -77,11 +77,11 @@ groupPlot['Fake']  = {
 #                   'samples'  : ['Vg','VgS']
 #               }
 
-groupPlot['VVV']  = {  
-                  'nameHR' : 'VVV',
+groupPlot['vbfV+VV+VVV']  = {  
+                  'nameHR' : 'vbfV+VV+VVV',
                   'isSignal' : 0,
                   'color': palette["Pink"],  
-                  'samples'  : ['VVV'],
+                  'samples'  : ['VBF-F','VVV', 'VV'],
                   'fill': 1001
               }
 
@@ -102,16 +102,24 @@ groupPlot['top']  = {
                  'fill': 1001
              }
 
-for  jbin in range(3,0,-1): 
-    for dbin in range(jetbin_detabins[jbin-1], 0,-1):
-        wname = "Wjets_deta{}_jpt{}".format(dbin,jbin)
-        groupPlot[wname]  = {  
-                        'nameHR' : 'W+Jets_{}_{}'.format(dbin,jbin),
-                        'isSignal' : 0,
-                        'color':   palette[wname],
-                        'samples'  : [wname],
-                        'fill': 1001
-                }
+# for  jbin in range(3,0,-1): 
+#     for dbin in range(jetbin_detabins[jbin-1], 0,-1):
+#         wname = "Wjets_deta{}_jpt{}".format(dbin,jbin)
+#         groupPlot[wname]  = {  
+#                         'nameHR' : 'W+Jets_{}_{}'.format(dbin,jbin),
+#                         'isSignal' : 0,
+#                         'color':   palette[wname],
+#                         'samples'  : [wname],
+#                         'fill': 1001
+#                 }
+
+groupPlot["Wjets"]  = {  
+                'nameHR' : 'W+Jets',
+                'isSignal' : 0,
+                'color':   '#FFC400',
+                'samples'  : ["Wjets_deta{}_jpt{}".format(dbin,jbin) for jbin in range(3,0,-1) for dbin in range(jetbin_detabins[jbin-1], 0,-1) ],
+                'fill': 1001
+        }
 
 groupPlot['VBS']  = {  
                  'nameHR' : 'VBS',
@@ -136,12 +144,12 @@ plot['VVV']  = {
                   }
 
 
-# plot['VV']  = {
-#                   'color': colors['kGreen']+3,  
-#                   'isSignal' : 0,
-#                   'isData'   : 0,
-#                   'scale'    : 1.   ,
-#               }   
+plot['VV']  = {
+                  'color': colors['kGreen']+3,  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.   ,
+              }   
          
 # plot['Vg']  = { 
 #                   'color': 859, # kAzure -1  
@@ -165,12 +173,12 @@ plot['DY']  = {
                 'scale'    : 1.0,
             }
 
-# plot['VBF-V']  = {
-#                   'color': colors['kYellow']+3,  
-#                   'isSignal' : 0,
-#                   'isData'   : 0,
-#                   'scale'    : 1.   ,
-#               }
+plot['VBF-V']  = {
+                  'color': colors['kYellow']+3,  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.   ,
+              }
 
 
 plot['Fake']  = {  
