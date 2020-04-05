@@ -4,10 +4,62 @@
 
 # keys here must match keys in samples.py    
 #                    
-structure['DY']  = {  
+'''structure['DY']  = {  
                   'isSignal' : 0,
                   'isData'   : 0
               }
+'''
+
+structure['Wjets']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0 
+              }
+
+structure['Fake']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0 
+              }
+
+structure['Fake_em']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'removeFromCuts' : [
+                                      'hww2l2v_13TeV_me_pm_0j_pt2ge20',
+                                      'hww2l2v_13TeV_me_pm_0j_pt2ge20', 
+                                      'hww2l2v_13TeV_me_pm_1j_pt2ge20', 
+                                      'hww2l2v_13TeV_me_mp_0j_pt2ge20',
+                                      'hww2l2v_13TeV_me_mp_1j_pt2ge20',
+                                      'hww2l2v_13TeV_me_pm_0j_pt2lt20',
+                                      'hww2l2v_13TeV_me_pm_1j_pt2lt20',
+                                      'hww2l2v_13TeV_me_mp_0j_pt2lt20',
+                                      'hww2l2v_13TeV_me_mp_1j_pt2lt20'],
+              }
+
+structure['Fake_me']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'removeFromCuts' : [
+                                      'hww2l2v_13TeV_em_pm_0j_pt2ge20',
+                                      'hww2l2v_13TeV_em_pm_0j_pt2ge20', 
+                                      'hww2l2v_13TeV_em_pm_1j_pt2ge20', 
+                                      'hww2l2v_13TeV_em_mp_0j_pt2ge20',
+                                      'hww2l2v_13TeV_em_mp_1j_pt2ge20',
+                                      'hww2l2v_13TeV_em_pm_0j_pt2lt20',
+                                      'hww2l2v_13TeV_em_pm_1j_pt2lt20',
+                                      'hww2l2v_13TeV_em_mp_0j_pt2lt20',
+                                      'hww2l2v_13TeV_em_mp_1j_pt2lt20'],
+              }
+
+structure['ttbar'] = {   
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
+
+
+structure['singletop'] = {   
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
 
 structure['top'] = {   
                   'isSignal' : 0,
@@ -16,14 +68,16 @@ structure['top'] = {
 
 structure['ttW']  = {
                   'isSignal' : 0,
-                  'isData'   : 0,    
+                  'isData'   : 0    
                   }
-
 structure['ttZ']  = {
                   'isSignal' : 0,
                   'isData'   : 0    
                   }
-
+structure['ggH_hzz'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                 }    
 structure['WW']  = {
                   'isSignal' : 0,
                   'isData'   : 0    
@@ -39,14 +93,44 @@ structure['ggWW']  = {
                   'isData'   : 0    
                   }
 
+structure['ggWW_Int']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0    
+                  }
+
+structure['Wg']  = { 
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
+
 structure['Vg']  = { 
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
+
+structure['VgS'] = { 
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
+
+structure['WZgS_L'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
+structure['WZgS_H'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
+structure['Zg']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
 
 structure['VZ']  = { 
                   'isSignal' : 0,
-                  'isData'   : 0, 
+                  'isData'   : 0 
                   }
 
 structure['WZ']  = { 
@@ -54,11 +138,21 @@ structure['WZ']  = {
                   'isData'   : 0 
                   }
 
+structure['ZZhad']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
+structure['WZhad']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
+
 structure['VVV']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
-
 structure['WWW']  = {
                   'isSignal' : 0,
                   'isData'   : 0
@@ -68,8 +162,23 @@ structure['ZZ']  = {
                   'isSignal' : 0,
                   'isData'   : 0    
                   }
+structure['ggZZ']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
+
+structure['ggH'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
 
 structure['ggH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['qqH_hww'] = {
                   'isSignal' : 1,
                   'isData'   : 0    
                   }
@@ -84,32 +193,30 @@ structure['WH_hww'] = {
                   'isData'   : 0    
                   }
 
-#if os.path.exists('HTXS_stage1_categories.py') :
-#    handle = open('HTXS_stage1_categories.py','r')
-#    exec(handle)
-#    handle.close()
- 
-#for cat in HTXSStage1_1Categories.iteritems():
-#    if 'QQ2HLL' in cat:
-#        structure['ZH_hww_'+cat.replace('QQ2HLL_','')] = {
-#            'isSignal' : 1,
-#            'isData'   : 0
-#        }
-#    if 'GG2HLL' in cat:
-#        structure['ggZH_hww_'+cat.replace('GG2HLL_','')] = {
-#            'isSignal' : 1,
-#            'isData'   : 0
-#        }
+structure['ZH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
 
-for bin in ['PTV_LT150','PTV_GT150','FWDH']:
-    structure['ZH_hww_'+bin] = {
-        'isSignal' : 1,
-        'isData'   : 0
-    }
-    structure['ggZH_hww_'+bin] = {
-        'isSignal' : 1,
-        'isData'   : 0
-    }
+structure['ggZH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['H_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['bbH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
+
+structure['ttH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
 
 structure['ggH_htt'] = {
                   'isSignal' : 1,
@@ -136,7 +243,9 @@ structure['H_htt'] = {
                   'isData'   : 0    
                   }
 
+
 # data
+
 
 structure['DATA']  = { 
                   'isSignal' : 0,

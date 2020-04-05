@@ -9,6 +9,7 @@ supercut = ' Lepton_pt[0]>25 \
             && z0Mass_zh4l>12 \
             && bVeto \
                   '
+cuts['zh4l_preselection_13TeV'] = '((flagZ1SF_zh4l==1)&&(mllll_zh4l > 140)) || (flagZ1SF_zh4l==0)'
 
 cuts['zh4l_XSF_13TeV'] = {
     'expr' : ' flagZ1SF_zh4l==1\
@@ -34,9 +35,3 @@ cuts['zh4l_XDF_13TeV'] = {
         'ptv_gt150' : 'recoZPt > 150',
     }
 }
-
-cuts['zh4l_ZZ_13TeV']  = ' z1Mass_zh4l < 105 && z1Mass_zh4l >75 \
-                        && PuppiMET_pt < 35 \
-                        && fabs(z0Mass_zh4l-91.1876)< 15\
-'
-
