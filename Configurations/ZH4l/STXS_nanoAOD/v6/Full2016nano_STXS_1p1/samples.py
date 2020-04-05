@@ -322,7 +322,7 @@ samples['qqH_hww']  = {  'name'   :   nanoGetSampleFiles(mcDirectory,'VBFHToWWTo
 #                     }
 
 samples['ZH_hww']  = {  'name'   :   getSampleFiles(mcDirectory,'HZJ_HToWW_M125',True,'nanoLatino_'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                         'subsamples' : { 'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==401 || HTXS_stage1_1_cat_pTjet30GeV==402',
                                          'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==403 || HTXS_stage1_1_cat_pTjet30GeV==404 || HTXS_stage1_1_cat_pTjet30GeV==405',
                                          'FWDH'      : 'HTXS_stage1_1_cat_pTjet30GeV==400'
@@ -330,7 +330,7 @@ samples['ZH_hww']  = {  'name'   :   getSampleFiles(mcDirectory,'HZJ_HToWW_M125'
                      }
 
 samples['ggZH_hww'] = { 'name'   :   getSampleFiles(mcDirectory,'ggZH_HToWW_M125',True,'nanoLatino_'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                         'subsamples' : { 'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==501 || HTXS_stage1_1_cat_pTjet30GeV==502',
                                          'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==503 || HTXS_stage1_1_cat_pTjet30GeV==504 || HTXS_stage1_1_cat_pTjet30GeV==505',
                                          'FWDH'      : 'HTXS_stage1_1_cat_pTjet30GeV==500'
