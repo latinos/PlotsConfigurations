@@ -1,31 +1,28 @@
 # # nuisances
 # #FIXME: TO BE UPDATED FOR 2018!
+from itertools import product
+
+
+Wjets_bins = ["Wjets_jpt3","Wjets_deta2_jpt2", "Wjets_deta1_jpt2",
+                "Wjets_deta2_jpt1","Wjets_deta1_jpt1",
+                "Wjets_boost1", "Wjets_boost2"]
+
+# # nuisances
+# #FIXME: TO BE UPDATED FOR 2018!
 
 # # name of samples here must match keys in samples.py 
 
 mc =["DY", "top", "VV", "VVV", "VBF-V", "top", "VBS", "Wjets"]
 
 phase_spaces_res = [
-   'res_sig_mjjincl','res_sig_mjjlow','res_sig_mjjhigh', 'res_sig_mjjincl_dnnhigh',
-   'res_topcr_mjjincl','res_topcr_mjjlow','res_topcr_mjjhigh','res_topcr_mjjincl_dnnhigh',
-   'res_wjetcr_mjjincl','res_wjetcr_mjjlow','res_wjetcr_mjjhigh',
-   'res_sig_mjjincl','res_sig_mjjlow','res_sig_mjjhigh',
-   'res_topcr_mjjincl','res_topcr_mjjlow','res_topcr_mjjhigh',
-   'res_wjetcr_mjjincl','res_wjetcr_mjjlow','res_wjetcr_mjjhigh',
-
-   'res_wjetcr_mjjincl_mvhigh', 'res_wjetcr_mjjincl_mvlow',
-   
-   'res_wjetcr_mjjincl_mvint','res_wjetcr_mjjincl_mvext',
-
-   'res_wjetcr_mjjincl_dnnhigh','res_wjetcr_mjjincl_mvint_dnnhigh','res_wjetcr_mjjincl_mvext_dnnhigh'
+   'res_sig_mjjincl', 'res_sig_mjjincl_dnnhigh',
+   'res_topcr_mjjincl','res_topcr_mjjincl_dnnhigh',
+   'res_wjetcr_mjjincl','res_wjetcr_mjjincl_dnnhigh',
 ]
 phase_spaces_boost = [
-   'boost_sig_mjjincl','boost_sig_mjjlow','boost_sig_mjjhigh',
-   'boost_topcr_mjjincl','boost_topcr_mjjlow','boost_topcr_mjjhigh',
-   'boost_wjetcr_mjjincl','boost_wjetcr_mjjlow','boost_wjetcr_mjjhigh',
-   'boost_sig_mjjincl','boost_sig_mjjlow','boost_sig_mjjhigh',
-   'boost_topcr_mjjincl','boost_topcr_mjjlow','boost_topcr_mjjhigh',
-   'boost_wjetcr_mjjincl','boost_wjetcr_mjjlow','boost_wjetcr_mjjhigh'
+   'boost_sig_mjjincl','boost_sig_mjjincl_dnnhigh',
+   'boost_topcr_mjjincl','boost_topcr_mjjincl_dnnhigh',
+   'boost_wjetcr_mjjincl','boost_wjetcr_mjjincl_dnnhigh',
 ]
 
 phase_spaces_res_ele = [ ph+"_ele" for ph in phase_spaces_res]
@@ -270,7 +267,7 @@ nuisances['met']  = {
 # Theory nuisance
 
 nuisances['QCD_scale_wjets'] = {
-     'name'  : 'QCDscal_wjets',
+     'name'  : 'QCDscale_wjets',
      'kind'  : 'weight',
      'type'  : 'shape',
      'samples'  :   {
@@ -279,13 +276,14 @@ nuisances['QCD_scale_wjets'] = {
 }
 
 nuisances['QCD_scale_top'] = {
-     'name'  : 'QCDscal_top',
+     'name'  : 'QCDscale_top',
      'kind'  : 'weight',
      'type'  : 'shape',
      'samples'  :   {
          "top" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
      }
 }
+
 ##################################
 #### Custom nuisances
 
@@ -373,15 +371,22 @@ nuisances['Top_norm']  = {
               }
 
 
-# for wjbin in Wjets_lptbins:
-#     for fl in ["ele", "mu"]:
-#         for phs in ["res", "boost"]:
-#             nuisances["{}_norm_{}_{}_2018".format(wjbin, fl, phs )] = {
-#                 'name'  : 'CMS{}_norm_{}_{}_2018'.format(wjbin, fl, phs),
-#                 'samples'  : { wjbin: '1.00' },
-#                 'type'  : 'rateParam',
-#                 'cuts'  : [f+"_"+fl for f in phase_spaces_dict[phs]]
-#             }
+for wjbin in Wjets_bins:
+    for fl in ["ele", "mu"]:
+        if "boost" in wjbin:
+            nuisances["{}_norm_{}_boost_2018".format(wjbin, fl)] = {
+                'name'  : 'CMS_{}_norm_{}_boost_2018'.format(wjbin, fl),
+                'samples'  : { wjbin: '1.00' },
+                'type'  : 'rateParam',
+                'cuts'  : [f+"_"+fl for f in phase_spaces_dict["boost"]]
+            }
+        else:
+            nuisances["{}_norm_{}_res_2018".format(wjbin, fl)] = {
+                'name'  : 'CMS_{}_norm_{}_res_2018'.format(wjbin, fl),
+                'samples'  : { wjbin: '1.00' },
+                'type'  : 'rateParam',
+                'cuts'  : [f+"_"+fl for f in phase_spaces_dict["res"]]
+            }
 
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
@@ -400,4 +405,4 @@ for n in nuisances.values():
     n['skipCMS'] = 1
 
    
-print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
+#print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))

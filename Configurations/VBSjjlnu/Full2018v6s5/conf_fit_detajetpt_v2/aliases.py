@@ -39,17 +39,29 @@ aliases['DNNoutput'] = {
     'expr': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)'
 }
 
+aliases['DNNoutput_ele'] = {
+    'expr': '(abs(Lepton_pdgId[0])==11)*((VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)) +\
+             (abs(Lepton_pdgId[0])==13)*(-999)'
+}
+
+aliases['DNNoutput_mu'] = {
+    'expr': '(abs(Lepton_pdgId[0])==13)*((VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)) +\
+             (abs(Lepton_pdgId[0])==11)*(-999)'
+}
+
 aliases['detavbs_jetpt_bin'] = {
-    'expr': '1* ((deltaeta_vbs < 3.5)  && vbs_1_pt < 75) + \
-             2* ((deltaeta_vbs >= 3.5 && deltaeta_vbs < 5.5)  && vbs_1_pt < 75) + \
-             3* ((deltaeta_vbs >= 5.5)  && vbs_1_pt < 75) + \
-            \
-             4* ((deltaeta_vbs < 3)                        &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)  ) + \
-             5* ((deltaeta_vbs >= 3  && deltaeta_vbs < 4)  &&  ( vbs_1_pt >= 75 && vbs_1_pt <150) ) + \
-             6* ((deltaeta_vbs >= 4)                       &&  ( vbs_1_pt >= 75 && vbs_1_pt <150) ) + \
-            \
-             7* ((deltaeta_vbs < 3.5)  &&  ( vbs_1_pt >= 150)  ) + \
-             8* ((deltaeta_vbs >= 3.5 )  &&  ( vbs_1_pt >= 150) )'
+    'expr':'(VBS_category==0)* \
+                (   1*( deltaeta_vbs < 5) + \
+                    2*(deltaeta_vbs >= 5) \
+                )+\
+            (VBS_category==1) * \
+                (   3* ((deltaeta_vbs < 5)  && vbs_1_pt < 75) + \
+                    4* ((deltaeta_vbs >= 5)  && vbs_1_pt < 75) + \
+                    \
+                    5* ((deltaeta_vbs < 4)  &&  ( vbs_1_pt >= 75 && vbs_1_pt <150) ) + \
+                    6* ((deltaeta_vbs >= 4) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150) ) + \
+                    7* ( vbs_1_pt >= 150 ) \
+                )'
 }
 
 
@@ -146,6 +158,16 @@ aliases['PUJetIdSF'] = {
     'samples': mc
 }
 
+
+aliases['gstarLow'] = {
+    'expr': 'Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4',
+    'samples': 'VgS'
+}
+
+aliases['gstarHigh'] = {
+    'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
+    'samples': 'VgS'
+}
 
 aliases['whad_pt'] = {
             'class': 'WhadPt',

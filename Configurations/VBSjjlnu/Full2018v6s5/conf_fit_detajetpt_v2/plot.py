@@ -49,7 +49,13 @@ palette = {
     "Wjets_deta1": (247, 235, 7), #f7eb07
 '''
 
+jetbin_detabins = [3,3,2]
+#wjets_palette = ['#FFF59D', '#FFEE58', '#FFD54F', '#FFB300', '#FF8F00', '#F57C00', '#E65100','#BF360C']
+wjets_palette = ['#DD2C00', '#FF3D00',  '#FF6D00','#F57C00', '#FFAB00', '#FFC400', '#FFEA00', '#FFFF00']
 
+wjets_bins = ["Wjets_jpt3","Wjets_deta2_jpt2", "Wjets_deta1_jpt2",
+                "Wjets_deta2_jpt1","Wjets_deta1_jpt1", 
+                "Wjets_boost1", "Wjets_boost2"]
 
 groupPlot['Fake']  = {  
                 'nameHR' : "Fake",
@@ -76,14 +82,6 @@ groupPlot['DY']  = {
                 'fill': 1001
             }
 
-groupPlot["Wjets"]  = {  
-                'nameHR' : 'W+Jets',
-                'isSignal' : 0,
-                'color':   palette['Yellow'],
-                'samples'  : ['Wjets'],
-                'fill': 1001
-        }
-
 groupPlot['top']  = {  
                  'nameHR' : 'top',
                  'isSignal' : 0,
@@ -93,14 +91,12 @@ groupPlot['top']  = {
              }
 
 groupPlot["Wjets"]  = {  
-                'nameHR' : 'W+Jets',
-                'isSignal' : 0,
-                'color':   palette['Yellow'],
-                'samples'  : ['Wjets'],
-                'fill': 1001
-        }
-
-
+                        'nameHR' : 'W+Jets',
+                        'isSignal' : 0,
+                        'color':   palette["Yellow"],
+                        'samples'  : wjets_bins,
+                        'fill': 1001
+                }
 
 groupPlot['VBS']  = {  
                  'nameHR' : 'VBS',
@@ -165,24 +161,14 @@ plot['top'] = {
                  }
 
 
-#wfactors = {
-#    (1,1): 0.89,
-#    (1,2): 0.88,
-#    (1,3): 0.66,
-#    (2,1): 1.08,
-#    (2,2): 0.92,
-#    (2,3): 0.65,
-#    (3,1): 1.36,
-#    (3,2): 1.00,
-#}
-
-
-plot["Wjets"] = {  
+for  wbin in wjets_bins:
+        plot[wbin] = {  
                         'color':  colors['kRed']-3,
                         'isSignal' : 0,
                         'isData'   : 0,
                         'scale': 1.0
                     }
+
 
 
 plot['VBS']  = {
@@ -206,7 +192,7 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 41.5/fb'
+legend['lumi'] = 'L = 59.74/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

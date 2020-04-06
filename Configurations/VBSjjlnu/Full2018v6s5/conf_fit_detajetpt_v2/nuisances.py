@@ -6,26 +6,14 @@
 mc =["DY", "top", "VV", "VVV", "VBF-V", "top", "VBS", "Wjets"]
 
 phase_spaces_res = [
-   'res_sig_mjjincl','res_sig_mjjlow','res_sig_mjjhigh', 'res_sig_mjjincl_dnnhigh',
-   'res_topcr_mjjincl','res_topcr_mjjlow','res_topcr_mjjhigh','res_topcr_mjjincl_dnnhigh',
-   'res_wjetcr_mjjincl','res_wjetcr_mjjlow','res_wjetcr_mjjhigh',
-   'res_sig_mjjincl','res_sig_mjjlow','res_sig_mjjhigh',
-   'res_topcr_mjjincl','res_topcr_mjjlow','res_topcr_mjjhigh',
-   'res_wjetcr_mjjincl','res_wjetcr_mjjlow','res_wjetcr_mjjhigh',
-
-   'res_wjetcr_mjjincl_mvhigh', 'res_wjetcr_mjjincl_mvlow',
-   
-   'res_wjetcr_mjjincl_mvint','res_wjetcr_mjjincl_mvext',
-
-   'res_wjetcr_mjjincl_dnnhigh','res_wjetcr_mjjincl_mvint_dnnhigh','res_wjetcr_mjjincl_mvext_dnnhigh'
+   'res_sig', 'res_sig_dnnhigh','res_sig_dnnlow',
+   'res_topcr','res_topcr_dnnhigh','res_topcr_dnnlow',
+   'res_wjetcr','res_wjetcr_dnnhigh','res_wjetcr_dnnlow',
 ]
 phase_spaces_boost = [
-   'boost_sig_mjjincl','boost_sig_mjjlow','boost_sig_mjjhigh',
-   'boost_topcr_mjjincl','boost_topcr_mjjlow','boost_topcr_mjjhigh',
-   'boost_wjetcr_mjjincl','boost_wjetcr_mjjlow','boost_wjetcr_mjjhigh',
-   'boost_sig_mjjincl','boost_sig_mjjlow','boost_sig_mjjhigh',
-   'boost_topcr_mjjincl','boost_topcr_mjjlow','boost_topcr_mjjhigh',
-   'boost_wjetcr_mjjincl','boost_wjetcr_mjjlow','boost_wjetcr_mjjhigh'
+   'boost_sig','boost_sig_dnnhigh','boost_sig_dnnlow',
+   'boost_topcr','boost_topcr_dnnhigh','boost_topcr_dnnlow',
+   'boost_wjetcr','boost_wjetcr_dnnhigh','boost_wjetcr_dnnlow',
 ]
 
 phase_spaces_res_ele = [ ph+"_ele" for ph in phase_spaces_res]
@@ -270,7 +258,7 @@ nuisances['met']  = {
 # Theory nuisance
 
 nuisances['QCD_scale_wjets'] = {
-     'name'  : 'QCDscal_wjets',
+     'name'  : 'QCDscale_wjets',
      'kind'  : 'weight',
      'type'  : 'shape',
      'samples'  :   {
@@ -278,8 +266,9 @@ nuisances['QCD_scale_wjets'] = {
      }
 }
 
+
 nuisances['QCD_scale_top'] = {
-     'name'  : 'QCDscal_top',
+     'name'  : 'QCDscale_top',
      'kind'  : 'weight',
      'type'  : 'shape',
      'samples'  :   {

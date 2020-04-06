@@ -51,41 +51,6 @@ cuts["res_sig_mjjincl_dnnhigh_mu"] = 'VBS_category==1 \
                                 && DNNoutput_resolved > 0.5 \
                                 '
 
-##################################
-# Won-shell, btag ---> top region
-
-
-cuts["res_topcr_mjjincl_ele"] = 'VBS_category==1 \
-                                && abs(Lepton_pdgId[0])==11 \
-                                && vjet_0_pt > 30 && vjet_1_pt > 30 \
-                                && mjj_vjet > 65 && mjj_vjet < 105 \
-                                && bReq \
-                                '
-
-cuts["res_topcr_mjjincl_dnnhigh_ele"] = 'VBS_category==1 \
-                                && abs(Lepton_pdgId[0])==11 \
-                                && vjet_0_pt > 30 && vjet_1_pt > 30 \
-                                && mjj_vjet > 65 && mjj_vjet < 105 \
-                                && bReq \
-                                && DNNoutput_resolved > 0.5 \
-                                '
-
-cuts["res_topcr_mjjincl_mu"] = 'VBS_category==1 \
-                                && abs(Lepton_pdgId[0])==13 \
-                                && vjet_0_pt > 30 && vjet_1_pt > 30 \
-                                && mjj_vjet > 65 && mjj_vjet < 105 \
-                                && bReq \
-                                '
-
-cuts["res_topcr_mjjincl_dnnhigh_mu"] = 'VBS_category==1 \
-                                && abs(Lepton_pdgId[0])==13 \
-                                && vjet_0_pt > 30 && vjet_1_pt > 30 \
-                                && mjj_vjet > 65 && mjj_vjet < 105 \
-                                && bReq \
-                                && DNNoutput_resolved > 0.5 \
-                                '
-
-
 
 ##################################
 # Woff shell, bveto ---> WJet region
@@ -120,6 +85,42 @@ cuts["res_wjetcr_mjjincl_dnnhigh_mu"] = 'VBS_category==1 \
                                 && (mjj_vjet <= 65 || mjj_vjet >= 105) \
                                 && DNNoutput_resolved > 0.5 \
                                 '
+
+
+# ##################################
+# # Won-shell, btag ---> top region
+
+
+cuts["res_topcr_mjjincl_ele"] = 'VBS_category==1 \
+                                && abs(Lepton_pdgId[0])==11 \
+                                && vjet_0_pt > 30 && vjet_1_pt > 30 \
+                                && mjj_vjet > 65 && mjj_vjet < 105 \
+                                && bReq \
+                                '
+
+cuts["res_topcr_mjjincl_dnnhigh_ele"] = 'VBS_category==1 \
+                                && abs(Lepton_pdgId[0])==11 \
+                                && vjet_0_pt > 30 && vjet_1_pt > 30 \
+                                && mjj_vjet > 65 && mjj_vjet < 105 \
+                                && bReq \
+                                && DNNoutput_resolved > 0.5 \
+                                '
+
+cuts["res_topcr_mjjincl_mu"] = 'VBS_category==1 \
+                                && abs(Lepton_pdgId[0])==13 \
+                                && vjet_0_pt > 30 && vjet_1_pt > 30 \
+                                && mjj_vjet > 65 && mjj_vjet < 105 \
+                                && bReq \
+                                '
+
+cuts["res_topcr_mjjincl_dnnhigh_mu"] = 'VBS_category==1 \
+                                && abs(Lepton_pdgId[0])==13 \
+                                && vjet_0_pt > 30 && vjet_1_pt > 30 \
+                                && mjj_vjet > 65 && mjj_vjet < 105 \
+                                && bReq \
+                                && DNNoutput_resolved > 0.5 \
+                                '
+
 
 
 #########################################################################
