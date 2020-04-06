@@ -35,9 +35,13 @@ dataReco = 'Run2016_102X_nAODv5_Full2016v6'
 
 mcSteps = 'MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6{var}'
 
-fakeSteps = 'DATAl1loose2016v6__l2loose__fakeW'
+#fakeSteps = 'DATAl1loose2016v6__l2loose__fakeW'
+fakeSteps = 'DATAl1loose2016v6__l2loose__fakeW__jetSelCustom'
 
 dataSteps = 'DATAl1loose2016v6__l2loose__l2tightOR2016v6'
+
+
+fakeReco = 'Run2016_102X_nAODv5_Full2016v6_ForNewWPs'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -58,7 +62,7 @@ def makeMCDirectory(var=''):
         #return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Summer16/l2tightOR'
 
 mcDirectory = makeMCDirectory()
-fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
+fakeDirectory = os.path.join(treeBaseDir, fakeReco, fakeSteps)
 dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 
 ################################################
@@ -265,11 +269,37 @@ signals.append('WH_hww')
 
 ############ H->TauTau ############
 
-samples['H_htt'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
+samples['ggH_htt'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125'),
     'weight': mcCommonWeight,
     'FilesPerJob': 4
 }
+
+signals.append('ggH_htt')
+
+samples['qqH_htt'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4
+}
+
+signals.append('qqH_htt')
+
+samples['ZH_htt'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4
+}
+
+signals.append('ZH_htt')
+
+samples['WH_htt'] = {
+    'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4
+}
+
+signals.append('WH_htt')
 
 ###########################################
 ################## FAKE ###################
@@ -297,8 +327,8 @@ for _, sd in DataRun:
 
 samples['Fake']['subsamples'] = {
   'em': 'Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13',
-  'mm': 'Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13',
-  'ee': 'Lepton_pdgId[0]*Lepton_pdgId[1] == 11*11'
+  'mm': 'Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13'
+#  'ee': 'Lepton_pdgId[0]*Lepton_pdgId[1] == 11*11'
 }
 
 ###########################################
