@@ -25,25 +25,25 @@ HiggsXS = HiggsXSection()
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2018',
     'type': 'lnN',
-    'samples': dict((skey, '1.015') for skey in mc if skey not in ['VgS'])
+    'samples': dict((skey, '1.015') for skey in mc if skey not in ['WgS'])
 }
 
 nuisances['lumi_XYFact'] = {
     'name': 'lumi_13TeV_XYFact',
     'type': 'lnN',
-    'samples': dict((skey, '1.02') for skey in mc if skey not in ['VgS'])
+    'samples': dict((skey, '1.02') for skey in mc if skey not in ['WgS'])
 }
 
 nuisances['lumi_CurrCalib'] = {
     'name': 'lumi_13TeV_CurrCalib',
     'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['VgS'])
+    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WgS'])
 }
 
 nuisances['lumi_LScale'] = {
     'name': 'lumi_13TeV_LSCale',
     'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['VgS'])
+    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WgS'])
 }
 
 
@@ -189,7 +189,7 @@ for js in jes_systs:
       'type': 'shape',
       'mapUp': js+'up',
       'mapDown': js+'do',
-      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VZ','Vg','VgS']),
+      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['ZZ','WZhad','Zg','Wg','WgS']),
       'folderUp': makeMCDirectory('JESup_suffix'),
       'folderDown': makeMCDirectory('JESdo_suffix'),
       'AsLnN': '1'
@@ -367,9 +367,12 @@ nuisances['pdf_qqbar'] = {
     'name': 'pdf_qqbar',
     'type': 'lnN',
     'samples': {
-        'Vg': '1.04',
-        'VZ': '1.04',  # PDF: 0.0064 / 0.1427 = 0.0448493
-        'VgS': '1.04', # PDF: 0.0064 / 0.1427 = 0.0448493
+        'Wg': '1.04',
+        'Zg': '1.04',
+        'ZZ': '1.04',  # PDF: 0.0064 / 0.1427 = 0.0448493
+        'WZhad': '1.04',  # PDF: 0.0064 / 0.1427 = 0.0448493
+        'WgS': '1.04', # PDF: 0.0064 / 0.1427 = 0.0448493
+        'ZgS': '1.04', # PDF: 0.0064 / 0.1427 = 0.0448493
     },
 }
 
@@ -408,7 +411,8 @@ nuisances['pdf_qqbar_ACCEPT'] = {
     'name': 'pdf_qqbar_ACCEPT',
     'type': 'lnN',
     'samples': {
-        'VZ': '1.001',
+        'ZZ': '1.001',
+        'WZhad': '1.001',
     },
 }
 
@@ -435,9 +439,12 @@ nuisances['QCDscale_VV'] = {
     'type': 'shape',
     'samples': {
         'WW':variations,
-        'Vg': variations,
-        'VZ': variations,
-        'VgS': variations
+        'Zg': variations,
+        'Wg': variations,
+        'ZZ': variations,
+        'WZhad': variations,
+        'WgS': variations,
+        'ZgS': variations
     }
 }
 
@@ -528,6 +535,7 @@ nuisances['QCDscale_gg_ACCEPT'] = {
     },
     'type': 'lnN',
 }
+
 ####### Generic "cross section uncertainties"
 
 apply_on = {
@@ -555,18 +563,18 @@ nuisances['TopPtRew'] = {
     'symmetrize': True
 }
 
-nuisances['VgStar'] = {
-    'name': 'CMS_hww_VgStarScale',
+nuisances['WgStar'] = {
+    'name': 'CMS_hww_WgStarScale',
     'type': 'lnN',
     'samples': {
-        'VgS_L': '1.25'
+        'WgS_L': '1.25'
     }
 }
 
-nuisances['VgSH2jnorm']  = {
-               'name'  : 'CMS_hww_VgSH_WHSS2j_norm',
+nuisances['WgSH2jnorm']  = {
+               'name'  : 'CMS_hww_WgSH_WHSS2j_norm',
                'samples'  : {
-                   'VgS_H'       : '1.00',
+                   'WgS_H'       : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
@@ -577,10 +585,10 @@ nuisances['VgSH2jnorm']  = {
                 ]
               }
     
-nuisances['VgSH1jnorm']  = {
-               'name'  : 'CMS_hww_VgSH_WHSS1j_norm',
+nuisances['WgSH1jnorm']  = {
+               'name'  : 'CMS_hww_WgSH_WHSS1j_norm',
                'samples'  : {
-                   'VgS_H'       : '1.00',
+                   'WgS_H'       : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
