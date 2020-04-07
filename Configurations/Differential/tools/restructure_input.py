@@ -168,17 +168,18 @@ class HistogramMerger(object):
                             inVariationUp.Add(inNominal, variation['AsLnN'] * sumwup / inNominal.GetSumOfWeights())
                             inVariationDown.Add(inNominal, variation['AsLnN'] * sumwdown / inNominal.GetSumOfWeights())
 
-                if inSample in variation['renormalization']:
-                    logging.debug('Renormalize by %s', variation['renormalization'][inSample])
-                    inVariationUp.Scale(variation['renormalization'][inSample][0])
-                    inVariationDown.Scale(variation['renormalization'][inSample][1])
-
-                outVariationUp.Add(inVariationUp, scale)
-                outVariationDown.Add(inVariationDown, scale)
             else:
                 logging.debug('No variation from input %s', inSample)
-                outVariationUp.Add(inNominal, scale)
-                outVariationDown.Add(inNominal, scale)
+                inVariationUp = inVariationDown = inNominal
+
+            try:
+                renorm_up, renorm_down = variation['renormalization'][outSample]
+                logging.debug('Renormalize by (%f, %f)', renorm_up, renorm_down)
+            except KeyError:
+                renorm_up = renorm_down = 1.
+
+            outVariationUp.Add(inVariationUp, scale * renorm_up)
+            outVariationDown.Add(inVariationDown, scale * renorm_down)
 
         # finally update out nominal
         outNominal.Add(inNominal, scale)
@@ -585,6 +586,14 @@ if __name__ == '__main__':
     with open('samples.py') as samplesfile:
         exec(samplesfile)
 
+    for sname in samples.keys():
+        if ('_UE' in sname or '_PS' in sname) and (sname.endswith('Up') or sname.endswith('Down')):
+            samples.pop(sname)
+            try:
+                signals.remove(sname)
+            except ValueError:
+                pass
+
     cuts = {}
     with open('cuts.py') as cutsfile:
         exec(cutsfile)
@@ -606,6 +615,7 @@ if __name__ == '__main__':
     
     categorymap = dict(utils.flatten_cuts(cuts))
 
+    nuisances_original = copy.deepcopy(nuisances)
     utils.update_nuisances_with_subsamples(nuisances, subsamplemap.items())
     utils.update_nuisances_with_categories(nuisances, categorymap.items())
         
@@ -773,7 +783,7 @@ if __name__ == '__main__':
         genBinMerging = []
         for outBin in HistogramMerger.outBins:
             genBinMerging.append((outBin, HistogramMerger.recoBinMap[outBin]))
-    
+
     for target, snames in signalSamples:
         for genOutBin, genSourceBins in genBinMerging: # merge histograms from source truth bins
             if args.signal_fiducial_only:
@@ -864,36 +874,94 @@ if __name__ == '__main__':
         elif nuisance['name'].startswith('UE'):
             HistogramMerger.ueVariation = nuisance['name']
 
-    source = ROOT.TFile.Open(os.path.dirname(__file__) + '/renormalize_theoretical_%s.root' % args.year)
-    hup = source.Get('up')
-    hdown = source.Get('down')
-    for iX in range(1, hup.GetNbinsX() + 1):
-        name = hup.GetXaxis().GetBinLabel(iX)
+    ### Signal theoretical uncertainty renormalization
 
-        if '/' in name:
-            # TODO: we should make it all in this format
-            sname, nname = name.split('/')
-        else:
-            sname = 'ggH_hww'
-            nname = name
+    fiducial_source = ROOT.TFile.Open('%s/../fiducial/rootFile/plots_Fiducial.root' % os.path.dirname(__file__))
+    fiducial_base = {}
+    fiducial_variations = {}
 
-        if nname in ['PS', 'UE']:
-            continue
+    # exclude nuisances in the "signal" group that contain these keywords
+    not_xsec = ['CMS', 'lumi', 'ACCEPT', 'UE', 'PS']
+
+    for signal in ggH_hww + xH_hww:
+        phist = fiducial_source.Get('fiducial/%s/histo_%s' % (args.observable, signal))
+        phist.SetDirectory(0)
+
+        fiducial_base[signal] = phist
+
+        # loop over pre-merge nuisances
+        for nuisanceName, nuis in nuisances_original.iteritems():
+            try:
+                if signal not in nuis['samples']:
+                    continue
+            except KeyError:
+                continue
+
+            renormalizable = True
+            for keyword in not_xsec:
+                if keyword in nuis['name']:
+                    renormalizable = False
+                    break
+
+            if not renormalizable:
+                continue
+
+            if nuis['type'] == 'shape':
+                hup = fiducial_source.Get('fiducial/%s/histo_%s_%sUp' % (args.observable, signal, nuis['name']))
+                hdown = fiducial_source.Get('fiducial/%s/histo_%s_%sDown' % (args.observable, signal, nuis['name']))
+            elif nuis['type'] == 'lnN':
+                value = nuis['samples'][signal]
+                if '/' in value:
+                    vdown, vup = map(float, value.split('/'))
+                else:
+                    vup = float(value)
+                    vdown = 1. / vup
+
+                hup = phist.Clone('histo_%s_%sUp' % (signal, nuis['name']))
+                hdown = phist.Clone('histo_%s_%sDown' % (signal, nuis['name']))
+                hup.Scale(vup)
+                hdown.Scale(vdown)
             
-        try:
-            variation = HistogramMerger.variations[nname]
-        except KeyError:
-            continue
+            hup.SetDirectory(0)
+            hdown.SetDirectory(0)
+            try:
+                fiducial_variations[nuis['name']][signal] = (hup, hdown)
+            except KeyError:
+                fiducial_variations[nuis['name']] = {signal: (hup, hdown)}
 
-        sup = 1. / hup.GetBinContent(iX)
-        sdown = 1. / hdown.GetBinContent(iX)
+    fiducial_source.Close()
 
-        if sname in subsamplemap:
-            variation['renormalization'].update(('%s_%s' % (sname, sub), (sup, sdown)) for sub in subsamplemap[sname])
-        else:
-            variation['renormalization'][sname] = (sup, sdown)
-    
-    source.Close()
+    for nname in fiducial_variations.iterkeys():
+        variation = HistogramMerger.variations[nname]
+
+        for ibin, (genOutBin, _) in enumerate(genBinMerging):
+            if args.gen_inclusive:
+                xlow = binning.binning[args.observable][0]
+                xhigh = binning.binning[args.observable][-1]
+            else:
+                xlow, xhigh = binning.binning[args.observable][ibin:ibin + 2]
+
+            for target, snames in signalSamples:
+                totalbase = 0.
+                totalup = 0.
+                totaldown = 0.
+                for sname in snames:
+                    base = fiducial_base[sname]
+                    try:
+                        hup, hdown = fiducial_variations[nname][sname]
+                    except KeyError:
+                        hup = hdown = base
+
+                    ilow = base.FindFixBin(xlow)
+                    ihigh = base.FindFixBin(xhigh)
+                    if base.GetXaxis().GetBinLowEdge(ihigh) == xhigh:
+                        ihigh -= 1
+
+                    totalbase += base.Integral(ilow, ihigh)
+                    totalup += hup.Integral(ilow, ihigh)
+                    totaldown += hdown.Integral(ilow, ihigh)
+
+                variation['renormalization']['%s_%s' % (target, genOutBin)] = (totalbase / totalup, totalbase / totaldown)
 
     if args.aslnn_category_pool:
         HistogramMerger.asLnNPooling = []

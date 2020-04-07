@@ -266,24 +266,27 @@ for cut in sorted(os.listdir(args.inpath)):
                             continue
 
                     target.write(line)
-                    continue
 
                 elif 'rateParam' in words:
-                    continue
+                    pass
 
-                nuisName = words[0]
+                elif words[1] == 'group':
+                    target.write(line)
 
-                if args.dropNuisance is not None and nuisName in args.dropNuisance:
-                    continue
-                
-                nuisType = words[1]
-                values = words[2:]
-                valueMap = dict(zip(procNames, values))
-
-                target.write(nuisName.ljust(60))
-                target.write(nuisType.ljust(20))
-                target.write(''.join([('%s' % valueMap[name]).ljust(colw) for name in usedProcs]))
-                target.write('\n')
+                else:
+                    nuisName = words[0]
+    
+                    if args.dropNuisance is not None and nuisName in args.dropNuisance:
+                        continue
+                    
+                    nuisType = words[1]
+                    values = words[2:]
+                    valueMap = dict(zip(procNames, values))
+    
+                    target.write(nuisName.ljust(60))
+                    target.write(nuisType.ljust(20))
+                    target.write(''.join([('%s' % valueMap[name]).ljust(colw) for name in usedProcs]))
+                    target.write('\n')
 
             target.write(line)
         
@@ -312,10 +315,7 @@ with open('%s/fullmodel_unreg.txt' % args.outpath, 'w') as card_out:
     outFullPath = os.path.realpath(args.outpath)
     binNames = None
     procNames = None
-    inNuisances = False
-    theoretical = []
-    luminosity = []
-    experimental = []
+    groupLines = []
     
     for line in out.strip().split('\n'):
         line = line.replace(outFullPath + '/', '')
@@ -330,6 +330,9 @@ with open('%s/fullmodel_unreg.txt' % args.outpath, 'w') as card_out:
         elif line.startswith('shapes'):
             # take histograms from a single file - already taken care of above
             continue
+        elif ' group ' in line:
+            groupLines.append(line.strip())
+            continue
         else:
             card_out.write(line + '\n')
 
@@ -343,18 +346,9 @@ with open('%s/fullmodel_unreg.txt' % args.outpath, 'w') as card_out:
         if line.startswith('process') and procNames is None:
             procNames = line.split()[1:]
 
-        if line.startswith('rate'):
-            inNuisances = True
-            continue
-
-        if inNuisances and not line.startswith('-') and 'autoMCStats' not in line:
-            nuis = line.split()[0]
-            if nuis.startswith('CMS_'):
-                experimental.append(nuis)
-            elif nuis.startswith('lumi'):
-                luminosity.append(nuis)
-            else:
-                theoretical.append(nuis)
+    for iexp, line in enumerate(groupLines):
+        if line.startswith('experimental'):
+            break
 
     for pname, procs in floatingBackgrounds:
         for obsBin in observableBins:
@@ -369,13 +363,12 @@ with open('%s/fullmodel_unreg.txt' % args.outpath, 'w') as card_out:
                 card_out.write(line + '\n')
             else:
                 nuis = 'CMS_hww_{pname}norm_{obsBin}'.format(pname=pname, obsBin=obsBin)
-                theoretical.append(nuis)
+                groupLines[iexp] += ' ' + nuis
                 for proc in procs:
                     card_out.write('{nuis} rateParam *{obsBin}* {proc} 1.00 [0.,10.]\n'.format(nuis=nuis, obsBin=obsBin, proc=proc))
 
-    card_out.write('theoretical group = %s\n' % (' '.join(theoretical)))
-    card_out.write('luminosity group = %s\n' % (' '.join(luminosity)))
-    card_out.write('experimental group = %s\n' % (' '.join(experimental)))
+    for line in groupLines:
+        card_out.write(line + '\n')
 
 # Full model with regularization terms
 with open('%s/fullmodel.txt' % args.outpath, 'w') as card_out:

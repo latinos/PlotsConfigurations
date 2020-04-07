@@ -1,7 +1,7 @@
 import os
 import sys
 import re
-import array
+import subprocess
 import numpy as np
 
 from argparse import ArgumentParser
@@ -24,11 +24,11 @@ import common
 ROOT.TH1.SetDefaultSumw2(True)
 
 plotconfigs = [
-    ('minor', ['minor'], 'other background', ROOT.kGray, 'LF'),
-    ('DY', ['DY'], '#tau^{+}#tau^{-}', 418, 'LF'),
-    ('Fake', ['Fake_em', 'Fake_me'], 'non-prompt', 921, 'LF'),
+    ('minor', ['minor'], 'Other background', ROOT.kGray, 'LF'),
+    ('DY', ['DY'], '#tau^{#scale[1.5]{#plus}}#kern[0.4]{#tau}^{#scale[1.5]{#minus}}', 418, 'LF'),
+    ('Fake', ['Fake_em', 'Fake_me'], 'Nonprompt', 921, 'LF'),
     ('top', ['top'], 't#bar{t}+tW', 400, 'LF'),
-    ('WW', ['WW'], 'W^{+}W^{-}', 851, 'LF'),
+    ('WW', ['WW'], 'W^{#kern[-0.2]{#scale[1.5]{#plus}}}W^{#kern[-0.2]{#scale[1.5]{#minus}}}', 851, 'LF'),
     ('smH', ['htt'], 'H(125)', ROOT.kRed, 'L')
 ]
 plotconfigs[-1][1].extend('smH_hww_%s' % bin_name for bin_name in common.binnames[args.observable])
@@ -48,8 +48,11 @@ if not args.reuse:
     import resource
     resource.setrlimit(resource.RLIMIT_STACK, (resource.RLIM_INFINITY, resource.RLIM_INFINITY))
 
-    if not args.source or not args.postfit:
-        raise RuntimeError('Need source and postfit paths to make the histograms')
+    if not args.source:
+        raise RuntimeError('Need source path to make the histograms')
+
+    if not args.postfit:
+        args.postfit = args.source
 
     if args.rootfile:
         outfile = ROOT.TFile.Open(args.rootfile, 'recreate')
@@ -163,7 +166,8 @@ if not args.reuse:
         
                     outfile.cd()
                     hist = common.make_roofit_histogram('tmp', ws, funcname, normname=normname, fold=folding)
-
+                    hist.SetDirectory(0)
+                    
                     if vorig != 'mllVSmth_6x6':
                         correct_bbb(hist, vorig, funcname, normname=normname)
 
@@ -223,210 +227,252 @@ else:
 
 _temporaries = []
 
-nvert = 3
-wide_labels = [[], [], []]
-if args.observable == 'ptH':
-    wide_labels[2].extend('%.0f < p_{T}^{H} < %.0f GeV' % tuple(common.binning['ptH'][i:i+2]) for i in range(2))
-    wide_labels[1].extend('%.0f < p_{T}^{H} < %.0f GeV' % tuple(common.binning['ptH'][i:i+2]) for i in range(2, 4))
-    wide_labels[0].extend('%.0f < p_{T}^{H} < %.0f GeV' % tuple(common.binning['ptH'][i:i+2]) for i in range(4, 5))
-    wide_labels[0].append('p_{T}^{H} > %.0f GeV' % common.binning['ptH'][5])
-else:
-    wide_labels[2].append('N_{jet} = 0 (p_{T}^{l2} > 20 GeV)')
-    wide_labels[2].append('N_{jet} = 0 (p_{T}^{l2} < 20 GeV)')
-    wide_labels[1].extend('N_{jet} = %d' % i for i in range(1, 3))
-    wide_labels[0].append('N_{jet} = 3')
-    wide_labels[0].append('N_{jet} #geq 4')
+nrow = 3
+ncol = 2
 
-canvas = common.makeRatioCanvas(600, 680, dataset='combination', wide_labels=wide_labels, nvert=nvert, make_yaxes=True, legend_inside=False, prelim=False)
+canvas = common.makeRatioCanvas(600, 680, dataset='combination', panels=(ncol, nrow), legend_inside=False, prelim=False)
 
-canvas.xaxis.SetTitle('m_{ll} (GeV)')
+canvas.xaxis.SetTitle('#font[12]{m^{ll}} (GeV)')
+canvas.xaxis.SetNdivisions(408)
+canvas.ratiotext = 'Background subtracted'
 
-def plotstack(stack, signal, uncert, gobs, ivert):
-    uncert.SetTickLength(0., 'X')
-    uncert.SetTickLength(0., 'Y')
-    uncert.SetFillColor(ROOT.kBlack)
-    uncert.SetFillStyle(3003)
-    uncert.SetLineWidth(0)
-    uncert.GetXaxis().SetNdivisions(120)
-    uncert.GetYaxis().SetNdivisions(110)
+symbols = {
+    'njet': '#font[12]{N}_{#kern[-0.3]{jet}}',
+    'ptH': '#font[12]{p}_{#lower[-0.18]{#kern[-0.2]{T}}}^{H}',
+    'ptl2': '#font[12]{p}_{#lower[-0.18]{#kern[-0.2]{T}}}^{#font[12]{l}}#lower[0.1]{#kern[-2.1]{ }^{{}_{2}}}'
+}
 
-    distpad = canvas.cd(ivert * 2 + 1)
+for ibin, bin_name in enumerate(common.binnames[args.observable]):
+    if args.observable == 'ptH':
+        icol = ibin % ncol
+        irow = nrow - ibin / ncol - 1
+        if ibin != len(common.binnames[args.observable]) - 1:
+            canvas.panel_labels[(icol, irow)] = '%.0f < {ptH} < %.0f GeV'.format(**symbols) % tuple(common.binning['ptH'][ibin:ibin + 2])
+        else:
+            canvas.panel_labels[(icol, irow)] = '{ptH} > %.0f GeV'.format(**symbols) % common.binning['ptH'][ibin]
+    else:
+        if ibin == 0:
+            canvas.panel_labels[(0, nrow - 1)] = '{njet} = 0 ({ptl2} > 20 GeV)'.format(**symbols)
+            canvas.panel_labels[(1, nrow - 1)] = '{njet} = 0 ({ptl2} < 20 GeV)'.format(**symbols)
+        else:
+            icol = (ibin + 1) % ncol
+            irow = nrow - (ibin + 1) / ncol - 1
+            if ibin != len(common.binnames[args.observable]) - 1:
+                canvas.panel_labels[(icol, irow)] = '{njet} = %d'.format(**symbols) % ibin
+            else:
+                canvas.panel_labels[(icol, irow)] = '{njet} #geq 4'.format(**symbols)
 
-    distpad.SetLogy(False)
+zero = ROOT.TLine(0., 0., 1., 1.)
+_temporaries.append(zero)
+zero.SetLineColor(ROOT.kBlack)
+zero.SetLineWidth(1)
+zero.SetLineStyle(ROOT.kSolid)
 
-    frame = uncert.Clone('frame')
-    _temporaries.append(frame)
-    frame.SetTitle('')
-    frame.Reset()
-
-    frame.GetXaxis().SetLabelSize(0.)
-    frame.GetXaxis().SetTitle('')
-    obsmax = max(gobs.GetY()[ip] + gobs.GetErrorYhigh(ip) for ip in range(gobs.GetN()))
-    frame.SetMinimum(0.)
-    frame.SetMaximum(max(obsmax, uncert.GetMaximum()) * 1.4)
-
-    frame.Draw('HIST')
-    stack.Draw('SAME HIST')
-    uncert.Draw('SAME E2')
-    gobs.Draw('PZ')
-
-    distpad.Update()
-
-    ratiopad = canvas.cd(ivert * 2 + 2)
-
-    ratiopad.SetGridy(False)
-
-    runcert = uncert.Clone('runcert')
-    _temporaries.append(runcert)
-    runcert.SetTitle('')
-
-    bkg = rnp.hist2array(runcert)
-    bkg -= rnp.hist2array(signal, copy=False)
-
-    obsarray = rnp.array(ROOT.TArrayD(gobs.GetN(), gobs.GetY()))
-    obsarray -= bkg
-
-    robs = gobs.Clone('robs')
-    _temporaries.append(robs)
-    for ip in range(gobs.GetN()):
-        robs.SetPoint(ip, gobs.GetX()[ip], obsarray[ip])
-
-    rnp.array2hist(np.zeros_like(bkg), runcert)
-
-    runcert.SetTickLength(0., 'X')
-    runcert.SetTickLength(0., 'Y')
-    runcert.GetXaxis().SetLabelSize(0.)
-    runcert.GetXaxis().SetTitle('')
-    runcert.GetYaxis().SetLabelSize(0.)
-    runcert.GetYaxis().SetTitle('')
-    runcert.GetYaxis().SetNdivisions(502)
-
-    runcert.Draw('E2')
-
-    zero = ROOT.TLine(runcert.GetXaxis().GetXmin(), 0., runcert.GetXaxis().GetXmax(), 0.)
-    _temporaries.append(zero)
-    zero.SetLineColor(ROOT.kBlack)
-    zero.SetLineWidth(1)
-    zero.SetLineStyle(ROOT.kSolid)
-    zero.Draw()
-
-    signal.Draw('HIST SAME')
-
-    robs.Draw('PZ')
-
+def plotstack(stacks, signals, uncerts, gobss, irow):
+    ymax = 0.
     rmin = 0.
-    while rmin > obsarray.min() * 1.1:
-        rmin -= 10.
     rmax = 0.
-    while rmax < obsarray.max() * 1.1:
-        rmax += 10.
+    for icol in range(ncol):
+        gobs = gobss[icol]
+        uncert = uncerts[icol]
+        signal = signals[icol]
 
-    runcert.SetMaximum(rmax)
-    runcert.SetMinimum(rmin)
+        obsmax = max(gobs.GetY()[ip] + gobs.GetErrorYhigh(ip) for ip in range(gobs.GetN()))
+        uncmax = max(uncert.GetBinContent(ix) + uncert.GetBinError(ix) for ix in range(1, uncert.GetNbinsX() + 1))
+        ymax = max(ymax, obsmax, uncmax)
 
-    ratiopad.Update()
+        obsarray = rnp.array(ROOT.TArrayD(gobs.GetN(), gobs.GetY()))
+        bkg = rnp.hist2array(uncert)
+        bkg -= rnp.hist2array(signal, copy=False)
+        obsarray -= bkg
+
+        mm = obsarray.min() - gobs.GetErrorYlow(np.argmin(obsarray))
+        while rmin > mm * 1.1:
+            rmin -= 2.
+
+        mm = obsarray.max() + gobs.GetErrorYhigh(np.argmax(obsarray))
+        while rmax < mm * 1.1:
+            rmax += 2.
+
+    if int(rmax) % 10 == 0: # just to avoid axis label clashes
+        rmax -= 1.
+
+    canvas.yaxes[irow].SetNdivisions(405)
+    canvas.yaxes[irow].SetTitle('events / GeV')
+    canvas.raxes[irow].SetNdivisions(204)
+
+    for icol in range(ncol):
+        stack = stacks[icol]
+        signal = signals[icol]
+        uncert = uncerts[icol]
+        gobs = gobss[icol]
+
+        frame = uncert.Clone('frame')
+        _temporaries.append(frame)
+        frame.SetTitle('')
+        frame.Reset()
+    
+        frame.SetTickLength(0.05, 'X')
+        frame.SetTickLength(0.03, 'Y')
+        frame.GetXaxis().SetNdivisions(canvas.xaxis.GetNdiv())
+        frame.GetXaxis().SetLabelSize(0.)
+        frame.GetXaxis().SetTitle('')
+        frame.GetYaxis().SetNdivisions(canvas.yaxes[irow].GetNdiv())
+        frame.GetYaxis().SetLabelSize(0.)
+        frame.SetMinimum(0.)
+        frame.SetMaximum(ymax * 1.4)
+
+        distpad = canvas.cd((irow * ncol + icol) * 2 + 1)
+        distpad.SetLogy(False)
+        distpad.SetTicky(1)
+    
+        frame.Draw('HIST')
+        stack.Draw('SAME HIST')
+        uncert.Draw('SAME E2')
+        gobs.Draw('PZ')
+    
+        distpad.Update()
+
+        runcert = uncert.Clone('runcert')
+        _temporaries.append(runcert)
+    
+        bkg = rnp.hist2array(runcert)
+        bkg -= rnp.hist2array(signal, copy=False)
+    
+        obsarray = rnp.array(ROOT.TArrayD(gobs.GetN(), gobs.GetY()))
+        obsarray -= bkg
+    
+        robs = gobs.Clone('robs')
+        _temporaries.append(robs)
+        for ip in range(gobs.GetN()):
+            robs.SetPoint(ip, gobs.GetX()[ip], obsarray[ip])
+    
+        rnp.array2hist(np.zeros_like(bkg), runcert)
+
+        rframe = frame.Clone('rframe')
+        _temporaries.append(rframe)
+        rframe.GetXaxis().SetTickLength(0.15)
+        rframe.GetYaxis().SetNdivisions(canvas.raxes[irow].GetNdiv())
+        rframe.SetMinimum(rmin)
+        rframe.SetMaximum(rmax)
+
+        ratiopad = canvas.cd((irow * ncol + icol) * 2 + 2)
+        ratiopad.SetLogy(False)
+        ratiopad.SetGridy(False)
+        ratiopad.SetTicky(1)
+
+        rframe.Draw('HIST')
+        runcert.Draw('SAME E2')
+        zero.DrawLine(rframe.GetXaxis().GetXmin(), 0., rframe.GetXaxis().GetXmax(), 0.)
+        signal.Draw('HIST SAME')
+        robs.Draw('PZ')
+    
+        ratiopad.Update()
 
 
 mllbins = [10., 25., 40., 50., 70., 90., 170.]
-mllbins2 = mllbins + [x - mllbins[0] + mllbins[-1] for x in mllbins[1:]]
 nmll = len(mllbins) - 1
+template = ROOT.TH1D('template', '', len(mllbins) - 1, np.array(mllbins))
 
-for ivert in range(nvert):
-#for ivert in [1]:
-    bin_names = common.binnames[args.observable][(2 - ivert) * 2:(3 - ivert) * 2]
+for irow in range(nrow):
+    bin_names = common.binnames[args.observable][(2 - irow) * 2:(3 - irow) * 2]
 
-    if len(bin_names) == 1:
-        template = ROOT.TH1D('template', ';m_{ll} (GeV)', len(mllbins) - 1, array.array('d', mllbins))
-        distpad = canvas.GetPad(ivert * 2 + 1)
-        ratiopad = canvas.GetPad(ivert * 2 + 2)
-        xlow = distpad.GetXlowNDC()
-        xw = distpad.GetWNDC()
-        distpad.SetPad(xlow, distpad.GetYlowNDC(), xlow + xw * 0.5, distpad.GetYlowNDC() + distpad.GetHNDC())
-        ratiopad.SetPad(xlow, ratiopad.GetYlowNDC(), xlow + xw * 0.5, ratiopad.GetYlowNDC() + ratiopad.GetHNDC())
-    else:
-        template = ROOT.TH1D('template', ';m_{ll} (GeV)', len(mllbins2) - 1, array.array('d', mllbins2))
+    uncerts = []
+    _temporaries.append(uncerts)
+    stacks = []
+    _temporaries.append(stacks)
+    signals = []
+    gobss = []
 
-    uncert = template.Clone('uncert')
-    _temporaries.append(uncert)
-    stack = ROOT.THStack('stack', 'stack')
-    _temporaries.append(stack)
-    shapes = {}
-    _temporaries.append(shapes)
-
-    for procgroup, _, title, color, legopt in plotconfigs:
-        shape = template.Clone(procgroup)
-        shape.SetDirectory(0)
-
-        cont = rnp.hist2array(shape, copy=False)
-        for ibin, bin_name in enumerate(bin_names):
-            cont[ibin * nmll:(ibin + 1) * nmll] = rnp.hist2array(components[bin_name][procgroup], copy=False)
-
-        shape.Scale(1., 'width')
-
-        if 'F' in legopt:
-            lcolor = common.get_line_color(color)
-            shape.SetFillColor(color)
-            shape.SetFillStyle(1001)
-            shape.SetLineColor(lcolor)
-            shape.SetLineWidth(2)
-            
-        else:
-            shape.SetFillStyle(0)
-            shape.SetLineColor(color)
-            shape.SetLineWidth(2)
-
-        stack.Add(shape)
-        shapes[procgroup] = shape
-
-    signal = shapes['smH']
-
-    uncert = template.Clone('Total')
-    _temporaries.append(uncert)
-    uncert.SetDirectory(0)
-    cont = rnp.hist2array(uncert, copy=False)
-    err2 = rnp.array(uncert.GetSumw2(), copy=False)[1:-1]
     for ibin, bin_name in enumerate(bin_names):
-        cont[ibin * nmll:(ibin + 1) * nmll] = rnp.hist2array(totals[bin_name], copy=False)
-        err2[ibin * nmll:(ibin + 1) * nmll] = rnp.array(totals[bin_name].GetSumw2(), copy=False)[1:-1]
+        shapes = {}
+        _temporaries.append(shapes)
 
-    uncert.Scale(1., 'width')
+        stack = ROOT.THStack('stack', 'stack')
+        stacks.append(stack)
 
-    canvas.yaxes[ivert].SetTitle('events / GeV')
-    canvas.yaxes[ivert].SetTitleOffset(2.4)
-    canvas.raxes[ivert].SetTitle('bkg. subt.')
-    canvas.raxes[ivert].SetTitleOffset(2.4)
+        for procgroup, _, title, color, legopt in plotconfigs:
+            shape = template.Clone(procgroup)
+            shape.SetDirectory(0)
+    
+            cont = rnp.hist2array(shape, copy=False)
+            cont[:] = rnp.hist2array(components[bin_name][procgroup], copy=False)
+    
+            shape.Scale(1., 'width')
+    
+            if 'F' in legopt:
+                lcolor = common.get_line_color(color)
+                shape.SetFillColor(color)
+                shape.SetFillStyle(1001)
+                shape.SetLineColor(lcolor)
+                shape.SetLineWidth(2)
+            else:
+                shape.SetFillStyle(0)
+                shape.SetLineColor(color)
+                shape.SetLineWidth(2)
+    
+            stack.Add(shape)
+            shapes[procgroup] = shape
 
-    obs = template.Clone('Observed')
-    obs.SetDirectory(0)
+        signals.append(shapes['smH'])
+    
+        uncert = template.Clone('Total')
+        uncerts.append(uncert)
+        uncert.SetDirectory(0)
+        cont = rnp.hist2array(uncert, copy=False)
+        err2 = rnp.array(uncert.GetSumw2(), copy=False)[1:-1]
+        cont[:] = rnp.hist2array(totals[bin_name], copy=False)
+        err2[:] = rnp.array(totals[bin_name].GetSumw2(), copy=False)[1:-1]
+    
+        uncert.Scale(1., 'width')
 
-    cont = rnp.hist2array(obs, copy=False)
-    for ibin, bin_name in enumerate(bin_names):
-        cont[ibin * nmll:(ibin + 1) * nmll] = rnp.hist2array(observed[bin_name], copy=False)
+        uncert.SetFillColor(ROOT.kBlack)
+        uncert.SetFillStyle(3003)
+        uncert.SetLineWidth(0)
+    
+        obs = template.Clone('Observed')
+        obs.SetDirectory(0)
+    
+        cont = rnp.hist2array(obs, copy=False)
+        cont[:] = rnp.hist2array(observed[bin_name], copy=False)
+    
+        gobs = ROOT.RooHist(obs, 1.)
+        _temporaries.append(gobs)
+        gobss.append(gobs)
 
-    gobs = ROOT.RooHist(obs, 1.)
-    _temporaries.append(gobs)
-    gobs.SetMarkerSize(0.6)
+        gobs.SetMarkerSize(0.6)
 
-    plotstack(stack, signal, uncert, gobs, ivert)
+        if irow == 0 and ibin == 0:
+            legend = ROOT.TLegend(0.3, common.YMAX - canvas.hlegend + 0.01, common.XMAX - 0.01, common.YMAX - 0.01)
+            _temporaries.append(legend)
+            legend.SetNColumns(4)
+            legend.SetBorderSize(0)
+            legend.SetFillStyle(0)
+            legend.SetTextFont(ROOT.gStyle.GetTextFont())
+    
+            for procgroup, _, title, _, opt in reversed(plotconfigs):
+                legend.AddEntry(shapes[procgroup], title, opt)
+            legend.AddEntry(uncert, 'Uncertainty', 'F')
+            legend.AddEntry(gobs, 'Observed', 'PL')
+    
+            canvas.cd()
+            legend.Draw()
 
-    if ivert == 0:
-        legend = ROOT.TLegend(0.4, common.ymax - canvas.hlegend + 0.01, common.xmax - 0.01, common.ymax - 0.01)
-        _temporaries.append(legend)
-        legend.SetNColumns(4)
-        legend.SetBorderSize(0)
-        legend.SetFillStyle(0)
+    plotstack(stacks, signals, uncerts, gobss, irow)
 
-        for procgroup, _, title, _, opt in reversed(plotconfigs):
-            legend.AddEntry(shapes[procgroup], title, opt)
+template.Delete()
 
-        legend.AddEntry(uncert, 'uncertainty', 'F')
-
-        legend.AddEntry(gobs, 'observed', 'PL')
-
-        canvas.cd()
-        legend.Draw()
-
-    template.Delete()
-
+#tmpeps = '%s/tmp.eps' % os.getenv('TMPDIR')
+#canvas.printout(tmpeps)
+#_, err = subprocess.Popen(['gs', '-q', '-sDEVICE=bbox', '-dBATCH', '-dNOPAUSE', tmpeps], stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
+#for line in err.split('\n'):
+#    if line.startswith('%%BoundingBox'):
+#        words = line.split()
+#        llx, lly, urx, ury = map(int, words[-4:])
+#        width = urx + llx
+#        height = ury + lly
+#
+#subprocess.Popen(['gs', '-q', '-o', '%s/postfit_sr_%s.pdf' % (args.out_path, args.observable), '-sDEVICE=pdfwrite', '-dPDFFitPage', '-g%d0x%d0' % (width, height), tmpeps]).communicate()
+#os.unlink(tmpeps)
 canvas.printout('%s/postfit_sr_%s.pdf' % (args.out_path, args.observable))
 canvas.Print('%s/postfit_sr_%s.png' % (args.out_path, args.observable))

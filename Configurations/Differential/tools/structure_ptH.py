@@ -12,7 +12,6 @@ observable = 'PTH'
 sample_merging = {
     'WW': ['WW', 'ggWW'],
     'minor': ['WWewk', 'Vg', 'VgS_L', 'VgS_H', 'VZ', 'VVV'],
-    #'minor': ['ggWW', 'WWewk', 'Vg', 'VgS_L', 'VgS_H', 'VZ', 'VVV'],
     'htt': []
 }
 
@@ -52,10 +51,13 @@ for sname in samples.keys():
     elif '_UE' in sname or '_PS' in sname:
         samples.pop(sname)
 
-sample_merging['htt'] = []
 for sname in samples.iterkeys():
     if '_htt' in sname:
         sample_merging['htt'].append(sname)
+
+for sname in list(signals):
+    if '_UE' in sname or '_PS' in sname:
+        signals.remove(sname)
 
 # assuming signal subsamples are exactly the binning used in the fit
 # if gen-bins are merged in restructure_input, need to provide a mapping here externally
