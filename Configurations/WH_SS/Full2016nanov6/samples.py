@@ -155,24 +155,43 @@ samples['ggWW'] = {
     'FilesPerJob': 4
 }
 
-######## Vg ########
+######## Wg ########
 
-files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
-    nanoGetSampleFiles(mcDirectory, 'Zg')
+files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM')
 
-samples['Vg'] = {
+samples['Wg'] = {
     'name': files,
     'weight': mcCommonWeightNoMatch + '*(!(Gen_ZGstar_mass > 0))',
     'FilesPerJob': 4
 }
 
-######## VgS ########
+######## Zg #######
+
+files = nanoGetSampleFiles(mcDirectory, 'Zg')
+
+samples['Zg'] = {
+    'name': files,
+    'weight': mcCommonWeightNoMatch + '*(!(Gen_ZGstar_mass > 0))',
+    'FilesPerJob': 4
+}
+
+######## ZgS ########
+files = nanoGetSampleFiles(mcDirectory, 'Zg')
+
+samples['ZgS'] = {
+    'name': files,
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4,
+    }
+addSampleWeight(samples, 'ZgS', 'Zg', '(Gen_ZGstar_mass > 0)')
+
+######## WgS ########
+
 
 files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
-    nanoGetSampleFiles(mcDirectory, 'Zg') + \
     nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01')
 
-samples['VgS'] = {
+samples['WgS'] = {
     'name': files,
     'weight': mcCommonWeight + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
     'FilesPerJob': 4,
@@ -181,18 +200,26 @@ samples['VgS'] = {
       'H': 'gstarHigh'
     }
 }
-addSampleWeight(samples, 'VgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
-addSampleWeight(samples, 'VgS', 'Zg', '(Gen_ZGstar_mass > 0)')
-addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
+addSampleWeight(samples, 'WgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
+addSampleWeight(samples, 'WgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
 
-############ VZ ############
+############ ZZ ############
 
 files = nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu') + \
     nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Q') + \
-    nanoGetSampleFiles(mcDirectory, 'ZZTo4L') + \
-    nanoGetSampleFiles(mcDirectory, 'WZTo2L2Q')
+    nanoGetSampleFiles(mcDirectory, 'ZZTo4L')
 
-samples['VZ'] = {
+samples['ZZ'] = {
+    'name': files,
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4
+}
+
+############ WZlep ############
+
+files = nanoGetSampleFiles(mcDirectory, 'WZTo2L2Q')
+
+samples['WZhad'] = {
     'name': files,
     'weight': mcCommonWeight,
     'FilesPerJob': 4
