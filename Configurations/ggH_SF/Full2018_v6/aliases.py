@@ -126,7 +126,7 @@ aliases['2jVH'] = {
 }
 
 aliases['2jVBF'] = {
-'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && mjj>=400 )'
+'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && mjj>=350 )'
 }
 
 aliases['2jggH'] = {
@@ -134,16 +134,16 @@ aliases['2jggH'] = {
 }
 
 aliases['Higgs0jet'] = {
-'expr': '(mll < 50 && mth > 80)'
+'expr': '(mll < 60 && mth > 90)'
 }
 aliases['Higgs1jet'] = {
-'expr': '(mll < 70 && mth > 80)'
+'expr': '(mll < 60 && mth > 90)'
 }
 aliases['Higgs2jet'] = {
-'expr': '(mll < 70 && mth > 60 && abs(dphill) < 2.50)'
+'expr': '(mll < 60 && mth > 60)'
 }
 aliases['Higgsvbf'] = {
-'expr': '(mll < 70 && mth > 60 && abs(dphill) < 3.00)'
+'expr': '(mll < 60 && mth > 60)'
 }
 
 aliases['ZVeto'] = {

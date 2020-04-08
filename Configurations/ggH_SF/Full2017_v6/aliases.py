@@ -103,7 +103,7 @@ aliases['2jVH'] = {
 }
 
 aliases['2jVBF'] = {
-'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && mjj>=400 )'
+'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && mjj>=350 )'
 }
 
 aliases['2jggH'] = {

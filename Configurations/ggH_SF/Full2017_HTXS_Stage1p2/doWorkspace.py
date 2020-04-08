@@ -39,7 +39,7 @@ sampleNames.append('ggH_hww_PTH_450_650')
 sampleNames.append('ggH_hww_PTH_GT650')
 '''
 #No merging
-command="text2workspace.py Full2016_SF_ggH_HTXS_Stage1p2.txt -o Full2016_SF_ggH_HTXS_Stage1p2.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose "
+command="text2workspace.py Full2017_SF_ggH_HTXS_Stage1p2.txt -o Full2017_SF_ggH_HTXS_Stage1p2.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose "
 for sample in sampleNames:
   if 'ggH_hww' not in sample: continue
   if 'FWDH' in sample: continue
@@ -50,7 +50,7 @@ print command
 os.system(command)
 '''
 #Merge some bins
-command="text2workspace.py Full2016_SF_ggH_HTXS_Stage1p2.txt -o Full2016_SF_ggH_HTXS_Stage1p2_merged.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose "
+command="text2workspace.py Full2017_SF_ggH_HTXS_Stage1p2.txt -o Full2017_SF_ggH_HTXS_Stage1p2_merged.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose "
 poi=''
 for sample in sampleNames:
   if 'ggH_hww' not in sample: continue
@@ -80,7 +80,7 @@ os.system(command)
 
 
 #Merge all bins
-command="text2workspace.py Full2016_SF_ggH_HTXS_Stage1p2.txt -o Full2016_SF_ggH_HTXS_Stage1p2_onePOI.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose "
+command="text2workspace.py Full2017_SF_ggH_HTXS_Stage1p2.txt -o Full2017_SF_ggH_HTXS_Stage1p2_onePOI.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose "
 poi=''
 for sample in sampleNames:
   if 'FWDH' in sample: continue
