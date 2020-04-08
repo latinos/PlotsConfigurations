@@ -1,6 +1,7 @@
 Steps involved
 ==============
 
+(- Create gen-level histograms with mkShapes in directory `fiducial` (one-time))
 - Create histograms with mkShapes.
 - Merge the histograms into per-sample ROOT files.
 - Preprocess the histograms for each differential observable.
@@ -46,7 +47,7 @@ mkdir shapes
 #../tools/restructure_input.py --tag ggHDifferential${year} --signal-hww-only --signal-no-fiducial --aslnn-category-pool --custom-scale qqH_hww=2 -j 8 rootFile_merged shapes/plots_${obs}_${card_tag}.root $obs
 ```
 
-This `restructure_input.py` is the most critical and most convoluted part of the differential analysis configuration. It sets up the sample and category merging schemes and executes merging, propagating systematic variations of individual samples / categories into the merged products. The script is mostly self-contained. The only external dependency is to the signal renormalization factor files, which are generated with `tools/renormalize_theoretical.py` for each year separately.
+This `restructure_input.py` is the most critical and most convoluted part of the differential analysis configuration. It sets up the sample and category merging schemes and executes merging, propagating systematic variations of individual samples / categories into the merged products. The script is mostly self-contained. The only external dependency is to the fiducial cross sections, for which you need to first run mkShapes on the `fiducial` configuration.
 
 ## Special hacks for 2017
 
@@ -75,7 +76,7 @@ card_tag=fullmodel
 
 mkdir merged_cards
 
-../tools/fitting/combine_cards.py --in unmerged_cards/${obs}_${card_tag} --out merged_cards/${obs}_${card_tag} --only-fullmodel > combine_cards_${obs}_${card_tag}.log
+../tools/fitting/combine_cards.py --in unmerged_cards/${obs}_${card_tag} --out merged_cards/${obs}_${card_tag} --only-fullmodel --float-background WW=WW top=top DY${year}=DY > combine_cards_${obs}_${card_tag}.log
 ```
 
 The workspace root file will be saved at `merged_cards/${obs}_${card_tag}/fullmodel.root`.
@@ -84,6 +85,24 @@ Running the fits
 ================
 
 Script `tools/fitting/dofit.sh` has the commands for various fit-related tasks.
+
+```
+cd merged_cards
+
+../../tools/fitting/dofit.sh $PWD $obs $card_tag COMMAND [ARGS]
+```
+
+COMMANDs for fits that go into the AN:
+
+`AsimovUnreg AsimovReg Reg Unreg "IntegratedUnreg "{0..5} GOFObs AsimovImpact Impact`
+
+Also COMMANDs for the AN, but requiring some of the above commands to finish first:
+
+`"GOFGen 4 "{1..250} IntegratedUnregStatOnly "IntegratedUnregUncert "{signal,theoretical,luminosity,experimental} IntegratedImpact RegStatOnly "RegUncert "{signal,theoretical,luminosity,experimental}`
+
+Once GOFGen jobs are done, compute the goodness of fit:
+
+`"GOFFreqToy 4 "{1..250}`
 
 Creating the full combination workspace
 =======================================
@@ -163,4 +182,46 @@ Directory `tools/plotting` contains scripts for plotting:
 - `plot_correlation_matrix_2.py`: Paper version of correlation matrix.
 - `bias_estimate_vbfshift.py`: Use VBF0 and VBF2 shifted fits (see above) to assess the model dependency of unfolding.
 - `plot_sigma.py`: Make the "money plot".
-- `plot_postfit_sr.py`: Make post-fit mll distributions from a workspace with possibly different mll:mtH binning from the actual fit model.
+- `plot_postfit_sr.py`: Make post-fit mll distributions from a workspace with possibly different mll:mtH binning from the actual fit model. See below.
+
+Making postfit SR plots
+=======================
+
+Use plot_postfit_sr.py to create "postfit" SR plots with template binning different from what was used in the fit (so certain postfit uncertainties are not propagated to the plots).
+```
+obs=ptH
+source_card_tag=binrenorm
+card_tag=fullbinning
+for year in 201{6,7,8}
+do
+  cd ggH$year
+  mkDatacards.py --outputDirDatacard=unmerged_cards/${obs}_${card_tag} --inputFile=shapes/plots_${obs}_${source_card_tag}.root --structureFile=../tools/structure_${obs}_fullbinning.py
+  cd ../
+done
+
+# in combine environment
+obs=ptH
+card_tag=fullbinning
+for year in 201{6,7,8}
+do
+  cd ggH$year
+  ../tools/fitting/combine_cards.py --in unmerged_cards/${obs}_${card_tag} --out merged_cards/${obs}_${card_tag} --only-fullmodel --float-background WW=WW top=top DY${year}=DY --just-combine
+  cd ../
+done
+
+cd combination
+mkdir ${obs}_${card_tag}
+
+combineCards.py hww2016=$PWD/../ggH2016/merged_cards/${obs}_${card_tag}/fullmodel_unreg.txt hww2017=$PWD/../ggH2017/merged_cards/${obs}_${card_tag}/fullmodel_unreg.txt hww2018=$PWD/../ggH2018/merged_cards/${obs}_${card_tag}/fullmodel_unreg.txt > ${obs}_${card_tag}/fullmodel_unreg.txt
+sed 's/kmax [0-9]*/kmax */' ${obs}_${card_tag}/fullmodel_unreg.txt > ${obs}_${card_tag}/fullmodel.txt 
+grep ' constr ' ../ggH2016/merged_cards/${obs}_${card_tag}/fullmodel.txt >> ${obs}_${card_tag}/fullmodel.txt
+
+cd ${obs}_${card_tag}
+
+# Make sure you are using the actual binning in the datacard!!
+text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose --PO map=.*/.*H_hww_PTH_0_20:r_0[1.,-10.,10.] --PO map=.*/.*H_hww_PTH_20_45:r_1[1.,-10.,10.] --PO map=.*/.*H_hww_PTH_45_80:r_2[1.,-10.,10.] --PO map=.*/.*H_hww_PTH_80_120:r_3[1.,-10.,10.] --PO map=.*/.*H_hww_PTH_120_200:r_4[1.,-10.,10.] --PO map=.*/.*H_hww_PTH_GT200:r_5[1.,-10.,10.] fullmodel.txt -o fullmodel.root
+
+cd ../../
+
+python tools/plotting/plot_postfit_sr.py $obs --source combination/${obs}_${card_tag}/fullmodel.root --postfit combination/${obs}_${source_card_tag}/higgsCombineReg.MultiDimFit.mH120.root --rootfile combination/${obs}_${card_tag}/postfit_plots.root --reuse --out $PWD
+```

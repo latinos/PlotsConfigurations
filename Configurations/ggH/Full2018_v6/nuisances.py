@@ -15,7 +15,7 @@ def nanoGetSampleFiles(inputDir, Sample):
     return getSampleFiles(inputDir, Sample, False, 'nanoLatino_')
 
 try:
-    mc = [skey for skey in samples if skey != 'DATA' and not skey.startswith('Fake') and not 'htt' in skey] #FIXME Add back Htt
+    mc = [skey for skey in samples if skey != 'DATA' and not skey.startswith('Fake')]
 except NameError:
     mc = []
     cuts = {}
@@ -207,7 +207,7 @@ for js in jes_systs:
       'type': 'shape',
       'mapUp': js+'up',
       'mapDown': js+'do',
-      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VZ','Vg','VgS']),
+      'samples': dict((skey, ['1', '1']) for skey in mc),
       'folderUp': makeMCDirectory('JESup_suffix'),
       'folderDown': makeMCDirectory('JESdo_suffix'),
       'AsLnN': '1'
@@ -335,22 +335,29 @@ nuisances['PS_FSR_2jet']  = {
     'cuts'  : cuts2j,
 }
 
-
-
+# An overall 1.5% UE uncertainty will cover all the UEup/UEdo variations
+# And we don't observe any dependency of UE variations on njet
 nuisances['UE']  = {
                 'name'  : 'UE_CP5',
                 'skipCMS' : 1,
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : {
-                  'WW'      : ['1.0017139', '0.99350287'],
-                  'ggH_hww' : ['1.0272226', '1.0123689'],
-                  'qqH_hww' : ['1.0000192', '0.98367442']
-                },
-                'folderUp': makeMCDirectory('UEup'),
-                'folderDown': makeMCDirectory('UEdo'),
-                'AsLnN'      : '1',
+                'type': 'lnN',
+                'samples': dict((skey, '1.015') for skey in mc), 
 }
+
+#nuisances['UE']  = {
+#                'name'  : 'UE_CP5',
+#                'skipCMS' : 1,
+#                'kind'  : 'tree',
+#                'type'  : 'shape',
+#                'samples'  : {
+#                  'WW'      : ['1.0017139', '0.99350287'],
+#                  'ggH_hww' : ['1.0272226', '1.0123689'],
+#                  'qqH_hww' : ['1.0000192', '0.98367442']
+#                },
+#                'folderUp': makeMCDirectory('UEup'),
+#                'folderDown': makeMCDirectory('UEdo'),
+#                'AsLnN'      : '1',
+#}
 
 ####### Generic "cross section uncertainties"
 
@@ -493,40 +500,18 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 
 ## Shape nuisance due to QCD scale variations for DY
 # LHE scale variation weights (w_var / w_nominal)
-#[0] is MUR="0.5" MUF="0.5"; 
-#[1] is MUR="0.5" MUF="1.0"; 
-#[2] is MUR="0.5" MUF="2.0"; 
-#[3] is MUR="1.0" MUF="0.5"; 
-#[4] is MUR="1.0" MUF="2.0"; 
-#[5] is MUR="2.0" MUF="0.5"; 
-#[6] is MUR="2.0" MUF="1.0"; 
-#[7] is MUR="2.0" MUF="2.0"*
 
-variationsDY = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 4, 6, 7]]
+## This should work for samples with either 8 or 9 LHE scale weights (Length$(LHEScaleWeight) == 8 or 9)
+variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
 
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
     'skipCMS': 1,
     'kind': 'weight_envelope',
     'type': 'shape',
-    'samples': {'DY': variationsDY},
+    'samples': {'DY': variations},
     'AsLnN': '1'
 }
-
-## Shape nuisance due to QCD scale variations for other samples
-# LHE scale variation weights (w_var / w_nominal)
-# [0] is muR=0.50000E+00 muF=0.50000E+00
-# [1] is muR=0.50000E+00 muF=0.10000E+01
-# [2] is muR=0.50000E+00 muF=0.20000E+01
-# [3] is muR=0.10000E+01 muF=0.50000E+00
-# [4] is muR=0.10000E+01 muF=0.10000E+01
-# [5] is muR=0.10000E+01 muF=0.20000E+01
-# [6] is muR=0.20000E+01 muF=0.50000E+00
-# [7] is muR=0.20000E+01 muF=0.10000E+01
-# [8] is muR=0.20000E+01 muF=0.20000E+01
-
-variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 5, 7, 8]]
-
 
 nuisances['QCDscale_VV'] = {
     'name': 'QCDscale_VV',

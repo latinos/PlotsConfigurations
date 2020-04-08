@@ -27,12 +27,12 @@ aliases['LepWPCut'] = {
 
 aliases['gstarLow'] = {
     'expr': 'Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4',
-    'samples': 'VgS'
+    'samples': 'WgS'
 }
 
 aliases['gstarHigh'] = {
     'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
-    'samples': 'VgS'
+    'samples': 'WgS'
 }
 
 # Fake leptons transfer factor
@@ -166,10 +166,21 @@ for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2',
         'samples': mc
     }
 
+puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+
+aliases['PUJetIdSF'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L %s/patches/pujetidsf_event.cc+' % configurations
+    ],
+    'class': 'PUJetIdEventSF',
+    'args': (puidSFSource, '2017', 'loose'),
+    'samples': mc
+}
 
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP_old + '__mu_' + muWP_old, 'LepWPCut', 'btagSF', 'PrefireWeight']),
+    'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP_old + '__mu_' + muWP_old, 'LepWPCut', 'btagSF', 'PrefireWeight','PUJetIdSF']),
     'samples': mc
 }
 # variations

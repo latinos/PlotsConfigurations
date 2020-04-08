@@ -128,7 +128,7 @@ else:
 
 ###### Top #######
 
-files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
+files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu_PSWeights') + \
     nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
     nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
     nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
@@ -321,7 +321,7 @@ samples['ZH_htt'] = {
 #signals.append('ZH_htt')
 
 samples['WH_htt'] = {
-    'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125'),# + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
+    'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
     'weight': mcCommonWeight,
     'FilesPerJob': 2
 }

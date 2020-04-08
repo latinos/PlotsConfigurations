@@ -25,31 +25,31 @@ HiggsXS = HiggsXSection()
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2016',
     'type': 'lnN',
-    'samples': dict((skey, '1.022') for skey in mc)
+    'samples': dict((skey, '1.022') for skey in mc if skey not in ['WgS'])
 }
 
 nuisances['lumi_XYFact'] = {
     'name': 'lumi_13TeV_XYFact',
     'type': 'lnN',
-    'samples': dict((skey, '1.009') for skey in mc)
+    'samples': dict((skey, '1.009') for skey in mc if skey not in ['WgS'])
 }
 
 nuisances['lumi_BBDefl'] = {
     'name': 'lumi_13TeV_BBDefl',
     'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc)
+    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WgS'])
 }
 
 nuisances['lumi_DynBeta'] = {
     'name': 'lumi_13TeV_DynBeta',
     'type': 'lnN',
-    'samples': dict((skey, '1.005') for skey in mc)
+    'samples': dict((skey, '1.005') for skey in mc if skey not in ['WgS'])
 }
 
 nuisances['lumi_Ghosts'] = {
     'name': 'lumi_13TeV_Ghosts',
     'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc)
+    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WgS'])
 }
 
 
@@ -65,14 +65,6 @@ nuisances['fake_syst_mm'] = {
 
 nuisances['fake_syst_em'] = {
     'name': 'CMS_fake_syst_em',
-    'type': 'lnN',
-    'samples': {
-        'Fake_em': '1.3'
-    },
-}
-
-nuisances['fake_syst_ee'] = {
-    'name': 'CMS_fake_syst_ee',
     'type': 'lnN',
     'samples': {
         'Fake_em': '1.3'
@@ -206,7 +198,7 @@ for js in jes_systs:
       'type': 'shape',
       'mapUp': js+'up',
       'mapDown': js+'do',
-      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VZ','Vg','VgS']),
+      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['WZhad','ZZ','Wg','Zg,''WgS']),
       'folderUp': makeMCDirectory('JESup_suffix'),
       'folderDown': makeMCDirectory('JESdo_suffix'),
       'AsLnN': '1'
@@ -233,12 +225,11 @@ nuisances['PU'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': {
-#        'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
+        'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
         'top': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
         'WW': ['1.0033022059*(puWeightUp/puWeight)', '0.997085330608*(puWeightDown/puWeight)'],
-        'WH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
-        #'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
-       # 'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
+        'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
+        'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
     },
     'AsLnN': '1',
 }
@@ -326,33 +317,12 @@ nuisances['PS_FSR_2jet']  = {
 
 
 # PS and UE
-#FIXME: Add PS uncertainty
-'''
-nuisances['PS_whss']  = {
-                'name'  : 'PS_whss',
-                'skipCMS' : 1,
-                'type'  : 'lnN',
-                'samples'  : {
-                   'WH_hww'   : '1.037',
-                   'ZH_hww'   : '1.037',
-                   'H_htt'    : '1.037',
-                   'ggZH_hww'   : '1.037',
-              #     'ZH_htt'   : '1.037',
-                },
-}
-'''
 nuisances['UE_whss']  = {
                 'name'  : 'UE_whss',
                 'skipCMS' : 1,
                 'type'  : 'lnN',
-                'samples'  : {
-                   'WH_hww'   : '1.010',
-                   'ZH_hww'   : '1.010',
-                   'H_htt'    : '1.010',
-                   'ggZH_hww'   : '1.010',
- #                  'ZH_htt'   : '1.010',
-               },
-                }
+                'samples': dict((skey, '1.015') for skey in mc),
+}
 
 ####### Generic "cross section uncertainties"
 
@@ -381,22 +351,14 @@ nuisances['TopPtRew'] = {
     'symmetrize': True
 }
 
-nuisances['VgStar'] = {
-    'name': 'CMS_hww_VgStarScale',
+nuisances['WgStar'] = {
+    'name': 'CMS_hww_WgStarScale',
     'type': 'lnN',
     'samples': {
-        'VgS_L': '1.25'
+        'WgS_L': '1.25'
     }
 }
-'''
-nuisances['VZ'] = {
-    'name': 'CMS_hww_VZScale',
-    'type': 'lnN',
-    'samples': {
-        'VgS_H': '1.16'
-    }
-}
-'''
+
 ###### pdf uncertainties
 
 valuesggh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','pdf','sm')
@@ -441,78 +403,89 @@ nuisances['pdf_Higgs_qqbar'] = {
     },
 }
 
-#FIXME: check this 4%
 nuisances['pdf_qqbar'] = {
     'name': 'pdf_qqbar',
     'type': 'lnN',
     'samples': {
-        'Vg': '1.04',
-        'VZ': '1.04',  # PDF: 0.0064 / 0.1427 = 0.0448493
-        'VgS': '1.04', # PDF: 0.0064 / 0.1427 = 0.0448493
+        'Wg': '1.04',
+        'Zg': '1.04',
+        'ZZ': '1.04',  # PDF: 0.0064 / 0.1427 = 0.0448493
+        'WZhad': '1.04',  # PDF: 0.0064 / 0.1427 = 0.0448493
+        'WgS': '1.04', # PDF: 0.0064 / 0.1427 = 0.0448493
+        'ZgS': '1.04', # PDF: 0.0064 / 0.1427 = 0.0448493
     },
 }
 
-#FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['pdf_Higgs_gg_ACCEPT'] = {
     'name': 'pdf_Higgs_gg_ACCEPT',
     'samples': {
-        'ggH_hww': '1.005',
-        'ggH_htt': '1.005',
-        'ggZH_hww': '1.005',
-        'bbH_hww': '1.005'
+        'ggH_hww': '1.006',
+        'ggH_htt': '1.006',
+        'ggZH_hww': '1.006',
+        'bbH_hww': '1.006'
     },
     'type': 'lnN',
 }
 
-#FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['pdf_gg_ACCEPT'] = {
     'name': 'pdf_gg_ACCEPT',
     'samples': {
-        'ggWW': '1.005',
+        'ggWW': '1.006',
     },
     'type': 'lnN',
 }
 
-#FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['pdf_Higgs_qqbar_ACCEPT'] = {
     'name': 'pdf_Higgs_qqbar_ACCEPT',
     'type': 'lnN',
     'samples': {
-        'qqH_hww': '1.011',
-        'qqH_htt': '1.011',
-        'WH_hww': '1.007',
-        'WH_htt': '1.007',
-        'ZH_hww': '1.012',
-        'ZH_htt': '1.012',
+        'qqH_hww': '1.002',
+        'qqH_htt': '1.002',
+        'WH_hww': '1.003',
+        'WH_htt': '1.003',
+        'ZH_hww': '1.002',
+        'ZH_htt': '1.002',
     },
 }
 
-#FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['pdf_qqbar_ACCEPT'] = {
     'name': 'pdf_qqbar_ACCEPT',
     'type': 'lnN',
     'samples': {
-        'VZ': '1.005',
+        'ZZ': '1.001',
+        'WZhad': '1.001',
     },
 }
+
+##### Renormalization & factorization scales
+
+## Shape nuisance due to QCD scale variations for DY
+# LHE scale variation weights (w_var / w_nominal)
+
+## This should work for samples with either 8 or 9 LHE scale weights (Length$(LHEScaleWeight) == 8 or 9)
+variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
 
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
     'skipCMS': 1,
-    'kind': 'weight',
+    'kind': 'weight_envelope',
     'type': 'shape',
-    'samples': {'DY': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]']},
+    'samples': {'DY': variations},
     'AsLnN': '1'
 }
 
 nuisances['QCDscale_VV'] = {
     'name': 'QCDscale_VV',
-    'kind': 'weight',
+    'kind': 'weight_envelope',
     'type': 'shape',
     'samples': {
-        'Vg': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-        'VZ': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-        'VgS': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
+        'WW': variations,
+        'Zg': variations,
+        'Wg': variations,
+        'ZZ': variations,
+        'WZhas': variations,
+        'WgS': variations,
+        'ZgS': variations
     }
 }
 
@@ -559,7 +532,6 @@ nuisances['QCDscale_ggZH'] = {
     'samples': {
         'ggZH_hww': values
     },
-
     'type': 'lnN',
 }
 
@@ -581,37 +553,33 @@ nuisances['QCDscale_WWewk'] = {
     'type': 'lnN'
 }
 
-#FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['QCDscale_qqbar_ACCEPT'] = {
     'name': 'QCDscale_qqbar_ACCEPT',
     'type': 'lnN',
     'samples': {
-        'qqH_hww': '1.007',
-        'qqH_htt': '1.007',
-        'WH_hww': '1.05',
-        'WH_htt': '1.05',
-        'ZH_hww': '1.04',
-        'ZH_htt': '1.04',
-        'VZ': '1.029', # this shouldn't be here because we have full shape-based uncertainty for VZ
+        'qqH_hww': '1.003',
+        'qqH_htt': '1.003',
+        'WH_hww': '1.010',
+        'WH_htt': '1.010',
+        'ZH_hww': '1.015',
+        'ZH_htt': '1.015',
     }
 }
 
-#FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['QCDscale_gg_ACCEPT'] = {
     'name': 'QCDscale_gg_ACCEPT',
     'samples': {
-        'ggH_hww': '1.027', # shouldn't be here
-        'ggH_htt': '1.027',
-        'ggZH_hww': '1.027',
-        'ggWW': '1.027',
+        'ggH_htt': '1.012',
+        'ggZH_hww': '1.012',
+        'ggWW': '1.012',
     },
     'type': 'lnN',
 }
 
-nuisances['VgSH2jnorm']  = {
-               'name'  : 'CMS_hww_VgSH_WHSS2j_norm',
+nuisances['WgSH2jnorm']  = {
+               'name'  : 'CMS_hww_WgSH_WHSS2j_norm',
                'samples'  : {
-                   'VgS_H'       : '1.00',
+                   'WgS_H'       : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
@@ -622,10 +590,10 @@ nuisances['VgSH2jnorm']  = {
                 ]
               }
 
-nuisances['VgSH1jnorm']  = {
-               'name'  : 'CMS_hww_VgSH_WHSS1j_norm',
+nuisances['WgSH1jnorm']  = {
+               'name'  : 'CMS_hww_WgSH_WHSS1j_norm',
                'samples'  : {
-                   'VgS_H'       : '1.00',
+                   'WgS_H'       : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [

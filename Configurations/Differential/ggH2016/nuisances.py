@@ -15,7 +15,7 @@ def nanoGetSampleFiles(inputDir, Sample):
     return getSampleFiles(inputDir, Sample, False, 'nanoLatino_')
 
 try:
-    mc = [skey for skey in samples if skey != 'DATA' and not skey.startswith('Fake')]
+    mc = [skey for skey in samples if skey != 'DATA' and not skey.startswith('Fake') and '_PS_' not in skey and '_UE_' not in skey]
 except NameError:
     mc = []
     cuts = {}
@@ -39,31 +39,36 @@ HiggsXS = HiggsXSection()
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2016',
     'type': 'lnN',
-    'samples': dict((skey, '1.022') for skey in mc if skey not in ['WW', 'top', 'DY'])
+    'samples': dict((skey, '1.022') for skey in mc if skey not in ['WW', 'top', 'DY']),
+    'group': 'luminosity'
 }
 
 nuisances['lumi_XYFact'] = {
     'name': 'lumi_13TeV_XYFact',
     'type': 'lnN',
-    'samples': dict((skey, '1.009') for skey in mc if skey not in ['WW', 'top', 'DY'])
+    'samples': dict((skey, '1.009') for skey in mc if skey not in ['WW', 'top', 'DY']),
+    'group': 'luminosity'
 }
 
 nuisances['lumi_BBDefl'] = {
     'name': 'lumi_13TeV_BBDefl',
     'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WW', 'top', 'DY'])
+    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WW', 'top', 'DY']),
+    'group': 'luminosity'
 }
 
 nuisances['lumi_DynBeta'] = {
     'name': 'lumi_13TeV_DynBeta',
     'type': 'lnN',
-    'samples': dict((skey, '1.005') for skey in mc if skey not in ['WW', 'top', 'DY'])
+    'samples': dict((skey, '1.005') for skey in mc if skey not in ['WW', 'top', 'DY']),
+    'group': 'luminosity'
 }
 
 nuisances['lumi_Ghosts'] = {
     'name': 'lumi_13TeV_Ghosts',
     'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WW', 'top', 'DY'])
+    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WW', 'top', 'DY']),
+    'group': 'luminosity'
 }
 
 #### FAKES
@@ -76,7 +81,8 @@ nuisances['fake_syst_em'] = {
         'Fake_em': '1.3'
     },
     'cutspost': lambda self, cuts: [cut for cut in cuts if '20me' not in cut],
-    'perRecoBin': True
+    'perRecoBin': True,
+    'group': 'experimental'
 }
 
 nuisances['fake_syst_me'] = {
@@ -86,7 +92,8 @@ nuisances['fake_syst_me'] = {
         'Fake_me': '1.3'
     },
     'cutspost': lambda self, cuts: [cut for cut in cuts if '20em' not in cut],
-    'perRecoBin': True
+    'perRecoBin': True,
+    'group': 'experimental'
 }
 
 nuisances['fake_ele'] = {
@@ -95,7 +102,8 @@ nuisances['fake_ele'] = {
     'type': 'shape',
     'samples': {
         'Fake': ['fakeWEleUp', 'fakeWEleDown'],
-    }
+    },
+    'group': 'experimental'
 }
 
 nuisances['fake_ele_stat'] = {
@@ -104,7 +112,8 @@ nuisances['fake_ele_stat'] = {
     'type': 'shape',
     'samples': {
         'Fake': ['fakeWStatEleUp', 'fakeWStatEleDown']
-    }
+    },
+    'group': 'experimental'
 }
 
 nuisances['fake_mu'] = {
@@ -113,7 +122,8 @@ nuisances['fake_mu'] = {
     'type': 'shape',
     'samples': {
         'Fake': ['fakeWMuUp', 'fakeWMuDown'],
-    }
+    },
+    'group': 'experimental'
 }
 
 nuisances['fake_mu_stat'] = {
@@ -122,7 +132,8 @@ nuisances['fake_mu_stat'] = {
     'type': 'shape',
     'samples': {
         'Fake': ['fakeWStatMuUp', 'fakeWStatMuDown'],
-    }
+    },
+    'group': 'experimental'
 }
 
 ##### B-tagger
@@ -139,6 +150,7 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
         'kind': 'weight',
         'type': 'shape',
         'samples': dict((skey, btag_syst) for skey in mc),
+        'group': 'experimental'
     }
 
 ##### Trigger Efficiency
@@ -149,7 +161,8 @@ nuisances['trigg'] = {
     'name': 'CMS_eff_hwwtrigger_2016',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, trig_syst) for skey in mc)
+    'samples': dict((skey, trig_syst) for skey in mc),
+    'group': 'experimental'
 }
 
 prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
@@ -158,7 +171,8 @@ nuisances['prefire'] = {
     'name': 'CMS_eff_prefiring_2016',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, prefire_syst) for skey in mc)
+    'samples': dict((skey, prefire_syst) for skey in mc),
+    'group': 'experimental'
 }
 
 ##### Electron Efficiency and energy scale
@@ -167,7 +181,8 @@ nuisances['eff_e'] = {
     'name': 'CMS_eff_e_2016',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
+    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc),
+    'group': 'experimental'
 }
 
 nuisances['electronpt'] = {
@@ -177,7 +192,8 @@ nuisances['electronpt'] = {
     'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': makeMCDirectory('ElepTup'),
     'folderDown': makeMCDirectory('ElepTdo'),
-    'AsLnN': '1'
+    'AsLnN': '1',
+    'group': 'experimental'
 }
 
 ##### Muon Efficiency and energy scale
@@ -186,7 +202,8 @@ nuisances['eff_m'] = {
     'name': 'CMS_eff_m_2016',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
+    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc),
+    'group': 'experimental'
 }
 
 nuisances['muonpt'] = {
@@ -196,7 +213,8 @@ nuisances['muonpt'] = {
     'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': makeMCDirectory('MupTup'),
     'folderDown': makeMCDirectory('MupTdo'),
-    'AsLnN': '1'
+    'AsLnN': '1',
+    'group': 'experimental'
 }
 
 ##### Jet energy scale
@@ -208,7 +226,8 @@ nuisances['jes'] = {
     'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': makeMCDirectory('JESup'),
     'folderDown': makeMCDirectory('JESdo'),
-    'AsLnN': '1'
+    'AsLnN': '1',
+    'group': 'experimental'
 }
 
 ##### MET energy scale
@@ -220,7 +239,8 @@ nuisances['met'] = {
     'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': makeMCDirectory('METup'),
     'folderDown': makeMCDirectory('METdo'),
-    'AsLnN': '1'
+    'AsLnN': '1',
+    'group': 'experimental'
 }
 
 ##### Pileup
@@ -237,10 +257,14 @@ nuisances['PU'] = {
         'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
     },
     'AsLnN': '1',
+    'group': 'experimental'
 }
 
 ##### PS and UE
 
+# OneSided = True with samples WW, ggH_hww, qqH_hww will produce histo_<sample>_PS_HerwigUp & Down histograms
+# with Down identical to nominal and Up empty (because weights are zero). We have <sample>_PS_HerwigUp "samples"
+# that then get merged with the empty histograms.
 nuisances['PS']  = {
     'name': 'PS_Herwig',
     'kind': 'weight',
@@ -248,17 +272,20 @@ nuisances['PS']  = {
     'samples': {'WW': ['0.'], 'ggH_hww': ['0.'], 'qqH_hww': ['0.']},
     'samplespost': lambda self, samples: dict([('WW', ['1.'])] + [(sname, ['1.']) for sname in samples if 'ggH_hww' in sname or 'qqH_hww' in sname]),
     'AsLnN': '1',
-    'OneSided': True
+    'OneSided': True,
+    'group': 'theoretical'
 }
 
+# UE variation up & down histograms are made as independent samples
 nuisances['UE'] = {
     'name': 'UE_CUETP',
     'skipCMS': 1,
-    'kind': 'tree',
     'type': 'shape',
+    'kind': 'tree',
     'samples': {},
     'samplespost': lambda self, samples: dict([('WW', ['1.', '1.'])] + [(sname, ['1.', '1.']) for sname in samples if 'ggH_hww' in sname or 'qqH_hww' in sname]),
-    'AsLnN': '1'
+    'AsLnN': '1',
+    'group': 'theoretical'
 }
 
 ####### Generic "cross section uncertainties"
@@ -275,7 +302,8 @@ nuisances['singleTopToTTbar'] = {
     'skipCMS': 1,
     'kind': 'weight',
     'type': 'shape',
-    'samples': apply_on
+    'samples': apply_on,
+    'group': 'theoretical'
 }
 
 ## Top pT reweighting uncertainty
@@ -285,7 +313,8 @@ nuisances['TopPtRew'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': {'top': ["1.", "1./Top_pTrw"]},
-    'symmetrize': True
+    'symmetrize': True,
+    'group': 'theoretical'
 }
 
 nuisances['VgStar'] = {
@@ -293,7 +322,8 @@ nuisances['VgStar'] = {
     'type': 'lnN',
     'samples': {
         'VgS_L': '1.25'
-    }
+    },
+    'group': 'theoretical'
 }
 
 nuisances['VZ'] = {
@@ -301,7 +331,8 @@ nuisances['VZ'] = {
     'type': 'lnN',
     'samples': {
         'VgS_H': '1.16'
-    }
+    },
+    'group': 'theoretical'
 }
 
 ###### pdf uncertainties
@@ -319,16 +350,18 @@ nuisances['pdf_Higgs_gg'] = {
         'bbH_hww': valuesbbh
     },
     'type': 'lnN',
+    'group': 'signal'
 }
 
 values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','pdf','sm')
 
 nuisances['pdf_Higgs_ttH'] = {
     'name': 'pdf_Higgs_ttH',
+    'type': 'lnN',
     'samples': {
         'ttH_hww': values
     },
-    'type': 'lnN',
+    'group': 'signal'
 }
 
 valuesqqh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm')
@@ -346,6 +379,7 @@ nuisances['pdf_Higgs_qqbar'] = {
         'ZH_hww': valueszh,
         'ZH_htt': valueszh
     },
+    'group': 'signal'
 }
 
 #FIXME: check this 4%
@@ -357,27 +391,30 @@ nuisances['pdf_qqbar'] = {
         'VZ': '1.04',  # PDF: 0.0064 / 0.1427 = 0.0448493
         'VgS': '1.04', # PDF: 0.0064 / 0.1427 = 0.0448493
     },
+    'group': 'theoretical'
 }
 
 #FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['pdf_Higgs_gg_ACCEPT'] = {
     'name': 'pdf_Higgs_gg_ACCEPT',
+    'type': 'lnN',
     'samples': {
         'ggH_hww': '1.005',
         'ggH_htt': '1.005',
         'ggZH_hww': '1.005',
         'bbH_hww': '1.005'
     },
-    'type': 'lnN',
+    'group': 'signal'
 }
 
 #FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['pdf_gg_ACCEPT'] = {
     'name': 'pdf_gg_ACCEPT',
+    'type': 'lnN',
     'samples': {
         'ggWW': '1.005',
     },
-    'type': 'lnN',
+    'group': 'theoretical'
 }
 
 #FIXME: these come from HIG-16-042, maybe should be recomputed?
@@ -392,6 +429,7 @@ nuisances['pdf_Higgs_qqbar_ACCEPT'] = {
         'ZH_hww': '1.012',
         'ZH_htt': '1.012',
     },
+    'group': 'signal'
 }
 
 #FIXME: these come from HIG-16-042, maybe should be recomputed?
@@ -401,6 +439,7 @@ nuisances['pdf_qqbar_ACCEPT'] = {
     'samples': {
         'VZ': '1.005',
     },
+    'group': 'theoretical'
 }
 
 ##### Renormalization & factorization scales
@@ -425,7 +464,8 @@ nuisances['QCDscale_V'] = {
     'kind': 'weight_envelope',
     'type': 'shape',
     'samples': {'DY': variations},
-    'AsLnN': '1'
+    'AsLnN': '1',
+    'group': 'theoretical'
 }
 
 nuisances['QCDscale_VV'] = {
@@ -436,7 +476,8 @@ nuisances['QCDscale_VV'] = {
         'Vg': variations,
         'VZ': variations,
         'VgS': variations
-    }
+    },
+    'group': 'theoretical'
 }
 
 # ggww and interference
@@ -446,6 +487,7 @@ nuisances['QCDscale_ggVV'] = {
     'samples': {
         'ggWW': '1.15',
     },
+    'group': 'theoretical'
 }
 
 # NLL resummation variations
@@ -465,7 +507,8 @@ for nj in ['zeroJet', 'oneJet', 'multiJet']:
         'samples': {
             'WW': ['{0}*nllW_Rup/nllW + (!{0})'.format(nj), '{0}*nllW_Rdown/nllW + (!{0})'.format(nj)]
         },
-        'cutspost': wwcutsposts[nj]
+        'cutspost': wwcutsposts[nj],
+        'group': 'theoretical'
     }
     
     nuisances['QCDscale_WW_%s' % nj] = {
@@ -476,7 +519,8 @@ for nj in ['zeroJet', 'oneJet', 'multiJet']:
         'samples': {
           'WW': ['{0}*nllW_Qup/nllW + (!{0})'.format(nj), '{0}*nllW_Qdown/nllW + (!{0})'.format(nj)]
         },
-        'cutspost': wwcutsposts[nj]
+        'cutspost': wwcutsposts[nj],
+        'group': 'theoretical'
     }
 
 # Uncertainty on SR/CR ratio
@@ -489,6 +533,7 @@ nuisances['CRSR_accept_DY'] = {
     #'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut and cut in self['cuts']]),
     'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut]),
     #'perRecoBin': True
+    'group': 'theoretical'
 }
 
 # Uncertainty on SR/CR ratio
@@ -499,6 +544,7 @@ nuisances['CRSR_accept_top'] = {
     #'samples': {'top': '1.05'},
     'cuts': [cut for cut in cuts if '_CR_' in cut],
     'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut]),
+    'group': 'theoretical'
 }
 
 # Theory uncertainty for ggH
@@ -531,7 +577,8 @@ for name, vname in thus:
         'samples': {
           'ggH_hww': updown,
           #'ggH_htt': updown
-        }
+        },
+        'group': 'signal'
     }
 
 #### QCD scale uncertainties for Higgs signals other than ggH
@@ -544,7 +591,8 @@ nuisances['QCDscale_qqH'] = {
         'qqH_hww': values,
         'qqH_htt': values
     },
-    'type': 'lnN'
+    'type': 'lnN',
+    'group': 'signal'
 }
 
 valueswh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm')
@@ -552,41 +600,45 @@ valueszh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm')
 
 nuisances['QCDscale_VH'] = {
     'name': 'QCDscale_VH', 
+    'type': 'lnN',
     'samples': {
         'WH_hww': valueswh,
         'WH_htt': valueswh,
         'ZH_hww': valueszh,
         'ZH_htt': valueszh
     },
-    'type': 'lnN',
+    'group': 'signal'
 }
 
 values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggZH','125.09','scale','sm')
 
 nuisances['QCDscale_ggZH'] = {
     'name': 'QCDscale_ggZH', 
+    'type': 'lnN',
     'samples': {
         'ggZH_hww': values
     },
-    'type': 'lnN',
+    'group': 'signal'
 }
 
 values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','scale','sm')
 
 nuisances['QCDscale_ttH'] = {
     'name': 'QCDscale_ttH',
+    'type': 'lnN',
     'samples': {
         'ttH_hww': values
     },
-    'type': 'lnN',
+    'group': 'signal'
 }
 
 nuisances['QCDscale_WWewk'] = {
     'name': 'QCDscale_WWewk',
+    'type': 'lnN',
     'samples': {
         'WWewk': '1.11',
     },
-    'type': 'lnN'
+    'group': 'theoretical'
 }
 
 #FIXME: these come from HIG-16-042, maybe should be recomputed?
@@ -600,18 +652,20 @@ nuisances['QCDscale_qqbar_ACCEPT'] = {
         'WH_htt': '1.05',
         'ZH_hww': '1.04',
         'ZH_htt': '1.04',
-    }
+    },
+    'group': 'theoretical'
 }
 
 #FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['QCDscale_gg_ACCEPT'] = {
     'name': 'QCDscale_gg_ACCEPT',
+    'type': 'lnN',
     'samples': {
         'ggH_htt': '1.027',
         'ggZH_hww': '1.027',
         'ggWW': '1.027',
     },
-    'type': 'lnN',
+    'group': 'theoretical'
 }
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.

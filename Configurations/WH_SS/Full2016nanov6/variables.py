@@ -16,6 +16,12 @@ variables['mlljj20_whss']  = {   'name': 'mlljj20_whss',
                         'fold' : 3
                         }
 
+variables['mlljj20_whss_bin2']  = {   'name': 'mlljj20_whss',
+                        'range' : ([60.,100.,110.,120.,130.,140.,150.,160.,170.,180.,190.,200.,250.,300.],),
+                        'xaxis' : 'mlljj20_whss [GeV]',
+                        'fold' : 3
+                        }
+
 variables['mlljj20_whss_bin3']  = {   'name': 'mlljj20_whss',
                         'range' : ([60.,120.,130.,140.,150.,160.,170.,180.,190.,200.,250.,300.],),
                         'xaxis' : 'mlljj20_whss [GeV]',
@@ -230,12 +236,6 @@ variables['dphijjmet']  = {  'name': 'dphijjmet',
 variables['ht']  = {  'name': 'ht',
                         'range' : (40,0,200),
                         'xaxis' : 'ht [GeV]',
-                         'fold' : 3
-                        }
-
-variables['mllThird']  = {  'name': 'mllThird',
-                        'range' : (20,0,100),
-                        'xaxis' : 'mllThird [GeV]',
                          'fold' : 3
                         }
 

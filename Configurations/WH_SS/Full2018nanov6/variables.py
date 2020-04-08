@@ -16,6 +16,12 @@ variables['mlljj20_whss']  = {   'name': 'mlljj20_whss',
                         'fold' : 3
                         }
 
+variables['mlljj20_whss_bin2']  = {   'name': 'mlljj20_whss',
+                        'range' : ([60.,100.,110.,120.,130.,140.,150.,160.,170.,180.,190.,200.,250.,300.],),
+                        'xaxis' : 'mlljj20_whss [GeV]',
+                        'fold' : 3
+                        }
+
 variables['mlljj20_whss_bin3']  = {   'name': 'mlljj20_whss',
                         'range' : ([60.,120.,130.,140.,150.,160.,170.,180.,190.,200.,250.,300.],),
                         'xaxis' : 'mlljj20_whss [GeV]',
@@ -34,11 +40,6 @@ variables['ZH3l_dphilmetj']  = {  'name': 'ZH3l_dphilmetj*(CleanJet_pt[1]>30)',
                          'fold' : 3
                         }
 
-variables['WH3l_ZVeto']  = {   'name': 'WH3l_ZVeto',            #   variable name    
-                        'range' : (20,0,100),    #   variable range
-                        'xaxis' : 'WH3l_ZVeto',  #   x axis name
-                         'fold' : 0
-                        }
 
 variables['puppimet']  = {
                         'name': 'PuppiMET_pt',    
@@ -121,44 +122,6 @@ variables['mjj']  = {  'name': 'mjj*(CleanJet_pt[1]>30)',
                          'fold' : 3
                         }
 
-variables['puppimet']  = {
-                        'name': 'PuppiMET_pt',    
-                        'range' : (40,0,200),
-                        'xaxis' : 'pfmet [GeV]',
-                        'fold'  : 3
-                        } 
-
-variables['mll']  = {   'name': 'mll',            #   variable name    
-                        'range' : (20, 40,120),    #   variable range
-                        'xaxis' : 'm_{ll} [GeV]',  #   x axis name
-                        'fold' : 0
-                       }
-variables['detall']  = {   'name': 'abs(Lepton_eta[0] - Lepton_eta[1])',            #   variable name    
-                        'range' : (20,0.,10.),    #   variable range
-                        'xaxis' : 'detall',  #   x axis name
-                        'fold' : 3
-                        }
-
-
-variables['mth']  = {   'name': 'mth',            #   variable name    
-                        'range' : (40,0,200),    #   variable range
-                        'xaxis' : 'm_{T}^{H} [GeV]',  #   x axis name
-                         'fold' : 0
-                        }
-
-variables['dphill']  = {   'name': 'abs(dphill)',     
-                        'range' : (20,0,3.14),   
-                        'xaxis' : '#Delta#phi_{ll}',
-                        'fold' : 3
-                        }
-
-
-variables['ptll']  = {   'name': 'ptll',     
-                        'range' : (40, 0,200),   
-                        'xaxis' : 'p_{T}^{ll} [GeV]',
-                        'fold' : 0
-                        }
-
 variables['mtw1']  = {  'name': 'mtw1',
                         'range' : (40,0,200),
                         'xaxis' : 'm_{T}^{W_{1}} [GeV]',
@@ -230,12 +193,6 @@ variables['dphijjmet']  = {  'name': 'dphijjmet',
 variables['ht']  = {  'name': 'ht',
                         'range' : (40,0,200),
                         'xaxis' : 'ht [GeV]',
-                         'fold' : 3
-                        }
-
-variables['mllThird']  = {  'name': 'mllThird',
-                        'range' : (20,0,100),
-                        'xaxis' : 'mllThird [GeV]',
                          'fold' : 3
                         }
 

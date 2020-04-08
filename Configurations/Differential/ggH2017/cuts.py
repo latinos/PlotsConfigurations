@@ -37,13 +37,6 @@ for sname in signals:
         if re.match('.*PTH_.*', bname):
             slist_pthsignal.append('%s/%s' % (sname, bname))
 
-njetCutsProgressive = {
-    '1': 'Alt$(CleanJet_passPt[0], 0)',
-    '2': 'Alt$(CleanJet_passPt[1], 0)',
-    '3': 'Alt$(CleanJet_passPt[2], 0)',
-    'GE4': 'Alt$(CleanJet_passPt[3], 0)',
-}
-
 pthCutsProgressive = {}
 for pth in pthBins[1:]:
     if pth.startswith('GT'):
@@ -84,7 +77,6 @@ def addcr(name, binning, cutsMap, slist):
     
     cuts[name]['categorization'] = categorization.format(topcat='+'.join(topcat), dycat='+'.join(dycat), wwcat='+'.join(wwcat), dyoffset=len(binning), wwoffset=(2 * len(binning)))
 
-addcr('hww_CR_catNJ', njetBinning, njetCutsProgressive, slist_njsignal)
 addcr('hww_CR_catPTH', pthBins, pthCutsProgressive, slist_pthsignal)
 
 ### Signal regions
@@ -125,15 +117,41 @@ def addsr(name, binning, cutsMap, slist):
     # all bins cover the full phase space - no need for a default category
     cuts[name]['categorization'] = categorization
 
-addsr('hww_NJ', njetBinning, njetCutsProgressive, slist_njsignal)
 addsr('hww_PTH', pthBins, pthCutsProgressive, slist_pthsignal)
 
-addcut('hww_ggH2J', ['sr', 'multiJet', 'mjj < 65. || 105. < mjj < 400.'])
-cuts['hww_ggH2J']['categories'] = []
-cuts['hww_ggH2J']['samples'] = slist_njsignal
+# can't use progressive categorization for NJ because of the horn veto
 
-for pt2cat, _ in pt2cats:
-    for flavcat, _ in flavcats:
-        cuts['hww_ggH2J']['categories'].append('cat%s%s_2017' % (pt2cat, flavcat))
+name = 'hww_CR_catNJ'
 
-cuts['hww_ggH2J']['categorization'] = '2*(%s)+(%s)' % (pt2cats[1][1], flavcats[1][1])
+addcut(name, [crCut])
+cuts[name]['categories'] = []
+cuts[name]['samples'] = slist_njsignal
+
+for bname in njetBinning:
+    cuts[name]['categories'].append('%s_top_2017' % bname)
+for bname in njetBinning:
+    cuts[name]['categories'].append('%s_DY_2017' % bname)
+for bname in njetBinning:
+    cuts[name]['categories'].append('%s_WW_2017' % bname)
+
+categorization = 'topcr*({njcat})+dycr*({dyoffset}+{njcat})+wwcr*({wwoffset}+{njcat})'
+cuts[name]['categorization'] = categorization.format(njcat='TMath::Min(Sum$(CleanJet_passPt), 4)', dyoffset=len(njetBinning), wwoffset=(2 * len(njetBinning)))
+
+name = 'hww_NJ'
+
+addcut(name, ['sr'])
+cuts[name]['categories'] = []
+cuts[name]['samples'] = slist_njsignal
+
+cats = []
+for bname in njetBinning:
+    for pt2cat, _ in pt2cats:
+        for flavcat, _ in flavcats:
+            for chargecat, _ in chargecats:
+                cuts[name]['categories'].append('%s_cat%s%s%s_2017' % (bname, pt2cat, flavcat, chargecat))
+
+categorization = '8*TMath::Min(Sum$(CleanJet_passPt), 4)'
+categorization += '+4*(%s)' % pt2cats[1][1]
+categorization += '+2*(%s)' % flavcats[1][1]
+categorization += '+(%s)' % chargecats[1][1]
+cuts[name]['categorization'] = categorization
