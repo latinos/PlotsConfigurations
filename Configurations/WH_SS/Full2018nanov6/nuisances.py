@@ -189,7 +189,7 @@ for js in jes_systs:
       'type': 'shape',
       'mapUp': js+'up',
       'mapDown': js+'do',
-      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['ZZ','WZ','Zg','Wg','WgS']),
+      'samples': dict((skey, ['1', '1']) for skey in mc),
       'folderUp': makeMCDirectory('JESup_suffix'),
       'folderDown': makeMCDirectory('JESdo_suffix'),
       'AsLnN': '1'
