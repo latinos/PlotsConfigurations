@@ -9,7 +9,7 @@ variables['events']  = {   'name': '1',
                         'xaxis' : 'events', 
                         'fold' : 3
                        }
-
+'''
 variables['mlljj20_whss']  = {   'name': 'mlljj20_whss',
                         'range' : ([60.,70.,80.,90.,100.,110.,120.,130.,140.,150.,160.,170.,180.,190.,200.,250.,300.],),
                         'xaxis' : 'mlljj20_whss [GeV]',
@@ -27,14 +27,14 @@ variables['mlljj20_whss_bin3']  = {   'name': 'mlljj20_whss',
                         'xaxis' : 'mlljj20_whss [GeV]',
                         'fold' : 3
                         }
-
+'''
 variables['ZH3l_dphilmetjj']  = {  'name': 'ZH3l_dphilmetjj*(CleanJet_pt[1]>30)',
                         'range' : (20,0,3.2),
                         'xaxis' : 'ZH3l_dphilmetjj',
                          'fold' : 3
                         }
 
-variables['ZH3l_dphilmetj']  = {  'name': 'ZH3l_dphilmetj*(CleanJet_pt[1]>30)',
+variables['ZH3l_dphilmetj']  = {  'name': 'ZH3l_dphilmetj',
                         'range' : (20,0,3.2),
                         'xaxis' : 'ZH3l_dphilmetj',
                          'fold' : 3
@@ -47,6 +47,7 @@ variables['puppimet']  = {
                         'xaxis' : 'pfmet [GeV]',
                         'fold'  : 3
                         }
+'''
 variables['mll']  = {   'name': 'mll',            #   variable name    
                         'range' : (20, 40,120),    #   variable range
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
@@ -195,4 +196,4 @@ variables['ht']  = {  'name': 'ht',
                         'xaxis' : 'ht [GeV]',
                          'fold' : 3
                         }
-
+'''

@@ -4,6 +4,7 @@ supercut = 'mll>12  \
             && bVeto \
             && PuppiMET_pt > 30 \
             '
+
 ## SR 2jets
 cuts['hww2l2v_13TeV_of2j_WH_SS_uu_2j'] = '(Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13) \
                                        && nLepton==2  \
@@ -41,7 +42,7 @@ cuts['hww2l2v_13TeV_of2j_WH_SS_eu_1j'] = '(Lepton_pdgId[0]*Lepton_pdgId[1] == 11
                                        '
 ### WZ CR
 
-
+'''
 cuts['hww2l2v_13TeV_of2j_WH_SS_WZ_1j'] = '((Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13) || (Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13))\
                                        && (nLepton>=3 && Alt$(Lepton_pt[3],0)<10) \
                                        && Lepton_pt[2]>15 \
@@ -59,4 +60,4 @@ cuts['hww2l2v_13TeV_of2j_WH_SS_WZ_2j'] = '((Lepton_pdgId[0]*Lepton_pdgId[1] == 1
                                        && WH3l_mlll > 100 \
                                        && abs(WH3l_chlll) == 1 \
                                        '
-
+'''
