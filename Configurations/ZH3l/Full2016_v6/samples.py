@@ -40,7 +40,8 @@ eleWP='mva_90p_Iso2016'
 #eleWP='cut_WP_Tight80X_SS'
 muWP='cut_Tight80x'
 
-LepWPCut        = 'LepCut'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
+LepWPCut        = 'LepCut'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP+'*LepWPCutNew' #Cut for new WPs, defined in aliases
+#LepWPCut        = 'LepCut'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
 LepWPweight     = 'LepSF'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
 
 ################################################
@@ -55,10 +56,15 @@ PromptGenLepMatch   = 'PromptGenLepMatch'+Nlep+'l'
 ############## FAKE WEIGHTS ####################
 ################################################
 
+eleWP_new = eleWP+'_tthmva_70'
+muWP_new  = muWP+'_tthmva_80'
+#eleWP_new = eleWP
+#muWP_new  = muWP
+
 if Nlep == '2' :
-  fakeW = 'fakeW2l_ele_'+eleWP+'_mu_'+muWP
+  fakeW = 'fakeW2l_ele_'+eleWP_new+'_mu_'+muWP_new
 else:
-  fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l'
+  fakeW = 'fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_'+Nlep+'l'
 
 ################################################
 ############### B-Tag  WP ######################
@@ -259,11 +265,11 @@ samples['ZZ']  = {  'name'   :   getSampleFilesNano(directory,'ZZTo2L2Nu')
 ZZ2LbaseW = getBaseWnAOD(directory,'Summer16_102X_nAODv5_Full2016v6',['ZZTo2L2Nu','ZZTo2L2Nu_ext1'])
 ZZ4LbaseW = getBaseWnAOD(directory,'Summer16_102X_nAODv5_Full2016v6',['ZZTo4L','ZZTo4L_ext1'])
 
-addSampleWeight(samples,'ZZ','ZZTo4L',        "1.17*"+ZZ4LbaseW+'/baseW') ## The NNLO/NLO k-factor, cited from https://arxiv.org/abs/1405.2219v1
-addSampleWeight(samples,'ZZ','ZZTo4L_ext1',   "1.17*"+ZZ4LbaseW+'/baseW')
-addSampleWeight(samples,'ZZ','ZZTo2L2Nu',     "1.17*"+ZZ2LbaseW+'/baseW') 
-addSampleWeight(samples,'ZZ','ZZTo2L2Nu_ext1',"1.17*"+ZZ2LbaseW+'/baseW') 
-addSampleWeight(samples,'ZZ','ZZTo2L2Q',      "1.17") 
+addSampleWeight(samples,'ZZ','ZZTo4L',        "1.07*"+ZZ4LbaseW+'/baseW') ## The non-ggZZ NNLO/NLO k-factor, cited from https://arxiv.org/abs/1405.2219v1
+addSampleWeight(samples,'ZZ','ZZTo4L_ext1',   "1.07*"+ZZ4LbaseW+'/baseW') 
+addSampleWeight(samples,'ZZ','ZZTo2L2Nu',     "1.07*"+ZZ2LbaseW+'/baseW') 
+addSampleWeight(samples,'ZZ','ZZTo2L2Nu_ext1',"1.07*"+ZZ2LbaseW+'/baseW') 
+addSampleWeight(samples,'ZZ','ZZTo2L2Q',      "1.07") 
 addSampleWeight(samples,'ZZ','ggZZ2e2t',      "1.68") ## The NLO/LO k-factor, cited from https://arxiv.org/abs/1509.06734v1
 addSampleWeight(samples,'ZZ','ggZZ2m2t',      "1.68") 
 addSampleWeight(samples,'ZZ','ggZZ2e2m',      "1.68")
@@ -333,7 +339,7 @@ samples['Fake']  = {   'name': [ ] ,
                        'FilesPerJob' : 15 ,
                      }
 
-directory = treeBaseDir+'Run2016_102X_nAODv5_Full2016v6/DATAl1loose2016v6__l2loose__fakeW/'
+directory = treeBaseDir+'Run2016_102X_nAODv5_Full2016v6_ForNewWPs/DATAl1loose2016v6__l2loose__fakeW__jetSelCustom/'
 for Run in DataRun :
   for DataSet in DataSets :
     tmpname = Run[1].replace('v1','v3') if ('Run2016E' in Run[1] and DataSet is 'MuonEG') else Run[1]
@@ -342,7 +348,6 @@ for Run in DataRun :
       samples['Fake']['name'].append(iFile)
       samples['Fake']['weights'].append(DataTrig[DataSet])
 
-#TODO Each channel should specify
 samples['Fake']['subsamples'] = {
     'e': 'abs(ZH3l_pdgid_l) == 11',
     'm': 'abs(ZH3l_pdgid_l) == 13'

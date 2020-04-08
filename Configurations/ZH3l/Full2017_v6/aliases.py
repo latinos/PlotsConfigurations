@@ -2,8 +2,9 @@
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-#bWP = '0.2217' #Loose
-bWP = '0.6321'
+#2017
+#bWP = '0.1522' #Loose
+bWP = '0.4941'
 
 aliases['bVeto'] = {
     'expr': '(Sum$( CleanJet_pt > 20.0 && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+bWP+' ) == 0)'
@@ -32,7 +33,39 @@ aliases['PromptGenLepMatch3l'] = {
     'samples': mc
 }
 
+aliases['LepWPCutNew'] = { 'expr': '(((abs(Lepton_pdgId[0])==13 && Muon_mvaTTH[Lepton_muonIdx[0]]>0.8) || (abs(Lepton_pdgId[0])==11 && Electron_mvaTTH[Lepton_electronIdx[0]]>0.7)) && ((abs(Lepton_pdgId[1])==13 && Muon_mvaTTH[Lepton_muonIdx[1]]>0.8) || (abs(Lepton_pdgId[1])==11 && Electron_mvaTTH[Lepton_electronIdx[1]]>0.7)) && ((abs(Lepton_pdgId[2])==13 && Muon_mvaTTH[Lepton_muonIdx[2]]>0.8) || (abs(Lepton_pdgId[2])==11 && Electron_mvaTTH[Lepton_electronIdx[2]]>0.7)))', 
+                           'samples': mc + ['DATA'] 
+}
+
 aliases['Top_pTrw'] = {
     'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
     'samples': ['top']
+}
+
+aliases['ZH3l_dphilmetjj_test'] = {
+    'linesToAdd': [
+        '.L %s/src/PlotsConfigurations/Configurations/ZH3l/scripts/ZH3l_patch.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'ZH3l_patch',
+    'args': ("dphilmetjj")
+}
+
+aliases['ZH3l_dphilmetj_test'] = {
+    'class': 'ZH3l_patch',
+    'args': ("dphilmetj")
+}
+
+aliases['ZH3l_mTlmet_test'] = {
+    'class': 'ZH3l_patch',
+    'args': ("mTlmet")
+}
+
+aliases['ZH3l_mTlmetj_test'] = {
+    'class': 'ZH3l_patch',
+    'args': ("mTlmetj")
+}
+
+aliases['ZH3l_mTlmetjj_test'] = {
+    'class': 'ZH3l_patch',
+    'args': ("mTlmetjj")
 }

@@ -2,9 +2,8 @@
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-#2017
-#bWP = '0.1522' #Loose
-bWP = '0.4941'
+#bWP = '0.2217' #Loose
+bWP = '0.6321'
 
 aliases['bVeto'] = {
     'expr': '(Sum$( CleanJet_pt > 20.0 && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+bWP+' ) == 0)'
@@ -41,3 +40,32 @@ aliases['Top_pTrw'] = {
     'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
     'samples': ['top']
 }
+
+aliases['ZH3l_dphilmetjj_test'] = {
+    'linesToAdd': [
+        '.L %s/src/PlotsConfigurations/Configurations/ZH3l/scripts/ZH3l_patch.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'ZH3l_patch',
+    'args': ("dphilmetjj")
+}
+
+aliases['ZH3l_dphilmetj_test'] = {
+    'class': 'ZH3l_patch',
+    'args': ("dphilmetj")
+}
+
+aliases['ZH3l_mTlmet_test'] = {
+    'class': 'ZH3l_patch',
+    'args': ("mTlmet")
+}
+
+aliases['ZH3l_mTlmetj_test'] = {
+    'class': 'ZH3l_patch',
+    'args': ("mTlmetj")
+}
+
+aliases['ZH3l_mTlmetjj_test'] = {
+    'class': 'ZH3l_patch',
+    'args': ("mTlmetjj")
+}
+
