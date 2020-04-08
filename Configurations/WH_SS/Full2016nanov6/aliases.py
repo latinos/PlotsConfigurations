@@ -33,7 +33,7 @@ aliases['gstarLow'] = {
 
 aliases['gstarHigh'] = {
     'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
-    'samples': 'WgS'
+    'samples': 'WZ'
 }
 
 # Fake leptons transfer factor
