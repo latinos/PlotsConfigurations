@@ -25,25 +25,25 @@ HiggsXS = HiggsXSection()
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2018',
     'type': 'lnN',
-    'samples': dict((skey, '1.015') for skey in mc if skey not in ['WgS'])
+    'samples': dict((skey, '1.015') for skey in mc if skey not in ['WgS','WZ'])
 }
 
 nuisances['lumi_XYFact'] = {
     'name': 'lumi_13TeV_XYFact',
     'type': 'lnN',
-    'samples': dict((skey, '1.02') for skey in mc if skey not in ['WgS'])
+    'samples': dict((skey, '1.02') for skey in mc if skey not in ['WgS','WZ'])
 }
 
 nuisances['lumi_CurrCalib'] = {
     'name': 'lumi_13TeV_CurrCalib',
     'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WgS'])
+    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WgS','WZ'])
 }
 
 nuisances['lumi_LScale'] = {
     'name': 'lumi_13TeV_LSCale',
     'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WgS'])
+    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WgS','WZ'])
 }
 
 
@@ -189,7 +189,7 @@ for js in jes_systs:
       'type': 'shape',
       'mapUp': js+'up',
       'mapDown': js+'do',
-      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['ZZ','WZhad','Zg','Wg','WgS']),
+      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['ZZ','WZ','Zg','Wg','WgS']),
       'folderUp': makeMCDirectory('JESup_suffix'),
       'folderDown': makeMCDirectory('JESdo_suffix'),
       'AsLnN': '1'
@@ -247,6 +247,7 @@ nuisances['PS_ISR_1jet']  = {
           'hww2l2v_13TeV_of2j_WH_SS_ee_1j',
           'hww2l2v_13TeV_of2j_WH_SS_eu_1j',
           'hww2l2v_13TeV_of2j_WH_SS_WZ_1j',
+          'zh3l_WZ_CR_1j',
      ]
 }
 
@@ -267,6 +268,7 @@ nuisances['PS_ISR_2jet']  = {
           'hww2l2v_13TeV_of2j_WH_SS_eu_2j',
           'hww2l2v_13TeV_of2j_WH_SS_ee_2j',
           'hww2l2v_13TeV_of2j_WH_SS_WZ_2j',
+          'zh3l_WZ_CR_2j',
      ]
               
 }
@@ -288,6 +290,7 @@ nuisances['PS_FSR_1jet']  = {
           'hww2l2v_13TeV_of2j_WH_SS_eu_1j',
           'hww2l2v_13TeV_of2j_WH_SS_ee_1j',
           'hww2l2v_13TeV_of2j_WH_SS_WZ_1j',
+          'zh3l_WZ_CR_1j',
      ]
 }
 
@@ -308,6 +311,7 @@ nuisances['PS_FSR_2jet']  = {
           'hww2l2v_13TeV_of2j_WH_SS_eu_2j',
           'hww2l2v_13TeV_of2j_WH_SS_ee_2j',
           'hww2l2v_13TeV_of2j_WH_SS_WZ_2j',
+          'zh3l_WZ_CR_2j',
      ]
 }
 
@@ -370,7 +374,7 @@ nuisances['pdf_qqbar'] = {
         'Wg': '1.04',
         'Zg': '1.04',
         'ZZ': '1.04',  # PDF: 0.0064 / 0.1427 = 0.0448493
-        'WZhad': '1.04',  # PDF: 0.0064 / 0.1427 = 0.0448493
+        'WZ': '1.04',  # PDF: 0.0064 / 0.1427 = 0.0448493
         'WgS': '1.04', # PDF: 0.0064 / 0.1427 = 0.0448493
         'ZgS': '1.04', # PDF: 0.0064 / 0.1427 = 0.0448493
     },
@@ -412,7 +416,7 @@ nuisances['pdf_qqbar_ACCEPT'] = {
     'type': 'lnN',
     'samples': {
         'ZZ': '1.001',
-        'WZhad': '1.001',
+        'WZ': '1.001',
     },
 }
 
@@ -442,7 +446,7 @@ nuisances['QCDscale_VV'] = {
         'Zg': variations,
         'Wg': variations,
         'ZZ': variations,
-        'WZhad': variations,
+        'WZ': variations,
         'WgS': variations,
         'ZgS': variations
     }
@@ -567,14 +571,14 @@ nuisances['WgStar'] = {
     'name': 'CMS_hww_WgStarScale',
     'type': 'lnN',
     'samples': {
-        'WgS_L': '1.25'
+        'WgS': '1.25'
     }
 }
 
 nuisances['WgSH2jnorm']  = {
                'name'  : 'CMS_hww_WgSH_WHSS2j_norm',
                'samples'  : {
-                   'WgS_H'       : '1.00',
+                   'WZ'       : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
@@ -582,13 +586,14 @@ nuisances['WgSH2jnorm']  = {
                    'hww2l2v_13TeV_of2j_WH_SS_eu_2j',
                    'hww2l2v_13TeV_of2j_WH_SS_ee_2j',
                    'hww2l2v_13TeV_of2j_WH_SS_WZ_2j',
+                   'zh3l_WZ_CR_2j',
                 ]
               }
     
 nuisances['WgSH1jnorm']  = {
                'name'  : 'CMS_hww_WgSH_WHSS1j_norm',
                'samples'  : {
-                   'WgS_H'       : '1.00',
+                   'WZ'       : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
@@ -596,6 +601,7 @@ nuisances['WgSH1jnorm']  = {
                    'hww2l2v_13TeV_of2j_WH_SS_eu_1j',
                    'hww2l2v_13TeV_of2j_WH_SS_ee_1j',
                    'hww2l2v_13TeV_of2j_WH_SS_WZ_1j',
+                   'zh3l_WZ_CR_1j',
                 ] 
               }
 

@@ -25,31 +25,31 @@ HiggsXS = HiggsXSection()
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2016',
     'type': 'lnN',
-    'samples': dict((skey, '1.022') for skey in mc if skey not in ['WgS'])
+    'samples': dict((skey, '1.022') for skey in mc if skey not in ['WgS','WZ'])
 }
 
 nuisances['lumi_XYFact'] = {
     'name': 'lumi_13TeV_XYFact',
     'type': 'lnN',
-    'samples': dict((skey, '1.009') for skey in mc if skey not in ['WgS'])
+    'samples': dict((skey, '1.009') for skey in mc if skey not in ['WgS','WZ'])
 }
 
 nuisances['lumi_BBDefl'] = {
     'name': 'lumi_13TeV_BBDefl',
     'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WgS'])
+    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WgS','WZ'])
 }
 
 nuisances['lumi_DynBeta'] = {
     'name': 'lumi_13TeV_DynBeta',
     'type': 'lnN',
-    'samples': dict((skey, '1.005') for skey in mc if skey not in ['WgS'])
+    'samples': dict((skey, '1.005') for skey in mc if skey not in ['WgS','WZ'])
 }
 
 nuisances['lumi_Ghosts'] = {
     'name': 'lumi_13TeV_Ghosts',
     'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WgS'])
+    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WgS','WZ'])
 }
 
 
@@ -198,7 +198,7 @@ for js in jes_systs:
       'type': 'shape',
       'mapUp': js+'up',
       'mapDown': js+'do',
-      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['WZhad','ZZ','Wg','Zg,''WgS']),
+      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['WZ','ZZ','Wg','Zg,''WgS']),
       'folderUp': makeMCDirectory('JESup_suffix'),
       'folderDown': makeMCDirectory('JESdo_suffix'),
       'AsLnN': '1'
@@ -355,7 +355,7 @@ nuisances['WgStar'] = {
     'name': 'CMS_hww_WgStarScale',
     'type': 'lnN',
     'samples': {
-        'WgS_L': '1.25'
+        'WgS': '1.25'
     }
 }
 
@@ -410,7 +410,7 @@ nuisances['pdf_qqbar'] = {
         'Wg': '1.04',
         'Zg': '1.04',
         'ZZ': '1.04',  # PDF: 0.0064 / 0.1427 = 0.0448493
-        'WZhad': '1.04',  # PDF: 0.0064 / 0.1427 = 0.0448493
+        'WZ': '1.04',  # PDF: 0.0064 / 0.1427 = 0.0448493
         'WgS': '1.04', # PDF: 0.0064 / 0.1427 = 0.0448493
         'ZgS': '1.04', # PDF: 0.0064 / 0.1427 = 0.0448493
     },
@@ -453,7 +453,7 @@ nuisances['pdf_qqbar_ACCEPT'] = {
     'type': 'lnN',
     'samples': {
         'ZZ': '1.001',
-        'WZhad': '1.001',
+        'WZ': '1.001',
     },
 }
 
@@ -579,7 +579,7 @@ nuisances['QCDscale_gg_ACCEPT'] = {
 nuisances['WgSH2jnorm']  = {
                'name'  : 'CMS_hww_WgSH_WHSS2j_norm',
                'samples'  : {
-                   'WgS_H'       : '1.00',
+                   'WZ'       : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
@@ -593,7 +593,7 @@ nuisances['WgSH2jnorm']  = {
 nuisances['WgSH1jnorm']  = {
                'name'  : 'CMS_hww_WgSH_WHSS1j_norm',
                'samples'  : {
-                   'WgS_H'       : '1.00',
+                   'WZ'       : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
