@@ -78,7 +78,7 @@ myreaderBDTGOSSF->AddVariable("Alt$(Lepton_pt[0],0)",&loc_Lepton_pt_0);
 myreaderBDTGOSSF->AddVariable("Alt$(Lepton_pt[1],0)",&loc_Lepton_pt_1);
 myreaderBDTGOSSF->AddVariable("Alt$(Lepton_pt[2],0)",&loc_Lepton_pt_2);
 
-myreaderBDTGOSSF->BookMVA("BDTG4F07","/afs/cern.ch/user/p/pyu/public/HWWAnalysis/FullRunII30Mar_combinedTrain_v5/TMVAClassification_BDTG4F07.weights.xml");
+myreaderBDTGOSSF->BookMVA("BDTG4F07","/afs/cern.ch/user/p/pyu/public/HWWAnalysis/FullRunII06Apr_v6/TMVAClassification_2016OSSF.weights.xml");
 
 }
 
@@ -119,7 +119,6 @@ float hww_WH3l_OSSF_mvaBDTG(int entry, int nclass){
     loc_Lepton_pt_2     = loc0_Lepton_pt[2]     ;
 
     float classifier = myreaderBDTGOSSF->EvaluateMVA("BDTG4F07");
-    //float classifier = myreaderBDTGOSSF->EvaluateMulticlass(nclass, "BDTG4F07");
 
     return classifier;
 

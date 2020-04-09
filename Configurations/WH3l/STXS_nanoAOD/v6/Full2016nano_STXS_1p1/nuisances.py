@@ -1,14 +1,5 @@
 # nuisances
 
-#nuisances = {}
-
-# name of samples here must match keys in samples.py 
-
-# imported from samples.py:
-# samples, treeBaseDir, mcProduction, mcSteps
-# imported from cuts.py
-# cuts
-
 from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
 
 def nanoGetSampleFiles(inputDir, Sample):
@@ -156,13 +147,16 @@ nuisances['eff_e'] = {
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
 }
 
+
 nuisances['electronpt'] = {
     'name': 'CMS_scale_e_2016',
-    'kind': 'tree',
+    'kind': 'suffix',
     'type': 'shape',
+    'mapUp' : 'ElepTup',
+    'mapDown': 'ElepTdo',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('ElepTup'),
-    'folderDown': makeMCDirectory('ElepTdo'),
+    'folderUp': makeMCDirectory('ElepTup_suffix'),
+    'folderDown': makeMCDirectory('ElepTdo_suffix'),
     'AsLnN': '1'
 }
 
@@ -177,64 +171,81 @@ nuisances['eff_m'] = {
 
 nuisances['muonpt'] = {
     'name': 'CMS_scale_m_2016',
-    'kind': 'tree',
+    'kind': 'suffix',
     'type': 'shape',
+    'mapUp': 'MupTup',
+    'mapDown': 'MupTdo',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('MupTup'),
-    'folderDown': makeMCDirectory('MupTdo'),
+    'folderUp': makeMCDirectory('MupTup_suffix'),
+    'folderDown': makeMCDirectory('MupTdo_suffix'),
     'AsLnN': '1'
 }
 
 ##### Jet energy scale
 
-nuisances['jes'] = {
-    'name': 'CMS_scale_j_2016',
-    'kind': 'tree',
-    'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('JESup'),
-    'folderDown': makeMCDirectory('JESdo'),
-    'AsLnN': '1'
-}
+##### Jet energy scale
+jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
+#jes_systs = ['JES']
+
+for js in jes_systs:
+  nuisances[js] = {
+      'name': 'CMS_scale_'+js,
+      'kind': 'suffix',
+      'type': 'shape',
+      'mapUp': js+'up',
+      'mapDown': js+'do',
+      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VZ','Vg','VgS']),
+      'folderUp': makeMCDirectory('JESup_suffix'),
+      'folderDown': makeMCDirectory('JESdo_suffix'),
+      'AsLnN': '1'
+  }
 
 ##### MET energy scale
 
 nuisances['met'] = {
     'name': 'CMS_scale_met_2016',
-    'kind': 'tree',
+    'kind': 'suffix',
     'type': 'shape',
+    'mapUp': 'METup',
+    'mapDown': 'METdo',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('METup'),
-    'folderDown': makeMCDirectory('METdo'),
+    'folderUp': makeMCDirectory('METup_suffix'),
+    'folderDown': makeMCDirectory('METdo_suffix'),
     'AsLnN': '1'
 }
 
 ##### PS and UE --> NO AVAILABLE FOR VH2j! 
-nuisances['PS_whss']  = {
-                'name'  : 'PS_whss',
-                'skipCMS' : 1,
-                'type'  : 'lnN',
-                'samples'  : {
-                   'WH_hww'   : '1.037',
-                   'ZH_hww'   : '1.037',
-                   'H_htt'    : '1.037',
-                   'ggZH_hww'   : '1.037',
-              #     'ZH_htt'   : '1.037',
-                },
-}
+# nuisances['PS_whss']  = {
+                # 'name'  : 'PS_whss',
+                # 'skipCMS' : 1,
+                # 'type'  : 'lnN',
+                # 'samples'  : {
+                   # 'WH_hww'   : '1.037',
+                   # 'ZH_hww'   : '1.037',
+                   # 'H_htt'    : '1.037',
+                   # 'ggZH_hww'   : '1.037',
+              # #     'ZH_htt'   : '1.037',
+                # },
+# }
 
 nuisances['UE_whss']  = {
                 'name'  : 'UE_whss',
                 'skipCMS' : 1,
                 'type'  : 'lnN',
-                'samples'  : {
-                   'WH_hww'   : '1.010',
-                   'ZH_hww'   : '1.010',
-                   'H_htt'    : '1.010',
-                   'ggZH_hww'   : '1.010',
- #                  'ZH_htt'   : '1.010',
-               },
-                }
+                'samples': dict((skey, '1.015') for skey in mc),
+}
+# nuisances['UE_whss']  = {
+                # 'name'  : 'UE_whss',
+                # 'skipCMS' : 1,
+                # 'type'  : 'lnN',
+                # 'samples'  : {
+                   # 'WH_hww'   : '1.010',
+                   # 'ZH_hww'   : '1.010',
+                   # 'H_htt'    : '1.010',
+                   # 'ggZH_hww'   : '1.010',
+ # #                  'ZH_htt'   : '1.010',
+               # },
+                # }
 
 ###### pdf uncertainties
 
