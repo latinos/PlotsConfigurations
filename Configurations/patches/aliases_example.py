@@ -34,43 +34,43 @@ aliases['ttHMVA_SF_Up_0'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % conf
 
 aliases['ttHMVA_SF_Up_1'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
                              'class': 'compute_SF',
-                             'args' : ('2017', 4, 'single_SF_up', 0),
+                             'args' : ('2017', 4, 'single_SF_up', 1),
                              'samples': mc
                             }
 
 aliases['ttHMVA_SF_Up_2'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
                              'class': 'compute_SF',
-                             'args' : ('2017', 4, 'single_SF_up', 0),
+                             'args' : ('2017', 4, 'single_SF_up', 2),
                              'samples': mc
                             }
 
 aliases['ttHMVA_SF_Up_3'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
                              'class': 'compute_SF',
-                             'args' : ('2017', 4, 'single_SF_up', 0),
+                             'args' : ('2017', 4, 'single_SF_up', 3),
                              'samples': mc
                             }
 
 aliases['ttHMVA_SF_Down_0'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
                                'class': 'compute_SF',
-                               'args' : ('2017', 4, 'single_SF_up', 0),
+                               'args' : ('2017', 4, 'single_SF_down', 0),
                                'samples': mc
                               }
 
 aliases['ttHMVA_SF_Down_1'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
                                'class': 'compute_SF',
-                               'args' : ('2017', 4, 'single_SF_up', 0),
+                               'args' : ('2017', 4, 'single_SF_down', 1),
                                'samples': mc
                               }
 
 aliases['ttHMVA_SF_Down_2'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
                                'class': 'compute_SF',
-                               'args' : ('2017', 4, 'single_SF_up', 0),
+                               'args' : ('2017', 4, 'single_SF_down', 2),
                                'samples': mc
                               }
 
 aliases['ttHMVA_SF_Down_3'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
                                'class': 'compute_SF',
-                               'args' : ('2017', 4, 'single_SF_up', 0),
+                               'args' : ('2017', 4, 'single_SF_down', 3),
                                'samples': mc
                               }
 
