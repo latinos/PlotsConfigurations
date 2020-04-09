@@ -69,3 +69,105 @@ aliases['ZH3l_mTlmetjj_test'] = {
     'class': 'ZH3l_patch',
     'args': ("mTlmetjj")
 }
+
+#######################
+### SFs for tthMVA  ###
+#######################
+
+aliases['ttHMVA_SF_3l'] = {
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/patches/compute_SF.C+' % os.getenv('CMSSW_BASE')],
+    'class': 'compute_SF',
+    'args' : ('2017', 3, 'total_SF'),
+    'samples': mc
+}
+
+aliases['ttHMVA_SF_Up_0'] = {
+    'class': 'compute_SF',
+    'args' : ('2017', 3, 'single_SF_up', 0),
+    'nominalOnly' : True,
+    'samples': mc
+}
+
+aliases['ttHMVA_SF_Up_1'] = {
+    'class': 'compute_SF',
+    'args' : ('2017', 3, 'single_SF_up', 1),
+    'nominalOnly' : True,
+    'samples': mc
+}
+
+aliases['ttHMVA_SF_Up_2'] = {
+    'class': 'compute_SF',
+    'args' : ('2017', 3, 'single_SF_up', 2),
+    'nominalOnly' : True,
+    'samples': mc
+}
+
+aliases['ttHMVA_SF_Down_0'] = {
+    'class': 'compute_SF',
+    'args' : ('2017', 3, 'single_SF_down', 0),
+    'nominalOnly' : True,
+    'samples': mc
+}
+
+aliases['ttHMVA_SF_Down_1'] = {
+    'class': 'compute_SF',
+    'args' : ('2017', 3, 'single_SF_down', 1),
+    'nominalOnly' : True,
+    'samples': mc
+}
+
+aliases['ttHMVA_SF_Down_2'] = {
+    'class': 'compute_SF',
+    'args' : ('2017', 3, 'single_SF_down', 2),
+    'nominalOnly' : True,
+    'samples': mc
+}
+
+aliases['ttHMVA_3l_ele_SF_Up'] = {
+    'expr' : '(ttHMVA_SF_Up_0*(Lepton_pdgId[0] == 11) + (Lepton_pdgId[0] == 13)) *\
+              (ttHMVA_SF_Up_1*(Lepton_pdgId[1] == 11) + (Lepton_pdgId[1] == 13)) *\
+              (ttHMVA_SF_Up_2*(Lepton_pdgId[2] == 11) + (Lepton_pdgId[2] == 13))',
+    'nominalOnly' : True,
+    'samples' : mc
+}
+
+aliases['ttHMVA_3l_ele_SF_Down'] = {
+    'expr' : '(ttHMVA_SF_Down_0*(Lepton_pdgId[0] == 11) + (Lepton_pdgId[0] == 13)) *\
+              (ttHMVA_SF_Down_1*(Lepton_pdgId[1] == 11) + (Lepton_pdgId[1] == 13)) *\
+              (ttHMVA_SF_Down_2*(Lepton_pdgId[2] == 11) + (Lepton_pdgId[2] == 13))',
+    'nominalOnly' : True,
+    'samples' : mc
+}
+
+aliases['ttHMVA_3l_mu_SF_Up'] = {
+    'expr' : '(ttHMVA_SF_Up_0*(Lepton_pdgId[0] == 13) + (Lepton_pdgId[0] == 11)) *\
+              (ttHMVA_SF_Up_1*(Lepton_pdgId[1] == 13) + (Lepton_pdgId[1] == 11)) *\
+              (ttHMVA_SF_Up_2*(Lepton_pdgId[2] == 13) + (Lepton_pdgId[2] == 11))',
+    'nominalOnly' : True,
+    'samples' : mc
+}
+
+aliases['ttHMVA_3l_mu_SF_Down'] = {
+    'expr' : '(ttHMVA_SF_Down_0*(Lepton_pdgId[0] == 13) + (Lepton_pdgId[0] == 11)) *\
+              (ttHMVA_SF_Down_1*(Lepton_pdgId[1] == 13) + (Lepton_pdgId[1] == 11)) *\
+              (ttHMVA_SF_Down_2*(Lepton_pdgId[2] == 13) + (Lepton_pdgId[2] == 11))',
+    'nominalOnly' : True,
+    'samples' : mc
+}
+
+# In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
+aliases['lhe_mW1'] = {
+    'expr': 'TMath::Sqrt(2. * LHEPart_pt[0] * LHEPart_pt[1] * (TMath::CosH(LHEPart_eta[0] - LHEPart_eta[1]) - TMath::Cos(LHEPart_phi[0] - LHEPart_phi[1])))',
+    'samples': ['WWewk']
+}
+
+# and [2] [3] are the second W
+aliases['lhe_mW2'] = {
+    'expr': 'TMath::Sqrt(2. * LHEPart_pt[2] * LHEPart_pt[3] * (TMath::CosH(LHEPart_eta[2] - LHEPart_eta[3]) - TMath::Cos(LHEPart_phi[2] - LHEPart_phi[3])))',
+    'samples': ['WWewk']
+}
+
+aliases['gstarHigh'] = {
+    'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
+    'samples': 'WZ'
+}
