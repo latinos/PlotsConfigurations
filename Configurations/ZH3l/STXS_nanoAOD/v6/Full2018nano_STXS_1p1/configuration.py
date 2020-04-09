@@ -1,6 +1,6 @@
 # example of configuration file
 
-tag = 'ZH3l_2018_nanov6_STXS_1p1'
+tag = 'ZH3l_2018_v6'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFiles_'+tag
@@ -15,7 +15,7 @@ aliasesFile = 'aliases.py'
 cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples.py' 
+samplesFile = 'samples.py'
 
 # file with list of samples
 plotFile = 'plot.py' 

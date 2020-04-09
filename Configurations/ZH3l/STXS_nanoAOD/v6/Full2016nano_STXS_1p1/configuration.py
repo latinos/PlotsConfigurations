@@ -1,6 +1,6 @@
 # example of configuration file
 
-tag = 'ZH3l_2016_nanov6_STXS_1p1'
+tag = 'ZH3l_2016_v6_newWP'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFiles_'+tag
