@@ -21,6 +21,12 @@ variables['njet']       = { 'name'  : 'ZH3l_njet',
                             'fold' : 0
                         }
 
+variables['met']       = { 'name'  : 'PuppiMET_pt',
+                            'range' : (20,0,100),
+                            'xaxis' : 'Puppi MET',
+                            'fold' : 0
+                        }
+
 variables['pt1']        = { 'name': 'Lepton_pt[0]',
                             'range' : (10,0.,200),
                             'xaxis' : 'lept1_p_{T} [GeV]',
