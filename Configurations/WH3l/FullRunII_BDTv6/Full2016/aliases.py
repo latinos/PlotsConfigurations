@@ -18,7 +18,9 @@ eleWP = 'mva_90p_Iso2016'
 muWP = 'cut_Tight80x'
 
 aliases['LepWPCut'] = {
-    'expr': 'LepCut3l__ele_'+eleWP+'__mu_'+muWP,
+    # 'expr': 'LepCut3l__ele_'+eleWP+'__mu_'+muWP,
+    'expr': 'LepCut3l__ele_'+eleWP+'__mu_'+muWP+'*(((abs(Lepton_pdgId[0])==13 && Muon_mvaTTH[Lepton_muonIdx[0]]>0.8) || (abs(Lepton_pdgId[0])==11 && Electron_mvaTTH[Lepton_electronIdx[0]]>0.7)) && ((abs(Lepton_pdgId[1])==13 && Muon_mvaTTH[Lepton_muonIdx[1]]>0.8) ||  (abs(Lepton_pdgId[1])==11 && Electron_mvaTTH[Lepton_electronIdx[1]]>0.7)) && ((abs(Lepton_pdgId[2])==13 && Muon_mvaTTH[Lepton_muonIdx[2]]>0.8) || (abs(Lepton_pdgId[2])==11 && Electron_mvaTTH[Lepton_electronIdx[2]]>0.7)))',
+
     'samples': mc + ['DATA']
 }
 
@@ -172,17 +174,5 @@ aliases['nllWOTF'] = {
     'class': 'WWNLLW',
     'args': ('central',),
     'samples': ['WW']
-}
-
-puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
-
-aliases['PUJetIdSF'] = {
-    'linesToAdd': [
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/patches/pujetidsf_event.cc+' % configurations
-    ],
-    'class': 'PUJetIdEventSF',
-    'args': (puidSFSource, '2016', 'loose'),
-    'samples': mc
 }
 
