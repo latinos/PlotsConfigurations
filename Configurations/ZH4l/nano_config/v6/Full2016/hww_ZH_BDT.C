@@ -61,7 +61,7 @@ void initmyreaderBDT(TTree* tree){
  
                 
  //change the path of weight file, xml file is in " BDT_config/weight " folder .
-        myreaderBDT->BookMVA("BDT","/afs/cern.ch/work/k/kaura/NewLatino_v2/CMSSW_10_2_5/src/newPlotConfigurations/PlotsConfigurations/Configurations/ZH4l/nano_config/BDT_config/BDT_2016/combine/dataset_28March/weights/TMVAClassification_comb28mar_v6_BDT.weights.xml"); 
+        myreaderBDT->BookMVA("BDT","/afs/cern.ch/user/k/kaura/public/v6_xml/TMVAClassification_comb28mar_v6_BDT.class.C"); 
 
 }
 
