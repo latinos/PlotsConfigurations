@@ -397,7 +397,6 @@ nuisances['QCDscale_ttH']  = {
                'type'  : 'lnN',
               }
 
-##FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['QCDscale_qqbar_ACCEPT']  = {
                'name'  : 'QCDscale_qqbar_ACCEPT', 
                'type'  : 'lnN',
@@ -412,7 +411,7 @@ nuisances['QCDscale_qqbar_ACCEPT']  = {
                    },
               }
 
-##FIXME: these come from HIG-16-042, maybe should be recomputed?
+
 nuisances['QCDscale_gg_ACCEPT']  = {
                'name'  : 'QCDscale_gg_ACCEPT', 
                'samples'  : {
@@ -458,7 +457,7 @@ nuisances['pdf_Higgs_qqbar']  = {
                    },
               }
 
-#FIXME: check this 4%
+
 nuisances['pdf_qqbar']  = {
                'name'  : 'pdf_qqbar',
                'type'  : 'lnN',
@@ -467,7 +466,6 @@ nuisances['pdf_qqbar']  = {
                    },
               }
 
-#FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['pdf_Higgs_gg_ACCEPT']  = {
                'name'  : 'pdf_Higgs_gg_ACCEPT', 
                'samples'  : {
@@ -479,7 +477,6 @@ nuisances['pdf_Higgs_gg_ACCEPT']  = {
                'type'  : 'lnN',
               }
 
-##FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['pdf_gg_ACCEPT']  = {
                'name'  : 'pdf_gg_ACCEPT',
                'samples'  : {
@@ -488,7 +485,6 @@ nuisances['pdf_gg_ACCEPT']  = {
                'type'  : 'lnN',
               }
 
-#FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['pdf_Higgs_qqbar_ACCEPT']  = {
                'name'  : 'pdf_Higgs_qqbar_ACCEPT',
                'type'  : 'lnN',
@@ -503,7 +499,7 @@ nuisances['pdf_Higgs_qqbar_ACCEPT']  = {
                    },
               }
 
-##FIXME: these come from HIG-16-042, maybe should be recomputed?
+
 nuisances['pdf_qqbar_ACCEPT']  = {
                'name'  : 'pdf_qqbar_ACCEPT',
                'type'  : 'lnN',
