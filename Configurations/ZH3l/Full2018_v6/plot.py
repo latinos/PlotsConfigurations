@@ -251,14 +251,6 @@ plot['ZH_htt'] = {
                   'scale'    : 1
                   }
 
-plot['WH_htt'] = {
-                  'nameHR' : 'WH htt',
-                  'color': 632+1, # kRed+4 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1
-                  }
-
 plot['DATA']  = { 
                   'nameHR' : 'Data',
                   'color': 1 ,  
