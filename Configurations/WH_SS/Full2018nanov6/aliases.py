@@ -27,12 +27,12 @@ aliases['LepWPCut'] = {
 
 aliases['gstarLow'] = {
     'expr': 'Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4',
-    'samples': 'VgS'
+    'samples': 'WgS'
 }
 
 aliases['gstarHigh'] = {
     'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
-    'samples': 'VgS'
+    'samples': 'WZ'
 }
 
 aliases['PromptGenLepMatch2l'] = {
@@ -208,6 +208,19 @@ aliases['antitopGenPtOTF'] = {
 aliases['Top_pTrw'] = {
     'expr': 'isTTbar * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPtOTF) * TMath::Exp(0.0615 - 0.0005 * antitopGenPtOTF))) + isSingleTop',
     'samples': ['top']
+}
+
+aliases['ZH3l_dphilmetjj_test'] = {
+    'linesToAdd': [
+        '.L %s/src/PlotsConfigurations/Configurations/ZH3l/scripts/ZH3l_patch.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'ZH3l_patch',
+    'args': ("dphilmetjj")
+}
+
+aliases['ZH3l_dphilmetj_test'] = {
+    'class': 'ZH3l_patch',
+    'args': ("dphilmetj")
 }
 
 # PU jet Id SF

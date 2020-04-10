@@ -8,7 +8,7 @@ import root_numpy
 import common
 
 confdir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
-card_tag = 'postapproval'
+card_tag = 'binrenorm'
 DYseparate = True
 
 ntemplate = ROOT.TH1D('ntemplate', '', 4, 0., 4.) # ptH indiv, njet indiv, ptH comb, njet comb
@@ -57,7 +57,9 @@ for observable in ['ptH', 'njet']:
                     for dataset in ['2016', '2017', '2018']:
                         postfit_rates[(fit, proc + dataset)] = template.Clone('postfit_rates_%s_%s%s' % (fit, proc, dataset))
                 else:
-                    postfit_rates[(fit, proc + fit)] = template.Clone('postfit_rates_%s_%s%s' % (fit, proc, fit))
+                    #TEMPORARY
+                    #postfit_rates[(fit, proc + fit)] = template.Clone('postfit_rates_%s_%s%s' % (fit, proc, fit))
+                    postfit_rates[(fit, proc)] = template.Clone('postfit_rates_%s_%s%s' % (fit, proc, fit))
             else:
                 postfit_rates[(fit, proc)] = template.Clone('postfit_rates_%s_%s' % (fit, proc))
 
@@ -180,7 +182,9 @@ for observable in ['ptH', 'njet']:
                     continue
 
                 else:
-                    procds = proc + fit
+                    # TEMPORARY
+                    #procds = proc + fit
+                    procds = proc
             else:
                 procds = proc
     
@@ -210,7 +214,9 @@ for observable in ['ptH', 'njet']:
                     if fit == 'combination':
                         continue
                     else:
-                        procds = proc + fit
+                        #TEMPORARY
+                        #procds = proc + fit
+                        procds = proc
                 else:
                     procds = proc
                 

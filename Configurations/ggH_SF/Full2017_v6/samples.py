@@ -33,11 +33,11 @@ dataReco = 'Run2017_102X_nAODv5_Full2017v6'
 
 mcProduction = 'Fall2017_102X_nAODv5_Full2017v6'
 
-mcSteps = 'MCl1loose2017v6__MCCorr2017v6__l2loose__l2tightOR2017v6{var}'
+mcSteps = 'MCl1loose2017v6__MCCorr2017v6__l2loose__l2tightOR2017v6__DYMVA_alt{var}'
 
-fakeSteps = 'DATAl1loose2017v6__l2loose__fakeW'
+fakeSteps = 'DATAl1loose2017v6__l2loose__fakeW__DYMVA_alt'
 
-dataSteps = 'DATAl1loose2017v6__l2loose__l2tightOR2017v6'
+dataSteps = 'DATAl1loose2017v6__l2loose__l2tightOR2017v6__DYMVA_alt'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -425,7 +425,8 @@ for _, sd in DataRun:
 
 samples['Fake']['subsamples'] = {
   'ee': 'abs(Lepton_pdgId[0]) == 11 && abs(Lepton_pdgId[1]) == 11',
-  'mm': 'abs(Lepton_pdgId[0]) == 13 && abs(Lepton_pdgId[1]) == 13'
+  'mm': 'abs(Lepton_pdgId[0]) == 13 && abs(Lepton_pdgId[1]) == 13',
+  'df': '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13)'
 }
 
 ###########################################

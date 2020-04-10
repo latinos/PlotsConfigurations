@@ -2,13 +2,12 @@
 
 treeName= 'Events'
 
-#tag = 'WHSS2016_v6ntuples' #remove DY and add Z veto in mm, cut based tight SS id for electron
-#tag = 'WHSS2016_v6ntuples_try2'
-#tag = 'WHSS2016_v6ntuples_try3'
-#tag = 'WHSS2016_v6ntuples_try4'
-#tag = 'WHSS2016_v6ntuples_try6'
-tag = 'WHSS2016_v6ntuples_try7'
-#tag = 'WHSS2016_WZCR'
+#tag = 'WHSS2016_v6ntuples_try7'
+#tag = 'WHSS2016_v6ntuples_3rdLep'
+#tag = 'WHSS2016_v6ntuples_newFakes'
+#tag = 'WHSS2016_v6ntuples_final'
+#tag = 'WHSS2016_final'
+tag = 'WHSS2016_final_v1'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'

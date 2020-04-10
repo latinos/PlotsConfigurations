@@ -216,18 +216,20 @@ nuisances['muonpt'] = {
 }
 
 ##### Jet energy scale
+jes_systs = ['JES','JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
 
-#nuisances['jes'] = {
-#    'name': 'CMS_scale_j_2016',
-#    'kind': 'suffix',
-#    'type': 'shape',
-#    'mapUp': 'JESup',
-#    'mapDown': 'JESdo',
-#    'samples': dict((skey, ['1', '1']) for skey in mc),
-#    'folderUp': makeMCDirectory('JESup_suffix'),
-#    'folderDown': makeMCDirectory('JESdo_suffix'),
-#    'AsLnN': '1'
-#}
+for js in jes_systs:
+  nuisances[js] = {
+      'name': 'CMS_'+js,
+      'kind': 'suffix',
+      'type': 'shape',
+      'mapUp': js+'up',
+      'mapDown': js+'do',
+      'samples': dict((skey, ['1', '1']) for skey in mc),
+      'folderUp': makeMCDirectory('JESup_suffix'),
+      'folderDown': makeMCDirectory('JESdo_suffix'),
+      'AsLnN': '1'
+  }
 
 ##### MET energy scale
 
@@ -259,37 +261,106 @@ nuisances['PU'] = {
     'AsLnN': '1',
 }
 
-##### PS and UE
-nuisances['PS']  = {
-    'name'  : 'PS_Herwig',
-    'kind'  : 'tree',
-    'type'  : 'shape',
-    'samples'  : {
-      'WW'      : ['0.9760', '1.'], # was 0.92657
-      'ggH_hww' : ['1.0078', '1.'], # was 0.98554 These numbers are used to normalize the PS variation to the same integral as the nominal after the wwSel skim
-      'qqH_hww' : ['0.9398', '1.'], # was 0.92511
-     },
-    'folderUp': makeMCDirectory('PS'),
-    'folderDown': makeMCDirectory(),
-    'AsLnN'      : '1',
-    'synchronized': False
-}
+##### PS
 
-nuisances['UE']  = {
-    'name'  : 'UE_CUETP',
-    'kind'  : 'tree',
-    'type'  : 'shape',
-    'samples'  : {
-      'WW'      : ['1.0240', '0.9916'], # was 1.0226 0.9897
-      #'ggH_hww' : ['1.0739', '1.0211'], # These numbers are used to normalize the UE up/down variations to the same integral as the nominal after the wwSel skim
-      'qqH_hww' : ['1.0137', '0.9781'], # was 1.0560 0.9992
+nuisances['PS_ISR_0jet']  = {
+    'name': 'PS_ISR',
+    'type': 'lnN',
+    'samples': {
+        'WW'     : '1.0004147/0.9990865',
+        'top'    : '1.0038372/0.9949470',
+        'DY'     : '1.0040364/0.9947131',
+        'ggH_hww': '1.0024342/0.9966181',
+        'qqH_hww': '1.0004923/0.9995787',
+        'WH_hww' : '1.0012062/0.9985316',
+        'ZH_hww' : '1.0007957/0.9989884',
     },
-    'folderUp': makeMCDirectory('UEup'),
-    'folderDown': makeMCDirectory('UEdo'),
-    'AsLnN'      : '1',
-    'synchronized': False
+    'cuts'  : cuts0j,
 }
 
+nuisances['PS_ISR_1jet']  = {
+    'name': 'PS_ISR',
+    'type': 'lnN',
+    'samples': {
+        'WW'     : '1.0160460/0.9801447',
+        'top'    : '1.0051215/0.9934017',
+        'DY'     : '1.0079131/0.9900890',
+        'ggH_hww': '1.0170139/0.9790389',
+        'qqH_hww': '1.0022875/0.9970339',
+        'WH_hww' : '1.0017547/0.9978214',
+        'ZH_hww' : '1.0015857/0.9980180',
+    },
+    'cuts'  : cuts1j,
+}
+
+nuisances['PS_ISR_2jet']  = {
+    'name': 'PS_ISR',
+    'type': 'lnN',
+    'samples': {
+        'WW'     : '0.9619687/1.0472157',
+        'top'    : '1.0000271/0.9999406',
+        'DY'     : '0.9984594/1.0020964',
+        'ggH_hww': '0.9607736/1.0481858',
+        'qqH_hww': '0.9998172/1.0001610',
+        'WH_hww' : '0.9993065/1.0007548',
+        'ZH_hww' : '0.9995627/1.0005501',
+    },
+    'cuts'  : cuts2j,
+}
+
+nuisances['PS_FSR_0jet']  = {
+    'name': 'PS_FSR',
+    'type': 'lnN',
+    'samples': { 
+        'WW'     : '0.9968231/1.0051404',
+        'top'    : '0.9705783/1.0474730',
+        'DY'     : '0.9974074/1.0048384',
+        'ggH_hww': '0.9955678/1.0060251',
+        'qqH_hww': '0.9866768/1.0239547',
+        'WH_hww' : '0.9891188/1.0215866',
+        'ZH_hww' : '0.9896471/1.0173018',
+    },
+    'cuts'  : cuts0j,
+}
+
+nuisances['PS_FSR_1jet']  = {
+    'name': 'PS_FSR',
+    'type': 'lnN',
+    'samples': {
+        'WW'     : '1.0049297/0.9915376',
+        'top'    : '0.9871745/1.0215966',
+        'DY'     : '1.0049659/0.9909187',
+        'ggH_hww': '1.0097427/0.9839139',
+        'qqH_hww': '0.9939033/1.0115130',
+        'WH_hww' : '0.9990734/1.0065910',
+        'ZH_hww' : '0.9936971/1.0145482',
+    },
+    'cuts'  : cuts1j,
+}
+
+nuisances['PS_FSR_2jet']  = {
+    'name': 'PS_FSR',
+    'type': 'lnN',
+    'samples': {
+        'WW'     : '1.0084263/0.9843947',
+        'top'    : '1.0075607/0.9876902',
+        'DY'     : '1.0169378/0.9717602',
+        'ggH_hww': '1.0168108/0.9673918',
+        'qqH_hww': '1.0057013/0.9888023',
+        'WH_hww' : '1.0174174/0.9737212',
+        'ZH_hww' : '1.0079410/0.9854651',
+    },
+    'cuts'  : cuts2j,
+}
+
+# An overall 1.5% UE uncertainty will cover all the UEup/UEdo variations
+# And we don't observe any dependency of UE variations on njet
+nuisances['UE']  = {
+                'name'  : 'UE_CUET',
+                'skipCMS' : 1,
+                'type': 'lnN',
+                'samples': dict((skey, '1.015') for skey in mc), 
+}
 
 ####### Generic "cross section uncertainties"
 
@@ -378,7 +449,6 @@ nuisances['pdf_Higgs_qqbar'] = {
     },
 }
 
-#FIXME: check this 4%
 nuisances['pdf_qqbar'] = {
     'name': 'pdf_qqbar',
     'type': 'lnN',
@@ -389,47 +459,43 @@ nuisances['pdf_qqbar'] = {
     },
 }
 
-#FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['pdf_Higgs_gg_ACCEPT'] = {
     'name': 'pdf_Higgs_gg_ACCEPT',
     'samples': {
-        'ggH_hww': '1.005',
-        'ggH_htt': '1.005',
-        'ggZH_hww': '1.005',
-        'bbH_hww': '1.005'
+        'ggH_hww': '1.006',
+        'ggH_htt': '1.006',
+        'ggZH_hww': '1.006',
+        'bbH_hww': '1.006'
     },
     'type': 'lnN',
 }
 
-#FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['pdf_gg_ACCEPT'] = {
     'name': 'pdf_gg_ACCEPT',
     'samples': {
-        'ggWW': '1.005',
+        'ggWW': '1.006',
     },
     'type': 'lnN',
 }
 
-#FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['pdf_Higgs_qqbar_ACCEPT'] = {
     'name': 'pdf_Higgs_qqbar_ACCEPT',
     'type': 'lnN',
     'samples': {
-        'qqH_hww': '1.011',
-        'qqH_htt': '1.011',
-        'WH_hww': '1.007',
-        'WH_htt': '1.007',
-        'ZH_hww': '1.012',
-        'ZH_htt': '1.012',
+        'qqH_hww': '1.002',
+        'qqH_htt': '1.002',
+        'WH_hww': '1.003',
+        'WH_htt': '1.003',
+        'ZH_hww': '1.002',
+        'ZH_htt': '1.002',
     },
 }
 
-#FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['pdf_qqbar_ACCEPT'] = {
     'name': 'pdf_qqbar_ACCEPT',
     'type': 'lnN',
     'samples': {
-        'VZ': '1.005',
+        'VZ': '1.001',
     },
 }
 
@@ -437,25 +503,27 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 
 ## Shape nuisance due to QCD scale variations for DY
 # LHE scale variation weights (w_var / w_nominal)
-# [0] is muR=0.50000E+00 muF=0.50000E+00
-# [8] is muR=0.20000E+01 muF=0.20000E+01
+
+## This should work for samples with either 8 or 9 LHE scale weights (Length$(LHEScaleWeight) == 8 or 9)
+variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
+
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
     'skipCMS': 1,
-    'kind': 'weight',
+    'kind': 'weight_envelope',
     'type': 'shape',
-    'samples': {'DY': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]']},
+    'samples': {'DY': variations},
     'AsLnN': '1'
 }
 
 nuisances['QCDscale_VV'] = {
     'name': 'QCDscale_VV',
-    'kind': 'weight',
+    'kind': 'weight_envelope',
     'type': 'shape',
     'samples': {
-        'Vg': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-        'VZ': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-        'VgS': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
+        'Vg': variations,
+        'VZ': variations,
+        'VgS': variations
     }
 }
 
@@ -539,11 +607,8 @@ nuisances['CRSR_accept_DY'] = {
     'name': 'CMS_hww_CRSR_accept_DY',
     'type': 'lnN',
     'samples': {'DY': '1.02'},
-    #'samples': {'DY': '1.1'},
     'cuts': [cut for cut in cuts if '_CR_' in cut],
-    #'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut and cut in self['cuts']]),
     'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut]),
-    #'perRecoBin': True
 }
 
 # Uncertainty on SR/CR ratio
@@ -551,7 +616,6 @@ nuisances['CRSR_accept_top'] = {
     'name': 'CMS_hww_CRSR_accept_top',
     'type': 'lnN',
     'samples': {'top': '1.01'},
-    #'samples': {'top': '1.05'},
     'cuts': [cut for cut in cuts if '_CR_' in cut],
     'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut]),
 }
@@ -643,30 +707,27 @@ nuisances['QCDscale_WWewk'] = {
     },
     'type': 'lnN'
 }
-
-#FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['QCDscale_qqbar_ACCEPT'] = {
     'name': 'QCDscale_qqbar_ACCEPT',
     'type': 'lnN',
     'samples': {
-        'qqH_hww': '1.007',
-        'qqH_htt': '1.007',
-        'WH_hww': '1.05',
-        'WH_htt': '1.05',
-        'ZH_hww': '1.04',
-        'ZH_htt': '1.04',
-        'VZ': '1.029', # this shouldn't be here because we have full shape-based uncertainty for VZ
+        'qqH_hww': '1.003',
+        'qqH_htt': '1.003',
+        'WH_hww': '1.010',
+        'WH_htt': '1.010',
+        'ZH_hww': '1.015',
+        'ZH_htt': '1.015',
+        #'VZ': '1.004', # this shouldn't be here because we have full shape-based uncertainty for VZ
     }
 }
 
-#FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['QCDscale_gg_ACCEPT'] = {
     'name': 'QCDscale_gg_ACCEPT',
     'samples': {
-        'ggH_hww': '1.027', # shouldn't be here
-        'ggH_htt': '1.027',
-        'ggZH_hww': '1.027',
-        'ggWW': '1.027',
+        #'ggH_hww': '1.012', # shouldn't be here
+        'ggH_htt': '1.012',
+        'ggZH_hww': '1.012',
+        'ggWW': '1.012',
     },
     'type': 'lnN',
 }

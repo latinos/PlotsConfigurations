@@ -27,10 +27,10 @@ confdir = os.path.dirname(confdir) # plotting
 confdir = os.path.dirname(confdir) # tools
 confdir = os.path.dirname(confdir) # Differential
 
-REDRAW = True
-DATASET = '2016'
-STYLE = 'HIG-17-025'
-#STYLE = ''
+REDRAW = False
+DATASET = '2018'
+#STYLE = 'HIG-17-025'
+STYLE = ''
 
 if REDRAW:
     ROOT.gSystem.Load('libLatinoAnalysisMultiDraw.so')
@@ -131,11 +131,15 @@ if REDRAW:
     yexpr = ' + '.join('(pTWW > %f)' % t for t in common.binning['ptH'][1:-1])
     
     drawer.addPlot2D(ptH, xexpr, yexpr)
-    
+
     xexpr = 'fiducial * ('
     xexpr += ' + '.join('(HTXS_njets30 > %f)' % t for t in common.binning['njet'][:-1])
     xexpr += ') + (!fiducial) * %d' % len(common.binnames['njet'])
-    yexpr = ' + '.join('(Alt$(CleanJet_pt[%d], 0.) > 30.)' % i for i in range(len(common.binnames['njet']) - 1))
+
+    if DATASET == '2017':
+        yexpr = 'TMath::Min(Sum$((TMath::Abs(CleanJet_eta) < 2.5 || TMath::Abs(CleanJet_eta) > 3.) && CleanJet_pt > 30.), 4)'
+    else:
+        yexpr = ' + '.join('(Alt$(CleanJet_pt[%d], 0.) > 30.)' % i for i in range(len(common.binnames['njet']) - 1))
     
     drawer.addPlot2D(njet, xexpr, yexpr)
 
@@ -211,18 +215,17 @@ if STYLE == 'HIG-17-025':
     cmsLabel = common.makeCMS(prelim=False, out=True)
     cmsLabel.SetX1NDC(0.18 * 600. / cw)
     cmsLabel.SetX2NDC(0.3 * 600. / cw)
-    suppl = common.makeText(0.24, common.ymax, 0.6, 0.98, 'simulation supplementary', align=13, font=52)
-    com = common.makeText(0.7, common.ymax, 0.9, 1., '(13 TeV)', align=33)
+    suppl = common.makeText(0.24, common.YMAX, 0.6, 0.98, 'simulation supplementary', align=13, font=52)
+    com = common.makeText(0.7, common.YMAX, 0.9, 1., '(13 TeV)', align=33)
 
     for obs, source in [('ptH', ptH), ('njet', njet)]:
         source_arr = rnp.hist2array(source, copy=False)
 
         gen_total = np.sum(source_arr, axis=1)
 
-        colnorm_arr = np.transpose(np.transpose(source_arr, (1, 0)) / gen_total, (1, 0))
+        colnorm_arr = np.transpose(source_arr.T / gen_total, (1, 0))
 
-        matrix = source.Clone('matrix')
-        matrix.SetBins(source.GetNbinsX() - 1, 0., float(source.GetNbinsX()), source.GetNbinsY() - 1, 0., float(source.GetNbinsY()))
+        matrix = ROOT.TH2D('matrix', '', source.GetNbinsX() - 1, 0., float(source.GetNbinsX()), source.GetNbinsY() - 1, 0., float(source.GetNbinsY()))
         rnp.array2hist(colnorm_arr[:-1, :-1], matrix)
 
         matrix.Draw('COLZ TEXT')

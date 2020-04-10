@@ -32,11 +32,11 @@ except NameError:
 mcProduction = 'Autumn18_102X_nAODv6_Full2018v6'
 dataReco = 'Run2018_102X_nAODv6_Full2018v6'
 
-mcSteps = 'MCl1loose2018v6__MCCorr2018v6__l2loose__l2tightOR2018v6{var}'
+mcSteps = 'MCl1loose2018v6__MCCorr2018v6__l2loose__l2tightOR2018v6__DYMVA_alt{var}'
 
-fakeSteps = 'DATAl1loose2018v6__l2loose__fakeW'
+fakeSteps = 'DATAl1loose2018v6__l2loose__fakeW__DYMVA_alt'
 
-dataSteps = 'DATAl1loose2018v6__l2loose__l2tightOR2018v6'
+dataSteps = 'DATAl1loose2018v6__l2loose__l2tightOR2018v6__DYMVA_alt'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -146,7 +146,7 @@ else:
     if useDYHT :
         # Remove high HT from inclusive samples
         addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1', '(LHE_HT<200)')
-        addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext'        , '(LHE_HT<100)')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext2'       , '(LHE_HT<70)')
         # pt_ll weight
         addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-200to400',ptllDYW_LO)
         addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-400to600',ptllDYW_LO)
@@ -424,7 +424,8 @@ for _, sd in DataRun:
 
 samples['Fake']['subsamples'] = {
   'ee': 'abs(Lepton_pdgId[0]) == 11 && abs(Lepton_pdgId[1]) == 11',
-  'mm': 'abs(Lepton_pdgId[0]) == 13 && abs(Lepton_pdgId[1]) == 13'
+  'mm': 'abs(Lepton_pdgId[0]) == 13 && abs(Lepton_pdgId[1]) == 13',
+  'df': '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13)'
 }
 
 ###########################################
