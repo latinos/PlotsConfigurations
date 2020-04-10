@@ -78,66 +78,66 @@ aliases['ttHMVA_SF_Down_3'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % co
 ### Up/Down variations for electrons, i.e. LepSF2l__ele_'+eleWP+'__Up/Down ###
 ##############################################################################
 
-aliases['ttHMVA_2l_ele_SF_Up'] = {'expr' : '(ttHMVA_SF_Up_0*(Lepton_pdgId[0] == 11) + (Lepton_pdgId[0] == 13)) *\
-                                            (ttHMVA_SF_Up_1*(Lepton_pdgId[1] == 11) + (Lepton_pdgId[1] == 13))'
+aliases['ttHMVA_2l_ele_SF_Up'] = {'expr' : '(ttHMVA_SF_Up_0*(TMath::Abs(Lepton_pdgId[0]) == 11) + (TMath::Abs(Lepton_pdgId[0]) == 13)) *\
+                                            (ttHMVA_SF_Up_1*(TMath::Abs(Lepton_pdgId[1]) == 11) + (TMath::Abs(Lepton_pdgId[1]) == 13))'
                                  }
 
-aliases['ttHMVA_3l_ele_SF_Up'] = {'expr' : '(ttHMVA_SF_Up_0*(Lepton_pdgId[0] == 11) + (Lepton_pdgId[0] == 13)) *\
-                                            (ttHMVA_SF_Up_1*(Lepton_pdgId[1] == 11) + (Lepton_pdgId[1] == 13)) *\
-                                            (ttHMVA_SF_Up_2*(Lepton_pdgId[2] == 11) + (Lepton_pdgId[2] == 13))'
+aliases['ttHMVA_3l_ele_SF_Up'] = {'expr' : '(ttHMVA_SF_Up_0*(TMath::Abs(Lepton_pdgId[0]) == 11) + (TMath::Abs(Lepton_pdgId[0]) == 13)) *\
+                                            (ttHMVA_SF_Up_1*(TMath::Abs(Lepton_pdgId[1]) == 11) + (TMath::Abs(Lepton_pdgId[1]) == 13)) *\
+                                            (ttHMVA_SF_Up_2*(TMath::Abs(Lepton_pdgId[2]) == 11) + (TMath::Abs(Lepton_pdgId[2]) == 13))'
                                  }
 
-aliases['ttHMVA_4l_ele_SF_Up'] = {'expr' : '(ttHMVA_SF_Up_0*(Lepton_pdgId[0] == 11) + (Lepton_pdgId[0] == 13)) *\
-                                            (ttHMVA_SF_Up_1*(Lepton_pdgId[1] == 11) + (Lepton_pdgId[1] == 13)) *\
-                                            (ttHMVA_SF_Up_2*(Lepton_pdgId[2] == 11) + (Lepton_pdgId[2] == 13)) *\
-                                            (ttHMVA_SF_Up_3*(Lepton_pdgId[3] == 11) + (Lepton_pdgId[3] == 13))'
+aliases['ttHMVA_4l_ele_SF_Up'] = {'expr' : '(ttHMVA_SF_Up_0*(TMath::Abs(Lepton_pdgId[0]) == 11) + (TMath::Abs(Lepton_pdgId[0]) == 13)) *\
+                                            (ttHMVA_SF_Up_1*(TMath::Abs(Lepton_pdgId[1]) == 11) + (TMath::Abs(Lepton_pdgId[1]) == 13)) *\
+                                            (ttHMVA_SF_Up_2*(TMath::Abs(Lepton_pdgId[2]) == 11) + (TMath::Abs(Lepton_pdgId[2]) == 13)) *\
+                                            (ttHMVA_SF_Up_3*(TMath::Abs(Lepton_pdgId[3]) == 11) + (TMath::Abs(Lepton_pdgId[3]) == 13))'
                                  }
 
-aliases['ttHMVA_2l_ele_SF_Down'] = {'expr' : '(ttHMVA_SF_Down_0*(Lepton_pdgId[0] == 11) + (Lepton_pdgId[0] == 13)) *\
-                                              (ttHMVA_SF_Down_1*(Lepton_pdgId[1] == 11) + (Lepton_pdgId[1] == 13))'
+aliases['ttHMVA_2l_ele_SF_Down'] = {'expr' : '(ttHMVA_SF_Down_0*(TMath::Abs(Lepton_pdgId[0]) == 11) + (TMath::Abs(Lepton_pdgId[0]) == 13)) *\
+                                              (ttHMVA_SF_Down_1*(TMath::Abs(Lepton_pdgId[1]) == 11) + (TMath::Abs(Lepton_pdgId[1]) == 13))'
                                    }
 
-aliases['ttHMVA_3l_ele_SF_Down'] = {'expr' : '(ttHMVA_SF_Down_0*(Lepton_pdgId[0] == 11) + (Lepton_pdgId[0] == 13)) *\
-                                              (ttHMVA_SF_Down_1*(Lepton_pdgId[1] == 11) + (Lepton_pdgId[1] == 13)) *\
-                                              (ttHMVA_SF_Down_2*(Lepton_pdgId[2] == 11) + (Lepton_pdgId[2] == 13))'
+aliases['ttHMVA_3l_ele_SF_Down'] = {'expr' : '(ttHMVA_SF_Down_0*(TMath::Abs(Lepton_pdgId[0]) == 11) + (TMath::Abs(Lepton_pdgId[0]) == 13)) *\
+                                              (ttHMVA_SF_Down_1*(TMath::Abs(Lepton_pdgId[1]) == 11) + (TMath::Abs(Lepton_pdgId[1]) == 13)) *\
+                                              (ttHMVA_SF_Down_2*(TMath::Abs(Lepton_pdgId[2]) == 11) + (TMath::Abs(Lepton_pdgId[2]) == 13))'
                                    }
 
-aliases['ttHMVA_4l_ele_SF_Down'] = {'expr' : '(ttHMVA_SF_Down_0*(Lepton_pdgId[0] == 11) + (Lepton_pdgId[0] == 13)) *\
-                                              (ttHMVA_SF_Down_1*(Lepton_pdgId[1] == 11) + (Lepton_pdgId[1] == 13)) *\
-                                              (ttHMVA_SF_Down_2*(Lepton_pdgId[2] == 11) + (Lepton_pdgId[2] == 13)) *\
-                                              (ttHMVA_SF_Down_3*(Lepton_pdgId[3] == 11) + (Lepton_pdgId[3] == 13))'
+aliases['ttHMVA_4l_ele_SF_Down'] = {'expr' : '(ttHMVA_SF_Down_0*(TMath::Abs(Lepton_pdgId[0]) == 11) + (TMath::Abs(Lepton_pdgId[0]) == 13)) *\
+                                              (ttHMVA_SF_Down_1*(TMath::Abs(Lepton_pdgId[1]) == 11) + (TMath::Abs(Lepton_pdgId[1]) == 13)) *\
+                                              (ttHMVA_SF_Down_2*(TMath::Abs(Lepton_pdgId[2]) == 11) + (TMath::Abs(Lepton_pdgId[2]) == 13)) *\
+                                              (ttHMVA_SF_Down_3*(TMath::Abs(Lepton_pdgId[3]) == 11) + (TMath::Abs(Lepton_pdgId[3]) == 13))'
                                    }
 
 ########################################################################
 ### Up/Down variations for muons, i.e. LepSF2l__mu_'+muWP+'__Up/Down ###
 ########################################################################
 
-aliases['ttHMVA_2l_mu_SF_Up'] = {'expr' : '(ttHMVA_SF_Up_0*(Lepton_pdgId[0] == 13) + (Lepton_pdgId[0] == 11)) *\
-                                           (ttHMVA_SF_Up_1*(Lepton_pdgId[1] == 13) + (Lepton_pdgId[1] == 11))'
+aliases['ttHMVA_2l_mu_SF_Up'] = {'expr' : '(ttHMVA_SF_Up_0*(TMath::Abs(Lepton_pdgId[0]) == 13) + (TMath::Abs(Lepton_pdgId[0]) == 11)) *\
+                                           (ttHMVA_SF_Up_1*(TMath::Abs(Lepton_pdgId[1]) == 13) + (TMath::Abs(Lepton_pdgId[1]) == 11))'
                                 }
 
-aliases['ttHMVA_3l_mu_SF_Up'] = {'expr' : '(ttHMVA_SF_Up_0*(Lepton_pdgId[0] == 13) + (Lepton_pdgId[0] == 11)) *\
-                                           (ttHMVA_SF_Up_1*(Lepton_pdgId[1] == 13) + (Lepton_pdgId[1] == 11)) *\
-                                           (ttHMVA_SF_Up_2*(Lepton_pdgId[2] == 13) + (Lepton_pdgId[2] == 11))'
+aliases['ttHMVA_3l_mu_SF_Up'] = {'expr' : '(ttHMVA_SF_Up_0*(TMath::Abs(Lepton_pdgId[0]) == 13) + (TMath::Abs(Lepton_pdgId[0]) == 11)) *\
+                                           (ttHMVA_SF_Up_1*(TMath::Abs(Lepton_pdgId[1]) == 13) + (TMath::Abs(Lepton_pdgId[1]) == 11)) *\
+                                           (ttHMVA_SF_Up_2*(TMath::Abs(Lepton_pdgId[2]) == 13) + (TMath::Abs(Lepton_pdgId[2]) == 11))'
                                 }
 
-aliases['ttHMVA_4l_mu_SF_Up'] = {'expr' : '(ttHMVA_SF_Up_0*(Lepton_pdgId[0] == 13) + (Lepton_pdgId[0] == 11)) *\
-                                           (ttHMVA_SF_Up_1*(Lepton_pdgId[1] == 13) + (Lepton_pdgId[1] == 11)) *\
-                                           (ttHMVA_SF_Up_2*(Lepton_pdgId[2] == 13) + (Lepton_pdgId[2] == 11)) *\
-                                           (ttHMVA_SF_Up_3*(Lepton_pdgId[3] == 13) + (Lepton_pdgId[3] == 11))'
+aliases['ttHMVA_4l_mu_SF_Up'] = {'expr' : '(ttHMVA_SF_Up_0*(TMath::Abs(Lepton_pdgId[0]) == 13) + (TMath::Abs(Lepton_pdgId[0]) == 11)) *\
+                                           (ttHMVA_SF_Up_1*(TMath::Abs(Lepton_pdgId[1]) == 13) + (TMath::Abs(Lepton_pdgId[1]) == 11)) *\
+                                           (ttHMVA_SF_Up_2*(TMath::Abs(Lepton_pdgId[2]) == 13) + (TMath::Abs(Lepton_pdgId[2]) == 11)) *\
+                                           (ttHMVA_SF_Up_3*(TMath::Abs(Lepton_pdgId[3]) == 13) + (TMath::Abs(Lepton_pdgId[3]) == 11))'
                                 }
 
-aliases['ttHMVA_2l_mu_SF_Down'] = {'expr' : '(ttHMVA_SF_Down_0*(Lepton_pdgId[0] == 13) + (Lepton_pdgId[0] == 11)) *\
-                                             (ttHMVA_SF_Down_1*(Lepton_pdgId[1] == 13) + (Lepton_pdgId[1] == 11))'
+aliases['ttHMVA_2l_mu_SF_Down'] = {'expr' : '(ttHMVA_SF_Down_0*(TMath::Abs(Lepton_pdgId[0]) == 13) + (TMath::Abs(Lepton_pdgId[0]) == 11)) *\
+                                             (ttHMVA_SF_Down_1*(TMath::Abs(Lepton_pdgId[1]) == 13) + (TMath::Abs(Lepton_pdgId[1]) == 11))'
                                   }
 
-aliases['ttHMVA_3l_mu_SF_Down'] = {'expr' : '(ttHMVA_SF_Down_0*(Lepton_pdgId[0] == 13) + (Lepton_pdgId[0] == 11)) *\
-                                             (ttHMVA_SF_Down_1*(Lepton_pdgId[1] == 13) + (Lepton_pdgId[1] == 11)) *\
-                                             (ttHMVA_SF_Down_2*(Lepton_pdgId[2] == 13) + (Lepton_pdgId[2] == 11))'
+aliases['ttHMVA_3l_mu_SF_Down'] = {'expr' : '(ttHMVA_SF_Down_0*(TMath::Abs(Lepton_pdgId[0]) == 13) + (TMath::Abs(Lepton_pdgId[0]) == 11)) *\
+                                             (ttHMVA_SF_Down_1*(TMath::Abs(Lepton_pdgId[1]) == 13) + (TMath::Abs(Lepton_pdgId[1]) == 11)) *\
+                                             (ttHMVA_SF_Down_2*(TMath::Abs(Lepton_pdgId[2]) == 13) + (TMath::Abs(Lepton_pdgId[2]) == 11))'
                                   }
 
-aliases['ttHMVA_4l_mu_SF_Down'] = {'expr' : '(ttHMVA_SF_Down_0*(Lepton_pdgId[0] == 13) + (Lepton_pdgId[0] == 11)) *\
-                                             (ttHMVA_SF_Down_1*(Lepton_pdgId[1] == 13) + (Lepton_pdgId[1] == 11)) *\
-                                             (ttHMVA_SF_Down_2*(Lepton_pdgId[2] == 13) + (Lepton_pdgId[2] == 11)) *\
-                                             (ttHMVA_SF_Down_3*(Lepton_pdgId[3] == 13) + (Lepton_pdgId[3] == 11))'
+aliases['ttHMVA_4l_mu_SF_Down'] = {'expr' : '(ttHMVA_SF_Down_0*(TMath::Abs(Lepton_pdgId[0]) == 13) + (TMath::Abs(Lepton_pdgId[0]) == 11)) *\
+                                             (ttHMVA_SF_Down_1*(TMath::Abs(Lepton_pdgId[1]) == 13) + (TMath::Abs(Lepton_pdgId[1]) == 11)) *\
+                                             (ttHMVA_SF_Down_2*(TMath::Abs(Lepton_pdgId[2]) == 13) + (TMath::Abs(Lepton_pdgId[2]) == 11)) *\
+                                             (ttHMVA_SF_Down_3*(TMath::Abs(Lepton_pdgId[3]) == 13) + (TMath::Abs(Lepton_pdgId[3]) == 11))'
                                   }
