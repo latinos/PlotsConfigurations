@@ -276,7 +276,7 @@ nuisances['PS_FSR_0jet']  = {
 # PS and UE
 #FIXME: Add PS uncertainty
 
-
+'''
 nuisances['PS_zh4l']  = {
                 'name'  : 'PS_zh4l',
                 'skipCMS' : 1,
@@ -290,7 +290,7 @@ nuisances['PS_zh4l']  = {
                 },
 }
 
-
+'''
 
 nuisances['UE_zh4l']  = {
                 'name'  : 'UE_zh4l',
