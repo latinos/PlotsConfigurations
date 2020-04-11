@@ -1,5 +1,6 @@
 {
-  TFile *f0 = TFile::Open("rootFiles_ZH3l_2017_SR/plots_ZH3l_2017_SR.root");
+  // TFile *f0 = TFile::Open("rootFiles_ZH3l_2017_TightEl/plots_ZH3l_2017_TightEl.root");
+  TFile *f0 = TFile::Open("rootFiles_ZH3l_2017_v6test/plots_ZH3l_2017_v6test.root ");
 
   // Fragile, because it must match the name and ordering in cuts.py
   // TString cutslist[12] = {"preselection", "zmass_cut", "zh3l_Zg_CR_1j", "zh3l_WZ_CR_1j", "jet_cut_1j", "bveto_1j", "z4lveto_1j", "zh3l_Zg_CR_2j", "zh3l_WZ_CR_2j", "jet_cut_2j", "bveto_2j", "z4lveto_2j"};
@@ -11,16 +12,17 @@
   // print them at an awkward point in the cutflow.
 
   bool do_ratios = false;
-  bool apply_NFs = false;
+  bool apply_NFs = true;
   bool tex_mode = false;
-  bool signal_region = false;
+  bool signal_region = true;
 
   float n_ZH = 0.0;
   float n_ggZH = 0.0;
-  float n_ttZ = 0.0;
+  float n_ttV = 0.0;
   float n_Zg = 0.0;
+  float n_ZgS = 0.0;
   float n_VVV = 0.0;
-  float n_WH_htt = 0.0;
+  float n_H_htt = 0.0;
   float n_WH_hww = 0.0;
   float n_ZZ = 0.0;
   float n_Fake = 0.0;
@@ -59,7 +61,7 @@
     cout << "     Zg, ";
     cout << "    VVV, ";
     cout << "   Fake, ";
-    cout << "    ttZ, ";
+    cout << "    ttV, ";
     cout << "     BG, ";
     cout << "     ZH, ";
     cout << "   ggZH, ";
@@ -79,19 +81,21 @@
   for (int i = 0; i < ncut; i++) {
     n_ZH 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_ZH_hww"))->Integral();
     n_ggZH 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_ggZH_hww"))->Integral();
-    n_ttZ 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_ttZ"))->Integral();
+    n_ttV 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_ttV"))->Integral();
     if (cutslist[i].Contains("1j") && apply_NFs) 
       n_Zg 	= Zg_1j_NF * ((TH1F*) f0->Get(cutslist[i]+"/events/histo_Zg"))->Integral();
     else if (cutslist[i].Contains("2j") && apply_NFs) 
       n_Zg 	= Zg_2j_NF * ((TH1F*) f0->Get(cutslist[i]+"/events/histo_Zg"))->Integral();
     else
       n_Zg 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_Zg"))->Integral();
+    n_ZgS 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_ZgS"))->Integral();
 
     n_VVV 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_VVV"))->Integral();
     n_WH_hww 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_WH_hww"))->Integral();
+    n_H_htt 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_H_htt"))->Integral();
     n_ZZ 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_ZZ"))->Integral();
-    n_Fake 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_Fake_me"))->Integral();
-    n_Fake 	+= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_Fake_em"))->Integral();
+    n_Fake 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_Fake_m"))->Integral();
+    n_Fake 	+= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_Fake_e"))->Integral();
     n_DATA 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_DATA"))->Integral();
     if (cutslist[i].Contains("1j") && apply_NFs) 
       n_WZ 	= WZ_1j_NF * ((TH1F*) f0->Get(cutslist[i]+"/events/histo_WZ"))->Integral();
@@ -100,14 +104,14 @@
     else
       n_WZ 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_WZ"))->Integral();
 
-    n_Higgs = n_ZH + n_ggZH + n_WH_htt  +  n_WH_hww;
-    n_BG = n_ttZ + n_Zg + n_VVV + n_ZZ + n_Fake + n_WZ;
+    n_Higgs = n_ZH + n_ggZH + n_H_htt + n_WH_hww;
+    n_BG = n_ttV + n_Zg + n_VVV + n_ZZ + n_Fake + n_WZ;
     n_Pred = n_Higgs + n_BG;
 
     if (do_ratios) {
       n_ZH 	= n_ZH	   / n_Pred * 100;
       n_ggZH 	= n_ggZH   / n_Pred * 100;
-      n_ttZ 	= n_ttZ    / n_Pred * 100;
+      n_ttV 	= n_ttV    / n_Pred * 100;
       n_Zg 	= n_Zg 	   / n_Pred * 100;
       n_VVV 	= n_VVV    / n_Pred * 100;
       n_Higgs 	= n_Higgs  / n_Pred * 100;
@@ -142,7 +146,7 @@
 	  n_Zg , 
 	  n_VVV , 
 	  n_Fake , 
-	  n_ttZ , 
+	  n_ttV , 
 	  n_BG, 
 	  n_ZH, 
 	  n_ggZH, 
@@ -170,8 +174,10 @@
     }
 
     if (!do_ratios && cutslist[i].Contains("_WZ_CR_")) {
-      if (cutslist[i].Contains("1j")) 		n_BG = n_BG - n_Zg + n_Zg*Zg_1j_NF;
-      else if (cutslist[i].Contains("2j")) 	n_BG = n_BG - n_Zg + n_Zg*Zg_2j_NF;
+      if (!apply_NFs) {		// we still want to apply them here
+	if (cutslist[i].Contains("1j")) 		n_BG = n_BG - n_Zg + n_Zg*Zg_1j_NF;
+	else if (cutslist[i].Contains("2j")) 	n_BG = n_BG - n_Zg + n_Zg*Zg_2j_NF;
+      }
       float n_notWZ = n_BG - n_WZ;
       float NF = (n_DATA - n_notWZ) / n_WZ;
       // float dNF = n_DATA/pow(n_WZ,2) + pow((0.3*n_Fake)/n_WZ,2);
@@ -193,15 +199,15 @@
   if (tex_mode) {
     cout << endl << endl;
     printf("WZ,  1-jet 	 %.2f $\\pm$ %.2f \n", WZ_1j_NF, WZ_1j_dNF);
-    printf("WZ,  2-jet 	 %.2f $\\pm$ %.2f \n", WZ_1j_NF, WZ_1j_dNF);
+    printf("WZ,  2-jet 	 %.2f $\\pm$ %.2f \n", WZ_2j_NF, WZ_2j_dNF);
     printf("Zg,  1-jet 	 %.2f $\\pm$ %.2f \n", Zg_1j_NF, Zg_1j_dNF);
-    printf("Zg,  2-jet 	 %.2f $\\pm$ %.2f \n", Zg_1j_NF, Zg_1j_dNF);
+    printf("Zg,  2-jet 	 %.2f $\\pm$ %.2f \n", Zg_2j_NF, Zg_2j_dNF);
   } else {
     cout << endl << endl;
     printf("WZ,  1-jet 	 %.2f +/- %.2f \n", WZ_1j_NF, WZ_1j_dNF);
-    printf("WZ,  2-jet 	 %.2f +/- %.2f \n", WZ_1j_NF, WZ_1j_dNF);
+    printf("WZ,  2-jet 	 %.2f +/- %.2f \n", WZ_2j_NF, WZ_2j_dNF);
     printf("Zg,  1-jet 	 %.2f +/- %.2f \n", Zg_1j_NF, Zg_1j_dNF);
-    printf("Zg,  2-jet 	 %.2f +/- %.2f \n", Zg_1j_NF, Zg_1j_dNF);
+    printf("Zg,  2-jet 	 %.2f +/- %.2f \n", Zg_2j_NF, Zg_2j_dNF);
   }
 
 //   TH1F* h_ggZH = (TH1F*) f0->Get("zh3l_13TeV/ptz/histo_ggZH_hww");
