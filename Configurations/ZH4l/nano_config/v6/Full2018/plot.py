@@ -128,7 +128,7 @@ plot['ttW']  = {
                   }
 
               
-   '''           
+'''           
 plot['top'] = {   
                   'nameHR' : 'tW and t#bar{t}',
                   'color': 401,   # kYellow
