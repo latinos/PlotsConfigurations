@@ -41,15 +41,15 @@ for sampleName, sample in samples.items():
 #cut="(({0}))".format(preselections['ALL'])
 cut="(({0}))".format(supercut)
 mvaVariables = [
-   'Lepton_pt[0]',
-   'Lepton_pt[3]',
+#   'Lepton_pt[0]',
+#   'Lepton_pt[3]',
    'z0DeltaR_zh4l',
    'z1DeltaR_zh4l',
    'lep1Mt_zh4l',
    'lep2Mt_zh4l',
-   'z0Mass_zh4l',
+#   'z0Mass_zh4l',
    'z1Mass_zh4l',
-   'mllll_zh4l',
+#   'mllll_zh4l',
    'z1Mt_zh4l',
    'z1DeltaPhi_zh4l',
    'PuppiMET_pt',

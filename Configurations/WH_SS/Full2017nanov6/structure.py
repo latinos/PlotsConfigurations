@@ -122,12 +122,12 @@ structure['ZgS']  = {
                   'isData'   : 0
                   }
 
-structure['WgS_L'] = {
+structure['WgS'] = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
 
-structure['WgS_H'] = {
+structure['WZ'] = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }

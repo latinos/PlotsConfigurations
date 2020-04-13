@@ -19,10 +19,10 @@ elif  'cern' in SITE :
   #xrootdPath='root://eoscms.cern.ch/'
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/'
 
-directory = treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/'+skim
-directory1= treeBaseDir+'Summer16_102X_nAODv5_SigOnly_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/'+skim
-directory2= treeBaseDir+'Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/'+skim
-directory3 = treeBaseDir+'Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5/'+skim
+##directory = treeBaseDir+'Summer16_102X_nAODv4_Full2016v5/MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5/'+skim
+directory1= treeBaseDir+'Summer16_102X_nAODv5_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6/'+skim
+directory2= treeBaseDir+'Fall2017_102X_nAODv5_Full2017v6/MCl1loose2017v6__MCCorr2017v6__l2loose__l2tightOR2017v6/'+skim
+directory3= treeBaseDir+'Autumn18_102X_nAODv6_Full2018v6/MCl1loose2018v6__MCCorr2018v6__l2loose__l2tightOR2018v6/'+skim
 ################################################
 ############ NUMBER OF LEPTONS #################
 ################################################
@@ -128,21 +128,23 @@ DataTrig = {
 #############  BACKGROUNDS  ###############
 ###########################################
 
-################ ZZ ##############
 
-samples['ZZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo4L_AMCNLOFXFX',False,'nanoLatino_')    
-                              +getSampleFiles(directory,'ggZZ2e2t',False,'nanoLatino_')
-                              +getSampleFiles(directory,'ggZZ2m2t',False,'nanoLatino_')
-                              +getSampleFiles(directory,'ggZZ2e2m',False,'nanoLatino_')
-                              +getSampleFiles(directory,'ggZZ4t',False,'nanoLatino_')
-                              +getSampleFiles(directory,'ggZZ4e',False,'nanoLatino_')
-                              +getSampleFiles(directory,'ggZZ4m',False,'nanoLatino_'),
+
+#################### ZZ ##############
+
+samples['ZZ']  = {  'name'   :   getSampleFiles(directory1,'ZZTo4L_AMCNLOFXFX',False,'nanoLatino_')    
+                              +getSampleFiles(directory1,'ggZZ2e2t',False,'nanoLatino_')
+                              +getSampleFiles(directory1,'ggZZ2m2t',False,'nanoLatino_')
+                              +getSampleFiles(directory1,'ggZZ2e2m',False,'nanoLatino_')
+                              +getSampleFiles(directory1,'ggZZ4t',False,'nanoLatino_')
+                              +getSampleFiles(directory1,'ggZZ4e',False,'nanoLatino_')
+                              +getSampleFiles(directory1,'ggZZ4m',False,'nanoLatino_'),
                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                     'FilesPerJob' : 5,
                  }
 
 samples['ZZ17']  = {  'name'   :   getSampleFiles(directory2,'ZZTo4L_ext1',False,'nanoLatino_')
-                               +getSampleFiles(directory2,'ggZZ2e2t',False,'nanoLatino_')
+                            #   +getSampleFiles(directory2,'ggZZ2e2t',False,'nanoLatino_')
                               +getSampleFiles(directory2,'ggZZ2m2t',False,'nanoLatino_')
                               +getSampleFiles(directory2,'ggZZ2e2m',False,'nanoLatino_')
                          #     +getSampleFiles(directory,'ggZZ4t',False,'nanoLatino_')
@@ -175,7 +177,7 @@ addSampleWeight(samples,'ZZ','ggZZ4t',"1.68")
 
 
 addSampleWeight(samples,'ZZ17','ZZTo4L_ext1',"1.17") 
-addSampleWeight(samples,'ZZ17','ggZZ2e2t',"1.68") 
+#addSampleWeight(samples,'ZZ17','ggZZ2e2t',"1.68") 
 addSampleWeight(samples,'ZZ17','ggZZ2m2t',"1.68") 
 addSampleWeight(samples,'ZZ17','ggZZ2e2m',"1.68")
 addSampleWeight(samples,'ZZ17','ggZZ4m',"1.68")
@@ -187,16 +189,15 @@ addSampleWeight(samples,'ZZ18','ggZZ2e2m',"1.68")
 addSampleWeight(samples,'ZZ18','ggZZ4m',"1.68")
 addSampleWeight(samples,'ZZ18','ggZZ4t',"1.68")
 
-  
 
 
 ##########################################
 ################ SIGNALS #################
 ##########################################
 
-######### ZH H->WW ############
+############ ZH H->WW ############
 
-samples['ZH_hww']  = {  'name'   :   getSampleFiles(directory1,'HZJ_HToWWTo2L2Nu_ZTo2L_M125',False,'nanoLatino_'), 
+samples['ZH_hww']  = {  'name'   :   getSampleFiles(directory1,'HZJ_HToWWTo2L2Nu_ZTo2L_M125',False,'nanoLatino_'), #FIXME replace with 125 GeV sample when available
                         'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                      }
 
@@ -207,6 +208,7 @@ samples['ZH_hww17']  = {  'name'   :   getSampleFiles(directory2,'HZJ_HToWWTo2L2
 samples['ZH_hww18']  = {  'name'   :   getSampleFiles(directory3,'HZJ_HToWWTo2L2Nu_ZTo2L_M125',False,'nanoLatino_'),
                         'weight' : XSWeight18+'*'+SFweight18+'*'+PromptGenLepMatch18+'*'+METFilter_MC ,
                      }
+
 
 
 ###########################################

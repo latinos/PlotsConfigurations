@@ -127,6 +127,12 @@ variables['checkmZ']    = { 'name' : 'ZH3l_checkmZ',
                             'fold' : 0
                         }
 
+variables['met']       = { 'name'  : 'PuppiMET_pt',
+                            'range' : (20,0,100),
+                            'xaxis' : 'Puppi MET',
+                            'fold' : 0
+                        }
+
 variables['ptjet0']     = { 'name' : 'CleanJet_pt[0]',
                             'range' : (20,0,200),
                             'xaxis' : 'Leading jet p_{T}',

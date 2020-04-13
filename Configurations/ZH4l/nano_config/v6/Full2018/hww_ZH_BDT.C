@@ -33,40 +33,40 @@ float loc0_ptl[100];
 void initmyreaderBDT(TTree* tree){
 
 
-        tree->SetBranchAddress("Lepton_pt", &loc0_ptl);
+//       tree->SetBranchAddress("Lepton_pt", &loc0_ptl);
         tree->SetBranchAddress("z0DeltaR_zh4l", &loc0_z0DeltaR_zh4l);
         tree->SetBranchAddress("z1DeltaR_zh4l", &loc0_z1DeltaR_zh4l);
         tree->SetBranchAddress("lep1Mt_zh4l", &loc0_lep1Mt_zh4l);
         tree->SetBranchAddress("lep2Mt_zh4l",&loc0_lep2Mt_zh4l);
-        tree->SetBranchAddress("z0Mass_zh4l", &loc0_z0Mass_zh4l);
+//        tree->SetBranchAddress("z0Mass_zh4l", &loc0_z0Mass_zh4l);
         tree->SetBranchAddress("z1Mass_zh4l", &loc0_z1Mass_zh4l);
-        tree->SetBranchAddress("mllll_zh4l", &loc0_mllll_zh4l);
+//        tree->SetBranchAddress("mllll_zh4l", &loc0_mllll_zh4l);
         tree->SetBranchAddress("z1Mt_zh4l", &loc0_z1Mt_zh4l);
         tree->SetBranchAddress("z1DeltaPhi_zh4l", &loc0_z1DeltaPhi_zh4l);
         tree->SetBranchAddress("PuppiMET_pt", &loc0_PuppiMET_pt);
 
 
-	myreaderBDT->AddVariable("Lepton_pt[0]", &loc_pt1);
-	myreaderBDT->AddVariable("Lepton_pt[3]", &loc_pt4);
+//	myreaderBDT->AddVariable("Lepton_pt[0]", &loc_pt1);
+//	myreaderBDT->AddVariable("Lepton_pt[3]", &loc_pt4);
 	myreaderBDT->AddVariable("z0DeltaR_zh4l", &loc_z0DeltaR_zh4l);
 	myreaderBDT->AddVariable("z1DeltaR_zh4l", &loc_z1DeltaR_zh4l);
 	myreaderBDT->AddVariable("lep1Mt_zh4l", &loc_lep1Mt_zh4l);
 	myreaderBDT->AddVariable("lep2Mt_zh4l", &loc_lep2Mt_zh4l);
-	myreaderBDT->AddVariable("z0Mass_zh4l", &loc_z0Mass_zh4l);
+//	myreaderBDT->AddVariable("z0Mass_zh4l", &loc_z0Mass_zh4l);
 	myreaderBDT->AddVariable("z1Mass_zh4l", &loc_z1Mass_zh4l);
-	myreaderBDT->AddVariable("mllll_zh4l", &loc_mllll_zh4l);
+//	myreaderBDT->AddVariable("mllll_zh4l", &loc_mllll_zh4l);
 	myreaderBDT->AddVariable("z1Mt_zh4l", &loc_z1Mt_zh4l);
 	myreaderBDT->AddVariable("z1DeltaPhi_zh4l", &loc_z1DeltaPhi_zh4l);
         myreaderBDT->AddVariable("PuppiMET_pt", &loc_PuppiMET_pt); 
  
                 
  //change the path of weight file, xml file is in " BDT_config/weight " folder .
-        myreaderBDT->BookMVA("BDT","/afs/cern.ch/user/k/kaura/public/v6_xml/TMVAClassification_combinedv6_BDT.weights.xml"); 
+        myreaderBDT->BookMVA("BDT","/afs/cern.ch/user/k/kaura/public/v6_xml/TMVAClassification_comb28mar_v6_BDT.class.C"); 
 
 }
 
 
-float hww_ZH_newBDTnew(int entry, int nclass){
+float hww_ZH_BDT(int entry, int nclass){
 
 
 
@@ -91,15 +91,15 @@ float hww_ZH_newBDTnew(int entry, int nclass){
 	multidraw::currentTree->GetEntry(entry);
 
   
-        loc_pt1 = loc0_ptl[0];
-        loc_pt4 = loc0_ptl[3];
+//        loc_pt1 = loc0_ptl[0];
+//        loc_pt4 = loc0_ptl[3];
         loc_z0DeltaR_zh4l = loc0_z0DeltaR_zh4l;
         loc_z1DeltaR_zh4l = loc0_z1DeltaR_zh4l;
         loc_lep1Mt_zh4l = loc0_lep1Mt_zh4l;
         loc_lep2Mt_zh4l = loc0_lep2Mt_zh4l;
-        loc_z0Mass_zh4l = loc0_z0Mass_zh4l;
+//        loc_z0Mass_zh4l = loc0_z0Mass_zh4l;
         loc_z1Mass_zh4l = loc0_z1Mass_zh4l;
-        loc_mllll_zh4l = loc0_mllll_zh4l;
+//        loc_mllll_zh4l = loc0_mllll_zh4l;
         loc_z1Mt_zh4l = loc0_z1Mt_zh4l;
         loc_z1DeltaPhi_zh4l = loc0_z1DeltaPhi_zh4l;
         loc_PuppiMET_pt = loc0_PuppiMET_pt;
