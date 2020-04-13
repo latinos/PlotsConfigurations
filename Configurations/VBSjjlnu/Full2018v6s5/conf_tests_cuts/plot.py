@@ -38,22 +38,27 @@ palette = {
     "Green2": (55, 183, 76),  #37b74c
     "LightGreen" : (82, 221, 135), #52dd87
     "Violet": (242, 67, 114), #f24372  
+    "Pink": (247, 191, 223)
 }
 
 '''
- "Wjets_deta5": (247, 155, 7),#f79b07
+    "Wjets_deta5": (247, 155, 7),#f79b07
     "Wjets_deta4": (247, 175, 7), #f7af07
     "Wjets_deta3": (247, 195, 7), #f7c307
     "Wjets_deta2": (247, 215, 7), #f7d707
     "Wjets_deta1": (247, 235, 7), #f7eb07
 '''
 
-for il, lptc in enumerate([[247, 135, 7],[247, 235, 7],[211, 247, 7]]):
-    for j in range(1,6):
-        color = lptc
-        color[1] -= 20 * (j-1)
-        palette["Wjets_deta{}_lpt{}".format(j, il+1)] = tuple(color)
-        
+jetbin_detabins = [3,3,2]
+wjets_palette = ['#FFF59D', '#FFEE58', '#FFD54F', '#FFB300', '#FF8F00', '#F57C00', '#E65100','#BF360C']
+wjets_palette = ['#DD2C00', '#FF3D00',  '#FF6D00','#F57C00', '#FFAB00', '#FFC400', '#FFEA00', '#FFFF00']
+
+icw = 0
+for il in range(1,4):
+    for j in range(1,jetbin_detabins[il-1]+1):
+        color = wjets_palette[icw]
+        icw+=1
+        palette["Wjets_deta{}_jpt{}".format(j, il)] = color
 
 
 groupPlot['Fake']  = {  
@@ -67,7 +72,7 @@ groupPlot['Fake']  = {
 groupPlot['vbfV+VV+VVV']  = {  
                   'nameHR' : 'vbfV+VV+VVV',
                   'isSignal' : 0,
-                  'color': palette["MediumBlue2"],  
+                  'color': palette["Pink"],  
                   'samples'  : ['VBF-F','VVV', 'VV'],
                   'fill': 1001
               }
@@ -84,19 +89,19 @@ groupPlot['DY']  = {
 groupPlot['top']  = {  
                  'nameHR' : 'top',
                  'isSignal' : 0,
-                 'color':  palette["Orange"],  
+                 'color':  palette["MediumBlue2"],  
                  'samples'  : ['top'],
                  'fill': 1001
              }
 
-for  j,i in product(range(3,0,-1), range(1,6)): 
-    wname = "Wjets_deta{}_lpt{}".format(i,j)
-    groupPlot[wname]  = {  
-                    'nameHR' : 'W+Jets_{}_{}'.format(i,j),
-                    'isSignal' : 0,
-                    'color':   palette[wname],
-                    'samples'  : [wname],
-                    'fill': 1001
+
+
+groupPlot["Wjets"]  = {  
+                        'nameHR' : 'W+Jets',
+                        'isSignal' : 0,
+                        'color':   palette["Yellow"],
+                        'samples'  : ["Wjets"],
+                        'fill': 1001
                 }
 
 groupPlot['VBS']  = {  
@@ -106,14 +111,6 @@ groupPlot['VBS']  = {
                  'samples'  : ['VBS'],
                  'fill': 1001
               }
-
-groupPlot['total_prefit'] = {
-    'nameHR' : 'pre-fit',
-    'isSignal' : 2,
-    'color': 616,   
-    'samples'  : ['total_prefit'],
-    'fill': 1001
-}
 
 
 
@@ -166,23 +163,30 @@ plot['top'] = {
                  'color': colors['kAzure']-1,
                  'isSignal' : 0,
                  'isData'   : 0, 
-                 'scale'    : 1.0,
+                 'scale'    : 1.0 #1.08
                  }
 
 
-for  j,i in product(range(3,0,-1), range(1,6)): 
-    wname = "Wjets_deta{}_lpt{}".format(i,j)
-    plot[wname] = {  
-                    'color':  colors['kRed']-3,
-                    'isSignal' : 0,
-                    'isData'   : 0,
-                    'scale'    : 1.0 ,
-                }
+#wfactors = {
+#    (1,1): 0.89,
+#    (1,2): 0.88,
+#    (1,3): 0.66,
+#    (2,1): 1.08,
+#    (2,2): 0.92,
+#    (2,3): 0.65,
+#    (3,1): 1.36,
+#    (3,2): 1.00,
+#}
 
-# plot['Wjets']  = {
-#                   
-                 
-#               }
+
+plot["Wjets"] = {  
+                'color':  colors['kRed']-3,
+                'isSignal' : 0,
+                'isData'   : 0,
+                'scale': 1.0
+            }
+
+
 
 plot['VBS']  = {
                   'color': colors["kCyan"]+1, 
@@ -201,13 +205,6 @@ plot['DATA']  = {
                  'isBlind'  : 0
              }
 
-plot['total_prefit'] = {
-     'nameHR' : 'pre-fit',
-     'color': 616, 
-     'isSignal' : 2,
-     'isData'   : 0,
-     'scale'    : 1.   ,
-}
 
 
 # additional options

@@ -50,10 +50,10 @@ cuts["res_wjetcr_mjjincl_mvext_mu"] = 'VBS_category==1 \
                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
                                 && ( mjj_vjet <= 50 ||  mjj_vjet > 150 ) \
                                 && bVeto \
-                                '
+#                                 '
 
-###########################################
-# Check discrepancies in high DNN region
+##########################################
+#Check discrepancies in high DNN region
 
 
 cuts["res_wjetcr_mjjincl_mvint_dnnhigh_ele"] = 'VBS_category==1 \

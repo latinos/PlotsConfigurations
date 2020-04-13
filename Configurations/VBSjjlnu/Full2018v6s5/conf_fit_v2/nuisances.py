@@ -5,16 +5,15 @@
 
 mc =["DY", "top", "VV", "VVV", "VBF-V", "top", "VBS", "Wjets"]
 
-phase_spaces_res = [
-   'res_sig', 'res_sig_dnnhigh','res_sig_dnnlow',
-   'res_topcr','res_topcr_dnnhigh','res_topcr_dnnlow',
-   'res_wjetcr','res_wjetcr_dnnhigh','res_wjetcr_dnnlow',
-]
-phase_spaces_boost = [
-   'boost_sig','boost_sig_dnnhigh','boost_sig_dnnlow',
-   'boost_topcr','boost_topcr_dnnhigh','boost_topcr_dnnlow',
-   'boost_wjetcr','boost_wjetcr_dnnhigh','boost_wjetcr_dnnlow',
-]
+
+phase_spaces_boost = []
+phase_spaces_res = []
+
+for d in ["high","low"]:
+    for cat in ["sig", "wjetcr", "topcr"]:
+        phase_spaces_boost.append("boost_{}_dnn{}".format(cat, d))
+        phase_spaces_res.append("res_{}_dnn{}".format(cat, d))
+
 
 phase_spaces_res_ele = [ ph+"_ele" for ph in phase_spaces_res]
 phase_spaces_res_mu = [ ph+"_mu" for ph in phase_spaces_res]
@@ -223,14 +222,14 @@ nuisances['jes']  = {
                 'folderDown' : directory_bkg +"_JESdo",
 }
 
-nuisances['fatjet_jes']  = {
-                'name'  : 'CMS_scale_fatj_2018',
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc),
-                'folderUp'   : directory_bkg +"_fatjet_JESup",
-                'folderDown' : directory_bkg +"_fatjet_JESdo",
-}
+# nuisances['fatjet_jes']  = {
+#                 'name'  : 'CMS_scale_fatj_2018',
+#                 'kind'  : 'tree',
+#                 'type'  : 'shape',
+#                 'samples'  : dict((skey, ['1', '1']) for skey in mc),
+#                 'folderUp'   : directory_bkg +"_fatjet_JESup",
+#                 'folderDown' : directory_bkg +"_fatjet_JESdo",
+# }
 
 nuisances['fatjet_jms']  = {
                 'name'  : 'CMS_mass_fatj_2018',

@@ -3,17 +3,18 @@
 
 # # name of samples here must match keys in samples.py 
 
-mc =["DY", "top", "VV", "VVV", "VBF-V", "top", "VBS", "Wjets"]
+mc =["DY", "top", "VV", "VVV", "VBF-V", "top","Vg", "VgS", "VBS", "Wjets"]
 
-
-phase_spaces_boost = []
-phase_spaces_res = []
-
-for d in ["", "3", "4", "5", "6"]:
-    for cat in ["sig", "wjetcr", "topcr"]:
-        phase_spaces_boost.append("boost_{}_dnn{}".format(cat, d))
-        phase_spaces_res.append("res_{}_dnn{}".format(cat, d))
-
+phase_spaces_res = [
+   'res_sig_mjjincl', 'res_sig_mjjincl_dnnhigh', 'res_sig_mhigh',
+   'res_topcr_mjjincl','res_topcr_mjjincl_dnnhigh','res_topcr_mhigh',
+   'res_wjetcr_mjjincl','res_wjetcr_mjjincl_dnnhigh', 'res_wjetcr_mhigh',
+]
+phase_spaces_boost = [
+   'boost_sig_mjjincl','boost_sig_mjjincl_dnnhigh','boost_sig_mhigh',
+   'boost_topcr_mjjincl','boost_topcr_mjjincl_dnnhigh','boost_topcr_mhigh',
+   'boost_wjetcr_mjjincl','boost_wjetcr_mjjincl_dnnhigh','boost_wjetcr_mhigh'
+]
 
 phase_spaces_res_ele = [ ph+"_ele" for ph in phase_spaces_res]
 phase_spaces_res_mu = [ ph+"_mu" for ph in phase_spaces_res]
@@ -177,15 +178,15 @@ nuisances['eff_e']  = {
                 'cuts': phase_spaces_tot_ele
 }
 
-nuisances['electronpt']  = {
-                'name'  : 'CMS_scale_e_2018',
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc),
-                'folderUp'   :  directory_bkg +"_ElepTup",
-                'folderDown' : directory_bkg +"_ElepTdo",
-                'cuts': phase_spaces_tot_ele
-}
+# nuisances['electronpt']  = {
+#                 'name'  : 'CMS_scale_e_2018',
+#                 'kind'  : 'tree',
+#                 'type'  : 'shape',
+#                 'samples'  : dict((skey, ['1', '1']) for skey in mc),
+#                 'folderUp'   : directory_bkg +"_ElepTup",
+#                 'folderDown' : directory_bkg +"_ElepTdo",
+#                 'cuts': phase_spaces_tot_ele
+# }
 
 
 
@@ -200,15 +201,15 @@ nuisances['eff_m']  = {
                 'cuts': phase_spaces_tot_mu
 }
 
-nuisances['muonpt']  = {
-                'name'  : 'CMS_scale_m_2018',
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc),
-                'folderUp'   : directory_bkg +"_MupTup",
-                'folderDown' : directory_bkg +"_MupTdo",
-                'cuts': phase_spaces_tot_mu
-}
+# nuisances['muonpt']  = {
+#                 'name'  : 'CMS_scale_m_2018',
+#                 'kind'  : 'tree',
+#                 'type'  : 'shape',
+#                 'samples'  : dict((skey, ['1', '1']) for skey in mc),
+#                 'folderUp'   : directory_bkg +"_MupTup",
+#                 'folderDown' : directory_bkg +"_MupTdo",
+#                 'cuts': phase_spaces_tot_mu
+# }
 
 
 ##### Jet energy scale
@@ -222,23 +223,23 @@ nuisances['jes']  = {
                 'folderDown' : directory_bkg +"_JESdo",
 }
 
-nuisances['fatjet_jes']  = {
-                'name'  : 'CMS_scale_fatj_2018',
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc),
-                'folderUp'   : directory_bkg +"_fatjet_JESup",
-                'folderDown' : directory_bkg +"_fatjet_JESdo",
-}
+# nuisances['fatjet_jes']  = {
+#                 'name'  : 'CMS_scale_fatj_2018',
+#                 'kind'  : 'tree',
+#                 'type'  : 'shape',
+#                 'samples'  : dict((skey, ['1', '1']) for skey in mc),
+#                 'folderUp'   : directory_bkg +"_fatjet_JESup",
+#                 'folderDown' : directory_bkg +"_fatjet_JESdo",
+# }
 
-nuisances['fatjet_jms']  = {
-                'name'  : 'CMS_mass_fatj_2018',
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc),
-                'folderUp'   : directory_bkg +"_fatjet_JMSup",
-                'folderDown' : directory_bkg +"_fatjet_JMSdo",
-}
+# nuisances['fatjet_jms']  = {
+#                 'name'  : 'CMS_mass_fatj_2018',
+#                 'kind'  : 'tree',
+#                 'type'  : 'shape',
+#                 'samples'  : dict((skey, ['1', '1']) for skey in mc),
+#                 'folderUp'   : directory_bkg +"_fatjet_JMSup",
+#                 'folderDown' : directory_bkg +"_fatjet_JMSdo",
+# }
 
 
 
@@ -256,7 +257,7 @@ nuisances['met']  = {
 ######################
 # Theory nuisance
 
-nuisances['QCD_scale_wjets'] = {
+nuisances['QCD_scale_Wjets'] = {
      'name'  : 'QCDscale_wjets',
      'kind'  : 'weight',
      'type'  : 'shape',
@@ -265,8 +266,7 @@ nuisances['QCD_scale_wjets'] = {
      }
 }
 
-
-nuisances['QCD_scale_top'] = {
+nuisances['QCD_scale_Top'] = {
      'name'  : 'QCDscale_top',
      'kind'  : 'weight',
      'type'  : 'shape',
@@ -351,14 +351,14 @@ nuisances['singleTopToTTbar'] = {
 
 #################
 ## Samples normalizations
-nuisances['Top_norm']  = {
-               'name'  : 'CMS_Top_norm_2018',
-               'samples'  : {
-                   'top' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : phase_spaces_tot
-              }
+# nuisances['Top_norm']  = {
+#                'name'  : 'CMS_Top_norm_2018',
+#                'samples'  : {
+#                    'top' : '1.00',
+#                    },
+#                'type'  : 'rateParam',
+#                'cuts'  : phase_spaces_tot
+#               }
 
 
 # for wjbin in Wjets_lptbins:

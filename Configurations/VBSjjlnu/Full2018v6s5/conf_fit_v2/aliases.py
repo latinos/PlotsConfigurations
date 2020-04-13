@@ -9,29 +9,38 @@ conf_folder = configurations +"/VBSjjlnu/Full2018v6s5"
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
+aliases['whad_pt'] = {
+            'class': 'WhadPt',
+            'args': (),
+            'linesToAdd' : [
+                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+                '.L {}/VBSjjlnu/Full2018v6s5/macros/whad_pt.cc+'.format(configurations)
+            ]           
+}
+
 ############################################
 # DNN reader - Updated to 2018 specific
 
 mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2018v6s5/mva/'
-models_path = '/eos/home-d/dmapelli/public/latino/Full2018v6s5/'
+models_path = '/eos/home-d/dvalsecc/www/VBSPlots/DNN_archive/FullRun2/'
 
 aliases['DNNoutput_boosted'] = {
-    'class': 'MVAReaderBoosted_v72',
-    'args': ( models_path +'boos_sig_mjjincl/models/v72/', False, 0),
+    'class': 'MVAReaderBoosted_v5',
+    'args': ( models_path +'boost_sig/models/v5/',  mva_reader_path + 'cumulative_signal_boosted_v5.root', False, 0),
     'linesToAdd':[
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         'gSystem->Load("libDNNEvaluator.so")',
-        '.L ' + mva_reader_path + 'mva_reader_boosted_v72.cc+', 
+        '.L ' + mva_reader_path + 'mva_reader_boosted_v5.cc+', 
     ],
 }
 
 aliases['DNNoutput_resolved'] = {
-    'class': 'MVAReaderResolved_v70',
-    'args': ( models_path+ '/res_sig_mjjincl/models/v70/', False, 1),
+    'class': 'MVAReaderResolved_v29',
+    'args': ( models_path+ 'res_sig/models/v29/', mva_reader_path + 'cumulative_signal_resolved_v29.root', False, 1),
     'linesToAdd':[
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         'gSystem->Load("libDNNEvaluator.so")',
-        '.L ' + mva_reader_path + 'mva_reader_resolved_v70.cc+', 
+        '.L ' + mva_reader_path + 'mva_reader_resolved_v29.cc+', 
     ],
 }
 
@@ -39,15 +48,6 @@ aliases['DNNoutput'] = {
     'expr': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)'
 }
 
-aliases['DNNoutput_ele'] = {
-    'expr': '(abs(Lepton_pdgId[0])==11)*((VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)) +\
-             (abs(Lepton_pdgId[0])==13)*(-999)'
-}
-
-aliases['DNNoutput_mu'] = {
-    'expr': '(abs(Lepton_pdgId[0])==13)*((VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)) +\
-             (abs(Lepton_pdgId[0])==11)*(-999)'
-}
 
 aliases['detavbs_jetpt_bin'] = {
     'expr':'(VBS_category==0)* \
@@ -169,11 +169,4 @@ aliases['gstarHigh'] = {
     'samples': 'VgS'
 }
 
-aliases['whad_pt'] = {
-            'class': 'WhadPt',
-            'args': (),
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L {}/VBSjjlnu/Full2018v6s5/macros/whad_pt.cc+'.format(configurations)
-            ]           
-}
+

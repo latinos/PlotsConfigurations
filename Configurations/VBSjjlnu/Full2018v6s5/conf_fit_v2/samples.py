@@ -174,18 +174,18 @@ samples['Wjets'] = { 'name' :
           ,
 				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
 				'FilesPerJob' : 2,
-        # 'subsamples': {
-        #   "boost1" : "(VBS_category==0) && (deltaeta_vbs < 5)",
-        #   "boost2" : "(VBS_category==0) && (deltaeta_vbs >= 5)",
-        #   "deta1_jpt1": "(VBS_category==1) && (deltaeta_vbs < 5 ) && vbs_1_pt < 75",
-        #   "deta2_jpt1": "(VBS_category==1) && (deltaeta_vbs >= 5) && vbs_1_pt < 75",
+        'subsamples': {
+          "boost1" : "(VBS_category==0) && (deltaeta_vbs < 5)",
+          "boost2" : "(VBS_category==0) && (deltaeta_vbs >= 5)",
+          "deta1_jpt1": "(VBS_category==1) && (deltaeta_vbs < 5 ) && vbs_1_pt < 75",
+          "deta2_jpt1": "(VBS_category==1) && (deltaeta_vbs >= 5) && vbs_1_pt < 75",
           
-        #   "deta1_jpt2": "(VBS_category==1) && (deltaeta_vbs < 4 ) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
-        #   "deta2_jpt2": "(VBS_category==1) && (deltaeta_vbs >= 4) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
+          "deta1_jpt2": "(VBS_category==1) && (deltaeta_vbs < 4 ) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
+          "deta2_jpt2": "(VBS_category==1) && (deltaeta_vbs >= 4) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
 
-        #   "jpt3": "(VBS_category==1) && ( vbs_1_pt >= 150)",
+          "jpt3": "(VBS_category==1) && ( vbs_1_pt >= 150)",
                     
-        # }
+        }
       
 		}
 
@@ -323,3 +323,6 @@ for Run in DataRun :
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
+# samples={
+#   "VVV": samples["VVV"]
+# }

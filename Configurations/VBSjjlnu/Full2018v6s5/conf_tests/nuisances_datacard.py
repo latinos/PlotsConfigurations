@@ -2,12 +2,7 @@
 # #FIXME: TO BE UPDATED FOR 2018!
 from itertools import product
 
-jetbin_detabins = [3,3,2]
-# # name of samples here must match keys in samples.py 
-Wjets_bins = ["Wjets_boost"]
-for jetbin in range(3):
-    for detabin in range(jetbin_detabins[jetbin]):
-        Wjets_bins.append("Wjets_deta{}_jpt{}".format(detabin+1, jetbin+1))
+
 
 # # nuisances
 # #FIXME: TO BE UPDATED FOR 2018!
@@ -16,16 +11,14 @@ for jetbin in range(3):
 
 mc =["DY", "top", "VV", "VVV", "VBF-V", "top", "VBS", "Wjets"]
 
-phase_spaces_res = [
-   'res_sig_mjjincl', 'res_sig_mjjincl_dnnhigh',
-   'res_topcr_mjjincl','res_topcr_mjjincl_dnnhigh',
-   'res_wjetcr_mjjincl','res_wjetcr_mjjincl_dnnhigh',
-]
-phase_spaces_boost = [
-   'boost_sig_mjjincl','boost_sig_mjjincl_dnnhigh',
-   'boost_topcr_mjjincl','boost_topcr_mjjincl_dnnhigh',
-   'boost_wjetcr_mjjincl','boost_wjetcr_mjjincl_dnnhigh',
-]
+
+phase_spaces_boost = []
+phase_spaces_res = []
+
+for d in ["", "3", "4", "5", "6"]:
+    for cat in ["sig", "wjetcr", "topcr"]:
+        phase_spaces_boost.append("boost_{}_dnn{}".format(cat, d))
+        phase_spaces_res.append("res_{}_dnn{}".format(cat, d))
 
 phase_spaces_res_ele = [ ph+"_ele" for ph in phase_spaces_res]
 phase_spaces_res_mu = [ ph+"_mu" for ph in phase_spaces_res]
@@ -235,7 +228,7 @@ nuisances['jes']  = {
 }
 
 nuisances['fatjet_jes']  = {
-                '#'  : 'CMS_scale_fatj_2018',
+                'name'  : 'CMS_scale_fatj_2018',
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : dict((skey, ['1', '1']) for skey in mc),
@@ -352,13 +345,13 @@ nuisances['singleTopToTTbar'] = {
 
 ## Top pT reweighting uncertainty
 
-nuisances['TopPtRew'] = {
-    'name': 'CMS_topPtRew',   # Theory uncertainty
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {'top': ["1.", "1./Top_pTrw"]},
-    'symmetrize': True
-}
+# nuisances['TopPtRew'] = {
+#     'name': 'CMS_topPtRew',   # Theory uncertainty
+#     'kind': 'weight',
+#     'type': 'shape',
+#     'samples': {'top': ["1.", "1./Top_pTrw"]},
+#     'symmetrize': True
+# }
 
 
 #################
@@ -369,26 +362,35 @@ nuisances['Top_norm']  = {
                    'top' : '1.00',
                    },
                'type'  : 'rateParam',
-               'cuts'  : phase_spaces_tot
+              # 'cuts'  : phase_spaces_tot
+              }
+
+nuisances['Wjets_norm']  = {
+               'name'  : 'CMS_Wjets_norm_2018',
+               'samples'  : {
+                   'Wjets' : '1.00',
+                   },
+               'type'  : 'rateParam',
+              # 'cuts'  : phase_spaces_tot
               }
 
 
-for wjbin in Wjets_bins:
-    for fl in ["ele", "mu"]:
-        if "boost" in wjbin:
-            nuisances["{}_norm_{}_boost_2018".format(wjbin, fl)] = {
-                'name'  : 'CMS_{}_norm_{}_boost_2018'.format(wjbin, fl),
-                'samples'  : { wjbin: '1.00' },
-                'type'  : 'rateParam',
-                'cuts'  : [f+"_"+fl for f in phase_spaces_dict["boost"]]
-            }
-        else:
-            nuisances["{}_norm_{}_res_2018".format(wjbin, fl)] = {
-                'name'  : 'CMS_{}_norm_{}_res_2018'.format(wjbin, fl),
-                'samples'  : { wjbin: '1.00' },
-                'type'  : 'rateParam',
-                'cuts'  : [f+"_"+fl for f in phase_spaces_dict["res"]]
-            }
+# for wjbin in Wjets_bins:
+#     for fl in ["ele", "mu"]:
+#         if "boost" in wjbin:
+#             nuisances["{}_norm_{}_boost_2018".format(wjbin, fl)] = {
+#                 'name'  : 'CMS_{}_norm_{}_boost_2018'.format(wjbin, fl),
+#                 'samples'  : { wjbin: '1.00' },
+#                 'type'  : 'rateParam',
+#                 'cuts'  : [f+"_"+fl for f in phase_spaces_dict["boost"]]
+#             }
+#         else:
+#             nuisances["{}_norm_{}_res_2018".format(wjbin, fl)] = {
+#                 'name'  : 'CMS_{}_norm_{}_res_2018'.format(wjbin, fl),
+#                 'samples'  : { wjbin: '1.00' },
+#                 'type'  : 'rateParam',
+#                 'cuts'  : [f+"_"+fl for f in phase_spaces_dict["res"]]
+#             }
 
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
@@ -407,4 +409,4 @@ for n in nuisances.values():
     n['skipCMS'] = 1
 
    
-#print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
+print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))

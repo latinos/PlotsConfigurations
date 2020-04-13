@@ -7,10 +7,11 @@ from itertools import chain
 phase_spaces_boost = []
 phase_spaces_res = []
 
-for d in ["", "3", "4", "5","6"]:
-    for cat in ["sig", "wjetcr", "topcr"]:
-        phase_spaces_boost.append("boost_{}_dnn{}".format(cat, d))
-        phase_spaces_res.append("res_{}_dnn{}".format(cat, d))
+for fl in ["ele", "mu"]:
+    for d in ["high", "low"]:
+        for cat in ["sig", "wjetcr", "topcr"]:
+            phase_spaces_boost.append("boost_{}_dnn{}_{}".format(cat, d,fl))
+            phase_spaces_res.append("res_{}_dnn{}_{}".format(cat, d, fl))
 
 
 
@@ -21,83 +22,95 @@ variables['events']  = {   'name': '1',
                         }
 
 
-# variables['DNNoutput_low'] = {
-#     'name': 'DNNoutput',
-#     'range': (10,0.,0.5),
-#     'xaxis': 'DNN output',
-#     'fold': 0 ,
-#     'cuts': list(filter(lambda c: "dnnlow" in c, phase_spaces_boost+phase_spaces_res))
-# }
+variables['DNNoutput_low'] = {
+    'name': 'DNNoutput',
+    'range': (10,0.,0.3),
+    'xaxis': 'DNN output',
+    'fold': 0 ,
+    'cuts': list(filter(lambda c: "dnnlow" in c, phase_spaces_boost+phase_spaces_res))
+}
+'''
+[0.3,0.35,0.4,0.45,0.5,0.55,0.6, 0.66, 0.69, 0.72, 
+ 0.765, 0.795, 0.835, 0.88, 
+ 0.925, 0.975,1.0]
 
-# variables['DNNoutput_high'] = {
-#     'name': 'DNNoutput',
-#     'range': (20,0.5,1),
-#     'xaxis': 'DNN output',
-#     'fold': 0 ,
-#     'cuts': list(filter(lambda c: "dnnhigh" in c, phase_spaces_boost+phase_spaces_res)),
-#     'blind': {
-#         "res_sig_dnnhigh_mu": [0.8,1], 
-#         "res_sig_dnnhigh_ele": [0.8,1],
-#         "boost_sig_dnnhigh_mu": [0.8,1], 
-#         "boost_sig_dnnhigh_ele": [0.8,1],
-#     }
-# }
+'''
 
-# variables['DNNoutput_high_lotsbins'] = {
-#     'name': 'DNNoutput',
-#     'range': (50,0.5,1),
-#     'xaxis': 'DNN output',
-#     'fold': 0 ,
-#     'cuts': list(filter(lambda c: "dnnhigh" in c, phase_spaces_boost+phase_spaces_res)),
-#     'blind': {
-#         "res_sig_dnnhigh_mu": [0.8,1], 
-#         "res_sig_dnnhigh_ele": [0.8,1],
-#         "boost_sig_dnnhigh_mu": [0.8,1], 
-#         "boost_sig_dnnhigh_ele": [0.8,1],
-#     }
-# }
-
-# # variables['DNNoutput_high_res_ele'] = {
-# #     'name': 'DNNoutput_ele',
-# #     'range': (list(np.arange(0.5,0.945,0.445/11))+[0.945,0.955,0.965,0.975,1],),
-# #     'xaxis': 'DNN output electron, high region',
-# #     'fold': 0 ,
-# #     'blind': {
-# #         "res_sig_dnnhigh_mu": [0.8,1], 
-# #         "res_sig_dnnhigh_ele": [0.8,1],
-# #     },
-# #     'cuts': list(filter(lambda cut: "ele" in cut, phase_spaces_res))
-# # }
-
-variables['DNNoutput_res'] = {
+variables['DNNoutput_high_res_ele'] = {
     'name': 'DNNoutput_resolved',
-    'range': (40,0.,1.),
-    'xaxis': 'DNN output, resolved region',
+    'range': ([0.3,0.35,0.4,0.45,0.5,0.55,0.6, 0.66, 0.69, 0.72, 
+            0.765, 0.795, 0.835, 0.88, 0.925, 0.975,1.0],
+            ),
+    'xaxis': 'DNN output, resolved ele',
     'fold': 0 ,
+    'cuts': list(filter(lambda c: "dnnhigh" in c and "ele" in c, phase_spaces_res)),
     'blind': {
-        "res_sig_dnn": [0.8,1], 
-        "res_sig_dnn3": [0.8,1],
-        "res_sig_dnn4": [0.8,1], 
-        "res_sig_dnn5": [0.8,1],
-        "res_sig_dnn6": [0.8,1], 
-    },
-     'cuts': phase_spaces_res
+        "res_sig_dnnhigh_mu": [0.6,1], 
+        "res_sig_dnnhigh_ele": [0.6,1],
+        "boost_sig_dnnhigh_mu": [0.6,1], 
+        "boost_sig_dnnhigh_ele": [0.6,1],
+    }
 }
 
-variables['DNNoutput_boost'] = {
-    'name': 'DNNoutput_boosted',
-    'range': (40,0.,1.),
-    'xaxis': 'DNN output, boosted',
+'''
+[0.3,0.35,0.4,0.45,0.5,0.55,0.6, 0.645, 
+0.67, 0.715, 0.74, 0.78, 0.83, 
+0.865, 0.93, 0.96]
+
+'''
+variables['DNNoutput_high_res_mu'] = {
+    'name': 'DNNoutput_resolved',
+    'range': ([0.3,0.35,0.4,0.45,0.5,0.55,0.6, 0.645, 
+                0.67, 0.715, 0.74, 0.78, 0.83, 
+                0.865, 0.93, 0.96, 1.],
+             ),
+    'xaxis': 'DNN output resolved muon',
     'fold': 0 ,
+    'cuts': list(filter(lambda c: "dnnhigh" in c and "mu" in c, phase_spaces_res)),
     'blind': {
-        "boost_sig_dnn": [0.8,1], 
-        "boost_sig_dnn3": [0.8,1],
-        "boost_sig_dnn4": [0.8,1], 
-        "boost_sig_dnn5": [0.8,1],
-        "boost_sig_dnn6": [0.8,1], 
-    },
-    'cuts': phase_spaces_boost
+        "res_sig_dnnhigh_mu": [0.6,1], 
+        "res_sig_dnnhigh_ele": [0.6,1],
+        "boost_sig_dnnhigh_mu": [0.6,1], 
+        "boost_sig_dnnhigh_ele": [0.6,1],
+    }
 }
+
+'''
+[0.305, 0.43, 0.53, 0.635, 0.735, 0.895
+'''
+
+variables['DNNoutput_high_boost_ele'] = {
+    'name': 'DNNoutput_boosted',
+    'range': ([0.30, 0.43, 0.53, 0.635, 0.735, 0.895, 1.],),
+    'xaxis': 'DNN output, boosted ele',
+    'fold': 0 ,
+    'cuts': list(filter(lambda c: "dnnhigh" in c and "ele" in c, phase_spaces_boost)),
+    'blind': {
+        "res_sig_dnnhigh_mu": [0.6,1], 
+        "res_sig_dnnhigh_ele": [0.6,1],
+        "boost_sig_dnnhigh_mu": [0.6,1], 
+        "boost_sig_dnnhigh_ele": [0.6,1],
+    }
+}
+
+'''
+[0.3, 0.36, 0.425, 0.495, 0.595, 0.665, 0.735, 0.83, 0.92]
+'''
+variables['DNNoutput_high_boost_mu'] = {
+    'name': 'DNNoutput_boosted',
+    'range': ([0.3, 0.36, 0.425, 0.495, 0.595, 0.665, 0.735, 0.83, 0.92, 1.0],),
+    'xaxis': 'DNN output, boosted mu',
+    'fold': 0 ,
+    'cuts': list(filter(lambda c: "dnnhigh" in c and "mu" in c, phase_spaces_boost)),
+    'blind': {
+        "res_sig_dnnhigh_mu": [0.6,1], 
+        "res_sig_dnnhigh_ele": [0.6,1],
+        "boost_sig_dnnhigh_mu": [0.6,1], 
+        "boost_sig_dnnhigh_ele": [0.6,1],
+    }
+}
+
+
 
 
 # #leptons
@@ -108,11 +121,11 @@ variables['DNNoutput_boost'] = {
 #                         'fold' : 3
 #                         }
 
-# variables['Lepton_eta'] = {   'name': 'Lepton_eta[0]',      
-#                         'range' : (40,-2.5,2.5),  
-#                         'xaxis' : 'Lepton #eta', 
-#                         'fold' : 3
-#                         }
+variables['Lepton_eta'] = {   'name': 'Lepton_eta[0]',      
+                        'range' : (40,-2.5,2.5),  
+                        'xaxis' : 'Lepton #eta', 
+                        'fold' : 3
+                        }
 
 
 # variables['Lepton_pt'] = {   'name': 'Lepton_pt[0]',      
@@ -161,29 +174,34 @@ variables['mjj_vbs_morebins'] = {   'name': 'mjj_vbs',
                         'xaxis' : 'M_{jj} VBS', 
                         'fold' : 3,
                         'blind' : {
-                            "res_sig_dnn": [1000,4000], 
-                            "res_sig_dnn3": [1000,4000],
-                            "res_sig_dnn4": [1000,4000], 
-                            "res_sig_dnn5": [1000,4000],
-                            "res_sig_dnn6": [1000,4000], 
-                            "boost_sig_dnn": [1000,4000], 
-                            "boost_sig_dnn3": [1000,4000],
-                            "boost_sig_dnn4": [1000,4000], 
-                            "boost_sig_dnn5": [1000,4000],
-                            "boost_sig_dnn6": [1000,4000], 
+                            "res_sig_dnnhigh_ele": [1000,4000], 
+                            "res_sig_dnnhigh_mu": [1000,4000], 
+                            "boost_sig_dnnhigh_ele": [1000,4000], 
+                            "boost_sig_dnnhigh_mu": [1000,4000], 
                             }
                          }
 
+variables['mjj_vbs'] = {   'name': 'mjj_vbs',      
+                        'range' : ([200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,4000],) , 
+                        'xaxis' : 'M_{jj} VBS', 
+                        'fold' : 3,
+                        'blind' : {
+                            "res_sig_dnnhigh_ele" :(1000,4000),
+                            "res_sig_dnnhigh_mu" : (1000,4000),
+                            "boost_sig_dnnhigh_ele" :(1000,4000),
+                            "boost_sig_dnnhigh_mu" : (1000,4000),
+                            }
+                        }
 
 variables['vbs_0_pt'] = {   'name': 'vbs_0_pt',      
-                        'range' : (30,0,500),  
+                        'range' : (30,0,400),  
                         'xaxis' : 'leading VBS jet pt', 
                         'fold' : 3
                         }
 
 
 variables['vbs_1_pt'] = {   'name': 'vbs_1_pt',      
-                        'range' : (30,0,500),  
+                        'range' : (30,0,400),  
                         'xaxis' : 'trailing VBS jet pt', 
                         'fold' : 3
                         } 
@@ -197,21 +215,13 @@ variables['vbs_1_pt'] = {   'name': 'vbs_1_pt',
 
 variables['whad_pt'] = {
             'name': "whad_pt",
-            'range': (30, 0, 400),
+            'range': (30, 0, 200),
             'xaxis': 'W hadronic Pt',
             'fold': 3 ,
             'cuts': phase_spaces_res
 }
 
-# variables['mjj_vbs'] = {   'name': 'mjj_vbs',      
-#                         'range' : ([200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,4000],) , 
-#                         'xaxis' : 'M_{jj} VBS', 
-#                         'fold' : 3,
-#                         'blind' : {
-#                             "res_sig_ele" :(1000,4000),
-#                             "res_sig_mu" : (1000,4000),
-#                             }
-#                         }
+
 
 
 # variables['deltaphi_vbs'] = {   'name': 'deltaphi_vbs',      
@@ -227,17 +237,17 @@ variables['whad_pt'] = {
 #                         }
 
 
-# variables['vjet_0_pt'] = {   'name': 'vjet_0_pt',      
-#                         'range' : (30,30,400),  
-#                         'xaxis' : 'leading V-jet pt', 
-#                         'fold' : 3
-#                         }
+variables['vjet_0_pt'] = {   'name': 'vjet_0_pt',      
+                        'range' : (30,30,400),  
+                        'xaxis' : 'leading V-jet pt', 
+                        'fold' : 3
+                        }
 
-# variables['vjet_1_pt'] = {   'name': 'vjet_1_pt',      
-#                         'range' : (30,30,200),  
-#                         'xaxis' : 'trailing V-jet pt', 
-#                         'fold' : 3
-#                         }
+variables['vjet_1_pt'] = {   'name': 'vjet_1_pt',      
+                        'range' : (30,30,200),  
+                        'xaxis' : 'trailing V-jet pt', 
+                        'fold' : 3
+                        }
 
 
 # variables['vjet_0_eta'] = {   'name': 'vjet_0_eta',      
@@ -254,17 +264,17 @@ variables['whad_pt'] = {
 
 
 # # #
-# variables['vbs_0_eta'] = {   'name': 'vbs_0_eta',      
-#                         'range' : (30,0,5),  
-#                         'xaxis' : 'leading VBS jet #eta', 
-#                         'fold' : 3
-#                         }
+variables['vbs_0_eta'] = {   'name': 'vbs_0_eta',      
+                        'range' : (30,0,5),  
+                        'xaxis' : 'leading VBS jet #eta', 
+                        'fold' : 3
+                        }
 
-# variables['vbs_1_eta'] = {   'name': 'vbs_1_eta',      
-#                         'range' : (30,0,5),  
-#                         'xaxis' : 'trailing VBS jet #eta', 
-#                         'fold' : 3
-#                         }
+variables['vbs_1_eta'] = {   'name': 'vbs_1_eta',      
+                        'range' : (30,0,5),  
+                        'xaxis' : 'trailing VBS jet #eta', 
+                        'fold' : 3
+                        }
 
 
 

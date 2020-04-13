@@ -29,6 +29,7 @@ phase_spaces_res = [
    'res_wjetcr_mjjincl_mvint','res_wjetcr_mjjincl_mvext',
 
    'res_wjetcr_mjjincl_dnnhigh','res_wjetcr_mjjincl_mvint_dnnhigh','res_wjetcr_mjjincl_mvext_dnnhigh'
+   #'res_topcr_mjjincl_dnnhigh','res_topcr_mjjincl_mvint_dnnhigh','res_topcr_mjjincl_mvext_dnnhigh'
 ]
 phase_spaces_boost = [
    'boost_sig_mjjincl','boost_sig_mjjlow','boost_sig_mjjhigh',
@@ -279,13 +280,21 @@ nuisances['met']  = {
 
 ######################
 # Theory nuisance
-
-nuisances['QCD_scale_Wjets'] = {
+nuisances['QCD_scale_wjets'] = {
      'name'  : 'QCDscal_wjets',
      'kind'  : 'weight',
      'type'  : 'shape',
      'samples'  :   {
          "Wjets" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
+     }
+}
+
+nuisances['QCD_scale_top'] = {
+     'name'  : 'QCDscal_top',
+     'kind'  : 'weight',
+     'type'  : 'shape',
+     'samples'  :   {
+         "top" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
      }
 }
 
@@ -355,13 +364,13 @@ nuisances['singleTopToTTbar'] = {
 
 ## Top pT reweighting uncertainty
 
-nuisances['TopPtRew'] = {
-    'name': 'CMS_topPtRew',   # Theory uncertainty
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {'top': ["1.", "1./Top_pTrw"]},
-    'symmetrize': True
-}
+# nuisances['TopPtRew'] = {
+#     'name': 'CMS_topPtRew',   # Theory uncertainty
+#     'kind': 'weight',
+#     'type': 'shape',
+#     'samples': {'top': ["1.", "1./Top_pTrw"]},
+#     'symmetrize': True
+# }
 
 
 #################
@@ -372,7 +381,7 @@ nuisances['Top_norm']  = {
                    'top' : '1.00',
                    },
                'type'  : 'rateParam',
-               'cuts'  : phase_spaces_tot
+               'cuts'  : phase_spaces_tot + ["res_topcr_mjjincl_mvext_dnnhigh_ele","res_topcr_mjjincl_mvext_dnnhigh_mu"]
               }
 
 
