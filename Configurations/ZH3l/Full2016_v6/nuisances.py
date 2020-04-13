@@ -222,7 +222,6 @@ nuisances['pdf_gg_ACCEPT'] = {
 }
 
 #TODO update with measurement from PSweights
-#TODO update with measurement from PSweights
 nuisances['PS_whss']  = {
                 'name'  : 'PS_whss',
                 'skipCMS' : 1,
