@@ -42,7 +42,7 @@ muWP ='cut_Tight_HWWW'
 
 LepWPCut        = 'LepCut'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP+'*LepWPCutNew' #Cut for new WPs, defined in aliases 
 #LepWPCut        = 'LepCut'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
-LepWPweight     = 'ttHMVA_SF_3l' #SF for new WPs, defined in aliases
+LepWPweight     = 'ttHMVA_SF_3l[0]' #SF for new WPs, defined in aliases
 #LepWPweight     = 'LepSF'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
 
 ################################################
