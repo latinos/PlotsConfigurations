@@ -352,7 +352,7 @@ samples['ZH_hww']  = {  'name': nanoGetSampleFiles(mcDirectory,'HZJ_HToWW_M125')
                                        }
                     }
 
-samples['ggZH_hww'] = {  'name': nanoGetSampleFiles(mcDirectory,'ggZH_HToWW_M125'),
+samples['ggZH_hww'] = {  'name': nanoGetSampleFiles(mcDirectory,'GluGluZH_HToWWTo2L2Nu_M125'),
                          'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC,
                          'suppressNegativeNuisances' :['all'],
                          'FilesPerJob' : 3,
