@@ -194,7 +194,7 @@ puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandS
 aliases['PUJetIdSF'] = {
     'linesToAdd': [
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/patches/pujetidsf_event.cc+' % configurations
+        '.L %s/../../patches/pujetidsf_event.cc+' % configurations
     ],
     'class': 'PUJetIdEventSF',
     'args': (puidSFSource, '2016', 'loose'),
@@ -222,9 +222,9 @@ aliases['lhe_mW2'] = {
 
 aliases['ZH4l_pTZ'] = {
   'expr' : 'sqrt(Lepton_pt[0]^2+Lepton_pt[1]^2+2*Lepton_pt[0]*Lepton_pt[1]*cos(z0DeltaPhi_zh4l))*(fabs(TVector2::Phi_mpi_pi(Lepton_phi[0]-Lepton_phi[1])-z0DeltaPhi_zh4l)<0.00001) \
-           +sqrt(Lepton_pt[0]^2+Lepton_pt[2]^2+2*Lepton_pt[0]*Lepton_pt[2]*cos(z0DeltaPhi_zh4l))*(fabs(TVector2::Phi_mpi_pi(Lepton_phi[0]-Lepton_phi[2])-z0DeltaPhi_zh4l)<0.00001) \    
-           +sqrt(Lepton_pt[0]^2+Lepton_pt[3]^2+2*Lepton_pt[0]*Lepton_pt[3]*cos(z0DeltaPhi_zh4l))*(fabs(TVector2::Phi_mpi_pi(Lepton_phi[0]-Lepton_phi[3])-z0DeltaPhi_zh4l)<0.00001) \    
-           +sqrt(Lepton_pt[1]^2+Lepton_pt[2]^2+2*Lepton_pt[1]*Lepton_pt[2]*cos(z0DeltaPhi_zh4l))*(fabs(TVector2::Phi_mpi_pi(Lepton_phi[1]-Lepton_phi[2])-z0DeltaPhi_zh4l)<0.00001) \    
+           +sqrt(Lepton_pt[0]^2+Lepton_pt[2]^2+2*Lepton_pt[0]*Lepton_pt[2]*cos(z0DeltaPhi_zh4l))*(fabs(TVector2::Phi_mpi_pi(Lepton_phi[0]-Lepton_phi[2])-z0DeltaPhi_zh4l)<0.00001) \
+           +sqrt(Lepton_pt[0]^2+Lepton_pt[3]^2+2*Lepton_pt[0]*Lepton_pt[3]*cos(z0DeltaPhi_zh4l))*(fabs(TVector2::Phi_mpi_pi(Lepton_phi[0]-Lepton_phi[3])-z0DeltaPhi_zh4l)<0.00001) \
+           +sqrt(Lepton_pt[1]^2+Lepton_pt[2]^2+2*Lepton_pt[1]*Lepton_pt[2]*cos(z0DeltaPhi_zh4l))*(fabs(TVector2::Phi_mpi_pi(Lepton_phi[1]-Lepton_phi[2])-z0DeltaPhi_zh4l)<0.00001) \
            +sqrt(Lepton_pt[1]^2+Lepton_pt[3]^2+2*Lepton_pt[1]*Lepton_pt[3]*cos(z0DeltaPhi_zh4l))*(fabs(TVector2::Phi_mpi_pi(Lepton_phi[1]-Lepton_phi[3])-z0DeltaPhi_zh4l)<0.00001) \
            +sqrt(Lepton_pt[2]^2+Lepton_pt[3]^2+2*Lepton_pt[2]*Lepton_pt[3]*cos(z0DeltaPhi_zh4l))*(fabs(TVector2::Phi_mpi_pi(Lepton_phi[2]-Lepton_phi[3])-z0DeltaPhi_zh4l)<0.00001)'
 }

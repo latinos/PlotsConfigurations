@@ -4,13 +4,12 @@
     
 #'fold' : # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
 
-
 variables['class0_XSF'] = {
-     'name': 'hww_ZH_BDT(Entry$,0)',
-     'range' : ([-0.50,-0.25,-0.15,0.,0.15,0.25,0.35,0.50,0.80],),
-     'xaxis' : 'MVA discriminant ZH',
-     'fold' : 3,
-     'linesToAdd' : ['.L /afs/cern.ch/work/k/kaura/NewLatino_v6/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ZH4l/nano_config/Full2016/hww_ZH_BDT.C+']
+    'name': 'hww_ZH_BDT(Entry$,0)',
+    'range' : ([-0.50,-0.25,-0.15,0.,0.15,0.25,0.35,0.50,0.80],),
+    'xaxis' : 'MVA discriminant ZH',
+    'fold' : 3,
+    'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/ZH4l/STXS_nanoAOD/v6/Full2016nano_STXS_1p1/hww_ZH_BDT.C+' % os.getenv('CMSSW_BASE')]
 }  #change the path of macro
 
 variables['class1_XDF'] = {
@@ -19,7 +18,7 @@ variables['class1_XDF'] = {
      'range' : ([-0.50,-0.25,0.,0.25,0.50,0.80],),
      'xaxis' : 'MVA discriminant ZH',
      'fold' : 3,
-     'linesToAdd' : ['.L /afs/cern.ch/work/k/kaura/NewLatino_v6/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ZH4l/nano_config/Full2016/hww_ZH_BDT.C+']
+     'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/ZH4l/STXS_nanoAOD/v6/Full2016nano_STXS_1p1/hww_ZH_BDT.C+' % os.getenv('CMSSW_BASE')]
 } #change the path of macro
 
 
