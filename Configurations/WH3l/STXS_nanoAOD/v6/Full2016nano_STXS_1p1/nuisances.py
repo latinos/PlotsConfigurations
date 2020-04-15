@@ -254,7 +254,7 @@ nuisances['pdf_Higgs_qqbar_wh3l']  = {
                'type'  : 'lnN',
                'samples'  : {
                    'WH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
-                   'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
+                   #'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
                    },
               }
 
@@ -265,7 +265,7 @@ nuisances['pdf_Higgs_qqbar_ACCEPT_wh3l']  = {
                'samples'  : {
                    #
                    'WH_htt'  : '1.007',
-                   'WH_hww'  : '1.007',
+                   #'WH_hww'  : '1.007',
                    'WZ'      : '1.005'
                    },
               }
@@ -280,7 +280,7 @@ nuisances['pdf_Higgs_qqbar_ACCEPT_wh3l']  = {
 nuisances['QCDscale_VH']  = {
                'name'  : 'QCDscale_VH',
                'samples'  : {
-                   'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
+                   #'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
                    'WH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
                    },
                'type'  : 'lnN',
@@ -292,7 +292,7 @@ nuisances['QCDscale_qqbar_ACCEPT']  = {
                'type'  : 'lnN',
                'samples'  : {
                    'WH_htt'  : '1.05',
-                   'WH_hww'  : '1.05',
+                   #'WH_hww'  : '1.05',
                    'WZ'      : '1.029'
                    },
               }
@@ -310,32 +310,36 @@ nuisances['stat'] = {
 
 
 nuisances['Zg3lnorm']  = {
-               'name'  : 'CMS_hww_Zg3lnorm',
-               'samples'  : {
-                   'Zg' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [
-                 'wh3l_zg_13TeV',
-                 'wh3l_13TeV_ossf',
-                 'wh3l_13TeV_sssf',
-                 'wh3l_wz_13TeV',
-                ]
-              }
+    'name'  : 'CMS_hww_Zg3lnorm',
+    'samples'  : {
+        'Zg' : '1.00',
+    },
+    'type'  : 'rateParam',
+    'cuts'  : [
+        'wh3l_zg_13TeV',
+        'wh3l_13TeV_ossf_ptv_lt150',
+        'wh3l_13TeV_ossf_ptv_gt150',
+        'wh3l_13TeV_sssf_ptv_lt150',
+        'wh3l_13TeV_sssf_ptv_gt150',
+        'wh3l_wz_13TeV',
+    ]
+}
 
 nuisances['WZ3lnorm']  = {
-               'name'  : 'CMS_hww_WZ3lnorm',
-               'samples'  : {
-                   'WZ' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [
-                 'wh3l_wz_13TeV',
-                 'wh3l_13TeV_ossf',
-                 'wh3l_13TeV_sssf',
-                 'wh3l_zg_13TeV',
-                ]
-              }
+    'name'  : 'CMS_hww_WZ3lnorm',
+    'samples'  : {
+        'WZ' : '1.00',
+    },
+    'type'  : 'rateParam',
+    'cuts'  : [
+        'wh3l_zg_13TeV',
+        'wh3l_13TeV_ossf_ptv_lt150',
+        'wh3l_13TeV_ossf_ptv_gt150',
+        'wh3l_13TeV_sssf_ptv_lt150',
+        'wh3l_13TeV_sssf_ptv_gt150',
+        'wh3l_wz_13TeV',
+    ]
+}
 
 
 
