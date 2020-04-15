@@ -1,15 +1,17 @@
-# example of configuration file
+# Configuration file to produce initial root files -- has both merged and binned ggH samples
 
-tag = 'ZH3l_2018'
+treeName = 'Events'
+
+tag = 'SS_2016_v6_muonelectrontthmva'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFiles_'+tag
-
-# file with list of variables
-variablesFile = 'variables.py'
+outputDir = 'rootFile'+tag
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
+
+# file with list of variables
+variablesFile = 'variables.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
@@ -21,13 +23,14 @@ samplesFile = 'samples.py'
 plotFile = 'plot.py' 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 59.74
+lumi = 35.867
 
 # used by mkPlot to define output directory for plots
-outputDirPlots = 'plot_'+tag
+# different from "outputDir" to do things more tidy
+outputDirPlots = 'plots'+tag
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards_'+tag
+outputDirDatacard = 'datacards'
 
 # structure file for datacard
 structureFile = 'structure.py'

@@ -45,12 +45,6 @@ nuisances['lumi_XYFact'] = {
     'samples': dict((skey, '1.008') for skey in mc if skey not in ['Zg','ZgS','WZ'])
 }
 
-nuisances['lumi_LScale'] = {
-    'name': 'lumi_13TeV_LSCale',
-    'type': 'lnN',
-    'samples': dict((skey, '1.003') for skey in mc if skey not in ['Zg','ZgS','WZ'])
-}
-
 nuisances['lumi_BBDefl'] = {
     'name': 'lumi_13TeV_BBDefl',
     'type': 'lnN',
@@ -63,17 +57,24 @@ nuisances['lumi_DynBeta'] = {
     'samples': dict((skey, '1.005') for skey in mc if skey not in ['Zg','ZgS','WZ'])
 }
 
+nuisances['lumi_Ghosts'] = {
+    'name': 'lumi_13TeV_Ghosts',
+    'type': 'lnN',
+    'samples': dict((skey, '1.001') for skey in mc if skey not in ['Zg','ZgS','WZ'])
+}
+
 nuisances['lumi_CurrCalib'] = {
     'name': 'lumi_13TeV_CurrCalib',
     'type': 'lnN',
     'samples': dict((skey, '1.003') for skey in mc if skey not in ['Zg','ZgS','WZ'])
 }
 
-nuisances['lumi_Ghosts'] = {
-    'name': 'lumi_13TeV_Ghosts',
+nuisances['lumi_LScale'] = {
+    'name': 'lumi_13TeV_LSCale',
     'type': 'lnN',
-    'samples': dict((skey, '1.001') for skey in mc if skey not in ['Zg','ZgS','WZ'])
+    'samples': dict((skey, '1.003') for skey in mc if skey not in ['Zg','ZgS','WZ'])
 }
+
 
 #### FAKES
 
@@ -169,11 +170,13 @@ nuisances['eff_e'] = {
 
 nuisances['electronpt'] = {
     'name': 'CMS_scale_e_2017',
-    'kind': 'tree',
+    'kind': 'suffix',
     'type': 'shape',
+    'mapUp': 'ElepTup',
+    'mapDown': 'ElepTdo',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('ElepTup'),
-    'folderDown': makeMCDirectory('ElepTdo'),
+    'folderUp': makeMCDirectory('ElepTup_suffix'),
+    'folderDown': makeMCDirectory('ElepTdo_suffix'),
     'AsLnN': '1'
 }
 
@@ -188,65 +191,72 @@ nuisances['eff_m'] = {
 
 nuisances['muonpt'] = {
     'name': 'CMS_scale_m_2017',
-    'kind': 'tree',
+    'kind': 'suffix',
     'type': 'shape',
+    'mapUp': 'MupTup',
+    'mapDown': 'MupTdo',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('MupTup'),
-    'folderDown': makeMCDirectory('MupTdo'),
+    'folderUp': makeMCDirectory('MupTup_suffix'),
+    'folderDown': makeMCDirectory('MupTdo_suffix'),
     'AsLnN': '1'
 }
 
 ##### Jet energy scale
-
-nuisances['jes'] = {
-    'name': 'CMS_scale_j_2017',
-    'kind': 'tree',
-    'type': 'shape',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('JESup'),
-    'folderDown': makeMCDirectory('JESdo'),
-    'AsLnN': '1'
-}
+jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD', 'JESHF','JESHF_2017','JESRelativeBal','JESRelativeSample_2017']
+for js in jes_systs:
+    nuisances[js] = {
+        'name': 'CMS_scale_' + js,
+        'kind': 'suffix',
+        'type': 'shape',
+        'mapUp': js+'up',
+        'mapDown': js+'do',
+        'samples': dict((skey, ['1', '1']) for skey in mc),
+        'folderUp': makeMCDirectory('JESup_suffix'),
+        'folderDown': makeMCDirectory('JESdo_suffix'),
+        'AsLnN': '1'
+    }
 
 ##### MET energy scale
 
 nuisances['met'] = {
     'name': 'CMS_scale_met_2017',
-    'kind': 'tree',
+    'kind': 'suffix',
     'type': 'shape',
+    'mapUp': 'METup',
+    'mapDown': 'METdo',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('METup'),
-    'folderDown': makeMCDirectory('METdo'),
+    'folderUp': makeMCDirectory('METup_suffix'),
+    'folderDown': makeMCDirectory('METdo_suffix'),
     'AsLnN': '1'
 }
 
 
 ##### PS and UE --> NO AVAILABLE FOR VH2j! 
 nuisances['PS_whss']  = {
-                'name'  : 'PS_whss',
-                'skipCMS' : 1,
-                'type'  : 'lnN',
-                'samples'  : {
-                   'WH_hww'   : '1.037',
-                   'ZH_hww'   : '1.037',
-                   'H_htt'    : '1.037',
-                   'ggZH_hww'   : '1.037',
-              #     'ZH_htt'   : '1.037',
-                },
+    'name' : 'PS_whss',
+    'skipCMS' : 1,
+    'type' : 'lnN',
+    'samples' : {
+        #'WH_hww'   : '1.037',
+        'ZH_hww'   : '1.037',
+        'H_htt'    : '1.037',
+        'ggZH_hww' : '1.037',
+        # 'ZH_htt'   : '1.037',
+    },
 }
 
 nuisances['UE_whss']  = {
-                'name'  : 'UE_whss',
-                'skipCMS' : 1,
-                'type'  : 'lnN',
-                'samples'  : {
-                   'WH_hww'   : '1.010',
-                   'ZH_hww'   : '1.010',
-                   'H_htt'    : '1.010',
-                   'ggZH_hww'   : '1.010',
- #                  'ZH_htt'   : '1.010',
-               },
-                }
+    'name'  : 'UE_whss',
+    'skipCMS' : 1,
+    'type'  : 'lnN',
+    'samples'  : {
+        #'WH_hww'   : '1.010',
+        'ZH_hww'   : '1.010',
+        'H_htt'    : '1.010',
+        'ggZH_hww' : '1.010',
+        # 'ZH_htt'   : '1.010',
+    },
+}
 
 ###### pdf uncertainties
 
@@ -255,7 +265,7 @@ nuisances['pdf_Higgs_qqbar_wh3l']  = {
                'type'  : 'lnN',
                'samples'  : {
                    'WH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
-                   'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
+                   #'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
                    },
               }
 
@@ -266,7 +276,7 @@ nuisances['pdf_Higgs_qqbar_ACCEPT_wh3l']  = {
                'samples'  : {
                    #
                    'WH_htt'  : '1.007',
-                   'WH_hww'  : '1.007',
+                   #'WH_hww'  : '1.007',
                    'WZ'      : '1.005'
                    },
               }
@@ -281,7 +291,7 @@ nuisances['pdf_Higgs_qqbar_ACCEPT_wh3l']  = {
 nuisances['QCDscale_VH']  = {
                'name'  : 'QCDscale_VH',
                'samples'  : {
-                   'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
+                   #'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
                    'WH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
                    },
                'type'  : 'lnN',
@@ -293,7 +303,7 @@ nuisances['QCDscale_qqbar_ACCEPT']  = {
                'type'  : 'lnN',
                'samples'  : {
                    'WH_htt'  : '1.05',
-                   'WH_hww'  : '1.05',
+                   #'WH_hww'  : '1.05',
                    'WZ'      : '1.029'
                    },
               }
@@ -309,34 +319,38 @@ nuisances['stat'] = {
     'samples': {}
 }
 
-
 nuisances['Zg3lnorm']  = {
-               'name'  : 'CMS_hww_Zg3lnorm',
-               'samples'  : {
-                   'Zg' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [
-                 'wh3l_zg_13TeV',
-                 'wh3l_13TeV_ossf',
-                 'wh3l_13TeV_sssf',
-                 'wh3l_wz_13TeV',
-                ]
-              }
+    'name'  : 'CMS_hww_Zg3lnorm',
+    'samples'  : {
+        'Zg' : '1.00',
+    },
+    'type'  : 'rateParam',
+    'cuts'  : [
+        'wh3l_zg_13TeV',
+        'wh3l_13TeV_ossf_ptv_lt150',
+        'wh3l_13TeV_ossf_ptv_gt150',
+        'wh3l_13TeV_sssf_ptv_lt150',
+        'wh3l_13TeV_sssf_ptv_gt150',
+        'wh3l_wz_13TeV',
+    ]
+}
 
 nuisances['WZ3lnorm']  = {
-               'name'  : 'CMS_hww_WZ3lnorm',
-               'samples'  : {
-                   'WZ' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [
-                 'wh3l_zg_13TeV',
-                 'wh3l_13TeV_ossf',
-                 'wh3l_13TeV_sssf',
-                 'wh3l_wz_13TeV',
-                ]
-              }
+    'name'  : 'CMS_hww_WZ3lnorm',
+    'samples'  : {
+        'WZ' : '1.00',
+    },
+    'type'  : 'rateParam',
+    'cuts'  : [
+        'wh3l_zg_13TeV',
+        'wh3l_13TeV_ossf_ptv_lt150',
+        'wh3l_13TeV_ossf_ptv_gt150',
+        'wh3l_13TeV_sssf_ptv_lt150',
+        'wh3l_13TeV_sssf_ptv_gt150',
+        'wh3l_wz_13TeV',
+    ]
+}
+
 
 
 for n in nuisances.values():

@@ -29,16 +29,17 @@ except NameError:
 ################# SKIMS ########################
 ################################################
 
-mcProduction = 'Fall2017_102X_nAODv4_Full2017v5'
+dataReco = 'Run2017_102X_nAODv5_Full2017v6'
 
-mcSteps = 'MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5'
+fakeReco = 'Run2017_102X_nAODv5_Full2017v6_ForNewWPs'
 
-dataReco = 'Run2017_102X_nAODv4_Full2017v5'
-fakeReco = 'Run2017_102X_nAODv4_Full2017v5_ForNewWPs'
+mcProduction = 'Fall2017_102X_nAODv5_Full2017v6'
 
-fakeSteps = 'DATAl1loose2017v5__l2loose__fakeW'
+mcSteps = 'MCl1loose2017v6__MCCorr2017v6__l2loose__l2tightOR2017v6{var}'
 
-dataSteps = 'DATAl1loose2017v5__l2loose__l2tightOR2017v5'
+fakeSteps = 'DATAl1loose2017v6__l2loose__fakeW'
+
+dataSteps = 'DATAl1loose2017v6__l2loose__l2tightOR2017v6'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -58,10 +59,8 @@ def makeMCDirectory(var=''):
         return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
         # return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Summer16/l2tightOR'
 
-directory = treeBaseDir+'/Fall2017_102X_nAODv4_Full2017v5/MCl1loose2017v5__MCCorr2017v5__l2loose__l2tightOR2017v5/'
 mcDirectory = makeMCDirectory()
 fakeDirectory = os.path.join(treeBaseDir, fakeReco, fakeSteps)
-# fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
 dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 
 ################################################
@@ -69,23 +68,22 @@ dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 ################################################
 
 DataRun = [
-            ['B','Run2017B-Nano14Dec2018-v1'] ,
-            ['C','Run2017C-Nano14Dec2018-v1'] ,
-            ['D','Run2017D-Nano14Dec2018-v1'] ,
-            ['E','Run2017E-Nano14Dec2018-v1'] ,
-            ['F','Run2017F-Nano14Dec2018-v1'] ,
-          ]
+    ['B','Run2017B-Nano1June2019-v1'],
+    ['C','Run2017C-Nano1June2019-v1'],
+    ['D','Run2017D-Nano1June2019-v1'],
+    ['E','Run2017E-Nano1June2019-v1'],
+    ['F','Run2017F-Nano1June2019-v1']
+]
 
-DataSets = ['MuonEG','DoubleMuon','SingleMuon','DoubleEG','SingleElectron']
-
+DataSets = ['MuonEG','SingleMuon','SingleElectron','DoubleMuon', 'DoubleEG']
 
 DataTrig = {
-            'MuonEG'         : 'Trigger_ElMu' ,
-            'DoubleMuon'     : '!Trigger_ElMu &&  Trigger_dblMu' ,
-            'SingleMuon'     : '!Trigger_ElMu && !Trigger_dblMu &&  Trigger_sngMu' ,
-            'DoubleEG'       : '!Trigger_ElMu && !Trigger_dblMu && !Trigger_sngMu &&  Trigger_dblEl' ,
-            'SingleElectron' : '!Trigger_ElMu && !Trigger_dblMu && !Trigger_sngMu && !Trigger_dblEl &&  Trigger_sngEl' ,
-           }
+    'MuonEG'         : ' Trigger_ElMu' ,
+    'SingleMuon'     : '!Trigger_ElMu && Trigger_sngMu' ,
+    'SingleElectron' : '!Trigger_ElMu && !Trigger_sngMu && Trigger_sngEl',
+    'DoubleMuon'     : '!Trigger_ElMu && !Trigger_sngMu && !Trigger_sngEl && Trigger_dblMu',
+    'DoubleEG'       : '!Trigger_ElMu && !Trigger_sngMu && !Trigger_sngEl && !Trigger_dblMu && Trigger_dblEl'
+}
 
 
 #########################################
@@ -109,17 +107,16 @@ samples['WW'] = {
 }
 
 ######## Vg ########
-zgXSscale = '0.448'
 samples['Wg'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM'),
-    # 'weight': "*".join([mcCommonWeight + '(Gen_ZGstar_mass <= 0)']),
     'weight': mcCommonWeight + '*(Gen_ZGstar_mass <= 0)',
     'FilesPerJob': 4
 }
 samples['Zg'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'ZGToLLG'),
-    'weight': "*".join([mcCommonWeight, '(Gen_ZGstar_mass <= 0)', zgXSscale]),
-    'FilesPerJob': 4
+    'weight': "*".join([mcCommonWeight, '(Gen_ZGstar_mass <= 0)']),
+    'FilesPerJob': 1
+    # 'FilesPerJob': 4
 }
 
 ######## VgS ########
@@ -131,20 +128,28 @@ samples['WgS'] = {
 }
 samples['ZgS'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'ZGToLLG'),
-    'weight': "*".join([mcCommonWeightMatched, "(Gen_ZGstar_mass > 0)", zgXSscale]),
-    'FilesPerJob': 4,
+    'weight': "*".join([mcCommonWeightMatched, "(Gen_ZGstar_mass > 0)"]),
+    # 'FilesPerJob': 4,
+    'FilesPerJob': 1,
 }
 
 ############ ZZ ############
 
-samples['ZZ'] = {
-    'name': nanoGetSampleFiles(mcDirectory,'ZZTo4L')+nanoGetSampleFiles(mcDirectory,'ZZTo4L_ext1'),
+samples['ZZ']  = {  
+    'name'   :   nanoGetSampleFiles(mcDirectory,'ZZTo4L'),
     'weight': mcCommonWeightMatched,
-    'FilesPerJob' : 5,
-}
-ZZbaseW   = getBaseWnAOD(directory,'Fall2017_102X_nAODv4_Full2017v5',['ZZTo4L',  'ZZTo4L_ext1'])
-addSampleWeight(samples,'ZZ','ZZTo4L',        "1.17*"+ZZbaseW+"/baseW") ## The NNLO/NLO k-factor, cited from https://arxiv.org/abs/1405.2219v1
-addSampleWeight(samples,'ZZ','ZZTo4L_ext1',   "1.17*"+ZZbaseW+"/baseW")
+    'FilesPerJob': 1,
+                 }
+addSampleWeight(samples,'ZZ','ZZTo4L',"1.17") 
+# samples['ZZ'] = {
+    # 'name': nanoGetSampleFiles(mcDirectory,'ZZTo4L')+nanoGetSampleFiles(mcDirectory,'ZZTo4L_ext1'),
+    # 'weight': mcCommonWeightMatched,
+    # 'FilesPerJob' : 1,
+    # # 'FilesPerJob' : 5,
+# }
+# ZZbaseW   = getBaseWnAOD(mcDirectory,'Fall2017_102X_nAODv4_Full2017v5',['ZZTo4L',  'ZZTo4L_ext1'])
+# addSampleWeight(samples,'ZZ','ZZTo4L',        "1.17*"+ZZbaseW+"/baseW") ## The NNLO/NLO k-factor, cited from https://arxiv.org/abs/1405.2219v1
+# addSampleWeight(samples,'ZZ','ZZTo4L_ext1',   "1.17*"+ZZbaseW+"/baseW")
 
 
 ############ WZ ############
@@ -152,7 +157,8 @@ addSampleWeight(samples,'ZZ','ZZTo4L_ext1',   "1.17*"+ZZbaseW+"/baseW")
 samples['WZ'] = {
     'name': nanoGetSampleFiles(mcDirectory,'WZTo3LNu_mllmin01'),
     'weight': mcCommonWeightMatched,
-    'FilesPerJob' : 5,
+    'FilesPerJob' : 2,
+    # 'FilesPerJob' : 5,
 }
 addSampleWeight(samples,'WZ','WZTo3LNu_mllmin01', '(Gen_ZGstar_mass>=0.1)')
 
@@ -176,12 +182,27 @@ samples['VVV'] = {
 signals = []
 
 ############ WH H->WW ############
-
+'''
 samples['WH_hww'] = {
     'name':   nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125'),
     'weight': mcCommonWeightMatched,
     'FilesPerJob': 4
 }
+
+signals.append('WH_hww')
+'''
+
+samples['WH_hww'] = { 'name'   :
+                      getSampleFiles(makeMCDirectory(),'HWplusJ_HToWW_M125',True,'nanoLatino_')
+                      + getSampleFiles(makeMCDirectory(),'HWminusJ_HToWW_M125',True,'nanoLatino_'),
+                      'weight' : mcCommonWeightMatched,
+                      'suppressNegativeNuisances' :['all'],
+                      'subsamples' : {
+                        'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==301 || HTXS_stage1_1_cat_pTjet30GeV==302',
+                        'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==303 || HTXS_stage1_1_cat_pTjet30GeV==304 || HTXS_stage1_1_cat_pTjet30GeV==305',
+                        'FWDH'      : 'HTXS_stage1_1_cat_pTjet30GeV==300'
+                      }
+                    }
 
 signals.append('WH_hww')
 
@@ -215,7 +236,7 @@ samples['Fake'] = {
   'weight': 'METFilter_DATA*fakeW',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 25
+  'FilesPerJob': 50
 }
 
 for _, sd in DataRun:
@@ -233,7 +254,7 @@ samples['DATA'] = {
   'weight': 'METFilter_DATA*LepWPCut',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 25
+  'FilesPerJob': 200
 }
 
 for _, sd in DataRun:

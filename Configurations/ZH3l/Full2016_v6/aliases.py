@@ -127,33 +127,33 @@ aliases['ttHMVA_SF_Down_2'] = {
 }
 
 aliases['ttHMVA_3l_ele_SF_Up'] = {
-    'expr' : '(ttHMVA_SF_Up_0*(Lepton_pdgId[0] == 11) + (Lepton_pdgId[0] == 13)) *\
-              (ttHMVA_SF_Up_1*(Lepton_pdgId[1] == 11) + (Lepton_pdgId[1] == 13)) *\
-              (ttHMVA_SF_Up_2*(Lepton_pdgId[2] == 11) + (Lepton_pdgId[2] == 13))',
+    'expr' : '(ttHMVA_SF_Up_0[0]*(abs(Lepton_pdgId[0]) == 11) + (abs(Lepton_pdgId[0]) == 13)) *\
+              (ttHMVA_SF_Up_1[0]*(abs(Lepton_pdgId[1]) == 11) + (abs(Lepton_pdgId[1]) == 13)) *\
+              (ttHMVA_SF_Up_2[0]*(abs(Lepton_pdgId[2]) == 11) + (abs(Lepton_pdgId[2]) == 13))',
     'nominalOnly' : True,
     'samples' : mc
 }
 
 aliases['ttHMVA_3l_ele_SF_Down'] = {
-    'expr' : '(ttHMVA_SF_Down_0*(Lepton_pdgId[0] == 11) + (Lepton_pdgId[0] == 13)) *\
-              (ttHMVA_SF_Down_1*(Lepton_pdgId[1] == 11) + (Lepton_pdgId[1] == 13)) *\
-              (ttHMVA_SF_Down_2*(Lepton_pdgId[2] == 11) + (Lepton_pdgId[2] == 13))',
+    'expr' : '(ttHMVA_SF_Down_0[0]*(abs(Lepton_pdgId[0]) == 11) + (abs(Lepton_pdgId[0]) == 13)) *\
+              (ttHMVA_SF_Down_1[0]*(abs(Lepton_pdgId[1]) == 11) + (abs(Lepton_pdgId[1]) == 13)) *\
+              (ttHMVA_SF_Down_2[0]*(abs(Lepton_pdgId[2]) == 11) + (abs(Lepton_pdgId[2]) == 13))',
     'nominalOnly' : True,
     'samples' : mc
 }
 
 aliases['ttHMVA_3l_mu_SF_Up'] = {
-    'expr' : '(ttHMVA_SF_Up_0*(Lepton_pdgId[0] == 13) + (Lepton_pdgId[0] == 11)) *\
-              (ttHMVA_SF_Up_1*(Lepton_pdgId[1] == 13) + (Lepton_pdgId[1] == 11)) *\
-              (ttHMVA_SF_Up_2*(Lepton_pdgId[2] == 13) + (Lepton_pdgId[2] == 11))',
+    'expr' : '(ttHMVA_SF_Up_0[0]*(abs(Lepton_pdgId[0]) == 13) + (abs(Lepton_pdgId[0]) == 11)) *\
+              (ttHMVA_SF_Up_1[0]*(abs(Lepton_pdgId[1]) == 13) + (abs(Lepton_pdgId[1]) == 11)) *\
+              (ttHMVA_SF_Up_2[0]*(abs(Lepton_pdgId[2]) == 13) + (abs(Lepton_pdgId[2]) == 11))',
     'nominalOnly' : True,
     'samples' : mc
 }
 
 aliases['ttHMVA_3l_mu_SF_Down'] = {
-    'expr' : '(ttHMVA_SF_Down_0*(Lepton_pdgId[0] == 13) + (Lepton_pdgId[0] == 11)) *\
-              (ttHMVA_SF_Down_1*(Lepton_pdgId[1] == 13) + (Lepton_pdgId[1] == 11)) *\
-              (ttHMVA_SF_Down_2*(Lepton_pdgId[2] == 13) + (Lepton_pdgId[2] == 11))',
+    'expr' : '(ttHMVA_SF_Down_0[0]*(abs(Lepton_pdgId[0]) == 13) + (abs(Lepton_pdgId[0]) == 11)) *\
+              (ttHMVA_SF_Down_1[0]*(abs(Lepton_pdgId[1]) == 13) + (abs(Lepton_pdgId[1]) == 11)) *\
+              (ttHMVA_SF_Down_2[0]*(abs(Lepton_pdgId[2]) == 13) + (abs(Lepton_pdgId[2]) == 11))',
     'nominalOnly' : True,
     'samples' : mc
 }
@@ -172,5 +172,5 @@ aliases['lhe_mW2'] = {
 
 aliases['gstarHigh'] = {
     'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
-    'samples': 'WZ'
+    'samples': ['WZ']
 }

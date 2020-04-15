@@ -79,11 +79,7 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-<<<<<<< Updated upstream
-                  'samples'  : ['WH_hww', 'ZH_hww', 'ggZH_hww', 'ttH_hww', 'ggH_htt', 'qqH_htt', 'WH_htt', 'ZH_htt']
-=======
                   'samples'  : ['WH_hww', 'ZH_hww', 'ggZH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt', 'ttH_hww']
->>>>>>> Stashed changes
               }
 
 # Individual plots
@@ -256,7 +252,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0
+                  'isBlind'  : 1
               }
 
 # additional options
