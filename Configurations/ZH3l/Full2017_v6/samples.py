@@ -318,14 +318,6 @@ samples['ttH_hww']  = { 'name'   :   getSampleFilesNano(directory,'ttHToNonbb_M1
 
 ############ H->TauTau ############
 
-samples['ggH_htt'] = { 'name'  :   getSampleFilesNano(directory,'GluGluHToTauTau_M125'),
-                      'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-                  }
-
-samples['qqH_htt'] = { 'name'  :   getSampleFilesNano(directory,'VBFHToTauTau_M125'),
-                      'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-                  }
-
 samples['ZH_htt'] = { 'name'   :   getSampleFilesNano(directory,'HZJ_HToTauTau_M125'),
                       'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                   }
@@ -346,7 +338,7 @@ samples['Fake']  = {   'name': [ ] ,
                        'FilesPerJob' : 50 ,
                      }
 
-directory = treeBaseDir+'Run2017_102X_nAODv5_Full2017v6_ForNewWPs/DATAl1loose2017v6__l2loose__fakeW__jetSelCustom/' #FIXME
+directory = treeBaseDir+'Run2017_102X_nAODv5_Full2017v6_ForNewWPs/DATAl1loose2017v6__l2loose__fakeW/'
 for Run in DataRun :
   for DataSet in DataSets :
     FileTarget = getSampleFilesNano(directory,DataSet+'_'+Run[1],True)
