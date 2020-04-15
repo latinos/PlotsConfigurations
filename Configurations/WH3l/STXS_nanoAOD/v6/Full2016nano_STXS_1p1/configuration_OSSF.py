@@ -1,8 +1,8 @@
-tagName = "WH3l_2016_v6_STXS"
+tag = "WH3l_2016_v6_STXS_"
 
 cat = "OSSF"
 
-tagName+=cat
+tag+=cat
 
 treeName= 'Events'
 
@@ -31,11 +31,11 @@ structureFile = 'structure.py'
 nuisancesFile = 'nuisances.py'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFiles'+tagName
+outputDir = 'rootFiles_'+tag
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot'+tagName
+outputDirPlots = 'plot_'+tag
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'+tagName
+outputDirDatacard = 'datacards_'+tag

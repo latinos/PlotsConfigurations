@@ -17,6 +17,10 @@ mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 eleWP = 'mva_90p_Iso2016'
 muWP = 'cut_Tight80x'
 
+aliases['WH3l_pTW'] = {
+    'expr' : 'Lepton_pt[0]*(WH3l_drOSll[2]==MinIf$(WH3l_drOSll,WH3l_drOSll>0))+Lepton_pt[1]*(WH3l_drOSll[1]==MinIf$(WH3l_drOSll,WH3l_drOSll>0))+Lepton_pt[2]*(WH3l_drOSll[0]==MinIf$(WH3l_drOSll,WH3l_drOSll>0))'
+}
+
 aliases['LepWPCut'] = {
     'expr': 'LepCut3l__ele_'+eleWP+'__mu_'+muWP,
     'samples': mc + ['DATA']
@@ -179,7 +183,7 @@ puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandS
 aliases['PUJetIdSF'] = {
     'linesToAdd': [
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/patches/pujetidsf_event.cc+' % configurations
+        '.L %s/../../patches/pujetidsf_event.cc+' % configurations
     ],
     'class': 'PUJetIdEventSF',
     'args': (puidSFSource, '2016', 'loose'),
