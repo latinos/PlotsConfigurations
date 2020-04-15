@@ -1,6 +1,13 @@
 import os
 import subprocess
 import string
+import inspect 
+
+configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
+configurations = os.path.dirname(configurations) # Full2016
+configurations = os.path.dirname(configurations) # ZH4l
+configurations = os.path.dirname(configurations) # Configurations
+
 
 global getSampleFiles
 from LatinoAnalysis.Tools.commonTools import getSampleFiles, addSampleWeight, getBaseWnAOD
@@ -83,7 +90,7 @@ LepWPweight     = 'LepSF'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
 ################################################
 
 XSWeight      = 'XSWeight'
-SFweight      = 'SFweight'+Nlep+'l*'+LepWPweight+'*'+LepWPCut+'*PrefireWeight'
+SFweight      = 'SFweight'+Nlep+'l*'+LepWPweight+'*'+LepWPCut+'*PrefireWeight'+'*PUJetIdSF'
 PromptGenLepMatch   = 'PromptGenLepMatch'+Nlep+'l'
 PromptGenLepMatch2l   = 'PromptGenLepMatch'+'2l'
 PromptGenLepMatch3l   = 'PromptGenLepMatch'+'3l'
@@ -196,10 +203,10 @@ samples['WW'] = {    'name'   :  nanoGetSampleFiles(mcDirectory,'WWTo2L2Nu') ,
                  }
 
 
-samples['WWewk'] = {   'name'  : nanoGetSampleFiles(mcDirectory,'WpWmJJ_EWK'),
+samples['WWewk'] = {   'name'  : nanoGetSampleFiles(mcDirectory,'WpWmJJ_EWK_noTop'),
                        'weight': XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+ '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)', #filter tops limit w mass
                    }
-
+'''
 samples['ggWW']  = {  'name'   : nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') 
                             +    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') 
                             +    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENTN') 
@@ -212,7 +219,23 @@ samples['ggWW']  = {  'name'   : nanoGetSampleFiles(mcDirectory, 'GluGluToWWToEN
                       'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC,# updating k-factor ,  
                       'isData': ['0'],                            
                    }
+'''
 
+files = nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
+    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') + \
+    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENTN') + \
+    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNEN') + \
+    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNMN') + \
+    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNTN') + \
+    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNEN') + \
+    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
+    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN')
+
+samples['ggWW'] = {
+    'name': files,
+    'weight': XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC + '*1.53/1.4', # updating k-factor
+    'FilesPerJob': 10
+}
 ############ Vg ############
 
 samples['Wg']  =  {     'name'   :   nanoGetSampleFiles(mcDirectory,'Wg_MADGRAPHMLM'),
@@ -245,22 +268,23 @@ samples['ZZ']  = {  'name'   :   nanoGetSampleFiles(mcDirectory,'ZZTo4L'),
                  }
                             
 
-samples['ggZZ']  = {  'name'   : nanoGetSampleFiles(mcDirectory,'ggZZ2m2t'),
-                   #           +nanoGetSampleFiles(mcDirectory,'ggZZ2e2t')
-                   #           +nanoGetSampleFiles(mcDirectory,'ggZZ2e2m__part1')
-                  #            +nanoGetSampleFiles(mcDirectory,'ggZZ4t')
-                  #            +nanoGetSampleFiles(mcDirectory,'ggZZ4e')
-                   #           +nanoGetSampleFiles(mcDirectory,'ggZZ4m__part0'),
+samples['ggZZ']  = {  'name'   : nanoGetSampleFiles(mcDirectory,'ggZZ2m2t')
+                              +nanoGetSampleFiles(mcDirectory,'ggZZ2e2t_ext1')
+                            #  +nanoGetSampleFiles(mcDirectory,'ggZZ2m2t')
+                              +nanoGetSampleFiles(mcDirectory,'ggZZ2e2m_ext1')
+                             # +nanoGetSampleFiles(mcDirectory,'ggZZ4t')
+                             # +nanoGetSampleFiles(mcDirectory,'ggZZ4e')
+                              +nanoGetSampleFiles(mcDirectory,'ggZZ4m_ext2'),
                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                     'FilesPerJob' : 5,
                  }
 
-addSampleWeight(samples,'ZZ','ZZTo4L',"1.17") ## The NNLO/NLO k-factor, cited from https://arxiv.org/abs/1405.2219v1
-#addSampleWeight(samples,'ggZZ','ggZZ2e2t',"1.68") ## The NLO/LO k-factor, cited from https://arxiv.org/abs/1509.06734v1
-addSampleWeight(samples,'ggZZ','ggZZ2m2t',"1.68") 
-#addSampleWeight(samples,'ggZZ','ggZZ2e2m__part1',"1.68")
+addSampleWeight(samples,'ZZ','ZZTo4L',"1.07") ## The NNLO/NLO k-factor, cited from https://arxiv.org/abs/1405.2219v1
+addSampleWeight(samples,'ggZZ','ggZZ2e2t_ext1',"1.68") ## The NLO/LO k-factor, cited from https://arxiv.org/abs/1509.06734v1
+#addSampleWeight(samples,'ggZZ','ggZZ2m2t',"1.68") 
+addSampleWeight(samples,'ggZZ','ggZZ2e2m_ext1',"1.68")
 #addSampleWeight(samples,'ggZZ','ggZZ4e',"1.68")
-#addSampleWeight(samples,'ggZZ','ggZZ4m__part0',"1.68")
+addSampleWeight(samples,'ggZZ','ggZZ4m_ext2',"1.68")
 #addSampleWeight(samples,'ggZZ','ggZZ4t',"1.68")
 
 ############ VZ ############
@@ -323,21 +347,26 @@ samples['qqH_hww']  = {  'name'   :   nanoGetSampleFiles(mcDirectory,'VBFHToWWTo
 #                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
 #                     }
 
-samples['ZH_hww']  = {  'name'   :   getSampleFiles(mcDirectory,'HZJ_HToWW_M125',True,'nanoLatino_'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
+samples['ZH_hww']  = {  'name': nanoGetSampleFiles(mcDirectory,'HZJ_HToWW_M125'),
+                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC,
+                        'suppressNegativeNuisances' :['all'],
+                        'FilesPerJob' : 3,
                         'subsamples' : { 'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==401 || HTXS_stage1_1_cat_pTjet30GeV==402',
                                          'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==403 || HTXS_stage1_1_cat_pTjet30GeV==404 || HTXS_stage1_1_cat_pTjet30GeV==405',
                                          'FWDH'      : 'HTXS_stage1_1_cat_pTjet30GeV==400'
                                        }
-                     }
+                    }
 
-samples['ggZH_hww'] = { 'name'   :   getSampleFiles(mcDirectory,'ggZH_HToWW_M125',True,'nanoLatino_'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
+samples['ggZH_hww'] = {  'name': nanoGetSampleFiles(mcDirectory,'ggZH_HToWW_M125'),
+                         'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC,
+                         'suppressNegativeNuisances' :['all'],
+                         'FilesPerJob' : 3,
                         'subsamples' : { 'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==501 || HTXS_stage1_1_cat_pTjet30GeV==502',
                                          'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==503 || HTXS_stage1_1_cat_pTjet30GeV==504 || HTXS_stage1_1_cat_pTjet30GeV==505',
                                          'FWDH'      : 'HTXS_stage1_1_cat_pTjet30GeV==500'
                                        }
                      }
+
 
 ############ WH H->WW ############
 
@@ -357,7 +386,7 @@ samples['WH_hww']  = {  'name'   :   nanoGetSampleFiles(mcDirectory,'HWplusJ_HTo
 
 
 ############ H->TauTau ############
-
+'''
 splitHtt=False
 if not splitHtt:
 
@@ -371,26 +400,27 @@ if not splitHtt:
                          'suppressNegativeNuisances' :['all'],
                      }
 else:
+'''
   
-  samples['ggH_htt']  = {  'name'   : nanoGetSampleFiles(mcDirectory,'GluGluHToTauTau_M125_ext1'),
+samples['ggH_htt']  = {  'name'   : nanoGetSampleFiles(mcDirectory,'GluGluHToTauTau_M125_ext1'),
                            'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                            'suppressNegative' :['all'],
                            'suppressNegativeNuisances' :['all'],
                         } 
 
-  samples['qqH_htt']  = {  'name'   : nanoGetSampleFiles(mcDirectory,'VBFHToTauTau_M125'),
+samples['qqH_htt']  = {  'name'   : nanoGetSampleFiles(mcDirectory,'VBFHToTauTau_M125'),
                            'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                            'suppressNegative' :['all'],
                            'suppressNegativeNuisances' :['all'],
                         }
 
-  samples['ZH_htt']  = {  'name'   : nanoGetSampleFiles(mcDirectory,'HZJ_HToTauTau_M125'),
+samples['ZH_htt']  = {  'name'   : nanoGetSampleFiles(mcDirectory,'HZJ_HToTauTau_M125'),
                            'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                            'suppressNegative' :['all'],
                            'suppressNegativeNuisances' :['all'],
                         }
 
-  samples['WH_htt']  = {  'name'   :  nanoGetSampleFiles(mcDirectory,'HWplusJ_HToTauTau_M125')
+samples['WH_htt']  = {  'name'   :  nanoGetSampleFiles(mcDirectory,'HWplusJ_HToTauTau_M125')
                                     + nanoGetSampleFiles(mcDirectory,'HWminusJ_HToTauTau_M125'),
                            'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                            'suppressNegative' :['all'],
