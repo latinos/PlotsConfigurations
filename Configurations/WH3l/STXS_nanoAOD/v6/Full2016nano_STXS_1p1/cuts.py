@@ -10,16 +10,16 @@ supercut = 'MinIf$( WH3l_mOSll[], WH3l_mOSll[Iteration$] > 0) > 12 \
 cuts['wh3l_13TeV_sssf'] = {
     'expr' : 'WH3l_flagOSSF == 0 && Alt$( CleanJet_pt[0], 0) < 30 && Sum$( CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.6321) == 0',
     'categories' : {
-        'ptv_lt150' : 'WH3l_pTW < 150', 
-        'ptv_gt150' : 'WH3l_pTW > 150',
+        'ptv_lt150' : 'WH3l_pTW[0] < 150', 
+        'ptv_gt150' : 'WH3l_pTW[0] > 150',
     }
 }
 
 cuts['wh3l_13TeV_ossf']  = {
     'expr' : 'WH3l_flagOSSF == 1 && WH3l_ZVeto > 20 && Alt$( CleanJet_pt[0], 0) < 30 && PuppiMET_pt > 40 && Sum$( CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.6321) == 0',
     'categories' : {
-        'ptv_lt150' : 'WH3l_pTW < 150',
-        'ptv_gt150' : 'WH3l_pTW > 150',
+        'ptv_lt150' : 'WH3l_pTW[0] < 150',
+        'ptv_gt150' : 'WH3l_pTW[0] > 150',
     }
 }
 

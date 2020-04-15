@@ -16,7 +16,7 @@ variables['WH3l_drOSll_min']  = {   'name': 'MinIf$( WH3l_drOSll[], WH3l_drOSll[
                          'fold' : 0
                         }
 
-variables['WH3l_pTW'] = {'name' : 'WH3l_pTW',
+variables['WH3l_pTW'] = {'name' : 'WH3l_pTW[0]',
                                'range' : (40,0.,400),
                                'xaxis' : 'WH3l_pTW [GeV]',
                                'fold' : 0

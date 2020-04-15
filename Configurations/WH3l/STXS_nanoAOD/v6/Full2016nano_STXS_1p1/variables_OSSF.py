@@ -10,7 +10,7 @@ variables['events']  = {'name'  : '1',
                         'fold'  : 3
                         }
 
-variables['WH3l_pTW'] = {'name' : 'WH3l_pTW',
+variables['WH3l_pTW'] = {'name' : 'WH3l_pTW[0]',
                                'range' : (40,0.,400),
                                'xaxis' : 'WH3l_pTW [GeV]',
                                'fold' : 0
