@@ -9,6 +9,13 @@ variables['events']  = {'name'  : '1',
                         'xaxis' : 'events',
                         'fold'  : 3
                         }
+
+variables['WH3l_pTW'] = {'name' : 'WH3l_pTW',
+                         'range' : (40,0.,400),
+                         'xaxis' : 'WH3l_pTW [GeV]',
+                         'fold' : 0
+}
+
 variables['WH3l_drOSll_min']  = {   'name': 'MinIf$( WH3l_drOSll[], WH3l_drOSll[Iteration$] > 0)',
                          'range' : ([0.,0.75,1.0,1.25,1.5,1.75,2.5,4.0],),    #   variable range
                          'xaxis' : 'min #Delta R_{ll}',  #   x axis name
