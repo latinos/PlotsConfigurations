@@ -15,6 +15,12 @@ variables['WH3l_drOSll_min']  = {   'name': 'MinIf$( WH3l_drOSll[], WH3l_drOSll[
                          'fold' : 0
                         }
 
+variables['WH3l_pTW'] = {'name' : 'WH3l_pTW[0]',
+                         'range' : (40,0.,400),
+                         'xaxis' : 'WH3l_pTW [GeV]',
+                         'fold' : 0
+}
+
 variables['BDTG_OSSF'] = { 'name': 'hww_WH3l_OSSF_mvaBDTG(Entry$,0)',
                         'range' : ([-1.0,-0.5,0.,0.3,0.45,0.6,0.7,0.8,0.85,0.9,0.95,1.0],),    #   variable range
                         'xaxis' : 'MVA discriminant',

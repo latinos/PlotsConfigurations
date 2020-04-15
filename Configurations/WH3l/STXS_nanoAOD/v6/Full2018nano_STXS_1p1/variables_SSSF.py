@@ -15,6 +15,13 @@ variables['WH3l_drOSll_min']  = {   'name': 'MinIf$( WH3l_drOSll[], WH3l_drOSll[
                          'xaxis' : 'min #Delta R_{ll}',  #   x axis name
                          'fold' : 0
                         }
+
+variables['WH3l_pTW'] = {'name' : 'WH3l_pTW[0]',
+                         'range' : (40,0.,400),
+                         'xaxis' : 'WH3l_pTW [GeV]',
+                         'fold' : 0
+}
+
 variables['BDTG_SSSF_10bin'] = { 'name': 'hww_WH3l_SSSF_mvaBDTG(Entry$,0)',
                         'range' : (10,-1,1),
                         'xaxis' : 'MVA discriminant',
