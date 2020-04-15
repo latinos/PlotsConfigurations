@@ -4,6 +4,8 @@ tag = 'ZH4l_2017_nanov6_STXS_1p1'
 # used by mkShape to define output directory for root files
 outputDir = 'rootFiles_'+tag
 
+treeName= 'Events'
+
 # file with TTree aliases
 aliasesFile = 'aliases.py'
 
