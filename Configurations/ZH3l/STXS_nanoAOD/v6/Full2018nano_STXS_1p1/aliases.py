@@ -10,50 +10,20 @@ aliases['bVeto'] = {
     'expr': '(Sum$( CleanJet_pt > 20.0 && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+bWP+' ) == 0)'
 }
 
-# Temporary patch for BTV postprocessor bug (no SF for eta < 0, <= 102X_nAODv5_Full2018v5)
-
-#2018
-btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_102XSF_V1.csv' % os.getenv('CMSSW_BASE')
-
-aliases['Jet_btagSF_shapeFix'] = {
-    'linesToAdd': [
-        'gSystem->Load("libCondFormatsBTauObjects.so");',
-        'gSystem->Load("libCondToolsBTau.so");',
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
-        '.L %s/src/PlotsConfigurations/Configurations/patches/btagsfpatch.cc+' % os.getenv('CMSSW_BASE')
-    ],
-    'class': 'BtagSF',
-    'args': (btagSFSource,),
-    'samples': mc
-}
-
 aliases['btagSF'] = {
-'expr': '( TMath::Exp(Sum$( TMath::Log( (CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shapeFix[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5) ) ) ) )',
+'expr': '( TMath::Exp(Sum$( TMath::Log( (CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5) ) ) ) )',
 'samples': mc
 }
 
 systs = ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']
 
 for s in systs:
-
-    aliases['Jet_btagSF_shapeFix_up_%s' % s] = {
-        'class': 'BtagSF',
-        'args': (btagSFSource, 'up_' + s),
-        'samples': mc
-    }
-
-    aliases['Jet_btagSF_shapeFix_down_%s' % s] = {
-        'class': 'BtagSF',
-        'args': (btagSFSource, 'down_' + s),
-        'samples': mc
-    }
-
     aliases['btagSF'+s+'up']   = { 
-        'expr': aliases['btagSF']['expr'].replace('shapeFix','shapeFix_up_'+s),
+        'expr': aliases['btagSF']['expr'].replace('shape','shape_up_'+s),
         'samples':mc  
     }
     aliases['btagSF'+s+'down'] = { 
-        'expr': aliases['btagSF']['expr'].replace('shapeFix','shapeFix_down_'+s),
+        'expr': aliases['btagSF']['expr'].replace('shape','shape_down_'+s),
         'samples':mc  
     }
 
@@ -66,17 +36,137 @@ aliases['LepWPCutNew'] = { 'expr': '(((abs(Lepton_pdgId[0])==13 && Muon_mvaTTH[L
                            'samples': mc + ['DATA'] 
 }
 
-aliases['AntitopGenPt'] = {
-    'expr': 'Sum$(GenPart_pt*(GenPart_pdgId == -6 && (GenPart_statusFlags & 8192)))',
-    'samples' : ['top']
-}
-
-aliases['TopGenPt'] = {
-    'expr': 'Sum$(GenPart_pt*(GenPart_pdgId == 6 && (GenPart_statusFlags & 8192)))',
-    'samples' : ['top']
-}
-
 aliases['Top_pTrw'] = {
-    'expr': '(TopGenPt * AntitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * TopGenPt) * TMath::Exp(0.0615 - 0.0005 * AntitopGenPt))) + (TopGenPt * AntitopGenPt <= 0.)',
+    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
     'samples': ['top']
+}
+
+aliases['ZH3l_dphilmetjj_test'] = {
+    'linesToAdd': [
+        '.L %s/src/PlotsConfigurations/Configurations/ZH3l/scripts/ZH3l_patch.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'ZH3l_patch',
+    'args': ("dphilmetjj")
+}
+
+aliases['ZH3l_dphilmetj_test'] = {
+    'class': 'ZH3l_patch',
+    'args': ("dphilmetj")
+}
+
+aliases['ZH3l_mTlmet_test'] = {
+    'class': 'ZH3l_patch',
+    'args': ("mTlmet")
+}
+
+aliases['ZH3l_mTlmetj_test'] = {
+    'class': 'ZH3l_patch',
+    'args': ("mTlmetj")
+}
+
+aliases['ZH3l_mTlmetjj_test'] = {
+    'class': 'ZH3l_patch',
+    'args': ("mTlmetjj")
+}
+
+#######################
+### SFs for tthMVA  ###
+#######################
+
+aliases['ttHMVA_SF_3l'] = {
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/patches/compute_SF.C+' % os.getenv('CMSSW_BASE')],
+    'class': 'compute_SF',
+    'args' : ('2018', 3, 'total_SF'),
+    'samples': mc
+}
+
+aliases['ttHMVA_SF_Up_0'] = {
+    'class': 'compute_SF',
+    'args' : ('2018', 3, 'single_SF_up', 0),
+    'nominalOnly' : True,
+    'samples': mc
+}
+
+aliases['ttHMVA_SF_Up_1'] = {
+    'class': 'compute_SF',
+    'args' : ('2018', 3, 'single_SF_up', 1),
+    'nominalOnly' : True,
+    'samples': mc
+}
+
+aliases['ttHMVA_SF_Up_2'] = {
+    'class': 'compute_SF',
+    'args' : ('2018', 3, 'single_SF_up', 2),
+    'nominalOnly' : True,
+    'samples': mc
+}
+
+aliases['ttHMVA_SF_Down_0'] = {
+    'class': 'compute_SF',
+    'args' : ('2018', 3, 'single_SF_down', 0),
+    'nominalOnly' : True,
+    'samples': mc
+}
+
+aliases['ttHMVA_SF_Down_1'] = {
+    'class': 'compute_SF',
+    'args' : ('2018', 3, 'single_SF_down', 1),
+    'nominalOnly' : True,
+    'samples': mc
+}
+
+aliases['ttHMVA_SF_Down_2'] = {
+    'class': 'compute_SF',
+    'args' : ('2018', 3, 'single_SF_down', 2),
+    'nominalOnly' : True,
+    'samples': mc
+}
+
+aliases['ttHMVA_3l_ele_SF_Up'] = {
+    'expr' : '(ttHMVA_SF_Up_0*(Lepton_pdgId[0] == 11) + (Lepton_pdgId[0] == 13)) *\
+              (ttHMVA_SF_Up_1*(Lepton_pdgId[1] == 11) + (Lepton_pdgId[1] == 13)) *\
+              (ttHMVA_SF_Up_2*(Lepton_pdgId[2] == 11) + (Lepton_pdgId[2] == 13))',
+    'nominalOnly' : True,
+    'samples' : mc
+}
+
+aliases['ttHMVA_3l_ele_SF_Down'] = {
+    'expr' : '(ttHMVA_SF_Down_0*(Lepton_pdgId[0] == 11) + (Lepton_pdgId[0] == 13)) *\
+              (ttHMVA_SF_Down_1*(Lepton_pdgId[1] == 11) + (Lepton_pdgId[1] == 13)) *\
+              (ttHMVA_SF_Down_2*(Lepton_pdgId[2] == 11) + (Lepton_pdgId[2] == 13))',
+    'nominalOnly' : True,
+    'samples' : mc
+}
+
+aliases['ttHMVA_3l_mu_SF_Up'] = {
+    'expr' : '(ttHMVA_SF_Up_0*(Lepton_pdgId[0] == 13) + (Lepton_pdgId[0] == 11)) *\
+              (ttHMVA_SF_Up_1*(Lepton_pdgId[1] == 13) + (Lepton_pdgId[1] == 11)) *\
+              (ttHMVA_SF_Up_2*(Lepton_pdgId[2] == 13) + (Lepton_pdgId[2] == 11))',
+    'nominalOnly' : True,
+    'samples' : mc
+}
+
+aliases['ttHMVA_3l_mu_SF_Down'] = {
+    'expr' : '(ttHMVA_SF_Down_0*(Lepton_pdgId[0] == 13) + (Lepton_pdgId[0] == 11)) *\
+              (ttHMVA_SF_Down_1*(Lepton_pdgId[1] == 13) + (Lepton_pdgId[1] == 11)) *\
+              (ttHMVA_SF_Down_2*(Lepton_pdgId[2] == 13) + (Lepton_pdgId[2] == 11))',
+    'nominalOnly' : True,
+    'samples' : mc
+}
+
+# In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
+aliases['lhe_mW1'] = {
+    'expr': 'TMath::Sqrt(2. * LHEPart_pt[0] * LHEPart_pt[1] * (TMath::CosH(LHEPart_eta[0] - LHEPart_eta[1]) - TMath::Cos(LHEPart_phi[0] - LHEPart_phi[1])))',
+    'samples': ['WWewk']
+}
+
+# and [2] [3] are the second W
+aliases['lhe_mW2'] = {
+    'expr': 'TMath::Sqrt(2. * LHEPart_pt[2] * LHEPart_pt[3] * (TMath::CosH(LHEPart_eta[2] - LHEPart_eta[3]) - TMath::Cos(LHEPart_phi[2] - LHEPart_phi[3])))',
+    'samples': ['WWewk']
+}
+
+aliases['gstarHigh'] = {
+    'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
+    'samples': 'WZ'
 }

@@ -1,5 +1,7 @@
 import os
 import inspect
+import subprocess
+import string
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
 configurations = os.path.dirname(configurations) # ggH2016
@@ -28,18 +30,17 @@ except NameError:
 ################################################
 ################# SKIMS ########################
 ################################################
+mcProduction = 'Autumn18_102X_nAODv6_Full2018v6'
 
-mcProduction = 'Autumn18_102X_nAODv5_Full2018v5'
+dataReco = 'Run2018_102X_nAODv6_Full2018v6'
 
-mcSteps = 'MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5'
+fakeReco = 'Run2018_102X_nAODv6_Full2018v6_ForNewWPs'
 
-dataReco = 'Run2018_102X_nAODv5_Full2018v5'
+mcSteps = 'MCl1loose2018v6__MCCorr2018v6__l2loose__l2tightOR2018v6{var}'
 
-fakeReco = 'Run2018_102X_nAODv5_Full2018v5_ForNewWPs'
+fakeSteps = 'DATAl1loose2018v6__l2loose__fakeW'
 
-fakeSteps = 'DATAl1loose2018v5__l2loose__fakeW'
-
-dataSteps = 'DATAl1loose2018v5__l2loose__l2tightOR2018v5'
+dataSteps = 'DATAl1loose2018v6__l2loose__l2tightOR2018v6'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -59,9 +60,7 @@ def makeMCDirectory(var=''):
         return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
         # return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Summer16/l2tightOR'
 
-directory = treeBaseDir+'/Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5/'
 mcDirectory = makeMCDirectory()
-# fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
 fakeDirectory = os.path.join(treeBaseDir, fakeReco, fakeSteps)
 dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 
@@ -70,10 +69,10 @@ dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 ################################################
 
 DataRun = [
-            ['A','Run2018A-Nano1June2019-v1'] ,
-            ['B','Run2018B-Nano1June2019-v1'] ,
-            ['C','Run2018C-Nano1June2019-v1'] ,
-            ['D','Run2018D-Nano1June2019_ver2-v1'] ,
+            ['A','Run2018A-Nano25Oct2019-v1'] ,
+            ['B','Run2018B-Nano25Oct2019-v1'] ,
+            ['C','Run2018C-Nano25Oct2019-v1'] ,
+            ['D','Run2018D-Nano25Oct2019_ver2-v1'] ,
           ]
 
 DataSets = ['MuonEG','DoubleMuon','SingleMuon','EGamma']
@@ -107,7 +106,6 @@ samples['WW'] = {
 }
 
 ######## Vg ########
-zgXSscale = '0.448'
 samples['Wg'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM'),
     'weight': "*".join([mcCommonWeight, '(Gen_ZGstar_mass <= 0)']),
@@ -115,8 +113,8 @@ samples['Wg'] = {
 }
 samples['Zg'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'ZGToLLG'),
-    'weight': "*".join([mcCommonWeight, '(Gen_ZGstar_mass <= 0)', zgXSscale]),
-    'FilesPerJob': 4
+    'weight': "*".join([mcCommonWeight, '(Gen_ZGstar_mass <= 0)']),
+    'FilesPerJob': 1
 }
 
 ######## VgS ########
@@ -128,28 +126,34 @@ samples['WgS'] = {
 }
 samples['ZgS'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'ZGToLLG'),
-    'weight': "*".join([mcCommonWeightMatched, "(Gen_ZGstar_mass > 0)", zgXSscale]),
-    'FilesPerJob': 4,
+    'weight': "*".join([mcCommonWeightMatched, "(Gen_ZGstar_mass > 0)"]),
+    'FilesPerJob': 1,
 }
 
 ############ ZZ ############
 
-samples['ZZ'] = {
-    'name': nanoGetSampleFiles(mcDirectory,'ZZTo4L_ext1')+nanoGetSampleFiles(mcDirectory,'ZZTo4L_ext2'),
+samples['ZZ']  = {  
+    'name'   :   nanoGetSampleFiles(mcDirectory,'ZZTo4L_ext1'),
     'weight': mcCommonWeightMatched,
-    'FilesPerJob' : 5,
-}
-ZZ4LbaseW   = getBaseWnAOD(directory,'Autumn18_102X_nAODv5_Full2018v5',['ZZTo4L_ext1',   'ZZTo4L_ext2'])
+    'FilesPerJob': 1,
+                 }
 
-addSampleWeight(samples,'ZZ','ZZTo4L_ext1',   "1.17*"+ZZ4LbaseW+"/baseW") ## The NNLO/NLO k-factor, cited from https://arxiv.org/abs/1405.2219v1
-addSampleWeight(samples,'ZZ','ZZTo4L_ext2',   "1.17*"+ZZ4LbaseW+"/baseW")
+# samples['ZZ'] = {
+    # 'name': nanoGetSampleFiles(mcDirectory,'ZZTo4L_ext1')+nanoGetSampleFiles(mcDirectory,'ZZTo4L_ext2'),
+    # 'weight': mcCommonWeightMatched,
+    # 'FilesPerJob' : 1,
+# }
+# ZZ4LbaseW   = getBaseWnAOD(mcDirectory,'Autumn18_102X_nAODv5_Full2018v5',['ZZTo4L_ext1',   'ZZTo4L_ext2'])
+
+# addSampleWeight(samples,'ZZ','ZZTo4L_ext1',   "1.17*"+ZZ4LbaseW+"/baseW") ## The NNLO/NLO k-factor, cited from https://arxiv.org/abs/1405.2219v1
+# addSampleWeight(samples,'ZZ','ZZTo4L_ext2',   "1.17*"+ZZ4LbaseW+"/baseW")
 
 ############ WZ ############
 
 samples['WZ'] = {
     'name': nanoGetSampleFiles(mcDirectory,'WZTo3LNu_mllmin01'),
     'weight': mcCommonWeightMatched,
-    'FilesPerJob' : 5,
+    'FilesPerJob' : 2,
 }
 addSampleWeight(samples,'WZ','WZTo3LNu_mllmin01', '(Gen_ZGstar_mass>=0.1)')
 
@@ -173,12 +177,27 @@ samples['VVV'] = {
 signals = []
 
 ############ WH H->WW ############
-
+'''
 samples['WH_hww'] = {
     'name':   nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125'),
     'weight': mcCommonWeightMatched,
     'FilesPerJob': 4
 }
+
+signals.append('WH_hww')
+'''
+
+samples['WH_hww'] = { 'name'   :
+                      getSampleFiles(makeMCDirectory(),'HWplusJ_HToWW_M125',True,'nanoLatino_')
+                      + getSampleFiles(makeMCDirectory(),'HWminusJ_HToWW_M125',True,'nanoLatino_'),
+                      'weight' : mcCommonWeightMatched,
+                      'suppressNegativeNuisances' :['all'],
+                      'subsamples' : {
+                        'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==301 || HTXS_stage1_1_cat_pTjet30GeV==302',
+                        'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==303 || HTXS_stage1_1_cat_pTjet30GeV==304 || HTXS_stage1_1_cat_pTjet30GeV==305',
+                        'FWDH'      : 'HTXS_stage1_1_cat_pTjet30GeV==300'
+                      }
+                    }
 
 signals.append('WH_hww')
 
@@ -212,7 +231,7 @@ samples['Fake'] = {
   'weights': [],
   'isData': ['all'],
   # 'FilesPerJob': 100
-  'FilesPerJob': 25
+  'FilesPerJob': 50
 }
 
 for _, sd in DataRun:
@@ -231,7 +250,7 @@ samples['DATA'] = {
   'weights': [],
   'isData': ['all'],
   # 'FilesPerJob': 100
-  'FilesPerJob': 25
+  'FilesPerJob': 200
 }
 
 for _, sd in DataRun:

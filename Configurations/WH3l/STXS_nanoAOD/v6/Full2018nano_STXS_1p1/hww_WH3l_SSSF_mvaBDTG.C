@@ -87,7 +87,7 @@ myreaderBDTGSSSF->AddVariable("Alt$(Lepton_pt[2],0)",&loc_Lepton_pt_2);
 myreaderBDTGSSSF->AddVariable("WH3l_mOSll[0]",&loc_WH3l_mOSll_0);
 myreaderBDTGSSSF->AddVariable("WH3l_mOSll[1]",&loc_WH3l_mOSll_1);
 
-myreaderBDTGSSSF->BookMVA("BDTGC10D4C10","/afs/cern.ch/user/p/pyu/public/HWWAnalysis/FullRunII30Mar_combinedTrain_v5/TMVAClassification_BDTGC10D4C10.weights.xml");
+myreaderBDTGSSSF->BookMVA("BDTGC10D4C10S1","/afs/cern.ch/user/p/pyu/public/HWWAnalysis/FullRunII06Apr_v6/TMVAClassification_2017SSSF.weights.xml");
 
 }
 
@@ -127,7 +127,7 @@ float hww_WH3l_SSSF_mvaBDTG(int entry, int nclass){
     loc_WH3l_mOSll_1 = loc0_WH3l_mOSll[1];
 
 
-    float classifier = myreaderBDTGSSSF->EvaluateMVA("BDTGC10D4C10");//v5
+    float classifier = myreaderBDTGSSSF->EvaluateMVA("BDTGC10D4C10S1");
 
     return classifier;
 
