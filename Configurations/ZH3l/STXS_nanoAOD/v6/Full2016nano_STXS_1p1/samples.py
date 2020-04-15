@@ -42,7 +42,7 @@ muWP='cut_Tight80x'
 
 LepWPCut        = 'LepCut'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP+'*LepWPCutNew' #Cut for new WPs, defined in aliases
 #LepWPCut        = 'LepCut'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
-LepWPweight     = 'ttHMVA_SF_3l' #SF for new WPs, defined in aliases
+LepWPweight     = 'ttHMVA_SF_3l[0]' #SF for new WPs, defined in aliases
 #LepWPweight     = 'LepSF'+Nlep+'l__ele_'+eleWP+'__mu_'+muWP
 
 ################################################
@@ -293,18 +293,17 @@ samples['VVV']  = {  'name'   :   getSampleFilesNano(directory,'ZZZ')
 ##########################################
 
 ############ ZH H->WW ############
-'''
-samples['ZH_hww']  = {  'name'   :   getSampleFilesNano(directory,'HZJ_HToWW_M125'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-                     }
 
-samples['ggZH_hww']  = {  'name'   :   getSampleFilesNano(directory,'ggZH_HToWW_M125'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-                     }
-'''
+#samples['ZH_hww']  = {  'name'   :   getSampleFilesNano(directory,'HZJ_HToWW_M125'),
+#                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
+#                     }
 
-samples['ZH_hww']  = {  'name': getSampleFilesNano(directoryMC,'HZJ_HToWW_M125'),
-                        'weight' : XSweight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC,
+#samples['ggZH_hww']  = {  'name'   :   getSampleFilesNano(directory,'ggZH_HToWW_M125'),
+#                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
+#                     }
+
+samples['ZH_hww']  = {  'name': getSampleFilesNano(directory,'HZJ_HToWW_M125'),
+                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC,
                         'suppressNegativeNuisances' :['all'],
                         'FilesPerJob' : 3,
                         'subsamples' : { 'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==401 || HTXS_stage1_1_cat_pTjet30GeV==402',
@@ -313,8 +312,8 @@ samples['ZH_hww']  = {  'name': getSampleFilesNano(directoryMC,'HZJ_HToWW_M125')
                                        }
                     }
 
-samples['ggZH_hww'] = {  'name': getSampleFilesNano(directoryMC,'ggZH_HToWW_M125'),
-                         'weight' : XSweight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC,
+samples['ggZH_hww'] = {  'name': getSampleFilesNano(directory,'ggZH_HToWW_M125'),
+                         'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC,
                          'suppressNegativeNuisances' :['all'],
                          'FilesPerJob' : 3,
                         'subsamples' : { 'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==501 || HTXS_stage1_1_cat_pTjet30GeV==502',
@@ -322,7 +321,6 @@ samples['ggZH_hww'] = {  'name': getSampleFilesNano(directoryMC,'ggZH_HToWW_M125
                                          'FWDH'      : 'HTXS_stage1_1_cat_pTjet30GeV==500'
                                        }
                      }
-
 
 ############ WH H->WW ############
 
@@ -341,14 +339,6 @@ samples['ttH_hww']  = { 'name'   :   getSampleFilesNano(directory,'ttHToNonbb_M1
 # Not available for Latinos 2016 v6
 
 ############ H->TauTau ############
-
-samples['ggH_htt'] = { 'name'  :   getSampleFilesNano(directory,'GluGluHToTauTau_M125'),
-                      'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-                  }
-
-samples['qqH_htt'] = { 'name'  :   getSampleFilesNano(directory,'VBFHToTauTau_M125'),
-                      'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-                  }
 
 samples['ZH_htt'] = { 'name'   :   getSampleFilesNano(directory,'HZJ_HToTauTau_M125'),
                       'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
@@ -371,7 +361,8 @@ samples['Fake']  = {   'name': [ ] ,
                        'suppressNegativeNuisances' :['all'],
                      }
 
-directory = treeBaseDir+'Run2016_102X_nAODv5_Full2016v6_ForNewWPs/DATAl1loose2016v6__l2loose__fakeW__jetSelCustom/'
+#directory = treeBaseDir+'Run2016_102X_nAODv5_Full2016v6/DATAl1loose2016v6__l2loose__fakeW/'
+directory = treeBaseDir+'Run2016_102X_nAODv5_Full2016v6_ForNewWPs/DATAl1loose2016v6__l2loose__fakeW/'
 for Run in DataRun :
   for DataSet in DataSets :
     tmpname = Run[1].replace('v1','v3') if ('Run2016E' in Run[1] and DataSet is 'MuonEG') else Run[1]

@@ -15,7 +15,7 @@ groupPlot['WW']  = {
   		   'nameHR' : 'WW',
 		   'color': 632,    # kRed
 		   'isSignal' : 0,
-		   'samples' : ['WW']
+		   'samples' : ['WW','WWewk','ggWW']
 }
 
 groupPlot['Zg']  = {
@@ -79,7 +79,7 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  'samples'  : ['WH_hww', 'ZH_hww', 'ggZH_hww', 'H_htt', 'ttH_hww']
+                  'samples'  : ['WH_hww', 'ZH_hww', 'ggZH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt', 'ttH_hww']
               }
 
 # Individual plots
@@ -94,6 +94,22 @@ plot['DY']  = {
 
 plot['WW']  = { 
                   'nameHR' : 'WW',
+                  'color': 858, # kAzure -2  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+plot['WWewk']  = { 
+                  'nameHR' : 'WWewk',
+                  'color': 858, # kAzure -2  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+plot['ggWW']  = { 
+                  'nameHR' : 'ggWW',
                   'color': 858, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -199,7 +215,31 @@ plot['WH_hww'] = {
                   'scale'    : 1
                   }
 
-plot['H_htt'] = {
+plot['ggH_htt'] = {
+                  'nameHR' : 'ggH htt',
+                  'color': 632+1, # kRed+4 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1
+                  }
+
+plot['qqH_htt'] = {
+                  'nameHR' : 'qqH htt',
+                  'color': 632+1, # kRed+4 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1
+                  }
+
+plot['WH_htt'] = {
+                  'nameHR' : 'WH htt',
+                  'color': 632+1, # kRed+4 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1
+                  }
+
+plot['ZH_htt'] = {
                   'nameHR' : 'ZH htt',
                   'color': 632+1, # kRed+4 
                   'isSignal' : 1,

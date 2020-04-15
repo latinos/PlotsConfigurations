@@ -21,19 +21,25 @@ variables['njet']       = { 'name'  : 'ZH3l_njet',
                             'fold' : 0
                         }
 
+variables['met']       = { 'name'  : 'PuppiMET_pt',
+                            'range' : (20,0,100),
+                            'xaxis' : 'Puppi MET',
+                            'fold' : 0
+                        }
+
 variables['pt1']        = { 'name': 'Lepton_pt[0]',
                             'range' : (10,0.,200),
                             'xaxis' : 'lept1_p_{T} [GeV]',
                             'fold' : 0
                         }
 
-variables['dphilmetj'] = {  'name' : 'ZH3l_dphilmetj_test', #FIXME
+variables['dphilmetj'] = {  'name' : 'ZH3l_dphilmetj_test[0]', #FIXME
                             'range' : (16,0,3.14159),
                             'xaxis' : 'dphilmetj',
                             'fold' : 0
                            }
 
-variables['dphilmetjj'] = { 'name' : 'ZH3l_dphilmetjj_test', #FIXME
+variables['dphilmetjj'] = { 'name' : 'ZH3l_dphilmetjj_test[0]', #FIXME
                             'range' : (16,0,3.14159),
                             'xaxis' : 'dphilmetjj',
                             'fold' : 0,
@@ -53,14 +59,14 @@ variables['pTlmetjj'] = {   'name' : 'ZH3l_pTlmetjj',
                             'cuts' : [cut for cut in cuts if '1j' not in cut]
                             }
 
-variables['mTlmetjj']   = { 'name' : 'ZH3l_mTlmetjj_test', #FIXME
+variables['mTlmetjj']   = { 'name' : 'ZH3l_mTlmetjj_test[0]', #FIXME
                             'range' : (25,0,500),
                             'xaxis' : 'mTlmetjj',
                             'fold' : 0,
                             'cuts' : [cut for cut in cuts if '1j' not in cut]
                         }
 
-variables['mTlmetj']   = { 'name' : 'ZH3l_mTlmetj_test', #FIXME
+variables['mTlmetj']   = { 'name' : 'ZH3l_mTlmetj_test[0]', #FIXME
                             'range' : (25,0,500),
                             'xaxis' : 'mTlmetj',
                             'fold' : 0,
@@ -72,13 +78,13 @@ variables['ptz']        = { 'name' : 'ZH3l_pTZ',
                             'fold' : 0
                         }
 
-variables['mtw_notZ']   = { 'name' : 'ZH3l_mTlmet_test', #FIXME
+variables['mtw_notZ']   = { 'name' : 'ZH3l_mTlmet_test[0]', #FIXME
                             'range' : (20,0,200),
                             'xaxis' : 'mTlmet',
                             'fold' : 0
                         }
 
-variables['mtw_fit']    = { 'name' : 'ZH3l_mTlmet_test', #FIXME
+variables['mtw_fit']    = { 'name' : 'ZH3l_mTlmet_test[0]', #FIXME
                             'range' : (8,0,160),
                             'xaxis' : 'mTlmet',
                             'fold' : 2
