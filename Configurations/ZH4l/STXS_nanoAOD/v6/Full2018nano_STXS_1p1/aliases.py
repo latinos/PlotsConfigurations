@@ -1,4 +1,6 @@
 import inspect
+import os
+import copy
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
 configurations = os.path.dirname(configurations) # Full2016_nanoAODv4_CR
@@ -187,6 +189,47 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
         'samples': mc
     }
 
+# PU jet Id SF
+
+puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+
+aliases['PUJetIdSF'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L %s/patches/pujetidsf_event.cc+' % configurations
+    ],
+    'class': 'PUJetIdEventSF',
+    'args': (puidSFSource, '2018', 'loose'),
+    'samples': mc
+}
+
+
+# PostProcessing did not create (anti)topGenPt for ST samples with _ext1
+lastcopy = (1 << 13)
+
+aliases['isTTbar'] = {
+    'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 2' % lastcopy,
+    'samples': ['top']
+}
+
+aliases['isSingleTop'] = {
+    'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 1' % lastcopy,
+    'samples': ['top']
+}
+
+aliases['topGenPtOTF'] = {
+    'expr': 'Sum$((GenPart_pdgId == 6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
+    'samples': ['top']
+}
+
+aliases['antitopGenPtOTF'] = {
+    'expr': 'Sum$((GenPart_pdgId == -6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
+    'samples': ['top']
+}
+aliases['Top_pTrw'] = {
+    'expr': 'isTTbar * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPtOTF) * TMath::Exp(0.0615 - 0.0005 * antitopGenPtOTF))) + isSingleTop',
+    'samples': ['top']
+}
 
 '''
 # In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
@@ -201,3 +244,12 @@ aliases['lhe_mW2'] = {
     'samples': ['WWewk']
 }
 '''
+
+aliases['ZH4l_pTZ'] = {
+  'expr' : 'sqrt(Lepton_pt[0]^2+Lepton_pt[1]^2+2*Lepton_pt[0]*Lepton_pt[1]*cos(z0DeltaPhi_zh4l))*(fabs(TVector2::Phi_mpi_pi(Lepton_phi[0]-Lepton_phi[1])-z0DeltaPhi_zh4l)<0.00001) \
+           +sqrt(Lepton_pt[0]^2+Lepton_pt[2]^2+2*Lepton_pt[0]*Lepton_pt[2]*cos(z0DeltaPhi_zh4l))*(fabs(TVector2::Phi_mpi_pi(Lepton_phi[0]-Lepton_phi[2])-z0DeltaPhi_zh4l)<0.00001) \
+           +sqrt(Lepton_pt[0]^2+Lepton_pt[3]^2+2*Lepton_pt[0]*Lepton_pt[3]*cos(z0DeltaPhi_zh4l))*(fabs(TVector2::Phi_mpi_pi(Lepton_phi[0]-Lepton_phi[3])-z0DeltaPhi_zh4l)<0.00001) \
+           +sqrt(Lepton_pt[1]^2+Lepton_pt[2]^2+2*Lepton_pt[1]*Lepton_pt[2]*cos(z0DeltaPhi_zh4l))*(fabs(TVector2::Phi_mpi_pi(Lepton_phi[1]-Lepton_phi[2])-z0DeltaPhi_zh4l)<0.00001) \
+           +sqrt(Lepton_pt[1]^2+Lepton_pt[3]^2+2*Lepton_pt[1]*Lepton_pt[3]*cos(z0DeltaPhi_zh4l))*(fabs(TVector2::Phi_mpi_pi(Lepton_phi[1]-Lepton_phi[3])-z0DeltaPhi_zh4l)<0.00001) \
+           +sqrt(Lepton_pt[2]^2+Lepton_pt[3]^2+2*Lepton_pt[2]*Lepton_pt[3]*cos(z0DeltaPhi_zh4l))*(fabs(TVector2::Phi_mpi_pi(Lepton_phi[2]-Lepton_phi[3])-z0DeltaPhi_zh4l)<0.00001)'
+}
