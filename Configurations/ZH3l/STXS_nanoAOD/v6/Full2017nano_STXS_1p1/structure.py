@@ -10,3 +10,4 @@ for iproc in ['ggWW', 'ggZH_hww', 'ZgS', 'WWewk', 'VVV', 'top', 'Zg', 'ttV', 'WH
         'isSignal' : 1 if any(substring in iproc for substring in ['H_hww','H_htt']) else 0,
         'isData'   : 1 if iproc == 'DATA' else 0,
     }
+print structure

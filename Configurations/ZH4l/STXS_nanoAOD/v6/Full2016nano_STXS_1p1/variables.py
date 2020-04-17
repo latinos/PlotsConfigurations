@@ -33,7 +33,7 @@ variables['ZH4l_pTZ']     = { 'name' : 'ZH4l_pTZ[0]',
                             'xaxis' : 'ZH4l_pTZ [GeV]',
                             'fold' : 0
                         }
-
+'''
 variables['pt1']  = {   'name': 'Lepton_pt[0]',            #   variable name    
                         'range' : (50,0.,500),    #   variable range
                         'xaxis' : 'lept1_p_{T} [GeV]',  #   x axis name
@@ -112,3 +112,4 @@ variables['njet']       = { 'name'  : 'njet',
                             'fold' : 2
                         }
 
+'''
