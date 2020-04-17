@@ -61,4 +61,21 @@ cuts['hww2l2v_13TeV_of2j_WH_SS_WZ_2j'] = '((Lepton_pdgId[0]*Lepton_pdgId[1] == 1
                                        && WH3l_mlll > 100 \
                                        && abs(WH3l_chlll) == 1 \
                                        '
+
+
+cuts['zh3l_WZ_CR_2j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
+                       && Alt$( CleanJet_pt[1], 0) >= 30 \
+                       && WH3l_ZVeto < 25 \
+                       && bVeto \
+                       && ZH3l_Z4lveto > 20 \
+                       && ZH3l_dphilmetjj_test > 3.14159/2 \
+                       '
+
+cuts['zh3l_WZ_CR_1j'] = ' Alt$( CleanJet_pt[0], 0) >= 30 \
+                       && Alt$( CleanJet_pt[1], 0) < 30 \
+                       && WH3l_ZVeto < 25 \
+                       && bVeto \
+                       && ZH3l_Z4lveto > 20 \
+                       && ZH3l_dphilmetj_test > 3.14159/2 \
+                       '
 '''
