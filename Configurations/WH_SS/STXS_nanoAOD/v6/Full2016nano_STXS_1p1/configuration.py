@@ -5,7 +5,7 @@ treeName= 'Events'
 tag = 'WHSS_2016_v6_STXS'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = 'rootFiles_'+tag
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
