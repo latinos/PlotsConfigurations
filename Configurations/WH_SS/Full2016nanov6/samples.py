@@ -35,8 +35,7 @@ dataReco = 'Run2016_102X_nAODv5_Full2016v6'
 
 mcSteps = 'MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6{var}'
 
-#fakeSteps = 'DATAl1loose2016v6__l2loose__fakeW'
-fakeSteps = 'DATAl1loose2016v6__l2loose__fakeW__jetSelCustom'
+fakeSteps = 'DATAl1loose2016v6__l2loose__fakeW'
 
 dataSteps = 'DATAl1loose2016v6__l2loose__l2tightOR2016v6'
 
@@ -379,3 +378,4 @@ for _, sd in DataRun:
 
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
+
