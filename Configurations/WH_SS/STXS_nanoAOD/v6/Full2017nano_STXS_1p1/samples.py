@@ -36,8 +36,8 @@ mcProduction = 'Fall2017_102X_nAODv5_Full2017v6'
 
 mcSteps = 'MCl1loose2017v6__MCCorr2017v6__l2loose__l2tightOR2017v6{var}'
 
-#fakeSteps = 'DATAl1loose2017v6__l2loose__fakeW'
-fakeSteps = 'DATAl1loose2017v6__l2loose__fakeW__jetSelCustom'
+fakeSteps = 'DATAl1loose2017v6__l2loose__fakeW'
+#fakeSteps = 'DATAl1loose2017v6__l2loose__fakeW__jetSelCustom'
 
 dataSteps = 'DATAl1loose2017v6__l2loose__l2tightOR2017v6'
 
