@@ -19,8 +19,28 @@ variables['BDTG_SSSF_10bin'] = { 'name': 'hww_WH3l_SSSF_mvaBDTG(Entry$,0)',
                         'range' : (10,-1,1),
                         'xaxis' : 'MVA discriminant',
                         'fold' : 3,
-                        'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/WH3l/FullRunII_BDTv6/Full2018/hww_WH3l_SSSF_mvaBDTG.C+' % os.getenv('CMSSW_BASE')]
+                        'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/WH3l/FullRunII_BDT/Full2018/hww_WH3l_SSSF_mvaBDTG.C+' % os.getenv('CMSSW_BASE')]
                       }
+
+variables['BDTG_SSSF_bin1'] = { 'name': 'hww_WH3l_SSSF_mvaBDTG(Entry$,0)',
+                        'range' : ([-1.0,-0.4,-0.2,0.,0.2,0.4,0.6,1.0],),    #   variable range
+                        'xaxis' : 'MVA discriminant',
+                        'fold' : 3,
+                        'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/WH3l/FullRunII_BDT/Full2018/hww_WH3l_SSSF_mvaBDTG.C+' % os.getenv('CMSSW_BASE')]
+                      }
+variables['BDTG_SSSF_bin2'] = { 'name': 'hww_WH3l_SSSF_mvaBDTG(Entry$,0)',
+                        'range' : ([-1.0,-0.2,0.,0.2,0.4,0.6,1.0],),    #   variable range
+                        'xaxis' : 'MVA discriminant',
+                        'fold' : 3,
+                        'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/WH3l/FullRunII_BDT/Full2018/hww_WH3l_SSSF_mvaBDTG.C+' % os.getenv('CMSSW_BASE')]
+                      }
+variables['BDTG_SSSF_bin3'] = { 'name': 'hww_WH3l_SSSF_mvaBDTG(Entry$,0)',
+                        'range' : ([-1.0,-0.4,-0.2,0.,0.2,0.4,1.0],),    #   variable range
+                        'xaxis' : 'MVA discriminant',
+                        'fold' : 3,
+                        'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/WH3l/FullRunII_BDT/Full2018/hww_WH3l_SSSF_mvaBDTG.C+' % os.getenv('CMSSW_BASE')]
+                      }
+
 
 variables['Jet_pt1']  = {   'name': 'Alt$(Jet_pt[0],0)',            #   variable name----
                         'range' : (10,0.,200),    #   variable range
