@@ -8,7 +8,7 @@ phase_spaces_boost = []
 phase_spaces_res = []
 
 for fl in ["ele", "mu"]:
-    for d in ["high", "low"]:
+    for d in ["high", "low", "all"]:
         for cat in ["sig", "wjetcr", "topcr"]:
             phase_spaces_boost.append("boost_{}_dnn{}_{}".format(cat, d,fl))
             phase_spaces_res.append("res_{}_dnn{}_{}".format(cat, d, fl))
@@ -22,30 +22,22 @@ variables['events']  = {   'name': '1',
                         }
 
 
-variables['DNNoutput_low'] = {
+variables['DNNoutput'] = {
     'name': 'DNNoutput',
-    'range': (10,0.,0.3),
+    'range': (40,0.,1),
     'xaxis': 'DNN output',
     'fold': 0 ,
-    'cuts': list(filter(lambda c: "dnnlow" in c, phase_spaces_boost+phase_spaces_res))
+    'cuts': list(filter(lambda c: "dnnall" in c, phase_spaces_boost+phase_spaces_res))
 }
 
-'''
-[0.30, 0.334 , 0.375, 0.405, 
-0.43, 0.465, 0.495, 0.53,
- 0.595 , 0.62, 0.63, 0.73, 
- 0.785, 0.825, 0.88, 0.935, 0.98]
-'''
 
-variables['DNNoutput_high_res_ele'] = {
+variables['DNNoutput_high_res'] = {
     'name': 'DNNoutput_resolved',
-    'range': ([0.30, 0.35,0.4,0.45,0.5,0.55,0.6,0.645,
-            0.68, 0.74,  0.785, 0.825, 0.88, 0.935, 0.98, 1. ],
-            ),
-    'xaxis': 'DNN',
+    'range': (25,0.3,1.),
+    'xaxis': 'DNN output, resolved',
     'fold': 0 ,
-    'cuts': list(filter(lambda c: "dnnhigh" in c and "ele" in c, phase_spaces_res)),
-    'divideByBinWidth' : 1,
+    'cuts': list(filter(lambda c: "dnnhigh" in c , phase_spaces_res)),
+    #'divideByBinWidth' : 1,
     'blind': {
         "res_sig_dnnhigh_mu": [0.6,1], 
         "res_sig_dnnhigh_ele": [0.6,1],
@@ -54,42 +46,13 @@ variables['DNNoutput_high_res_ele'] = {
     }
 }
 
-'''
-Original ones
-([0.30, 0.315, 0.335, 0.345, 0.38, 0.41, 0.43, 0.45, 0.475, 0.5, 0.53, 
-                 0.565, 0.615, 0.645, 0.68, 0.725, 0.74, 0.765, 0.785, 0.815,
-                 0.85, 0.91, 0.945, 0.97, 1.],
-             ),
-'''
-variables['DNNoutput_high_res_mu'] = {
-    'name': 'DNNoutput_resolved',
-    'range': ([0.30, 0.35,0.4,0.45,0.5,0.55,0.6, 
-                0.645, 0.68, 0.725, 0.74, 0.765, 0.785, 0.815,
-                0.85, 0.91, 0.945, 0.97, 1.],
-             ),
-    'xaxis': 'DNN',
-    'fold': 0 ,
-    'divideByBinWidth' : 1,
-    'cuts': list(filter(lambda c: "dnnhigh" in c and "mu" in c, phase_spaces_res)),
-    'blind': {
-        "res_sig_dnnhigh_mu": [0.6,1], 
-        "res_sig_dnnhigh_ele": [0.6,1],
-        "boost_sig_dnnhigh_mu": [0.6,1], 
-        "boost_sig_dnnhigh_ele": [0.6,1],
-    }
-}
-
-'''
-0.374, 0.47, 0.57, 0.665, 0.79, 0.91
-'''
-
-variables['DNNoutput_high_boost_ele'] = {
+variables['DNNoutput_high_boost'] = {
     'name': 'DNNoutput_boosted',
-    'range': ([0.3,0.374, 0.47, 0.57, 0.665, 0.79, 0.91,1.],),
+    'range': (10,0.3,1),
     'xaxis': 'DNN',
     'fold': 0 ,
     'divideByBinWidth' : 1,
-    'cuts': list(filter(lambda c: "dnnhigh" in c and "ele" in c, phase_spaces_boost)),
+    'cuts': list(filter(lambda c: "dnnhigh" in c , phase_spaces_boost)),
     'blind': {
         "res_sig_dnnhigh_mu": [0.6,1], 
         "res_sig_dnnhigh_ele": [0.6,1],
@@ -98,23 +61,6 @@ variables['DNNoutput_high_boost_ele'] = {
     }
 }
 
-'''
-[0.34, 0.44, 0.505, 0.58, 0.685, 0.775, 0.875, 0.945]
-'''
-variables['DNNoutput_high_boost_mu'] = {
-    'name': 'DNNoutput_boosted',
-    'range': ([0.3,0.34, 0.44, 0.505, 0.58, 0.685, 0.775, 0.875, 0.945, 1.0],),
-    'xaxis': 'DNN output, boosted mu',
-    'fold': 0 ,
-    'divideByBinWidth' : 1,
-    'cuts': list(filter(lambda c: "dnnhigh" in c and "mu" in c, phase_spaces_boost)),
-    'blind': {
-        "res_sig_dnnhigh_mu": [0.6,1], 
-        "res_sig_dnnhigh_ele": [0.6,1],
-        "boost_sig_dnnhigh_mu": [0.6,1], 
-        "boost_sig_dnnhigh_ele": [0.6,1],
-    }
-}
 
 
 
@@ -127,7 +73,7 @@ variables['DNNoutput_high_boost_mu'] = {
 #                         }
 
 variables['Lepton_eta'] = {   'name': 'Lepton_eta[0]',      
-                        'range' : (40,-2.5,2.5),  
+                        'range' : (60,-2.5,2.5),  
                         'xaxis' : 'Lepton #eta', 
                         'fold' : 3
                         }

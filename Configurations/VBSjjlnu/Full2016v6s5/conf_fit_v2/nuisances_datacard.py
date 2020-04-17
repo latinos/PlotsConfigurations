@@ -401,15 +401,24 @@ nuisances['singleTopToTTbar'] = {
 #     'samples': {'top': ["1.", "1./Top_pTrw"]},
 #     'symmetrize': True
 # }
-
-nuisances['Top_norm']  = {
-               'name'  : 'CMS_Top_norm_2016',
+nuisances['Top_norm_boost']  = {
+               'name'  : 'CMS_Top_norm_boost_2016',
                'samples'  : {
                    'top' : '1.00',
                    },
                'type'  : 'rateParam',
-               'cuts'  : phase_spaces_tot
+               'cuts'  : phase_spaces_tot_boost
               }
+
+nuisances['Top_norm_res']  = {
+               'name'  : 'CMS_Top_norm_res_2016',
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : phase_spaces_tot_res
+              }
+
 
 
 regrouped_Wjets = True

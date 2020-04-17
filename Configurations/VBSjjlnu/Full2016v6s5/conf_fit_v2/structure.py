@@ -50,7 +50,6 @@ structure['VV']  = {
 structure['Fake']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'removeFromCuts': list(filter(lambda c: "mu" in c, phase_spaces_boost))
               }
 
 structure['VVV']  = {  
