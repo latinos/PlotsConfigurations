@@ -238,7 +238,7 @@ puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandS
 aliases['PUJetIdSF'] = {
     'linesToAdd': [
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/patches/pujetidsf_event.cc+' % configurations
+        '.L %s/../../patches/pujetidsf_event.cc+' % configurations
     ],
     'class': 'PUJetIdEventSF',
     'args': (puidSFSource, '2018', 'loose'),
@@ -272,7 +272,7 @@ aliases['SFweightMuDown'] = {
 ### Total SFs, i.e. ttHMVA+old lepton SFs ###
 #############################################
 
-aliases['ttHMVA_SF_2l'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
+aliases['ttHMVA_SF_2l'] = {'linesToAdd': ['.L %s/../../patches/compute_SF.C+' % configurations],
                            'class': 'compute_SF',
                            'args' : ('2018', 2, 'total_SF'),
                            'samples': mc
@@ -283,25 +283,25 @@ aliases['ttHMVA_SF_2l'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % config
 ### Up/Down variations for single leptons in order of Pt ###
 ############################################################
 
-aliases['ttHMVA_SF_Up_0'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
+aliases['ttHMVA_SF_Up_0'] = {'linesToAdd': ['.L %s/../../patches/compute_SF.C+' % configurations],
                              'class': 'compute_SF',
                              'args' : ('2018', 4, 'single_SF_up', 0),
                              'samples': mc
                             }
 
-aliases['ttHMVA_SF_Up_1'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
+aliases['ttHMVA_SF_Up_1'] = {'linesToAdd': ['.L %s/../../patches/compute_SF.C+' % configurations],
                              'class': 'compute_SF',
                              'args' : ('2018', 4, 'single_SF_up', 1),
                              'samples': mc
                             }
 
-aliases['ttHMVA_SF_Down_0'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
+aliases['ttHMVA_SF_Down_0'] = {'linesToAdd': ['.L %s/../../patches/compute_SF.C+' % configurations],
                                'class': 'compute_SF',
                                'args' : ('2018', 4, 'single_SF_down', 0),
                                'samples': mc
                               }
 
-aliases['ttHMVA_SF_Down_1'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
+aliases['ttHMVA_SF_Down_1'] = {'linesToAdd': ['.L %s/../../patches/compute_SF.C+' % configurations],
                                'class': 'compute_SF',
                                'args' : ('2018', 4, 'single_SF_down', 1),
                                'samples': mc
