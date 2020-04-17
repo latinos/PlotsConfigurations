@@ -58,34 +58,34 @@ groupPlot['WZ']  = {
                   'samples'  : ['WZ']
               }
 
-groupPlot['Wg']  = {  
-                  'nameHR' : "W#gamma",
+groupPlot['Vg']  = {  
+                  'nameHR' : "V#gamma",
                   'isSignal' : 0,
                   'color'    : 810,   # kOrange + 10
-                  'samples'  : ['Wg']
+                  'samples'  : ['Wg','Zg']
               }
 
-groupPlot['Zg']  = {
-                  'nameHR' : "Z#gamma",
-                  'isSignal' : 0,
-                  'color'    : 810,   # kOrange + 10
-                  'samples'  : ['Zg']
-              }
+#groupPlot['Zg']  = {
+#                  'nameHR' : "Z#gamma",
+#                  'isSignal' : 0,
+#                  'color'    : 810,   # kOrange + 10
+#                  'samples'  : ['Zg']
+#              }
 
 
-groupPlot['ZgS']  = {
-                  'nameHR' : "Z#gamma*",
+groupPlot['VgS']  = {
+                  'nameHR' : "V#gamma*",
                   'isSignal' : 0,
                   'color'    : 412,   # kGreen - 9
-                  'samples'  : ['ZgS']
+                  'samples'  : ['ZgS','WgS']
               }
 
-groupPlot['WgS']  = {
-                  'nameHR' : "W#gamma*",
-                  'isSignal' : 0,
-                  'color'    : 409,   # kGreen - 9
-                  'samples'  : ['WgS']
-              }
+#groupPlot['WgS']  = {
+#                  'nameHR' : "W#gamma*",
+#                  'isSignal' : 0,
+#                  'color'    : 409,   # kGreen - 9
+#                  'samples'  : ['WgS']
+#              }
 
 groupPlot['Higgs']  = {  
                   'nameHR' : 'Higgs',
