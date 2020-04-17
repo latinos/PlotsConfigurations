@@ -143,7 +143,8 @@ nuisances['eff_e'] = {
     'name': 'CMS_eff_e_2018',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
+#    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
+    'samples': dict((skey, ['ttHMVA_2l_ele_SF_Up', 'ttHMVA_2l_ele_SF_Down']) for skey in mc)
 }
 
 nuisances['electronpt'] = {
@@ -164,7 +165,8 @@ nuisances['eff_m'] = {
     'name': 'CMS_eff_m_2018',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
+#    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
+    'samples': dict((skey, ['ttHMVA_2l_mu_SF_Up', 'ttHMVA_2l_mu_SF_Down']) for skey in mc)
 }
 
 nuisances['muonpt'] = {
@@ -575,8 +577,8 @@ nuisances['WgStar'] = {
     }
 }
 
-nuisances['WgSH2jnorm']  = {
-               'name'  : 'CMS_hww_WgSH_WHSS2j_norm',
+nuisances['WZ2jnorm']  = {
+               'name'  : 'CMS_hww_WZ3l2jnorm',
                'samples'  : {
                    'WZ'       : '1.00',
                    },
@@ -584,14 +586,12 @@ nuisances['WgSH2jnorm']  = {
                'cuts'  : [
                    'hww2l2v_13TeV_of2j_WH_SS_uu_2j',
                    'hww2l2v_13TeV_of2j_WH_SS_eu_2j',
-                   'hww2l2v_13TeV_of2j_WH_SS_ee_2j',
-                   'hww2l2v_13TeV_of2j_WH_SS_WZ_2j',
                    'zh3l_WZ_CR_2j',
+#                   'hww2l2v_13TeV_of2j_WH_SS_WZ_2j',
                 ]
               }
-    
-nuisances['WgSH1jnorm']  = {
-               'name'  : 'CMS_hww_WgSH_WHSS1j_norm',
+nuisances['WZ1jnorm']  = {
+               'name'  : 'CMS_hww_WZ3l1jnorm',
                'samples'  : {
                    'WZ'       : '1.00',
                    },
@@ -599,10 +599,9 @@ nuisances['WgSH1jnorm']  = {
                'cuts'  : [
                    'hww2l2v_13TeV_of2j_WH_SS_uu_1j',
                    'hww2l2v_13TeV_of2j_WH_SS_eu_1j',
-                   'hww2l2v_13TeV_of2j_WH_SS_ee_1j',
-                   'hww2l2v_13TeV_of2j_WH_SS_WZ_1j',
                    'zh3l_WZ_CR_1j',
-                ] 
+               #    'hww2l2v_13TeV_of2j_WH_SS_WZ_1j',
+                ]
               }
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
