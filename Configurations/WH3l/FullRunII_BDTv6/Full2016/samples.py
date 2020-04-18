@@ -37,6 +37,8 @@ mcSteps = 'MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6{var}'
 
 fakeSteps = 'DATAl1loose2016v6__l2loose__fakeW'
 
+fakeReco = 'Run2016_102X_nAODv5_Full2016v6_ForNewWPs'
+
 dataSteps = 'DATAl1loose2016v6__l2loose__l2tightOR2016v6'
 
 ##############################################
@@ -58,7 +60,7 @@ def makeMCDirectory(var=''):
         # return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Summer16/l2tightOR'
 
 mcDirectory = makeMCDirectory()
-fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
+fakeDirectory = os.path.join(treeBaseDir, fakeReco, fakeSteps)
 dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 
 ################################################
