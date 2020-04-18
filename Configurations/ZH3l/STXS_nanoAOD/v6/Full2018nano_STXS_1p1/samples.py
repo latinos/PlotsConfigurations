@@ -341,7 +341,7 @@ samples['Fake']  = {   'name': [ ] ,
                        'FilesPerJob' : 50 ,
                      }
 
-directory = treeBaseDir+'Run2018_102X_nAODv6_Full2018v6_ForNewWPs/DATAl1loose2018v6__l2loose__fakeW/'
+directory = treeBaseDir+'Run2018_102X_nAODv6_Full2018v6_ForNewWPs/DATAl1loose2018v6__l2loose__fakeW'
 #directory = treeBaseDir+'Run2018_102X_nAODv6_Full2018v6/DATAl1loose2018v6__l2loose__fakeW/'
 for Run in DataRun :
   for DataSet in DataSets :
@@ -366,7 +366,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'FilesPerJob' : 50 ,
                   }
 
-directory = treeBaseDir+'/Run2018_102X_nAODv6_Full2018v6/DATAl1loose2018v6__l2loose__l2tightOR2018v6/'
+directory = treeBaseDir+'Run2018_102X_nAODv6_Full2018v6/DATAl1loose2018v6__l2loose__l2tightOR2018v6'
 for Run in DataRun :
   for DataSet in DataSets :
     FileTarget = getSampleFilesNano(directory,DataSet+'_'+Run[1],True)
