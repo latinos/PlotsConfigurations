@@ -362,7 +362,7 @@ samples['Fake']  = {   'name': [ ] ,
                      }
 
 #directory = treeBaseDir+'Run2016_102X_nAODv5_Full2016v6/DATAl1loose2016v6__l2loose__fakeW/'
-directory = treeBaseDir+'Run2016_102X_nAODv5_Full2016v6_ForNewWPs/DATAl1loose2016v6__l2loose__fakeW/'
+directory = treeBaseDir+'Run2016_102X_nAODv5_Full2016v6_ForNewWPs/DATAl1loose2016v6__l2loose__fakeW'
 for Run in DataRun :
   for DataSet in DataSets :
     tmpname = Run[1].replace('v1','v3') if ('Run2016E' in Run[1] and DataSet is 'MuonEG') else Run[1]
@@ -387,7 +387,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'FilesPerJob' : 50 ,
                   }
 
-directory = treeBaseDir+'/Run2016_102X_nAODv5_Full2016v6/DATAl1loose2016v6__l2loose__l2tightOR2016v6/'
+directory = treeBaseDir+'Run2016_102X_nAODv5_Full2016v6/DATAl1loose2016v6__l2loose__l2tightOR2016v6'
 for Run in DataRun :
   for DataSet in DataSets :
     tmpname = Run[1].replace('v1','v3') if ('Run2016E' in Run[1] and DataSet is 'MuonEG') else Run[1]
