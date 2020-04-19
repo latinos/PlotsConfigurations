@@ -126,7 +126,7 @@ else:
     samples['DY'] = {
         'name': files,
         'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)',
-        'FilesPerJob': 8,
+        'FilesPerJob': 10,
     }
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1',ptllDYW_LO)
     addSampleWeight(samples,'DY','DYJetsToLL_M-50-LO_ext1',ptllDYW_LO)
@@ -186,7 +186,7 @@ files = nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
 samples['Zg'] = {
     'name': files,
     'weight': mcCommonWeightNoMatch + '*!(Gen_ZGstar_mass > 0)',
-    'FilesPerJob': 10
+    'FilesPerJob': 15
 }
 
 ######## Wg ########
@@ -206,7 +206,7 @@ files = nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
 samples['ZgS'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 15,
+    'FilesPerJob': 16,
     }
 addSampleWeight(samples, 'ZgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0)')
 
@@ -243,7 +243,7 @@ files = nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu') + \
 samples['ZZ'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 2
+    'FilesPerJob': 3
 }
 
 ########## VVV #########
@@ -379,7 +379,7 @@ samples['Fake'] = {
   'weight': 'METFilter_DATA*fakeW',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 10
+  'FilesPerJob': 100
 }
 
 for _, sd in DataRun:
@@ -403,7 +403,7 @@ samples['DATA'] = {
   'weight': 'METFilter_DATA*LepWPCut',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 40
+  'FilesPerJob': 60
 }
 
 for _, sd in DataRun:
