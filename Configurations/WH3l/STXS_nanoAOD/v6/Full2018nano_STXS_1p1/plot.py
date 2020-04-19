@@ -112,13 +112,28 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  'samples'  : ['H_htt', 'WH_hww', 'ZH_hww']
+                  'samples'  : ['H_htt', 'WH_hww_PTV_LT150' , 'WH_hww_PTV_GT150' , 'ZH_hww']
               }
 
 #plot = {}
 
 # keys here must match keys in samples.py    
 #                    
+plot['WH_hww_PTV_LT150'] = {
+                  'nameHR' : 'WH',
+                  'color': 632+3, # kRed+3
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1
+                  }
+
+plot['WH_hww_PTV_GT150'] = {
+                  'nameHR' : 'WH',
+                  'color': 632+3, # kRed+3
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1
+                  }
 #plot['DY']  = {
 #                  'color': 418,    # kGreen+2
 #                  'isSignal' : 0,
@@ -295,13 +310,13 @@ plot['H_htt'] = {
 #                  'scale'    : 1
 #                  }
 
-plot['WH_hww'] = {
-                  'nameHR' : 'WH',
-                  'color': 632+2, # kRed+2 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1
-                  }
+#plot['WH_hww'] = {
+#                  'nameHR' : 'WH',
+#                  'color': 632+2, # kRed+2 
+#                  'isSignal' : 1,
+#                  'isData'   : 0,    
+#                  'scale'    : 1
+#                  }
 
 # data
 
