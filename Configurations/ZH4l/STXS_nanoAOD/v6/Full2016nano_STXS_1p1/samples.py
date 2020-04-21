@@ -258,7 +258,7 @@ samples['ggZZ']  = {  'name'   : nanoGetSampleFiles(mcDirectory,'ggZZ2e2t')
                               +nanoGetSampleFiles(mcDirectory,'ggZZ4e')
                               +nanoGetSampleFiles(mcDirectory,'ggZZ4m'),
                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-                    'FilesPerJob' : 5,
+                    'FilesPerJob' : 10,
                  }
 
 addSampleWeight(samples,'ZZ','ZZTo4L',"1.07") ## The NNLO/NLO k-factor, cited from https://arxiv.org/abs/1405.2219v1

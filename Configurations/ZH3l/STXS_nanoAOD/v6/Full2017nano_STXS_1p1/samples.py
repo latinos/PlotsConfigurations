@@ -20,7 +20,7 @@ elif  'cern' in SITE :
   #xrootdPath='root://eoscms.cern.ch/'
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/'
 
-directory = treeBaseDir+'Fall2017_102X_nAODv5_Full2017v6/MCl1loose2017v6__MCCorr2017v6__l2loose__l2tightOR2017v6/'
+directory = treeBaseDir+'Fall2017_102X_nAODv5_Full2017v6/MCl1loose2017v6__MCCorr2017v6__l2loose__l2tightOR2017v6'
 
 ################################################
 ############ NUMBER OF LEPTONS #################
@@ -309,7 +309,7 @@ samples['ZH_hww']  = {  'name': getSampleFilesNano(directory,'HZJ_HToWW_M125'),
                                        }
                     }
 
-samples['ggZH_hww'] = {  'name': getSampleFilesNano(directory,'ggZH_HToWW_M125'),
+samples['ggZH_hww'] = {  'name': getSampleFilesNano(directory,'GluGluZH_HToWW_M125'),
                          'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC,
                          'suppressNegativeNuisances' :['all'],
                          'FilesPerJob' : 3,
@@ -358,7 +358,7 @@ samples['Fake']  = {   'name': [ ] ,
                        'FilesPerJob' : 50 ,
                      }
 
-directory = treeBaseDir+'Run2017_102X_nAODv5_Full2017v6_ForNewWPs/DATAl1loose2017v6__l2loose__fakeW/'
+directory = treeBaseDir+'Run2017_102X_nAODv5_Full2017v6_ForNewWPs/DATAl1loose2017v6__l2loose__fakeW'
 for Run in DataRun :
   for DataSet in DataSets :
     FileTarget = getSampleFilesNano(directory,DataSet+'_'+Run[1],True)
@@ -382,7 +382,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'FilesPerJob' : 50 ,
                   }
 
-directory = treeBaseDir+'/Run2017_102X_nAODv5_Full2017v6/DATAl1loose2017v6__l2loose__l2tightOR2017v6/'
+directory = treeBaseDir+'Run2017_102X_nAODv5_Full2017v6/DATAl1loose2017v6__l2loose__l2tightOR2017v6'
 for Run in DataRun :
   for DataSet in DataSets :
     FileTarget = getSampleFilesNano(directory,DataSet+'_'+Run[1],True)

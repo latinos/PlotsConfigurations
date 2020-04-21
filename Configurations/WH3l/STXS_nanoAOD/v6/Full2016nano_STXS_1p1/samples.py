@@ -37,6 +37,8 @@ mcSteps = 'MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6{var}'
 
 fakeSteps = 'DATAl1loose2016v6__l2loose__fakeW'
 
+fakeReco = 'Run2016_102X_nAODv5_Full2016v6_ForNewWPs' 
+
 dataSteps = 'DATAl1loose2016v6__l2loose__l2tightOR2016v6'
 
 ##############################################
@@ -58,7 +60,7 @@ def makeMCDirectory(var=''):
         # return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Summer16/l2tightOR'
 
 mcDirectory = makeMCDirectory()
-fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
+fakeDirectory = os.path.join(treeBaseDir, fakeReco, fakeSteps)
 dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 
 ################################################
@@ -117,8 +119,7 @@ samples['Wg'] = {
 samples['Zg'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'Zg'),
     'weight': "*".join([mcCommonWeight, "(Gen_ZGstar_mass <= 0)"]),
-    # 'FilesPerJob': 4
-    'FilesPerJob': 1
+    'FilesPerJob': 3
 }
 
 ######## VgS ########
@@ -132,7 +133,7 @@ samples['ZgS'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'Zg'),
     'weight': "*".join([mcCommonWeightMatched, "(Gen_ZGstar_mass > 0)"]),
     # 'FilesPerJob': 4,
-    'FilesPerJob': 1,
+    'FilesPerJob': 3,
 }
 
 ############ ZZ ############
@@ -141,7 +142,7 @@ samples['ZZ'] = {
     'name': nanoGetSampleFiles(mcDirectory,'ZZTo4L'),
     'weight': mcCommonWeightMatched,
     # 'FilesPerJob' : 5,
-    'FilesPerJob' : 1,
+    'FilesPerJob' : 2,
 }
 
 ############ WZ ############
@@ -189,6 +190,7 @@ samples['WH_hww'] = { 'name'   :
                       + getSampleFiles(makeMCDirectory(),'HWminusJ_HToWW_M125',True,'nanoLatino_'),
                       'weight' : mcCommonWeightMatched,
                       'suppressNegativeNuisances' :['all'],
+                      'FilesPerJob': 4,
                       'subsamples' : {
                         'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==301 || HTXS_stage1_1_cat_pTjet30GeV==302',
                         'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==303 || HTXS_stage1_1_cat_pTjet30GeV==304 || HTXS_stage1_1_cat_pTjet30GeV==305',

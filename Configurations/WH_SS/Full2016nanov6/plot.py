@@ -7,15 +7,6 @@
 # Groups of samples to improve the plots.
 # If not defined, normal plots is used
 #
-
-'''
-groupPlot['ttV']  = {
-                  'nameHR' : 'ttV',
-                  'isSignal' : 0,
-                  'color': 400,   # kYellow
-                  'samples'  : ['ttV']
-              }
-'''
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
@@ -60,48 +51,41 @@ groupPlot['ZZ']  = {
                   'samples'  : ['ZZ']
               }
 
-groupPlot['WZhad']  = {    
-                  'nameHR' : "WZhad",
+groupPlot['WZ']  = {    
+                  'nameHR' : "WZ",
                   'isSignal' : 0,
                   'color'    : 619,   # kViolet + 1  
-                  'samples'  : ['WZhad']
+                  'samples'  : ['WZ']
               }
 
-groupPlot['Wg']  = {  
-                  'nameHR' : "W#gamma",
+groupPlot['Vg']  = {  
+                  'nameHR' : "V#gamma",
                   'isSignal' : 0,
                   'color'    : 810,   # kOrange + 10
-                  'samples'  : ['Wg']
+                  'samples'  : ['Wg','Zg']
               }
 
-groupPlot['Zg']  = {
-                  'nameHR' : "Z#gamma",
-                  'isSignal' : 0,
-                  'color'    : 810,   # kOrange + 10
-                  'samples'  : ['Zg']
-              }
+#groupPlot['Zg']  = {
+#                  'nameHR' : "Z#gamma",
+#                  'isSignal' : 0,
+#                  'color'    : 810,   # kOrange + 10
+#                  'samples'  : ['Zg']
+#              }
 
 
-groupPlot['ZgS']  = {
-                  'nameHR' : "V#gamma*_L",
+groupPlot['VgS']  = {
+                  'nameHR' : "V#gamma*",
                   'isSignal' : 0,
                   'color'    : 412,   # kGreen - 9
-                  'samples'  : ['ZgS']
+                  'samples'  : ['ZgS','WgS']
               }
 
-groupPlot['WgS_L']  = {
-                  'nameHR' : "W#gamma*",
-                  'isSignal' : 0,
-                  'color'    : 409,   # kGreen - 9
-                  'samples'  : ['WgS_L']
-              }
-
-groupPlot['WgS_H']  = {
-                  'nameHR' : "WZlep",
-                  'isSignal' : 0,
-                  'color'    : 410,   # kGreen - 9
-                  'samples'  : ['WgS_H']
-              }
+#groupPlot['WgS']  = {
+#                  'nameHR' : "W#gamma*",
+#                  'isSignal' : 0,
+#                  'color'    : 409,   # kGreen - 9
+#                  'samples'  : ['WgS']
+#              }
 
 groupPlot['Higgs']  = {  
                   'nameHR' : 'Higgs',
@@ -115,14 +99,6 @@ groupPlot['Higgs']  = {
 
 # keys here must match keys in samples.py    
 #     
-'''          
-plot['ttV']  = {
-                  'color': 400,    # kGreen+2
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0,
-              }
- '''    
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
@@ -138,13 +114,6 @@ plot['Fake_em']  = {
                   'scale'    : 1.0                  
               }
 
-#plot['Fake_ee']  = { 
-#                  'color': 921,    # kGray + 1
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.0                  
-#              }
-#
 plot['Fake_mm']  = { 
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
@@ -152,33 +121,12 @@ plot['Fake_mm']  = {
                   'scale'    : 1.0                  
               }
 
-#plot['Fake_me']  = {  
-#                  'color': 921,    # kGray + 1
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.0                  
-#              }
-
-              
 plot['top'] = {   
                   'nameHR' : 'tW and t#bar{t}',
                   'color': 400,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
                   'scale'    : 1.0,
-                  #'cuts'  : {
-                       #'hww2l2v_13TeV_of0j'      : 0.94 ,
-                       #'hww2l2v_13TeV_top_of0j'  : 0.94 , 
-                       #'hww2l2v_13TeV_dytt_of0j' : 0.94 ,
-                       #'hww2l2v_13TeV_em_0j'     : 0.94 , 
-                       #'hww2l2v_13TeV_me_0j'     : 0.94 , 
-                       ##
-                       #'hww2l2v_13TeV_of1j'      : 0.86 ,
-                       #'hww2l2v_13TeV_top_of1j'  : 0.86 , 
-                       #'hww2l2v_13TeV_dytt_of1j' : 0.86 ,
-                       #'hww2l2v_13TeV_em_1j'     : 0.86 , 
-                       #'hww2l2v_13TeV_me_1j'     : 0.86 , 
-                        #},
                   }
 
 
@@ -231,7 +179,8 @@ plot['ZZ']  = {
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-plot['WZhad']  = {
+
+plot['WZ']  = {
                   'color': 858, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -245,32 +194,15 @@ plot['VVV']  = {
                   'scale'    : 1.0
                   }
 
-plot['WgS_L']  = {
+plot['WgS']  = {
                   'color': 617, # kViolet + 1
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
 
-plot['WgS_H']  = {
-                  'color': 617, # kViolet + 1
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                 'scale'    : 1.0
-                  }
-
 
 # Htautau
-'''
-plot['H_htt'] = {
-                  'nameHR' : 'Htt',
-                  'color': 632+4, # kRed+4 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-'''
-
 plot['ZH_htt'] = {
                   'nameHR' : 'ZHtt',
                   'color': 632+3, # kRed+3 
@@ -406,7 +338,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1,
-                  'isBlind'  : 0
+                  'isBlind'  : 1
               }
 
 

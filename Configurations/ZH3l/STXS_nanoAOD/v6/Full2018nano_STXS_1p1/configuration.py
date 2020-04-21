@@ -5,6 +5,8 @@ tag = 'ZH3l_2018_v6_STXS'
 # used by mkShape to define output directory for root files
 outputDir = 'rootFiles_'+tag
 
+treeName= 'Events'
+
 # file with list of variables
 variablesFile = 'variables.py'
 

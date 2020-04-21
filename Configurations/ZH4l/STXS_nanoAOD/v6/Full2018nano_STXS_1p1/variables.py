@@ -10,7 +10,7 @@ variables['class0_XSF'] = {
      'range' : ([-0.50,-0.25,-0.15,0.,0.15,0.25,0.35,0.50,0.80],),
      'xaxis' : 'MVA discriminant ZH',
      'fold' : 3,
-     'linesToAdd' : ['.L /afs/cern.ch/work/k/kaura/NewLatino_v6/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ZH4l/nano_config/Full2018/hww_ZH_BDT.C+']
+    'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/ZH4l/STXS_nanoAOD/v6/Full2018nano_STXS_1p1/hww_ZH_BDT.C+' % os.getenv('CMSSW_BASE')]
 }  #change the path of macro
 
 variables['class1_XDF'] = {
@@ -19,7 +19,7 @@ variables['class1_XDF'] = {
      'range' : ([-0.50,-0.25,0.,0.25,0.50,0.80],),
      'xaxis' : 'MVA discriminant ZH',
      'fold' : 3,
-     'linesToAdd' : ['.L /afs/cern.ch/work/k/kaura/NewLatino_v6/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ZH4l/nano_config/Full2018/hww_ZH_BDT.C+']
+    'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/ZH4l/STXS_nanoAOD/v6/Full2018nano_STXS_1p1/hww_ZH_BDT.C+' % os.getenv('CMSSW_BASE')]
 } #change the path of macro
 
 
@@ -34,7 +34,7 @@ variables['ZH4l_pTZ']     = { 'name' : 'ZH4l_pTZ[0]',
                             'xaxis' : 'ZH4l_pTZ [GeV]',
                             'fold' : 0
                         }
-
+'''
 variables['pt1']  = {   'name': 'Lepton_pt[0]',            #   variable name    
                         'range' : (50,0.,500),    #   variable range
                         'xaxis' : 'lept1_p_{T} [GeV]',  #   x axis name
@@ -113,3 +113,4 @@ variables['njet']       = { 'name'  : 'njet',
                             'fold' : 2
                         }
 
+'''

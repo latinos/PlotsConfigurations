@@ -28,6 +28,25 @@ variables['BDTG_OSSF_10bin'] = { 'name': 'hww_WH3l_OSSF_mvaBDTG(Entry$,0)',
                         'fold' : 3,
                         'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/WH3l/FullRunII_BDTv6/Full2016/hww_WH3l_OSSF_mvaBDTG.C+' % os.getenv('CMSSW_BASE')]
                       }
+variables['BDTG_OSSF_bin1'] = { 'name': 'hww_WH3l_OSSF_mvaBDTG(Entry$,0)',
+                        'range' : ([-1.0,-0.4,-0.2,0.,0.2,0.4,0.6,1.0],),    #   variable range
+                        'xaxis' : 'MVA discriminant',
+                        'fold' : 3,
+                        'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/WH3l/FullRunII_BDTv6/Full2016/hww_WH3l_OSSF_mvaBDTG.C+' % os.getenv('CMSSW_BASE')]
+                      }
+variables['BDTG_OSSF_bin2'] = { 'name': 'hww_WH3l_OSSF_mvaBDTG(Entry$,0)',
+                        'range' : ([-1.0,-0.2,0.,0.2,0.4,0.6,1.0],),    #   variable range
+                        'xaxis' : 'MVA discriminant',
+                        'fold' : 3,
+                        'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/WH3l/FullRunII_BDTv6/Full2016/hww_WH3l_OSSF_mvaBDTG.C+' % os.getenv('CMSSW_BASE')]
+                      }
+variables['BDTG_OSSF_bin3'] = { 'name': 'hww_WH3l_OSSF_mvaBDTG(Entry$,0)',
+                        'range' : ([-1.0,-0.4,-0.2,0.,0.2,0.4,1.0],),    #   variable range
+                        'xaxis' : 'MVA discriminant',
+                        'fold' : 3,
+                        'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/WH3l/FullRunII_BDTv6/Full2016/hww_WH3l_OSSF_mvaBDTG.C+' % os.getenv('CMSSW_BASE')]
+                      }
+
 
 variables['BDTG_OSSF_20bin'] = { 'name': 'hww_WH3l_OSSF_mvaBDTG(Entry$,0)',
                         'range' : (20,-1,1),

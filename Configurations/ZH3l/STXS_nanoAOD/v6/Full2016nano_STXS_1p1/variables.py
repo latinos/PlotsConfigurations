@@ -66,9 +66,9 @@ variables['mTlmetj']   = { 'name' : 'ZH3l_mTlmetj_test[0]', #FIXME
                             'fold' : 0,
                         }
 
-variables['ptz']        = { 'name' : 'ZH3l_pTZ',
+variables['ZH3l_pTZ']        = { 'name' : 'ZH3l_pTZ',
                             'range' : (20,0,400),
-                            'xaxis' : 'ptz',
+                                 'xaxis' : 'ZH3l_pTZ [GeV]',
                             'fold' : 0
                         }
 

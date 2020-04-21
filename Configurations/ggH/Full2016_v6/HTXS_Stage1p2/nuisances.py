@@ -260,7 +260,7 @@ nuisances['muonpt'] = {
 }
 
 ##### Jet energy scale
-jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
+jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
 
 for js in jes_systs:
   nuisances[js] = {
@@ -407,7 +407,7 @@ for name in sampleNames:
     nuisances['PS_FSR_1jet']['samples'].update({'cuts': cuts1j})
     nuisances['PS_FSR_2jet']['samples'].update({name: '1.0168108/0.9673918'})
     nuisances['PS_FSR_2jet']['samples'].update({'cuts': cuts2j})
-
+'''
 nuisances['UE']  = {
     'name'  : 'UE_CUETP',
     'kind'  : 'tree',
@@ -425,6 +425,7 @@ nuisances['UE']  = {
     'AsLnN'      : '1',
     'synchronized': False
 }
+'''
 #FIXME:Missing information!                                                                                                                   
 #for name in sampleNames:                                                                                                                    
 #  if 'ggH_hww' in name:                                                                                                                      

@@ -19,7 +19,7 @@ cuts['zh4l_XSF_13TeV']  = {
         'ptv_lt150' : 'ZH4l_pTZ[0] < 150',
         'ptv_gt150' : 'ZH4l_pTZ[0] > 150',
     }
-
+}
 
 cuts['zh4l_XDF_13TeV']  = {
     'expr' : 'flagZ1SF_zh4l==0 && z1Mass_zh4l < 70 && z1Mass_zh4l >10 && PuppiMET_pt > 20 && abs(z0Mass_zh4l-91.1876) < 15',

@@ -115,7 +115,7 @@ samples['Wg'] = {
 samples['Zg'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'ZGToLLG'),
     'weight': "*".join([mcCommonWeight, '(Gen_ZGstar_mass <= 0)']),
-    'FilesPerJob': 1
+    'FilesPerJob': 3
     # 'FilesPerJob': 4
 }
 
@@ -130,7 +130,7 @@ samples['ZgS'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'ZGToLLG'),
     'weight': "*".join([mcCommonWeightMatched, "(Gen_ZGstar_mass > 0)"]),
     # 'FilesPerJob': 4,
-    'FilesPerJob': 1,
+    'FilesPerJob': 3,
 }
 
 ############ ZZ ############
@@ -138,7 +138,7 @@ samples['ZgS'] = {
 samples['ZZ']  = {  
     'name'   :   nanoGetSampleFiles(mcDirectory,'ZZTo4L'),
     'weight': mcCommonWeightMatched,
-    'FilesPerJob': 1,
+    'FilesPerJob': 3,
                  }
 addSampleWeight(samples,'ZZ','ZZTo4L',"1.17") 
 # samples['ZZ'] = {
@@ -197,6 +197,7 @@ samples['WH_hww'] = { 'name'   :
                       + getSampleFiles(makeMCDirectory(),'HWminusJ_HToWW_M125',True,'nanoLatino_'),
                       'weight' : mcCommonWeightMatched,
                       'suppressNegativeNuisances' :['all'],
+                      'FilesPerJob': 4,
                       'subsamples' : {
                         'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==301 || HTXS_stage1_1_cat_pTjet30GeV==302',
                         'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==303 || HTXS_stage1_1_cat_pTjet30GeV==304 || HTXS_stage1_1_cat_pTjet30GeV==305',
@@ -222,7 +223,7 @@ samples['H_htt'] = {
            + nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125')
            + nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125'),
     'weight': mcCommonWeightMatched,
-    'FilesPerJob': 4
+    'FilesPerJob': 5
 }
 signals.append('H_htt')
 
