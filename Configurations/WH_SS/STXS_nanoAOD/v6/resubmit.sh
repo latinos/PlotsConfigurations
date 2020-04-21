@@ -5,9 +5,10 @@ set -e
 DIR=$PWD
 JOB="/afs/cern.ch/work/s/shoh/analysis/WH-Study/my-latino/nanov6/jobs"
 #QUEUE="longlunch" #
-QUEUE="workday" 
+#QUEUE="workday" 
+QUEUE="testmatch"
 
-for year in Full2016nano_STXS_1p1 Full2017nano_STXS_1p1 Full2018nano_STXS_1p1
+for year in Full2017nano_STXS_1p1 Full2018nano_STXS_1p1 #Full2016nano_STXS_1p1 Full2017nano_STXS_1p1 Full2018nano_STXS_1p1
 do
     YEAR=`echo $year | awk -F "Full" '{print $2}' | awk -F "nano" '{print $1}'`
     echo " --> $year"
