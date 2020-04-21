@@ -35,7 +35,7 @@ groupPlot['DY']  = {
                   'nameHR' : "DY",
                   'isSignal' : 0,
                   'color': 418,    # kGreen+2
-                  'samples'  : ['DY']
+                  'samples'  : ['DY', 'Dyemb']
               }
 
 
@@ -106,6 +106,15 @@ plot['DY']  = {
                        #'hww2l2v_13TeV_me_1j'     : 1.08 , 
                         #},
 
+              }
+
+
+if useEmbeddedDY:
+  plot['Dyemb']  = {  
+                  'color': 418,    # kGreen+2
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0,
               }
 
 
