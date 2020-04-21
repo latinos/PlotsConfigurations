@@ -274,18 +274,7 @@ samples['ZZ']  = {  'name'   :   nanoGetSampleFiles(mcDirectory,'ZZTo4L')
                     'FilesPerJob' : 5,
                  }
                             
-'''
-samples['ggZZ']  = {  'name'   : nanoGetSampleFiles(mcDirectory,'ggZZ2m2t')
-                              +nanoGetSampleFiles(mcDirectory,'ggZZ2e2t_ext1')
-                            #  +nanoGetSampleFiles(mcDirectory,'ggZZ2m2t')
-                              +nanoGetSampleFiles(mcDirectory,'ggZZ2e2m_ext1')
-                             # +nanoGetSampleFiles(mcDirectory,'ggZZ4t')
-                             # +nanoGetSampleFiles(mcDirectory,'ggZZ4e')
-                              +nanoGetSampleFiles(mcDirectory,'ggZZ4m_ext2'),
-                    'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-                    'FilesPerJob' : 5,
-                 }
-'''
+
 addSampleWeight(samples,'ZZ','ZZTo4L',"1.07") ## The NNLO/NLO k-factor, cited from https://arxiv.org/abs/1405.2219v1
 addSampleWeight(samples,'ZZ','ggZZ2e2t_ext1',"1.68") ## The NLO/LO k-factor, cited from https://arxiv.org/abs/1509.06734v1
 addSampleWeight(samples,'ZZ','ggZZ2m2t',"1.68") 
@@ -349,11 +338,11 @@ samples['qqH_hww']  = {  'name'   :   nanoGetSampleFiles(mcDirectory,'VBFHToWWTo
 samples['ZH_hww']  = {  'name'   :   nanoGetSampleFiles(mcDirectory,'HZJ_HToWWTo2L2Nu_M125'), #FIXME replace with 125 GeV sample when available
                         'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                      }
-'''
+
 samples['ggZH_hww']  = {  'name'   :   nanoGetSampleFiles(mcDirectory,'GluGluZH_HToWWTo2L2Nu_M125'),
                         'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                      }
-'''
+
 ############ WH H->WW ############
 
 samples['WH_hww']  = {  'name'   :   nanoGetSampleFiles(mcDirectory,'HWplusJ_HToWW_M125')
