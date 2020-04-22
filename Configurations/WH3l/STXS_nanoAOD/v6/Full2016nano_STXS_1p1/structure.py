@@ -3,7 +3,7 @@
 structure = {}
 
 nominal = ['Wg', 'ggWW', 'ZgS', 'ZZ', 'Vg', 'VVV', 'ggZH_hww', 'Zg', 'WW', 'WH_hww', 'WgS', 'Fake', 'H_htt', 'ZH_hww', 'DATA', 'WZ', 'VgS']
-stxs = ['WH_hww_PTV_LT150','WH_hww_PTV_GT150','WH_hww_PTV_FWDH']
+stxs = ['WH_hww_PTV_LT150','WH_hww_PTV_GT150','WH_hww_FWDH']
 
 # keys here must match keys in samples.py 
 for iproc in nominal+stxs:
