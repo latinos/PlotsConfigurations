@@ -23,6 +23,8 @@ cuts['wh3l_13TeV_ossf']  = {
     }
 }
 
+cuts['wh3l_13TeV_merged_ptv_gt150'] = '( ( %s ) || ( %s ) ) && WH3l_pTW[0] >150' %( cuts['wh3l_13TeV_sssf']['expr'] , cuts['wh3l_13TeV_ossf']['expr'] )
+
 cuts['wh3l_wz_13TeV'] = 'WH3l_flagOSSF == 1\
                          && PuppiMET_pt > 45\
                          && WH3l_ZVeto < 20\
