@@ -223,6 +223,15 @@ if os.path.exists('HTXS_stage1_categories.py') :
   exec(handle)
   handle.close()
 
+samples['VHlep_hww'] = {
+    'name': files,
+    'weight': mcCommonWeight,
+    'filesPerJob' : 5,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
+}
+
+
 ## ggH STXS bins                                                                                                                              
 
 for cat,num in HTXSStage1_1Categories.iteritems():
@@ -242,7 +251,7 @@ for cat,num in HTXSStage1_1Categories.iteritems():
 ## VBF and VH had.
     elif 'QQ2HQQ_' in cat:
       if '0J'  not in cat or '1J' not in cat:
-        samples['qqH_hww_'+cat.replace('QQ2HQQ_','')]  = {  'name' : nanoGetSampleFiles(mcDirectory,'VBFHToWWTo2L2NuPowheg_M125'),
+        samples['qqH_hww_'+cat.replace('QQ2HQQ_','')]  = {  'name' : nanoGetSampleFiles(mcDirectory,'VBFHToWWTo2L2Nu_M125'),
                                                             'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')' ,
                                                             'suppressNegative' :['all'],
                                                             'suppressNegativeNuisances' :['all'],
