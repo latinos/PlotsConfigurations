@@ -22,6 +22,23 @@ variables['WH3l_drOSll_min']  = {   'name': 'MinIf$( WH3l_drOSll[], WH3l_drOSll[
                          'xaxis' : 'min #Delta R_{ll}',  #   x axis name
                          'fold' : 0
                         }
+
+variables['BDTG_SSSF_bin2'] = { 'name': 'hww_WH3l_SSSF_mvaBDTG(Entry$,0)',
+                        'range' : ([-1.0,-0.2,0.,0.2,0.4,0.6,1.0],),
+                        'xaxis' : 'MVA discriminant',
+                        'fold' : 3,
+                        'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/WH3l/FullRunII_BDTv6/Full2016/hww_WH3l_SSSF_mvaBDTG.C+' % os.getenv('CMSSW_BASE')]
+                      }
+
+variables['BDTG_SSSF_ptv_gt150'] = { 'name': 'hww_WH3l_SSSF_mvaBDTG(Entry$,0)',
+                                'range' : ([-1.0,-0.2,0.,0.2,1.0],),
+                        'xaxis' : 'MVA discriminant',
+                        'fold' : 3,
+                        'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/WH3l/FullRunII_BDTv6/Full2016/hww_WH3l_SSSF_mvaBDTG.C+' % os.getenv('CMSSW_BASE')]
+                      }
+
+'''
+
 variables['BDTG_SSSF_10bin'] = { 'name': 'hww_WH3l_SSSF_mvaBDTG(Entry$,0)',
                         'range' : (10,-1,1),
                         'xaxis' : 'MVA discriminant',
@@ -30,12 +47,6 @@ variables['BDTG_SSSF_10bin'] = { 'name': 'hww_WH3l_SSSF_mvaBDTG(Entry$,0)',
                       }
 variables['BDTG_SSSF_bin1'] = { 'name': 'hww_WH3l_SSSF_mvaBDTG(Entry$,0)',
                         'range' : ([-1.0,-0.4,-0.2,0.,0.2,0.4,0.6,1.0],),    #   variable range
-                        'xaxis' : 'MVA discriminant',
-                        'fold' : 3,
-                        'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/WH3l/FullRunII_BDTv6/Full2016/hww_WH3l_SSSF_mvaBDTG.C+' % os.getenv('CMSSW_BASE')]
-                      }
-variables['BDTG_SSSF_bin2'] = { 'name': 'hww_WH3l_SSSF_mvaBDTG(Entry$,0)',
-                        'range' : ([-1.0,-0.2,0.,0.2,0.4,0.6,1.0],),    #   variable range
                         'xaxis' : 'MVA discriminant',
                         'fold' : 3,
                         'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/WH3l/FullRunII_BDTv6/Full2016/hww_WH3l_SSSF_mvaBDTG.C+' % os.getenv('CMSSW_BASE')]
@@ -115,3 +126,4 @@ variables['WH3l_mlll']  = {'name'  : 'WH3l_mlll',
                         'xaxis' : 'WH3l_mlll',
                         'fold'  : 0
                         }
+'''
