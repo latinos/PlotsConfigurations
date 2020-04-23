@@ -1,8 +1,4 @@
-tag = "WH3l_2018_v6_STXS_"
-
-cat = "SSSF"
-
-tag+=cat
+tag = "WH3l_2018_v6_STXS_SSSF"
 
 treeName= 'Events'
 
@@ -10,7 +6,7 @@ treeName= 'Events'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables_'+cat+'.py'
+variablesFile = 'variables_SSSF.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 

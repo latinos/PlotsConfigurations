@@ -118,7 +118,7 @@ samples['DY'] = {
     'name': files,
     'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 &&\
                                      Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )',
-    'FilesPerJob': 6,
+    'FilesPerJob': 10,
 }
 addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50_private',ptllDYW_NLO)
 addSampleWeight(samples,'DY','DYJetsToLL_M-50-LO',ptllDYW_LO)
@@ -136,7 +136,7 @@ files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
 samples['top'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 2,
+    'FilesPerJob': 10,
 }
 
 addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
@@ -226,7 +226,7 @@ files = nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01') + \
 samples['WZ'] = {
     'name': files,
     'weight': mcCommonWeight + ' * (gstarHigh)',
-    'FilesPerJob': 4,
+    'FilesPerJob': 8,
 }
 
 ############ ZZ ############
@@ -238,7 +238,7 @@ files = nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu_ext1') + \
 samples['ZZ'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 4
+    'FilesPerJob': 6
 }
 
 ########## VVV #########
@@ -376,7 +376,7 @@ samples['Fake'] = {
   'weight': 'METFilter_DATA*fakeW',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 10
+  'FilesPerJob': 100
 }
 
 for _, sd in DataRun:
@@ -400,7 +400,7 @@ samples['DATA'] = {
   'weight': 'METFilter_DATA*LepWPCut',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 120
+  'FilesPerJob': 150
 }
 
 for _, sd in DataRun:

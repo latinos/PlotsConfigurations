@@ -23,6 +23,16 @@ cuts['wh3l_13TeV_ossf']  = {
     }
 }
 
+'''
+cuts['wh3l_13TeV_merged'] = {
+    'expr' : '( ( %s ) || ( %s ) )' %( cuts['wh3l_13TeV_sssf']['expr'] , cuts['wh3l_13TeV_ossf']['expr'] ),
+    'categories' : {
+        'ptv_lt150' : 'WH3l_pTW[0] < 150',
+        'ptv_gt150' : 'WH3l_pTW[0] > 150',
+    }
+}
+'''
+
 cuts['wh3l_wz_13TeV'] = 'WH3l_flagOSSF == 1\
                          && PuppiMET_pt > 45\
                          && WH3l_ZVeto < 20\

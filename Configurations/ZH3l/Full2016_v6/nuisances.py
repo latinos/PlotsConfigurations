@@ -11,31 +11,31 @@ except NameError:
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2016',
     'type': 'lnN',
-    'samples': dict((skey, '1.022') for skey in mc if skey not in ['WZ', 'Zg'])
+    'samples': dict((skey, '1.022') for skey in mc if skey not in ['WZ'])
 }
 
 nuisances['lumi_XYFact'] = {
     'name': 'lumi_13TeV_XYFact',
     'type': 'lnN',
-    'samples': dict((skey, '1.009') for skey in mc if skey not in ['WZ', 'Zg'])
+    'samples': dict((skey, '1.009') for skey in mc if skey not in ['WZ'])
 }
 
 nuisances['lumi_BBDefl'] = {
     'name': 'lumi_13TeV_BBDefl',
     'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WZ', 'Zg'])
+    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WZ'])
 }
 
 nuisances['lumi_DynBeta'] = {
     'name': 'lumi_13TeV_DynBeta',
     'type': 'lnN',
-    'samples': dict((skey, '1.005') for skey in mc if skey not in ['WZ', 'Zg'])
+    'samples': dict((skey, '1.005') for skey in mc if skey not in ['WZ'])
 }
 
 nuisances['lumi_Ghosts'] = {
     'name': 'lumi_13TeV_Ghosts',
     'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WZ', 'Zg'])
+    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WZ'])
 }
 
 #### Theoretical Systematics
@@ -71,7 +71,7 @@ nuisances['QCDscale_ttH']  = {
   'type'  : 'lnN',
 }
 
-variations = ['Alt$(LHEScaleWeight[0],1)', 'Alt$(LHEScaleWeight[1],1)', 'Alt$(LHEScaleWeight[3],1)', 'Alt$(LHEScaleWeight[Length$(LHEScaleWeight)-4],1)', 'Alt$(LHEScaleWeight[Length$(LHEScaleWeight)-2],1)', 'Alt$(LHEScaleWeight[Length$(LHEScaleWeight)-1],1)']
+variations = ['Alt$(LHEScaleWeight[0],1)', 'Alt$(LHEScaleWeight[1],1)', 'Alt$(LHEScaleWeight[3],1)', 'Alt$(LHEScaleWeight[5],1)', 'Alt$(LHEScaleWeight[7],1)', 'Alt$(LHEScaleWeight[8],1)']
 
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
@@ -241,7 +241,6 @@ nuisances['WZ3l2jnorm']  = {
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                   'zh3l_Zg_CR_2j',
                    'zh3l_WZ_CR_2j',
                    'zh3l_SR_2j',
                 ]
@@ -254,37 +253,36 @@ nuisances['WZ3l1jnorm']  = {
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                   'zh3l_Zg_CR_1j',
                    'zh3l_WZ_CR_1j',
                    'zh3l_SR_1j',
                 ]
               }
 
-nuisances['Zg3l2jnorm']  = {
-               'name'  : 'CMS_hww_Zg3l2jnorm',
-               'samples'  : {
-                   'Zg'       : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [
-                   'zh3l_Zg_CR_2j',
-                   'zh3l_WZ_CR_2j',
-                   'zh3l_SR_2j',
-                ]
-              }
+#nuisances['Zg3l2jnorm']  = {
+#               'name'  : 'CMS_hww_Zg3l2jnorm',
+#               'samples'  : {
+#                   'Zg'       : '1.00',
+#                   },
+#               'type'  : 'rateParam',
+#               'cuts'  : [
+#                   'zh3l_Zg_CR_2j',
+#                   'zh3l_WZ_CR_2j',
+#                   'zh3l_SR_2j',
+#                ]
+#              }
 
-nuisances['Zg3l1jnorm']  = {
-               'name'  : 'CMS_hww_Zg3l1jnorm',
-               'samples'  : {
-                   'Zg'       : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [
-                   'zh3l_Zg_CR_1j',
-                   'zh3l_WZ_CR_1j',
-                   'zh3l_SR_1j',
-                ]
-              }
+#nuisances['Zg3l1jnorm']  = {
+#               'name'  : 'CMS_hww_Zg3l1jnorm',
+#               'samples'  : {
+#                   'Zg'       : '1.00',
+#                   },
+#               'type'  : 'rateParam',
+#               'cuts'  : [
+#                   'zh3l_Zg_CR_1j',
+#                   'zh3l_WZ_CR_1j',
+#                   'zh3l_SR_1j',
+#                ]
+#              }
 
 #### Top
 

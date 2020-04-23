@@ -193,15 +193,26 @@ structure['WH_hww'] = {
                   'isData'   : 0    
                   }
 
-structure['ZH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
+#structure['ZH_hww'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0    
+#                  }
 
-structure['ggZH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
+#structure['ggZH_hww'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0    
+#                  }
+
+for bin in ['PTV_LT150','PTV_GT150','FWDH']:
+    structure['ZH_hww_'+bin] = {
+        'isSignal' : 1,
+        'isData'   : 0
+    }
+    structure['ggZH_hww_'+bin] = {
+        'isSignal' : 1,
+        'isData'   : 0
+    }
+
 
 structure['H_hww'] = {
                   'isSignal' : 1,
