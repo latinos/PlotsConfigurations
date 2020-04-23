@@ -237,7 +237,54 @@ for cat,num in HTXSStage1_1Categories.iteritems():
             }
             signals.append('ggH_hww'+cat.replace('GG2H_',''))
 
-# Stage 1.2 binning for high pTH bin              
+
+
+## VBF and VH had.
+    elif 'QQ2HQQ_' in cat:
+      if '0J'  not in cat or '1J' not in cat:
+        samples['qqH_hww_'+cat.replace('QQ2HQQ_','')]  = {  'name' : nanoGetSampleFiles(mcDirectory,'VBFHToWWTo2L2NuPowheg_M125'),
+                                                            'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')' ,
+                                                            'suppressNegative' :['all'],
+                                                            'suppressNegativeNuisances' :['all'],
+                                                         }
+        signals.append('qqH_hww'+cat.replace('QQ2HQQ_',''))
+    
+        if 'MJJ_0_60' in cat or 'MJJ_60_120' in cat or 'MJJ_120_350' in cat:
+            samples['WH_had_hww_'+cat.replace('QQ2HQQ_','')]   = {  'name' :   nanoGetSampleFiles(mcDirectory,'HWminusJ_HToWW_M125')
+                                                                             + nanoGetSampleFiles(mcDirectory,'HWplusJ_HToWW_M125')  ,
+                                                                    'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')' ,
+                                                                    'suppressNegative' :['all'],
+                                                                    'suppressNegativeNuisances' :['all'],
+                                                                 }
+            signals.append('WH_had_hww_'+cat.replace('QQ2HQQ_',''))
+    
+            samples['ZH_had_hww_'+cat.replace('QQ2HQQ_','')]  = { 'name' :  nanoGetSampleFiles(mcDirectory,'HZJ_HToWW_M125') ,
+                                                                  'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')' ,
+                                                                  'suppressNegative' :['all'],
+                                                                  'suppressNegativeNuisances' :['all'],
+                                                                }
+            signals.append('ZH_had_hww_'+cat.replace('QQ2HQQ_',''))
+
+
+    ## WH lep.
+    elif 'QQ2HLNU_' in cat:
+      addSampleWeight(samples, 'VHlep_hww', 'HWminusJ_HToWW_M125', '(HTXS_stage_1_pTjet30=='+str(num)+')')
+      addSampleWeight(samples, 'VHlep_hww', 'HWplusJ_HToWW_M125', '(HTXS_stage_1_pTjet30=='+str(num)+')')
+
+    ## qqZH lep.
+    elif 'QQ2HLL_' in cat:
+      addSampleWeight(samples, 'VHlep_hww', 'HZJ_HToWW_M125', '(HTXS_stage_1_pTjet30=='+str(num)+')')
+
+    ## ggZH lep
+    elif 'GG2HLL_' in cat:
+      addSampleWeight(samples, 'VHlep_hww', 'GluGluZH_HToWWTo2L2Nu_M125', '(HTXS_stage_1_pTjet30=='+str(num)+')')
+
+
+
+
+
+# Stage 1.2 binning for high pTH bin     
+         
 samples['ggH_hww_PTH_200_300']  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGluHToWWTo2L2NuPowheg_M125'),
                                      'weight': [mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV==101)*(HTXS_Higgs_pt>200)*(HTXS_Higgs_pt<=300)',{'class': 'Weight2MINLO', 'args': '%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE')}],
                                      'FilesPerJob': 1,
@@ -274,7 +321,7 @@ samples['ggH_hww_PTH_GT650']  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGl
 signals.append('ggH_hww_PTH_GT650')
 
 
-
+'''
 #FIXME VBFHToWWTo2L2NuPowheg missing?
 ############ VBF H->WW ############
 samples['qqH_hww'] = {
@@ -312,7 +359,7 @@ samples['WH_hww'] = {
 }
 
 signals.append('WH_hww')
-
+'''
 ############ ttH ############
 
 #FIXME ttH sample missing in v6
