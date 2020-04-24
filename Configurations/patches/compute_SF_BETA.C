@@ -24,10 +24,10 @@ class compute_SF : public multidraw::TTreeFunction {
     // Commented functions include additional argument for the choice of working poin at run time, hardcoded for now
     public:
         // compute_SF(const char* working_point, const char* year, const int nLeptons, std::string requested_SF, const int requested_lepton=0);
-        compute_SF(const char* year, const int nLeptons, std::string requested_SF);
+        compute_SF(const char* year, const int nLeptons, std::string requested_SF, const int requested_lepton=0);
         const char* getName() const override { return "compute_SF"; }
         // TTreeFunction* clone() const override { return new compute_SF(working_point_, year_, nLeptons_, requested_SF_); }
-        TTreeFunction* clone() const override { return new compute_SF(year_, nLeptons_, requested_SF_); }
+        TTreeFunction* clone() const override { return new compute_SF(year_, nLeptons_, requested_SF_, requested_lepton_); }
         unsigned getNdata() override { return 1; }
         double evaluate(unsigned) override;
 
@@ -79,6 +79,7 @@ compute_SF::compute_SF(const char* year, const int nLeptons, std::string request
     working_point_ = "TightObjWP";  // WP is hardcoded for now, thinking of passing it at run time for more flexibility
     year_ = year;
     requested_SF_ = requested_SF;
+    requested_lepton_ = requested_lepton;
     std::string cmssw_base = std::getenv("CMSSW_BASE");
 
     //Build map of SF files
@@ -430,7 +431,7 @@ void compute_SF::bindTree_(multidraw::FunctionLibrary& _library){
 
 }
 
-double compute_SF::evaluate(unsigned requested_lepton_){
+double compute_SF::evaluate(unsigned){
 
     std::vector<double> SF_vect {};
     std::vector<double> SF_err_vect {};
