@@ -73,7 +73,7 @@ class compute_SF : public multidraw::TTreeFunction {
 
 // commented constructor is in case we want the freedom to chose working points
 // compute_SF::compute_SF(const char* working_point, const char* year, const int nLeptons, std::string requested_SF, const int requested_lepton) : TTreeFunction() {
-compute_SF::compute_SF(const char* year, const int nLeptons, std::string requested_SF) : TTreeFunction() {
+compute_SF::compute_SF(const char* year, const int nLeptons, std::string requested_SF, const int requested_lepton) : TTreeFunction() {
 
     nLeptons_ = nLeptons;
     working_point_ = "TightObjWP";  // WP is hardcoded for now, thinking of passing it at run time for more flexibility
