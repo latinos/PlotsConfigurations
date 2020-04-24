@@ -52,9 +52,9 @@ class compute_SF : public multidraw::TTreeFunction {
         std::vector<TH2D> h_SF_ele_;
         std::vector<TH2D> h_SF_ele_err_;
         std::vector<TH2D> h_SF_ele_sys_;
-        std::vector<TH2D> h_SF_ttHMVA_ele_;
-        std::vector<TH2D> h_SF_ttHMVA_ele_err_;
-        std::vector<TH2D> h_SF_ttHMVA_ele_sys_;
+        std::vector<TH2D> h_SF_ele_ttHMVA_;
+        std::vector<TH2D> h_SF_ele_ttHMVA_err_;
+        std::vector<TH2D> h_SF_ele_ttHMVA_sys_;
         std::vector<TH2D> h_SF_mu_Id_;
         std::vector<TH2D> h_SF_mu_Id_err_;
         std::vector<TH2D> h_SF_mu_Id_sys_;
