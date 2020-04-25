@@ -45,7 +45,7 @@ Reading the `legacyDataCards` folder.
     python multiSignalStrengthPlot.py datacards/2017/VH_2j_emu/mll/datacard.txt --lumi=41.5 --year=2017
     python multiSignalStrengthPlot.py datacards/2018/VH_2j_emu/mll/datacard.txt --lumi=58.8 --year=2018
     
-Reading the `v6 folders.
+Reading the `v6` folders.
 
     python multiSignalStrengthPlot.py Full2016_v6/datacards_nominal/VH_2j_emu/mll/datacard.txt --lumi=35.9 --year=2016
     python multiSignalStrengthPlot.py Full2017_v6/datacards_nominal/VH_2j_emu/mll/datacard.txt --lumi=41.5 --year=2017
