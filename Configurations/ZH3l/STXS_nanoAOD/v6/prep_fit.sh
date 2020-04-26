@@ -3,8 +3,8 @@
 set -e
 
 DIR=$PWD
-ANALYSIS="ZH4l"
-#FITVAR="mtw_fit"
+ANALYSIS="ZH3l"
+FITVAR="mtw_fit"
 
 for year in Full2016nano_STXS_1p1 Full2017nano_STXS_1p1 Full2018nano_STXS_1p1
 do
@@ -28,13 +28,16 @@ do
 
     # combine the datacards                    
     combineCards.py \
-	zh4l_XSF_13TeV_ptv_lt150=$datacardDir/zh4l_XSF_13TeV_ptv_lt150/class0_XSF/datacard.txt.pruned.txt \
-	zh4l_XSF_13TeV_ptv_gt150=$datacardDir/zh4l_XSF_13TeV_ptv_gt150/class0_XSF/datacard.txt.pruned.txt \
-	zh4l_XDF_13TeV_ptv_lt150=$datacardDir/zh4l_XDF_13TeV_ptv_lt150/class1_XDF/datacard.txt.pruned.txt \
-	zh4l_XDF_13TeV_ptv_gt150=$datacardDir/zh4l_XDF_13TeV_ptv_gt150/class1_XDF/datacard.txt.pruned.txt \
-	zh4l_ZZ_13TeV=$datacardDir/zh4l_ZZ_13TeV/events/datacard.txt.pruned.txt \
-	zh4l_ZZ_MET_13TeV=$datacardDir/zh4l_ZZ_MET_13TeV/events/datacard.txt.pruned.txt \
+	zh3l_SR_1j_ptv_gt150=$datacardDir/zh3l_SR_1j_ptv_gt150/$FITVAR/datacard.txt.pruned.txt \
+	zh3l_SR_1j_ptv_lt150=$datacardDir/zh3l_SR_1j_ptv_lt150/$FITVAR/datacard.txt.pruned.txt \
+	zh3l_SR_2j_ptv_gt150=$datacardDir/zh3l_SR_2j_ptv_gt150/$FITVAR/datacard.txt.pruned.txt \
+	zh3l_SR_2j_ptv_lt150=$datacardDir/zh3l_SR_2j_ptv_lt150/$FITVAR/datacard.txt.pruned.txt \
+	zh3l_WZ_CR_1j=$datacardDir/zh3l_WZ_CR_1j/events/datacard.txt.pruned.txt \
+	zh3l_WZ_CR_2j=$datacardDir/zh3l_WZ_CR_2j/events/datacard.txt.pruned.txt \
 	> ${outputDir}/${ANALYSIS}_${year}.txt
+	#zh3l_Zg_CR_1j=$datacardDir/zh3l_Zg_CR_1j/events/datacard.txt.pruned.txt \
+	#zh3l_Zg_CR_2j=$datacardDir/zh3l_Zg_CR_2j/events/datacard.txt.pruned.txt \
+	#> ${outputDir}/${ANALYSIS}_${year}.txt
     
     echo "  --> Combination folder is created"
     ls $outputDir

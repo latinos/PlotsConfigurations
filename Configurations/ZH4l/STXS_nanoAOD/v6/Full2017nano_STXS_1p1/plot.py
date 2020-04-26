@@ -1,4 +1,4 @@
-B1;5202;0c# plot configuration
+# plot configuration
 
 
 
@@ -60,12 +60,12 @@ groupPlot['ZZ']  = {
                   'samples'  : ['ZZ']
               }
 
-groupPlot['ggZZ']  = {
-                  'nameHR' : "ggZZ",
-                  'isSignal' : 0,
-                  'color'    : 635,     
-                  'samples'  : ['ggZZ']
-              }
+#groupPlot['ggZZ']  = {
+#                  'nameHR' : "ggZZ",
+#                  'isSignal' : 0,
+#                  'color'    : 635,     
+#                  'samples'  : ['ggZZ']
+#              }
 '''
 groupPlot['Vg']  = {  
                   'nameHR' : "V#gamma",
@@ -234,12 +234,12 @@ plot['ZZ']  = {
                   'scale'    : 1.0
                   }
 
-plot['ggZZ']  = {
-                  'color':  635, # kAzure -2  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
+#plot['ggZZ']  = {
+#                  'color':  635, # kAzure -2  
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1.0
+#                  }
 
 
 plot['VVV']  = { 

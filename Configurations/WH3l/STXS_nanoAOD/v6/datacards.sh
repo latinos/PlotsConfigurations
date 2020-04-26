@@ -17,8 +17,8 @@ do
     do
         echo "  --> $region"
 
-	echo "supressing negative bins"
-	python ../suppressNegativeBins.py rootFiles_WH3l_${YEAR}_v6_STXS_${region}/plots_WH3l_${YEAR}_v6_STXS_${region}.root
+	echo "suppressNegativeBins.py rootFiles_WH3l_${YEAR}_v6_STXS_${region}/plots_WH3l_${YEAR}_v6_STXS_${region}.root"
+	python ${CMSSW_BASE}/src/PlotsConfigurations/Configurations/Template/STXS_VHlep/suppressNegativeBins.py rootFiles_WH3l_${YEAR}_v6_STXS_${region}/plots_WH3l_${YEAR}_v6_STXS_${region}.root
 
 	echo "mkDatacards.py --pycfg configuration_${region}.py --inputFile rootFiles_WH3l_${YEAR}_v6_STXS_${region}/plots_WH3l_${YEAR}_v6_STXS_${region}.root"
 	mkDatacards.py --pycfg configuration_${region}.py --inputFile rootFiles_WH3l_${YEAR}_v6_STXS_${region}/plots_WH3l_${YEAR}_v6_STXS_${region}.root
