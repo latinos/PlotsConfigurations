@@ -1,9 +1,11 @@
 #!/bin/python
 
-import os
-comfile = os.getcwd().split('/')[-4]+"_"+os.getcwd().split('/')[-1]
+import os, sys
+comfile = os.getcwd().split('/')[-4].replace("_","")+"_"+os.getcwd().split('/')[-1]
 
-#comfile="WHSS_Full2016nano_STXS_1p1"
+if "nano_STXS_1p1" not in os.getcwd().split('/')[-1]:
+    print "please launch the script under the directory Full201Xnano_STXS_1p1"
+    sys.exit()
 
 SIGNAL = [ 'WH_hww' , 'ZH_hww' , 'ggZH_hww' ]
 STXSBINS = [ 'PTV_LT150' , 'PTV_GT150' ]

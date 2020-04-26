@@ -11,8 +11,11 @@ do
     echo " --> $year"
     YEAR=`echo $year | awk -F "Full" '{print $2}' | awk -F "nano" '{print $1}'`
     cd $DIR; cd $year
-    python ../suppressNegativeBins.py rootFiles_WHSS_${YEAR}_v6_STXS/plots_WHSS_${YEAR}_v6_STXS.root
-    echo "mkDatacards.py --pycfg configuration.py --inputFile rootFiles_ZH3l_${YEAR}_v6_STXS/plots_ZH3l_${YEAR}_v6_STXS.root"
+
+    echo "suppressNegativeBins.py rootFiles_WHSS_${YEAR}_v6_STXS/plots_WHSS_${YEAR}_v6_STXS.root"
+    python ${CMSSW_BASE}/src/PlotsConfigurations/Configurations/Template/STXS_VHlep/suppressNegativeBins.py rootFiles_WHSS_${YEAR}_v6_STXS/plots_WHSS_${YEAR}_v6_STXS.root
+
+    echo "mkDatacards.py --pycfg configuration.py --inputFile rootFiles_WHSS_${YEAR}_v6_STXS/plots_WHSS_${YEAR}_v6_STXS.root"
     mkDatacards.py --pycfg configuration.py --inputFile rootFiles_WHSS_${YEAR}_v6_STXS/plots_WHSS_${YEAR}_v6_STXS.root
 
     # pruning datacard

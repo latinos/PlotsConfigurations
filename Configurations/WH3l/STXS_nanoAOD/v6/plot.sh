@@ -13,7 +13,7 @@ do
     for region in OSSF SSSF
     do
         echo "  --> $region"
-	echo "mkPlot.py --pycfg configuration_${region}.py --inputFile rootFiles_WH3l_${YEAR}_v6_STXS_${region}/plots_WH3l_${YEAR}_v6_STXS_{$region}.root --showIntegralLegend 1 --onlyPlot cratio"
+	echo "mkPlot.py --pycfg configuration_${region}.py --inputFile rootFiles_WH3l_${YEAR}_v6_STXS_${region}/plots_WH3l_${YEAR}_v6_STXS_${region}.root --showIntegralLegend 1 --onlyPlot cratio"
 	mkPlot.py --pycfg configuration_${region}.py --inputFile rootFiles_WH3l_${YEAR}_v6_STXS_${region}/plots_WH3l_${YEAR}_v6_STXS_${region}.root --showIntegralLegend 1 --onlyPlot cratio
     done
 done

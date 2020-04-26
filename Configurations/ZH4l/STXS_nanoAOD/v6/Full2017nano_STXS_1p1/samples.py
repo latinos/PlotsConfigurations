@@ -239,12 +239,12 @@ samples['ggWW'] = {
 ############ Vg ############
 
 samples['Wg']  =  {     'name'   :   nanoGetSampleFiles(mcDirectory,'Wg_MADGRAPHMLM'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC+'* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
+                        'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'* (!(Gen_ZGstar_mass > 0))',
                         'FilesPerJob' : 5 ,
                   }
 
 samples['Zg']  =  {     'name'   : nanoGetSampleFiles(mcDirectory,'ZGToLLG'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC+'* !(Gen_ZGstar_mass > 0 && Gen_ZGstar_MomId == 22 )',
+                        'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'* (!(Gen_ZGstar_mass > 0))',
                         'FilesPerJob' : 5 ,
                   }
 
@@ -262,13 +262,8 @@ samples['Zg']  =  {     'name'   : nanoGetSampleFiles(mcDirectory,'ZGToLLG'),
 
 #################### ZZ ##############
 
-samples['ZZ']  = {  'name'   :   nanoGetSampleFiles(mcDirectory,'ZZTo4L'),
-                    'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-                    'FilesPerJob' : 7,
-                 }
-                            
-
-samples['ggZZ']  = {  'name'   : nanoGetSampleFiles(mcDirectory,'ggZZ2m2t')
+samples['ZZ']  = {  'name'   :   nanoGetSampleFiles(mcDirectory,'ZZTo4L')
+                              +nanoGetSampleFiles(mcDirectory,'ggZZ2m2t')
                               +nanoGetSampleFiles(mcDirectory,'ggZZ2e2t_ext1')
                             #  +nanoGetSampleFiles(mcDirectory,'ggZZ2m2t')
                               +nanoGetSampleFiles(mcDirectory,'ggZZ2e2m_ext1')
@@ -276,15 +271,16 @@ samples['ggZZ']  = {  'name'   : nanoGetSampleFiles(mcDirectory,'ggZZ2m2t')
                              # +nanoGetSampleFiles(mcDirectory,'ggZZ4e')
                               +nanoGetSampleFiles(mcDirectory,'ggZZ4m_ext2'),
                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-                    'FilesPerJob' : 10,
+                    'FilesPerJob' : 5,
                  }
+                            
 
 addSampleWeight(samples,'ZZ','ZZTo4L',"1.07") ## The NNLO/NLO k-factor, cited from https://arxiv.org/abs/1405.2219v1
-addSampleWeight(samples,'ggZZ','ggZZ2e2t_ext1',"1.68") ## The NLO/LO k-factor, cited from https://arxiv.org/abs/1509.06734v1
-#addSampleWeight(samples,'ggZZ','ggZZ2m2t',"1.68") 
-addSampleWeight(samples,'ggZZ','ggZZ2e2m_ext1',"1.68")
+addSampleWeight(samples,'ZZ','ggZZ2e2t_ext1',"1.68") ## The NLO/LO k-factor, cited from https://arxiv.org/abs/1509.06734v1
+addSampleWeight(samples,'ZZ','ggZZ2m2t',"1.68") 
+addSampleWeight(samples,'ZZ','ggZZ2e2m_ext1',"1.68")
 #addSampleWeight(samples,'ggZZ','ggZZ4e',"1.68")
-addSampleWeight(samples,'ggZZ','ggZZ4m_ext2',"1.68")
+addSampleWeight(samples,'ZZ','ggZZ4m_ext2',"1.68")
 #addSampleWeight(samples,'ggZZ','ggZZ4t',"1.68")
 
 ############ VZ ############
@@ -347,7 +343,7 @@ samples['qqH_hww']  = {  'name'   :   nanoGetSampleFiles(mcDirectory,'VBFHToWWTo
 #                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
 #                     }
 
-samples['ZH_hww']  = {  'name': nanoGetSampleFiles(mcDirectory,'HZJ_HToWWTo2L2Nu_M125'),
+samples['ZH_hww']  = {  'name': nanoGetSampleFiles(mcDirectory,'HZJ_HToWW_M125'),
                         'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC,
                         'suppressNegativeNuisances' :['all'],
                         'FilesPerJob' : 3,

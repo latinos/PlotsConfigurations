@@ -11,25 +11,25 @@ except NameError:
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2018',
     'type': 'lnN',
-    'samples': dict((skey, '1.015') for skey in mc if skey not in ['WZ', 'Zg'])
+    'samples': dict((skey, '1.015') for skey in mc if skey not in ['WZ'])
 }
 
 nuisances['lumi_XYFact'] = {
     'name': 'lumi_13TeV_XYFact',
     'type': 'lnN',
-    'samples': dict((skey, '1.02') for skey in mc if skey not in ['WZ', 'Zg'])
+    'samples': dict((skey, '1.02') for skey in mc if skey not in ['WZ'])
 }
 
 nuisances['lumi_LScale'] = {
     'name': 'lumi_13TeV_LSCale',
     'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WZ', 'Zg'])
+    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WZ'])
 }
 
 nuisances['lumi_CurrCalib'] = {
     'name': 'lumi_13TeV_CurrCalib',
     'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WZ', 'Zg'])
+    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WZ'])
 }
 
 #### Theoretical Systematics
@@ -73,7 +73,7 @@ nuisances['QCDscale_ttH']  = {
   'type'  : 'lnN',
 }
 
-variations = ['Alt$(LHEScaleWeight[0],1)', 'Alt$(LHEScaleWeight[1],1)', 'Alt$(LHEScaleWeight[3],1)', 'Alt$(LHEScaleWeight[Length$(LHEScaleWeight)-4],1)', 'Alt$(LHEScaleWeight[Length$(LHEScaleWeight)-2],1)', 'Alt$(LHEScaleWeight[Length$(LHEScaleWeight)-1],1)']
+variations = ['Alt$(LHEScaleWeight[0],1)', 'Alt$(LHEScaleWeight[1],1)', 'Alt$(LHEScaleWeight[3],1)', 'Alt$(LHEScaleWeight[5],1)', 'Alt$(LHEScaleWeight[7],1)', 'Alt$(LHEScaleWeight[8],1)']
 
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
@@ -254,7 +254,6 @@ nuisances['WZ3l2jnorm']  = {
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                   'zh3l_Zg_CR_2j',
                    'zh3l_WZ_CR_2j',
                    'zh3l_SR_2j_ptv_lt150',
                    'zh3l_SR_2j_ptv_gt150',
@@ -268,13 +267,13 @@ nuisances['WZ3l1jnorm']  = {
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                   'zh3l_Zg_CR_1j',
                    'zh3l_WZ_CR_1j',
                    'zh3l_SR_1j_ptv_lt150',
                    'zh3l_SR_1j_ptv_gt150',
                 ]
               }
 
+'''
 nuisances['Zg3l2jnorm']  = {
                'name'  : 'CMS_hww_Zg3l2jnorm',
                'samples'  : {
@@ -284,7 +283,6 @@ nuisances['Zg3l2jnorm']  = {
                'cuts'  : [
                    'zh3l_Zg_CR_2j',
                    'zh3l_WZ_CR_2j',
-                   'zh3l_SR_2j',
                    'zh3l_SR_2j_ptv_lt150',
                    'zh3l_SR_2j_ptv_gt150',
                 ]
@@ -303,7 +301,7 @@ nuisances['Zg3l1jnorm']  = {
                    'zh3l_SR_1j_ptv_gt150',
                 ]
               }
-
+'''
 #### Top
 
 apply_on = {
