@@ -1,11 +1,11 @@
 # variables
 
 #variables = {}
-variables['nvtx']  = {   'name': 'PV_npvsGood',      
-                        'range' : (20,0,100),  
-                        'xaxis' : 'nvtx', 
-                         'fold' : 3
-                      }
+#variables['nvtx']  = {   'name': 'PV_npvsGood',      
+#                        'range' : (20,0,100),  
+#                        'xaxis' : 'nvtx', 
+#                         'fold' : 3
+#                      }
 
 variables['mllpeak'] = {   'name': 'mll',            #   variable name
                            'range' : (20,80,100),    #   variable range
@@ -18,6 +18,13 @@ variables['ptll']  = {   'name': 'ptll',
                         'xaxis' : 'p_{T}^{ll} [GeV]',
                         'fold' : 0
                         }
+
+variables['ptll_more']  = {   'name': 'ptll',
+                        'range' : (50, 0,100),
+                        'xaxis' : 'p_{T}^{ll} [GeV]',
+                        'fold' : 0
+                        }
+
 
 variables['pt1']  = {   'name': 'Lepton_pt[0]',     
                         'range' : (20,0,100),   
