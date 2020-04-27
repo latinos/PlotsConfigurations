@@ -45,15 +45,25 @@ class WH3l_patch_BDT1718 : public multidraw::TTreeFunction
         static inline double get_ptWWW(PtEtaPhiMVector const&, PtEtaPhiMVector const&, PtEtaPhiMVector const&, PtEtaPhiMVector const&);
         static inline double get_mtWWW(PtEtaPhiMVector const&, PtEtaPhiMVector const&, PtEtaPhiMVector const&, PtEtaPhiMVector const&);
 
-        friend class AbsTMVAResultReader;
         // More complex patchers
-        std::unique_ptr<TMVA::Reader> mvaReader_BDTGOSSF{new TMVA::Reader()};
-        void initMvaReader_BDTGOSSF();
-        double get_BDTGOSSF();
-        
-        std::unique_ptr<TMVA::Reader> mvaReader_BDTGSSSF{new TMVA::Reader()};
-        void initMvaReader_BDTGSSSF();
-        double get_BDTGSSSF();
+        friend class AbsTMVAResultReader;
+
+        void initMvaReader_BDTGOSSF(std::unique_ptr<TMVA::Reader> &, const char*, const char*);
+        void initMvaReader_BDTGSSSF(std::unique_ptr<TMVA::Reader> &, const char*, const char*);
+        void updateMvaVariable_BDTGOSSF();
+        void updateMvaVariable_BDTGSSSF();
+
+        std::unique_ptr<TMVA::Reader> mvaReader_BDTGOSSF2016{new TMVA::Reader()};
+        double get_BDTGOSSF2016();
+
+        std::unique_ptr<TMVA::Reader> mvaReader_BDTGOSSF1718{new TMVA::Reader()};
+        double get_BDTGOSSF1718();
+
+        std::unique_ptr<TMVA::Reader> mvaReader_BDTGSSSF2016{new TMVA::Reader()};
+        double get_BDTGSSSF2016();
+
+        std::unique_ptr<TMVA::Reader> mvaReader_BDTGSSSF1718{new TMVA::Reader()};
+        double get_BDTGSSSF1718();
 
     protected:
         void bindTree_(multidraw::FunctionLibrary&) override;
@@ -98,8 +108,10 @@ WH3l_patch_BDT1718::WH3l_patch_BDT1718(const char* variable_) :
     TTreeFunction(),
     variable{variable_}
 {
-    initMvaReader_BDTGOSSF();
-    initMvaReader_BDTGSSSF();
+    initMvaReader_BDTGOSSF(mvaReader_BDTGOSSF2016   , "BDTG4F07","/afs/cern.ch/user/p/pyu/public/HWWAnalysis/FullRunII06Apr_v6/TMVAClassification_2016OSSF.weights.xml");
+    initMvaReader_BDTGOSSF(mvaReader_BDTGOSSF1718   , "BDTG4F07D31C2","/afs/cern.ch/user/p/pyu/public/HWWAnalysis/FullRunII06Apr_v6/TMVAClassification_2017OSSF.weights.xml");
+    initMvaReader_BDTGSSSF(mvaReader_BDTGSSSF2016   , "BDTGC10D4C10S1","/afs/cern.ch/user/p/pyu/public/HWWAnalysis/FullRunII06Apr_v6/TMVAClassification_2016SSSF.weights.xml");
+    initMvaReader_BDTGSSSF(mvaReader_BDTGSSSF1718   , "BDTGC10D4C10S1","/afs/cern.ch/user/p/pyu/public/HWWAnalysis/FullRunII06Apr_v6/TMVAClassification_2017SSSF.weights.xml");
 }
 
 void
@@ -114,7 +126,6 @@ WH3l_patch_BDT1718::bindTree_(multidraw::FunctionLibrary& _library)
     _library.bindBranch(PuppiMET_phi    , "PuppiMET_phi");
     _library.bindBranch(CleanJet_jetIdx , "CleanJet_jetIdx");
     _library.bindBranch(Jet_btagDeepB   , "Jet_btagDeepB");
-
 }
 
 bool
@@ -321,11 +332,17 @@ WH3l_patch_BDT1718::getValue(std::string variableName)
     else if (variableName == "mtWWW"){
         return get_mtWWW(Lep[0], Lep[1], Lep[2], MET);
     }
-    else if (variableName == "BDT_OSSF"){
-        return get_BDTGOSSF();
+    else if (variableName == "BDT_OSSF2016"){
+        return get_BDTGOSSF2016();
     }
-    else if (variableName == "BDT_SSSF"){
-        return get_BDTGSSSF();
+    else if (variableName == "BDT_OSSF1718"){
+        return get_BDTGOSSF1718();
+    }
+    else if (variableName == "BDT_SSSF2016"){
+        return get_BDTGSSSF2016();
+    }
+    else if (variableName == "BDT_SSSF1718"){
+        return get_BDTGSSSF1718();
     }
     else {
         std::cout << "Invalid variable!!!" << std::endl;
@@ -334,30 +351,28 @@ WH3l_patch_BDT1718::getValue(std::string variableName)
 }
 
 void
-WH3l_patch_BDT1718::initMvaReader_BDTGSSSF()
+WH3l_patch_BDT1718::initMvaReader_BDTGSSSF(std::unique_ptr<TMVA::Reader>& reader, const char *mvaMethodTag, const char* mvaResultXML)
 {
-    mvaReader_BDTGSSSF->AddVariable("WH3l_dphilllmet",                                 &loc_WH3l_dphilllmet);
-    mvaReader_BDTGSSSF->AddVariable("MinIf$(WH3l_mOSll[],WH3l_mOSll[Iteration$]>0)",   &loc_WH3l_mOSll_min);
-    mvaReader_BDTGSSSF->AddVariable("MinIf$(WH3l_ptOSll[],WH3l_ptOSll[Iteration$]>0)", &loc_WH3l_ptOSll_min);
-    mvaReader_BDTGSSSF->AddVariable("MinIf$(WH3l_drOSll[],WH3l_drOSll[Iteration$]>0)", &loc_WH3l_drOSll_min);
-    mvaReader_BDTGSSSF->AddVariable("Alt$(Jet_btagDeepB[CleanJet_jetIdx[0]],-2)",      &loc_Jet_btagDeepB_0);
-    mvaReader_BDTGSSSF->AddVariable("Alt$(Jet_btagDeepB[CleanJet_jetIdx[1]],-2)",      &loc_Jet_btagDeepB_1);
-    mvaReader_BDTGSSSF->AddVariable("WH3l_dphilmet[0]",                                &loc_WH3l_dphilmet_0);
-    mvaReader_BDTGSSSF->AddVariable("WH3l_dphilmet[1]",                                &loc_WH3l_dphilmet_1);
-    mvaReader_BDTGSSSF->AddVariable("WH3l_dphilmet[2]",                                &loc_WH3l_dphilmet_2);
-    mvaReader_BDTGSSSF->AddVariable("PuppiMET_pt",                                     &loc_PuppiMET_pt);
-    mvaReader_BDTGSSSF->AddVariable("Alt$(Lepton_pt[0],0)",                            &loc_Lepton_pt_0);
-    mvaReader_BDTGSSSF->AddVariable("Alt$(Lepton_pt[1],0)",                            &loc_Lepton_pt_1);
-    mvaReader_BDTGSSSF->AddVariable("Alt$(Lepton_pt[2],0)",                            &loc_Lepton_pt_2);
-    mvaReader_BDTGSSSF->AddVariable("WH3l_mOSll[0]",&loc_WH3l_mOSll_0);
-    mvaReader_BDTGSSSF->AddVariable("WH3l_mOSll[1]",&loc_WH3l_mOSll_1);
-    //mvaReader_BDTGSSSF->BookMVA("BDTGC10D4C10S1","/afs/cern.ch/user/p/pyu/public/HWWAnalysis/FullRunII06Apr_v6/TMVAClassification_2017SSSF.weights.xml");
+    reader->AddVariable("WH3l_dphilllmet",                                 &loc_WH3l_dphilllmet);
+    reader->AddVariable("MinIf$(WH3l_mOSll[],WH3l_mOSll[Iteration$]>0)",   &loc_WH3l_mOSll_min);
+    reader->AddVariable("MinIf$(WH3l_ptOSll[],WH3l_ptOSll[Iteration$]>0)", &loc_WH3l_ptOSll_min);
+    reader->AddVariable("MinIf$(WH3l_drOSll[],WH3l_drOSll[Iteration$]>0)", &loc_WH3l_drOSll_min);
+    reader->AddVariable("Alt$(Jet_btagDeepB[CleanJet_jetIdx[0]],-2)",      &loc_Jet_btagDeepB_0);
+    reader->AddVariable("Alt$(Jet_btagDeepB[CleanJet_jetIdx[1]],-2)",      &loc_Jet_btagDeepB_1);
+    reader->AddVariable("WH3l_dphilmet[0]",                                &loc_WH3l_dphilmet_0);
+    reader->AddVariable("WH3l_dphilmet[1]",                                &loc_WH3l_dphilmet_1);
+    reader->AddVariable("WH3l_dphilmet[2]",                                &loc_WH3l_dphilmet_2);
+    reader->AddVariable("PuppiMET_pt",                                     &loc_PuppiMET_pt);
+    reader->AddVariable("Alt$(Lepton_pt[0],0)",                            &loc_Lepton_pt_0);
+    reader->AddVariable("Alt$(Lepton_pt[1],0)",                            &loc_Lepton_pt_1);
+    reader->AddVariable("Alt$(Lepton_pt[2],0)",                            &loc_Lepton_pt_2);
+    reader->AddVariable("WH3l_mOSll[0]",&loc_WH3l_mOSll_0);
+    reader->AddVariable("WH3l_mOSll[1]",&loc_WH3l_mOSll_1);
 
-    mvaReader_BDTGSSSF->BookMVA("BDTGC10D4C10S1","/afs/cern.ch/work/p/pyu/HWAnalysis/wh3lFull2017MVA/25Sep2019/BDT_config/WH3l_FullRunII/newIDcombinedTrain/datasetSSSF/weights/TMVAClassification_BDTGC10D4C10S1.weights.xml");
+    reader->BookMVA(mvaMethodTag, mvaResultXML);
 }
 
-double
-WH3l_patch_BDT1718::get_BDTGSSSF()
+void WH3l_patch_BDT1718::updateMvaVariable_BDTGSSSF()
 {
     loc_WH3l_dphilllmet = getValue("dphilllmet") ;
     loc_WH3l_mOSll_min  = getValue("mOSllmin")   ;
@@ -374,39 +389,35 @@ WH3l_patch_BDT1718::get_BDTGSSSF()
     loc_Lepton_pt_2     = Lepton_pt->At(2);
     loc_WH3l_mOSll_0    = getValue("mOSll0");
     loc_WH3l_mOSll_1    = getValue("mOSll1");
-
-    float classifier = mvaReader_BDTGSSSF->EvaluateMVA("BDTGC10D4C10S1");
-    return classifier;
 }
 
 void
-WH3l_patch_BDT1718::initMvaReader_BDTGOSSF()
+WH3l_patch_BDT1718::initMvaReader_BDTGOSSF(std::unique_ptr<TMVA::Reader>& reader, const char *mvaMethodTag, const char* mvaResultXML)
 {
-    mvaReader_BDTGOSSF->AddVariable("WH3l_dphilllmet",                                 & loc_WH3l_dphilllmet);
-    mvaReader_BDTGOSSF->AddVariable("MinIf$(WH3l_mOSll[],WH3l_mOSll[Iteration$]>0)",   & loc_WH3l_mOSll_min);
-    mvaReader_BDTGOSSF->AddVariable("MinIf$(WH3l_ptOSll[],WH3l_ptOSll[Iteration$]>0)", & loc_WH3l_ptOSll_min);
-    mvaReader_BDTGOSSF->AddVariable("MinIf$(WH3l_drOSll[],WH3l_drOSll[Iteration$]>0)", & loc_WH3l_drOSll_min);
-    mvaReader_BDTGOSSF->AddVariable("WH3l_ZVeto",                                      & loc_WH3l_ZVeto);
-    mvaReader_BDTGOSSF->AddVariable("WH3l_ptlll",                                      & loc_WH3l_ptlll);
-    mvaReader_BDTGOSSF->AddVariable("WH3l_mtlmet[0]",                                  & loc_WH3l_mtlmet_0);
-    mvaReader_BDTGOSSF->AddVariable("WH3l_mtlmet[1]",                                  & loc_WH3l_mtlmet_1);
-    mvaReader_BDTGOSSF->AddVariable("WH3l_mtlmet[2]",                                  & loc_WH3l_mtlmet_2);
-    mvaReader_BDTGOSSF->AddVariable("WH3l_dphilmet[0]",                                & loc_WH3l_dphilmet_0);
-    mvaReader_BDTGOSSF->AddVariable("WH3l_dphilmet[1]",                                & loc_WH3l_dphilmet_1);
-    mvaReader_BDTGOSSF->AddVariable("WH3l_dphilmet[2]",                                & loc_WH3l_dphilmet_2);
-    mvaReader_BDTGOSSF->AddVariable("WH3l_ptWWW",                                      & loc_WH3l_ptWWW);
-    mvaReader_BDTGOSSF->AddVariable("WH3l_mtWWW",                                      & loc_WH3l_mtWWW);
-    mvaReader_BDTGOSSF->AddVariable("WH3l_mlll",                                       & loc_WH3l_mlll);
-    mvaReader_BDTGOSSF->AddVariable("PuppiMET_pt",                                     & loc_PuppiMET_pt);
-    mvaReader_BDTGOSSF->AddVariable("Alt$(Lepton_pt[0],0)",                            & loc_Lepton_pt_0);
-    mvaReader_BDTGOSSF->AddVariable("Alt$(Lepton_pt[1],0)",                            & loc_Lepton_pt_1);
-    mvaReader_BDTGOSSF->AddVariable("Alt$(Lepton_pt[2],0)",                            & loc_Lepton_pt_2);
-    //mvaReader_BDTGOSSF->BookMVA("BDTG4F07D31C4","/afs/cern.ch/user/p/pyu/public/HWWAnalysis/FullRunII06Apr_v6/TMVAClassification_2017OSSF.weights.xml");
-    mvaReader_BDTGOSSF->BookMVA("BDTG4F07D31C2","/afs/cern.ch/work/p/pyu/HWAnalysis/wh3lFull2017MVA/25Sep2019/BDT_config/WH3l_FullRunII/newIDcombinedTrain/datasetOSSF_MET40/weights/TMVAClassification_BDTG4F07D31C2.weights.xml");
+    reader->AddVariable("WH3l_dphilllmet",                                 & loc_WH3l_dphilllmet);
+    reader->AddVariable("MinIf$(WH3l_mOSll[],WH3l_mOSll[Iteration$]>0)",   & loc_WH3l_mOSll_min);
+    reader->AddVariable("MinIf$(WH3l_ptOSll[],WH3l_ptOSll[Iteration$]>0)", & loc_WH3l_ptOSll_min);
+    reader->AddVariable("MinIf$(WH3l_drOSll[],WH3l_drOSll[Iteration$]>0)", & loc_WH3l_drOSll_min);
+    reader->AddVariable("WH3l_ZVeto",                                      & loc_WH3l_ZVeto);
+    reader->AddVariable("WH3l_ptlll",                                      & loc_WH3l_ptlll);
+    reader->AddVariable("WH3l_mtlmet[0]",                                  & loc_WH3l_mtlmet_0);
+    reader->AddVariable("WH3l_mtlmet[1]",                                  & loc_WH3l_mtlmet_1);
+    reader->AddVariable("WH3l_mtlmet[2]",                                  & loc_WH3l_mtlmet_2);
+    reader->AddVariable("WH3l_dphilmet[0]",                                & loc_WH3l_dphilmet_0);
+    reader->AddVariable("WH3l_dphilmet[1]",                                & loc_WH3l_dphilmet_1);
+    reader->AddVariable("WH3l_dphilmet[2]",                                & loc_WH3l_dphilmet_2);
+    reader->AddVariable("WH3l_ptWWW",                                      & loc_WH3l_ptWWW);
+    reader->AddVariable("WH3l_mtWWW",                                      & loc_WH3l_mtWWW);
+    reader->AddVariable("WH3l_mlll",                                       & loc_WH3l_mlll);
+    reader->AddVariable("PuppiMET_pt",                                     & loc_PuppiMET_pt);
+    reader->AddVariable("Alt$(Lepton_pt[0],0)",                            & loc_Lepton_pt_0);
+    reader->AddVariable("Alt$(Lepton_pt[1],0)",                            & loc_Lepton_pt_1);
+    reader->AddVariable("Alt$(Lepton_pt[2],0)",                            & loc_Lepton_pt_2);
+
+    reader->BookMVA(mvaMethodTag, mvaResultXML);
 }
 
-double
-WH3l_patch_BDT1718::get_BDTGOSSF()
+void WH3l_patch_BDT1718::updateMvaVariable_BDTGOSSF()
 {
     loc_WH3l_dphilllmet = getValue("dphilllmet") ;
     loc_WH3l_mOSll_min  = getValue("mOSllmin")   ;
@@ -427,8 +438,31 @@ WH3l_patch_BDT1718::get_BDTGOSSF()
     loc_Lepton_pt_0     = Lepton_pt->At(0);
     loc_Lepton_pt_1     = Lepton_pt->At(1);
     loc_Lepton_pt_2     = Lepton_pt->At(2);
-
-    float classifier = mvaReader_BDTGOSSF->EvaluateMVA("BDTG4F07D31C2");
-    return classifier;
 }
 
+double
+WH3l_patch_BDT1718::get_BDTGOSSF2016()
+{
+    updateMvaVariable_BDTGOSSF();
+    return mvaReader_BDTGOSSF2016->EvaluateMVA("BDTG4F07");
+}
+
+double
+WH3l_patch_BDT1718::get_BDTGOSSF1718()
+{
+    updateMvaVariable_BDTGOSSF();
+    return mvaReader_BDTGOSSF1718->EvaluateMVA("BDTG4F07D31C4");
+}
+
+double
+WH3l_patch_BDT1718::get_BDTGSSSF2016()
+{
+    updateMvaVariable_BDTGSSSF();
+    return mvaReader_BDTGSSSF2016->EvaluateMVA("BDTGC10D4C10S1");
+}
+double
+WH3l_patch_BDT1718::get_BDTGSSSF1718()
+{
+    updateMvaVariable_BDTGSSSF();
+    return mvaReader_BDTGSSSF1718->EvaluateMVA("BDTGC10D4C10S1");
+}

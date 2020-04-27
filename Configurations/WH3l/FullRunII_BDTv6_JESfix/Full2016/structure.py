@@ -97,11 +97,6 @@ structure['ZH_hww'] = {
                   'isData'   : 0    
                   }
 
-structure['ttH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0
-                  }
-
 structure['ggZH_hww'] = {
                   'isSignal' : 1,
                   'isData'   : 0    
@@ -126,7 +121,6 @@ structure['ZH_htt'] = {
                   'isSignal' : 1,
                   'isData'   : 0,
                   }
-
 
 # data
 
