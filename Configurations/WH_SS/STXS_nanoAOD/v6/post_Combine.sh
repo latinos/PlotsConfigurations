@@ -4,7 +4,7 @@ DIR=$PWD
 
 set -e
 
-ANALYSIS="WH3l"
+ANALYSIS="WHSS"
 
 for year in Full2016nano_STXS_1p1 Full2017nano_STXS_1p1 Full2018nano_STXS_1p1
 do
