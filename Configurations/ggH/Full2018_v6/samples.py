@@ -30,7 +30,11 @@ except NameError:
 ################################################
 
 mcProduction = 'Autumn18_102X_nAODv6_Full2018v6'
+
 dataReco = 'Run2018_102X_nAODv6_Full2018v6'
+
+fakeReco = 'Run2018_102X_nAODv6_Full2018v6_ForNewWPs'
+
 embedReco = 'Embedding2018_102X_nAODv6_Full2018v6'
 
 mcSteps = 'MCl1loose2018v6__MCCorr2018v6__l2loose__l2tightOR2018v6{var}'
@@ -58,7 +62,7 @@ def makeMCDirectory(var=''):
         return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
 
 mcDirectory = makeMCDirectory()
-fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
+fakeDirectory = os.path.join(treeBaseDir, fakeReco, fakeSteps)
 dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 embedDirectory = os.path.join(treeBaseDir, embedReco, embedSteps)
 
@@ -96,7 +100,7 @@ mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 
 ###### DY #######
 
-useEmbeddedDY = False
+useEmbeddedDY = True
 useDYtt = True
 
 embed_tautauveto = '' #Setup
@@ -110,7 +114,7 @@ if useEmbeddedDY:
   # Actual embedded data
   samples['Dyemb'] = {
     'name': [],
-    'weight': 'METFilter_DATA*LepWPCut*embedtotal*genWeight',
+    'weight': 'METFilter_DATA*LepWPCut*ttHMVA_SF_2l*embedtotal*genWeight',
     'weights': [],
     'isData': ['all'],
     'FilesPerJob': 20
@@ -141,7 +145,7 @@ if useEmbeddedDY:
       'FilesPerJob': 1, # There's some error about not finding sample-specific variables like "nllW" when mixing different samples into a single job; so split them all up instead
   }
 
-  addSampleWeight(samples, 'Dyveto', 'TTTo2L2Nu', mcCommonWeight + '*(isTTbar * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + isSingleTop)')
+  addSampleWeight(samples, 'Dyveto', 'TTTo2L2Nu', mcCommonWeight + 'isTTbar * (TMath::Sqrt(TMath::Exp(-1.43717e-02 - 1.18358e-04*topGenPt - 1.70651e-07*topGenPt*topGenPt + 4.47969/(topGenPt+28.7)) * TMath::Exp(-1.43717e-02 - 1.18358e-04*antitopGenPt - 1.70651e-07*antitopGenPt*antitopGenPt + 4.47969/(antitopGenPt+28.7)))) + isSingleTop')
   addSampleWeight(samples, 'Dyveto', 'ST_tW_antitop_ext1', mcCommonWeight)
   addSampleWeight(samples, 'Dyveto', 'ST_tW_top_ext1', mcCommonWeight)
   addSampleWeight(samples, 'Dyveto', 'WWTo2L2Nu', mcCommonWeight + '*nllW')
@@ -155,6 +159,9 @@ if useEmbeddedDY:
   addSampleWeight(samples, 'Dyveto', 'WZTo3LNu_mllmin01', mcCommonWeight + '*((Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4) * 0.94 + (Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4) * 1.14) * (Gen_ZGstar_mass > 0.1)')
 
 
+###### DY MC ######
+## We need to keep DY MC as well, because only embedded events passing the ElMu trigger are considered
+## Events failing ElMu but passing one of the other triggers are included in the DY MC
 
 files=[]
 if useDYtt:
