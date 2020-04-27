@@ -29,15 +29,14 @@ except NameError:
 ################# SKIMS ########################
 ################################################
 
-#mcProduction = 'Summer16_102X_nAODv4_Full2016v5'
-#mcProduction = 'Summer16_102X_nAODv5_SigOnly_Full2016v5'
 mcProduction = 'Summer16_102X_nAODv5_Full2016v6'
 
 dataReco = 'Run2016_102X_nAODv5_Full2016v6'
 
+fakeReco = 'Run2016_102X_nAODv5_Full2016v6_ForNewWPs'
+
 embedReco = 'Embedding2016_102X_nAODv5_Full2016v6'
 
-#mcSteps = 'MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5{var}'
 mcSteps = 'MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6{var}'
 
 fakeSteps = 'DATAl1loose2016v6__l2loose__fakeW'
@@ -59,13 +58,11 @@ elif  'cern' in SITE:
 def makeMCDirectory(var=''):
     if var:
         return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
-        #return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Summer16/l2tightOR__{var}'.format(var=var)
     else:
         return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
-        #return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Summer16/l2tightOR'
 
 mcDirectory = makeMCDirectory()
-fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
+fakeDirectory = os.path.join(treeBaseDir, fakeReco, fakeSteps)
 dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 embedDirectory = os.path.join(treeBaseDir, embedReco, embedSteps)
 
@@ -107,7 +104,7 @@ mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 
 ###### DY #######
 
-useEmbeddedDY = False
+useEmbeddedDY = True
 
 embed_tautauveto = '' #Setup
 if useEmbeddedDY:
@@ -120,7 +117,7 @@ if useEmbeddedDY:
   # Actual embedded data
   samples['Dyemb'] = {
     'name': [],
-    'weight': 'METFilter_DATA*LepWPCut*embedtotal*genWeight*(genWeight<=1)',
+    'weight': 'METFilter_DATA*LepWPCut*ttHMVA_SF_2l*embedtotal*genWeight*(genWeight<=1)',
     'weights': [],
     'isData': ['all'],
     'FilesPerJob': 20
@@ -163,6 +160,12 @@ if useEmbeddedDY:
   addSampleWeight(samples, 'Dyveto', 'WZTo2L2Q', mcCommonWeight + '*1.11')
   addSampleWeight(samples, 'Dyveto', 'Zg', ' ( ' + mcCommonWeightNoMatch + '*(!(Gen_ZGstar_mass > 0))' + ' ) + ( ' + mcCommonWeight + ' * ((Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4) * 0.94 + (Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4) * 1.14) * (Gen_ZGstar_mass > 0)' + ' ) ') # Vg contribution + VgS contribution
   addSampleWeight(samples, 'Dyveto', 'WZTo3LNu_mllmin01', mcCommonWeight + '*((Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4) * 0.94 + (Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4) * 1.14) * (Gen_ZGstar_mass > 0.1)')
+
+
+
+###### DY MC ######
+## We need to keep DY MC as well, because only embedded events passing the ElMu trigger are considered
+## Events failing ElMu but passing one of the other triggers are included in the DY MC
 
 files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
     nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
@@ -418,11 +421,9 @@ for _, sd in DataRun:
     # only this file is v3
     if ('2016E' in sd and 'MuonEG' in pd):
       files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd.replace('v1', 'v3'))
-      print(files)
 
     else:
       files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
-      print(files)
     
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
