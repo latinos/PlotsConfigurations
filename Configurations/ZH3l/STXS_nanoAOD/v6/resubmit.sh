@@ -20,8 +20,8 @@ do
             echo "CONGRATULATION ALL JOB FINISH FOR $year"
         else	    
 	    echo "sed -i \"s/${QUEUE}/tomorrow/g\" ${i/jid/jds}"
-	    sed -i "s/${QUEUE}/tomorrow/g" ${i/jid/jds}
-	    condor_submit ${i/jid/jds}
+	    #sed -i "s/${QUEUE}/tomorrow/g" ${i/jid/jds}
+	    #condor_submit ${i/jid/jds}
 	fi
     done
     

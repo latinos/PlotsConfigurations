@@ -9,6 +9,11 @@ do
     echo " --> $year"
     YEAR=`echo $year | awk -F "Full" '{print $2}' | awk -F "nano" '{print $1}'`
     cd $DIR; cd $year
-    echo "mkPlot.py --pycfg configuration.py --inputFile rootFiles_WH3l_${YEAR}_v6_STXS/plots_WH3l_${YEAR}_v6_STXS.root --showIntegralLegend 1 --onlyPlot cratio"
-    mkPlot.py --pycfg configuration.py --inputFile rootFiles_WH3l_${YEAR}_v6_STXS/plots_WH3l_${YEAR}_v6_STXS.root --showIntegralLegend 1 --onlyPlot cratio
+    
+    for region in OSSF SSSF
+    do
+        echo "  --> $region"
+	echo "mkPlot.py --pycfg configuration_${region}.py --inputFile rootFiles_WH3l_${YEAR}_v6_STXS_${region}/plots_WH3l_${YEAR}_v6_STXS_${region}.root --showIntegralLegend 1 --onlyPlot cratio"
+	mkPlot.py --pycfg configuration_${region}.py --inputFile rootFiles_WH3l_${YEAR}_v6_STXS_${region}/plots_WH3l_${YEAR}_v6_STXS_${region}.root --showIntegralLegend 1 --onlyPlot cratio
+    done
 done

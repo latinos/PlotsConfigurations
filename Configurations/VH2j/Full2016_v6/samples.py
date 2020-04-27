@@ -33,7 +33,8 @@ mcProduction = 'Summer16_102X_nAODv5_Full2016v6'
 
 dataReco = 'Run2016_102X_nAODv5_Full2016v6'
 
-fakeReco = 'Run2016_102X_nAODv5_Full2016v6_ForNewWPs'
+#fakeReco = 'Run2016_102X_nAODv5_Full2016v6_ForNewWPs'
+fakeReco = 'Run2016_102X_nAODv5_Full2016v6'
 
 mcSteps = 'MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6{var}'
 
@@ -269,14 +270,13 @@ signals.append('WH_hww')
 
 ############ ttH ############
 
-#FIXME ttH sample missing in v6
-#samples['ttH_hww'] = {
-#    'name':   nanoGetSampleFiles(mcDirectory, 'ttHToNonbb_M125'),
-#    'weight': mcCommonWeight,
-#    'FilesPerJob': 1
-#}
+samples['ttH_hww'] = {
+    'name':   nanoGetSampleFiles(mcDirectory, 'ttHToNonbb_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 1
+}
 
-#signals.append('ttH_hww')
+signals.append('ttH_hww')
 
 ############ H->TauTau ############
 

@@ -22,6 +22,14 @@ variables['WH3l_drOSll_min']  = {   'name': 'MinIf$( WH3l_drOSll[], WH3l_drOSll[
                          'fold' : 0
                         }
 
+variables['BDTG_OSSF_bin2'] = { 'name': 'hww_WH3l_OSSF_mvaBDTG(Entry$,0)',
+                        'range' : ([-1.0,-0.2,0.,0.2,0.4,0.6,1.0],),    #   variable range
+                        'xaxis' : 'MVA discriminant',
+                        'fold' : 3,
+                        'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/WH3l/FullRunII_BDTv6/Full2016/hww_WH3l_OSSF_mvaBDTG.C+' % os.getenv('CMSSW_BASE')]
+                      }
+'''
+
 variables['BDTG_OSSF'] = { 'name': 'hww_WH3l_OSSF_mvaBDTG(Entry$,0)',
                         'range' : ([-1.0,-0.5,0.,0.3,0.45,0.6,0.7,0.8,0.85,0.9,0.95,1.0],),    #   variable range
                         'xaxis' : 'MVA discriminant',
@@ -37,12 +45,6 @@ variables['BDTG_OSSF_10bin'] = { 'name': 'hww_WH3l_OSSF_mvaBDTG(Entry$,0)',
                       }
 variables['BDTG_OSSF_bin1'] = { 'name': 'hww_WH3l_OSSF_mvaBDTG(Entry$,0)',
                         'range' : ([-1.0,-0.4,-0.2,0.,0.2,0.4,0.6,1.0],),    #   variable range
-                        'xaxis' : 'MVA discriminant',
-                        'fold' : 3,
-                        'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/WH3l/FullRunII_BDTv6/Full2016/hww_WH3l_OSSF_mvaBDTG.C+' % os.getenv('CMSSW_BASE')]
-                      }
-variables['BDTG_OSSF_bin2'] = { 'name': 'hww_WH3l_OSSF_mvaBDTG(Entry$,0)',
-                        'range' : ([-1.0,-0.2,0.,0.2,0.4,0.6,1.0],),    #   variable range
                         'xaxis' : 'MVA discriminant',
                         'fold' : 3,
                         'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/WH3l/FullRunII_BDTv6/Full2016/hww_WH3l_OSSF_mvaBDTG.C+' % os.getenv('CMSSW_BASE')]
@@ -129,3 +131,4 @@ variables['WH3l_mlll']  = {'name'  : 'WH3l_mlll',
                         'xaxis' : 'WH3l_mlll',
                         'fold'  : 0
                         }
+'''
