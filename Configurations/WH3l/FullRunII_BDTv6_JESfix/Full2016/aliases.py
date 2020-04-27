@@ -148,7 +148,7 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
 
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight3l', 'LepSF3l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut', 'btagSF', 'PrefireWeight']),
+    'expr': ' * '.join(['SFweight3l', 'ttHMVA_SF_3l' + eleWP + '__mu_' + muWP, 'LepWPCut', 'btagSF', 'PrefireWeight']),
     'samples': mc
 }
 
@@ -340,7 +340,15 @@ aliases['BDT_SSSF2016'] = {
     'class': 'WH3l_patch_BDT1718',
     'args': ("BDT_SSSF2016")
 }
+aliases['BDT_SSSFcombin'] = {
+    'class': 'WH3l_patch_BDT1718',
+    'args': ("BDT_SSSFcombin")
+}
 aliases['BDT_OSSF2016'] = {
     'class': 'WH3l_patch_BDT1718',
     'args': ("BDT_OSSF2016")
+}
+aliases['BDT_OSSFcombin'] = {
+    'class': 'WH3l_patch_BDT1718',
+    'args': ("BDT_OSSFcombin")
 }
