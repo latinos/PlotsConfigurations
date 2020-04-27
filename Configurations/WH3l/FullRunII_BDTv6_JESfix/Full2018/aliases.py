@@ -180,7 +180,7 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
 
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight3l', 'ttHMVA_SF_3l' + eleWP + '__mu_' + muWP, 'LepWPCut', 'btagSF']),
+    'expr': ' * '.join(['SFweight3l', 'ttHMVA_SF_3l' , 'LepWPCut', 'btagSF']),
     'samples': mc
 }
 
