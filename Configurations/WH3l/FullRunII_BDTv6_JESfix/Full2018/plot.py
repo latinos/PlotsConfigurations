@@ -97,7 +97,6 @@ groupPlot['ZZ']  = {
                   'nameHR' : "ZZ",
                   'isSignal' : 0,
                   'color'    : 617,   # kViolet + 1  
-          #        'samples'  : ['ZZ', 'ggZZ_tt', 'ggZZ_em', 'ggZZ_ee', 'ggZZ_mm']
                   'samples'  : ['ZZ']
               }
 
@@ -112,7 +111,7 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-          'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','WH_htt','ZH_htt','ggH_htt','qqH_htt']
+                  'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww' ,'ttH_hww','WH_htt','ZH_htt','ggH_htt','qqH_htt']
               }
 # groupPlot['Higgs']  = {  
                   # 'nameHR' : 'Higgs',
@@ -123,10 +122,7 @@ groupPlot['Higgs']  = {
 
 #plot = {}
 
-# keys here must match keys in samples.py    
-#                    
 
-               
 plot['Fake']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
@@ -134,7 +130,6 @@ plot['Fake']  = {
                   'scale'    : 1.0                  
               }
 
-              
 plot['VVV']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
@@ -212,13 +207,14 @@ plot['ZZ']  = {
                   'scale'    : 1.0
                   }
 
-
 plot['VVV']  = { 
                   'color': 857, # kAzure -3  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
+
+
 
 # Htautau
 plot['ZH_htt'] = {
@@ -229,32 +225,6 @@ plot['ZH_htt'] = {
                   'scale'    : 1    #
                   }
 
-#plot['bbH_htt'] = {
-#                  'nameHR' : 'bbHtt',
-#                  'color': 632-1, # kRed-1 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,
-#                  'scale'    : 1    #
-#                  }
-#
-#plot['ttH_htt'] = {
-#                  'nameHR' : 'bbHtt',
-#                  'color': 632-2, # kRed-1 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,
-#                  'scale'    : 1    #
-#                  }
-#
-#
-'''
-plot['ggZH_htt'] = {
-                  'nameHR' : 'ggZHtt',
-                  'color': 632+4, # kRed+4
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-'''
 plot['WH_htt'] = {
                   'nameHR' : 'WHtt',
                   'color': 632+2, # kRed+2 
@@ -282,13 +252,6 @@ plot['ggH_htt'] = {
                   }
 # HWW 
 
-#plot['H_hww'] = {
-#                  'nameHR' : 'Hww',
-#                  'color': 632, # kRed 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,    
-#                  'scale'    : 1    #
-#                  }
 
 plot['ZH_hww'] = {
                   'nameHR' : 'ZH',
@@ -323,6 +286,13 @@ plot['qqH_hww'] = {
                   'scale'    : 1    #
                   }
 
+plot['ttH_hww'] = {
+                  'nameHR' : 'ttH',
+                  'color': 632, # kRed 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
 
 plot['ggH_hww'] = {
                   'nameHR' : 'ggH',
@@ -342,6 +312,7 @@ plot['ggH_hww'] = {
                   # 'isData'   : 0,    
                   # 'scale'    : 1
                   # }
+
 # HWW 
 
 # plot['ZH_hww'] = {
@@ -381,5 +352,5 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 41.86/fb'
+legend['lumi'] = 'L = 59.74/fb'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'

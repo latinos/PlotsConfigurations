@@ -14,12 +14,13 @@ configurations = os.path.dirname(configurations) # Configurations
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-eleWP = 'mvaFall17V1Iso_WP90'
-muWP = 'cut_Tight_HWWW'
+eleWP = 'mva_90p_Iso2016'
+muWP = 'cut_Tight80x'
 
 aliases['LepWPCut'] = {
-    'expr': 'LepCut3l__ele_'+eleWP+'__mu_'+muWP+'*(((abs(Lepton_pdgId[0])==13 && Muon_mvaTTH[Lepton_muonIdx[0]]>0.8) || (abs(Lepton_pdgId[0])==11 && Electron_mvaTTH[Lepton_electronIdx[0]]>0.7)) && ((abs(Lepton_pdgId[1])==13 && Muon_mvaTTH[Lepton_muonIdx[1]]>0.8) || (abs(Lepton_pdgId[1])==11 && Electron_mvaTTH[Lepton_electronIdx[1]]>0.7)) && ((abs(Lepton_pdgId[2])==13 && Muon_mvaTTH[Lepton_muonIdx[2]]>0.8) || (abs(Lepton_pdgId[2])==11 && Electron_mvaTTH[Lepton_electronIdx[2]]>0.7)))',
-    # 'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP+'*( (abs(Lepton_pdgId[0])==11 || Muon_mvaTTH[Lepton_muonIdx[0]]>0.8) && (abs(Lepton_pdgId[1])==11 || Muon_mvaTTH[Lepton_muonIdx[1]]>0.8) )',
+    # 'expr': 'LepCut3l__ele_'+eleWP+'__mu_'+muWP,
+    'expr': 'LepCut3l__ele_'+eleWP+'__mu_'+muWP+'*(((abs(Lepton_pdgId[0])==13 && Muon_mvaTTH[Lepton_muonIdx[0]]>0.8) || (abs(Lepton_pdgId[0])==11 && Electron_mvaTTH[Lepton_electronIdx[0]]>0.7)) && ((abs(Lepton_pdgId[1])==13 && Muon_mvaTTH[Lepton_muonIdx[1]]>0.8) ||  (abs(Lepton_pdgId[1])==11 && Electron_mvaTTH[Lepton_electronIdx[1]]>0.7)) && ((abs(Lepton_pdgId[2])==13 && Muon_mvaTTH[Lepton_muonIdx[2]]>0.8) || (abs(Lepton_pdgId[2])==11 && Electron_mvaTTH[Lepton_electronIdx[2]]>0.7)))',
+
     'samples': mc + ['DATA']
 }
 
@@ -33,13 +34,10 @@ aliases['gstarHigh'] = {
     'samples': 'VgS'
 }
 
+eleFWP = 'mva_90p_Iso2016_tthmva_70'
+muFWP = 'cut_Tight80x_tthmva_80'
+
 # Fake leptons transfer factor
-
-eleFWP = 'mvaFall17V1Iso_WP90_tthmva_70'
-muFWP = 'cut_Tight_HWWW_tthmva_80'
-# eleFWP = 'mvaFall17V1Iso_WP90'
-# muFWP = 'cut_Tight_HWWW'
-
 aliases['fakeW'] = {
     'expr': 'fakeW_ele_'+eleFWP+'_mu_'+muFWP+'_3l',
     'samples': ['Fake']
@@ -90,10 +88,8 @@ aliases['Top_pTrw'] = {
     'samples': ['top']
 }
 
-# Jet bins
-# using Alt$(CleanJet_pt[n], 0) instead of Sum$(CleanJet_pt >= 30) because jet pt ordering is not strictly followed in JES-varied samples
+# B tagging
 
-# No jet with pt > 30 GeV
 aliases['zeroJet'] = {
     'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
 }
@@ -105,25 +101,13 @@ aliases['oneJet'] = {
 aliases['multiJet'] = {
     'expr': 'Alt$(CleanJet_pt[1], 0) > 30.'
 }
-
-# B tagging
-
 aliases['bVeto'] = {
-    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.4941) == 0'
+    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.6321) == 0'
 }
 
 aliases['bReq'] = {
-    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.4941) >= 1'
+    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.6321) >= 1'
 }
-
-### We need to define a CR for WW 
-
-##aliases['wwcr'] = {
-##    'expr': 'mth>60 && mtw2>30 && mll>100 && bVeto'
-##}
-
-# B tag scale factors
-
 aliases['bVetoSF'] = {
     'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
     'samples': mc
@@ -135,11 +119,14 @@ aliases['bReqSF'] = {
 }
 
 aliases['btagSF'] = {
-    'expr': 'bVetoSF*bVeto',
+    #'expr': '(bVeto || (topcr && zeroJet))*bVetoSF + (topcr && !zeroJet)*bReqSF',
+    'expr': 'bVeto*bVetoSF',
     'samples': mc
 }
 
-for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
+for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
+
+
     for targ in ['bVeto', 'bReq']:
         alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
         alias['expr'] = alias['expr'].replace('btagSF_shape', 'btagSF_shape_up_%s' % shift)
@@ -158,6 +145,7 @@ for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2',
     }
 
 
+
 # data/MC scale factors
 aliases['SFweight'] = {
     'expr': ' * '.join(['SFweight3l', 'LepSF3l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut', 'btagSF', 'PrefireWeight']),
@@ -165,8 +153,6 @@ aliases['SFweight'] = {
 }
 
 # variations
-eleWP_old = 'mvaFall17V1Iso_WP90'
-muWP_old = 'cut_Tight_HWWW'
 aliases['SFweightEleUp'] = {
     'expr': 'LepSF3l__ele_'+eleWP+'__Up',
     'samples': mc
@@ -183,56 +169,58 @@ aliases['SFweightMuDown'] = {
     'expr': 'LepSF3l__mu_'+muWP+'__Do',
     'samples': mc
 }
-
-#######################
-### SFs for tthMVA  ###
-#######################
+aliases['nllWOTF'] = {
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/nllW.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'WWNLLW',
+    'args': ('central',),
+    'samples': ['WW']
+}
 
 aliases['ttHMVA_SF_3l'] = {
     'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/patches/compute_SF.C+' % os.getenv('CMSSW_BASE')],
     'class': 'compute_SF',
-    'args' : ('2017', 3, 'total_SF'),
+    'args' : ('2016', 3, 'total_SF'),
     'samples': mc
 }
 
 aliases['ttHMVA_SF_Up_0'] = {
     'class': 'compute_SF',
-    'args' : ('2017', 3, 'single_SF_up', 0),
+    'args' : ('2016', 3, 'single_SF_up', 0),
     'nominalOnly' : True,
     'samples': mc
 }
 
 aliases['ttHMVA_SF_Up_1'] = {
     'class': 'compute_SF',
-    'args' : ('2017', 3, 'single_SF_up', 1),
+    'args' : ('2016', 3, 'single_SF_up', 1),
     'nominalOnly' : True,
     'samples': mc
 }
 
 aliases['ttHMVA_SF_Up_2'] = {
     'class': 'compute_SF',
-    'args' : ('2017', 3, 'single_SF_up', 2),
+    'args' : ('2016', 3, 'single_SF_up', 2),
     'nominalOnly' : True,
     'samples': mc
 }
 
 aliases['ttHMVA_SF_Down_0'] = {
     'class': 'compute_SF',
-    'args' : ('2017', 3, 'single_SF_down', 0),
+    'args' : ('2016', 3, 'single_SF_down', 0),
     'nominalOnly' : True,
     'samples': mc
 }
 
 aliases['ttHMVA_SF_Down_1'] = {
     'class': 'compute_SF',
-    'args' : ('2017', 3, 'single_SF_down', 1),
+    'args' : ('2016', 3, 'single_SF_down', 1),
     'nominalOnly' : True,
     'samples': mc
 }
 
 aliases['ttHMVA_SF_Down_2'] = {
     'class': 'compute_SF',
-    'args' : ('2017', 3, 'single_SF_down', 2),
+    'args' : ('2016', 3, 'single_SF_down', 2),
     'nominalOnly' : True,
     'samples': mc
 }
@@ -348,11 +336,11 @@ aliases['WH3l_mlll_test'] = {
     'args': ("mlll")
 }
 
-aliases['BDT_SSSF1718'] = {
+aliases['BDT_SSSF2016'] = {
     'class': 'WH3l_patch_BDT1718',
-    'args': ("BDT_SSSF1718")
+    'args': ("BDT_SSSF2016")
 }
-aliases['BDT_OSSF1718'] = {
+aliases['BDT_OSSF2016'] = {
     'class': 'WH3l_patch_BDT1718',
-    'args': ("BDT_OSSF1718")
+    'args': ("BDT_OSSF2016")
 }
