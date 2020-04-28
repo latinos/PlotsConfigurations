@@ -509,9 +509,9 @@ std::tuple<double, double, double> compute_SF::GetSF(int flavor, double eta, dou
 
     if((flavor==11) && (type == "ttHMVA")){
 
-        double eta_max = 2.5;
+        double eta_max = 2.49;
         double eta_min = -2.5;
-        double pt_max = 500.;
+        double pt_max = 499.;
         double pt_min = 10.;
 
         if(eta_temp < eta_min){eta_temp = eta_min;}
@@ -527,9 +527,9 @@ std::tuple<double, double, double> compute_SF::GetSF(int flavor, double eta, dou
 
     else if((flavor==11) && (type != "ttHMVA")){
 
-        double eta_max = 2.5;
+        double eta_max = 2.49;
         double eta_min = -2.5;
-        double pt_max = 500.;
+        double pt_max = 499.;
         double pt_min = 10.;
 
         if(eta_temp < eta_min){eta_temp = eta_min;}
@@ -545,7 +545,7 @@ std::tuple<double, double, double> compute_SF::GetSF(int flavor, double eta, dou
 
     else if((flavor == 13) && (type == "Id")){
 
-        double eta_max = 2.4;
+        double eta_max = 2.39;
         double eta_min = -2.4;
         double pt_max = 199.;
         double pt_min = 10.;
@@ -563,7 +563,7 @@ std::tuple<double, double, double> compute_SF::GetSF(int flavor, double eta, dou
 
     else if((flavor == 13) && (type == "Iso")){
 
-        double eta_max = 2.4;
+        double eta_max = 2.39;
         double eta_min = -2.4;
         double pt_max = 199.;
         double pt_min = 10.;
@@ -581,7 +581,7 @@ std::tuple<double, double, double> compute_SF::GetSF(int flavor, double eta, dou
 
     else if((flavor == 13) && (type == "ttHMVA")){
 
-        double eta_max = 2.4;
+        double eta_max = 2.39;
         double eta_min = -2.4;
         double pt_max = 199.;
         double pt_min = 10.;
