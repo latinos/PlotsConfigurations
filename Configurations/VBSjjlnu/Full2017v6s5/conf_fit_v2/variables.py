@@ -43,7 +43,7 @@ variables['DNNoutput_high_res_ele'] = {
             ),
     'xaxis': 'DNN',
     'fold': 0 ,
-    'divideByBinWidth' : 1,
+    #'divideByBinWidth' : 1,
     'cuts': list(filter(lambda c: "dnnhigh" in c and "ele" in c, phase_spaces_res)),
     'blind': {
         "res_sig_dnnhigh_mu": [0.6,1], 
@@ -67,7 +67,7 @@ variables['DNNoutput_high_res_mu'] = {
              ),
     'xaxis': 'DNN',
     'fold': 0 ,
-    'divideByBinWidth' : 1,
+    #'divideByBinWidth' : 1,
     'cuts': list(filter(lambda c: "dnnhigh" in c and "mu" in c, phase_spaces_res)),
     'blind': {
         "res_sig_dnnhigh_mu": [0.6,1], 
@@ -86,7 +86,7 @@ variables['DNNoutput_high_boost_ele'] = {
     'range': ([0.30, 0.43, 0.53, 0.635, 0.735, 0.895, 1.],),
     'xaxis': 'DNN',
     'fold': 0 ,
-    'divideByBinWidth' : 1,
+    #'divideByBinWidth' : 1,
     'cuts': list(filter(lambda c: "dnnhigh" in c and "ele" in c, phase_spaces_boost)),
     'blind': {
         "res_sig_dnnhigh_mu": [0.6,1], 
@@ -104,7 +104,7 @@ variables['DNNoutput_high_boost_mu'] = {
     'range': ([0.3, 0.36, 0.425, 0.495, 0.595, 0.665, 0.735, 0.83, 0.92, 1.0],),
     'xaxis': 'DNN',
     'fold': 0 ,
-    'divideByBinWidth' : 1,
+    #'divideByBinWidth' : 1,
     'cuts': list(filter(lambda c: "dnnhigh" in c and "mu" in c, phase_spaces_boost)),
     'blind': {
         "res_sig_dnnhigh_mu": [0.6,1], 

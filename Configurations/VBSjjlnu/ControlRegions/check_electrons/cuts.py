@@ -34,14 +34,14 @@ supercut = 'Lepton_pt[0]>30 && Lepton_pt[1]>15 && \
 # cuts['mmOS_top']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -13*13)  && abs(Lepton_pdgId[0]) == 13 \
 #                    && !bVeto && mth> 60 && mll > 30 && (mll <60 || mll > 120)'
 
-cuts['Zee']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*11)  && abs(Lepton_pdgId[0]) == 11 \
+cuts['Zee']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*11)  \
                    &&  bVeto  && mll>60 && mll< 120'
 
-cuts['Zmm']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -13*13)  && abs(Lepton_pdgId[0]) == 13 \
+cuts['Zmm']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -13*13)  \
                    &&  bVeto  && mll>60 && mll< 120'
 
-cuts['Zee_2j']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*11)  && abs(Lepton_pdgId[0]) == 11 \
+cuts['Zee_2j']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*11)  \
                    &&  bVeto  && mll>60 && mll< 120 && Alt$(CleanJet_pt[1],0)>30'
 
-cuts['Zmm_2j']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -13*13)  && abs(Lepton_pdgId[0]) == 13 \
+cuts['Zmm_2j']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -13*13)   \
                    &&  bVeto  && mll>60 && mll< 120 && Alt$(CleanJet_pt[1],0)>30'

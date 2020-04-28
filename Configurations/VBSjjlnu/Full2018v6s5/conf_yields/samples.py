@@ -157,7 +157,7 @@ samples['top'] = {
                        + nanoGetSampleFiles(directory_bkg,'TTZjets') 
                        +  nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu'),
             'weight' :  XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch , #no Top pt reweighting
-            'FilesPerJob' : 3,
+            'FilesPerJob' : 4,
 }
 
 samples['Wjets'] = { 'name' :   
@@ -173,7 +173,7 @@ samples['Wjets'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf')
           ,
 				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-				'FilesPerJob' : 3,
+				'FilesPerJob' : 4,
         # 'subsamples': {
         #   "boost1" : "(VBS_category==0) && (deltaeta_vbs < 5)",
         #   "boost2" : "(VBS_category==0) && (deltaeta_vbs >= 5)",

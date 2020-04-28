@@ -54,6 +54,7 @@ for cut in cuts:
     for variable in args.variables:
         print(">> Variable: ", variable)
         filepath = args.inputdir +"/"+cut +"/"+variable +"/shapes/histos_"+ cut +".root"
+        print("####"+ filepath)
 
         iF = R.TFile(filepath, "UPDATE")
         keys = [k.GetName() for k in  iF.GetListOfKeys()]

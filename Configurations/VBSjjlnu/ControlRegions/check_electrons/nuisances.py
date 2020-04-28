@@ -81,29 +81,29 @@ nuisances['lumi']  = {
 # }
 
 
-# ##### Trigger Efficiency
+##### Trigger Efficiency
 
-# trig_syst = ['((TriggerEffWeight_'+Nlep+'l_u)/(TriggerEffWeight_'+Nlep+'l))*(TriggerEffWeight_'+Nlep+'l>0.02) + (TriggerEffWeight_'+Nlep+'l<=0.02)', '(TriggerEffWeight_'+Nlep+'l_d)/(TriggerEffWeight_'+Nlep+'l)']
+trig_syst = ['((TriggerEffWeight_'+Nlep+'l_u)/(TriggerEffWeight_'+Nlep+'l))*(TriggerEffWeight_'+Nlep+'l>0.02) + (TriggerEffWeight_'+Nlep+'l<=0.02)', '(TriggerEffWeight_'+Nlep+'l_d)/(TriggerEffWeight_'+Nlep+'l)']
 
-# nuisances['trigg']  = {
-#                 'name'  : 'hww_trigger_2018',
-#                 'kind'  : 'weight',
-#                 'type'  : 'shape',
-#                 'samples'  : dict((skey, trig_syst) for skey in mc),
-# }
+nuisances['trigg']  = {
+                'name'  : 'hww_trigger_2018',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : dict((skey, trig_syst) for skey in mc),
+}
 
-# ##### Electron Efficiency and energy scale
+##### Electron Efficiency and energy scale
 
-# id_syst_ele = [ 'LepSF'+Nlep+'l__ele_'+eleWP+'__Up' , 'LepSF'+Nlep+'l__ele_'+eleWP+'__Do' ]
+id_syst_ele = [ 'LepSF'+Nlep+'l__ele_'+eleWP+'__Up' , 'LepSF'+Nlep+'l__ele_'+eleWP+'__Do' ]
 
-# nuisances['eff_e']  = {
-#                 'name'  : 'eff_e_2018',
-#                 'kind'  : 'weight',
-#                 'type'  : 'shape',
-#                 'samples'  : dict((skey, id_syst_ele) for skey in mc), 
-# }
+nuisances['eff_e']  = {
+                'name'  : 'eff_e_2018',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : dict((skey, id_syst_ele) for skey in mc), 
+}
 
-# ept_syst = ['1', '1']
+ept_syst = ['1', '1']
 
 # nuisances['electronpt']  = {
 #                 'name'  : 'scale_e_2018',
@@ -145,14 +145,14 @@ nuisances['lumi']  = {
 
 # ##### Muon Efficiency and energy scale
 
-# id_syst_mu = [ 'LepSF'+Nlep+'l__mu_'+muWP+'__Up' , 'LepSF'+Nlep+'l__mu_'+muWP+'__Do' ]
+id_syst_mu = [ 'LepSF'+Nlep+'l__mu_'+muWP+'__Up' , 'LepSF'+Nlep+'l__mu_'+muWP+'__Do' ]
 
-# nuisances['eff_m']  = {
-#                 'name'  : 'eff_m_2018',
-#                 'kind'  : 'weight',
-#                 'type'  : 'shape',
-#                 'samples'  : dict((skey, id_syst_mu) for skey in mc),
-# }
+nuisances['eff_m']  = {
+                'name'  : 'eff_m_2018',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : dict((skey, id_syst_mu) for skey in mc),
+}
 
 # mpt_syst=['1', '1']
 # nuisances['muonpt']  = {
@@ -430,12 +430,12 @@ nuisances['lumi']  = {
 
 
 
-# ## Use the following if you want to apply the automatic combine MC stat nuisances.
-# nuisances['stat']  = {
-#               'type'  : 'auto',
-#               'maxPoiss'  : '10',
-#               'includeSignal'  : '1',
-#               #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
-#               #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
-#               'samples' : {}
-#              }
+## Use the following if you want to apply the automatic combine MC stat nuisances.
+nuisances['stat']  = {
+              'type'  : 'auto',
+              'maxPoiss'  : '10',
+              'includeSignal'  : '1',
+              #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
+              #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
+              'samples' : {}
+             }

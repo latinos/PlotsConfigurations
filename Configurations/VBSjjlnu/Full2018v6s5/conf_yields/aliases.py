@@ -30,48 +30,48 @@ aliases['whad_eta'] = {
 ############################################
 # DNN reader - Updated to 2018 specific
 
-mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2018v6s5/mva/'
-models_path = '/eos/home-d/dvalsecc/www/VBSPlots/DNN_archive/FullRun2/'
+# mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2018v6s5/mva/'
+# models_path = '/eos/home-d/dvalsecc/www/VBSPlots/DNN_archive/FullRun2/'
 
-aliases['DNNoutput_boosted'] = {
-    'class': 'MVAReaderBoosted_v5',
-    'args': ( models_path +'boost_sig/models/v5/',  mva_reader_path + 'cumulative_signal_boosted_v5.root', False, 0),
-    'linesToAdd':[
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L ' + mva_reader_path + 'mva_reader_boosted_v5.cc+', 
-    ],
-}
+# aliases['DNNoutput_boosted'] = {
+#     'class': 'MVAReaderBoosted_v5',
+#     'args': ( models_path +'boost_sig/models/v5/',  mva_reader_path + 'cumulative_signal_boosted_v5.root', False, 0),
+#     'linesToAdd':[
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         'gSystem->Load("libDNNEvaluator.so")',
+#         '.L ' + mva_reader_path + 'mva_reader_boosted_v5.cc+', 
+#     ],
+# }
 
-aliases['DNNoutput_resolved'] = {
-    'class': 'MVAReaderResolved_v29',
-    'args': ( models_path+ 'res_sig/models/v29/', mva_reader_path + 'cumulative_signal_resolved_v29.root', False, 1),
-    'linesToAdd':[
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L ' + mva_reader_path + 'mva_reader_resolved_v29.cc+', 
-    ],
-}
+# aliases['DNNoutput_resolved'] = {
+#     'class': 'MVAReaderResolved_v29',
+#     'args': ( models_path+ 'res_sig/models/v29/', mva_reader_path + 'cumulative_signal_resolved_v29.root', False, 1),
+#     'linesToAdd':[
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         'gSystem->Load("libDNNEvaluator.so")',
+#         '.L ' + mva_reader_path + 'mva_reader_resolved_v29.cc+', 
+#     ],
+# }
 
-aliases['DNNoutput'] = {
-    'expr': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)'
-}
+# aliases['DNNoutput'] = {
+#     'expr': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)'
+# }
 
 
-aliases['detavbs_jetpt_bin'] = {
-    'expr':'(VBS_category==0)* \
-                (   1*( deltaeta_vbs < 5) + \
-                    2*(deltaeta_vbs >= 5) \
-                )+\
-            (VBS_category==1) * \
-                (   3* ((deltaeta_vbs < 5)  && vbs_1_pt < 75) + \
-                    4* ((deltaeta_vbs >= 5)  && vbs_1_pt < 75) + \
-                    \
-                    5* ((deltaeta_vbs < 4)  &&  ( vbs_1_pt >= 75 && vbs_1_pt <150) ) + \
-                    6* ((deltaeta_vbs >= 4) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150) ) + \
-                    7* ( vbs_1_pt >= 150 ) \
-                )'
-}
+# aliases['detavbs_jetpt_bin'] = {
+#     'expr':'(VBS_category==0)* \
+#                 (   1*( deltaeta_vbs < 5) + \
+#                     2*(deltaeta_vbs >= 5) \
+#                 )+\
+#             (VBS_category==1) * \
+#                 (   3* ((deltaeta_vbs < 5)  && vbs_1_pt < 75) + \
+#                     4* ((deltaeta_vbs >= 5)  && vbs_1_pt < 75) + \
+#                     \
+#                     5* ((deltaeta_vbs < 4)  &&  ( vbs_1_pt >= 75 && vbs_1_pt <150) ) + \
+#                     6* ((deltaeta_vbs >= 4) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150) ) + \
+#                     7* ( vbs_1_pt >= 150 ) \
+#                 )'
+# }
 
 
 ############################################

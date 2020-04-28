@@ -6,36 +6,59 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-i","--inputfile", help="Input file" , type=str)
 parser.add_argument("-o","--outputdir", help="Output folder", type=str)
 parser.add_argument("-y","--years", nargs="+", help="Years")
-parser.add_argument("-p", "--plot", action="store_true", help="Do plots", default=False, )
+parser.add_argument("--wbins", type=str, help="Selected W+jets bining type (no,A,B...)", required=True)
+parser.add_argument("-p", "--plot", type=str, help="Do plots in the specified file", default=False, )
 parser.add_argument("--mc-asimov", action="store_true", default=True)
 parser.add_argument("--data-asimov", action="store_true", default=False)
 parser.add_argument("--dry", action="store_true", help="Do not run, only create script", default=False)
 args = parser.parse_args()
 
 
-fitter_options=  "--robustFit=1 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND"
+#fitter_options=  "--robustFit=1 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND"
+fitter_options = ""
 toysf = "--toysFreq" if args.data_asimov else ""
 
 def prepare_rateParams(years):
     rps = []
 
-    jetbin_detabins = [3,3,2]
-    # # name of samples here must match keys in samples.py 
-    Wjets_bins = ["Wjets_boost"]
-    for jetbin in range(3):
-        for detabin in range(jetbin_detabins[jetbin]):
-            Wjets_bins.append("Wjets_deta{}_jpt{}".format(detabin+1, jetbin+1))
-    for y in years:
-        for wjbin in Wjets_bins:
-            for fl in ["ele", "mu"]:
-                if "boost" in wjbin:
-                    rps.append('CMS_{}_norm_{}_boost_{}'.format(wjbin, fl,y))
-                else:
-                    rps.append('CMS_{}_norm_{}_res_{}'.format(wjbin, fl,y))
-
-    for c in ["boos", "res"]:
+    if args.wbins == "no":
+        Wjets_bins = ["Wjets" ]
         for y in years:
-            rps.append("CMS_Top_norm_{}".format(y))
+            for fl in ["ele", "mu"]:
+                    rps.append('CMS_Wjets_norm_{}_boost_{}'.format(fl,y))
+                    rps.append('CMS_Wjets_norm_{}_res_{}'.format(fl,y))
+
+    elif args.wbins == "A":
+        Wjets_bins = ["Wjets_jpt3","Wjets_deta2_jpt2", "Wjets_deta1_jpt2",
+                "Wjets_deta2_jpt1","Wjets_deta1_jpt1",
+                "Wjets_boost1", "Wjets_boost2"]
+    elif args.wbins == "Ares":
+        Wjets_bins = ["Wjets_jpt3","Wjets_deta2_jpt2", "Wjets_deta1_jpt2",
+                "Wjets_deta2_jpt1","Wjets_deta1_jpt1"]
+    elif args.wbins == "Aboost":
+        Wjets_bins = ["Wjets_boost1", "Wjets_boost2"]
+
+    else:
+        print("ERROR! Specify a valid W+jets binning")
+        exit(1)
+    
+    for y in years:
+            for wjbin in Wjets_bins:
+                for fl in ["ele", "mu"]:
+                    if "boost" in wjbin:
+                        rps.append('CMS_{}_norm_{}_boost_{}'.format(wjbin, fl,y))
+                    else:
+                        rps.append('CMS_{}_norm_{}_res_{}'.format(wjbin, fl,y))
+
+    
+    for y in years:
+        if args.wbins == "A":
+            rps.append("CMS_Top_norm_res_{}".format(y))
+            rps.append("CMS_Top_norm_boost_{}".format(y))
+        elif args.wbins == "Ares":
+            rps.append("CMS_Top_norm_res_{}".format(y))
+        elif args.wbins == "Aboost":
+            rps.append("CMS_Top_norm_boost_{}".format(y))
     return rps
 
 
@@ -114,7 +137,8 @@ if args.plot:
 
         # Create pdf
         os.system("plotImpacts.py -i {0}/impacts.json -o {0}/impacts".format(args.outputdir))
-
+        # Copy it
+        os.system("cp {0}/impacts.pdf {1}".format(args.outputdir, args.plot))
     
 
 

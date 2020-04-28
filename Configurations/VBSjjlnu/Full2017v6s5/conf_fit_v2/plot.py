@@ -94,7 +94,7 @@ groupPlot["Wjets"]  = {
                         'nameHR' : 'W+Jets',
                         'isSignal' : 0,
                         'color':   palette["Yellow"],
-                        'samples'  : ["Wjets"],
+                        'samples'  : wjets_bins,
                         'fill': 1001
                 }
 
@@ -161,20 +161,21 @@ plot['top'] = {
                  }
 
 
-# for  wbin in wjets_bins:
-#         plot[wbin] = {  
-#                         'color':  colors['kRed']-3,
-#                         'isSignal' : 0,
-#                         'isData'   : 0,
-#                         'scale': 1.0
-#                     }
+for  wbin in wjets_bins:
+        plot[wbin] = {  
+                        'color':  colors['kRed']-3,
+                        'isSignal' : 0,
+                        'isData'   : 0,
+                        'scale': 1.0
+                    }
 
-plot['Wjets']  = {
-                  'color': colors["kCyan"]+1, 
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.   ,
-              }
+
+# plot['Wjets']  = {
+#                   'color': colors["kCyan"]+1, 
+#                   'isSignal' : 0,
+#                   'isData'   : 0,
+#                   'scale'    : 1.   ,
+#               }
 
 
 plot['VBS']  = {

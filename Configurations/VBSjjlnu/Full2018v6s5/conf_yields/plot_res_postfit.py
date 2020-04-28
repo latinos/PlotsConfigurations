@@ -50,12 +50,17 @@ palette = {
 '''
 
 jetbin_detabins = [3,3,2]
-#wjets_palette = ['#FFF59D', '#FFEE58', '#FFD54F', '#FFB300', '#FF8F00', '#F57C00', '#E65100','#BF360C']
+wjets_palette = ['#FFF59D', '#FFEE58', '#FFD54F', '#FFB300', '#FF8F00', '#F57C00', '#E65100','#BF360C']
 wjets_palette = ['#DD2C00', '#FF3D00',  '#FF6D00','#F57C00', '#FFAB00', '#FFC400', '#FFEA00', '#FFFF00']
 
-wjets_bins = ["Wjets_jpt3","Wjets_deta2_jpt2", "Wjets_deta1_jpt2",
-                "Wjets_deta2_jpt1","Wjets_deta1_jpt1", 
-                "Wjets_boost1", "Wjets_boost2"]
+icw = 0
+for il in range(1,4):
+    for j in range(1,jetbin_detabins[il-1]+1):
+        color = wjets_palette[icw]
+        icw+=1
+        palette["Wjets_deta{}_jpt{}".format(j, il)] = color
+
+
 
 groupPlot['Fake']  = {  
                 'nameHR' : "Fake",
@@ -64,6 +69,13 @@ groupPlot['Fake']  = {
                 'samples'  : ['Fake'],
                 'fill': 1001
             }
+
+# groupPlot['Vg']  = {  
+#                   'nameHR' : "V#gamma+V#gamma*",
+#                   'isSignal' : 0,
+#                   'color'    : 409,   # kOrange + 10
+#                   'samples'  : ['Vg','VgS']
+#               }
 
 groupPlot['vbfV+VV+VVV']  = {  
                   'nameHR' : 'vbfV+VV+VVV',
@@ -90,11 +102,14 @@ groupPlot['top']  = {
                  'fill': 1001
              }
 
-groupPlot["Wjets"]  = {  
-                        'nameHR' : 'W+Jets',
+for  jbin in range(3,0,-1): 
+    for dbin in range(jetbin_detabins[jbin-1], 0,-1):
+        wname = "Wjets_deta{}_jpt{}".format(dbin,jbin)
+        groupPlot[wname]  = {  
+                        'nameHR' : 'W+Jets_{}_{}'.format(dbin,jbin),
                         'isSignal' : 0,
-                        'color':   palette["Yellow"],
-                        'samples'  :wjets_bins,
+                        'color':   palette[wname],
+                        'samples'  : [wname],
                         'fill': 1001
                 }
 
@@ -106,6 +121,13 @@ groupPlot['VBS']  = {
                  'fill': 1001
               }
 
+groupPlot['total_prefit'] = {
+    'nameHR' : 'pre-fit',
+    'isSignal' : 2,
+    'color': 616,   
+    'samples'  : ['total_prefit'],
+    'fill': 1001
+}
 
 
 #plot = {}
@@ -128,6 +150,19 @@ plot['VV']  = {
                   'scale'    : 1.   ,
               }   
          
+# plot['Vg']  = { 
+#                   'color': 859, # kAzure -1  
+#                   'isSignal' : 0,
+#                   'isData'   : 0,
+#                   'scale'    : 1.0
+#                   }
+
+# plot['VgS'] = { 
+#                   'color'    : 617,   # kViolet + 1  
+#                   'isSignal' : 0,
+#                   'isData'   : 0,
+#                   'scale'    : 1.0
+#                   }
 
 
 plot['DY']  = {  
@@ -161,20 +196,26 @@ plot['top'] = {
                  }
 
 
-for  wbin in wjets_bins:
-        plot[wbin] = {  
+#wfactors = {
+#    (1,1): 0.89,
+#    (1,2): 0.88,
+#    (1,3): 0.66,
+#    (2,1): 1.08,
+#    (2,2): 0.92,
+#    (2,3): 0.65,
+#    (3,1): 1.36,
+#    (3,2): 1.00,
+#}
+
+for  jbin in range(3,0,-1): 
+    for dbin in range(jetbin_detabins[jbin-1], 0,-1):
+        wname = "Wjets_deta{}_jpt{}".format(dbin,jbin)
+        plot[wname] = {  
                         'color':  colors['kRed']-3,
                         'isSignal' : 0,
                         'isData'   : 0,
                         'scale': 1.0
                     }
-
-# plot['Wjets']  = {
-#                   'color': colors["kCyan"]+1, 
-#                   'isSignal' : 0,
-#                   'isData'   : 0,
-#                   'scale'    : 1.   ,
-#               }
 
 
 plot['VBS']  = {
@@ -194,11 +235,20 @@ plot['DATA']  = {
                  'isBlind'  : 0
              }
 
+plot['total_prefit'] = {
+     'nameHR' : 'pre-fit',
+     'color': 616, 
+     'isSignal' : 2,
+     'isData'   : 0,
+     'scale'    : 1.   ,
+}
+
+
 
 
 # additional options
 
-legend['lumi'] = 'L = 35.867/fb'
+legend['lumi'] = 'L = 59.74/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

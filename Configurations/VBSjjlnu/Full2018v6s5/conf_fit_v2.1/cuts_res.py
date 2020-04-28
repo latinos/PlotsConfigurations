@@ -79,13 +79,22 @@ cuts["res_topcr_dnnhigh_ele"] = 'VBS_category==1 \
                                 && DNNoutput_resolved > 0.3 \
                                 '
 
-cuts["res_topcr_dnnlow_mu"] = 'VBS_category==1 \
+
+cuts["res_topcr_dnnall_mu"] = 'VBS_category==1 \
                                 && abs(Lepton_pdgId[0])==13 \
                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
                                 && mjj_vjet > 65 && mjj_vjet < 105 \
                                 && bReqTight \
                                 && whad_pt < 200 \
-                                && DNNoutput_resolved <= 0.3 \
+                                '
+
+cuts["res_topcr_dnnhigh_mu"] = 'VBS_category==1 \
+                                && abs(Lepton_pdgId[0])==13 \
+                                && vjet_0_pt > 30 && vjet_1_pt > 30 \
+                                && mjj_vjet > 65 && mjj_vjet < 105 \
+                                && bReqTight \
+                                && whad_pt < 200 \
+                                && DNNoutput_resolved > 0.3 \
                                 '
 
 

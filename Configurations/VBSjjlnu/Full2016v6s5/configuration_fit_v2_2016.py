@@ -29,12 +29,12 @@ lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot_'+tag
+outputDirPlots = 'plot_'+tag +"_jointWjets"
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards_' +tag  +"_regroupedWjets2"
-
+outputDirDatacard = 'datacards_' +tag  +"_regroupedWjets_v2"
+#outputDirDatacard = 'datacards_' +tag +"_v2"
 
 # structure file for datacard
 structureFile = direc+'/structure.py'

@@ -13,7 +13,7 @@ Wjets_bins = ["Wjets_jpt3","Wjets_deta2_jpt2", "Wjets_deta1_jpt2",
 phase_spaces_boost = []
 phase_spaces_res = []
 
-for d in ["high","low"]:
+for d in ["high","low", "all"]:
     for cat in ["sig", "wjetcr", "topcr"]:
         phase_spaces_boost.append("boost_{}_dnn{}".format(cat, d))
         phase_spaces_res.append("res_{}_dnn{}".format(cat, d))
@@ -221,10 +221,40 @@ nuisances['jes']  = {
                 'name'  : 'CMS_scale_j_2018',
                 'kind'  : 'tree',
                 'type'  : 'shape',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc),
+                'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in ["Wjets", "top", "VBS"]),
                 'folderUp'   : directory_bkg +"_JESup",
                 'folderDown' : directory_bkg +"_JESdo",
 }
+
+nuisances['jes_wjets']  = {
+                'name'  : 'CMS_scale_j_wjets_2018',
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples'  : { "Wjets": ['1.','1.'] },
+                'folderUp'   : directory_bkg +"_JESup",
+                'folderDown' : directory_bkg +"_JESdo",
+}
+
+nuisances['jes_top']  = {
+                'name'  : 'CMS_scale_j_top_2018',
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples'  : { "top": ['1.','1.'] },
+                'folderUp'   : directory_bkg +"_JESup",
+                'folderDown' : directory_bkg +"_JESdo",
+}
+
+nuisances['jes_signal']  = {
+                'name'  : 'CMS_scale_j_signal_2018',
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples'  : { "VBS": ['1.','1.'] },
+                'folderUp'   : directory_bkg +"_JESup",
+                'folderDown' : directory_bkg +"_JESdo",
+}
+
+
+
 
 # nuisances['fatjet_jes']  = {
 #                 'name'  : 'CMS_scale_fatj_2018',
@@ -375,7 +405,7 @@ nuisances['Top_norm_res']  = {
 
 
 
-regrouped_Wjets = True
+regrouped_Wjets = False
 for wjbin in Wjets_bins:
     for fl in ["ele", "mu"]:
         if "boost" in wjbin:
@@ -416,4 +446,4 @@ for n in nuisances.values():
     n['skipCMS'] = 1
 
    
-print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
+# print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))

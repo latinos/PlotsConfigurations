@@ -13,6 +13,7 @@ for fl in ["ele", "mu"]:
             phase_spaces_boost.append("boost_{}_dnn{}_{}".format(cat, d,fl))
             phase_spaces_res.append("res_{}_dnn{}_{}".format(cat, d, fl))
 
+phase_spaces_tot = phase_spaces_boost + phase_spaces_res
 
 
 variables['events']  = {   'name': '1',      
@@ -27,7 +28,8 @@ variables['DNNoutput'] = {
     'range': (40,0.,1),
     'xaxis': 'DNN output',
     'fold': 0 ,
-    'cuts': list(filter(lambda c: "dnnall" in c, phase_spaces_boost+phase_spaces_res))
+    'blind': { c:[0.6,1] for c in phase_spaces_tot if "_sig_" in c},
+    'cuts': list(filter(lambda c: "dnnall" in c, phase_spaces_tot))
 }
 
 
@@ -38,12 +40,7 @@ variables['DNNoutput_high_res'] = {
     'fold': 0 ,
     'cuts': list(filter(lambda c: "dnnhigh" in c , phase_spaces_res)),
     #'divideByBinWidth' : 1,
-    'blind': {
-        "res_sig_dnnhigh_mu": [0.6,1], 
-        "res_sig_dnnhigh_ele": [0.6,1],
-        "boost_sig_dnnhigh_mu": [0.6,1], 
-        "boost_sig_dnnhigh_ele": [0.6,1],
-    }
+    'blind': { c:[0.6,1] for c in phase_spaces_tot if "_sig_" in c},
 }
 
 variables['DNNoutput_high_boost'] = {
@@ -51,14 +48,8 @@ variables['DNNoutput_high_boost'] = {
     'range': (10,0.3,1),
     'xaxis': 'DNN',
     'fold': 0 ,
-    'divideByBinWidth' : 1,
     'cuts': list(filter(lambda c: "dnnhigh" in c , phase_spaces_boost)),
-    'blind': {
-        "res_sig_dnnhigh_mu": [0.6,1], 
-        "res_sig_dnnhigh_ele": [0.6,1],
-        "boost_sig_dnnhigh_mu": [0.6,1], 
-        "boost_sig_dnnhigh_ele": [0.6,1],
-    }
+    'blind': { c:[0.6,1] for c in phase_spaces_tot if "_sig_" in c},
 }
 
 
@@ -124,25 +115,14 @@ variables['mjj_vbs_morebins'] = {   'name': 'mjj_vbs',
                         'range' : (20,200,4000) , 
                         'xaxis' : 'M_{jj} VBS', 
                         'fold' : 3,
-                        'blind' : {
-                            "res_sig_dnnhigh_ele": [1000,4000], 
-                            "res_sig_dnnhigh_mu": [1000,4000], 
-                            "boost_sig_dnnhigh_ele": [1000,4000], 
-                            "boost_sig_dnnhigh_mu": [1000,4000], 
-                            }
-                         }
+                        'blind': { c:[1000,4000] for c in phase_spaces_tot if "_sig_" in c}
+}
 
 variables['mjj_vbs'] = {   'name': 'mjj_vbs',      
                         'range' : ([200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,4000],) , 
                         'xaxis' : 'M_{jj} VBS', 
                         'fold' : 3,
-                        'divideByBinWidth' : 1,
-                        'blind' : {
-                            "res_sig_dnnhigh_ele" :(1000,4000),
-                            "res_sig_dnnhigh_mu" : (1000,4000),
-                            "boost_sig_dnnhigh_ele" :(1000,4000),
-                            "boost_sig_dnnhigh_mu" : (1000,4000),
-                            }
+                        'blind': { c:[1000,4000] for c in phase_spaces_tot if "_sig_" in c}
                         }
 
 variables['vbs_0_pt'] = {   'name': 'vbs_0_pt',      

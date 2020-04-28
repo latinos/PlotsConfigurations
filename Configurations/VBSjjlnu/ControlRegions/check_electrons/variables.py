@@ -25,29 +25,29 @@ variables['mll'] = {   'name': 'mll',            #   variable name
 #                         'fold' : 0
 #                         }
 
-variables['mtw1']  = {   'name': 'mtw1',     
-                        'range' : (25,0,300),   
-                        'xaxis' : 'Mt W1',
-                        'fold'  : 3                         
-                        }
+# variables['mtw1']  = {   'name': 'mtw1',     
+#                         'range' : (25,0,300),   
+#                         'xaxis' : 'Mt W1',
+#                         'fold'  : 3                         
+#                         }
 
-variables['mtw2']  = {   'name': 'mtw2',     
-                        'range' : (25,0,300),   
-                        'xaxis' : 'Mt W2',
-                        'fold'  : 3                         
-                        }
+# variables['mtw2']  = {   'name': 'mtw2',     
+#                         'range' : (25,0,300),   
+#                         'xaxis' : 'Mt W2',
+#                         'fold'  : 3                         
+#                         }
 
-variables['pt1']  = {   'name': 'Lepton_pt[0]',     
-                        'range' :(40,0,500),   
-                        'xaxis' : 'p_{T} 1st lep',
-                        'fold'  : 3                         
-                        }
+# variables['pt1']  = {   'name': 'Lepton_pt[0]',     
+#                         'range' :(40,0,500),   
+#                         'xaxis' : 'p_{T} 1st lep',
+#                         'fold'  : 3                         
+#                         }
 
-variables['pt2']  = {   'name': 'Lepton_pt[1]',     
-                        'range' : (40,0,500),   
-                        'xaxis' : 'p_{T} 2nd lep',
-                        'fold'  : 3                         
-                        }
+# variables['pt2']  = {   'name': 'Lepton_pt[1]',     
+#                         'range' : (40,0,500),   
+#                         'xaxis' : 'p_{T} 2nd lep',
+#                         'fold'  : 3                         
+#                         }
 
 
 variables['pt+']  = {   'name': '(Lepton_pdgId[0]>0)*(Lepton_pt[0]) + (Lepton_pdgId[1]>0)*(Lepton_pt[1])',     
@@ -62,6 +62,44 @@ variables['pt-']  = {   'name': '(Lepton_pdgId[0]<0)*(Lepton_pt[0]) + (Lepton_pd
                         'fold'  : 3                         
                         }
 
+variables['eta+mb']  = {   'name': '(Lepton_pdgId[0]>0)*(Lepton_eta[0]) + (Lepton_pdgId[1]>0)*(Lepton_eta[1])',     
+                        'range' :(60,-2.5,2.5),   
+                        'xaxis' : '#eta lep+',
+                        'fold'  : 3                         
+                        }
+
+variables['eta-mb']  = {   'name': '(Lepton_pdgId[0]<0)*(Lepton_eta[0]) + (Lepton_pdgId[1]<0)*(Lepton_eta[1])',     
+                        'range' : (60,-2.5,2.5),   
+                        'xaxis' : '#eta lep-',
+                        'fold'  : 3                         
+                        }
+
+
+variables['eta+']  = {   'name': '(Lepton_pdgId[0]>0)*(Lepton_eta[0]) + (Lepton_pdgId[1]>0)*(Lepton_eta[1])',     
+                        'range' :(40,-2.5,2.5),   
+                        'xaxis' : '#eta lep+',
+                        'fold'  : 3                         
+                        }
+
+variables['eta-']  = {   'name': '(Lepton_pdgId[0]<0)*(Lepton_eta[0]) + (Lepton_pdgId[1]<0)*(Lepton_eta[1])',     
+                        'range' : (40,-2.5,2.5),   
+                        'xaxis' : '#eta lep-',
+                        'fold'  : 3                         
+                        }
+
+variables['phi+']  = {   'name': '(Lepton_pdgId[0]>0)*(Lepton_phi[0]) + (Lepton_pdgId[1]>0)*(Lepton_phi[1])',     
+                        'range' :(20,-3.2,3.2),   
+                        'xaxis' : '#phi lep+',
+                        'fold'  : 3                         
+                        }
+
+variables['phi-']  = {   'name': '(Lepton_pdgId[0]<0)*(Lepton_phi[0]) + (Lepton_pdgId[1]<0)*(Lepton_phi[1])',     
+                        'range' : (20,-3.2,3.2),   
+                        'xaxis' : '#phi lep-',
+                        'fold'  : 3                         
+                        }
+
+
 variables['ptll']  = {   'name': 'ptll',     
                         'range' : (40,0,500),   
                         'xaxis' : 'p_{T}ll',
@@ -69,30 +107,30 @@ variables['ptll']  = {   'name': 'ptll',
                         }
 
 
-variables['eta1']  = {  'name': 'Lepton_eta[0]',     
-                        'range' : (30,-3,3),   
-                        'xaxis' : '#eta 1st lep',
-                        'fold'  : 3                         
-                        }
+# variables['eta1']  = {  'name': 'Lepton_eta[0]',     
+#                         'range' : (30,-3,3),   
+#                         'xaxis' : '#eta 1st lep',
+#                         'fold'  : 3                         
+#                         }
 
-variables['eta2']  = {  'name': 'Lepton_eta[1]',     
-                        'range' : (30,-3,3),   
-                        'xaxis' : '#eta 2nd lep',
-                        'fold'  : 3                         
-                        }
+# variables['eta2']  = {  'name': 'Lepton_eta[1]',     
+#                         'range' : (30,-3,3),   
+#                         'xaxis' : '#eta 2nd lep',
+#                         'fold'  : 3                         
+#                         }
 
                         
-variables['phi1']  = {  'name': 'Lepton_phi[0]',
-                        'range' : (20,-3.2,3.2),
-                        'xaxis' : '#phi 1st lep',
-                        'fold'  : 3
-                        }
+# variables['phi1']  = {  'name': 'Lepton_phi[0]',
+#                         'range' : (20,-3.2,3.2),
+#                         'xaxis' : '#phi 1st lep',
+#                         'fold'  : 3
+#                         }
 
-variables['phi2']  = {  'name': 'Lepton_phi[1]',
-                        'range' : (20,-3.2,3.2),
-                        'xaxis' : '#phi 2nd lep',
-                        'fold'  : 3
-                        }
+# variables['phi2']  = {  'name': 'Lepton_phi[1]',
+#                         'range' : (20,-3.2,3.2),
+#                         'xaxis' : '#phi 2nd lep',
+#                         'fold'  : 3
+#                         }
 
 variables['puppimet']  = {
                         'name': 'PuppiMET_pt',

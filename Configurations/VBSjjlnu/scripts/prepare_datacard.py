@@ -59,7 +59,7 @@ def create_logger(name, file):
 
 ##################################################
 
-def prepare_workspace(datac):
+def prepare_workspace(datac, onlyDC=False):
     log = logging.getLogger(datac["datacard_name"])
     outdir = datac["outputdir"] 
     cards= []
