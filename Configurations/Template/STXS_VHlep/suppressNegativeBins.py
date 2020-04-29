@@ -33,5 +33,5 @@ for i in [ ff.GetTitle() for ff in f.GetListOfKeys() ]:
                     #histo.SetBinError(ixbin, 0.)
                     print('after  :: ixbin : %s ; bincontent : %s +/- %s' %( ixbin , histo.GetBinContent(ixbin) , histo.GetBinError(ixbin) ) )
 
-#f.Write("",rt.TObject.kOverwrite)
+f.Write("",rt.TObject.kOverwrite)
 f.Close()
