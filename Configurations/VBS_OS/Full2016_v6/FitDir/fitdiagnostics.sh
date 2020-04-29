@@ -12,5 +12,5 @@ workspaceDir=workspaces
 
 cd $workDir
 
-echo "events:" "" > ${workspaceDir}/diagnostics_Z_mjj_vs_mTi.txt
-combine -M FitDiagnostics ${workspaceDir}/mjj_vs_mTi.root -t -1 --setParameters r_vbs=1 --redefineSignalPOIs=r_vbs --saveNormalizations --saveWithUncertainties >> ${workspaceDir}/diagnostics_mjj_vs_mTi.txt
+echo "events:" "" > ${workspaceDir}/diagnostics_Z_mjj.txt
+combine -M FitDiagnostics ${workspaceDir}/mjj.root -t -1 --setParameters r_vbs=1 --redefineSignalPOIs=r_vbs --saveNormalizations --saveWithUncertainties >> ${workspaceDir}/diagnostics_mjj.txt
