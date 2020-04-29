@@ -7,15 +7,6 @@
 # Groups of samples to improve the plots.
 # If not defined, normal plots is used
 #
-
-'''
-groupPlot['ttV']  = {
-                  'nameHR' : 'ttV',
-                  'isSignal' : 0,
-                  'color': 400,   # kYellow
-                  'samples'  : ['ttV']
-              }
-'''
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
@@ -53,67 +44,61 @@ groupPlot['VVV']  = {
               }
 
 
-groupPlot['VZ']  = {  
-                  'nameHR' : "VZ",
+groupPlot['ZZ']  = {  
+                  'nameHR' : "ZZ",
                   'isSignal' : 0,
                   'color'    : 617,   # kViolet + 1  
-                  'samples'  : ['VZ']
+                  'samples'  : ['ZZ']
+              }
+
+groupPlot['WZ']  = {    
+                  'nameHR' : "WZ",
+                  'isSignal' : 0,
+                  'color'    : 619,   # kViolet + 1  
+                  'samples'  : ['WZ']
               }
 
 groupPlot['Vg']  = {  
                   'nameHR' : "V#gamma",
                   'isSignal' : 0,
                   'color'    : 810,   # kOrange + 10
-                  'samples'  : ['Vg']
+                  'samples'  : ['Wg','Zg']
               }
+
+#groupPlot['Zg']  = {
+#                  'nameHR' : "Z#gamma",
+#                  'isSignal' : 0,
+#                  'color'    : 810,   # kOrange + 10
+#                  'samples'  : ['Zg']
+#              }
+
 
 groupPlot['VgS']  = {
-                  'nameHR' : "V#gamma*_L",
+                  'nameHR' : "V#gamma*",
                   'isSignal' : 0,
-                  'color'    : 409,   # kGreen - 9
-                  'samples'  : ['VgS_L','VgS_H']
-              }
-'''
-groupPlot['VgS_L']  = {
-                  'nameHR' : "V#gamma*_L",
-                  'isSignal' : 0,
-                  'color'    : 409,   # kGreen - 9
-                  'samples'  : ['VgS_L']
+                  'color'    : 412,   # kGreen - 9
+                  'samples'  : ['ZgS','WgS']
               }
 
-groupPlot['VgS_H']  = {
-                  'nameHR' : "V#gamma*_H",
-                  'isSignal' : 0,
-                  'color'    : 409,   # kGreen - 9
-                  'samples'  : ['VgS_H']
-              }
-'''
+#groupPlot['WgS']  = {
+#                  'nameHR' : "W#gamma*",
+#                  'isSignal' : 0,
+#                  'color'    : 409,   # kGreen - 9
+#                  'samples'  : ['WgS']
+#              }
 
 groupPlot['Higgs']  = {  
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-		  #'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt']
-		  'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','H_htt']
-		#  'samples'  : ['WH_hww']
+		  'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','WH_htt','ZH_htt','ggH_htt','qqH_htt']
               }
-
-
-
 
 
 #plot = {}
 
 # keys here must match keys in samples.py    
 #     
-'''          
-plot['ttV']  = {
-                  'color': 400,    # kGreen+2
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0,
-              }
- '''    
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
@@ -129,13 +114,6 @@ plot['Fake_em']  = {
                   'scale'    : 1.0                  
               }
 
-#plot['Fake_ee']  = { 
-#                  'color': 921,    # kGray + 1
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.0                  
-#              }
-#
 plot['Fake_mm']  = { 
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
@@ -143,33 +121,12 @@ plot['Fake_mm']  = {
                   'scale'    : 1.0                  
               }
 
-#plot['Fake_me']  = {  
-#                  'color': 921,    # kGray + 1
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.0                  
-#              }
-
-              
 plot['top'] = {   
                   'nameHR' : 'tW and t#bar{t}',
                   'color': 400,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
                   'scale'    : 1.0,
-                  #'cuts'  : {
-                       #'hww2l2v_13TeV_of0j'      : 0.94 ,
-                       #'hww2l2v_13TeV_top_of0j'  : 0.94 , 
-                       #'hww2l2v_13TeV_dytt_of0j' : 0.94 ,
-                       #'hww2l2v_13TeV_em_0j'     : 0.94 , 
-                       #'hww2l2v_13TeV_me_0j'     : 0.94 , 
-                       ##
-                       #'hww2l2v_13TeV_of1j'      : 0.86 ,
-                       #'hww2l2v_13TeV_top_of1j'  : 0.86 , 
-                       #'hww2l2v_13TeV_dytt_of1j' : 0.86 ,
-                       #'hww2l2v_13TeV_em_1j'     : 0.86 , 
-                       #'hww2l2v_13TeV_me_1j'     : 0.86 , 
-                        #},
                   }
 
 
@@ -195,21 +152,35 @@ plot['WWewk']  = {
                   }
 
 
-plot['Vg']  = { 
+plot['Wg']  = { 
                   'color': 859, # kAzure -1  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
 
-#plot['VgS'] = { 
-#                  'color'    : 617,   # kViolet + 1  
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.0
-#                  }
-#
-plot['VZ']  = { 
+plot['Zg']  = {
+                  'color': 859, # kAzure -1  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+plot['ZgS'] = { 
+                  'color'    : 617,   # kViolet + 1  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+plot['ZZ']  = { 
+                  'color': 858, # kAzure -2  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+plot['WZ']  = {
                   'color': 858, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -223,39 +194,15 @@ plot['VVV']  = {
                   'scale'    : 1.0
                   }
 
-#plot['WZgS']  = {
-#                  'color': 617, # kViolet + 1
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.0
-#                  }
-#
-plot['VgS_L']  = {
+plot['WgS']  = {
                   'color': 617, # kViolet + 1
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
 
-plot['VgS_H']  = {
-                  'color': 617, # kViolet + 1
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                 'scale'    : 1.0
-                  }
-
 
 # Htautau
-
-plot['H_htt'] = {
-                  'nameHR' : 'Htt',
-                  'color': 632+4, # kRed+4 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-
-'''
 plot['ZH_htt'] = {
                   'nameHR' : 'ZHtt',
                   'color': 632+3, # kRed+3 
@@ -281,7 +228,7 @@ plot['ZH_htt'] = {
 #                  }
 #
 #
-
+'''
 plot['ggZH_htt'] = {
                   'nameHR' : 'ggZHtt',
                   'color': 632+4, # kRed+4
@@ -289,7 +236,7 @@ plot['ggZH_htt'] = {
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
-
+'''
 plot['WH_htt'] = {
                   'nameHR' : 'WHtt',
                   'color': 632+2, # kRed+2 
@@ -315,7 +262,6 @@ plot['ggH_htt'] = {
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
-'''
 # HWW 
 
 #plot['H_hww'] = {
@@ -400,17 +346,5 @@ plot['DATA']  = {
 
 # additional options
 
-# legend['lumi'] = 'L = 2.3/fb' # 2.264 fb-1
-#legend['lumi'] = 'L = 2.3/fb' # 2.318 fb-1
-#legend['lumi'] = 'L = 0.8/fb' # 2.318 fb-1
-#legend['lumi'] = 'L = 2.6/fb'
-#legend['lumi'] = 'L = 4.3/fb'
-#legend['lumi'] = 'L = 6.3/fb'
-#legend['lumi'] = 'L = 12.9/fb'
 legend['lumi'] = 'L = 35.9/fb'
-
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
-
-
-
-

@@ -55,21 +55,22 @@ poi=''
 for sample in sampleNames:
   if 'ggH_hww' not in sample: continue
   if 'FWDH' in sample: continue
-  if 'GT200' in sample: continue
+  #if 'GT200' in sample: continue
 
-  #if '0J' in sample: poi = 'r_ggH_hww_0J'
-  #elif ('1J_PTH_60_120' in sample or '1J_PTH_120_200' in sample): poi = 'r_ggH_hww_1J_PTH_GT60'
-  #elif ('MJJ_350_700' in sample or 'MJJ_GT700' in sample): poi = 'r_ggH_hww_GE2J_MJJ_GT350'
-  #elif ('MJJ_0_350_PTH_0_60' in sample or 'MJJ_0_350_PTH_60_120' in sample): poi = 'r_ggH_hww_GE2J_MJJ_0_350_PTH_LT120'
-  #elif 'MJJ_0_350_PTH_120_200' in sample: poi = 'r_ggH_hww_GE2J_MJJ_0_350_PTH_GT120'
-  #elif 'ggH_hww_PTH' in sample: poi = 'r_ggH_hww_PTH_GT200'
-  #else: poi = 'r_'+sample
+  if '0J' in sample: poi = 'r_ggH_hww_0J'
+  #if ('1J_PTH_60_120' in sample or '1J_PTH_120_200' in sample): poi = 'r_ggH_hww_1J_PTH_GT60'
+  elif ('1J_PTH_60_120' in sample or '1J_PTH_120_200' in sample): poi = 'r_ggH_hww_1J_PTH_GT60'
+  elif ('MJJ_350_700' in sample or 'MJJ_GT700' in sample): poi = 'r_ggH_hww_GE2J_MJJ_GT350'
+  elif ('MJJ_0_350_PTH_0_60' in sample or 'MJJ_0_350_PTH_60_120' in sample): poi = 'r_ggH_hww_GE2J_MJJ_0_350_PTH_LT120'
+  elif 'MJJ_0_350_PTH_120_200' in sample: poi = 'r_ggH_hww_GE2J_MJJ_0_350_PTH_GT120'
+  elif 'ggH_hww_PTH' in sample: poi = 'r_ggH_hww_PTH_GT200'
+  else: poi = 'r_'+sample
 
   #if (sample in ['ggH_hww_PTH_300_450','ggH_hww_PTH_450_650','ggH_hww_PTH_GT650']): poi = 'r_ggH_hww_PTH_GT300'
   #if ('MJJ_0_350_PTH_0_60' in sample or 'MJJ_0_350_PTH_60_120' in sample): poi = 'r_ggH_hww_GE2J_MJJ_0_350_PTH_LT120'
   #elif ('MJJ_350_700' in sample): poi = 'r_ggH_hww_GE2J_MJJ_350_700'
   #elif ('MJJ_GT700' in sample): poi = 'r_ggH_hww_GE2J_MJJ_GT700'
-  else: poi = 'r_'+sample
+  #else: poi = 'r_'+sample
 
   command+="--PO 'map=.*/{}:{}[1,-10,10]' ".format(sample,poi)
 #  command+="--PO 'map=.*/{}:{}[1,-5,5]' ".format(sample,poi)

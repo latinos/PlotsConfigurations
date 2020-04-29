@@ -86,8 +86,8 @@ compute_SF::compute_SF(const char* year, const int nLeptons, std::string request
     SF_files_map["electron"]["TightObjWP"]["2016"]["wpSF"] = {cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2016v2/egammaEffi_passingTight80XHWW.txt"};
     SF_files_map["muon"]["TightObjWP"]["2016"]["idSF"] = {cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2016v2/muonID_TH2_SFs_pt_eta.root"};
     SF_files_map["muon"]["TightObjWP"]["2016"]["isoSF"] = {cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2016v2/muonISO_TH2_SFs_pt_eta.root"};
-    SF_files_map["muon"]["ttHMVA0p8"]["2016"]["ttHMVA"] = {};
-    SF_files_map["muon"]["ttHMVA0p8"]["2016"]["ttHMVA_SYS"] = {};
+    SF_files_map["muon"]["ttHMVA0p8"]["2016"]["ttHMVA"] = {"/afs/cern.ch/user/r/rseidita/public/ttH_SFs/ttHMVA0p8_TightHWWCut_SFs_2016.root"};
+    SF_files_map["muon"]["ttHMVA0p8"]["2016"]["ttHMVA_SYS"] = {"/afs/cern.ch/user/r/rseidita/public/ttH_SFs/ttHMVA0p8_TightHWWCut_SFs_SYS_2016.root"};
 
     SF_files_map["electron"]["TightObjWP"]["2017"]["wpSF"] = {  cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2017v6/egammaEffi_passingMVA102Xwp90isoHWWiso0p06_2017runB.txt",
                                                                 cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2017v6/egammaEffi_passingMVA102Xwp90isoHWWiso0p06_2017runC.txt",
@@ -418,9 +418,9 @@ std::tuple<double, double, double> compute_SF::GetSF(int flavor, double eta, dou
 
     if(flavor==11){
 
-        double eta_max = 2.5;
+        double eta_max = 2.49;
         double eta_min = -2.5;
-        double pt_max = 500.;
+        double pt_max = 499.;
         double pt_min = 10.;
 
         if(eta_temp < eta_min){eta_temp = eta_min;}
@@ -436,9 +436,9 @@ std::tuple<double, double, double> compute_SF::GetSF(int flavor, double eta, dou
 
     else if((flavor == 13) && (type == "Id")){
 
-        double eta_max = 2.4;
+        double eta_max = 2.39;
         double eta_min = -2.4;
-        double pt_max = 200.;
+        double pt_max = 199.;
         double pt_min = 10.;
 
         if(eta_temp < eta_min){eta_temp = eta_min;}
@@ -454,9 +454,9 @@ std::tuple<double, double, double> compute_SF::GetSF(int flavor, double eta, dou
 
     else if((flavor == 13) && (type == "Iso")){
 
-        double eta_max = 2.4;
+        double eta_max = 2.39;
         double eta_min = -2.4;
-        double pt_max = 200.;
+        double pt_max = 199.;
         double pt_min = 10.;
 
         if(eta_temp < eta_min){eta_temp = eta_min;}
@@ -472,9 +472,9 @@ std::tuple<double, double, double> compute_SF::GetSF(int flavor, double eta, dou
 
     else if((flavor == 13) && (type == "ttHMVA")){
 
-        double eta_max = 2.4;
+        double eta_max = 2.39;
         double eta_min = -2.4;
-        double pt_max = 200.;
+        double pt_max = 199.;
         double pt_min = 10.;
 
         if(eta_temp < eta_min){eta_temp = eta_min;}

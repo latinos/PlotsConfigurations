@@ -441,10 +441,10 @@ if args.dataset == 'combination' and args.combination_sideways:
 
     canvas = common.makeRatioCanvas(900, 680, dataset='combination_comp', wide_labels=['2016', '2017', '2018'], nvert=nvert, make_yaxes=True, legend_inside=False, prelim=False)
 else:
-    canvas = common.makeRatioCanvas(600, 680, dataset=args.dataset, prelim=False)
+    canvas = common.makeRatioCanvas(600, 680, dataset=args.dataset, make_yaxes=True, prelim=False)
 
 _temporaries = []
-def plotstack(stack, uncert, gobs, prefit=None, ivert=0):
+def plotstack(stack, uncert, gobs, prefit=None, ivert=0, yscale=2.):
     #del _temporaries[:]
 
     uncert.SetTickLength(0.05, 'X')
@@ -452,7 +452,7 @@ def plotstack(stack, uncert, gobs, prefit=None, ivert=0):
     uncert.SetFillColor(ROOT.kBlack)
     uncert.SetFillStyle(3003)
     uncert.SetLineColor(ROOT.kBlack)
-    uncert.SetLineWidth(1)
+    uncert.SetLineWidth(0)
     uncert.GetXaxis().SetNdivisions(120)
     uncert.GetYaxis().SetNdivisions(110)
 
@@ -469,7 +469,7 @@ def plotstack(stack, uncert, gobs, prefit=None, ivert=0):
     frame.GetXaxis().SetTitle('')
     obsmax = max(gobs.GetY()[ip] + gobs.GetErrorYhigh(ip) for ip in range(gobs.GetN()))
     frame.SetMinimum(0.)
-    frame.SetMaximum(max(obsmax, uncert.GetMaximum()) * 1.22)
+    frame.SetMaximum(max(obsmax, uncert.GetMaximum()) * yscale)
 
     frame.Draw('HIST')
     stack.Draw('SAME HIST')
@@ -848,7 +848,8 @@ else:
         obs = spectra['DATA']
         gobs = ROOT.RooHist(obs, 1.)
         _temporaries.append(gobs)
-        gobs.SetMarkerSize(0.6)
+        if args.single_cr_plot:
+            gobs.SetMarkerSize(0.6)
 
         if not args.binWidthNorm:
             # roohist automatically normalizes by bin width, rescale
@@ -866,17 +867,17 @@ else:
         else:
             ivert = 0
             
-        plotstack(stack, uncert, gobs, prefit=prefit, ivert=ivert)
+        plotstack(stack, uncert, gobs, prefit=prefit, ivert=ivert, yscale=1.22)
 
         if observable == 'ptH':
-            canvas.yaxes[icr].SetTitle('events / GeV  ')
+            canvas.yaxes[ivert].SetTitle('events / GeV  ')
         elif observable == 'njet':
-            canvas.yaxes[icr].SetTitle('events  ')
+            canvas.yaxes[ivert].SetTitle('events  ')
 
         if not args.single_cr_plot:
             legend = ROOT.TLegend(0.65, 0.7, 0.93, 0.9)
         elif icr == 0:
-            legend = ROOT.TLegend(0.4, common.ymax - canvas.hlegend + 0.01, common.xmax - 0.01, common.ymax - 0.01)
+            legend = ROOT.TLegend(0.4, common.YMAX - canvas.hlegend + 0.01, common.XMAX - 0.01, common.YMAX - 0.01)
             legend.SetNColumns(4)
         else:
             continue
@@ -931,7 +932,7 @@ else:
             canvas.printout('cr_%s_spectrum_%s' % (observable, args.dataset), canvas_output_file)
         else:
             canvas.finalize()
-            suppl = common.makeText(0.18, common.ymax - 0.06, 0.6, common.ymax - 0.02, 'supplementary', align=13, font=52)
+            suppl = common.makeText(0.18, common.YMAX - 0.06, 0.6, common.YMAX - 0.02, 'supplementary', align=13, font=52)
             canvas.cd()
             suppl.Draw()
             canvas.Update()
