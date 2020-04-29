@@ -22,6 +22,8 @@ except NameError:
     nuisances = {}
     def makeMCDirectory(x=''):
         return ''
+    def makeMCDirectory_v6(x=''):
+        return ''
 
 from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
 HiggsXS = HiggsXSection()
@@ -189,12 +191,23 @@ nuisances['electronpt'] = {
     'type': 'shape',
     'mapUp' : 'ElepTup',
     'mapDown': 'ElepTdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey != 'WW'),
     'folderUp': makeMCDirectory('ElepTup_suffix'),
     'folderDown': makeMCDirectory('ElepTdo_suffix'),
     'AsLnN': '1'
 }
 
+nuisances['electronpt_WW'] = {
+    'name': 'CMS_scale_e_2016',
+    'kind': 'suffix',
+    'type': 'shape',
+    'mapUp' : 'ElepTup',
+    'mapDown': 'ElepTdo',
+    'samples': dict(('WW', ['1', '1'])),
+    'folderUp': makeMCDirectory_v6('ElepTup_suffix'),
+    'folderDown': makeMCDirectory_v6('ElepTdo_suffix'),
+    'AsLnN': '1'
+}
 ##### Muon Efficiency and energy scale
 
 nuisances['eff_m'] = {
@@ -210,12 +223,23 @@ nuisances['muonpt'] = {
     'type': 'shape',
     'mapUp': 'MupTup',
     'mapDown': 'MupTdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey != 'WW'),
     'folderUp': makeMCDirectory('MupTup_suffix'),
     'folderDown': makeMCDirectory('MupTdo_suffix'),
     'AsLnN': '1'
 }
 
+nuisances['muonpt_WW'] = {
+    'name': 'CMS_scale_m_2016',
+    'kind': 'suffix',
+    'type': 'shape',
+    'mapUp': 'MupTup',
+    'mapDown': 'MupTdo',
+    'samples': dict(('WW', ['1', '1'])),
+    'folderUp': makeMCDirectory_v6('MupTup_suffix'),
+    'folderDown': makeMCDirectory_v6('MupTdo_suffix'),
+    'AsLnN': '1'
+}
 ##### Jet energy scale
 
 nuisances['jes'] = {
@@ -224,12 +248,23 @@ nuisances['jes'] = {
     'type': 'shape',
     'mapUp': 'JESup',
     'mapDown': 'JESdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey != 'WW'),
     'folderUp': makeMCDirectory('JESup_suffix'),
     'folderDown': makeMCDirectory('JESdo_suffix'),
     'AsLnN': '1'
 }
 
+nuisances['jes_WW'] = {
+    'name': 'CMS_scale_j_2016',
+    'kind': 'suffix',
+    'type': 'shape',
+    'mapUp': 'JESup',
+    'mapDown': 'JESdo',
+    'samples': dict(('WW', ['1', '1'])),
+    'folderUp': makeMCDirectory_v6('JESup_suffix'),
+    'folderDown': makeMCDirectory_v6('JESdo_suffix'),
+    'AsLnN': '1'
+}
 ##### MET energy scale
 
 nuisances['met'] = {
@@ -238,12 +273,23 @@ nuisances['met'] = {
     'type': 'shape',
     'mapUp': 'METup',
     'mapDown': 'METdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey != 'WW'),
     'folderUp': makeMCDirectory('METup_suffix'),
     'folderDown': makeMCDirectory('METdo_suffix'),
     'AsLnN': '1'
 }
 
+nuisances['met_WW'] = {
+    'name': 'CMS_scale_met_2016',
+    'kind': 'suffix',
+    'type': 'shape',
+    'mapUp': 'METup',
+    'mapDown': 'METdo',
+    'samples': dict(('WW', ['1', '1'])),
+    'folderUp': makeMCDirectory('METup_suffix'),
+    'folderDown': makeMCDirectory('METdo_suffix'),
+    'AsLnN': '1'
+}
 ##### Pileup
 
 nuisances['PU'] = {
@@ -266,7 +312,7 @@ nuisances['PS']  = {
     'kind'  : 'tree',
     'type'  : 'shape',
     'samples'  : {
-      #'WW'      : ['0.9760', '1.'], # was 0.92657
+      'ggWW'      : ['0.9760', '1.'], # was 0.92657
       'ggH_hww' : ['1.0078', '1.'], # was 0.98554 These numbers are used to normalize the PS variation to the same integral as the nominal after the wwSel skim
       'qqH_hww' : ['0.9398', '1.'], # was 0.92511
      },
@@ -440,6 +486,9 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 # LHE scale variation weights (w_var / w_nominal)
 # [0] is muR=0.50000E+00 muF=0.50000E+00
 # [8] is muR=0.20000E+01 muF=0.20000E+01
+
+### no envelope ###
+'''
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
     'skipCMS': 1,
@@ -459,6 +508,30 @@ nuisances['QCDscale_VV'] = {
         'VgS': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
     }
 }
+'''
+## This should work for samples with either 8 or 9 LHE scale weights (Length$(LHEScaleWeight) == 8 or 9)
+variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
+
+nuisances['QCDscale_V'] = {
+    'name': 'QCDscale_V',
+    'skipCMS': 1,
+    'kind': 'weight_envelope',
+    'type': 'shape',
+    'samples': {'DY': variations},
+    'AsLnN': '1'
+}
+
+nuisances['QCDscale_VV'] = {
+    'name': 'QCDscale_VV',
+    'kind': 'weight_envelope',
+    'type': 'shape',
+    'samples': {
+        'Vg': variations,
+        'VZ': variations,
+        'VgS': variations
+    }
+}
+
 
 # ggww and interference
 nuisances['QCDscale_ggVV'] = {
@@ -714,7 +787,6 @@ nuisances['DYttnorm2j']  = {
                  'type'  : 'rateParam',
                  'cuts'  : cuts2j
                 }
-
 '''
 nuisances['WWnorm0j']  = {
                'name'  : 'CMS_hww_WWnorm0j',
