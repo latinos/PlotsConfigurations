@@ -115,7 +115,7 @@ aliases['topcr'] = {
 }
 
 aliases['dycr'] = {
-    'expr': 'mth<60 && mll>40 && mll<80 && bVeto'
+    'expr': 'mth<60 && mll>70 && mll<120 && bVeto'
 }
 
 aliases['wwcr'] = {
@@ -128,7 +128,11 @@ aliases['sr'] = {
     'expr': 'mth>60 && mtw2>30 && bVeto'
 }
 
-# B tag scale factors
+aliases['centralVeto'] = {
+    'expr': 'Sum$(CleanJet_pt > 30 && CleanJet_eta > TMath::Min(CleanJet_eta[0], CleanJet_eta[1]) && CleanJet_eta < TMath::Max(CleanJet_eta[0], CleanJet_eta[1]) && abs(CleanJet_eta - CleanJet_eta[0]) > 1 && abs(CleanJet_eta - CleanJet_eta[1]) > 1) == 0'        
+}
+
+#B tag scale factors
 
 aliases['bVetoSF'] = {
     'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
