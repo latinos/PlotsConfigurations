@@ -172,7 +172,7 @@ aliases['nllWOTF'] = {
 }
 
 aliases['ttHMVA_SF_3l'] = {
-    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/patches/compute_SF.C+' % os.getenv('CMSSW_BASE')],
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/patches/compute_SF_BETA.C+' % os.getenv('CMSSW_BASE')],
     'class': 'compute_SF',
     'args' : ('2016', 3, 'total_SF'),
     'samples': mc
