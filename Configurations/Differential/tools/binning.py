@@ -52,14 +52,14 @@ for obs, mapping in bin_mapping.iteritems():
 
 bintitles = {}
 
-bintitles['ptH'] = ['[0, 20]', '[20, 45]', '[45, 80]', '[80, 120]', '[120, 200]', '[200, #infty)']
+bintitles['ptH'] = ['0#font[122]{-}20', '20#font[122]{-}45', '45#font[122]{-}80', '80#font[122]{-}120', '120#font[122]{-}200', '>#kern[0.1]{200}']
 #bintitles['ptH'] = ['[0, 15]', '[15, 30]', '[30, 60]', '[60, 120]', '[120, 200]', '[200, #infty)']
 #bintitles['ptH'] = ['[0, 10]', '[10, 20]', '[20, 60]', '[60, 100]', '[100, 200]', '[200, #infty)']
 bintitles['njet'] = ['0', '1', '2', '3', '#geq 4']
 
 xtitles = {
-    'ptH': 'p_{T}^{H} (GeV)',
-    'njet': 'N_{jet}'
+    'ptH': '#font[12]{p}_{#lower[-0.18]{#kern[-0.2]{T}}}^{H} (GeV)',
+    'njet': '#font[12]{N}_{#kern[-0.3]{jet}}'
 }
 
 category_scheme = {

@@ -9,6 +9,17 @@ structure['DY']  = {
                   'isData'   : 0
               }
 
+structure['Dyemb']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+              }
+
+structure['Dyveto']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'removeFromCuts' : [ k for k in cuts ],
+              }
+
 
 structure['Wjets']  = {  
                   'isSignal' : 0,
@@ -204,11 +215,6 @@ structure['DATA']  = {
                   'isSignal' : 0,
                   'isData'   : 1 
               }
-
-print "INSTRUCTURE"
-print cuts
-print nuisances['WWresum0j']
-print "OK"
 
 for nuis in nuisances.itervalues():
   if 'cutspost' in nuis:

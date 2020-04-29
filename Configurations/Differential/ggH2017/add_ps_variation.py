@@ -56,7 +56,11 @@ for ckey in source.GetListOfKeys():
             for v in ['Up', 'Down']:
                 hvarsource = sdir.Get('histo_%s_%s%s' % (sname, nuisance, v))
                 tdir.cd()
-                hvartarget = hnomtarget.Clone('histo_%s_%s%s' % (sname, nuisance, v))
+                try:
+                    hvartarget = hnomtarget.Clone('histo_%s_%s%s' % (sname, nuisance, v))
+                except:
+                    print scut, variable, hname
+                    raise
                 if hnomsource.GetSumOfWeights() > 0.:
                     hvartarget.Scale(hvarsource.GetSumOfWeights() / hnomsource.GetSumOfWeights())
     

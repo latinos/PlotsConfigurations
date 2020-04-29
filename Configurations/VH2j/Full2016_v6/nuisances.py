@@ -203,17 +203,20 @@ nuisances['muonpt'] = {
 
 ##### Jet energy scale
 
-#nuisances['jes'] = {
-#    'name': 'CMS_scale_j_2016',
-#    'kind': 'suffix',
-#    'type': 'shape',
-#    'mapUp': 'JESup',
-#    'mapDown': 'JESdo',
-#    'samples': dict((skey, ['1', '1']) for skey in mc),
-#    'folderUp': makeMCDirectory('JESup_suffix'),
-#    'folderDown': makeMCDirectory('JESdo_suffix'),
-#    'AsLnN': '1'
-#}
+jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
+
+for js in jes_systs:
+  nuisances[js] = {
+      'name': 'CMS_scale_'+js,
+      'kind': 'suffix',
+      'type': 'shape',
+      'mapUp': js+'up',
+      'mapDown': js+'do',
+      'samples': dict((skey, ['1', '1']) for skey in mc),
+      'folderUp': makeMCDirectory('JESup_suffix'),
+      'folderDown': makeMCDirectory('JESdo_suffix'),
+      'AsLnN': '1'
+  }
 
 ##### MET energy scale
 
@@ -384,74 +387,82 @@ nuisances['pdf_qqbar'] = {
     },
 }
 
-#FIXME: these come from HIG-16-042, maybe should be recomputed? --> NEED TO BE USED THE ONES FOR VH2j
 nuisances['pdf_Higgs_gg_ACCEPT'] = {
     'name': 'pdf_Higgs_gg_ACCEPT',
     'samples': {
-        'ggH_hww': '1.005',
-        'ggH_htt': '1.005',
-        'ggZH_hww': '1.005',
-        'bbH_hww': '1.005'
+        'ggH_hww': '1.006',
+        'ggH_htt': '1.006',
+        'ggZH_hww': '1.006',
+        'bbH_hww': '1.006'
     },
     'type': 'lnN',
 }
 
-#FIXME: these come from HIG-16-042, maybe should be recomputed?--> NEED TO BE USED THE ONES FOR VH2j 
 nuisances['pdf_gg_ACCEPT'] = {
     'name': 'pdf_gg_ACCEPT',
     'samples': {
-        'ggWW': '1.005',
+        'ggWW': '1.006',
     },
     'type': 'lnN',
 }
 
-#FIXME: these come from HIG-16-042, maybe should be recomputed? --> NEED TO BE USED THE ONES FOR VH2j 
 nuisances['pdf_Higgs_qqbar_ACCEPT'] = {
     'name': 'pdf_Higgs_qqbar_ACCEPT',
     'type': 'lnN',
     'samples': {
-        'qqH_hww': '1.011',
-        'qqH_htt': '1.011',
-        'WH_hww': '1.007',
-        'WH_htt': '1.007',
-        'ZH_hww': '1.012',
-        'ZH_htt': '1.012',
+        'qqH_hww': '1.002',
+        'qqH_htt': '1.002',
+        'WH_hww': '1.003',
+        'WH_htt': '1.003',
+        'ZH_hww': '1.002',
+        'ZH_htt': '1.002',
     },
 }
 
-#FIXME: these come from HIG-16-042, maybe should be recomputed? --> NEED TO BE USED THE ONES FOR VH2j 
 nuisances['pdf_qqbar_ACCEPT'] = {
     'name': 'pdf_qqbar_ACCEPT',
     'type': 'lnN',
     'samples': {
-        'VZ': '1.005',
+        'VZ': '1.001',
     },
 }
+
 
 ##### Renormalization & factorization scales
 
 ## Shape nuisance due to QCD scale variations for DY
 # LHE scale variation weights (w_var / w_nominal)
-# [0] is muR=0.50000E+00 muF=0.50000E+00
-# [8] is muR=0.20000E+01 muF=0.20000E+01
+# [0] is muR=0.5 muF=0.5
+# [1] is muR=0.5 muF=1.0
+# [2] is muR=0.5 muF=2.0
+# [3] is muR=1.0 muF=0.5
+# [4] is muR=1.0 muF=1.0
+# [5] is muR=1.0 muF=2.0
+# [6] is muR=2.0 muF=0.5
+# [7] is muR=2.0 muF=1.0
+# [8] is muR=2.0 muF=2.0
+
+# LHEScaleWeight nominal length is 9
+
+variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
 
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
     'skipCMS': 1,
-    'kind': 'weight',
+    'kind': 'weight_envelope',
     'type': 'shape',
-    'samples': {'DY': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]']},
+    'samples': {'DY': variations},
     'AsLnN': '1'
 }
 
 nuisances['QCDscale_VV'] = {
     'name': 'QCDscale_VV',
-    'kind': 'weight',
+    'kind': 'weight_envelope',
     'type': 'shape',
     'samples': {
-        'Vg': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-        'VZ': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-        'VgS': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
+        'Vg': variations,
+        'VZ': variations,
+        'VgS': variations
     }
 }
 
@@ -460,7 +471,7 @@ nuisances['QCDscale_ggVV'] = {
     'name': 'QCDscale_ggVV',
     'type': 'lnN',
     'samples': {
-        'ggWW': '1.15', ## from where is comming? 
+        'ggWW': '1.15',  # Where is this value coming from?
     },
 }
 
@@ -603,29 +614,27 @@ nuisances['QCDscale_WWewk'] = {
     'type': 'lnN'
 }
 
-#FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['QCDscale_qqbar_ACCEPT'] = {
     'name': 'QCDscale_qqbar_ACCEPT',
     'type': 'lnN',
     'samples': {
-        'qqH_hww': '1.007',
-        'qqH_htt': '1.007',
-        'WH_hww': '1.05',
-        'WH_htt': '1.05',
-        'ZH_hww': '1.04',
-        'ZH_htt': '1.04',
-        'VZ': '1.029', # this shouldn't be here because we have full shape-based uncertainty for VZ
+        'qqH_hww': '1.003',
+        'qqH_htt': '1.003',
+        'WH_hww': '1.010',
+        'WH_htt': '1.010',
+        'ZH_hww': '1.015',
+        'ZH_htt': '1.015',
+        #'VZ': '1.004', # this shouldn't be here because we have full shape-based uncertainty for VZ
     }
 }
 
-#FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['QCDscale_gg_ACCEPT'] = {
     'name': 'QCDscale_gg_ACCEPT',
     'samples': {
-        'ggH_hww': '1.027', # shouldn't be here
-        'ggH_htt': '1.027',
-        'ggZH_hww': '1.027',
-        'ggWW': '1.027',
+        #'ggH_hww': '1.012', # shouldn't be here
+        'ggH_htt': '1.012',
+        'ggZH_hww': '1.012',
+        'ggWW': '1.012',
     },
     'type': 'lnN',
 }

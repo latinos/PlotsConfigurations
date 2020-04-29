@@ -18,6 +18,7 @@ eleWP = 'mva_90p_Iso2016'
 muWP = 'cut_Tight80x'
 
 aliases['LepWPCut'] = {
+    # 'expr': 'LepCut3l__ele_'+eleWP+'__mu_'+muWP+'*(((abs(Lepton_pdgId[0])==13 && Muon_mvaTTH[Lepton_muonIdx[0]]>0.8) || (abs(Lepton_pdgId[0])==11 && Electron_mvaTTH[Lepton_electronIdx[0]]>0.7)) && ((abs(Lepton_pdgId[1])==13 && Muon_mvaTTH[Lepton_muonIdx[1]]>0.8) || (abs(Lepton_pdgId[1])==11 && Electron_mvaTTH[Lepton_electronIdx[1]]>0.7)) && ((abs(Lepton_pdgId[2])==13 && Muon_mvaTTH[Lepton_muonIdx[2]]>0.8) || (abs(Lepton_pdgId[2])==11 && Electron_mvaTTH[Lepton_electronIdx[2]]>0.7)))',
     'expr': 'LepCut3l__ele_'+eleWP+'__mu_'+muWP,
     'samples': mc + ['DATA']
 }
@@ -102,22 +103,22 @@ aliases['multiJet'] = {
 # B tagging
 
 bAlgo = 'DeepB'
-bWP = '0.2217'
+bWP = '0.6321'
 
 aliases['bVeto'] = {
-'expr': '(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0) && mth > 60' }
+'expr': '(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.6321) == 0) && mth > 60' }
 
 
 aliases['bVetoDY'] = {                                                                                                              
-'expr': '(Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0) && mth < 60'                       
+'expr': '(Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.6321) == 0) && mth < 60'                       
 }
 
 
 aliases['btag2'] = {
 'expr': '(   Alt$(CleanJet_pt[0],0) > 30. \
           && Alt$(CleanJet_pt[1],0) > 30. \
-          && ( ( Alt$(abs(CleanJet_eta[0]),99)<2.5 && Alt$(Jet_btagDeepB[CleanJet_jetIdx[0]],0) > 0.2217 ) \
-            || ( Alt$(abs(CleanJet_eta[1]),99)<2.5 && Alt$(Jet_btagDeepB[CleanJet_jetIdx[1]],0) > 0.2217 ) ) \
+          && ( ( Alt$(abs(CleanJet_eta[0]),99)<2.5 && Alt$(Jet_btagDeepB[CleanJet_jetIdx[0]],0) > 0.6321 ) \
+            || ( Alt$(abs(CleanJet_eta[1]),99)<2.5 && Alt$(Jet_btagDeepB[CleanJet_jetIdx[1]],0) > 0.6321 ) ) \
          )' 
 }
 

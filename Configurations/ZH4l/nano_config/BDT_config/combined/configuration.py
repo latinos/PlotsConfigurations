@@ -2,7 +2,7 @@
 
 import os
 
-configDir = os.path.expandvars("/afs/cern.ch/work/k/kaura/NewLatino_v2/CMSSW_10_2_5/src/newPlotConfigurations/PlotsConfigurations/Configurations/ZH4l/nano_config/Full2016/")
+configDir = os.path.expandvars("/afs/cern.ch/work/k/kaura/NewLatino_v2/CMSSW_10_2_5/src/newPlotConfigurations/PlotsConfigurations/Configurations/ZH4l/nano_config/Full2016/") #change the path to where following files are
 
 tagName = ''
 
@@ -16,7 +16,7 @@ variablesFile = os.path.join(configDir,'variables.py')
 cutsFile = os.path.join(configDir,'cuts_BDT.py' )
 
 # file with list of samples
-samplesFile = os.path.join(configDir,'samples_BDT678.py' )
+samplesFile = os.path.join(configDir,'samples_BDT678_v6.py' )
 
 # structure file for datacard
 structureFile = os.path.join(configDir,'structure_BDT678.py')
