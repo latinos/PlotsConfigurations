@@ -26,7 +26,6 @@ Lep1WPCut='(Alt$(Lepton_isTightElectron_'+eleWP+'[1], 0) > 0.5 \
 aliases['bWP'] = {
     'expr': '0.2217'
 }
-
 aliases['LepWPCut'] = {
     'expr': LepWPCut
 }
@@ -35,106 +34,96 @@ aliases['Lep1WPCut'] = {
 }
 
 aliases['LepWPSF'] = {
-    'expr': 'Lepton_tightElectron_'+eleWP+'_IdIsoSF[0]*Lepton_tightMuon_'+muWP+'_IdIsoSF[0] * '
-    +'Alt$(Lepton_tightElectron_'+eleWP+'_IdIsoSF[1], 1)*'
-    +'Alt$(Lepton_tightMuon_'+muWP+'_IdIsoSF[1], 1)',
+    'expr': '(Lepton_isTightElectron_'+eleWP+'[0] > 0.5) * Lepton_tightElectron_'+eleWP+'_IdIsoSF[0] \
+    + (Lepton_isTightMuon_'+muWP+'[0] > 0.5)*Lepton_tightMuon_'+muWP+'_IdIsoSF[0]',
     'samples': mc
+}
+
+aliases['WlepMT'] = {
+    'expr': 'TMath::Sqrt( 2*Lepton_pt[0]*PuppiMET_pt \
+    *( 1-TMath::Cos(Lepton_phi[0]-PuppiMET_phi) ) )'
+}
+aliases['boostHiggsMT'] = {
+    'expr': 'TMath::Sqrt( 2*HM_Wlep_pt_Puppi*Alt$(HM_CleanFatJetPassMBoosted_pt[0], 0) \
+    *( 1-TMath::Cos(HM_Wlep_phi_Puppi-Alt$(HM_CleanFatJetPassMBoosted_phi[0], 0)) ) )'
+}
+aliases['resolvHiggsMT'] = {
+    'expr': 'TMath::Sqrt( 2*HM_Wlep_pt_Puppi*HM_Whad_pt \
+    *( 1-TMath::Cos(HM_Wlep_phi_Puppi-HM_Whad_phi) ) )'
 }
 
 aliases['boosted'] = {
     'expr': 'PuppiMET_pt > 40 \
-            && Alt$(CleanFatJetPassMBoosted_pt[0], 0) > 200 \
-            && Alt$(CleanFatJetPassMBoosted_WptOvHfatM[0], 0) > 0.4 \
-            && Alt$(CleanFatJetPassMBoosted_tau21[0], 999) < 0.4 \
-            && Alt$(CleanFatJetPassMBoosted_mass[0], 0) > 40 \
-            && abs(Alt$(CleanFatJetPassMBoosted_eta[0], 999)) < 2.4'
+            && Alt$(HM_CleanFatJetPassMBoosted_pt[0], 0) > 200 \
+            && Alt$(HM_CleanFatJetPassMBoosted_WptOvHfatM[0], 0) > 0.4 \
+            && Alt$(HM_CleanFatJetPassMBoosted_tau21[0], 999) < 0.45 \
+            && Alt$(HM_CleanFatJetPassMBoosted_mass[0], 0) > 40 \
+            && abs(Alt$(HM_CleanFatJetPassMBoosted_eta[0], 999)) < 2.4'
 }
 
 aliases['resolved'] = {
     'expr': '!boosted[0] \
             && PuppiMET_pt > 30 \
-            && Wlep_mt > 50 \
-            && WptOvHak4M > 0.35 \
-            && Hlnjj_mt > 60 \
-            && Whad_pt > 30'
+            && WlepMT > 50 \
+            && HM_WptOvHak4M > 0.35 \
+            && resolvHiggsMT > 60 \
+            && HM_Whad_pt > 30'
 }
 
 aliases['boostedSignalWMass'] = {
-    'expr': '(65 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
-            && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 105)'
+    'expr': '(65 < Alt$(HM_CleanFatJetPassMBoosted_mass[0], 0) \
+            && Alt$(HM_CleanFatJetPassMBoosted_mass[0], 999) < 105)'
 }
 
 aliases['resolvedSignalWMass'] = {
-    'expr': '(65 < Whad_mass && Whad_mass < 105)'
+    'expr': '(65 < HM_Whad_mass && HM_Whad_mass < 105)'
 }
 
 aliases['boostedSidebandWMass'] = {
-    'expr': '(40 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
-            && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 250)'
+    'expr': '(40 < Alt$(HM_CleanFatJetPassMBoosted_mass[0], 0) \
+            && Alt$(HM_CleanFatJetPassMBoosted_mass[0], 999) < 250)'
 }
 
 aliases['lowBoostedSidebandWMass'] = {
-    'expr': '(40 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
-            && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 65)'
+    'expr': '(40 < Alt$(HM_CleanFatJetPassMBoosted_mass[0], 0) \
+            && Alt$(HM_CleanFatJetPassMBoosted_mass[0], 999) < 65)'
 }
 
 aliases['highBoostedSidebandWMass'] = {
-    'expr': '(105 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
-            && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 250)'
+    'expr': '(105 < Alt$(HM_CleanFatJetPassMBoosted_mass[0], 0) \
+            && Alt$(HM_CleanFatJetPassMBoosted_mass[0], 999) < 250)'
 }
 
 
 aliases['resolvedSidebandWMass'] = {
-    'expr': '(40 < Whad_mass && Whad_mass < 250)'
+    'expr': '(40 < HM_Whad_mass && HM_Whad_mass < 250)'
 }
 
 aliases['lowResolvedSidebandWMass'] = {
-    'expr': '(40 < Whad_mass && Whad_mass < 65)'
+    'expr': '(40 < HM_Whad_mass && HM_Whad_mass < 65)'
 }
 
 aliases['highResolvedSidebandWMass'] = {
-    'expr': '(105 < Whad_mass && Whad_mass < 250)'
+    'expr': '(105 < HM_Whad_mass && HM_Whad_mass < 250)'
 }
 
 
-# aliases['resolvedQCDcr'] = {
-#     'expr': '(   65 < Whad_mass && Whad_mass < 105 \
-#                 && Wlep_mt < 50 && 0 < Hlnjj_mt \
-#                 && Hlnjj_mt < 60 && WptOvHak4M < 0.35 )'
-# }
-#
-# aliases['boostedQCDcr'] = {
-#     'expr': '(65 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
-#             && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 105 \
-#             && Wlep_mt < 50 \
-#             && Alt$(CleanFatJetPassMBoosted_tau21[0], 0) > 0.4\
-#             && Alt$(CleanFatJetPassMBoosted_WptOvHfatM[0], 9) < 0.4)'
-# }
+aliases['resolvedQCDcr'] = {
+    'expr': '(   65 < HM_Whad_mass && HM_Whad_mass < 105 \
+                && WlepMT < 50 && 0 < resolvHiggsMT \
+                && resolvHiggsMT < 60 && HM_WptOvHak4M < 0.35 )'
+}
+
+aliases['boostedQCDcr'] = {
+    'expr': '(65 < Alt$(HM_CleanFatJetPassMBoosted_mass[0], 0) \
+            && Alt$(HM_CleanFatJetPassMBoosted_mass[0], 999) < 105 \
+            && WlepMT < 50 \
+            && Alt$(HM_CleanFatJetPassMBoosted_tau21[0], 0) > 0.4\
+            && Alt$(HM_CleanFatJetPassMBoosted_WptOvHfatM[0], 9) < 0.4)'
+}
 
 
 
-# data/MC scale factors
-aliases['SFweight'] = {
-    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'Lepton_RecoSF[0]', 'EMTFbug_veto','PrefireWeight','LepWPSF[0]']), #FIXME: btagSF missing
-    'samples': mc
-}
-# # variations of tight lepton WP
-aliases['SFweightEleUp'] = {
-    'expr': 'Lepton_tightElectron_'+eleWP+'_IdIsoSF_Up[0]',
-    'samples': mc
-}
-aliases['SFweightEleDown'] = {
-    'expr': 'Lepton_tightElectron_'+eleWP+'_IdIsoSF_Down[0]',
-    'samples': mc
-}
-aliases['SFweightMuUp'] = {
-    'expr': 'Lepton_tightMuon_'+muWP+'_IdIsoSF_Up[0]',
-    'samples': mc
-}
-aliases['SFweightMuDown'] = {
-    'expr': 'Lepton_tightMuon_'+muWP+'_IdIsoSF_Down[0]',
-    'samples': mc
-}
 
 
 
@@ -175,7 +164,7 @@ aliases['GenLHE'] = {
 
 
 
-# B-Stuff
+# # B-Stuff
 aliases['bVetoBoosted'] = {
     'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx[CleanJetNotFat_jetIdx]] > bWP[0] \
                     && CleanJet_pt[CleanJetNotFat_jetIdx] > 20 \
@@ -186,8 +175,8 @@ aliases['bVetoResolved'] = {
     'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] \
                     && CleanJet_pt > 20 \
                     && abs(CleanJet_eta) < 2.5 \
-                    && CleanJet_jetIdx != idx_j1 \
-                    && CleanJet_jetIdx != idx_j2 \
+                    && CleanJet_jetIdx != HM_idx_j1 \
+                    && CleanJet_jetIdx != HM_idx_j2 \
                 ) == 0'
 }
 aliases['bVeto'] = {
@@ -201,7 +190,6 @@ aliases['bReq'] = {
 }
 
 # Temporary patch for BTV postprocessor bug (no SF for eta < 0, <= 102X_nAODv5_Full2018v5)
-
 btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_102XSF_V1.csv' % os.getenv('CMSSW_BASE')
 
 aliases['Jet_btagSF_shapeFix'] = {
@@ -222,8 +210,14 @@ aliases['bVetoSF'] = {
     'samples': mc
 }
 
+aliases['btagnSF'] = {
+    #'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx] + (CleanJet_pt<30 || abs(CleanJet_eta)>2.5))))',
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shapeFix[CleanJet_jetIdx] + (CleanJet_pt<30 || abs(CleanJet_eta)>2.5))))',
+    'samples': mc
+}
+
 aliases['btagSF'] = {
-    'expr': 'bVetoSF[0]*bVeto[0] + !bVeto[0]',
+    'expr': 'bVetoSF[0]*bVeto[0] + btagnSF[0]*!bVeto[0]',
     'samples': mc
 }
 
@@ -239,7 +233,7 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
         'samples': mc
     }
 
-    for targ in ['bVeto']:
+    for targ in ['bVeto', 'btagn']:
         alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
         #alias['expr'] = alias['expr'].replace('btagSF_shape', 'btagSF_shape_up_%s' % shift)
         alias['expr'] = alias['expr'].replace('btagSF_shapeFix', 'btagSF_shapeFix_up_%s' % shift)
@@ -249,14 +243,46 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
         alias['expr'] = alias['expr'].replace('btagSF_shapeFix', 'btagSF_shapeFix_down_%s' % shift)
 
     aliases['btagSF%sup' % shift] = {
-        'expr': '(bVetoSF{shift}up*bVeto + !bVeto[0])'.format(shift = shift),
+        'expr': '(bVetoSF{shift}up*bVeto + btagnSF{shift}up*!bVeto[0])'.format(shift = shift),
         'samples': mc
     }
 
     aliases['btagSF%sdown' % shift] = {
-        'expr': '(bVetoSF{shift}down*bVeto + !bVeto)'.format(shift = shift),
+        'expr': '(bVetoSF{shift}down*bVeto + btagnSF{shift}down*!bVeto)'.format(shift = shift),
         'samples': mc
     }
+
+
+
+
+
+
+
+# data/MC scale factors
+aliases['SFweight'] = {
+    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'Lepton_RecoSF[0]', 'EMTFbug_veto','PrefireWeight','LepWPSF[0]','btagSF[0]']),
+    'samples': mc
+}
+# # variations of tight lepton WP
+aliases['SFweightEleUp'] = {
+    'expr': 'Lepton_tightElectron_'+eleWP+'_IdIsoSF_Up[0]',
+    'samples': mc
+}
+aliases['SFweightEleDown'] = {
+    'expr': 'Lepton_tightElectron_'+eleWP+'_IdIsoSF_Down[0]',
+    'samples': mc
+}
+aliases['SFweightMuUp'] = {
+    'expr': 'Lepton_tightMuon_'+muWP+'_IdIsoSF_Up[0]',
+    'samples': mc
+}
+aliases['SFweightMuDown'] = {
+    'expr': 'Lepton_tightMuon_'+muWP+'_IdIsoSF_Down[0]',
+    'samples': mc
+}
+
+
+
 
 
 
@@ -290,7 +316,11 @@ aliases['Top_pTrw'] = {
     'expr': 'isTTbar * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPtOTF) * TMath::Exp(0.0615 - 0.0005 * antitopGenPtOTF))) + isSingleTop',
     'samples': ['top']
 }
-
+# # Dennis Roy for 2016 -> also update nuisances
+# aliases['Top_pTrw'] = {
+#     'expr': '(TMath::Sqrt(TMath::Exp(7.78707e-03 - 2.44380e-04*topGenPt + 5.02121e-08*topGenPt*topGenPt + 4.18764/(topGenPt+50.7111)) * TMath::Exp(7.78707e-03 - 2.44380e-04*antitopGenPt + 5.02121e-08*antitopGenPt*antitopGenPt + 4.18764/(antitopGenPt+50.7111))))',
+#     'samples': ['top']
+# }
 
 
 # PU jet Id SF

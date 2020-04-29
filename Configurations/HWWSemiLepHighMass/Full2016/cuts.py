@@ -17,8 +17,10 @@ LepCats['MuCh_']='(abs(Lepton_pdgId[0])==13)'
 
 BoostProcCats={}
 BoostProcCats['incl_']='1'
-BoostProcCats['Untagged_']='!IsVbfFat'
-BoostProcCats['VBF_']='IsVbfFat'
+BoostProcCats['Untagged_']='!HM_IsVbfFat'
+BoostProcCats['VBF_']='HM_IsVbfFat'
+BoostProcCats['DNNVBF_']='DNN_isVBF >= 0.5'
+BoostProcCats['DNNggF_']='DNN_isVBF < 0.5'
 
 BoostCats={}
 # BoostCats['Boosted']='boosted[0]'
@@ -35,23 +37,25 @@ BoostCats['BoostedSB_']='boosted[0] \
 #                         && !boostedSignalWMass[0] \
 #                         && highBoostedSidebandWMass[0] \
 #                         && bVeto[0]'
+
 BoostCats['BoostedTopCR_']='boosted[0] && boostedSignalWMass[0] && bReq[0]'
 
 
 
 ResolveProcCats={}
 ResolveProcCats['incl_']='1'
-ResolveProcCats['Untagged_']='!IsVbfjj'
-ResolveProcCats['VBF_']='IsVbfjj'
+ResolveProcCats['Untagged_']='!HM_IsVbfjj'
+ResolveProcCats['VBF_']='HM_IsVbfjj'
+ResolveProcCats['DNNVBF_']='DNN_isVBF'
+ResolveProcCats['DNNggF_']='!DNN_isVBF'
 
 ResolveCats={}
 # ResolveCats['Resolved']='resolved[0]'
 ResolveCats['ResolvedSR_']='resolved[0] && resolvedSignalWMass[0] && bVeto[0]'
-
 ResolveCats['ResolvedSB_']='resolved[0] \
-                        && !resolvedSignalWMass[0] \
-                        && resolvedSidebandWMass[0] \
-                        && bVeto[0]'
+                            && !resolvedSignalWMass[0] \
+                            && resolvedSidebandWMass[0] \
+                            && bVeto[0]'
 # ResolveCats['ResolvedSB__low']='resolved[0] \
 #                             && !resolvedSignalWMass[0] \
 #                             && lowResolvedSidebandWMass[0] \
@@ -60,8 +64,8 @@ ResolveCats['ResolvedSB_']='resolved[0] \
 #                             && !resolvedSignalWMass[0] \
 #                             && highResolvedSidebandWMass[0] \
 #                             && bVeto[0]'
-ResolveCats['ResolvedTopCR_']='resolved[0] && resolvedSignalWMass[0] && bReq[0]'
 
+ResolveCats['ResolvedTopCR_']='resolved[0] && resolvedSignalWMass[0] && bReq[0]'
 
 
 # cuts['BoostedQCDcr'] = 'boostedQCDcr[0]'
