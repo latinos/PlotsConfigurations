@@ -19,7 +19,7 @@ for i in [ ff.GetTitle() for ff in f.GetListOfKeys() ]:
             if k.split('_')[1] == 'Fake': continue
             if k.split('_')[1] == 'DATA': continue
             # only the nominal
-            if len(k.split('_'))!=2: continue
+            if len(k.split('_'))>2 and k.split('_')[-1] not in ['LT150','GT150','FWDH']: continue
             histo = f.Get('%s/%s/%s' %( i , j , k ) )
             #if histo.Integral() < 0:
                 #print('Nominal histogram %s/%s/%s has negative integral: %s , overwritting bin to 0.00001' %( i , j , k , histo.Integral() ))
@@ -33,5 +33,5 @@ for i in [ ff.GetTitle() for ff in f.GetListOfKeys() ]:
                     #histo.SetBinError(ixbin, 0.)
                     print('after  :: ixbin : %s ; bincontent : %s +/- %s' %( ixbin , histo.GetBinContent(ixbin) , histo.GetBinError(ixbin) ) )
 
-f.Write("",rt.TObject.kOverwrite)
+#f.Write("",rt.TObject.kOverwrite)
 f.Close()
