@@ -44,21 +44,21 @@ aliases['WlepMT'] = {
     *( 1-TMath::Cos(Lepton_phi[0]-PuppiMET_phi) ) )'
 }
 aliases['boostHiggsMT'] = {
-    'expr': 'TMath::Sqrt( 2*HM_Wlep_pt_Puppi*Alt$(HM_CleanFatJetPassMBoosted_pt[0], 0) \
-    *( 1-TMath::Cos(HM_Wlep_phi_Puppi-Alt$(HM_CleanFatJetPassMBoosted_phi[0], 0)) ) )'
+    'expr': 'TMath::Sqrt( 2*Wlep_pt_Puppi*Alt$(CleanFatJetPassMBoosted_pt[0], 0) \
+    *( 1-TMath::Cos(Wlep_phi_Puppi-Alt$(CleanFatJetPassMBoosted_phi[0], 0)) ) )'
 }
 aliases['resolvHiggsMT'] = {
-    'expr': 'TMath::Sqrt( 2*HM_Wlep_pt_Puppi*HM_Whad_pt \
-    *( 1-TMath::Cos(HM_Wlep_phi_Puppi-HM_Whad_phi) ) )'
+    'expr': 'TMath::Sqrt( 2*Wlep_pt_Puppi*Whad_pt \
+    *( 1-TMath::Cos(Wlep_phi_Puppi-Whad_phi) ) )'
 }
 
 aliases['boosted'] = {
     'expr': 'PuppiMET_pt > 40 \
-            && Alt$(HM_CleanFatJetPassMBoosted_pt[0], 0) > 200 \
-            && Alt$(HM_CleanFatJetPassMBoosted_WptOvHfatM[0], 0) > 0.4 \
-            && Alt$(HM_CleanFatJetPassMBoosted_tau21[0], 999) < 0.45 \
-            && Alt$(HM_CleanFatJetPassMBoosted_mass[0], 0) > 40 \
-            && abs(Alt$(HM_CleanFatJetPassMBoosted_eta[0], 999)) < 2.4'
+            && Alt$(CleanFatJetPassMBoosted_pt[0], 0) > 200 \
+            && Alt$(CleanFatJetPassMBoosted_WptOvHfatM[0], 0) > 0.4 \
+            && Alt$(CleanFatJetPassMBoosted_tau21[0], 999) < 0.45 \
+            && Alt$(CleanFatJetPassMBoosted_mass[0], 0) > 40 \
+            && abs(Alt$(CleanFatJetPassMBoosted_eta[0], 999)) < 2.4'
 }
 
 aliases['idxCleanFatJetW'] = {
@@ -78,21 +78,21 @@ aliases['boostedNoTau21'] = {
             && Alt$(CleanFatJet_mass[(int)idxCleanFatJetW], 0) > 40 \
             && manualHfatM > 0 \
             && Alt$(CleanFatJet_pt[(int)idxCleanFatJetW], 0) / manualHfatM > 0.4 \
-            && HM_Wlep_pt_Puppi / manualHfatM > 0.4'
+            && Wlep_pt_Puppi / manualHfatM > 0.4'
 }
 
 aliases['resolved'] = {
     'expr': '!boosted[0] \
             && PuppiMET_pt > 30 \
             && WlepMT > 50 \
-            && HM_WptOvHak4M > 0.35 \
+            && WptOvHak4M > 0.35 \
             && resolvHiggsMT > 60 \
-            && HM_Whad_pt > 30'
+            && Whad_pt > 30'
 }
 
 aliases['boostedSignalWMass'] = {
-    'expr': '(65 < Alt$(HM_CleanFatJetPassMBoosted_mass[0], 0) \
-            && Alt$(HM_CleanFatJetPassMBoosted_mass[0], 999) < 105)'
+    'expr': '(65 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
+            && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 105)'
 }
 aliases['boostedSignalWMassNoTau21'] = {
     'expr': '(65 < Alt$(CleanFatJet_mass[(int)idxCleanFatJetW], 0) \
@@ -100,12 +100,12 @@ aliases['boostedSignalWMassNoTau21'] = {
 }
 
 aliases['resolvedSignalWMass'] = {
-    'expr': '(65 < HM_Whad_mass && HM_Whad_mass < 105)'
+    'expr': '(65 < Whad_mass && Whad_mass < 105)'
 }
 
 aliases['boostedSidebandWMass'] = {
-    'expr': '(40 < Alt$(HM_CleanFatJetPassMBoosted_mass[0], 0) \
-            && Alt$(HM_CleanFatJetPassMBoosted_mass[0], 999) < 250)'
+    'expr': '(40 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
+            && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 250)'
 }
 aliases['boostedSidebandWMassNoTau21'] = {
     'expr': '(40 < Alt$(CleanFatJet_mass[(int)idxCleanFatJetW], 0) \
@@ -113,40 +113,40 @@ aliases['boostedSidebandWMassNoTau21'] = {
 }
 
 aliases['lowBoostedSidebandWMass'] = {
-    'expr': '(40 < Alt$(HM_CleanFatJetPassMBoosted_mass[0], 0) \
-            && Alt$(HM_CleanFatJetPassMBoosted_mass[0], 999) < 65)'
+    'expr': '(40 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
+            && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 65)'
 }
 
 aliases['highBoostedSidebandWMass'] = {
-    'expr': '(105 < Alt$(HM_CleanFatJetPassMBoosted_mass[0], 0) \
-            && Alt$(HM_CleanFatJetPassMBoosted_mass[0], 999) < 250)'
+    'expr': '(105 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
+            && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 250)'
 }
 
 
 aliases['resolvedSidebandWMass'] = {
-    'expr': '(40 < HM_Whad_mass && HM_Whad_mass < 250)'
+    'expr': '(40 < Whad_mass && Whad_mass < 250)'
 }
 
 aliases['lowResolvedSidebandWMass'] = {
-    'expr': '(40 < HM_Whad_mass && HM_Whad_mass < 65)'
+    'expr': '(40 < Whad_mass && Whad_mass < 65)'
 }
 
 aliases['highResolvedSidebandWMass'] = {
-    'expr': '(105 < HM_Whad_mass && HM_Whad_mass < 250)'
+    'expr': '(105 < Whad_mass && Whad_mass < 250)'
 }
 
 aliases['resolvedQCDcr'] = {
-    'expr': '(   65 < HM_Whad_mass && HM_Whad_mass < 105 \
+    'expr': '(   65 < Whad_mass && Whad_mass < 105 \
                 && WlepMT < 50 && 0 < resolvHiggsMT \
-                && resolvHiggsMT < 60 && HM_WptOvHak4M < 0.35 )'
+                && resolvHiggsMT < 60 && WptOvHak4M < 0.35 )'
 }
 
 aliases['boostedQCDcr'] = {
-    'expr': '(65 < Alt$(HM_CleanFatJetPassMBoosted_mass[0], 0) \
-            && Alt$(HM_CleanFatJetPassMBoosted_mass[0], 999) < 105 \
+    'expr': '(65 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
+            && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 105 \
             && WlepMT < 50 \
-            && Alt$(HM_CleanFatJetPassMBoosted_tau21[0], 0) > 0.4\
-            && Alt$(HM_CleanFatJetPassMBoosted_WptOvHfatM[0], 9) < 0.4)'
+            && Alt$(CleanFatJetPassMBoosted_tau21[0], 0) > 0.4\
+            && Alt$(CleanFatJetPassMBoosted_WptOvHfatM[0], 9) < 0.4)'
 }
 
 aliases['tau21DDT'] = {
@@ -203,8 +203,8 @@ aliases['bVetoResolved'] = {
     'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] \
                     && CleanJet_pt > 20 \
                     && abs(CleanJet_eta) < 2.5 \
-                    && CleanJet_jetIdx != HM_idx_j1 \
-                    && CleanJet_jetIdx != HM_idx_j2 \
+                    && CleanJet_jetIdx != idx_j1 \
+                    && CleanJet_jetIdx != idx_j2 \
                 ) == 0'
 }
 aliases['bVeto'] = {

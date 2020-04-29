@@ -17,10 +17,8 @@ LepCats['MuCh_']='(abs(Lepton_pdgId[0])==13)'
 
 BoostProcCats={}
 BoostProcCats['incl_']='1'
-BoostProcCats['Untagged_']='!HM_IsVbfFat'
-BoostProcCats['VBF_']='HM_IsVbfFat'
-BoostProcCats['DNNVBF_']='DNN_isVBF >= 0.5'
-BoostProcCats['DNNggF_']='DNN_isVBF < 0.5'
+BoostProcCats['Untagged_']='!IsVbfFat'
+BoostProcCats['VBF_']='IsVbfFat'
 
 BoostCats={}
 # BoostCats['Boosted']='boosted[0]'
@@ -44,10 +42,8 @@ BoostCats['BoostedTopCR_']='boosted[0] && boostedSignalWMass[0] && bReq[0]'
 
 ResolveProcCats={}
 ResolveProcCats['incl_']='1'
-ResolveProcCats['Untagged_']='!HM_IsVbfjj'
-ResolveProcCats['VBF_']='HM_IsVbfjj'
-ResolveProcCats['DNNVBF_']='DNN_isVBF'
-ResolveProcCats['DNNggF_']='!DNN_isVBF'
+ResolveProcCats['Untagged_']='!IsVbfjj'
+ResolveProcCats['VBF_']='IsVbfjj'
 
 ResolveCats={}
 # ResolveCats['Resolved']='resolved[0]'
