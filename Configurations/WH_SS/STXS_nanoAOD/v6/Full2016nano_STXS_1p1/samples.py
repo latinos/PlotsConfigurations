@@ -279,6 +279,14 @@ samples['ggZH_hww'] = {
 
 signals.append('ggZH_hww')
 
+samples['ttH_hww'] = {
+    'name':   nanoGetSampleFiles(mcDirectory, 'ttHToNonbb_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 1
+}
+
+signals.append('ttH_hww')
+
 ############ WH H->WW ############
 
 #samples['WH_hww'] = {
