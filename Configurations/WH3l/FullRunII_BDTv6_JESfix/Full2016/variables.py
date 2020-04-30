@@ -9,7 +9,12 @@ variables['events']  = {'name'  : '1',
                         'xaxis' : 'events',
                         'fold'  : 3
                         }
-variables['BDTG_SSSF_bin2'] = { 'name': 'BDT_SSSF1718',
+variables['BDTG_OSSF_bin2'] = { 'name': 'BDT_OSSF2016',
+                        'range' : ([-1.0,-0.2,0.,0.2,0.4,0.6,1.0],),    #   variable range
+                        'xaxis' : 'MVA discriminant',
+                        'fold' : 3,
+                      }
+variables['BDTG_SSSF_bin2'] = { 'name': 'BDT_SSSF2016',
                         'range' : ([-1.0,-0.2,0.,0.2,0.4,0.6,1.0],),    #   variable range
                         'xaxis' : 'MVA discriminant',
                         'fold' : 3,
