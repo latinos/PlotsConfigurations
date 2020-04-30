@@ -14,7 +14,7 @@ variables['events']     = { 'name': '1',
                             'xaxis' : 'events', 
                             'fold' : 3
                         }
-
+'''
 variables['njet']       = { 'name'  : 'ZH3l_njet',
                             'range' : (10,0,10),
                             'xaxis' : 'N_{jet}',
@@ -71,25 +71,25 @@ variables['mTlmetj']   = { 'name' : 'ZH3l_mTlmetj_test[0]', #FIXME
                             'xaxis' : 'mTlmetj',
                             'fold' : 0,
                         }
-
+'''
 variables['ZH3l_pTZ']  = { 'name' : 'ZH3l_pTZ',
                            'range' : (20,0,400),
                            'xaxis' : 'ZH3l_pTZ [GeV]',
                             'fold' : 0
                         }
-
+'''
 variables['mtw_notZ']   = { 'name' : 'ZH3l_mTlmet_test[0]', #FIXME
                             'range' : (20,0,200),
                             'xaxis' : 'mTlmet',
                             'fold' : 0
                         }
-
+'''
 variables['mtw_fit']    = { 'name' : 'ZH3l_mTlmet_test[0]', #FIXME
                             'range' : (8,0,160),
                             'xaxis' : 'mTlmet',
                             'fold' : 2
                         }
-
+'''
 variables['checkmZ']    = { 'name' : 'ZH3l_checkmZ',
                             'range' : (20,0,200),
                             'xaxis' : 'checkmZ',
@@ -121,3 +121,4 @@ variables['flavor3l']   = { 'name' : '0*(abs(Lepton_pdgId[0])==13 && abs(Lepton_
                             'fold' : 0
                         }
 
+'''
