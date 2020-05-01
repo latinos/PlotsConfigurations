@@ -313,7 +313,7 @@ samples['ZH_hww']  = {  'name': getSampleFilesNano(directory,'HZJ_HToWW_M125'),
                     }
 
 samples['ggZH_hww'] = {  'name': getSampleFilesNano(directory,'ggZH_HToWW_M125'),
-                         'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC,
+                         'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC+'*ggZHreweight',
                          'suppressNegativeNuisances' :['all'],
                          'FilesPerJob' : 3,
                         'subsamples' : { 'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==501 || HTXS_stage1_1_cat_pTjet30GeV==502',
