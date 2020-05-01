@@ -451,7 +451,7 @@ double
 WH3l_patch_BDT1718::get_BDTGOSSF1718()
 {
     updateMvaVariable_BDTGOSSF();
-    return mvaReader_BDTGOSSF1718->EvaluateMVA("BDTG4F07D31C4");
+    return mvaReader_BDTGOSSF1718->EvaluateMVA("BDTG4F07D31C2");
 }
 
 double
