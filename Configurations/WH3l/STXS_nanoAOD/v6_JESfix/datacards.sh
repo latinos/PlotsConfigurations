@@ -20,7 +20,7 @@ do
     mkDatacards.py --pycfg configuration.py --inputFile rootFiles_WH3l_${YEAR}_v6_STXS/plots_WH3l_${YEAR}_v6_STXS.root
     
     # pruning datacard
-    find -L datacards_WH3l_${YEAR}_v6_STXS -name 'datacard.txt' | egrep 'ptv.......BDTG......bin2|13TeV.events' | while read line
+    find -L datacards_WH3l_${YEAR}_v6_STXS -name 'datacard.txt' | egrep 'ptv.......BDTG......bin2|13TeV.events|merged.BDTG......bin2' | while read line
     do 
 	echo "python ${CMSSW_BASE}/src/ModificationDatacards/PruneDatacard.py -d $line -o $line.pruned.txt -i ${inputPRUNE} --suppressFluctuationError=1 -t 0.00001"
 	python ${CMSSW_BASE}/src/ModificationDatacards/PruneDatacard.py -d $line -o $line.pruned.txt -i ${inputPRUNE} --suppressFluctuationError=1 -t 0.00001

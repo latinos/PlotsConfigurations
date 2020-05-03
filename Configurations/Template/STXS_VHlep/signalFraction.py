@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import re
+import re, sys
 import os.path
 from optparse import OptionParser
 from math import sqrt,fabs
@@ -89,6 +89,8 @@ for k in channels:
     if overallTotalSignal[k] == 0: continue
     ncat+=1
     combChannelsToConsider.append(k)
+
+print("combChannelsToConsider : ", combChannelsToConsider)
 
 for s in signals:
   histos[s] = ROOT.TH1F(s,s,ncat,0,ncat)
