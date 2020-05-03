@@ -111,7 +111,7 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww' ,'ttH_hww','WH_htt','ZH_htt','ggH_htt','qqH_htt']
+                  'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww_PTV_LT150', 'WH_hww_PTV_GT150' , 'qqH_hww', 'ggH_hww' ,'ttH_hww','WH_htt','ZH_htt','ggH_htt','qqH_htt']
               }
 # groupPlot['Higgs']  = {  
                   # 'nameHR' : 'Higgs',
@@ -122,6 +122,21 @@ groupPlot['Higgs']  = {
 
 #plot = {}
 
+plot['WH_hww_PTV_LT150'] = {
+                  'nameHR' : 'WH',
+                  'color': 632+3, # kRed+3 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1
+                  }
+
+plot['WH_hww_PTV_GT150'] = {
+                  'nameHR' : 'WH',
+                  'color': 632+3, # kRed+3 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1
+                  }
 
 plot['Fake']  = {  
                   'color': 921,    # kGray + 1
@@ -269,14 +284,13 @@ plot['ggZH_hww'] = {
                   'scale'    : 1    #
                   }
 
-plot['WH_hww'] = {
-                  'nameHR' : 'WH',
-                  'color': 632+2, # kRed+2 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-
+#plot['WH_hww'] = {
+#                  'nameHR' : 'WH',
+#                  'color': 632+2, # kRed+2 
+#                  'isSignal' : 1,
+#                  'isData'   : 0,    
+#                  'scale'    : 1    #
+#                  }
 
 plot['qqH_hww'] = {
                   'nameHR' : 'qqH',

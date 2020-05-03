@@ -21,6 +21,5 @@ do
 
     # doFit
     echo " --> fitting"
-    python ${CMSSW_BASE}/src/PlotsConfigurations/Configurations/Template/STXS_VHlep/doFit.py    
-
+    python ${CMSSW_BASE}/src/PlotsConfigurations/Configurations/Template/STXS_VHlep/doFit.py
 done

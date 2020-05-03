@@ -347,15 +347,8 @@ aliases['BDT_SSSF2016'] = {
     'class': 'WH3l_patch_BDT1718',
     'args': ("BDT_SSSF2016")
 }
-#aliases['BDT_SSSFcombin'] = {
-#    'class': 'WH3l_patch_BDT1718',
-#    'args': ("BDT_SSSFcombin")
-#}
+
 aliases['BDT_OSSF2016'] = {
     'class': 'WH3l_patch_BDT1718',
     'args': ("BDT_OSSF2016")
 }
-#aliases['BDT_OSSFcombin'] = {
-#    'class': 'WH3l_patch_BDT1718',
-#    'args': ("BDT_OSSFcombin")
-#}
