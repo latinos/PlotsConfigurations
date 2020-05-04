@@ -333,7 +333,7 @@ samples['ZH_hww']  = {  'name'   :   nanoGetSampleFiles(mcDirectory,'HZJ_HToWW_M
 
 samples['ggZH_hww']  = {  'name'   : nanoGetSampleFiles(mcDirectory,'ggZH_HToWW_M125'),
                                     # nanoGetSampleFiles(mcDirectory,'ggZH_HToWWTo2L2Nu_ZTo2L_M125'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC+'*0.3', #this sampel is not correct , need to reweight it.
+                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC+'*0.3', #this sample is not correct , need to reweight it.
                      }
 
 ############ WH H->WW ############
