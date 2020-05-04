@@ -24,7 +24,7 @@ do
 	mkdir $outputDir
     fi
     #datacardsWHSS_2016_v6_STXS
-    datacardDir=${PWD}/datacards${ANALYSIS}_${YEAR}_v6_STXS
+    datacardDir=${PWD}/datacards_${ANALYSIS}_${YEAR}_v6_STXS
 
     # combine the datacards
     combineCards.py \

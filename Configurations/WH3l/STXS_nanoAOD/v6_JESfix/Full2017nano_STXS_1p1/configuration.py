@@ -1,4 +1,4 @@
-tagName = "OSSF"
+tag= 'WH3l_2017_v6_STXS'
 
 treeName= 'Events'
 
@@ -6,7 +6,7 @@ treeName= 'Events'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables_'+tagName+'.py'
+variablesFile = 'variables.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
@@ -18,7 +18,7 @@ samplesFile = 'samples.py'
 plotFile = 'plot.py' 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 59.74
+lumi = 41.86
 
 # structure file for datacard
 structureFile = 'structure.py'
@@ -27,11 +27,11 @@ structureFile = 'structure.py'
 nuisancesFile = 'nuisances.py'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFiles'+tagName
+outputDir = 'rootFiles_'+tag
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot'+tagName
+outputDirPlots = 'plot_'+tag
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'+tagName
+outputDirDatacard = 'datacards_'+tag

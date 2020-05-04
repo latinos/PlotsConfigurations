@@ -1,12 +1,10 @@
-tagName = "SSSF"
-
 treeName= 'Events'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables_'+tagName+'.py'
+variablesFile = 'variables.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
@@ -18,7 +16,7 @@ samplesFile = 'samples.py'
 plotFile = 'plot.py' 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 41.86
+lumi = 35.867
 
 # structure file for datacard
 structureFile = 'structure.py'
@@ -27,11 +25,11 @@ structureFile = 'structure.py'
 nuisancesFile = 'nuisances.py'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFiles'+tagName
+outputDir = 'rootFiles'
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot'+tagName
+outputDirPlots = 'plot'
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'+tagName
+outputDirDatacard = 'datacards'

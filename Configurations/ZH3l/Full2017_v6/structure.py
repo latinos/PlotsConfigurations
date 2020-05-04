@@ -54,7 +54,8 @@ structure['WZ']  = {
 
 structure['VVV']  = { 
                   'isSignal' : 0,
-                  'isData'   : 0 
+                  'isData'   : 0, 
+                  'removeFromCuts' : ['zh3l_Zg_CR_1j']
                   }
 
 structure['ZZ']  = {

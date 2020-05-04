@@ -299,7 +299,7 @@ samples['ZH_hww']  = {  'name'   :   getSampleFilesNano(directory,'HZJ_HToWW_M12
                      }
 
 samples['ggZH_hww']  = {  'name'   :   getSampleFilesNano(directory,'ggZH_HToWW_M125'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
+                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC+'*ggZHreweight' ,
                      }
 
 ############ WH H->WW ############

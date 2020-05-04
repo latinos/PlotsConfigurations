@@ -41,7 +41,6 @@ do
     
     echo "  --> Combination folder is created"
     ls $outputDir
-    echo "  >>> please cd into analysis directory to perform workspace conversion : python wksp_convert.py <<< "
 done
 
 # Convert datacards to workspaces

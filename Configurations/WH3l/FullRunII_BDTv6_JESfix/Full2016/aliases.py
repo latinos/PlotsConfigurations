@@ -146,11 +146,6 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
 
 
 
-# data/MC scale factors
-aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight3l', 'LepSF3l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut', 'btagSF', 'PrefireWeight']),
-    'samples': mc
-}
 
 # variations
 aliases['SFweightEleUp'] = {
@@ -177,7 +172,7 @@ aliases['nllWOTF'] = {
 }
 
 aliases['ttHMVA_SF_3l'] = {
-    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/patches/compute_SF.C+' % os.getenv('CMSSW_BASE')],
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/patches/compute_SF_BETA.C+' % os.getenv('CMSSW_BASE')],
     'class': 'compute_SF',
     'args' : ('2016', 3, 'total_SF'),
     'samples': mc
@@ -255,6 +250,13 @@ aliases['ttHMVA_3l_mu_SF_Down'] = {
               (ttHMVA_SF_Down_2[0]*(abs(Lepton_pdgId[2]) == 13) + (abs(Lepton_pdgId[2]) == 11))',
     'nominalOnly' : True,
     'samples' : mc
+}
+
+
+# data/MC scale factors
+aliases['SFweight'] = {
+    'expr': ' * '.join(['SFweight3l', 'ttHMVA_SF_3l', 'LepWPCut', 'btagSF', 'PrefireWeight']),
+    'samples': mc
 }
 
 

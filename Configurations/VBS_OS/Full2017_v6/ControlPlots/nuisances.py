@@ -270,20 +270,20 @@ nuisances['PU'] = {
 }
 
 ##### PS and UE
-'''
+
 nuisances['PS']  = {
     'name': 'PS',
     'type': 'shape',
     'kind': 'weight_envelope',
     'samples': {
-#        'WW': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],
+        'ggWW': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],
         'ggH_hww': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],
         'qqH_hww': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],
     },
     'AsLnN': '1',
     'samplespost': lambda self, samples: dict([('WW', ['1.', '1.'])] + [(sname, ['1.', '1.']) for sname in samples if 'ggH_hww' in sname or 'qqH_hww' in sname])
 }
-'''
+
 nuisances['UE']  = {
                 'name'  : 'UE',
                 'skipCMS' : 1,

@@ -14,6 +14,17 @@ variables['BDTG_OSSF_bin2'] = { 'name': 'BDT_OSSF1718',
                         'xaxis' : 'MVA discriminant',
                         'fold' : 3,
                       }
+variables['BDTG_SSSF_bin2'] = { 'name': 'BDT_SSSF1718',
+                        'range' : ([-1.0,-0.2,0.,0.2,0.4,0.6,1.0],),    #   variable range
+                        'xaxis' : 'MVA discriminant',
+                        'fold' : 3,
+                      }
+variables['WH3l_pTW'] = {'name' : 'WH3l_pTW[0]',
+                               'range' : (40,0.,400),
+                               'xaxis' : 'WH3l_pTW [GeV]',
+                               'fold' : 3
+                           }
+'''
 variables['Jet_pt1']  = {   'name': 'Alt$(Jet_pt[0],0)',            #   variable name----
                         'range' : (10,0.,200),    #   variable range
                         # 'range' : (60,0.,300),    #   variable range
@@ -132,3 +143,4 @@ variables['WH3l_dphilmet2']  = {   'name': 'WH3l_dphilmet2_test',
                          'fold' : 0
                         }
 
+'''

@@ -158,11 +158,6 @@ for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2',
     }
 
 
-# data/MC scale factors
-aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight3l', 'LepSF3l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut', 'btagSF', 'PrefireWeight']),
-    'samples': mc
-}
 
 # variations
 eleWP_old = 'mvaFall17V1Iso_WP90'
@@ -189,7 +184,7 @@ aliases['SFweightMuDown'] = {
 #######################
 
 aliases['ttHMVA_SF_3l'] = {
-    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/patches/compute_SF.C+' % os.getenv('CMSSW_BASE')],
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/patches/compute_SF_BETA.C+' % os.getenv('CMSSW_BASE')],
     'class': 'compute_SF',
     'args' : ('2017', 3, 'total_SF'),
     'samples': mc
@@ -269,6 +264,11 @@ aliases['ttHMVA_3l_mu_SF_Down'] = {
     'samples' : mc
 }
 
+# data/MC scale factors
+aliases['SFweight'] = {
+    'expr': ' * '.join(['SFweight3l', 'ttHMVA_SF_3l', 'LepWPCut', 'btagSF', 'PrefireWeight']),
+    'samples': mc
+}
 
 aliases['WH3l_dphilllmet_test'] = {
     'linesToAdd': [
