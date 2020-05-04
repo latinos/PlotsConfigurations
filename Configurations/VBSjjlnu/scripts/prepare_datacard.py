@@ -4,6 +4,7 @@ import json
 import argparse
 import sys
 import os
+import re
 import subprocess
 import condor_prep
 import random
@@ -21,7 +22,8 @@ parser.add_argument("-o","--outputdir", help="Output folder", type=str)
 parser.add_argument("-rw","--redo-workspace", help="Redo workspace", action="store_true")
 parser.add_argument("-p","--process", help="Process to run", type=str)
 parser.add_argument("--dry", help="Only printout commands", action="store_true", default=False)
-parser.add_argument("-rbf","--robust-fit", help="Robust fit", action="store_true", default=False)
+parser.add_argument("--masks", help="File with list of channels to mask",  type=str)
+parser.add_argument("-rbf","--robust-fit", help="Robust fit options", type=int, default=0)
 args = parser.parse_args()
 
 if args.config.endswith(".yaml"):
@@ -32,11 +34,12 @@ else:
     print("Error! No valid input file")
     exi(1)
 
-if args.robust_fit:
-    FIT_OPTIONS = "--robustFit=1 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND -v 1"
-    #FIT_OPTIONS = "--cminFallbackAlgo Minuit2,Simplex,0:0.1"
-else: 
-    FIT_OPTIONS= ""
+fitter_options= { 
+    0:  " ",
+    1:  "--robustFit=1 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND",
+    2:  "--cminDefaultMinimizerStrategy 0  --cminFallbackAlgo Minuit2,Migrad,0:0.1"
+}
+
 
 
 logging.basicConfig(level=logging.DEBUG, format = '%(asctime)s - %(levelname)s: %(message)s',\
@@ -68,10 +71,15 @@ def prepare_workspace(datac, onlyDC=False):
             cards.append("{0}_{1}={2}/{3}/{4}/datacard.txt".format(
                                 card["name"], folder["name"],  args.basedir + "/" + folder["basedir"],
                                                                 card["cut"], card["var"]))
+    if args.masks:
+        txt2wp = "text2workspace.py {0}/combined_{1}.txt -o {0}/combined_{1}.root --channel-masks".format(outdir, datac["datacard_name"])
+    else:
+        txt2wp = "text2workspace.py {0}/combined_{1}.txt -o {0}/combined_{1}.root".format(outdir, datac["datacard_name"])
+    
     
     cmds = [
         "combineCards.py {} > {}/combined_{}.txt".format(" ".join(cards), outdir, datac["datacard_name"]),
-        "text2workspace.py {0}/combined_{1}.txt -o {0}/combined_{1}.root".format(outdir, datac["datacard_name"])
+        txt2wp
     ]
     for cmd in cmds:
         log.debug(cmd)
@@ -92,7 +100,8 @@ def significance(datac):
     log = logging.getLogger(datac["datacard_name"])
     outdir = datac["outputdir"] 
     log.info("Running combine (Asimov + pre-fit nuisances)")
-    cmd = "combine -M Significance -t -1  --expectSignal=1 {0}/combined_{1}.root > {0}/logSignificance_MCasimov.txt".format(outdir, datac["datacard_name"])
+    cmd = """combine -M Significance -t -1  --expectSignal=1 {0}/combined_{1}.root {2} \\
+            > {0}/logSignificance_MCasimov.txt""".format(outdir, datac["datacard_name"], fitter_options[args.robust_fit])
     log.debug(cmd)
 
     if not args.dry:  
@@ -101,7 +110,8 @@ def significance(datac):
             log.info(f.read())
 
     log.info("Running combine (Asimov + post-fit nuisances)")
-    cmd = "combine -M Significance -t -1  --expectSignal=1 --toysFreq {0}/combined_{1}.root > {0}/logSignificance_data_asimov.txt".format(outdir, datac["datacard_name"])
+    cmd = """combine -M Significance -t -1  --expectSignal=1 --toysFreq {0}/combined_{1}.root {2} \\
+            > {0}/logSignificance_data_asimov.txt""".format(outdir, datac["datacard_name"], fitter_options[args.robust_fit])
     log.debug(cmd)
     if not args.dry:  
         os.system(cmd)
@@ -120,10 +130,15 @@ def fit_and_pulls(datac):
     toys_opts = datac["toys_opts"]
     result_name = datac["datacard_name"]+"_"+datac["result_name"]
 
+    if args.masks:
+        mask = "--setParameters "+ ",".join([ "mask_"+ l.strip()+"=1" for l  in open(args.masks).readlines()])
+    else:
+        mask = ""
+
     cmd = """combineTool.py -M FitDiagnostics -d {0}/combined_{1}.root {2} -n .{3}  \\
-         --saveShapes --saveNormalizations --saveWithUncertainties --ignoreCovWarning {4}  > {0}/logFit_{3}.txt; \\
-             mv fitDiagnostics.{3}.root {0}/""".format(
-             outdir, datac["datacard_name"], toys_opts, result_name, FIT_OPTIONS)
+         --saveShapes --saveNormalizations --saveWithUncertainties {4} {5} > {0}/logFit_{3}.txt; \\
+             mv fitDiagnostics.{3}.root {0}/ """.format(
+             outdir, datac["datacard_name"], toys_opts, result_name, mask, fitter_options[args.robust_fit])
     log.debug(cmd)
     if not args.dry:
         try:
@@ -180,8 +195,11 @@ def compatibility(datac):
 
 ################################################################################## 
 
+
+
 for datac in config:
-    if args.datacards and datac["datacard_name"] not in args.datacards: continue
+    if args.datacards and not any([re.match(d,datac["datacard_name"])!=None for d in args.datacards]): continue
+
     outdir = args.outputdir + "/" + datac["datacard_name"]
     datac["outputdir"] = outdir 
 
@@ -209,21 +227,14 @@ for datac in config:
         print("DONE")
     elif args.process == "significance":
         significance(datac)    
-    elif args.process == "fit_and_pulls":
-
-        datacs = []
-        d = copy(datac)
-        d["toys_opts"] = "-t -1 --expectSignal 0"
-        d["result_name"] = "MC_asimov"
-        datacs.append(d)
-        d = copy(datac)
-        d["toys_opts"] = "-t -1 --expectSignal 0 --toysFreq"
-        d["result_name"] = "data_asimov"
-        datacs.append(d)
-        
-        pool = Pool(2)
-        pool.map(fit_and_pulls, datacs)
-        
+    elif args.process == "fit_and_pulls_mcasimov":
+        datac["toys_opts"] = "-t -1 --expectSignal 1"
+        datac["result_name"] = "MC_asimov"
+        fit_and_pulls(datac)
+    elif args.process == "fit_and_pulls_dataasimov":
+        datac["toys_opts"] = "-t -1 --expectSignal 1 --toysFreq"
+        datac["result_name"] = "data_asimov"
+        fit_and_pulls(datac)
     elif args.process == "compatibility":
         compatibility(datac)    
     else: 

@@ -2,8 +2,8 @@
 treeName= 'Events'
 
 
-tag = 'fit_v2.1_2018'
-direc = "conf_fit_v2.1"
+tag = 'fit_v2.1_2017'
+direc ='conf_fit_v2.1'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_'+tag 
@@ -20,27 +20,29 @@ cutsFile = direc +'/cuts.py'
 # file with list of samples
 samplesFile = direc+'/samples.py' 
 
-#t file with list of samples
-plotFile = direc+'/plot.py' 
-#plotFile = direc +'/plot_boostcaled_ele.py'
+# file with list of samples
+plotFile = direc+'/plot' 
+#plotFile = direc +'/plot_rescaled_ele.py'
+
+
 
 # luminosity to normalize to (in 1/fb)
-lumi = 59.74
+lumi = 41.5
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-#outputDirPlots = 'plot_'+tag +"_rescaled/detajpt_ext"
-outputDirPlots = 'plot_'+tag +"_joinWjets"
+outputDirPlots = 'plot_'+tag +"_postfit"  
+
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards_'+tag +"_jesWjets_jesTop_jesSignal"
-#outputDirDatacard = 'datacards_'+tag +"_v2"
+#outputDirDatacard = 'datacards_' + tag  +"_v2"
+outputDirDatacard = 'datacards_' + tag +"_jesWjets_jesTop_jesSignal"
 
 # structure file for datacard
-structureFile = direc+'/structure.py'
+structureFile = direc + '/structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = direc+'/nuisances.py'
-#nuisancesFile = direc+'/nuisances_datacard.py'
+nuisancesFile = direc + '/nuisances.py'
 #nuisancesFile = direc + '/nuisances_datacard.py'
+

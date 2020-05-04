@@ -157,7 +157,7 @@ samples['top'] = {
                        + nanoGetSampleFiles(directory_bkg,'TTZjets') 
                        +  nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu'),
             'weight' :  XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch , #no Top pt reweighting
-            'FilesPerJob' : 3,
+            'FilesPerJob' : 2,
 }
 
 samples['Wjets'] = { 'name' :   
@@ -173,7 +173,7 @@ samples['Wjets'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf')
           ,
 				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-				'FilesPerJob' : 3,
+				'FilesPerJob' : 2,
         'subsamples': {
           "boost1" : "(VBS_category==0) && (deltaeta_vbs < 5)",
           "boost2" : "(VBS_category==0) && (deltaeta_vbs >= 5)",
@@ -215,7 +215,7 @@ samples['VV']  = { 'name' :
                nanoGetSampleFiles(directory_bkg,'WpToLNu_ZTo2J_QCD',) +
                nanoGetSampleFiles(directory_bkg,'ZTo2L_ZTo2J_QCD',  ) ,
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch, # TO BE CORRECTED: + '* ewknloW',
-        'FilesPerJob' : 5,
+        'FilesPerJob' : 6,
 }
 
 ############ VVV ############
@@ -294,7 +294,7 @@ samples['Fake'] = {
   'weight': METFilter_DATA+'* fake_weight_corrected',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 27
+  'FilesPerJob': 30
 }
 
 for _, sd in DataRun:
@@ -313,7 +313,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'weight' : METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],
-                       'FilesPerJob' : 27,
+                       'FilesPerJob' : 30,
                   }
 
 for Run in DataRun :

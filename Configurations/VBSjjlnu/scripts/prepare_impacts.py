@@ -11,11 +11,16 @@ parser.add_argument("-p", "--plot", type=str, help="Do plots in the specified fi
 parser.add_argument("--mc-asimov", action="store_true", default=True)
 parser.add_argument("--data-asimov", action="store_true", default=False)
 parser.add_argument("--dry", action="store_true", help="Do not run, only create script", default=False)
+parser.add_argument("-fo","--fit-options", help="Robust fit options ", type=int, default=0)
 args = parser.parse_args()
 
 
-#fitter_options=  "--robustFit=1 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND"
-fitter_options = ""
+fitter_options= { 
+    0:  " ",
+    1:  "--robustFit=1 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND",
+    2:  "--cminDefaultMinimizerStrategy 0  --cminFallbackAlgo Minuit2,Migrad,0:0.1"
+}
+
 toysf = "--toysFreq" if args.data_asimov else ""
 
 def prepare_rateParams(years):
@@ -79,25 +84,25 @@ if not args.plot:
 # Prepare the script to create the impacts
     cmd.append("""combineTool.py -M Impacts -d combined.root -m 125 --doInitialFit \\
                 -t -1 --expectSignal=1 {} -n nuis.125 \\
-                {}""".format(toysf, fitter_options))
+                {}""".format(toysf, fitter_options[args.fit_options]))
 
     cmd.append("""combineTool.py -M Impacts -d combined.root -m 125 --doFits \\
                 -t -1 --expectSignal=1 {} --job-mode condor --task-name nuis -n nuis.125 \\
-                {}""".format(toysf, fitter_options))
+                {}""".format(toysf, fitter_options[args.fit_options]))
 
 
     cmd.append("""combineTool.py -M Impacts -d combined.root -m 125 --doInitialFit \\
                 -t -1 --expectSignal=1 {} -n rateParams.125 \\
                 --named {} \\
                 --setParameterRanges {} \\
-                {}""".format(toysf, rparam_names, rparam_ranges, fitter_options))
+                {}""".format(toysf, rparam_names, rparam_ranges, fitter_options[args.fit_options]))
     
     cmd.append("""combineTool.py -M Impacts -d combined.root -m 125 --doFits \\
                 -t -1 --expectSignal=1 {} \\
                 --job-mode condor --task-name rateParams -n rateParams.125 \\
                 --named {} \\
                 --setParameterRanges {} \\
-                {}""".format(toysf, rparam_names, rparam_ranges, fitter_options))
+                {}""".format(toysf, rparam_names, rparam_ranges, fitter_options[args.fit_options]))
 
     with open("{}/script_preparation.sh".format(args.outputdir), "w") as of:
         of.write("\n\n".join(cmd))

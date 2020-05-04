@@ -12,7 +12,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-c","--config", help="configuration file", type=str)
 parser.add_argument("-d","--datacards", help="Datacard names", type=str, nargs="+")
 parser.add_argument("-b","--basedir", help="Baseline folder", type=str)
-parser.add_argument("-o","--outputdir", help="Output folder", type=str)
+# parser.add_argument("-o","--outputdir", help="Output folder", type=str)
 parser.add_argument("-f","--fitfile", help="Fit diagnostic file folder", type=str)
 parser.add_argument("--signal-from-prefit", action="store_true", default=False)
 parser.add_argument("--plot-config", help="Path of plot configuration.py", required=True, type=str)
@@ -47,7 +47,7 @@ def post_fit_plots(datac):
     for combconf in datac["phase_spaces"]:
         # The baseline is to plot all regions and variables
         # If not specified
-        if args.region_name != None and var["name"] != args.region_name: continue 
+        if args.region_name != None and combconf["name"] != args.region_name: continue 
 
         print("Post fit of variable {}, cut {}".format(combconf["var"], combconf["cut"]))
         
@@ -56,8 +56,8 @@ def post_fit_plots(datac):
             mkPostFitPlot.py --inputFileCombine={0} \\
             --outputFile={1}/postfit_latino_{2}.root --variable {3} \\
             --cutNameInOriginal={4} --cut={5} \\
-            --inputFile={6}/{7} --kind=b --pycfg={8}  \\
-            --getSignalFromPrefit={10}""".format(
+            --inputFile={6}/{7} --kind=s --pycfg={8}  \\
+            --getSignalFromPrefit={10} ;""".format(
                 basedircomb+"/fitDiagnostics."+datac["fit_file"]+".root",
                 outputDir,
                 datac["datacard_name"],
@@ -70,8 +70,8 @@ def post_fit_plots(datac):
                 int(args.signal_from_prefit)
             )
 
-        if not os.path.exists(datac["outputdir"]+"/"+combconf["name"]):
-            os.makedirs(datac["outputdir"]+"/"+combconf["name"])
+        if not os.path.exists(outputDirPlots+"/"+combconf["name"]):
+            os.makedirs(outputDirPlots+"/"+combconf["name"])
         
         # The samples are plotted with postfit shapes, the pre-fit ratio is added
         cmdpost2 = """mkPlot.py  --pycfg={0} --plotFile={6} \\
@@ -82,7 +82,7 @@ def post_fit_plots(datac):
                 args.plot_config.split("/")[-1],
                 outputDir, 
                 datac["datacard_name"],
-                datac["outputdir"]+"/"+combconf["name"],
+                outputDirPlots+"/"+combconf["name"],
                 combconf["var"], combconf["cut"],
                 plotFile+"_res_postfit.py" if "res" in combconf["cut"] else plotFile+"_boost_postfit.py", #####HACK!
             )
@@ -102,8 +102,8 @@ def post_fit_plots(datac):
 
 for datac in config:
     if args.datacards and datac["datacard_name"] not in args.datacards: continue
-    outdir = args.outputdir + "/" + datac["datacard_name"]
-    datac["outputdir"] = outdir
+    # outdir = args.outputdir + "/" + datac["datacard_name"]
+    # datac["outputdir"] = outdir
     datac["fit_file"] = args.fitfile
     print("Preparing datacard: "+ datac["datacard_name"])
     

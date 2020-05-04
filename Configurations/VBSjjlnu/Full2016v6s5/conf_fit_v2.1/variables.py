@@ -39,6 +39,7 @@ variables['DNNoutput_high_res'] = {
     'xaxis': 'DNN output, resolved',
     'fold': 0 ,
     'cuts': list(filter(lambda c: "dnnhigh" in c , phase_spaces_res)),
+    #'divideByBinWidth' : 1,
     'blind': { c:[0.6,1] for c in phase_spaces_tot if "_sig_" in c},
 }
 
