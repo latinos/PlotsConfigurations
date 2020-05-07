@@ -90,6 +90,8 @@ groupPlot['top']  = {
                  'fill': 1001
              }
 
+
+
 groupPlot["Wjets"]  = {  
                         'nameHR' : 'W+Jets',
                         'isSignal' : 0,
@@ -98,6 +100,10 @@ groupPlot["Wjets"]  = {
                         'fill': 1001
                 }
 
+
+
+
+             
 groupPlot['VBS']  = {  
                  'nameHR' : 'VBS',
                  'isSignal' : 1,

@@ -96,7 +96,7 @@ cuts["res_topcr_dnnhigh_mu"] = 'VBS_category==1 \
                                 && DNNoutput_resolved > 0.3 \
                                 '
 
-##################################
+#################################
 # Woff shell, bveto ---> WJet region
 
 cuts["res_wjetcr_dnnall_ele"] = 'VBS_category==1 \

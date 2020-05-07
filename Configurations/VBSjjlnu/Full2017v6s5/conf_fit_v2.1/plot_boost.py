@@ -76,20 +76,11 @@ groupPlot['vbfV+VV+VVV']  = {
                   'nameHR' : 'vbfV+VV+VVV',
                   'isSignal' : 0,
                   'color': palette["Pink"],  
-                  'samples'  : ['VBF-F','VVV', 'VV'],
+                  'samples'  : ['VBF-V','VVV', 'VV'],
                   'fill': 1001
               }
 
 
-
-
-groupPlot['top']  = {  
-                 'nameHR' : 'top',
-                 'isSignal' : 0,
-                 'color':  palette["MediumBlue2"],  
-                 'samples'  : ['top'],
-                 'fill': 1001
-             }
 
 
 
@@ -101,6 +92,16 @@ for wjetbin in wjets_bins:
                     'samples'  : [wjetbin],
                     'fill': 1001
             }
+
+
+groupPlot['top']  = {  
+                 'nameHR' : 'top',
+                 'isSignal' : 0,
+                 'color':  palette["MediumBlue2"],  
+                 'samples'  : ['top'],
+                 'fill': 1001
+             }
+
 
 groupPlot['VBS']  = {  
                  'nameHR' : 'VBS',

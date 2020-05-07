@@ -83,6 +83,17 @@ groupPlot['vbfV+VV+VVV']  = {
 
 
 
+for wjetbin in wjets_bins:
+    groupPlot[wjetbin]  = {  
+                    'nameHR' : wjetbin,
+                    'isSignal' : 0,
+                    'color':   palette[wjetbin],
+                    'samples'  : [wjetbin],
+                    'fill': 1001
+            }
+
+
+
 groupPlot['top']  = {  
                  'nameHR' : 'top',
                  'isSignal' : 0,
@@ -92,15 +103,6 @@ groupPlot['top']  = {
              }
 
 
-
-for wjetbin in wjets_bins:
-    groupPlot[wjetbin]  = {  
-                    'nameHR' : wjetbin,
-                    'isSignal' : 0,
-                    'color':   palette[wjetbin],
-                    'samples'  : [wjetbin],
-                    'fill': 1001
-            }
 
 groupPlot['VBS']  = {  
                  'nameHR' : 'VBS',

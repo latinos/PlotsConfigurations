@@ -69,7 +69,7 @@ groupPlot['vbfV+VV+VVV']  = {
                   'nameHR' : 'vbfV+VV+VVV',
                   'isSignal' : 0,
                   'color': palette["Pink"],  
-                  'samples'  : ['VBF-F','VVV', 'VV'],
+                  'samples'  : ['VBF-V','VVV', 'VV'],
                   'fill': 1001
               }
 
@@ -97,6 +97,8 @@ groupPlot["Wjets"]  = {
                         'samples'  :wjets_bins,
                         'fill': 1001
                 }
+
+
 
 groupPlot['VBS']  = {  
                  'nameHR' : 'VBS',

@@ -98,7 +98,8 @@ groupPlot['top']  = {
                  'color':  palette["MediumBlue2"],  
                  'samples'  : ['top'],
                  'fill': 1001
-             }     
+             }
+
 
 for wjetbin in wjets_bins:
     groupPlot[wjetbin]  = {  
@@ -108,8 +109,8 @@ for wjetbin in wjets_bins:
                     'samples'  : [wjetbin],
                     'fill': 1001
             }
+            
 
-        
 
 
 groupPlot['VBS']  = {  
@@ -228,8 +229,23 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 41.5/fb'
+legend['lumi'] = 'L = 35.867/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 
+groupPlot['total_prefit'] = {
+    'nameHR' : 'pre-fit',
+    'isSignal' : 2,
+    'color': 616,   
+    'samples'  : ['total_prefit'],
+    'fill': 1001
+}
+
+plot['total_prefit'] = {
+     'nameHR' : 'pre-fit',
+     'color': 616, 
+     'isSignal' : 2,
+     'isData'   : 0,
+     'scale'    : 1.   ,
+}

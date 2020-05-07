@@ -217,11 +217,37 @@ nuisances['jes']  = {
                 'name'  : 'CMS_scale_j_2018',
                 'kind'  : 'tree',
                 'type'  : 'shape',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc),
+                'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in ["Wjets", "top", "VBS"]),
                 'folderUp'   : directory_bkg +"_JESup",
                 'folderDown' : directory_bkg +"_JESdo",
 }
 
+nuisances['jes_wjets']  = {
+                'name'  : 'CMS_scale_j_2018_Wjets',
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples'  : { "Wjets": ['1.','1.'] },
+                'folderUp'   : directory_bkg +"_JESup",
+                'folderDown' : directory_bkg +"_JESdo",
+}
+
+nuisances['jes_top']  = {
+                'name'  : 'CMS_scale_j_2018_top',
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples'  : { "top": ['1.','1.'] },
+                'folderUp'   : directory_bkg +"_JESup",
+                'folderDown' : directory_bkg +"_JESdo",
+}
+
+nuisances['jes_signal']  = {
+                'name'  : 'CMS_scale_j_2018_VBS',
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples'  : { "VBS": ['1.','1.'] },
+                'folderUp'   : directory_bkg +"_JESup",
+                'folderDown' : directory_bkg +"_JESdo",
+}
 # nuisances['fatjet_jes']  = {
 #                 'name'  : 'CMS_scale_fatj_2018',
 #                 'kind'  : 'tree',
@@ -275,41 +301,41 @@ nuisances['QCD_scale_top'] = {
      }
 }
 
-nuisances['QCD_scale_DY'] = {
-     'name'  : 'QCDscale_DY',
-     'kind'  : 'weight',
-     'type'  : 'shape',
-     'samples'  :   {
-         "DY" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
-     }
-}
+# nuisances['QCD_scale_DY'] = {
+#      'name'  : 'QCDscale_DY',
+#      'kind'  : 'weight',
+#      'type'  : 'shape',
+#      'samples'  :   {
+#          "DY" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
+#      }
+# }
 
-nuisances['QCD_scale_VV'] = {
-     'name'  : 'QCDscale_VV',
-     'kind'  : 'weight',
-     'type'  : 'shape',
-     'samples'  :   {
-         "VV" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
-     }
-}
+# nuisances['QCD_scale_VV'] = {
+#      'name'  : 'QCDscale_VV',
+#      'kind'  : 'weight',
+#      'type'  : 'shape',
+#      'samples'  :   {
+#          "VV" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
+#      }
+# }
 
-nuisances['QCD_scale_VBF-V'] = {
-     'name'  : 'QCDscale_VBF-V',
-     'kind'  : 'weight',
-     'type'  : 'shape',
-     'samples'  :   {
-         "VBF-V" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
-     }
-}
+# nuisances['QCD_scale_VBF-V'] = {
+#      'name'  : 'QCDscale_VBF-V',
+#      'kind'  : 'weight',
+#      'type'  : 'shape',
+#      'samples'  :   {
+#          "VBF-V" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
+#      }
+# }
 
-nuisances['QCD_scale_VBS'] = {
-     'name'  : 'QCDscale_VBS',
-     'kind'  : 'weight',
-     'type'  : 'shape',
-     'samples'  :   {
-         "VBS" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
-     }
-}
+# nuisances['QCD_scale_VBS'] = {
+#      'name'  : 'QCDscale_VBS',
+#      'kind'  : 'weight',
+#      'type'  : 'shape',
+#      'samples'  :   {
+#          "VBS" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
+#      }
+# }
 ##################################
 #### Custom nuisances
 

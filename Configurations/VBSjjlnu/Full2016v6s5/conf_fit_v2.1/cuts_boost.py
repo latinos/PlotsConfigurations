@@ -213,10 +213,10 @@ cuts["boost_wjetcr_dnnhigh_mu"] = 'VBS_category==0 \
 
 
 ###############################################
-#Top
+# #Top
 
 
-## Tight top
+# ## Tight top
 cuts["boost_topcr_dnnall_ele"] = 'VBS_category==0 \
                             && abs(Lepton_pdgId[0])==11 \
                             && vjet_0_pt > 200 \

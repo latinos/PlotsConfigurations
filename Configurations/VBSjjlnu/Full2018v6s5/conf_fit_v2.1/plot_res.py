@@ -92,13 +92,7 @@ groupPlot['DY']  = {
                 'fill': 1001
             }
 
-groupPlot['top']  = {  
-                 'nameHR' : 'top',
-                 'isSignal' : 0,
-                 'color':  palette["MediumBlue2"],  
-                 'samples'  : ['top'],
-                 'fill': 1001
-             }
+
 
 for wjetbin in wjets_bins:
     groupPlot[wjetbin]  = {  
@@ -109,14 +103,14 @@ for wjetbin in wjets_bins:
                     'fill': 1001
             }
 
+groupPlot['top']  = {  
+                 'nameHR' : 'top',
+                 'isSignal' : 0,
+                 'color':  palette["MediumBlue2"],  
+                 'samples'  : ['top'],
+                 'fill': 1001
+             }
 
-#groupPlot['Wjets']  = {  
-            #      'nameHR' : 'Wjets',
-            #      'isSignal' : 1,
-            #      'color': palette["Yellow"],   
-            #      'samples'  :wjets_bins,
-            #      'fill': 1001
-            #   }
 
 groupPlot['VBS']  = {  
                  'nameHR' : 'VBS',
