@@ -67,9 +67,11 @@ for poi in POI:
     setPOI+="r_{}=1,".format(poi)
 setPOI = setPOI[:-1]
 
-#--approx robust
-command4.append('combineTool.py -M Impacts -d %s.root -m 125.09 -n %s -t -1 --X-rtd MINIMIZER_analytic --approx hesse --doFits --parallel 8 %s' %(comfile,comfile,setPOI))
-command4.append('combineTool.py -M Impacts -d %s.root -m 125.09 -n %s -t -1 --X-rtd MINIMIZER_analytic --approx hesse -o impacts.json %s' %(comfile,comfile,setPOI))
+#--approx robust, hesse
+#APPROX="robust" 
+APPROX="hesse"
+command4.append('combineTool.py -M Impacts -d %s.root -m 125.09 -n %s -t -1 --X-rtd MINIMIZER_analytic --approx %s --doFits --parallel 8 %s' %( comfile , comfile , APPROX , setPOI ))
+command4.append('combineTool.py -M Impacts -d %s.root -m 125.09 -n %s -t -1 --X-rtd MINIMIZER_analytic --approx %s -o impacts.json %s' %( comfile , comfile , APPROX , setPOI ))
 for icommand in command4:
     print icommand
     os.system(icommand)                                                                                                                                                                                    

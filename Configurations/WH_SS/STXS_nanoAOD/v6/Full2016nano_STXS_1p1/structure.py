@@ -2,7 +2,7 @@
 
 structure = {}
 
-nominal=['WWewk', 'ZZ', 'Fake_ee', 'Fake_mm', 'Fake_em', 'WW', 'WH_hww', 'DY', 'WZhad', 'DATA', 'Wg', 'qqH_hww', 'VVV', 'top', 'ZgS', 'ttV', 'ggWW', 'ZH_hww', 'WgS', 'ggZH_hww', 'WZ', 'ggH_hww', 'qqH_htt', 'ggH_htt', 'Zg', 'WH_htt', 'ZH_htt','ttH_hww']
+nominal=['WWewk', 'ZZ', 'Fake_ee', 'Fake_mm', 'Fake_em', 'WW', 'DY', 'WZhad', 'DATA', 'Wg', 'qqH_hww', 'VVV', 'top', 'ZgS', 'ttV', 'ggWW', 'ZH_hww', 'WgS', 'ggZH_hww', 'WZ', 'ggH_hww', 'qqH_htt', 'ggH_htt', 'Zg', 'WH_htt', 'ZH_htt','ttH_hww']
 stxs=['WH_hww_PTV_LT150' , 'WH_hww_PTV_GT150' , 'WH_hww_FWDH']
 
 # keys here must match keys in samples.py
