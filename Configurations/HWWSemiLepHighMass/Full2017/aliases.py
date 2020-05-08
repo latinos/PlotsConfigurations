@@ -17,27 +17,22 @@ mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
 eleWP    = 'mvaFall17V1Iso_WP90'
 muWP     = 'cut_Tight_HWWW'
-LepWPCut='(Lepton_isTightElectron_'+eleWP+'[0] > 0.5 \
-            || Lepton_isTightMuon_'+muWP+'[0] > 0.5)'
-
-Lep1WPCut='(Alt$(Lepton_isTightElectron_'+eleWP+'[1], 0) > 0.5 \
-            || Alt$(Lepton_isTightMuon_'+muWP+'[1], 0) > 0.5)'
 
 aliases['bWP'] = {
     'expr': '0.1522'
 }
+aliases['tau21WP'] = {
+    'expr': '0.45'
+}
 aliases['LepWPCut'] = {
-    'expr': LepWPCut
+    'expr': '(Lepton_isTightElectron_'+eleWP+'[0] > 0.5 \
+            || Lepton_isTightMuon_'+muWP+'[0] > 0.5)'
 }
 aliases['Lep1WPCut'] = {
-    'expr': Lep1WPCut
+    'expr': '(Alt$(Lepton_isTightElectron_'+eleWP+'[1], 0) > 0.5 \
+            || Alt$(Lepton_isTightMuon_'+muWP+'[1], 0) > 0.5)'
 }
 
-aliases['LepWPSF'] = {
-    'expr': '(Lepton_isTightElectron_'+eleWP+'[0] > 0.5) * Lepton_tightElectron_'+eleWP+'_IdIsoSF[0] \
-    + (Lepton_isTightMuon_'+muWP+'[0] > 0.5)*Lepton_tightMuon_'+muWP+'_IdIsoSF[0]',
-    'samples': mc
-}
 
 aliases['WlepMT'] = {
     'expr': 'TMath::Sqrt( 2*Lepton_pt[0]*PuppiMET_pt \
@@ -52,14 +47,6 @@ aliases['resolvHiggsMT'] = {
     *( 1-TMath::Cos(Wlep_phi_Puppi-Whad_phi) ) )'
 }
 
-aliases['boosted'] = {
-    'expr': 'PuppiMET_pt > 40 \
-            && Alt$(CleanFatJetPassMBoosted_pt[0], 0) > 200 \
-            && Alt$(CleanFatJetPassMBoosted_WptOvHfatM[0], 0) > 0.4 \
-            && Alt$(CleanFatJetPassMBoosted_tau21[0], 999) < 0.45 \
-            && Alt$(CleanFatJetPassMBoosted_mass[0], 0) > 40 \
-            && abs(Alt$(CleanFatJetPassMBoosted_eta[0], 999)) < 2.4'
-}
 
 aliases['idxCleanFatJetW'] = {
     'linesToAdd': ['.L %s/HWWSemiLepHighMass/Full2017/indexWFatJet.cc' % configurations],
@@ -70,15 +57,26 @@ aliases['manualHfatM'] = {
     'linesToAdd': ['.L %s/HWWSemiLepHighMass/Full2017/boostHiggsMass.cc' % configurations],
     'class': 'CalcBoostHiggsMass',
 }
+aliases['tau21Cut'] = {
+    'expr': '(Alt$(CleanFatJet_tau21[(int)idxCleanFatJetW], 1) < tau21WP)'
+}
+
+aliases['boosted'] = {
+    'expr': 'PuppiMET_pt > 40 \
+            && Alt$(CleanFatJetPassMBoosted_pt[0], 0) > 200 \
+            && Alt$(CleanFatJetPassMBoosted_WptOvHfatM[0], 0) > 0.4 \
+            && Alt$(CleanFatJetPassMBoosted_tau21[0], 999) < tau21WP[0] \
+            && Alt$(CleanFatJetPassMBoosted_mass[0], 0) > 40 \
+            && abs(Alt$(CleanFatJetPassMBoosted_eta[0], 999)) < 2.4'
+}
 aliases['boostedNoTau21'] = {
     'expr': 'PuppiMET_pt > 40 \
             && (int)idxCleanFatJetW != 999 \
             && Alt$(CleanFatJet_pt[(int)idxCleanFatJetW], 0) > 200 \
-            && Alt$(CleanFatJet_eta[(int)idxCleanFatJetW], 999) < 2.4 \
-            && Alt$(CleanFatJet_mass[(int)idxCleanFatJetW], 0) > 40 \
-            && manualHfatM > 0 \
             && Alt$(CleanFatJet_pt[(int)idxCleanFatJetW], 0) / manualHfatM > 0.4 \
-            && Wlep_pt_Puppi / manualHfatM > 0.4'
+            && manualHfatM > 0 && Wlep_pt_Puppi / manualHfatM > 0.4 \
+            && Alt$(CleanFatJet_mass[(int)idxCleanFatJetW], 0) > 40 \
+            && Alt$(CleanFatJet_eta[(int)idxCleanFatJetW], 999) < 2.4'
 }
 
 aliases['resolved'] = {
@@ -112,42 +110,41 @@ aliases['boostedSidebandWMassNoTau21'] = {
             && Alt$(CleanFatJet_mass[(int)idxCleanFatJetW], 999) < 250)'
 }
 
-aliases['lowBoostedSidebandWMass'] = {
-    'expr': '(40 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
-            && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 65)'
-}
-
-aliases['highBoostedSidebandWMass'] = {
-    'expr': '(105 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
-            && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 250)'
-}
+# aliases['lowBoostedSidebandWMass'] = {
+#     'expr': '(40 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
+#             && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 65)'
+# }
+#
+# aliases['highBoostedSidebandWMass'] = {
+#     'expr': '(105 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
+#             && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 250)'
+# }
 
 
 aliases['resolvedSidebandWMass'] = {
     'expr': '(40 < Whad_mass && Whad_mass < 250)'
 }
 
-aliases['lowResolvedSidebandWMass'] = {
-    'expr': '(40 < Whad_mass && Whad_mass < 65)'
-}
-
-aliases['highResolvedSidebandWMass'] = {
-    'expr': '(105 < Whad_mass && Whad_mass < 250)'
-}
+# aliases['lowResolvedSidebandWMass'] = {
+#     'expr': '(40 < Whad_mass && Whad_mass < 65)'
+# }
+#
+# aliases['highResolvedSidebandWMass'] = {
+#     'expr': '(105 < Whad_mass && Whad_mass < 250)'
+# }
 
 aliases['resolvedQCDcr'] = {
-    'expr': '(   65 < Whad_mass && Whad_mass < 105 \
-                && WlepMT < 50 && 0 < resolvHiggsMT \
-                && resolvHiggsMT < 60 && WptOvHak4M < 0.35 )'
+    'expr': 'resolvedSignalWMass \
+            && WlepMT < 50 && 0 < resolvHiggsMT \
+            && resolvHiggsMT < 60 && WptOvHak4M < 0.35'
 }
-
-aliases['boostedQCDcr'] = {
-    'expr': '(65 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
-            && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 105 \
-            && WlepMT < 50 \
-            && Alt$(CleanFatJetPassMBoosted_tau21[0], 0) > 0.4\
-            && Alt$(CleanFatJetPassMBoosted_WptOvHfatM[0], 9) < 0.4)'
-}
+# boostedQCDcr not possible RN since boosted W candidate always fulfills WptOvHfatM > 0.4
+# aliases['boostedQCDcr'] = {
+#     'expr': 'boostedSignalWMassNoTau21[0] \
+#             && WlepMT < 50 \
+#             && !tau21Cut[0]\
+#             && Alt$(CleanFatJet_pt[(int)idxCleanFatJetW], 0) / manualHfatM < 0.4)'
+# }
 
 aliases['tau21DDT'] = {
     'expr': 'Alt$(CleanFatJet_tau21[(int)idxCleanFatJetW], -999) + 0.080 * TMath::Log( Alt$(CleanFatJet_mass[(int)idxCleanFatJetW]*CleanFatJet_mass[(int)idxCleanFatJetW], 0) / Alt$(CleanFatJet_pt[(int)idxCleanFatJetW], 1) )'
@@ -284,35 +281,65 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
 
 
 
+# https://twiki.cern.ch/twiki/bin/viewauth/CMS/JetWtagging
+aliases['WtagSF'] = {
+    'expr': 'boostedNoTau21[0] * (0.97 * tau21Cut[0] + 1.14 * !tau21Cut[0]) + (1-boostedNoTau21[0])',
+    'samples': mc
+}
+aliases['SFWtagUp'] = {
+    'expr': 'boostedNoTau21[0] * (1.06 * tau21Cut[0] + 0.75 * !tau21Cut[0]) + (1-boostedNoTau21[0])',
+    'samples': mc
+}
+aliases['SFWtagDown'] = {
+    'expr': 'boostedNoTau21[0] * (0.94 * tau21Cut[0] + 1.25 * !tau21Cut[0]) + (1-boostedNoTau21[0])',
+    'samples': mc
+}
 
 
 
-# data/MC scale factors
-aliases['SFweight'] = {
-    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'Lepton_RecoSF[0]', 'EMTFbug_veto','PrefireWeight','LepWPSF[0]','btagSF[0]']),
+aliases['TriggerSF'] = {
+    'expr': '(TriggerEffWeight_sngEl*(abs(Lepton_pdgId[0])==11) + TriggerEffWeight_sngMu*(abs(Lepton_pdgId[0]==13)))',
+    'samples': mc
+}
+
+
+
+aliases['LepWPSF'] = {
+    'expr': '(Lepton_isTightElectron_'+eleWP+'[0] > 0.5) * Lepton_tightElectron_'+eleWP+'_TotSF[0] \
+    + (Lepton_isTightMuon_'+muWP+'[0] > 0.5)*Lepton_tightMuon_'+muWP+'_TotSF[0]',
     'samples': mc
 }
 # # variations of tight lepton WP
 aliases['SFweightEleUp'] = {
-    'expr': 'Lepton_tightElectron_'+eleWP+'_IdIsoSF_Up[0]',
+    'expr': 'Lepton_tightElectron_'+eleWP+'_TotSF_Up[0]',
     'samples': mc
 }
 aliases['SFweightEleDown'] = {
-    'expr': 'Lepton_tightElectron_'+eleWP+'_IdIsoSF_Down[0]',
+    'expr': 'Lepton_tightElectron_'+eleWP+'_TotSF_Down[0]',
     'samples': mc
 }
 aliases['SFweightMuUp'] = {
-    'expr': 'Lepton_tightMuon_'+muWP+'_IdIsoSF_Up[0]',
+    'expr': 'Lepton_tightMuon_'+muWP+'_TotSF_Up[0]',
     'samples': mc
 }
 aliases['SFweightMuDown'] = {
-    'expr': 'Lepton_tightMuon_'+muWP+'_IdIsoSF_Down[0]',
+    'expr': 'Lepton_tightMuon_'+muWP+'_TotSF_Down[0]',
     'samples': mc
 }
 
 
 
 
+# # data/MC scale factors
+# aliases['SFweight'] = {
+#     'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto','PrefireWeight','LepWPSF[0]','btagSF[0]','WtagSF[0]']),
+#     'samples': mc
+# }
+# data/MC scale factors
+aliases['SFweight'] = {
+'expr': ' * '.join(['puWeight', 'TriggerSF', 'EMTFbug_veto','PrefireWeight','LepWPSF[0]','btagSF[0]','WtagSF[0]']),
+'samples': mc
+}
 
 
 
@@ -340,15 +367,15 @@ aliases['antitopGenPtOTF'] = {
     'samples': ['top']
 }
 
-aliases['Top_pTrw'] = {
-    'expr': 'isTTbar * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPtOTF) * TMath::Exp(0.0615 - 0.0005 * antitopGenPtOTF))) + isSingleTop',
-    'samples': ['top']
-}
-# # Dennis Roy for 2017/2018 -> also update nuisances
 # aliases['Top_pTrw'] = {
-#     'expr': '(TMath::Sqrt(TMath::Exp(4.14819e-02 - 3.67734e-04*topGenPt + 7.60587e-08*topGenPt*topGenPt + 1.29362/(topGenPt+22.8537)) * TMath::Exp(4.14819e-02 - 3.67734e-04*antitopGenPt + 7.60587e-08*antitopGenPt*antitopGenPt + 1.29362/(antitopGenPt+22.8537))))',
+#     'expr': 'isTTbar * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPtOTF) * TMath::Exp(0.0615 - 0.0005 * antitopGenPtOTF))) + isSingleTop',
 #     'samples': ['top']
 # }
+# Dennis Roy for 2017/2018 -> also update nuisances
+aliases['Top_pTrw'] = {
+    'expr': '(topGenPtOTF * antitopGenPtOTF > 0.) * (TMath::Sqrt(TMath::Exp(-1.43717e-02 - 1.18358e-04*topGenPtOTF - 1.70651e-07*topGenPtOTF*topGenPtOTF + 4.47969/(topGenPtOTF+28.7)) * TMath::Exp(-1.43717e-02 - 1.18358e-04*antitopGenPtOTF - 1.70651e-07*antitopGenPtOTF*antitopGenPtOTF + 4.47969/(antitopGenPtOTF+28.7)))) + (topGenPtOTF * antitopGenPtOTF <= 0.)',
+    'samples': ['top']
+}
 
 
 

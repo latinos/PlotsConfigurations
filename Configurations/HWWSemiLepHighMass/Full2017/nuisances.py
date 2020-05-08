@@ -138,12 +138,12 @@ nuisances['prefire'] = {
 
 ##### Electron Efficiency and energy scale
 
-# nuisances['eff_e'] = {
-#     'name': 'CMS_eff_e_2017',
-#     'kind': 'weight',
-#     'type': 'shape',
-#     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
-# }
+nuisances['eff_e'] = {
+    'name': 'CMS_eff_e_2017',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
+}
 
 # nuisances['electronpt'] = {
 #     'name': 'CMS_scale_e_2017',
@@ -157,12 +157,12 @@ nuisances['prefire'] = {
 
 ##### Muon Efficiency and energy scale
 
-# nuisances['eff_m'] = {
-#     'name': 'CMS_eff_m_2017',
-#     'kind': 'weight',
-#     'type': 'shape',
-#     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
-# }
+nuisances['eff_m'] = {
+    'name': 'CMS_eff_m_2017',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
+}
 
 # nuisances['muonpt'] = {
 #     'name': 'CMS_scale_m_2017',
@@ -480,7 +480,7 @@ nuisances['QCDscale_VV'] = {
     'type': 'shape',
     'samples': {
         'Vg': variations,
-        'VZ': variations, #FIXME not all VZ have LHEScaleWeight
+        # 'VZ': variations, #FIXME not all VZ have LHEScaleWeight
         'VgS': variations
     }
 }

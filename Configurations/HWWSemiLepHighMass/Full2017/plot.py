@@ -29,13 +29,6 @@ groupPlot['QCD'] = {
     'samples'  : ['QCD']
 }
 
-# groupPlot['Fake']  = {
-#                   'nameHR' : 'nonprompt',
-#                   'isSignal' : 0,
-#                   'color': 921,    # kGray + 1
-#                   'samples'  : ['Fake_me', 'Fake_em']
-# }
-
 groupPlot['DY']  = {
     'nameHR' : "DY",
     'isSignal' : 0,
@@ -47,20 +40,20 @@ groupPlot['multiboson']  = {
     'nameHR' : 'multiboson',
     'isSignal' : 0,
     'color': 857, # kAzure -3
-    'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L','ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ttH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt']
+    'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L','ggH_hww', 'qqH_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ttH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt']
 }
 
+groupPlot['Higgs160']  = {
+    'nameHR' : 'Higgs 160',
+    'isSignal' : 2,
+    'color': 2, # kRed
+    'samples' : ['GGH_160_RelW002', 'QQH_160_RelW002']
+}
 groupPlot['Higgs400']  = {
     'nameHR' : 'Higgs 400',
     'isSignal' : 2,
     'color': 1, # kRed
     'samples' : ['GGH_400_RelW002', 'QQH_400_RelW002']
-}
-groupPlot['Higgs1000']  = {
-    'nameHR' : 'Higgs 1000',
-    'isSignal' : 2,
-    'color': 2, # kRed
-    'samples' : ['GGH_1000_RelW002', 'QQH_1000_RelW002']
 }
 groupPlot['Higgs1500']  = {
     'nameHR' : 'Higgs 1500',
@@ -195,13 +188,13 @@ plot['ZH_hww'] = {
     'scale'    : 1    #
 }
 
-# plot['ggZH_hww'] = {
-#     'nameHR' : 'ggZH',
-#     'color': 632+4, # kRed+4
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1    #
-# }
+plot['ggZH_hww'] = {
+    'nameHR' : 'ggZH',
+    'color': 632+4, # kRed+4
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1    #
+}
 
 plot['WH_hww'] = {
     'nameHR' : 'WH',
@@ -266,49 +259,47 @@ plot['ZH_htt']  = {
 
 
 # Signal
+plot['QQH_160_RelW002'] = {
+    'nameHR' : 'qqH160',
+    'color': 632+1, # kRed+1
+    'isSignal' : 1,
+    'isData'   : 0,
+    'scale'    : 1    #
+}
+plot['GGH_160_RelW002'] = {
+    'nameHR' : 'ggH160',
+    'color': 632, # kRed
+    'isSignal' : 1,
+    'isData'   : 0,
+    'scale'    : 1    #
+}
 plot['QQH_400_RelW002'] = {
-                  'nameHR' : 'qqH400',
-                  'color': 632+1, # kRed+1
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1    #
+    'nameHR' : 'qqH400',
+    'color': 632+1, # kRed+1
+    'isSignal' : 1,
+    'isData'   : 0,
+    'scale'    : 1    #
 }
 plot['GGH_400_RelW002'] = {
-                  'nameHR' : 'ggH400',
-                  'color': 632, # kRed
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1   #
+    'nameHR' : 'ggH400',
+    'color': 632, # kRed
+    'isSignal' : 1,
+    'isData'   : 0,
+    'scale'    : 1   #
 }
-
-plot['QQH_1000_RelW002'] = {
-                  'nameHR' : 'qqH1000',
-                  'color': 632+1, # kRed+1
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1    #
-}
-plot['GGH_1000_RelW002'] = {
-                  'nameHR' : 'ggH1000',
-                  'color': 632, # kRed
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1    #
-}
-
 plot['QQH_1500_RelW002'] = {
-                  'nameHR' : 'qqH1500',
-                  'color': 632+1, # kRed+1
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1    #
+    'nameHR' : 'qqH1500',
+    'color': 632+1, # kRed+1
+    'isSignal' : 1,
+    'isData'   : 0,
+    'scale'    : 1    #
 }
 plot['GGH_1500_RelW002'] = {
-                  'nameHR' : 'ggH1500',
-                  'color': 632, # kRed
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1    #
+    'nameHR' : 'ggH1500',
+    'color': 632, # kRed
+    'isSignal' : 1,
+    'isData'   : 0,
+    'scale'    : 1    #
 }
 
 
@@ -318,13 +309,13 @@ plot['GGH_1500_RelW002'] = {
 
 # data
 
-# plot['DATA']  = {
-#                   'nameHR' : 'Data',
-#                   'color': 1 ,
-#                   'isSignal' : 0,
-#                   'isData'   : 1 ,
-#                   'isBlind'  : 1
-#               }
+plot['DATA']  = {
+                  'nameHR' : 'Data',
+                  'color': 1 ,
+                  'isSignal' : 0,
+                  'isData'   : 1 ,
+                  'isBlind'  : 0
+              }
 
 
 

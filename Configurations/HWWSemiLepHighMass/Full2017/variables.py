@@ -17,7 +17,7 @@
 
 variables['lepton0_pt']  = {
     'name' : 'Lepton_pt[0]',
-    'range': (24,0,1200),
+    'range': (100,0,500),
     'xaxis': 'lepton[0] pt',
     'fold' : 3
 }
@@ -41,7 +41,7 @@ variables['lepton0_phi'] = {
 #####################################################
 
 variables['lepton1_pt']  = {
-    'name' : 'Lepton_pt[1]',
+    'name' : 'Alt$(Lepton_pt[1], 0)',
     'range': (50,0,250),
     'xaxis': 'lepton[1] pt',
     'fold' : 3
