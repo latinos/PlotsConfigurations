@@ -70,8 +70,8 @@ def post_fit_plots(datac):
                 int(args.signal_from_prefit)
             )
 
-        if not os.path.exists(outputDirPlots+"/"+combconf["name"]):
-            os.makedirs(outputDirPlots+"/"+combconf["name"])
+        if not os.path.exists(plotbasedir+ "/"+ outputDirPlots+"/"+combconf["name"]):
+            os.makedirs(plotbasedir+ "/"+ outputDirPlots+"/"+combconf["name"])
         
         # The samples are plotted with postfit shapes, the pre-fit ratio is added
         cmdpost2 = """mkPlot.py  --pycfg={0} --plotFile={6} \\
