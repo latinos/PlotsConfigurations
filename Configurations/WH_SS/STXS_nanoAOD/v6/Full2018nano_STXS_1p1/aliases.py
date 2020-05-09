@@ -22,9 +22,9 @@ muWP = 'cut_Tight_HWWW_tthmva_80'
 
 aliases['WH2l_pTW'] = {
     'linesToAdd': [
-        '.L %s/../../macros/whss_wlep_v3.cc+' % configurations
+        '.L %s/../../macros/whss_wlep_v4.cc+' % configurations
     ],
-    'class': 'WHSS_wpt_v3',
+    'class': 'whss_wlep_v4',
     'args': ()
 }
 
