@@ -21,32 +21,33 @@ aliases['whad_pt'] = {
 ############################################
 # DNN reader - Updated to 2018 specific
 
-mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2018v6s5/mva/'
-models_path = '/eos/home-d/dvalsecc/www/VBSPlots/DNN_archive/FullRun2/'
+# mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2018v6s5/mva/'
+# models_path = '/eos/home-d/dvalsecc/www/VBSPlots/DNN_archive/FullRun2/'
 
-aliases['DNNoutput_boosted'] = {
-    'class': 'MVAReaderBoosted_v5',
-    'args': ( models_path +'boost_sig/models/v5/',  mva_reader_path + 'cumulative_signal_boosted_v5.root', False, 0),
-    'linesToAdd':[
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L ' + mva_reader_path + 'mva_reader_boosted_v5.cc+', 
-    ],
-}
+# aliases['DNNoutput_boosted'] = {
+#     'class': 'MVAReaderBoosted_v5',
+#     'args': ( models_path +'boost_sig/models/v5/',  mva_reader_path + 'cumulative_signal_boosted_v5.root', False, 0),
+#     'linesToAdd':[
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         'gSystem->Load("libDNNEvaluator.so")',
+#         '.L ' + mva_reader_path + 'mva_reader_boosted_v5.cc+', 
+#     ],
+# }
 
-aliases['DNNoutput_resolved'] = {
-    'class': 'MVAReaderResolved_v29',
-    'args': ( models_path+ 'res_sig/models/v29/', mva_reader_path + 'cumulative_signal_resolved_v29.root', False, 1),
-    'linesToAdd':[
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L ' + mva_reader_path + 'mva_reader_resolved_v29.cc+', 
-    ],
-}
+# aliases['DNNoutput_resolved'] = {
+#     'class': 'MVAReaderResolved_v29',
+#     'args': ( models_path+ 'res_sig/models/v29/', mva_reader_path + 'cumulative_signal_resolved_v29.root', False, 1),
+#     'linesToAdd':[
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         'gSystem->Load("libDNNEvaluator.so")',
+#         '.L ' + mva_reader_path + 'mva_reader_resolved_v29.cc+', 
+#     ],
+# }
 
-aliases['DNNoutput'] = {
-    'expr': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)'
-}
+# aliases['DNNoutput'] = {
+#     'expr': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)'
+# }
+
 
 
 aliases['detavbs_jetpt_bin'] = {
@@ -85,28 +86,45 @@ aliases['bReqTight'] = {
 
 aliases['bVetoSF'] = {
     'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<=20 || abs(CleanJet_eta)>=2.5))))',
-    'samples': mc
+    'samples': [s for s in mc if not s in ["DY", "Wjets"]]
 }
 
 aliases['bReqSF'] = {
     'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<=30 || abs(CleanJet_eta)>=2.5))))',
-    'samples': mc
+    'samples': [s for s in mc if not s in ["DY", "Wjets"]]
 }
 
 
 aliases['btagSF'] = {
     'expr': 'bVeto*bVetoSF + ( bReq || bReqTight) *bReqSF',
-    'samples': mc
+    'samples': [s for s in mc if not s in ["DY", "Wjets"]]
+}
+
+
+aliases['bVetoSF_new'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<=20 || abs(CleanJet_eta)>=2.5))))',
+    'samples': ["DY", "Wjets"]
+}
+
+aliases['bReqSF_new'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<=30 || abs(CleanJet_eta)>=2.5))))',
+    'samples': ["DY", "Wjets"]
+}
+
+
+aliases['btagSF_new'] = {
+    'expr': 'bVeto*bVetoSF_new + ( bReq || bReqTight) *bReqSF_new',
+    'samples': ["DY", "Wjets"]
 }
 
 
 
-systs = ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']
-#systs = ['jes']
+# systs = ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']
+# #systs = ['jes']
 
-for s in systs:
-  aliases['btagSF'+s+'up'] = { 'expr': '(bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_up_'+s)+'+bReqTight*'+aliases['bReqSF']['expr'].replace('shape','shape_up_'+s)+'+ ( (!bVeto) && (!bReq) ))', 'samples':mc  }
-  aliases['btagSF'+s+'down'] = { 'expr': '(bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_down_'+s)+'+bReqTight*'+aliases['bReqSF']['expr'].replace('shape','shape_down_'+s)+'+ ( (!bVeto) && (!bReq) ))', 'samples':mc  }
+# for s in systs:
+#   aliases['btagSF'+s+'up'] = { 'expr': '(bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_up_'+s)+'+bReqTight*'+aliases['bReqSF']['expr'].replace('shape','shape_up_'+s)+'+ ( (!bVeto) && (!bReq) ))', 'samples':mc  }
+#   aliases['btagSF'+s+'down'] = { 'expr': '(bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_down_'+s)+'+bReqTight*'+aliases['bReqSF']['expr'].replace('shape','shape_down_'+s)+'+ ( (!bVeto) && (!bReq) ))', 'samples':mc  }
 
 ################################################################################################
 
@@ -167,14 +185,56 @@ aliases['PUJetIdSF'] = {
 }
 
 
-# aliases['gstarLow'] = {
-#     'expr': 'Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4',
-#     'samples': 'VgS'
-# }
+aliases['pt_0j'] = {
+    'linesToAdd': [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L %s/VBSjjlnu/Full2018v6s5/macros/PtSystemJets.cc+' % configurations
+    ],
+    'class': 'PtSystemJets',
+    'args': ('_0j'),
+}
 
-# aliases['gstarHigh'] = {
-#     'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
-#     'samples': 'VgS'
-# }
+aliases['pt_1j'] = {
+    'linesToAdd': [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L %s/VBSjjlnu/Full2018v6s5/macros/PtSystemJets.cc+' % configurations
+    ],
+    'class': 'PtSystemJets',
+    'args': ('_1j'),
+}
 
+aliases['pt_2j'] = {
+    'linesToAdd': [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L %s/VBSjjlnu/Full2018v6s5/macros/PtSystemJets.cc+' % configurations
+    ],
+    'class': 'PtSystemJets',
+    'args': ('_2j'),
+}
 
+aliases['pt_3j'] = {
+    'linesToAdd': [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L %s/VBSjjlnu/Full2018v6s5/macros/PtSystemJets.cc+' % configurations
+    ],
+    'class': 'PtSystemJets',
+    'args': ('_3j'),
+}
+
+aliases['pt_4j'] = {
+    'linesToAdd': [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L %s/VBSjjlnu/Full2018v6s5/macros/PtSystemJets.cc+' % configurations
+    ],
+    'class': 'PtSystemJets',
+    'args': ('_4j'),
+}
+
+aliases['pt_allj'] = {
+    'linesToAdd': [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L %s/VBSjjlnu/Full2018v6s5/macros/PtSystemJets.cc+' % configurations
+    ],
+    'class': 'PtSystemJets',
+    'args': ('_allj'),
+}

@@ -59,36 +59,36 @@ supercut = '(   (abs(Lepton_pdgId[0])==11 && Lepton_pt[0]>35)\
 #                                 && DNNoutput_resolved > 0.3 \
 #                                 '
 
-cuts["res_sig_dnnall_lowvtx_ele"] = 'VBS_category==1 \
-                                && abs(Lepton_pdgId[0])==11 \
-                                && vjet_0_pt > 30 && vjet_1_pt > 30 \
-                                && mjj_vjet > 65 && mjj_vjet < 105 \
-                                && bVeto \
-                                && whad_pt < 200 \
-                                && PV_npvs < 40 \
-                                '
+# cuts["res_sig_dnnall_lowvtx_ele"] = 'VBS_category==1 \
+#                                 && abs(Lepton_pdgId[0])==11 \
+#                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
+#                                 && mjj_vjet > 65 && mjj_vjet < 105 \
+#                                 && bVeto \
+#                                 && whad_pt < 200 \
+#                                 && PV_npvs < 40 \
+#                                 '
 
 
-cuts["res_sig_dnnall_lowvtx_mu"] = 'VBS_category==1 \
-                                && abs(Lepton_pdgId[0])==13 \
-                                && vjet_0_pt > 30 && vjet_1_pt > 30 \
-                                && mjj_vjet > 65 && mjj_vjet < 105 \
-                                && bVeto \
-                                && whad_pt < 200 \
-                                && PV_npvs < 40 \
-                                '
+# cuts["res_sig_dnnall_lowvtx_mu"] = 'VBS_category==1 \
+#                                 && abs(Lepton_pdgId[0])==13 \
+#                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
+#                                 && mjj_vjet > 65 && mjj_vjet < 105 \
+#                                 && bVeto \
+#                                 && whad_pt < 200 \
+#                                 && PV_npvs < 40 \
+#                                 '
 
 
 ##################################
 # Woff shell, bveto ---> WJet region
 
-# cuts["res_wjetcr_dnnall_ele"] = 'VBS_category==1 \
-#                                 && abs(Lepton_pdgId[0])==11 \
-#                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
-#                                 && (mjj_vjet <= 65 || mjj_vjet >= 105) \
-#                                 && bVeto \
-#                                 && whad_pt < 200 \
-#                                 '
+cuts["res_wjetcr_dnnall_ele"] = 'VBS_category==1 \
+                                && abs(Lepton_pdgId[0])==11 \
+                                && vjet_0_pt > 30 && vjet_1_pt > 30 \
+                                && (mjj_vjet <= 65 || mjj_vjet >= 105) \
+                                && bVeto \
+                                && whad_pt < 200 \
+                                '
 
 
 # # cuts["res_wjetcr_dnnhigh_ele"] = 'VBS_category==1 \
@@ -101,13 +101,13 @@ cuts["res_sig_dnnall_lowvtx_mu"] = 'VBS_category==1 \
 # #                                 '
 
 
-# cuts["res_wjetcr_dnnall_mu"] = 'VBS_category==1 \
-#                                 && abs(Lepton_pdgId[0])==13 \
-#                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
-#                                 && (mjj_vjet <= 65 || mjj_vjet >= 105) \
-#                                 && bVeto \
-#                                 && whad_pt < 200 \
-#                                 '
+cuts["res_wjetcr_dnnall_mu"] = 'VBS_category==1 \
+                                && abs(Lepton_pdgId[0])==13 \
+                                && vjet_0_pt > 30 && vjet_1_pt > 30 \
+                                && (mjj_vjet <= 65 || mjj_vjet >= 105) \
+                                && bVeto \
+                                && whad_pt < 200 \
+                                '
 
 
 # cuts["res_wjetcr_dnnhigh_mu"] = 'VBS_category==1 \
@@ -119,24 +119,24 @@ cuts["res_sig_dnnall_lowvtx_mu"] = 'VBS_category==1 \
 #                                 && DNNoutput_resolved > 0.3 \
 #                                 '
 
-cuts["res_wjetcr_dnnall_lowvtx_ele"] = 'VBS_category==1 \
-                                && abs(Lepton_pdgId[0])==11 \
-                                && vjet_0_pt > 30 && vjet_1_pt > 30 \
-                                && (mjj_vjet <= 65 || mjj_vjet >= 105) \
-                                && bVeto \
-                                && whad_pt < 200 \
-                                && PV_npvs < 40 \
-                                '
+# cuts["res_wjetcr_dnnall_lowvtx_ele"] = 'VBS_category==1 \
+#                                 && abs(Lepton_pdgId[0])==11 \
+#                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
+#                                 && (mjj_vjet <= 65 || mjj_vjet >= 105) \
+#                                 && bVeto \
+#                                 && whad_pt < 200 \
+#                                 && PV_npvs < 40 \
+#                                 '
 
 
-cuts["res_wjetcr_dnnall_lowvtx_mu"] = 'VBS_category==1 \
-                                && abs(Lepton_pdgId[0])==13 \
-                                && vjet_0_pt > 30 && vjet_1_pt > 30 \
-                                && (mjj_vjet <= 65 || mjj_vjet >= 105) \
-                                && bVeto \
-                                && whad_pt < 200 \
-                                 && PV_npvs < 40 \
-                                '
+# cuts["res_wjetcr_dnnall_lowvtx_mu"] = 'VBS_category==1 \
+#                                 && abs(Lepton_pdgId[0])==13 \
+#                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
+#                                 && (mjj_vjet <= 65 || mjj_vjet >= 105) \
+#                                 && bVeto \
+#                                 && whad_pt < 200 \
+#                                  && PV_npvs < 40 \
+#                                 '
 
 #########################################################################
 ###############|----------------------------------|######################
@@ -165,7 +165,7 @@ cuts["res_wjetcr_dnnall_lowvtx_mu"] = 'VBS_category==1 \
 #                             && vjet_0_pt > 200 \
 #                             && mjj_vjet > 65 && mjj_vjet < 105 \
 #                             && bVeto \
-#                             '
+                            # '
 
 
 # cuts["boost_sig_dnnhigh_mu"] = 'VBS_category==0 \
@@ -176,30 +176,30 @@ cuts["res_wjetcr_dnnall_lowvtx_mu"] = 'VBS_category==1 \
 #                             && DNNoutput_boosted > 0.3 \
 #                             '
 
-cuts["boost_sig_dnnall_lowvtx_ele"] = 'VBS_category==0 \
-                            && abs(Lepton_pdgId[0])==11 \
-                            && vjet_0_pt > 200 \
-                            && mjj_vjet > 65 && mjj_vjet < 105 \
-                            && bVeto \
-                            && PV_npvs < 40 \
-                            '
+# cuts["boost_sig_dnnall_lowvtx_ele"] = 'VBS_category==0 \
+#                             && abs(Lepton_pdgId[0])==11 \
+#                             && vjet_0_pt > 200 \
+#                             && mjj_vjet > 65 && mjj_vjet < 105 \
+#                             && bVeto \
+#                             && PV_npvs < 40 \
+#                             '
 
-cuts["boost_sig_dnnall_lowvtx_mu"] = 'VBS_category==0 \
-                            && abs(Lepton_pdgId[0])==13 \
-                            && vjet_0_pt > 200 \
-                            && mjj_vjet > 65 && mjj_vjet < 105 \
-                            && bVeto \
-                            && PV_npvs < 40 \
-                            '
+# cuts["boost_sig_dnnall_lowvtx_mu"] = 'VBS_category==0 \
+#                             && abs(Lepton_pdgId[0])==13 \
+#                             && vjet_0_pt > 200 \
+#                             && mjj_vjet > 65 && mjj_vjet < 105 \
+#                             && bVeto \
+#                             && PV_npvs < 40 \
+#                             '
 ###############################################
 # Wjets
 
-# cuts["boost_wjetcr_dnnall_ele"] = 'VBS_category==0 \
-#                             && abs(Lepton_pdgId[0])==11 \
-#                             && vjet_0_pt > 200 \
-#                             && (mjj_vjet <= 65 || mjj_vjet >= 105)  \
-#                             && bVeto \
-#                             '
+cuts["boost_wjetcr_dnnall_ele"] = 'VBS_category==0 \
+                            && abs(Lepton_pdgId[0])==11 \
+                            && vjet_0_pt > 200 \
+                            && (mjj_vjet <= 65 || mjj_vjet >= 105)  \
+                            && bVeto \
+                            '
 
 
 # # cuts["boost_wjetcr_dnnhigh_ele"] = 'VBS_category==0 \
@@ -210,12 +210,12 @@ cuts["boost_sig_dnnall_lowvtx_mu"] = 'VBS_category==0 \
 # #                             && DNNoutput_boosted > 0.3 \
 # #                             '
 
-# cuts["boost_wjetcr_dnnall_mu"] = 'VBS_category==0 \
-#                             && abs(Lepton_pdgId[0])==13 \
-#                             && vjet_0_pt > 200 \
-#                             && (mjj_vjet <= 65 || mjj_vjet >= 105)  \
-#                             && bVeto \
-#                             '
+cuts["boost_wjetcr_dnnall_mu"] = 'VBS_category==0 \
+                            && abs(Lepton_pdgId[0])==13 \
+                            && vjet_0_pt > 200 \
+                            && (mjj_vjet <= 65 || mjj_vjet >= 105)  \
+                            && bVeto \
+                            '
 
 
 # cuts["boost_wjetcr_dnnhigh_mu"] = 'VBS_category==0 \
@@ -226,21 +226,21 @@ cuts["boost_sig_dnnall_lowvtx_mu"] = 'VBS_category==0 \
 #                             && DNNoutput_boosted > 0.3 \
 #                              '
 
-cuts["boost_wjetcr_dnnall_lowvtx_ele"] = 'VBS_category==0 \
-                            && abs(Lepton_pdgId[0])==11 \
-                            && vjet_0_pt > 200 \
-                            && (mjj_vjet <= 65 || mjj_vjet >= 105)  \
-                            && bVeto \
-                            && PV_npvs < 40 \
-                            '
+# cuts["boost_wjetcr_dnnall_lowvtx_ele"] = 'VBS_category==0 \
+#                             && abs(Lepton_pdgId[0])==11 \
+#                             && vjet_0_pt > 200 \
+#                             && (mjj_vjet <= 65 || mjj_vjet >= 105)  \
+#                             && bVeto \
+#                             && PV_npvs < 40 \
+#                             '
 
-cuts["boost_wjetcr_dnnall_lowvtx_mu"] = 'VBS_category==0 \
-                            && abs(Lepton_pdgId[0])==13 \
-                            && vjet_0_pt > 200 \
-                            && (mjj_vjet <= 65 || mjj_vjet >= 105)  \
-                            && bVeto \
-                            && PV_npvs < 40 \
-                            '
+# cuts["boost_wjetcr_dnnall_lowvtx_mu"] = 'VBS_category==0 \
+#                             && abs(Lepton_pdgId[0])==13 \
+#                             && vjet_0_pt > 200 \
+#                             && (mjj_vjet <= 65 || mjj_vjet >= 105)  \
+#                             && bVeto \
+#                             && PV_npvs < 40 \
+#                             '
 ###############################################
 #Top
 
@@ -282,24 +282,24 @@ cuts["boost_wjetcr_dnnall_lowvtx_mu"] = 'VBS_category==0 \
 #                                 '
 
 
-cuts["res_topcr_dnnall_lowvtx_ele"] = 'VBS_category==1 \
-                                && abs(Lepton_pdgId[0])==11 \
-                                && vjet_0_pt > 30 && vjet_1_pt > 30 \
-                                && mjj_vjet > 65 && mjj_vjet < 105 \
-                                && bReqTight \
-                                && whad_pt < 200 \
-                                 && PV_npvs < 40 \
-                                '
+# cuts["res_topcr_dnnall_lowvtx_ele"] = 'VBS_category==1 \
+#                                 && abs(Lepton_pdgId[0])==11 \
+#                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
+#                                 && mjj_vjet > 65 && mjj_vjet < 105 \
+#                                 && bReqTight \
+#                                 && whad_pt < 200 \
+#                                  && PV_npvs < 40 \
+#                                 '
 
 
-cuts["res_topcr_dnnall_lowvtx_mu"] = 'VBS_category==1 \
-                                && abs(Lepton_pdgId[0])==13 \
-                                && vjet_0_pt > 30 && vjet_1_pt > 30 \
-                                && mjj_vjet > 65 && mjj_vjet < 105 \
-                                && bReqTight \
-                                && whad_pt < 200 \
-                                 && PV_npvs < 40 \
-                                '
+# cuts["res_topcr_dnnall_lowvtx_mu"] = 'VBS_category==1 \
+#                                 && abs(Lepton_pdgId[0])==13 \
+#                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
+#                                 && mjj_vjet > 65 && mjj_vjet < 105 \
+#                                 && bReqTight \
+#                                 && whad_pt < 200 \
+#                                  && PV_npvs < 40 \
+#                                 '
 
 # ## Tight top
 # cuts["boost_topcr_dnnall_ele"] = 'VBS_category==0 \
@@ -323,7 +323,7 @@ cuts["res_topcr_dnnall_lowvtx_mu"] = 'VBS_category==1 \
 #                             && vjet_0_pt > 200 \
 #                             && mjj_vjet > 65 && mjj_vjet < 105 \
 #                             && bReqTight \
-#                             '
+#                              '
 
 
 
@@ -335,18 +335,18 @@ cuts["res_topcr_dnnall_lowvtx_mu"] = 'VBS_category==1 \
 #                             && DNNoutput_boosted > 0.3 \
 #                              '
 
-cuts["boost_topcr_dnnall_lowvtx_ele"] = 'VBS_category==0 \
-                            && abs(Lepton_pdgId[0])==11 \
-                            && vjet_0_pt > 200 \
-                            && mjj_vjet > 65 && mjj_vjet < 105 \
-                            && bReqTight \
-                            && PV_npvs < 40 \
-                            '
+# cuts["boost_topcr_dnnall_lowvtx_ele"] = 'VBS_category==0 \
+#                             && abs(Lepton_pdgId[0])==11 \
+#                             && vjet_0_pt > 200 \
+#                             && mjj_vjet > 65 && mjj_vjet < 105 \
+#                             && bReqTight \
+#                             && PV_npvs < 40 \
+#                             '
 
-cuts["boost_topcr_dnnall_lowvtx_mu"] = 'VBS_category==0 \
-                            && abs(Lepton_pdgId[0])==13 \
-                            && vjet_0_pt > 200 \
-                            && mjj_vjet > 65 && mjj_vjet < 105 \
-                            && bReqTight \
-                            && PV_npvs < 40 \
-                            '
+# cuts["boost_topcr_dnnall_lowvtx_mu"] = 'VBS_category==0 \
+#                             && abs(Lepton_pdgId[0])==13 \
+#                             && vjet_0_pt > 200 \
+#                             && mjj_vjet > 65 && mjj_vjet < 105 \
+#                             && bReqTight \
+#                             && PV_npvs < 40 \
+#                             '

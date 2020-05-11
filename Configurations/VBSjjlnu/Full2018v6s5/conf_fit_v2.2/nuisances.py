@@ -3,13 +3,13 @@
 
 # # name of samples here must match keys in samples.py 
 
-mc =["DY", "top", "VV", "VVV", "VBF-V", "top", "VBS", "Wjets", "Wjets_LO", "DY_HT"]
+mc =["DY", "top", "VV", "VVV", "VBF-V", "top", "VBS", "Wjets"]
 
 
 phase_spaces_boost = []
 phase_spaces_res = []
 
-for d in ["all","high","low", "all_lowvtx"]:
+for d in ["all","high","low"]:
     for cat in ["sig", "wjetcr", "topcr"]:
         phase_spaces_boost.append("boost_{}_dnn{}".format(cat, d))
         phase_spaces_res.append("res_{}_dnn{}".format(cat, d))
@@ -129,19 +129,28 @@ nuisances['fake_syst']  = {
 
 ##### Btag nuisances
 
-# for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
-#     btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
+for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
+    btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
 
-#     name = 'CMS_btag_%s' % shift
-#     if 'stats' in shift:
-#         name += '_2018'
+    name = 'CMS_btag_%s' % shift
+    if 'stats' in shift:
+        name += '_2018'
 
-#     nuisances['btag_shape_%s' % shift] = {
-#         'name': name,
-#         'kind': 'weight',
-#         'type': 'shape',
-#         'samples': dict((skey, btag_syst) for skey in mc),
-#     }
+    nuisances['btag_shape_%s' % shift] = {
+        'name': name,
+        'kind': 'weight',
+        'type': 'shape',
+        'samples': dict((skey, btag_syst) for skey in mc),
+    }
+
+####### Fatjet uncertainties
+fatjet_eff = ['Wtagging_SF_up/Wtagging_SF_nominal', 'Wtagging_SF_down/Wtagging_SF_nominal']
+nuisances['Wtagging_eff'] = {
+                'name': 'CMS_eff_fatjet_2018',
+                'kind' : 'weight', 
+                'type' : 'shape',
+                'samples': dict( (skey, fatjet_eff) for skey in mc)
+}
 
 # ##### Trigger Efficiency
 
@@ -181,7 +190,7 @@ nuisances['electronpt']  = {
                 'name'  : 'CMS_scale_e_2018',
                 'kind'  : 'tree',
                 'type'  : 'shape',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in ["Wjets", "DY"]),
+                'samples'  : dict((skey, ['1', '1']) for skey in mc),
                 'folderUp'   :  directory_bkg +"_ElepTup",
                 'folderDown' : directory_bkg +"_ElepTdo",
                 'cuts': phase_spaces_tot_ele
@@ -204,7 +213,7 @@ nuisances['muonpt']  = {
                 'name'  : 'CMS_scale_m_2018',
                 'kind'  : 'tree',
                 'type'  : 'shape',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in ["Wjets", "DY"]),
+                'samples'  : dict((skey, ['1', '1']) for skey in mc),
                 'folderUp'   : directory_bkg +"_MupTup",
                 'folderDown' : directory_bkg +"_MupTdo",
                 'cuts': phase_spaces_tot_mu
@@ -213,29 +222,85 @@ nuisances['muonpt']  = {
 
 ##### Jet energy scale
 
-nuisances['jes']  = {
-                'name'  : 'CMS_scale_j_2018',
+nuisances['jes_others']  = {
+                'name'  : 'CMS_scale_j_2018_others',
                 'kind'  : 'tree',
                 'type'  : 'shape',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in ["Wjets", "DY"]),
+                'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in ["Wjets", "top", "VBS", "DY", "VV", "VBF-V"]),
                 'folderUp'   : directory_bkg +"_JESup",
                 'folderDown' : directory_bkg +"_JESdo",
 }
 
-# nuisances['fatjet_jes']  = {
-#                 'name'  : 'CMS_scale_fatj_2018',
-#                 'kind'  : 'tree',
-#                 'type'  : 'shape',
-#                 'samples'  : dict((skey, ['1', '1']) for skey in mc),
-#                 'folderUp'   : directory_bkg +"_fatjet_JESup",
-#                 'folderDown' : directory_bkg +"_fatjet_JESdo",
-# }
+nuisances['jes_wjets']  = {
+                'name'  : 'CMS_scale_j_2018_Wjets',
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples'  : { "Wjets": ['1.','1.'] },
+                'folderUp'   : directory_bkg +"_JESup",
+                'folderDown' : directory_bkg +"_JESdo",
+}
+
+nuisances['jes_top']  = {
+                'name'  : 'CMS_scale_j_2018_top',
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples'  : { "top": ['1.','1.'] },
+                'folderUp'   : directory_bkg +"_JESup",
+                'folderDown' : directory_bkg +"_JESdo",
+}
+
+nuisances['jes_signal']  = {
+                'name'  : 'CMS_scale_j_2018_VBS',
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples'  : { "VBS": ['1.','1.'] },
+                'folderUp'   : directory_bkg +"_JESup",
+                'folderDown' : directory_bkg +"_JESdo",
+}
+
+nuisances['jes_DY']  = {
+                'name'  : 'CMS_scale_j_2018_DY',
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples'  : { "DY": ['1.','1.'] },
+                'folderUp'   : directory_bkg +"_JESup",
+                'folderDown' : directory_bkg +"_JESdo",
+}
+
+nuisances['jes_VV']  = {
+                'name'  : 'CMS_scale_j_2018_VV',
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples'  : { "VV": ['1.','1.'] },
+                'folderUp'   : directory_bkg +"_JESup",
+                'folderDown' : directory_bkg +"_JESdo",
+}
+
+
+nuisances['jes_VBF-V']  = {
+                'name'  : 'CMS_scale_j_2018_VBF-V',
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples'  : { "VBF-V": ['1.','1.'] },
+                'folderUp'   : directory_bkg +"_JESup",
+                'folderDown' : directory_bkg +"_JESdo",
+}
+
+
+nuisances['fatjet_jes']  = {
+                'name'  : 'CMS_scale_fatj_2018',
+                'kind'  : 'tree',
+                'type'  : 'shape',
+                'samples'  : dict((skey, ['1', '1']) for skey in mc),
+                'folderUp'   : directory_bkg +"_fatjet_JESup",
+                'folderDown' : directory_bkg +"_fatjet_JESdo",
+}
 
 nuisances['fatjet_jms']  = {
                 'name'  : 'CMS_mass_fatj_2018',
                 'kind'  : 'tree',
                 'type'  : 'shape',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in ["Wjets", "DY"]),
+                'samples'  : dict((skey, ['1', '1']) for skey in mc),
                 'folderUp'   : directory_bkg +"_fatjet_JMSup",
                 'folderDown' : directory_bkg +"_fatjet_JMSdo",
 }
@@ -248,7 +313,7 @@ nuisances['met']  = {
                 'name'  : 'CMS_scale_met_2018',
                 'kind'  : 'tree',
                 'type'  : 'shape',
-                 'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in ["Wjets", "DY"]),
+                 'samples'  : dict((skey, ['1', '1']) for skey in mc),
                 'folderUp'   : directory_bkg +"_METup",
                 'folderDown' : directory_bkg +"_METdo",
 }
@@ -261,7 +326,7 @@ nuisances['QCD_scale_wjets'] = {
      'kind'  : 'weight',
      'type'  : 'shape',
      'samples'  :   {
-         "Wjets_LO" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
+        "Wjets" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
      }
 }
 
@@ -271,7 +336,7 @@ nuisances['QCD_scale_top'] = {
      'kind'  : 'weight',
      'type'  : 'shape',
      'samples'  :   {
-         "top" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
+        "top" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
      }
 }
 
@@ -280,19 +345,16 @@ nuisances['QCD_scale_DY'] = {
      'kind'  : 'weight',
      'type'  : 'shape',
      'samples'  :   {
-         "DY" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
-        "DY_HT" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
+        "DY" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
      }
 }
-
-
 
 nuisances['QCD_scale_VV'] = {
      'name'  : 'QCDscale_VV',
      'kind'  : 'weight',
      'type'  : 'shape',
      'samples'  :   {
-         "VV" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
+        "VV" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
      }
 }
 
@@ -301,7 +363,7 @@ nuisances['QCD_scale_VBF-V'] = {
      'kind'  : 'weight',
      'type'  : 'shape',
      'samples'  :   {
-         "VBF-V" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
+        "VBF-V" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
      }
 }
 

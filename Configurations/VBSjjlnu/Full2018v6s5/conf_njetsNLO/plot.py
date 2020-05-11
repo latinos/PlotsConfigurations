@@ -74,7 +74,7 @@ groupPlot['vbfV+VV+VVV']  = {
               }
 
 groupPlot['DY_HT']  = {  
-                'nameHR' : "DY",
+                'nameHR' : "DY HT",
                 'isSignal' : 0,
                 'color': palette["Green2"],    
                 'samples'  : ['DY_HT'],
@@ -103,7 +103,7 @@ groupPlot['top']  = {
 
                 
 groupPlot['Wjets_LO']  = {  
-                 'nameHR' : 'W+Jets',
+                 'nameHR' : 'W+Jets LO',
                  'isSignal' : 0,
                  'color': palette["Yellow"],   
                  'samples'  : ['Wjets_LO'],
