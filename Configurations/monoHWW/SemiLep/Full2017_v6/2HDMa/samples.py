@@ -163,7 +163,7 @@ samples['WW'] = {
 
 samples['WWewk'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK'),
-    'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)', # FIXME: this weight filters out only top and Higgs events
+    'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)', # FIXME: this weight removes and Higgs events
     'FilesPerJob': 4
 }
 

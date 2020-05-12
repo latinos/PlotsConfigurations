@@ -8,7 +8,8 @@
 super_cut = [ 
     '(nLepton>=1 && Alt$(Lepton_pt[1],0)<10.)',
     'LepWPCut[0]',
-    '((Lepton_pt[0]>30. && abs(Lepton_pdgId[0])==13) || (Lepton_pt[0]>30. && abs(Lepton_pdgId[0])==11))',
+    # SingleMuon trigger: IsoMu27, SingleElectron trigger: Ele35_WPTight_Gsf
+    '((Lepton_pt[0]>28. && abs(Lepton_pdgId[0])==13) || (Lepton_pt[0]>36. && abs(Lepton_pdgId[0])==11))',
     'PuppiMET_pt > 50.',
     'Sum$(CleanJet_pt>30.)>=2',
 ]

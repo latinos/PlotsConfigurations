@@ -4,8 +4,15 @@ variables['Events']  = {   'name': '1',
                            'fold'  : 3
                         }
 
+variables['Puppimet']  = {
+                        'name': 'PuppiMET_pt',
+                        'range' : (25,0,300),
+                        'xaxis' : 'p_{T} puppiMET [GeV]',
+                        'fold'  : 3
+                        }
+
 variables['l1_pt']  = {   'name': 'Lepton_pt[0]',     
-                        'range' : (25,20,350),   
+                        'range' : (25,20,300),   
                         'xaxis' : 'p_{T} 1st lep',
                         'fold'  : 3
                         }
@@ -43,12 +50,12 @@ variables['l1_eta']  = {  'name': 'Lepton_eta[0]',
                         'fold'  : 3                         
                         }
 variables['j1_eta']  = {  'name': 'MHlnjj_eta_j1',     
-                        'range' : (25,-3,3),   
+                        'range' : (25,-5,5),   
                         'xaxis' : '#eta 1st jet',
                         'fold'  : 3                         
                         }
 variables['j2_eta']  = {  'name': 'MHlnjj_eta_j2',     
-                        'range' : (25,-3,3),   
+                        'range' : (25,-5,5),   
                         'xaxis' : '#eta 2nd jet',
                         'fold'  : 3                         
                         }
