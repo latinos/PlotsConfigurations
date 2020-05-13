@@ -9,27 +9,47 @@
 #
 
 
-groupPlot['top']  = {  
-                  'nameHR' : 'tW and t#bar{t}',
+groupPlot['ttbar']  = {  
+                  'nameHR' : 't#bar{t}',
                   'isSignal' : 0,
                   'color': 400,   # kYellow
-                  'samples'  : ['top']
+                  'samples'  : ['ttbar']
+              }
+
+groupPlot['singleTop']  = {  
+                  'nameHR' : 'Single top',
+                  'isSignal' : 0,
+                  'color': 401,   # kYellow
+                  'samples'  : ['singleTop']
+              }
+
+groupPlot['TTToSemiLeptonic']  = {  
+                  'nameHR' : 'TTToSemiLeptonic',
+                  'isSignal' : 0,
+                  'color': 402,   # kYellow
+                  'samples'  : ['TTToSemiLeptonic']
+              }
+
+groupPlot['ttV']  = {  
+                  'nameHR' : 'ttV',
+                  'isSignal' : 0,
+                  'color': 403,   # kYellow
+                  'samples'  : ['ttV']
               }
 
 groupPlot['WW']  = {  
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  'samples'  : ['WW', 'ggWW', 'WWewk']
+                  'samples'  : ['WW']
               }
 
 groupPlot['Fake']  = {
                   'nameHR' : 'nonprompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fake_me', 'Fake_em']
+                  'samples'  : ['WJets']
 }
-
 
 groupPlot['DY']  = {  
                   'nameHR' : "DY",
@@ -38,15 +58,12 @@ groupPlot['DY']  = {
                   'samples'  : ['DY']
               }
 
-
-
 groupPlot['VVV']  = {  
                   'nameHR' : 'VVV',
                   'isSignal' : 0,
                   'color': 857, # kAzure -3  
                   'samples'  : ['VVV']
               }
-
 
 groupPlot['VZ']  = {  
                   'nameHR' : "VZ",
@@ -69,16 +86,26 @@ groupPlot['VgS']  = {
                   'samples'  : ['VgS_H','VgS_L']
               }
 
-"""
-groupPlot['Higgs']  = {  
-                  'nameHR' : 'Higgs',
-                  'isSignal' : 1,
-                  'color': 632, # kRed 
-		  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
-		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww', 'qqH_htt', 'ggH_htt' ]
-              }
-"""
+groupPlot['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_100']  = {
+    'nameHR' : "PS100GeV (x10)",
+    'isSignal' : 2,
+    'color': 632,    # kRed                                                                                                                                                            
+    'samples'  : ['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_100']
+}
 
+groupPlot['TTbarDMJets_Dileptondoscalar_LO_Mchi_1_Mphi_100']  = {
+    'nameHR' : "S100GeV (x10)",
+    'isSignal' : 2,
+    'color': 634,    # kRed                                                                                                                                                            
+    'samples'  : ['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_100']
+}
+
+groupPlot['DMscalar_Dilepton_top_tWChan_Mchi1_Mphi100']  = {
+    'nameHR' : "tW S100GeV (x100)",
+    'isSignal' : 2,
+    'color': 636,    # kRed                                                                                                                                                            
+    'samples'  : ['DMscalar_Dilepton_top_tWChan_Mchi1_Mphi100']
+}
 
 #plot = {}
 
@@ -105,25 +132,15 @@ plot['DY']  = {
 
               }
 
-
-plot['Fake_me']  = {  
+plot['WJets']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0                  
               }
 
-
-plot['Fake_em']  = {  
-                  'color': 921,    # kGray + 1
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0                  
-              }
-
-              
-plot['top'] = {   
-                  'nameHR' : 'tW and t#bar{t}',
+plot['ttbar'] = {   
+                  'nameHR' : 't#bar{t}',
                   'color': 400,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
@@ -143,6 +160,29 @@ plot['top'] = {
                         #},
                   }
 
+plot['singleTop'] = {   
+                  'nameHR' : 'Single top',
+                  'color': 401,   # kYellow
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0
+}
+
+plot['TTToSemiLeptonic'] = {   
+                  'nameHR' : 'TTToSemiLeptonic',
+                  'color': 402,   # kYellow
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0
+}
+
+plot['ttV'] = {   
+                  'nameHR' : 'ttV',
+                  'color': 403,   # kYellow
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0
+}
 
 plot['WW']  = {
                   'color': 851, # kAzure -9 
@@ -150,21 +190,6 @@ plot['WW']  = {
                   'isData'   : 0,    
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
-
-plot['ggWW']  = {
-                  'color': 850, # kAzure -10
-                  'isSignal' : 0,
-                  'isData'   : 0,    
-                  'scale'    : 1.0
-                  }
-
-plot['WWewk']  = {
-                  'color': 851, # kAzure -9 
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
-                  }
-
 
 plot['Vg']  = { 
                   'color': 859, # kAzure -1  
@@ -187,7 +212,6 @@ plot['VgS_L'] = {
                   'scale'    : 1.0
                   }
 
-
 plot['VZ']  = { 
                   'color': 858, # kAzure -2  
                   'isSignal' : 0,
@@ -202,135 +226,26 @@ plot['VVV']  = {
                   'scale'    : 1.0
                   }
 
-# Htautau
+plot['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_100']  = {
+    'color': 632, # kRed                                                                                                                                                                                  
+    'isSignal' : 2,
+    'isData'   : 0,
+    'scale'    : 10.0
+}
 
-#plot['ZH_htt'] = {
-#                  'nameHR' : 'ZHtt',
-#                  'color': 632+3, # kRed+3 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,    
-#                  'scale'    : 1    #
-#                  }
-#
-#plot['bbH_htt'] = {
-#                  'nameHR' : 'bbHtt',
-#                  'color': 632-1, # kRed-1 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,
-#                  'scale'    : 1    #
-#                  }
-#
-#plot['ttH_htt'] = {
-#                  'nameHR' : 'bbHtt',
-#                  'color': 632-2, # kRed-1 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,
-#                  'scale'    : 1    #
-#                  }
-#
-#
-#plot['ggZH_htt'] = {
-#                  'nameHR' : 'ggZHtt',
-#                  'color': 632+4, # kRed+4
-#                  'isSignal' : 1,
-#                  'isData'   : 0,    
-#                  'scale'    : 1    #
-#                  }
-#
-#plot['WH_htt'] = {
-#                  'nameHR' : 'WHtt',
-#                  'color': 632+2, # kRed+2 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,    
-#                  'scale'    : 1    #
-#                  }
-#
-#
-#plot['qqH_htt'] = {
-#                  'nameHR' : 'qqHtt',
-#                  'color': 632+1, # kRed+1 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,    
-#                  'scale'    : 1    #
-#                  }
-#
-#
-#plot['ggH_htt'] = {
-#                  'nameHR' : 'ggHtt',
-#                  'color': 632, # kRed 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,    
-#                  'scale'    : 1    #
-#                  }
-#
-# HWW 
+plot['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_100']  = {
+    'color': 635, # kRed                                                                                                                                                                                  
+    'isSignal' : 2,
+    'isData'   : 0,
+    'scale'    : 10.0
+}
 
-#plot['H_hww'] = {
-#                  'nameHR' : 'Hww',
-#                  'color': 632, # kRed 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,    
-#                  'scale'    : 1    #
-#                  }
-"""
-plot['ZH_hww'] = {
-                  'nameHR' : 'ZH',
-                  'color': 632+3, # kRed+3 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-
-plot['ggZH_hww'] = {
-                  'nameHR' : 'ggZH',
-                  'color': 632+4, # kRed+4
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-
-plot['WH_hww'] = {
-                  'nameHR' : 'WH',
-                  'color': 632+2, # kRed+2 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-
-
-plot['qqH_hww'] = {
-                  'nameHR' : 'qqH',
-                  'color': 632+1, # kRed+1 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-
-
-plot['ggH_hww'] = {
-                  'nameHR' : 'ggH',
-                  'color': 632, # kRed 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-"""
-#plot['bbH_hww'] = {
-#                  'nameHR' : 'bbH',
-#                  'color': 632+5, # kRed+5 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,
-#                  'scale'    : 1    #
-#                  }
-
-#plot['ttH_hww'] = {
-#                  'nameHR' : 'ttH',
-#                  'color': 632+6, # kRed+6
-#                  'isSignal' : 1,
-#                  'isData'   : 0,
-#                  'scale'    : 1    #
-#                  }
-#
+plot['DMscalar_Dilepton_top_tWChan_Mchi1_Mphi100']  = {
+    'color': 638, # kRed                                                                                                                                                                                  
+    'isSignal' : 2,
+    'isData'   : 0,
+    'scale'    : 100.0
+}
 
 # data
 
@@ -342,13 +257,9 @@ plot['DATA']  = {
                   'isBlind'  : 0
               }
 
-
-
-
 # additional options
 
 legend['lumi'] = 'L = 59.7/fb'
-
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 
