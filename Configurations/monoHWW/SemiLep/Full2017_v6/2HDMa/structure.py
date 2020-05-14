@@ -160,9 +160,9 @@ else:
     raise IOError('FILE NOT FOUND: '+signal_file+'does not exist.')
 
 for mp in signal:
-    structures[mp] = {
-        'isSignal': 1,
-        'isData'  : 0
+    structure[mp] = {
+        'isSignal': 2,
+        'isData'  : 0,
     }
 
 
