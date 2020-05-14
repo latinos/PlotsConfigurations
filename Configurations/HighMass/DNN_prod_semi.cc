@@ -63,8 +63,8 @@ DNNprod::DNNprod() :
   TTreeFunction()
 {
   std::string cmsswbase(gSystem->Getenv("CMSSW_BASE"));
-  dnn_tensorflow0 = new DNNEvaluator(cmsswbase + "/src/PlotsConfigurations/Configurations/HighMass/DNNs/ProdSemi_0/", 0, false);
-  dnn_tensorflow1 = new DNNEvaluator(cmsswbase + "/src/PlotsConfigurations/Configurations/HighMass/DNNs/ProdSemi_1/", 0, false);
+  dnn_tensorflow0 = new DNNEvaluator(cmsswbase + "/src/PlotsConfigurations/Configurations/HighMass/DNNs/ProdSemi_0/", false);
+  dnn_tensorflow1 = new DNNEvaluator(cmsswbase + "/src/PlotsConfigurations/Configurations/HighMass/DNNs/ProdSemi_1/", false);
 }
 
 double
