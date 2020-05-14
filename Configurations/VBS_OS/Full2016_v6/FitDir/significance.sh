@@ -5,12 +5,13 @@ cd /afs/cern.ch/user/m/mlizzo/work/CMSSW_10_2_13
 eval `scramv1 runtime -sh`
 cd -
 
-## work directory
-workdir=/afs/cern.ch/work/m/mlizzo/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBS_OS/Full2016_v6/FitDir 
+## FIXME this is your work directory
+workDir=/afs/cern.ch/user/m/mlizzo/work/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBS_OS/Full2016_v6/FitDir
+
 workspaceDir=workspaces
 
-cd $workdir
+cd $workDir
 
-echo "mjj_vs_mTi:" "" > ${workspaceDir}/significance_mjj_vs_mTi.txt
-combine -M Significance ${workspaceDir}/mjj_vs_mTi.root -t -1 --setParameters r_vbs=1 --redefineSignalPOIs=r_vbs >> ${workspaceDir}/significance_mjj_vs_mTi.txt
+echo "mjj:" "" > ${workspaceDir}/significance_mjj.txt
+combine -M Significance ${workspaceDir}/mjj.root -t -1 --setParameters r_vbs=1 --redefineSignalPOIs=r_vbs >> ${workspaceDir}/significance_mjj.txt
 

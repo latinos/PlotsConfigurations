@@ -788,6 +788,33 @@ nuisances['DYttnorm2j']  = {
                  'cuts'  : cuts2j
                 }
 
+nuisances['DYembnorm0j']  = {
+               'name'  : 'CMS_hww_DYttnorm0j',
+               'samples'  : {
+                   'Dyemb' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts0j
+              }
+
+nuisances['DYembnorm1j']  = {
+               'name'  : 'CMS_hww_DYttnorm1j',
+               'samples'  : {
+                   'Dyemb' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts1j
+              }
+
+nuisances['DYembnorm2j']  = {
+                 'name'  : 'CMS_hww_DYttnorm2j',
+                 'samples'  : {
+                     'Dyemb' : '1.00',
+                     },
+                 'type'  : 'rateParam',
+                 'cuts'  : cuts2j
+                }
+
 
 nuisances['WWnorm0j']  = {
                'name'  : 'CMS_hww_WWnorm0j',

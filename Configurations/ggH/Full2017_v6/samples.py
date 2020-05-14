@@ -147,7 +147,7 @@ if useEmbeddedDY:
       'FilesPerJob': 1, # There's some error about not finding sample-specific variables like "nllW" when mixing different samples into a single job; so split them all up instead
   }
 
-  addSampleWeight(samples, 'Dyveto', 'TTTo2L2Nu_PSWeights', mcCommonWeight + '*(Top_pTrw)')
+  addSampleWeight(samples, 'Dyveto', 'TTTo2L2Nu_PSWeights', mcCommonWeight + '*((topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(-1.43717e-02 - 1.18358e-04*topGenPt - 1.70651e-07*topGenPt*topGenPt + 4.47969/(topGenPt+28.7)) * TMath::Exp(-1.43717e-02 - 1.18358e-04*antitopGenPt - 1.70651e-07*antitopGenPt*antitopGenPt + 4.47969/(antitopGenPt+28.7)))) + (topGenPt * antitopGenPt <= 0.))')
   addSampleWeight(samples, 'Dyveto', 'ST_tW_antitop', mcCommonWeight)
   addSampleWeight(samples, 'Dyveto', 'ST_tW_top', mcCommonWeight)
   addSampleWeight(samples, 'Dyveto', 'WWTo2L2Nu', mcCommonWeight + '*nllW')
@@ -218,7 +218,7 @@ samples['WW'] = {
 
 samples['WWewk'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK_noTop'),
-    'weight': mcCommonWeight+embed_tautauveto + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)', #filter tops and Higgs
+    'weight': mcCommonWeight+embed_tautauveto + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0) * 0.2571', #filter tops and Higgs + xsec fix
     'FilesPerJob': 2
 }
 

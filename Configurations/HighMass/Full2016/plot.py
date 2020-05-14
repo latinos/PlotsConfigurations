@@ -11,21 +11,21 @@
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
-                  'color': 400,   # kYellow
+                  'color': 800,   # kOrange
                   'samples'  : ['top']
               }
 
 groupPlot['WW']  = {  
                   'nameHR' : 'WW',
                   'isSignal' : 0,
-                  'color': 851, # kAzure -9 
+                  'color': 852, # kAzure -8
                   'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J']
               }
 
 groupPlot['Fake']  = {
-                  'nameHR' : 'nonprompt',
+                  'nameHR' : 'Nonprompt',
                   'isSignal' : 0,
-                  'color': 921,    # kGray + 1
+                  'color': 922,    # kGray +2
                   'samples'  : ['Fake_me', 'Fake_em', 'Fake_ee', 'Fake_mm']
 }
 
@@ -37,39 +37,43 @@ groupPlot['DY']  = {
                   'samples'  : ['DY', 'DYemb']
               }
 
-
-
-groupPlot['VVV']  = {  
-                  'nameHR' : 'VVV',
+groupPlot['VV']  = {  
+                  'nameHR' : 'Multiboson',
                   'isSignal' : 0,
-                  'color': 857, # kAzure -3  
-                  'samples'  : ['VVV']
+                  'color': 617,   # kViolet +1
+                  'samples'  : ['VZ', 'WZ', 'ZZ', 'Vg', 'VgS_L', 'VgS_H', 'VVV']
               }
 
-
-groupPlot['VZ']  = {  
-                  'nameHR' : "VZ",
-                  'isSignal' : 0,
-                  'color'    : 617,   # kViolet + 1  
-                  'samples'  : ['VZ', 'WZ', 'ZZ']
-              }
-
-groupPlot['Vg']  = {  
-                  'nameHR' : "V#gamma",
-                  'isSignal' : 0,
-                  'color'    : 810,   # kOrange + 10
-                  'samples'  : ['Vg']
-              }
-
-groupPlot['VgS']  = {
-                  'nameHR' : "V#gamma*",
-                  'isSignal' : 0,
-                  'color'    : 409,   # kGreen - 9
-                  'samples'  : ['VgS_L', 'VgS_H']
-              }
+#groupPlot['VVV']  = {  
+#                  'nameHR' : 'VVV',
+#                  'isSignal' : 0,
+#                  'color': 857, # kAzure -3  
+#                  'samples'  : ['VVV']
+#              }
+#
+#groupPlot['VZ']  = {  
+#                  'nameHR' : "VZ",
+#                  'isSignal' : 0,
+#                  'color'    : 617,   # kViolet + 1  
+#                  'samples'  : ['VZ', 'WZ', 'ZZ']
+#              }
+#
+#groupPlot['Vg']  = {  
+#                  'nameHR' : "V#gamma",
+#                  'isSignal' : 0,
+#                  'color'    : 810,   # kOrange + 10
+#                  'samples'  : ['Vg']
+#              }
+#
+#groupPlot['VgS']  = {
+#                  'nameHR' : "V#gamma*",
+#                  'isSignal' : 0,
+#                  'color'    : 409,   # kGreen - 9
+#                  'samples'  : ['VgS_L', 'VgS_H']
+#              }
 
 groupPlot['SMHiggs']  = {  
-                  'nameHR' : 'Higgs',
+                  'nameHR' : 'SM Higgs',
                   'isSignal' : 0,
                   'color': 632, # kRed 
 		  'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt']
@@ -88,7 +92,7 @@ groupPlot['HM_800']  = {
                   'samples'  : ['GGH_800'+model_name, 'QQH_800'+model_name]
               }
 groupPlot['HM_2000']  = {  
-                  'nameHR' : '2000 GeV (x50)',
+                  'nameHR' : '2000 GeV (x200)',
                   'isSignal' : 2,
                   'color': 4, # kRed 
                   'samples'  : ['GGH_2000'+model_name, 'QQH_2000'+model_name]
@@ -334,7 +338,7 @@ massplot = ['200','800','2000']
 for m in massplot:
   if m == '200': mult = 1.0
   elif m == '800': mult = 10.0
-  elif m == '2000': mult = 50.0
+  elif m == '2000': mult = 200.0
 
   plot['GGH_'+m+model_name] = {
                   'nameHR' : 'GGH'+m,

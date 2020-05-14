@@ -95,6 +95,8 @@ structure['WW']  = {
 structure['WWewk']  = {
                   'isSignal' : 0,
                   'isData'   : 0
+#                  'removeFromCuts' : [
+ #                                     'hww2l2v_13TeV_of2j_WH_SS_eu_1j'],
                   }
 
 structure['ggWW']  = {
@@ -114,7 +116,10 @@ structure['Wg']  = {
 
 structure['Zg']  = { 
                   'isSignal' : 0,
-                  'isData'   : 0 
+                  'isData'   : 0,
+                  'removeFromCuts' : [
+                                      'hww2l2v_13TeV_of2j_WH_SS_uu_1j',
+                                      'hww2l2v_13TeV_of2j_WH_SS_eu_2j'],
                   }
 
 structure['ZgS']  = {
@@ -134,7 +139,9 @@ structure['WZ'] = {
 
 structure['ZZ']  = { 
                   'isSignal' : 0,
-                  'isData'   : 0 
+                  'isData'   : 0
+                #  'removeFromCuts' : [
+                #                      'hww2l2v_13TeV_of2j_WH_SS_eu_1j'],
                   }
 
 structure['WZhad']  = { 

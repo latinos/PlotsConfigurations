@@ -171,3 +171,10 @@ aliases['gstarHigh'] = {
     'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
     'samples': ['WZ']
 }
+
+aliases['nCleanGenJet'] = {
+   'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')
+      ],
+   'class': 'CountGenJet',
+   'samples': mc
+}

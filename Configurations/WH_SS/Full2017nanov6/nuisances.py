@@ -174,7 +174,7 @@ nuisances['electronpt'] = {
     'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': makeMCDirectory('ElepTup_suffix'),
     'folderDown': makeMCDirectory('ElepTdo_suffix'),
-    'AsLnN': '1'
+    'AsLnN': '0'
 }
 
 ##### Muon Efficiency and energy scale
@@ -196,7 +196,7 @@ nuisances['muonpt'] = {
     'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': makeMCDirectory('MupTup_suffix'),
     'folderDown': makeMCDirectory('MupTdo_suffix'),
-    'AsLnN': '1'
+    'AsLnN': '0'
 }
 
 ##### Jet energy scale
@@ -212,7 +212,7 @@ for js in jes_systs:
       'samples': dict((skey, ['1', '1']) for skey in mc),
       'folderUp': makeMCDirectory('JESup_suffix'),
       'folderDown': makeMCDirectory('JESdo_suffix'),
-      'AsLnN': '1'
+      'AsLnN': '0'
   }
 
 ##### MET energy scale
@@ -226,7 +226,7 @@ nuisances['met'] = {
     'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': makeMCDirectory('METup_suffix'),
     'folderDown': makeMCDirectory('METdo_suffix'),
-    'AsLnN': '1'
+    'AsLnN': '0'
 }
 
 ##### Pileup
@@ -242,7 +242,7 @@ nuisances['PU'] = {
         'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
         'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
     },
-    'AsLnN': '1',
+    'AsLnN': '0',
 }
 
 

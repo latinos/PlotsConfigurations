@@ -6,9 +6,10 @@ treeName= 'Events'
 #tag = 'WHSS2016_v6ntuples_3rdLep'
 #tag = 'WHSS2016_v6ntuples_newFakes'
 #tag = 'WHSS2016_v6ntuples_final'
-tag = 'WHSS2016_LinearPlots'
+#tag = 'WHSS2016_LinearPlots'
 #tag = 'WHSS2016_final_v1'
-#tag = 'WHSS2016_final_v1_ttHMVASF'
+tag = 'WHSS2016_final_v1_ttHMVASF'
+#tag = 'WHSS2016_ttHMVASF_Ele_linear'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'

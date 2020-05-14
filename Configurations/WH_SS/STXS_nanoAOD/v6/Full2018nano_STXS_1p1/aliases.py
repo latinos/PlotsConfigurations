@@ -22,9 +22,9 @@ muWP = 'cut_Tight_HWWW_tthmva_80'
 
 aliases['WH2l_pTW'] = {
     'linesToAdd': [
-        '.L %s/../../macros/whss_wlep_v3.cc+' % configurations
+        '.L %s/../../macros/whss_wlep_v4.cc+' % configurations
     ],
-    'class': 'WHSS_wpt_v3',
+    'class': 'whss_wlep_v4',
     'args': ()
 }
 
@@ -218,18 +218,18 @@ aliases['Top_pTrw'] = {
     'samples': ['top']
 }
 
-aliases['ZH3l_dphilmetjj_test'] = {
-    'linesToAdd': [
-        '.L %s/src/PlotsConfigurations/Configurations/ZH3l/scripts/ZH3l_patch.cc+' % os.getenv('CMSSW_BASE')
-    ],
-    'class': 'ZH3l_patch',
-    'args': ("dphilmetjj")
-}
+#aliases['ZH3l_dphilmetjj_test'] = {
+#    'linesToAdd': [
+#        '.L %s/../../src/PlotsConfigurations/Configurations/ZH3l/scripts/ZH3l_patch.cc+' % os.getenv('CMSSW_BASE')
+#    ],
+#    'class': 'ZH3l_patch',
+#    'args': ("dphilmetjj")
+#}
 
-aliases['ZH3l_dphilmetj_test'] = {
-    'class': 'ZH3l_patch',
-    'args': ("dphilmetj")
-}
+#aliases['ZH3l_dphilmetj_test'] = {
+#    'class': 'ZH3l_patch',
+#    'args': ("dphilmetj")
+#}
 
 # PU jet Id SF
 
@@ -272,7 +272,7 @@ aliases['SFweightMuDown'] = {
 ### Total SFs, i.e. ttHMVA+old lepton SFs ###
 #############################################
 
-aliases['ttHMVA_SF_2l'] = {'linesToAdd': ['.L %s/../../patches/compute_SF.C+' % configurations],
+aliases['ttHMVA_SF_2l'] = {'linesToAdd': ['.L %s/../../patches/compute_SF_BETA.C+' % configurations],
                            'class': 'compute_SF',
                            'args' : ('2018', 2, 'total_SF'),
                            'samples': mc
@@ -283,25 +283,25 @@ aliases['ttHMVA_SF_2l'] = {'linesToAdd': ['.L %s/../../patches/compute_SF.C+' % 
 ### Up/Down variations for single leptons in order of Pt ###
 ############################################################
 
-aliases['ttHMVA_SF_Up_0'] = {'linesToAdd': ['.L %s/../../patches/compute_SF.C+' % configurations],
+aliases['ttHMVA_SF_Up_0'] = {'linesToAdd': ['.L %s/../../patches/compute_SF_BETA.C+' % configurations],
                              'class': 'compute_SF',
                              'args' : ('2018', 4, 'single_SF_up', 0),
                              'samples': mc
                             }
 
-aliases['ttHMVA_SF_Up_1'] = {'linesToAdd': ['.L %s/../../patches/compute_SF.C+' % configurations],
+aliases['ttHMVA_SF_Up_1'] = {'linesToAdd': ['.L %s/../../patches/compute_SF_BETA.C+' % configurations],
                              'class': 'compute_SF',
                              'args' : ('2018', 4, 'single_SF_up', 1),
                              'samples': mc
                             }
 
-aliases['ttHMVA_SF_Down_0'] = {'linesToAdd': ['.L %s/../../patches/compute_SF.C+' % configurations],
+aliases['ttHMVA_SF_Down_0'] = {'linesToAdd': ['.L %s/../../patches/compute_SF_BETA.C+' % configurations],
                                'class': 'compute_SF',
                                'args' : ('2018', 4, 'single_SF_down', 0),
                                'samples': mc
                               }
 
-aliases['ttHMVA_SF_Down_1'] = {'linesToAdd': ['.L %s/../../patches/compute_SF.C+' % configurations],
+aliases['ttHMVA_SF_Down_1'] = {'linesToAdd': ['.L %s/../../patches/compute_SF_BETA.C+' % configurations],
                                'class': 'compute_SF',
                                'args' : ('2018', 4, 'single_SF_down', 1),
                                'samples': mc
@@ -312,11 +312,13 @@ aliases['ttHMVA_SF_Down_1'] = {'linesToAdd': ['.L %s/../../patches/compute_SF.C+
 ##############################################################################
 
 aliases['ttHMVA_2l_ele_SF_Up'] = {'expr' : '(ttHMVA_SF_Up_0*(TMath::Abs(Lepton_pdgId[0]) == 11) + (TMath::Abs(Lepton_pdgId[0]) == 13)) *\
-                                            (ttHMVA_SF_Up_1*(TMath::Abs(Lepton_pdgId[1]) == 11) + (TMath::Abs(Lepton_pdgId[1]) == 13))'
+                                            (ttHMVA_SF_Up_1*(TMath::Abs(Lepton_pdgId[1]) == 11) + (TMath::Abs(Lepton_pdgId[1]) == 13))',
+                                  'samples': mc
                                  }
 
 aliases['ttHMVA_2l_ele_SF_Down'] = {'expr' : '(ttHMVA_SF_Down_0*(TMath::Abs(Lepton_pdgId[0]) == 11) + (TMath::Abs(Lepton_pdgId[0]) == 13)) *\
-                                              (ttHMVA_SF_Down_1*(TMath::Abs(Lepton_pdgId[1]) == 11) + (TMath::Abs(Lepton_pdgId[1]) == 13))'
+                                              (ttHMVA_SF_Down_1*(TMath::Abs(Lepton_pdgId[1]) == 11) + (TMath::Abs(Lepton_pdgId[1]) == 13))',
+                                    'samples': mc
                                    }
 
 ########################################################################
@@ -324,11 +326,13 @@ aliases['ttHMVA_2l_ele_SF_Down'] = {'expr' : '(ttHMVA_SF_Down_0*(TMath::Abs(Lept
 ########################################################################
 
 aliases['ttHMVA_2l_mu_SF_Up'] = {'expr' : '(ttHMVA_SF_Up_0*(TMath::Abs(Lepton_pdgId[0]) == 13) + (TMath::Abs(Lepton_pdgId[0]) == 11)) *\
-                                           (ttHMVA_SF_Up_1*(TMath::Abs(Lepton_pdgId[1]) == 13) + (TMath::Abs(Lepton_pdgId[1]) == 11))'
+                                           (ttHMVA_SF_Up_1*(TMath::Abs(Lepton_pdgId[1]) == 13) + (TMath::Abs(Lepton_pdgId[1]) == 11))',
+                                 'samples': mc
                                 }
 
 aliases['ttHMVA_2l_mu_SF_Down'] = {'expr' : '(ttHMVA_SF_Down_0*(TMath::Abs(Lepton_pdgId[0]) == 13) + (TMath::Abs(Lepton_pdgId[0]) == 11)) *\
-                                             (ttHMVA_SF_Down_1*(TMath::Abs(Lepton_pdgId[1]) == 13) + (TMath::Abs(Lepton_pdgId[1]) == 11))'
+                                             (ttHMVA_SF_Down_1*(TMath::Abs(Lepton_pdgId[1]) == 13) + (TMath::Abs(Lepton_pdgId[1]) == 11))',
+                                   'samples': mc
                                   }
 
 # data/MC scale factors

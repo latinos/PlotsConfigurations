@@ -206,7 +206,7 @@ files = nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
 samples['ZgS'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 15,
+    'FilesPerJob': 1,
     }
 addSampleWeight(samples, 'ZgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0)')
 

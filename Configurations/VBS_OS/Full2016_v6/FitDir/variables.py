@@ -20,4 +20,10 @@ variables['mjj_vs_mTi']  = {   'name': 'mjj:mTi',            #   variable name
                         'fold' :3
                         }
 
+variables['mjj']  = {   'name': 'mjj',            #   variable name    
+                        'range' : (10,500,3000),    #   variable range
+                        'xaxis' : 'm_{jj} [GeV]',  #   x axis name
+                        'fold' :3
+                        }
+
 #Add other variables you might want to include in the fit procedure

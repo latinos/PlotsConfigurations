@@ -119,7 +119,9 @@ structure['Zg']  = {
 
 structure['ZgS']  = {
                   'isSignal' : 0,
-                  'isData'   : 0
+                  'isData'   : 0,
+                  'removeFromCuts' : [
+                                      'hww2l2v_13TeV_of2j_WH_SS_uu_2j'],
                   }
 
 structure['WgS'] = {

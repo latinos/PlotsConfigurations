@@ -5,9 +5,10 @@ treeName= 'Events'
 #tag = 'WH2018nano_v6ntuples_final' #add Zveto in mm and remove DY
 #tag = 'WH2018nano_v6ntuples_3rdlep' #add Zveto in mm and remove DY
 #tag = 'WHSS2018_final_v1' #add Zveto in mm and remove DY
-#tag = 'WHSS2018_final_ttHMVASF' #add Zveto in mm and remove DY
+tag = 'WHSS2018_final_ttHMVASF' #add Zveto in mm and remove DY
 #tag = 'WHSS2018_zh3l_WZCR' #add Zveto in mm and remove DY
-tag = 'WHSS2018_linearPlots' #add Zveto in mm and remove DY
+#tag = 'WHSS2018_linearPlots' #add Zveto in mm and remove DY
+#tag = 'WHSS2018_ttHMVASF_Ele_linear'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'

@@ -172,7 +172,7 @@ aliases['nllWOTF'] = {
 }
 
 aliases['ttHMVA_SF_3l'] = {
-    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/patches/compute_SF.C+' % os.getenv('CMSSW_BASE')],
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/patches/compute_SF_BETA.C+' % os.getenv('CMSSW_BASE')],
     'class': 'compute_SF',
     'args' : ('2016', 3, 'total_SF'),
     'samples': mc
@@ -342,15 +342,7 @@ aliases['BDT_SSSF2016'] = {
     'class': 'WH3l_patch_BDT1718',
     'args': ("BDT_SSSF2016")
 }
-aliases['BDT_SSSFcombin'] = {
-    'class': 'WH3l_patch_BDT1718',
-    'args': ("BDT_SSSFcombin")
-}
 aliases['BDT_OSSF2016'] = {
     'class': 'WH3l_patch_BDT1718',
     'args': ("BDT_OSSF2016")
-}
-aliases['BDT_OSSFcombin'] = {
-    'class': 'WH3l_patch_BDT1718',
-    'args': ("BDT_OSSFcombin")
 }
