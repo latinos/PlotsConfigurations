@@ -21,30 +21,143 @@ elif EMorEEorMM == 'mm':
   'expr': '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13)'
   }
 
+aliases['DYmva'] = {
+    'expr': '(Alt$(CleanJet_pt[0], 0) < 30 && dymva_bdt_0j>0.0) || (Alt$(CleanJet_pt[0], 0) >= 30 && Alt$(CleanJet_pt[1], 0) < 30 && dymva_bdt_1j>0.0) || (Alt$(CleanJet_pt[1], 0) >= 30 && (detajj < 3.5 || mjj < 400) && dymva_bdt_2j>0.0) || (Alt$(CleanJet_pt[1], 0) >= 30 && (detajj > 3.5 && mjj > 400) && dymva_bdt_VBF>0.0)'
+}
+
+# High Mass variables and DNNs
+aliases['back2back_OTF'] = {
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HighMass/HMvars_b2b.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'HMvarsb2b'
+}
+
+aliases['mjjGen_OTF'] = {
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HighMass/HMvars_mjjgen.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'HMvarsmjjgen',
+    'samples': ['WW', 'qqWWqq', 'WW2J', 'DYveto']
+}
+
+aliases['DNN_isVBF_OTF'] = {
+    'class': 'DNNprod',
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_prod.cc+' % os.getenv('CMSSW_BASE'), 
+    ],
+}
+
+aliases['DNN_mth_OTF'] = {
+    'class': 'DNNneut',
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_neut.cc+' % os.getenv('CMSSW_BASE'), 
+    ],
+}
+
+aliases['DNN_WW_OTF'] = {
+    'class': 'DNNcateg',
+    'args': ( 0, ),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_categ.cc+' % os.getenv('CMSSW_BASE'), 
+    ],
+}
+aliases['DNN_ggHlow_OTF'] = {
+    'class': 'DNNcateg',
+    'args': ( 1, ),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_categ.cc+' % os.getenv('CMSSW_BASE'), 
+    ],
+}
+aliases['DNN_ggHmid_OTF'] = {
+    'class': 'DNNcateg',
+    'args': ( 2, ),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_categ.cc+' % os.getenv('CMSSW_BASE'), 
+    ],
+}
+aliases['DNN_ggHhigh_OTF'] = {
+    'class': 'DNNcateg',
+    'args': ( 3, ),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_categ.cc+' % os.getenv('CMSSW_BASE'), 
+    ],
+}
+aliases['DNN_VBFlow_OTF'] = {
+    'class': 'DNNcateg',
+    'args': ( 4, ),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_categ.cc+' % os.getenv('CMSSW_BASE'), 
+    ],
+}
+aliases['DNN_VBFmid_OTF'] = {
+    'class': 'DNNcateg',
+    'args': ( 5, ),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_categ.cc+' % os.getenv('CMSSW_BASE'), 
+    ],
+}
+aliases['DNN_VBFhigh_OTF'] = {
+    'class': 'DNNcateg',
+    'args': ( 6, ),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_categ.cc+' % os.getenv('CMSSW_BASE'), 
+    ],
+}
+aliases['DNN_other_OTF'] = {
+    'class': 'DNNcateg',
+    'args': ( 7, ),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_categ.cc+' % os.getenv('CMSSW_BASE'), 
+    ],
+}
+aliases['DNN_maxcateg_OTF'] = {
+    'expr': 'max( max( max(DNN_WW_OTF, DNN_ggHlow_OTF), max(DNN_ggHmid_OTF, DNN_ggHhigh_OTF) ), max( max(DNN_VBFlow_OTF, DNN_VBFmid_OTF), max(DNN_VBFhigh_OTF, DNN_other_OTF) ) )'
+}
+aliases['DNN_categ_OTF'] = {
+    'expr': '0*(DNN_maxcateg_OTF==DNN_WW_OTF)+1*(DNN_maxcateg_OTF==DNN_ggHlow_OTF)+2*(DNN_maxcateg_OTF==DNN_ggHmid_OTF)+3*(DNN_maxcateg_OTF==DNN_ggHhigh_OTF)+4*(DNN_maxcateg_OTF==DNN_VBFlow_OTF)+5*(DNN_maxcateg_OTF==DNN_VBFmid_OTF)+6*(DNN_maxcateg_OTF==DNN_VBFhigh_OTF)+7*(DNN_maxcateg_OTF==DNN_other_OTF)'
+}
+
 aliases['HighMass'] = {
     'expr': '(    mll>140 \
                && dphill>2.0 \
                && dphilmet<1.6 \
                && (Lepton_pt[0]+Lepton_pt[1]+PuppiMET_pt)>250 \
-               && back2back<3.0 \
+               && back2back_OTF<3.0 \
          )' 
 }
 
 aliases['VBFcut'] = {
-    'expr': '(    mjj>400 \
-               && detajj>3.5 \
-         )' 
+    'expr': '( DNN_isVBF_OTF>0.75 )' 
 }
 
-aliases['HighVBFcut'] = {
-    'expr': '(    mjj>500 \
-               && detajj>4.0 \
-         )' 
-}
+#aliases['VBFcut'] = {
+#    'expr': '(    mjj>400 \
+#               && detajj>3.5 \
+#         )' 
+#}
 
-aliases['DYmva'] = {
-    'expr': '(Alt$(CleanJet_pt[0], 0) < 30 && dymva_bdt_0j>0.0) || (Alt$(CleanJet_pt[0], 0) >= 30 && Alt$(CleanJet_pt[1], 0) < 30 && dymva_bdt_1j>0.0) || (Alt$(CleanJet_pt[1], 0) >= 30 && (detajj < 3.5 || mjj < 400) && dymva_bdt_2j>0.0) || (Alt$(CleanJet_pt[1], 0) >= 30 && (detajj > 3.5 && mjj > 400) && dymva_bdt_VBF>0.0)'
-}
+#aliases['HighVBFcut'] = {
+#    'expr': '(    mjj>500 \
+#               && detajj>4.0 \
+#         )' 
+#}
 
 #aliases['oldmjjGen'] = {
 #    'linesToAdd': [
@@ -75,13 +188,16 @@ aliases['PromptGenLepMatch2l'] = {
 }
 
 aliases['Top_pTrw'] = {
-    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
+    #'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
+    #'expr': '1',
+    #'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(7.78707e-03 - 2.44380e-04*topGenPt + 5.02121e-08*topGenPt*topGenPt + 4.18764/(topGenPt+50.7111)) * TMath::Exp(7.78707e-03 - 2.44380e-04*antitopGenPt + 5.02121e-08*antitopGenPt*antitopGenPt + 4.18764/(antitopGenPt+50.7111)))) + (topGenPt * antitopGenPt <= 0.)',
+    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(-0.158631 + 2.00214e-04*topGenPt - 3.09496e-07*topGenPt*topGenPt + 34.93/(topGenPt+135.633)) * TMath::Exp(-0.158631 + 2.00214e-04*antitopGenPt - 3.09496e-07*antitopGenPt*antitopGenPt + 34.93/(antitopGenPt+135.633)))) + (topGenPt * antitopGenPt <= 0.)',
     'samples': ['top']
 }
 
 #TODO: temporary until UE/PS has nllW
 aliases['nllWOTF'] = {
-    'linesToAdd': ['.L /afs/cern.ch/work/d/dmroy/CMSSW_9_4_9/src/PlotsConfigurations/Configurations/HighMass/Full2016/nllW.cc+'],
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HighMass/Full2016/nllW.cc+' % os.getenv('CMSSW_BASE')],
     'class': 'WWNLLW',
     'args': ('central',),
     'samples': ['WW', 'DYveto']
@@ -106,9 +222,6 @@ aliases['MINLO'] = {
     'args': ('%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE'),),
     'samples': ['ggH_hww']
 }
-for mass in massggh:
-  aliases['MINLO']['samples'].append('GGHSBI_'+mass+model_name)
-  aliases['MINLO']['samples'].append('MSSMGGHSBI_'+mass+model_name)
 
 # For VgS
 aliases['gstarLow'] = {
@@ -231,6 +344,15 @@ aliases['PUJetIdSF'] = {
     ],
     'class': 'PUJetIdEventSF',
     'args': (puidSFSource, '2016', 'loose'),
+    'samples': mc
+}
+
+# nGenJet for PS Uncertainty
+
+aliases['nCleanGenJet'] = {
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'CountGenJet',
     'samples': mc
 }
 
