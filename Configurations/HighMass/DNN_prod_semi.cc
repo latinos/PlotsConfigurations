@@ -92,9 +92,9 @@ DNNprod::evaluate(unsigned)
     vbfjet.push_back(0);
     vbfjet.push_back(1);
   }else{
-    wpt = *HM_Whad_pt->Get()
+    wpt = *HM_Whad_pt->Get();
     if (wpt < 0.0){
-      return 0.0
+      return 0.0;
     }
     weta = *HM_Whad_eta->Get();
     wphi = *HM_Whad_phi->Get();
@@ -123,7 +123,7 @@ DNNprod::evaluate(unsigned)
     J1.SetPtEtaPhiM(CleanJet_pt->At(vbfjet[0]), CleanJet_eta->At(vbfjet[0]), CleanJet_phi->At(vbfjet[0]), Jet_mass->At( CleanJet_jetIdx->At(vbfjet[0]) ));
     J2.SetPtEtaPhiM(CleanJet_pt->At(vbfjet[1]), CleanJet_eta->At(vbfjet[1]), CleanJet_phi->At(vbfjet[1]), Jet_mass->At( CleanJet_jetIdx->At(vbfjet[1]) ));
     MyMjj = (J1+J2).M();
-    MyDetajj = abs(J1.Eta()-J2.Eta())
+    MyDetajj = abs(J1.Eta()-J2.Eta());
   }else{
     MyMjj = -9999.0;
     MyDetajj = -9999.0;

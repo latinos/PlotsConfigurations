@@ -93,9 +93,9 @@ DNNneut::evaluate(unsigned)
     vbfjet.push_back(0);
     vbfjet.push_back(1);
   }else{
-    wpt = *HM_Whad_pt->Get()
+    wpt = *HM_Whad_pt->Get();
     if (wpt < 0.0){
-      return 0.0
+      return 0.0;
     }
     weta = *HM_Whad_eta->Get();
     wphi = *HM_Whad_phi->Get();
