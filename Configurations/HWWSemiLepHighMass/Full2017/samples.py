@@ -129,7 +129,7 @@ files+= nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext1')
 samples['DY'] = {
     'name': files,
     'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)',
-    'FilesPerJob': 3,
+    'FilesPerJob': 4,
 }
 addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO)
@@ -158,7 +158,7 @@ files = nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic_PSweights') + \
 samples['top'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 2,
+    'FilesPerJob': 3,
 }
 addSampleWeight(samples,'top','TTToSemiLeptonic_PSweights','Top_pTrw')
 
@@ -171,7 +171,7 @@ files = nanoGetSampleFiles(mcDirectory, 'WW-LO') #+ \
 samples['WW'] = {
     'name': files,
     'weight': mcCommonWeight, # + '*nllW', #FIXME: what is this weight
-    'FilesPerJob': 2
+    'FilesPerJob': 4
 }
 
 samples['WWewk'] = {
@@ -179,7 +179,7 @@ samples['WWewk'] = {
     'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)',
     #FIXME there are other samples that dont contain top/higgs to begin with
     #filter tops and Higgs
-    'FilesPerJob': 4
+    'FilesPerJob': 5
 }
 
 # # k-factor 1.4 already taken into account in XSWeight
@@ -204,21 +204,21 @@ samples['WWewk'] = {
 
 samples['ggWW'] = {
     'name'   : nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToLNuQQ_M125'),
-    'weight' : mcCommonWeight +'*'+model+'_B * ('+model+'_B < 750)',
-    'FilesPerJob': 4
+    'weight' : mcCommonWeight +'*'+model+'_B * ('+model+'_B < 100)',
+    'FilesPerJob': 5
 }
 
 
 samples['qqWWqq'] = {
     'name'   :   nanoGetSampleFiles(mcDirectory,'WpWmJJ_QCD_noTop') ,
     'weight' : mcCommonWeight+'*(GenLHE)',
-    'FilesPerJob': 4
+    'FilesPerJob': 5
 }
 
 samples['WW2J'] = {
     'name'   :   nanoGetSampleFiles(mcDirectory,'WpWmJJ_QCD_noTop') ,
     'weight' : mcCommonWeight +'*(!GenLHE)',
-    'FilesPerJob': 4
+    'FilesPerJob': 5
 }
 
 
@@ -242,10 +242,15 @@ files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-0J') +\
 
 samples['Wjets'] = {
     'name'   : files,
-    'weight' : mcCommonWeight,
+    'weight' : mcCommonWeight +"*EWK_W_correction[0]",
     'FilesPerJob' : 4,
 }
-
+# Correction xs used in latinos to the xs given in the pdf file
+# https://github.com/latinos/LatinoAnalysis/blob/master/NanoGardener/python/framework/samples/samplesCrossSections2017.py
+# https://indico.cern.ch/event/673253/contributions/2756806/attachments/1541203/2416962/20171016_VJetsXsecsUpdate_PH-GEN.pdf
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu-0J', '(50131.98/54611.6)')
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu-1J', '(8426.09/8966.2)')
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu-2J', '(3172.96/3643.12)')
 
 
 ####### Vg ########
@@ -255,7 +260,7 @@ files += nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
 samples['Vg'] = {
     'name': files,
     'weight': mcCommonWeightNoMatch + '*(!(Gen_ZGstar_mass > 0))',
-    'FilesPerJob': 4
+    'FilesPerJob': 5
 }
 #the following is needed in v5 and should be removed in v6
 # addSampleWeight(samples, 'Vg', 'ZGToLLG', '0.448')
@@ -268,7 +273,7 @@ files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
 samples['VgS'] = {
     'name': files,
     'weight': mcCommonWeight + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
-    'FilesPerJob': 4,
+    'FilesPerJob': 5,
     'subsamples': {
       'L': 'gstarLow',
       'H': 'gstarHigh'
@@ -287,7 +292,7 @@ files = nanoGetSampleFiles(mcDirectory, 'ZZ') +\
 samples['VZ'] = {
     'name': files,
     'weight': mcCommonWeight + '*1.11',
-    'FilesPerJob': 4
+    'FilesPerJob': 5
 }
 
 ########## VVV #########
@@ -302,7 +307,7 @@ files = nanoGetSampleFiles(mcDirectory, 'ZZZ') + \
 samples['VVV'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 4
+    'FilesPerJob': 5
 }
 
 
@@ -312,20 +317,20 @@ samples['VVV'] = {
 
 ########### QCD ###########
 
-files = nanoGetSampleFiles(mcDirectory,'QCD_Pt-15to20_MuEnrichedPt5') + \
-    nanoGetSampleFiles(mcDirectory,'QCD_Pt-20to30_MuEnrichedPt5') + \
-    nanoGetSampleFiles(mcDirectory,'QCD_Pt-30to50_MuEnrichedPt5') + \
-    nanoGetSampleFiles(mcDirectory,'QCD_Pt-50to80_MuEnrichedPt5') + \
-    nanoGetSampleFiles(mcDirectory,'QCD_Pt-80to120_MuEnrichedPt5') + \
-    nanoGetSampleFiles(mcDirectory,'QCD_Pt-120to170_MuEnrichedPt5') + \
-    nanoGetSampleFiles(mcDirectory,'QCD_Pt-170to300_MuEnrichedPt5') + \
-    nanoGetSampleFiles(mcDirectory,'QCD_Pt-300to470_MuEnrichedPt5') + \
-    nanoGetSampleFiles(mcDirectory,'QCD_Pt-470to600_MuEnrichedPt5') + \
-    nanoGetSampleFiles(mcDirectory,'QCD_Pt-600to800_MuEnrichedPt5') + \
-    nanoGetSampleFiles(mcDirectory,'QCD_Pt-800to1000_MuEnrichedPt5') + \
-    nanoGetSampleFiles(mcDirectory,'QCD_Pt-1000toInf_MuEnrichedPt5')# + \
+# files = nanoGetSampleFiles(mcDirectory,'QCD_Pt-15to20_MuEnrichedPt5') + \
+#     nanoGetSampleFiles(mcDirectory,'QCD_Pt-20to30_MuEnrichedPt5') + \
+#     nanoGetSampleFiles(mcDirectory,'QCD_Pt-30to50_MuEnrichedPt5') + \
+#     nanoGetSampleFiles(mcDirectory,'QCD_Pt-50to80_MuEnrichedPt5') + \
+#     nanoGetSampleFiles(mcDirectory,'QCD_Pt-80to120_MuEnrichedPt5') + \
+#     nanoGetSampleFiles(mcDirectory,'QCD_Pt-120to170_MuEnrichedPt5') + \
+#     nanoGetSampleFiles(mcDirectory,'QCD_Pt-170to300_MuEnrichedPt5') + \
+#     nanoGetSampleFiles(mcDirectory,'QCD_Pt-300to470_MuEnrichedPt5') + \
+#     nanoGetSampleFiles(mcDirectory,'QCD_Pt-470to600_MuEnrichedPt5') + \
+#     nanoGetSampleFiles(mcDirectory,'QCD_Pt-600to800_MuEnrichedPt5') + \
+#     nanoGetSampleFiles(mcDirectory,'QCD_Pt-800to1000_MuEnrichedPt5') + \
+#     nanoGetSampleFiles(mcDirectory,'QCD_Pt-1000toInf_MuEnrichedPt5')# + \
     # nanoGetSampleFiles(mcDirectory,'QCD_Pt-15to20_EMEnriched') + \
-files+= nanoGetSampleFiles(mcDirectory,'QCD_Pt-20to30_EMEnriched') + \
+files= nanoGetSampleFiles(mcDirectory,'QCD_Pt-20to30_EMEnriched') + \
     nanoGetSampleFiles(mcDirectory,'QCD_Pt-30to50_EMEnriched') + \
     nanoGetSampleFiles(mcDirectory,'QCD_Pt-50to80_EMEnriched') + \
     nanoGetSampleFiles(mcDirectory,'QCD_Pt-80to120_EMEnriched') + \
@@ -333,17 +338,17 @@ files+= nanoGetSampleFiles(mcDirectory,'QCD_Pt-20to30_EMEnriched') + \
 #     # nanoGetSampleFiles(mcDirectory,'QCD_Pt-170to300_EMEnriched') + \
 files+=    nanoGetSampleFiles(mcDirectory,'QCD_Pt-300toInf_EMEnriched')
 
-# files+= nanoGetSampleFiles(mcDirectory, 'QCD_Pt_20to30_bcToE') +\
-#         nanoGetSampleFiles(mcDirectory, 'QCD_Pt_30to80_bcToE') +\
-#         nanoGetSampleFiles(mcDirectory, 'QCD_Pt_80to170_bcToE') +\
-#         nanoGetSampleFiles(mcDirectory, 'QCD_Pt_170to250_bcToE') +\
-#         nanoGetSampleFiles(mcDirectory, 'QCD_Pt_250toInf_bcToE')
+files+= nanoGetSampleFiles(mcDirectory, 'QCD_Pt_20to30_bcToE') +\
+        nanoGetSampleFiles(mcDirectory, 'QCD_Pt_30to80_bcToE') +\
+        nanoGetSampleFiles(mcDirectory, 'QCD_Pt_80to170_bcToE') +\
+        nanoGetSampleFiles(mcDirectory, 'QCD_Pt_170to250_bcToE') +\
+        nanoGetSampleFiles(mcDirectory, 'QCD_Pt_250toInf_bcToE')
 
 
 samples['QCD'] = {
     'name'   :   files,
     'weight' : mcCommonWeightNoMatch,
-    'FilesPerJob' : 3,
+    'FilesPerJob' : 4,
 }
 
 
@@ -354,14 +359,14 @@ samples['QCD'] = {
 samples['ggH_hww'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToLNuQQ_M125'),
     'weight': mcCommonWeight,
-    'FilesPerJob': 10,
+    'FilesPerJob': 15,
 }
 
 ############ VBF H->WW ############
 samples['qqH_hww'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWToLNuQQ_M126'),
     'weight': mcCommonWeight,
-    'FilesPerJob': 10
+    'FilesPerJob': 15
 }
 
 ############ ZH H->WW ############
@@ -369,13 +374,13 @@ samples['qqH_hww'] = {
 samples['ZH_hww'] = {
     'name':   nanoGetSampleFiles(mcDirectory, 'HZJ_HToWW_M125'),
     'weight': mcCommonWeight,
-    'FilesPerJob': 10
+    'FilesPerJob': 11
 }
 
 samples['ggZH_hww'] = {
     'name':   nanoGetSampleFiles(mcDirectory, 'GluGluZH_HToWW_M125'),
     'weight': mcCommonWeight,
-    'FilesPerJob': 10
+    'FilesPerJob': 11
 }
 
 ############ WH H->WW ############
@@ -383,7 +388,7 @@ samples['ggZH_hww'] = {
 samples['WH_hww'] = {
     'name':   nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125'),
     'weight': mcCommonWeight,
-    'FilesPerJob': 10
+    'FilesPerJob': 11
 }
 
 ############ ttH ############
@@ -391,7 +396,7 @@ samples['WH_hww'] = {
 samples['ttH_hww'] = {
     'name':   nanoGetSampleFiles(mcDirectory, 'ttHToNonbb_M125'),
     'weight': mcCommonWeight,
-    'FilesPerJob': 10
+    'FilesPerJob': 11
 }
 
 # ############ H->TauTau ############
@@ -399,19 +404,19 @@ samples['ttH_hww'] = {
 samples['ggH_htt'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125'),
     'weight': mcCommonWeight,
-    'FilesPerJob': 10
+    'FilesPerJob': 11
 }
 
 samples['qqH_htt'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125'),
     'weight': mcCommonWeight,
-    'FilesPerJob': 10
+    'FilesPerJob': 11
 }
 
 samples['ZH_htt'] = {
    'name': nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125'),
    'weight': mcCommonWeight,
-   'FilesPerJob': 10
+   'FilesPerJob': 11
 }
 
 # samples['ggZH_htt'] = {
@@ -440,8 +445,8 @@ signals = []
 for MX in massggh:
     samples['GGH_'+MX+model_name] = {
         'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToLNuQQ_M'+MX),
-        'weight': mcCommonWeight+'*('+model+' + '+model+'_I)* (abs('+model_I+') < 750)',
-        'FilesPerJob': 5
+        'weight': mcCommonWeight+'*('+model+' + '+model+'_I)* (abs('+model_I+') < 100)',
+        'FilesPerJob': 6
     }
     signals.append('GGH_'+MX+model_name)
 
@@ -449,17 +454,17 @@ for MX in massggh:
         'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToLNuQQ_M'+MX)
               + nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToLNuQQ_M125'),
         'weight': mcCommonWeight,
-        'FilesPerJob': 5
+        'FilesPerJob': 6
     }
     addSampleWeight(samples, 'GGHSBI_'+MX+model_name, 'GluGluHToWWToLNuQQ_M'+MX,
                     '('+model+' + '+model_I+' + '+model_B+') \
-                    * (abs('+model_I+') < 750) * (abs('+model_B+') < 750)')
+                    * (abs('+model_I+') < 100) * (abs('+model_B+') < 100)')
 
 
     # samples['GGH_H_'+MX+model_name] = {
     #     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToLNuQQ_M'+MX),
-    #     'weight': mcCommonWeight+'*('+model+'_H)* (abs('+model_H+') < 5000)',
-    #     'FilesPerJob': 5
+    #     'weight': mcCommonWeight+'*('+model+'_H)* (abs('+model_H+') < 100)',
+    #     'FilesPerJob': 6
     # }
 
 
@@ -478,7 +483,7 @@ for MX in massggh:
     #           + nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToLNuQQ_M125'),
     #     'weight': mcCommonWeight,
     # }
-    # addSampleWeight(samples, 'MSSMGGHSBI_'+MX, 'GluGluHToWWToLNuQQ_M'+MX, '(RelW0.02 + RelW0.02_I + RelW0.02_B) * (abs(RelW0.02_I) < 500) * (abs(RelW0.02_B) < 500) *'+noSMxsec)
+    # addSampleWeight(samples, 'MSSMGGHSBI_'+MX, 'GluGluHToWWToLNuQQ_M'+MX, '(RelW0.02 + RelW0.02_I + RelW0.02_B) * (abs(RelW0.02_I) < 100) * (abs(RelW0.02_B) < 100) *'+noSMxsec)
 
 
 
@@ -488,8 +493,8 @@ for MX in massggh:
 for MX in massvbf:
     samples['QQH_'+MX+model_name] = {
         'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWToLNuQQ_M'+MX),
-        'weight': mcCommonWeight+'*('+model+' + '+model+'_I)* (abs('+model_I+') < 500)',
-        'FilesPerJob': 5
+        'weight': mcCommonWeight+'*('+model+' + '+model+'_I)* (abs('+model_I+') < 100)',
+        'FilesPerJob': 6
     }
     signals.append('qqHWWlnuqq_M'+MX)
 
@@ -498,10 +503,10 @@ for MX in massvbf:
               + nanoGetSampleFiles(mcDirectory, 'VBFHToWWToLNuQQ_M125')
               + nanoGetSampleFiles(mcDirectory, 'WpWmJJ_QCD_noTop'),
         'weight': mcCommonWeight,
-        'FilesPerJob': 5
+        'FilesPerJob': 6
     }
     addSampleWeight(samples, 'QQHSBI_'+MX+model_name, 'VBFHToWWToLNuQQ_M'+MX,
-                    '('+model+' + '+model_I+') * (abs('+model_I+') < 500) ')
+                    '('+model+' + '+model_I+') * (abs('+model_I+') < 100) ')
 
 
     if MX in ['4000', '5000']: # Just to be sure, recalculate baseW with new cross sections
@@ -512,8 +517,8 @@ for MX in massvbf:
 
     # samples['QQH_H_'+MX+model_name] = {
     #     'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWToLNuQQ_M'+MX),
-    #     'weight': mcCommonWeight+'*('+model+'_H)* (abs('+model_H+') < 5000)',
-    #     'FilesPerJob': 5
+    #     'weight': mcCommonWeight+'*('+model+'_H)* (abs('+model_H+') < 100)',
+    #     'FilesPerJob': 6
     # }
 
     # # Model dependent -> Xsec*BR is applied in later step, so remove "SM"-Xsec*BR
@@ -531,7 +536,7 @@ for MX in massvbf:
     #           + nanoGetSampleFiles(mcDirectory, 'WpWmJJ_QCD_noTop'),
     #     'weight': mcCommonWeight,
     # }
-    # addSampleWeight(samples, 'MSSMQQHSBI_'+MX, 'VBFHToWWToLNuQQ_M'+MX, '(RelW0.02 + RelW0.02_I) * (abs(RelW0.02_I) < 500) *'+noSMxsec)
+    # addSampleWeight(samples, 'MSSMQQHSBI_'+MX, 'VBFHToWWToLNuQQ_M'+MX, '(RelW0.02 + RelW0.02_I) * (abs(RelW0.02_I) < 100) *'+noSMxsec)
 
 
 

@@ -1,6 +1,7 @@
 import os
 import copy
 import inspect
+import numpy as np
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
 configurations = os.path.dirname(configurations) # Full2017
@@ -17,6 +18,24 @@ mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
 eleWP    = 'mvaFall17V1Iso_WP90'
 muWP     = 'cut_Tight_HWWW'
+
+aliases['DNN_isVBF_OTF'] = {
+    'class': 'DNNprod',
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_prod_semi.cc+' % os.getenv('CMSSW_BASE'),
+    ],
+}
+
+aliases['DNN_mth_OTF'] = {
+    'class': 'DNNneut',
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_neut_semi.cc+' % os.getenv('CMSSW_BASE'),
+    ],
+}
 
 aliases['bWP'] = {
     'expr': '0.1522'
@@ -110,28 +129,26 @@ aliases['boostedSidebandWMassNoTau21'] = {
             && Alt$(CleanFatJet_mass[(int)idxCleanFatJetW], 999) < 250)'
 }
 
-# aliases['lowBoostedSidebandWMass'] = {
-#     'expr': '(40 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
-#             && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 65)'
-# }
-#
-# aliases['highBoostedSidebandWMass'] = {
-#     'expr': '(105 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
-#             && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 250)'
-# }
+aliases['lowBoostedSidebandWMass'] = {
+    'expr': '(40 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
+            && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 65)'
+}
+aliases['highBoostedSidebandWMass'] = {
+    'expr': '(105 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
+            && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 250)'
+}
 
 
 aliases['resolvedSidebandWMass'] = {
     'expr': '(40 < Whad_mass && Whad_mass < 250)'
 }
 
-# aliases['lowResolvedSidebandWMass'] = {
-#     'expr': '(40 < Whad_mass && Whad_mass < 65)'
-# }
-#
-# aliases['highResolvedSidebandWMass'] = {
-#     'expr': '(105 < Whad_mass && Whad_mass < 250)'
-# }
+aliases['lowResolvedSidebandWMass'] = {
+    'expr': '(40 < Whad_mass && Whad_mass < 65)'
+}
+aliases['highResolvedSidebandWMass'] = {
+    'expr': '(105 < Whad_mass && Whad_mass < 250)'
+}
 
 aliases['resolvedQCDcr'] = {
     'expr': 'resolvedSignalWMass \
@@ -149,6 +166,46 @@ aliases['resolvedQCDcr'] = {
 aliases['tau21DDT'] = {
     'expr': 'Alt$(CleanFatJet_tau21[(int)idxCleanFatJetW], -999) + 0.080 * TMath::Log( Alt$(CleanFatJet_mass[(int)idxCleanFatJetW]*CleanFatJet_mass[(int)idxCleanFatJetW], 0) / Alt$(CleanFatJet_pt[(int)idxCleanFatJetW], 1) )'
 }
+
+
+
+
+
+
+
+aliases['LHEPartWlepPt'] = {
+    'linesToAdd': ['.L %s/HWWSemiLepHighMass/Full2017/LHEPartWlepPt.cc' % configurations],
+    'class': 'LHEPartWlepPt',
+    'samples': "Wjets"
+}
+data = np.genfromtxt(os.getenv('CMSSW_BASE')+'/src/LatinoAnalysis/Gardener/python/data/ewk/kewk_w.dat', skip_header=2, skip_footer=7)
+
+weight_string = "("
+uncert_string = "("
+for row in data:
+    low  = row[0]
+    high = row[1]
+    weight = (1+row[2])
+    ucert = row[3]
+
+    weight_string+="({}<LHEPartWlepPt[0] && LHEPartWlepPt[0]<={})\
+                    *{}+".format(low, high, weight)
+    uncert_string+="({}<LHEPartWlepPt[0] && LHEPartWlepPt[0]<={})\
+                    *{}+".format(low, high, weight)
+# remove trailing + sign and close parentheses
+weight_string=weight_string[:-1]+")"
+uncert_string=uncert_string[:-1]+")"
+
+aliases['EWK_W_correction'] = {
+    'expr': weight_string,
+    'samples': 'Wjets'
+}
+aliases['EWK_W_correction_uncert'] = {
+    'expr': uncert_string,
+    'samples': 'Wjets'
+}
+
+
 
 
 
@@ -297,10 +354,6 @@ aliases['SFWtagDown'] = {
 
 
 
-aliases['TriggerSF'] = {
-    'expr': '(TriggerEffWeight_sngEl*(abs(Lepton_pdgId[0])==11) + TriggerEffWeight_sngMu*(abs(Lepton_pdgId[0]==13)))',
-    'samples': mc
-}
 
 
 
@@ -330,14 +383,10 @@ aliases['SFweightMuDown'] = {
 
 
 
-# # data/MC scale factors
-# aliases['SFweight'] = {
-#     'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto','PrefireWeight','LepWPSF[0]','btagSF[0]','WtagSF[0]']),
-#     'samples': mc
-# }
+
 # data/MC scale factors
 aliases['SFweight'] = {
-'expr': ' * '.join(['puWeight', 'TriggerSF', 'EMTFbug_veto','PrefireWeight','LepWPSF[0]','btagSF[0]','WtagSF[0]']),
+'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto','PrefireWeight','LepWPSF[0]','btagSF[0]','WtagSF[0]']),
 'samples': mc
 }
 

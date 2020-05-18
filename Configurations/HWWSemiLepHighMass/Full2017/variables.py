@@ -17,48 +17,48 @@
 
 variables['lepton0_pt']  = {
     'name' : 'Lepton_pt[0]',
-    'range': (100,0,500),
+    'range': (25,0,500),
     'xaxis': 'lepton[0] pt',
     'fold' : 3
 }
-variables['lepton0_eta'] = {
-    'name' : 'Lepton_eta[0]',
-    'range': ([-2.5, -2.1, -1.6, -1.4, 0.0, 1.4, 1.6, 2.1, 2.5],),
-    'xaxis': 'lepton[0] eta',
-    # 'divideByBinWidth' : 1,
-    'fold' : 0
-}
-variables['lepton0_phi'] = {
-    'name' : 'Lepton_phi[0]',
-    'range': (12, -3.142, 3.142),
-    'xaxis': 'lepton[0] phi',
-    'fold' : 0
-}
+# variables['lepton0_eta'] = {
+#     'name' : 'Lepton_eta[0]',
+#     'range': ([-2.5, -2.1, -1.6, -1.4, 0.0, 1.4, 1.6, 2.1, 2.5],),
+#     'xaxis': 'lepton[0] eta',
+#     # 'divideByBinWidth' : 1,
+#     'fold' : 0
+# }
+# variables['lepton0_phi'] = {
+#     'name' : 'Lepton_phi[0]',
+#     'range': (12, -3.142, 3.142),
+#     'xaxis': 'lepton[0] phi',
+#     'fold' : 0
+# }
 
 
 #####################################################
 ##################  Lepton 1  #######################
 #####################################################
 
-variables['lepton1_pt']  = {
-    'name' : 'Alt$(Lepton_pt[1], 0)',
-    'range': (50,0,250),
-    'xaxis': 'lepton[1] pt',
-    'fold' : 3
-}
-variables['lepton1_eta'] = {
-    'name' : 'Lepton_eta[1]',
-    'range': ([-2.5, -2.1, -1.6, -1.4, 0.0, 1.4, 1.6, 2.1, 2.5],),
-    'xaxis': 'lepton[1] eta',
-    # 'divideByBinWidth' : 1,
-    'fold' : 0
-}
-variables['lepton1_phi'] = {
-    'name' : 'Lepton_phi[1]',
-    'range': (12, -3.142, 3.142),
-    'xaxis': 'lepton[1] phi',
-    'fold' : 0
-}
+# variables['lepton1_pt']  = {
+#     'name' : 'Lepton_pt[1]',
+#     'range': (50,0,250),
+#     'xaxis': 'lepton[1] pt',
+#     'fold' : 3
+# }
+# variables['lepton1_eta'] = {
+#     'name' : 'Lepton_eta[1]',
+#     'range': ([-2.5, -2.1, -1.6, -1.4, 0.0, 1.4, 1.6, 2.1, 2.5],),
+#     'xaxis': 'lepton[1] eta',
+#     # 'divideByBinWidth' : 1,
+#     'fold' : 0
+# }
+# variables['lepton1_phi'] = {
+#     'name' : 'Lepton_phi[1]',
+#     'range': (12, -3.142, 3.142),
+#     'xaxis': 'lepton[1] phi',
+#     'fold' : 0
+# }
 
 
 #####################################################
@@ -71,12 +71,12 @@ variables['met_pt']  = {
     'xaxis': 'MET pt',
     'fold' : 3
 }
-variables['met_phi'] = {
-    'name' : 'PuppiMET_phi',
-    'range': (12, -3.142, 3.142),
-    'xaxis': 'MET phi',
-    'fold' : 0
-}
+# variables['met_phi'] = {
+#     'name' : 'PuppiMET_phi',
+#     'range': (12, -3.142, 3.142),
+#     'xaxis': 'MET phi',
+#     'fold' : 0
+# }
 
 
 #####################################################
@@ -89,13 +89,13 @@ variables['jet0_pt'] = {
    'xaxis': 'clJet[0] pt',
    'fold' : 3
 }
-variables['jet0_eta'] = {
-    'name' : 'Alt$(CleanJet_eta[0], -99)',
-    'range': ([-2.5, -2.1, -1.6, -1.4, 0.0, 1.4, 1.6, 2.1, 2.5],),
-    'xaxis': 'clJet[0] eta',
-    # 'divideByBinWidth' : 1,
-    'fold' : 3
-}
+# variables['jet0_eta'] = {
+#     'name' : 'Alt$(CleanJet_eta[0], -99)',
+#     'range': ([-2.5, -2.1, -1.6, -1.4, 0.0, 1.4, 1.6, 2.1, 2.5],),
+#     'xaxis': 'clJet[0] eta',
+#     # 'divideByBinWidth' : 1,
+#     'fold' : 3
+# }
 
 variables['jet1_pt'] = {
    'name' : 'Alt$(CleanJet_pt[1], -1)',
@@ -103,13 +103,13 @@ variables['jet1_pt'] = {
    'xaxis': 'clJet[1] pt',
    'fold' : 3
 }
-variables['jet1_eta'] = {
-    'name' : 'Alt$(CleanJet_eta[1], -99)',
-    'range': ([-2.5, -2.1, -1.6, -1.4, 0.0, 1.4, 1.6, 2.1, 2.5],),
-    'xaxis': 'clJet[1] eta',
-    # 'divideByBinWidth' : 1,
-    'fold' : 3
-}
+# variables['jet1_eta'] = {
+#     'name' : 'Alt$(CleanJet_eta[1], -99)',
+#     'range': ([-2.5, -2.1, -1.6, -1.4, 0.0, 1.4, 1.6, 2.1, 2.5],),
+#     'xaxis': 'clJet[1] eta',
+#     # 'divideByBinWidth' : 1,
+#     'fold' : 3
+# }
 
 
 #####################################################
@@ -139,13 +139,13 @@ variables['jet1_eta'] = {
 variables['plot_resolvHMass'] = {
     'name' : 'Hlnjj_mass',
     'range': (24, 0, 1200),
-    'xaxis': 'reconstr. H mass [GeV]',
+    'xaxis': '(resolv) reconstr. H mass [GeV]',
     'fold' : 3
 }
 variables['plot_boostHMass'] = {
     'name' : 'CleanFatJetPassMBoosted_HlnFat_mass[0]',
     'range': (24, 0, 1200),
-    'xaxis': 'reconstr. H mass [GeV]',
+    'xaxis': '(boost) reconstr. H mass [GeV]',
     'fold' : 3
 }
 #
@@ -208,17 +208,29 @@ variables['WlepMT'] = {
     'xaxis': 'WlepMT',
     'fold': 3
 }
+variables['WlepPT'] = {
+    'name': 'TMath::Sqrt( TMath::Power(Lepton_pt[0], 2) + TMath::Power(PuppiMET_pt, 2) + 2*Lepton_pt[0]*PuppiMET_pt*TMath::Cos(Lepton_phi[0]-PuppiMET_phi) )',
+    'range': (20, 0.0, 400.0),
+    'xaxis': 'Wlep pT',
+    'fold': 3
+}
 variables['boostHiggsMT'] = {
     'name' : 'boostHiggsMT[0]',
     'range': (24, 0, 1200),
     'xaxis': 'reconstr. H mt',
-    'fold' : 0
+    'fold' : 3
 }
 variables['resolvHiggsMT'] = {
     'name' : 'resolvHiggsMT[0]',
     'range': (24, 0, 1200),
     'xaxis': 'reconstr. H mt',
-    'fold' : 0
+    'fold' : 3
+}
+variables['dnnHiggsMT'] = {
+    'name' : 'DNN_mth_OTF[0]',
+    'range': (24, 0, 1200),
+    'xaxis': 'DNN H mt',
+    'fold' : 3
 }
 # variables['Lep1TightWP'] = {
 #     'name': 'Lep1WPCut',
