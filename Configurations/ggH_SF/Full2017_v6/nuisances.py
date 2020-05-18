@@ -444,14 +444,14 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 
 variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 4, 6, 7]]
 
-nuisances['QCDscale_V'] = {
-    'name': 'QCDscale_V',
-    'skipCMS': 1,
-    'kind': 'weight_envelope',
-    'type': 'shape',
-    'samples': {'DY': variations},
-    'AsLnN': '1'
-}
+#nuisances['QCDscale_V'] = {
+#    'name': 'QCDscale_V',
+#    'skipCMS': 1,
+#    'kind': 'weight_envelope',
+#    'type': 'shape',
+#    'samples': {'DY': variations},
+#    'AsLnN': '1'
+#}
 
 #*         | Float_t LHE scale variation weights (w_var / w_nominal); [0] is renscfact=0.5d0 facscfact=0.5d0 ; [1] is renscfact=0.5d0 facscfact=1d0 ; [2] is renscfact=0.5d0 facscfact=2d0 ; [3] is renscfact=1d0 facscfact=0.5d0 ; [4] is renscfact=1d0 facscfact=1d0 ; [5] is renscfact=1d0 facscfact=2d0 ; [6] is renscfact=2d0 facscfact=0.5d0 ; [7] is renscfact=2d0 facscfact=1d0 ; [8] is renscfact=2d0 facscfact=2d0 *
 

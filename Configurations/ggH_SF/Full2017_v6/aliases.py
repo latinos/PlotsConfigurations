@@ -112,16 +112,19 @@ aliases['2jggH'] = {
 
 #SF cuts
 aliases['Higgs0jet'] = {
-'expr': '(mll < 60 && mth > 90)'
+'expr': '(mll < 60 && mth > 90 && abs(dphill) < 2.30)'
 }
 aliases['Higgs1jet'] = {
-'expr': '(mll < 60 && mth > 90)'
+'expr': '(mll < 60 && mth > 80 && abs(dphill) < 2.25)'
 }
 aliases['Higgs2jet'] = {
-'expr': '(mll < 60 && mth > 60)'
+'expr': '(mll < 60 && mth > 65 && mth < 150)'
+}
+aliases['Higgsvh'] = {
+'expr': '(mll < 60 && mth > 60 && mth < 150 && abs(dphill) < 1.60)'
 }
 aliases['Higgsvbf'] = {
-'expr': '(mll < 60 && mth > 60)'
+'expr': '(mll < 60 && mth > 60 && mth < 150 && abs(dphill) < 1.60)'
 }
 
 #Z veto
