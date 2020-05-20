@@ -68,7 +68,7 @@ If you need yield tables in either .tex or .csv format, after running the FitDia
     
 you can feed the output to mkTable (`mkTable.py --help` to see all available options):
 
-    python mkTable.py fitDiagnostics.root
+    mkTable.py fitDiagnostics.root
     
 in case you want to merge a set of categories and/or processes in the table, you can define a merging scheme. A template, as well as more detailed instructions on mkTable, can be found in LatinoAnalysis/ShapeAnalysis/data/.
 
