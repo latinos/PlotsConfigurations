@@ -1,5 +1,5 @@
 #Script to make correlation matrix of fixed size, showing correlations between signal strengths and nuisances with highest correlations
-#Argument: multidimfit*.root produced when running MultiDimFit in combine and using --saveFitResult
+#Argument: multidimfit*.root produced when running MultiDimFit in combine and using --saveFitResult, or fitDiagnostics*.root produced when running FitDiagnostics
 
 from ROOT import TCanvas, TH2F, gStyle, gPad, TFile, TLatex, gROOT
 from itertools import combinations
@@ -36,15 +36,17 @@ if len(sys.argv) != 2:
 filename = sys.argv[1]
 f0 = TFile(filename)
 
-fit_mdf = f0.Get("fit_mdf")
-if fit_mdf == None:
-    print 'Input file must be a multidimfit*.root file containing a fit_mdf object. File can be produced by using --saveFitResult when running MultiDimFit in combine'
+fit_result = f0.Get("fit_mdf")
+if fit_result == None:
+    fit_result = f0.Get("fit_s")
+if fit_result == None:
+    print 'Input file must be a multidimfit*.root file containing a fit_mdf object (produced by using --saveFitResult when running MultiDimFit in combine) or a fitDiagnostics*.root file containing a fit_s object (produced by running FitDiagnostics in combine)'
     exit()
 
-arglist = fit_mdf.floatParsFinal()
+arglist = fit_result.floatParsFinal()
 args = [arglist.at(i).GetName() for i in xrange(0,len(arglist))]
-sigstrength = [s for s in args if s.startswith('r_')]
-nuisances = [n for n in args if not n.startswith('r_')]
+sigstrength = [s for s in args if (s.startswith('r_') or s == 'r')]
+nuisances = [n for n in args if not (n.startswith('r_') or n == 'r')]
 
 def maxcorr(nuis):
     maxcorr = 0.0
@@ -53,7 +55,7 @@ def maxcorr(nuis):
         n_split = re.split('(bin\d+_)',n)
         nuis_split = re.split('(bin\d+_)',nuis)
         if len(n_split) == len(nuis_split) == 3 and n_split[0] == nuis_split[0] and n_split[1] == nuis_split[1] : continue
-        if abs(fit_mdf.correlation(nuis,n)) > maxcorr : maxcorr = abs(fit_mdf.correlation(nuis,n))
+        if abs(fit_result.correlation(nuis,n)) > maxcorr : maxcorr = abs(fit_result.correlation(nuis,n))
     return maxcorr
 
 sorted_nuisances = sorted(nuisances,key = lambda nuis : maxcorr(nuis), reverse = True)
@@ -66,7 +68,7 @@ corMatrix = TH2F("corMatrix","corMatrix",SIZE,0,SIZE,SIZE,0,SIZE)
 for i, inuis in enumerate(allpars):
     for j, jnuis in enumerate(allpars):
         if i != j:
-            corMatrix.SetBinContent(i+1, j+1, fit_mdf.correlation(inuis,jnuis))
+            corMatrix.SetBinContent(i+1, j+1, fit_result.correlation(inuis,jnuis))
 
 corMatrix.SetStats(0)
 corMatrix.SetTitle("")
@@ -95,6 +97,7 @@ for j,nuis in enumerate(allpars):
     ylabels.DrawLatex(x,y,nuis)
 
 filename = filename.replace('multidimfit','correlation_matrix')
+filename = filename.replace('fitDiagnostics','correlation_matrix')
 filename = filename.replace('root','pdf')
 canvas.SaveAs(filename)
 
