@@ -12,13 +12,15 @@ parser.add_argument("--mc-asimov", action="store_true", default=True)
 parser.add_argument("--data-asimov", action="store_true", default=False)
 parser.add_argument("--dry", action="store_true", help="Do not run, only create script", default=False)
 parser.add_argument("-fo","--fit-options", help="Robust fit options ", type=int, default=0)
+parser.add_argument("--masks", help="File with list of channels to mask",  type=str)
 args = parser.parse_args()
 
 
 fitter_options= { 
     0:  " ",
     1:  "--robustFit=1 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND",
-    2:  "--cminDefaultMinimizerStrategy 0  --cminFallbackAlgo Minuit2,Migrad,0:0.1"
+    2:  "--cminDefaultMinimizerStrategy 0  --cminFallbackAlgo Minuit2,Migrad,0:0.1",
+    3:  "--cminDefaultMinimizerStrategy 0  --cminFallbackAlgo Minuit2,Migrad,0:0.1 --robustFit=1 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND",
 }
 
 toysf = "--toysFreq" if args.data_asimov else ""
@@ -42,6 +44,11 @@ def prepare_rateParams(years):
                 "Wjets_deta2_jpt1","Wjets_deta1_jpt1"]
     elif args.wbins == "Aboost":
         Wjets_bins = ["Wjets_boost1", "Wjets_boost2"]
+
+    elif args.wbins == "B":
+        Wjets_bins = ["Wjets_NLO_jpt3","Wjets_NLO_deta2_jpt2", "Wjets_NLO_deta1_jpt2",
+                "Wjets_NLO_deta2_jpt1","Wjets_NLO_deta1_jpt1",
+                "Wjets_NLO_boost1", "Wjets_NLO_boost2"]
 
     else:
         print("ERROR! Specify a valid W+jets binning")
@@ -79,30 +86,34 @@ cmd.append("cp {} {}/combined.root".format(args.inputfile, args.outputdir))
 cmd.append("cd "+ args.outputdir)
 cmd.append("echo '{}' > log.txt".format("Initial dir: "+ args.inputfile))
 
+if args.masks:
+        mask = "--setParameters "+ ",".join([ "mask_"+ l.strip()+"=1" for l  in open(args.masks).readlines()])
+else:
+    mask = ""
 
 if not args.plot:
 # Prepare the script to create the impacts
     cmd.append("""combineTool.py -M Impacts -d combined.root -m 125 --doInitialFit \\
                 -t -1 --expectSignal=1 {} -n nuis.125 \\
-                {}""".format(toysf, fitter_options[args.fit_options]))
+                {} {}""".format(toysf, fitter_options[args.fit_options], mask))
 
     cmd.append("""combineTool.py -M Impacts -d combined.root -m 125 --doFits \\
                 -t -1 --expectSignal=1 {} --job-mode condor --task-name nuis -n nuis.125 \\
-                {}""".format(toysf, fitter_options[args.fit_options]))
+                {} {}""".format(toysf, fitter_options[args.fit_options],mask))
 
 
     cmd.append("""combineTool.py -M Impacts -d combined.root -m 125 --doInitialFit \\
                 -t -1 --expectSignal=1 {} -n rateParams.125 \\
                 --named {} \\
                 --setParameterRanges {} \\
-                {}""".format(toysf, rparam_names, rparam_ranges, fitter_options[args.fit_options]))
+                {} {}""".format(toysf, rparam_names, rparam_ranges, fitter_options[args.fit_options], mask))
     
     cmd.append("""combineTool.py -M Impacts -d combined.root -m 125 --doFits \\
                 -t -1 --expectSignal=1 {} \\
                 --job-mode condor --task-name rateParams -n rateParams.125 \\
                 --named {} \\
                 --setParameterRanges {} \\
-                {}""".format(toysf, rparam_names, rparam_ranges, fitter_options[args.fit_options]))
+                {} {}""".format(toysf, rparam_names, rparam_ranges, fitter_options[args.fit_options], mask))
 
     with open("{}/script_preparation.sh".format(args.outputdir), "w") as of:
         of.write("\n\n".join(cmd))

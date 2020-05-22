@@ -192,17 +192,17 @@ samples['Wjets'] = { 'name' :
 		}
 
 # Fix Wjets binned + LO 
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO', '(LHE_HT < 70)*ewknloW')
+addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO', '(LHE_HT < 70)') # remove ewknloW
 ############
 # N.B XS correction! It was 1.0 in the sampleCrossSection in postprocessing --> this should be fixed
 addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT70_100', '(1292.0)') #######ADD ME ewknloW
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT100_200', 'ewknloW')
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT200_400', 'ewknloW')
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT400_600', 'ewknloW')
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT600_800', 'ewknloW')
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT800_1200', 'ewknloW')
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT1200_2500', 'ewknloW')
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT2500_inf', 'ewknloW')
+# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT100_200', 'ewknloW')
+# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT200_400', 'ewknloW')
+# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT400_600', 'ewknloW')
+# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT600_800', 'ewknloW')
+# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT800_1200', 'ewknloW')
+# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT1200_2500', 'ewknloW')
+# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT2500_inf', 'ewknloW')
 
 
 
@@ -217,7 +217,7 @@ samples['VV']  = { 'name' :
                nanoGetSampleFiles(directory_bkg,'WpToLNu_ZTo2J_QCD',) +
                nanoGetSampleFiles(directory_bkg,'ZTo2L_ZTo2J_QCD',  ) ,
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch, # TO BE CORRECTED: + '* ewknloW',
-        'FilesPerJob' : 5,
+        'FilesPerJob' : 4,
 }
 
 ############ VVV ############
@@ -325,4 +325,4 @@ for Run in DataRun :
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
-#samples = {   key:v for key,v in samples.items() if key  in ["top"]}
+#samples = {   key:v for key,v in samples.items() if key  not in ["Wjets"]}

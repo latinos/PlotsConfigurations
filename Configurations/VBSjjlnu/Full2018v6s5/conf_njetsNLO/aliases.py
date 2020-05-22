@@ -21,33 +21,32 @@ aliases['whad_pt'] = {
 ############################################
 # DNN reader - Updated to 2018 specific
 
-# mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2018v6s5/mva/'
-# models_path = '/eos/home-d/dvalsecc/www/VBSPlots/DNN_archive/FullRun2/'
+mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2018v6s5/mva/'
+models_path = '/eos/home-d/dvalsecc/www/VBSPlots/DNN_archive/FullRun2/'
 
-# aliases['DNNoutput_boosted'] = {
-#     'class': 'MVAReaderBoosted_v5',
-#     'args': ( models_path +'boost_sig/models/v5/',  mva_reader_path + 'cumulative_signal_boosted_v5.root', False, 0),
-#     'linesToAdd':[
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         'gSystem->Load("libDNNEvaluator.so")',
-#         '.L ' + mva_reader_path + 'mva_reader_boosted_v5.cc+', 
-#     ],
-# }
+aliases['DNNoutput_boosted'] = {
+    'class': 'MVAReaderBoosted_v5',
+    'args': ( models_path +'boost_sig/models/v5/',  mva_reader_path + 'cumulative_signal_boosted_v5.root', False, 0),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L ' + mva_reader_path + 'mva_reader_boosted_v5.cc+', 
+    ],
+}
 
-# aliases['DNNoutput_resolved'] = {
-#     'class': 'MVAReaderResolved_v29',
-#     'args': ( models_path+ 'res_sig/models/v29/', mva_reader_path + 'cumulative_signal_resolved_v29.root', False, 1),
-#     'linesToAdd':[
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         'gSystem->Load("libDNNEvaluator.so")',
-#         '.L ' + mva_reader_path + 'mva_reader_resolved_v29.cc+', 
-#     ],
-# }
+aliases['DNNoutput_resolved'] = {
+    'class': 'MVAReaderResolved_v29',
+    'args': ( models_path+ 'res_sig/models/v29/', mva_reader_path + 'cumulative_signal_resolved_v29.root', False, 1),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L ' + mva_reader_path + 'mva_reader_resolved_v29.cc+', 
+    ],
+}
 
-# aliases['DNNoutput'] = {
-#     'expr': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)'
-# }
-
+aliases['DNNoutput'] = {
+    'expr': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)'
+}
 
 
 aliases['detavbs_jetpt_bin'] = {
@@ -71,7 +70,6 @@ aliases['detavbs_jetpt_bin'] = {
 #loose 0.1241
 # tight 0.7527
 
-
 aliases['bVeto'] = {
     'expr': '(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) == 0)'
 }
@@ -85,46 +83,29 @@ aliases['bReqTight'] = {
 }
 
 aliases['bVetoSF'] = {
-    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<=20 || abs(CleanJet_eta)>=2.5))))',
-    'samples': [s for s in mc if not s in ["DY", "Wjets"]]
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<=20 || abs(CleanJet_eta)>=2.5))))',
+    'samples': mc
 }
 
 aliases['bReqSF'] = {
-    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<=30 || abs(CleanJet_eta)>=2.5))))',
-    'samples': [s for s in mc if not s in ["DY", "Wjets"]]
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<=30 || abs(CleanJet_eta)>=2.5))))',
+    'samples': mc
 }
 
 
 aliases['btagSF'] = {
-    'expr': 'bVeto*bVetoSF + ( bReq || bReqTight) *bReqSF',
-    'samples': [s for s in mc if not s in ["DY", "Wjets"]]
-}
-
-
-aliases['bVetoSF_new'] = {
-    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<=20 || abs(CleanJet_eta)>=2.5))))',
-    'samples': ["DY", "Wjets"]
-}
-
-aliases['bReqSF_new'] = {
-    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<=30 || abs(CleanJet_eta)>=2.5))))',
-    'samples': ["DY", "Wjets"]
-}
-
-
-aliases['btagSF_new'] = {
-    'expr': 'bVeto*bVetoSF_new + ( bReq || bReqTight) *bReqSF_new',
-    'samples': ["DY", "Wjets"]
+    'expr': 'bVeto*bVetoSF + bReqTight *bReqSF',
+    'samples': mc
 }
 
 
 
-# systs = ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']
-# #systs = ['jes']
+systs = ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']
+#systs = ['jes']
 
-# for s in systs:
-#   aliases['btagSF'+s+'up'] = { 'expr': '(bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_up_'+s)+'+bReqTight*'+aliases['bReqSF']['expr'].replace('shape','shape_up_'+s)+'+ ( (!bVeto) && (!bReq) ))', 'samples':mc  }
-#   aliases['btagSF'+s+'down'] = { 'expr': '(bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_down_'+s)+'+bReqTight*'+aliases['bReqSF']['expr'].replace('shape','shape_down_'+s)+'+ ( (!bVeto) && (!bReq) ))', 'samples':mc  }
+for s in systs:
+  aliases['btagSF'+s+'up'] = { 'expr': '(bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_up_'+s)+'+bReqTight*'+aliases['bReqSF']['expr'].replace('shape','shape_up_'+s)+'+ ( (!bVeto) && (!bReqTight) ))', 'samples':mc  }
+  aliases['btagSF'+s+'down'] = { 'expr': '(bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_down_'+s)+'+bReqTight*'+aliases['bReqSF']['expr'].replace('shape','shape_down_'+s)+'+ ( (!bVeto) && (!bReqTight) ))', 'samples':mc  }
 
 ################################################################################################
 
@@ -142,20 +123,20 @@ aliases['isSingleTop'] = {
     'samples': ['top']
 }
 
-# aliases['topGenPtOTF'] = {
-#     'expr': 'Sum$((GenPart_pdgId == 6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
-#     'samples': ['top']
-# }
+aliases['topGenPtOTF'] = {
+    'expr': 'Sum$((GenPart_pdgId == 6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
+    'samples': ['top']
+}
 
-# aliases['antitopGenPtOTF'] = {
-#     'expr': 'Sum$((GenPart_pdgId == -6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
-#     'samples': ['top']
-# }
+aliases['antitopGenPtOTF'] = {
+    'expr': 'Sum$((GenPart_pdgId == -6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
+    'samples': ['top']
+}
 
-# aliases['Top_pTrw'] = {
-#     'expr': 'isTTbar * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPtOTF) * TMath::Exp(0.0615 - 0.0005 * antitopGenPtOTF))) + isSingleTop',
-#     'samples': ['top']
-# }
+aliases['Top_pTrw'] = {
+    'expr': '(TMath::Sqrt(TMath::Exp(-2.02274e-01 + 1.09734e-04*topGenPtOTF - 1.30088e-07*topGenPtOTF*topGenPtOTF + 5.83494e+01/(topGenPtOTF+1.96252e+02)) * TMath::Exp(-2.02274e-01 + 1.09734e-04*antitopGenPtOTF - 1.30088e-07*antitopGenPtOTF*antitopGenPtOTF + 5.83494e+01/(antitopGenPtOTF+1.96252e+02))))',
+    'samples': ['top']
+}
 
 aliases['fake_weight_corrected'] = {
     'class': 'FakeWeightCorrector',
@@ -177,12 +158,46 @@ puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandS
 aliases['PUJetIdSF'] = {
     'linesToAdd': [
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/patches/pujetidsf_event.cc+' % configurations
+        '.L {}/VBSjjlnu/Full2018v6s5/corrections/pujetidsf_event.cc+'.format(configurations)
     ],
     'class': 'PUJetIdEventSF',
     'args': (puidSFSource, '2018', 'loose'),
     'samples': mc
 }
+
+
+aliases['Wtagging_SF_nominal'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L {}/VBSjjlnu/Full2018v6s5/corrections/Wtagging_SF.cc+'.format(configurations)
+    ],
+    'class': 'Wtagging_SF',
+    'args': ('nominal_2018'),
+    'samples': mc
+}
+
+
+aliases['Wtagging_SF_up'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L {}/VBSjjlnu/Full2018v6s5/corrections/Wtagging_SF.cc+'.format(configurations)
+    ],
+    'class': 'Wtagging_SF',
+    'args': ('up_2018'),
+    'samples': mc
+}
+
+
+aliases['Wtagging_SF_down'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L {}/VBSjjlnu/Full2018v6s5/corrections/Wtagging_SF.cc+'.format(configurations)
+    ],
+    'class': 'Wtagging_SF',
+    'args': ('down_2018'),
+    'samples': mc
+}
+
 
 
 aliases['pt_0j'] = {

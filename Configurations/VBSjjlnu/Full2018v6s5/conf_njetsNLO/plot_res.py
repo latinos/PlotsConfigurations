@@ -52,7 +52,7 @@ palette = {
 #wjets_palette = ['#FFF59D', '#FFEE58', '#FFD54F', '#FFB300', '#FF8F00', '#F57C00', '#E65100','#BF360C']
 wjets_palette = [ '#FFEA00', '#FFC400', '#FFAB00', '#F57C00', '#FF6D00', '#FF3D00', '#DD2C00']
 
-wjets_bins = ["Wjets_jpt3","Wjets_deta2_jpt2", "Wjets_deta1_jpt2","Wjets_deta2_jpt1","Wjets_deta1_jpt1"]
+wjets_bins = ["Wjets_NLO_jpt3","Wjets_NLO_deta2_jpt2", "Wjets_NLO_deta1_jpt2","Wjets_NLO_deta2_jpt1","Wjets_NLO_deta1_jpt1"]
 
 for icw, wjetbin in enumerate(wjets_bins):
     color = wjets_palette[icw]
@@ -91,6 +91,7 @@ groupPlot['DY']  = {
                 'samples'  : ['DY'],
                 'fill': 1001
             }
+
 groupPlot['top']  = {  
                  'nameHR' : 'top',
                  'isSignal' : 0,
@@ -98,7 +99,6 @@ groupPlot['top']  = {
                  'samples'  : ['top'],
                  'fill': 1001
              }
-
 
 for wjetbin in wjets_bins:
     groupPlot[wjetbin]  = {  
@@ -108,6 +108,7 @@ for wjetbin in wjets_bins:
                     'samples'  : [wjetbin],
                     'fill': 1001
             }
+
 
 
 
@@ -232,20 +233,3 @@ legend['lumi'] = 'L = 59.74/fb'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 
-
-
-groupPlot['total_prefit'] = {
-    'nameHR' : 'pre-fit',
-    'isSignal' : 2,
-    'color': 616,   
-    'samples'  : ['total_prefit'],
-    'fill': 1001
-}
-
-plot['total_prefit'] = {
-     'nameHR' : 'pre-fit',
-     'color': 616, 
-     'isSignal' : 2,
-     'isData'   : 0,
-     'scale'    : 1.   ,
-}

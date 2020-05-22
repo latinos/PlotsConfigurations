@@ -17,24 +17,24 @@ for fl in ["ele", "mu"]:
             phase_spaces_res.append("res_{}_dnn{}_{}".format(cat, d, fl))
 
 
-# for wbin in Wjets_bins:
-#     if 'boost' in wbin:
-#         structure[wbin] = {
-#                     'isSignal' : 0,
-#                     'isData'   : 0 ,
-#                     'removeFromCuts': phase_spaces_res 
-#         }
-#     else:
-#         structure[wbin] = {
-#                     'isSignal' : 0,
-#                     'isData'   : 0 ,
-#                     'removeFromCuts': phase_spaces_boost 
-#         }
+for wbin in Wjets_bins:
+    if 'boost' in wbin:
+        structure[wbin] = {
+                    'isSignal' : 0,
+                    'isData'   : 0 ,
+                    'removeFromCuts': phase_spaces_res 
+        }
+    else:
+        structure[wbin] = {
+                    'isSignal' : 0,
+                    'isData'   : 0 ,
+                    'removeFromCuts': phase_spaces_boost 
+        }
 
-structure['Wjets']  = {  
-                  'isSignal' : 0,
-                  'isData'   : 0
-              }
+# structure['Wjets']  = {  
+#                   'isSignal' : 0,
+#                   'isData'   : 0
+#               }
 
 structure['DY']  = {  
                   'isSignal' : 0,

@@ -23,7 +23,8 @@ parser.add_argument("-rw","--redo-workspace", help="Redo workspace", action="sto
 parser.add_argument("-p","--process", help="Process to run", type=str)
 parser.add_argument("--dry", help="Only printout commands", action="store_true", default=False)
 parser.add_argument("--masks", help="File with list of channels to mask",  type=str)
-parser.add_argument("-rbf","--robust-fit", help="Robust fit options", type=int, default=0)
+parser.add_argument("-fo","--fit-options", help="Robust fit options", type=int, default=0)
+parser.add_argument("--save-uncert", help="Save uncertainties for fit diagnostic", action="store_true", default=False, required=False)
 args = parser.parse_args()
 
 if args.config.endswith(".yaml"):
@@ -37,7 +38,8 @@ else:
 fitter_options= { 
     0:  " ",
     1:  "--robustFit=1 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND",
-    2:  "--cminDefaultMinimizerStrategy 0  --cminFallbackAlgo Minuit2,Migrad,0:0.1"
+    2:  "--cminDefaultMinimizerStrategy 0  --cminFallbackAlgo Minuit2,Migrad,0:0.1",
+    3:  "--cminDefaultMinimizerStrategy 0  --cminFallbackAlgo Minuit2,Migrad,0:0.1 --robustFit=1 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND",
 }
 
 
@@ -101,7 +103,7 @@ def significance(datac):
     outdir = datac["outputdir"] 
     log.info("Running combine (Asimov + pre-fit nuisances)")
     cmd = """combine -M Significance -t -1  --expectSignal=1 {0}/combined_{1}.root {2} \\
-            > {0}/logSignificance_MCasimov.txt""".format(outdir, datac["datacard_name"], fitter_options[args.robust_fit])
+            > {0}/logSignificance_MCasimov.txt""".format(outdir, datac["datacard_name"], fitter_options[args.fit_options])
     log.debug(cmd)
 
     if not args.dry:  
@@ -111,7 +113,7 @@ def significance(datac):
 
     log.info("Running combine (Asimov + post-fit nuisances)")
     cmd = """combine -M Significance -t -1  --expectSignal=1 --toysFreq {0}/combined_{1}.root {2} \\
-            > {0}/logSignificance_data_asimov.txt""".format(outdir, datac["datacard_name"], fitter_options[args.robust_fit])
+            > {0}/logSignificance_data_asimov.txt""".format(outdir, datac["datacard_name"], fitter_options[args.fit_options])
     log.debug(cmd)
     if not args.dry:  
         os.system(cmd)
@@ -135,10 +137,12 @@ def fit_and_pulls(datac):
     else:
         mask = ""
 
+   
     cmd = """combineTool.py -M FitDiagnostics -d {0}/combined_{1}.root {2} -n .{3}  \\
-         --saveShapes --saveNormalizations --saveWithUncertainties {4} {5} > {0}/logFit_{3}.txt; \\
+         --saveShapes --saveNormalizations {6} {4} {5} > {0}/logFit_{3}.txt; \\
              mv fitDiagnostics.{3}.root {0}/ """.format(
-             outdir, datac["datacard_name"], toys_opts, result_name, mask, fitter_options[args.robust_fit])
+             outdir, datac["datacard_name"], toys_opts, result_name, mask, fitter_options[args.fit_options],
+                        "--saveWithUncertainties" if args.save_uncert else "")
     log.debug(cmd)
     if not args.dry:
         try:

@@ -2,9 +2,9 @@
 from itertools import product, chain
 #structure = {}
 
-Wjets_bins = ["Wjets_jpt3","Wjets_deta2_jpt2", "Wjets_deta1_jpt2",
-                "Wjets_deta2_jpt1","Wjets_deta1_jpt1",
-                "Wjets_boost1", "Wjets_boost2"]
+Wjets_bins = ["Wjets_NLO_jpt3","Wjets_NLO_deta2_jpt2", "Wjets_NLO_deta1_jpt2",
+                "Wjets_NLO_deta2_jpt1","Wjets_NLO_deta1_jpt1",
+                "Wjets_NLO_boost1", "Wjets_NLO_boost2"]
 
 
 phase_spaces_boost = []

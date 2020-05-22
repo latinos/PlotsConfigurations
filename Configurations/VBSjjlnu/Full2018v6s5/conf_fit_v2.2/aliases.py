@@ -158,7 +158,7 @@ puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandS
 aliases['PUJetIdSF'] = {
     'linesToAdd': [
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/patches/pujetidsf_event.cc+' % configurations
+        '.L {}/VBSjjlnu/Full2018v6s5/corrections/pujetidsf_event.cc+'.format(configurations)
     ],
     'class': 'PUJetIdEventSF',
     'args': (puidSFSource, '2018', 'loose'),

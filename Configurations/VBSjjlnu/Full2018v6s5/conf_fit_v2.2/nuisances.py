@@ -349,14 +349,14 @@ nuisances['QCD_scale_DY'] = {
      }
 }
 
-nuisances['QCD_scale_VV'] = {
-     'name'  : 'QCDscale_VV',
-     'kind'  : 'weight',
-     'type'  : 'shape',
-     'samples'  :   {
-        "VV" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
-     }
-}
+# nuisances['QCD_scale_VV'] = {
+#      'name'  : 'QCDscale_VV',
+#      'kind'  : 'weight',
+#      'type'  : 'shape',
+#      'samples'  :   {
+#         "VV" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
+#      }
+# }
 
 nuisances['QCD_scale_VBF-V'] = {
      'name'  : 'QCDscale_VBF-V',
@@ -367,14 +367,14 @@ nuisances['QCD_scale_VBF-V'] = {
      }
 }
 
-nuisances['QCD_scale_VBS'] = {
-     'name'  : 'QCDscale_VBS',
-     'kind'  : 'weight',
-     'type'  : 'shape',
-     'samples'  :   {
-         "VBS" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
-     }
-}
+# nuisances['QCD_scale_VBS'] = {
+#      'name'  : 'QCDscale_VBS',
+#      'kind'  : 'weight',
+#      'type'  : 'shape',
+#      'samples'  :   {
+#          "VBS" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
+#      }
+# }
 ##################################
 #### Custom nuisances
 
