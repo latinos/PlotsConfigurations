@@ -33,11 +33,11 @@ dataReco = 'Run2017_102X_nAODv5_Full2017v6'
 
 mcProduction = 'Fall2017_102X_nAODv5_Full2017v6'
 
-mcSteps = 'MCl1loose2017v6__MCCorr2017v6__l2loose__l2tightOR2017v6__DYMVA_alt{var}'
+mcSteps = 'MCl1loose2017v6__MCCorr2017v6__l2loose__l2tightOR2017v6{var}'
 
-fakeSteps = 'DATAl1loose2017v6__l2loose__fakeW__DYMVA_alt'
+fakeSteps = 'DATAl1loose2017v6__l2loose__fakeW'
 
-dataSteps = 'DATAl1loose2017v6__l2loose__l2tightOR2017v6__DYMVA_alt'
+dataSteps = 'DATAl1loose2017v6__l2loose__l2tightOR2017v6'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -45,7 +45,8 @@ dataSteps = 'DATAl1loose2017v6__l2loose__l2tightOR2017v6__DYMVA_alt'
 
 SITE=os.uname()[1]
 if    'iihe' in SITE:
-  treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015'
+  #treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015'
+  treeBaseDir = '/pnfs/iihe/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
 elif  'cern' in SITE:
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
 

@@ -224,3 +224,8 @@ aliases['SFweightMuDown'] = {
     'samples': mc
 }
 
+aliases['nCleanGenJet'] = {
+    'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
+    'class': 'CountGenJet',
+    'samples': mc
+}
