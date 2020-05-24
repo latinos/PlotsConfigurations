@@ -15,11 +15,11 @@ resource.setrlimit(resource.RLIMIT_STACK, (resource.RLIM_INFINITY, resource.RLIM
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 import binning
 
-ws_dir = sys.argv[1]
-observable = sys.argv[2]
-sr = sys.argv[3]
+ws_dir = sys.argv[1] # directory where workspace and other fit result files are
+observable = sys.argv[2] # name of the observable
+sr = sys.argv[3] # name of the signal region bin to shift (e.g. PTH_0_20)
 try:
-    dnscale = float(sys.argv[4])
+    dnscale = float(sys.argv[4]) # signal content in the bin will be shifted by sqrt(original signal) * dnscale
 except IndexError:
     dnscale = 1.
 
@@ -31,6 +31,10 @@ elif observable == 'njet':
     delta = '9.52'
 
 def get_counts(workspace):
+    """
+    Add up (over all categories) the integrals of reco-level bin sr
+    """
+
     model = workspace.pdf('model_s')
     x = workspace.var('CMS_th1x')
     xset = ROOT.RooArgSet(x)
@@ -67,6 +71,7 @@ source = ROOT.TFile.Open(path)
 asimov_b = source.Get('toys/toy_asimov')
 source.Close()
 
+# Signal contribution in the Asimov dataset in the signal region bin sr
 n = 0.
 for nd in range(asimov_s.numEntries()):
     point = asimov_s.get(nd)
@@ -79,7 +84,7 @@ for nd in range(asimov_s.numEntries()):
 
     n += asimov_s.weight() - asimov_b.weight()
 
-# Compute the best-fit signal yield
+# Compute the best-fit (to the Asimov dataset) signal yield
 
 ws_path = '%s/higgsCombineAltReg_BestFitUnregAsimov.MultiDimFit.mH120.root' % ws_dir
 
@@ -91,16 +96,18 @@ source.Close()
 
 workspace.loadSnapshot('MultiDimFit')
 
+# integral with best-fit mu values
 nuhat = get_counts(workspace)
 
 for mu in mus:
     workspace.var(mu).setVal(0.)
 
+# integral with mu = 0
 bkghat = get_counts(workspace)
 
 nuhat -= bkghat
 
-# Create a new dataset and fit
+# Create a new dataset with signal content in one reco-level bin scaled by (1 + sqrt(n) * dnscale / n)
 
 new_data = asimov_s.emptyClone()
 
@@ -136,6 +143,7 @@ os.unlink(tmpname)
 
 outname = 'higgsCombineTest.MultiDimFit.mH120.root'
 
+# dmu = mu values from the fit to the perturbed dataset - mu values from the fit to the original dataset
 dmu = np.array(tuple(rnp.root2array(outname, 'limit', mus)[0])) - muhat
 
 os.unlink(outname)
@@ -145,6 +153,9 @@ try:
 except OSError:
     pass
 
+# bias = dmu / dn * (nuhat - n)
+# The basic idea is that nuhat should be ~ n if there is no regularization bias
+# So nuhat - n is the bias in terms of bin content, and dmu / dn converts that into the bias in terms of mu values
 bias = np.array([tuple(dmu / dn * (nuhat - n))], dtype=[(mu, 'f4') for mu in mus])
 
 rnp.array2root(bias, '%s/bias/bias_%s.root' % (ws_dir, sr), 'bias')
