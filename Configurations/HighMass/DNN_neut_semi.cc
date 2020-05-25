@@ -30,7 +30,7 @@ protected:
   FloatArrayReader* CleanJet_pt;
   FloatArrayReader* CleanJet_eta;
   FloatArrayReader* CleanJet_phi;
-  FloatArrayReader* CleanJet_jetIdx;
+  IntArrayReader* CleanJet_jetIdx;
   FloatArrayReader* Jet_mass;
   FloatValueReader* PuppiMET_pt;
   FloatValueReader* PuppiMET_phi;
@@ -54,8 +54,8 @@ protected:
   FloatValueReader* HM_Hlnjj_mass;
   FloatValueReader* HM_WptOvHak4M;
   FloatValueReader* tau21;
-  UIntValueReader* HM_idx_j1;
-  UIntValueReader* HM_idx_j2;
+  IntValueReader* HM_idx_j1;
+  IntValueReader* HM_idx_j2;
 
 };
 
@@ -187,24 +187,24 @@ DNNneut::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(PuppiMET_pt, "PuppiMET_pt");
   _library.bindBranch(PuppiMET_phi, "PuppiMET_phi");
   _library.bindBranch(nCleanJet, "nCleanJet");
-  _library.bindBranch(HM_nCleanFatJetPassMBoosted, "HM_nCleanFatJetPassMBoosted");
-  _library.bindBranch(HM_CleanFatJetPassMBoosted_pt, "HM_CleanFatJetPassMBoosted_pt");
-  _library.bindBranch(HM_CleanFatJetPassMBoosted_eta, "HM_CleanFatJetPassMBoosted_eta");
-  _library.bindBranch(HM_CleanFatJetPassMBoosted_phi, "HM_CleanFatJetPassMBoosted_phi");
-  _library.bindBranch(HM_CleanFatJetPassMBoosted_mass, "HM_CleanFatJetPassMBoosted_mass");
-  _library.bindBranch(HM_CleanFatJetPassMBoosted_HlnFat_mass, "HM_CleanFatJetPassMBoosted_HlnFat_mass");
-  _library.bindBranch(HM_CleanFatJetPassMBoosted_WptOvHfatM, "HM_CleanFatJetPassMBoosted_WptOvHfatM");
-  _library.bindBranch(HM_CleanFatJetPassMBoosted_tau21, "HM_CleanFatJetPassMBoosted_tau21");
-  _library.bindBranch(HM_Whad_pt, "HM_Whad_pt");
-  _library.bindBranch(HM_Whad_eta, "HM_Whad_eta");
-  _library.bindBranch(HM_Whad_phi, "HM_Whad_phi");
-  _library.bindBranch(HM_Whad_mass, "HM_Whad_mass");
-  _library.bindBranch(HM_Wlep_pt_Puppi, "HM_Wlep_pt_Puppi");
-  _library.bindBranch(HM_Wlep_eta_Puppi, "HM_Wlep_eta_Puppi");
-  _library.bindBranch(HM_Wlep_phi_Puppi, "HM_Wlep_phi_Puppi");
-  _library.bindBranch(HM_Wlep_mass_Puppi, "HM_Wlep_mass_Puppi");
-  _library.bindBranch(HM_Hlnjj_mass, "HM_Hlnjj_mass");
-  _library.bindBranch(HM_WptOvHak4M, "HM_WptOvHak4M");
-  _library.bindBranch(HM_idx_j1, "HM_idx_j1");
-  _library.bindBranch(HM_idx_j2, "HM_idx_j2");
+  _library.bindBranch(HM_nCleanFatJetPassMBoosted, "nCleanFatJetPassMBoosted");
+  _library.bindBranch(HM_CleanFatJetPassMBoosted_pt, "CleanFatJetPassMBoosted_pt");
+  _library.bindBranch(HM_CleanFatJetPassMBoosted_eta, "CleanFatJetPassMBoosted_eta");
+  _library.bindBranch(HM_CleanFatJetPassMBoosted_phi, "CleanFatJetPassMBoosted_phi");
+  _library.bindBranch(HM_CleanFatJetPassMBoosted_mass, "CleanFatJetPassMBoosted_mass");
+  _library.bindBranch(HM_CleanFatJetPassMBoosted_HlnFat_mass, "CleanFatJetPassMBoosted_HlnFat_mass");
+  _library.bindBranch(HM_CleanFatJetPassMBoosted_WptOvHfatM, "CleanFatJetPassMBoosted_WptOvHfatM");
+  _library.bindBranch(HM_CleanFatJetPassMBoosted_tau21, "CleanFatJetPassMBoosted_tau21");
+  _library.bindBranch(HM_Whad_pt, "Whad_pt");
+  _library.bindBranch(HM_Whad_eta, "Whad_eta");
+  _library.bindBranch(HM_Whad_phi, "Whad_phi");
+  _library.bindBranch(HM_Whad_mass, "Whad_mass");
+  _library.bindBranch(HM_Wlep_pt_Puppi, "Wlep_pt_Puppi");
+  _library.bindBranch(HM_Wlep_eta_Puppi, "Wlep_eta_Puppi");
+  _library.bindBranch(HM_Wlep_phi_Puppi, "Wlep_phi_Puppi");
+  _library.bindBranch(HM_Wlep_mass_Puppi, "Wlep_mass_Puppi");
+  _library.bindBranch(HM_Hlnjj_mass, "Hlnjj_mass");
+  _library.bindBranch(HM_WptOvHak4M, "WptOvHak4M");
+  _library.bindBranch(HM_idx_j1, "idx_j1");
+  _library.bindBranch(HM_idx_j2, "idx_j2");
 }

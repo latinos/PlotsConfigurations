@@ -47,14 +47,39 @@ groupPlot['multiboson']  = {
     'nameHR' : 'multiboson',
     'isSignal' : 0,
     'color': 857, # kAzure -3
-    'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L', 'ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ttH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']
+    'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L', 'ggH_hww', 'qqH_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ttH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']
 }
 
 groupPlot['Higgs400']  = {
     'nameHR' : 'Higgs 400',
-    'isSignal' : 1,
+    'isSignal' : 2,
     'color': 632, # kRed
-    'samples' : ['GGH_400_'+model, 'QQH_400_'+model]
+    'samples' : ['GGH_400'+model_name, 'QQH_400'+model_name]
+}
+
+groupPlot['SMH200']  = {
+    'nameHR' : 'SMH 200',
+    'isSignal' : 2,
+    'color': 2,
+    'samples' : ['GGH200_RelW002', 'QQH200_RelW002']
+}
+groupPlot['SMH400']  = {
+    'nameHR' : 'SMH 400',
+    'isSignal' : 2,
+    'color': 3,
+    'samples' : ['GGH400_RelW002', 'QQH400_RelW002']
+}
+groupPlot['SMH800']  = {
+    'nameHR' : 'SMH 800',
+    'isSignal' : 2,
+    'color': 4,
+    'samples' : ['GGH800_RelW002', 'QQH800_RelW002']
+}
+groupPlot['SMH1500']  = {
+    'nameHR' : 'SMH 1500',
+    'isSignal' : 2,
+    'color': 5,
+    'samples' : ['GGH1500_RelW002', 'QQH1500_RelW002']
 }
 
 
@@ -184,13 +209,13 @@ plot['ZH_hww'] = {
                   'scale'    : 1    #
                   }
 
-# plot['ggZH_hww'] = {
-#                   'nameHR' : 'ggZH',
-#                   'color': 632+4, # kRed+4
-#                   'isSignal' : 0,
-#                   'isData'   : 0,
-#                   'scale'    : 1    #
-#                   }
+plot['ggZH_hww'] = {
+                  'nameHR' : 'ggZH',
+                  'color': 632+4, # kRed+4
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
 
 plot['WH_hww'] = {
                   'nameHR' : 'WH',
@@ -275,6 +300,66 @@ plot['GGH_400_'+model] = {
 
 
 
+# Signal_MELA_BACKGROUND
+plot['QQH200_RelW002'] = {
+    'nameHR' : 'qqH200',
+    'color': 632+1, # kRed+1
+    'isSignal' : 1,
+    'isData'   : 0,
+    'scale'    : 1    #
+}
+plot['GGH200_RelW002'] = {
+    'nameHR' : 'ggH200',
+    'color': 632, # kRed
+    'isSignal' : 1,
+    'isData'   : 0,
+    'scale'    : 1    #
+}
+
+plot['QQH400_RelW002'] = {
+    'nameHR' : 'qqH400',
+    'color': 632+1, # kRed+1
+    'isSignal' : 1,
+    'isData'   : 0,
+    'scale'    : 1    #
+}
+plot['GGH400_RelW002'] = {
+    'nameHR' : 'ggH400',
+    'color': 632, # kRed
+    'isSignal' : 1,
+    'isData'   : 0,
+    'scale'    : 1    #
+}
+
+plot['QQH800_RelW002'] = {
+    'nameHR' : 'qqH800',
+    'color': 632+1, # kRed+1
+    'isSignal' : 1,
+    'isData'   : 0,
+    'scale'    : 1    #
+}
+plot['GGH800_RelW002'] = {
+    'nameHR' : 'ggH800',
+    'color': 632, # kRed
+    'isSignal' : 1,
+    'isData'   : 0,
+    'scale'    : 1    #
+}
+
+plot['QQH1500_RelW002'] = {
+    'nameHR' : 'qqH1500',
+    'color': 632+1, # kRed+1
+    'isSignal' : 1,
+    'isData'   : 0,
+    'scale'    : 1    #
+}
+plot['GGH1500_RelW002'] = {
+    'nameHR' : 'ggH1500',
+    'color': 632, # kRed
+    'isSignal' : 1,
+    'isData'   : 0,
+    'scale'    : 1    #
+}
 
 
 
