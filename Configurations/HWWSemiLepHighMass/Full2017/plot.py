@@ -1,5 +1,12 @@
 # plot configuration
 
+massesAndModelsFile = "massesAndModels.py"
+if os.path.exists(massesAndModelsFile) :
+    handle = open(massesAndModelsFile,'r')
+    exec(handle)
+    handle.close()
+else:
+    print "!!! ERROR file ", massesAndModelsFile, " does not exist."
 
 
 # groupPlot = {}
@@ -50,24 +57,14 @@ groupPlot['SM Higgs'] = {
     'samples'  : ['ggH_hww', 'qqH_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ttH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt']
 }
 
-# groupPlot['Higgs160']  = {
-#     'nameHR' : 'Higgs 160',
-#     'isSignal' : 2,
-#     'color': 2, # kRed
-#     'samples' : ['GGH_160_RelW002', 'QQH_160_RelW002']
-# }
-groupPlot['Higgs400']  = {
-    'nameHR' : 'Higgs 400',
-    'isSignal' : 2,
-    'color': 1, # kRed
-    'samples' : ['GGH_400_RelW002', 'QQH_400_RelW002']
-}
-# groupPlot['Higgs1500']  = {
-#     'nameHR' : 'Higgs 1500',
-#     'isSignal' : 2,
-#     'color': 3, # kRed
-#     'samples' : ['GGH_1500_RelW002', 'QQH_1500_RelW002']
-# }
+for counter, MX in enumerate(plotmasses):
+    groupPlot['Higgs{}'.format(MX)] = {
+        'nameHR'  : 'Higgs {}'.format(MX),
+        'isSignal': 2,
+        'color'   : counter+1,
+        'samples' : ['GGH_{}_RelW002'.format(MX), 'QQH_{}_RelW002'.format(MX)]
+    }
+
 
 
 
@@ -84,7 +81,7 @@ plot['DY']  = {
 }
 
 plot['top'] = {
-    'nameHR' : 'tW and t#bar{t}',
+    # 'nameHR' : 'tW and t#bar{t}',
     'color': 400,   # kYellow
     'isSignal' : 0,
     'isData'   : 0,
@@ -178,42 +175,8 @@ plot['QCD']  = {
 
 
 # HWW
-
-#plot['H_hww'] = {
-#                  'nameHR' : 'Hww',
-#                  'color': 632, # kRed
-#                  'isSignal' : 1,
-#                  'isData'   : 0,
-#                  'scale'    : 1    #
-#                  }
-
-plot['ZH_hww'] = {
-    'nameHR' : 'ZH',
-    'color': 632+3, # kRed+3
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1    #
-}
-
-plot['ggZH_hww'] = {
-    'nameHR' : 'ggZH',
-    'color': 632+4, # kRed+4
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1    #
-}
-
-plot['WH_hww'] = {
-    'nameHR' : 'WH',
-    'color': 632+2, # kRed+2
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1    #
-}
-
-
 plot['qqH_hww'] = {
-    'nameHR' : 'qqH',
+    # 'nameHR' : 'qqH',
     'color': 632+1, # kRed+1
     'isSignal' : 0,
     'isData'   : 0,
@@ -222,15 +185,39 @@ plot['qqH_hww'] = {
 
 
 plot['ggH_hww'] = {
-    'nameHR' : 'ggH',
+    # 'nameHR' : 'ggH',
     'color': 632, # kRed
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1    #
 }
 
+plot['ZH_hww'] = {
+    # 'nameHR' : 'ZH',
+    'color': 632+3, # kRed+3
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1    #
+}
+
+plot['ggZH_hww'] = {
+    # 'nameHR' : 'ggZH',
+    'color': 632+4, # kRed+4
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1    #
+}
+
+plot['WH_hww'] = {
+    # 'nameHR' : 'WH',
+    'color': 632+2, # kRed+2
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1    #
+}
+
 plot['ttH_hww'] = {
-    'nameHR' : 'ttH',
+    # 'nameHR' : 'ttH',
     'color': 632+6, # kRed+6
     'isSignal' : 0,
     'isData'   : 0,
@@ -264,51 +251,22 @@ plot['ZH_htt']  = {
 
 
 
-
 # Signal
-# plot['QQH_160_RelW002'] = {
-#     'nameHR' : 'qqH160',
-#     'color': 632+1, # kRed+1
-#     'isSignal' : 1,
-#     'isData'   : 0,
-#     'scale'    : 1    #
-# }
-# plot['GGH_160_RelW002'] = {
-#     'nameHR' : 'ggH160',
-#     'color': 632, # kRed
-#     'isSignal' : 1,
-#     'isData'   : 0,
-#     'scale'    : 1    #
-# }
-plot['QQH_400_RelW002'] = {
-    'nameHR' : 'qqH400',
-    'color': 632+1, # kRed+1
-    'isSignal' : 1,
-    'isData'   : 0,
-    'scale'    : 1    #
-}
-plot['GGH_400_RelW002'] = {
-    'nameHR' : 'ggH400',
-    'color': 632, # kRed
-    'isSignal' : 1,
-    'isData'   : 0,
-    'scale'    : 1   #
-}
-# plot['QQH_1500_RelW002'] = {
-#     'nameHR' : 'qqH1500',
-#     'color': 632+1, # kRed+1
-#     'isSignal' : 1,
-#     'isData'   : 0,
-#     'scale'    : 1    #
-# }
-# plot['GGH_1500_RelW002'] = {
-#     'nameHR' : 'ggH1500',
-#     'color': 632, # kRed
-#     'isSignal' : 1,
-#     'isData'   : 0,
-#     'scale'    : 1    #
-# }
-
+for MX in plotmasses:
+    plot['QQH_{}_RelW002'.format(MX)] = {
+        'nameHR'  : 'qqH{}'.format(MX),
+        'color'   : 1,
+        'isSignal': 1,
+        'isData'  : 0,
+        'scale'   : 1
+    }
+    plot['GGH_{}_RelW002'.format(MX)] = {
+        'nameHR'  : 'ggH{}'.format(MX),
+        'color'   : 1,
+        'isSignal': 1,
+        'isData'  : 0,
+        'scale'   : 1
+    }
 
 
 
@@ -317,12 +275,12 @@ plot['GGH_400_RelW002'] = {
 # data
 
 plot['DATA']  = {
-                  'nameHR' : 'Data',
-                  'color': 1 ,
-                  'isSignal' : 0,
-                  'isData'   : 1 ,
-                  'isBlind'  : 1
-              }
+    'nameHR' : 'Data',
+    'color': 1 ,
+    'isSignal' : 0,
+    'isData'   : 1 ,
+    'isBlind'  : 1
+}
 
 
 
