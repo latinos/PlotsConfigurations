@@ -36,6 +36,7 @@ protected:
  
   bool verbose;
   void bindTree_(multidraw::FunctionLibrary&) override;
+  ~MVAReaderBoosted_v5();
   
   DNNEvaluator* dnn_tensorflow;
 
@@ -66,6 +67,22 @@ MVAReaderBoosted_v5::MVAReaderBoosted_v5(const char* model_path, const char* tra
     TFile * tf_file = new TFile(transform_path_.c_str(), "READ");
     dnn_transformation = (TGraph*) tf_file->Get("cumulative_signal");
     tf_file->Close();
+}
+
+MVAReaderBoosted_v5::~MVAReaderBoosted_v5(){
+  VBS_category= nullptr;
+  mjj_vbs = nullptr;
+  vbs_0_pt= nullptr;
+  vbs_1_pt= nullptr;
+  vjet_0_pt=nullptr;
+  deltaeta_vbs= nullptr;
+  deltaphi_vbs= nullptr;
+  Lepton_eta= nullptr;
+  Lepton_pt= nullptr;
+  Zlep= nullptr;
+  Asym_vbs= nullptr;
+  delete dnn_transformation;
+  delete dnn_tensorflow;
 }
 
 

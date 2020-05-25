@@ -31,9 +31,9 @@ protected:
   void bindTree_(multidraw::FunctionLibrary&) override;
 
   enum WP {
-    kLoose,
-    kMedium,
     kTight,
+    kMedium,
+    kLoose,
     nWPs
   };
 
@@ -49,14 +49,17 @@ protected:
   static FloatArrayReader* Jet_pt;
   static FloatArrayReader* Jet_eta;
   static IntArrayReader* Jet_genJetIdx;
+  static IntValueReader * Jet_puId;
 
-  typedef std::array<std::unique_ptr<TH1>, nWPs> SFMapSet;
-  typedef std::array<SFMapSet, 2> SFMapSets;
-  static SFMapSets sfMapSets;
+  typedef std::array<std::unique_ptr<TH1>, nWPs> MapSet;
+  typedef std::array<MapSet, 2> MapSets;
+  static MapSets sfMapSets;
+  static MapSets effMapSets;
 
   static void setValues(long long);
 
   static std::array<float, nWPs> scalefactors;
+  static float custom_scalefactor;
 };
 
 /*static*/
@@ -65,9 +68,12 @@ long long PUJetIdEventSF::currentEntry{-2};
 UIntValueReader* PUJetIdEventSF::nJet{};
 FloatArrayReader* PUJetIdEventSF::Jet_pt{};
 FloatArrayReader* PUJetIdEventSF::Jet_eta{};
+IntValueReader * PUJetIdEventSF::Jet_puId{};
 IntArrayReader* PUJetIdEventSF::Jet_genJetIdx{};
-PUJetIdEventSF::SFMapSets PUJetIdEventSF::sfMapSets{};
+PUJetIdEventSF::MapSets PUJetIdEventSF::effMapSets{};
+PUJetIdEventSF::MapSets PUJetIdEventSF::sfMapSets{};
 std::array<float, PUJetIdEventSF::nWPs> PUJetIdEventSF::scalefactors{};
+float PUJetIdEventSF::custom_scalefactor{1.};
 
 PUJetIdEventSF::PUJetIdEventSF(char const* filename, char const* yr, char const* wp) :
   TTreeFunction(),
@@ -98,7 +104,7 @@ PUJetIdEventSF::beginEvent(long long _iEntry)
 double
 PUJetIdEventSF::evaluate(unsigned)
 {
-  return scalefactors[wp_];
+  return custom_scalefactor;
 }
 
 void
@@ -109,15 +115,19 @@ PUJetIdEventSF::setValues(long long _iEntry)
 
   currentEntry = _iEntry;
 
-  std::fill_n(scalefactors.begin(), nWPs, 1.);
+  
+  custom_scalefactor = 1.;
 
   unsigned nJ{*nJet->Get()};
 
   for (unsigned iJ{0}; iJ != nJ; ++iJ) {
+    // Fill this by jet
+    std::fill_n(scalefactors.begin(), nWPs, 1.);
+
     double pt{Jet_pt->At(iJ)};
     double eta{Jet_eta->At(iJ)};
 
-    if (pt < 30. || pt > 50 ||  std::abs(eta) > 4.7 )
+    if (pt < 30. || pt > 50.|| std::abs(eta) > 4.7)
       continue;
 
     unsigned mapType{};
@@ -127,23 +137,42 @@ PUJetIdEventSF::setValues(long long _iEntry)
       mapType = 1;
 
     for (unsigned iWP{0}; iWP != nWPs; ++iWP) {
-      auto& map{sfMapSets[mapType][iWP]};
+      // if mapTap = 0 efficiency h2 are used, if mapType = 1 mistag h2 are used
+      auto& sf_map{sfMapSets[mapType][iWP]};
+      auto& eff_map{effMapSets[mapType][iWP]};
 
-      int iX{map->GetXaxis()->FindFixBin(pt)};
+      int iX{eff_map->GetXaxis()->FindFixBin(pt)};
       if (iX == 0)
         iX = 1;
-      else if (iX > map->GetNbinsX())
-        iX = map->GetNbinsX();
+      else if (iX > eff_map->GetNbinsX())
+        iX = eff_map->GetNbinsX();
 
-      int iY{map->GetYaxis()->FindFixBin(eta)};
+      int iY{eff_map->GetYaxis()->FindFixBin(eta)};
       if (iY == 0)
         iY = 1;
-      else if (iY > map->GetNbinsY())
-        iY = map->GetNbinsY();
+      else if (iY > eff_map->GetNbinsY())
+        iY = eff_map->GetNbinsY();
 
-      scalefactors[iWP] *= map->GetBinContent(iX, iY);
+      // iWP = 0 Tight, 1 Medium, 2 Loose 
+      bool passId = (*Jet_puId->Get()) & (1 << iWP);
+      if (passId)  scalefactors[iWP] = (sf_map->GetBinContent(iX, iY));
+      else         
+            scalefactors[iWP] = (1- sf_map->GetBinContent(iX, iY)*eff_map->GetBinContent(iX,iY)) / (1-eff_map->GetBinContent(iX,iY));
     }
+
+    // Now build the custom SF
+    // Loose everywhere, Tight in  2.65<abs(eta)<3.139
+    if (2.65 < fabs(eta) < 3.139){
+      // use tight scale factor
+      custom_scalefactor *= scalefactors[0];
+    }else{
+      // Use loose scale factor
+      custom_scalefactor *= scalefactors[2];
+    }
+
   }
+
+
 }
 
 void
@@ -156,10 +185,15 @@ PUJetIdEventSF::bindTree_(multidraw::FunctionLibrary& _library)
       TDirectory::TContext context;
 
       auto* source{TFile::Open(filename_.c_str())};
-      std::string wps[nWPs] = {"L", "M", "T"};
+      // Same order of bit to check the Jetid 
+      std::string wps[nWPs] = {"T", "M", "L"};
       for (unsigned iwp{0}; iwp != nWPs; ++iwp) {
-        sfMapSets[0][iwp].reset(static_cast<TH1*>(source->Get(("SFrealjets_" + wps[iwp] + "_" + year).c_str())));
-        sfMapSets[1][iwp].reset(static_cast<TH1*>(source->Get(("SFpujets_" + wps[iwp] + "_" + year).c_str())));
+        effMapSets[0][iwp].reset(static_cast<TH1*>(source->Get(("h2_eff_mc"+year +"_" + wps[iwp]).c_str())));
+        effMapSets[1][iwp].reset(static_cast<TH1*>(source->Get(("h2_mistag_mc"+year +"_" + wps[iwp]).c_str())));
+        effMapSets[0][iwp]->SetDirectory(nullptr);
+        effMapSets[1][iwp]->SetDirectory(nullptr);
+        sfMapSets[0][iwp].reset(static_cast<TH1*>(source->Get(("h2_eff_sf"+year +"_" + wps[iwp]).c_str())));
+        sfMapSets[1][iwp].reset(static_cast<TH1*>(source->Get(("h2_mistag_sf"+year +"_" + wps[iwp]).c_str())));
         sfMapSets[0][iwp]->SetDirectory(nullptr);
         sfMapSets[1][iwp]->SetDirectory(nullptr);
       }
@@ -170,6 +204,7 @@ PUJetIdEventSF::bindTree_(multidraw::FunctionLibrary& _library)
     _library.bindBranch(Jet_pt, "Jet_pt");
     _library.bindBranch(Jet_eta, "Jet_eta");
     _library.bindBranch(Jet_genJetIdx, "Jet_genJetIdx");
+    _library.bindBranch(Jet_puId, "Jet_jetId");
 
     _library.addDestructorCallback([]() {
         currentEntry = -2;
@@ -177,9 +212,14 @@ PUJetIdEventSF::bindTree_(multidraw::FunctionLibrary& _library)
         Jet_pt = nullptr;
         Jet_eta = nullptr;
         Jet_genJetIdx = nullptr;
-        for (auto& sfMapSet : sfMapSets) {
-          for (auto& sfMap : sfMapSet)
+        Jet_puId = nullptr;
+        for (auto& sms : sfMapSets) {
+          for (auto& sfMap : sms)
             sfMap.reset();
+        }
+        for (auto& sms : effMapSets) {
+          for (auto& efMap : sms)
+            efMap.reset();
         }
       });
   }

@@ -37,6 +37,7 @@ protected:
  
   bool verbose;
   void bindTree_(multidraw::FunctionLibrary&) override;
+  ~MVAReaderResolved_v29();
   
   DNNEvaluator* dnn_tensorflow;
 
@@ -79,6 +80,22 @@ MVAReaderResolved_v29::MVAReaderResolved_v29(const char* model_path, const char*
     tf_file->Close();
 }
 
+MVAReaderResolved_v29::~MVAReaderResolved_v29(){
+  VBS_category= nullptr;
+  mjj_vbs = nullptr;
+  vbs_0_pt= nullptr;
+  vbs_1_pt= nullptr;
+  vjet_0_pt= nullptr;
+  vjet_1_pt= nullptr;
+  deltaeta_vbs= nullptr;
+  deltaphi_vbs= nullptr;
+  Lepton_eta= nullptr;
+  Lepton_pt= nullptr;
+  Zlep= nullptr;
+  Asym_vbs= nullptr;
+  delete dnn_transformation;
+  delete dnn_tensorflow;
+}
 
 double
 MVAReaderResolved_v29::evaluate(unsigned)

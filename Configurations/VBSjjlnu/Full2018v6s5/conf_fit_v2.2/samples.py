@@ -87,7 +87,7 @@ DataRun = [
 DataSets = ['SingleMuon','EGamma']
 
 DataTrig = {
-            'SingleMuon' :  'Trigger_sngMu' ,
+            'SingleMuon' : 'Trigger_sngMu' ,
             'EGamma'     : '!Trigger_sngMu && Trigger_sngEl' 
 }
 ###########################################
@@ -233,7 +233,8 @@ samples['VVV']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'ZZZ')
 
  ############## VBF-V ########
 
-samples['VBF-V']  = {  'name'   :  nanoGetSampleFiles(directory_bkg,'WLNuJJ_EWK') +
+samples['VBF-V']  = {  'name'   :  
+                                    nanoGetSampleFiles(directory_bkg,'WLNuJJ_EWK') +
                                   nanoGetSampleFiles(directory_bkg,'EWKZ2Jets_ZToLL_M-50'),
                     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch ,
                     'FilesPerJob' : 8
@@ -325,4 +326,4 @@ for Run in DataRun :
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
-#samples = {   key:v for key,v in samples.items() if key  not in ["Wjets"]}
+#samples = {   key:v for key,v in samples.items() if key in ["VVV"]}

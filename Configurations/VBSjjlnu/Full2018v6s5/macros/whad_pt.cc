@@ -30,7 +30,8 @@ public:
   double evaluate(unsigned) override;
 
 protected:  
- 
+  
+  ~WhadPt();
   void bindTree_(multidraw::FunctionLibrary&) override;
   
   IntValueReader* VBS_category{};
@@ -77,3 +78,13 @@ WhadPt::bindTree_(multidraw::FunctionLibrary& _library)
     _library.bindBranch(v_jets, "V_jets_maxmjj_massWZ");
 }
 
+WhadPt::~WhadPt(){
+  VBS_category=nullptr;
+  nJets = nullptr;
+  Jet_pt = nullptr;
+  Jet_eta = nullptr;
+  Jet_phi = nullptr;
+  Jet_mass = nullptr;
+  Jet_idx = nullptr;
+  v_jets = nullptr;
+}

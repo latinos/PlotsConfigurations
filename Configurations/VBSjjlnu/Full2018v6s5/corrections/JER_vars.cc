@@ -199,7 +199,7 @@ JER_vars::setValues(UInt_t _run, UInt_t _luminosityBlock, ULong64_t _event)
 
   int vbs_cat = *(VBS_category->Get());
 
-  cout << "VBS category "<< vbs_cat <<  endl;
+  //cout << "VBS category "<< vbs_cat <<  endl;
   //boosted category
   if (vbs_cat == 0){
 
