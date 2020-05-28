@@ -36,6 +36,11 @@ aliases['DNN_mth_OTF'] = {
         '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_neut_semi.cc+' % os.getenv('CMSSW_BASE'),
     ],
 }
+aliases['mjjGen_OTF'] = {
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HighMass/HMvars_mjjgen.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'HMvarsmjjgen',
+    'samples': ['WW', 'qqWWqq', 'WW2J', 'DYveto']
+}
 
 aliases['bWP'] = {
     'expr': '0.1522'
@@ -316,7 +321,7 @@ aliases['bVetoSF'] = {
 }
 
 aliases['btagnSF'] = {
-    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx] + (CleanJet_pt<=30 || abs(CleanJet_eta)>=2.5))))',
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx] + (CleanJet_pt<=20 || abs(CleanJet_eta)>=2.5))))',
     # 'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shapeFix[CleanJet_jetIdx] + (CleanJet_pt<=30 || abs(CleanJet_eta)>=2.5))))',
     'samples': mc
 }
@@ -468,6 +473,6 @@ aliases['Top_pTrw'] = {
     #'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
     #'expr': '1',
     #'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(4.14819e-02 - 3.67734e-04*topGenPt + 7.60587e-08*topGenPt*topGenPt + 1.29362/(topGenPt+22.8537)) * TMath::Exp(4.14819e-02 - 3.67734e-04*antitopGenPt + 7.60587e-08*antitopGenPt*antitopGenPt + 1.29362/(antitopGenPt+22.8537)))) + (topGenPt * antitopGenPt <= 0.)',
-    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(-1.43717e-02 - 1.18358e-04*topGenPt - 1.70651e-07*topGenPt*topGenPt + 4.47969/(topGenPt+28.7)) * TMath::Exp(-1.43717e-02 - 1.18358e-04*antitopGenPt - 1.70651e-07*antitopGenPt*antitopGenPt + 4.47969/(antitopGenPt+28.7)))) + (topGenPt * antitopGenPt <= 0.)',
+    'expr': '(topGenPtOTF * antitopGenPtOTF > 0.) * (TMath::Sqrt(TMath::Exp(-1.43717e-02 - 1.18358e-04*topGenPtOTF - 1.70651e-07*topGenPtOTF*topGenPtOTF + 4.47969/(topGenPtOTF+28.7)) * TMath::Exp(-1.43717e-02 - 1.18358e-04*antitopGenPtOTF - 1.70651e-07*antitopGenPtOTF*antitopGenPtOTF + 4.47969/(antitopGenPtOTF+28.7)))) + (topGenPtOTF * antitopGenPtOTF <= 0.)',
     'samples': ['top']
 }

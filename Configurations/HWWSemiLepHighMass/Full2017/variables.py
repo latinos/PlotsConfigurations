@@ -39,6 +39,12 @@ variables['events']  = {
 #     'xaxis': '#Delta#Phi l#nu',
 #     'fold' : 3
 # }
+# variables['fatJetPt']  = {
+#     'name' : 'Alt$(CleanFatJetPassMBoosted_pt[0], -9099)',
+#     'range': (24,0,1200),
+#     'xaxis': '(boosted) W ',
+#     'fold' : 3
+# }
 # variables['pt_sum_boosted']  = {
 #     'name' : 'Lepton_pt[0] + PuppiMET_pt + Alt$(CleanFatJetPassMBoosted_pt[0], -9099)',
 #     'range': (50,0,2500),
@@ -102,7 +108,7 @@ variables['lepton0_pt']  = {
 
 variables['met_pt']  = {
     'name' : 'PuppiMET_pt',
-    'range': (50,0,500),
+    'range': (40,0,400),
     'xaxis': 'MET pt',
     'fold' : 3
 }
@@ -120,7 +126,7 @@ variables['met_pt']  = {
 
 variables['jet0_pt'] = {
    'name' : 'Alt$(CleanJet_pt[0], -1)',
-   'range': (20, 0, 1000),
+   'range': (20, 0, 800),
    'xaxis': 'clJet[0] pt',
    'fold' : 3
 }
@@ -169,6 +175,12 @@ variables['boostHigssMass'] = {
     'xaxis': 'reconstr. H mass',
     'fold' : 3
 }
+variables['hmHigssMass'] = {
+    'name' : 'CleanFatJetPassMBoosted_HlnFat_mass[0]',
+    'range': ([0, 800, 900, 1000, 1100, 1200, 1350, 1500, 1700, 2000, 3000, 5000],),#(30, 0, 1500),
+    'xaxis': 'reconstr. H mass',
+    'fold' : 3
+}
 variables['resolvDNN_mth'] = {
     'name' : 'DNN_mth_OTF',
     'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 900, 1100, 1500, 2500],),#(30, 0, 1500),
@@ -178,6 +190,12 @@ variables['resolvDNN_mth'] = {
 variables['boostDNN_mth'] = {
     'name' : 'DNN_mth_OTF',
     'range': ([0, 200, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 900, 1000, 1100, 1200, 1350, 1500, 1700, 2000, 3000, 5000],),#(30, 0, 1500),
+    'xaxis': 'DNN_mth_OTF',
+    'fold' : 3
+}
+variables['hmDNN_mth'] = {
+    'name' : 'DNN_mth_OTF',
+    'range': ([0, 800, 900, 1000, 1100, 1200, 1350, 1500, 1700, 2000, 3000, 5000],),#(30, 0, 1500),
     'xaxis': 'DNN_mth_OTF',
     'fold' : 3
 }
@@ -195,18 +213,18 @@ variables['boostDNN_mth'] = {
 #     'fold' : 3
 # }
 #
-variables['resolvWhadMass'] = {
-    'name' : 'Whad_mass',
-    'range': (25, 0, 250),
-    'xaxis': 'resolv W had mass',
-    'fold' : 3
-}
-variables['boostWhadMass'] = {
-    'name' : 'CleanFatJetPassMBoosted_mass[0]',
-    'range': (25, 0, 250),
-    'xaxis': 'boosted W had mass',
-    'fold' : 3
-}
+# variables['resolvWhadMass'] = {
+#     'name' : 'Whad_mass',
+#     'range': (25, 0, 250),
+#     'xaxis': 'resolv W had mass',
+#     'fold' : 3
+# }
+# variables['boostWhadMass'] = {
+#     'name' : 'CleanFatJetPassMBoosted_mass[0]',
+#     'range': (25, 0, 250),
+#     'xaxis': 'boosted W had mass',
+#     'fold' : 3
+# }
 
 
 

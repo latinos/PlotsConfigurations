@@ -54,7 +54,7 @@ groupPlot['SM Higgs'] = {
     'nameHR': 'SM Higgs',
     'isSignal' : 0,
     'color': 863, # kAzure +3
-    'samples'  : ['ggH_hww', 'qqH_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ttH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt']
+    'samples'  : ['ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt']
 }
 
 for counter, MX in enumerate(plotmasses):
@@ -200,13 +200,13 @@ plot['ZH_hww'] = {
     'scale'    : 1    #
 }
 
-plot['ggZH_hww'] = {
-    # 'nameHR' : 'ggZH',
-    'color': 632+4, # kRed+4
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1    #
-}
+# plot['ggZH_hww'] = {
+#     # 'nameHR' : 'ggZH',
+#     'color': 632+4, # kRed+4
+#     'isSignal' : 0,
+#     'isData'   : 0,
+#     'scale'    : 1    #
+# }
 
 plot['WH_hww'] = {
     # 'nameHR' : 'WH',
@@ -216,13 +216,13 @@ plot['WH_hww'] = {
     'scale'    : 1    #
 }
 
-plot['ttH_hww'] = {
-    # 'nameHR' : 'ttH',
-    'color': 632+6, # kRed+6
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1    #
-}
+# plot['ttH_hww'] = {
+#     # 'nameHR' : 'ttH',
+#     'color': 632+6, # kRed+6
+#     'isSignal' : 0,
+#     'isData'   : 0,
+#     'scale'    : 1    #
+# }
 
 plot['ggH_htt']  = {
     'color': 428,    # kGreen+12
