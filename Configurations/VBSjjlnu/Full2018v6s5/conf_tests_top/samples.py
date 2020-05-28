@@ -57,7 +57,7 @@ SFweight1l = 'puWeight*\
               TriggerEffWeight_1l*\
               Lepton_RecoSF[0]'
 SFweight  = SFweight1l+'*'+LepWPWeight_1l+'*'+LepWPCut_1l
-SFweight += '* btagSF * PUJetIdSF'
+SFweight += '* btagSF * PUJetIdSF * Wtagging_SF_nominal'
 
 GenLepMatch   = 'Lepton_genmatched[0]'
 
@@ -87,7 +87,7 @@ DataRun = [
 DataSets = ['SingleMuon','EGamma']
 
 DataTrig = {
-            'SingleMuon' :  'Trigger_sngMu' ,
+            'SingleMuon' : 'Trigger_sngMu' ,
             'EGamma'     : '!Trigger_sngMu && Trigger_sngEl' 
 }
 ###########################################
@@ -142,6 +142,8 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toInf',  ptllDYW_LO)
 
 ############ Top ############
 
+#Top_ptrw = '(TMath::Sqrt(TMath::Exp(-2.02274e-01 + 1.09734e-04*topGenPt - 1.30088e-07*topGenPt*topGenPt + 5.83494e+01/(topGenPt+1.96252e+02)) * TMath::Exp(-2.02274e-01 + 1.09734e-04*antitopGenPt - 1.30088e-07*antitopGenPt*antitopGenPt + 5.83494e+01/(antitopGenPt+1.96252e+02))))'
+
 samples['top'] = {    
             'name'   :  
                         nanoGetSampleFiles(directory_bkg,'ST_s-channel_ext1') 
@@ -156,8 +158,8 @@ samples['top'] = {
                        # +  nanoGetSampleFiles(directory_bkg,'TTZjets_ext1') 
                        + nanoGetSampleFiles(directory_bkg,'TTZjets') 
                        +  nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu'),
-            'weight' :  XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch , #no Top pt reweighting
-            'FilesPerJob' : 3,
+            'weight' :  XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*Top_pTrw' , # New top pt reweighting
+            'FilesPerJob' : 4,
 }
 
 samples['Wjets'] = { 'name' :   
@@ -173,7 +175,7 @@ samples['Wjets'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf')
           ,
 				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-				'FilesPerJob' : 3,
+				'FilesPerJob' : 4,
         # 'subsamples': {
         #   "boost1" : "(VBS_category==0) && (deltaeta_vbs < 5)",
         #   "boost2" : "(VBS_category==0) && (deltaeta_vbs >= 5)",
@@ -190,17 +192,17 @@ samples['Wjets'] = { 'name' :
 		}
 
 # Fix Wjets binned + LO 
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO', '(LHE_HT < 70)*ewknloW')
+addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO', '(LHE_HT < 70)') # remove ewknloW
 ############
 # N.B XS correction! It was 1.0 in the sampleCrossSection in postprocessing --> this should be fixed
 addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT70_100', '(1292.0)') #######ADD ME ewknloW
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT100_200', 'ewknloW')
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT200_400', 'ewknloW')
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT400_600', 'ewknloW')
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT600_800', 'ewknloW')
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT800_1200', 'ewknloW')
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT1200_2500', 'ewknloW')
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT2500_inf', 'ewknloW')
+# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT100_200', 'ewknloW')
+# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT200_400', 'ewknloW')
+# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT400_600', 'ewknloW')
+# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT600_800', 'ewknloW')
+# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT800_1200', 'ewknloW')
+# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT1200_2500', 'ewknloW')
+# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT2500_inf', 'ewknloW')
 
 
 
@@ -215,7 +217,7 @@ samples['VV']  = { 'name' :
                nanoGetSampleFiles(directory_bkg,'WpToLNu_ZTo2J_QCD',) +
                nanoGetSampleFiles(directory_bkg,'ZTo2L_ZTo2J_QCD',  ) ,
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch, # TO BE CORRECTED: + '* ewknloW',
-        'FilesPerJob' : 5,
+        'FilesPerJob' : 4,
 }
 
 ############ VVV ############
@@ -231,7 +233,8 @@ samples['VVV']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'ZZZ')
 
  ############## VBF-V ########
 
-samples['VBF-V']  = {  'name'   :  nanoGetSampleFiles(directory_bkg,'WLNuJJ_EWK') +
+samples['VBF-V']  = {  'name'   :  
+                                    nanoGetSampleFiles(directory_bkg,'WLNuJJ_EWK') +
                                   nanoGetSampleFiles(directory_bkg,'EWKZ2Jets_ZToLL_M-50'),
                     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch ,
                     'FilesPerJob' : 8
@@ -281,7 +284,7 @@ samples['VBS']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpTo2J_WmToLNu') +
                nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J',  ),
        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-       'FilesPerJob' : 7,
+       'FilesPerJob' : 6,
 }
 
 
@@ -294,7 +297,7 @@ samples['Fake'] = {
   'weight': METFilter_DATA+'* fake_weight_corrected',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 27
+  'FilesPerJob': 30
 }
 
 for _, sd in DataRun:
@@ -313,7 +316,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'weight' : METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],
-                       'FilesPerJob' : 27,
+                       'FilesPerJob' : 30,
                   }
 
 for Run in DataRun :
@@ -323,6 +326,4 @@ for Run in DataRun :
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
-# samples={
-#   "VVV": samples["VVV"]
-# }
+#samples = {   key:v for key,v in samples.items() if key in ["VVV"]}

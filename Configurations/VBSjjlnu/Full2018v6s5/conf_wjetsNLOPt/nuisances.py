@@ -321,14 +321,14 @@ nuisances['met']  = {
 ######################
 # Theory nuisance
 
-nuisances['QCD_scale_wjets'] = {
-     'name'  : 'QCDscale_wjets',
-     'kind'  : 'weight',
-     'type'  : 'shape',
-     'samples'  :   {
-        "Wjets" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
-     }
-}
+# nuisances['QCD_scale_wjets'] = {
+#      'name'  : 'QCDscale_wjets',
+#      'kind'  : 'weight',
+#      'type'  : 'shape',
+#      'samples'  :   {
+#         "Wjets" : ["LHEScaleWeight[0]", "LHEScaleWeight[8]"], 
+#      }
+# }
 
 nuisances['QCD_scale_top'] = {
      'name'  : 'QCDscale_top',

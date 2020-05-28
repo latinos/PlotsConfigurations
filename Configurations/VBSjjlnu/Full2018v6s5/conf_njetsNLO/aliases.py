@@ -153,12 +153,12 @@ aliases['fake_weight_corrected'] = {
 
 # PU jet Id SF
 
-puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
 
 aliases['PUJetIdSF'] = {
     'linesToAdd': [
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L {}/VBSjjlnu/Full2018v6s5/corrections/pujetidsf_event.cc+'.format(configurations)
+        '.L %s/patches/pujetidsf_event_new.cc+' % configurations
     ],
     'class': 'PUJetIdEventSF',
     'args': (puidSFSource, '2018', 'loose'),
@@ -172,7 +172,7 @@ aliases['Wtagging_SF_nominal'] = {
         '.L {}/VBSjjlnu/Full2018v6s5/corrections/Wtagging_SF.cc+'.format(configurations)
     ],
     'class': 'Wtagging_SF',
-    'args': ('nominal_2018'),
+    'args': ('nominal','2018'),
     'samples': mc
 }
 
@@ -183,7 +183,7 @@ aliases['Wtagging_SF_up'] = {
         '.L {}/VBSjjlnu/Full2018v6s5/corrections/Wtagging_SF.cc+'.format(configurations)
     ],
     'class': 'Wtagging_SF',
-    'args': ('up_2018'),
+    'args': ('up', '2018'),
     'samples': mc
 }
 
@@ -194,62 +194,6 @@ aliases['Wtagging_SF_down'] = {
         '.L {}/VBSjjlnu/Full2018v6s5/corrections/Wtagging_SF.cc+'.format(configurations)
     ],
     'class': 'Wtagging_SF',
-    'args': ('down_2018'),
+    'args': ('down', '2018'),
     'samples': mc
-}
-
-
-
-aliases['pt_0j'] = {
-    'linesToAdd': [
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        '.L %s/VBSjjlnu/Full2018v6s5/macros/PtSystemJets.cc+' % configurations
-    ],
-    'class': 'PtSystemJets',
-    'args': ('_0j'),
-}
-
-aliases['pt_1j'] = {
-    'linesToAdd': [
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        '.L %s/VBSjjlnu/Full2018v6s5/macros/PtSystemJets.cc+' % configurations
-    ],
-    'class': 'PtSystemJets',
-    'args': ('_1j'),
-}
-
-aliases['pt_2j'] = {
-    'linesToAdd': [
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        '.L %s/VBSjjlnu/Full2018v6s5/macros/PtSystemJets.cc+' % configurations
-    ],
-    'class': 'PtSystemJets',
-    'args': ('_2j'),
-}
-
-aliases['pt_3j'] = {
-    'linesToAdd': [
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        '.L %s/VBSjjlnu/Full2018v6s5/macros/PtSystemJets.cc+' % configurations
-    ],
-    'class': 'PtSystemJets',
-    'args': ('_3j'),
-}
-
-aliases['pt_4j'] = {
-    'linesToAdd': [
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        '.L %s/VBSjjlnu/Full2018v6s5/macros/PtSystemJets.cc+' % configurations
-    ],
-    'class': 'PtSystemJets',
-    'args': ('_4j'),
-}
-
-aliases['pt_allj'] = {
-    'linesToAdd': [
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        '.L %s/VBSjjlnu/Full2018v6s5/macros/PtSystemJets.cc+' % configurations
-    ],
-    'class': 'PtSystemJets',
-    'args': ('_allj'),
 }

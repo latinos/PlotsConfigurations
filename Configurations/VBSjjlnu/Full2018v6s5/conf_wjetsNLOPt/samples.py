@@ -163,19 +163,14 @@ samples['top'] = {
 }
 
 samples['Wjets'] = { 'name' :   
-          # nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_ext1')
-           nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT70_100')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT200_400')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT400_600')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT600_800')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf')
-          ,
-				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-				'FilesPerJob' : 4,
+          nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
+          +nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_Pt50to100')
+          +nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_Pt100to250')
+          +nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_Pt250to400')
+          +nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_Pt400to600')
+          +nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_Pt600toInf'),
+        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch, ######### ADD ewkNLO weight
+        'FilesPerJob' : 2,
         'subsamples': {
           "boost1" : "(VBS_category==0) && (deltaeta_vbs < 5)",
           "boost2" : "(VBS_category==0) && (deltaeta_vbs >= 5)",
@@ -188,22 +183,9 @@ samples['Wjets'] = { 'name' :
           "jpt3": "(VBS_category==1) && ( vbs_1_pt >= 150)",
                     
         }
-      
-		}
+       }
 
-# Fix Wjets binned + LO 
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO', '(LHE_HT < 70)') # remove ewknloW
-############
-# N.B XS correction! It was 1.0 in the sampleCrossSection in postprocessing --> this should be fixed
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT70_100', '(1292.0)') #######ADD ME ewknloW
-# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT100_200', 'ewknloW')
-# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT200_400', 'ewknloW')
-# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT400_600', 'ewknloW')
-# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT600_800', 'ewknloW')
-# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT800_1200', 'ewknloW')
-# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT1200_2500', 'ewknloW')
-# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT2500_inf', 'ewknloW')
-
+addSampleWeight(samples, "Wjets","WJetsToLNu-LO",  "LHE_Vpt < 50" )
 
 
 samples['VV']  = { 'name' :  

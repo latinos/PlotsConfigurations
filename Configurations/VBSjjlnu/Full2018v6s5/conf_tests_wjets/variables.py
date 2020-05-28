@@ -1,171 +1,187 @@
 ## variabeadines
+import numpy as np
+## variabeadines
 from itertools import chain
 
-#variables = {}
-boost_cuts = list(chain(
-                    *[ [t+"_ele", t+"_mu"] for t in 
-                               ['boost_sig_mjjincl','boost_sig_mjjincl_dnnhigh',
-                                'boost_topcr_mjjincl','boost_topcr_mjjincl_dnnhigh',
-                                'boost_wjetcr_mjjincl','boost_wjetcr_mjjincl_dnnhigh']
-                    ]))
 
-res_cuts = list(chain(
-                    *[ [t+"_ele", t+"_mu"] for t in 
-                        ['res_sig_mjjincl', 'res_sig_mjjincl_dnnhigh',
-                        'res_topcr_mjjincl','res_topcr_mjjincl_dnnhigh',
-                        'res_wjetcr_mjjincl','res_wjetcr_mjjincl_dnnhigh']
-                    ]))
-    
 
-variables['events']  = {   'name': '1',      
-                        'range' : (1,0,2),  
+variables['events']  = {   'name': 'XSWeight',      
+                        'range' : (2,-1,1),  
                         'xaxis' : 'events', 
                         'fold' : 3
                         }
 
+variables['XSweight']  = {   'name': 'XSWeight',      
+                        'range' : (100,-0.01,0.01),  
+                        'xaxis' : 'XSweight', 
+                        'fold' : 3
+                        }
 
-variables['DNNoutput'] = {
-    'name': 'DNNoutput',
-    'range': ([0.1,0.2,0.3,0.4,0.5,0.55, 0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1],),
-    'xaxis': 'DNN output',
-    'fold': 3 ,
-    'blind': {
-        "res_sig_mjjincl_ele": [0.8,1],
-        "res_sig_mjjincl_mu": [0.8,1], 
-        "res_sig_mjjincl_dnnhigh_mu": [0.8,1], 
-        "res_sig_mjjincl_dnnhigh_ele": [0.8,1],
-        "boost_sig_mjjincl_ele": [0.8,1],
-        "boost_sig_mjjincl_mu": [0.8,1],
-        "boost_sig_mjjincl_dnnhigh_ele": [0.8,1],
-        "boost_sig_mjjincl_dnnhigh_mu": [0.8,1],
-    }
-}
+variables['njets_LHE'] = {   'name': 'LHE_Njets',      
+                                'range' : (6,0,6),  
+                                'xaxis' : 'Njets', 
+                                'fold' : 3
+                        }
 
-variables['DNNoutput_high'] = {
-    'name': 'DNNoutput',
-    'range': ([0.5, 0.55, 0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1],),
-    'xaxis': 'DNN outpu, high region',
-    'fold': 0 ,
-    'blind': {
-        "res_sig_mjjincl_ele": [0.8,1],
-        "res_sig_mjjincl_mu": [0.8,1], 
-        "res_sig_mjjincl_dnnhigh_mu": [0.8,1], 
-        "res_sig_mjjincl_dnnhigh_ele": [0.8,1],
-        "boost_sig_mjjincl_ele": [0.8,1],
-        "boost_sig_mjjincl_mu": [0.8,1],
-        "boost_sig_mjjincl_dnnhigh_ele": [0.8,1],
-        "boost_sig_mjjincl_dnnhigh_mu": [0.8,1],
-    }
-}
+variables['njets_LHE_LO'] = {   'name': 'LHE_NpLO',      
+                                'range' : (6,0,6), 
+                                'xaxis' : 'Njets', 
+                                'fold' : 3
+                        }
 
-# #leptons
+variables['njets_LHE_NLO']  = {   'name': 'LHE_NpNLO',      
+                                'range' : (6,0,6),  
+                                'xaxis' : 'Njets', 
+                                'fold' : 3
+                        }
 
-# variables['Lepton_eta_abs'] = {   'name': 'abs(Lepton_eta[0])',      
-#                         'range' : (30,0,2.5),  
+
+variables['njets_LHE_events'] = {   'name': 'LHE_Njets',      
+                                'range' : (6,0,6),  
+                                'xaxis' : 'Njets', 
+                                'fold' : 3,
+                                'weight': 'XSWeight'
+                        }
+
+variables['njets_LHE_LO_events'] = {   'name': 'LHE_NpLO',      
+                                'range' : (6,0,6), 
+                                'xaxis' : 'Njets', 
+                                'fold' : 3,
+                                'weight': 'XSWeight'
+                        }
+
+variables['njets_LHE_NLO_events']  = {   'name': 'LHE_NpNLO',      
+                                'range' : (6,0,6),  
+                                'xaxis' : 'Njets', 
+                                'fold' : 3,
+                                'weight': 'XSWeight'
+                        }
+
+
+variables['Vpt_LHE']  = {   'name': 'LHE_Vpt',      
+                                'range' : (6,0,6),  
+                                'xaxis' : 'Njets', 
+                                'fold' : 3
+                        }
+
+
+variables['LHE_Vpt_events'] = {   'name': 'LHE_Vpt',      
+                                'range' : (6,0,6),  
+                                'xaxis' : 'Njets', 
+                                'fold' : 3,
+                                'weight': 'XSWeight'
+                        }
+
+# # #leptons
+
+# # variables['Lepton_eta_abs'] = {   'name': 'abs(Lepton_eta[0])',      
+# #                         'range' : (30,0,2.5),  
+# #                         'xaxis' : 'Lepton #eta', 
+# #                         'fold' : 3
+# #                         }
+
+# variables['Lepton_eta'] = {   'name': 'Lepton_eta[0]',      
+#                         'range' : (60,-2.5,2.5),  
 #                         'xaxis' : 'Lepton #eta', 
 #                         'fold' : 3
 #                         }
 
-variables['Lepton_eta'] = {   'name': 'Lepton_eta[0]',      
-                        'range' : (40,-2.5,2.5),  
-                        'xaxis' : 'Lepton #eta', 
-                        'fold' : 3
-                        }
+
+# # variables['Lepton_pt'] = {   'name': 'Lepton_pt[0]',      
+# #                         'range' : (40,0,500),  
+# #                         'xaxis' : 'Lepton pt', 
+# #                         'fold' : 3
+# #                         }    
 
 
-variables['Lepton_pt'] = {   'name': 'Lepton_pt[0]',      
-                        'range' : (40,0,500),  
-                        'xaxis' : 'Lepton pt', 
-                        'fold' : 3
-                        }    
-
-
-#delta angles between the VBS jets
-variables['deltaeta_vbs'] = {   'name': 'deltaeta_vbs',      
-                        'range' : (16,2,8),  
-                        'xaxis' : '#Delta#eta VBS jets', 
-                        'fold' : 3,
-                        # 'blind': {
-                        #     "res_sig_mjjincl_ele" :(4,9),
-                        #     "res_sig_mjjincl_mu" : (4,9),
-                        #     }
-                        }    
-
-
-# variables['Lepton_pt_CR'] = {   'name': 'Lepton_pt[0]',      
-#                         'range' : ([30,150,300,500],),  
-#                         'xaxis' : 'Lepton pt', 
-#                         'fold' : 3
-#                         }                
-
-
-# variables['deltaeta_vbs_CR'] = {   'name': 'deltaeta_vbs',      
-#                         'range' : ([2,3,4,5,6,8],),  
+# #delta angles between the VBS jets
+# variables['deltaeta_vbs'] = {   'name': 'deltaeta_vbs',      
+#                         'range' : (16,2,8),  
 #                         'xaxis' : '#Delta#eta VBS jets', 
 #                         'fold' : 3,
-#                         'blind': {
-#                             "res_sig_mjjhigh_ele" :(4,9),
-#                             "res_sig_mjjhigh_mu" : (4,9),
+#                         }    
+        
+
+
+# variables["deta_jetpt_CR_res"] = {
+#             'name': 'detavbs_jetpt_bin',
+#             'range': (5, 2.5, 7.5),
+#             'axis': '#Delta#eta VBS jets : VBS trailing jet Pt bins (resolved)',
+#             'fold': 0,
+#             'cuts': phase_spaces_res
+# }
+
+# variables["deta_CR_boost"] = {
+#             'name': 'detavbs_jetpt_bin',
+#             'range': (2, 0.5, 2.5),
+#             'axis': '#Delta#eta VBS jets : VBS trailing jet Pt bins (boosted)',
+#             'fold': 0,
+#             'cuts': phase_spaces_boost
+# }
+
+# # #MET
+# # variables['PuppiMET'] = {   'name': 'PuppiMET_pt',      
+# #                         'range' : (30,0,300),  
+# #                         'xaxis' : 'PuppiMET_pt', 
+# #                         'fold' : 3
+# #                         }
+
+
+# # VBS vars
+# variables['mjj_vbs_morebins'] = {   'name': 'mjj_vbs',      
+#                         'range' : (20,200,4000) , 
+#                         'xaxis' : 'M_{jj} VBS', 
+#                         'fold' : 3,
+#                         'blind' : {
+#                             "res_sig_dnnhigh_ele": [1000,4000], 
+#                             "res_sig_dnnhigh_mu": [1000,4000], 
+#                             "boost_sig_dnnhigh_ele": [1000,4000], 
+#                             "boost_sig_dnnhigh_mu": [1000,4000], 
 #                             }
-#                         }
-
-
-variables["deta_jetpt_CR"] = {
-            'name': 'detavbs_jetpt_bin',
-            'range': (8, 0.5, 8.5),
-            'axis': '#Delta#eta VBS jets : VBS trailing jet Pt bins',
-            'fold': 0,
-            'cuts': res_cuts
-}
-
-#MET
-variables['PuppiMET'] = {   'name': 'PuppiMET_pt',      
-                        'range' : (30,0,300),  
-                        'xaxis' : 'PuppiMET_pt', 
-                        'fold' : 3
-                        }
-
-
-# VBS vars
-variables['mjj_vbs_morebins'] = {   'name': 'mjj_vbs',      
-                        'range' : (20,200,4000) , 
-                        'xaxis' : 'M_{jj} VBS', 
-                        'fold' : 3,
-                        'blind' : {
-                            "res_sig_mjjincl_ele" :(3000,4000),
-                            "res_sig_mjjincl_mu" : (3000,4000),
-                            "res_sig_mjjincl_dnnhigh_mu" : (3000,4000),
-                            "res_sig_mjjincl_dnnhigh_ele" : (3000,4000),
-                            "boost_sig_mjjincl_ele" :(3000,4000),
-                            "boost_sig_mjjincl_mu" : (3000,4000),
-                            "boost_sig_mjjincl_dnnhigh_mu" : (3000,4000),
-                            "boost_sig_mjjincl_dnnhigh_ele" : (3000,4000),
-                            }
-                         }
-
-
-variables['vbs_0_pt'] = {   'name': 'vbs_0_pt',      
-                        'range' : (30,0,500),  
-                        'xaxis' : 'leading VBS jet pt', 
-                        'fold' : 3
-                        }
-
-
-variables['vbs_1_pt'] = {   'name': 'vbs_1_pt',      
-                        'range' : (30,0,500),  
-                        'xaxis' : 'trailing VBS jet pt', 
-                        'fold' : 3
-                        } 
+#                          }
 
 # variables['mjj_vbs'] = {   'name': 'mjj_vbs',      
 #                         'range' : ([200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,4000],) , 
 #                         'xaxis' : 'M_{jj} VBS', 
 #                         'fold' : 3,
+#                         'divideByBinWidth' : 1,
 #                         'blind' : {
-#                             "res_sig_mjjincl_ele" :(1000,4000),
-#                             "res_sig_mjjincl_mu" : (1000,4000),
+#                             "res_sig_dnnhigh_ele" :(1000,4000),
+#                             "res_sig_dnnhigh_mu" : (1000,4000),
+#                             "boost_sig_dnnhigh_ele" :(1000,4000),
+#                             "boost_sig_dnnhigh_mu" : (1000,4000),
 #                             }
 #                         }
+
+# variables['vbs_0_pt'] = {   'name': 'vbs_0_pt',      
+#                         'range' : (30,0,400),  
+#                         'xaxis' : 'leading VBS jet pt', 
+#                         'fold' : 3
+#                         }
+
+
+# variables['vbs_1_pt'] = {   'name': 'vbs_1_pt',      
+#                         'range' : (30,0,400),  
+#                         'xaxis' : 'trailing VBS jet pt', 
+#                         'fold' : 3
+#                         } 
+
+
+# # variables['Mtw_lep'] = {   'name': 'Mtw_lep',      
+# #                         'range' : (30,0,300),  
+# #                         'xaxis' : 'Mass T W leptonic', 
+# #                         'fold' : 3
+# #                         }
+
+# variables['whad_pt'] = {
+#             'name': "whad_pt",
+#             'range': (30, 0, 200),
+#             'xaxis': 'W hadronic Pt',
+#             'fold': 3 ,
+#             'cuts': phase_spaces_res
+# }
+
+
 
 
 # variables['deltaphi_vbs'] = {   'name': 'deltaphi_vbs',      
@@ -174,12 +190,30 @@ variables['vbs_1_pt'] = {   'name': 'vbs_1_pt',
 #                         'fold' : 3
 #                         }
 
+
 # variables['mjj_vjet'] = {   'name': 'mjj_vjet',      
-#                         'range' : (50,0,500),  
+#                         'range' : (40,50,250),  
 #                         'xaxis' : 'Whad reco mass', 
 #                         'fold' : 3
 #                         }
 
+# variables['mjj_vjet_boost'] = {   'name': 'mjj_vjet',      
+#                         'range' : (40,50,150),  
+#                         'xaxis' : 'W had FatJet soft-drop Puppi mass', 
+#                         'fold' : 3
+#                         }
+
+# variables['mjj_vjet_lessbins'] = {   'name': 'mjj_vjet',      
+#                         'range' : (25,50,250),  
+#                         'xaxis' : 'Whad reco mass', 
+#                         'fold' : 3
+#                         }
+
+# variables['mjj_vjet_boost_lessbins'] = {   'name': 'mjj_vjet',      
+#                         'range' : (25,50,150),  
+#                         'xaxis' : 'W had FatJet soft-drop Puppi mass', 
+#                         'fold' : 3
+#                         }
 
 # variables['vjet_0_pt'] = {   'name': 'vjet_0_pt',      
 #                         'range' : (30,30,400),  
@@ -322,7 +356,7 @@ variables['vbs_1_pt'] = {   'name': 'vbs_1_pt',
 #                         'fold' : 3
 #                         }
 
-# # #Asym
+# # # #Asym
 # variables['Asym_vbs'] = {   'name': 'Asym_vbs',      
 #                         'range' : (30,0,1),  
 #                         'xaxis' : 'Pt asymmetry VBS jets', 
@@ -342,11 +376,7 @@ variables['vbs_1_pt'] = {   'name': 'vbs_1_pt',
 #                         'fold' : 3
 # #                         }
 
-# variables['Mtw_lep'] = {   'name': 'Mtw_lep',      
-#                         'range' : (30,0,300),  
-#                         'xaxis' : 'Mass T W leptonic', 
-#                         'fold' : 3
-#                         }
+
 
 # variables['w_lep_pt'] = {   'name': 'w_lep_pt',      
 #                         'range' : (30,0,600),  
@@ -359,8 +389,10 @@ variables['vbs_1_pt'] = {   'name': 'vbs_1_pt',
 #                         'xaxis' : 'Mww', 
 #                         'fold' : 3,
 #                         'blind' : {
-#                             "res_sig_mjjhigh_ele" :(1000,2000),
-#                             "res_sig_mjjhigh_mu" : (1000,2000),
+#                             "res_sig_dnnhigh_ele" :(1000,2000),
+#                             "res_sig_dnnhigh_mu" : (1000,2000),
+#                             "boost_sig_dnnhigh_ele" :(1000,2000),
+#                             "boost_sig_dnnhigh_mu" : (1000,2000),
 #                             }
 #                         }
 

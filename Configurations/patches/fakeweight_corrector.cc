@@ -31,7 +31,7 @@ public:
   double evaluate(unsigned) override;
 
 protected:  
- 
+  ~FakeWeightCorrector();
   void bindTree_(multidraw::FunctionLibrary&) override;
   
   char * inputfile_path;
@@ -141,3 +141,10 @@ FakeWeightCorrector::bindTree_(multidraw::FunctionLibrary& _library)
     _library.bindBranch(Fake_weight, fakew_name.c_str());
 }
 
+FakeWeightCorrector::~FakeWeightCorrector(){
+  Lepton_pt=nullptr;
+  Lepton_eta= nullptr;
+  Lepton_pdgId= nullptr;
+  Lepton_isTight=nullptr;
+  Fake_weight=nullptr;
+}

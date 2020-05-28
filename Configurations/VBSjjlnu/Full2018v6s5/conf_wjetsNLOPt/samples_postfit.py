@@ -160,63 +160,49 @@ samples['top'] = {
             'FilesPerJob' : 2,
 }
 
-
 samples['Wjets'] = { 'name' :   
+          # nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_ext1')
           nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
-          +nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_Pt50to100')
-          +nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_Pt100to250')
-          +nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_Pt250to400')
-          +nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_Pt400to600')
-          +nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_Pt600toInf'),
-        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch, ######### ADD ewkNLO weight
-        'FilesPerJob' : 6,
-       }
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT70_100')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT200_400')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT400_600')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT600_800')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
 
-addSampleWeight(samples, "Wjets","WJetsToLNu-LO",  "Wpt_lhe < 50" )
+				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
+				'FilesPerJob' : 1,
+        'subsamples': {
+          "boost" : "VBS_category==0",
+          "deta1_jpt1": "(VBS_category==1) && (deltaeta_vbs < 3.5 ) && vbs_1_pt < 75",
+          "deta2_jpt1": "(VBS_category==1) && (deltaeta_vbs >= 3.5 && deltaeta_vbs < 5.5) && vbs_1_pt < 75",
+          "deta3_jpt1": "(VBS_category==1) && (deltaeta_vbs >= 5.5 ) && vbs_1_pt < 75",
 
-# samples['Wjets'] = { 'name' :   
-#           # nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_ext1')
-#           nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
-#           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT70_100')
-#           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200')
-#           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT200_400')
-#           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT400_600')
-#           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT600_800')
-#           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200')
-#           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
-#           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
-
-# 				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-# 				'FilesPerJob' : 1,
-#         'subsamples': {
-#           "boost" : "VBS_category==0",
-#           "deta1_jpt1": "(VBS_category==1) && (deltaeta_vbs < 3.5 ) && vbs_1_pt < 75",
-#           "deta2_jpt1": "(VBS_category==1) && (deltaeta_vbs >= 3.5 && deltaeta_vbs < 5.5) && vbs_1_pt < 75",
-#           "deta3_jpt1": "(VBS_category==1) && (deltaeta_vbs >= 5.5 ) && vbs_1_pt < 75",
-
-#           "deta1_jpt2": "(VBS_category==1) && (deltaeta_vbs < 3 ) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
-#           "deta2_jpt2": "(VBS_category==1) && (deltaeta_vbs >= 3 && deltaeta_vbs < 4) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
-#           "deta3_jpt2": "(VBS_category==1) && (deltaeta_vbs >= 4 ) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
+          "deta1_jpt2": "(VBS_category==1) && (deltaeta_vbs < 3 ) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
+          "deta2_jpt2": "(VBS_category==1) && (deltaeta_vbs >= 3 && deltaeta_vbs < 4) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
+          "deta3_jpt2": "(VBS_category==1) && (deltaeta_vbs >= 4 ) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
   
-#           "deta1_jpt3": "(VBS_category==1) && (deltaeta_vbs < 3.5 ) &&  ( vbs_1_pt >= 150)",
-#           "deta2_jpt3": "(VBS_category==1) && (deltaeta_vbs >= 3.5) &&  ( vbs_1_pt >= 150)",
+          "deta1_jpt3": "(VBS_category==1) && (deltaeta_vbs < 3.5 ) &&  ( vbs_1_pt >= 150)",
+          "deta2_jpt3": "(VBS_category==1) && (deltaeta_vbs >= 3.5) &&  ( vbs_1_pt >= 150)",
                     
-#         }
+        }
       
-# 		}
+		}
 
-# # Fix Wjets binned + LO 
-# addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO', '(LHE_HT < 70)*ewknloW')
-# ############
-# # N.B XS correction! It was 1.0 in the sampleCrossSection in postprocessing --> this should be fixed
-# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT70_100', '(1292.0)') #######ADD ME ewknloW
-# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT100_200', 'ewknloW')
-# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT200_400', 'ewknloW')
-# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT400_600', 'ewknloW')
-# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT600_800', 'ewknloW')
-# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT800_1200', 'ewknloW')
-# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT1200_2500', 'ewknloW')
-# addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT2500_inf', 'ewknloW')
+# Fix Wjets binned + LO 
+addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO', '(LHE_HT < 70)*ewknloW')
+############
+# N.B XS correction! It was 1.0 in the sampleCrossSection in postprocessing --> this should be fixed
+addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT70_100', '(1292.0)') #######ADD ME ewknloW
+addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT100_200', 'ewknloW')
+addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT200_400', 'ewknloW')
+addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT400_600', 'ewknloW')
+addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT600_800', 'ewknloW')
+addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT800_1200', 'ewknloW')
+addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT1200_2500', 'ewknloW')
+addSampleWeight(samples,'Wjets', 'WJetsToLNu-HT2500_inf', 'ewknloW')
 
 
 
@@ -254,32 +240,32 @@ samples['VBF-V']  = {  'name'   :  nanoGetSampleFiles(directory_bkg,'WLNuJJ_EWK'
                   }
 
 
-############# Vg ###################################
-files = nanoGetSampleFiles(directory_bkg, 'Wg_AMCNLOFXFX') + \
-        nanoGetSampleFiles(directory_bkg, 'Zg')
+############## Vg ###################################
+# files = nanoGetSampleFiles(directory_bkg, 'Wg_AMCNLOFXFX') + \
+#         nanoGetSampleFiles(directory_bkg, 'Zg')
 
-samples['Vg'] = {
-    'name': files,
-    # No gen matching because the converting gamma can be our single lepton 
-    'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC + '*(Gen_ZGstar_mass <= 0)',
-    'FilesPerJob': 4
-}
-addSampleWeight(samples, 'Vg', 'Zg', '(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)')
+# samples['Vg'] = {
+#     'name': files,
+#     # No gen matching because the converting gamma can be our single lepton 
+#     'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC + '*(Gen_ZGstar_mass <= 0)',
+#     'FilesPerJob': 4
+# }
+# addSampleWeight(samples, 'Vg', 'Zg', '(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)')
 
-######## VgS ########
+# ######## VgS ########
 
-files = nanoGetSampleFiles(directory_bkg, 'Wg_AMCNLOFXFX') + \
-    nanoGetSampleFiles(directory_bkg, 'Zg') + \
-    nanoGetSampleFiles(directory_bkg, 'WZTo3LNu_mllmin01')
+# files = nanoGetSampleFiles(directory_bkg, 'Wg_AMCNLOFXFX') + \
+#     nanoGetSampleFiles(directory_bkg, 'Zg') + \
+#     nanoGetSampleFiles(directory_bkg, 'WZTo3LNu_mllmin01')
 
-samples['VgS'] = {
-    'name': files,
-    'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
-    'FilesPerJob': 4
-}
-addSampleWeight(samples, 'VgS', 'Wg_AMCNLOFXFX', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
-addSampleWeight(samples, 'VgS', 'Zg', '(Gen_ZGstar_mass > 0)*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)')
-addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
+# samples['VgS'] = {
+#     'name': files,
+#     'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
+#     'FilesPerJob': 4
+# }
+# addSampleWeight(samples, 'VgS', 'Wg_AMCNLOFXFX', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
+# addSampleWeight(samples, 'VgS', 'Zg', '(Gen_ZGstar_mass > 0)*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)')
+# addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
 
 ##########################################
 ################ SIGNALS #################
@@ -339,6 +325,9 @@ for Run in DataRun :
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
-samples = {
-  "Wjets": samples["Wjets"]
+
+#### FAKE sample for prefit plots
+samples['total_prefit'] = {
+  'name' : [],
+  'weight': "1.0"
 }

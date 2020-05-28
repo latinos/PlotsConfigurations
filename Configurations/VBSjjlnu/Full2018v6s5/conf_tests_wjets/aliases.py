@@ -133,67 +133,67 @@ aliases['antitopGenPtOTF'] = {
     'samples': ['top']
 }
 
-aliases['Top_pTrw'] = {
-    'expr': '(TMath::Sqrt(TMath::Exp(-2.02274e-01 + 1.09734e-04*topGenPtOTF - 1.30088e-07*topGenPtOTF*topGenPtOTF + 5.83494e+01/(topGenPtOTF+1.96252e+02)) * TMath::Exp(-2.02274e-01 + 1.09734e-04*antitopGenPtOTF - 1.30088e-07*antitopGenPtOTF*antitopGenPtOTF + 5.83494e+01/(antitopGenPtOTF+1.96252e+02))))',
-    'samples': ['top']
-}
+# aliases['Top_pTrw'] = {
+#     'expr': '(TMath::Sqrt(TMath::Exp(-2.02274e-01 + 1.09734e-04*topGenPtOTF - 1.30088e-07*topGenPtOTF*topGenPtOTF + 5.83494e+01/(topGenPtOTF+1.96252e+02)) * TMath::Exp(-2.02274e-01 + 1.09734e-04*antitopGenPtOTF - 1.30088e-07*antitopGenPtOTF*antitopGenPtOTF + 5.83494e+01/(antitopGenPtOTF+1.96252e+02))))',
+#     'samples': ['top']
+# }
 
-aliases['fake_weight_corrected'] = {
-    'class': 'FakeWeightCorrector',
-    'args': ("%s/corrections/fakeweight_correction_2018.root" % conf_folder, 
-                "mvaFall17V1Iso_WP90", "fakeW_ele_mvaFall17V1Iso_WP90_mu_cut_Tight_HWWW_mu10_ele35", 
-                os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v6/mvaFall17V1IsoWP90/EleFR_jet35.root",
-                os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v6/mvaFall17V1IsoWP90/ElePR.root"),
-    'linesToAdd' : [
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        '.L %s/patches/fakeweight_corrector.cc+' % configurations
-     ],
-    'samples': ["Fake"]
-}
+# aliases['fake_weight_corrected'] = {
+#     'class': 'FakeWeightCorrector',
+#     'args': ("%s/corrections/fakeweight_correction_2018.root" % conf_folder, 
+#                 "mvaFall17V1Iso_WP90", "fakeW_ele_mvaFall17V1Iso_WP90_mu_cut_Tight_HWWW_mu10_ele35", 
+#                 os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v6/mvaFall17V1IsoWP90/EleFR_jet35.root",
+#                 os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v6/mvaFall17V1IsoWP90/ElePR.root"),
+#     'linesToAdd' : [
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         '.L %s/patches/fakeweight_corrector.cc+' % configurations
+#      ],
+#     'samples': ["Fake"]
+# }
 
-# PU jet Id SF
+# # PU jet Id SF
 
-puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
+# puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
 
-aliases['PUJetIdSF'] = {
-    'linesToAdd': [
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/patches/pujetidsf_event_new.cc+' % configurations
-    ],
-    'class': 'PUJetIdEventSF',
-    'args': (puidSFSource, '2018', 'loose'),
-    'samples': mc
-}
-
-
-aliases['Wtagging_SF_nominal'] = {
-    'linesToAdd': [
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L {}/VBSjjlnu/Full2018v6s5/corrections/Wtagging_SF.cc+'.format(configurations)
-    ],
-    'class': 'Wtagging_SF',
-    'args': ('nominal','2018'),
-    'samples': mc
-}
+# aliases['PUJetIdSF'] = {
+#     'linesToAdd': [
+#         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+#         '.L %s/patches/pujetidsf_event_new.cc+' % configurations
+#     ],
+#     'class': 'PUJetIdEventSF',
+#     'args': (puidSFSource, '2018', 'loose'),
+#     'samples': mc
+# }
 
 
-aliases['Wtagging_SF_up'] = {
-    'linesToAdd': [
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L {}/VBSjjlnu/Full2018v6s5/corrections/Wtagging_SF.cc+'.format(configurations)
-    ],
-    'class': 'Wtagging_SF',
-    'args': ('up', '2018'),
-    'samples': mc
-}
+# aliases['Wtagging_SF_nominal'] = {
+#     'linesToAdd': [
+#         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+#         '.L {}/VBSjjlnu/Full2018v6s5/corrections/Wtagging_SF.cc+'.format(configurations)
+#     ],
+#     'class': 'Wtagging_SF',
+#     'args': ('nominal','2018'),
+#     'samples': mc
+# }
 
 
-aliases['Wtagging_SF_down'] = {
-    'linesToAdd': [
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L {}/VBSjjlnu/Full2018v6s5/corrections/Wtagging_SF.cc+'.format(configurations)
-    ],
-    'class': 'Wtagging_SF',
-    'args': ('down', '2018'),
-    'samples': mc
-}
+# aliases['Wtagging_SF_up'] = {
+#     'linesToAdd': [
+#         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+#         '.L {}/VBSjjlnu/Full2018v6s5/corrections/Wtagging_SF.cc+'.format(configurations)
+#     ],
+#     'class': 'Wtagging_SF',
+#     'args': ('up', '2018'),
+#     'samples': mc
+# }
+
+
+# aliases['Wtagging_SF_down'] = {
+#     'linesToAdd': [
+#         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+#         '.L {}/VBSjjlnu/Full2018v6s5/corrections/Wtagging_SF.cc+'.format(configurations)
+#     ],
+#     'class': 'Wtagging_SF',
+#     'args': ('down', '2018'),
+#     'samples': mc
+# }

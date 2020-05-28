@@ -75,7 +75,12 @@ variables['DNNoutput_high_boost'] = {
 #                         'fold' : 3
 #                         }    
 
-
+#delta angles between the VBS jets
+variables['Wpt_LHE'] = {   'name': 'LHE_Vpt',      
+                        'range' : (16,2,8),  
+                        'xaxis' : 'V Pt @LHE', 
+                        'fold' : 3,
+                        }    
 
 
 #delta angles between the VBS jets
@@ -102,12 +107,12 @@ variables["deta_CR_boost"] = {
             'cuts': phase_spaces_boost
 }
 
-# #MET
-# variables['PuppiMET'] = {   'name': 'PuppiMET_pt',      
-#                         'range' : (30,0,300),  
-#                         'xaxis' : 'PuppiMET_pt', 
-#                         'fold' : 3
-#                         }
+#MET
+variables['PuppiMET'] = {   'name': 'PuppiMET_pt',      
+                        'range' : (30,0,300),  
+                        'xaxis' : 'PuppiMET_pt', 
+                        'fold' : 3
+                        }
 
 
 # VBS vars
@@ -139,11 +144,11 @@ variables['vbs_1_pt'] = {   'name': 'vbs_1_pt',
                         } 
 
 
-# variables['Mtw_lep'] = {   'name': 'Mtw_lep',      
-#                         'range' : (30,0,300),  
-#                         'xaxis' : 'Mass T W leptonic', 
-#                         'fold' : 3
-#                         }
+variables['Mtw_lep'] = {   'name': 'Mtw_lep',      
+                        'range' : (30,0,300),  
+                        'xaxis' : 'Mass T W leptonic', 
+                        'fold' : 3
+                        }
 
 variables['whad_pt'] = {
             'name': "whad_pt",
@@ -241,11 +246,11 @@ variables['Zlep'] = {   'name': 'Zlep',
                 
 
 #jets 
-# variables['nJets'] = {   'name': 'Sum$(CleanJet_pt >= 30)',      
-#                         'range' : (6,4,10),  
-#                         'xaxis' : 'nJets >= 30 GeV', 
-#                         'fold' : 3
-#                         }
+variables['nJets'] = {   'name': 'Sum$(CleanJet_pt >= 30)',      
+                        'range' : (6,4,10),  
+                        'xaxis' : 'nJets >= 30 GeV', 
+                        'fold' : 3
+                        }
 
 # # # Minimum pt 20 GeV in NanoGardening step
 # # variables['N_jets_central'] = {   'name': 'N_jets_central',      
@@ -390,11 +395,11 @@ variables['Zlep'] = {   'name': 'Zlep',
 # #                         }
 
 
-# variables['nvtx'] = {  'name': 'PV_npvs',
-#                         'range': (100, 0,100),
-#                         'xaxis': 'N. primary vertices',
-#                         'fold': 3
-#                 }
+variables['nvtx'] = {  'name': 'PV_npvs',
+                        'range': (100, 0,100),
+                        'xaxis': 'N. primary vertices',
+                        'fold': 3
+                }
 
 # # variables["qgl"] = { 'name': 'Jet_qgl[CleanJet_jetIdx[0]]',
 # #                     'range': (40, 0,1),
