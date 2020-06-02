@@ -56,12 +56,12 @@ variables['pt_sum_boosted'] = {
 ##################  Lepton 0  #######################
 #####################################################
 
-variables['lepton0_pt'] = {
-    'name' : 'Lepton_pt[0]',
-    'range': (25,0,400),
-    'xaxis': 'lepton[0] pt',
-    'fold' : 3
-}
+# variables['lepton0_pt'] = {
+#     'name' : 'Lepton_pt[0]',
+#     'range': (25,0,400),
+#     'xaxis': 'lepton[0] pt',
+#     'fold' : 3
+# }
 # variables['lepton0_eta'] = {
 #     'name' : 'Lepton_eta[0]',
 #     'range': ([-2.5, -2.1, -1.6, -1.4, 0.0, 1.4, 1.6, 2.1, 2.5],),
@@ -106,12 +106,12 @@ variables['lepton0_pt'] = {
 ######################  MET  ########################
 #####################################################
 
-variables['met_pt'] = {
-    'name' : 'PuppiMET_pt',
-    'range': (25,0,400),
-    'xaxis': 'MET pt',
-    'fold' : 3
-}
+# variables['met_pt'] = {
+#     'name' : 'PuppiMET_pt',
+#     'range': (25,0,400),
+#     'xaxis': 'MET pt',
+#     'fold' : 3
+# }
 # variables['met_phi'] = {
 #     'name' : 'PuppiMET_phi',
 #     'range': (12, -3.142, 3.142),
@@ -124,12 +124,12 @@ variables['met_pt'] = {
 ######################  Jets  #######################
 #####################################################
 
-variables['jet0_pt'] = {
-   'name' : 'Alt$(CleanJet_pt[0], -1)',
-   'range': (25, 0, 400),
-   'xaxis': 'clJet[0] pt',
-   'fold' : 3
-}
+# variables['jet0_pt'] = {
+#    'name' : 'Alt$(CleanJet_pt[0], -1)',
+#    'range': (25, 0, 400),
+#    'xaxis': 'clJet[0] pt',
+#    'fold' : 3
+# }
 # variables['jet0_eta'] = {
 #     'name' : 'Alt$(CleanJet_eta[0], -99)',
 #     'range': ([-2.5, -2.1, -1.6, -1.4, 0.0, 1.4, 1.6, 2.1, 2.5],),
@@ -204,18 +204,18 @@ variables['hmHiggsMass'] = {
 # }
 
 
-variables['plot_resolvHMass'] = {
-    'name' : 'Hlnjj_mass',
-    'range': (24, 0, 1200),
-    'xaxis': '(resolv) reconstr. H mass [GeV]',
-    'fold' : 3
-}
-variables['plot_boostHMass'] = {
-    'name' : 'CleanFatJetPassMBoosted_HlnFat_mass[0]',
-    'range': (40, 0, 2000),
-    'xaxis': '(boost) reconstr. H mass [GeV]',
-    'fold' : 3
-}
+# variables['plot_resolvHMass'] = {
+#     'name' : 'Hlnjj_mass',
+#     'range': (24, 0, 1200),
+#     'xaxis': '(resolv) reconstr. H mass [GeV]',
+#     'fold' : 3
+# }
+# variables['plot_boostHMass'] = {
+#     'name' : 'CleanFatJetPassMBoosted_HlnFat_mass[0]',
+#     'range': (40, 0, 2000),
+#     'xaxis': '(boost) reconstr. H mass [GeV]',
+#     'fold' : 3
+# }
 #
 # variables['resolvWhadMass'] = {
 #     'name' : 'Whad_mass',

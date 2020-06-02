@@ -681,27 +681,32 @@ nuisances['QCDscale_gg_ACCEPT'] = {
 # Replace lnN nuisances (from QCD and PDF only -> Other lnN nuisance are consistent across SBI) for samples contributing to SBI with shape:
 oldnuisances = copy.deepcopy(nuisances)
 for nuis in oldnuisances:
-  if nuisances[nuis]['type'] == "lnN" and (("QCD" in nuis) or ("pdf" in nuis)):
-    for samp in oldnuisances[nuis]['samples']:
-      if ("GGH" in samp) or ("QQH" in samp) or (samp in ["ggWW", "ggH_hww", "qqWWqq", "qqH_hww"]):
-        lnNval = nuisances[nuis]['samples'][samp]
-        if "/" in lnNval:
-          lnNvalUp = lnNval.split('/')[0]
-          lnNvalDn = lnNval.split('/')[1]
-        else:
-          lnNvalUp = lnNval
-          lnNvalDn = str(1.0/float(lnNval)
-        if nuis+'_shape' in nuisances:
-          nuisances[nuis+'_shape']['samples'].update({samp: [lnNvalUp, lnNvalDn]})
-        else:
-          nuisances[nuis+'_shape'] = {
-                'name'  : nuisances[nuis]['name'],
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples' : { samp : [lnNvalUp, lnNvalDn] },
-                }
-        del nuisances[nuis]['samples'][samp]
-        if nuisances[nuis]['samples'] == {}: del nuisances[nuis]
+    if nuisances[nuis]['type'] == "lnN" and (("QCD" in nuis) or ("pdf" in nuis)):
+        for samp in oldnuisances[nuis]['samples']:
+            if not(
+                ("GGH" in samp) or
+                ("QQH" in samp) or
+                (samp in ["ggWW", "ggH_hww", "qqWWqq", "qqH_hww"])
+            ): continue
+            # 'else' from inverted logic above:
+            lnNval = nuisances[nuis]['samples'][samp]
+            if "/" in lnNval:
+                lnNvalUp = lnNval.split('/')[0]
+                lnNvalDn = lnNval.split('/')[1]
+            else:
+                lnNvalUp = lnNval
+                lnNvalDn = str(1.0/float(lnNval))
+            if nuis+'_shape' in nuisances:
+                nuisances[nuis+'_shape']['samples'].update({samp: [lnNvalUp, lnNvalDn]})
+            else:
+                nuisances[nuis+'_shape'] = {
+                    'name'  : nuisances[nuis]['name'],
+                    'kind'  : 'weight',
+                    'type'  : 'shape',
+                    'samples' : { samp : [lnNvalUp, lnNvalDn] },
+                    }
+            del nuisances[nuis]['samples'][samp]
+            if nuisances[nuis]['samples'] == {}: del nuisances[nuis]
 
 
 

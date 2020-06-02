@@ -10,9 +10,9 @@ supercut = 'LepWPCut[0] && Lepton_pt[0]>35 \
 
 ##=== Define categories ===###
 LepCats={}
-LepCats['incl_']='1'
-# LepCats['ElCh_']='(abs(Lepton_pdgId[0])==11)'
-# LepCats['MuCh_']='(abs(Lepton_pdgId[0])==13)'
+# LepCats['incl_']='1'
+LepCats['ElCh_']='(abs(Lepton_pdgId[0])==11)'
+LepCats['MuCh_']='(abs(Lepton_pdgId[0])==13)'
 
 
 
@@ -29,15 +29,15 @@ BoostCats['BoostedSR_']='tau21Cut \
                         && boostedNoTau21[0] \
                         && boostedSignalWMassNoTau21[0] \
                         && bVeto[0]'
-# BoostCats['BoostedSB_']='tau21Cut \
-#                        && boostedNoTau21[0] \
-#                        && !boostedSignalWMassNoTau21[0] \
-#                        && boostedSidebandWMassNoTau21[0] \
-#                        && bVeto[0]'
-# BoostCats['BoostedTopCR_']='tau21Cut \
-#                        && boostedNoTau21[0] \
-#                        && boostedSignalWMassNoTau21[0] \
-#                        && bReq[0]'
+BoostCats['BoostedSB_']='tau21Cut \
+                       && boostedNoTau21[0] \
+                       && !boostedSignalWMassNoTau21[0] \
+                       && boostedSidebandWMassNoTau21[0] \
+                       && bVeto[0]'
+BoostCats['BoostedTopCR_']='tau21Cut \
+                       && boostedNoTau21[0] \
+                       && boostedSignalWMassNoTau21[0] \
+                       && bReq[0]'
 
 
 # High Mass category
@@ -48,10 +48,10 @@ sumPtCut   ='&& Lepton_pt[0] + PuppiMET_pt + Alt$(CleanFatJetPassMBoosted_pt[0],
 
 HMProcCats={}
 # HMProcCats['050_'] = 'tau21DDT < 0.45'
-HMProcCats['050_'] = 'tau21DDT < 0.5'
-HMProcCats['055_'] = 'tau21DDT < 0.55'
+# HMProcCats['050_'] = 'tau21DDT < 0.5'
+# HMProcCats['055_'] = 'tau21DDT < 0.55'
 # HMProcCats['060_'] = 'tau21DDT < 0.6'
-HMProcCats['all5_']= 'tau21DDT < 0.55' +dPhiLNuCut+dPhiWWCut+fatJetPtCut+sumPtCut
+# HMProcCats['all5_']= 'tau21DDT < 0.55' +dPhiLNuCut+dPhiWWCut+fatJetPtCut+sumPtCut
 # HMProcCats['all6_']= 'tau21DDT < 0.6' +dPhiLNuCut+dPhiWWCut+fatJetPtCut+sumPtCut
 
 # HMProcCats['LNu']='1'+dPhiLNuCut
@@ -63,19 +63,21 @@ HMProcCats['notWW']='tau21DDT<0.6'+sumPtCut
 # HMProcCats['sumpt']='1'+sumPtCut
 HMProcCats['notsumpt']='tau21DDT<0.6'+dPhiWWCut
 # HMProcCats['notTauDDT']='1'+dPhiWWCut+fatJetPtCut+sumPtCut
-HMProcCats['some5']='tau21DDT<0.55'+dPhiWWCut+sumPtCut
+HMProcCats['some55']='tau21DDT<0.55'+dPhiWWCut+sumPtCut
+HMProcCats['some50']='tau21DDT<0.50'+dPhiWWCut+sumPtCut
+
 
 HMCats={}
 HMCats['HMSR_']='boostedNoTau21[0] \
                 && boostedSignalWMassNoTau21[0] \
                 && bVeto[0]'
-# HMCats['HMSB_']='boostedNoTau21[0] \
-#                && !boostedSignalWMassNoTau21[0] \
-#                && boostedSidebandWMassNoTau21[0] \
-#                && bVeto[0]'
-# HMCats['HMTopCR_']='boostedNoTau21[0] \
-#                && boostedSignalWMassNoTau21[0] \
-#                && bReq[0]'
+HMCats['HMSB_']='boostedNoTau21[0] \
+               && !boostedSignalWMassNoTau21[0] \
+               && boostedSidebandWMassNoTau21[0] \
+               && bVeto[0]'
+HMCats['HMTopCR_']='boostedNoTau21[0] \
+               && boostedSignalWMassNoTau21[0] \
+               && bReq[0]'
 
 
 ResolveProcCats={}
@@ -88,18 +90,17 @@ ResolveCats={}
 # ResolveCats['Resolved']='resolved[0]'
 ResolveCats['ResolvedSR_']='resolved[0] && resolvedSignalWMass[0] && bVeto[0]'
 ResolveCats['ResolvedSB_']='resolved[0] \
-#                            && !resolvedSignalWMass[0] \
-#                            && resolvedSidebandWMass[0] \
-#                            && bVeto[0]'
-# # ResolveCats['ResolvedSB____low']='resolved[0] \
-# #                             && !resolvedSignalWMass[0] \
-# #                             && lowResolvedSidebandWMass[0] \
-# #                             && bVeto[0]'
-# # ResolveCats['ResolvedSB____high']='resolved[0] \
-# #                             && !resolvedSignalWMass[0] \
-# #                             && highResolvedSidebandWMass[0] \
-# #                             && bVeto[0]'
-#
+                           && !resolvedSignalWMass[0] \
+                           && resolvedSidebandWMass[0] \
+                           && bVeto[0]'
+# ResolveCats['ResolvedSB____low']='resolved[0] \
+#                             && !resolvedSignalWMass[0] \
+#                             && lowResolvedSidebandWMass[0] \
+#                             && bVeto[0]'
+# ResolveCats['ResolvedSB____high']='resolved[0] \
+#                             && !resolvedSignalWMass[0] \
+#                             && highResolvedSidebandWMass[0] \
+#                             && bVeto[0]'
 ResolveCats['ResolvedTopCR_']='resolved[0] && resolvedSignalWMass[0] && bReq[0]'
 
 # ResolveCats['ResolvedTESTSR_']='resolvedTEST[0] && resolvedSignalWMass[0] && bVeto[0]'
