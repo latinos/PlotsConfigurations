@@ -3,7 +3,6 @@
 #variables = {}
     
 #'fold' : # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
-#'scaleMultiplicativeOverlaid' : amount to scale overlaid signal by
 # The following is needed if combining plots between years:
 #'doWeight' : 1
 #'binX' : 1 
@@ -60,16 +59,16 @@ variables['pTlmetjj'] = {   'name' : 'ZH3l_pTlmetjj',
                             }
 
 variables['mTlmetjj']   = { 'name' : 'ZH3l_mTlmetjj_test[0]', #FIXME
-                            'range' : (25,0,500),
+                            'range' : (16,50,450),
                             'xaxis' : 'mTlmetjj',
-                            'fold' : 0,
+                            'fold' : 3,
                             'cuts' : [cut for cut in cuts if '1j' not in cut]
                         }
 
 variables['mTlmetj']   = { 'name' : 'ZH3l_mTlmetj_test[0]', #FIXME
-                            'range' : (25,0,500),
+                            'range' : (10,0,250),
                             'xaxis' : 'mTlmetj',
-                            'fold' : 0,
+                            'fold' : 2,
                         }
 
 variables['ptz']        = { 'name' : 'ZH3l_pTZ',
@@ -99,6 +98,13 @@ variables['checkmZ']    = { 'name' : 'ZH3l_checkmZ',
 variables['ptjet0']     = { 'name' : 'CleanJet_pt[0]',
                             'range' : (20,0,200),
                             'xaxis' : 'Leading jet p_{T}',
+                            'fold' : 0
+                        }
+
+variables['ptjet1']     = { 'name' : 'CleanJet_pt[1]',
+                            'range' : (20,0,200),
+                            'xaxis' : 'Subleading jet p_{T}',
+                            'cuts' : [cut for cut in cuts if '1j' not in cut],
                             'fold' : 0
                         }
 

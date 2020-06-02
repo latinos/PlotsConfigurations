@@ -318,7 +318,7 @@ samples['Fake']  = {   'name': [ ] ,
                        'weight' : fakeW+'*'+METFilter_DATA,
                        'weights' : [ ] ,
                        'isData': ['all'],
-                       'FilesPerJob' : 50 ,
+                       'FilesPerJob' : 500 ,
                      }
 
 directory = treeBaseDir+'Run2018_102X_nAODv6_Full2018v6_ForNewWPs/DATAl1loose2018v6__l2loose__fakeW/'
@@ -343,7 +343,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'weight' : METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],
-                       'FilesPerJob' : 50 ,
+                       'FilesPerJob' : 500 ,
                   }
 
 directory = treeBaseDir+'/Run2018_102X_nAODv6_Full2018v6/DATAl1loose2018v6__l2loose__l2tightOR2018v6/'
