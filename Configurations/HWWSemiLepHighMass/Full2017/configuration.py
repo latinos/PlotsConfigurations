@@ -12,6 +12,7 @@ aliasesFile = 'aliases.py'
 
 # file with list of variables
 variablesFile = 'variables.py'
+# variablesFile = 'variablesLimits.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py'

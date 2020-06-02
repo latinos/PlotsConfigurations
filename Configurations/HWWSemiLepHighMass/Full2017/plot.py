@@ -22,11 +22,23 @@ groupPlot['top']  = {
     'samples'  : ['top']
 }
 
-groupPlot['Wjets'] = {
-    'nameHR' : "W+jets",
+# groupPlot['Wjets'] = {
+#     'nameHR' : "W+jets",
+#     'isSignal' : 0,
+#     'color': 921,      # kGray + 1
+#     'samples'  : ['Wjets']
+# }
+groupPlot['Wjets 0J'] = {
+    'nameHR' : "W+jets 0J",
     'isSignal' : 0,
     'color': 921,      # kGray + 1
-    'samples'  : ['Wjets']
+    'samples'  : ['Wjets-0J']
+}
+groupPlot['Wjets 1+2J'] = {
+    'nameHR' : "W+jets 1+2J",
+    'isSignal' : 0,
+    'color': 925,      # kGray + 5
+    'samples'  : ['Wjets-1+2J']
 }
 
 groupPlot['QCD'] = {
@@ -54,7 +66,7 @@ groupPlot['SM Higgs'] = {
     'nameHR': 'SM Higgs',
     'isSignal' : 0,
     'color': 863, # kAzure +3
-    'samples'  : ['ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt']
+    'samples'  : ['ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']
 }
 
 for counter, MX in enumerate(plotmasses):
@@ -159,7 +171,19 @@ plot['VVV']  = {
     'scale'    : 1.0
 }
 
-plot['Wjets']  = {
+# plot['Wjets']  = {
+#     'color': 856, # kAzure -4
+#     'isSignal' : 0,
+#     'isData'   : 0,
+#     'scale'    : 1.0
+# }
+plot['Wjets-0J']  = {
+    'color': 856, # kAzure -4
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0
+}
+plot['Wjets-1+2J']  = {
     'color': 856, # kAzure -4
     'isSignal' : 0,
     'isData'   : 0,
@@ -242,12 +266,12 @@ plot['ZH_htt']  = {
     'isData'   : 0,
     'scale'    : 1.0,
 }
-# plot['WH_htt']  = {
-#     'color': 428,    # kGreen+12
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1.0,
-# }
+plot['WH_htt']  = {
+    'color': 428,    # kGreen+12
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0,
+}
 
 
 

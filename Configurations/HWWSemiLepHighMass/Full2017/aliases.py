@@ -204,7 +204,7 @@ aliases['b2b_WW_boosted'] = {
 aliases['LHEPartWlepPt'] = {
     'linesToAdd': ['.L %s/HWWSemiLepHighMass/Full2017/LHEPartWlepPt.cc' % configurations],
     'class': 'LHEPartWlepPt',
-    'samples': "Wjets"
+    'samples': ['Wjets-0J', 'Wjets-1+2J']
 }
 data = np.genfromtxt(os.getenv('CMSSW_BASE')+'/src/LatinoAnalysis/Gardener/python/data/ewk/kewk_w.dat', skip_header=2, skip_footer=7)
 
@@ -226,11 +226,12 @@ uncert_string=uncert_string[:-1]+")"
 
 aliases['EWK_W_correction'] = {
     'expr': weight_string,
-    'samples': 'Wjets'
+    'samples': ['Wjets-0J', 'Wjets-1+2J']
 }
 aliases['EWK_W_correction_uncert'] = {
     'expr': uncert_string,
-    'samples': 'Wjets'
+    # 'samples': 'Wjets'
+    'samples': ['Wjets-0J', 'Wjets-1+2J']
 }
 
 
