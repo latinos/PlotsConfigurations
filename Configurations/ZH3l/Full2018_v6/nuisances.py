@@ -256,6 +256,19 @@ nuisances['PS_FSR'] = {
              },
 }
 
+nuisances['PU'] = {
+    'name': 'CMS_PU_2018',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+       'WZ': ['1.00103945*(puWeightUp/puWeight)', '0.99898154*(puWeightDown/puWeight)'],
+       'ZZ': ['1.00125684*(puWeightUp/puWeight)', '0.99878368*(puWeightDown/puWeight)'],
+       'ZH_hww': ['1.00129463*(puWeightUp/puWeight)', '0.99847264*(puWeightDown/puWeight)'],
+       'ggZH_hww': ['0.99973837*(puWeightUp/puWeight)', '1.0001526*(puWeightDown/puWeight)'],
+      },
+      'AsLnN': '1',
+}
+
 nuisances['UE_whss']  = {
                 'name'  : 'UE_whss',
                 'skipCMS' : 1,
