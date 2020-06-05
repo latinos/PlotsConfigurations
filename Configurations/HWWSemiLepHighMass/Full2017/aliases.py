@@ -182,9 +182,9 @@ aliases['tau21DDT'] = {
 }
 # smaller angle is: a-b - (a-b > 3.1416)*2*3.1416 + (a-b < -3.1416)*2*3.1416
 aliases['dPhi_WW_boosted'] = {
-    'expr': 'Wlep_phi_Puppi - Alt$(CleanFatJetPassMBoosted_phi[0])\
-- (Wlep_phi_Puppi - Alt$(CleanFatJetPassMBoosted_phi[0]) > 3.1416)*2*3.1416\
-+ (Wlep_phi_Puppi - Alt$(CleanFatJetPassMBoosted_phi[0]) < -3.1416)*2*3.1416',
+    'expr': 'Wlep_phi_Puppi - Alt$(CleanFatJetPassMBoosted_phi[0], 0)\
+- (Wlep_phi_Puppi - Alt$(CleanFatJetPassMBoosted_phi[0], 0) > 3.1416)*2*3.1416\
++ (Wlep_phi_Puppi - Alt$(CleanFatJetPassMBoosted_phi[0], 0) < -3.1416)*2*3.1416',
 }
 aliases['dPhi_WW_resolved'] = {
     'expr': 'Wlep_phi_Puppi - Whad_phi\
