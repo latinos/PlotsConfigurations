@@ -21,7 +21,7 @@ cutsFile = direc +'/cuts.py'
 samplesFile = direc+'/samples.py' 
 
 #t file with list of samples
-plotFile = direc+'/plot_wjetsLOvsNLO.py' 
+plotFile = direc+'/plot.py' 
 #plotFile = direc +'/plot_boostcaled_ele.py'
 
 # luminosity to normalize to (in 1/fb)
@@ -33,7 +33,7 @@ lumi = 59.74
 outputDirPlots = 'plot_'+tag +"_wjetsNLO"
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards_'+tag 
+outputDirDatacard = 'datacards_'+tag +"_v3"
 #outputDirDatacard = 'datacards_'+tag +"_v2"
 
 # structure file for datacard

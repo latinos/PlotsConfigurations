@@ -1,7 +1,7 @@
 import re 
 import sys 
 
-regex = r"(?P<channel>\S*)\s*(?P<sample>\S*)\s*(?P<prefitnorm>\d*\.\d*)\s[+]\/-\s(?P<prefiterr>\d*\.\d*)\s*(\d*\.\d*)\s[+]\/-\s(?P<err>\d*\.\d*)\s*(?P<norm>\d*\.\d*)\s[+]\/-\s(\d*\.\d*)"
+regex = r"(?P<channel>\S*)\s*(?P<sample>\S*)\s*(?P<prefitnorm>\d*\.\d*)\s[+]\/-\s(?P<prefiterr>\d*\.\d*)\s*(?P<sbnorm>\d*\.\d*)\s[+]\/-\s(?P<sberr>\d*\.\d*)\s*(?P<bnorm>\d*\.\d*)\s[+]\/-\s(?P<berr>\d*\.\d*)"
 
 
 lines = open(sys.argv[1]).readlines()
@@ -16,10 +16,10 @@ for l in lines:
         sample = match.group("sample")
         prefitnorm = match.group("prefitnorm")
         prefiterr = match.group("prefiterr")
-        norm = match.group("norm")
-        incert = match.group("err")
+        norm = match.group("sbnorm")
+        incert = match.group("sberr")
 
-        if not "wjetcr_res_dnnhigh" in channel: continue 
+        if not "wjetcr" in channel: continue 
         if not "Wjets" in sample: continue
 
        

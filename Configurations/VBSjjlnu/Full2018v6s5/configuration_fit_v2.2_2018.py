@@ -6,7 +6,7 @@ tag = 'fit_v2.2_2018'
 direc = "conf_fit_v2.2"
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_'+tag 
+outputDir = 'rootFile_'+tag +"_missingcut"
 
 # file with TTree aliases
 aliasesFile = direc+'/aliases.py'
@@ -34,13 +34,13 @@ outputDirPlots = 'plot_'+tag
 
 # used by mkDatacards to define output directory for datacards
 #outputDirDatacard = 'datacards_'+tag 
-outputDirDatacard = 'datacards_'+tag
+outputDirDatacard = 'datacards_'+tag +"_v3"
 
 # structure file for datacard
 structureFile = direc+'/structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = direc+'/nuisances.py'
-#nuisancesFile = direc+'/nuisances_datacard.py'
+#nuisancesFile = direc+'/nuisances.py'
+nuisancesFile = direc+'/nuisances_datacard.py'
 #nuisancesFile = direc + '/nuisances_datacard.py'
