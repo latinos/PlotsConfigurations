@@ -130,7 +130,7 @@ files+= nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext1')
 samples['DY'] = {
     'name': files,
     'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)',
-    'FilesPerJob': 9,
+    'FilesPerJob': 10,
 }
 addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO)
@@ -159,7 +159,7 @@ files = nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic_PSweights') + \
 samples['top'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 7,
+    'FilesPerJob': 8,
 }
 addSampleWeight(samples,'top','TTToSemiLeptonic_PSweights','Top_pTrw')
 
@@ -377,7 +377,7 @@ files+= nanoGetSampleFiles(mcDirectory, 'QCD_Pt_20to30_bcToE') +\
 samples['QCD'] = {
     'name'   :   files,
     'weight' : mcCommonWeightNoMatch,
-    'FilesPerJob' : 8,
+    'FilesPerJob' : 10,
 }
 
 # addSampleWeight(samples, 'QCD', 'QCD_Pt-15to20_EMEnriched', '(abs(Lepton_pdgId[0])==11)')
@@ -559,7 +559,6 @@ for MX in massvbf:
         addSampleWeight(samples, 'MSSMQQHINT_'+MX+model_name, 'VBFHToWWToLNuQQ_M'+MX, newbasew+'/baseW')
 
 
-
 ###########################################
 ################## DATA ###################
 ###########################################
@@ -569,7 +568,7 @@ samples['DATA'] = {
   'weight': 'METFilter_DATA',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 40
+  'FilesPerJob': 35
 }
 
 for _, sd in DataRun:

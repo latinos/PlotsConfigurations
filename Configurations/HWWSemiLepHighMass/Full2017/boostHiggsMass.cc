@@ -4,9 +4,7 @@
 // #include <vector>
 
 // #include "TVector2.h"
-// #include "Math/Vector4Dfwd.h"
-#include "Math/GenVector/LorentzVector.h"
-#include "Math/GenVector/PtEtaPhiM4D.h"
+#include "Math/Vector4D.h"
 
 // #include <iostream>
 

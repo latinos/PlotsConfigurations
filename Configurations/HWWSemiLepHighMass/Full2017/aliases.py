@@ -73,12 +73,12 @@ aliases['resolvHiggsMT'] = {
 
 
 aliases['idxCleanFatJetW'] = {
-    'linesToAdd': ['.L %s/HWWSemiLepHighMass/Full2017/indexWFatJet.cc' % configurations],
+    'linesToAdd': ['.L %s/HWWSemiLepHighMass/Full2017/indexWFatJet.cc+' % configurations],
     'class': 'FindBoostWIndex'
 }
 
 aliases['manualHfatM'] = {
-    'linesToAdd': ['.L %s/HWWSemiLepHighMass/Full2017/boostHiggsMass.cc' % configurations],
+    'linesToAdd': ['.L %s/HWWSemiLepHighMass/Full2017/boostHiggsMass.cc+' % configurations],
     'class': 'CalcBoostHiggsMass',
 }
 aliases['tau21Cut'] = {
@@ -180,14 +180,21 @@ aliases['resolvedQCDcr'] = {
 aliases['tau21DDT'] = {
     'expr': 'Alt$(CleanFatJet_tau21[(int)idxCleanFatJetW], -999) + 0.080 * TMath::Log( Alt$(CleanFatJet_mass[(int)idxCleanFatJetW]*CleanFatJet_mass[(int)idxCleanFatJetW], 0) / Alt$(CleanFatJet_pt[(int)idxCleanFatJetW], 1) )'
 }
+# smaller angle is: a-b - (a-b > 3.1416)*2*3.1416 + (a-b < -3.1416)*2*3.1416
 aliases['dPhi_WW_boosted'] = {
-    'expr': 'fmod(Wlep_phi_Puppi - Alt$(CleanFatJetPassMBoosted_phi[0], 0) + 3.1416, 6.1832) - 3.1416',
+    'expr': 'Wlep_phi_Puppi - Alt$(CleanFatJetPassMBoosted_phi[0])\
+- (Wlep_phi_Puppi - Alt$(CleanFatJetPassMBoosted_phi[0]) > 3.1416)*2*3.1416\
++ (Wlep_phi_Puppi - Alt$(CleanFatJetPassMBoosted_phi[0]) < -3.1416)*2*3.1416',
 }
 aliases['dPhi_WW_resolved'] = {
-    'expr': 'fmod(Wlep_phi_Puppi - Whad_phi + 3.1416, 6.1832) - 3.1416',
+    'expr': 'Wlep_phi_Puppi - Whad_phi\
+    - (Wlep_phi_Puppi - Whad_phi > 3.1416)*2*3.1416 \
+    + (Wlep_phi_Puppi - Whad_phi < -3.1416)*2*3.1416',
 }
 aliases['dPhi_LNu'] = {
-    'expr': 'fmod(Lepton_phi[0] - PuppiMET_phi + 3.1416, 6.1832) - 3.1416',
+    'expr': 'Lepton_phi[0] - PuppiMET_phi\
+    - (Lepton_phi[0] - PuppiMET_phi > 3.1416)*2*3.1416 \
+    + (Lepton_phi[0] - PuppiMET_phi < -3.1416)*2*3.1416',
 }
 aliases['dR_WW_boosted'] = {
     'expr': 'TMath::Sqrt(TMath::Power(Wlep_eta_Puppi - Alt$(CleanFatJetPassMBoosted_eta[0], 0), 2) + TMath::Power(dPhi_WW_boosted[0], 2))'
@@ -199,10 +206,8 @@ aliases['b2b_WW_boosted'] = {
 
 
 
-
-
 aliases['LHEPartWlepPt'] = {
-    'linesToAdd': ['.L %s/HWWSemiLepHighMass/Full2017/LHEPartWlepPt.cc' % configurations],
+    'linesToAdd': ['.L %s/HWWSemiLepHighMass/Full2017/LHEPartWlepPt.cc+' % configurations],
     'class': 'LHEPartWlepPt',
     'samples': ['Wjets-0J', 'Wjets-1+2J']
 }

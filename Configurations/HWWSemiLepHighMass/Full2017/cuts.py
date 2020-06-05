@@ -40,6 +40,7 @@ BoostCats['BoostedTopCR_']='tau21Cut \
                        && bReq[0]'
 
 
+
 # High Mass category
 dPhiLNuCut ='&& abs(dPhi_LNu[0]) < 0.7'
 dPhiWWCut  ='&& abs(dPhi_WW_boosted[0]) > 2.2'
@@ -57,14 +58,14 @@ HMProcCats={}
 # HMProcCats['LNu']='1'+dPhiLNuCut
 # HMProcCats['notLNu']='tau21DDT<0.55'+dPhiWWCut+fatJetPtCut+sumPtCut
 # HMProcCats['WW']='1'+dPhiWWCut
-HMProcCats['notWW']='tau21DDT<0.6'+sumPtCut
+HMProcCats['notWW']='tau21DDT<0.55'+sumPtCut
 # HMProcCats['jetpt']='1'+fatJetPtCut
 # HMProcCats['notjetpt']='tau21DDT<0.55'+dPhiWWCut+sumPtCut+dPhiLNuCut
 # HMProcCats['sumpt']='1'+sumPtCut
-HMProcCats['notsumpt']='tau21DDT<0.6'+dPhiWWCut
+HMProcCats['notsumpt']='tau21DDT<0.55'+dPhiWWCut
 # HMProcCats['notTauDDT']='1'+dPhiWWCut+fatJetPtCut+sumPtCut
 HMProcCats['some55']='tau21DDT<0.55'+dPhiWWCut+sumPtCut
-HMProcCats['some50']='tau21DDT<0.50'+dPhiWWCut+sumPtCut
+HMProcCats['some52']='tau21DDT<0.52'+dPhiWWCut+sumPtCut
 
 
 HMCats={}
