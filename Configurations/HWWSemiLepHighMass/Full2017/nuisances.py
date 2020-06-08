@@ -57,38 +57,38 @@ nuisances['lumi_Uncorrelated'] = {
     'samples': dict((skey, '1.02') for skey in mc if skey not in ['Wjets', 'top'])
 }
 
-nuisances['lumi_XYFact'] = {
-    'name': 'lumi_13TeV_XYFact',
+nuisances['lumi_XY'] = {
+    'name': 'lumi_13TeV_XY',
     'type': 'lnN',
     'samples': dict((skey, '1.008') for skey in mc if skey not in ['Wjets', 'top'])
 }
 
-nuisances['lumi_LScale'] = {
-    'name': 'lumi_13TeV_LSCale',
+nuisances['lumi_LS'] = {
+    'name': 'lumi_13TeV_LS',
     'type': 'lnN',
     'samples': dict((skey, '1.003') for skey in mc if skey not in ['Wjets', 'top'])
 }
 
-nuisances['lumi_BBDefl'] = {
-    'name': 'lumi_13TeV_BBDefl',
+nuisances['lumi_BBD'] = {
+    'name': 'lumi_13TeV_BBD',
     'type': 'lnN',
     'samples': dict((skey, '1.004') for skey in mc if skey not in ['Wjets', 'top'])
 }
 
-nuisances['lumi_DynBeta'] = {
-    'name': 'lumi_13TeV_DynBeta',
+nuisances['lumi_DB'] = {
+    'name': 'lumi_13TeV_DB',
     'type': 'lnN',
     'samples': dict((skey, '1.005') for skey in mc if skey not in ['Wjets', 'top'])
 }
 
-nuisances['lumi_CurrCalib'] = {
-    'name': 'lumi_13TeV_CurrCalib',
+nuisances['lumi_BCC'] = {
+    'name': 'lumi_13TeV_BCC',
     'type': 'lnN',
     'samples': dict((skey, '1.003') for skey in mc if skey not in ['Wjets', 'top'])
 }
 
-nuisances['lumi_Ghosts'] = {
-    'name': 'lumi_13TeV_Ghosts',
+nuisances['lumi_GS'] = {
+    'name': 'lumi_13TeV_GS',
     'type': 'lnN',
     'samples': dict((skey, '1.001') for skey in mc if skey not in ['Wjets', 'top'])
 }
@@ -105,13 +105,23 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
     if 'stats' in shift:
         name += '_2017'
 
-    nuisances['btag_shape_%s' % shift] = {
+    nuisances['btag_%s' % shift] = {
         'name': name,
         'kind': 'weight',
         'type': 'shape',
         'samples': dict((skey, btag_syst) for skey in mc),
     }
 
+
+
+##### WtagSF
+
+# nuisance['wtag'] = {
+#     'kind': 'weight',
+#     'type': 'shape',
+#     'samples': dict((skey, ['SFWtagUp', 'SFWtagDown']) for skey in mc),
+#     'cuts': [cutdict['Resolv'], cutdict['Boost']]
+# }
 
 
 
@@ -266,14 +276,14 @@ nuisances['singleTopToTTbar'] = {
 }
 
 ## Top pT reweighting uncertainty
-
-nuisances['TopPtRew'] = {
-    'name': 'CMS_topPtRew',   # Theory uncertainty
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {'top': ["Top_pTrw*Top_pTrw", "1."]},
-    'symmetrize': True
-}
+# currently replaced by QCD scale
+# nuisances['TopPtRew'] = {
+#     'name': 'CMS_topPtRew',   # Theory uncertainty
+#     'kind': 'weight',
+#     'type': 'shape',
+#     'samples': {'top': ["Top_pTrw*Top_pTrw", "1."]},
+#     'symmetrize': True
+# }
 
 nuisances['VgStar'] = {
     'name': 'hww_VgStarScale',
@@ -493,6 +503,16 @@ nuisances['QCDscale_ggVV'] = {
     'samples': {
         'ggWW': '1.15',
     },
+}
+
+
+nuisances['QCDscale_ttbar']  = {
+    'name' : 'QCDscale_ttbar',
+    'kind' : 'weight_envelope',
+    'type' : 'shape',
+    'samples'  : {
+        'top' : variations,
+    }
 }
 
 
