@@ -31,9 +31,9 @@ for categories in newfile.GetListOfKeys(): # Cut directory
   newfile2.mkdir(categories.GetName())
 
   for variables in category.GetListOfKeys(): # Variable directory
-    isCR = 1 if ("top" in categories.GetName() or "dy" in categories.GetName()) else 0
+    isCR = 1 if ("top" in categories.GetName() or "dy" in categories.GetName() or "TopCR" in categories.GetName() or "SB" in categories.GetName()) else 0
     # if (variables.GetName() == "events" and isCR) or ("_binning" in variables.GetName() and "high" not in categories.GetName() and (not isCR)) or ("highbinning" in variables.GetName() and "high" in categories.GetName() and (not isCR))
-    if not ((variables.GetName() == "events" and isCR) or ("_binning" in variables.GetName() and "high" not in categories.GetName() and (not isCR)) or ("highbinning" in variables.GetName() and "high" in categories.GetName() and (not isCR))): continue
+    if not ((variables.GetName() == "events" and isCR) or ("_binning" in variables.GetName() and "high" not in categories.GetName() and (not isCR)) or ("highbinning" in variables.GetName() and "high" in categories.GetName() and (not isCR)) or ("SR" in categories.GetName() and (variables.GetName() in ["boostHigssMass","resolvHiggsMass"]) )): continue
     variable = category.GetDirectory(variables.GetName())
     newfile2.GetDirectory(categories.GetName()).cd()
     ROOT.gDirectory.mkdir(variables.GetName())

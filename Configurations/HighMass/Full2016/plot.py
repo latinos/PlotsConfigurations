@@ -76,7 +76,8 @@ groupPlot['SMHiggs']  = {
                   'nameHR' : 'SM Higgs',
                   'isSignal' : 0,
                   'color': 632, # kRed 
-		  'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt']
+		  #'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt']
+		  'samples'  : ['ZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww', 'ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt']
               }
 
 groupPlot['HM_200']  = {  
@@ -282,13 +283,13 @@ plot['ZH_hww'] = {
                   'scale'    : 1    #
                   }
 
-plot['ggZH_hww'] = {
-                  'nameHR' : 'ggZH',
-                  'color': 632+4, # kRed+4
-                  'isSignal' : 0,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
+#plot['ggZH_hww'] = {
+#                  'nameHR' : 'ggZH',
+#                  'color': 632+4, # kRed+4
+#                  'isSignal' : 0,
+#                  'isData'   : 0,    
+#                  'scale'    : 1    #
+#                  }
 
 plot['WH_hww'] = {
                   'nameHR' : 'WH',
@@ -316,36 +317,42 @@ plot['ggH_hww'] = {
                   'scale'    : 1    #
                   }
 
-plot['bbH_hww'] = {
-                  'nameHR' : 'bbH',
-                  'color': 632+5, # kRed+5 
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1    #
-                  }
+#plot['bbH_hww'] = {
+#                  'nameHR' : 'bbH',
+#                  'color': 632+5, # kRed+5 
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1    #
+#                  }
 
-plot['ttH_hww'] = {
-                  'nameHR' : 'ttH',
-                  'color': 632+6, # kRed+6
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1    #
-                  }
+#plot['ttH_hww'] = {
+#                  'nameHR' : 'ttH',
+#                  'color': 632+6, # kRed+6
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1    #
+#                  }
 
 
 massplot = ['200','800','2000']
 
 for m in massplot:
-  if m == '200': mult = 1.0
-  elif m == '800': mult = 10.0
-  elif m == '2000': mult = 200.0
+  if m == '200':
+    multggh = 1.0 * HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWTo2L2Nu_M200')['xs']
+    multqqh = 1.0 * HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWTo2L2Nu_M200')['xs']
+  elif m == '800':
+    multggh = 10.0 * HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWTo2L2Nu_M800')['xs']
+    multqqh = 10.0 * HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWTo2L2Nu_M800')['xs']
+  elif m == '2000':
+    multggh = 200.0 * HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWTo2L2Nu_M2000')['xs']
+    multqqh = 200.0 * HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWTo2L2Nu_M2000')['xs']
 
   plot['GGH_'+m+model_name] = {
                   'nameHR' : 'GGH'+m,
                   'color': 632+5, # kRed+5 
                   'isSignal' : 2,
                   'isData'   : 0,
-                  'scale'    : mult    #
+                  'scale'    : multggh    #
                   }
 #  plot['GGHSBI_'+m+model_name] = {
 #                  'nameHR' : 'GGHSBI'+m,
@@ -360,7 +367,7 @@ for m in massplot:
                   'color': 632+5, # kRed+5 
                   'isSignal' : 2,
                   'isData'   : 0,
-                  'scale'    : mult    #
+                  'scale'    : multqqh    #
                   }
 #  plot['QQHSBI_'+m+model_name] = {
 #                  'nameHR' : 'QQHSBI'+m,

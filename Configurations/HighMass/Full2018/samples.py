@@ -23,7 +23,7 @@ elif  'cern' in SITE :
   #treeBaseDirHM = '/eos/user/d/dmroy/HWWNano/'
 
 directory = treeBaseDir+'Autumn18_102X_nAODv6_Full2018v6/MCl1loose2018v6__MCCorr2018v6__l2loose__l2tightOR2018v6/'
-directoryHM = treeBaseDir+'Autumn18_102X_nAODv6_Full2018v6/MCl1loose2018v6__MCCorr2018v6__l2loose__l2tightOR2018v6__BWReweight/'
+directoryHM = treeBaseDir+'Autumn18_102X_nAODv6_Full2018v6/MCl1loose2018v6__MCCorr2018v6__l2loose__l2tightOR2018v6__BWReweight2/'
 
 ################################################
 ############### Lepton WP ######################
@@ -153,7 +153,7 @@ if useEmbeddedDY:
                          'FilesPerJob' : 1, # There's some error about not finding sample-specific variables like "nllW" when mixing different samples into a single job; so split them all up instead
                       }
 
-  veto_dict = {'TTTo2L2Nu'          : 'isTTbar * (TMath::Sqrt(TMath::Exp(4.14819e-02 - 3.67734e-04*topGenPt + 7.60587e-08*topGenPt*topGenPt + 1.29362/(topGenPt+22.8537)) * TMath::Exp(4.14819e-02 - 3.67734e-04*antitopGenPt + 7.60587e-08*antitopGenPt*antitopGenPt + 1.29362/(antitopGenPt+22.8537)))) + isSingleTop',
+  veto_dict = {'TTTo2L2Nu'          : 'isTTbar * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) * (TMath::Sqrt(TMath::Exp(1.61468e-03 + 3.46659e-06*topGenPt - 8.90557e-08*topGenPt*topGenPt) * TMath::Exp(1.61468e-03 + 3.46659e-06*antitopGenPt - 8.90557e-08*antitopGenPt*antitopGenPt))) + isSingleTop',
                'ST_tW_antitop_ext1' : '1' ,
                'ST_tW_top_ext1'     : '1' ,
 
@@ -162,13 +162,13 @@ if useEmbeddedDY:
                'GluGluToWWToTNTN' : '1.53/1.4' ,
                'WpWmJJ_QCD_noTop_ext1' : '(mjjGen_OTF>=100)' ,
 
-               'Zg'                : '0.448' ,
-               'WZTo3LNu_mllmin01' : '(Gen_ZGstar_mass > 0.1)' ,
+               'ZGToLLG'                : '(Gen_ZGstar_mass <= 0)+(Gen_ZGstar_mass > 0)*((Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4) * 0.94 + (Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4) * 1.14)' ,
+               'WZTo3LNu_mllmin01' : '(Gen_ZGstar_mass > 0.1)*((Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4) * 0.94 + (Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4) * 1.14)' ,
 
-               'ZZTo2L2Nu_ext1' : '1' ,
-               'ZZTo2L2Q'       : '1' ,
-               'ZZTo4L_ext1'    : '1' ,
-               'WZTo2L2Q'       : '1'
+               'ZZTo2L2Nu_ext1' : '1.11' ,
+               'ZZTo2L2Q'       : '1.11' ,
+               'ZZTo4L_ext1'    : '1.11' ,
+               'WZTo2L2Q'       : '1.11'
               }
 
   for v_samp,v_weight in veto_dict.items():
@@ -296,19 +296,19 @@ samples['VZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo2L2Nu_ext1',False
 
 # TODO: This needs no GenLepMatch. Why?
 samples['Vg']  = {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',False,'nanoLatino_')
-                               + getSampleFiles(directory,'Zg',False,'nanoLatino_'),
+                               + getSampleFiles(directory,'ZGToLLG',False,'nanoLatino_'),
                     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*(Gen_ZGstar_mass <= 0)'+embed_tautauveto,
                     'FilesPerJob': 5,
                   }
 
-# the following baseW correction is needed in both v5 and v6
-addSampleWeight(samples, 'Vg', 'Zg', '0.448')
+# the following baseW correction is needed in both v5 and v6 (for Zg, Not for ZGToLLG)
+#addSampleWeight(samples, 'Vg', 'Zg', '0.448')
 
 
 ############ VgS ############
 
 samples['VgS']  =  {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',False,'nanoLatino_')
-                                 + getSampleFiles(directory,'Zg',False,'nanoLatino_')
+                                 + getSampleFiles(directory,'ZGToLLG',False,'nanoLatino_')
                                  + getSampleFiles(directory,'WZTo3LNu_mllmin01',False,'nanoLatino_'),
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
                       'FilesPerJob' : 3 ,
@@ -319,7 +319,7 @@ samples['VgS']  =  {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',Fal
                    }
 
 addSampleWeight(samples,'VgS','Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
-addSampleWeight(samples,'VgS','Zg', '(Gen_ZGstar_mass > 0)*0.448')
+addSampleWeight(samples,'VgS','Zg', '(Gen_ZGstar_mass > 0)') #*0.448
 addSampleWeight(samples,'VgS','WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
 
 
@@ -362,28 +362,15 @@ for mass in massggh:
   SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWTo2L2Nu_M'+mass)['xs']
   noSMxsec = '(1.0/'+str(SMxsec)+')'
 
-  # Model independent
+  # Xsec*BR is applied in later step, so remove "SM"-Xsec*BR 
   samples['GGH_'+mass+model_name]  = {  'name'   :   getSampleFiles(directoryHM,'GluGluHToWWTo2L2Nu_M'+mass,True,'nanoLatino_'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+model ,
-                        'FilesPerJob' : 10,
-                        'EventsPerJob' : 80000,
-                     }
-
-  samples['GGHINT_'+mass+model_name]  = {  'name'   :   getSampleFiles(directoryHM,'GluGluHToWWTo2L2Nu_M'+mass,True,'nanoLatino_'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+'('+model_I+'*(abs('+model_I+')<50))' , # abs<100 cut removes 0.035% of all events, abs<50 cut Removes 0.074% of all events
-                        'FilesPerJob' : 10,
-                        'EventsPerJob' : 80000,
-                     }
-
-  # Model dependent -> Xsec*BR is applied in later step, so remove "SM"-Xsec*BR 
-  samples['MSSMGGH_'+mass+model_name]  = {  'name'   :   getSampleFiles(directoryHM,'GluGluHToWWTo2L2Nu_M'+mass,True,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+noSMxsec+'*'+model ,
                         'FilesPerJob' : 10,
                         'EventsPerJob' : 80000,
                      }
 
-  samples['MSSMGGHINT_'+mass+model_name]  = {  'name'   :   getSampleFiles(directoryHM,'GluGluHToWWTo2L2Nu_M'+mass,True,'nanoLatino_'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+noSMxsec+'*'+'('+model_I+'*(abs('+model_I+')<50))' ,
+  samples['GGHINT_'+mass+model_name]  = {  'name'   :   getSampleFiles(directoryHM,'GluGluHToWWTo2L2Nu_M'+mass,True,'nanoLatino_'),
+                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+noSMxsec+'*'+'('+model_I+'*(abs('+model_I+')<50))' , # abs<100 cut removes 0.035% of all events, abs<50 cut Removes 0.074% of all events
                         'FilesPerJob' : 10,
                         'EventsPerJob' : 80000,
                      }
@@ -392,8 +379,6 @@ for mass in massggh:
     newbasew = getBaseWnAOD(directory, 'Autumn18_102X_nAODv6_Full2018v6', ['GluGluHToWWTo2L2Nu_M'+mass])
     addSampleWeight(samples, 'GGH_'+mass+model_name, 'GluGluHToWWTo2L2Nu_M'+mass, newbasew+'/baseW')
     addSampleWeight(samples, 'GGHINT_'+mass+model_name, 'GluGluHToWWTo2L2Nu_M'+mass, newbasew+'/baseW')
-    addSampleWeight(samples, 'MSSMGGH_'+mass+model_name, 'GluGluHToWWTo2L2Nu_M'+mass, newbasew+'/baseW')
-    addSampleWeight(samples, 'MSSMGGHINT_'+mass+model_name, 'GluGluHToWWTo2L2Nu_M'+mass, newbasew+'/baseW')
 
 ############ HIGS MASS VBF H->WW ############
 
@@ -405,27 +390,14 @@ for mass in massvbf:
   SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWTo2L2Nu_M'+mass)['xs']
   noSMxsec = '(1.0/'+str(SMxsec)+')'
 
-  # Model independent
+  # Xsec*BR is applied in later step, so remove "SM"-Xsec*BR 
   samples['QQH_'+mass+model_name]  = {  'name'   :   getSampleFiles(directoryHM,'VBFHToWWTo2L2Nu_M'+mass,True,'nanoLatino_'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+model ,
-                        'FilesPerJob' : 10,
-                        'EventsPerJob' : 80000,
-                     }
-
-  samples['QQHINT_'+mass+model_name]  = {  'name'   :   getSampleFiles(directoryHM,'VBFHToWWTo2L2Nu_M'+mass,True,'nanoLatino_'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+'('+model_I+'*(abs('+model_I+')<50))' ,
-                        'FilesPerJob' : 10,
-                        'EventsPerJob' : 80000,
-                     }
-
-  # Model dependent -> Xsec*BR is applied in later step, so remove "SM"-Xsec*BR 
-  samples['MSSMQQH_'+mass+model_name]  = {  'name'   :   getSampleFiles(directoryHM,'VBFHToWWTo2L2Nu_M'+mass,True,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+noSMxsec+'*'+model ,
                         'FilesPerJob' : 10,
                         'EventsPerJob' : 80000,
                      }
 
-  samples['MSSMQQHINT_'+mass+model_name]  = {  'name'   :   getSampleFiles(directoryHM,'VBFHToWWTo2L2Nu_M'+mass,True,'nanoLatino_'),
+  samples['QQHINT_'+mass+model_name]  = {  'name'   :   getSampleFiles(directoryHM,'VBFHToWWTo2L2Nu_M'+mass,True,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+noSMxsec+'*'+'('+model_I+'*(abs('+model_I+')<50))' ,
                         'FilesPerJob' : 10,
                         'EventsPerJob' : 80000,
@@ -435,38 +407,34 @@ for mass in massvbf:
     newbasew = getBaseWnAOD(directory, 'Autumn18_102X_nAODv6_Full2018v6', ['VBFHToWWTo2L2Nu_M'+mass])
     addSampleWeight(samples, 'QQH_'+mass+model_name, 'VBFHToWWTo2L2Nu_M'+mass, newbasew+'/baseW')
     addSampleWeight(samples, 'QQHINT_'+mass+model_name, 'VBFHToWWTo2L2Nu_M'+mass, newbasew+'/baseW')
-    addSampleWeight(samples, 'MSSMQQH_'+mass+model_name, 'VBFHToWWTo2L2Nu_M'+mass, newbasew+'/baseW')
-    addSampleWeight(samples, 'MSSMQQHINT_'+mass+model_name, 'VBFHToWWTo2L2Nu_M'+mass, newbasew+'/baseW')
 
 
 ############ ggH H->WW ############
-#samples['ggH_hww']  = {  'name'   :   getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'),
-#                        'weight' : [XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC, {'class': 'Weight2MINLO', 'args': '%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE')}],
-#                        'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/weight2MINLO.cc+' % os.getenv('CMSSW_BASE')]
-#                     }
 
 samples['ggH_hww']  = {  'name'   :   getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC,
+                        'weight' : [XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC, {'class': 'Weight2MINLO', 'args': '%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE')}],
+                        'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/weight2MINLO.cc+' % os.getenv('CMSSW_BASE')]
                      }
-addSampleWeight(samples, 'ggH_hww', 'GluGluHToWWTo2L2NuPowheg_M125', 'MINLO')
+#addSampleWeight(samples, 'ggH_hww', 'GluGluHToWWTo2L2NuPowheg_M125', 'MINLO')
 
 ############ VBF H->WW ############
-#samples['qqH_hww']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'), #TODO No Powheg yet
+
 samples['qqH_hww']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2Nu_M125',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                      }
 
 ############ ZH H->WW ############
+
 samples['ZH_hww']  = {  'name'   :   getSampleFiles(directory,'HZJ_HToWWTo2L2Nu_M125',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                         'FilesPerJob' : 10,
                         'EventsPerJob' : 100000,
                      }
 
-samples['ggZH_hww']  = {  'name'   :   getSampleFiles(directory,'GluGluZH_HToWWTo2L2Nu_M125',False,'nanoLatino_'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                        'FilesPerJob' : 1,
-                     }
+#samples['ggZH_hww']  = {  'name'   :   getSampleFiles(directory,'GluGluZH_HToWWTo2L2Nu_M125',False,'nanoLatino_'),
+#                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+#                        'FilesPerJob' : 1,
+#                     }
 
 ############ WH H->WW ############
 
@@ -477,50 +445,39 @@ samples['WH_hww']  = {  'name'   :   getSampleFiles(directory,'HWplusJ_HToWW_M12
 
 ############ ttH ############
 
-samples['ttH_hww']  = {  'name'   :   getSampleFiles(directory,'ttHToNonbb_M125',False,'nanoLatino_'),
-                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                         'FilesPerJob' : 2,
-                     }
+#samples['ttH_hww']  = {  'name'   :   getSampleFiles(directory,'ttHToNonbb_M125',False,'nanoLatino_'),
+#                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+#                         'FilesPerJob' : 2,
+#                     }
 
 ############ bbH ############
 
-samples['bbH_hww']  = {  'name' :   getSampleFiles(directory,'bbHToWWTo2L2Nu_M125_yb2',False,'nanoLatino_') 
-                                  + getSampleFiles(directory,'bbHToWWTo2L2Nu_M125_ybyt',False,'nanoLatino_')
-                                  ,
-                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                      }
+#samples['bbH_hww']  = {  'name' :   getSampleFiles(directory,'bbHToWWTo2L2Nu_M125_yb2',False,'nanoLatino_') 
+#                                  + getSampleFiles(directory,'bbHToWWTo2L2Nu_M125_ybyt',False,'nanoLatino_')
+#                                  ,
+#                         'weight': XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+#                      }
 
 ############ H->TauTau ############
-splitHtt=True # Better to split up because of better handling of unceratainties
-if not splitHtt:
 
-  samples['H_htt'] = {  'name'   :   getSampleFiles(directory,'GluGluHToTauTau_M125',False,'nanoLatino_')
-                                   + getSampleFiles(directory,'VBFHToTauTau_M125',False,'nanoLatino_')
-                                   + getSampleFiles(directory,'HZJ_HToTauTau_M125',False,'nanoLatino_')
-                                   + getSampleFiles(directory,'HWplusJ_HToTauTau_M125',False,'nanoLatino_')
-                                   + getSampleFiles(directory,'HWminusJ_HToTauTau_M125',False,'nanoLatino_'),
+samples['ggH_htt']  = {  'name'   : getSampleFiles(directory,'GluGluHToTauTau_M125',False,'nanoLatino_'),
                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     }
-else:
+                      }
 
-  samples['ggH_htt']  = {  'name'   : getSampleFiles(directory,'GluGluHToTauTau_M125',False,'nanoLatino_'),
-                           'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                        }
+samples['qqH_htt']  = {  'name'   : getSampleFiles(directory,'VBFHToTauTau_M125',False,'nanoLatino_'),
+                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                      }
 
-  samples['qqH_htt']  = {  'name'   : getSampleFiles(directory,'VBFHToTauTau_M125',False,'nanoLatino_'),
-                           'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                        }
+samples['ZH_htt']  = {  'name'   : getSampleFiles(directory,'HZJ_HToTauTau_M125',False,'nanoLatino_'),
+                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                        'FilesPerJob' : 2,
+                      }
 
-  samples['ZH_htt']  = {  'name'   : getSampleFiles(directory,'HZJ_HToTauTau_M125',False,'nanoLatino_'),
-                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                          'FilesPerJob' : 2,
-                        }
-
-  samples['WH_htt']  = {  'name'   :  getSampleFiles(directory,'HWplusJ_HToTauTau_M125',False,'nanoLatino_')
-                                    + getSampleFiles(directory,'HWminusJ_HToTauTau_M125',False,'nanoLatino_'),
-                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                          'FilesPerJob' : 3,
-                        }
+samples['WH_htt']  = {  'name'   :  getSampleFiles(directory,'HWplusJ_HToTauTau_M125',False,'nanoLatino_')
+                                  + getSampleFiles(directory,'HWminusJ_HToTauTau_M125',False,'nanoLatino_'),
+                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
+                        'FilesPerJob' : 3,
+                      }
 
 
 ###########################################

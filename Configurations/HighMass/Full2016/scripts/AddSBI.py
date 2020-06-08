@@ -95,7 +95,7 @@ for run1,categories in enumerate(readfile.GetListOfKeys()): # Cut directory
     newfilewrite.GetDirectory(categories.GetName()).GetDirectory(variables.GetName()).cd()
     variableTList = variable.GetListOfKeys()
     for name_sig in nominal:
-     for mssm in [False, True]:
+     for mssm in [False]: #[False, True]: # Not doing two sets of signal shapes anymore
       if mssm: name_sig = name_sig.replace('GGH','MSSMGGH').replace('QQH','MSSMQQH')
       if 'GGH' in name_sig:
         name_int = name_sig.replace('GGH','GGHINT')
