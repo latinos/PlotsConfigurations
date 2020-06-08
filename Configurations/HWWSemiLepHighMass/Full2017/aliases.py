@@ -196,12 +196,12 @@ aliases['dPhi_LNu'] = {
     - (Lepton_phi[0] - PuppiMET_phi > 3.1416)*2*3.1416 \
     + (Lepton_phi[0] - PuppiMET_phi < -3.1416)*2*3.1416',
 }
-aliases['dR_WW_boosted'] = {
-    'expr': 'TMath::Sqrt(TMath::Power(Wlep_eta_Puppi - Alt$(CleanFatJetPassMBoosted_eta[0], 0), 2) + TMath::Power(dPhi_WW_boosted[0], 2))'
-}
-aliases['b2b_WW_boosted'] = {
-    'expr': 'TMath::Sqrt(TMath::Power(Wlep_eta_Puppi + Alt$(CleanFatJetPassMBoosted_eta[0], 0), 2) + TMath::Power(abs(dPhi_WW_boosted[0]) - 3.1416, 2))'
-}
+# aliases['dR_WW_boosted'] = {
+#     'expr': 'TMath::Sqrt(TMath::Power(Wlep_eta_Puppi - Alt$(CleanFatJetPassMBoosted_eta[0], 0), 2) + TMath::Power(dPhi_WW_boosted[0], 2))'
+# }
+# aliases['b2b_WW_boosted'] = {
+#     'expr': 'TMath::Sqrt(TMath::Power(Wlep_eta_Puppi + Alt$(CleanFatJetPassMBoosted_eta[0], 0), 2) + TMath::Power(abs(dPhi_WW_boosted[0]) - 3.1416, 2))'
+# }
 
 
 
@@ -476,9 +476,10 @@ aliases['antitopGenPtOTF'] = {
 # }
 # Dennis Roy for 2017/2018
 aliases['Top_pTrw'] = {
-    #'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
-    #'expr': '1',
-    #'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(4.14819e-02 - 3.67734e-04*topGenPt + 7.60587e-08*topGenPt*topGenPt + 1.29362/(topGenPt+22.8537)) * TMath::Exp(4.14819e-02 - 3.67734e-04*antitopGenPt + 7.60587e-08*antitopGenPt*antitopGenPt + 1.29362/(antitopGenPt+22.8537)))) + (topGenPt * antitopGenPt <= 0.)',
-    'expr': '(topGenPtOTF * antitopGenPtOTF > 0.) * (TMath::Sqrt(TMath::Exp(-1.43717e-02 - 1.18358e-04*topGenPtOTF - 1.70651e-07*topGenPtOTF*topGenPtOTF + 4.47969/(topGenPtOTF+28.7)) * TMath::Exp(-1.43717e-02 - 1.18358e-04*antitopGenPtOTF - 1.70651e-07*antitopGenPtOTF*antitopGenPtOTF + 4.47969/(antitopGenPtOTF+28.7)))) + (topGenPtOTF * antitopGenPtOTF <= 0.)',
+    # Dennis:
+    # 'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(-2.02274e-01 + 1.09734e-04*topGenPt - 1.30088e-07*topGenPt*topGenPt + 5.83494e+01/(topGenPt+1.96252e+02)) * TMath::Exp(-2.02274e-01 + 1.09734e-04*antitopGenPt - 1.30088e-07*antitopGenPt*antitopGenPt + 5.83494e+01/(antitopGenPt+1.96252e+02)))) + (topGenPt * antitopGenPt <= 0.)',
+
+    # New Top PAG
+    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) * (TMath::Sqrt(TMath::Exp(1.61468e-03 + 3.46659e-06*topGenPt - 8.90557e-08*topGenPt*topGenPt) * TMath::Exp(1.61468e-03 + 3.46659e-06*antitopGenPt - 8.90557e-08*antitopGenPt*antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
     'samples': ['top']
 }

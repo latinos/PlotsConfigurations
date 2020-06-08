@@ -64,8 +64,9 @@ HMProcCats['notWW']='tau21DDT<0.55'+sumPtCut
 # HMProcCats['sumpt']='1'+sumPtCut
 HMProcCats['notsumpt']='tau21DDT<0.55'+dPhiWWCut
 # HMProcCats['notTauDDT']='1'+dPhiWWCut+fatJetPtCut+sumPtCut
+HMProcCats['some58']='tau21DDT<0.60'+dPhiWWCut+sumPtCut
 HMProcCats['some55']='tau21DDT<0.55'+dPhiWWCut+sumPtCut
-HMProcCats['some52']='tau21DDT<0.52'+dPhiWWCut+sumPtCut
+HMProcCats['some52']='tau21DDT<0.53'+dPhiWWCut+sumPtCut
 
 
 HMCats={}

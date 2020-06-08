@@ -4,39 +4,39 @@
 
 
 
-# variables['events']  = {
-#     'name' : '1',
-#     'range': (1,0,2),
-#     'xaxis': 'events',
-#     'fold' : 3
-# }
+variables['events']  = {
+    'name' : '1',
+    'range': (1,0,2),
+    'xaxis': 'events',
+    'fold' : 3
+}
 
 #####################################################
 ############  High Mass category ideas  #############
 #####################################################
 
-variables['dR_WW_boosted'] = {
-    'name' : 'dR_WW_boosted',
-    'range': (30,0,10),
-    'xaxis': '(boosted) #Delta R WW',
-    'fold' : 3
-}
-variables['b2b_WW_boosted'] = {
-    'name' : 'b2b_WW_boosted',
-    'range': (30,0,10),
-    'xaxis': '(boosted) WW deviation from b2b',
-    'fold' : 3
-}
+# variables['dR_WW_boosted'] = {
+#     'name' : 'dR_WW_boosted',
+#     'range': (30,0,10),
+#     'xaxis': '(boosted) #Delta R WW',
+#     'fold' : 3
+# }
+# variables['b2b_WW_boosted'] = {
+#     'name' : 'b2b_WW_boosted',
+#     'range': (30,0,10),
+#     'xaxis': '(boosted) WW deviation from b2b',
+#     'fold' : 3
+# }
 variables['dPhi_WW_boosted'] = {
-    'name' : 'dPhi_WW_boosted[0]',
-    'range': (40, -4, 4),
-    'xaxis': '(boosted) #Delta#Phi WW',
+    'name' : 'abs(dPhi_WW_boosted[0])',
+    'range': (15, 0, 3.5),
+    'xaxis': '(boosted) abs(#Delta#Phi WW)',
     'fold' : 3
 }
 variables['dPhi_LNu'] = {
-    'name' : 'dPhi_LNu[0]',
-    'range': (50,-2,2),
-    'xaxis': '#Delta#Phi l#nu',
+    'name' : 'abs(dPhi_LNu[0])',
+    'range': (15,0,2.5),
+    'xaxis': 'abs(#Delta#Phi l#nu)',
     'fold' : 3
 }
 # variables['fatJetPt'] = {
@@ -56,12 +56,12 @@ variables['pt_sum_boosted'] = {
 ##################  Lepton 0  #######################
 #####################################################
 
-# variables['lepton0_pt'] = {
-#     'name' : 'Lepton_pt[0]',
-#     'range': (25,0,400),
-#     'xaxis': 'lepton[0] pt',
-#     'fold' : 3
-# }
+variables['lepton0_pt'] = {
+    'name' : 'Lepton_pt[0]',
+    'range': (25,0,400),
+    'xaxis': 'lepton[0] pt',
+    'fold' : 3
+}
 # variables['lepton0_eta'] = {
 #     'name' : 'Lepton_eta[0]',
 #     'range': ([-2.5, -2.1, -1.6, -1.4, 0.0, 1.4, 1.6, 2.1, 2.5],),
@@ -106,12 +106,12 @@ variables['pt_sum_boosted'] = {
 ######################  MET  ########################
 #####################################################
 
-# variables['met_pt'] = {
-#     'name' : 'PuppiMET_pt',
-#     'range': (25,0,400),
-#     'xaxis': 'MET pt',
-#     'fold' : 3
-# }
+variables['met_pt'] = {
+    'name' : 'PuppiMET_pt',
+    'range': (25,0,400),
+    'xaxis': 'MET pt',
+    'fold' : 3
+}
 # variables['met_phi'] = {
 #     'name' : 'PuppiMET_phi',
 #     'range': (12, -3.142, 3.142),
@@ -124,12 +124,12 @@ variables['pt_sum_boosted'] = {
 ######################  Jets  #######################
 #####################################################
 
-# variables['jet0_pt'] = {
-#    'name' : 'Alt$(CleanJet_pt[0], -1)',
-#    'range': (25, 0, 400),
-#    'xaxis': 'clJet[0] pt',
-#    'fold' : 3
-# }
+variables['jet0_pt'] = {
+   'name' : 'Alt$(CleanJet_pt[0], -1)',
+   'range': (25, 0, 400),
+   'xaxis': 'clJet[0] pt',
+   'fold' : 3
+}
 # variables['jet0_eta'] = {
 #     'name' : 'Alt$(CleanJet_eta[0], -99)',
 #     'range': ([-2.5, -2.1, -1.6, -1.4, 0.0, 1.4, 1.6, 2.1, 2.5],),
@@ -157,31 +157,31 @@ variables['pt_sum_boosted'] = {
 #############  High Mass HWW variables  ############
 #####################################################
 
-# variables['resolvHiggsMass'] = {
-#     'name' : 'Hlnjj_mass',
-#     # 'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
-#     #           650, 700, 750, 800, 900, 1100, 1500, 2500],),
-#     'range': ([0, 200, 250, 290, 330, 370, 420, 470, 520,
-#                570, 620, 670, 720, 775, 875, 1050, 2000],),
-#     'xaxis': 'reconstr. H mass',
-#     'fold' : 3
-# }
-# variables['boostHiggsMass'] = {
-#     'name' : 'CleanFatJetPassMBoosted_HlnFat_mass[0]',
-#     # 'range': ([0, 200, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800,
-#     #           900, 1000, 1100, 1200, 1350, 1500, 1700, 2000, 3000, 5000],),
-#     'range': ([0, 200, 300, 350, 400, 450, 490, 530, 580, 630, 680,
-#                730, 780, 840, 950, 1075, 1175, 1375, 1650, 2400, 5000],),
-#     'xaxis': 'reconstr. H mass',
-#     'fold' : 3
-# }
-# variables['hmHiggsMass'] = {
-#     'name' : 'CleanFatJetPassMBoosted_HlnFat_mass[0]',
-#     # 'range': ([0, 900, 1000, 1100, 1200, 1350, 1500, 1700, 2000, 3000, 5000],),
-#     'range': ([0, 900, 1000, 1100, 1200, 1325, 1580, 2050, 5000],),
-#     'xaxis': 'reconstr. H mass',
-#     'fold' : 3
-# }
+variables['resolvHiggsMass'] = {
+    'name' : 'Hlnjj_mass',
+    # 'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
+    #           650, 700, 750, 800, 900, 1100, 1500, 2500],),
+    'range': ([0, 200, 250, 290, 330, 370, 420, 470, 520,
+               570, 620, 670, 720, 775, 875, 1050, 2000],),
+    'xaxis': 'reconstr. H mass',
+    'fold' : 3
+}
+variables['boostHiggsMass'] = {
+    'name' : 'CleanFatJetPassMBoosted_HlnFat_mass[0]',
+    # 'range': ([0, 200, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800,
+    #           900, 1000, 1100, 1200, 1350, 1500, 1700, 2000, 3000, 5000],),
+    'range': ([0, 200, 300, 350, 400, 450, 490, 530, 580, 630, 680,
+               730, 780, 840, 950, 1075, 1175, 1375, 1650, 2400, 5000],),
+    'xaxis': 'reconstr. H mass',
+    'fold' : 3
+}
+variables['hmHiggsMass'] = {
+    'name' : 'CleanFatJetPassMBoosted_HlnFat_mass[0]',
+    # 'range': ([0, 900, 1000, 1100, 1200, 1350, 1500, 1700, 2000, 3000, 5000],),
+    'range': ([0, 900, 1000, 1100, 1200, 1325, 1580, 2050, 5000],),
+    'xaxis': 'reconstr. H mass',
+    'fold' : 3
+}
 # variables['resolvDNN_mth'] = {
 #     'name' : 'DNN_mth_OTF',
 #     'range': ([0, 200, 250, 290, 330, 370, 420, 470, 520,
@@ -253,18 +253,18 @@ variables['pt_sum_boosted'] = {
 #     'range': (40, 0.0, 1.0),
 #     'fold': 3
 # }
-# variables['tau21'] = {
-#     'name': 'Alt$(CleanFatJet_tau21[(int)idxCleanFatJetW], 999)',
-#     'range': (40, 0.0, 1.0),
-#     'xaxis': 'tau_21',
-#     'fold': 3
-# }
-# variables['tau21DDT'] = {
-#     'name': 'tau21DDT[0]',
-#     'range': (40, 0.1, 1.1),
-#     'xaxis': 'tau_21 DDT',
-#     'fold': 3
-# }
+variables['tau21'] = {
+    'name': 'Alt$(CleanFatJet_tau21[(int)idxCleanFatJetW], 999)',
+    'range': (40, 0.0, 1.0),
+    'xaxis': 'tau_21',
+    'fold': 3
+}
+variables['tau21DDT'] = {
+    'name': 'tau21DDT[0]',
+    'range': (40, 0.0, 1.0),
+    'xaxis': 'tau_21 DDT',
+    'fold': 3
+}
 # variables['idxCleanFatJetW'] = {
 #     'name': 'idxCleanFatJetW',
 #     'range': (6, -1.5, 4.5),

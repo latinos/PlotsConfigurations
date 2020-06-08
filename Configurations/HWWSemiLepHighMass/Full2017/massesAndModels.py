@@ -13,4 +13,5 @@ model_I = model+'_I'
 model_B = model+'_B'
 model_H = model+'_H'
 
-plotmasses = ['200', '700', '1000', '2000']
+plotmasses = ['800', '1000', '2000']
+# plotmasses = massggh
