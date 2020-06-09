@@ -251,7 +251,7 @@ jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2
 
 for js in jes_systs:
   nuisances[js] = {
-      'name': 'CMS_'+js,
+      'name': 'CMS_scale_'+js,
       'kind': 'suffix',
       'type': 'shape',
       'mapUp': js+'up',
