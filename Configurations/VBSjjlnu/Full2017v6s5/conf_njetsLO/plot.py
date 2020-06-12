@@ -170,18 +170,18 @@ plot['top'] = {
                  'scale'    : 1.0 
                  }
 
-# plot['Wjets_HT'] = {   
-#                  'color': 1,
-#                  'isSignal' : 0,
-#                  'isData'   : 0, 
-#                  'scale'    : 1.0 #1.067
-#                  }
+plot['Wjets_HT'] = {   
+                 'color': 1,
+                 'isSignal' : 0,
+                 'isData'   : 1, 
+                 'scale'    : 1 #1.067
+                 }
 
 plot['Wjets_LO'] = {   
                  'color': 1,
                  'isSignal' : 0,
-                 'isData'   : 0, 
-                 'scale'    : 1.0 #1.067
+                 'isData'   : 1, 
+                 'scale'    : 1 #1.067
                  }
 
 
@@ -214,7 +214,7 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 59.74/fb'
+legend['lumi'] = 'L = 41.5/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

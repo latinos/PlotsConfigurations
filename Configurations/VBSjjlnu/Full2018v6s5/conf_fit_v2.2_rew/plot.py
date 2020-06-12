@@ -49,16 +49,13 @@ palette = {
     "Wjets_deta1": (247, 235, 7), #f7eb07
 '''
 
-# jetbin_detabins = [3,3,2]
-# #wjets_palette = ['#FFF59D', '#FFEE58', '#FFD54F', '#FFB300', '#FF8F00', '#F57C00', '#E65100','#BF360C']
-# wjets_palette = ['#DD2C00', '#FF3D00',  '#FF6D00','#F57C00', '#FFAB00', '#FFC400', '#FFEA00', '#FFFF00']
+jetbin_detabins = [3,3,2]
+#wjets_palette = ['#FFF59D', '#FFEE58', '#FFD54F', '#FFB300', '#FF8F00', '#F57C00', '#E65100','#BF360C']
+wjets_palette = ['#DD2C00', '#FF3D00',  '#FF6D00','#F57C00', '#FFAB00', '#FFC400', '#FFEA00', '#FFFF00']
 
-# wjets_bins = ["Wjets_jpt3","Wjets_deta2_jpt2", "Wjets_deta1_jpt2",
-#                 "Wjets_deta2_jpt1","Wjets_deta1_jpt1", 
-#                 "Wjets_boost1", "Wjets_boost2"]
-# wjets_nlo_bins = ["Wjets_NLO_jpt3","Wjets_NLO_deta2_jpt2", "Wjets_NLO_deta1_jpt2",
-#                 "Wjets_NLO_deta2_jpt1","Wjets_NLO_deta1_jpt1", 
-#                 "Wjets_NLO_boost1", "Wjets_NLO_boost2"]
+wjets_bins = ["Wjets_jpt3","Wjets_deta2_jpt2", "Wjets_deta1_jpt2",
+                "Wjets_deta2_jpt1","Wjets_deta1_jpt1", 
+                "Wjets_boost1", "Wjets_boost2"]
 
 groupPlot['Fake']  = {  
                 'nameHR' : "Non-prompt",
@@ -75,6 +72,7 @@ groupPlot['vbfV+VV+VVV']  = {
                   'samples'  : ['VBF-V','VVV', 'VV'],
                   'fill': 1001
               }
+
 
 groupPlot['DY']  = {  
                 'nameHR' : "DY",
@@ -95,23 +93,17 @@ groupPlot['top']  = {
              }
 
 
-groupPlot["Wjets_njetsLO"]  = {  
-                        'nameHR' : 'W+Jets njets LO',
+groupPlot["Wjets"]  = {  
+                        'nameHR' : 'W+Jets',
                         'isSignal' : 0,
                         'color':   palette["Yellow"],
-                        'samples'  : ["Wjets_njetsLO", "Wjets_LO"],
+                        'samples'  : wjets_bins,
                         'fill': 1001
                 }
 
-# groupPlot["Wjets_HT"]  = {  
-#                         'nameHR' : 'W+Jets HT',
-#                         'isSignal' : 0,
-#                         'color':   palette["Yellow"],
-#                         'samples'  : ["Wjets_HT"],
-#                         'fill': 1001
-#                 }
-                
 
+
+                
 groupPlot['VBS']  = {  
                  'nameHR' : 'VBS',
                  'isSignal' : 1,
@@ -119,6 +111,8 @@ groupPlot['VBS']  = {
                  'samples'  : ['VBS'],
                  'fill': 1001
               }
+
+
 
 #plot = {}
 
@@ -140,6 +134,8 @@ plot['VV']  = {
                   'scale'    : 1.   ,
               }   
          
+
+
 plot['DY']  = {  
                 'color': colors['kMagenta']+1,
                 'isSignal' : 0,
@@ -170,28 +166,20 @@ plot['top'] = {
                  'scale'    : 1.0 
                  }
 
-# plot['Wjets_HT'] = {   
-#                  'color': 1,
+# plot['Wjets'] = {   
+#                  'color': colors['kAzure']-1,
 #                  'isSignal' : 0,
 #                  'isData'   : 0, 
-#                  'scale'    : 1.0 #1.067
+#                  'scale'    : 1.0 
 #                  }
 
-plot['Wjets_LO'] = {   
-                 'color': 1,
-                 'isSignal' : 0,
-                 'isData'   : 0, 
-                 'scale'    : 1.0 #1.067
-                 }
-
-
-plot['Wjets_njetsLO'] = {   
-                 'color': colors['kAzure']-1,
-                 'isSignal' : 0,
-                 'isData'   : 0, 
-                 'scale'    : 1.0 
-                 }
-
+for wjetbin in wjets_bins:
+    plot[wjetbin] = {   
+                    'color': colors['kAzure']-1,
+                    'isSignal' : 0,
+                    'isData'   : 0, 
+                    'scale'    : 1.0 
+                    }
 
 plot['VBS']  = {
                   'color': colors["kCyan"]+1, 
@@ -208,7 +196,7 @@ plot['DATA']  = {
                  'isSignal' : 0,
                  'isData'   : 1 ,
                  'isBlind'  : 0
-            }
+             }
 
 
 
