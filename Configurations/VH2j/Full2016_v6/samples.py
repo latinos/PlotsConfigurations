@@ -33,8 +33,7 @@ mcProduction = 'Summer16_102X_nAODv5_Full2016v6'
 
 dataReco = 'Run2016_102X_nAODv5_Full2016v6'
 
-#fakeReco = 'Run2016_102X_nAODv5_Full2016v6_ForNewWPs'
-fakeReco = 'Run2016_102X_nAODv5_Full2016v6'
+fakeReco = 'Run2016_102X_nAODv5_Full2016v6_ForNewWPs'
 
 mcSteps = 'MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6{var}'
 
