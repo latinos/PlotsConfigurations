@@ -1,5 +1,10 @@
 #!/bin/bash
 
+
+# The final destination is
+# /eos/user/l/lviliani/HWWRun2LegacyCombination/VH2jets
+
+
 # 2016
 mkdir -p /afs/cern.ch/user/p/piedra/public/forLatinos/VH2jets/2016/VH_2j_emu
 mkdir -p /afs/cern.ch/user/p/piedra/public/forLatinos/VH2jets/2016/VH_2j_topemu
