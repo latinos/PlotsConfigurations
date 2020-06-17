@@ -8,7 +8,7 @@ mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files
 mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
 
 #STEP 3: DY estimate from data-driven
-mkDYestim.py --pycfg=configuration --dycfg=dyestim --inputFile=rootFile/plots_
+mkDYestim_data.py --pycfg=configuration.py --dycfg=dyestim --inputFile=rootFile/plots_
 
 #STEP 4: Create datacards
 
