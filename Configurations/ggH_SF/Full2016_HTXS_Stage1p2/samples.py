@@ -36,11 +36,11 @@ mcProduction = 'Summer16_102X_nAODv5_Full2016v6'
 dataReco = 'Run2016_102X_nAODv5_Full2016v6'
 
 #mcSteps = 'MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5{var}'
-mcSteps = 'MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__DYMVA_alt{var}'
+mcSteps = 'MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6{var}'
 
-fakeSteps = 'DATAl1loose2016v6__l2loose__fakeW__DYMVA_alt'
+fakeSteps = 'DATAl1loose2016v6__l2loose__fakeW'
 
-dataSteps = 'DATAl1loose2016v6__l2loose__l2tightOR2016v6__DYMVA_alt'
+dataSteps = 'DATAl1loose2016v6__l2loose__l2tightOR2016v6'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -198,8 +198,8 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    #'weight': mcCommonWeight + '*nllW', # temporary - nllW module not run on PS and UE variation samples
-    'weight': mcCommonWeight + '*nllWOTF', # temporary
+    'weight': mcCommonWeight + '*nllW', # temporary - nllW module not run on PS and UE variation samples
+    #'weight': mcCommonWeight + '*nllWOTF', # temporary
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 1
@@ -508,11 +508,11 @@ for _, sd in DataRun:
     # only this file is v3
     if ('2016E' in sd and 'MuonEG' in pd):
       files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd.replace('v1', 'v3'))
-      print(files)
+      #print(files)
 
     else:
       files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
-      print(files)
+      #print(files)
     
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
