@@ -33,7 +33,7 @@ cuts2j = []
 
 for k in cuts:
   for cat in cuts[k]['categories']:
-    if '0j' in cat: cuts0j.append(k+'_'+cat)
+    if   '0j' in cat: cuts0j.append(k+'_'+cat)
     elif '1j' in cat: cuts1j.append(k+'_'+cat)
     elif '2j' in cat: cuts2j.append(k+'_'+cat)
     else: print 'WARNING: name of category does not contain on either 0j,1j,2j'
@@ -43,27 +43,21 @@ for k in cuts:
 #### Luminosity
 
 #nuisances['lumi'] = {
-#    'name': 'lumi_13TeV_2017',
+#    'name': 'lumi_13TeV_2016',
 #    'type': 'lnN',
-#    'samples': dict((skey, '1.023') for skey in mc if skey not in ['WW', 'top', 'DY'])
+#    'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'top', 'DY'])
 #}
 
 nuisances['lumi_Uncorrelated'] = {
-    'name': 'lumi_13TeV_2017',
+    'name': 'lumi_13TeV_2016',
     'type': 'lnN',
-    'samples': dict((skey, '1.02') for skey in mc if skey not in ['WW', 'top', 'DY'])
+    'samples': dict((skey, '1.022') for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
 nuisances['lumi_XYFact'] = {
     'name': 'lumi_13TeV_XYFact',
     'type': 'lnN',
-    'samples': dict((skey, '1.008') for skey in mc if skey not in ['WW', 'top', 'DY'])
-}
-
-nuisances['lumi_LScale'] = {
-    'name': 'lumi_13TeV_LSCale',
-    'type': 'lnN',
-    'samples': dict((skey, '1.003') for skey in mc if skey not in ['WW', 'top', 'DY'])
+    'samples': dict((skey, '1.009') for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
 nuisances['lumi_BBDefl'] = {
@@ -78,20 +72,15 @@ nuisances['lumi_DynBeta'] = {
     'samples': dict((skey, '1.005') for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
-nuisances['lumi_CurrCalib'] = {
-    'name': 'lumi_13TeV_CurrCalib',
-    'type': 'lnN',
-    'samples': dict((skey, '1.003') for skey in mc if skey not in ['WW', 'top', 'DY'])
-}
-
 nuisances['lumi_Ghosts'] = {
     'name': 'lumi_13TeV_Ghosts',
     'type': 'lnN',
-    'samples': dict((skey, '1.001') for skey in mc if skey not in ['WW', 'top', 'DY'])
+    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
 #### FAKES
 
+## FIXME: check the 30% lnN
 nuisances['fake_syst_ee'] = {
     'name': 'CMS_fake_syst_ee',
     'type': 'lnN',
@@ -99,6 +88,7 @@ nuisances['fake_syst_ee'] = {
         'Fake_ee': '1.3'
     },
     'cutspost': lambda self, cuts: [cut for cut in cuts if 'ee' in cut],
+    #'perRecoBin': True
 }
 
 nuisances['fake_syst_mm'] = {
@@ -108,10 +98,21 @@ nuisances['fake_syst_mm'] = {
         'Fake_mm': '1.3'
     },
     'cutspost': lambda self, cuts: [cut for cut in cuts if 'mm' in cut],
+    #'perRecoBin': True
+}
+
+nuisances['fake_syst_df'] = {
+    'name': 'CMS_fake_syst_df',
+    'type': 'lnN',
+    'samples': {
+        'Fake_df': '1.3'
+    },
+    'cutspost': lambda self, cuts: [cut for cut in cuts if 'df' in cut],
+    #'perRecoBin': True
 }
 
 nuisances['fake_ele'] = {
-    'name': 'CMS_fake_e_2017',
+    'name': 'CMS_fake_e_2016',
     'kind': 'weight',
     'type': 'shape',
     'samples': {
@@ -120,7 +121,7 @@ nuisances['fake_ele'] = {
 }
 
 nuisances['fake_ele_stat'] = {
-    'name': 'CMS_fake_stat_e_2017',
+    'name': 'CMS_fake_stat_e_2016',
     'kind': 'weight',
     'type': 'shape',
     'samples': {
@@ -129,7 +130,7 @@ nuisances['fake_ele_stat'] = {
 }
 
 nuisances['fake_mu'] = {
-    'name': 'CMS_fake_m_2017',
+    'name': 'CMS_fake_m_2016',
     'kind': 'weight',
     'type': 'shape',
     'samples': {
@@ -138,7 +139,7 @@ nuisances['fake_mu'] = {
 }
 
 nuisances['fake_mu_stat'] = {
-    'name': 'CMS_fake_stat_m_2017',
+    'name': 'CMS_fake_stat_m_2016',
     'kind': 'weight',
     'type': 'shape',
     'samples': {
@@ -153,7 +154,7 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
 
     name = 'CMS_btag_%s' % shift
     if 'stats' in shift:
-        name += '_2017'
+        name += '_2016'
 
     nuisances['btag_shape_%s' % shift] = {
         'name': name,
@@ -167,35 +168,35 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
 trig_syst = ['((TriggerEffWeight_2l_u)/(TriggerEffWeight_2l))*(TriggerEffWeight_2l>0.02) + (TriggerEffWeight_2l<=0.02)', '(TriggerEffWeight_2l_d)/(TriggerEffWeight_2l)']
 
 nuisances['trigg'] = {
-    'name': 'CMS_eff_hwwtrigger_2017',
+    'name': 'CMS_eff_hwwtrigger_2016',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, trig_syst) for skey in mc if skey not in ['WW', 'top', 'DY']),
+    'samples': dict((skey, trig_syst) for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
 prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
 
 nuisances['prefire'] = {
-    'name': 'CMS_eff_prefiring_2017',
+    'name': 'CMS_eff_prefiring_2016',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, prefire_syst) for skey in mc if skey not in ['WW', 'top', 'DY']),
+    'samples': dict((skey, prefire_syst) for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
 ##### Electron Efficiency and energy scale
 
 nuisances['eff_e'] = {
-    'name': 'CMS_eff_e_2017',
+    'name': 'CMS_eff_e_2016',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc if skey not in ['WW', 'top', 'DY']),
+    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
 nuisances['electronpt'] = {
-    'name': 'CMS_scale_e_2017',
+    'name': 'CMS_scale_e_2016',
     'kind': 'suffix',
     'type': 'shape',
-    'mapUp': 'ElepTup',
+    'mapUp' : 'ElepTup',
     'mapDown': 'ElepTdo',
     'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['WW', 'top', 'DY']),
     'folderUp': makeMCDirectory('ElepTup_suffix'),
@@ -206,14 +207,14 @@ nuisances['electronpt'] = {
 ##### Muon Efficiency and energy scale
 
 nuisances['eff_m'] = {
-    'name': 'CMS_eff_m_2017',
+    'name': 'CMS_eff_m_2016',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc if skey not in ['WW', 'top', 'DY']),
+    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
 nuisances['muonpt'] = {
-    'name': 'CMS_scale_m_2017',
+    'name': 'CMS_scale_m_2016',
     'kind': 'suffix',
     'type': 'shape',
     'mapUp': 'MupTup',
@@ -226,46 +227,47 @@ nuisances['muonpt'] = {
 
 ##### Jet energy scale
 
-#nuisances['jes'] = {
-#    'name': 'CMS_scale_j_2017',
-#    'kind': 'suffix',
-#    'type': 'shape',
-#    'mapUp': 'JESup',
-#    'mapDown': 'JESdo',
-#    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['WW', 'top', 'DY','VZ','Vg','VgS']),
-#    'folderUp': makeMCDirectory('JESup_suffix'),
-#    'folderDown': makeMCDirectory('JESdo_suffix'),
-#    'AsLnN': '1'
-#}
+#DC#nuisances['jes'] = {
+#DC#    'name': 'CMS_scale_j_2016',
+#DC#    'kind': 'suffix',
+#DC#    'type': 'shape',
+#DC#    'mapUp': 'JESup',
+#DC#    'mapDown': 'JESdo',
+#DC#    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['WW', 'top', 'DY','VZ','Vg','VgS']),
+#DC#    'folderUp': makeMCDirectory('JESup_suffix'),
+#DC#    'folderDown': makeMCDirectory('JESdo_suffix'),
+#DC#    'AsLnN': '1'
+#DC#}
 
 nuisances['jes0j']  = {
-                'name'  : 'CMS_scale_j_2017',
+                'name'  : 'CMS_scale_j_2016',
                 'skipCMS' : 1,
                 'type': 'lnN',
-                'samples': dict((skey, '1.05') for skey in mc if skey not in ['WW', 'top', 'DY','VZ','Vg','VgS']),
+                'samples': dict((skey, '1.04') for skey in mc if skey not in ['WW', 'top', 'DY','VZ','Vg','VgS']),
                 'cuts'     : cuts0j
 }
 
 nuisances['jes1j']  = {
-                'name'  : 'CMS_scale_j_2017',
+                'name'  : 'CMS_scale_j_2016',
                 'skipCMS' : 1,
                 'type': 'lnN',
-                'samples': dict((skey, '1.03') for skey in mc if skey not in ['WW', 'top', 'DY','VZ','Vg','VgS']),
+                'samples': dict((skey, '1.04') for skey in mc if skey not in ['WW', 'top', 'DY','VZ','Vg','VgS']),
                 'cuts'     : cuts0j
 }
 
 nuisances['jes2j']  = {
-                'name'  : 'CMS_scale_j_2017',
+                'name'  : 'CMS_scale_j_2016',
                 'skipCMS' : 1,
                 'type': 'lnN',
-                'samples': dict((skey, '1.10') for skey in mc if skey not in ['WW', 'top', 'DY','VZ','Vg','VgS']),
+                'samples': dict((skey, '1.08') for skey in mc if skey not in ['WW', 'top', 'DY','VZ','Vg','VgS']),
                 'cuts'     : cuts2j
 }
+
 
 ##### MET energy scale
 
 nuisances['met'] = {
-    'name': 'CMS_scale_met_2017',
+    'name': 'CMS_scale_met_2016',
     'kind': 'suffix',
     'type': 'shape',
     'mapUp': 'METup',
@@ -279,7 +281,7 @@ nuisances['met'] = {
 ##### Pileup
 
 nuisances['PU'] = {
-    'name': 'CMS_PU_2017',
+    'name': 'CMS_PU_2016',
     'kind': 'weight',
     'type': 'shape',
     'samples': {
@@ -293,8 +295,6 @@ nuisances['PU'] = {
 }
 
 ##### PS
-#### PSWeights are buggy for most of the 2017 v6 samples, therefore we use the 2016 treatment
-
 nuisances['PS_ISR']  = {
     'name': 'PS_ISR',
     'kind': 'weight',
@@ -333,32 +333,15 @@ nuisances['PS_FSR']  = {
     },
 }
 
+
 # An overall 1.5% UE uncertainty will cover all the UEup/UEdo variations
 # And we don't observe any dependency of UE variations on njet
 nuisances['UE']  = {
-                'name'  : 'UE_CP5',
+                'name'  : 'UE_CUET',
                 'skipCMS' : 1,
                 'type': 'lnN',
                 'samples': dict((skey, '1.015') for skey in mc),
 }
-
-#nuisances['UE']  = {
-#                'name'  : 'UE',
-#                'skipCMS' : 1,
-#                'kind'  : 'tree',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                  #'WW'      : ['0.983486179', '0.99458805'], 
-#                  'ggH_hww' : ['0.994216746291', '1.020025863'],
-#                  'qqH_hww' : ['0.980501317842', '1.00876768329'],
-#                },
-#                'folderUp': makeMCDirectory('UEup'),
-#                'folderDown': makeMCDirectory('UEdo'),
-#                'AsLnN'      : '1',
-#                'synchronized': False
-#}
-
-
 
 ####### Generic "cross section uncertainties"
 
@@ -497,8 +480,10 @@ nuisances['pdf_qqbar_ACCEPT'] = {
     },
 }
 
-#*Br    1 :LHEScaleWeight :                                                   *
-#*         | Float_t LHE scale variation weights (w_var / w_nominal); [0] is MUR="0.5" MUF="0.5"; [1] is MUR="0.5" MUF="1.0"; [2] is MUR="0.5" MUF="2.0"; [3] is MUR="1.0" MUF="0.5"; [4] is MUR="1.0" MUF="2.0"; [5] is MUR="2.0" MUF="0.5"; [6] is MUR="2.0" MUF="1.0"; [7] is MUR="2.0" MUF="2.0"*
+##### Renormalization & factorization scales
+
+## Shape nuisance due to QCD scale variations for DY
+# LHE scale variation weights (w_var / w_nominal)
 
 ## This should work for samples with either 8 or 9 LHE scale weights (Length$(LHEScaleWeight) == 8 or 9)
 variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
@@ -522,7 +507,6 @@ nuisances['QCDscale_VV'] = {
         'VgS': variations
     }
 }
-
 
 # ggww and interference
 nuisances['QCDscale_ggVV'] = {
@@ -605,8 +589,10 @@ nuisances['CRSR_accept_WW'] = {
     'name': 'CMS_hww_CRSR_accept_WW',
     'type': 'lnN',
     'samples': {'WW': '1.01'},
+    #'samples': {'DY': '1.1'},
     'cuts': [cut for cut in cuts if '_CR_' in cut],
     'cutspost': (lambda self, cuts: [cut for cut in cuts if '_WW_' in cut]),
+    #'perRecoBin': True
 }
 
 # Uncertainty on SR/CR ratio
@@ -614,6 +600,7 @@ nuisances['CRSR_accept_top'] = {
     'name': 'CMS_hww_CRSR_accept_top',
     'type': 'lnN',
     'samples': {'top': '1.01'},
+    #'samples': {'top': '1.05'},
     'cuts': [cut for cut in cuts if '_CR_' in cut],
     'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut]),
 }
@@ -705,7 +692,6 @@ nuisances['QCDscale_WWewk'] = {
     },
     'type': 'lnN'
 }
-
 nuisances['QCDscale_qqbar_ACCEPT'] = {
     'name': 'QCDscale_qqbar_ACCEPT',
     'type': 'lnN',
@@ -716,14 +702,14 @@ nuisances['QCDscale_qqbar_ACCEPT'] = {
         'WH_htt': '1.010',
         'ZH_hww': '1.015',
         'ZH_htt': '1.015',
-        #'VZ': '1.004',
+        #'VZ': '1.004', # this shouldn't be here because we have full shape-based uncertainty for VZ
     }
 }
 
 nuisances['QCDscale_gg_ACCEPT'] = {
     'name': 'QCDscale_gg_ACCEPT',
     'samples': {
-        'ggH_hww': '1.012',
+        #'ggH_hww': '1.012', # shouldn't be here
         'ggH_htt': '1.012',
         'ggZH_hww': '1.012',
         'ggWW': '1.012',
@@ -742,6 +728,7 @@ nuisances['stat'] = {
 }
 
 ## rate parameters
+
 nuisances['WWnorm0j']  = {
    'name'     : 'CMS_hww_WWnorm0j',
    'samples'  : {
@@ -812,6 +799,7 @@ nuisances['Topnorm0j']  = {
    'cuts'     : cuts0j
 }
 
+
 nuisances['Topnorm1j']  = {
    'name'     : 'CMS_hww_Topnorm1j',
    'samples'  : {
@@ -839,8 +827,8 @@ nuisances['DYeenorm0j']  = {
    'samples'  : {
       'DY'    : ['1.','1.'] ,
       },
-   #'cuts'     : [cut for cut in cuts0j if 'ee' in cut]
    'cutspost' : lambda self, cuts: [cut for cut in cuts if '0j' in cut and 'ee' in cut]
+   #'cuts'     : [cut for cut in cuts0j if 'ee' in cut]
 }
 
 nuisances['DYmmnorm0j']  = {
@@ -850,8 +838,8 @@ nuisances['DYmmnorm0j']  = {
    'samples'  : {
       'DY'    : ['1.','1.'] ,
       },
-   #'cuts'     : [cut for cut in cuts0j if 'mm' in cut]
    'cutspost' : lambda self, cuts: [cut for cut in cuts if '0j' in cut and 'mm' in cut]
+   #'cuts'     : [cut for cut in cuts0j if 'mm' in cut]
 }
 
 nuisances['DYeenorm1j']  = {
@@ -861,8 +849,8 @@ nuisances['DYeenorm1j']  = {
    'samples'  : {
       'DY'    : ['1.','1.'] ,
       },
-   #'cuts'     : [cut for cut in cuts1j if 'ee' in cut]
    'cutspost' : lambda self, cuts: [cut for cut in cuts if '1j' in cut and 'ee' in cut]
+   #'cuts'     : [cut for cut in cuts1j if 'ee' in cut]
 }
 
 nuisances['DYmmnorm1j']  = {
@@ -872,8 +860,8 @@ nuisances['DYmmnorm1j']  = {
    'samples'  : {
       'DY'    : ['1.','1.'] ,
       },
-   #'cuts'     : [cut for cut in cuts1j if 'mm' in cut]
    'cutspost' : lambda self, cuts: [cut for cut in cuts if '1j' in cut and 'mm' in cut]
+   #'cuts'     : [cut for cut in cuts1j if 'mm' in cut]
 }
 
 nuisances['DYeenorm2j']  = {
@@ -883,8 +871,8 @@ nuisances['DYeenorm2j']  = {
    'samples'  : {
       'DY'    : ['1.','1.'] ,
       },
-   #'cuts'     : [cut for cut in cuts2j if 'ee' in cut]
    'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut and 'ee' in cut and 'vh' not in cut and 'vbf' not in cut]
+   #'cuts'     : [cut for cut in cuts2j if 'ee' in cut]
 }
 
 nuisances['DYmmnorm2j']  = {
@@ -894,30 +882,8 @@ nuisances['DYmmnorm2j']  = {
    'samples'  : {
       'DY'    : ['1.','1.'] ,
       },
-   #'cuts'     : [cut for cut in cuts2j if 'mm' in cut]
    'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut and 'mm' in cut and 'vh' not in cut and 'vbf' not in cut]
-}
-
-nuisances['DYeenormvbf']  = {
-   'name'     : 'DYeenormvbf',
-   'kind'     : 'weight',
-   'type'     : 'shape',
-   'samples'  : {
-      'DY'    : ['1.','1.'] ,
-      },
-   'cutspost' : lambda self, cuts: [cut for cut in cuts if 'vbf' in cut and 'ee' in cut]
-   #'cuts'     : [cut for cut in cutsvbf if 'ee' in cut]
-}
-
-nuisances['DYmmnormvbf']  = {
-   'name'     : 'DYmmnormvbf',
-   'kind'     : 'weight',
-   'type'     : 'shape',
-   'samples'  : {
-      'DY'    : ['1.','1.'] ,
-      },
-   'cutspost' : lambda self, cuts: [cut for cut in cuts if 'vbf' in cut and 'mm' in cut]
-   #'cuts'     : [cut for cut in cutsvbf if 'mm' in cut]
+   #'cuts'     : [cut for cut in cuts2j if 'mm' in cut]
 }
 
 nuisances['DYeenormvh']  = {
@@ -942,11 +908,34 @@ nuisances['DYmmnormvh']  = {
    #'cuts'     : [cut for cut in cutsvh if 'mm' in cut]
 }
 
+nuisances['DYeenormvbf']  = {
+   'name'     : 'DYeenormvbf',
+   'kind'     : 'weight',
+   'type'     : 'shape',
+   'samples'  : {
+      'DY'    : ['1.','1.'] ,
+      },
+   'cutspost' : lambda self, cuts: [cut for cut in cuts if 'vbf' in cut and 'ee' in cut]
+   #'cuts'     : [cut for cut in cutsvbf if 'ee' in cut]
+}
+
+nuisances['DYmmnormvbf']  = {
+   'name'     : 'DYmmnormvbf',
+   'kind'     : 'weight',
+   'type'     : 'shape',
+   'samples'  : {
+      'DY'    : ['1.','1.'] ,
+      },
+   'cutspost' : lambda self, cuts: [cut for cut in cuts if 'vbf' in cut and 'mm' in cut]
+   #'cuts'     : [cut for cut in cutsvbf if 'mm' in cut]
+}
+
 
 for n in nuisances.values():
     n['skipCMS'] = 1
 
 print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
+
 
 try:
   for iNP in nuisances:
@@ -954,6 +943,7 @@ try:
       newCuts = []
       for iCut in nuisances[iNP]['cuts']:
         for iOptim in optim:
+           #newCuts.append(iCut+'_'+iOptim)
            newCuts.append(iCut)
       nuisances[iNP]['cuts'] = newCuts
 except:

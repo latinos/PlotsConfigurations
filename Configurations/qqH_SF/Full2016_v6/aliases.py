@@ -3,8 +3,8 @@ import copy
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # Full2017_v6
-configurations = os.path.dirname(configurations) # ggH_SF
+configurations = os.path.dirname(configurations) # Full2016
+configurations = os.path.dirname(configurations) # ggH SF
 configurations = os.path.dirname(configurations) # Configurations
 
 #aliases = {}
@@ -14,8 +14,8 @@ configurations = os.path.dirname(configurations) # Configurations
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-eleWP = 'mvaFall17V1Iso_WP90'
-muWP = 'cut_Tight_HWWW'
+eleWP = 'mva_90p_Iso2016'
+muWP = 'cut_Tight80x'
 
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
@@ -79,7 +79,7 @@ aliases['PromptGenLepMatch2l'] = {
 
 aliases['Top_pTrw'] = {
     #'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
-    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(-1.43717e-02 - 1.18358e-04*topGenPt - 1.70651e-07*topGenPt*topGenPt + 4.47969/(topGenPt+28.7)) * TMath::Exp(-1.43717e-02 - 1.18358e-04*antitopGenPt - 1.70651e-07*antitopGenPt*antitopGenPt + 4.47969/(antitopGenPt+28.7)))) + (topGenPt * antitopGenPt <= 0.)',
+    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(-0.158631 + 2.00214e-04*topGenPt - 3.09496e-07*topGenPt*topGenPt + 34.93/(topGenPt+135.633)) * TMath::Exp(-0.158631 + 2.00214e-04*antitopGenPt - 3.09496e-07*antitopGenPt*antitopGenPt + 34.93/(antitopGenPt+135.633)))) + (topGenPt * antitopGenPt <= 0.)',
     'samples': ['top']
 }
 
@@ -111,7 +111,26 @@ aliases['2jggH'] = {
 'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && (!2jVH && !2jVBF ) )'
 }
 
-#SF cuts
+# B tagging
+
+aliases['bVeto'] = {
+    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0'
+}
+
+aliases['bReq'] = {
+    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) >= 1'
+}
+
+# SR definition
+
+aliases['ZVeto'] = {
+'expr': '(fabs(91.1876 - mll) > 15)'
+}
+
+aliases['sr'] = {
+'expr': 'bVeto && ZVeto'
+}
+
 aliases['Higgs0jet'] = {
 'expr': '(mll < 60 && mth > 90 && abs(dphill) < 2.30)'
 }
@@ -128,21 +147,6 @@ aliases['Higgsvbf'] = {
 'expr': '(mll < 60 && mth > 60 && mth < 150 && abs(dphill) < 1.60)'
 }
 
-#Z veto
-aliases['ZVeto'] = {
-'expr': '(fabs(91.1876 - mll) > 15)'
-}
-
-# B tagging
-
-aliases['bVeto'] = {
-    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0'
-}
-
-aliases['bReq'] = {
-    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) >= 1'
-}
-
 # CR definitions
 
 aliases['topcr'] = {
@@ -153,18 +157,12 @@ aliases['dycr'] = {
     'expr': 'mth<60 && mll>40 && mll<80 && bVeto'
 }
 
-aliases['wwcr'] = {
-    'expr': 'mth>60 && mtw2>30 && mll>100 && bVeto && ZVeto'
-}
-
 aliases['Zpeak'] = {
     'expr': 'fabs(91.1876 - mll) < 7.5'
 }
 
-# SR definition
-
-aliases['sr'] = {
-    'expr': 'bVeto && ZVeto'
+aliases['wwcr'] = {
+    'expr': 'mth>60 && mtw2>30 && mll>100 && bVeto && ZVeto'
 }
 
 # B tag scale factors
@@ -184,7 +182,8 @@ aliases['btagSF'] = {
     'samples': mc
 }
 
-for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
+for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
+
     for targ in ['bVeto', 'bReq']:
         alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
         alias['expr'] = alias['expr'].replace('btagSF_shape', 'btagSF_shape_up_%s' % shift)
@@ -210,7 +209,7 @@ aliases['PUJetIdSF'] = {
         '.L %s/patches/pujetidsf_event.cc+' % configurations
     ],
     'class': 'PUJetIdEventSF',
-    'args': (puidSFSource, '2017', 'loose'),
+    'args': (puidSFSource, '2016', 'loose'),
     'samples': mc
 }
 
@@ -235,6 +234,25 @@ aliases['SFweightMuUp'] = {
 aliases['SFweightMuDown'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Do',
     'samples': mc
+}
+
+aliases['nllWOTF'] = {
+    'linesToAdd': ['.L %s/Differential/nllW.cc+' % configurations],
+    'class': 'WWNLLW',
+    'args': ('central',),
+    'samples': ['WW']
+}
+
+# In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
+aliases['lhe_mW1'] = {
+    'expr': 'TMath::Sqrt(2. * LHEPart_pt[0] * LHEPart_pt[1] * (TMath::CosH(LHEPart_eta[0] - LHEPart_eta[1]) - TMath::Cos(LHEPart_phi[0] - LHEPart_phi[1])))',
+    'samples': ['WWewk']
+}
+
+# and [2] [3] are the second W
+aliases['lhe_mW2'] = {
+    'expr': 'TMath::Sqrt(2. * LHEPart_pt[2] * LHEPart_pt[3] * (TMath::CosH(LHEPart_eta[2] - LHEPart_eta[3]) - TMath::Cos(LHEPart_phi[2] - LHEPart_phi[3])))',
+    'samples': ['WWewk']
 }
 
 aliases['nCleanGenJet'] = {
