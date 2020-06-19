@@ -50,7 +50,7 @@ LepWPweight     = 'ttHMVA_SF_3l[0]' #SF for new WPs, defined in aliases
 ################################################
 
 XSWeight      = 'XSWeight'
-SFweight      = 'SFweight'+Nlep+'l*'+LepWPweight+'*'+LepWPCut
+SFweight      = 'SFweight'+Nlep+'l*'+LepWPweight+'*'+LepWPCut+'*PUJetIdSF'
 PromptGenLepMatch   = 'PromptGenLepMatch'+Nlep+'l'
 
 ################################################
@@ -319,6 +319,7 @@ samples['Fake']  = {   'name': [ ] ,
                        'weights' : [ ] ,
                        'isData': ['all'],
                        'FilesPerJob' : 500 ,
+                       'suppressNegativeNuisances' :['all'],
                      }
 
 directory = treeBaseDir+'Run2018_102X_nAODv6_Full2018v6_ForNewWPs/DATAl1loose2018v6__l2loose__fakeW/'

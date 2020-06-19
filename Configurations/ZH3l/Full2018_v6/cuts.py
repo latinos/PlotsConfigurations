@@ -17,38 +17,22 @@ cuts['jet_cut_2j'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
                     && WH3l_ZVeto < 25 \
                     '
 
-cuts['MET_cut_2j'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
-                 && Alt$( CleanJet_pt[1], 0) > 30 \
-                 && WH3l_ZVeto < 25 \
-                 && PuppiMET_pt > 25 \
-                 '
-
 cuts['bveto_2j'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
                && Alt$( CleanJet_pt[1], 0) > 30 \
                && WH3l_ZVeto < 25 \
-               && PuppiMET_pt > 25 \
                && bVeto \
                '
 
 cuts['z4lveto_2j'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
                  && Alt$( CleanJet_pt[1], 0) > 30 \
                  && WH3l_ZVeto < 25 \
-                 && PuppiMET_pt > 25 \
                  && bVeto \
                  && ZH3l_Z4lveto > 20 \
                  '
 
-cuts['zh3l_Zg_CR_2j'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
-                       && Alt$( CleanJet_pt[1], 0) > 30 \
-                       && WH3l_ZVeto < 25 \
-                       && bVeto \
-                       && ZH3l_Z4lveto < 10 \
-                       '
-
 cuts['zh3l_SR_2j'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
                     && Alt$( CleanJet_pt[1], 0) > 30 \
                     && WH3l_ZVeto < 25 \
-                    && PuppiMET_pt > 25 \
                     && bVeto \
                     && ZH3l_Z4lveto > 20 \
                     && ZH3l_dphilmetjj_test[0] < 3.14159/2 \
@@ -57,49 +41,58 @@ cuts['zh3l_SR_2j'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
 cuts['zh3l_WZ_CR_2j'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
                        && Alt$( CleanJet_pt[1], 0) > 30 \
                        && WH3l_ZVeto < 25 \
-                       && PuppiMET_pt > 25 \
                        && bVeto \
                        && ZH3l_Z4lveto > 20 \
                        && ZH3l_dphilmetjj_test[0] > 3.14159/2 \
                        '
+
+cuts['met_2j'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
+                && Alt$( CleanJet_pt[1], 0) > 30 \
+                && WH3l_ZVeto < 25 \
+                && bVeto \
+                && ZH3l_Z4lveto > 20 \
+                && PuppiMET_pt > 25 \
+                '
+
+cuts['zh3l_SR_2j_met'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
+                        && Alt$( CleanJet_pt[1], 0) > 30 \
+                        && WH3l_ZVeto < 25 \
+                        && bVeto \
+                        && ZH3l_Z4lveto > 20 \
+                        && PuppiMET_pt > 25 \
+                        && ZH3l_dphilmetjj_test[0] < 3.14159/2 \
+                        '
+
+cuts['zh3l_WZ_CR_2j_met'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
+                           && Alt$( CleanJet_pt[1], 0) > 30 \
+                           && WH3l_ZVeto < 25 \
+                           && bVeto \
+                           && ZH3l_Z4lveto > 20 \
+                           && PuppiMET_pt > 25 \
+                           && ZH3l_dphilmetjj_test[0] > 3.14159/2 \
+                           '
 
 cuts['jet_cut_1j'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
                     && Alt$( CleanJet_pt[1], 0) < 30 \
                     && WH3l_ZVeto < 25 \
                     '
 
-cuts['MET_cut_1j'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
-                   && Alt$( CleanJet_pt[1], 0) < 30 \
-                   && WH3l_ZVeto < 25 \
-                   && PuppiMET_pt > 25 \
-                   '
-		   
 cuts['bveto_1j'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
                   && Alt$( CleanJet_pt[1], 0) < 30 \
                   && WH3l_ZVeto < 25 \
-                  && PuppiMET_pt > 25 \
                   && bVeto \
                   '
 
 cuts['z4lveto_1j'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
                     && Alt$( CleanJet_pt[1], 0) < 30 \
                     && WH3l_ZVeto < 25 \
-                    && PuppiMET_pt > 25 \
                     && bVeto \
                     && ZH3l_Z4lveto > 20 \
                     '
 
-cuts['zh3l_Zg_CR_1j'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
-                       && Alt$( CleanJet_pt[1], 0) < 30 \
-                       && WH3l_ZVeto < 25 \
-                       && bVeto \
-                       && ZH3l_Z4lveto < 10 \
-                       '
-
 cuts['zh3l_SR_1j'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
                     && Alt$( CleanJet_pt[1], 0) < 30 \
                     && WH3l_ZVeto < 25 \
-                    && PuppiMET_pt > 25 \
                     && bVeto \
                     && ZH3l_Z4lveto > 20 \
                     && ZH3l_dphilmetj_test[0] < 3.14159/2 \
@@ -108,11 +101,36 @@ cuts['zh3l_SR_1j'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
 cuts['zh3l_WZ_CR_1j'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
                        && Alt$( CleanJet_pt[1], 0) < 30 \
                        && WH3l_ZVeto < 25 \
-                       && PuppiMET_pt > 25 \
                        && bVeto \
                        && ZH3l_Z4lveto > 20 \
                        && ZH3l_dphilmetj_test[0] > 3.14159/2 \
                        '
+
+cuts['met_1j'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
+                && Alt$( CleanJet_pt[1], 0) < 30 \
+                && WH3l_ZVeto < 25 \
+                && bVeto \
+                && ZH3l_Z4lveto > 20 \
+                && PuppiMET_pt > 25 \
+                '
+
+cuts['zh3l_SR_1j_met'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
+                        && Alt$( CleanJet_pt[1], 0) < 30 \
+                        && WH3l_ZVeto < 25 \
+                        && bVeto \
+                        && ZH3l_Z4lveto > 20 \
+                        && PuppiMET_pt > 25 \
+                        && ZH3l_dphilmetj_test[0] < 3.14159/2 \
+                        '
+
+cuts['zh3l_WZ_CR_1j_met'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
+                           && Alt$( CleanJet_pt[1], 0) < 30 \
+                           && WH3l_ZVeto < 25 \
+                           && bVeto \
+                           && ZH3l_Z4lveto > 20 \
+                           && PuppiMET_pt > 25 \
+                           && ZH3l_dphilmetj_test[0] > 3.14159/2 \
+                           '
 
 '''
  #11 = e

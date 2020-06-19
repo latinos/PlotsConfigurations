@@ -29,7 +29,8 @@ structure['Zg']  = {
 
 structure['ZgS']  = { 
                   'isSignal' : 0,
-                  'isData'   : 0 
+                  'isData'   : 0,
+                  'removeFromCuts' : ['zh3l_SR_2j_met']
                   }
 
 structure['WW']  = { 
