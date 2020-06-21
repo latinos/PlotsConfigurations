@@ -50,7 +50,7 @@ LepWPweight     = 'ttHMVA_SF_3l[0]' #SF for new WPs, defined in aliases
 ################################################
 
 XSWeight      = 'XSWeight'
-SFweight      = 'SFweight'+Nlep+'l*'+LepWPweight+'*'+LepWPCut+'*PrefireWeight'
+SFweight      = 'SFweight'+Nlep+'l*'+LepWPweight+'*'+LepWPCut+'*PrefireWeight*PUJetIdSF'
 PromptGenLepMatch   = 'PromptGenLepMatch'+Nlep+'l'
 
 ################################################
@@ -195,7 +195,7 @@ samples['ttV'] = {    'name'   :   getSampleFilesNano(directory,'TTWJetsToLNu_ex
                                  + getSampleFilesNano(directory,'TTWJetsToLNu_ext2')
                                  + getSampleFilesNano(directory,'TTZjets'),
                      'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 5,
+                     'FilesPerJob' : 10,
                  }
 
 ttWbaseW = getBaseWnAOD(directory,'Summer16_102X_nAODv5_Full2016v6',['TTWJetsToLNu_ext1','TTWJetsToLNu_ext2'])
@@ -223,14 +223,14 @@ samples['ggWW'] = {  'name'   :   getSampleFilesNano(directory,'GluGluWWTo2L2Nu_
 
 samples['Zg']  =  {     'name'   :    getSampleFilesNano(directory,'Zg'),
                         'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '*(Gen_ZGstar_mass <= 0)',
-                        'FilesPerJob' : 5 ,
+                        'FilesPerJob' : 10 ,
                   }
 
 ###### Zg*
 
 samples['ZgS']  = {    'name'   :   getSampleFilesNano(directory,'Zg'),
                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC+'*(Gen_ZGstar_mass > 0)' ,
-                       'FilesPerJob' : 2 ,
+                       'FilesPerJob' : 5 ,
                   }
 
 #####  WZ
@@ -239,7 +239,7 @@ samples['WZ']  = {    'name':   getSampleFilesNano(directory,'WZTo3LNu_mllmin01'
                               + getSampleFilesNano(directory,'WZTo3LNu_mllmin01_ext1')
                               + getSampleFilesNano(directory,'WZTo2L2Q'),
                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC+'*(gstarHigh)' ,
-                       'FilesPerJob' : 2 ,
+                       'FilesPerJob' : 5 ,
                   }
 
 WZbaseW = getBaseWnAOD(directory,'Summer16_102X_nAODv5_Full2016v6',['WZTo3LNu_mllmin01','WZTo3LNu_mllmin01_ext1'])
@@ -304,7 +304,6 @@ samples['VVV']  = {  'name'   :   getSampleFilesNano(directory,'ZZZ')
 
 samples['ZH_hww']  = {  'name': getSampleFilesNano(directory,'HZJ_HToWW_M125'),
                         'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC,
-                        'suppressNegativeNuisances' :['all'],
                         'FilesPerJob' : 3,
                         'subsamples' : { 'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==401 || HTXS_stage1_1_cat_pTjet30GeV==402',
                                          'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==403 || HTXS_stage1_1_cat_pTjet30GeV==404 || HTXS_stage1_1_cat_pTjet30GeV==405',
@@ -314,7 +313,6 @@ samples['ZH_hww']  = {  'name': getSampleFilesNano(directory,'HZJ_HToWW_M125'),
 
 samples['ggZH_hww'] = {  'name': getSampleFilesNano(directory,'ggZH_HToWW_M125'),
                          'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC+'*ggZHreweight',
-                         'suppressNegativeNuisances' :['all'],
                          'FilesPerJob' : 3,
                         'subsamples' : { 'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==501 || HTXS_stage1_1_cat_pTjet30GeV==502',
                                          'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==503 || HTXS_stage1_1_cat_pTjet30GeV==504 || HTXS_stage1_1_cat_pTjet30GeV==505',
@@ -357,7 +355,7 @@ samples['Fake']  = {   'name': [ ] ,
                        'weight' : fakeW+'*'+METFilter_DATA+'*EMTFbug_veto',
                        'weights' : [ ] ,
                        'isData': ['all'],
-                       'FilesPerJob' : 50 ,
+                       'FilesPerJob' : 500 ,
                        'suppressNegativeNuisances' :['all'],
                      }
 
@@ -384,7 +382,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'weight' : METFilter_DATA+'*'+LepWPCut+'*EMTFbug_veto',
                        'weights' : [ ],
                        'isData': ['all'],
-                       'FilesPerJob' : 50 ,
+                       'FilesPerJob' : 500 ,
                   }
 
 directory = treeBaseDir+'Run2016_102X_nAODv5_Full2016v6/DATAl1loose2016v6__l2loose__l2tightOR2016v6'

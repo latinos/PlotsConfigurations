@@ -12,3 +12,6 @@ for iproc in nominal+stxs:
         'isSignal' : 1 if any(substring in iproc for substring in ['H_hww','H_htt']) else 0,
         'isData'   : 1 if iproc == 'DATA' else 0,
     }
+
+structure['Zg']['removeFromCuts'] = ['zh3l_SR_1j_ptv_gt150']
+structure['ZgS']['removeFromCuts'] = ['zh3l_SR_1j_ptv_gt150']
