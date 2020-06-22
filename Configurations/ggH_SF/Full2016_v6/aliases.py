@@ -17,6 +17,24 @@ mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 eleWP = 'mva_90p_Iso2016'
 muWP = 'cut_Tight80x'
 
+# DY MVA
+
+aliases['dymva_alt_dnn_0j'] = {
+    'expr': 'hww_DYmvaDNN_0j(Entry$)',
+    'samples': mc + ['DATA']  
+}
+
+aliases['dymva_alt_dnn_1j'] = {                                                                                                     
+    'expr': 'hww_DYmvaDNN_1j(Entry$)',                                                                                              
+    'samples': mc + ['DATA']                                                                                                        
+}
+
+aliases['dymva_alt_dnn_2j'] = {                                                                                                     
+    'expr': 'hww_DYmvaDNN_2j(Entry$)',                                                                                             
+    'samples': mc + ['DATA']                                                                                                        
+}
+
+
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
     'samples': mc + ['DATA']
