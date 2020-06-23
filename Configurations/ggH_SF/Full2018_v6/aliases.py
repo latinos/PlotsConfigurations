@@ -17,8 +17,13 @@ mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 eleWP='mvaFall17V1Iso_WP90'
 muWP='cut_Tight_HWWW'
 
+newEleWP = 'mvaFall17V1Iso_WP90' # same as nominal
+#newEleWP = 'mvaFall17V1Iso_WP90_tthmva_70'
+newMuWP = 'cut_Tight_HWWW_tthmva_80'
+
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
+    #'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP+'*((abs(Lepton_pdgId[0])==11 || Muon_mvaTTH[Lepton_muonIdx[0]]>0.8) && (abs(Lepton_pdgId[1])==11 || Muon_mvaTTH[Lepton_muonIdx[1]]>0.8))',
     'samples': mc + ['DATA']
 }
 
@@ -90,18 +95,9 @@ aliases['isSingleTop'] = {
     'samples': ['top']
 }
 
-#aliases['topGenPtOTF'] = {
-#    'expr': 'Sum$((GenPart_pdgId == 6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
-#    'samples': ['top']
-#}
-#
-#aliases['antitopGenPtOTF'] = {
-#    'expr': 'Sum$((GenPart_pdgId == -6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
-#    'samples': ['top']
-#}
-
 aliases['Top_pTrw'] = {
-    'expr': 'isTTbar * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + isSingleTop',
+    #'expr': 'isTTbar * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + isSingleTop',
+    'expr': 'isTTbar * (TMath::Sqrt(TMath::Exp(-1.43717e-02 - 1.18358e-04*topGenPt - 1.70651e-07*topGenPt*topGenPt + 4.47969/(topGenPt+28.7)) * TMath::Exp(-1.43717e-02 - 1.18358e-04*antitopGenPt - 1.70651e-07*antitopGenPt*antitopGenPt + 4.47969/(antitopGenPt+28.7)))) + isSingleTop',
     'samples': ['top']
 }
 
@@ -134,16 +130,19 @@ aliases['2jggH'] = {
 }
 
 aliases['Higgs0jet'] = {
-'expr': '(mll < 60 && mth > 90)'
+'expr': '(mll < 60 && mth > 90 && abs(dphill) < 2.30)'
 }
 aliases['Higgs1jet'] = {
-'expr': '(mll < 60 && mth > 90)'
+'expr': '(mll < 60 && mth > 80 && abs(dphill) < 2.25)'
 }
 aliases['Higgs2jet'] = {
-'expr': '(mll < 60 && mth > 60)'
+'expr': '(mll < 60 && mth > 65 && mth < 150)'
+}
+aliases['Higgsvh'] = {
+'expr': '(mll < 60 && mth > 60 && mth < 150 && abs(dphill) < 1.60)'
 }
 aliases['Higgsvbf'] = {
-'expr': '(mll < 60 && mth > 60)'
+'expr': '(mll < 60 && mth > 60 && mth < 150 && abs(dphill) < 1.60)'
 }
 
 aliases['ZVeto'] = {
@@ -186,8 +185,8 @@ aliases['sr'] = {
 
 # B tag scale factors
 
-#btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_102XSF_V1.csv' % os.getenv('CMSSW_BASE')
-#
+btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_102XSF_V1.csv' % os.getenv('CMSSW_BASE')
+
 #aliases['Jet_btagSF_shapeFix'] = {
 #    'linesToAdd': [
 #        'gSystem->Load("libCondFormatsBTauObjects.so");',
@@ -216,16 +215,16 @@ aliases['btagSF'] = {
 }
 
 for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
-    #aliases['Jet_btagSF_shape_up_%s' % shift] = {
-    #    'class': 'BtagSF',
-    #    'args': (btagSFSource, 'up_' + shift),
-    #    'samples': mc
-    #}
-    #aliases['Jet_btagSF_shape_down_%s' % shift] = {
-    #    'class': 'BtagSF',
-    #    'args': (btagSFSource, 'down_' + shift),
-    #    'samples': mc
-    #}
+#    aliases['Jet_btagSF_shape_up_%s' % shift] = {
+#        'class': 'BtagSF',
+#        'args': (btagSFSource, 'up_' + shift),
+#        'samples': mc
+#    }
+#    aliases['Jet_btagSF_shape_down_%s' % shift] = {
+#        'class': 'BtagSF',
+#        'args': (btagSFSource, 'down_' + shift),
+#        'samples': mc
+#    }
 
     for targ in ['bVeto', 'bReq']:
         alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
@@ -245,22 +244,28 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
     }
 
 # PU jet Id SF
+puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
 
-#puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
-#
-#aliases['PUJetIdSF'] = {
-#    'linesToAdd': [
-#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-#        '.L %s/patches/pujetidsf_event.cc+' % configurations
-#    ],
-#    'class': 'PUJetIdEventSF',
-#    'args': (puidSFSource, '2018', 'loose'),
-#    'samples': mc
-#}
+aliases['PUJetIdSF'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L %s/patches/pujetidsf_event.cc+' % configurations
+    ],
+    'class': 'PUJetIdEventSF',
+    'args': (puidSFSource, '2018', 'loose'),
+    'samples': mc
+}
 
 # data/MC scale factors
+aliases['new_SF'] = {   'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
+                        'class': 'compute_SF',
+                        'args' : ('2018', 2, 'total_SF'),
+                        'samples': mc
+}
+
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut', 'btagSF']),
+    #'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut', 'btagSF','PUJetIdSF']),
+    'expr': ' * '.join(['SFweight2l', 'new_SF', 'LepWPCut', 'btagSF','PUJetIdSF','PUJetIdSF']),
     'samples': mc
 }
 # variations
@@ -280,3 +285,10 @@ aliases['SFweightMuDown'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Do',
     'samples': mc
 }
+
+aliases['nCleanGenJet'] = {
+    'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
+    'class': 'CountGenJet',
+    'samples': mc
+}
+

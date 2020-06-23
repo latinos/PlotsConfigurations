@@ -251,7 +251,7 @@ nuisances['jes1j']  = {
                 'skipCMS' : 1,
                 'type': 'lnN',
                 'samples': dict((skey, '1.03') for skey in mc if skey not in ['WW', 'top', 'DY','VZ','Vg','VgS']),
-                'cuts'     : cuts0j
+                'cuts'     : cuts1j
 }
 
 nuisances['jes2j']  = {

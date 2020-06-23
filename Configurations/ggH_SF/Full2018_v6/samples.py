@@ -2,11 +2,11 @@ import os
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # ggH2016
+configurations = os.path.dirname(configurations) # ggH2018
 configurations = os.path.dirname(configurations) # Differential
 configurations = os.path.dirname(configurations) # Configurations
 
-from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
+from LatinoAnalysis.Tools.commonTools import getSampleFiles, addSampleWeight, getBaseWnAOD
 
 def nanoGetSampleFiles(inputDir, sample):
     try:
@@ -32,11 +32,11 @@ except NameError:
 mcProduction = 'Autumn18_102X_nAODv6_Full2018v6'
 dataReco = 'Run2018_102X_nAODv6_Full2018v6'
 
-mcSteps = 'MCl1loose2018v6__MCCorr2018v6__l2loose__l2tightOR2018v6__DYMVA_alt{var}'
+mcSteps = 'MCl1loose2018v6__MCCorr2018v6__l2loose__l2tightOR2018v6{var}'
 
-fakeSteps = 'DATAl1loose2018v6__l2loose__fakeW__DYMVA_alt'
+fakeSteps = 'DATAl1loose2018v6__l2loose__fakeW'
 
-dataSteps = 'DATAl1loose2018v6__l2loose__l2tightOR2018v6__DYMVA_alt'
+dataSteps = 'DATAl1loose2018v6__l2loose__l2tightOR2018v6'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -116,6 +116,7 @@ if useDYtt :
 
 else:
     files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext2') + \
+            nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO') + \
             nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO_ext1')
 
     samples['DY'] = {
@@ -132,6 +133,7 @@ else:
         samples['DY']['name'] +=     nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-200to400' ) \
                                    + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-400to600' ) \
                                    + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-600toInf') \
+                                   + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-70to100') \
                                    + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-100to200') \
                                    + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-200to400') \
                                    + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-400to600') \
@@ -140,14 +142,19 @@ else:
                                    + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-1200to2500') \
                                    + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-2500toInf')
 
+    M10baseW = getBaseWnAOD(mcDirectory,'Autumn18_102X_nAODv6_Full2018v6',['DYJetsToLL_M-10to50-LO','DYJetsToLL_M-10to50-LO_ext1'])
+
     addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext2'        ,ptllDYW_NLO)
-    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1' ,ptllDYW_LO)
+    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO'      ,ptllDYW_LO +'*'+M10baseW+'/baseW')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1' ,ptllDYW_LO +'*'+M10baseW+'/baseW')
 
     if useDYHT :
         # Remove high HT from inclusive samples
-        addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1', '(LHE_HT<200)')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1', '(LHE_HT<100)')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO'     , '(LHE_HT<100)')
         addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext2'       , '(LHE_HT<70)')
         # pt_ll weight
+        addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-100to200',ptllDYW_LO)
         addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-200to400',ptllDYW_LO)
         addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-400to600',ptllDYW_LO)
         addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-600toInf',ptllDYW_LO)
@@ -220,7 +227,7 @@ samples['ggWW'] = {
 ######## Vg ########
 
 files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
-    nanoGetSampleFiles(mcDirectory, 'Zg')
+    nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
 
 samples['Vg'] = {
     'name': files,
@@ -230,12 +237,12 @@ samples['Vg'] = {
     'FilesPerJob': 4
 }
 # the following is needed in both v5 and v6
-addSampleWeight(samples, 'Vg', 'Zg', '0.448')
+addSampleWeight(samples, 'Vg', 'ZGToLLG', '0.448')
 
 ######## VgS ########
 
 files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
-    nanoGetSampleFiles(mcDirectory, 'Zg') + \
+    nanoGetSampleFiles(mcDirectory, 'ZGToLLG') + \
     nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01')
 
 samples['VgS'] = {
@@ -250,7 +257,7 @@ samples['VgS'] = {
     }
 }
 addSampleWeight(samples, 'VgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
-addSampleWeight(samples, 'VgS', 'Zg', '(Gen_ZGstar_mass > 0)*0.448')
+addSampleWeight(samples, 'VgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0)*0.448')
 addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
 
 ############ VZ ############
@@ -362,45 +369,46 @@ signals.append('ttH_hww')
 
 ############ H->TauTau ############
 
-#samples['ggH_htt'] = {
-#    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125'),
-#    'weight': mcCommonWeight,
-#    'suppressNegative' :['all'],
-#    'suppressNegativeNuisances' :['all'],
-#    'FilesPerJob': 20
-#}
+samples['ggH_htt'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125'),
+    'weight': mcCommonWeight,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
+    'FilesPerJob': 20
+}
 
-#signals.append('ggH_htt')
+signals.append('ggH_htt')
 
-#samples['qqH_htt'] = {
-#    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125'),
-#    'weight': mcCommonWeight,
-#    'suppressNegative' :['all'],
-#    'suppressNegativeNuisances' :['all'],
-#    'FilesPerJob': 12
-#}
+samples['qqH_htt'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125'),
+    'weight': mcCommonWeight,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
+    'FilesPerJob': 10
+}
 
-#signals.append('qqH_htt')
-#
-#samples['ZH_htt'] = {
-#    'name': nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125'),
-#    'weight': mcCommonWeight,
-#    'suppressNegative' :['all'],
-#    'suppressNegativeNuisances' :['all'],
-#    'FilesPerJob': 4
-#}
-#
-#signals.append('ZH_htt')
-#
-#samples['WH_htt'] = {
-#    'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
-#    'weight': mcCommonWeight,
-#    'suppressNegative' :['all'],
-#    'suppressNegativeNuisances' :['all'],
-#    'FilesPerJob': 4
-#}
-#
-#signals.append('WH_htt')
+signals.append('qqH_htt')
+
+samples['ZH_htt'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125'),
+    'weight': mcCommonWeight,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
+    'FilesPerJob': 4
+}
+
+signals.append('ZH_htt')
+
+samples['WH_htt'] = {
+    'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
+    'weight': mcCommonWeight,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
+    'FilesPerJob': 4
+}
+
+signals.append('WH_htt')
+
 
 ###########################################
 ################## FAKE ###################
@@ -413,7 +421,7 @@ samples['Fake'] = {
   'isData': ['all'],
    'suppressNegative' :['all'],
    'suppressNegativeNuisances' :['all'],
-  'FilesPerJob': 80
+  'FilesPerJob': 50
 }
 
 for _, sd in DataRun:
@@ -437,7 +445,7 @@ samples['DATA'] = {
   'weight': 'METFilter_DATA*LepWPCut',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 120
+  'FilesPerJob': 50
 }
 
 for _, sd in DataRun:

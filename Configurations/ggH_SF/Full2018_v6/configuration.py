@@ -14,7 +14,8 @@ aliasesFile = 'aliases.py'
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
+#cutsFile = 'cuts.py' 
+cutsFile = 'cuts_dy.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 
@@ -27,7 +28,7 @@ lumi = 59.74
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plots_sign_'+tag
+outputDirPlots = 'plots_sr_'+tag
 
 # used by mkDatacards to define output directory for datacards
 outputDirDatacard = 'datacards'
