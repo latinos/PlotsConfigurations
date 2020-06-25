@@ -324,7 +324,7 @@ std::vector<float> get_all_qqH_uncertainties(int event_STXS){
       double uncert = 0;
       retval.push_back(vbf_uncert_stage_1_1(s, event_STXS));
   }
-  retval.push_back(vbf_ew_correction_stage_1_1(event_STXS)); 
+  retval.push_back(1.+vbf_ew_correction_stage_1_1(event_STXS)); 
   return retval;
 }
 
@@ -409,7 +409,7 @@ QQHUncertainty::getNdata()
 double
 QQHUncertainty::evaluate(unsigned)
 {
-  cout << "inded " << vindex_ << " weight " << uncertainties.at(vindex_) << endl;
+  //cout << "index " << vindex_ << " weight " << uncertainties.at(vindex_) << endl;
   return uncertainties.at(vindex_);
 }
 
