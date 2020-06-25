@@ -188,23 +188,33 @@ plot['top'] = {
                  }
 
 
-#wfactors = {
-#    (1,1): 0.89,
-#    (1,2): 0.88,
-#    (1,3): 0.66,
-#    (2,1): 1.08,
-#    (2,2): 0.92,
-#    (2,3): 0.65,
-#    (3,1): 1.36,
-#    (3,2): 1.00,
-#}
+wfactors_ele = {
+  "Wjets_deta1_jpt1": 1.03 ,
+  "Wjets_deta2_jpt1": 1.33 ,
+  "Wjets_deta1_jpt2": 0.92 ,
+  "Wjets_deta2_jpt2": 1.14 ,
+  "Wjets_jpt3": 0.75,
+  "Wjets_boost1": 1,
+  "Wjets_boost2": 1,
+}
+
+wfactors_mu = {
+  "Wjets_deta1_jpt1":  0.99,
+  "Wjets_deta2_jpt1": 1.16,
+  "Wjets_deta1_jpt2": 0.80,
+  "Wjets_deta2_jpt2": 0.92 ,
+  "Wjets_jpt3": 0.52,
+  "Wjets_boost1": 1,
+  "Wjets_boost2": 1. 
+}
 
 for wjetbin in wjets_bins:
     plot[wjetbin] = {  
                     'color':  colors['kRed']-3,
                     'isSignal' : 0,
                     'isData'   : 0,
-                    'scale': 1.0
+                    'cuts':
+                    { cut: wfactors_ele[wjetbin] if "ele" in cut else wfactors_mu[wjetbin]  for cut in cuts  }
                 }
 
 

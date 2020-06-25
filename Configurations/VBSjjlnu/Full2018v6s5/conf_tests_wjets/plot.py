@@ -2,6 +2,7 @@
 
 from ROOT import TColor
 from itertools import product
+from random import choice
 
 # groupPlot = {}
 # 
@@ -49,64 +50,20 @@ palette = {
     "Wjets_deta1": (247, 235, 7), #f7eb07
 '''
 
-jetbin_detabins = [3,3,2]
-#wjets_palette = ['#FFF59D', '#FFEE58', '#FFD54F', '#FFB300', '#FF8F00', '#F57C00', '#E65100','#BF360C']
-wjets_palette = ['#DD2C00', '#FF3D00',  '#FF6D00','#F57C00', '#FFAB00', '#FFC400', '#FFEA00', '#FFFF00']
+samplesWjets = ["Wjets_NLO_0J", "Wjets_NLO_1J","Wjets_NLO_2J","Wjets_LO",
+      "Wjets_HT70_100", "Wjets_HT100_200","Wjets_HT200_400", "Wjets_HT400_600",
+       "Wjets_HT600_800", "Wjets_HT800_1200", "Wjets_HT1200_2500", "Wjets_HT2500_inf",
+      "Wjets_Pt50to100", "Wjets_Pt100to250", "Wjets_Pt400to600", "Wjets_Pt600toInf"]
 
-wjets_bins = ["Wjets_jpt3","Wjets_deta2_jpt2", "Wjets_deta1_jpt2",
-                "Wjets_deta2_jpt1","Wjets_deta1_jpt1", 
-                "Wjets_boost1", "Wjets_boost2"]
+for w in samplesWjets:
+    groupPlot[w]  = {  
+                            'nameHR' : w,
+                            'isSignal' : 0,
+                            'color':   palette[choice(list(palette.keys()))],
+                            'samples'  :[w],
+                            'fill': 1001
+                    }
 
-groupPlot['Fake']  = {  
-                'nameHR' : "Fake",
-                'isSignal' : 0,
-                'color': palette["LightBlue"],   
-                'samples'  : ['Fake'],
-                'fill': 1001
-            }
-
-groupPlot['vbfV+VV+VVV']  = {  
-                  'nameHR' : 'vbfV+VV+VVV',
-                  'isSignal' : 0,
-                  'color': palette["Pink"],  
-                  'samples'  : ['VBF-F','VVV', 'VV'],
-                  'fill': 1001
-              }
-
-
-groupPlot['DY']  = {  
-                'nameHR' : "DY",
-                'isSignal' : 0,
-                'color': palette["Green2"],    
-                'samples'  : ['DY'],
-                'fill': 1001
-            }
-
-
-
-groupPlot["Wjets"]  = {  
-                        'nameHR' : 'W+Jets',
-                        'isSignal' : 0,
-                        'color':   palette["Yellow"],
-                        'samples'  : ["Wjets"],
-                        'fill': 1001
-                }
-
-groupPlot['top']  = {  
-                 'nameHR' : 'top',
-                 'isSignal' : 0,
-                 'color':  palette["MediumBlue2"],  
-                 'samples'  : ['top'],
-                 'fill': 1001
-             }
-
-groupPlot['VBS']  = {  
-                 'nameHR' : 'VBS',
-                 'isSignal' : 1,
-                 'color': colors["kRed"]+1,   
-                 'samples'  : ['VBS'],
-                 'fill': 1001
-              }
 
 
 
@@ -114,95 +71,13 @@ groupPlot['VBS']  = {
 
 # keys here must match keys in samples.py    
 # 
-
-plot['VVV']  = { 
-                  'color': colors["kAzure"] -3,    
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
-
-
-plot['VV']  = {
-                  'color': colors['kGreen']+3,  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.   ,
-              }   
-         
-
-
-plot['DY']  = {  
-                'color': colors['kMagenta']+1,
-                'isSignal' : 0,
-                'isData'   : 0, 
-                'scale'    : 1.0,
-            }
-
-plot['VBF-V']  = {
-                  'color': colors['kYellow']+3,  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.   ,
-              }
-
-
-plot['Fake']  = {  
-                'color': colors['kTeal'],
-                'isSignal' : 0,
-                'isData'   : 0, 
-                'scale'    : 1.0,
-            }
-
-
-plot['top'] = {   
-                 'color': colors['kAzure']-1,
-                 'isSignal' : 0,
-                 'isData'   : 0, 
-                 'scale'    : 1.11 
-                 }
-
-
-plot['Wjets'] = {   
-                 'color': colors['kAzure']-1,
-                 'isSignal' : 0,
-                 'isData'   : 0, 
-                 'scale'    : 1.0 
-                 }
-
-# for  wbin in wjets_bins:
-#         plot[wbin] = {  
-#                         'color':  colors['kRed']-3,
-#                         'isSignal' : 0,
-#                         'isData'   : 0,
-#                         'scale': 1.0
-#                     }
-
-# for wbin in wjets_bins:
-#     plot[wbin]  = {
-#                     'color': colors["kCyan"]+1, 
-#                     'isSignal' : 0,
-#                     'isData'   : 0,
-#                     'scale'    : 1.   ,
-#                 }
-
-
-plot['VBS']  = {
-                  'color': colors["kCyan"]+1, 
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1.   ,
-              }
-
-# # data
-
-plot['DATA']  = { 
-                 'nameHR' : 'Data',
-                 'color': 1 ,  
-                 'isSignal' : 0,
-                 'isData'   : 1 ,
-                 'isBlind'  : 0
-             }
+for w in samplesWjets:
+    plot[w]  = { 
+                    'color': colors["kAzure"] -3,    
+                    'isSignal' : 1,
+                    'isData'   : 0,
+                    'scale'    : 1.0
+                    }
 
 
 
