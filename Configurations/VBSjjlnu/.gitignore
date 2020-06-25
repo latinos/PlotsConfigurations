@@ -1,0 +1,8 @@
+datacards*/
+rootFile*/
+plot*
+!plot.py
+temp/
+dmapelli.cc
+dvalsecc.cc
+*.pyc

@@ -1,0 +1,110 @@
+#!/usr/bin/env python 
+
+from __future__ import print_function
+import os
+import pwd
+import sys
+import argparse
+from collections import defaultdict
+from multiprocessing import Pool
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-c","--config", type=str, help="Configuration")
+parser.add_argument("-p","--prefix", type=str, default="/eos/user/d/dvalsecc/www/", help="Output dir prefix")
+parser.add_argument("-o","--outputdir", type=str, help="Output dir")
+parser.add_argument("-n", "--name", type=str, help="Production name")
+parser.add_argument("-th", "--threads", type=int, default=4, help="Number of threads")
+args = parser.parse_args()
+
+web_path = {
+    "dvalsecc": "https://dvalsecc.web.cern.ch/dvalsecc",
+    "dmapelli": "https://dmapelli.web.cern.ch/dmapelli/latinos/VBSjjlnu",
+}
+username = pwd.getpwuid( os.getuid() )[ 0 ]
+
+cuts = {}
+exec(open(args.config).read())
+exec(open(cutsFile).read())
+
+plotsDir = outputDirPlots
+
+# now let's prepare the files list
+files = os.listdir(plotsDir)
+
+lists = defaultdict(list)
+
+for file in files:
+    l = 0
+    c = None
+    for cut in cuts:
+        if cut in file:
+            # Since cuts can be like  (looseVBS,looseVBS_bveto ) we check the longest
+            # matched cut
+            if len(cut) >= l : 
+                c = cut
+                l = len(cut)          
+    if c != None:
+       lists[c].append(file)
+jobs = []
+
+
+for cat, lfile in lists.items():
+    ofile = "{}_filelist.txt".format(cat)
+    with open(ofile, "w") as of:
+        for f in lfile:
+            of.write(f+ "\n")
+    jobs.append( (cat, ofile, plotsDir, args.prefix, args.outputdir, args.name ) )
+
+# now execute rsync in parallel for each cut
+def do_rsync(args):
+    cut, file, inputdir, prefix, outputdir, name = args
+    os.system("mkdir -p {}/{}/{}/{}".format(prefix, outputdir, name, cut))
+    os.system("rsync -a --info=progress2 --files-from={0} {1}/ {2}/{3}/{4}/{5}/".format(
+                        file, inputdir, prefix, outputdir, name, cut))
+    os.system("cp {0}/index.php {0}/{1}/{2}/{3}/".format(prefix, outputdir, name, cut))
+    # Write out the cut in a txt file
+    with open("{}/{}/{}/{}/cut.txt".format(prefix, outputdir, name, cut), "w") as f:
+        f.write("Supercut:\n")
+        f.write(supercut.replace("     ", " ")+"\n\n\n")
+        f.write("Cut:\n")
+        f.write(cuts[cut].replace("     ", " "))
+    # remove list of files file
+    os.system("rm {}".format(file))
+    print("{:<20} >>> {}/{}/{}/{}".format(cut, web_path[username] ,outputdir,name, cut))
+            
+
+print(jobs)
+pool = Pool(args.threads)
+pool.map(do_rsync, jobs)
+
+# Now copy the configuration files
+os.system("mkdir {0}/{1}/{2}/configuration/;   \
+           cp {3} {0}/{1}/{2}/configuration/;\
+           cp {4} {0}/{1}/{2}/configuration/;\
+           cp {5} {0}/{1}/{2}/configuration/;\
+           cp {6} {0}/{1}/{2}/configuration/;\
+           cp {7} {0}/{1}/{2}/configuration/;\
+           cp {8} {0}/{1}/{2}/configuration/;\
+           cp {9} {0}/{1}/{2}/configuration/;\
+           cp {10} {0}/{1}/{2}/configuration/;\
+           cp -r {11} {0}/{1}/{2}/configuration/;\
+           cp -r {12} {0}/{1}/{2}/configuration/;\
+           cp -r mva {0}/{1}/{2}/configuration/;\
+           cp -r corrections {0}/{1}/{2}/configuration/;\
+           cp -r macros {0}/{1}/{2}/configuration/;".format(args.prefix, args.outputdir, args.name,
+                                args.config, samplesFile, variablesFile,nuisancesFile,plotFile,
+                                structureFile,cutsFile,aliasesFile,outputDir, outputDirDatacard) )
+
+# os.system("rsync -a --exclude '*.png' --exclude 'plot*/*.root' {}/../ {}/{}/{}/configuration/".format(plotsDir,args.prefix, args.outputdir, args.name))
+# # and copy the index.php everywhere
+
+os.system("cp {0}/index.php {0}/{1}/;\
+            cp {0}/index.php {0}/{1}/{2}; \
+            cp {0}/index.php {0}/{1}/{2}/configuration/; \
+            cp {0}/index.php {0}/{1}/{2}/configuration/rootFile*/;  \
+            cp {0}/index.php {0}/{1}/{2}/configuration/datacards*/;".format(args.prefix, args.outputdir, args.name))
+
+for cut in sorted(cuts):
+    print("{:<20} >>> {}/{}/{}/{}".format(cut, web_path[username] ,args.outputdir, args.name, cut))
+
+print("DONE!")

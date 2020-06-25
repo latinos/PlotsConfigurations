@@ -1,0 +1,5 @@
+plots_fit
+old
+*.d
+*.so
+*.pcm
