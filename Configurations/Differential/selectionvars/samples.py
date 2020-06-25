@@ -29,9 +29,9 @@ except NameError:
 ################# SKIMS ########################
 ################################################
 
-mcProduction = 'Autumn18_102X_nAODv5_Full2018v5'
+mcProduction = 'Autumn18_102X_nAODv6_Full2018v6'
 
-mcSteps = 'MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5'
+mcSteps = 'MCl1loose2018v6__MCCorr2018v6__l2loose__l2tightOR2018v6'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -98,7 +98,7 @@ samples['WW'] = {
     'FilesPerJob': 3
 }
 
-###### WW ########
+####### WJets ########
 
 samples['WJets'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO'),
@@ -118,4 +118,3 @@ samples['ggH_hww'] = {
     'FilesPerJob': 1,
     'linesToAdd': ['.L %s/Differential/weight2MINLO.cc+' % configurations]
 }
-

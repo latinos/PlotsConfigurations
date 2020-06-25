@@ -27,12 +27,12 @@ aliases['LepWPCut'] = {
 
 aliases['gstarLow'] = {
     'expr': 'Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4',
-    'samples': 'VgS'
+    'samples': 'WgS'
 }
 
 aliases['gstarHigh'] = {
     'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
-    'samples': 'VgS'
+    'samples': 'WZ'
 }
 
 aliases['PromptGenLepMatch2l'] = {
@@ -210,6 +210,19 @@ aliases['Top_pTrw'] = {
     'samples': ['top']
 }
 
+aliases['ZH3l_dphilmetjj_test'] = {
+    'linesToAdd': [
+        '.L %s/src/PlotsConfigurations/Configurations/ZH3l/scripts/ZH3l_patch.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'ZH3l_patch',
+    'args': ("dphilmetjj")
+}
+
+aliases['ZH3l_dphilmetj_test'] = {
+    'class': 'ZH3l_patch',
+    'args': ("dphilmetj")
+}
+
 # PU jet Id SF
 
 puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
@@ -225,10 +238,10 @@ aliases['PUJetIdSF'] = {
 }
 
 # data/MC scale factors
-aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP_old + '__mu_' + muWP_old, 'LepWPCut', 'btagSF','PUJetIdSF']),
-    'samples': mc
-}
+#aliases['SFweight'] = {
+#    'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP_old + '__mu_' + muWP_old, 'LepWPCut', 'btagSF','PUJetIdSF']),
+#    'samples': mc
+#}
 # variations
 aliases['SFweightEleUp'] = {
     'expr': 'LepSF2l__ele_'+eleWP_old+'__Up',
@@ -244,5 +257,78 @@ aliases['SFweightMuUp'] = {
 }
 aliases['SFweightMuDown'] = {
     'expr': 'LepSF2l__mu_'+muWP_old+'__Do',
+    'samples': mc
+}
+
+#############################################
+### Total SFs, i.e. ttHMVA+old lepton SFs ###
+#############################################
+
+aliases['ttHMVA_SF_2l'] = {'linesToAdd': ['.L %s/patches/compute_SF_BETA.C+' % configurations],
+                           'class': 'compute_SF',
+                           'args' : ('2018', 2, 'total_SF'),
+                           'samples': mc
+                          }
+
+
+############################################################
+### Up/Down variations for single leptons in order of Pt ###
+############################################################
+
+aliases['ttHMVA_SF_Up_0'] = {'linesToAdd': ['.L %s/patches/compute_SF_BETA.C+' % configurations],
+                             'class': 'compute_SF',
+                             'args' : ('2018', 4, 'single_SF_up', 0),
+                             'samples': mc
+                            }
+
+aliases['ttHMVA_SF_Up_1'] = {'linesToAdd': ['.L %s/patches/compute_SF_BETA.C+' % configurations],
+                             'class': 'compute_SF',
+                             'args' : ('2018', 4, 'single_SF_up', 1),
+                             'samples': mc
+                            }
+
+aliases['ttHMVA_SF_Down_0'] = {'linesToAdd': ['.L %s/patches/compute_SF_BETA.C+' % configurations],
+                               'class': 'compute_SF',
+                               'args' : ('2018', 4, 'single_SF_down', 0),
+                               'samples': mc
+                              }
+
+aliases['ttHMVA_SF_Down_1'] = {'linesToAdd': ['.L %s/patches/compute_SF_BETA.C+' % configurations],
+                               'class': 'compute_SF',
+                               'args' : ('2018', 4, 'single_SF_down', 1),
+                               'samples': mc
+                              }
+
+##############################################################################
+### Up/Down variations for electrons, i.e. LepSF2l__ele_'+eleWP+'__Up/Down ###
+##############################################################################
+
+aliases['ttHMVA_2l_ele_SF_Up'] = {'expr' : '(ttHMVA_SF_Up_0*(TMath::Abs(Lepton_pdgId[0]) == 11) + (TMath::Abs(Lepton_pdgId[0]) == 13)) *\
+                                            (ttHMVA_SF_Up_1*(TMath::Abs(Lepton_pdgId[1]) == 11) + (TMath::Abs(Lepton_pdgId[1]) == 13))',
+                                  'samples': mc
+                                 }
+
+aliases['ttHMVA_2l_ele_SF_Down'] = {'expr' : '(ttHMVA_SF_Down_0*(TMath::Abs(Lepton_pdgId[0]) == 11) + (TMath::Abs(Lepton_pdgId[0]) == 13)) *\
+                                              (ttHMVA_SF_Down_1*(TMath::Abs(Lepton_pdgId[1]) == 11) + (TMath::Abs(Lepton_pdgId[1]) == 13))',
+                                  'samples': mc
+                                   }
+
+########################################################################
+### Up/Down variations for muons, i.e. LepSF2l__mu_'+muWP+'__Up/Down ###
+########################################################################
+
+aliases['ttHMVA_2l_mu_SF_Up'] = {'expr' : '(ttHMVA_SF_Up_0*(TMath::Abs(Lepton_pdgId[0]) == 13) + (TMath::Abs(Lepton_pdgId[0]) == 11)) *\
+                                           (ttHMVA_SF_Up_1*(TMath::Abs(Lepton_pdgId[1]) == 13) + (TMath::Abs(Lepton_pdgId[1]) == 11))',
+                                  'samples': mc
+                                }
+
+aliases['ttHMVA_2l_mu_SF_Down'] = {'expr' : '(ttHMVA_SF_Down_0*(TMath::Abs(Lepton_pdgId[0]) == 13) + (TMath::Abs(Lepton_pdgId[0]) == 11)) *\
+                                             (ttHMVA_SF_Down_1*(TMath::Abs(Lepton_pdgId[1]) == 13) + (TMath::Abs(Lepton_pdgId[1]) == 11))',
+                                  'samples': mc
+                                  }
+
+# data/MC scale factors
+aliases['SFweight'] = {
+    'expr': ' * '.join(['SFweight2l', 'ttHMVA_SF_2l', 'LepWPCut', 'btagSF','PUJetIdSF']),
     'samples': mc
 }

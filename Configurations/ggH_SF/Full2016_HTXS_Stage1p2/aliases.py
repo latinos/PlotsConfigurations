@@ -78,7 +78,9 @@ aliases['PromptGenLepMatch2l'] = {
 }
 
 aliases['Top_pTrw'] = {
-    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
+    #'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
+    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(-0.158631 + 2.00214e-04*topGenPt - 3.09496e-07*topGenPt*topGenPt + 34.93/(topGenPt+135.633)) * TMath::Exp(-0.158631 + 2.00214e-04*antitopGenPt - 3.09496e-07*antitopGenPt*antitopGenPt + 34.93/(antitopGenPt+135.633)))) + (topGenPt * antitopGenPt <= 0.)',
+
     'samples': ['top']
 }
 
@@ -131,20 +133,22 @@ aliases['sr'] = {
 }
 
 aliases['Higgs0jet'] = {
-'expr': '(mll < 50 && mth > 80)'
+'expr': '(mll < 60 && mth > 90 && abs(dphill) < 2.30)'
 }
 aliases['Higgs1jet'] = {
-'expr': '(mll < 70 && mth > 80)'
+'expr': '(mll < 60 && mth > 80 && abs(dphill) < 2.25)'
 }
 aliases['Higgs2jet'] = {
-'expr': '(mll < 70 && mth > 60 && abs(dphill) < 2.50)'
+'expr': '(mll < 60 && mth > 65 && mth < 150)'
+}
+aliases['Higgsvh'] = {
+'expr': '(mll < 60 && mth > 60 && mth < 150 && abs(dphill) < 1.60)'
 }
 aliases['Higgsvbf'] = {
-'expr': '(mll < 70 && mth > 60 && abs(dphill) < 3.00)'
+'expr': '(mll < 60 && mth > 60 && mth < 150 && abs(dphill) < 1.60)'
 }
-
 aliases['Higgshpt'] = {
-'expr': '(mll < 70 && mth > 60)'
+'expr': '(mll < 60 && mth > 60 && ( (abs(dphill) < 2.0 && !multiJet) || (mth < 150 && multiJet) ))'
 }
 
 
@@ -227,6 +231,19 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
         'samples': mc
     }
 
+puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+
+aliases['PUJetIdSF'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L %s/patches/pujetidsf_event.cc+' % configurations
+    ],
+    'class': 'PUJetIdEventSF',
+    'args': (puidSFSource, '2016', 'loose'),
+    'samples': mc
+}
+
+
 # data/MC scale factors
 aliases['SFweight'] = {
     'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut', 'btagSF', 'PrefireWeight']),
@@ -267,6 +284,12 @@ aliases['lhe_mW1'] = {
 aliases['lhe_mW2'] = {
     'expr': 'TMath::Sqrt(2. * LHEPart_pt[2] * LHEPart_pt[3] * (TMath::CosH(LHEPart_eta[2] - LHEPart_eta[3]) - TMath::Cos(LHEPart_phi[2] - LHEPart_phi[3])))',
     'samples': ['WWewk']
+}
+
+aliases['nCleanGenJet'] = {
+    'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
+    'class': 'CountGenJet',
+    'samples': mc
 }
 
 # use HTXS_njets30 when moving to NanoAODv5 for all trees

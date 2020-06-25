@@ -35,6 +35,7 @@ BoostCats['BoostedSB_']='boosted[0] \
 #                         && !boostedSignalWMass[0] \
 #                         && highBoostedSidebandWMass[0] \
 #                         && bVeto[0]'
+
 BoostCats['BoostedTopCR_']='boosted[0] && boostedSignalWMass[0] && bReq[0]'
 
 
@@ -47,11 +48,10 @@ ResolveProcCats['VBF_']='IsVbfjj'
 ResolveCats={}
 # ResolveCats['Resolved']='resolved[0]'
 ResolveCats['ResolvedSR_']='resolved[0] && resolvedSignalWMass[0] && bVeto[0]'
-
 ResolveCats['ResolvedSB_']='resolved[0] \
-                        && !resolvedSignalWMass[0] \
-                        && resolvedSidebandWMass[0] \
-                        && bVeto[0]'
+                            && !resolvedSignalWMass[0] \
+                            && resolvedSidebandWMass[0] \
+                            && bVeto[0]'
 # ResolveCats['ResolvedSB__low']='resolved[0] \
 #                             && !resolvedSignalWMass[0] \
 #                             && lowResolvedSidebandWMass[0] \
@@ -60,8 +60,8 @@ ResolveCats['ResolvedSB_']='resolved[0] \
 #                             && !resolvedSignalWMass[0] \
 #                             && highResolvedSidebandWMass[0] \
 #                             && bVeto[0]'
-ResolveCats['ResolvedTopCR_']='resolved[0] && resolvedSignalWMass[0] && bReq[0]'
 
+ResolveCats['ResolvedTopCR_']='resolved[0] && resolvedSignalWMass[0] && bReq[0]'
 
 
 # cuts['BoostedQCDcr'] = 'boostedQCDcr[0]'

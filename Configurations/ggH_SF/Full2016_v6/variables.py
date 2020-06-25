@@ -10,6 +10,31 @@ variables['events']  = {   'name': '1',
                         'fold' : 3
                         }
 
+variables['dymva_0j'] = {
+     'name': 'hww_DYmvaDNN_0j(Entry$)',
+     'range' : (20,-1.,1.),
+     'xaxis' : 'DNN discriminant ggH0j',
+     'fold' : 3,
+    'linesToAdd' : ['.L /afs/cern.ch/user/c/calderon/work/private/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ggH_SF/Full2016_nAODv5/hww_DYmvaDNN_0j.C+']
+}
+
+variables['dymva_1j'] = {                                                                                                           
+     'name': 'hww_DYmvaDNN_1j(Entry$)',                                                                                             
+     'range' : (20,-1.,1.),                                                                                                         
+     'xaxis' : 'DNN discriminant ggH1j',                                                                                            
+     'fold' : 3,                                                                                                                    
+    'linesToAdd' : ['.L /afs/cern.ch/user/c/calderon/work/private/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ggH_SF/Full2016_nAODv5/hww_DYmvaDNN_1j.C+']                                                                                                       
+}                                                                                                                                   
+ 
+variables['dymva_2j'] = {                                                                                                           
+     'name': 'hww_DYmvaDNN_2j(Entry$)',                                                                                             
+     'range' : (20,-1.,1.),                                                                                                         
+     'xaxis' : 'DNN discriminant ggH2j',                                                                                            
+     'fold' : 3,                                                                                                                    
+    'linesToAdd' : ['.L /afs/cern.ch/user/c/calderon/work/private/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ggH_SF/Full2016_nAODv5/hww_DYmvaDNN_2j.C+']                                                                                                       
+}  
+
+
 #variables['nvtx']  = {   'name': 'PV_npvsGood',
 #                        'range' : (20,0,100),
 #                        'xaxis' : 'nvtx',

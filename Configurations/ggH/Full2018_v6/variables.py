@@ -9,7 +9,7 @@ variables['events']  = {   'name': '1',
                         'xaxis' : 'events', 
                         'fold' : 3
                         }
-'''
+
 #variables['nvtx']  = {   'name': 'PV_npvsGood',
 #                        'range' : (20,0,100),
 #                        'xaxis' : 'nvtx',
@@ -117,7 +117,7 @@ variables['jeteta2']  = {  'name': '(Sum$(CleanJet_pt>30)>1)*(Alt$(CleanJet_eta[
                         'fold'  : 0
                         }
 
-'''
+
 
 variables['mllVSmth_pt2ge20'] = {   'name': 'mll:mth',            #   variable name    
                              'range' : ([60,80,90,100,110,120,130,150,200],[12,25,35,40,45,50,55,70,90,210],),            #   variable range

@@ -186,6 +186,7 @@ nuisances['muonpt'] = {
 }
 
 ##### Jet energy scale
+
 jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
 
 for js in jes_systs:
@@ -291,7 +292,7 @@ nuisances['TopPtRew'] = {
     'name': 'CMS_topPtRew',   # Theory uncertainty
     'kind': 'weight',
     'type': 'shape',
-    'samples': {'top': ["1.", "1./Top_pTrw"]},
+    'samples': {'top': ["Top_pTrw*Top_pTrw", "1."]},
     'symmetrize': True
 }
 
@@ -406,6 +407,7 @@ nuisances['pdf_qqbar_ACCEPT'] = {
     },
 }
 
+
 ##### Renormalization & factorization scales
 
 ## Shape nuisance due to QCD scale variations for DY
@@ -420,7 +422,10 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 # [7] is muR=2.0 muF=1.0
 # [8] is muR=2.0 muF=2.0
 
-variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 5, 7, 8]]
+# LHEScaleWeight nominal length is 9
+# LHEScaleWeight length is 8 for DYJetsToTT_MuEle_M-50 in 2017 and 2018
+
+variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
 
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',

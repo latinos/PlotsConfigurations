@@ -1,94 +1,49 @@
-# cuts
+#cuts
 
-supercut = 'Lepton_pt[0]>25 \
-&& Lepton_pt[1]>20 \
-&& (nLepton>=2 && Alt$(Lepton_pt[2],0)<10) \
-&& abs(Lepton_eta[0])<2.5 && abs(Lepton_eta[1])<2.5 \
-&& mll > 20.'
+#cuts = {}
 
-#supercut = '1'
+_tmp = [
+    '1'
+]
+supercut = ' && '.join(_tmp)
 
-## Inclusive control regions
-cuts['inclusiveCR_ll']  = { 
-   'expr' : 'inclusivecr',
-    # Define the sub-categorization of topcr
-   'categories' : {
-      '0j' : 'zeroJet',
-      '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-      '2j' : 'mjj<400 && multiJet',
-   }
-}
+def addcut(name, exprs):
+    cuts[name] = ' && '.join(exprs)
 
-cuts['inclusiveCR_ee']  = { 
-    'expr' : 'inclusivecr && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11)',
-    # Define the sub-categorization of topcr
-    'categories' : {
-        '0j' : 'zeroJet',
-        '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-        '2j' : 'mjj<400 && multiJet',
-    }
-}
+#Main CR
+_tmp = [
+    'Alt$(CleanJet_pt[1], 0) >= 30.'
+]
+addcut('mainCR_ll_2j', _tmp)
 
-cuts['inclusiveCR_mm']  = { 
-    'expr' : 'inclusivecr && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13)',
-    # Define the sub-categorization of topcr
-    'categories' : {
-        '0j' : 'zeroJet',
-        '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-        '2j' : 'mjj<400 && multiJet',
-    }
-}
+_tmp = [
+    '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*11) && Alt$(CleanJet_pt[1], 0) >= 30.',
+]
+addcut('mainCR_ee_2j', _tmp)
 
-cuts['inclusiveCR_df']  = { 
-    'expr' : 'inclusivecr && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13)',
-    # Define the sub-categorization of topcr
-    'categories' : {
-        '0j' : 'zeroJet',
-        '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-        '2j' : 'mjj<400 && multiJet',
-    }
-}
+_tmp = [
+    '(Lepton_pdgId[0] * Lepton_pdgId[1] == -13*13) && Alt$(CleanJet_pt[1], 0) >= 30.',
+]
+addcut('mainCR_mm_2j', _tmp)
 
-## DYtt control regions
-cuts['dyCR_ll']  = { 
-   'expr' : 'dycr',
-   # Define the sub-categorization of dycr
-   'categories' : { 
-      '0j' : 'zeroJet',
-      '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-      '2j' : 'mjj<400 && multiJet',
-   }
-}
-
-cuts['dyCR_ee']  = { 
-    'expr' : 'dycr && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11)',
-   # Define the sub-categorization of dycr
-   'categories' : { 
-      '0j' : 'zeroJet',
-      '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-      '2j' : 'mjj<400 && multiJet',
-   }
-}
+_tmp = [
+    '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13) && Alt$(CleanJet_pt[1], 0) >= 30.',
+]
+addcut('mainCR_df_2j', _tmp)
 
 
-cuts['dyCR_mm']  = { 
-    'expr' : 'dycr && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13)',
-   # Define the sub-categorization of dycr
-   'categories' : { 
-      '0j' : 'zeroJet',
-      '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-      '2j' : 'mjj<400 && multiJet',
-   }
-}
+#DY CR
+_tmp = [
+    'Alt$(CleanJet_pt[1], 0) >= 30. && (mll > 76 && mll < 106)'
+]
+addcut('dyCR_ll_2j', _tmp)
 
+_tmp = [
+    '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*11) && Alt$(CleanJet_pt[1], 0) >= 30. && (mll > 76 && mll < 106)',
+]
+addcut('dyCR_ee_2j', _tmp)
 
-cuts['dyCR_df']  = { 
-    'expr' : 'dycr && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13)',
-   # Define the sub-categorization of dycr
-   'categories' : { 
-      '0j' : 'zeroJet',
-      '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-      '2j' : 'mjj<400 && multiJet',
-   }
-}
-
+_tmp = [
+    '(Lepton_pdgId[0] * Lepton_pdgId[1] == -13*13) && Alt$(CleanJet_pt[1], 0) >= 30. && (mll > 76 && mll < 106)',
+]
+addcut('dyCR_mm_2j', _tmp)

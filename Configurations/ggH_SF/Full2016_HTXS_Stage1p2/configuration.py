@@ -15,6 +15,7 @@ variablesFile = 'variables.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
+#cutsFile = 'cuts_forDYestim.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 

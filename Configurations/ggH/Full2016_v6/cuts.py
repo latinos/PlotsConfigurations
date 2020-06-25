@@ -1,9 +1,8 @@
 # cuts
 
 supercut = '   mll>12 \
-            && Lepton_pt[0]>20 \
+            && Lepton_pt[0]>25 \
             && Lepton_pt[1]>10 \
-            && (abs(Lepton_pdgId[0])==13 || Lepton_pt[0]>25) \
             && (abs(Lepton_pdgId[1])==13 || Lepton_pt[1]>13) \
             && (nLepton>=2 && Alt$(Lepton_pt[2],0)<10) \
             && abs(Lepton_eta[0])<2.5 && abs(Lepton_eta[1])<2.5 \
@@ -38,7 +37,7 @@ cuts['hww2l2v_13TeV'] = {
       'me_mp_1j_pt2lt20' : ' Lepton_pdgId[0]==-13 && Lepton_pt[1]<20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
       'me_pm_1j_pt2lt20' : ' Lepton_pdgId[0]==13 && Lepton_pt[1]<20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
       # FIXME fix the mjj or additional cuts to make this orthogonal to VH2j and VBF
-      '2j'               : ' mjj<400 && multiJet', 
+      '2j'               : ' (mjj<65 || mjj>105) && mjj<200 && multiJet', 
    }
 }
 
@@ -49,26 +48,29 @@ cuts['hww2l2v_13TeV_top']  = {
    'categories' : {
       '0j' : 'zeroJet',
       '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-      '2j' : 'mjj<400 && multiJet',
+      '2j' : '(mjj<65 || mjj>105) && mjj<200 && multiJet',
    }
 }
 
 ## DYtt control regions
 cuts['hww2l2v_13TeV_dytt']  = { 
-   'expr' : 'dycr',
-   # Define the sub-categorization of dycr
+	'expr' : 'dycr',
+# Define the sub-categorization of dycr
    'categories' : { 
       '0j' : 'zeroJet',
       '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-      '2j' : 'mjj<400 && multiJet',
+      '2j' : '(mjj<65 || mjj>105) && mjj<200 && multiJet',
    }
 }
 
-cuts['hww2l2v_13TeV_ww'] = {
-  'expr' : 'wwcr',
-  'categories' : {
-    '0j' : 'zeroJet',
-    '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-    '2j' : 'mjj<400 && multiJet'
-  }
-}
+### WW control regions
+### Used only for control plots, no need to add these cuts for the fit
+#cuts['hww2l2v_13TeV_ww'] = {
+#  'expr' : 'wwcr',
+#	  'categories' : {
+#	    '0j' : 'zeroJet',
+#	    '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
+#	    '2j' : '(mjj<65 || mjj>105) && mjj<200 && multiJet'
+#	  }
+#	}
+#

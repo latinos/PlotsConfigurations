@@ -2,7 +2,7 @@ import os
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # ggH2016
+configurations = os.path.dirname(configurations) # ggH2018
 configurations = os.path.dirname(configurations) # Differential
 configurations = os.path.dirname(configurations) # Configurations
 
@@ -44,9 +44,10 @@ dataSteps = 'DATAl1loose2018v6__l2loose__l2tightOR2018v6'
 
 SITE=os.uname()[1]
 if    'iihe' in SITE:
-  treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015'
+    treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015'
 elif  'cern' in SITE:
-  treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
+    #treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
+    treeBaseDir = '/eos/user/c/cprieels/work/TopPlusDMRunIILegacyRootfiles/'
 
 def makeMCDirectory(var=''):
     if var:
@@ -83,7 +84,6 @@ DataTrig = {
 ############ MC COMMON ##################
 #########################################
 
-# SFweight does not include btag weights
 mcCommonWeightNoMatch = 'XSWeight*SFweight*METFilter_MC'
 mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 
@@ -108,32 +108,51 @@ else:
           nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
 
 
-
 samples['DY'] = {
     'name': files,
-    'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)',
+    'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 &&\
+                                     Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )',
     'FilesPerJob': 6,
 }
-addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO)
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext',ptllDYW_NLO)
+#addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO)
+#addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO)
 addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 
 ###### Top #######
 
-files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_s-channel_ext1') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop_ext1') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_tW_top_ext1')
+files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu')
 
-samples['top'] = {
+samples['ttbar'] = {
     'name': files,
     'weight': mcCommonWeight,
     'FilesPerJob': 2,
 }
 
-addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
+addSampleWeight(samples,'ttbar','TTTo2L2Nu','Top_pTrw')
+
+files = nanoGetSampleFiles(mcDirectory, 'ST_s-channel_ext1') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop_ext1') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_tW_top_ext1')
+
+samples['singleTop'] = {
+    'name': files,
+    'weight': mcCommonWeight,
+    'FilesPerJob': 2,
+}
+
+samples['TTToSemiLeptonic'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 2,
+}
+
+samples['ttV'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'TTZjets') + nanoGetSampleFiles(mcDirectory, 'TTWjets'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 2,
+}
 
 ###### WW ########
 
@@ -141,29 +160,6 @@ samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
     'weight': mcCommonWeight + '*nllW',
     'FilesPerJob': 3
-}
-
-samples['WWewk'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK'),
-    'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)', #filter tops and Higgs
-    'FilesPerJob': 4
-}
-
-# k-factor 1.4 already taken into account in XSWeight
-files = nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENTN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNEN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNMN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNTN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNEN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN')
-
-samples['ggWW'] = {
-    'name': files,
-    'weight': mcCommonWeight + '*1.53/1.4', # updating k-factor
-    'FilesPerJob': 4
 }
 
 ######## Vg ########
@@ -176,7 +172,9 @@ samples['Vg'] = {
     'weight': mcCommonWeightNoMatch + '*(Gen_ZGstar_mass <= 0)',
     'FilesPerJob': 4
 }
-addSampleWeight(samples, 'Vg', 'Zg', '(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)')
+
+# the following is needed in both v5 and v6
+addSampleWeight(samples, 'Vg', 'Zg', '0.448')
 
 ######## VgS ########
 
@@ -193,8 +191,9 @@ samples['VgS'] = {
       'H': 'gstarHigh'
     }
 }
+
 addSampleWeight(samples, 'VgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
-addSampleWeight(samples, 'VgS', 'Zg', '(Gen_ZGstar_mass > 0)*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)')
+addSampleWeight(samples, 'VgS', 'Zg', '(Gen_ZGstar_mass > 0)*0.448')
 addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
 
 ############ VZ ############
@@ -216,7 +215,6 @@ files = nanoGetSampleFiles(mcDirectory, 'ZZZ') + \
     nanoGetSampleFiles(mcDirectory, 'WZZ') + \
     nanoGetSampleFiles(mcDirectory, 'WWZ') + \
     nanoGetSampleFiles(mcDirectory, 'WWW')
-#+ nanoGetSampleFiles(mcDirectory, 'WWG'), #should this be included? or is it already taken into account in the WW sample?
 
 samples['VVV'] = {
     'name': files,
@@ -230,16 +228,54 @@ samples['VVV'] = {
 
 signals = []
 
+signalDir = '/eos/user/c/cprieels/work/TopPlusDMRunIILegacyRootfiles/Autumn18_102X_nAODv6_Full2018v6/MCl1loose2018v6__MCCorr2018v6__l2loose__l2tightOR2018v6/'
+
+samples['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_100'] = {
+    'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_100'),
+    'weight': mcCommonWeightNoMatch,
+    'FilesPerJob': 1,
+}
+
+signals.append('TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_100')
+
+samples['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_100'] = {
+    'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_100'),
+    'weight': mcCommonWeightNoMatch,
+    'FilesPerJob': 1,
+}
+
+signals.append('TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_100')
+
+files = nanoGetSampleFiles(signalDir, 'DMscalar_Dilepton_top_tWChan_Mchi1_Mphi100') + \
+        nanoGetSampleFiles(signalDir, 'DMscalar_Dilepton_top_tWChan_Mchi1_Mphi100_ext')
+
+samples['DMscalar_Dilepton_top_tWChan_Mchi1_Mphi100'] = {
+    'name': files,
+    'weight': mcCommonWeightNoMatch,
+    'FilesPerJob': 10,
+}
+
+signals.append('DMscalar_Dilepton_top_tWChan_Mchi1_Mphi100')
+
 ###########################################
 ################## FAKE ###################
 ###########################################
 
+files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')
+
+samples['WJets'] = {
+    'name': files,
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4
+}
+
+"""
 samples['Fake'] = {
   'name': [],
   'weight': 'METFilter_DATA*fakeW',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 80
+  'FilesPerJob': 50
 }
 
 for _, sd in DataRun:
@@ -252,6 +288,7 @@ samples['Fake']['subsamples'] = {
   'em': 'abs(Lepton_pdgId[0]) == 11',
   'me': 'abs(Lepton_pdgId[0]) == 13'
 }
+"""
 
 ###########################################
 ################## DATA ###################
@@ -262,7 +299,7 @@ samples['DATA'] = {
   'weight': 'METFilter_DATA*LepWPCut',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 120
+  'FilesPerJob': 50
 }
 
 for _, sd in DataRun:
@@ -270,3 +307,4 @@ for _, sd in DataRun:
     files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
+

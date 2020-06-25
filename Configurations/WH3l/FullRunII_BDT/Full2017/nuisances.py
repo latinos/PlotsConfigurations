@@ -36,43 +36,43 @@ HiggsXS = HiggsXSection()
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2017',
     'type': 'lnN',
-    'samples': dict((skey, '1.02') for skey in mc if skey not in ['Vg','WZ'])
+    'samples': dict((skey, '1.02') for skey in mc if skey not in ['Zg','ZgS','WZ'])
 }
 
 nuisances['lumi_XYFact'] = {
     'name': 'lumi_13TeV_XYFact',
     'type': 'lnN',
-    'samples': dict((skey, '1.008') for skey in mc if skey not in ['Vg','WZ'])
+    'samples': dict((skey, '1.008') for skey in mc if skey not in ['Zg','ZgS','WZ'])
 }
 
 nuisances['lumi_LScale'] = {
     'name': 'lumi_13TeV_LSCale',
     'type': 'lnN',
-    'samples': dict((skey, '1.003') for skey in mc if skey not in ['Vg','WZ'])
+    'samples': dict((skey, '1.003') for skey in mc if skey not in ['Zg','ZgS','WZ'])
 }
 
 nuisances['lumi_BBDefl'] = {
     'name': 'lumi_13TeV_BBDefl',
     'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc if skey not in ['Vg','WZ'])
+    'samples': dict((skey, '1.004') for skey in mc if skey not in ['Zg','ZgS','WZ'])
 }
 
 nuisances['lumi_DynBeta'] = {
     'name': 'lumi_13TeV_DynBeta',
     'type': 'lnN',
-    'samples': dict((skey, '1.005') for skey in mc if skey not in ['Vg','WZ'])
+    'samples': dict((skey, '1.005') for skey in mc if skey not in ['Zg','ZgS','WZ'])
 }
 
 nuisances['lumi_CurrCalib'] = {
     'name': 'lumi_13TeV_CurrCalib',
     'type': 'lnN',
-    'samples': dict((skey, '1.003') for skey in mc if skey not in ['Vg','WZ'])
+    'samples': dict((skey, '1.003') for skey in mc if skey not in ['Zg','ZgS','WZ'])
 }
 
 nuisances['lumi_Ghosts'] = {
     'name': 'lumi_13TeV_Ghosts',
     'type': 'lnN',
-    'samples': dict((skey, '1.001') for skey in mc if skey not in ['Vg','WZ'])
+    'samples': dict((skey, '1.001') for skey in mc if skey not in ['Zg','ZgS','WZ'])
 }
 
 #### FAKES
@@ -313,7 +313,7 @@ nuisances['stat'] = {
 nuisances['Zg3lnorm']  = {
                'name'  : 'CMS_hww_Zg3lnorm',
                'samples'  : {
-                   'Vg' : '1.00',
+                   'Zg' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [

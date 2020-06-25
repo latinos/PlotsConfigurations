@@ -29,9 +29,11 @@ except NameError:
 ################# SKIMS ########################
 ################################################
 
+mcProduction = 'Fall2017_102X_nAODv5_Full2017v6'
+
 dataReco = 'Run2017_102X_nAODv5_Full2017v6'
 
-mcProduction = 'Fall2017_102X_nAODv5_Full2017v6'
+fakeReco = 'Run2017_102X_nAODv5_Full2017v6_ForNewWPs'
 
 mcSteps = 'MCl1loose2017v6__MCCorr2017v6__l2loose__l2tightOR2017v6{var}'
 
@@ -56,7 +58,7 @@ def makeMCDirectory(var=''):
         return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
 
 mcDirectory = makeMCDirectory()
-fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
+fakeDirectory = os.path.join(treeBaseDir, fakeReco, fakeSteps)
 dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 
 ################################################

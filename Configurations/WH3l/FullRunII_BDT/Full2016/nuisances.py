@@ -34,31 +34,31 @@ HiggsXS = HiggsXSection()
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2016',
     'type': 'lnN',
-    'samples': dict((skey, '1.022') for skey in mc if skey not in ['Vg','WZ'])
+    'samples': dict((skey, '1.022') for skey in mc if skey not in ['Zg','ZgS','WZ'])
 }
 
 nuisances['lumi_XYFact'] = {
     'name': 'lumi_13TeV_XYFact',
     'type': 'lnN',
-    'samples': dict((skey, '1.009') for skey in mc if skey not in ['Vg','WZ'])
+    'samples': dict((skey, '1.009') for skey in mc if skey not in ['Zg','ZgS','WZ'])
 }
 
 nuisances['lumi_BBDefl'] = {
     'name': 'lumi_13TeV_BBDefl',
     'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc if skey not in ['Vg','WZ'])
+    'samples': dict((skey, '1.004') for skey in mc if skey not in ['Zg','ZgS','WZ'])
 }
 
 nuisances['lumi_DynBeta'] = {
     'name': 'lumi_13TeV_DynBeta',
     'type': 'lnN',
-    'samples': dict((skey, '1.005') for skey in mc if skey not in ['Vg','WZ'])
+    'samples': dict((skey, '1.005') for skey in mc if skey not in ['Zg','ZgS','WZ'])
 }
 
 nuisances['lumi_Ghosts'] = {
     'name': 'lumi_13TeV_Ghosts',
     'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc if skey not in ['Vg','WZ'])
+    'samples': dict((skey, '1.004') for skey in mc if skey not in ['Zg','ZgS','WZ'])
 }
 
 
@@ -301,7 +301,7 @@ nuisances['stat'] = {
 nuisances['Zg3lnorm']  = {
                'name'  : 'CMS_hww_Zg3lnorm',
                'samples'  : {
-                   'Vg' : '1.00',
+                   'Zg' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [

@@ -61,12 +61,13 @@ cuts['hww2l2v_13TeV_dytt']  = {
    }
 }
 
-## WW control regions
-cuts['hww2l2v_13TeV_WW'] = {
-  'expr' : 'wwcr',
-  'categories' : {
-    '0j' : 'zeroJet',
-    '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-    '2j' : '(mjj<65 || mjj>105) && mjj<200 && multiJet'
-  }
-}
+### WW control regions
+### Used only for control plots, no need to add these cuts for the fit
+#cuts['hww2l2v_13TeV_WW'] = {
+#  'expr' : 'wwcr',
+#  'categories' : {
+#    '0j' : 'zeroJet',
+#    '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
+#    '2j' : '(mjj<65 || mjj>105) && mjj<200 && multiJet'
+#  }
+#}

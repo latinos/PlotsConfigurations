@@ -15,22 +15,27 @@ structure['DY']  = {
 #                  'isData'   : 0 
 #              }
 #
-structure['Fakes']  = {  
+#structure['Fake']  = {  
+#                  'isSignal' : 0,
+#                  'isData'   : 0 
+#              }
+
+structure['Fake_ee']  = {
                   'isSignal' : 0,
-                  'isData'   : 0 
+                  'isData'   : 0
               }
 
-#structure['Fakes_ee']  = {
-#                  'isSignal' : 0,
-#                  'isData'   : 0
-#              }
-#
 structure['Fake_mm']  = {
                   'isSignal' : 0,
                   'isData'   : 0
               }
 
 structure['Fake_em']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+              }
+
+structure['ttV']  = {
                   'isSignal' : 0,
                   'isData'   : 0
               }
@@ -102,62 +107,48 @@ structure['ggWW']  = {
 #                  'isData'   : 0    
 #                  }
 #
-#structure['Wg']  = { 
-#                  'isSignal' : 0,
-#                  'isData'   : 0 
-#                  }
-
-structure['Vg']  = { 
+structure['Wg']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
 
-structure['VgS'] = { 
+structure['Zg']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
 
-structure['VgS_L'] = {
+structure['ZgS']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'removeFromCuts' : [
+                                      'hww2l2v_13TeV_of2j_WH_SS_uu_2j'],
+                  }
+
+structure['WgS'] = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
 
-structure['VgS_H'] = {
+structure['WZ'] = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
 
-#structure['Zg']  = { 
-#                  'isSignal' : 0,
-#                  'isData'   : 0 
-#                  }
-
-structure['VZ']  = { 
+structure['ZZ']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
 
-#structure['WZ']  = { 
-#                  'isSignal' : 0,
-#                  'isData'   : 0 
-#                  }
+structure['WZhad']  = { 
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
 
 
 structure['VVV']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
-
-#structure['ZZ']  = {
-#                  'isSignal' : 0,
-#                  'isData'   : 0    
-#                  }
-
-
-#structure['ggH'] = {
-#                  'isSignal' : 1,
-#                  'isData'   : 0    
-#                  }
 
 structure['ggH_hww'] = {
                   'isSignal' : 1,
@@ -169,11 +160,6 @@ structure['qqH_hww'] = {
                   'isData'   : 0    
                   }
 
-#structure['qqH_hww'] = {
-#                  'isSignal' : 1,
-#                  'isData'   : 0    
-#                  }
-
 structure['WH_hww'] = {
                   'isSignal' : 1,
                   'isData'   : 0    
@@ -184,24 +170,14 @@ structure['ZH_hww'] = {
                   'isData'   : 0    
                   }
 
-structure['ggZH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
-
-#structure['H_hww'] = {
-#                  'isSignal' : 1,
-#                  'isData'   : 0    
-#                  }
-
-#structure['bbH_hww'] = {
-#                  'isSignal' : 1,
-#                  'isData'   : 0
-#                  }
-
 structure['ttH_hww'] = {
                   'isSignal' : 1,
                   'isData'   : 0
+                  }
+
+structure['ggZH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
                   }
 
 structure['ggH_htt'] = {
@@ -223,12 +199,6 @@ structure['ZH_htt'] = {
                   'isSignal' : 1,
                   'isData'   : 0,
                   }
-
-structure['H_htt'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
-
 
 # data
 

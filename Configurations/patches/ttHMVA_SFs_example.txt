@@ -1,0 +1,27 @@
+To include the ttHMVA SFs:
+
+in aliases.py add:
+
+configurations = /path/to/PlotsConfigurations/Configurations
+
+aliases['new_SF'] = {   'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
+                        'class': 'compute_SF',
+                        'args' : (year, nleptons, request),
+                        'samples': mc
+}
+
+where "year" can be '2016', '2017' or '2018', "nleptons" is the number of leptons in the selection,
+and "request" is to be chosen from:
+'total_SF' --> returns the product of SFs for all leptons in the event, (equivalent to LepSF2l__ele_mvaFall17V1Iso_WP90__mu_cut_Tight_HWWW
+                in older configurations) including the ttHMVA SF
+'single_SF_up' --> up variation for single lepton
+'single_SF_down' --> down variation for single lepton
+'single_SF' --> SF for single lepton
+
+NB, in case a single SF/variation is requested, a fourth argument is required specifying the index of the lepton in question, e.g.
+
+aliases['leading_SF_up'] = {   'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
+                               'class': 'compute_SF',
+                               'args' : ('2017', 2, 'single_SF_up', 0),
+                               'samples': mc
+}

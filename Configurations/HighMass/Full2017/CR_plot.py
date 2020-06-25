@@ -11,21 +11,21 @@
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
-                  'color': 400,   # kYellow
+                  'color': 800,   # kOrange
                   'samples'  : ['top']
               }
 
 groupPlot['WW']  = {  
                   'nameHR' : 'WW',
                   'isSignal' : 0,
-                  'color': 851, # kAzure -9 
+                  'color': 852, # kAzure -8
                   'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J']
               }
 
 groupPlot['Fake']  = {
-                  'nameHR' : 'nonprompt',
+                  'nameHR' : 'Nonprompt',
                   'isSignal' : 0,
-                  'color': 921,    # kGray + 1
+                  'color': 922,    # kGray +2
                   'samples'  : ['Fake_me', 'Fake_em', 'Fake_ee', 'Fake_mm']
 }
 
@@ -37,42 +37,47 @@ groupPlot['DY']  = {
                   'samples'  : ['DY', 'DYemb']
               }
 
-
-
-groupPlot['VVV']  = {  
-                  'nameHR' : 'VVV',
+groupPlot['VV']  = {  
+                  'nameHR' : 'Multiboson',
                   'isSignal' : 0,
-                  'color': 857, # kAzure -3  
-                  'samples'  : ['VVV']
+                  'color': 617,   # kViolet +1
+                  'samples'  : ['VZ', 'WZ', 'ZZ', 'Vg', 'VgS_L', 'VgS_H', 'VVV']
               }
 
-
-groupPlot['VZ']  = {  
-                  'nameHR' : "VZ",
-                  'isSignal' : 0,
-                  'color'    : 617,   # kViolet + 1  
-                  'samples'  : ['VZ', 'WZ', 'ZZ']
-              }
-
-groupPlot['Vg']  = {  
-                  'nameHR' : "V#gamma",
-                  'isSignal' : 0,
-                  'color'    : 810,   # kOrange + 10
-                  'samples'  : ['Vg']
-              }
-
-groupPlot['VgS']  = {
-                  'nameHR' : "V#gamma*",
-                  'isSignal' : 0,
-                  'color'    : 409,   # kGreen - 9
-                  'samples'  : ['VgS_L', 'VgS_H']
-              }
+#groupPlot['VVV']  = {  
+#                  'nameHR' : 'VVV',
+#                  'isSignal' : 0,
+#                  'color': 857, # kAzure -3  
+#                  'samples'  : ['VVV']
+#              }
+#
+#groupPlot['VZ']  = {  
+#                  'nameHR' : "VZ",
+#                  'isSignal' : 0,
+#                  'color'    : 617,   # kViolet + 1  
+#                  'samples'  : ['VZ', 'WZ', 'ZZ']
+#              }
+#
+#groupPlot['Vg']  = {  
+#                  'nameHR' : "V#gamma",
+#                  'isSignal' : 0,
+#                  'color'    : 810,   # kOrange + 10
+#                  'samples'  : ['Vg']
+#              }
+#
+#groupPlot['VgS']  = {
+#                  'nameHR' : "V#gamma*",
+#                  'isSignal' : 0,
+#                  'color'    : 409,   # kGreen - 9
+#                  'samples'  : ['VgS_L', 'VgS_H']
+#              }
 
 groupPlot['SMHiggs']  = {  
-                  'nameHR' : 'Higgs',
+                  'nameHR' : 'SM Higgs',
                   'isSignal' : 0,
                   'color': 632, # kRed 
-		  'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt']
+		  #'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt']
+		  'samples'  : ['ZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww', 'ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt']
               }
 
 groupPlot['HM_200']  = {  
@@ -88,7 +93,7 @@ groupPlot['HM_800']  = {
                   'samples'  : ['GGH_800'+model_name, 'QQH_800'+model_name]
               }
 groupPlot['HM_2000']  = {  
-                  'nameHR' : '2000 GeV (x50)',
+                  'nameHR' : '2000 GeV (x200)',
                   'isSignal' : 2,
                   'color': 4, # kRed 
                   'samples'  : ['GGH_2000'+model_name, 'QQH_2000'+model_name]
@@ -278,13 +283,13 @@ plot['ZH_hww'] = {
                   'scale'    : 1    #
                   }
 
-plot['ggZH_hww'] = {
-                  'nameHR' : 'ggZH',
-                  'color': 632+4, # kRed+4
-                  'isSignal' : 0,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
+#plot['ggZH_hww'] = {
+#                  'nameHR' : 'ggZH',
+#                  'color': 632+4, # kRed+4
+#                  'isSignal' : 0,
+#                  'isData'   : 0,    
+#                  'scale'    : 1    #
+#                  }
 
 plot['WH_hww'] = {
                   'nameHR' : 'WH',
@@ -312,37 +317,42 @@ plot['ggH_hww'] = {
                   'scale'    : 1    #
                   }
 
-if False: #TODO
-  plot['bbH_hww'] = {
-                  'nameHR' : 'bbH',
-                  'color': 632+5, # kRed+5 
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1    #
-                  }
+#plot['bbH_hww'] = {
+#                  'nameHR' : 'bbH',
+#                  'color': 632+5, # kRed+5 
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1    #
+#                  }
 
-plot['ttH_hww'] = {
-                  'nameHR' : 'ttH',
-                  'color': 632+6, # kRed+6
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1    #
-                  }
+#plot['ttH_hww'] = {
+#                  'nameHR' : 'ttH',
+#                  'color': 632+6, # kRed+6
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1    #
+#                  }
 
 
 massplot = ['200','800','2000']
 
 for m in massplot:
-  if m == '200': mult = 1.0
-  elif m == '800': mult = 10.0
-  elif m == '2000': mult = 50.0
+  if m == '200':
+    multggh = 1.0 * HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWTo2L2Nu_M200')['xs']
+    multqqh = 1.0 * HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWTo2L2Nu_M200')['xs']
+  elif m == '800':
+    multggh = 10.0 * HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWTo2L2Nu_M800')['xs']
+    multqqh = 10.0 * HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWTo2L2Nu_M800')['xs']
+  elif m == '2000':
+    multggh = 200.0 * HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWTo2L2Nu_M2000')['xs']
+    multqqh = 200.0 * HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWTo2L2Nu_M2000')['xs']
 
   plot['GGH_'+m+model_name] = {
                   'nameHR' : 'GGH'+m,
                   'color': 632+5, # kRed+5 
                   'isSignal' : 2,
                   'isData'   : 0,
-                  'scale'    : mult    #
+                  'scale'    : multggh    #
                   }
 #  plot['GGHSBI_'+m+model_name] = {
 #                  'nameHR' : 'GGHSBI'+m,
@@ -357,7 +367,7 @@ for m in massplot:
                   'color': 632+5, # kRed+5 
                   'isSignal' : 2,
                   'isData'   : 0,
-                  'scale'    : mult    #
+                  'scale'    : multqqh    #
                   }
 #  plot['QQHSBI_'+m+model_name] = {
 #                  'nameHR' : 'QQHSBI'+m,

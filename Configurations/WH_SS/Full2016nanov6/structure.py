@@ -20,10 +20,10 @@ structure['DY']  = {
 #                  'isData'   : 0 
 #              }
 
-#structure['Fake_ee']  = {
-#                  'isSignal' : 0,
-#                  'isData'   : 0
-#              }
+structure['Fake_ee']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+              }
 
 structure['Fake_mm']  = {
                   'isSignal' : 0,
@@ -95,6 +95,8 @@ structure['WW']  = {
 structure['WWewk']  = {
                   'isSignal' : 0,
                   'isData'   : 0
+#                  'removeFromCuts' : [
+ #                                     'hww2l2v_13TeV_of2j_WH_SS_eu_1j'],
                   }
 
 structure['ggWW']  = {
@@ -107,57 +109,51 @@ structure['ggWW']  = {
 #                  'isData'   : 0    
 #                  }
 #
-#structure['Wg']  = { 
-#                  'isSignal' : 0,
-#                  'isData'   : 0 
-#                  }
-
-structure['Vg']  = { 
+structure['Wg']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
 
-structure['VgS_L'] = {
+structure['Zg']  = { 
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'removeFromCuts' : [
+                                      'hww2l2v_13TeV_of2j_WH_SS_uu_1j',
+                                      'hww2l2v_13TeV_of2j_WH_SS_eu_2j'],
+                  }
+
+structure['ZgS']  = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
 
-structure['VgS_H'] = {
+structure['WgS'] = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
 
-#structure['Zg']  = { 
-#                  'isSignal' : 0,
-#                  'isData'   : 0 
-#                  }
+structure['WZ'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
 
-structure['VZ']  = { 
+structure['ZZ']  = { 
+                  'isSignal' : 0,
+                  'isData'   : 0
+                #  'removeFromCuts' : [
+                #                      'hww2l2v_13TeV_of2j_WH_SS_eu_1j'],
+                  }
+
+structure['WZhad']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
-
-#structure['WZ']  = { 
-#                  'isSignal' : 0,
-#                  'isData'   : 0 
-#                  }
 
 
 structure['VVV']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
-
-#structure['ZZ']  = {
-#                  'isSignal' : 0,
-#                  'isData'   : 0    
-#                  }
-
-
-#structure['ggH'] = {
-#                  'isSignal' : 1,
-#                  'isData'   : 0    
-#                  }
 
 structure['ggH_hww'] = {
                   'isSignal' : 1,
@@ -168,11 +164,6 @@ structure['qqH_hww'] = {
                   'isSignal' : 1,
                   'isData'   : 0    
                   }
-
-#structure['qqH_hww'] = {
-#                  'isSignal' : 1,
-#                  'isData'   : 0    
-#                  }
 
 structure['WH_hww'] = {
                   'isSignal' : 1,
@@ -188,21 +179,6 @@ structure['ggZH_hww'] = {
                   'isSignal' : 1,
                   'isData'   : 0    
                   }
-
-#structure['H_hww'] = {
-#                  'isSignal' : 1,
-#                  'isData'   : 0    
-#                  }
-
-#structure['bbH_hww'] = {
-#                  'isSignal' : 1,
-#                  'isData'   : 0
-#                  }
-
-#structure['ttH_hww'] = {
-#                  'isSignal' : 1,
-#                  'isData'   : 0
-#                  }
 
 structure['ggH_htt'] = {
                   'isSignal' : 1,

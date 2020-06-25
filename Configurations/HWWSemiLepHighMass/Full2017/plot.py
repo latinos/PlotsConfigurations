@@ -1,5 +1,12 @@
 # plot configuration
 
+massesAndModelsFile = "massesAndModels.py"
+if os.path.exists(massesAndModelsFile) :
+    handle = open(massesAndModelsFile,'r')
+    exec(handle)
+    handle.close()
+else:
+    print "!!! ERROR file ", massesAndModelsFile, " does not exist."
 
 
 # groupPlot = {}
@@ -15,11 +22,23 @@ groupPlot['top']  = {
     'samples'  : ['top']
 }
 
-groupPlot['Wjets'] = {
-    'nameHR' : "W+jets",
+# groupPlot['Wjets'] = {
+#     'nameHR' : "W+jets",
+#     'isSignal' : 0,
+#     'color': 921,      # kGray + 1
+#     'samples'  : ['Wjets']
+# }
+groupPlot['Wjets 0J'] = {
+    'nameHR' : "W+jets 0J",
     'isSignal' : 0,
     'color': 921,      # kGray + 1
-    'samples'  : ['Wjets']
+    'samples'  : ['Wjets-0J']
+}
+groupPlot['Wjets 1+2J'] = {
+    'nameHR' : "W+jets 1+2J",
+    'isSignal' : 0,
+    'color': 925,      # kGray + 5
+    'samples'  : ['Wjets-1+2J']
 }
 
 groupPlot['QCD'] = {
@@ -28,13 +47,6 @@ groupPlot['QCD'] = {
     'color'    : 617,   # kViolet + 1
     'samples'  : ['QCD']
 }
-
-# groupPlot['Fake']  = {
-#                   'nameHR' : 'nonprompt',
-#                   'isSignal' : 0,
-#                   'color': 921,    # kGray + 1
-#                   'samples'  : ['Fake_me', 'Fake_em']
-# }
 
 groupPlot['DY']  = {
     'nameHR' : "DY",
@@ -47,15 +59,23 @@ groupPlot['multiboson']  = {
     'nameHR' : 'multiboson',
     'isSignal' : 0,
     'color': 857, # kAzure -3
-    'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L','ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ttH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt']
+    'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L']
 }
 
-groupPlot['Higgs400']  = {
-    'nameHR' : 'Higgs 400',
-    'isSignal' : 1,
-    'color': 632, # kRed
-    'samples' : ['ggHWWlnuqq_M400', 'qqHWWlnuqq_M400']
+groupPlot['SM Higgs'] = {
+    'nameHR': 'SM Higgs',
+    'isSignal' : 0,
+    'color': 863, # kAzure +3
+    'samples'  : ['ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']
 }
+
+for counter, MX in enumerate(plotmasses):
+    groupPlot['Higgs{}'.format(MX)] = {
+        'nameHR'  : 'Higgs {}'.format(MX),
+        'isSignal': 2,
+        'color'   : counter+1,
+        'samples' : ['GGH_{}_RelW002'.format(MX), 'QQH_{}_RelW002'.format(MX)]
+    }
 
 
 
@@ -73,7 +93,7 @@ plot['DY']  = {
 }
 
 plot['top'] = {
-    'nameHR' : 'tW and t#bar{t}',
+    # 'nameHR' : 'tW and t#bar{t}',
     'color': 400,   # kYellow
     'isSignal' : 0,
     'isData'   : 0,
@@ -151,7 +171,19 @@ plot['VVV']  = {
     'scale'    : 1.0
 }
 
-plot['Wjets']  = {
+# plot['Wjets']  = {
+#     'color': 856, # kAzure -4
+#     'isSignal' : 0,
+#     'isData'   : 0,
+#     'scale'    : 1.0
+# }
+plot['Wjets-0J']  = {
+    'color': 856, # kAzure -4
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0
+}
+plot['Wjets-1+2J']  = {
     'color': 856, # kAzure -4
     'isSignal' : 0,
     'isData'   : 0,
@@ -167,42 +199,8 @@ plot['QCD']  = {
 
 
 # HWW
-
-#plot['H_hww'] = {
-#                  'nameHR' : 'Hww',
-#                  'color': 632, # kRed
-#                  'isSignal' : 1,
-#                  'isData'   : 0,
-#                  'scale'    : 1    #
-#                  }
-
-plot['ZH_hww'] = {
-    'nameHR' : 'ZH',
-    'color': 632+3, # kRed+3
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1    #
-}
-
-# plot['ggZH_hww'] = {
-#     'nameHR' : 'ggZH',
-#     'color': 632+4, # kRed+4
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1    #
-# }
-
-plot['WH_hww'] = {
-    'nameHR' : 'WH',
-    'color': 632+2, # kRed+2
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1    #
-}
-
-
 plot['qqH_hww'] = {
-    'nameHR' : 'qqH',
+    # 'nameHR' : 'qqH',
     'color': 632+1, # kRed+1
     'isSignal' : 0,
     'isData'   : 0,
@@ -211,20 +209,44 @@ plot['qqH_hww'] = {
 
 
 plot['ggH_hww'] = {
-    'nameHR' : 'ggH',
+    # 'nameHR' : 'ggH',
     'color': 632, # kRed
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1    #
 }
 
-plot['ttH_hww'] = {
-    'nameHR' : 'ttH',
-    'color': 632+6, # kRed+6
+plot['ZH_hww'] = {
+    # 'nameHR' : 'ZH',
+    'color': 632+3, # kRed+3
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1    #
 }
+
+# plot['ggZH_hww'] = {
+#     # 'nameHR' : 'ggZH',
+#     'color': 632+4, # kRed+4
+#     'isSignal' : 0,
+#     'isData'   : 0,
+#     'scale'    : 1    #
+# }
+
+plot['WH_hww'] = {
+    # 'nameHR' : 'WH',
+    'color': 632+2, # kRed+2
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1    #
+}
+
+# plot['ttH_hww'] = {
+#     # 'nameHR' : 'ttH',
+#     'color': 632+6, # kRed+6
+#     'isSignal' : 0,
+#     'isData'   : 0,
+#     'scale'    : 1    #
+# }
 
 plot['ggH_htt']  = {
     'color': 428,    # kGreen+12
@@ -244,34 +266,31 @@ plot['ZH_htt']  = {
     'isData'   : 0,
     'scale'    : 1.0,
 }
-# plot['WH_htt']  = {
-#     'color': 428,    # kGreen+12
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1.0,
-# }
-
+plot['WH_htt']  = {
+    'color': 428,    # kGreen+12
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0,
+}
 
 
 
 # Signal
-plot['qqHWWlnuqq_M400'] = {
-                  'nameHR' : 'qqH400',
-                  'color': 632+1, # kRed+1
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1    #
-}
-
-
-plot['ggHWWlnuqq_M400'] = {
-                  'nameHR' : 'ggH400',
-                  'color': 632, # kRed
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1    #
-}
-
+for MX in plotmasses:
+    plot['QQH_{}_RelW002'.format(MX)] = {
+        'nameHR'  : 'qqH{}'.format(MX),
+        'color'   : 1,
+        'isSignal': 1,
+        'isData'  : 0,
+        'scale'   : 1
+    }
+    plot['GGH_{}_RelW002'.format(MX)] = {
+        'nameHR'  : 'ggH{}'.format(MX),
+        'color'   : 1,
+        'isSignal': 1,
+        'isData'  : 0,
+        'scale'   : 1
+    }
 
 
 
@@ -280,12 +299,12 @@ plot['ggHWWlnuqq_M400'] = {
 # data
 
 plot['DATA']  = {
-                  'nameHR' : 'Data',
-                  'color': 1 ,
-                  'isSignal' : 0,
-                  'isData'   : 1 ,
-                  'isBlind'  : 0
-              }
+    'nameHR' : 'Data',
+    'color': 1 ,
+    'isSignal' : 0,
+    'isData'   : 1 ,
+    'isBlind'  : 0
+}
 
 
 

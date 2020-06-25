@@ -109,27 +109,27 @@ ptllDYW_LO  = '(8.61313e-01+gen_ptll*4.46807e-03-1.52324e-05*gen_ptll*gen_ptll)*
 
 if useDYtt:
     files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
-            nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
+            nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50')
 
     samples['DY'] = {
         'name': files,
-        'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))',
-        #'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)',
+        'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 &&\
+                                     Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )',
         'FilesPerJob': 4,
         'suppressNegative' :['all'],
         'suppressNegativeNuisances' :['all'],
     }
     addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO,False,'nanoLatino_')
-    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO,False,'nanoLatino_')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50',ptllDYW_NLO,False,'nanoLatino_')
 
 else:
     files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50') + \
-            nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
+            nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50')
 
     samples['DY'] = {
         'name': files,
-        'weight': mcCommonWeight,
-        #'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))',
+        'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 &&\
+                                     Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )',
         'FilesPerJob': 4,
         'suppressNegative' :['all'],
         'suppressNegativeNuisances' :['all'],
@@ -151,13 +151,13 @@ else:
                                  + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-1200to2500') \
                                  + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-2500toinf')
 
-    addSampleWeight(samples,'DY','DYJetsToLL_M-50'       ,ptllDYW_NLO)
-    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50'    ,ptllDYW_NLO)
+    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50',ptllDYW_NLO)
 
     if useDYHT :
         # Remove high HT from inclusive samples
-        addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext2'  , 'LHE_HT<70.0')
-        addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO', 'LHE_HT<70.0')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-50'    , 'LHE_HT<70.0')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-10to50', 'LHE_HT<70.0')
         # pt_ll weight
         addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-70to100'       ,ptllDYW_LO)
         addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-100to200_ext1' ,ptllDYW_LO)
@@ -198,8 +198,8 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    #'weight': mcCommonWeight + '*nllW', # temporary - nllW module not run on PS and UE variation samples
-    'weight': mcCommonWeight + '*nllWOTF', # temporary
+    'weight': mcCommonWeight + '*nllW', # temporary - nllW module not run on PS and UE variation samples
+    #'weight': mcCommonWeight + '*nllWOTF', # temporary
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 1
@@ -347,7 +347,6 @@ samples['ggH_hww_PTH_GT650']  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGl
                                   }
 signals.append('ggH_hww_PTH_GT650')
 
-
 '''
 samples['ggH_hww'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125'),
@@ -488,7 +487,8 @@ for _, sd in DataRun:
 
 samples['Fake']['subsamples'] = {
   'ee': 'abs(Lepton_pdgId[0]) == 11 && abs(Lepton_pdgId[1]) == 11',
-  'mm': 'abs(Lepton_pdgId[0]) == 13 && abs(Lepton_pdgId[1]) == 13'
+  'mm': 'abs(Lepton_pdgId[0]) == 13 && abs(Lepton_pdgId[1]) == 13',
+  'df': '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13)'
 }
 
 ###########################################
@@ -508,11 +508,11 @@ for _, sd in DataRun:
     # only this file is v3
     if ('2016E' in sd and 'MuonEG' in pd):
       files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd.replace('v1', 'v3'))
-      print(files)
+      #print(files)
 
     else:
       files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
-      print(files)
+      #print(files)
     
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))

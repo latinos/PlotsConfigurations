@@ -117,48 +117,95 @@ variables['jet0_pt'] = {
 #####################################################
 #
 # variables['higgsGenM'] = {
-#     'name' : 'higgsGenMass',
+#     'name' : 'HM_higgsGenMass',
 #     'range': (100, 0, 1500),
 #     'xaxis': 'higgsGenMass',
 #     'fold' : 3
 # }
 
-variables['resolvHiggsMass'] = {
-    'name' : 'Hlnjj_mass',
-    'range': ([0, 100, 150, 250, 275, 300, 325, 350, 375, 400, 440, 500, 600, 750, 900, 1100, 1500, 2500, 5000],),#(30, 0, 1500),
-    'xaxis': 'reconstr. H mass',
+# variables['resolvHiggsMass'] = {
+#     'name' : 'HM_Hlnjj_mass',
+#     'range': ([0, 100, 150, 250, 300, 350, 400, 450, 500, 600, 750, 900, 1100, 1500, 2500, 5000],),#(30, 0, 1500),
+#     'xaxis': 'reconstr. H mass',
+#     'fold' : 3
+# }
+# variables['boostHigssMass'] = {
+#     'name' : 'HM_CleanFatJetPassMBoosted_HlnFat_mass[0]',
+#     'range': ([0, 100, 150, 250, 300, 350, 400, 450, 500, 600, 750, 900, 1100, 1500, 2500, 5000],),#(30, 0, 1500),
+#     'xaxis': 'reconstr. H mass',
+#     'fold' : 3
+# }
+
+variables['plot_resolvHMass'] = {
+    'name' : 'HM_Hlnjj_mass',
+    'range': (24, 0, 1200),
+    'xaxis': 'reconstr. H mass [GeV]',
     'fold' : 3
 }
-variables['boostHigssMass'] = {
-    'name' : 'CleanFatJetPassMBoosted_HlnFat_mass[0]',
-    'range': ([0, 100, 150, 250, 275, 300, 325, 350, 375, 400, 440, 500, 600, 750, 900, 1100, 1500, 2500, 5000],),#(30, 0, 1500),
-    'xaxis': 'reconstr. H mass',
+variables['plot_boostHMass'] = {
+    'name' : 'HM_CleanFatJetPassMBoosted_HlnFat_mass[0]',
+    'range': (24, 0, 1200),
+    'xaxis': 'reconstr. H mass [GeV]',
     'fold' : 3
 }
 
 variables['resolvWhadMass'] = {
-    'name' : 'Whad_mass',
-    'range': (30, 0, 1500),
+    'name' : 'HM_Whad_mass',
+    'range': (40, 0, 200),
     'xaxis': 'resolv W had mass',
     'fold' : 3
 }
 variables['boostWhadMass'] = {
-    'name' : 'CleanFatJetPassMBoosted_mass[0]',
-    'range': (30, 0, 1500),
+    'name' : 'HM_CleanFatJetPassMBoosted_mass[0]',
+    'range': (40, 0, 200),
     'xaxis': 'boosted W had mass',
     'fold' : 3
 }
 
 
-# variables['higgsMt'] = {
-#     'name' : 'Hlnjj_mt',
-#     'range': (30, 0, 1500),
-#     'xaxis': 'reconstr. H mt',
-#     'fold' : 0
+
+
+
+
+# variables['boostWptOvHM'] = {
+#     'name': 'Alt$(HM_CleanFatJetPassMBoosted_WptOvHfatM[0], 0)',
+#     'range': (40, 0.0, 1.0),
+#     'xaxis': 'Wpt / m_H',
+#     'fold': 3
 # }
+# variables['resolvWptOvHM'] = {
+#     'name': 'HM_WptOvHak4M',
+#     'range': (40, 0.0, 1.0),
+#     'fold': 3
+# }
+# variables['tau21'] = {
+#     'name': 'Alt$(HM_CleanFatJetPassMBoosted_tau21[0], 999)',
+#     'range': (40, 0.0, 1.0),
+#     'xaxis': 'tau_21',
+#     'fold': 3
+# }
+# variables['WlepMT'] = {
+#     'name': 'WlepMT[0]',
+#     'range': (30, 0.0, 150.0),
+#     'xaxis': 'WlepMT',
+#     'fold': 3
+# }
+variables['boostHiggsMT'] = {
+    'name' : 'boostHiggsMT[0]',
+    'range': (24, 0, 1200),
+    'xaxis': 'reconstr. H mt',
+    'fold' : 3
+}
+variables['resolvHiggsMT'] = {
+    'name' : 'resolvHiggsMT[0]',
+    'range': (24, 0, 1200),
+    'xaxis': 'reconstr. H mt',
+    'fold' : 3
+}
+
 
 # variables['IsBoosted'] = {
-#     'name' : 'IsBoosted',
+#     'name' : 'HM_IsBoosted',
 #     'range': (2, -0.5, 1.5),
 #     'xaxis': 'tagged IsBoosted',
 #     'fold' : 0
@@ -170,7 +217,7 @@ variables['boostWhadMass'] = {
 #     'fold' : 0
 # }
 # variables['IsResolved'] = {
-#     'name' : 'IsResolved',
+#     'name' : 'HM_IsResolved',
 #     'range': (2, -0.5, 1.5),
 #     'xaxis': 'tagged IsResolved',
 #     'fold' : 0
@@ -182,18 +229,18 @@ variables['boostWhadMass'] = {
 #     'fold' : 0
 # }
 
-# variables['IsVbfjj'] = {
-#     'name' : 'IsVbfjj',
-#     'range': (2, -0.5, 1.5),
-#     'xaxis': 'tagged Vbfjj',
-#     'fold' : 0
-# }
-# variables['IsVbfFat'] = {
-#     'name' : 'IsVbfFat',
-#     'range': (2, -0.5, 1.5),
-#     'xaxis': 'tagged VbfFat',
-#     'fold' : 0
-# }
+variables['IsVbfjj'] = {
+    'name' : 'HM_IsVbfjj',
+    'range': (2, -0.5, 1.5),
+    'xaxis': 'tagged Vbfjj',
+    'fold' : 0
+}
+variables['IsVbfFat'] = {
+    'name' : 'HM_IsVbfFat',
+    'range': (2, -0.5, 1.5),
+    'xaxis': 'tagged VbfFat',
+    'fold' : 0
+}
 
 # variables['nCleanFatJetPassMBoosted'] = {
 #     'name' : 'nCleanFatJetPassMBoosted',
@@ -201,3 +248,17 @@ variables['boostWhadMass'] = {
 #     'xaxis': 'number of boosted W candidates',
 #     'fold' : 0
 # }
+
+variables['DNN_isVBF'] = {
+    'name': 'DNN_isVBF',
+    'range': (10, 0, 1),
+    'xaxis': 'DNN_isVBF',
+    'fold': 0
+}
+
+variables['DNN_mth'] = {
+    'name': 'DNN_mth',
+    'range': (24, 0, 1200),
+    'xaxis': 'DNN_mth',
+    'fold': 3
+}
