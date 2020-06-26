@@ -212,8 +212,7 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
 
 # data/MC scale factors
 
-###puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
-puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/PUID_80XTraining_EffSFandUncties.root' % os.getenv('CMSSW_BASE')
+puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
 
 aliases['PUJetIdSF'] = {
     'linesToAdd': [
