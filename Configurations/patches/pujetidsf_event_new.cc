@@ -49,7 +49,7 @@ protected:
   static FloatArrayReader* Jet_pt;
   static FloatArrayReader* Jet_eta;
   static IntArrayReader* Jet_genJetIdx;
-  static IntValueReader * Jet_puId;
+  static IntArrayReader * Jet_puId;
 
   typedef std::array<std::unique_ptr<TH1>, nWPs> MapSet;
   typedef std::array<MapSet, 2> MapSets;
@@ -67,7 +67,7 @@ long long PUJetIdEventSF::currentEntry{-2};
 UIntValueReader* PUJetIdEventSF::nJet{};
 FloatArrayReader* PUJetIdEventSF::Jet_pt{};
 FloatArrayReader* PUJetIdEventSF::Jet_eta{};
-IntValueReader * PUJetIdEventSF::Jet_puId{};
+IntArrayReader * PUJetIdEventSF::Jet_puId{};
 IntArrayReader* PUJetIdEventSF::Jet_genJetIdx{};
 PUJetIdEventSF::MapSets PUJetIdEventSF::effMapSets{};
 PUJetIdEventSF::MapSets PUJetIdEventSF::sfMapSets{};
@@ -148,7 +148,7 @@ PUJetIdEventSF::setValues(long long _iEntry)
         iY = eff_map->GetNbinsY();
 
       // iWP = 0 Tight, 1 Medium, 2 Loose 
-      bool passId = (*Jet_puId->Get()) & (1 << iWP);
+      bool passId = (Jet_puId->At(iJ)) & (1 << iWP);
       if (passId)  scalefactors[iWP] *= (sf_map->GetBinContent(iX, iY));
       else         
             scalefactors[iWP] *= (1- sf_map->GetBinContent(iX, iY)*eff_map->GetBinContent(iX,iY)) / (1-eff_map->GetBinContent(iX,iY));
