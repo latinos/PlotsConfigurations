@@ -212,17 +212,24 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
 
 # data/MC scale factors
 
-puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+###puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
+puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/PUID_80XTraining_EffSFandUncties.root' % os.getenv('CMSSW_BASE')
 
 aliases['PUJetIdSF'] = {
     'linesToAdd': [
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/patches/pujetidsf_event.cc+' % configurations
+        '.L %s/patches/pujetidsf_event_new.cc+' % configurations
     ],
     'class': 'PUJetIdEventSF',
     'args': (puidSFSource, '2016', 'loose'),
     'samples': mc
 }
+
+
+
+
+
+
 
 aliases['ttHMVA_SF_2l'] = {   'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
                         'class': 'compute_SF',

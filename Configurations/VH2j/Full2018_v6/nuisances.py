@@ -632,7 +632,7 @@ nuisances['stat'] = {
 
 
 nuisances['Topnorm']  = {
-    'name'  : 'Topnorm',
+    'name'  : 'CMS_hww_Topnorm2j',
     'samples'  : {
         'top' : '1.00',
         },
