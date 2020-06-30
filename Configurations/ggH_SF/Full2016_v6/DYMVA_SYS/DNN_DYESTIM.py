@@ -12,7 +12,7 @@ from math import sqrt
 from array import array
 
 import tdrStyle
-tdrstyle.setTDRStyle()
+tdrStyle.setTDRStyle()
 
 import CMS_lumi
 
