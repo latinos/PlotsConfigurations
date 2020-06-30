@@ -139,8 +139,9 @@ structure['ggH'] = {
 for signal in signals:
     structure[signal] = {
         'isSignal' : 1,
-        'isData'   : 0
+        'isData'   : 0    
     }
+
 
 # data
 
@@ -152,6 +153,11 @@ structure['DATA']  = {
 
 
 
+
+print "INSTRUCTURE"
+print cuts
+print nuisances['WWresum0j']
+print "OK"
 
 for nuis in nuisances.itervalues():
   if 'cutspost' in nuis:

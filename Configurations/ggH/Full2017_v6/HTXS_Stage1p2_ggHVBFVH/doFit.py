@@ -32,13 +32,13 @@ for cat in HTXSStage1_1Categories:
   elif 'BBH' in cat:
     sampleNames.append(cat.replace('BBH','bbH_hww'))
 
-os.chdir('Combination_20May/')
+os.chdir('Combination_22May/')
 
 sampleNames.append('ggH_hww_PTH_200_300')
 sampleNames.append('ggH_hww_PTH_300_450')
 sampleNames.append('ggH_hww_PTH_450_650')
 sampleNames.append('ggH_hww_PTH_GT650')
-
+'''
 #No merging
 command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2017_ggH_HTXS_Stage1p2.root -t -1  --setParameters "
 for sample in sampleNames:
@@ -55,10 +55,10 @@ command = command[:-1]
 print command
 os.system(command)
 '''
-'''
+
 #Merge some bins
-#command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 Full2016_ggH_HTXS_Stage1p2_2j_merged.root -t -1 --setParameters "
-command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2016_ggH_HTXS_Stage1p2_2j_merged.root -t -1 --freezeParameters 'rgx{.*}' --setParameters "
+#command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 Full2017_ggH_HTXS_Stage1p2_2j_merged.root -t -1 --setParameters "
+command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2017_ggH_HTXS_Stage1p2_2j_merged.root -t -1 --freezeParameters 'rgx{.*}' --setParameters "
 #--freezeParameters CMS_hww_WWresum_0j 
 
 poi = ''
@@ -98,11 +98,11 @@ for sample in sampleNames:
 command = command[:-1]
 print command
 os.system(command)
-
 '''
+
 ##Merge all bins
-command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2016_ggH_HTXS_Stage1p2_2j_onePOI.root -t -1 --setParameters r_ggh=1,r_qqh=1 "
-#command="combine -M Significance Full2016_ggH_HTXS_Stage1p2_2j_onePOI.root -t -1 --setParameters r_ggh=1,r_qqh=1 --redefineSignalPOIs=r_qqh >> significance_onePOI_qqh.txt "
+#command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2017_ggH_HTXS_Stage1p2_2j_onePOI.root -t -1 --setParameters r_ggh=1,r_qqh=1 "
+command="combine -M Significance Full2017_ggH_HTXS_Stage1p2_2j_onePOI.root -t -1 --setParameters r_ggh=1,r_qqh=1 --redefineSignalPOIs=r_qqh >> significance_onePOI_qqh.txt "
 
 #poi = ''
 #for sample in sampleNames:
@@ -114,7 +114,7 @@ command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full20
 command = command[:-1]
 print command
 os.system(command)
-
+'''
 
 ##Merge all bins
 #command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2017_ggH_HTXS_Stage1p2_onePOI.root -t -1 --setParameters "
@@ -130,5 +130,4 @@ os.system(command)
 #os.system(command)
 #
 #
-'''
 

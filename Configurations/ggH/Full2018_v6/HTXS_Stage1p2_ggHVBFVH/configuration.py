@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'ggH_vbf_VH_2016v6_STXS_20May'
+tag = 'ggH_vbf_VH_2018v6_STXS_14Jun'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_'+tag
@@ -23,7 +23,7 @@ samplesFile = 'samples.py'
 plotFile = 'plot.py' 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 35.867
+lumi = 59.74
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
