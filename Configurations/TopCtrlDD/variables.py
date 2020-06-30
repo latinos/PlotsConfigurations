@@ -131,16 +131,16 @@ variables['njet']  = {
 
 variables['jetpt1']  = {
                         'name': 'std_vector_jet_pt[0]',     
-#                        'range' : (20,0,200),   
-			'range' : (5,0,30),
+                        'range' : (20,0,200),   
+			#'range' : (5,0,30),
                         'xaxis' : 'p_{T} 1st jet',
                         'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
 
 variables['jetpt2']  = {
                         'name': 'std_vector_jet_pt[1]',     
-#                        'range' : (20,0,200),   
-			'range' : (5,0,30),
+                        'range' : (20,0,200),   
+#			'range' : (5,0,30),
                         'xaxis' : 'p_{T} 2nd jet',
                         'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }

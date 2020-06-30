@@ -93,10 +93,19 @@ structure['ZZ']  = {
                   'isData'   : 0    
                   }
 
+structure['FakeQCD']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
 
 structure['ggH'] = {
                   'isSignal' : 1,
                   'isData'   : 0    
+                  }
+structure['vbf'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
                   }
 
 structure['ggH_hww'] = {
