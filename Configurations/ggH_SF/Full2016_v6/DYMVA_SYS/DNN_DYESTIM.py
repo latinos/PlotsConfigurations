@@ -86,7 +86,7 @@ def loadlegend(top, bottom, left, right):
   legend.SetBorderSize(0)
   return legend
 
-thefile = TFile('../plots_DYMVA_SYS_2016_v6.root')
+thefile = TFile('rootFile/plots_DYMVA_SYS_2016_v6.root')
 thelist = thefile.GetListOfKeys()
 histos  = {}
 values  = {}
