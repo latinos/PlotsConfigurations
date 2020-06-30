@@ -11,7 +11,7 @@ from math import sqrt
 
 from array import array
 
-import tdrstyle
+import tdrStyle
 tdrstyle.setTDRStyle()
 
 import CMS_lumi
