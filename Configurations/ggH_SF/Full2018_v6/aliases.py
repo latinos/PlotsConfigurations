@@ -244,7 +244,7 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
     }
 
 # PU jet Id SF
-puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
 
 aliases['PUJetIdSF'] = {
     'linesToAdd': [
@@ -265,7 +265,7 @@ aliases['new_SF'] = {   'linesToAdd': ['.L %s/patches/compute_SF.C+' % configura
 
 aliases['SFweight'] = {
     #'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut', 'btagSF','PUJetIdSF']),
-    'expr': ' * '.join(['SFweight2l', 'new_SF', 'LepWPCut', 'btagSF','PUJetIdSF','PUJetIdSF']),
+    'expr': ' * '.join(['SFweight2l', 'new_SF', 'LepWPCut', 'btagSF']),
     'samples': mc
 }
 # variations
