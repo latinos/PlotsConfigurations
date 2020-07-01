@@ -11,7 +11,7 @@ outputDir = 'rootFile_'+tag
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = 'variables_mkshapes.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
