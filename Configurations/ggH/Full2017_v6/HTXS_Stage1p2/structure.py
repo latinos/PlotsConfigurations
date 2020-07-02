@@ -9,6 +9,16 @@ structure['DY']  = {
                   'isData'   : 0
               }
 
+structure['Dyemb']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+              }
+
+structure['Dyveto']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'removeFromCuts' : [ k for k in cuts ],
+              }
 
 structure['Wjets']  = {  
                   'isSignal' : 0,
@@ -126,109 +136,11 @@ structure['ggH'] = {
                   'isData'   : 0    
                   }
 
-if os.path.exists('HTXS_stage1_categories.py') :
-  handle = open('HTXS_stage1_categories.py','r')
-  exec(handle)
-  handle.close()
-
-for cat,num in HTXSStage1_1Categories.iteritems():
-  if 'GT200' not in cat:
-    structure['ggH_hww_'+cat.replace('GG2H_','')] = {
+for signal in signals:
+    structure[signal] = {
         'isSignal' : 1,
-        'isData'   : 0    
+        'isData'   : 0
     }
-
-structure['ggH_hww_PTH_200_300'] = {
-             'isSignal' : 1,
-             'isData'   : 0    
-            }
-
-structure['ggH_hww_PTH_300_450'] = {
-             'isSignal' : 1,
-             'isData'   : 0    
-            }
-
-structure['ggH_hww_PTH_450_650'] = {
-             'isSignal' : 1,
-             'isData'   : 0    
-            }
-
-structure['ggH_hww_PTH_GT650'] = {
-             'isSignal' : 1,
-             'isData'   : 0    
-            }
-
-'''
-    structure['qqH_hww_'+cat.replace('QQ2HQQ_','')] = {
-        'isSignal' : 1,
-        'isData'   : 0    
-    }
-
-structure['ggH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
-'''
-structure['qqH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
-
-structure['WH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
-
-structure['ZH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
-
-structure['ggZH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
-
-structure['H_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
-
-structure['bbH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0
-                  }
-
-structure['ttH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0
-                  }
-
-structure['ggH_htt'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  }
-
-structure['qqH_htt'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  }
-
-structure['WH_htt'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  }
-
-structure['ZH_htt'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  }
-
-structure['H_htt'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
-
 
 # data
 
@@ -239,7 +151,10 @@ structure['DATA']  = {
               }
 
 
+
+
 for nuis in nuisances.itervalues():
   if 'cutspost' in nuis:
     nuis['cuts'] = nuis['cutspost'](nuis, cuts)
+
     print nuis

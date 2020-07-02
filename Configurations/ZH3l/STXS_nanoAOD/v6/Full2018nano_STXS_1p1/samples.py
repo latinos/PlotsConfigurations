@@ -50,7 +50,7 @@ LepWPweight     = 'ttHMVA_SF_3l[0]' #SF for new WPs, defined in aliases
 ################################################
 
 XSWeight      = 'XSWeight'
-SFweight      = 'SFweight'+Nlep+'l*'+LepWPweight+'*'+LepWPCut
+SFweight      = 'SFweight'+Nlep+'l*'+LepWPweight+'*'+LepWPCut+'*PUJetIdSF'
 PromptGenLepMatch   = 'PromptGenLepMatch'+Nlep+'l'
 
 ################################################
@@ -233,7 +233,7 @@ samples['ZZ'] = {  'name'  :   getSampleFilesNano(directory,'ZZTo2L2Nu_ext1')
                              + getSampleFilesNano(directory,'ggZZ2m2t')
                              + getSampleFilesNano(directory,'ggZZ2e2m'),
                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC,
-                    'FilesPerJob' : 3,
+                    'FilesPerJob' : 2,
                  }
 
 ZZ2LbaseW   = getBaseWnAOD(directory,'Autumn18_102X_nAODv6_Full2018v6',['ZZTo2L2Nu_ext1','ZZTo2L2Nu_ext2'])
@@ -277,7 +277,6 @@ samples['VVV']  = {  'name'   :   getSampleFilesNano(directory,'ZZZ')
 
 samples['ZH_hww']  = {  'name': getSampleFilesNano(directory,'HZJ_HToWW_M125'),
                         'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC,
-                        'suppressNegativeNuisances' :['all'],
                         'FilesPerJob' : 3,
                         'subsamples' : { 'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==401 || HTXS_stage1_1_cat_pTjet30GeV==402',
                                          'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==403 || HTXS_stage1_1_cat_pTjet30GeV==404 || HTXS_stage1_1_cat_pTjet30GeV==405',
@@ -287,7 +286,6 @@ samples['ZH_hww']  = {  'name': getSampleFilesNano(directory,'HZJ_HToWW_M125'),
 
 samples['ggZH_hww'] = {  'name': getSampleFilesNano(directory,'GluGluZH_HToWW_M125'),
                          'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC,
-                         'suppressNegativeNuisances' :['all'],
                          'FilesPerJob' : 3,
                         'subsamples' : { 'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==501 || HTXS_stage1_1_cat_pTjet30GeV==502',
                                          'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==503 || HTXS_stage1_1_cat_pTjet30GeV==504 || HTXS_stage1_1_cat_pTjet30GeV==505',
@@ -338,7 +336,8 @@ samples['Fake']  = {   'name': [ ] ,
                        'weight' : fakeW+'*'+METFilter_DATA,
                        'weights' : [ ] ,
                        'isData': ['all'],
-                       'FilesPerJob' : 50 ,
+                       'FilesPerJob' : 500 ,
+                       'suppressNegativeNuisances' :['all'],
                      }
 
 directory = treeBaseDir+'Run2018_102X_nAODv6_Full2018v6_ForNewWPs/DATAl1loose2018v6__l2loose__fakeW'
@@ -363,7 +362,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'weight' : METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],
-                       'FilesPerJob' : 50 ,
+                       'FilesPerJob' : 500 ,
                   }
 
 directory = treeBaseDir+'Run2018_102X_nAODv6_Full2018v6/DATAl1loose2018v6__l2loose__l2tightOR2018v6'

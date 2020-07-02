@@ -47,9 +47,9 @@ Reading the `legacyDataCards` folder.
     
 Reading the `v6` folders.
 
-    python multiSignalStrengthPlot.py ../Full2016_v6/datacards_nominal/VH_2j_emu/mll/datacard.txt --lumi=35.9 --year=2016
-    python multiSignalStrengthPlot.py ../Full2017_v6/datacards_nominal/VH_2j_emu/mll/datacard.txt --lumi=41.5 --year=2017
-    python multiSignalStrengthPlot.py ../Full2018_v6/datacards_nominal/VH_2j_emu/mll/datacard.txt --lumi=58.8 --year=2018
+    python multiSignalStrengthPlot.py ../Full2016_v6/datacards/VH_2j_emu/mll/datacard.txt --lumi=35.9 --year=2016
+    python multiSignalStrengthPlot.py ../Full2017_v6/datacards/VH_2j_emu/mll/datacard.txt --lumi=41.5 --year=2017
+    python multiSignalStrengthPlot.py ../Full2018_v6/datacards/VH_2j_emu/mll/datacard.txt --lumi=58.8 --year=2018
 
 
 # Make the yield tables

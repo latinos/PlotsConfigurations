@@ -20,20 +20,10 @@ cuts['hww2l2v_13TeV'] = {
        'of1j_pth0_60' : ' oneJet && Alt$(CleanJet_pt[1],0)<30 && pTWW <= 60 ',
        'of1j_pth60_120' : ' oneJet && Alt$(CleanJet_pt[1],0)<30 && pTWW > 60 && pTWW <= 120 ',
        'of1j_pth120_200' : ' oneJet && Alt$(CleanJet_pt[1],0)<30 && pTWW > 120 && pTWW <= 200 ',
-       'of2j_lowmjj_pth0_60' : ' multiJet && mjj<350 && pTWW <= 60 ',
-       'of2j_lowmjj_pth60_120' : ' multiJet && mjj<=350 && pTWW > 60 && pTWW <= 120 ',
-       'of2j_lowmjj_pth120_200' : ' multiJet && mjj<=350 && pTWW > 120 && pTWW <= 200 ',
-       'of2j_mjj350_700_pthjj0_25' : ' multiJet && mjj > 350 && mjj <= 700 && pTHjj <=25 && pTWW <= 200',
-       'of2j_mjj350_700_pthjjGT25' : ' multiJet && mjj > 350 && mjj <= 700 && pTHjj  >25 && pTWW <= 200',
-       'of2j_mjjGT700_pthjj0_25' : ' multiJet && mjj > 700 && pTHjj <=25 && pTWW <= 200',
-       'of2j_mjjGT700_pthjjGT25' : ' multiJet && mjj > 700 && pTHjj > 25 && pTWW <= 200', 
-       'of_pth200_300' : ' pTWW > 200 && pTWW <= 300 ',
-       'of_pth300_450' : ' pTWW > 300 && pTWW <= 450 ',
-       'of_pth450_650' : ' pTWW > 450 && pTWW <= 650 ',
-       'of_pthGT650' : ' pTWW > 650 ',
    }
 }
 
+### Borrow these CRs from the non-STXS analysis
 
 ## Top control regions
 cuts['hww2l2v_13TeV_top']  = { 
@@ -42,7 +32,6 @@ cuts['hww2l2v_13TeV_top']  = {
    'categories' : {
       '0j' : 'zeroJet',
       '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-      '2j' : 'multiJet',
    }
 }
 
@@ -53,7 +42,6 @@ cuts['hww2l2v_13TeV_dytt']  = {
    'categories' : { 
       '0j' : 'zeroJet',
       '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-      '2j' : 'multiJet',
    }
 }
 

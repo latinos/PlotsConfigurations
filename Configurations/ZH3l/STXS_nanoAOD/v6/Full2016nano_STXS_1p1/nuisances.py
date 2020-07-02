@@ -208,18 +208,28 @@ nuisances['pdf_gg_ACCEPT'] = {
     'type': 'lnN',
 }
 
-#TODO update with measurement from PSweights
-nuisances['PS_whss']  = {
-                'name'  : 'PS_whss',
-                'skipCMS' : 1,
-                'type'  : 'lnN',
-                'samples'  : {
-                   'WH_hww'   : '1.037',
-                   #'ZH_hww'   : '1.037',
-                   #'ggZH_hww' : '1.037',
-                   'WH_htt'   : '1.037',
-                   'ZH_htt'   : '1.037',
-                },
+nuisances['PS_ISR'] = {
+   'name': 'PS_ISR',
+   'kind': 'weight',
+   'type': 'shape',
+   'samples': {
+       'ggZH_hww': ['1.066107*(nCleanGenJet==0) + 1.047857*(nCleanGenJet==1) + 1.030005*(nCleanGenJet==2) + 1.005028*(nCleanGenJet>=3)', '0.921874*(nCleanGenJet==0) + 0.941939*(nCleanGenJet==1) + 0.962282*(nCleanGenJet==2) + 0.991580*(nCleanGenJet>=3)'],
+       'ZH_hww': ['1.000684*(nCleanGenJet==0) + 1.000924*(nCleanGenJet==1) + 1.001683*(nCleanGenJet==2) + 1.002104*(nCleanGenJet>=3)', '0.999150*(nCleanGenJet==0) + 0.998821*(nCleanGenJet==1) + 0.997859*(nCleanGenJet==2) + 0.997316*(nCleanGenJet>=3)'],
+       'WZ': ['1.002552*(nCleanGenJet==0) + 1.010286*(nCleanGenJet==1) + 1.014420*(nCleanGenJet==2) + 1.006226*(nCleanGenJet>=3)', '0.996802*(nCleanGenJet==0) + 0.987227*(nCleanGenJet==1) + 0.982005*(nCleanGenJet==2) + 0.992030*(nCleanGenJet>=3)'],
+       'ZZ': ['1.003210*(nCleanGenJet==0) + 1.005480*(nCleanGenJet==1) + 1.004674*(nCleanGenJet==2) + 0.987845*(nCleanGenJet>=3)', '0.995997*(nCleanGenJet==0) + 0.993056*(nCleanGenJet==1) + 0.993659*(nCleanGenJet==2) + 1.014695*(nCleanGenJet>=3)'],
+              },
+}
+
+nuisances['PS_FSR'] = {
+   'name': 'PS_FSR',
+   'kind': 'weight',
+   'type': 'shape',
+   'samples': {
+       'ggZH_hww': ['0.987316*(nCleanGenJet==0) + 0.986764*(nCleanGenJet==1) + 0.996498*(nCleanGenJet==2) + 1.004161*(nCleanGenJet>=3)', '1.019871*(nCleanGenJet==0) + 1.013853*(nCleanGenJet==1) + 1.005229*(nCleanGenJet==2) + 0.998573*(nCleanGenJet>=3)'],
+       'ZH_hww': ['0.992867*(nCleanGenJet==0) + 0.992845*(nCleanGenJet==1) + 0.999470*(nCleanGenJet==2) + 1.007245*(nCleanGenJet>=3)', '1.012465*(nCleanGenJet==0) + 1.012743*(nCleanGenJet==1) + 1.003215*(nCleanGenJet==2) + 0.991286*(nCleanGenJet>=3)'],
+       'WZ': ['0.992987*(nCleanGenJet==0) + 0.993725*(nCleanGenJet==1) + 1.000617*(nCleanGenJet==2) + 1.010869*(nCleanGenJet>=3)', '1.011267*(nCleanGenJet==0) + 1.010097*(nCleanGenJet==1) + 0.999445*(nCleanGenJet==2) + 0.983609*(nCleanGenJet>=3)'],
+       'ZZ': ['0.997245*(nCleanGenJet==0) + 0.998689*(nCleanGenJet==1) + 1.004475*(nCleanGenJet==2) + 1.011440*(nCleanGenJet>=3)', '1.004482*(nCleanGenJet==0) + 1.002081*(nCleanGenJet==1) + 0.992617*(nCleanGenJet==2) + 0.981314*(nCleanGenJet>=3)'],
+             },
 }
 
 nuisances['UE_whss']  = {
@@ -227,11 +237,11 @@ nuisances['UE_whss']  = {
                 'skipCMS' : 1,
                 'type'  : 'lnN',
                 'samples'  : {
-                   'WH_hww'   : '1.010',
-                   #'ZH_hww'   : '1.010',
-                   #'ggZH_hww' : '1.010',
-                   'WH_htt'   : '1.010',
-                   'ZH_htt'   : '1.010',
+                   'WH_hww'   : '1.015',
+                   #'ZH_hww'   : '1.015',
+                   #'ggZH_hww' : '1.015',
+                   'WH_htt'   : '1.015',
+                   'ZH_htt'   : '1.015',
                },
 }
 
@@ -260,35 +270,20 @@ nuisances['WZ3l1jnorm']  = {
                    'zh3l_SR_1j_ptv_gt150',
                 ]
               }
-'''
-nuisances['Zg3l2jnorm']  = {
-               'name'  : 'CMS_hww_Zg3l2jnorm',
-               'samples'  : {
-                   'Zg'       : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [
-                   'zh3l_Zg_CR_2j',
-                   'zh3l_WZ_CR_2j',
-                   'zh3l_SR_1j_ptv_lt150',
-                   'zh3l_SR_1j_ptv_gt150',
-                ]
-              }
 
-nuisances['Zg3l1jnorm']  = {
-               'name'  : 'CMS_hww_Zg3l1jnorm',
-               'samples'  : {
-                   'Zg'       : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [
-                   'zh3l_Zg_CR_1j',
-                   'zh3l_WZ_CR_1j',
-                   'zh3l_SR_1j_ptv_lt150',
-                   'zh3l_SR_1j_ptv_gt150',
-                ]
-              }
-'''
+nuisances['PU'] = { 
+   'name': 'CMS_PU_2016',
+   'kind': 'weight',
+   'type': 'shape',
+   'samples': {
+       'WZ': ['1.0016149*(puWeightUp/puWeight)', '0.99841193*(puWeightDown/puWeight)'],
+       'ZZ': ['1.00189618*(puWeightUp/puWeight)', '0.99814883*(puWeightDown/puWeight)'],
+       'ZH_hww': ['1.00098808*(puWeightUp/puWeight)', '0.99923369*(puWeightDown/puWeight)'],
+       'ggZH_hww': ['1.00267652*(puWeightUp/puWeight)', '0.99739938*(puWeightDown/puWeight)'],
+   },
+   'AsLnN': '1',
+}
+
 #### Top
 
 apply_on = {

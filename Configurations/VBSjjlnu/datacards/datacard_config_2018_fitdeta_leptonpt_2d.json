@@ -1,0 +1,117 @@
+[
+  { 
+    "datacard_name": "only_detalp",
+    "folders": [
+      {
+        "basedir": "Full2018v6s5/datacards_wbindetalpt", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deta_lpt_CR", 
+        "name": "wjetCR_mjjinl_res_mu",
+        "cut": "res_wjetcr_mjjincl_mu"
+      },
+      {
+        "var": "events", 
+        "cut": "res_topcr_mjjincl_mu", 
+        "name": "topCR_res_mu"
+      }
+    ]
+  },
+  { 
+    "datacard_name": "detalp_inext",
+    "folders": [
+      {
+        "basedir": "Full2018v6s5/datacards_wbindetalpt", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deta_lpt_CR", 
+        "name": "wjetcr_mvint_deta",
+        "cut": "res_wjetcr_mjjincl_mvint_mu"
+      },
+      {
+        "var": "deta_lpt_CR", 
+        "name": "wjetcr_mvext_deta",
+        "cut": "res_wjetcr_mjjincl_mvext_mu"
+      },
+      {
+        "var": "events", 
+        "cut": "res_topcr_mjjincl_mu", 
+        "name": "topCR_res_mu"
+      }
+    ]
+  },
+  { 
+    "datacard_name": "detalp_ext",
+    "folders": [
+      {
+        "basedir": "Full2018v6s5/datacards_wbindetalpt", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deta_lpt_CR", 
+        "name": "wjetcr_mvext_deta",
+        "cut": "res_wjetcr_mjjincl_mvext_mu"
+      },
+      {
+        "var": "events", 
+        "cut": "res_topcr_mjjincl_mu", 
+        "name": "topCR_res_mu"
+      }
+    ]
+  },
+  { 
+    "datacard_name": "detalp_low",
+    "folders": [
+      {
+        "basedir": "Full2018v6s5/datacards_wbindetalpt", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deta_lpt_CR", 
+        "name": "wjetcr_mvlow_deta",
+        "cut": "res_wjetcr_mjjincl_mvlow_mu"
+      },
+      {
+        "var": "events", 
+        "cut": "res_topcr_mjjincl_mu", 
+        "name": "topCR_res_mu"
+      }
+    ]
+  },
+  { 
+    "datacard_name": "detalp_ext_dnn_int",
+    "folders": [
+      {
+        "basedir": "Full2018v6s5/datacards_wbindetalpt", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deta_lpt_CR", 
+        "name": "wjetcr_mvext_deta",
+        "cut": "res_wjetcr_mjjincl_mvext_mu"
+      },
+      {
+        "var": "DNNoutput_v32", 
+        "name": "wjetcr_mvint_dnn",
+        "cut": "res_wjetcr_mjjincl_mvint_mu"
+      },
+      {
+        "var": "events", 
+        "cut": "res_topcr_mjjincl_mu", 
+        "name": "topCR_res_mu"
+      }
+    ]
+  }
+]

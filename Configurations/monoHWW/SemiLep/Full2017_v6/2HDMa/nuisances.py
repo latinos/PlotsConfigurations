@@ -486,8 +486,8 @@ nuisances['CRSR_accept_top'] = {
     'type': 'lnN',
     'samples': {'top': '1.01'},
     #'samples': {'top': '1.05'},
-    'cuts': [cut for cut in cuts if 'TopCR' in cut],
-    'cutspost': (lambda self, cuts: [cut for cut in cuts if 'TopCR' in cut]),
+    'cuts': [cut for cut in cuts if 'TCR' in cut],
+    'cutspost': (lambda self, cuts: [cut for cut in cuts if 'TCR' in cut]),
 }
 
 # Theory uncertainty for ggH

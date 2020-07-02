@@ -1,0 +1,9 @@
+python FixNegativeBins.py Full2016/rootFile_Full2016_em/plots_Full2016_em.root
+python FixNegativeBins.py Full2016/rootFile_Full2016_ee/plots_Full2016_ee.root
+python FixNegativeBins.py Full2016/rootFile_Full2016_mm/plots_Full2016_mm.root
+python FixNegativeBins.py Full2017/rootFile_Full2017_em/plots_Full2017_em.root
+python FixNegativeBins.py Full2017/rootFile_Full2017_ee/plots_Full2017_ee.root
+python FixNegativeBins.py Full2017/rootFile_Full2017_mm/plots_Full2017_mm.root
+python FixNegativeBins.py Full2018/rootFile_Full2018_em/plots_Full2018_em.root
+python FixNegativeBins.py Full2018/rootFile_Full2018_ee/plots_Full2018_ee.root
+python FixNegativeBins.py Full2018/rootFile_Full2018_mm/plots_Full2018_mm.root

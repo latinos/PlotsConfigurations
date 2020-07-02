@@ -52,108 +52,46 @@ aliases['PromptGenLepMatch1l'] = {
     'samples': mc
 }
 
-#aliases['boosted'] = {
-#    'expr': 'PuppiMET_pt > 40 \
-#            && Alt$(CleanFatJetPassMBoosted_pt[0], 0) > 200 \
-#            && Alt$(CleanFatJetPassMBoosted_WptOvHfatM[0], 0) > 0.4 \
-#            && Alt$(CleanFatJetPassMBoosted_tau21[0], 999) < 0.4 \
-#            && Alt$(CleanFatJetPassMBoosted_mass[0], 0) > 40 \
-#            && abs(Alt$(CleanFatJetPassMBoosted_eta[0], 999)) < 2.4'
-#}
-#
-#aliases['resolved'] = {
-#    'expr': '!boosted[0] \
-#            && PuppiMET_pt > 30 \
-#            && Wlep_mt > 50 \
-#            && WptOvHak4M > 0.35 \
-#            && Hlnjj_mt > 60 \
-#            && Whad_pt > 30'
-#}
-#
-#aliases['boostedSignalWMass'] = {
-#    'expr': '(65 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
-#            && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 105)'
-#}
-#
-#aliases['resolvedSignalWMass'] = {
-#    'expr': '(65 < Whad_mass && Whad_mass < 105)'
-#}
-#
-#aliases['boostedSidebandWMass'] = {
-#    'expr': '(40 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
-#            && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 250)'
-#}
-#
-#aliases['lowBoostedSidebandWMass'] = {
-#    'expr': '(40 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
-#            && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 65)'
-#}
-#
-#aliases['highBoostedSidebandWMass'] = {
-#    'expr': '(105 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
-#            && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 250)'
-#}
-#
-#
-#aliases['resolvedSidebandWMass'] = {
-#    'expr': '(40 < Whad_mass && Whad_mass < 250)'
-#}
-#
-#aliases['lowResolvedSidebandWMass'] = {
-#    'expr': '(40 < Whad_mass && Whad_mass < 65)'
-#}
-#
-#aliases['highResolvedSidebandWMass'] = {
-#    'expr': '(105 < Whad_mass && Whad_mass < 250)'
-#}
-
-# aliases['resolvedQCDcr'] = {
-#     'expr': '(   65 < Whad_mass && Whad_mass < 105 \
-#                 && Wlep_mt < 50 && 0 < Hlnjj_mt \
-#                 && Hlnjj_mt < 60 && WptOvHak4M < 0.35 )'
-# }
-#
-# aliases['boostedQCDcr'] = {
-#     'expr': '(65 < Alt$(CleanFatJetPassMBoosted_mass[0], 0) \
-#             && Alt$(CleanFatJetPassMBoosted_mass[0], 999) < 105 \
-#             && Wlep_mt < 50 \
-#             && Alt$(CleanFatJetPassMBoosted_tau21[0], 0) > 0.4\
-#             && Alt$(CleanFatJetPassMBoosted_WptOvHfatM[0], 9) < 0.4)'
-# }
-
-
 ###### SFweight ######
 
-aliases['LepWPSF'] = {
+aliases['LepSF1l__ele_wp__mu_wp'] = {
     #'expr': 'Lepton_tightElectron_'+eleWP+'_IdIsoSF[0]*Lepton_tightMuon_'+muWP+'_IdIsoSF[0]*'
     #+'Alt$(Lepton_tightElectron_'+eleWP+'_IdIsoSF[1], 1)*'
     #+'Alt$(Lepton_tightMuon_'+muWP+'_IdIsoSF[1], 1)',
     #'samples': mc
-    'expr':'(((Lepton_isTightElectron_'+eleWP+'[0]>0.5)*(Lepton_tightElectron_'+eleWP+'_IdIsoSF'+'[0]'+')) '
-    +'+ ((Lepton_isTightMuon_'+muWP+'[0]>0.5)*(Lepton_tightMuon_'+muWP+'_IdIsoSF'+'[0]'+')))',
+    #'expr':'(((Lepton_isTightElectron_'+eleWP+'[0]>0.5)*(Lepton_tightElectron_'+eleWP+'_IdIsoSF'+'[0]'+')) + ((Lepton_isTightMuon_'+muWP+'[0]>0.5)*(Lepton_tightMuon_'+muWP+'_IdIsoSF'+'[0]'+')))',
+    'expr': 'Lepton_tightElectron_'+eleWP+'_IdIsoSF[0]*Lepton_tightMuon_'+muWP+'_IdIsoSF[0]',
     'samples': mc
 }
 
 # data/MC scale factors
+aliases['SFweight1l'] = {
+    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'Lepton_RecoSF[0]', 'EMTFbug_veto']),
+    'samples': mc
+}
 aliases['SFweight'] = {
-    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'Lepton_RecoSF[0]', 'EMTFbug_veto','PrefireWeight','LepWPSF[0]']),
+    'expr': ' * '.join(['SFweight1l[0]', 'LepSF1l__ele_wp__mu_wp[0]', 'PrefireWeight']),
     'samples': mc
 }
 # # variations of tight lepton WP
 aliases['SFweightEleUp'] = {
-    'expr': 'Lepton_tightElectron_'+eleWP+'_IdIsoSF_Up[0]',
+    #'expr': 'Lepton_tightElectron_'+eleWP+'_IdIsoSF_Up[0]',
+    'expr': '((TMath::Abs(Lepton_pdgId[0]) == 11)*(Lepton_tightElectron_'+eleWP+'_TotSF_Up[0]/Lepton_tightElectron_'+eleWP+'_TotSF[0]) + (TMath::Abs(Lepton_pdgId[0]) == 13))',
     'samples': mc
 }
 aliases['SFweightEleDown'] = {
-    'expr': 'Lepton_tightElectron_'+eleWP+'_IdIsoSF_Down[0]',
+    #'expr': 'Lepton_tightElectron_'+eleWP+'_IdIsoSF_Down[0]',
+    'expr': '((TMath::Abs(Lepton_pdgId[0]) == 11)*(Lepton_tightElectron_'+eleWP+'_TotSF_Down[0]/Lepton_tightElectron_'+eleWP+'_TotSF[0]) + (TMath::Abs(Lepton_pdgId[0]) == 13))',
     'samples': mc
 }
 aliases['SFweightMuUp'] = {
-    'expr': 'Lepton_tightMuon_'+muWP+'_IdIsoSF_Up[0]',
+    #'expr': 'Lepton_tightMuon_'+muWP+'_IdIsoSF_Up[0]',
+    'expr': '((TMath::Abs(Lepton_pdgId[0]) == 13)*(Lepton_tightMuon_'+muWP+'_TotSF_Up[0]/Lepton_tightMuon_'+muWP+'_TotSF[0]) + (TMath::Abs(Lepton_pdgId[0]) == 11))',
     'samples': mc
 }
 aliases['SFweightMuDown'] = {
-    'expr': 'Lepton_tightMuon_'+muWP+'_IdIsoSF_Down[0]',
+    #'expr': 'Lepton_tightMuon_'+muWP+'_IdIsoSF_Down[0]',
+    'expr': '((TMath::Abs(Lepton_pdgId[0]) == 13)*(Lepton_tightMuon_'+muWP+'_TotSF_Down[0]/Lepton_tightMuon_'+muWP+'_TotSF[0]) + (TMath::Abs(Lepton_pdgId[0]) == 11))',
     'samples': mc
 }
 
@@ -327,27 +265,41 @@ for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2',
 lastcopy = (1 << 13)
 
 aliases['isTTbar'] = {
-    'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 2' % lastcopy,
+#    'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 2' % lastcopy,
+    'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && (GenPart_statusFlags & %d)) == 2' % lastcopy,
     'samples': ['top']
 }
 
 aliases['isSingleTop'] = {
-    'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 1' % lastcopy,
+#    'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 1' % lastcopy,
+    'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && (GenPart_statusFlags & %d)) == 1' % lastcopy,
     'samples': ['top']
 }
 
+#aliases['hasT'] = {
+#    'expr': 'Sum$(GenPart_pdgId == 6 && (GenPart_statusFlags & %d)) == 1' % lastcopy,
+#    'samples': ['top']
+#}
+#aliases['hasTbar'] = {
+#    'expr': 'Sum$(GenPart_pdgId == -6 && (GenPart_statusFlags & %d)) == 1' % lastcopy,
+#    'samples': ['top']
+#}
+
 aliases['topGenPtOTF'] = {
-    'expr': 'Sum$((GenPart_pdgId == 6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
+#    'expr': 'Sum$((GenPart_pdgId == 6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
+    'expr': 'Sum$((GenPart_pdgId == 6 && (GenPart_statusFlags & %d)) * GenPart_pt)' % lastcopy,
     'samples': ['top']
 }
 
 aliases['antitopGenPtOTF'] = {
-    'expr': 'Sum$((GenPart_pdgId == -6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
+#    'expr': 'Sum$((GenPart_pdgId == -6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
+    'expr': 'Sum$((GenPart_pdgId == -6 && (GenPart_statusFlags & %d)) * GenPart_pt)' % lastcopy,
     'samples': ['top']
 }
 
 aliases['Top_pTrw'] = {
-    'expr': 'isTTbar * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPtOTF) * TMath::Exp(0.0615 - 0.0005 * antitopGenPtOTF))) + isSingleTop',
+#    'expr': 'isTTbar * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPtOTF) * TMath::Exp(0.0615 - 0.0005 * antitopGenPtOTF))) + isSingleTop',
+    'expr': '(topGenPtOTF*antitopGenPtOTF > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPtOTF) * TMath::Exp(0.0615 - 0.0005 * antitopGenPtOTF))) + (topGenPtOTF*antitopGenPtOTF <= 0.)',
     'samples': ['top']
 }
 

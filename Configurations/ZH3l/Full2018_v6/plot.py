@@ -78,8 +78,9 @@ groupPlot['Fake']  = {
 groupPlot['Higgs']  = {  
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
-                  'color': 632, # kRed 
-                  'samples'  : ['WH_hww', 'ZH_hww', 'ggZH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt', 'ttH_hww']
+                  'color': 632, # kRed
+                  'scaleMultiplicativeOverlaid' : 10.0,
+                  'samples'  : ['WH_hww', 'ZH_hww', 'ggZH_hww', 'ZH_htt', 'WH_htt', 'ttH_hww']
               }
 
 # Individual plots
@@ -138,6 +139,8 @@ plot['WZ']  = {
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
+                  #'scale'    : 0.89 #1j norm
+                  #'scale'    : 1.22 #2j norm
                   }
 
 plot['ZZ']  = { 
@@ -210,22 +213,6 @@ plot['ggZH_hww'] = {
 plot['WH_hww'] = {
                   'nameHR' : 'WH',
                   'color': 632+2, # kRed+2 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1
-                  }
-
-plot['ggH_htt'] = {
-                  'nameHR' : 'ggH htt',
-                  'color': 632+1, # kRed+4 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1
-                  }
-
-plot['qqH_htt'] = {
-                  'nameHR' : 'qqH htt',
-                  'color': 632+1, # kRed+4 
                   'isSignal' : 1,
                   'isData'   : 0,    
                   'scale'    : 1

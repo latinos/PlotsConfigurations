@@ -35,7 +35,7 @@ groupPlot['DY']  = {
                   'nameHR' : "DY",
                   'isSignal' : 0,
                   'color': 418,    # kGreen+2
-                  'samples'  : ['DY']
+                  'samples'  : ['DY', 'Dyemb']
               }
 
 
@@ -75,7 +75,9 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
+                  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
+                  'samples' : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
+
                   #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww','bbH_hww','ttH_hww', 'ggH_htt' ]
               }
 
@@ -113,6 +115,14 @@ plot['DY']  = {
                        #'hww2l2v_13TeV_me_1j'     : 1.08 , 
                         #},
 
+              }
+
+if useEmbeddedDY:
+  plot['Dyemb']  = {  
+                  'color': 418,    # kGreen+2
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0,
               }
 
 
@@ -214,14 +224,14 @@ plot['VVV']  = {
 
 # Htautau
 
-#plot['ZH_htt'] = {
-#                  'nameHR' : 'ZHtt',
-#                  'color': 632+3, # kRed+3 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,    
-#                  'scale'    : 1    #
-#                  }
-#
+plot['ZH_htt'] = {
+                  'nameHR' : 'ZHtt',
+                  'color': 632+3, # kRed+3 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+
 #plot['bbH_htt'] = {
 #                  'nameHR' : 'bbHtt',
 #                  'color': 632-1, # kRed-1 
@@ -247,32 +257,32 @@ plot['VVV']  = {
 #                  'scale'    : 1    #
 #                  }
 #
-#plot['WH_htt'] = {
-#                  'nameHR' : 'WHtt',
-#                  'color': 632+2, # kRed+2 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,    
-#                  'scale'    : 1    #
-#                  }
-#
-#
-#plot['qqH_htt'] = {
-#                  'nameHR' : 'qqHtt',
-#                  'color': 632+1, # kRed+1 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,    
-#                  'scale'    : 1    #
-#                  }
-#
-#
-#plot['ggH_htt'] = {
-#                  'nameHR' : 'ggHtt',
-#                  'color': 632, # kRed 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,    
-#                  'scale'    : 1    #
-#                  }
-#
+plot['WH_htt'] = {
+                  'nameHR' : 'WHtt',
+                  'color': 632+2, # kRed+2 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+
+
+plot['qqH_htt'] = {
+                  'nameHR' : 'qqHtt',
+                  'color': 632+1, # kRed+1 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+
+
+plot['ggH_htt'] = {
+                  'nameHR' : 'ggHtt',
+                  'color': 632, # kRed 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+
 # HWW 
 
 #plot['H_hww'] = {
@@ -333,14 +343,14 @@ plot['ggH_hww'] = {
 #                  'scale'    : 1    #
 #                  }
 
-#plot['ttH_hww'] = {
-#                  'nameHR' : 'ttH',
-#                  'color': 632+6, # kRed+6
-#                  'isSignal' : 1,
-#                  'isData'   : 0,
-#                  'scale'    : 1    #
-#                  }
-#
+plot['ttH_hww'] = {
+                  'nameHR' : 'ttH',
+                  'color': 632+6, # kRed+6
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
 
 # data
 

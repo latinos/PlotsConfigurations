@@ -78,7 +78,8 @@ aliases['PromptGenLepMatch2l'] = {
 }
 
 aliases['Top_pTrw'] = {
-    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
+    #'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
+    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(-0.158631 + 2.00214e-04*topGenPt - 3.09496e-07*topGenPt*topGenPt + 34.93/(topGenPt+135.633)) * TMath::Exp(-0.158631 + 2.00214e-04*antitopGenPt - 3.09496e-07*antitopGenPt*antitopGenPt + 34.93/(antitopGenPt+135.633)))) + (topGenPt * antitopGenPt <= 0.)',
     'samples': ['top']
 }
 
@@ -131,16 +132,19 @@ aliases['sr'] = {
 }
 
 aliases['Higgs0jet'] = {
-'expr': '(mll < 60 && mth > 90)'
+'expr': '(mll < 60 && mth > 90 && abs(dphill) < 2.30)'
 }
 aliases['Higgs1jet'] = {
-'expr': '(mll < 60 && mth > 90)'
+'expr': '(mll < 60 && mth > 80 && abs(dphill) < 2.25)'
 }
 aliases['Higgs2jet'] = {
-'expr': '(mll < 60 && mth > 60)'
+'expr': '(mll < 60 && mth > 65 && mth < 150)'
+}
+aliases['Higgsvh'] = {
+'expr': '(mll < 60 && mth > 60 && mth < 150 && abs(dphill) < 1.60)'
 }
 aliases['Higgsvbf'] = {
-'expr': '(mll < 60 && mth > 60)'
+'expr': '(mll < 60 && mth > 60 && mth < 150 && abs(dphill) < 1.60)'
 }
 
 # CR definitions
@@ -163,20 +167,6 @@ aliases['wwcr'] = {
 
 # B tag scale factors
 
-#btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_2016LegacySF_V1.csv' % os.getenv('CMSSW_BASE')
-#
-#aliases['Jet_btagSF_shapeFix'] = {
-#    'linesToAdd': [
-#        'gSystem->Load("libCondFormatsBTauObjects.so");',
-#        'gSystem->Load("libCondToolsBTau.so");',
-#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
-#        '.L %s/patches/btagsfpatch.cc+' % configurations
-#    ],
-#    'class': 'BtagSF',
-#    'args': (btagSFSource,),
-#    'samples': mc
-#}
-
 aliases['bVetoSF'] = {
     'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
     'samples': mc
@@ -194,17 +184,6 @@ aliases['btagSF'] = {
 
 for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
 
-#    aliases['Jet_btagSF_shapeFix_up_%s' % shift] = {
-#        'class': 'BtagSF',
-#        'args': (btagSFSource, 'up_' + shift),
-#        'samples': mc
-#    }
-#    aliases['Jet_btagSF_shapeFix_down_%s' % shift] = {
-#        'class': 'BtagSF',
-#        'args': (btagSFSource, 'down_' + shift),
-#        'samples': mc
-#    }
-
     for targ in ['bVeto', 'bReq']:
         alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
         alias['expr'] = alias['expr'].replace('btagSF_shape', 'btagSF_shape_up_%s' % shift)
@@ -221,6 +200,19 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
         'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'down'),
         'samples': mc
     }
+
+puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
+
+aliases['PUJetIdSF'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L %s/patches/pujetidsf_event_new.cc+' % configurations
+    ],
+    'class': 'PUJetIdEventSF',
+    'args': (puidSFSource, '2016', 'loose'),
+    'samples': mc
+}
+
 
 # data/MC scale factors
 aliases['SFweight'] = {
@@ -264,31 +256,8 @@ aliases['lhe_mW2'] = {
     'samples': ['WWewk']
 }
 
-# use HTXS_njets30 when moving to NanoAODv5 for all trees
-#aliases['nCleanGenJet'] = {
-#    'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
-#    'class': 'CountGenJet',
-#    'samples': signals
-#}
-
-# GGHUncertaintyProducer wasn't run for 2016 nAODv5 non-private
-#thus = [
-#    'ggH_mu',
-#    'ggH_res',
-#    'ggH_mig01',
-#    'ggH_mig12',
-#    'ggH_VBF2j',
-#    'ggH_VBF3j',
-#    'ggH_pT60',
-#    'ggH_pT120',
-#    'ggH_qmtop'
-#]
-
-#for thu in thus:
-#    aliases[thu] = {
-#        'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
-#        'class': 'GGHUncertainty',
-#        'args': (thu,),
-#        'samples': ['ggH_hww'],
-#        'nominalOnly': True
-#    }
+aliases['nCleanGenJet'] = {
+    'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
+    'class': 'CountGenJet',
+    'samples': mc
+}

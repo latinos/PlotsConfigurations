@@ -62,6 +62,15 @@ and datacards (`mkDatacards.py --help` to see all available options):
 
     mkDatacards.py --pycfg configuration.py --inputFile rootFile/plots_TAG.root
 
+If you need yield tables in either .tex or .csv format, after running the FitDiagnostics method of Combine on a workspace obtained from the datacards:
+
+    combine -M FitDiagnostics -d WORKSPACE.root --saveNormalizations --saveWithUncertainties
+    
+you can feed the output to mkTable (`mkTable.py --help` to see all available options):
+
+    mkTable.py fitDiagnostics.root
+    
+in case you want to merge a set of categories and/or processes in the table, you can define a merging scheme. A template, as well as more detailed instructions on mkTable, can be found in LatinoAnalysis/ShapeAnalysis/data/.
 
 Congratulations! You have done the analysis, or at least a very first step...
 

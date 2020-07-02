@@ -5,12 +5,10 @@
 ##
 
 combs['hww2l2v_13TeV_ggH_0j'] = {
-                  'hww2l2v_13TeV_0j_ee_pt2lt20' : 'events' ,
-                  'hww2l2v_13TeV_0j_ee_pt2ge20' : 'events' ,
+                  'hww2l2v_13TeV_0j_ee' : 'events' ,
                   'hww2l2v_13TeV_WW_0j_ee' : 'events' ,
                   'hww2l2v_13TeV_top_0j_ee' : 'events' ,
-                  'hww2l2v_13TeV_0j_mm_pt2lt20' : 'events' ,
-                  'hww2l2v_13TeV_0j_mm_pt2ge20' : 'events' ,
+                  'hww2l2v_13TeV_0j_mm' : 'events' ,
                   'hww2l2v_13TeV_WW_0j_mm' : 'events' ,
                   'hww2l2v_13TeV_top_0j_mm' : 'events' ,
                 }
@@ -34,12 +32,10 @@ combs['hww2l2v_13TeV_ggH_2j'] = {
                 }
 
 combs['hww2l2v_13TeV_ggH'] = {
-                  'hww2l2v_13TeV_0j_ee_pt2lt20' : 'events' ,
-                  'hww2l2v_13TeV_0j_ee_pt2ge20' : 'events' ,
+                  'hww2l2v_13TeV_0j_ee' : 'events' ,
                   'hww2l2v_13TeV_WW_0j_ee' : 'events' ,
                   'hww2l2v_13TeV_top_0j_ee' : 'events' ,
-                  'hww2l2v_13TeV_0j_mm_pt2lt20' : 'events' ,
-                  'hww2l2v_13TeV_0j_mm_pt2ge20' : 'events' ,
+                  'hww2l2v_13TeV_0j_mm' : 'events' ,
                   'hww2l2v_13TeV_WW_0j_mm' : 'events' ,
                   'hww2l2v_13TeV_top_0j_mm' : 'events' ,
                   'hww2l2v_13TeV_1j_ee' : 'events' ,

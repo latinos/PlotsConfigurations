@@ -178,3 +178,15 @@ aliases['nCleanGenJet'] = {
    'class': 'CountGenJet',
    'samples': mc
 }
+
+puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+
+aliases['PUJetIdSF'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'PUJetIdEventSF',
+    'args': (puidSFSource, '2017', 'loose'),
+    'samples': mc
+}

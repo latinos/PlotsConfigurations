@@ -16,8 +16,8 @@ dymva1jet = 'dymva_alt_dnn_1j  > 0.900'
 dymva2jet = 'dymva_alt_dnn_2j  > 0.960'
 dymvaVBF  = 'dymva_alt_dnn_VBF > 0.970'
 dymvaVH   = 'dymva_alt_dnn_VH  > 0.825'
-dymvahpt  = '('+dymva0jet+' || '+dymva1jet+' || '+dymva2jet+' || '+dymvaVBF+' || '+dymvaVH+')'
-dymvahpt_loose  = '(dymva_alt_dnn_0j > 0.8 || dymva_alt_dnn_1j > 0.8 || dymva_alt_dnn_2j > 0.8 || dymva_alt_dnn_VH > 0.8 || dymva_alt_dnn_VBF > 0.8)'
+dymvahpt  = '('+dymva0jet+' || '+dymva1jet+' || '+dymva2jet+')'
+dymvahpt_loose  = '(dymva_alt_dnn_0j > 0.9 || dymva_alt_dnn_1j > 0.9 || dymva_alt_dnn_2j > 0.9 )'
 
 # Higgs Signal Regions: ee/uu * 0/1/2 jet
 cuts['hww2l2v_13TeV_0j'] = {
@@ -75,7 +75,7 @@ cuts['hww2l2v_13TeV_hpt'] = {
 
 # Numerator for DY acceptance in Signal region
 cuts['hww2l2v_13TeV_HAccNum_0j'] = {
-   'expr': 'sr && (Lepton_pdgId[0]==-Lepton_pdgId[1]) && zeroJet && Higgs0jet && pTWW <= 200 && dymva_alt_dnn_0j > 0.8' ,
+   'expr': 'sr && (Lepton_pdgId[0]==-Lepton_pdgId[1]) && zeroJet && Higgs0jet && pTWW <= 200 && dymva_alt_dnn_0j > 0.9' ,
    'categories' : {
        'ee_pth0_10'       : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && pTWW <= 10',
        'mm_pth0_10'       : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && pTWW <= 10',
@@ -84,7 +84,7 @@ cuts['hww2l2v_13TeV_HAccNum_0j'] = {
    }
 }
 cuts['hww2l2v_13TeV_HAccNum_1j'] = {
-   'expr': 'sr && (Lepton_pdgId[0]==-Lepton_pdgId[1]) && oneJet && Higgs1jet && pTWW <= 200 && dymva_alt_dnn_1j > 0.8' ,
+   'expr': 'sr && (Lepton_pdgId[0]==-Lepton_pdgId[1]) && oneJet && Higgs1jet && pTWW <= 200 && dymva_alt_dnn_1j > 0.9' ,
    'categories' : {
        'ee_pth0_60'       : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && pTWW <= 60',
        'mm_pth0_60'       : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && pTWW <= 60',
@@ -95,7 +95,7 @@ cuts['hww2l2v_13TeV_HAccNum_1j'] = {
    }
 }
 cuts['hww2l2v_13TeV_HAccNum_2j'] = {
-   'expr': 'sr && (Lepton_pdgId[0]==-Lepton_pdgId[1]) && 2jggH && Higgs2jet && pTWW <= 200 && dymva_alt_dnn_2j > 0.8' ,
+   'expr': 'sr && (Lepton_pdgId[0]==-Lepton_pdgId[1]) && 2jggH && Higgs2jet && pTWW <= 200 && dymva_alt_dnn_2j > 0.9' ,
    'categories' : {
        'ee_mjj0_350_pth0_60'     : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && mjj <= 350 && pTWW <= 60',
        'mm_mjj0_350_pth0_60'     : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && mjj <= 350 && pTWW <= 60',
@@ -181,12 +181,12 @@ cuts['hww2l2v_13TeV_DYin']  = {
 cuts['hww2l2v_13TeV_AccDen']  = {
    'expr' : 'sr * (Lepton_pdgId[0]==-Lepton_pdgId[1])',
    'categories' : {
-      '0j_ee'  : 'pTWW <= 200 && zeroJet && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_0j > 0.8',
-      '0j_mm'  : 'pTWW <= 200 && zeroJet && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_0j > 0.8',
-      '1j_ee'  : 'pTWW <= 200 &&  oneJet && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_1j > 0.8',
-      '1j_mm'  : 'pTWW <= 200 &&  oneJet && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_1j > 0.8',
-      '2j_ee'  : 'pTWW <= 200 &&   2jggH && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_2j > 0.8',
-      '2j_mm'  : 'pTWW <= 200 &&   2jggH && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_2j > 0.8',
+      '0j_ee'  : 'pTWW <= 200 && zeroJet && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_0j > 0.9',
+      '0j_mm'  : 'pTWW <= 200 && zeroJet && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_0j > 0.9',
+      '1j_ee'  : 'pTWW <= 200 &&  oneJet && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_1j > 0.9',
+      '1j_mm'  : 'pTWW <= 200 &&  oneJet && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_1j > 0.9',
+      '2j_ee'  : 'pTWW <= 200 &&   2jggH && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_2j > 0.9',
+      '2j_mm'  : 'pTWW <= 200 &&   2jggH && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_2j > 0.9',
       'hpt_ee' : 'pTWW >  200 &&            (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && '+dymvahpt_loose,
       'hpt_mm' : 'pTWW >  200 &&            (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && '+dymvahpt_loose,
    }
@@ -196,12 +196,12 @@ cuts['hww2l2v_13TeV_AccDen']  = {
 cuts['hww2l2v_13TeV_wwAcc']  = {
    'expr' : 'wwcr * (Lepton_pdgId[0]==-Lepton_pdgId[1])',
    'categories' : {
-      '0j_ee'  : 'pTWW <= 200 && zeroJet && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_0j > 0.8',
-      '0j_mm'  : 'pTWW <= 200 && zeroJet && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_0j > 0.8',
-      '1j_ee'  : 'pTWW <= 200 &&  oneJet && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_1j > 0.8',
-      '1j_mm'  : 'pTWW <= 200 &&  oneJet && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_1j > 0.8',
-      '2j_ee'  : 'pTWW <= 200 &&   2jggH && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_2j > 0.8',
-      '2j_mm'  : 'pTWW <= 200 &&   2jggH && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_2j > 0.8',
+      '0j_ee'  : 'pTWW <= 200 && zeroJet && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_0j > 0.9',
+      '0j_mm'  : 'pTWW <= 200 && zeroJet && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_0j > 0.9',
+      '1j_ee'  : 'pTWW <= 200 &&  oneJet && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_1j > 0.9',
+      '1j_mm'  : 'pTWW <= 200 &&  oneJet && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_1j > 0.9',
+      '2j_ee'  : 'pTWW <= 200 &&   2jggH && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_2j > 0.9',
+      '2j_mm'  : 'pTWW <= 200 &&   2jggH && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_2j > 0.9',
       'hpt_ee' : 'pTWW >  200 &&            (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && '+dymvahpt_loose,
       'hpt_mm' : 'pTWW >  200 &&            (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && '+dymvahpt_loose,
    }

@@ -1,0 +1,127 @@
+[
+  { 
+    "datacard_name": "deta_mjjvlow__dnn_mjjvhigh",
+    "folders": [
+      {
+        "basedir": "Full2018v6s5/datacards_wbindeta", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deltaeta_vbs_CR", 
+        "name": "wjetCR_mjjvlow_res_mu",
+        "cut": "res_wjetcr_mjjincl_mjjvlow_mu"
+      },
+      {
+        "var": "DNNoutput_lessbins", 
+        "name": "wjetCR_mjjvhigh_res_mu",
+        "cut": "res_wjetcr_mjjincl_mjjvhigh_mu"
+      },
+      {
+        "var": "events", 
+        "cut": "res_topcr_mjjincl_mu", 
+        "name": "topCR_res_mu"
+      }
+    ]
+  },
+  { 
+    "datacard_name": "deta_mjjvhigh__dnn_mjjvlow",
+    "folders": [
+      {
+        "basedir": "Full2018v6s5/datacards_wbindeta", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deltaeta_vbs_CR", 
+        "name": "wjetCR_mjjvhigh_res_mu",
+        "cut": "res_wjetcr_mjjincl_mjjvhigh_mu"
+      },
+      {
+        "var": "DNNoutput_lessbins", 
+        "name": "wjetCR_mjjvlow_res_mu",
+        "cut": "res_wjetcr_mjjincl_mjjvlow_mu"
+      },
+      {
+        "var": "events", 
+        "cut": "res_topcr_mjjincl_mu", 
+        "name": "topCR_res_mu"
+      }
+    ]
+  },
+  { 
+    "datacard_name": "deta_mjjvint__dnn_mjjvext",
+    "folders": [
+      {
+        "basedir": "Full2018v6s5/datacards_wbindeta", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deltaeta_vbs_CR", 
+        "name": "wjetCR_mjjvhigh1_res_mu",
+        "cut": "res_wjetcr_mjjincl_mjjvhigh1_mu"
+      },
+      {
+        "var": "deltaeta_vbs_CR", 
+        "name": "wjetCR_mjjvlow2_res_mu",
+        "cut": "res_wjetcr_mjjincl_mjjvlow2_ele"
+      },
+      {
+        "var": "DNNoutput_lessbins", 
+        "name": "wjetCR_mjjvlow1_res_mu",
+        "cut": "res_wjetcr_mjjincl_mjjvlow1_mu"
+      },
+      {
+        "var": "DNNoutput_lessbins", 
+        "name": "wjetCR_mjjvhigh2_res_mu",
+        "cut": "res_wjetcr_mjjincl_mjjvhigh2_mu"
+      },
+      {
+        "var": "events", 
+        "cut": "res_topcr_mjjincl_mu", 
+        "name": "topCR_res_mu"
+      }
+    ]
+  },
+  { 
+    "datacard_name": "deta_mjjvext__dnn_mjjvint",
+    "folders": [
+      {
+        "basedir": "Full2018v6s5/datacards_wbindeta", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deltaeta_vbs_CR", 
+        "name": "wjetCR_mjjvhigh2_res_mu",
+        "cut": "res_wjetcr_mjjincl_mjjvhigh2_mu"
+      },
+      {
+        "var": "deltaeta_vbs_CR", 
+        "name": "wjetCR_mjjvlow1_res_mu",
+        "cut": "res_wjetcr_mjjincl_mjjvlow1_mu"
+      },
+      {
+        "var": "DNNoutput_lessbins", 
+        "name": "wjetCR_mjjvlow2_res_mu",
+        "cut": "res_wjetcr_mjjincl_mjjvlow2_mu"
+      },
+      {
+        "var": "DNNoutput_lessbins", 
+        "name": "wjetCR_mjjvhigh1_res_mu",
+        "cut": "res_wjetcr_mjjincl_mjjvhigh1_mu"
+      },
+      {
+        "var": "events", 
+        "cut": "res_topcr_mjjincl_mu", 
+        "name": "topCR_res_mu"
+      }
+    ]
+  }
+
+]

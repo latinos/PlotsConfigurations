@@ -1,0 +1,11 @@
+#Common tools for analysis:
+voms-proxy-init -voms cms -rfc --valid 168:0
+
+#STEP 1: Submit shapesmulti in batch
+mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
+
+#STEP 2: Hadd files
+mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
+
+#STEP 3: Make plots 
+python DNN_DYESTIM.py

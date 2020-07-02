@@ -1,0 +1,234 @@
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 69 -- Parameters after fit for asimov dataset
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- ONE = 1 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- PU_2016 = 0.050267 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- PU_2016_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- QCDscale_V = 0.184275 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- QCDscale_VH = -0.00129972 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- QCDscale_VH_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- QCDscale_VV = -0.29431 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- QCDscale_VV_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- QCDscale_V_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- QCDscale_WWewk = -0.00138445 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- QCDscale_WWewk_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- QCDscale_ggVV = -0.0464958 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- QCDscale_ggVV_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- QCDscale_gg_ACCEPT = -0.00940232 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- QCDscale_gg_ACCEPT_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- QCDscale_qqH = -1.01976e-05 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- QCDscale_qqH_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- QCDscale_qqbar_ACCEPT = -0.0650809 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- QCDscale_qqbar_ACCEPT_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- hww_VZScale = -0.312297 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- hww_VZScale_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- hww_VgStarScale = -0.0119744 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- hww_VgStarScale_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- lumi_13TeV_2016 = -2.40382 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- lumi_13TeV_2016_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- pdf_Higgs_gg = -7.45608e-05 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- pdf_Higgs_gg_ACCEPT = -1.18061e-05 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- pdf_Higgs_gg_ACCEPT_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- pdf_Higgs_gg_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- pdf_Higgs_qqbar = -0.0011759 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- pdf_Higgs_qqbar_ACCEPT = -0.000365188 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- pdf_Higgs_qqbar_ACCEPT_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- pdf_Higgs_qqbar_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- pdf_gg_ACCEPT = -0.00165924 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- pdf_gg_ACCEPT_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- pdf_qqbar = -0.168019 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- pdf_qqbar_ACCEPT = -0.0104945 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- pdf_qqbar_ACCEPT_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- pdf_qqbar_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin1 = 0.395418 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin10 = -3.54203 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin10_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin11 = -1.93333 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin11_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin12 = -2.18621 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin12_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_DY = 8.47741e-05 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_DY_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_VVV = 0.000131578 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_VVV_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_VZ = 0.000322324 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_VZ_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_Vg = 3.00263 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_VgS_L = 1.00023 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_VgS_L_In = 1 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_Vg_In = 3 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_WH_htt = 1.11066e-05 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_WH_htt_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_WH_hww = 2.44101e-05 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_WH_hww_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_WW = 0.00145036 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_WW_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_WWewk = 4.80462e-05 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_WWewk_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_Wjets = 3.05381 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_Wjets_In = 3 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_ZH_htt = 5.0062e-06 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_ZH_htt_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_ZH_hww = 4.00003 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_ZH_hww_In = 4 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_ggHWWlnuqq_M400 = -2.03837e-12 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_ggHWWlnuqq_M400_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_ggH_htt = 1.00003 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_ggH_htt_In = 1 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_ggWW = 9.04565e-05 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_ggWW_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_qqHWWlnuqq_M400 = 10 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_qqHWWlnuqq_M400_In = 10 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_qqH_htt = 1 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_qqH_htt_In = 1 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_top = 0.000683878 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin13_top_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin1_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin2 = -0.770031 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin2_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin3 = -0.832694 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin3_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin4 = -0.528434 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin4_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin5 = -1.40243 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin5_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin6 = -1.01247 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin6_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin7 = -0.148299 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin7_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin8 = 0.276213 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin8_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin9 = -3.0493 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- prop_binBoostedSR_bin9_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- r = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- singleTopToTTbar = -0.588012 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- singleTopToTTbar_In = 0 (constant)
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- topPtRew = 2.33625 
+INFO: (function: asimovDatasetWithFit) AsimovUtils.cc: 73 -- topPtRew_In = 0 (constant)
+INFO: (function: generateAsimov) ToyMCSamplerOpt.cc: 139 -- Using internal logic for binned/unbinned Asimov dataset generation
+INFO: (function: generateWithHisto) ToyMCSamplerOpt.cc: 214 -- Generating asimov with histogram for pdf pdf_binBoostedSR_obsOnly: in 14 x-bins
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: anyParameterAtBoundaries) utils.cc: 982 -- Found parameter topPtRew at boundary (within ~1sigma): 2.34004+/-1.72381
+INFO: (function: anyParameterAtBoundaries) utils.cc: 982 -- Found parameter prop_binBoostedSR_bin13_ggH_htt at boundary (within ~1sigma): 1.00004+/-1.91822
+INFO: (function: anyParameterAtBoundaries) utils.cc: 982 -- Found parameter prop_binBoostedSR_bin13_VgS_L at boundary (within ~1sigma): 1.00023+/-1.91845
+INFO: (function: anyParameterAtBoundaries) utils.cc: 982 -- Found parameter prop_binBoostedSR_bin13_qqH_htt at boundary (within ~1sigma): 1.00001+/-1.91817
+INFO: (function: anyParameterAtBoundaries) utils.cc: 982 -- Found parameter prop_binBoostedSR_bin13_Vg at boundary (within ~1sigma): 3.00259+/-3.32845
+INFO: (function: minimize) CascadeMinimizer.cc: 478 -- After fit, some parameters are found at the boundary (within ~1sigma)
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: runLimitExpected) AsymptoticLimits.cc: 436 -- Median for expected limits = 1.61719 (Sigma for expected limits = 0.825111)
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 167 -- Minimisation configured with Type=Minuit2, Algo=Migrad, strategy=1, tolerance=0.1
+INFO: (function: improveOnce) CascadeMinimizer.cc: 190 -- Minimisation finished with status=0
+INFO: (function: improveOnce) CascadeMinimizer.cc: 195 -- Minimization success! status=0
