@@ -104,19 +104,38 @@ if useDYtt:
           nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
 
 else:
+    """
   files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50') + \
           nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
-
+    """
+    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50-LO') + \
+            nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-70to100') + \
+            nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-100to200') + \
+            nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-200to400') + \
+            nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-400to600') + \
+            nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-600to800') + \
+            nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-800to1200') + \
+            nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-1200to2500') + \
+            nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-2500toInf') + \
+            nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO') + \
+            nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-100to200') + \
+            nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-200to400') + \
+            nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-400to600') + \
+            nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-600toInf')
 
 samples['DY'] = {
     'name': files,
     'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 &&\
                                      Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )',
-    'FilesPerJob': 6,
+    'FilesPerJob': 20,
 }
+
+addSampleWeight(samples, 'DY', 'DYJetsToLL_M-10to50-LO', 'LHE_HT<100.0')
+addSampleWeight(samples, 'DY', 'DYJetsToLL_M-50-LO', 'LHE_HT<70.0')
+
 #addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO)
 #addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO)
-addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
+#addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 
 ###### Top #######
 
