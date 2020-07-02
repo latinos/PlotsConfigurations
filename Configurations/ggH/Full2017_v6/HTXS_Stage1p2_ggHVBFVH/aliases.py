@@ -6,7 +6,7 @@ configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # thi
 configurations = os.path.dirname(configurations) # Full2017_v6
 configurations = os.path.dirname(configurations) # ggH
 configurations = os.path.dirname(configurations) # Configurations
-configurations = os.path.dirname(configurations)
+configurations = os.path.dirname(configurations) # Configurations
 
 #aliases = {}
 
@@ -258,25 +258,25 @@ aliases['nCleanGenJet'] = {
 
 
 aliases['vbfdnn_mjjhigh'] = {
-    'linesToAdd': ['.L %s/Configurations/ggH/Full2017_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+' % configurations],
+    'linesToAdd': ['.L %s/ggH/Full2016_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+' % configurations],
     'class': 'evaluate_multiclass_3rdjet_mjjhigh',
     'args': 0,
 }
 
 aliases['topdnn_mjjhigh'] = {
-    'linesToAdd': ['.L %s/Configurations/ggH/Full2017_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+' % configurations],
+    'linesToAdd': ['.L %s/ggH/Full2016_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+' % configurations],
     'class': 'evaluate_multiclass_3rdjet_mjjhigh',
     'args': 1,
 }
 
 aliases['wwdnn_mjjhigh'] = {
-    'linesToAdd': ['.L %s/Configurations/ggH/Full2017_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+' % configurations],
+    'linesToAdd': ['.L %s/ggH/Full2016_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+' % configurations],
     'class': 'evaluate_multiclass_3rdjet_mjjhigh',
     'args': 2,
 }
 
 aliases['gghdnn_mjjhigh'] = {
-    'linesToAdd': ['.L %s/Configurations/ggH/Full2017_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+' % configurations],
+    'linesToAdd': ['.L %s/ggH/Full2016_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+' % configurations],
     'class': 'evaluate_multiclass_3rdjet_mjjhigh',
     'args': 3,
 }

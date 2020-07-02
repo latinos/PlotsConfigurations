@@ -292,25 +292,25 @@ for thu in thus:
 
 
 aliases['vbfdnn_mjjhigh'] = {
-    'linesToAdd': ['.L %s/Configurations/ggH/Full2018_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+' % configurations],
+    'linesToAdd': ['.L %s/ggH/Full2016_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+' % configurations],
     'class': 'evaluate_multiclass_3rdjet_mjjhigh',
     'args': 0,
 }
 
 aliases['topdnn_mjjhigh'] = {
-    'linesToAdd': ['.L %s/Configurations/ggH/Full2018_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+' % configurations],
+    'linesToAdd': ['.L %s/ggH/Full2016_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+' % configurations],
     'class': 'evaluate_multiclass_3rdjet_mjjhigh',
     'args': 1,
 }
 
 aliases['wwdnn_mjjhigh'] = {
-    'linesToAdd': ['.L %s/Configurations/ggH/Full2018_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+' % configurations],
+    'linesToAdd': ['.L %s/ggH/Full2016_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+' % configurations],
     'class': 'evaluate_multiclass_3rdjet_mjjhigh',
     'args': 2,
 }
 
 aliases['gghdnn_mjjhigh'] = {
-    'linesToAdd': ['.L %s/Configurations/ggH/Full2018_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+' % configurations],
+    'linesToAdd': ['.L %s/ggH/Full2016_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+' % configurations],
     'class': 'evaluate_multiclass_3rdjet_mjjhigh',
     'args': 3,
 }
