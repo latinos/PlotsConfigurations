@@ -418,7 +418,7 @@ QQHUncertainty::bindTree_(multidraw::FunctionLibrary& _library)
 {
   if (currentEntry == -2) {
     currentEntry = -1;
-    _library.bindBranch(HTXS_stage_1_1_pTjet30, "HTXS_stage1_1_cat_pTjet30GeV");
+    _library.bindBranch(HTXS_stage_1_1_pTjet30, "HTXS_stage1_1_fine_cat_pTjet30GeV");
 
     _library.addDestructorCallback([]() {
         currentEntry = -2;
