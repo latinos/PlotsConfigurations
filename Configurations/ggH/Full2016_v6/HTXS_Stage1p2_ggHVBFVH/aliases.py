@@ -266,7 +266,7 @@ aliases['nCleanGenJet'] = {
     'samples': mc
 }
 
-'''
+
 # GGHUncertaintyProducer wasn't run for 2016 nAODv5 non-private
 thus = [
     'ggH_mu',
@@ -288,7 +288,7 @@ for thu in thus:
         'samples': [skey for skey in samples if 'ggH_hww' in skey],
         'nominalOnly': True
     }
-'''
+
 
 
 aliases['vbfdnn_mjjhigh'] = {
