@@ -16,7 +16,7 @@ def nanoGetSampleFiles(inputDir, Sample):
 
 try:
     mc_emb = [skey for skey in samples if skey != 'DATA' and skey != 'Dyveto' and not skey.startswith('Fake')]
-    mc = [skey for skey in samples if skey != 'Dyemb']
+    mc = [skey for skey in mc_emb if skey != 'Dyemb']
 except NameError:
     mc = []
     cuts = {}
