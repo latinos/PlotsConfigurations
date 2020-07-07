@@ -265,6 +265,28 @@ aliases['lhe_mW2'] = {
     'samples': ['WWewk']
 }
 
+# GGHUncertaintyProducer wasn't run for 2016 nAODv5 non-private
+thus = [
+    'ggH_mu',
+    'ggH_res',
+    'ggH_mig01',
+    'ggH_mig12',
+    'ggH_VBF2j',
+    'ggH_VBF3j',
+    'ggH_pT60',
+    'ggH_pT120',
+    'ggH_qmtop'
+]
+
+for thu in thus:
+    aliases[thu] = {
+        'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
+        'class': 'GGHUncertainty',
+        'args': (thu,),
+        'samples': [skey for skey in samples if 'ggH_hww' in skey],
+        'nominalOnly': True
+    }
+
 
 
 aliases['vbfdnn'] = { 
@@ -306,6 +328,30 @@ aliases['wwlike'] = {
 aliases['gghlike'] = { 
         'expr': 'gghdnn>vbfdnn && gghdnn>topdnn && gghdnn>wwdnn',
 }
+
+
+thusQQ = [
+  "qqH_YIELD",
+  "qqH_PTH200",
+  "qqH_Mjj60",
+  "qqH_Mjj120",
+  "qqH_Mjj350",
+  "qqH_Mjj700",
+  "qqH_Mjj1000",
+  "qqH_Mjj1500",
+  "qqH_PTH25",
+  "qqH_JET01",
+  "qqH_EWK",
+]
+
+for thu in thusQQ:
+    aliases[thu] = {
+        'linesToAdd': ['.L %s/patches/qqhuncertainty.cc+' % configurations],
+        'class': 'QQHUncertainty',
+        'args': (thu,),
+        'samples': ['qqH_hww'],
+        'nominalOnly': True
+    }
 
 
 

@@ -111,7 +111,7 @@ variables['mllVSmth_2x2bins'] = {   'name': 'mll:mth',            #   variable n
 
 variables['classvbf_mjjhigh'] = {
      'name': 'vbfdnn_mjjhigh',
-     'range' : ([0.3,0.5,0.6,0.7,0.8,1],),
+     'range' : ([0.3,0.4,0.5,0.6,0.7,0.8,1],),
      'xaxis' : 'DNN discriminant vbf',
      'fold'  : 3,
      'cuts'  : [
@@ -135,7 +135,7 @@ variables['classggh_mjjhigh'] = {
 
 variables['classtop_mjjhigh'] = {
      'name': 'topdnn_mjjhigh',
-     'range' : ([0.3,0.5,0.6,0.7,0.8,1],),
+     'range' : ([0.3,0.4,0.5,0.6,0.7,0.8,1],),
      'xaxis' : 'DNN discriminant top',
      'fold'  : 3,
      'cuts'  : [

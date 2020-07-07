@@ -1,5 +1,4 @@
-
-supercut = '    mll>12 \
+supercut = '   mll>12 \
             && Lepton_pt[0]>25 \
             && Lepton_pt[1]>10 \
             && (abs(Lepton_pdgId[1])==13 || Lepton_pt[1]>13) \
@@ -111,3 +110,5 @@ cuts['hww2l2v_13TeV_wwAcc']  = {
       '2j_mm' : '  2jggH && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_2j > 0.90',
    }
 } 
+
+
