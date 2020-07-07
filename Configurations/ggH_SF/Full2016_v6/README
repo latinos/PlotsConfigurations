@@ -35,7 +35,10 @@ mkComb.py --pycfg=configuration.py --combineLocation=/afs/cern.ch/work/c/caldero
 #mkOptim (calculate the significance)
 mkOptim.py --pycfg=configuration.py --combineLocation=/afs/cern.ch/work/c/calderon/private/combine/CMSSW_10_2_13/src/ --combcfg=comb_ggH.py --fomList=SExpPre,BestFit
 
-#or CMSENV /afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_10_2_13/src/ +
+#or cd ../../../../../../combine/CMSSW_10_2_13/src/ 
+#cmsenv
+#cd -
+
 combine datacard.txt -M Significance --expectSignal=1 -t -1
 combine datacard.txt -M FitDiagnostics  --rMin=-6 --rMax=20 -t -1 --expectSignal=1 --robustFit=1 --cminDefaultMinimizerStrategy 0
 
