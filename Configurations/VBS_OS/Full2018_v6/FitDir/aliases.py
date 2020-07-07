@@ -136,11 +136,12 @@ aliases['bReq'] = {
 # CR definitions
 
 aliases['topcr'] = {
-    'expr': 'mtw2>30 && mll>50 && ((zeroJet && !bVeto) || bReq)'
+#    'expr': 'mtw2>30 && mll>50 && ((zeroJet && !bVeto) || bReq)'
+    'expr': 'mll>50 && ((zeroJet && !bVeto) || bReq)'
 }
 
 aliases['dycr'] = {
-    'expr': 'mth<60 && mll>70 && mll<120 && bVeto'
+    'expr': 'mth<60 && bVeto'
 }
 
 aliases['wwcr'] = {
@@ -150,8 +151,8 @@ aliases['wwcr'] = {
 # SR definition
 
 aliases['sr'] = {
-    'expr': 'mth>60 && mtw2>30 && bVeto'
-#    'expr': 'mth>60 && bVeto'
+#    'expr': 'mth>60 && mtw2>30 && bVeto'
+    'expr': 'mth>60 && bVeto'
 }
 
 aliases['centralVeto'] = {
