@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'monoH2016_v6'
+tag = 'WW2016_v6'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'

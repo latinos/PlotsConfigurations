@@ -9,6 +9,17 @@ structure['DY']  = {
                   'isData'   : 0
               }
 
+structure['Dyemb']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+              }
+
+structure['Dyveto']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'removeFromCuts' : [ k for k in cuts ],
+              }
+
 
 structure['Wjets']  = {  
                   'isSignal' : 0,
@@ -122,77 +133,77 @@ structure['ZZ']  = {
 
 
 structure['ggH'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0    
                   }
 
 structure['ggH_hww'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0    
                   }
 
 structure['qqH_hww'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0    
                   }
 
 structure['qqH_hww'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0    
                   }
 
 structure['WH_hww'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0    
                   }
 
 structure['ZH_hww'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0    
                   }
 
 structure['ggZH_hww'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0    
                   }
 
 structure['H_hww'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0    
                   }
 
 structure['bbH_hww'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0
                   }
 
 structure['ttH_hww'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0
                   }
 
 structure['ggH_htt'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0,
                   }
 
 structure['qqH_htt'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0,
                   }
 
 structure['WH_htt'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0,
                   }
 
 structure['ZH_htt'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0,
                   }
 
 structure['H_htt'] = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0    
                   }
 
@@ -204,11 +215,6 @@ structure['DATA']  = {
                   'isSignal' : 0,
                   'isData'   : 1 
               }
-
-print "INSTRUCTURE"
-print cuts
-print nuisances['WWresum0j']
-print "OK"
 
 for nuis in nuisances.itervalues():
   if 'cutspost' in nuis:
