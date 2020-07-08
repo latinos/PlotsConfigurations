@@ -193,7 +193,7 @@ aliases['PUJetIdSF'] = {
         '.L %s/patches/pujetidsf_event_new.cc+' % configurations
     ],
     'class': 'PUJetIdEventSF',
-    'args': (puidSFSource, '2016', 'loose'),
+    'args': (puidSFSource, '2018', 'loose'),
     'samples': mc
 }
 
