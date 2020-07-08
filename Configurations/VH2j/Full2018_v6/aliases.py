@@ -97,12 +97,12 @@ lastcopy = (1 << 13)
 
 aliases['isTTbar'] = {
     'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 2' % lastcopy,
-    'samples': ['top']
+    'samples': ['top', 'Dyveto']
 }
 
 aliases['isSingleTop'] = {
     'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 1' % lastcopy,
-    'samples': ['top']
+    'samples': ['top', 'Dyveto']
 }
 
 aliases['topGenPtOTF'] = {
