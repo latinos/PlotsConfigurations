@@ -1,9 +1,9 @@
-python FixNegativeBins.py Full2016/rootFile_Full2016_em/plots_Full2016_em.root
-python FixNegativeBins.py Full2016/rootFile_Full2016_ee/plots_Full2016_ee.root
-python FixNegativeBins.py Full2016/rootFile_Full2016_mm/plots_Full2016_mm.root
-python FixNegativeBins.py Full2017/rootFile_Full2017_em/plots_Full2017_em.root
-python FixNegativeBins.py Full2017/rootFile_Full2017_ee/plots_Full2017_ee.root
-python FixNegativeBins.py Full2017/rootFile_Full2017_mm/plots_Full2017_mm.root
-python FixNegativeBins.py Full2018/rootFile_Full2018_em/plots_Full2018_em.root
-python FixNegativeBins.py Full2018/rootFile_Full2018_ee/plots_Full2018_ee.root
-python FixNegativeBins.py Full2018/rootFile_Full2018_mm/plots_Full2018_mm.root
+python FixNegativeBins.py Full2016/rootFile_Full2016_em/plots_Full2016_em.root > Fixoutput_16ee.txt
+python FixNegativeBins.py Full2016/rootFile_Full2016_ee/plots_Full2016_ee.root > Fixoutput_16em.txt
+python FixNegativeBins.py Full2016/rootFile_Full2016_mm/plots_Full2016_mm.root > Fixoutput_16mm.txt
+python FixNegativeBins.py Full2017/rootFile_Full2017_em/plots_Full2017_em.root > Fixoutput_17ee.txt
+python FixNegativeBins.py Full2017/rootFile_Full2017_ee/plots_Full2017_ee.root > Fixoutput_17em.txt
+python FixNegativeBins.py Full2017/rootFile_Full2017_mm/plots_Full2017_mm.root > Fixoutput_17mm.txt
+python FixNegativeBins.py Full2018/rootFile_Full2018_em/plots_Full2018_em.root > Fixoutput_18ee.txt
+python FixNegativeBins.py Full2018/rootFile_Full2018_ee/plots_Full2018_ee.root > Fixoutput_18em.txt
+python FixNegativeBins.py Full2018/rootFile_Full2018_mm/plots_Full2018_mm.root > Fixoutput_18mm.txt

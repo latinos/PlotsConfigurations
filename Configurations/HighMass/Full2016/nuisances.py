@@ -1188,6 +1188,17 @@ nuisances['singleTopToTTbar']  = {
                 },
          }
 
+# DY MET reweighting
+if EMorEEorMM!="em":
+  nuisances['DYMetRew']  = {
+                  'name'  : 'CMS_DYMetRew',
+                  'kind'  : 'weight',
+                  'type'  : 'shape',
+                  'samples' : {
+                       'DY'  : ["1.0/DY_METrw","DY_METrw"]
+                  }
+           }
+
 # Replace lnN nuisances (from QCD and PDF only -> Other lnN nuisance are consistent across SBI) for samples contributing to SBI with shape:
 oldnuisances = copy.deepcopy(nuisances)
 for nuis in oldnuisances:
@@ -1213,16 +1224,71 @@ for nuis in oldnuisances:
         del nuisances[nuis]['samples'][samp]
         if nuisances[nuis]['samples'] == {}: del nuisances[nuis]
 
+# Now create SBI nuisances
+nuisancename = {}
+for nuis in nuisances:
+  if nuisances[nuis]['type'] == "shape":
+    if nuisances[nuis]['name'] not in nuisancename: nuisancename[nuisances[nuis]['name']] = []
+    nuisancename[nuisances[nuis]['name']].append(nuis)
+for nuisname in nuisancename:
+  allsamples = {}
+  for nuis in nuisancename[nuisname]:
+    allsamples.update(nuisances[nuis]['samples']) # Sometimes have 2 dict keys doing shapes for the same nuisance for different samples; combine them here
+  if [samp for samp in allsamples if 'SBI' in samp] == []:
+    dogg=0
+    doqq=0
+    for samp in allsamples:
+      if ("GGH" in samp) or (samp in ["ggWW", "ggH_hww"]): dogg=1
+      elif ("QQH" in samp) or (samp in ["qqWWqq", "qqH_hww"]): doqq=1
+    if dogg==1:
+        SM_up = '1.0'
+        SM_dn = '1.0'
+        WW_up = '1.0'
+        WW_dn = '1.0'
+        sig_up = '1.0'
+        sig_dn = '1.0'
+        for nuis in nuisancename[nuisname]:
+          if "ggH_hww" in nuisances[nuis]['samples']: SM_up = nuisances[nuis]['samples']["ggH_hww"][0]
+          if "ggH_hww" in nuisances[nuis]['samples']: SM_dn = nuisances[nuis]['samples']["ggH_hww"][1]
+          if "ggWW" in nuisances[nuis]['samples']: WW_up = nuisances[nuis]['samples']["ggWW"][0]
+          if "ggWW" in nuisances[nuis]['samples']: WW_dn = nuisances[nuis]['samples']["ggWW"][1]
+        for m in massggh:
+          for nuis in nuisancename[nuisname]:
+            if 'GGH_'+m+model_name in nuisances[nuis]['samples']: sig_up = nuisances[nuis]['samples']['GGH_'+m+model_name][0]
+            if 'GGH_'+m+model_name in nuisances[nuis]['samples']: sig_dn = nuisances[nuis]['samples']['GGH_'+m+model_name][1]
+          SBI_string = ['('+sig_up+')*SBI_isHM + ('+SM_up+')*SBI_isSMggh + ('+WW_up+')*SBI_isggWW',
+                        '('+sig_dn+')*SBI_isHM + ('+SM_dn+')*SBI_isSMggh + ('+WW_dn+')*SBI_isggWW']
+          nuisances[nuis]['samples'].update({'GGHSBI_'+m+model_name: SBI_string})
+    if doqq==1:
+        SM_up = '1.0'
+        SM_dn = '1.0'
+        WW_up = '1.0'
+        WW_dn = '1.0'
+        sig_up = '1.0'
+        sig_dn = '1.0'
+        for nuis in nuisancename[nuisname]:
+          if "qqH_hww" in nuisances[nuis]['samples']: SM_up = nuisances[nuis]['samples']["qqH_hww"][0]
+          if "qqH_hww" in nuisances[nuis]['samples']: SM_dn = nuisances[nuis]['samples']["qqH_hww"][1]
+          if "qqWWqq" in nuisances[nuis]['samples']: WW_up = nuisances[nuis]['samples']["qqWWqq"][0]
+          if "qqWWqq" in nuisances[nuis]['samples']: WW_dn = nuisances[nuis]['samples']["qqWWqq"][1]
+        for m in massvbf:
+          for nuis in nuisancename[nuisname]:
+            if 'QQH_'+m+model_name in nuisances[nuis]['samples']: sig_up = nuisances[nuis]['samples']['QQH_'+m+model_name][0]
+            if 'QQH_'+m+model_name in nuisances[nuis]['samples']: sig_dn = nuisances[nuis]['samples']['QQH_'+m+model_name][1]
+          SBI_string = ['('+sig_up+')*SBI_isHM + ('+SM_up+')*SBI_isSMVBF + ('+WW_up+')*SBI_isqqWWqq',
+                        '('+sig_dn+')*SBI_isHM + ('+SM_dn+')*SBI_isSMVBF + ('+WW_dn+')*SBI_isqqWWqq']
+          nuisances[nuis]['samples'].update({'QQHSBI_'+m+model_name: SBI_string})
+
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
-nuisances['stat']  = {
-              'type'  : 'auto',
-              'maxPoiss'  : '10',
-              'includeSignal'  : '0',
-              #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
-              #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
-              'samples' : {}
-             }
+#nuisances['stat']  = {
+#              'type'  : 'auto',
+#              'maxPoiss'  : '10',
+#              'includeSignal'  : '0',
+#              #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
+#              #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
+#              'samples' : {}
+#             }
 
 StatSwitch = False
 if StatSwitch:
