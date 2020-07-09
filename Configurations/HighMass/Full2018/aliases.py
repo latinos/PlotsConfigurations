@@ -275,9 +275,9 @@ aliases['DY_LO_pTllrw'] = {
     'samples': ['DY']
 }
 
-handle = open('%s/src/PlotsConfigurations/Configurations/HighMass/DYrew_MET.py' % os.getenv('CMSSW_BASE'),'r')
-exec(handle)
-handle.close()
+#handle = open('%s/src/PlotsConfigurations/Configurations/HighMass/DYrew_MET.py' % os.getenv('CMSSW_BASE'),'r')
+#exec(handle)
+#handle.close()
 aliases['DY_METrw'] = {
     'expr': '1',
     #'expr': DYrew_MET['2018']['incl'].replace('x', 'PuppiMET_pt'),
