@@ -174,10 +174,10 @@ if useEmbeddedDY:
                          'suppressNegative' :['all'],
                          'suppressNegativeNuisances' :['all'],
                       }
-CombineBaseW(samples, 'DYveto', ['TTTo2L2Nu', 'TTTo2L2Nu_PSWeights'])
-CombineBaseW(samples, 'DYveto', ['ST_tW_antitop', 'ST_tW_antitop_PSWeights'])
-CombineBaseW(samples, 'DYveto', ['ST_tW_top', 'ST_tW_top_PSWeights'])
-CombineBaseW(samples, 'DYveto', ['ZZTo2L2Nu', 'ZZTo2L2Nu_ext1', 'ZZTo2L2Nu_ext2'])
+  CombineBaseW(samples, 'DYveto', ['TTTo2L2Nu', 'TTTo2L2Nu_PSWeights'])
+  CombineBaseW(samples, 'DYveto', ['ST_tW_antitop', 'ST_tW_antitop_PSWeights'])
+  CombineBaseW(samples, 'DYveto', ['ST_tW_top', 'ST_tW_top_PSWeights'])
+  CombineBaseW(samples, 'DYveto', ['ZZTo2L2Nu', 'ZZTo2L2Nu_ext1', 'ZZTo2L2Nu_ext2'])
 
   veto_dict = {'TTTo2L2Nu'               : '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) * (TMath::Sqrt(TMath::Exp(1.61468e-03 + 3.46659e-06*topGenPt - 8.90557e-08*topGenPt*topGenPt) * TMath::Exp(1.61468e-03 + 3.46659e-06*antitopGenPt - 8.90557e-08*antitopGenPt*antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)' ,
                'TTTo2L2Nu_PSWeights'     : '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) * (TMath::Sqrt(TMath::Exp(1.61468e-03 + 3.46659e-06*topGenPt - 8.90557e-08*topGenPt*topGenPt) * TMath::Exp(1.61468e-03 + 3.46659e-06*antitopGenPt - 8.90557e-08*antitopGenPt*antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)' ,
