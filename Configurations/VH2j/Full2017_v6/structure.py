@@ -9,6 +9,17 @@ structure['DY']  = {
                   'isData'   : 0
               }
 
+structure['Dyemb']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+              }
+
+structure['Dyveto']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'removeFromCuts' : [ k for k in cuts ],
+              }
+
 structure['Fake_em']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,

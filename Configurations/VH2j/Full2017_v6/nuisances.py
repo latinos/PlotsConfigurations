@@ -15,7 +15,8 @@ def nanoGetSampleFiles(inputDir, Sample):
     return getSampleFiles(inputDir, Sample, False, 'nanoLatino_')
 
 try:
-    mc = [skey for skey in samples if skey != 'DATA' and not skey.startswith('Fake')]
+    mc_emb = [skey for skey in samples if skey != 'DATA' and skey != 'Dyveto' and not skey.startswith('Fake')]
+    mc = [skey for skey in mc_emb if skey != 'Dyemb']
 except NameError:
     mc = []
     cuts = {}
@@ -160,7 +161,7 @@ nuisances['trigg'] = {
     'name': 'CMS_eff_hwwtrigger_2017',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, trig_syst) for skey in mc if 'DY' not in skey), #FIXME Add DY
+    'samples': dict((skey, trig_syst) for skey in mc_emb),
 }
 
 prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
@@ -169,7 +170,7 @@ nuisances['prefire'] = {
     'name': 'CMS_eff_prefiring_2017',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, prefire_syst) for skey in mc if 'DY' not in skey), #FIXME Add DY
+    'samples': dict((skey, prefire_syst) for skey in mc),
 }
 
 ##### Electron Efficiency and energy scale
@@ -178,7 +179,7 @@ nuisances['eff_e'] = {
     'name': 'CMS_eff_e_2017',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc if 'DY' not in skey), #FIXME Add DY
+    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb),
 }
 
 nuisances['electronpt'] = {
@@ -193,13 +194,26 @@ nuisances['electronpt'] = {
     'AsLnN': '1'
 }
 
+if useEmbeddedDY:
+  nuisances['electronpt_emb'] = {
+    'name': 'CMS_scale_e_2017',
+    'kind': 'suffix',
+    'type': 'shape',
+    'mapUp' : 'ElepTup',
+    'mapDown': 'ElepTdo',
+    'samples': {'Dyemb': ['1', '1']},
+    'folderUp': treeBaseDir+'/Embedding2017_102X_nAODv5_Full2017v6/DATAl1loose2017v6__l2loose__l2tightOR2017v6__Embedding__EmbElepTup_suffix/',
+    'folderDown': treeBaseDir+'/Embedding2017_102X_nAODv5_Full2017v6/DATAl1loose2017v6__l2loose__l2tightOR2017v6__Embedding__EmbElepTdo_suffix/',
+    'AsLnN': '1'
+  }
+
 ##### Muon Efficiency and energy scale
 
 nuisances['eff_m'] = {
     'name': 'CMS_eff_m_2017',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc if 'DY' not in skey), #FIXME Add DY
+    'samples': dict((skey, ['ttHMVA_2l_mu_SF_Up', 'ttHMVA_2l_mu_SF_Down']) for skey in mc_emb),
 }
 
 nuisances['muonpt'] = {
@@ -213,6 +227,19 @@ nuisances['muonpt'] = {
     'folderDown': makeMCDirectory('MupTdo_suffix'),
     'AsLnN': '1'
 }
+
+if useEmbeddedDY:
+  nuisances['muonpt_emb'] = {
+    'name': 'CMS_scale_m_2017',
+    'kind': 'suffix',
+    'type': 'shape',
+    'mapUp' : 'MupTup',
+    'mapDown': 'MupTdo',
+    'samples': {'Dyemb': ['1', '1']},
+    'folderUp': treeBaseDir+'/Embedding2017_102X_nAODv5_Full2017v6/DATAl1loose2017v6__l2loose__l2tightOR2017v6__Embedding__EmbMupTup_suffix/',
+    'folderDown': treeBaseDir+'/Embedding2017_102X_nAODv5_Full2017v6/DATAl1loose2017v6__l2loose__l2tightOR2017v6__Embedding__EmbMupTdo_suffix/',
+    'AsLnN': '1'
+  }
 
 ##### Jet energy scale
 
@@ -244,6 +271,18 @@ nuisances['met'] = {
     'folderDown': makeMCDirectory('METdo_suffix'),
     'AsLnN': '1'
 }
+
+##### Di-Tau vetoing for embedding
+if useEmbeddedDY: 
+  nuisances['embedveto']  = {
+                  'name'  : 'CMS_embed_veto_2017',
+                  'kind'  : 'weight',
+                  'type'  : 'shape',
+                  'samples'  : {
+                     'Dyemb'    : ['1', '1'],
+                     'Dyveto'   : ['0.1', '-0.1'],
+                  }
+  }
 
 ##### Pileup
 
@@ -671,20 +710,31 @@ nuisances['Topnorm']  = {
     }
 
 
-nuisances['DYnorm']  = {                                                                                                           
-    'name'  : 'DYnorm',                                                                                                            
+nuisances['DYnorm']  = {
+    'name'  : 'DYnorm',
     'samples'  : {                                                                                                                 
         'DY' : '1.00',                                                                                                            
         },                                                                                                                         
     'type'  : 'rateParam',                                                                                                         
    'cuts'  : [                                                                                                                    
         'VH_2j_emu',
-        'VH_2j_topemu',                                                                                                            #
-        'VH_2j_DYtautau',                                                                                                          
-        #                                                                                                                          
+        'VH_2j_topemu',
+        'VH_2j_DYtautau',
         ]                                                                                                                          
-    } 
+    }
 
+nuisances['DYembnorm']  = {
+    'name'  : 'DYnorm',
+    'samples'  : {                                                                                                                 
+        'Dyemb' : '1.00',                                                                                                            
+        },                                                                                                                         
+    'type'  : 'rateParam',                                                                                                         
+   'cuts'  : [                                                                                                                    
+        'VH_2j_emu',
+        'VH_2j_topemu',
+        'VH_2j_DYtautau',
+        ]                                                                                                                          
+    }
 
 
 for n in nuisances.values():
