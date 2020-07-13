@@ -1,18 +1,19 @@
 #!/bin/bash
 
 # this is where the Combine framework is installed
-cd /afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_10_2_13/src/
+cd ../../../../../../combine/CMSSW_10_2_13/src/
 eval `scramv1 runtime -sh`
 cd -
 
 ## work directory
-outputDir=/afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ggH_SF/Full2016_HTXS_Stage1p2/Combination
+outputDir=/afs/cern.ch/work/c/calderon/private/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ggH_SF/Full2016_HTXS_Stage1p2/Combination
+
 
 if [ ! -d $outputDir ]; then
   mkdir $outputDir
 fi
 
-datacardDir=/afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ggH_SF/Full2016_HTXS_Stage1p2/datacards
+datacardDir=/afs/cern.ch/work/c/calderon/private/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ggH_SF/Full2016_HTXS_Stage1p2/datacards
 
 
 # combine the datacards
