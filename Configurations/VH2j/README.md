@@ -41,7 +41,7 @@ And wait until all jobs have finished.
 
 # Compute embedded sample uncertainty
 
-The script below should be run *after* performing the =hadd= of the histograms and *before* =mkPlot=. It applies the shape of vetoed TauTau MC events as uncertainty for the embedded events. 
+The script below should be run **after** performing the `hadd` of the histograms and **before** `mkPlot`. It applies the shape of vetoed TauTau MC events as uncertainty for the embedded events. 
 
     cd $CMSSW_BASE/src/PlotsConfigurations/Configurations/VH2j/Full2016_v6
     cd $CMSSW_BASE/src/PlotsConfigurations/Configurations/VH2j/Full2017_v6
