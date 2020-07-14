@@ -34,13 +34,13 @@ for cat in HTXSStage1_1Categories:
 
 os.chdir('./Combination')
 
-#sampleNames.append('ggH_hww_PTH_200_300')
-#sampleNames.append('ggH_hww_PTH_300_450')
-#sampleNames.append('ggH_hww_PTH_450_650')
-#sampleNames.append('ggH_hww_PTH_GT650')
+sampleNames.append('ggH_hww_PTH_200_300')
+sampleNames.append('ggH_hww_PTH_300_450')
+sampleNames.append('ggH_hww_PTH_450_650')
+sampleNames.append('ggH_hww_PTH_GT650')
 '''
 #No merging
-command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2016_SF_ggH_HTXS_Stage1p2.root -t -1  --setParameters "
+command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2016_SF_ggH_HTXS_Stage1p2.root -t -1  --setParameters > FitResult.txt"
 for sample in sampleNames:
   if 'ggH_hww' not in sample: continue
   if 'FWDH' in sample: continue
@@ -54,6 +54,8 @@ command = command[:-1]
 print command
 os.system(command)
 '''
+
+##### fitting #####
 
 #Merge some bins
 command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2016_SF_ggH_HTXS_Stage1p2_merged.root -t -1 --setParameters "
@@ -89,21 +91,21 @@ for sample in sampleNames:
   command+="{}=1,".format(poi)
 
 command = command[:-1]
+command=command+" > FitResults.txt"
 print command
 os.system(command)
-
 
 #Merge all bins
-command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2016_SF_ggH_HTXS_Stage1p2_onePOI.root -t -1 --setParameters "
-poi = ''
-for sample in sampleNames:
-  if 'FWDH' in sample: continue
-  else: poi = 'r_ggH_hww'
+#command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2016_SF_ggH_HTXS_Stage1p2_onePOI.root -t -1 --setParameters "
+#poi = ''
+#for sample in sampleNames:
+#  if 'FWDH' in sample: continue
+#  else: poi = 'r_ggH_hww'
   
-  command+="{}=1,".format(poi)
+#  command+="{}=1,".format(poi)
 
-command = command[:-1]
-print command
-os.system(command)
+#command = command[:-1]
+#print command
+#os.system(command)
 
 
