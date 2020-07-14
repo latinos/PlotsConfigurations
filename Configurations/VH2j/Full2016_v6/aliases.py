@@ -12,7 +12,8 @@ configurations = os.path.dirname(configurations) # Configurations
 # imported from samples.py:
 # samples, signals
 
-mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
+mc = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Dyemb')]
+mc_emb = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
 eleWP = 'mva_90p_Iso2016'
 muWP = 'cut_Tight80x'
@@ -28,7 +29,7 @@ aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP+'*((abs(Lepton_pdgId[0])==11 || Muon_mvaTTH[Lepton_muonIdx[0]]>0.8) && (abs(Lepton_pdgId[1])==11 || Muon_mvaTTH[Lepton_muonIdx[1]]>0.8))',
     ### newEleWP + newMuWP combination
     #'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP+'*((abs(Lepton_pdgId[0])==11 || Muon_mvaTTH[Lepton_muonIdx[0]]>0.8) && (abs(Lepton_pdgId[1])==11 || Muon_mvaTTH[Lepton_muonIdx[1]]>0.8) && (abs(Lepton_pdgId[0])==13 || Electron_mvaTTH[Lepton_electronIdx[0]]>0.70) && (abs(Lepton_pdgId[1])==13 || Electron_mvaTTH[Lepton_electronIdx[1]]>0.70))',
-    'samples': mc + ['DATA']
+    'samples': mc_emb + ['DATA']
 }
 
 aliases['gstarLow'] = {
@@ -39,6 +40,11 @@ aliases['gstarLow'] = {
 aliases['gstarHigh'] = {
     'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
     'samples': 'VgS'
+}
+
+aliases['embedtotal'] = {
+    'expr': 'embed_total_mva16',  # wrt. eleWP
+    'samples': 'Dyemb'
 }
 
 # Fake leptons transfer factor
@@ -203,18 +209,11 @@ aliases['PUJetIdSF'] = {
     'samples': mc
 }
 
-
-
-
-
-
-
 aliases['ttHMVA_SF_2l'] = {   'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
                         'class': 'compute_SF',
                         'args' : ('2016', 2, 'total_SF'),
-                        'samples': mc
+                        'samples': mc_emb
 }
-
 
 aliases['SFweight'] = {
     'expr': ' * '.join(['SFweight2l', 'ttHMVA_SF_2l', 'LepWPCut', 'btagSF', 'PrefireWeight', 'PUJetIdSF']),
@@ -224,19 +223,19 @@ aliases['SFweight'] = {
 # variations
 aliases['SFweightEleUp'] = {
     'expr': 'LepSF2l__ele_'+eleWP+'__Up',
-    'samples': mc
+    'samples': mc_emb
 }
 aliases['SFweightEleDown'] = {
     'expr': 'LepSF2l__ele_'+eleWP+'__Do',
-    'samples': mc
+    'samples': mc_emb
 }
 aliases['SFweightMuUp'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Up',
-    'samples': mc
+    'samples': mc_emb
 }
 aliases['SFweightMuDown'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Do',
-    'samples': mc
+    'samples': mc_emb
 }
 
 aliases['nllWOTF'] = {
@@ -246,34 +245,33 @@ aliases['nllWOTF'] = {
     'samples': ['WW']
 }
 
-
 aliases['ttHMVA_SF_Up_0'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
                              'class': 'compute_SF',
                              'args' : ('2016', 2, 'single_SF_up', 0),
-                             'samples': mc
+                             'samples': mc_emb
                             }
 aliases['ttHMVA_SF_Up_1'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
                              'class': 'compute_SF',
                              'args' : ('2016', 2, 'single_SF_up', 1),
-                             'samples': mc
+                             'samples': mc_emb
                             }
 aliases['ttHMVA_SF_Down_0'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
                                'class': 'compute_SF',
                                'args' : ('2016', 2, 'single_SF_down', 0),
-                               'samples': mc
+                               'samples': mc_emb
                               }
 aliases['ttHMVA_SF_Down_1'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
                                'class': 'compute_SF',
                                'args' : ('2016', 2, 'single_SF_down', 1),
-                               'samples': mc
+                               'samples': mc_emb
                               }
 aliases['ttHMVA_2l_mu_SF_Up'] = {'expr' : '(ttHMVA_SF_Up_0*(TMath::Abs(Lepton_pdgId[0]) == 13) + (TMath::Abs(Lepton_pdgId[0]) == 11)) *\
                                            (ttHMVA_SF_Up_1*(TMath::Abs(Lepton_pdgId[1]) == 13) + (TMath::Abs(Lepton_pdgId[1]) == 11))',
-                                 'samples': mc
+                                 'samples': mc_emb
                                 }
 aliases['ttHMVA_2l_mu_SF_Down'] = {'expr' : '(ttHMVA_SF_Down_0*(TMath::Abs(Lepton_pdgId[0]) == 13) + (TMath::Abs(Lepton_pdgId[0]) == 11)) *\
                                              (ttHMVA_SF_Down_1*(TMath::Abs(Lepton_pdgId[1]) == 13) + (TMath::Abs(Lepton_pdgId[1]) == 11))',
-                                   'samples': mc
+                                   'samples': mc_emb
                                   }
 
 
