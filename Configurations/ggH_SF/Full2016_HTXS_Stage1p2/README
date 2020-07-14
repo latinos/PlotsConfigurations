@@ -31,6 +31,11 @@ python doWorkspace.py
 STEP 8: Fit
 python doFit.py
 
+
+STEP 9: Significance 
+python doSignificance.py
+
+
 #Combine channels/categories
 mkComb.py --pycfg=configuration_ --combineLocation=/afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_10_2_13/src/ --combcfg=comb_
 
