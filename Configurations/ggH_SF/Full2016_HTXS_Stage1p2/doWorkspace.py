@@ -37,7 +37,7 @@ sampleNames.append('ggH_hww_PTH_200_300')
 sampleNames.append('ggH_hww_PTH_300_450')
 sampleNames.append('ggH_hww_PTH_450_650')
 sampleNames.append('ggH_hww_PTH_GT650')
-'''
+
 #No merging
 command="text2workspace.py Full2016_SF_ggH_HTXS_Stage1p2.txt -o Full2016_SF_ggH_HTXS_Stage1p2.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose "
 for sample in sampleNames:
@@ -48,7 +48,8 @@ for sample in sampleNames:
 
 print command
 os.system(command)
-'''
+
+
 #Merge some bins
 command="text2workspace.py Full2016_SF_ggH_HTXS_Stage1p2.txt -o Full2016_SF_ggH_HTXS_Stage1p2_merged.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose "
 poi=''
@@ -80,14 +81,14 @@ os.system(command)
 
 
 #Merge all bins
-command="text2workspace.py Full2016_SF_ggH_HTXS_Stage1p2.txt -o Full2016_SF_ggH_HTXS_Stage1p2_onePOI.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose "
-poi=''
-for sample in sampleNames:
-  if 'FWDH' in sample: continue
-  else: poi ='r_ggH_hww'
+#command="text2workspace.py Full2016_SF_ggH_HTXS_Stage1p2.txt -o Full2016_SF_ggH_HTXS_Stage1p2_onePOI.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose "
+#poi=''
+#for sample in sampleNames:
+#  if 'FWDH' in sample: continue
+#  else: poi ='r_ggH_hww'
 
-  command+="--PO 'map=.*/{}:{}[1,-10,10]' ".format(sample,poi)
+#  command+="--PO 'map=.*/{}:{}[1,-10,10]' ".format(sample,poi)
 
-print command
-os.system(command)
+#print command
+#os.system(command)
 
