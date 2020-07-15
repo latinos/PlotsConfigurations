@@ -202,12 +202,12 @@ for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2',
         'samples': mc
     }
 
-puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
 
 aliases['PUJetIdSF'] = {
     'linesToAdd': [
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/patches/pujetidsf_event.cc+' % configurations
+        '.L %s/patches/pujetidsf_event_new.cc+' % configurations
     ],
     'class': 'PUJetIdEventSF',
     'args': (puidSFSource, '2017', 'loose'),
