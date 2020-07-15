@@ -16,15 +16,18 @@ if os.path.exists('HTXS_stage1_categories.py') :
   exec(handle)
   handle.close()
 
-if os.path.exists('UEnormfactors.py') :
-  handle = open('UEnormfactors.py','r')
-  exec(handle)
-  handle.close()
-
 if os.path.exists('thuNormFactors.py') :
   handle = open('thuNormFactors.py','r')
   exec(handle)
   handle.close()
+
+if os.path.exists('thuVBFNormFactors.py') :
+  handle = open('thuVBFNormFactors.py','r')
+  exec(handle)
+  handle.close()
+
+
+
 
 sampleNames = []
 
@@ -69,7 +72,6 @@ except NameError:
 
 from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
 HiggsXS = HiggsXSection()
-
 
 cuts0j  = []
 cuts1j  = []
@@ -694,18 +696,17 @@ for name, vname in thus:
     for sname in sampleNames:
         if 'ggH_hww' in sname:
             if 'GT200' not in sname:
-              #print globals()                                                                                                                 
               normthu = globals()[name.replace("THU_","thuNormFactors_")][sname.replace('ggH_hww','GG2H')][0]
               nuisances[name]['samples'].update({sname : [vname+'/'+normthu,'2.-'+vname+'/'+normthu]})
-            else:
-              nuisances[name]['samples'].update({name : [vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_200_300'][0]
-              ,'2.-'+vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_200_300'][0]]})
-              nuisances[name]['samples'].update({name : [vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_300_450'][0]
-              ,'2.-'+vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_300_450'][0]]})
-              nuisances[name]['samples'].update({name : [vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_450_650'][0]
-              ,'2.-'+vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_450_650'][0]]})
-              nuisances[name]['samples'].update({name : [vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_GT650'][0]
-              ,'2.-'+vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_GT650'][0]]})
+        else:
+          nuisances[name]['samples'].update({name : [vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_200_300'][0]
+          ,'2.-'+vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_200_300'][0]]})
+          nuisances[name]['samples'].update({name : [vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_300_450'][0]
+          ,'2.-'+vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_300_450'][0]]})
+          nuisances[name]['samples'].update({name : [vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_450_650'][0]
+          ,'2.-'+vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_450_650'][0]]})
+          nuisances[name]['samples'].update({name : [vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_GT650'][0]
+          ,'2.-'+vname+'/'+globals()[name.replace("THU_","thuNormFactors_")]['GG2H_PTH_GT650'][0]]})
 
 
 
@@ -723,8 +724,7 @@ thusQQH = [
 ]
 
 for name, vname in thusQQH:
-    updown = [vname, '2.-%s' % vname]
-    
+    updown = [vname, '2.-%s' % vname]    
     nuisances[name] = {
         'name': name,
         'skipCMS': 1,

@@ -33,6 +33,8 @@ except NameError:
 #mcProduction = 'Summer16_102X_nAODv5_SigOnly_Full2016v5'
 mcProduction = 'Summer16_102X_nAODv5_Full2016v6'
 
+fakeReco = 'Run2016_102X_nAODv5_Full2016v6_ForNewWPs'
+
 dataReco = 'Run2016_102X_nAODv5_Full2016v6'
 
 #mcSteps = 'MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5{var}'
@@ -267,7 +269,7 @@ samples['VZ'] = {
     'weight': mcCommonWeight + '*1.11',
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 4
+    'FilesPerJob': 1
 }
 
 ########## VVV #########
