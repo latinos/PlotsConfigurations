@@ -269,7 +269,7 @@ samples['VZ'] = {
     'weight': mcCommonWeight + '*1.11',
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 1
+    'FilesPerJob': 2
 }
 
 ########## VVV #########
