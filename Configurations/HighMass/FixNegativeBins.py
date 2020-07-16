@@ -52,7 +52,7 @@ for categories in newfile.GetListOfKeys(): # Cut directory
             histnames[key].append([histoname,histoname.replace("Up", "Down")])
             break
 
-    for nom,var in histnames.iteritems():
+    for nom,var in sorted(histnames.iteritems()):
       dothese = [nom]
       for val in sorted(var):
         dothese.append(val[0])
@@ -63,8 +63,9 @@ for categories in newfile.GetListOfKeys(): # Cut directory
         for i in range(histo.GetNbinsX()):
           content = histo.GetBinContent(i+1)
           if content<0.0:
-            if content<-100:
-              #print "=================================================="
+            if True: #content<-100:
+              print "=================================================="
+              if "GGH" not in histoname and "QQH" not in histoname: print "PROBLEM IN MC!"
               if content<-100.0: print "VERY",
               if content<-10.0: print "LARGE",
               print "Negative bin content in:",
@@ -72,11 +73,12 @@ for categories in newfile.GetListOfKeys(): # Cut directory
               print content
             histo.SetBinContent(i+1,0.0) # If nominal not negative, bad to fix down-var if negative? --> YES!
             #content = 0.0
-          elif content != content:
-            print "FOUND NAN!!",
-            print categories.GetName(),'/',variables.GetName(),'/',histoname,' ; Bin',i+1,":",
-            print content
-            histo.SetBinContent(i+1,0.0)
+          #elif content != content:
+          #  print "=================================================="
+          #  print "FOUND NAN!!",
+          #  print categories.GetName(),'/',variables.GetName(),'/',histoname,' ; Bin',i+1,":",
+          #  print content
+          #  histo.SetBinContent(i+1,0.0)
 
         # RENAME BBB SIGNAL SHAPES!
         #signameFormat = "histo_(|MSSM)(GGH|QQH)(|SBI)_([0-9]+)_RelW([0-9]+)_ibin(|MSSM)(GGH|QQH)_([0-9]+)_RelW([0-9]+)_([0-9]+)_stat(Up|Down)"
@@ -85,6 +87,10 @@ for categories in newfile.GetListOfKeys(): # Cut directory
           #if (pattern.group(1) != pattern.group(6)) or (pattern.group(2) != pattern.group(7)) or (pattern.group(5) != pattern.group(9)) or (pattern.group(4) != pattern.group(8)): print "WHAT???", histoname # Shouldn't happen
           newname = "histo_"+pattern.group(1)+pattern.group(2)+pattern.group(3)+"_"+pattern.group(4)+"_RelW"+pattern.group(5)+"_ibin"+pattern.group(6)+pattern.group(7)+"_RelW"+pattern.group(9)+"_"+pattern.group(10)+"_stat"+pattern.group(11)
           histo.SetNameTitle(newname, newname)
+
+        # Also rename DATA -> data_obs
+        if "DATA" in histoname: histo.SetNameTitle(histoname.replace("DATA", "data_obs"), histoname.replace("DATA", "data_obs"))
+
         #print "Writing..."
         histo.Write()
 print "Closing..."

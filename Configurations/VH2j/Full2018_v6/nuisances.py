@@ -15,7 +15,8 @@ def nanoGetSampleFiles(inputDir, Sample):
     return getSampleFiles(inputDir, Sample, False, 'nanoLatino_')
 
 try:
-    mc = [skey for skey in samples if skey != 'DATA' and not skey.startswith('Fake')]
+    mc_emb = [skey for skey in samples if skey != 'DATA' and skey != 'Dyveto' and not skey.startswith('Fake')]
+    mc = [skey for skey in mc_emb if skey != 'Dyemb']
 except NameError:
     mc = []
     cuts = {}
@@ -140,7 +141,7 @@ nuisances['trigg'] = {
     'name': 'CMS_eff_hwwtrigger_2018',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, trig_syst) for skey in mc)
+    'samples': dict((skey, trig_syst) for skey in mc_emb)
 }
 
 ##### Electron Efficiency and energy scale
@@ -149,7 +150,7 @@ nuisances['eff_e'] = {
     'name': 'CMS_eff_e_2018',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
+    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb)
 }
 
 nuisances['electronpt'] = {
@@ -164,13 +165,26 @@ nuisances['electronpt'] = {
     'AsLnN': '1'
 }
 
+if useEmbeddedDY:
+  nuisances['electronpt_emb'] = {
+    'name': 'CMS_scale_e_2018',
+    'kind': 'suffix',
+    'type': 'shape',
+    'mapUp' : 'ElepTup',
+    'mapDown': 'ElepTdo',
+    'samples': {'Dyemb': ['1', '1']},
+    'folderUp': treeBaseDir+'/Embedding2018_102X_nAODv6_Full2018v6/DATAl1loose2018v6__l2loose__l2tightOR2018v6__Embedding__EmbElepTup_suffix/',
+    'folderDown': treeBaseDir+'/Embedding2018_102X_nAODv6_Full2018v6/DATAl1loose2018v6__l2loose__l2tightOR2018v6__Embedding__EmbElepTdo_suffix/',
+    'AsLnN': '1'
+  }
+
 ##### Muon Efficiency and energy scale
 
 nuisances['eff_m'] = {
     'name': 'CMS_eff_m_2018',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
+    'samples': dict((skey, ['ttHMVA_2l_mu_SF_Up', 'ttHMVA_2l_mu_SF_Down']) for skey in mc_emb)
 }
 
 nuisances['muonpt'] = {
@@ -184,6 +198,19 @@ nuisances['muonpt'] = {
     'folderDown': makeMCDirectory('MupTdo_suffix'),
     'AsLnN': '1'
 }
+
+if useEmbeddedDY:
+  nuisances['muonpt_emb'] = {
+    'name': 'CMS_scale_m_2018',
+    'kind': 'suffix',
+    'type': 'shape',
+    'mapUp' : 'MupTup',
+    'mapDown': 'MupTdo',
+    'samples': {'Dyemb': ['1', '1']},
+    'folderUp': treeBaseDir+'/Embedding2018_102X_nAODv6_Full2018v6/DATAl1loose2018v6__l2loose__l2tightOR2018v6__Embedding__EmbMupTup_suffix/',
+    'folderDown': treeBaseDir+'/Embedding2018_102X_nAODv6_Full2018v6/DATAl1loose2018v6__l2loose__l2tightOR2018v6__Embedding__EmbMupTdo_suffix/',
+    'AsLnN': '1'
+  }
 
 ##### Jet energy scale
 
@@ -215,6 +242,18 @@ nuisances['met'] = {
     'folderDown': makeMCDirectory('METdo_suffix'),
     'AsLnN': '1'
 }
+
+##### Di-Tau vetoing for embedding
+if useEmbeddedDY: 
+  nuisances['embedveto']  = {
+                  'name'  : 'CMS_embed_veto_2018',
+                  'kind'  : 'weight',
+                  'type'  : 'shape',
+                  'samples'  : {
+                     'Dyemb'    : ['1', '1'],
+                     'Dyveto'   : ['0.1', '-0.1'],
+                  }
+  }
 
 ##### Pileup --> NEED TO BE UPDATED FOR VH2j  
 
@@ -632,7 +671,7 @@ nuisances['stat'] = {
 
 
 nuisances['Topnorm']  = {
-    'name'  : 'Topnorm',
+    'name'  : 'CMS_hww_Topnorm2j',
     'samples'  : {
         'top' : '1.00',
         },
@@ -652,13 +691,25 @@ nuisances['DYnorm']  = {
         'DY' : '1.00',                                                                                                            
         },                                                                                                                         
     'type'  : 'rateParam',                                                                                                         
-   'cuts'  : [                                                                                                                    
+   'cuts'  : [
         'VH_2j_emu',
-        'VH_2j_topemu',                                                                                                            #
-        'VH_2j_DYtautau',                                                                                                          
-        #                                                                                                                          
+        'VH_2j_topemu',
+        'VH_2j_DYtautau',
         ]                                                                                                                          
-    } 
+    }
+
+nuisances['DYembnorm']  = {
+    'name'  : 'DYnorm',
+    'samples'  : {
+        'Dyemb' : '1.00',
+    },
+    'type' : 'rateParam',
+    'cuts' : [
+        'VH_2j_emu',
+        'VH_2j_topemu',
+        'VH_2j_DYtautau',
+    ]
+}
 
 
 for n in nuisances.values():

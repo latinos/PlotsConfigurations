@@ -75,21 +75,21 @@ nuisances['lumi_CurrCalib'] = {
 #### FAKES
 
 ## FIXME: check the 30% lnN
-nuisances['fake_syst_em'] = {
-    'name': 'CMS_fake_syst_em',
+nuisances['fake_syst_e'] = {
+    'name': 'CMS_fake_syst_e',
     'type': 'lnN',
     'samples': {
-        'Fake_em': '1.3'
+        'Fake_e': '1.3'
     },
     'cutspost': lambda self, cuts: [cut for cut in cuts if '20me' not in cut],
     'perRecoBin': True
 }
 
-nuisances['fake_syst_me'] = {
-    'name': 'CMS_fake_syst_me',
+nuisances['fake_syst_m'] = {
+    'name': 'CMS_fake_syst_m',
     'type': 'lnN',
     'samples': {
-        'Fake_me': '1.3'
+        'Fake_m': '1.3'
     },
     'cutspost': lambda self, cuts: [cut for cut in cuts if '20em' not in cut],
     'perRecoBin': True
@@ -260,19 +260,19 @@ nuisances['PU'] = {
 }
 
 ##### PS and UE
-'''
+
 nuisances['PS']  = {
     'name': 'PS',
     'type': 'shape',
     'kind': 'weight_envelope',
     'samples': {
-        #'WW': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],
-        'ggH_hww': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],
-        'qqH_hww': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]']
+        'ggWW': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],
+        #'ggH_hww': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],
+        #'qqH_hww': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]']
     },
     'AsLnN': '1'
 }
-'''
+
 #FIXME normalization factors need to be recomputed for 2018
 nuisances['UE']  = {
                 'name'  : 'UE_CP5',
@@ -469,7 +469,7 @@ nuisances['QCDscale_V'] = {
 # [8] is muR=0.20000E+01 muF=0.20000E+01
 
 variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 5, 7, 8]]
-
+VBSvariations = ['LHEScaleWeight[0]/1.0594', 'LHEScaleWeight[2]/0.9453'] # LO samples include only variations on muF scale
 
 nuisances['QCDscale_VV'] = {
     'name': 'QCDscale_VV',
@@ -662,12 +662,23 @@ nuisances['QCDscale_ttH'] = {
     'type': 'lnN',
 }
 
+'''
 nuisances['QCDscale_WWewk'] = {
     'name': 'QCDscale_WWewk',
     'samples': {
         'WWewk': '1.11',
     },
     'type': 'lnN'
+}
+'''
+
+nuisances['QCDscale_WWewk'] = {
+    'name': 'QCDscale_WWewk',
+    'kind': 'weight_envelope',
+    'type': 'shape',
+    'samples': {
+        'WWewk': VBSvariations
+    }
 }
 
 #FIXME: these come from HIG-16-042, maybe should be recomputed?
@@ -725,8 +736,8 @@ nuisances['DYttnorm1j']  = {
                'cuts'  : cuts1j
               }
 '''
-nuisances['DYttnorm2j']  = {
-                 'name'  : 'CMS_hww_DYttnorm2j',
+nuisances['DYnorm2j']  = {
+                 'name'  : 'CMS_hww_DYnorm2j_2018',
                  'samples'  : {
                      'DY' : '1.00',
                      },

@@ -1,18 +1,22 @@
 #!/bin/bash
-
 # this is where the Combine framework is installed
-cd /afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_10_2_13/src/
+cd ../../../../../../combine/CMSSW_10_2_13/src/
 eval `scramv1 runtime -sh`
 cd -
 
 ## work directory
-outputDir=/afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ggH_SF/Full2016_HTXS_Stage1p2/Combination
+outputDir=/afs/cern.ch/work/c/calderon/private/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ggH_SF/Full2016_HTXS_Stage1p2/Combination
+
 
 if [ ! -d $outputDir ]; then
   mkdir $outputDir
 fi
 
-datacardDir=/afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ggH_SF/Full2016_HTXS_Stage1p2/datacards
+datacardDir=/afs/cern.ch/work/c/calderon/private/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ggH_SF/Full2016_HTXS_Stage1p2/datacards
+
+
+## git clone git@github.com:amassiro/ModificationDatacards.git
+modDatacardDir=/afs/cern.ch/work/c/calderon/private/CMSSW_10_6_4/src/ModificationDatacards
 
 
 # combine the datacards
@@ -65,6 +69,15 @@ combineCards.py   sf_0j_ee_pth0_10=${datacardDir}/hww2l2v_13TeV_0j_ee_pth0_10/ev
                   sf_hpt_mm_WW=${datacardDir}/hww2l2v_13TeV_WW_hpt_mm/events/datacard.txt
                   sf_hpt_ee_WW=${datacardDir}/hww2l2v_13TeV_WW_hpt_ee/events/datacard.txt \
                   #> ${outputDir}/Full2016_SF_ggH_HTXS_Stage1p2.txt
+
+
+#cp ${outputDir}/Full2016_SF_ggH_HTXS_Stage1p2.txt  ${outputDir}/Full2016_SF_ggH_HTXS_Stage1p2_orig.txt
+
+#python ${modDatacardDir}/RemoveSample.py ${outputDir}/Full2016_SF_ggH_HTXS_Stage1p2_orig.txt -o ${outputDir}/Full2016_SF_ggH_HTXS_Stage1p2.txt -i ${modDatacardDir}/inputRemoveAllSamplesBelowThreshold.py --threshold 0.0
+
+
+echo "nuisance edit drop Vg sf_hpt_mm_pth300_450 QCDscale_VV" >> ${outputDir}/Full2016_SF_ggH_HTXS_Stage1p2.txt     
+echo "nuisance edit drop VZ sf_hpt_mm_pth650 QCDscale_VV" >> ${outputDir}/Full2016_SF_ggH_HTXS_Stage1p2.txt   
 
 
 #echo "nuisance edit drop DY of_2j_mjjGT700_pthjj0_25 CMS_eff_e_2016" >> ${outputDir}/Full2016_ggH_HTXS_Stage1p2.txt

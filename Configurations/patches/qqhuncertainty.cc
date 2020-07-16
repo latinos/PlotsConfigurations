@@ -204,6 +204,8 @@ std::map<int, std::vector<double> > EW_correction {
 };
 
 double vbf_ew_correction_stage_1_1(int event_STXS, bool with_imc_photon=false){
+  // protection to run on other STXS bins
+  if (event_STXS < 200 || event_STXS > 224) return 0.0;
   double corr = stxs_acc[event_STXS][1];
   if(with_imc_photon){
     corr *= 1.0 + (stxs_acc[event_STXS][2] / hjets_xsec[event_STXS]);
@@ -214,6 +216,8 @@ double vbf_ew_correction_stage_1_1(int event_STXS, bool with_imc_photon=false){
 
 // Propagation function
 double vbf_uncert_stage_1_1(int source, int event_STXS, double Nsigma=1.0){
+  // protection to run on other STXS bins
+  if (event_STXS < 200 || event_STXS > 224) return 1.0; 
   // return a single weight for a given souce
   if(source < 10){
     double delta_var = stxs_acc[event_STXS][source] * uncert_deltas[source];
@@ -418,7 +422,7 @@ QQHUncertainty::bindTree_(multidraw::FunctionLibrary& _library)
 {
   if (currentEntry == -2) {
     currentEntry = -1;
-    _library.bindBranch(HTXS_stage_1_1_pTjet30, "HTXS_stage1_1_cat_pTjet30GeV");
+    _library.bindBranch(HTXS_stage_1_1_pTjet30, "HTXS_stage1_1_fine_cat_pTjet30GeV");
 
     _library.addDestructorCallback([]() {
         currentEntry = -2;

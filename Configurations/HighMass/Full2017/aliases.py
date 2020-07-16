@@ -1,6 +1,7 @@
 #aliases = {}
 
 mc = [skey for skey in samples if skey not in ('Fake_em', 'Fake_me', 'Fake_ee', 'Fake_mm', 'DATA', 'DYemb')]
+mc_sbi = [skey for skey in samples if "SBI" in skey]
 
 bAlgo = 'DeepB'
 bWP = '0.1241'
@@ -44,7 +45,7 @@ aliases['back2back_OTF'] = {
 aliases['mjjGen_OTF'] = {
     'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HighMass/HMvars_mjjgen.cc+' % os.getenv('CMSSW_BASE')],
     'class': 'HMvarsmjjgen',
-    'samples': ['WW', 'qqWWqq', 'WW2J', 'DYveto']
+    'samples': ['WW', 'qqWWqq', 'WW2J', 'DYveto']+mc_sbi
 }
 
 aliases['DNN_isVBF_OTF'] = {
@@ -157,6 +158,27 @@ aliases['VBFcut'] = {
     'expr': '( DNN_isVBF_OTF>0.75 )' 
 }
 
+aliases['SBI_isSMggh'] = {
+    'expr': '( abs(Xsec-1.091343e+00) < 1.0e-06 )',
+    'samples': mc_sbi
+}
+aliases['SBI_isSMVBF'] = {
+    'expr': '( abs(Xsec-8.496211e-02) < 1.0e-08 )',
+    'samples': mc_sbi
+}
+aliases['SBI_isggWW'] = {
+    'expr': '( abs(Xsec-6.387000e-02) < 1.0e-08 )',
+    'samples': mc_sbi
+}
+aliases['SBI_isqqWWqq'] = {
+    'expr': '( abs(Xsec-2.160000e+00) < 1.0e-06 )',
+    'samples': mc_sbi
+}
+aliases['SBI_isHM'] = {
+    'expr': '( !SBI_isSMggh && !SBI_isSMVBF && !SBI_isggWW && !SBI_isqqWWqq )',
+    'samples': mc_sbi
+}
+
 #aliases['VBFcut'] = {
 #    'expr': '(    mjj>400 \
 #               && detajj>3.5 \
@@ -197,6 +219,15 @@ aliases['PromptGenLepMatch2l'] = {
     'samples': mc
 }
 
+# nGenJet for PS Uncertainty
+
+aliases['nCleanGenJet'] = {
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'CountGenJet',
+    'samples': mc
+}
+
 aliases['Top_pTrw'] = {
     # Mine:
     #'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(-2.02274e-01 + 1.09734e-04*topGenPt - 1.30088e-07*topGenPt*topGenPt + 5.83494e+01/(topGenPt+1.96252e+02)) * TMath::Exp(-2.02274e-01 + 1.09734e-04*antitopGenPt - 1.30088e-07*antitopGenPt*antitopGenPt + 5.83494e+01/(antitopGenPt+1.96252e+02)))) + (topGenPt * antitopGenPt <= 0.)',
@@ -206,13 +237,36 @@ aliases['Top_pTrw'] = {
     'samples': ['top']
 }
 
+handle = open('%s/src/PlotsConfigurations/Configurations/patches/DYrew.py' % os.getenv('CMSSW_BASE'),'r')
+exec(handle)
+handle.close()
+aliases['DY_NLO_pTllrw'] = {
+    #'expr': '1',
+    'expr': '('+DYrew['2017']['NLO'].replace('x', 'gen_ptll')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
+    'samples': ['DY']
+}
+aliases['DY_LO_pTllrw'] = {
+    #'expr': '1',
+    'expr': '('+DYrew['2017']['LO'].replace('x', 'gen_ptll')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
+    'samples': ['DY']
+}
+
+#handle = open('%s/src/PlotsConfigurations/Configurations/HighMass/DYrew_MET.py' % os.getenv('CMSSW_BASE'),'r')
+#exec(handle)
+#handle.close()
+aliases['DY_METrw'] = {
+    'expr': '1',
+    #'expr': DYrew_MET['2017']['incl'].replace('x', 'PuppiMET_pt'),
+    'samples': ['DY']
+}
+
 # For SM ggHWW
-#aliases['MINLO'] = {
-#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/weight2MINLO.cc+' % os.getenv('CMSSW_BASE')],
-#    'class': 'Weight2MINLO',
-#    'args': ('%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE'),),
-#    'samples': ['ggH_hww']
-#}
+aliases['MINLO'] = {
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/weight2MINLO.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'Weight2MINLO',
+    'args': ('%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE'),),
+    'samples': ['ggH_hww']+mc_sbi
+}
 
 # For VgS
 aliases['gstarLow'] = {
@@ -335,15 +389,6 @@ aliases['PUJetIdSF'] = {
     ],
     'class': 'PUJetIdEventSF',
     'args': (puidSFSource, '2017', 'loose'),
-    'samples': mc
-}
-
-# nGenJet for PS Uncertainty
-
-aliases['nCleanGenJet'] = {
-    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')
-    ],
-    'class': 'CountGenJet',
     'samples': mc
 }
 

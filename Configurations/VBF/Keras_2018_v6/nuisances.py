@@ -590,6 +590,39 @@ for name, vname in thus:
         }
     }
 
+
+# Theory uncertainty for qqH 
+#
+#
+#   see https://gitlab.cern.ch/LHCHIGGSXS/LHCHXSWG2/STXS/VBF-Uncertainties/-/blob/master/qq2Hqq_uncert_scheme.cpp
+
+thusQQH = [
+  ("THU_qqH_YIELD","qqH_YIELD"),
+  ("THU_qqH_PTH200","qqH_PTH200"),
+  ("THU_qqH_Mjj60","qqH_Mjj60"),
+  ("THU_qqH_Mjj120","qqH_Mjj120"),
+  ("THU_qqH_Mjj350","qqH_Mjj350"),
+  ("THU_qqH_Mjj700","qqH_Mjj700"),
+  ("THU_qqH_Mjj1000","qqH_Mjj1000"),
+  ("THU_qqH_Mjj1500","qqH_Mjj1500"),
+  ("THU_qqH_PTH25","qqH_PTH25"),
+  ("THU_qqH_JET01","qqH_JET01"),
+  ("THU_qqH_EWK","qqH_EWK"),
+]
+
+for name, vname in thusQQH:
+    updown = [vname, '2.-%s' % vname]
+    
+    nuisances[name] = {
+        'name': name,
+        'skipCMS': 1,
+        'kind': 'weight',
+        'type': 'shape',
+        'samples': {
+          'qqH_hww': updown,
+        }
+    }
+
 #### QCD scale uncertainties for Higgs signals other than ggH
 
 values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm')

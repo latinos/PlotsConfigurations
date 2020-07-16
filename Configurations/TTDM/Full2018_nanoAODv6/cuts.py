@@ -3,7 +3,7 @@
 #cuts = {}
 
 _tmp = [
-    '1'
+    '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13 || PuppiMET_pt > 50.)',
 ]
 supercut = ' && '.join(_tmp)
 
@@ -47,3 +47,5 @@ _tmp = [
     '(Lepton_pdgId[0] * Lepton_pdgId[1] == -13*13) && Alt$(CleanJet_pt[1], 0) >= 30. && (mll > 76 && mll < 106)',
 ]
 addcut('dyCR_mm_2j', _tmp)
+
+

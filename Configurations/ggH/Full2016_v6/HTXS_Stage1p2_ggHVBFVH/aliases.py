@@ -3,24 +3,26 @@ import copy
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # HTXS
-configurations = os.path.dirname(configurations) # ggH2016v6
+configurations = os.path.dirname(configurations) # ggH2016
 configurations = os.path.dirname(configurations) # Differential
 configurations = os.path.dirname(configurations) # Configurations
+configurations = os.path.dirname(configurations)
 
 #aliases = {}
 
 # imported from samples.py:
 # samples, signals
 
-mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
+mc = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Dyemb')]
+mc_emb = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
 eleWP = 'mva_90p_Iso2016'
 muWP = 'cut_Tight80x'
+newMuWP = 'cut_Tight80x_tthmva_80'
 
 aliases['LepWPCut'] = {
-    'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
-    'samples': mc + ['DATA']
+    'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP+'*( (abs(Lepton_pdgId[0])==11 || Muon_mvaTTH[Lepton_muonIdx[0]]>0.8) && (abs(Lepton_pdgId[1])==11 || Muon_mvaTTH[Lepton_muonIdx[1]]>0.8) )',
+    'samples': mc_emb + ['DATA']
 }
 
 aliases['gstarLow'] = {
@@ -33,42 +35,47 @@ aliases['gstarHigh'] = {
     'samples': 'VgS'
 }
 
+aliases['embedtotal'] = {
+    'expr': 'embed_total_mva16',  # wrt. eleWP
+    'samples': 'Dyemb'
+}
+
 # Fake leptons transfer factor
 aliases['fakeW'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP,
+    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+newMuWP,
     'samples': ['Fake']
 }
 # And variations - already divided by central values in formulas !
 aliases['fakeWEleUp'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleUp',
+    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+newMuWP+'_EleUp',
     'samples': ['Fake']
 }
 aliases['fakeWEleDown'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleDown',
+    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+newMuWP+'_EleDown',
     'samples': ['Fake']
 }
 aliases['fakeWMuUp'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuUp',
+    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+newMuWP+'_MuUp',
     'samples': ['Fake']
 }
 aliases['fakeWMuDown'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuDown',
+    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+newMuWP+'_MuDown',
     'samples': ['Fake']
 }
 aliases['fakeWStatEleUp'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleUp',
+    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+newMuWP+'_statEleUp',
     'samples': ['Fake']
 }
 aliases['fakeWStatEleDown'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleDown',
+    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+newMuWP+'_statEleDown',
     'samples': ['Fake']
 }
 aliases['fakeWStatMuUp'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuUp',
+    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+newMuWP+'_statMuUp',
     'samples': ['Fake']
 }
 aliases['fakeWStatMuDown'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuDown',
+    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+newMuWP+'_statMuDown',
     'samples': ['Fake']
 }
 
@@ -79,7 +86,8 @@ aliases['PromptGenLepMatch2l'] = {
 }
 
 aliases['Top_pTrw'] = {
-    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
+    #'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
+    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(-0.158631 + 2.00214e-04*topGenPt - 3.09496e-07*topGenPt*topGenPt + 34.93/(topGenPt+135.633)) * TMath::Exp(-0.158631 + 2.00214e-04*antitopGenPt - 3.09496e-07*antitopGenPt*antitopGenPt + 34.93/(antitopGenPt+135.633)))) + (topGenPt * antitopGenPt <= 0.)',
     'samples': ['top']
 }
 
@@ -92,7 +100,7 @@ aliases['zeroJet'] = {
 }
 
 aliases['oneJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) < 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
 }
 
 aliases['multiJet'] = {
@@ -129,22 +137,6 @@ aliases['sr'] = {
     'expr': 'mth>60 && mtw2>30 && bVeto'
 }
 
-# B tag scale factors
-
-#btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_2016LegacySF_V1.csv' % os.getenv('CMSSW_BASE')
-
-#aliases['Jet_btagSF_shapeFix'] = {
-#    'linesToAdd': [
-#        'gSystem->Load("libCondFormatsBTauObjects.so");',
-#        'gSystem->Load("libCondToolsBTau.so");',
-#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
-#        '.L %s/patches/btagsfpatch.cc+' % configurations
-#    ],
-#    'class': 'BtagSF',
-#    'args': (btagSFSource,),
-#    'samples': mc
-#}
-
 aliases['bVetoSF'] = {
     'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
     'samples': mc
@@ -180,44 +172,75 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
         'samples': mc
     }
 
-puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.          getenv('CMSSW_BASE')
+puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
 
-aliases['PUJetIdSF'] = { 
+aliases['PUJetIdSF'] = {
     'linesToAdd': [
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/patches/pujetidsf_event.cc+' % configurations
-    ],  
+        '.L %s/patches/pujetidsf_event_new.cc+' % configurations
+    ],
     'class': 'PUJetIdEventSF',
     'args': (puidSFSource, '2016', 'loose'),
     'samples': mc
 }
 
-
+aliases['ttHMVA_SF_2l'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
+                           'class': 'compute_SF',
+                           'args' : ('2016', 2, 'total_SF'),
+                           'samples': mc_emb
+                          }
 
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut', 'btagSF', 'PrefireWeight','PUJetIdSF']),
+    'expr': ' * '.join(['SFweight2l', 'ttHMVA_SF_2l', 'LepWPCut', 'btagSF', 'PrefireWeight','PUJetIdSF']),
     'samples': mc
 }
+
 # variations
 aliases['SFweightEleUp'] = {
     'expr': 'LepSF2l__ele_'+eleWP+'__Up',
-    'samples': mc
+    'samples': mc_emb
 }
 aliases['SFweightEleDown'] = {
     'expr': 'LepSF2l__ele_'+eleWP+'__Do',
-    'samples': mc
+    'samples': mc_emb
 }
 aliases['SFweightMuUp'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Up',
-    'samples': mc
+    'samples': mc_emb
 }
 aliases['SFweightMuDown'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Do',
-    'samples': mc
+    'samples': mc_emb
 }
-
-
+aliases['ttHMVA_SF_Up_0'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
+                             'class': 'compute_SF',
+                             'args' : ('2016', 2, 'single_SF_up', 0),
+                             'samples': mc_emb
+                            }
+aliases['ttHMVA_SF_Up_1'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
+                             'class': 'compute_SF',
+                             'args' : ('2016', 2, 'single_SF_up', 1),
+                             'samples': mc_emb
+                            }
+aliases['ttHMVA_SF_Down_0'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
+                               'class': 'compute_SF',
+                               'args' : ('2016', 2, 'single_SF_down', 0),
+                               'samples': mc_emb
+                              }
+aliases['ttHMVA_SF_Down_1'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
+                               'class': 'compute_SF',
+                               'args' : ('2016', 2, 'single_SF_down', 1),
+                               'samples': mc_emb
+                              }
+aliases['ttHMVA_2l_mu_SF_Up'] = {'expr' : '(ttHMVA_SF_Up_0*(TMath::Abs(Lepton_pdgId[0]) == 13) + (TMath::Abs(Lepton_pdgId[0]) == 11)) *\
+                                           (ttHMVA_SF_Up_1*(TMath::Abs(Lepton_pdgId[1]) == 13) + (TMath::Abs(Lepton_pdgId[1]) == 11))',
+                                 'samples': mc_emb
+                                }
+aliases['ttHMVA_2l_mu_SF_Down'] = {'expr' : '(ttHMVA_SF_Down_0*(TMath::Abs(Lepton_pdgId[0]) == 13) + (TMath::Abs(Lepton_pdgId[0]) == 11)) *\
+                                             (ttHMVA_SF_Down_1*(TMath::Abs(Lepton_pdgId[1]) == 13) + (TMath::Abs(Lepton_pdgId[1]) == 11))',
+                                   'samples': mc_emb
+                                  }
 # In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
 aliases['lhe_mW1'] = {
     'expr': 'TMath::Sqrt(2. * LHEPart_pt[0] * LHEPart_pt[1] * (TMath::CosH(LHEPart_eta[0] - LHEPart_eta[1]) - TMath::Cos(LHEPart_phi[0] - LHEPart_phi[1])))',
@@ -230,56 +253,64 @@ aliases['lhe_mW2'] = {
     'samples': ['WWewk']
 }
 
-# use HTXS_njets30 when moving to NanoAODv5 for all trees
-#aliases['nCleanGenJet'] = {
-#    'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
-#    'class': 'CountGenJet',
-#    'samples': signals
-#}
+aliases['Weight2MINLO'] = {
+    'linesToAdd': ['.L %s/Differential/weight2MINLO.cc+' % configurations],
+    'class': 'Weight2MINLO',
+    'args': '%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE'),
+    'samples' : [skey for skey in samples if 'ggH_hww' in skey],
+}
+
+aliases['nCleanGenJet'] = {
+    'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
+    'class': 'CountGenJet',
+    'samples': mc
+}
+
 
 # GGHUncertaintyProducer wasn't run for 2016 nAODv5 non-private
-#thus = [
-#    'ggH_mu',
-#    'ggH_res',
-#    'ggH_mig01',
-#    'ggH_mig12',
-#    'ggH_VBF2j',
-#    'ggH_VBF3j',
-#    'ggH_pT60',
-#    'ggH_pT120',
-#    'ggH_qmtop'
-#]
+thus = [
+    'ggH_mu',
+    'ggH_res',
+    'ggH_mig01',
+    'ggH_mig12',
+    'ggH_VBF2j',
+    'ggH_VBF3j',
+    'ggH_pT60',
+    'ggH_pT120',
+    'ggH_qmtop'
+]
 
-#for thu in thus:
-#    aliases[thu] = {
-#        'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
-#        'class': 'GGHUncertainty',
-#        'args': (thu,),
-#        'samples': ['ggH_hww'],
-#        'nominalOnly': True
-#    }
+for thu in thus:
+    aliases[thu] = {
+        'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
+        'class': 'GGHUncertainty',
+        'args': (thu,),
+        'samples': [skey for skey in samples if 'ggH_hww' in skey],
+        'nominalOnly': True
+    }
+
 
 
 aliases['vbfdnn_mjjhigh'] = {
-    'linesToAdd': ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ggH/Full2016_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+'],
+    'linesToAdd': ['.L %s/ggH/Full2016_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+' % configurations],
     'class': 'evaluate_multiclass_3rdjet_mjjhigh',
     'args': 0,
 }
 
 aliases['topdnn_mjjhigh'] = {
-    'linesToAdd': ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ggH/Full2016_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+'],
+    'linesToAdd': ['.L %s/ggH/Full2016_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+' % configurations],
     'class': 'evaluate_multiclass_3rdjet_mjjhigh',
     'args': 1,
 }
 
 aliases['wwdnn_mjjhigh'] = {
-    'linesToAdd': ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ggH/Full2016_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+'],
+    'linesToAdd': ['.L %s/ggH/Full2016_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+' % configurations],
     'class': 'evaluate_multiclass_3rdjet_mjjhigh',
     'args': 2,
 }
 
 aliases['gghdnn_mjjhigh'] = {
-    'linesToAdd': ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ggH/Full2016_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+'],
+    'linesToAdd': ['.L %s/ggH/Full2016_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+' % configurations],
     'class': 'evaluate_multiclass_3rdjet_mjjhigh',
     'args': 3,
 }
@@ -305,3 +336,25 @@ aliases['wwlike_mjjhigh'] = {
     'expr': 'wwdnn_mjjhigh>gghdnn_mjjhigh && wwdnn_mjjhigh>topdnn_mjjhigh && wwdnn_mjjhigh>vbfdnn_mjjhigh',
 }
 
+thusQQ = [
+  "qqH_YIELD",
+  "qqH_PTH200",
+  "qqH_Mjj60",
+  "qqH_Mjj120",
+  "qqH_Mjj350",
+  "qqH_Mjj700",
+  "qqH_Mjj1000",
+  "qqH_Mjj1500",
+  "qqH_PTH25",
+  "qqH_JET01",
+  "qqH_EWK",
+]
+
+for thu in thusQQ:
+    aliases[thu] = {
+        'linesToAdd': ['.L %s/patches/qqhuncertainty.cc+' % configurations],
+        'class': 'QQHUncertainty',
+        'args': (thu,),
+        'samples': [skey for skey in samples if 'qqH_hww' in skey],
+        'nominalOnly': True
+    }
