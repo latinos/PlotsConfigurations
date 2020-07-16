@@ -28,12 +28,12 @@ groupPlot['top']  = {
 #     'color': 921,      # kGray + 1
 #     'samples'  : ['Wjets']
 # }
-groupPlot['Wjets 0J'] = {
-    'nameHR' : "W+jets 0J",
-    'isSignal' : 0,
-    'color': 921,      # kGray + 1
-    'samples'  : ['Wjets-0J']
-}
+# groupPlot['Wjets 0J'] = {
+#     'nameHR' : "W+jets 0J",
+#     'isSignal' : 0,
+#     'color': 921,      # kGray + 1
+#     'samples'  : ['Wjets-0J']
+# }
 groupPlot['Wjets 1+2J'] = {
     'nameHR' : "W+jets 1+2J",
     'isSignal' : 0,
@@ -177,12 +177,12 @@ plot['VVV']  = {
 #     'isData'   : 0,
 #     'scale'    : 1.0
 # }
-plot['Wjets-0J']  = {
-    'color': 856, # kAzure -4
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1.0
-}
+# plot['Wjets-0J']  = {
+#     'color': 856, # kAzure -4
+#     'isSignal' : 0,
+#     'isData'   : 0,
+#     'scale'    : 1.0
+# }
 plot['Wjets-1+2J']  = {
     'color': 856, # kAzure -4
     'isSignal' : 0,
@@ -277,19 +277,21 @@ plot['WH_htt']  = {
 
 # Signal
 for MX in plotmasses:
+    xs_ggf = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M{}'.format(MX))['xs']
+    xs_vbf = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M{}'.format(MX))['xs']
     plot['QQH_{}_RelW002'.format(MX)] = {
         'nameHR'  : 'qqH{}'.format(MX),
         'color'   : 1,
         'isSignal': 1,
         'isData'  : 0,
-        'scale'   : 1
+        'scale'   : 1 * xs_ggf
     }
     plot['GGH_{}_RelW002'.format(MX)] = {
         'nameHR'  : 'ggH{}'.format(MX),
         'color'   : 1,
         'isSignal': 1,
         'isData'  : 0,
-        'scale'   : 1
+        'scale'   : 1 * xs_vbf
     }
 
 
@@ -303,7 +305,7 @@ plot['DATA']  = {
     'color': 1 ,
     'isSignal' : 0,
     'isData'   : 1 ,
-    'isBlind'  : 0
+    'isBlind'  : 1
 }
 
 

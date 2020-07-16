@@ -28,14 +28,22 @@ muWP     = 'cut_Tight_HWWW'
 #     ],
 # }
 
-aliases['DNN_mth_OTF'] = {
-    'class': 'DNNneut',
-    'linesToAdd':[
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_neut_semi.cc+' % os.getenv('CMSSW_BASE'),
-    ],
-}
+# aliases['DNN_mth_OTF'] = {
+#     'class': 'DNNneut',
+#     'linesToAdd':[
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         'gSystem->Load("libDNNEvaluator.so")',
+#         '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_neut_semi.cc+' % os.getenv('CMSSW_BASE'),
+#     ],
+# }
+# aliases['DNN_test'] = {
+#     'class': 'DNNtest',
+#     'linesToAdd':[
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         'gSystem->Load("libDNNEvaluator.so")',
+#         '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/Full2017/DNNtest.cc+' % os.getenv('CMSSW_BASE'),
+#     ],
+# }
 aliases['mjjGen_OTF'] = {
     'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HighMass/HMvars_mjjgen.cc+' % os.getenv('CMSSW_BASE')],
     'class': 'HMvarsmjjgen',
@@ -209,7 +217,7 @@ aliases['dPhi_LNu'] = {
 aliases['LHEPartWlepPt'] = {
     'linesToAdd': ['.L %s/HWWSemiLepHighMass/Full2017/LHEPartWlepPt.cc+' % configurations],
     'class': 'LHEPartWlepPt',
-    'samples': ['Wjets-0J', 'Wjets-1+2J']
+    'samples': ['Wjets-1+2J',] #['Wjets-0J', 'Wjets-1+2J']
 }
 data = np.genfromtxt(os.getenv('CMSSW_BASE')+'/src/LatinoAnalysis/Gardener/python/data/ewk/kewk_w.dat', skip_header=2, skip_footer=7)
 
@@ -231,12 +239,12 @@ uncert_string=uncert_string[:-1]+")"
 
 aliases['EWK_W_correction'] = {
     'expr': weight_string,
-    'samples': ['Wjets-0J', 'Wjets-1+2J']
+    'samples': ['Wjets-1+2J',] #['Wjets-0J', 'Wjets-1+2J']
 }
 aliases['EWK_W_correction_uncert'] = {
     'expr': uncert_string,
     # 'samples': 'Wjets'
-    'samples': ['Wjets-0J', 'Wjets-1+2J']
+    'samples': ['Wjets-1+2J',] #['Wjets-0J', 'Wjets-1+2J']
 }
 
 
@@ -291,8 +299,8 @@ aliases['bVetoResolved'] = {
     'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] \
                     && CleanJet_pt > 20 \
                     && abs(CleanJet_eta) < 2.5 \
-                    && CleanJet_jetIdx != idx_j1 \
-                    && CleanJet_jetIdx != idx_j2 \
+                    && CleanJet_jetIdx != CleanJet_jetIdx[idx_j1] \
+                    && CleanJet_jetIdx != CleanJet_jetIdx[idx_j2] \
                 ) == 0'
 }
 aliases['bVeto'] = {
@@ -320,20 +328,43 @@ aliases['bReq'] = {
 #     'samples': mc
 # }
 
-aliases['bVetoSF'] = {
-    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<=20 || abs(CleanJet_eta)>=2.5))))',
-    # 'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shapeFix[CleanJet_jetIdx]+1*(CleanJet_pt<=20 || abs(CleanJet_eta)>=2.5))))',
+# aliases['bVetoSF'] = {
+#     'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<=20 || abs(CleanJet_eta)>=2.5))))',
+#     # 'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shapeFix[CleanJet_jetIdx]+1*(CleanJet_pt<=20 || abs(CleanJet_eta)>=2.5))))',
+#     'samples': mc
+# }
+
+# aliases['btagnSF'] = {
+#     'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx] + (CleanJet_pt<=20 || abs(CleanJet_eta)>=2.5))))',
+#     # 'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shapeFix[CleanJet_jetIdx] + (CleanJet_pt<=30 || abs(CleanJet_eta)>=2.5))))',
+#     'samples': mc
+# }
+
+
+aliases['btagResolvedSF'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log( \
+    (CleanJet_pt > 20 && abs(CleanJet_eta) < 2.5 \
+        && CleanJet_jetIdx != CleanJet_jetIdx[idx_j1] && CleanJet_jetIdx != CleanJet_jetIdx[idx_j2]) \
+        * Jet_btagSF_shape[CleanJet_jetIdx] \
+    + 1*(CleanJet_pt<=20 || abs(CleanJet_eta)>=2.5 \
+        || CleanJet_jetIdx == CleanJet_jetIdx[idx_j1] || CleanJet_jetIdx == CleanJet_jetIdx[idx_j2]) \
+    )))',
     'samples': mc
 }
-
-aliases['btagnSF'] = {
-    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx] + (CleanJet_pt<=20 || abs(CleanJet_eta)>=2.5))))',
-    # 'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shapeFix[CleanJet_jetIdx] + (CleanJet_pt<=30 || abs(CleanJet_eta)>=2.5))))',
+aliases['btagBoostedSF'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log( \
+        (CleanJet_pt[CleanJetNotFat_jetIdx] > 20 \
+        && abs(CleanJet_eta[CleanJetNotFat_jetIdx]) < 2.5) \
+        * Jet_btagSF_shape[CleanJet_jetIdx] \
+    +1*(CleanJet_pt[CleanJetNotFat_jetIdx] <= 20 \
+        || abs(CleanJet_eta[CleanJetNotFat_jetIdx]) >= 2.5) \
+    )))',
     'samples': mc
 }
 
 aliases['btagSF'] = {
-    'expr': 'bVetoSF[0]*bVeto[0] + btagnSF[0]*!bVeto[0]',
+    # 'expr': 'bVetoSF[0]*bVeto[0] + btagnSF[0]*!bVeto[0]',
+    'expr': 'boosted[0]*btagBoostedSF[0] + !boosted[0]*btagResolvedSF[0]',
     'samples': mc
 }
 
@@ -349,7 +380,8 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
     #     'samples': mc
     # }
 
-    for targ in ['bVeto', 'btagn']:
+    # for targ in ['bVeto', 'btagn']:
+    for targ in ['btagResolved', 'btagBoosted']:
         alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
         alias['expr'] = alias['expr'].replace('btagSF_shape', 'btagSF_shape_up_%s' % shift)
         # alias['expr'] = alias['expr'].replace('btagSF_shapeFix', 'btagSF_shapeFix_up_%s' % shift)
@@ -358,13 +390,22 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
         alias['expr'] = alias['expr'].replace('btagSF_shape', 'btagSF_shape_down_%s' % shift)
         # alias['expr'] = alias['expr'].replace('btagSF_shapeFix', 'btagSF_shapeFix_down_%s' % shift)
 
+    # aliases['btagSF%sup' % shift] = {
+    #     'expr': '(bVetoSF{shift}up*bVeto + btagnSF{shift}up*!bVeto[0])'.format(shift = shift),
+    #     'samples': mc
+    # }
+    # aliases['btagSF%sdown' % shift] = {
+    #     'expr': '(bVetoSF{shift}down*bVeto + btagnSF{shift}down*!bVeto)'.format(shift = shift),
+    #     'samples': mc
+    # }
     aliases['btagSF%sup' % shift] = {
-        'expr': '(bVetoSF{shift}up*bVeto + btagnSF{shift}up*!bVeto[0])'.format(shift = shift),
+        'expr': 'boosted[0]*btagBoostedSF{shift}up[0] \
+         + !boosted[0]*btagResolvedSF{shift}up[0]'.format(shift = shift),
         'samples': mc
     }
-
     aliases['btagSF%sdown' % shift] = {
-        'expr': '(bVetoSF{shift}down*bVeto + btagnSF{shift}down*!bVeto)'.format(shift = shift),
+        'expr': 'boosted[0]*btagBoostedSF{shift}down[0] \
+         + !boosted[0]*btagResolvedSF{shift}down[0]'.format(shift = shift),
         'samples': mc
     }
 
@@ -477,9 +518,16 @@ aliases['antitopGenPtOTF'] = {
 # Dennis Roy for 2017/2018
 aliases['Top_pTrw'] = {
     # Dennis:
-    # 'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(-2.02274e-01 + 1.09734e-04*topGenPt - 1.30088e-07*topGenPt*topGenPt + 5.83494e+01/(topGenPt+1.96252e+02)) * TMath::Exp(-2.02274e-01 + 1.09734e-04*antitopGenPt - 1.30088e-07*antitopGenPt*antitopGenPt + 5.83494e+01/(antitopGenPt+1.96252e+02)))) + (topGenPt * antitopGenPt <= 0.)',
+    # 'expr': '(topGenPtOTF * antitopGenPtOTF > 0.) * (TMath::Sqrt(TMath::Exp(-2.02274e-01 + 1.09734e-04*topGenPtOTF - 1.30088e-07*topGenPtOTF*topGenPtOTF + 5.83494e+01/(topGenPtOTF+1.96252e+02)) * TMath::Exp(-2.02274e-01 + 1.09734e-04*antitopGenPtOTF - 1.30088e-07*antitopGenPtOTF*antitopGenPtOTF + 5.83494e+01/(antitopGenPtOTF+1.96252e+02)))) + (topGenPtOTF * antitopGenPtOTF <= 0.)',
 
     # New Top PAG
-    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) * (TMath::Sqrt(TMath::Exp(1.61468e-03 + 3.46659e-06*topGenPt - 8.90557e-08*topGenPt*topGenPt) * TMath::Exp(1.61468e-03 + 3.46659e-06*antitopGenPt - 8.90557e-08*antitopGenPt*antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
+    'expr': '(topGenPtOTF * antitopGenPtOTF > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPtOTF) - 0.000134*topGenPtOTF + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPtOTF) - 0.000134*antitopGenPtOTF + 0.973))) + (topGenPtOTF * antitopGenPtOTF <= 0.)',
     'samples': ['top']
 }
+
+# for 2016
+# aliases['Top_pTrw'] = {
+#     # New Top PAG
+#     'expr': '(topGenPtOTF * antitopGenPtOTF > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPtOTF) - 0.000134*topGenPtOTF + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPtOTF) - 0.000134*antitopGenPtOTF + 0.973) * TMath::Exp(2*1.61468e-03 + 3.46659e-06*(topGenPtOTF+antitopGenPtOTF) - 8.90557e-08*(topGenPtOTF*topGenPtOTF+antitopGenPtOTF*antitopGenPtOTF)) )) + (topGenPtOTF * antitopGenPtOTF <= 0.)',
+#     'samples': ['top']
+# }
