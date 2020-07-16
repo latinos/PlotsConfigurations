@@ -43,7 +43,18 @@ sampleNames.append('ggH_hww_PTH_GT650')
 ##### Significance #####                                                                                                                                    
 poi = '' 
 
-command3="combine -M Significance -t -1 Full2016_SF_ggH_HTXS_Stage1p2_merged.root  --X-rtd MINIMIZER_analytic --redefineSignalPOIs"
+command3="combine -M Significance --setParameters="
+
+for sample in sampleNames:                                                                                                          
+  if 'ggH_hww' not in sample: continue                                                                                              
+  if 'FWDH' in sample: continue                                                                                                     
+  #if 'ggH_hww_PTH' in sample: poi = 'r_ggH_hww_PTH_GT200'                                                                        
+  else: poi = 'r_'+sample
+  command3+="{}=1,".format(poi)
+
+command3 = command3[:-1]
+
+command3+=" -t -1 Full2016_SF_ggH_HTXS_Stage1p2.root  --X-rtd MINIMIZER_analytic --redefineSignalPOIs"
 
                                                                                                                         
 for sample in sampleNames: 
