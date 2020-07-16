@@ -60,8 +60,11 @@ mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_ggH2016_v6.root --
 mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_ggH2016_v6.root --linearOnly --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1
 
 #Make impacts
-text2workspace.py datacard.txt -o workspace.root
-combineTool.py -M Impacts -d workspace_0j.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1
-combineTool.py -M Impacts -d workspace_0j.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits
-combineTool.py -M Impacts -d workspace_0j.root -m 125 -o impacts_0j.json -t -1
-plotImpacts.py -i impacts_0j.json -o Impact_0j
+
+text2workspace.py datacards/hww2l2v_13TeV_ggH/comb/datacard.txt  -o hww2l2v_13TeV_ggH.root 
+combineTool.py -M Impacts -d hww2l2v_13TeV_ggH.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1
+combineTool.py -M Impacts -d hww2l2v_13TeV_ggH.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits
+combineTool.py -M Impacts -d hww2l2v_13TeV_ggH.root -m 125 -o impacts_0j.json -t -1
+plotImpacts.py -i impacts.json -o Impact.pdf
+
+
