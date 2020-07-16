@@ -16,7 +16,10 @@ mkShapesMulti.py --pycfg=configuration_DYEST090.py --doHadd=1 --batchSplit=Sampl
 mkShapesMulti.py --pycfg=configuration_DYEST080.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch 
 mkShapesMulti.py --pycfg=configuration_DYEST080.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
 
-mkDYestim_data.py --pycfg=configuration.py --dycfg=dyestim_ggH_DATA.py --inputFile=rootFile/plots_ggH2016_v6.root
+#On batch 
+condor_submit doDY.jds
+
+#mkDYestim_data.py --pycfg=configuration.py --dycfg=dyestim_ggH_DATA.py --inputFile=rootFile/plots_ggH2016_v6.root
 
 #STEP 4: DY estimate from data-driven: SYSTEMATICS 
 
@@ -57,8 +60,11 @@ mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_ggH2016_v6.root --
 mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_ggH2016_v6.root --linearOnly --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1
 
 #Make impacts
-text2workspace.py datacard.txt -o workspace.root
-combineTool.py -M Impacts -d workspace_0j.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1
-combineTool.py -M Impacts -d workspace_0j.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits
-combineTool.py -M Impacts -d workspace_0j.root -m 125 -o impacts_0j.json -t -1
-plotImpacts.py -i impacts_0j.json -o Impact_0j
+
+text2workspace.py datacards/hww2l2v_13TeV_ggH/comb/datacard.txt  -o hww2l2v_13TeV_ggH.root 
+combineTool.py -M Impacts -d hww2l2v_13TeV_ggH.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1
+combineTool.py -M Impacts -d hww2l2v_13TeV_ggH.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits
+combineTool.py -M Impacts -d hww2l2v_13TeV_ggH.root -m 125 -o impacts_0j.json -t -1
+plotImpacts.py -i impacts.json -o Impact.pdf
+
+
