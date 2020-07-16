@@ -16,7 +16,10 @@ mkShapesMulti.py --pycfg=configuration_DYEST090.py --doHadd=1 --batchSplit=Sampl
 mkShapesMulti.py --pycfg=configuration_DYEST080.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch 
 mkShapesMulti.py --pycfg=configuration_DYEST080.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
 
-mkDYestim_data.py --pycfg=configuration.py --dycfg=dyestim_ggH_DATA.py --inputFile=rootFile/plots_ggH2016_v6.root
+#On batch 
+condor_submit doDY.jds
+
+#mkDYestim_data.py --pycfg=configuration.py --dycfg=dyestim_ggH_DATA.py --inputFile=rootFile/plots_ggH2016_v6.root
 
 #STEP 4: DY estimate from data-driven: SYSTEMATICS 
 
