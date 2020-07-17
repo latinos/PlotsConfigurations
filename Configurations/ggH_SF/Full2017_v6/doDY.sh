@@ -8,7 +8,7 @@ source $VO_CMS_SW_DIR/cmsset_default.sh
 cd /afs/cern.ch/work/c/calderon/private/CMSSW_10_6_4
 eval `scramv1 ru -sh`
 ulimit -c 0 
-cd '/afs/cern.ch/work/c/calderon/private/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ggH_SF/Full2016_v7/'
+cd '/afs/cern.ch/work/c/calderon/private/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ggH_SF/Full2017_v6/'
 
 pwd 
 
