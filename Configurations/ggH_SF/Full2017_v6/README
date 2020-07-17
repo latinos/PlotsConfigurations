@@ -1,3 +1,6 @@
+#Common tools for analysis:
+voms-proxy-init -voms cms -rfc --valid 168:0
+
 #STEP 1: Submit shapesmulti in batch
 mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
 
@@ -5,7 +8,7 @@ mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files
 mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
 
 #STEP 3: DY estimate from data-driven
-mkDYestim.py --pycfg=configuration --dycfg=dyestim --inputFile=rootFile/plots
+mkDYestim.py --pycfg=configuration.py --dycfg=dyestim_ggH_DATA.py  --inputFile=rootFile/plots_ggH2017_v6.root
 
 #STEP 4: Create datacards
 
