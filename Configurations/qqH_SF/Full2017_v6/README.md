@@ -8,11 +8,11 @@
 
 # Data-driven DY estimation
 
-    mkDYestim_data.py --pycfg=configuration --dycfg=dyestim --inputFile=rootFile/plots_qqH2017_v6.root
+    mkDYestim_data.py --pycfg=configuration --dycfg=dyestim_qqH --inputFile=rootFile/plots_qqH2017_v6.root
 
-#STEP 4: Create datacards
+# Make datacards
 
-#mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_qqH2017_v6_DYEstimDATA.root --cardList=hww2l2v_13TeV_2j_vbf_ee,hww2l2v_13TeV_WW_2j_vbf_ee,hww2l2v_13TeV_top_2j_vbf_ee,hww2l2v_13TeV_2j_vbf_mm,hww2l2v_13TeV_WW_2j_vbf_mm,hww2l2v_13TeV_top_2j_vbf_mm,hww2l2v_13TeV_2j_vh_ee,hww2l2v_13TeV_WW_2j_vh_ee,hww2l2v_13TeV_top_2j_vh_ee,hww2l2v_13TeV_2j_vh_mm,hww2l2v_13TeV_WW_2j_vh_mm,hww2l2v_13TeV_top_2j_vh_mm
+    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_qqH2017_v6_DYEstimDATA.root --cardList=hww2l2v_13TeV_2j_vbf_ee,hww2l2v_13TeV_WW_2j_vbf_ee,hww2l2v_13TeV_top_2j_vbf_ee,hww2l2v_13TeV_2j_vbf_mm,hww2l2v_13TeV_WW_2j_vbf_mm,hww2l2v_13TeV_top_2j_vbf_mm,hww2l2v_13TeV_2j_vh_ee,hww2l2v_13TeV_WW_2j_vh_ee,hww2l2v_13TeV_top_2j_vh_ee,hww2l2v_13TeV_2j_vh_mm,hww2l2v_13TeV_WW_2j_vh_mm,hww2l2v_13TeV_top_2j_vh_mm
 
 #STEP 5: Combine channels/categories
 mkComb.py --pycfg=configuration_ --combineLocation=/afs/cern.ch/user/d/ddicroce/work/Latinos/CMSSW_10_2_13/src/ --combcfg=comb_
