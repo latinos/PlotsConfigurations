@@ -25,6 +25,11 @@
 
     mkOptim.py --pycfg=configuration.py --combineLocation=$HOME/combine/CMSSW_10_2_13/src/ --combcfg=comb_qqH.py --fomList=SExpPre,BestFit
 
+Check the significance value and best fit.
+
+    grep "Significance:" datacards/*/comb/SExpPre_*
+    grep "Best fit r:"   datacards/*/comb/BestFit_*
+
 # Significance and signal strength (alternative method)
 
     pushd $HOME/combine/CMSSW_10_2_13/src/
@@ -33,16 +38,13 @@
 
 Significance.
 
-    combine datacards/hww2l2v_13TeV_VH/comb/datacard.txt -M Significance   --rMin=-6 --rMax=20 -t -1 --expectSignal=1
+    combine datacards/hww2l2v_13TeV_VBF/comb/datacard.txt -M Significance --rMin=-6 --rMax=20 -t -1 --expectSignal=1
+    combine datacards/hww2l2v_13TeV_VH/comb/datacard.txt  -M Significance --rMin=-6 --rMax=20 -t -1 --expectSignal=1
 
 Signal strength.
 
-    combine datacards/hww2l2v_13TeV_VH/comb/datacard.txt -M FitDiagnostics --rMin=-6 --rMax=20 -t -1 --expectSignal=1 --robustFit=1 --cminDefaultMinimizerStrategy 0
-
-Check the significance value and best fit.
-
-    grep "Significance:" datacards/*/comb/SExpPre_*
-    grep "Best fit r:"   datacards/*/comb/BestFit_*
+    combine datacards/hww2l2v_13TeV_VBF/comb/datacard.txt -M FitDiagnostics --rMin=-6 --rMax=20 -t -1 --expectSignal=1 --robustFit=1 --cminDefaultMinimizerStrategy 0
+    combine datacards/hww2l2v_13TeV_VH/comb/datacard.txt  -M FitDiagnostics --rMin=-6 --rMax=20 -t -1 --expectSignal=1 --robustFit=1 --cminDefaultMinimizerStrategy 0
 
 # Make yield tables
 
