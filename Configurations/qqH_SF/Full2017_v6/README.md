@@ -21,16 +21,16 @@
 
     mkComb.py --pycfg=configuration.py --combineLocation=$HOME/combine/CMSSW_10_2_13/src/ --combcfg=comb_qqH.py
 
-# Significance and signal strength
+# Significance and best fit
 
     mkOptim.py --pycfg=configuration.py --combineLocation=$HOME/combine/CMSSW_10_2_13/src/ --combcfg=comb_qqH.py --fomList=SExpPre,BestFit
 
-Check the significance value and best fit.
+Check the significance and best fit values.
 
     grep "Significance:" datacards/*/comb/SExpPre_*
     grep "Best fit r:"   datacards/*/comb/BestFit_*
 
-# Significance and signal strength (alternative method)
+# Significance and best fit (alternative method)
 
     pushd $HOME/combine/CMSSW_10_2_13/src/
     cmsenv
