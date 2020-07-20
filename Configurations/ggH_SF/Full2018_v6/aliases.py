@@ -224,17 +224,17 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
 
 
 # PU jet Id SF
-puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
+#puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
 
-aliases['PUJetIdSF'] = {
-    'linesToAdd': [
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/patches/pujetidsf_event.cc+' % configurations
-    ],
-    'class': 'PUJetIdEventSF',
-    'args': (puidSFSource, '2018', 'loose'),
-    'samples': mc
-}
+#aliases['PUJetIdSF'] = {
+#    'linesToAdd': [
+#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+#        '.L %s/patches/pujetidsf_event.cc+' % configurations
+#    ],
+#    'class': 'PUJetIdEventSF',
+#    'args': (puidSFSource, '2018', 'loose'),
+#    'samples': mc
+#}
 
 # data/MC scale factors
 aliases['new_SF'] = {   'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
