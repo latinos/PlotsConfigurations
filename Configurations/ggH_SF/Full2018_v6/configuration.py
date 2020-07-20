@@ -15,7 +15,7 @@ variablesFile = 'variables.py'
 
 # file with list of cuts
 #cutsFile = 'cuts.py' 
-cutsFile = 'cuts_dy.py' 
+cutsFile = 'cuts.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 
