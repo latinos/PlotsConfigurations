@@ -15,7 +15,7 @@
     mkDatacards.py \
         --pycfg=configuration.py \
         --inputFile=rootFile/plots_qqH2017_v6_DYEstimDATA.root \
-        --cardList=hww2l2v_13TeV_2j_vbf_ee,hww2l2v_13TeV_WW_2j_vbf_ee,hww2l2v_13TeV_top_2j_vbf_ee,hww2l2v_13TeV_2j_vbf_mm,hww2l2v_13TeV_WW_2j_vbf_mm,hww2l2v_13TeV_top_2j_vbf_mm,hww2l2v_13TeV_2j_vh_ee,hww2l2v_13TeV_WW_2j_vh_ee,hww2l2v_13TeV_top_2j_vh_ee,hww2l2v_13TeV_2j_vh_mm,hww2l2v_13TeV_WW_2j_vh_mm,hww2l2v_13TeV_top_2j_vh_mm
+        --cardList=hww2l2v_13TeV_2j_vbf_ee,hww2l2v_13TeV_2j_vbf_mm,hww2l2v_13TeV_2j_vh_ee,hww2l2v_13TeV_2j_vh_mm,hww2l2v_13TeV_WW_2j_vbf_ee,hww2l2v_13TeV_WW_2j_vbf_mm,hww2l2v_13TeV_WW_2j_vh_ee,hww2l2v_13TeV_WW_2j_vh_mm,hww2l2v_13TeV_top_2j_vbf_ee,hww2l2v_13TeV_top_2j_vbf_mm,hww2l2v_13TeV_top_2j_vh_ee,hww2l2v_13TeV_top_2j_vh_mm
 
 # Combine channels/categories
 
