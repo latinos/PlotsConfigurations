@@ -47,8 +47,15 @@ Check the significance value and best fit.
 
 # Draw distributions
 
-    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_qqH2017_v6.root --logOnly    --fileFormats=png --onlyPlot=cratio --minLogCratio=0.1 --maxLogCratio=1000
-    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_qqH2017_v6.root --linearOnly --fileFormats=png --onlyPlot=cratio
+    mkPlot.py --inputFile=rootFile/plots_qqH2017_v6_DYEstimDATA.root --logOnly    --fileFormats=png --onlyPlot=cratio --minLogCratio=0.1 --maxLogCratio=1000
+    mkPlot.py --inputFile=rootFile/plots_qqH2017_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+
+To produce blinded distributions (no data) open `plot.py` and set the variable `isBlind` to 1 for `DATA`. Then you will have to produce again the signal region plots.
+
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_vh_ee  --inputFile=rootFile/plots_qqH2017_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_vh_mm  --inputFile=rootFile/plots_qqH2017_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_vbf_ee --inputFile=rootFile/plots_qqH2017_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_vbf_mm --inputFile=rootFile/plots_qqH2017_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
 
 # Make impacts
 
