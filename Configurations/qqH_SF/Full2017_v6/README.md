@@ -21,29 +21,34 @@
 
     mkComb.py --pycfg=configuration.py --combineLocation=$HOME/combine/CMSSW_10_2_13/src/ --combcfg=comb_qqH.py
 
-# Significance and best fit
+# Significance and signal strength
 
     mkOptim.py --pycfg=configuration.py --combineLocation=$HOME/combine/CMSSW_10_2_13/src/ --combcfg=comb_qqH.py --fomList=SExpPre,BestFit
 
-Alternative way.
+# Significance and signal strength (alternative method)
 
     pushd $HOME/combine/CMSSW_10_2_13/src/
     cmsenv
     popd
 
+Significance.
+
     combine datacards/hww2l2v_13TeV_VH/comb/datacard.txt -M Significance   --rMin=-6 --rMax=20 -t -1 --expectSignal=1
+
+Signal strength.
+
     combine datacards/hww2l2v_13TeV_VH/comb/datacard.txt -M FitDiagnostics --rMin=-6 --rMax=20 -t -1 --expectSignal=1 --robustFit=1 --cminDefaultMinimizerStrategy 0
 
 Check the significance value and best fit.
 
     grep "Significance:" datacards/*/comb/SExpPre_*
-    grep "fit r:"        datacards/*/comb/BestFit_*
+    grep "Best fit r:"   datacards/*/comb/BestFit_*
 
 # Make yield tables
 
     grep "proc"  datacards/hww2l2v_13TeV_*/events/datacard.txt > yield.txt
     grep "rate " datacards/hww2l2v_13TeV_*/events/datacard.txt >> yield.txt
-    :%!column -t #to organize the table
+    column -t yield.txt > yield_organized.txt
 
 # Draw distributions
 
