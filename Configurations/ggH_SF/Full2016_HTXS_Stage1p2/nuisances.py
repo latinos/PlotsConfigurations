@@ -26,6 +26,13 @@ if os.path.exists('thuNormFactors.py') :
   exec(handle)
   handle.close()
 
+if os.path.exists('thuVBFNormFactors.py') :                                  
+  handle = open('thuVBFNormFactors.py','r')                                  
+  exec(handle)                                                            
+  handle.close() 
+
+
+
 sampleNames = []
 
 for cat in HTXSStage1_1Categories:
@@ -718,23 +725,23 @@ thusQQH = [
   ("THU_qqH_EWK","qqH_EWK"),
 ]
 
-#for name, vname in thusQQH:
-#    updown = [vname, '2.-%s' % vname]
+for name, vname in thusQQH:
+    updown = [vname, '2.-%s' % vname]
     
-#    nuisances[name] = {
-#        'name': name,
-#        'skipCMS': 1,
-#        'kind': 'weight',
-#        'type': 'shape',
-#        'samples': {
-#         'qqH_hww': updown,
-#        }
-#    }
-#    for sname in sampleNames:
-#        if 'qqH_hww' in sname:
-#          normthu = globals()[name.replace("THU_","thuNormFactors_")][sname.replace('qqH_hww','QQ2HQQ')][0]
-#          nuisances[name]['samples'].update({sname : [vname+'/'+normthu,'2.-'+vname+'/'+normthu]})
-#    print nuisances[name]
+    nuisances[name] = {
+        'name': name,
+        'skipCMS': 1,
+        'kind': 'weight',
+        'type': 'shape',
+        'samples': {
+         'qqH_hww': updown,
+        }
+    }
+    for sname in sampleNames:
+        if 'qqH_hww' in sname:
+          normthu = globals()[name.replace("THU_","thuNormFactors_")][sname.replace('qqH_hww','QQ2HQQ')][0]
+          nuisances[name]['samples'].update({sname : [vname+'/'+normthu,'2.-'+vname+'/'+normthu]})
+    print nuisances[name]
 
 
 
