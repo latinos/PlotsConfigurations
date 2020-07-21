@@ -221,7 +221,7 @@ for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2',
 aliases['ttHMVA_SF_2l'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
                            'class': 'compute_SF',
                            'args' : ('2017', 2, 'total_SF'),
-                           'samples': mc_emb
+                           'samples': mc
                           }
 
 # data/MC scale factors
