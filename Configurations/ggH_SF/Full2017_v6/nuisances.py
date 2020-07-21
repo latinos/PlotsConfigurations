@@ -205,12 +205,20 @@ nuisances['electronpt'] = {
 
 ##### Muon Efficiency and energy scale
 
+#nuisances['eff_m'] = {
+#    'name': 'CMS_eff_m_2017',
+#    'kind': 'weight',
+#    'type': 'shape',
+#    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc if skey not in ['DY']), # if skey not in ['WW', 'top', 'DY']),
+#}
+
 nuisances['eff_m'] = {
     'name': 'CMS_eff_m_2017',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc if skey not in ['DY']), # if skey not in ['WW', 'top', 'DY']),
+    'samples': dict((skey, ['ttHMVA_2l_mu_SF_Up', 'ttHMVA_2l_mu_SF_Down']) for skey in mc if skey not in ['DY']),
 }
+
 
 nuisances['muonpt'] = {
     'name': 'CMS_scale_m_2017',
