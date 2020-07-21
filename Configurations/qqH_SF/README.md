@@ -21,9 +21,12 @@
 
     mkComb.py --pycfg=configuration.py --combineLocation=$HOME/combine/CMSSW_10_2_13/src/ --combcfg=comb_qqH.py
 
-It can happen that some nuisance has negative weight/norm. To drop it (and prevent combine from crashing) add a line like the following in `dropNuisance.sh` and run it.
+It can happen that some nuisance has negative norm. To drop it (and prevent combine from crashing) add a line like the following in `dropNuisance.sh`.
 
     echo "nuisance edit drop Vg hww2l2v_13TeV_top_2j_vbf_mm QCDscale_VV" >> datacards/hww2l2v_13TeV_VBF/comb/datacard.txt
+
+And run it.
+
     ./dropNuisance.sh
 
 # Significance and best fit
