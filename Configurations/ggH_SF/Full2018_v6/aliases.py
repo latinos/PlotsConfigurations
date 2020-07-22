@@ -19,7 +19,7 @@ muWP='cut_Tight_HWWW'
 
 newEleWP = 'mvaFall17V1Iso_WP90' # same as nominal
 #newEleWP = 'mvaFall17V1Iso_WP90_tthmva_70'
-newMuWP = 'cut_Tight_HWWW_tthmva_80'
+#newMuWP = 'cut_Tight_HWWW_tthmva_80'
 
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
@@ -185,19 +185,6 @@ aliases['sr'] = {
 
 # B tag scale factors
 
-btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_102XSF_V1.csv' % os.getenv('CMSSW_BASE')
-
-#aliases['Jet_btagSF_shapeFix'] = {
-#    'linesToAdd': [
-#        'gSystem->Load("libCondFormatsBTauObjects.so");',
-#        'gSystem->Load("libCondToolsBTau.so");',
-#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
-#        '.L %s/patches/btagsfpatch.cc+' % configurations
-#    ],
-#    'class': 'BtagSF',
-#    'args': (btagSFSource,),
-#    'samples': mc
-#}
 
 aliases['bVetoSF'] = {
     'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
@@ -214,17 +201,8 @@ aliases['btagSF'] = {
     'samples': mc
 }
 
+
 for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
-#    aliases['Jet_btagSF_shape_up_%s' % shift] = {
-#        'class': 'BtagSF',
-#        'args': (btagSFSource, 'up_' + shift),
-#        'samples': mc
-#    }
-#    aliases['Jet_btagSF_shape_down_%s' % shift] = {
-#        'class': 'BtagSF',
-#        'args': (btagSFSource, 'down_' + shift),
-#        'samples': mc
-#    }
 
     for targ in ['bVeto', 'bReq']:
         alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
@@ -243,18 +221,20 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
         'samples': mc
     }
 
-# PU jet Id SF
-puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
 
-aliases['PUJetIdSF'] = {
-    'linesToAdd': [
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/patches/pujetidsf_event.cc+' % configurations
-    ],
-    'class': 'PUJetIdEventSF',
-    'args': (puidSFSource, '2018', 'loose'),
-    'samples': mc
-}
+
+# PU jet Id SF
+#puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
+
+#aliases['PUJetIdSF'] = {
+#    'linesToAdd': [
+#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+#        '.L %s/patches/pujetidsf_event.cc+' % configurations
+#    ],
+#    'class': 'PUJetIdEventSF',
+#    'args': (puidSFSource, '2018', 'loose'),
+#    'samples': mc
+#}
 
 # data/MC scale factors
 aliases['new_SF'] = {   'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
@@ -264,10 +244,12 @@ aliases['new_SF'] = {   'linesToAdd': ['.L %s/patches/compute_SF.C+' % configura
 }
 
 aliases['SFweight'] = {
-    #'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut', 'btagSF','PUJetIdSF']),
-    'expr': ' * '.join(['SFweight2l', 'new_SF', 'LepWPCut', 'btagSF']),
+    'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut', 'btagSF']),
+    #'expr': ' * '.join(['SFweight2l', 'new_SF', 'LepWPCut', 'btagSF']),
     'samples': mc
 }
+
+
 # variations
 aliases['SFweightEleUp'] = {
     'expr': 'LepSF2l__ele_'+eleWP+'__Up',

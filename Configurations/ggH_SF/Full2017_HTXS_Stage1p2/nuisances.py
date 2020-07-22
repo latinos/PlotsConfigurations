@@ -544,14 +544,15 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
 
 
-nuisances['QCDscale_V'] = {
-    'name': 'QCDscale_V',
-    'skipCMS': 1,
-    'kind': 'weight_envelope',
-    'type': 'shape',
-    'samples': {'DY': variations},
-    'AsLnN': '1'
-}
+#nuisances['QCDscale_V'] = {
+#    'name': 'QCDscale_V',
+#    'skipCMS': 1,
+#    'kind': 'weight_envelope',
+#    'type': 'shape',
+#    'samples': {'DY': variations},
+#    'cutspost'  : lambda self, cuts: [cut for cut in cuts if 'WW' not in cut], 
+#    'AsLnN': '1'
+#}
 
 
 
@@ -1018,18 +1019,6 @@ nuisances['DYmmnorm2j']  = {
    #'cuts'     : [cut for cut in cuts2j if 'mm' in cut]
    'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut and 'mm' in cut and 'vh' not in cut and 'vbf' not in cut]
 }
-
-nuisances['DYeenormvbf']  = {
-   'name'     : 'DYeenormvbf',
-   'kind'     : 'weight',
-   'type'     : 'shape',
-   'samples'  : {
-      'DY'    : ['1.','1.'] ,
-      },
-   'cutspost' : lambda self, cuts: [cut for cut in cuts if 'vbf' in cut and 'ee' in cut]
-   #'cuts'     : [cut for cut in cutsvbf if 'ee' in cut]
-}
-
 
 
 nuisances['DYeenormhpt']  = {

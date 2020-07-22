@@ -40,7 +40,7 @@ dataReco = 'Run2016_102X_nAODv5_Full2016v6'
 #mcSteps = 'MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5{var}'
 mcSteps = 'MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6{var}'
 
-fakeSteps = 'DATAl1loose2016v6__l2loose__fakeW'
+fakeSteps = 'DATAl1loose2016v6__l2loose__fakeW__DYMVA'
 
 dataSteps = 'DATAl1loose2016v6__l2loose__l2tightOR2016v6'
 
@@ -63,7 +63,7 @@ def makeMCDirectory(var=''):
         #return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Summer16/l2tightOR'
 
 mcDirectory = makeMCDirectory()
-fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
+fakeDirectory = os.path.join(treeBaseDir, fakeReco, fakeSteps)
 dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 
 ################################################
@@ -269,7 +269,7 @@ samples['VZ'] = {
     'weight': mcCommonWeight + '*1.11',
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 1
+    'FilesPerJob': 2
 }
 
 ########## VVV #########

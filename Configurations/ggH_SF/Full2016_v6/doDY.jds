@@ -1,0 +1,8 @@
+executable = /afs/cern.ch/work/c/calderon/private/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ggH_SF/Full2016_v6/doDY.sh
+universe = vanilla
+output = /afs/cern.ch/work/c/calderon/private/CMSSW_10_6_4/src/jobs//mkShapes__ggH2016_v6/doDY.out
+error = /afs/cern.ch/work/c/calderon/private/CMSSW_10_6_4/src/jobs//mkShapes__ggH2016_v6/doDY.err
+log = /afs/cern.ch/work/c/calderon/private/CMSSW_10_6_4/src/jobs//mkShapes__ggH2016_v6/doDY.log
+request_cpus = 1
++JobFlavour = "testmatch"
+queue

@@ -206,12 +206,20 @@ nuisances['electronpt'] = {
 
 ##### Muon Efficiency and energy scale
 
+#nuisances['eff_m'] = {
+#    'name': 'CMS_eff_m_2016',
+#    'kind': 'weight',
+#    'type': 'shape',
+#    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc if skey not in ['DY']),# if skey not in ['WW', 'top', 'DY'])
+#}
+
 nuisances['eff_m'] = {
     'name': 'CMS_eff_m_2016',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc if skey not in ['DY']),# if skey not in ['WW', 'top', 'DY'])
+    'samples': dict((skey, ['ttHMVA_2l_mu_SF_Up', 'ttHMVA_2l_mu_SF_Down']) for skey in mc_emb)
 }
+
 
 nuisances['muonpt'] = {
     'name': 'CMS_scale_m_2016',
@@ -466,14 +474,14 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 ## This should work for samples with either 8 or 9 LHE scale weights (Length$(LHEScaleWeight) == 8 or 9)
 variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
 
-nuisances['QCDscale_V'] = {
-    'name': 'QCDscale_V',
-    'skipCMS': 1,
-    'kind': 'weight_envelope',
-    'type': 'shape',
-    'samples': {'DY': variations},  #is finally included in the DY systematics? 
-    'AsLnN': '1'
-}
+#nuisances['QCDscale_V'] = {
+#    'name': 'QCDscale_V',
+#    'skipCMS': 1,
+#    'kind': 'weight_envelope',
+#    'type': 'shape',
+#    'samples': {'DY': variations},  #is finally included in the DY systematics? 
+#    'AsLnN': '1'
+#}
 
 nuisances['QCDscale_VV'] = {
     'name': 'QCDscale_VV',
