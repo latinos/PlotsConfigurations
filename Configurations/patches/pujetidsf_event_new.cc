@@ -7,6 +7,7 @@
 
 #include "TSystem.h"
 #include "TFile.h"
+#include "TMath.h"
 #include "TH1.h"
 
 #include <string>
@@ -46,8 +47,13 @@ protected:
 
   static long long currentEntry;
   static UIntValueReader* nJet;
+  static UIntValueReader* nLepton;
+  static FloatArrayReader* Lepton_eta;
+  static FloatArrayReader* Lepton_phi;
   static FloatArrayReader* Jet_pt;
   static FloatArrayReader* Jet_eta;
+  static FloatArrayReader* Jet_phi;
+  static IntArrayReader* Jet_jetId;
   static IntArrayReader* Jet_genJetIdx;
   static IntArrayReader * Jet_puId;
 
@@ -65,8 +71,13 @@ protected:
 std::string PUJetIdEventSF::year{""};
 long long PUJetIdEventSF::currentEntry{-2};
 UIntValueReader* PUJetIdEventSF::nJet{};
+UIntValueReader* PUJetIdEventSF::nLepton{};
+FloatArrayReader* PUJetIdEventSF::Lepton_eta{};
+FloatArrayReader* PUJetIdEventSF::Lepton_phi{};
 FloatArrayReader* PUJetIdEventSF::Jet_pt{};
 FloatArrayReader* PUJetIdEventSF::Jet_eta{};
+FloatArrayReader* PUJetIdEventSF::Jet_phi{};
+IntArrayReader * PUJetIdEventSF::Jet_jetId{};
 IntArrayReader * PUJetIdEventSF::Jet_puId{};
 IntArrayReader* PUJetIdEventSF::Jet_genJetIdx{};
 PUJetIdEventSF::MapSets PUJetIdEventSF::effMapSets{};
@@ -105,6 +116,7 @@ PUJetIdEventSF::evaluate(unsigned)
   return scalefactors[wp_];
 }
 
+
 void
 PUJetIdEventSF::setValues(long long _iEntry)
 {
@@ -121,8 +133,25 @@ PUJetIdEventSF::setValues(long long _iEntry)
     double pt{Jet_pt->At(iJ)};
     double eta{Jet_eta->At(iJ)};
 
-    if (pt < 30. || pt > 50.|| std::abs(eta) > 4.7)
+    if (pt < 30. || pt > 50.|| std::abs(eta) > 4.7 || Jet_jetId->At(iJ)<2)
+    // excluding also the jets with jetId < 2 since we are considering only these jets in the selection before PUid selection.
       continue;
+
+    bool isLeptonMatched = false;
+    for (int ilep = 0; ilep < *(nLepton->Get()); ilep++){
+      float lepEta = Lepton_eta->At(ilep);
+      float lepPhi = Lepton_phi->At(ilep);
+      float jetEta = Jet_eta->At(iJ);
+      float jetPhi = Jet_phi->At(iJ);
+      float dPhi = abs(lepPhi - jetPhi);
+      if (dPhi > TMath::Pi())  
+        dPhi = 2*TMath::Pi() - dPhi;
+
+      float dR2 = (lepEta - jetEta) * (lepEta - jetEta) + dPhi * dPhi;
+      
+      if (dR2 < 0.3*0.3)  isLeptonMatched =true;
+    }
+    if (isLeptonMatched) continue;
 
     unsigned mapType{};
     if (Jet_genJetIdx->At(iJ) != -1)
@@ -154,6 +183,7 @@ PUJetIdEventSF::setValues(long long _iEntry)
             scalefactors[iWP] *= (1- sf_map->GetBinContent(iX, iY)*eff_map->GetBinContent(iX,iY)) / (1-eff_map->GetBinContent(iX,iY));
     }
   }
+  //cout << "SF T-M-L: "<< scalefactors[0] << " "<<scalefactors[1] << " "<<scalefactors[2] << endl;
 }
 
 void
@@ -182,18 +212,28 @@ PUJetIdEventSF::bindTree_(multidraw::FunctionLibrary& _library)
     }
     
     _library.bindBranch(nJet, "nJet");
+    _library.bindBranch(nLepton, "nLepton");
     _library.bindBranch(Jet_pt, "Jet_pt");
+    _library.bindBranch(Jet_jetId, "Jet_jetId");
     _library.bindBranch(Jet_eta, "Jet_eta");
+    _library.bindBranch(Jet_phi, "Jet_phi");
+    _library.bindBranch(Lepton_eta, "Lepton_eta");
+    _library.bindBranch(Lepton_phi, "Lepton_phi");
     _library.bindBranch(Jet_genJetIdx, "Jet_genJetIdx");
     _library.bindBranch(Jet_puId, "Jet_jetId");
 
     _library.addDestructorCallback([]() {
         currentEntry = -2;
         nJet = nullptr;
+        nLepton = nullptr;
         Jet_pt = nullptr;
         Jet_eta = nullptr;
         Jet_genJetIdx = nullptr;
         Jet_puId = nullptr;
+        Jet_phi = nullptr;
+        Lepton_eta = nullptr;
+        Lepton_phi = nullptr;
+        Jet_jetId = nullptr;
         for (auto& sms : sfMapSets) {
           for (auto& sfMap : sms)
             sfMap.reset();
