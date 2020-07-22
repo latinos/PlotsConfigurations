@@ -23,14 +23,14 @@ variables['events']  = {   'name': '1',
                         }
 
 
-# variables['DNNoutput'] = {
-#     'name': 'DNNoutput',
-#     'range': (40,0.,1),
-#     'xaxis': 'DNN output',
-#     'fold': 0 ,
-#     'blind': { c:[0.6,1] for c in phase_spaces_tot if "_sig_" in c},
-#     'cuts': list(filter(lambda c: "dnnall" in c, phase_spaces_tot))
-# }
+variables['DNNoutput'] = {
+    'name': 'DNNoutput',
+    'range': (40,0.,1),
+    'xaxis': 'DNN output',
+    'fold': 0 ,
+    'blind': { c:[0.6,1] for c in phase_spaces_tot if "_sig_" in c},
+    'cuts': list(filter(lambda c: "dnnall" in c, phase_spaces_tot))
+}
 
 
 variables['DNNoutput_high_res'] = {
@@ -102,12 +102,12 @@ variables["deta_CR_boost"] = {
             'cuts': phase_spaces_boost
 }
 
-# #MET
-# variables['PuppiMET'] = {   'name': 'PuppiMET_pt',      
-#                         'range' : (30,0,300),  
-#                         'xaxis' : 'PuppiMET_pt', 
-#                         'fold' : 3
-#                         }
+#MET
+variables['PuppiMET'] = {   'name': 'PuppiMET_pt',      
+                        'range' : (30,0,300),  
+                        'xaxis' : 'PuppiMET_pt', 
+                        'fold' : 3
+                        }
 
 
 # VBS vars
@@ -220,11 +220,11 @@ variables['Zlep'] = {   'name': 'Zlep',
                         'fold' : 3
                         }
 
-# # variables['PuppiMET_phi'] = {   'name': 'PuppiMET_phi',      
-# #                         'range': (30,-3.14, 3.14),  
-# #                         'xaxis' : 'PuppiMET #phi', 
-# #                         'fold' : 3
-# #                         }
+variables['PuppiMET_phi'] = {   'name': 'PuppiMET_phi',      
+                        'range': (30,-3.14, 3.14),  
+                        'xaxis' : 'PuppiMET #phi', 
+                        'fold' : 3
+                        }
 
 
 # # variables['MET_pt'] = {   'name': 'MET_pt',      
@@ -241,11 +241,11 @@ variables['Zlep'] = {   'name': 'Zlep',
                 
 
 #jets 
-# variables['nJets'] = {   'name': 'Sum$(CleanJet_pt >= 30)',      
-#                         'range' : (6,4,10),  
-#                         'xaxis' : 'nJets >= 30 GeV', 
-#                         'fold' : 3
-#                         }
+variables['nJets'] = {   'name': 'Sum$(CleanJet_pt >= 30)',      
+                        'range' : (6,4,10),  
+                        'xaxis' : 'nJets >= 30 GeV', 
+                        'fold' : 3
+                        }
 
 # # # Minimum pt 20 GeV in NanoGardening step
 # # variables['N_jets_central'] = {   'name': 'N_jets_central',      

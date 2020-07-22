@@ -62,6 +62,13 @@ groupPlot['Fake']  = {
                 'fill': 1001
             }
 
+groupPlot['Vg']  = {  
+                  'nameHR' : "V#gamma+V#gamma*",
+                  'isSignal' : 0,
+                  'color'    : palette["Orange"],
+                  'samples'  : ['Vg','VgS'],
+                  'fill': 1001
+              }
 
 groupPlot['DY']  = {  
                 'nameHR' : "DY",
@@ -133,7 +140,20 @@ plot['VV']  = {
                   'scale'    : 1.   ,
               }   
          
+         
+plot['Vg']  = { 
+                  'color': 859, # kAzure -1  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
 
+plot['VgS'] = { 
+                  'color'    : 617,   # kViolet + 1  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
 
 plot['DY']  = {  
                 'color': colors['kMagenta']+1,

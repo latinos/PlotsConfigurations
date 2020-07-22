@@ -2,8 +2,8 @@
 treeName= 'Events'
 
 
-tag = 'fit_v3_2018'
-direc = "conf_fit_v3"
+tag = 'tests_ele_DY'
+direc = "conf_tests_ele_DY"
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_'+tag 
@@ -18,7 +18,7 @@ variablesFile = direc+'/variables.py'
 cutsFile = direc +'/cuts.py' 
 
 # file with list of samples
-samplesFile = direc+'/samples.py' 
+samplesFile = direc+'/samples_ele.py' 
 
 #t file with list of samples
 plotFile = direc+'/plot.py' 
@@ -29,8 +29,7 @@ lumi = 59.74
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-#outputDirPlots = 'plot_'+tag +"_rescaled/detajpt_ext"
-outputDirPlots = 'plot_'+tag  +"/Wjets_njetsLO"
+outputDirPlots = 'plot_'+tag 
 
 # used by mkDatacards to define output directory for datacards
 #outputDirDatacard = 'datacards_'+tag 

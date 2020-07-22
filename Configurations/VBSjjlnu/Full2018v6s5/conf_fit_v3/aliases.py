@@ -171,7 +171,7 @@ aliases['fake_weight_corrected'] = {
 
 # PU jet Id SF
 
-puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
+puidSFSource = '{}/patches/PUID_81XTraining_EffSFandUncties.root'.format(configurations)
 
 aliases['PUJetIdSF'] = {
     'linesToAdd': [
@@ -214,4 +214,16 @@ aliases['Wtagging_SF_down'] = {
     'class': 'Wtagging_SF',
     'args': ('down', '2018'),
     'samples': mc
+}
+
+
+
+aliases['gstarLow'] = {
+    'expr': 'Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4',
+    'samples': 'VgS'
+}
+
+aliases['gstarHigh'] = {
+    'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
+    'samples': 'VgS'
 }

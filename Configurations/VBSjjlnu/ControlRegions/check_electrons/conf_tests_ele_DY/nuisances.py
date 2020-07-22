@@ -83,14 +83,14 @@ nuisances['lumi']  = {
 
 ##### Trigger Efficiency
 
-trig_syst = ['((TriggerEffWeight_'+Nlep+'l_u)/(TriggerEffWeight_'+Nlep+'l))*(TriggerEffWeight_'+Nlep+'l>0.02) + (TriggerEffWeight_'+Nlep+'l<=0.02)', '(TriggerEffWeight_'+Nlep+'l_d)/(TriggerEffWeight_'+Nlep+'l)']
+# trig_syst = ['((TriggerEffWeight_'+Nlep+'l_u)/(TriggerEffWeight_'+Nlep+'l))*(TriggerEffWeight_'+Nlep+'l>0.02) + (TriggerEffWeight_'+Nlep+'l<=0.02)', '(TriggerEffWeight_'+Nlep+'l_d)/(TriggerEffWeight_'+Nlep+'l)']
 
-nuisances['trigg']  = {
-                'name'  : 'hww_trigger_2018',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : dict((skey, trig_syst) for skey in mc),
-}
+# nuisances['trigg']  = {
+#                 'name'  : 'hww_trigger_2018',
+#                 'kind'  : 'weight',
+#                 'type'  : 'shape',
+#                 'samples'  : dict((skey, trig_syst) for skey in mc),
+# }
 
 ##### Electron Efficiency and energy scale
 
@@ -103,15 +103,15 @@ nuisances['eff_e']  = {
                 'samples'  : dict((skey, id_syst_ele) for skey in mc), 
 }
 
-ept_syst = ['1', '1']
+# ept_syst = ['1', '1']
 
 # nuisances['electronpt']  = {
 #                 'name'  : 'scale_e_2018',
 #                 'kind'  : 'tree',
 #                 'type'  : 'shape',
 #                 'samples': dict((skey, ept_syst) for skey in mc),
-#                 'folderUp'   : treeBaseDir+'Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5__ElepTup',
-#                 'folderDown' : treeBaseDir+'Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5__ElepTdo',
+#                 'folderUp'   : treeBaseDir+'Autumn18_102X_nAODv6_Full2018v6/MCl1loose2018v6__MCCorr2018v6__l2loose__l2tightOR2018v6__ElepTup',
+#                 'folderDown' : treeBaseDir+'Autumn18_102X_nAODv6_Full2018v6/MCl1loose2018v6__MCCorr2018v6__l2loose__l2tightOR2018v6__ElepTdo',
 # }
 
 
@@ -206,8 +206,8 @@ nuisances['eff_m']  = {
 #                 'samples': dict((skey, j_syst) for skey in mc),
 #                 'folderUp'   : treeBaseDir+'Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5__JESup',
 #                 'folderDown' : treeBaseDir+'Autumn18_102X_nAODv5_Full2018v5/MCl1loose2018v5__MCCorr2018v5__l2loose__l2tightOR2018v5__JESdo',
-
 # }
+
 # #if useEmbeddedDY:
 # #  for samp in DYvetosamples:
 # #    del nuisances['jes']['samples'][samp]

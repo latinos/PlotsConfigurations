@@ -166,7 +166,7 @@ samples['top'] = {    'name'   :   getSampleFiles(directory,'TTTo2L2Nu',False,'n
                                  + getSampleFiles(directory,'ST_tW_antitop_ext1',False,'nanoLatino_') # FIXME (dario) whyt is this using _ext ?
                                  + getSampleFiles(directory,'ST_tW_top_ext1',False,'nanoLatino_') , # FIXME (dario) whyt is this using _ext ?
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 6,
+                     'FilesPerJob' : 3,
                  }
 
 #addSampleWeight(samples,'top','TTTo2L2Nu',Top_pTrw)

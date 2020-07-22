@@ -3,13 +3,13 @@
 
 # # name of samples here must match keys in samples.py 
 
-mc =["DY", "top", "VV", "VVV", "VBF-V", "top", "VBS", "Wjets_LO", "Wjets_njetsLO"]
+mc =["DY", "top", "VV", "VVV", "VBF-V", "top", "VBS", "Wjets_HT", "Wjets_LO", "Wjets_njetsLO"]
 
 
 phase_spaces_boost = []
 phase_spaces_res = []
 
-for d in ["all","high","low", "all_lowvtx", "all_loweta", "all_higheta"]:
+for d in ["all","high","low"]:
     for cat in ["sig", "wjetcr", "topcr"]:
         phase_spaces_boost.append("boost_{}_dnn{}".format(cat, d))
         phase_spaces_res.append("res_{}_dnn{}".format(cat, d))
@@ -244,6 +244,7 @@ nuisances['jes_wjets']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : { 
+                    "Wjets_HT":     ['1.','1.'],
                     "Wjets_NLO":     ['1.','1.'],
                     "Wjets_LO" :     ['1.','1.'],
                     "Wjets_njetsLO": ['1.','1.'], 
