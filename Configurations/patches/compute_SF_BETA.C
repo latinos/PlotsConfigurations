@@ -24,7 +24,7 @@ class compute_SF : public multidraw::TTreeFunction {
     // Commented functions include additional argument for the choice of working poin at run time, hardcoded for now
     public:
         // compute_SF(const char* working_point, const char* year, const int nLeptons, std::string requested_SF, const int requested_lepton=0);
-        compute_SF(const char* year, const int nLeptons, std::string requested_SF, const int requested_lepton=0);
+        compute_SF(const char* year, const unsigned int nLeptons, std::string requested_SF, const unsigned int requested_lepton=0);
         const char* getName() const override { return "compute_SF"; }
         // TTreeFunction* clone() const override { return new compute_SF(working_point_, year_, nLeptons_, requested_SF_); }
         TTreeFunction* clone() const override { return new compute_SF(year_, nLeptons_, requested_SF_, requested_lepton_); }
@@ -33,13 +33,13 @@ class compute_SF : public multidraw::TTreeFunction {
 
     
     protected:
-        int nLeptons_;
+        unsigned int nLeptons_;
         const char* working_point_;
         const char* histo_name_ele_;
         const char* histo_name_mu_;
         const char* year_;
         std::string requested_SF_;
-        int requested_lepton_;
+        unsigned int requested_lepton_;
         void bindTree_(multidraw::FunctionLibrary&) override;
         FloatArrayReader* lepton_pt{};
         FloatArrayReader* lepton_eta{};
@@ -73,7 +73,7 @@ class compute_SF : public multidraw::TTreeFunction {
 
 // commented constructor is in case we want the freedom to chose working points
 // compute_SF::compute_SF(const char* working_point, const char* year, const int nLeptons, std::string requested_SF, const int requested_lepton) : TTreeFunction() {
-compute_SF::compute_SF(const char* year, const int nLeptons, std::string requested_SF, const int requested_lepton) : TTreeFunction() {
+compute_SF::compute_SF(const char* year, const unsigned int nLeptons, std::string requested_SF, const unsigned int requested_lepton) : TTreeFunction() {
 
     nLeptons_ = nLeptons;
     working_point_ = "TightObjWP";  // WP is hardcoded for now, thinking of passing it at run time for more flexibility
@@ -162,7 +162,7 @@ compute_SF::compute_SF(const char* year, const int nLeptons, std::string request
                     }
 
                     //Looking for correct eta, pt bin
-                    for(unsigned i=0;i<60;i++){
+                    for(unsigned int i=0;i<60;i++){
 
                         if(eta>=lines[i][0] && eta<=lines[i][1] && pt>=lines[i][2] && pt<=lines[i][3]){
 
@@ -485,7 +485,7 @@ double compute_SF::evaluate(unsigned){
     for(auto x : SF_vect) SF *= x;
 
     // Now for the variations, these also have to account for the recoSF
-    for(int i=0;i<nLeptons_;i++){
+    for(unsigned int i=0;i<nLeptons_;i++){
 
         SF_up.push_back( ((SF_vect[i] * reco_SF_->At(i)) + TMath::Sqrt(TMath::Power(SF_err_vect[i], 2) + TMath::Power(reco_SF_up_->At(i) - reco_SF_->At(i), 2) ))/(SF_vect[i] * reco_SF_->At(i)) );
         SF_do.push_back( ((SF_vect[i] * reco_SF_->At(i)) - TMath::Sqrt(TMath::Power(SF_err_vect[i], 2) + TMath::Power(reco_SF_do_->At(i) - reco_SF_->At(i), 2) ))/(SF_vect[i] * reco_SF_->At(i)) );
