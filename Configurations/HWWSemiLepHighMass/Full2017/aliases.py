@@ -296,11 +296,12 @@ aliases['bVetoBoosted'] = {
                 ) == 0'
 }
 aliases['bVetoResolved'] = {
-    'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] \
+    'expr': 'Sum$(idx_j1 >= 0 && idx_j2 >= 0 \
+                    && Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] \
                     && CleanJet_pt > 20 \
                     && abs(CleanJet_eta) < 2.5 \
-                    && CleanJet_jetIdx != CleanJet_jetIdx[idx_j1] \
-                    && CleanJet_jetIdx != CleanJet_jetIdx[idx_j2] \
+                    && CleanJet_jetIdx != Alt$(CleanJet_jetIdx[idx_j1], -1) \
+                    && CleanJet_jetIdx != Alt$(CleanJet_jetIdx[idx_j2], -1) \
                 ) == 0'
 }
 aliases['bVeto'] = {
@@ -343,11 +344,13 @@ aliases['bReq'] = {
 
 aliases['btagResolvedSF'] = {
     'expr': 'TMath::Exp(Sum$(TMath::Log( \
-    (CleanJet_pt > 20 && abs(CleanJet_eta) < 2.5 \
-        && CleanJet_jetIdx != CleanJet_jetIdx[idx_j1] && CleanJet_jetIdx != CleanJet_jetIdx[idx_j2]) \
-        * Jet_btagSF_shape[CleanJet_jetIdx] \
-    + 1*(CleanJet_pt<=20 || abs(CleanJet_eta)>=2.5 \
-        || CleanJet_jetIdx == CleanJet_jetIdx[idx_j1] || CleanJet_jetIdx == CleanJet_jetIdx[idx_j2]) \
+    (idx_j1 >= 0 && idx_j2 >= 0 \
+        && CleanJet_pt > 20 && abs(CleanJet_eta) < 2.5 \
+        && CleanJet_jetIdx != Alt$(CleanJet_jetIdx[idx_j1], -1) \
+        && CleanJet_jetIdx != Alt$(CleanJet_jetIdx[idx_j2], -1) \
+    )    * Jet_btagSF_shape[CleanJet_jetIdx] \
+    + 1*(idx_j1 == -1 || idx_j2 == -1 || CleanJet_pt<=20 || abs(CleanJet_eta)>=2.5 \
+        || CleanJet_jetIdx == Alt$(CleanJet_jetIdx[idx_j1], -1) || Alt$(CleanJet_jetIdx == CleanJet_jetIdx[idx_j2], -1)) \
     )))',
     'samples': mc
 }
