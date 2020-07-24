@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'DYESTIM2016_DYMVA080_v6'
+tag = 'DYESTIM2017_DYMVA080_v6'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -23,7 +23,7 @@ samplesFile = 'samples.py'
 plotFile = 'plot.py' 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 35.867
+lumi = 41.53
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
