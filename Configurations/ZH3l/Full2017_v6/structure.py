@@ -2,11 +2,6 @@
 # keys here must match keys in samples.py    
 
 # Backgrounds                  
-structure['Fake']  = {  
-                  'isSignal' : 0,
-                  'isData'   : 0 
-              }
-
 structure['Fake_e']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -32,20 +27,20 @@ structure['ZgS']  = {
                   'isData'   : 0 
                   }
 
-structure['WW']  = { 
-                  'isSignal' : 0,
-                  'isData'   : 0 
-                  }
+#structure['WW']  = { 
+#                  'isSignal' : 0,
+#                  'isData'   : 0 
+#                  }
 
-structure['WWewk']  = { 
-                  'isSignal' : 0,
-                  'isData'   : 0 
-                  }
+#structure['WWewk']  = { 
+#                  'isSignal' : 0,
+#                  'isData'   : 0 
+#                  }
 
-structure['ggWW']  = { 
-                  'isSignal' : 0,
-                  'isData'   : 0 
-                  }
+#structure['ggWW']  = { 
+#                  'isSignal' : 0,
+#                  'isData'   : 0 
+#                  }
 
 structure['WZ']  = { 
                   'isSignal' : 0,
@@ -54,8 +49,7 @@ structure['WZ']  = {
 
 structure['VVV']  = { 
                   'isSignal' : 0,
-                  'isData'   : 0, 
-                  'removeFromCuts' : ['zh3l_Zg_CR_1j']
+                  'isData'   : 0
                   }
 
 structure['ZZ']  = {
@@ -70,7 +64,8 @@ structure['ttV']  = {
 
 structure['top']  = {
                   'isSignal' : 0,
-                  'isData'   : 0    
+                  'isData'   : 0,
+                  'removeFromCuts' : ['zh3l_SR_1j','zh3l_SR_2j']
                   }
 
 # Signal
