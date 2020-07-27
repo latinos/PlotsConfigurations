@@ -1,3 +1,8 @@
+# Produce a valid VOMS proxy
+
+    voms-proxy-init -voms cms -rfc --valid 168:0
+    cmsenv
+    
 # Produce histograms
 
     mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
