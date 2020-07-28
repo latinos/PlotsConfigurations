@@ -11,7 +11,13 @@ supercut = '(   (abs(Lepton_pdgId[0])==11 && Lepton_pt[0]>35)\
             && Mtw_lep < 185 \
             '
 
-
+cuts["res_wjetcr_mu_incl"] = 'VBS_category==1 \
+                                && abs(Lepton_pdgId[0])==13 \
+                                && vjet_0_pt > 30 && vjet_1_pt > 30 \
+                                && (mjj_vjet <= 65 || mjj_vjet >= 105) \
+                                && bVeto \
+                                && whad_pt < 200 \
+                                '
 
 cuts["res_wjetcr_ele_incl"] = 'VBS_category==1 \
                                 && abs(Lepton_pdgId[0])==11 \
@@ -22,91 +28,86 @@ cuts["res_wjetcr_ele_incl"] = 'VBS_category==1 \
                                 '
 
 
-cuts["res_wjetcr_ele_incl_loweta"] = 'VBS_category==1 \
+cuts["res_wjetcr_ele_incl_cutsip"] = 'VBS_category==1 \
                                 && abs(Lepton_pdgId[0])==11 \
                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
                                 && (mjj_vjet <= 65 || mjj_vjet >= 105) \
                                 && bVeto \
                                 && whad_pt < 200 \
-                                && abs(Lepton_eta[0])< 2\
+                                && ( abs(Electron_eta[0])<1.49 || Electron_sip3d[0] <sip3d_cut ) \
                                 '
 
-cuts["res_wjetcr_ele_incl_higheta"] = 'VBS_category==1 \
+cuts["res_topcr_ele_incl"] = 'VBS_category==1 \
+                                && abs(Lepton_pdgId[0])==11 \
+                                && vjet_0_pt > 30 && vjet_1_pt > 30 \
+                                && mjj_vjet > 65 && mjj_vjet < 105 \
+                                && bReqTight \
+                                && whad_pt < 200 \
+                                '
+
+cuts["res_topcr_ele_incl_cutsip"] = 'VBS_category==1 \
+                                && abs(Lepton_pdgId[0])==11 \
+                                && vjet_0_pt > 30 && vjet_1_pt > 30 \
+                                && mjj_vjet > 65 && mjj_vjet < 105 \
+                                && bReqTight \
+                                && whad_pt < 200 \
+                                && ( abs(Electron_eta[0])<1.49 || Electron_sip3d[0] <sip3d_cut ) \
+                                '
+                                
+
+
+cuts["res_wjetcr_ele_loweta"] = 'VBS_category==1 \
                                 && abs(Lepton_pdgId[0])==11 \
                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
                                 && (mjj_vjet <= 65 || mjj_vjet >= 105) \
                                 && bVeto \
                                 && whad_pt < 200 \
-                                && abs(Lepton_eta[0]) >= 2 \
+                                && abs(Lepton_eta[0])< 1.49\
                                 '
 
-cuts["res_wjetcr_ele_incl_loweta_highnvtx"] = 'VBS_category==1 \
+cuts["res_wjetcr_ele_higheta"] = 'VBS_category==1 \
                                 && abs(Lepton_pdgId[0])==11 \
                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
                                 && (mjj_vjet <= 65 || mjj_vjet >= 105) \
                                 && bVeto \
                                 && whad_pt < 200 \
-                                && abs(Lepton_eta[0])< 2\
-                                && PV_npvs >= 25\
+                                && abs(Lepton_eta[0]) >= 1.49 \
                                 '
 
-cuts["res_wjetcr_ele_incl_higheta_highnvtx"] = 'VBS_category==1 \
+cuts["res_wjetcr_ele_higheta_cutsip"] = 'VBS_category==1 \
                                 && abs(Lepton_pdgId[0])==11 \
                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
                                 && (mjj_vjet <= 65 || mjj_vjet >= 105) \
                                 && bVeto \
                                 && whad_pt < 200 \
-                                && abs(Lepton_eta[0]) >= 2 \
-                                &&  PV_npvs >= 25\
+                                && abs(Lepton_eta[0]) >= 1.49 \
+                                && Electron_sip3d[0] <sip3d_cut \
                                 '
 
-cuts["res_wjetcr_ele_incl_loweta_lownvtx"] = 'VBS_category==1 \
+cuts["res_topcr_ele_loweta"] = 'VBS_category==1 \
                                 && abs(Lepton_pdgId[0])==11 \
                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
-                                && (mjj_vjet <= 65 || mjj_vjet >= 105) \
-                                && bVeto \
+                                && mjj_vjet > 65 && mjj_vjet < 105 \
+                                && bReqTight \
                                 && whad_pt < 200 \
-                                && abs(Lepton_eta[0])< 2\
-                                && PV_npvs < 25\
+                                && abs(Lepton_eta[0])< 1.49\
                                 '
 
-cuts["res_wjetcr_ele_incl_higheta_lownvtx"] = 'VBS_category==1 \
+cuts["res_topcr_ele_higheta"] = 'VBS_category==1 \
                                 && abs(Lepton_pdgId[0])==11 \
                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
-                                && (mjj_vjet <= 65 || mjj_vjet >= 105) \
-                                && bVeto \
+                                && mjj_vjet > 65 && mjj_vjet < 105 \
+                                && bReqTight \
                                 && whad_pt < 200 \
-                                && abs(Lepton_eta[0]) >= 2 \
-                                && PV_npvs < 25 \
+                                && abs(Lepton_eta[0]) >= 1.49 \
                                 '
 
-
-
-cuts["boost_wjetcr_ele_incl"] = 'VBS_category==0 \
-                            && abs(Lepton_pdgId[0])==11 \
-                            && vjet_0_pt > 200 \
-                            && (mjj_vjet <= 65 || mjj_vjet >= 105)  \
-                            && bVeto \
-                            '
-
-
-
-cuts["boost_wjetcr_ele_loweta"] = 'VBS_category==0 \
-                            && abs(Lepton_pdgId[0])==11 \
-                            && vjet_0_pt > 200 \
-                            && (mjj_vjet <= 65 || mjj_vjet >= 105)  \
-                            && bVeto \
-                            && abs(Lepton_eta[0])< 2 \
-                             '
-
-
-
-cuts["boost_wjetcr_ele_higheta"] = 'VBS_category==0 \
-                            && abs(Lepton_pdgId[0])==11 \
-                            && vjet_0_pt > 200 \
-                            && (mjj_vjet <= 65 || mjj_vjet >= 105)  \
-                            && bVeto \
-                            && abs(Lepton_eta[0]) >= 2 \
-                            '
-
-                   
+cuts["res_topcr_ele_higheta_cutsip"] = 'VBS_category==1 \
+                                && abs(Lepton_pdgId[0])==11 \
+                                && vjet_0_pt > 30 && vjet_1_pt > 30 \
+                                && mjj_vjet > 65 && mjj_vjet < 105 \
+                                && bReqTight \
+                                && whad_pt < 200 \
+                                && abs(Lepton_eta[0]) >= 1.49 \
+                                && Electron_sip3d[0] < sip3d_cut \
+                                '

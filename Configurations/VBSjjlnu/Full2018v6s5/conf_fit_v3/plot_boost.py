@@ -36,6 +36,7 @@ palette = {
     "DarkBlue": (8, 103, 136), #086788
     "Green": (47, 181, 85), #2fb555
     "Green2": (55, 183, 76),  #37b74c
+    "Green3": (16,235,52),#10eb34
     "LightGreen" : (82, 221, 135), #52dd87
     "Violet": (242, 67, 114), #f24372  
      "Pink": (247, 191, 223)
@@ -65,7 +66,7 @@ groupPlot['Fake']  = {
 groupPlot['Vg']  = {  
                   'nameHR' : "V#gamma+V#gamma*",
                   'isSignal' : 0,
-                  'color'    : palette["Orange"],
+                  'color'    : palette["Green3"],
                   'samples'  : ['Vg','VgS'],
                   'fill': 1001
               }

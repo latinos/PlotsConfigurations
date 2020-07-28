@@ -18,9 +18,6 @@ aliases['whad_pt'] = {
             ]           
 }
 
-aliases["sip3d_cut"]= {
-    'expr': '-2.22222*abs(Electron_eta[0]) + 6.33333'
-}
 
 aliases['gstarLow'] = {
     'expr': 'Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4',
@@ -231,11 +228,102 @@ aliases['Wtagging_SF_down'] = {
 }
 
 
-aliases["nearestEleJet"]= {
-    'class': "NearestJetDR",
-    'args': (),
+# aliases["nearestEleJet"]= {
+#     'class': "NearestJetDR",
+#     'args': (),
+#     'linesToAdd': [
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         '.L %s/conf_tests_ele/nearest_jet_dR.cc+' % conf_folder
+#     ]
+# }
+
+aliases['whad_pt_corrHEM'] = {
     'linesToAdd': [
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        '.L %s/conf_tests_ele/nearest_jet_dR.cc+' % conf_folder
-    ]
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L {}/VBSjjlnu/Full2018v6s5/corrections/HEM_issue_correction.cc+'.format(configurations)
+    ],
+    'class': 'HEMissue',
+    'args': ('whad_pt'),
+    'samples': mc
+}
+
+
+aliases['mjj_vbs_corrHEM'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L {}/VBSjjlnu/Full2018v6s5/corrections/HEM_issue_correction.cc+'.format(configurations)
+    ],
+    'class': 'HEMissue',
+    'args': ('mjj_vbs'),
+    'samples': mc
+}
+
+aliases['mjj_vjet_corrHEM'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L {}/VBSjjlnu/Full2018v6s5/corrections/HEM_issue_correction.cc+'.format(configurations)
+    ],
+    'class': 'HEMissue',
+    'args': ('mjj_vjet'),
+    'samples': mc
+}
+
+aliases['vbs_0_pt_corrHEM'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L {}/VBSjjlnu/Full2018v6s5/corrections/HEM_issue_correction.cc+'.format(configurations)
+    ],
+    'class': 'HEMissue',
+    'args': ('vbs_0_pt'),
+    'samples': mc
+}
+
+aliases['vbs_1_pt_corrHEM'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L {}/VBSjjlnu/Full2018v6s5/corrections/HEM_issue_correction.cc+'.format(configurations)
+    ],
+    'class': 'HEMissue',
+    'args': ('vbs_1_pt'),
+    'samples': mc
+}
+
+aliases['vjet_0_pt_corrHEM'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L {}/VBSjjlnu/Full2018v6s5/corrections/HEM_issue_correction.cc+'.format(configurations)
+    ],
+    'class': 'HEMissue',
+    'args': ('vjet_0_pt'),
+    'samples': mc
+}
+
+aliases['vjet_1_pt_corrHEM'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L {}/VBSjjlnu/Full2018v6s5/corrections/HEM_issue_correction.cc+'.format(configurations)
+    ],
+    'class': 'HEMissue',
+    'args': ('vjet_1_pt'),
+    'samples': mc
+}
+
+aliases['PuppiMET_pt_corrHEM'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L {}/VBSjjlnu/Full2018v6s5/corrections/HEM_issue_correction.cc+'.format(configurations)
+    ],
+    'class': 'HEMissue',
+    'args': ('MET_pt'),
+    'samples': mc
+}
+
+aliases['PuppiMET_phi_corrHEM'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L {}/VBSjjlnu/Full2018v6s5/corrections/HEM_issue_correction.cc+'.format(configurations)
+    ],
+    'class': 'HEMissue',
+    'args': ('MET_phi'),
+    'samples': mc
 }

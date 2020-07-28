@@ -21,7 +21,7 @@ variables['deltaeta_vbs'] = {   'name': 'deltaeta_vbs',
                         }    
         
 
-variables['mjj_vbs_morebins_orig'] = {   'name': 'mjj_vbs',      
+variables['mjj_vbs_morebins'] = {   'name': 'mjj_vbs',      
                         'range' : (20,200,4000) , 
                         'xaxis' : 'M_{jj} VBS', 
                         'fold' : 3,
@@ -34,86 +34,39 @@ variables['mjj_vbs_morebins_orig'] = {   'name': 'mjj_vbs',
 #                         'blind': { c:[1000,4000] for c in phase_spaces_tot if "_sig_" in c}
 #                         }
 
-variables['vbs_0_pt_orig'] = {   'name': 'vbs_0_pt',      
+variables['vbs_0_pt'] = {   'name': 'vbs_0_pt',      
                         'range' : (30,0,400),  
                         'xaxis' : 'leading VBS jet pt', 
                         'fold' : 3
                         }
 
 
-variables['vbs_1_pt_orig'] = {   'name': 'vbs_1_pt',      
+variables['vbs_1_pt'] = {   'name': 'vbs_1_pt',      
                         'range' : (30,0,400),  
                         'xaxis' : 'trailing VBS jet pt', 
                         'fold' : 3
                         } 
 
 
-variables['mjj_vjet_morebins_orig'] = {   'name': 'mjj_vjet',      
+variables['mjj_vjet_morebins'] = {   'name': 'mjj_vjet',      
                         'range' : (50,40,200),  
                         'xaxis' : 'Whad reco mass', 
                         'fold' : 3
                         }
 
 
-variables['vjet_0_pt_orig'] = {   'name': 'vjet_0_pt',      
+variables['vjet_0_pt'] = {   'name': 'vjet_0_pt',      
                         'range' : (30,30,400),  
                         'xaxis' : 'leading V-jet pt', 
                         'fold' : 3
                         }
 
-variables['vjet_1_pt_orig'] = {   'name': 'vjet_1_pt',      
+variables['vjet_1_pt'] = {   'name': 'vjet_1_pt',      
                         'range' : (30,30,200),  
                         'xaxis' : 'trailing V-jet pt', 
                         'fold' : 3
                         }
 
-#################################################
-# VBS vars
-variables['mjj_vbs_morebins'] = {   'name': 'mjj_vbs_corrHEM',      
-                        'range' : (20,200,4000) , 
-                        'xaxis' : 'M_{jj} VBS', 
-                        'fold' : 3,
-}
-
-# variables['mjj_vbs'] = {   'name': 'mjj_vbs',      
-#                         'range' : ([200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,4000],) , 
-#                         'xaxis' : 'M_{jj} VBS', 
-#                         'fold' : 3,
-#                         'blind': { c:[1000,4000] for c in phase_spaces_tot if "_sig_" in c}
-#                         }
-
-variables['vbs_0_pt'] = {   'name': 'vbs_0_pt_corrHEM',      
-                        'range' : (30,0,400),  
-                        'xaxis' : 'leading VBS jet pt', 
-                        'fold' : 3
-                        }
-
-
-variables['vbs_1_pt'] = {   'name': 'vbs_1_pt_corrHEM',      
-                        'range' : (30,0,400),  
-                        'xaxis' : 'trailing VBS jet pt', 
-                        'fold' : 3
-                        } 
-
-
-variables['mjj_vjet_morebins'] = {   'name': 'mjj_vjet_corrHEM',      
-                        'range' : (50,40,200),  
-                        'xaxis' : 'Whad reco mass', 
-                        'fold' : 3
-                        }
-
-
-variables['vjet_0_pt'] = {   'name': 'vjet_0_pt_corrHEM',      
-                        'range' : (30,30,400),  
-                        'xaxis' : 'leading V-jet pt', 
-                        'fold' : 3
-                        }
-
-variables['vjet_1_pt'] = {   'name': 'vjet_1_pt_corrHEM',      
-                        'range' : (30,30,200),  
-                        'xaxis' : 'trailing V-jet pt', 
-                        'fold' : 3
-                        }
 
 
 variables['vjet_0_eta'] = {   'name': 'vjet_0_eta',      
@@ -257,7 +210,7 @@ variables['Electron_sieie'] = { 'name': 'Electron_sieie[0]',
  
   
 variables['Electron_sip3d'] = { 'name': 'Electron_sip3d[0]',
-                                    'range' : (50,0,25),  
+                                    'range' : (60,0,20),  
                                     'xaxis' : '3D impact parameter significance wrt first PV, in cm', 
                                     'fold' : 3
                         } 

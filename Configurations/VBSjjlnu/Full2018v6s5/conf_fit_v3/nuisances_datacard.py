@@ -3,7 +3,7 @@
 
 # # name of samples here must match keys in samples.py 
 
-mc =["DY", "top", "VV", "VVV", "VBF-V", "top", "VBS", "Wjets_LO", "Wjets_njetsLO"]
+mc =["DY", "top", "VV", "VVV", "VBF-V", "top", "VBS", "Wjets_HT", "Wjets_LO", "Wjets_njetsLO"]
 
 Wjets_bins = ["jpt3","deta2_jpt2", "deta1_jpt2",
                 "deta2_jpt1","deta1_jpt1", 
@@ -12,7 +12,7 @@ Wjets_bins = ["jpt3","deta2_jpt2", "deta1_jpt2",
 phase_spaces_boost = []
 phase_spaces_res = []
 
-for d in ["all","high","low", "all_lowvtx", "all_loweta", "all_higheta"]:
+for d in ["all","high","low"]:
     for cat in ["sig", "wjetcr", "topcr"]:
         phase_spaces_boost.append("boost_{}_dnn{}".format(cat, d))
         phase_spaces_res.append("res_{}_dnn{}".format(cat, d))
@@ -247,6 +247,7 @@ nuisances['jes_wjets']  = {
                 'kind'  : 'tree',
                 'type'  : 'shape',
                 'samples'  : { 
+                    "Wjets_HT":     ['1.','1.'],
                     "Wjets_NLO":     ['1.','1.'],
                     "Wjets_LO" :     ['1.','1.'],
                     "Wjets_njetsLO": ['1.','1.'], 
@@ -471,50 +472,8 @@ nuisances['singleTopToTTbar'] = {
 # }
 
 
-#################
-## Samples normalizations
-# nuisances['Top_norm']  = {
-#                'name'  : 'CMS_Top_norm_2018',
-#                'samples'  : {
-#                    'top' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : phase_spaces_tot
-#               }
-
-
-# for wjbin in Wjets_lptbins:
-#     for fl in ["ele", "mu"]:
-#         for phs in ["res", "boost"]:
-#             nuisances["{}_norm_{}_{}_2018".format(wjbin, fl, phs )] = {
-#                 'name'  : 'CMS{}_norm_{}_{}_2018'.format(wjbin, fl, phs),
-#                 'samples'  : { wjbin: '1.00' },
-#                 'type'  : 'rateParam',
-#                 'cuts'  : [f+"_"+fl for f in phase_spaces_dict[phs]]
-#             }
-
-
-## Use the following if you want to apply the automatic combine MC stat nuisances.
-nuisances['stat']  = {
-              'type'  : 'auto',
-              'maxPoiss'  : '10',
-              'includeSignal'  : '1',
-              #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
-              #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
-              'samples' : {}
-             }
-
-
-
-for n in nuisances.values():
-    n['skipCMS'] = 1
-
-   
-#print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
-
-
-#################
-## Samples normalizations
+################
+# Samples normalizations
 nuisances['Top_norm_boost']  = {
                'name'  : 'CMS_Top_norm_boost_2018',
                'samples'  : {
@@ -535,30 +494,57 @@ nuisances['Top_norm_res']  = {
 
 
 
-regrouped_Wjets = False
 for wjbin in Wjets_bins:
     for fl in ["ele", "mu"]:
         if "boost" in wjbin:
-            nuisances["Wjets_{}_norm_{}_boost_2018".format(wjbin, fl)]  = {
+            nuisances["Wjets_{}_norm_{}_boost_2018_njets".format(wjbin, fl)]  = {
                 'name'  : 'CMS_Wjets_{}_norm_{}_boost_2018'.format(wjbin, fl),
-                'samples'  : { "Wjets_njetsLO_"+wjbin: '1.00',
+                'samples'  : { 
+                            # "Wjets_HT_"+wjbin: '1.00',
+                              "Wjets_njetsLO_"+wjbin: '1.00',
+                            #   "Wjets_LO_"+wjbin: '1.00' 
+                            },
+                'type'  : 'rateParam',
+                'cuts'  : [f+"_"+fl for f in phase_spaces_dict["boost"]]
+            }
+        else:
+            nuisances["Wjets_{}_norm_{}_res_2018_njets".format(wjbin, fl)] = {
+                'name'  : 'CMS_Wjets_{}_norm_{}_res_2018'.format(wjbin, fl),
+                'samples'  : { 
+                             # "Wjets_HT_"+wjbin: '1.00',
+                               "Wjets_njetsLO_"+wjbin: '1.00',
+                             #  "Wjets_LO_"+wjbin: '1.00' 
+                             },
+                'type'  : 'rateParam',
+                'cuts'  : [f+"_"+fl for f in phase_spaces_dict["res"]]
+            }
+           
+
+
+for wjbin in Wjets_bins:
+    for fl in ["ele", "mu"]:
+        if "boost" in wjbin:
+            nuisances["Wjets_{}_norm_{}_boost_2018_LO".format(wjbin, fl)]  = {
+                'name'  : 'CMS_Wjets_{}_norm_{}_boost_2018'.format(wjbin, fl),
+                'samples'  : { 
+                            # "Wjets_HT_"+wjbin: '1.00',
+                            #  "Wjets_njetsLO_"+wjbin: '1.00',
                                "Wjets_LO_"+wjbin: '1.00' },
                 'type'  : 'rateParam',
                 'cuts'  : [f+"_"+fl for f in phase_spaces_dict["boost"]]
             }
-            if regrouped_Wjets: 
-                nuisances["Wjets_{}_norm_{}_boost_2018".format(wjbin, fl)]['name'] = 'CMS_Wjets_norm_{}_boost_2018'.format(fl)
+           
         else:
-            nuisances["Wjets_{}_norm_{}_res_2018".format(wjbin, fl)] = {
+            nuisances["Wjets_{}_norm_{}_res_2018_LO".format(wjbin, fl)] = {
                 'name'  : 'CMS_Wjets_{}_norm_{}_res_2018'.format(wjbin, fl),
-                'samples'  : { "Wjets_njetsLO_"+wjbin: '1.00',
+                'samples'  : { 
+                             # "Wjets_HT_"+wjbin: '1.00',
+                            # "Wjets_njetsLO_"+wjbin: '1.00',
                                "Wjets_LO_"+wjbin: '1.00' },
                 'type'  : 'rateParam',
                 'cuts'  : [f+"_"+fl for f in phase_spaces_dict["res"]]
             }
-            if regrouped_Wjets: 
-                nuisances["Wjets_{}_norm_{}_res_2018".format(wjbin, fl)]['name'] = 'CMS_Wjets_norm_{}_res_2018'.format(fl)
-
+            
 
 
 
@@ -578,5 +564,4 @@ for n in nuisances.values():
     n['skipCMS'] = 1
 
    
-print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
-
+#print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))

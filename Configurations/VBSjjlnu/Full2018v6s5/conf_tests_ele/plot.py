@@ -33,6 +33,7 @@ palette = {
     "LightBlue": (153, 204, 255), #99ccff
     "MediumBlue": (72, 145, 234),  #4891ea
     "MediumBlue2": (56, 145, 224),    #3891e0
+     "Green3": (16,235,52),#10eb34
     "DarkBlue": (8, 103, 136), #086788
     "Green": (47, 181, 85), #2fb555
     "Green2": (55, 183, 76),  #37b74c
@@ -40,7 +41,6 @@ palette = {
     "Violet": (242, 67, 114), #f24372  
     "Pink": (247, 191, 223)
 }
-
 '''
     "Wjets_deta5": (247, 155, 7),#f79b07
     "Wjets_deta4": (247, 175, 7), #f7af07
@@ -64,6 +64,22 @@ groupPlot['Fake']  = {
                 'samples'  : ['Fake'],
                 'fill': 1001
             }
+
+groupPlot['Vg']  = {  
+                  'nameHR' : "V#gamma",
+                  'isSignal' : 0,
+                  'color'    : palette["Green3"],
+                  'samples'  : ['Vg'],
+                  'fill': 1001
+              }
+
+groupPlot['VgS']  = {  
+                  'nameHR' : "V#gamma*",
+                  'isSignal' : 0,
+                  'color'    : palette["Orange"],
+                  'samples'  : ['VgS'],
+                  'fill': 1001
+              }
 
 groupPlot['vbfV+VV+VVV']  = {  
                   'nameHR' : 'vbfV+VV+VVV',
@@ -134,7 +150,21 @@ plot['VV']  = {
                   'scale'    : 1.   ,
               }   
          
+plot['Vg']  = {
+                  'color': colors['kGreen']+3,  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.   ,
+              }   
+         
 
+
+plot['VgS']  = {  
+                'color': colors['kMagenta']+1,
+                'isSignal' : 0,
+                'isData'   : 0, 
+                'scale'    : 1.0,
+            }
 
 plot['DY']  = {  
                 'color': colors['kMagenta']+1,
@@ -170,14 +200,14 @@ plot['Wjets_LO'] = {
                  'color': colors['kAzure']-1,
                  'isSignal' : 0,
                  'isData'   : 0, 
-                 'scale'    : 1.0 
+                 'scale'    : 1.2497  #normalized to inclusive cut loweta
                  }
 
 plot['Wjets_njetsLO'] = {   
                  'color': colors['kAzure']-1,
                  'isSignal' : 0,
                  'isData'   : 0, 
-                 'scale'    : 1.0 
+                 'scale'    : 1.2497 #normalized to inclusive cut loweta
                  }
 
 

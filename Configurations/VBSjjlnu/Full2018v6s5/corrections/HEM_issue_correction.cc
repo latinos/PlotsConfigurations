@@ -183,10 +183,11 @@ HEMissue::setValues(UInt_t _run, UInt_t _luminosityBlock, ULong64_t _event)
     vector<ROOT::Math::PtEtaPhiMVector> corr_vbs_jets; 
     for(auto j : vbs_jets){
       float new_pt = j.Pt();
-      if ((-2.5 < j.Eta() < 1.3) && (-1.57< j.Phi() < -0.87)){
+      //cout << new_pt << " " << j.Eta() << " " << j.Phi() << endl;
+      if ((j.Eta()>-2.5 && j.Eta() < -1.3) && (j.Phi() > -1.57 && j.Phi() < -0.87)){
         new_pt *= 0.8;
       }
-      else if ((-3. < j.Eta() < -2.5) && ( -1.57 < j.Phi() < -0.87)){
+      else if ((j.Eta() > -3. &&  j.Eta() < -2.5) && (j.Phi() > -1.57 && j.Phi() < -0.87)){
         new_pt *=0.65;
       }
       corr_vbs_jets.emplace_back(new_pt, j.Eta(), j.Phi(), j.M());
@@ -235,10 +236,11 @@ HEMissue::setValues(UInt_t _run, UInt_t _luminosityBlock, ULong64_t _event)
     vector<ROOT::Math::PtEtaPhiMVector> corr_v_jets; 
     for(auto j : vbs_jets){
       float new_pt = j.Pt();
-      if ((-2.5 < j.Eta() < 1.3) && (-1.57< j.Phi() < -0.87)){
+      //cout << new_pt << " " << j.Eta() << " " << j.Phi() << endl;
+      if ((j.Eta()>-2.5 && j.Eta() < -1.3) && (j.Phi() > -1.57 && j.Phi() < -0.87)){
         new_pt *= 0.8;
       }
-      else if ((-3. < j.Eta() < -2.5) && ( -1.57 < j.Phi() < -0.87)){
+      else if ((j.Eta() > -3. &&  j.Eta() < -2.5) && (j.Phi() > -1.57 && j.Phi() < -0.87)){
         new_pt *=0.65;
       }
       corr_vbs_jets.emplace_back(new_pt, j.Eta(), j.Phi(), j.M());
@@ -246,10 +248,11 @@ HEMissue::setValues(UInt_t _run, UInt_t _luminosityBlock, ULong64_t _event)
 
     for(auto j : v_jets){
       float new_pt = j.Pt();
-      if ((-2.5 < j.Eta() < 1.3) && (-1.57< j.Phi() < -0.87)){
+      //cout << new_pt << " " << j.Eta() << " " << j.Phi() << endl;
+      if ((j.Eta()>-2.5 && j.Eta() < -1.3) && (j.Phi() > -1.57 && j.Phi() < -0.87)){
         new_pt*=0.8;
       }
-      else if ((-3. < j.Eta() < -2.5) && ( -1.57 < j.Phi() < -0.87)){
+      else if ((j.Eta() > -3. &&  j.Eta() < -2.5) && (j.Phi() > -1.57 && j.Phi() < -0.87)){
         new_pt*=0.65;
       }
       corr_v_jets.emplace_back(new_pt, j.Eta(), j.Phi(), j.M());

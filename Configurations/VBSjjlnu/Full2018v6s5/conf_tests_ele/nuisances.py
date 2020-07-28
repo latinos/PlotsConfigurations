@@ -3,7 +3,7 @@
 
 # # name of samples here must match keys in samples.py 
 
-mc =["DY", "top", "VV", "VVV", "VBF-V", "top", "VBS", "Wjets_LO", "Wjets_njetsLO"]
+mc =["DY", "top", "VV", "VVV", "VBF-V", "top","Vg", "VgS", "VBS", "Wjets_LO", "Wjets_njetsLO"]
 
 
 # phase_spaces_boost = []
@@ -197,7 +197,7 @@ nuisances['electronpt']  = {
                 'name'  : 'CMS_scale_e_2018',
                 'kind'  : 'tree',
                 'type'  : 'shape',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc),
+                'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in ["Vg", "VgS"]),
                 'folderUp'   :  directory_bkg +"_ElepTup",
                 'folderDown' : directory_bkg +"_ElepTdo"
 }
@@ -225,14 +225,14 @@ nuisances['electronpt']  = {
 
 ##### Jet energy scale
 
-nuisances['jes']  = {
-                'name'  : 'CMS_scale_j_2018',
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc ),
-                'folderUp'   : directory_bkg +"_JESup",
-                'folderDown' : directory_bkg +"_JESdo",
-}
+# nuisances['jes']  = {
+#                 'name'  : 'CMS_scale_j_2018',
+#                 'kind'  : 'tree',
+#                 'type'  : 'shape',
+#                 'samples'  : dict((skey, ['1', '1']) for skey in mc ),
+#                 'folderUp'   : directory_bkg +"_JESup",
+#                 'folderDown' : directory_bkg +"_JESdo",
+# }
 
 
 
@@ -258,14 +258,14 @@ nuisances['jes']  = {
 
 # ##### MET energy scale
 
-nuisances['met']  = {
-                'name'  : 'CMS_scale_met_2018',
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                 'samples'  : dict((skey, ['1', '1']) for skey in mc),
-                'folderUp'   : directory_bkg +"_METup",
-                'folderDown' : directory_bkg +"_METdo",
-}
+# nuisances['met']  = {
+#                 'name'  : 'CMS_scale_met_2018',
+#                 'kind'  : 'tree',
+#                 'type'  : 'shape',
+#                  'samples'  : dict((skey, ['1', '1']) for skey in mc),
+#                 'folderUp'   : directory_bkg +"_METup",
+#                 'folderDown' : directory_bkg +"_METdo",
+# }
 
 ######################
 # Theory nuisance

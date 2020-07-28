@@ -2,9 +2,9 @@
 from itertools import product, chain
 #structure = {}
 
-Wjets_bins = ["jpt3","deta2_jpt2", "deta1_jpt2",
-                "deta2_jpt1","deta1_jpt1",
-                "boost1", "boost2"]
+Wjets_bins = ["Wjets_HT_jpt3","Wjets_HT_deta2_jpt2", "Wjets_HT_deta1_jpt2",
+                "Wjets_HT_deta2_jpt1","Wjets_HT_deta1_jpt1",
+                "Wjets_HT_boost1", "Wjets_HT_boost2"]
 
 
 phase_spaces_boost = []
@@ -18,19 +18,18 @@ for fl in ["ele", "mu"]:
 
 
 for wbin in Wjets_bins:
-    for ws in ["Wjets_njetsLO","Wjets_LO"]:
-        if 'boost' in wbin:
-            structure[ws+"_"+wbin] = {
-                        'isSignal' : 0,
-                        'isData'   : 0 ,
-                        'removeFromCuts': phase_spaces_res 
-            }
-        else:
-            structure[ws+"_"+wbin] = {
-                        'isSignal' : 0,
-                        'isData'   : 0 ,
-                        'removeFromCuts': phase_spaces_boost 
-            }
+    if 'boost' in wbin:
+        structure[wbin] = {
+                    'isSignal' : 0,
+                    'isData'   : 0 ,
+                    'removeFromCuts': phase_spaces_res 
+        }
+    else:
+        structure[wbin] = {
+                    'isSignal' : 0,
+                    'isData'   : 0 ,
+                    'removeFromCuts': phase_spaces_boost 
+        }
 
 # structure['Wjets']  = {  
 #                   'isSignal' : 0,
@@ -69,6 +68,8 @@ structure['VBF-V']  = {
                   'isData'   : 0 
               }
 
+
+
 structure['Vg']  = {  
                   'isSignal' : 0,
                   'isData'   : 0 
@@ -78,6 +79,8 @@ structure['VgS']  = {
                   'isSignal' : 0,
                   'isData'   : 0 
               }
+
+
 
 structure['VBS']  = { 
                   'isSignal' : 1,

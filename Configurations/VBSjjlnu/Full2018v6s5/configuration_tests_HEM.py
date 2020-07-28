@@ -2,8 +2,8 @@
 treeName= 'Events'
 
 
-tag = 'tests_ele_HEM'
-direc = "conf_tests_ele"
+tag = 'tests_HEM'
+direc = "conf_tests_HEM"
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_'+tag 
@@ -12,10 +12,10 @@ outputDir = 'rootFile_'+tag
 aliasesFile = direc+'/aliases.py'
 
 # file with list of variables
-variablesFile = direc+'/variables_HEM.py'
+variablesFile = direc+'/variables.py'
 
 # file with list of cuts
-cutsFile = direc +'/cuts_HEM.py' 
+cutsFile = direc +'/cuts.py' 
 
 # file with list of samples
 samplesFile = direc+'/samples.py' 

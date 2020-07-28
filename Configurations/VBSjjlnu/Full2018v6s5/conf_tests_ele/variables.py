@@ -210,10 +210,79 @@ variables['Electron_sieie'] = { 'name': 'Electron_sieie[0]',
  
   
 variables['Electron_sip3d'] = { 'name': 'Electron_sip3d[0]',
-                                    'range' : (50,0,25),  
+                                    'range' : (50,0,20),  
                                     'xaxis' : '3D impact parameter significance wrt first PV, in cm', 
                                     'fold' : 3
                         } 
+
+ 
+  
+variables['Electron_sip3d_zoom'] = { 'name': 'Electron_sip3d[0]',
+                                    'range' : (30,0,3),  
+                                    'xaxis' : '3D impact parameter significance wrt first PV, in cm', 
+                                    'fold' : 0
+                        } 
+
+
+
+variables['eta_sip3d'] = { 'name': 'Electron_sip3d[0]:abs(Electron_eta[0])',
+                                    'range' : (20, 0, 2.5, 25,0,5),  
+                                    'xaxis' : 'Sip3d : |eta|', 
+                                    'fold' : 0
+                        } 
+
+
+variables['eta_sip3d_EB'] = { 'name': 'Electron_sip3d[0]:abs(Electron_eta[0])',
+                                    'range' : (10, 0, 1.49, 25,0,5),  
+                                    'xaxis' : 'Sip3d : |eta|', 
+                                    'fold' : 0
+                        } 
+
+variables['eta_sip3d_EE'] = { 'name': 'Electron_sip3d[0]:abs(Electron_eta[0])',
+                                    'range' : (10, 1.49, 2.5, 25,0,5),  
+                                    'xaxis' : 'Sip3d : |eta|', 
+                                    'fold' : 0
+                        } 
+
+
+variables['eta_sip3d_less'] = { 'name': 'Electron_sip3d[0]:abs(Electron_eta[0])',
+                                    'range' : (10, 0, 2.5, 25,0,5),  
+                                    'xaxis' : 'Sip3d : |eta|', 
+                                    'fold' : 0
+                        } 
+
+
+variables['eta_sip3d_EB_less'] = { 'name': 'Electron_sip3d[0]:abs(Electron_eta[0])',
+                                    'range' : (5, 0, 1.49, 25,0,5),  
+                                    'xaxis' : 'Sip3d : |eta|', 
+                                    'fold' : 0
+                        } 
+
+variables['eta_sip3d_EE_less'] = { 'name': 'Electron_sip3d[0]:abs(Electron_eta[0])',
+                                    'range' : (5, 1.49, 2.5, 25,0,5),  
+                                    'xaxis' : 'Sip3d : |eta|', 
+                                    'fold' : 0
+                        } 
+        
+
+# variables['eta_sip3d'] = { 'name': 'Electron_sip3d[0]:abs(Electron_eta[0])',
+#                                     'range' : (40, 0, 2.5, 25,0,5),  
+#                                     'xaxis' : 'Sip3d : |eta|', 
+#                                     'fold' : 0
+#                         } 
+
+
+# variables['eta_sip3d_EB'] = { 'name': 'Electron_sip3d[0]:abs(Electron_eta[0])',
+#                                     'range' : (30, 0, 1.49, 25,0,5),  
+#                                     'xaxis' : 'Sip3d : |eta|', 
+#                                     'fold' : 0
+#                         } 
+
+# variables['eta_sip3d_EE'] = { 'name': 'Electron_sip3d[0]:abs(Electron_eta[0])',
+#                                     'range' : (20, 1.49, 2.5, 25,0,5),  
+#                                     'xaxis' : 'Sip3d : |eta|', 
+#                                     'fold' : 0
+#                         } 
         
 
 #MET
