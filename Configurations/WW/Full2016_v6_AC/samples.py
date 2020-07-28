@@ -246,19 +246,19 @@ treeBaseDirTemp = treeBaseDir
 treeBaseDir = '/eos/user/a/amassiro/EFT/latinoPriv'
 mcDirectoryAC = makeMCDirectory()
 
-samples['WW_AC']  =  {    'name'   : nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_0-400')
-                                   + nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_400-600')
-                                   + nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_600-800')
-                                   + nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_800-Inf')
-                                   ,
-    #'weight': mcCommonWeight+embed_tautauveto + '*nllW', # temporary - nllW module not run on PS and UE variation samples
-    'weight': mcCommonWeight+embed_tautauveto + '*1', # temporary - nllW module not run on PS and UE variation samples
-    'FilesPerJob': 1
-#                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+SMWeight+'*'+ggWW_Scale+'*'+EWK_corr,
-#                     'linesToAdd' : ['.L '+os.environ['CMSSW_BASE'].replace('/storage_mnt/storage','')+'/src/PlotsConfigurations/Configurations/WW/Full2016_ACReco/onTheFly/addEWKcorr.C+', 'initaddEWKcorr("'+os.environ['CMSSW_BASE'].replace('/storage_mnt/storage','')+'/src/PlotsConfigurations/Configurations/WW/Full2016_ACReco/onTheFly/WW_EWK_Corr.root","ratio_Ptlm")'],
-#                      'suppressNegative':['all'],
-#                      'suppressNegativeNuisances' :['all'],
-                  }
+#samples['WW_AC']  =  {    'name'   : nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_0-400')
+                                   #+ nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_400-600')
+                                   #+ nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_600-800')
+                                   #+ nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_800-Inf')
+                                   #,
+    ##'weight': mcCommonWeight+embed_tautauveto + '*nllW', # temporary - nllW module not run on PS and UE variation samples
+    #'weight': mcCommonWeight+embed_tautauveto + '*1', # temporary - nllW module not run on PS and UE variation samples
+    #'FilesPerJob': 1
+##                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+SMWeight+'*'+ggWW_Scale+'*'+EWK_corr,
+##                     'linesToAdd' : ['.L '+os.environ['CMSSW_BASE'].replace('/storage_mnt/storage','')+'/src/PlotsConfigurations/Configurations/WW/Full2016_ACReco/onTheFly/addEWKcorr.C+', 'initaddEWKcorr("'+os.environ['CMSSW_BASE'].replace('/storage_mnt/storage','')+'/src/PlotsConfigurations/Configurations/WW/Full2016_ACReco/onTheFly/WW_EWK_Corr.root","ratio_Ptlm")'],
+##                      'suppressNegative':['all'],
+##                      'suppressNegativeNuisances' :['all'],
+                  #}
 
 
 
@@ -328,6 +328,96 @@ samples['quadratic_cHB']  =  {'name'   : nanoGetSampleFiles(mcDirectoryAC,'WWTo2
 #
 # cHB <-> cB ???
 #
+
+
+
+
+
+samples['linear_cW']  =  {'name'   : nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_0-400')
+                                      + nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_400-600')
+                                      + nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_600-800')
+                                      + nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_800-Inf')
+                                   ,
+    #                                                              
+    #    LHEReweightingWeight[6]  = +2    =   x1
+    #    LHEReweightingWeight[16] = -2    =   x2
+    #
+    'weight': mcCommonWeight+embed_tautauveto + ' * (  (2*2 * LHEReweightingWeight[6] - 2*2 * LHEReweightingWeight[16])/2/2/(2+2) )',
+    'FilesPerJob': 1
+}
+
+
+
+samples['quadratic_cW']  =  {'name'   : nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_0-400')
+                                      + nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_400-600')
+                                      + nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_600-800')
+                                      + nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_800-Inf')
+                                      + nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu')
+                                   ,
+    #                                                              
+    #    LHEReweightingWeight[6]  = +2    =   x1
+    #    LHEReweightingWeight[16] = -2    =   x2
+    #
+    'weight': mcCommonWeight+embed_tautauveto 
+    'weights' : [ 
+          ' (  (2* LHEReweightingWeight[16] + 2* LHEReweightingWeight[6])/2/2/(2+2) )',
+          ' (  (2* LHEReweightingWeight[16] + 2* LHEReweightingWeight[6])/2/2/(2+2) )',
+          ' (  (2* LHEReweightingWeight[16] + 2* LHEReweightingWeight[6])/2/2/(2+2) )',
+          ' (  (2* LHEReweightingWeight[16] + 2* LHEReweightingWeight[6])/2/2/(2+2) )',
+          ' (  - 1. /2/2 )'
+          ]
+    'FilesPerJob': 1
+}
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+samples['linear_cWW']  =  {'name'   : nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_0-400')
+                                      + nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_400-600')
+                                      + nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_600-800')
+                                      + nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_800-Inf')
+                                   ,
+    #                                                              
+    #    LHEReweightingWeight[36] = +1.5    =   x1
+    #    LHEReweightingWeight[86] = -1.5    =   x2
+    #
+    'weight': mcCommonWeight+embed_tautauveto + ' * (  (1.5*1.5 * LHEReweightingWeight[36] - 1.5*1.5 * LHEReweightingWeight[86])/1.5/1.5/(1.5+1.5) )',
+    'FilesPerJob': 1
+}
+
+
+
+samples['quadratic_cWW']  =  {'name'   : nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_0-400')
+                                      + nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_400-600')
+                                      + nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_600-800')
+                                      + nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_800-Inf')
+                                      + nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu')
+                                   ,
+    #                                                              
+    #    LHEReweightingWeight[36] = +1.5    =   x1
+    #    LHEReweightingWeight[86] = -1.5    =   x2
+    #
+    'weight': mcCommonWeight+embed_tautauveto 
+    'weights' : [ 
+          ' (  (1.5* LHEReweightingWeight[86] + 1.5* LHEReweightingWeight[36])/1.5/1.5/(1.5+1.5) )',
+          ' (  (1.5* LHEReweightingWeight[86] + 1.5* LHEReweightingWeight[36])/1.5/1.5/(1.5+1.5) )',
+          ' (  (1.5* LHEReweightingWeight[86] + 1.5* LHEReweightingWeight[36])/1.5/1.5/(1.5+1.5) )',
+          ' (  (1.5* LHEReweightingWeight[86] + 1.5* LHEReweightingWeight[36])/1.5/1.5/(1.5+1.5) )',
+          ' (  - 1. /1.5/1.5 )'
+          ]
+    'FilesPerJob': 1
+}
+    
+    
+    
+    
+    
 
 
 treeBaseDir = treeBaseDirTemp

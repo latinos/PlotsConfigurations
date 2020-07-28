@@ -11,28 +11,13 @@ How to run the analysis.
 
     mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=10
 
-    
-    condor_submit /afs/cern.ch/user/a/amassiro/work/Latinos/Framework/Postprocessing/jobs/mkShapes__WW2016_v6_AC/mkShapes__WW2016_v6_AC__ALL__top.91.jds
-    condor_submit /afs/cern.ch/user/a/amassiro/work/Latinos/Framework/Postprocessing/jobs/mkShapes__WW2016_v6_AC/mkShapes__WW2016_v6_AC__ALL__Dyemb.12.jds
-    condor_submit /afs/cern.ch/user/a/amassiro/work/Latinos/Framework/Postprocessing/jobs/mkShapes__WW2016_v6_AC/mkShapes__WW2016_v6_AC__ALL__WW_AC.8.jds
-    condor_submit /afs/cern.ch/user/a/amassiro/work/Latinos/Framework/Postprocessing/jobs/mkShapes__WW2016_v6_AC/mkShapes__WW2016_v6_AC__ALL__WW_AC.7.jds
-    condor_submit /afs/cern.ch/user/a/amassiro/work/Latinos/Framework/Postprocessing/jobs/mkShapes__WW2016_v6_AC/mkShapes__WW2016_v6_AC__ALL__WW_AC.6.jds
-    condor_submit /afs/cern.ch/user/a/amassiro/work/Latinos/Framework/Postprocessing/jobs/mkShapes__WW2016_v6_AC/mkShapes__WW2016_v6_AC__ALL__WW_AC.5.jds
-    condor_submit /afs/cern.ch/user/a/amassiro/work/Latinos/Framework/Postprocessing/jobs/mkShapes__WW2016_v6_AC/mkShapes__WW2016_v6_AC__ALL__WW_AC.4.jds
-    condor_submit /afs/cern.ch/user/a/amassiro/work/Latinos/Framework/Postprocessing/jobs/mkShapes__WW2016_v6_AC/mkShapes__WW2016_v6_AC__ALL__WW_AC.3.jds
-    condor_submit /afs/cern.ch/user/a/amassiro/work/Latinos/Framework/Postprocessing/jobs/mkShapes__WW2016_v6_AC/mkShapes__WW2016_v6_AC__ALL__WW_AC.2.jds
-    condor_submit /afs/cern.ch/user/a/amassiro/work/Latinos/Framework/Postprocessing/jobs/mkShapes__WW2016_v6_AC/mkShapes__WW2016_v6_AC__ALL__WW_AC.1.jds
-    condor_submit /afs/cern.ch/user/a/amassiro/work/Latinos/Framework/Postprocessing/jobs/mkShapes__WW2016_v6_AC/mkShapes__WW2016_v6_AC__ALL__WW_AC.0.jds
-
-
 
 # Run a postprocessing script for the correct treatment of DY embedded uncertainties
 
     python scripts/mkDYvetoUnc.py configuration.py
 
     ----> what is this about???
- 
- 
+
  
 # Make plots:
 
