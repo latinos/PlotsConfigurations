@@ -8,7 +8,7 @@ tag = 'ggH2017v6_STXS_XSest'
 outputDir = 'rootFile_'+tag
 
 # file with TTree aliases
-#aliasesFile = 'aliases.py'
+aliasesFile = 'aliases.py'
 
 # file with list of variables
 variablesFile = 'variables_XSest.py'
