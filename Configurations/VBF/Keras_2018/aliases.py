@@ -247,3 +247,10 @@ aliases['SFweightMuDown'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Do',
     'samples': mc
 }
+
+aliases['Weight2MINLO'] = {
+    'class': 'Weight2MINLO',
+    'args': '%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE'),
+    'linesToAdd': ['.L %s/Differential/weight2MINLO.cc+' % configurations],
+    'samples' : [skey for skey in samples if 'ggH_hww' in skey],
+}
