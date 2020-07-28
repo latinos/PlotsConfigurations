@@ -13,7 +13,9 @@
 
 # Data-driven DY estimation
 
+    mkDYestim_data.py --pycfg=configuration.py --dycfg=dyestim_qqH.py --inputFile=rootFile/plots_qqH2016_v6.root
     mkDYestim_data.py --pycfg=configuration.py --dycfg=dyestim_qqH.py --inputFile=rootFile/plots_qqH2017_v6.root
+    mkDYestim_data.py --pycfg=configuration.py --dycfg=dyestim_qqH.py --inputFile=rootFile/plots_qqH2018_v6.root
 
 # Make datacards
 
