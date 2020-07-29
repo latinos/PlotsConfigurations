@@ -7,6 +7,9 @@ How to run the analysis.
 
     mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=workday
 
+    ls -alrth /afs/cern.ch/user/a/amassiro/work/Latinos/Framework/Postprocessing/jobs/mkShapes__WW2016_v6_AC/mkShapes__WW2016_v6_AC__*.jid | awk '{print "condor_submit " $9}'  | sed 's/jid/jds/'
+
+    
 # Hadd the root files:
 
     mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=10

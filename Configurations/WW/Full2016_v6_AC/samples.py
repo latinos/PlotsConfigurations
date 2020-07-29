@@ -312,18 +312,21 @@ samples['quadratic_cHB']  =  {'name'   : nanoGetSampleFiles(mcDirectoryAC,'WWTo2
     #    LHEReweightingWeight[0] = +10   =   x1
     #    LHEReweightingWeight[2] = -10   =   x2
     #
-    'weight': mcCommonWeight+embed_tautauveto 
-    'weights' : [ 
-          ' (  (10* LHEReweightingWeight[2] + 10* LHEReweightingWeight[0])/10/10/(10+10) )',
-          ' (  (10* LHEReweightingWeight[2] + 10* LHEReweightingWeight[0])/10/10/(10+10) )',
-          ' (  (10* LHEReweightingWeight[2] + 10* LHEReweightingWeight[0])/10/10/(10+10) )',
-          ' (  (10* LHEReweightingWeight[2] + 10* LHEReweightingWeight[0])/10/10/(10+10) )',
-          ' (  - 1. /10/10 )'
-          ]
+    'weight': mcCommonWeight+embed_tautauveto ,
     'FilesPerJob': 1
 }
 
 
+
+addSampleWeight(samples, 'quadratic_cHB', 'WWTo2L2Nu_aTGC_0-400',   '(10* LHEReweightingWeight[2] + 10* LHEReweightingWeight[0])/10/10/(10+10)')
+addSampleWeight(samples, 'quadratic_cHB', 'WWTo2L2Nu_aTGC_400-600', '(10* LHEReweightingWeight[2] + 10* LHEReweightingWeight[0])/10/10/(10+10)')
+addSampleWeight(samples, 'quadratic_cHB', 'WWTo2L2Nu_aTGC_600-800', '(10* LHEReweightingWeight[2] + 10* LHEReweightingWeight[0])/10/10/(10+10)')
+addSampleWeight(samples, 'quadratic_cHB', 'WWTo2L2Nu_aTGC_800-Inf', '(10* LHEReweightingWeight[2] + 10* LHEReweightingWeight[0])/10/10/(10+10)')
+addSampleWeight(samples, 'quadratic_cHB', 'WWTo2L2Nu', '(  - 1. /10/10 )')
+    
+    
+    
+    
 
 #
 # cHB <-> cB ???
@@ -358,16 +361,18 @@ samples['quadratic_cW']  =  {'name'   : nanoGetSampleFiles(mcDirectoryAC,'WWTo2L
     #    LHEReweightingWeight[6]  = +2    =   x1
     #    LHEReweightingWeight[16] = -2    =   x2
     #
-    'weight': mcCommonWeight+embed_tautauveto 
-    'weights' : [ 
-          ' (  (2* LHEReweightingWeight[16] + 2* LHEReweightingWeight[6])/2/2/(2+2) )',
-          ' (  (2* LHEReweightingWeight[16] + 2* LHEReweightingWeight[6])/2/2/(2+2) )',
-          ' (  (2* LHEReweightingWeight[16] + 2* LHEReweightingWeight[6])/2/2/(2+2) )',
-          ' (  (2* LHEReweightingWeight[16] + 2* LHEReweightingWeight[6])/2/2/(2+2) )',
-          ' (  - 1. /2/2 )'
-          ]
+    'weight': mcCommonWeight+embed_tautauveto ,
     'FilesPerJob': 1
 }
+  
+  
+    
+addSampleWeight(samples, 'quadratic_cW', 'WWTo2L2Nu_aTGC_0-400',   '(2* LHEReweightingWeight[16] + 2* LHEReweightingWeight[6])/2/2/(2+2)')
+addSampleWeight(samples, 'quadratic_cW', 'WWTo2L2Nu_aTGC_400-600', '(2* LHEReweightingWeight[16] + 2* LHEReweightingWeight[6])/2/2/(2+2)')
+addSampleWeight(samples, 'quadratic_cW', 'WWTo2L2Nu_aTGC_600-800', '(2* LHEReweightingWeight[16] + 2* LHEReweightingWeight[6])/2/2/(2+2)')
+addSampleWeight(samples, 'quadratic_cW', 'WWTo2L2Nu_aTGC_800-Inf', '(2* LHEReweightingWeight[16] + 2* LHEReweightingWeight[6])/2/2/(2+2)')
+addSampleWeight(samples, 'quadratic_cW', 'WWTo2L2Nu', '(  - 1. /2/2 )')
+    
     
     
     
@@ -378,7 +383,7 @@ samples['quadratic_cW']  =  {'name'   : nanoGetSampleFiles(mcDirectoryAC,'WWTo2L
     
 
 
-samples['linear_cWW']  =  {'name'   : nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_0-400')
+samples['linear_cWW']  =  {'name'   :   nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_0-400')
                                       + nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_400-600')
                                       + nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_600-800')
                                       + nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_800-Inf')
@@ -394,26 +399,24 @@ samples['linear_cWW']  =  {'name'   : nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2N
 
 
 samples['quadratic_cWW']  =  {'name'   : nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_0-400')
-                                      + nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_400-600')
-                                      + nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_600-800')
-                                      + nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_800-Inf')
-                                      + nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu')
+                                       + nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_400-600')
+                                       + nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_600-800')
+                                       + nanoGetSampleFiles(mcDirectoryAC,'WWTo2L2Nu_aTGC_800-Inf')
+                                       + nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu')
                                    ,
     #                                                              
     #    LHEReweightingWeight[36] = +1.5    =   x1
     #    LHEReweightingWeight[86] = -1.5    =   x2
     #
-    'weight': mcCommonWeight+embed_tautauveto 
-    'weights' : [ 
-          ' (  (1.5* LHEReweightingWeight[86] + 1.5* LHEReweightingWeight[36])/1.5/1.5/(1.5+1.5) )',
-          ' (  (1.5* LHEReweightingWeight[86] + 1.5* LHEReweightingWeight[36])/1.5/1.5/(1.5+1.5) )',
-          ' (  (1.5* LHEReweightingWeight[86] + 1.5* LHEReweightingWeight[36])/1.5/1.5/(1.5+1.5) )',
-          ' (  (1.5* LHEReweightingWeight[86] + 1.5* LHEReweightingWeight[36])/1.5/1.5/(1.5+1.5) )',
-          ' (  - 1. /1.5/1.5 )'
-          ]
+    'weight': mcCommonWeight+embed_tautauveto ,
     'FilesPerJob': 1
 }
     
+addSampleWeight(samples, 'quadratic_cWW', 'WWTo2L2Nu_aTGC_0-400',   '(1.5* LHEReweightingWeight[86] + 1.5* LHEReweightingWeight[36])/1.5/1.5/(1.5+1.5)')
+addSampleWeight(samples, 'quadratic_cWW', 'WWTo2L2Nu_aTGC_400-600', '(1.5* LHEReweightingWeight[86] + 1.5* LHEReweightingWeight[36])/1.5/1.5/(1.5+1.5)')
+addSampleWeight(samples, 'quadratic_cWW', 'WWTo2L2Nu_aTGC_600-800', '(1.5* LHEReweightingWeight[86] + 1.5* LHEReweightingWeight[36])/1.5/1.5/(1.5+1.5)')
+addSampleWeight(samples, 'quadratic_cWW', 'WWTo2L2Nu_aTGC_800-Inf', '(1.5* LHEReweightingWeight[86] + 1.5* LHEReweightingWeight[36])/1.5/1.5/(1.5+1.5)')
+addSampleWeight(samples, 'quadratic_cWW', 'WWTo2L2Nu', '(  - 1. /2/2 )')
     
     
     
