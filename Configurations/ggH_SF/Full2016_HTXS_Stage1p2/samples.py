@@ -33,12 +33,14 @@ except NameError:
 #mcProduction = 'Summer16_102X_nAODv5_SigOnly_Full2016v5'
 mcProduction = 'Summer16_102X_nAODv5_Full2016v6'
 
+fakeReco = 'Run2016_102X_nAODv5_Full2016v6_ForNewWPs'
+
 dataReco = 'Run2016_102X_nAODv5_Full2016v6'
 
 #mcSteps = 'MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5{var}'
 mcSteps = 'MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6{var}'
 
-fakeSteps = 'DATAl1loose2016v6__l2loose__fakeW'
+fakeSteps = 'DATAl1loose2016v6__l2loose__fakeW__DYMVA'
 
 dataSteps = 'DATAl1loose2016v6__l2loose__l2tightOR2016v6'
 
