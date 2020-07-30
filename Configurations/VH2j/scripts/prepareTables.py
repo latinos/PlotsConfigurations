@@ -40,11 +40,16 @@ list_datacards = {}
 #list_datacards [ '2018_mll_VH_2j_emu'      ] = [ '../Full2018_v6/datacards/VH_2j_emu/mll/datacard.txt',      'True'  ]
 #list_datacards [ '2018_mll_VH_2j_DYtautau' ] = [ '../Full2018_v6/datacards/VH_2j_DYtautau/mll/datacard.txt', 'False' ]
 
-#                 name                                               datacard                                                       blind
-list_datacards [ 'hww2l2v_13TeV_2j_vbf_ee' ] = [ '../../qqH_SF/Full2017_v6/datacards/hww2l2v_13TeV_2j_vbf_ee/events/datacard.txt', 'False' ]
-list_datacards [ 'hww2l2v_13TeV_2j_vbf_mm' ] = [ '../../qqH_SF/Full2017_v6/datacards/hww2l2v_13TeV_2j_vbf_mm/events/datacard.txt', 'False' ]
-list_datacards [ 'hww2l2v_13TeV_2j_vh_ee'  ] = [ '../../qqH_SF/Full2017_v6/datacards/hww2l2v_13TeV_2j_vh_ee/events/datacard.txt',  'False' ]
-list_datacards [ 'hww2l2v_13TeV_2j_vh_mm'  ] = [ '../../qqH_SF/Full2017_v6/datacards/hww2l2v_13TeV_2j_vh_mm/events/datacard.txt',  'False' ]
+#                 name                                               datacard                                                                blind
+#list_datacards [ '2017_v6_hww2l2v_13TeV_2j_vbf_ee' ] = [ '../../qqH_SF/Full2017_v6/datacards/hww2l2v_13TeV_2j_vbf_ee/events/datacard.txt', 'False' ]
+#list_datacards [ '2017_v6_hww2l2v_13TeV_2j_vbf_mm' ] = [ '../../qqH_SF/Full2017_v6/datacards/hww2l2v_13TeV_2j_vbf_mm/events/datacard.txt', 'False' ]
+#list_datacards [ '2017_v6_hww2l2v_13TeV_2j_vh_ee'  ] = [ '../../qqH_SF/Full2017_v6/datacards/hww2l2v_13TeV_2j_vh_ee/events/datacard.txt',  'False' ]
+#list_datacards [ '2017_v6_hww2l2v_13TeV_2j_vh_mm'  ] = [ '../../qqH_SF/Full2017_v6/datacards/hww2l2v_13TeV_2j_vh_mm/events/datacard.txt',  'False' ]
+
+list_datacards [ '2018_v6_hww2l2v_13TeV_2j_vbf_ee' ] = [ '../../qqH_SF/Full2018_v6/datacards/hww2l2v_13TeV_2j_vbf_ee/events/datacard.txt', 'False' ]
+list_datacards [ '2018_v6_hww2l2v_13TeV_2j_vbf_mm' ] = [ '../../qqH_SF/Full2018_v6/datacards/hww2l2v_13TeV_2j_vbf_mm/events/datacard.txt', 'False' ]
+list_datacards [ '2018_v6_hww2l2v_13TeV_2j_vh_ee'  ] = [ '../../qqH_SF/Full2018_v6/datacards/hww2l2v_13TeV_2j_vh_ee/events/datacard.txt',  'False' ]
+list_datacards [ '2018_v6_hww2l2v_13TeV_2j_vh_mm'  ] = [ '../../qqH_SF/Full2018_v6/datacards/hww2l2v_13TeV_2j_vh_mm/events/datacard.txt',  'False' ]
 
 for datacardName, datacard in list_datacards.iteritems() :
   print ""

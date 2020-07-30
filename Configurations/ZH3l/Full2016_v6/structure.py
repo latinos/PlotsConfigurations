@@ -2,11 +2,6 @@
 # keys here must match keys in samples.py    
 
 # Backgrounds                  
-structure['Fake']  = {  
-                  'isSignal' : 0,
-                  'isData'   : 0 
-              }
-
 structure['Fake_e']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -33,20 +28,20 @@ structure['ZgS']  = {
                   'removeFromCuts' : ['zh3l_SR_2j_met']
                   }
 
-structure['WW']  = { 
-                  'isSignal' : 0,
-                  'isData'   : 0 
-                  }
+#structure['WW']  = { 
+#                  'isSignal' : 0,
+#                  'isData'   : 0 
+#                  }
 
-structure['WWewk']  = { 
-                  'isSignal' : 0,
-                  'isData'   : 0 
-                  }
+#structure['WWewk']  = { 
+#                  'isSignal' : 0,
+#                  'isData'   : 0 
+#                  }
 
-structure['ggWW']  = { 
-                  'isSignal' : 0,
-                  'isData'   : 0 
-                  }
+#structure['ggWW']  = { 
+#                  'isSignal' : 0,
+#                  'isData'   : 0 
+#                  }
 
 structure['WZ']  = { 
                   'isSignal' : 0,
@@ -70,13 +65,15 @@ structure['ttV']  = {
 
 structure['top']  = {
                   'isSignal' : 0,
-                  'isData'   : 0    
+                  'isData'   : 0, 
+                  'removeFromCuts' : ['zh3l_WZ_CR_2j','zh3l_SR_1j','zh3l_SR_2j']
                   }
 
 # Signal
 structure['WH_hww'] = {
                   'isSignal' : 1,
-                  'isData'   : 0    
+                  'isData'   : 0,
+                  'removeFromCuts' : ['zh3l_SR_2j']    
                   }
 
 structure['ZH_hww'] = {
@@ -96,7 +93,8 @@ structure['ttH_hww'] = {
 
 structure['WH_htt'] = {
                   'isSignal' : 1,
-                  'isData'   : 0    
+                  'isData'   : 0,
+                  'removeFromCuts' : ['zh3l_SR_2j']    
                   }
 
 structure['ZH_htt'] = {

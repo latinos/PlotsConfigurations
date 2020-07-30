@@ -211,6 +211,12 @@ aliases['SFweightMuDown'] = {
     'samples': mc
 }
 
+aliases['Weight2MINLO'] = {
+    'linesToAdd': ['.L %s/Differential/weight2MINLO.cc+' % configurations],
+    'class': 'Weight2MINLO',
+    'args': '%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE'),
+    'samples' : [skey for skey in samples if 'ggH_hww' in skey],
+}
 # GGHUncertaintyProducer wasn't run for 2017 nAODv5 non-private
 thus = [
     'ggH_mu',
