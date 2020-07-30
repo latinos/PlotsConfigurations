@@ -20,16 +20,16 @@ structure['Fake']  = {
                   'isData'   : 0 
               }
 
-structure['Fake_em']  = {  
+structure['Fake_e']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'removeFromCuts' : [ k for k in cuts if 'me' in k],
+#                  'removeFromCuts' : [ k for k in cuts if 'me' in k],
               }
 
-structure['Fake_me']  = {  
+structure['Fake_m']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'removeFromCuts' : [ k for k in cuts if 'em' in k],
+#                  'removeFromCuts' : [ k for k in cuts if 'em' in k],
               }
 
 structure['ttbar'] = {   
@@ -130,12 +130,7 @@ structure['ggH_hww'] = {
                   'isSignal' : 0,
                   'isData'   : 0    
                   }
-'''
-structure['qqH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
-'''
+
 structure['qqH_hww'] = {
                   'isSignal' : 0,
                   'isData'   : 0    

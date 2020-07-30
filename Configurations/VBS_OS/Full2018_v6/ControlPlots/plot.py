@@ -122,7 +122,7 @@ plot['DY']  = {
               }
 
 
-plot['Fake_e']  = {  
+plot['Fake_m']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
