@@ -1,4 +1,4 @@
-# Configuration file to produce initial root files -- has both merged and binned ggH samples
+# qqH_SF configuration file
 
 treeName = 'Events'
 
@@ -27,7 +27,7 @@ lumi = 59.74
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plots_sr_'+tag
+outputDirPlots = 'plots_' + tag
 
 # used by mkDatacards to define output directory for datacards
 outputDirDatacard = 'datacards'
