@@ -348,8 +348,8 @@ aliases['nCleanGenJet'] = {
 
 # GGHUncertaintyProducer wasn't run for 2016 nAODv5 non-private
 thus = [
-    'ggH_mu',
-    'ggH_res',
+#    'ggH_mu',
+#    'ggH_res',
     'ggH_mig01',
     'ggH_mig12',
     'ggH_VBF2j',
