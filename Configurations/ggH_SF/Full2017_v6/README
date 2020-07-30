@@ -58,7 +58,7 @@ python ../../../../LatinoAnalysis/ShapeAnalysis/scripts/mkTable.py fitDiagnostic
 
 STEP 7: Plot
 mkPlot.py --pycfg=configuration --inputFile=rootFile/plots_ --minLogCratio=0.1 --maxLogCratio=1000 --logOnly --fileFormats=png --onlyPlot=cratio
-mkPlot.py --pycfg=configuration --inputFile=rootFile/plots_ggH2017_v6.root --linearOnly --fileFormats=png --onlyPlot=cratio
+mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_ggH2017_v6.root --linearOnly --fileFormats=png --onlyPlot=cratio
 
 #Make impacts
 text2workspace.py datacard.txt -o workspace.root
