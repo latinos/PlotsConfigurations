@@ -82,6 +82,26 @@ aliases['Top_pTrw'] = {
     'samples': ['top']
 }
 
+aliases['nCleanGenJet'] = {
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'CountGenJet',
+    'samples': mc
+}
+
+handle = open('%s/src/PlotsConfigurations/Configurations/patches/DYrew.py' % os.getenv('CMSSW_BASE'),'r')
+exec(handle)
+handle.close()
+aliases['DY_NLO_pTllrw'] = {
+    #'expr': '1',
+    'expr': '('+DYrew['2016']['NLO'].replace('x', 'gen_ptll')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
+    'samples': ['DY']
+}
+aliases['DY_LO_pTllrw'] = {
+    #'expr': '1',
+    'expr': '('+DYrew['2016']['LO'].replace('x', 'gen_ptll')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
+    'samples': ['DY']
+}
+
 # Jet bins
 # using Alt$(CleanJet_pt[n], 0) instead of Sum$(CleanJet_pt >= 30) because jet pt ordering is not strictly followed in JES-varied samples
 
@@ -111,11 +131,12 @@ aliases['bReq'] = {
 # CR definitions
 
 aliases['topcr'] = {
-    'expr': 'mtw2>30 && mll>50 && ((zeroJet && !bVeto) || bReq)'
+#    'expr': 'mtw2>30 && mll>50 && ((zeroJet && !bVeto) || bReq)'
+    'expr': 'mll>50 && ((zeroJet && !bVeto) || bReq)'
 }
 
 aliases['dycr'] = {
-    'expr': 'mth<60 && mll>70 && mll<120 && bVeto'
+    'expr': 'mth<60 && bVeto'
 }
 
 aliases['wwcr'] = {
@@ -125,8 +146,8 @@ aliases['wwcr'] = {
 # SR definition
 
 aliases['sr'] = {
-    'expr': 'mth>60 && mtw2>30 && bVeto'
-    #'expr': 'mtw2>30 && bVeto'
+#    'expr': 'mth>60 && mtw2>30 && bVeto'
+    'expr': 'mth>60 && bVeto'
 }
 
 aliases['centralVeto'] = {
@@ -212,16 +233,16 @@ aliases['SFweightMuDown'] = {
 }
 
 
-# In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
+# In WpWmJJ_EWK and WpWmJJ_QCD events, partons [0] and [1] are always the decay products of the first W
 aliases['lhe_mW1'] = {
     'expr': 'TMath::Sqrt(2. * LHEPart_pt[0] * LHEPart_pt[1] * (TMath::CosH(LHEPart_eta[0] - LHEPart_eta[1]) - TMath::Cos(LHEPart_phi[0] - LHEPart_phi[1])))',
-    'samples': ['WWewk']
+    'samples': ['WWewk', 'WW']
 }
 
 # and [2] [3] are the second W
 aliases['lhe_mW2'] = {
     'expr': 'TMath::Sqrt(2. * LHEPart_pt[2] * LHEPart_pt[3] * (TMath::CosH(LHEPart_eta[2] - LHEPart_eta[3]) - TMath::Cos(LHEPart_phi[2] - LHEPart_phi[3])))',
-    'samples': ['WWewk']
+    'samples': ['WWewk', 'WW']
 }
 
 # use HTXS_njets30 when moving to NanoAODv5 for all trees

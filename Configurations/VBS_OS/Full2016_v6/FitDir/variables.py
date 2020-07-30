@@ -14,14 +14,14 @@ variables['events']  = {   'name': '1',
                          'fold' : 3
                         }
 
-variables['mjj_vs_mTi']  = {   'name': 'mjj:mTi',            #   variable name    
-                        'range' : ([100,250,400,600,1000],[500,700,1000,1300,1600,2000],),    #   variable range
-                        'xaxis' : 'mjj:mTi',  #   x axis name
+variables['mjj']  = {   'name': 'mjj',            #   variable name    
+                        'range' : (10,500,3000),    #   variable range
+                        'xaxis' : 'm_{jj} [GeV]',  #   x axis name
                         'fold' :3
                         }
 
-variables['mjj']  = {   'name': 'mjj',            #   variable name    
-                        'range' : (10,500,3000),    #   variable range
+variables['mjj_merged']  = {   'name': 'mjj',            #   variable name    
+                        'range' : ([500, 750., 1000., 1500., 2000., 3000],),    #   variable range
                         'xaxis' : 'm_{jj} [GeV]',  #   x axis name
                         'fold' :3
                         }

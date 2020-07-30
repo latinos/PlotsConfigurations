@@ -4,7 +4,7 @@ supercut = '   Lepton_pt[0]>25 \
             && Lepton_pt[1]>13 \
             && (nLepton>=2 && Alt$(Lepton_pt[2],0)<10) \
             && abs(Lepton_eta[0])<2.5 && abs(Lepton_eta[1])<2.5 \
-            && ptll>50 \
+            && ptll>30 \
             && PuppiMET_pt > 20 \
             && mjj > 500 \
             && detajj > 3.5 \

@@ -92,20 +92,20 @@ nuisances['lumi_Ghosts'] = {
 
 #### FAKES
 
-nuisances['fake_syst_em'] = {
-    'name': 'CMS_fake_syst_em',
+nuisances['fake_syst_e'] = {
+    'name': 'CMS_fake_syst_e',
     'type': 'lnN',
     'samples': {
-        'Fake_em': '1.3'
+        'Fake_e': '1.3'
     },
     'cutspost': lambda self, cuts: [cut for cut in cuts if '20me' not in cut],
 }
 
-nuisances['fake_syst_me'] = {
-    'name': 'CMS_fake_syst_me',
+nuisances['fake_syst_m'] = {
+    'name': 'CMS_fake_syst_m',
     'type': 'lnN',
     'samples': {
-        'Fake_me': '1.3'
+        'Fake_m': '1.3'
     },
     'cutspost': lambda self, cuts: [cut for cut in cuts if '20em' not in cut],
 }
@@ -225,7 +225,7 @@ nuisances['muonpt'] = {
 }
 
 ##### Jet energy scale
-
+'''
 nuisances['jes'] = {
     'name': 'CMS_scale_j_2017',
     'kind': 'suffix',
@@ -237,7 +237,21 @@ nuisances['jes'] = {
     'folderDown': makeMCDirectory('JESdo_suffix'),
     'AsLnN': '1'
 }
+'''
+jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal','JESRelativeSample_2017']
 
+for js in jes_systs:
+  nuisances[js] = {
+      'name': 'CMS_scale_'+js,
+      'kind': 'suffix',
+      'type': 'shape',
+      'mapUp': js+'up',
+      'mapDown': js+'do',
+      'samples': dict((skey, ['1', '1']) for skey in mc),
+      'folderUp': makeMCDirectory('JESup_suffix'),
+      'folderDown': makeMCDirectory('JESdo_suffix'),
+      'AsLnN': '1'
+  }
 
 ##### MET energy scale
 
@@ -446,6 +460,8 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 #*         | Float_t LHE scale variation weights (w_var / w_nominal); [0] is MUR="0.5" MUF="0.5"; [1] is MUR="0.5" MUF="1.0"; [2] is MUR="0.5" MUF="2.0"; [3] is MUR="1.0" MUF="0.5"; [4] is MUR="1.0" MUF="2.0"; [5] is MUR="2.0" MUF="0.5"; [6] is MUR="2.0" MUF="1.0"; [7] is MUR="2.0" MUF="2.0"*
 
 variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 4, 6, 7]]
+VBSvariations = ['LHEScaleWeight[0]/1.0600', 'LHEScaleWeight[2]/0.9449'] # LO samples include only variations on muF scale
+
 
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
@@ -647,13 +663,22 @@ nuisances['QCDscale_ttH'] = {
     },
     'type': 'lnN',
 }
-
+'''
 nuisances['QCDscale_WWewk'] = {
     'name': 'QCDscale_WWewk',
     'samples': {
         'WWewk': '1.11',
     },
     'type': 'lnN'
+}
+'''
+nuisances['QCDscale_WWewk'] = {
+    'name': 'QCDscale_WWewk',
+    'kind': 'weight_envelope',
+    'type': 'shape',
+    'samples': {
+        'WWewk': VBSvariations
+    }
 }
 
 #FIXME: these come from HIG-16-042, maybe should be recomputed?
@@ -713,8 +738,8 @@ nuisances['DYttnorm1j']  = {
                'cuts'  : cuts1j
               }
 '''
-nuisances['DYttnorm2j']  = {
-                 'name'  : 'CMS_hww_DYttnorm2j',
+nuisances['DYnorm2j']  = {
+                 'name'  : 'CMS_hww_DYnorm2j_2017',
                  'samples'  : {
                      'DY' : '1.00',
                      },

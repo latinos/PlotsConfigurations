@@ -27,7 +27,7 @@ groupPlot['Fake']  = {
                   'nameHR' : 'nonprompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fake_me', 'Fake_em']
+                  'samples'  : ['Fake_m', 'Fake_e']
 }
 
 
@@ -38,7 +38,7 @@ groupPlot['DY']  = {
                   'samples'  : ['DY']
               }
 
-
+'''
 groupPlot['VVV']  = {  
                   'nameHR' : 'VVV',
                   'isSignal' : 0,
@@ -68,6 +68,13 @@ groupPlot['VgS']  = {
                   'samples'  : ['VgS_H','VgS_L']
               }
 
+'''
+groupPlot['Multiboson']  = {  
+                  'nameHR' : 'Multiboson',
+                  'isSignal' : 0,
+                  'color': 617, # kViolet + 1  
+                  'samples'  : ['VVV', 'VZ', 'WZ', 'ZZ', 'Vg', 'Wg', 'VgS_H', 'VgS_L']
+              }
 
 
 groupPlot['Higgs']  = {
@@ -115,7 +122,7 @@ plot['DY']  = {
               }
 
 
-plot['Fake_me']  = {  
+plot['Fake_m']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -123,7 +130,7 @@ plot['Fake_me']  = {
               }
 
 
-plot['Fake_em']  = {  
+plot['Fake_e']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
