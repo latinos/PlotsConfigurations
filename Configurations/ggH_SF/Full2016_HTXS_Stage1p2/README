@@ -8,6 +8,10 @@ mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files
 mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
 
 #STEP 3: Performing data-driven DY
+#STEP 3: Performing data-driven DY
+mkShapesMulti.py --pycfg=configuration_DYEST.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch 
+mkShapesMulti.py --pycfg=configuration_DYEST.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8   
+
 #remember change the global path inside doDY.sh file. 
 condor_submit doDY.jds
 #mkDYestim_data.py --pycfg=configuration.py --dycfg=dyestim.py --inputFile=rootFile/plots_STXS_ggH_SF_2016.root
