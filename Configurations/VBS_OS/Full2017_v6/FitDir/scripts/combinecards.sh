@@ -16,6 +16,7 @@ cd $workDir
 combineCards.py   vbs_lowZ=${workDir}/${datacardDir}/VBS_2j_em_me_lowZ/mjj/datacard.txt \
                   vbs_highZ=${workDir}/${datacardDir}/VBS_2j_em_me_highZ/mjj/datacard.txt \
                   top=${workDir}/${datacardDir}/top_2j_em_me/events/datacard.txt \
+                  dy=${workDir}/${datacardDir}/DY_2j_em_me/events/datacard.txt \
                   vbs_ee_lowZ=${workDir}/${datacardDir}/VBS_2j_ee_lowZ/mjj_merged/datacard.txt \
                   vbs_ee_highZ=${workDir}/${datacardDir}/VBS_2j_ee_highZ/mjj_merged/datacard.txt \
                   vbs_mm_lowZ=${workDir}/${datacardDir}/VBS_2j_mm_lowZ/mjj_merged/datacard.txt \
