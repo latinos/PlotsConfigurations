@@ -155,7 +155,11 @@ aliases['HighMass'] = {
 }
 
 aliases['VBFcut'] = {
-    'expr': '( DNN_isVBF_OTF>0.75 )' 
+    'expr': '( DNN_isVBF_OTF>0.77 )' 
+}
+
+aliases['VBFcut_HM'] = {
+    'expr': '( DNN_isVBF_OTF>0.68 )' 
 }
 
 aliases['SBI_isSMggh'] = {
@@ -222,12 +226,12 @@ aliases['PromptGenLepMatch2l'] = {
 # nGenJet for PS Uncertainty
 
 aliases['nCleanGenJet'] = {
-    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')
-    ],
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')],
     'class': 'CountGenJet',
     'samples': mc
 }
 
+# Top pT reweighting
 aliases['Top_pTrw'] = {
     # Mine:
     #'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(-2.02274e-01 + 1.09734e-04*topGenPt - 1.30088e-07*topGenPt*topGenPt + 5.83494e+01/(topGenPt+1.96252e+02)) * TMath::Exp(-2.02274e-01 + 1.09734e-04*antitopGenPt - 1.30088e-07*antitopGenPt*antitopGenPt + 5.83494e+01/(antitopGenPt+1.96252e+02)))) + (topGenPt * antitopGenPt <= 0.)',
@@ -237,28 +241,86 @@ aliases['Top_pTrw'] = {
     'samples': ['top']
 }
 
+# DY Z pT reweighting
+aliases['getGenZpt_OTF'] = {
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZpt.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'getGenZpt',
+    'samples': ['DY']
+}
 handle = open('%s/src/PlotsConfigurations/Configurations/patches/DYrew.py' % os.getenv('CMSSW_BASE'),'r')
 exec(handle)
 handle.close()
 aliases['DY_NLO_pTllrw'] = {
-    #'expr': '1',
-    'expr': '('+DYrew['2017']['NLO'].replace('x', 'gen_ptll')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
+    'expr': '('+DYrew['2017']['NLO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
     'samples': ['DY']
 }
 aliases['DY_LO_pTllrw'] = {
-    #'expr': '1',
-    'expr': '('+DYrew['2017']['LO'].replace('x', 'gen_ptll')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
+    'expr': '('+DYrew['2017']['LO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
     'samples': ['DY']
 }
 
+##### Testing effect of recoil corrections
+#aliases['METrecoil_OTF'] = {
+#    'linesToAdd':[
+#        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#        'gSystem->Load("libHTT-utilitiesRecoilCorrections.so")',
+#        '.L %s/src/PlotsConfigurations/Configurations/HighMass/METrecoil.cc+' % os.getenv('CMSSW_BASE'), 
+#    ],
+#    'class': 'METrecoil',
+#    'args': ('HTT-utilities/RecoilCorrections/data/Type1_PuppiMET_2017.root'),
+#    'samples': ['DY']
+#}
+#aliases['METrecoil_OTF'] = {
+#    'expr': 'PuppiMET_pt'
+#}
+#aliases['METrecoilPHI_OTF'] = {
+#    'linesToAdd':[
+#        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#        'gSystem->Load("libHTT-utilitiesRecoilCorrections.so")',
+#        '.L %s/src/PlotsConfigurations/Configurations/HighMass/METrecoilPHI.cc+' % os.getenv('CMSSW_BASE'), 
+#    ],
+#    'class': 'METrecoilPHI',
+#    'args': ('HTT-utilities/RecoilCorrections/data/Type1_PuppiMET_2017.root'),
+#    'samples': ['DY']
+#}
+#aliases['METrecoilPHI_OTF'] = {
+#    'expr': 'PuppiMET_phi'
+#}
+#aliases['phill'] = {
+#    'expr': 'TMath::ATan2(Lepton_pt[0]*TMath::Sin(Lepton_phi[0])+Lepton_pt[1]*TMath::Sin(Lepton_phi[1]), Lepton_pt[0]*TMath::Cos(Lepton_phi[0])+Lepton_pt[1]*TMath::Cos(Lepton_phi[1]))'
+#}
+#aliases['mth_OTF'] = {
+#    'expr': 'TMath::Sqrt( 2. * ptll * METrecoil_OTF * ( 1. - TMath::Cos( phill-METrecoilPHI_OTF )))'
+#}
+#aliases['mth_OTF'] = {
+#    'expr': 'mth'
+#}
+#aliases['mtw1_OTF'] = {
+#    'expr': 'TMath::Sqrt(2 * Lepton_pt[0] * METrecoil_OTF * (1 - TMath::Cos( Lepton_phi[0]-METrecoilPHI_OTF )))'
+#}
+#aliases['mtw1_OTF'] = {
+#    'expr': 'mtw1'
+#}
+
+##### Testing reweighting DY MET for SF
 #handle = open('%s/src/PlotsConfigurations/Configurations/HighMass/DYrew_MET.py' % os.getenv('CMSSW_BASE'),'r')
 #exec(handle)
 #handle.close()
-aliases['DY_METrw'] = {
-    'expr': '1',
-    #'expr': DYrew_MET['2017']['incl'].replace('x', 'PuppiMET_pt'),
-    'samples': ['DY']
-}
+#if EMorEEorMM == 'em':
+#  aliases['DY_METrw'] = {
+#    'expr': '1',
+#    'samples': ['DY']
+#  }
+#elif EMorEEorMM == 'ee':
+#  aliases['DY_METrw'] = {
+#    'expr': DYrew_MET['2017']['ee'].replace('x', 'PuppiMET_pt'),
+#    'samples': ['DY']
+#  }
+#elif EMorEEorMM == 'mm':
+#  aliases['DY_METrw'] = {
+#    'expr': DYrew_MET['2017']['mm'].replace('x', 'PuppiMET_pt'),
+#    'samples': ['DY']
+#  }
 
 # For SM ggHWW
 aliases['MINLO'] = {
@@ -380,6 +442,15 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
 
 # PU jet Id SF
 
+# New:
+#puidSFSource = '%s/src/PlotsConfigurations/Configurations/patches/PUID_80XTraining_EffSFandUncties.root' % os.getenv('CMSSW_BASE')
+#
+#aliases['PUJetIdSF'] = {
+#    'linesToAdd': [
+#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+#        '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event_new.cc+' % os.getenv('CMSSW_BASE')
+
+# Old:
 puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
 
 aliases['PUJetIdSF'] = {

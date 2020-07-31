@@ -22,8 +22,8 @@ elif  'cern' in SITE :
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/'
   treeBaseDirHM = '/eos/user/d/dmroy/HWWNano/'
 
-directory = treeBaseDir+'Summer16_102X_nAODv5_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6/'
-directoryHM = treeBaseDir+'Summer16_102X_nAODv6_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__BWReweight/'
+directory = treeBaseDir+'Summer16_102X_nAODv5_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6'
+directoryHM = treeBaseDir+'Summer16_102X_nAODv6_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__BWReweight'
 
 ################################################
 ############### Lepton WP ######################
@@ -149,7 +149,7 @@ if useEmbeddedDY:
                       }
 
   for Run in DataRun :
-          directoryEmb = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Embedding2016_102X_nAODv5_Full2016v6/DATAl1loose2016v6__l2loose__l2tightOR2016v6__Embedding/'
+          directoryEmb = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Embedding2016_102X_nAODv5_Full2016v6/DATAl1loose2016v6__l2loose__l2tightOR2016v6__Embedding'
           FileTarget = getSampleFiles(directoryEmb,'DYToTT_MuEle_Embedded_Run2016'+Run[0],True,'nanoLatino_')
           for iFile in FileTarget:
                   samples['DYemb']['name'].append(iFile)
@@ -215,25 +215,27 @@ if useDYtt :
                                     + getSampleFiles(directory,'DYJetsToTT_MuEle_M-50_ext1',False,'nanoLatino_')
                                     + getSampleFiles(directory,'DYJetsToLL_M-10to50_ext1',False,'nanoLatino_'),
                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))' ,# To remove some overlap between DY/Vg
-                         'FilesPerJob' : 3,
+                         'FilesPerJob' : 10,
+                         'EventsPerJob' : 100000,
                          'suppressNegative' :['all'],
                          'suppressNegativeNuisances' :['all'],
                     }
     CombineBaseW(samples, 'DY', ['DYJetsToTT_MuEle_M-50', 'DYJetsToTT_MuEle_M-50_ext1'])
-    addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50','DY_NLO_pTllrw * DY_METrw')
-    addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50_ext1','DY_NLO_pTllrw * DY_METrw')
-    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50_ext1','DY_NLO_pTllrw * DY_METrw')
+    addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50','DY_NLO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50_ext1','DY_NLO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50_ext1','DY_NLO_pTllrw')
     
 else:
   samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50',False,'nanoLatino_') #Don't use LO_ext1! DYMVA Training!
                                   + getSampleFiles(directory,'DYJetsToLL_M-10to50_ext1',False,'nanoLatino_'), #Don't use NLO(_ext0)! DYMVA Training!
                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))' ,
-                       'FilesPerJob' : 3,
+                       'FilesPerJob' : 10,
+                       'EventsPerJob' : 100000,
                        'suppressNegative' :['all'],
                        'suppressNegativeNuisances' :['all'],
                    }
-  addSampleWeight(samples,'DY','DYJetsToLL_M-50','DY_NLO_pTllrw * DY_METrw')
-  addSampleWeight(samples,'DY','DYJetsToLL_M-10to50_ext1','DY_NLO_pTllrw * DY_METrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_M-50','DY_NLO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_M-10to50_ext1','DY_NLO_pTllrw')
 
   if useDYHT:
     samples['DY']['name'] += getSampleFiles(directory,'DYJetsToLL_M-50_HT-70to100',False,'nanoLatino_') \
@@ -263,28 +265,28 @@ else:
     CombineBaseW(samples, 'DY', ['DYJetsToLL_M-5to50_HT-200to400', 'DYJetsToLL_M-5to50_HT-200to400_ext1'])
     CombineBaseW(samples, 'DY', ['DYJetsToLL_M-5to50_HT-400to600', 'DYJetsToLL_M-5to50_HT-400to600_ext1'])
     CombineBaseW(samples, 'DY', ['DYJetsToLL_M-5to50_HT-600toinf', 'DYJetsToLL_M-5to50_HT-600toinf_ext1'])
-    addSampleWeight(samples,'DY','DYJetsToLL_M-50','(LHE_HT < 70)')
-    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50_ext1','(LHE_HT < 70)')
-    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-70to100',         'DY_LO_pTllrw * DY_METrw') # HT-binned are LO!
-    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200',        'DY_LO_pTllrw * DY_METrw')
-    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200_ext1',   'DY_LO_pTllrw * DY_METrw')
-    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400',        'DY_LO_pTllrw * DY_METrw')
-    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400_ext1',   'DY_LO_pTllrw * DY_METrw')
-    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-400to600',        'DY_LO_pTllrw * DY_METrw')
-    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-400to600_ext1',   'DY_LO_pTllrw * DY_METrw')
-    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-600to800',        'DY_LO_pTllrw * DY_METrw')
-    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-800to1200',       'DY_LO_pTllrw * DY_METrw')
-    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-1200to2500',      'DY_LO_pTllrw * DY_METrw')
-    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toinf',       'DY_LO_pTllrw * DY_METrw')
-    addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-70to100',      'DY_LO_pTllrw * DY_METrw')
-    addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-100to200',     'DY_LO_pTllrw * DY_METrw')
-    addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-100to200_ext1','DY_LO_pTllrw * DY_METrw')
-    addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-200to400',     'DY_LO_pTllrw * DY_METrw')
-    addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-200to400_ext1','DY_LO_pTllrw * DY_METrw')
-    addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-400to600',     'DY_LO_pTllrw * DY_METrw')
-    addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-400to600_ext1','DY_LO_pTllrw * DY_METrw')
-    addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-600toinf',     'DY_LO_pTllrw * DY_METrw')
-    addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-600toinf_ext1','DY_LO_pTllrw * DY_METrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50',                    '(LHE_HT < 70)')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50_ext1',           '(LHE_HT < 70)')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-70to100',         'DY_LO_pTllrw') # HT-binned are LO!
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200',        'DY_LO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200_ext1',   'DY_LO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400',        'DY_LO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400_ext1',   'DY_LO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-400to600',        'DY_LO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-400to600_ext1',   'DY_LO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-600to800',        'DY_LO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-800to1200',       'DY_LO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-1200to2500',      'DY_LO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toinf',       'DY_LO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-70to100',      'DY_LO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-100to200',     'DY_LO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-100to200_ext1','DY_LO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-200to400',     'DY_LO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-200to400_ext1','DY_LO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-400to600',     'DY_LO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-400to600_ext1','DY_LO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-600toinf',     'DY_LO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-600toinf_ext1','DY_LO_pTllrw')
 
 
 
@@ -377,7 +379,8 @@ CombineBaseW(samples, 'VZ', ['ZZTo4L', 'ZZTo4L_ext1'])
 samples['Vg']  = {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',False,'nanoLatino_')
                                + getSampleFiles(directory,'Zg',False,'nanoLatino_'),
                     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*(!(Gen_ZGstar_mass > 0))'+embed_tautauveto, # 14.02.2020: Changed Vg treatment
-                    'FilesPerJob': 3,
+                    'FilesPerJob' : 10,
+                    'EventsPerJob' : 100000,
                     'suppressNegative' :['all'],
                     'suppressNegativeNuisances' :['all'],
                   }
@@ -392,7 +395,8 @@ samples['VgS']  =  {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',Fal
                                  + getSampleFiles(directory,'WZTo3LNu_mllmin01',False,'nanoLatino_')
                                  + getSampleFiles(directory,'WZTo3LNu_mllmin01_ext1',False,'nanoLatino_'),
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
-                      'FilesPerJob' : 3 ,
+                      'FilesPerJob' : 10,
+                      'EventsPerJob' : 100000,
                       'suppressNegative' :['all'],
                       'suppressNegativeNuisances' :['all'],
                       'subsamples': {
@@ -664,9 +668,9 @@ for fakesamp in fakesamples:
                       }
 
 for Run in DataRun :
-        directory = treeBaseDir+'Run2016_102X_nAODv5_Full2016v6/DATAl1loose2016v6__l2loose__fakeW/'
+        directory = treeBaseDir+'Run2016_102X_nAODv5_Full2016v6/DATAl1loose2016v6__l2loose__fakeW'
         if NewttHWPForMu:
-                directory = treeBaseDir+'Run2016_102X_nAODv5_Full2016v6_ForNewWPs/DATAl1loose2016v6__l2loose__fakeW__DYMVA/'
+                directory = treeBaseDir+'Run2016_102X_nAODv5_Full2016v6_ForNewWPs/DATAl1loose2016v6__l2loose__fakeW__DYMVA'
         for DataSet in DataSets :
                 specialrun = Run[1] # Run 2016E MuonEG is v3 instead of v1
                 if Run[0] == 'E' and DataSet == 'MuonEG': specialrun = 'Run2016E-Nano1June2019-v3'
@@ -688,7 +692,7 @@ samples['DATA']  = {   'name': [ ] ,
                   }
 
 for Run in DataRun :
-        directory = treeBaseDir+'Run2016_102X_nAODv5_Full2016v6/DATAl1loose2016v6__l2loose__l2tightOR2016v6/'
+        directory = treeBaseDir+'Run2016_102X_nAODv5_Full2016v6/DATAl1loose2016v6__l2loose__l2tightOR2016v6'
         for DataSet in DataSets :
                 specialrun = Run[1] # Run 2016E MuonEG is v3 instead of v1
                 if Run[0] == 'E' and DataSet == 'MuonEG': specialrun = 'Run2016E-Nano1June2019-v3'

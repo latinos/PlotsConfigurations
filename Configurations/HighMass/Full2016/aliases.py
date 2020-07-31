@@ -156,7 +156,11 @@ aliases['HighMass'] = {
 }
 
 aliases['VBFcut'] = {
-    'expr': '( DNN_isVBF_OTF>0.75 )' 
+    'expr': '( DNN_isVBF_OTF>0.77 )' 
+}
+
+aliases['VBFcut_HM'] = {
+    'expr': '( DNN_isVBF_OTF>0.68 )' 
 }
 
 aliases['SBI_isSMggh'] = {
@@ -258,15 +262,13 @@ aliases['PromptGenLepMatch2l'] = {
 # nGenJet for PS Uncertainty
 
 aliases['nCleanGenJet'] = {
-    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')
-    ],
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')],
     'class': 'CountGenJet',
     'samples': mc
 }
 
+# Top pT reweighting
 aliases['Top_pTrw'] = {
-    #'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(-2.02274e-01 + 1.09734e-04*topGenPt - 1.30088e-07*topGenPt*topGenPt + 5.83494e+01/(topGenPt+1.96252e+02)) * TMath::Exp(-2.02274e-01 + 1.09734e-04*antitopGenPt - 1.30088e-07*antitopGenPt*antitopGenPt + 5.83494e+01/(antitopGenPt+1.96252e+02)))) * (TMath::Sqrt((1.04660 + 5.31733e-02*TMath::TanH(-1.71685 + 2.52570e-03*topGenPt)) * (1.04660 + 5.31733e-02*TMath::TanH(-1.71685 + 2.52570e-03*antitopGenPt)))) + (topGenPt * antitopGenPt <= 0.)',
-
     # Mine:
     #'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(-2.02274e-01 + 1.09734e-04*topGenPt - 1.30088e-07*topGenPt*topGenPt + 5.83494e+01/(topGenPt+1.96252e+02)) * TMath::Exp(-2.02274e-01 + 1.09734e-04*antitopGenPt - 1.30088e-07*antitopGenPt*antitopGenPt + 5.83494e+01/(antitopGenPt+1.96252e+02)))) * (TMath::Sqrt(TMath::Exp(1.61468e-03 + 3.46659e-06*topGenPt - 8.90557e-08*topGenPt*topGenPt) * TMath::Exp(1.61468e-03 + 3.46659e-06*antitopGenPt - 8.90557e-08*antitopGenPt*antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)', # Same Reweighting as other years, but with additional fix for tune CUET -> CP5
 
@@ -275,28 +277,43 @@ aliases['Top_pTrw'] = {
     'samples': ['top']
 }
 
+# DY Z pT reweighting
+aliases['getGenZpt_OTF'] = {
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZpt.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'getGenZpt',
+    'samples': ['DY']
+}
 handle = open('%s/src/PlotsConfigurations/Configurations/patches/DYrew.py' % os.getenv('CMSSW_BASE'),'r')
 exec(handle)
 handle.close()
 aliases['DY_NLO_pTllrw'] = {
-    #'expr': '1',
-    'expr': '('+DYrew['2016']['NLO'].replace('x', 'gen_ptll')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
+    'expr': '('+DYrew['2016']['NLO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
     'samples': ['DY']
 }
 aliases['DY_LO_pTllrw'] = {
-    #'expr': '1',
-    'expr': '('+DYrew['2016']['LO'].replace('x', 'gen_ptll')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
+    'expr': '('+DYrew['2016']['LO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
     'samples': ['DY']
 }
 
+##### Testing reweighting DY MET for SF
 #handle = open('%s/src/PlotsConfigurations/Configurations/HighMass/DYrew_MET.py' % os.getenv('CMSSW_BASE'),'r')
 #exec(handle)
 #handle.close()
-aliases['DY_METrw'] = {
-    'expr': '1',
-    #'expr': DYrew_MET['2016']['incl'].replace('x', 'PuppiMET_pt'),
-    'samples': ['DY']
-}
+#if EMorEEorMM == 'em':
+#  aliases['DY_METrw'] = {
+#    'expr': '1',
+#    'samples': ['DY']
+#  }
+#elif EMorEEorMM == 'ee':
+#  aliases['DY_METrw'] = {
+#    'expr': DYrew_MET['2016']['ee'].replace('x', 'PuppiMET_pt'),
+#    'samples': ['DY']
+#  }
+#elif EMorEEorMM == 'mm':
+#  aliases['DY_METrw'] = {
+#    'expr': DYrew_MET['2016']['mm'].replace('x', 'PuppiMET_pt'),
+#    'samples': ['DY']
+#  }
 
 #TODO: temporary until UE/PS has nllW
 #Adding this again just for SBI, where WWTo2L2Nu replaces the qqWWqq sample
@@ -439,6 +456,15 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
 
 # PU jet Id SF
 
+# New:
+#puidSFSource = '%s/src/PlotsConfigurations/Configurations/patches/PUID_80XTraining_EffSFandUncties.root' % os.getenv('CMSSW_BASE')
+#
+#aliases['PUJetIdSF'] = {
+#    'linesToAdd': [
+#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+#        '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event_new.cc+' % os.getenv('CMSSW_BASE')
+
+# Old:
 puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
 
 aliases['PUJetIdSF'] = {

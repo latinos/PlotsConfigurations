@@ -23,6 +23,20 @@ variables['mTi_highbinning']  = {   'name': 'mTi',
                         'divideByBinWidth' : 1
                         }
 
+variables['mTi_binning_finer']  = {   'name': 'mTi',
+                        'range' : ([0,75,100,120,140,160,180,200,220,240,260,280,300,350,400,450,500,600,700,800,900,1000,1250,1500,1750,2000,2250,2500,2750,3000,3250,3500,3750,4000],),
+                        'xaxis' : 'm_{reco} [GeV]',
+                        'fold' : 3,
+                        'divideByBinWidth' : 1
+                        }
+
+variables['mTi_highbinning_finer']  = {   'name': 'mTi',
+                        'range' : ([0,300,350,400,500,600,700,800,900,1000,1250,1500,1750,2000,2250,2500,2750,3000,3250,3500,3750,4000],),
+                        'xaxis' : 'm_{reco} [GeV]',
+                        'fold' : 3,
+                        'divideByBinWidth' : 1
+                        }
+
 variables['DNN_mth_binning']  = {   'name': 'DNN_mth_OTF',
                         'range' : ([0,150,175,200,225,250,280,320,360,400,450,500,550,625,700,800,900,1000,1100,1200,1300,1450,1600,1800,2000,2250,2500,3000,4000],),
                         'xaxis' : 'DNN m_{T} [GeV]',
@@ -32,6 +46,20 @@ variables['DNN_mth_binning']  = {   'name': 'DNN_mth_OTF',
 
 variables['DNN_mth_highbinning']  = {   'name': 'DNN_mth_OTF',
                         'range' : ([0,400,450,500,550,625,700,800,900,1000,1100,1200,1300,1450,1600,1800,2000,2250,2500,3000,4000],),
+                        'xaxis' : 'DNN m_{T} [GeV]',
+                        'fold' : 3,
+                        'divideByBinWidth' : 1
+                        }
+
+variables['DNN_mth_binning_finer']  = {   'name': 'DNN_mth_OTF',
+                        'range' : ([0,150,175,200,225,250,280,320,360,400,450,500,550,625,700,800,900,1000,1100,1200,1300,1450,1600,1800,2000,2250,2500,2750,3000,3250,3500,3750,4000,4250,4500,4750,5000],),
+                        'xaxis' : 'DNN m_{T} [GeV]',
+                        'fold' : 3,
+                        'divideByBinWidth' : 1
+                        }
+
+variables['DNN_mth_highbinning_finer']  = {   'name': 'DNN_mth_OTF',
+                        'range' : ([0,400,450,500,550,625,700,800,900,1000,1100,1200,1300,1450,1600,1800,2000,2250,2500,2750,3000,3250,3500,3750,4000,4250,4500,4750,5000],),
                         'xaxis' : 'DNN m_{T} [GeV]',
                         'fold' : 3,
                         'divideByBinWidth' : 1
