@@ -209,8 +209,8 @@ DNNprod::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(CleanJet_pt, "CleanJet_pt");
   _library.bindBranch(CleanJet_eta, "CleanJet_eta");
   _library.bindBranch(CleanJet_phi, "CleanJet_phi");
-  _library.bindBranch(CleanJet_phi, "CleanJet_jetIdx");
-  _library.bindBranch(CleanJet_phi, "Jet_mass");
+  _library.bindBranch(CleanJet_jetIdx, "CleanJet_jetIdx");
+  _library.bindBranch(Jet_mass, "Jet_mass");
   _library.bindBranch(PuppiMET_pt, "PuppiMET_pt");
   _library.bindBranch(PuppiMET_phi, "PuppiMET_phi");
   _library.bindBranch(nCleanJet, "nCleanJet");
