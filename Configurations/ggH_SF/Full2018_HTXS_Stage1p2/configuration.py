@@ -5,7 +5,7 @@ treeName = 'Events'
 tag = 'ggH2018v6_STXS'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_'+tag
+outputDir = 'rootFile'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
@@ -30,7 +30,7 @@ lumi = 59.74
 outputDirPlots = 'plots_'+tag
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards_'+tag
+outputDirDatacard = 'datacards'
 
 # structure file for datacard
 structureFile = 'structure.py'
