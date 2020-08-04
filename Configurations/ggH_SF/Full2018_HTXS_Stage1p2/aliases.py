@@ -318,8 +318,8 @@ aliases['nCleanGenJet'] = {
 
 # GGHUncertaintyProducer wasn't run for GluGluHToWWTo2L2Nu_M125
 thus = [
-    'ggH_mu',
-    'ggH_res',
+#    'ggH_mu',
+#    'ggH_res',
     'ggH_mig01',
     'ggH_mig12',
     'ggH_VBF2j',
