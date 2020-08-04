@@ -349,22 +349,24 @@ for cat,num in HTXSStage1_1Categories.iteritems():
 
 
 ## WH lep.
-     elif 'QQ2HLNU_' in cat: ,
+    elif 'QQ2HLNU_' in cat: 
             samples['WH_lep_hww_'+cat.replace('QQ2HLNU_','')] = { 'name' :   nanoGetSampleFiles(mcDirectory,'HWminusJ_HToWW_M125')
                                                                   + nanoGetSampleFiles(mcDirectory,'HWplusJ_HToWW_M125')  ,
-                                                                  'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')' ,                                                                                'suppressNegative' :['all'],
+                                                                  'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')' ,             
+                                                                   'suppressNegative' :['all'],
                                                                   'suppressNegativeNuisances' :['all'],
                                                               }
-      signals.append('WH_lep_hww_'+cat.replace('QQ2HLNU_',''))
+
+            signals.append('WH_lep_hww_'+cat.replace('QQ2HLNU_',''))
 
  ## qqZH lep.
     elif 'QQ2HLL_' in cat:
-        samples['ZH_lep_hww_'+cat.replace('QQ2HLL_','')]  = { 'name' :  nanoGetSampleFiles(mcDirectory,'HZJ_HToWW_M125') ,
+           samples['ZH_lep_hww_'+cat.replace('QQ2HLL_','')]  = { 'name' :  nanoGetSampleFiles(mcDirectory,'HZJ_HToWW_M125') ,
                                                             'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')' ,
                                                             'suppressNegative' :['all'],
                                                             'suppressNegativeNuisances' :['all'],
                                                           }
-      signals.append('ZH_lep_hww_'+cat.replace('QQ2HLL_',''))
+           signals.append('ZH_lep_hww_'+cat.replace('QQ2HLL_',''))
 
 
 
