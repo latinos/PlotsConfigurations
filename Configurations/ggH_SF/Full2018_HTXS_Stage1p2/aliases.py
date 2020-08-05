@@ -16,8 +16,8 @@ mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
 eleWP = 'mvaFall17V1Iso_WP90'
 muWP = 'cut_Tight_HWWW'
-
 newMuWP='cut_Tight_HWWW_tthmva_80'                                                                                                  
+
 
 aliases['LepWPCut'] = {                                                                                                             
     #'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,                                                                                   
@@ -314,9 +314,27 @@ aliases['nCleanGenJet'] = {
 }
 
 
+# GGHUncertaintyProducer wasn't run for GluGluHToWWTo2L2Nu_M125
+thus = [
+#    'ggH_mu',
+#    'ggH_res',
+    'ggH_mig01',
+    'ggH_mig12',
+    'ggH_VBF2j',
+    'ggH_VBF3j',
+    'ggH_pT60',
+    'ggH_pT120',
+    'ggH_qmtop'
+]
 
-
-
+for thu in thus:
+    aliases[thu] = {
+        'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
+        'class': 'GGHUncertainty',
+        'args': (thu,),
+        'samples': [skey for skey in samples if 'ggH_hww' in skey],
+        'nominalOnly': True
+    }
 
 
 thusQQ = [
