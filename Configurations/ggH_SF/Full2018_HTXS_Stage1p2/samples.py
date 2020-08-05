@@ -30,6 +30,7 @@ except NameError:
 ################################################
 
 mcProduction = 'Autumn18_102X_nAODv6_Full2018v6'
+
 dataReco = 'Run2018_102X_nAODv6_Full2018v6'
 
 fakeReco = 'Run2018_102X_nAODv6_Full2018v6_ForNewWPs'
@@ -321,66 +322,6 @@ for cat,num in HTXSStage1_1Categories.iteritems():
             signals.append('ggH_hww_'+cat.replace('GG2H_',''))
 
 
-    ## VBF and VH had.
-    elif 'QQ2HQQ_' in cat:
-      if '0J'  not in cat or '1J' not in cat:
-        samples['qqH_hww_'+cat.replace('QQ2HQQ_','')]  = {  'name' : nanoGetSampleFiles(mcDirectory,'VBFHToWWTo2L2Nu_M125'),
-                                                            'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')' ,
-                                                            'suppressNegative' :['all'],
-                                                            'suppressNegativeNuisances' :['all'],
-                                                         }
-        signals.append('qqH_hww_'+cat.replace('QQ2HQQ_',''))
-
-        if 'MJJ_0_60' in cat or 'MJJ_60_120' in cat or 'MJJ_120_350' in cat:
-            samples['WH_had_hww_'+cat.replace('QQ2HQQ_','')]   = {  'name' :   nanoGetSampleFiles(mcDirectory,'HWminusJ_HToWW_M125')
-                                                                             + nanoGetSampleFiles(mcDirectory,'HWplusJ_HToWW_M125')  ,
-                                                                    'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')' ,
-                                                                    'suppressNegative' :['all'],
-                                                                    'suppressNegativeNuisances' :['all'],
-                                                                 }
-            signals.append('WH_had_hww_'+cat.replace('QQ2HQQ_',''))
-
-            samples['ZH_had_hww_'+cat.replace('QQ2HQQ_','')]  = { 'name' :  nanoGetSampleFiles(mcDirectory,'HZJ_HToWW_M125') ,
-                                                                  'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')' ,
-                                                                  'suppressNegative' :['all'],
-                                                                  'suppressNegativeNuisances' :['all'],
-                                                                }
-            signals.append('ZH_had_hww_'+cat.replace('QQ2HQQ_',''))
-
-
-## WH lep.
-    elif 'QQ2HLNU_' in cat: 
-            samples['WH_lep_hww_'+cat.replace('QQ2HLNU_','')] = { 'name' :   nanoGetSampleFiles(mcDirectory,'HWminusJ_HToWW_M125')
-                                                                  + nanoGetSampleFiles(mcDirectory,'HWplusJ_HToWW_M125')  ,
-                                                                  'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')' ,             
-                                                                   'suppressNegative' :['all'],
-                                                                  'suppressNegativeNuisances' :['all'],
-                                                              }
-
-            signals.append('WH_lep_hww_'+cat.replace('QQ2HLNU_',''))
-
- ## qqZH lep.
-    elif 'QQ2HLL_' in cat:
-           samples['ZH_lep_hww_'+cat.replace('QQ2HLL_','')]  = { 'name' :  nanoGetSampleFiles(mcDirectory,'HZJ_HToWW_M125') ,
-                                                            'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')' ,
-                                                            'suppressNegative' :['all'],
-                                                            'suppressNegativeNuisances' :['all'],
-                                                          }
-           signals.append('ZH_lep_hww_'+cat.replace('QQ2HLL_',''))
-
-
-
-
-    ## ggZH lep
-    elif 'GG2HLL_' in cat:
-      samples['ggZH_lep_hww_'+cat.replace('GG2HLL_','')]  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGluZH_HToWWTo2L2Nu_M125'),
-                                                           'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')',
-                                                           'suppressNegative' :['all'],
-                                                           'suppressNegativeNuisances' :['all'],
-                                                        }
-      signals.append('ggZH_lep_hww_'+cat.replace('GG2HLL_',''))
-
-
 
 # Stage 1.2 binning for high pTH bin                                                                                                         
                                                                                                                                               
@@ -417,7 +358,52 @@ samples['ggH_hww_PTH_GT650']  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGl
 signals.append('ggH_hww_PTH_GT650')
 
 
+############ VBF H->WW ############
+samples['qqH_hww'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2Nu_M125'),
+    'weight': mcCommonWeight,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
+    'FilesPerJob': 4
+}
 
+signals.append('qqH_hww')
+
+
+############# ZH H->WW ############
+
+samples['ZH_hww'] = {
+    'name':   nanoGetSampleFiles(mcDirectory, 'HZJ_HToWWTo2L2Nu_M125'),
+    'weight': mcCommonWeight,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
+    'FilesPerJob': 1
+}
+
+signals.append('ZH_hww')
+
+samples['ggZH_hww'] = {
+    'name':   nanoGetSampleFiles(mcDirectory, 'GluGluZH_HToWWTo2L2Nu_M125'),
+    'weight': mcCommonWeight,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
+    'FilesPerJob': 2
+}
+
+signals.append('ggZH_hww')
+
+
+############ WH H->WW ############
+
+samples['WH_hww'] = {
+    'name':   nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125'),
+    'weight': mcCommonWeight,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
+    'FilesPerJob': 4
+}
+
+signals.append('WH_hww')
 
 
 ############ ttH ############
