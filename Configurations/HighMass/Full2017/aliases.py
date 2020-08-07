@@ -231,7 +231,7 @@ aliases['nCleanGenJet'] = {
     'samples': mc
 }
 
-# Top pT reweighting
+##### Top pT reweighting
 aliases['Top_pTrw'] = {
     # Mine:
     #'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(-2.02274e-01 + 1.09734e-04*topGenPt - 1.30088e-07*topGenPt*topGenPt + 5.83494e+01/(topGenPt+1.96252e+02)) * TMath::Exp(-2.02274e-01 + 1.09734e-04*antitopGenPt - 1.30088e-07*antitopGenPt*antitopGenPt + 5.83494e+01/(antitopGenPt+1.96252e+02)))) + (topGenPt * antitopGenPt <= 0.)',
@@ -241,13 +241,13 @@ aliases['Top_pTrw'] = {
     'samples': ['top']
 }
 
-# DY Z pT reweighting
+##### DY Z pT reweighting
 aliases['getGenZpt_OTF'] = {
     'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZpt.cc+' % os.getenv('CMSSW_BASE')],
     'class': 'getGenZpt',
     'samples': ['DY']
 }
-handle = open('%s/src/PlotsConfigurations/Configurations/patches/DYrew.py' % os.getenv('CMSSW_BASE'),'r')
+handle = open('%s/src/PlotsConfigurations/Configurations/patches/DYrew30.py' % os.getenv('CMSSW_BASE'),'r')
 exec(handle)
 handle.close()
 aliases['DY_NLO_pTllrw'] = {
@@ -270,9 +270,9 @@ aliases['DY_LO_pTllrw'] = {
 #    'args': ('HTT-utilities/RecoilCorrections/data/Type1_PuppiMET_2017.root'),
 #    'samples': ['DY']
 #}
-#aliases['METrecoil_OTF'] = {
-#    'expr': 'PuppiMET_pt'
-#}
+aliases['METrecoil_OTF'] = {
+    'expr': 'PuppiMET_pt'
+}
 #aliases['METrecoilPHI_OTF'] = {
 #    'linesToAdd':[
 #        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
@@ -283,24 +283,24 @@ aliases['DY_LO_pTllrw'] = {
 #    'args': ('HTT-utilities/RecoilCorrections/data/Type1_PuppiMET_2017.root'),
 #    'samples': ['DY']
 #}
-#aliases['METrecoilPHI_OTF'] = {
-#    'expr': 'PuppiMET_phi'
-#}
-#aliases['phill'] = {
-#    'expr': 'TMath::ATan2(Lepton_pt[0]*TMath::Sin(Lepton_phi[0])+Lepton_pt[1]*TMath::Sin(Lepton_phi[1]), Lepton_pt[0]*TMath::Cos(Lepton_phi[0])+Lepton_pt[1]*TMath::Cos(Lepton_phi[1]))'
-#}
+aliases['METrecoilPHI_OTF'] = {
+    'expr': 'PuppiMET_phi'
+}
+aliases['phill'] = {
+    'expr': 'TMath::ATan2(Lepton_pt[0]*TMath::Sin(Lepton_phi[0])+Lepton_pt[1]*TMath::Sin(Lepton_phi[1]), Lepton_pt[0]*TMath::Cos(Lepton_phi[0])+Lepton_pt[1]*TMath::Cos(Lepton_phi[1]))'
+}
 #aliases['mth_OTF'] = {
 #    'expr': 'TMath::Sqrt( 2. * ptll * METrecoil_OTF * ( 1. - TMath::Cos( phill-METrecoilPHI_OTF )))'
 #}
-#aliases['mth_OTF'] = {
-#    'expr': 'mth'
-#}
+aliases['mth_OTF'] = {
+    'expr': 'mth'
+}
 #aliases['mtw1_OTF'] = {
 #    'expr': 'TMath::Sqrt(2 * Lepton_pt[0] * METrecoil_OTF * (1 - TMath::Cos( Lepton_phi[0]-METrecoilPHI_OTF )))'
 #}
-#aliases['mtw1_OTF'] = {
-#    'expr': 'mtw1'
-#}
+aliases['mtw1_OTF'] = {
+    'expr': 'mtw1'
+}
 
 ##### Testing reweighting DY MET for SF
 #handle = open('%s/src/PlotsConfigurations/Configurations/HighMass/DYrew_MET.py' % os.getenv('CMSSW_BASE'),'r')

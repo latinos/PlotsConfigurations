@@ -2,7 +2,6 @@
 
 mc = [skey for skey in samples if skey not in ('Fake_em', 'Fake_me', 'Fake_ee', 'Fake_mm', 'DATA', 'DYemb')]
 mc_sbi = [skey for skey in samples if "SBI" in skey]
-mc_emb = [skey for skey in samples if skey not in ('Fake_em', 'Fake_me', 'Fake_ee', 'Fake_mm', 'DATA')]
 
 bAlgo = 'DeepB'
 bWP = '0.1241'
@@ -213,41 +212,6 @@ aliases['SBI_isHM'] = {
 #    'samples': ['WW', 'qqWWqq', 'WW2J'] + [skey for skey in samples if 'QQHSBI' in skey]
 #}
 
-aliases['ttHMVA_SF_2l'] = {'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/patches/compute_SF.C+' % os.getenv('CMSSW_BASE')],
-                           'class': 'compute_SF',
-                           'args' : ('2016', 2, 'total_SF'),
-                             'samples': mc_emb
-                          }
-
-aliases['ttHMVA_SF_Up_0'] = {'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/patches/compute_SF.C+' % os.getenv('CMSSW_BASE')],
-                             'class': 'compute_SF',
-                             'args' : ('2016', 2, 'single_SF_up', 0),
-                             'samples': mc_emb
-                            }
-aliases['ttHMVA_SF_Up_1'] = {'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/patches/compute_SF.C+' % os.getenv('CMSSW_BASE')],
-                             'class': 'compute_SF',
-                             'args' : ('2016', 2, 'single_SF_up', 1),
-                             'samples': mc_emb
-                            }
-aliases['ttHMVA_SF_Down_0'] = {'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/patches/compute_SF.C+' % os.getenv('CMSSW_BASE')],
-                               'class': 'compute_SF',
-                               'args' : ('2016', 2, 'single_SF_down', 0),
-                               'samples': mc_emb
-                              }
-aliases['ttHMVA_SF_Down_1'] = {'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/patches/compute_SF.C+' % os.getenv('CMSSW_BASE')],
-                               'class': 'compute_SF',
-                               'args' : ('2016', 2, 'single_SF_down', 1),
-                               'samples': mc_emb
-                              }
-aliases['ttHMVA_2l_mu_SF_Up'] = {'expr' : '(ttHMVA_SF_Up_0*(TMath::Abs(Lepton_pdgId[0]) == 13) + (TMath::Abs(Lepton_pdgId[0]) == 11)) *\
-                                           (ttHMVA_SF_Up_1*(TMath::Abs(Lepton_pdgId[1]) == 13) + (TMath::Abs(Lepton_pdgId[1]) == 11))',
-                                 'samples': mc_emb
-                                }
-aliases['ttHMVA_2l_mu_SF_Down'] = {'expr' : '(ttHMVA_SF_Down_0*(TMath::Abs(Lepton_pdgId[0]) == 13) + (TMath::Abs(Lepton_pdgId[0]) == 11)) *\
-                                             (ttHMVA_SF_Down_1*(TMath::Abs(Lepton_pdgId[1]) == 13) + (TMath::Abs(Lepton_pdgId[1]) == 11))',
-                                   'samples': mc_emb
-                                  }
-
 aliases['GenLHE'] = {
 'expr': '(Sum$(LHEPart_pdgId == 21) == 0)',
 'samples': mc
@@ -267,7 +231,7 @@ aliases['nCleanGenJet'] = {
     'samples': mc
 }
 
-# Top pT reweighting
+##### Top pT reweighting
 aliases['Top_pTrw'] = {
     # Mine:
     #'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(-2.02274e-01 + 1.09734e-04*topGenPt - 1.30088e-07*topGenPt*topGenPt + 5.83494e+01/(topGenPt+1.96252e+02)) * TMath::Exp(-2.02274e-01 + 1.09734e-04*antitopGenPt - 1.30088e-07*antitopGenPt*antitopGenPt + 5.83494e+01/(antitopGenPt+1.96252e+02)))) * (TMath::Sqrt(TMath::Exp(1.61468e-03 + 3.46659e-06*topGenPt - 8.90557e-08*topGenPt*topGenPt) * TMath::Exp(1.61468e-03 + 3.46659e-06*antitopGenPt - 8.90557e-08*antitopGenPt*antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)', # Same Reweighting as other years, but with additional fix for tune CUET -> CP5
@@ -277,13 +241,13 @@ aliases['Top_pTrw'] = {
     'samples': ['top']
 }
 
-# DY Z pT reweighting
+##### DY Z pT reweighting
 aliases['getGenZpt_OTF'] = {
     'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZpt.cc+' % os.getenv('CMSSW_BASE')],
     'class': 'getGenZpt',
     'samples': ['DY']
 }
-handle = open('%s/src/PlotsConfigurations/Configurations/patches/DYrew.py' % os.getenv('CMSSW_BASE'),'r')
+handle = open('%s/src/PlotsConfigurations/Configurations/patches/DYrew30.py' % os.getenv('CMSSW_BASE'),'r')
 exec(handle)
 handle.close()
 aliases['DY_NLO_pTllrw'] = {
@@ -293,6 +257,49 @@ aliases['DY_NLO_pTllrw'] = {
 aliases['DY_LO_pTllrw'] = {
     'expr': '('+DYrew['2016']['LO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
     'samples': ['DY']
+}
+
+##### Testing effect of recoil corrections
+#aliases['METrecoil_OTF'] = {
+#    'linesToAdd':[
+#        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#        'gSystem->Load("libHTT-utilitiesRecoilCorrections.so")',
+#        '.L %s/src/PlotsConfigurations/Configurations/HighMass/METrecoil.cc+' % os.getenv('CMSSW_BASE'), 
+#    ],
+#    'class': 'METrecoil',
+#    'args': ('HTT-utilities/RecoilCorrections/data/Type1_PuppiMET_2016.root'),
+#    'samples': ['DY']
+#}
+aliases['METrecoil_OTF'] = {
+    'expr': 'PuppiMET_pt'
+}
+#aliases['METrecoilPHI_OTF'] = {
+#    'linesToAdd':[
+#        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#        'gSystem->Load("libHTT-utilitiesRecoilCorrections.so")',
+#        '.L %s/src/PlotsConfigurations/Configurations/HighMass/METrecoilPHI.cc+' % os.getenv('CMSSW_BASE'), 
+#    ],
+#    'class': 'METrecoilPHI',
+#    'args': ('HTT-utilities/RecoilCorrections/data/Type1_PuppiMET_2016.root'),
+#    'samples': ['DY']
+#}
+aliases['METrecoilPHI_OTF'] = {
+    'expr': 'PuppiMET_phi'
+}
+aliases['phill'] = {
+    'expr': 'TMath::ATan2(Lepton_pt[0]*TMath::Sin(Lepton_phi[0])+Lepton_pt[1]*TMath::Sin(Lepton_phi[1]), Lepton_pt[0]*TMath::Cos(Lepton_phi[0])+Lepton_pt[1]*TMath::Cos(Lepton_phi[1]))'
+}
+#aliases['mth_OTF'] = {
+#    'expr': 'TMath::Sqrt( 2. * ptll * METrecoil_OTF * ( 1. - TMath::Cos( phill-METrecoilPHI_OTF )))'
+#}
+aliases['mth_OTF'] = {
+    'expr': 'mth'
+}
+#aliases['mtw1_OTF'] = {
+#    'expr': 'TMath::Sqrt(2 * Lepton_pt[0] * METrecoil_OTF * (1 - TMath::Cos( Lepton_phi[0]-METrecoilPHI_OTF )))'
+#}
+aliases['mtw1_OTF'] = {
+    'expr': 'mtw1'
 }
 
 ##### Testing reweighting DY MET for SF
@@ -316,13 +323,12 @@ aliases['DY_LO_pTllrw'] = {
 #  }
 
 #TODO: temporary until UE/PS has nllW
-#Adding this again just for SBI, where WWTo2L2Nu replaces the qqWWqq sample
-aliases['nllWOTF'] = {
-    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HighMass/Full2016/nllW.cc+' % os.getenv('CMSSW_BASE')],
-    'class': 'WWNLLW',
-    'args': ('central',),
-    'samples': mc_sbi #['WW', 'DYveto']
-}
+#aliases['nllWOTF'] = {
+#    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HighMass/Full2016/nllW.cc+' % os.getenv('CMSSW_BASE')],
+#    'class': 'WWNLLW',
+#    'args': ('central',),
+#    'samples': mc_sbi #['WW', 'DYveto']
+#}
 
 # In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
 aliases['lhe_mW1'] = {

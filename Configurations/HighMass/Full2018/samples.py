@@ -109,9 +109,6 @@ def CombineBaseW(samples, proc, samplelist):
 
 ############ DY ############
 
-ptllDYW_NLO = '(0.87*(gen_ptll<10)+(0.379119+0.099744*gen_ptll-0.00487351*gen_ptll**2+9.19509e-05*gen_ptll**3-6.0212e-07*gen_ptll**4)*(gen_ptll>=10 && gen_ptll<45)+(9.12137e-01+1.11957e-04*gen_ptll-3.15325e-06*gen_ptll**2-4.29708e-09*gen_ptll**3+3.35791e-11*gen_ptll**4)*(gen_ptll>=45 && gen_ptll<200) + 1*(gen_ptll>200))'
-ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
-
 useEmbeddedDY = True
 useDYtt = True
 useDYHT = False
@@ -202,7 +199,8 @@ if useDYtt :
     samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToTT_MuEle_M-50',False,'nanoLatino_')
                                     + getSampleFiles(directory,'DYJetsToLL_M-10to50-LO_ext1',False,'nanoLatino_'),
                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 && Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )' ,# To remove some overlap between DY/Vg
-                         'FilesPerJob' : 3,
+                         'FilesPerJob' : 10,
+                         'EventsPerJob' : 80000,
                          'suppressNegative' :['all'],
                          'suppressNegativeNuisances' :['all'],
                     }
@@ -215,7 +213,7 @@ else:
                                   + getSampleFiles(directory,'DYJetsToLL_M-10to50-LO_ext1',False,'nanoLatino_'), #Don't use LO(_ext0)! DYMVA Training!
                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 && Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )' ,
                        'FilesPerJob' : 10,
-                       'EventsPerJob' : 100000,
+                       'EventsPerJob' : 80000,
                        'suppressNegative' :['all'],
                        'suppressNegativeNuisances' :['all'],
                    }
@@ -267,7 +265,7 @@ samples['top'] = {    'name'   :   getSampleFiles(directory,'TTTo2L2Nu',False,'n
                                  + getSampleFiles(directory,'ST_tW_top_ext1',False,'nanoLatino_') ,
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto ,
                      'FilesPerJob' : 10,
-                     'EventsPerJob' : 80000,
+                     'EventsPerJob' : 70000,
                      'suppressNegative' :['all'],
                      'suppressNegativeNuisances' :['all'],
                  }
@@ -279,7 +277,7 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 samples['WW'] = {    'name'   :   getSampleFiles(directory,'WWTo2L2Nu',False,'nanoLatino_') ,
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*nllW*(mjjGen_OTF<100)'+embed_tautauveto ,
                      'FilesPerJob' : 10,
-                     'EventsPerJob' : 100000,
+                     'EventsPerJob' : 80000,
                      'suppressNegative' :['all'],
                      'suppressNegativeNuisances' :['all'],
                  }
@@ -312,7 +310,7 @@ samples['qqWWqq'] = {  'name'   :   getSampleFiles(directory,'WpWmJJ_QCD_noTop',
                                   + getSampleFiles(directory,'WpWmJJ_QCD_noTop_ext1',False,'nanoLatino_'),
                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(mjjGen_OTF>=100)*(GenLHE)'+embed_tautauveto ,
                        'FilesPerJob' : 10,
-                       'EventsPerJob' : 100000,
+                       'EventsPerJob' : 80000,
                        'suppressNegative' :['all'],
                        'suppressNegativeNuisances' :['all'],
                  }
@@ -322,7 +320,7 @@ samples['WW2J'] = {  'name'   :   getSampleFiles(directory,'WpWmJJ_QCD_noTop',Fa
                                 + getSampleFiles(directory,'WpWmJJ_QCD_noTop_ext1',False,'nanoLatino_'),
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*(mjjGen_OTF>=100)*(!GenLHE)'+embed_tautauveto ,
                      'FilesPerJob' : 10,
-                     'EventsPerJob' : 100000,
+                     'EventsPerJob' : 80000,
                      'suppressNegative' :['all'],
                      'suppressNegativeNuisances' :['all'],
                  }
@@ -340,7 +338,7 @@ samples['VZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo2L2Nu_ext1',False
                                + getSampleFiles(directory,'WZTo2L2Q',False,'nanoLatino_'),
                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto + '*1.11' ,
                     'FilesPerJob' : 10,
-                    'EventsPerJob' : 100000,
+                    'EventsPerJob' : 70000,
                     'suppressNegative' :['all'],
                     'suppressNegativeNuisances' :['all'],
                  }
@@ -354,7 +352,7 @@ samples['Vg']  = {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',False
                                + getSampleFiles(directory,'ZGToLLG',False,'nanoLatino_'),
                     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*(Gen_ZGstar_mass <= 0)'+embed_tautauveto,
                     'FilesPerJob' : 10,
-                    'EventsPerJob' : 100000,
+                    'EventsPerJob' : 70000,
                     'suppressNegative' :['all'],
                     'suppressNegativeNuisances' :['all'],
                   }
@@ -370,7 +368,7 @@ samples['VgS']  =  {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',Fal
                                  + getSampleFiles(directory,'WZTo3LNu_mllmin01',False,'nanoLatino_'),
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
                       'FilesPerJob' : 10,
-                      'EventsPerJob' : 100000,
+                      'EventsPerJob' : 80000,
                       'suppressNegative' :['all'],
                       'suppressNegativeNuisances' :['all'],
                       'subsamples': {
@@ -430,7 +428,7 @@ for mass in massggh:
   samples['GGH_'+mass+model_name]  = {  'name'   :   getSampleFiles(directoryHM,'GluGluHToWWTo2L2Nu_M'+mass,True,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+noSMxsec+'*'+model ,
                         'FilesPerJob' : 10,
-                        'EventsPerJob' : 80000,
+                        'EventsPerJob' : 70000,
                         'suppressNegative' :['all'],
                         'suppressNegativeNuisances' :['all'],
                      }
@@ -439,7 +437,7 @@ for mass in massggh:
     samples['GGHINT_'+mass+model_name]  = {  'name'   :   getSampleFiles(directoryHM,'GluGluHToWWTo2L2Nu_M'+mass,True,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+noSMxsec+'*'+'('+model_I+'*(abs('+model_I+')<50))' , # abs<100 cut removes 0.035% of all events, abs<50 cut Removes 0.074% of all events
                         'FilesPerJob' : 10,
-                        'EventsPerJob' : 80000,
+                        'EventsPerJob' : 70000,
                      }
 
   else:
@@ -456,7 +454,7 @@ for mass in massggh:
                                                       + getSampleFiles(directory,'GluGluHToWWTo2L2NuPowheg_M125',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                         'FilesPerJob' : 10,
-                        'EventsPerJob' : 80000,
+                        'EventsPerJob' : 70000,
                         'suppressNegative' :['all'],
                         'suppressNegativeNuisances' :['all'],
                      }
@@ -495,7 +493,7 @@ for mass in massvbf:
   samples['QQH_'+mass+model_name]  = {  'name'   :   getSampleFiles(directoryHM,'VBFHToWWTo2L2Nu_M'+mass,True,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+noSMxsec+'*'+model ,
                         'FilesPerJob' : 10,
-                        'EventsPerJob' : 80000,
+                        'EventsPerJob' : 70000,
                         'suppressNegative' :['all'],
                         'suppressNegativeNuisances' :['all'],
                      }
@@ -504,7 +502,7 @@ for mass in massvbf:
     samples['QQHINT_'+mass+model_name]  = {  'name'   :   getSampleFiles(directoryHM,'VBFHToWWTo2L2Nu_M'+mass,True,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+noSMxsec+'*'+'('+model_I+'*(abs('+model_I+')<50))' ,
                         'FilesPerJob' : 10,
-                        'EventsPerJob' : 80000,
+                        'EventsPerJob' : 70000,
                      }
 
   else:
@@ -513,7 +511,7 @@ for mass in massvbf:
                                                       + getSampleFiles(directory,'VBFHToWWTo2L2Nu_M125',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                         'FilesPerJob' : 10,
-                        'EventsPerJob' : 80000,
+                        'EventsPerJob' : 70000,
                         'suppressNegative' :['all'],
                         'suppressNegativeNuisances' :['all'],
                      }
@@ -552,7 +550,7 @@ samples['qqH_hww']  = {  'name'   :   getSampleFiles(directory,'VBFHToWWTo2L2Nu_
 samples['ZH_hww']  = {  'name'   :   getSampleFiles(directory,'HZJ_HToWWTo2L2Nu_M125',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                         'FilesPerJob' : 10,
-                        'EventsPerJob' : 100000,
+                        'EventsPerJob' : 80000,
                         'suppressNegative' :['all'],
                         'suppressNegativeNuisances' :['all'],
                      }

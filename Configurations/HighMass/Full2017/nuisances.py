@@ -10,26 +10,32 @@ cutdict = {
            '0j' : 'hww2l2v_13TeV_'+EMorEEorMM+'_0j',
            '1j' : 'hww2l2v_13TeV_'+EMorEEorMM+'_1j',
            '2j' : 'hww2l2v_13TeV_'+EMorEEorMM+'_2j',
+           'ggh' : 'hww2l2v_13TeV_'+EMorEEorMM+'_ggh',
            'vbf' : 'hww2l2v_13TeV_'+EMorEEorMM+'_vbf',
            'dy_0j' : 'hww2l2v_13TeV_'+EMorEEorMM+'_dy_0j',
            'dy_1j' : 'hww2l2v_13TeV_'+EMorEEorMM+'_dy_1j',
            'dy_2j' : 'hww2l2v_13TeV_'+EMorEEorMM+'_dy_2j',
+           'dy_ggh' : 'hww2l2v_13TeV_'+EMorEEorMM+'_dy_ggh',
            'dy_vbf' : 'hww2l2v_13TeV_'+EMorEEorMM+'_dy_vbf',
            'top_0j' : 'hww2l2v_13TeV_'+EMorEEorMM+'_top_0j',
            'top_1j' : 'hww2l2v_13TeV_'+EMorEEorMM+'_top_1j',
            'top_2j' : 'hww2l2v_13TeV_'+EMorEEorMM+'_top_2j',
+           'top_ggh' : 'hww2l2v_13TeV_'+EMorEEorMM+'_top_ggh',
            'top_vbf' : 'hww2l2v_13TeV_'+EMorEEorMM+'_top_vbf',
            'h0j' : 'hww2l2v_13TeV_'+EMorEEorMM+'_high0j',
            'h1j' : 'hww2l2v_13TeV_'+EMorEEorMM+'_high1j',
            'h2j' : 'hww2l2v_13TeV_'+EMorEEorMM+'_high2j',
+           'hggh' : 'hww2l2v_13TeV_'+EMorEEorMM+'_highggh',
            'hvbf' : 'hww2l2v_13TeV_'+EMorEEorMM+'_highvbf',
            'hdy_0j' : 'hww2l2v_13TeV_'+EMorEEorMM+'_dy_high0j',
            'hdy_1j' : 'hww2l2v_13TeV_'+EMorEEorMM+'_dy_high1j',
            'hdy_2j' : 'hww2l2v_13TeV_'+EMorEEorMM+'_dy_high2j',
+           'hdy_ggh' : 'hww2l2v_13TeV_'+EMorEEorMM+'_dy_highggh',
            'hdy_vbf' : 'hww2l2v_13TeV_'+EMorEEorMM+'_dy_highvbf',
            'htop_0j' : 'hww2l2v_13TeV_'+EMorEEorMM+'_top_high0j',
            'htop_1j' : 'hww2l2v_13TeV_'+EMorEEorMM+'_top_high1j',
            'htop_2j' : 'hww2l2v_13TeV_'+EMorEEorMM+'_top_high2j',
+           'htop_ggh' : 'hww2l2v_13TeV_'+EMorEEorMM+'_top_highggh',
            'htop_vbf' : 'hww2l2v_13TeV_'+EMorEEorMM+'_top_highvbf'
           }
 
@@ -360,7 +366,6 @@ nuisances['met']  = {
 
 # Prefire correction
 
-
 nuisances['prefire']  = {
                 'name'  : 'CMS_eff_prefiring_2017',
                 'kind'  : 'weight',
@@ -379,38 +384,6 @@ if useEmbeddedDY:
                      'DYveto'   : ['0.1', '-0.1'],
                   }
   }
-
-
-#
-# PS and UE
-#
-
-# Temp? No samples in __PS shapes. Copied from Differential
-#nuisances['PS']  = {
-#    'name': 'PS',
-#    'type': 'shape',
-#    'kind': 'weight_envelope',
-#    'samples': {
-#        'WW': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],
-#        'ggH_hww': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]'],
-#        'qqH_hww': ['PSWeight[0]', 'PSWeight[1]', 'PSWeight[2]', 'PSWeight[3]']
-#    },
-#    'AsLnN': '1'
-#}
-#nuisances['PS']  = {
-#                'name'  : 'PS_2017',
-#                'skipCMS' : 1,
-#                'kind'  : 'weight',#'tree',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                  'WW'      : ['PSWeight[0]', 'PSWeight[3]'] #['1', '1'],
-#                  #'ggH_hww' : ['1', '1'], 
-#                  #'qqH_hww' : ['1', '1']
-#                  },
-#                #'folderUp'   : treeBaseDir+'Fall2017_102X_nAODv5_Full2017v6/MCl1loose2017v6__MCCorr2017v6__l2loose__l2tightOR2017v6__PS',
-#                #'folderDown' : treeBaseDir+'Fall2017_102X_nAODv5_Full2017v6/MCl1loose2017v6__MCCorr2017v6__l2loose__l2tightOR2017v6',
-#                'AsLnN'      : '1',
-#                }
 
 ##### PS
 handle = open("../PSunc.py",'r')
@@ -454,7 +427,7 @@ for m in massggh:
   PSdn = PSunc['GGF'+m]['ISRdn']
   PSstring = [str(PSup['0j'])+'*(nCleanGenJet==0) + '+str(PSup['1j'])+'*(nCleanGenJet==1) + '+str(PSup['2j'])+'*(nCleanGenJet==2) + '+str(PSup['3j'])+'*(nCleanGenJet>=3)', str(PSdn['0j'])+'*(nCleanGenJet==0) + '+str(PSdn['1j'])+'*(nCleanGenJet==1) + '+str(PSdn['2j'])+'*(nCleanGenJet==2) + '+str(PSdn['3j'])+'*(nCleanGenJet>=3)']
   nuisances['PS_ISR']['samples'].update({'GGH_'+m+model_name: PSstring})
-  nuisances['PS_ISR']['samples'].update({'GGHINT_'+m+model_name: PSstring})
+  nuisances['PS_ISR']['samples'].update({'GGHINT_'+m+model_name: PSstring}) # Here and in the following: Don't put nuisances here for SBI; they're added automatically in a later step!
 for m in massvbf:
   PSup = PSunc['VBF'+m]['ISRup']
   PSdn = PSunc['VBF'+m]['ISRdn']
@@ -506,22 +479,7 @@ for m in massvbf:
   nuisances['PS_FSR']['samples'].update({'QQH_'+m+model_name: PSstring})
   nuisances['PS_FSR']['samples'].update({'QQHINT_'+m+model_name: PSstring})
 
-#nuisances['UE']  = {
-#                'name'  : 'UE', 
-#                'skipCMS' : 1,
-#               'kind'  : 'tree',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                  #'WW'      : ['0.974123217122', '0.00764355789067'], #The WW down file is buggy  
-#                  'ggH_hww' : ['0.994216746291', '1.020025863'],
-#                  'qqH_hww' : ['0.980501317842', '1.00876768329'],
-#                },
-#                'folderUp'   : treeBaseDir+'Fall2017_102X_nAODv5_Full2017v6/MCl1loose2017v6__MCCorr2017v6__l2loose__l2tightOR2017v6__UEup',
-#                'folderDown' : treeBaseDir+'Fall2017_102X_nAODv5_Full2017v6/MCl1loose2017v6__MCCorr2017v6__l2loose__l2tightOR2017v6__UEdo',
-#                'AsLnN'      : '1',
-#                'synchronized': False
-#}
-
+##### UE
 # An overall 1.5% UE uncertainty will cover all the UEup/UEdo variations
 # And we don't observe any dependency of UE variations on njet
 nuisances['UE']  = {
@@ -775,7 +733,7 @@ nuisances['QCDscale_WWJJ']  = {
 }
 
 nuisances['QCDscale_VV']  = {
-               'name'  : 'QCDscale_VV', 
+                'name'  : 'QCDscale_VV', 
                 'skipCMS' : 1,
                 'kind'  : 'weight_envelope',
                 'type'  : 'shape',
@@ -960,10 +918,12 @@ nuisances['CRSR_accept_dy'] = {
                  cutdict['dy_0j'],
                  cutdict['dy_1j'],
                  cutdict['dy_2j'],
+                 cutdict['dy_ggh'],
                  cutdict['dy_vbf'],
                  cutdict['hdy_0j'],
                  cutdict['hdy_1j'],
                  cutdict['hdy_2j'],
+                 cutdict['hdy_ggh'],
                  cutdict['hdy_vbf'],
                 ]
 }
@@ -976,10 +936,12 @@ nuisances['CRSR_accept_top'] = {
                  cutdict['top_0j'],
                  cutdict['top_1j'],
                  cutdict['top_2j'],
+                 cutdict['top_ggh'],
                  cutdict['top_vbf'],
                  cutdict['htop_0j'],
                  cutdict['htop_1j'],
                  cutdict['htop_2j'],
+                 cutdict['htop_ggh'],
                  cutdict['htop_vbf'],
                 ]
 }
@@ -1036,6 +998,24 @@ nuisances['WWresum2j']  = {
                  cutdict['h2j'],
                  cutdict['htop_2j'],
                  cutdict['hdy_2j'],
+                ]
+                }
+
+nuisances['WWresumggh']  = {
+                'name'  : 'CMS_hww_WWresum_ggh',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+                },
+               'cuts'  : [
+                 cutdict['ggh'],
+                 cutdict['top_ggh'],
+                 cutdict['dy_ggh'],
+                 cutdict['hggh'],
+                 cutdict['htop_ggh'],
+                 cutdict['hdy_ggh'],
                 ]
                 }
 
@@ -1111,6 +1091,24 @@ nuisances['WWqscale2j']  = {
                 ]
                 }
 
+nuisances['WWqscaleggh']  = {
+                'name'  : 'CMS_hww_WWqscale_ggh',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+                },
+                'cuts'  : [
+                 cutdict['ggh'],
+                 cutdict['top_ggh'],
+                 cutdict['dy_ggh'],
+                 cutdict['hggh'],
+                 cutdict['htop_ggh'],
+                 cutdict['hdy_ggh'],
+                ]
+                }
+
 nuisances['WWqscalevbf']  = {
                 'name'  : 'CMS_hww_WWqscale_vbf',
                 'skipCMS' : 1,
@@ -1165,15 +1163,15 @@ nuisances['singleTopToTTbar']  = {
          }
 
 # DY MET reweighting
-if EMorEEorMM!="em":
-  nuisances['DYMetRew']  = {
-                  'name'  : 'CMS_DYMetRew',
-                  'kind'  : 'weight',
-                  'type'  : 'shape',
-                  'samples' : {
-                       'DY'  : ["1.0/DY_METrw","DY_METrw"]
-                  }
-           }
+#if EMorEEorMM!="em":
+#  nuisances['DYMetRew']  = {
+#                  'name'  : 'CMS_DYMetRew',
+#                  'kind'  : 'weight',
+#                  'type'  : 'shape',
+#                  'samples' : {
+#                       'DY'  : ["1.0/DY_METrw","DY_METrw"]
+#                  }
+#           }
 
 # Replace lnN nuisances (from QCD and PDF only -> Other lnN nuisance are consistent across SBI) for samples contributing to SBI with shape:
 oldnuisances = copy.deepcopy(nuisances)
