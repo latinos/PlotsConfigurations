@@ -6,7 +6,6 @@ configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # thi
 configurations = os.path.dirname(configurations) # Full2017_v6
 configurations = os.path.dirname(configurations) # ggH
 configurations = os.path.dirname(configurations) # Configurations
-configurations = os.path.dirname(configurations)
 #aliases = {}
 
 # imported from samples.py:
@@ -16,10 +15,10 @@ mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
 eleWP='mvaFall17V1Iso_WP90'
 muWP='cut_Tight_HWWW'
-newMuWP='cut_Tight_HWWW_tthmva_80'
+newMuWP='cut_Tight_HWWW'
 
 aliases['LepWPCut'] = {
-    'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP+'*( (abs(Lepton_pdgId[0])==11 || Muon_mvaTTH[Lepton_muonIdx[0]]>0.8) && (abs(Lepton_pdgId[1])==11 || Muon_mvaTTH[Lepton_muonIdx[1]]>0.8) )',
+    'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
     'samples': mc + ['DATA']
 }
 
@@ -99,8 +98,7 @@ aliases['multiJet'] = {
     'expr': 'Alt$(CleanJet_pt[1], 0) > 30.'
 }
 
-puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
-#puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
 
 aliases['PUJetIdSF'] = {
     'linesToAdd': [
@@ -124,7 +122,7 @@ aliases['ttHMVA_SF_2l'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % config
 
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l', 'ttHMVA_SF_2l', 'LepWPCut', 'PrefireWeight','PUJetIdSF']),
+    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'PrefireWeight','PUJetIdSF']),
     'samples': mc
 }
 # variations
@@ -149,6 +147,7 @@ aliases['SFweightMuDown'] = {
 ### Up/Down variations for single leptons in order of Pt ###
 ############################################################
 
+"""
 aliases['ttHMVA_SF_Up_0'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
                              'class': 'compute_SF',
                              'args' : ('2017', 2, 'single_SF_up', 0),
@@ -182,4 +181,4 @@ aliases['ttHMVA_2l_mu_SF_Down'] = {'expr' : '(ttHMVA_SF_Down_0*(TMath::Abs(Lepto
                                              (ttHMVA_SF_Down_1*(TMath::Abs(Lepton_pdgId[1]) == 13) + (TMath::Abs(Lepton_pdgId[1]) == 11))',
                                    'samples': mc
                                   }
-
+"""

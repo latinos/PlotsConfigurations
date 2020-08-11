@@ -17,10 +17,10 @@ mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
 eleWP = 'mva_90p_Iso2016'
 muWP = 'cut_Tight80x'
-newMuWP='cut_Tight80x_tthmva_80'
+newMuWP='cut_Tight80x'
 
 aliases['LepWPCut'] = {
-    'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP+'*( (abs(Lepton_pdgId[0])==11 || Muon_mvaTTH[Lepton_muonIdx[0]]>0.8) && (abs(Lepton_pdgId[1])==11 || Muon_mvaTTH[Lepton_muonIdx[1]]>0.8) )',
+    'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
     'samples': mc + ['DATA']
 }
 
@@ -104,15 +104,17 @@ aliases['multiJet'] = {
 ### Total SFs, i.e. ttHMVA+old lepton SFs ###
 #############################################
 
+"""
 aliases['ttHMVA_SF_2l'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
                            'class': 'compute_SF',
                            'args' : ('2016', 2, 'total_SF'),
                            'samples': mc
                           }
+"""
 
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l', 'ttHMVA_SF_2l', 'LepWPCut', 'PrefireWeight']),
+    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'PrefireWeight']),
     'samples': mc
 }
 # variations
@@ -137,6 +139,7 @@ aliases['SFweightMuDown'] = {
 ### Up/Down variations for single leptons in order of Pt ###
 ############################################################
 
+"""
 aliases['ttHMVA_SF_Up_0'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
                              'class': 'compute_SF',
                              'args' : ('2016', 2, 'single_SF_up', 0),
@@ -177,7 +180,7 @@ aliases['nllWOTF'] = {
     'args': ('central',),
     'samples': ['WW']
 }
-
+"""
 # In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
 aliases['lhe_mW1'] = {
     'expr': 'TMath::Sqrt(2. * LHEPart_pt[0] * LHEPart_pt[1] * (TMath::CosH(LHEPart_eta[0] - LHEPart_eta[1]) - TMath::Cos(LHEPart_phi[0] - LHEPart_phi[1])))',
@@ -189,4 +192,3 @@ aliases['lhe_mW2'] = {
     'expr': 'TMath::Sqrt(2. * LHEPart_pt[2] * LHEPart_pt[3] * (TMath::CosH(LHEPart_eta[2] - LHEPart_eta[3]) - TMath::Cos(LHEPart_phi[2] - LHEPart_phi[3])))',
     'samples': ['WWewk']
 }
-

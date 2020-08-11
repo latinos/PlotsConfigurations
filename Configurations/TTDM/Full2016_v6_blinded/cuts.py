@@ -1,13 +1,13 @@
 # cuts
 
-supercut = """Lepton_pt[0] > 25. && Lepton_pt[1] > 20.
-&& (nLepton>=2 && Alt$(Lepton_pt[2],0)<10)
-&& (Lepton_pdgId[0]*Lepton_pdgId[1]) < 0 
-&& abs(Lepton_eta[0])<2.5 && abs(Lepton_eta[1])<2.5
-&& (mll > 20.)
-&& (Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13 || PuppiMET_pt > 50.)
-&& (Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13 || (mll < 76 || mll > 106))
-&& nbJet > 0
+supercut = """Lepton_pt[0] > 25. && Lepton_pt[1] > 20. \
+&& (nLepton>=2 && Alt$(Lepton_pt[2],0)<10) \
+&& (Lepton_pdgId[0]*Lepton_pdgId[1]) < 0 \
+&& abs(Lepton_eta[0])<2.5 && abs(Lepton_eta[1])<2.5 \
+&& (mll > 20.) \
+&& (Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13 || PuppiMET_pt > 50.) \
+&& (Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13 || (mll < 76 || mll > 106)) \
+&& nbJet > 0 \
 && Alt$(CleanJet_pt[0], 0) >= 30."""
 
 cuts['topCR_ll']  = '1'
