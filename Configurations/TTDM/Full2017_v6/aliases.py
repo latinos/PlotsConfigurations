@@ -98,12 +98,13 @@ aliases['multiJet'] = {
     'expr': 'Alt$(CleanJet_pt[1], 0) > 30.'
 }
 
-puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
+#puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
 
 aliases['PUJetIdSF'] = {
     'linesToAdd': [
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/patches/pujetidsf_event.cc+' % configurations
+        '.L %s/patches/pujetidsf_event_new.cc+' % configurations
     ],
     'class': 'PUJetIdEventSF',
     'args': (puidSFSource, '2017', 'loose'),

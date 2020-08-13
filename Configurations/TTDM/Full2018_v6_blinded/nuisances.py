@@ -61,7 +61,7 @@ nuisances['lumi_CurrCalib'] = {
 }
 
 #### FAKES
-"""
+
 nuisances['fake_syst'] = {
     'name': 'CMS_fake_syst',
     'type': 'lnN',
@@ -125,7 +125,7 @@ nuisances['eff_e'] = {
     'type': 'shape',
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
 }
-
+"""
 nuisances['electronpt'] = {
     'name': 'CMS_scale_e_2018',
     'kind': 'suffix',

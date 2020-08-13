@@ -228,21 +228,21 @@ samples['VVV'] = {
 
 signals = []
 signalDir = '/eos/user/c/cprieels/work/TopPlusDMRunIILegacyRootfiles/Summer16_102X_nAODv5_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6_weighted/'
-
+"""
 samples['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_50'] = {
     'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_50'),
     'weight': mcCommonWeightNoMatch,
     'FilesPerJob': 1,
 }
 signals.append('TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_50')
-
+"""
 samples['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_100'] = {
     'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_100'),
     'weight': mcCommonWeightNoMatch,
     'FilesPerJob': 1,
 }
 signals.append('TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_100')
-
+"""
 samples['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_150'] = {
     'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_150'),
     'weight': mcCommonWeightNoMatch,
@@ -306,14 +306,14 @@ samples['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_50'] = {
     'FilesPerJob': 1,
 }
 signals.append('TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_50')
-
+"""
 samples['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_100'] = {
     'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_100'),
     'weight': mcCommonWeightNoMatch,
     'FilesPerJob': 1,
 }
 signals.append('TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_100')
-
+"""
 samples['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_150'] = {
     'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_150'),
     'weight': mcCommonWeightNoMatch,
@@ -369,7 +369,7 @@ samples['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_500'] = {
     'FilesPerJob': 1,
 }
 signals.append('TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_500')
-
+"""
 
 """
 samples['DMscalar_Dilepton_top_tWChan_Mchi1_Mphi10'] = {

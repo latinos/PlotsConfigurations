@@ -33,7 +33,7 @@ structure['ttbar'] = {
                   }
 
 
-structure['singletop'] = {   
+structure['singleTop'] = {   
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
@@ -43,6 +43,15 @@ structure['top'] = {
                   'isData'   : 0 
                   }
 
+structure['TTToSemiLeptonic'] = {   
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
+
+structure['ttV'] = {   
+                  'isSignal' : 0,
+                  'isData'   : 0 
+                  }
 
 structure['WW']  = {
                   'isSignal' : 0,
@@ -194,142 +203,142 @@ structure['H_htt'] = {
 #signal
 
 structure['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_50'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_100'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_150'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_200'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_250'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_300'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_350'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_400'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_450'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_500'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_50'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_100'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_150'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_200'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_250'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_300'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_350'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_400'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_450'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_500'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['DMscalar_Dilepton_top_tWChan_Mchi1_Mphi10'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['DMscalar_Dilepton_top_tWChan_Mchi1_Mphi20'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['DMscalar_Dilepton_top_tWChan_Mchi1_Mphi50'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['DMscalar_Dilepton_top_tWChan_Mchi1_Mphi100'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['DMscalar_Dilepton_top_tWChan_Mchi1_Mphi200'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['DMscalar_Dilepton_top_tWChan_Mchi1_Mphi300'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['DMscalar_Dilepton_top_tWChan_Mchi1_Mphi500'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
 structure['DMscalar_Dilepton_top_tWChan_Mchi1_Mphi1000'] = {
-  'isSignal': 1,
+  'isSignal': 2,
   'isData': 0
 }
 
@@ -343,14 +352,15 @@ structure['DATA']  = {
 
 
 
-print "INSTRUCTURE"
-print cuts
-print nuisances['WWresum0j']
-print "OK"
+#print "INSTRUCTURE"
+#print cuts
+#print nuisances['WWresum0j']
+#print "OK"
 
+"""
 for nuis in nuisances.itervalues():
   if 'cutspost' in nuis:
     nuis['cuts'] = nuis['cutspost'](nuis, cuts)
 
     print nuis
-
+"""

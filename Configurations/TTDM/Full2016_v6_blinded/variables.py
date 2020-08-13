@@ -5,7 +5,7 @@ variables['events']  = {   'name': '1',
                        }
 
 variables['pt1']  = {   'name': 'Lepton_pt[0]',     
-                        'range' : (40,0,500),   
+                        'range' : (40,0,600),   
                         'xaxis' : 'p_{T} 1st lep',
                         'fold'  : 3                         
                     }
@@ -71,19 +71,19 @@ variables['nbjet']  = {    'name': 'nbJet',
                        }
                 
 variables['mblt']  = {   'name': 'mblt',
-                         'range' : (40,0,500),
+                         'range' : (40,0,800),
                          'xaxis' : 'm_{bl}^{t} [GeV]',
                          'fold' : 3
                      } 
 
 variables['jetpt1']  = {    'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_pt[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99',     
-                            'range' : (40,0,300),   
+                            'range' : (40,0,500),   
                             'xaxis' : 'p_{T} 1st jet',
                             'fold' : 3
                         }
 
 variables['jetpt2']  = {    'name': '(Sum$(CleanJet_pt>30)>1)*(Alt$(CleanJet_pt[1], 0)) - (Sum$(CleanJet_pt>30)<=1)*99',     
-                            'range' : (40,0,300),   
+                            'range' : (40,0,500),   
                             'xaxis' : 'p_{T} 2nd jet',
                             'fold' : 3
                         }
@@ -102,37 +102,37 @@ variables['jeteta2']  = {  'name': '(Sum$(CleanJet_pt>30)>1)*(Alt$(CleanJet_eta[
 
 #Discriminating variables
 variables['mll']  = {   'name': 'mll',
-                        'range' : (40,0,600),
+                        'range' : (40,0,800),
                         'xaxis' : 'm_{ll} [GeV]',
                         'fold' : 3
                     }
 
 variables['puppimet']  = {   'name': 'PuppiMET_pt',
-                             'range' : (40,0,650),
+                             'range' : (40,0,800),
                              'xaxis' : 'puppimet [GeV]',
                              'fold'  : 3
                          }
 
 variables['pfmet']  = {   'name': 'MET_pt',
-                          'range' : (40,0,650),
+                          'range' : (40,0,800),
                           'xaxis' : 'pfmet [GeV]',
                           'fold'  : 3
                       }
 
 variables['MET_significance']  = {   'name': 'MET_significance',
-                                     'range' : (40,0,150),
+                                     'range' : (40,0,300),
                                      'xaxis' : 'MET significance',
                                      'fold'  : 3
                                  }
 
 variables['mt2ll']  = {   'name': 'mt2ll',
-                          'range' : (40,0,200),
+                          'range' : (40,0,220),
                           'xaxis' : 'm_{T2}^{ll} [GeV]',
                           'fold'  : 3
                       }
 
 variables['mt2bl']  = {   'name': 'mt2bl',
-                          'range' : (40,0,600),
+                          'range' : (40,0,800),
                           'xaxis' : 'm_{T2}^{bl} [GeV]',
                           'fold'  : 3
                       }
@@ -150,25 +150,25 @@ variables['cosphill']  = {   'name': 'cosphill',
                         }
 
 variables['massT']  = {   'name': 'massT',
-                          'range' : (40,0,1500),
+                          'range' : (40,0,1800),
                           'xaxis' : 'massT [GeV]',
                           'fold'  : 3
                       }
 
 variables['totalET']  = {   'name': 'totalET',
-                            'range' : (40,0,1800),
+                            'range' : (40,0,2000),
                             'xaxis' : 'Total ET [GeV]',
                             'fold'  : 3
                         }
 
 variables['dark_pt']  = {   'name': 'dark_pt',
-                            'range' : (40,0,1000),
+                            'range' : (40,0,1500),
                             'xaxis' : 'dark 15_{T} [GeV]',
                             'fold'  : 3
                         }
 
 variables['overlapping_factor']  = {   'name': 'overlapping_factor',
-                                       'range' : (40,0,12),
+                                       'range' : (40,0,20),
                                        'xaxis' : 'Overlapping factor R',
                                        'fold'  : 3
                                    }
@@ -180,7 +180,7 @@ variables['reco_weight']  = {   'name': 'reco_weight',
                             }
 
 variables['ptll']  = {   'name': 'ptll',
-                         'range' : (40,0,300),
+                         'range' : (40,0,500),
                          'xaxis' : 'p_{T}^{ll} [GeV]',
                          'fold' : 3
                      }
@@ -193,7 +193,7 @@ variables['r2l'] = {   'name': 'PuppiMET_pt / (Lepton_pt[0] + Lepton_pt[1])',
                    }
 
 variables['r2l4j'] = {   'name': 'PuppiMET_pt / (Lepton_pt[0] + Lepton_pt[1] + Alt$(CleanJet_pt[0], 0) + Alt$(CleanJet_pt[1], 0) + Alt$(CleanJet_pt[2], 0) + Alt$(CleanJet_pt[3], 0))',
-                       'range': (40,0,10),
+                         'range': (40,0,2),
                        'xaxis': 'r2l4j',
                        'fold': 3
 }
