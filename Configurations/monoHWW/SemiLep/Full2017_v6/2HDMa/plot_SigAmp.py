@@ -134,7 +134,7 @@ for mp in signal:
     'isSignal' : 2,
     'color'    : signal[mp]['color'],   # kViolet + 1
     'samples'  : [mp],
-    #'scale'    : 100000,
+    'scale'    : 10000,
     }
 
 #groupPlot['DATA'] = {
@@ -358,7 +358,7 @@ for mp in signal:
     'isData'   : 0,
     'color'    : signal[mp]['color'],   # kViolet + 1
     'samples'  : [mp],
-    #'scale'    : 100000,
+    'scale'    : 10000,
     }
 
 # data
@@ -368,7 +368,7 @@ plot['DATA']  = {
                   'color': 1 ,
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0
+                  'isBlind'  : 1
               }
 
 

@@ -37,6 +37,13 @@ groupPlot['multiB'] = {
     'samples'  : ['WW', 'WWewk', 'ggWW', 'VBF-V', 'WZqcd', 'WZewk', 'ZZ', 'VVV', 'Vg', 'VgS_L', 'VgS_H', 'ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ttH_hww', 'ggH_htt', 'ZH_htt']
 }
 
+groupPlot['top'] = {
+    'nameHR' : 'tW and t#bar{t}',
+    'isSignal' : 0,
+    'color': 400,   # kYellow
+    'samples'  : ['top']
+}
+
 groupPlot['DY'] = {
     'nameHR' : "DY",
     'isSignal' : 0,
@@ -49,14 +56,6 @@ groupPlot['FAKE'] = {
     'isSignal' : 0,
     'color'    : 617,   # kViolet + 1
     'samples'  : ['FAKE']
-}
-
-
-groupPlot['top'] = {
-    'nameHR' : 'tW and t#bar{t}',
-    'isSignal' : 0,
-    'color': 400,   # kYellow
-    'samples'  : ['top']
 }
 
 

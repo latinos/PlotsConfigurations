@@ -1,0 +1,35 @@
+super_cut = [ 
+    '(nLepton>=1 && Alt$(Lepton_pt[1],0)<10.)',
+    # SingleMuon trigger: IsoMu27, SingleElectron trigger: Ele35_WPTight_Gsf
+    '((Lepton_pt[0]>27. && abs(Lepton_pdgId[0])==13) || (Lepton_pt[0]>35. && abs(Lepton_pdgId[0])==11))',
+]
+
+supercut = ' && '.join(super_cut)
+
+def combinecut(cut_list):
+    comb_cut = []
+    for cut in cut_list:
+        comb_cut.extend(cut)
+    return comb_cut
+
+def addcut(name, exprs):
+    cuts[name] = ' && '.join(exprs)
+
+is_el    = ['abs(Lepton_pdgId[0])==11']
+is_mu    = ['abs(Lepton_pdgId[0])==13']
+#bVeto    = ['bVeto']
+#IbVeto   = ['bReq']
+#QCDf    = ['mtw1 > 20', 'PuppiMET_pt > 20']
+IQCDf    = ['mtw1 < 20', 'PuppiMET_pt < 20']
+
+SC       = super_cut
+FCR      = combinecut([IQCDf, super_cut])
+
+# Electron
+addcut('ElCh_SC' , combinecut([is_el, SC]))
+addcut('ElCh_FCR', combinecut([is_el, FCR]))
+
+# Muon
+addcut('MuCh_SC'  , combinecut([is_mu, SC]))
+addcut('MuCh_FCR' , combinecut([is_mu, FCR]))
+

@@ -558,21 +558,79 @@ DataTrig = {
 ###########################################
 
 ########### FAKE ###########
+files = nanoGetSampleFiles(mcDirectory,'QCD_Pt-15to20_MuEnrichedPt5') + \
+    nanoGetSampleFiles(mcDirectory,'QCD_Pt-20to30_MuEnrichedPt5'    ) + \
+    nanoGetSampleFiles(mcDirectory,'QCD_Pt-30to50_MuEnrichedPt5'    ) + \
+    nanoGetSampleFiles(mcDirectory,'QCD_Pt-50to80_MuEnrichedPt5'    ) + \
+    nanoGetSampleFiles(mcDirectory,'QCD_Pt-80to120_MuEnrichedPt5'   ) + \
+    nanoGetSampleFiles(mcDirectory,'QCD_Pt-120to170_MuEnrichedPt5'  ) + \
+    nanoGetSampleFiles(mcDirectory,'QCD_Pt-170to300_MuEnrichedPt5'  ) + \
+    nanoGetSampleFiles(mcDirectory,'QCD_Pt-300to470_MuEnrichedPt5'  ) + \
+    nanoGetSampleFiles(mcDirectory,'QCD_Pt-470to600_MuEnrichedPt5'  ) + \
+    nanoGetSampleFiles(mcDirectory,'QCD_Pt-600to800_MuEnrichedPt5'  ) + \
+    nanoGetSampleFiles(mcDirectory,'QCD_Pt-800to1000_MuEnrichedPt5' ) + \
+    nanoGetSampleFiles(mcDirectory,'QCD_Pt-1000toInf_MuEnrichedPt5' ) + \
+    nanoGetSampleFiles(mcDirectory,'QCD_Pt-20to30_EMEnriched'       ) + \
+    nanoGetSampleFiles(mcDirectory,'QCD_Pt-30to50_EMEnriched'       ) + \
+    nanoGetSampleFiles(mcDirectory,'QCD_Pt-50to80_EMEnriched'       ) + \
+    nanoGetSampleFiles(mcDirectory,'QCD_Pt-80to120_EMEnriched'      ) + \
+    nanoGetSampleFiles(mcDirectory,'QCD_Pt-120to170_EMEnriched'     ) + \
+    nanoGetSampleFiles(mcDirectory,'QCD_Pt-300toInf_EMEnriched'     ) + \
+    nanoGetSampleFiles(mcDirectory,'QCD_Pt_20to30_bcToE'            ) + \
+    nanoGetSampleFiles(mcDirectory,'QCD_Pt_30to80_bcToE'            ) + \
+    nanoGetSampleFiles(mcDirectory,'QCD_Pt_80to170_bcToE'           ) + \
+    nanoGetSampleFiles(mcDirectory,'QCD_Pt_170to250_bcToE'          ) + \
+    nanoGetSampleFiles(mcDirectory,'QCD_Pt_250toInf_bcToE'          )
+    #nanoGetSampleFiles(mcDirectory,'QCD_Pt-15to20_EMEnriched'       ) + \
+    #nanoGetSampleFiles(mcDirectory,'QCD_Pt-170to300_EMEnriched'     ) + \
 
-fakeW_mu20 = 'FW_mu20_el35[0]'
 samples['FAKE'] = {
-  'name': [],
-  'weight': 'METFilter_DATA*'+fakeW_mu20,
-  'weights': [],
-  'isData': ['all'],
-  'FilesPerJob': 20
+    'name'   :   files,
+    'weight' : mcCommonWeightNoMatch,
+    #'weight' : mcCommonWeightNoMatch + '*(abs(Lepton_pdgId[0]) == 13)',
+    'FilesPerJob' : 4,
 }
 
-for _, sd in DataRun:
-  for pd in DataSets:
-    files = nanoGetSampleFiles(fakeDirectory, pd + '_' + sd)
-    samples['FAKE']['name'].extend(files)
-    samples['FAKE']['weights'].extend([DataTrig[pd]] * len(files))
+addSampleWeight(samples, 'FAKE', 'QCD_Pt-15to20_MuEnrichedPt5'   , '(abs(Lepton_pdgId[0]) == 13)')
+addSampleWeight(samples, 'FAKE', 'QCD_Pt-20to30_MuEnrichedPt5'   , '(abs(Lepton_pdgId[0]) == 13)')
+addSampleWeight(samples, 'FAKE', 'QCD_Pt-30to50_MuEnrichedPt5'   , '(abs(Lepton_pdgId[0]) == 13)')
+addSampleWeight(samples, 'FAKE', 'QCD_Pt-50to80_MuEnrichedPt5'   , '(abs(Lepton_pdgId[0]) == 13)')
+addSampleWeight(samples, 'FAKE', 'QCD_Pt-80to120_MuEnrichedPt5'  , '(abs(Lepton_pdgId[0]) == 13)')
+addSampleWeight(samples, 'FAKE', 'QCD_Pt-120to170_MuEnrichedPt5' , '(abs(Lepton_pdgId[0]) == 13)')
+addSampleWeight(samples, 'FAKE', 'QCD_Pt-170to300_MuEnrichedPt5' , '(abs(Lepton_pdgId[0]) == 13)')
+addSampleWeight(samples, 'FAKE', 'QCD_Pt-300to470_MuEnrichedPt5' , '(abs(Lepton_pdgId[0]) == 13)')
+addSampleWeight(samples, 'FAKE', 'QCD_Pt-470to600_MuEnrichedPt5' , '(abs(Lepton_pdgId[0]) == 13)')
+addSampleWeight(samples, 'FAKE', 'QCD_Pt-600to800_MuEnrichedPt5' , '(abs(Lepton_pdgId[0]) == 13)')
+addSampleWeight(samples, 'FAKE', 'QCD_Pt-800to1000_MuEnrichedPt5', '(abs(Lepton_pdgId[0]) == 13)')
+addSampleWeight(samples, 'FAKE', 'QCD_Pt-1000toInf_MuEnrichedPt5', '(abs(Lepton_pdgId[0]) == 13)')
+#addSampleWeight(samples, 'FAKE', 'QCD_Pt-15to20_EMEnriched'      , '(abs(Lepton_pdgId[0]) == 11)')
+addSampleWeight(samples, 'FAKE', 'QCD_Pt-20to30_EMEnriched'      , '(abs(Lepton_pdgId[0]) == 11)')
+addSampleWeight(samples, 'FAKE', 'QCD_Pt-30to50_EMEnriched'      , '(abs(Lepton_pdgId[0]) == 11)')
+addSampleWeight(samples, 'FAKE', 'QCD_Pt-50to80_EMEnriched'      , '(abs(Lepton_pdgId[0]) == 11)')
+addSampleWeight(samples, 'FAKE', 'QCD_Pt-80to120_EMEnriched'     , '(abs(Lepton_pdgId[0]) == 11)')
+addSampleWeight(samples, 'FAKE', 'QCD_Pt-120to170_EMEnriched'    , '(abs(Lepton_pdgId[0]) == 11)')
+#addSampleWeight(samples, 'FAKE', 'QCD_Pt-170to300_EMEnriched'    , '(abs(Lepton_pdgId[0]) == 11)')
+addSampleWeight(samples, 'FAKE', 'QCD_Pt-300toInf_EMEnriched'    , '(abs(Lepton_pdgId[0]) == 11)')
+addSampleWeight(samples, 'FAKE', 'QCD_Pt_20to30_bcToE'           , '(abs(Lepton_pdgId[0]) == 11)')
+addSampleWeight(samples, 'FAKE', 'QCD_Pt_30to80_bcToE'           , '(abs(Lepton_pdgId[0]) == 11)')
+addSampleWeight(samples, 'FAKE', 'QCD_Pt_80to170_bcToE'          , '(abs(Lepton_pdgId[0]) == 11)')
+addSampleWeight(samples, 'FAKE', 'QCD_Pt_170to250_bcToE'         , '(abs(Lepton_pdgId[0]) == 11)')
+addSampleWeight(samples, 'FAKE', 'QCD_Pt_250toInf_bcToE'         , '(abs(Lepton_pdgId[0]) == 11)')
+
+#fakeW_mu20 = 'FW_mu20_el35[0]'
+#samples['FAKE'] = {
+#  'name': [],
+#  'weight': 'METFilter_DATA*'+fakeW_mu20,
+#  'weights': [],
+#  'isData': ['all'],
+#  'FilesPerJob': 25
+#}
+#
+#for _, sd in DataRun:
+#  for pd in DataSets:
+#    files = nanoGetSampleFiles(fakeDirectory, pd + '_' + sd)
+#    samples['FAKE']['name'].extend(files)
+#    samples['FAKE']['weights'].extend([DataTrig[pd]] * len(files))
 
 
 ########### DATA ###########

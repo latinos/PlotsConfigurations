@@ -45,7 +45,7 @@ groupPlot['DY'] = {
 }
 
 groupPlot['FAKE'] = {
-    'nameHR' : "Fake",
+    'nameHR' : "QCD",
     'isSignal' : 0,
     'color'    : 617,   # kViolet + 1
     'samples'  : ['FAKE']

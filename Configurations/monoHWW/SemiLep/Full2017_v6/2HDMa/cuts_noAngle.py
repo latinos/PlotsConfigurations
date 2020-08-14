@@ -6,8 +6,7 @@ super_cut = [
     'Sum$(CleanJet_pt>30.)>=2',
     'MHlnjj_m_jj > -1', # Require 2 good CleanJets (pt > 30; abs(eta) < 4.7; Jet_jetId >= 2; pujetid == 'custom')
     # Additional cuts
-    'MHlnjj_dphi_jjVl < 2.',
-    #'MHlnjj_dphi_ljjVmet > 2.',
+    #'MHlnjj_dphi_jjVl < 2.',
 ]
 
 supercut = ' && '.join(super_cut)
