@@ -21,15 +21,19 @@ is_mu    = ['abs(Lepton_pdgId[0])==13']
 #IbVeto   = ['bReq']
 #QCDf    = ['mtw1 > 20', 'PuppiMET_pt > 20']
 IQCDf    = ['mtw1 < 20', 'PuppiMET_pt < 20']
+mtw      = ['mtw1 > 50']
 
 SC       = super_cut
 FCR      = combinecut([IQCDf, super_cut])
+MTW      = combinecut([mtw, super_cut])
 
 # Electron
 addcut('ElCh_SC' , combinecut([is_el, SC]))
 addcut('ElCh_FCR', combinecut([is_el, FCR]))
+addcut('ElCh_MTW', combinecut([is_el, MTW]))
 
 # Muon
 addcut('MuCh_SC'  , combinecut([is_mu, SC]))
 addcut('MuCh_FCR' , combinecut([is_mu, FCR]))
+addcut('MuCh_MTW' , combinecut([is_mu, MTW]))
 

@@ -170,7 +170,8 @@ FakeWeightOTF::evaluate(unsigned)
       }
       //std::cout << "Here Mu 3" << std::endl;
       float fake_rate; 
-      maxpt = fr_mu_h2->GetXaxis()->GetBinCenter(fr_mu_h2->GetNbinsX());
+      //maxpt = fr_mu_h2->GetXaxis()->GetBinCenter(fr_mu_h2->GetNbinsX());
+      maxpt = 35.; 
       if (pt > maxpt){
         fake_rate = fr_mu_h2->GetBinContent(fr_mu_h2->FindBin(maxpt, aeta));
       }else{
@@ -198,7 +199,8 @@ FakeWeightOTF::evaluate(unsigned)
       }
       //std::cout << "Here Ele 3" << std::endl;
       float fake_rate; 
-      maxpt = fr_ele_h2->GetXaxis()->GetBinCenter(fr_ele_h2->GetNbinsX());
+      //maxpt = fr_ele_h2->GetXaxis()->GetBinCenter(fr_ele_h2->GetNbinsX());
+      maxpt = 35.; 
       if (pt > maxpt){
         fake_rate = fr_ele_h2->GetBinContent(fr_ele_h2->FindBin(maxpt, aeta));
       }else{
