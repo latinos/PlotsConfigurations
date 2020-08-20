@@ -81,7 +81,7 @@ aliases['PromptGenLepMatch2l'] = {
 
 aliases['Top_pTrw'] = {
     'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
-    'samples': ['top']
+    'samples': ['ttbar', 'singleTop']
 }
 
 # Jet bins

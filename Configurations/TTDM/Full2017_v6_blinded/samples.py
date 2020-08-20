@@ -98,36 +98,19 @@ mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 
 ###### DY #######
 
-useDYtt = False
-
 ptllDYW_NLO = '(((0.623108 + 0.0722934*gen_ptll - 0.00364918*gen_ptll*gen_ptll + 6.97227e-05*gen_ptll*gen_ptll*gen_ptll - 4.52903e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll<45)*(gen_ptll>0) + 1*(gen_ptll>=45))*(abs(gen_mll-90)<3) + (abs(gen_mll-90)>3))'
 ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
 
-if useDYtt:
-    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
-        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
-
-    samples['DY'] = {
-        'name': files,
-        'weight': mcCommonWeight + "*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 &&\
-                                         Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )",
-        'FilesPerJob': 5,
-    }
-    addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO)
-    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
-
-else:
-    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext1') + \
+files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext1') + \
         nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
     
-    samples['DY'] = {
-        'name': files,
-        'weight': mcCommonWeight + "*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 &&\
-                                         Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )",
-        'FilesPerJob': 8,
-    }
-    addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO)
-    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
+samples['DY'] = {
+    'name': files,
+    'weight': mcCommonWeight + "*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 && Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )",
+    'FilesPerJob': 8,
+}
+addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO)
+addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 
 ###### Top #######
 
@@ -240,70 +223,70 @@ signalDir = '/eos/user/c/cprieels/work/TopPlusDMRunIILegacyRootfiles/Fall2017_10
 
 samples['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_50'] = {
     'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_50'),
-    'weight': mcCommonWeightNoMatch,
+    'weight': mcCommonWeightNoMatch + '/2.0653', #Cross section fix to account for the 01j + matching effect
     'FilesPerJob': 1,
 }
 signals.append('TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_50')
 
 samples['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_100'] = {
     'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_100'),
-    'weight': mcCommonWeightNoMatch,
+    'weight': mcCommonWeightNoMatch + '/2.1386',
     'FilesPerJob': 1,
 }
 signals.append('TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_100')
 
 samples['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_150'] = {
     'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_150'),
-    'weight': mcCommonWeightNoMatch,
+    'weight': mcCommonWeightNoMatch + '/2.2043',
     'FilesPerJob': 1,
 }
 signals.append('TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_150')
 
 samples['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_200'] = {
     'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_200'),
-    'weight': mcCommonWeightNoMatch,
+    'weight': mcCommonWeightNoMatch + '/2.4324',
     'FilesPerJob': 1,
 }
 signals.append('TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_200')
 
 samples['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_250'] = {
     'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_250'),
-    'weight': mcCommonWeightNoMatch,
+    'weight': mcCommonWeightNoMatch + '/2.4854',
     'FilesPerJob': 1,
 }
 signals.append('TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_250')
 
 samples['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_300'] = {
     'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_300'),
-    'weight': mcCommonWeightNoMatch,
+    'weight': mcCommonWeightNoMatch + '/2.5123',
     'FilesPerJob': 1,
 }
 signals.append('TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_300')
 
 samples['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_350'] = {
     'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_350'),
-    'weight': mcCommonWeightNoMatch,
+    'weight': mcCommonWeightNoMatch + '/2.5333',
     'FilesPerJob': 1,
 }
 signals.append('TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_350')
 
 samples['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_400'] = {
     'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_400'),
-    'weight': mcCommonWeightNoMatch,
+    'weight': mcCommonWeightNoMatch + '/2.5648',
     'FilesPerJob': 1,
 }
 signals.append('TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_400')
 
 samples['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_450'] = {
     'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_450'),
-    'weight': mcCommonWeightNoMatch,
+    'weight': mcCommonWeightNoMatch + '/2.5827',
     'FilesPerJob': 1,
 }
 signals.append('TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_450')
 
 samples['TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_500'] = {
     'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_500'),
-    'weight': mcCommonWeightNoMatch,
+    'weight': mcCommonWeightNoMatch + '/2.6232',
     'FilesPerJob': 1,
 }
 signals.append('TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_500')
@@ -311,76 +294,75 @@ signals.append('TTbarDMJets_Dilepton_pseudoscalar_LO_Mchi_1_Mphi_500')
 
 samples['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_50'] = {
     'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_50'),
-    'weight': mcCommonWeightNoMatch,
+    'weight': mcCommonWeightNoMatch + '/2.0342',
     'FilesPerJob': 1,
 }
 signals.append('TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_50')
 
 samples['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_100'] = {
     'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_100'),
-    'weight': mcCommonWeightNoMatch,
+    'weight': mcCommonWeightNoMatch + '/2.1326',
     'FilesPerJob': 1,
 }
 signals.append('TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_100')
 
 samples['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_150'] = {
     'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_150'),
-    'weight': mcCommonWeightNoMatch,
+    'weight': mcCommonWeightNoMatch + '/2.1940',
     'FilesPerJob': 1,
 }
 signals.append('TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_150')
 
 samples['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_200'] = {
     'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_200'),
-    'weight': mcCommonWeightNoMatch,
+    'weight': mcCommonWeightNoMatch + '/2.3519',
     'FilesPerJob': 1,
 }
 signals.append('TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_200')
 
 samples['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_250'] = {
     'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_250'),
-    'weight': mcCommonWeightNoMatch,
+    'weight': mcCommonWeightNoMatch + '/2.3735',
     'FilesPerJob': 1,
 }
 signals.append('TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_250')
 
 samples['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_300'] = {
     'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_300'),
-    'weight': mcCommonWeightNoMatch,
+    'weight': mcCommonWeightNoMatch + '/2.4020',
     'FilesPerJob': 1,
 }
 signals.append('TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_300')
 
 samples['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_350'] = {
     'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_350'),
-    'weight': mcCommonWeightNoMatch,
+    'weight': mcCommonWeightNoMatch + '/2.4156',
     'FilesPerJob': 1,
 }
 signals.append('TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_350')
 
 samples['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_400'] = {
     'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_400'),
-    'weight': mcCommonWeightNoMatch,
+    'weight': mcCommonWeightNoMatch + '/2.4609',
     'FilesPerJob': 1,
 }
 signals.append('TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_400')
 
 samples['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_450'] = {
     'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_450'),
-    'weight': mcCommonWeightNoMatch,
+    'weight': mcCommonWeightNoMatch + '/2.4903',
     'FilesPerJob': 1,
 }
 signals.append('TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_450')
 
 samples['TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_500'] = {
     'name': nanoGetSampleFiles(signalDir, 'TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_500'),
-    'weight': mcCommonWeightNoMatch,
+    'weight': mcCommonWeightNoMatch + '/2.5195',
     'FilesPerJob': 1,
 }
 signals.append('TTbarDMJets_Dilepton_scalar_LO_Mchi_1_Mphi_500')
 
 
-"""
 samples['DMscalar_Dilepton_top_tWChan_Mchi1_Mphi10'] = {
     'name': nanoGetSampleFiles(signalDir, 'DMscalar_Dilepton_top_tWChan_Mchi1_Mphi10'),
     'weight': mcCommonWeightNoMatch,
@@ -402,7 +384,7 @@ samples['DMscalar_Dilepton_top_tWChan_Mchi1_Mphi50'] = {
 }
 signals.append('DMscalar_Dilepton_top_tWChan_Mchi1_Mphi50')                           
                         
-files = nanoGetSampleFiles(signalDir, 'DMscalar_Dilepton_top_tWChan_Mchi1_Mphi100') + \ 
+files = nanoGetSampleFiles(signalDir, 'DMscalar_Dilepton_top_tWChan_Mchi1_Mphi100') + \
         nanoGetSampleFiles(signalDir, 'DMscalar_Dilepton_top_tWChan_Mchi1_Mphi100_ext') 
 
 samples['DMscalar_Dilepton_top_tWChan_Mchi1_Mphi100'] = {
@@ -440,7 +422,6 @@ samples['DMscalar_Dilepton_top_tWChan_Mchi1_Mphi1000'] = {
     'FilesPerJob': 10,
 }
 signals.append('DMscalar_Dilepton_top_tWChan_Mchi1_Mphi1000')                           
-"""
 
 ###########################################
 ################## FAKE ###################

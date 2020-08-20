@@ -79,7 +79,7 @@ aliases['PromptGenLepMatch2l'] = {
 
 aliases['Top_pTrw'] = {
     'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
-    'samples': ['top']
+    'samples': ['ttbar', 'singleTop']
 }
 
 # Jet bins
@@ -115,11 +115,13 @@ aliases['PUJetIdSF'] = {
 ### Total SFs, i.e. ttHMVA+old lepton SFs ###
 #############################################
 
+"""
 aliases['ttHMVA_SF_2l'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
                            'class': 'compute_SF',
                            'args' : ('2017', 2, 'total_SF'),
                            'samples': mc
                           }
+"""
 
 # data/MC scale factors
 aliases['SFweight'] = {

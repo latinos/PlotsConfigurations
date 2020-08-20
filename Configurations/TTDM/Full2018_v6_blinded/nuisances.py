@@ -125,6 +125,7 @@ nuisances['eff_e'] = {
     'type': 'shape',
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
 }
+
 """
 nuisances['electronpt'] = {
     'name': 'CMS_scale_e_2018',
@@ -137,17 +138,18 @@ nuisances['electronpt'] = {
     'folderDown': makeMCDirectory('ElepTdo_suffix'),
     'AsLnN': '1'
 }
-
+"""
 ##### Muon Efficiency and energy scale
 
 nuisances['eff_m'] = {
     'name': 'CMS_eff_m_2018',
     'kind': 'weight',
     'type': 'shape',
-    #'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
-    'samples': dict((skey, ['ttHMVA_2l_mu_SF_Up', 'ttHMVA_2l_mu_SF_Down']) for skey in mc)
+    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
+    #'samples': dict((skey, ['ttHMVA_2l_mu_SF_Up', 'ttHMVA_2l_mu_SF_Down']) for skey in mc)
 }
 
+"""
 nuisances['muonpt'] = {
     'name': 'CMS_scale_m_2018',
     'kind': 'suffix',
@@ -189,6 +191,7 @@ nuisances['met'] = {
     'folderDown': makeMCDirectory('METdo_suffix'),
     'AsLnN': '1'
 }
+"""
 
 ##### Pileup
 
@@ -206,6 +209,7 @@ nuisances['PU'] = {
     'AsLnN': '1',
 }
 
+"""
 ##### PS
 nuisances['UE']  = {
                 'name'  : 'UE_CP5',
@@ -221,6 +225,7 @@ nuisances['UE']  = {
                 'folderDown': makeMCDirectory('UEdo'),
                 'AsLnN'      : '1',
 }
+"""
 
 ####### Generic "cross section uncertainties"
 
@@ -546,4 +551,4 @@ for n in nuisances.values():
     n['skipCMS'] = 1
 
 print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
-"""
+

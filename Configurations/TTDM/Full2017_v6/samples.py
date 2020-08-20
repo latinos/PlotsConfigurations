@@ -31,15 +31,15 @@ except NameError:
 
 dataReco = 'Run2017_102X_nAODv5_Full2017v6'
 
-fakeReco = 'Run2017_102X_nAODv5_Full2017v6_ForNewWPs'
+fakeReco = 'Run2017_102X_nAODv5_Full2017v6'
 
 mcProduction = 'Fall2017_102X_nAODv5_Full2017v6'
 
-mcSteps = 'MCl1loose2017v6__MCCorr2017v6__l2loose__l2tightOR2017v6{var}'
+mcSteps = 'MCl1loose2017v6__MCCorr2017v6__l2loose__l2tightOR2017v6{var}_weighted'
 
-fakeSteps = 'DATAl1loose2017v6__l2loose__fakeW'
+fakeSteps = 'DATAl1loose2017v6__l2loose__fakeW_weighted'
 
-dataSteps = 'DATAl1loose2017v6__l2loose__l2tightOR2017v6'
+dataSteps = 'DATAl1loose2017v6__l2loose__l2tightOR2017v6_weighted'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -49,7 +49,8 @@ SITE=os.uname()[1]
 if    'iihe' in SITE:
   treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015'
 elif  'cern' in SITE:
-  treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
+    #treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
+    treeBaseDir = '/eos/user/c/cprieels/work/TopPlusDMRunIILegacyRootfiles/'
 
 def makeMCDirectory(var=''):
     if var:
@@ -97,57 +98,57 @@ mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 
 ###### DY #######
 
-useDYtt = False
-
 ptllDYW_NLO = '(((0.623108 + 0.0722934*gen_ptll - 0.00364918*gen_ptll*gen_ptll + 6.97227e-05*gen_ptll*gen_ptll*gen_ptll - 4.52903e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll<45)*(gen_ptll>0) + 1*(gen_ptll>=45))*(abs(gen_mll-90)<3) + (abs(gen_mll-90)>3))'
 ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
 
-if useDYtt:
-    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
-        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
-
-    samples['DY'] = {
-        'name': files,
-        'weight': mcCommonWeight + "*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 &&\
-                                         Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )",
-        'FilesPerJob': 5,
-    }
-    addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO)
-    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
-
-else:
-    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext1') + \
+files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50') + \
         nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
     
-    samples['DY'] = {
-        'name': files,
-        'weight': mcCommonWeight + "*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 &&\
-                                         Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )",
-        'FilesPerJob': 8,
-    }
-    addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO)
-    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
+samples['DY'] = {
+    'name': files,
+    'weight': mcCommonWeight + "*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 && Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )",
+    'FilesPerJob': 8,
+}
+addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO)
+addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 
 ###### Top #######
 
-files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu_PSWeights') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
+samples['ttbar'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 1,
+}
+
+addSampleWeight(samples,'ttbar','TTTo2L2Nu','Top_pTrw')
+
+files = nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
     nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
     nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
     nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop') + \
     nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
 
-samples['top'] = {
+samples['singleTop'] = {
     'name': files,
     'weight': mcCommonWeight,
     'FilesPerJob': 1,
 }
 
-addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
-
 #IMPORTANT!! TO BE USED TO FIX THE CROSS-SECTIONS OF SOME SAMPLES 
-addSampleWeight(samples,'top','ST_t-channel_antitop','3.068')
-addSampleWeight(samples,'top','ST_t-channel_top','3.068')
+addSampleWeight(samples,'singleTop','ST_t-channel_antitop','3.068')
+addSampleWeight(samples,'singleTop','ST_t-channel_top','3.068')
+
+samples['TTToSemiLeptonic'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 2,
+}
+
+samples['ttV'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'TTZjets') + nanoGetSampleFiles(mcDirectory, 'TTWjets'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 2,
+}
 
 ###### WW ########
 
@@ -155,29 +156,6 @@ samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
     'weight': mcCommonWeight + '*nllW',
     'FilesPerJob': 1
-}
-
-samples['WWewk'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK_noTop'),
-    'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)', #filter tops and Higgs
-    'FilesPerJob': 2
-}
-
-# k-factor 1.4 already taken into account in XSWeight
-files = nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENTN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNEN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNMN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNTN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNEN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN')
-
-samples['ggWW'] = {
-    'name': files,
-    'weight': mcCommonWeight + '*1.53/1.4', # updating k-factor
-    'FilesPerJob': 10
 }
 
 ######## Vg ########

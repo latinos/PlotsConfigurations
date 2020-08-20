@@ -83,17 +83,17 @@ lastcopy = (1 << 13)
 
 aliases['isTTbar'] = {
     'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 2' % lastcopy,
-    'samples': ['top']
+    'samples': ['ttbar', 'singleTop']
 }
 
 aliases['isSingleTop'] = {
     'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 1' % lastcopy,
-    'samples': ['top']
+    'samples': ['ttbar', 'singleTop']
 }
 
 aliases['Top_pTrw'] = {
     'expr': 'isTTbar * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + isSingleTop',
-    'samples': ['top']
+    'samples': ['ttbar', 'singleTop']
 }
 
 # Jet bins

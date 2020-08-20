@@ -193,56 +193,62 @@ variables['r2l'] = {   'name': 'PuppiMET_pt / (Lepton_pt[0] + Lepton_pt[1])',
                    }
 
 variables['r2l4j'] = {   'name': 'PuppiMET_pt / (Lepton_pt[0] + Lepton_pt[1] + Alt$(CleanJet_pt[0], 0) + Alt$(CleanJet_pt[1], 0) + Alt$(CleanJet_pt[2], 0) + Alt$(CleanJet_pt[3], 0))',
-                         'range': (40,0,2),
+                         'range': (40,0,1.5),
                        'xaxis': 'r2l4j',
                        'fold': 3
 }
 
 #DNN/BDT variables
-variables['BDT_signal0']  = {   'name': 'BDT_output_signal0',
-                                'range' : (40,1030000000,1070000000),
-                                'xaxis' : 'BDT signal 0 output',
-                                'fold' : 3
-                            }
+trainings = [{"tag": "scalar_LO_Mchi_1_Mphi_100_default", "shortName": "scalar_default"},
+             {"tag": "scalar_LO_Mchi_1_Mphi_100_twomore", "shortName": "scalar_twomore"},
+             {"tag": "scalar_LO_Mchi_1_Mphi_100_fivemore", "shortName": "scalar_fiveMore"}]
 
-variables['BDT_signal1']  = {   'name': 'BDT_output_signal1',
-                                'range' : (40,1030000000,1070000000),
-                                'xaxis' : 'BDT signal 1 output',
-                                'fold' : 3
-                            }
+for training in trainings:
+    variables['BDT_signal0_' + training['shortName']]  = {   'name': 'BDT_output_signal0_' + training['tag'],
+                                                             'range' : (40,1030000000,1070000000),
+                                                             'xaxis' : 'BDT ttDM output',
+                                                             'fold' : 3
+                                                         }
 
-variables['BDT_background']  = {   'name': 'BDT_output_background0',
-                                   'range' : (40,1030000000,1070000000),
-                                   'xaxis' : 'BDT background output',
-                                   'fold' : 3
-                               }
+    variables['BDT_signal1_' + training['shortName']]  = {   'name': 'BDT_output_signal1_' + training['tag'],
+                                                             'range' : (40,1030000000,1070000000),
+                                                             'xaxis' : 'BDT tDM 1 output',
+                                                             'fold' : 3
+                                                         }
 
-variables['BDT_category']  = {   'name': 'BDT_output_category',
-                                 'range' : (3,0,3),
-                                 'xaxis' : 'BDT output category',
-                                 'fold' : 3
-                            }
+    variables['BDT_bgk_' + training['shortName']]  = {   'name': 'BDT_output_background_' + training['tag'],
+                                                         'range' : (40,1030000000,1070000000),
+                                                         'xaxis' : 'BDT background output',
+                                                         'fold' : 3
+                                                     }
 
-variables['DNN_signal0']  = {   'name': 'DNN_output_signal0',
-                                'range' : (40,0,1),
-                                'xaxis' : 'DNN signal 0 output',
-                                'fold' : 3
-                            }
+    variables['BDT_category_' + training['shortName']]  = {   'name': 'BDT_output_category_' + training['tag'],
+                                                              'range' : (3,0,3),
+                                                              'xaxis' : 'BDT output category',
+                                                              'fold' : 3
+                                                          }
 
-variables['DNN_signal1']  = {   'name': 'DNN_output_signal1',
-                                'range' : (40,0,1),
-                                'xaxis' : 'DNN signal 1 output',
-                                'fold' : 3
-                            }
 
-variables['DNN_background']  = {   'name': 'DNN_output_background0',
-                                   'range' : (40,0,1),
-                                   'xaxis' : 'DNN background output',
-                                   'fold' : 3
-                               }
+    variables['DNN_signal0_' + training['shortName']]  = {   'name': 'DNN_output_signal0_' + training['tag'],
+                                                             'range' : (40,0,1),
+                                                             'xaxis' : 'DNN ttDM output',
+                                                             'fold' : 3
+                                                         }
 
-variables['DNN_category']  = {   'name': 'DNN_output_category',
-                                 'range' : (3,0,3),
-                                 'xaxis' : 'DNN output category',
-                                 'fold' : 3
-                            }
+    variables['DNN_signal1_' + training['shortName']]  = {   'name': 'DNN_output_signal1_' + training['tag'],
+                                                             'range' : (40,0,1),
+                                                             'xaxis' : 'DNN tDM 1 output',
+                                                             'fold' : 3
+                                                         }
+
+    variables['DNN_bgk_' + training['shortName']]  = {   'name': 'DNN_output_background_' + training['tag'],
+                                                         'range' : (40,0,1),
+                                                         'xaxis' : 'DNN background output',
+                                                         'fold' : 3
+                                                     }
+
+    variables['DNN_category_' + training['shortName']]  = {   'name': 'DNN_output_category_' + training['tag'],
+                                                              'range' : (3,0,3),
+                                                              'xaxis' : 'DNN output category',
+                                                              'fold' : 3
+                                                          }

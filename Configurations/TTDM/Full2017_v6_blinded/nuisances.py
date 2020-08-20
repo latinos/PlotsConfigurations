@@ -59,7 +59,7 @@ nuisances['lumi_CurrCalib'] = {
 }
 
 #### FAKES
-"""
+
 nuisances['fake_syst'] = {
     'name': 'CMS_fake_syst',
     'type': 'lnN',
@@ -124,6 +124,7 @@ nuisances['eff_e'] = {
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
 }
 
+"""
 nuisances['electronpt'] = {
     'name': 'CMS_scale_e_2017',
     'kind': 'suffix',
@@ -135,6 +136,7 @@ nuisances['electronpt'] = {
     'folderDown': makeMCDirectory('ElepTdo_suffix'),
     'AsLnN': '1'
 }
+"""
 
 ##### Muon Efficiency and energy scale
 
@@ -142,10 +144,11 @@ nuisances['eff_m'] = {
     'name': 'CMS_eff_m_2017',
     'kind': 'weight',
     'type': 'shape',
-    #'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
-    'samples': dict((skey, ['ttHMVA_2l_mu_SF_Up', 'ttHMVA_2l_mu_SF_Down']) for skey in mc)
+    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
+    #'samples': dict((skey, ['ttHMVA_2l_mu_SF_Up', 'ttHMVA_2l_mu_SF_Down']) for skey in mc)
 }
 
+"""
 nuisances['muonpt'] = {
     'name': 'CMS_scale_m_2017',
     'kind': 'suffix',
@@ -187,6 +190,7 @@ nuisances['met'] = {
     'folderDown': makeMCDirectory('METdo_suffix'),
     'AsLnN': '1'
 }
+"""
 
 ##### Pileup
 
@@ -511,4 +515,3 @@ for n in nuisances.values():
     n['skipCMS'] = 1
 
 print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
-"""

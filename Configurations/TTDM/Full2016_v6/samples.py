@@ -31,15 +31,15 @@ except NameError:
 
 mcProduction = 'Summer16_102X_nAODv5_Full2016v6'
 
-fakeReco = 'Run2016_102X_nAODv5_Full2016v6_ForNewWPs'
+fakeReco = 'Run2016_102X_nAODv5_Full2016v6'
 
 dataReco = 'Run2016_102X_nAODv5_Full2016v6'
 
-mcSteps = 'MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6{var}'
+mcSteps = 'MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6{var}_weighted'
 
-fakeSteps = 'DATAl1loose2016v6__l2loose__fakeW'
+fakeSteps = 'DATAl1loose2016v6__l2loose__fakeW_weighted'
 
-dataSteps = 'DATAl1loose2016v6__l2loose__l2tightOR2016v6'
+dataSteps = 'DATAl1loose2016v6__l2loose__l2tightOR2016v6_weighted'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -49,7 +49,8 @@ SITE=os.uname()[1]
 if    'iihe' in SITE:
   treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015'
 elif  'cern' in SITE:
-  treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
+    #treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
+    treeBaseDir = '/eos/user/c/cprieels/work/TopPlusDMRunIILegacyRootfiles/'
 
 def makeMCDirectory(var=''):
     if var:
@@ -118,24 +119,41 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
 
 ###### Top #######
 
-files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
+samples['ttbar'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 1,
+}
+
+addSampleWeight(samples,'ttbar','TTTo2L2Nu','Top_pTrw')
+
+files =  nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
     nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
     nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
     nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop') + \
     nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
 
-samples['top'] = {
+samples['singleTop'] = {
     'name': files,
     'weight': mcCommonWeight,
     'FilesPerJob': 1,
 }
 
-addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
-
 #IMPORTANT!! TO BE USED TO FIX THE CROSS-SECTIONS OF SOME SAMPLES                                             
-addSampleWeight(samples,'top','ST_t-channel_antitop','3.068')
-addSampleWeight(samples,'top','ST_t-channel_top','3.068')
+addSampleWeight(samples,'singleTop','ST_t-channel_antitop','3.068')
+addSampleWeight(samples,'singleTop','ST_t-channel_top','3.068')
+
+samples['TTToSemiLeptonic'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 2,
+}
+
+samples['ttV'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'TTZjets') + nanoGetSampleFiles(mcDirectory, 'TTWJetsToLNu_ext1'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 2,
+}
 
 ###### WW ########
 
@@ -143,18 +161,6 @@ samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
     'weight': mcCommonWeight + '*nllW', # temporary - nllW module not run on PS and UE variation samples
     'FilesPerJob': 1
-}
-
-samples['WWewk'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK_noTop'),
-    'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)*(lhe_mW1[0] > 60. && lhe_mW1[0] < 100. && lhe_mW2[0] > 60. && lhe_mW2[0] < 100.)', #filter tops and Higgs, limit w mass
-    'FilesPerJob': 4
-}
-
-samples['ggWW'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'GluGluWWTo2L2Nu_MCFM'),
-    'weight': mcCommonWeight + '*1.53/1.4', # updating k-factor
-    'FilesPerJob': 4
 }
 
 ######## Vg ########

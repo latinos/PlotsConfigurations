@@ -99,7 +99,7 @@ aliases['multiJet'] = {
 }
 
 puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
-#puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+#pusidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
 
 aliases['PUJetIdSF'] = {
     'linesToAdd': [
@@ -115,11 +115,13 @@ aliases['PUJetIdSF'] = {
 ### Total SFs, i.e. ttHMVA+old lepton SFs ###
 #############################################
 
+"""
 aliases['ttHMVA_SF_2l'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
                            'class': 'compute_SF',
                            'args' : ('2017', 2, 'total_SF'),
                            'samples': mc
                           }
+"""
 
 # data/MC scale factors
 aliases['SFweight'] = {
