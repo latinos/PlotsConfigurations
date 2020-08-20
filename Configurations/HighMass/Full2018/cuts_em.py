@@ -66,7 +66,7 @@ cuts['hww2l2v_13TeV_em_vbf']  = '   mth>60 \
 cuts['hww2l2v_13TeV_em_top_0j']  = '   mth>60 \
                                     && Alt$(CleanJet_pt[0],0)<30 \
                                     && !VBFcut \
-                                    && btag0 \
+                                    && bReq0j \
                                     && finalstate \
                                    '
 
@@ -74,7 +74,7 @@ cuts['hww2l2v_13TeV_em_top_1j']  = '   mth>60 \
                                     && Alt$(CleanJet_pt[0],0)>=30 \
                                     && Alt$(CleanJet_pt[1],0)< 30 \
                                     && !VBFcut \
-                                    && btag1 \
+                                    && bReq \
                                     && finalstate \
                                    '
 
@@ -82,19 +82,19 @@ cuts['hww2l2v_13TeV_em_top_2j']  = '   mth>60 \
                                     && Alt$(CleanJet_pt[0],0)>=30 \
                                     && Alt$(CleanJet_pt[1],0)>=30 \
                                     && !VBFcut \
-                                    && btag2 \
+                                    && bReq \
                                     && finalstate \
                                    '
 
 cuts['hww2l2v_13TeV_em_top_ggh']  = '   mth>60 \
                                     && !VBFcut \
-                                    && btag0 \
+                                    && bReq \
                                     && finalstate \
                                    '
 
 cuts['hww2l2v_13TeV_em_top_vbf']  = '   mth>60 \
                                      && VBFcut \
-                                     && btagvbf \
+                                     && bReq \
                                      && finalstate \
                                     '
 
@@ -186,7 +186,7 @@ cuts['hww2l2v_13TeV_em_highvbf']  = '   mth>60 \
 cuts['hww2l2v_13TeV_em_top_high0j']  = '   mth>60 \
                                         && Alt$(CleanJet_pt[0],0)<30 \
                                         && !VBFcut_HM \
-                                        && btag0 \
+                                        && bReq0j \
                                         && finalstate \
                                         && HighMass \
                                    '
@@ -195,7 +195,7 @@ cuts['hww2l2v_13TeV_em_top_high1j']  = '   mth>60 \
                                         && Alt$(CleanJet_pt[0],0)>=30 \
                                         && Alt$(CleanJet_pt[1],0)< 30 \
                                         && !VBFcut_HM \
-                                        && btag1 \
+                                        && bReq \
                                         && finalstate \
                                         && HighMass \
                                    '
@@ -204,21 +204,21 @@ cuts['hww2l2v_13TeV_em_top_high2j']  = '   mth>60 \
                                         && Alt$(CleanJet_pt[0],0)>=30 \
                                         && Alt$(CleanJet_pt[1],0)>=30 \
                                         && !VBFcut_HM \
-                                        && btag2 \
+                                        && bReq \
                                         && finalstate \
                                         && HighMass \
                                    '
 
 cuts['hww2l2v_13TeV_em_top_highggh']  = '   mth>60 \
                                         && !VBFcut_HM \
-                                        && btag0 \
+                                        && bReq \
                                         && finalstate \
                                         && HighMass \
                                    '
 
 cuts['hww2l2v_13TeV_em_top_highvbf']  = '   mth>60 \
                                          && VBFcut_HM \
-                                         && btag2 \
+                                         && bReq \
                                          && finalstate \
                                          && HighMass \
                                     '
