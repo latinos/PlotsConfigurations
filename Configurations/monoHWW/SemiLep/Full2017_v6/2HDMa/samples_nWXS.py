@@ -371,9 +371,9 @@ samples['Wjets'] = {
 #addSampleWeight(samples, 'Wjets', 'WJetsToLNu-2J', 'WJets_2J_xsFix[0]')
 
 # Xsec*k-factor correction https://indico.cern.ch/event/673253/contributions/2756806/attachments/1541203/2416962/20171016_VJetsXsecsUpdate_PH-GEN.pdf
-addSampleWeight(samples, 'Wjets', 'WJetsToLNu-0J', '0.90209625793*1.0176') # 49264.92/54611.6 = 0.90209625793
-addSampleWeight(samples, 'Wjets', 'WJetsToLNu-1J', '0.92350828667*1.0176') # 8280.36/8966.2   = 0.92350828667 
-addSampleWeight(samples, 'Wjets', 'WJetsToLNu-2J', '0.85588177166*1.0176') # 3118.08/3643.12  = 0.85588177166
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu-0J', '0.90209625793*1.0176') # 49264.92/54611.6 = 0.90209625793
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu-1J', '0.92350828667*1.0176') # 8280.36/8966.2   = 0.92350828667 
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu-2J', '0.85588177166*1.0176') # 3118.08/3643.12  = 0.85588177166
 
 # samples['Wjets'] = {
 #     'name':   nanoGetSampleFiles(mcDirectory,'WJetsToLNu_HT70_100',False,'nanoLatino_')

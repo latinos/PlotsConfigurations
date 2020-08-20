@@ -15,7 +15,8 @@ def nanoGetSampleFiles(inputDir, Sample):
     return getSampleFiles(inputDir, Sample, False, 'nanoLatino_')
 
 try:
-    mc = [skey for skey in samples if skey != 'DATA' and not skey.startswith('FAKE')]
+    #mc = [skey for skey in samples if skey != 'DATA' and not skey.startswith('FAKE')]
+    mc = [skey for skey in samples if skey != 'DATA']
 except NameError:
     mc = []
     cuts = {}
@@ -673,25 +674,25 @@ for lepton in leptons:
             'cuts' : cutdict[lepton], 
         }
 
-##### FW E_T up down var Electron
-nuisances['fakeW_Et_e'] = {
-    'name': 'CMS_fakeW_Et_e_2017',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {
-        'FAKE': ['FW_mu20_EleUp[0]', 'FW_mu20_EleDown[0]'],
-    },
-}
-
-##### FW E_T up down var Muon
-nuisances['fakeW_Et_m'] = {
-    'name': 'CMS_fakeW_Et_m_2017',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {
-        'FAKE': ['FW_mu20_MuUp[0]', 'FW_mu20_MuDown[0]'],
-    },
-}
+###### FW E_T up down var Electron
+#nuisances['fakeW_Et_e'] = {
+#    'name': 'CMS_fakeW_Et_e_2017',
+#    'kind': 'weight',
+#    'type': 'shape',
+#    'samples': {
+#        'FAKE': ['FW_mu20_EleUp[0]', 'FW_mu20_EleDown[0]'],
+#    },
+#}
+#
+###### FW E_T up down var Muon
+#nuisances['fakeW_Et_m'] = {
+#    'name': 'CMS_fakeW_Et_m_2017',
+#    'kind': 'weight',
+#    'type': 'shape',
+#    'samples': {
+#        'FAKE': ['FW_mu20_MuUp[0]', 'FW_mu20_MuDown[0]'],
+#    },
+#}
 
 
 

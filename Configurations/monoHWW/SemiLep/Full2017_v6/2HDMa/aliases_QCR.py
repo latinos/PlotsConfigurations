@@ -27,7 +27,7 @@ else:
     raise IOError('FILE NOT FOUND: '+signal_file+'does not exist.')
 
 
-mc = [skey for skey in samples if skey not in ('FAKE', 'DATA')]
+mc = [skey for skey in samples if skey not in ('DATA')]
 new_mc = []
 for mp in signal:
     new_mc.append(mp)
@@ -176,8 +176,8 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
         'samples': new_samples
     }
 
-bJetV_req = '(CleanJet_pt > 20 && abs(CleanJet_eta) < 2.5 && CleanJet_jetIdx != ori_idx_j1[0] && CleanJet_jetIdx != ori_idx_j2[0])'
-bJetR_req = '(CleanJet_pt > 30 && abs(CleanJet_eta) < 2.5 && CleanJet_jetIdx != ori_idx_j1[0] && CleanJet_jetIdx != ori_idx_j2[0])'
+bJetV_req = '(CleanJet_pt > 20 && abs(CleanJet_eta) < 2.5)'
+bJetR_req = '(CleanJet_pt > 30 && abs(CleanJet_eta) < 2.5)'
 
 aliases['bVeto'] = {
     'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx] > 0.1522 && '+bJetV_req+' ) == 0',
@@ -197,7 +197,8 @@ aliases['bReqSF'] = {
 }
 
 aliases['btagSF'] = {
-    'expr': '(bVetoSF[0]*bVeto[0] + bReqSF[0]*bReq[0])',
+    #'expr': '(bVetoSF[0]*bVeto[0] + bReqSF[0]*bReq[0])',
+    'expr': '(1.)',
     'samples': mc
 }
 
@@ -302,61 +303,61 @@ aliases['EWKnloW'] = {
     'samples': "Wjets"
 }
 
-# adapted to full OTF fake
-for mu_et in [20]:
-    for el_et in [25, 35, 45]:
-        corr_file = "%s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v6/2HDMa/fakeweight_correction.root" % os.getenv('CMSSW_BASE')
-        el_fr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v6/mvaFall17V1IsoWP90/EleFR_jet"+str(el_et)+".root"
-        mu_fr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v6/mvaFall17V1IsoWP90/MuonFR_jet"+str(mu_et)+".root"
-        el_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v6/mvaFall17V1IsoWP90/ElePR.root"
-        mu_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v6/mvaFall17V1IsoWP90/MuonPR.root"
-
-        aliases['FW_mu'+str(mu_et)+'_el'+str(el_et)] = {
-            'class': 'FakeWeightOTF',
-            'args': (corr_file, eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file)), 
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v6/2HDMa/fakeweight_OTF.cc+' % os.getenv('CMSSW_BASE')
-             ],
-            'samples': ["FAKE"]
-        }
-
-for mu_et in [10, 30]:
-    for el_et in [35]:
-        corr_file = "%s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v6/2HDMa/fakeweight_correction.root" % os.getenv('CMSSW_BASE')
-        el_fr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v6/mvaFall17V1IsoWP90/EleFR_jet"+str(el_et)+".root"
-        mu_fr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v6/mvaFall17V1IsoWP90/MuonFR_jet"+str(mu_et)+".root"
-        el_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v6/mvaFall17V1IsoWP90/ElePR.root"
-        mu_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v6/mvaFall17V1IsoWP90/MuonPR.root"
-
-        aliases['FW_mu'+str(mu_et)+'_el'+str(el_et)] = {
-            'class': 'FakeWeightOTF',
-            'args': (corr_file, eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file)), 
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v6/2HDMa/fakeweight_OTF.cc+' % os.getenv('CMSSW_BASE')
-             ],
-            'samples': ["FAKE"]
-        }
-
-for mu_et in [20]:
-    aliases['FW_mu'+str(mu_et)+'_EleUp'] = {
-        'expr': '((TMath::Abs(Lepton_pdgId[0]) == 11)*(FW_mu'+str(mu_et)+'_el45[0]/FW_mu'+str(mu_et)+'_el35[0]) + (TMath::Abs(Lepton_pdgId[0]) == 13))',
-        'samples': ["FAKE"]
-    }
-    aliases['FW_mu'+str(mu_et)+'_EleDown'] = {
-        'expr': '((TMath::Abs(Lepton_pdgId[0]) == 11)*(FW_mu'+str(mu_et)+'_el25[0]/FW_mu'+str(mu_et)+'_el35[0]) + (TMath::Abs(Lepton_pdgId[0]) == 13))',
-        'samples': ["FAKE"]
-    }
-    
-    aliases['FW_mu'+str(mu_et)+'_MuUp'] = {
-        'expr': '((TMath::Abs(Lepton_pdgId[0]) == 13)*(FW_mu'+str(mu_et+10)+'_el35[0]/FW_mu'+str(mu_et)+'_el35[0]) + (TMath::Abs(Lepton_pdgId[0]) == 11))',
-        'samples': ["FAKE"]
-    }
-    aliases['FW_mu'+str(mu_et)+'_MuDown'] = {
-        'expr': '((TMath::Abs(Lepton_pdgId[0]) == 13)*(FW_mu'+str(mu_et-10)+'_el35[0]/FW_mu'+str(mu_et)+'_el35[0]) + (TMath::Abs(Lepton_pdgId[0]) == 11))',
-        'samples': ["FAKE"]
-    }
+## adapted to full OTF fake
+#for mu_et in [20]:
+#    for el_et in [25, 35, 45]:
+#        corr_file = "%s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v6/2HDMa/fakeweight_correction.root" % os.getenv('CMSSW_BASE')
+#        el_fr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v6/mvaFall17V1IsoWP90/EleFR_jet"+str(el_et)+".root"
+#        mu_fr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v6/mvaFall17V1IsoWP90/MuonFR_jet"+str(mu_et)+".root"
+#        el_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v6/mvaFall17V1IsoWP90/ElePR.root"
+#        mu_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v6/mvaFall17V1IsoWP90/MuonPR.root"
+#
+#        aliases['FW_mu'+str(mu_et)+'_el'+str(el_et)] = {
+#            'class': 'FakeWeightOTF',
+#            'args': (corr_file, eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file)), 
+#            'linesToAdd' : [
+#                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#                '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v6/2HDMa/fakeweight_OTF.cc+' % os.getenv('CMSSW_BASE')
+#             ],
+#            'samples': ["FAKE"]
+#        }
+#
+#for mu_et in [10, 30]:
+#    for el_et in [35]:
+#        corr_file = "%s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v6/2HDMa/fakeweight_correction.root" % os.getenv('CMSSW_BASE')
+#        el_fr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v6/mvaFall17V1IsoWP90/EleFR_jet"+str(el_et)+".root"
+#        mu_fr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v6/mvaFall17V1IsoWP90/MuonFR_jet"+str(mu_et)+".root"
+#        el_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v6/mvaFall17V1IsoWP90/ElePR.root"
+#        mu_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v6/mvaFall17V1IsoWP90/MuonPR.root"
+#
+#        aliases['FW_mu'+str(mu_et)+'_el'+str(el_et)] = {
+#            'class': 'FakeWeightOTF',
+#            'args': (corr_file, eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file)), 
+#            'linesToAdd' : [
+#                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#                '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v6/2HDMa/fakeweight_OTF.cc+' % os.getenv('CMSSW_BASE')
+#             ],
+#            'samples': ["FAKE"]
+#        }
+#
+#for mu_et in [20]:
+#    aliases['FW_mu'+str(mu_et)+'_EleUp'] = {
+#        'expr': '((TMath::Abs(Lepton_pdgId[0]) == 11)*(FW_mu'+str(mu_et)+'_el45[0]/FW_mu'+str(mu_et)+'_el35[0]) + (TMath::Abs(Lepton_pdgId[0]) == 13))',
+#        'samples': ["FAKE"]
+#    }
+#    aliases['FW_mu'+str(mu_et)+'_EleDown'] = {
+#        'expr': '((TMath::Abs(Lepton_pdgId[0]) == 11)*(FW_mu'+str(mu_et)+'_el25[0]/FW_mu'+str(mu_et)+'_el35[0]) + (TMath::Abs(Lepton_pdgId[0]) == 13))',
+#        'samples': ["FAKE"]
+#    }
+#    
+#    aliases['FW_mu'+str(mu_et)+'_MuUp'] = {
+#        'expr': '((TMath::Abs(Lepton_pdgId[0]) == 13)*(FW_mu'+str(mu_et+10)+'_el35[0]/FW_mu'+str(mu_et)+'_el35[0]) + (TMath::Abs(Lepton_pdgId[0]) == 11))',
+#        'samples': ["FAKE"]
+#    }
+#    aliases['FW_mu'+str(mu_et)+'_MuDown'] = {
+#        'expr': '((TMath::Abs(Lepton_pdgId[0]) == 13)*(FW_mu'+str(mu_et-10)+'_el35[0]/FW_mu'+str(mu_et)+'_el35[0]) + (TMath::Abs(Lepton_pdgId[0]) == 11))',
+#        'samples': ["FAKE"]
+#    }
 
 aliases['WptOvHak4M_OTF'] = {
     'expr': 'TMath::Min(MHlnjj_pt_lmet, MHlnjj_pt_jj)/MHlnjj_m_lmetjj'

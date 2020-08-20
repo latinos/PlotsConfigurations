@@ -388,7 +388,7 @@ samples['VgS']  =  {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',Fal
                                  + getSampleFiles(directory,'WZTo3LNu_mllmin01',False,'nanoLatino_'),
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
                       'FilesPerJob' : 10,
-                      'EventsPerJob' : 80000,
+                      'EventsPerJob' : 70000,
                       'suppressNegative' :['all'],
                       'suppressNegativeNuisances' :['all'],
                       'subsamples': {

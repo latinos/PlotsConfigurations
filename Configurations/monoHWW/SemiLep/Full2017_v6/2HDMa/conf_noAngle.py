@@ -4,10 +4,10 @@
 
 treeName = 'Events'
 
-tag = 'MHlnjj_2017'
+tag = 'MHlnjj_noAngle_2017'
 
 # used by mkShape to define output directory for root files
-outputDir = '2HDMa_root'
+outputDir = '2HDMa_root_noAngle'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
@@ -16,7 +16,7 @@ aliasesFile = 'aliases.py'
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py'
+cutsFile = 'cuts_noAngle.py'
 
 # file with list of samples
 samplesFile = 'samples.py'
@@ -29,14 +29,13 @@ lumi = 41.5
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = '2HDMa_plots'
+outputDirPlots = '2HDMa_plots_noAngle'
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = '2HDMa_datacards'
+outputDirDatacard = '2HDMa_datacards_noAngle'
 
 # structure file for datacard
 structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
 nuisancesFile = 'nuisances.py'
-#nuisancesFile = 'nuisances_vary.py'

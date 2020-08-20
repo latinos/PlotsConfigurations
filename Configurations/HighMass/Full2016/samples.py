@@ -23,7 +23,7 @@ elif  'cern' in SITE :
   treeBaseDirHM = '/eos/user/d/dmroy/HWWNano/'
 
 directory = treeBaseDir+'Summer16_102X_nAODv5_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6'
-directoryV6 = treeBaseDir+'Summer16_102X_nAODv6_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6'
+directoryV6 = treeBaseDir+'Summer16_102X_nAODv6_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__HM'
 directoryHM = treeBaseDir+'Summer16_102X_nAODv6_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__BWReweight'
 
 ################################################

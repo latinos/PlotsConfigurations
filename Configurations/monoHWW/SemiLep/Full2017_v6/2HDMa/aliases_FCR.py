@@ -176,8 +176,8 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
         'samples': new_samples
     }
 
-bJetV_req = '(CleanJet_pt > 20 && abs(CleanJet_eta) < 2.5 && CleanJet_jetIdx != ori_idx_j1[0] && CleanJet_jetIdx != ori_idx_j2[0])'
-bJetR_req = '(CleanJet_pt > 30 && abs(CleanJet_eta) < 2.5 && CleanJet_jetIdx != ori_idx_j1[0] && CleanJet_jetIdx != ori_idx_j2[0])'
+bJetV_req = '(CleanJet_pt > 20 && abs(CleanJet_eta) < 2.5)'
+bJetR_req = '(CleanJet_pt > 30 && abs(CleanJet_eta) < 2.5)'
 
 aliases['bVeto'] = {
     'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx] > 0.1522 && '+bJetV_req+' ) == 0',
@@ -197,7 +197,8 @@ aliases['bReqSF'] = {
 }
 
 aliases['btagSF'] = {
-    'expr': '(bVetoSF[0]*bVeto[0] + bReqSF[0]*bReq[0])',
+    #'expr': '(bVetoSF[0]*bVeto[0] + bReqSF[0]*bReq[0])',
+    'expr': '(1.)',
     'samples': mc
 }
 
