@@ -12,8 +12,7 @@ supercut = """Lepton_pt[0] > 25. && Lepton_pt[1] > 20. \
 && (mll > 20.) \
 && (Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13 || PuppiMET_pt > 50.) \
 && (Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13 || (mll < 76 || mll > 106)) \
-&& nbJet > 0 \
-&& (Sum$(CleanJet_pt >= 30. && abs(CleanJet_eta) < 2.4) >= 1)"""
+&& nbJet > 0 && (Sum$(CleanJet_pt >= 30. && abs(CleanJet_eta) < 2.4) >= 1)"""
 
 cuts['topCR_ll']  = '1'
 cuts['topCR_df']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13)'

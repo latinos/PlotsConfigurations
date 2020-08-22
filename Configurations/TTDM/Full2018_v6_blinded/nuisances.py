@@ -30,12 +30,12 @@ HiggsXS = HiggsXSection()
 
 #### Luminosity
 
-#nuisances['lumi'] = {
-#    'name': 'lumi_13TeV_2018',
-#    'type': 'lnN',
-#    'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'top', 'DY'])
-#}
-
+nuisances['lumi'] = {
+    'name': 'lumi_13TeV_2018',
+    'type': 'lnN',
+    'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'ttbar', 'singleTop', 'DY'])
+}
+"""
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2018',
     'type': 'lnN',
@@ -59,9 +59,9 @@ nuisances['lumi_CurrCalib'] = {
     'type': 'lnN',
     'samples': dict((skey, '1.002') for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
-
+"""
 #### FAKES
-
+"""
 nuisances['fake_syst'] = {
     'name': 'CMS_fake_syst',
     'type': 'lnN',
@@ -106,6 +106,22 @@ nuisances['fake_mu_stat'] = {
     }
 }
 
+##### B-tagger
+
+for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
+    btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
+
+    name = 'CMS_btag_%s' % shift
+    if 'stats' in shift:
+        name += '_2018'
+
+    nuisances['btag_shape_%s' % shift] = {
+        'name': name,
+        'kind': 'weight',
+        'type': 'shape',
+        'samples': dict((skey, btag_syst) for skey in mc),
+    }
+
 ##### Trigger Efficiency
 
 trig_syst = ['((TriggerEffWeight_2l_u)/(TriggerEffWeight_2l))*(TriggerEffWeight_2l>0.02) + (TriggerEffWeight_2l<=0.02)', '(TriggerEffWeight_2l_d)/(TriggerEffWeight_2l)']
@@ -126,7 +142,6 @@ nuisances['eff_e'] = {
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
 }
 
-"""
 nuisances['electronpt'] = {
     'name': 'CMS_scale_e_2018',
     'kind': 'suffix',
@@ -138,7 +153,7 @@ nuisances['electronpt'] = {
     'folderDown': makeMCDirectory('ElepTdo_suffix'),
     'AsLnN': '1'
 }
-"""
+
 ##### Muon Efficiency and energy scale
 
 nuisances['eff_m'] = {
@@ -149,7 +164,6 @@ nuisances['eff_m'] = {
     #'samples': dict((skey, ['ttHMVA_2l_mu_SF_Up', 'ttHMVA_2l_mu_SF_Down']) for skey in mc)
 }
 
-"""
 nuisances['muonpt'] = {
     'name': 'CMS_scale_m_2018',
     'kind': 'suffix',
@@ -191,7 +205,6 @@ nuisances['met'] = {
     'folderDown': makeMCDirectory('METdo_suffix'),
     'AsLnN': '1'
 }
-"""
 
 ##### Pileup
 
@@ -201,7 +214,8 @@ nuisances['PU'] = {
     'type': 'shape',
     'samples': {
         'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
-        'top': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
+        'ttbar': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
+        'singleTop': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
         'WW': ['1.0033022059*(puWeightUp/puWeight)', '0.997085330608*(puWeightDown/puWeight)'],
         'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
         'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
@@ -209,28 +223,60 @@ nuisances['PU'] = {
     'AsLnN': '1',
 }
 
-"""
 ##### PS
+nuisances['PS_ISR']  = {
+    'name': 'PS_ISR',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, ['PSWeight[2]', 'PSWeight[0]']) for skey in mc if skey not in ['Vg','VgS','WWewk']), #PSWeights are buggy for some samples, we add them back by hand below
+}
+
+nuisances['PS_FSR']  = {
+    'name': 'PS_FSR',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, ['PSWeight[3]', 'PSWeight[1]']) for skey in mc if skey not in ['Vg','VgS','WWewk']), #PSWeights are buggy for some samples, we add them back by hand below
+}
+
+## PS nuisances computed by hand as a function of nCleanGenJets using alternative samples (when available). Needed if nominal samples have buggy PSWeights
+nuisances['PS_ISR_ForBuggySamples']  = {
+    'name': 'PS_ISR',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+        'Vg'     : ['1.00227428567253*(nCleanGenJet==0) + 1.00572014989997*(nCleanGenJet==1) + 0.970824885256465*(nCleanGenJet==2) + 0.927346068071086*(nCleanGenJet>=3)', '0.996488506572636*(nCleanGenJet==0) + 0.993582795375765*(nCleanGenJet==1) + 1.03643678934568*(nCleanGenJet==2) + 1.09735277266955*(nCleanGenJet>=3)'],
+        'VgS'    : ['1.0000536116408023*(nCleanGenJet==0) + 1.0100100693580492*(nCleanGenJet==1) + 0.959068359375*(nCleanGenJet==2) + 0.9117049260469496*(nCleanGenJet>=3)', '0.9999367833485968*(nCleanGenJet==0) + 0.9873682892005163*(nCleanGenJet==1) + 1.0492717737268518*(nCleanGenJet==2) + 1.1176958835210322*(nCleanGenJet>=3)'],
+    },
+}
+
+nuisances['PS_FSR_ForBuggySamples']  = {
+    'name': 'PS_FSR',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+        'Vg'     : ['0.999935529935028*(nCleanGenJet==0) + 0.997948255568351*(nCleanGenJet==1) + 1.00561645493085*(nCleanGenJet==2) + 1.0212896960035*(nCleanGenJet>=3)', '1.00757702771109*(nCleanGenJet==0) + 1.00256681166083*(nCleanGenJet==1) + 0.93676371569867*(nCleanGenJet==2) + 0.956448336052435*(nCleanGenJet>=3)'],
+        'VgS'    : ['0.9976593177227735*(nCleanGenJet==0) + 1.0016125187585532*(nCleanGenJet==1) + 1.0049344618055556*(nCleanGenJet==2) + 1.0195631514301164*(nCleanGenJet>=3)', '1.0026951855766457*(nCleanGenJet==0) + 1.0008132148661049*(nCleanGenJet==1) + 1.003949291087963*(nCleanGenJet==2) + 0.9708160910230832*(nCleanGenJet>=3)'],
+    },
+}
+
+
+# An overall 1.5% UE uncertainty will cover all the UEup/UEdo variations
+# And we don't observe any dependency of UE variations on njet
 nuisances['UE']  = {
                 'name'  : 'UE_CP5',
                 'skipCMS' : 1,
-                'kind'  : 'tree',
-                'type'  : 'shape',
-                'samples'  : {
-                  'WW'      : ['1.0017139', '0.99350287'],
-                  'ggH_hww' : ['1.0272226', '1.0123689'],
-                  'qqH_hww' : ['1.0000192', '0.98367442']
-                },
-                'folderUp': makeMCDirectory('UEup'),
-                'folderDown': makeMCDirectory('UEdo'),
-                'AsLnN'      : '1',
+                'type': 'lnN',
+                'samples': dict((skey, '1.015') for skey in mc), 
 }
-"""
 
 ####### Generic "cross section uncertainties"
 
 apply_on = {
-    'top': [
+    'ttbar': [
+        'isSingleTop * 1.0816 + isTTbar',
+        'isSingleTop * 0.9184 + isTTbar'
+    ],
+    'singleTop': [
         'isSingleTop * 1.0816 + isTTbar',
         'isSingleTop * 0.9184 + isTTbar'
     ]
@@ -250,7 +296,7 @@ nuisances['TopPtRew'] = {
     'name': 'CMS_topPtRew',   # Theory uncertainty
     'kind': 'weight',
     'type': 'shape',
-    'samples': {'top': ["1.", "1./Top_pTrw"]},
+    'samples': {'ttbar': ["Top_pTrw*Top_pTrw", "1."], 'singleTop': ["Top_pTrw*Top_pTrw", "1."]},
     'symmetrize': True
 }
 
@@ -551,4 +597,4 @@ for n in nuisances.values():
     n['skipCMS'] = 1
 
 print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
-
+"""

@@ -24,6 +24,11 @@ aliases['LepWPCut'] = {
     'samples': mc + ['DATA']
 }
 
+aliases['LepWPSF'] = {
+    'expr': 'LepSF2l__ele_'+eleWP+'__mu_'+muWP,
+    'samples': mc
+}
+
 aliases['gstarLow'] = {
     'expr': 'Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4',
     'samples': 'VgS'
@@ -80,9 +85,52 @@ aliases['PromptGenLepMatch2l'] = {
 }
 
 aliases['Top_pTrw'] = {
-    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
+    #'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
+    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(-0.158631 + 2.00214e-04*topGenPt - 3.09496e-07*topGenPt*topGenPt + 34.93/(topGenPt+135.633)) * TMath::Exp(-0.158631 + 2.00214e-04*antitopGenPt - 3.09496e-07*antitopGenPt*antitopGenPt + 34.93/(antitopGenPt+135.633)))) + (topGenPt * antitopGenPt <= 0.)',
     'samples': ['ttbar', 'singleTop']
 }
+
+aliases['bVeto'] = {
+    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.4 && Jet_btagDeepB[CleanJet_jetIdx] > 0.6321) == 0'
+}
+
+aliases['bReq'] = {
+    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.4 && Jet_btagDeepB[CleanJet_jetIdx] > 0.6321) >= 1'
+}
+
+aliases['bVetoSF'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.4)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.4))))',
+    'samples': mc
+}
+
+aliases['bReqSF'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.4)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<30 || abs(CleanJet_eta)>2.4))))',
+    'samples': mc
+}
+
+aliases['btagSF'] = {
+    'expr': '(bVeto * bVetoSF + bReq * bReqSF)',
+    'samples': mc
+}
+
+for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
+
+    for targ in ['bVeto', 'bReq']:
+        alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
+        alias['expr'] = alias['expr'].replace('btagSF_shape', 'btagSF_shape_up_%s' % shift)
+
+        alias = aliases['%sSF%sdown' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
+        alias['expr'] = alias['expr'].replace('btagSF_shape', 'btagSF_shape_down_%s' % shift)
+
+    aliases['btagSF%sup' % shift] = {
+        'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'up'),
+        'samples': mc
+    }
+
+    aliases['btagSF%sdown' % shift] = {
+        'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'down'),
+        'samples': mc
+    }
 
 # Jet bins
 # using Alt$(CleanJet_pt[n], 0) instead of Sum$(CleanJet_pt >= 30) because jet pt ordering is not strictly followed in JES-varied samples
@@ -100,6 +148,18 @@ aliases['multiJet'] = {
     'expr': 'Alt$(CleanJet_pt[1], 0) > 30.'
 }
 
+puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
+
+aliases['PUJetIdSF'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L %s/patches/pujetidsf_event_new.cc+' % configurations
+    ],
+    'class': 'PUJetIdEventSF',
+    'args': (puidSFSource, '2016', 'loose'),
+    'samples': mc
+}
+
 ############################################
 ### Total SFs, i.e. ttHMVA+old lepton SFs ###
 #############################################
@@ -114,9 +174,10 @@ aliases['ttHMVA_SF_2l'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % config
 
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'PrefireWeight']),
+    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepWPSF', 'btagSF', 'PrefireWeight', 'PUJetIdSF']),
     'samples': mc
 }
+
 # variations
 aliases['SFweightEleUp'] = {
     'expr': 'LepSF2l__ele_'+eleWP+'__Up',
