@@ -507,6 +507,7 @@ for mass in massvbf:
 
   else:
     samples['QQHSBI_'+mass+model_name]  = {  'name'   :   getSampleFiles(directoryHM,'VBFHToWWTo2L2Nu_M'+mass,True,'nanoLatino_')
+                                                      + getSampleFiles(directory,'WpWmJJ_QCD_noTop',False,'nanoLatino_')
                                                       + getSampleFiles(directory,'WpWmJJ_QCD_noTop_ext1',False,'nanoLatino_')
                                                       + getSampleFiles(directory,'VBFHToWWTo2L2Nu_M125',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
@@ -516,7 +517,9 @@ for mass in massvbf:
                         'suppressNegativeNuisances' :['all'],
                      }
 
+    CombineBaseW(samples, 'QQHSBI_'+mass+model_name, ['WpWmJJ_QCD_noTop', 'WpWmJJ_QCD_noTop_ext1'])
     addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'VBFHToWWTo2L2Nu_M'+mass, noSMxsec+'*'+'('+model+' + '+model_I+'*(abs('+model_I+')<50))')
+    addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'WpWmJJ_QCD_noTop', '(mjjGen_OTF>100)*(GenLHE)'+embed_tautauveto)
     addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'WpWmJJ_QCD_noTop_ext1', '(mjjGen_OTF>100)*(GenLHE)'+embed_tautauveto)
 
   if mass in ['4000', '5000']: # Just to be sure, recalculate baseW with new cross sections
