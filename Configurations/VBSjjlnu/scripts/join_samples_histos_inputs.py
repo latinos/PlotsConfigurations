@@ -56,21 +56,21 @@ iF = R.TFile(filepath, "UPDATE")
 for cut in cuts: 
     R.gDirectory.Cd(cut)
     print(">Cut: ", cut)
+    available_vars = [k.GetName() for k in  R.gDirectory.GetListOfKeys()]
     for variable in variables:
+        if variable not in available_vars: continue
         print(">> Variable: ", variable)
         R.gDirectory.Cd(variable)
         keys = [k.GetName() for k in  R.gDirectory.GetListOfKeys()]
-
+        
         for subsamp in subsamples:   
             join_histos(R.gDirectory,  keys,  args.samples, args.output_name, suffix="_"+subsamp)
 
             for nuis in nuisances_name:
-                print("Nuisance: ", nuis)
+                #print("Nuisance: ", nuis)
                 join_histos(R.gDirectory, keys, args.samples, args.output_name, suffix="_"+subsamp+"_"+nuis+"Up")
-                join_histos(R.gDirectory, keys, args.samples, args.output_name, suffix="_"+subsamp+"_"+nuis+"Up")
+                join_histos(R.gDirectory, keys, args.samples, args.output_name, suffix="_"+subsamp+"_"+nuis+"Down")
 
-
-        
         R.gDirectory.Cd("..")
     R.gDirectory.Cd("..")
 iF.Write()

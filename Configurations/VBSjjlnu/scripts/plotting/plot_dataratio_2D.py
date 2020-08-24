@@ -8,6 +8,7 @@ parser.add_argument("-i", "--inputfile", help="input file with shapes", type=str
 parser.add_argument("-v", "--var", help="Variable to plot", type=str)
 parser.add_argument("-c", "--cuts", help="cuts to use", nargs="+", type=str)
 parser.add_argument("-r", "--ranges", help="(xbins,xmin,xmax,ybins,ymin,ymax)", nargs="+", type=float)
+parser.add_argument("-t", "--title", help="Plot axes title",  type=str)
 args = parser.parse_args()
 
 
@@ -57,7 +58,7 @@ for cat in args.cuts:
         ratio_hist_2d.SetBinContent(ratio_hist_2d.FindBin(x,y), ratio_hist.GetBinContent(ib))
 
     ratio_hist_2d.GetZaxis().SetRangeUser(0.7,1.25)
-    ratio_hist_2d.SetTitle("data/MC ratio;eta;Sip3d")
+    ratio_hist_2d.SetTitle(args.title)
 
     c = R.TCanvas("cratio")
     ratio_hist_2d.Draw("COLZ")
