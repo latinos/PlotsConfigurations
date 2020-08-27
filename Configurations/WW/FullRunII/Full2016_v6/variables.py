@@ -27,13 +27,13 @@ variables['mth']  = {   'name': 'mth',
                         'xaxis' : 'm_{T}^{WW} [GeV]',
                         'fold' : 0
                         }
-'''
-variables['mth-DY']  = {   'name': 'mth',
-                        'range' : (10, 0, 60),
-                        'xaxis' : 'm_{T}^{H} [GeV]',
-                        'fold' : 0
+
+variables['mth-more']  = {   'name': 'mth',
+                        'range' : (20, 60,200),
+                        'xaxis' : 'm_{T}^{WW} [GeV]',
+                        'fold' : 3
                         }
-'''
+
 variables['ptll']  = {   'name': 'ptll',
                         'range' : (20, 0.,200),
                         'xaxis' : 'p_{T}^{ll} [GeV]',
@@ -118,7 +118,7 @@ variables['jeteta2']  = {  'name': '(Sum$(CleanJet_pt>30)>1)*(Alt$(CleanJet_eta[
                         }
 
 
-
+'''
 variables['mllVSmth_pt2ge20'] = {   'name': 'mll:mth',            #   variable name    
                              'range' : ([60,80,90,100,110,120,130,150,200],[12,25,35,40,45,50,55,70,90,210],),            #   variable range
                              'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
@@ -129,7 +129,6 @@ variables['mllVSmth_pt2ge20'] = {   'name': 'mll:mth',            #   variable n
                              'binY'     : 9
                              #
                              }
-
 variables['mllVSmth_pt2lt20'] = {   'name': 'mll:mth',            #   variable name    
                              'range' : ([60,80,90,110,130,150,200],[12,25,40,50,70,90,210],),            #   variable range
                              'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
@@ -140,4 +139,4 @@ variables['mllVSmth_pt2lt20'] = {   'name': 'mll:mth',            #   variable n
                              'binY'     : 6
                              #
                              }
-
+'''

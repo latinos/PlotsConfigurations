@@ -79,7 +79,7 @@ nuisances['lumi_Ghosts'] = {
     'samples': dict((skey, '1.004') for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
-'''
+
 #### FAKES
 
 ## FIXME: check the 30% lnN
@@ -218,6 +218,7 @@ nuisances['eff_m'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['ttHMVA_2l_mu_SF_Up', 'ttHMVA_2l_mu_SF_Down']) for skey in mc_emb)
+    #'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb)
 }
 
 nuisances['muonpt'] = {
@@ -754,7 +755,7 @@ nuisances['QCDscale_gg_ACCEPT'] = {
     },
     'type': 'lnN',
 }
-'''
+
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat'] = {
     'type': 'auto',
@@ -764,7 +765,7 @@ nuisances['stat'] = {
     #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
     'samples': {}
 }
-'''
+
 ## rate parameters
 nuisances['DYttnorm0j']  = {
                'name'  : 'CMS_hww_DYttnorm0j',
@@ -792,7 +793,7 @@ nuisances['DYttnorm2j']  = {
                  'type'  : 'rateParam',
                  'cuts'  : cuts2j
                 }
-
+'''
 nuisances['DYembnorm0j']  = {
                'name'  : 'CMS_hww_DYttnorm0j',
                'samples'  : {
@@ -878,7 +879,7 @@ nuisances['ggWWnorm2j']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts2j
               }
-
+'''
 
 nuisances['Topnorm0j']  = {
                'name'  : 'CMS_hww_Topnorm0j',
@@ -906,7 +907,7 @@ nuisances['Topnorm2j']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts2j
               }
-'''
+
 
 
 for n in nuisances.values():

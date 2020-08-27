@@ -275,7 +275,7 @@ samples['WWewk'] = {
     'weight': mcCommonWeight+embed_tautauveto + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)*(lhe_mW1[0] > 60. && lhe_mW1[0] < 100. && lhe_mW2[0] > 60. && lhe_mW2[0] < 100.)', #filter tops and Higgs, limit w mass
     'FilesPerJob': 4
 }
-signals.append('WWewk')
+#signals.append('WWewk')
 
 samples['ggWW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluWWTo2L2Nu_MCFM'),
@@ -297,6 +297,7 @@ samples['ggH_hww'] = {
 
 #FIXME VBFHToWWTo2L2NuPowheg missing?
 ############ VBF H->WW ############
+
 samples['qqH_hww'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2Nu_M125'),
     'weight': mcCommonWeight,
@@ -305,7 +306,6 @@ samples['qqH_hww'] = {
 
 #signals.append('qqH_hww')
 
-'''
 ############ ZH H->WW ############
 
 samples['ZH_hww'] = {
@@ -378,7 +378,7 @@ samples['WH_htt'] = {
 }
 
 signals.append('WH_htt')
-'''
+
 
 ###########################################
 ################## FAKE ###################
